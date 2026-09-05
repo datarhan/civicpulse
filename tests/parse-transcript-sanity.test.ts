@@ -8,6 +8,9 @@ import {
   MARCADORES_NATIVOS,
   MAX_TRANSLATED_RUN,
   MAX_TRANSLATED_SHARE,
+  MIN_PROPORCION_TEXTO,
+  empobreceLaTranscripcion,
+  etiquetasDeHablante,
 } from '../src/scraper/transcript-sanity'
 
 const fx = (name: string) => readFileSync(join(__dirname, 'fixtures', name), 'utf8')
@@ -208,5 +211,67 @@ describe('traducido en vez de transcrito', () => {
     expect(MARCADORES_EN.has('the')).toBe(true)
     expect(MARCADORES_NATIVOS.has('que')).toBe(true)
     expect(MARCADORES_NATIVOS.has('amb')).toBe(true) // valencià, no sólo castellano
+  })
+})
+
+/**
+ * Y la pregunta que ningún umbral de arriba hace: ¿empobrece a la que sustituye?
+ *
+ * El 5-09-2026 se re-transcribió `1r6yy0` con `WHISPER_ENGINE=gemini` para
+ * quitarle 55 líneas que el motor anterior había traducido al inglés. Lo
+ * consiguió —0 líneas traducidas— y de paso se dejó la mitad de la sesión y las
+ * 1.249 marcas de hablante: 188.254 caracteres pasaron a 94.233, y las dos
+ * llegan al minuto 163, así que no fue un recorte al final sino media acta
+ * disuelta a lo largo del fichero. Pasó la puerta con `ok=true` y sin un motivo,
+ * porque 131 líneas, 95 % únicas y 90.467 caracteres son cifras sanas EN UN
+ * FICHERO SUELTO.
+ */
+describe('una transcripción que empobrece a la que sustituye', () => {
+  const antes = fx('transcript_1r6yy0-antes_2026-09.txt')
+  const gemini = fx('transcript_1r6yy0-gemini_2026-09.txt')
+
+  it('caza la pérdida de diarización con el caso real', () => {
+    // Las rebanadas se toman por presupuesto de caracteres para que la
+    // proporción quede POR ENCIMA del suelo de texto: así esta prueba mide la
+    // pérdida de DIARIZACIÓN y no se apoya de rebote en el otro criterio. El
+    // caso completo —50,1 % del texto— lo cubre la prueba de abajo.
+    expect(etiquetasDeHablante(antes)).toBeGreaterThan(0)
+    expect(etiquetasDeHablante(gemini)).toBe(0)
+    const motivo = empobreceLaTranscripcion(antes, gemini)
+    expect(motivo).toContain('marca(s) de hablante')
+  })
+
+  it('caza la pérdida de texto, con las cifras reales de aquel día', () => {
+    const largo = (n: number) => 'palabra '.repeat(n)
+    expect(empobreceLaTranscripcion(largo(188254 / 8), largo(94233 / 8))).toContain('50.1 %')
+  })
+
+  /**
+   * EL CONTROL. Sin él todo lo de arriba pasaría con una guarda que dijera que
+   * sí siempre — y una guarda así cuarentena cada re-transcripción legítima
+   * hasta que alguien la apaga. Una pasada que mejora el texto y conserva las
+   * marcas no puede molestar.
+   */
+  it('una re-transcripción que no pierde nada pasa limpia', () => {
+    expect(empobreceLaTranscripcion(antes, antes)).toBeNull()
+    // Un poco más corta pero por encima del suelo, y diarizada: adelante.
+    const recortada = antes.slice(0, Math.floor(antes.length * 0.9))
+    expect(empobreceLaTranscripcion(antes, recortada)).toBeNull()
+    // Y GANAR diarización nunca es empobrecer.
+    const sinMarcas = antes.replace(/\(SPEAKER_\d+\)/g, '')
+    expect(empobreceLaTranscripcion(sinMarcas, antes)).toBeNull()
+  })
+
+  it('el suelo de texto es el exportado, no uno recitado', () => {
+    const base = 'palabra '.repeat(1000)
+    const justo = base.slice(0, Math.ceil(base.trim().length * MIN_PROPORCION_TEXTO) + 1)
+    expect(empobreceLaTranscripcion(base, justo)).toBeNull()
+    const poco = base.slice(0, Math.floor(base.trim().length * (MIN_PROPORCION_TEXTO - 0.05)))
+    expect(empobreceLaTranscripcion(base, poco)).toContain('por debajo del')
+  })
+
+  /** Sin anterior no hay empobrecimiento: es una sesión que se transcribe por primera vez. */
+  it('una sesión nueva no se compara con nada', () => {
+    expect(empobreceLaTranscripcion('', gemini)).toBeNull()
   })
 })

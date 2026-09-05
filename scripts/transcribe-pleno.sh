@@ -163,6 +163,40 @@ fi
 
 OUT_PATH="$TRANSCRIPT_DIR/$PLENO_ID.txt"
 
+# ── Archivar la que está publicada, ANTES de que ningún motor la pise ────────
+#
+# Esto vivía DENTRO de la rama de `openai`, que es la que corre la nocturna. Las
+# otras tres —gemini, mlx y la de por defecto, `local`— sobreescribían la
+# transcripción publicada sin archivarla: exactamente el defecto que este bloque
+# se escribió para impedir. Medido el 5-09-2026 al re-transcribir `1r6yy0` a mano
+# con gemini — la anterior desapareció del disco y sólo quedaba en git, que es
+# suerte y no diseño; la misma frase que este bloque ya llevaba escrita sobre
+# k4olcs, unas líneas más abajo.
+#
+# Va antes del reparto de motores, así que da igual cuál escriba después y da
+# igual que la pasada acabe fallando: lo que había queda guardado.
+INCUMBENTE=""
+if [ -f "$OUT_PATH" ]; then
+  SUPERSEDED_DIR="$(dirname "$OUT_PATH")/superseded"
+  SUPERSEDED_MAIN="$SUPERSEDED_DIR/$(basename "$OUT_PATH")"
+  mkdir -p "$SUPERSEDED_DIR"
+  # Idéntica no se aparta: apartarla llenaría la carpeta de copias del mismo
+  # texto cada vez que una re-transcripción sale byte a byte igual.
+  if [ -f "$SUPERSEDED_MAIN" ] && ! cmp -s "$SUPERSEDED_MAIN" "$OUT_PATH"; then
+    ROTADA="${SUPERSEDED_MAIN%.txt}.$(date -u +%Y-%m-%d).txt"
+    n=1
+    while [ -e "$ROTADA" ]; do
+      ROTADA="${SUPERSEDED_MAIN%.txt}.$(date -u +%Y-%m-%d)-${n}.txt"
+      n=$((n + 1))
+    done
+    mv "$SUPERSEDED_MAIN" "$ROTADA"
+    echo "[transcribe] la sustituida anterior se aparta en $(basename "$ROTADA")" >&2
+  fi
+  cp "$OUT_PATH" "$SUPERSEDED_MAIN"
+fi
+if [ -f "$SUPERSEDED_MAIN" ]; then INCUMBENTE="$SUPERSEDED_MAIN"; fi
+
+
 if [ "$WHISPER_ENGINE" = "openai" ]; then
   # ── OpenAI Whisper API branch ────────────────────────────────────────────
   # Requires OPENAI_API_KEY. Re-encodes to 16 kbps mono opus (small enough
@@ -395,24 +429,6 @@ if [ "$WHISPER_ENGINE" = "openai" ]; then
   #
   # Antes de ocupar la ranura principal, la que hubiera se aparta con la fecha
   # de hoy. Ver src/scraper/superseded-archive.ts para la convención de nombres.
-  if [ -f "$OUT_PATH" ]; then
-    SUPERSEDED_DIR="$(dirname "$OUT_PATH")/superseded"
-    SUPERSEDED_MAIN="$SUPERSEDED_DIR/$(basename "$OUT_PATH")"
-    mkdir -p "$SUPERSEDED_DIR"
-    # Idéntica no se aparta: apartarla llenaría la carpeta de copias del mismo
-    # texto cada vez que una re-transcripción sale byte a byte igual.
-    if [ -f "$SUPERSEDED_MAIN" ] && ! cmp -s "$SUPERSEDED_MAIN" "$OUT_PATH"; then
-      ROTADA="${SUPERSEDED_MAIN%.txt}.$(date -u +%Y-%m-%d).txt"
-      n=1
-      while [ -e "$ROTADA" ]; do
-        ROTADA="${SUPERSEDED_MAIN%.txt}.$(date -u +%Y-%m-%d)-${n}.txt"
-        n=$((n + 1))
-      done
-      mv "$SUPERSEDED_MAIN" "$ROTADA"
-      echo "[transcribe] la sustituida anterior se aparta en $(basename "$ROTADA")" >&2
-    fi
-    cp "$OUT_PATH" "$SUPERSEDED_MAIN"
-  fi
   # Record what this cost, so `npm run llm:cost` can see it.
   #
   # This script calls the audio API with raw curl and, until now, wrote no
@@ -799,7 +815,7 @@ echo "[transcribe] transcript: $OUT_PATH"
 # workdir: nothing is published, the pipeline's backlog selector keeps the
 # pleno pending, and the next run retries; repeat offenders get
 # TRANSCRIBE_BLOCKLIST'ed by the operator.
-if ! (cd "$REPO_ROOT" && npx tsx scripts/check-transcript-sanity.ts "$OUT_PATH"); then
+if ! (cd "$REPO_ROOT" && npx tsx scripts/check-transcript-sanity.ts "$OUT_PATH" ${INCUMBENTE:+--frente-a "$INCUMBENTE"}); then
   echo "[transcribe] SANITY GATE FAILED — transcript quarantined, NOT published" >&2
   mv "$OUT_PATH" "$WORKDIR/rejected-$PLENO_ID.txt" 2>/dev/null || rm -f "$OUT_PATH"
   exit 1

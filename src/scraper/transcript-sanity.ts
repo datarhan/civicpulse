@@ -262,3 +262,77 @@ export function assessTranscriptSanity(raw: string): TranscriptSanityReport {
     longestTranslatedRun,
   }
 }
+
+// ─── Y la pregunta que ningún umbral de arriba hace ─────────────────────────
+//
+// Todo lo anterior juzga el fichero EN SÍ: cuántas líneas trae, si se repite, si
+// dice algo. Ninguno lo compara con la transcripción que viene a sustituir, y
+// una transcripción no llega a un hueco vacío: pisa la que estaba publicada, de
+// la que ya se han sacado citas.
+//
+// Medido el 5-09-2026, re-transcribiendo `1r6yy0` con `WHISPER_ENGINE=gemini`
+// para quitarle 55 líneas que el motor anterior había traducido al inglés:
+//
+//                        antes        después
+//   texto              188.254 ch     94.233 ch   (−49,9 %)
+//   etiquetas SPEAKER      1.249             0
+//   cobertura            163 min       163 min
+//
+// No es un recorte al final —las dos llegan al minuto 163—: es media sesión
+// disuelta a lo largo de todo el fichero, y la diarización entera. Y pasó la
+// puerta con `ok=true` y ni un motivo, porque 131 líneas, 95 % únicas y 90.467
+// caracteres son cifras perfectamente sanas EN UN FICHERO SUELTO.
+//
+// Cambiar 55 líneas en inglés por la mitad del acta y toda la atribución es un
+// mal negocio, y el sitio no tenía forma de verlo. Esto lo ve.
+//
+// Falla CERRADO, como `rebuildEmpobreceAtribucion` en verified-rebuild.ts, que
+// es su hermana exacta un piso más arriba: quien de verdad quiera publicar una
+// transcripción más pobre pone la variable y queda escrito.
+
+/** Por debajo de esta parte del texto anterior, la nueva empobrece. */
+export const MIN_PROPORCION_TEXTO = 0.8
+
+/** Cuenta las marcas de hablante que la diarización deja en el texto. */
+export function etiquetasDeHablante(texto: string): number {
+  return (texto.match(/\(SPEAKER_\d+\)/g) ?? []).length
+}
+
+/**
+ * ¿Publicar `despues` en lugar de `antes` empobrece lo que hay?
+ *
+ * Devuelve el motivo, o `null` si la sustitución no pierde nada de lo que aquí
+ * se vigila. Dos pérdidas y no una, porque son independientes: un motor puede
+ * devolver todo el texto sin diarizar (es lo que hizo Gemini) y otro puede
+ * diarizar impecablemente la mitad de la sesión.
+ *
+ * NO juzga calidad: un texto más corto puede ser mejor —menos alucinación, menos
+ * repetición— y por eso el suelo está en el 80 % y no en el 100 %. Lo que
+ * detecta es la pérdida GRUESA, que es la que nadie quiere descubrir tres
+ * semanas después al buscar la procedencia de una cita.
+ */
+export function empobreceLaTranscripcion(antes: string, despues: string): string | null {
+  const largoAntes = antes.trim().length
+  // Sin nada anterior no hay empobrecimiento posible: es una sesión nueva.
+  if (largoAntes === 0) return null
+
+  const proporcion = despues.trim().length / largoAntes
+  if (proporcion < MIN_PROPORCION_TEXTO) {
+    return (
+      `la nueva transcripción trae el ${(proporcion * 100).toFixed(1)} % del texto de la que ` +
+      `sustituye (${despues.trim().length} caracteres frente a ${largoAntes}), por debajo del ` +
+      `${MIN_PROPORCION_TEXTO * 100} % mínimo`
+    )
+  }
+
+  const hablantesAntes = etiquetasDeHablante(antes)
+  const hablantesDespues = etiquetasDeHablante(despues)
+  // Sólo se vigila PERDER diarización: ganarla es lo que hace `WHISPER_DIARIZE`.
+  if (hablantesAntes > 0 && hablantesDespues === 0) {
+    return (
+      `la que sustituye traía ${hablantesAntes} marca(s) de hablante y la nueva no trae ninguna: ` +
+      'la atribución de las declaraciones se resuelve sobre esas marcas'
+    )
+  }
+  return null
+}
