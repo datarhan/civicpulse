@@ -113,6 +113,13 @@
       "reason": "Lo mismo un bloque más abajo, y sobre el encabezado de la tabla en vez del rótulo de la tarjeta: el revisor compara la suma de los capítulos (41,56 M€, que es la cifra de CONPREL) contra el crédito del listado municipal y llama contradicción a la diferencia. La página ya la publica y se niega a reconciliarla, y el título dice «prevé gastarse» desde hoy, precisamente para que nadie lea ejecución donde hay presupuesto. Medido el 5-09-2026.",
       "editor": "claude-opus-5",
       "at": "2026-09-05"
+    },
+    {
+      "route": "/",
+      "quote": "90 incendios acumulados desde",
+      "reason": "El revisor lee el rótulo del deslizador sin la tarjeta que tiene justo debajo. `incendios.json` trae universe.totalIncendios=91 y dibujados=90, y la diferencia —un incendio de 128 ha atribuido a Riba-roja que la Generalitat cartografía FUERA del término— la declara IncendiosCobertura.jsx en el mismo panel, con su superficie y su motivo: «consta a nombre de Riba-roja pero la Generalitat lo dibuja fuera del término, así que no se pinta». El rótulo cuenta lo que el mapa pinta y la tarjeta cuenta lo que falta, que es la regla de mapa de CLAUDE.md («una capa que enseña una fracción de su dominio lo dice»). Comprobado el 5-09-2026.",
+      "editor": "claude-opus-5",
+      "at": "2026-09-05"
     }
   ]
 }
