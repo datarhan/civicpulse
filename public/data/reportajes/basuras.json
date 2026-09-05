@@ -13,20 +13,31 @@
       {
         "fecha": "2026-08-29",
         "texto": "**Se ha corregido cómo describíamos los expedientes del registro que no están adjudicados.** Decíamos que «el resto» eran «anulados, revocados o desistidos», y eso caracterizaba mal ese resto. Medido de nuevo el 29 de agosto de 2026 sobre el registro publicado: de 808 filas, 700 constan adjudicadas o formalizadas y 65 anuladas, revocadas o desistidas; las 43 restantes no traen estado alguno, ni adjudicatario. Cerca del 40 % de «el resto» no está clasificado — está en blanco.\n\nImporta porque esa frase era precisamente el control: la usábamos para sostener que el registro está completo y bien clasificado salvo por la anotación que falta. Ahora dice «anulados, revocados, desistidos o sin estado publicado», en los dos sitios donde aparecía: el recuadro del cuerpo y la nota de método.\n\nNo se ha tocado ninguna cifra publicada el 16 de agosto. Los 805 expedientes y los 699 adjudicados son los que se comprobaron contra el registro en vivo el 15 de agosto y siguen siendo los de aquel día; las cifras de arriba son de hoy y por eso no coinciden.\n\n**La conclusión no cambia.** El registro se mantiene al día, y lo que falta en él sigue siendo la anotación del contrato de FCC."
+      },
+      {
+        "fecha": "2026-09-05",
+        "texto": "**Se ha corregido la baja de la adjudicación, que estaba calculada sobre una base que no le correspondía.** Publicábamos una baja de 829.198,26 € (4,99 %) y un ahorro de los dos lotes «sin IVA» de 840.595,94 €. Las dos cifras restaban la adjudicación del LOTE 1 de la base de los DOS lotes: 16.632.795,30 € es la suma del presupuesto de recogida (16.460.397,62 €) y del de supervisión (172.397,68 €). El síntoma era que la suma «sin IVA» salía MAYOR que la misma suma «con IVA», que es imposible. Contra los dos expedientes de la Plataforma de Contratación (4653394 y 4653394#1), las cifras correctas son 656.800,58 € de baja (3,99 %) y 668.198,26 € sumando los dos lotes sin IVA. La cifra con IVA que ya publicábamos, 736.271,76 €, era correcta y no cambia: es la que se compara con el «ahorro de hasta 731.000 euros» que anunció el Ayuntamiento, así que lo que sostiene el reportaje no varía — la baja que publicábamos era MAYOR que la real, no menor."
       }
     ]
   },
-
   "kpis": [
     {
       "n": "14 a. 9 m.",
       "l": "duró la contrata anterior: SAV, del 1 de febrero de 2011 a noviembre de 2025"
     },
-    { "n": "1 mes", "l": "duró la nueva antes de que se abriera el expediente de penalidades" },
-    { "n": "32 / 100", "l": "puntos que valía el precio en el concurso; 68 eran compromisos" },
-    { "n": "17,38 M€", "l": "importe adjudicado con IVA, para catorce años" }
+    {
+      "n": "1 mes",
+      "l": "duró la nueva antes de que se abriera el expediente de penalidades"
+    },
+    {
+      "n": "32 / 100",
+      "l": "puntos que valía el precio en el concurso; 68 eran compromisos"
+    },
+    {
+      "n": "17,38 M€",
+      "l": "importe adjudicado con IVA, para catorce años"
+    }
   ],
-
   "cronologia": [
     {
       "fecha": "2011-02-01",
@@ -144,25 +155,60 @@
       "fuente": "PLACSP"
     }
   ],
-
   "criterios": {
     "nota": "Ponderación oficial del lote 1, tal y como la publica el anuncio de licitación en el Diario Oficial de la Unión Europea.",
     "filas": [
-      { "criterio": "Proyecto técnico del servicio", "puntos": 34, "tipo": "compromiso" },
-      { "criterio": "Precio", "puntos": 32, "tipo": "precio" },
-      { "criterio": "Inserción socio-laboral de personas en riesgo de exclusión", "puntos": 12, "tipo": "compromiso" },
-      { "criterio": "Reposición anual de contenedores de carga trasera y lateral", "puntos": 8, "tipo": "compromiso" },
-      { "criterio": "Bolsa económica anual de servicios extraordinarios", "puntos": 7.5, "tipo": "compromiso" },
-      { "criterio": "Programa de reducción o compensación de emisiones", "puntos": 4, "tipo": "compromiso" },
-      { "criterio": "Compensación de maquinaria", "puntos": 2.5, "tipo": "compromiso" }
+      {
+        "criterio": "Proyecto técnico del servicio",
+        "puntos": 34,
+        "tipo": "compromiso"
+      },
+      {
+        "criterio": "Precio",
+        "puntos": 32,
+        "tipo": "precio"
+      },
+      {
+        "criterio": "Inserción socio-laboral de personas en riesgo de exclusión",
+        "puntos": 12,
+        "tipo": "compromiso"
+      },
+      {
+        "criterio": "Reposición anual de contenedores de carga trasera y lateral",
+        "puntos": 8,
+        "tipo": "compromiso"
+      },
+      {
+        "criterio": "Bolsa económica anual de servicios extraordinarios",
+        "puntos": 7.5,
+        "tipo": "compromiso"
+      },
+      {
+        "criterio": "Programa de reducción o compensación de emisiones",
+        "puntos": 4,
+        "tipo": "compromiso"
+      },
+      {
+        "criterio": "Compensación de maquinaria",
+        "puntos": 2.5,
+        "tipo": "compromiso"
+      }
     ],
     "totalPrecio": 32,
     "totalCompromisos": 68
   },
-
-  "puntuaciones": [95.54, 90.7, 90.07, 89.06],
-  "licitadores": ["Garbialdi", "FCC Medio Ambiente", "Urbaser", "SAV"],
-
+  "puntuaciones": [
+    95.54,
+    90.7,
+    90.07,
+    89.06
+  ],
+  "licitadores": [
+    "Garbialdi",
+    "FCC Medio Ambiente",
+    "Urbaser",
+    "SAV"
+  ],
   "compromisos": [
     "Seis vehículos híbridos y uno eléctrico",
     "Una bolsa de 25.000 € anuales para servicios extraordinarios",
@@ -178,18 +224,17 @@
     "Sin limpieza de vertederos incontrolados",
     "Sin recogida normal de enseres y voluminosos"
   ],
-
   "dinero": {
     "presupuesto2023": 11172860.7,
     "presupuesto2025": 16632795.3,
     "subidaPresupuestoPct": 48.87,
     "adjudicadoSinIva": 15803597.04,
     "adjudicadoConIva": 17383956.74,
-    "bajaPct": 4.99,
-    "bajaEuros": 829198.26,
+    "bajaPct": 3.99,
+    "bajaEuros": 656800.58,
     "ahorroDeclarado": 731000,
     "ahorroDosLotesConIva": 736271.76,
-    "ahorroDosLotesSinIva": 840595.94,
+    "ahorroDosLotesSinIva": 668198.26,
     "porAnio": 1128938.75,
     "porHabitante": 45.86,
     "supervisionAuditesa": 194810,
@@ -198,32 +243,63 @@
     "contenedoresSulo": 505296,
     "sensorizacionDistromel": 180000,
     "sumaEquipamiento": 685296,
-    "poblacion": 24616
+    "poblacion": 24616,
+    "presupuestoLote1SinIva": 16460397.62
   },
-
   "costeEfectivo": {
     "programa": "a1621 · Recogida de residuos",
     "nota": "Coste efectivo declarado por el propio Ayuntamiento al Ministerio de Hacienda. En todos estos años la declaración dice «gestión directa por la entidad local», lo que no puede ser cierto: la concesión de SAV estuvo vigente todo el periodo.",
     "filas": [
-      { "anio": 2019, "coste": 865067.82, "porHabitante": 35.14 },
-      { "anio": 2021, "coste": 801040.17, "porHabitante": 32.54 },
-      { "anio": 2022, "coste": 912749.87, "porHabitante": 37.08 },
-      { "anio": 2023, "coste": 502168.98, "porHabitante": 20.4 },
-      { "anio": 2024, "coste": 740272.16, "porHabitante": 30.07 }
+      {
+        "anio": 2019,
+        "coste": 865067.82,
+        "porHabitante": 35.14
+      },
+      {
+        "anio": 2021,
+        "coste": 801040.17,
+        "porHabitante": 32.54
+      },
+      {
+        "anio": 2022,
+        "coste": 912749.87,
+        "porHabitante": 37.08
+      },
+      {
+        "anio": 2023,
+        "coste": 502168.98,
+        "porHabitante": 20.4
+      },
+      {
+        "anio": 2024,
+        "coste": 740272.16,
+        "porHabitante": 30.07
+      }
     ],
     "contratoPorAnio": 1128938.75,
     "contratoPorHabitante": 45.86,
     "variacionPct": 52.5,
     "toneladasCongeladas": 11059.41,
     "contenedoresCongelados": 657,
-    "aniosCongelados": [2019, 2021, 2022, 2023, 2024],
+    "aniosCongelados": [
+      2019,
+      2021,
+      2022,
+      2023,
+      2024
+    ],
     "paresConDato": 55,
     "paresConTonelaje": 46,
     "paresTotales": 60,
-    "tonelajeMax": { "municipio": "Vall d'Uixó (la)", "toneladas": 11572420 },
-    "tonelajeMin": { "municipio": "Alfàs del Pi (l')", "toneladas": 12.55 }
+    "tonelajeMax": {
+      "municipio": "Vall d'Uixó (la)",
+      "toneladas": 11572420
+    },
+    "tonelajeMin": {
+      "municipio": "Alfàs del Pi (l')",
+      "toneladas": 12.55
+    }
   },
-
   "censo": {
     "contratos": 131,
     "importe": 29980807.83,
@@ -281,7 +357,7 @@
         "anios": 14,
         "importe": 15803597.04,
         "porHabitante": 45.86,
-        "bajaPct": 4.99,
+        "bajaPct": 3.99,
         "ofertas": 4
       }
     ],
@@ -293,7 +369,6 @@
       "contratosVerbales": 28
     }
   },
-
   "venta": {
     "comprador": "ISS Facility Services, S.A.",
     "matriz": "ISS Global A/S (Dinamarca)",
@@ -314,7 +389,6 @@
       "motivo": "riesgo de la elusión de responsabilidades"
     }
   },
-
   "registro": {
     "comprobadoEl": "2026-08-15",
     "estadoPublicado": "formalized",
@@ -327,7 +401,6 @@
     "filasEnRegistro": 805,
     "contratosAdjudicadosEnRegistro": 699
   },
-
   "calendario": {
     "vigenteDesde": "2026-06-15",
     "telefono": "900 714 318",
@@ -348,18 +421,48 @@
     ],
     "urbanizacionesNota": "Son las doce que enumera el calendario municipal de enseres. En el de poda aparece además «Parque Montealcedo» como zona propia dentro de Montealcedo.",
     "enseres": [
-      { "dia": "Martes", "zona": "Casco urbano y diseminados" },
-      { "dia": "Miércoles", "zona": "Urbanizaciones" },
-      { "dia": "Jueves", "zona": "Casco urbano y diseminados" },
-      { "dia": "Viernes", "zona": "Urbanizaciones" }
+      {
+        "dia": "Martes",
+        "zona": "Casco urbano y diseminados"
+      },
+      {
+        "dia": "Miércoles",
+        "zona": "Urbanizaciones"
+      },
+      {
+        "dia": "Jueves",
+        "zona": "Casco urbano y diseminados"
+      },
+      {
+        "dia": "Viernes",
+        "zona": "Urbanizaciones"
+      }
     ],
     "poda": [
-      { "dia": "Lunes", "zona": "Zona Norte" },
-      { "dia": "Martes", "zona": "Zona Sur" },
-      { "dia": "Miércoles", "zona": "Casco urbano, Pou d'Escoto, Llobatera y resto de diseminados" },
-      { "dia": "Jueves", "zona": "Zona Norte" },
-      { "dia": "Viernes", "zona": "Zona Sur" },
-      { "dia": "Sábado", "zona": "Repaso ocasional en verano" }
+      {
+        "dia": "Lunes",
+        "zona": "Zona Norte"
+      },
+      {
+        "dia": "Martes",
+        "zona": "Zona Sur"
+      },
+      {
+        "dia": "Miércoles",
+        "zona": "Casco urbano, Pou d'Escoto, Llobatera y resto de diseminados"
+      },
+      {
+        "dia": "Jueves",
+        "zona": "Zona Norte"
+      },
+      {
+        "dia": "Viernes",
+        "zona": "Zona Sur"
+      },
+      {
+        "dia": "Sábado",
+        "zona": "Repaso ocasional en verano"
+      }
     ],
     "limites": [
       "Enseres: máximo 5 bultos el día que corresponda",
@@ -376,7 +479,6 @@
       "nota": "Los dos documentos cuelgan de la misma página municipal y llevan la misma fecha. Los límites de bultos y peso sí coinciden; las horas, no."
     }
   },
-
   "parla": {
     "titulo": "Parla (Madrid), 2014 – 2018",
     "intro": "Es el precedente que más se parece a lo que Riba-roja vivió en diciembre de 2025, y está documentado de principio a fin — en las dos direcciones.",
@@ -415,7 +517,6 @@
     "quien": "María Jesús Fúnez, primera teniente de alcalde de Parla, 27 de abril de 2018",
     "balance": "El expediente de Parla tiene dos direcciones, y las dos constan. La empresa operó para un ayuntamiento que, según ella misma, le debía dinero —y fue ella la primera en querer irse, en 2015—, mientras su plantilla, según UGT, encadenaba nóminas sin cobrar. Y ese mismo expediente termina con sanciones desde 2017, una oferta excluida por inviable y una flota municipal devuelta destrozada. Ningún juzgado ha repartido las culpas, y este reportaje tampoco. Lo que Parla aporta aquí no es un veredicto sino un aviso: los modos de fallo que Riba-roja documentó en diciembre de 2025 —personal, vehículos, rutas— ya estaban descritos, siete años antes, en los comunicados de otro ayuntamiento."
   },
-
   "expedienteGarbialdi": [
     {
       "titulo": "Ugao-Miraballes (Bizkaia), mayo – julio de 2025",
@@ -430,7 +531,6 @@
       "texto": "La UTE Cespa-Garbialdi-Samos se hizo con el contrato de basuras y limpieza viaria, en torno a 41 M€ por cuatro años."
     }
   ],
-
   "politica": {
     "olazaran": {
       "nombre": "Jesús María «Josu» Olazarán Sagarduy",
@@ -458,7 +558,6 @@
       "Ser dirigente de un partido y empresario no es una irregularidad, y sobre las adjudicaciones citadas no consta investigación judicial; los reparos de fiscalización y las denuncias laborales que sí constan quedan dichos, y atribuidos, arriba. Lo hacemos constar porque la pregunta de quién es la empresa a la que un pleno confía catorce años de un servicio esencial merece una respuesta documentada."
     ]
   },
-
   "preguntas": {
     "intro": "Un reportaje honesto no acaba en lo que sabe, sino en lo que pregunta. Las dieciocho que siguen no son retóricas: cada una nace de un hecho documentado en esta pieza —se indica debajo de cada una— y cada una tiene respuesta posible en un expediente público. Quedan formuladas públicamente con la publicación de esta pieza; el derecho de réplica del Ayuntamiento y de las empresas citadas está abierto, y las respuestas se publicarán íntegras.",
     "cierre": "Si alguna de estas preguntas tiene una respuesta que deje mal a este reportaje, mejor: se publicará igual de íntegra.",
@@ -545,7 +644,7 @@
           },
           {
             "q": "¿Cómo se calculó el «ahorro de hasta 731.000 euros» anunciado tras la adjudicación?",
-            "base": "El anuncio (9-9-2025) atribuye el ahorro a «ambos servicios», los dos lotes. La suma de las bajas de los dos lotes con IVA da 736.271,76 €, y sin IVA 840.595,94 €. Ninguna lectura publicada da 731.000 exactos."
+            "base": "El anuncio (9-9-2025) atribuye el ahorro a «ambos servicios», los dos lotes. La suma de las bajas de los dos lotes con IVA da 736.271,76 €, y sin IVA 668.198,26 €. Ninguna lectura publicada da 731.000 exactos."
           },
           {
             "q": "¿Consta en las actas alguna advertencia —técnica o política— previa a la adjudicación? Y a la vista de diciembre y enero: ¿considera el gobierno municipal que el procedimiento funcionó, o alguien va a asumir alguna responsabilidad?",
@@ -555,7 +654,6 @@
       }
     ]
   },
-
   "fuentes": [
     {
       "label": "CNMC · Expediente C/1600/25 ISS/GARBIALDI (resolución de 1 de octubre de 2025)",
@@ -634,12 +732,11 @@
       "url": "https://noticiasparamunicipios.com/municipios-madrid/parla-la-mesa-contratacion-anula-la-oferta-mas-economica-garbialdi-concurso-basura-limpieza/"
     }
   ],
-
   "metodo": [
     "Las cifras de contratación proceden del registro municipal publicado en Riba-licita (Gobierto), que replica la Plataforma de Contratación del Sector Público. Los importes se dan sin IVA salvo que se diga lo contrario, y se cuentan sólo contratos comprometidos (adjudicados o formalizados).",
     "El registro de contratación empieza el 3 de julio de 2017. La concesión de SAV se adjudicó en enero de 2011, así que NO aparece en él: cualquier reparto por empresa que se haga con esos datos infravalora a SAV. Por eso su importe figura como «no consta» y no como cero. Una ausencia en una serie con suelo conocido no es una prueba de inexistencia.",
     "La ponderación de criterios (34/32/12/8/7,5/4/2,5) es la que publica el anuncio de licitación en el DOUE, no una reconstrucción nuestra.",
-    "El «ahorro de hasta 731.000 euros» que anunció el Ayuntamiento (nota recogida por Valencia Plaza el 9-9-2025) se refiere a «ambos servicios», es decir, a los dos lotes. La lectura más cercana que encontramos es la suma de las bajas de los dos lotes con IVA: 722.480,64 € del lote 1 más 13.791,12 € del lote 2, en total 736.271,76 €. Sigue sin dar 731.000 exactos —y sin IVA la suma es 840.595,94 €—, así que publicamos la aritmética y la diferencia, no una acusación: puede haber un redondeo o un criterio que no conocemos. Una versión anterior de este borrador citaba el anuncio como «un ahorro de 731.000 euros», sin el «hasta» y sin el alcance de los dos lotes; se corrigió al cotejar la nota original antes de publicar.",
+    "El «ahorro de hasta 731.000 euros» que anunció el Ayuntamiento (nota recogida por Valencia Plaza el 9-9-2025) se refiere a «ambos servicios», es decir, a los dos lotes. La lectura más cercana que encontramos es la suma de las bajas de los dos lotes con IVA: 722.480,64 € del lote 1 más 13.791,12 € del lote 2, en total 736.271,76 €. Sigue sin dar 731.000 exactos —y sin IVA la suma es 668.198,26 €—, así que publicamos la aritmética y la diferencia, no una acusación: puede haber un redondeo o un criterio que no conocemos. Una versión anterior de este borrador citaba el anuncio como «un ahorro de 731.000 euros», sin el «hasta» y sin el alcance de los dos lotes; se corrigió al cotejar la nota original antes de publicar.",
     "La comparación entre el coste efectivo de 2024 (740.272,16 €) y el contrato (1.128.938,75 €/año) es indicativa, no equivalente: el contrato agrupa recogida, poda y voluminosos, mientras que el programa a1621 del Ministerio es sólo recogida. La damos con esa advertencia porque el orden de magnitud es relevante, no porque las dos cifras midan lo mismo.",
     "No publicamos una tabla de coste por tonelada frente a otros municipios. Los denominadores del propio Ministerio no lo permiten: en la entrega de 2024, la Vall d'Uixó declara 11.572.420 toneladas y l'Alfàs del Pi 12,55. Riba-roja lleva declarando las mismas 11.059,41 toneladas y los mismos 657 contenedores en las cinco entregas publicadas desde 2019, así que cualquier serie de coste unitario suya mide inflación, no eficiencia.",
     "El campo de «modo de gestión» de la declaración ministerial dice «gestión directa por la entidad local» para la recogida de residuos en todos los ejercicios de 2015 a 2024. Es falso: la concesión de SAV estuvo vigente todo ese periodo. Lo señalamos como defecto del dato, no del servicio.",
