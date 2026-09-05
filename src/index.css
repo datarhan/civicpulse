@@ -980,6 +980,95 @@ body.cp-kiosk .cp-live-container {
   min-width: 0;
 }
 
+/* /cargos — las cuatro rejillas de la corporación.
+
+   Van aquí y no en el `style` del JSX por la razón de siempre en este repo: un
+   estilo inline no puede llevar una @media y encima gana a la clase, así que
+   una rejilla declarada inline es una rejilla que no colapsa. Los cortes están
+   MEDIDOS en el navegador, no elegidos por simetría.
+
+   `.cp-cargos-hero` reparte el lede y la tarjeta de composición. La tarjeta
+   tiene un suelo real: la barra de escaños con cinco formaciones y su leyenda
+   no baja de unos 300px sin que las etiquetas se apilen de una en una, y por
+   debajo de 900 la columna del lede quedaba en medida de columna de periódico.
+
+   `.cp-cargos-gob` son las once fichas de gobierno —foto, áreas verbatim, paga,
+   chips, encaje y quejas—, que necesitan unos 330px para que las áreas no se
+   partan cada dos palabras. `.cp-cargos-opo` son las diez de la oposición, muy
+   compactas, y por eso caben cinco donde las otras caben tres.
+
+   La oposición baja a UNA columna a 560 y no a 375: dos columnas de 150px
+   parten un nombre como «Salvador Evaristo Ferrer Cortina» en cinco líneas, y
+   el nombre es el dato de la ficha. */
+.cp-cargos-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 400px;
+  gap: 40px;
+  align-items: start;
+}
+.cp-cargos-retri,
+.cp-cargos-duo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+.cp-cargos-gob {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  align-items: stretch;
+}
+.cp-cargos-opo {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  align-items: stretch;
+}
+.cp-cargos-hero > *,
+.cp-cargos-retri > *,
+.cp-cargos-duo > *,
+.cp-cargos-gob > *,
+.cp-cargos-opo > * {
+  min-width: 0;
+}
+
+@media (max-width: 1200px) {
+  .cp-cargos-opo {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1100px) {
+  .cp-cargos-gob {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .cp-cargos-hero,
+  .cp-cargos-retri,
+  .cp-cargos-duo {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+  }
+  .cp-cargos-opo {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .cp-cargos-gob {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .cp-cargos-opo {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 /* ---- Skip link · WCAG 2.4.1 Bypass Blocks (Level A) --------------------
    Off-screen until focused, then pinned top-left. It cannot be display:none
    or visibility:hidden — that removes it from the tab order, which is the one

@@ -433,6 +433,10 @@ export const CATALOGUE = {
     'cargos.card.hastaF': 'Concejala hasta el {fecha}',
     'cargos.card.hastaM': 'Concejal hasta el {fecha}',
     'cargos.card.acta': 'acta ↗',
+    // El buzón compartido se CUENTA en el padrón, no se lista a mano: once
+    // cargos comparten el de alcaldía y seis el del grupo del PP, y bajo una
+    // cara un mostrador compartido se lee como la línea directa de esa persona.
+    'cargos.card.buzonCompartido': '· buzón compartido por {n} cargos',
     'cargos.baja.renuncia': 'renuncia al acta',
     'cargos.baja.fallecimiento': 'fallecimiento',
     'cargos.baja.perdida-condicion': 'pérdida de la condición de concejal',
@@ -453,7 +457,57 @@ export const CATALOGUE = {
     'cargos.ispa.totalNota':
       'No incluye las cuotas empresariales a la Seguridad Social, el personal eventual ni la asignación a los grupos políticos.',
     'cargos.ispa.trienios':
-      'El acuerdo de 2023 fija la Alcaldía en {importe} «+ trienios»; ISPA publica lo percibido cada año sin desglosarlos.',
+      'El acuerdo añade «+ trienios» a esa asignación, y el ISPA publica lo percibido cada año sin desglosarlos.',
+    'cargos.hero.mandato': 'mandato {m}',
+    // Quién gobierna y quién fiscaliza se DERIVA de las áreas delegadas, no del
+    // nombre de un partido: la frase tiene que aguantar una coalición, un
+    // cambio de cartera y a un concejal que deja el grupo de gobierno.
+    'cargos.hero.lead':
+      'El pleno tiene {total} escaños. {partido} suma {nGob} y se reparte todas las áreas delegadas; los {nOpo} restantes no dirigen ninguna, y ese es su papel: fiscalizar, no gestionar.',
+    'cargos.hero.leadVarios':
+      'El pleno tiene {total} escaños. {nGob} se reparten todas las áreas delegadas; los {nOpo} restantes no dirigen ninguna, y ese es su papel: fiscalizar, no gestionar.',
+    // Nunca «la corporación cuesta X»: lo que el ISPA suma es lo PERCIBIDO por
+    // los electos, sin cuotas empresariales, personal eventual ni asignación a
+    // los grupos. Es la palabra equivocada sobre la cifra correcta, la misma
+    // clase de defecto que «crédito» por «gastado» — y ya se corrigió una vez.
+    'cargos.hero.coste':
+      'Los {n} percibieron {importe} en {year} entre retribuciones y asistencias, y ninguno cobró cero.',
+    'cargos.hero.fichas': 'Fichas biográficas oficiales, las {n} en el portal',
+    'cargos.composicion.title': 'Composición del pleno · {n} escaños',
+    'cargos.composicion.gobiernan': 'con áreas delegadas · gobiernan',
+    'cargos.composicion.fiscalizan': 'sin áreas delegadas · fiscalizan',
+    'cargos.retri.eyebrow': 'Retribuciones · los {n}, ninguno a cero',
+    'cargos.retri.title': 'Qué cobra la corporación, y de dónde sale cada cifra',
+    // El techo, hecho visible: si el reparto no reconstruye el total que el
+    // propio analizador calculó, la página retira los subtotales en vez de
+    // publicar una aritmética que nadie ha comprobado.
+    'cargos.retri.noCuadra':
+      'El reparto entre dedicación y asistencias no reconstruye el total publicado, así que los subtotales de cada columna se retiran hasta que cuadren. La cabecera sigue siendo la cifra del ministerio.',
+    'cargos.retri.fijadoPor': '· dedicación {dedicacion}, fijada en el acuerdo',
+    // Nunca «sin datos» ni un hueco: el régimen SÍ consta en el acuerdo. Lo que
+    // no consta es cuánto cobra cada cual, porque las filas del ISPA no llevan
+    // nombre — y por eso el importe vive en el reparto, no en la tarjeta.
+    'cargos.retri.asistenciasCargo': 'asistencias por sesión',
+    'cargos.retri.asistenciasCargoNota': '· sin dedicación; el ISPA no publica el nombre',
+    'cargos.gobierno.eyebrow': 'Gobierno · {n} concejales con áreas delegadas',
+    'cargos.gobierno.title': 'Quién dirige qué',
+    'cargos.gobierno.areas': 'Áreas delegadas · {n}',
+    'cargos.oposicion.eyebrow': 'Oposición · {n} concejales sin áreas delegadas',
+    'cargos.oposicion.title': 'Quién fiscaliza',
+    'cargos.oposicion.nota':
+      'Su tarjeta está vacía de gestión por institución, no por falta de datos. Lo que sí tienen es voto en el pleno y derecho a preguntar.',
+    'cargos.plantilla.eyebrow': 'Otra cosa · no son los cargos electos',
+    'cargos.plantilla.title': 'Plantilla municipal',
+    'cargos.plantilla.personas': 'personas empleadas',
+    'cargos.plantilla.plazas': 'plazas autorizadas',
+    'cargos.plantilla.mujeres': 'mujeres',
+    'cargos.plantilla.hombres': 'hombres',
+    'cargos.plantilla.fuenteSexo':
+      'El desglose por sexo es la última cifra publicada, y su fuente es un periódico comarcal, no el ayuntamiento:',
+    // La fecha del acuerdo se DERIVA de dedicaciones.json, no se teclea: un
+    // «07/07/2023» escrito aquí sobrevive al mandato que nombra.
+    'cargos.fuentes':
+      'Fuentes: corporación y fotografías de ribarroja.es · retribuciones fijadas en el acuerdo de pleno de {acuerdo} · importes percibidos del ISPA, Ministerio de Hacienda y Función Pública. Padrón actualizado el {fecha}.',
     'cargos.detalle.baja.banner':
       'Ya no forma parte de la corporación: {motivo}. El Pleno tomó razón el {fecha}.',
     'cargos.detalle.baja.fuente': 'Fuente',
@@ -1017,6 +1071,7 @@ export const CATALOGUE = {
     'cargos.card.hastaF': 'Regidora fins al {fecha}',
     'cargos.card.hastaM': 'Regidor fins al {fecha}',
     'cargos.card.acta': 'acta ↗',
+    'cargos.card.buzonCompartido': '· bústia compartida per {n} càrrecs',
     'cargos.baja.renuncia': 'renúncia a l’acta',
     'cargos.baja.fallecimiento': 'defunció',
     'cargos.baja.perdida-condicion': 'pèrdua de la condició de regidor',
@@ -1031,7 +1086,42 @@ export const CATALOGUE = {
     'cargos.ispa.totalNota':
       'No inclou les quotes empresarials a la Seguretat Social, el personal eventual ni l’assignació als grups polítics.',
     'cargos.ispa.trienios':
-      'L’acord de 2023 fixa l’Alcaldia en {importe} «+ triennis»; ISPA publica el que es va percebre cada any sense desglossar-los.',
+      'L’acord afig «+ triennis» a eixa assignació, i l’ISPA publica el que es percep cada any sense desglossar-los.',
+    'cargos.hero.mandato': 'mandat {m}',
+    'cargos.hero.lead':
+      'El ple té {total} escons. {partido} suma {nGob} i es reparteix totes les àrees delegades; els {nOpo} restants no en dirigeixen cap, i eixe és el seu paper: fiscalitzar, no gestionar.',
+    'cargos.hero.leadVarios':
+      'El ple té {total} escons. {nGob} es reparteixen totes les àrees delegades; els {nOpo} restants no en dirigeixen cap, i eixe és el seu paper: fiscalitzar, no gestionar.',
+    'cargos.hero.coste':
+      'Els {n} van percebre {importe} en {year} entre retribucions i assistències, i cap va cobrar zero.',
+    'cargos.hero.fichas': 'Fitxes biogràfiques oficials, les {n} al portal',
+    'cargos.composicion.title': 'Composició del ple · {n} escons',
+    'cargos.composicion.gobiernan': 'amb àrees delegades · governen',
+    'cargos.composicion.fiscalizan': 'sense àrees delegades · fiscalitzen',
+    'cargos.retri.eyebrow': 'Retribucions · els {n}, cap a zero',
+    'cargos.retri.title': 'Què cobra la corporació, i d’on ix cada xifra',
+    'cargos.retri.noCuadra':
+      'El repartiment entre dedicació i assistències no reconstruïx el total publicat, així que els subtotals de cada columna es retiren fins que quadren. La capçalera continua sent la xifra del ministeri.',
+    'cargos.retri.fijadoPor': '· dedicació {dedicacion}, fixada en l’acord',
+    'cargos.retri.asistenciasCargo': 'assistències per sessió',
+    'cargos.retri.asistenciasCargoNota': '· sense dedicació; l’ISPA no publica el nom',
+    'cargos.gobierno.eyebrow': 'Govern · {n} regidors amb àrees delegades',
+    'cargos.gobierno.title': 'Qui dirigix què',
+    'cargos.gobierno.areas': 'Àrees delegades · {n}',
+    'cargos.oposicion.eyebrow': 'Oposició · {n} regidors sense àrees delegades',
+    'cargos.oposicion.title': 'Qui fiscalitza',
+    'cargos.oposicion.nota':
+      'La seua fitxa està buida de gestió per institució, no per falta de dades. El que sí que tenen és vot en el ple i dret a preguntar.',
+    'cargos.plantilla.eyebrow': 'Una altra cosa · no són els càrrecs electes',
+    'cargos.plantilla.title': 'Plantilla municipal',
+    'cargos.plantilla.personas': 'persones empleades',
+    'cargos.plantilla.plazas': 'places autoritzades',
+    'cargos.plantilla.mujeres': 'dones',
+    'cargos.plantilla.hombres': 'hòmens',
+    'cargos.plantilla.fuenteSexo':
+      'El desglossament per sexe és l’última xifra publicada, i la seua font és un periòdic comarcal, no l’ajuntament:',
+    'cargos.fuentes':
+      'Fonts: corporació i fotografies de ribarroja.es · retribucions fixades en l’acord de ple de {acuerdo} · imports percebuts de l’ISPA, Ministeri d’Hisenda i Funció Pública. Padró actualitzat el {fecha}.',
     'cargos.detalle.baja.banner':
       'Ja no forma part de la corporació: {motivo}. El Ple en va prendre raó el {fecha}.',
     'cargos.detalle.baja.fuente': 'Font',
