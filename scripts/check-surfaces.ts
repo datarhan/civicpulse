@@ -25,6 +25,7 @@ import { medirFrescura, parteFrescura, DIAS_FRESCURA } from '../src/scraper/surf
 import {
   validarDescartes,
   descartesHuerfanos,
+  descartesInertes,
   type RegistroDescartes,
 } from '../src/scraper/surface-dismissals'
 import type { ReviewCacheEntry } from '../src/scraper/reader-review'
@@ -77,6 +78,15 @@ function main() {
     ]),
   )
   const huerfanos = descartesHuerfanos(descartes, vivos)
+  // Un descarte por debajo del suelo de solape no silencia nada y lo parece.
+  const inertes = descartesInertes(descartes)
+  if (inertes.length > 0) {
+    console.log(
+      `[check-surfaces] ${inertes.length} descarte(s) INERTE(S): su cita no llega al mínimo de ` +
+        `solape, así que no silencian nada — alárgalas con más texto del señalamiento: ` +
+        inertes.map((d) => `${d.route} «${d.quote.slice(0, 40)}»`).join(', '),
+    )
+  }
   if (huerfanos.length > 0) {
     console.error(
       `[check-surfaces] ${huerfanos.length} descarte(s) sin señalamiento vivo hoy ` +

@@ -1,5 +1,9 @@
 // @ts-check
+import { useMemo } from 'react'
 import { useT } from '../../../i18n'
+import { useGeo } from '../../../hooks/useGeo'
+import { useQuejas } from '../../../hooks/useQuejas'
+import { computePerNeighborhood, healthFromCounts } from '../../../lib/neighborhood-aggregate'
 
 const cardStyle = {
   background: 'rgba(255,255,255,.94)',
@@ -22,23 +26,60 @@ const titleStyle = {
 
 // The four health levels from lib/neighborhood-aggregate healthFromCounts, in
 // severity order. Swatch colours match the Circle fills exactly.
+// `level` es el que devuelve `healthFromCounts`, no una etiqueta nueva: así la
+// leyenda y la capa no pueden discrepar sobre qué color es cuál.
 const LEVELS = [
-  { color: '#DC2626', labelKey: 'map.quejas.crit' },
-  { color: '#D97706', labelKey: 'map.quejas.warn' },
-  { color: '#16A34A', labelKey: 'map.quejas.ok' },
-  { color: '#60A5FA', labelKey: 'map.quejas.civic' },
+  { level: 'crit', color: '#DC2626', labelKey: 'map.quejas.crit' },
+  { level: 'warn', color: '#D97706', labelKey: 'map.quejas.warn' },
+  { level: 'ok', color: '#16A34A', labelKey: 'map.quejas.ok' },
+  { level: 'civic', color: '#60A5FA', labelKey: 'map.quejas.civic' },
 ]
 
-/** Legend for the quejas heat layer: the four health colours + a size note.
- *  Shown only while the layer is on. Unlike the POI legend it always renders the
- *  full fixed scale, so a citizen can decode any colour they see on the map. */
+/**
+ * Legend for the quejas heat layer.
+ *
+ * Solía pintar la escala ENTERA, con este argumento escrito aquí: así un vecino
+ * puede descifrar cualquier color que vea en el mapa. El argumento es bueno y el
+ * resultado era falso — medido el 5-09-2026, la capa pinta UN barrio con UNA
+ * queja, en el nivel `civic`. Los otros tres niveles no aparecen ni pueden
+ * aparecer, y «radio ∝ nº de quejas» no codifica nada cuando sólo hay un
+ * círculo: una leyenda de cuatro niveles sobre un punto promete una lectura de
+ * severidad que no existe.
+ *
+ * Se DERIVA de lo que la capa pinta, con el mismo `computePerNeighborhood` y el
+ * mismo `healthFromCounts` que usa `QuejasLayer`, así que no pueden discrepar. Y
+ * el argumento original se conserva entero: todo color que esté en el mapa está
+ * en la leyenda, porque la leyenda sale de los colores del mapa. Lo que
+ * desaparece es la promesa de los que no están.
+ *
+ * Con la escala incompleta se dice que lo está, y cuántas quejas la sostienen.
+ * Es la regla del mapa aplicada a su leyenda: una capa que enseña una fracción
+ * de su dominio lo dice.
+ */
 export function QuejasLegend() {
   const t = useT()
+  const { data: geo } = useGeo()
+  const { data: quejas } = useQuejas()
+  const pintados = useMemo(
+    () => computePerNeighborhood(quejas?.items ?? [], geo?.neighborhoods),
+    [quejas, geo?.neighborhoods],
+  )
+  const nivelesPintados = useMemo(() => {
+    const s = new Set(
+      pintados.map((n) => healthFromCounts(n.total, n.resueltas, n.silencios).level),
+    )
+    return LEVELS.filter((l) => s.has(l.level))
+  }, [pintados])
+  const totalQuejas = pintados.reduce((n, x) => n + x.total, 0)
+  // Sin nada pintado la capa devuelve null y esto no llega a verse; aun así, no
+  // se inventa una escala sobre cero.
+  const niveles = nivelesPintados.length > 0 ? nivelesPintados : LEVELS
+  const escalaParcial = nivelesPintados.length > 0 && nivelesPintados.length < LEVELS.length
   return (
     <div style={cardStyle}>
       <div style={titleStyle}>{t('map.quejas.title')}</div>
       <div style={{ display: 'grid', gap: 3 }}>
-        {LEVELS.map(({ color, labelKey }) => (
+        {niveles.map(({ color, labelKey }) => (
           <div
             key={labelKey}
             style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 'var(--fs-micro)' }}
@@ -65,7 +106,13 @@ export function QuejasLegend() {
           fontFamily: "'DM Mono', monospace",
         }}
       >
-        {t('map.quejas.radius')}
+        {/* Cuántas quejas sostienen la escala. Derivado, no escrito. */}
+        {t('map.quejas.cobertura')
+          .replace('{q}', String(totalQuejas))
+          .replace('{b}', String(pintados.length))}
+        {/* El radio sólo codifica algo cuando hay más de un círculo que comparar. */}
+        {pintados.length > 1 ? ` · ${t('map.quejas.radius')}` : ''}
+        {escalaParcial ? ` · ${t('map.quejas.escalaParcial')}` : ''}
       </div>
     </div>
   )

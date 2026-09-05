@@ -65,6 +65,14 @@ export function TedNotices() {
         }}
       >
         {t('presupuesto.ted.intro')}
+        {cuotaMayor >= 0.25 && mayor && (
+          <>
+            {' '}
+            {t('presupuesto.ted.concentracion')
+              .replace('{pct}', String(Math.round(cuotaMayor * 100)))
+              .replace('{importe}', eur(mayor.totalValueEur))}
+          </>
+        )}
       </div>
       {rows.map((n) => (
         <div

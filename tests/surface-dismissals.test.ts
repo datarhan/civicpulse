@@ -7,6 +7,8 @@ import {
   descartesHuerfanos,
   validarDescartes,
   type RegistroDescartes,
+  descartesInertes,
+  SOLAPE_MINIMO,
 } from '../src/scraper/surface-dismissals'
 import type { ReaderFinding } from '../src/scraper/reader-review'
 
@@ -146,4 +148,60 @@ describe('los dos consumidores del registro siguen enchufados', () => {
       ).toBe(true)
     })
   }
+})
+
+/**
+ * Un descarte por debajo del suelo de solape no silencia NADA — y hasta hoy
+ * tampoco decía que no lo hacía. Se quedaba en el fichero con su motivo y su
+ * firma, con toda la pinta de trabajo hecho.
+ *
+ * Medido el 5-09-2026 auditando el registro: cuatro, dos anteriores a esa
+ * sesión. Yo mismo escribí dos más ese día sin darme cuenta — «PRESUP. 2025»
+ * (12 caracteres) e «INGRESOS PRESUPUESTADOS» (23)—, y sólo se vieron al
+ * comprobar por qué el señalamiento seguía vivo después de descartarlo.
+ */
+describe('descartes que no pueden casar con nada', () => {
+  it('los nombra, y no los confunde con los válidos', () => {
+    const registro = {
+      version: 1,
+      items: [
+        { route: '/x', quote: 'corto', reason: 'r'.repeat(20), editor: 'e', at: '2026-01-01' },
+        {
+          route: '/x',
+          quote: 'una cita suficientemente larga para pasar el suelo',
+          reason: 'r'.repeat(20),
+          editor: 'e',
+          at: '2026-01-01',
+        },
+      ],
+    } as never
+    const inertes = descartesInertes(registro)
+    expect(inertes).toHaveLength(1)
+    expect(inertes[0].quote).toBe('corto')
+  })
+
+  /** Justo en el borde: el suelo es el exportado, no uno recitado. */
+  it('el corte va exactamente en SOLAPE_MINIMO', () => {
+    const justo = 'x'.repeat(SOLAPE_MINIMO)
+    const corta = 'x'.repeat(SOLAPE_MINIMO - 1)
+    const reg = (q: string) =>
+      ({
+        version: 1,
+        items: [{ route: '/x', quote: q, reason: 'r'.repeat(20), editor: 'e', at: '2026-01-01' }],
+      }) as never
+    expect(descartesInertes(reg(justo))).toHaveLength(0)
+    expect(descartesInertes(reg(corta))).toHaveLength(1)
+  })
+
+  it('un registro vacío o ausente no inventa ninguno', () => {
+    expect(descartesInertes(null)).toEqual([])
+    expect(descartesInertes({ version: 1, items: [] } as never)).toEqual([])
+  })
+
+  /** Y que `check:surfaces` lo diga: una guarda que nadie invoca no existe. */
+  it('check-surfaces lo informa', () => {
+    const src = readFileSync(resolve(__dirname, '../scripts/check-surfaces.ts'), 'utf8')
+    expect(src).toContain('descartesInertes(')
+    expect(src).toContain('INERTE')
+  })
 })

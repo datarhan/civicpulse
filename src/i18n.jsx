@@ -210,6 +210,8 @@ export const CATALOGUE = {
     'map.quejas.ok': 'mayoría resueltas',
     'map.quejas.civic': 'en curso',
     'map.quejas.radius': 'radio ∝ nº de quejas',
+    'map.quejas.cobertura': 'sobre {q} queja(s) en {b} barrio(s)',
+    'map.quejas.escalaParcial': 'los demás niveles de la escala no se dan hoy',
     'map.money.title': 'Contratos situados',
     'map.money.dana': 'Solo DANA',
     'map.money.obras': 'Solo obras',
@@ -389,6 +391,8 @@ export const CATALOGUE = {
     'presupuesto.ted.valued': 'con importe declarado',
     'presupuesto.ted.intro':
       'Anuncios del Ayuntamiento en el Diario Oficial de la UE: los contratos que superan el umbral europeo, entre ellos líneas NextGenerationEU y de reconstrucción por la DANA. Complementa el feed de PLACSP, que a veces los publica más tarde.',
+    'presupuesto.ted.concentracion':
+      'No es un volumen repartido: el mayor anuncio se lleva el {pct} % del total ({importe}), porque una concesión se adjudica por todo su plazo de una vez.',
     'presupuesto.ted.note':
       'TED no publica título descriptivo para estos anuncios —el número ES el identificador—, así que cada fila enlaza al original. El símbolo ≈ marca los anuncios sin fecha exacta: el año se recupera del número de publicación y no se inventa un día.',
     'cargos.detalle.ficha.eyebrow': 'Portal de transparencia',
@@ -786,6 +790,8 @@ export const CATALOGUE = {
     'map.quejas.ok': 'majoria resoltes',
     'map.quejas.civic': 'en curs',
     'map.quejas.radius': 'radi ∝ nº de queixes',
+    'map.quejas.cobertura': 'sobre {q} queixa(es) en {b} barri(s)',
+    'map.quejas.escalaParcial': "la resta de nivells de l'escala no es donen hui",
     'map.money.title': 'Contractes situats',
     'map.money.dana': 'Només DANA',
     'map.money.obras': 'Només obres',
@@ -933,6 +939,8 @@ export const CATALOGUE = {
     'presupuesto.ted.valued': 'amb import declarat',
     'presupuesto.ted.intro':
       "Anuncis de l'Ajuntament al Diari Oficial de la UE: els contractes que superen el llindar europeu, entre ells línies NextGenerationEU i de reconstrucció per la DANA. Complementa el feed de PLACSP, que de vegades els publica més tard.",
+    'presupuesto.ted.concentracion':
+      "No és un volum repartit: el major anunci s'emporta el {pct} % del total ({importe}), perquè una concessió s'adjudica per tot el seu termini d'una vegada.",
     'presupuesto.ted.note':
       "TED no publica títol descriptiu per a estos anuncis —el número ÉS l'identificador—, així que cada fila enllaça a l'original. El símbol ≈ marca els anuncis sense data exacta: l'any es recupera del número de publicació i no s'inventa un dia.",
     'cargos.detalle.ficha.eyebrow': 'Portal de transparència',

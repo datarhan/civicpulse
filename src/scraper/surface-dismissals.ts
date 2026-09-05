@@ -131,3 +131,24 @@ export function validarDescartes(raw: unknown): RegistroDescartes {
   }
   return r
 }
+
+/**
+ * Descartes que NO PUEDEN casar con nada, porque su cita no llega al suelo.
+ *
+ * `estaDescartado` exige `corta.length >= SOLAPE_MINIMO` para que un fragmento
+ * corto no tape por casualidad un señalamiento que nadie revisó. La consecuencia,
+ * que no estaba dicha en ninguna parte: un descarte con una cita más corta que
+ * eso no silencia nada — y tampoco avisa de que no silencia. Queda en el fichero
+ * con su motivo y su firma, pareciendo trabajo hecho.
+ *
+ * Medido el 5-09-2026 al auditar el registro: CUATRO, dos de ellos anteriores a
+ * esa sesión. Se anotaron creyendo cerrar un señalamiento que siguió vivo.
+ *
+ * No se convierte en error de validación a propósito: reventar la lectura del
+ * registro dejaría `check:surfaces` y `review:surfaces` sin poder arrancar por
+ * un descarte viejo mal escrito, que es peor que el defecto. Se informa, que es
+ * lo único que hacía falta para que se vea.
+ */
+export function descartesInertes(registro: RegistroDescartes | null): Descarte[] {
+  return (registro?.items ?? []).filter((d) => normaliza(d.quote).length < SOLAPE_MINIMO)
+}
