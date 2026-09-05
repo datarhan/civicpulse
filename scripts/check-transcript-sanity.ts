@@ -34,7 +34,9 @@ for (const path of paths) {
   console.log(
     `${verdict} ${path.split('/').pop()} · lines=${r.lines} uniq=${r.uniqueLines} (${pct(
       r.uniqueRatio,
-    )}) top=${r.topLineCount} (${pct(r.topLineShare)}) chars=${r.uniqueContentChars}${
+    )}) top=${r.topLineCount} (${pct(r.topLineShare)}) chars=${r.uniqueContentChars} en=${
+      r.translatedLines
+    } (${pct(r.translatedShare)}, racha ${r.longestTranslatedRun})${
       r.reasons.length ? ` · ${r.reasons.join(',')}` : ''
     }`,
   )

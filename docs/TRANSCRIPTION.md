@@ -137,6 +137,31 @@ no-content transcripts are quarantined rather than published, and the pleno
 stays in the backlog for retry. Sweep the published corpus any time with
 `npm run check:transcripts` (exit 1 on any failure).
 
+**And the second failure mode: the engine TRANSLATES instead of transcribing.**
+Whisper returns a passage in English — «but that the readjustment that we have
+had in this reorganization in 2023-2024» — with `language='es'` set on both
+transcriber paths, so this is not a missing flag: it is the model switching task
+mid-session, sometimes inside one speaker's turn. Measured 2026-09-05 across the
+44 published transcripts: 12 carry an English run, the longest 6 lines, and
+`1r6yy0` reaches 6.9% of the file. It matters for the same reason a repetition
+loop does — what gets published is what a named councillor said, and a
+translation is not what they said.
+
+`translated-passages` therefore joins the gate, failing above 5% of the judgeable
+lines or a run of 8. Both criteria are needed and they see different things: the
+share catches an engine that drifts in and out all session, the run catches one
+whole stretch translated at once, which in a long file can be a small percentage
+and still be an entire intervention put into somebody's mouth in another
+language. Lines too short or with no function words either way are excluded from
+the denominator rather than counted as clean.
+
+**Never translate it back.** Rendering the passage into Spanish would make it
+our sentence, and a quote we wrote is exactly what this repo exists not to
+publish. Detect, quarantine, re-transcribe. Where an earlier transcription got
+it right the original survives in `pleno-transcripts/superseded/` — that is where
+`qz6weg`'s Spanish still is, and why `check:claim-provenance` reads that passage
+as `solo-superseded` rather than as missing.
+
 ## 2 · Noise reduction (`WHISPER_DENOISE=1`, off)
 
 Re-encodes the downloaded audio through ffmpeg's `afftdn` (FFT noise reduction,
