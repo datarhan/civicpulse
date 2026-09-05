@@ -272,7 +272,16 @@ function factsFor(clave: string): Record<string, unknown> {
     // y una premisa falsa en el instrumento produce señalamientos para siempre:
     // el mismo defecto que ya costó «gasto total» por un crédito y «805
     // contratos» por las filas de un snapshot.
-    'presupuesto: CRÉDITO de gasto del ejercicio que el ayuntamiento rindió a CONPREL (lo autorizado, NO lo gastado; NO coincide ni con el crédito inicial ni con el definitivo del listado municipal, y /presupuesto lo dice sin reconciliarlos)':
+    //
+    // Y la primera reescritura se pasó al otro lado. Decía «NO coincide ni con
+    // el crédito inicial ni con el definitivo», que es cierto y NO es un hecho:
+    // es una conclusión. El modelo la aplicó como tal y empezó a señalar
+    // cualquier página que nombrara la cifra —incluida la tarjeta que ya acredita
+    // «MinHac CONPREL» debajo—. Una ficha de hechos enumera magnitudes; comparar
+    // es el trabajo del que lee. Las tres cifras municipales van aparte, en
+    // `ejecucionFacts`, y desde ahí el modelo puede cotejar sin que se le diga de
+    // antemano qué va a encontrar.
+    'presupuesto: CRÉDITO de gasto del ejercicio según CONPREL, la publicación del ministerio (lo autorizado, NO lo gastado)':
       budget?.snapshot?.totalExpense,
     'presupuesto: ejercicio': budget?.snapshot?.year,
     ...ejecucionFacts(read('budget-execution.json')),

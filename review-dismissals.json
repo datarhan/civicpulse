@@ -120,6 +120,20 @@
       "reason": "El revisor lee el rótulo del deslizador sin la tarjeta que tiene justo debajo. `incendios.json` trae universe.totalIncendios=91 y dibujados=90, y la diferencia —un incendio de 128 ha atribuido a Riba-roja que la Generalitat cartografía FUERA del término— la declara IncendiosCobertura.jsx en el mismo panel, con su superficie y su motivo: «consta a nombre de Riba-roja pero la Generalitat lo dibuja fuera del término, así que no se pinta». El rótulo cuenta lo que el mapa pinta y la tarjeta cuenta lo que falta, que es la regla de mapa de CLAUDE.md («una capa que enseña una fracción de su dominio lo dice»). Comprobado el 5-09-2026.",
       "editor": "claude-opus-5",
       "at": "2026-09-05"
+    },
+    {
+      "route": "/",
+      "quote": "PRESUP. 2025",
+      "reason": "La tarjeta acredita su fuente en el mismo sitio: «PRESUP. 2025 · 41,6 M€ · MinHac CONPREL». Nombrar la cifra del ministerio como presupuesto de 2025 es exacto — lo es—, y la tarjeta dice de dónde sale. El señalamiento nace de que la ficha del revisor llevaba, durante unas horas del 5-09-2026, una CONCLUSIÓN («no coincide ni con el crédito inicial ni con el definitivo») donde debía llevar un hecho; el modelo la aplicó a cualquier página que nombrara la cifra. La etiqueta se ha reescrito para enumerar y no concluir. Las tres magnitudes municipales siguen en la ficha por separado, así que el cotejo se puede hacer, sólo que ya no viene hecho de fábrica.",
+      "editor": "claude-opus-5",
+      "at": "2026-09-05"
+    },
+    {
+      "route": "/",
+      "quote": "41.578.252 € presupuesto 2025",
+      "reason": "Lo mismo un rótulo más abajo y sobre la cifra completa: llamar «presupuesto 2025» a los 41.578.252,26 € que el ayuntamiento rindió al ministerio es exacto. La discrepancia con el listado municipal —crédito inicial 37.599.838,15 €, definitivo 62.123.153,08 €— existe y la publica /presupuesto, que se niega a reconciliarla por escrito; no es un defecto de cada página que mencione la cifra. Mismo origen que el descarte de arriba: una ficha de hechos que concluía en vez de enumerar.",
+      "editor": "claude-opus-5",
+      "at": "2026-09-05"
     }
   ]
 }

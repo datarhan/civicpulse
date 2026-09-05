@@ -510,7 +510,7 @@ export function construirIndicadoresMunicipales(input: FriccionInput): Indicador
     formato: 'porcentaje',
     periodo: eje?.fechaListado ? `${anio} (a ${eje.fechaListado})` : anio,
     caveats: [
-      'Las modificaciones son legales y a veces inevitables —una subvención que llega a mitad de año hay que incorporarla—. Lo que mide es cuánto se aleja el presupuesto ejecutado del que se aprobó y se debatió.',
+      'Las modificaciones son legales y a veces inevitables —una subvención que llega a mitad de año hay que incorporarla—. Lo que mide es cuánto se aleja el crédito finalmente disponible del que se aprobó y se debatió — no lo gastado, que es otra cifra y bastante menor.',
     ],
     citas: [citaEje],
   })
