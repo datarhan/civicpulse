@@ -739,10 +739,11 @@ export default function Basuras() {
           el mismo objeto.
         </p>
         <p>
-          Sobre ese presupuesto, la adjudicación de {eur(d.adjudicadoSinIva)} sin IVA supone una
-          baja de {eur(d.bajaEuros)}. El Ayuntamiento anunció un ahorro «de hasta 731.000 euros» por
-          los dos lotes; la lectura más cercana que encontramos —sumar las bajas de ambos, con IVA—
-          da {eur(d.ahorroDosLotesConIva)}. Cerca, pero no exacto, y lo hacemos constar como
+          De ese presupuesto, {eur(d.presupuestoLote1SinIva)} sin IVA corresponden al lote de
+          recogida; sobre esa base, la adjudicación de {eur(d.adjudicadoSinIva)} supone una baja de{' '}
+          {eur(d.bajaEuros)}. El Ayuntamiento anunció un ahorro «de hasta 731.000 euros» por los dos
+          lotes; la lectura más cercana que encontramos —sumar las bajas de ambos, con IVA— da{' '}
+          {eur(d.ahorroDosLotesConIva)}. Cerca, pero no exacto, y lo hacemos constar como
           aritmética, no como reproche: puede haber un redondeo o un criterio que no conocemos.
         </p>
         <p>
