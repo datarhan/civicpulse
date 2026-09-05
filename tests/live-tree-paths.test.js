@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { execFileSync } from 'node:child_process'
+import { readFileSync, readdirSync } from 'node:fs'
 import { resolve } from 'node:path'
 import {
   decideLiveTreeBash,
@@ -92,5 +93,52 @@ describe('guard: mover el árbol mientras otro lo escribe', () => {
     // Se comprueba la vía, no el veredicto de hoy: `run` no puede inyectar.
     const v = run({ tool_name: 'Bash', tool_input: { command: 'git status' } })
     expect(v === null || v.permissionDecision !== undefined).toBe(true)
+  })
+})
+
+/**
+ * Y que el runner los ejecute a TODOS.
+ *
+ * Un gancho que existe y nadie importa es exactamente el defecto que este
+ * repositorio se encontró tres veces el 12-08-2026 —tres guardas escritas, sin
+ * invocar— y no había nada que lo mirara para `.claude/hooks/`: `guard-audit`
+ * audita las guardas que cuelgan de un script de npm, no éstas. Esta guarda
+ * habría sido la cuarta.
+ *
+ * Se DERIVA de los dos lados: los ficheros que hay en la carpeta contra lo que
+ * los runners registrados en settings.json llegan a importar. Nada que recitar.
+ */
+describe('todos los ganchos están enchufados', () => {
+  const HOOKS = resolve(__dirname, '../.claude/hooks')
+  const raiz = resolve(__dirname, '..')
+  const settings = JSON.parse(readFileSync(resolve(raiz, '.claude/settings.json'), 'utf8'))
+
+  /** Los .mjs que settings.json manda ejecutar, sea en el evento que sea. */
+  const runners = [...JSON.stringify(settings).matchAll(/([\w-]+\.mjs)/g)].map((m) => m[1])
+
+  /** Lo que un runner alcanza, siguiendo sus imports dentro de la carpeta. */
+  const alcanzados = new Set()
+  const seguir = (fichero) => {
+    if (alcanzados.has(fichero)) return
+    alcanzados.add(fichero)
+    const src = readFileSync(resolve(HOOKS, fichero), 'utf8')
+    for (const m of src.matchAll(/from\s+'\.\/([\w-]+\.mjs)'/g)) seguir(m[1])
+  }
+
+  it('mide algo: settings.json registra al menos un runner', () => {
+    expect(runners.length).toBeGreaterThan(0)
+    for (const r of runners) seguir(r)
+  })
+
+  it('ningún .mjs de .claude/hooks/ se queda sin ejecutar por nadie', () => {
+    for (const r of runners) seguir(r)
+    const enDisco = readdirSync(HOOKS).filter((f) => f.endsWith('.mjs'))
+    const huerfanos = enDisco.filter((f) => !alcanzados.has(f))
+    expect(huerfanos, `ganchos que nadie invoca: ${huerfanos.join(', ')}`).toEqual([])
+  })
+
+  it('y éste en concreto llega desde el runner', () => {
+    for (const r of runners) seguir(r)
+    expect(alcanzados.has('live-tree-paths.mjs')).toBe(true)
   })
 })
