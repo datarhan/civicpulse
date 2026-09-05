@@ -17,8 +17,16 @@
  *     quote card (0-indexed).
  *   · portrait.portfolios[<index>]       — rename one área chip on the
  *     portrait beside the councillor's photograph (0-indexed).
+ *   · warnings[<index>]                  — reword one of the curator-signed
+ *     caveats of the biography (0-indexed). `area-fit.json` mirrors these BY
+ *     INDEX onto /cargos and its validator pins the verbatim, so retract the
+ *     mirrored aviso first (`promote-area-fit --aviso … --retract`), correct
+ *     here, then re-sign it. Same three fences as the portrait: index in
+ *     range, no blank, no copy of a sibling warning.
  *
- * Re-validates the whole reports snapshot before writing.
+ * Re-validates the whole reports snapshot before writing — which, for a
+ * warning, includes the judicial-token gate: a corrected caveat that names a
+ * court would demand `legalSensitivity: 'high'` and the write would refuse.
  *
  * HOW AN ARRAY ELEMENT FITS A string→string LEDGER. `corrections[]` is flat by
  * design: the reader is shown `<field> · <original> → <corrected>` and nothing
@@ -66,7 +74,8 @@ function usage(): never {
       '  · narrative.<heading>.bodyMarkdown\n' +
       '  · narrative.<heading>.heading\n' +
       '  · quote.<index>.attributedTo\n' +
-      '  · portrait.portfolios[<index>]\n',
+      '  · portrait.portfolios[<index>]\n' +
+      '  · warnings[<index>]\n',
   )
   process.exit(2)
 }
@@ -108,13 +117,33 @@ function parseArgs(argv: string[]): Opts {
 }
 
 const PORTFOLIO_PATH = /^portrait\.portfolios\[(\d+)\]$/
+const WARNING_PATH = /^warnings\[(\d+)\]$/
 
 export function applyCorrection(
   report: JournalistReport,
   fieldPath: string,
   newValue: string,
-): { sections: ReportSection[]; original: string } {
+): { sections: ReportSection[]; warnings?: string[]; original: string } {
   const sections = JSON.parse(JSON.stringify(report.sections)) as ReportSection[]
+  if (fieldPath.startsWith('warnings')) {
+    const m = WARNING_PATH.exec(fieldPath)
+    if (!m) throw new Error(`warnings must be addressed as warnings[<index>], got ${fieldPath}`)
+    const targetIndex = Number(m[1])
+    const warnings = [...(report.warnings ?? [])]
+    if (targetIndex >= warnings.length)
+      throw new Error(`warning index ${targetIndex} out of range (${warnings.length} warnings)`)
+    const trimmed = newValue.trim()
+    if (!trimmed)
+      throw new Error('a warning cannot be blank — dropping a caveat is a re-run, not a correction')
+    const clash = warnings.findIndex((w, i) => i !== targetIndex && w === trimmed)
+    if (clash >= 0)
+      throw new Error(
+        `"${trimmed.slice(0, 60)}…" is already warnings[${clash}] — two identical caveats`,
+      )
+    const original = warnings[targetIndex]
+    warnings[targetIndex] = trimmed
+    return { sections, warnings, original }
+  }
   if (fieldPath.startsWith('portrait.')) {
     const m = PORTFOLIO_PATH.exec(fieldPath)
     if (!m) throw new Error(`portrait subfield must be portfolios[<index>], got ${fieldPath}`)
@@ -198,7 +227,7 @@ function main(): void {
     process.exit(1)
   }
   const report = snap.items[idx]
-  let updated: { sections: ReportSection[]; original: string }
+  let updated: { sections: ReportSection[]; warnings?: string[]; original: string }
   try {
     updated = applyCorrection(report, opts.field, opts.newValue)
   } catch (err) {
@@ -216,6 +245,7 @@ function main(): void {
   const next: JournalistReport = {
     ...report,
     sections: updated.sections,
+    warnings: updated.warnings ?? report.warnings,
     corrections: [...report.corrections, correction],
   }
   const items = [...snap.items]

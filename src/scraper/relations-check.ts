@@ -147,7 +147,11 @@ export interface RelationsCheckInputs {
     approvals?: Array<{ quejaId?: string; tenderId?: string | number }>
   } | null
   dedicaciones?: { byOfficial?: Array<{ slug?: string }> } | null
-  officials?: { officials?: Array<{ slug?: string; portfolios?: string[] }> } | null
+  officials?: {
+    officials?: Array<{ slug?: string; portfolios?: string[] }>
+    /** Quien dejó la corporación: sigue existiendo como historia, no como escaño. */
+    formerOfficials?: Array<{ slug?: string; until?: string }>
+  } | null
   /** Curated «encaje declarado» rows (area-fit.json). */
   areaFit?: {
     rows?: Array<{
@@ -288,6 +292,19 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
   const officialSlugs = new Set(
     (officials?.officials ?? []).map((o) => o?.slug).filter((s): s is string => !!s),
   )
+  // Dos conjuntos a propósito. Una biografía, un retrato o una queja enrutada
+  // son HISTORIA y no dejan de ser ciertos cuando alguien renuncia; una fila de
+  // encaje o una dedicación son afirmaciones en presente sobre un escaño. Las
+  // primeras se resuelven contra todos los que este padrón conoce; las segundas
+  // sólo contra quien se sienta hoy — y el mensaje dice cuál de las dos cosas
+  // pasó, porque «no es concejal» y «dejó de serlo el 02-06-2025» piden
+  // remedios distintos.
+  const formerUntil = new Map(
+    (officials?.formerOfficials ?? [])
+      .filter((f): f is { slug: string; until?: string } => !!f?.slug)
+      .map((f) => [f.slug, f.until ?? '?']),
+  )
+  const knownOfficialSlugs = new Set([...officialSlugs, ...formerUntil.keys()])
   const agendaKeys = new Set<string>()
   for (const p of agendas?.plenos ?? []) {
     for (const it of p?.agenda ?? []) {
@@ -830,12 +847,12 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
       for (const q of quejas?.items ?? []) {
         if (!q?.concejal_slug) continue
         checked += 1
-        if (!officialSlugs.has(q.concejal_slug))
+        if (!knownOfficialSlugs.has(q.concejal_slug))
           broken.push(`${q.service_request_id ?? '?'} routed to unknown ${q.concejal_slug}`)
       }
       for (const slug of Object.keys(quejas?.stats?.byConcejal ?? {})) {
         checked += 1
-        if (!officialSlugs.has(slug)) broken.push(`stats.byConcejal has unknown ${slug}`)
+        if (!knownOfficialSlugs.has(slug)) broken.push(`stats.byConcejal has unknown ${slug}`)
       }
       return { checked, broken }
     }),
@@ -845,7 +862,7 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
       const broken: string[] = []
       for (const a of social?.accounts ?? []) {
         checked += 1
-        if (!a?.slug || !officialSlugs.has(a.slug))
+        if (!a?.slug || !knownOfficialSlugs.has(a.slug))
           broken.push(`${a?.platform ?? '?'} account filed under unknown ${a?.slug ?? '?'}`)
       }
       return { checked, broken }
@@ -857,7 +874,7 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
       for (const a of assignments?.items ?? []) {
         if (a?.subject?.kind !== 'official' || !a?.subject?.slug) continue
         checked += 1
-        if (!officialSlugs.has(a.subject.slug))
+        if (!knownOfficialSlugs.has(a.subject.slug))
           broken.push(`${a?.id ?? '?'} profiles unknown official ${a.subject.slug}`)
       }
       return { checked, broken }
@@ -937,7 +954,7 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
           if (s?.kind !== 'portrait') continue
           const slug = s?.payload?.officialSlug
           checked += 1
-          if (!slug || !officialSlugs.has(slug)) {
+          if (!slug || !knownOfficialSlugs.has(slug)) {
             broken.push(`${r?.id ?? '?'} portrait of unknown official ${slug ?? '?'}`)
             continue
           }
@@ -972,7 +989,12 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
       for (const r of areaFit?.rows ?? []) {
         checked += 1
         if (!r?.officialSlug || !officialSlugs.has(r.officialSlug)) {
-          broken.push(`encaje row for unknown official ${r?.officialSlug ?? '?'}`)
+          broken.push(
+            r?.officialSlug && formerUntil.has(r.officialSlug)
+              ? `encaje row for ${r.officialSlug}, who left the corporación on ` +
+                  `${formerUntil.get(r.officialSlug)} — retract it (promote-area-fit --retract)`
+              : `encaje row for unknown official ${r?.officialSlug ?? '?'}`,
+          )
           continue
         }
         const held = portfoliosBySlug.get(r.officialSlug)
@@ -1139,7 +1161,12 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
       for (const row of dedicaciones?.byOfficial ?? []) {
         if (!row?.slug) continue
         checked += 1
-        if (!officialSlugs.has(row.slug)) broken.push(`dedicación → official ${row.slug}`)
+        if (!officialSlugs.has(row.slug))
+          broken.push(
+            formerUntil.has(row.slug)
+              ? `dedicación → ${row.slug}, who left the corporación on ${formerUntil.get(row.slug)}`
+              : `dedicación → official ${row.slug}`,
+          )
       }
       return { checked, broken }
     }),

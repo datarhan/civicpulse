@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-08-18T17:55:06.170Z",
+  "generatedAt": "2026-09-05T16:36:25.217Z",
   "legalNotice": "Informes periodísticos elaborados por un agente automático y revisados por curación humana antes de su publicación. Cada afirmación incluye cita verbatim, enlace de archivo cuando procede y derecho de réplica abierto vía formulario público en github.com/datarhan/civicpulse.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -7975,14 +7975,23 @@
       ],
       "warnings": [
         "Los datos de identidad, formación y trayectoria previa proceden del CV autodeclarado de la propia concejala publicado por el Ayuntamiento — véase el bloque «Lagunas detectadas».",
-        "Las delegaciones han variado durante el mandato: el decreto de 07-2023 recogía Participación, Atención a la ciudadanía y Turismo; el registro vigente añade Promoción de la Salud e Infraestructuras sanitarias.",
+        "Las delegaciones han variado durante el mandato: la Resolución 2513/2023, de 17-06-2023 (BOP València núm. 127, anuncio 2023/08603, 03-07-2023) recogía Participación y transparencia, Atención a la ciudadanía y Turismo y patrimonio histórico; la Resolución 2639/2023, de 28-06-2023, que la modifica (BOP núm. 132, anuncio 2023/08985, 10-07-2023), añade Promoción de la Salud e Infraestructuras sanitarias.",
         "Su declaración estatutaria y su CV recogen una actividad financiera privada (Banco Mediolanum, desde 2017) junto a la dedicación exclusiva de 07-2023; los snapshots consultados no recogen resolución de compatibilidad ni fecha de cese — véanse «Patrimonio y actividades declaradas» y «Lagunas detectadas»."
       ],
       "legalSensitivity": "medium",
       "promotedBy": "Sergei Lutchenko",
       "promotedAt": "2026-07-31T10:34:38.099Z",
       "curatorNotes": "REVISIÓN DE CURADURÍA 2026-07-31 (previa a la promoción): CV descargado directamente (el floor volvió a fallar sobre el listado): nacida 24-03-1965 en València, licenciada en Informática de Gestión (Deusto 1988), tres décadas en tecnología y finanzas (SENER/ERIA/IDOM, Indra SSI, GFT, ASEVAL, Aviva) y asesora financiera de Banco Mediolanum «2017 - ACTUAL». PUNTO SENSIBLE tratado con disciplina de hechos fechados: su declaración estatutaria (2023) y su CV recogen la actividad financiera privada junto a la dedicación exclusiva del acuerdo de 07-07-2023; publicado sin conclusión alguna, con laguna y advertencia señalando la ausencia de resolución de compatibilidad en los snapshots. Cadena de nombramiento con ventanas literales: electa y posesión 17-06-2023, número siete del grupo, punto 7 del decreto de áreas; VARIACIÓN documentada (el registro vigente añade Promoción de la Salud e Infraestructuras sanitarias). Entrada en política: puesto 10 de la lista de 2019 (BOP n.º 82), ausente en 2015 (BOP n.º 79). Declaración: activo 164.461,65 € (aritmética verificada), pasivo 4.681,53 €; BOP n.º 180 citado. COMPROBACIÓN AMPLIADA: sus OCHO empleadoras declaradas (incluida Indra, gran contratista público nacional) no constan como adjudicatarias en los 804 contratos; 0 con sus apellidos; grafo con la relación Mediolanum como conexión documentada en sus propios documentos oficiales. La cita del resumen de dedicaciones sustituida por el decreto verbatim (advertencia del verificador CORRECTA); las advertencias de municipio-no-especificado eran exceso de cautela del verificador (el snapshot oficial ES de Riba-roja).",
-      "corrections": [],
+      "corrections": [
+        {
+          "field": "warnings[1]",
+          "original": "Las delegaciones han variado durante el mandato: el decreto de 07-2023 recogía Participación, Atención a la ciudadanía y Turismo; el registro vigente añade Promoción de la Salud e Infraestructuras sanitarias.",
+          "corrected": "Las delegaciones han variado durante el mandato: la Resolución 2513/2023, de 17-06-2023 (BOP València núm. 127, anuncio 2023/08603, 03-07-2023) recogía Participación y transparencia, Atención a la ciudadanía y Turismo y patrimonio histórico; la Resolución 2639/2023, de 28-06-2023, que la modifica (BOP núm. 132, anuncio 2023/08985, 10-07-2023), añade Promoción de la Salud e Infraestructuras sanitarias.",
+          "reason": "El cambio de delegaciones no consta sólo en el registro municipal: se publicó en el BOP de València once días después del decreto original; atribuirlo al registro ocultaba la fuente oficial que lo sostiene.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-09-05"
+        }
+      ],
       "response": null
     },
     {
@@ -10085,13 +10094,22 @@
       ],
       "warnings": [
         "Los datos de identidad, formación y trayectoria previa proceden del CV autodeclarado del propio concejal publicado por el Ayuntamiento — véase el bloque «Lagunas detectadas».",
-        "Las áreas delegadas han variado durante el mandato: el decreto de julio de 2023 incluía Comercio; el registro municipal vigente recoge en su lugar Actividades y Edificios públicos. Se publican ambas con su fuente."
+        "Las áreas delegadas han variado durante el mandato: la Resolución 2513/2023, de 17-06-2023 (BOP València núm. 127, anuncio 2023/08603, 03-07-2023) incluía Comercio; la Resolución 2639/2023, de 28-06-2023, que la modifica (BOP núm. 132, anuncio 2023/08985, 10-07-2023), recoge en su lugar Actividades y Edificios públicos. Se publican ambas con su fuente."
       ],
       "legalSensitivity": "medium",
       "promotedBy": "Sergei Lutchenko",
       "promotedAt": "2026-07-31T07:25:52.967Z",
       "curatorNotes": "REVISIÓN DE CURADURÍA 2026-07-31 (previa a la promoción): cita de identidad corregida al CV (PSOE-Jose-Luis-Ramos.pdf, «19 DICIEMBRE 1960 RIBA-ROJA DE TÚRIA»); fila de mandato única y ambigua dividida en 2019-2023 (literal del CV) y 2023-actual. Cadena de nombramiento verificada contra las actas íntegras con ventanas literales: proclamado electo y posesión (9jatoj, con la dación de las declaraciones de intereses ex art. 75.7), número tres y portavoz suplente del grupo, Segunda Tenencia, segundo miembro de la JGL y punto 3 del decreto de áreas; documentada la VARIACIÓN de delegaciones durante el mandato (Comercio en 07-2023 → Actividades y Edificios públicos en el registro vigente). Declaración estatutaria integrada: activo 523.135,68 € (el segundo más alto de la corporación), pasivo 0, condición de pensionista sin actividad empresarial; NO figura entre las 7 dedicaciones exclusivas — sección financial nueva y laguna sobre la retribución efectiva. Comprobaciones: 0/804 contratos con sus apellidos; sus antiguas entidades bancarias empleadoras (Banco de València, Caja Campo, Cajamar) no constan como adjudicatarias; competencia de sus áreas mejor que la media (38% licitador único frente a 55%). 5 de las 7 advertencias del verificador eliminadas por comprobablemente falsas (los extractos de src-024/026-029 SÍ constan y respaldan las afirmaciones; las ventanas de tenencia y delegación añadidas completan la de la Segunda Tenencia). CORROBORACIÓN 2026-07-31 (revisión del operador sobre lagunas recurrentes): localizado y verificado el anuncio del BOP de València n.º 180 (15-09-2023, 2023/12011) que publica las declaraciones de actividades y bienes de la legislatura — los cinco sujetos constan en su texto; añadido como fuente y citado en la narrativa de patrimonio (la naturaleza autodeclarada del contenido no cambia; la publicación oficial en boletín queda ahora acreditada con identificadores de gaceta). La laguna «Retribución efectiva» se estrecha: tarifas de asistencias localizadas literalmente en la misma acta de organización (221,82 €/Pleno, 162,31 €/JGL) e integradas como fila financiera y fuente; queda pendiente solo el total efectivamente percibido. CORROBORACIÓN INDEPENDIENTE 2026-07-31: BOP n.º 82/2019 — número tres de la candidatura del PSOE — integrado como fuente de su entrada en la corporación.",
-      "corrections": [],
+      "corrections": [
+        {
+          "field": "warnings[1]",
+          "original": "Las áreas delegadas han variado durante el mandato: el decreto de julio de 2023 incluía Comercio; el registro municipal vigente recoge en su lugar Actividades y Edificios públicos. Se publican ambas con su fuente.",
+          "corrected": "Las áreas delegadas han variado durante el mandato: la Resolución 2513/2023, de 17-06-2023 (BOP València núm. 127, anuncio 2023/08603, 03-07-2023) incluía Comercio; la Resolución 2639/2023, de 28-06-2023, que la modifica (BOP núm. 132, anuncio 2023/08985, 10-07-2023), recoge en su lugar Actividades y Edificios públicos. Se publican ambas con su fuente.",
+          "reason": "El cambio de delegaciones no consta sólo en el registro municipal: se publicó en el BOP de València once días después del decreto original; atribuirlo al registro ocultaba la fuente oficial que lo sostiene.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-09-05"
+        }
+      ],
       "response": null
     },
     {

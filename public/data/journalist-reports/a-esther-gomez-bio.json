@@ -635,13 +635,22 @@
   ],
   "warnings": [
     "Los datos de identidad, formación y trayectoria previa proceden del CV autodeclarado de la propia concejala publicado por el Ayuntamiento — véase el bloque «Lagunas detectadas».",
-    "Las delegaciones han variado durante el mandato: el decreto de 07-2023 recogía Participación, Atención a la ciudadanía y Turismo; el registro vigente añade Promoción de la Salud e Infraestructuras sanitarias.",
+    "Las delegaciones han variado durante el mandato: la Resolución 2513/2023, de 17-06-2023 (BOP València núm. 127, anuncio 2023/08603, 03-07-2023) recogía Participación y transparencia, Atención a la ciudadanía y Turismo y patrimonio histórico; la Resolución 2639/2023, de 28-06-2023, que la modifica (BOP núm. 132, anuncio 2023/08985, 10-07-2023), añade Promoción de la Salud e Infraestructuras sanitarias.",
     "Su declaración estatutaria y su CV recogen una actividad financiera privada (Banco Mediolanum, desde 2017) junto a la dedicación exclusiva de 07-2023; los snapshots consultados no recogen resolución de compatibilidad ni fecha de cese — véanse «Patrimonio y actividades declaradas» y «Lagunas detectadas»."
   ],
   "legalSensitivity": "medium",
   "promotedBy": "Sergei Lutchenko",
   "promotedAt": "2026-07-31T10:34:38.099Z",
   "curatorNotes": "REVISIÓN DE CURADURÍA 2026-07-31 (previa a la promoción): CV descargado directamente (el floor volvió a fallar sobre el listado): nacida 24-03-1965 en València, licenciada en Informática de Gestión (Deusto 1988), tres décadas en tecnología y finanzas (SENER/ERIA/IDOM, Indra SSI, GFT, ASEVAL, Aviva) y asesora financiera de Banco Mediolanum «2017 - ACTUAL». PUNTO SENSIBLE tratado con disciplina de hechos fechados: su declaración estatutaria (2023) y su CV recogen la actividad financiera privada junto a la dedicación exclusiva del acuerdo de 07-07-2023; publicado sin conclusión alguna, con laguna y advertencia señalando la ausencia de resolución de compatibilidad en los snapshots. Cadena de nombramiento con ventanas literales: electa y posesión 17-06-2023, número siete del grupo, punto 7 del decreto de áreas; VARIACIÓN documentada (el registro vigente añade Promoción de la Salud e Infraestructuras sanitarias). Entrada en política: puesto 10 de la lista de 2019 (BOP n.º 82), ausente en 2015 (BOP n.º 79). Declaración: activo 164.461,65 € (aritmética verificada), pasivo 4.681,53 €; BOP n.º 180 citado. COMPROBACIÓN AMPLIADA: sus OCHO empleadoras declaradas (incluida Indra, gran contratista público nacional) no constan como adjudicatarias en los 804 contratos; 0 con sus apellidos; grafo con la relación Mediolanum como conexión documentada en sus propios documentos oficiales. La cita del resumen de dedicaciones sustituida por el decreto verbatim (advertencia del verificador CORRECTA); las advertencias de municipio-no-especificado eran exceso de cautela del verificador (el snapshot oficial ES de Riba-roja).",
-  "corrections": [],
+  "corrections": [
+    {
+      "field": "warnings[1]",
+      "original": "Las delegaciones han variado durante el mandato: el decreto de 07-2023 recogía Participación, Atención a la ciudadanía y Turismo; el registro vigente añade Promoción de la Salud e Infraestructuras sanitarias.",
+      "corrected": "Las delegaciones han variado durante el mandato: la Resolución 2513/2023, de 17-06-2023 (BOP València núm. 127, anuncio 2023/08603, 03-07-2023) recogía Participación y transparencia, Atención a la ciudadanía y Turismo y patrimonio histórico; la Resolución 2639/2023, de 28-06-2023, que la modifica (BOP núm. 132, anuncio 2023/08985, 10-07-2023), añade Promoción de la Salud e Infraestructuras sanitarias.",
+      "reason": "El cambio de delegaciones no consta sólo en el registro municipal: se publicó en el BOP de València once días después del decreto original; atribuirlo al registro ocultaba la fuente oficial que lo sostiene.",
+      "editor": "Sergei Lutchenko",
+      "correctedAt": "2026-09-05"
+    }
+  ],
   "response": null
 }

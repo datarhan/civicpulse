@@ -25,6 +25,11 @@ export const STRICT_ROUTES = [
   '/',
   '/cargos',
   '/cargos/robert-raga-gadea',
+  // Quien entró por corrección curada (sin retrato ni correo en la fuente) y
+  // quien dejó la corporación (sección aparte, sin bloques en presente): las
+  // dos formas del padrón corregido tienen que renderizar sin errores.
+  '/cargos/pedro-tortajada-raga',
+  '/cargos/soraya-trejo-delgado',
   '/presupuesto',
   '/plenos',
   `/plenos/${FIRST_PLENO_ID}`,

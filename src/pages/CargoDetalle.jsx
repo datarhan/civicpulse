@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom'
 import { Card, Pill, SectionHead, ExtLink } from '../components/Primitives'
-import { useOfficials, partyColor } from '../hooks/useOfficials'
+import { useOfficials, partyColor, findOfficial } from '../hooks/useOfficials'
+import { fmtDateLong } from '../lib/formatters'
 import { usePromises, STATUS_LABEL, STATUS_TONE } from '../hooks/usePromises'
 import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
 import { useQuejas } from '../hooks/useQuejas'
@@ -11,7 +12,7 @@ import { useElections } from '../hooks/useElections'
 import { useTransparencyDocs } from '../hooks/useTransparencyDocs'
 import { cvDocForOfficial } from '../lib/official-cv'
 import { latestVoteShare } from '../lib/party-alias'
-import { canonicalizeDepartment, DEPARTMENT_LABEL } from '../scraper/departments'
+import { canonicalizeDepartments, DEPARTMENT_LABEL } from '../scraper/departments'
 import { EncajeMatrix, QueExigeLaLey } from '../components/EncajeDeclarado'
 import { useT, useLocale } from '../i18n'
 
@@ -30,10 +31,11 @@ function portfolioSlugs(official) {
   const out = []
   const seen = new Set()
   for (const p of official?.portfolios ?? []) {
-    const s = canonicalizeDepartment(p)
-    if (s && !seen.has(s)) {
-      out.push(s)
-      seen.add(s)
+    for (const s of canonicalizeDepartments(p)) {
+      if (!seen.has(s)) {
+        out.push(s)
+        seen.add(s)
+      }
     }
   }
   return out
@@ -367,6 +369,187 @@ function MiniStat({ label, value, tone }) {
   )
 }
 
+/**
+ * The record of someone who left the corporación during the mandate.
+ *
+ * Not the sitting layout with blocks hidden: every present-tense section of
+ * that page — salary, áreas, agenda, quejas, the «0 concejalías» tile — would
+ * either assert a fact about a seat this person no longer holds or print a
+ * zero as if it were one. What remains is history: the departure, in the
+ * acta's own words; the person's identity and biography; the electoral
+ * backing of the list they came in on; and the attribution note.
+ */
+function FormerDetalle({ official, color, bioRoute, t }) {
+  const motivo = t(`cargos.baja.${official.reason}`)
+  return (
+    <div style={{ padding: '28px 28px 48px', maxWidth: 920, margin: '0 auto' }}>
+      <Link
+        to="/cargos"
+        style={{
+          fontSize: 'var(--fs-meta)',
+          color: 'var(--civic)',
+          textDecoration: 'none',
+          marginBottom: 18,
+          display: 'inline-block',
+        }}
+      >
+        ← {t('cargos.title')}
+      </Link>
+
+      <div
+        style={{
+          padding: '12px 14px',
+          borderLeft: '3px solid var(--warn)',
+          background: 'var(--soft)',
+          borderRadius: 'var(--r-input)',
+          fontSize: 'var(--fs-aux)',
+          color: 'var(--ink)',
+          lineHeight: 1.55,
+          marginBottom: 18,
+        }}
+      >
+        <div style={{ fontWeight: 600 }}>
+          {t('cargos.detalle.baja.banner')
+            .replace('{motivo}', motivo)
+            .replace('{fecha}', fmtDateLong(official.until))}
+        </div>
+        <blockquote
+          style={{
+            margin: '8px 0 0',
+            padding: '6px 10px',
+            borderLeft: '3px solid var(--civic)',
+            fontSize: 'var(--fs-aux)',
+            color: 'var(--ink70)',
+            lineHeight: 1.5,
+            maxWidth: '68ch',
+          }}
+        >
+          «{official.source.quote}»
+        </blockquote>
+        <div className="mono" style={{ fontSize: 'var(--fs-micro)', marginTop: 6 }}>
+          {t('cargos.detalle.baja.fuente')}:{' '}
+          <ExtLink
+            href={official.source.url}
+            style={{ color: 'var(--civic)', textDecoration: 'underline' }}
+          >
+            {official.source.title} ↗
+          </ExtLink>
+        </div>
+      </div>
+
+      <div
+        style={{
+          display: 'flex',
+          gap: 18,
+          alignItems: 'center',
+          padding: '18px 0',
+          borderBottom: '1px solid var(--border2)',
+          marginBottom: 20,
+        }}
+      >
+        {official.photoUrl && (
+          <img
+            src={official.photoUrl}
+            alt={official.name}
+            width={88}
+            height={88}
+            style={{
+              width: 88,
+              height: 88,
+              borderRadius: 'var(--r-card)',
+              objectFit: 'cover',
+              border: `2px solid ${color}33`,
+              flexShrink: 0,
+            }}
+          />
+        )}
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 6 }}>
+            <span
+              className="mono"
+              style={{
+                fontSize: 'var(--fs-micro)',
+                fontWeight: 700,
+                letterSpacing: '.12em',
+                textTransform: 'uppercase',
+                background: color,
+                color: 'white',
+                padding: '2px 7px',
+                borderRadius: 'var(--r-pill)',
+              }}
+            >
+              {official.party}
+            </span>
+            <span
+              className="mono"
+              style={{ fontSize: 'var(--fs-micro)', color: 'var(--warn-ink)', fontWeight: 700 }}
+            >
+              {t(
+                official.honorific === 'Sra.' ? 'cargos.card.hastaF' : 'cargos.card.hastaM',
+              ).replace('{fecha}', fmtDateLong(official.until))}
+            </span>
+          </div>
+          <div style={{ fontSize: 'var(--fs-card)', fontWeight: 700, letterSpacing: '-.01em' }}>
+            {official.name}
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              gap: 14,
+              marginTop: 8,
+              fontSize: 'var(--fs-meta)',
+              flexWrap: 'wrap',
+            }}
+          >
+            {official.email ? (
+              <a
+                href={`mailto:${official.email}`}
+                className="mono"
+                style={{ color: 'var(--ink70)', textDecoration: 'underline' }}
+              >
+                {official.email}
+              </a>
+            ) : (
+              <span className="mono" style={{ color: 'var(--ink50)' }}>
+                {t('cargos.card.sinCorreo')}
+              </span>
+            )}
+            {bioRoute && (
+              <Link
+                to={bioRoute}
+                title="Informe biográfico del agente periodista de CivicPulse"
+                style={{ color: 'var(--civic)', textDecoration: 'underline', fontWeight: 500 }}
+              >
+                Biografía →
+              </Link>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <Mandato party={official.party} />
+
+      <div
+        style={{
+          marginTop: 20,
+          padding: 14,
+          background: 'var(--soft)',
+          borderRadius: 'var(--r-input)',
+          fontSize: 'var(--fs-aux)',
+          color: 'var(--ink50)',
+          lineHeight: 1.55,
+        }}
+      >
+        <strong style={{ color: 'var(--ink)' }}>Atribución.</strong>{' '}
+        {t('cargos.detalle.methodology')}{' '}
+        <a href="/metodologia" style={{ color: 'var(--civic)', textDecoration: 'underline' }}>
+          {t('cargos.detalle.methodology.link')}
+        </a>
+      </div>
+    </div>
+  )
+}
+
 export default function CargoDetalle() {
   const { slug } = useParams()
   const t = useT()
@@ -386,7 +569,9 @@ export default function CargoDetalle() {
   }
 
   const officialsList = officialsSnap.data?.officials ?? []
-  const official = officialsList.find((o) => o.slug === slug)
+  // One lookup across sitting and former members: a person who left is still
+  // a record the site renders — as history, with the departure up front.
+  const { official, former } = findOfficial(officialsSnap.data, slug)
   if (!official) {
     return (
       <div style={{ padding: '28px 28px 48px', maxWidth: 920, margin: '0 auto' }}>
@@ -408,6 +593,11 @@ export default function CargoDetalle() {
   }
 
   const color = partyColor(official.party)
+  if (former) {
+    return (
+      <FormerDetalle official={former} color={color} bioRoute={bioRoutes.get(former.slug)} t={t} />
+    )
+  }
   const slugs = portfolioSlugs(official)
   const slugsSet = new Set(slugs)
 
@@ -519,17 +709,59 @@ export default function CargoDetalle() {
               {official.portfolios.join(' · ')}
             </div>
           )}
+          {official.correccion?.tipo === 'alta' && (
+            <div
+              className="mono"
+              style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 4 }}
+            >
+              {t('cargos.card.altaDesde').replace(
+                '{fecha}',
+                fmtDateLong(official.correccion.since),
+              )}{' '}
+              <ExtLink
+                href={official.correccion.source.url}
+                title={official.correccion.source.title}
+                style={{ color: 'var(--civic)', textDecoration: 'underline' }}
+              >
+                {t('cargos.card.acta')}
+              </ExtLink>
+            </div>
+          )}
+          {official.photoNote && (
+            <div
+              className="mono"
+              title={official.photoNote}
+              style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}
+            >
+              {t('cargos.card.sinRetrato')}
+            </div>
+          )}
           {/* Both links sit inside a run of text, so colour alone cannot
               distinguish them (axe: link-in-text-block, WCAG 1.4.1). The email
-              is rendered in the body ink to begin with. Underline them. */}
-          <div style={{ display: 'flex', gap: 14, marginTop: 8, fontSize: 'var(--fs-meta)' }}>
-            <a
-              href={`mailto:${official.email || 'alcaldia@ribarroja.es'}`}
-              className="mono"
-              style={{ color: 'var(--ink70)', textDecoration: 'underline' }}
-            >
-              {official.email || 'alcaldia@ribarroja.es'}
-            </a>
+              is rendered in the body ink to begin with. Underline them. Never a
+              substitute address: no email in the source means none is printed. */}
+          <div
+            style={{
+              display: 'flex',
+              gap: 14,
+              marginTop: 8,
+              fontSize: 'var(--fs-meta)',
+              flexWrap: 'wrap',
+            }}
+          >
+            {official.email ? (
+              <a
+                href={`mailto:${official.email}`}
+                className="mono"
+                style={{ color: 'var(--ink70)', textDecoration: 'underline' }}
+              >
+                {official.email}
+              </a>
+            ) : (
+              <span className="mono" style={{ color: 'var(--ink50)' }}>
+                {t('cargos.card.sinCorreo')}
+              </span>
+            )}
             {bioRoutes.get(official.slug) ? (
               <Link
                 to={bioRoutes.get(official.slug)}

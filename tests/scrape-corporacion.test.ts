@@ -128,12 +128,19 @@ describe('scraper/corporacion — parseCorporacion', () => {
     expect(officials.filter((o) => o.party === 'Otro')).toEqual([])
   })
 
-  it('council composition matches the 2023 election outcome (10 PSOE / 7 PP / 1 VOX / 1 Compromís)', () => {
+  it('council composition matches the 2023 election outcome (11 PSOE / 7 PP / 1 VOX / 1 EU-Podem / 1 Compromís)', () => {
+    // Exact, not «at least»: a `>=` cannot catch a seat counted twice or a
+    // bloc dropped, and the title used to say 10 PSOE while the fixture held
+    // 11 — a test that states a figure its own data contradicts. EU-Podem is
+    // asserted by name because its one seat is the bloc whose omission once
+    // let the `Otro` sentinel name a councillor by elimination.
     const by = (p: string) => officials.filter((o) => o.party === p).length
-    expect(by('PSOE')).toBeGreaterThanOrEqual(10)
-    expect(by('PP')).toBeGreaterThanOrEqual(7)
-    expect(by('VOX')).toBeGreaterThanOrEqual(1)
-    expect(by('Compromís')).toBeGreaterThanOrEqual(1)
+    expect(by('PSOE')).toBe(11)
+    expect(by('PP')).toBe(7)
+    expect(by('VOX')).toBe(1)
+    expect(by('EU-Podem')).toBe(1)
+    expect(by('Compromís')).toBe(1)
+    expect(officials.length).toBe(21)
   })
 
   it('mayor has both Alcaldía portfolio and a contact email', () => {

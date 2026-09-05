@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-24T05:48:32.000Z",
+  "generatedAt": "2026-09-05T16:36:25.885Z",
   "mandate": "2023-2027",
   "note": "Qué formación y trayectoria declara públicamente quien dirige cada área. No es una calificación: la ley no exige titulación alguna para ser concejal (a diferencia de la secretaría, la intervención y la tesorería municipales, que exigen oposición estatal). «No consta» significa que la fuente publicada no lo recoge, no que la persona carezca de ello.",
   "method": "Un modelo compara, área por área, lo que el CV publicado declara con la materia del área, citando por índice sobre esa misma lista; un curador revisa y firma cada fila antes de publicarse. Nada se publica automáticamente.",
@@ -1147,10 +1147,10 @@
       "avisoIndex": 1,
       "eje": "area",
       "direccion": "matiza",
-      "verbatim": "Las áreas delegadas han variado durante el mandato: el decreto de julio de 2023 incluía Comercio; el registro municipal vigente recoge en su lugar Actividades y Edificios públicos. Se publican ambas con su fuente.",
+      "verbatim": "Las áreas delegadas han variado durante el mandato: la Resolución 2513/2023, de 17-06-2023 (BOP València núm. 127, anuncio 2023/08603, 03-07-2023) incluía Comercio; la Resolución 2639/2023, de 28-06-2023, que la modifica (BOP núm. 132, anuncio 2023/08985, 10-07-2023), recoge en su lugar Actividades y Edificios públicos. Se publican ambas con su fuente.",
       "decoratesChip": false,
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-04"
+      "curatedAt": "2026-09-05"
     },
     {
       "officialSlug": "maria-esther-gomez-laredo",
@@ -1158,10 +1158,10 @@
       "avisoIndex": 1,
       "eje": "area",
       "direccion": "matiza",
-      "verbatim": "Las delegaciones han variado durante el mandato: el decreto de 07-2023 recogía Participación, Atención a la ciudadanía y Turismo; el registro vigente añade Promoción de la Salud e Infraestructuras sanitarias.",
+      "verbatim": "Las delegaciones han variado durante el mandato: la Resolución 2513/2023, de 17-06-2023 (BOP València núm. 127, anuncio 2023/08603, 03-07-2023) recogía Participación y transparencia, Atención a la ciudadanía y Turismo y patrimonio histórico; la Resolución 2639/2023, de 28-06-2023, que la modifica (BOP núm. 132, anuncio 2023/08985, 10-07-2023), añade Promoción de la Salud e Infraestructuras sanitarias.",
       "decoratesChip": false,
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-04"
+      "curatedAt": "2026-09-05"
     },
     {
       "officialSlug": "raquel-pamblanco-paredes",

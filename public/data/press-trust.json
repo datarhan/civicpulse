@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-05T08:23:16.505Z",
+  "generatedAt": "2026-09-05T16:22:39.001Z",
   "windowDays": 30,
   "articles": [
     {
@@ -834,47 +834,13 @@
         "opinionFraction": 0
       },
       "score": 1
-    },
-    {
-      "articleId": "jt16ws",
-      "articleFingerprint": "2boyl9",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-aumenta-un-48%25-la-formalizaci%C3%B3n-de-los-contratos-laborales-tras-alcanzar-los-1.894-en-el-mes-de-junio",
-      "date": "2026-08-06T11:27:50.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
-    },
-    {
-      "articleId": "1q1jztw",
-      "articleFingerprint": "1u1sgjv",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/riba-roja-abre-la-convocatoria-para-la-nueva-%27gastrofira%27",
-      "date": "2026-08-06T10:17:08.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 21,
+      "articleCount": 19,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 1,
@@ -882,7 +848,7 @@
         "sin-datos": 12,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.81,
+      "meanTrustScore": 2.89,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -1023,7 +989,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "6a900e2f71c4",
+    "plenos-agendas.json": "4a582c2823af",
     "press-claims-verified.json": "2e928e98b182",
     "press.json": "5f64bc7624ac",
     "promises.json": "d18811c11210"

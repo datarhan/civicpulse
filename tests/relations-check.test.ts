@@ -628,6 +628,73 @@ describe('relations-check — officials hub', () => {
   })
 })
 
+describe('relations-check — officials hub, former members', () => {
+  // A resignation moves a person to `formerOfficials`; their biography and
+  // portrait are history and stay valid, but an encaje row or a salary is a
+  // present-tense claim about a seat they no longer hold. The message has to
+  // say WHICH of the two things happened, because they call for different
+  // remedies.
+  const officials = {
+    officials: [{ slug: 'robert-raga-gadea', portfolios: ['Alcaldía'] }],
+    formerOfficials: [{ slug: 'soraya-trejo-delgado', until: '2025-06-02' }],
+  }
+
+  it('keeps a biography assignment for someone who left the corporación', () => {
+    const r = runRelationsChecks({
+      officials,
+      assignments: {
+        items: [{ id: 'a-1', subject: { slug: 'soraya-trejo-delgado', kind: 'official' } }],
+      },
+    } as never).find((x) => x.name === 'assignments-officials')
+    expect(r?.status).toBe('ok')
+  })
+
+  it('keeps a queja routed to someone who left', () => {
+    const r = runRelationsChecks({
+      officials,
+      quejas: { items: [{ service_request_id: 'Q-1', concejal_slug: 'soraya-trejo-delgado' }] },
+    } as never).find((x) => x.name === 'quejas-officials')
+    expect(r?.status).toBe('ok')
+  })
+
+  it('still refuses a slug nobody ever held', () => {
+    const r = runRelationsChecks({
+      officials,
+      assignments: { items: [{ id: 'a-1', subject: { slug: 'ghost-slug', kind: 'official' } }] },
+    } as never).find((x) => x.name === 'assignments-officials')
+    expect(r?.status).toBe('broken')
+  })
+
+  it('refuses an encaje row for someone who left, and names the departure', () => {
+    const r = runRelationsChecks({
+      officials,
+      areaFit: {
+        rows: [
+          {
+            officialSlug: 'soraya-trejo-delgado',
+            portfolio: 'Urbanismo',
+            reportId: 'r-1',
+            formacion: { value: 'relacionada', evidence: [] },
+            experiencia: { value: 'relacionada', evidence: [] },
+          },
+        ],
+      },
+    } as never).find((x) => x.name === 'areafit-officials')
+    expect(r?.status).toBe('broken')
+    expect(r?.broken[0]).toContain('left the corporación on 2025-06-02')
+  })
+
+  it('warns on a dedicación for someone who left, and names the departure', () => {
+    const r = runRelationsChecks({
+      officials,
+      dedicaciones: { byOfficial: [{ slug: 'soraya-trejo-delgado' }] },
+    } as never).find((x) => x.name === 'dedicaciones-officials')
+    expect(r?.status).toBe('broken')
+    expect(r?.level).toBe('warn')
+    expect(r?.broken[0]).toContain('left the corporación on 2025-06-02')
+  })
+})
+
 describe('relations-check — encaje declarado', () => {
   const cited = { label: 'Grado en Derecho', sourceIds: ['src-1'] }
   const reports = {

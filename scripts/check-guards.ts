@@ -580,6 +580,30 @@ const INJECTIONS: Array<{
       return JSON.stringify(d, null, 2) + '\n'
     },
   },
+  {
+    guard: 'check:officials-corrections',
+    file: 'public/data/officials.json',
+    describe:
+      'un alta curada que desaparece del padrón publicado (una nocturna sin la capa, o una edición a mano)',
+    // Corrompe el PUBLICADO, que es lo que una nocturna sin la capa haría: el
+    // raspado vuelve a poner a la cesada y borra a quien tomó posesión, y el
+    // fichero curado sigue intacto y firmado. Se prueba el eje que bloquea
+    // (`no-aplicada`), no la vigencia, que contra una página en 403 dice
+    // NO COMPROBADO y sale 0 a propósito.
+    corrupt: (s) => {
+      const d = JSON.parse(s)
+      const corr = JSON.parse(
+        readFileSync(resolve(ROOT, 'public/data/officials-corrections.json'), 'utf8'),
+      )
+      const slug = corr.altas?.[0]?.slug
+      if (!slug) throw new Error('officials-corrections.json no trae ningún alta que borrar')
+      const antes = d.officials.length
+      d.officials = d.officials.filter((o: { slug: string }) => o.slug !== slug)
+      if (d.officials.length === antes)
+        throw new Error(`el alta ${slug} no estaba en officials.json`)
+      return JSON.stringify(d, null, 2) + '\n'
+    },
+  },
 ]
 
 function gitIsClean(file: string): boolean {

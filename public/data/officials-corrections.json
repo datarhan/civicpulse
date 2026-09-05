@@ -1,0 +1,59 @@
+{
+  "generatedAt": "2026-09-05T16:15:52.977Z",
+  "mandate": "2023-2027",
+  "note": "Correcciones curadas del padrón raspado de ribarroja.es: bajas y altas de concejales que el Pleno ya acordó y la página de la corporación aún no recoge. Cada entrada cita el acta literal y va firmada; se aplican en scripts/scrape-officials.ts y nunca las escribe la automatización. Una corrección que la web ya absorbió se retira, no se deja.",
+  "bajas": [
+    {
+      "slug": "soraya-trejo-delgado",
+      "name": "Soraya Trejo Delgado",
+      "until": "2025-06-02",
+      "reason": "renuncia",
+      "replacedBy": "pedro-tortajada-raga",
+      "source": {
+        "title": "Acta de la sesión ordinaria del Ayuntamiento Pleno de 7 de julio de 2025 · punto 2, expediente 3400/2025/GEN (antecedentes primero y segundo)",
+        "url": "https://regmeet.com/files/uploads/aytoribarroja/07-07-2025.Pleno2025-07-25_19-06-16/documentos/2026-07-30_15-32-54_0.pdf",
+        "date": "2025-07-07",
+        "quote": "Dª Soraya Trejo Delgado, Concejala del Ayuntamiento de Riba-roja de Túria perteneciente al Grupo Político Municipal del Partido Popular de este Ayuntamiento presentó escrito en el que manifestó \"que por motivos personales\" presentaba su renuncia al cargo de Concejala del Ayuntamiento. Segundo.- En fecha 02 de junio de 2025 el Pleno Municipal de Riba-roja de Túria tomó razón de la renuncia"
+      },
+      "alsoReported": [
+        {
+          "title": "Desbandada en el PP de Riba-roja: el presidente y la número dos dimiten de sus cargos en seis meses (eldiario.es)",
+          "url": "https://www.eldiario.es/comunitat-valenciana/desbandada-pp-riba-roja-presidente-numero-dimiten-cargos-seis-meses_1_12303877.html",
+          "date": "2025-05-16"
+        }
+      ],
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-09-05"
+    }
+  ],
+  "altas": [
+    {
+      "slug": "pedro-tortajada-raga",
+      "name": "Pedro Tortajada Raga",
+      "honorific": "Sr.",
+      "role": "concejal",
+      "party": "PP",
+      "portfolios": [],
+      "since": "2025-07-07",
+      "credencial": {
+        "emitidaPor": "Junta Electoral Central",
+        "fecha": "2025-06-16"
+      },
+      "email": null,
+      "photo": {
+        "estado": "no-publicada",
+        "motivo": "La página «Corporación Municipal» de ribarroja.es, que es la fuente del padrón, no lo lista todavía y no publica ningún retrato suyo; la ficha pinta sus iniciales por eso, no porque una descarga fallara."
+      },
+      "cvUrl": null,
+      "source": {
+        "title": "Acta de la sesión ordinaria del Ayuntamiento Pleno de 7 de julio de 2025 · punto 2, expediente 3400/2025/GEN (toma de posesión)",
+        "url": "https://regmeet.com/files/uploads/aytoribarroja/07-07-2025.Pleno2025-07-25_19-06-16/documentos/2026-07-30_15-32-54_0.pdf",
+        "date": "2025-07-07",
+        "quote": "Por lo que cumplidos los trámites de D. Pedro Tortajada Raga, toma posesión de su cargo de Concejal ante el Pleno."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-09-05"
+    }
+  ],
+  "replicas": []
+}

@@ -169,6 +169,52 @@ test.describe('Cargos (/cargos)', () => {
     expect(section).not.toMatch(/\d+\s+de\s+\d+\s+áreas/i)
   })
 
+  test('a former member renders in their own section, reachable, with no present-tense block', async ({
+    page,
+  }) => {
+    // The council's own page lagged a resignation by fifteen months, so the
+    // roster is scraped ⊕ corrected. The empty case has to be PROVEN reachable,
+    // the same argument the «sin delegación de área» spec makes: a suite that
+    // only asserts the sitting grid would stay green while the former member
+    // quietly came back as a sitting one. Against the REAL snapshot.
+    await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
+    await expect(page.getByText('Ya no forman parte de la corporación').first()).toBeVisible({
+      timeout: 8000,
+    })
+    const body = await page.locator('body').innerText()
+    const i = body.indexOf('YA NO FORMAN PARTE DE LA CORPORACIÓN')
+    expect(i).toBeGreaterThan(0)
+    const former = body.slice(i)
+    // The departure line is there, and none of the sitting-only blocks is.
+    expect(former).toMatch(/hasta el \d{1,2} de [a-záéíóúñ]+ de \d{4}/i)
+    expect(former).not.toMatch(/€\/año|ENCAJE DECLARADO|QUEJAS ASIGNADAS|DEPARTAMENTOS/)
+    // The composition bar still counts 21 seats: a former member is not one.
+    expect(body).toMatch(/Total 21 escaños/)
+    // The stamp says how many corrections it carries, derived from the data.
+    expect(body).toMatch(/\d+ corrección\(es\) documentada\(s\)/)
+    // And the person's own record resolves, leading with the departure.
+    const link = page.locator('a[href="/cargos/soraya-trejo-delgado"]').first()
+    await expect(link).toBeVisible({ timeout: 8000 })
+    await link.click()
+    await expect(page).toHaveURL(/\/cargos\/soraya-trejo-delgado$/)
+    await expect(page.getByText(/Ya no forma parte de la corporación/).first()).toBeVisible({
+      timeout: 8000,
+    })
+  })
+
+  test('a member added by correction shows honest empties, never a substitute address', async ({
+    page,
+  }) => {
+    await page.goto('/cargos/pedro-tortajada-raga', { waitUntil: 'domcontentloaded' })
+    await expect(page.getByText('Pedro Tortajada Raga').first()).toBeVisible({ timeout: 8000 })
+    const body = await page.locator('body').innerText()
+    expect(body).toMatch(/Toma de posesión ante el Pleno el \d{1,2} de julio de 2025/)
+    expect(body).toMatch(/sin correo publicado/)
+    expect(body).toMatch(/sin retrato en la fuente/)
+    // The shared mailbox must never stand in for a person the source gave none.
+    expect(body).not.toContain('alcaldia@ribarroja.es')
+  })
+
   test('clicking a councillor link navigates into the detail view', async ({ page }) => {
     await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
     const link = page.locator('a[href^="/cargos/"]').first()

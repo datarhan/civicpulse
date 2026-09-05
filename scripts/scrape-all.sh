@@ -480,6 +480,18 @@ if ! npm run check:competencias; then
   failures+=("check:competencias")
 fi
 
+# `officials-corrections.json` corrige el padrón raspado con lo que el acta ya
+# acordó y la web del ayuntamiento aún no recoge: una renuncia de mayo de 2025
+# seguía sin reflejarse en septiembre de 2026. Dos ejes: ¿se aplicó al fichero
+# publicado? (bloquea: una nocturna sin la capa devolvería a la cesada) y
+# ¿sigue haciendo falta contra la página viva? — con NO COMPROBADO cuando la
+# página no contesta, que es su estado desde el 02-09-2026, y «absorbida» dicho
+# en voz alta cuando la web se pone al día y toca retirar la entrada.
+if ! npm run check:officials-corrections; then
+  echo "[scrape-all] FAILED: check:officials-corrections — una corrección del padrón no se aplicó, se contradice o perdió su fuente"
+  failures+=("check:officials-corrections")
+fi
+
 # Un `sparse-checkout` ajeno poda el árbol, y una nocturna que raspa sobre un
 # árbol podado escribe snapshots contra medio repositorio sin que nada chille.
 # Va aquí arriba y en el pre-commit: milisegundos, y el modo de fallo es pérdida

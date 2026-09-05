@@ -423,6 +423,40 @@ export const CATALOGUE = {
     'cargos.detalle.portfolios.eyebrow': 'Áreas asignadas',
     'cargos.card.departamentos': 'Departamentos',
     'cargos.card.departamentos.mas': '+{n} más',
+    'cargos.intro':
+      'Quiénes forman la corporación, qué áreas lleva cada cual, qué cobran por el cargo según el acuerdo plenario y la estadística del ministerio, qué declara su CV para las áreas que dirigen y qué quejas les llegan.',
+    // Un centinela nunca es un valor: sin correo en la fuente no se pinta el
+    // buzón de nadie más, y sin retrato en la fuente las iniciales dicen por qué.
+    'cargos.card.sinCorreo': 'sin correo publicado',
+    'cargos.card.sinRetrato': 'sin retrato en la fuente',
+    'cargos.card.altaDesde': 'Toma de posesión ante el Pleno el {fecha}',
+    'cargos.card.hastaF': 'Concejala hasta el {fecha}',
+    'cargos.card.hastaM': 'Concejal hasta el {fecha}',
+    'cargos.card.acta': 'acta ↗',
+    'cargos.baja.renuncia': 'renuncia al acta',
+    'cargos.baja.fallecimiento': 'fallecimiento',
+    'cargos.baja.perdida-condicion': 'pérdida de la condición de concejal',
+    // La segunda línea del sello sólo existe cuando hay correcciones: se deriva
+    // del fichero, no se escribe, para que no pueda quedarse vieja.
+    'cargos.corporacion.raspado': 'padrón raspado de ribarroja.es · actualizado {fecha}',
+    'cargos.corporacion.correcciones':
+      '{n} corrección(es) documentada(s): la página del ayuntamiento no recoge aún {bajas} baja(s) y {altas} alta(s) que el Pleno ya acordó; se aplican con el acta al lado.',
+    'cargos.corporacion.correccionesLink': 'cómo se corrige el padrón',
+    'cargos.bajas.title': 'Ya no forman parte de la corporación',
+    'cargos.bajas.note':
+      'Se conservan con su fecha de cese y el acta que la recoge. Nada en presente —retribución, áreas, quejas, encaje— se pinta sobre quien ya no ocupa el escaño.',
+    // Lo que ISPA suma es lo percibido por los electos: ni las cuotas
+    // empresariales, ni el personal eventual, ni las asignaciones a grupos.
+    // Llamarlo «coste de la corporación» era la palabra equivocada sobre la
+    // cifra correcta, la misma clase de defecto que «crédito» por «gastado».
+    'cargos.ispa.total': 'retribuciones y asistencias de los {n} electos · ISPA {year}',
+    'cargos.ispa.totalNota':
+      'No incluye las cuotas empresariales a la Seguridad Social, el personal eventual ni la asignación a los grupos políticos.',
+    'cargos.ispa.trienios':
+      'El acuerdo de 2023 fija la Alcaldía en {importe} «+ trienios»; ISPA publica lo percibido cada año sin desglosarlos.',
+    'cargos.detalle.baja.banner':
+      'Ya no forma parte de la corporación: {motivo}. El Pleno tomó razón el {fecha}.',
+    'cargos.detalle.baja.fuente': 'Fuente',
     'cargos.detalle.portfolios.title': 'Concejalías que gestiona',
     'cargos.detalle.promesas.eyebrow': 'Atribución de grupo',
     'cargos.detalle.promesas.title': 'Promesas del grupo parlamentario',
@@ -496,8 +530,12 @@ export const CATALOGUE = {
     'encaje.aviso.contradice': 'contradicción sin resolver',
     'encaje.aviso.corrobora': 'otra fuente lo confirma',
     'encaje.aviso.matiza': 'matiz',
+    // No dice «puede referirse a un área que ya no lleva»: `check:relations`
+    // (areafit-officials) garantiza que cada fila juzga un área que la persona
+    // lleva HOY, así que esa frase no podía ser cierta. Lo que sí cambió es el
+    // reparto con el que se escribió la biografía.
     'encaje.aviso.area':
-      'Sus áreas delegadas han cambiado durante el mandato; esta ficha puede referirse a un área que ya no lleva.',
+      'Sus áreas delegadas cambiaron durante el mandato. Esta fila juzga un área que lleva hoy; la biografía se escribió con el reparto anterior.',
     'encaje.card.gaps': 'qué falta',
     'encaje.card.law': 'qué exige la ley',
     'encaje.sinDelegacion.label': 'Sin delegación de área',
@@ -971,6 +1009,32 @@ export const CATALOGUE = {
     'cargos.detalle.portfolios.eyebrow': 'Àrees assignades',
     'cargos.card.departamentos': 'Departaments',
     'cargos.card.departamentos.mas': '+{n} més',
+    'cargos.intro':
+      'Qui forma la corporació, quines àrees porta cadascú, què cobren pel càrrec segons l’acord plenari i l’estadística del ministeri, què declara el seu CV per a les àrees que dirigeixen i quines queixes els arriben.',
+    'cargos.card.sinCorreo': 'sense correu publicat',
+    'cargos.card.sinRetrato': 'sense retrat a la font',
+    'cargos.card.altaDesde': 'Presa de possessió davant el Ple el {fecha}',
+    'cargos.card.hastaF': 'Regidora fins al {fecha}',
+    'cargos.card.hastaM': 'Regidor fins al {fecha}',
+    'cargos.card.acta': 'acta ↗',
+    'cargos.baja.renuncia': 'renúncia a l’acta',
+    'cargos.baja.fallecimiento': 'defunció',
+    'cargos.baja.perdida-condicion': 'pèrdua de la condició de regidor',
+    'cargos.corporacion.raspado': 'padró raspat de ribarroja.es · actualitzat {fecha}',
+    'cargos.corporacion.correcciones':
+      '{n} correcció(ns) documentada(es): la pàgina de l’ajuntament encara no recull {bajas} baixa(es) i {altas} alta(es) que el Ple ja va acordar; s’apliquen amb l’acta al costat.',
+    'cargos.corporacion.correccionesLink': 'com es corregeix el padró',
+    'cargos.bajas.title': 'Ja no formen part de la corporació',
+    'cargos.bajas.note':
+      'Es conserven amb la data de cessament i l’acta que la recull. Res en present —retribució, àrees, queixes, encaix— es pinta sobre qui ja no ocupa l’escó.',
+    'cargos.ispa.total': 'retribucions i assistències dels {n} electes · ISPA {year}',
+    'cargos.ispa.totalNota':
+      'No inclou les quotes empresarials a la Seguretat Social, el personal eventual ni l’assignació als grups polítics.',
+    'cargos.ispa.trienios':
+      'L’acord de 2023 fixa l’Alcaldia en {importe} «+ triennis»; ISPA publica el que es va percebre cada any sense desglossar-los.',
+    'cargos.detalle.baja.banner':
+      'Ja no forma part de la corporació: {motivo}. El Ple en va prendre raó el {fecha}.',
+    'cargos.detalle.baja.fuente': 'Font',
     'cargos.detalle.portfolios.title': 'Regidories que gestiona',
     'cargos.detalle.promesas.eyebrow': 'Atribució de grup',
     'cargos.detalle.promesas.title': 'Promeses del grup parlamentari',
@@ -1014,7 +1078,7 @@ export const CATALOGUE = {
     'encaje.aviso.corrobora': 'una altra font ho confirma',
     'encaje.aviso.matiza': 'matís',
     'encaje.aviso.area':
-      'Les seues àrees delegades han canviat durant el mandat; aquesta fitxa pot referir-se a una àrea que ja no porta.',
+      'Les seues àrees delegades van canviar durant el mandat. Esta fila jutja una àrea que porta hui; la biografia es va escriure amb el repartiment anterior.',
     'encaje.card.gaps': 'què falta',
     'encaje.card.law': 'què exigeix la llei',
     'encaje.sinDelegacion.label': 'Sense delegació d’àrea',

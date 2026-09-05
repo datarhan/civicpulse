@@ -2032,6 +2032,54 @@ export default function Metodologia() {
         </p>
       </Card>
 
+      <Card style={{ marginTop: 14 }} id="corporacion">
+        <SectionHead
+          eyebrow="Cargos · padrón de la corporación"
+          title="Qué pasa cuando la web del ayuntamiento va por detrás del Pleno"
+        />
+        <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
+          La lista de concejales de{' '}
+          <a href="/cargos" style={{ color: 'var(--civic)' }}>
+            /cargos
+          </a>{' '}
+          se raspa cada noche de la página «Corporación Municipal» de ribarroja.es, y esa página
+          puede tardar en recoger lo que el propio Pleno ya acordó. Una renuncia presentada en mayo
+          de 2025, de la que el Pleno tomó razón el 2 de junio, seguía sin reflejarse en septiembre
+          de 2026, y quien tomó posesión del escaño el 7 de julio de 2025 no aparecía. Durante ese
+          tiempo el sitio republicaba la mora del ayuntamiento firmándola como datos reales.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>
+            La corrección es curada, citada y firmada, y nunca la escribe un proceso automático.
+          </strong>{' '}
+          Vive en un fichero aparte del raspado; cada entrada cita el acta literal y lleva quién la
+          firmó y cuándo. Se aplica al componer el padrón, de modo que el fichero publicado lleva
+          las dos cosas —lo que raspó y lo que el acta corrige— y el sello de la página dice cuántas
+          correcciones hay. Una corrección no añade ninguna afirmación sobre nadie: republica que
+          alguien dejó el cargo y por cuál de los motivos que la ley contempla, y que alguien tomó
+          posesión con credencial de la Junta Electoral Central. Su esquema no tiene ningún campo
+          donde quepa un juicio, igual que la lista firmada de competencias.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>
+            Quien deja la corporación no desaparece: pasa a una sección aparte con su fecha de cese.
+          </strong>{' '}
+          Su biografía y su retrato son historia y se conservan; lo que no se pinta sobre esa
+          persona es nada en presente —retribución, áreas, quejas, encaje—. Quien entra sin que la
+          web lo liste aún aparece con los huecos honestos: sin retrato, porque la fuente no lo
+          publica, y «sin correo publicado», nunca el buzón de otra persona. Ambos tienen el mismo
+          derecho de réplica que el resto de cargos.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>Una guarda mira cada noche si la corrección sigue haciendo falta.</strong>{' '}
+          Comprueba dos cosas por separado: que el fichero publicado la aplica —si una pasada
+          corriera sin ella, la persona cesada volvería a la lista y el despliegue se detiene— y que
+          la página del ayuntamiento sigue necesitándola: si la web se pone al día, la corrección
+          sobra y se retira, dejando rastro. Cuando la página no contesta, la guarda dice «no
+          comprobado» en lugar de firmar un visto bueno.
+        </p>
+      </Card>
+
       <Card style={{ marginTop: 14 }} id="frontera">
         <SectionHead
           eyebrow="Laboratorio · análisis envolvente de datos"

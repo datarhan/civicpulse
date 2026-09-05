@@ -443,7 +443,8 @@ distinguishable from a map with nothing to say.
 `place-overrides.json`, `entity-overrides.json`, `eficiencia-findings.json`,
 `eficiencia-preguntas.json`, `pleno-claim-reclassifications.json`,
 `pleno-claim-reanchors.json`,
-`competencias.json`, `sociedades.json`, `solicitudes-acceso.json`.
+`competencias.json`, `sociedades.json`, `solicitudes-acceso.json`,
+`officials-corrections.json`.
 Route algorithmic output through the curator CLI so the validator and git
 history stay authoritative. The full list and its CLIs: `docs/DATA_SOURCES.md`.
 

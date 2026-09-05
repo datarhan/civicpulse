@@ -7,17 +7,11 @@ import { join } from 'node:path'
  *
  * It used to filter through a hard-coded party list, which erased EU-Podem —
  * one real seat, one real councillor — and left 20 escaños rendered beneath a
- * label reading «Total 21». Reproduced here as a pure function so the invariant
- * is pinned independently of the JSX.
+ * label reading «Total 21». The ordering and the painter are IMPORTED from the
+ * module the component uses: a copy of the order kept here stayed green while
+ * it could drift from the JSX (DATA_INTEGRITY rule 1).
  */
-function barItems(composition: Record<string, number>) {
-  const order = ['PSOE', 'PP', 'VOX', 'Compromís', 'Ciudadanos', 'EU-Podem', 'Otro']
-  const known = order.filter((p) => composition[p])
-  const rest = Object.keys(composition)
-    .filter((p) => composition[p] && !order.includes(p))
-    .sort((a, b) => composition[b] - composition[a])
-  return [...known, ...rest].map((p) => ({ p, n: composition[p] }))
-}
+import { barItems, PARTY_ORDER } from '../src/lib/party-order'
 
 const SNAP = JSON.parse(
   readFileSync(join(__dirname, '..', 'public', 'data', 'officials.json'), 'utf8'),
@@ -52,5 +46,6 @@ describe('CompositionBar — every seat is painted', () => {
   it('keeps the known parties in their reading order', () => {
     const items = barItems({ VOX: 1, PSOE: 11, PP: 7 })
     expect(items.map((i) => i.p)).toEqual(['PSOE', 'PP', 'VOX'])
+    expect(PARTY_ORDER.indexOf('PSOE')).toBeLessThan(PARTY_ORDER.indexOf('VOX'))
   })
 })

@@ -28,6 +28,15 @@ export function CmdK({ open, onClose, onOpen }) {
         to: '/cargos',
         icon: Ic.people,
       })),
+      // Who left during the mandate is still findable — as history, labelled
+      // as such, and landing on their own record rather than the grid.
+      ...(officials?.formerOfficials ?? []).map((o) => ({
+        kind: 'Excargo',
+        label: o.name,
+        sub: `${o.party || ''} · hasta ${o.until}`,
+        to: `/cargos/${o.slug}`,
+        icon: Ic.people,
+      })),
       ...(promises?.items ?? []).slice(0, 10).map((p) => ({
         kind: 'Promesa',
         label: p.title,

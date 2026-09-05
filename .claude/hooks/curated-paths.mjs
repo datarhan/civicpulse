@@ -65,6 +65,11 @@ export const CURATED = {
   // aparece en una página publicada. La deriva la caza check:competencias; la
   // única escritura programática permitida es la del CLI de réplica.
   'competencias.json': 'curated + cited — hand-edit via PR · npm run competencia-reply',
+  // El padrón se raspa cada noche y la web del ayuntamiento va con retraso:
+  // una renuncia de mayo de 2025 seguía sin reflejarse en septiembre de 2026.
+  // Este es el único sitio donde una corrección sobrevive a la nocturna, y
+  // nombra a personas vivas con el acta literal al lado: sólo escribe el CLI.
+  'officials-corrections.json': 'npm run roster-correction -- --alta|--baja|--retirar|--reply',
   // El registro de solicitudes de acceso. Lo escribe una persona porque una
   // persona presentó el escrito y una persona leyó la respuesta: que lo
   // rellenara una máquina sería inventar un hecho sobre una administración.

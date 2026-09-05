@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-02T09:11:30.653Z",
+  "generatedAt": "2026-09-05T16:22:38.550Z",
   "source": "derived: tenders.json assignees + officials.json · overrides: entity-overrides.json",
   "stats": {
     "companies": 373,
@@ -6008,12 +6008,6 @@
       "role": "concejal"
     },
     {
-      "slug": "soraya-trejo-delgado",
-      "name": "Soraya Trejo Delgado",
-      "party": "PP",
-      "role": "concejal"
-    },
-    {
       "slug": "maria-jose-pradas-ramo",
       "name": "María José Pradas Ramo",
       "party": "PP",
@@ -6044,6 +6038,12 @@
       "role": "concejal"
     },
     {
+      "slug": "pedro-tortajada-raga",
+      "name": "Pedro Tortajada Raga",
+      "party": "PP",
+      "role": "concejal"
+    },
+    {
       "slug": "jose-luis-fernandez-santamaria",
       "name": "José Luis Fernández Santamaría",
       "party": "VOX",
@@ -6064,7 +6064,7 @@
   ],
   "builtFrom": {
     "entity-overrides.json": "a41cc20172e9",
-    "officials.json": "6c3aaad1d333",
+    "officials.json": "3b08dedfa6c5",
     "tenders.json": "4c8247ddbd02"
   }
 }

@@ -1,7 +1,7 @@
 #!/usr/bin/env tsx
 /**
  * Scrape the live Riba-roja corporation page and produce:
- *   - public/data/officials.json   (canonical Official[])
+ *   - public/data/officials.json   (canonical Official[] ⊕ curated corrections)
  *   - public/data/photos/<slug>.jpg  (mirrored portrait photos)
  *
  * Usage:
@@ -10,11 +10,24 @@
  * Runs idempotent: re-running refreshes everything. Photos that 404 on
  * the source site are silently skipped and `photoUrl` is left empty in
  * the JSON.
+ *
+ * ## The page lags the Pleno, and the file says so
+ *
+ * The council's page is the source of the roster, and it can be months behind
+ * what the council itself already decided: a resignation of May 2025 was still
+ * unreflected in September 2026. `officials-corrections.json` — curated, each
+ * entry citing the acta verbatim — is applied HERE, after parsing, so the
+ * published file carries both what was scraped and what the acta corrects.
+ * `count` and `composition` derive from the corrected roster only. See
+ * `src/scraper/officials-corrections.ts` for the rules, and
+ * `npm run roster-correction -- --apply` for the days the page answers 403.
  */
 import { mkdir, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { parseCorporacion, type Official } from '../src/scraper/corporacion'
+import { parseCorporacion } from '../src/scraper/corporacion'
+import { composeOfficialsSnapshot } from '../src/scraper/officials-corrections'
+import { CORRECTIONS_PUBLIC_PATH, loadCorrections } from './apply-officials-correction'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -24,11 +37,11 @@ const PROJECT_ROOT = join(__dirname, '..')
 // now ECONNRESETs from undici instead of redirecting. Same content lives
 // under HTTPS + /es/ — flagged when scrape:officials silently broke the
 // nightly chain for 8 days (CLAUDE.md §Nightly refresh).
-const SOURCE_URL = 'https://www.ribarroja.es/es/ayuntamiento/corporacion_municipal'
+export const SOURCE_URL = 'https://www.ribarroja.es/es/ayuntamiento/corporacion_municipal'
 const OUT_JSON = join(PROJECT_ROOT, 'public/data/officials.json')
 const OUT_PHOTOS = join(PROJECT_ROOT, 'public/data/photos')
 
-async function fetchLiveHtml(): Promise<string> {
+export async function fetchLiveHtml(): Promise<string> {
   const res = await fetch(SOURCE_URL, {
     headers: {
       // ribarroja.es's WAF (2026-05-25) drops any UA that doesn't lead
@@ -66,40 +79,45 @@ async function main() {
   const html = await fetchLiveHtml()
 
   console.log('[scrape] parsing HTML…')
-  const officials = parseCorporacion(html, { baseUrl: 'https://www.ribarroja.es' })
-  console.log(`[scrape] parsed ${officials.length} officials`)
+  const parsed = parseCorporacion(html, { baseUrl: 'https://www.ribarroja.es' })
+  console.log(`[scrape] parsed ${parsed.length} officials`)
 
-  if (officials.length < 21) {
+  // Applied BEFORE the seat count is judged: a baja without its alta is a
+  // 20-seat roster, and that is the number the warning below has to see.
+  const corrections = loadCorrections()
+  const payload = composeOfficialsSnapshot(parsed, corrections, {
+    generatedAt: new Date().toISOString(),
+    source: SOURCE_URL,
+    correctionsFile: CORRECTIONS_PUBLIC_PATH,
+  })
+  if (
+    corrections &&
+    payload.corrections &&
+    payload.corrections.bajas + payload.corrections.altas === 0
+  ) {
+    // A run must prove it did work: a corrections file with nothing in it is
+    // either a mistake or a leftover, and both deserve a red rather than a pass.
+    throw new Error('officials-corrections.json exists but carries no entry — fill it or delete it')
+  }
+  console.log(
+    `[scrape] corrections: ${payload.corrections ? `${payload.corrections.bajas} baja(s) · ${payload.corrections.altas} alta(s)` : 'none'} → ${payload.count} sitting, ${payload.formerOfficials.length} former`,
+  )
+
+  if (payload.count < 21) {
     console.warn(
-      `[scrape] WARNING: expected at least 21 officials (full council), got ${officials.length}`,
+      `[scrape] WARNING: expected at least 21 officials (full council), got ${payload.count}`,
     )
   }
 
   await mkdir(OUT_PHOTOS, { recursive: true })
 
-  // Mirror photos locally so the SPA has stable, CORS-friendly URLs.
-  const enriched: Official[] = []
-  for (const o of officials) {
-    let localPhoto: string = ''
-    if (o.photoUrl) {
-      const mirrored = await downloadPhoto(o.photoUrl, o.slug)
-      if (mirrored) localPhoto = mirrored
-    }
-    enriched.push({ ...o, photoUrl: localPhoto || o.photoUrl })
-  }
-
-  const payload = {
-    generatedAt: new Date().toISOString(),
-    source: SOURCE_URL,
-    count: enriched.length,
-    composition: enriched.reduce(
-      (acc, o) => {
-        acc[o.party] = (acc[o.party] || 0) + 1
-        return acc
-      },
-      {} as Record<string, number>,
-    ),
-    officials: enriched,
+  // Mirror photos locally so the SPA has stable, CORS-friendly URLs. A row the
+  // corrections added has no photo on the source page (photoUrl '' + photoNote)
+  // and is left alone.
+  for (const o of [...payload.officials, ...payload.formerOfficials]) {
+    if (!o.photoUrl || o.photoUrl.startsWith('/')) continue
+    const mirrored = await downloadPhoto(o.photoUrl, o.slug)
+    if (mirrored) o.photoUrl = mirrored
   }
 
   await mkdir(dirname(OUT_JSON), { recursive: true })
@@ -109,7 +127,11 @@ async function main() {
   console.log('[scrape] composition:', payload.composition)
 }
 
-main().catch((err) => {
-  console.error('[scrape] failed:', err)
-  process.exit(1)
-})
+// Guarded so `fetchLiveHtml` / `SOURCE_URL` can be imported by the guard
+// without the scraper running against public/data on import.
+if (import.meta.url === `file://${process.argv[1]}`) {
+  main().catch((err) => {
+    console.error('[scrape] failed:', err)
+    process.exit(1)
+  })
+}

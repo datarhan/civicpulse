@@ -280,6 +280,34 @@ export function canonicalizeDepartment(raw: string | null | undefined): Departme
   return best ? best.slug : null
 }
 
+/**
+ * Every department a compound área names, in reading order, deduped.
+ *
+ * A delegated área is often a LIST — «Juventud y Servicios Jurídicos» — and
+ * the single-slug mapper above can only answer with one department: the
+ * longest rule wins, so «servicios juridicos» beat «juventud» and the card
+ * linked Servicios generales while the Juventud department, which exists and
+ * which that councillor holds, never appeared. This splits on the list
+ * separators, maps each part, and then adds whatever the WHOLE string maps to
+ * (so a rule written for the full phrase, like «infancia y adolescencia»,
+ * still lands). For the other three namespaces — agenda items, votes, quejas —
+ * one thing is one department and they keep `canonicalizeDepartment`.
+ */
+export function canonicalizeDepartments(raw: string | null | undefined): DepartmentSlug[] {
+  if (!raw) return []
+  const out: DepartmentSlug[] = []
+  const push = (slug: DepartmentSlug | null) => {
+    if (slug && !out.includes(slug)) out.push(slug)
+  }
+  const parts = raw
+    .split(/\s*(?:[,;·/]|\by\b|\bi\b|\be\b)\s*/i)
+    .map((p) => p.trim())
+    .filter(Boolean)
+  if (parts.length > 1) for (const part of parts) push(canonicalizeDepartment(part))
+  push(canonicalizeDepartment(raw))
+  return out
+}
+
 export interface OfficialLike {
   slug: string
   name: string

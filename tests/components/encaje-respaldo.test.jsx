@@ -182,7 +182,7 @@ describe('encaje — signed avisos, and the empty state that is the norm', () =>
       avisos: [AVISO_AREA],
     })
     await waitFor(() =>
-      expect(screen.getByText(/puede referirse a un área que ya no lleva/i)).toBeInTheDocument(),
+      expect(screen.getByText(/juzga un área que lleva hoy/i)).toBeInTheDocument(),
     )
     // ATTRIBUTED TO US, NOT TO THE BIOGRAPHY. This branch prints a fixed
     // CivicPulse sentence and suppresses the verbatim to fit under the chips, so

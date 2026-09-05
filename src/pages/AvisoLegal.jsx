@@ -254,6 +254,16 @@ export default function AvisoLegal() {
           sigue diciendo el nombre y el área — es lo que esta promesa protege.
         </p>
         <p>
+          Quien deja la corporación durante el mandato no desaparece del sitio: su registro se
+          conserva en una sección aparte, con la fecha de cese y el acta que la recoge, y sin ningún
+          dato en presente —retribución, áreas delegadas, quejas asignadas— sobre un escaño que ya
+          no ocupa. Conserva los mismos derechos que el resto de cargos: rectificación por el canal
+          descrito más arriba, réplica publicada junto a su registro y retirada de la fotografía
+          manteniendo el nombre. Quien toma posesión antes de que el padrón municipal lo recoja
+          aparece con lo que el acta dice y nada más: sin retrato ni correo mientras el ayuntamiento
+          no los publique.
+        </p>
+        <p>
           <strong>Huellas de voz.</strong> Para saber qué concejal interviene en cada punto de un
           pleno, el proyecto puede registrar una <em>huella vocal</em> de un cargo electo y
           compararla con las voces de la sesión. Una huella vocal es un{' '}

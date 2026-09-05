@@ -2,13 +2,14 @@ import { Link } from 'react-router-dom'
 import { Card, ExtLink } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
+import { barItems } from '../lib/party-order'
 import { useIspa, ispaLatest, formatEuros, alcaldeGrowth } from '../hooks/useIspa'
 import { useDedicaciones, dedicacionForSlug } from '../hooks/useDedicaciones'
 import { useJsonFetch } from '../hooks/useJsonFetch'
 import { useBioReportRoutes } from '../hooks/useBioReportRoutes'
 import { useQuejas } from '../hooks/useQuejas'
 import { useSocialFor, SOCIAL_PLATFORM_META } from '../hooks/useOfficialsSocial'
-import { canonicalizeDepartment, DEPARTMENT_LABEL } from '../scraper/departments'
+import { canonicalizeDepartments, DEPARTMENT_LABEL } from '../scraper/departments'
 import { EncajeCard } from '../components/EncajeDeclarado'
 import { fmtDateLong } from '../lib/formatters'
 import { useT, useLocale } from '../i18n'
@@ -121,10 +122,13 @@ function DepartmentLinks({ portfolios }) {
   const slugs = []
   const seen = new Set()
   for (const p of portfolios ?? []) {
-    const s = canonicalizeDepartment(p)
-    if (s && !seen.has(s)) {
-      slugs.push(s)
-      seen.add(s)
+    // Every department a compound área names, not only the longest match:
+    // «Juventud y Servicios Jurídicos» leads to Juventud too.
+    for (const s of canonicalizeDepartments(p)) {
+      if (!seen.has(s)) {
+        slugs.push(s)
+        seen.add(s)
+      }
     }
   }
   if (slugs.length === 0) return null
@@ -275,11 +279,18 @@ function SalaryGrowth({ official }) {
 }
 
 function RetribucionesPanel() {
+  const t = useT()
   const { data } = useIspa()
+  const { data: dedic } = useDedicaciones()
   const latest = ispaLatest(data)
   if (!latest) return null
   const s = latest.summary
   const trend = data.alcaldeTrend || []
+  // Derived, never restated: the trienios caveat renders only while the
+  // acuerdo's own quote still says «(+ trienios)» for the Alcaldía. If that
+  // clause leaves the source, the sentence leaves the page with it.
+  const alcaldeAcuerdo = (dedic?.byOfficial ?? []).find((o) => /alcald/i.test(o.role || ''))
+  const trienios = !!alcaldeAcuerdo && /\(\+\s*trienios\)/.test(dedic?.source?.quote || '')
   return (
     <Card style={{ marginTop: 14 }}>
       <div
@@ -309,9 +320,22 @@ function RetribucionesPanel() {
             {formatEuros(s.totalAnnualEuros)}
           </div>
           <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-            coste anual de la corporación
+            {t('cargos.ispa.total').replace('{n}', s.total).replace('{year}', latest.year)}
           </div>
         </div>
+      </div>
+      {/* What ISPA sums is what the electos received. Naming the three things it
+          leaves out is what keeps the figure from reading as a bigger claim. */}
+      <div
+        style={{
+          fontSize: 'var(--fs-micro)',
+          color: 'var(--ink50)',
+          lineHeight: 1.5,
+          maxWidth: '68ch',
+          marginBottom: 12,
+        }}
+      >
+        {t('cargos.ispa.totalNota')}
       </div>
       <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 12 }}>
         {s.brackets
@@ -362,6 +386,22 @@ function RetribucionesPanel() {
               )
             })}
           </div>
+          {trienios && (
+            <div
+              style={{
+                fontSize: 'var(--fs-micro)',
+                color: 'var(--ink50)',
+                lineHeight: 1.5,
+                maxWidth: '68ch',
+                marginTop: 6,
+              }}
+            >
+              {t('cargos.ispa.trienios').replace(
+                '{importe}',
+                formatEuros(alcaldeAcuerdo.amountEuros),
+              )}
+            </div>
+          )}
         </div>
       )}
       <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', lineHeight: 1.5 }}>
@@ -466,8 +506,23 @@ function PlantillaCard() {
   )
 }
 
-function OfficialCard({ o, big = false, bioRoute }) {
+/**
+ * One card per person, sitting or former.
+ *
+ * `former` is a different card, not a dimmed one: every block below the header
+ * — salary, growth, department chips, encaje, quejas, social — is a
+ * present-tense claim about a seat, and none of them may be painted over
+ * someone who no longer holds it. What a former member keeps is what is
+ * history: name, party, photograph, biography, and the acta that records the
+ * departure. A row the corrections ADDED (`o.correccion`) carries its own
+ * provenance line and, when the source publishes no portrait, says why the
+ * initials are there instead of letting them read as a failed image.
+ */
+function OfficialCard({ o, big = false, bioRoute, former = false }) {
+  const t = useT()
   const color = partyColor(o.party)
+  const sourceUrl = former ? o.source?.url : o.correccion?.source?.url
+  const sourceTitle = former ? o.source?.title : o.correccion?.source?.title
   return (
     <Card hover>
       <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
@@ -488,6 +543,7 @@ function OfficialCard({ o, big = false, bioRoute }) {
           />
         ) : (
           <div
+            title={o.photoNote || undefined}
             style={{
               width: big ? 72 : 52,
               height: big ? 72 : 52,
@@ -557,7 +613,37 @@ function OfficialCard({ o, big = false, bioRoute }) {
               {o.name}
             </Link>
           </div>
-          {o.portfolios.length > 0 && (
+          {former && (
+            <div
+              className="mono"
+              style={{ fontSize: 'var(--fs-micro)', color: 'var(--warn-ink)', marginTop: 4 }}
+            >
+              {t(o.honorific === 'Sra.' ? 'cargos.card.hastaF' : 'cargos.card.hastaM').replace(
+                '{fecha}',
+                fmtDateLong(o.until),
+              )}
+              {' · '}
+              {t(`cargos.baja.${o.reason}`)}
+            </div>
+          )}
+          {!former && o.correccion?.tipo === 'alta' && (
+            <div
+              className="mono"
+              style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 4 }}
+            >
+              {t('cargos.card.altaDesde').replace('{fecha}', fmtDateLong(o.correccion.since))}
+            </div>
+          )}
+          {o.photoNote && (
+            <div
+              className="mono"
+              title={o.photoNote}
+              style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}
+            >
+              {t('cargos.card.sinRetrato')}
+            </div>
+          )}
+          {!former && o.portfolios.length > 0 && (
             <div
               style={{
                 fontSize: 'var(--fs-aux)',
@@ -580,42 +666,66 @@ function OfficialCard({ o, big = false, bioRoute }) {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
+          gap: 10,
+          flexWrap: 'wrap',
           fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
         }}
       >
-        <a
-          href={`mailto:${o.email || 'alcaldia@ribarroja.es'}`}
-          style={{ color: 'var(--ink)', textDecoration: 'none' }}
-          className="mono"
-        >
-          {o.email || 'alcaldia@ribarroja.es'}
-        </a>
-        {bioRoute ? (
-          <Link
-            to={bioRoute}
-            title="Informe biográfico del agente periodista de CivicPulse"
-            style={{ color: 'var(--civic)', textDecoration: 'none', fontWeight: 500 }}
+        {/* Never a substitute address: the source published none, so the card
+            says so instead of pointing a reader at somebody else's mailbox. */}
+        {o.email ? (
+          <a
+            href={`mailto:${o.email}`}
+            style={{ color: 'var(--ink)', textDecoration: 'none' }}
+            className="mono"
           >
-            Biografía →
-          </Link>
+            {o.email}
+          </a>
         ) : (
-          o.cvUrl && (
+          <span className="mono">{t('cargos.card.sinCorreo')}</span>
+        )}
+        <span style={{ display: 'inline-flex', gap: 12, alignItems: 'center' }}>
+          {sourceUrl && (
             <ExtLink
-              href={o.cvUrl}
+              href={sourceUrl}
+              title={sourceTitle}
+              className="mono"
+              style={{ color: 'var(--civic)', textDecoration: 'none' }}
+            >
+              {t('cargos.card.acta')}
+            </ExtLink>
+          )}
+          {bioRoute ? (
+            <Link
+              to={bioRoute}
+              title="Informe biográfico del agente periodista de CivicPulse"
               style={{ color: 'var(--civic)', textDecoration: 'none', fontWeight: 500 }}
             >
               Biografía →
-            </ExtLink>
-          )
-        )}
+            </Link>
+          ) : (
+            o.cvUrl && (
+              <ExtLink
+                href={o.cvUrl}
+                style={{ color: 'var(--civic)', textDecoration: 'none', fontWeight: 500 }}
+              >
+                Biografía →
+              </ExtLink>
+            )
+          )}
+        </span>
       </div>
-      <SocialLinks slug={o.slug} />
-      <RetribucionBadge official={o} />
-      <SalaryGrowth official={o} />
-      <DepartmentLinks portfolios={o.portfolios} />
-      <EncajeCard official={o} bioRoute={bioRoute} />
-      <QuejaBadge slug={o.slug} />
+      {!former && (
+        <>
+          <SocialLinks slug={o.slug} />
+          <RetribucionBadge official={o} />
+          <SalaryGrowth official={o} />
+          <DepartmentLinks portfolios={o.portfolios} />
+          <EncajeCard official={o} bioRoute={bioRoute} />
+          <QuejaBadge slug={o.slug} />
+        </>
+      )}
     </Card>
   )
 }
@@ -628,12 +738,9 @@ function CompositionBar({ composition, total }) {
   // corporation at all. A whitelist that silently discards live data is the
   // same defect this repo keeps finding in its enums; a party that wins a seat
   // must never depend on someone remembering to add it here.
-  const order = ['PSOE', 'PP', 'VOX', 'Compromís', 'Ciudadanos', 'EU-Podem', 'Otro']
-  const known = order.filter((p) => composition[p])
-  const rest = Object.keys(composition)
-    .filter((p) => composition[p] && !order.includes(p))
-    .sort((a, b) => composition[b] - composition[a])
-  const items = [...known, ...rest].map((p) => ({ p, n: composition[p] }))
+  // The order and the painter live in lib/party-order and are imported by the
+  // test that pins «every seat is painted», so neither can drift from the other.
+  const items = barItems(composition)
   return (
     <div style={{ marginTop: 14 }}>
       <div
@@ -691,6 +798,7 @@ function CompositionBar({ composition, total }) {
 }
 
 function CorporacionMunicipal() {
+  const t = useT()
   const { loading, error, data } = useOfficials()
   const bioRoutes = useBioReportRoutes()
 
@@ -721,11 +829,24 @@ function CorporacionMunicipal() {
 
   const mayor = data.officials.find((o) => o.role === 'alcalde')
   const rest = data.officials.filter((o) => o.role !== 'alcalde')
+  const former = data.formerOfficials ?? []
+  const corr = data.corrections
+  // Derived from the snapshot's own block, never typed: the second line of
+  // the stamp exists exactly when a correction does, and counts what it counts.
+  const nCorr = corr ? (corr.bajas ?? 0) + (corr.altas ?? 0) : 0
   const generatedDate = fmtDateLong(data.generatedAt)
 
   return (
     <div style={{ marginBottom: 28 }}>
-      <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 8 }}>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'baseline',
+          gap: 10,
+          marginBottom: 8,
+          flexWrap: 'wrap',
+        }}
+      >
         <div
           className="mono"
           style={{
@@ -738,10 +859,33 @@ function CorporacionMunicipal() {
           Corporación Municipal
         </div>
         <div className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-          · datos reales de ribarroja.es · actualizado {generatedDate}
+          · {t('cargos.corporacion.raspado').replace('{fecha}', generatedDate)}
         </div>
         <DataAsOf iso={data.generatedAt} label="Officials" />
       </div>
+      {nCorr > 0 && (
+        <div
+          className="mono"
+          style={{
+            fontSize: 'var(--fs-micro)',
+            color: 'var(--warn-ink)',
+            lineHeight: 1.5,
+            maxWidth: '76ch',
+            marginBottom: 10,
+          }}
+        >
+          {t('cargos.corporacion.correcciones')
+            .replace('{n}', nCorr)
+            .replace('{bajas}', corr.bajas ?? 0)
+            .replace('{altas}', corr.altas ?? 0)}{' '}
+          <Link
+            to="/metodologia#corporacion"
+            style={{ color: 'var(--civic)', textDecoration: 'underline' }}
+          >
+            {t('cargos.corporacion.correccionesLink')}
+          </Link>
+        </div>
+      )}
 
       {mayor && (
         <div style={{ marginBottom: 14 }}>
@@ -777,6 +921,46 @@ function CorporacionMunicipal() {
           <OfficialCard key={o.slug} o={o} bioRoute={bioRoutes.get(o.slug)} />
         ))}
       </div>
+
+      {former.length > 0 && (
+        <>
+          <div
+            className="mono"
+            style={{
+              fontSize: 'var(--fs-micro)',
+              color: 'var(--ink50)',
+              textTransform: 'uppercase',
+              letterSpacing: '.08em',
+              marginTop: 22,
+              marginBottom: 4,
+            }}
+          >
+            {t('cargos.bajas.title')}
+          </div>
+          <div
+            style={{
+              fontSize: 'var(--fs-aux)',
+              color: 'var(--ink50)',
+              marginBottom: 8,
+              maxWidth: 620,
+              lineHeight: 1.5,
+            }}
+          >
+            {t('cargos.bajas.note')}
+          </div>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+              gap: 12,
+            }}
+          >
+            {former.map((o) => (
+              <OfficialCard key={o.slug} o={o} former bioRoute={bioRoutes.get(o.slug)} />
+            ))}
+          </div>
+        </>
+      )}
     </div>
   )
 }
@@ -813,8 +997,7 @@ export default function Cargos() {
         <div
           style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 4, maxWidth: 620 }}
         >
-          Titulares del Ayuntamiento, sus departamentos, presupuesto asignado, promesas adquiridas y
-          rendimiento operacional.
+          {t('cargos.intro')}
         </div>
       </div>
 

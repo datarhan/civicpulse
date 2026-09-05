@@ -241,6 +241,12 @@ async function gather(): Promise<Observations> {
     // sello sostenía la fecha que /departamentos publicaba, y ninguna puerta
     // podía verlo porque las dos miraban el mismo número.
     'check:stamps',
+    // Dos ejes sobre el padrón corregido: si una nocturna corrió sin la capa,
+    // la cesada vuelve a los vigentes y el alta desaparece (`no-aplicada`,
+    // sale 1); y si la web del ayuntamiento se pone al día, la corrección
+    // sobra y hay que retirarla (`absorbida`, sale 0 y lo dice). Con la página
+    // en 403 imprime NO COMPROBADO, que no es un visto bueno.
+    'check:officials-corrections',
     // Sólo caza el `contradice`, que es el único desenlace que sale 1. El
     // caso normal —el base avanzó y falta republicar— sale 0 a propósito y
     // entra abajo como cola de trabajo, no como fallo: un aviso que se pinta

@@ -217,6 +217,8 @@
     "retract-indicador": "npx tsx scripts/retract-indicador.ts",
     "check:eficiencia-findings": "npx tsx scripts/check-eficiencia-findings.ts",
     "check:competencias": "npx tsx scripts/check-competencias.ts",
+    "check:officials-corrections": "npx tsx scripts/check-officials-corrections.ts",
+    "roster-correction": "npx tsx scripts/apply-officials-correction.ts",
     "check:derivados": "npx tsx scripts/check-derivados.ts",
     "indicador-reply": "npx tsx scripts/reply-indicador.ts",
     "render:og": "node scripts/render-og.mjs",

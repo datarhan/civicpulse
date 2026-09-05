@@ -51,7 +51,7 @@ export type Confianza = (typeof CONFIANZAS)[number]
  * que alguien dijo. Los demás tienen forma de valoración, que es exactamente
  * lo que esta superficie no hace.
  */
-const PROHIBIDOS = new Set([
+export const CAMPOS_PROHIBIDOS: ReadonlySet<string> = new Set([
   'severity',
   'quotes',
   'individualSpeaker',
@@ -62,6 +62,11 @@ const PROHIBIDOS = new Set([
   'puntuacion',
   'nota',
 ])
+
+// Alias local: el barrido de abajo se escribió contra este nombre. El set se
+// exporta porque `officials-corrections.ts` nombra a las mismas personas con la
+// misma regla, y dos listas de campos prohibidos son dos listas que discrepan.
+const PROHIBIDOS = CAMPOS_PROHIBIDOS
 
 export interface DecretoCorroborante {
   titulo: string
