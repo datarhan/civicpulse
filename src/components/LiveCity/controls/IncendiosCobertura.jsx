@@ -69,9 +69,9 @@ export function IncendiosCobertura({ universe }) {
 
       {aniosSinCartografiar > 0 && (
         <div style={{ marginTop: 3 }}>
-          La cartografía del ICV llega a {universe.anyoMax}: los incendios de los últimos{' '}
-          {aniosSinCartografiar === 1 ? 'meses' : `${aniosSinCartografiar} años`} han ocurrido, pero
-          todavía no están dibujados.
+          La cartografía del ICV llega a {universe.anyoMax}: de los últimos{' '}
+          {aniosSinCartografiar === 1 ? 'meses' : `${aniosSinCartografiar} años`} no hay perímetros
+          dibujados, ni constancia aquí de si hubo incendios.
         </div>
       )}
 

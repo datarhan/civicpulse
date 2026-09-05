@@ -191,8 +191,12 @@ function KpiStrip() {
         tone={balance >= 0 ? 'ok' : 'warn'}
         sub="MinHac CONPREL"
       />
+      {/* «Gastos personal» leía como dinero ya pagado, y es el Cap.1 del
+          CRÉDITO del ejercicio: 20,3 M€ es el 49 % de los 41,58 M€
+          presupuestados, no de los 18,91 M€ reconocidos a 31-12. La tarjeta
+          de al lado ya dice «Presup. <año>»; ésta lo callaba. */}
       <Kpi
-        label="Gastos personal"
+        label="Presup. personal"
         value={
           budget?.snapshot?.expenseByEconomicChapter?.[0]?.amount
             ? formatBudgetEuros(budget.snapshot.expenseByEconomicChapter[0].amount, {
