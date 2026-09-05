@@ -155,6 +155,32 @@ and still be an entire intervention put into somebody's mouth in another
 language. Lines too short or with no function words either way are excluded from
 the denominator rather than counted as clean.
 
+**And the gate now also asks whether the new transcript IMPOVERISHES the one it
+replaces**, which nothing did before: every other threshold judges the file on
+its own. Measured 2026-09-05, re-transcribing `1r6yy0` with
+`WHISPER_ENGINE=gemini` to remove 55 translated lines — it removed them, and took
+half the session with them:
+
+|              | antes      | Gemini              |
+| ------------ | ---------- | ------------------- |
+| text         | 188.254 ch | 94.233 ch (−49,9 %) |
+| SPEAKER tags | 1.249      | 0                   |
+| coverage     | 163 min    | 163 min             |
+
+Both reach minute 163, so this is not truncation but half the record dissolved
+throughout, plus the whole diarization — on which claim attribution is resolved.
+It passed with `ok=true` and no reason, because 131 lines at 95% unique and
+90.467 characters are healthy numbers _in a file considered alone_. The floor is
+80% of the previous text, and losing diarization outright fails on its own;
+`TRANSCRIBE_ALLOW_POORER=1` overrides and says so.
+
+The same run exposed a second hole, now closed: **the superseded rotation lived
+inside the `openai` branch**, so `gemini`, `mlx` and the default `local` were
+overwriting the published transcript without archiving it — precisely the defect
+that block was written to prevent. It now runs before the engine dispatch, so
+whatever is published is archived first whichever engine follows, and the gate
+compares against it.
+
 **Never translate it back.** Rendering the passage into Spanish would make it
 our sentence, and a quote we wrote is exactly what this repo exists not to
 publish. Detect, quarantine, re-transcribe. Where an earlier transcription got
