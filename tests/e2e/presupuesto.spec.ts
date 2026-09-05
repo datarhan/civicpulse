@@ -37,7 +37,9 @@ test.describe('Presupuesto (/presupuesto)', () => {
     await expect(page.getByRole('tab', { name: /Explorar contratos/ })).toBeVisible()
 
     // Existing budget context + subsidies still present
-    await expect(page.getByText('En qué se gasta el dinero público').first()).toBeVisible()
+    // El título dice «prevé gastarse» desde el 5-09-2026: son créditos
+    // presupuestados (41,58 M€), no obligaciones reconocidas (18,91 M€).
+    await expect(page.getByText('En qué prevé gastarse el dinero público').first()).toBeVisible()
     await expect(page.getByText('De dónde vienen los ingresos municipales').first()).toBeVisible()
     await expect(page.getByText('Subvenciones · Base Nacional').first()).toBeVisible()
     await expect(page.getByText(/€/).first()).toBeVisible()

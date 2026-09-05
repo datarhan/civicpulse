@@ -78,6 +78,27 @@
       "reason": "El revisor dice que el incendio 91 —atribuido a Riba-roja por la GVA y cartografiado fuera del término— no se declara y que sólo hay un aviso genérico del ICV. La capa lo declara, en la misma tarjeta y cuatro líneas más abajo. Verificado en el navegador contra la build de producción el 4-09-2026, con la capa encendida: «Otro incendio (128 ha) consta a nombre de Riba-roja pero la Generalitat lo dibuja fuera del término, así que no se pinta.» Sale de IncendiosCobertura leyendo universe.atribuidosSinPerimetroAqui y superficieHaSinPerimetroAqui del propio snapshot, así que no puede desviarse de los polígonos que tiene al lado, y el scraper además lo avisa por consola en cada pasada.",
       "editor": "claude-opus-5",
       "at": "2026-09-04"
+    },
+    {
+      "route": "/gestion",
+      "quote": "Importe en manos de los cinco mayores proveedores",
+      "reason": "El revisor pide exactamente el aviso que la página ya publica. Su objeción es que el 68,4 % no describe un reparto recurrente entre un círculo pequeño porque la mayor adjudicación del periodo —55,69 M€, la concesión del agua— se adjudicó de una sola vez por todo su plazo; y la lectura del propio indicador dice, literal: «Mide concentración del importe adjudicado en el periodo, no gasto anual: las concesiones se adjudican por todo su plazo de una vez» (indicador-lectura.ts, 'concentracion-proveedores'). Comprobado el 5-09-2026: total adjudicado del municipio 123,68 M€, de los que esa única concesión es el 45 %. La cifra y su salvedad están publicadas juntas.",
+      "editor": "claude-opus-5",
+      "at": "2026-09-05"
+    },
+    {
+      "route": "/presupuesto",
+      "quote": "BALANCE INICIAL",
+      "reason": "El revisor atribuye a esa tarjeta una cifra que no muestra. «Balance inicial» rotula `s.balance` —ingresos menos gastos, 1.938.564,87 €—, no los 41.578.252,26 € de gasto presupuestado que el señalamiento discute. Y sobre el fondo, la página hace ya lo que el aviso pide: dice que las dos fuentes no coinciden sobre cuál fue el presupuesto aprobado y se niega a reconciliarlas («elegir una sería inventar el puente entre dos fuentes oficiales»). Medido el 5-09-2026, la cifra del ministerio no coincide ni con el crédito inicial del listado municipal (37.599.838,15 €, 3,98 M€ de diferencia) ni con el definitivo (62.123.153,08 €, 20,54 M€), así que la negativa a reconciliar es la lectura correcta y no una laguna.",
+      "editor": "claude-opus-5",
+      "at": "2026-09-05"
+    },
+    {
+      "route": "/reportajes/basuras",
+      "quote": "Riba-roja formaliza el contrato con Garbialdi, tres semanas después de que ISS hiciera pública la compra.",
+      "reason": "El revisor ancla «hacer pública la compra» en la NOTIFICACIÓN a la CNMC (2025-09-22) y de ahí saca siete semanas. El reportaje distingue tres fechas del mismo expediente C/1600/25 y las publica las tres: notificada 2025-09-22, autorizada 2025-10-01 y ANUNCIADA 2025-10-21. Del anuncio a la formalización del 2025-11-11 hay 21 días exactos: tres semanas, que es lo que dice la frase. Mismo patrón que los descartes de /gestion y /quejas — el revisor juzga la frase contra un universo más ancho que el que la frase nombra. Comprobado contra public/data/reportajes/basuras.json el 5-09-2026.",
+      "editor": "claude-opus-5",
+      "at": "2026-09-05"
     }
   ]
 }

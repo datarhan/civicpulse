@@ -246,7 +246,7 @@ export const CATALOGUE = {
     'declaraciones.eyebrow': 'Verificación de declaraciones',
     'declaraciones.title': 'Declaraciones en pleno',
     'declaraciones.subtitle':
-      'Cada afirmación, promesa o acusación detectada en los plenos municipales, cruzada contra los datos abiertos publicados (PLACSP, BDNS, presupuesto, promesas electorales). Atribución a nivel de grupo. El veredicto de cada fila lo pone un cotejo automático: las declaraciones sin atribuir o sin evidencia se mantienen visibles porque se han hecho, y ninguna de ellas se convierte en un hallazgo editorial sin que una persona lo firme.',
+      'Cada afirmación, promesa o acusación detectada en los plenos municipales, cruzada contra los datos abiertos publicados (PLACSP, BDNS, presupuesto, promesas electorales). Atribución a nivel de grupo. El veredicto de cada fila lo pone un cotejo automático, salvo en las que llevan la marca «corregido por un curador», donde una persona lo ha rectificado a la baja: las declaraciones sin atribuir o sin evidencia se mantienen visibles porque se han hecho, y ninguna de ellas se convierte en un hallazgo editorial sin que una persona lo firme.',
     'declaraciones.stat.total': 'Total',
     'declaraciones.stat.conEvidencia': 'Con evidencia',
     'declaraciones.filter.verdict': 'Verdicto',

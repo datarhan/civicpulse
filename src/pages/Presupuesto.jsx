@@ -445,7 +445,7 @@ function BudgetCharts() {
         <Card>
           <SectionHead
             eyebrow={`Gastos ${s.year} · clasificación económica`}
-            title="En qué se gasta el dinero público"
+            title="En qué prevé gastarse el dinero público"
           />
           <div style={{ display: 'flex', flexDirection: 'column', gap: 9, marginTop: 10 }}>
             {[...s.expenseByEconomicChapter]
@@ -464,7 +464,7 @@ function BudgetCharts() {
         <Card>
           <SectionHead
             eyebrow={`Gastos ${s.year} · clasificación por programas`}
-            title="Para qué se gasta el dinero público"
+            title="Para qué prevé gastarse el dinero público"
           />
           <div style={{ display: 'flex', flexDirection: 'column', gap: 9, marginTop: 10 }}>
             {[...s.expenseByProgram]
