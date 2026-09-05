@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-05T11:28:23.575Z",
+  "generatedAt": "2026-09-05T12:18:18.944Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2024,
   "source": {
@@ -8026,7 +8026,7 @@
       "formato": "porcentaje",
       "periodo": "2025 (a 31/12/2025)",
       "caveats": [
-        "Las modificaciones son legales y a veces inevitables —una subvención que llega a mitad de año hay que incorporarla—. Lo que mide es cuánto se aleja el presupuesto ejecutado del que se aprobó y se debatió."
+        "Las modificaciones son legales y a veces inevitables —una subvención que llega a mitad de año hay que incorporarla—. Lo que mide es cuánto se aleja el crédito finalmente disponible del que se aprobó y se debatió — no lo gastado, que es otra cifra y bastante menor."
       ],
       "citas": [
         {

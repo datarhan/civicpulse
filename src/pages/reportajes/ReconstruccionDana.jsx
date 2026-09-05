@@ -654,9 +654,9 @@ export default function ReconstruccionDana() {
           Compromís, Esquerra Unida-Podem y Vox. Llegó con siete meses de retraso, y el retraso es
           el dato: el Ayuntamiento lo atribuyó a los daños de la riada y presentó las cuentas como
           el presupuesto de la reconstrucción. No es una partida de 43,5 millones para reconstruir
-          —es el presupuesto entero del municipio, cuyo crédito de gastos para 2025 era de 41,58
-          millones—, sino el año completo ordenado alrededor de ella. Lo efectivamente reconocido a
-          31 de diciembre fue menos de la mitad: 18,91 millones.
+          —es el presupuesto entero del municipio, cuyo crédito de gastos rendido al ministerio para
+          2025 era de 41,58 millones—, sino el año completo ordenado alrededor de ella. Lo
+          efectivamente reconocido a 31 de diciembre fue menos de la mitad: 18,91 millones.
         </p>
 
         <SecHead num="06" kicker="El vacío" title="Quién audita esto, y con qué lupa" />
