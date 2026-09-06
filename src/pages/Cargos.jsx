@@ -1,16 +1,24 @@
 import { Link } from 'react-router-dom'
-import { Card, ExtLink } from '../components/Primitives'
+import { Card, ExtLink, LegendDot, PartyTag, SectionHead } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { barItems } from '../lib/party-order'
-import { useIspa, ispaLatest, formatEuros, alcaldeGrowth } from '../hooks/useIspa'
-import { useDedicaciones, dedicacionForSlug } from '../hooks/useDedicaciones'
+import {
+  useIspa,
+  ispaLatest,
+  formatEuros,
+  formatEurosCents,
+  retribucionesSplit,
+  alcaldeSerie,
+} from '../hooks/useIspa'
+import { useDedicaciones, dedicacionForSlug, fijadoTramos } from '../hooks/useDedicaciones'
 import { useJsonFetch } from '../hooks/useJsonFetch'
 import { useBioReportRoutes } from '../hooks/useBioReportRoutes'
 import { useQuejas } from '../hooks/useQuejas'
 import { useSocialFor, SOCIAL_PLATFORM_META } from '../hooks/useOfficialsSocial'
 import { canonicalizeDepartments, DEPARTMENT_LABEL } from '../scraper/departments'
 import { EncajeCard } from '../components/EncajeDeclarado'
+import { mailboxKinds } from '../lib/mailboxes'
 import { fmtDateLong } from '../lib/formatters'
 import { useT, useLocale } from '../i18n'
 
@@ -75,6 +83,7 @@ function QuejaBadge({ slug }) {
         gap: 12,
         alignItems: 'center',
         fontSize: 'var(--fs-micro)',
+        flexWrap: 'wrap',
       }}
     >
       <Link
@@ -137,7 +146,9 @@ function DepartmentLinks({ portfolios }) {
   return (
     <div
       style={{
-        marginTop: 8,
+        marginTop: 10,
+        paddingTop: 10,
+        borderTop: '1px dashed var(--border2)',
         display: 'flex',
         flexWrap: 'wrap',
         alignItems: 'baseline',
@@ -165,7 +176,7 @@ function DepartmentLinks({ portfolios }) {
             fontSize: 'var(--fs-micro)',
             padding: '2px 7px',
             background: 'var(--civic-soft)',
-            color: 'var(--civic)',
+            color: 'var(--civic-ink)',
             borderRadius: 'var(--r-input)',
             letterSpacing: '.04em',
             textDecoration: 'none',
@@ -188,34 +199,59 @@ function DepartmentLinks({ portfolios }) {
 // Per-councillor salary mapped by ROLE: the pleno acuerdo (Exp 4533/2023)
 // assigns each dedicación exclusiva to a cargo + its delegated áreas, which
 // match the officials.json portfolios verbatim → a named, cited figure for each
-// of the 7. The 14 sin-dedicación councillors get no figure (asistencias only).
+// of the 7.
+//
+// The 14 sin-dedicación councillors get NO figure here, and that is a rule
+// rather than a gap: ISPA's councillor rows carry an amount and a dedicación
+// but no name, so the only honest place for their money is the distribution in
+// RetribucionesPanel. What this badge says instead is what régimen they are on
+// — which the acuerdo does state — so the card never reads as "paid nothing".
 function RetribucionBadge({ official }) {
   const { data } = useDedicaciones()
+  const t = useT()
   const d = dedicacionForSlug(data, official.slug)
-  if (!d) return null
+  if (!d) {
+    return (
+      <div
+        style={{
+          marginTop: 10,
+          display: 'flex',
+          alignItems: 'baseline',
+          gap: 8,
+          flexWrap: 'wrap',
+          fontSize: 'var(--fs-micro)',
+        }}
+      >
+        <span className="mono" style={{ fontWeight: 700, color: 'var(--warn-ink)' }}>
+          {t('cargos.retri.asistenciasCargo')}
+        </span>
+        <span style={{ color: 'var(--ink50)' }}>{t('cargos.retri.asistenciasCargoNota')}</span>
+      </div>
+    )
+  }
   return (
     <div
       style={{
-        marginTop: 8,
-        paddingTop: 8,
-        borderTop: '1px dashed var(--border2)',
+        marginTop: 10,
         display: 'flex',
-        alignItems: 'center',
+        alignItems: 'baseline',
         gap: 8,
+        flexWrap: 'wrap',
         fontSize: 'var(--fs-micro)',
-        color: 'var(--ink50)',
       }}
     >
       <span className="mono" style={{ fontWeight: 700, color: 'var(--ink)' }}>
-        {formatEuros(d.amountEuros)}/año
+        {formatEurosCents(d.amountEuros)}
       </span>
-      <span>· dedicación {d.dedicacion}</span>
+      <span style={{ color: 'var(--ink50)' }}>
+        {t('cargos.retri.fijadoPor').replace('{dedicacion}', d.dedicacion)}
+      </span>
       {data.source?.url && (
         <ExtLink
           href={data.source.url}
           title={`${d.role} — ${data.source.title}`}
           className="mono"
-          style={{ color: 'var(--civic)', marginLeft: 'auto', fontSize: 'var(--fs-micro)' }}
+          style={{ color: 'var(--civic)', fontSize: 'var(--fs-micro)' }}
         >
           acuerdo ↗
         </ExtLink>
@@ -224,188 +260,507 @@ function RetribucionBadge({ official }) {
   )
 }
 
-// Salary growth, only where the data supports it. The alcalde's office has a
-// continuous ISPA series → real %s per window (with "—" where ISPA has no base
-// year). Councillors' dedicación dates from the 2023 acuerdo, so they carry an
-// honest "no prior history" note instead of an invented figure.
-function SalaryGrowth({ official }) {
-  const ispa = useIspa()
-  const { data: dedic } = useDedicaciones()
-  if (!dedicacionForSlug(dedic, official.slug)) return null
-  if (official.role !== 'alcalde') {
-    return (
+/**
+ * The alcalde's ISPA series, with the year ISPA does not publish left OPEN.
+ *
+ * The page used to paint the four available years as a row of ↑↓ arrows, so
+ * 2024's arrow compared against 2022 as though the two were consecutive:
+ * 52.855,48 € → 48.647,50 € read as an 8 % annual fall when it spans two
+ * years. A missing year is not a shorter axis. It gets a slot of its own, the
+ * full width of the hole it leaves, and it is labelled — an electoral year has
+ * two office-holders in one exercise, which is also why 2019 and 2023 are
+ * never used as a comparison base.
+ */
+function AlcaldeSerie({ data }) {
+  const slots = alcaldeSerie(data)
+  const datos = slots.filter((s) => s.tipo === 'dato')
+  if (datos.length < 2) return null
+  const W = 640
+  const n = slots.length
+  const slotW = W / n
+  const bw = Math.min(slotW * 0.56, 70)
+  const suelo = 80
+  const techo = 8
+  const maxV = Math.max(...datos.map((d) => d.amountEuros))
+  const cx = (i) => i * slotW + slotW / 2
+  const alto = (v) => Math.max(2, (v / maxV) * (suelo - techo))
+  const hueco = slots.find((s) => s.tipo === 'hueco')
+  return (
+    <div style={{ marginTop: 16 }}>
       <div
         className="mono"
-        style={{ marginTop: 6, fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}
+        style={{
+          fontSize: 'var(--fs-micro)',
+          textTransform: 'uppercase',
+          letterSpacing: '.07em',
+          color: 'var(--ink50)',
+        }}
       >
-        Salario fijado en el acuerdo de 2023 · sin variación interanual disponible
+        Retribución del alcalde percibida por año · ISPA
       </div>
-    )
-  }
-  const windows = alcaldeGrowth(ispa.data)
-  if (windows.length === 0) return null
-  return (
-    <div
-      className="mono"
-      title="Variación del salario del alcalde según ISPA (importe percibido por año). 1, 5 y 10 años no disponibles: la serie ISPA cubre 2020-2024 y los años electorales 2019/2023 son anómalos."
-      style={{
-        marginTop: 6,
-        fontSize: 'var(--fs-micro)',
-        color: 'var(--ink50)',
-        display: 'flex',
-        gap: 10,
-        flexWrap: 'wrap',
-        alignItems: 'baseline',
-      }}
-    >
-      <span style={{ textTransform: 'uppercase', letterSpacing: '.06em' }}>Δ salario (ISPA)</span>
-      {windows.map((w) => (
-        <span key={w.years}>
-          {w.years} a.{' '}
-          {w.pct === null ? (
-            <span style={{ color: 'var(--ink50)' }}>—</span>
-          ) : (
-            <span
-              style={{ color: w.pct >= 0 ? 'var(--ok-ink)' : 'var(--crit-ink)', fontWeight: 700 }}
+      {/* The bars carry no text. A <text> inside a viewBox is measured in
+          viewBox units, so a label that reads at 12px on a desktop renders at
+          five on a phone — which is why the type scale forbids one there. The
+          labels are real HTML below, at a real token size, in a row of equal
+          cells that lines up with the slots because both divide the same width
+          into the same n. */}
+      <svg
+        viewBox={`0 0 ${W} ${suelo}`}
+        width="100%"
+        height="88"
+        preserveAspectRatio="none"
+        role="img"
+        aria-label={`Retribución percibida por el alcalde en cada entrega del ISPA${hueco ? `. La serie no publica ${hueco.desde}` : ''}.`}
+        style={{ display: 'block', marginTop: 10 }}
+      >
+        <line x1="0" y1={suelo - 0.5} x2={W} y2={suelo - 0.5} stroke="var(--border)" />
+        {slots.map((s, i) => {
+          if (s.tipo !== 'hueco') return null
+          // The band spans the hole EXACTLY: from the right edge of the bar
+          // before it to the left edge of the bar after. A band narrower than
+          // its own gap is the defect /eficiencia shipped — 90px of marker
+          // floating inside a 181px hole, blank on both sides.
+          const izq = cx(i - 1) + bw / 2
+          const der = cx(i + 1) - bw / 2
+          return (
+            <rect
+              key={`h${s.desde}`}
+              x={izq}
+              y={2}
+              width={der - izq}
+              height={suelo - 2}
+              fill="var(--warn-soft)"
+              stroke="var(--warn)"
+              strokeDasharray="4 4"
+              vectorEffect="non-scaling-stroke"
+              data-hueco={`${s.desde}-${s.hasta}`}
+            />
+          )
+        })}
+        {slots.map((s, i) =>
+          s.tipo === 'dato' ? (
+            <rect
+              key={s.year}
+              x={cx(i) - bw / 2}
+              y={suelo - alto(s.amountEuros)}
+              width={bw}
+              height={alto(s.amountEuros)}
+              fill="var(--civic)"
+              data-barra={s.year}
             >
-              {w.pct >= 0 ? '+' : ''}
-              {w.pct.toFixed(1).replace('.', ',')}%
-            </span>
-          )}
-        </span>
-      ))}
+              <title>{`${s.year}: ${formatEurosCents(s.amountEuros)}`}</title>
+            </rect>
+          ) : null,
+        )}
+      </svg>
+      <div style={{ display: 'flex', marginTop: 6 }}>
+        {slots.map((s) => (
+          <div
+            key={s.tipo === 'dato' ? s.year : `h${s.desde}`}
+            style={{ flex: 1, minWidth: 0, textAlign: 'center' }}
+            data-rotulo={s.tipo === 'dato' ? s.year : `hueco-${s.desde}`}
+          >
+            {s.tipo === 'dato' ? (
+              <>
+                <div
+                  className="mono"
+                  style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}
+                >
+                  {s.year}
+                </div>
+                <div
+                  className="mono"
+                  style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink70)', fontWeight: 700 }}
+                >
+                  {formatEuros(s.amountEuros)}
+                </div>
+              </>
+            ) : (
+              <>
+                <div
+                  className="mono"
+                  style={{ fontSize: 'var(--fs-micro)', color: 'var(--warn-ink)' }}
+                >
+                  {s.desde === s.hasta ? s.desde : `${s.desde}–${s.hasta}`}
+                </div>
+                <div
+                  className="mono"
+                  style={{ fontSize: 'var(--fs-micro)', color: 'var(--warn-ink)' }}
+                >
+                  sin dato
+                </div>
+              </>
+            )}
+          </div>
+        ))}
+      </div>
+      <p
+        style={{
+          margin: '10px 0 0',
+          fontSize: 'var(--fs-meta)',
+          lineHeight: 1.55,
+          color: 'var(--ink50)',
+          maxWidth: '78ch',
+        }}
+      >
+        {hueco ? (
+          <>
+            La serie ISPA no publica{' '}
+            {hueco.desde === hueco.hasta ? hueco.desde : `${hueco.desde}–${hueco.hasta}`}, así que{' '}
+            <strong>no hay variación interanual</strong> entre las dos barras que rodean el hueco:
+            son dos años de distancia y el hueco se dibuja. Los años electorales distorsionan el
+            importe percibido —hay dos titulares en el mismo ejercicio—, y por eso no se usan como
+            base de comparación.
+          </>
+        ) : (
+          <>
+            La serie no tiene huecos: cada barra es la entrega de su año. Los años electorales
+            distorsionan el importe percibido —hay dos titulares en el mismo ejercicio—, y por eso
+            no se usan como base de comparación.
+          </>
+        )}
+      </p>
     </div>
   )
 }
 
+/**
+ * What the corporación is paid, in the two forms it is paid in.
+ *
+ * Seven draw a salary the pleno fixed; fourteen are paid per session attended.
+ * The page used to print only the first, so fourteen cards carried no figure at
+ * all — and ISPA gives every one of them between 4.582,49 € and 16.858,04 €.
+ * The data was already on the page and the layout hid it.
+ *
+ * Two things this panel will not do. It never adjudicates an asistencias figure
+ * to a person: ISPA's councillor rows are anonymous, so they render as a
+ * distribution. And it never prints a subtotal it has not reconciled —
+ * `cuadra` re-derives the split against the counts and the total the parser
+ * computed on its own, and the columns withhold their sums when they disagree.
+ * A panel that prints its own all-clear is the `r?.findings ?? []` defect in
+ * another costume.
+ */
 function RetribucionesPanel() {
   const t = useT()
   const { data } = useIspa()
   const { data: dedic } = useDedicaciones()
   const latest = ispaLatest(data)
-  if (!latest) return null
-  const s = latest.summary
-  const trend = data.alcaldeTrend || []
-  // Derived, never restated: the trienios caveat renders only while the
-  // acuerdo's own quote still says «(+ trienios)» for the Alcaldía. If that
-  // clause leaves the source, the sentence leaves the page with it.
+  const split = retribucionesSplit(data)
+  const fijado = fijadoTramos(dedic)
+  if (!latest || !split) return null
   const alcaldeAcuerdo = (dedic?.byOfficial ?? []).find((o) => /alcald/i.test(o.role || ''))
-  const trienios = !!alcaldeAcuerdo && /\(\+\s*trienios\)/.test(dedic?.source?.quote || '')
+  const alcaldeIspa = latest.alcalde?.amountEuros
   return (
-    <Card style={{ marginTop: 14 }}>
+    <Card style={{ marginTop: 18 }}>
+      {/* Its own header rather than SectionHead's `right` slot: that slot is a
+          flex child with no wrap, so at 375px the total kept its full width and
+          squeezed the title column to ELEVEN pixels. Measured, not guessed. */}
       <div
-        className="mono"
         style={{
-          fontSize: 'var(--fs-micro)',
-          color: 'var(--ink50)',
-          textTransform: 'uppercase',
-          letterSpacing: '.08em',
-          fontWeight: 700,
+          display: 'flex',
+          alignItems: 'baseline',
+          justifyContent: 'space-between',
+          gap: 12,
+          flexWrap: 'wrap',
           marginBottom: 10,
         }}
       >
-        Retribuciones de la corporación · ISPA {latest.year}
-      </div>
-      <div style={{ display: 'flex', gap: 28, flexWrap: 'wrap', marginBottom: 12 }}>
-        <div>
-          <div className="mono" style={{ fontSize: 'var(--fs-head)', fontWeight: 800 }}>
-            {s.conDedicacion} / {s.total}
-          </div>
-          <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-            con dedicación · {s.sinDedicacion} solo asistencias
-          </div>
-        </div>
-        <div>
-          <div className="mono" style={{ fontSize: 'var(--fs-head)', fontWeight: 800 }}>
-            {formatEuros(s.totalAnnualEuros)}
-          </div>
-          <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-            {t('cargos.ispa.total').replace('{n}', s.total).replace('{year}', latest.year)}
-          </div>
-        </div>
-      </div>
-      {/* What ISPA sums is what the electos received. Naming the three things it
-          leaves out is what keeps the figure from reading as a bigger claim. */}
-      <div
-        style={{
-          fontSize: 'var(--fs-micro)',
-          color: 'var(--ink50)',
-          lineHeight: 1.5,
-          maxWidth: '68ch',
-          marginBottom: 12,
-        }}
-      >
-        {t('cargos.ispa.totalNota')}
-      </div>
-      <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 12 }}>
-        {s.brackets
-          .filter((b) => /dedicaci/i.test(b.dedicacion))
-          .map((b, i) => (
-            <span
-              key={i}
-              className="mono"
-              style={{
-                fontSize: 'var(--fs-micro)',
-                border: '1px solid var(--border)',
-                borderRadius: 'var(--r-input)',
-                padding: '3px 8px',
-                color: 'var(--ink70)',
-              }}
-            >
-              {b.count}× {formatEuros(b.amountEuros)} · {b.dedicacion}
-            </span>
-          ))}
-      </div>
-      {trend.length >= 2 && (
-        <div style={{ marginBottom: 12 }}>
+        <div style={{ minWidth: 0, flex: '1 1 260px' }}>
           <div
             className="mono"
-            style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginBottom: 5 }}
+            style={{
+              fontSize: 'var(--fs-micro)',
+              color: 'var(--ink50)',
+              textTransform: 'uppercase',
+              fontWeight: 700,
+              letterSpacing: '.1em',
+            }}
           >
-            Retribución del alcalde por año (ISPA)
+            {t('cargos.retri.eyebrow').replace('{n}', split.con.count + split.sin.count)}
           </div>
-          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'baseline' }}>
-            {trend.map((t, i) => {
-              const prev = trend[i - 1]
-              const up = prev && t.amountEuros > prev.amountEuros
-              const down = prev && t.amountEuros < prev.amountEuros
-              return (
-                <span key={t.year} className="mono" style={{ fontSize: 'var(--fs-micro)' }}>
-                  <span style={{ color: 'var(--ink50)' }}>{t.year}</span>{' '}
-                  <span style={{ fontWeight: 700 }}>{formatEuros(t.amountEuros)}</span>{' '}
-                  {prev && (
+          <h3 className="cp-sec-head cp-sec-head-xl" style={{ marginTop: 3 }}>
+            {t('cargos.retri.title')}
+          </h3>
+        </div>
+        <div style={{ minWidth: 0 }}>
+          <div
+            className="mono"
+            style={{ fontSize: 'var(--fs-card)', fontWeight: 700, letterSpacing: '-.02em' }}
+          >
+            {formatEurosCents(split.total)}
+          </div>
+          {/* «Retribuciones y asistencias», nunca «coste de la corporación»: el
+              ISPA suma lo percibido por los electos y deja fuera las cuotas
+              empresariales, el personal eventual y la asignación a los grupos.
+              La palabra equivocada sobre la cifra correcta ya se corrigió una
+              vez en esta misma página. */}
+          <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}>
+            {t('cargos.ispa.total')
+              .replace('{n}', split.con.count + split.sin.count)
+              .replace('{year}', latest.year)}
+          </div>
+        </div>
+      </div>
+
+      {!split.cuadra && (
+        <div
+          style={{
+            margin: '4px 0 14px',
+            padding: '10px 12px',
+            border: '1px solid var(--warn-soft)',
+            borderLeft: '3px solid var(--warn)',
+            borderRadius: 'var(--r-input)',
+            fontSize: 'var(--fs-aux)',
+            color: 'var(--warn-ink)',
+            lineHeight: 1.5,
+          }}
+        >
+          {t('cargos.retri.noCuadra')}
+        </div>
+      )}
+
+      <div className="cp-cargos-retri" style={{ marginTop: 14 }}>
+        <div>
+          <div
+            className="mono"
+            style={{
+              fontSize: 'var(--fs-micro)',
+              textTransform: 'uppercase',
+              letterSpacing: '.07em',
+              color: 'var(--civic-ink)',
+            }}
+          >
+            {split.con.count} con dedicación exclusiva
+            {split.cuadra && ` · ${formatEuros(split.con.sum)} percibidos`}
+          </div>
+          {fijado && (
+            <div style={{ marginTop: 10 }}>
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'baseline',
+                  justifyContent: 'space-between',
+                  gap: 12,
+                  paddingBottom: 6,
+                  borderBottom: '1px solid var(--border2)',
+                }}
+              >
+                <span
+                  className="mono"
+                  style={{
+                    fontSize: 'var(--fs-micro)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '.06em',
+                    color: 'var(--ink50)',
+                  }}
+                >
+                  Cargo
+                </span>
+                <span
+                  className="mono"
+                  style={{
+                    fontSize: 'var(--fs-micro)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '.06em',
+                    color: 'var(--ink50)',
+                    textAlign: 'right',
+                  }}
+                >
+                  Fijado · acuerdo {String(dedic?.source?.date ?? '').slice(0, 4)}
+                </span>
+              </div>
+              {fijado.tramos.map((tr) => (
+                <div
+                  key={tr.amountEuros}
+                  style={{ padding: '8px 0', borderBottom: '1px solid var(--border2)' }}
+                >
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'baseline',
+                      justifyContent: 'space-between',
+                      gap: 12,
+                    }}
+                  >
+                    <span style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink70)' }}>
+                      {tr.count > 1
+                        ? `${tr.count} concejalías con dedicación`
+                        : (tr.roles[0] ?? 'Cargo')}
+                    </span>
                     <span
+                      className="mono"
                       style={{
-                        color: up ? 'var(--ok-ink)' : down ? 'var(--crit-ink)' : 'var(--ink50)',
+                        fontSize: 'var(--fs-body)',
+                        fontWeight: 700,
+                        whiteSpace: 'nowrap',
+                        flexShrink: 0,
                       }}
                     >
-                      {up ? '↑' : down ? '↓' : '→'}
+                      {formatEurosCents(tr.amountEuros)}
                     </span>
+                  </div>
+                  {/* Verbatim from the acuerdo: it names the cargo, not the
+                      person, and rewriting one to fit the column would be
+                      paraphrasing a legal act. A single-role tramo already
+                      carries that name on the line above, so listing it again
+                      underneath just printed «Alcaldía / Alcaldía». */}
+                  {tr.count > 1 && (
+                    <div
+                      style={{
+                        fontSize: 'var(--fs-micro)',
+                        color: 'var(--ink50)',
+                        marginTop: 3,
+                        lineHeight: 1.4,
+                      }}
+                    >
+                      {tr.roles.join(' · ')}
+                    </div>
                   )}
-                </span>
-              )
-            })}
-          </div>
-          {trienios && (
-            <div
-              style={{
-                fontSize: 'var(--fs-micro)',
-                color: 'var(--ink50)',
-                lineHeight: 1.5,
-                maxWidth: '68ch',
-                marginTop: 6,
-              }}
-            >
-              {t('cargos.ispa.trienios').replace(
-                '{importe}',
-                formatEuros(alcaldeAcuerdo.amountEuros),
-              )}
+                </div>
+              ))}
+              <p
+                style={{
+                  margin: '11px 0 0',
+                  fontSize: 'var(--fs-micro)',
+                  lineHeight: 1.55,
+                  color: 'var(--ink50)',
+                }}
+              >
+                Los importes de arriba son lo <strong>fijado</strong> por cargo en el{' '}
+                {dedic?.source?.url ? (
+                  <ExtLink href={dedic.source.url} style={{ color: 'var(--civic)' }}>
+                    acuerdo de pleno de {fmtDateLong(dedic.source.date)} ↗
+                  </ExtLink>
+                ) : (
+                  'acuerdo de pleno'
+                )}
+                {dedic?.source?.expediente ? ` (exp. ${dedic.source.expediente})` : ''} y suman{' '}
+                <span className="mono">{formatEurosCents(fijado.sum)}</span>. El total de la
+                cabecera es otra serie: lo <strong>percibido</strong> en {latest.year} según el
+                ISPA.
+              </p>
             </div>
           )}
         </div>
+
+        <div>
+          <div
+            className="mono"
+            style={{
+              fontSize: 'var(--fs-micro)',
+              textTransform: 'uppercase',
+              letterSpacing: '.07em',
+              color: 'var(--warn-ink)',
+            }}
+          >
+            {split.sin.count} sin dedicación
+            {split.cuadra && ` · ${formatEuros(split.sin.sum)} en asistencias`}
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'flex-end',
+              gap: 3,
+              height: 74,
+              marginTop: 12,
+            }}
+          >
+            {split.sin.amounts.map((v, i) => (
+              <span
+                key={i}
+                title={`${formatEurosCents(v)} · concejal sin identificar (las filas del ISPA son anónimas)`}
+                style={{
+                  flex: 1,
+                  minWidth: 0,
+                  height: `${Math.max(6, (v / split.sin.max) * 100)}%`,
+                  background: 'var(--warn)',
+                }}
+              />
+            ))}
+          </div>
+          <div
+            className="mono"
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              gap: 8,
+              marginTop: 6,
+              fontSize: 'var(--fs-micro)',
+              color: 'var(--ink50)',
+            }}
+          >
+            <span>{formatEurosCents(split.sin.min)}</span>
+            <span style={{ textAlign: 'center' }}>
+              {split.sin.count} concejales, de menor a mayor
+            </span>
+            <span>{formatEurosCents(split.sin.max)}</span>
+          </div>
+          <p
+            style={{
+              margin: '11px 0 0',
+              fontSize: 'var(--fs-micro)',
+              lineHeight: 1.55,
+              color: 'var(--ink50)',
+            }}
+          >
+            Asistencias por sesión: se cobra por acudir, así que la cifra varía con la asistencia de
+            cada uno. <strong>Las filas de concejal del ISPA son anónimas</strong> —importe y
+            dedicación, sin nombre—, por eso se muestran como reparto y no se adjudican a nadie.
+          </p>
+        </div>
+      </div>
+
+      {/* The finding that reorders this page: two correct figures for the same
+          salary sat 300px apart with nothing saying they measure different
+          things, so the only available reading was that one of them was wrong. */}
+      {alcaldeAcuerdo && typeof alcaldeIspa === 'number' && (
+        <div
+          style={{
+            marginTop: 18,
+            padding: '13px 15px',
+            background: 'var(--civic-soft)',
+            borderLeft: '3px solid var(--civic)',
+            borderRadius: '0 var(--r-input) var(--r-input) 0',
+          }}
+        >
+          <div style={{ fontSize: 'var(--fs-aux)', fontWeight: 700 }}>
+            Por qué el alcalde tiene dos cifras
+          </div>
+          <p
+            style={{
+              margin: '6px 0 0',
+              fontSize: 'var(--fs-meta)',
+              lineHeight: 1.6,
+              color: 'var(--ink70)',
+              maxWidth: '86ch',
+            }}
+          >
+            El acuerdo de pleno le <em>fija</em>{' '}
+            <span className="mono">{formatEurosCents(alcaldeAcuerdo.amountEuros)}</span> brutos
+            anuales. El ISPA publica lo que <em>percibió</em> en {latest.year}:{' '}
+            <span className="mono">{formatEurosCents(alcaldeIspa)}</span>. No se contradicen —una es
+            la asignación, la otra la nómina— y sumar o comparar las dos series es el error que esta
+            página facilitaba.{' '}
+            {/* Derived, never restated: the trienios clause renders only while
+                the acuerdo's own quote still carries it. If «(+ trienios)»
+                leaves the source, the sentence leaves the page with it. */}
+            {/\(\+\s*trienios\)/.test(dedic?.source?.quote || '') && t('cargos.ispa.trienios')}
+          </p>
+        </div>
       )}
-      <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', lineHeight: 1.5 }}>
-        {data.source?.note}{' '}
+
+      <AlcaldeSerie data={data} />
+
+      <div
+        style={{
+          marginTop: 14,
+          fontSize: 'var(--fs-micro)',
+          color: 'var(--ink50)',
+          lineHeight: 1.5,
+          maxWidth: '86ch',
+        }}
+      >
+        {t('cargos.ispa.totalNota')} {data.source?.note}{' '}
         {data.source?.home && (
           <ExtLink href={data.source.home} style={{ color: 'var(--civic)' }}>
             Fuente: ISPA · Ministerio de Hacienda y Función Pública ↗
@@ -416,177 +771,313 @@ function RetribucionesPanel() {
   )
 }
 
-function PlantillaCard() {
+/**
+ * The municipal workforce — deliberately below the elected members, and framed
+ * as a different subject.
+ *
+ * It used to sit in the same column as the 21 electos, which put a 2021 press
+ * figure for EMPLOYEES beside a 2024 count of authorised POSTS and invited a
+ * reader to subtract one from the other. The two magnitudes never met a
+ * sentence saying they are not comparable.
+ */
+function PlantillaBanda() {
+  const t = useT()
   const { data } = useJsonFetch('/data/plantilla.json', null)
   if (!data || !data.total) return null
   const pct = (n) => Math.round((n / data.total) * 100)
+  const anio = data.asOf ? String(data.asOf).slice(0, 4) : null
   return (
-    <Card style={{ marginTop: 14 }}>
+    <div
+      style={{
+        marginTop: 26,
+        background: 'var(--soft)',
+        border: '1px solid var(--border)',
+        borderRadius: 'var(--r-card)',
+        padding: 20,
+      }}
+    >
       <div
         className="mono"
         style={{
           fontSize: 'var(--fs-micro)',
-          color: 'var(--ink50)',
           textTransform: 'uppercase',
-          letterSpacing: '.08em',
-          fontWeight: 700,
-          marginBottom: 10,
-        }}
-      >
-        Plantilla municipal{data.asOf ? ` · ${String(data.asOf).slice(0, 4)}` : ''}
-      </div>
-      <div style={{ display: 'flex', gap: 28, flexWrap: 'wrap', alignItems: 'baseline' }}>
-        <div>
-          <div className="mono" style={{ fontSize: 'var(--fs-card)', fontWeight: 800 }}>
-            {data.total}
-          </div>
-          <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-            empleados públicos
-          </div>
-        </div>
-        {typeof data.women === 'number' && typeof data.men === 'number' && (
-          <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink70)' }}>
-            <span className="mono" style={{ fontWeight: 700 }}>
-              {data.women}
-            </span>{' '}
-            mujeres ({pct(data.women)}%) ·{' '}
-            <span className="mono" style={{ fontWeight: 700 }}>
-              {data.men}
-            </span>{' '}
-            hombres ({pct(data.men)}%)
-          </div>
-        )}
-      </div>
-      <div
-        style={{
-          fontSize: 'var(--fs-aux)',
+          letterSpacing: '.07em',
           color: 'var(--ink50)',
-          lineHeight: 1.5,
-          marginTop: 8,
         }}
       >
-        {data.note}{' '}
-        {data.source?.url && (
-          <ExtLink href={data.source.url} style={{ color: 'var(--civic)' }}>
-            Fuente: {data.source.publisher} ({String(data.source.date).slice(0, 4)}) ↗
-          </ExtLink>
-        )}
+        {t('cargos.plantilla.eyebrow')}
       </div>
-      {data.authorized && typeof data.authorized.plazas === 'number' && (
-        <div
-          style={{
-            marginTop: 12,
-            paddingTop: 10,
-            borderTop: '1px solid var(--border)',
-            fontSize: 'var(--fs-aux)',
-            color: 'var(--ink50)',
-            lineHeight: 1.5,
-          }}
-        >
-          <span
-            className="mono"
-            style={{ fontSize: 'var(--fs-body)', fontWeight: 800, color: 'var(--ink)' }}
+      <div className="cp-cargos-duo" style={{ marginTop: 12 }}>
+        <div>
+          <h3 style={{ fontSize: 'var(--fs-head)', fontWeight: 700, margin: 0 }}>
+            {t('cargos.plantilla.title')}
+          </h3>
+          <div
+            style={{
+              display: 'flex',
+              gap: 26,
+              marginTop: 10,
+              alignItems: 'baseline',
+              flexWrap: 'wrap',
+            }}
           >
-            {data.authorized.approx ? '≈' : ''}
-            {data.authorized.plazas}
-          </span>{' '}
-          {data.authorized.label}
-          {data.authorized.asOf ? ` · ${data.authorized.asOf}` : ''}
-          <div style={{ marginTop: 4, color: 'var(--ink50)' }}>
-            {data.authorized.note}{' '}
-            {data.authorized.source?.url && (
-              <ExtLink href={data.authorized.source.url} style={{ color: 'var(--civic)' }}>
-                Fuente: {data.authorized.source.publisher} ↗
-              </ExtLink>
+            <div>
+              <div className="mono" style={{ fontSize: 'var(--fs-card)', fontWeight: 700 }}>
+                {data.total}
+              </div>
+              <div
+                style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}
+              >{`${t('cargos.plantilla.personas')}${anio ? ` · ${anio}` : ''}`}</div>
+            </div>
+            {data.authorized && typeof data.authorized.plazas === 'number' && (
+              <div>
+                <div
+                  className="mono"
+                  style={{ fontSize: 'var(--fs-card)', fontWeight: 700, color: 'var(--ink50)' }}
+                >
+                  {data.authorized.approx ? '≈' : ''}
+                  {data.authorized.plazas}
+                </div>
+                <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}>
+                  {t('cargos.plantilla.plazas')}
+                  {data.authorized.asOf ? ` · ${data.authorized.asOf}` : ''}
+                </div>
+              </div>
             )}
           </div>
+          {typeof data.women === 'number' && typeof data.men === 'number' && (
+            <>
+              {/* Two tones a reader can actually tell apart. The second
+                  segment was --intel-soft, which is a #f5f0ff wash: against the
+                  band's own light ground it vanished, so a 52/48 split read as
+                  a bar filled to 52 % and nothing else. Each figure carries its
+                  own swatch, so the mapping never depends on reading order. */}
+              <div
+                style={{
+                  display: 'flex',
+                  height: 10,
+                  borderRadius: 'var(--r-pill)',
+                  overflow: 'hidden',
+                  marginTop: 14,
+                }}
+              >
+                <span style={{ flex: data.women, background: 'var(--intel)' }} />
+                <span style={{ flex: data.men, background: 'var(--ink30)' }} />
+              </div>
+              <div
+                style={{
+                  display: 'flex',
+                  gap: 16,
+                  marginTop: 7,
+                  fontSize: 'var(--fs-micro)',
+                  color: 'var(--ink70)',
+                  flexWrap: 'wrap',
+                }}
+              >
+                <LegendDot
+                  color="var(--intel)"
+                  label={
+                    <span>
+                      <span className="mono" style={{ fontWeight: 700 }}>
+                        {data.women}
+                      </span>{' '}
+                      {t('cargos.plantilla.mujeres')} · {pct(data.women)} %
+                    </span>
+                  }
+                />
+                <LegendDot
+                  color="var(--ink30)"
+                  label={
+                    <span>
+                      <span className="mono" style={{ fontWeight: 700 }}>
+                        {data.men}
+                      </span>{' '}
+                      {t('cargos.plantilla.hombres')} · {pct(data.men)} %
+                    </span>
+                  }
+                />
+              </div>
+            </>
+          )}
         </div>
-      )}
-    </Card>
+        <div>
+          <p
+            style={{
+              margin: 0,
+              fontSize: 'var(--fs-meta)',
+              lineHeight: 1.6,
+              color: 'var(--ink70)',
+            }}
+          >
+            {data.note}
+          </p>
+          {data.authorized?.note && (
+            <p
+              style={{
+                margin: '9px 0 0',
+                fontSize: 'var(--fs-micro)',
+                lineHeight: 1.55,
+                color: 'var(--ink50)',
+              }}
+            >
+              {data.authorized.note}{' '}
+              {data.authorized.source?.url && (
+                <ExtLink href={data.authorized.source.url} style={{ color: 'var(--civic)' }}>
+                  Fuente: {data.authorized.source.publisher} ↗
+                </ExtLink>
+              )}
+            </p>
+          )}
+          {data.source?.url && (
+            <p
+              style={{
+                margin: '9px 0 0',
+                fontSize: 'var(--fs-micro)',
+                lineHeight: 1.55,
+                color: 'var(--ink50)',
+              }}
+            >
+              {t('cargos.plantilla.fuenteSexo')}{' '}
+              <ExtLink href={data.source.url} style={{ color: 'var(--civic)' }}>
+                {data.source.publisher}, {fmtDateLong(data.source.date)} ↗
+              </ExtLink>
+            </p>
+          )}
+        </div>
+      </div>
+    </div>
   )
 }
 
 /**
- * One card per person, sitting or former.
+ * The published address, said to be what it is.
+ *
+ * Three of the twenty-one have their own address. Eleven share the alcaldía's
+ * counter and six the PP group's Gmail — which is not even a municipal domain.
+ * Printed bare under a face, a shared counter reads as that person's direct
+ * line. The label is COUNTED from the roster, never listed by hand, so it
+ * disappears on its own the day the council publishes individual addresses.
+ */
+function Correo({ o, kinds }) {
+  const t = useT()
+  const info = kinds.get(o.slug)
+  if (!info) {
+    return (
+      <span className="mono" style={{ color: 'var(--ink50)' }}>
+        {t('cargos.card.sinCorreo')}
+      </span>
+    )
+  }
+  return (
+    <span
+      style={{
+        display: 'inline-flex',
+        gap: 6,
+        alignItems: 'baseline',
+        flexWrap: 'wrap',
+        minWidth: 0,
+      }}
+    >
+      {/* The address breaks rather than overflows. In the five-column
+          opposition grid a card is ~188px and popularesribarroja@gmail.com
+          needs ~205, so an unbroken token pushed 15px of horizontal scroll
+          into the grid and clipped the last characters of the address —
+          which is the one thing the line exists to show. */}
+      <a
+        href={`mailto:${info.email}`}
+        className="mono"
+        style={{
+          color: 'var(--ink70)',
+          textDecoration: 'none',
+          overflowWrap: 'anywhere',
+          minWidth: 0,
+        }}
+      >
+        {info.email}
+      </a>
+      {info.compartido && (
+        <span style={{ color: 'var(--ink50)', fontSize: 'var(--fs-micro)' }}>
+          {t('cargos.card.buzonCompartido').replace('{n}', info.n)}
+        </span>
+      )}
+    </span>
+  )
+}
+
+function Retrato({ o, size, radius = 'var(--r-card)' }) {
+  const color = partyColor(o.party)
+  if (o.photoUrl) {
+    return (
+      <img
+        src={o.photoUrl}
+        alt={o.name}
+        width={size}
+        height={size}
+        style={{
+          width: size,
+          height: size,
+          borderRadius: radius,
+          objectFit: 'cover',
+          flexShrink: 0,
+          border: `2px solid ${color}22`,
+        }}
+      />
+    )
+  }
+  return (
+    <div
+      title={o.photoNote || undefined}
+      style={{
+        width: size,
+        height: size,
+        borderRadius: radius,
+        flexShrink: 0,
+        display: 'grid',
+        placeItems: 'center',
+        background: 'var(--soft)',
+        color: 'var(--ink50)',
+        fontWeight: 700,
+      }}
+    >
+      {o.name
+        .split(' ')
+        .slice(0, 2)
+        .map((x) => x[0])
+        .join('')}
+    </div>
+  )
+}
+
+/**
+ * One card per person, in the register the page is reading them in.
  *
  * `former` is a different card, not a dimmed one: every block below the header
- * — salary, growth, department chips, encaje, quejas, social — is a
- * present-tense claim about a seat, and none of them may be painted over
- * someone who no longer holds it. What a former member keeps is what is
- * history: name, party, photograph, biography, and the acta that records the
- * departure. A row the corrections ADDED (`o.correccion`) carries its own
- * provenance line and, when the source publishes no portrait, says why the
- * initials are there instead of letting them read as a failed image.
+ * — salary, department chips, encaje, quejas, social — is a present-tense
+ * claim about a seat, and none of them may be painted over someone who no
+ * longer holds it. What a former member keeps is what is history: name, party,
+ * photograph, biography, and the acta that records the departure. A row the
+ * corrections ADDED (`o.correccion`) carries its own provenance line and, when
+ * the source publishes no portrait, says why the initials are there instead of
+ * letting them read as a failed image.
+ *
+ * `oposicion` is a third register, and the same argument: a councillor with no
+ * delegated área has no portfolio, no department chip and no encaje to assess,
+ * and the compact card exists so that absence reads as the institutional fact
+ * it is rather than as a card somebody forgot to fill in.
  */
-function OfficialCard({ o, big = false, bioRoute, former = false }) {
+function OfficialCard({ o, bioRoute, kinds, variant = 'gobierno' }) {
   const t = useT()
-  const color = partyColor(o.party)
+  const former = variant === 'former'
+  const oposicion = variant === 'oposicion'
   const sourceUrl = former ? o.source?.url : o.correccion?.source?.url
   const sourceTitle = former ? o.source?.title : o.correccion?.source?.title
   return (
-    <Card hover>
+    <Card hover style={{ display: 'flex', flexDirection: 'column' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-        {o.photoUrl ? (
-          <img
-            src={o.photoUrl}
-            alt={o.name}
-            width={big ? 72 : 52}
-            height={big ? 72 : 52}
-            style={{
-              width: big ? 72 : 52,
-              height: big ? 72 : 52,
-              borderRadius: 'var(--r-card)',
-              objectFit: 'cover',
-              flexShrink: 0,
-              border: `2px solid ${color}22`,
-            }}
-          />
-        ) : (
-          <div
-            title={o.photoNote || undefined}
-            style={{
-              width: big ? 72 : 52,
-              height: big ? 72 : 52,
-              borderRadius: 'var(--r-card)',
-              flexShrink: 0,
-              display: 'grid',
-              placeItems: 'center',
-              background: 'var(--soft)',
-              color: 'var(--ink50)',
-              fontWeight: 700,
-            }}
-          >
-            {o.name
-              .split(' ')
-              .slice(0, 2)
-              .map((x) => x[0])
-              .join('')}
-          </div>
-        )}
+        <Retrato o={o} size={oposicion ? 44 : 52} />
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 6,
-              marginBottom: 2,
-            }}
-          >
-            <span
-              className="mono"
-              style={{
-                fontSize: 'var(--fs-micro)',
-                fontWeight: 700,
-                letterSpacing: '.12em',
-                textTransform: 'uppercase',
-                background: color,
-                color: 'white',
-                padding: '2px 6px',
-                borderRadius: 'var(--r-pill)',
-              }}
-            >
-              {o.party}
-            </span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 3 }}>
+            <PartyTag tone={partyColor(o.party)}>{o.party}</PartyTag>
             {o.role === 'alcalde' && (
               <span
                 className="mono"
@@ -595,20 +1086,14 @@ function OfficialCard({ o, big = false, bioRoute, former = false }) {
                   fontWeight: 700,
                   letterSpacing: '.1em',
                   textTransform: 'uppercase',
-                  color: 'var(--civic)',
+                  color: 'var(--civic-ink)',
                 }}
               >
                 Alcalde
               </span>
             )}
           </div>
-          <div
-            style={{
-              fontSize: big ? 'var(--fs-head)' : 'var(--fs-body)',
-              fontWeight: 600,
-              lineHeight: 1.2,
-            }}
-          >
+          <div style={{ fontSize: 'var(--fs-body)', fontWeight: 600, lineHeight: 1.25 }}>
             <Link to={`/cargos/${o.slug}`} style={{ color: 'inherit', textDecoration: 'none' }}>
               {o.name}
             </Link>
@@ -643,29 +1128,62 @@ function OfficialCard({ o, big = false, bioRoute, former = false }) {
               {t('cargos.card.sinRetrato')}
             </div>
           )}
-          {!former && o.portfolios.length > 0 && (
-            <div
-              style={{
-                fontSize: 'var(--fs-aux)',
-                color: 'var(--ink50)',
-                marginTop: 4,
-                lineHeight: 1.35,
-              }}
-            >
-              {o.portfolios.slice(0, 4).join(' · ')}
-              {o.portfolios.length > 4 && ' · …'}
-            </div>
-          )}
         </div>
       </div>
+
+      {/* Verbatim, as the council publishes them — the labelled list of what
+          this person actually holds, above the navigation chips. */}
+      {variant === 'gobierno' && o.portfolios.length > 0 && (
+        <div style={{ marginTop: 11, paddingTop: 10, borderTop: '1px solid var(--border2)' }}>
+          <div
+            className="mono"
+            style={{
+              fontSize: 'var(--fs-micro)',
+              textTransform: 'uppercase',
+              letterSpacing: '.07em',
+              color: 'var(--ink50)',
+            }}
+          >
+            {t('cargos.gobierno.areas').replace('{n}', o.portfolios.length)}
+          </div>
+          <div
+            style={{
+              fontSize: 'var(--fs-aux)',
+              color: 'var(--ink70)',
+              marginTop: 5,
+              lineHeight: 1.45,
+            }}
+          >
+            {o.portfolios.join(' · ')}
+          </div>
+        </div>
+      )}
+
+      {variant === 'gobierno' && (
+        <>
+          <RetribucionBadge official={o} />
+          <DepartmentLinks portfolios={o.portfolios} />
+          <EncajeCard official={o} bioRoute={bioRoute} />
+          <QuejaBadge slug={o.slug} />
+          <SocialLinks slug={o.slug} />
+        </>
+      )}
+
+      {oposicion && (
+        <>
+          <EncajeCard official={o} bioRoute={bioRoute} />
+          <RetribucionBadge official={o} />
+          <QuejaBadge slug={o.slug} />
+        </>
+      )}
+
       <div
         style={{
-          marginTop: big ? 14 : 10,
-          paddingTop: big ? 12 : 8,
-          borderTop: '1px solid var(--border2)',
+          marginTop: 'auto',
+          paddingTop: 10,
           display: 'flex',
           justifyContent: 'space-between',
-          alignItems: 'center',
+          alignItems: 'baseline',
           gap: 10,
           flexWrap: 'wrap',
           fontSize: 'var(--fs-micro)',
@@ -674,18 +1192,8 @@ function OfficialCard({ o, big = false, bioRoute, former = false }) {
       >
         {/* Never a substitute address: the source published none, so the card
             says so instead of pointing a reader at somebody else's mailbox. */}
-        {o.email ? (
-          <a
-            href={`mailto:${o.email}`}
-            style={{ color: 'var(--ink)', textDecoration: 'none' }}
-            className="mono"
-          >
-            {o.email}
-          </a>
-        ) : (
-          <span className="mono">{t('cargos.card.sinCorreo')}</span>
-        )}
-        <span style={{ display: 'inline-flex', gap: 12, alignItems: 'center' }}>
+        <Correo o={o} kinds={kinds} />
+        <span style={{ display: 'inline-flex', gap: 12, alignItems: 'baseline' }}>
           {sourceUrl && (
             <ExtLink
               href={sourceUrl}
@@ -696,7 +1204,12 @@ function OfficialCard({ o, big = false, bioRoute, former = false }) {
               {t('cargos.card.acta')}
             </ExtLink>
           )}
-          {bioRoute ? (
+          {/* Only the INTERNAL report is a link about this person. The council's
+              `cvUrl` is the same transparency index for twenty of the twenty-one,
+              so promising «Biografía» on each card and delivering a listing
+              twenty times over is a promise the source cannot keep — the index
+              is linked once, from the header. */}
+          {bioRoute && (
             <Link
               to={bioRoute}
               title="Informe biográfico del agente periodista de CivicPulse"
@@ -704,28 +1217,9 @@ function OfficialCard({ o, big = false, bioRoute, former = false }) {
             >
               Biografía →
             </Link>
-          ) : (
-            o.cvUrl && (
-              <ExtLink
-                href={o.cvUrl}
-                style={{ color: 'var(--civic)', textDecoration: 'none', fontWeight: 500 }}
-              >
-                Biografía →
-              </ExtLink>
-            )
           )}
         </span>
       </div>
-      {!former && (
-        <>
-          <SocialLinks slug={o.slug} />
-          <RetribucionBadge official={o} />
-          <SalaryGrowth official={o} />
-          <DepartmentLinks portfolios={o.portfolios} />
-          <EncajeCard official={o} bioRoute={bioRoute} />
-          <QuejaBadge slug={o.slug} />
-        </>
-      )}
     </Card>
   )
 }
@@ -742,12 +1236,12 @@ function CompositionBar({ composition, total }) {
   // test that pins «every seat is painted», so neither can drift from the other.
   const items = barItems(composition)
   return (
-    <div style={{ marginTop: 14 }}>
+    <div>
       <div
         style={{
           display: 'flex',
           width: '100%',
-          height: 14,
+          height: 15,
           borderRadius: 'var(--r-pill)',
           overflow: 'hidden',
         }}
@@ -774,8 +1268,8 @@ function CompositionBar({ composition, total }) {
       <div
         style={{
           display: 'flex',
-          gap: 14,
-          marginTop: 8,
+          gap: 12,
+          marginTop: 10,
           flexWrap: 'wrap',
           fontSize: 'var(--fs-micro)',
         }}
@@ -801,6 +1295,12 @@ function CorporacionMunicipal() {
   const t = useT()
   const { loading, error, data } = useOfficials()
   const bioRoutes = useBioReportRoutes()
+  const ispa = useIspa()
+  const split = retribucionesSplit(ispa.data)
+  // The mandate is the ACUERDO's own declaration, not a constant typed here:
+  // officials.json does not carry one, and a hand-written «2023-2027» would
+  // outlive the mandate it names.
+  const { data: dedic } = useDedicaciones()
 
   if (loading) {
     return (
@@ -828,22 +1328,168 @@ function CorporacionMunicipal() {
   }
 
   const mayor = data.officials.find((o) => o.role === 'alcalde')
-  const rest = data.officials.filter((o) => o.role !== 'alcalde')
+  // Who governs and who scrutinises, DERIVED from the delegated áreas rather
+  // than from a party name: the sentence has to survive a coalition, a
+  // reshuffle, and a councillor who leaves the governing group.
+  const conAreas = data.officials.filter((o) => (o.portfolios ?? []).length > 0)
+  const gobierno = [
+    ...(mayor && conAreas.includes(mayor) ? [mayor] : []),
+    ...conAreas.filter((o) => o !== mayor),
+  ]
+  const oposicion = data.officials.filter((o) => (o.portfolios ?? []).length === 0)
+  const partidosGobierno = [...new Set(gobierno.map((o) => o.party))]
+  const partidoUnico = partidosGobierno.length === 1 ? partidosGobierno[0] : null
   const former = data.formerOfficials ?? []
   const corr = data.corrections
+  const kinds = mailboxKinds(data.officials)
   // Derived from the snapshot's own block, never typed: the second line of
   // the stamp exists exactly when a correction does, and counts what it counts.
   const nCorr = corr ? (corr.bajas ?? 0) + (corr.altas ?? 0) : 0
   const generatedDate = fmtDateLong(data.generatedAt)
+  const fichasUrl = data.officials.find((o) => o.cvUrl)?.cvUrl
 
   return (
     <div style={{ marginBottom: 28 }}>
+      <div className="cp-cargos-hero">
+        <div>
+          <div
+            className="mono"
+            style={{
+              fontSize: 'var(--fs-micro)',
+              color: 'var(--ink50)',
+              textTransform: 'uppercase',
+              letterSpacing: '.08em',
+            }}
+          >
+            {t('cargos.eyebrow')}
+            {dedic?.mandate ? ` · ${t('cargos.hero.mandato').replace('{m}', dedic.mandate)}` : ''}
+          </div>
+          <h1
+            style={{
+              fontSize: 'var(--fs-page)',
+              fontWeight: 700,
+              letterSpacing: '-.02em',
+              margin: '6px 0 0',
+              lineHeight: 1.15,
+            }}
+          >
+            {t('cargos.title')}
+          </h1>
+          <p
+            style={{
+              margin: '14px 0 0',
+              fontSize: 'var(--fs-head)',
+              lineHeight: 1.5,
+              color: 'var(--ink)',
+              maxWidth: '62ch',
+              textWrap: 'pretty',
+            }}
+          >
+            {(partidoUnico ? t('cargos.hero.lead') : t('cargos.hero.leadVarios'))
+              .replace('{total}', data.count)
+              .replace('{nGob}', gobierno.length)
+              .replace('{partido}', partidoUnico ?? '')
+              .replace('{nOpo}', oposicion.length)}{' '}
+            {/* Only while the data supports it: «ninguno a cero» is a claim
+                about the smallest anonymous row, so it renders from that row
+                and vanishes if one ever reads zero. */}
+            {split?.cuadra && split.sin.min > 0 && (
+              <>
+                {t('cargos.hero.coste')
+                  .replace('{importe}', formatEuros(split.total))
+                  .replace('{n}', data.count)
+                  .replace('{year}', split.year)}
+              </>
+            )}
+          </p>
+          <p
+            style={{
+              margin: '12px 0 0',
+              fontSize: 'var(--fs-aux)',
+              lineHeight: 1.55,
+              color: 'var(--ink50)',
+              maxWidth: '66ch',
+            }}
+          >
+            {t('cargos.intro')}{' '}
+            {/* Said ONCE. Twenty of the twenty-one cvUrl values in the snapshot
+                are this same transparency index, so a per-card «Biografía»
+                promised a person and delivered a listing, twenty times over. */}
+            {fichasUrl && (
+              <ExtLink href={fichasUrl} style={{ color: 'var(--civic)' }}>
+                {t('cargos.hero.fichas').replace('{n}', data.count)} ↗
+              </ExtLink>
+            )}
+          </p>
+        </div>
+
+        <Card>
+          <div
+            style={{
+              fontSize: 'var(--fs-micro)',
+              fontWeight: 700,
+              textTransform: 'uppercase',
+              letterSpacing: '.05em',
+              color: 'var(--ink50)',
+              marginBottom: 12,
+            }}
+          >
+            {t('cargos.composicion.title').replace('{n}', data.count)}
+          </div>
+          <CompositionBar composition={data.composition} total={data.count} />
+          <div
+            style={{
+              marginTop: 13,
+              paddingTop: 12,
+              borderTop: '1px solid var(--border2)',
+              display: 'flex',
+              gap: 20,
+            }}
+          >
+            <div>
+              <div className="mono" style={{ fontSize: 'var(--fs-card)', fontWeight: 700 }}>
+                {gobierno.length}
+              </div>
+              <div
+                style={{
+                  fontSize: 'var(--fs-micro)',
+                  color: 'var(--ink50)',
+                  marginTop: 2,
+                  lineHeight: 1.35,
+                }}
+              >
+                {t('cargos.composicion.gobiernan')}
+              </div>
+            </div>
+            <div style={{ width: 1, background: 'var(--border)' }} />
+            <div>
+              <div
+                className="mono"
+                style={{ fontSize: 'var(--fs-card)', fontWeight: 700, color: 'var(--ink50)' }}
+              >
+                {oposicion.length}
+              </div>
+              <div
+                style={{
+                  fontSize: 'var(--fs-micro)',
+                  color: 'var(--ink50)',
+                  marginTop: 2,
+                  lineHeight: 1.35,
+                }}
+              >
+                {t('cargos.composicion.fiscalizan')}
+              </div>
+            </div>
+          </div>
+        </Card>
+      </div>
+
       <div
         style={{
           display: 'flex',
           alignItems: 'baseline',
           gap: 10,
-          marginBottom: 8,
+          marginTop: 18,
           flexWrap: 'wrap',
         }}
       >
@@ -871,7 +1517,7 @@ function CorporacionMunicipal() {
             color: 'var(--warn-ink)',
             lineHeight: 1.5,
             maxWidth: '76ch',
-            marginBottom: 10,
+            marginTop: 8,
           }}
         >
           {t('cargos.corporacion.correcciones')
@@ -887,43 +1533,63 @@ function CorporacionMunicipal() {
         </div>
       )}
 
-      {mayor && (
-        <div style={{ marginBottom: 14 }}>
-          <OfficialCard o={mayor} big bioRoute={bioRoutes.get(mayor.slug)} />
+      <RetribucionesPanel />
+
+      <div style={{ marginTop: 26 }}>
+        <SectionHead
+          as="h2"
+          eyebrow={t('cargos.gobierno.eyebrow').replace('{n}', gobierno.length)}
+          title={t('cargos.gobierno.title')}
+        />
+        <div className="cp-cargos-gob">
+          {gobierno.map((o) => (
+            <OfficialCard
+              key={o.slug}
+              o={o}
+              variant="gobierno"
+              kinds={kinds}
+              bioRoute={bioRoutes.get(o.slug)}
+            />
+          ))}
+        </div>
+      </div>
+
+      {oposicion.length > 0 && (
+        <div style={{ marginTop: 26 }}>
+          <SectionHead
+            as="h2"
+            eyebrow={t('cargos.oposicion.eyebrow').replace('{n}', oposicion.length)}
+            title={t('cargos.oposicion.title')}
+          />
+          <p
+            style={{
+              margin: '0 0 14px',
+              fontSize: 'var(--fs-aux)',
+              lineHeight: 1.55,
+              color: 'var(--ink70)',
+              maxWidth: '88ch',
+            }}
+          >
+            {t('cargos.oposicion.nota')}
+          </p>
+          <div className="cp-cargos-opo">
+            {oposicion.map((o) => (
+              <OfficialCard
+                key={o.slug}
+                o={o}
+                variant="oposicion"
+                kinds={kinds}
+                bioRoute={bioRoutes.get(o.slug)}
+              />
+            ))}
+          </div>
         </div>
       )}
 
-      <CompositionBar composition={data.composition} total={data.count} />
-      <RetribucionesPanel />
-      <PlantillaCard />
-
-      <div
-        className="mono"
-        style={{
-          fontSize: 'var(--fs-micro)',
-          color: 'var(--ink50)',
-          textTransform: 'uppercase',
-          letterSpacing: '.08em',
-          marginTop: 22,
-          marginBottom: 8,
-        }}
-      >
-        Concejalas y concejales
-      </div>
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-          gap: 12,
-        }}
-      >
-        {rest.map((o) => (
-          <OfficialCard key={o.slug} o={o} bioRoute={bioRoutes.get(o.slug)} />
-        ))}
-      </div>
+      <PlantillaBanda />
 
       {former.length > 0 && (
-        <>
+        <div style={{ marginTop: 26 }}>
           <div
             className="mono"
             style={{
@@ -931,7 +1597,6 @@ function CorporacionMunicipal() {
               color: 'var(--ink50)',
               textTransform: 'uppercase',
               letterSpacing: '.08em',
-              marginTop: 22,
               marginBottom: 4,
             }}
           >
@@ -941,66 +1606,82 @@ function CorporacionMunicipal() {
             style={{
               fontSize: 'var(--fs-aux)',
               color: 'var(--ink50)',
-              marginBottom: 8,
+              marginBottom: 10,
               maxWidth: 620,
               lineHeight: 1.5,
             }}
           >
             {t('cargos.bajas.note')}
           </div>
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-              gap: 12,
-            }}
-          >
+          <div className="cp-cargos-gob">
             {former.map((o) => (
-              <OfficialCard key={o.slug} o={o} former bioRoute={bioRoutes.get(o.slug)} />
+              <OfficialCard
+                key={o.slug}
+                o={o}
+                variant="former"
+                kinds={kinds}
+                bioRoute={bioRoutes.get(o.slug)}
+              />
             ))}
           </div>
-        </>
+        </div>
       )}
+
+      <div
+        style={{
+          marginTop: 26,
+          paddingTop: 18,
+          borderTop: '1px solid var(--border)',
+          display: 'flex',
+          gap: 24,
+          alignItems: 'baseline',
+          flexWrap: 'wrap',
+        }}
+      >
+        <p
+          style={{
+            margin: 0,
+            fontSize: 'var(--fs-meta)',
+            lineHeight: 1.55,
+            color: 'var(--ink50)',
+            maxWidth: '68ch',
+          }}
+        >
+          {t('cargos.fuentes')
+            .replace('{fecha}', generatedDate)
+            .replace('{acuerdo}', fmtDateLong(dedic?.source?.date) || '—')}
+        </p>
+        <span style={{ flex: 1 }} />
+        <div
+          style={{
+            display: 'flex',
+            gap: 16,
+            fontSize: 'var(--fs-aux)',
+            whiteSpace: 'nowrap',
+            flexWrap: 'wrap',
+          }}
+        >
+          <Link to="/departamentos" style={{ color: 'var(--civic)' }}>
+            Departamentos →
+          </Link>
+          <Link to="/promesas" style={{ color: 'var(--civic)' }}>
+            Promesas →
+          </Link>
+          <Link to="/quejas" style={{ color: 'var(--civic)' }}>
+            Quejas →
+          </Link>
+        </div>
+      </div>
     </div>
   )
 }
 
 export default function Cargos() {
-  const t = useT()
   return (
     <div
       className="cp-page"
       style={{ padding: '24px 24px 48px', maxWidth: 1400, margin: '0 auto' }}
     >
-      <div style={{ marginBottom: 18 }}>
-        <div
-          className="mono"
-          style={{
-            fontSize: 'var(--fs-micro)',
-            color: 'var(--ink50)',
-            textTransform: 'uppercase',
-            letterSpacing: '.08em',
-          }}
-        >
-          {t('cargos.eyebrow')}
-        </div>
-        <div
-          style={{
-            fontSize: 'var(--fs-page)',
-            fontWeight: 700,
-            letterSpacing: '-.015em',
-            marginTop: 2,
-          }}
-        >
-          {t('cargos.title')}
-        </div>
-        <div
-          style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 4, maxWidth: 620 }}
-        >
-          {t('cargos.intro')}
-        </div>
-      </div>
-
       <CorporacionMunicipal />
     </div>
   )

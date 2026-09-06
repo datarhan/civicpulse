@@ -157,7 +157,13 @@ test.describe('Cargos (/cargos)', () => {
     await expect(page.getByText('sin relación declarada').first()).toBeVisible()
 
     const body = await page.locator('body').innerText()
-    const section = body.slice(body.indexOf('CONCEJALAS Y CONCEJALES'))
+    // Anchored on the governing grid's own heading. It is NOT uppercased —
+    // `.cp-sec-head` sets no text-transform — and an indexOf that misses would
+    // return -1 and slice the last character, leaving every assertion below
+    // measuring nothing. So the anchor is proven to exist first.
+    const i = body.indexOf('Quién dirige qué')
+    expect(i, 'la rejilla de gobierno tiene que estar en la página').toBeGreaterThan(0)
+    const section = body.slice(i)
     // innerText reflects CSS text-transform, so the eyebrow arrives uppercased.
     expect(section).toMatch(/encaje declarado/i)
     expect(section).not.toContain('UPV')
@@ -187,7 +193,20 @@ test.describe('Cargos (/cargos)', () => {
     const former = body.slice(i)
     // The departure line is there, and none of the sitting-only blocks is.
     expect(former).toMatch(/hasta el \d{1,2} de [a-záéíóúñ]+ de \d{4}/i)
-    expect(former).not.toMatch(/€\/año|ENCAJE DECLARADO|QUEJAS ASIGNADAS|DEPARTAMENTOS/)
+    // Every present-tense marker the sitting cards carry, named as it renders
+    // TODAY. The list has to be re-read whenever a block is restyled: this
+    // assertion is an absence, and an absence stays green for free once the
+    // string it names stops existing anywhere. «€/año» was such a string until
+    // the retribución line was rewritten, and it went on passing while
+    // measuring nothing.
+    expect(former).not.toMatch(
+      /ENCAJE DECLARADO|QUEJAS ASIGNADAS|DEPARTAMENTOS|ÁREAS DELEGADAS|fijada en el acuerdo|asistencias por sesión/,
+    )
+    // And those markers are REACHABLE — they exist above, on the sitting cards.
+    // Otherwise the check above is satisfied by a page that renders none of them.
+    const sitting = body.slice(0, i)
+    expect(sitting).toMatch(/ÁREAS DELEGADAS/)
+    expect(sitting).toMatch(/fijada en el acuerdo|asistencias por sesión/)
     // The composition bar still counts 21 seats: a former member is not one.
     expect(body).toMatch(/Total 21 escaños/)
     // The stamp says how many corrections it carries, derived from the data.
@@ -213,6 +232,127 @@ test.describe('Cargos (/cargos)', () => {
     expect(body).toMatch(/sin retrato en la fuente/)
     // The shared mailbox must never stand in for a person the source gave none.
     expect(body).not.toContain('alcaldia@ribarroja.es')
+  })
+
+  test('the fourteen without dedicación are paid, and shown as a distribution', async ({
+    page,
+  }) => {
+    // The finding that reorders this page: RetribucionBadge returned null for
+    // anyone outside the acuerdo, so fourteen of twenty-one cards carried no
+    // figure — while ISPA gave every one of them between 4.582,49 € and
+    // 16.858,04 €. The page had the data and the layout hid it.
+    await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
+    await expect(page.getByText('sin dedicación', { exact: false }).first()).toBeVisible({
+      timeout: 8000,
+    })
+    const body = await page.locator('body').innerText()
+    // The distribution renders with both ends named, so the reader can see the
+    // spread rather than a single averaged figure.
+    expect(body).toMatch(/\d+ concejales, de menor a mayor/)
+    expect(body).toMatch(/Asistencias por sesión/)
+    // And it says why it is a distribution rather than a column of names.
+    expect(body).toMatch(/filas de concejal del ISPA son anónimas/)
+  })
+
+  test('no opposition card carries a euro figure, because ISPA rows have no name', async ({
+    page,
+  }) => {
+    // The rule the distribution exists to keep. An amount from an anonymous
+    // ISPA row placed under a named face is a claim the source cannot support,
+    // and it would be the `Otro` sentinel again: naming by elimination.
+    await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
+    await expect(page.getByText('Quién fiscaliza').first()).toBeVisible({ timeout: 8000 })
+    const body = await page.locator('body').innerText()
+    const i = body.indexOf('Quién fiscaliza')
+    expect(i, 'la rejilla de oposición tiene que estar en la página').toBeGreaterThan(0)
+    // Up to the plantilla band, which is a different subject with its own figures.
+    const j = body.indexOf('Plantilla municipal')
+    const oposicion = body.slice(i, j > i ? j : undefined)
+    // It really contains the cards (an empty slice would pass the next line).
+    expect(oposicion).toMatch(/asistencias por sesión/i)
+    expect(oposicion).not.toMatch(/\d[\d.]*,\d{2}\s*€/)
+  })
+
+  test('the two figures for the alcalde are reconciled, not left to contradict', async ({
+    page,
+  }) => {
+    // 48.234,08 € (fixed by the acuerdo) and 48.647,50 € (received, per ISPA)
+    // sat 300px apart with nothing saying they measure different things, so the
+    // only available reading was that one of them was wrong.
+    await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
+    await expect(page.getByText('Por qué el alcalde tiene dos cifras').first()).toBeVisible({
+      timeout: 8000,
+    })
+    const body = await page.locator('body').innerText()
+    const i = body.indexOf('Por qué el alcalde tiene dos cifras')
+    const nota = body.slice(i, i + 700)
+    // Both figures are inside the SAME block as the sentence reconciling them.
+    expect(nota).toMatch(/48\.234,08/)
+    expect(nota).toMatch(/48\.647,50/)
+    expect(nota).toMatch(/asignación/)
+    expect(nota).toMatch(/nómina/)
+  })
+
+  test('the missing 2023 is drawn as the full width of the hole it leaves', async ({ page }) => {
+    // Measured, not asserted about text. The band that marks the missing 2020
+    // entrega on /eficiencia shipped covering exactly half the hole it marks —
+    // 90px floating inside a 181px gap, blank on both sides — with the whole
+    // unit suite, the axe pass and the mobile spec green, because every one of
+    // them asserts about data and text. A getBoundingClientRect on both edges
+    // is the only thing that sees it.
+    await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
+    const banda = page.locator('[data-hueco="2023-2023"]')
+    await expect(banda).toBeVisible({ timeout: 8000 })
+    const antes = page.locator('[data-barra="2022"]')
+    const despues = page.locator('[data-barra="2024"]')
+    await expect(antes).toBeVisible()
+    await expect(despues).toBeVisible()
+
+    const [b, a, d] = await Promise.all([
+      banda.boundingBox(),
+      antes.boundingBox(),
+      despues.boundingBox(),
+    ])
+    expect(b && a && d).toBeTruthy()
+    const hueco = { izq: a!.x + a!.width, der: d!.x }
+    // The hole is real (the bars are not touching).
+    expect(hueco.der - hueco.izq).toBeGreaterThan(20)
+    // And the band fills it edge to edge, within a pixel of rounding.
+    expect(Math.abs(b!.x - hueco.izq)).toBeLessThanOrEqual(1.5)
+    expect(Math.abs(b!.x + b!.width - hueco.der)).toBeLessThanOrEqual(1.5)
+
+    // The year is named under the gap, so the hole is legible without hovering.
+    await expect(page.locator('[data-rotulo="hueco-2023"]')).toContainText('2023')
+    await expect(page.locator('[data-rotulo="hueco-2023"]')).toContainText('sin dato')
+  })
+
+  test('a shared mailbox says it is shared, rather than posing as a direct line', async ({
+    page,
+  }) => {
+    // Three of twenty-one have their own address. Eleven share the alcaldía's
+    // counter and six the PP group's Gmail, which is not even a municipal
+    // domain. Under a face, a shared counter reads as that person's direct line.
+    await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
+    await expect(page.getByText('alcaldia@ribarroja.es').first()).toBeVisible({ timeout: 8000 })
+    const body = await page.locator('body').innerText()
+    expect(body).toMatch(/buzón compartido por \d+ cargos/)
+  })
+
+  test('the biographical index is linked once, not promised on every card', async ({ page }) => {
+    // Twenty of the twenty-one cvUrl values in the snapshot are the same
+    // transparency listing. A per-card «Biografía →» promised that person's
+    // biography and delivered an index, twenty times over.
+    await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
+    await expect(page.getByText('Quién dirige qué').first()).toBeVisible({ timeout: 8000 })
+    const listado =
+      'https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919'
+    await expect(page.locator(`a[href="${listado}"]`)).toHaveCount(1)
+    // The INTERNAL per-person report is a different link and stays per card.
+    // Awaited, not counted on the spot: the bio routes arrive from a separate
+    // fetch, so a bare count races it and passes only on the retry.
+    await expect(page.locator('a[href^="/laboratorio/agentes/"]').first()).toBeVisible({
+      timeout: 8000,
+    })
   })
 
   test('clicking a councillor link navigates into the detail view', async ({ page }) => {
