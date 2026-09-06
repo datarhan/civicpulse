@@ -23,6 +23,17 @@
  *     mirrored aviso first (`promote-area-fit --aviso … --retract`), correct
  *     here, then re-sign it. Same three fences as the portrait: index in
  *     range, no blank, no copy of a sibling warning.
+ *   · career-political[<index>].endYear  — close (or re-date the close of)
+ *     one mandate in the biography's political career (0-indexed). Exists
+ *     because a councillor who leaves mid-term stays «En el cargo · desde
+ *     2023» on her page until somebody closes the row, and a full re-run is
+ *     disproportionate for one date. Fenced like the portrait — exactly one
+ *     career-political section, index in range — plus what a year needs: a
+ *     four-digit YYYY, not before that row's `startYear`, not the value the
+ *     row already holds (a no-op correction is a mistake, not a record), and
+ *     never `null` or blank — re-opening a closed mandate is a re-run. The
+ *     ledger's `original` is `'null'` for an open row, the previous year for
+ *     a closed one, so the reader sees `null → 2025`.
  *
  * Re-validates the whole reports snapshot before writing — which, for a
  * warning, includes the judicial-token gate: a corrected caveat that names a
@@ -75,7 +86,8 @@ function usage(): never {
       '  · narrative.<heading>.heading\n' +
       '  · quote.<index>.attributedTo\n' +
       '  · portrait.portfolios[<index>]\n' +
-      '  · warnings[<index>]\n',
+      '  · warnings[<index>]\n' +
+      '  · career-political[<index>].endYear   (--new YYYY; never null)\n',
   )
   process.exit(2)
 }
@@ -118,6 +130,8 @@ function parseArgs(argv: string[]): Opts {
 
 const PORTFOLIO_PATH = /^portrait\.portfolios\[(\d+)\]$/
 const WARNING_PATH = /^warnings\[(\d+)\]$/
+const CAREER_END_PATH = /^career-political\[(\d+)\]\.endYear$/
+const YEAR = /^\d{4}$/
 
 export function applyCorrection(
   report: JournalistReport,
@@ -125,6 +139,49 @@ export function applyCorrection(
   newValue: string,
 ): { sections: ReportSection[]; warnings?: string[]; original: string } {
   const sections = JSON.parse(JSON.stringify(report.sections)) as ReportSection[]
+  if (fieldPath.startsWith('career-political')) {
+    const m = CAREER_END_PATH.exec(fieldPath)
+    if (!m)
+      throw new Error(
+        `career-political must be addressed as career-political[<index>].endYear, got ${fieldPath}`,
+      )
+    const targetIndex = Number(m[1])
+    const careers = sections.filter((s) => s.kind === 'career-political') as Array<
+      Extract<ReportSection, { kind: 'career-political' }>
+    >
+    // Zero would silently close nothing; more than one makes "the mandate at
+    // index N" ambiguous, and guessing would end the wrong person's term.
+    if (careers.length === 0) throw new Error('no career-political section in this report')
+    if (careers.length > 1)
+      throw new Error(
+        `expected exactly 1 career-political section, found ${careers.length} — ambiguous`,
+      )
+    const items = careers[0].payload.items
+    if (targetIndex >= items.length)
+      throw new Error(`career-political index ${targetIndex} out of range (${items.length} items)`)
+    const item = items[targetIndex]
+    const trimmed = newValue.trim()
+    if (!trimmed || trimmed.toLowerCase() === 'null')
+      throw new Error(
+        'endYear cannot be null or blank — re-opening a mandate is a re-run, not a correction',
+      )
+    if (!YEAR.test(trimmed))
+      throw new Error(`endYear must be a four-digit year (YYYY), got "${trimmed}"`)
+    const year = Number(trimmed)
+    if (year < item.startYear)
+      throw new Error(
+        `endYear ${year} is before startYear ${item.startYear} of career-political[${targetIndex}]`,
+      )
+    if (item.endYear === year)
+      throw new Error(
+        `career-political[${targetIndex}].endYear is already ${year} — a no-op correction is a mistake, not a record`,
+      )
+    // The live row stores an open mandate as a MISSING key, not `null`;
+    // `String(undefined)` would put "undefined" in the Bitácora.
+    const original = item.endYear == null ? 'null' : String(item.endYear)
+    item.endYear = year
+    return { sections, original }
+  }
   if (fieldPath.startsWith('warnings')) {
     const m = WARNING_PATH.exec(fieldPath)
     if (!m) throw new Error(`warnings must be addressed as warnings[<index>], got ${fieldPath}`)

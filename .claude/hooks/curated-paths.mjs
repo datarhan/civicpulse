@@ -48,7 +48,7 @@ export const CURATED = {
   'pleno-claim-reanchors.json': 'npm run reanchor-claim',
   'press-findings.json': 'npm run correct-press-finding',
   'journalist-reports.json':
-    'npm run promote-report / correct-journalist-report / journalist-reply',
+    'npm run promote-report / correct-journalist-report / journalist-reply / journalist:archive / journalist:archive-sources',
   'quejas-responses.json': 'npm run queja-reply',
   'sindic.json': 'npm run sindic:add',
   'dedicaciones.json': 'curated + cited — hand-edit via PR, never programmatically',

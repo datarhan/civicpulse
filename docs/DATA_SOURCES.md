@@ -42,27 +42,27 @@ Everything produced by the convention above. Safe to delete and rebuild.
 
 ### Curated — human-edited only, NEVER written by automation
 
-| File                                                | Schema / CLI                                                                                                                  |
-| --------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `promises.json`                                     | `src/scraper/promises.ts` · `npm run reply`, `freeze:set`                                                                     |
-| `pleno-votes.json`                                  | `src/scraper/pleno-votes.ts` · `npm run pleno-vote`, `promote-vote`, `retract-vote`                                           |
-| `pleno-findings.json`                               | `src/scraper/pleno-finding.ts` · `npm run promote-claim`, `finding-reply`, `correct-pleno-finding`                            |
-| `journalist-reports.json` (+ `journalist-reports/`) | `src/scraper/journalist.ts` · `npm run promote-report`, `correct-journalist-report`, `journalist-reply`, `repoint-source-url` |
-| `quejas-responses.json`                             | `scripts/apply-queja-response.ts` · `npm run queja-reply`                                                                     |
-| `sindic.json`                                       | `src/scraper/sindic.ts` · `npm run sindic:add`                                                                                |
-| `plantilla.json`, `dedicaciones.json`               | curated · cited · `src/scraper/dedicaciones.ts`                                                                               |
-| `place-overrides.json`                              | `src/scraper/place-suggestion.ts` · `npm run promote-place`                                                                   |
-| `gazetteer-supplement.json`                         | `src/scraper/gazetteer-supplement.ts`                                                                                         |
-| `entity-overrides.json`                             | `src/scraper/entities.ts` · `npm run entity-alias`                                                                            |
-| `area-fit.json`                                     | `src/scraper/area-fit.ts` · `npm run promote-area-fit`                                                                        |
-| `requisitos-cargo.json`                             | curated · cited al BOE · hand-edit via PR                                                                                     |
-| `eficiencia-findings.json`                          | `src/scraper/eficiencia-finding.ts` · `npm run promote-indicador`, `correct-indicador`, `retract-indicador`                   |
-| `eficiencia-preguntas.json`                         | `src/scraper/eficiencia-preguntas.ts` · curated · hand-edit via PR                                                            |
-| `competencias.json`                                 | `src/scraper/competencias.ts` · curated · hand-edit via PR · `npm run competencia-reply` · `check:competencias`               |
-| `officials-corrections.json`                        | `src/scraper/officials-corrections.ts` · `npm run roster-correction` (`--alta` / `--baja` / `--retirar` / `--reply` / `--apply`) · `check:officials-corrections` |
-| `sociedades.json`                                   | `src/scraper/sociedades.ts` · curated · hand-edit via PR · material vía `npm run scrape:borme`                                |
-| `pleno-claim-reclassifications.json`                | `src/scraper/verified-merge.ts` · `npm run reclassify-claim` (sólo ALEJÁNDOSE de `acusacion_publica`)                         |
-| `pleno-claim-reanchors.json`                        | `src/scraper/verified-merge.ts` · `npm run reanchor-claim` (sólo sobre citas SIN procedencia, y el literal ha de constar entero en un acta)                         |
+| File                                                | Schema / CLI                                                                                                                                                                      |
+| --------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `promises.json`                                     | `src/scraper/promises.ts` · `npm run reply`, `freeze:set`                                                                                                                         |
+| `pleno-votes.json`                                  | `src/scraper/pleno-votes.ts` · `npm run pleno-vote`, `promote-vote`, `retract-vote`                                                                                               |
+| `pleno-findings.json`                               | `src/scraper/pleno-finding.ts` · `npm run promote-claim`, `finding-reply`, `correct-pleno-finding`                                                                                |
+| `journalist-reports.json` (+ `journalist-reports/`) | `src/scraper/journalist.ts` · `npm run promote-report`, `correct-journalist-report`, `journalist-reply`, `repoint-source-url`, `journalist:archive`, `journalist:archive-sources` |
+| `quejas-responses.json`                             | `scripts/apply-queja-response.ts` · `npm run queja-reply`                                                                                                                         |
+| `sindic.json`                                       | `src/scraper/sindic.ts` · `npm run sindic:add`                                                                                                                                    |
+| `plantilla.json`, `dedicaciones.json`               | curated · cited · `src/scraper/dedicaciones.ts`                                                                                                                                   |
+| `place-overrides.json`                              | `src/scraper/place-suggestion.ts` · `npm run promote-place`                                                                                                                       |
+| `gazetteer-supplement.json`                         | `src/scraper/gazetteer-supplement.ts`                                                                                                                                             |
+| `entity-overrides.json`                             | `src/scraper/entities.ts` · `npm run entity-alias`                                                                                                                                |
+| `area-fit.json`                                     | `src/scraper/area-fit.ts` · `npm run promote-area-fit`                                                                                                                            |
+| `requisitos-cargo.json`                             | curated · cited al BOE · hand-edit via PR                                                                                                                                         |
+| `eficiencia-findings.json`                          | `src/scraper/eficiencia-finding.ts` · `npm run promote-indicador`, `correct-indicador`, `retract-indicador`                                                                       |
+| `eficiencia-preguntas.json`                         | `src/scraper/eficiencia-preguntas.ts` · curated · hand-edit via PR                                                                                                                |
+| `competencias.json`                                 | `src/scraper/competencias.ts` · curated · hand-edit via PR · `npm run competencia-reply` · `check:competencias`                                                                   |
+| `officials-corrections.json`                        | `src/scraper/officials-corrections.ts` · `npm run roster-correction` (`--alta` / `--baja` / `--retirar` / `--reply` / `--apply`) · `check:officials-corrections`                  |
+| `sociedades.json`                                   | `src/scraper/sociedades.ts` · curated · hand-edit via PR · material vía `npm run scrape:borme`                                                                                    |
+| `pleno-claim-reclassifications.json`                | `src/scraper/verified-merge.ts` · `npm run reclassify-claim` (sólo ALEJÁNDOSE de `acusacion_publica`)                                                                             |
+| `pleno-claim-reanchors.json`                        | `src/scraper/verified-merge.ts` · `npm run reanchor-claim` (sólo sobre citas SIN procedencia, y el literal ha de constar entero en un acta)                                       |
 
 Each CLI re-validates the whole snapshot before writing, so an invariant
 (≥20-char verbatim quote, ≥10-char title) cannot silently slip. Route

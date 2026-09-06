@@ -1,7 +1,13 @@
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { parseBormeSeccion, seccionesDelSumario } from '../src/scraper/borme'
+import {
+  parseBormeSeccion,
+  seccionesDelSumario,
+  filtrarPorEmpresa,
+  filtrarPorPersona,
+  type AnuncioBorme,
+} from '../src/scraper/borme'
 
 /**
  * BORME, sección de empresarios de una provincia, contra un volcado real.
@@ -175,5 +181,94 @@ describe('borme — el sumario y sus colecciones de un solo elemento', () => {
     expect(seccionesDelSumario({})).toEqual([])
     expect(seccionesDelSumario(null)).toEqual([])
     expect(seccionesDelSumario({ data: { sumario: {} } })).toEqual([])
+  })
+})
+
+/**
+ * Buscar a una PERSONA, que es lo que la biografía necesita y el BORME no ofrece.
+ *
+ * El registro imprime a administradores y apoderados dentro del cuerpo del
+ * anuncio, con los apellidos delante y en mayúsculas: «Adm. Unico: RAGA GADEA
+ * ROBERTO PASCUAL». Así que la búsqueda va contra `texto`, no contra la
+ * denominación, y tiene que ser insensible al orden —quien pregunta escribe
+ * «Raga Gadea» o «Gadea Raga» según le venga— y a la caja y los acentos, que el
+ * BORME quita y el periodista pone. Lo que NO puede ser es laxa con la palabra
+ * entera: «RAGA» dentro de «FRAGA» es otra persona, y una coincidencia falsa
+ * aquí acaba en una ficha que nombra a quien no toca.
+ *
+ * Los anuncios salen del propio parser sobre un HTML mínimo con la gramática
+ * real, no de objetos escritos a mano: así el test mide lo que el filtro recibe
+ * de verdad y no una forma copiada, que es como otros seis tests de este repo se
+ * quedaron verdes sin medir nada.
+ */
+describe('borme — filtrar por persona, con los apellidos delante como los imprime el registro', () => {
+  const anuncio = (n: number, cuerpo: string) =>
+    `<h5 class="articulo">${n} - EJEMPLO ${n} SL.</h5>` +
+    `<p class="parrafo">${cuerpo} Datos registrales. S 8 , H V ${1000 + n}, I/A 1 ( 2.03.26).</p>`
+  const personas = parseBormeSeccion(
+    [
+      anuncio(1, 'Nombramientos. Adm. Unico: RAGA GADEA ROBERTO PASCUAL.'),
+      anuncio(2, 'Ceses/Dimisiones. Adm. Unico: FRAGA GADEA ROBERTO.'),
+      anuncio(3, 'Nombramientos. Apoderado: GOMEZ SANCHEZ MARIA.'),
+      anuncio(4, 'Nombramientos. Adm. Unico: PLANA MARTI JOAN.'),
+      anuncio(5, 'Nombramientos. Consejero: RAGA MARTINEZ LUIS.'),
+      anuncio(6, 'Nombramientos. Apoderado: NUÑEZ PEÑA ANTONIO.'),
+      anuncio(7, 'Nombramientos. Adm. Unico: PLA FERRER JOSEP.'),
+    ].join(''),
+  )
+  const numeros = (xs: AnuncioBorme[]) => xs.map((a) => a.numero)
+
+  it('mide algo: el HTML mínimo produce los siete anuncios con su texto verbatim', () => {
+    expect(numeros(personas)).toEqual([1, 2, 3, 4, 5, 6, 7])
+    expect(personas[0].texto).toContain('RAGA GADEA ROBERTO PASCUAL')
+  })
+
+  it('encuentra a la persona por sus apellidos, en la forma «APELLIDO1 APELLIDO2» del registro', () => {
+    expect(numeros(filtrarPorPersona(personas, 'RAGA GADEA'))).toEqual([1])
+  })
+
+  it('el orden de los apellidos da igual: «Gadea Raga» es la misma persona', () => {
+    expect(numeros(filtrarPorPersona(personas, 'Gadea Raga'))).toEqual([1])
+  })
+
+  it('ni la caja ni los acentos cuentan, en ninguno de los dos lados', () => {
+    // El periodista escribe «Gómez Sánchez»; el BORME imprime «GOMEZ SANCHEZ».
+    expect(numeros(filtrarPorPersona(personas, 'Gómez Sánchez'))).toEqual([3])
+    // Y al revés: el BORME imprime la eñe y quien busca no la pone.
+    expect(numeros(filtrarPorPersona(personas, 'nunez pena'))).toEqual([6])
+  })
+
+  it('una palabra a medias no es la persona: RAGA no es FRAGA, ni PLA es PLANA', () => {
+    expect(numeros(filtrarPorPersona(personas, 'Raga Gadea'))).toEqual([1])
+    expect(numeros(filtrarPorPersona(personas, 'Fraga Gadea'))).toEqual([2])
+    expect(numeros(filtrarPorPersona(personas, 'Pla'))).toEqual([7])
+  })
+
+  it('una búsqueda vacía no devuelve nada — nunca «todo»', () => {
+    expect(filtrarPorPersona(personas, '')).toEqual([])
+    expect(filtrarPorPersona(personas, '   ')).toEqual([])
+  })
+
+  it('con sólo uno de los dos apellidos presente no hay coincidencia', () => {
+    // GADEA está en el 1 y el 2; MARTINEZ, en el 5. Ninguno tiene los dos.
+    expect(filtrarPorPersona(personas, 'Gadea Martinez')).toEqual([])
+  })
+
+  it('en la sección real: el apoderado revocado de Hidraqua se encuentra por sus apellidos', () => {
+    const anuncios = parseBormeSeccion(HTML)
+    const hallados = filtrarPorPersona(anuncios, 'Lopez Rodriguez')
+    expect(numeros(hallados)).toContain(232200)
+    expect(hallados.length).toBeLessThan(anuncios.length)
+    expect(numeros(filtrarPorPersona(anuncios, 'Rodríguez López'))).toEqual(numeros(hallados))
+  })
+
+  it('filtrarPorEmpresa sigue mirando sólo la denominación, sin caja ni acentos', () => {
+    // Se fija aquí porque las dos búsquedas comparten el plegado de acentos y
+    // caja: si una cambia, la otra tiene que seguir midiendo lo mismo.
+    const anuncios = parseBormeSeccion(HTML)
+    expect(numeros(filtrarPorEmpresa(anuncios, 'hidráqua'))).toContain(232200)
+    // Los apellidos del apoderado están en el cuerpo, no en la denominación:
+    // para eso existe filtrarPorPersona.
+    expect(numeros(filtrarPorEmpresa(anuncios, 'lopez rodriguez'))).not.toContain(232200)
   })
 })

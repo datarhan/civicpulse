@@ -25,6 +25,7 @@ import { existsSync, readFileSync } from 'node:fs'
 import { loadSnapshot, writeJsonChunk, writeJsonFile, writeSnapshot } from './lib/snapshot-io'
 import { resolve } from 'node:path'
 import {
+  isJournalistFrozen,
   validateAssignmentsSnapshot,
   validateDraftsSnapshot,
   validateReportsSnapshot,
@@ -176,8 +177,35 @@ async function citationGate(report: JournalistReport, skip: boolean): Promise<vo
   }
 }
 
+const PROMISES = resolve('public/data/promises.json')
+
+/**
+ * docs/JOURNALIST_AGENT.md promised the LOREG freeze halts promotion; only the
+ * agent checked it, so a draft made before the freeze could be published during
+ * it. Publishing is the act the freeze exists to stop. Same reader as the agent:
+ * a missing or unreadable promises.json is "not frozen", never a crash.
+ */
+function refuseIfFrozen(): void {
+  if (!existsSync(PROMISES)) return
+  let frozenUntil: string | null = null
+  try {
+    const raw = JSON.parse(readFileSync(PROMISES, 'utf8')) as { frozenUntil?: string | null }
+    frozenUntil = raw.frozenUntil ?? null
+  } catch {
+    return
+  }
+  if (isJournalistFrozen({ frozenUntil })) {
+    process.stderr.write(
+      `[promote-report] REFUSE: LOREG electoral freeze active until ${frozenUntil} — ` +
+        `nothing about a candidate is published during the freeze (npm run freeze:status).\n`,
+    )
+    process.exit(1)
+  }
+}
+
 async function main(): Promise<void> {
   const opts = parseArgs(process.argv.slice(2))
+  refuseIfFrozen()
   const drafts = loadDrafts()
   const matching = drafts.filter((d) => d.assignmentId === opts.assignmentId)
   if (matching.length === 0) {
