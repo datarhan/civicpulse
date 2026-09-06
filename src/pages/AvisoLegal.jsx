@@ -239,11 +239,26 @@ export default function AvisoLegal() {
           title="Datos personales de cargos electos"
         />
         <p>
-          Los datos personales tratados sobre cargos electos (nombre, fotografía pública, correo
-          institucional, concejalía asignada, y las cuentas públicas que el propio cargo usa para
-          comunicar en su papel institucional) provienen de publicaciones del Ayuntamiento de
-          Riba-roja de Túria, menciones en prensa pública y esas mismas cuentas públicas. No se
-          rastrea a los visitantes del sitio ni se usa analítica invasiva.
+          Los datos personales tratados sobre cargos electos provienen de publicaciones del
+          Ayuntamiento de Riba-roja de Túria, de boletines y registros oficiales (BOP, BOE, DOGV,
+          BORME, candidaturas electorales, contratación y subvenciones públicas), de menciones en
+          prensa pública y de las cuentas públicas que el propio cargo usa para comunicar en su
+          papel institucional. Comprenden el nombre, la fotografía pública, el correo institucional,
+          la concejalía asignada, la trayectoria política y profesional que consta en esos
+          documentos, los cargos societarios inscritos en el Registro Mercantil, el patrimonio y las
+          actividades que el cargo declara por ley y las retribuciones publicadas. No se rastrea a
+          los visitantes del sitio ni se usa analítica invasiva.
+        </p>
+        <p>
+          <strong>Qué no se trata nunca:</strong> datos de menores, de salud, de orientación sexual
+          o de religión, ideología más allá del partido por el que el cargo concurre, domicilio,
+          documento de identidad ni teléfono. Un vínculo familiar o un bien sólo se publica cuando
+          un documento público lo recoge de forma explícita y guarda relación con el ejercicio del
+          cargo (un contrato, una subvención, un nombramiento, una decisión municipal, una
+          incompatibilidad); sin una de las dos condiciones no se publica. Base jurídica: interés
+          público y libertad de información (art. 6.1.e y f del RGPD, art. 20 de la Constitución y
+          art. 8.2 de la LO 1/1982); todo cargo aludido dispone de derecho de réplica y de
+          rectificación por los canales descritos en esta página.
         </p>
         <p>
           Los titulares de cargo pueden solicitar la eliminación de su fotografía concreta
