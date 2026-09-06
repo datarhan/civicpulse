@@ -29,7 +29,12 @@
  */
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
-import { parseBormeSeccion, filtrarPorEmpresa, type AnuncioBorme } from '../src/scraper/borme'
+import {
+  parseBormeSeccion,
+  filtrarPorEmpresa,
+  filtrarPorPersona,
+  type AnuncioBorme,
+} from '../src/scraper/borme'
 import { fetchSeccionesDelDia, fetchSeccionHtml, diasDelRango } from '../src/scraper/borme-fetch'
 
 const arg = (n: string): string | undefined => {
@@ -55,10 +60,13 @@ async function main(): Promise<void> {
   const hasta = arg('hasta')
   const provincia = (arg('provincia') ?? '').toUpperCase()
   const empresa = arg('empresa')
+  // Una PERSONA (apellidos delante, como los imprime el registro). Con
+  // --empresa a la vez, el anuncio tiene que cumplir los dos filtros.
+  const persona = arg('persona')
 
   if (!desde || !hasta || !provincia) {
     process.stderr.write(
-      'uso: scrape:borme -- --desde YYYY-MM-DD --hasta YYYY-MM-DD --provincia ALICANTE [--empresa "TEXTO"]\n',
+      'uso: scrape:borme -- --desde YYYY-MM-DD --hasta YYYY-MM-DD --provincia ALICANTE [--empresa "TEXTO"] [--persona "APELLIDO1 APELLIDO2"]\n',
     )
     process.exit(1)
   }
@@ -93,7 +101,8 @@ async function main(): Promise<void> {
         const anuncios = parseBormeSeccion(html)
         seccionesLeidas++
         anunciosVistos += anuncios.length
-        const encontrados = empresa ? filtrarPorEmpresa(anuncios, empresa) : anuncios
+        const porEmpresa = empresa ? filtrarPorEmpresa(anuncios, empresa) : anuncios
+        const encontrados = persona ? filtrarPorPersona(porEmpresa, persona) : porEmpresa
         for (const a of encontrados) {
           hallazgos.push({
             ...a,
@@ -117,7 +126,7 @@ async function main(): Promise<void> {
     salida,
     JSON.stringify(
       {
-        consulta: { desde, hasta, provincia, empresa: empresa ?? null },
+        consulta: { desde, hasta, provincia, empresa: empresa ?? null, persona: persona ?? null },
         recuento: {
           diasPedidos: dias.length,
           diasConSeccionA: conSeccionA,
@@ -136,7 +145,8 @@ async function main(): Promise<void> {
 
   process.stdout.write(
     `[borme] ${dias.length} pedidos · ${conSeccionA} con sección de empresarios · ${seccionesLeidas} secciones · ` +
-      `${anunciosVistos} anuncios leídos · ${hallazgos.length} coincidencia(s) · ${fallos.length} fallo(s)\n`,
+      `${anunciosVistos} anuncios leídos · ${hallazgos.length} coincidencia(s)` +
+      `${persona ? ` que nombran a «${persona}»` : ''} · ${fallos.length} fallo(s)\n`,
   )
   for (const f of fallos) process.stdout.write(`  [fallo] ${f}\n`)
   process.stdout.write(`[borme] → ${salida}\n`)

@@ -4,6 +4,11 @@
  * NOT web-served).
  *
  *   npm run journalist:run -- <assignmentId> [--token-budget N] [--dry-run] [--stop-after plan|research|synth|verify]
+ *       [--seed editorial/investigaciones/<slug>/fuentes.json]
+ *
+ * `--seed` hands the agent the sources a curator's investigation already
+ * located (src/scraper/journalist-agent/seeds.ts). They live under editorial/
+ * and never in the assignment brief, because the brief is public.
  *
  * Drafts are unreviewed machine prose about named living people, so they
  * must never land under public/ — anything there is served. They were, until
@@ -28,6 +33,7 @@ import {
 } from '../src/scraper/journalist'
 import { runJournalistAgent, JournalistAgentError } from '../src/scraper/journalist-agent'
 import { describeWebSearchBackend } from '../src/scraper/journalist-tools'
+import { parseSeedSources, type SeedSource } from '../src/scraper/journalist-agent/seeds'
 
 const ASSIGNMENTS = resolve('public/data/journalist-assignments.json')
 const DRAFTS = resolve('editorial/journalist-drafts/journalist-reports-suggestions.json')
@@ -42,7 +48,8 @@ const DRAFT_DIR = resolve('editorial/journalist-drafts')
 function usage(): never {
   process.stderr.write(
     'Usage:\n' +
-      '  npm run journalist:run -- <assignmentId> [--token-budget N] [--dry-run] [--stop-after plan|research|synth|verify]\n',
+      '  npm run journalist:run -- <assignmentId> [--token-budget N] [--dry-run] [--stop-after plan|research|synth|verify]\n' +
+      '      [--seed <editorial/investigaciones/<slug>/fuentes.json>]\n',
   )
   process.exit(2)
 }
@@ -52,6 +59,7 @@ interface Opts {
   tokenBudget?: number
   dryRun: boolean
   stopAfter?: 'plan' | 'research' | 'synth' | 'verify'
+  seed?: string
 }
 
 function parseArgs(argv: string[]): Opts {
@@ -60,6 +68,7 @@ function parseArgs(argv: string[]): Opts {
     const a = argv[i]
     if (a === '--token-budget') o.tokenBudget = Number(argv[++i])
     else if (a === '--dry-run') o.dryRun = true
+    else if (a === '--seed') o.seed = argv[++i]
     else if (a === '--stop-after') {
       const v = argv[++i] as Opts['stopAfter']
       if (v !== 'plan' && v !== 'research' && v !== 'synth' && v !== 'verify') {
@@ -111,6 +120,25 @@ async function main(): Promise<void> {
   }
   const assignment = assignmentsSnap.items[idx]
 
+  // Seeds are validated BEFORE the status flips to running: a malformed seed
+  // file must not leave an assignment stuck in `running` with no draft.
+  let seedSources: SeedSource[] = []
+  if (opts.seed) {
+    const seedPath = resolve(opts.seed)
+    if (!existsSync(seedPath)) {
+      process.stderr.write(`[journalist:run] --seed ${seedPath} not found\n`)
+      process.exit(2)
+    }
+    if (seedPath.startsWith(resolve('public'))) {
+      process.stderr.write(`[journalist:run] --seed must not live under public/ (it is served)\n`)
+      process.exit(2)
+    }
+    seedSources = parseSeedSources(readFileSync(seedPath, 'utf8'))
+    process.stdout.write(
+      `[journalist:run] ${seedSources.length} seed source(s) from ${opts.seed}\n`,
+    )
+  }
+
   // Flip status to running before executing.
   const runningCopy = JSON.parse(JSON.stringify(assignmentsSnap)) as JournalistAssignmentsSnapshot
   runningCopy.items[idx] = { ...assignment, status: 'running' }
@@ -131,7 +159,14 @@ async function main(): Promise<void> {
     const out = await runJournalistAgent(assignment, {
       ...(opts.tokenBudget ? { tokenBudget: opts.tokenBudget } : {}),
       ...(opts.stopAfter ? { stopAfter: opts.stopAfter } : {}),
+      ...(seedSources.length > 0 ? { seedSources } : {}),
     })
+    if (out.debug.researchSummary.seeds) {
+      const s = out.debug.researchSummary.seeds
+      process.stdout.write(
+        `[journalist:run] seeds: attempted ${s.attempted} · fetched ${s.fetched} · manual ${s.manual} · failed ${s.failed} · excerpt-not-in-body ${s.notInBody}\n`,
+      )
+    }
     for (const w of (out.draft?.warnings ?? []).slice(0, 12)) {
       process.stdout.write(`[journalist:run]   ⚠ ${w}\n`)
     }

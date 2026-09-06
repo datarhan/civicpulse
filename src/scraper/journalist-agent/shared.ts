@@ -15,6 +15,7 @@ import type {
   JournalistVerifyResponse,
 } from '../../llm/schemas'
 import type { JournalistReportDraft } from '../journalist'
+import type { SeedPreloadSummary, SeedSource } from './seeds'
 
 export const AGENT_VERSION = 'journalist-v1'
 export const DRAFT_PROMPT_VERSION = `plan=${JOURNALIST_PLAN_VERSION};bio=${JOURNALIST_BIO_VERSION};synth=${JOURNALIST_SYNTH_VERSION};verify=${JOURNALIST_VERIFY_VERSION}`
@@ -34,6 +35,12 @@ export interface RunAgentOptions {
   tokenBudget?: number
   /** Stop after stage N — useful for tests. Defaults to full pipeline. */
   stopAfter?: 'plan' | 'research' | 'synth' | 'verify'
+  /**
+   * Curator-seeded sources (journalist:run --seed), fetched before the
+   * planner runs and ranked ahead of the synth cap. They never travel in the
+   * assignment brief, which is public. See ./seeds.ts.
+   */
+  seedSources?: SeedSource[]
 }
 
 export interface RunAgentResult {
@@ -52,6 +59,8 @@ export interface RunAgentResult {
       webResults: number
       urlFetches: number
       auditRuns: number
+      /** Seed accounting: attempted / fetched / manual / failed / notInBody. */
+      seeds?: SeedPreloadSummary
     }
   }
 }

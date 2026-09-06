@@ -969,10 +969,23 @@ ${SAFETY_FOOTER}
 export function buildJournalistPlanUserPrompt(opts: {
   assignment: JournalistAssignmentPayload
   localHints: JournalistLocalHintsPayload
+  /**
+   * Sources the curator seeded and the agent already fetched before planning
+   * (journalist-agent/seeds.ts). Listed so the planner's ten questions go
+   * elsewhere instead of re-requesting what is already in evidence.
+   */
+  seededSources?: Array<{ title: string; url: string }>
 }): string {
   const officialBlock = opts.localHints.officialRow
     ? `Local officials.json record:\n${JSON.stringify(opts.localHints.officialRow, null, 2)}\n`
     : 'No matching record in officials.json.\n'
+  const seeded = opts.seededSources ?? []
+  const seededBlock =
+    seeded.length > 0
+      ? `\nCURATOR-SEEDED SOURCES (already fetched — do not re-request):\n${seeded
+          .map((s) => `  - ${s.title} — ${s.url}`)
+          .join('\n')}\n`
+      : ''
   return `
 ASSIGNMENT:
   id: ${opts.assignment.id}
@@ -987,7 +1000,7 @@ ${officialBlock}
   pleno-claim mentions: ${opts.localHints.plenoClaimCount}
   promises (party-level): ${opts.localHints.promiseCount}
   judicial-token mentions in local data: ${opts.localHints.judicialMentions}
-
+${seededBlock}
 Emit the JSON research plan.
 `.trim()
 }

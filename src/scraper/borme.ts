@@ -248,3 +248,31 @@ export function filtrarPorEmpresa(anuncios: AnuncioBorme[], busqueda: string): A
   const q = norm(busqueda)
   return anuncios.filter((a) => norm(a.denominacion).includes(q))
 }
+
+/**
+ * Los anuncios cuyo CUERPO nombra a una persona.
+ *
+ * El registro imprime a administradores y apoderados dentro del anuncio, con
+ * los apellidos delante y en mayúsculas («Adm. Unico: RAGA GADEA ROBERTO
+ * PASCUAL»), así que se busca en `texto`, no en la denominación, y sin que
+ * importe el orden en que quien pregunta escribe los apellidos. Lo que NO puede
+ * ser es laxa con la palabra entera: RAGA dentro de FRAGA es otra persona, y
+ * una coincidencia falsa aquí acaba en una ficha que nombra a quien no toca.
+ * Cada token tiene que aparecer como palabra completa; una consulta vacía no
+ * devuelve nada, nunca «todo».
+ */
+export function filtrarPorPersona(anuncios: AnuncioBorme[], nombre: string): AnuncioBorme[] {
+  const plegar = (s: string) =>
+    s.normalize('NFD').replace(/[̀-ͯ]/g, '').toUpperCase().replace(/\s+/g, ' ').trim()
+  const tokens = plegar(nombre)
+    .split(' ')
+    .filter((t) => t.length > 0)
+  if (tokens.length === 0) return []
+  const patrones = tokens.map(
+    (t) => new RegExp(`(^|[^A-Z0-9])${t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?=$|[^A-Z0-9])`),
+  )
+  return anuncios.filter((a) => {
+    const cuerpo = plegar(a.texto)
+    return patrones.every((rx) => rx.test(cuerpo))
+  })
+}

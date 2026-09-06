@@ -58,15 +58,15 @@ only the original public surface.
      `TOOL_TTL_HOURS` sets both per call site — Wikidata/Wikipedia are stable
      (30d), an empty `webSearch` is not (12h, so the 09:30 nightly always
      retries it). Anything unregistered falls to a deliberately short default.
-  This is not housekeeping: with no TTL, the 21-councillor batch of 31 Jul /
-  1 Aug 2026 froze 21 empty education/social-media searches, and the resulting
-  `gaps-detected` sections went on publishing "we found nothing" about named
-  living people with no way for the cron to revisit it.
-  Inspect and prune with `npm run cache:research` (report; `--list`, `--json`)
-  and `npm run cache:research -- clear --expired|--errors|--empty|--tool <t>|
-  --older-than <h>|--all [--yes]` — dry-run unless `--yes`. The CLI calls the
-  same `decideCacheRead` the agent does, so what it prints as expired is what
-  the agent treats as a miss.
+     This is not housekeeping: with no TTL, the 21-councillor batch of 31 Jul /
+     1 Aug 2026 froze 21 empty education/social-media searches, and the resulting
+     `gaps-detected` sections went on publishing "we found nothing" about named
+     living people with no way for the cron to revisit it.
+     Inspect and prune with `npm run cache:research` (report; `--list`, `--json`)
+     and `npm run cache:research -- clear --expired|--errors|--empty|--tool <t>|
+--older-than <h>|--all [--yes]` — dry-run unless `--yes`. The CLI calls the
+     same `decideCacheRead` the agent does, so what it prints as expired is what
+     the agent treats as a miss.
 - 4-stage pipeline: `src/scraper/journalist-agent.ts` — the orchestrator
   (helpers + section builders extracted to `journalist-agent/{shared,builders}.ts`)
   — `runJournalistAgent`:
@@ -111,8 +111,16 @@ npm run promote-report -- a-robert-raga-bio \
     [--edit]                  # write to /tmp instead of persisting
 
 npm run correct-journalist-report -- <reportId> \
-    --field <narrative.<heading>.bodyMarkdown | narrative.<heading>.heading | quote.<index>.attributedTo> \
+    --field <narrative.<heading>.bodyMarkdown | narrative.<heading>.heading | quote.<index>.attributedTo \
+            | portrait.portfolios[<index>] | warnings[<index>] | career-political[<index>].endYear> \
     --new "<text>" --reason "<≥20 chars>" --editor "<name>"
+
+npm run journalist:archive -- <assignmentId> --superseded-by <newAssignmentId> \
+    --reason "<≥20 chars>" [--curator "<name>"] [--dry-run]
+
+npm run journalist:archive-sources -- <assignmentId> [--dry-run] [--min-gap-ms 10000] [--max N]
+
+npm run journalist:sondeo -- --nombre "<nombre completo>" [--slug <slug>] [--anios 2019,2023] [--semantico] [--out <ruta>]
 
 npm run journalist-reply -- <reportId> <PSOE|PP|VOX|Compromís|Ciudadanos|Otro|person> \
     "<verbatim ≥20 chars>" [sourceUrl] [YYYY-MM-DD]
@@ -208,6 +216,52 @@ TÚRIA`, 4 degrees, 4 career spans. The bio-extract LLM stage receives
   the same body, so subsequent biography drafts populate
   identity/education/career-professional from PDFs the agent finds via
   the year-binned web sweep.
+
+## Curator seeds, supersession, archiving, sondeo (2026-09)
+
+Four doors added for the investigative pass over the biographies (skill
+`investigar-cargo`). Each exists because the previous way was either a hand
+edit the guard now denies or a promise the site was not keeping.
+
+- **`journalist:run --seed <file>`** — the investigation finds documents the
+  planner would not (press that blocks the crawler, a BOP PDF, a 2011
+  candidacy). They travel in a JSON file under `editorial/investigaciones/`,
+  **never in the assignment brief**: the brief is served at
+  `/data/journalist-assignments.json` and rendered on `/laboratorio/agentes`.
+  `src/scraper/journalist-agent/seeds.ts` parses it (`capturedVia:
+fetch|pdf|chrome`; `trust` is never accepted from the file — it comes from
+  the domain table; a `chrome` capture must carry the verbatim excerpt and
+  when it was read), fetches the fetchable ones with the agent's own readers
+  before Stage 1, lists them in the plan prompt as already fetched, and ranks
+  them ahead of the synth's 18-row evidence cap
+  (`journalist-agent/evidence-rank.ts`). A seeded excerpt for a fetched
+  document is used only if it is literal in the body; otherwise the body's
+  opening is cited and a warning says so. The research summary reports
+  `seeds: {attempted, fetched, manual, failed, notInBody}`.
+- **`journalist:archive`** — retires a published report once a v2 about the
+  same subject is promoted: assignment → `archived`, report removed from the
+  index, chunk unlinked, and a dated `DEPURACIÓN EDITORIAL` paragraph appended
+  to the snapshot-level `curatorNotes`. Refuses unless the superseder is
+  promoted, published, and about the same subject. Until this CLI the only
+  path was the hand edit that removed Raga v1–v3 (f4e7c5bd).
+- **`journalist:archive-sources`** — gives a report's cited `web` /
+  `official-doc` / `boe` sources a Wayback copy (`archiveUrl`): availability
+  lookup first, Save Page Now only when none exists, saves spaced 10 s apart,
+  every target reported as existing / archived / failed, run manifest
+  included. 0 of 380 published sources had a copy before it, because the
+  agent's `fetchUrl` deliberately never saves.
+- **`journalist:sondeo`** — one door over the readers the repo already has
+  (BOE, DOGV, Dialnet, hemeroteca, press, plenos, local snapshots, the
+  officials row, and a whole-word surname sweep of `tenders.json` winners),
+  printing JSON with hallado / vacío / fallo per source and a run manifest.
+  The semantic corpus is queried only with `--semantico` and otherwise
+  reported as not requested, so it never reads as "searched, found nothing".
+- **`promote-report` now honours the LOREG freeze** (rule 5 above was
+  documented but only the agent enforced it).
+- **`correct-journalist-report` has a sixth path**,
+  `career-political[<index>].endYear`, to close a mandate (a councillor who
+  leaves mid-term stayed «desde 2023» on her page); never `null`, never below
+  `startYear`, never a no-op.
 
 Update `/metodologia` whenever this pipeline's behavior changes —
 that page is the published editorial contract.

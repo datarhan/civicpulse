@@ -92,6 +92,8 @@ import {
 } from './journalist-tools'
 
 import { keepValidUrlAccounts } from './journalist-agent/shared'
+import { preloadSeeds } from './journalist-agent/seeds'
+import { rankEvidenceForSynth } from './journalist-agent/evidence-rank'
 import { groundNarrativeSections } from './journalist-agent/grounding'
 import { mergeLegalRows, synthesizeLegalRecordRows } from './journalist-agent/legal-rows'
 import type { RunAgentOptions, RunAgentResult } from './journalist-agent/shared'
@@ -155,6 +157,8 @@ export async function runJournalistAgent(
     publishedAt?: string
     trust: 'high' | 'medium' | 'low'
     excerpt?: string
+    /** curator-seeded (journalist:run --seed): ranked ahead of the synth cap */
+    seeded?: boolean
   }> = []
 
   const subjectName = assignment.subject.name
@@ -169,6 +173,15 @@ export async function runJournalistAgent(
   const judicialMentions =
     plenoClaimHits.filter((c) => JUDICIAL_TOKENS.some((rx) => rx.test(c.verbatim))).length +
     pressHits.filter((p) => JUDICIAL_TOKENS.some((rx) => rx.test(p.title))).length
+
+  // ─── Curator seeds (before Stage 1) ──────────────────────────────────────
+  // What the investigative pass found and the planner would not: press that
+  // blocks the crawler, a BOP PDF, an old candidacy. Fetched here so the
+  // planner sees them as done, and marked `seeded` so the synth cap keeps them.
+  const seeded = await preloadSeeds(opts.seedSources ?? [], { fetchUrl, fetchPdfUrl })
+  sources.push(...seeded.sources)
+  evidence.push(...seeded.evidence)
+  warnings.push(...seeded.warnings)
 
   // ─── Stage 1: PLAN ───────────────────────────────────────────────────────
   const plan = await callLLM({
@@ -189,6 +202,9 @@ export async function runJournalistAgent(
         promiseCount: promiseHits.length,
         judicialMentions,
       },
+      seededSources: seeded.sources
+        .filter((s) => typeof s.url === 'string')
+        .map((s) => ({ title: s.title, url: s.url as string })),
     }),
     promptVersion: JOURNALIST_PLAN_VERSION,
     schema: JournalistPlanResponseSchema,
@@ -1063,6 +1079,7 @@ export async function runJournalistAgent(
       webResults,
       urlFetches,
       auditRuns,
+      seeds: seeded.summary,
     })
   }
 
@@ -1371,16 +1388,8 @@ export async function runJournalistAgent(
   // JSON) and OOM smaller ollama models. Keep all rows in `sources`/the
   // sourceLedger UI; just hand the synth a curated top-N. Rank: high-trust
   // first, then most-recent published, then fall back to original order.
-  const cappedEvidence = [...evidence]
-    .sort((a, b) => {
-      const trustRank = { high: 0, medium: 1, low: 2 } as const
-      const t = trustRank[a.trust] - trustRank[b.trust]
-      if (t !== 0) return t
-      const ad = a.publishedAt ?? ''
-      const bd = b.publishedAt ?? ''
-      return bd.localeCompare(ad)
-    })
-    .slice(0, 18)
+  // Seeds first, then the old order (rankEvidenceForSynth explains why).
+  const cappedEvidence = rankEvidenceForSynth(evidence, 18)
   const synth = await callLLM({
     systemPrompt: buildJournalistSynthSystemPrompt(),
     userPrompt: buildJournalistSynthUserPrompt({
@@ -1499,6 +1508,7 @@ export async function runJournalistAgent(
       webResults,
       urlFetches,
       auditRuns,
+      seeds: seeded.summary,
     })
   }
 

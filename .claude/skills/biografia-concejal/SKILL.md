@@ -41,8 +41,10 @@ set -a && source .env && set +a && LLM_BACKEND=claude-code LLM_CONCURRENCY=1 \
   npm run journalist:run -- a-<id> 2>&1 | tee $CLAUDE_JOB_DIR/tmp/journalist-run-<slug>.log
 ```
 
-Output: draft in `journalist-reports-suggestions.json` + chunk
-`public/data/journalist-reports/a-<id>.draft.json`.
+Output: draft in `editorial/journalist-drafts/journalist-reports-suggestions.json` + chunk
+`editorial/journalist-drafts/a-<id>.draft.json` (gitignored dir, force-added; NEVER under
+`public/`, which is served). Pass `--seed editorial/investigaciones/<slug>/fuentes.json` when
+the investigative pass (skill `investigar-cargo`) has located sources the planner would miss.
 
 ## Phase 3 — Forensic curator review (MANDATORY before promote)
 
@@ -80,15 +82,16 @@ Read the draft's sections, sources, warnings. Then:
 
 **A. Elección y nombramiento (appointment chain).** For the 2023-2027 corporation the chain is
 verbatim in two transcripts:
+
 - `9jatoj.txt` — sesión constitutiva 17-06-2023: the 21 electos + proclamation (~L12-33), oath
   order (~L66-92), heads-of-lists rule (~L98-101), investidura votes + proclamation (~L114-132).
 - `16ujrlm.txt` — organización 07-07-2023: grupos políticos rosters (~L103-130), the delegation
   decree with ONE numbered item per governing concejal (~L275-305), dedicaciones, JGL composition
   (~L690-704).
-The narrative explains HOW the subject obtained the office: proclamado electo → juramento →
-(investidura for alcalde) → grupo → delegación del alcalde → dedicación. Party vote shares
-(elections.json source) are context, not the story. Opposition concejales have no delegation —
-their chain ends at electo + oath + grupo (+ portavoz role if the acta records it).
+  The narrative explains HOW the subject obtained the office: proclamado electo → juramento →
+  (investidura for alcalde) → grupo → delegación del alcalde → dedicación. Party vote shares
+  (elections.json source) are context, not the story. Opposition concejales have no delegation —
+  their chain ends at electo + oath + grupo (+ portavoz role if the acta records it).
 
 **B. Declaración de bienes y actividades (statutory).** Consolidated per-mandate PDF on the
 portal — 2023-2027:
@@ -96,20 +99,22 @@ portal — 2023-2027:
 (navigate: portal_de_transparencia → declaracion_de_bienes_patrimoniales; expte. 3971/2023/GEN,
 Decreto 191/2010; Mozilla UA required against the WAF; parse with pdf-parse). ALL 21 councillors
 are in it — slice the subject's rows:
+
 - Bienes table columns AS EXTRACTED: inmuebles + otros = activo total, 4th number = pasivo
   (verify the arithmetic before publishing).
 - Actividades table: cargo/entidad/fecha — a subject with only the concejalía listed gets the
   explicit `business` NEGATIVE row («sin actividad empresarial declarada»).
-Publish as: `financial` rows (`declared-assets` with amount, `business` with description) + a
-«Patrimonio y actividades declaradas» narrative + `official-doc` sources with verbatim windows.
-`FINANCIAL_SOURCE_ALLOW` already admits ribarroja.es for these.
-The declarations are ALSO gazette-published — **BOP de València n.º 180, 15-09-2023, anuncio
-2023/12011** (PDF `20231017-2023_12011_VA-Anuncio-BOP-Toma-posesion.pdf` on the same portal
-page) — cite it alongside for gazette-grade identifiers.
-Members WITHOUT dedicación: the asistencias tariffs are verbatim in `16ujrlm.txt` ~L1287-1300
-(221,82 €/Pleno · 162,31 €/JGL and comisiones · 119,03 €/Junta de Portavoces).
+  Publish as: `financial` rows (`declared-assets` with amount, `business` with description) + a
+  «Patrimonio y actividades declaradas» narrative + `official-doc` sources with verbatim windows.
+  `FINANCIAL_SOURCE_ALLOW` already admits ribarroja.es for these.
+  The declarations are ALSO gazette-published — **BOP de València n.º 180, 15-09-2023, anuncio
+  2023/12011** (PDF `20231017-2023_12011_VA-Anuncio-BOP-Toma-posesion.pdf` on the same portal
+  page) — cite it alongside for gazette-grade identifiers.
+  Members WITHOUT dedicación: the asistencias tariffs are verbatim in `16ujrlm.txt` ~L1287-1300
+  (221,82 €/Pleno · 162,31 €/JGL and comisiones · 119,03 €/Junta de Portavoces).
 
 **B2. Corroboration sources for the recurring lagunas** (status as of 2026-07-31):
+
 - **Mandate starts pre-2023 — SOLVED.** The historic actas archive is at
   `https://www.ribarroja.es/es/1_transparencia_activa_e_informacion_sobre_la_corporacion_municipal/plenos`
   → per-year pages `/es/plenos/<2013-2019>` and `/es/ayuntamiento/plenos/<2008-2011>/…`. Key
@@ -133,7 +138,7 @@ Members WITHOUT dedicación: the asistencias tariffs are verbatim in `16ujrlm.tx
   there is no free-text SEARCH — but the BOE open-data API serves the daily BORME summary, and
   from it the plain text of each provincial section:
   `GET boe.es/datosabiertos/api/borme/sumario/YYYYMMDD` → `data.sumario.diario[].seccion[codigo=A]
-  .item[]` (34 provinces) → `item.url_html` → `boe.es/diario_borme/txt.php?id=BORME-A-…`.
+.item[]` (34 provinces) → `item.url_html` → `boe.es/diario_borme/txt.php?id=BORME-A-…`.
   Wired as `npm run scrape:borme -- --desde … --hasta … --provincia ALICANTE --empresa "…"`
   (`scripts/scrape-borme.ts`, parser `src/scraper/borme.ts`). It SWEEPS by date and filters
   locally — measured cost ~2.000 anuncios per province-month — and writes to `.cache/borme/`,
@@ -145,6 +150,7 @@ Members WITHOUT dedicación: the asistencias tariffs are verbatim in `16ujrlm.tx
 - Birth dates and family: NO lawful public source — these stay honest gaps, never «covered».
 
 **C. Comprobaciones (conflict checks — contracts-first, NEVER social-graph-first).**
+
 - Nominal sweep: subject surnames vs all contract assignees in `tenders.json`.
 - Competition indicators of the subject's áreas vs corpus baseline (fields `numberOfProposals`,
   `minorContract`; filter titles by área keywords, awardDate ≥ mandate start).
