@@ -76,7 +76,7 @@ Lo lee `journalist:run --seed`. Una lista; cada fila:
   "url": "https://valenciaplaza.com/el-policia-alberto-gimeno-sera-el-candidato-del-pp-a-la-alcaldia-de-riba-roja",
   "title": "El policía Alberto Gimeno será el candidato del PP a la alcaldía de Riba-roja",
   "publisher": "Valencia Plaza",
-  "publishedAt": "2023-01-19",
+  "publishedAt": "2023-01-09",
   "capturedVia": "fetch",
   "excerpt": "…extracto literal ≤500…",
   "retrievedAt": "2026-09-06T10:00:00.000Z",

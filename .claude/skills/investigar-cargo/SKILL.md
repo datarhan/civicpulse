@@ -37,7 +37,7 @@ publicada recibe uno de seis desenlaces; la propuesta son órdenes listas y un
 | veda LOREG                                        | `npm run freeze:status`                                                                                                                                                         |
 | todos los lectores del repo de una vez, con parte | `npm run journalist:sondeo -- --nombre "<nombre>" --slug <slug> --out editorial/investigaciones/<slug>/sondeo.json`                                                             |
 | cargos societarios                                | `npm run scrape:borme -- --desde 2009-01-02 --hasta <hoy> --provincia VALENCIA --persona "APELLIDO1 APELLIDO2"` (barrido UNA vez por campaña; luego grep sobre `.cache/borme/`) |
-| BOP por ventana                                   | `npm run buscar-bop-historico -- --desde --hasta --busca "<apellidos>"`                                                                                                         |
+| BOP por ventana                                   | `npx tsx scripts/buscar-bop-historico.ts --desde --hasta --busca "<apellidos>"` (sin alias npm)                                                                                 |
 | un documento con UA correcto                      | `npm run fetch-url-evidence -- <url>`                                                                                                                                           |
 | qué ya sabe el repo                               | `.research-cache/`, `editorial/journalist-drafts/<id>.draft.json`, `public/data/journalist-reports/<id>.json`                                                                   |
 | copia en Wayback (sesión central)                 | `npm run journalist:archive-sources -- <assignmentId>`                                                                                                                          |
@@ -81,17 +81,17 @@ Catálogo de fuentes y vías: `references/fuentes.md`. Límites: `references/lim
 
 ## Errores frecuentes
 
-| Excusa                                      | Realidad                                                                                                  |
-| ------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| «El nombre coincide, será él»               | Sin segundo identificador es un homónimo. RAGA no es FRAGA; Salomé Pradas no es María José Pradas.        |
-| «El buscador ya lo resume»                  | El resumen inventó un cargo el mismo día que se escribió esto. Se cita lo leído.                          |
-| «No hay nada; no lo anoto»                  | Una búsqueda sin resultado es un dato: fuente, consulta, fecha.                                           |
-| «Sólo lo cita un medio, pero es grave»      | Va como «según <medio>, <fecha>», sensibilidad alta, derecho de réplica. Nunca en presente ni como hecho. |
-| «El BORME no cabe en el presupuesto»        | Se barre una vez por campaña y se consulta la caché.                                                      |
-| «Lo pongo en public/ para verlo en la web»  | Todo bajo public/ se publica. El dossier vive en editorial/.                                              |
-| «La nota de curaduría explica lo que quité» | La nota se pinta en la página. Describe el criterio, no el material.                                      |
-| «Es un familiar, sale en el BORME»          | Dos apellidos no son un parentesco. Dos llaves o nada.                                                    |
-| «Una candidatura es un cargo»               | Candidato ≠ cargo; personal eventual ≠ cargo; asesoría en otro órgano ≠ el cargo que la página describe.  |
+| Excusa                                      | Realidad                                                                                                                                                                                         |
+| ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| «El nombre coincide, será él»               | Sin segundo identificador es un homónimo. RAGA no es FRAGA; Salomé Pradas no es María José Pradas.                                                                                               |
+| «El buscador ya lo resume»                  | Un resumen ni afirma ni descarta: el mismo día atribuyó a un artículo un cargo que el artículo no traía — y el cargo resultó cierto en un documento de la Diputació. Se cita el documento leído. |
+| «No hay nada; no lo anoto»                  | Una búsqueda sin resultado es un dato: fuente, consulta, fecha.                                                                                                                                  |
+| «Sólo lo cita un medio, pero es grave»      | Va como «según <medio>, <fecha>», sensibilidad alta, derecho de réplica. Nunca en presente ni como hecho.                                                                                        |
+| «El BORME no cabe en el presupuesto»        | Se barre una vez por campaña y se consulta la caché.                                                                                                                                             |
+| «Lo pongo en public/ para verlo en la web»  | Todo bajo public/ se publica. El dossier vive en editorial/.                                                                                                                                     |
+| «La nota de curaduría explica lo que quité» | La nota se pinta en la página. Describe el criterio, no el material.                                                                                                                             |
+| «Es un familiar, sale en el BORME»          | Dos apellidos no son un parentesco. Dos llaves o nada.                                                                                                                                           |
+| «Una candidatura es un cargo»               | Candidato ≠ cargo; personal eventual ≠ cargo; asesoría en otro órgano ≠ el cargo que la página describe.                                                                                         |
 
 ## Lo que cazó el día que se escribió
 

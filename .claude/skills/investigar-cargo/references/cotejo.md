@@ -40,6 +40,21 @@ Formato de fila (`cotejo.json`):
 }
 ```
 
+## Qué corrige el CLI y qué no
+
+`correct-journalist-report` admite exactamente seis rutas:
+`narrative.<heading>.bodyMarkdown`, `narrative.<heading>.heading`,
+`quote.<i>.attributedTo`, `portrait.portfolios[<i>]`, `warnings[<i>]` y
+`career-political[<i>].endYear`. El `heading` se toma tal cual (dos puntos y comas
+valen; el CLI parte por el ÚLTIMO punto, así que un heading con un punto dentro
+sólo funciona si el subcampo va después). Una fila `financial`, un hito de
+`timeline`, una arista de `relationships` o una laguna de `gaps-detected` NO tienen
+ruta: su acción es `v2` (el agente los reconstruye con las semillas) o, si la v2 no
+se justifica, un guion de un solo uso validado por la curaduría con nota fechada en
+`curatorNotes` — nunca una edición a mano del JSON, que la guarda deniega. La
+propuesta del dossier escribe las órdenes con esa gramática y marca «→ v2» lo que
+no cabe en ella.
+
 Relación con `revisar-borrador`: sus clases D («el extracto se parece pero no
 sostiene») y E («la nota de curaduría publica lo excluido») son `se-parece` y
 una alarma de la fase de propuesta, respectivamente. Este cotejo se hace sobre lo

@@ -18,6 +18,10 @@
 - **LinkedIn y webs de partido**: Chrome, lectura manual, a `_comun/`.
 - **Wayback**: `journalist:archive-sources` sólo desde aquí.
 
+Todo esto se ejecuta en el **checkout principal**: `.cache/` y `editorial/` no viajan
+entre worktrees, y un subagente lanzado desde un worktree no puede tocar el checkout
+principal (la guarda de sesión lo rechaza). Los dossiers también se escriben allí.
+
 ## Qué hace cada dossier (subagentes, hasta 3 a la vez, uno por persona)
 
 Con la habilidad cargada y las capturas de `_comun/` a mano: sondeo, actas y
