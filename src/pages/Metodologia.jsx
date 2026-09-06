@@ -1418,11 +1418,14 @@ export default function Metodologia() {
           Preservación de fuentes (Wayback)
         </h3>
         <p style={{ marginTop: 6 }}>
-          Una tarea diaria recorre cada URL citada y la archiva en Internet Archive (
-          <code>web.archive.org</code>). El snapshot resultante se publica junto al enlace original
-          en cada tarjeta del laboratorio, siguiendo la regla GIJN{' '}
+          Una tarea diaria recorre cada URL citada en los reportajes y en los hallazgos y la archiva
+          en Internet Archive (<code>web.archive.org</code>). El snapshot resultante se publica
+          junto al enlace original en cada tarjeta del laboratorio, siguiendo la regla GIJN{' '}
           <em>"archivar antes de citar"</em>. Si el medio retira la pieza después, el lector aún
-          puede acceder a la copia congelada.
+          puede acceder a la copia congelada. En las biografías del agente periodista la copia se
+          toma informe a informe al publicarlo; las publicadas antes de septiembre de 2026 se están
+          archivando de la misma forma, y su tabla de fuentes enseña el enlace a la copia sólo
+          cuando existe.
         </p>
 
         <h3 style={{ marginTop: 16, fontSize: 'var(--fs-head)' }}>ClaimReview (schema.org)</h3>
@@ -2077,6 +2080,49 @@ export default function Metodologia() {
           la página del ayuntamiento sigue necesitándola: si la web se pone al día, la corrección
           sobra y se retira, dejando rastro. Cuando la página no contesta, la guarda dice «no
           comprobado» en lugar de firmar un visto bueno.
+        </p>
+      </Card>
+
+      <Card style={{ marginTop: 14 }} id="biografias">
+        <SectionHead
+          eyebrow="Cargos · biografías del agente periodista"
+          title="Qué se busca sobre un cargo, dónde, y qué no entra nunca"
+        />
+        <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
+          Las biografías de{' '}
+          <a href="/laboratorio/agentes" style={{ color: 'var(--civic)' }}>
+            /laboratorio/agentes
+          </a>{' '}
+          nacen de una asignación que un agente investiga y redacta, y que una persona revisa
+          afirmación por afirmación antes de publicar. Desde septiembre de 2026 llevan además una
+          investigación previa hecha a mano: lo que un cargo publica sobre sí mismo —su currículum
+          en el portal de transparencia— es el punto de partida, no la fuente. Se contrasta contra
+          documentos que el cargo no controla: actas de pleno, boletines oficiales (BOP, BOE, DOGV),
+          el Registro Mercantil a través del BORME, las candidaturas electorales de todas las
+          convocatorias desde 2007, la contratación y las subvenciones municipales, la prensa y las
+          cuentas públicas del propio cargo. Todo son documentos y páginas públicas: nada de
+          registros de pago, nada tras un inicio de sesión.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>Familia y patrimonio: sólo con documento y con nexo con el cargo.</strong> Un
+          vínculo familiar o un bien se publica cuando un documento público lo dice de forma
+          explícita y, además, guarda relación con el cargo —un contrato, una subvención, un
+          nombramiento, una decisión municipal, una incompatibilidad—. Con una sola de las dos
+          condiciones no se publica: dos apellidos iguales en un boletín no son un parentesco, y la
+          vida familiar sin relación con el cargo es vida privada por muy documentada que esté. No
+          entran nunca menores, salud, ideología más allá del partido, orientación sexual, religión,
+          domicilio ni documento de identidad. Una acusación publicada por un medio se recoge como
+          lo que es —«según tal medio, en tal fecha»—, con su copia, y eleva la sensibilidad legal
+          del informe, que entonces sólo se publica tras la revisión de una persona.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>Cada afirmación ya publicada se coteja y recibe uno de seis desenlaces</strong>{' '}
+          —sostiene, se parece, contradice, desactualizado, sin fuente, no comprobable— y sólo dos
+          caminos cambian la página: una corrección, que deja rastro en la bitácora del informe, o
+          una nueva versión que sustituye a la anterior, la retira del índice y lo anota con fecha.
+          Lo que no se pudo comprobar se publica como laguna, no como hecho ni como sospecha. Una
+          coincidencia de nombre no es una identidad: antes de atribuir nada hace falta un segundo
+          identificador, y una búsqueda sin resultado se anota como lo que es, un dato.
         </p>
       </Card>
 
