@@ -51,9 +51,11 @@ export function validateSection(
         typeof p.officialSlug === 'string' && SLUG_RE.test(p.officialSlug),
         `${here}.payload.officialSlug must be kebab-case slug`,
       )
+      // '' = sin retrato publicado (an alta the portal never photographed —
+      // Tortajada, 2025); HeroBand renders no <img> for it.
       must(
-        typeof p.photoPath === 'string' && p.photoPath.startsWith('/'),
-        `${here}.payload.photoPath must start with /`,
+        typeof p.photoPath === 'string' && (p.photoPath === '' || p.photoPath.startsWith('/')),
+        `${here}.payload.photoPath must start with / (or be '' when no photo is published)`,
       )
       must(
         typeof p.partyTone === 'string' && p.partyTone.length > 0,

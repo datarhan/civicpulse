@@ -14,39 +14,14 @@
  */
 
 /**
- * `**negrita**` y saltos de párrafo, y nada más.
- *
- * El texto se pintaba crudo, así que la corrección del 02-08-2026 llevaba meses
- * publicada enseñando sus propios asteriscos —«**Se ha corregido el ranking…**»—
- * y un párrafo único de doce líneas. Lo escribe una persona en un JSON y espera
- * que se lea como lo escribió.
- *
- * NO es un intérprete de Markdown y no debe convertirse en uno: React escapa
- * cada trozo, así que aquí no entra HTML por mucho que lo traiga el JSON. Un
- * asterisco suelto se queda como asterisco, que es lo que quiere decir.
+ * `**negrita**` y saltos de párrafo, y nada más — el trozeador nació aquí (la
+ * corrección del 02-08-2026 llevó meses publicada enseñando sus propios
+ * asteriscos) y desde el 06-09-2026 vive en src/lib/texto-negrita.js porque
+ * los relatos de las biografías tenían el mismo defecto. Se re-exporta para
+ * que el test que lo fijó siga leyéndolo de aquí.
  */
-export function trozos(texto) {
-  return texto.split(/\n\n+/).map((parrafo) =>
-    parrafo.split(/(\*\*[^*]+\*\*)/g).map((t) => {
-      if (t.startsWith('**') && t.endsWith('**') && t.length > 4) return { negrita: t.slice(2, -2) }
-      return { texto: t }
-    }),
-  )
-}
-
-/**
- * La primera frase del texto de la corrección, para el summary plegado.
- *
- * Corta en el primer punto seguido de espacio o fin de párrafo; si la
- * corrección es una sola frase corta, el summary la lleva entera y el cuerpo
- * plegado sólo repite — el precio de no tener dos campos en el JSON, y menor
- * que pedirle a quien corrige que escriba un resumen aparte.
- */
-export function primeraFrase(texto) {
-  const primerParrafo = texto.split(/\n\n+/)[0].replace(/\*\*/g, '')
-  const m = primerParrafo.match(/^.*?[.!?](?=\s|$)/)
-  return (m ? m[0] : primerParrafo).trim()
-}
+import { trozos, primeraFrase } from '../../lib/texto-negrita.js'
+export { trozos, primeraFrase }
 
 /**
  * Plegada por defecto desde el 17-08-2026, a petición: el HECHO de la

@@ -295,7 +295,18 @@ export default function AgenteReporte() {
   return (
     <div className="cp-agente-page">
       <style>{`
-        .cp-agente-page { display: grid; grid-template-rows: auto 1fr auto; min-height: 100vh; }
+        /* minmax(0, 1fr): the implicit auto column sized itself to the hero's
+           max-content (the unwrapped subtitle) and the whole page scrolled
+           sideways at phone widths — 810px in a 500px window (06-09-2026). */
+        .cp-agente-page { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 1fr auto; min-height: 100vh; }
+        /* Grid items default to min-width:auto (= their min-content), which let
+           the ledger item grow to its table's width and overrode the table's own
+           overflow-x:auto wrapper. With 0, the wrapper scrolls instead. */
+        .cp-agente-page > * { min-width: 0; }
+        .cp-hero-grid { grid-template-columns: auto minmax(0, 1fr); }
+        @media (max-width: 640px) {
+          .cp-hero-grid { grid-template-columns: minmax(0, 1fr); justify-items: start; }
+        }
         .cp-agente-shell {
           display: grid;
           grid-template-columns: 200px minmax(0, 1fr) 280px;
@@ -303,11 +314,16 @@ export default function AgenteReporte() {
           max-width: 1300px;
           margin: 0 auto;
           padding: 32px 24px;
+          width: 100%;
+          box-sizing: border-box;
         }
         .cp-toc { position: sticky; top: 80px; align-self: start; }
         .cp-facts { position: sticky; top: 80px; align-self: start; padding: 18px; border: 1px solid var(--border); border-radius: var(--r-card); background: var(--paper); }
         .cp-main { display: grid; gap: var(--gap-block); min-width: 0; max-width: var(--reading-w); margin: 0 auto; width: 100%; }
-        .cp-ledger { max-width: 1300px; margin: 0 auto; padding: 0 24px 48px; }
+        /* width:100% + border-box: with only margin:0 auto, a grid item does not
+           stretch — it sizes to its content, and the ledger table's 720px
+           min-width pushed the whole page to 810px on a phone (06-09-2026). */
+        .cp-ledger { max-width: 1300px; margin: 0 auto; padding: 0 24px 48px; width: 100%; box-sizing: border-box; }
         @media (max-width: 1100px) {
           .cp-agente-shell { grid-template-columns: minmax(0, 1fr) 240px; gap: 24px; }
           .cp-toc { display: none; }

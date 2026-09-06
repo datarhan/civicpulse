@@ -1,102 +1,209 @@
 # Robert Raga Gadea — vida pública
 > Documento generado por el agente periodista de CivicPulse (journalist-v1).
-> Generado: 2026-05-23 · Publicado: 2026-05-23 · Sensibilidad legal: **media**
+> Generado: 2026-07-30 · Publicado: 2026-07-30 · Sensibilidad legal: **alta**
+
+> ⚠ **Sensibilidad legal alta.** Este informe trata sobre figuras vivas o asuntos
+> legalmente sensibles. Las afirmaciones se publican con derecho de réplica abierto.
 
 ## Cargo
 - **Slug oficial:** `robert-raga-gadea`
 - **Portafolios:** Alcaldía, Innovación, Planificación estratégica y grandes proyectos y cooperación nacional e internacional
-- **CV oficial:** <http://www.ribarroja.es/portal_de_transparencia/informacio_sobre_la_corporacio_municipal/dades_biografiques_de_lalcalde_sa_i_regidors_es/continguts/864708/0835919>
+- **CV oficial:** <https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919>
 
 ## Identidad
-- **Residencia:** Riba-roja de Túria [^1]
+- **Fecha de nacimiento:** 1966-04-09 [^1]
+- **Lugar de nacimiento:** Riba-roja de Túria [^1]
 
-## Perfil y cargo actual
-Robert Raga Gadea es el actual alcalde de Riba-roja de Túria por el Partido Socialista Obrero Español (PSOE). Sus responsabilidades como alcalde-presidente incluyen las áreas de Innovación, Planificación Estratégica, Grandes Proyectos y Cooperación Nacional e Internacional. Su nombramiento y representación del ayuntamiento constan en diversas resoluciones oficiales publicadas en el Boletín Oficial del Estado (BOE). [^1][^2][^3][^4][^5]
+## Trayectoria profesional y formación
+Según su currículum oficial publicado en la ficha de transparencia del Ayuntamiento de Riba-roja de Túria, Robert (Roberto Pascual) Raga Gadea nació el 9 de abril de 1966 en Riba-roja de Túria. Según los datos biográficos que él mismo publica, cursó el acceso a la universidad para mayores de 25 años y realizó una matriculación en magisterio EGB y la «Educación 2ª obligatoria» —así consta literalmente— en el Colegio Público Miguel Cervantes. En ese mismo currículum autodeclarado consta que trabajó como autónomo en el sector de las energías renovables y la seguridad entre 2007 y 2011, y posteriormente como asesor en la Diputació de València entre 2011 y 2015. [^1][^2]
 
-## Gestión municipal y proyectos
-La gestión de Raga incluye la supervisión de proyectos de infraestructuras, como la reconstrucción de áreas afectadas por la DANA y las obras del Pont Vell. Durante los plenos municipales se han tratado temas como la prórroga de contratos de servicios y la gestión de fondos europeos FEDER. En un pleno se mencionó un acuerdo con Cáritas para destinar fondos a la restauración del campanario en lugar de a gasto corriente de la entidad. [^6][^7][^8][^9][^10]
+## Cargo y responsabilidades municipales
+Robert Raga Gadea ejerce como alcalde del Ayuntamiento de Riba-roja de Túria por el PSOE (PSPV-PSOE), con responsabilidad sobre las áreas de Alcaldía, Innovación, y Planificación estratégica y grandes proyectos y cooperación nacional e internacional. Su agenda pública está disponible en el portal de transparencia municipal. [^3][^4][^5]
+
+## Retribución del cargo
+El régimen retributivo de la alcaldía fue fijado por acuerdo del Pleno del 7 de julio de 2023 (expediente 4533/2023/GEN), que estableció una dedicación exclusiva de 48.234,08 euros anuales. Según los datos de retribuciones anuales de altos cargos del Ministerio de Hacienda (ISPA), el titular de la alcaldía percibió 45.461,94 € en 2020, 45.916,56 € en 2021, 52.855,48 € en 2022 y 48.647,5 € en 2024. [^6][^7]
+
+## Patrimonio y actividades declaradas
+La declaración estatutaria de actividades y bienes que Robert Raga presentó al tomar posesión en 2023 (expediente 3971/2023/GEN, publicada por el Ayuntamiento conforme al Decreto 191/2010 del Consell) recoge exclusivamente cargos públicos: la alcaldía de Riba-roja de Túria, con inicio declarado el 13 de junio de 2015, y la presidencia del Consorcio Valencia Interior (23/10/2019). No declara ninguna actividad empresarial privada.
+
+En el apartado de bienes declara un activo de 95.352,78 euros —79.052,78 euros en bienes inmuebles por valor catastral y 16.300 euros en otros bienes— y un pasivo de 231.955,80 euros. La declaración fue publicada además en el Boletín Oficial de la Provincia de València (n.º 180, de 15 de septiembre de 2023, anuncio 2023/12011). [^8][^9][^10]
+
+## Elección e investidura
+Robert Raga accede a la alcaldía por la vía de la investidura plenaria. En la sesión constitutiva del 17 de junio de 2023 —tras las municipales del 28 de mayo, en las que el PSPV-PSOE obtuvo el 49,69% de los votos— presentaron candidatura los concejales que encabezaban las listas electas y Raga fue elegido alcalde con 11 votos de los 21 concejales, la mayoría absoluta; el siguiente candidato obtuvo 7 votos.
+
+Quedó proclamado alcalde y tomó posesión en el mismo acto formulando promesa del cargo.
+
+En los comicios de 2019 el PSPV-PSOE había obtenido el 45,92% de los votos.
+
+Su primera investidura consta ahora de forma independiente: encabezó la lista del PSOE en 2015 (BOP de València n.º 79, 28-04-2015) y fue elegido alcalde el 13 de junio de 2015 con 12 votos, frente a 7 de la candidata del PP y 2 en blanco. En 2019 volvió a encabezar la candidatura (BOP n.º 82, 30-04-2019), y un acta de marzo de 2010 lo sitúa ya como concejal de la corporación 2007-2011. [^11][^12][^13][^14][^15][^16][^17][^18]
+
+## Consulta sobre la concesión del alcantarillado (Informe 02/2021)
+El Informe 02/2021 de la Junta Superior de Contractació Administrativa de la Generalitat Valenciana (18 de junio de 2021) responde a una consulta formulada por el propio Ayuntamiento de Riba-roja de Túria — firmada por Roberto Pascual Raga Gadea en nombre y representación de la corporación — sobre el servicio de concesión de la gestión del alcantarillado, control de vertidos y depuración (Expte. 27/2018).
+
+El origen del caso es anterior a su mandato: el Pleno aprobó los pliegos de esa licitación el 30 de julio de 2012, y una sentencia del Tribunal Superior de Justícia de la Comunitat Valenciana (apelación 962/2016, firme) declaró la nulidad de los pliegos y de todo el procedimiento de licitación y adjudicación.
+
+La Junta concluye que la situación genera un enriquecimiento injusto de la administración (con cita del Dictamen 558/2020 del Consell Consultiu), que procede la revisión de oficio y que el recurso al procedimiento negociado por urgencia no resulta justificable, debiendo acudirse a un procedimiento abierto con publicidad.
+
+El documento es de control consultivo y no establece responsabilidades individuales. [^19][^20]
+
+## Actividad plenaria
+Como alcalde-presidente, Raga Gadea ha presidido sesiones plenarias del Ayuntamiento de Riba-roja de Túria, entre ellas la sesión extraordinaria del 30 de diciembre de 2022, la sesión ordinaria del 8 de mayo de 2023, la sesión extraordinaria telemática del 24 de mayo de 2023 y la sesión ordinaria del 10 de febrero de 2025, esta última con la asistencia de la secretaria general, Ylenia Díaz Morán. En junio de 2026 firmó, en su condición de alcalde, el anuncio de bases del proceso selectivo restringido de promoción interna para cuatro plazas técnicas A1 del ayuntamiento. [^21][^22][^23][^24][^25]
+
+## Conexiones documentadas y comprobaciones de este medio
+Como comprobación rutinaria, esta redacción ha cruzado los apellidos del alcalde con el corpus de contratación municipal: en los 804 contratos adjudicados que recoge el mirror oficial de licitaciones no consta ningún adjudicatario con sus apellidos. Su declaración estatutaria de actividades descarta actividad empresarial privada y recoge, como segunda responsabilidad pública, la presidencia del Consorcio Valencia Interior (véase «Patrimonio y actividades declaradas»).
+
+El Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales (estudios, amistades) no constan en fuentes públicas y no se publican sin constancia documental. [^26][^8][^9]
+
+## Formación
+1. Matriculación en magisterio EGB — Colegio Público Miguel Cervantes [^1]
+2. Educación 2ª obligatoria — Colegio Público Miguel Cervantes [^1]
+3. Acceso a universidad mayores de 25 años [^1]
 
 ## Trayectoria política
-- **2025–presente** — Alcalde-Presidente en Ayuntamiento de Riba-roja de Túria [^1][^2][^3]
+- **2010–2010** — Concejal — consta en el acta del pleno de 10-03-2010 (corporación 2007-2011) en Ayuntamiento de Riba-roja de Túria [^18]
+- **2015–2019** — Alcalde en Ajuntament de Riba-roja de Túria [^1][^9][^17][^16]
+- **2019–2023** — Alcalde (Planificación estratégica, innovación y proyectos europeos) en Ajuntament de Riba-roja de Túria [^1][^21][^3][^27]
+- **2023–presente** — Alcalde (mandato en curso) en Ajuntament de Riba-roja de Túria [^3]
+
+## Trayectoria profesional
+- **2011–2015** — Asesor institucional en Diputació de València [^1]
+- **2007–2011** — Autónomo — sector de las energías renovables y de la seguridad en Autónomo [^1]
+- **1989** — Funcionario de la Administración Local (en excedencia especial desde 2007) en Ajuntament de Riba-roja de Túria [^1]
+
+## Declaraciones financieras
+- **2020** — Salario público · 45.461,94 € [^7]
+  - Retribución anual del alcalde según ISPA (Ministerio de Hacienda).
+- **2021** — Salario público · 45.916,56 € [^7]
+  - Retribución anual del alcalde según ISPA (Ministerio de Hacienda).
+- **2022** — Salario público · 52.855,48 € [^7]
+  - Retribución anual del alcalde según ISPA (Ministerio de Hacienda).
+- **2023** — Salario público · 48.234,08 € [^6]
+  - Retribución anual de la Alcaldía (dedicación exclusiva) según acuerdo de pleno de fijación del régimen económico de los concejales (Expediente 4533/2023/GEN).
+- **2024** — Salario público · 48.647,5 € [^7]
+  - Retribución anual del alcalde según ISPA (Ministerio de Hacienda).
+- **2023** — Bienes declarados · 95.352,78 € [^8]
+  - Activo declarado al tomar posesión (2023): 79.052,78 € en bienes inmuebles (valor catastral) + 16.300 € en otros bienes; pasivo declarado: 231.955,80 €. Declaración de bienes conforme al Decreto 191/2010 del Consell (expte. 3971/2023/GEN).
+- **2023** — Actividad empresarial [^9]
+  - Sin actividad empresarial privada declarada: su declaración de actividades recoge únicamente cargos públicos — la alcaldía (inicio declarado 13/06/2015) y la presidencia del Consorcio Valencia Interior (23/10/2019).
 
 ## Cronología
-- **2025-07-02** — Representa al Ayuntamiento en una resolución publicada en el BOE. [^3]
-- **2026-02-09** — Analiza junto a Mompó la evolución de la reconstrucción post-DANA. [^7]
-- **2026-03-16** — Expone en el pleno un acuerdo con Cáritas para invertir en el campanario. [^9]
-- **2026-03-24** — Comunica la necesidad de iniciar las obras del Pont Vell después del curso escolar. [^6]
-- **2026-04-20** — Recibe críticas en el pleno sobre la gestión de fondos europeos para la Formación Profesional. [^11]
+- **1966-04-09** — Nace en Riba-roja de Túria (dato de su CV autodeclarado) [^1]
+- **2010-03-10** — Consta como concejal en el acta del pleno ordinario (corporación 2007-2011) [^18]
+- **2015-06-13** — Elegido alcalde por primera vez en la sesión constitutiva, con 12 votos frente a 7 de la candidata del PP y 2 en blanco, tras encabezar la lista del PSOE [^17][^16]
+- **2019-05-26** — Elecciones municipales: el PSPV-PSOE gana con el 45,92% de los votos [^14]
+- **2021-06-18** — La Junta Superior de Contractació Administrativa (GVA) emite el Informe 02/2021, en respuesta a la consulta del Ayuntamiento sobre la concesión del alcantarillado [^19][^20]
+- **2023-05-28** — Elecciones municipales: el PSPV-PSOE revalida el gobierno con el 49,69% de los votos [^14]
+- **2023-06-17** — Elegido alcalde en la sesión constitutiva con 11 votos de 21 (mayoría absoluta); toma posesión en el mismo acto [^12][^13]
+- **2023-07-07** — El Pleno fija la dedicación exclusiva de la alcaldía en 48.234,08 € anuales [^6]
+- **2026-06-18** — Firma como alcalde el anuncio de bases del proceso selectivo de 4 plazas técnicas A1 [^25]
 
 ## Relaciones
-- Milita en → **PSOE** _(partido)_ [^1]
-- Alcalde de → **Ayuntamiento de Riba-roja de Túria** _(entidad)_ [^1][^2][^3]
-- Analiza reconstrucción DANA con → **Mompó** _(persona)_ [^7]
-- Dialoga sobre inversiones con → **Cáritas** _(entidad)_ [^9]
-
-## Cobertura de prensa
-_2 menciónes registradas (2026–2026)._
-
-- **2026-03-24** — [Robert Raga traslada la necesidad de iniciar las obras del Pont Vell tras el curso escolar para no afectar a los vecinos](https://news.google.com/rss/articles/CBMi2wFBVV95cUxOMzd5MWpmZkF4a3MtYnhUY2JVOXBEZHV5Mmh1NzVZbm5aVXpoeFdxZVB4Q0ZSWEhRaGIxREhSbGo4akNhQ2ppRE1oSlY0YlR2ZXpTMzZ2V2FfRlJxcXpnSVl4azFKQjhOemZ3UEk4VVN1engtOFp0R2lia05GOXlTakRseTZhY21TS2dTT1hpaW1MSEVsY3VPMFNWU0owM0NnZ3cwTl9hTDlaLW9ZQklCdUtVR1ZScjc5bFkweUNYQkVMQ2lDS1VYRVFfSGhVcWZ5anJhM3BaX1FJTkHSAeABQVVfeXFMUHlXQ1lfV0Mwb1RmVUZlUzl4cTYydTFMTlI3Yl9PSXh4RFlFNkhrYkpOeVE0SU5mb2hWLWExbmo2OFR1b215Yi1sTGRlN21NQjRIMnR0YTRiMG9mX0thakc5bGxMQWpBVDJKY1RNLWMyX2tPZmJQU2J1QzdGQWtOQVdJamtjY1ZSZHRaQXBMWlZzbE54ZzFmbW8yNEhORTdIM1pDSU5pemhNckFDNzRaanZ2WFZ0ZThBNTc1T2FocDdMcTcteUlaVVZRVDdRcGdyZlZvX21STjEtRTlJNmtlc1k?oc=5)
-- **2026-02-09** — [Mompó y Raga analizan cómo evoluciona la reconstrucción de Riba-roja tras la Dana](https://news.google.com/rss/articles/CBMi1gFBVV95cUxPZE9KTzd5UERSRTFKTm1TWW1Vc2FaU1RXUUlzeUNCLXNBZ3RwMzR5VU9lU2UweVUxNlVrWXNUN1hHWHJGeG5XRTZTZ2xET0VyckRVeTZONEgzd0tvdjNIWlJoOGR3T3hLTFZTbXdhZEx4WTBMU1RDNXFjckZPYXRYaG1kX1dIRy0wS0hMSEVFeGdoVnNPZUZkVDA3NUM0VGZaRGdtc3VIc2tuUFdXQ0NNVEI3Z2lQUGd2OVB5UGpXMWFNNkFRNVRCamdsbVZZTE05aDhsRk93?oc=5)
+- afiliación política → **PSOE (PSPV-PSOE)** _(partido)_ [^3]
+- alcalde de → **Ayuntamiento de Riba-roja de Túria** _(entidad)_ [^4]
+- **Junta Superior de Contractació Administrativa** — informe de revisión de oficio menciona a → **Robert Raga Gadea** [^19][^20]
+- presidente (inicio declarado 23/10/2019, según su declaración de actividades) → **Consorcio Valencia Interior** _(entidad)_ [^9]
 
 ## Promesas seguidas
 - `psoe-presupuesto-2026-46m`
+- `psoe-refugios-climaticos-2026`
 - `psoe-reconstruccion-dana-9-5m`
 - `psoe-vivienda-900-hogares`
+- `psoe-construccion-vivienda-2026-2029`
 - `psoe-pasarelas-parc-natural-turia`
+- `psoe-espai-obert-presupuesto`
 - `psoe-alumbrado-led-680k`
 - `psoe-metro-l9-agosto`
+- `psoe-respuesta-quejas-sector-14-48h`
+- `psoe-reduce-concejales-dedicacion-exclusiva`
+- `ac-psoe-1cbkzxt`
 
 ## Cita literal
-> «la FP en centros públicos ha sido también totalmente abandonada, porque no se han gestionado adecuadamente los fondos europeos»
-> — **Oposición (Pleno)** _(2026-04-20)_ [^11]
+> «Nosotros tenemos otra en proyecto que haremos con fondos para la reconstrucción que costará unos 800.000 euros y protegerá el sector 14 del área industrial»
+> — **Robert Raga, sobre las obras de protección post-DANA — entrevista en Las Provincias** _(2026-03-09)_ [^28]
 
 ## Cita literal
-> «preferimos que destinéis parte del dinero, a la inversión del campanario, que no al gasto corriente nuestro.»
-> — **Cáritas (según Alcaldía)** _(2026-03-16)_ [^9]
+> «REVISIÓN DE OFICIO. OBRAS QUE DEBEN SER OBJETO DE LICITACIÓN»
+> — **Materia del Informe 02/2021 — Junta Superior de Contractació Administrativa (GVA)** _(2021-06-18)_ [^20]
+
+## Cita literal
+> «ASESOR • 2011 - 2015• DIPUTACIÓ DE VALÈNCIA Asesor institucional»
+> — **CV autodeclarado de Robert Raga — ficha oficial de transparencia** [^1]
 
 ## Lagunas detectadas
-- **identity.dateOfBirth:** no supporting citation
-- **identity.birthplace:** no supporting citation
-- **identity.nationality:** no supporting citation
-- **identity.family:** no supporting citation
-- **education:** no supporting citation
-- **careerProfessional:** no supporting citation
-- **legalRecord:** no supporting citation
-- **financial:** no supporting citation
-- **onlinePresence:** no supporting citation
-- **awards:** no supporting citation
-- **publications:** no supporting citation
-- **fecha de nacimiento:** no encontrado en fuentes accesibles
-- **formación:** no encontrado en fuentes accesibles
+- **Identidad y formación:** La fecha y el lugar de nacimiento y los estudios declarados constan únicamente en el currículum que el propio alcalde publica en la ficha de transparencia municipal («CV autodeclarado»); no hemos localizado corroboración independiente.
+- **Trayectoria profesional previa (1989–2015):** Las etapas como funcionario de la Administración local (1989), autónomo en energías renovables y seguridad (2007–2011) y asesor institucional en la Diputació de València (2011–2015) proceden solo de su CV autodeclarado.
+- **Familia y Registro Mercantil:** Sin datos familiares en las fuentes públicas consultadas. El patrimonio y las actividades sí constan ya en su declaración estatutaria (expte. 3971/2023/GEN), integrada en este informe; el Registro Mercantil no se ha consultado de forma independiente.
+
+## Bitácora de correcciones
+- **2026-07-30** · Sergei Lutchenko · `narrative.Trayectoria profesional y formación.bodyMarkdown`
+  - antes: «Según su currículum oficial publicado en la ficha de transparencia del Ayuntamiento de Riba-roja de Túria, Robert (Roberto Pascual) Raga Gadea nació el 9 de abril de 1966 en Riba-roja de Túria. Según los datos biográficos que él mismo publ…»
+  - después: «Según su currículum oficial publicado en la ficha de transparencia del Ayuntamiento de Riba-roja de Túria, Robert (Roberto Pascual) Raga Gadea nació el 9 de abril de 1966 en Riba-roja de Túria. Según los datos biográficos que él mismo publ…»
+  - motivo: El texto decía «educación secundaria obligatoria»; el CV autodeclarado dice literalmente «Educación 2ª obligatoria» (etapa EGB, anterior a la ESO). Se ajusta al literal para no sobreinterpretar el documento.
 
 ## Notas de curaduría
-Re-run via Claude Code CLI 2026-05-23. Bio-extract surfaced no DOB/education sources in SearXNG results this pass; gaps-detected section enumerates the missing fields. PSOE PDF was not surfaced by web search this run.
+RETRACTACIÓN 2026-07-30: se retiró la fila «sentencia 139/19» y sus menciones: el edicto del BOP N.º 115 corresponde a una ejecución laboral contra una empresa privada sin relación con el sr. Raga; su única aparición en ese boletín es la firma de una delegación de boda civil (inserción 2019/8305). Falsa asociación por colindancia de anuncios en un boletín multi-edicto; detectada en revisión del operador. CORRECCIÓN 2026-07-30 (verificación integral contra documentos primarios): narrativa del Informe 02/2021 reescrita — la consulta la formuló el propio Ayuntamiento y el contrato anulado se licitó en 2012, antes del mandato del sr. Raga (TSJCV apelación 962/2016); cita de identity corregida a la ficha; añadido el mandato 2023–actual. DEPURACIÓN EDITORIAL 2026-07-30 (claridad de bloques, revisión del operador): cronología reconstruida como hitos biográficos datados (retiradas las sesiones plenarias rutinarias sin contenido); citas literales sustituidas por citas con contexto (añadida la entrevista de Las Provincias de 09-03-2026 como fuente citada; retirado el fragmento de título «Sentencia del Tribunal Superior…» sin valor informativo); lagunas agrupadas en 4 filas en lenguaje claro; advertencias depuradas — 5 filas eliminadas por ser comprobablemente falsas u obsoletas tras las correcciones (src-019/020/021/024/025 sí constan en el registro de fuentes; la secretaria general sí figura textualmente en el acta citada src-019; los guarismos «02» y «18» señalados por el grounding son el número y la fecha del Informe 02/2021, presentes en las fuentes citadas; la cita de identidad ya se corrigió a src-002); registro de fuentes reducido a las filas citadas por alguna sección — 35 filas de resultados de búsqueda no utilizados retiradas, incluidas homónimas irrelevantes (artículos sobre «Robert (muñeco)», un futbolista y un diccionario francés). El rastro completo de investigación se conserva en el borrador (journalist-reports-suggestions.json). AMPLIACIÓN 2026-07-30 (revisión del operador): «Resultados electorales» sustituido por «Elección e investidura» — la vía de acceso a la alcaldía documentada con el acta de la sesión constitutiva del 17-06-2023 (candidaturas de cabezas de lista, votación 11/21 con mayoría absoluta, proclamación y toma de posesión), con ventanas literales de la transcripción como fuentes nuevas. DECLARACIÓN OFICIAL 2026-07-30: integrada su declaración estatutaria de actividades y bienes (expte. 3971/2023/GEN, Decreto 191/2010): cargos públicos exclusivamente — alcaldía con inicio declarado 13/06/2015 (resuelve la advertencia sobre el mandato de 2015, que pasa de «solo CV» a «CV + declaración formal ante Secretaría») y presidencia del Consorcio Valencia Interior (23/10/2019, añadida al grafo de relaciones); activo 95.352,78 € (inmuebles 79.052,78 + otros 16.300), pasivo 231.955,80 €. Comprobación nominal sobre 804 contratos: cero adjudicatarios con sus apellidos. Filas financial (declared-assets + business negativo), dos narrativas nuevas y laguna refocalizada a familia/Mercantil. CORROBORACIÓN 2026-07-31 (revisión del operador sobre lagunas recurrentes): localizado y verificado el anuncio del BOP de València n.º 180 (15-09-2023, 2023/12011) que publica las declaraciones de actividades y bienes de la legislatura — los cinco sujetos constan en su texto; añadido como fuente y citado en la narrativa de patrimonio (la naturaleza autodeclarada del contenido no cambia; la publicación oficial en boletín queda ahora acreditada con identificadores de gaceta). CORROBORACIÓN INDEPENDIENTE 2026-07-31: localizados el acta de la sesión constitutiva del 13-06-2015 (investidura con 12 votos, proclamación literal), las candidaturas del BOP n.º 79/2015 y n.º 82/2019 (cabeza de lista en ambas) y el acta de 10-03-2010 (concejal de la corporación 2007-2011). La advertencia sobre el inicio del primer mandato queda RESUELTA: la fecha ya no depende de fuentes autodeclaradas.
 
 ## Advertencias del agente
-- Source pool contains irrelevant documents: src-012/src-018 (toy doll Wikipedia), src-014/src-019 (footballer Robert Sánchez Transfermarkt), src-020 (French dictionary). Not cited in draft but must be purged to prevent accidental citation.
-- relationships: node n6 (PP) has no edges and no direct citation in the draft; its inclusion in the relationship graph is unsupported. Remove the node or add a cited edge.
+- Los datos biográficos marcados «según su CV» proceden de un documento autodeclarado publicado por el Ayuntamiento — véase el bloque «Lagunas detectadas».
+- RETRACTACIÓN 2026-07-30: retirada la fila «sentencia 139/19» del historial judicial — falsa asociación por colindancia de anuncios en un boletín multi-edicto (ver notas del curador).
 
 ## Fuentes consultadas
-[^1]: Officials snapshot — Robert Raga Gadea · recuperado 2026-05-23 · local: `public/data/officials.json`
+[^1]: CV autodeclarado (ficha oficial de transparencia) — Robert Raga Gadea · recuperado 2026-07-30 · <https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Robert-Raga-Gadea.pdf>
+    «SN PRESENTACIÓN 9 ABRIL 1966 RIBA-ROJA DE TÚRIA rraga@ribarroja.es FORMACIÓN ACCESO A UNIVERSIDAD MAYORES DE 25 AÑOS• COLEGIO PÚBLICO MIGUEL CERVANTES• Matriculación en magisterio EGB• COLEGIO PÚBLICO MIGUEL CERVANTES• Educación 2ª obligatoria EXPERIENCIA PROFESIONAL ASESOR • 20…»
+[^2]: PDF SN D. ROBERT RAGA GADEA - ribarroja.es · recuperado 2026-07-30 · <https://www.ribarroja.es/sites/www.ribarroja.es/files/PSOE%20Robert%20Raga%20Gadea_0.pdf>
+    «AUTÓNOMO • 2007 - 2011• AUTÓNOMO Autónomo en el sector de las energías renovables y de la seguridad»
+[^3]: Officials snapshot — Robert Raga Gadea · recuperado 2026-07-30 · local: `public/data/officials.json`
     «role: alcalde · party: PSOE · portfolios: Alcaldía, Innovación, Planificación estratégica y grandes proyectos y cooperación nacional e internacional»
-[^2]: Áreas - Ayuntamiento de Riba-roja de Túria · recuperado 2026-05-23 · <https://www.ribarroja.es/es/seccion/alcaldia>
-    «17 mar 2026 · Robert Raga Gadea. Lugar Ayuntamiento. +−. Leaflet ... El alcalde de Riba-roja de Túria, Robert Raga recorrerá durante los ...»
-[^3]: BOE-A-2025-15570 Resolución de 2 de julio de 2025, de la Dirección ... · recuperado 2026-05-23 · <https://www.boe.es/diario_boe/txt.php?id=BOE-A-2025-15570>
-    «2 jul 2025 · Y el Ayuntamiento de Riba-roja de Túria, representado por don Robert Raga Gadea, Alcalde-Presidente nombrado en el pleno del Ayuntamiento de ...»
-[^4]: BOE-A-2025-11409 Resolución de 28 de mayo de 2025, de la Secretaría ... · recuperado 2026-05-23 · <https://www.boe.es/diario_boe/txt.php?id=BOE-A-2025-11409>
-    «28 may 2025 · Y de otra parte, don Roberto Pascual Raga Gadea, Alcalde del Ayuntamiento de Riba-roja de Túria (en adelante, el Ayuntamiento), nombrado por ...»
-[^5]: BOE-A-2026-5654 Resolución de 27 de febrero de 2026, del ... · recuperado 2026-05-23 · <https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-5654>
-    «27 feb 2026 · Riba-roja de Túria, 27 de febrero de 2026.–El Alcalde, Roberto Pascual Raga Gadea. Análisis. ANÁLISIS. Rango: Resolución; Fecha de disposición ...»
-[^6]: Robert Raga traslada la necesidad de iniciar las obras del Pont Vell tras el curso escolar para no afectar a los vecinos · Levante-EMV · publicado 2026-03-24 · recuperado 2026-05-23 · <https://news.google.com/rss/articles/CBMi2wFBVV95cUxOMzd5MWpmZkF4a3MtYnhUY2JVOXBEZHV5Mmh1NzVZbm5aVXpoeFdxZVB4Q0ZSWEhRaGIxREhSbGo4akNhQ2ppRE1oSlY0YlR2ZXpTMzZ2V2FfRlJxcXpnSVl4azFKQjhOemZ3UEk4VVN1engtOFp0R2lia05GOXlTakRseTZhY21TS2dTT1hpaW1MSEVsY3VPMFNWU0owM0NnZ3cwTl9hTDlaLW9ZQklCdUtVR1ZScjc5bFkweUNYQkVMQ2lDS1VYRVFfSGhVcWZ5anJhM3BaX1FJTkHSAeABQVVfeXFMUHlXQ1lfV0Mwb1RmVUZlUzl4cTYydTFMTlI3Yl9PSXh4RFlFNkhrYkpOeVE0SU5mb2hWLWExbmo2OFR1b215Yi1sTGRlN21NQjRIMnR0YTRiMG9mX0thakc5bGxMQWpBVDJKY1RNLWMyX2tPZmJQU2J1QzdGQWtOQVdJamtjY1ZSZHRaQXBMWlZzbE54ZzFmbW8yNEhORTdIM1pDSU5pemhNckFDNzRaanZ2WFZ0ZThBNTc1T2FocDdMcTcteUlaVVZRVDdRcGdyZlZvX21STjEtRTlJNmtlc1k?oc=5>
-[^7]: Mompó y Raga analizan cómo evoluciona la reconstrucción de Riba-roja tras la Dana · Valencia Plaza · publicado 2026-02-09 · recuperado 2026-05-23 · <https://news.google.com/rss/articles/CBMi1gFBVV95cUxPZE9KTzd5UERSRTFKTm1TWW1Vc2FaU1RXUUlzeUNCLXNBZ3RwMzR5VU9lU2UweVUxNlVrWXNUN1hHWHJGeG5XRTZTZ2xET0VyckRVeTZONEgzd0tvdjNIWlJoOGR3T3hLTFZTbXdhZEx4WTBMU1RDNXFjckZPYXRYaG1kX1dIRy0wS0hMSEVFeGdoVnNPZUZkVDA3NUM0VGZaRGdtc3VIc2tuUFdXQ0NNVEI3Z2lQUGd2OVB5UGpXMWFNNkFRNVRCamdsbVZZTE05aDhsRk93?oc=5>
-[^8]: Pleno claim k4olcs-088-cit-2c649f · 2026-04-20 · cita_convenio · recuperado 2026-05-23 · local: `public/data/pleno-claims-suggestions.json`
-    «esos recursos europeos, FEDER y de la Unión Europea»
-[^9]: Pleno claim ma87e0-107-cit-f9724f · 2026-03-16 · cita_convenio · recuperado 2026-05-23 · local: `public/data/pleno-claims-suggestions.json`
-    «Lo destinado a Caritas, en Caritas habíamos hablado, nosotros hablamos con Caritas y dicen, preferimos que destinéis parte del dinero, a la inversión del campanario, que no al gasto corriente nuestro.»
-[^10]: Pleno claim 1qi8axv-003-cit-0209e8 · 2025-12-23 · cita_obra · recuperado 2026-05-23 · local: `public/data/pleno-claims-suggestions.json`
-    «pasamos a votar el punto 2, que es la prórroga del contrato.»
-[^11]: Pleno claim k4olcs-089-acu-1d6828 · 2026-04-20 · acusacion_publica · recuperado 2026-05-23 · local: `public/data/pleno-claims-suggestions.json`
-    «la FP en centros públicos ha sido también totalmente abandonada, porque no se han gestionado adecuadamente los fondos europeos»
+[^4]: Sr. D. Robert Raga Gadea | Ayuntamiento de Riba-roja de Túria · recuperado 2026-07-30 · <http://www.ribarroja.es/es/datos/sr.-d.-robert-raga-gadea>
+    «Áreas: Alcaldía. Innovación, Planificación estratégica y grandes proyectos y cooperación nacional e internacional.»
+[^5]: Agenda Robert Raga Gadea - Ayuntamiento de Riba-roja de Túria · recuperado 2026-07-30 · <https://www.ribarroja.es/es/portal_de_transparencia/agendas/robert_raga_gadea/contenidos/5271926/5901757>
+    «Hacienda · Tesorería · Periodo medio de pago y morosidad · Gestión tributaria ... Agenda Robert Raga Gadea. Alcalde - President. En este espacio puedes ...»
+[^6]: Retribución del cargo — acuerdo de pleno (dedicaciones) · recuperado 2026-07-30 · local: `public/data/dedicaciones.json`
+    «Alcaldía: dedicación exclusiva, 48.234,08 €/año. Fuente: Acuerdo del Pleno de 07/07/2023 — fijación del régimen económico de los concejales (Expediente 4533/2023/GEN)»
+[^7]: Retribuciones anuales del alcalde — ISPA (Ministerio de Hacienda) · recuperado 2026-07-30 · local: `public/data/ispa.json`
+    «2020: 45.461,94 € · 2021: 45.916,56 € · 2022: 52.855,48 € · 2024: 48.647,5 €»
+[^8]: Declaración de actividades y bienes · Corporación 2023-2027 (expte. 3971/2023/GEN) · tabla de bienes · Ayuntamiento de Riba-roja de Túria — Portal de Transparencia · recuperado 2026-07-30 · <https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf>
+    «Alcalde ROBERTO PASCUAL RAGA GADEA 79.052,78 16.300,00 95.352,78 231.955,80 Concejala MARIA TERESA POZUELO MARTIN 308.049,90 86.068,94 394.118,84 90.759,21»
+[^9]: Declaración de actividades y bienes · Corporación 2023-2027 (expte. 3971/2023/GEN) · tabla de actividades · Ayuntamiento de Riba-roja de Túria — Portal de Transparencia · recuperado 2026-07-30 · <https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf>
+    «ROBERTO PASCUAL RAGA GADEA Alcalde y Presidente Ayuntamiento Riba-roja de Túria y Consorcio Valencia Interior 13/06/2015 23/10/2019»
+[^10]: BOP de València n.º 180, 15-09-2023 (anuncio 2023/12011) — declaración de actividades y bienes, legislatura 2023-2027 · Boletín Oficial de la Provincia de València · recuperado 2026-07-31 · <https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-2023_12011_VA-Anuncio-BOP-Toma-posesion.pdf>
+    «Núm. 180 Pàg. 15-9-20231 M U N I C I P I S Ajuntament de Riba-roja de Túria 2023/12011Anunci de l'Ajuntament de Riba-roja de Túria sobre la declaració d'activitats i béns dels regidors que prenen possessió, legislatura 2023-2027.»
+[^11]: public/data/pleno-transcripts/9jatoj.txt · acta constitutiva · candidaturas de cabezas de lista · recuperado 2026-07-30 · local: `public/data/pleno-transcripts/9jatoj.txt`
+    «Señalando que podrán ser candidatos todos los concejales/as que encabecen las correspondientes listas, siendo proclamado electo el que obtenga la mayoría absoluta y que si ninguno obtuviese dicha mayoría será proclamado alcalde/sa el concejal/a que hubiera obtenido más votos pop…»
+[^12]: public/data/pleno-transcripts/9jatoj.txt · acta constitutiva · votación de investidura · recuperado 2026-07-30 · local: `public/data/pleno-transcripts/9jatoj.txt`
+    «Votos a favor de D. Roberto Pascual Raga Gadea. Votos a favor de __11 3 Votos a favor de D. Alberto Jose Gimeno Calvo Votos a favor de __7»
+[^13]: public/data/pleno-transcripts/9jatoj.txt · acta constitutiva · proclamación y toma de posesión de alcalde · recuperado 2026-07-30 · local: `public/data/pleno-transcripts/9jatoj.txt`
+    «Por lo que queda proclamado Alcalde del Ayuntamiento de RIBA-ROJA DE TURIA el Concejal D. Roberto Pascual Raga Gadea del Grupo PARTIDO SOCIALISTA OBRERO ESPAÑOL. A continuación procede D. Roberto Raga Gadea a formular promesa de su cargo de Alcalde tomando en consecuencia posesi…»
+[^14]: Resultados electorales municipales — Generalitat Valenciana · Institut Cartogràfic Valencià / ARGOS · recuperado 2026-07-30 · local: `public/data/elections.json`
+    «Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%»
+[^15]: BOP de València n.º 82, 30-04-2019 — candidaturas proclamadas, circunscripción Riba-roja de Túria (lista del PSOE) · Boletín Oficial de la Provincia de València · recuperado 2026-07-31 · <https://bop.dival.es/bop/downloads?boletinFecha=30/04/2019>
+    «CIRCUNSCRIPCIÓN ELECTORAL RIBA-ROJA DE TÚRIA CANDIDATURA NÚM. 1: PARTIDO SOCIALISTA OBRERO ESPAÑOL (P.S.O.E.) TITULARES 1. ROBERTO PASCUAL RAGA GADEA 2. MARIA TERESA POZUELO MARTIN 3. JOSE LUIS RAMOS MARCH 4. ZAFIRA PEREZ PACHECO 5. JOSE ANGEL HERNANDEZ CARRIZOSA 6. MARIA DOLORE…»
+[^16]: BOP de València n.º 79, 28-04-2015 — candidaturas, circunscripción Riba-roja de Túria (lista del PSOE) · Boletín Oficial de la Provincia de València · recuperado 2026-07-31 · <https://bop.dival.es/bop/downloads?boletinFecha=28/04/2015>
+    «CIRCUNSCRIPCIÓN ELECTORAL: RIbA-ROJA DE TúRIA Candidatura núm.: 1. PARTIDO SOCIALISTA OBRERO ESPAÑOL (P.S.O.E.) 1. Don ROBERTO RAGA GADEA 2. Doña MARIA TERESA POZUELO MARTI (Independiente) 3. Don JOSE LUIS LOPEZ GALDON 4. Doña MARIA DOLORES VERDEGUER ROYO 5. Don JOSE ANGEL HERNA…»
+[^17]: Acta de la sesión constitutiva de 13-06-2015 · votación de investidura y proclamación de alcalde · Ayuntamiento de Riba-roja de Túria · recuperado 2026-07-31 · <https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate//filesGroup/Acta-pleno-constitucion-13-06-2015.pdf>
+    «Votos a favor de Don Roberto Raga Gadea. Votos a favor de __12 Votos a favor de Doña Josefa Ruiz Esteban. Votos a favor de __7 Votos blancos________2 Votos nulos__________0 Por lo que queda proclamado Alcalde del Ayuntamiento de RIBA-ROJA DE TURIA el Concejal D. Roberto Raga Gad…»
+[^18]: Acta del pleno ordinario de 10-03-2010 · concejales asistentes (corporación 2007-2011) · Ayuntamiento de Riba-roja de Túria · recuperado 2026-07-31 · <https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/7238980/filesGroup/Pleno20100310.pdf>
+    «CONCEJALES ASISTENTES: Don SALVADOR SILVESTRE LARREA Don JAVIER MORENO COLL Doña MARÍA CRISTINA VÁZQUEZ TARAZONA Doña MARÍA JOSE RUIZ ESTEBAN Doña MARÍA DOLORES RODRÍGUEZ ROMERO. Don JOSE VICENTE TARAZONA CAMPOS Doña BEÁTRIZ CÓRCOLES NAVARRO Don JOSE LUIS FOLGADO CORREA Doña RAQ…»
+[^19]: JUNTA SUPERIOR DE CONTRACTACIÓ ADMINISTRATIVA Carrer ... · recuperado 2026-07-30 · <https://hisenda.gva.es/documents/90598054/174096224/Informe+02-2021%2C+de+18+de+junio+de+2021.+Contrataci%C3%B3n+irregular.+Enriquecimiento+injusto.+Revisi%C3%B3n+de+oficio.+Obras+que+deben+ser+objeto+de+licitaci%C3%B3n.+Improcedencia+del+procedimiento+negociado+por+urgencia..pdf/f7fc7957-08d9-42d3-9323-d90751669f54?t=1640594675151>
+    «21 jun 2021 ... ROBERTO PASCUAL RAGA GADEA, Alcalde del Ayuntamiento de Riba-roja de ... Sentencia del Tribunal Superior de Justicia de la Comunidad Valenciana ...»
+[^20]: JUNTA SUPERIOR DE CONTRACTACIÓ ADMINISTRATIVA Carrer ... · recuperado 2026-07-30 · <https://hisenda.gva.es/documents/90598054/174096224/Informe+02-2021%2C+de+18+de+junio+de+2021.+Contrataci%C3%B3n+irregular.+Enriquecimiento+injusto.+Revisi%C3%B3n+de+oficio.+Obras+que+deben+ser+objeto+de+licitaci%C3%B3n.+Improcedencia+del+procedimiento+negociado+por+urgencia..pdf/f7fc7957-08d9-42d3-9323-d90751669f54?t=1640594675151>
+    «21 jun 2021 ... REVISIÓN DE OFICIO. OBRAS QUE DEBEN SER OBJETO DE LICITACIÓN ... ROBERTO PASCUAL RAGA GADEA, Alcalde del Ayuntamiento de Riba-roja de ...»
+[^21]: Estimado amigo, - Ayuntamiento de Riba-roja de Túria · recuperado 2026-07-30 · <https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/8482331/filesGroup/20221230-16-P.pdf>
+    «ACTA SESIÓN EXTRAORDINARIA CELEBRADA POR EL AYUNTAMIENTO PLENO EL DÍA 30 DE DICIEMBRE DE 2022 Lugar: Salón de Actos del Ayuntamiento Fecha: 30 de diciembre de 2022 Hora: 09:00 CARÁCTER DE LA SESION: EXTRAORDINARIA ALCALDE-PRESIDENTE: ROBERTO RAGA GADEA CONCEJALES ASISTENTES: Par…»
+[^22]: public/data/pleno-transcripts/67qdq8.txt · semantic · recuperado 2026-07-30 · local: `public/data/pleno-transcripts/67qdq8.txt`
+    «[0.0 → 0.0] ACTA SESSIÓ ORDINÀRIA CELEBRADA PER L'AJUNTAMENT PLE EL [0.0 → 0.0] DIA 8 DE MAIG DE 2023 [0.0 → 0.0] Lloc: Sala d'actes de l'Ajuntament [0.0 → 0.0] Data: 8 de maig de 2023 [0.0 → 0.0] Hora: 17.30 [0.0 → 0.0]»
+[^23]: public/data/pleno-transcripts/15000go.txt · semantic · recuperado 2026-07-30 · local: `public/data/pleno-transcripts/15000go.txt`
+    «[0.0 → 0.0] ACTA SESSIÓ EXTRAORDINÀRIA CELEBRADA PER L'AJUNTAMENT [0.0 → 0.0] PLE EL DIA 24 DE MAIG DE 2023 [0.0 → 0.0] Lloc: Sessió telemàtica a distància [0.0 → 0.0] Data: 24 de maig de 2023 [0.0 → 0.0] Hora: 09.30 [0.»
+[^24]: Acta Sesión Ordinaria celebrada por el ayuntamiento pleno el día ... · recuperado 2026-07-30 · <https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate//filesGroup/20250210-DF.pdf>
+    «10 feb 2025 ... Alcalde, Roberto Raga Gadea, asistido de la Secretaria. General Sra. Ylenia Díaz Morán. Declarado abierto el acto por la presidencia, se pasa al ...»
+[^25]: ANUNCIO - Ayuntamiento de Riba-roja de Túria · recuperado 2026-07-30 · <https://www.ribarroja.es/sites/www.ribarroja.es/files/Anuncio%20publicac%20bases%20proc%20select%20promoc%20interna%20restring%204%20plazas%20tec%20A1_0.pdf>
+    «18 jun 2026 ... En Riba-roja de Turia, a fecha de la firma electrónica. El Alcalde. Roberto Raga Gadea ... Revisión de oficio y recursos. Tema 6. Procedimiento ...»
+[^26]: public/data/tenders.json · comprobación nominal sobre el corpus de contratación · recuperado 2026-07-30 · local: `public/data/tenders.json`
+    «804 contratos adjudicados examinados en el mirror oficial de licitaciones: ningún adjudicatario coincide con los apellidos «Raga» o «Raga Gadea».»
+[^27]: Conoce el salario público de Roberto Pascual Raga Gadea · recuperado 2026-07-30 · <https://transparentia.newtral.es/ficha/roberto-pascual-raga-gadea>
+    «Roberto Pascual Raga Gadea es Alcalde Del Ayuntamiento De Riba-Roja De Túria por el partido PSOE. Conoce su salario público.»
+[^28]: Robert Raga, alcalde de Riba-roja: «El Parque del Turia es el gran olvidado en la reconstrucción» | Las Provincias · recuperado 2026-07-30 · <https://www.lasprovincias.es/comunitat/robert-raga-parque-turia-gran-olvidado-reconstruccion-20260309001801-nt.html>
+    «Nosotros tenemos otra en proyecto que haremos con fondos para la reconstrucción que costará unos 800.000 euros y protegerá el sector 14 del área industrial. –¿Riba-roja es como el nudo gordiano para prevenir otra dana?»
 
 ---
-> _Asignación: `a-robert-raga-bio` · Informe: `r-robert-raga-bio-2026-05-23` · 23 fuentes consultadas en total. Para correcciones o derecho de réplica, abrir una issue en github.com/datarhan/civicpulse._
+> _Asignación: `a-robert-raga-bio-v4` · Informe: `r-robert-raga-bio-v4-2026-07-30` · 28 fuentes consultadas en total. Para correcciones o derecho de réplica, abrir una issue en github.com/datarhan/civicpulse._
