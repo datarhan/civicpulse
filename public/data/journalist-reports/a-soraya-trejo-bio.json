@@ -21,7 +21,7 @@
       "kind": "narrative",
       "payload": {
         "heading": "Identidad y cargo municipal",
-        "bodyMarkdown": "Soraya Trejo Delgado es concejal del Ayuntamiento de Riba-roja de Túria por la lista del Partido Popular, en la que figura registrada como **«(Independiente)»** — como cinco de los siete miembros del grupo. Es la **n.º 2** de la candidatura y **portavoz suplente** del Grupo Municipal Popular. El portal de transparencia municipal no publica CV suyo (sí lo hace de 17 miembros de la corporación), por lo que este perfil se limita a lo que consta en actas, boletines y su declaración estatutaria.",
+        "bodyMarkdown": "Soraya Trejo Delgado fue concejal del Ayuntamiento de Riba-roja de Túria por la lista del Partido Popular entre junio de 2023 y junio de 2025, registrada en las actas como **«(Independiente)»** — como cinco de los siete miembros del grupo. Fue la **n.º 2** de la candidatura y **portavoz suplente** del Grupo Municipal Popular. Renunció al acta en mayo de 2025: el Pleno tomó razón de la renuncia el 2 de junio de 2025 y el escaño lo ocupa Pedro Tortajada Raga desde el 7 de julio de 2025. El portal de transparencia municipal no publicó CV suyo (sí lo hace de 17 miembros de la corporación), por lo que este perfil se limita a lo que consta en actas, boletines y su declaración estatutaria.",
         "sourceIds": [
           "src-062",
           "src-068"
@@ -32,7 +32,7 @@
       "kind": "narrative",
       "payload": {
         "heading": "Elección y toma de posesión",
-        "bodyMarkdown": "La de 2023 es su **primera candidatura documentada**: no aparece en las candidaturas de la circunscripción de Riba-roja publicadas en el BOP ni en 2015 ni en 2019 (la única «Trejo» de 2015 es una candidata homónima de Foios). Entró como n.º 2 de la lista del PP — encabezada por Alberto Gimeno Calvo, también independiente.\n\nLa sesión constitutiva de 17-06-2023 la proclama concejal electa con las credenciales de la Junta Electoral de Zona y presta juramento o promesa con el resto de la corporación. En el pleno de organización de 07-07-2023 queda adscrita al **Grupo Municipal Popular como n.º 2 y portavoz suplente**, y titular por su grupo en comisiones informativas — entre ellas la de Gestión Municipal y Gobierno Abierto.\n\nSin dedicación exclusiva ni parcial, su retribución municipal es por **asistencias**: 221,82 € por Pleno y 162,31 € por comisión.",
+        "bodyMarkdown": "La de 2023 es su **primera candidatura documentada**: no aparece en las candidaturas de la circunscripción de Riba-roja publicadas en el BOP ni en 2015 ni en 2019 (la única «Trejo» de 2015 es una candidata homónima de Foios). Entró como n.º 2 de la lista del PP — encabezada por Alberto Gimeno Calvo, también independiente.\n\nLa sesión constitutiva de 17-06-2023 la proclama concejal electa con las credenciales de la Junta Electoral de Zona y presta juramento o promesa con el resto de la corporación. En el pleno de organización de 07-07-2023 queda adscrita al **Grupo Municipal Popular como n.º 2 y portavoz suplente**, y titular por su grupo en comisiones informativas — entre ellas la de Gestión Municipal y Gobierno Abierto.\n\nSin dedicación exclusiva ni parcial, su retribución municipal fue por **asistencias**: 221,82 € por Pleno y 162,31 € por comisión, hasta su renuncia en 2025.",
         "sourceIds": [
           "src-060",
           "src-061",
@@ -51,6 +51,7 @@
             "role": "Concejal, n.º 2 de la lista y portavoz suplente del Grupo Municipal Popular («Independiente»)",
             "org": "Ayuntamiento de Riba-roja de Túria",
             "startYear": 2023,
+            "endYear": 2025,
             "sourceIds": [
               "src-060",
               "src-061",
@@ -255,9 +256,9 @@
       "retrievedAt": "2026-07-31T17:34:01.372Z",
       "excerpt": "Jose Angel Hernandez Carrizosa\nEva Lara Catalá\nRafael Gomez Sanchez\nMaria Esther Gomez Laredo\nJose Manuel Vila Oltra\nRaquel Pamblanco Paredes\nAlfredo Pla Gimenez\nDavid Barbancho Martínez\nAlberto Jose Gimeno Calvo\nSoraya Trejo Delgado",
       "trust": "high",
+      "selfDeclared": false,
       "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
-      "relocatedAt": "2026-08-03T13:48:11.361Z",
-      "selfDeclared": false
+      "relocatedAt": "2026-08-03T13:48:11.361Z"
     },
     {
       "id": "src-061",
@@ -267,9 +268,9 @@
       "retrievedAt": "2026-07-31T17:34:01.373Z",
       "excerpt": "- Salvador Evaristo Ferrer Cortina\n- Maria Jose Pradas Ramo\n2\n- Soraya Trejo Delgado\n- Alberto Jose Gimeno Calvo\n- David Barbancho Martínez\n- Alfredo Pla Gimenez\n- Raquel Pamblanco Paredes\n- Jose Manuel Vila Oltra\n- Maria Esther Gomez Laredo",
       "trust": "high",
+      "selfDeclared": false,
       "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
-      "relocatedAt": "2026-08-03T13:48:11.361Z",
-      "selfDeclared": false
+      "relocatedAt": "2026-08-03T13:48:11.361Z"
     },
     {
       "id": "src-062",
@@ -279,9 +280,9 @@
       "retrievedAt": "2026-07-31T17:34:01.373Z",
       "excerpt": "Túria, son:\n1. Don Alberto José Gimeno Calvo (Independiente)\n2. Doña Soraya Trejo Delgado (Independiente)\n3. Doña Maria José Pradas Ramo (Independiente)\n4. Don Salvador Evaristo Ferrer Cortina (Independiente)\n5. Don Juan Boix Martínez (Independiente)\n6. Doña Laura Guzmán Bruno\n7. Paula Navarro Sanfeliu\nSiendo su Portavoz: Don Alberto José Gimeno Calvo\nPortavoz suplente: Doña Soraya Trejo Delgado\nPor el Grupo político municipal con la denominación de Grupo Municipal Vox Riba roja de Túria, es:",
       "trust": "high",
+      "selfDeclared": false,
       "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
-      "relocatedAt": "2026-08-03T13:48:12.556Z",
-      "selfDeclared": false
+      "relocatedAt": "2026-08-03T13:48:12.556Z"
     },
     {
       "id": "src-063",
@@ -291,9 +292,9 @@
       "retrievedAt": "2026-07-31T17:34:01.373Z",
       "excerpt": "Grupo Municipal Partido Popular Riba-roja de Túria\nTitular: D. Alberto José Gimeno Calvo\nTitular: Dª Soraya Trejo Delgado\nTitular: Dª Mª José Pradas Ramo",
       "trust": "high",
+      "selfDeclared": false,
       "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
-      "relocatedAt": "2026-08-03T13:48:12.556Z",
-      "selfDeclared": false
+      "relocatedAt": "2026-08-03T13:48:12.556Z"
     },
     {
       "id": "src-064",
@@ -303,9 +304,9 @@
       "retrievedAt": "2026-07-31T17:34:01.373Z",
       "excerpt": "TERCERO. Fijar el siguiente régimen de indemnizaciones y asistencias:\n- Por asistencia a sesiones del Pleno: 221,82 euros por sesión (solo podrán percibir este\nimporte los miembros de la Corporación que desempeñen sus cargos sin dedicación exclusiva ni\nparcial).\n- Por asistencia a sesiones de la Junta de Gobierno Local: 162,31 €/sesión (solo podrán\npercibir este importe los miembros de la Corporación que formen parte de la misma que\ndesempeñen sus cargos sin dedicación exclusiva ni parcial).",
       "trust": "high",
+      "selfDeclared": false,
       "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
-      "relocatedAt": "2026-08-03T13:48:12.556Z",
-      "selfDeclared": false
+      "relocatedAt": "2026-08-03T13:48:12.556Z"
     },
     {
       "id": "src-065",
@@ -366,6 +367,31 @@
   "promotedBy": "Sergei Lutchenko",
   "promotedAt": "2026-07-31T17:34:21.887Z",
   "curatorNotes": "REVISIÓN DE CURADURÍA 31-07-2026: draft del agente mínimo (7 secciones) por ausencia de CV publicado — el listado del portal (17 PDF) no incluye a Trejo ni a otros 3 concejales del PP (Guzmán, Boix, Navarro Sanfeliu): esa carencia de transparencia se documenta como fuente y laguna. Perfil construido íntegramente sobre primarios: actas (electa + juramento 17-06-2023; grupo PP n.º 2 «(Independiente)» + portavoz suplente + titular comisión de Gestión Municipal y Gobierno Abierto, acta 07-07-2023; asistencias 221,82/162,31), BOP (candidaturas 2015/2019: 0 apariciones — la única «TREJO» de 2015 verificada como homónima de la circunscripción de FOIOS, fuera de Riba-roja) y declaración estatutaria verificada contra PDF + render visual (activo 14.736,27 € — el más bajo de la corporación —, pasivo 0; becaria E.A.U. Llorens Fornés y Navarro con incorporación 08-06-2023, nueve días antes de la toma — hecho fechado con línea de no-irregularidad). HOMÓNIMOS PURGADOS: el draft traía como fuentes la Wikipedia de Soraya la cantautora (src-003) y un agregador low-trust (src-004, citado por career-political — sustituido por las actas); ambos quedan sin citar y el promote los poda. Advertencias del verificador adjudicadas: bio-floor real (sin CV → laguna publicada); «en la oposición inferido» documentado vía actas; narrativa de contexto sustituida por la cadena persona-céntrica. Barridos: 0 TREJO y 0 Llorens/Fornés en adjudicatarios.",
-  "corrections": [],
+  "corrections": [
+    {
+      "field": "career-political[0].endYear",
+      "original": "null",
+      "corrected": "2025",
+      "reason": "Renunció al acta de concejala: el Pleno tomó razón el 02-06-2025 (acta de la sesión de 07-07-2025, expte. 3400/2025/GEN), como recoge la corrección del padrón publicada en /cargos; el escaño lo ocupa Pedro Tortajada Raga desde el 07-07-2025.",
+      "editor": "Sergei Lutchenko",
+      "correctedAt": "2026-09-06"
+    },
+    {
+      "field": "narrative.Identidad y cargo municipal.bodyMarkdown",
+      "original": "Soraya Trejo Delgado es concejal del Ayuntamiento de Riba-roja de Túria por la lista del Partido Popular, en la que figura registrada como **«(Independiente)»** — como cinco de los siete miembros del grupo. Es la **n.º 2** de la candidatura y **portavoz suplente** del Grupo Municipal Popular. El portal de transparencia municipal no publica CV suyo (sí lo hace de 17 miembros de la corporación), por lo que este perfil se limita a lo que consta en actas, boletines y su declaración estatutaria.",
+      "corrected": "Soraya Trejo Delgado fue concejal del Ayuntamiento de Riba-roja de Túria por la lista del Partido Popular entre junio de 2023 y junio de 2025, registrada en las actas como **«(Independiente)»** — como cinco de los siete miembros del grupo. Fue la **n.º 2** de la candidatura y **portavoz suplente** del Grupo Municipal Popular. Renunció al acta en mayo de 2025: el Pleno tomó razón de la renuncia el 2 de junio de 2025 y el escaño lo ocupa Pedro Tortajada Raga desde el 7 de julio de 2025. El portal de transparencia municipal no publicó CV suyo (sí lo hace de 17 miembros de la corporación), por lo que este perfil se limita a lo que consta en actas, boletines y su declaración estatutaria.",
+      "reason": "La biografía seguía en presente: renunció al acta en mayo de 2025, el Pleno tomó razón el 02-06-2025 (acta de 07-07-2025, expte. 3400/2025/GEN) y Pedro Tortajada Raga ocupa el escaño desde el 07-07-2025.",
+      "editor": "Sergei Lutchenko",
+      "correctedAt": "2026-09-06"
+    },
+    {
+      "field": "narrative.Elección y toma de posesión.bodyMarkdown",
+      "original": "La de 2023 es su **primera candidatura documentada**: no aparece en las candidaturas de la circunscripción de Riba-roja publicadas en el BOP ni en 2015 ni en 2019 (la única «Trejo» de 2015 es una candidata homónima de Foios). Entró como n.º 2 de la lista del PP — encabezada por Alberto Gimeno Calvo, también independiente.\n\nLa sesión constitutiva de 17-06-2023 la proclama concejal electa con las credenciales de la Junta Electoral de Zona y presta juramento o promesa con el resto de la corporación. En el pleno de organización de 07-07-2023 queda adscrita al **Grupo Municipal Popular como n.º 2 y portavoz suplente**, y titular por su grupo en comisiones informativas — entre ellas la de Gestión Municipal y Gobierno Abierto.\n\nSin dedicación exclusiva ni parcial, su retribución municipal es por **asistencias**: 221,82 € por Pleno y 162,31 € por comisión.",
+      "corrected": "La de 2023 es su **primera candidatura documentada**: no aparece en las candidaturas de la circunscripción de Riba-roja publicadas en el BOP ni en 2015 ni en 2019 (la única «Trejo» de 2015 es una candidata homónima de Foios). Entró como n.º 2 de la lista del PP — encabezada por Alberto Gimeno Calvo, también independiente.\n\nLa sesión constitutiva de 17-06-2023 la proclama concejal electa con las credenciales de la Junta Electoral de Zona y presta juramento o promesa con el resto de la corporación. En el pleno de organización de 07-07-2023 queda adscrita al **Grupo Municipal Popular como n.º 2 y portavoz suplente**, y titular por su grupo en comisiones informativas — entre ellas la de Gestión Municipal y Gobierno Abierto.\n\nSin dedicación exclusiva ni parcial, su retribución municipal fue por **asistencias**: 221,82 € por Pleno y 162,31 € por comisión, hasta su renuncia en 2025.",
+      "reason": "Tiempo verbal: el régimen de asistencias dejó de aplicarle al renunciar al acta en 2025 (el Pleno tomó razón el 02-06-2025).",
+      "editor": "Sergei Lutchenko",
+      "correctedAt": "2026-09-06"
+    }
+  ],
   "response": null
 }

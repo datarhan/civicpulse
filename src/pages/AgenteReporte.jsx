@@ -14,6 +14,7 @@
 import { useMemo, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { Card, ExtLink, SectionHead } from '../components/Primitives'
+import { trozos } from '../lib/texto-negrita.js'
 import { useOfficials } from '../hooks/useOfficials'
 import {
   FactsSidebar,
@@ -79,7 +80,24 @@ function sectionAnchorId(section, alreadySeen) {
   return occurrence === 0 ? base : `${base}-${occurrence}`
 }
 
-function CorrectionLog({ corrections }) {
+// Original and corrected texts carry the narratives' `**negrita**`; printed raw,
+// the first corrections with bold (06-09-2026) showed their asterisks on the
+// page — the same defect PR #104 removed from the narratives one component up.
+// Inline, paragraphs joined by a space: the ledger shows a clipped window, not
+// the prose. Exported so the render is testable without mounting the page.
+function Recorte({ texto }) {
+  return trozos(texto.slice(0, 200))
+    .flat()
+    .map((t, j) =>
+      t.negrita !== undefined ? (
+        <strong key={j}>{t.negrita}</strong>
+      ) : (
+        <span key={j}>{t.texto}</span>
+      ),
+    )
+}
+
+export function CorrectionLog({ corrections }) {
   if (!corrections || corrections.length === 0) return null
   return (
     <Card>
@@ -97,8 +115,13 @@ function CorrectionLog({ corrections }) {
               {c.correctedAt} · {c.editor} · {c.field}
             </div>
             <div style={{ marginTop: 4, color: 'var(--ink50)' }}>
-              <s>{c.original.slice(0, 200)}</s> →{' '}
-              <span style={{ color: 'var(--ink70)' }}>{c.corrected.slice(0, 200)}</span>
+              <s>
+                <Recorte texto={c.original} />
+              </s>{' '}
+              →{' '}
+              <span style={{ color: 'var(--ink70)' }}>
+                <Recorte texto={c.corrected} />
+              </span>
             </div>
             <div style={{ marginTop: 4, color: 'var(--ink50)' }}>{c.reason}</div>
           </li>

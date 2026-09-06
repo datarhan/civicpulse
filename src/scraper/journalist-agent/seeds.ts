@@ -26,6 +26,7 @@
 import { JournalistValidationError, type SourceCitation } from '../journalist'
 import { buildWebCitation } from '../journalist-tools/citations'
 import type { UrlFetchResult } from '../journalist-tools/web'
+import { stripHtml } from './builders'
 
 export type SeedCapture = 'fetch' | 'pdf' | 'chrome'
 
@@ -168,17 +169,17 @@ export function citationFromSeed(
     // The excerpt was read on the date the curator recorded, not now.
     return { citation: { ...c, retrievedAt: seed.retrievedAt as string }, verified: 'manual' }
   }
-  const body = squash(bodyText ?? '')
+  // fetchUrl hands back the first 8 KB of the RAW body, tags included; the
+  // first real run (06-09-2026) compared the curator's excerpt against that and,
+  // finding nothing, cited «<!DOCTYPE html> <html lang="es">…» seven times. So:
+  // compare against text, and when the (capped) text still does not reach the
+  // paragraph, keep what the curator read on the page — it is the more
+  // reliable of the two — and let the caller warn. Raw markup is never cited.
+  const body = squash(stripHtml(bodyText ?? ''))
   if (seed.excerpt) {
-    if (body.includes(squash(seed.excerpt))) {
-      return {
-        citation: buildWebCitation({ ...base, excerpt: seed.excerpt }),
-        verified: 'verbatim',
-      }
-    }
     return {
-      citation: buildWebCitation({ ...base, ...(body ? { excerpt: body.slice(0, 500) } : {}) }),
-      verified: 'not-in-body',
+      citation: buildWebCitation({ ...base, excerpt: seed.excerpt }),
+      verified: body.includes(squash(seed.excerpt)) ? 'verbatim' : 'not-in-body',
     }
   }
   return {
@@ -286,7 +287,7 @@ export async function preloadSeeds(
     if (verified === 'not-in-body') {
       summary.notInBody += 1
       warnings.push(
-        `seed: el extracto sembrado no es literal en ${seed.url}; se cita el cuerpo descargado`,
+        `seed: el extracto sembrado no se encontró literal en el cuerpo descargado (capado) de ${seed.url}; se conserva el extracto leído por la curaduría`,
       )
     }
     push(citation)
