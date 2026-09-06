@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-06T08:22:12.951Z",
+  "generatedAt": "2026-09-06T09:01:34.857Z",
   "clusters": [
     {
       "clusterId": "1hy1xq8",
       "articleIds": [
         "1baly32",
-        "1t1ctq4",
-        "eky9vz"
+        "1lnhg7g",
+        "1t1ctq4"
       ],
       "outlets": [
         "Ayuntamiento de Riba-roja de Túria",
@@ -25,7 +25,7 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 3,
+        "sin-datos": 2,
         "promesa-repetida": 0
       }
     },
@@ -61,7 +61,7 @@
         "Levante-EMV"
       ],
       "earliestDate": "2026-08-25T06:55:58.000Z",
-      "latestDate": "2026-08-25T16:39:17.000Z",
+      "latestDate": "2026-08-25T07:00:00.000Z",
       "amountDrift": {
         "min": 100000,
         "max": 140000,
@@ -107,8 +107,8 @@
         "Ayuntamiento de Riba-roja de Túria",
         "Valencia Plaza"
       ],
-      "earliestDate": "2026-08-20T11:55:27.000Z",
-      "latestDate": "2026-08-20T18:52:36.000Z",
+      "earliestDate": "2026-08-20T07:00:00.000Z",
+      "latestDate": "2026-08-20T11:55:27.000Z",
       "amountDrift": null,
       "verdictMix": {
         "verificado": 0,
@@ -140,23 +140,44 @@
       }
     },
     {
-      "clusterId": "1nbr4f4",
+      "clusterId": "1oq1ic8",
       "articleIds": [
-        "pb3qmg",
-        "tfe81a"
+        "1fqbhjs",
+        "v4m8ao"
       ],
       "outlets": [
-        "El Meridiano L´Horta",
-        "Levante-EMV"
+        "Ayuntamiento de Riba-roja de Túria",
+        "Valencia Plaza"
       ],
-      "earliestDate": "2026-09-01T10:16:52.000Z",
-      "latestDate": "2026-09-01T10:22:50.000Z",
+      "earliestDate": "2026-08-21T07:00:00.000Z",
+      "latestDate": "2026-08-21T12:04:33.000Z",
       "amountDrift": null,
       "verdictMix": {
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 1,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      }
+    },
+    {
+      "clusterId": "1rb28v0",
+      "articleIds": [
+        "16zc27c",
+        "cty6i0"
+      ],
+      "outlets": [
+        "Europa Press",
+        "Valenciabonita"
+      ],
+      "earliestDate": "2026-09-01T11:10:58.000Z",
+      "latestDate": "2026-09-01T12:07:50.000Z",
+      "amountDrift": null,
+      "verdictMix": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
         "promesa-repetida": 0
       }
     },
@@ -183,13 +204,13 @@
     }
   ],
   "stats": {
-    "totalClusters": 8,
+    "totalClusters": 9,
     "triangulated3Plus": 1
   },
   "builtFrom": {
-    "plenos-agendas.json": "c19e4545d349",
+    "plenos-agendas.json": "966fea93ca45",
     "press-claims-verified.json": "dc81608a5279",
-    "press.json": "5f64bc7624ac",
+    "press.json": "4b49a8afb1be",
     "promises.json": "d18811c11210"
   }
 }

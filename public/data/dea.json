@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-02T09:12:07.060Z",
+  "generatedAt": "2026-09-06T09:02:08.259Z",
   "fuente": {
     "snapshot": "coste-efectivo.json",
     "entrega": 2024,
@@ -20,7 +20,7 @@
     "entregas": 10,
     "unidadSeries": 282,
     "unidadCongeladas": 176,
-    "costeSeries": 234,
+    "costeSeries": 263,
     "costeCongeladas": 4,
     "propias": [
       {
@@ -42,11 +42,11 @@
         "unidad": "€/t",
         "magnitud": "coste",
         "congelada": false,
-        "entregas": 9,
+        "entregas": 10,
         "valor": 740272.16,
         "repeticionesFinales": 1,
         "congeladaDesde": null,
-        "desde": 2015,
+        "desde": 2014,
         "hasta": 2024
       },
       {
@@ -68,11 +68,11 @@
         "unidad": "€/m²",
         "magnitud": "coste",
         "congelada": false,
-        "entregas": 9,
+        "entregas": 10,
         "valor": 1110650.84,
         "repeticionesFinales": 1,
         "congeladaDesde": null,
-        "desde": 2015,
+        "desde": 2014,
         "hasta": 2024
       },
       {

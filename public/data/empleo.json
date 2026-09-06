@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-09-02T09:09:08.958Z",
+  "generatedAt": "2026-09-06T08:59:20.437Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 59,
-    "openTotal": 58,
-    "inRibaRoja": 37,
-    "closingSoon": 11,
-    "withDetail": 59,
+    "total": 63,
+    "openTotal": 62,
+    "inRibaRoja": 40,
+    "closingSoon": 12,
+    "withDetail": 63,
     "byMonth": {
-      "2026-09": 1,
+      "2026-09": 7,
       "2026-08": 29,
-      "2026-07": 21,
+      "2026-07": 19,
       "2026-06": 1,
       "2026-05": 2,
       "2026-04": 2,
@@ -23,6 +23,514 @@
     }
   },
   "items": [
+    {
+      "id": "2530",
+      "fo": 2530,
+      "codigo": "2026/00229",
+      "titulo": "Auxiliar administrativa/o polivalente",
+      "publishedAt": "2026-09-04",
+      "deadline": "2026-09-20",
+      "location": "POLIGONO INDUSTRIAL ENTREVIES (JUNTO A METRO RIBARROJA Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2530",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00229"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Auxiliar administrativa/o polivalente"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Puesto de auxiliar administrativo/a polivalente en Turia-Regs."
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "AGRICULTURA, GANADERÍA, SILVICULTURA Y PESCA"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "AUXILIARES ADMINISTRATIVOS"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "POLIGONO INDUSTRIAL ENTREVIES (JUNTO A METRO RIBARROJA, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Indiferente Turnos: Turno mañana"
+          },
+          {
+            "label": "Observaciones jornada",
+            "value": "Trabajo presencial. Posibilidad de jornada completa o parcial. (6-8 horas / día)"
+          },
+          {
+            "label": "Horario",
+            "value": "Horario estable a acordar según disponibilidad y necesidades de la empresa. Por ejemplo, puede plantearse una jornada de 8:00 a 14:00..."
+          },
+          {
+            "label": "Salario",
+            "value": "17.000"
+          },
+          {
+            "label": "Funciones",
+            "value": "Introducción, revisión y organización de albaranes. Preparación y emisión de facturas. Registro en el sistema de materiales recibidos y facturas de proveedores. Apoyo en la compra de material y seguimiento de pedidos a proveedores. Apoyo administrativo al almacén. Apoyo puntual en la atención al cliente y comunicaciones relacionadas con pedidos, material recibido o disponibilidad. Organización de documentación de vehículos, PRL y otra documentación interna. Otras tareas administrativas y de apoyo que vayan surgiendo."
+          },
+          {
+            "label": "Habilidades",
+            "value": "Persona organizada, práctica y resolutiva. Capacidad para trabajar con tareas variadas, cambiar de una tarea a otra según las necesidades, aprender nuevos procedimientos y sacar el trabajo adelante con autonomía. Atención al detalle, iniciativa, sentido común y facilidad para trabajar en equipo."
+          },
+          {
+            "label": "Informática",
+            "value": "Manejo fluido del ordenador y facilidad para trabajar con programas de gestión. Experiencia con software de facturación/ERP, correo electrónico, gestión documental y paquete Office. Se valorará especialmente soltura con Excel y facilidad para aprender nuevas aplicaciones."
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "1",
+        "categoria": "AUXILIARES ADMINISTRATIVOS",
+        "observaciones": "Puesto de auxiliar administrativo/a polivalente en Turia-Regs.",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "jornada": "Indiferente Turnos: Turno mañana",
+        "horario": "Horario estable a acordar según disponibilidad y necesidades de la empresa. Por ejemplo, puede plantearse una jornada de 8:00 a 14:00...",
+        "salario": "17.000",
+        "funciones": "Introducción, revisión y organización de albaranes. Preparación y emisión de facturas. Registro en el sistema de materiales recibidos y facturas de proveedores. Apoyo en la compra de material y seguimiento de pedidos a proveedores. Apoyo administrativo al almacén. Apoyo puntual en la atención al cliente y comunicaciones relacionadas con pedidos, material recibido o disponibilidad. Organización de documentación de vehículos, PRL y otra documentación interna. Otras tareas administrativas y de apoyo que vayan surgiendo.",
+        "ocupaciones": [
+          {
+            "nombre": "Asistentes de dirección y administrativos",
+            "experiencia": "3 Años"
+          }
+        ]
+      }
+    },
+    {
+      "id": "2428",
+      "fo": 2428,
+      "codigo": "2026/00130",
+      "titulo": "Mozo/a de almacén con discapacidad",
+      "publishedAt": "2026-09-04",
+      "deadline": "2026-11-04",
+      "location": "Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2428",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00130"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Mozo/a de almacén con discapacidad"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Requisitos : Experiencia mínima: al menos 1 año Disponer de vehículo propio Experiencia previa (valorable)"
+          },
+          {
+            "label": "Porcentaje de discapacidad",
+            "value": "Igual o superior a 33%"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO DE OBRA O SERVICIO DETERMINADO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno noche"
+          },
+          {
+            "label": "Observaciones jornada",
+            "value": "Contrato inicial temporal prorrogable hasta indefinido"
+          },
+          {
+            "label": "Horario",
+            "value": "De martes a sábado de noches. De 24:00 a 08:00 horas."
+          },
+          {
+            "label": "Salario",
+            "value": "25.000 € brutos"
+          },
+          {
+            "label": "Funciones",
+            "value": "- Despaletizar - Ubicación de la mercancía - Utilización de PDA - Mantenimiento de la limpieza del lugar"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO DE OBRA O SERVICIO DETERMINADO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "1",
+        "observaciones": "Requisitos : Experiencia mínima: al menos 1 año Disponer de vehículo propio Experiencia previa (valorable)",
+        "jornada": "Completa Turnos: Turno noche",
+        "horario": "De martes a sábado de noches. De 24:00 a 08:00 horas.",
+        "salario": "25.000 € brutos",
+        "funciones": "- Despaletizar - Ubicación de la mercancía - Utilización de PDA - Mantenimiento de la limpieza del lugar",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2495",
+      "fo": 2495,
+      "codigo": "2026/00194",
+      "titulo": "Operario/a de carpintería metálica",
+      "publishedAt": "2026-09-03",
+      "deadline": "2026-11-03",
+      "location": "Riba-roja de Túria Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2495",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00194"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Operario/a de carpintería metálica"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Se precisa persona para trabajar el sector de la carpintería metálica, formación a cargo de la empresa. Se requiere carné de conducir, ganas de trabajar y actitud"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Riba-roja de Túria, Municipio: Riba-roja de Túria, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Horario",
+            "value": "Lunes a viernes jornada partida"
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          },
+          {
+            "label": "Funciones",
+            "value": "Instalación de ventanas, puertas, mosquiteras, mamparas"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "1",
+        "observaciones": "Se precisa persona para trabajar el sector de la carpintería metálica, formación a cargo de la empresa. Se requiere carné de conducir, ganas de trabajar y actitud",
+        "jornada": "Completa",
+        "horario": "Lunes a viernes jornada partida",
+        "salario": "Según convenio",
+        "funciones": "Instalación de ventanas, puertas, mosquiteras, mamparas",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2529",
+      "fo": 2529,
+      "codigo": "2026/00228",
+      "titulo": "Auxiliar gerocultor/a",
+      "publishedAt": "2026-09-02",
+      "deadline": "2026-11-02",
+      "location": "RESIDENCIA DE MAYORES SAN ANTONIO DE BENAGÉBER San Antonio de Benagéber (Valencia)",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2529",
+      "inRibaRoja": false,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00228"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Auxiliar gerocultor/a"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Vacante por sustitución de reducción de jornada de 07:00 h. a 08:30 h. (contrato de 7.5 h./semana)."
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "ACTIVIDADES SANITARIAS Y DE SERVICIOS SOCIALES"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO DE OBRA O SERVICIO DETERMINADO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "vacante por sustitución de reducción de jornada de 07:00 h. a 08:30 h. (contrato de 7.5 h./semana)."
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "Ingenieros Técnicos, Peritos y Ayudantes Titulados"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "RESIDENCIA DE MAYORES SAN ANTONIO DE BENAGÉBER, Municipio: San Antonio de Benagéber, Provincia: Valencia, CP: 46184"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Parcial Turnos: Turno mañana"
+          },
+          {
+            "label": "Observaciones jornada",
+            "value": "vacante por sustitución de reducción de jornada de 07:00 h. a 08:30 h. (contrato de 7.5 h./semana)."
+          },
+          {
+            "label": "Horario",
+            "value": "Horario de mañana"
+          },
+          {
+            "label": "Salario",
+            "value": "270,63 € BRUTO AL MES"
+          },
+          {
+            "label": "Funciones",
+            "value": "Atención a personas mayores en las actividades de la vida diaria."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO DE OBRA O SERVICIO DETERMINADO",
+        "duracion": "vacante por sustitución de reducción de jornada de 07:00 h. a 08:30 h. (contrato de 7.5 h./semana).",
+        "numPuestos": "1",
+        "categoria": "Ingenieros Técnicos, Peritos y Ayudantes Titulados",
+        "observaciones": "Vacante por sustitución de reducción de jornada de 07:00 h. a 08:30 h. (contrato de 7.5 h./semana).",
+        "municipio": "San Antonio de Benagéber",
+        "provincia": "Valencia",
+        "cp": "46184",
+        "jornada": "Parcial Turnos: Turno mañana",
+        "horario": "Horario de mañana",
+        "salario": "270,63 € BRUTO AL MES",
+        "funciones": "Atención a personas mayores en las actividades de la vida diaria.",
+        "vehiculo": "Sí",
+        "ocupaciones": [
+          {
+            "nombre": "AUXILIARES DE ENFERMERÍA DE GERIATRÍA"
+          }
+        ]
+      }
+    },
+    {
+      "id": "2528",
+      "fo": 2528,
+      "codigo": "2026/00227",
+      "titulo": "Mozo de almacén",
+      "publishedAt": "2026-09-02",
+      "deadline": "2026-11-02",
+      "location": "Loriguilla (Valencia)",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2528",
+      "inRibaRoja": false,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00227"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Mozo de almacén"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Requisitos: - Graduado en ESO - Carnet carretillero y puente grúa - Carnet B o superior Vehículo para acceder al puesto de trabajo ."
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO DE OBRA O SERVICIO DETERMINADO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Loriguilla, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno partido"
+          },
+          {
+            "label": "Observaciones jornada",
+            "value": "Contrato temporal ampliable a indefinido"
+          },
+          {
+            "label": "Horario",
+            "value": "De lunes a viernes de 7:30 a 16:30 horas."
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          },
+          {
+            "label": "Funciones",
+            "value": "- Preparación de pedidos - Control de stock - Carga y descarga"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO DE OBRA O SERVICIO DETERMINADO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "1",
+        "observaciones": "Requisitos: - Graduado en ESO - Carnet carretillero y puente grúa - Carnet B o superior Vehículo para acceder al puesto de trabajo .",
+        "jornada": "Completa Turnos: Turno partido",
+        "horario": "De lunes a viernes de 7:30 a 16:30 horas.",
+        "salario": "Según convenio",
+        "funciones": "- Preparación de pedidos - Control de stock - Carga y descarga",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2527",
+      "fo": 2527,
+      "codigo": "2026/00226",
+      "titulo": "Mecánico/a de carretillas elevadoras",
+      "publishedAt": "2026-09-02",
+      "deadline": "2026-11-02",
+      "location": "Polígono Industrial Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2527",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00226"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Mecánico/a de carretillas elevadoras"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "OTROS SERVICIOS"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "OFICIAL DE 1ª"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Polígono Industrial, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46394"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno partido"
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          },
+          {
+            "label": "Funciones",
+            "value": "Realizará los trabajos de reparación mecánica, mantenimiento preventivo y correctivo de maquinaria y carretillas elevadoras."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "1",
+        "categoria": "OFICIAL DE 1ª",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46394",
+        "jornada": "Completa Turnos: Turno partido",
+        "salario": "Según convenio",
+        "funciones": "Realizará los trabajos de reparación mecánica, mantenimiento preventivo y correctivo de maquinaria y carretillas elevadoras.",
+        "vehiculo": "Sí",
+        "ocupaciones": [
+          {
+            "nombre": "ELECTROMECÁNICOS DE MANTENIMIENTO INDUSTRIAL (MANTENIMIENTO Y REPARACIÓN GENERAL)",
+            "experiencia": "2 Años"
+          }
+        ]
+      }
+    },
     {
       "id": "2408",
       "fo": 2408,
@@ -3251,76 +3759,6 @@
       }
     },
     {
-      "id": "2495",
-      "fo": 2495,
-      "codigo": "2026/00194",
-      "titulo": "Operario/a de carpintería metálica",
-      "publishedAt": "2026-07-15",
-      "deadline": "2026-09-15",
-      "location": "Riba-roja de Túria Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2495",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00194"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Operario/a de carpintería metálica"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Se precisa persona para trabajar el sector de la carpintería metálica, formación a cargo de la empresa. Se requiere carné de conducir, ganas de trabajar y actitud"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Riba-roja de Túria, Municipio: Riba-roja de Túria, Provincia: Valencia"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa"
-          },
-          {
-            "label": "Horario",
-            "value": "Lunes a viernes jornada partida"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          },
-          {
-            "label": "Funciones",
-            "value": "Instalación de ventanas, puertas, mosquiteras, mamparas"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "1",
-        "observaciones": "Se precisa persona para trabajar el sector de la carpintería metálica, formación a cargo de la empresa. Se requiere carné de conducir, ganas de trabajar y actitud",
-        "jornada": "Completa",
-        "horario": "Lunes a viernes jornada partida",
-        "salario": "Según convenio",
-        "funciones": "Instalación de ventanas, puertas, mosquiteras, mamparas",
-        "ocupaciones": []
-      }
-    },
-    {
       "id": "2494",
       "fo": 2494,
       "codigo": "2026/00193",
@@ -3642,89 +4080,6 @@
         "horario": "jornada completa/parcial",
         "salario": "segun convenio",
         "funciones": "Capacidad para realizar tareas de limpieza en centros deportivos, club náuticos, comunidades, etc.",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2489",
-      "fo": 2489,
-      "codigo": "2026/00188",
-      "titulo": "Operario/a Cristalero/a con discapacidad",
-      "publishedAt": "2026-07-13",
-      "deadline": "2026-09-13",
-      "location": "Cheste (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2489",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00188"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Operario/a Cristalero/a con discapacidad"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Se requiere certificado de discapacidad/ IPT Se requiere experiencia previa en el sector."
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATACION DISCAPACIDAD"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "De 1 a 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "PEONES"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Municipio: Cheste, Provincia: Valencia, CP: 46380"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno mañana"
-          },
-          {
-            "label": "Horario",
-            "value": "L-V 6:00-13:36H"
-          },
-          {
-            "label": "Salario",
-            "value": "1444 € brutos/mes 12 pagas"
-          },
-          {
-            "label": "Funciones",
-            "value": "Limpieza de cristalería interior y exterior."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATACION DISCAPACIDAD",
-        "duracion": "De 1 a 6 meses",
-        "numPuestos": "1",
-        "categoria": "PEONES",
-        "observaciones": "Se requiere certificado de discapacidad/ IPT Se requiere experiencia previa en el sector.",
-        "municipio": "Cheste",
-        "provincia": "Valencia",
-        "cp": "46380",
-        "jornada": "Completa Turnos: Turno mañana",
-        "horario": "L-V 6:00-13:36H",
-        "salario": "1444 € brutos/mes 12 pagas",
-        "funciones": "Limpieza de cristalería interior y exterior.",
         "vehiculo": "Sí",
         "ocupaciones": []
       }

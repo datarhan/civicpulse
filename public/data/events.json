@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-09-02T08:57:18.696Z",
+  "generatedAt": "2026-09-06T08:49:20.252Z",
   "source": {
     "url": "https://www.ribarroja.es/es/eventos/rss.xml",
     "platform": "Drupal RSS (oficial)"
   },
   "stats": {
     "total": 50,
-    "upcoming": 37,
-    "nextDate": "2026-09-02T17:00:00.000Z"
+    "upcoming": 30,
+    "nextDate": "2026-09-07T19:00:00.000Z"
   },
   "events": [
     {
@@ -181,6 +181,26 @@
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_7.png?itok=6fHqqoOm"
     },
     {
+      "id": "a5g6cw",
+      "title": "Competiciones deportivas 5 de septiembre de 2026",
+      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-5-de-septiembre-de-2026",
+      "eventDate": "2026-09-05T07:00:00.000Z",
+      "eventDateText": "05 de septiembre de 2026 09:00",
+      "publishedDate": "2026-09-03T07:44:09.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_1.png?itok=BWllDvWU"
+    },
+    {
+      "id": "cgn52w",
+      "title": "Competiciones deportivas 6 de septiembre de 2026",
+      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-6-de-septiembre-de-2026",
+      "eventDate": "2026-09-06T07:00:00.000Z",
+      "eventDateText": "06 de septiembre de 2026 09:00",
+      "publishedDate": "2026-09-03T07:46:23.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_2.png?itok=7ArlWmzv"
+    },
+    {
       "id": "r3a7a0",
       "title": "Actes festes Crist 2026 - diumenge 6 de setembre",
       "link": "https://www.ribarroja.es/va/evento/actes-festes-crist-2026-diumenge-6-de-setembre",
@@ -289,16 +309,6 @@
       "publishedDate": "2026-08-28T10:23:32.000Z",
       "excerpt": "&nbsp;",
       "image": null
-    },
-    {
-      "id": "1p72p3g",
-      "title": "Teatro 'Don Quijote en los infiernos'",
-      "link": "https://www.ribarroja.es/es/evento/teatro-%27don-quijote-en-los-infiernos%27",
-      "eventDate": "2026-09-19T17:00:00.000Z",
-      "eventDateText": "19 de septiembre de 2026 19:00",
-      "publishedDate": "2026-05-31T11:53:47.000Z",
-      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/19%20don%20quijote%20en%20los%20infiernos.jpg?itok=VK0geBLc"
     },
     {
       "id": "1s18y44",
@@ -499,16 +509,6 @@
       "publishedDate": "2026-06-26T09:54:16.000Z",
       "excerpt": "&nbsp;",
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/28%20mikey%20y%20la%20biblioteca.jpg?itok=gvSaVHK8"
-    },
-    {
-      "id": "1pr460",
-      "title": "Teatro 'Piter Pan, la batalla final'",
-      "link": "https://www.ribarroja.es/es/evento/teatro-%27piter-pan%2C-la-batalla-final%27",
-      "eventDate": "2027-02-06T18:00:00.000Z",
-      "eventDateText": "06 de febrero de 2027 19:00",
-      "publishedDate": "2026-05-31T11:20:23.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260823%20peter%20pan%2027.jpg?itok=B2-ZL46q"
     }
   ]
 }
