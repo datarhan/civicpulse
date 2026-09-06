@@ -787,3 +787,35 @@ describe('assignment status: archived (superseded/unpublished)', () => {
     expect(parsed.items[0].status).toBe('archived')
   })
 })
+
+// ─── Portrait without a published photo ─────────────────────────────────────
+
+describe('portrait photoPath', () => {
+  const BASE = { version: '1.0', generatedAt: '2026-09-06T10:00:00.000Z' }
+
+  it('accepts an empty photoPath as «sin retrato publicado» (alta de 2025 sin foto en el portal)', () => {
+    const noPhoto = {
+      kind: 'portrait' as const,
+      payload: { ...SAMPLE_PORTRAIT_SECTION.payload, photoPath: '' },
+    }
+    const ok = {
+      ...BASE,
+      items: [{ ...SAMPLE_DRAFT, sections: [noPhoto, SAMPLE_NARRATIVE_SECTION] }],
+    }
+    expect(() => validateDraftsSnapshot(JSON.stringify(ok))).not.toThrow()
+  })
+
+  it('still rejects a relative photoPath', () => {
+    const relative = {
+      kind: 'portrait' as const,
+      payload: { ...SAMPLE_PORTRAIT_SECTION.payload, photoPath: 'data/photos/x.jpg' },
+    }
+    const bad = {
+      ...BASE,
+      items: [{ ...SAMPLE_DRAFT, sections: [relative, SAMPLE_NARRATIVE_SECTION] }],
+    }
+    expect(() => validateDraftsSnapshot(JSON.stringify(bad))).toThrow(
+      /photoPath must start with \//,
+    )
+  })
+})

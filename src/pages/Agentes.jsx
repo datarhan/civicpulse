@@ -33,8 +33,8 @@ export default function Agentes() {
         </h1>
         <p style={{ margin: '6px 0 0 0', fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
           Cada informe nace de una asignación que un agente automático investiga, redacta y
-          autoverifica. La curaduría humana revisa antes de publicar. Las fuentes citadas se
-          archivan en Wayback cuando es posible.
+          autoverifica. La curaduría humana revisa antes de publicar. Cada fuente citada conserva su
+          extracto literal y, cuando existe, un enlace a su copia en Wayback.
         </p>
       </header>
 

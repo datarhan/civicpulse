@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { Card, Pill } from '../Primitives'
 import { ageFromDate, formatEventDate } from './Sections'
 import { LEGAL_SENSITIVITY_LABEL, LEGAL_SENSITIVITY_TONE } from '../../hooks/useJournalistReports'
+import { currentOffice } from '../../lib/journalist-facts.js'
 
 // ─── Sticky TOC with scroll-spy ──────────────────────────────────────────
 
@@ -108,8 +109,9 @@ export function FactsSidebar({ report, subjectName, assignment }) {
     rows.push({ label: 'Lugar', value: identity.birthplace })
   }
   {
-    // Current (open-ended) mandate wins over the first historical row.
-    const c = careerPol.find((i) => i.endYear == null) ?? careerPol[0]
+    // The current (open-ended) OFFICE — never a fallback to the first
+    // historical row: «Cargo actual» over a closed mandate would be a lie.
+    const c = currentOffice(careerPol)
     if (c) {
       rows.push({
         label: 'Cargo actual',

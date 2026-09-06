@@ -1,6 +1,7 @@
 // Journalist UI — full-width hero band (portrait, party, quick facts, actions).
 import { ExtLink, Pill } from '../Primitives'
 import { ageFromDate, formatEventDate } from './Sections'
+import { latestOffice, officeSince } from '../../lib/journalist-facts.js'
 
 const fmtEur = (n) => `${Number(n).toLocaleString('es-ES', { maximumFractionDigits: 0 })} €`
 
@@ -15,15 +16,15 @@ function KeyFactsStrip({ report, tone }) {
   const assets = fin.find((i) => i.metric === 'declared-assets' && i.amountEuros != null)
   const business = fin.find((i) => i.metric === 'business' && /^sin\b/i.test(i.description || ''))
   const career = report.sections.find((s) => s.kind === 'career-political')?.payload?.items ?? []
-  const startYears = career.map((c) => c.startYear).filter(Boolean)
-  const firstYear = startYears.length ? Math.min(...startYears) : null
+  // «Desde» es la cadena de cargos sin hueco que desemboca en el actual — no
+  // el año más bajo de la trayectoria, que incluía candidaturas sin escaño.
+  const since = officeSince(career)
   const identity = report.sections.find((s) => s.kind === 'identity')?.payload
   const age = identity?.dateOfBirth ? ageFromDate(identity.dateOfBirth) : null
 
   const facts = []
   if (age != null) facts.push({ k: 'Edad', v: `${age} años`, href: '#sec-identity' })
-  if (firstYear)
-    facts.push({ k: 'En el cargo', v: `desde ${firstYear}`, href: '#sec-career-political' })
+  if (since) facts.push({ k: 'En el cargo', v: `desde ${since}`, href: '#sec-career-political' })
   if (salary)
     facts.push({ k: 'Retribución', v: `${fmtEur(salary.amountEuros)}/año`, href: '#sec-financial' })
   if (assets)
@@ -87,9 +88,10 @@ export function HeroBand({ subjectName, portraitPayload, report, party, soulDown
   const identity = report.sections.find((s) => s.kind === 'identity')?.payload
   const careerItems =
     report.sections.find((s) => s.kind === 'career-political')?.payload?.items ?? []
-  // Prefer the CURRENT (open-ended) mandate over the first row — the 2019
-  // row's long role string made the subtitle unreadable (2026-07-31 review).
-  const lastCareer = careerItems.find((c) => c.endYear == null) ?? careerItems[0]
+  // The CURRENT office, or the latest closed one for a former official —
+  // never the first historical row, and never a candidacy or an advisory post
+  // (the 2019 row's long role string made the subtitle unreadable, 2026-07-31).
+  const lastCareer = latestOffice(careerItems)
   return (
     <section
       style={{
@@ -98,10 +100,13 @@ export function HeroBand({ subjectName, portraitPayload, report, party, soulDown
         background: `linear-gradient(180deg, var(--${tone}-soft, var(--soft)) 0%, var(--paper) 100%)`,
       }}
     >
+      {/* Column template lives in CSS (.cp-hero-grid, AgenteReporte.jsx): an
+          inline style cannot hold the media query that stacks photo over text
+          on a phone, and without it the page scrolled sideways (06-09-2026). */}
       <div
+        className="cp-hero-grid"
         style={{
           display: 'grid',
-          gridTemplateColumns: 'auto 1fr',
           gap: 28,
           alignItems: 'center',
           maxWidth: 1200,
@@ -146,7 +151,9 @@ export function HeroBand({ subjectName, portraitPayload, report, party, soulDown
               }}
             >
               {lastCareer.role} en {lastCareer.org}
-              {lastCareer.startYear && ` · desde ${lastCareer.startYear}`}
+              {lastCareer.endYear == null
+                ? ` · desde ${lastCareer.startYear}`
+                : ` · ${lastCareer.startYear}–${lastCareer.endYear}`}
             </p>
           )}
           <div style={{ marginTop: 12, display: 'flex', gap: 6, flexWrap: 'wrap' }}>

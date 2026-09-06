@@ -7,6 +7,7 @@ import { Card, ExtLink, Pill, SectionHead } from '../Primitives'
 import { Sparkline } from '../Charts'
 import { CitationPills } from './Citations'
 import { usePromises, STATUS_LABEL, STATUS_TONE } from '../../hooks/usePromises'
+import { trozos } from '../../lib/texto-negrita.js'
 
 // ─── Section: portrait (now slim — most info is in HeroBand) ─────────────
 
@@ -18,7 +19,12 @@ export function PortraitHeader() {
 
 // ─── Section: narrative ───────────────────────────────────────────────────
 
+// El cuerpo trae `**negrita**` y párrafos separados por línea en blanco, y se
+// pintaba crudo: «**puesto n.º 6**» con los asteriscos a la vista en las 21
+// biografías (06-09-2026). El mismo trozeador que CorrectionNote; las pastillas
+// de cita cierran el último párrafo.
 export function NarrativeBlock({ payload, sourceMap }) {
+  const parrafos = trozos(payload.bodyMarkdown ?? '')
   return (
     <Card>
       <h3 style={{ margin: 0, fontSize: 'var(--type-h3)', color: 'var(--ink)' }}>
@@ -30,11 +36,24 @@ export function NarrativeBlock({ payload, sourceMap }) {
           fontSize: 'var(--type-lede)',
           lineHeight: 1.65,
           color: 'var(--ink70)',
-          whiteSpace: 'pre-wrap',
         }}
       >
-        {payload.bodyMarkdown}
-        <CitationPills ids={payload.sourceIds} sourceMap={sourceMap} />
+        {parrafos.map((p, i) => (
+          <p key={i} style={{ margin: i === 0 ? 0 : '10px 0 0 0', whiteSpace: 'pre-wrap' }}>
+            {p.map((t, j) =>
+              t.negrita !== undefined ? (
+                <strong key={j} style={{ color: 'var(--ink)' }}>
+                  {t.negrita}
+                </strong>
+              ) : (
+                <span key={j}>{t.texto}</span>
+              ),
+            )}
+            {i === parrafos.length - 1 && (
+              <CitationPills ids={payload.sourceIds} sourceMap={sourceMap} />
+            )}
+          </p>
+        ))}
       </div>
     </Card>
   )
