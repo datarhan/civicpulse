@@ -7,17 +7,17 @@
 - **CV oficial:** <https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919>
 
 ## Identidad y cargo municipal
-Soraya Trejo Delgado es concejal del Ayuntamiento de Riba-roja de Túria por la lista del Partido Popular, en la que figura registrada como **«(Independiente)»** — como cinco de los siete miembros del grupo. Es la **n.º 2** de la candidatura y **portavoz suplente** del Grupo Municipal Popular. El portal de transparencia municipal no publica CV suyo (sí lo hace de 17 miembros de la corporación), por lo que este perfil se limita a lo que consta en actas, boletines y su declaración estatutaria. [^1][^2]
+Soraya Trejo Delgado fue concejal del Ayuntamiento de Riba-roja de Túria por la lista del Partido Popular entre junio de 2023 y junio de 2025, registrada en las actas como **«(Independiente)»** — como cinco de los siete miembros del grupo. Fue la **n.º 2** de la candidatura y **portavoz suplente** del Grupo Municipal Popular. Renunció al acta en mayo de 2025: el Pleno tomó razón de la renuncia el 2 de junio de 2025 y el escaño lo ocupa Pedro Tortajada Raga desde el 7 de julio de 2025. El portal de transparencia municipal no publicó CV suyo (sí lo hace de 17 miembros de la corporación), por lo que este perfil se limita a lo que consta en actas, boletines y su declaración estatutaria. [^1][^2]
 
 ## Elección y toma de posesión
 La de 2023 es su **primera candidatura documentada**: no aparece en las candidaturas de la circunscripción de Riba-roja publicadas en el BOP ni en 2015 ni en 2019 (la única «Trejo» de 2015 es una candidata homónima de Foios). Entró como n.º 2 de la lista del PP — encabezada por Alberto Gimeno Calvo, también independiente.
 
 La sesión constitutiva de 17-06-2023 la proclama concejal electa con las credenciales de la Junta Electoral de Zona y presta juramento o promesa con el resto de la corporación. En el pleno de organización de 07-07-2023 queda adscrita al **Grupo Municipal Popular como n.º 2 y portavoz suplente**, y titular por su grupo en comisiones informativas — entre ellas la de Gestión Municipal y Gobierno Abierto.
 
-Sin dedicación exclusiva ni parcial, su retribución municipal es por **asistencias**: 221,82 € por Pleno y 162,31 € por comisión. [^3][^4][^1][^5][^6][^7]
+Sin dedicación exclusiva ni parcial, su retribución municipal fue por **asistencias**: 221,82 € por Pleno y 162,31 € por comisión, hasta su renuncia en 2025. [^3][^4][^1][^5][^6][^7]
 
 ## Trayectoria política
-- **2023–presente** — Concejal, n.º 2 de la lista y portavoz suplente del Grupo Municipal Popular («Independiente») en Ayuntamiento de Riba-roja de Túria [^3][^4][^1]
+- **2023–2025** — Concejal, n.º 2 de la lista y portavoz suplente del Grupo Municipal Popular («Independiente») en Ayuntamiento de Riba-roja de Túria [^3][^4][^1]
 
 ## Declaraciones financieras
 - **2023** — Bienes declarados · 14.736,27 € [^8][^9]
@@ -58,6 +58,20 @@ Límites declarados: la naturaleza y composición del despacho E.A.U. Llorens, F
 - **Despacho E.A.U. Llorens, Fornés y Navarro:** La naturaleza, forma jurídica y composición del despacho de su actividad declarada no son reconstruibles con fuentes abiertas gratuitas. El barrido de adjudicatarios municipales devuelve 0 coincidencias para el bufete.
 - **Ingresos por asistencias:** Su retribución municipal depende de las sesiones a las que asiste; el Ayuntamiento no publica el total anual liquidado por asistencias a cada concejal.
 - **Familia y relaciones personales:** Sin fuente pública lícita; este medio no las investiga ni publica.
+
+## Bitácora de correcciones
+- **2026-09-06** · Sergei Lutchenko · `career-political[0].endYear`
+  - antes: «null»
+  - después: «2025»
+  - motivo: Renunció al acta de concejala: el Pleno tomó razón el 02-06-2025 (acta de la sesión de 07-07-2025, expte. 3400/2025/GEN), como recoge la corrección del padrón publicada en /cargos; el escaño lo ocupa Pedro Tortajada Raga desde el 07-07-2025.
+- **2026-09-06** · Sergei Lutchenko · `narrative.Identidad y cargo municipal.bodyMarkdown`
+  - antes: «Soraya Trejo Delgado es concejal del Ayuntamiento de Riba-roja de Túria por la lista del Partido Popular, en la que figura registrada como **«(Independiente)»** — como cinco de los siete miembros del grupo. Es la **n.º 2** de la candidatur…»
+  - después: «Soraya Trejo Delgado fue concejal del Ayuntamiento de Riba-roja de Túria por la lista del Partido Popular entre junio de 2023 y junio de 2025, registrada en las actas como **«(Independiente)»** — como cinco de los siete miembros del grupo.…»
+  - motivo: La biografía seguía en presente: renunció al acta en mayo de 2025, el Pleno tomó razón el 02-06-2025 (acta de 07-07-2025, expte. 3400/2025/GEN) y Pedro Tortajada Raga ocupa el escaño desde el 07-07-2025.
+- **2026-09-06** · Sergei Lutchenko · `narrative.Elección y toma de posesión.bodyMarkdown`
+  - antes: «La de 2023 es su **primera candidatura documentada**: no aparece en las candidaturas de la circunscripción de Riba-roja publicadas en el BOP ni en 2015 ni en 2019 (la única «Trejo» de 2015 es una candidata homónima de Foios). Entró como n.…»
+  - después: «La de 2023 es su **primera candidatura documentada**: no aparece en las candidaturas de la circunscripción de Riba-roja publicadas en el BOP ni en 2015 ni en 2019 (la única «Trejo» de 2015 es una candidata homónima de Foios). Entró como n.…»
+  - motivo: Tiempo verbal: el régimen de asistencias dejó de aplicarle al renunciar al acta en 2025 (el Pleno tomó razón el 02-06-2025).
 
 ## Notas de curaduría
 REVISIÓN DE CURADURÍA 31-07-2026: draft del agente mínimo (7 secciones) por ausencia de CV publicado — el listado del portal (17 PDF) no incluye a Trejo ni a otros 3 concejales del PP (Guzmán, Boix, Navarro Sanfeliu): esa carencia de transparencia se documenta como fuente y laguna. Perfil construido íntegramente sobre primarios: actas (electa + juramento 17-06-2023; grupo PP n.º 2 «(Independiente)» + portavoz suplente + titular comisión de Gestión Municipal y Gobierno Abierto, acta 07-07-2023; asistencias 221,82/162,31), BOP (candidaturas 2015/2019: 0 apariciones — la única «TREJO» de 2015 verificada como homónima de la circunscripción de FOIOS, fuera de Riba-roja) y declaración estatutaria verificada contra PDF + render visual (activo 14.736,27 € — el más bajo de la corporación —, pasivo 0; becaria E.A.U. Llorens Fornés y Navarro con incorporación 08-06-2023, nueve días antes de la toma — hecho fechado con línea de no-irregularidad). HOMÓNIMOS PURGADOS: el draft traía como fuentes la Wikipedia de Soraya la cantautora (src-003) y un agregador low-trust (src-004, citado por career-political — sustituido por las actas); ambos quedan sin citar y el promote los poda. Advertencias del verificador adjudicadas: bio-floor real (sin CV → laguna publicada); «en la oposición inferido» documentado vía actas; narrativa de contexto sustituida por la cadena persona-céntrica. Barridos: 0 TREJO y 0 Llorens/Fornés en adjudicatarios.

@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-31T19:26:08.705Z",
+  "generatedAt": "2026-09-06T21:09:28.376Z",
   "items": [
     {
       "id": "a-robert-raga-bio",
@@ -337,6 +337,19 @@
       "createdAt": "2026-07-31T19:14:59.428Z",
       "status": "promoted",
       "lastRunAt": "2026-07-31T19:22:25.998Z"
+    },
+    {
+      "id": "a-alberto-gimeno-bio-v2",
+      "kind": "biography",
+      "subject": {
+        "slug": "alberto-gimeno-calvo",
+        "name": "Alberto José Gimeno Calvo",
+        "kind": "official"
+      },
+      "brief": "Actualizar la biografía de Alberto José Gimeno Calvo con documentos y prensa no recogidos en la versión de julio de 2026: su trayectoria en la Policía Local de Riba-roja según prensa independiente del CV, su puesto de personal eventual en la Diputació de València según la relación de 2025 publicada por la propia Diputació, y los cambios en el Grupo Municipal Popular y en el PP local desde 2025.",
+      "createdBy": "Sergei Lutchenko",
+      "createdAt": "2026-09-06T21:09:28.376Z",
+      "status": "pending"
     }
   ]
 }

@@ -107,18 +107,43 @@ describe('citationFromSeed', () => {
     expect(citationFromSeed(seed, 'cuerpo').citation.trust).toBe('low')
   })
 
-  it('con cuerpo descargado, el extracto sembrado sólo se usa si es literal en el cuerpo', () => {
+  it('con cuerpo descargado, el extracto sembrado se comprueba contra el TEXTO, no contra el HTML', () => {
     const excerpt = 'será el candidato del PP a la alcaldía'
     const [seed] = parseSeedSources(
       JSON.stringify([{ ...BASE, excerpt, retrievedAt: '2026-09-06T10:00:00.000Z' }]),
     )
-    const ok = citationFromSeed(seed, `Alberto Gimeno ${excerpt} de Riba-roja.`)
+    // fetchUrl entrega los primeros 8 KB del cuerpo CRUDO: etiquetas incluidas.
+    const html = `<!DOCTYPE html><html><head><title>x</title></head><body><nav>Menú</nav><p>Alberto Gimeno ${excerpt} de&nbsp;Riba-roja.</p></body></html>`
+    const ok = citationFromSeed(seed, html)
     expect(ok.verified).toBe('verbatim')
     expect(ok.citation.excerpt).toBe(excerpt)
+  })
 
-    const ko = citationFromSeed(seed, 'Un cuerpo que no contiene esa frase.')
+  it('si el extracto no está en el cuerpo, se conserva el del curador y se avisa — nunca se cita HTML', () => {
+    // La primera ejecución real (06-09-2026) sustituyó siete extractos leídos
+    // en la página por «<!DOCTYPE html> <html lang="es">…»: el cuerpo capado no
+    // llegaba al párrafo. Lo leído en la página vale más que 8 KB de cabecera.
+    const excerpt = 'será el candidato del PP a la alcaldía'
+    const [seed] = parseSeedSources(
+      JSON.stringify([{ ...BASE, excerpt, retrievedAt: '2026-09-06T10:00:00.000Z' }]),
+    )
+    const ko = citationFromSeed(
+      seed,
+      '<!DOCTYPE html><html><body><p>Un cuerpo que no contiene esa frase.</p></body></html>',
+    )
     expect(ko.verified).toBe('not-in-body')
-    expect(ko.citation.excerpt).toBe('Un cuerpo que no contiene esa frase.')
+    expect(ko.citation.excerpt).toBe(excerpt)
+  })
+
+  it('sin extracto sembrado se cita el texto del cuerpo, sin etiquetas', () => {
+    const [seed] = parseSeedSources(JSON.stringify([BASE]))
+    const r = citationFromSeed(
+      seed,
+      '<html><body><h1>Titular</h1><p>Primer párrafo.</p></body></html>',
+    )
+    expect(r.verified).toBe('body-only')
+    expect(r.citation.excerpt).toBe('Titular Primer párrafo.')
+    expect(r.citation.excerpt).not.toContain('<')
   })
 
   it('una captura en navegador lleva el extracto manual y queda marcada como tal', () => {

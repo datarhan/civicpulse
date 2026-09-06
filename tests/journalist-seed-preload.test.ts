@@ -89,14 +89,16 @@ describe('preloadSeeds', () => {
     expect(r.sources.some((s) => s.url.includes('bloqueada'))).toBe(false)
   })
 
-  it('el extracto verificado en el cuerpo se cita tal cual; el que no está avisa y cita el cuerpo', async () => {
+  it('el extracto que no aparece en el cuerpo se conserva, avisa y cuenta aparte', async () => {
     const r = await preloadSeeds([seeds[0]], {
-      fetchUrl: async (url) => ok(url, 'Un cuerpo sin la frase sembrada.'),
+      fetchUrl: async (url) =>
+        ok(url, '<html><body><p>Un cuerpo sin la frase sembrada.</p></body></html>'),
       fetchPdfUrl: async (url) => ok(url, ''),
     })
     expect(r.summary.notInBody).toBe(1)
-    expect(r.sources[0].excerpt).toBe('Un cuerpo sin la frase sembrada.')
-    expect(r.warnings.some((w) => /no es literal/.test(w))).toBe(true)
+    // El curador lo leyó en la página; el cuerpo capado no llegó al párrafo.
+    expect(r.sources[0].excerpt).toBe('será el candidato del PP a la alcaldía')
+    expect(r.warnings.some((w) => /no se encontró literal/.test(w))).toBe(true)
   })
 
   it('cada fila de evidencia va marcada como sembrada y conserva confianza de la tabla de dominios', async () => {
