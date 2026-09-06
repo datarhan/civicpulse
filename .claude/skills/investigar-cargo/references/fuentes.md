@@ -46,6 +46,16 @@ Un resultado de buscador sobre un documento-lista NO es una coincidencia hasta q
 el nombre se ve en el texto: el 06-09-2026 BOE-A-2025-20600 salió para cuatro de
 estos apellidos y no contenía ninguno.
 
+**Un «vacío» del sondeo en `boe`, `dogv`, `dialnet` y `hemeroteca-*` no prueba
+nada.** Medido el 06-09-2026: el sondeo del alcalde —que consta en el DOGV— devolvió
+vacío en las cuatro; los lectores de `gazette.ts` devuelven `[]` también ante un fallo
+de red o un estado no-200 (`catch { return [] }`), y el buscador del DOGV contesta hoy
+un 302 sin cuerpo. Hasta que esos lectores devuelvan su estado, la evidencia de
+boletines se busca por las vías directas de esta tabla (BOE `txt.php`, DOGV en Chrome,
+BOP por fecha) y el manifiesto anota `blocked(lector sin estado)` para esas cuatro, no
+`empty`. Las fuentes locales del sondeo (oficial, snapshots, prensa, plenos,
+contratación) sí son fiables: leen ficheros del repositorio.
+
 ## Nivel 3 — autopublicado (confianza baja, `selfDeclared: true`)
 
 | Fuente                                                                            | Vía                                                                                   | Regla                                                                                            |

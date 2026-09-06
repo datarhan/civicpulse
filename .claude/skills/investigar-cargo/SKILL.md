@@ -53,7 +53,9 @@ Catálogo de fuentes y vías: `references/fuentes.md`. Límites: `references/lim
    identificador que los descarta (municipio + cargo + fecha, partido, edad, foto).
 1. **Lectores del repo.** `journalist:sondeo` con `--out`; BORME sobre la caché
    (`--persona`); declaración de bienes y actas (`biografia-concejal` §4). Lo que un
-   lector no alcanza se anota como `blocked(<motivo>)`, no como vacío.
+   lector no alcanza se anota como `blocked(<motivo>)`, no como vacío — y las cuatro
+   fuentes de boletín del sondeo (`boe`, `dogv`, `dialnet`, `hemeroteca-*`) se anotan
+   SIEMPRE así: sus lectores devuelven vacío también cuando fallan (`fuentes.md`).
 2. **Lo que el cargo no controla.** Boletines (BOP, BOE, DOGV), candidaturas de todas
    las convocatorias desde 2007, prensa alcanzable por WebSearch/WebFetch y prensa
    sólo-Chrome (lista en `fuentes.md`), consorcios y Diputació, webs de partido,
