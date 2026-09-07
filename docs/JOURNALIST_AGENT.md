@@ -298,6 +298,21 @@ What the first v2 taught (Gimeno, 2026-09-06/07), each fixed in code:
   transparency portal (personal eventual with decree, BOP reference and yearly
   gasto), so a provincial-payroll figure can enter `financial` cited by its
   own document.
+- **`journalist:entorno`** (2026-09-07) — a councillor's business surroundings,
+  read from the file outward and never from the family inward. It starts from
+  what is public because it is the council's (awardees in `tenders.json`,
+  subsidy beneficiaries when the BDNS snapshot carries them, people named in
+  BOP edicts), resolves each company's administrators and apoderados in the
+  yearly BORME cache, and only then asks whether any of those people is the
+  councillor, a DOCUMENTED relative (`--llaves`: name, kinship and the dated
+  document that proves it; the parser refuses a key without one) or someone
+  sharing both surnames (a lead, never a finding). It also lists abstentions
+  with a stated motive in the pleno transcripts, which are candidates for an
+  official kinship key in the acta. People sharing one surname, or both
+  surnames in a company that is not a counterparty, are counted and never
+  named. Output goes under `editorial/` only (it refuses `public/`), with
+  found / empty / failed per source. `src/scraper/journalist-entorno.ts` is
+  the pure core; the rules are in the skill's `references/limites.md`.
 
 Update `/metodologia` whenever this pipeline's behavior changes —
 that page is the published editorial contract.

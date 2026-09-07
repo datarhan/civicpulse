@@ -34,6 +34,32 @@ Leyenda de vías:
 | BDNS                                                   | subvenciones a personas o empresas                                                                                                               | `public/data/bdns.json` sólo por descripción «riba-roja»; búsqueda por beneficiario en `infosubvenciones.es` (Chrome)                                                                                      | el adaptador no consulta por beneficiario                                                                                                                                   | `official-doc`                                                 |
 | Consorcios, mancomunitat, Diputació                    | presidencias, vocalías, asesorías                                                                                                                | DOGV/BOP + webs institucionales (WebFetch)                                                                                                                                                                 | —                                                                                                                                                                           | `official-doc` o `web` según la fuente                         |
 
+## Entorno — del expediente a la persona
+
+`npm run journalist:entorno -- --slug <slug> [--llaves editorial/investigaciones/<slug>/llaves.json]`
+recorre en un solo paso lo que la regla de las dos llaves permite recorrer, y en
+ese orden:
+
+| Paso                          | Fuente                                                                 | Qué da                                                                                                                                 |
+| ----------------------------- | ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| 1. Contrapartes               | `tenders.json` (adjudicatarios), `bdns.json`, `bop.json` (edictos)     | quién ha cobrado o recibido algo del Ayuntamiento; el snapshot de la BDNS trae convocatorias, no beneficiarios (esos, sólo en la web)  |
+| 2. Cargos societarios         | caché anual del BORME (`.cache/borme/`, barrido central 2009→hoy)      | administradores, apoderados, consejeros, liquidadores de cada sociedad contraparte; nunca socios (el BORME no los publica)              |
+| 3. Cruce                      | el cargo, `--llaves` (familiares documentados), sus dos apellidos      | tres niveles: **propio** (el cargo en una contraparte), **llave documentada**, **pista de apellidos** (obliga a buscar el documento)     |
+| 4. Abstenciones con motivo    | transcripciones de pleno (`pleno-transcripts/`)                        | candidatas a llave oficial («interés directo», «parentesco»): se confirman en el ACTA, la transcripción es automática                  |
+
+Lo que sólo se cuenta y no se nombra: personas con un apellido, y personas con
+los dos apellidos en sociedades que NO son contrapartes (el fichero da el número y
+nada más). `--llaves` es un JSON escrito a mano —nombre, parentesco, documento con
+título y fecha—: sin documento el CLI no lo carga. La salida va a
+`editorial/investigaciones/<slug>/entorno.json` y el CLI se niega a escribir bajo
+`public/`. Un fichero de la caché ausente es `failed`, no «sin sociedades».
+
+Lo que este recorrido NO cubre, y el dossier lo dice: contratos menores (el portal
+municipal los publica aparte; no están en `tenders.json`), beneficiarios de
+subvenciones (BDNS en la web, por beneficiario), licencias y PAIs antiguos (BOP
+histórico y actas de la Junta de Gobierno; `buscar-bop-historico --texto`), y toda
+propiedad que no aparezca en un acto público.
+
 ## Nivel 2 — prensa (confianza media)
 
 | Medio                                                                                                | Vía                                                                         | Nota                                                                                              |

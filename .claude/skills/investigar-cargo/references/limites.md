@@ -35,8 +35,43 @@ las dos llaves a la vez:
 Con una sola llave, queda en el dossier como «no publicable: sin nexo» o «no
 publicable: sin documento», y ahí se queda.
 
+### Qué cuenta como primera llave (el documento del parentesco)
+
+- Una **abstención con motivo** en un acta de pleno o de Junta de Gobierno —«por
+  parentesco», «por interés directo», art. 23 de la Ley 40/2015—: la más fuerte,
+  porque la escribe el propio Ayuntamiento y va atada a un expediente concreto.
+- Las **palabras del propio cargo**: su currículum, sus cuentas públicas, una
+  entrevista («la empresa familiar», «mi hijo»). Se cita `selfDeclared`.
+- **Prensa que nombre el vínculo**, publicada como «según <medio>, <fecha>».
+- Una **candidatura compartida** o una esquela son indicios débiles: sirven para
+  buscar el documento, no lo sustituyen.
+- **Nunca** dos apellidos compartidos: ni en el BORME, ni en un adjudicatario, ni
+  en un padrón. Tampoco una foto, una red social ajena ni un buscador de personas.
+
+### Del expediente a la persona, nunca al revés
+
+El entorno de un cargo no se investiga levantando fichas de sus parientes —son
+particulares— sino partiendo de lo que ya es público por ser del Ayuntamiento: los
+adjudicatarios, los beneficiarios de subvención, las personas nombradas en un
+edicto o en una licencia. Para cada sociedad, el BORME dice quién la administra o
+apodera; sólo entonces se pregunta si alguien de ahí es el propio cargo, un
+familiar con llave o alguien que comparte sus dos apellidos (una pista que obliga a
+buscar el documento, no un hallazgo). `npm run journalist:entorno` hace
+exactamente ese recorrido y escribe sólo bajo `editorial/`; una persona que no
+consta en ningún expediente municipal no aparece con nombre en ninguna parte,
+tampoco en el fichero privado: si comparte apellidos, se cuenta; no se nombra.
+
+Quien acaba nombrado por su parentesco tiene el mismo derecho de réplica que el
+cargo, y la frase que lo nombra lleva su documento y su nexo al lado.
+
 Patrimonio: sólo lo que un documento público diga (declaraciones, BORME, BOP,
-BOE, actas). Nunca inferido de fotos, de redes ni de un buscador de inmuebles.
+BOE, actas, licencias de obra y PAIs que nombren al titular). Nunca inferido de
+fotos, de redes ni de un buscador de inmuebles. Lo que las vías gratuitas NO dan,
+y no se finge: la propiedad (el BORME publica cargos, no socios; el Registro de la
+Propiedad y el de Bienes Muebles son de pago y exigen interés; Catastro no busca
+por titular). Un «lujo» sólo entra cuando un acto público lo nombra —una licencia a
+nombre de un familiar, una reclasificación que beneficia a una parcela cuyo titular
+lista un PAI—, y entonces con sus dos llaves.
 
 ## Alegaciones
 

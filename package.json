@@ -145,6 +145,7 @@
     "journalist:archive": "npx tsx scripts/journalist-archive.ts",
     "journalist:archive-sources": "npx tsx scripts/journalist-archive-sources.ts",
     "journalist:sondeo": "npx tsx scripts/journalist-sondeo.ts",
+    "journalist:entorno": "npx tsx scripts/journalist-entorno.ts",
     "cache:research": "npx tsx scripts/research-cache.ts",
     "backfill:self-declared": "npx tsx scripts/backfill-self-declared.ts",
     "searxng:up": "docker compose -f scripts/searxng/docker-compose.yml up -d",

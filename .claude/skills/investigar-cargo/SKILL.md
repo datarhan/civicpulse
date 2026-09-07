@@ -37,6 +37,7 @@ publicada recibe uno de seis desenlaces; la propuesta son órdenes listas y un
 | veda LOREG                                        | `npm run freeze:status`                                                                                                                                                         |
 | todos los lectores del repo de una vez, con parte | `npm run journalist:sondeo -- --nombre "<nombre>" --slug <slug> --out editorial/investigaciones/<slug>/sondeo.json`                                                             |
 | cargos societarios                                | `npm run scrape:borme -- --desde 2009-01-02 --hasta <hoy> --provincia VALENCIA --persona "APELLIDO1 APELLIDO2"` (barrido UNA vez por campaña; luego grep sobre `.cache/borme/`) |
+| entorno: contrapartes → BORME → cargo/llaves      | `npm run journalist:entorno -- --slug <slug> [--llaves editorial/investigaciones/<slug>/llaves.json]` (escribe sólo bajo `editorial/`; `references/limites.md`)                  |
 | BOP por ventana                                   | `npx tsx scripts/buscar-bop-historico.ts --desde --hasta --busca "<apellidos>" [--texto]` (sin alias npm; `--texto` = texto entero, tolerante a glifos desplazados, para boletines antiguos)                                                                                 |
 | un documento con UA correcto                      | `npm run fetch-url-evidence -- <url>`                                                                                                                                           |
 | qué ya sabe el repo                               | `.research-cache/`, `editorial/journalist-drafts/<id>.draft.json`, `public/data/journalist-reports/<id>.json`                                                                   |
@@ -70,6 +71,16 @@ Catálogo de fuentes y vías: `references/fuentes.md`. Límites: `references/lim
    alegación de prensa se recoge como «según <medio>, <fecha>» y sube la sensibilidad
    a alta. Una inferencia nuestra (p. ej. por qué dejó el servicio activo antes de
    las elecciones) se marca «interpretación de este medio», con la norma citada.
+   **4b. Entorno, del expediente a la persona.** `npm run journalist:entorno --
+   --slug <slug>` (con `--llaves` si ya hay familiares documentados): parte de los
+   adjudicatarios, beneficiarios y personas nombradas en edictos, resuelve sus
+   administradores y apoderados en la caché del BORME y los cruza con el cargo, con
+   las llaves y con sus dos apellidos; lista además las abstenciones con motivo de
+   las transcripciones. Un «propio» o una «llave documentada» con expediente es un
+   hallazgo con sus dos llaves; una «pista de apellidos» manda a buscar el
+   documento (acta de abstención, palabras del cargo, prensa) y, si no aparece, se
+   queda en vigilancia sin nombre. Lo que el CLI sólo cuenta no se busca por otra
+   vía: los parientes que no constan en ningún expediente son particulares.
 5. **Lagunas**: cada búsqueda sin resultado con fuente, consulta literal y fecha.
 6. **Propuesta**: correcciones como órdenes listas (`--reason` ≥20 caracteres, y es
    público); v2 sólo con ≥3 hechos publicables nuevos de fuentes independientes o un

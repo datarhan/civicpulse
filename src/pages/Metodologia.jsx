@@ -2109,11 +2109,17 @@ export default function Metodologia() {
           explícita y, además, guarda relación con el cargo —un contrato, una subvención, un
           nombramiento, una decisión municipal, una incompatibilidad—. Con una sola de las dos
           condiciones no se publica: dos apellidos iguales en un boletín no son un parentesco, y la
-          vida familiar sin relación con el cargo es vida privada por muy documentada que esté. No
-          entran nunca menores, salud, ideología más allá del partido, orientación sexual, religión,
-          domicilio ni documento de identidad. Una acusación publicada por un medio se recoge como
-          lo que es —«según tal medio, en tal fecha»—, con su copia, y eleva la sensibilidad legal
-          del informe, que entonces sólo se publica tras la revisión de una persona.
+          vida familiar sin relación con el cargo es vida privada por muy documentada que esté. Por
+          eso el entorno de un cargo se mira del expediente a la persona y no al revés: se parte de
+          quien ya consta en un expediente municipal —adjudicatarios, beneficiarios de subvención,
+          personas nombradas en un edicto—, se lee en el BORME quién administra esas sociedades y
+          sólo entonces se comprueba si alguien de ahí es el propio cargo o un familiar cuyo
+          parentesco conste en un documento; los parientes que no aparecen en ningún expediente no
+          se buscan. No entran nunca menores, salud, ideología más allá del partido, orientación
+          sexual, religión, domicilio ni documento de identidad. Una acusación publicada por un
+          medio se recoge como lo que es —«según tal medio, en tal fecha»—, con su copia, y eleva la
+          sensibilidad legal del informe, que entonces sólo se publica tras la revisión de una
+          persona.
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>Cada afirmación ya publicada se coteja y recibe uno de seis desenlaces</strong>{' '}
