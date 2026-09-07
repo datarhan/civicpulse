@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-06T09:01:34.853Z",
+  "generatedAt": "2026-09-07T11:52:14.322Z",
   "windowDays": 30,
   "articles": [
     {
@@ -953,30 +953,13 @@
         "opinionFraction": 0
       },
       "score": 3
-    },
-    {
-      "articleId": "e6l42s",
-      "articleFingerprint": "fxc6ts",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/riba-roja-renovar%C3%A1-su-red-de-contenedores-con-la-incorporaci%C3%B3n-de-320-nuevas-unidades-m%C3%A1s-accesibles%2C-sostenibles-y-de-mayor-capacidad",
-      "date": "2026-08-07T10:03:38.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 20,
+      "articleCount": 19,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 1,
@@ -984,7 +967,7 @@
         "sin-datos": 12,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.9,
+      "meanTrustScore": 2.95,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -1170,7 +1153,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "966fea93ca45",
+    "plenos-agendas.json": "dc8a0f5a3f15",
     "press-claims-verified.json": "dc81608a5279",
     "press.json": "4b49a8afb1be",
     "promises.json": "d18811c11210"

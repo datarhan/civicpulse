@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-09-06T22:15:03.080Z",
+  "generatedAt": "2026-09-07T12:04:32.972Z",
   "items": [
     {
       "id": "a-robert-raga-bio",
@@ -167,7 +167,7 @@
       "brief": "Biografía de registro público de Raquel Pamblanco Paredes, concejala (PSOE) de Seguridad y emergencias, Igualdad, Comunicación e información y Protocolo y Bienestar Animal en Riba-roja de Túria: identidad y formación, trayectoria previa, elección y nombramiento, retribución, patrimonio declarado, actividad plenaria y menciones en boletines oficiales.",
       "createdBy": "civicpulse-curator",
       "createdAt": "2026-07-31T12:29:30.035Z",
-      "status": "promoted",
+      "status": "archived",
       "lastRunAt": "2026-07-31T12:37:08.023Z"
     },
     {
@@ -351,6 +351,20 @@
       "createdAt": "2026-09-06T21:09:28.376Z",
       "status": "promoted",
       "lastRunAt": "2026-09-06T21:49:02.992Z"
+    },
+    {
+      "id": "a-raquel-pamblanco-bio-v2",
+      "kind": "biography",
+      "subject": {
+        "slug": "raquel-pamblanco-paredes",
+        "name": "Raquel Pamblanco Paredes",
+        "kind": "official"
+      },
+      "brief": "Biografía de Raquel Pamblanco Paredes, concejala delegada de Seguridad y emergencias, Igualdad, Comunicación e información, Protocolo y Bienestar Animal (PSPV-PSOE, 2023-): candidaturas 2015, 2019 y 2023; delegaciones y su fecha; comisiones y consells; retribución y declaración de bienes; programas que lidera; el I Plan Abolicionista, su ordenanza y el reconocimiento de la FEMP y el Ministerio de Igualdad; su actividad como concejala de Seguridad y emergencias tras la DANA de 2024; cargos orgánicos en su partido; comprobaciones nominales en contratación y BORME.",
+      "createdBy": "Sergei Lutchenko",
+      "createdAt": "2026-09-07T11:17:25.509Z",
+      "status": "promoted",
+      "lastRunAt": "2026-09-07T11:30:51.199Z"
     }
   ]
 }

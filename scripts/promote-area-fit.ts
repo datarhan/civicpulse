@@ -9,6 +9,8 @@
  *   npm run promote-area-fit -- --official X --area Y --retract --curator "datarhan"
  *   npm run promote-area-fit -- --aviso --official eva-lara-catala --aviso-index 1 \
  *       --curator "datarhan"
+ *   npm run promote-area-fit -- --rebind --from r-raquel-pamblanco-bio-2026-07-31 \
+ *       --to <id de la v2>          (una v2 promovida archiva la v1; sus filas se reanclan)
  *
  * The ONLY path that writes public/data/area-fit.json. Mirrors promote-place /
  * promote-social / promote-claim: the machine proposes, a human publishes, the
@@ -22,6 +24,7 @@
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import {
+  rebindAreaFitReport,
   validateAreaFitSnapshot,
   type AreaFitRow,
   type AreaFitSnapshot,
@@ -253,6 +256,24 @@ function main() {
     return
   }
 
+  // Reanclar a la versión siguiente de una biografía (v1 archivada → v2). Sólo
+  // cambia reportId; write() revalida el snapshot ENTERO contra el informe nuevo,
+  // así que una v2 que no conserve las fuentes citadas o el aviso en su índice
+  // se rechaza aquí en vez de colgar en la página.
+  if (process.argv.includes('--rebind')) {
+    const from = arg('from')
+    const to = arg('to')
+    if (!from || !to) {
+      console.error('uso: npm run promote-area-fit -- --rebind --from <reportId> --to <reportId>')
+      process.exit(1)
+    }
+    const { snapshot, rows, avisos } = rebindAreaFitReport(loadPublished(), from, to)
+    snapshot.generatedAt = new Date().toISOString()
+    write(snapshot)
+    console.log(`↪ reanclado  ${from} → ${to}: ${rows} fila(s), ${avisos} aviso(s)`)
+    return
+  }
+
   const slug = arg('official')
   const area = arg('area')
   if (!slug || !area) {
@@ -261,6 +282,7 @@ function main() {
         '     npm run promote-area-fit -- --official <slug> --area "<área>" --reject\n' +
         '     npm run promote-area-fit -- --official <slug> --area "<área>" --retract --curator "<nombre>"\n' +
         '     npm run promote-area-fit -- --aviso --official <slug> --aviso-index <n> --curator "<nombre>"\n' +
+        '     npm run promote-area-fit -- --rebind --from <reportId> --to <reportId>\n' +
         '     npm run promote-area-fit -- --list',
     )
     process.exit(1)

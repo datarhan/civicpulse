@@ -40,12 +40,12 @@ Leyenda de vías:
 recorre en un solo paso lo que la regla de las dos llaves permite recorrer, y en
 ese orden:
 
-| Paso                          | Fuente                                                                 | Qué da                                                                                                                                 |
-| ----------------------------- | ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| 1. Contrapartes               | `tenders.json` (adjudicatarios), `bdns.json`, `bop.json` (edictos)     | quién ha cobrado o recibido algo del Ayuntamiento; el snapshot de la BDNS trae convocatorias, no beneficiarios (esos, sólo en la web)  |
-| 2. Cargos societarios         | caché anual del BORME (`.cache/borme/`, barrido central 2009→hoy)      | administradores, apoderados, consejeros, liquidadores de cada sociedad contraparte; nunca socios (el BORME no los publica)              |
-| 3. Cruce                      | el cargo, `--llaves` (familiares documentados), sus dos apellidos      | tres niveles: **propio** (el cargo en una contraparte), **llave documentada**, **pista de apellidos** (obliga a buscar el documento)     |
-| 4. Abstenciones con motivo    | transcripciones de pleno (`pleno-transcripts/`)                        | candidatas a llave oficial («interés directo», «parentesco»): se confirman en el ACTA, la transcripción es automática                  |
+| Paso                       | Fuente                                                             | Qué da                                                                                                                                |
+| -------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- |
+| 1. Contrapartes            | `tenders.json` (adjudicatarios), `bdns.json`, `bop.json` (edictos) | quién ha cobrado o recibido algo del Ayuntamiento; el snapshot de la BDNS trae convocatorias, no beneficiarios (esos, sólo en la web) |
+| 2. Cargos societarios      | caché anual del BORME (`.cache/borme/`, barrido central 2009→hoy)  | administradores, apoderados, consejeros, liquidadores de cada sociedad contraparte; nunca socios (el BORME no los publica)            |
+| 3. Cruce                   | el cargo, `--llaves` (familiares documentados), sus dos apellidos  | tres niveles: **propio** (el cargo en una contraparte), **llave documentada**, **pista de apellidos** (obliga a buscar el documento)  |
+| 4. Abstenciones con motivo | transcripciones de pleno (`pleno-transcripts/`)                    | candidatas a llave oficial («interés directo», «parentesco»): se confirman en el ACTA, la transcripción es automática                 |
 
 Lo que sólo se cuenta y no se nombra: personas con un apellido, y personas con
 los dos apellidos en sociedades que NO son contrapartes (el fichero da el número y
@@ -62,11 +62,11 @@ propiedad que no aparezca en un acto público.
 
 ## Nivel 2 — prensa (confianza media)
 
-| Medio                                                                                                | Vía                                                                         | Nota                                                                                              |
-| ---------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| Valencia Plaza, El Periódico de Aquí, Hortanoticias, TuComarca, InfoTúria, eldiario.es, À Punt, COPE | WebSearch con `allowed_domains`, WebFetch; `press.json` y sondeo (`prensa`) | alcanzables                                                                                       |
+| Medio                                                                                                | Vía                                                                                                                                                                  | Nota                                                                                              |
+| ---------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Valencia Plaza, El Periódico de Aquí, Hortanoticias, TuComarca, InfoTúria, eldiario.es, À Punt, COPE | WebSearch con `allowed_domains`, WebFetch; `press.json` y sondeo (`prensa`)                                                                                          | alcanzables                                                                                       |
 | Levante-EMV, Las Provincias, Europa Press, Cadena SER                                                | **sólo Chrome** — bloquean al rastreador de Anthropic; Las Provincias republica teletipos de Europa Press (16-09-2015: la destitución de cuatro mandos, sin nombres) | captura el extracto literal, la fecha y la URL; va como `capturedVia: "chrome"` en `fuentes.json` |
-| Hemeroteca (La Vanguardia)                                                                           | sondeo (`hemeroteca-<año>`)                                                 | años electorales por defecto (2019, 2023)                                                         |
+| Hemeroteca (La Vanguardia)                                                                           | sondeo (`hemeroteca-<año>`)                                                                                                                                          | años electorales por defecto (2019, 2023)                                                         |
 
 Un resultado de buscador sobre un documento-lista NO es una coincidencia hasta que
 el nombre se ve en el texto: el 06-09-2026 BOE-A-2025-20600 salió para cuatro de
@@ -90,18 +90,32 @@ como `fallo`, y la vía es Chrome. Un `fallo` se anota en el manifiesto como
 - Chrome no carga `bop.dival.es` (página de error); el buscador es un formulario JSF
   que funciona por `curl`: `GET /bop/xhtml/portal.xhtml` con tarro de cookies, leer
   `javax.faces.ViewState`, y `POST` al mismo `portal.xhtml` con `Faces-Request:
-  partial/ajax`, `javax.faces.source=buscarBtn`, `javax.faces.partial.execute=@all`,
-  `javax.faces.partial.render=messages boletines3 edictos`, `j_idt131=j_idt131`,
+partial/ajax`, `javax.faces.source=buscarBtn`, `javax.faces.partial.execute=@all`,
+  `javax.faces.partial.render=messages boletines3 edictos`, `<form>=<form>`,
   `filtroCalendarioIni_input`/`filtroCalendarioFin_input` (DD/MM/YYYY), `buscador=<texto>`,
-  `j_idt175:field_input=8` (sección Municipis; vacío = todas) y, para texto completo,
-  `j_idt200_input=on`. La respuesta es XML con la lista (`Núm. registre … Butlletí …
-  Pàgina …`, 25 por página; `Mostrant del 1 al 25 de N`). El motor casa PALABRAS
-  SUELTAS: «Gimeno Calvo» a texto completo dio 1.727 edictos de la Seguridad Social;
-  por título y sección sí sirve («Riba-roja policía» 2010–2016 → 8 edictos).
+  `<sección>:field_input=8` (Municipis; vacío = todas) y, para texto completo,
+  `<textoCompleto>_input=on`. **Los ids `j_idtNNN` cambian entre cargas de página** (el
+  06-09 eran `j_idt131` / `j_idt175` / `j_idt200`; el 07-09 la primera carga dio `j_idt144`
+  / `j_idt188` / `j_idt213` y la segunda otra vez 131/175/200): léelos en la carga cuyo
+  `ViewState` y cookies vas a usar — el formulario está en el `onclick` del botón
+  (`grep -o 'onclick="PrimeFaces.ab({s:&quot;buscarBtn[^"]*"'` → `f:"j_idtNNN"`) y los
+  otros dos son la `SelectOneMenu` con `:field_input` y la casilla `_input` del mismo
+  formulario. Con ids de otra carga el servidor NO busca y devuelve el boletín del día
+  como si fuera el resultado (el 07-09-2026: 33 anuncios, todos de ese día): comprueba que
+  las fechas de las filas varíen antes de creerte un «Mostrant del 1 al 25 de N». La
+  respuesta es XML con la lista (`Núm. registre … Butlletí … Pàgina …`, 25 por página);
+  para las páginas siguientes, `javax.faces.source=list`, `javax.faces.partial.event=page`,
+  `list_pagination=true`, `list_first=25|50…`, `list_rows=25` y el formulario del datagrid;
+  una búsqueda nueva tras paginar lleva `list_first=0` o vuelve vacía. El motor casa
+  PALABRAS SUELTAS: «Gimeno Calvo» a texto completo dio 1.727 edictos de la Seguridad
+  Social; un apellido raro sí sirve («Pamblanco» 2023–2026 → 58, de los que 10 del
+  Ayuntamiento y 1 de la Junta Electoral de Zona de Llíria, que es la de Riba-roja); por
+  título y sección también («Riba-roja policía» 2010–2016 → 8 edictos). Un anuncio suelto
+  se descarga con `downloads?anuncioNumReg=AAAA/NNNNN` y se lee con `pdftotext -layout`.
 - Los PDF de la plataforma antigua llevan a veces una fuente sin ToUnicode: los
   nombres salen con los glifos desplazados 29 posiciones («Don» → «'RQ», «GIMENO
-  CALVO» → «*,0(12&$/92») y un grep normal los pierde. `npx tsx
-  scripts/buscar-bop-historico.ts --desde … --hasta … --busca "APELLIDOS" --texto`
+  CALVO» → «\*,0(12&$/92») y un grep normal los pierde. `npx tsx
+scripts/buscar-bop-historico.ts --desde … --hasta … --busca "APELLIDOS" --texto`
   busca en el texto entero tolerando el desplazamiento (`src/scraper/bop-glifos.ts`);
   sin `--texto` el script sale ROJO cuando leyó boletines y no supo extraer ningún
   anuncio, que es lo que pasa con esos sumarios. Un «no figura» sobre un boletín de

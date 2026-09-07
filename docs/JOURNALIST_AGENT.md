@@ -266,7 +266,7 @@ fetch|pdf|chrome`; `trust` is never accepted from the file — it comes from
 What the first v2 taught (Gimeno, 2026-09-06/07), each fixed in code:
 
 - **A v2 is a superset, and the synth does not make it one.** Seeded with the
-  investigation's documents, the agent wrote a four-section *update* and
+  investigation's documents, the agent wrote a four-section _update_ and
   dropped every verified v1 section (election, declaration, checks); it also
   published an anonymous allegation one seed had excerpted. The v2 that shipped
   was built by a validated one-shot (biografia-concejal §5 pattern): the
@@ -298,6 +298,25 @@ What the first v2 taught (Gimeno, 2026-09-06/07), each fixed in code:
   transparency portal (personal eventual with decree, BOP reference and yearly
   gasto), so a provincial-payroll figure can enter `financial` cited by its
   own document.
+  What the second v2 taught (Pamblanco, 2026-09-07):
+
+- **A v2 for a councillor WITH portfolios archives a report that
+  `area-fit.json` cites.** Four signed «encaje declarado» rows and one mirrored
+  aviso point at the v1 `reportId` and at its source ids; the archive step
+  makes them dangle, the validator rejects the file and `check:relations` reds.
+  `npm run promote-area-fit -- --rebind --from <v1 id> --to <v2 id>` moves only
+  `reportId` (judgement, signature, evidence and aviso index untouched) and
+  revalidates the whole snapshot against the v2, which therefore has to keep
+  the v1 sources under the same ids and the v1 warnings in the same order.
+  Order: promote the v2, rebind, then archive the v1.
+- **A seed excerpt over 500 characters is fatal before the run starts** —
+  the published citation cap, applied at parse time so a bad seed cannot become
+  a citation. Trim the excerpt to a contiguous verbatim span; do not paraphrase.
+- **The run reads `SEARXNG_URL` from its own environment.** A worktree has no
+  `.env`, so a run launched there logged «web-search backend: NONE» and would
+  have skipped every open-web query while still exiting 0 with a draft. Pass
+  `SEARXNG_URL=http://127.0.0.1:<port>` (the container's port, `docker port
+civicpulse-searxng`) explicitly, and read the backend line the run prints.
 - **`journalist:entorno`** (2026-09-07) — a councillor's business surroundings,
   read from the file outward and never from the family inward. It starts from
   what is public because it is the council's (awardees in `tenders.json`,

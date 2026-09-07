@@ -1073,6 +1073,45 @@ export function rowsForOfficial(snap: AreaFitSnapshot | null, slug: string): Are
 }
 
 /**
+ * Reanclar las filas y los avisos que citan un informe a su versión siguiente.
+ *
+ * Una biografía v2 promovida archiva la v1 y su id desaparece del índice: las
+ * filas firmadas que lo citan y los avisos espejados por índice quedan colgando,
+ * el validador los rechaza (bien) y no había camino que no fuera editar a mano
+ * el fichero que la guarda protege. Esto cambia SÓLO `reportId`; el juicio, la
+ * firma, las pruebas y el índice del aviso no se tocan. La revalidación del
+ * snapshot entero contra el informe nuevo la hace quien escribe (`write()` en
+ * promote-area-fit): si la v2 no conserva las fuentes citadas o el aviso en el
+ * mismo índice, ahí se cae, no aquí. Un `from` que no cita nadie es un error,
+ * no un cero: un reanclaje que no reancla nada no puede imprimir un ✓.
+ */
+export function rebindAreaFitReport(
+  snap: AreaFitSnapshot,
+  from: string,
+  to: string,
+): { snapshot: AreaFitSnapshot; rows: number; avisos: number } {
+  if (!from || !to) throw new Error('rebind: reportId de origen y de destino son obligatorios')
+  if (from === to) throw new Error(`rebind: ${from} → ${to} no cambia nada`)
+  let rows = 0
+  let avisos = 0
+  const nextRows = snap.rows.map((r) => {
+    if (r.reportId !== from) return r
+    rows++
+    return { ...r, reportId: to }
+  })
+  const nextAvisos = snap.avisos?.map((a) => {
+    if (a.reportId !== from) return a
+    avisos++
+    return { ...a, reportId: to }
+  })
+  if (rows === 0 && avisos === 0)
+    throw new Error(`rebind: ninguna fila ni aviso cita ${from}; no hay nada que reanclar`)
+  const snapshot: AreaFitSnapshot = { ...snap, rows: nextRows }
+  if (nextAvisos !== undefined) snapshot.avisos = nextAvisos
+  return { snapshot, rows, avisos }
+}
+
+/**
  * Áreas where a given field is `relacionada`, for the card.
  *
  * Returns names, never a count or a ratio: "3 de 4" is a score with extra steps,

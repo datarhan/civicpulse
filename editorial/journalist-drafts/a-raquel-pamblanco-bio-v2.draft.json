@@ -1,0 +1,1215 @@
+{
+  "id": "r-raquel-pamblanco-bio-v2-2026-09-07",
+  "assignmentId": "a-raquel-pamblanco-bio-v2",
+  "generatedAt": "2026-09-07T11:30:51.199Z",
+  "agentVersion": "journalist-v1",
+  "promptVersion": "plan=journalist-plan-v3;bio=journalist-bio-v6;synth=journalist-synth-v6;verify=journalist-verify-v3",
+  "budgetTokens": 0,
+  "costUSD": 0,
+  "legalSensitivity": "medium",
+  "warnings": [
+    "Los datos de identidad, formación y trayectoria previa proceden del CV autodeclarado de la propia concejala publicado por el Ayuntamiento — véase el bloque «Lagunas detectadas».",
+    "Las delegaciones han variado durante el mandato: el decreto de 07-2023 recogía Seguridad, Igualdad, Comunicación y Bienestar Animal; el registro vigente añade Protocolo.",
+    "Su declaración estatutaria consigna las actividades «FVMP y autónoma VORWERK KOBOLD» junto a la dedicación exclusiva de 07-2023; los snapshots consultados no recogen resolución de compatibilidad ni fechas de cese — véanse «Patrimonio y actividades declaradas» y «Lagunas detectadas».",
+    "Su actividad en Igualdad y en Seguridad y emergencias se reconstruye a partir de crónicas de prensa y de notas del propio Ayuntamiento recogidas por agencias, publicadas atribuidas y fechadas. El reparto de votos de la ordenanza abolicionista se toma del acta de 06-05-2024; una crónica de elDiario.es (12-01-2025) lo cuenta de otro modo y no se usa. El reparto de votos del I Plan Abolicionista (noviembre de 2023) sólo consta por prensa."
+  ],
+  "sources": [
+    {
+      "id": "src-001",
+      "kind": "local-snapshot",
+      "title": "Officials snapshot — Raquel Pamblanco Paredes",
+      "retrievedAt": "2026-07-31T12:30:32.232Z",
+      "excerpt": "role: concejal · party: PSOE · portfolios: Seguridad y emergencias, Igualdad, Comunicación e información, Protocolo y Bienestar Animal",
+      "localPath": "public/data/officials.json",
+      "trust": "high",
+      "selfDeclared": false
+    },
+    {
+      "id": "src-005",
+      "kind": "local-snapshot",
+      "title": "Retribución del cargo — acuerdo de pleno (dedicaciones)",
+      "retrievedAt": "2026-07-31T12:30:34.539Z",
+      "excerpt": "Concejala delegada · Seguridad, Igualdad y Comunicación: dedicación exclusiva, 38.891,66 €/año. Fuente: Acuerdo del Pleno de 07/07/2023 — fijación del régimen económico de los concejales (Expediente 4533/2023/GEN)",
+      "localPath": "public/data/dedicaciones.json",
+      "trust": "high",
+      "selfDeclared": false
+    },
+    {
+      "id": "src-006",
+      "kind": "local-snapshot",
+      "title": "Resultados electorales municipales — Generalitat Valenciana · Institut Cartogràfic Valencià / ARGOS",
+      "retrievedAt": "2026-07-31T12:30:34.540Z",
+      "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%",
+      "localPath": "public/data/elections.json",
+      "trust": "high",
+      "selfDeclared": false
+    },
+    {
+      "id": "src-022",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+      "retrievedAt": "2026-07-31T12:30:38.462Z",
+      "excerpt": "[0.0 → 0.0] Líder: Raquel Pamblanco Paredes. Concejala delegada [0.0 → 0.0] Persona empleada pública responsable: Fernando Tejera, [0.0 → 0.0] Intendente de la Policía Local. [0.0 → 0.0] C/Carretera de Villamarchante, 11",
+      "localPath": "public/data/pleno-transcripts/1080zow.txt",
+      "trust": "high",
+      "selfDeclared": false
+    },
+    {
+      "id": "src-023",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+      "retrievedAt": "2026-07-31T12:30:38.462Z",
+      "excerpt": "[0.0 → 0.0] I.CPS.2.3: Nº de espectáculos y recitales abiertos al público/ realizados. [0.0 → 0.0] Perspectiva ODS: ODS 4, 5, 10 y 11 [0.0 → 0.0] 11. MUJER E IGUALDAD (MUJ) [0.0 → 0.0] Líder: Raquel Pamblanco Paredes, Co",
+      "localPath": "public/data/pleno-transcripts/1080zow.txt",
+      "trust": "high",
+      "selfDeclared": false
+    },
+    {
+      "id": "src-031",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+      "retrievedAt": "2026-07-31T12:30:39.029Z",
+      "excerpt": "[0.0 → 0.0] /20243 e informe 218/2023 de la función interventora de conformidad con lo establecido en el [0.0 → 0.0] TRLRHL, el RD 424/2017, de 28 de abril, por el que se regula el régimen jurídico del control [0.0 → 0.0",
+      "localPath": "public/data/pleno-transcripts/1080zow.txt",
+      "trust": "high",
+      "selfDeclared": false
+    },
+    {
+      "id": "src-060",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Raquel-Pamblanco-Paredes.pdf",
+      "title": "CV autodeclarado (ficha oficial de transparencia) — Raquel Pamblanco Paredes · identidad",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-31T12:40:03.553Z",
+      "excerpt": "PRESENTACIÓN 10 de marzo de 1992 Riba-roja de Túria rpamblanco@ribarroja.es",
+      "trust": "high",
+      "selfDeclared": true
+    },
+    {
+      "id": "src-061",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Raquel-Pamblanco-Paredes.pdf",
+      "title": "CV autodeclarado — formación (CEU UCH, VIU)",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-31T12:40:03.553Z",
+      "excerpt": "FORMACIÓN MÁSTER EN DIRECCIÓN DE MARKETING• VIU INTERNACIONAL • 2021 GRADO EN COMUNICACIÓN AUDIOVISUAL• CEU UCH• 2010-2014 OTROS CERTIFICADOS • • Inglés Nivel B1 Universidad CEU UCH • INICIATIVA EMPRENDEDORA: Escuela de Organización Industrial • MARKETING DIGITAL: Google Actívate",
+      "trust": "high",
+      "selfDeclared": true
+    },
+    {
+      "id": "src-062",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Raquel-Pamblanco-Paredes.pdf",
+      "title": "CV autodeclarado — experiencia (Vorwerk 2023, FVMP 2021-2023)",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-31T12:40:03.553Z",
+      "excerpt": "SALES MANAGER• VORWERK • 2023 Coordinación de equipo de ventas, objetivos y KPIS. Gestión de contratos y atención al cliente. COMUNICACIÓN• FVMP • 2021 - 2023 Planificación y creación de nuevas estrategias comunicativas para grupo socialista FVMP. Redacción de contenidos. Gestión de Redes Sociales. Grabación y edición de videos. Diseño gráfico.",
+      "trust": "high",
+      "selfDeclared": true
+    },
+    {
+      "id": "src-063",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Raquel-Pamblanco-Paredes.pdf",
+      "title": "CV autodeclarado — experiencia (Opt-Media 2019-2020)",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-31T12:40:03.553Z",
+      "excerpt": "CONSULTORA MARKETING DIGITAL• OPT-MEDIA MARKETING SOLUTIONS • 2019 - 2020 Planificación de estrategia full funnel para empresas, organizaciones y entidades. Asesoramiento sobre la optimización y solución para una mejor visualización online, a través del marketing digital: SEO, SEM, Newsletter, Mailing, Social Adds, Google My Business, Online Review Reputation, Identidad Corporativa y Auditoría web.",
+      "trust": "high",
+      "selfDeclared": true
+    },
+    {
+      "id": "src-064",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Raquel-Pamblanco-Paredes.pdf",
+      "title": "CV autodeclarado — experiencia (Radio Riba-roja 2018)",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-31T12:40:03.553Z",
+      "excerpt": "LOCUTORA DE RADIO• RADIO RIBA-ROJA • 2018 Locución programa informativo diario, programa de salud y programa de inglés. Cobertura ruedas de prensa y declaraciones políticas. Diseño de cartelería",
+      "trust": "high",
+      "selfDeclared": true
+    },
+    {
+      "id": "src-065",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/9jatoj.txt · acta constitutiva 17-06-2023 · proclamación de electos",
+      "retrievedAt": "2026-07-31T12:40:03.553Z",
+      "excerpt": "Maria Jose Pradas Ramo Salvador Evaristo Ferrer Cortina Laura Guzman Bruno Juan Boix Martínez Paula Navarro Sanfeliu Jose Luis Fernández Santamaria Jose Manuel Gallardo Martínez Rafael Folgado Navarro Los cuales han sido proclamados concejales/as electos/as en las elecciones locales celebradas el pasado día 28 de mayo de 2023.",
+      "localPath": "public/data/pleno-transcripts/9jatoj.txt",
+      "trust": "high",
+      "selfDeclared": false
+    },
+    {
+      "id": "src-066",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/9jatoj.txt · acta constitutiva 17-06-2023 · toma de posesión (lista con la sujeto)",
+      "retrievedAt": "2026-07-31T12:40:03.553Z",
+      "excerpt": "- Raquel Pamblanco Paredes - Jose Manuel Vila Oltra - Maria Esther Gomez Laredo - Rafael Gomez Sanchez - Eva Lara Catalá - Jose Angel Hernandez Carrizosa - Jose Luis Ramos March",
+      "localPath": "public/data/pleno-transcripts/9jatoj.txt",
+      "trust": "high",
+      "selfDeclared": false
+    },
+    {
+      "id": "src-067",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/16ujrlm.txt · acta 07-07-2023 · grupo municipal socialista (n.º 9)",
+      "retrievedAt": "2026-07-31T12:40:03.553Z",
+      "excerpt": "Por el Grupo político municipal con la denominación de Grupo Municipal Socialista de Riba-roja, son: 1. Don Roberto Pascual Raga Gadea 2. Doña Maria Teresa Pozuelo Martín 3. Don José Luis Ramos March 4. Don José Ángel Hernández Carrizosa 5. Doña Eva Lara Catalá (Independiente) 6. Don Rafael Gómez Sánchez 7. Doña Maria Esther Gómez Laredo 8. Don José Manuel Vila Oltra (Independiente) 9. Doña Raquel Pamblanco Paredes",
+      "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+      "trust": "high",
+      "selfDeclared": false
+    },
+    {
+      "id": "src-068",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/16ujrlm.txt · acta 07-07-2023 · delegación de competencias (punto 9)",
+      "retrievedAt": "2026-07-31T12:40:03.553Z",
+      "excerpt": "9. Se delegan en la Concejal Dª Raquel Pamblanco, las competencias que al Alcalde le corresponden en materia de Seguridad y emergencias, Igualdad, Comunicación e información y Bienestar Animal.",
+      "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+      "trust": "high",
+      "selfDeclared": false
+    },
+    {
+      "id": "src-069",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+      "title": "Declaración de actividades y bienes · Corporación 2023-2027 (expte. 3971/2023/GEN) · tabla de bienes",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-31T12:40:03.553Z",
+      "excerpt": "Concejala RAQUEL PAMBLANCO PAREDES 0,00 10.000,00 10.000,00 0,00 Concejal ALFREDO PLA GIMENEZ 158.924,00 0,00 158.924,00 0,00",
+      "trust": "high",
+      "selfDeclared": true
+    },
+    {
+      "id": "src-070",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+      "title": "Declaración de actividades y bienes · Corporación 2023-2027 (expte. 3971/2023/GEN) · tabla de actividades (FVMP y autónoma Vorwerk Kobold)",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-31T12:40:03.553Z",
+      "excerpt": "JOSE MANUEL VILA OLTRA Cajamar RAQUEL PAMBLANCO PAREDES FVMP y autónoma VORWERK KOBOLD ALFREDO PLA GIMENEZ Autónomo Alfredo Pla Gimenez 01/01/1986",
+      "trust": "high",
+      "selfDeclared": true
+    },
+    {
+      "id": "src-071",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-2023_12011_VA-Anuncio-BOP-Toma-posesion.pdf",
+      "title": "BOP de València n.º 180, 15-09-2023 (anuncio 2023/12011) — declaración de actividades y bienes, legislatura 2023-2027",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-31T12:40:03.553Z",
+      "excerpt": "Núm. 180 Pàg. 15-9-20231 M U N I C I P I S Ajuntament de Riba-roja de Túria 2023/12011Anunci de l'Ajuntament de Riba-roja de Túria sobre la declaració d'activitats i béns dels regidors que prenen possessió, legislatura 2023-2027.",
+      "trust": "high",
+      "selfDeclared": false
+    },
+    {
+      "id": "src-072",
+      "kind": "official-doc",
+      "url": "https://bop.dival.es/bop/downloads?boletinFecha=28/04/2015",
+      "title": "BOP de València n.º 79, 28-04-2015 — candidaturas, Riba-roja de Túria (lista del PSOE, puesto 12, independiente)",
+      "publisher": "Boletín Oficial de la Provincia de València",
+      "retrievedAt": "2026-07-31T12:40:03.553Z",
+      "excerpt": "7. Don RAFAEL GOMEZ SANCHEZ 8. Doña CONCEPCION NAVARRO NAVARRO (Independiente) 9. Don FRANCISCO JAVIER GARCIA ESCUDERO (Independiente) 10. Doña RAQUEL ORELLANO GOMEZ 11. Don EMILIO GUARDIOLA SANANTONIO 12. Doña RAQUEL PAMBLANCO PAREDES (Independiente)",
+      "trust": "high",
+      "selfDeclared": false
+    },
+    {
+      "id": "src-073",
+      "kind": "official-doc",
+      "url": "https://bop.dival.es/bop/downloads?boletinFecha=30/04/2019",
+      "title": "BOP de València n.º 82, 30-04-2019 — candidaturas, Riba-roja de Túria (lista del PSOE, puesto 16)",
+      "publisher": "Boletín Oficial de la Provincia de València",
+      "retrievedAt": "2026-07-31T12:40:03.553Z",
+      "excerpt": "9. RAFAEL GOMEZ SANCHEZ 10. MARIA ESTHER GOMEZ LAREDO 11. FRANCISCO JAVIER GARCIA ESCUDERO 12. NURIA COBALEDA ARNAU 13. ALFREDO PLA GIMENEZ 14. CONCEPCION NAVARRO NAVARRO 15. DAVID BARBANCHO MARTINEZ 16. RAQUEL PAMBLANCO PAREDES",
+      "trust": "high",
+      "selfDeclared": false
+    },
+    {
+      "id": "src-074",
+      "kind": "local-snapshot",
+      "title": "public/data/tenders.json · comprobación nominal sobre el corpus de contratación",
+      "retrievedAt": "2026-07-31T12:40:03.553Z",
+      "excerpt": "804 contratos examinados: ningún adjudicatario coincide con «Pamblanco», ni con sus empleadoras declaradas (Vorwerk, FVMP, Opt-Media Marketing Solutions). Candidata en 2015 (puesto 12, como independiente, BOP n.º 79) y 2019 (puesto 16, n.º 82) sin obtener acta; electa en 2023.",
+      "localPath": "public/data/tenders.json",
+      "trust": "high",
+      "selfDeclared": false
+    },
+    {
+      "id": "src-101",
+      "kind": "official-doc",
+      "url": "https://bop.dival.es/bop/downloads?anuncioNumReg=2023/05884",
+      "title": "BOP de València n.º 83 (suplemento 1), 02-05-2023, anuncio 2023/05884 — Junta Electoral de Zona de Llíria: candidaturas proclamadas, elecciones locales 2023 (Riba-roja de Túria, PSOE, n.º 9)",
+      "publisher": "Boletín Oficial de la Provincia de València",
+      "retrievedAt": "2026-09-07T11:20:00.000Z",
+      "excerpt": "9. Doña RAQUEL PAMBLANCO PAREDES",
+      "trust": "high",
+      "selfDeclared": false,
+      "publishedAt": "2023-05-02"
+    },
+    {
+      "id": "src-102",
+      "kind": "official-doc",
+      "url": "https://bop.dival.es/bop/downloads?anuncioNumReg=2025/04429",
+      "title": "BOP de València n.º 78, 25-04-2025, anuncio 2025/04429 — Resolución de Alcaldía 1314/2025, de 11 de abril: modificación de las áreas de gestión política 2023-2027 y delegación en favor de concejales",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — BOP de València",
+      "retrievedAt": "2026-09-07T11:25:00.000Z",
+      "excerpt": "9. Se delegan en la Concejal Dª Raquel Pamblanco Paredes, las competencias que al Alcalde le corresponden en materia de Seguridad y emergencias, Igualdad, Comunicación e información y Bienestar Animal.",
+      "trust": "high",
+      "selfDeclared": false,
+      "publishedAt": "2025-04-25"
+    },
+    {
+      "id": "src-103",
+      "kind": "web",
+      "url": "https://valenciaplaza.com/valenciaplaza/comunitat-valenciana1/jose-maria-angel-nuevo-presidente-del-pspv",
+      "title": "Jose María Ángel, nuevo presidente del PSPV y Jordi Mayor, portavoz",
+      "publisher": "Valencia Plaza",
+      "retrievedAt": "2026-09-07T10:55:00.000Z",
+      "excerpt": "las vocalías las ocuparán Isabel Granero, Miguel Chover, Eduardo Vicente Navarro, Raquel Pamblanco y José Andrés Bertó.",
+      "trust": "medium",
+      "selfDeclared": false,
+      "publishedAt": "2025-02-02"
+    },
+    {
+      "id": "src-104",
+      "kind": "web",
+      "url": "https://www.pspvpsoe.es/es/comision-etica/",
+      "title": "Comisión Ética — PSPV-PSOE (composición vigente)",
+      "publisher": "PSPV-PSOE",
+      "retrievedAt": "2026-09-07T10:58:00.000Z",
+      "excerpt": "Vocal: Raquel Pamblanco Paredes",
+      "trust": "low",
+      "selfDeclared": false
+    },
+    {
+      "id": "src-105",
+      "kind": "web",
+      "url": "https://violenciagenero.igualdad.gob.es/sensibilizacionconcienciacion/premios/premiosbuenaspracticas/viii-convocatoria-del-concurso-de-buenas-practicas-locales-contra-la-violencia-sobre-las-mujeres/",
+      "title": "VIII Convocatoria del Concurso de Buenas Prácticas Locales contra la Violencia sobre las Mujeres (2023) — entidades premiadas",
+      "publisher": "Delegación del Gobierno contra la Violencia de Género — Ministerio de Igualdad",
+      "retrievedAt": "2026-09-07T11:02:00.000Z",
+      "excerpt": "Plan abolicionista de la prostitución municipal. Ayuntamiento de Riba-Roja de Túria (Valencia)",
+      "trust": "high",
+      "selfDeclared": false,
+      "publishedAt": "2023-12-14"
+    },
+    {
+      "id": "src-106",
+      "kind": "web",
+      "url": "https://www.femp.es/comunicacion/noticias/doce-gobiernos-locales-premiados-por-sus-buenas-practicas-contra-la-violencia",
+      "title": "Doce Gobiernos Locales premiados por sus Buenas Prácticas contra la Violencia sobre las Mujeres (VIII edición)",
+      "publisher": "Federación Española de Municipios y Provincias",
+      "retrievedAt": "2026-09-07T11:05:00.000Z",
+      "excerpt": "Área 4: Impulso de la formación: 1. Riba-Roja de Turia.",
+      "trust": "low",
+      "selfDeclared": false,
+      "publishedAt": "2023-12-14"
+    },
+    {
+      "id": "src-107",
+      "kind": "web",
+      "url": "https://www.eldiario.es/comunitat-valenciana/comarcas/riba-roja-turia-aprueba-ordenanza-prostitucion-preve-sanciones-3-000-euros-puteros_1_11957830.html",
+      "title": "Riba-roja de Túria aprueba la ordenanza contra la prostitución que prevé sanciones de hasta 3.000 euros para los puteros",
+      "publisher": "elDiario.es",
+      "retrievedAt": "2026-09-07T10:57:00.000Z",
+      "excerpt": "La concejala de Igualdad de Riba-roja de Túria, Raquel Pamblanco, ha afirmado que esta ordenanza contra la prostitución 'es un paso muy importante que emprendemos en nuestro municipio en la defensa y la protección de las mujeres que son víctimas de la explotación sexual, con un plan abolicionista pionero en España y que incluso ha merecido ya el reconocimiento de algunas instituciones públicas; de esta forma, nos situamos en un lugar destacado en la defensa de los derechos humanos'.",
+      "trust": "medium",
+      "selfDeclared": false,
+      "publishedAt": "2025-01-12"
+    },
+    {
+      "id": "src-108",
+      "kind": "web",
+      "url": "https://valenciaplaza.com/valenciaplaza/comarca-y-empresa/riba-roja-solicita-a-la-generalitat-valenciana-la-implantacion-de-un-centre-dona-24-horas-en-el-municipio",
+      "title": "Riba-roja solicita a la Generalitat Valenciana la implantación de un Centre Dona 24 horas en el municipio",
+      "publisher": "Valencia Plaza",
+      "retrievedAt": "2026-09-07T11:00:00.000Z",
+      "excerpt": "queremos avanzar en políticas de prevención y atención que luchen para defender una igualdad real entre hombres y mujeres, ofreciendo un servicio integral que de respuestas urgentes en situaciones de crisis, sin necesidad de desplazarse",
+      "trust": "medium",
+      "selfDeclared": false,
+      "publishedAt": "2025-06-23"
+    },
+    {
+      "id": "src-109",
+      "kind": "web",
+      "url": "https://valenciaplaza.com/riba-roja-se-suma-protocolo-actuacion-contra-violencias-sexuales-espacios-ocio",
+      "title": "Riba-roja se suma al Protocolo de Actuación contra Violencias Sexuales en Espacios de Ocio",
+      "publisher": "Valencia Plaza (EFE)",
+      "retrievedAt": "2026-09-07T11:00:00.000Z",
+      "excerpt": "Queremos que nuestras fiestas y lugares de ocio sean espacios seguros y libres de violencia. Que todas las mujeres puedan disfrutar de un ambiente festivo, seguro y respetuoso",
+      "trust": "medium",
+      "selfDeclared": false,
+      "publishedAt": "2024-08-19"
+    },
+    {
+      "id": "src-110",
+      "kind": "web",
+      "url": "https://www.elperiodic.com/ribaroja_turia/riba-roja-acogera-primera-manifestacion-comarcal-organizada-entidad-lgtbi-mirall_1022852",
+      "title": "Riba-roja acogerá por primera vez la manifestación comarcal organizada por la entidad LGTBI+ Mirall",
+      "publisher": "elperiodic.com",
+      "retrievedAt": "2026-09-07T10:58:00.000Z",
+      "excerpt": "representa el compromiso de las fuerzas progresistas de este ayuntamiento por la defensa y la protección de los derechos de las personas LGTBI+",
+      "trust": "medium",
+      "selfDeclared": false,
+      "publishedAt": "2025-06-18"
+    },
+    {
+      "id": "src-111",
+      "kind": "web",
+      "url": "https://valenciaplaza.com/valenciaplaza/comarca-y-empresa/uso-de-drones-en-riba-roja-para-vigilar-robos-e-infracciones-durante-la-campana-estival-de-la-algarroba",
+      "title": "Uso de drones en Riba-roja para vigilar robos e infracciones durante la campaña estival de la algarroba",
+      "publisher": "Valencia Plaza",
+      "retrievedAt": "2026-09-07T11:00:00.000Z",
+      "excerpt": "La concejal de Seguridad Ciudadana, Raquel Pamblanco, ha puesto en valor la gran masa forestal y agrícola existente en el término municipal de Riba-roja, que obliga al Ayuntamiento, a través de la Policía Local, a poner en marcha diversas campañas estivales; como el Previfoc o la vigilancia durante la recogida de la algarroba.",
+      "trust": "medium",
+      "selfDeclared": false,
+      "publishedAt": "2026-08-20"
+    },
+    {
+      "id": "src-112",
+      "kind": "web",
+      "url": "https://www.cope.es/emisoras/comunidad-valenciana/valencia-provincia/valencia/noticias/localidad-valenciana-riba-roja-turia-blinda-cosecha-algarroba-drones-futuro-policias-locales-20260824_3423897.html",
+      "title": "La localidad valenciana de Riba-roja de Túria blinda la cosecha de la algarroba con drones: \"Es el futuro de las policías locales\"",
+      "publisher": "COPE Valencia",
+      "retrievedAt": "2026-09-07T10:56:00.000Z",
+      "excerpt": "Por su parte, la concejal de Seguridad Ciudadana, Raquel Pamblanco, ha destacado la importancia de la gran masa forestal y agrícola del municipio, que requiere campañas específicas como la vigilancia de la algarroba hasta finales de agosto y el plan Previfoc, activo durante septiembre.",
+      "trust": "low",
+      "selfDeclared": false,
+      "publishedAt": "2026-08-24"
+    },
+    {
+      "id": "src-113",
+      "kind": "web",
+      "url": "https://valenciaplaza.com/valenciaplaza/comarca-y-empresa/el-ayuntamiento-de-riba-roja-rinde-homenaje-a-su-policia-local-y-a-la-sociedad-civil-por-la-dana",
+      "title": "El Ayuntamiento de Riba-roja rinde homenaje a su Policía Local y a la sociedad civil por la Dana",
+      "publisher": "Valencia Plaza",
+      "retrievedAt": "2026-09-07T10:56:00.000Z",
+      "excerpt": "El acto ha contado con la presencia del comandante del Tercer Batallón de Intervención de Emergencias de la UME, Manuel Párraga, del comandante jefe de la Guardia Civil de la Compañía de Llíria, José Antonio Romero, del jefe de la Policía Local, Fernando Tejera, de la concejala de Seguridad y Emergencias, Raquel Pamblanco, y de la corporación municipal.",
+      "trust": "medium",
+      "selfDeclared": false,
+      "publishedAt": "2025-12-01"
+    },
+    {
+      "id": "src-114",
+      "kind": "web",
+      "url": "https://valenciaplaza.com/valenciaplaza/comarca-y-empresa/riba-roja-y-la-unidad-canina-de-la-policia-local-impulsan-una-iniciativa-para-acompanar-a-personas-con-enfermedad-mental",
+      "title": "Riba-roja y la Unidad Canina de la Policía Local impulsan una iniciativa para acompañar a personas con enfermedad mental",
+      "publisher": "Valencia Plaza",
+      "retrievedAt": "2026-09-07T10:56:00.000Z",
+      "excerpt": "Esta mañana, el alcalde de Riba-roja de Túria, Robert Raga y la concejal de Seguridad Ciudadana, Raquel Pamblanco, han compartido la jornada",
+      "trust": "medium",
+      "selfDeclared": false,
+      "publishedAt": "2025-10-07"
+    },
+    {
+      "id": "src-115",
+      "kind": "web",
+      "url": "https://valenciaplaza.com/valenciaplaza/comarca-y-empresa/riba-roja-inicia-su-campana-de-prevencion-de-incendios-forestales-con-vigilancia-con-drones-y-nuevos-hidrantes",
+      "title": "Riba-roja inicia su campaña de prevención de incendios forestales con vigilancia con drones y nuevos hidrantes",
+      "publisher": "Valencia Plaza (Europa Press)",
+      "retrievedAt": "2026-09-07T10:56:00.000Z",
+      "excerpt": "El alcalde de Riba-roja de Túria, Robert Raga, acompañado de la concejala de Seguridad Ciudadana, Raquel Pamblanco, y el concejal de Medio Ambiente, José Luis Ramos, ha presentado este jueves la campaña anual de prevención de incendios forestales, en el marco del Plan Centinela",
+      "trust": "medium",
+      "selfDeclared": false,
+      "publishedAt": "2025-06-12"
+    },
+    {
+      "id": "src-116",
+      "kind": "web",
+      "url": "https://www.apuntmedia.es/noticies/societat/l-ajuntament-riba-roja-advertix-parc-natural-turia-banyar-perillos_1_1808824.html",
+      "title": "L'Ajuntament de Riba-roja advertix que anar al parc natural del Túria a banyar-se encara és \"molt perillós\"",
+      "publisher": "À Punt",
+      "retrievedAt": "2026-09-07T11:03:00.000Z",
+      "excerpt": "La regidora de Seguretat i Emergències, Raquel Pamblanco, ha advertit que les conseqüències de banyar-se en estes zones poden ser 'molt roïnes'.",
+      "trust": "medium",
+      "selfDeclared": false,
+      "publishedAt": "2025-08-13"
+    },
+    {
+      "id": "src-117",
+      "kind": "web",
+      "url": "https://www.elperiodicodeaqui.com/valencia/camp/riba-roja-conmemora-el-8m-con-un-acto-institucional-y-una-campana-para-visibilizar-las-desigualdades_100006606_102.html",
+      "title": "Riba-roja conmemora el 8M con un acto institucional y una campaña para visibilizar las desigualdades",
+      "publisher": "El Periódico de Aquí",
+      "retrievedAt": "2026-09-07T10:56:00.000Z",
+      "excerpt": "En Riba-roja trabajamos los 365 días del año con recursos, prevención, empleo y políticas públicas reales para proteger a las mujeres y avanzar en derechos. La igualdad no es un eslogan: es una acción de gobierno constante",
+      "trust": "medium",
+      "selfDeclared": false,
+      "publishedAt": "2026-03-03"
+    },
+    {
+      "id": "src-118",
+      "kind": "web",
+      "url": "https://www.elperiodicodeaqui.com/valencia/epda-noticias/riba-roja-da-un-paso-al-frente-en-la-lucha-por-la-abolicion-de-la-prostitucion/336709",
+      "title": "Riba-roja da un paso al frente en la lucha por la abolición de la prostitución (I Foros Abolicionistas)",
+      "publisher": "El Periódico de Aquí",
+      "retrievedAt": "2026-09-07T11:01:00.000Z",
+      "excerpt": "un trabajo- dijo- que se ha visto refrendado con la aprobación e implementación del I Plan Abolicionista y la ordenanza sancionadora",
+      "trust": "medium",
+      "selfDeclared": false,
+      "publishedAt": "2024-03-01"
+    },
+    {
+      "id": "src-119",
+      "kind": "web",
+      "url": "https://www.lasprovincias.es/camp-turia/drones-canones-agua-incendios-ribaroja-20250612154300-nt.html",
+      "title": "Drones y cañones de agua contra los incendios en Riba-roja",
+      "publisher": "Las Provincias",
+      "retrievedAt": "2026-09-07T09:05:00.000Z",
+      "excerpt": "El alcalde de Riba-roja de Turia, Robert Raga, acompañado de la concejal de Seguridad Ciudadana, Raquel Pamblanco y el concejal de Medio Ambiente, José Luis Ramos, ha presentado este jueves la campaña anual de prevención de incendios forestales en el marco del Plan Centinela, con la mirada puesta en la lucha contra los incendios forestales en el Parque Natural del Turia.",
+      "trust": "medium",
+      "selfDeclared": false,
+      "publishedAt": "2025-06-12"
+    },
+    {
+      "id": "src-120",
+      "kind": "web",
+      "url": "https://www.levante-emv.com/comunitat-valenciana/camp-de-turia/2025/06/27/riba-roja-turia-aprueba-plan-119130739.html",
+      "title": "Riba-roja de Túria aprueba su Plan Local de Seguridad para una mayor eficacia y respuesta a la ciudadanía",
+      "publisher": "Levante-EMV",
+      "retrievedAt": "2026-09-07T09:08:00.000Z",
+      "excerpt": "la Junta Local de Seguridad, la primera tras la dana y la segunda de la presente legislatura, con la mirada puesta en la reconstrucción tras la riada y en los diferentes planes y acciones en materia de criminalidad, violencia de género y seguridad ciudadana, que de manera coordinada, se llevan a cabo. En la reunión han participado la concejal de Seguridad Ciudadana, Raquel Pamblanco y responsables de Guardia Civil, Policía Local y Policía Nacional adscrita a la Comuntat Valenciana.",
+      "trust": "medium",
+      "selfDeclared": false,
+      "publishedAt": "2025-06-27"
+    },
+    {
+      "id": "src-121",
+      "kind": "web",
+      "url": "https://www.lasprovincias.es/camp-turia/ribaroja-turia-constituye-mesa-multidisciplinar-igualdad-reforzar-20251119120508-nt.html",
+      "title": "Riba-roja de Túria constituye la Mesa Multidisciplinar de Igualdad para reforzar la coordinación en la lucha contra la violencia de género",
+      "publisher": "Las Provincias",
+      "retrievedAt": "2026-09-07T09:12:00.000Z",
+      "excerpt": "La mesa, presidida por la concejala de Igualdad, Raquel Pamblanco, cuenta con la participación de la Unidad de Violencia sobre la Mujer, Guardia Civil, Policía Local, Oficinas de Asistencia a Víctimas del Delito, Punto de Ecuentro Familiar de Llíria, Centro Mujer Yátova, Centro de Salud Riba-roja, Servicios Sociales Municipales, Área de Educación y Área de Igualdad.",
+      "trust": "medium",
+      "selfDeclared": false,
+      "publishedAt": "2025-11-19"
+    },
+    {
+      "id": "src-122",
+      "kind": "web",
+      "url": "https://www.levante-emv.com/comunitat-valenciana/camp-de-turia/2023/11/15/riba-roja-aprueba-primer-plan-94645224.html",
+      "title": "Riba-roja aprueba el primer Plan Abolicionista de la Comunitat Valenciana contra la prostitución y la explotación sexual",
+      "publisher": "Levante-EMV",
+      "retrievedAt": "2026-09-07T09:14:00.000Z",
+      "excerpt": "El Ayuntamiento de Riba-roja de Túria ha aprobado el I Plan Abolicionista Municipal (PAM) pionero en el ámbito local y autonómico contra la prostitución y la explotación sexual de las mujeres en el municipio. El plan ha salido adelante con los votos a favor del equipo de gobierno del PSPV como impulsor del mismo, además del apoyo de Compromís y Podem-Esquerra Unida y Vox y la abstención del Partido Popular.",
+      "trust": "medium",
+      "selfDeclared": false,
+      "publishedAt": "2023-11-15"
+    },
+    {
+      "id": "src-123",
+      "kind": "web",
+      "url": "https://www.europapress.es/comunitat-valenciana/noticia-riba-roja-despliega-dispositivo-control-llegada-masiva-personas-playas-fluviales-20240815141527.html",
+      "title": "Riba-roja despliega un dispositivo de control ante la llegada \"masiva\" de personas a sus playas fluviales",
+      "publisher": "Europa Press",
+      "retrievedAt": "2026-09-07T09:40:00.000Z",
+      "excerpt": "El alcalde de la localidad, Robert Raga, quien junto a la concejala de emergencias, Raquel Pamblanco, y el de medioambiente, José Luis Ramos, ha supervisado el operativo, ha advertido del \"aumento del incivismo con bolsas de basura, residuos y otros envases contaminantes que personas sin escrúpulos tiran en nuestro parque natural\".",
+      "trust": "medium",
+      "selfDeclared": false,
+      "publishedAt": "2024-08-15"
+    },
+    {
+      "id": "src-124",
+      "kind": "web",
+      "url": "https://cadenaser.com/comunitat-valenciana/2025/08/13/riba-roja-avisa-sobre-el-bano-en-el-rio-ir-al-parque-natural-del-turia-sigue-siendo-muy-peligroso-radio-valencia/",
+      "title": "Riba-roja avisa sobre el baño en el río: \"Ir al parque natural del Túria sigue siendo muy peligroso\"",
+      "publisher": "Cadena SER — Radio València (Europa Press)",
+      "retrievedAt": "2026-09-07T09:45:00.000Z",
+      "excerpt": "La concejala de Seguridad y Emergencias, Igualdad, Comunicación e Información, Protocolo y Bienestar Animal, Raquel Pamblanco Paredes, ha advertido de que las consecuencias de bañarse en estas zonas pueden ser \"muy malas\". \"Antes del verano hubo dos ahogamientos en el parque natural a la altura de Manises; por eso queremos concienciar de que es peligroso incluso acercarse al parque natural, especialmente con personas vulnerables\", ha señalado en declaraciones a Europa Press Televisión.",
+      "trust": "medium",
+      "selfDeclared": false,
+      "publishedAt": "2025-08-13"
+    },
+    {
+      "id": "src-125",
+      "kind": "web",
+      "url": "https://www.lasprovincias.es/sucesos/riba-roja-valencia-pone-foco-prevenir-posibles-incendios-20250813100702-vi.html",
+      "title": "Riba-roja (Valencia) pone el foco en prevenir posibles incendios tras la dana",
+      "publisher": "Las Provincias (Europa Press)",
+      "retrievedAt": "2026-09-07T09:45:00.000Z",
+      "excerpt": "La concejal de Seguridad y emergencias, Igualdad, Comunicación e información, Protocolo y Bienestar Animal, Raquel Pamblanco, ha puesto el foco en el riesgo de incendio que sufre el municipio, repleto de sedimentos tras la riada del pasado 29 de octubre, al mismo tiempo que ha exigido soluciones para que los bomberos, en caso de emergencia, \"puedan cruzar rápidamente\".",
+      "trust": "medium",
+      "selfDeclared": false,
+      "publishedAt": "2025-08-13"
+    },
+    {
+      "id": "src-126",
+      "kind": "web",
+      "url": "https://www.levante-emv.com/comunitat-valenciana/camp-de-turia/2025/03/10/barranco-pozalet-cuyo-cauce-desemboca-115016065.html",
+      "title": "El barranco del Pozalet cuyo cauce desemboca en un polígono industrial",
+      "publisher": "Levante-EMV",
+      "retrievedAt": "2026-09-07T09:45:00.000Z",
+      "excerpt": "Adobes continúa su inspección sobre el terreno y el trabajo de los operarios para la extracción de los acumulados junto a la concejal de Seguridad y Emergencias, Raquel Pamblanco, y el jefe de la Policía Local de Riba-roja, Fernando Tejera.",
+      "trust": "medium",
+      "selfDeclared": false,
+      "publishedAt": "2025-03-10"
+    },
+    {
+      "id": "src-127",
+      "kind": "web",
+      "url": "https://www.europapress.es/comunitat-valenciana/noticia-riba-roja-sancionara-3000-euros-puteros-pidan-servicios-sexuales-cerca-colegios-20250110131401.html",
+      "title": "Riba-roja sancionará con hasta 3.000 euros a los puteros que pidan servicios sexuales cerca de colegios",
+      "publisher": "Europa Press",
+      "retrievedAt": "2026-09-07T09:50:00.000Z",
+      "excerpt": "La ordenanza, impulsada por el gobierno del PSPV ha contado con el apoyo de Compromís, EU-Podem y Vox y la abstención del PP, informa el consistorio.",
+      "trust": "medium",
+      "selfDeclared": false,
+      "publishedAt": "2025-01-10"
+    },
+    {
+      "id": "src-131",
+      "kind": "local-snapshot",
+      "title": "Acta de la sesión extraordinaria del Pleno de 7 de julio de 2023 (organización del mandato) — 1. Comisión Informativa de Gestión Municipal y Gobierno Abierto (Hacienda, Servicios Generales, RRHH, Seguridad Pública y Policía Local, Transparencia…): composición por el grupo socialista",
+      "retrievedAt": "2026-09-07T14:00:00.000Z",
+      "excerpt": "[0.0 → 0.0] Composición:\n[0.0 → 0.0] Grupo Municipal Socialista de Riba-roja\n[0.0 → 0.0] Titular: D. Roberto-Pascual Raga Gadea\n[0.0 → 0.0] Titular: D. José Ángel Hernández Carrizosa\n[0.0 → 0.0] Titular: Dª Raquel Pamblanco Paredes",
+      "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+      "trust": "high",
+      "selfDeclared": false
+    },
+    {
+      "id": "src-135",
+      "kind": "local-snapshot",
+      "title": "Acta de la sesión extraordinaria del Pleno de 7 de julio de 2023 — 4. Comisión Informativa de Educación, Cultura, Deportes y Fiestas: composición por el grupo socialista",
+      "retrievedAt": "2026-09-07T14:00:00.000Z",
+      "excerpt": "[0.0 → 0.0] Titular: D. Rafael Gómez Sánchez\n[0.0 → 0.0] Titular: D. Alfredo Plá Giménez\n[0.0 → 0.0] Titular: Dª Raquel Pamblanco Paredes\n[0.0 → 0.0] Titular: Dª Esther Gómez Laredo",
+      "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+      "trust": "high",
+      "selfDeclared": false
+    },
+    {
+      "id": "src-136",
+      "kind": "local-snapshot",
+      "title": "Acta de la sesión extraordinaria del Pleno de 7 de julio de 2023 — 5. Comisión Informativa de Inclusión Social, Igualdad, Promoción de la Salud y Bienestar animal: composición por el grupo socialista",
+      "retrievedAt": "2026-09-07T14:00:00.000Z",
+      "excerpt": "[0.0 → 0.0] Grupo Municipal Socialista de Riba-roja\n[0.0 → 0.0] Titular: D. David Barbancho Martínez\n[0.0 → 0.0] Titular: Dª Raquel Pamblanco Paredes",
+      "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+      "trust": "high",
+      "selfDeclared": false
+    },
+    {
+      "id": "src-137",
+      "kind": "local-snapshot",
+      "title": "Acta de la sesión ordinaria del Pleno de 24 de julio de 2023 · punto 13 — tabla de presidencias de los consells sectorials nombradas por la Resolución 2764/2023 (Igualtat: Raquel Pamblanco, transcrita como «Parets»)",
+      "retrievedAt": "2026-09-07T14:00:00.000Z",
+      "excerpt": "[0.0 → 0.0] Econòmic i Social Sr. Sr. José Ángel Hernández Carrizosa.\n[0.0 → 0.0] Cultura Sr. Sr. José Manuel Vila Oltra\n[0.0 → 0.0] Igualtat Sra. Sra. Raquel Pamblanco Parets",
+      "localPath": "public/data/pleno-transcripts/jpr4fk.txt",
+      "trust": "high",
+      "selfDeclared": false
+    },
+    {
+      "id": "src-138",
+      "kind": "local-snapshot",
+      "title": "Acta de la sesión extraordinaria del Pleno de 7 de julio de 2023 · punto 3, expediente 3979/2023/GEN — dación de cuenta de la Resolución 2513/2023, de 17 de junio, sobre las áreas de gestión política 2023-2027 y la delegación en favor de concejales",
+      "retrievedAt": "2026-09-07T14:00:00.000Z",
+      "excerpt": "[0.0 → 0.0] 3.- SECRETARÍA Expediente: 3979/2023/GEN, DACIÓN CUENTA DE LA RESOLUCIÓN 2513/2023\n[0.0 → 0.0] DE 17 DE JUNIO SOBRE ESTABLECIMIENTO DE LAS ÁREAS DE GESTIÓN POLÍTICA 2023-2027 Y\n[0.0 → 0.0] DELEGACIÓN EN FAVOR DE CONCEJALES\n[0.0 → 0.0] ASUNTO: Dación cuenta de la Resolución 2513/2023 de 17 de junio sobre establecimiento de las\n[0.0 → 0.0] áreas de gestión política 2023-2027 y delegación en favor de Concejales.",
+      "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+      "trust": "high",
+      "selfDeclared": false
+    },
+    {
+      "id": "src-132",
+      "kind": "local-snapshot",
+      "title": "Acta de la sesión ordinaria del Pleno de 24 de julio de 2023 · punto 13 — dación de cuenta de la Resolución de Alcaldía 2764/2023, de 6 de julio, sobre el nombramiento de presidencias de los consells sectorials (Igualtat: Raquel Pamblanco)",
+      "retrievedAt": "2026-09-07T14:00:00.000Z",
+      "excerpt": "[0.0 → 0.0] Vista la Resolució d'Alcaldia 2764/2023, de 6 de juliol, sobre el nomenament de Presidències dels\n[0.0 → 0.0] Consells Sectorials",
+      "localPath": "public/data/pleno-transcripts/jpr4fk.txt",
+      "trust": "high",
+      "selfDeclared": false
+    },
+    {
+      "id": "src-133",
+      "kind": "local-snapshot",
+      "title": "Acta de la sesión del Pleno de 15 de abril de 2024 — cartas de servicio y programas: 18. Comunicación (líder: la concejala delegada)",
+      "retrievedAt": "2026-09-07T14:00:00.000Z",
+      "excerpt": "[0.0 → 0.0] 18. COMUNICACIÓN (MC)\n[0.0 → 0.0] Líder: Raquel Pamblanco Paredes, Concejala delegada\n[0.0 → 0.0] Persona empleada pública responsable: Sandra Pascual, Técnico\n[0.0 → 0.0] de Comunicación",
+      "localPath": "public/data/pleno-transcripts/1080zow.txt",
+      "trust": "high",
+      "selfDeclared": false
+    },
+    {
+      "id": "src-134",
+      "kind": "local-snapshot",
+      "title": "Acta de la sesión del Pleno de 6 de mayo de 2024 — aprobación inicial de la ordenanza municipal abolicionista de la prostitución y la explotación sexual: votación",
+      "retrievedAt": "2026-09-07T14:00:00.000Z",
+      "excerpt": "[0.0 → 0.0] Sesiones, por 14 votos a favor (11 PSOE, 1 EUPV – Unides Podem per Riba-roja y 1\n[0.0 → 0.0] Compromís per Riba-roja: Acord per Guanyar y 1 VOX) y 7 abstenciones (7 PP), acordó:\n[0.0 → 0.0] PRIMERO: Aprobar inicialmente el proyecto de ordenanza municipal abolicionista de la\n[0.0 → 0.0] prostitución y la explotación sexual.",
+      "localPath": "public/data/pleno-transcripts/fkwdd8.txt",
+      "trust": "high",
+      "selfDeclared": false
+    }
+  ],
+  "sections": [
+    {
+      "kind": "portrait",
+      "payload": {
+        "officialSlug": "raquel-pamblanco-paredes",
+        "photoPath": "/data/photos/raquel-pamblanco-paredes.jpg",
+        "partyTone": "civic",
+        "portfolios": [
+          "Seguridad y emergencias",
+          "Igualdad",
+          "Comunicación e información",
+          "Protocolo y Bienestar Animal"
+        ],
+        "cvUrl": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919"
+      }
+    },
+    {
+      "kind": "identity",
+      "payload": {
+        "dateOfBirth": "1992-03-10",
+        "birthplace": "Riba-roja de Túria",
+        "sourceIds": [
+          "src-060"
+        ]
+      }
+    },
+    {
+      "kind": "education",
+      "payload": {
+        "items": [
+          {
+            "degree": "Grado en Comunicación Audiovisual",
+            "institution": "Universidad CEU Cardenal Herrera",
+            "endYear": 2014,
+            "sourceIds": [
+              "src-061"
+            ]
+          },
+          {
+            "degree": "Máster en Dirección de Marketing",
+            "institution": "Universidad Internacional de València (VIU)",
+            "endYear": 2021,
+            "sourceIds": [
+              "src-061"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "career-political",
+      "payload": {
+        "items": [
+          {
+            "role": "Concejala delegada — Seguridad y emergencias, Igualdad, Comunicación e información, Protocolo y Bienestar Animal",
+            "org": "Ayuntamiento de Riba-roja de Túria",
+            "startYear": 2023,
+            "sourceIds": [
+              "src-001",
+              "src-067",
+              "src-068"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "career-professional",
+      "payload": {
+        "items": [
+          {
+            "role": "Locutora de radio (informativo diario, salud e inglés)",
+            "org": "Radio Riba-roja",
+            "startYear": 2018,
+            "endYear": 2018,
+            "sourceIds": [
+              "src-064"
+            ]
+          },
+          {
+            "role": "Consultora de marketing digital",
+            "org": "Opt-Media Marketing Solutions",
+            "startYear": 2019,
+            "endYear": 2020,
+            "sourceIds": [
+              "src-063"
+            ]
+          },
+          {
+            "role": "Comunicación (estrategia, contenidos y protocolo para el grupo socialista)",
+            "org": "FVMP — Federació Valenciana de Municipis i Províncies",
+            "startYear": 2021,
+            "endYear": 2023,
+            "sourceIds": [
+              "src-062"
+            ]
+          },
+          {
+            "role": "Sales manager (coordinación de equipo de ventas)",
+            "org": "Vorwerk",
+            "startYear": 2023,
+            "endYear": 2023,
+            "sourceIds": [
+              "src-062"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Identidad y cargo",
+        "bodyMarkdown": "Raquel Pamblanco Paredes es concejala del Ayuntamiento de Riba-roja de Túria (Valencia) por el PSOE (PSPV-PSOE). Según el registro oficial de cargos municipales, ostenta las delegaciones de Seguridad y emergencias, Igualdad, Comunicación e información, y Protocolo y Bienestar Animal.",
+        "sourceIds": [
+          "src-001"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Formación y trayectoria previa",
+        "bodyMarkdown": "Según su currículum oficial publicado en la ficha de transparencia del Ayuntamiento, Raquel Pamblanco Paredes nació el 10 de marzo de 1992 en Riba-roja de Túria, es graduada en Comunicación Audiovisual por la Universidad CEU Cardenal Herrera (2014) y máster en Dirección de Marketing por la VIU (2021).\n\nEl mismo currículum autodeclarado recoge una trayectoria en comunicación y marketing: locutora de Radio Riba-roja (2018), consultora de marketing digital en Opt-Media (2019-2020), comunicación para el grupo socialista de la FVMP (2021-2023) y sales manager de Vorwerk (2023).",
+        "sourceIds": [
+          "src-060",
+          "src-061",
+          "src-062",
+          "src-063",
+          "src-064"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Elección y nombramiento",
+        "bodyMarkdown": "Raquel Pamblanco Paredes fue proclamada concejala electa en las elecciones municipales del 28 de mayo de 2023 —en las que el PSPV-PSOE obtuvo el 49,69% de los votos— y tomó posesión mediante juramento o promesa en la sesión constitutiva del 17 de junio de 2023.\n\nSu acceso al cargo culmina una trayectoria de candidaturas documentada en el boletín provincial: concurrió como independiente en el puesto 12 de la lista del PSOE en 2015 (BOP de València n.º 79) y en el puesto 16 en 2019 (n.º 82), en ambos casos sin obtener acta. En 2023 la Junta Electoral de Zona de Llíria proclamó la candidatura del PSOE con ella en el puesto 9, esta vez sin la marca de independiente (BOP n.º 83, suplemento 1, 02-05-2023).\n\nEn el pleno de organización del mandato quedó documentado el origen de sus responsabilidades: figura como número nueve del grupo municipal socialista, y el punto 9 de la Resolución de Alcaldía 2513/2023, de 17 de junio —de la que se dio cuenta en esa sesión—, le delegó las competencias «en materia de Seguridad y emergencias, Igualdad, Comunicación e información y Bienestar Animal». La Resolución de Alcaldía 1314/2025, de 11 de abril, que reordenó las áreas de gestión tras la DANA (BOP n.º 78, 25-04-2025), reproduce su delegación sin cambios: «Se delegan en la Concejal Dª Raquel Pamblanco Paredes, las competencias que al Alcalde le corresponden en materia de Seguridad y emergencias, Igualdad, Comunicación e información y Bienestar Animal». El registro municipal vigente añade hoy Protocolo, que no figura en ninguna resolución publicada. El acuerdo de régimen económico de la misma sesión fijó su dedicación exclusiva en 38.891,66 euros anuales.",
+        "sourceIds": [
+          "src-065",
+          "src-066",
+          "src-006",
+          "src-072",
+          "src-073",
+          "src-067",
+          "src-068",
+          "src-001",
+          "src-005",
+          "src-101",
+          "src-138",
+          "src-102"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Retribución y régimen de dedicación",
+        "bodyMarkdown": "Como concejala delegada de Seguridad, Igualdad y Comunicación, Pamblanco percibe una retribución en régimen de dedicación exclusiva de 38.891,66 euros anuales, fijada por acuerdo del Pleno de 7 de julio de 2023 sobre el régimen económico de los concejales (expediente 4533/2023/GEN).",
+        "sourceIds": [
+          "src-005",
+          "src-031"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Responsabilidades de gestión",
+        "bodyMarkdown": "En la planificación estratégica municipal, Pamblanco figura como responsable política ('líder') de las líneas de actuación vinculadas a la Policía Local, en coordinación con el intendente Fernando Tejera como responsable técnico, así como de la línea de Mujer e Igualdad, en consonancia con sus delegaciones de Seguridad y de Igualdad.\n\nEn el Pleno de organización del 7 de julio de 2023 fue designada titular por el grupo socialista en tres comisiones informativas: la de Gestión Municipal y Gobierno Abierto —que abarca Seguridad Pública y Policía Local—, la de Educación, Cultura, Deportes y Fiestas y la de Inclusión Social, Igualdad, Promoción de la Salud y Bienestar Animal. La Resolución de Alcaldía 2764/2023, de 6 de julio, de la que se dio cuenta al Pleno del 24 de julio de 2023, la nombró presidenta del Consell Sectorial d'Igualtat. En el mismo documento de programas de 2024 en que figura al frente de Policía Local y de Mujer e Igualdad consta también como líder del programa de Comunicación, con la técnica de Comunicación como responsable.",
+        "sourceIds": [
+          "src-022",
+          "src-023",
+          "src-131",
+          "src-135",
+          "src-136",
+          "src-132",
+          "src-137",
+          "src-133"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Igualdad: el I Plan Abolicionista, la ordenanza y el premio de la FEMP",
+        "bodyMarkdown": "En noviembre de 2023 el Pleno aprobó el **I Plan Abolicionista Municipal** contra la prostitución y la explotación sexual, impulsado por el gobierno del PSPV. Según Levante-EMV (15-11-2023), «El plan ha salido adelante con los votos a favor del equipo de gobierno del PSPV como impulsor del mismo, además del apoyo de Compromís y Podem-Esquerra Unida y Vox y la abstención del Partido Popular»; el acta de esa sesión no está publicada en el portal municipal y este medio no ha podido cotejar el reparto de votos con un documento.\n\nEl desarrollo del plan fue una ordenanza sancionadora. El Pleno del 6 de mayo de 2024 aprobó inicialmente el proyecto de ordenanza municipal abolicionista de la prostitución y la explotación sexual por 14 votos a favor (11 PSOE, 1 EUPV – Unides Podem per Riba-roja, 1 Compromís per Riba-roja: Acord per Guanyar y 1 VOX) y 7 abstenciones (7 PP), según el acta. Europa Press informó el 10-01-2025 de la aprobación de la ordenanza, con sanciones de hasta 3.000 euros a quien solicite servicios sexuales cerca de colegios, y recogió que «La ordenanza, impulsada por el gobierno del PSPV ha contado con el apoyo de Compromís, EU-Podem y Vox y la abstención del PP, informa el consistorio». Pamblanco la calificó, según elDiario.es (12-01-2025), de «un paso muy importante que emprendemos en nuestro municipio en la defensa y la protección de las mujeres que son víctimas de la explotación sexual».\n\nEl plan recibió en diciembre de 2023 uno de los premios del VIII Concurso de Buenas Prácticas Locales contra la Violencia sobre las Mujeres, que convocan la Delegación del Gobierno contra la Violencia de Género y la FEMP: la relación oficial de entidades premiadas incluye el «Plan abolicionista de la prostitución municipal. Ayuntamiento de Riba-Roja de Túria (Valencia)», en el área 4, la de impulso de la formación.\n\nComo concejala de Igualdad preside desde noviembre de 2025 la Mesa Multidisciplinar de Igualdad, que reúne a la Unidad de Violencia sobre la Mujer, Guardia Civil, Policía Local, oficinas de asistencia a víctimas y servicios municipales (Las Provincias, 19-11-2025); en junio de 2025 el Ayuntamiento pidió a la Generalitat un Centre Dona 24 horas (Valencia Plaza, 23-06-2025) y en agosto de 2024 se adhirió al Protocolo de Actuación contra Violencias Sexuales en Espacios de Ocio (EFE, 19-08-2024). Todo ello es actividad institucional de su delegación, recogida por medios y por el propio Ayuntamiento; ningún medio localizado la sitúa en una polémica.",
+        "sourceIds": [
+          "src-122",
+          "src-134",
+          "src-127",
+          "src-107",
+          "src-105",
+          "src-106",
+          "src-121",
+          "src-108",
+          "src-109"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Seguridad y emergencias: la actividad que consta en prensa, antes y después de la DANA",
+        "bodyMarkdown": "La prensa la sitúa en los dispositivos de su delegación de Seguridad y emergencias. En agosto de 2024, antes de la DANA, supervisó con el alcalde y el concejal de Medio Ambiente el dispositivo de control de las playas fluviales del parque natural del Turia (Europa Press, 15-08-2024). Tras la riada del 29 de octubre de 2024 acompañó al ingeniero municipal y al jefe de la Policía Local en la inspección de las balsas de laminación del barranco del Pozalet durante las lluvias de marzo de 2025 (Levante-EMV, 10-03-2025); en junio de 2025 presentó junto al alcalde la campaña de prevención de incendios forestales del Plan Centinela (Valencia Plaza y Las Provincias, 12-06-2025) y participó en la Junta Local de Seguridad que aprobó el Plan Local de Seguridad, «la primera tras la dana y la segunda de la presente legislatura» (Levante-EMV, 27-06-2025).\n\nEn agosto de 2025 advirtió de que las consecuencias de bañarse en el parque natural podían ser «muy malas» —«Antes del verano hubo dos ahogamientos en el parque natural a la altura de Manises; por eso queremos concienciar de que es peligroso incluso acercarse al parque natural, especialmente con personas vulnerables»— y reclamó soluciones para que los bomberos, en caso de emergencia, «puedan cruzar rápidamente» (declaraciones a Europa Press Televisión recogidas por Cadena SER, Las Provincias y À Punt, 13-08-2025). En octubre de 2025 compartió con el alcalde la jornada de la Unidad Canina de la Policía Local con personas con enfermedad mental (Valencia Plaza, 07-10-2025) y en diciembre asistió al homenaje del Ayuntamiento a la Policía Local y a la sociedad civil por la DANA (Valencia Plaza, 01-12-2025). En agosto de 2026 defendió el uso de drones en la vigilancia de la campaña de la algarroba y del plan Previfoc (Valencia Plaza, 20-08-2026; COPE, 24-08-2026). Los medios la nombran indistintamente como concejala de Seguridad Ciudadana o de Seguridad y emergencias; la delegación es la segunda.",
+        "sourceIds": [
+          "src-123",
+          "src-126",
+          "src-115",
+          "src-119",
+          "src-120",
+          "src-124",
+          "src-125",
+          "src-116",
+          "src-114",
+          "src-113",
+          "src-111",
+          "src-112"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Patrimonio y actividades declaradas",
+        "bodyMarkdown": "La declaración estatutaria de actividades y bienes que presentó al tomar posesión en 2023 (expediente 3971/2023/GEN, publicada por el Ayuntamiento conforme al Decreto 191/2010 del Consell) consigna como actividades «FVMP y autónoma VORWERK KOBOLD». Su CV sitúa la etapa en la FVMP en 2021-2023 y la de Vorwerk en 2023; el acuerdo de la misma legislatura le asigna dedicación exclusiva, y en los snapshots consultados no consta resolución sobre la compatibilidad ni fechas de cese — la cuestión queda señalada en «Lagunas detectadas», sin que este medio afirme irregularidad alguna.\n\nEn el apartado de bienes declara un activo de 10.000,00 euros —íntegramente en otros bienes, sin inmuebles— y un pasivo de 0,00 euros: uno de los patrimonios más bajos declarados en la corporación. La declaración fue publicada además en el Boletín Oficial de la Provincia de València (n.º 180, de 15 de septiembre de 2023, anuncio 2023/12011).\n\nEn la revisión de septiembre de 2026 este medio releyó las actas de pleno de 2023 a 2026 y buscó su nombre en el Boletín Oficial de la Provincia del mismo periodo: no consta resolución de compatibilidad ni de cese de esas actividades que la nombre. La laguna sigue abierta y sigue sin afirmarse irregularidad alguna.",
+        "sourceIds": [
+          "src-069",
+          "src-070",
+          "src-062",
+          "src-005",
+          "src-071"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Cargos orgánicos en el PSPV-PSOE",
+        "bodyMarkdown": "En el partido, Pamblanco es vocal de la Comisión de Ética del PSPV-PSOE. Valencia Plaza informó el 02-02-2025, al elegirse la nueva dirección del partido, de que «las vocalías las ocuparán Isabel Granero, Miguel Chover, Eduardo Vicente Navarro, Raquel Pamblanco y José Andrés Bertó», y la web del partido la recoge como «Vocal: Raquel Pamblanco Paredes» en la composición vigente del órgano. Es un cargo orgánico interno del partido, sin relación con las competencias municipales; se consigna como parte de su perfil público.",
+        "sourceIds": [
+          "src-103",
+          "src-104"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Conexiones documentadas y comprobaciones de este medio",
+        "bodyMarkdown": "Las conexiones de Raquel Pamblanco Paredes que constan en documentos públicos son de naturaleza político-administrativa: número nueve del grupo municipal socialista y titular de las áreas que le delegó el decreto del alcalde Roberto Raga, además de las actividades consignadas en su propia declaración (FVMP y Vorwerk). En la documentación de programas presupuestarios figura como responsable política de los programas de Policía Local —cuyo responsable técnico es el intendente— y de Mujer e Igualdad.\n\nComo comprobación rutinaria, esta redacción ha cruzado sus apellidos y sus empleadoras declaradas con el corpus de contratación municipal: en los 804 expedientes de contratación que constaban en el corpus municipal en julio de 2026 —adjudicados o no— no consta ningún adjudicatario con su apellido, y ni Vorwerk, ni la FVMP, ni Opt-Media constan como adjudicatarias municipales.\n\nPara esta versión se ha barrido además el Boletín Oficial del Registro Mercantil de la provincia de València (anuncios de 2009 a 2026), del expediente a la persona: ninguna de las sociedades adjudicatarias del Ayuntamiento con actividad registral tiene entre sus cargos a la concejala, y sus dos apellidos no aparecen juntos en ningún anuncio. El registro municipal de asociaciones no publica directivos y el volcado local de la BDNS no incluye beneficiarios; las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
+        "sourceIds": [
+          "src-074",
+          "src-062",
+          "src-070"
+        ]
+      }
+    },
+    {
+      "kind": "financial",
+      "payload": {
+        "items": [
+          {
+            "year": 2023,
+            "metric": "salary",
+            "amountEuros": 38891.66,
+            "description": "Concejala delegada de Seguridad, Igualdad y Comunicación — dedicación exclusiva (Acuerdo del Pleno de 07/07/2023, Expediente 4533/2023/GEN)",
+            "sourceIds": [
+              "src-005"
+            ]
+          },
+          {
+            "year": 2023,
+            "metric": "declared-assets",
+            "amountEuros": 10000,
+            "description": "Activo declarado al tomar posesión (2023): 0,00 € en bienes inmuebles + 10.000,00 € en otros bienes; pasivo declarado: 0,00 €. Declaración de bienes conforme al Decreto 191/2010 del Consell (expte. 3971/2023/GEN) — uno de los patrimonios más bajos declarados en la corporación.",
+            "sourceIds": [
+              "src-069"
+            ]
+          },
+          {
+            "year": 2023,
+            "metric": "business",
+            "description": "Actividades declaradas: «FVMP y autónoma VORWERK KOBOLD», según su declaración estatutaria de 2023. Su CV sitúa la etapa en la FVMP en 2021-2023 y la de Vorwerk en 2023. El acuerdo de 07-07-2023 le asigna dedicación exclusiva; en los snapshots consultados no consta resolución sobre la compatibilidad ni fechas de cese de esas actividades.",
+            "sourceIds": [
+              "src-070",
+              "src-062"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "timeline",
+      "payload": {
+        "events": [
+          {
+            "date": "1992-03-10",
+            "label": "Nace en Riba-roja de Túria (dato de su CV autodeclarado)",
+            "sourceIds": [
+              "src-060"
+            ]
+          },
+          {
+            "date": "2015-05-24",
+            "label": "Elecciones municipales de 2015: concurre como independiente en el puesto 12 de la lista del PSOE, sin obtener acta",
+            "sourceIds": [
+              "src-072"
+            ]
+          },
+          {
+            "date": "2019-05-26",
+            "label": "Elecciones municipales de 2019: concurre en el puesto 16 de la lista del PSOE, sin obtener acta",
+            "sourceIds": [
+              "src-073"
+            ]
+          },
+          {
+            "date": "2023-05-02",
+            "label": "La Junta Electoral de Zona de Llíria proclama la candidatura del PSOE a las elecciones municipales con ella en el puesto 9 (BOP n.º 83, suplemento 1)",
+            "sourceIds": [
+              "src-101"
+            ]
+          },
+          {
+            "date": "2023-06-17",
+            "label": "Toma posesión como concejala en la sesión constitutiva del Ayuntamiento",
+            "sourceIds": [
+              "src-065",
+              "src-066"
+            ]
+          },
+          {
+            "date": "2023-06-17",
+            "label": "La Resolución de Alcaldía 2513/2023 le delega Seguridad y emergencias, Igualdad, Comunicación e información y Bienestar Animal (dación de cuenta al Pleno el 07-07-2023)",
+            "sourceIds": [
+              "src-068",
+              "src-138"
+            ]
+          },
+          {
+            "date": "2023-07-06",
+            "label": "Resolución de Alcaldía 2764/2023: presidenta del Consell Sectorial d'Igualtat",
+            "sourceIds": [
+              "src-132",
+              "src-137"
+            ]
+          },
+          {
+            "date": "2023-07-07",
+            "label": "Acuerdo del Pleno fija su retribución como concejala delegada de Seguridad, Igualdad y Comunicación en régimen de dedicación exclusiva (expediente 4533/2023/GEN)",
+            "sourceIds": [
+              "src-005"
+            ]
+          },
+          {
+            "date": "2023-07-07",
+            "label": "El Pleno de organización la designa titular en las comisiones informativas de Gestión Municipal y Gobierno Abierto, de Educación, Cultura, Deportes y Fiestas y de Inclusión Social, Igualdad, Promoción de la Salud y Bienestar Animal",
+            "sourceIds": [
+              "src-131",
+              "src-135",
+              "src-136"
+            ]
+          },
+          {
+            "date": "2023-11-15",
+            "label": "Levante-EMV informa de la aprobación en pleno del I Plan Abolicionista Municipal, impulsado por el gobierno del PSPV; el reparto de votos sólo consta por prensa",
+            "sourceIds": [
+              "src-122"
+            ]
+          },
+          {
+            "date": "2023-12-14",
+            "label": "El plan abolicionista figura entre los premiados del VIII Concurso de Buenas Prácticas Locales contra la Violencia sobre las Mujeres (Delegación del Gobierno contra la Violencia de Género y FEMP)",
+            "sourceIds": [
+              "src-105",
+              "src-106"
+            ]
+          },
+          {
+            "date": "2024-05-06",
+            "label": "El Pleno aprueba inicialmente la ordenanza municipal abolicionista de la prostitución y la explotación sexual (14 votos a favor, 7 abstenciones del PP)",
+            "sourceIds": [
+              "src-134"
+            ]
+          },
+          {
+            "date": "2025-01-10",
+            "label": "Europa Press informa de la aprobación de la ordenanza abolicionista, con sanciones de hasta 3.000 euros",
+            "sourceIds": [
+              "src-127"
+            ]
+          },
+          {
+            "date": "2025-02-02",
+            "label": "Vocal de la Comisión de Ética del PSPV-PSOE, según Valencia Plaza y la web del partido",
+            "sourceIds": [
+              "src-103",
+              "src-104"
+            ]
+          },
+          {
+            "date": "2025-04-11",
+            "label": "La Resolución de Alcaldía 1314/2025 reordena las áreas de gestión tras la DANA y reproduce su delegación sin cambios (BOP n.º 78, 25-04-2025)",
+            "sourceIds": [
+              "src-102"
+            ]
+          },
+          {
+            "date": "2025-06-27",
+            "label": "Participa en la Junta Local de Seguridad que aprueba el Plan Local de Seguridad, la primera tras la DANA",
+            "sourceIds": [
+              "src-120"
+            ]
+          },
+          {
+            "date": "2025-11-19",
+            "label": "Preside la Mesa Multidisciplinar de Igualdad en su sesión constitutiva",
+            "sourceIds": [
+              "src-121"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "relationships",
+      "payload": {
+        "nodes": [
+          {
+            "id": "n1",
+            "label": "Raquel Pamblanco Paredes",
+            "tone": "civic",
+            "kind": "person"
+          },
+          {
+            "id": "n2",
+            "label": "PSOE (PSPV-PSOE)",
+            "tone": "civic",
+            "kind": "party"
+          },
+          {
+            "id": "n3",
+            "label": "Fernando Tejera",
+            "tone": "neutral",
+            "kind": "person"
+          },
+          {
+            "id": "n5",
+            "label": "Roberto Raga (alcalde)",
+            "tone": "civic",
+            "kind": "person"
+          }
+        ],
+        "edges": [
+          {
+            "from": "n1",
+            "to": "n2",
+            "relation": "Concejala del grupo municipal",
+            "sourceIds": [
+              "src-001"
+            ]
+          },
+          {
+            "from": "n1",
+            "to": "n3",
+            "relation": "responsable técnico (intendente) del programa de Policía Local que ella lidera, según la documentación de programas",
+            "sourceIds": [
+              "src-022"
+            ]
+          },
+          {
+            "from": "n5",
+            "to": "n1",
+            "relation": "le delegó Seguridad y emergencias, Igualdad, Comunicación e información y Bienestar Animal (Resolución 2513/2023, 17-06-2023; reproducida sin cambios por la 1314/2025)",
+            "sourceIds": [
+              "src-068",
+              "src-138",
+              "src-102"
+            ]
+          },
+          {
+            "from": "n1",
+            "to": "n2",
+            "relation": "vocal de la Comisión de Ética del PSPV-PSOE (desde febrero de 2025)",
+            "sourceIds": [
+              "src-103",
+              "src-104"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "promise-board",
+      "payload": {
+        "promiseIds": [
+          "psoe-presupuesto-2026-46m",
+          "psoe-refugios-climaticos-2026",
+          "psoe-reconstruccion-dana-9-5m",
+          "psoe-vivienda-900-hogares",
+          "psoe-construccion-vivienda-2026-2029",
+          "psoe-pasarelas-parc-natural-turia",
+          "psoe-espai-obert-presupuesto",
+          "psoe-metro-l9-agosto",
+          "psoe-respuesta-quejas-sector-14-48h",
+          "psoe-reduce-concejales-dedicacion-exclusiva",
+          "ac-psoe-1cbkzxt",
+          "ac-psoe-1v0679f",
+          "ac-psoe-jfg7bc",
+          "ac-psoe-1ah9zqk",
+          "ac-psoe-pl3lsq",
+          "ac-psoe-ppa53a",
+          "ac-psoe-1m04lfw",
+          "ac-psoe-sysee8"
+        ]
+      }
+    },
+    {
+      "kind": "quote-card",
+      "payload": {
+        "verbatim": "Se delegan en la Concejal Dª Raquel Pamblanco, las competencias que al Alcalde le corresponden en materia de Seguridad y emergencias, Igualdad, Comunicación e información y Bienestar Animal.",
+        "attributedTo": "Resolución de Alcaldía 2513/2023 (áreas de gestión 2023-2027), transcrita en el acta del Pleno de 07-07-2023",
+        "date": "2023-06-17",
+        "sourceId": "src-068"
+      }
+    },
+    {
+      "kind": "quote-card",
+      "payload": {
+        "verbatim": "Antes del verano hubo dos ahogamientos en el parque natural a la altura de Manises; por eso queremos concienciar de que es peligroso incluso acercarse al parque natural, especialmente con personas vulnerables",
+        "attributedTo": "Raquel Pamblanco, a Europa Press Televisión (recogido por Cadena SER — Radio València)",
+        "date": "2025-08-13",
+        "sourceId": "src-124"
+      }
+    },
+    {
+      "kind": "quote-card",
+      "payload": {
+        "verbatim": "Plan abolicionista de la prostitución municipal. Ayuntamiento de Riba-Roja de Túria (Valencia)",
+        "attributedTo": "Delegación del Gobierno contra la Violencia de Género — VIII Concurso de Buenas Prácticas Locales contra la Violencia sobre las Mujeres (2023), entidades premiadas",
+        "date": "2023-12-14",
+        "sourceId": "src-105"
+      }
+    },
+    {
+      "kind": "gaps-detected",
+      "payload": {
+        "missing": [
+          {
+            "field": "Identidad y formación",
+            "reason": "La fecha y el lugar de nacimiento y los estudios declarados constan únicamente en el CV autodeclarado publicado en la ficha de transparencia; sin corroboración independiente localizada."
+          },
+          {
+            "field": "Actividades declaradas y compatibilidad",
+            "reason": "Su declaración estatutaria (2023) consigna «FVMP y autónoma VORWERK KOBOLD» junto a la dedicación exclusiva fijada el 07-07-2023. En los snapshots consultados no consta resolución de compatibilidad ni fechas de cese; este medio no afirma irregularidad — señala la ausencia de datos. Las actas de pleno de 2023 a 2026 y el Boletín Oficial de la Provincia del mismo periodo, releídos el 07-09-2026, no recogen resolución de compatibilidad ni de cese que la nombre."
+          },
+          {
+            "field": "Vínculos societarios y personales",
+            "reason": "El Boletín Oficial del Registro Mercantil de València (2009–2026) se barrió el 07-09-2026 del expediente a la persona: ninguna sociedad adjudicataria del Ayuntamiento con actividad registral tiene entre sus cargos a la concejala y sus dos apellidos no aparecen juntos en ningún anuncio. Las comprobaciones nominales en contratación (804 expedientes de contratación en julio de 2026, adjudicados o no, incluidas sus empleadoras declaradas) no arrojaron coincidencia alguna. Las relaciones personales no constan en fuentes públicas y no se investigan sin expediente que las nombre."
+          },
+          {
+            "field": "Delegación de Protocolo",
+            "reason": "El registro municipal de cargos añade Protocolo a sus delegaciones, pero ninguna resolución publicada en el BOP la incluye: la Resolución de Alcaldía 1314/2025, de 11 de abril, reproduce las cuatro materias de junio de 2023. Este medio no ha localizado la resolución que amplió la delegación ni su fecha."
+          },
+          {
+            "field": "Acta del pleno de noviembre de 2023 (I Plan Abolicionista)",
+            "reason": "El portal municipal no publica el acta de la sesión en que se aprobó el I Plan Abolicionista Municipal; el reparto de votos se publica atribuido a Levante-EMV (15-11-2023) y al propio Ayuntamiento vía Europa Press (10-01-2025), y el de la ordenanza consta en el acta de 06-05-2024."
+          }
+        ]
+      }
+    }
+  ],
+  "requiresHumanApproval": true
+}
