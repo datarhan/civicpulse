@@ -99,13 +99,20 @@ export default function GastoDashboard() {
   const span = yearMin && yearMax ? `${yearMin}–${yearMax}` : null
   const nEjercicios = span ? Number(yearMax) - Number(yearMin) + 1 : null
   const totalUniverso = tg.universe?.totalAmount || 0
+  const nContratos = tg.universe?.totalContracts || 0
   const eurM = (n) =>
     `${(n / 1e6).toLocaleString('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} M€`
 
   return (
     <Card>
+      {/* El rótulo dice de QUÉ conjunto habla la sección y de dónde sale, no
+          que hay un mapa —eso ya se ve—. «Mapa de lo adjudicado» repetía el
+          «adjudicado sin IVA» de la cifra de al lado y no añadía un solo dato:
+          ni cuántos contratos, ni de dónde vienen. El recuento sale del mismo
+          universo que el importe de la derecha, así que rótulo y cifra no
+          pueden describir conjuntos distintos. */}
       <SectionHead
-        eyebrow={`Mapa de lo adjudicado · contratos comprometidos${span ? ` ${span}` : ''}`}
+        eyebrow={`Contratación municipal · ${nContratos ? `${nContratos.toLocaleString('es-ES')} contratos · ` : ''}${span ? `${span} · ` : ''}Gobierto/PLACSP`}
         title="¿A dónde va el dinero en contratos?"
         right={
           totalUniverso > 0 ? (

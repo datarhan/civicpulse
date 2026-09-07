@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { ExtLink, Pill } from '../Primitives'
 import { STATUS_LABEL, STATUS_TONE } from '../../hooks/useTenders'
 import { fmtDateShort } from '../../lib/formatters'
@@ -11,8 +11,17 @@ const fmtEur = (n) =>
     maximumFractionDigits: 0,
   }).format(n)
 
-/** Cuántas filas se pintan. El recuento de arriba habla del conjunto ENTERO. */
-const MAX_FILAS = 60
+/**
+ * Cuántas filas se pintan por página. El recuento de arriba habla del conjunto
+ * ENTERO, no de la página.
+ *
+ * Eran sesenta de una vez, y esa lista sola medía ~2.500 px: la tarjeta del
+ * mapa acababa a 6.200 px del principio de la página y empujaba el
+ * endeudamiento y la contratación tan abajo que nadie llegaba. Un listado que
+ * entierra a las secciones siguientes no está enseñando más, está escondiendo
+ * lo que viene detrás.
+ */
+const POR_PAGINA = 10
 
 const INP = {
   fontSize: 'var(--fs-meta)',
@@ -21,6 +30,27 @@ const INP = {
   borderRadius: 'var(--r-input)',
   background: 'var(--paper)',
   color: 'var(--ink)',
+}
+
+/** Un paso de página. Deshabilitado en los extremos, y se NOTA que lo está. */
+function PasoPagina({ children, onClick, disabled, label }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={disabled}
+      aria-label={label}
+      style={{
+        ...INP,
+        cursor: disabled ? 'default' : 'pointer',
+        opacity: disabled ? 0.4 : 1,
+        fontWeight: 600,
+        lineHeight: 1.2,
+      }}
+    >
+      {children}
+    </button>
+  )
 }
 
 export default function ContractsExplorer({ contracts, snapshot }) {
@@ -40,8 +70,20 @@ export default function ContractsExplorer({ contracts, snapshot }) {
     () => filterContracts(contracts, { text, zoneSlug, type, dana }, assignmentsById),
     [contracts, text, zoneSlug, type, dana, assignmentsById],
   )
-  const rows = useMemo(() => matched.slice(0, MAX_FILAS), [matched])
   const resumen = useMemo(() => contractsListSummary(matched), [matched])
+  const [paginaPedida, setPagina] = useState(1)
+
+  // Un filtro nuevo empieza por el principio. Sin esto, buscar algo estando en
+  // la página cinco deja al lector a mitad de un listado que acaba de cambiar.
+  useEffect(() => setPagina(1), [text, zoneSlug, type, dana])
+
+  const paginas = Math.max(1, Math.ceil(matched.length / POR_PAGINA))
+  // La página se ACOTA al renderizar, no sólo al pulsar: un refresco nocturno
+  // puede dejar menos filas sin que nadie toque un filtro, y «página 7 de 2»
+  // es una lista vacía con toda la pinta de un fallo de datos.
+  const pagina = Math.min(Math.max(1, paginaPedida), paginas)
+  const desde = (pagina - 1) * POR_PAGINA
+  const rows = useMemo(() => matched.slice(desde, desde + POR_PAGINA), [matched, desde])
   const zones = snapshot?.zones || []
   return (
     <div>
@@ -83,12 +125,14 @@ export default function ContractsExplorer({ contracts, snapshot }) {
         </label>
       </div>
       <div style={{ marginBottom: 8, lineHeight: 1.5 }}>
-        <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink70)' }}>
+        <div data-recuento="" style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink70)' }}>
           <span className="mono" style={{ color: 'var(--ink)', fontWeight: 700 }}>
             {resumen.total}
           </span>{' '}
           resultado{resumen.total === 1 ? '' : 's'}
-          {resumen.total > rows.length ? ` · se muestran los ${rows.length} primeros` : ''}
+          {paginas > 1
+            ? ` · ${desde + 1}–${desde + rows.length}, página ${pagina} de ${paginas}`
+            : ''}
         </div>
         {resumen.rest > 0 && (
           <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
@@ -109,19 +153,14 @@ export default function ContractsExplorer({ contracts, snapshot }) {
       {rows.map((c) => (
         <div
           key={c.id}
+          // La rejilla vive en `index.css` (`.cp-contrato-fila`): necesita un
+          // punto de ruptura para partirse en el móvil, y una @media no cabe
+          // en el prop `style`. Allí está también por qué la columna de estado
+          // se dimensiona a su contenido y no a 90 px.
+          className="cp-contrato-fila"
           style={{
-            display: 'grid',
-            // La columna de estado se dimensiona a SU CONTENIDO, no a 90 px.
-            // Un ancho fijo lo fija la fuente, y la fuente puede no llegar: con
-            // DM Mono bloqueada —CI, o cualquier lector antes de que cargue la
-            // webfont— «Formalizado» mide más de 90 px y 29 pastillas de 60 se
-            // salían encima del importe. Medido en CI, verde en local, que es
-            // por qué la prueba de 375 px bloquea la fuente a propósito.
-            gridTemplateColumns: '1fr 100px auto',
-            gap: 10,
             padding: '8px 0',
             borderBottom: '1px solid var(--border2)',
-            alignItems: 'center',
             fontSize: 'var(--fs-meta)',
           }}
         >
@@ -143,6 +182,44 @@ export default function ContractsExplorer({ contracts, snapshot }) {
           </span>
         </div>
       ))}
+      {paginas > 1 && (
+        <nav
+          aria-label="Paginación del listado de contratos"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 10,
+            flexWrap: 'wrap',
+            paddingTop: 12,
+          }}
+        >
+          <PasoPagina
+            onClick={() => setPagina(pagina - 1)}
+            disabled={pagina <= 1}
+            label="Página anterior"
+          >
+            ← Anterior
+          </PasoPagina>
+          {/* `aria-live` porque al cambiar de página no se mueve el foco: sin
+              esto, quien usa lector de pantalla pulsa «siguiente» y no se
+              entera de que la lista ha cambiado debajo. */}
+          <span
+            className="mono"
+            aria-live="polite"
+            style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink70)' }}
+          >
+            {pagina} / {paginas}
+          </span>
+          <PasoPagina
+            onClick={() => setPagina(pagina + 1)}
+            disabled={pagina >= paginas}
+            label="Página siguiente"
+          >
+            Siguiente →
+          </PasoPagina>
+        </nav>
+      )}
     </div>
   )
 }

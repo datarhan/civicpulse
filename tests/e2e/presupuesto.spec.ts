@@ -135,8 +135,65 @@ test.describe('Presupuesto (/presupuesto)', () => {
     const pintadas = visto.etiquetas.length
     expect(total).toBeGreaterThanOrEqual(pintadas)
     expect(total, 'el contador vuelve a medirse después del corte').toBeGreaterThan(60)
-    await expect(panel).toContainText(/se muestran los \d+ primeros/)
+    await expect(panel).toContainText(/página \d+ de \d+/)
     await expect(panel).toContainText(/son dinero comprometido \(adjudicado o formalizado\)/)
+  })
+
+  test('el listado pagina de diez en diez, y el recuento sigue hablando del conjunto', async ({
+    page,
+  }) => {
+    // Sesenta filas de una vez medían ~2.500 px y empujaban el endeudamiento y
+    // la contratación a 6.200 px del principio: un listado que entierra las
+    // secciones siguientes esconde más de lo que enseña.
+    await page.goto('/presupuesto', { waitUntil: 'domcontentloaded' })
+    await esperaPastillas(page)
+    const panel = page.locator('[role="tabpanel"]')
+
+    const filas = () =>
+      page.evaluate(() => {
+        const p = document.querySelector('[role="tabpanel"]')
+        const pills = [...(p?.querySelectorAll('span') ?? [])].filter(
+          (s) => getComputedStyle(s).display === 'inline-flex',
+        )
+        return {
+          n: pills.length,
+          // El primer título de la lista identifica la página que se está viendo.
+          primero: (p?.querySelector('a[target="_blank"]')?.textContent ?? '').trim(),
+          // La línea del recuento por su propio gancho, no un recorte del panel:
+          // el texto plano arrastra las opciones de los dos desplegables —doce
+          // zonas y cuatro tipos— y se comía el número de página.
+          texto: (p?.querySelector('[data-recuento]')?.textContent ?? '').trim(),
+        }
+      })
+
+    const p1 = await filas()
+    // Diez por página, no sesenta.
+    expect(p1.n, 'la primera página no trae diez filas').toBe(10)
+    const total = Number(p1.texto.match(/(\d+)\s+resultados/)?.[1])
+    // El recuento habla del CONJUNTO, no de la página: es el defecto que este
+    // contador ya tuvo una vez, medido después del corte.
+    expect(total).toBeGreaterThan(100)
+    expect(p1.texto).toMatch(/1–10, página 1 de \d+/)
+
+    // «Anterior» está deshabilitado en la primera página, y lo está de verdad.
+    const anterior = page.getByRole('button', { name: 'Página anterior' })
+    const siguiente = page.getByRole('button', { name: 'Página siguiente' })
+    await expect(anterior).toBeDisabled()
+    await expect(siguiente).toBeEnabled()
+
+    await siguiente.click()
+    const p2 = await filas()
+    expect(p2.n, 'la segunda página no trae diez filas').toBe(10)
+    expect(p2.texto).toMatch(/11–20, página 2 de \d+/)
+    // Y trae OTRAS filas: una paginación que repite la página no pagina.
+    expect(p2.primero).not.toBe(p1.primero)
+    expect(p2.primero.length).toBeGreaterThan(0)
+    await expect(anterior).toBeEnabled()
+
+    // Filtrar vuelve al principio, en vez de dejar al lector en mitad de un
+    // listado que acaba de cambiar debajo.
+    await page.getByPlaceholder('Buscar contrato o empresa…').fill('obras')
+    await expect(panel).toContainText(/página 1 de \d+/)
   })
 
   test('a 375 px y en densidad espaciada, nada se sale de la fila', async ({ page }) => {
