@@ -501,10 +501,10 @@ export const CATALOGUE = {
     'presupuesto.contra.eyebrow': 'Contratación · con este dinero',
     'presupuesto.contra.title': 'Lo que se adjudica con este dinero',
     'presupuesto.contra.intro':
-      'El presupuesto es lo que se aprueba y se ejecuta; esto es en qué se convierte. Cuatro recuentos, **medidos sobre los contratos adjudicados y sin IVA** con los mismos predicados que las fichas de abajo, y cada uno abre la suya.',
+      'El presupuesto se aprueba y se ejecuta cada año; la contratación se acumula a lo largo de varios ejercicios. Así que **estos cuatro recuentos no son el reparto del presupuesto de arriba**: cada uno lleva el periodo que abarca. Van **medidos sobre los contratos adjudicados y sin IVA**, con los mismos predicados que las fichas de abajo, y cada uno abre la suya.',
     'presupuesto.contra.menores': 'Contratos menores',
     'presupuesto.contra.menores.nota':
-      'de {adj} adjudicados · {importe} sin IVA: el {pctN} % de los expedientes y el {pctImporte} % del importe',
+      'de {adj} adjudicados{span} · {importe} sin IVA: el {pctN} % de los expedientes y el {pctImporte} % del importe',
     'presupuesto.contra.menores.link': 'Vía directa ↓',
     'presupuesto.contra.obras': 'Obras publicadas',
     'presupuesto.contra.obras.nota':
@@ -516,7 +516,7 @@ export const CATALOGUE = {
     'presupuesto.contra.ted.link': 'Anuncios ↓',
     'presupuesto.contra.bdns': 'Subvenciones · BDNS',
     'presupuesto.contra.bdns.nota':
-      'convocatorias municipales en la Base Nacional · {total} en total, contando las recibidas',
+      'convocatorias municipales en la Base Nacional{span} · {total} en total, contando las recibidas',
     'presupuesto.contra.bdns.link': 'Convocatorias ↓',
     'presupuesto.pie.fuentes.a': 'Fuentes: presupuesto aprobado de ',
     'presupuesto.pie.fuentes.conprel': 'CONPREL, Ministerio de Hacienda ↗',
@@ -1268,10 +1268,10 @@ export const CATALOGUE = {
     'presupuesto.contra.eyebrow': 'Contractació · amb estos diners',
     'presupuesto.contra.title': "El que s'adjudica amb estos diners",
     'presupuesto.contra.intro':
-      "El pressupost és el que s'aprova i s'executa; això és en què es convertix. Quatre recomptes, **mesurats sobre els contractes adjudicats i sense IVA** amb els mateixos predicats que les fitxes de baix, i cadascun obri la seua.",
+      "El pressupost s'aprova i s'executa cada any; la contractació s'acumula al llarg de diversos exercicis. Així que **estos quatre recomptes no són el repartiment del pressupost de dalt**: cadascun porta el període que abasta. Van **mesurats sobre els contractes adjudicats i sense IVA**, amb els mateixos predicats que les fitxes de baix, i cadascun obri la seua.",
     'presupuesto.contra.menores': 'Contractes menors',
     'presupuesto.contra.menores.nota':
-      "de {adj} adjudicats · {importe} sense IVA: el {pctN} % dels expedients i el {pctImporte} % de l'import",
+      "de {adj} adjudicats{span} · {importe} sense IVA: el {pctN} % dels expedients i el {pctImporte} % de l'import",
     'presupuesto.contra.menores.link': 'Via directa ↓',
     'presupuesto.contra.obras': 'Obres publicades',
     'presupuesto.contra.obras.nota':
@@ -1283,7 +1283,7 @@ export const CATALOGUE = {
     'presupuesto.contra.ted.link': 'Anuncis ↓',
     'presupuesto.contra.bdns': 'Subvencions · BDNS',
     'presupuesto.contra.bdns.nota':
-      'convocatòries municipals en la Base Nacional · {total} en total, comptant les rebudes',
+      'convocatòries municipals en la Base Nacional{span} · {total} en total, comptant les rebudes',
     'presupuesto.contra.bdns.link': 'Convocatòries ↓',
     'presupuesto.pie.fuentes.a': 'Fonts: pressupost aprovat de ',
     'presupuesto.pie.fuentes.conprel': "CONPREL, Ministeri d'Hisenda ↗",

@@ -23,7 +23,7 @@ import {
   tendenciaDeuda,
   capitulosACero,
 } from '../scraper/presupuesto-lectura'
-import { isCommittedContract } from '../lib/contract-status'
+import { isCommittedContract, committedAwardYearSpan } from '../lib/contract-status'
 import { fmtDateShort, fmtDateLong } from '../lib/formatters'
 import { yearSpan } from '../lib/year-span'
 import { EFICIENCIA_ENABLED } from '../flags'
@@ -1241,6 +1241,27 @@ function ContratacionBanda() {
 
   const obras = obrasData?.obras ?? []
   const renove = obras.filter((o) => o.programa === 'renove').length
+  // Cada recuento dice EL PERIODO QUE ABARCA, derivado de sus propias filas.
+  // Sin él, cuatro cifras acumuladas sobre varios ejercicios se leen como el
+  // reparto del presupuesto anual que hay tres pantallas más arriba — que es
+  // exactamente lo que la revisión lectora señaló de la frase de entrada.
+  //
+  // Las obras NO llevan periodo, y es a propósito: sólo las siete del Plan
+  // RENOVE traen `fechaEjecucion`; las siete del FEDER la traen a `null`. Un
+  // `yearSpan` sobre esa columna devuelve 2023–2024 con toda la confianza del
+  // mundo, y eso describiría la MITAD de las fichas que la tarjeta cuenta.
+  // Es la regla de `year-span.js` —el periodo se mide sobre exactamente las
+  // filas que la cifra cuenta— con el error del lado corto. Las otras tres
+  // fechan el 99,3 %, el 100 % y el 100 % de sus filas.
+  const spanBdns = yearSpan(
+    (bdns?.items ?? []).filter((i) => i.direction === 'granted').map((i) => i.date),
+  )
+  const rangoMenores = committedAwardYearSpan(contratos)
+  const spanMenores = rangoMenores
+    ? rangoMenores.from === rangoMenores.to
+      ? String(rangoMenores.from)
+      : `${rangoMenores.from}–${rangoMenores.to}`
+    : null
 
   const anuncios = ted?.items ?? []
   const valorados = anuncios.filter((i) => i.totalValueEur)
@@ -1259,6 +1280,7 @@ function ContratacionBanda() {
       eyebrow: t('presupuesto.contra.menores'),
       cifra: num(r.n),
       nota: rellena(t('presupuesto.contra.menores.nota'), {
+        span: spanMenores ? ` ${spanMenores}` : '',
         adj: num(adjudicados.length),
         importe: eurM(r.importeSinIva, 2),
         pctN: pct0((r.n / adjudicados.length) * 100),
@@ -1301,7 +1323,10 @@ function ContratacionBanda() {
       href: '#subvenciones',
       eyebrow: t('presupuesto.contra.bdns'),
       cifra: num(bdns.stats.granted),
-      nota: rellena(t('presupuesto.contra.bdns.nota'), { total: num(bdns.stats.total) }),
+      nota: rellena(t('presupuesto.contra.bdns.nota'), {
+        span: spanBdns ? ` ${spanBdns}` : '',
+        total: num(bdns.stats.total),
+      }),
       enlace: t('presupuesto.contra.bdns.link'),
     })
   }

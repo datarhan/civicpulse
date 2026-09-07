@@ -111,7 +111,15 @@ export default function GastoDashboard() {
           borderRadius: 'var(--r-input)',
         }}
       >
-        El total de arriba es <strong>todo el gasto en contratos, no solo obras</strong>:
+        {/* «lo adjudicado», no «el gasto». La cifra de arriba se rotula
+            «adjudicado sin IVA» y el eyebrow dice «contratos comprometidos»,
+            así que llamarla gasto contradecía a la tarjeta dentro de la misma
+            tarjeta: un contrato adjudicado no es dinero desembolsado, y el
+            mayor de todos —una concesión de 55,69 M€— se adjudica de una vez
+            por todo su plazo. Es la misma corrección que ya se hizo en la
+            portada (`tests/i18n-dinero-adjudicado.test.ts`), y la señaló la
+            revisión lectora del push que renombró el rótulo. */}
+        El total de arriba es <strong>todo lo adjudicado en contratos, no solo obras</strong>:
         {obrasPct != null ? ` las obras son el ${pct0(obrasPct)} %` : ' el grueso'} y el resto son
         servicios de ámbito municipal, suministros y otros —el desglose completo está en «Tipos de
         gasto».
