@@ -254,3 +254,107 @@ export function capitulosACero<T extends { code: string; label: string; amount: 
 ): T[] {
   return (capitulos ?? []).filter((c) => num(c.amount) === 0)
 }
+
+export interface MagnitudDelEjercicio {
+  /** La cifra que representa el ejercicio en una sola celda. */
+  valor: number
+  /** Qué es esa cifra: el crédito tras modificaciones, o el aprobado. */
+  etapa: 'definitivo' | 'aprobado'
+  /** De quién es. Nunca se mezclan en una misma celda. */
+  fuente: 'municipal' | 'conprel'
+  year: number
+  /** Obligaciones reconocidas, cuando la fuente las trae. */
+  ejecutado: number | null
+  pctEjecutado: number | null
+  /**
+   * El capítulo 1, de LA MISMA fuente y sobre el MISMO total.
+   *
+   * Va aquí, y no en una segunda función, porque la portada pinta las dos
+   * cifras en celdas contiguas: «€62,1M» y «€20,3M · 49 %». Ese 49 % era el
+   * capítulo de CONPREL sobre el total de CONPREL —correcto por su cuenta— y
+   * bajo un total municipal invitaba a una división que da 33 %. Devolviendo
+   * las dos de la misma rama, divergir es imposible; con dos funciones, sólo
+   * improbable.
+   */
+  personal: { valor: number; pct: number } | null
+}
+
+/**
+ * Qué cifra representa el ejercicio cuando sólo cabe UNA.
+ *
+ * La portada publicaba los 41,58 M€ que el ayuntamiento rinde a CONPREL como
+ * «el presupuesto», y de las cuatro magnitudes del año es la menos
+ * informativa: el consistorio abrió con 37,60 M€, acabó autorizado a gastar
+ * 62,12 M€ —un 49 % más— y reconoció obligaciones por 18,91 M€. Un lector que
+ * lee «presupuesto 2025 · 41,58 M€» se lleva una idea del tamaño del
+ * ayuntamiento que se queda a un tercio de lo que el propio ayuntamiento
+ * declara haber podido gastar. Lo señaló la revisión lectora tres veces
+ * seguidas, y rotularlo mejor no lo arreglaba: el defecto estaba en la
+ * elección de la cifra, no en su etiqueta.
+ *
+ * Así que cuando el estado de ejecución cubre el MISMO ejercicio, la cifra es
+ * el crédito definitivo; si no, el aprobado de CONPREL. Las dos salen
+ * etiquetadas con su etapa y su fuente, porque este sitio publica dos
+ * contabilidades que no se reconcilian y ninguna celda puede sugerir que sí.
+ *
+ * La puerta del año no es una formalidad: etiquetar el definitivo de 2024 como
+ * el de 2025 fabricaría una cifra, que es peor que publicar la menos
+ * informativa de las verdaderas.
+ *
+ * Vive aquí y no en cada componente para que la tira de indicadores y la
+ * columna editorial no puedan contar cosas distintas del mismo año — que es
+ * exactamente lo que pasaba mientras cada una escribía su propia frase.
+ */
+export function magnitudDelEjercicio(
+  conprel:
+    | {
+        year?: number
+        totalExpense?: number
+        expenseByEconomicChapter?: { code?: string; amount?: number }[]
+      }
+    | null
+    | undefined,
+  ejecucion:
+    | {
+        year?: number
+        gastos?: {
+          total?: Partial<TotalEjecucion>
+          chapters?: { capitulo?: number; actual?: number }[]
+        }
+      }
+    | null
+    | undefined,
+): MagnitudDelEjercicio | null {
+  const year = conprel?.year
+  if (!year) return null
+  const cuota = (valor: number, sobre: number) =>
+    valor > 0 && sobre > 0 ? { valor, pct: (valor / sobre) * 100 } : null
+
+  const total = ejecucion?.gastos?.total
+  const definitivo = num(total?.actual)
+  if (ejecucion?.year === year && definitivo > 0) {
+    const ejecutado = num(total?.ejecutado)
+    const cap1 = (ejecucion?.gastos?.chapters ?? []).find((c) => c?.capitulo === 1)
+    return {
+      valor: definitivo,
+      etapa: 'definitivo',
+      fuente: 'municipal',
+      year,
+      ejecutado,
+      pctEjecutado: (ejecutado / definitivo) * 100,
+      personal: cuota(num(cap1?.actual), definitivo),
+    }
+  }
+  const aprobado = num(conprel?.totalExpense)
+  if (aprobado <= 0) return null
+  const cap1 = (conprel?.expenseByEconomicChapter ?? []).find((c) => String(c?.code) === '1')
+  return {
+    valor: aprobado,
+    etapa: 'aprobado',
+    fuente: 'conprel',
+    year,
+    ejecutado: null,
+    pctEjecutado: null,
+    personal: cuota(num(cap1?.amount), aprobado),
+  }
+}

@@ -31,6 +31,7 @@ import {
   tendenciaDeuda,
   rotuloCapitulo,
   capitulosACero,
+  magnitudDelEjercicio,
 } from '../src/scraper/presupuesto-lectura'
 
 const ROOT = join(__dirname, '..')
@@ -222,5 +223,96 @@ describe('capitulosACero · lo aprobado a cero se deja dicho, no se omite', () =
 
   it('un capítulo con importe nunca aparece', () => {
     expect(capitulosACero([{ code: '1', label: 'A', amount: 1 }])).toEqual([])
+  })
+})
+
+describe('magnitudDelEjercicio · qué cifra representa el año en una sola celda', () => {
+  it('con el listado municipal del mismo ejercicio, el crédito DEFINITIVO', () => {
+    // La portada publicaba los 41,58 M€ de CONPREL como «el presupuesto», y es
+    // la menos informativa de las cuatro magnitudes del año: el ayuntamiento
+    // acabó autorizado a gastar 62,12 M€, un 49 % más. Una sola cifra que
+    // represente el ejercicio tiene que ser la que dice cuánto se pudo gastar.
+    const m = magnitudDelEjercicio(budget.snapshot, ejecucion.latest)!
+    expect(m).not.toBeNull()
+    expect(m.etapa).toBe('definitivo')
+    expect(m.fuente).toBe('municipal')
+    expect(m.valor).toBe(ejecucion.latest.gastos.total.actual)
+    expect(m.year).toBe(budget.snapshot.year)
+    expect(m.ejecutado).toBe(ejecucion.latest.gastos.total.ejecutado)
+    expect(m.pctEjecutado).toBeCloseTo(
+      (ejecucion.latest.gastos.total.ejecutado / ejecucion.latest.gastos.total.actual) * 100,
+      6,
+    )
+    // Y es MAYOR que la cifra que se publicaba: si no lo fuera, el cambio no
+    // arreglaría nada.
+    expect(m.valor).toBeGreaterThan(budget.snapshot.totalExpense)
+  })
+
+  it('sin listado municipal, el aprobado de CONPREL, y lo dice', () => {
+    const m = magnitudDelEjercicio(budget.snapshot, null)!
+    expect(m.etapa).toBe('aprobado')
+    expect(m.fuente).toBe('conprel')
+    expect(m.valor).toBe(budget.snapshot.totalExpense)
+    // Sin ejecución no se inventa un porcentaje.
+    expect(m.ejecutado).toBeNull()
+    expect(m.pctEjecutado).toBeNull()
+  })
+
+  it('NO mezcla ejercicios: un listado de otro año no gobierna este titular', () => {
+    // Etiquetar el crédito definitivo de 2024 como el de 2025 sería fabricar
+    // una cifra, que es peor que publicar la menos informativa.
+    const otroAnio = { ...ejecucion.latest, year: budget.snapshot.year - 1 }
+    const m = magnitudDelEjercicio(budget.snapshot, otroAnio)!
+    expect(m.etapa).toBe('aprobado')
+    expect(m.fuente).toBe('conprel')
+  })
+
+  it('un definitivo a cero no desplaza al aprobado', () => {
+    const vacio = {
+      year: budget.snapshot.year,
+      gastos: { total: { inicial: 0, modificaciones: 0, actual: 0, ejecutado: 0 } },
+    }
+    expect(magnitudDelEjercicio(budget.snapshot, vacio)!.etapa).toBe('aprobado')
+  })
+
+  it('el capítulo de personal sale de la MISMA fuente que el total', () => {
+    // Dos celdas contiguas de la portada: «€62,1M» arriba y «€20,3M · 49 %»
+    // debajo. El 49 % era el capítulo 1 de CONPREL sobre el total de CONPREL,
+    // correcto por su cuenta y absurdo bajo un total municipal —un lector que
+    // divide obtiene 33 %—. Devolver las dos cifras de la MISMA rama hace la
+    // divergencia imposible, en vez de confiar en que dos llamantes elijan
+    // igual.
+    const m = magnitudDelEjercicio(budget.snapshot, ejecucion.latest)!
+    const cap1 = ejecucion.latest.gastos.chapters.find(
+      (c: { capitulo: number }) => c.capitulo === 1,
+    )!
+    expect(m.personal).not.toBeNull()
+    expect(m.personal!.valor).toBe(cap1.actual)
+    expect(m.personal!.pct).toBeCloseTo((cap1.actual / m.valor) * 100, 6)
+
+    // Y en la rama de CONPREL, el capítulo 1 de CONPREL sobre el total de
+    // CONPREL: la misma coherencia, la otra fuente.
+    const c = magnitudDelEjercicio(budget.snapshot, null)!
+    const conprel1 = budget.snapshot.expenseByEconomicChapter.find(
+      (x: { code: string }) => x.code === '1',
+    )!
+    expect(c.personal!.valor).toBe(conprel1.amount)
+    expect(c.personal!.pct).toBeCloseTo((conprel1.amount / c.valor) * 100, 6)
+  })
+
+  it('sin capítulo 1 en la fuente elegida, personal es null y no se toma prestado del otro lado', () => {
+    const sinCap = {
+      year: budget.snapshot.year,
+      gastos: {
+        total: { inicial: 1, modificaciones: 0, actual: 100, ejecutado: 10 },
+        chapters: [],
+      },
+    }
+    expect(magnitudDelEjercicio(budget.snapshot, sinCap)!.personal).toBeNull()
+  })
+
+  it('sin ninguna de las dos, null: la celda no publica un guion con aire de cifra', () => {
+    expect(magnitudDelEjercicio(null, null)).toBeNull()
+    expect(magnitudDelEjercicio({ year: 2025, totalExpense: 0 }, null)).toBeNull()
   })
 })

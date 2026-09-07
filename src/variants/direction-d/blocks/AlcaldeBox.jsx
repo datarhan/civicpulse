@@ -2,6 +2,8 @@ import { useOfficials, partyColor } from '../../../hooks/useOfficials'
 import { usePromises } from '../../../hooks/usePromises'
 import { usePlenoAgendas } from '../../../hooks/usePlenoAgendas'
 import { useBudget, formatEuros as formatBudgetEuros } from '../../../hooks/useBudget'
+import { useBudgetExecution } from '../../../hooks/useBudgetExecution'
+import { magnitudDelEjercicio } from '../../../scraper/presupuesto-lectura'
 import { useTenders } from '../../../hooks/useTenders'
 import { useBdns } from '../../../hooks/useBdns'
 import { isCommittedContract } from '../../../lib/contract-status'
@@ -16,6 +18,7 @@ export function AlcaldeBox() {
   const { data: promisesData } = usePromises()
   const { data: agendasData } = usePlenoAgendas()
   const { data: budgetData } = useBudget()
+  const { data: ejecucionData } = useBudgetExecution()
   const { data: tendersData } = useTenders()
   const { data: bdnsData } = useBdns()
   if (loading || error || !data) return null
@@ -26,8 +29,13 @@ export function AlcaldeBox() {
   // attributed personally to the mayor — they are the numbers of the
   // government he presides over. The strip label "Gobierno municipal ·
   // <year>" makes this explicit.
-  const budgetYear = budgetData?.snapshot?.year
-  const budgetEuros = budgetData?.snapshot?.totalExpense
+  // La misma elección que la tira de indicadores, y del mismo módulo probado,
+  // para que las dos celdas de la portada no puedan contar cosas distintas del
+  // mismo ejercicio. Aquí SÍ cabe el otro extremo: lo que se pudo gastar y lo
+  // que se gastó, que es la distinción entera de /presupuesto en una línea.
+  const magnitud = magnitudDelEjercicio(budgetData?.snapshot, ejecucionData?.latest)
+  const budgetYear = magnitud?.year ?? budgetData?.snapshot?.year
+  const budgetEuros = magnitud?.valor
   const tendersAwarded = tendersData?.stats?.awardedContracts
   const tendersEuros = tendersData?.stats?.awardedTotalEuros
   const bdnsGranted = bdnsData?.stats?.granted
@@ -237,7 +245,11 @@ export function AlcaldeBox() {
               <a
                 href="/presupuesto"
                 style={{ color: PALETTE.ink80, textDecoration: 'none' }}
-                title="Presupuesto de gastos aprobado del ejercicio, según CONPREL (Ministerio de Hacienda). No es lo ejecutado."
+                title={
+                  magnitud?.etapa === 'definitivo'
+                    ? 'Crédito definitivo del ejercicio: lo aprobado más las modificaciones de crédito, según el estado de ejecución del Ayuntamiento. Al lado, las obligaciones reconocidas.'
+                    : 'Presupuesto de gastos aprobado del ejercicio, según CONPREL (Ministerio de Hacienda). No es lo ejecutado.'
+                }
               >
                 <span style={{ fontWeight: 700 }}>{formatBudgetEuros(budgetEuros)}</span>{' '}
                 {/*
@@ -251,19 +263,28 @@ export function AlcaldeBox() {
                   cifra de al lado: el período tiene que estar donde se lee.
                 */}
                 {/*
-                  Y la ETAPA junto al período, por lo mismo. El ejercicio tiene
-                  tres cifras que se llaman «presupuesto» —crédito inicial
-                  37,6 M€, definitivo tras modificaciones 62,1 M€ y los
-                  41,58 M€ que el ayuntamiento rindió a CONPREL, que es ésta— y
-                  «presupuesto 2025» a secas no dice cuál. Lo señaló la revisión
-                  lectora cuando /presupuesto pasó a distinguir las tres: la
-                  portada se quedó siendo la superficie que usaba la palabra
-                  sola. Las dos cifras «aprobadas» no se reconcilian, y esa
-                  discrepancia se publica entera al otro lado de este enlace.
+                  La ETAPA junto al período, y el otro extremo detrás. El
+                  ejercicio tiene cuatro cifras que la prosa llama «el
+                  presupuesto» —inicial 37,6 M€, definitivo 62,1 M€, los
+                  41,58 M€ rendidos a CONPREL y 18,9 M€ reconocidos— y esta
+                  línea decía «presupuesto 2025» a secas sobre la menos
+                  informativa de todas. La revisión lectora lo señaló tres
+                  veces; las dos primeras se intentó arreglar con la etiqueta y
+                  volvió, porque lo que estaba mal era la cifra elegida.
                 */}
                 <span style={{ color: PALETTE.ink50 }}>
-                  presupuesto aprobado{budgetYear ? ` ${budgetYear}` : ''}
+                  {magnitud?.etapa === 'definitivo' ? 'crédito definitivo' : 'presupuesto aprobado'}
+                  {budgetYear ? ` ${budgetYear}` : ''}
                 </span>
+                {magnitud?.ejecutado ? (
+                  <span style={{ color: PALETTE.ink50 }}>
+                    {' · '}
+                    <span style={{ fontWeight: 700, color: PALETTE.ink80 }}>
+                      {formatBudgetEuros(magnitud.ejecutado)}
+                    </span>{' '}
+                    ejecutado
+                  </span>
+                ) : null}
               </a>
             )}
             {tendersAwarded && (

@@ -1,5 +1,7 @@
 import { usePadron } from '../../hooks/usePadron'
 import { useBudget, formatEuros as formatBudgetEuros } from '../../hooks/useBudget'
+import { useBudgetExecution } from '../../hooks/useBudgetExecution'
+import { magnitudDelEjercicio } from '../../scraper/presupuesto-lectura'
 import { useTenders } from '../../hooks/useTenders'
 import { useParo } from '../../hooks/useParo'
 import { usePlenos, PLENO_LABEL } from '../../hooks/usePlenos'
@@ -118,6 +120,7 @@ function KpiStrip() {
   const tenders = useTenders().data
   const paro = useParo().data
   const plenos = usePlenos().data
+  const ejecucion = useBudgetExecution().data
 
   const popSpark = padron?.series?.total?.slice(-10).map((p) => p.value) || null
   const popLatest = padron ? Math.round(padron.latestTotal / 100) / 10 : null
@@ -126,10 +129,23 @@ function KpiStrip() {
     ? (popDecade >= 0 ? '▲ ' : '▼ ') + Math.abs(popDecade).toFixed(1) + '%'
     : '—'
 
-  const totalExpense = budget?.snapshot?.totalExpense
-  const budgetYear = budget?.snapshot?.year
-  const budgetValue = totalExpense ? formatBudgetEuros(totalExpense, { compact: true }) : '—'
-  const balance = budget?.snapshot?.balance || 0
+  // La cifra que representa el ejercicio, ELEGIDA en un módulo probado y no
+  // aquí: el crédito definitivo cuando el estado de ejecución cubre este mismo
+  // año, y el aprobado de CONPREL si no. Publicar los 41,58 M€ del ministerio
+  // como «el presupuesto» se quedaba a un tercio de los 62,12 M€ que el propio
+  // ayuntamiento declara haber podido gastar, y la revisión lectora lo señaló
+  // tres veces: rotularlo mejor no lo arreglaba, porque el defecto estaba en la
+  // elección de la cifra. La celda dice siempre QUÉ etapa y DE QUIÉN es.
+  const magnitud = magnitudDelEjercicio(budget?.snapshot, ejecucion?.latest)
+  const budgetYear = magnitud?.year ?? budget?.snapshot?.year
+  const budgetValue = magnitud ? formatBudgetEuros(magnitud.valor, { compact: true }) : '—'
+  const budgetSub = magnitud
+    ? magnitud.etapa === 'definitivo'
+      ? `Ayto. · definitivo${
+          magnitud.pctEjecutado !== null ? ` · ${Math.round(magnitud.pctEjecutado)} % ejec.` : ''
+        }`
+      : 'CONPREL · aprobado'
+    : 'sin dato'
 
   const awardedTotal = tenders?.stats?.awardedTotalEuros
   const awardedCount = tenders?.stats?.awardedContracts
@@ -184,41 +200,35 @@ function KpiStrip() {
         spark={popSpark}
         serif
       />
-      {/* La celda nombra la ETAPA, no sólo la fuente. El ejercicio tiene tres
-          cifras que se llaman «presupuesto» —crédito inicial 37,6 M€,
-          definitivo 62,1 M€ y los 41,58 M€ que el ayuntamiento rindió a
-          CONPREL— y «Presup. 2025 · MinHac CONPREL» no decía cuál de las tres
-          es. Lo señaló la revisión lectora en el push que enseñó las tres en
-          /presupuesto: la portada era la única superficie que seguía usando la
-          palabra a secas. Las dos cifras «aprobadas» no se reconcilian, y esa
-          discrepancia vive entera en /presupuesto. */}
+      {/* Sin flecha. La que había salía de `snapshot.balance` —los 1,94 M€ que
+          el fichero del ministerio le atribuye de más a los ingresos— y se
+          pintaba ▲ en tono `ok`: un descuadre de la fuente publicado como buena
+          noticia, en la superficie más vista del sitio. Es el mismo defecto que
+          la tarjeta «Balance inicial» que este rediseño retiró de
+          /presupuesto, y una celda de indicador no tiene sitio para explicarlo.
+          El descuadre se publica donde se puede argumentar, junto a los
+          ingresos de los que sale. */}
       <Kpi
         label={budgetYear ? `Presup. ${budgetYear}` : 'Presupuesto'}
         value={budgetValue}
-        delta={budget ? (balance >= 0 ? '▲' : '▼') : '—'}
-        tone={balance >= 0 ? 'ok' : 'warn'}
-        sub="CONPREL · aprobado"
+        sub={budgetSub}
       />
       {/* «Gastos personal» leía como dinero ya pagado, y es el Cap.1 del
-          CRÉDITO del ejercicio: 20,3 M€ es el 49 % de los 41,58 M€
-          presupuestados, no de los 18,91 M€ reconocidos a 31-12. La tarjeta
-          de al lado ya dice «Presup. <año>»; ésta lo callaba. */}
+          CRÉDITO del ejercicio, no de lo reconocido a 31-12. La tarjeta de al
+          lado ya dice «Presup. <año>»; ésta lo callaba.
+
+          Y el porcentaje sale de la MISMA fuente que la celda de al lado, no de
+          otra: mientras aquélla publicaba el total de CONPREL, este 49 % era
+          coherente; en cuanto pasó a publicar el crédito definitivo municipal,
+          un lector que dividiera las dos cifras contiguas obtenía 33 % y no 49.
+          Por eso las dos vienen ahora de una sola decisión de fuente, dentro
+          de `magnitudDelEjercicio`: divergir dejó de ser posible. */}
       <Kpi
         label="Presup. personal"
         value={
-          budget?.snapshot?.expenseByEconomicChapter?.[0]?.amount
-            ? formatBudgetEuros(budget.snapshot.expenseByEconomicChapter[0].amount, {
-                compact: true,
-              })
-            : '—'
+          magnitud?.personal ? formatBudgetEuros(magnitud.personal.valor, { compact: true }) : '—'
         }
-        delta={
-          totalExpense && budget?.snapshot?.expenseByEconomicChapter?.[0]?.amount
-            ? ((budget.snapshot.expenseByEconomicChapter[0].amount / totalExpense) * 100).toFixed(
-                0,
-              ) + '%'
-            : '—'
-        }
+        delta={magnitud?.personal ? `${magnitud.personal.pct.toFixed(0)}%` : '—'}
         tone="civic"
         sub="Cap.1 económico"
       />
