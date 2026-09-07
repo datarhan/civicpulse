@@ -1185,6 +1185,35 @@ body.cp-kiosk .cp-live-container {
   }
 }
 
+/* Una fila del listado de contratos. En escritorio, tres columnas: título,
+   importe y estado. La de estado se dimensiona a SU CONTENIDO y no a 90 px —un
+   ancho fijo lo fija la fuente, y con DM Mono bloqueada «Formalizado» se salía
+   encima del importe—.
+
+   Por debajo de 720 la fila se PARTE: el título ocupa su propia línea entera y
+   el importe y la pastilla comparten la siguiente. Con las tres columnas en un
+   móvil, al título le quedaban unos 60 px y los expedientes —que son frases
+   largas: «Contrato de servicio de asistencia técnica al Ayuntamiento…»— se
+   rompían cada dos palabras en filas de más de cien píxeles de alto. No lo veía
+   ninguna prueba: la de 375 px mide DESBORDAMIENTO, y una columna estrangulada
+   no desborda, se estrangula. Va aquí y no en el `style` del JSX porque un
+   estilo inline no admite @media y además gana a la clase. */
+.cp-contrato-fila {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 100px auto;
+  gap: 10px;
+  align-items: center;
+}
+@media (max-width: 720px) {
+  .cp-contrato-fila {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 4px 10px;
+  }
+  .cp-contrato-fila > :first-child {
+    grid-column: 1 / -1;
+  }
+}
+
 /* ---- Skip link · WCAG 2.4.1 Bypass Blocks (Level A) --------------------
    Off-screen until focused, then pinned top-left. It cannot be display:none
    or visibility:hidden — that removes it from the tab order, which is the one
