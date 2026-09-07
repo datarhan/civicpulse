@@ -411,6 +411,12 @@ export const CATALOGUE = {
     'presupuesto.lede.dominante': ' Casi toda la ampliación, el {cuota} %, fue a {capitulo}.',
     'presupuesto.lede.soloAprobado':
       'El presupuesto aprobado para {year} según el Ministerio de Hacienda es de {gastos} de gastos. Lo ejecutado aparece más abajo en cuanto el Ayuntamiento publica su estado de ejecución.',
+    // Estado distinto del anterior: el listado municipal SÍ está publicado, pero
+    // su crédito definitivo no es la suma de inicial y modificaciones. Decir
+    // «en cuanto lo publique» ahí sería falso, y es justo el estado para el que
+    // se escribió `cuadra`.
+    'presupuesto.lede.sinCuadre':
+      'El presupuesto aprobado para {year} según el Ministerio de Hacienda es de {gastos} de gastos. El estado de ejecución que publica el propio Ayuntamiento no cuadra consigo mismo este ejercicio: sus cuatro magnitudes van más abajo, una a una y sin sumarlas por él.',
     'presupuesto.tres':
       'Esta página distingue en todo momento tres cosas que suelen confundirse: lo **aprobado**, lo **definitivo** tras modificaciones y lo **ejecutado**.',
     'presupuesto.tres.link': 'Cómo se leen los tres ↓',
@@ -466,6 +472,7 @@ export const CATALOGUE = {
       'El capítulo {code}, {label}, está aprobado a 0 € y por eso no tiene barra. Se deja dicho en vez de omitirlo.',
     'presupuesto.econ.ceroVarios':
       'Los capítulos {lista} están aprobados a 0 € y por eso no tienen barra. Se dejan dichos en vez de omitirlos.',
+    'presupuesto.econ.cero.y': 'y',
     'presupuesto.ing.eyebrow': 'Ingresos aprobados {year} · CONPREL · de dónde',
     'presupuesto.ing.title': 'De dónde vienen los ingresos municipales',
     'presupuesto.descuadre':
@@ -1179,6 +1186,8 @@ export const CATALOGUE = {
     'presupuesto.lede.dominante': " Quasi tota l'ampliació, el {cuota} %, va anar a {capitulo}.",
     'presupuesto.lede.soloAprobado':
       "El pressupost aprovat per a {year} segons el Ministeri d'Hisenda és de {gastos} de despeses. L'executat apareix més avall quan l'Ajuntament publica el seu estat d'execució.",
+    'presupuesto.lede.sinCuadre':
+      "El pressupost aprovat per a {year} segons el Ministeri d'Hisenda és de {gastos} de despeses. L'estat d'execució que publica el propi Ajuntament no quadra amb si mateix este exercici: les seues quatre magnituds van més avall, una a una i sense sumar-les per ell.",
     'presupuesto.tres':
       "Esta pàgina distingix en tot moment tres coses que solen confondre's: l'**aprovat**, el **definitiu** després de modificacions i l'**executat**.",
     'presupuesto.tres.link': 'Com es lligen els tres ↓',
@@ -1234,6 +1243,7 @@ export const CATALOGUE = {
       "El capítol {code}, {label}, està aprovat a 0 € i per això no té barra. Es deixa dit en compte d'ometre'l.",
     'presupuesto.econ.ceroVarios':
       "Els capítols {lista} estan aprovats a 0 € i per això no tenen barra. Es deixen dits en compte d'ometre'ls.",
+    'presupuesto.econ.cero.y': 'i',
     'presupuesto.ing.eyebrow': "Ingressos aprovats {year} · CONPREL · d'on",
     'presupuesto.ing.title': "D'on vénen els ingressos municipals",
     'presupuesto.descuadre':

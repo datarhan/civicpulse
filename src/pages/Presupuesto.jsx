@@ -68,6 +68,16 @@ const pct1 = (n) =>
 const pct0 = (n) => Math.round(n).toLocaleString('es-ES')
 const num = (n) => Number(n).toLocaleString('es-ES')
 
+/**
+ * «6, 7 y 8», no «6, 7, 8». Una lista de prosa lleva conjunción; sin ella la
+ * frase se lee como una tabla. En valencià la conjunción cambia ante sonido
+ * vocálico, así que se toma del catálogo en vez de escribirla aquí.
+ */
+function listaProsa(partes, y) {
+  if (partes.length <= 1) return partes.join('')
+  return `${partes.slice(0, -1).join(', ')} ${y} ${partes[partes.length - 1]}`
+}
+
 /** Rellena `{clave}` con su valor. Sin regex: una llave no es un patrón. */
 function rellena(plantilla, vars = {}) {
   return Object.entries(vars).reduce((s, [k, v]) => s.split(`{${k}}`).join(String(v)), plantilla)
@@ -242,7 +252,12 @@ function Cabecera() {
       )
     }
   } else {
-    lede = rellena(t('presupuesto.lede.soloAprobado'), {
+    // Dos ausencias distintas, dos frases distintas: que el listado municipal
+    // no esté publicado para este ejercicio, y que esté publicado pero no
+    // cuadre consigo mismo. La segunda es el estado para el que existe
+    // `cuadra`, y decirle al lector que la cifra «aparecerá en cuanto se
+    // publique» sería falso justo ahí.
+    lede = rellena(t(cascada ? 'presupuesto.lede.sinCuadre' : 'presupuesto.lede.soloAprobado'), {
       year: s.year,
       gastos: eurM(s.totalExpense, 2),
     })
@@ -797,6 +812,11 @@ function AprobadoPar() {
       ? contraste.desequilibrioConprel
       : null
   const aCero = capitulosACero(s.expenseByEconomicChapter)
+  // Los ingresos también tienen capítulos a cero —enajenación de inversiones y
+  // transferencias de capital, en 2025— y se caían del filtro `amount > 0` sin
+  // que nadie lo dijera, mientras la tarjeta de al lado sí lo decía de los
+  // suyos. La misma ausencia se publica igual en las dos.
+  const aCeroIng = capitulosACero(s.revenueByEconomicChapter)
 
   return (
     <div className="cp-presu-duo">
@@ -833,7 +853,10 @@ function AprobadoPar() {
                   label: aCero[0].label.toLowerCase(),
                 })
               : rellena(t('presupuesto.econ.ceroVarios'), {
-                  lista: aCero.map((c) => `${c.code} (${c.label.toLowerCase()})`).join(', '),
+                  lista: listaProsa(
+                    aCero.map((c) => `${c.code} (${c.label.toLowerCase()})`),
+                    t('presupuesto.econ.cero.y'),
+                  ),
                 })}
           </p>
         )}
@@ -857,6 +880,28 @@ function AprobadoPar() {
               />
             ))}
         </div>
+        {aCeroIng.length > 0 && (
+          <p
+            style={{
+              margin: '12px 0 0',
+              fontSize: 'var(--fs-micro)',
+              lineHeight: 1.5,
+              color: 'var(--ink50)',
+            }}
+          >
+            {aCeroIng.length === 1
+              ? rellena(t('presupuesto.econ.cero'), {
+                  code: aCeroIng[0].code,
+                  label: aCeroIng[0].label.toLowerCase(),
+                })
+              : rellena(t('presupuesto.econ.ceroVarios'), {
+                  lista: listaProsa(
+                    aCeroIng.map((c) => `${c.code} (${c.label.toLowerCase()})`),
+                    t('presupuesto.econ.cero.y'),
+                  ),
+                })}
+          </p>
+        )}
         {desequilibrio !== null && (
           <div style={{ marginTop: 12 }}>
             <Aviso tone="warn" id="descuadre">

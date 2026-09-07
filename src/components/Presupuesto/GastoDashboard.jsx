@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Card, SectionHead, Pill } from '../Primitives'
-import { contractTypeTotals, obrasSharePct } from '../../lib/tender-geo'
+import { contractTypeTotals, obrasSharePct, contractAmount } from '../../lib/tender-geo'
+import { isCommittedContract, isConcession } from '../../lib/contract-status'
 import { useTenders } from '../../hooks/useTenders'
 import { useTenderGeo } from '../../hooks/useTenderGeo'
 import { useCpvLabels } from '../../hooks/useCpvLabels'
@@ -52,6 +53,30 @@ export default function GastoDashboard() {
     return (obras / total) * 100
   }, [tg])
   const pct0 = (n) => new Intl.NumberFormat('es-ES', { maximumFractionDigits: 0 }).format(n)
+
+  // «El resto son servicios, suministros y otros» invitaba a leer un remanente
+  // repartido entre setecientos contratos, y UNO SOLO —la concesión del agua—
+  // se lleva cerca de la mitad de todo lo adjudicado. La misma salvedad que
+  // /gestion y el bloque TED ya publican, aquí también: una concesión se
+  // adjudica por todo su plazo de una vez, así que el total no es un volumen
+  // repartido. DERIVADA y condicional: si entra otro contrato grande y el
+  // mayor deja de dominar, la frase desaparece sola. Escrita a mano seguiría
+  // describiendo un reparto que ya no existe.
+  const mayor = useMemo(() => {
+    const comprometidos = contracts.filter(isCommittedContract)
+    if (comprometidos.length === 0) return null
+    const total = comprometidos.reduce((s2, c) => s2 + contractAmount(c), 0)
+    if (!(total > 0)) return null
+    const top = comprometidos.reduce((a2, b2) =>
+      contractAmount(b2) > contractAmount(a2) ? b2 : a2,
+    )
+    const importe = contractAmount(top)
+    // Se comprueba que el mayor SEA una concesión antes de llamarlo así. El
+    // motivo de la salvedad —se adjudica por todo su plazo de una vez— sólo
+    // vale para una concesión, y afirmar la categoría sin mirarla es el
+    // centinela `Otro` otra vez: nombrar por eliminación.
+    return { cuota: (importe / total) * 100, importe, esConcesion: isConcession(top) }
+  }, [contracts])
 
   const [selectedZone, setSelectedZone] = useState(null)
   const [sliderTime, setSliderTime] = useState(0)
@@ -126,6 +151,22 @@ export default function GastoDashboard() {
         {span
           ? ` Y es de ${span}, no de un solo ejercicio: puesto sin periodo al lado de un presupuesto anual se lee mucho mayor de lo que es.`
           : ''}{' '}
+        {mayor && mayor.cuota >= 25 ? (
+          <>
+            {' '}
+            <strong>No es un volumen repartido:</strong> el mayor contrato{' '}
+            {mayor.esConcesion ? '—una concesión de ' : '—'}
+            {(mayor.importe / 1e6).toLocaleString('es-ES', {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}{' '}
+            M€— se lleva él solo el {pct0(mayor.cuota)} % del total
+            {mayor.esConcesion
+              ? ', porque una concesión se adjudica por todo su plazo de una vez'
+              : ''}
+            .
+          </>
+        ) : null}{' '}
         Solo se sitúan los contratos cuyo título nombra una zona
         {obrasPctMapa != null ? `, y ahí sí predominan las obras (${pct0(obrasPctMapa)} %)` : ''}.
         Tamaño del círculo = € adjudicado en la zona · ámbar cuando la mitad o más es recuperación
