@@ -184,12 +184,20 @@ function KpiStrip() {
         spark={popSpark}
         serif
       />
+      {/* La celda nombra la ETAPA, no sólo la fuente. El ejercicio tiene tres
+          cifras que se llaman «presupuesto» —crédito inicial 37,6 M€,
+          definitivo 62,1 M€ y los 41,58 M€ que el ayuntamiento rindió a
+          CONPREL— y «Presup. 2025 · MinHac CONPREL» no decía cuál de las tres
+          es. Lo señaló la revisión lectora en el push que enseñó las tres en
+          /presupuesto: la portada era la única superficie que seguía usando la
+          palabra a secas. Las dos cifras «aprobadas» no se reconcilian, y esa
+          discrepancia vive entera en /presupuesto. */}
       <Kpi
         label={budgetYear ? `Presup. ${budgetYear}` : 'Presupuesto'}
         value={budgetValue}
         delta={budget ? (balance >= 0 ? '▲' : '▼') : '—'}
         tone={balance >= 0 ? 'ok' : 'warn'}
-        sub="MinHac CONPREL"
+        sub="CONPREL · aprobado"
       />
       {/* «Gastos personal» leía como dinero ya pagado, y es el Cap.1 del
           CRÉDITO del ejercicio: 20,3 M€ es el 49 % de los 41,58 M€

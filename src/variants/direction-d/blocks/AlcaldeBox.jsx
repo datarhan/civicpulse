@@ -237,7 +237,7 @@ export function AlcaldeBox() {
               <a
                 href="/presupuesto"
                 style={{ color: PALETTE.ink80, textDecoration: 'none' }}
-                title="Presupuesto municipal total de gasto"
+                title="Presupuesto de gastos aprobado del ejercicio, según CONPREL (Ministerio de Hacienda). No es lo ejecutado."
               >
                 <span style={{ fontWeight: 700 }}>{formatBudgetEuros(budgetEuros)}</span>{' '}
                 {/*
@@ -250,8 +250,19 @@ export function AlcaldeBox() {
                   Es la misma lección de tres líneas más abajo, aplicada a la
                   cifra de al lado: el período tiene que estar donde se lee.
                 */}
+                {/*
+                  Y la ETAPA junto al período, por lo mismo. El ejercicio tiene
+                  tres cifras que se llaman «presupuesto» —crédito inicial
+                  37,6 M€, definitivo tras modificaciones 62,1 M€ y los
+                  41,58 M€ que el ayuntamiento rindió a CONPREL, que es ésta— y
+                  «presupuesto 2025» a secas no dice cuál. Lo señaló la revisión
+                  lectora cuando /presupuesto pasó a distinguir las tres: la
+                  portada se quedó siendo la superficie que usaba la palabra
+                  sola. Las dos cifras «aprobadas» no se reconcilian, y esa
+                  discrepancia se publica entera al otro lado de este enlace.
+                */}
                 <span style={{ color: PALETTE.ink50 }}>
-                  presupuesto{budgetYear ? ` ${budgetYear}` : ''}
+                  presupuesto aprobado{budgetYear ? ` ${budgetYear}` : ''}
                 </span>
               </a>
             )}
