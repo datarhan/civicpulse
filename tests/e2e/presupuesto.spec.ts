@@ -139,6 +139,35 @@ test.describe('Presupuesto (/presupuesto)', () => {
     await expect(panel).toContainText(/son dinero comprometido \(adjudicado o formalizado\)/)
   })
 
+  test('el mapa de contratación cierra la página, detrás de todo lo demás', async ({ page }) => {
+    // Es la vista geográfica de la contratación y sólo puede situar el 1,8 % del
+    // dinero, así que cierra el recorrido en vez de partirlo. Cuando iba en
+    // medio, su tarjeta —la más alta de la página— dejaba el endeudamiento y la
+    // contratación a más de 6.000 px del principio.
+    await page.goto('/presupuesto', { waitUntil: 'domcontentloaded' })
+    await expect(page.getByText('¿A dónde va el dinero en contratos?').first()).toBeVisible({
+      timeout: 8000,
+    })
+
+    const orden = await page.evaluate(() =>
+      [...document.querySelectorAll('.cp-page [data-section-head]')]
+        .map((el) => ({
+          titulo: (el.textContent ?? '').trim(),
+          y: el.getBoundingClientRect().top + window.scrollY,
+        }))
+        .sort((a, b) => a.y - b.y)
+        .map((s) => s.titulo),
+    )
+
+    // Que la prueba midió la página entera y no un trozo: sin esto, una página
+    // que sólo pintara el mapa la dejaría pasar por ser el último de uno.
+    expect(orden.length, 'no se midieron secciones suficientes').toBeGreaterThanOrEqual(8)
+    expect(orden[orden.length - 1]).toBe('¿A dónde va el dinero en contratos?')
+    // Y las dos que quedaban enterradas van por delante.
+    expect(orden).toContain('Lo que se adjudica con este dinero')
+    expect(orden.indexOf('Lo que se adjudica con este dinero')).toBeLessThan(orden.length - 1)
+  })
+
   test('el listado pagina de diez en diez, y el recuento sigue hablando del conjunto', async ({
     page,
   }) => {
@@ -176,8 +205,10 @@ test.describe('Presupuesto (/presupuesto)', () => {
     expect(p1.texto).toMatch(/1–10, página 1 de \d+/)
 
     // «Anterior» está deshabilitado en la primera página, y lo está de verdad.
-    const anterior = page.getByRole('button', { name: 'Página anterior' })
-    const siguiente = page.getByRole('button', { name: 'Página siguiente' })
+    const anterior = page.getByRole('button', { name: 'Página anterior del listado de contratos' })
+    const siguiente = page.getByRole('button', {
+      name: 'Página siguiente del listado de contratos',
+    })
     await expect(anterior).toBeDisabled()
     await expect(siguiente).toBeEnabled()
 

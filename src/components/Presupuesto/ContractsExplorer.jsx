@@ -1,5 +1,6 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { ExtLink, Pill } from '../Primitives'
+import Paginacion from '../Paginacion'
 import { STATUS_LABEL, STATUS_TONE } from '../../hooks/useTenders'
 import { fmtDateShort } from '../../lib/formatters'
 import { filterContracts, contractAmount, contractsListSummary } from '../../lib/tender-geo'
@@ -32,27 +33,6 @@ const INP = {
   color: 'var(--ink)',
 }
 
-/** Un paso de página. Deshabilitado en los extremos, y se NOTA que lo está. */
-function PasoPagina({ children, onClick, disabled, label }) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      disabled={disabled}
-      aria-label={label}
-      style={{
-        ...INP,
-        cursor: disabled ? 'default' : 'pointer',
-        opacity: disabled ? 0.4 : 1,
-        fontWeight: 600,
-        lineHeight: 1.2,
-      }}
-    >
-      {children}
-    </button>
-  )
-}
-
 export default function ContractsExplorer({ contracts, snapshot }) {
   const [text, setText] = useState('')
   const [zoneSlug, setZone] = useState('')
@@ -71,19 +51,6 @@ export default function ContractsExplorer({ contracts, snapshot }) {
     [contracts, text, zoneSlug, type, dana, assignmentsById],
   )
   const resumen = useMemo(() => contractsListSummary(matched), [matched])
-  const [paginaPedida, setPagina] = useState(1)
-
-  // Un filtro nuevo empieza por el principio. Sin esto, buscar algo estando en
-  // la página cinco deja al lector a mitad de un listado que acaba de cambiar.
-  useEffect(() => setPagina(1), [text, zoneSlug, type, dana])
-
-  const paginas = Math.max(1, Math.ceil(matched.length / POR_PAGINA))
-  // La página se ACOTA al renderizar, no sólo al pulsar: un refresco nocturno
-  // puede dejar menos filas sin que nadie toque un filtro, y «página 7 de 2»
-  // es una lista vacía con toda la pinta de un fallo de datos.
-  const pagina = Math.min(Math.max(1, paginaPedida), paginas)
-  const desde = (pagina - 1) * POR_PAGINA
-  const rows = useMemo(() => matched.slice(desde, desde + POR_PAGINA), [matched, desde])
   const zones = snapshot?.zones || []
   return (
     <div>
@@ -124,102 +91,76 @@ export default function ContractsExplorer({ contracts, snapshot }) {
           <input type="checkbox" checked={dana} onChange={(e) => setDana(e.target.checked)} /> DANA
         </label>
       </div>
-      <div style={{ marginBottom: 8, lineHeight: 1.5 }}>
-        <div data-recuento="" style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink70)' }}>
-          <span className="mono" style={{ color: 'var(--ink)', fontWeight: 700 }}>
-            {resumen.total}
-          </span>{' '}
-          resultado{resumen.total === 1 ? '' : 's'}
-          {paginas > 1
-            ? ` · ${desde + 1}–${desde + rows.length}, página ${pagina} de ${paginas}`
-            : ''}
-        </div>
-        {resumen.rest > 0 && (
-          <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-            <span className="mono">{resumen.committed}</span> son dinero comprometido (adjudicado o
-            formalizado).{' '}
-            {resumen.rest === 1 ? 'El otro consta' : `Los otros ${resumen.rest} constan`} en el
-            registro público pero no cuenta{resumen.rest === 1 ? '' : 'n'} en las cifras de arriba:{' '}
-            {resumen.restByStatus.map((r, i) => (
-              <span key={r.status} style={{ whiteSpace: 'nowrap' }}>
-                {i > 0 ? ' · ' : ''}
-                {STATUS_LABEL[r.status]} <span className="mono">{r.count}</span>
-              </span>
-            ))}
-            .
-          </div>
-        )}
-      </div>
-      {rows.map((c) => (
-        <div
-          key={c.id}
-          // La rejilla vive en `index.css` (`.cp-contrato-fila`): necesita un
-          // punto de ruptura para partirse en el móvil, y una @media no cabe
-          // en el prop `style`. Allí está también por qué la columna de estado
-          // se dimensiona a su contenido y no a 90 px.
-          className="cp-contrato-fila"
-          style={{
-            padding: '8px 0',
-            borderBottom: '1px solid var(--border2)',
-            fontSize: 'var(--fs-meta)',
-          }}
-        >
-          <div style={{ minWidth: 0 }}>
-            <ExtLink href={c.permalink} style={{ color: 'inherit', textDecoration: 'none' }}>
-              {c.title.length > 100 ? c.title.slice(0, 100) + '…' : c.title}
-            </ExtLink>
-            <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-              {c.assignee || '—'} · {fmtDateShort(c.awardDate) || '—'}
+      <Paginacion
+        items={matched}
+        porPagina={POR_PAGINA}
+        clave={`${text}|${zoneSlug}|${type}|${dana}`}
+        etiqueta="listado de contratos"
+      >
+        {(rows, { desde, pagina, paginas }) => (
+          <>
+            <div style={{ marginBottom: 8, lineHeight: 1.5 }}>
+              <div data-recuento="" style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink70)' }}>
+                <span className="mono" style={{ color: 'var(--ink)', fontWeight: 700 }}>
+                  {resumen.total}
+                </span>{' '}
+                resultado{resumen.total === 1 ? '' : 's'}
+                {paginas > 1
+                  ? ` · ${desde + 1}–${desde + rows.length}, página ${pagina} de ${paginas}`
+                  : ''}
+              </div>
+              {resumen.rest > 0 && (
+                <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
+                  <span className="mono">{resumen.committed}</span> son dinero comprometido
+                  (adjudicado o formalizado).{' '}
+                  {resumen.rest === 1 ? 'El otro consta' : `Los otros ${resumen.rest} constan`} en
+                  el registro público pero no cuenta{resumen.rest === 1 ? '' : 'n'} en las cifras de
+                  arriba:{' '}
+                  {resumen.restByStatus.map((r, i) => (
+                    <span key={r.status} style={{ whiteSpace: 'nowrap' }}>
+                      {i > 0 ? ' · ' : ''}
+                      {STATUS_LABEL[r.status]} <span className="mono">{r.count}</span>
+                    </span>
+                  ))}
+                  .
+                </div>
+              )}
             </div>
-          </div>
-          <span className="mono" style={{ textAlign: 'right', fontWeight: 700 }}>
-            {fmtEur(contractAmount(c))}
-          </span>
-          <span style={{ textAlign: 'right' }}>
-            <Pill tone={STATUS_TONE[c.status] || 'ghost'} size="xs">
-              {STATUS_LABEL[c.status] || c.status}
-            </Pill>
-          </span>
-        </div>
-      ))}
-      {paginas > 1 && (
-        <nav
-          aria-label="Paginación del listado de contratos"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 10,
-            flexWrap: 'wrap',
-            paddingTop: 12,
-          }}
-        >
-          <PasoPagina
-            onClick={() => setPagina(pagina - 1)}
-            disabled={pagina <= 1}
-            label="Página anterior"
-          >
-            ← Anterior
-          </PasoPagina>
-          {/* `aria-live` porque al cambiar de página no se mueve el foco: sin
-              esto, quien usa lector de pantalla pulsa «siguiente» y no se
-              entera de que la lista ha cambiado debajo. */}
-          <span
-            className="mono"
-            aria-live="polite"
-            style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink70)' }}
-          >
-            {pagina} / {paginas}
-          </span>
-          <PasoPagina
-            onClick={() => setPagina(pagina + 1)}
-            disabled={pagina >= paginas}
-            label="Página siguiente"
-          >
-            Siguiente →
-          </PasoPagina>
-        </nav>
-      )}
+            {rows.map((c) => (
+              <div
+                key={c.id}
+                // La rejilla vive en `index.css` (`.cp-contrato-fila`): necesita
+                // un punto de ruptura para partirse en el móvil, y una @media no
+                // cabe en el prop `style`. Allí está también por qué la columna
+                // de estado se dimensiona a su contenido y no a 90 px.
+                className="cp-contrato-fila"
+                style={{
+                  padding: '8px 0',
+                  borderBottom: '1px solid var(--border2)',
+                  fontSize: 'var(--fs-meta)',
+                }}
+              >
+                <div style={{ minWidth: 0 }}>
+                  <ExtLink href={c.permalink} style={{ color: 'inherit', textDecoration: 'none' }}>
+                    {c.title.length > 100 ? c.title.slice(0, 100) + '…' : c.title}
+                  </ExtLink>
+                  <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
+                    {c.assignee || '—'} · {fmtDateShort(c.awardDate) || '—'}
+                  </div>
+                </div>
+                <span className="mono" style={{ textAlign: 'right', fontWeight: 700 }}>
+                  {fmtEur(contractAmount(c))}
+                </span>
+                <span style={{ textAlign: 'right' }}>
+                  <Pill tone={STATUS_TONE[c.status] || 'ghost'} size="xs">
+                    {STATUS_LABEL[c.status] || c.status}
+                  </Pill>
+                </span>
+              </div>
+            ))}
+          </>
+        )}
+      </Paginacion>
     </div>
   )
 }

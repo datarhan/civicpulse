@@ -99,20 +99,25 @@ export default function GastoDashboard() {
   const span = yearMin && yearMax ? `${yearMin}–${yearMax}` : null
   const nEjercicios = span ? Number(yearMax) - Number(yearMin) + 1 : null
   const totalUniverso = tg.universe?.totalAmount || 0
-  const nContratos = tg.universe?.totalContracts || 0
   const eurM = (n) =>
     `${(n / 1e6).toLocaleString('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} M€`
 
   return (
     <Card>
-      {/* El rótulo dice de QUÉ conjunto habla la sección y de dónde sale, no
-          que hay un mapa —eso ya se ve—. «Mapa de lo adjudicado» repetía el
-          «adjudicado sin IVA» de la cifra de al lado y no añadía un solo dato:
-          ni cuántos contratos, ni de dónde vienen. El recuento sale del mismo
-          universo que el importe de la derecha, así que rótulo y cifra no
-          pueden describir conjuntos distintos. */}
+      {/* El rótulo dice de QUÉ habla la sección, de cuándo y de dónde sale; no
+          que hay un mapa, que eso ya se ve. «Mapa de lo adjudicado» repetía el
+          «adjudicado sin IVA» de la cifra de al lado y no añadía un solo dato.
+
+          SIN recuento de contratos, y a propósito. Llevó uno —los 696 del
+          universo del mapa— y la revisión lectora lo cazó: esta página ya dice
+          «de 701 adjudicados» en la tarjeta de menores y «809 resultados» en el
+          listado de aquí abajo, tres cifras de tres conjuntos distintos que un
+          lector lee como tres versiones de lo mismo. Los 696 son los que el
+          mapa puede sumar; los 701, los comprometidos. La diferencia no cabe
+          en un rótulo, y un rótulo que la insinúa sin explicarla estorba más de
+          lo que informa. */}
       <SectionHead
-        eyebrow={`Contratación municipal · ${nContratos ? `${nContratos.toLocaleString('es-ES')} contratos · ` : ''}${span ? `${span} · ` : ''}Gobierto/PLACSP`}
+        eyebrow={`Contratación municipal · ${span ? `${span} · ` : ''}Gobierto/PLACSP`}
         title="¿A dónde va el dinero en contratos?"
         right={
           totalUniverso > 0 ? (

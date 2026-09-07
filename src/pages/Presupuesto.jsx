@@ -28,6 +28,7 @@ import { fmtDateShort, fmtDateLong } from '../lib/formatters'
 import { yearSpan } from '../lib/year-span'
 import { EFICIENCIA_ENABLED } from '../flags'
 import { useT } from '../i18n'
+import Paginacion from '../components/Paginacion'
 import GastoDashboard from '../components/Presupuesto/GastoDashboard'
 import { TedNotices } from '../components/Presupuesto/TedNotices'
 
@@ -54,6 +55,9 @@ import { TedNotices } from '../components/Presupuesto/TedNotices'
  * sus cuatro tarjetas-resumen, ancladas, porque borrarlos sería retirar del
  * sitio el listado de menores por encima del techo del art. 118.
  */
+
+/** Las obras van de diez en diez, igual que el listado de contratos. */
+const POR_PAGINA_OBRAS = 10
 
 const eur0 = (n) =>
   new Intl.NumberFormat('es-ES', {
@@ -591,6 +595,11 @@ function CascadaCard() {
 /* Capítulo a capítulo: inicial y ampliación, adyacentes; ejecutado encima     */
 /* ------------------------------------------------------------------------ */
 
+/** Qué parte del definitivo ocupa un tramo, dentro del envoltorio de la barra. */
+function pctDentro(parte, definitivo) {
+  return definitivo > 0 ? (parte / definitivo) * 100 : 0
+}
+
 function Swatch({ color, opacity = 1 }) {
   return (
     <span
@@ -695,31 +704,58 @@ function CapitulosCard() {
                   El ejecutado sí va encima, más fino y opaco, porque no es una
                   parte del reparto: es cuánto de ese crédito se ha usado. */}
               <div style={{ position: 'relative', height: 20 }}>
+                {/* El crédito definitivo es UNA barra con dos tramos dentro, y
+                    el redondeo vive en el envoltorio que los recorta.
+
+                    Redondeando cada tramo por su cuenta salían dos píldoras con
+                    una muesca en medio —la ampliación parecía una barra suelta
+                    al lado del crédito, no su continuación—. Y redondear sólo el
+                    extremo de fuera de cada uno tampoco valía: el capítulo 4
+                    amplía 13.258 € sobre una escala de 22 M€, o sea un tercio de
+                    píxel, así que su tramo ámbar es invisible y dejaba al gris
+                    con el canto derecho en cuadrado y sin nada que lo rematara.
+                    Con el envoltorio, el remate no depende de que el último
+                    tramo llegue a verse.
+
+                    Dentro, los dos tramos se miden contra el DEFINITIVO y el
+                    segundo va con `right: 0`, así que embaldosan el envoltorio
+                    exactamente: no hay anchura que redondear mal ni hueco que
+                    dejar. */}
                 <div
-                  data-barra-ini={f.capitulo}
                   style={{
                     position: 'absolute',
                     top: 0,
                     bottom: 0,
                     left: 0,
-                    width: `${(f.inicial / capMax) * 100}%`,
-                    background: 'var(--ink30)',
+                    width: `${(f.definitivo / capMax) * 100}%`,
                     borderRadius: 'var(--r-input)',
+                    overflow: 'hidden',
                   }}
-                />
-                <div
-                  data-barra-amp={f.capitulo}
-                  style={{
-                    position: 'absolute',
-                    top: 0,
-                    bottom: 0,
-                    left: `${(f.inicial / capMax) * 100}%`,
-                    width: `${(f.modificaciones / capMax) * 100}%`,
-                    background: 'var(--warn)',
-                    opacity: 0.35,
-                    borderRadius: 'var(--r-input)',
-                  }}
-                />
+                >
+                  <div
+                    data-barra-ini={f.capitulo}
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      bottom: 0,
+                      left: 0,
+                      width: `${pctDentro(f.inicial, f.definitivo)}%`,
+                      background: 'var(--ink30)',
+                    }}
+                  />
+                  <div
+                    data-barra-amp={f.capitulo}
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      bottom: 0,
+                      left: `${pctDentro(f.inicial, f.definitivo)}%`,
+                      right: 0,
+                      background: 'var(--warn)',
+                      opacity: 0.35,
+                    }}
+                  />
+                </div>
                 <div
                   data-barra-ej={f.capitulo}
                   style={{
@@ -1494,57 +1530,70 @@ function ObrasEnCursoSection() {
           obras ya ejecutadas · no refleja obras posteriores
         </span>
       </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-        {obras.map((o) => {
-          const importe = o.importeAdjudicacion ?? o.costePrevisto
-          const importeLabel = o.importeAdjudicacion != null ? 'adj.' : 'previsto'
-          return (
-            <div key={o.id} style={{ paddingBottom: 10, borderBottom: '1px solid var(--border2)' }}>
-              <div
-                style={{
-                  display: 'flex',
-                  gap: 10,
-                  justifyContent: 'space-between',
-                  alignItems: 'baseline',
-                }}
-              >
-                <span style={{ fontWeight: 600 }}>{o.nombre}</span>
-                <span style={{ display: 'flex', gap: 6, alignItems: 'baseline' }}>
-                  <Pill tone="neutral">{o.programa === 'renove' ? 'Plan RENOVE' : 'FEDER'}</Pill>
-                  {typeof o.bajaPct === 'number' && (
-                    <Pill tone={o.bajaPct >= 20 ? 'ok' : 'neutral'}>
-                      baja <span className="mono">{o.bajaPct}%</span>
-                    </Pill>
-                  )}
-                </span>
-              </div>
-              <div
-                className="mono"
-                style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 3 }}
-              >
-                {o.empresa ? `${o.empresa} · ` : ''}
-                {importe != null ? `${eur(importe)} ${importeLabel}` : ''}
-                {o.plazoMeses ? ` · ${o.plazoMeses} meses` : ''}
-                {o.inicio ? ` · inicio ${o.inicio}` : ''}
-                {o.fechaEjecucion ? ` · ejecución ${o.fechaEjecucion}` : ''}
-              </div>
-              <a
-                href={o.fichaUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mono"
-                style={{
-                  fontSize: 'var(--fs-micro)',
-                  color: 'var(--civic)',
-                  textDecoration: 'underline',
-                }}
-              >
-                Ver ficha ↗
-              </a>
-            </div>
-          )
-        })}
-      </div>
+      {/* Catorce fichas de obra seguidas medían más de 1.800 px y dejaban la
+          sección siguiente fuera de la pantalla. Se paginan con el mismo
+          componente que el listado de contratos: una sola implementación del
+          acotado, del reinicio y de los botones. */}
+      <Paginacion items={obras} porPagina={POR_PAGINA_OBRAS} etiqueta="listado de obras">
+        {(pagina) => (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            {pagina.map((o) => {
+              const importe = o.importeAdjudicacion ?? o.costePrevisto
+              const importeLabel = o.importeAdjudicacion != null ? 'adj.' : 'previsto'
+              return (
+                <div
+                  key={o.id}
+                  style={{ paddingBottom: 10, borderBottom: '1px solid var(--border2)' }}
+                >
+                  <div
+                    style={{
+                      display: 'flex',
+                      gap: 10,
+                      justifyContent: 'space-between',
+                      alignItems: 'baseline',
+                    }}
+                  >
+                    <span style={{ fontWeight: 600 }}>{o.nombre}</span>
+                    <span style={{ display: 'flex', gap: 6, alignItems: 'baseline' }}>
+                      <Pill tone="neutral">
+                        {o.programa === 'renove' ? 'Plan RENOVE' : 'FEDER'}
+                      </Pill>
+                      {typeof o.bajaPct === 'number' && (
+                        <Pill tone={o.bajaPct >= 20 ? 'ok' : 'neutral'}>
+                          baja <span className="mono">{o.bajaPct}%</span>
+                        </Pill>
+                      )}
+                    </span>
+                  </div>
+                  <div
+                    className="mono"
+                    style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 3 }}
+                  >
+                    {o.empresa ? `${o.empresa} · ` : ''}
+                    {importe != null ? `${eur(importe)} ${importeLabel}` : ''}
+                    {o.plazoMeses ? ` · ${o.plazoMeses} meses` : ''}
+                    {o.inicio ? ` · inicio ${o.inicio}` : ''}
+                    {o.fechaEjecucion ? ` · ejecución ${o.fechaEjecucion}` : ''}
+                  </div>
+                  <a
+                    href={o.fichaUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mono"
+                    style={{
+                      fontSize: 'var(--fs-micro)',
+                      color: 'var(--civic)',
+                      textDecoration: 'underline',
+                    }}
+                  >
+                    Ver ficha ↗
+                  </a>
+                </div>
+              )
+            })}
+          </div>
+        )}
+      </Paginacion>
       <p
         style={{
           fontSize: 'var(--fs-aux)',
@@ -1803,7 +1852,6 @@ export default function Presupuesto() {
       <CapitulosCard />
       <AprobadoPar />
       <ProgramasCard />
-      <GastoDashboard />
       <DeudaVivaSection />
       <ContratacionBanda />
       <ContratacionMenorSection />
@@ -1812,6 +1860,13 @@ export default function Presupuesto() {
         <TedNotices />
       </div>
       <RealSubsidies />
+      {/* El mapa va el ÚLTIMO de los bloques. Es la vista geográfica de la
+          contratación, y sólo puede situar el 1,8 % del dinero, así que cierra
+          el recorrido en vez de partirlo: antes se metía entre el presupuesto y
+          la deuda, y su tarjeta —la más alta de la página— dejaba todo lo demás
+          fuera de la pantalla. El pie se queda debajo, que es donde van las
+          fuentes. */}
+      <GastoDashboard />
       <PiePresupuesto />
     </div>
   )
