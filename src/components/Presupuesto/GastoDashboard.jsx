@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Card, SectionHead, Pill } from '../Primitives'
-import { contractTypeTotals, obrasSharePct } from '../../lib/tender-geo'
+import { contractTypeTotals, obrasSharePct, contractAmount } from '../../lib/tender-geo'
+import { isCommittedContract, isConcession } from '../../lib/contract-status'
 import { useTenders } from '../../hooks/useTenders'
 import { useTenderGeo } from '../../hooks/useTenderGeo'
 import { useCpvLabels } from '../../hooks/useCpvLabels'
@@ -53,6 +54,30 @@ export default function GastoDashboard() {
   }, [tg])
   const pct0 = (n) => new Intl.NumberFormat('es-ES', { maximumFractionDigits: 0 }).format(n)
 
+  // «El resto son servicios, suministros y otros» invitaba a leer un remanente
+  // repartido entre setecientos contratos, y UNO SOLO —la concesión del agua—
+  // se lleva cerca de la mitad de todo lo adjudicado. La misma salvedad que
+  // /gestion y el bloque TED ya publican, aquí también: una concesión se
+  // adjudica por todo su plazo de una vez, así que el total no es un volumen
+  // repartido. DERIVADA y condicional: si entra otro contrato grande y el
+  // mayor deja de dominar, la frase desaparece sola. Escrita a mano seguiría
+  // describiendo un reparto que ya no existe.
+  const mayor = useMemo(() => {
+    const comprometidos = contracts.filter(isCommittedContract)
+    if (comprometidos.length === 0) return null
+    const total = comprometidos.reduce((s2, c) => s2 + contractAmount(c), 0)
+    if (!(total > 0)) return null
+    const top = comprometidos.reduce((a2, b2) =>
+      contractAmount(b2) > contractAmount(a2) ? b2 : a2,
+    )
+    const importe = contractAmount(top)
+    // Se comprueba que el mayor SEA una concesión antes de llamarlo así. El
+    // motivo de la salvedad —se adjudica por todo su plazo de una vez— sólo
+    // vale para una concesión, y afirmar la categoría sin mirarla es el
+    // centinela `Otro` otra vez: nombrar por eliminación.
+    return { cuota: (importe / total) * 100, importe, esConcesion: isConcession(top) }
+  }, [contracts])
+
   const [selectedZone, setSelectedZone] = useState(null)
   const [sliderTime, setSliderTime] = useState(0)
   const [danaOnly, setDanaOnly] = useState(false)
@@ -65,17 +90,84 @@ export default function GastoDashboard() {
 
   if (!tg || (tg.zones || []).length === 0) return null
 
+  // El periodo, DERIVADO del universo y nunca escrito: «2017–2026» a mano es
+  // verdad hasta la siguiente pasada del raspador. Y el total va rotulado
+  // «adjudicado», no «gasto» —es importe de adjudicación sin IVA, no dinero
+  // desembolsado—, que es la lección de la portada (`i18n-dinero-adjudicado`).
+  const yearMin = (tg.universe?.dateMin || '').slice(0, 4)
+  const yearMax = (tg.universe?.dateMax || '').slice(0, 4)
+  const span = yearMin && yearMax ? `${yearMin}–${yearMax}` : null
+  const nEjercicios = span ? Number(yearMax) - Number(yearMin) + 1 : null
+  const totalUniverso = tg.universe?.totalAmount || 0
+  const eurM = (n) =>
+    `${(n / 1e6).toLocaleString('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} M€`
+
   return (
     <Card>
       <SectionHead
-        eyebrow="Mapa del gasto · contratos situables"
+        eyebrow={`Mapa de lo adjudicado · contratos comprometidos${span ? ` ${span}` : ''}`}
         title="¿A dónde va el dinero en contratos?"
+        right={
+          totalUniverso > 0 ? (
+            <div style={{ textAlign: 'right', flexShrink: 0 }}>
+              <div
+                className="mono"
+                style={{ fontSize: 'var(--fs-card)', fontWeight: 500, letterSpacing: '-.02em' }}
+              >
+                {eurM(totalUniverso)}
+              </div>
+              <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}>
+                adjudicado sin IVA
+                {nEjercicios ? ` · ${nEjercicios} ejercicios, no un año` : ''}
+              </div>
+            </div>
+          ) : null
+        }
       />
-      <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginBottom: 10 }}>
-        El total de abajo es <strong>todo el gasto en contratos, no solo obras</strong>:
+      <div
+        style={{
+          fontSize: 'var(--fs-meta)',
+          color: 'var(--ink70)',
+          lineHeight: 1.55,
+          margin: '4px 0 12px',
+          padding: '11px 13px',
+          background: 'var(--soft)',
+          border: '1px solid var(--border2)',
+          borderRadius: 'var(--r-input)',
+        }}
+      >
+        {/* «lo adjudicado», no «el gasto». La cifra de arriba se rotula
+            «adjudicado sin IVA» y el eyebrow dice «contratos comprometidos»,
+            así que llamarla gasto contradecía a la tarjeta dentro de la misma
+            tarjeta: un contrato adjudicado no es dinero desembolsado, y el
+            mayor de todos —una concesión de 55,69 M€— se adjudica de una vez
+            por todo su plazo. Es la misma corrección que ya se hizo en la
+            portada (`tests/i18n-dinero-adjudicado.test.ts`), y la señaló la
+            revisión lectora del push que renombró el rótulo. */}
+        El total de arriba es <strong>todo lo adjudicado en contratos, no solo obras</strong>:
         {obrasPct != null ? ` las obras son el ${pct0(obrasPct)} %` : ' el grueso'} y el resto son
         servicios de ámbito municipal, suministros y otros —el desglose completo está en «Tipos de
-        gasto». Solo se sitúan los contratos cuyo título nombra una zona
+        gasto».
+        {span
+          ? ` Y es de ${span}, no de un solo ejercicio: puesto sin periodo al lado de un presupuesto anual se lee mucho mayor de lo que es.`
+          : ''}{' '}
+        {mayor && mayor.cuota >= 25 ? (
+          <>
+            {' '}
+            <strong>No es un volumen repartido:</strong> el mayor contrato{' '}
+            {mayor.esConcesion ? '—una concesión de ' : '—'}
+            {(mayor.importe / 1e6).toLocaleString('es-ES', {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}{' '}
+            M€— se lleva él solo el {pct0(mayor.cuota)} % del total
+            {mayor.esConcesion
+              ? ', porque una concesión se adjudica por todo su plazo de una vez'
+              : ''}
+            .
+          </>
+        ) : null}{' '}
+        Solo se sitúan los contratos cuyo título nombra una zona
         {obrasPctMapa != null ? `, y ahí sí predominan las obras (${pct0(obrasPctMapa)} %)` : ''}.
         Tamaño del círculo = € adjudicado en la zona · ámbar cuando la mitad o más es recuperación
         DANA.

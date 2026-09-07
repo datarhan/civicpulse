@@ -242,9 +242,18 @@ test.describe('Cargos (/cargos)', () => {
     // figure — while ISPA gave every one of them between 4.582,49 € and
     // 16.858,04 €. The page had the data and the layout hid it.
     await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
-    await expect(page.getByText('sin dedicación', { exact: false }).first()).toBeVisible({
-      timeout: 8000,
-    })
+    // Se espera al BLOQUE, no a una frase que sale antes que él. «sin
+    // dedicación» es la coletilla de una ficha y se pinta con `officials.json`
+    // solo, así que la espera la cumplía una página a la que todavía le
+    // faltaba el ISPA — y entonces las tres afirmaciones de abajo leían un
+    // cuerpo sin reparto. Medido: 4 de cada 5 pasadas en rojo con un paquete
+    // compartido algo mayor, 1 de cada 5 sin él; una carrera que ya estaba
+    // ahí, no un fallo nuevo. La tarjeta de retribuciones devuelve `null`
+    // hasta que están ISPA y dedicaciones, así que su titular es la única
+    // señal que significa «los datos que esto afirma ya han llegado».
+    await expect(
+      page.getByText('Qué cobra la corporación, y de dónde sale cada cifra').first(),
+    ).toBeVisible({ timeout: 10000 })
     const body = await page.locator('body').innerText()
     // The distribution renders with both ends named, so the reader can see the
     // spread rather than a single averaged figure.

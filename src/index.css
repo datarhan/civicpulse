@@ -1069,6 +1069,122 @@ body.cp-kiosk .cp-live-container {
   }
 }
 
+/* /presupuesto — lámina 5b: del crédito inicial a lo ejecutado.
+
+   Las rejillas van aquí y no en el `style` del JSX por la razón de siempre en
+   este repo: un estilo inline no puede llevar una @media y encima gana a la
+   clase, así que una rejilla declarada inline es una rejilla que no colapsa.
+
+   `.cp-presu-hero` reparte el lede y la tarjeta «dos fuentes»; `.cp-presu-duo`
+   son los dos cortes del presupuesto aprobado (en qué / de dónde) y los dos
+   avisos bajo la cascada; `.cp-presu-deuda` la serie y su prosa. Las filas
+   —cascada, capítulo, programa, deuda— son rejillas de columnas fijas para que
+   las cifras en DM Mono queden alineadas a la derecha, y por debajo de 720 el
+   rótulo sube a su propia línea y la barra se queda con los números: a 375 no
+   caben rótulo, barra y dos cifras en una fila, y truncar «Gastos corrientes en
+   bienes y servicios» es esconder el capítulo. `.cp-presu-contra` son las
+   cuatro tarjetas de contratación: cuatro, dos, una. */
+.cp-presu-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 400px;
+  gap: 40px;
+  align-items: start;
+}
+.cp-presu-duo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+.cp-presu-deuda {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 26px;
+  align-items: start;
+}
+.cp-presu-contra {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  align-items: stretch;
+}
+.cp-presu-cascada {
+  display: grid;
+  grid-template-columns: 208px minmax(0, 1fr) 148px;
+  gap: 14px;
+  align-items: center;
+}
+.cp-presu-cap {
+  display: grid;
+  grid-template-columns: 246px minmax(0, 1fr) 116px 62px;
+  gap: 14px;
+  align-items: center;
+}
+.cp-presu-prog {
+  display: grid;
+  grid-template-columns: 268px minmax(0, 1fr) 116px 54px;
+  gap: 14px;
+  align-items: center;
+}
+.cp-presu-deuda-fila {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 108px 92px;
+  gap: 12px;
+  align-items: center;
+}
+.cp-presu-hero > *,
+.cp-presu-duo > *,
+.cp-presu-deuda > *,
+.cp-presu-contra > *,
+.cp-presu-cascada > *,
+.cp-presu-cap > *,
+.cp-presu-prog > *,
+.cp-presu-deuda-fila > * {
+  min-width: 0;
+}
+
+@media (max-width: 1100px) {
+  .cp-presu-contra {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .cp-presu-hero,
+  .cp-presu-duo,
+  .cp-presu-deuda {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+  }
+}
+
+@media (max-width: 720px) {
+  .cp-presu-cascada {
+    grid-template-columns: minmax(0, 1fr) 120px;
+    gap: 6px 12px;
+  }
+  .cp-presu-cap,
+  .cp-presu-prog {
+    grid-template-columns: minmax(0, 1fr) 96px 52px;
+    gap: 6px 10px;
+  }
+  .cp-presu-cascada > :first-child,
+  .cp-presu-cap > :first-child,
+  .cp-presu-prog > :first-child {
+    grid-column: 1 / -1;
+  }
+  .cp-presu-deuda-fila {
+    grid-template-columns: 40px minmax(0, 1fr) auto auto;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 560px) {
+  .cp-presu-contra {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 /* ---- Skip link · WCAG 2.4.1 Bypass Blocks (Level A) --------------------
    Off-screen until focused, then pinned top-left. It cannot be display:none
    or visibility:hidden — that removes it from the tab order, which is the one

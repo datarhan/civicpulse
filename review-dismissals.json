@@ -87,30 +87,9 @@
       "at": "2026-09-05"
     },
     {
-      "route": "/presupuesto",
-      "quote": "BALANCE INICIAL",
-      "reason": "El revisor atribuye a esa tarjeta una cifra que no muestra. «Balance inicial» rotula `s.balance` —ingresos menos gastos, 1.938.564,87 €—, no los 41.578.252,26 € de gasto presupuestado que el señalamiento discute. Y sobre el fondo, la página hace ya lo que el aviso pide: dice que las dos fuentes no coinciden sobre cuál fue el presupuesto aprobado y se niega a reconciliarlas («elegir una sería inventar el puente entre dos fuentes oficiales»). Medido el 5-09-2026, la cifra del ministerio no coincide ni con el crédito inicial del listado municipal (37.599.838,15 €, 3,98 M€ de diferencia) ni con el definitivo (62.123.153,08 €, 20,54 M€), así que la negativa a reconciliar es la lectura correcta y no una laguna.",
-      "editor": "claude-opus-5",
-      "at": "2026-09-05"
-    },
-    {
       "route": "/reportajes/basuras",
       "quote": "Riba-roja formaliza el contrato con Garbialdi, tres semanas después de que ISS hiciera pública la compra.",
       "reason": "El revisor ancla «hacer pública la compra» en la NOTIFICACIÓN a la CNMC (2025-09-22) y de ahí saca siete semanas. El reportaje distingue tres fechas del mismo expediente C/1600/25 y las publica las tres: notificada 2025-09-22, autorizada 2025-10-01 y ANUNCIADA 2025-10-21. Del anuncio a la formalización del 2025-11-11 hay 21 días exactos: tres semanas, que es lo que dice la frase. Mismo patrón que los descartes de /gestion y /quejas — el revisor juzga la frase contra un universo más ancho que el que la frase nombra. Comprobado contra public/data/reportajes/basuras.json el 5-09-2026.",
-      "editor": "claude-opus-5",
-      "at": "2026-09-05"
-    },
-    {
-      "route": "/presupuesto",
-      "quote": "GASTOS PRESUPUESTADOS",
-      "reason": "El revisor redescubre la discrepancia que la página PUBLICA. «Gastos presupuestados · 41,6 M€» rotula lo que el ayuntamiento rindió a CONPREL, y es correcto: son gastos presupuestados, no ejecutados. Que esa cifra no cuadre con el listado municipal —ni con el crédito inicial (37.599.838,15 €, 3,98 M€ de diferencia) ni con el definitivo (62.123.153,08 €, 20,54 M€)— es exactamente lo que la propia página explica dos bloques más abajo, diciendo que no las reconcilia porque «elegir una sería inventar el puente entre dos fuentes oficiales». Medido el 5-09-2026. Mismo patrón que el descarte de /gestion sobre esas dos mismas fuentes.",
-      "editor": "claude-opus-5",
-      "at": "2026-09-05"
-    },
-    {
-      "route": "/presupuesto",
-      "quote": "GASTOS 2025 · CLASIFICACIÓN ECONÓMICA",
-      "reason": "Lo mismo un bloque más abajo, y sobre el encabezado de la tabla en vez del rótulo de la tarjeta: el revisor compara la suma de los capítulos (41,56 M€, que es la cifra de CONPREL) contra el crédito del listado municipal y llama contradicción a la diferencia. La página ya la publica y se niega a reconciliarla, y el título dice «prevé gastarse» desde hoy, precisamente para que nadie lea ejecución donde hay presupuesto. Medido el 5-09-2026.",
       "editor": "claude-opus-5",
       "at": "2026-09-05"
     },
@@ -125,20 +104,6 @@
       "route": "/ [capas]",
       "quote": "41.578.252 € presupuesto 2025",
       "reason": "Lo mismo un rótulo más abajo y sobre la cifra completa: llamar «presupuesto 2025» a los 41.578.252,26 € que el ayuntamiento rindió al ministerio es exacto. La discrepancia con el listado municipal —crédito inicial 37.599.838,15 €, definitivo 62.123.153,08 €— existe y la publica /presupuesto, que se niega a reconciliarla por escrito; no es un defecto de cada página que mencione la cifra. Mismo origen que el descarte de arriba: una ficha de hechos que concluía en vez de enumerar. (Anotado primero contra la ruta «/» por error: los rótulos de las tarjetas del mapa sólo se leen con las capas encendidas, y esa lectura va bajo la clave «/ [capas]». Un descarte con la ruta equivocada no silencia nada y no lo dice: `estaDescartado` exige coincidencia exacta de ruta.)",
-      "editor": "claude-opus-5",
-      "at": "2026-09-05"
-    },
-    {
-      "route": "/presupuesto",
-      "quote": "INGRESOS PRESUPUESTADOS\n€43,5M",
-      "reason": "El revisor compara las dos tarjetas contiguas y concluye que el presupuesto 2025 está casi equilibrado. La página no lo esconde: dedica un bloque entero al descuadre —«le atribuye a Riba-roja 43.516.817 € de ingresos frente a 41.578.252 € de gastos, 1.938.564,87 € de diferencia»— y explica que un presupuesto general se aprueba sin déficit inicial (art. 165.4 TRLHL), que la exigencia vale en los dos sentidos y que no sabe si el descuadre está en lo que remitió el ayuntamiento o en cómo lo publica el ministerio. Señalar la yuxtaposición de dos KPI cuyo desajuste la propia página analiza tres párrafos más abajo es pedir lo que ya está publicado. Comprobado el 5-09-2026.",
-      "editor": "claude-opus-5",
-      "at": "2026-09-05"
-    },
-    {
-      "route": "/presupuesto",
-      "quote": "41.578.252 €\nBALANCE INICIAL",
-      "reason": "Artefacto del texto plano, no de la página. Son DOS tarjetas distintas: el valor de «Gastos» termina justo antes del rótulo de la siguiente, y al aplanar el DOM a innerText quedan pegados. El balance que esa tarjeta muestra es 1.938.564,87 €, no 41.578.252 €. En pantalla están separadas y cada una lleva su rótulo encima. Comprobado contra Presupuesto.jsx el 5-09-2026; es el mismo señalamiento que ya se descartó con otra cita más corta.",
       "editor": "claude-opus-5",
       "at": "2026-09-05"
     },

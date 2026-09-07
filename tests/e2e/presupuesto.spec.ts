@@ -64,7 +64,11 @@ test.describe('Presupuesto (/presupuesto)', () => {
     // too — until then the copy degrades to «el grueso», which is honest on
     // screen but would let this test read a state with no claim in it and pass.
     await expect(intro).toContainText(/las obras son el \d+ %/, { timeout: 8000 })
-    await expect(intro).toContainText(/todo el gasto en contratos, no solo obras/i)
+    // «adjudicado», no «gasto»: el rótulo de la cifra y la frase que la
+    // explica tienen que usar la misma palabra, o la tarjeta se contradice
+    // sola. Lo señaló la revisión lectora.
+    await expect(intro).toContainText(/todo lo adjudicado en contratos, no solo obras/i)
+    await expect(intro).not.toContainText(/todo el gasto en contratos/i)
 
     // The heading's obras share and the chart that proves it come from one
     // computation, so they cannot disagree one scroll apart. Compare them.

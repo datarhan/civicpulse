@@ -395,6 +395,144 @@ export const CATALOGUE = {
       'No es un volumen repartido: el mayor anuncio se lleva el {pct} % del total ({importe}), porque una concesión se adjudica por todo su plazo de una vez.',
     'presupuesto.ted.note':
       'TED no publica título descriptivo para estos anuncios —el número ES el identificador—, así que cada fila enlaza al original. El símbolo ≈ marca los anuncios sin fecha exacta: el año se recupera del número de publicación y no se inventa un día.',
+    // /presupuesto · lámina 5b. Toda cifra va en un {marcador}: la frase la
+    // deriva `scraper/presupuesto-lectura`, el catálogo sólo pone las palabras.
+    // Un par de asteriscos marca negrita; lo pinta <Marcado> en la página.
+    'presupuesto.eyebrow': 'Hacienda pública · ejercicio {year} · aprobado y ejecutado',
+    'presupuesto.eyebrow.aprobado': 'Hacienda pública · ejercicio {year} · CONPREL',
+    'presupuesto.title': 'Presupuesto municipal {year}',
+    'presupuesto.title.sinAnio': 'Presupuesto municipal',
+    'presupuesto.loading': 'Cargando datos reales de MinHac (CONPREL)…',
+    'presupuesto.error': 'No se pudo cargar el presupuesto real.',
+    'presupuesto.lede':
+      'El ayuntamiento abrió el año con {inicial} de crédito, lo amplió en {mod} durante el ejercicio —un {pct} % más— y ejecutó {ejecutado}.',
+    'presupuesto.lede.dominanteCero':
+      ' Casi toda la ampliación, el {cuota} %, fue a {capitulo}, un capítulo que había empezado en cero.',
+    'presupuesto.lede.dominante': ' Casi toda la ampliación, el {cuota} %, fue a {capitulo}.',
+    'presupuesto.lede.soloAprobado':
+      'El presupuesto aprobado para {year} según el Ministerio de Hacienda es de {gastos} de gastos. Lo ejecutado aparece más abajo en cuanto el Ayuntamiento publica su estado de ejecución.',
+    // Estado distinto del anterior: el listado municipal SÍ está publicado, pero
+    // su crédito definitivo no es la suma de inicial y modificaciones. Decir
+    // «en cuanto lo publique» ahí sería falso, y es justo el estado para el que
+    // se escribió `cuadra`.
+    'presupuesto.lede.sinCuadre':
+      'El presupuesto aprobado para {year} según el Ministerio de Hacienda es de {gastos} de gastos. El estado de ejecución que publica el propio Ayuntamiento no cuadra consigo mismo este ejercicio: sus cuatro magnitudes van más abajo, una a una y sin sumarlas por él.',
+    'presupuesto.tres':
+      'Esta página distingue en todo momento tres cosas que suelen confundirse: lo **aprobado**, lo **definitivo** tras modificaciones y lo **ejecutado**.',
+    'presupuesto.tres.link': 'Cómo se leen los tres ↓',
+    'presupuesto.meta':
+      '{gastos} de gastos aprobados según CONPREL · {porHab} por habitante · {hab} habitantes · actualizado {fecha}',
+    'presupuesto.fuentes.title': 'Dos fuentes, dos presupuestos aprobados',
+    'presupuesto.fuentes.conprel': 'CONPREL · Ministerio de Hacienda',
+    'presupuesto.fuentes.municipal': 'Estado de ejecución del propio Ayuntamiento',
+    'presupuesto.fuentes.diferencia': 'Diferencia sin explicar',
+    'presupuesto.fuentes.nota':
+      'Las dos son oficiales y **no se reconcilian aquí**: no consta el motivo de la diferencia, y elegir una sería inventar el puente entre dos fuentes públicas. Cada cifra de esta página dice de cuál viene.',
+    'presupuesto.cascada.eyebrow':
+      'Ejecución presupuestaria · {year}{periodo} · del crédito inicial a lo ejecutado',
+    'presupuesto.cascada.periodo': ' · {t}º trimestre',
+    'presupuesto.cascada.title': 'El presupuesto creció un {pct} % dentro del año',
+    'presupuesto.cascada.title.sinCuadre': 'Del crédito inicial a lo ejecutado',
+    'presupuesto.cascada.inicial': 'Crédito inicial aprobado',
+    'presupuesto.cascada.inicial.nota': 'lo que aprobó el pleno · estado de ejecución',
+    'presupuesto.cascada.mod': 'Modificaciones de crédito',
+    'presupuesto.cascada.mod.nota': '+{pct} % sobre el inicial, durante el ejercicio',
+    'presupuesto.cascada.definitivo': 'Presupuesto definitivo',
+    'presupuesto.cascada.definitivo.nota': 'inicial + modificaciones',
+    'presupuesto.cascada.ejecutado': 'Ejecutado',
+    'presupuesto.cascada.ejecutado.nota': 'obligaciones reconocidas netas · {pct} % del definitivo',
+    'presupuesto.cascada.noCuadra':
+      'El listado municipal declara un definitivo que no es la suma de inicial y modificaciones ({suma}); se publican las cuatro cifras tal cual y se retira el porcentaje de crecimiento.',
+    'presupuesto.callout.denominador':
+      '**El «{pctDef} % ejecutado» es un cociente sobre el presupuesto definitivo.** Sobre el crédito que se aprobó en enero, lo ejecutado es el {pctIni} %. No es que se ejecutara menos de lo previsto: es que durante el año se previó mucho más.',
+    'presupuesto.callout.asimetria.entro':
+      '**Entró {mucho}más de lo que salió.** De ingresos se ejecutó el {pctIng} % —{ingEj}— frente al {pctGas} % de gastos: {gasEj}. La asimetría entre esos dos porcentajes es el dato, no cada uno por su lado.',
+    'presupuesto.callout.asimetria.salio':
+      '**Salió más de lo que entró.** De gastos se ejecutó el {pctGas} % —{gasEj}— frente al {pctIng} % de ingresos: {ingEj}. La asimetría entre esos dos porcentajes es el dato, no cada uno por su lado.',
+    'presupuesto.callout.mucho': 'mucho ',
+    'presupuesto.cap.eyebrow': 'Capítulo a capítulo · {year}',
+    'presupuesto.cap.title': 'Dónde se amplió el crédito y dónde se ejecutó',
+    'presupuesto.cap.leyenda.inicial': 'crédito inicial',
+    'presupuesto.cap.leyenda.ampliacion': 'ampliación',
+    'presupuesto.cap.leyenda.ejecutado': 'ejecutado',
+    'presupuesto.cap.nota.cero': 'crédito inicial 0 €',
+    'presupuesto.cap.nota.cuota': '{cuota} % de toda la ampliación',
+    'presupuesto.cap.pie.cero':
+      '**{capitulo} abrió el ejercicio con 0 € y acabó con {definitivo}** —el {cuota} % de toda la ampliación—, de los que se ejecutó el {pct} %. Un capítulo que empieza en cero y recibe todo su crédito durante el ejercicio no es una desviación de ejecución: es que ese crédito no estaba en el presupuesto que se aprobó.',
+    'presupuesto.cap.pie.dominante':
+      '**{capitulo} se llevó el {cuota} % de toda la ampliación**: de {inicial} a {definitivo}, de los que se ejecutó el {pct} %.',
+    'presupuesto.cap.pie.cociente':
+      ' El porcentaje de la derecha es ejecutado ÷ definitivo: obligaciones reconocidas netas.',
+    'presupuesto.cap.fuente':
+      'Fuente: Ayuntamiento de Riba-roja · estados de ejecución presupuestaria{fecha}.',
+    'presupuesto.cap.fecha': ' · listado a {fecha}',
+    'presupuesto.econ.eyebrow': 'Gastos aprobados {year} · CONPREL · en qué',
+    'presupuesto.econ.title': 'En qué prevé gastarse el dinero público',
+    'presupuesto.econ.cero':
+      'El capítulo {code}, {label}, está aprobado a 0 € y por eso no tiene barra. Se deja dicho en vez de omitirlo.',
+    'presupuesto.econ.ceroVarios':
+      'Los capítulos {lista} están aprobados a 0 € y por eso no tienen barra. Se dejan dichos en vez de omitirlos.',
+    'presupuesto.econ.cero.y': 'y',
+    'presupuesto.ing.eyebrow': 'Ingresos aprobados {year} · CONPREL · de dónde',
+    'presupuesto.ing.title': 'De dónde vienen los ingresos municipales',
+    'presupuesto.descuadre':
+      '**Este presupuesto no cuadra en la fuente del ministerio:** atribuye {ingresos} de ingresos frente a {gastos} de gastos, {dif} de diferencia. Un presupuesto general se aprueba **sin déficit inicial** (art. 165.4 del texto refundido de la Ley de Haciendas Locales) y la exigencia vale en los dos sentidos: tampoco debería sobrar. En ese mismo fichero, otras entidades cuadran al céntimo. No es un remanente ni un colchón: es un descuadre, y no sabemos si está en lo que remitió el ayuntamiento o en cómo lo publica el ministerio.',
+    'presupuesto.prog.eyebrow': 'Gastos aprobados {year} · clasificación por programas · para qué',
+    'presupuesto.prog.title': 'Los mismos {total} repartidos por finalidad',
+    'presupuesto.prog.nota':
+      'Otro corte del mismo dinero, no otro dinero: la económica dice «en qué», esta dice «para qué». No se cruzan entre sí.',
+    'presupuesto.prog.deuda':
+      'El programa «Deuda pública» ({importe}) es lo que se aparta este ejercicio para atender la deuda. No es el saldo vivo de más abajo —{deuda}— y las dos cifras no se suman.',
+    // Las seis áreas de gasto de la Orden EHA/3565/2008 (anexo I), glosadas
+    // con lo que cada una agrupa según esa misma orden.
+    'presupuesto.prog.glosa.deuda': 'lo que se aparta este año para atenderla',
+    'presupuesto.prog.glosa.basicos':
+      'seguridad, urbanismo y vivienda, bienestar comunitario, medio ambiente',
+    'presupuesto.prog.glosa.social': 'pensiones, servicios sociales, fomento del empleo',
+    'presupuesto.prog.glosa.preferentes': 'sanidad, educación, cultura, deporte',
+    'presupuesto.prog.glosa.economico':
+      'agricultura, industria, comercio, turismo, transporte, infraestructuras',
+    'presupuesto.prog.glosa.general':
+      'órganos de gobierno, servicios generales, administración financiera',
+    'presupuesto.deuda.eyebrow': 'Endeudamiento · saldo a 31 de diciembre',
+    'presupuesto.deuda.saldo': 'deuda viva a 31/12/{year}',
+    'presupuesto.deuda.desde': 'Desde {anio}: {delta}',
+    'presupuesto.deuda.nota1':
+      'Es el saldo que el Ayuntamiento debía al cerrar el ejercicio. **No es el capítulo «Deuda pública» del presupuesto**{importe}, que es lo que se aparta cada año para atenderla: son dos cifras distintas y no se suman.',
+    'presupuesto.deuda.nota1.importe': ' —{x} en {year}—',
+    'presupuesto.deuda.nota2':
+      'Riba-roja queda **por encima del {percentil} %** de los {n} ayuntamientos de la entrega —de los que **{aCero} declaran cero deuda**—, así que la mediana del reparto es {mediana} y el percentil dice poco por sí solo. El p90 de la entrega está en {p90}.',
+    'presupuesto.deuda.noPublicados':
+      'Sin entrega publicada todavía: {lista}. La serie se corta ahí porque el Ministerio aún no ha publicado ese ejercicio, no porque no haya deuda.',
+    'presupuesto.deuda.fuente': 'Ministerio de Hacienda · deuda viva EE.LL.',
+    'presupuesto.contra.eyebrow': 'Contratación · con este dinero',
+    'presupuesto.contra.title': 'Lo que se adjudica con este dinero',
+    'presupuesto.contra.intro':
+      'El presupuesto se aprueba y se ejecuta cada año; la contratación se acumula a lo largo de varios ejercicios. Así que **estos cuatro recuentos no son el reparto del presupuesto de arriba**: cada uno lleva el periodo que abarca. Van **medidos sobre los contratos adjudicados y sin IVA**, con los mismos predicados que las fichas de abajo, y cada uno abre la suya.',
+    'presupuesto.contra.menores': 'Contratos menores',
+    'presupuesto.contra.menores.nota':
+      'de {adj} adjudicados{span} · {importe} sin IVA: el {pctN} % de los expedientes y el {pctImporte} % del importe',
+    'presupuesto.contra.menores.link': 'Vía directa ↓',
+    'presupuesto.contra.obras': 'Obras publicadas',
+    'presupuesto.contra.obras.nota':
+      'fichas municipales · {renove} del Plan RENOVE y {feder} del FEDER, ya ejecutadas',
+    'presupuesto.contra.obras.link': 'Fichas ↓',
+    'presupuesto.contra.ted': 'Umbral europeo · TED',
+    'presupuesto.contra.ted.nota': 'anuncios{span} · {valued} con importe, {total}',
+    'presupuesto.contra.ted.mayor': ', el {pct} % en un solo anuncio',
+    'presupuesto.contra.ted.link': 'Anuncios ↓',
+    'presupuesto.contra.bdns': 'Subvenciones · BDNS',
+    'presupuesto.contra.bdns.nota':
+      'convocatorias municipales en la Base Nacional{span} · {total} en total, contando las recibidas',
+    'presupuesto.contra.bdns.link': 'Convocatorias ↓',
+    'presupuesto.pie.fuentes.a': 'Fuentes: presupuesto aprobado de ',
+    'presupuesto.pie.fuentes.conprel': 'CONPREL, Ministerio de Hacienda ↗',
+    'presupuesto.pie.fuentes.b': ' · estado de ejecución del Ayuntamiento de Riba-roja · ',
+    'presupuesto.pie.fuentes.deuda': 'deuda viva de EE.LL. ↗',
+    'presupuesto.pie.fuentes.c': '. Snapshot del {fecha}.',
+    'presupuesto.pie.eficiencia': 'Coste de los servicios →',
+    'presupuesto.pie.datos': 'Datos abiertos →',
+    'presupuesto.pie.metodologia': 'Metodología →',
     'cargos.detalle.ficha.eyebrow': 'Portal de transparencia',
     'cargos.detalle.ficha.title': 'Su ficha biográfica oficial',
     'cargos.detalle.ficha.note':
@@ -1035,6 +1173,136 @@ export const CATALOGUE = {
       "No és un volum repartit: el major anunci s'emporta el {pct} % del total ({importe}), perquè una concessió s'adjudica per tot el seu termini d'una vegada.",
     'presupuesto.ted.note':
       "TED no publica títol descriptiu per a estos anuncis —el número ÉS l'identificador—, així que cada fila enllaça a l'original. El símbol ≈ marca els anuncis sense data exacta: l'any es recupera del número de publicació i no s'inventa un dia.",
+    'presupuesto.eyebrow': 'Hisenda pública · exercici {year} · aprovat i executat',
+    'presupuesto.eyebrow.aprobado': 'Hisenda pública · exercici {year} · CONPREL',
+    'presupuesto.title': 'Pressupost municipal {year}',
+    'presupuesto.title.sinAnio': 'Pressupost municipal',
+    'presupuesto.loading': 'Carregant dades reals de MinHac (CONPREL)…',
+    'presupuesto.error': "No s'ha pogut carregar el pressupost real.",
+    'presupuesto.lede':
+      "L'ajuntament va obrir l'any amb {inicial} de crèdit, el va ampliar en {mod} durant l'exercici —un {pct} % més— i va executar {ejecutado}.",
+    'presupuesto.lede.dominanteCero':
+      " Quasi tota l'ampliació, el {cuota} %, va anar a {capitulo}, un capítol que havia començat en zero.",
+    'presupuesto.lede.dominante': " Quasi tota l'ampliació, el {cuota} %, va anar a {capitulo}.",
+    'presupuesto.lede.soloAprobado':
+      "El pressupost aprovat per a {year} segons el Ministeri d'Hisenda és de {gastos} de despeses. L'executat apareix més avall quan l'Ajuntament publica el seu estat d'execució.",
+    'presupuesto.lede.sinCuadre':
+      "El pressupost aprovat per a {year} segons el Ministeri d'Hisenda és de {gastos} de despeses. L'estat d'execució que publica el propi Ajuntament no quadra amb si mateix este exercici: les seues quatre magnituds van més avall, una a una i sense sumar-les per ell.",
+    'presupuesto.tres':
+      "Esta pàgina distingix en tot moment tres coses que solen confondre's: l'**aprovat**, el **definitiu** després de modificacions i l'**executat**.",
+    'presupuesto.tres.link': 'Com es lligen els tres ↓',
+    'presupuesto.meta':
+      '{gastos} de despeses aprovades segons CONPREL · {porHab} per habitant · {hab} habitants · actualitzat {fecha}',
+    'presupuesto.fuentes.title': 'Dos fonts, dos pressupostos aprovats',
+    'presupuesto.fuentes.conprel': "CONPREL · Ministeri d'Hisenda",
+    'presupuesto.fuentes.municipal': "Estat d'execució del propi Ajuntament",
+    'presupuesto.fuentes.diferencia': 'Diferència sense explicar',
+    'presupuesto.fuentes.nota':
+      "Les dos són oficials i **no es reconcilien ací**: no consta el motiu de la diferència, i triar-ne una seria inventar el pont entre dos fonts públiques. Cada xifra d'esta pàgina diu de quina ve.",
+    'presupuesto.cascada.eyebrow':
+      "Execució pressupostària · {year}{periodo} · del crèdit inicial a l'executat",
+    'presupuesto.cascada.periodo': ' · {t}r trimestre',
+    'presupuesto.cascada.title': "El pressupost va créixer un {pct} % dins de l'any",
+    'presupuesto.cascada.title.sinCuadre': "Del crèdit inicial a l'executat",
+    'presupuesto.cascada.inicial': 'Crèdit inicial aprovat',
+    'presupuesto.cascada.inicial.nota': "el que va aprovar el ple · estat d'execució",
+    'presupuesto.cascada.mod': 'Modificacions de crèdit',
+    'presupuesto.cascada.mod.nota': "+{pct} % sobre l'inicial, durant l'exercici",
+    'presupuesto.cascada.definitivo': 'Pressupost definitiu',
+    'presupuesto.cascada.definitivo.nota': 'inicial + modificacions',
+    'presupuesto.cascada.ejecutado': 'Executat',
+    'presupuesto.cascada.ejecutado.nota': 'obligacions reconegudes netes · {pct} % del definitiu',
+    'presupuesto.cascada.noCuadra':
+      "El llistat municipal declara un definitiu que no és la suma d'inicial i modificacions ({suma}); es publiquen les quatre xifres tal qual i es retira el percentatge de creixement.",
+    'presupuesto.callout.denominador':
+      "**El «{pctDef} % executat» és un quocient sobre el pressupost definitiu.** Sobre el crèdit que es va aprovar al gener, l'executat és el {pctIni} %. No és que s'executara menys del previst: és que durant l'any es va preveure molt més.",
+    'presupuesto.callout.asimetria.entro':
+      "**Va entrar {mucho}més del que va eixir.** D'ingressos es va executar el {pctIng} % —{ingEj}— enfront del {pctGas} % de despeses: {gasEj}. L'asimetria entre eixos dos percentatges és la dada, no cadascun pel seu compte.",
+    'presupuesto.callout.asimetria.salio':
+      "**Va eixir més del que va entrar.** De despeses es va executar el {pctGas} % —{gasEj}— enfront del {pctIng} % d'ingressos: {ingEj}. L'asimetria entre eixos dos percentatges és la dada, no cadascun pel seu compte.",
+    'presupuesto.callout.mucho': 'molt ',
+    'presupuesto.cap.eyebrow': 'Capítol a capítol · {year}',
+    'presupuesto.cap.title': 'On es va ampliar el crèdit i on es va executar',
+    'presupuesto.cap.leyenda.inicial': 'crèdit inicial',
+    'presupuesto.cap.leyenda.ampliacion': 'ampliació',
+    'presupuesto.cap.leyenda.ejecutado': 'executat',
+    'presupuesto.cap.nota.cero': 'crèdit inicial 0 €',
+    'presupuesto.cap.nota.cuota': "{cuota} % de tota l'ampliació",
+    'presupuesto.cap.pie.cero':
+      "**{capitulo} va obrir l'exercici amb 0 € i va acabar amb {definitivo}** —el {cuota} % de tota l'ampliació—, dels quals es va executar el {pct} %. Un capítol que comença en zero i rep tot el seu crèdit durant l'exercici no és una desviació d'execució: és que eixe crèdit no estava en el pressupost que es va aprovar.",
+    'presupuesto.cap.pie.dominante':
+      "**{capitulo} es va emportar el {cuota} % de tota l'ampliació**: de {inicial} a {definitivo}, dels quals es va executar el {pct} %.",
+    'presupuesto.cap.pie.cociente':
+      ' El percentatge de la dreta és executat ÷ definitiu: obligacions reconegudes netes.',
+    'presupuesto.cap.fuente':
+      "Font: Ajuntament de Riba-roja · estats d'execució pressupostària{fecha}.",
+    'presupuesto.cap.fecha': ' · llistat a {fecha}',
+    'presupuesto.econ.eyebrow': 'Despeses aprovades {year} · CONPREL · en què',
+    'presupuesto.econ.title': 'En què preveu gastar-se els diners públics',
+    'presupuesto.econ.cero':
+      "El capítol {code}, {label}, està aprovat a 0 € i per això no té barra. Es deixa dit en compte d'ometre'l.",
+    'presupuesto.econ.ceroVarios':
+      "Els capítols {lista} estan aprovats a 0 € i per això no tenen barra. Es deixen dits en compte d'ometre'ls.",
+    'presupuesto.econ.cero.y': 'i',
+    'presupuesto.ing.eyebrow': "Ingressos aprovats {year} · CONPREL · d'on",
+    'presupuesto.ing.title': "D'on vénen els ingressos municipals",
+    'presupuesto.descuadre':
+      "**Este pressupost no quadra en la font del ministeri:** atribuïx {ingresos} d'ingressos enfront de {gastos} de despeses, {dif} de diferència. Un pressupost general s'aprova **sense dèficit inicial** (art. 165.4 del text refós de la Llei d'Hisendes Locals) i l'exigència val en els dos sentits: tampoc hauria de sobrar. En eixe mateix fitxer, altres entitats quadren al cèntim. No és un romanent ni un coixí: és un desquadrament, i no sabem si està en el que va remetre l'ajuntament o en com ho publica el ministeri.",
+    'presupuesto.prog.eyebrow':
+      'Despeses aprovades {year} · classificació per programes · per a què',
+    'presupuesto.prog.title': 'Els mateixos {total} repartits per finalitat',
+    'presupuesto.prog.nota':
+      "Un altre tall dels mateixos diners, no uns altres diners: l'econòmica diu «en què», esta diu «per a què». No es creuen entre si.",
+    'presupuesto.prog.deuda':
+      "El programa «Deute públic» ({importe}) és el que s'aparta este exercici per a atendre el deute. No és el saldo viu de més avall —{deuda}— i les dos xifres no se sumen.",
+    'presupuesto.prog.glosa.deuda': "el que s'aparta este any per a atendre'l",
+    'presupuesto.prog.glosa.basicos':
+      'seguretat, urbanisme i habitatge, benestar comunitari, medi ambient',
+    'presupuesto.prog.glosa.social': "pensions, servicis socials, foment de l'ocupació",
+    'presupuesto.prog.glosa.preferentes': 'sanitat, educació, cultura, esport',
+    'presupuesto.prog.glosa.economico':
+      'agricultura, indústria, comerç, turisme, transport, infraestructures',
+    'presupuesto.prog.glosa.general':
+      'òrgans de govern, servicis generals, administració financera',
+    'presupuesto.deuda.eyebrow': 'Endeutament · saldo a 31 de desembre',
+    'presupuesto.deuda.saldo': 'deute viu a 31/12/{year}',
+    'presupuesto.deuda.desde': 'Des de {anio}: {delta}',
+    'presupuesto.deuda.nota1':
+      "És el saldo que l'Ajuntament devia en tancar l'exercici. **No és el capítol «Deute públic» del pressupost**{importe}, que és el que s'aparta cada any per a atendre'l: són dos xifres distintes i no se sumen.",
+    'presupuesto.deuda.nota1.importe': ' —{x} en {year}—',
+    'presupuesto.deuda.nota2':
+      "Riba-roja queda **per damunt del {percentil} %** dels {n} ajuntaments de l'entrega —dels quals **{aCero} declaren zero deute**—, així que la mediana del repartiment és {mediana} i el percentil diu poc per si sol. El p90 de l'entrega està en {p90}.",
+    'presupuesto.deuda.noPublicados':
+      'Sense entrega publicada encara: {lista}. La sèrie es talla ací perquè el Ministeri encara no ha publicat eixe exercici, no perquè no hi haja deute.',
+    'presupuesto.deuda.fuente': "Ministeri d'Hisenda · deute viu EE.LL.",
+    'presupuesto.contra.eyebrow': 'Contractació · amb estos diners',
+    'presupuesto.contra.title': "El que s'adjudica amb estos diners",
+    'presupuesto.contra.intro':
+      "El pressupost s'aprova i s'executa cada any; la contractació s'acumula al llarg de diversos exercicis. Així que **estos quatre recomptes no són el repartiment del pressupost de dalt**: cadascun porta el període que abasta. Van **mesurats sobre els contractes adjudicats i sense IVA**, amb els mateixos predicats que les fitxes de baix, i cadascun obri la seua.",
+    'presupuesto.contra.menores': 'Contractes menors',
+    'presupuesto.contra.menores.nota':
+      "de {adj} adjudicats{span} · {importe} sense IVA: el {pctN} % dels expedients i el {pctImporte} % de l'import",
+    'presupuesto.contra.menores.link': 'Via directa ↓',
+    'presupuesto.contra.obras': 'Obres publicades',
+    'presupuesto.contra.obras.nota':
+      'fitxes municipals · {renove} del Pla RENOVE i {feder} del FEDER, ja executades',
+    'presupuesto.contra.obras.link': 'Fitxes ↓',
+    'presupuesto.contra.ted': 'Llindar europeu · TED',
+    'presupuesto.contra.ted.nota': 'anuncis{span} · {valued} amb import, {total}',
+    'presupuesto.contra.ted.mayor': ', el {pct} % en un sol anunci',
+    'presupuesto.contra.ted.link': 'Anuncis ↓',
+    'presupuesto.contra.bdns': 'Subvencions · BDNS',
+    'presupuesto.contra.bdns.nota':
+      'convocatòries municipals en la Base Nacional{span} · {total} en total, comptant les rebudes',
+    'presupuesto.contra.bdns.link': 'Convocatòries ↓',
+    'presupuesto.pie.fuentes.a': 'Fonts: pressupost aprovat de ',
+    'presupuesto.pie.fuentes.conprel': "CONPREL, Ministeri d'Hisenda ↗",
+    'presupuesto.pie.fuentes.b': " · estat d'execució de l'Ajuntament de Riba-roja · ",
+    'presupuesto.pie.fuentes.deuda': "deute viu d'EE.LL. ↗",
+    'presupuesto.pie.fuentes.c': '. Instantània del {fecha}.',
+    'presupuesto.pie.eficiencia': 'Cost dels servicis →',
+    'presupuesto.pie.datos': 'Dades obertes →',
+    'presupuesto.pie.metodologia': 'Metodologia →',
     'cargos.detalle.ficha.eyebrow': 'Portal de transparència',
     'cargos.detalle.ficha.title': 'La seua fitxa biogràfica oficial',
     'cargos.detalle.ficha.note':
