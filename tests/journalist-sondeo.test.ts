@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { ejecutarSondeo, barridoNominal } from '../scripts/journalist-sondeo'
+import { ejecutarSondeo, barridoNominal, lectoresReales } from '../scripts/journalist-sondeo'
 
 /**
  * `journalist:sondeo` es la única puerta por la que la habilidad
@@ -94,6 +94,35 @@ describe('ejecutarSondeo', () => {
     expect(r.fuentes.contratacion.resultados).toEqual([
       { id: 't1', title: 'Obra', assignee: 'CONSTRUCCIONES RAGA GADEA SL' },
     ])
+  })
+})
+
+describe('lectoresReales', () => {
+  // Los lectores de boletín devolvían [] ante cualquier fallo, así que el
+  // sondeo anotaba «vacío» sin haber llegado al servidor (06-09-2026). Los
+  // lectores reales del CLI lanzan, y ejecutarSondeo lo contabiliza como fallo.
+  const caida = (async () => {
+    throw new TypeError('ECONNRESET')
+  }) as unknown as typeof fetch
+
+  it('un lector de boletín que no alcanza el servidor lanza en vez de devolver vacío', async () => {
+    const d = lectoresReales({ fetchImpl: caida, tenders: [] })
+    await expect(d.boe('Robert Raga Gadea')).rejects.toThrow(/ECONNRESET/)
+    await expect(d.dogv('Robert Raga Gadea')).rejects.toThrow(/ECONNRESET/)
+    await expect(d.dialnet('Robert Raga Gadea')).rejects.toThrow(/ECONNRESET/)
+    await expect(d.hemeroteca('Robert Raga Gadea', 2023)).rejects.toThrow(/ECONNRESET/)
+  })
+
+  it('y el sondeo entero lo anota como fallo con motivo, no como vacío', async () => {
+    const d = lectoresReales({ fetchImpl: caida, tenders: [] })
+    const r = await ejecutarSondeo(
+      { nombre: 'Robert Raga Gadea', anios: [2023], semantico: false },
+      d,
+    )
+    for (const clave of ['boe', 'dogv', 'dialnet', 'hemeroteca-2023']) {
+      expect(r.fuentes[clave].estado, clave).toBe('fallo')
+      expect(r.fuentes[clave].motivo, clave).toMatch(/ECONNRESET/)
+    }
   })
 })
 

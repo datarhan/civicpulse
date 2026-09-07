@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-31T19:22:26.016Z",
+  "generatedAt": "2026-09-07T00:20:00.000Z",
   "items": [
     {
       "id": "r-robert-raga-bio-2026-05-23",
@@ -21352,8 +21352,8 @@
           "payload": {
             "verbatim": "Por el Grupo político municipal con la denominación de Grupo Municipal Compromís per Riba-roja: 1. Don Rafael Folgado Navarro (INICIATIVA-COMPROMÍS). Siendo su Portavoz: Don Rafael Folgado Navarro.",
             "attributedTo": "Acta del pleno de organización de 07-07-2023 (constitución del Grupo Municipal Compromís)",
-            "sourceId": "src-065",
-            "date": "2023-07-07"
+            "date": "2023-07-07",
+            "sourceId": "src-065"
           }
         },
         {
@@ -21386,18 +21386,18 @@
           "kind": "local-snapshot",
           "title": "Officials snapshot — Rafael Folgado Navarro",
           "retrievedAt": "2026-07-31T19:16:00.030Z",
+          "excerpt": "role: concejal · party: Compromís · portfolios: ",
           "localPath": "public/data/officials.json",
-          "trust": "high",
-          "excerpt": "role: concejal · party: Compromís · portfolios: "
+          "trust": "high"
         },
         {
           "id": "src-002",
           "kind": "local-snapshot",
           "title": "Resultados electorales municipales — Generalitat Valenciana · Institut Cartogràfic Valencià / ARGOS",
           "retrievedAt": "2026-07-31T19:16:08.921Z",
+          "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%",
           "localPath": "public/data/elections.json",
-          "trust": "high",
-          "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%"
+          "trust": "high"
         },
         {
           "id": "src-003",
@@ -21405,8 +21405,8 @@
           "url": "https://es.wikipedia.org/wiki/Raphael_(cantante)",
           "title": "Raphael (cantante) - Wikipedia, la enciclopedia libre",
           "retrievedAt": "2026-07-31T19:16:09.220Z",
-          "trust": "medium",
-          "excerpt": "Raphael (cantante) No debe confundirse con Raphael (cantante francés). ... Miguel Rafael Martos Sánchez (Linares, Jaén, 5 de …"
+          "excerpt": "Raphael (cantante) No debe confundirse con Raphael (cantante francés). ... Miguel Rafael Martos Sánchez (Linares, Jaén, 5 de …",
+          "trust": "medium"
         },
         {
           "id": "src-004",
@@ -21414,8 +21414,8 @@
           "url": "https://en.wikipedia.org/wiki/Raphael",
           "title": "Raphael - Wikipedia",
           "retrievedAt": "2026-07-31T19:16:09.220Z",
-          "trust": "medium",
-          "excerpt": "Other variants include Raffaello Santi, Raffaello da Urbino, Rafael Sanzio da Urbino, or Raphael Sanzio. The surname Sanzio derives …"
+          "excerpt": "Other variants include Raffaello Santi, Raffaello da Urbino, Rafael Sanzio da Urbino, or Raphael Sanzio. The surname Sanzio derives …",
+          "trust": "medium"
         },
         {
           "id": "src-005",
@@ -21423,8 +21423,8 @@
           "url": "https://raphaelnet.com/",
           "title": "'RAPHAEL: 'AYER... AÚN' |",
           "retrievedAt": "2026-07-31T19:16:09.220Z",
-          "trust": "low",
-          "excerpt": "24-07-2026 Aquel, la serie que recorre la vida de Raphael, llega a Netflix el 9 de octubre Netflix ha anunciado hoy la fecha de …"
+          "excerpt": "24-07-2026 Aquel, la serie que recorre la vida de Raphael, llega a Netflix el 9 de octubre Netflix ha anunciado hoy la fecha de …",
+          "trust": "low"
         },
         {
           "id": "src-006",
@@ -21432,8 +21432,8 @@
           "url": "https://resultados-elecciones.rtve.es/municipales/2023/comunitat-valenciana/valencia-valencia/riba-roja-de-turia/",
           "title": "Riba-roja de Túria: Resultados Elecciones Municipales 2023 | 28M",
           "retrievedAt": "2026-07-31T19:16:09.221Z",
-          "trust": "medium",
-          "excerpt": "Resultados municipales en Riba-roja de Túria · P.S.O.E. 11 45,71% · PP 4 18,79% · Cs 2 11,46% · COMPROMÍS MUNICIPAL 1 7,19% · EUPV-ERPV:SE 1 5,69% · PODEMOSRIBA- ..."
+          "excerpt": "Resultados municipales en Riba-roja de Túria · P.S.O.E. 11 45,71% · PP 4 18,79% · Cs 2 11,46% · COMPROMÍS MUNICIPAL 1 7,19% · EUPV-ERPV:SE 1 5,69% · PODEMOSRIBA- ...",
+          "trust": "medium"
         },
         {
           "id": "src-007",
@@ -21441,8 +21441,8 @@
           "url": "https://elpais.com/espana/elecciones/municipales/17/46/214/",
           "title": "Resultados Electorales en Riba-roja de Túria: Elecciones Municipales",
           "retrievedAt": "2026-07-31T19:16:09.221Z",
-          "trust": "medium",
-          "excerpt": "26 de may de 2023 · Todos los resultados de las elecciones municipales en Riba-roja de Túria: número de votos y escaños por partidos por comunidades, provincias y localidades con EL PAÍS."
+          "excerpt": "26 de may de 2023 · Todos los resultados de las elecciones municipales en Riba-roja de Túria: número de votos y escaños por partidos por comunidades, provincias y localidades con EL PAÍS.",
+          "trust": "medium"
         },
         {
           "id": "src-008",
@@ -21450,8 +21450,8 @@
           "url": "https://www.datoselecciones.com/elecciones-municipales-2023/comunidad-valenciana/valencia/riba-roja-de-turia",
           "title": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València ...",
           "retrievedAt": "2026-07-31T19:16:09.221Z",
-          "trust": "low",
-          "excerpt": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València / Riba-roja de Túria"
+          "excerpt": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València / Riba-roja de Túria",
+          "trust": "low"
         },
         {
           "id": "src-009",
@@ -21459,8 +21459,8 @@
           "url": "https://www.reddit.com/r/ArtistLounge/comments/183hscg/as_an_artist_what_is_your_muse/",
           "title": "As an artist, What is your muse? : r/ArtistLounge - Reddit",
           "retrievedAt": "2026-07-31T19:16:09.652Z",
-          "trust": "low",
-          "excerpt": "A muse is when something speaks to you, not with words but with feelings. It speaks to the part of you that hardly ever gets spoken …"
+          "excerpt": "A muse is when something speaks to you, not with words but with feelings. It speaks to the part of you that hardly ever gets spoken …",
+          "trust": "low"
         },
         {
           "id": "src-010",
@@ -21468,8 +21468,8 @@
           "url": "https://www.reddit.com/r/explainlikeimfive/comments/1dc4hb/eli5_what_is_muse_and_what_does_it_concern_not/",
           "title": "ELI5: What is muse and what does it concern? (Not the band)",
           "retrievedAt": "2026-07-31T19:16:09.652Z",
-          "trust": "low",
-          "excerpt": "29 de abr de 2013 · A \"muse\" is just an embodiment of inspiration. Back in ancient Greece, the muses were spirits upon whom a poet …"
+          "excerpt": "29 de abr de 2013 · A \"muse\" is just an embodiment of inspiration. Back in ancient Greece, the muses were spirits upon whom a poet …",
+          "trust": "low"
         },
         {
           "id": "src-011",
@@ -21477,8 +21477,8 @@
           "url": "https://www.reddit.com/r/Osana/",
           "title": "Osana - Reddit",
           "retrievedAt": "2026-07-31T19:16:09.652Z",
-          "trust": "low",
-          "excerpt": "Welcome to Osana, your one-stop shop to everything Yandere Simulator. Here you can discuss anything Yandere Simulator without …"
+          "excerpt": "Welcome to Osana, your one-stop shop to everything Yandere Simulator. Here you can discuss anything Yandere Simulator without …",
+          "trust": "low"
         },
         {
           "id": "src-012",
@@ -21486,8 +21486,8 @@
           "url": "https://www.reddit.com/r/linux_gaming/comments/1d3rd86/help_trying_to_run_this_game/",
           "title": "Help trying to run this game : r/linux_gaming - Reddit",
           "retrievedAt": "2026-07-31T19:16:10.041Z",
-          "trust": "low",
-          "excerpt": "30 de may de 2024 · Hello everyone! I'm trying to run a game that seems to get detected that is being ran on Wine. Game is called …"
+          "excerpt": "30 de may de 2024 · Hello everyone! I'm trying to run a game that seems to get detected that is being ran on Wine. Game is called …",
+          "trust": "low"
         },
         {
           "id": "src-013",
@@ -21495,8 +21495,8 @@
           "url": "https://www.elitepvpers.com/forum/s4-league-hacks-bots-cheats-exploits/5176064-xero-auto-macro-tool-sprint-key.html",
           "title": "Xero | Auto Macro | Tool | Sprint Key - elitepvpers",
           "retrievedAt": "2026-07-31T19:16:10.041Z",
-          "trust": "low",
-          "excerpt": "23 de sept de 2023 · Discussion on Xero | Auto Macro | Tool | Sprint Key within the S4 League Hacks, Bots, Cheats & Exploits forum …"
+          "excerpt": "23 de sept de 2023 · Discussion on Xero | Auto Macro | Tool | Sprint Key within the S4 League Hacks, Bots, Cheats & Exploits forum …",
+          "trust": "low"
         },
         {
           "id": "src-014",
@@ -21504,8 +21504,8 @@
           "url": "https://www.reddit.com/r/S4League/comments/l258bd/what_is_the_playerbase_at_the_moment/",
           "title": "What is the playerbase at the moment? : r/S4League - Reddit",
           "retrievedAt": "2026-07-31T19:16:10.041Z",
-          "trust": "low",
-          "excerpt": "21 de ene de 2021 · S4 League Official is quiet dead. But there is a private Server Project named S4 Xero. The most of the old …"
+          "excerpt": "21 de ene de 2021 · S4 League Official is quiet dead. But there is a private Server Project named S4 Xero. The most of the old …",
+          "trust": "low"
         },
         {
           "id": "src-015",
@@ -21513,8 +21513,8 @@
           "url": "https://www.stripschat.com/",
           "title": "301 Moved Permanently",
           "retrievedAt": "2026-07-31T19:16:10.345Z",
-          "trust": "low",
-          "excerpt": "301 Moved Permanently 301 Moved Permanently cloudflare"
+          "excerpt": "301 Moved Permanently 301 Moved Permanently cloudflare",
+          "trust": "low"
         },
         {
           "id": "src-016",
@@ -21522,8 +21522,8 @@
           "url": "https://www.chat-es.com/contact.html",
           "title": "Stripchat - Soporte",
           "retrievedAt": "2026-07-31T19:16:10.345Z",
-          "trust": "low",
-          "excerpt": "Stripchat es una plataforma global que opera en múltiples idiomas y que pertenece a la empresa registrada como Technius Ltd. en …"
+          "excerpt": "Stripchat es una plataforma global que opera en múltiples idiomas y que pertenece a la empresa registrada como Technius Ltd. en …",
+          "trust": "low"
         },
         {
           "id": "src-017",
@@ -21531,80 +21531,80 @@
           "url": "https://chatib.io/",
           "title": "StripChat Style Live Chat with Chatib to Meet People",
           "retrievedAt": "2026-07-31T19:16:10.345Z",
-          "trust": "low",
-          "excerpt": "Discover Chatib for easy live chat and random conversations. Meet new people in real time, enjoy smooth text and video, and stay …"
+          "excerpt": "Discover Chatib for easy live chat and random conversations. Meet new people in real time, enjoy smooth text and video, and stay …",
+          "trust": "low"
         },
         {
           "id": "src-018",
           "kind": "local-snapshot",
           "title": "Pleno claim 11025xk-119-afi-fa6906 · 2026-06-01 · afirmacion_numerica",
           "retrievedAt": "2026-07-31T19:16:14.555Z",
+          "excerpt": "Por eso se bonifica esas buenas prácticas como dice Rafael con el 20%.",
           "localPath": "public/data/pleno-claims-suggestions.json",
-          "trust": "high",
-          "excerpt": "Por eso se bonifica esas buenas prácticas como dice Rafael con el 20%."
+          "trust": "high"
         },
         {
           "id": "src-019",
           "kind": "local-snapshot",
           "title": "Pleno claim 11025xk-119-afi-2791ff · 2026-06-01 · afirmacion_numerica",
           "retrievedAt": "2026-07-31T19:16:14.555Z",
+          "excerpt": "Ahora será un coste mínimo porque serán con 200, pues los contenedores serán muy poquitos.",
           "localPath": "public/data/pleno-claims-suggestions.json",
-          "trust": "high",
-          "excerpt": "Ahora será un coste mínimo porque serán con 200, pues los contenedores serán muy poquitos."
+          "trust": "high"
         },
         {
           "id": "src-020",
           "kind": "local-snapshot",
           "title": "Pleno claim 10yl550-330-acu-7c65c5 · 2026-05-11 · acusacion_publica",
           "retrievedAt": "2026-07-31T19:16:14.555Z",
+          "excerpt": "no recogen tampoco al votar, en contra de los presupuestos",
           "localPath": "public/data/pleno-claims-suggestions.json",
-          "trust": "high",
-          "excerpt": "no recogen tampoco al votar, en contra de los presupuestos"
+          "trust": "high"
         },
         {
           "id": "src-021",
           "kind": "local-snapshot",
           "title": "Pleno claim 19gax3o-155-afi-476d6d · 2026-01-19 · afirmacion_numerica",
           "retrievedAt": "2026-07-31T19:16:14.555Z",
+          "excerpt": "en el pasado pleno del 3 de noviembre",
           "localPath": "public/data/pleno-claims-suggestions.json",
-          "trust": "high",
-          "excerpt": "en el pasado pleno del 3 de noviembre"
+          "trust": "high"
         },
         {
           "id": "src-022",
           "kind": "local-snapshot",
           "title": "Pleno claim 19gax3o-155-cit-dd9021 · 2026-01-19 · cita_obra",
           "retrievedAt": "2026-07-31T19:16:14.555Z",
+          "excerpt": "si había estado informada de toda la programación del 25 de noviembre y también de la NIT Violeta",
           "localPath": "public/data/pleno-claims-suggestions.json",
-          "trust": "high",
-          "excerpt": "si había estado informada de toda la programación del 25 de noviembre y también de la NIT Violeta"
+          "trust": "high"
         },
         {
           "id": "src-023",
           "kind": "local-snapshot",
           "title": "Pleno claim 19gax3o-156-acu-e2fcc5 · 2026-01-19 · acusacion_publica",
           "retrievedAt": "2026-07-31T19:16:14.555Z",
+          "excerpt": "en el pasado pleno del 3 de noviembre en el Toro de Plexi Preguntas se preguntó a la rechidora Paula Navarro en cualidad de representante del Grupo del Consejo de Igualdad si había estado informada de toda la programación del 25 de noviembre y también de la NIT Violeta",
           "localPath": "public/data/pleno-claims-suggestions.json",
-          "trust": "high",
-          "excerpt": "en el pasado pleno del 3 de noviembre en el Toro de Plexi Preguntas se preguntó a la rechidora Paula Navarro en cualidad de representante del Grupo del Consejo de Igualdad si había estado informada de toda la programación del 25 de noviembre y también de la NIT Violeta"
+          "trust": "high"
         },
         {
           "id": "src-024",
           "kind": "local-snapshot",
           "title": "Pleno claim 19gax3o-156-acu-6bc5c1 · 2026-01-19 · acusacion_publica",
           "retrievedAt": "2026-07-31T19:16:14.555Z",
+          "excerpt": "Paula Navarro, como representante de este partido del Consejo de Igualdad, recibió",
           "localPath": "public/data/pleno-claims-suggestions.json",
-          "trust": "high",
-          "excerpt": "Paula Navarro, como representante de este partido del Consejo de Igualdad, recibió"
+          "trust": "high"
         },
         {
           "id": "src-025",
           "kind": "local-snapshot",
           "title": "Pleno claim 1qi8axv-005-afi-3a1808 · 2025-12-23 · afirmacion_numerica",
           "retrievedAt": "2026-07-31T19:16:14.555Z",
+          "excerpt": "Queda aprobado el punto.",
           "localPath": "public/data/pleno-claims-suggestions.json",
-          "trust": "high",
-          "excerpt": "Queda aprobado el punto."
+          "trust": "high"
         },
         {
           "id": "src-026",
@@ -21612,62 +21612,62 @@
           "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
           "title": "Fuente oficial: www.ribarroja.es",
           "retrievedAt": "2026-07-31T19:16:14.557Z",
-          "trust": "high",
-          "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr"
+          "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr",
+          "trust": "high"
         },
         {
           "id": "src-027",
           "kind": "local-snapshot",
           "title": "public/data/officials.json · officials",
           "retrievedAt": "2026-07-31T19:16:15.187Z",
+          "excerpt": "robert-raga-gadea · Robert Raga Gadea · Sr. · alcalde · PSOE · Alcaldía · Innovación · Planificación estratégica y grandes proyectos y cooperación nacional e internacional · rraga@ribarroja.es · /data/photos/robert-raga-gadea.jpg · https://",
           "localPath": "public/data/officials.json",
-          "trust": "high",
-          "excerpt": "robert-raga-gadea · Robert Raga Gadea · Sr. · alcalde · PSOE · Alcaldía · Innovación · Planificación estratégica y grandes proyectos y cooperación nacional e internacional · rraga@ribarroja.es · /data/photos/robert-raga-gadea.jpg · https://"
+          "trust": "high"
         },
         {
           "id": "src-028",
           "kind": "local-snapshot",
           "title": "public/data/officials.json · officials",
           "retrievedAt": "2026-07-31T19:16:15.187Z",
+          "excerpt": "teresa-pozuelo-martin · Teresa Pozuelo Martín · Sra. · concejal · PSOE · Urbanismo · Vivienda · Obra Pública · Áreas Industriales y Cementerio · tpozuelo@ribarroja.es · /data/photos/teresa-pozuelo-martin.jpg · https://www.ribarroja.es/sites",
           "localPath": "public/data/officials.json",
-          "trust": "high",
-          "excerpt": "teresa-pozuelo-martin · Teresa Pozuelo Martín · Sra. · concejal · PSOE · Urbanismo · Vivienda · Obra Pública · Áreas Industriales y Cementerio · tpozuelo@ribarroja.es · /data/photos/teresa-pozuelo-martin.jpg · https://www.ribarroja.es/sites"
+          "trust": "high"
         },
         {
           "id": "src-029",
           "kind": "local-snapshot",
           "title": "public/data/press.json · items",
           "retrievedAt": "2026-07-31T19:16:15.187Z",
+          "excerpt": "1547xm0 · Riba-roja aprueba el Plan Territorial Municipal de Emergencias para proteger a la población frente a las olas de calor, los incendios, las inundaciones o los temporales · https://news.google.com/rss/articles/CBMixwJBVV95cUxNX0NZVU",
           "localPath": "public/data/press.json",
-          "trust": "high",
-          "excerpt": "1547xm0 · Riba-roja aprueba el Plan Territorial Municipal de Emergencias para proteger a la población frente a las olas de calor, los incendios, las inundaciones o los temporales · https://news.google.com/rss/articles/CBMixwJBVV95cUxNX0NZVU"
+          "trust": "high"
         },
         {
           "id": "src-030",
           "kind": "local-snapshot",
           "title": "public/data/officials.json · officials",
           "retrievedAt": "2026-07-31T19:16:15.390Z",
+          "excerpt": "robert-raga-gadea · Robert Raga Gadea · Sr. · alcalde · PSOE · Alcaldía · Innovación · Planificación estratégica y grandes proyectos y cooperación nacional e internacional · rraga@ribarroja.es · /data/photos/robert-raga-gadea.jpg · https://",
           "localPath": "public/data/officials.json",
-          "trust": "high",
-          "excerpt": "robert-raga-gadea · Robert Raga Gadea · Sr. · alcalde · PSOE · Alcaldía · Innovación · Planificación estratégica y grandes proyectos y cooperación nacional e internacional · rraga@ribarroja.es · /data/photos/robert-raga-gadea.jpg · https://"
+          "trust": "high"
         },
         {
           "id": "src-031",
           "kind": "local-snapshot",
           "title": "public/data/officials.json · officials",
           "retrievedAt": "2026-07-31T19:16:15.390Z",
+          "excerpt": "teresa-pozuelo-martin · Teresa Pozuelo Martín · Sra. · concejal · PSOE · Urbanismo · Vivienda · Obra Pública · Áreas Industriales y Cementerio · tpozuelo@ribarroja.es · /data/photos/teresa-pozuelo-martin.jpg · https://www.ribarroja.es/sites",
           "localPath": "public/data/officials.json",
-          "trust": "high",
-          "excerpt": "teresa-pozuelo-martin · Teresa Pozuelo Martín · Sra. · concejal · PSOE · Urbanismo · Vivienda · Obra Pública · Áreas Industriales y Cementerio · tpozuelo@ribarroja.es · /data/photos/teresa-pozuelo-martin.jpg · https://www.ribarroja.es/sites"
+          "trust": "high"
         },
         {
           "id": "src-032",
           "kind": "local-snapshot",
           "title": "public/data/pleno-claims-suggestions.json · items",
           "retrievedAt": "2026-07-31T19:16:15.390Z",
+          "excerpt": "brxx5g-067-afi-48fd15 · brxx5g · 2026-07-06 · 67 · afirmacion_numerica ·  · porque no se puede incrementar 200 euros mensuales en el complemento específico autonómico y vincularlo al IPC · ahora es insuficiente para ustedes porque no se pue",
           "localPath": "public/data/pleno-claims-suggestions.json",
-          "trust": "high",
-          "excerpt": "brxx5g-067-afi-48fd15 · brxx5g · 2026-07-06 · 67 · afirmacion_numerica ·  · porque no se puede incrementar 200 euros mensuales en el complemento específico autonómico y vincularlo al IPC · ahora es insuficiente para ustedes porque no se pue"
+          "trust": "high"
         },
         {
           "id": "src-033",
@@ -21675,8 +21675,8 @@
           "url": "https://sede.agenciatributaria.gob.es/Sede/Renta.html",
           "title": "Campaña de Renta 2025 - Agencia Tributaria",
           "retrievedAt": "2026-07-31T19:16:15.970Z",
-          "trust": "high",
-          "excerpt": "¿Tienes dudas sobre tu declaración de Renta? Mediante el Asistente virtual de Renta podrás formular tus preguntas sobre este impuesto y las más habituales de campaña de Renta, que se responderán …"
+          "excerpt": "¿Tienes dudas sobre tu declaración de Renta? Mediante el Asistente virtual de Renta podrás formular tus preguntas sobre este impuesto y las más habituales de campaña de Renta, que se responderán …",
+          "trust": "high"
         },
         {
           "id": "src-034",
@@ -21684,8 +21684,8 @@
           "url": "https://sede.agenciatributaria.gob.es/",
           "title": "Agencia Tributaria: Inicio",
           "retrievedAt": "2026-07-31T19:16:15.970Z",
-          "trust": "high",
-          "excerpt": "Hace 2 días · Información y gestiones IRPF Te informamos sobre el impuesto y te ayudamos en la confección y presentación de la declaración de Renta"
+          "excerpt": "Hace 2 días · Información y gestiones IRPF Te informamos sobre el impuesto y te ayudamos en la confección y presentación de la declaración de Renta",
+          "trust": "high"
         },
         {
           "id": "src-035",
@@ -21693,8 +21693,8 @@
           "url": "https://www.agenciatributaria.es/AEAT.internet/Renta.shtml",
           "title": "Inicio - Agencia Tributaria",
           "retrievedAt": "2026-07-31T19:16:15.970Z",
-          "trust": "low",
-          "excerpt": "Aquí nos gustaría mostrarte una descripción, pero el sitio web que estás mirando no lo permite."
+          "excerpt": "Aquí nos gustaría mostrarte una descripción, pero el sitio web que estás mirando no lo permite.",
+          "trust": "low"
         },
         {
           "id": "src-036",
@@ -21702,172 +21702,172 @@
           "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
           "title": "Texto completo: ribarroja.es",
           "retrievedAt": "2026-07-31T19:16:18.275Z",
-          "trust": "high",
-          "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr"
+          "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr",
+          "trust": "high"
         },
         {
           "id": "src-037",
           "kind": "web",
           "url": "https://es.wikipedia.org/wiki/Raphael_(cantante)",
+          "archiveUrl": "http://web.archive.org/web/20260625065022/https://es.wikipedia.org/wiki/Raphael_(cantante)",
           "title": "Texto completo: es.wikipedia.org",
           "retrievedAt": "2026-07-31T19:16:18.275Z",
-          "trust": "high",
           "excerpt": "Raphael (cantante) - Wikipedia, la enciclopedia libre <meta name=\"robots\" content=\"max-ima",
-          "archiveUrl": "http://web.archive.org/web/20260625065022/https://es.wikipedia.org/wiki/Raphael_(cantante)"
+          "trust": "high"
         },
         {
           "id": "src-060",
-          "retrievedAt": "2026-07-31T19:25:38.445Z",
           "kind": "official-doc",
-          "trust": "medium",
-          "title": "CV publicado en el portal municipal — presentación (nacimiento en Riba-roja) (autodeclarado)",
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/Compromis-Rafael-Folgado-Navarro.pdf",
-          "excerpt": "PRESENTACIÓN 13 FEBRERO 1964 RIBA-ROJA DE TÚRIA rfolgado@ribarroja.es"
+          "title": "CV publicado en el portal municipal — presentación (nacimiento en Riba-roja) (autodeclarado)",
+          "retrievedAt": "2026-07-31T19:25:38.445Z",
+          "excerpt": "PRESENTACIÓN 13 FEBRERO 1964 RIBA-ROJA DE TÚRIA rfolgado@ribarroja.es",
+          "trust": "medium"
         },
         {
           "id": "src-061",
-          "retrievedAt": "2026-07-31T19:25:38.445Z",
           "kind": "official-doc",
-          "trust": "medium",
-          "title": "CV publicado en el portal municipal — formación (autodeclarado)",
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/Compromis-Rafael-Folgado-Navarro.pdf",
-          "excerpt": "FORMACIÓN COU• INSTITUTO NACIONAL DE BACHILLERATO JOSÉ RODRIGO BOTET DE MANISES• COU BUP• INSTITUTO NACIONAL DE BACHILLERATO JOSÉ RODRIGO BOTET DE MANISES• BUP OTROS: Estudios de Ciencias Empresariales en la Escuela de Empresariales Valencia. Curso de Marketing, Merchandaising y Atención al cliente. Organizado por la Consellería de Industria y Comercio. 50 horas Curso de Windows, Office (word, Excel y access) e internet, organizado por TUINFOR. 48 horas."
+          "title": "CV publicado en el portal municipal — formación (autodeclarado)",
+          "retrievedAt": "2026-07-31T19:25:38.445Z",
+          "excerpt": "FORMACIÓN COU• INSTITUTO NACIONAL DE BACHILLERATO JOSÉ RODRIGO BOTET DE MANISES• COU BUP• INSTITUTO NACIONAL DE BACHILLERATO JOSÉ RODRIGO BOTET DE MANISES• BUP OTROS: Estudios de Ciencias Empresariales en la Escuela de Empresariales Valencia. Curso de Marketing, Merchandaising y Atención al cliente. Organizado por la Consellería de Industria y Comercio. 50 horas Curso de Windows, Office (word, Excel y access) e internet, organizado por TUINFOR. 48 horas.",
+          "trust": "medium"
         },
         {
           "id": "src-062",
-          "retrievedAt": "2026-07-31T19:25:38.445Z",
           "kind": "official-doc",
-          "trust": "medium",
-          "title": "CV publicado en el portal municipal — experiencia: concejal 2015-2019 (Fomento Económico), profesor de ciclismo y Ciclos Folgado (autodeclarado)",
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/Compromis-Rafael-Folgado-Navarro.pdf",
-          "excerpt": "Concejal Ajuntament Riba-roja de Túria legislatura 2016-2019. Concejalía de Fomento Económico, Empleo, Actividades y Agricultura Profesor especialista del Módulo de Conducción de Grupos en bicicleta de Formación Profesional de Actividades Físicas en el Medio natural de Grado Mediano años 2000-2012 en el I.F.P. Superior N.º 2 de Cheste Gerente y Oficial de 1ª en reparación y mantenimiento de bicicletas en empresa familiar denominada CICLOS FOLGADO"
+          "title": "CV publicado en el portal municipal — experiencia: concejal 2015-2019 (Fomento Económico), profesor de ciclismo y Ciclos Folgado (autodeclarado)",
+          "retrievedAt": "2026-07-31T19:25:38.445Z",
+          "excerpt": "Concejal Ajuntament Riba-roja de Túria legislatura 2016-2019. Concejalía de Fomento Económico, Empleo, Actividades y Agricultura Profesor especialista del Módulo de Conducción de Grupos en bicicleta de Formación Profesional de Actividades Físicas en el Medio natural de Grado Mediano años 2000-2012 en el I.F.P. Superior N.º 2 de Cheste Gerente y Oficial de 1ª en reparación y mantenimiento de bicicletas en empresa familiar denominada CICLOS FOLGADO",
+          "trust": "medium"
         },
         {
           "id": "src-063",
-          "retrievedAt": "2026-07-31T19:25:38.445Z",
           "kind": "official-doc",
-          "trust": "high",
-          "title": "Acta sesión constitutiva 17-06-2023 — proclamación de electos (credenciales JEZ)",
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
-          "excerpt": "Maria Jose Pradas Ramo\nSalvador Evaristo Ferrer Cortina\nLaura Guzman Bruno\nJuan Boix Martínez\nPaula Navarro Sanfeliu\nJose Luis Fernández Santamaria\nJose Manuel Gallardo Martínez\nRafael Folgado Navarro"
+          "title": "Acta sesión constitutiva 17-06-2023 — proclamación de electos (credenciales JEZ)",
+          "retrievedAt": "2026-07-31T19:25:38.445Z",
+          "excerpt": "Maria Jose Pradas Ramo\nSalvador Evaristo Ferrer Cortina\nLaura Guzman Bruno\nJuan Boix Martínez\nPaula Navarro Sanfeliu\nJose Luis Fernández Santamaria\nJose Manuel Gallardo Martínez\nRafael Folgado Navarro",
+          "trust": "high"
         },
         {
           "id": "src-064",
-          "retrievedAt": "2026-07-31T19:25:38.445Z",
           "kind": "official-doc",
-          "trust": "high",
-          "title": "Acta sesión constitutiva 17-06-2023 — juramento/promesa de los concejales",
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
-          "excerpt": "por el siguiente orden:\n- Rafael Folgado Navarro\n- Jose Manuel Gallardo Martínez\n- Jose Luis Fernández Santamaria\n- Paula Navarro Sanfeliu\n- Juan Boix Martínez\n- Laura Guzman Bruno\n- Salvador Evaristo Ferrer Cortina"
+          "title": "Acta sesión constitutiva 17-06-2023 — juramento/promesa de los concejales",
+          "retrievedAt": "2026-07-31T19:25:38.445Z",
+          "excerpt": "por el siguiente orden:\n- Rafael Folgado Navarro\n- Jose Manuel Gallardo Martínez\n- Jose Luis Fernández Santamaria\n- Paula Navarro Sanfeliu\n- Juan Boix Martínez\n- Laura Guzman Bruno\n- Salvador Evaristo Ferrer Cortina",
+          "trust": "high"
         },
         {
           "id": "src-065",
-          "retrievedAt": "2026-07-31T19:25:38.445Z",
           "kind": "official-doc",
-          "trust": "high",
-          "title": "Acta organización 07-07-2023 — Grupo Municipal Compromís (Folgado, único miembro y portavoz)",
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
-          "excerpt": "Por el Grupo político municipal con la denominación de Grupo Municipal Compromís per Riba-roja,\nes:\n1. Don Rafael Folgado Navarro (INICIATIVA-COMPROMÍS)\nSiendo su Portavoz: Don Rafael Folgado Navarro"
+          "title": "Acta organización 07-07-2023 — Grupo Municipal Compromís (Folgado, único miembro y portavoz)",
+          "retrievedAt": "2026-07-31T19:25:38.445Z",
+          "excerpt": "Por el Grupo político municipal con la denominación de Grupo Municipal Compromís per Riba-roja,\nes:\n1. Don Rafael Folgado Navarro (INICIATIVA-COMPROMÍS)\nSiendo su Portavoz: Don Rafael Folgado Navarro",
+          "trust": "high"
         },
         {
           "id": "src-066",
-          "retrievedAt": "2026-07-31T19:25:38.445Z",
           "kind": "official-doc",
-          "trust": "high",
-          "title": "Acta sesión constitutiva 17-06-2023 — candidatura a la Alcaldía y votación (Folgado, 1 voto)",
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
-          "excerpt": "Votos a favor de D. Rafael Folgado Navarro\nVotos a favor de __1"
+          "title": "Acta sesión constitutiva 17-06-2023 — candidatura a la Alcaldía y votación (Folgado, 1 voto)",
+          "retrievedAt": "2026-07-31T19:25:38.445Z",
+          "excerpt": "Votos a favor de D. Rafael Folgado Navarro\nVotos a favor de __1",
+          "trust": "high"
         },
         {
           "id": "src-067",
-          "retrievedAt": "2026-07-31T19:25:38.445Z",
           "kind": "official-doc",
-          "trust": "high",
-          "title": "Acta organización 07-07-2023 — Comisión Informativa: Compromís, titular Folgado (único miembro, en las cinco comisiones)",
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
-          "excerpt": "Grupo Municipal Compromís per Riba-roja\nTitular: D. Rafael Folgado Navarro"
+          "title": "Acta organización 07-07-2023 — Comisión Informativa: Compromís, titular Folgado (único miembro, en las cinco comisiones)",
+          "retrievedAt": "2026-07-31T19:25:38.445Z",
+          "excerpt": "Grupo Municipal Compromís per Riba-roja\nTitular: D. Rafael Folgado Navarro",
+          "trust": "high"
         },
         {
           "id": "src-068",
-          "retrievedAt": "2026-07-31T19:25:38.445Z",
           "kind": "official-doc",
-          "trust": "high",
-          "title": "Acta organización 07-07-2023 — régimen de asistencias (miembros sin dedicación)",
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
-          "excerpt": "TERCERO. Fijar el siguiente régimen de indemnizaciones y asistencias:\n- Por asistencia a sesiones del Pleno: 221,82 euros por sesión (solo podrán percibir este\nimporte los miembros de la Corporación que desempeñen sus cargos sin dedicación exclusiva ni\nparcial).\n- Por asistencia a sesiones de la Junta de Gobierno Local: 162,31 €/sesión (solo podrán\npercibir este importe los miembros de la Corporación que formen parte de la misma que\ndesempeñen sus cargos sin dedicación exclusiva ni parcial)."
+          "title": "Acta organización 07-07-2023 — régimen de asistencias (miembros sin dedicación)",
+          "retrievedAt": "2026-07-31T19:25:38.445Z",
+          "excerpt": "TERCERO. Fijar el siguiente régimen de indemnizaciones y asistencias:\n- Por asistencia a sesiones del Pleno: 221,82 euros por sesión (solo podrán percibir este\nimporte los miembros de la Corporación que desempeñen sus cargos sin dedicación exclusiva ni\nparcial).\n- Por asistencia a sesiones de la Junta de Gobierno Local: 162,31 €/sesión (solo podrán\npercibir este importe los miembros de la Corporación que formen parte de la misma que\ndesempeñen sus cargos sin dedicación exclusiva ni parcial).",
+          "trust": "high"
         },
         {
           "id": "src-069",
-          "retrievedAt": "2026-07-31T19:25:38.445Z",
           "kind": "official-doc",
-          "trust": "high",
-          "title": "Acta sesión constitutiva 13-06-2015 — concejales electos proclamados (Folgado, mandato 2015-2019)",
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate//filesGroup/Acta-pleno-constitucion-13-06-2015.pdf",
-          "excerpt": "D. JOSÉ ÁNGEL HERNANDEZ CARRIZOSA Dª BEATRIZ QUEVEDO SÁNCHEZ D. RAFAEL FOLGADO NAVARRO D. MIQUEL CASTILLO FAUS"
+          "title": "Acta sesión constitutiva 13-06-2015 — concejales electos proclamados (Folgado, mandato 2015-2019)",
+          "retrievedAt": "2026-07-31T19:25:38.445Z",
+          "excerpt": "D. JOSÉ ÁNGEL HERNANDEZ CARRIZOSA Dª BEATRIZ QUEVEDO SÁNCHEZ D. RAFAEL FOLGADO NAVARRO D. MIQUEL CASTILLO FAUS",
+          "trust": "high"
         },
         {
           "id": "src-070",
-          "retrievedAt": "2026-07-31T19:25:38.445Z",
           "kind": "official-doc",
-          "trust": "high",
-          "title": "Acta sesión constitutiva 13-06-2015 — candidatura a la Alcaldía (Folgado, Compromís)",
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate//filesGroup/Acta-pleno-constitucion-13-06-2015.pdf",
-          "excerpt": "Don Francisco Manuel Caparrós Duran, Ciudadanos Don Rafael Gómez Muñoz, EUPV:AC Don Rafael Folgado Navarro, Compromís per Riba-roja Don Rubén Ferrer Pérez, Riba-roja Pot Don Roberto Raga Gadea, Partido Socialista Obrero Español"
+          "title": "Acta sesión constitutiva 13-06-2015 — candidatura a la Alcaldía (Folgado, Compromís)",
+          "retrievedAt": "2026-07-31T19:25:38.445Z",
+          "excerpt": "Don Francisco Manuel Caparrós Duran, Ciudadanos Don Rafael Gómez Muñoz, EUPV:AC Don Rafael Folgado Navarro, Compromís per Riba-roja Don Rubén Ferrer Pérez, Riba-roja Pot Don Roberto Raga Gadea, Partido Socialista Obrero Español",
+          "trust": "high"
         },
         {
           "id": "src-071",
-          "retrievedAt": "2026-07-31T19:25:38.445Z",
           "kind": "official-doc",
-          "trust": "high",
-          "title": "BOP de València n.º 82, 30-04-2019 — candidatura de Compromís por Riba-roja (Folgado, cabeza de lista)",
           "url": "https://bop.dival.es/bop/downloads?boletinFecha=30/04/2019",
-          "excerpt": "CANDIDATURA NÚM. 6:\nCOMPROMÍS PER RIBA-ROJA: COMPROMÍS MUNICIPAL (COM-\nPROMÍS MUNICIPAL)\nTITULARES\n1. RAFAEL FOLGADO NAVARRO"
+          "title": "BOP de València n.º 82, 30-04-2019 — candidatura de Compromís por Riba-roja (Folgado, cabeza de lista)",
+          "retrievedAt": "2026-07-31T19:25:38.445Z",
+          "excerpt": "CANDIDATURA NÚM. 6:\nCOMPROMÍS PER RIBA-ROJA: COMPROMÍS MUNICIPAL (COM-\nPROMÍS MUNICIPAL)\nTITULARES\n1. RAFAEL FOLGADO NAVARRO",
+          "trust": "high"
         },
         {
           "id": "src-072",
-          "retrievedAt": "2026-07-31T19:25:38.445Z",
           "kind": "official-doc",
-          "trust": "high",
-          "title": "BOP de València n.º 79, 28-04-2015 — candidatura de Compromís por Riba-roja (Folgado, cabeza de lista)",
           "url": "https://bop.dival.es/bop/downloads?boletinFecha=28/04/2015",
-          "excerpt": "COMPROMIS PER RIBA-ROJA DE TuRIA (COMPROMIS) 1. En RAFAEL FOLGADO NAVARRO"
+          "title": "BOP de València n.º 79, 28-04-2015 — candidatura de Compromís por Riba-roja (Folgado, cabeza de lista)",
+          "retrievedAt": "2026-07-31T19:25:38.445Z",
+          "excerpt": "COMPROMIS PER RIBA-ROJA DE TuRIA (COMPROMIS) 1. En RAFAEL FOLGADO NAVARRO",
+          "trust": "high"
         },
         {
           "id": "src-073",
-          "retrievedAt": "2026-07-31T19:25:38.445Z",
           "kind": "official-doc",
-          "trust": "high",
-          "title": "Declaración de bienes patrimoniales — toma de posesión 2023 (expte. 3971/2023/GEN)",
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
-          "excerpt": "RAFAEL FOLGADO NAVARRO 42.078,85 0,00 0,00 49.226,71 — [columnas: bienes inmuebles · otros bienes · total activo · pasivo; la casilla de total imprime 0,00 pese a los 42.078,85 € en inmuebles: errata evidente del documento]"
+          "title": "Declaración de bienes patrimoniales — toma de posesión 2023 (expte. 3971/2023/GEN)",
+          "retrievedAt": "2026-07-31T19:25:38.445Z",
+          "excerpt": "RAFAEL FOLGADO NAVARRO 42.078,85 0,00 0,00 49.226,71 — [columnas: bienes inmuebles · otros bienes · total activo · pasivo; la casilla de total imprime 0,00 pese a los 42.078,85 € en inmuebles: errata evidente del documento]",
+          "trust": "high"
         },
         {
           "id": "src-074",
-          "retrievedAt": "2026-07-31T19:25:38.445Z",
           "kind": "official-doc",
-          "trust": "high",
-          "title": "Declaración de actividades — toma de posesión 2023 (expte. 3971/2023/GEN)",
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
-          "excerpt": "RAFAEL FOLGADO NAVARRO | Autónomo · Ciclos Folgado · 01/01/2021 — [tabla de actividades por columnas: cargo · entidad · fecha de inicio]"
+          "title": "Declaración de actividades — toma de posesión 2023 (expte. 3971/2023/GEN)",
+          "retrievedAt": "2026-07-31T19:25:38.445Z",
+          "excerpt": "RAFAEL FOLGADO NAVARRO | Autónomo · Ciclos Folgado · 01/01/2021 — [tabla de actividades por columnas: cargo · entidad · fecha de inicio]",
+          "trust": "high"
         },
         {
           "id": "src-075",
-          "retrievedAt": "2026-07-31T19:25:38.445Z",
           "kind": "official-doc",
-          "trust": "high",
-          "title": "BOP de València n.º 180, 15-09-2023 (anuncio 2023/12011) — publicación de las declaraciones tras la toma de posesión",
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-2023_12011_VA-Anuncio-BOP-Toma-posesion.pdf",
-          "excerpt": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre publicación de las declaraciones de bienes y actividades de los miembros de la Corporación con motivo de la toma de posesión (expediente 3971/2023/GEN)."
+          "title": "BOP de València n.º 180, 15-09-2023 (anuncio 2023/12011) — publicación de las declaraciones tras la toma de posesión",
+          "retrievedAt": "2026-07-31T19:25:38.445Z",
+          "excerpt": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre publicación de las declaraciones de bienes y actividades de los miembros de la Corporación con motivo de la toma de posesión (expediente 3971/2023/GEN).",
+          "trust": "high"
         },
         {
           "id": "src-076",
-          "retrievedAt": "2026-07-31T19:25:38.445Z",
           "kind": "local-snapshot",
-          "trust": "high",
-          "title": "Barrido determinista de adjudicatarios en tenders.json (comprobación de este medio)",
-          "localPath": "public/data/tenders.json",
           "url": "https://www.civicpulse.es/data/tenders.json",
-          "excerpt": "Barrido nominal: 0 coincidencias para «Ciclos Folgado» (su negocio declarado). El apellido «Folgado» —muy común en Riba-roja (el acta de 2015 recoge a un concejal distinto, José Luis Folgado Correa)— sí aparece en tres empresas adjudicatarias sin relación documentada con el concejal: Gil Folgado Catering, Folgado Materiales de Construcción e Industrial Gil Folgado. Adyacencia de apellido no es vínculo; sin documento, no se atribuyen."
+          "title": "Barrido determinista de adjudicatarios en tenders.json (comprobación de este medio)",
+          "retrievedAt": "2026-07-31T19:25:38.445Z",
+          "excerpt": "Barrido nominal: 0 coincidencias para «Ciclos Folgado» (su negocio declarado). El apellido «Folgado» —muy común en Riba-roja (el acta de 2015 recoge a un concejal distinto, José Luis Folgado Correa)— sí aparece en tres empresas adjudicatarias sin relación documentada con el concejal: Gil Folgado Catering, Folgado Materiales de Construcción e Industrial Gil Folgado. Adyacencia de apellido no es vínculo; sin documento, no se atribuyen.",
+          "localPath": "public/data/tenders.json",
+          "trust": "high"
         }
       ],
       "warnings": [
@@ -21876,6 +21876,905 @@
         "Las intervenciones plenarias no se atribuyen individualmente: las transcripciones automáticas carecen de diarización fiable y el borrador citaba a un genérico «Rafael» no confirmado."
       ],
       "legalSensitivity": "medium",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "r-alberto-gimeno-bio-v2-2026-09-06",
+      "assignmentId": "a-alberto-gimeno-bio-v2",
+      "generatedAt": "2026-09-06T21:49:02.991Z",
+      "agentVersion": "journalist-v1",
+      "promptVersion": "plan=journalist-plan-v3;bio=journalist-bio-v6;synth=journalist-synth-v6;verify=journalist-verify-v3",
+      "budgetTokens": 0,
+      "costUSD": 0,
+      "legalSensitivity": "high",
+      "warnings": [
+        "Los datos biográficos y la trayectoria (Policía Local 1998-2023, assessor de la Diputació desde 08/2023, diplomatura) proceden del CV autodeclarado del portal municipal; la declaración estatutaria corrobora únicamente el cese como policía en 2023.",
+        "La simultaneidad concejal + assessor de la Diputació se publica como hechos fechados de documentos oficiales; al no tener dedicación exclusiva municipal, la compatibilidad de ambos puestos es la situación ordinaria prevista por la ley y este medio no afirma irregularidad.",
+        "La transcripción del pleno de 03-07-2026 es automática y sin identificación de hablantes; la frase citada sobre la convocatoria se atribuye a la presidencia por su contenido («yo no convoco este pleno») y el hecho que describe está corroborado por el punto 1 del orden del día.",
+        "Las afirmaciones sobre su papel de mando en la Policía Local de Riba-roja entre 2011 y 2015, su destitución y la actuación de la Agencia Valenciana Antifraude proceden de un único medio (El Plural, mayo de 2023) y se publican atribuidas y fechadas; la destitución de cuatro mandos en septiembre de 2015 está corroborada por Europa Press, que no da nombres. Este medio no ha localizado decreto, acta ni resolución que las confirme o desmienta, y el concejal tiene abierto el derecho de réplica."
+      ],
+      "sources": [
+        {
+          "id": "src-001",
+          "kind": "local-snapshot",
+          "title": "Officials snapshot — Alberto Gimeno Calvo",
+          "retrievedAt": "2026-07-31T13:18:03.625Z",
+          "excerpt": "role: concejal · party: PP · portfolios: ",
+          "localPath": "public/data/officials.json",
+          "trust": "high",
+          "selfDeclared": false
+        },
+        {
+          "id": "src-002",
+          "kind": "web",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/20251002-Datos-biogrficos-Alberto-J-Gimeno-Calvo.pdf",
+          "title": "CV autodeclarado (ficha oficial de transparencia) — Alberto José Gimeno Calvo",
+          "retrievedAt": "2026-07-31T13:18:06.385Z",
+          "excerpt": "Contactar alberto.gimeno@dival.es Alberto José Gimeno Calvo Diplomat en Ciències Empresarials en la Universitat Catòlica de Valéncia Riba-roja de Túria, Valencia, España Experiència Diputació de Valencia Assessor de Ple Agost de 2023 – Actualitat Comunitat Valenciana, España Policía Local Valencia Setembre de 2021 – Abril de 2023 Comunitat Valenciana, España Policía Local Riba-roja de Túria Agost de 1998 – Setembre de 2021 Comunitat Valenciana / Comunidad Valenciana, España E",
+          "trust": "high",
+          "selfDeclared": true
+        },
+        {
+          "id": "src-060",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/20251002-Datos-biogrficos-Alberto-J-Gimeno-Calvo.pdf",
+          "title": "CV publicado en el portal municipal — identidad, titulación y residencia (autodeclarado)",
+          "retrievedAt": "2026-07-31T17:24:16.056Z",
+          "excerpt": "Contactar  \nalberto.gimeno@dival.es \n \n \nAlberto José Gimeno Calvo \nDiplomat en Ciències Empresarials en la Universitat Catòlica de \nValéncia \nRiba-roja de Túria, Valencia, España",
+          "trust": "medium",
+          "selfDeclared": true
+        },
+        {
+          "id": "src-061",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/20251002-Datos-biogrficos-Alberto-J-Gimeno-Calvo.pdf",
+          "title": "CV publicado en el portal municipal — experiencia: Diputació (assessor de Ple, 08/2023–) y Policía Local (autodeclarado)",
+          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "excerpt": "Experiència \nDiputació de Valencia \nAssessor de Ple \nAgost de 2023 – Actualitat  \n \nComunitat Valenciana, España \n \nPolicía Local Valencia \nSetembre de 2021 – Abril de 2023 \n \nComunitat Valenciana, España \n \nPolicía Local Riba-roja de Túria \nAgost de 1998 – Setembre de 2021",
+          "trust": "medium",
+          "selfDeclared": true
+        },
+        {
+          "id": "src-062",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/8198854/filesGroup/20230617-P-EXTRA-CONST-AYTO.pdf",
+          "title": "Acta sesión constitutiva 17-06-2023 — proclamación de electos (credenciales JEZ)",
+          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "excerpt": "Jose Luis Ramos March\nJose Angel Hernandez Carrizosa\nEva Lara Catalá\nRafael Gomez Sanchez\nMaria Esther Gomez Laredo\nJose Manuel Vila Oltra\nRaquel Pamblanco Paredes\nAlfredo Pla Gimenez\nDavid Barbancho Martínez\nAlberto Jose Gimeno Calvo",
+          "trust": "high",
+          "selfDeclared": false,
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:11.361Z"
+        },
+        {
+          "id": "src-063",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/8198854/filesGroup/20230617-P-EXTRA-CONST-AYTO.pdf",
+          "title": "Acta sesión constitutiva 17-06-2023 — juramento/promesa de los concejales",
+          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "excerpt": "- Salvador Evaristo Ferrer Cortina\n- Maria Jose Pradas Ramo\n2\n- Soraya Trejo Delgado\n- Alberto Jose Gimeno Calvo\n- David Barbancho Martínez\n- Alfredo Pla Gimenez\n- Raquel Pamblanco Paredes\n- Jose Manuel Vila Oltra\n- Maria Esther Gomez Laredo",
+          "trust": "high",
+          "selfDeclared": false,
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:11.361Z"
+        },
+        {
+          "id": "src-064",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/8198854/filesGroup/20230617-P-EXTRA-CONST-AYTO.pdf",
+          "title": "Acta sesión constitutiva 17-06-2023 — candidaturas a la Alcaldía (cabezas de lista; Gimeno «(independiente), Partido Popular»)",
+          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "excerpt": "Presentan candidatura los siguientes Concejales/as:\n- Roberto Pascual Raga Gadea, Partido Socialista Obrero Español\n- Alberto Jose Gimeno Calvo (independiente), Partido Popular\n- Jose Luis Fernández Santamaria, VOX\n- Jose Manuel Gallardo Martínez, Esquerra Unida – Unides Podem per Riba-roja",
+          "trust": "high",
+          "selfDeclared": false,
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:11.361Z"
+        },
+        {
+          "id": "src-065",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/8198854/filesGroup/20230617-P-EXTRA-CONST-AYTO.pdf",
+          "title": "Acta sesión constitutiva 17-06-2023 — votación de investidura (Raga 11 · Gimeno 7)",
+          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "excerpt": "Interviene la Sr. Presidente indicando que finalizada la votación y realizado el escrutinio, el\nresultado es el siguiente:\nVotos a favor de D. Roberto Pascual Raga Gadea.\nVotos a favor de __11\n3\nVotos a favor de D. Alberto Jose Gimeno Calvo\nVotos a favor de __7\nVotos a favor de D. Jose Luis Fernández Santamaria.\nVotos a favor de __1\nVotos a favor de D. Jose Manuel Gallardo Martínez\nVotos a favor de __0\nVotos a favor de D. Rafael Folgado Navarro\nVotos a favor de __1\nVotos blancos________1",
+          "trust": "high",
+          "selfDeclared": false,
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:11.361Z"
+        },
+        {
+          "id": "src-066",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
+          "title": "Acta organización 07-07-2023 — Grupo Municipal Popular (Gimeno n.º 1 y portavoz; 5 de 7 miembros «(Independiente)»)",
+          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "excerpt": "Túria, son:\n1. Don Alberto José Gimeno Calvo (Independiente)\n2. Doña Soraya Trejo Delgado (Independiente)\n3. Doña Maria José Pradas Ramo (Independiente)\n4. Don Salvador Evaristo Ferrer Cortina (Independiente)\n5. Don Juan Boix Martínez (Independiente)\n6. Doña Laura Guzmán Bruno\n7. Paula Navarro Sanfeliu\nSiendo su Portavoz: Don Alberto José Gimeno Calvo\nPortavoz suplente: Doña Soraya Trejo Delgado\nPor el Grupo político municipal con la denominación de Grupo Municipal Vox Riba roja de Túria, es:",
+          "trust": "high",
+          "selfDeclared": false,
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
+        },
+        {
+          "id": "src-067",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
+          "title": "Acta organización 07-07-2023 — Comisión Informativa de Educación, Cultura, Deportes y Fiestas: titulares del Grupo Popular",
+          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "excerpt": "Grupo Municipal Partido Popular Riba-roja de Túria\nTitular: D. Alberto José Gimeno Calvo\nTitular: Dª Mª José Pradas Ramo\nTitular: D. Juan Boix Martínez\nTitular: Dª Paula Navarro Sanfeliu",
+          "trust": "high",
+          "selfDeclared": false,
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
+        },
+        {
+          "id": "src-068",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
+          "title": "Acta organización 07-07-2023 — Comisión Informativa de Inclusión Social: titulares del Grupo Popular",
+          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "excerpt": "Grupo Municipal Partido Popular Riba-roja de Túria\nTitular: D. Alberto José Gimeno Calvo\nTitular: Dª Mª José Pradas Ramo\nTitular: D. Juan Boix Martínez",
+          "trust": "high",
+          "selfDeclared": false,
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
+        },
+        {
+          "id": "src-069",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2172018/filesGroup/20230707-10-P.pdf",
+          "title": "Acta organización 07-07-2023 — régimen de asistencias (miembros sin dedicación)",
+          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "excerpt": "TERCERO. Fijar el siguiente régimen de indemnizaciones y asistencias:\n- Por asistencia a sesiones del Pleno: 221,82 euros por sesión (solo podrán percibir este\nimporte los miembros de la Corporación que desempeñen sus cargos sin dedicación exclusiva ni\nparcial).\n- Por asistencia a sesiones de la Junta de Gobierno Local: 162,31 €/sesión (solo podrán\npercibir este importe los miembros de la Corporación que formen parte de la misma que\ndesempeñen sus cargos sin dedicación exclusiva ni parcial).",
+          "trust": "high",
+          "selfDeclared": false,
+          "previousUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "relocatedAt": "2026-08-03T13:48:12.556Z"
+        },
+        {
+          "id": "src-070",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+          "title": "Declaración de bienes patrimoniales — toma de posesión 2023 (expte. 3971/2023/GEN, Decreto 191/2010)",
+          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "excerpt": "ALBERTO JOSE GIMENO CALVO 150.000,00 1.000,00 151.000,00 0,00 — [columnas: bienes inmuebles · otros bienes · total activo · pasivo]",
+          "trust": "high",
+          "selfDeclared": true
+        },
+        {
+          "id": "src-071",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+          "title": "Declaración de actividades — toma de posesión 2023 (expte. 3971/2023/GEN)",
+          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "excerpt": "ALBERTO JOSE GIMENO CALVO | Policia · Valencia · cese 2023 — [transcripción por columnas de la tabla de actividades: cargo · entidad · fecha de cese; la declaración se presentó con motivo de la toma de posesión de junio de 2023]",
+          "trust": "high",
+          "selfDeclared": true
+        },
+        {
+          "id": "src-072",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-2023_12011_VA-Anuncio-BOP-Toma-posesion.pdf",
+          "title": "BOP de València n.º 180, 15-09-2023 (anuncio 2023/12011) — publicación de las declaraciones tras la toma de posesión",
+          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "excerpt": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre publicación de las declaraciones de bienes y actividades de los miembros de la Corporación con motivo de la toma de posesión (expediente 3971/2023/GEN).",
+          "trust": "high",
+          "selfDeclared": false
+        },
+        {
+          "id": "src-073",
+          "kind": "official-doc",
+          "url": "https://bop.dival.es/bop/downloads?boletinFecha=30/04/2019",
+          "title": "BOP de València n.º 82, 30-04-2019 — candidatura del PP por Riba-roja (Gimeno ausente; cabeza de lista distinta)",
+          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "excerpt": "PARTIDO POPULAR (PP)\nTITULARES\n1. JOSEFA RUIZ ESTEBAN\n2. SANTIAGO NAVARRO ZARAGOZÁ\n3. PEDRO TORTAJADA RAGA\n4. RAQUEL ARGANDOÑA LÓPEZ\n5. BEGOÑA CAMPOS MARTÍNEZ\n6. PAULA BADÍA LANÁQUERA\n7. ROSA AL SIBAI GINER\n8. VICTOR ENGUIX ZARAGO",
+          "trust": "high",
+          "selfDeclared": false
+        },
+        {
+          "id": "src-074",
+          "kind": "local-snapshot",
+          "url": "https://regmeet.com/aytoribarroja/participaciones/aba18772fc70c8cbf79a79f413ef102b?idioma=castellano",
+          "title": "Orden del día del pleno extraordinario de 03-07-2026 — solicitado por el Grupo Municipal Popular (RSU y tasa de basura)",
+          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "excerpt": "Punto 1: «Ratificar la solicitud para la celebración del Pleno Extraordinario presentada por parte de los miembros del Grupo Municipal Popular». Punto 2: «Debate y adopción de acuerdos en relación con la gestión del servicio de recogida de RSU, poda y voluminosos, la situación contractual del servicio y la tasa de basura».",
+          "localPath": "public/data/plenos-agendas.json",
+          "trust": "high",
+          "selfDeclared": false
+        },
+        {
+          "id": "src-075",
+          "kind": "official-doc",
+          "url": "https://regmeet.com/aytoribarroja/participaciones/aba18772fc70c8cbf79a79f413ef102b?idioma=castellano",
+          "title": "Transcripción automática del pleno extraordinario 03-07-2026 (sin diarización de hablantes)",
+          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "excerpt": "¿Qué es lo que está pasando en el pleno? Mire, yo no convoco este pleno. El pleno lo ha pedido el Partido Popular.",
+          "trust": "medium"
+        },
+        {
+          "id": "src-076",
+          "kind": "local-snapshot",
+          "url": "https://www.civicpulse.es/data/tenders.json",
+          "title": "Barrido determinista de adjudicatarios en tenders.json (comprobación de este medio)",
+          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "excerpt": "Barrido nominal sobre todos los adjudicatarios registrados (contratos + licitaciones Gobierto/PLACSP): 0 coincidencias para «GIMENO CALVO».",
+          "localPath": "public/data/tenders.json",
+          "trust": "high",
+          "selfDeclared": false
+        },
+        {
+          "id": "src-101",
+          "kind": "web",
+          "url": "https://www.dival.es/sites/default/files/2026-01-21-resposta-personal-eventuals.pdf",
+          "title": "Diputació de València — Recursos Humanos y Organización: información relativa al personal eventual de la entidad en el ejercicio 2025 (art. 14.2.a.4º Ley 1/2022)",
+          "retrievedAt": "2026-09-06T21:39:49.608Z",
+          "trust": "high",
+          "publisher": "Diputació de València (portal de transparencia, página «Asesores»)",
+          "publishedAt": "2026-01-21",
+          "excerpt": "GABINETE DE LA PRESIDENCIA GIMENO CALVO ALBERTO JOSE COORDINADOR/A GRUPO POLITICO 54.861,36 €"
+        },
+        {
+          "id": "src-102",
+          "kind": "web",
+          "url": "https://valenciaplaza.com/el-policia-alberto-gimeno-sera-el-candidato-del-pp-a-la-alcaldia-de-riba-roja",
+          "title": "El policía Alberto Gimeno será el candidato del PP a la alcaldía de Riba-roja",
+          "retrievedAt": "2026-09-06T21:39:49.609Z",
+          "trust": "medium",
+          "publisher": "Valencia Plaza",
+          "publishedAt": "2023-01-09",
+          "excerpt": "Alberto Gimeno, oficial del Cuerpo de Policía Local de València, será candidato a la alcaldía de Riba-roja por el Partido Popular según ha podido saber Valencia Plaza. Se enfrentará, por tanto, entre otros, al actual primer edil, el socialista Robert Raga, a quien conoce de su etapa laboral en el consistorio de esta localidad de la comarca de Camp de Túria, en la que ejerció también su tarea policial con cargos de responsabilidad. Con la elección de este vecino del municipio de 48 años"
+        },
+        {
+          "id": "src-103",
+          "kind": "web",
+          "url": "https://www.elplural.com/politica/antifraude-investiga-candidato-pp-riba-roja-dar-cursos-sin-compatibilidad-cuando-era-jefe-policia-local_310916102",
+          "title": "Antifraude investiga al candidato del PP en Riba-Roja por dar cursos sin compatibilidad cuando era jefe de la Policía Local",
+          "retrievedAt": "2026-09-06T21:39:49.609Z",
+          "trust": "low",
+          "publisher": "El Plural",
+          "publishedAt": "2023-05-17",
+          "excerpt": "el alcalde de Riba-roja de Túria, Robert Raga, destituyó de forma fulminante a cuatro mandos de la policía local"
+        },
+        {
+          "id": "src-104",
+          "kind": "web",
+          "url": "https://www.elplural.com/sociedad/tribunales/candidato-pp-riba-roja-investigado-antifraude-habla-ahora-tomar-medidas-extremas-contra-gatos-callejeros_311420102",
+          "title": "El candidato del PP de Riba Roja investigado por Antifraude habla ahora de 'acabar' con 25 gatos callejeros",
+          "retrievedAt": "2026-09-06T21:39:49.609Z",
+          "trust": "low",
+          "publisher": "El Plural",
+          "publishedAt": "2023-05-25",
+          "excerpt": "Tal y como publicó este periódico, además, Gimeno estuvo en su puesto entre los años 2011 y 2015, un cargo al que accedió de forma irregular y por la que fue destituido con la conformación del gobierno tras las elecciones del año 2015."
+        },
+        {
+          "id": "src-105",
+          "kind": "web",
+          "url": "https://www.eldiario.es/comunitat-valenciana/desbandada-pp-riba-roja-presidente-numero-dimiten-cargos-seis-meses_1_12303877.html",
+          "title": "Desbandada en el PP de Riba-roja: el presidente y la número dos dimiten de sus cargos en seis meses",
+          "retrievedAt": "2026-09-06T21:39:49.610Z",
+          "trust": "medium",
+          "publisher": "eldiario.es",
+          "publishedAt": "2025-05-16",
+          "excerpt": "Si el pasado mes de enero quien fuera el presidente local del PP, Javier Moreno, dimitía del cargo orgánico, ahora la sangría ha proseguido en el grupo municipal, tras renunciar al acta de concejala la que era la número 2 de la candidatura, Soraya Trejo."
+        },
+        {
+          "id": "src-106",
+          "kind": "web",
+          "url": "https://www.eldiario.es/comunitat-valenciana/pp-diputacion-valencia-carga-bomberos-manifiestan-cobran-125-000-euros_1_12499302.html",
+          "title": "El PP de la Diputación de Valencia carga contra los bomberos que se manifiestan: \"Cobran 125.000 euros\"",
+          "retrievedAt": "2026-09-06T21:39:49.610Z",
+          "trust": "medium",
+          "publisher": "eldiario.es",
+          "publishedAt": "2025-07-29",
+          "excerpt": "Claro que les tenemos que agradecer mucho. Todo el mundo tiene que saber que un bombero hoy en día cobra 125.000 euros; no un oficial, un bombero, con horas extra"
+        },
+        {
+          "id": "src-108",
+          "kind": "web",
+          "url": "https://bop.dival.es/bop/downloads?boletinFecha=28/04/2015",
+          "title": "BOP de València n.º 79, 28-04-2015 — candidaturas proclamadas, circunscripción Riba-roja de Túria (siete listas; Gimeno Calvo no figura en ninguna)",
+          "retrievedAt": "2026-09-06T21:39:49.610Z",
+          "trust": "high",
+          "publisher": "Boletín Oficial de la Provincia de València",
+          "publishedAt": "2015-04-28",
+          "excerpt": "Candidatura núm.: 6. PARTIDO POPuLAR (P.P.) 1. Doña JOSEFA RUIZ ESTEBAN 2. Don JOSE LUIS FOLGADO CORREA 3. Doña MARIA DEL CARMEN GRAU GONZALEZ 4. Don JUAN VICENTE GINER LLEO 5. Don JOSE VICENTE TARAZONA CAMPOS 6. Doña CARMINA SORIANO GIMENO 7. Don SANTIAGO NAVARRO ZARAGOZA 8. Doña RAQUEL ARGANDOÑA LOPEZ 9. Don CARLOS CHAMON FOLGADO 10. Doña MARIA ANGELES NAVARRO MORENO 11. Don SANTIAGO ABELLAN SOLIVERES 12. Don ALBERTO FACUNDO TARAZONA"
+        },
+        {
+          "id": "src-110",
+          "kind": "web",
+          "url": "https://www.lasprovincias.es/horta-morvedre/201509/16/alcalde-ribarroja-destituye-mandos-20150916132530.html",
+          "title": "El alcalde de Ribarroja destituye a 4 mandos de la Policía Local por trabajar dos años «sin contrato legal»",
+          "retrievedAt": "2026-09-06T21:36:00.000Z",
+          "trust": "medium",
+          "publisher": "Las Provincias (teletipo de Europa Press)",
+          "publishedAt": "2015-09-16",
+          "excerpt": "El alcalde de Riba-roja de Túria (Valencia), el socialista Robert Raga, ha destituido \"de forma fulminante\" a cuatro mandos de la Policía Local por \"permanecer de forma ilegal durante los últimos 2 años en sus cargos a pesar de que su contrato había finalizado en el año 2013\"."
+        },
+        {
+          "id": "src-111",
+          "kind": "web",
+          "url": "https://www.valencia.es/documents/20142/594727/publiciacionlistas%20provisionales(3).pdf/ca8e81d7-cd3c-4a49-f161-dc2678f15a50",
+          "title": "BOP de València n.º 93, 17-05-2017 — Ajuntament de València: listas provisionales de personas admitidas y excluidas en la convocatoria para proveer en propiedad 52 plazas de Oficial/a de la Policía Local (copia publicada en valencia.es)",
+          "retrievedAt": "2026-09-06T21:39:56.412Z",
+          "trust": "low",
+          "publisher": "Boletín Oficial de la Provincia de València (copia en el portal del Ajuntament de València)",
+          "publishedAt": "2017-05-17",
+          "excerpt": "GIMENO CALVO ALBERTO JOSÉ ......754N"
+        },
+        {
+          "retrievedAt": "2026-09-07T00:20:00.000Z",
+          "trust": "high",
+          "id": "src-112",
+          "kind": "web",
+          "url": "https://www.dival.es/sites/default/files/portal-de-transparencia/2024%2007%2022%20personal%20eventual%20PT%20publicar.xlsx",
+          "title": "Diputació de València — Listado del personal eventual en activo (22-07-2024), hoja «Grupo político eventuales»: grupo, nombre, cargo, decreto de nombramiento y anuncio en el BOP",
+          "publisher": "Diputació de València (portal de transparencia)",
+          "publishedAt": "2024-07-22",
+          "excerpt": "PP ALBERTO JOSE GIMENO CALVO COORDINADOR/A DE GRUPO POLITICO D. 13140 de 23/10/2023 Núm. 40 de 26/02/2024"
+        },
+        {
+          "retrievedAt": "2026-09-07T00:20:00.000Z",
+          "trust": "low",
+          "id": "src-113",
+          "kind": "official-doc",
+          "url": "https://regmeet.com/files/uploads/aytoribarroja/07-07-2025.Pleno2025-07-25_19-06-16/documentos/2026-07-30_15-32-54_0.pdf",
+          "title": "Acta de la sesión ordinaria del Ayuntamiento Pleno de 7 de julio de 2025 · punto 2, expediente 3400/2025/GEN — renuncia de Soraya Trejo Delgado (toma de razón del Pleno de 02-06-2025)",
+          "publisher": "Ayuntamiento de Riba-roja de Túria (videoacta en regmeet.com)",
+          "publishedAt": "2025-07-07",
+          "excerpt": "Dª Soraya Trejo Delgado, Concejala del Ayuntamiento de Riba-roja de Túria perteneciente al Grupo Político Municipal del Partido Popular de este Ayuntamiento presentó escrito en el que manifestó \"que por motivos personales\" presentaba su renuncia al cargo de Concejala del Ayuntamiento. Segundo.- En fecha 02 de junio de 2025 el Pleno Municipal de Riba-roja de Túria tomó razón de la renuncia"
+        },
+        {
+          "retrievedAt": "2026-09-07T00:20:00.000Z",
+          "trust": "low",
+          "id": "src-114",
+          "kind": "official-doc",
+          "url": "https://www.antifraucv.es/wp-content/uploads/2023/12/20231129_IVASPE_Censurado.pdf",
+          "title": "Agencia Valenciana Antifraude — Resolución de conclusión de actuaciones, expediente 2022/G01_02/000049 «Docentes IVASPE y personal CEMPOL» (29-11-2023, versión censurada publicada por la Agencia)",
+          "publisher": "Agencia Valenciana Antifraude",
+          "publishedAt": "2023-11-29",
+          "excerpt": "Ayuntamiento de origen de cada uno de los policías locales identificados."
+        },
+        {
+          "retrievedAt": "2026-09-07T00:20:00.000Z",
+          "trust": "low",
+          "id": "src-115",
+          "kind": "official-doc",
+          "url": "http://elecciones.mir.es/locales2011/almacen/pdf/bo_valencia.pdf",
+          "title": "BOP de València n.º 97, 26-04-2011 — candidaturas proclamadas para las elecciones municipales de 2011, circunscripción Riba-roja de Túria (copia publicada por el Ministerio del Interior)",
+          "publisher": "Boletín Oficial de la Provincia de València (copia en elecciones.mir.es)",
+          "publishedAt": "2011-04-26",
+          "excerpt": "Circunscripción electoral: Riba-roja de Túria"
+        },
+        {
+          "retrievedAt": "2026-09-07T00:20:00.000Z",
+          "trust": "low",
+          "id": "src-116",
+          "kind": "official-doc",
+          "url": "https://regmeet.com/files/uploads/aytoribarroja/07-07-2025.Pleno2025-07-25_19-06-16/documentos/2026-07-30_15-32-54_0.pdf",
+          "title": "Acta de la sesión ordinaria del Ayuntamiento Pleno de 7 de julio de 2025 · punto 2, expediente 3400/2025/GEN — toma de posesión de Pedro Tortajada Raga",
+          "publisher": "Ayuntamiento de Riba-roja de Túria (videoacta en regmeet.com)",
+          "publishedAt": "2025-07-07",
+          "excerpt": "Por lo que cumplidos los trámites de D. Pedro Tortajada Raga, toma posesión de su cargo de Concejal ante el Pleno."
+        }
+      ],
+      "sections": [
+        {
+          "kind": "portrait",
+          "payload": {
+            "officialSlug": "alberto-gimeno-calvo",
+            "photoPath": "/data/photos/alberto-gimeno-calvo.jpg",
+            "partyTone": "intel",
+            "portfolios": [],
+            "cvUrl": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919"
+          }
+        },
+        {
+          "kind": "identity",
+          "payload": {
+            "residence": "Riba-roja de Túria, Valencia, España",
+            "sourceIds": [
+              "src-060"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Identidad y formación",
+            "bodyMarkdown": "Alberto José Gimeno Calvo es concejal del Ayuntamiento de Riba-roja de Túria por el Partido Popular (PP), actualmente en la oposición y sin áreas de gobierno delegadas. Según su currículum oficial publicado en el portal municipal de transparencia, es diplomado en Ciencias Empresariales por la Universitat Catòlica de València.",
+            "sourceIds": [
+              "src-001",
+              "src-002"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Trayectoria profesional: 23 años de Policía Local en el propio municipio",
+            "bodyMarkdown": "Según su CV, Gimeno Calvo fue **policía local de Riba-roja de Túria durante 23 años** (agosto de 1998 – septiembre de 2021), en el municipio que hoy fiscaliza desde el pleno. En septiembre de 2021 pasó a la **Policía Local de València**, donde su CV sitúa el cese en abril de 2023 — un mes antes de las municipales; su declaración estatutaria corrobora el cese («Policia», València, 2023).\n\nDesde **agosto de 2023** — dos meses después de tomar posesión como concejal — ocupa un puesto de **assessor de Ple en la Diputació de València**, según su propio CV (que publica un correo de contacto del dominio @dival.es). Es un puesto de confianza política en la institución provincial, **simultáneo con su concejalía**: al no tener dedicación exclusiva en el Ayuntamiento, la ley no le impide compatibilizar ambos. La declaración de actividades presentada con motivo de la toma de posesión (junio de 2023) es anterior a ese nombramiento y no lo recoge; **no consta publicada una declaración actualizada** en el portal municipal. Este medio no afirma irregularidad: publica las fechas que constan en los documentos.\n\nEs diplomado en Ciencias Empresariales por la Universitat Catòlica de València, según el mismo CV autodeclarado.",
+            "sourceIds": [
+              "src-061",
+              "src-071",
+              "src-060"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Mandos destituidos en 2015: lo que dice la prensa y lo que consta",
+            "bodyMarkdown": "El currículum que Gimeno Calvo publica en el portal municipal consigna 23 años en la **Policía Local de Riba-roja de Túria** (1998–2021) sin más detalle. Valencia Plaza, al anunciar su candidatura en enero de 2023, escribió que en el consistorio «ejerció también su tarea policial con cargos de responsabilidad».\n\nLo que sí consta en prensa contemporánea es el episodio de septiembre de 2015: según un teletipo de Europa Press publicado por Las Provincias el 16-09-2015, el alcalde Robert Raga destituyó «de forma fulminante» a cuatro mandos de la Policía Local por «permanecer de forma ilegal durante los últimos 2 años en sus cargos a pesar de que su contrato había finalizado en el año 2013» — comisiones de servicios aprobadas en 2011 por el gobierno anterior. La crónica no da nombres.\n\n**Según El Plural** (17 y 25 de mayo de 2023, en plena campaña municipal), Gimeno era uno de esos mandos: «estuvo en su puesto entre los años 2011 y 2015, un cargo al que accedió de forma irregular y por la que fue destituido con la conformación del gobierno tras las elecciones del año 2015», y ejercía como jefe de la Policía Local. El mismo medio informó de que la **Agencia Valenciana Antifraude** había remitido escritos al Ayuntamiento para comprobar si había pedido la compatibilidad para impartir cursos como docente mientras ocupaba ese puesto. Ninguna de las dos piezas recoge respuesta del interesado.\n\n**Lo que este medio ha comprobado**: la identificación de Gimeno como uno de los mandos destituidos y su condición de jefe descansan únicamente en El Plural; ningún documento oficial localizado las confirma ni las desmiente — el Boletín Oficial de la Provincia no publica los nombramientos ni los ceses en comisión de servicios, y el portal municipal no publica las actas ni los decretos de 2015. Sobre Antifraude, los listados públicos de resoluciones de la Agencia de 2022 a 2025 no contienen ninguna referida a Riba-roja, y su única resolución sobre la docencia de policías locales en el IVASPE (29-11-2023) no menciona al municipio. Este medio no afirma irregularidad alguna: publica lo que dijo la prensa, atribuido y fechado, y lo que ha podido comprobar. El concejal tiene abierto el derecho de réplica.\n\nEn 2017 figura entre las personas admitidas por el turno de movilidad a la convocatoria del Ajuntament de València para proveer 52 plazas de oficial de la Policía Local (BOP n.º 93, 17-05-2017); su CV sitúa el ingreso en la Policía Local de València en septiembre de 2021.",
+            "sourceIds": [
+              "src-061",
+              "src-102",
+              "src-110",
+              "src-103",
+              "src-104",
+              "src-114",
+              "src-111"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Elección y toma de posesión",
+            "bodyMarkdown": "La de 2023 es la **primera candidatura documentada** de Gimeno Calvo: no figura en las candidaturas de la circunscripción de Riba-roja publicadas en el BOP ni en 2011, ni en 2015 ni en 2019 — la lista del PP de 2019 la encabezaba otra persona. Entró en política directamente como **cabeza de lista del Partido Popular**, y las actas lo registran expresamente como **«(independiente)»**: entonces no constaba afiliación al partido cuya lista encabeza. No es un caso aislado — en 2023, cinco de los siete concejales del grupo figuraban con esa condición.\n\nLa sesión constitutiva de 17-06-2023 lo proclama concejal electo con las credenciales de la Junta Electoral de Zona y presta juramento o promesa. Como cabeza de lista, presentó candidatura a la Alcaldía en la misma sesión: obtuvo **7 votos** — los de su grupo — frente a los 11 de Robert Raga (PSPV-PSOE), que fue proclamado alcalde.\n\nEn el pleno de organización de 07-07-2023 queda como **n.º 1 y portavoz del Grupo Municipal Popular** (suplente en 2023: Soraya Trejo, que renunció al acta en 2025 — el Pleno tomó razón el 02-06-2025) y titular por su grupo en las comisiones informativas — entre ellas la de Educación, Cultura, Deportes y Fiestas y la de Inclusión Social. Sin dedicación exclusiva ni parcial, su retribución municipal es por **asistencias**: 221,82 € por Pleno y 162,31 € por comisión.",
+            "sourceIds": [
+              "src-073",
+              "src-064",
+              "src-062",
+              "src-063",
+              "src-065",
+              "src-066",
+              "src-067",
+              "src-068",
+              "src-069",
+              "src-115",
+              "src-108"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Papel en la oposición",
+            "bodyMarkdown": "Como portavoz del principal grupo de la oposición, el instrumento de control más visible que documentan los registros municipales es la **convocatoria forzada de plenos extraordinarios**: el orden del día del pleno de 03-07-2026 ratifica en su punto 1 «la solicitud para la celebración del Pleno Extraordinario presentada por parte de los miembros del Grupo Municipal Popular», dedicado a la gestión del servicio de recogida de basuras (RSU), su situación contractual y la tasa — la transcripción de la sesión recoge a la presidencia reconociéndolo: «yo no convoco este pleno. El pleno lo ha pedido el Partido Popular».\n\nSu presencia institucional ordinaria se articula en las comisiones informativas, donde figura como titular por su grupo. Las transcripciones automáticas de los plenos no llevan identificación de hablantes, por lo que este medio no atribuye intervenciones individuales del turno de palabra más allá de las llamadas nominales que consten en las actas.",
+            "sourceIds": [
+              "src-074",
+              "src-075",
+              "src-067",
+              "src-068"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Personal eventual en la Diputació de València: decreto, boletín y gasto",
+            "bodyMarkdown": "Su puesto en la Diputació de València, que el CV describe como **assessor de Ple desde agosto de 2023**, consta en documentos de la propia institución: la relación de personal eventual en activo publicada en julio de 2024 lo recoge como **coordinador/a de grupo político** del PP, nombrado por el decreto 13140 de 23-10-2023 y anunciado en el BOP n.º 40 de 26-02-2024.\n\nLa información sobre el personal eventual del ejercicio 2025, publicada el 21-01-2026 por Recursos Humanos de la Diputació en cumplimiento de la ley valenciana de transparencia, lo sitúa en el **Gabinete de la Presidencia** con la categoría de coordinador/a de grupo político y un **gasto de 54.861,36 €** en ese ejercicio — la columna del informe es la de gasto de la institución, no una nómina. Es un puesto de confianza política **simultáneo con la concejalía** y compatible con ella, al no tener dedicación exclusiva en el Ayuntamiento.\n\nEn ese papel, eldiario.es lo citó el 29-07-2025 a propósito de las protestas de los bomberos del consorcio provincial: «Claro que les tenemos que agradecer mucho. Todo el mundo tiene que saber que un bombero hoy en día cobra 125.000 euros; no un oficial, un bombero, con horas extra». La cifra es suya; este medio no la ha verificado.",
+            "sourceIds": [
+              "src-112",
+              "src-061",
+              "src-101",
+              "src-106"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "El grupo municipal y el PP local desde 2025",
+            "bodyMarkdown": "El Grupo Municipal Popular, que Gimeno encabeza, perdió en 2025 a su número dos: **Soraya Trejo** renunció al acta de concejala «por motivos personales»; el Pleno tomó razón de la renuncia el 02-06-2025 y **Pedro Tortajada Raga** tomó posesión del escaño el 07-07-2025 (acta del Pleno, expediente 3400/2025/GEN).\n\nEldiario.es enmarcó esa renuncia en una serie de bajas del PP local: «Si el pasado mes de enero quien fuera el presidente local del PP, Javier Moreno, dimitía del cargo orgánico, ahora la sangría ha proseguido en el grupo municipal, tras renunciar al acta de concejala la que era la número 2 de la candidatura, Soraya Trejo» (16-05-2025). Según el mismo medio, Gimeno asumió de forma interina la presidencia del partido local tras la dimisión de Moreno. La lectura de los motivos es del periódico; este medio publica los hechos que constan en el acta.",
+            "sourceIds": [
+              "src-113",
+              "src-116",
+              "src-105"
+            ]
+          }
+        },
+        {
+          "kind": "education",
+          "payload": {
+            "items": [
+              {
+                "degree": "Diplomatura en Ciencias Empresariales",
+                "institution": "Universitat Catòlica de València (UCV)",
+                "sourceIds": [
+                  "src-060"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "career-political",
+          "payload": {
+            "items": [
+              {
+                "role": "Concejal y portavoz del Grupo Municipal Popular (n.º 1 de la lista, «Independiente»)",
+                "org": "Ayuntamiento de Riba-roja de Túria",
+                "startYear": 2023,
+                "sourceIds": [
+                  "src-062",
+                  "src-063",
+                  "src-066"
+                ]
+              },
+              {
+                "role": "Candidato a alcalde como cabeza de lista del PP en la sesión constitutiva (7 votos)",
+                "org": "Ayuntamiento de Riba-roja de Túria",
+                "startYear": 2023,
+                "endYear": 2023,
+                "sourceIds": [
+                  "src-064",
+                  "src-065"
+                ]
+              },
+              {
+                "role": "Coordinador/a de grupo político, personal eventual del Gabinete de la Presidencia (decreto 13140 de 23-10-2023; su CV lo consigna como assessor de Ple desde agosto de 2023)",
+                "org": "Diputació de València",
+                "startYear": 2023,
+                "sourceIds": [
+                  "src-112",
+                  "src-101",
+                  "src-061"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "career-professional",
+          "payload": {
+            "items": [
+              {
+                "role": "Policía Local",
+                "org": "Ayuntamiento de Riba-roja de Túria",
+                "startYear": 1998,
+                "endYear": 2021,
+                "sourceIds": [
+                  "src-061"
+                ]
+              },
+              {
+                "role": "Policía Local",
+                "org": "Ajuntament de València",
+                "startYear": 2021,
+                "endYear": 2023,
+                "sourceIds": [
+                  "src-061",
+                  "src-071"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "financial",
+          "payload": {
+            "items": [
+              {
+                "year": 2023,
+                "metric": "declared-assets",
+                "amountEuros": 151000,
+                "description": "Activo declarado al tomar posesión (2023): 150.000,00 € en bienes inmuebles + 1.000,00 € en otros bienes = 151.000,00 €; pasivo declarado: 0,00 €. Declaración conforme al Decreto 191/2010 del Consell (expte. 3971/2023/GEN), publicada en el BOP n.º 180 de 15-09-2023.",
+                "sourceIds": [
+                  "src-070",
+                  "src-072"
+                ]
+              },
+              {
+                "year": 2023,
+                "metric": "salary",
+                "description": "Sin dedicación exclusiva ni parcial en el Ayuntamiento: percibe asistencias por concurrencia efectiva — 221,82 € por sesión del Pleno y 162,31 € por comisiones (acuerdo de 07-07-2023). Su CV consigna además el puesto en la Diputació de València desde agosto de 2023; lo que la propia Diputació publica sobre ese puesto (decreto de nombramiento y gasto del ejercicio 2025) se detalla en la sección «Personal eventual en la Diputació de València».",
+                "sourceIds": [
+                  "src-069",
+                  "src-061"
+                ]
+              },
+              {
+                "year": 2023,
+                "metric": "business",
+                "description": "Sin actividad empresarial declarada. Su declaración de actividades consigna únicamente «Policia» en València con cese en 2023, coherente con su CV (Policía Local de València, 09/2021-04/2023). El puesto de assessor en la Diputació (agosto 2023, según su CV) es posterior a la declaración presentada con motivo de la toma de posesión; no consta publicada una declaración actualizada.",
+                "sourceIds": [
+                  "src-071",
+                  "src-061"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "timeline",
+          "payload": {
+            "events": [
+              {
+                "date": "1998-08-01",
+                "label": "Ingresa en la Policía Local de Riba-roja de Túria, donde sirve 23 años (CV autodeclarado)",
+                "sourceIds": [
+                  "src-061"
+                ]
+              },
+              {
+                "date": "2015-09-16",
+                "label": "El alcalde destituye a cuatro mandos de la Policía Local cuyas comisiones de servicios de 2011 habían expirado en 2013 (Europa Press, sin nombres); según El Plural (2023), Gimeno era uno de ellos",
+                "sourceIds": [
+                  "src-110",
+                  "src-104"
+                ]
+              },
+              {
+                "date": "2017-05-17",
+                "label": "Admitido por el turno de movilidad a la convocatoria del Ajuntament de València para 52 plazas de oficial de la Policía Local (BOP n.º 93)",
+                "sourceIds": [
+                  "src-111"
+                ]
+              },
+              {
+                "date": "2021-09-01",
+                "label": "Pasa a la Policía Local de València (CV)",
+                "sourceIds": [
+                  "src-061"
+                ]
+              },
+              {
+                "date": "2023-01-09",
+                "label": "Valencia Plaza anuncia su candidatura del PP a la alcaldía; lo describe como oficial de la Policía Local de València con «cargos de responsabilidad» en su etapa en Riba-roja",
+                "sourceIds": [
+                  "src-102"
+                ]
+              },
+              {
+                "date": "2023-04-30",
+                "label": "Cese en la Policía Local de València, un mes antes de las municipales (CV; corroborado por la declaración de actividades)",
+                "sourceIds": [
+                  "src-061",
+                  "src-071"
+                ]
+              },
+              {
+                "date": "2023-05-17",
+                "label": "El Plural publica que Antifraude ha pedido al Ayuntamiento documentación sobre la compatibilidad de sus cursos como docente cuando era mando de la Policía Local; este medio no ha localizado resolución de la Agencia",
+                "sourceIds": [
+                  "src-103",
+                  "src-114"
+                ]
+              },
+              {
+                "date": "2023-06-17",
+                "label": "Proclamado concejal electo, juramento y candidato a alcalde como cabeza de lista del PP registrado «(independiente)» — 7 votos frente a los 11 de Raga",
+                "sourceIds": [
+                  "src-062",
+                  "src-063",
+                  "src-064",
+                  "src-065"
+                ]
+              },
+              {
+                "date": "2023-07-07",
+                "label": "N.º 1 y portavoz del Grupo Municipal Popular; titular en las comisiones informativas; sin dedicación (asistencias)",
+                "sourceIds": [
+                  "src-066",
+                  "src-067",
+                  "src-068",
+                  "src-069"
+                ]
+              },
+              {
+                "date": "2023-08-01",
+                "label": "Assessor de Ple en la Diputació de València (CV), simultáneo con la concejalía; la declaración de junio no recoge el puesto y no consta actualización",
+                "sourceIds": [
+                  "src-061",
+                  "src-071"
+                ]
+              },
+              {
+                "date": "2023-09-05",
+                "label": "Publicación de su declaración de bienes: activo 151.000,00 € · pasivo 0,00 € (BOP n.º 180, 15-09-2023)",
+                "sourceIds": [
+                  "src-070",
+                  "src-072"
+                ]
+              },
+              {
+                "date": "2023-10-23",
+                "label": "Decreto 13140 de la Diputació de València: nombramiento como coordinador/a de grupo político (personal eventual); anuncio en el BOP n.º 40 de 26-02-2024",
+                "sourceIds": [
+                  "src-112"
+                ]
+              },
+              {
+                "date": "2025-06-02",
+                "label": "El Pleno toma razón de la renuncia de Soraya Trejo, n.º 2 de su lista; Pedro Tortajada Raga toma posesión el 07-07-2025",
+                "sourceIds": [
+                  "src-113",
+                  "src-116"
+                ]
+              },
+              {
+                "date": "2026-01-21",
+                "label": "La Diputació publica la información de su personal eventual de 2025: gasto de 54.861,36 € en el puesto de Gimeno (coordinador/a de grupo político, Gabinete de la Presidencia)",
+                "sourceIds": [
+                  "src-101"
+                ]
+              },
+              {
+                "date": "2026-07-03",
+                "label": "El pleno extraordinario sobre el servicio de basuras y la tasa se celebra a solicitud del Grupo Municipal Popular (punto 1 del orden del día)",
+                "sourceIds": [
+                  "src-074",
+                  "src-075"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Conexiones documentadas y comprobaciones de este medio",
+            "bodyMarkdown": "Comprobaciones deterministas sobre los datos abiertos municipales: el barrido nominal de la totalidad de adjudicatarios registrados (contratos y licitaciones del mirror Gobierto/PLACSP) devuelve **0 coincidencias** para «GIMENO CALVO». Ni el concejal ni ninguna razón social con sus apellidos constan como adjudicatarios del Ayuntamiento.\n\nLímites y comprobaciones de esta versión: el nombramiento en la Diputació de València, que en julio de 2026 este medio no había localizado en el boletín, consta en la relación de personal eventual publicada por la propia Diputació (decreto 13140 de 23-10-2023; anuncio en el BOP n.º 40 de 26-02-2024). Las candidaturas municipales proclamadas de 2011, 2015 y 2019 se han releído: Gimeno Calvo no figura en ninguna de la circunscripción de Riba-roja, y la de 2023 es la primera. Lo comprobado sobre las afirmaciones de prensa acerca de su etapa como mando policial y de Antifraude se detalla en su propia sección. Las relaciones personales no dejan rastro en fuentes públicas — este medio no publica asociaciones sin documento.",
+            "sourceIds": [
+              "src-076",
+              "src-061",
+              "src-112",
+              "src-115",
+              "src-108",
+              "src-073"
+            ]
+          }
+        },
+        {
+          "kind": "relationships",
+          "payload": {
+            "nodes": [
+              {
+                "id": "n1",
+                "label": "Alberto Gimeno Calvo",
+                "tone": "civic",
+                "kind": "person"
+              },
+              {
+                "id": "n2",
+                "label": "Grupo Municipal Popular (5/7 «Independiente»)",
+                "tone": "civic",
+                "kind": "party"
+              },
+              {
+                "id": "n3",
+                "label": "Diputació de València",
+                "tone": "intel",
+                "kind": "entity"
+              },
+              {
+                "id": "n4",
+                "label": "Policía Local de Riba-roja de Túria",
+                "tone": "neutral",
+                "kind": "entity"
+              },
+              {
+                "id": "n5",
+                "label": "Ajuntament de València (Policía Local)",
+                "tone": "neutral",
+                "kind": "entity"
+              },
+              {
+                "id": "n6",
+                "label": "PP de Riba-roja de Túria (organización local)",
+                "tone": "neutral",
+                "kind": "party"
+              }
+            ],
+            "edges": [
+              {
+                "from": "n1",
+                "to": "n2",
+                "relation": "n.º 1 de la lista y portavoz del grupo (acta 07-07-2023); registrado «(Independiente)»",
+                "sourceIds": [
+                  "src-066",
+                  "src-064"
+                ]
+              },
+              {
+                "from": "n3",
+                "to": "n1",
+                "relation": "coordinador/a de grupo político, personal eventual (decreto 13140 de 23-10-2023; gasto 2025: 54.861,36 €); assessor de Ple desde agosto de 2023 según su CV; simultáneo con la concejalía",
+                "sourceIds": [
+                  "src-112",
+                  "src-101",
+                  "src-061"
+                ]
+              },
+              {
+                "from": "n4",
+                "to": "n1",
+                "relation": "policía local del municipio durante 23 años (1998-2021, CV)",
+                "sourceIds": [
+                  "src-061"
+                ]
+              },
+              {
+                "from": "n5",
+                "to": "n1",
+                "relation": "policía local (09/2021 - 04/2023, CV; cese 2023 corroborado por su declaración)",
+                "sourceIds": [
+                  "src-061",
+                  "src-071"
+                ]
+              },
+              {
+                "from": "n1",
+                "to": "n6",
+                "relation": "presidente interino del partido local desde enero de 2025, según eldiario.es (16-05-2025)",
+                "sourceIds": [
+                  "src-105"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "promise-board",
+          "payload": {
+            "promiseIds": [
+              "pp-voto-contra-fondos-dana",
+              "pp-gasto-innecesario-pacadar",
+              "pp-critica-gestion-socialista"
+            ]
+          }
+        },
+        {
+          "kind": "quote-card",
+          "payload": {
+            "verbatim": "Ratificar la solicitud para la celebración del Pleno Extraordinario presentada por parte de los miembros del Grupo Municipal Popular",
+            "attributedTo": "Punto 1 del orden del día del pleno extraordinario de 03-07-2026 (sobre la gestión del servicio de RSU y la tasa de basura)",
+            "date": "2026-07-03",
+            "sourceId": "src-074"
+          }
+        },
+        {
+          "kind": "quote-card",
+          "payload": {
+            "verbatim": "Si el pasado mes de enero quien fuera el presidente local del PP, Javier Moreno, dimitía del cargo orgánico, ahora la sangría ha proseguido en el grupo municipal, tras renunciar al acta de concejala la que era la número 2 de la candidatura, Soraya Trejo.",
+            "attributedTo": "eldiario.es",
+            "date": "2025-05-16",
+            "sourceId": "src-105"
+          }
+        },
+        {
+          "kind": "quote-card",
+          "payload": {
+            "verbatim": "GIMENO CALVO ALBERTO JOSE COORDINADOR/A GRUPO POLITICO 54.861,36 €",
+            "attributedTo": "Diputació de València — información sobre el personal eventual del ejercicio 2025 (Recursos Humanos y Organización, 21-01-2026)",
+            "date": "2026-01-21",
+            "sourceId": "src-101"
+          }
+        },
+        {
+          "kind": "gaps-detected",
+          "payload": {
+            "missing": [
+              {
+                "field": "Decreto de cese de 2015 y actuación de Antifraude",
+                "reason": "Las afirmaciones de prensa sobre su etapa como mando de la Policía Local de Riba-roja (2011–2015), su destitución en septiembre de 2015 y la actuación de la Agencia Valenciana Antifraude no han podido contrastarse con un documento oficial: el portal municipal no publica las actas ni los decretos de 2015, el Boletín Oficial de la Provincia no publica las comisiones de servicios y la Agencia no ha publicado resolución alguna referida al municipio (listados 2022–2025). Se publican atribuidas a su fuente y fechadas, con derecho de réplica abierto."
+              },
+              {
+                "field": "Declaración de actividades no actualizada",
+                "reason": "Su declaración estatutaria se presentó con motivo de la toma de posesión (junio de 2023) y recoge solo el cese como policía; el puesto en la Diputació es posterior y no consta una declaración actualizada publicada en el portal municipal. Este medio no afirma incumplimiento: constata qué documentos están publicados y cuáles no."
+              },
+              {
+                "field": "Datos biográficos básicos",
+                "reason": "Su CV no consigna fecha ni lugar de nacimiento — es de los pocos de la corporación sin ese dato —, y ningún registro público accesible permite verificarlos (el Registro Civil no es de acceso público). La trayectoria policial (1998-2023) tampoco es verificable en fuentes abiertas gratuitas: los nombramientos de 1998 no están digitalizados; sí consta su admisión por movilidad en la convocatoria de València de 2017 (BOP n.º 93)."
+              },
+              {
+                "field": "Familia y relaciones personales",
+                "reason": "Sin fuente pública lícita; este medio no las investiga ni publica."
+              }
+            ]
+          }
+        }
+      ],
       "requiresHumanApproval": true
     }
   ]

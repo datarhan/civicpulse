@@ -263,6 +263,42 @@ fetch|pdf|chrome`; `trust` is never accepted from the file — it comes from
   leaves mid-term stayed «desde 2023» on her page); never `null`, never below
   `startYear`, never a no-op.
 
+What the first v2 taught (Gimeno, 2026-09-06/07), each fixed in code:
+
+- **A v2 is a superset, and the synth does not make it one.** Seeded with the
+  investigation's documents, the agent wrote a four-section *update* and
+  dropped every verified v1 section (election, declaration, checks); it also
+  published an anonymous allegation one seed had excerpted. The v2 that shipped
+  was built by a validated one-shot (biografia-concejal §5 pattern): the
+  published v1 sections as corrected, plus the new narratives, plus the new
+  sources renumbered. Before promoting a v2, diff its section headings against
+  the v1's; anything missing is a loss the archive step then makes permanent.
+- **The CLI watchdog killed the synth.** `LLM_CLI_TIMEOUT_MS` defaults to 180 s
+  for short extractions; with `--output-format json` the `claude` CLI is silent
+  until it finishes, and a biography synth with 18 evidence rows takes longer.
+  Two runs died as «timed out after 180s (no output; killed)» and still exited
+  0 with a «sin síntesis» draft. `journalist:run` now sets
+  `JOURNALIST_CLI_TIMEOUT_MS` (25 min, `journalist-agent/shared.ts`) unless the
+  variable is already set, and logs the value it runs with.
+- **Gazette readers report failure instead of emptiness.** `gazette.ts` is
+  two layers: `leerBoe/leerDogv/leerDialnet/leerHemeroteca` throw a
+  `GazetteReadError` on network failure, non-2xx or the DOGV's bodiless 302
+  (redirects are not followed there), and `journalist:sondeo` uses them, so a
+  gazette that could not be asked is `fallo` with its reason. The agent's
+  `fetch*` readers wrap them in the research cache and degrade to `[]`, but a
+  read error is never cached. Before this every failure was «vacío».
+- **`buscar-bop-historico` has three zeros.** It exits 1 when it read no
+  bulletin («no miré») and when it read bulletins but extracted no anuncio
+  («no supe leer»: the pre-platform sumarios lack the register number the
+  parser anchors on — 28/04/2015 gave 306 pages and 0 anuncios). `--texto`
+  searches the whole bulletin text instead, tolerant to the shifted glyphs some
+  old PDFs carry (`src/scraper/bop-glifos.ts`: «Don» comes out as «'RQ»; a
+  plain grep for «GIMENO CALVO» missed a namesake on the 2011 PP list).
+- **`FINANCIAL_SOURCE_ALLOW` accepts dival.es**, the Diputació de València's
+  transparency portal (personal eventual with decree, BOP reference and yearly
+  gasto), so a provincial-payroll figure can enter `financial` cited by its
+  own document.
+
 Update `/metodologia` whenever this pipeline's behavior changes —
 that page is the published editorial contract.
 

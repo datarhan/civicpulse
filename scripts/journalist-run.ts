@@ -34,6 +34,7 @@ import {
 import { runJournalistAgent, JournalistAgentError } from '../src/scraper/journalist-agent'
 import { describeWebSearchBackend } from '../src/scraper/journalist-tools'
 import { parseSeedSources, type SeedSource } from '../src/scraper/journalist-agent/seeds'
+import { journalistCliTimeoutMs } from '../src/scraper/journalist-agent/shared'
 
 const ASSIGNMENTS = resolve('public/data/journalist-assignments.json')
 const DRAFTS = resolve('editorial/journalist-drafts/journalist-reports-suggestions.json')
@@ -155,6 +156,13 @@ async function main(): Promise<void> {
     )
     process.stdout.write(
       `[journalist:run] web-search backend: ${describeWebSearchBackend().detail}\n`,
+    )
+    // El vigilante del CLI lee LLM_CLI_TIMEOUT_MS en cada llamada; el defecto
+    // general (180 s) mata la síntesis de una biografía. Ver shared.ts.
+    const cliTimeout = journalistCliTimeoutMs()
+    process.env.LLM_CLI_TIMEOUT_MS = String(cliTimeout)
+    process.stdout.write(
+      `[journalist:run] LLM CLI timeout: ${Math.round(cliTimeout / 1000)}s per call\n`,
     )
     const out = await runJournalistAgent(assignment, {
       ...(opts.tokenBudget ? { tokenBudget: opts.tokenBudget } : {}),

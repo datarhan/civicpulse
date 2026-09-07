@@ -100,6 +100,12 @@ export const FINANCIAL_SOURCE_ALLOW: readonly string[] = [
   'gva.es',
   'ribarroja.es',
   'www.ribarroja.es',
+  // Diputació de València (portal de transparencia): relaciones de personal
+  // eventual con decreto, anuncio en el BOP y gasto por ejercicio. Fuente
+  // primaria oficial; hasta el 07-09-2026 una cifra suya no podía entrar en
+  // `financial` ni citada por la propia Diputació.
+  'dival.es',
+  'www.dival.es',
 ] as const
 
 export type CitationKind =

@@ -39,22 +39,64 @@ Leyenda de vías:
 | Medio                                                                                                | Vía                                                                         | Nota                                                                                              |
 | ---------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | Valencia Plaza, El Periódico de Aquí, Hortanoticias, TuComarca, InfoTúria, eldiario.es, À Punt, COPE | WebSearch con `allowed_domains`, WebFetch; `press.json` y sondeo (`prensa`) | alcanzables                                                                                       |
-| Levante-EMV, Las Provincias, Europa Press, Cadena SER                                                | **sólo Chrome** — bloquean al rastreador de Anthropic                       | captura el extracto literal, la fecha y la URL; va como `capturedVia: "chrome"` en `fuentes.json` |
+| Levante-EMV, Las Provincias, Europa Press, Cadena SER                                                | **sólo Chrome** — bloquean al rastreador de Anthropic; Las Provincias republica teletipos de Europa Press (16-09-2015: la destitución de cuatro mandos, sin nombres) | captura el extracto literal, la fecha y la URL; va como `capturedVia: "chrome"` en `fuentes.json` |
 | Hemeroteca (La Vanguardia)                                                                           | sondeo (`hemeroteca-<año>`)                                                 | años electorales por defecto (2019, 2023)                                                         |
 
 Un resultado de buscador sobre un documento-lista NO es una coincidencia hasta que
 el nombre se ve en el texto: el 06-09-2026 BOE-A-2025-20600 salió para cuatro de
 estos apellidos y no contenía ninguno.
 
-**Un «vacío» del sondeo en `boe`, `dogv`, `dialnet` y `hemeroteca-*` no prueba
-nada.** Medido el 06-09-2026: el sondeo del alcalde —que consta en el DOGV— devolvió
-vacío en las cuatro; los lectores de `gazette.ts` devuelven `[]` también ante un fallo
-de red o un estado no-200 (`catch { return [] }`), y el buscador del DOGV contesta hoy
-un 302 sin cuerpo. Hasta que esos lectores devuelvan su estado, la evidencia de
-boletines se busca por las vías directas de esta tabla (BOE `txt.php`, DOGV en Chrome,
-BOP por fecha) y el manifiesto anota `blocked(lector sin estado)` para esas cuatro, no
-`empty`. Las fuentes locales del sondeo (oficial, snapshots, prensa, plenos,
-contratación) sí son fiables: leen ficheros del repositorio.
+**Un «vacío» del sondeo en `boe`, `dogv`, `dialnet` y `hemeroteca-*` vale desde el
+07-09-2026; un «fallo» no.** Antes los lectores de `gazette.ts` devolvían `[]` también
+ante un fallo de red o un estado no-200, y el sondeo del alcalde —que consta en el
+DOGV— salió «vacío» en las cuatro sin que ningún lector llegara al servidor. Ahora el
+sondeo usa los lectores `leer*`, que lanzan: `fallo` trae el motivo (`HTTP 503`, `302 →
+…`, `ECONNRESET`). El buscador del DOGV sigue contestando un 302 sin cuerpo: cuenta
+como `fallo`, y la vía es Chrome. Un `fallo` se anota en el manifiesto como
+`blocked(<motivo>)`, nunca como `empty`.
+
+**BOP de València — cómo se busca de verdad (medido 06/07-09-2026).**
+
+- `downloads?boletinFecha=DD/MM/YYYY` devuelve el boletín ENTERO para los años de
+  la plataforma antigua (2011, 2015, 2019: 300 páginas) y sólo el SUMARIO para los
+  recientes (26/02/2024: 380 líneas). `downloads?anuncioNumReg=2024/NNNNN` da un
+  anuncio suelto cuando se conoce su registro.
+- Chrome no carga `bop.dival.es` (página de error); el buscador es un formulario JSF
+  que funciona por `curl`: `GET /bop/xhtml/portal.xhtml` con tarro de cookies, leer
+  `javax.faces.ViewState`, y `POST` al mismo `portal.xhtml` con `Faces-Request:
+  partial/ajax`, `javax.faces.source=buscarBtn`, `javax.faces.partial.execute=@all`,
+  `javax.faces.partial.render=messages boletines3 edictos`, `j_idt131=j_idt131`,
+  `filtroCalendarioIni_input`/`filtroCalendarioFin_input` (DD/MM/YYYY), `buscador=<texto>`,
+  `j_idt175:field_input=8` (sección Municipis; vacío = todas) y, para texto completo,
+  `j_idt200_input=on`. La respuesta es XML con la lista (`Núm. registre … Butlletí …
+  Pàgina …`, 25 por página; `Mostrant del 1 al 25 de N`). El motor casa PALABRAS
+  SUELTAS: «Gimeno Calvo» a texto completo dio 1.727 edictos de la Seguridad Social;
+  por título y sección sí sirve («Riba-roja policía» 2010–2016 → 8 edictos).
+- Los PDF de la plataforma antigua llevan a veces una fuente sin ToUnicode: los
+  nombres salen con los glifos desplazados 29 posiciones («Don» → «'RQ», «GIMENO
+  CALVO» → «*,0(12&$/92») y un grep normal los pierde. `npx tsx
+  scripts/buscar-bop-historico.ts --desde … --hasta … --busca "APELLIDOS" --texto`
+  busca en el texto entero tolerando el desplazamiento (`src/scraper/bop-glifos.ts`);
+  sin `--texto` el script sale ROJO cuando leyó boletines y no supo extraer ningún
+  anuncio, que es lo que pasa con esos sumarios. Un «no figura» sobre un boletín de
+  ~2011 sin esa búsqueda no vale.
+
+**Agencia Valenciana Antifraude (AVAF).** Publica TODAS sus resoluciones finales de
+investigación por año (`antifraucv.es/resoluciones-de-investigacion-2022/`, `…-2023/`,
+`…-2024/`, `…-2025/`; una página por año, sin paginación) y las memorias anuales
+(PDF; §4.4.n con expediente, entidad y resultado). Lo que no publica son los archivos
+sin resolución: que un municipio no aparezca no dice si hubo actuaciones previas. Los
+PDF de resolución van censurados pero nombran a la entidad investigada.
+
+**Diputació de València — personal eventual.** Además del PDF anual de RRHH (gasto
+por persona y ejercicio), el portal publica un `.xlsx` del personal eventual en
+activo con **decreto de nombramiento y anuncio en el BOP** por fila
+(`dival.es/sites/default/files/portal-de-transparencia/2024 07 22 personal eventual PT
+publicar.xlsx`, hoja «GRUPO POLITICO EVENTUALES»): es el documento que fija la fecha de
+un nombramiento que el CV sólo autodeclara. Se lee con `xlsx` (dependencia del repo).
+
+Las fuentes locales del sondeo (oficial, snapshots, prensa, plenos, contratación) leen
+ficheros del repositorio y siempre han sido fiables.
 
 ## Nivel 3 — autopublicado (confianza baja, `selfDeclared: true`)
 

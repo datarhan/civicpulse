@@ -22,10 +22,10 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import {
-  fetchBoeForSubject,
-  fetchDialnet,
-  fetchDogvForSubject,
-  fetchHemerotecaQuery,
+  leerBoe,
+  leerDialnet,
+  leerDogv,
+  leerHemeroteca,
 } from '../src/scraper/journalist-tools/gazette'
 import {
   fetchOfficialBySlug,
@@ -194,24 +194,38 @@ function leerTenders(): TenderRow[] {
   }))
 }
 
+/**
+ * Los lectores de verdad. Los de boletín son los `leer*` de gazette.ts, que
+ * LANZAN cuando no alcanzan el servidor (red, 5xx, el 302 sin cuerpo del
+ * DOGV) — no los `fetch*` del agente, que degradan a `[]` y aquí se leerían
+ * como «vacío». A cambio el sondeo no pasa por la caché de investigación:
+ * es una herramienta manual y cada consulta pregunta de verdad.
+ */
+export function lectoresReales(
+  opts: { fetchImpl?: typeof fetch; tenders?: TenderRow[] } = {},
+): SondeoDeps {
+  const f = opts.fetchImpl ?? fetch
+  return {
+    boe: (n) => leerBoe(n, 8, f),
+    dogv: (n) => leerDogv(n, 8, f),
+    dialnet: (n) => leerDialnet(n, 8, f),
+    hemeroteca: (n, y) => leerHemeroteca(n, y, f),
+    prensa: (n) => fetchPressForSubject(n, 30),
+    plenoClaims: (n) => fetchPlenoClaimsForSubject(n, 20),
+    snapshots: (n) => searchLocalSnapshots(n),
+    semantico: (n) => semanticLocalHits(n, { topK: 8 }),
+    official: (slug) => (slug ? fetchOfficialBySlug(slug) : null),
+    tenders: opts.tenders ?? leerTenders(),
+  }
+}
+
 async function main(): Promise<void> {
   const opts = parseArgs(process.argv.slice(2))
   const rec = startRun('journalist-sondeo', {
     mode: opts.slug ?? opts.nombre,
     getStats: () => NO_LLM_STATS,
   })
-  const sondeo = await ejecutarSondeo(opts, {
-    boe: (n) => fetchBoeForSubject(n, 8),
-    dogv: (n) => fetchDogvForSubject(n, 8),
-    dialnet: (n) => fetchDialnet(n, 8),
-    hemeroteca: (n, y) => fetchHemerotecaQuery(n, y),
-    prensa: (n) => fetchPressForSubject(n, 30),
-    plenoClaims: (n) => fetchPlenoClaimsForSubject(n, 20),
-    snapshots: (n) => searchLocalSnapshots(n),
-    semantico: (n) => semanticLocalHits(n, { topK: 8 }),
-    official: (slug) => (slug ? fetchOfficialBySlug(slug) : null),
-    tenders: leerTenders(),
-  })
+  const sondeo = await ejecutarSondeo(opts, lectoresReales())
   for (const [clave, f] of Object.entries(sondeo.fuentes)) {
     if (clave === 'semantico-no-solicitado') {
       rec.neverAttempt(1)

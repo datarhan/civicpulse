@@ -37,7 +37,7 @@ publicada recibe uno de seis desenlaces; la propuesta son órdenes listas y un
 | veda LOREG                                        | `npm run freeze:status`                                                                                                                                                         |
 | todos los lectores del repo de una vez, con parte | `npm run journalist:sondeo -- --nombre "<nombre>" --slug <slug> --out editorial/investigaciones/<slug>/sondeo.json`                                                             |
 | cargos societarios                                | `npm run scrape:borme -- --desde 2009-01-02 --hasta <hoy> --provincia VALENCIA --persona "APELLIDO1 APELLIDO2"` (barrido UNA vez por campaña; luego grep sobre `.cache/borme/`) |
-| BOP por ventana                                   | `npx tsx scripts/buscar-bop-historico.ts --desde --hasta --busca "<apellidos>"` (sin alias npm)                                                                                 |
+| BOP por ventana                                   | `npx tsx scripts/buscar-bop-historico.ts --desde --hasta --busca "<apellidos>" [--texto]` (sin alias npm; `--texto` = texto entero, tolerante a glifos desplazados, para boletines antiguos)                                                                                 |
 | un documento con UA correcto                      | `npm run fetch-url-evidence -- <url>`                                                                                                                                           |
 | qué ya sabe el repo                               | `.research-cache/`, `editorial/journalist-drafts/<id>.draft.json`, `public/data/journalist-reports/<id>.json`                                                                   |
 | copia en Wayback (sesión central)                 | `npm run journalist:archive-sources -- <assignmentId>`                                                                                                                          |
@@ -75,7 +75,13 @@ Catálogo de fuentes y vías: `references/fuentes.md`. Límites: `references/lim
    público); v2 sólo con ≥3 hechos publicables nuevos de fuentes independientes o un
    `contradice` que cambia la historia — brief NEUTRO (es público) + `fuentes.json`
    (semillas con `capturedVia`, extracto literal para las de Chrome; `trust` no se
-   escribe). Lo débil va a «vigilancia», nunca a la página.
+   escribe). Lo débil va a «vigilancia», nunca a la página. **El extracto de una
+   semilla es lo que el agente citará**: sembrar la frase de una alegación anónima
+   es publicarla (06-09-2026: el borrador crudo hizo una sección entera con ella).
+   **Una v2 es un superconjunto de la v1**: el agente, sembrado, escribe un parche
+   y deja caer elección, declaración y comprobaciones; la v2 que se promueve se
+   construye con un one-shot validado (biografia-concejal §5) sobre las secciones
+   publicadas de la v1 más lo nuevo, y se comparan los encabezados antes de archivar.
 7. **Parte**: `manifest.json` con intentado / hecho / nunca intentado / saltado con
    motivo por fuente y los recuentos del cotejo. Modo lote: `references/campana.md`.
 

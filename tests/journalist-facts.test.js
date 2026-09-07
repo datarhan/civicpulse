@@ -146,7 +146,7 @@ describe('contra los informes publicados (años medidos a mano el 06-09-2026)', 
     'a-salvador-ferrer-bio': 2019, // de Ciudadanos al PP, relevo en 2023
     'a-rfolgado-bio': 2023, // 2015-2019 y hueco
     'a-david-barbancho-bio': 2023, // 2019-2023 era personal eventual
-    'a-alberto-gimeno-bio': 2023,
+    'a-alberto-gimeno-bio-v2': 2023, // la v1 se archivó el 07-09-2026 al promover la v2
     'a-laura-guzman-bio': 2023, // 2019 fue candidata sin escaño
     'a-alfredo-pla-bio': 2023, // 2019 fue candidato sin escaño
   }
@@ -158,7 +158,7 @@ describe('contra los informes publicados (años medidos a mano el 06-09-2026)', 
   }
 
   it('Gimeno: el cargo actual es el del ayuntamiento, no la asesoría en la Diputació', () => {
-    const c = currentOffice(careerOf('a-alberto-gimeno-bio'))
+    const c = currentOffice(careerOf('a-alberto-gimeno-bio-v2'))
     expect(c.org).toMatch(/ayuntamiento/i)
     expect(c.role).toMatch(/concejal/i)
   })

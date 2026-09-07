@@ -672,6 +672,39 @@ describe('Phase B: financial source-allowlist', () => {
     expect(() => validateDraftsSnapshot(JSON.stringify(snap))).not.toThrow()
   })
 
+  it('accepts a financial row backed by the Diputació de València transparency portal (dival.es)', () => {
+    // La relación de personal eventual de la Diputació (retribución/gasto de
+    // un cargo) es fuente primaria oficial; hasta el 07-09-2026 la lista sólo
+    // conocía BOE, DOGV, GVA, el portal municipal y Newtral, y una cifra de la
+    // Diputació no podía entrar en `financial` ni citada por la propia Diputació.
+    const draft = dossierDraft(
+      {
+        kind: 'financial',
+        payload: {
+          items: [
+            {
+              year: 2025,
+              metric: 'salary',
+              amountEuros: 54861.36,
+              description: 'Gasto del ejercicio 2025 en el puesto, según la Diputació',
+              sourceIds: ['src-dival'],
+            },
+          ],
+        },
+      },
+      [
+        {
+          ...HIGH_TRUST_SOURCE,
+          id: 'src-dival',
+          url: 'https://www.dival.es/sites/default/files/2026-01-21-resposta-personal-eventuals.pdf',
+          title: 'Diputació de València — personal eventual 2025',
+        },
+      ],
+    )
+    const snap = { ...VALID_BASE, items: [draft] }
+    expect(() => validateDraftsSnapshot(JSON.stringify(snap))).not.toThrow()
+  })
+
   it('rejects a financial row whose source is not on FINANCIAL_SOURCE_ALLOW', () => {
     const draft = dossierDraft(
       {

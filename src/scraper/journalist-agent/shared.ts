@@ -18,6 +18,27 @@ import type { JournalistReportDraft } from '../journalist'
 import type { SeedPreloadSummary, SeedSource } from './seeds'
 
 export const AGENT_VERSION = 'journalist-v1'
+
+/**
+ * Tope por llamada del vigilante del CLI (`LLM_CLI_TIMEOUT_MS`) cuando corre
+ * el agente periodista. El defecto general del cliente son 180 s, medidos
+ * para extracciones cortas; con `--output-format json` el CLI no escribe nada
+ * hasta terminar, y la síntesis de una biografía con 18 evidencias supera los
+ * tres minutos. El 06-09-2026 dos ejecuciones seguidas de una v2 murieron
+ * así («timed out after 180s (no output; killed)») y el parte decía exit 0
+ * con un borrador «sin síntesis». Quien fija la variable manda; si nadie la
+ * fija, el agente arranca con este tope.
+ */
+export const JOURNALIST_CLI_TIMEOUT_MS = 25 * 60_000
+
+export function journalistCliTimeoutMs(
+  env: Record<string, string | undefined> = process.env,
+): number {
+  const raw = env.LLM_CLI_TIMEOUT_MS
+  if (raw === undefined || raw.trim() === '') return JOURNALIST_CLI_TIMEOUT_MS
+  const n = Number(raw)
+  return Number.isFinite(n) && n > 0 ? n : JOURNALIST_CLI_TIMEOUT_MS
+}
 export const DRAFT_PROMPT_VERSION = `plan=${JOURNALIST_PLAN_VERSION};bio=${JOURNALIST_BIO_VERSION};synth=${JOURNALIST_SYNTH_VERSION};verify=${JOURNALIST_VERIFY_VERSION}`
 
 export const PARTY_TONE: Record<string, string> = {

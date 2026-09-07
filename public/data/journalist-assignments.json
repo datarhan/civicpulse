@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-09-06T21:09:28.376Z",
+  "generatedAt": "2026-09-06T22:15:03.080Z",
   "items": [
     {
       "id": "a-robert-raga-bio",
@@ -209,7 +209,7 @@
       "brief": "Biografía de registro público de Alberto José Gimeno Calvo, concejal (PP) en la oposición del Ayuntamiento de Riba-roja de Túria: identidad y formación, trayectoria previa, elección (candidatura y toma de posesión), papel en la oposición (grupo municipal, portavocía si consta, comisiones), retribución por asistencias, patrimonio declarado y menciones en boletines oficiales.",
       "createdBy": "civicpulse-curator",
       "createdAt": "2026-07-31T13:15:55.780Z",
-      "status": "promoted",
+      "status": "archived",
       "lastRunAt": "2026-07-31T13:24:20.901Z"
     },
     {
@@ -349,7 +349,8 @@
       "brief": "Actualizar la biografía de Alberto José Gimeno Calvo con documentos y prensa no recogidos en la versión de julio de 2026: su trayectoria en la Policía Local de Riba-roja según prensa independiente del CV, su puesto de personal eventual en la Diputació de València según la relación de 2025 publicada por la propia Diputació, y los cambios en el Grupo Municipal Popular y en el PP local desde 2025.",
       "createdBy": "Sergei Lutchenko",
       "createdAt": "2026-09-06T21:09:28.376Z",
-      "status": "pending"
+      "status": "promoted",
+      "lastRunAt": "2026-09-06T21:49:02.992Z"
     }
   ]
 }
