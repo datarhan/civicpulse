@@ -27,8 +27,7 @@ export function AlcaldeBox() {
 
   // Municipal-government-level stats for the mandate. These are NOT
   // attributed personally to the mayor — they are the numbers of the
-  // government he presides over. The strip label "Gobierno municipal ·
-  // <year>" makes this explicit.
+  // government they preside over, and the "Gobierno municipal" label says so.
   // La misma elección que la tira de indicadores, y del mismo módulo probado,
   // para que las dos celdas de la portada no puedan contar cosas distintas del
   // mismo ejercicio. Aquí SÍ cabe el otro extremo: lo que se pudo gastar y lo
@@ -40,9 +39,9 @@ export function AlcaldeBox() {
   const tendersEuros = tendersData?.stats?.awardedTotalEuros
   const bdnsGranted = bdnsData?.stats?.granted
 
-  // Both accumulations below sit under a "Gobierno municipal · <año>" heading
-  // beside a one-year budget, so each has to carry its own period in the
-  // VISIBLE string. The span is measured over exactly the rows behind each
+  // Both accumulations below sit beside a one-year budget figure, so each has
+  // to carry its own period in the VISIBLE string — that is now the ONLY place
+  // a period is stated, since the heading no longer dates the block. The span is measured over exactly the rows behind each
   // figure — committed contracts for the contract count, granted subsidies for
   // the subsidy count — so the period can never describe a different set than
   // the number it labels.
@@ -228,7 +227,14 @@ export function AlcaldeBox() {
               marginBottom: 4,
             }}
           >
-            Gobierno municipal{budgetYear ? ` · ${budgetYear}` : ''}
+            {/* SIN año. El encabezado fechaba en «· 2025» un bloque cuyas tres
+                líneas cubren periodos distintos: un crédito anual, una década
+                de contratación y otra de subvenciones. Cada línea ya dice el
+                suyo —para eso se le puso—, así que el año del rótulo no añadía
+                precisión: ponía un marco falso encima y volvía a invitar a la
+                comparación que las tres líneas existen para impedir. Lo señaló
+                la revisión lectora. */}
+            Gobierno municipal
           </div>
           <div
             style={{
@@ -292,9 +298,9 @@ export function AlcaldeBox() {
                 href="/presupuesto"
                 style={{ color: PALETTE.ink80, textDecoration: 'none' }}
                 // NOT "durante el mandato": the figure is every award in the
-                // registry. It also sits beside an ANNUAL budget under a
-                // "Gobierno municipal · <año>" heading, so without the period a
-                // reader concludes the town awards more than it budgets.
+                // registry. It also sits beside an ANNUAL budget figure, so
+                // without the period a reader concludes the town awards more
+                // than it budgets in a year.
                 //
                 // The period lives in the visible string, NOT in this title.
                 // The first fix for this shipped the years into a `title`
