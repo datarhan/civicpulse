@@ -65,17 +65,60 @@ export default function GastoDashboard() {
 
   if (!tg || (tg.zones || []).length === 0) return null
 
+  // El periodo, DERIVADO del universo y nunca escrito: «2017–2026» a mano es
+  // verdad hasta la siguiente pasada del raspador. Y el total va rotulado
+  // «adjudicado», no «gasto» —es importe de adjudicación sin IVA, no dinero
+  // desembolsado—, que es la lección de la portada (`i18n-dinero-adjudicado`).
+  const yearMin = (tg.universe?.dateMin || '').slice(0, 4)
+  const yearMax = (tg.universe?.dateMax || '').slice(0, 4)
+  const span = yearMin && yearMax ? `${yearMin}–${yearMax}` : null
+  const nEjercicios = span ? Number(yearMax) - Number(yearMin) + 1 : null
+  const totalUniverso = tg.universe?.totalAmount || 0
+  const eurM = (n) =>
+    `${(n / 1e6).toLocaleString('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} M€`
+
   return (
     <Card>
       <SectionHead
-        eyebrow="Mapa del gasto · contratos situables"
+        eyebrow={`Mapa de lo adjudicado · contratos comprometidos${span ? ` ${span}` : ''}`}
         title="¿A dónde va el dinero en contratos?"
+        right={
+          totalUniverso > 0 ? (
+            <div style={{ textAlign: 'right', flexShrink: 0 }}>
+              <div
+                className="mono"
+                style={{ fontSize: 'var(--fs-card)', fontWeight: 500, letterSpacing: '-.02em' }}
+              >
+                {eurM(totalUniverso)}
+              </div>
+              <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}>
+                adjudicado sin IVA
+                {nEjercicios ? ` · ${nEjercicios} ejercicios, no un año` : ''}
+              </div>
+            </div>
+          ) : null
+        }
       />
-      <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginBottom: 10 }}>
-        El total de abajo es <strong>todo el gasto en contratos, no solo obras</strong>:
+      <div
+        style={{
+          fontSize: 'var(--fs-meta)',
+          color: 'var(--ink70)',
+          lineHeight: 1.55,
+          margin: '4px 0 12px',
+          padding: '11px 13px',
+          background: 'var(--soft)',
+          border: '1px solid var(--border2)',
+          borderRadius: 'var(--r-input)',
+        }}
+      >
+        El total de arriba es <strong>todo el gasto en contratos, no solo obras</strong>:
         {obrasPct != null ? ` las obras son el ${pct0(obrasPct)} %` : ' el grueso'} y el resto son
         servicios de ámbito municipal, suministros y otros —el desglose completo está en «Tipos de
-        gasto». Solo se sitúan los contratos cuyo título nombra una zona
+        gasto».
+        {span
+          ? ` Y es de ${span}, no de un solo ejercicio: puesto sin periodo al lado de un presupuesto anual se lee mucho mayor de lo que es.`
+          : ''}{' '}
+        Solo se sitúan los contratos cuyo título nombra una zona
         {obrasPctMapa != null ? `, y ahí sí predominan las obras (${pct0(obrasPctMapa)} %)` : ''}.
         Tamaño del círculo = € adjudicado en la zona · ámbar cuando la mitad o más es recuperación
         DANA.

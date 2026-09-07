@@ -68,7 +68,13 @@ const ROUTES: Route[] = [
   { path: '/', ready: /M€ de [\d.,]+ M€/ }, // situated-spend ticker (tenders snapshot)
   { path: '/cargos', ready: /Robert Raga Gadea/ }, // officials snapshot
   { path: '/cargos/robert-raga-gadea', ready: /@ribarroja\.es/ }, // the official's own record
-  { path: '/presupuesto', ready: /€\d+(?:,\d+)?M/ }, // CONPREL KPI figure
+  // El rediseño «del crédito inicial a lo ejecutado» retiró la tira de cuatro
+  // KPI donde vivía `€41,6M`, la forma compacta que esperaba esta señal. La
+  // nueva espera la MISMA dependencia —el presupuesto aprobado de CONPREL— en
+  // la línea de la cabecera donde ahora se publica esa cifra, así que el guard
+  // conserva exactamente la fuerza que tenía: sin budget.json no hay señal y
+  // se niega a medir, que es lo que comprueba la inyección de fallo de abajo.
+  { path: '/presupuesto', ready: /[\d.,]+ M€ de gastos aprobados/ }, // CONPREL
   // El rediseño del índice retiró el rótulo «… de 39 de 61 sesiones» de la
   // tarjeta de departamentos, que era donde vivía la señal anterior. La nueva
   // sale del lede, que es lo primero que la página escribe con datos dentro.
