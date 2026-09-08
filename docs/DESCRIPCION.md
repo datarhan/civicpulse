@@ -280,7 +280,7 @@ la frase sale de los textos **antes** de que la copia se envíe a nadie.
 | «dónde se acaban los datos oficiales»                                                         | `/lab-health` + `MoneyCoverage` + las especificaciones fallidas de `/laboratorio/frontera`.                                                                   |
 | «todo abierto — código, datos y método»                                                       | AGPL-3.0 + `/datos` + `/metodologia`.                                                                                                                        |
 | «derecho de réplica»                                                                          | Flujo extremo a extremo: issue → CLI con validador → commit.                                                                                                 |
-| «los ~8.100 municipios por código INE»                                                        | CONPREL, PLACSP, BDNS, INE, SEPE y boletines indexan por municipio a escala estatal. Censo comprobado: **8.147** municipios.                                 |
+| «los ~8.100 municipios por código INE»                                                        | CONPREL, PLACSP, BDNS, INE, SEPE y boletines indexan por municipio a escala estatal. Censo comprobado: **8.132** municipios (INE, diccionario de municipios a 1-1-2025; control: la provincia de València sale 266).                                 |
 
 ## Reglas de registro
 
@@ -323,7 +323,7 @@ la frase sale de los textos **antes** de que la copia se envíe a nadie.
 - **El periodismo va siempre después de la medición** («sobre esos datos…») —
   segundo en jerarquía, sustancial, nunca una nota al pie.
 - **Riba-roja es «el primer municipio»**, nunca el sujeto del proyecto.
-- **Los desiertos informativos se citan con su fuente.** Son **6.304 de 8.147**
+- **Los desiertos informativos se citan con su fuente.** Son **6.304 de 8.131**
   municipios (77,53 %), 11,6 millones de personas — Negreira-Rey,
   Vázquez-Herrero y López-García (2023), _Media and Communication_ 11(3),
   DOI 10.17645/mac.v11i3.6727. **Nunca «unos 6.800» ni ninguna cifra sin cita.**

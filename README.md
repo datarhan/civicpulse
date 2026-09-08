@@ -28,7 +28,7 @@ Three things stop a resident from checking it.
 
 This project does not argue that councillors ought to be credentialed; asking that of representative democracy would be asking for a requirement no Spanish statute contains. It argues something smaller and harder to dispute: **if the check is the vote, the voter needs the facts** — so what each holder declared is published beside what the law asks of the post.
 
-**Nobody assembles the rest.** **6,304 of Spain's 8,147 municipalities — 77.53% — are news deserts**, home to 11.6 million people, about a quarter of the country ([Negreira-Rey, Vázquez-Herrero & López-García, _Media and Communication_ 11(3), 2023](https://doi.org/10.17645/mac.v11i3.6727)). The national outlets and fact-checkers (Civio, Maldita, Newtral) cover national discourse, not per-town accountability.
+**Nobody assembles the rest.** **6,304 of Spain's 8,131 municipalities — 77.53% — are news deserts**, home to 11.6 million people, about a quarter of the country ([Negreira-Rey, Vázquez-Herrero & López-García, _Media and Communication_ 11(3), 2023](https://doi.org/10.17645/mac.v11i3.6727)). The national outlets and fact-checkers (Civio, Maldita, Newtral) cover national discourse, not per-town accountability.
 
 **And publication is not legibility.** A town hall that publishes everything the law demands still leaves a resident unable to answer _is this expensive?_, _did that get done?_, _who do I ask?_ The transparency obligation was written to be checked for compliance, so it produces documents; the questions people actually have need series, denominators and comparisons. Closing that distance is engineering, and it has to be done once per country, not once per town.
 
