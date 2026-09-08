@@ -98,7 +98,7 @@ export default function BuildingCivicPulse() {
 
       <article style={{ color: 'var(--ink70)' }}>
         <p>
-          6,304 of Spain&rsquo;s 8,147 municipalities &mdash; 77.53% of them &mdash; are news
+          6,304 of Spain&rsquo;s 8,131 municipalities &mdash; 77.53% of them &mdash; are news
           deserts, home to 11.6 million people (
           <a href="https://doi.org/10.17645/mac.v11i3.6727" style={{ color: 'var(--civic)' }}>
             Negreira-Rey, Vázquez-Herrero &amp; López-García, 2023
