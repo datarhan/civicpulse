@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-08T08:49:32.433Z",
+  "generatedAt": "2026-09-08T20:51:57.575Z",
   "clusters": [
     {
       "clusterId": "1hy1xq8",
@@ -161,27 +161,6 @@
       }
     },
     {
-      "clusterId": "1rb28v0",
-      "articleIds": [
-        "16zc27c",
-        "cty6i0"
-      ],
-      "outlets": [
-        "Europa Press",
-        "Valenciabonita"
-      ],
-      "earliestDate": "2026-09-01T11:10:58.000Z",
-      "latestDate": "2026-09-01T12:07:50.000Z",
-      "amountDrift": null,
-      "verdictMix": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      }
-    },
-    {
       "clusterId": "1v2ow04",
       "articleIds": [
         "15tpe88",
@@ -204,13 +183,13 @@
     }
   ],
   "stats": {
-    "totalClusters": 9,
+    "totalClusters": 8,
     "triangulated3Plus": 1
   },
   "builtFrom": {
-    "plenos-agendas.json": "690574bd3214",
+    "plenos-agendas.json": "6f31b05b040f",
     "press-claims-verified.json": "dc81608a5279",
-    "press.json": "4b49a8afb1be",
+    "press.json": "9aeece937859",
     "promises.json": "d18811c11210"
   }
 }

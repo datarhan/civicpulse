@@ -1,28 +1,252 @@
 {
-  "generatedAt": "2026-09-06T08:59:20.437Z",
+  "generatedAt": "2026-09-08T20:49:50.290Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 63,
-    "openTotal": 62,
-    "inRibaRoja": 40,
-    "closingSoon": 12,
-    "withDetail": 63,
+    "total": 67,
+    "openTotal": 66,
+    "inRibaRoja": 43,
+    "closingSoon": 15,
+    "withDetail": 67,
     "byMonth": {
-      "2026-09": 7,
+      "2026-09": 10,
       "2026-08": 29,
       "2026-07": 19,
       "2026-06": 1,
-      "2026-05": 2,
+      "2026-05": 3,
       "2026-04": 2,
       "2026-02": 2,
       "2025-11": 1
     }
   },
   "items": [
+    {
+      "id": "2443",
+      "fo": 2443,
+      "codigo": "2026/00146",
+      "titulo": "Soldador TIG",
+      "publishedAt": "2026-09-08",
+      "deadline": "2026-11-08",
+      "location": "Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2443",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00146"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Soldador TIG"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Requiere : Experiencia mínima 1 año en soldadura TIG Vehículo propio PRL para instalaciones, reparaciones, montajes, estructuras metálicas, cerrajería y carpintería metálica"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO DE OBRA O SERVICIO DETERMINADO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "2"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "PEONES"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Observaciones jornada",
+            "value": "INTENSIVA L/V"
+          },
+          {
+            "label": "Horario",
+            "value": "7:00-15:30H"
+          },
+          {
+            "label": "Salario",
+            "value": "22859.28 BRUTO ANUAL"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO DE OBRA O SERVICIO DETERMINADO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "2",
+        "categoria": "PEONES",
+        "observaciones": "Requiere : Experiencia mínima 1 año en soldadura TIG Vehículo propio PRL para instalaciones, reparaciones, montajes, estructuras metálicas, cerrajería y carpintería metálica",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "jornada": "Completa",
+        "horario": "7:00-15:30H",
+        "salario": "22859.28 BRUTO ANUAL",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2434",
+      "fo": 2434,
+      "codigo": "2026/00136",
+      "titulo": "Cocinero/a",
+      "publishedAt": "2026-09-08",
+      "deadline": "2026-11-08",
+      "location": "Bétera (Valencia)",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2434",
+      "inRibaRoja": false,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00136"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Cocinero/a"
+          },
+          {
+            "label": "Observaciones",
+            "value": "40 H/semanales Requisitos: - Título de cocina - Carnet de manipulador de alimentos - Imprescindible carnet de conducir Se valorará experiencia previa en el puesto."
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO DE OBRA O SERVICIO DETERMINADO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "De 1 a 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Bétera, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno mañana, Turno tarde"
+          },
+          {
+            "label": "Observaciones jornada",
+            "value": "Periodo vacacional"
+          },
+          {
+            "label": "Horario",
+            "value": "Mañanas de 7:00 a 15:00 horas Tardes: de 14:00 a 22:00 horas"
+          },
+          {
+            "label": "Salario",
+            "value": "1294€ (14 pagas) + plus de festivos y domingos según convenio"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO DE OBRA O SERVICIO DETERMINADO",
+        "duracion": "De 1 a 6 meses",
+        "numPuestos": "1",
+        "observaciones": "40 H/semanales Requisitos: - Título de cocina - Carnet de manipulador de alimentos - Imprescindible carnet de conducir Se valorará experiencia previa en el puesto.",
+        "jornada": "Completa Turnos: Turno mañana, Turno tarde",
+        "horario": "Mañanas de 7:00 a 15:00 horas Tardes: de 14:00 a 22:00 horas",
+        "salario": "1294€ (14 pagas) + plus de festivos y domingos según convenio",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2531",
+      "fo": 2531,
+      "codigo": "2026/00230",
+      "titulo": "Operario/a de grúa para transporte de vehículos",
+      "publishedAt": "2026-09-07",
+      "deadline": "2026-11-07",
+      "location": "Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2531",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00230"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Operario/a de grúa para transporte de vehículos"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Salario",
+            "value": "SEGÚN CONVENIO"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          },
+          {
+            "label": "Habilidades",
+            "value": "TRANSPORTE Y DESCARGA DE VEHÍCULOS CON GRÚA CAMIÓN"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "1",
+        "jornada": "Completa",
+        "salario": "SEGÚN CONVENIO",
+        "vehiculo": "Sí",
+        "ocupaciones": [
+          {
+            "nombre": "CONDUCTORES-OPERADORES DE GRÚA EN CAMIÓN"
+          }
+        ]
+      }
+    },
     {
       "id": "2530",
       "fo": 2530,
@@ -4548,6 +4772,92 @@
         "horario": "De lunes a viernes de 8h a 17h",
         "salario": "Según convenio más incentivos y pagas",
         "funciones": "Trabajo de tabiqueria, maestreado, revestimientos, escayola, toda la albañilería en general. Trabajos en zaguanes, viviendas y facahdas principalmente",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2444",
+      "fo": 2444,
+      "codigo": "2026/00144",
+      "titulo": "Fontanero/a de 1ª y 2ª",
+      "publishedAt": "2026-05-26",
+      "deadline": "2026-11-27",
+      "location": "Provincia de Valencia Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2444",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00144"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Fontanero/a de 1ª y 2ª"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Empresa seria con continuidad y cartera fija de clientes ofrece flexibilidad horaria, seguiridad laboral, muy bien ambiente de trabajo e incentivos. Requisitos: Experiencia mínima de 2 años como fontanero Experiencia demostrable en reformas de viviendas y mantenimiento de instalaciones PRL Construcción 20 horas (imprescindible) Carnet de conducir B Capacidad para trabajar en equipo Persona organizada, polivalente y responsable Compromiso y profesionalidad"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "CONSTRUCCIÓN"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "OFICIAL DE 2ª"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Provincia de Valencia, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Observaciones jornada",
+            "value": "Estabilidad laboral real (no por obra)"
+          },
+          {
+            "label": "Horario",
+            "value": "Lunes a Jueves 8:00-18:00 Viernes 8:00-14:00"
+          },
+          {
+            "label": "Salario",
+            "value": "20.000-22.000 brutos"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "1",
+        "categoria": "OFICIAL DE 2ª",
+        "observaciones": "Empresa seria con continuidad y cartera fija de clientes ofrece flexibilidad horaria, seguiridad laboral, muy bien ambiente de trabajo e incentivos. Requisitos: Experiencia mínima de 2 años como fontanero Experiencia demostrable en reformas de viviendas y mantenimiento de instalaciones PRL Construcción 20 horas (imprescindible) Carnet de conducir B Capacidad para trabajar en equipo Persona organizada, polivalente y responsable Compromiso y profesionalidad",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "jornada": "Completa",
+        "horario": "Lunes a Jueves 8:00-18:00 Viernes 8:00-14:00",
+        "salario": "20.000-22.000 brutos",
+        "vehiculo": "Sí",
         "ocupaciones": []
       }
     },

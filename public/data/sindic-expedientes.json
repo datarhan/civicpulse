@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-06T09:00:02.274Z",
+  "generatedAt": "2026-09-08T20:50:27.705Z",
   "note": "Índice de expedientes del Síndic de Greuges CV, transcrito del buscador del propio organismo. Materia, asunto, administración y el título de cada resolución van verbatim: este fichero NO emite ningún juicio. Las fichas firmadas —con resumen verbatim leído del PDF— viven en sindic.json y las escribe una persona con `npm run sindic:add`. «contraAyuntamiento» y «vecinosOtrasAdministraciones» responden a preguntas distintas y NO se suman.",
   "source": {
     "platform": "Síndic de Greuges de la Comunitat Valenciana",
@@ -19,8 +19,8 @@
           "frase": true,
           "anyoActual": 2026
         },
-        "declarado": 49,
-        "recogidas": 49,
+        "declarado": 50,
+        "recogidas": 50,
         "paginas": 5,
         "irreconocibles": 0
       },
@@ -851,7 +851,7 @@
     "tiposDesconocidos": 0,
     "anioMasAntiguo": 2013,
     "anioMasReciente": 2026,
-    "mencionesDescartadas": 7,
+    "mencionesDescartadas": 8,
     "repetidasEntreEjes": 8
   }
 }
