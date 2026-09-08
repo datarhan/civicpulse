@@ -531,9 +531,17 @@ export default function Basuras() {
           </div>
         ))}
         <Callout title="La pregunta que esto abre">
-          Todo lo anterior era público antes de que se valorasen las ofertas. La pregunta que deja
-          no es sobre la empresa, que compitió y ganó con las reglas del pliego, sino sobre el
-          procedimiento:{' '}
+          {/* Decía «antes de que se valorasen las ofertas», y el bloque de
+              JUSTO ARRIBA lo desmiente: la huelga de Ugao-Miraballes se cerró
+              el 19 de julio de 2025 «mientras en Riba-roja se valoraban las
+              ofertas» — la propia pieza lo escribe así. Parla (2014-2018) y
+              Barakaldo (2022) sí eran anteriores; el expediente vasco corría al
+              mismo tiempo. «Ya era público cuando» los cubre a los tres sin
+              perder la pregunta, que no depende de que fuera antes: dependía de
+              que estuviera disponible. */}
+          Todo lo anterior ya era público cuando se valoraron las ofertas —lo de Ugao-Miraballes se
+          cerró mientras se valoraban—. La pregunta que deja no es sobre la empresa, que compitió y
+          ganó con las reglas del pliego, sino sobre el procedimiento:{' '}
           <strong>
             ¿miró la mesa de contratación cómo le había ido a este licitador en otros municipios?
           </strong>{' '}

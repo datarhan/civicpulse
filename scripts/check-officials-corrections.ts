@@ -21,9 +21,12 @@
  *
  * EJE 2 — ¿la página viva del ayuntamiento sigue necesitándola? (con red)
  *   vigente        la página sigue diciendo lo que la corrección corrige
- *   absorbida      la página se puso al día → hay que RETIRAR la entrada, y se
- *                  dice en voz alta: una corrección que afirma una discrepancia
- *                  que ya no existe es prosa vieja sobre una persona con nombre
+ *   absorbida      la página se puso al día. Un ALTA absorbida se retira: la web
+ *                  ya lo lista y no se pierde nada. Una BAJA absorbida NO se
+ *                  retira — es lo único que sostiene `formerOfficials`, y
+ *                  quitarla borraría a quien sí ocupó un escaño, con su acta
+ *                  detrás. Desde el 8-09-2026 el raspado arrastra a los cesados
+ *                  ya publicados justo para que su baja siga aplicándose
  *   contradicha    la página dice lo contrario de lo que la corrección afirma
  *                  (la cesada vuelve con áreas; el alta figura con otro partido)
  *                  → sale 1
@@ -279,9 +282,24 @@ async function main(): Promise<void> {
             `npm run roster-correction -- --apply (o raspa)\n`,
         )
       if (x.vigencia === 'absorbida')
+        // Un ALTA absorbida sobra: la web ya lo lista, retirarla no pierde nada.
+        //
+        // Una BAJA absorbida NO sobra, y decir lo contrario era peligroso. La
+        // baja es lo ÚNICO que construye `formerOfficials`: retirarla borra del
+        // padrón publicado a alguien que sí ocupó un escaño, con el acta que lo
+        // documenta detrás y varios ficheros apuntando a su slug. Desde el
+        // 8-09-2026 el raspado ARRASTRA a los cesados ya publicados, así que
+        // una baja absorbida sigue haciendo su trabajo sobre ese arrastre —
+        // justo lo que la mantiene en el registro.
+        //
+        // El aviso decía «RETÍRALA» para las dos, y a punto estuvo de hacerse.
         process.stdout.write(
-          `  [absorbida] ${x.tipo} ${x.slug} — ${x.detalleVigencia}: la corrección ya no corrige nada. ` +
-            `RETÍRALA: npm run roster-correction -- --retirar ${x.slug}\n`,
+          x.tipo === 'alta'
+            ? `  [absorbida] alta ${x.slug} — ${x.detalleVigencia}: la corrección ya no añade nada. ` +
+                `RETÍRALA: npm run roster-correction -- --retirar ${x.slug}\n`
+            : `  [absorbida] baja ${x.slug} — ${x.detalleVigencia}. NO la retires: es lo único que ` +
+                `mantiene a esta persona en formerOfficials con su acta. El raspado arrastra a los ` +
+                `cesados publicados para que la baja siga aplicándose.\n`,
         )
       if (x.vigencia === 'contradicha')
         process.stdout.write(`  [contradicha] ${x.tipo} ${x.slug} — ${x.detalleVigencia}\n`)

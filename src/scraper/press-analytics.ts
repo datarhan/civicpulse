@@ -63,7 +63,14 @@ export interface ArticleTrustRow {
   indicators: {
     localCoverage: boolean
     datedArticle: boolean
-    municipalSourceMatch: boolean
+    /**
+     * `true` cotejado y encontrado · `false` cotejado y sin encontrar ·
+     * `null` NO COTEJADO, porque del titular no salió ninguna afirmación que
+     * cotejar. Los dos últimos se pintaban igual, y el círculo vacío decía
+     * «no coincide con los datos municipales» sobre titulares que nadie había
+     * comprobado.
+     */
+    municipalSourceMatch: boolean | null
     corroboratedAcrossOutlets: boolean
     factualClaimsPresent: boolean
     opinionFraction: number
@@ -139,7 +146,19 @@ export function computeTrustIndicators(opts: {
     ).length
     const opinionFraction = claims.length === 0 ? 0 : opinionCount / claims.length
 
-    const municipalSourceMatch = claims.some((c) => c.verification.evidence.length > 0)
+    // Sin claims no hay cotejo, y `[].some(...)` es `false` — el mismo valor
+    // que «se cotejó y no coincide». La página pintaba el círculo vacío junto a
+    // «Coincide con datos municipales» para el titular del agua potable
+    // (55,6 M€ / 17 años), que SÍ está en el snapshot de contratos: lo que
+    // pasó es que el extractor no sacó ninguna afirmación, un hecho sobre el
+    // extractor y no sobre el contrato. La propia ficha lo dice dos líneas más
+    // abajo, y el indicador la contradecía.
+    //
+    // Es la regla 3: un centinela no es un valor. Sin nada que cotejar, `null`.
+    // El marcador no cambia — `Number(null)` es 0, igual que `Number(false)`—,
+    // así que esto sólo separa lo que se pinta, no lo que se puntúa.
+    const municipalSourceMatch =
+      claims.length === 0 ? null : claims.some((c) => c.verification.evidence.length > 0)
 
     const ind = {
       localCoverage:

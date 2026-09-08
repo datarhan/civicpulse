@@ -181,9 +181,9 @@ export function validateOfficialsCorrections(json: unknown): OfficialsCorrection
   if (!bajas) errores.push('bajas debe ser un array')
   if (!altas) errores.push('altas debe ser un array')
 
-  const altaSlugs = new Set(
-    (altas ?? []).map((a) => (esObjeto(a) && esTexto(a.slug) ? a.slug : '')).filter(Boolean),
-  )
+  // (Aquí vivía `altaSlugs`, el conjunto contra el que se validaba
+  // `replacedBy`. Esa comprobación se mudó a `applyOfficialsCorrections`, que sí
+  // ve el padrón compuesto; el conjunto se quedó sin usar.)
   const slugs = new Set<string>()
   const registrar = (slug: unknown) => {
     if (!esTexto(slug)) return
@@ -204,9 +204,23 @@ export function validateOfficialsCorrections(json: unknown): OfficialsCorrection
     if (!esFecha(b.until)) errores.push(`${donde}.until debe ser YYYY-MM-DD`)
     if (!MOTIVOS_BAJA.includes(b.reason as MotivoBaja))
       errores.push(`${donde}.reason fuera del enum (${MOTIVOS_BAJA.join(' | ')})`)
-    if (b.replacedBy !== null && !(esTexto(b.replacedBy) && altaSlugs.has(b.replacedBy)))
+    // `replacedBy` se valida como SLUG aquí, y su integridad referencial se
+    // comprueba en `applyOfficialsCorrections`, contra el padrón compuesto.
+    //
+    // Exigía ser un alta DE ESTE FICHERO, y eso se rompió solo el 8-09-2026:
+    // cuando la web se puso al día, el alta quedó absorbida y hubo que
+    // retirarla — con lo que el validador tumbaba el fichero entero y la única
+    // salida era borrar el relevo. Pero a quién sustituyó lo dice el acta y
+    // sigue siendo verdad; lo que cambia es dónde vive el sustituto, que pasa
+    // del fichero al raspado.
+    //
+    // Comprobarlo contra el padrón es además MÁS fuerte que la regla vieja:
+    // antes bastaba con que el slug estuviera en `altas`, aunque nadie ocupase
+    // el escaño.
+    if (b.replacedBy !== null && !(esTexto(b.replacedBy) && b.replacedBy === slugify(b.replacedBy)))
       errores.push(
-        `${donde}.replacedBy «${String(b.replacedBy)}» no es un alta de este fichero (o null)`,
+        `${donde}.replacedBy «${String(b.replacedBy)}» debe ser un slug (o null); ` +
+          'que ocupe escaño se comprueba al componer el padrón',
       )
     validarFuente(b.source, `${donde}.source`, errores)
     if (b.alsoReported !== undefined) {
@@ -392,6 +406,20 @@ export function applyOfficialsCorrections(
     officials.splice(at, 0, row)
   }
 
+  // La integridad referencial de `replacedBy`, ahora contra el padrón de
+  // verdad: quien sustituye tiene que ocupar un escaño. Se comprueba AQUÍ y no
+  // en el validador porque el sustituto puede venir de un alta curada o del
+  // raspado, y el fichero solo, por definición, no ve lo segundo.
+  const sentados = new Set(officials.map((o) => o.slug))
+  for (const b of c.bajas) {
+    if (b.replacedBy === null) continue
+    must(
+      sentados.has(b.replacedBy),
+      `baja ${b.slug}: replacedBy «${b.replacedBy}» no ocupa ningún escaño del padrón compuesto — ` +
+        'o el relevo está mal escrito, o quien lo ocupa se ha caído del raspado',
+    )
+  }
+
   return {
     officials,
     formerOfficials,
@@ -426,6 +454,43 @@ export function rawFromPublished(snap: {
     return rest as Official
   })
   return [...scraped, ...restored]
+}
+
+/**
+ * Devuelve al padrón crudo los cesados que ya estaban publicados.
+ *
+ * Una baja EXIGE que la persona esté en el raspado, porque su trabajo es
+ * quitarla. Mientras la web iba con retraso eso se cumplía solo. Cuando la web
+ * se pone al día —el 8-09-2026, con la mudanza del portal— deja de cumplirse, y
+ * el adaptador entero se cae pidiendo que se retire la corrección.
+ *
+ * Retirarla sería la respuesta equivocada: la baja es lo ÚNICO que construye
+ * `formerOfficials`, así que quitarla borra del padrón publicado a alguien que
+ * sí fue concejala, con el acta que lo documenta — y hay informes, encargos y
+ * un `souls/…md` que siguen apuntando a ese slug. El registro de quién ocupó un
+ * escaño no se borra porque la fuente haya dejado de repetirlo.
+ *
+ * Gana siempre la fila raspada: si la web vuelve a listar a alguien, ésa es la
+ * reciente y el arrastre no la duplica.
+ *
+ * Esto NO afloja la guarda. Una baja que nombre a quien no está ni en el
+ * raspado ni entre los cesados publicados sigue reventando, que es el caso que
+ * la guarda venía a cazar: una corrección vieja o inventada.
+ */
+export function arrastraCesados(parsed: Official[], formerOfficials: FormerOfficial[]): Official[] {
+  const vistos = new Set(parsed.map((o) => o.slug))
+  const restaurados = (formerOfficials ?? [])
+    .filter((f) => !vistos.has(f.slug))
+    .map((f) => {
+      const rest: Partial<FormerOfficial> = { ...f }
+      delete rest.estado
+      delete rest.until
+      delete rest.reason
+      delete rest.replacedBy
+      delete rest.source
+      return rest as Official
+    })
+  return restaurados.length === 0 ? parsed : [...parsed, ...restaurados]
 }
 
 export interface OfficialsSnapshot {

@@ -85,6 +85,32 @@ describe('los escalares de /laboratorio no se contradicen entre sí', () => {
     expect(s.hasEditorialContent).toBe(true)
   })
 
+  it('la discrepancia se divide entre lo RESUELTO, no entre todo el corpus', () => {
+    // El estado real del 7-09-2026: 36 filas, 1 verificada, 1 parcial, 34
+    // sin-datos. La guarda de arriba pregunta si hay CERO resueltas, y con una
+    // sola se abre — así que la página publicaba
+    //
+    //   TASA DE DISCREPANCIA · 0% · 0 de 36 claims
+    //
+    // que se lee «hemos examinado 36 y ninguna falla». Se examinó UNA. El
+    // centinela no estaba en el 0 sino en el DENOMINADOR: 35 filas que nadie
+    // resolvió engordaban una tasa de hallazgo como si las hubiéramos mirado.
+    //
+    // La de VERIFICACIÓN sí se divide entre el total, y debe seguir así: es una
+    // cobertura, y «1 de 36» es exactamente el hecho que cuenta.
+    const verified = [
+      claim('a0', 'verificado'),
+      claim('a1', 'parcial'),
+      ...Array.from({ length: 34 }, (_, i) => claim(`b${i}`, 'sin-datos')),
+    ]
+    const s = pressLabSummary({ press: [{ date: hace(2) }], verified }, AHORA)
+
+    expect(s.totalClaims).toBe(36)
+    expect(s.resueltasClaims, 'sólo la verificada resuelve; `parcial` no').toBe(1)
+    expect(s.verificadoRatio, 'cobertura sobre el corpus entero').toBeCloseTo(1 / 36)
+    expect(s.contradichoRatio, 'hallazgo sobre lo examinado').toBe(0)
+  })
+
   it('monitorizados y auditados son cuentas distintas', () => {
     // Confundirlas exagera el trabajo hecho, que es lo que dice el docstring
     // del módulo: «a page reading 70 auditados / 0% verificado is

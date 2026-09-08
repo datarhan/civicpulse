@@ -30,6 +30,7 @@
       "/quejas"
     ],
     "budget-execution.json": [
+      "/",
       "/datos",
       "/presupuesto"
     ],
@@ -189,6 +190,7 @@
       "/eficiencia/:id",
       "/lab-health",
       "/laboratorio/agentes/:assignmentId",
+      "/metodologia",
       "/quejas/:id",
       "/quejas/dashboard"
     ],

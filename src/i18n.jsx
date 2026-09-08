@@ -536,7 +536,12 @@ export const CATALOGUE = {
     'cargos.detalle.ficha.eyebrow': 'Portal de transparencia',
     'cargos.detalle.ficha.title': 'Su ficha biográfica oficial',
     'cargos.detalle.ficha.note':
-      'Documento publicado por el propio Ayuntamiento. Cinco concejales no tienen ficha publicada; en esos casos no se muestra nada antes que enlazar la de otra persona.',
+      'Documento publicado por el propio Ayuntamiento. Nunca se enlaza la ficha de otra persona: si el cruce es ambiguo, no se enseña ninguna.',
+    'cargos.detalle.ficha.cobertura': 'fichas publicadas',
+    'cargos.detalle.ficha.enlace': 'Datos biográficos (PDF)',
+    'cargos.detalle.ficha.sin.title': 'El Ayuntamiento no publica su ficha.',
+    'cargos.detalle.ficha.sin.body':
+      'La página de la Corporación Municipal enlaza un CV en PDF junto a cada concejal; junto a este escaño no hay ninguno. No consta si llegó a publicarse antes: la página que el portal usaba hasta septiembre de 2026 no tiene copia en el Internet Archive, así que no se puede decir si se retiró o nunca estuvo.',
     'cargos.detalle.mandato.eyebrow': 'Respaldo electoral',
     'cargos.detalle.mandato.title': 'Con cuántos votos llegó su lista',
     'cargos.detalle.mandato.municipales': 'municipales',
@@ -610,7 +615,7 @@ export const CATALOGUE = {
     // clase de defecto que «crédito» por «gastado» — y ya se corrigió una vez.
     'cargos.hero.coste':
       'Los {n} percibieron {importe} en {year} entre retribuciones y asistencias, y ninguno cobró cero.',
-    'cargos.hero.fichas': 'Fichas biográficas oficiales, las {n} en el portal',
+    'cargos.hero.fichas': 'Fichas biográficas oficiales en el portal: {n} de {total}',
     'cargos.composicion.title': 'Composición del pleno · {n} escaños',
     'cargos.composicion.gobiernan': 'con áreas delegadas · gobiernan',
     'cargos.composicion.fiscalizan': 'sin áreas delegadas · fiscalizan',
@@ -1306,7 +1311,12 @@ export const CATALOGUE = {
     'cargos.detalle.ficha.eyebrow': 'Portal de transparència',
     'cargos.detalle.ficha.title': 'La seua fitxa biogràfica oficial',
     'cargos.detalle.ficha.note':
-      "Document publicat pel mateix Ajuntament. Cinc regidors no tenen fitxa publicada; en eixos casos no es mostra res abans que enllaçar la d'una altra persona.",
+      "Document publicat pel mateix Ajuntament. Mai s'enllaça la fitxa d'una altra persona: si el creuament és ambigu, no se'n mostra cap.",
+    'cargos.detalle.ficha.cobertura': 'fitxes publicades',
+    'cargos.detalle.ficha.enlace': 'Dades biogràfiques (PDF)',
+    'cargos.detalle.ficha.sin.title': "L'Ajuntament no publica la seua fitxa.",
+    'cargos.detalle.ficha.sin.body':
+      "La pàgina de la Corporació Municipal enllaça un CV en PDF al costat de cada regidor; al costat d'aquest escó no n'hi ha cap. No consta si va arribar a publicar-se abans: la pàgina que el portal feia servir fins al setembre de 2026 no té còpia a l'Internet Archive, així que no es pot dir si es va retirar o mai no hi va estar.",
     'cargos.detalle.mandato.eyebrow': 'Suport electoral',
     'cargos.detalle.mandato.title': 'Amb quants vots va arribar la seua llista',
     'cargos.detalle.mandato.municipales': 'municipals',
@@ -1362,7 +1372,7 @@ export const CATALOGUE = {
       'El ple té {total} escons. {nGob} es reparteixen totes les àrees delegades; els {nOpo} restants no en dirigeixen cap, i eixe és el seu paper: fiscalitzar, no gestionar.',
     'cargos.hero.coste':
       'Els {n} van percebre {importe} en {year} entre retribucions i assistències, i cap va cobrar zero.',
-    'cargos.hero.fichas': 'Fitxes biogràfiques oficials, les {n} al portal',
+    'cargos.hero.fichas': 'Fitxes biogràfiques oficials al portal: {n} de {total}',
     'cargos.composicion.title': 'Composició del ple · {n} escons',
     'cargos.composicion.gobiernan': 'amb àrees delegades · governen',
     'cargos.composicion.fiscalizan': 'sense àrees delegades · fiscalitzen',

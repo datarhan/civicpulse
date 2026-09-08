@@ -19,6 +19,7 @@ import {
   alertFingerprint,
   formatAlerts,
   pickCheckDiagnosis,
+  contarNochesEnRojo,
   type Observations,
 } from '../src/scraper/health-monitor'
 import { transcriptionPending, TRANSCRIBE_BLOCKLIST_IDS } from '../src/scraper/transcribe-blocklist'
@@ -90,13 +91,10 @@ function nightlyFailStreak(): number {
       ['run', 'list', '--workflow=nightly-scrape.yml', '--limit', '8', '--json', 'conclusion'],
       { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] },
     )
-    const runs = JSON.parse(out) as { conclusion: string }[]
-    let n = 0
-    for (const r of runs) {
-      if (r.conclusion === 'failure') n++
-      else break
-    }
-    return n
+    const runs = JSON.parse(out) as { conclusion: string | null }[]
+    // El conteo vive en el módulo puro y está probado contra la lista real del
+    // 7-09-2026, que este script leyó como una racha de 0 teniendo cinco.
+    return contarNochesEnRojo(runs.map((r) => r.conclusion))
   } catch {
     return 0 // gh unavailable — do not invent a streak
   }

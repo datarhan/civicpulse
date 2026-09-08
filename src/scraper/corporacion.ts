@@ -228,9 +228,124 @@ function findMainTable($: CheerioAPI) {
   return best ?? tables.first()
 }
 
+/**
+ * El partido, leído del rótulo del GRUPO en vez del id de un logotipo.
+ *
+ * En el marcado nuevo cada grupo es un `<article>` con `<h2>Grupo Municipal
+ * X</h2>` y dentro cuelgan sus concejales. Eso es una fuente estrictamente
+ * mejor que `partyFromLogo`: la cicatriz de `Otro` fue un logotipo cuyo `alt`
+ * era literalmente «(id: 11569)» —ningún texto—, así que el único concejal de
+ * EU-Podem caía al centinela y el sitio lo nombraba por eliminación. Un
+ * encabezado que dice el nombre no puede hacer eso.
+ *
+ * `Izquierda Unida` es el rótulo que usa el portal desde la mudanza; el acta de
+ * organización de 07-07-2023 llama al grupo «Esquerra Unida-Podem» y TODO lo ya
+ * publicado aquí —veredictos, claims, fichas— lleva el código `EU-Podem`. Se
+ * traduce a propósito: cambiar el código partiría la continuidad de ese grupo
+ * en todo lo publicado, que es un precio mucho más alto que un alias.
+ *
+ * Devuelve `null`, nunca `Otro`, cuando el rótulo no se reconoce: quien llama
+ * decide, y así un grupo nuevo no entra al sitio disfrazado de centinela.
+ */
+export function partyFromGroupHeading(heading: string): Party | null {
+  const t = heading.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
+  if (!/grupo\s+municipal|grup\s+municipal/.test(t)) return null
+  if (/\bpsoe\b|socialista/.test(t)) return 'PSOE'
+  if (/\bpp\b|popular/.test(t)) return 'PP'
+  if (/\bvox\b/.test(t)) return 'VOX'
+  if (/compromis/.test(t)) return 'Compromís'
+  if (/izquierda unida|esquerra unida|\beu\b|eupv|podem/.test(t)) return 'EU-Podem'
+  if (/ciudadanos|ciutadans/.test(t)) return 'Ciudadanos'
+  return null
+}
+
+/**
+ * El marcado «Portales 7», que es donde vive la corporación desde la mudanza
+ * del portal (~2-09-2026). La página vieja no redirige: contesta 403.
+ *
+ * Cada concejal es un `<article class="… node--view-mode-acordeon">` con:
+ *   `<h3>` Sr./Sra. + nombre · `field-extra` el cargo («Alcalde», «Concejala»,
+ *   y también «Regidora», que es el mismo cargo en valenciano dentro de la
+ *   página castellana) · `field-name-body` con «Áreas:» y «Correo
+ *   electrónico:» · un PDF adjunto que es el CV · y su foto.
+ *
+ * El CV ya NO es una página agregada para los 21: es un PDF por concejal. Por
+ * eso aquí no se llama a `canonicalCvUrl`, que reescribe hacia esa agregada —
+ * hacerlo publicaría 21 enlaces a un 403.
+ */
+function parsePortales7($: CheerioAPI, base: string): Official[] {
+  const out: Official[] = []
+  $('article.node--view-mode-acordeon').each((_, el) => {
+    const $a = $(el)
+    const encabezado = $a.find('h3').first().text().replace(/\s+/g, ' ').trim()
+    const m = encabezado.match(/^(Sr\.|Sra\.)\s*D[aª]?\.?\s+(.+?)\s*$/i)
+    if (!m) return
+    const honorific: 'Sr.' | 'Sra.' = /^Sra\./i.test(m[1]) ? 'Sra.' : 'Sr.'
+    const name = m[2].trim()
+
+    // El grupo es el ANTEPASADO más cercano que lleva un rótulo de grupo. Sin
+    // rótulo reconocible no se inventa un partido: la ficha se descarta y el
+    // recuento de escaños lo delata, que es mejor que publicar `Otro`.
+    const heading = $a
+      .parents('article')
+      .toArray()
+      .map((g) => $(g).find('h2').first().text().replace(/\s+/g, ' ').trim())
+      .find((t) => partyFromGroupHeading(t) !== null)
+    const party = heading ? partyFromGroupHeading(heading) : null
+    if (!party) return
+
+    const cargo = $a.find('.field-name-field-extra').first().text()
+    const role: Role = /alcalde|alcaldesa/i.test(cargo) ? 'alcalde' : 'concejal'
+
+    const body = $a.find('.field-name-body').first()
+    const bodyText = body.text()
+    const pdf = $a.find('a[href$=".pdf"]').first().attr('href')
+
+    // Las áreas salen de SU PROPIO párrafo, no del cuerpo entero.
+    //
+    // El cuerpo es «<p>Áreas: …</p><p>Correo electrónico: …</p>», y cortar por
+    // el rótulo del segundo obliga a conocer cómo está escrito. La página
+    // castellana trae una ficha —una— con el rótulo en valenciano («Correu
+    // electrònic»), así que el corte falló justo ahí y se publicaron como áreas
+    // de ese concejal «Correu electrònic: alcaldia@ribarroja» y «es». Como esa
+    // cadena contiene «alcaldia», su ficha pintaba la pastilla «Alcaldía» —la
+    // cartera del ALCALDE— y lo cazó `check` de competencias, que es una
+    // superficie que nombra personas vivas.
+    //
+    // Cortando por párrafo da igual el idioma de lo que venga detrás.
+    const parrafoAreas = body
+      .find('p')
+      .toArray()
+      .map((p) => $(p).text())
+      .find((t) => /Áreas|Arees|Àrees/i.test(t))
+    const textoAreas = parrafoAreas ?? bodyText
+
+    out.push({
+      slug: makeSlug(name),
+      name,
+      honorific,
+      role,
+      party,
+      portfolios: extractPortfolios(textoAreas),
+      email: preferCorrectlySpelledEmail(extractEmail(body), bodyText),
+      photoUrl: absolutise($a.find('img').first().attr('src'), base),
+      partyLogoUrl: '',
+      cvUrl: pdf ? absolutise(pdf, base) : null,
+    })
+  })
+  return out
+}
+
 export function parseCorporacion(html: string, opts: ParseOptions = {}): Official[] {
   const base = (opts.baseUrl || 'http://www.ribarroja.es').replace(/\/+$/, '')
   const $ = load(html)
+
+  // El marcado nuevo primero. Si no hay ni un acordeón —una página vieja
+  // guardada como fixture, o un portal que revierte— se cae al camino de la
+  // tabla, que sigue probado contra su propio payload.
+  const portales7 = parsePortales7($, base)
+  if (portales7.length > 0) return portales7
+
   const table = findMainTable($)
   if (!table || table.length === 0) return []
 

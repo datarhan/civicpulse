@@ -130,11 +130,22 @@ function TrustIndicators({ indicators }) {
       }}
     >
       {entries.map(([k, label]) => {
-        const on = !!indicators[k]
+        // TRES estados, no dos. `null` es «no se llegó a comprobar», y se
+        // pintaba con el mismo círculo vacío que «se comprobó y no cuadra» —
+        // así el titular del agua (55,6 M€ / 17 años), del que el extractor no
+        // sacó ninguna afirmación, salía marcado como si no coincidiera con
+        // unos datos municipales donde ese contrato SÍ está.
+        const raw = indicators[k]
+        const sinComprobar = raw === null || raw === undefined
+        const on = !!raw
+        const glifo = sinComprobar ? '–' : on ? '●' : '○'
+        const titulo = sinComprobar
+          ? `Indicador del Trust Project · ${label} · sin comprobar: no se extrajo ninguna afirmación de este titular`
+          : `Indicador del Trust Project · ${label}`
         return (
           <span
             key={k}
-            title={`Indicador del Trust Project · ${label}`}
+            title={titulo}
             style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -147,10 +158,21 @@ function TrustIndicators({ indicators }) {
               // 2.7:1 contrast against --soft. Full --ink50 is 5.2:1 (light) /
               // 8.2:1 (dark) — WCAG AA, still visibly muted vs the active state.
               color: on ? 'var(--ok-ink)' : 'var(--ink50)',
+              // El estado sin comprobar se distingue del comprobado-en-negativo
+              // por algo más que el glifo: en un chip de 11px un «–» y un «○» se
+              // confunden de un vistazo.
+              fontStyle: sinComprobar ? 'italic' : 'normal',
             }}
           >
-            <span style={{ fontSize: 'var(--fs-micro)' }}>{on ? '●' : '○'}</span>
+            <span style={{ fontSize: 'var(--fs-micro)' }} aria-hidden="true">
+              {glifo}
+            </span>
             {label}
+            {sinComprobar ? (
+              <span style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
+                {' · sin comprobar'}
+              </span>
+            ) : null}
           </span>
         )
       })}
@@ -714,9 +736,16 @@ export default function Laboratorio() {
             maxWidth: 820,
           }}
         >
-          Cada titular sobre Riba-roja se extrae, sintetiza y contrasta contra los datos municipales
-          públicos (presupuesto, contratos PLACSP, subvenciones BDNS, padrón INE, paro SEPE,
-          plenos). Indicadores de fiabilidad inspirados en el{' '}
+          {/* Decía «Cada titular … se contrasta», que describe el PROCESO pero
+              se lee como el RESULTADO, justo encima de una tasa de
+              verificación del 3 %. Se intenta con todos; la mayoría vuelve sin
+              dato municipal que confirme ni desmienta, y eso es lo que dicen
+              las tasas de al lado. */}
+          De cada titular sobre Riba-roja se extraen sus afirmaciones y se intenta contrastarlas
+          contra los datos municipales públicos (presupuesto, contratos PLACSP, subvenciones BDNS,
+          padrón INE, paro SEPE, plenos). La mayoría vuelve sin nada que las confirme ni las
+          desmienta: las tasas de aquí abajo dicen cuántas llegaron a un veredicto. Indicadores de
+          fiabilidad inspirados en el{' '}
           <a
             href="https://thetrustproject.org/"
             target="_blank"
@@ -779,10 +808,13 @@ export default function Laboratorio() {
           value={fmtPct(summary.verificadoRatio)}
           hint={`${summary.verificadoClaims} de ${summary.totalClaims} claims`}
         />
+        {/* El pie dice ENTRE QUÉ se divide. Decía «de 36 claims» cuando el
+            divisor real era 1 —las 36 son el corpus, no lo examinado—, y así
+            «0 %» se leía «hemos mirado 36 y ninguna falla». */}
         <KPI
           label="Tasa de discrepancia"
           value={fmtPct(summary.contradichoRatio)}
-          hint={`${summary.contradichoClaims} de ${summary.totalClaims} claims`}
+          hint={`${summary.contradichoClaims} de ${summary.resueltasClaims} resueltas`}
         />
         <KPI
           label="Triangulación"

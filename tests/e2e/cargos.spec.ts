@@ -221,17 +221,30 @@ test.describe('Cargos (/cargos)', () => {
     })
   })
 
-  test('a member added by correction shows honest empties, never a substitute address', async ({
+  test('el escaño cuya ficha el portal deja a medias muestra los huecos, y dice de quién son', async ({
     page,
   }) => {
+    // Este concejal entró por corrección curada mientras la web iba con
+    // retraso, y su tarjeta enseñaba «toma de posesión», «sin correo
+    // publicado» y «sin retrato en la fuente». El 8-09-2026 la web se puso al
+    // día: ya lo lista, la corrección quedó absorbida y se retiró, así que
+    // ahora es un concejal raspado como los otros veinte.
+    //
+    // Lo que NO cambia es que su ficha en el portal sigue a medias —sin CV y
+    // sin retrato—, y esos huecos tienen que verse y atribuirse a la fuente,
+    // no quedarse en blanco. La etiqueta de «sin retrato» se derivaba de una
+    // nota curada y desapareció con ella; ahora se deriva del hueco.
     await page.goto('/cargos/pedro-tortajada-raga', { waitUntil: 'domcontentloaded' })
     await expect(page.getByText('Pedro Tortajada Raga').first()).toBeVisible({ timeout: 8000 })
     const body = await page.locator('body').innerText()
-    expect(body).toMatch(/Toma de posesión ante el Pleno el \d{1,2} de julio de 2025/)
-    expect(body).toMatch(/sin correo publicado/)
     expect(body).toMatch(/sin retrato en la fuente/)
-    // The shared mailbox must never stand in for a person the source gave none.
-    expect(body).not.toContain('alcaldia@ribarroja.es')
+    expect(body, 'la ausencia de CV se dice, no se calla').toMatch(
+      /El Ayuntamiento no publica su ficha/,
+    )
+    expect(body, 'y se dice que no se sabe si alguna vez estuvo').toMatch(/Internet Archive/)
+    // El correo que se publica es el que la fuente le da —el del grupo—, nunca
+    // uno inventado ni el de alcaldía en su lugar.
+    expect(body).toContain('popularesribarroja@gmail.com')
   })
 
   test('the fourteen without dedicación are paid, and shown as a distribution', async ({
@@ -347,15 +360,31 @@ test.describe('Cargos (/cargos)', () => {
     expect(body).toMatch(/buzón compartido por \d+ cargos/)
   })
 
-  test('the biographical index is linked once, not promised on every card', async ({ page }) => {
-    // Twenty of the twenty-one cvUrl values in the snapshot are the same
-    // transparency listing. A per-card «Biografía →» promised that person's
-    // biography and delivered an index, twenty times over.
+  test('el índice muerto no se enlaza, y el enlace del hero no es el CV de una persona', async ({
+    page,
+  }) => {
+    // Antes: los 21 `cvUrl` eran el MISMO índice del portal, así que un
+    // «Biografía →» por tarjeta prometía a una persona y entregaba un listado,
+    // veinte veces. Se dejó dicho UNA vez, en el hero.
+    //
+    // Tras la mudanza del portal (8-09-2026) cada `cvUrl` es el PDF de SU
+    // persona — mejor— pero el hero seguía sacando su enlace del primer
+    // `cvUrl` que encontrara, que es el CV del alcalde, bajo un rótulo que
+    // promete las fichas de los 21. El mismo defecto por la puerta de atrás.
+    //
+    // Contrato nuevo: el índice muerto no aparece NUNCA, y el enlace del hero
+    // es la página de la corporación —la que las publica todas—, no el
+    // documento de nadie.
     await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
     await expect(page.getByText('Quién dirige qué').first()).toBeVisible({ timeout: 8000 })
-    const listado =
+    const listadoMuerto =
       'https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919'
-    await expect(page.locator(`a[href="${listado}"]`)).toHaveCount(1)
+    await expect(page.locator(`a[href="${listadoMuerto}"]`)).toHaveCount(0)
+    const hero = page.locator('a[href*="/es/pagina/corporaci"]')
+    await expect(hero, 'el hero enlaza la página que publica todas las fichas').toHaveCount(1)
+    // Y no es el documento de nadie: un `.pdf` ahí sería el CV de una persona
+    // vendido como el índice de los 21, que es el defecto que se arregló.
+    expect(await hero.getAttribute('href')).not.toMatch(/\.pdf$/i)
     // The INTERNAL per-person report is a different link and stays per card.
     // Awaited, not counted on the spot: the bio routes arrive from a separate
     // fetch, so a bare count races it and passes only on the retry.

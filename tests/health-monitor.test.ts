@@ -4,6 +4,7 @@ import {
   alertFingerprint,
   formatAlerts,
   pickCheckDiagnosis,
+  contarNochesEnRojo,
   NIGHTLY_STREAK_ALARM,
   type Observations,
 } from '../src/scraper/health-monitor'
@@ -274,5 +275,52 @@ describe('pickCheckDiagnosis · una semana entera de hallazgos', () => {
       alertFingerprint(evaluateHealth(obs({ integrity: [{ check: 'check:runs', message: msg }] })))
     const conUnaMas = SEMANA + '\n    ERROR [judged-without-calls] algo nuevo.'
     expect(fp(pickCheckDiagnosis(SEMANA))).not.toBe(fp(pickCheckDiagnosis(conUnaMas)))
+  })
+})
+
+describe('contarNochesEnRojo', () => {
+  // El contador miraba SÓLO `failure` y cortaba con cualquier otra cosa. Una
+  // nocturna que agota su tiempo concluye `cancelled`, y un `cancelled` a la
+  // cabeza ponía la racha entera a cero: el 7-09-2026 el digest publicaba
+  // «nocturnas-en-rojo=0» con cinco noches seguidas sin verde, y la alarma —que
+  // salta a las tres— llevaba tres días sin poder saltar.
+  //
+  // Es la regla 2 de DATA_INTEGRITY otra vez, en el sitio donde más cara sale:
+  // «nunca se intentó» doblado dentro de «todo bien». La lista es la real,
+  // capturada de `gh run list --workflow=nightly-scrape.yml` ese día.
+  const REAL_2026_09_07 = ['cancelled', 'failure', 'failure', 'failure', 'cancelled', 'success']
+
+  it('cuenta la racha real de la nocturna del 7-09-2026, que se leía como 0', () => {
+    expect(contarNochesEnRojo(REAL_2026_09_07)).toBe(5)
+  })
+
+  it('sólo un verde cierra la racha', () => {
+    expect(contarNochesEnRojo(['success', 'failure', 'failure'])).toBe(0)
+  })
+
+  // Una noche cancelada no es una noche buena: es una noche que no demostró
+  // haber hecho el trabajo, que es justo lo que la racha existe para contar.
+  it('cuenta como roja cualquier conclusión que no sea verde', () => {
+    expect(contarNochesEnRojo(['cancelled'])).toBe(1)
+    expect(contarNochesEnRojo(['timed_out'])).toBe(1)
+    expect(contarNochesEnRojo(['startup_failure'])).toBe(1)
+    expect(contarNochesEnRojo(['skipped'])).toBe(1)
+  })
+
+  // Una ejecución viva todavía no ha concluido nada. Ni suma ni corta: si
+  // cortara, lanzar la nocturna a mano silenciaría la racha mientras corre.
+  it('una ejecución en curso no cuenta ni corta', () => {
+    expect(contarNochesEnRojo([null, 'failure', 'failure'])).toBe(2)
+    expect(contarNochesEnRojo([null, 'success'])).toBe(0)
+  })
+
+  it('sin ejecuciones no inventa una racha', () => {
+    expect(contarNochesEnRojo([])).toBe(0)
+  })
+
+  it('la racha real dispara la alarma que el contador viejo silenciaba', () => {
+    const racha = contarNochesEnRojo(REAL_2026_09_07)
+    expect(racha).toBeGreaterThanOrEqual(NIGHTLY_STREAK_ALARM)
+    expect(codes(obs({ nightlyFailStreak: racha }))).toContain('nightly-red')
   })
 })

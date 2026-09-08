@@ -62,6 +62,19 @@ ADAPTERS=(
   scrape:obras
   scrape:sindicatura
   scrape:sindic-expedientes
+  # ribarroja.es responde 502 a TODO desde los runners de GitHub — medido el
+  # 6-09-2026 en la nocturna: 502 en las tres URL del portal, la del padrón de
+  # cargos incluida. Desde el portátil la misma RPT responde 200. Es el caso
+  # exacto para el que existe esta lista, y sin ella `transparency-docs.json`
+  # se quedó congelado cinco días: el adaptador se niega —bien— a machacar el
+  # catálogo bueno cuando fallan todas sus fuentes, así que en CI no escribía y
+  # nadie más lo corría.
+  #
+  # `scrape:officials` NO entra aquí, y no es un olvido: su única fuente
+  # —/es/ayuntamiento/corporacion_municipal— da 403 también desde el portátil y
+  # ya no aparece en el menú de esa sección del portal. Correrlo aquí fallaría
+  # igual. Eso necesita una fuente nueva o declararla retirada, no un cron.
+  scrape:transparency
 )
 
 failed=()

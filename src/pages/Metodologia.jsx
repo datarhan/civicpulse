@@ -3,6 +3,8 @@ import { fmtDateLong } from '../lib/formatters'
 import { usePlenoFindings } from '../hooks/usePlenoFindings'
 import { useFindingQuoteProvenance } from '../hooks/useFindingQuoteProvenance'
 import { useIndicadores } from '../hooks/useIndicadores'
+import { useOfficials } from '../hooks/useOfficials'
+import { mailboxKinds } from '../lib/mailboxes'
 // El umbral se IMPORTA del motor: escrito a mano aquí, cambiar la constante
 // dejaría esta página afirmando una regla que el código ya no aplica — y esta
 // página es el contrato editorial publicado, no una nota interna.
@@ -157,6 +159,101 @@ function useQuoteContrastDisclosure() {
   const { data } = useFindingQuoteProvenance()
   const stats = data?.contraste?.stats ?? null
   return stats?.porContraste ? stats : null
+}
+
+/**
+ * La mudanza del portal del ayuntamiento, y qué se estrechó al mudarse.
+ *
+ * Se cuenta aquí porque esta página ES el contrato editorial: cuando la fuente
+ * cambia de sitio y de forma, el lector tiene derecho a saber qué se rompió,
+ * cuánto tiempo, y qué información dejó de estar.
+ *
+ * Todas las cifras vivas se DERIVAN del padrón. Escribir «tres direcciones» o
+ * «18 fichas» a mano en la página que promete no hacerlo es la trampa que este
+ * repositorio ya ha pagado: la frase se queda quieta mientras el dato se mueve.
+ * Lo único escrito a mano son las fechas y la medición del 5 de septiembre, que
+ * es historia y no puede cambiar.
+ */
+function MudanzaDelPortal() {
+  const { data } = useOfficials()
+  const officials = data?.officials ?? []
+  if (officials.length === 0) return null
+
+  const total = officials.length
+  const conFicha = officials.filter((o) => o.cvUrl).length
+  const buzones = mailboxKinds(officials)
+  const propias = officials.filter((o) => {
+    const info = buzones.get(o.slug)
+    return info && !info.compartido
+  }).length
+  const distintos = new Set(
+    officials.map((o) => (o.email || '').trim().toLowerCase()).filter(Boolean),
+  ).size
+
+  return (
+    <Card style={{ marginTop: 14 }} id="mudanza-portal">
+      <SectionHead
+        eyebrow="Cargos · la fuente se mudó"
+        title="Qué se perdió cuando el portal cambió de dirección"
+      />
+      <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
+        A principios de <strong>septiembre de 2026</strong> el ayuntamiento mudó su portal. La
+        página «Corporación Municipal» de la que sale este padrón cambió de dirección, y la anterior{' '}
+        <strong>no redirige: contesta 403</strong> —«prohibido»—, que de las tres respuestas
+        posibles es la única que no dice lo que ha pasado. Un 301 habría llevado al lector a la
+        página nueva; un 404 habría dicho que ya no está. El 403 dice que no tienes permiso, y eso
+        es falso: la página está publicada y enlazada desde el menú del propio sitio.
+      </p>
+      <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+        <strong>Aquí costó seis días de padrón congelado.</strong> El raspado nocturno falló desde
+        el 2 de septiembre, y hasta el 8 esta web publicó la corporación tal como estaba antes de la
+        mudanza. No se inventó nada en ese hueco —el fichero conserva la fecha en que se generó y
+        ésa es la que se enseña—, pero durante seis días lo publicado no era lo vigente.
+      </p>
+      <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+        <strong>Lo que NO ocurrió, y conviene decirlo:</strong> el ayuntamiento no retiró la
+        información. Los currículos, que vivían en una única página del portal de transparencia,
+        están ahora en un PDF junto a cada concejal, que es una forma mejor de publicarlos. Hoy hay{' '}
+        <strong style={{ color: 'var(--ink)' }}>
+          {conFicha} de {total}
+        </strong>{' '}
+        escaños con su ficha publicada. De los que faltan no se puede decir si se retiraron o nunca
+        estuvieron: la página anterior no tiene copia en el Internet Archive, y una ausencia sin
+        registro no es una retirada.
+      </p>
+      <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+        {/* La fecha es la del ÚLTIMO raspado bueno de la página vieja
+            —`generatedAt` 2026-09-02—, no la de cuando se miró. De lo que la
+            página dijera después no hay copia, así que decir «el 5» sería
+            firmar una observación que nadie hizo. */}
+        <strong>Lo que sí se estrechó son las formas de contactar.</strong> El 2 de septiembre de
+        2026, en la última lectura de la página anterior, tres concejales publicaban una dirección
+        de correo propia del ayuntamiento. En la página nueva{' '}
+        {propias === 0 ? (
+          <strong style={{ color: 'var(--ink)' }}>no hay ninguna</strong>
+        ) : (
+          <>
+            quedan <strong style={{ color: 'var(--ink)' }}>{propias}</strong>
+          </>
+        )}
+        : los {total} escaños se reparten{' '}
+        <strong style={{ color: 'var(--ink)' }}>{distintos}</strong> buzones compartidos, y el único
+        contacto publicado del principal grupo de la oposición es una cuenta de correo comercial, no
+        municipal. Cada ficha de{' '}
+        <a href="/cargos" style={{ color: 'var(--civic)' }}>
+          /cargos
+        </a>{' '}
+        dice cuántos cargos comparten el buzón que enseña, para que nadie lo lea como una línea
+        directa.
+      </p>
+      <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+        Ninguna de estas dos cosas es una acusación: un ayuntamiento puede reorganizar su web y
+        puede centralizar su correo. Se hacen constar porque son <em>menos</em> transparencia que la
+        semana anterior, medidas sobre la misma fuente, y porque el derecho de réplica está abierto
+        por si la lectura es otra.
+      </p>
+    </Card>
+  )
 }
 
 export default function Metodologia() {
@@ -2083,6 +2180,8 @@ export default function Metodologia() {
         </p>
       </Card>
 
+      <MudanzaDelPortal />
+
       <Card style={{ marginTop: 14 }} id="biografias">
         <SectionHead
           eyebrow="Cargos · biografías del agente periodista"
@@ -2135,16 +2234,25 @@ export default function Metodologia() {
       <Card style={{ marginTop: 14 }} id="frontera">
         <SectionHead
           eyebrow="Laboratorio · análisis envolvente de datos"
-          title="La única cifra de este sitio que no sale de una fuente"
+          title="Las cifras de este sitio que no salen de una fuente"
         />
+        {/* Decía «La única cifra». Dejó de ser cierto cuando se publicó
+            /laboratorio/coste-esperado, cuya ficha está en la TARJETA
+            SIGUIENTE de esta misma página y empieza reconociéndolo: «Es un
+            modelo, no una fuente citable». Dos modelos, no uno, y la frase que
+            los contaba se quedó en uno.
+            Es la prosa que envejece cuando el dato se mueve, con el
+            desmentido a un centímetro. Se escribe en plural para que el
+            tercero no vuelva a dejarla falsa. */}
         <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
-          Todo lo demás que se publica aquí es una transcripción o una división de números que
-          alguien más publicó: se puede rehacer con la fuente al lado. La puntuación de{' '}
+          Casi todo lo que se publica aquí es una transcripción o una división de números que
+          alguien más publicó: se puede rehacer con la fuente al lado. Las excepciones son dos, las
+          dos del laboratorio, y las dos llevan las mismas reglas. La primera es la puntuación de{' '}
           <a href="/laboratorio/frontera" style={{ color: 'var(--civic)' }}>
             /laboratorio/frontera
-          </a>{' '}
-          no. Sale de un modelo con decisiones nuestras dentro —qué servicios entran en la cesta,
-          qué rendimientos a escala se suponen, qué se hace con quien declara a medias— y esas
+          </a>
+          . Sale de un modelo con decisiones nuestras dentro —qué servicios entran en la cesta, qué
+          rendimientos a escala se suponen, qué se hace con quien declara a medias— y esas
           decisiones mueven el número: con la misma fuente y cuatro cestas igual de defendibles, la
           distancia de Riba-roja a la frontera recorre media escala. Por eso está en el laboratorio,
           por eso la página dice qué no es antes de enseñar ninguna cifra, y por eso publica el
@@ -2191,6 +2299,10 @@ export default function Metodologia() {
           title="Qué gasto cabría esperar para un municipio así"
         />
         <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
+          {/* «La segunda»: la tarjeta de arriba anuncia dos excepciones y ésta
+              es la otra. Dicho aquí y no sólo allí, para que la cuenta no
+              dependa de que alguien lea las dos tarjetas seguidas. */}
+          La segunda excepción.{' '}
           <a href="/laboratorio/coste-esperado" style={{ color: 'var(--civic)' }}>
             /laboratorio/coste-esperado
           </a>{' '}

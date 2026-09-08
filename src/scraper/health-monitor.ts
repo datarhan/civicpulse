@@ -64,6 +64,39 @@ export interface Observations {
 /** A nightly can fail once for a flaky upstream; three in a row is a pattern. */
 export const NIGHTLY_STREAK_ALARM = 3
 
+/**
+ * Cuántas noches seguidas lleva la nocturna sin terminar en verde.
+ *
+ * Recibe las conclusiones de GitHub Actions de la más reciente a la más
+ * antigua. Corta con el primer `success`, porque la racha es lo que va desde
+ * hoy hacia atrás.
+ *
+ * Contaba SÓLO `failure` y cortaba con cualquier otra cosa, y ahí se perdía
+ * entera: una nocturna que agota su tiempo concluye `cancelled`, de modo que un
+ * `cancelled` a la cabeza devolvía 0. El 7-09-2026 el digest publicó
+ * «nocturnas-en-rojo=0» sobre `['cancelled','failure','failure','failure',
+ * 'cancelled','success']` —cinco noches sin verde— y la alarma, que salta a las
+ * tres, llevaba tres días sin poder saltar mientras `officials.json` y
+ * `transparency-docs.json` se quedaban congelados a la vista de todos.
+ *
+ * La regla es la 2 de DATA_INTEGRITY: una ejecución tiene que DEMOSTRAR que
+ * hizo el trabajo. `cancelled`, `timed_out` y `skipped` no lo demuestran, así
+ * que cuentan como noche roja igual que `failure`. Sólo el verde absuelve.
+ *
+ * Una ejecución todavía viva (`conclusion` nula) no ha concluido nada: ni suma
+ * ni corta. Si cortara, lanzar la nocturna a mano silenciaría la racha entera
+ * mientras corre, que es el mismo agujero por otra puerta.
+ */
+export function contarNochesEnRojo(conclusiones: readonly (string | null | undefined)[]): number {
+  let n = 0
+  for (const c of conclusiones ?? []) {
+    if (c == null || c === '') continue // en curso: aún no ha concluido
+    if (c === 'success') break
+    n++
+  }
+  return n
+}
+
 export function evaluateHealth(o: Observations): Alert[] {
   const alerts: Alert[] = []
 

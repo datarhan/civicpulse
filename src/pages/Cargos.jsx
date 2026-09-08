@@ -1346,7 +1346,15 @@ function CorporacionMunicipal() {
   // the stamp exists exactly when a correction does, and counts what it counts.
   const nCorr = corr ? (corr.bajas ?? 0) + (corr.altas ?? 0) : 0
   const generatedDate = fmtDateLong(data.generatedAt)
-  const fichasUrl = data.officials.find((o) => o.cvUrl)?.cvUrl
+  // La página que las publica TODAS, que es el propio origen del padrón.
+  //
+  // Esto salía de `officials.find(o => o.cvUrl).cvUrl`, y funcionaba mientras
+  // los 21 cvUrl eran el MISMO índice del portal. Desde la mudanza cada uno es
+  // el PDF de su persona, así que ese `find` devolvía el CV del alcalde bajo un
+  // rótulo que promete «las 21 fichas»: el mismo defecto que este bloque vino a
+  // arreglar, entrando por la puerta de atrás.
+  const fichasUrl = data.source
+  const conFicha = data.officials.filter((o) => o.cvUrl).length
 
   return (
     <div style={{ marginBottom: 28 }}>
@@ -1412,12 +1420,13 @@ function CorporacionMunicipal() {
             }}
           >
             {t('cargos.intro')}{' '}
-            {/* Said ONCE. Twenty of the twenty-one cvUrl values in the snapshot
-                are this same transparency index, so a per-card «Biografía»
-                promised a person and delivered a listing, twenty times over. */}
+            {/* Said ONCE, y ahora con la cuenta REAL. El portal publica el CV
+                de 18 de los 21 escaños; decir «las 21» era cierto cuando el
+                enlace era un índice y dejó de serlo cuando pasó a ser un PDF
+                por persona. La cifra se deriva, no se escribe. */}
             {fichasUrl && (
               <ExtLink href={fichasUrl} style={{ color: 'var(--civic)' }}>
-                {t('cargos.hero.fichas').replace('{n}', data.count)} ↗
+                {t('cargos.hero.fichas').replace('{n}', conFicha).replace('{total}', data.count)} ↗
               </ExtLink>
             )}
           </p>

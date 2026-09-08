@@ -211,3 +211,142 @@ describe('scraper/corporacion — parseCorporacion', () => {
     expect(new Set(slugs).size).toBe(slugs.length)
   })
 })
+
+/**
+ * El portal se mudó y la página vieja NO redirige: contesta 403.
+ *
+ * Medido el 8-09-2026. `/es/ayuntamiento/corporacion_municipal` —la fuente de
+ * este adaptador desde siempre— da 403; la raíz del sitio da 200 con el mismo
+ * UA, así que no es un bloqueo nuestro. La corporación vive ahora en
+ * `/es/pagina/corporación-municipal`, con marcado Drupal «Portales 7» nuevo:
+ * el partido sale del encabezado del GRUPO (`<h2>Grupo Municipal PSOE</h2>`) y
+ * cada concejal es un acordeón con su `<h3>`, sus «Áreas», su correo y su CV en
+ * PDF adjunto.
+ *
+ * Que el partido venga del rótulo del grupo y no del id de un logotipo es una
+ * mejora que importa aquí: la cicatriz de `Otro` —un logotipo sin texto que
+ * mandaba al único concejal de EU-Podem al centinela, nombrándolo por
+ * eliminación— no puede repetirse leyendo un encabezado que dice el nombre.
+ */
+describe('scraper/corporacion — la página mudada (fixture 2026-09-08)', () => {
+  let officials: ReturnType<typeof parseCorporacion>
+
+  beforeAll(() => {
+    const nueva = readFileSync(join(__dirname, 'fixtures', 'corporacion_2026-09-08.html'), 'utf8')
+    officials = parseCorporacion(nueva, { baseUrl: 'https://www.ribarroja.es' })
+  })
+
+  it('saca los 21 escaños del marcado nuevo', () => {
+    expect(officials.length).toBe(21)
+  })
+
+  it('marca un solo alcalde, y es Robert Raga Gadea (PSOE)', () => {
+    const mayors = officials.filter((o) => o.role === 'alcalde')
+    expect(mayors).toHaveLength(1)
+    expect(mayors[0].name).toMatch(/Robert Raga Gadea/i)
+    expect(mayors[0].party).toBe('PSOE')
+  })
+
+  it('mantiene la composición de 2023 y ningún escaño cae en «Otro»', () => {
+    const by = (p: string) => officials.filter((o) => o.party === p).length
+    expect(by('PSOE')).toBe(11)
+    expect(by('PP')).toBe(7)
+    expect(by('VOX')).toBe(1)
+    expect(by('EU-Podem')).toBe(1)
+    expect(by('Compromís')).toBe(1)
+    expect(officials.filter((o) => o.party === 'Otro')).toEqual([])
+  })
+
+  it('traduce «Grupo Municipal Izquierda Unida» al código canónico EU-Podem', () => {
+    // El rótulo del portal cambió de nombre; el escaño es el mismo y el resto
+    // del sitio —veredictos, claims, fichas— lleva `EU-Podem`. Se traduce
+    // explícitamente: cambiar el código partiría la continuidad de todo lo ya
+    // publicado sobre ese grupo.
+    const gallardo = officials.find((o) => /Gallardo/i.test(o.name))!
+    expect(gallardo).toBeDefined()
+    expect(gallardo.party).toBe('EU-Podem')
+  })
+
+  it('la página nueva ya trae el relevo que la vieja no reflejaba', () => {
+    // Tortajada tomó posesión el 07-07-2025 y la página vieja seguía sin
+    // recogerlo en septiembre de 2026: por eso existe la capa de correcciones.
+    // La mudanza la trae al día, así que esa corrección queda ABSORBIDA.
+    expect(officials.some((o) => /Tortajada/i.test(o.name))).toBe(true)
+    expect(officials.some((o) => /Trejo/i.test(o.name))).toBe(false)
+  })
+
+  it('lee las áreas y el correo de cada ficha, sin conjunción de lista al frente', () => {
+    const mayor = officials.find((o) => o.role === 'alcalde')!
+    expect(mayor.portfolios.some((p) => /alcald[ií]a/i.test(p))).toBe(true)
+    expect(mayor.email).toMatch(/@ribarroja\.es$/)
+    const offenders = officials.flatMap((o) =>
+      o.portfolios.filter((p) => /^(?:y|e)\s/i.test(p)).map((p) => `${o.slug}: ${p}`),
+    )
+    expect(offenders).toEqual([])
+    expect(officials.filter((o) => o.portfolios.length > 0).length).toBeGreaterThanOrEqual(10)
+  })
+
+  it('el correo no se cuela entre las áreas aunque su rótulo venga en valenciano', () => {
+    // La página castellana trae UNA ficha con el rótulo en valenciano —«Correu
+    // electrònic», la de Hernández Carrizosa— y el corte de las áreas sólo
+    // conocía «Correo electrónico». Resultado: se publicaban como áreas suyas
+    // «Correu electrònic: alcaldia@ribarroja» y «es», y como esa cadena
+    // contiene «alcaldia», su ficha de /cargos pintaba la pastilla «Alcaldía»,
+    // que es la cartera del ALCALDE. Una atribución falsa, en una superficie
+    // que nombra a personas vivas, nacida de un rótulo en el otro idioma.
+    //
+    // Se corta por el párrafo de «Áreas», no por el rótulo del siguiente: así
+    // da igual en qué idioma esté lo que venga después.
+    const c = officials.find((o) => o.slug === 'jose-angel-hernandez-carrizosa')!
+    expect(c.portfolios).toContain('Administración y Servicios Generales')
+    expect(c.portfolios).toContain('Comercio')
+    for (const p of c.portfolios) {
+      expect(p, `«${p}» no es un área`).not.toMatch(/@|correo|correu|electr/i)
+    }
+    // Y nadie hereda la cartera del alcalde.
+    const alcaldia = officials.filter(
+      (o) => o.role !== 'alcalde' && o.portfolios.some((p) => /^alcald[ií]a$/i.test(p)),
+    )
+    expect(alcaldia).toEqual([])
+  })
+
+  it('ninguna área de nadie arrastra el correo', () => {
+    for (const o of officials) {
+      for (const p of o.portfolios) {
+        expect(p, `${o.slug}: «${p}»`).not.toMatch(/@/)
+        expect(p.length, `${o.slug}: «${p}»`).toBeGreaterThan(2)
+      }
+    }
+  })
+
+  it('el CV es el PDF de cada concejal, o null — nunca la página agregada muerta', () => {
+    // La página única de «datos biográficos» ya no está en el portal: el CV es
+    // ahora un PDF por concejal, colgado de su propio acordeón. Un cvUrl que
+    // siguiera apuntando a la agregada sería un enlace a un 403.
+    for (const o of officials) {
+      if (o.cvUrl !== null) {
+        expect(o.cvUrl).toMatch(/^https:\/\/www\.ribarroja\.es\/sites\/.*\.pdf$/i)
+      }
+      expect(o.cvUrl ?? '').not.toMatch(/datos_biograficos_del_alcalde/)
+    }
+  })
+
+  it('CUENTA la cobertura de CV: 18 de 21, y nombra los tres que no lo tienen', () => {
+    // El dato publicable, medido sobre el payload congelado del 8-09-2026 y
+    // troceando la página por concejal (no adivinando por el nombre del
+    // fichero). No es «no lo tienen»: es que el Ayuntamiento no lo publica.
+    // Si alguna vez publicó los tres no se puede saber — la página vieja no
+    // tiene copia en el Internet Archive, y eso se dice en vez de elegir la
+    // lectura más dura.
+    const sinCv = officials.filter((o) => o.cvUrl === null).map((o) => o.slug)
+    expect(officials.filter((o) => o.cvUrl !== null)).toHaveLength(18)
+    expect(sinCv.sort()).toEqual(
+      ['juan-boix-martinez', 'laura-guzman-bruno', 'pedro-tortajada-raga'].sort(),
+    )
+  })
+
+  it('produce slugs estables y únicos', () => {
+    for (const o of officials) expect(o.slug).toMatch(/^[a-z0-9]+(-[a-z0-9]+)*$/)
+    expect(new Set(officials.map((o) => o.slug)).size).toBe(officials.length)
+  })
+})

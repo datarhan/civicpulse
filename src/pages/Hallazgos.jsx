@@ -876,8 +876,25 @@ export default function Hallazgos() {
             <Link to="/plenos" style={{ color: 'var(--civic)', textDecoration: 'underline' }}>
               el registro de declaraciones
             </Link>{' '}
-            no se publican. Llevan su marca al lado. No hemos retirado ninguna, y no decimos que
-            ninguna sea falsa.{' '}
+            no se publican. Llevan su marca al lado: que una acusación no tenga contraste no la
+            declara falsa, y por sí solo no retira nada.{' '}
+            {/* Decía «No hemos retirado ninguna», y era falso desde el 11 de
+                agosto: la página imprime el ledger de retiradas SETENTA Y CINCO
+                líneas más arriba, con su propio encabezado contando cuántas.
+                Y son de esta misma familia —se retiraron precisamente porque
+                ninguna de sus citas superó la puerta editorial—, así que no era
+                una ambigüedad de antecedente sino la frase contradicha por el
+                bloque de al lado.
+                Se DERIVA del dato en vez de afirmarse: un número escrito aquí
+                se volvería falso solo la próxima vez que alguien retire una
+                ficha, que es exactamente como se rompió. */}
+            {(data?.retractions?.length ?? 0) > 0 ? (
+              <>
+                Lo que sí se ha retirado está arriba, en las{' '}
+                <strong style={{ color: 'var(--ink)' }}>{data.retractions.length}</strong> fichas
+                que se quedaron sin ninguna cita publicable.{' '}
+              </>
+            ) : null}
             <a
               href="/metodologia#citas-contraste"
               style={{ color: 'var(--civic)', textDecoration: 'underline' }}

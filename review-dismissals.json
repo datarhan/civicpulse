@@ -113,6 +113,20 @@
       "reason": "El titular ya dice «PREVÉ gastarse» desde hoy, precisamente para que nadie lea ejecución donde hay presupuesto. Lo que el revisor objeta ahora es otra cosa: que la suma de los capítulos (41,56 M€, la cifra de CONPREL) no coincide con el crédito del listado municipal —inicial 37.599.838,15 €, actual 62.123.153,08 €—. Es cierto y la página lo publica y se niega a reconciliarlo por escrito: «elegir una sería inventar el puente entre dos fuentes oficiales». La discrepancia entre dos fuentes OFICIALES no es un defecto de cada rótulo que mencione una de ellas. Comprobado el 5-09-2026.",
       "editor": "claude-opus-5",
       "at": "2026-09-05"
+    },
+    {
+      "route": "/reportajes/basuras",
+      "quote": "SAV siguió prestando el servicio catorce años y nueve meses.",
+      "reason": "La aritmética del revisor ancla el final en el 1-12-2025 —cuando EMPIEZA Garbialdi— y de ahí saca 14 años y 10 meses. Pero la pieza no dice que SAV llegara hasta ahí: sus propios datos, congelados en basuras.json, cierran a SAV en NOVIEMBRE de 2025 («duró la contrata anterior: SAV, del 1 de febrero de 2011 a noviembre de 2025» y «El servicio siguió en manos de SAV hasta noviembre de 2025»), y la cronología fecha el vencimiento publicado en PLACSP el 4-11-2025. Del 1-2-2011 al 4-11-2025 hay 14 años, 9 meses y 3 días: «catorce años y nueve meses» es exacto. El hueco entre ese vencimiento y el arranque del nuevo servicio es real y la pieza lo cuenta —«No consta sucesor en el registro público»—, así que no es una contradicción interna sino el mes sin contrata, que es parte de la historia. Comprobado contra public/data/reportajes/basuras.json el 8-09-2026.",
+      "editor": "claude-opus-5",
+      "at": "2026-09-08"
+    },
+    {
+      "route": "/reportajes/inteligencia-turistica",
+      "quote": "El mismo panel de Deepsense se implantó en Santa Pola (21.500 €), l’Alfàs del Pi (40.496 €) y Caravaca de la Cruz",
+      "reason": "El «contradictedBy» que aporta el revisor es texto DE LA PROPIA PÁGINA, y lo que hace es confirmar la frase, no desmentirla. La relación empresa/producto está dicha cuatro veces y sin ambigüedad: «Deepsense, S.L. — el panel», «Su producto es una plataforma repetible: LinkSense», «El producto de Deepsense que compró el municipio, LinkSense», y en las fuentes «LinkSense (Deepsense) · página de producto». No hay dos proveedores repartiéndose nada: hay una empresa y su producto con marca, que es exactamente lo que la pieza sostiene. Comprobado contra public/data/reportajes/inteligencia-turistica.json el 8-09-2026.",
+      "editor": "claude-opus-5",
+      "at": "2026-09-08"
     }
   ]
 }

@@ -54,11 +54,23 @@ export function pressLabSummary({ press = [], verified = [] } = {}, now = Date.n
     // que no se ha verificado nada. No hay nada que arreglar ahí, y
     // `tests/press-lab.js` lo fija a propósito.
     verificadoRatio: totalClaims === 0 ? null : verificado / totalClaims,
+    // Cuántas filas llegaron a un veredicto que se pueda contar. Se publica
+    // porque es el DENOMINADOR de la discrepancia, y una tasa cuyo divisor no
+    // se ve es una tasa que nadie puede desmentir.
+    resueltasClaims: verificado + contradicho,
     // La de DISCREPANCIA no es una cobertura, es un hallazgo, y ahí el 0
     // miente: «0 %» se lee «hemos mirado y no hay discrepancias» cuando lo
     // cierto es «no se ha mirado». Sin una sola fila resuelta, la tasa no vale
     // 0, no existe.
-    contradichoRatio: sinResolver ? null : contradicho / totalClaims,
+    //
+    // Y el divisor es lo RESUELTO, no el corpus. Con `totalClaims` debajo, la
+    // guarda de `sinResolver` sólo tapaba el caso de cero: el 7-09-2026 había
+    // 36 filas con UNA resuelta, la guarda se abrió y la página publicó
+    // «0 % · 0 de 36 claims» — se lee «examinadas 36, ninguna falla» cuando se
+    // examinó una. Las 35 que nadie resolvió estaban engordando el denominador
+    // de un hallazgo, que es el centinela otra vez, un nivel más abajo: no en
+    // el 0, en aquello entre lo que se divide.
+    contradichoRatio: sinResolver ? null : contradicho / (verificado + contradicho),
     // «Hay contenido editorial» no es «hay filas»: es «hay veredictos
     // resueltos». Con `totalClaims > 0` no podía dispararse sobre un corpus
     // lleno de `sin-datos`, que es exactamente el estado de hoy — 63 de 63

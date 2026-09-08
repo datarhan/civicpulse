@@ -300,19 +300,41 @@ function Mandato({ party }) {
 }
 
 /**
- * The councillor's own biographic PDF from the transparency portal.
+ * La ficha biográfica del concejal, y su ausencia cuando la hay.
  *
- * `officials[].cvUrl` is byte-identical for all 21 — a single generic landing
- * page — while the portal publishes a per-person document for most of them.
- * This links the real one. Matching is strict and refuses on ambiguity (see
- * lib/official-cv), so 5 councillors with no published document simply show
- * nothing rather than inheriting somebody else's CV.
+ * Hasta la mudanza del portal (~2-09-2026) `officials[].cvUrl` era idéntico
+ * para los 21 —una única página agregada— y el documento de cada persona sólo
+ * se podía alcanzar cruzando el índice de `transparency-docs.json`. Eso es lo
+ * que hace `cvDocForOfficial`, y por eso existe.
+ *
+ * La página nueva cuelga el PDF de cada concejal de su propia ficha, así que
+ * `cvUrl` YA es el documento de esa persona: se prefiere, y el cruce queda de
+ * respaldo. Sin esto la página no enseñaba ficha de NADIE — la mudanza dejó el
+ * índice de transparencia sin un solo documento de la categoría `cv`, y el
+ * cruce devolvía null para los 21 sin que nada se pusiera rojo.
+ *
+ * Y la ausencia se dibuja, en vez de no dibujar nada. Que el Ayuntamiento no
+ * publique el CV de un escaño es un hecho sobre lo que publica el Ayuntamiento,
+ * y callarlo lo esconde: quien mira esa ficha no distingue «no lo hemos
+ * encontrado» de «no existe». Lo que NO se dice es por qué falta: no consta si
+ * alguna vez estuvo, porque la página anterior no tiene copia archivada.
  */
 function FichaOficial({ official, roster }) {
   const t = useT()
   const { data } = useTransparencyDocs()
   const doc = cvDocForOfficial(data, official, roster)
-  if (!doc) return null
+  const url = official?.cvUrl || doc?.url || null
+  // El rótulo del enlace no repite el del apartado: cuando el PDF viene de la
+  // propia ficha no tiene título propio que mostrar, así que se nombra por lo
+  // que es. Del cruce sí llega un título, y ése se respeta.
+  const titulo = official?.cvUrl ? t('cargos.detalle.ficha.enlace') : doc?.title
+
+  // La cobertura se DERIVA del padrón. Escrita a mano decía «cinco concejales»
+  // y ya eran otros tantos: una frase que envejece sola sobre personas con
+  // nombre.
+  const conFicha = (roster ?? []).filter((o) => o.cvUrl).length
+  const total = (roster ?? []).length
+
   return (
     <section style={{ marginBottom: 28 }}>
       <SectionHead
@@ -320,17 +342,25 @@ function FichaOficial({ official, roster }) {
         title={t('cargos.detalle.ficha.title')}
       />
       <Card>
-        <ExtLink
-          href={doc.url}
-          style={{ color: 'var(--civic)', fontWeight: 500, fontSize: 'var(--fs-aux)' }}
-        >
-          {doc.title} ↗
-        </ExtLink>
+        {url ? (
+          <ExtLink
+            href={url}
+            style={{ color: 'var(--civic)', fontWeight: 500, fontSize: 'var(--fs-aux)' }}
+          >
+            {titulo} ↗
+          </ExtLink>
+        ) : (
+          <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink70)' }}>
+            <strong style={{ color: 'var(--ink)' }}>{t('cargos.detalle.ficha.sin.title')}</strong>{' '}
+            {t('cargos.detalle.ficha.sin.body')}
+          </div>
+        )}
         <div
           className="mono"
           style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 8 }}
         >
           {t('cargos.detalle.ficha.note')}
+          {total > 0 ? ` · ${t('cargos.detalle.ficha.cobertura')} ${conFicha}/${total}` : ''}
         </div>
       </Card>
     </section>
@@ -727,10 +757,17 @@ export default function CargoDetalle() {
               </ExtLink>
             </div>
           )}
-          {official.photoNote && (
+          {/* «Sin retrato en la fuente» se DERIVA de que no haya retrato, y no
+              de que exista una nota curada que lo explique.
+              Lo traía sólo el alta curada, así que al absorberla la web —el
+              8-09-2026— la etiqueta desapareció y la ficha del único concejal
+              sin foto pasó a no mostrar nada: el hueco sin decir que el hueco
+              es de la fuente. El hecho no depende de que alguien lo haya
+              anotado a mano. */}
+          {(official.photoNote || !official.photoUrl) && (
             <div
               className="mono"
-              title={official.photoNote}
+              title={official.photoNote || undefined}
               style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}
             >
               {t('cargos.card.sinRetrato')}

@@ -29,11 +29,22 @@ const SOURCES = [
     categoryLabel: 'Relación de puestos de trabajo (RPT) y plantilla',
     url: 'https://www.ribarroja.es/es/portal_de_transparencia/1_transparencia_activa_e_informacion_sobre_la_corporacion_municipal/relacion_de_puesto_de_trabajo_del_ayuntamiento/contenidos/7559961/0835919',
   },
-  {
-    category: 'cv',
-    categoryLabel: 'Datos biográficos / CV de los cargos',
-    url: 'https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919',
-  },
+  // DELIBERADAMENTE AUSENTE: la categoría `cv`.
+  //
+  // Apuntaba a la página agregada de «datos biográficos del alcalde/sa y
+  // concejales», que la mudanza del portal (~2-09-2026) dejó en 403 y que ya no
+  // figura en la sección de corporación. Su contenido no se retiró: se repartió
+  // en un PDF por concejal, colgado de la ficha de cada uno en
+  // `/es/pagina/corporación-municipal`.
+  //
+  // Y por ahí es por donde entra ahora: `scrape:officials` los lee y los guarda
+  // en `officials[].cvUrl`, que es el sitio donde sirven —al lado de la persona
+  // a la que pertenecen— en vez de sueltos en un índice de documentos que había
+  // que volver a cruzar por el nombre para saber de quién era cada uno.
+  //
+  // Se quita en vez de dejarse fallando: una fuente que no puede funcionar
+  // ensucia el log de cada noche con un 403 que nadie va a arreglar, y enseña a
+  // saltarse los 403 de verdad.
 ]
 
 async function fetchHtml(url: string): Promise<string | null> {
