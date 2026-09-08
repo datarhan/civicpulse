@@ -11,7 +11,7 @@ test.describe('About (/about, English)', () => {
       page.getByRole('heading', { name: 'CivicPulse — municipal accountability infrastructure' }),
     ).toBeVisible({ timeout: 8000 })
     await expect(
-      page.getByText('Measure your town hall: cost, promises, contracts').first(),
+      page.getByText('Who runs your town hall, what it does, what it costs').first(),
     ).toBeVisible()
     await expect(page.getByText("Spain's municipal news deserts").first()).toBeVisible()
     await expect(page.getByText('T1 · Auto').first()).toBeVisible()

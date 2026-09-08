@@ -3,7 +3,7 @@ import { Card, SectionHead } from '../components/Primitives'
 // English page for international funders/partners. Deliberately NOT in the
 // sidebar NAV and NOT in i18n — the citizen-facing chrome stays Spanish, and
 // this copy is funder-facing content, not chrome.
-const CONTACT_EMAIL = 'slutchenko@gmail.com'
+const CONTACT_EMAIL = 'civicpulse_es@proton.me'
 
 const TIER_ROWS = [
   [
@@ -61,26 +61,63 @@ export default function About() {
       <Card style={{ marginTop: 22 }}>
         <SectionHead
           eyebrow="What it is"
-          title="Measure your town hall: cost, promises, contracts"
+          title="Who runs your town hall, what it does, what it costs"
         />
+        <p>
+          Information is not scarce; verification is. And the organisation almost nobody verifies is
+          the one that matters most locally — your town hall decides your street, your water bill,
+          your licence. It complies with transparency law, and what that produces is a folder of
+          PDFs ordered by the article compelling each file. Publishing is not the same as being
+          legible.
+        </p>
+        <p>
+          CivicPulse rebuilds that obligation from the reader&rsquo;s side, for any Spanish
+          municipality. <strong>Who runs it:</strong> who holds each post and which areas they run,
+          what the post was set to pay, how vacancies are filled, and who is meant to be watching —
+          all of it already public, just scattered. Then, signed row by row, what education and
+          experience the holder of each area declared. Beside it always sits what the law requires,
+          because the two tiers are separated on purpose: the officer who audits the money needs a
+          degree and a national examination; a councillor needs no qualification, because a
+          political office is checked at the ballot box, not by a board. We do not argue they should
+          be credentialed — we argue the voter needs the facts.
+        </p>
+        <p>
+          <strong>What it does and what it costs:</strong> each service priced against similar-sized
+          towns on the ministry&rsquo;s own data, supplier-payment periods, budget execution,
+          electoral promises against the record, council votes, public contracts, and citizen
+          complaints with statutory clocks. On that base it publishes deep, fully-cited local
+          journalism, with a right of reply — and a published map of where the official data runs
+          out.
+        </p>
         <p style={{ marginBottom: 0 }}>
-          CivicPulse is a citizen tool for holding a town hall to account, built for any Spanish
-          municipality. It measures what the council does and what it costs — each service priced
-          against similar-sized towns on the ministry's own data, supplier-payment periods, budget
-          execution — and follows electoral promises with verbatim quotes, council votes, public
-          contracts, and citizen complaints with statutory clocks. On that base it publishes deep,
-          fully-cited local journalism. The goal: that before Spain's May 2027 municipal elections,
-          voters can decide from facts, not campaign speeches.
+          <strong>What it will not give you is a score</strong> — of the council, a service, an
+          officeholder, or any other municipality. Four equally defensible indicator baskets move
+          the measured efficiency figure across half the scale, so a score would say more about our
+          choices than about the town. We publish the method, failed specifications included, and
+          refuse the table. The goal: that before Spain&rsquo;s May 2027 municipal elections, voters
+          can decide from facts, not campaign speeches.
         </p>
       </Card>
 
       <Card style={{ marginTop: 14 }}>
         <SectionHead eyebrow="The gap" title="Spain's municipal news deserts" />
         <p>
-          Roughly 6,800 of Spain's 8,100 municipalities have no dedicated press coverage. Local
-          government there operates without systematic scrutiny: council sessions go untranscribed,
-          contracts unexamined, electoral promises untracked. National watchdogs (Civio, Maldita,
-          Newtral) work at state level; nobody does per-municipality accountability at scale.
+          <strong>
+            6,304 of Spain&rsquo;s 8,147 municipalities &mdash; 77.53% &mdash; are news deserts
+          </strong>
+          , home to 11.6 million people, roughly a quarter of the country. A further 523 are at risk
+          of becoming one. (Negreira-Rey, Vázquez-Herrero &amp; López-García,{' '}
+          <a
+            href="https://doi.org/10.17645/mac.v11i3.6727"
+            style={{ color: 'var(--civic)' }}
+            rel="noreferrer"
+          >
+            <em>Media and Communication</em> 11(3), 2023
+          </a>
+          .) Local government there operates without systematic scrutiny: council sessions go
+          untranscribed, contracts unexamined, electoral promises untracked. National watchdogs
+          (Civio, Maldita, Newtral) work at state level; nobody does per-municipality accountability
+          at scale.
         </p>
       </Card>
 
@@ -88,14 +125,16 @@ export default function About() {
         <SectionHead eyebrow="The proof" title="The first municipality, covered completely" />
         <p>
           CivicPulse runs live, end to end, in its first municipality — Riba-roja de Túria (pop.
-          ~24,600, València): the effective cost of each municipal service against the ministry's
-          own peer data, supplier-payment periods and budget execution, 28 nightly scrapers over
-          public-sector open data, Whisper-transcribed council sessions, LLM-extracted claims
-          verified deterministically against the procurement/budget/subsidy record, human-curated
-          findings with a built-in right of reply, geolocated contract spending, and a Telegram
-          complaints channel with statutory response clocks — plus four published investigations,
-          from the DANA reconstruction money to the waste-collection contract. Every editorial
-          surface is gated by documented libel discipline (
+          ~24,600, València): who holds each post and whether the education and experience they
+          declared relates to the areas they run — 40 curator-signed rows, published beside what the
+          law actually requires for the post — the effective cost of each municipal service against
+          the ministry&rsquo;s own peer data, supplier-payment periods and budget execution, 34
+          nightly scrapers over public-sector open data, Whisper-transcribed council sessions,
+          LLM-extracted claims verified deterministically against the procurement/budget/subsidy
+          record, human-curated findings with a built-in right of reply, geolocated contract
+          spending, and a Telegram complaints channel with statutory response clocks — plus four
+          published investigations, from the DANA reconstruction money to the waste-collection
+          contract. Every editorial surface is gated by documented libel discipline (
           <a href="/metodologia" style={{ color: 'var(--civic)' }}>
             methodology, in Spanish
           </a>
@@ -140,7 +179,7 @@ export default function About() {
           </table>
         </div>
         <p style={{ marginBottom: 0 }}>
-          Rollout: the Camp de Túria comarca (9 municipalities) in late 2026, the province of
+          Rollout: the Camp de Túria comarca (16 municipalities) in late 2026, the province of
           València (266) before the May 2027 municipal elections, then national. The data layer is
           built on sources that already cover every municipality by INE code.
         </p>

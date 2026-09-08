@@ -7,7 +7,7 @@ import { summarizeImpact } from '../lib/impact-stats'
 
 // Contact: operator's real mailbox. Swap to redaccion@civicpulse.es once the
 // domain mailbox exists (tracked in docs/superpowers/audits/…-opensource-preflight.md §4).
-const CONTACT_EMAIL = 'slutchenko@gmail.com'
+const CONTACT_EMAIL = 'civicpulse_es@proton.me'
 
 export function StatCell({ value, label, loading }) {
   return (
@@ -197,13 +197,45 @@ export default function Nosotros() {
       <Card style={{ marginTop: 14 }}>
         <SectionHead eyebrow="El proyecto" title="Qué es CivicPulse" />
         <p>
-          Una herramienta ciudadana para controlar tu ayuntamiento, pensada para cualquier municipio
-          de España. Mide lo que hace y cuánto cuesta — qué paga el pueblo por cada servicio y si es
-          caro o barato frente a municipios de su tamaño, con los datos del propio ministerio —;
-          sigue promesas, plenos, contratos y quejas vecinales, cada uno con su fuente; y sobre esos
-          datos publica periodismo de investigación. Riba-roja de Túria es el primer municipio; el
-          objetivo es que, antes de volver a votar en mayo de 2027, cualquier vecino pueda decidir
-          con hechos, no con discursos electorales.
+          No falta información: sobra. Lo escaso es lo que puedes comprobar por tu cuenta. Y el
+          ayuntamiento — la organización más importante de tu pueblo, la que decide tu calle, tu
+          recibo del agua y tu licencia — es sobre la que menos se comprueba. Cumple la ley de
+          transparencia, y lo que produce es una carpeta de PDF ordenada por el artículo que obligó
+          a publicar cada uno. Publicar no es dejarse leer.
+        </p>
+        <p>
+          CivicPulse rehace esa obligación del lado del lector, para cualquier municipio de España.{' '}
+          <strong>Quién manda:</strong> quién ocupa cada cargo y qué áreas dirige, cuánto se fijó de
+          retribución para ese cargo en el pleno, cómo se cubren las plazas y quién vigila — todo
+          eso ya está publicado, sólo que disperso. Y encima, firmado fila a fila, qué formación y
+          qué experiencia declaró quien lleva cada área. Al lado va siempre lo que la ley pide para
+          el puesto, porque son dos controles distintos y la ley los separa a propósito: al
+          interventor que fiscaliza el dinero, un grado y una oposición nacional; a un concejal,
+          ninguna titulación, porque a un cargo político lo controlan las urnas y no un tribunal. No
+          decimos que debiera tenerla: decimos que quien decide en las urnas necesita el dato.
+        </p>
+        <p>
+          <strong>Qué hace y cuánto cuesta:</strong> el precio de cada servicio frente a municipios
+          de su tamaño, con los datos del propio ministerio; en cuántos días paga a sus proveedores;
+          cuánto del presupuesto se ejecuta de verdad; qué se prometió y qué consta cumplido, con la
+          cita literal; qué se vota en cada pleno; a qué empresas va cada contrato; y las quejas
+          vecinales con su reloj legal. Sobre esos datos publica periodismo de investigación.
+        </p>
+        <p>
+          <strong>Lo que no vas a encontrar aquí es una nota.</strong> Ni del ayuntamiento, ni de un
+          servicio, ni de un concejal, ni de otro municipio. Lo hemos medido en{' '}
+          <a href="/laboratorio/frontera" style={{ color: 'var(--civic)' }}>
+            el laboratorio
+          </a>
+          : cuatro cestas de indicadores igual de defendibles mueven la puntuación media escala, así
+          que una nota diría más de nuestras decisiones que de tu pueblo. Publicamos el método
+          —incluidas las especificaciones que fallaron— y nos negamos a publicar la tabla.
+        </p>
+        <p>
+          Riba-roja de Túria es el primer municipio. Todo lleva su fuente y su derecho de réplica —
+          y decimos dónde se acaban los datos oficiales, que es lo que ningún portal de cumplimiento
+          tiene motivo para publicar. El objetivo es que, antes de volver a votar en mayo de 2027,
+          cualquier vecino pueda decidir con hechos, no con discursos electorales.
         </p>
         <p style={{ marginBottom: 0 }}>
           <a href="/metodologia" style={{ color: 'var(--civic)' }}>

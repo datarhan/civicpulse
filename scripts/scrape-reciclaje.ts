@@ -35,7 +35,7 @@ async function csv(refetch: boolean): Promise<string> {
   }
   console.log('[reciclaje] descargando la capa del ICV (~17 MB)…')
   const res = await fetch(URL_WFS, {
-    headers: { 'User-Agent': 'CivicPulse/1.0 (civic monitor Riba-roja; slutchenko@gmail.com)' },
+    headers: { 'User-Agent': 'CivicPulse/1.0 (civic monitor Riba-roja; civicpulse_es@proton.me)' },
   })
   if (!res.ok) throw new Error(`[reciclaje] WFS respondió ${res.status}`)
   const texto = await res.text()

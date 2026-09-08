@@ -738,6 +738,9 @@ export const CATALOGUE = {
     'encaje.sinDelegacion.label': 'Sin delegación de área',
     'encaje.sinDelegacion.note':
       'No dirige ninguna concejalía, así que no hay área con la que comparar. El bloque en blanco refleja quién gobierna, no quién está formado.',
+    'encaje.sinRevisar.label': 'Todavía sin revisar',
+    'encaje.sinRevisar.note':
+      'Dirige un área y aún no hemos revisado qué formación y experiencia declara. El hueco es nuestro, no suyo: no dice nada de esta persona, sólo que todavía no hemos hecho el trabajo.',
     'encaje.matrix.title': 'Qué declara para cada área que dirige',
     'encaje.matrix.intro':
       'Área por área, si lo que declara en su CV publicado guarda relación con la materia. No es una calificación: no hay nota, ni suma, ni orden. «No consta» significa que la fuente publicada no lo recoge.',
@@ -1452,6 +1455,9 @@ export const CATALOGUE = {
     'encaje.sinDelegacion.label': 'Sense delegació d’àrea',
     'encaje.sinDelegacion.note':
       'No dirigeix cap regidoria, així que no hi ha àrea amb què comparar. El bloc en blanc reflecteix qui governa, no qui està format.',
+    'encaje.sinRevisar.label': 'Encara sense revisar',
+    'encaje.sinRevisar.note':
+      'Dirigeix una àrea i encara no hem revisat quina formació i experiència declara. El buit és nostre, no seu: no diu res d’aquesta persona, només que encara no hem fet la feina.',
     'encaje.matrix.title': 'Què declara per a cada àrea que dirigeix',
     'encaje.matrix.intro':
       'Àrea per àrea, si el que declara al seu CV publicat guarda relació amb la matèria. No és una qualificació: no hi ha nota, ni suma, ni ordre. «No consta» vol dir que la font publicada no ho recull.',
