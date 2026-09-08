@@ -24,6 +24,8 @@ import { useLocation } from 'react-router-dom'
  *     landing them at the top.
  */
 const GIVE_UP_MS = 8000
+/** Cuánto puede irse el destino antes de que valga la pena recolocarlo. */
+const TOLERANCIA_PX = 4
 const BREATHING_ROOM = 12
 
 function headerOffset() {
@@ -102,26 +104,49 @@ export function useHashScroll() {
      * empezado a leer marca `done` y la recolocación no llega a ejecutarse.
      * Yankear la ventana a alguien que ya está leyendo es peor que aterrizar
      * torcido, y eso no cambia.
+     *
+     * ── Y sigue vigilando mientras el destino se mueva ────────────────────
+     *
+     * Esperar sólo a las fuentes basta cuando lo que falta por llegar son las
+     * tipografías; no basta cuando lo que falta por llegar son DATOS. Esta web
+     * pinta cada página desde varios JSON asíncronos, así que el contenido POR
+     * ENCIMA del ancla sigue creciendo después de haber aterrizado, y el
+     * destino se va hacia abajo sin que nadie lo recoloque. Antes se soltaba el
+     * observador en cuanto colocaba una vez, y ahí se acababa la historia.
+     *
+     * Medido el 8-09-2026 en `/metodologia#mudanza-portal`: la tarjeta de
+     * destino es de las últimas en aparecer —espera a `officials.json`— y
+     * mientras tanto entran hallazgos, procedencia de citas e indicadores,
+     * todos por encima. El ancla se quedaba quieta a 260 px del borde en vez de
+     * a 64. Sólo se veía con la suite entera en paralelo, que es cuando los
+     * fetch tardan: un defecto real que en local no aparecía.
+     *
+     * Recolocar sólo si se ha ido de sitio más de `TOLERANCIA_PX` es lo que
+     * permite dejar el observador puesto sin llamar a `scrollTo` en cada
+     * mutación de una página viva.
      */
+    const yaColocado = () => {
+      const el = document.getElementById(id)
+      if (!el) return false
+      return Math.abs(el.getBoundingClientRect().top - headerOffset()) <= TOLERANCIA_PX
+    }
+
     const attempt = () => {
       if (done) return true
+      if (yaColocado()) return true
       if (!colocar()) return false
-      // El destino ya existe: deja de vigilar el DOM y espera sólo a las fuentes.
-      observer?.disconnect()
-      if (timer) clearTimeout(timer)
       const fuentes = typeof document !== 'undefined' && document.fonts?.ready
-      if (!fuentes) {
-        stop()
-        return true
-      }
-      fuentes.then(() => {
-        if (!done) colocar()
-        stop()
-      })
+      if (fuentes) fuentes.then(() => !done && !yaColocado() && colocar())
+      // NO se suelta el observador: mientras siga llegando contenido por encima
+      // hay que recolocar. Lo suelta `stop`, por límite de tiempo o porque el
+      // lector ha tomado el mando.
       return true
     }
 
-    if (attempt()) return stop
+    // Se registra SIEMPRE el vigilante, aunque el destino ya exista: colocar
+    // bien la primera vez no garantiza que siga colocado cuando entren los
+    // datos de más arriba.
+    attempt()
 
     window.addEventListener('wheel', takeOver, { passive: true })
     window.addEventListener('touchmove', takeOver, { passive: true })

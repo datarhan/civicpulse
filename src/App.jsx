@@ -7,6 +7,7 @@ import { CmdK } from './components/CmdK'
 import { TweaksPanel, TweaksButton } from './components/TweaksPanel'
 import { SkipLink } from './components/SkipLink'
 import { useHashScroll } from './hooks/useHashScroll'
+import { useScrollAlNavegar } from './hooks/useScrollAlNavegar'
 import { useT } from './i18n'
 import { PERIODISTAS_ENABLED, EFICIENCIA_ENABLED } from './flags'
 
@@ -194,6 +195,12 @@ export default function App() {
   const [cmdK, setCmdK] = useState(false)
   const [tweaksOpen, setTweaksOpen] = useState(false)
   const location = useLocation()
+
+  // Aquí y no en `InnerShell`: la portada se renderiza FUERA del shell, así que
+  // montarlo dentro dejaría sin arreglar precisamente el salto más largo —de
+  // una página interior larga de vuelta a `/`—. Convive con `useHashScroll`
+  // porque se aparta en cuanto hay fragmento.
+  useScrollAlNavegar()
 
   const onLanding = location.pathname === '/'
 
