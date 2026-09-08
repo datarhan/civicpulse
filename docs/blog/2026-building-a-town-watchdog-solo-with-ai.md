@@ -4,7 +4,7 @@ _Draft — engineering blog post (EN), targeted at Hacker News / international c
 
 ---
 
-Around 6,800 of Spain's ~8,100 municipalities have no dedicated press coverage. Not "declining" coverage — none. No reporter sits through the council session, reads the contract register, or checks whether the thing a party promised at election time ever happened. The data to hold these town halls to account is almost all public and open — budgets, contracts, subsidies, the census, the official gazettes — but nobody turns it into anything a resident would actually read.
+6,304 of Spain's 8,147 municipalities — 77.53% of them — are news deserts, home to 11.6 million people ([Negreira-Rey, Vázquez-Herrero & López-García, _Media and Communication_ 11(3), 2023](https://doi.org/10.17645/mac.v11i3.6727)). Not "declining" coverage — none. No reporter sits through the council session, reads the contract register, or checks whether the thing a party promised at election time ever happened. The data to hold these town halls to account is almost all public and open — budgets, contracts, subsidies, the census, the official gazettes — but nobody turns it into anything a resident would actually read.
 
 So I built the thing for one town: **[Riba-roja de Túria](https://civicpulse.es)**, ~24,600 people, near Valencia. Council-session videos transcribed and turned into verifiable claims; an electoral-promise tracker with the verbatim quote and its source; a citizen-complaint pipeline with the actual legal deadlines the town hall is bound by; every public euro the town awarded, mapped street by street. One person, mostly with an AI coding agent.
 
@@ -17,7 +17,7 @@ Here's how it's built and, more importantly, how it's disciplined.
 CivicPulse is a front-end-only single-page app. React + Vite. Every number it shows comes from static JSON committed to the repo and served next to the app. There is **no application server, no database in production, no API to attack or pay for.**
 
 ```
-28 scrapers ──► public/data/*.json ──► React SPA
+34 scrapers ──► public/data/*.json ──► React SPA
 (nightly, GitHub Actions)   (committed to git)   (one hook per data domain)
 ```
 
@@ -33,7 +33,7 @@ The one stateful component — a Telegram bot that captures citizen complaints �
 
 ## Scrapers as a TDD contract, not a pile of `requests.get`
 
-Twenty-eight scrapers, each hitting a different government portal, is a maintenance nightmare waiting to happen. The thing that keeps it sane is a hard architectural rule: **the network code and the parsing code never touch.**
+Thirty-four scrapers, each hitting a different government portal, is a maintenance nightmare waiting to happen. The thing that keeps it sane is a hard architectural rule: **the network code and the parsing code never touch.**
 
 Every source is two files:
 
@@ -97,4 +97,4 @@ The tier model _is_ the legal architecture: the thing that scales to the whole c
 
 It's live at **[civicpulse.es](https://civicpulse.es)** and open source under AGPL-3.0 at **[github.com/datarhan/civicpulse](https://github.com/datarhan/civicpulse)**. It runs fully offline on the committed snapshots — `npm install && npm run dev` — no keys, no backend. The methodology is published, the corrections are logged openly, and if you find a wrong number, the issue tracker is right there.
 
-If you work in civic tech, data journalism, or just care about the ~6,800 towns nobody's watching, I'd genuinely like to hear where this breaks — technically or editorially. That's the whole point of doing it in the open.
+If you work in civic tech, data journalism, or just care about the 6,304 towns nobody's watching, I'd genuinely like to hear where this breaks — technically or editorially. That's the whole point of doing it in the open.

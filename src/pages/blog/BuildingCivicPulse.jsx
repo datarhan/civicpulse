@@ -98,8 +98,12 @@ export default function BuildingCivicPulse() {
 
       <article style={{ color: 'var(--ink70)' }}>
         <p>
-          Around 6,800 of Spain&rsquo;s ~8,100 municipalities have no dedicated press coverage. Not
-          &ldquo;declining&rdquo; coverage &mdash; none. No reporter sits through the council
+          6,304 of Spain&rsquo;s 8,147 municipalities &mdash; 77.53% of them &mdash; are news
+          deserts, home to 11.6 million people (
+          <a href="https://doi.org/10.17645/mac.v11i3.6727" style={{ color: 'var(--civic)' }}>
+            Negreira-Rey, Vázquez-Herrero &amp; López-García, 2023
+          </a>
+          ). Not &ldquo;declining&rdquo; coverage &mdash; none. No reporter sits through the council
           session, reads the contract register, or checks whether the thing a party promised at
           election time ever happened. The public data to do it mostly exists &mdash; budgets,
           contracts, subsidies, the census, the official gazettes &mdash; but nobody turns it into
@@ -138,7 +142,7 @@ export default function BuildingCivicPulse() {
             margin: '16px 0',
           }}
         >
-          {`28 scrapers  ──►  public/data/*.json  ──►  React SPA
+          {`34 scrapers  ──►  public/data/*.json  ──►  React SPA
 (nightly CI)      (committed to git)      (one hook per data domain)`}
         </pre>
         <p>
@@ -154,7 +158,7 @@ export default function BuildingCivicPulse() {
 
         <SecHead num="02" kicker="Data" title="Scrapers as a TDD contract" />
         <p>
-          Twenty-eight scrapers hitting twenty-eight government portals is a maintenance nightmare
+          Thirty-four scrapers hitting thirty-four government portals is a maintenance nightmare
           waiting to happen. The thing that keeps it sane is a hard rule: the network code and the
           parsing code never touch. Every source is a thin fetch script plus a{' '}
           <b style={{ color: 'var(--ink)' }}>pure function</b> &mdash; bytes in, typed snapshot out,
@@ -314,7 +318,7 @@ export default function BuildingCivicPulse() {
             .
           </p>
           <p style={{ margin: 0, fontSize: 'var(--fs-body)' }}>
-            If you work in civic tech or data journalism &mdash; or just care about the ~6,800 towns
+            If you work in civic tech or data journalism &mdash; or just care about the 6,304 towns
             nobody&rsquo;s watching &mdash; I&rsquo;d like to hear where this breaks, technically or
             editorially. That&rsquo;s the whole point of doing it in the open.
           </p>

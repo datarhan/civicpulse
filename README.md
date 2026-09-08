@@ -1,12 +1,12 @@
 # CivicPulse
 
-**A citizen tool that measures what your town hall does and what it costs — with a citation for every figure.**
+**A citizen tool that shows who runs your town hall, what it does and what it costs — with a citation for every figure.**
 
 Every Spanish municipality is legally obliged to run a _portal de transparencia_. Riba-roja de Túria has one, as the law requires: a document directory — staffing tables, budget PDFs, works fichas, councillor CVs — published because articles 5–8 of Ley 19/2013 say it must be. Every file in it is real. None of it is a series, a comparison, or a question you can ask.
 
 **CivicPulse is that obligation rebuilt from the reader's side** — a live dashboard over one town hall, where the same public data becomes a figure you can follow across years, a price you can compare against towns your size, and a claim you can trace to its source. And it does the one thing a compliance portal has no reason to do: it publishes, deliberately and by name, **the places where the official data runs out**.
 
-CivicPulse is built for any Spanish municipality and runs live, end to end, in its first one — [Riba-roja de Túria](https://en.wikipedia.org/wiki/Riba-roja_de_T%C3%BAria) (Comunitat Valenciana, ~24,600 residents): the cost of each municipal service priced against similar-sized towns on the ministry's own data, supplier-payment periods, budget execution, council-session transcripts turned into verifiable claims, an electoral-promise tracker, a citizen-complaint pipeline with legal deadlines, and municipal spending mapped where the contract itself names the place. On that base it publishes deep investigative journalism, each piece's figures frozen at publication and traceable to their source. All of it from public open data, with a stated methodology and a built-in right of reply.
+CivicPulse is built for any Spanish municipality and runs live, end to end, in its first one — [Riba-roja de Túria](https://en.wikipedia.org/wiki/Riba-roja_de_T%C3%BAria) (Comunitat Valenciana, ~24,600 residents): who holds each post, what education and experience they declared and whether it relates to the areas they run, what the post was set to pay, and what the law requires of it; the cost of each municipal service priced against similar-sized towns on the ministry's own data, supplier-payment periods, budget execution, council-session transcripts turned into verifiable claims, an electoral-promise tracker, a citizen-complaint pipeline with legal deadlines, and municipal spending mapped where the contract itself names the place. On that base it publishes deep investigative journalism, each piece's figures frozen at publication and traceable to their source. All of it from public open data, with a stated methodology and a built-in right of reply.
 
 > It is not the council's portal and does not speak for the council. It reads the same public sources, independently, and says where they stop.
 
@@ -20,11 +20,17 @@ CivicPulse is built for any Spanish municipality and runs live, end to end, in i
 
 Spaniards vote for their ayuntamientos again in **May 2027**. Before that, every voter should be able to decide from facts, not campaign speeches — to see what their town hall actually did and what it cost. The public data to build that view already exists — effective service costs and municipal budgets (MinHac), public contracts (PLACSP), subsidies (BDNS), census (INE), unemployment (SEPE), the official gazettes (BOE/BOP/TED) — indexed by INE municipality code, for every town.
 
-Two things stop a resident from using it.
+**The scarce thing is not information — it is verification.** There have never been more channels, nor more machinery for deciding what you end up believing. Meanwhile the organisation that matters most to daily life is the one almost nobody checks: your ayuntamiento decides your street, your water bill, your licence, the school run, and which company gets paid to collect the bins. Nobody would put money into a company without seeing its accounts and knowing who runs it. You do not get to choose whether to fund this one.
 
-**Nobody assembles it.** Around **6,800 of Spain's ~8,100 municipalities have no dedicated press coverage**, and the national outlets and fact-checkers (Civio, Maldita, Newtral) cover national discourse, not per-town accountability.
+Three things stop a resident from checking it.
+
+**You cannot see who is running it, or against what standard.** A resident can rarely find out what the person holding a portfolio actually brings to it — and, more importantly, what the law asks of them. It asks strikingly little: under **LOREG art. 6.1** a councillor needs only to be of age, on the electoral roll, and not disqualified — **no qualification of any kind**. The officers who audit the money and certify the council's decisions are held to a different standard entirely: **RD 128/2018 (arts. 17–19)** requires a university degree and a national competitive examination. Both facts belong on the same page, and neither is usually anywhere a resident will look.
+
+**Nobody assembles the rest.** **6,304 of Spain's 8,147 municipalities — 77.53% — are news deserts**, home to 11.6 million people, about a quarter of the country ([Negreira-Rey, Vázquez-Herrero & López-García, _Media and Communication_ 11(3), 2023](https://doi.org/10.17645/mac.v11i3.6727)). The national outlets and fact-checkers (Civio, Maldita, Newtral) cover national discourse, not per-town accountability.
 
 **And publication is not legibility.** A town hall that publishes everything the law demands still leaves a resident unable to answer _is this expensive?_, _did that get done?_, _who do I ask?_ The transparency obligation was written to be checked for compliance, so it produces documents; the questions people actually have need series, denominators and comparisons. Closing that distance is engineering, and it has to be done once per country, not once per town.
+
+> **What this project does not do:** attribute motive. It does not say who was appointed for the wrong reasons, who is in it for an easy salary, or what anyone is hiding. It publishes what can be checked — what each office-holder declared, what the law requires of them, what the post pays, what was promised and what the record shows — and leaves the conclusion to the reader, who draws it at the ballot box. That restraint is not timidity; it is the only version of this that holds up.
 
 CivicPulse is the proof it can be done, built in two halves:
 
