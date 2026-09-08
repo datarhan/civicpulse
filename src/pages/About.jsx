@@ -70,19 +70,32 @@ export default function About() {
           PDFs ordered by the article compelling each file. Publishing is not the same as being
           legible.
         </p>
-        <p style={{ marginBottom: 0 }}>
+        <p>
           CivicPulse rebuilds that obligation from the reader&rsquo;s side, for any Spanish
-          municipality. <strong>Who runs it:</strong> who holds each post, what education and
-          experience they declared and whether it relates to what they run, what the post was set to
-          pay, and what the law actually requires — of a councillor, no qualification at all; of the
-          officer who audits the money, a degree and a national examination.{' '}
+          municipality. <strong>Who runs it:</strong> who holds each post and which areas they run,
+          what the post was set to pay, how vacancies are filled, and who is meant to be watching —
+          all of it already public, just scattered. Then, signed row by row, what education and
+          experience the holder of each area declared. Beside it always sits what the law requires,
+          because the two tiers are separated on purpose: the officer who audits the money needs a
+          degree and a national examination; a councillor needs no qualification, because a
+          political office is checked at the ballot box, not by a board. We do not argue they should
+          be credentialed — we argue the voter needs the facts.
+        </p>
+        <p>
           <strong>What it does and what it costs:</strong> each service priced against similar-sized
           towns on the ministry&rsquo;s own data, supplier-payment periods, budget execution,
           electoral promises against the record, council votes, public contracts, and citizen
           complaints with statutory clocks. On that base it publishes deep, fully-cited local
           journalism, with a right of reply — and a published map of where the official data runs
-          out. The goal: that before Spain&rsquo;s May 2027 municipal elections, voters can decide
-          from facts, not campaign speeches.
+          out.
+        </p>
+        <p style={{ marginBottom: 0 }}>
+          <strong>What it will not give you is a score</strong> — of the council, a service, an
+          officeholder, or any other municipality. Four equally defensible indicator baskets move
+          the measured efficiency figure across half the scale, so a score would say more about our
+          choices than about the town. We publish the method, failed specifications included, and
+          refuse the table. The goal: that before Spain&rsquo;s May 2027 municipal elections, voters
+          can decide from facts, not campaign speeches.
         </p>
       </Card>
 

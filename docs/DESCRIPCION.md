@@ -53,11 +53,19 @@ Orden fijo de toda descripción, larga o corta:
 
 Es el tramo más delicado del proyecto y el que más fácil se cuenta mal.
 
-**Lo que se publica:** quién ocupa cada cargo y qué áreas dirige; qué formación
-y qué experiencia **declaró**, y si guardan relación con las áreas que lleva
-—con la cita de dónde lo declaró—; qué régimen de dedicación tiene y la
-retribución bruta fijada para ese cargo en el acuerdo de pleno; cómo se cubren
-las plazas del ayuntamiento; y quién tiene encomendado vigilarlo.
+**Primero, lo que sólo hay que republicar.** Quién ocupa cada cargo y qué áreas
+dirige; qué régimen de dedicación tiene y la retribución bruta fijada para ese
+cargo en el acuerdo de pleno; cómo se cubren las plazas del ayuntamiento; y
+quién tiene encomendado vigilarlo. Nada de esto lleva criterio nuestro: ya está
+publicado, disperso, y aquí sólo se junta. **Ése es el grueso del tramo, y es
+el que va delante.**
+
+**Después, lo único que lleva criterio:** qué formación y qué experiencia
+**declaró** quien dirige cada área, y si guardan relación con esa área — con la
+cita de dónde lo declaró, firmada por un curador, fila a fila. Va segundo a
+propósito: es la parte que nombra a personas vivas con una valoración al lado,
+y el resto del proyecto está construido sobre la premisa de que eso es la
+excepción cuidada, no el titular.
 
 **Lo que no se publica, y por qué.** Nunca un **porcentaje de encaje**. La
 petición original era un perfil ideal tipo recursos humanos con su nota, y se
@@ -67,12 +75,54 @@ titulación**. Puntuar a un electo contra un baremo que ninguna norma contiene
 es inventarse el baremo. Se publican fichas citadas que **nombran** las áreas
 donde se encontró relación; nunca se cuentan ni se puntúan.
 
-**El contraste que sí es un hecho, y es el argumento entero:** a un concejal la
-ley no le exige título alguno; al **interventor** y al **secretario** —quienes
-fiscalizan el dinero y dan fe de los acuerdos— el **Real Decreto 128/2018**
-(arts. 17–19) les exige grado universitario y oposición nacional. Se publican
-las dos cosas en la misma tarjeta. **La conclusión la saca el lector, y la saca
-votando.**
+**Los dos controles, que la ley separa a propósito.** Al **interventor** y al
+**secretario** —quienes fiscalizan el dinero y dan fe de los acuerdos— el
+**Real Decreto 128/2018** (arts. 17–19) les exige grado universitario y
+oposición nacional: son el control **técnico**, y se comprueba con un título. A
+un concejal, el **artículo 6.1 de la LOREG** no le exige ninguna titulación, y
+eso no es un descuido de la ley: el control del cargo político **no es
+administrativo, es electoral**. Se responde ante los vecinos, no ante un
+tribunal de oposición.
+
+De ahí sale la única conclusión que esta página saca, y no va sobre nadie en
+particular: **si el control es el voto, el votante necesita el dato.** Por eso
+se publica lo que cada cual declaró junto a lo que la ley pide para el puesto.
+
+> **Cuidado con la lectura fácil.** Poner las dos exigencias juntas puede
+> leerse como «un concejal debería tener un título». **No decimos eso**, y
+> escribirlo sería peor que impreciso: sería pedirle a la democracia
+> representativa un requisito que deliberadamente no tiene, y que ninguna
+> norma española contempla. Lo que decimos es más pequeño y más defendible:
+> quien decide en las urnas debería poder ver qué trae quien se presenta. Si
+> una frase de campaña insinúa lo primero, está mal escrita.
+
+## Lo que esta herramienta no te va a dar
+
+**Una nota.** Ni del ayuntamiento, ni de un servicio, ni de un concejal.
+
+Es la pregunta que más se hace un vecino —«vale, ¿pero lo hacen bien o mal?»—
+y no contestarla es una decisión, no un descuido. Hay que decirlo en la
+descripción, porque si no el lector lo descubre solo y se va con la sensación
+de que falta algo.
+
+**El motivo, medido y no supuesto.** `/laboratorio/frontera` calcula
+eficiencia con el método que usan los economistas para esto, y publica lo que
+pasó al probarlo: **cuatro cestas de indicadores igual de defendibles mueven
+la puntuación de Riba-roja por media escala.** La nota no salía del municipio;
+salía de qué decidimos meter en la cesta. Publicar una habría sido publicar
+nuestra opinión con aspecto de cifra. Así que se publica el método entero —y
+las especificaciones que fallaron— y se rehúsa la tabla.
+
+**Lo que se da en su lugar:** la cifra con su fuente, la comparación que
+publica el propio ministerio (ahí los pares sí se nombran, porque la división
+es suya y no nuestra), la serie para verla moverse, y el mapa de dónde se
+acaban los datos. Con eso el juicio se puede hacer, y lo hace quien vota.
+
+Y una consecuencia que no se negocia: **no se clasifica a otros municipios.**
+Ni por eficiencia ni por transparencia. Lo único que se publica de cobertura
+es la nuestra —«pudimos leer 7 de 12 fuentes»—, que es un hecho sobre nuestro
+trabajo, no una nota sobre un consistorio que no tiene derecho de réplica en
+esta web.
 
 ## Textos canónicos
 
@@ -98,10 +148,13 @@ votando.**
 > preguntar. CivicPulse rehace esa obligación del lado del lector, para
 > cualquier municipio de España.
 >
-> **Quién manda.** Quién ocupa cada cargo, qué formación y experiencia declaró
-> y si tienen que ver con lo que dirige, cuánto cobra por su dedicación, y qué
-> le exige la ley: a un concejal, ninguna titulación; al interventor que
-> fiscaliza el dinero, un grado y una oposición nacional.
+> **Quién manda.** Quién ocupa cada cargo y qué áreas dirige, cuánto se fijó de
+> retribución para ese cargo en el pleno, cómo se cubren las plazas y quién
+> vigila. Y, firmado fila a fila, qué formación y experiencia declaró quien
+> lleva cada área. Al lado va siempre lo que la ley pide para el puesto: al
+> interventor que fiscaliza el dinero, un grado y una oposición nacional; a un
+> concejal, ninguna titulación — porque a un cargo político lo controlan las
+> urnas y no un tribunal. Justo por eso el dato tiene que estar antes de votar.
 >
 > **Qué hace y cuánto cuesta.** El precio de cada servicio frente a municipios
 > de su tamaño, con los datos del propio ministerio; en cuántos días paga a sus
@@ -110,9 +163,13 @@ votando.**
 > empresas va cada contrato; y las quejas vecinales con su reloj legal.
 >
 > Sobre esos datos publica periodismo de investigación. Todo con su fuente y
-> con derecho de réplica — y diciendo dónde se acaban los datos oficiales. Para
-> que antes de volver a votar puedas decidir con hechos, no con discursos
-> electorales.
+> con derecho de réplica — y diciendo dónde se acaban los datos oficiales.
+>
+> **Lo que no vas a encontrar es una nota.** Ni del ayuntamiento ni de nadie:
+> una puntuación sería nuestra opinión con aspecto de cifra, y lo hemos medido
+> —cuatro cestas igual de defendibles la mueven media escala—. Se publican los
+> hechos y el método; el juicio lo haces tú, y lo haces votando en mayo de
+> 2027.
 
 ### Bloque largo ES (~300 palabras)
 
@@ -122,13 +179,18 @@ votando.**
 > produce es una carpeta de PDF ordenada por el artículo que obligó a publicar
 > cada uno. **Publicar no es dejarse leer.**
 >
-> **Quién manda.** Quién ocupa cada cargo y qué áreas dirige; qué formación y
-> qué experiencia declaró, y si guardan relación con lo que lleva, con la cita
-> de dónde lo dijo; la retribución fijada para ese cargo en el acuerdo de
-> pleno; y qué exige la ley para ocuparlo. Ese último dato va siempre al lado,
-> porque sin él la ficha diría algo que la ley no dice: a un concejal la LOREG
-> no le pide ninguna titulación; al interventor y al secretario, el RD
-> 128/2018 sí les pide grado y oposición nacional.
+> **Quién manda.** Quién ocupa cada cargo y qué áreas dirige; la retribución
+> fijada para ese cargo en el acuerdo de pleno; cómo se cubren las plazas; y
+> quién tiene encomendado vigilarlo. Todo eso ya está publicado y disperso:
+> aquí sólo se junta. Y encima, firmado fila a fila, qué formación y qué
+> experiencia declaró quien lleva cada área, con la cita de dónde lo dijo.
+>
+> Al lado va siempre qué exige la ley para el puesto, porque son dos controles
+> distintos y la ley los separa a propósito: al interventor y al secretario el
+> RD 128/2018 les pide grado y oposición nacional —control técnico, se
+> comprueba con un título—; a un concejal, la LOREG no le pide ninguna
+> titulación, porque a un cargo político lo controlan las urnas. No decimos que
+> debiera tenerla: decimos que quien decide en las urnas necesita el dato.
 >
 > **Mide y compara.** Qué paga el pueblo por cada servicio —la recogida de
 > residuos, la pavimentación de sus calles— y si es caro o barato frente a
@@ -148,6 +210,14 @@ votando.**
 > **Escala.** Las fuentes nacionales cubren los ~8.100 municipios españoles por
 > código INE: replicar la capa de datos es ingeniería, no investigación.
 >
+> **Lo que no da.** Una nota. Ninguna: ni del ayuntamiento, ni de un servicio,
+> ni de un concejal, ni de otro municipio. Está medido en
+> `/laboratorio/frontera` — cuatro cestas de indicadores igual de defendibles
+> mueven la puntuación media escala, así que la nota diría más de nuestras
+> decisiones que del municipio. Se publica el método, incluidas las
+> especificaciones que fallaron, y se rehúsa la tabla. El juicio lo hace quien
+> vota.
+>
 > Todo abierto —código (AGPL), datos y metodología—, sin publicidad, sin
 > capital riesgo y sin dinero de ningún organismo vigilado. Y diciendo dónde se
 > acaban los datos oficiales, que es lo que ningún portal de cumplimiento tiene
@@ -162,16 +232,27 @@ votando.**
 > each file.
 >
 > CivicPulse rebuilds that obligation from the reader's side, for any Spanish
-> municipality. **Who runs it:** who holds each post, what education and
-> experience they declared and whether it relates to what they run, what the
-> post pays, and what the law actually requires — of a councillor, no
-> qualification at all; of the officer who audits the money, a degree and a
-> national examination. **What it does and what it costs:** each service priced
-> against similar-sized towns on the ministry's own data, supplier-payment
-> periods, budget execution, promises against the record, council votes,
-> contracts, and citizen complaints with statutory clocks. On that base, cited
-> local journalism with a right of reply — and a published map of where the
-> official data runs out.
+> municipality. **Who runs it:** who holds each post and which areas they run,
+> what the post was set to pay, how vacancies are filled, and who is meant to
+> be watching — all of it already public, just scattered. Then, signed row by
+> row, what education and experience the holder of each area declared. Beside
+> it always sits what the law requires, because the two tiers are separated on
+> purpose: the officer who audits the money needs a degree and a national
+> examination; a councillor needs no qualification, because a political office
+> is checked at the ballot box, not by a board. We do not argue they should be
+> credentialed — we argue the voter needs the facts.
+>
+> **What it does and what it costs:** each service priced against similar-sized
+> towns on the ministry's own data, supplier-payment periods, budget execution,
+> promises against the record, council votes, contracts, and citizen complaints
+> with statutory clocks. On that base, cited local journalism with a right of
+> reply — and a published map of where the official data runs out.
+>
+> **What it will not give you is a score** — of the council, a service, or any
+> other municipality. Four equally defensible indicator baskets move the
+> measured efficiency figure across half the scale, so a score would say more
+> about our choices than about the town. We publish the method, failed
+> specifications included, and refuse the table.
 
 ## Registro de afirmaciones
 
@@ -215,6 +296,19 @@ la frase sale de los textos **antes** de que la copia se envíe a nadie.
   LOREG en la misma tarjeta. Y **nunca un porcentaje ni un recuento** de
   encaje: sería puntuar a un electo contra un baremo que ninguna norma
   contiene.
+- **Nunca insinuar que un concejal debería tener titulación.** El contraste
+  LOREG 6.1 / RD 128/2018 se publica porque son **dos controles distintos** —el
+  técnico por título, el político por las urnas—, no porque falte un requisito.
+  Una frase que se pueda leer como «debería estar cualificado» está mal
+  escrita: le pide a la democracia representativa algo que ninguna norma
+  española contempla, y convierte un hecho en una opinión discutible.
+- **Nunca una nota, tampoco la nuestra.** No se puntúa al ayuntamiento, ni a un
+  servicio, ni a un cargo. Está medido: cuatro cestas defendibles mueven la
+  puntuación media escala (`/laboratorio/frontera`), así que una nota diría más
+  de nuestras decisiones que del municipio. Se publican los hechos, la
+  comparación que publica el ministerio y el método —fallos incluidos—; el
+  juicio lo hace quien lee. Y la descripción **lo dice**, en vez de dejar que
+  el lector lo descubra y se vaya con la sensación de que falta algo.
 - **Nunca «auditoría» / «auditor» en copia pública.** Es un término regulado y
   la Sindicatura de Comptes es el órgano real — nuestro argumento es
   precisamente que el tramo municipal queda sin fiscalizar. Verbos permitidos:

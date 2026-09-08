@@ -1123,3 +1123,113 @@ export function relatedAreas(
 ): string[] {
   return rows.filter((r) => r[field]?.value === 'relacionada').map((r) => r.portfolio)
 }
+
+/**
+ * ¿Sigue habiendo una firma para cada área delegada? — la parte pura de
+ * `check:area-fit`.
+ *
+ * Vive aquí y no en el guion porque el guion sólo debe hacer entrada/salida y
+ * salir con un código: la pregunta en sí tiene que poder inyectarse con datos
+ * falsos desde una prueba. Una guarda que no se puede poner roja a propósito
+ * no se ha comprobado nunca.
+ *
+ * CUATRO desenlaces, no dos. Plegar «no lo he mirado» dentro de «coincide»
+ * hace que la guarda imprima su propio visto bueno, que es el defecto
+ * `r?.findings ?? []` que este repositorio ya pagó.
+ */
+export const ENCAJE_DESENLACES = [
+  'coincide',
+  'sin-firmar',
+  'cargo-cambiado',
+  'oficial-inexistente',
+] as const
+export type EncajeDesenlace = (typeof ENCAJE_DESENLACES)[number]
+
+/** Los tres que salen 1: publican algo que dejó de ser cierto, o callan sobre quien no debería. */
+export const ENCAJE_DESENLACES_ROJOS: readonly EncajeDesenlace[] = [
+  'sin-firmar',
+  'cargo-cambiado',
+  'oficial-inexistente',
+]
+
+export interface EncajeCotejo {
+  desenlace: EncajeDesenlace
+  oficial: string
+  area: string
+  detalle: string
+}
+
+export interface OficialConAreas {
+  slug: string
+  name?: string
+  portfolios?: readonly string[]
+}
+
+export interface FilaFirmada {
+  officialSlug: string
+  portfolio: string
+}
+
+/**
+ * El cotejo del área es por igualdad LITERAL contra `portfolios` — medido
+ * antes de escribirlo: las 40 filas publicadas casan exactamente. Si algún día
+ * deja de casar, el desenlace correcto es `cargo-cambiado` y hay que mirarlo.
+ * Aflojar el cotejo aquí convertiría la guarda en un sello.
+ */
+export function cotejarCoberturaEncaje(
+  oficiales: readonly OficialConAreas[],
+  filas: readonly FilaFirmada[],
+): EncajeCotejo[] {
+  const porSlug = new Map(oficiales.map((o) => [o.slug, o]))
+  const nombre = (slug: string) => porSlug.get(slug)?.name ?? slug
+  // Separador que no puede aparecer dentro de un nombre de área.
+  const clave = (slug: string, area: string) => `${slug}§${area}`
+  const firmadas = new Set(filas.map((f) => clave(f.officialSlug, f.portfolio)))
+  const cotejos: EncajeCotejo[] = []
+
+  // Eje 1 — cada área delegada necesita su firma. `EncajeCard` hace
+  // `if (!rows.length) return null`, así que un área sin firmar no deja hueco
+  // visible: deja SILENCIO, y el silencio se lee como limpio.
+  for (const o of oficiales) {
+    for (const area of o.portfolios ?? []) {
+      cotejos.push(
+        firmadas.has(clave(o.slug, area))
+          ? { desenlace: 'coincide', oficial: o.slug, area, detalle: 'firmada' }
+          : {
+              desenlace: 'sin-firmar',
+              oficial: o.slug,
+              area,
+              detalle:
+                `${nombre(o.slug)} lleva esta área y no hay fila firmada: su ficha no ` +
+                `pinta encaje mientras las de sus compañeros sí`,
+            },
+      )
+    }
+  }
+
+  // Eje 2 — ninguna firma puede sobrevivir al cargo que describe.
+  for (const f of filas) {
+    const o = porSlug.get(f.officialSlug)
+    if (!o) {
+      cotejos.push({
+        desenlace: 'oficial-inexistente',
+        oficial: f.officialSlug,
+        area: f.portfolio,
+        detalle: 'el slug ya no está en officials.json y la fila sigue publicada',
+      })
+      continue
+    }
+    if (!(o.portfolios ?? []).includes(f.portfolio)) {
+      cotejos.push({
+        desenlace: 'cargo-cambiado',
+        oficial: f.officialSlug,
+        area: f.portfolio,
+        detalle:
+          `${nombre(f.officialSlug)} ya no lleva «${f.portfolio}»; ahora lleva ` +
+          `[${(o.portfolios ?? []).join(' · ') || 'ninguna'}]`,
+      })
+    }
+  }
+
+  return cotejos
+}

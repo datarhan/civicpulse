@@ -247,7 +247,8 @@
     "check:wms": "npx tsx scripts/check-wms.ts",
     "despiece": "npx tsx scripts/build-app-graph.ts",
     "check:despiece": "npx tsx scripts/check-despiece.ts",
-    "scrape:deuda-viva": "npx tsx scripts/scrape-deuda-viva.ts"
+    "scrape:deuda-viva": "npx tsx scripts/scrape-deuda-viva.ts",
+    "check:area-fit": "npx tsx scripts/check-area-fit.ts"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

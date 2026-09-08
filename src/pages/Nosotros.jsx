@@ -205,15 +205,31 @@ export default function Nosotros() {
         </p>
         <p>
           CivicPulse rehace esa obligación del lado del lector, para cualquier municipio de España.{' '}
-          <strong>Quién manda:</strong> quién ocupa cada cargo, qué formación y experiencia declaró
-          y si tienen que ver con las áreas que dirige, cuánto se fijó de retribución para ese cargo
-          en el pleno, y qué exige la ley para ocuparlo — a un concejal, ninguna titulación; al
-          interventor que fiscaliza el dinero, un grado y una oposición nacional.{' '}
+          <strong>Quién manda:</strong> quién ocupa cada cargo y qué áreas dirige, cuánto se fijó de
+          retribución para ese cargo en el pleno, cómo se cubren las plazas y quién vigila — todo
+          eso ya está publicado, sólo que disperso. Y encima, firmado fila a fila, qué formación y
+          qué experiencia declaró quien lleva cada área. Al lado va siempre lo que la ley pide para
+          el puesto, porque son dos controles distintos y la ley los separa a propósito: al
+          interventor que fiscaliza el dinero, un grado y una oposición nacional; a un concejal,
+          ninguna titulación, porque a un cargo político lo controlan las urnas y no un tribunal. No
+          decimos que debiera tenerla: decimos que quien decide en las urnas necesita el dato.
+        </p>
+        <p>
           <strong>Qué hace y cuánto cuesta:</strong> el precio de cada servicio frente a municipios
           de su tamaño, con los datos del propio ministerio; en cuántos días paga a sus proveedores;
           cuánto del presupuesto se ejecuta de verdad; qué se prometió y qué consta cumplido, con la
           cita literal; qué se vota en cada pleno; a qué empresas va cada contrato; y las quejas
           vecinales con su reloj legal. Sobre esos datos publica periodismo de investigación.
+        </p>
+        <p>
+          <strong>Lo que no vas a encontrar aquí es una nota.</strong> Ni del ayuntamiento, ni de un
+          servicio, ni de un concejal, ni de otro municipio. Lo hemos medido en{' '}
+          <a href="/laboratorio/frontera" style={{ color: 'var(--civic)' }}>
+            el laboratorio
+          </a>
+          : cuatro cestas de indicadores igual de defendibles mueven la puntuación media escala, así
+          que una nota diría más de nuestras decisiones que de tu pueblo. Publicamos el método
+          —incluidas las especificaciones que fallaron— y nos negamos a publicar la tabla.
         </p>
         <p>
           Riba-roja de Túria es el primer municipio. Todo lleva su fuente y su derecho de réplica —
