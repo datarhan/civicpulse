@@ -248,7 +248,8 @@
     "despiece": "npx tsx scripts/build-app-graph.ts",
     "check:despiece": "npx tsx scripts/check-despiece.ts",
     "scrape:deuda-viva": "npx tsx scripts/scrape-deuda-viva.ts",
-    "check:area-fit": "npx tsx scripts/check-area-fit.ts"
+    "check:area-fit": "npx tsx scripts/check-area-fit.ts",
+    "check:publicado": "npx tsx scripts/check-publicado.ts"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

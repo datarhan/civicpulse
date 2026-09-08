@@ -267,6 +267,23 @@ async function gather(): Promise<Observations> {
     // proteger de lo que venga después. En el parte se ve todas las noches y
     // no bloquea a nadie.
     'check:claim-provenance',
+    // La única de esta lista que abre el SITIO en vez del árbol, y ése es
+    // justo el hueco. Todo lo demás que mide frescura aquí —`check:cadence`,
+    // y el `newestItemAt` de `sources` unas líneas más abajo— lee
+    // `public/data` del disco: mide lo que el repositorio TIENE, no lo que el
+    // lector RECIBE. Mientras el despliegue funcione son la misma cifra, y el
+    // día que no funciona es exactamente cuando dejan de serlo.
+    //
+    // El 8-09-2026 la portada llevaba cuatro días con la misma noticia con el
+    // raspado sano y los datos frescos ya comiteados en main: la puerta de
+    // salud mira `npm test`, una prueba se pasó de reloj por 463 ms, y el
+    // despliegue no corrió. Las dos mitades verdes y el lector viendo
+    // anteayer. Encima el umbral de prensa de `sources` es de 5 días y la
+    // portada llevaba CUATRO: ni siquiera estaba cerca de saltar.
+    //
+    // Sale 1 sólo con el sitio por detrás del repositorio; un árbol viejo o un
+    // fichero ilegible avisan sin bloquear.
+    'check:publicado',
     // El mapa base, y es la única de esta lista que mira PÍXELES.
     //
     // CARTO empezó a exigir clave en sus teselas ráster y lo que hace sin ella
