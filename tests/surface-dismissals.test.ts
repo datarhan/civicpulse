@@ -205,3 +205,157 @@ describe('descartes que no pueden casar con nada', () => {
     expect(src).toContain('INERTE')
   })
 })
+
+// ---------------------------------------------------------------------------
+// El apóstrofo que anulaba un juicio humano.
+//
+// El 2026-09-08 un descarte firmado sobre /reportajes/inteligencia-turistica no
+// silenciaba nada, y el mismo descarte salía además en la lista de huérfanos —
+// «comprueba si la frase sigue publicada». Las dos cosas a la vez y las dos
+// falsas: la frase seguía publicada y el descarte le correspondía. Diferían en
+// UN carácter, en la posición 67 de «l’Alfàs del Pi»: U+2019 en el descarte,
+// U+0027 en el señalamiento. `normaliza` doblaba espacios y mayúsculas y dejaba
+// pasar la comilla tipográfica.
+//
+// Quien las intercambia es el propio modelo, que reescribe la puntuación de una
+// pasada a otra, así que sin esto vuelve en cuanto una página lleve un apóstrofo
+// —y en valenciano y catalán los topónimos van llenos: l’Alfàs, l’Eliana,
+// l’Horta.
+//
+// No es ensanchar el silenciador: dos citas que sólo se diferencian en la FORMA
+// de la comilla son la misma frase, y el suelo de SOLAPE_MINIMO sigue en pie.
+describe('la puntuación tipográfica no anula un descarte', () => {
+  const conRecta: RegistroDescartes = {
+    version: 1,
+    items: [
+      {
+        route: '/reportajes/inteligencia-turistica',
+        quote: "El mismo panel de Deepsense se implantó en Santa Pola, l'Alfàs del Pi y Caravaca",
+        reason: 'La relación empresa/producto está dicha cuatro veces y sin ambigüedad',
+        editor: 'Sergei Lutchenko',
+        at: '2026-09-08',
+      },
+    ],
+  }
+
+  it('casa aunque el apóstrofo sea el tipográfico y el descarte lleve el recto', () => {
+    expect(
+      estaDescartado(
+        '/reportajes/inteligencia-turistica',
+        f('El mismo panel de Deepsense se implantó en Santa Pola, l’Alfàs del Pi y Caravaca'),
+        conRecta,
+      ),
+    ).toBe(true)
+  })
+
+  it('y al revés: descarte con la tipográfica, señalamiento con la recta', () => {
+    const conCurva: RegistroDescartes = {
+      version: 1,
+      items: [{ ...conRecta.items[0], quote: conRecta.items[0].quote.replace("l'", 'l’') }],
+    }
+    expect(
+      estaDescartado(
+        '/reportajes/inteligencia-turistica',
+        f("El mismo panel de Deepsense se implantó en Santa Pola, l'Alfàs del Pi y Caravaca"),
+        conCurva,
+      ),
+    ).toBe(true)
+  })
+
+  it('lo mismo con comillas latinas, guiones largos y espacio duro', () => {
+    const reg: RegistroDescartes = {
+      version: 1,
+      items: [
+        {
+          route: '/gestion',
+          quote: 'El plazo «medio» de pago —según la fuente— es de 62,68 días en el ejercicio',
+          reason: 'la cifra es la del ministerio y el rótulo la glosa',
+          editor: 'Sergei Lutchenko',
+          at: '2026-09-08',
+        },
+      ],
+    }
+    expect(
+      estaDescartado(
+        '/gestion',
+        f('El plazo "medio" de pago -según la fuente- es de 62,68 días en el ejercicio'),
+        reg,
+      ),
+    ).toBe(true)
+  })
+
+  // El control: normalizar la comilla no puede volver el silenciador ancho.
+  it('sigue SIN silenciar una frase distinta, con comillas o sin ellas', () => {
+    expect(
+      estaDescartado(
+        '/reportajes/inteligencia-turistica',
+        f('El panel de l’Alfàs del Pi costó 40.496 € y se adjudicó con seis ofertas'),
+        conRecta,
+      ),
+    ).toBe(false)
+  })
+
+  it('y el suelo de solape sigue en pie tras normalizar', () => {
+    expect(estaDescartado('/reportajes/inteligencia-turistica', f('l’Alfàs'), conRecta)).toBe(false)
+  })
+
+  // Un descarte que casa no puede seguir contándose como huérfano: era la
+  // segunda mitad de la avería, y la que decía lo contrario de la verdad.
+  it('deja de contarse como huérfano en cuanto casa', () => {
+    const vivos = new Map([
+      [
+        '/reportajes/inteligencia-turistica',
+        [f('El mismo panel de Deepsense se implantó en Santa Pola, l’Alfàs del Pi y Caravaca')],
+      ],
+    ])
+    expect(descartesHuerfanos(conRecta, vivos)).toEqual([])
+  })
+})
+
+// ---------------------------------------------------------------------------
+// Y la otra mitad del mismo aviso contradictorio.
+//
+// `estaDescartado` casa por CONTENCIÓN —lo tuvo que aprender cuando el modelo
+// recortó «805 contratos» más corto que la cita descartada—, pero
+// `descartesHuerfanos` seguía comparando por IGUALDAD. Un descarte que silencia
+// por contención hace las dos cosas a la vez: silencia el señalamiento y se
+// anuncia como huérfano, «comprueba si la frase sigue publicada». La frase
+// sigue publicada y el descarte le corresponde: el aviso dice lo contrario de
+// la verdad, que es peor que no decir nada.
+//
+// Medido el 2026-09-08 sobre el registro vivo: uno de los trece huérfanos era
+// de éstos —/hallazgos, «Por su parte, un grupo no identificado defendió…»
+// conteniendo al señalamiento «un grupo no identificado defendió…».
+//
+// Se arregla preguntándole a `estaDescartado` en vez de reimplementar el
+// criterio al lado, que es la regla 1 de DATA_INTEGRITY: el que compara es uno
+// solo, y los dos consumidores no pueden discrepar.
+describe('un descarte que silencia no se anuncia además como huérfano', () => {
+  const reg: RegistroDescartes = {
+    version: 1,
+    items: [
+      {
+        route: '/hallazgos',
+        quote: 'Por su parte, un grupo no identificado defendió el impacto positivo de la campaña',
+        reason: 'la ficha dice «sin atribuir» y el resumen lo llama grupo no identificado',
+        editor: 'Sergei Lutchenko',
+        at: '2026-09-08',
+      },
+    ],
+  }
+  // El señalamiento es un TROZO del descarte: casa por contención, no por igualdad.
+  const recortado = f('un grupo no identificado defendió el impacto positivo de la campaña')
+
+  it('sigue silenciándolo — control de que el caso es el de contención', () => {
+    expect(estaDescartado('/hallazgos', recortado, reg)).toBe(true)
+  })
+
+  it('y ya no sale en la lista de huérfanos', () => {
+    expect(descartesHuerfanos(reg, new Map([['/hallazgos', [recortado]]]))).toEqual([])
+  })
+
+  it('un descarte que de verdad no casa con nada SÍ sigue saliendo — control', () => {
+    const otro = f('una frase completamente distinta que nadie ha descartado nunca aquí')
+    expect(descartesHuerfanos(reg, new Map([['/hallazgos', [otro]]]))).toHaveLength(1)
+  })
+})

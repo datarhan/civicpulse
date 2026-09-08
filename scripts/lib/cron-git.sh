@@ -235,6 +235,74 @@ _cron_git_rebase_en_curso() {
 }
 
 # ---------------------------------------------------------------------------
+# _cron_git_avisar_alijo_suelto <nº de alijos antes del pull>
+#
+# El autostash se reaplica solo… casi siempre. Cuando no, se queda un alijo
+# mudo, y un alijo que nadie nombra es trabajo perdido. Vale para los dos
+# desenlaces de abajo, así que se dice en un solo sitio.
+# ---------------------------------------------------------------------------
+_cron_git_avisar_alijo_suelto() {
+  local alijos_antes="$1" alijos_ahora
+  alijos_ahora="$(git stash list 2>/dev/null | wc -l | tr -d " ")"
+  if [ "${alijos_ahora:-0}" -gt "${alijos_antes:-0}" ]; then
+    cron_git_log "  el autostash NO se reaplicó: quedan $((alijos_ahora - alijos_antes)) alijo(s) nuevo(s), el último en stash@{0}. Se recupera con «git stash pop»."
+  fi
+}
+
+# ---------------------------------------------------------------------------
+# _cron_git_desatascar_autostash <contexto>
+#
+# El OTRO desenlace del mismo pull, y hasta el 2026-09-07 el único sin guarda.
+# `git pull --rebase --autostash` puede fallar sin dejar ningún rebase abierto:
+# el rebase entra limpio —un fast-forward no crea rebase-merge ni rebase-apply—
+# y lo que conflictúa es la REAPLICACIÓN del alijo. No hay HEAD desacoplado ni
+# directorio que mirar; lo que queda es un ÍNDICE CON RUTAS SIN FUSIONAR. Y con
+# el índice así, `git pull` ni lo intenta: «Pulling is not possible because you
+# have unmerged files», código 128, en todas las pasadas siguientes.
+#
+# Es la misma avería del 2026-08-29 entrando por la otra puerta, y por eso
+# volvió a pasar: el 2026-09-07 a las 06:45 el alijo no volvió a entrar por
+# public/data/queja-contract-relations.json y, a partir de ahí,
+# auto-curate-promises (08:30), hallazgos (09:30) y press-lab (10:15) murieron
+# en su PRIMER comando durante dos días, sin escribir un manifiesto que
+# delatara nada. Lo dijo check:runs, no el parte de salud.
+#
+# Se restaura cada ruta desde HEAD, que es lo último PUBLICADO: nunca contenido
+# inventado, siempre algo que ya estaba en la historia. El otro lado no se
+# pierde —sigue entero en el alijo, que no se toca— y estos ficheros son
+# derivados que la pasada siguiente vuelve a generar. Dejar la ruta a medias
+# tenía además un coste que no es sólo el atasco: el árbol se queda con las
+# marcas de conflicto DENTRO del fichero, y `public/` se publica entera.
+#
+# Devuelve 1 —«aquí no había nada de esto»— cuando el índice está limpio, para
+# que el llamador no cante una reparación que no ha hecho.
+# ---------------------------------------------------------------------------
+_cron_git_desatascar_autostash() {
+  local ctx="$1" rutas fichero
+  rutas="$(git diff --name-only --diff-filter=U 2>/dev/null)"
+  [ -n "$rutas" ] || return 1
+
+  cron_git_log "$ctx: el rebase entró pero el AUTOSTASH no volvió. Queda un índice sin fusionar, y con él «git pull» se niega en seco (128) en TODAS las pasadas siguientes, no sólo en ésta."
+  while IFS= read -r fichero; do
+    [ -n "$fichero" ] || continue
+    cron_git_log "    sin fusionar: $fichero — se restaura desde HEAD (lo último publicado); el otro lado sigue en el alijo."
+    git checkout --force HEAD -- "$fichero" 2>/dev/null ||
+      cron_git_log "    ATENCIÓN: no se pudo restaurar $fichero desde HEAD."
+  done <<< "$rutas"
+
+  # Quedarse una sola ruta sin fusionar es dejar la avería puesta, así que se
+  # vuelve a mirar en vez de dar por hecho que el bucle valió.
+  local restantes
+  restantes="$(git diff --name-only --diff-filter=U 2>/dev/null | wc -l | tr -d " ")"
+  if [ "${restantes:-0}" -gt 0 ]; then
+    cron_git_log "  ATENCIÓN: siguen $restantes ruta(s) sin fusionar. Los cron siguientes se van a morir en el pull con 128. Esto necesita una persona."
+  else
+    cron_git_log "  índice limpio · el árbol vuelve a ser utilizable: la pasada siguiente ya puede hacer pull."
+  fi
+  return 0
+}
+
+# ---------------------------------------------------------------------------
 # _cron_git_desatascar_rebase <contexto> <nº de alijos antes del pull>
 #
 # Un pull que falla por conflicto NO deja el repositorio como lo encontró: deja
@@ -259,7 +327,15 @@ _cron_git_rebase_en_curso() {
 # ---------------------------------------------------------------------------
 _cron_git_desatascar_rebase() {
   local ctx="$1" alijos_antes="$2"
-  _cron_git_rebase_en_curso || return 0
+
+  # Sin rebase abierto todavía puede haber avería: la del autostash que no
+  # vuelve, que no deja directorio ninguno pero sí un índice sin fusionar.
+  # Mirar sólo el rebase es lo que dejó la flota parada dos días el 09-07.
+  if ! _cron_git_rebase_en_curso; then
+    _cron_git_desatascar_autostash "$ctx" || return 0
+    _cron_git_avisar_alijo_suelto "$alijos_antes"
+    return 0
+  fi
 
   cron_git_log "$ctx: el pull dejó un rebase A MEDIAS. Se aborta: dejarlo abierto no rompe este run, rompe TODOS los siguientes (se saltan por no estar en '${CRON_GIT_MAIN_BRANCH:-main}')."
   local fichero
@@ -279,13 +355,12 @@ _cron_git_desatascar_rebase() {
     cron_git_log "  ATENCIÓN: «git rebase --abort» TAMBIÉN falló. El árbol sigue a medias y los cron posteriores se van a saltar en silencio. Esto necesita una persona."
   fi
 
-  # El autostash se reaplica solo al abortar… casi siempre. Cuando no, se queda
-  # un alijo mudo, y un alijo que nadie nombra es trabajo perdido.
-  local alijos_ahora
-  alijos_ahora="$(git stash list 2>/dev/null | wc -l | tr -d " ")"
-  if [ "${alijos_ahora:-0}" -gt "${alijos_antes:-0}" ]; then
-    cron_git_log "  el autostash NO se reaplicó: quedan $((alijos_ahora - alijos_antes)) alijo(s) nuevo(s), el último en stash@{0}. Se recupera con «git stash pop»."
-  fi
+  # Abortar reaplica el alijo… casi siempre. Cuando no, se dice.
+  _cron_git_avisar_alijo_suelto "$alijos_antes"
+
+  # Un abort puede dejar rutas sin fusionar por su cuenta, y entonces la avería
+  # sigue puesta aunque el rebase ya no exista: se mira DESPUÉS de abortar.
+  _cron_git_desatascar_autostash "$ctx" || true
 }
 
 cron_git_pull_rebase() {
@@ -301,6 +376,20 @@ cron_git_pull_rebase() {
   # main que hace el propio abort cuente como movimiento nuestro.
   if [ "$rc" -ne 0 ]; then
     _cron_git_desatascar_rebase "$ctx" "$alijos_antes"
+  elif _cron_git_desatascar_autostash "$ctx"; then
+    # Un pull que SALE 0 puede haber dejado el árbol inservible, y éste es el
+    # caso que costó dos días: cuando la reaplicación del autostash conflictúa,
+    # git lo cuenta por pantalla —«Applying autostash resulted in conflicts.
+    # Your changes are safe in the stash.»— y DEVUELVE CERO. Medido, no
+    # supuesto: el código de salida dice que todo fue bien mientras el índice
+    # queda sin fusionar y el pull siguiente muere con 128. Colgar la guarda de
+    # `rc -ne 0` era colgarla de una condición que aquí no se da nunca.
+    _cron_git_avisar_alijo_suelto "$alijos_antes"
+    # Y esta pasada se da por fallada a propósito: lo que estuviera sucio está
+    # ahora en el alijo, no en el árbol, así que seguir sería trabajar sobre
+    # algo distinto de lo que había. El árbol ya quedó utilizable, que es lo
+    # que hace verdad el «mañana se reintenta».
+    rc=1
   fi
   # Our own pull is a legitimate HEAD movement, so re-baseline the counter after
   # it. Only the counter — the approved REF stays pinned, so a pull that leaves

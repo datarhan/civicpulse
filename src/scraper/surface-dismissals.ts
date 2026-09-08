@@ -41,8 +41,57 @@ export interface RegistroDescartes {
   items: Descarte[]
 }
 
-/** Espacios y mayúsculas no cuentan; el resto sí. */
-const normaliza = (s: string) => s.replace(/\s+/g, ' ').trim().toLowerCase()
+/**
+ * Variantes tipográficas del MISMO carácter. Plegarlas no ensancha el
+ * silenciador: dos citas que sólo se diferencian en la forma de la comilla son
+ * la misma frase, y quien las intercambia es el propio modelo, que reescribe la
+ * puntuación de una pasada a otra.
+ *
+ * Sin esto, el 2026-09-08, un descarte firmado sobre
+ * /reportajes/inteligencia-turistica no silenciaba nada Y salía además como
+ * huérfano —«comprueba si la frase sigue publicada»—: las dos cosas a la vez y
+ * las dos falsas. La diferencia era UN carácter en la posición 67 de «l’Alfàs
+ * del Pi», U+2019 contra U+0027. En valenciano el apóstrofo va en medio de los
+ * topónimos —l’Alfàs, l’Eliana, l’Horta—, así que esto no era un caso raro sino
+ * el primero de una fila.
+ */
+const TIPOGRAFICOS: Record<string, string> = {
+  '\u2018': "'", // ' comilla simple izquierda
+  '\u2019': "'", // ' comilla simple derecha — el apóstrofo de «l'Alfàs»
+  '\u201B': "'",
+  '\u02BC': "'",
+  '\u00B4': "'", // ´ acento agudo usado como apóstrofo
+  '`': "'", // ` acento grave usado como apóstrofo
+  '\u201C': '"', // " comilla doble izquierda
+  '\u201D': '"', // " comilla doble derecha
+  '\u00AB': '"', // « comillas latinas
+  '\u00BB': '"', // »
+  '\u2013': '-', // – raya corta
+  '\u2014': '-', // — raya larga
+  '\u2212': '-', // − signo menos
+  '\u00A0': ' ', // espacio duro
+  '\u202F': ' ', // espacio duro estrecho
+}
+
+/**
+ * Espacios, mayúsculas y la FORMA de la puntuación no cuentan; el resto sí.
+ *
+ * Todo va escapado a propósito: escritos tal cual, el espacio duro y el
+ * estrecho son invisibles en un diff —y `no-irregular-whitespace` los rechaza,
+ * con razón—, así que una tabla de caracteres invisibles se corrige a ciegas.
+ *
+ * El plegado va ANTES que el de espacios: los espacios duros se convierten en
+ * espacios normales y tienen que colapsar con los de al lado.
+ */
+const normaliza = (s: string) =>
+  s
+    .replace(
+      /[\u2018\u2019\u201B\u02BC\u00B4`\u201C\u201D\u00AB\u00BB\u2013\u2014\u2212\u00A0\u202F]/g,
+      (c) => TIPOGRAFICOS[c] ?? c,
+    )
+    .replace(/\s+/g, ' ')
+    .trim()
+    .toLowerCase()
 
 /**
  * Solape mínimo para que un descarte valga. Por debajo de esto, una cita corta
@@ -109,7 +158,18 @@ export function descartesHuerfanos(
   if (!registro?.items?.length) return []
   return registro.items.filter((d) => {
     const vivos = vivosPorRuta.get(d.route) ?? []
-    return !vivos.some((f) => normaliza(f.quote ?? '') === normaliza(d.quote))
+    // Se pregunta con el MISMO criterio que silencia, no con uno parecido de al
+    // lado. Comparaba por igualdad mientras `estaDescartado` casa por
+    // contención, así que un descarte que silenciaba por contención hacía las
+    // dos cosas a la vez: callaba el señalamiento y se anunciaba como huérfano
+    // —«comprueba si la frase sigue publicada»— cuando la frase seguía
+    // publicada y le correspondía. Un aviso que dice lo contrario de la verdad
+    // es peor que ninguno.
+    //
+    // Sólo ESTE descarte: con el registro entero se le atribuiría a uno lo que
+    // silencia otro, y ningún huérfano saldría nunca.
+    const soloEste: RegistroDescartes = { version: registro.version, items: [d] }
+    return !vivos.some((f) => estaDescartado(d.route, f, soloEste))
   })
 }
 

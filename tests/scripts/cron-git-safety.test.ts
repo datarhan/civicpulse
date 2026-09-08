@@ -42,7 +42,15 @@
  * really was staged, and the cron's own snapshot really did reach the commit.
  */
 import { execFileSync } from 'node:child_process'
-import { chmodSync, copyFileSync, existsSync, mkdirSync, mkdtempSync, writeFileSync } from 'node:fs'
+import {
+  chmodSync,
+  copyFileSync,
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  writeFileSync,
+} from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
 
@@ -1083,5 +1091,140 @@ describe('hallazgos-pipeline.sh · el aviso de yt-dlp no puede tumbar la noche',
     })
     expect(r.log, 'el fallo inyectado no se dio').toMatch(/check-ytdlp-age FAILING/)
     expect(r.log, 'la pasada murió en un aviso de mantenimiento').toMatch(/speaker-map/i)
+  }, 120_000)
+})
+
+/** Alias local: `git` ya es el ayudante del arnés de arriba. */
+const gitCmd = git
+
+// ---------------------------------------------------------------------------
+// El otro desenlace del mismo pull: el rebase entra y lo que choca es el
+// AUTOSTASH al volver.
+//
+// `_cron_git_desatascar_rebase` abre con `_cron_git_rebase_en_curso || return 0`,
+// así que sólo desatasca cuando queda un directorio rebase-merge/rebase-apply.
+// Pero `git pull --rebase --autostash` tiene un segundo modo de fallo con la
+// MISMA consecuencia: el rebase avanza limpio (fast-forward, ningún directorio
+// que mirar) y lo que conflictúa es la REAPLICACIÓN del alijo. Queda un índice
+// con rutas sin fusionar y un alijo suelto — y con el índice así, `git pull` se
+// niega en seco («Pulling is not possible because you have unmerged files»,
+// código 128) en TODAS las pasadas siguientes.
+//
+// Pasó el 2026-09-07 a las 06:45. El pull se trajo main de un tirón y el alijo
+// no volvió a entrar por public/data/queja-contract-relations.json. A partir de
+// ahí murieron en su primer comando, sin escribir un solo manifiesto,
+// auto-curate-promises (08:30), hallazgos (09:30) y press-lab (10:15) — dos
+// días, hasta que lo dijo check:runs. Es exactamente la avería que el
+// comentario de _cron_git_desatascar_rebase da por cerrada el 2026-08-29: se
+// cerró una de las dos puertas, y el pull entra por las dos.
+//
+// La reparación no puede inventarse contenido. Restaurar la ruta desde HEAD es
+// volver a lo ÚLTIMO PUBLICADO —nunca a algo que no estuviera ya en la
+// historia— y el alijo se queda en la pila con el otro lado dentro. Por eso
+// aquí se comprueba tanto que el árbol queda utilizable como que el alijo NO se
+// tira.
+describe('cron pipelines · un autostash que no vuelve no puede encallar la flota', () => {
+  const RELACIONES = 'public/data/queja-contract-relations.json'
+
+  /**
+   * Deja el árbol y origin peleados por la MISMA ruta, que es lo único que hace
+   * conflictuar la reaplicación del alijo: origin/main la mueve, el árbol la
+   * tiene sucia con otro contenido, y el alijo vuelve encima del cambio.
+   */
+  function encallarAutostash(dir: string): void {
+    writeFileSync(join(dir, RELACIONES), '{"links":[],"stats":{"tierA":0}}\n')
+    gitCmd(dir, 'add', '--', RELACIONES)
+    gitCmd(dir, 'commit', '-qm', 'base: relaciones')
+    gitCmd(dir, 'push', '-q', 'origin', 'main')
+    // origin se adelanta tocando ESA ruta…
+    writeFileSync(join(dir, RELACIONES), '{"links":[{"id":"upstream"}],"stats":{"tierA":9}}\n')
+    gitCmd(dir, 'add', '--', RELACIONES)
+    gitCmd(dir, 'commit', '-qm', 'upstream: relaciones movidas')
+    gitCmd(dir, 'push', '-q', 'origin', 'main')
+    gitCmd(dir, 'reset', '-q', '--hard', 'HEAD~1')
+    // …y el árbol local la tiene sucia con un tercer contenido.
+    writeFileSync(join(dir, RELACIONES), '{"links":[{"id":"local"}],"stats":{"tierA":4}}\n')
+  }
+
+  /** Rutas sin fusionar en el índice — lo que atranca el `git pull` siguiente. */
+  function sinFusionar(dir: string): string[] {
+    return gitCmd(dir, 'diff', '--name-only', '--diff-filter=U')
+      .split('\n')
+      .map((s) => s.trim())
+      .filter(Boolean)
+  }
+
+  /** Código de salida de un pull con autostash, 0 si pasa. */
+  function pull(dir: string): number {
+    try {
+      gitCmd(dir, 'pull', '--rebase', '--autostash', 'origin', 'main')
+      return 0
+    } catch (err) {
+      return (err as { status?: number }).status ?? -1
+    }
+  }
+
+  // Comprobar que algo NO rompe sale gratis si ese algo no llega a pasar: esta
+  // prueba es la que sostiene a las otras cinco.
+  it('el pull SALE CERO y aun así deja el índice sin fusionar — control', () => {
+    const dir = makeSandbox()
+    encallarAutostash(dir)
+    // Lo que hace que esto se colara: git no llama fallo a esto. Dice
+    // «Applying autostash resulted in conflicts» por pantalla y devuelve 0.
+    // Una guarda colgada de `rc -ne 0` no se ejecuta jamás por aquí.
+    expect(
+      pull(dir),
+      'el pull con el autostash conflictuado ya no sale 0: el reproductor no reproduce',
+    ).toBe(0)
+    expect(sinFusionar(dir), 'el reproductor no dejó rutas sin fusionar').toContain(RELACIONES)
+    // …y ES una avería: el pull siguiente muere con el 128 que vio launchd.
+    expect(pull(dir), 'un índice sin fusionar tendría que atrancar el pull siguiente').toBe(128)
+  }, 60_000)
+
+  it('deja el árbol utilizable para la pasada siguiente en vez de encallarlo', () => {
+    const dir = makeSandbox()
+    encallarAutostash(dir)
+    runScript(dir, 'scripts/auto-curate-promises-daily.sh')
+    expect(
+      sinFusionar(dir),
+      'el índice quedó con rutas sin fusionar: mañana el pull vuelve a morir con 128',
+    ).toEqual([])
+  }, 120_000)
+
+  it('la pasada siguiente vuelve a poder hacer pull — la prueba de que se desencalló', () => {
+    const dir = makeSandbox()
+    encallarAutostash(dir)
+    runScript(dir, 'scripts/auto-curate-promises-daily.sh')
+    expect(pull(dir), 'el pull de la pasada siguiente sigue atrancado').toBe(0)
+  }, 120_000)
+
+  it('no descarta el alijo: el otro lado sigue recuperable', () => {
+    const dir = makeSandbox()
+    encallarAutostash(dir)
+    runScript(dir, 'scripts/auto-curate-promises-daily.sh')
+    expect(
+      gitCmd(dir, 'stash', 'list').trim(),
+      'el alijo se tiró a la basura con el trabajo local dentro',
+    ).not.toBe('')
+  }, 120_000)
+
+  it('ninguna ruta de public/ queda con marcas de conflicto dentro', () => {
+    const dir = makeSandbox()
+    encallarAutostash(dir)
+    runScript(dir, 'scripts/auto-curate-promises-daily.sh')
+    const texto = readFileSync(join(dir, RELACIONES), 'utf8')
+    expect(texto, 'quedó un fichero publicable con marcas de conflicto dentro').not.toMatch(
+      /^<{7} |^>{7} /m,
+    )
+    expect(() => JSON.parse(texto), 'el fichero publicable dejó de ser JSON válido').not.toThrow()
+  }, 120_000)
+
+  it('lo dice en el log, con la ruta, en vez de callárselo', () => {
+    const dir = makeSandbox()
+    encallarAutostash(dir)
+    const r = runScript(dir, 'scripts/auto-curate-promises-daily.sh')
+    expect(r.log, 'se desencalló en silencio: nadie se entera de que hubo trabajo local').toMatch(
+      /queja-contract-relations\.json/,
+    )
   }, 120_000)
 })
