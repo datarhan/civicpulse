@@ -3,7 +3,7 @@ import { Card, SectionHead } from '../components/Primitives'
 // English page for international funders/partners. Deliberately NOT in the
 // sidebar NAV and NOT in i18n — the citizen-facing chrome stays Spanish, and
 // this copy is funder-facing content, not chrome.
-const CONTACT_EMAIL = 'slutchenko@gmail.com'
+const CONTACT_EMAIL = 'civicpulse_es@proton.me'
 
 const TIER_ROWS = [
   [

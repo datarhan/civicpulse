@@ -333,8 +333,8 @@ export default function BuildingCivicPulse() {
           }}
         >
           Sergei Lutchenko ·{' '}
-          <a href="mailto:slutchenko@gmail.com" style={LINK}>
-            slutchenko@gmail.com
+          <a href="mailto:civicpulse_es@proton.me" style={LINK}>
+            civicpulse_es@proton.me
           </a>{' '}
           · civicpulse.es
         </p>

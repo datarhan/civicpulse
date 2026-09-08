@@ -7,7 +7,7 @@ import { summarizeImpact } from '../lib/impact-stats'
 
 // Contact: operator's real mailbox. Swap to redaccion@civicpulse.es once the
 // domain mailbox exists (tracked in docs/superpowers/audits/…-opensource-preflight.md §4).
-const CONTACT_EMAIL = 'slutchenko@gmail.com'
+const CONTACT_EMAIL = 'civicpulse_es@proton.me'
 
 export function StatCell({ value, label, loading }) {
   return (

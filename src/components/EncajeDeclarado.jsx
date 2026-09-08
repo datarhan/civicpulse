@@ -232,7 +232,9 @@ export function EncajeCard({ official, bioRoute }) {
 
   if (frozen) return null
   if (!official.portfolios?.length) return <SinDelegacion />
-  if (!rows.length) return null
+  // Holds an área, nobody has signed it yet. Says so, out loud: a `null` here
+  // made the unreviewed look cleaner than the reviewed. See SinRevisar.
+  if (!rows.length) return <SinRevisar />
 
   const fields = ['formacion', 'experiencia']
   // One value for the whole card, or null when the assessments disagree — the
@@ -377,6 +379,47 @@ export function EncajeCard({ official, bioRoute }) {
   )
 }
 
+/**
+ * The explicit empty state for someone who DOES hold an área and whose rows a
+ * curator has not signed yet.
+ *
+ * Before this existed the card returned `null` there, which is the worst of the
+ * three possible silences: a councillor with no signed row painted NOTHING
+ * while the ones beside them painted their chips, so being reviewed showed
+ * seams and not being reviewed read as clean. Absence of a finding was
+ * indistinguishable from a finding of absence — the same defect as the `Otro`
+ * sentinel, one surface along.
+ *
+ * The wording is deliberately about US, never about them: it reports our
+ * coverage, which is a fact about our work, and says nothing a reader could
+ * take as a judgement of the person. That is the same line `/laboratorio` walks
+ * when it publishes "we could read 7 of 12 sources" instead of scoring anyone.
+ *
+ * `check:area-fit` reds when this state can appear, so it should stay
+ * unreachable in practice — but it renders honestly on the night a reshuffle
+ * lands before a curator does.
+ */
+export function SinRevisar() {
+  const t = useT()
+  return (
+    <div
+      style={{
+        marginTop: 10,
+        paddingTop: 10,
+        borderTop: '1px dashed var(--border2)',
+        fontSize: 'var(--fs-aux)',
+        color: 'var(--ink50)',
+        lineHeight: 1.45,
+      }}
+    >
+      <span className="mono" style={{ letterSpacing: '.06em', textTransform: 'uppercase' }}>
+        {t('encaje.sinRevisar.label')}
+      </span>
+      <div style={{ marginTop: 3 }}>{t('encaje.sinRevisar.note')}</div>
+    </div>
+  )
+}
+
 /** The explicit empty state for the 10 councillors with no delegated área. */
 export function SinDelegacion() {
   const t = useT()
@@ -404,7 +447,10 @@ export function EncajeMatrix({ official, bioRoute }) {
   const t = useT()
   const { data, frozen } = useAreaFit()
   const rows = fitRowsForSlug(data, official.slug)
-  if (frozen || !rows.length) return null
+  // The LOREG freeze hides the whole layer; that silence is deliberate and
+  // signed for. The unreviewed one is not — same reasoning as the card.
+  if (frozen) return null
+  if (!rows.length) return official.portfolios?.length ? <SinRevisar /> : null
 
   // Same rule as the card, one level down: while every cited assessment here
   // rests on the same kind of source, the section says it once above the áreas
