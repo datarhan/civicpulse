@@ -17,14 +17,25 @@ concurrency:
 jobs:
   scrape:
     runs-on: ubuntu-latest
-    # Job budget must stay ABOVE the scrape step's own timeout-minutes: a
-    # JOB timeout cancels the whole run and `if: !cancelled()` then skips
-    # the Commit step — that exact failure lost 3 straight nights of fresh
-    # data (2026-07-11 → 07-13) when SEPE/regmeet started blackholing
-    # GitHub-runner IPs and slow-failing fetch retries pushed the scrape
-    # past 20 min. The scrape step is time-boxed below instead; a step
-    # timeout only fails the STEP, and the commit still runs.
-    timeout-minutes: 30
+    # Este tope es la SUMA de los topes de los pasos, no una estimación de lo
+    # que tarda la nocturna (23,4 min medidos el 8-09-2026). Ningún paso puede
+    # pasarse del suyo, así que el trabajo no puede pasarse de la suma: el tope
+    # de aquí es el respaldo, y sólo tiene que ser lo bastante alto para no
+    # dispararse ANTES que el del paso que se atascó.
+    #
+    # Estaba en 30 con 28 ya declarados entre «Verifier corpus» (6) y
+    # «Run scraper(s)» (22), dejando DOS minutos para `npm ci`, Playwright,
+    # 5.909 pruebas, el commit, el push, el resumen y la puerta. La cuenta sólo
+    # salía mientras el raspado no gastara su presupuesto; el día que lo gastó,
+    # el trabajo se pasó, y un JOB timeout no concluye `failure` sino
+    # `cancelled` — que es la conclusión que se salta el commit y tira la noche
+    # entera. Costó 3 noches en julio (07-11 → 07-13) y la del 7-09-2026.
+    #
+    # `tests/nightly-budget.test.js` fija la cuenta para que no se vuelva a
+    # torcer en silencio. Los minutos no se facturan: el repositorio es público
+    # desde el 8-09-2026, así que un tope holgado no cuesta nada y un tope corto
+    # cuesta un día de portada.
+    timeout-minutes: 75
     permissions:
       contents: write
     steps:
@@ -45,6 +56,8 @@ jobs:
           cache: 'npm'
 
       - name: Install deps
+        # 0,1 min con caché; el tope cubre el fallo de caché, no el caso bueno.
+        timeout-minutes: 6
         run: npm ci
 
       # El corpus del verificador, ANTES del scrape y con su propio reloj.
@@ -73,12 +86,14 @@ jobs:
         id: scrape
         # Time-box the scrape BELOW the job timeout: exceeding this fails
         # only this step (rc stays unset → health gate reds the run), while
-        # the !cancelled() Commit step still pushes every adapter that
+        # the always() Commit step still pushes every adapter that
         # finished before the axe fell. Budget calibrated on the 2026-07-13
         # dispatched run: ~4 min healthy suite + up to ~8 min of Overpass
         # mirror rotation on geo + ~4 min of paro/pleno-agendas circuit
         # breakers when SEPE/regmeet blackhole runner IPs + ~5 min tail.
-        # 22 + npm ci + tests + commit still fits the 30-min job.
+        # Medido el 8-09-2026: 17,1 min de los 22, así que el tope es holgura
+        # real y no un número heredado. Que quepa en el trabajo ya no se
+        # razona aquí a mano — lo suma `tests/nightly-budget.test.js`.
         timeout-minutes: 22
         # ADAPTERS passed via env (not inline ${{ }}) so a workflow_dispatch
         # input can never break out of the case "..." quoting into the shell.
@@ -157,12 +172,17 @@ jobs:
           path: ~/.cache/ms-playwright
           key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
+      # Los dos siguientes se excluyen entre sí —uno corre con caché y el otro
+      # sin ella—, pero el presupuesto los suma a los dos. Sobrestimar sólo
+      # pide un tope de trabajo más alto, que aquí es gratis.
       - name: Install Playwright Chromium
         if: steps.cache-pw.outputs.cache-hit != 'true'
+        timeout-minutes: 8
         run: npx playwright install --with-deps chromium
 
       - name: Install Playwright system deps (cache hit)
         if: steps.cache-pw.outputs.cache-hit == 'true'
+        timeout-minutes: 3
         run: npx playwright install-deps chromium
 
       # Tests validate the parser CODE against fixtures (independent of today's
@@ -171,15 +191,33 @@ jobs:
       - name: Run tests
         id: tests
         continue-on-error: true
+        # 3,8 min medidos el 8-09-2026 sobre 5.909 pruebas. Corría SIN tope, que
+        # es lo que hacía imposible cuadrar el presupuesto del trabajo: un paso
+        # que no declara lo suyo no se puede sumar.
+        timeout-minutes: 15
         run: npm test
 
-      # Runs even when a scraper failed (!cancelled). Commits + pushes whatever
-      # adapters refreshed, so a critical failure no longer freezes the whole
-      # site — the healthy data still lands. On a red run it stays in git and
-      # ships on the next green nightly (the workflow_run deploy needs success).
+      # Corre pase lo que pase, CANCELACIÓN INCLUIDA, y ésa es la diferencia
+      # que costó una noche. Comitea lo que los adaptadores hayan refrescado,
+      # así que un fallo crítico no congela el sitio: los datos sanos aterrizan
+      # igual y se despliegan en la siguiente nocturna verde (el `workflow_run`
+      # del deploy exige `success`).
+      #
+      # Llevaba `!cancelled()`, que suena a lo mismo y no lo es: un trabajo que
+      # agota su `timeout-minutes` concluye `cancelled`, no `failure`, así que
+      # justo la noche en que el raspado tarda de más —la noche en la que los
+      # datos frescos más caros salieron— este paso se saltaba y se perdía todo
+      # lo raspado. Con `always()` el tope del trabajo deja de ser una pérdida
+      # de datos y pasa a ser sólo una ejecución roja, que es lo que debe ser.
+      #
+      # Sí, con `always()` una cancelación MANUAL también comitea. Es lo
+      # correcto: este paso ya comiteaba raspados parciales a propósito en los
+      # runs en rojo, y un snapshot parcial es idempotente —lo reescribe la
+      # siguiente pasada—. Perder la noche no se arregla en la siguiente pasada.
       - name: Commit refreshed JSON
         id: commit
-        if: ${{ !cancelled() }}
+        if: ${{ always() }}
+        timeout-minutes: 5
         env:
           ADAPTERS: ${{ inputs.adapters || 'all' }}
           EVENT_NAME: ${{ github.event_name }}
@@ -242,6 +280,7 @@ jobs:
 
       - name: Summary
         if: ${{ !cancelled() }}
+        timeout-minutes: 2
         env:
           ADAPTERS: ${{ inputs.adapters || 'all' }}
           CHANGED: ${{ steps.commit.outputs.changed }}
@@ -271,6 +310,7 @@ jobs:
       # still produces a green run that deploys.
       - name: Health gate
         if: ${{ !cancelled() }}
+        timeout-minutes: 2
         env:
           SCRAPE_RC: ${{ steps.scrape.outputs.rc }}
           TESTS_OUTCOME: ${{ steps.tests.outcome }}

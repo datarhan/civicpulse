@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeAll, afterAll } from 'vitest'
+import { describe, it, expect, beforeAll, afterAll, vi } from 'vitest'
 import { spawnSync } from 'node:child_process'
 import { mkdtempSync, mkdirSync, writeFileSync, readdirSync, readFileSync, rmSync } from 'node:fs'
 import { tmpdir } from 'node:os'
@@ -82,6 +82,24 @@ function installFakeYtDlp(body: string) {
   const p = join(binDir, 'yt-dlp')
   writeFileSync(p, body, { mode: 0o755 })
 }
+
+/**
+ * Cada prueba de este fichero arranca el guion DE VERDAD con `npx tsx`, que
+ * compila TypeScript y levanta un node por llamada: ~2,7 s medidos en el
+ * runner. El presupuesto POR DEFECTO de vitest son 5 s, así que la única
+ * prueba que hace DOS arranques vivía con un margen de 2,3 s sobre el reloj.
+ *
+ * El 8-09-2026 se lo comió: «Test timed out in 5000ms» tras 5.463 ms, con las
+ * otras 5.895 pruebas en verde. No es un fallo del código que vigila —en local
+ * el fichero entero pasa en 2,68 s—, es un presupuesto mal puesto, y el precio
+ * lo paga la portada: la puerta de salud mira `npm test`, un rojo bloquea el
+ * despliegue, y el pueblo se queda con los datos de anteayer por un reloj.
+ *
+ * El `spawnSync` de abajo ya se daba 120 s. Que el reloj de FUERA fuera 24
+ * veces más corto que el de dentro era la incoherencia: el tope interno no se
+ * podía alcanzar nunca.
+ */
+vi.setConfig({ testTimeout: 60_000 })
 
 function run(args: string[], extraEnv: Record<string, string> = {}) {
   return spawnSync('npx', ['tsx', SCRIPT, ...args], {
