@@ -337,9 +337,13 @@ la frase sale de los textos **antes** de que la copia se envíe a nadie.
 
 | Superficie                            | Qué toma de aquí                                                            |
 | ------------------------------------- | --------------------------------------------------------------------------- |
-| `docs/funding/goteo-campaign-2026.md` | §0 título + subtítulo + categorías · §1 historia · §6 vídeo · §7 resumen EN |
-| `docs/funding/nlnet-proposal-2026.md` | nombre del proyecto · abstract · sección _Compare_                          |
-| `docs/press-kit-2026.md`              | titular + «Qué es» (ES y EN)                                                |
 | `README.md`                           | tagline · «Why this exists» · tabla de superficies                          |
 | `src/pages/Nosotros.jsx`              | tarjeta «Qué es CivicPulse»                                                 |
 | `src/pages/About.jsx`                 | primera tarjeta (identidad) + «The gap» + «The proof»                       |
+
+> **Las superficies de campaña ya no viven en el repositorio.** El kit de
+> Goteo, la propuesta de NLnet y el kit de prensa derivan igualmente de este
+> fichero, pero son material interno del operador y se guardan fuera —
+> `editorial/`, que está en `.gitignore`—. No es un olvido: la regla es del
+> 2026-08-18 y el 2026-09-08 se retiraron también de la historia. Si algún día
+> vuelven, vuelven aquí a la tabla.

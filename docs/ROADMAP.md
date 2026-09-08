@@ -135,8 +135,8 @@ Zero users = zero value. A week of distribution work beats a month of feature wo
 
 **Files:**
 - `src/variants/DirectionD.jsx` landing — add a 30-second Loom embed + "Denuncia un bache en 10 segundos" CTA → t.me/munigraph_bot
-- `public/poster.pdf` (new) — A4 poster with QR to the bot + Spanish call-to-action (design in docs/POSTER_BRIEF.md)
-- `docs/OUTREACH.md` (new) — kit doc for 5 target associations: AAVV (asociación de vecinos), AMPA (padres y madres del cole), comerciantes, coro municipal, club de fútbol. Each entry: contact, pitch, expected first-week activation number.
+- `public/poster.pdf` (new) — A4 poster with QR to the bot + Spanish call-to-action
+- The association-outreach kit (5 targets: AAVV, AMPA, comerciantes, coro municipal, club de fútbol — each with contact, pitch and expected first-week activation) and the poster design brief **live outside the repository**, in the operator's gitignored `editorial/`. They are campaign material, not published project docs; they were removed from history on 2026-09-08. This line is a pointer, not a dead link.
 
 **Reuses:** existing landing (`DirectionD.jsx`) and its editorial structure.
 
