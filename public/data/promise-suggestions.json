@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-09-08T20:51:41.047Z",
+  "generatedAt": "2026-09-09T09:21:57.357Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
   "counts": {
     "total": 23,
     "byProposedStatus": {
-      "en-progreso": 6,
-      "documentada": 17
+      "en-progreso": 7,
+      "documentada": 16
     },
     "llmEvidence": 0
   },
@@ -79,7 +79,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-08T20:51:40.923Z"
+      "generatedAt": "2026-09-09T09:21:57.229Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -151,12 +151,12 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-08T20:51:40.923Z"
+      "generatedAt": "2026-09-09T09:21:57.229Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
-      "proposedStatus": "documentada",
-      "confidence": 0.287,
+      "proposedStatus": "en-progreso",
+      "confidence": 0.575,
       "reasoning": [
         {
           "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-ejecuta-a-buen-ritmo-las-inversiones-hidr%C3%A1ulicas-en-el-marco-de-la-reconstrucci%C3%B3n-tras-la-dana",
@@ -183,6 +183,28 @@
           ]
         },
         {
+          "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxQNmRMX3pCa29hVGJpZFdxdFI5NUw3eFRCOE9DSWxVZlJoNXNSU3pmZzA0b09OcS1BaFdqbGJkWWt1dDV6T2F3V2dFX1JZWHh0bmpaM2lGZk9sU2h6X1RpUDBCMGhKUUJUV25ybmIxZHQ5cWdMcWdraUlHRE5OUElJQTFXTDJBbGJMUEJZbU9ZVzl5eE9oLWE1R0tqUjNFTnJGOVNaTlk1Q09aR1Fhb3h1NlJuVi0ycFl4bkpHWFVjcVhva2VpQTV2QVZ6Nl9DZ3U1aU93R0xxNDBZZ1B6T2VXMTdacUZpSENsbFdpMS03b2duZjVUMW5Qcg?oc=5",
+          "date": "2026-09-09",
+          "quote": "Primer paso para el nuevo Conservatorio de Utiel tras la Dana: el Consell adjudica la redacción del proyecto",
+          "kind": "press",
+          "publisher": "Valencia Plaza",
+          "matchedKeywords": [
+            "dana",
+            "tras"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPRFFiUmJza2FDY1hYQU1CY2tJaFdJMTF5dHVJVjlkZ3Z3cW1FTXg0TGNyVjgzLUd5MGItNDJfYkZqalplSHRpQkNlajhKYzJrWG1LOEpBSjRhenpPRXk5eV9pWURYRFdDTmlpZlBTcHRIWDkyRGUwdm5uenpzUk11Q0NKLXJwQ0NwNDlLaGdGSQ?oc=5",
+          "date": "2026-09-01",
+          "quote": "El Parque Fluvial del Turia recupera cuatro de sus pasarelas tras la dana, infraestructuras que no son «a prueba de riadas»",
+          "kind": "press",
+          "publisher": "Valenciabonita",
+          "matchedKeywords": [
+            "dana",
+            "tras"
+          ]
+        },
+        {
           "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxNTTNEZzBxcE9NTUNYNzV4bDh0dW1veWxGRHNOT0l0bkM0LTFyaEQzZmhiWVFOY1hQTFZrYkg0SGpiV1cxSEEwQTVqdFdVZkpYLVNhYU5jdVFOUlhwaFh5akZqNDZsamdyYWRMSFRrN0VKbW9DVnNfbkM2Zl9tZ3MtMEV3MUlPWTdUVHpmeU1hRXRtUWZjdVphZEN2MUlvaV9hWUUtcHF4ajRnd0FoVDFQQVN6NzVqWGNoYy16TFRadjBDenRWc25NSzRWRkhza25XTGRlNi1KbnBKdDlWTFBWV29jV0MwRXJqMExjMNIB8gFBVV95cUxPTi1qYUtLWnhKTDNnTnNTSlUyMnZKejkweHdteTlOTjJYeGNaMFpZRW1rZE9DUFJ6Z012VG9VYm5mYkc2X2ZEOEFkeFM4ZnFNQ3F2XzNBV2JiQ1B0ZFM3cjNsaHpfbEVWeGdRWmNuTHBSdmNNRjdyZ1RzbVA2c1laWjNpeUpjSXlXYzlnZmdiSnhseXZrRFN6YjRaYzc1Q1FmVmRBWUY5ZXlBZlFOcDR2MnlmanVrV1hNSzBnNERJRmczOFZqYXJTd0s0N0FwYlhQazEyd0pDeUZXSmxUdk9fTWlrU1RxZm83ZXRrelE3TFlJUQ?oc=5",
           "date": "2026-07-28",
           "quote": "Las exhumaciones del cementerio musulmán de Riba-roja se realizaron por las obras de la mota tras la dana",
@@ -192,32 +214,10 @@
             "dana",
             "tras"
           ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxQYjhkbEJKbGZKZFlKWW0tWGdFd19DUEY1S0FSbHZJUG9veUZ5QjY5YlpNS21MOHd4NW0zM1pWNU5rV3ZIOGNISmtWckgzRHg1RUJkdFN2TjdRMjZpME9zcEx6YUM4ZHRCYW9PUkZkUkZLOWdnSThlWG9uNDdrenZyeG1CMEpvR2VQdERQbzZqcXN4V2hYMm9yUHVrX0VTWF9MV1hla1hfVXFOOTZKS2xZdEZCazNyNWNrRXhjUVRJcWZFX3ZWWUVtTXhWUTNkMzZadXhrVUItMkVxTTZSYWVtR3BEV19hZlh00gHuAUFVX3lxTE1rbVplVFBQU1lwZ216Ny1zRlRBd1VxRDFQeHR0SkRuWjFNWk1tRk51aVZWT1QwWmVMVXNqZzdoazV4OEFpMm9DMTRfVnVMbmlsNEFHeTBHYVBQWUJNaVBwVUM5dzdXc0x6TXQ5VkduNFpvakt0RjgxY1pLLXNOVUViRXVPeTFCSVNXbGVEMk9jYl9CcUV2bkhWWWRWekEwZng4QzZiZGoyRmZ3WkdtSUZpRnNIWlNiTlMtb2Z1NXBmSUhsdUxSWTdzZlpyMlk1ZWExd1ByZUE1aWVqbk5oN01vWmFjb21lYnZpeVAwb1E?oc=5",
-          "date": "2026-07-07",
-          "quote": "La Generalitat y Riba-roja impulsan suelo seguro para viviendas e industrias tras la dana",
-          "kind": "press",
-          "publisher": "Levante-EMV",
-          "matchedKeywords": [
-            "dana",
-            "tras"
-          ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNdkwxcWJZOXRjajlDelVISGFiVVZxS0VDckdqNk4zLVhKcTh6X1BSZzc4UGpUTy10UmtpdDRyUVdyMjJNS01WSmF6NS1BbFJSVU42WVhGVTdMS3E3NVFQbVg4ODRTMnFqOERPVk13eGlycng0UGwzSzc5cDdzZl82SVE2U1EwVXR6RUNVVFdyLURCZXNmdFp0OTBLUWd0ckk4dDFibGhnaTJVWDJZeGdtcGtSeDMxOTNrN1Y0WHBXcU85VkYyZkHSAcsBQVVfeXFMUEJDNE1fTnAxTURibnlfS2llY1lZU011TGg4eDNzTDByeWM0RlBYVjN5RXRnYzl1aW5TN2RYM0ViU0V3NzhOMnFIZUJmZlE5ZjRQby12THl4UTR3Q0U1cncydVpETjlhYVEzMmdLS3hQWmZwM0tUbVVwV1RKYi1KV0tiVnpxM0YwVGFTeEFPcklmWHhtQVZGR0ZWdi1IWmtSVHRBSUt1UlliaWNxYjV1N29KcHVGYUNxd2JIeEdvaUpTdWp5TC1jN3d5dE0?oc=5",
-          "date": "2026-06-30",
-          "quote": "Riba-roja desmonta el puente militar que conectó a más de 3.500 vecinos tras la dana",
-          "kind": "press",
-          "publisher": "Levante-EMV",
-          "matchedKeywords": [
-            "dana",
-            "tras"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-08T20:51:40.923Z"
+      "generatedAt": "2026-09-09T09:21:57.229Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
@@ -259,7 +259,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-08T20:51:40.923Z"
+      "generatedAt": "2026-09-09T09:21:57.229Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -344,7 +344,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-08T20:51:40.923Z"
+      "generatedAt": "2026-09-09T09:21:57.229Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -401,7 +401,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-08T20:51:40.923Z"
+      "generatedAt": "2026-09-09T09:21:57.229Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -450,7 +450,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-08T20:51:40.923Z"
+      "generatedAt": "2026-09-09T09:21:57.229Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -458,7 +458,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-08T20:51:40.923Z"
+      "generatedAt": "2026-09-09T09:21:57.229Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -466,7 +466,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-08T20:51:40.923Z"
+      "generatedAt": "2026-09-09T09:21:57.229Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -508,6 +508,17 @@
           ]
         },
         {
+          "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNSXVDNFh4b2F5Q050eW9vX1BJclVqRHVqM2tKdkhoY2xkSkF6S1lrN2szdEZDZkhIQ1pjYUJ1dmd5Y2M0dXM1bkwwNEZTVXhWMS1UUHFBTzlNb1djaW5fYVd4Z1BiTDdELWNKdUE2U04wNnhmNWN2cnFPVkRaN1ZmV0tDSVlCZ20wTDdLd1FWSER0dVNESlBTeThwYUo3UEFlQW44MkhHSGNtdlJ0ZkdaN3YtUkVjd3ZTQVZjbGstTkZncmtfMUhvYWdFcGl6eXVEWjFlQ1lSTmVSR3VuS0Z5T3dDNGtxazZxZlV1XzhR?oc=5",
+          "date": "2026-04-15",
+          "quote": "El Gobierno destina 19 millones de euros a las obras de emergencia y restauración fluvial del Túria",
+          "kind": "press",
+          "publisher": "Valencia Plaza",
+          "matchedKeywords": [
+            "millon",
+            "euro"
+          ]
+        },
+        {
           "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBKQW1yYUJWS3h0TERMb2ozdTgzeWxVTFhLcVZTQ2JOS3FWWGp3RHFqamdtLWEyWS1TZm9vVkVPdV9pbk55LTdDWHJzNVFJVTNJMlJFYkhIb0pSX1ZfSndYOE5MV0k1XzExcEdqYW5tdw?oc=5",
           "date": "2026-04-08",
           "quote": "Sanidad avanza en los trámites para la construcción del nuevo centro de salud de Riba-roja de Túria que contará con una inversión de 8,3 millones de euros",
@@ -517,21 +528,10 @@
             "millon",
             "euro"
           ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxQNnFuX3p5UGhMRHNTRmhfVm5CcG9pbnNjZDZWblA2SnJHNEVkWEZnLWxMVlpvUmZJMWV1V2Q5N084MGF2U2psWFMxTDFWYmRNaGEtUkFRZGNzTnpzS0RhWUVxME9nZmQtR2U5TmxNZndNRnVmRERWa2Q1eWxUVnl1X1Btb255UGNTdU5seW9rWVRGT3BoQmdLek9sZjVyWWJfcXREaEM5VzVaTXFrbDMtdl9CTEFHNTJQNzI2TnNjMDlvYVNXZWZuMGtXeXNaWUNUeXhZVWlrYVk3c1k3SGVJNGlXRXNfc0Z6MlU3WmRUaDJWeFh1UGNn?oc=5",
-          "date": "2026-03-27",
-          "quote": "Riba-roja aprueba inversiones de 5,9 millones de euros, entre las que destaca un Plan de Refugios Climáticos",
-          "kind": "press",
-          "publisher": "Valencia Plaza",
-          "matchedKeywords": [
-            "millon",
-            "euro"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-08T20:51:40.923Z"
+      "generatedAt": "2026-09-09T09:21:57.229Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -562,7 +562,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-08T20:51:40.923Z"
+      "generatedAt": "2026-09-09T09:21:57.229Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
@@ -602,7 +602,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-08T20:51:40.923Z"
+      "generatedAt": "2026-09-09T09:21:57.229Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -646,7 +646,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-08T20:51:40.923Z"
+      "generatedAt": "2026-09-09T09:21:57.229Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -701,7 +701,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-08T20:51:40.923Z"
+      "generatedAt": "2026-09-09T09:21:57.229Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -731,7 +731,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-08T20:51:40.923Z"
+      "generatedAt": "2026-09-09T09:21:57.229Z"
     },
     {
       "promiseId": "ac-psoe-1cbkzxt",
@@ -762,7 +762,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-08T20:51:40.923Z"
+      "generatedAt": "2026-09-09T09:21:57.229Z"
     },
     {
       "promiseId": "ac-psoe-1v0679f",
@@ -795,7 +795,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-08T20:51:40.923Z"
+      "generatedAt": "2026-09-09T09:21:57.229Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -803,7 +803,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-08T20:51:40.923Z"
+      "generatedAt": "2026-09-09T09:21:57.229Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -822,7 +822,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-08T20:51:40.923Z"
+      "generatedAt": "2026-09-09T09:21:57.229Z"
     },
     {
       "promiseId": "ac-psoe-pl3lsq",
@@ -875,7 +875,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-08T20:51:40.923Z"
+      "generatedAt": "2026-09-09T09:21:57.229Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -898,7 +898,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-08T20:51:40.923Z"
+      "generatedAt": "2026-09-09T09:21:57.229Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -929,7 +929,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-08T20:51:40.923Z"
+      "generatedAt": "2026-09-09T09:21:57.229Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -982,7 +982,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-08T20:51:40.923Z"
+      "generatedAt": "2026-09-09T09:21:57.229Z"
     }
   ],
   "llmEvidence": [],

@@ -1,18 +1,18 @@
 {
-  "generatedAt": "2026-09-08T20:49:50.290Z",
+  "generatedAt": "2026-09-09T09:20:03.825Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 67,
-    "openTotal": 66,
+    "total": 69,
+    "openTotal": 68,
     "inRibaRoja": 43,
     "closingSoon": 15,
-    "withDetail": 67,
+    "withDetail": 69,
     "byMonth": {
-      "2026-09": 10,
+      "2026-09": 12,
       "2026-08": 29,
       "2026-07": 19,
       "2026-06": 1,
@@ -23,6 +23,161 @@
     }
   },
   "items": [
+    {
+      "id": "2533",
+      "fo": 2533,
+      "codigo": "2026/00232",
+      "titulo": "Operario/a de camión CIS",
+      "publishedAt": "2026-09-09",
+      "deadline": "2026-11-09",
+      "location": "Zona Valencia: Montroi, Alfafar, Riba-roja, La Pobla, Almenara, C.C. Herón, Manuel, Bétera Valencia (Valencia)",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2533",
+      "inRibaRoja": false,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00232"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Operario/a de camión CIS"
+          },
+          {
+            "label": "Observaciones",
+            "value": "SE VALORARÁ POSITIVAMENTE"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "SUMINISTRO DE AGUA, ACTIVIDADES DE SANEAMIENTO, GESTIÓN DE RESIDUOS Y DESCONTAMINACIÓN"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "2"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "OFICIAL DE 2ª"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Zona Valencia: Montroi, Alfafar, Riba-roja, La Pobla, Almenara, C.C. Herón, Manuel, Bétera, Municipio: Valencia, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno rotativo, Festivos"
+          },
+          {
+            "label": "Horario",
+            "value": "Turnos de: 6:00 a 14:00h, de 14:00 a 22:00 y de 22:00 a 06:00"
+          },
+          {
+            "label": "Salario",
+            "value": "22.000€ salario fijo + variables que se puedan generar."
+          },
+          {
+            "label": "Funciones",
+            "value": "Conducción y manejo del camión CIS. Revisión diaria del vehículo. Asistir al oficial o encargado en todas las tareas que requiera. Cargar y descargar materiales y equipos del vehículo. Realizar cualquier tarea auxiliar necesaria para el buen desarrollo del trabajo. Obligado cumplimiento de las medidas de seguridad y salud establecidas. Colocar y retirar vallas, conos y señales de seguridad. Controlar el tráfico peatonal y vehicular en la zona de trabajo. Mantener el perímetro de seguridad durante los trabajos. Limpiar manualmente con palas, rastrillos y herramientas básicas. Mantener en orden las herramientas y equipo."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          },
+          {
+            "label": "Habilidades",
+            "value": "Manejo de equipos de limpieza de tuberías. Manejo de herramientas digitales. Conocimiento de materiales de construcción (hormigón, gres, PVC, PEAD). Habilidades: Proactividad y enfoque en la seguridad. Disponibilidad para turnos nocturnos o trabajar en situaciones de emergencia. SE VALORARÁ POSITIVAMENTE: Curso de espacios confinados actualizado. Curso de señalización y corte de tráfico Nociones básicas sobre redes de saneamiento Conocimiento de herramientas y equipos de limpieza Manejo básico de equipos de hidropresión."
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "numPuestos": "2",
+        "categoria": "OFICIAL DE 2ª",
+        "observaciones": "SE VALORARÁ POSITIVAMENTE",
+        "jornada": "Completa Turnos: Turno rotativo, Festivos",
+        "horario": "Turnos de: 6:00 a 14:00h, de 14:00 a 22:00 y de 22:00 a 06:00",
+        "salario": "22.000€ salario fijo + variables que se puedan generar.",
+        "funciones": "Conducción y manejo del camión CIS. Revisión diaria del vehículo. Asistir al oficial o encargado en todas las tareas que requiera. Cargar y descargar materiales y equipos del vehículo. Realizar cualquier tarea auxiliar necesaria para el buen desarrollo del trabajo. Obligado cumplimiento de las medidas de seguridad y salud establecidas. Colocar y retirar vallas, conos y señales de seguridad. Controlar el tráfico peatonal y vehicular en la zona de trabajo. Mantener el perímetro de seguridad durante los trabajos. Limpiar manualmente con palas, rastrillos y herramientas básicas. Mantener en orden las herramientas y equipo.",
+        "vehiculo": "Sí",
+        "ocupaciones": [
+          {
+            "nombre": "CONDUCTORES DE CAMIÓN, EN GENERAL",
+            "experiencia": "1 Años"
+          }
+        ]
+      }
+    },
+    {
+      "id": "2532",
+      "fo": 2532,
+      "codigo": "2026/00231",
+      "titulo": "COMERCIAL",
+      "publishedAt": "2026-09-09",
+      "deadline": "2026-11-09",
+      "location": "Vilamarxant (Valencia)",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2532",
+      "inRibaRoja": false,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00231"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "COMERCIAL"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "OTROS SERVICIOS"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "10"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Vilamarxant, Provincia: Valencia, CP: 46191"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Salario",
+            "value": "1500 NETOS aprox. + INCENTIVOS DE VENTA"
+          },
+          {
+            "label": "Funciones",
+            "value": "COMERCIAL DE BEBIDAS, ALIMENTACIÓN Y DIFERENTES PRODUCTOS PARA HOSTELERÍA"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "10",
+        "municipio": "Vilamarxant",
+        "provincia": "Valencia",
+        "cp": "46191",
+        "jornada": "Completa",
+        "salario": "1500 NETOS aprox. + INCENTIVOS DE VENTA",
+        "funciones": "COMERCIAL DE BEBIDAS, ALIMENTACIÓN Y DIFERENTES PRODUCTOS PARA HOSTELERÍA",
+        "ocupaciones": []
+      }
+    },
     {
       "id": "2443",
       "fo": 2443,
