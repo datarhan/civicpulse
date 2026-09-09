@@ -447,3 +447,27 @@ export function aggregateStats(db: Db): AggregateStats {
   )
   return { total, byState, byNeighborhood, byCategory, byConcejal }
 }
+
+/**
+ * Eventos del repositorio ya avisados.
+ *
+ * Se lee entero en cada sondeo porque son cientos de filas como mucho, y una
+ * consulta por evento no compraría nada. La poda deja un mes: pasado eso el
+ * evento ya no puede reaparecer en las ventanas que sondea el cron, así que
+ * conservar la fila sólo haría crecer la tabla.
+ */
+export function eventosRepoVistos(db: Db): Set<string> {
+  const filas = db.prepare('SELECT id FROM repo_eventos_vistos').all() as { id: string }[]
+  return new Set(filas.map((f) => f.id))
+}
+
+export function marcarEventoRepoVisto(db: Db, id: string): void {
+  db.prepare('INSERT OR IGNORE INTO repo_eventos_vistos (id) VALUES (?)').run(id)
+}
+
+export function podarEventosRepo(db: Db): number {
+  const r = db
+    .prepare("DELETE FROM repo_eventos_vistos WHERE seen_at < datetime('now', '-30 days')")
+    .run()
+  return r.changes
+}

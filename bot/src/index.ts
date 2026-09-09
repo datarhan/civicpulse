@@ -23,7 +23,14 @@ import { buildSindicTemplate, renderSindicHtml, renderSindicMarkdown } from './s
 import { startSilencioCron } from './services/cron.ts'
 import { startDigestCron } from './services/digest.ts'
 import { startConvocatoriasCron } from './services/convocatorias.ts'
-import { getQueja } from './db/queries.ts'
+import { startEventosRepoCron } from './services/eventos-repo.ts'
+import { parseAdminIds } from './util/admins.ts'
+import {
+  getQueja,
+  eventosRepoVistos,
+  marcarEventoRepoVisto,
+  podarEventosRepo,
+} from './db/queries.ts'
 import { routeUsingLocalOfficials } from './services/router.ts'
 import { logger } from './util/log.ts'
 import { buildHealth } from './services/health'
@@ -74,6 +81,27 @@ function makeBot() {
   // paran. Éste es un recordatorio interno del plazo de un tercero. Pararlo en
   // campaña sólo perdería una convocatoria, que es anual.
   startConvocatoriasCron(bot)
+
+  // Y lo que pasa en el REPOSITORIO, sondeado cada hora.
+  //
+  // Lo urgente aquí es el derecho de réplica: es una obligación legal con plazo
+  // y enterarse tarde incumple el contrato editorial que el sitio publica. Van
+  // también las PR y —esto es la cicatriz del 9-09-2026— los workflows
+  // FALLIDOS y SALTADOS. `pull-quejas.yml` llevaba saltando desde que se recreó
+  // el repositorio, porque su `vars.BOT_EXPORT_URL` se perdió con él, y en la
+  // lista de ejecuciones un salto no se distingue de un día tranquilo.
+  //
+  // Por sondeo y no desde Actions justamente por eso: el repositorio es público,
+  // así que esto no depende de ninguna variable ni secreto que se pueda perder.
+  startEventosRepoCron({
+    admins: () => parseAdminIds(),
+    sendDm: async (id, texto) => {
+      await bot.api.sendMessage(id, texto, { parse_mode: 'Markdown' })
+    },
+    yaVistos: () => eventosRepoVistos(db),
+    recordar: (id) => marcarEventoRepoVisto(db, id),
+    podar: () => podarEventosRepo(db),
+  })
 
   bot.catch((err) => {
     console.error('[bot] error:', err)
