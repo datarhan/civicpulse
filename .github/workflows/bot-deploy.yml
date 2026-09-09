@@ -34,13 +34,19 @@ concurrency:
   group: bot-deploy
   cancel-in-progress: true
 
+# Este workflow no escribe nada en el repositorio: clona, construye en Fly y
+# despliega. Lo único que necesita es leer. El `GITHUB_TOKEN` por defecto viene
+# con mucho más, y aquí conviven con él las credenciales de producción del bot.
+permissions:
+  contents: read
+
 jobs:
   deploy:
     name: Deploy bot to Fly
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       # Un despliegue que no puede autenticarse tiene que DECIRLO.
       #
@@ -64,7 +70,15 @@ jobs:
             exit 1
           fi
 
-      - uses: superfly/flyctl-actions/setup-flyctl@master
+      # Fijada al COMMIT, no a `master`.
+      #
+      # Es una acción de terceros y corre en el mismo trabajo que
+      # `FLY_API_TOKEN`, así que quien pudiera mover esa rama desplegaría lo que
+      # quisiera en nuestra app. `master` es una referencia móvil: hoy apunta
+      # aquí y mañana a otro sitio, sin que ningún commit nuestro cambie. Este
+      # SHA es exactamente lo que `master` servía el 2026-09-09, y coincide con
+      # la etiqueta 1.6.
+      - uses: superfly/flyctl-actions/setup-flyctl@ed8efb33836e8b2096c7fd3ba1c8afe303ebbff1 # 1.6
 
       # `--remote-only` construye en los constructores de Fly: el runner no
       # tiene que montar Docker y el contexto no viaja desde aquí.
