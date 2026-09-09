@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-06T07:30:22.802Z",
+  "generatedAt": "2026-09-09T07:30:28.956Z",
   "source": {
     "channelUrl": "https://www.youtube.com/@ajuntam_riba_roja_de_turia",
     "description": "Ajuntament de Riba-roja YouTube channel — pleno recordings only. Feed produced via `yt-dlp --flat-playlist --dump-json`."
@@ -15,6 +15,13 @@
     }
   },
   "items": [
+    {
+      "ytId": "uogftiK6-fM",
+      "title": "Ple Ordinari 7 de setembre  de 2026.",
+      "plenoDate": "2026-09-07",
+      "kind": "ordinario",
+      "url": "https://www.youtube.com/watch?v=uogftiK6-fM"
+    },
     {
       "ytId": "nZK1v9ZnKDc",
       "title": "Ple Ordinari 27 de juliol de 2026.",
@@ -182,13 +189,6 @@
       "plenoDate": "2023-01-23",
       "kind": "ordinario",
       "url": "https://www.youtube.com/watch?v=EKoMiCY-HUk"
-    },
-    {
-      "ytId": "HVKLkdTLqtk",
-      "title": "Ple ordinari 12 de desembre de 2022",
-      "plenoDate": "2022-12-12",
-      "kind": "ordinario",
-      "url": "https://www.youtube.com/watch?v=HVKLkdTLqtk"
     }
   ]
 }

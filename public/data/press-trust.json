@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-09T04:52:06.798Z",
+  "generatedAt": "2026-09-09T07:56:35.471Z",
   "windowDays": 30,
   "articles": [
     {
@@ -880,28 +880,11 @@
         "localCoverage": true,
         "datedArticle": true,
         "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": true,
+        "corroboratedAcrossOutlets": false,
         "factualClaimsPresent": false,
         "opinionFraction": 0
       },
-      "score": 3
-    },
-    {
-      "articleId": "plfgoc",
-      "articleFingerprint": "18f1xjw",
-      "outlet": "Valencia Plaza",
-      "outletHost": "valenciaplaza.com",
-      "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPSTQ1ZHFLLTNRRXdudEs2RHpkMXdKam1SUjdjM21jRkx3TFZEcVd1eFJ5cloycFVpNHFFeG1UeXYyVHpFcXVyaEsxRVgzajlLdnI2ZmVoT3ZpMDJXa1h2WUN3REplYjJIN3QydlB2TWFWYTBpdnZ4QU5oY1VXTWlITUlCSDQwaGhCY0RocnZYTUR0THVERkJqOWpTMmtzMmNmRDhXaWlIcGNCZmNOaXM1d1BTVUZ4TmhUSm5DTGdmODlyeWw2bUY4UUc2OUN6MUZIZnRjNlZqSGRxeTd1QTVVUFd4bHpJNjhG?oc=5",
-      "date": "2026-08-10T07:00:00.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": true,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 3
+      "score": 2
     }
   ],
   "outlets": [
@@ -916,7 +899,7 @@
         "sin-datos": 12,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.9,
+      "meanTrustScore": 2.85,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -983,7 +966,7 @@
     {
       "outlet": "Valencia Plaza",
       "outletHost": "valenciaplaza.com",
-      "articleCount": 4,
+      "articleCount": 3,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -1072,7 +1055,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "4213ce03b311",
+    "plenos-agendas.json": "28b1e8ad6fda",
     "press-claims-verified.json": "dc81608a5279",
     "press.json": "9aeece937859",
     "promises.json": "d18811c11210"
