@@ -4,6 +4,7 @@ import {
   estadoDe,
   avisosDe,
   runConvocatoriasOnce,
+  proximoHito,
   type Convocatoria,
 } from '../src/services/convocatorias.ts'
 
@@ -149,6 +150,27 @@ describe('runConvocatoriasOnce', () => {
     const r = await runConvocatoriasOnce([], async () => {}, enero(1), [FIJA])
     expect(r.sinAdministradores).toBe(true)
     expect(r.avisos).toBe(1)
+  })
+})
+
+describe('proximoHito', () => {
+  // Sin esto el cron es indistinguible de estar muerto en cualquier día sin
+  // hito, que son casi todos: sólo habla cuando hay algo que decir, y el
+  // silencio se lee igual que un import que nunca cargó. Un arranque tiene que
+  // DEMOSTRAR que hizo el trabajo — regla 2 de DATA_INTEGRITY.
+  it('dice cuál es el siguiente aviso y cuándo', () => {
+    // FIJA cierra el 31-01; el primer hito es el de 30 días, el 01-01.
+    const r = proximoHito(new Date('2025-12-15T00:00:00Z'), [FIJA])
+    expect(r).not.toBeNull()
+    expect(r!.fecha).toBe('2026-01-01')
+    expect(r!.id).toBe('prueba-cierra')
+  })
+
+  // Con el plazo ya pasado no queda hito ninguno, y `null` es la respuesta
+  // honesta: inventar una fecha para tener algo que imprimir sería peor que
+  // callar.
+  it('devuelve null si no queda ninguno, en vez de inventarse uno', () => {
+    expect(proximoHito(new Date('2026-06-01T00:00:00Z'), [FIJA])).toBeNull()
   })
 })
 

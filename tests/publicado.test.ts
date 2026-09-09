@@ -54,6 +54,36 @@ describe('compararPublicado', () => {
     expect(r.desenlace).toBe('repo-por-detras')
   })
 
+  // La frase tiene que decir lo que pasó. La primera versión construía «el
+  // sitio da un generatedAt legible» para el caso en que justamente NO lo da:
+  // el dato estaba bien clasificado y el renglón decía lo contrario, que es el
+  // defecto que este repositorio persigue en las páginas y se le coló en su
+  // propia guarda.
+  it('el detalle dice cuál de los dos NO pudo leerse', () => {
+    expect(compararPublicado('x.json', REPO, null).detalle).toMatch(
+      /el sitio no da un generatedAt/i,
+    )
+    expect(compararPublicado('x.json', null, REPO).detalle).toMatch(
+      /el repositorio no da un generatedAt/i,
+    )
+    expect(compararPublicado('x.json', null, null).detalle).toMatch(
+      /ni el repositorio ni el sitio dan un generatedAt/i,
+    )
+  })
+
+  // El primer arreglo de la frase dejó «el sitio no da DA un generatedAt», y la
+  // prueba de arriba —que sólo buscaba «el sitio no da»— pasó por encima. Una
+  // aserción que se queda en el prefijo no lee la frase: la lee a medias.
+  it('la frase no repite el verbo ni se queda a medias', () => {
+    for (const d of [
+      compararPublicado('x.json', REPO, null).detalle,
+      compararPublicado('x.json', null, REPO).detalle,
+      compararPublicado('x.json', null, null).detalle,
+    ]) {
+      expect(d, d).not.toMatch(/\b(da|dan)\s+(da|dan)\b/)
+    }
+  })
+
   it('no llama coincidencia a lo que no pudo leer', () => {
     expect(compararPublicado('press.json', REPO, null).desenlace).toBe('ilegible')
     expect(compararPublicado('press.json', null, REPO).desenlace).toBe('ilegible')

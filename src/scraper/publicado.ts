@@ -55,18 +55,22 @@ export function compararPublicado(
   const selloSitio = selloDe(sitio)
 
   if (selloRepo === null || selloSitio === null) {
+    // La frase tiene que decir lo que pasó. Decía «el sitio DA un generatedAt
+    // legible» justo cuando no lo daba: el dato bien clasificado y el renglón
+    // diciendo lo contrario, que es el defecto que esta casa persigue en las
+    // páginas y se le coló en su propia guarda.
     const cual =
       selloRepo === null && selloSitio === null
-        ? 'ni el repositorio ni el sitio'
+        ? 'ni el repositorio ni el sitio dan'
         : selloRepo === null
-          ? 'el repositorio'
-          : 'el sitio'
+          ? 'el repositorio no da'
+          : 'el sitio no da'
     return {
       fichero,
       repoGeneratedAt: selloRepo,
       sitioGeneratedAt: selloSitio,
       desenlace: 'ilegible',
-      detalle: `${cual} da un generatedAt legible — sin sello no hay comparación, y no tenerla no es coincidir`,
+      detalle: `${cual} un generatedAt legible — sin sello no hay comparación, y no tenerla no es coincidir`,
       atrasoMinutos: null,
     }
   }

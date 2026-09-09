@@ -20,3 +20,18 @@ civicpulse-design-system
 docs
 tests
 .vercel
+
+# Lo que el propio flyctl señaló en el despliegue del 9-09-2026: el contexto de
+# construcción eran 6,2 GB en 41.858 ficheros, y se sube al builder ENTERO en
+# cada despliegue aunque el Dockerfile sólo copie `bot`, `src` y `public/data`.
+#
+# No es sólo lentitud. `.claude/worktrees/` son copias completas del repositorio
+# y pueden contener `editorial/` —el material de subvenciones, que es local y no
+# se publica—. No llega a la imagen, pero viajaba al builder sin necesidad
+# ninguna. Lo que no hace falta subir, no se sube.
+mlx_models
+.voiceprints
+.cache
+.claude
+.embed-cache
+editorial

@@ -200,6 +200,30 @@ export function avisosDe(cs: Convocatoria[], ahora: Date): Aviso[] {
   return out
 }
 
+/**
+ * El siguiente día en que este cron dirá algo, o `null` si ya no queda ninguno.
+ *
+ * Existe para que el arranque pueda DEMOSTRAR que el cron está vivo. Sin esto
+ * sólo habla cuando hay un hito —diez días de aquí a diciembre— y los otros
+ * trescientos es indistinguible de un import que nunca cargó. Es la regla 2 de
+ * DATA_INTEGRITY aplicada a un cron: una pasada tiene que probar que hizo el
+ * trabajo, y «no dije nada» no lo prueba.
+ *
+ * Mira un año hacia delante y para: más allá, las fechas aproximadas de este
+ * calendario no significan nada.
+ */
+export function proximoHito(
+  desde: Date,
+  cs: Convocatoria[] = CONVOCATORIAS,
+): { fecha: string; id: string; clase: 'abre' | 'cierra' } | null {
+  for (let i = 0; i <= 366; i++) {
+    const d = new Date(desde.getTime() + i * DIA)
+    const [a] = avisosDe(cs, d)
+    if (a) return { fecha: d.toISOString().slice(0, 10), id: a.id, clase: a.clase }
+  }
+  return null
+}
+
 export interface CorridaConvocatorias {
   avisos: number
   enviados: number
@@ -264,6 +288,15 @@ export function startConvocatoriasCron(bot: Bot<MyContext>): void {
       logger.info?.(`[convocatorias] ${r.avisos} aviso(s) a ${r.enviados} administrador(es)`)
     }
   }
+  // Un renglón al arrancar, y no es decoración: es lo único que distingue
+  // «cron vivo y sin nada que decir» de «cron que no cargó».
+  const p = proximoHito(new Date())
+  logger.info?.(
+    p
+      ? `[convocatorias] cron armado · ${CONVOCATORIAS.length} convocatoria(s) · siguiente aviso ${p.fecha} (${p.clase}:${p.id})`
+      : `[convocatorias] cron armado · ${CONVOCATORIAS.length} convocatoria(s) · ningún hito en los próximos 12 meses`,
+  )
+
   void tick()
   setInterval(() => void tick(), TICK_MS)
 }
