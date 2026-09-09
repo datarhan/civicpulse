@@ -56,6 +56,23 @@ describe('las pruebas del bot las ejecuta alguien', () => {
     expect(suites.length, 'bot/tests sin ficheros de prueba').toBeGreaterThan(0)
   })
 
+  // El workflow nació ROJO por esto, y en local no se podía ver: sin
+  // configuración propia, `cd bot && vitest` sube por el árbol y carga la de la
+  // RAÍZ, que importa `vitest` y sus `setupFiles`. En un portátil resuelve
+  // —están las dos instaladas y encima— y en CI, donde sólo se instalan las
+  // dependencias del bot, revienta antes de recoger un fichero:
+  // «Cannot find package 'vitest' imported from …/vitest.config.ts».
+  //
+  // Heredar la configuración de otro proyecto sólo funciona mientras los dos
+  // estén instalados, así que la independencia del bot hay que afirmarla.
+  it('el bot tiene configuración propia de vitest y no hereda la de la raíz', () => {
+    const cfgs = readdirSync(join(RAIZ, 'bot')).filter((f) => /^vitest\.config\.[jt]s$/.test(f))
+    expect(
+      cfgs,
+      'sin config propia el bot carga la de la raíz, que en CI no tiene node_modules al lado',
+    ).not.toEqual([])
+  })
+
   it('algún workflow entra en bot/ y corre su suite', () => {
     const cubren = workflows.filter((w) => CORRE_EL_BOT.test(w.texto))
     expect(
