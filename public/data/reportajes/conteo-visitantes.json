@@ -47,7 +47,7 @@
       "objeto": "Desarrollo de campañas de promoción turística segmentadas",
       "empresa": "AUTORITAS CONSULTING S.A.",
       "base": 33057.85,
-      "importe": 26000.0,
+      "importe": 26000,
       "licitadores": 1,
       "adjudicacion": "2025-12-16",
       "formalizacion": "2026-01-14",
@@ -183,5 +183,32 @@
     "Las cifras de este reportaje están congeladas a la fecha de publicación y no se recalculan: si el registro se mueve, se anota como corrección y se dice qué cambió."
   ],
   "replica": "El Ayuntamiento de Riba-roja de Túria, Gimeno Digital Technologies S.L. y Autoritas Consulting S.A. tienen derecho de réplica sobre este reportaje. Cualquier respuesta literal que remitan se publicará íntegra junto a este texto, sin edición.",
-  "preguntasNota": "Estas preguntas se han remitido al Ayuntamiento de Riba-roja de Túria junto con una solicitud de acceso a la información amparada en la Ley 19/2013. Su respuesta se publicará íntegra y sin editar junto a este reportaje, y se hará constar qué preguntas quedaron sin responder."
+  "preguntasNota": "Estas preguntas se han remitido al Ayuntamiento de Riba-roja de Túria junto con una solicitud de acceso a la información amparada en la Ley 19/2013. Su respuesta se publicará íntegra y sin editar junto a este reportaje, y se hará constar qué preguntas quedaron sin responder.",
+  "solicitudes": {
+    "titulo": "Lo que se ha pedido, a quién y desde cuándo corre el plazo",
+    "nota": "El artículo 17.2 de la Ley 19/2013 admite «cualquier medio que permita tener constancia» de la identidad de quien pide, de la información solicitada y de una dirección de contacto: un correo que lleve las tres cosas es una vía válida de presentación. El artículo 20.1, en cambio, cuenta el mes «desde la recepción de la solicitud por el órgano competente para resolver», y de un correo consta el envío, no esa recepción. Por eso las fechas van contadas desde el envío y no se presentan como vencimientos acreditados.",
+    "items": [
+      {
+        "organismo": "Ayuntamiento de Riba-roja de Túria",
+        "enviadaEl": "2026-09-09",
+        "via": "correo electrónico",
+        "pide": "Las ocho preguntas de arriba y copia de nueve documentos de protección de datos: evaluación de impacto, base jurídica del tratamiento, asiento del Registro de Actividades de Tratamiento, contrato de encargado suscrito con cada adjudicataria, información del artículo 13 a las personas afectadas, categorías de datos y plazos de conservación, destino de los datos ahora que ambos contratos han terminado y constancia de la consulta al Delegado de Protección de Datos.",
+        "respuesta": null
+      },
+      {
+        "organismo": "Secretaría de Estado de Turismo",
+        "enviadaEl": "2026-09-09",
+        "via": "correo electrónico",
+        "pide": "Qué verificaciones administrativas se hicieron conforme a la Orden HFP/1030/2021 y copia de las listas de comprobación; el grado de ejecución certificado a efectos de los hitos nº 220 y nº 221 del CID; los entregables exigidos como prueba de finalización; si el Ayuntamiento pidió reprogramar tras la DANA; el acta de la Comisión de Seguimiento; y la evaluación del riesgo de fraude prevista en el artículo 6 de esa misma orden.",
+        "respuesta": null
+      },
+      {
+        "organismo": "Turisme Comunitat Valenciana",
+        "enviadaEl": "2026-09-09",
+        "via": "correo electrónico",
+        "pide": "El mismo escrito, como gestora del Plan Territorial de Sostenibilidad Turística en Destino de la Comunitat Valenciana — Programa 2022, en el que se integra el plan de Riba-roja.",
+        "respuesta": null
+      }
+    ]
+  }
 }

@@ -98,7 +98,13 @@ jobs:
 
       - name: Instalar Chromium
         if: steps.check.outputs.estado == 'divergen' && steps.abierta.outputs.ya == 'no'
-        run: npx playwright install --with-deps chromium
+        run: |
+          # apt sale en error EN BLOQUE por una sola fuente rota, y la del
+          # runner que sobra tumbó CI cuatro veces el 2026-09-09. Va aquí
+          # dentro y no en un paso hermano para que no pueda separarse de la
+          # instalación que protege ni perder su `if:`.
+          bash scripts/ci-apt-fuentes-rotas.sh
+          npx playwright install --with-deps chromium
 
       - name: Traer la entrega y recomponer
         if: steps.check.outputs.estado == 'divergen' && steps.abierta.outputs.ya == 'no'

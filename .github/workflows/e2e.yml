@@ -48,11 +48,23 @@ jobs:
 
       - name: Install Playwright Chromium
         if: steps.cache-pw.outputs.cache-hit != 'true'
-        run: npx playwright install --with-deps chromium
+        run: |
+          # apt sale en error EN BLOQUE por una sola fuente rota, y la del
+          # runner que sobra tumbó CI cuatro veces el 2026-09-09. Va aquí
+          # dentro y no en un paso hermano para que no pueda separarse de la
+          # instalación que protege ni perder su `if:`.
+          bash scripts/ci-apt-fuentes-rotas.sh
+          npx playwright install --with-deps chromium
 
       - name: Install Playwright system deps (cache hit)
         if: steps.cache-pw.outputs.cache-hit == 'true'
-        run: npx playwright install-deps chromium
+        run: |
+          # apt sale en error EN BLOQUE por una sola fuente rota, y la del
+          # runner que sobra tumbó CI cuatro veces el 2026-09-09. Va aquí
+          # dentro y no en un paso hermano para que no pueda separarse de la
+          # instalación que protege ni perder su `if:`.
+          bash scripts/ci-apt-fuentes-rotas.sh
+          npx playwright install-deps chromium
 
       - name: Build production bundle
         run: npm run build

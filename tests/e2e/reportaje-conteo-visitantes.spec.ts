@@ -38,6 +38,21 @@ test.describe('Reportaje · conteo de visitantes (/reportajes/conteo-visitantes)
     // legal: la pieza nombra a dos empresas y a un ayuntamiento.
     await expect(page.getByText(/derecho de réplica/).first()).toBeVisible()
 
+    // Las tres solicitudes, con su reloj CALCULADO el día que se lee.
+    await expect(page.getByText(/Secretaría de Estado de Turismo · enviada el/)).toBeVisible()
+    await expect(page.getByText(/Turisme Comunitat Valenciana · enviada el/)).toBeVisible()
+
+    // LA SALVEDAD JURÍDICA, y es la que no puede caerse. Salieron por correo:
+    // consta el envío, no la recepción por el órgano competente, que es donde
+    // el art. 20.1 arranca el mes. Sin esta frase la página estaría afirmando
+    // un vencimiento que no puede acreditar, que es exactamente la clase de
+    // afirmación que este sitio no publica.
+    await expect(page.getByText(/órgano competente para resolver/).first()).toBeVisible()
+    await expect(page.getByText(/no se presentan como vencimientos acreditados/)).toBeVisible()
+
+    // Y la fecha se lee en castellano, no en ISO: es prosa, no un volcado.
+    expect(await page.getByText(/enviada el \d{4}-\d{2}-\d{2}/).count()).toBe(0)
+
     expect(appErrors(errors)).toEqual([])
   })
 })
