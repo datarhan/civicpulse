@@ -26,7 +26,7 @@
  * vuelve a leerlo después. Un registro de honestidad que filtra una credencial
  * no es honesto, es sólo caro.
  */
-import { readFileSync, readdirSync, writeFileSync, existsSync } from 'node:fs'
+import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { homedir } from 'node:os'
 import { redactSecrets } from '../src/scraper/redact-secrets'
