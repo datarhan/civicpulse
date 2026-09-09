@@ -1,10 +1,75 @@
 {
   "version": "1",
-  "generatedAt": "2026-09-06",
+  "generatedAt": "2026-09-09",
   "legalNotice": "Auditoría editorial automatizada. Los lotes con ≥1 veredicto contradicho se mantienen en editorial/press-auto-curation-queue.md hasta revisión humana; los medios afectados pueden ejercer derecho de réplica mediante el formulario .github/ISSUE_TEMPLATE/press-finding-response.yml.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues",
   "methodologyUrl": "/metodologia#laboratorio-prensa",
   "items": [
+    {
+      "id": "pf-2026-09-09-1gwkjpc",
+      "sourceClaimIds": [
+        "1gwkjpc-0-num",
+        "1gwkjpc-1-num",
+        "1gwkjpc-2-num",
+        "1gwkjpc-3-num",
+        "1gwkjpc-4-num",
+        "1gwkjpc-5-num",
+        "1gwkjpc-6-dat"
+      ],
+      "articleIds": [
+        "1gwkjpc"
+      ],
+      "articleFingerprints": [
+        "1gwkjpc"
+      ],
+      "attributedOutlets": [
+        "Periòdic del Camp de Túria"
+      ],
+      "earliestArticleDate": "2026-08-27",
+      "latestArticleDate": "2026-08-27",
+      "title": "Auditoría · Periòdic del Camp de Túria: amb una inversió de 158.916,51 euros, IVA inclòs, executades per l'empresa Nerco",
+      "summary": "Los datos municipales contrastan con la cobertura citada. Veredictos del lote: 1 verificado · 6 sin-datos. Cobertura: 1 medio(s) — Periòdic del Camp de Túria. Lote auto-curado por el laboratorio: el contraste es determinista y no lo ha revisado una persona.",
+      "severity": "informational",
+      "quotes": [
+        {
+          "text": "amb una inversió de 158.916,51 euros, IVA inclòs, executades per l'empresa Nerco Infraestructuras",
+          "outlet": "Periòdic del Camp de Túria",
+          "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85804-riba-roja-finalitza-les-actuacions-del-seu-pla-de-sostenibilitat-turistica.html",
+          "sourceClaimId": "1gwkjpc-2-num"
+        },
+        {
+          "text": "amb un pressupost base de licitació de 774.500 euros",
+          "outlet": "Periòdic del Camp de Túria",
+          "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85804-riba-roja-finalitza-les-actuacions-del-seu-pla-de-sostenibilitat-turistica.html",
+          "sourceClaimId": "1gwkjpc-0-num"
+        },
+        {
+          "text": "el segon, ha comptat amb un pressupost de 142.347,15 euros, tots dos executats per Becsa",
+          "outlet": "Periòdic del Camp de Túria",
+          "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85804-riba-roja-finalitza-les-actuacions-del-seu-pla-de-sostenibilitat-turistica.html",
+          "sourceClaimId": "1gwkjpc-1-num"
+        },
+        {
+          "text": "S'han implantat quatre estructures situades en punts especialment exposats al sol",
+          "outlet": "Periòdic del Camp de Túria",
+          "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85804-riba-roja-finalitza-les-actuacions-del-seu-pla-de-sostenibilitat-turistica.html",
+          "sourceClaimId": "1gwkjpc-3-num"
+        }
+      ],
+      "crossChecked": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ujgt5qEIoTA2wEhQbcAqug%3D%3D",
+          "snippet": "Contrato administrativo de obras para la ejecución del proyecto de “Obras de Instalación de pérgolas con vegetación autóctona para fomento de la resiliencia frente al cambio climático, en el marco del Plan de Recuperación, Transformación…"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "relatedPlenoItems": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-09-09",
+      "response": null
+    },
     {
       "id": "pf-2026-09-06-1gwkjpc",
       "sourceClaimIds": [

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-09T07:56:35.482Z",
+  "generatedAt": "2026-09-09T08:38:22.324Z",
   "clusters": [
     {
       "clusterId": "1hy1xq8",
@@ -25,7 +25,7 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 2,
+        "sin-datos": 3,
         "promesa-repetida": 0
       }
     },
@@ -41,17 +41,12 @@
       ],
       "earliestDate": "2026-08-25T06:55:58.000Z",
       "latestDate": "2026-08-25T07:00:00.000Z",
-      "amountDrift": {
-        "min": 100000,
-        "max": 140000,
-        "spread": 40000,
-        "spreadPct": 0.4
-      },
+      "amountDrift": null,
       "verdictMix": {
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 2,
+        "sin-datos": 0,
         "promesa-repetida": 0
       }
     },
@@ -167,7 +162,7 @@
   },
   "builtFrom": {
     "plenos-agendas.json": "28b1e8ad6fda",
-    "press-claims-verified.json": "dc81608a5279",
+    "press-claims-verified.json": "7326a705ac02",
     "press.json": "9aeece937859",
     "promises.json": "d18811c11210"
   }
