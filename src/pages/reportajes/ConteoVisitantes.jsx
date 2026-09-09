@@ -1,6 +1,13 @@
 import { useReportaje } from '../../hooks/useReportaje'
-import { Card } from '../../components/Primitives'
+import { Card, Pill } from '../../components/Primitives'
 import { CorrectionNote } from '../../components/reportajes/CorrectionNote'
+import {
+  estadoDeEnvio,
+  fraseDeEnvio,
+  resumirEnvios,
+  ESTADO_ENVIO_ETIQUETA,
+  ESTADO_ENVIO_TONO,
+} from '../../scraper/solicitud-enviada'
 
 const SERIF = "'Fraunces', Georgia, serif"
 
@@ -163,6 +170,92 @@ function Tabla({ cols, rows, caption }) {
         </tbody>
       </table>
     </div>
+  )
+}
+
+/**
+ * El estado de cada solicitud de acceso, CALCULADO el día que se lee.
+ *
+ * La fecha de envío está congelada en la instantánea, como cualquier otra cifra
+ * del reportaje; el vencimiento y el estado NO se escriben ahí. Una frase como
+ * «el plazo vence el 9 de octubre» redactada a mano sigue diciendo lo mismo el
+ * 10 de noviembre, y esa es la prosa rancia que este repositorio ya ha pagado
+ * tres veces. Aquí la calcula `solicitud-enviada.ts` con la fecha de hoy.
+ *
+ * Y una cosa que NO hace: dar el vencimiento como acreditado. Salieron por
+ * correo, así que consta el envío y no la recepción por el órgano competente,
+ * que es donde el art. 20.1 arranca el mes. Eso lo dice la nota, y la dice
+ * siempre.
+ */
+function SolicitudesEnviadas({ bloque }) {
+  const hoy = new Date().toISOString().slice(0, 10)
+  const items = bloque?.items ?? []
+  const resumen = resumirEnvios(items, hoy)
+  // Sin solicitudes no se pinta una tarjeta vacía: un hueco se lee como limpio.
+  // El reportaje ya dice arriba que las preguntas se remitieron, así que no
+  // queda un silencio, queda una frase menos.
+  if (!resumen.concluyente) return null
+
+  return (
+    <Card style={{ padding: '12px 14px', marginBottom: 14 }}>
+      <div
+        className="mono"
+        style={{
+          fontSize: 'var(--fs-micro)',
+          color: 'var(--ink50)',
+          letterSpacing: '.04em',
+          marginBottom: 10,
+        }}
+      >
+        {bloque.titulo}
+      </div>
+
+      {items.map((e, i) => {
+        const estado = estadoDeEnvio(e, hoy)
+        return (
+          <div
+            key={`${e.organismo}-${e.enviadaEl}`}
+            style={{
+              marginBottom: i === items.length - 1 ? 0 : 12,
+              paddingBottom: i === items.length - 1 ? 0 : 12,
+              borderBottom: i === items.length - 1 ? 'none' : '1px solid var(--border)',
+            }}
+          >
+            <div style={{ marginBottom: 5 }}>
+              <Pill tone={ESTADO_ENVIO_TONO[estado]} size="xs">
+                {ESTADO_ENVIO_ETIQUETA[estado]}
+              </Pill>
+            </div>
+            <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink70)', lineHeight: 1.5 }}>
+              {fraseDeEnvio(e, hoy)}
+            </div>
+            <div
+              style={{
+                fontSize: 'var(--fs-aux)',
+                color: 'var(--ink50)',
+                lineHeight: 1.5,
+                marginTop: 4,
+              }}
+            >
+              {e.pide}
+            </div>
+          </div>
+        )
+      })}
+
+      <div
+        style={{
+          fontSize: 'var(--fs-micro)',
+          color: 'var(--ink50)',
+          lineHeight: 1.5,
+          marginTop: 12,
+          paddingTop: 10,
+          borderTop: '1px solid var(--border)',
+        }}
+      >
+        {bloque.nota}
+      </div>
+    </Card>
   )
 }
 
@@ -374,6 +467,10 @@ export default function ConteoVisitantes() {
           {data.preguntasNota}
         </div>
       </Card>
+
+      {/* 10 bis · el reloj de cada solicitud, calculado, no escrito a mano */}
+      <SolicitudesEnviadas bloque={data.solicitudes} />
+
       <Card style={{ padding: '12px 14px' }}>
         <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink70)', lineHeight: 1.5 }}>
           {data.replica}
