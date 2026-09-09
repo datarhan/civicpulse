@@ -82,6 +82,39 @@ describe('bot db — listUserQuejas + listRecentQuejas + listByNeighborhood', ()
     expect(q1.id).not.toBe(q3.id)
   })
 
+  // El orden «más nueva primero» NO puede depender del id, y durante mucho
+  // tiempo dependió. `created_at` es `datetime('now')`, que en SQLite tiene
+  // resolución de SEGUNDO: dos quejas del mismo segundo empatan, y el desempate
+  // era `id DESC`. Ese id es `ulid().slice(-8)` — se queda con el final
+  // ALEATORIO y tira los 10 caracteres de marca de tiempo que hacen ordenable a
+  // un ULID. `monotonicFactory` sólo garantiza el incremento DENTRO de un
+  // milisegundo; al cruzar uno, el sufijo se resiembra al azar.
+  //
+  // En el portátil las dos inserciones caían en el mismo milisegundo y salía
+  // bien; en CI cruzaron el borde y salió ['A','C'] en vez de ['C','A'].
+  //
+  // Este reproductor no espera a la casualidad: fuerza los ids a un orden
+  // contrario al de inserción, que es exactamente lo que hace el azar cuando
+  // toca, y exige que el listado siga saliendo por orden de inserción.
+  it('ordena por inserción aunque los ids salgan al revés', () => {
+    const a = createQueja(db, sampleQueja({ telegram_user_id: 7, title: 'primera' }))
+    const b = createQueja(db, sampleQueja({ telegram_user_id: 7, title: 'segunda' }))
+    // El azar del sufijo, hecho explícito: la primera recibe el id más alto.
+    // Las claves ajenas se apagan sólo para reescribir el id — `events` apunta
+    // a `quejas(id)` y si no, salta la restricción y la prueba fallaría por un
+    // motivo que no es el que vigila.
+    db.pragma('foreign_keys = OFF')
+    db.prepare('UPDATE quejas SET id = ? WHERE id = ?').run('Q-ZZZZZZZZ', a.id)
+    db.prepare('UPDATE quejas SET id = ? WHERE id = ?').run('Q-00000000', b.id)
+    db.pragma('foreign_keys = ON')
+
+    const titulos = listUserQuejas(db, 7).map((q) => q.title)
+    expect(titulos, 'la más nueva es la insertada después, no la del id mayor').toEqual([
+      'segunda',
+      'primera',
+    ])
+  })
+
   it('listRecentQuejas respects limit', () => {
     for (let i = 0; i < 5; i++) createQueja(db, sampleQueja({ title: 'q' + i }))
     expect(listRecentQuejas(db, 3).length).toBe(3)
