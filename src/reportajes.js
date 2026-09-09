@@ -9,6 +9,7 @@
 // a pieza only ever renders when its meta.estado === 'publicado' — the
 // honesty gate every consumer of this list must keep.
 export const REPORTAJE_SLUGS = [
+  'conteo-visitantes',
   'coste-efectivo',
   'basuras',
   'inteligencia-turistica',
