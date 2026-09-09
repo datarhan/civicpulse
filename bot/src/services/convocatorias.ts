@@ -46,11 +46,17 @@ export interface Convocatoria {
   requiere?: string
   /** Abierta de forma permanente: no hay ventana que recordar. */
   continua?: boolean
+  /**
+   * Ya enviada. El plazo NO deja de importar —se puede reenviar hasta el
+   * cierre— pero repetir cinco veces «cierra en N días» sobre algo hecho es
+   * ruido, y el ruido es lo que enseña a ignorar los avisos.
+   */
+  presentada?: { fecha: string; ref?: string }
   precision: 'exacta' | 'aproximada'
   nota?: string
 }
 
-export type Estado = 'abierta' | 'cerrada' | 'aun-no' | 'bloqueada'
+export type Estado = 'abierta' | 'cerrada' | 'aun-no' | 'bloqueada' | 'presentada'
 
 /**
  * El calendario. Fechas comprobadas contra la web de cada convocante el
@@ -64,7 +70,8 @@ export const CONVOCATORIAS: Convocatoria[] = [
     url: 'https://nlnet.nl/propose/',
     cierra: '2026-11-03T11:00:00Z', // 12:00 CET
     precision: 'exacta',
-    nota: 'Abierta ahora. El formulario exige un registro de prompts si se usó IA generativa.',
+    presentada: { fecha: '2026-09-09', ref: '2026-11-0b1' },
+    nota: 'Si se reenvía hay que regenerar el registro de prompts (npm run build:prompt-log) y cuadrar las cifras de la divulgación con el fichero adjunto.',
   },
   {
     id: 'european-press-prize',
@@ -136,6 +143,15 @@ function diasHasta(iso: string, ahora: Date): number {
 
 export function estadoDe(c: Convocatoria, ahora: Date): { estado: Estado; motivo?: string } {
   if (c.requiere) return { estado: 'bloqueada', motivo: `necesita ${c.requiere}` }
+  if (c.cierra && Date.parse(c.cierra) < ahora.getTime()) {
+    return { estado: 'cerrada', motivo: `cerró el ${c.cierra.slice(0, 10)}` }
+  }
+  if (c.presentada) {
+    return {
+      estado: 'presentada',
+      motivo: `enviada el ${c.presentada.fecha}${c.presentada.ref ? ` · ${c.presentada.ref}` : ''}`,
+    }
+  }
   if (c.continua) return { estado: 'abierta' }
   if (c.abre && Date.parse(c.abre) > ahora.getTime()) {
     return { estado: 'aun-no', motivo: `abre el ${c.abre.slice(0, 10)}` }
@@ -158,6 +174,9 @@ const HITOS = {
   cierra: { exacta: [30, 14, 7, 3, 1], aproximada: [45, 30, 14, 7] },
   abre: { exacta: [7, 1, 0], aproximada: [30, 14, 7, 0] },
 }
+
+/** Ya enviada: sólo la última llamada, que es cuando aún se puede reenviar. */
+const HITOS_PRESENTADA = [7, 1]
 
 export function avisosDe(cs: Convocatoria[], ahora: Date): Aviso[] {
   const out: Aviso[] = []
@@ -187,12 +206,16 @@ export function avisosDe(cs: Convocatoria[], ahora: Date): Aviso[] {
     }
     if (c.cierra) {
       const d = diasHasta(c.cierra, ahora)
-      if (HITOS.cierra[c.precision].includes(d) && d >= 0) {
+      const hitos = c.presentada ? HITOS_PRESENTADA : HITOS.cierra[c.precision]
+      if (hitos.includes(d) && d >= 0) {
+        const ref = c.presentada?.ref ? ` (${c.presentada.ref})` : ''
         out.push({
           id: c.id,
           clase: 'cierra',
           dias: d,
-          texto: `⏳ Cierra en ${d} día(s) · ${c.nombre}${sufijo}${cola}`,
+          texto: c.presentada
+            ? `✅ Ya presentada el ${c.presentada.fecha}${ref} · ${c.nombre}\nCierra en ${d} día(s): hasta entonces puedes REENVIARLA si quieres cambiar algo.${cola}`
+            : `⏳ Cierra en ${d} día(s) · ${c.nombre}${sufijo}${cola}`,
         })
       }
     }

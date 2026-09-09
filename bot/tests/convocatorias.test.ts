@@ -123,6 +123,38 @@ describe('avisosDe', () => {
   })
 })
 
+describe('una convocatoria ya presentada', () => {
+  const PRESENTADA: Convocatoria = {
+    ...FIJA,
+    id: 'ya-enviada',
+    presentada: { fecha: '2026-01-05', ref: 'REF-123' },
+  }
+
+  // El plazo NO deja de importar al enviar —NLnet admite reenvío hasta el
+  // cierre—, así que callar del todo perdería la última oportunidad de
+  // corregir. Pero repetir cinco veces «cierra en N días» sobre algo que ya
+  // está enviado es ruido, y el ruido es lo que enseña a ignorar los avisos.
+  it('avisa menos veces, no deja de avisar', () => {
+    expect(avisosDe([PRESENTADA], enero(1))).toEqual([]) // el hito de 30 se calla
+    expect(avisosDe([PRESENTADA], enero(24)).map((a) => a.dias)).toEqual([7])
+    expect(avisosDe([PRESENTADA], enero(30)).map((a) => a.dias)).toEqual([1])
+  })
+
+  // Y lo que diga tiene que decir que ya está enviada, con su referencia: un
+  // «cierra en 7 días» a secas manda a rellenar otra vez un formulario hecho.
+  it('el aviso dice que ya se envió, y con qué referencia', () => {
+    const [a] = avisosDe([PRESENTADA], enero(24))
+    expect(a.texto).toMatch(/presentada/i)
+    expect(a.texto).toContain('REF-123')
+    expect(a.texto).toMatch(/reenv/i)
+  })
+
+  it('estadoDe la distingue de una simplemente abierta', () => {
+    expect(estadoDe(PRESENTADA, enero(10)).estado).toBe('presentada')
+    expect(estadoDe(FIJA, enero(10)).estado).toBe('abierta')
+  })
+})
+
 describe('runConvocatoriasOnce', () => {
   it('manda un DM por administrador cuando hay algo que decir', async () => {
     const enviados: { a: number; texto: string }[] = []
