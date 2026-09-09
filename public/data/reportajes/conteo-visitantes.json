@@ -1,0 +1,187 @@
+{
+  "generatedAt": "2026-09-09T00:00:00.000Z",
+  "meta": {
+    "slug": "conteo-visitantes",
+    "seccion": "Reportaje · Dinero público",
+    "titulo": "Contar visitantes en un pueblo que nunca ha contado visitantes",
+    "subtitulo": "Riba-roja adjudicó 87.050 € para medir su turismo con fondos europeos. La memoria que justificaba cada contrato describe otro proyecto, y ninguna de las dos cita una sola cifra de visitantes.",
+    "estado": "publicado",
+    "publicadoEl": "9 de septiembre de 2026",
+    "fechaDatos": "9 de septiembre de 2026",
+    "correcciones": []
+  },
+  "kpis": [
+    {
+      "n": "87.050 €",
+      "l": "los dos contratos para medir el turismo (sin IVA): 61.050,21 € en sensores y 26.000 € en campañas segmentadas"
+    },
+    {
+      "n": "0",
+      "l": "cifras de visitantes citadas en las dos memorias justificativas que debían acreditar la necesidad"
+    },
+    {
+      "n": "267",
+      "l": "plazas turísticas regladas en el municipio (Registre de Turisme GVA, 2026) para 24.616 habitantes"
+    },
+    {
+      "n": "16/100",
+      "l": "puntos del concurso de sensores por «dispositivos adicionales sobre el mínimo exigido»"
+    }
+  ],
+  "entradilla": "El Ayuntamiento de Riba-roja de Túria adjudicó en diciembre de 2025 dos contratos para saber cuánta gente visita el municipio: 61.050,21 € en sensores de conteo de personas para el Parque Natural del Túria y el casco urbano, y 26.000 € en campañas de promoción «segmentada y geolocalizada». Los dos con fondos europeos del Plan de Recuperación, Transformación y Resiliencia. Los dos terminaron en julio de 2026. El municipio no tiene, ni tenía, ninguna serie oficial de visitantes.",
+  "contratos": [
+    {
+      "exp": "98/2025",
+      "objeto": "Suministro de sensores para el conteo de personas en el Parque Natural del Túria y entorno",
+      "empresa": "GIMENO DIGITAL TECHNOLOGIES S.L.",
+      "base": 70247.93,
+      "importe": 61050.21,
+      "licitadores": 6,
+      "adjudicacion": "2025-12-26",
+      "formalizacion": "2026-01-19",
+      "fin": "2026-07-20",
+      "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=YLe0aPzwZo42wEhQbcAqug%3D%3D"
+    },
+    {
+      "exp": "100/2025",
+      "objeto": "Desarrollo de campañas de promoción turística segmentadas",
+      "empresa": "AUTORITAS CONSULTING S.A.",
+      "base": 33057.85,
+      "importe": 26000.0,
+      "licitadores": 1,
+      "adjudicacion": "2025-12-16",
+      "formalizacion": "2026-01-14",
+      "fin": "2026-07-15",
+      "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3csNBsbDj9UwYTJJ03sHog%3D%3D"
+    }
+  ],
+  "baseline": {
+    "titulo": "El turismo que se iba a medir",
+    "bullets": [
+      "Riba-roja de Túria no es «punto turístico» del INE: la encuesta de ocupación hotelera sólo desciende a diez municipios de la Comunitat Valenciana y éste no es uno. No existe serie oficial de visitantes del municipio, y este medio no ha localizado ningún dato de visitantes publicado por la oficina de turismo.",
+      "La oferta reglada de alojamiento, según el Registre de Turisme de la Generalitat (datos abiertos, 2026): 4 hoteles o pensiones con 145 plazas, 17 viviendas de uso turístico con 122 plazas, 0 casas rurales y 0 campings. Unas 267 plazas turísticas para 24.616 habitantes.",
+      "Los activos son reales —el Parc Natural del Túria, el castillo con los museos MUPLA y MUCA, los yacimientos visigodos de València la Vella y Pla de Nadal— pero son de excursión, no de pernoctación."
+    ]
+  },
+  "hallazgo": {
+    "titulo": "La misma justificación, copiada, en dos contratos distintos",
+    "texto": "Todo contrato público lleva una «Memoria justificativa e informe de necesidad»: el documento en el que el Ayuntamiento explica por qué le hace falta lo que va a comprar. En el apartado «3) NECESIDAD E IDONEIDAD», las dos memorias dicen palabra por palabra lo mismo.",
+    "cita": "Siendo efectiva la concesión de la ayuda al ayuntamiento de Riba-roja de Turia, y según consta en el proyecto aprobado en el Eje 3 acción Realidad aumentada destinada a la puesta en valor de los activos patrimoniales, se ha de llevar a cabo la correspondiente licitación.",
+    "citaFuente": "Apartado «3) NECESIDAD E IDONEIDAD», idéntico en las memorias justificativas de los expedientes 98/2025 y 100/2025, publicadas en la Plataforma de Contratación del Sector Público",
+    "remate": [
+      "Ninguno de los dos contratos es la actuación de realidad aumentada. La propia memoria de los sensores dice, páginas antes, que corresponde a la «actuación nº 9, Conteo de personas [en] el Parque Natural y núcleo urbano». La de las campañas dice que es la «actuación nº 8, Campañas de promoción segmentada y geolocalizada».",
+      "En ninguna de las dos aparece una sola cifra de visitantes: ni una estimación de afluencia, ni una serie histórica, ni un aforo de referencia. La necesidad se acredita con que la subvención existe —la resolución que la concede— y con el artículo 116.4.e de la Ley de Contratos, que obliga a licitar lo que se va a ejecutar."
+    ]
+  },
+  "compra": {
+    "titulo": "Lo que se compró, según el pliego",
+    "objeto": "la recopilación y análisis de los datos resultantes de la instalación de dispositivos dirigidos a controlar el aforo y medir la calidad del aire",
+    "objetivos": [
+      "Monitorizar la afluencia de personas y flujos principales de visitantes en el Parque Natural del Río Túria y el núcleo urbano de Riba-roja.",
+      "Monitorizar la ocupación de los parkings principales de Riba-roja.",
+      "Monitorizar la calidad del aire en el área recreativa del Parque Natural.",
+      "Generar información de aforos y ocupación turística con el objeto de poder diseñar estudios de capacidad de carga del destino."
+    ],
+    "matiz": "Conviene decirlo con precisión porque cambia el juicio: una parte del contrato es calidad del aire, encuadrada en los ODS 7, 13 y 15, y ésa es una función ambiental legítima que no depende de que haya turistas. La otra parte es contar gente."
+  },
+  "baremo": {
+    "titulo": "El pliego pagaba por poner más aparatos",
+    "filas": [
+      {
+        "criterio": "Precio",
+        "puntos": 40,
+        "tipo": "fórmula"
+      },
+      {
+        "criterio": "Proyecto técnico del servicio",
+        "puntos": 40,
+        "tipo": "juicio de valor"
+      },
+      {
+        "criterio": "Número de dispositivos adicionales sobre el mínimo exigido",
+        "puntos": 16,
+        "tipo": "fórmula"
+      },
+      {
+        "criterio": "Años de experiencia adicional del jefe de proyecto",
+        "puntos": 4,
+        "tipo": "fórmula"
+      }
+    ],
+    "texto": "Dieciséis de cada cien puntos por instalar más aparatos de los necesarios, en un municipio sin ninguna medición previa que dijera cuántos hacían falta. Se presentaron seis ofertas y ganó Gimeno Digital Technologies S.L. —que opera como IoTsens y pertenece al Grupo Gimeno— por 61.050,21 €, un 13 % por debajo del presupuesto base. En el contrato de campañas segmentadas se presentó una sola oferta, la de Autoritas Consulting S.A.",
+    "contrapunto": "En este contrato los criterios sujetos a juicio de valor sumaban 40 de 100 puntos, por debajo del umbral que habría obligado a constituir un comité de expertos. En el contrato hermano del panel de inteligencia turística se fijaron en 49, una unidad por debajo de ese mismo umbral."
+  },
+  "datos": {
+    "titulo": "Una línea sobre protección de datos",
+    "texto": "Los dos contratos tratan datos de personas: uno cuenta cuántas pasan y por dónde, el otro segmenta y —según el nombre de la propia actuación aprobada— geolocaliza. Todo lo que las dos memorias dicen sobre protección de datos es la misma frase, la número 10 de una lista de condiciones sociales.",
+    "cita": "El contratista está obligado a someterse a la normativa nacional y de la Unión Europea en materia de protección de datos, siendo obligación contractual esencial de conformidad con la letra f) del apartado 1 del artículo 211 LCSP.",
+    "citaFuente": "Condición especial de ejecución nº 10, idéntica en las memorias justificativas de los expedientes 98/2025 y 100/2025",
+    "remate": "Este medio no ha localizado publicada ninguna evaluación de impacto relativa a la protección de datos, ni el asiento del registro de actividades de tratamiento que ampare estos tratamientos, ni las categorías de datos que capta cada dispositivo o su plazo de conservación."
+  },
+  "dana": {
+    "titulo": "La DANA, y lo que sí se podía haber pedido",
+    "bullets": [
+      "El plan se concedió en diciembre de 2022, casi dos años antes de la riada del 29 de octubre de 2024. Es dinero finalista europeo: legalmente no podía desviarse a la reconstrucción.",
+      "Pero sí había margen para replantear el calendario. El artículo 18 del RDL 7/2024 permitía ampliar la ejecución hasta agosto de 2026 en las zonas gravemente afectadas —Riba-roja lo estaba, con convenio estatal DANA publicado en el BOE—; la Conferencia Sectorial de Turismo extendió todos los planes hasta junio de 2026; y Turisme CV amplió a agosto de 2026 su línea para entidades locales afectadas.",
+      "No consta en ningún registro público consultado (BOE, DOGV, ministerio, GVA, prensa) que Riba-roja pidiera modificar o reprogramar su plan de 2,11 M€ tras la DANA.",
+      "Lo que sí consta es el calendario: cinco adjudicaciones entre el 16 de diciembre de 2025 y el 2 de enero de 2026. Entre ellas, el 26 de diciembre de 2025, la de los sensores para contar visitantes en el Parque Natural del Túria — el espacio que la riada arrasó catorce meses antes."
+    ]
+  },
+  "plazo": {
+    "titulo": "Y el plazo europeo",
+    "texto": "El hito nº 221 del Plan de Recuperación fija, para el segundo trimestre de 2026, la «finalización de todos los proyectos» incluidos en los planes de sostenibilidad turística. El contrato de sensores se formalizó el 19 de enero de 2026, con un plazo de ejecución de seis meses y sin prórrogas previstas. Este medio no ha localizado publicada la certificación de ejecución final ante la Comisión de Seguimiento."
+  },
+  "limites": {
+    "titulo": "Lo que este reportaje no afirma",
+    "bullets": [
+      "No afirma que los sensores vigilen a nadie. Un contador de aforo puede ser perfectamente anónimo, y hasta que el Ayuntamiento entregue la documentación técnica no se sostiene otra cosa.",
+      "No afirma que el gasto fuera ilegal. Nada de lo documentado lo sugiere. Lo documentado es que la justificación de la necesidad está copiada de otro proyecto y que no se apoya en ninguna medición.",
+      "No afirma nada sobre las adjudicatarias más allá de lo que consta en el registro de contratación. Gimeno Digital Technologies ganó con seis ofertas concurrentes y una baja del 13 %."
+    ]
+  },
+  "preguntas": [
+    "¿Cuántas personas contaron los sensores desde su instalación, y dónde puede consultarse ese dato?",
+    "¿Por qué el apartado de necesidad e idoneidad de ambas memorias describe la actuación de realidad aumentada y no la que cada contrato ejecuta?",
+    "¿Sobre qué estimación de afluencia se dimensionó el número mínimo de dispositivos exigido en el pliego?",
+    "¿Existe evaluación de impacto relativa a la protección de datos de los dispositivos de conteo? Si no era exigible, ¿dónde consta el informe que lo concluye?",
+    "¿Qué categorías de datos capta cada dispositivo y durante cuánto tiempo se conservan?",
+    "¿Qué ocurre con los datos y con el acceso a las plataformas ahora que ambos contratos han terminado?",
+    "¿Incluyó la campaña segmentada geolocalización de personas físicas y, en tal caso, con qué base jurídica?",
+    "¿Se certificó la finalización de estos proyectos dentro del hito nº 221, cuyo plazo era el segundo trimestre de 2026?"
+  ],
+  "fuentes": [
+    {
+      "label": "Expediente 98/2025 · detalle de licitación (PLACSP)",
+      "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=YLe0aPzwZo42wEhQbcAqug%3D%3D"
+    },
+    {
+      "label": "Expediente 100/2025 · detalle de licitación (PLACSP)",
+      "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3csNBsbDj9UwYTJJ03sHog%3D%3D"
+    },
+    {
+      "label": "Registre de Turisme de la Comunitat Valenciana · datos abiertos",
+      "url": "https://dadesobertes.gva.es/va/dataset/turisme-registre-turisme-comunitat-valenciana"
+    },
+    {
+      "label": "INE · Encuesta de ocupación hotelera, puntos turísticos",
+      "url": "https://www.ine.es/dyngs/INEbase/es/operacion.htm?c=Estadistica_C&cid=1254736177015"
+    },
+    {
+      "label": "Reportaje previo: «Dos millones para el destino inteligente»",
+      "url": "/reportajes/inteligencia-turistica"
+    },
+    {
+      "label": "Reportaje previo: «El dinero de la reconstrucción, calle a calle»",
+      "url": "/reportajes/reconstruccion-dana"
+    }
+  ],
+  "metodo": [
+    "Las dos memorias justificativas y el documento de pliegos del expediente 98/2025 se descargaron de la Plataforma de Contratación del Sector Público el 9 de septiembre de 2026 y se cotejaron entre sí palabra por palabra.",
+    "Los importes, el número de licitadores y las fechas de adjudicación y formalización proceden del registro de contratación que publica este sitio, cotejados uno a uno contra la ficha de la Plataforma.",
+    "La baja del 13 % es el resultado de dividir la diferencia entre presupuesto base y adjudicación (70.247,93 € y 61.050,21 €) entre el presupuesto base.",
+    "La oferta de alojamiento procede del Registre de Turisme de la Generalitat; la condición de «punto turístico» se comprobó contra la relación de municipios de la encuesta de ocupación hotelera del INE.",
+    "Las cifras de este reportaje están congeladas a la fecha de publicación y no se recalculan: si el registro se mueve, se anota como corrección y se dice qué cambió."
+  ],
+  "replica": "El Ayuntamiento de Riba-roja de Túria, Gimeno Digital Technologies S.L. y Autoritas Consulting S.A. tienen derecho de réplica sobre este reportaje. Cualquier respuesta literal que remitan se publicará íntegra junto a este texto, sin edición.",
+  "preguntasNota": "Estas preguntas se han remitido al Ayuntamiento de Riba-roja de Túria junto con una solicitud de acceso a la información amparada en la Ley 19/2013. Su respuesta se publicará íntegra y sin editar junto a este reportaje, y se hará constar qué preguntas quedaron sin responder."
+}

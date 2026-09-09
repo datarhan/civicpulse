@@ -60,6 +60,7 @@ export const STRICT_ROUTES = [
   '/reportajes/coste-efectivo',
   '/reportajes/inteligencia-turistica',
   '/reportajes/basuras',
+  '/reportajes/conteo-visitantes',
   '/blog/building-civicpulse-with-ai',
   '/laboratorio/agentes/a-robert-raga-bio',
   '/lab-health',
