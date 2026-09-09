@@ -1,4 +1,6 @@
 import { describe, it, expect } from 'vitest'
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
 import {
   CONVOCATORIAS,
   estadoDe,
@@ -262,6 +264,49 @@ describe('caducadas', () => {
       precision: 'exacta',
     }
     expect(caducadas([a], enero(10))).toEqual([])
+  })
+})
+
+describe('lo que este fichero puede hacer público', () => {
+  /**
+   * Este módulo se despliega en Fly Y vive en un repositorio público desde el
+   * 8-09-2026, y su regla siempre fue «sólo hechos públicos de quien convoca».
+   * La prueba que la vigilaba miraba importes concretos y las palabras
+   * «prioridad» y «estrategia» — y con ella en verde se comitó la REFERENCIA DE
+   * UNA SOLICITUD NUESTRA viva (NLnet admite reenvío hasta el 3 de noviembre).
+   *
+   * Medir la letra y perder el espíritu es el defecto de siempre en esta casa:
+   * la lista copiada a mano que no podía fallar. Una referencia de solicitud no
+   * es un hecho de quien convoca, es un identificador nuestro, y no tiene
+   * ningún valor para el lector del repositorio.
+   *
+   * Se comprueba sobre el TEXTO del fichero, no sobre el objeto: el objeto puede
+   * traer la referencia por entorno y eso está bien; lo que no puede es estar
+   * escrita aquí.
+   */
+  const fuente = readFileSync(join(__dirname, '..', 'src', 'services', 'convocatorias.ts'), 'utf8')
+
+  it('no lleva escrita ninguna referencia de solicitud', () => {
+    // `ref:` seguido de una cadena literal. Por entorno se lee distinto.
+    const literales = [...fuente.matchAll(/\bref:\s*'([^']+)'/g)].map((m) => m[1])
+    expect(
+      literales,
+      'una referencia de solicitud identifica una propuesta viva y este repositorio es público: pásala por entorno',
+    ).toEqual([])
+  })
+
+  it('la referencia se lee del entorno, así que el mecanismo sigue existiendo', () => {
+    expect(fuente).toMatch(/process\.env\.[A-Z_]*REF/)
+  })
+
+  // Y el corolario: las notas dicen lo que exige QUIEN CONVOCA, no nuestro
+  // veredicto sobre si encajamos. «De eso depende que encaje o no» es análisis
+  // nuestro y va en editorial/, que está gitignorado.
+  it('las notas no traen nuestro propio veredicto de encaje', () => {
+    const notas = CONVOCATORIAS.map((c) => c.nota ?? '').join(' | ')
+    expect(notas, 'la nota es del convocante; nuestro encaje va en editorial/').not.toMatch(
+      /\bencaj/i,
+    )
   })
 })
 

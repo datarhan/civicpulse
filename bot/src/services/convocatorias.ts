@@ -59,6 +59,24 @@ export interface Convocatoria {
 export type Estado = 'abierta' | 'cerrada' | 'aun-no' | 'bloqueada' | 'presentada'
 
 /**
+ * La referencia de una solicitud NUESTRA no va escrita aquí.
+ *
+ * Identifica una propuesta viva —NLnet admite reenvío hasta el 3 de noviembre— y
+ * este fichero, además de desplegarse en Fly, vive en un repositorio público
+ * desde el 8-09-2026. La regla de este módulo siempre fue «sólo hechos públicos
+ * de quien convoca», y un código de solicitud no es un hecho de quien convoca:
+ * es un identificador nuestro que al lector del repositorio no le sirve de nada.
+ *
+ * La guarda que vigilaba la regla miraba importes y las palabras «prioridad» y
+ * «estrategia», así que estuvo en verde mientras el código se comiteaba. Medir
+ * la letra y perder el espíritu es el defecto de siempre en esta casa.
+ *
+ * Sin la variable el aviso sigue diciendo que ya se envió y que se puede
+ * reenviar, que es el aviso; lo que se pierde es el código, que era el lujo.
+ */
+const REF_NLNET = process.env.NLNET_REF?.trim() || undefined
+
+/**
  * El calendario. Fechas comprobadas contra la web de cada convocante el
  * 2026-09-09; las marcadas `aproximada` son las que el convocante no publica
  * todavía con día exacto.
@@ -70,7 +88,7 @@ export const CONVOCATORIAS: Convocatoria[] = [
     url: 'https://nlnet.nl/propose/',
     cierra: '2026-11-03T11:00:00Z', // 12:00 CET
     precision: 'exacta',
-    presentada: { fecha: '2026-09-09', ref: '2026-11-0b1' },
+    presentada: { fecha: '2026-09-09', ...(REF_NLNET ? { ref: REF_NLNET } : {}) },
     nota: 'Si se reenvía hay que regenerar el registro de prompts (npm run build:prompt-log) y cuadrar las cifras de la divulgación con el fichero adjunto.',
   },
   {
@@ -79,7 +97,7 @@ export const CONVOCATORIAS: Convocatoria[] = [
     url: 'https://www.aepd.es/la-agencia/transparencia/informacion-economica-presupuestaria-y-estadistica/premios',
     cierra: '2026-10-15T21:59:00Z', // 23:59 CEST del 15-10
     precision: 'exacta',
-    nota: 'Pide un trabajo DEDICADO a la protección de datos: las bases (BOE-A-2026-15843) excluyen lo que quede «fuera del objeto del premio», así que una pieza que la toque de pasada no entra. Ventana de publicación 16-10-2025 a 15-10-2026. Se envía por la sede electrónica con el anexo 1 firmado y un resumen ejecutivo de 4 páginas; la mitad de la puntuación es la difusión conseguida.',
+    nota: 'Las bases (BOE-A-2026-15843) premian trabajos «dedicados a la materia objeto de la convocatoria» y advierten que «no se considerarán aquellas candidaturas fuera del objeto del premio». Admiten medios exclusivamente online (URL más el contenido). Ventana de publicación 16-10-2025 a 15-10-2026. Se envía por la sede electrónica con el anexo 1 firmado y un resumen ejecutivo de 4 páginas; la mitad de la puntuación es la difusión conseguida.',
   },
   {
     id: 'valencia-datos',
@@ -87,7 +105,7 @@ export const CONVOCATORIAS: Convocatoria[] = [
     url: 'https://www.valencia.es/cas/campa%C3%B1as-municipales/-/content/premios-proyectos-datos-abiertos-periodismo-datos-2025',
     abre: '2027-05-08T00:00:00Z',
     precision: 'aproximada',
-    nota: 'Categoría de periodismo de datos, tres premios (5.000/3.000/2.000 €). La edición de 2026 corrió del 8-05 al 8-06. ANTES de contar con ella hay que leer las bases: no está comprobado si exige reutilizar datos del portal de València, y de eso depende que encaje o no.',
+    nota: 'Categoría de periodismo de datos, tres premios (5.000/3.000/2.000 €). La edición de 2026 corrió del 8-05 al 8-06. Sus bases están SIN LEER: queda por comprobar si exigen reutilizar datos del portal de València.',
   },
   {
     id: 'european-press-prize',
@@ -127,7 +145,7 @@ export const CONVOCATORIAS: Convocatoria[] = [
     url: 'https://culture.ec.europa.eu/calls',
     requiere: 'una entidad jurídica con sede en la UE27',
     precision: 'aproximada',
-    nota: 'Encaje temático directo (desiertos informativos). Sin entidad no se puede ni presentar.',
+    nota: 'Reparte 1,4 M€ entre medios de interés público en desiertos informativos. Sin entidad no se puede ni presentar.',
   },
   {
     id: 'local-media',
