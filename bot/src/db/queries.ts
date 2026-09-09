@@ -151,12 +151,28 @@ export function softDeleteQueja(db: Db, id: string, userId: number): boolean {
   return true
 }
 
+/**
+ * EL DESEMPATE ES `rowid`, Y NO `id`, POR UN MOTIVO MEDIDO.
+ *
+ * `created_at` es `datetime('now')`: resolución de SEGUNDO. Dos quejas del
+ * mismo segundo empatan siempre, así que el desempate no es un detalle — es
+ * quien decide el orden que ve el vecino.
+ *
+ * `id` no servía. Es `ulid().slice(-8)`, que se queda con el final ALEATORIO y
+ * tira los diez caracteres de marca de tiempo que hacen ordenable a un ULID;
+ * `monotonicFactory` sólo garantiza el incremento dentro de un mismo
+ * milisegundo, y al cruzarlo el sufijo se resiembra al azar. En el portátil las
+ * inserciones caían en el mismo milisegundo y el orden salía bien; la primera
+ * vez que la suite corrió en CI, el 9-09-2026, salió al revés.
+ *
+ * `rowid` lo asigna SQLite en orden de inserción y no depende de relojes.
+ */
 export function listUserQuejas(db: Db, userId: number, limit = 20): QuejaRow[] {
   // Includes soft-deleted rows so the citizen can confirm their /olvidar
   // request took effect. The UI marks them visually.
   return db
     .prepare(
-      'SELECT * FROM quejas WHERE telegram_user_id = ? ORDER BY created_at DESC, id DESC LIMIT ?',
+      'SELECT * FROM quejas WHERE telegram_user_id = ? ORDER BY created_at DESC, rowid DESC LIMIT ?',
     )
     .all(userId, limit) as QuejaRow[]
 }
@@ -164,7 +180,7 @@ export function listUserQuejas(db: Db, userId: number, limit = 20): QuejaRow[] {
 export function listRecentQuejas(db: Db, limit = 20): QuejaRow[] {
   return db
     .prepare(
-      'SELECT * FROM quejas WHERE deleted_at IS NULL ORDER BY created_at DESC, id DESC LIMIT ?',
+      'SELECT * FROM quejas WHERE deleted_at IS NULL ORDER BY created_at DESC, rowid DESC LIMIT ?',
     )
     .all(limit) as QuejaRow[]
 }
@@ -179,7 +195,7 @@ export function listQuejasWithPhoto(db: Db, limit = 1000): QuejaRow[] {
     .prepare(
       `SELECT * FROM quejas
        WHERE deleted_at IS NULL AND photo_file_id IS NOT NULL AND photo_file_id != ''
-       ORDER BY created_at DESC, id DESC LIMIT ?`,
+       ORDER BY created_at DESC, rowid DESC LIMIT ?`,
     )
     .all(limit) as QuejaRow[]
 }
@@ -187,7 +203,7 @@ export function listQuejasWithPhoto(db: Db, limit = 1000): QuejaRow[] {
 export function listByNeighborhood(db: Db, neighborhood: string, limit = 50): QuejaRow[] {
   return db
     .prepare(
-      'SELECT * FROM quejas WHERE deleted_at IS NULL AND neighborhood = ? ORDER BY created_at DESC, id DESC LIMIT ?',
+      'SELECT * FROM quejas WHERE deleted_at IS NULL AND neighborhood = ? ORDER BY created_at DESC, rowid DESC LIMIT ?',
     )
     .all(neighborhood, limit) as QuejaRow[]
 }

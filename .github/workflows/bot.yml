@@ -1,0 +1,63 @@
+name: Bot tests
+
+# El bot tenía 124 pruebas y ninguna corría en CI. El `vitest.config.js` de la
+# raíz incluye `tests/**` y `src/**` y nada más, así que `npm test` —lo que mira
+# la puerta de salud de la nocturna— nunca las veía, y ningún workflow entraba
+# en `bot/`. Se ejecutaban a mano o no se ejecutaban: verde por no ejecutarse,
+# que es el defecto que este repositorio lleva pagando desde que existe.
+#
+# POR QUÉ AQUÍ Y NO EN LA SUITE DE LA RAÍZ. Se consideró y se descartó medido:
+# la raíz corre en `happy-dom` con su propio setup, y arrastrar allí 124 pruebas
+# que abren SQLite nativo haría la nocturna más frágil — justo lo contrario de
+# lo que se acaba de arreglar en ella. El bot es autónomo: su código no depende
+# de `src/` ni `src/` de él, así que su suite se ejecuta sola, con sus propias
+# dependencias, y falla sin arrastrar a nadie.
+#
+# POR QUÉ NO EN LA NOCTURNA. La nocturna existe para los DATOS; sus pruebas
+# están ahí para validar los parsers contra fixtures. Una prueba del bot no
+# cambia de resultado porque el ayuntamiento publique un PDF nuevo, así que
+# correrla cada noche sólo gastaría presupuesto de un trabajo que ya se pasó de
+# tiempo cuatro veces. En push y PR es donde da la señal cuando sirve.
+#
+# `tests/bot-tests-cubiertos.test.js` comprueba que este fichero siga existiendo
+# y siga disparándose solo. Su primera versión buscaba «bot» y «npm test» en el
+# mismo workflow y pasaba en verde sin que existiera ninguno: la nocturna dice
+# «civicpulse-bot» al comitear y corre `npm test`, el de la raíz. Ahora exige el
+# directorio de trabajo.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'bot/**'
+      - '.github/workflows/bot.yml'
+  pull_request:
+    paths:
+      - 'bot/**'
+      - '.github/workflows/bot.yml'
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: bot/package-lock.json
+
+      - name: Install bot deps
+        working-directory: bot
+        timeout-minutes: 8
+        run: npm ci
+
+      - name: Run bot tests
+        working-directory: bot
+        timeout-minutes: 10
+        run: npm test
