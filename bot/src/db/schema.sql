@@ -89,3 +89,15 @@ CREATE TABLE IF NOT EXISTS curation_decisions (
 );
 
 CREATE INDEX IF NOT EXISTS idx_curation_pending ON curation_decisions(applied_at);
+
+-- Eventos del repositorio ya avisados por DM, para no repetirlos en cada
+-- sondeo. Sólo la IDENTIDAD del evento: ni título ni URL, que se vuelven a leer
+-- de GitHub y que aquí sólo servirían para quedarse viejos.
+--
+-- Una PR produce DOS identidades a lo largo de su vida (`pr:12:abierta` y
+-- `pr:12:fusionada`): si compartieran una, fusionarla no avisaría nunca porque
+-- abrirla ya habría gastado el aviso.
+CREATE TABLE IF NOT EXISTS repo_eventos_vistos (
+  id       TEXT PRIMARY KEY,
+  seen_at  TEXT NOT NULL DEFAULT (datetime('now'))
+);

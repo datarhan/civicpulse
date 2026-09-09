@@ -33,6 +33,7 @@
 
 import type { Bot } from 'grammy'
 import { logger } from '../util/log.ts'
+import { parseAdminIds } from '../util/admins.ts'
 import type { MyContext } from '../types.ts'
 
 export interface Convocatoria {
@@ -334,15 +335,6 @@ export async function runConvocatoriasOnce(
   return { avisos: avisos.length, enviados, sinAdministradores: admins.length === 0 }
 }
 
-function parseAdmins(): number[] {
-  const out: number[] = []
-  for (const s of (process.env.ADMIN_USER_IDS ?? '').split(',')) {
-    const n = Number(s.trim())
-    if (Number.isFinite(n) && n > 0) out.push(n)
-  }
-  return out
-}
-
 const TICK_MS = 60 * 60 * 1000
 const HORA_UTC = 8 // 09:00/10:00 en España según estación
 
@@ -355,7 +347,7 @@ export function startConvocatoriasCron(bot: Bot<MyContext>): void {
     if (ahora.getUTCHours() !== HORA_UTC || dia === ultimoDia) return
     ultimoDia = dia
 
-    const admins = parseAdmins()
+    const admins = parseAdminIds()
     const r = await runConvocatoriasOnce(admins, async (id, texto) => {
       await bot.api.sendMessage(id, texto, { parse_mode: 'Markdown' })
     })
