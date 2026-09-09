@@ -249,7 +249,8 @@
     "check:despiece": "npx tsx scripts/check-despiece.ts",
     "scrape:deuda-viva": "npx tsx scripts/scrape-deuda-viva.ts",
     "check:area-fit": "npx tsx scripts/check-area-fit.ts",
-    "check:publicado": "npx tsx scripts/check-publicado.ts"
+    "check:publicado": "npx tsx scripts/check-publicado.ts",
+    "build:prompt-log": "npx tsx scripts/build-prompt-log.ts"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

@@ -36,6 +36,14 @@ const SHAPES: RegExp[] = [
   /\bsk-(?:proj-)?[A-Za-z0-9_-]{16,}/g,
   // Google API key clásica: AIza…
   /\bAIza[A-Za-z0-9_-]{16,}/g,
+  // Token de bot de Telegram: <id>:<35 caracteres>. Entra por la puerta que ya
+  // se abrió una vez —el 3-09-2026 apareció escrito en `bot/DEPLOY.md`—, y el
+  // tramo largo detrás de los dos puntos es lo que lo distingue de una hora
+  // («11:03:16») o de un identificador con año («2026:01»).
+  /\b\d{8,10}:[A-Za-z0-9_-]{30,}/g,
+  // GitHub: ghp_/gho_/ghu_/ghs_/ghr_ y los personal access token nuevos.
+  /\bgh[pousr]_[A-Za-z0-9]{20,}/g,
+  /\bgithub_pat_[A-Za-z0-9_]{20,}/g,
 ]
 
 /**

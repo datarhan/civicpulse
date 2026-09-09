@@ -61,6 +61,34 @@ describe('scraper/redact-secrets', () => {
     }
   })
 
+  // El token de Telegram NO estaba cubierto, y es el único secreto de esta casa
+  // que YA se filtró por su forma: el 3-09-2026 apareció escrito en
+  // `bot/DEPLOY.md`. Una lista de formas que no incluye el secreto que ya se te
+  // escapó una vez no es una lista, es un recuerdo.
+  //
+  // Entra ahora porque el registro de prompts de NLnet se SUBE a un tercero, y
+  // sale de transcripciones de sesiones en las que se rotaron tokens.
+  it('tapa un token de bot de Telegram por su forma', () => {
+    const t = '123456789:AAHfakefaketokenfaketokenfaketoken123'
+    const out = redactSecrets(`BOT_TOKEN=${t} y sigue`)
+    expect(out).not.toContain(t)
+    expect(out).toContain('REDACTED')
+  })
+
+  it('tapa un token de GitHub por su forma', () => {
+    for (const t of ['ghp_' + 'a'.repeat(36), 'github_pat_' + 'b'.repeat(30)]) {
+      const out = redactSecrets(`token: ${t}`)
+      expect(out, t).not.toContain(t)
+    }
+  })
+
+  // Un número con dos puntos no es un token: si esto tapara una hora o un id,
+  // el registro saldría ilegible y nadie lo volvería a generar.
+  it('no confunde una hora ni un identificador con un token', () => {
+    const texto = 'a las 11:03:16 el turno 782818609 del pleno 2026:01'
+    expect(redactSecrets(texto)).toBe(texto)
+  })
+
   it('no toca un texto sin secretos', () => {
     const clean = 'chunk 4/29 (600s) — 0 hablantes resueltos, se reintenta mañana'
     expect(redactSecrets(clean)).toBe(clean)
