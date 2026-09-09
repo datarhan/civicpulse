@@ -1,0 +1,96 @@
+name: Bot deploy
+
+# Comitear no es desplegar, y esa distancia ya ha costado dos veces.
+#
+# El 8-09-2026 el bot se quedó MUDO al rotar el token porque Fly no se
+# actualizó. El 9-09-2026 se añadió al calendario de convocatorias un premio que
+# cerraba en 36 días, se comprobó que el aviso salía bien, y la máquina de Fly
+# seguía sirviendo la versión de las 08:16Z — anterior a los cuatro commits del
+# día. El aviso del 15 de septiembre no iba a salir, y NADA lo decía: `bot.yml`
+# corría las pruebas y estaba verde, `main` tenía el código y estaba verde, y el
+# bot en producción era de otra hora. Tres verdes y un bot viejo.
+#
+# Hasta hoy esa distancia la cubría una persona acordándose de correr `flyctl
+# deploy` a mano. Acordarse no es un mecanismo.
+#
+# POR QUÉ SÓLO EN `main` Y CON `bot/**`. El bot es un servicio con estado —una
+# base SQLite en un volumen persistente— así que desplegar desde una rama sería
+# apuntar un experimento a los datos de producción. Y por ruta, porque un
+# despliegue que corriera con cualquier cambio del sitio reiniciaría el bot
+# varias veces al día sin motivo.
+#
+# `concurrency` cancela un despliegue en curso si entra otro: dos `flyctl
+# deploy` a la vez sobre la misma app se pisan.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'bot/**'
+      - '.github/workflows/bot-deploy.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: bot-deploy
+  cancel-in-progress: true
+
+# Este workflow no escribe nada en el repositorio: clona, construye en Fly y
+# despliega. Lo único que necesita es leer. El `GITHUB_TOKEN` por defecto viene
+# con mucho más, y aquí conviven con él las credenciales de producción del bot.
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Deploy bot to Fly
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+
+      # Un despliegue que no puede autenticarse tiene que DECIRLO.
+      #
+      # Sin esto, `flyctl deploy` sin token falla de una forma que es fácil
+      # confundir con un problema de red, o —peor— un `if:` sobre el secreto lo
+      # saltaría en silencio y el workflow saldría verde sin haber desplegado
+      # nada. Eso es exactamente el defecto que este fichero existe para cerrar:
+      # una pasada tiene que probar que hizo el trabajo, y «no hice nada» no lo
+      # prueba. Se falla, y se dice cómo arreglarlo.
+      - name: Comprobar que hay credencial
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+        run: |
+          if [ -z "$FLY_API_TOKEN" ]; then
+            echo "::error::Falta el secreto FLY_API_TOKEN, así que el bot NO se ha desplegado."
+            echo "Créalo con:"
+            echo "  flyctl tokens create deploy -a munigraph-ribarroja"
+            echo "y guárdalo en GitHub con:"
+            echo "  gh secret set FLY_API_TOKEN"
+            echo "Mientras tanto el bot sigue sirviendo la versión anterior."
+            exit 1
+          fi
+
+      # Fijada al COMMIT, no a `master`.
+      #
+      # Es una acción de terceros y corre en el mismo trabajo que
+      # `FLY_API_TOKEN`, así que quien pudiera mover esa rama desplegaría lo que
+      # quisiera en nuestra app. `master` es una referencia móvil: hoy apunta
+      # aquí y mañana a otro sitio, sin que ningún commit nuestro cambie. Este
+      # SHA es exactamente lo que `master` servía el 2026-09-09, y coincide con
+      # la etiqueta 1.6.
+      - uses: superfly/flyctl-actions/setup-flyctl@ed8efb33836e8b2096c7fd3ba1c8afe303ebbff1 # 1.6
+
+      # `--remote-only` construye en los constructores de Fly: el runner no
+      # tiene que montar Docker y el contexto no viaja desde aquí.
+      - name: Desplegar
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+        run: flyctl deploy --config bot/fly.toml --dockerfile bot/Dockerfile --remote-only
+
+      # Y que se note que ocurrió: la fecha del despliegue es lo primero que se
+      # mira cuando el bot no dice lo que debería.
+      - name: Decir qué quedó desplegado
+        if: ${{ always() }}
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+        run: flyctl status --config bot/fly.toml || true

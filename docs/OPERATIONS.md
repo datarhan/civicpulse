@@ -66,18 +66,20 @@ adapter names to the `case` switch.
 
 ## The other GitHub workflows
 
-| Workflow                          | Trigger                                                                                                                                                                                                                       |
-| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `e2e.yml`                         | push / PR — Playwright, sets `VITE_ENABLE_PERIODISTAS=true` (absent locally, so `/cargos`'s Biografía spec always reds on a local run)                                                                                        |
-| `deploy-vercel.yml`               | push, plus `workflow_run` after **every** workflow that pushes to `main` (see below)                                                                                                                                          |
-| `batch-reminder.yml`              | Mondays 08:00 UTC — nudges the queja batch registrar                                                                                                                                                                          |
-| `pull-quejas.yml`                 | daily 04:00 UTC (before the scrape) — pulls the bot's `/export/quejas.json` from Fly.io into `public/data/`. Live since 2026-08-02; gated on `vars.BOT_EXPORT_URL`, so unsetting that variable silently stops queja refreshes |
-| `ingest-finding-responses.yml`    | issue labelled `derecho-replica`                                                                                                                                                                                              |
-| `ingest-journalist-responses.yml` | issue labelled `derecho-replica` **and** `periodista`                                                                                                                                                                         |
-| `ingest-pleno-votes.yml`          | issue from the `pleno-vote.yml` form                                                                                                                                                                                          |
-| `ingest-queja-responses.yml`      | issue from the `queja-response.yml` form                                                                                                                                                                                      |
-| `ingest-eficiencia-responses.yml` | issue labelled `derecho-replica` **and** `eficiencia`                                                                                                                                                                         |
-| `cesel-entrega.yml`               | Mondays 06:00 UTC in **November, December and January only** — the one window in which a new coste-efectivo entrega can appear (see below)                                                                                    |
+| Workflow                          | Trigger                                                                                                                                                                                                                                                                                                      |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `e2e.yml`                         | push / PR — Playwright, sets `VITE_ENABLE_PERIODISTAS=true` (absent locally, so `/cargos`'s Biografía spec always reds on a local run)                                                                                                                                                                       |
+| `deploy-vercel.yml`               | push, plus `workflow_run` after **every** workflow that pushes to `main` (see below)                                                                                                                                                                                                                         |
+| `batch-reminder.yml`              | Mondays 08:00 UTC — nudges the queja batch registrar                                                                                                                                                                                                                                                         |
+| `pull-quejas.yml`                 | daily 04:00 UTC (before the scrape) — pulls the bot's `/export/quejas.json` from Fly.io into `public/data/`. Live since 2026-08-02; gated on `vars.BOT_EXPORT_URL`, so unsetting that variable silently stops queja refreshes                                                                                |
+| `ingest-finding-responses.yml`    | issue labelled `derecho-replica`                                                                                                                                                                                                                                                                             |
+| `ingest-journalist-responses.yml` | issue labelled `derecho-replica` **and** `periodista`                                                                                                                                                                                                                                                        |
+| `ingest-pleno-votes.yml`          | issue from the `pleno-vote.yml` form                                                                                                                                                                                                                                                                         |
+| `ingest-queja-responses.yml`      | issue from the `queja-response.yml` form                                                                                                                                                                                                                                                                     |
+| `ingest-eficiencia-responses.yml` | issue labelled `derecho-replica` **and** `eficiencia`                                                                                                                                                                                                                                                        |
+| `bot.yml`                         | push / PR touching `bot/**` — runs the bot's own suite with `working-directory: bot`. Its 124 tests ran in no workflow at all until 2026-09-09: the root `npm test` only globs `tests/**` and `src/**`                                                                                                       |
+| `bot-deploy.yml`                  | push to `main` touching `bot/**` — `flyctl deploy --remote-only`. Committing is not deploying: on 2026-09-09 the calendar gained a prize closing in 36 days while Fly still served a build from hours earlier, with every check green. Fails loudly if `FLY_API_TOKEN` is missing rather than skipping green |
+| `cesel-entrega.yml`               | Mondays 06:00 UTC in **November, December and January only** — the one window in which a new coste-efectivo entrega can appear (see below)                                                                                                                                                                   |
 
 Each ingest workflow parses the structured form, calls the matching curator CLI,
 commits, and closes the issue with a permalink. Git history is the sole audit
@@ -406,7 +408,26 @@ a partial pass read as full coverage — as of 2026-08-03 that is 11 of 15.
 
 ## Git hooks
 
-- **pre-commit** — `lint`, `format:check`, `check:json`. Fails on errors only.
+- **pre-commit** — `lint`, `format:check`, `check:json`, `check:secrets --staged`,
+  `check:privado --staged`, `check:sparse`. Fails on errors only.
+
+  The last two are siblings that answer different questions, and the split is
+  the point. `check:secrets` recognises a credential **by its shape** — a
+  Telegram token looks like a Telegram token. `check:privado` catches what has
+  no shape: our own submitted-application reference, our own salary target, the
+  amount **we** ask for. On 2026-09-09 an NLnet proposal code went into a file
+  that both deploys and is publicly readable; `check:secrets` looked straight at
+  it and correctly reported zero.
+
+  Its discriminator is that **the subject is us**, and that matters more here
+  than anywhere: this site publishes councillor salaries and municipal budgets —
+  that is its job. So a hit needs the line to say the pay or the ask is ours
+  **and** the file to name a funder. The first version checked only the line and
+  produced 66 findings over the tree, nearly all false; each of the six false
+  positives is now a test. Full-tree audit: `npm run check:privado`, which also
+  runs inside `monitor:health` — a gate that only inspects what arrives today
+  passes everything from yesterday, and yesterday was where the exposure was.
+
 - **pre-push** — when the push touches `public/data/`, a page component or
   `i18n.jsx`, builds and reads the affected pages as a visitor would. **Never
   blocks**: a probabilistic check that can block a push teaches everyone to type

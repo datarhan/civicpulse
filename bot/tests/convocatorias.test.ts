@@ -1,9 +1,13 @@
 import { describe, it, expect } from 'vitest'
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
 import {
   CONVOCATORIAS,
   estadoDe,
   avisosDe,
   runConvocatoriasOnce,
+  proximoHito,
+  caducadas,
   type Convocatoria,
 } from '../src/services/convocatorias.ts'
 
@@ -122,6 +126,38 @@ describe('avisosDe', () => {
   })
 })
 
+describe('una convocatoria ya presentada', () => {
+  const PRESENTADA: Convocatoria = {
+    ...FIJA,
+    id: 'ya-enviada',
+    presentada: { fecha: '2026-01-05', ref: 'REF-123' },
+  }
+
+  // El plazo NO deja de importar al enviar —NLnet admite reenvío hasta el
+  // cierre—, así que callar del todo perdería la última oportunidad de
+  // corregir. Pero repetir cinco veces «cierra en N días» sobre algo que ya
+  // está enviado es ruido, y el ruido es lo que enseña a ignorar los avisos.
+  it('avisa menos veces, no deja de avisar', () => {
+    expect(avisosDe([PRESENTADA], enero(1))).toEqual([]) // el hito de 30 se calla
+    expect(avisosDe([PRESENTADA], enero(24)).map((a) => a.dias)).toEqual([7])
+    expect(avisosDe([PRESENTADA], enero(30)).map((a) => a.dias)).toEqual([1])
+  })
+
+  // Y lo que diga tiene que decir que ya está enviada, con su referencia: un
+  // «cierra en 7 días» a secas manda a rellenar otra vez un formulario hecho.
+  it('el aviso dice que ya se envió, y con qué referencia', () => {
+    const [a] = avisosDe([PRESENTADA], enero(24))
+    expect(a.texto).toMatch(/presentada/i)
+    expect(a.texto).toContain('REF-123')
+    expect(a.texto).toMatch(/reenv/i)
+  })
+
+  it('estadoDe la distingue de una simplemente abierta', () => {
+    expect(estadoDe(PRESENTADA, enero(10)).estado).toBe('presentada')
+    expect(estadoDe(FIJA, enero(10)).estado).toBe('abierta')
+  })
+})
+
 describe('runConvocatoriasOnce', () => {
   it('manda un DM por administrador cuando hay algo que decir', async () => {
     const enviados: { a: number; texto: string }[] = []
@@ -149,6 +185,128 @@ describe('runConvocatoriasOnce', () => {
     const r = await runConvocatoriasOnce([], async () => {}, enero(1), [FIJA])
     expect(r.sinAdministradores).toBe(true)
     expect(r.avisos).toBe(1)
+  })
+})
+
+describe('proximoHito', () => {
+  // Sin esto el cron es indistinguible de estar muerto en cualquier día sin
+  // hito, que son casi todos: sólo habla cuando hay algo que decir, y el
+  // silencio se lee igual que un import que nunca cargó. Un arranque tiene que
+  // DEMOSTRAR que hizo el trabajo — regla 2 de DATA_INTEGRITY.
+  it('dice cuál es el siguiente aviso y cuándo', () => {
+    // FIJA cierra el 31-01; el primer hito es el de 30 días, el 01-01.
+    const r = proximoHito(new Date('2025-12-15T00:00:00Z'), [FIJA])
+    expect(r).not.toBeNull()
+    expect(r!.fecha).toBe('2026-01-01')
+    expect(r!.id).toBe('prueba-cierra')
+  })
+
+  // Con el plazo ya pasado no queda hito ninguno, y `null` es la respuesta
+  // honesta: inventar una fecha para tener algo que imprimir sería peor que
+  // callar.
+  it('devuelve null si no queda ninguno, en vez de inventarse uno', () => {
+    expect(proximoHito(new Date('2026-06-01T00:00:00Z'), [FIJA])).toBeNull()
+  })
+})
+
+describe('caducadas', () => {
+  /**
+   * Todas estas convocatorias son ANUALES menos Goteo: NLnet, el European Press
+   * Prize, Sigma y los premios de datos abiertos vuelven cada año con fechas
+   * nuevas. Por eso `cerrada` no es un estado final aquí, es un dato VIEJO —y
+   * una fila con el plazo pasado no vuelve a hablar nunca, así que su silencio
+   * se lee igual que «este año no toca».
+   *
+   * El 2026-09-09 esto costó un premio: el de Comunicación de la AEPD llevaba
+   * abierto desde el 21 de julio, cerraba el 15 de octubre, y no estaba en la
+   * lista. Nadie podía verlo, porque una lista incompleta y una lista al día
+   * emiten exactamente lo mismo: nada. No se puede probar que no falte una
+   * convocatoria, pero sí se puede ver cuáles se han quedado viejas.
+   */
+  it('nombra la fila cuyo plazo ya pasó, para volver a fecharla', () => {
+    expect(caducadas([FIJA], new Date(Date.UTC(2026, 5, 1))).map((c) => c.id)).toEqual([
+      'prueba-cierra',
+    ])
+  })
+
+  it('no da por vieja una que todavía no ha cerrado', () => {
+    expect(caducadas([FIJA], enero(10))).toEqual([])
+  })
+
+  // Una continua no tiene ventana que caducar: Goteo no vuelve a fecharse.
+  it('una convocatoria continua nunca caduca', () => {
+    const cont: Convocatoria = {
+      id: 'c',
+      nombre: 'Continua',
+      url: 'https://example.org',
+      continua: true,
+      precision: 'exacta',
+    }
+    expect(caducadas([cont], new Date(Date.UTC(2030, 0, 1)))).toEqual([])
+  })
+
+  // Y haberla enviado no la salva: NLnet presentada en septiembre sigue
+  // necesitando fechas nuevas en cuanto pase el 3 de noviembre.
+  it('una ya presentada con el plazo pasado también hay que volver a fecharla', () => {
+    const p: Convocatoria = { ...FIJA, id: 'p', presentada: { fecha: '2026-01-05' } }
+    expect(caducadas([p], new Date(Date.UTC(2026, 5, 1))).map((c) => c.id)).toEqual(['p'])
+  })
+
+  // Sólo juzga lo que puede: una fila que declara apertura y no cierre está
+  // abierta, no vieja. Inventar que caducó sería la precisión que esta casa no
+  // se permite —el cierre del Press Prize no se publica hasta que abre—.
+  it('la que sólo declara apertura y ya abrió no cuenta como vieja', () => {
+    const a: Convocatoria = {
+      id: 'a',
+      nombre: 'Abrió y no dice cuándo cierra',
+      url: 'https://example.org',
+      abre: '2026-01-01T00:00:00Z',
+      precision: 'exacta',
+    }
+    expect(caducadas([a], enero(10))).toEqual([])
+  })
+})
+
+describe('lo que este fichero puede hacer público', () => {
+  /**
+   * Este módulo se despliega en Fly Y vive en un repositorio público desde el
+   * 8-09-2026, y su regla siempre fue «sólo hechos públicos de quien convoca».
+   * La prueba que la vigilaba miraba importes concretos y las palabras
+   * «prioridad» y «estrategia» — y con ella en verde se comitó la REFERENCIA DE
+   * UNA SOLICITUD NUESTRA viva (NLnet admite reenvío hasta el 3 de noviembre).
+   *
+   * Medir la letra y perder el espíritu es el defecto de siempre en esta casa:
+   * la lista copiada a mano que no podía fallar. Una referencia de solicitud no
+   * es un hecho de quien convoca, es un identificador nuestro, y no tiene
+   * ningún valor para el lector del repositorio.
+   *
+   * Se comprueba sobre el TEXTO del fichero, no sobre el objeto: el objeto puede
+   * traer la referencia por entorno y eso está bien; lo que no puede es estar
+   * escrita aquí.
+   */
+  const fuente = readFileSync(join(__dirname, '..', 'src', 'services', 'convocatorias.ts'), 'utf8')
+
+  it('no lleva escrita ninguna referencia de solicitud', () => {
+    // `ref:` seguido de una cadena literal. Por entorno se lee distinto.
+    const literales = [...fuente.matchAll(/\bref:\s*'([^']+)'/g)].map((m) => m[1])
+    expect(
+      literales,
+      'una referencia de solicitud identifica una propuesta viva y este repositorio es público: pásala por entorno',
+    ).toEqual([])
+  })
+
+  it('la referencia se lee del entorno, así que el mecanismo sigue existiendo', () => {
+    expect(fuente).toMatch(/process\.env\.[A-Z_]*REF/)
+  })
+
+  // Y el corolario: las notas dicen lo que exige QUIEN CONVOCA, no nuestro
+  // veredicto sobre si encajamos. «De eso depende que encaje o no» es análisis
+  // nuestro y va en editorial/, que está gitignorado.
+  it('las notas no traen nuestro propio veredicto de encaje', () => {
+    const notas = CONVOCATORIAS.map((c) => c.nota ?? '').join(' | ')
+    expect(notas, 'la nota es del convocante; nuestro encaje va en editorial/').not.toMatch(
+      /\bencaj/i,
+    )
   })
 })
 

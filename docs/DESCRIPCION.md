@@ -323,10 +323,14 @@ la frase sale de los textos **antes** de que la copia se envíe a nadie.
 - **El periodismo va siempre después de la medición** («sobre esos datos…») —
   segundo en jerarquía, sustancial, nunca una nota al pie.
 - **Riba-roja es «el primer municipio»**, nunca el sujeto del proyecto.
-- **Los desiertos informativos se citan con su fuente.** Son **6.304 de 8.147**
+- **Los desiertos informativos se citan con su fuente.** Son **6.304 de 8.131**
   municipios (77,53 %), 11,6 millones de personas — Negreira-Rey,
   Vázquez-Herrero y López-García (2023), _Media and Communication_ 11(3),
   DOI 10.17645/mac.v11i3.6727. **Nunca «unos 6.800» ni ninguna cifra sin cita.**
+  El denominador es **8.131**, el del estudio, y va con ese 77,53 %: escrito
+  8.147 —como estuvo aquí— la división da 77,38 % y las tres cifras de la
+  frase dejan de poder ser ciertas a la vez. El censo VIGENTE son **8.132**
+  municipios, que es otra cifra y sirve para otra frase: la de escala.
 - **Cifras en copia de campaña:** verificar contra la web en el momento de
   enviar; no congelar totales en documentos (regla del repo).
 - **Elecciones:** mayo de 2027 es el horizonte («decidir con hechos»); en
