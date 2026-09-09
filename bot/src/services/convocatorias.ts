@@ -74,6 +74,22 @@ export const CONVOCATORIAS: Convocatoria[] = [
     nota: 'Si se reenvía hay que regenerar el registro de prompts (npm run build:prompt-log) y cuadrar las cifras de la divulgación con el fichero adjunto.',
   },
   {
+    id: 'aepd-comunicacion',
+    nombre: 'AEPD — Premio Comunicación de Protección de Datos Personales',
+    url: 'https://www.aepd.es/la-agencia/transparencia/informacion-economica-presupuestaria-y-estadistica/premios',
+    cierra: '2026-10-15T21:59:00Z', // 23:59 CEST del 15-10
+    precision: 'exacta',
+    nota: 'Pide un trabajo DEDICADO a la protección de datos: las bases (BOE-A-2026-15843) excluyen lo que quede «fuera del objeto del premio», así que una pieza que la toque de pasada no entra. Ventana de publicación 16-10-2025 a 15-10-2026. Se envía por la sede electrónica con el anexo 1 firmado y un resumen ejecutivo de 4 páginas; la mitad de la puntuación es la difusión conseguida.',
+  },
+  {
+    id: 'valencia-datos',
+    nombre: 'Ayuntamiento de València — periodismo de datos y datos abiertos',
+    url: 'https://www.valencia.es/cas/campa%C3%B1as-municipales/-/content/premios-proyectos-datos-abiertos-periodismo-datos-2025',
+    abre: '2027-05-08T00:00:00Z',
+    precision: 'aproximada',
+    nota: 'Categoría de periodismo de datos, tres premios (5.000/3.000/2.000 €). La edición de 2026 corrió del 8-05 al 8-06. ANTES de contar con ella hay que leer las bases: no está comprobado si exige reutilizar datos del portal de València, y de eso depende que encaje o no.',
+  },
+  {
     id: 'european-press-prize',
     nombre: 'European Press Prize — Innovation Award',
     url: 'https://www.europeanpressprize.com/judging/submission-rules/',
@@ -247,6 +263,28 @@ export function proximoHito(
   return null
 }
 
+/**
+ * Las filas cuyo plazo ya pasó — que aquí significa «hay que volver a fecharlas»
+ * y no «ya no toca».
+ *
+ * Todas estas convocatorias son ANUALES menos Goteo, así que `cerrada` no es un
+ * estado final: es un dato viejo. Y una fila vieja deja de emitir para siempre,
+ * con lo que un calendario que se ha quedado atrás y uno al día dicen
+ * exactamente lo mismo —nada—. Esto es lo único que los distingue.
+ *
+ * No prueba que no falte una convocatoria; eso no se puede probar. Prueba lo
+ * otro: que las que hay siguen vigentes. El 2026-09-09 el premio de
+ * Comunicación de la AEPD llevaba tres meses abierto, cerraba en 36 días, y no
+ * estaba en esta lista.
+ *
+ * Sólo juzga lo que puede medir: una fila que declara apertura y no cierre no
+ * cuenta como vieja, porque el cierre del European Press Prize no se publica
+ * hasta el día en que abre.
+ */
+export function caducadas(cs: Convocatoria[], ahora: Date = new Date()): Convocatoria[] {
+  return cs.filter((c) => !c.continua && c.cierra && Date.parse(c.cierra) < ahora.getTime())
+}
+
 export interface CorridaConvocatorias {
   avisos: number
   enviados: number
@@ -319,6 +357,18 @@ export function startConvocatoriasCron(bot: Bot<MyContext>): void {
       ? `[convocatorias] cron armado · ${CONVOCATORIAS.length} convocatoria(s) · siguiente aviso ${p.fecha} (${p.clase}:${p.id})`
       : `[convocatorias] cron armado · ${CONVOCATORIAS.length} convocatoria(s) · ningún hito en los próximos 12 meses`,
   )
+
+  // Un calendario que se ha quedado viejo no se queja solo: sus filas
+  // simplemente dejan de emitir. Como son anuales, decirlo al arrancar es la
+  // única forma de que se note.
+  const viejas = caducadas(CONVOCATORIAS)
+  if (viejas.length > 0) {
+    logger.warn?.(
+      `[convocatorias] ${viejas.length} con el plazo pasado y sin refechar: ${viejas
+        .map((c) => c.id)
+        .join(', ')} — son anuales, tocan fechas nuevas`,
+    )
+  }
 
   void tick()
   setInterval(() => void tick(), TICK_MS)

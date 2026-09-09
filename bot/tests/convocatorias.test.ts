@@ -5,6 +5,7 @@ import {
   avisosDe,
   runConvocatoriasOnce,
   proximoHito,
+  caducadas,
   type Convocatoria,
 } from '../src/services/convocatorias.ts'
 
@@ -203,6 +204,64 @@ describe('proximoHito', () => {
   // callar.
   it('devuelve null si no queda ninguno, en vez de inventarse uno', () => {
     expect(proximoHito(new Date('2026-06-01T00:00:00Z'), [FIJA])).toBeNull()
+  })
+})
+
+describe('caducadas', () => {
+  /**
+   * Todas estas convocatorias son ANUALES menos Goteo: NLnet, el European Press
+   * Prize, Sigma y los premios de datos abiertos vuelven cada año con fechas
+   * nuevas. Por eso `cerrada` no es un estado final aquí, es un dato VIEJO —y
+   * una fila con el plazo pasado no vuelve a hablar nunca, así que su silencio
+   * se lee igual que «este año no toca».
+   *
+   * El 2026-09-09 esto costó un premio: el de Comunicación de la AEPD llevaba
+   * abierto desde el 21 de julio, cerraba el 15 de octubre, y no estaba en la
+   * lista. Nadie podía verlo, porque una lista incompleta y una lista al día
+   * emiten exactamente lo mismo: nada. No se puede probar que no falte una
+   * convocatoria, pero sí se puede ver cuáles se han quedado viejas.
+   */
+  it('nombra la fila cuyo plazo ya pasó, para volver a fecharla', () => {
+    expect(caducadas([FIJA], new Date(Date.UTC(2026, 5, 1))).map((c) => c.id)).toEqual([
+      'prueba-cierra',
+    ])
+  })
+
+  it('no da por vieja una que todavía no ha cerrado', () => {
+    expect(caducadas([FIJA], enero(10))).toEqual([])
+  })
+
+  // Una continua no tiene ventana que caducar: Goteo no vuelve a fecharse.
+  it('una convocatoria continua nunca caduca', () => {
+    const cont: Convocatoria = {
+      id: 'c',
+      nombre: 'Continua',
+      url: 'https://example.org',
+      continua: true,
+      precision: 'exacta',
+    }
+    expect(caducadas([cont], new Date(Date.UTC(2030, 0, 1)))).toEqual([])
+  })
+
+  // Y haberla enviado no la salva: NLnet presentada en septiembre sigue
+  // necesitando fechas nuevas en cuanto pase el 3 de noviembre.
+  it('una ya presentada con el plazo pasado también hay que volver a fecharla', () => {
+    const p: Convocatoria = { ...FIJA, id: 'p', presentada: { fecha: '2026-01-05' } }
+    expect(caducadas([p], new Date(Date.UTC(2026, 5, 1))).map((c) => c.id)).toEqual(['p'])
+  })
+
+  // Sólo juzga lo que puede: una fila que declara apertura y no cierre está
+  // abierta, no vieja. Inventar que caducó sería la precisión que esta casa no
+  // se permite —el cierre del Press Prize no se publica hasta que abre—.
+  it('la que sólo declara apertura y ya abrió no cuenta como vieja', () => {
+    const a: Convocatoria = {
+      id: 'a',
+      nombre: 'Abrió y no dice cuándo cierra',
+      url: 'https://example.org',
+      abre: '2026-01-01T00:00:00Z',
+      precision: 'exacta',
+    }
+    expect(caducadas([a], enero(10))).toEqual([])
   })
 })
 
