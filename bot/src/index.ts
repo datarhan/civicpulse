@@ -22,6 +22,7 @@ import { buildBatch, renderBatchHtml, renderBatchMarkdown } from './services/bat
 import { buildSindicTemplate, renderSindicHtml, renderSindicMarkdown } from './services/sindic.ts'
 import { startSilencioCron } from './services/cron.ts'
 import { startDigestCron } from './services/digest.ts'
+import { startConvocatoriasCron } from './services/convocatorias.ts'
 import { getQueja } from './db/queries.ts'
 import { routeUsingLocalOfficials } from './services/router.ts'
 import { logger } from './util/log.ts'
@@ -64,6 +65,15 @@ function makeBot() {
   // 09:00 local. DMs each subscribed user with the past-7-days quejas
   // matching their filters. Paused during LOREG freeze.
   startDigestCron(bot, db)
+
+  // Convocatorias cron — tic horario que emite una vez al día y sólo cuando un
+  // plazo cruza un hito. DM a ADMIN_USER_IDS; los vecinos no ven nada de esto.
+  //
+  // NO se pausa con el bloqueo LOREG, a diferencia de los dos de arriba, y es
+  // a propósito: aquéllos publican o escriben sobre cargos electos y por eso se
+  // paran. Éste es un recordatorio interno del plazo de un tercero. Pararlo en
+  // campaña sólo perdería una convocatoria, que es anual.
+  startConvocatoriasCron(bot)
 
   bot.catch((err) => {
     console.error('[bot] error:', err)
