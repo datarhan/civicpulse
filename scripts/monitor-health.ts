@@ -284,6 +284,16 @@ async function gather(): Promise<Observations> {
     // Sale 1 sólo con el sitio por detrás del repositorio; un árbol viejo o un
     // fichero ilegible avisan sin bloquear.
     'check:publicado',
+    // ¿Ha entrado algo NUESTRO y privado en un repositorio público?
+    //
+    // Aquí mira el árbol ENTERO, que es lo que el gancho de pre-commit no puede
+    // permitirse: aquél sólo ve lo estampado, así que lo que ya estaba dentro
+    // antes de que naciera la guarda no lo encuentra nadie. Y había: el
+    // objetivo de sueldo del operador llevaba público desde el 8-09-2026 en
+    // `docs/superpowers/`, en un fichero que ningún commit volvió a tocar.
+    //
+    // Una puerta que sólo mira lo que entra hoy da por limpio todo lo de ayer.
+    'check:privado',
     // El mapa base, y es la única de esta lista que mira PÍXELES.
     //
     // CARTO empezó a exigir clave en sus teselas ráster y lo que hace sin ella

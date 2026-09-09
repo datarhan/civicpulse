@@ -23,6 +23,27 @@ npm run check:json --silent
 # Rotar la credencial es lo primero; borrar la línea no la saca de git.
 npm run check:secrets --silent -- --staged
 
+# Y refúsate a comitear algo NUESTRO Y PRIVADO.
+#
+# Es otra puerta que la de arriba, y hace falta porque aquélla no podía hacer
+# este trabajo: un secreto se reconoce por su FORMA —un token de Telegram parece
+# un token de Telegram— y esto no. El 9-sep-2026 la referencia de la propuesta de
+# NLnet entró en `bot/src/services/convocatorias.ts`, que se despliega en Fly y
+# vive en un repositorio público desde el 8-09. `check:secrets` la miró y dijo,
+# con toda la razón, «0 secretos»; y la guarda propia de ese módulo miraba
+# importes concretos y las palabras «prioridad» y «estrategia», así que también
+# estuvo en verde. Dos puertas y ninguna preguntaba lo que había que preguntar.
+#
+# El discriminador es que el sujeto seamos NOSOTROS. Este sitio publica sueldos
+# de concejales y presupuestos municipales —es su oficio—, así que la guarda
+# exige que la línea diga que la paga o la petición es nuestra Y que el fichero
+# nombre a un financiador. La primera versión sólo miraba la línea y sacó 66
+# avisos sobre el árbol, casi todos falsos; están pinchados como pruebas.
+#
+# Sólo lo ESTAMPADO, para que siga costando milisegundos. Auditoría completa:
+# npm run check:privado
+npm run check:privado --silent -- --staged
+
 # Y refúsate a comitear desde un árbol PODADO.
 #
 # Aquí no se usa `sparse-checkout` en ningún sitio, así que si aparece uno viene

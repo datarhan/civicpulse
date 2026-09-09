@@ -8,8 +8,8 @@ The operator asked (verbatim intent): *does the no-DB decision still hold now th
 maintains a lot of correlated data (plenos → claims → verdicts like «contradicho» → hallazgos,
 contracts, press, quejas), and make a deep refactoring toward the best solution.* This session
 runs unattended, so the brainstorming flow was adapted: requirements were derived from the
-codebase, git history, and the locked strategy doc
-(`2026-07-06-promotion-funding-strategy-design.md`) instead of live Q&A. The refactor executes
+codebase, git history, and the locked strategy doc (internal, kept out of this
+repository: it carries the project's own funding plan) instead of live Q&A. The refactor executes
 in reversible, test-gated commits; this spec is the design record the operator reviews async.
 
 ## 1. Evidence (measured 2026-07-29)
