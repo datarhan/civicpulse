@@ -24,6 +24,12 @@ const PALETTE = {
   // Petróleo, como la marca compartida. El valor anterior era el de
   // PARTY_COLORS.PP. 7,35:1 sobre el papel cálido de esta portada.
   civic: '#0E5B62',
+  // El petróleo hondo del sitio (--civic-ink): el paso del ratón o del foco
+  // sobre una superficie ya pintada de petróleo.
+  civicInk: '#0A4449',
+  // La fila señalada de un desplegable: el petróleo al 7 %. Es un lavado de
+  // fondo, nunca un color de texto.
+  civicWash: 'rgba(14,91,98,.07)',
   accent: '#B0291F',
   accent2: '#1E3A8A',
   // FILL vs INK, the same split index.css already makes with `--ok` /
@@ -62,4 +68,9 @@ function useClock(intervalMs = 30000) {
   }, [intervalMs])
   return now
 }
-export { RIBA_ROJA_CENTER, SERIF, SANS, MONO, PALETTE, fmtClock, fmtDateLong, useClock }
+// La puerta al bot de quejas desde la portada. Una sola constante para las dos
+// llamadas que la abren —la de la columna y la de la barra de secciones—, con
+// el mismo parámetro de arranque, para que no puedan discrepar.
+const BOT_QUEJAS = 'https://t.me/munigraph_bot?start=landing'
+
+export { RIBA_ROJA_CENTER, SERIF, SANS, MONO, PALETTE, BOT_QUEJAS, fmtClock, fmtDateLong, useClock }

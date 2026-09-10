@@ -35,8 +35,8 @@ describe('SectionGlyph — canonical per-section assignment', () => {
   })
 
   it('gives every nav route a glyph — primary + secondary, no section left unmarked', () => {
-    // Both the labelled Sidebar and the icon-only LeftRail render these from the
-    // shared src/nav.js; the rail shows a glyph per route, so every one needs one.
+    // Both the labelled Sidebar and the landing's section bar render these from
+    // the shared src/nav.js, each row led by its glyph, so every one needs one.
     for (const n of [...NAV, ...NAV_SECONDARY]) {
       expect(SECTION_GLYPHS[n.to], `nav route ${n.to} needs a glyph`).toBeTruthy()
     }

@@ -78,12 +78,14 @@ JSON. Two things are not the SPA and are easy to mistake for exceptions:
   dashboard and is excluded from the production build in two independent places
   (`vite.config.js` externals + a React-layer route guard).
 
-- `src/App.jsx` is the root. `/` renders `DirectionD` (full-bleed map + editorial
-  column + KPI strip) with **no sidebar**; every other route renders inside
-  `InnerShell`.
+- `src/App.jsx` is the root. `/` renders `DirectionD` (section bar + full-bleed
+  map + editorial column + KPI strip) with **no sidebar**; every other route
+  renders inside `InnerShell`.
 - `src/nav.js` owns `NAV` + `NAV_SECONDARY` — the single nav source for both the
-  labelled `Sidebar` and the icon-only landing `LeftRail`, so the two cannot
-  drift. Adding a route means adding a glyph in `SectionGlyph.jsx`.
+  labelled `Sidebar` and the landing's section bar (`BarraSecciones`: five named
+  groups with dropdowns, plus an index), so the two cannot drift. Adding a route
+  means a glyph in `SectionGlyph.jsx`, a `group` and a one-line `descKey` in both
+  locales — `tests/nav-grupos.test.js` reds on the last two.
 - `tweaks` (dark mode, density) persists to `localStorage['cp:tweaks']` and
   applies `html.dark` + a root font size.
 - Cmd/Ctrl+K opens `components/CmdK.jsx`, indexing `NAV` + officials + recent

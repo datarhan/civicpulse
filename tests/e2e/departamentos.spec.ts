@@ -149,14 +149,14 @@ test.describe('Departamentos (/departamentos)', () => {
     expect(errors).toEqual([])
   })
 
-  test('landing rail has a Departamentos icon linking here', async ({ page }) => {
+  test('la barra de la portada lleva a Departamentos desde «Gobierno»', async ({ page }) => {
+    // El carril de glifos llevaba aquí con un icono suelto; la barra de
+    // secciones lo agrupa bajo «Gobierno». Se abre el grupo y se pulsa la fila,
+    // como lo haría un lector — el enlace cerrado existe, pero no se ve.
     await page.goto('/', { waitUntil: 'domcontentloaded' })
-    // Rail item renders as an <a href="/departamentos"> inside the LeftRail
-    // aside. We wait for at least one to be attached — lazy chunks can take a
-    // beat — then verify click navigation works.
-    const deptLink = page.locator('a[href="/departamentos"]').first()
-    await expect(deptLink).toBeVisible({ timeout: 10_000 })
-    await deptLink.click()
+    const barra = page.getByRole('navigation', { name: 'Secciones' })
+    await barra.getByRole('button', { name: 'Gobierno', exact: true }).click({ timeout: 10_000 })
+    await barra.getByRole('link', { name: /^Departamentos/ }).click()
     await expect(page).toHaveURL(/\/departamentos$/)
     await expect(page.getByText(/Departamentos · compromisos y plazos/i).first()).toBeVisible({
       timeout: 8000,

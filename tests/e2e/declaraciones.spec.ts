@@ -39,7 +39,7 @@ test.describe('Declaraciones (/declaraciones)', () => {
 
   test('sidebar nav has Declaraciones entry linking here', async ({ page }) => {
     // Sidebar only renders on InnerShell routes — not on the landing page,
-    // which has its own LeftRail. Use /cargos to exercise the full sidebar.
+    // which has its own section bar. Use /cargos to exercise the full sidebar.
     await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
     const link = page.locator('a[href="/declaraciones"]').first()
     await expect(link).toBeVisible({ timeout: 10_000 })

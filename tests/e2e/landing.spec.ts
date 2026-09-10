@@ -14,8 +14,13 @@ test.describe('Landing (/)', () => {
     await expect(page.getByText(/Robert Raga/i).first()).toBeVisible({ timeout: 8000 })
 
     // KPI strip: the labels include the current year ("Población 2025", "Presup. 2025" etc.)
-    await expect(page.getByText(/Población/i).first()).toBeVisible()
-    await expect(page.getByText(/Presup/i).first()).toBeVisible()
+    //
+    // Scoped to the strip's cells. The section bar's closed panels carry
+    // «población» and «Presupuesto» in hidden text that comes first in the DOM,
+    // and a page-wide `.first()` resolved to it — hidden, so the test failed on
+    // a page that was fine.
+    await expect(page.locator('.d-kpi-cell', { hasText: /Población/i }).first()).toBeVisible()
+    await expect(page.locator('.d-kpi-cell', { hasText: /Presup/i }).first()).toBeVisible()
 
     // Map tiles loaded (Leaflet attribution link appears when tiles are live)
     await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 8000 })
@@ -87,8 +92,12 @@ test.describe('Landing (/)', () => {
 
     // 3 · the mayor's government strip, under a «Gobierno municipal · 2025»
     // heading beside a one-year budget.
+    //
+    // Scoped to the column: the section bar's «Dinero» panel also links to
+    // /presupuesto, and its sentence names contratos. Closed, that link sits
+    // FIRST in the DOM and hidden — and `.first()` would pick it.
     const govLink = page
-      .locator('a[href="/presupuesto"]')
+      .locator('.d-editorial a[href="/presupuesto"]')
       .filter({ hasText: /contratos/i })
       .first()
     await expect(govLink).toContainText(awarded, { timeout: 8000 })
@@ -113,7 +122,10 @@ test.describe('Landing (/)', () => {
 
     // Y que NO la lleven todas: una salvedad en las cuatro filas es una
     // salvedad que no distingue nada.
-    const filas = page.locator('a[href="/presupuesto"]').first()
+    //
+    // En la columna: sin acotar, esto lo satisfacía el enlace del carril, y
+    // ahora lo haría el de «Dinero», cerrado y oculto. Ninguno es una fila.
+    const filas = page.locator('.d-editorial a[href="/presupuesto"]').first()
     expect(await filas.count()).toBeGreaterThan(0)
     expect(cuantas).toBeLessThan(4)
 

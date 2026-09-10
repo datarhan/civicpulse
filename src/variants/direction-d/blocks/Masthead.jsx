@@ -1,4 +1,4 @@
-import { PALETTE, SERIF, SANS, MONO, fmtDateLong } from '../tokens'
+import { PALETTE, SERIF, SANS, MONO, BOT_QUEJAS, fmtDateLong } from '../tokens'
 import { useT } from '../../../i18n'
 
 export function EditorialMasthead({ now }) {
@@ -119,7 +119,7 @@ export function QuejaCTA() {
         {t('landing.queja.body2')}
       </div>
       <a
-        href="https://t.me/munigraph_bot?start=landing"
+        href={BOT_QUEJAS}
         target="_blank"
         rel="noreferrer"
         style={{
