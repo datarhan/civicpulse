@@ -2,23 +2,28 @@ import { Ic } from './components/Icons'
 import { PERIODISTAS_ENABLED, EFICIENCIA_ENABLED } from './flags'
 
 // Single source of truth for site navigation. BOTH the labelled Sidebar
-// (InnerShell routes) and the icon-only LeftRail (the `/` landing) render from
-// this — so a route added here shows up in both and they can never drift.
+// (InnerShell routes) and the grouped section bar of the `/` landing
+// (direction-d/BarraSecciones.jsx) render from this — so a route added here
+// shows up in both and they can never drift.
 //
 // - `labelKey` is an i18n key; `label` is the fallback display string used by
 //   breadcrumb matching when the key is not loaded (SSR/hydration).
-// - `railLabel` (optional) overrides the hover title in the icon rail, where a
-//   section may carry its own landing-page branding (e.g. `/` = "Mirador").
-// - The glyph shown in the rail comes from SECTION_GLYPHS keyed by `to`
+// - `group` es el grupo de la barra de la portada bajo el que se abre la
+//   sección (NAV_GROUPS), o `proyecto` para lo que trata de nosotros y no del
+//   municipio. Sólo `/` no lleva: es la propia portada.
+// - `descKey` es la frase de una línea que el desplegable pone bajo el rótulo:
+//   para qué sirve la sección, dicho como lo diría quien la busca.
+// - The glyph comes from SECTION_GLYPHS keyed by `to`
 //   (src/components/SectionGlyph.jsx) — keep a unique glyph there for every
 //   `to` listed here, including NAV_SECONDARY.
+//
+// tests/nav-grupos.test.js se pone en rojo con una ruta sin grupo o sin frase.
 export const NAV = [
   {
     to: '/',
     id: 'inicio',
     labelKey: 'nav.inicio',
     label: 'Panel',
-    railLabel: 'Mirador',
     icon: Ic.home,
   },
   {
@@ -27,6 +32,8 @@ export const NAV = [
     labelKey: 'nav.cambios',
     label: 'Novedades',
     icon: Ic.chart,
+    group: 'vigilancia',
+    descKey: 'nav.desc.cambios',
   },
   {
     to: '/cargos',
@@ -34,6 +41,8 @@ export const NAV = [
     labelKey: 'nav.cargos',
     label: 'Cargos',
     icon: Ic.people,
+    group: 'gobierno',
+    descKey: 'nav.desc.cargos',
   },
   {
     to: '/presupuesto',
@@ -41,6 +50,8 @@ export const NAV = [
     labelKey: 'nav.presup',
     label: 'Presupuesto',
     icon: Ic.coin,
+    group: 'dinero',
+    descKey: 'nav.desc.presup',
   },
   // Coste unitario por servicio frente a municipios comparables. Va detrás de
   // /presupuesto porque es la otra mitad de la misma pregunta: qué se gasta, y
@@ -53,6 +64,8 @@ export const NAV = [
           labelKey: 'nav.eficiencia',
           label: 'Eficiencia',
           icon: Ic.chart,
+          group: 'dinero',
+          descKey: 'nav.desc.eficiencia',
         },
         // La otra mitad del panel, separada por FUENTE: /eficiencia sale entera
         // del coste efectivo de los servicios y esto de las series PMP, de
@@ -66,6 +79,8 @@ export const NAV = [
           labelKey: 'nav.gestion',
           label: 'Gestión',
           icon: Ic.clock,
+          group: 'dinero',
+          descKey: 'nav.desc.gestion',
         },
       ]
     : []),
@@ -75,6 +90,8 @@ export const NAV = [
     labelKey: 'nav.plenos',
     label: 'Plenos',
     icon: Ic.scale,
+    group: 'gobierno',
+    descKey: 'nav.desc.plenos',
   },
   {
     to: '/promesas',
@@ -82,6 +99,8 @@ export const NAV = [
     labelKey: 'nav.promesas',
     label: 'Promesas',
     icon: Ic.scale,
+    group: 'gobierno',
+    descKey: 'nav.desc.promesas',
   },
   {
     to: '/departamentos',
@@ -89,6 +108,8 @@ export const NAV = [
     labelKey: 'nav.departamentos',
     label: 'Departamentos',
     icon: Ic.building,
+    group: 'gobierno',
+    descKey: 'nav.desc.departamentos',
   },
   {
     to: '/hallazgos',
@@ -96,6 +117,8 @@ export const NAV = [
     labelKey: 'nav.hallazgos',
     label: 'Hallazgos',
     icon: Ic.warn,
+    group: 'vigilancia',
+    descKey: 'nav.desc.hallazgos',
   },
   {
     to: '/reportajes',
@@ -103,6 +126,8 @@ export const NAV = [
     labelKey: 'nav.reportajes',
     label: 'Reportajes',
     icon: Ic.list ?? Ic.warn,
+    group: 'vigilancia',
+    descKey: 'nav.desc.reportajes',
   },
   {
     to: '/declaraciones',
@@ -110,13 +135,19 @@ export const NAV = [
     labelKey: 'nav.declaraciones',
     label: 'Declaraciones',
     icon: Ic.list ?? Ic.warn,
+    group: 'vigilancia',
+    descKey: 'nav.desc.declaraciones',
   },
+  // Con el laboratorio y no con la ciudadanía: es la materia prima —todo lo
+  // que alimenta el sitio, descargable— y la página se dirige a quien investiga.
   {
     to: '/datos',
     id: 'datos',
     labelKey: 'nav.datos',
     label: 'Datos',
     icon: Ic.chart,
+    group: 'laboratorio',
+    descKey: 'nav.desc.datos',
   },
   {
     to: '/quejas',
@@ -124,6 +155,8 @@ export const NAV = [
     labelKey: 'nav.quejas',
     label: 'Quejas',
     icon: Ic.warn,
+    group: 'ciudadania',
+    descKey: 'nav.desc.quejas',
   },
   {
     to: '/empleo',
@@ -131,6 +164,8 @@ export const NAV = [
     labelKey: 'nav.empleo',
     label: 'Empleo',
     icon: Ic.building,
+    group: 'ciudadania',
+    descKey: 'nav.desc.empleo',
   },
   {
     to: '/empleo-publico',
@@ -138,6 +173,8 @@ export const NAV = [
     labelKey: 'nav.empleoPublico',
     label: 'Empleo público',
     icon: Ic.building,
+    group: 'ciudadania',
+    descKey: 'nav.desc.empleoPublico',
   },
   {
     to: '/laboratorio',
@@ -145,6 +182,8 @@ export const NAV = [
     labelKey: 'nav.laboratorio',
     label: 'Laboratorio',
     icon: Ic.lab,
+    group: 'laboratorio',
+    descKey: 'nav.desc.laboratorio',
   },
   // La frontera NO va tras bandera. Es el experimento más sujeto a
   // malinterpretación de todo el sitio y por eso la página entera está
@@ -158,6 +197,8 @@ export const NAV = [
     labelKey: 'nav.frontera',
     label: 'Frontera',
     icon: Ic.lab,
+    group: 'laboratorio',
+    descKey: 'nav.desc.frontera',
   },
   // Mismo criterio que la frontera: veredicto de modelo, sin bandera, con la
   // página entera construida para decir lo que no es. No nombra a nadie salvo
@@ -168,6 +209,8 @@ export const NAV = [
     labelKey: 'nav.costeEsperado',
     label: 'Coste esperado',
     icon: Ic.lab,
+    group: 'laboratorio',
+    descKey: 'nav.desc.costeEsperado',
   },
   // Sin bandera, por el mismo criterio: mide una limitación NUESTRA y la página
   // entera está construida para decir lo que no es. No nombra a nadie —son
@@ -178,6 +221,8 @@ export const NAV = [
     labelKey: 'nav.cobertura',
     label: 'Cobertura',
     icon: Ic.lab,
+    group: 'laboratorio',
+    descKey: 'nav.desc.cobertura',
   },
   // "Periodistas" (the AI journalist agent) is the highest legal-sensitivity
   // surface — it drafts biographies of named living officials. Hidden from
@@ -191,6 +236,8 @@ export const NAV = [
           labelKey: 'nav.agentes',
           label: 'Periodistas',
           icon: Ic.lab,
+          group: 'laboratorio',
+          descKey: 'nav.desc.agentes',
         },
       ]
     : []),
@@ -205,6 +252,8 @@ export const NAV = [
           labelKey: 'nav.curator',
           label: 'Curator (dev)',
           icon: Ic.settings ?? Ic.warn,
+          group: 'laboratorio',
+          descKey: 'nav.desc.curator',
         },
         {
           to: '/despiece',
@@ -212,6 +261,8 @@ export const NAV = [
           labelKey: 'nav.despiece',
           label: 'Despiece (dev)',
           icon: Ic.lab ?? Ic.settings,
+          group: 'laboratorio',
+          descKey: 'nav.desc.despiece',
         },
       ]
     : []),
@@ -221,15 +272,52 @@ export const NAV = [
     labelKey: 'nav.nosotros',
     label: 'Quiénes somos',
     icon: Ic.people,
+    group: 'proyecto',
   },
 ]
 
-// Editorial / legal contract links. Rendered in the Sidebar footer and at the
-// foot of the LeftRail (below a divider). Same shared-list discipline as NAV.
+// Editorial / legal contract links. Rendered in the Sidebar footer and, on the
+// landing, at the foot of the section bar's index under «Sobre CivicPulse».
+// Same shared-list discipline as NAV.
 export const NAV_SECONDARY = [
-  { to: '/metodologia', label: 'Metodología', labelKey: 'sidebar.footer.method' },
-  { to: '/aviso-legal', label: 'Aviso legal', labelKey: 'sidebar.footer.legal' },
+  {
+    to: '/metodologia',
+    label: 'Metodología',
+    labelKey: 'sidebar.footer.method',
+    group: 'proyecto',
+  },
+  { to: '/aviso-legal', label: 'Aviso legal', labelKey: 'sidebar.footer.legal', group: 'proyecto' },
 ]
+
+/**
+ * Los cinco grupos de la barra de secciones de la portada, en el orden en que
+ * se leen (lámina 1b de «Portada · Revisión»). Sustituyen a un carril de
+ * glifos cuyo rótulo sólo existía en un `title`: cinco nombres que se leen, y
+ * cada uno se abre con una frase que dice para qué sirve lo que hay dentro.
+ *
+ * Dentro de cada grupo las secciones van en el orden de NAV y no en uno
+ * propio: un segundo orden escrito a mano sería otra lista capaz de discrepar
+ * de la barra lateral sin que nada avisara.
+ */
+export const NAV_GROUPS = [
+  { id: 'gobierno', labelKey: 'nav.grupo.gobierno', ledeKey: 'nav.grupo.gobierno.lede' },
+  { id: 'dinero', labelKey: 'nav.grupo.dinero', ledeKey: 'nav.grupo.dinero.lede' },
+  { id: 'vigilancia', labelKey: 'nav.grupo.vigilancia', ledeKey: 'nav.grupo.vigilancia.lede' },
+  { id: 'ciudadania', labelKey: 'nav.grupo.ciudadania', ledeKey: 'nav.grupo.ciudadania.lede' },
+  { id: 'laboratorio', labelKey: 'nav.grupo.laboratorio', ledeKey: 'nav.grupo.laboratorio.lede' },
+]
+
+/**
+ * Lo que no trata del municipio sino de nosotros: quién firma, con qué reglas
+ * y bajo qué aviso legal. No abre desplegable propio; va al pie del índice,
+ * que es donde el carril lo llevaba, bajo su separador.
+ */
+export const GRUPO_PROYECTO = { id: 'proyecto', labelKey: 'nav.grupo.proyecto' }
+
+/** Las entradas de un grupo, en el orden de NAV. */
+export function entradasDeGrupo(grupo, entradas = [...NAV, ...NAV_SECONDARY]) {
+  return entradas.filter((n) => n.group === grupo)
+}
 
 /**
  * Qué entrada de navegación describe una ruta. Es lo que rotula la miga de pan.

@@ -2,7 +2,7 @@ import StylizedMap from '../components/LiveCity/StylizedMap'
 import LiveTicker from '../components/LiveTicker'
 import { RIBA_ROJA_CENTER, PALETTE, SANS, useClock } from './direction-d/tokens'
 import { Header } from './direction-d/Topbar'
-import { LeftRail } from './direction-d/LeftRail'
+import { BarraSecciones } from './direction-d/BarraSecciones'
 import { EventTicker } from './direction-d/MapOverlays'
 import { EditorialColumn } from './direction-d/EditorialColumn'
 import { KpiStrip } from './direction-d/KpiStrip'
@@ -66,18 +66,16 @@ export default function DirectionD() {
           of checks. a11y.spec.ts now fails if that count collapses again.
         */
         .d-shell { height: 100vh; display: flex; flex-direction: column; }
-        .d-topbar { height: 54px; }
+        /*
+          Por encima de la barra de secciones (1010), que va a su vez por encima
+          de las esquinas de control de Leaflet (1000): el desplegable del
+          tiempo, el aire y el metro cuelga de esta cabecera y tiene que caer
+          sobre la barra, no por debajo de ella.
+        */
+        .d-topbar { height: 54px; position: relative; z-index: 1020; }
         .d-brand { min-width: 0; }
         .cp-livestrip { overflow-x: auto; -webkit-overflow-scrolling: touch; }
         .d-root { flex: 1; display: flex; min-height: 0; }
-        .d-rail {
-          width: 56px; flex-shrink: 0;
-          display: flex; flex-direction: column; align-items: center;
-          padding: 12px 0; gap: 4px;
-          background: ${PALETTE.paper};
-          border-right: 1px solid ${PALETTE.hair};
-        }
-        .d-rail-sep { width: 22px; height: 1px; margin: 6px 0; }
         .d-kpi { height: 76px; }
         .d-kpi-cell { flex: 1; min-width: 0; }
         .d-main { flex: 1; display: flex; min-width: 0; min-height: 0; }
@@ -103,7 +101,8 @@ export default function DirectionD() {
              the x-axis is not an escape hatch either; per CSS Overflow §3 a
              visible axis paired with a clipped one computes to auto. Overflow
              is contained at its own sources instead: the map pane clips the
-             ticker, the live strip and the KPI strip scroll themselves. */
+             ticker, the live strip, the section bar and the KPI strip scroll
+             themselves. */
           .d-shell { height: auto; min-height: 100vh; }
           .d-topbar {
             height: auto; min-height: 54px;
@@ -112,13 +111,6 @@ export default function DirectionD() {
           .d-brand { flex-wrap: wrap; }
           .cp-livestrip { max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
           .d-root { flex-direction: column; min-height: 0; }
-          .d-rail {
-            width: 100%; flex-direction: row; justify-content: flex-start;
-            overflow-x: auto; padding: 8px 12px; gap: 8px;
-            border-right: none; border-bottom: 1px solid ${PALETTE.hair};
-            -webkit-overflow-scrolling: touch;
-          }
-          .d-rail-sep { width: 1px; height: 22px; margin: 0 6px; }
           .d-main { flex-direction: column; }
           /* Enough map to be a map, not so much that it buries the column. */
           .d-mappane { flex: none; height: 52vh; min-height: 300px; }
@@ -139,9 +131,11 @@ export default function DirectionD() {
 
       <Header now={now} />
 
-      <div className="d-root">
-        <LeftRail />
+      {/* La navegación de la portada: cinco grupos con nombre bajo la cabecera,
+          en el sitio que ocupaba el carril de glifos a la izquierda del mapa. */}
+      <BarraSecciones />
 
+      <div className="d-root">
         {/*
           The landing route bypasses InnerShell, which is where the app's only
           <main> lived — so the homepage had no main landmark at all, and the
