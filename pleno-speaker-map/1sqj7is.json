@@ -1,6 +1,6 @@
 {
   "plenoId": "1sqj7is",
-  "generatedAt": "2026-09-09T07:49:48.719Z",
+  "generatedAt": "2026-09-10T07:51:24.059Z",
   "model": "gemini-3.5-flash",
   "promptVersion": "speaker-map-v2",
   "chunkSeconds": 600,
@@ -12924,10 +12924,406 @@
       "text": "Tots els departaments s'han tensionat, pues perquè efectivament la DANA no la tenia prevista ningú i també ens ha passat. Compromís nostre,"
     },
     {
-      "start": 15001.1,
-      "end": 15009,
-      "speaker": "c24/SPEAKER_00",
-      "text": "en lo que vos he dit, final de la legislatura, perquè serà ja per a l'any que ve, duent al sol la regla de de de"
+      "start": 16800,
+      "end": 16802.1,
+      "speaker": "c28/SPEAKER_00",
+      "text": "Dos, sí. No, no, no, pero te ríes."
+    },
+    {
+      "start": 16802.1,
+      "end": 16803.5,
+      "speaker": "c28/SPEAKER_01",
+      "text": "No os preocupéis, ahora, ahora os contesto."
+    },
+    {
+      "start": 16803.5,
+      "end": 16811.1,
+      "speaker": "c28/SPEAKER_00",
+      "text": "Te ríes, ¿vale? Cuando estábamos terminando de defender nuestra propuesta y cuando estábamos defendiendo este tema, te he visto yo, igual que te han visto así."
+    },
+    {
+      "start": 16811.1,
+      "end": 16815.1,
+      "speaker": "c28/SPEAKER_00",
+      "text": "Por tanto, yo ahora ya le hago un ruego al Partido Popular."
+    },
+    {
+      "start": 16815.1,
+      "end": 16820.1,
+      "speaker": "c28/SPEAKER_00",
+      "text": "Le haría el ruego que vuelva a la moderación el Partido Popular."
+    },
+    {
+      "start": 16820.1,
+      "end": 16824.1,
+      "speaker": "c28/SPEAKER_00",
+      "text": "Que vuelva a ser una derecha como toca del siglo veintiuno."
+    },
+    {
+      "start": 16824.1,
+      "end": 16828.1,
+      "speaker": "c28/SPEAKER_00",
+      "text": "Porque si imitando a Vox, pues ya estáis viendo el resultado que estáis teniendo."
+    },
+    {
+      "start": 16828.1,
+      "end": 16832.1,
+      "speaker": "c28/SPEAKER_00",
+      "text": "Y hay mucha gente moderada en el Partido Popular que no está de acuerdo con eso."
+    },
+    {
+      "start": 16832.1,
+      "end": 16834.1,
+      "speaker": "c28/SPEAKER_00",
+      "text": "Porque estamos en el siglo veintiuno."
+    },
+    {
+      "start": 16834.1,
+      "end": 16839.1,
+      "speaker": "c28/SPEAKER_00",
+      "text": "Y deciros que de la manida falacia que hacéis de que todos han hecho cosas mal,"
+    },
+    {
+      "start": 16839.1,
+      "end": 16844.1,
+      "speaker": "c28/SPEAKER_00",
+      "text": "¿vale? Y de que no reabramos heridas, no, perdonen, ni queremos reabrir una herida, sencillamente queremos recuperar a nuestros familiares"
+    },
+    {
+      "start": 16844.1,
+      "end": 16848.1,
+      "speaker": "c28/SPEAKER_00",
+      "text": "y llevarlos al cementerio como están el resto."
+    },
+    {
+      "start": 16848.1,
+      "end": 16852.1,
+      "speaker": "c28/SPEAKER_00",
+      "text": "Eso no creo que sea ninguna ninguna apertura de de heridas, ¿vale?"
+    },
+    {
+      "start": 16852.1,
+      "end": 16856.1,
+      "speaker": "c28/SPEAKER_00",
+      "text": "Y después, aquello que decís de que de que todos han hecho mal, a ver, sí, quiero decir,"
+    },
+    {
+      "start": 16856.1,
+      "end": 16859.1,
+      "speaker": "c28/SPEAKER_00",
+      "text": "en una guerra es un fracaso de la sociedad."
+    },
+    {
+      "start": 16859.1,
+      "end": 16863.1,
+      "speaker": "c28/SPEAKER_00",
+      "text": "Cuando se llega a una guerra es porque han fracasado y el diálogo ha fracasado."
+    },
+    {
+      "start": 16863.1,
+      "end": 16866.1,
+      "speaker": "c28/SPEAKER_00",
+      "text": "Pero aquí no estamos hablando de eso. En una guerra todos se se extralimitan."
+    },
+    {
+      "start": 16866.1,
+      "end": 16870.1,
+      "speaker": "c28/SPEAKER_00",
+      "text": "Pero aquí no estamos hablando de eso. Estamos hablando de cuando se acaba la guerra, señores del Partido Popular,"
+    },
+    {
+      "start": 16870.1,
+      "end": 16873.1,
+      "speaker": "c28/SPEAKER_00",
+      "text": "porque Vox ya sé su postura, ¿vale?"
+    },
+    {
+      "start": 16873.1,
+      "end": 16878.1,
+      "speaker": "c28/SPEAKER_00",
+      "text": "Cuando se acaba una guerra, se ha acabado, ¿vale? Se ha acabado la Segunda Guerra Mundial y Alemania no tiene ninguna represión."
+    },
+    {
+      "start": 16878.1,
+      "end": 16882.1,
+      "speaker": "c28/SPEAKER_00",
+      "text": "En Italia tampoco tiene ninguna represión. Y en España sí que ha habido una represión, y muy dura,"
+    },
+    {
+      "start": 16882.1,
+      "end": 16884.1,
+      "speaker": "c28/SPEAKER_00",
+      "text": "y muy fuerte."
+    },
+    {
+      "start": 16884.1,
+      "end": 16886.1,
+      "speaker": "c28/SPEAKER_00",
+      "text": "Por tanto, no es lo mismo."
+    },
+    {
+      "start": 16886.1,
+      "end": 16890.1,
+      "speaker": "c28/SPEAKER_00",
+      "text": "No queráis poner a todos en la misma porque no es así."
+    },
+    {
+      "start": 16890.1,
+      "end": 16895.1,
+      "speaker": "c28/SPEAKER_00",
+      "text": "Y nosotros lo único que pretendemos, como Asociación de Memoria Histórica de Riba-roja, es aquellas personas"
+    },
+    {
+      "start": 16895.1,
+      "end": 16900.1,
+      "speaker": "c28/SPEAKER_00",
+      "text": "que tenemos aún en cunetas por ahí y no tenemos identificadas, luchar sencillamente para llevarlos al cementerio, Alberto,"
+    },
+    {
+      "start": 16900.1,
+      "end": 16902.1,
+      "speaker": "c28/SPEAKER_00",
+      "text": "Alberto y compañeros del Partido Popular."
+    },
+    {
+      "start": 16902.1,
+      "end": 16904.1,
+      "speaker": "c28/SPEAKER_00",
+      "text": "Sencillamente eso."
+    },
+    {
+      "start": 16904.1,
+      "end": 16907.1,
+      "speaker": "c28/SPEAKER_00",
+      "text": "Si vosotros creéis que eso no es justo, pues bueno."
+    },
+    {
+      "start": 16907.1,
+      "end": 16911.1,
+      "speaker": "c28/SPEAKER_00",
+      "text": "Por tanto, demando, como no puede ser de otra manera,"
+    },
+    {
+      "start": 16911.1,
+      "end": 16914.1,
+      "speaker": "c28/SPEAKER_00",
+      "text": "para todas estas personas que fueron represaliadas,"
+    },
+    {
+      "start": 16914.1,
+      "end": 16917.1,
+      "speaker": "c28/SPEAKER_00",
+      "text": "demando justicia,"
+    },
+    {
+      "start": 16917.1,
+      "end": 16920.1,
+      "speaker": "c28/SPEAKER_00",
+      "text": "reparación y dignidad."
+    },
+    {
+      "start": 16920.1,
+      "end": 16924.1,
+      "speaker": "c28/SPEAKER_00",
+      "text": "Espero que el ruego que os he hecho os lleve a algún debate"
+    },
+    {
+      "start": 16924.1,
+      "end": 16927.1,
+      "speaker": "c28/SPEAKER_00",
+      "text": "para que volváis a esa moderación."
+    },
+    {
+      "start": 16927.1,
+      "end": 16929.1,
+      "speaker": "c28/SPEAKER_00",
+      "text": "Muchas gracias y espero que me contestéis."
+    },
+    {
+      "start": 16929.1,
+      "end": 16933.1,
+      "speaker": "c28/SPEAKER_02",
+      "text": "Bueno, ha habido una alusión en las preguntas, Alberto."
+    },
+    {
+      "start": 16933.1,
+      "end": 16936.1,
+      "speaker": "c28/SPEAKER_01",
+      "text": "Yo, eh, si te has sentido ofendido por las sonrisas"
+    },
+    {
+      "start": 16936.1,
+      "end": 16941.1,
+      "speaker": "c28/SPEAKER_01",
+      "text": "que tenía, no iban en referencia al punto que se trataba. No sé ni cuáles he hecho, pero he hecho varias durante todo el pleno, pero no van en referencia al punto que se trata en ese momento."
+    },
+    {
+      "start": 16941.1,
+      "end": 16946.1,
+      "speaker": "c28/SPEAKER_01",
+      "text": "Son conversaciones que tenemos nosotros y podemos tener risas, ¿vale? Porque no vamos a estar todo el rato serios, ¿vale? Eso es una cosa."
+    },
+    {
+      "start": 16946.1,
+      "end": 16952.1,
+      "speaker": "c28/SPEAKER_01",
+      "text": "Que sonriera en el punto de la memoria democrática no quiere decir que tenga, no quiere decir nada en contra de que no tenga el respeto que se merecen todas las personas muertas y que faltaron en la guerra, tanto de un bando como de otro."
+    },
+    {
+      "start": 16952.1,
+      "end": 16957.1,
+      "speaker": "c28/SPEAKER_01",
+      "text": "Que tú quieras que encuentres a tus familiares y los entierres o seas sabedor de dónde están, por supuesto."
+    },
+    {
+      "start": 16957.1,
+      "end": 16961.1,
+      "speaker": "c28/SPEAKER_01",
+      "text": "Pero aquí no se trataba de llevar a un muerto al cementerio."
+    },
+    {
+      "start": 16961.1,
+      "end": 16965.1,
+      "speaker": "c28/SPEAKER_01",
+      "text": "No hemos votado nada en contra de la democracia. Hemos votado en contra de una propuesta de gobierno del Ayuntamiento de Riba-roja,"
+    },
+    {
+      "start": 16965.1,
+      "end": 16970.1,
+      "speaker": "c28/SPEAKER_01",
+      "text": "o del PSOE, que Rafa dice que era del PSOE, pero después han desmentido que no era del PSOE, era del Ayuntamiento de Riba-roja."
+    },
+    {
+      "start": 16970.1,
+      "end": 16975.1,
+      "speaker": "c28/SPEAKER_01",
+      "text": "Y lo de que si son democráticos, supongo que por tu inteligencia será una pregunta retórica."
+    },
+    {
+      "start": 16975.1,
+      "end": 16979.1,
+      "speaker": "c28/SPEAKER_01",
+      "text": "Supongo que será retórica porque la contestación bien que la sabes. Si no, no estaríamos aquí en el plenario, ni Vox ni nosotros."
+    },
+    {
+      "start": 16979.1,
+      "end": 16980.1,
+      "speaker": "c28/SPEAKER_01",
+      "text": "Gracias."
+    },
+    {
+      "start": 16980.1,
+      "end": 16983.1,
+      "speaker": "c28/SPEAKER_02",
+      "text": "Vale, ¿alguna cuestión más por parte de alguien? ¿José Luis?"
+    },
+    {
+      "start": 16983.1,
+      "end": 16987.1,
+      "speaker": "c28/SPEAKER_03",
+      "text": "Eh, muchas gracias. Le voy a responder, sí somos demócratas, es un partido demócrata."
+    },
+    {
+      "start": 16987.1,
+      "end": 16992.1,
+      "speaker": "c28/SPEAKER_03",
+      "text": "Lo que no tenemos es la verdad absoluta como esta izquierda radical y marxista tiene, como lo que ha dicho usted."
+    },
+    {
+      "start": 16992.1,
+      "end": 16997.1,
+      "speaker": "c28/SPEAKER_03",
+      "text": "Usted no sabe el daño que se hizo en la República porque lo que hay hoy aquí es un recordatorio de la Guerra Civil"
+    },
+    {
+      "start": 16997.1,
+      "end": 17002.1,
+      "speaker": "c28/SPEAKER_03",
+      "text": "y lo que no deberíamos estar haciendo es volver a sacar todo lo malo que pasó en la República. Y ustedes son culpables de volver a sacar eso, pero sí somos demócratas y lo que pretendemos es"
+    },
+    {
+      "start": 17002.1,
+      "end": 17007.1,
+      "speaker": "c28/SPEAKER_03",
+      "text": "reconstruir España mirando al futuro, no mirando al pasado. Gracias."
+    },
+    {
+      "start": 17007.1,
+      "end": 17011.1,
+      "speaker": "c28/SPEAKER_02",
+      "text": "Bueno, pues ha habido una aportación..."
+    },
+    {
+      "start": 17011.1,
+      "end": 17013.1,
+      "speaker": "c28/SPEAKER_04",
+      "text": "¿Demócratas de qué?"
+    },
+    {
+      "start": 17013.1,
+      "end": 17015.1,
+      "speaker": "c28/SPEAKER_04",
+      "text": "¿De dónde sacan ustedes que son demócratas?"
+    },
+    {
+      "start": 17015.1,
+      "end": 17016.1,
+      "speaker": "c28/SPEAKER_02",
+      "text": "Bueno, yo también..."
+    },
+    {
+      "start": 17016.1,
+      "end": 17018.1,
+      "speaker": "c28/SPEAKER_04",
+      "text": "¿Será posible en una reunión como esta?"
+    },
+    {
+      "start": 17018.1,
+      "end": 17021.1,
+      "speaker": "c28/SPEAKER_02",
+      "text": "Vamos a, vamos a..."
+    },
+    {
+      "start": 17021.1,
+      "end": 17023.1,
+      "speaker": "c28/SPEAKER_04",
+      "text": "Diciendo que son demócratas."
+    },
+    {
+      "start": 17023.1,
+      "end": 17025.1,
+      "speaker": "c28/SPEAKER_04",
+      "text": "Qué va, hombre."
+    },
+    {
+      "start": 17025.1,
+      "end": 17028.1,
+      "speaker": "c28/SPEAKER_02",
+      "text": "Bueno, eh, vamos a pasar al, al siguiente pleno."
+    },
+    {
+      "start": 17028.1,
+      "end": 17033.1,
+      "speaker": "c28/SPEAKER_02",
+      "text": "Vamos a pasar al pleno, simplemente decir una cosa importante al público y a los que estamos aquí."
+    },
+    {
+      "start": 17033.1,
+      "end": 17038.1,
+      "speaker": "c28/SPEAKER_02",
+      "text": "Hemos aprobado una moción por mayoría mayoritaria respaldando a Salvador Sonda, gracias a la asociación que lo ha presentado."
+    },
+    {
+      "start": 17038.1,
+      "end": 17043.1,
+      "speaker": "c28/SPEAKER_02",
+      "text": "Hemos de dignificar una persona que va a ser represaliada y va a ser alcalde y que va a hacer mucho por el pueblo, entre ellos hacer un colegio para nuestro, para nuestros vecinos y vecinas, y eso es lo importante que se queda en el pleno."
+    },
+    {
+      "start": 17043.1,
+      "end": 17048.1,
+      "speaker": "c28/SPEAKER_02",
+      "text": "El debate político ya sabemos las diferencias que son abismales entre unos y otros. Gracias a la memoria por el trabajo que estáis haciendo y alzamos el pleno. Gracias."
     }
   ],
   "rows": [
@@ -13515,7 +13911,7 @@
   ],
   "stats": {
     "chunksExpected": 29,
-    "chunksTranscribed": 20,
+    "chunksTranscribed": 21,
     "failedChunks": [
       {
         "chunk": 3,
@@ -13560,7 +13956,7 @@
       {
         "chunk": 22,
         "why": "covered 49% (floor 85%)",
-        "attempts": 1,
+        "attempts": 2,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
           "floor": 0.85,
@@ -13570,7 +13966,7 @@
       {
         "chunk": 25,
         "why": "covered 82% (floor 85%)",
-        "attempts": 1,
+        "attempts": 2,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
           "floor": 0.85,
@@ -13580,7 +13976,7 @@
       {
         "chunk": 26,
         "why": "covered 83% (floor 85%)",
-        "attempts": 1,
+        "attempts": 2,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
           "floor": 0.85,
@@ -13589,14 +13985,16 @@
       },
       {
         "chunk": 27,
-        "why": "never attempted (call budget spent; resumes next run)"
-      },
-      {
-        "chunk": 28,
-        "why": "never attempted (call budget spent; resumes next run)"
+        "why": "covered 61% (floor 85%)",
+        "attempts": 1,
+        "givenUpUnder": {
+          "prompt": "speaker-map-v2",
+          "floor": 0.85,
+          "thinking": "low"
+        }
       }
     ],
-    "labelsSeen": 27,
+    "labelsSeen": 5,
     "rowsAccepted": 19,
     "rowsRejected": 55,
     "rejectedBy": {
@@ -13605,8 +14003,8 @@
       "evidence-speaker-mismatch": 12,
       "ambiguous": 4
     },
-    "attemptedThisRun": 9,
-    "apiCalls": 17,
-    "coverage": 0.7107874531363558
+    "attemptedThisRun": 5,
+    "apiCalls": 13,
+    "coverage": 0.7280721322328318
   }
 }
