@@ -42,9 +42,23 @@ set -a && source .env && set +a && LLM_BACKEND=claude-code LLM_CONCURRENCY=1 \
 ```
 
 Output: draft in `editorial/journalist-drafts/journalist-reports-suggestions.json` + chunk
-`editorial/journalist-drafts/a-<id>.draft.json` (gitignored dir, force-added; NEVER under
-`public/`, which is served). Pass `--seed editorial/investigaciones/<slug>/fuentes.json` when
-the investigative pass (skill `investigar-cargo`) has located sources the planner would miss.
+`editorial/journalist-drafts/a-<id>.draft.json` (gitignored dir; NEVER under `public/`, which
+is served). Pass `--seed editorial/investigaciones/<slug>/fuentes.json` when the investigative
+pass (skill `investigar-cargo`) has located sources the planner would miss.
+
+**Never `git add -f` a draft.** This skill used to say "force-added", and while the repo was
+private that was reasonable: it versioned the draft and kept it off the served site, which was
+the August hole (`62ce8962 fix(journalist): stop serving unreviewed drafts from the public
+site`). **The repo went public on 2026-09-08**, and at that moment every force-added draft
+became world-readable — unreviewed machine prose about named living councillors, carrying
+`legalSensitivity: high`. Nobody committed anything after the opening; the visibility flip
+relabelled what was already there, which is the failure mode to remember: _a practice that is
+safe under `private` does not announce itself when that stops being true._
+
+A draft is promoted with `npm run promote-report`, which is what puts the **reviewed** version
+under `public/data/journalist-reports/`. The draft itself never needs to be in git — it lives
+on disk and is read by path. `tests/editorial-fuera-de-git.test.js` reds if anything new turns
+up tracked under `editorial/`.
 
 ## Phase 3 — Forensic curator review (MANDATORY before promote)
 
