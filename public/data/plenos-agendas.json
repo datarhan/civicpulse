@@ -16,7 +16,7 @@
     "recoveredFromLive": 0,
     "carriedForward": 36,
     "recoveredFromArchive": 3,
-    "plazosVencidosCount": 1,
+    "plazosVencidosCount": 0,
     "deptCoverage": 26
   },
   "topDepartments": [
@@ -3861,7 +3861,7 @@
   ],
   "builtFrom": {
     "officials.json": "1c5c4d4f5026",
-    "pleno-votes.json": "3f34e628ad65",
+    "pleno-votes.json": "24d9e56c356c",
     "promises.json": "d18811c11210",
     "quejas.json": "46f7a6bd98db"
   }
