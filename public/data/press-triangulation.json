@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-10T08:24:10.142Z",
+  "generatedAt": "2026-09-10T09:25:31.971Z",
   "clusters": [
     {
       "clusterId": "1hy1xq8",
@@ -13,8 +13,8 @@
         "El Periódico de Aquí",
         "Levante-EMV"
       ],
-      "earliestDate": "2026-08-31T09:04:15.000Z",
-      "latestDate": "2026-09-01T10:59:39.000Z",
+      "earliestDate": "2026-08-31T07:00:00.000Z",
+      "latestDate": "2026-09-01T07:00:00.000Z",
       "amountDrift": {
         "min": 40000,
         "max": 40000,
@@ -114,27 +114,6 @@
       }
     },
     {
-      "clusterId": "1nbr4f4",
-      "articleIds": [
-        "16zc27c",
-        "tfe81a"
-      ],
-      "outlets": [
-        "Levante-EMV",
-        "Valenciabonita"
-      ],
-      "earliestDate": "2026-09-01T10:16:52.000Z",
-      "latestDate": "2026-09-01T12:07:50.000Z",
-      "amountDrift": null,
-      "verdictMix": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 1,
-        "promesa-repetida": 0
-      }
-    },
-    {
       "clusterId": "1oq1ic8",
       "articleIds": [
         "1fqbhjs",
@@ -146,6 +125,27 @@
       ],
       "earliestDate": "2026-08-21T07:00:00.000Z",
       "latestDate": "2026-08-21T12:04:33.000Z",
+      "amountDrift": null,
+      "verdictMix": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      }
+    },
+    {
+      "clusterId": "1rb28v0",
+      "articleIds": [
+        "16zc27c",
+        "cty6i0"
+      ],
+      "outlets": [
+        "Europa Press",
+        "Valenciabonita"
+      ],
+      "earliestDate": "2026-09-01T11:10:58.000Z",
+      "latestDate": "2026-09-01T12:07:50.000Z",
       "amountDrift": null,
       "verdictMix": {
         "verificado": 0,
@@ -182,9 +182,9 @@
     "triangulated3Plus": 1
   },
   "builtFrom": {
-    "plenos-agendas.json": "26e4d265fb2f",
+    "plenos-agendas.json": "a3297e605a0a",
     "press-claims-verified.json": "b5f74f13740a",
-    "press.json": "e21420d7bd19",
+    "press.json": "38ebbc3f973b",
     "promises.json": "d18811c11210"
   }
 }

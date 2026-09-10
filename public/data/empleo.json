@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-09-09T09:20:03.825Z",
+  "generatedAt": "2026-09-10T09:23:15.511Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 69,
-    "openTotal": 68,
-    "inRibaRoja": 43,
-    "closingSoon": 15,
-    "withDetail": 69,
+    "total": 67,
+    "openTotal": 66,
+    "inRibaRoja": 42,
+    "closingSoon": 14,
+    "withDetail": 67,
     "byMonth": {
       "2026-09": 12,
       "2026-08": 29,
-      "2026-07": 19,
+      "2026-07": 17,
       "2026-06": 1,
       "2026-05": 3,
       "2026-04": 2,
@@ -4699,151 +4699,6 @@
         "horario": "De lunes a domingo con los descansos establecidos legalmente.",
         "salario": "18.000€ - 19.000€ bruto anual, según experiencia y valía.",
         "funciones": "- Manejo de equipos y herramientas específicas de producción (cuchillos, lavadoras, cortadoras, entre otros) - Preparación y corte de materia prima para su posterior procesamiento. - Envasado, empaquetado y etiquetado del producto final. - Abastecimiento de líneas de producción. - Apoyo a maquinistas y al equipo de operaciones. - Limpieza y mantenimiento de la zona de trabajo, garantizando el cumplimiento de los estándares de higiene y seguridad alimentaria.",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2484",
-      "fo": 2484,
-      "codigo": "2026/00184",
-      "titulo": "Personal de limpieza (H/M/D) en Llíria",
-      "publishedAt": "2026-07-09",
-      "deadline": "2026-09-09",
-      "location": "Lliría Llíria (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2484",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00184"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Personal de limpieza (H/M/D) en Llíria"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Funciones: - Limpieza de oficinas. - Limpieza de zonas comunes. - Limpieza industrial. - Manejo de productos y equipos de limpieza. - Reposición de suministros necesarios para la limpieza Requisitos: - Valorable Certificado de Discapacidad igual o superior al 33% o Incapacidad. - Disponer de vehículo propio para desplazarse al centro de trabajo. - Incorporación inmediata."
-          },
-          {
-            "label": "Porcentaje de discapacidad",
-            "value": "Igual o superior a 33%"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO DE OBRA O SERVICIO DETERMINADO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "De 1 a 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Lliría, Municipio: Llíria, Provincia: Valencia, CP: 46160"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa"
-          },
-          {
-            "label": "Horario",
-            "value": "Lunes a viernes (JULIO 14:00 a 21:45) Y (AGOSTO 06:00 A 13:45)"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          },
-          {
-            "label": "Funciones",
-            "value": "-Limpieza de oficinas. - Limpieza de zonas comunes. - Limpieza industrial. - Manejo de productos y equipos de limpieza. - Reposición de suministros necesarios para la limpieza"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO DE OBRA O SERVICIO DETERMINADO",
-        "duracion": "De 1 a 6 meses",
-        "numPuestos": "1",
-        "observaciones": "Funciones: - Limpieza de oficinas. - Limpieza de zonas comunes. - Limpieza industrial. - Manejo de productos y equipos de limpieza. - Reposición de suministros necesarios para la limpieza Requisitos: - Valorable Certificado de Discapacidad igual o superior al 33% o Incapacidad. - Disponer de vehículo propio para desplazarse al centro de trabajo. - Incorporación inmediata.",
-        "municipio": "Llíria",
-        "provincia": "Valencia",
-        "cp": "46160",
-        "jornada": "Completa",
-        "horario": "Lunes a viernes (JULIO 14:00 a 21:45) Y (AGOSTO 06:00 A 13:45)",
-        "salario": "Según convenio",
-        "funciones": "-Limpieza de oficinas. - Limpieza de zonas comunes. - Limpieza industrial. - Manejo de productos y equipos de limpieza. - Reposición de suministros necesarios para la limpieza",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2483",
-      "fo": 2483,
-      "codigo": "2026/00183",
-      "titulo": "Personal de Limpieza",
-      "publishedAt": "2026-07-09",
-      "deadline": "2026-09-09",
-      "location": "Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2483",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00183"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Personal de Limpieza"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Funciones:"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "INDIFERENTE"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
-          },
-          {
-            "label": "Horario",
-            "value": "De lunes a viernes de 9:00 a 15:45"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "INDIFERENTE",
-        "numPuestos": "1",
-        "observaciones": "Funciones:",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46190",
-        "horario": "De lunes a viernes de 9:00 a 15:45",
-        "salario": "Según convenio",
         "vehiculo": "Sí",
         "ocupaciones": []
       }
