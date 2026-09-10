@@ -514,6 +514,12 @@ export interface PlenoVote {
    */
   dueBySource?: string
   /**
+   * Set ⟺ a curator withdrew this row's plazo and signed for it (`retract-vote
+   * --plazo`). Never beside a `dueBy`: a withdrawn deadline cannot still be
+   * published. Same stamp shape as `votesRetracted`.
+   */
+  dueByRetracted?: VoteBreakdownRetractionStamp
+  /**
    * Per-claim citations: where the outcome came from, and where the breakdown
    * came from. Required on every row in `items[]` (enforced in
    * `validateSnapshot`, not here, so the pre-migration votes tombstoned inside
@@ -552,8 +558,18 @@ export interface PlenoVote {
  * would force a curator to delete two facts the source does publish in order to
  * remove one it never did. qz6weg-14 is the live instance: its `rechazado` is
  * correct and sourced, and two of its five directions are inverted.
+ *
+ * `plazo`     — ONLY the deadline (`dueBy` + `dueBySource`). The row, its
+ *               outcome and its tally stay; the date stops driving the
+ *               «plazos vencidos» flag. The third scope exists for the same
+ *               reason as the second, one level down: rx4hb4-11 published a
+ *               `dueBy` whose «clause» paraphrased a Whisper line about the last
+ *               day to apply to a funding call — not a deadline for carrying out
+ *               the agreement, and not from an acta — while its outcome is
+ *               sourced. Withdrawing the record to remove the date would delete
+ *               a fact the source does publish.
  */
-export type VoteRetractionScope = 'record' | 'breakdown'
+export type VoteRetractionScope = 'record' | 'breakdown' | 'plazo'
 
 /**
  * A signed, permanent record that something published here was withdrawn.
@@ -600,6 +616,12 @@ export interface VoteRetraction {
    * one of those three back requires a curator to state where it comes from.
    */
   originalBreakdownSource?: VoteSourceRef | null
+  /**
+   * The withdrawn deadline, for `scope: 'plazo'`: the date and the clause it
+   * was published with, so the ledger says exactly what readers were told and a
+   * revocation can put both back.
+   */
+  originalPlazo?: { dueBy: string; dueBySource: string } | null
   /**
    * Set when a curator explicitly puts the id back into circulation. The entry
    * survives; only its blocking effect lifts. Absent = the retraction is live.
@@ -655,7 +677,7 @@ export const ALLOWED_OUTCOMES: readonly VoteOutcome[] = [
   'aplazado',
 ]
 
-export const RETRACTION_SCOPES: readonly VoteRetractionScope[] = ['record', 'breakdown']
+export const RETRACTION_SCOPES: readonly VoteRetractionScope[] = ['record', 'breakdown', 'plazo']
 
 /** Minimum length of a retraction reason. Mirrors `dueBySource` and the IFCN
  *  corrections trail in `correct-pleno-finding`: a signature without a stated
@@ -935,6 +957,35 @@ export function validateVote(v: unknown, idx = -1): PlenoVote {
     )
   }
 
+  // A withdrawn plazo is publishable only as a signed stamp, and never beside a
+  // date: the stamp says the deadline was withdrawn, so a `dueBy` next to it
+  // would be the row contradicting itself.
+  const plazoStamp = o.dueByRetracted
+  if (plazoStamp !== undefined) {
+    must(
+      typeof plazoStamp === 'object' && plazoStamp !== null,
+      `dueByRetracted must be an object${ctx}`,
+    )
+    const s = plazoStamp as Record<string, unknown>
+    must(
+      typeof s.reason === 'string' && s.reason.trim().length >= RETRACTION_REASON_MIN,
+      `dueByRetracted.reason must be ≥${RETRACTION_REASON_MIN} chars${ctx}`,
+    )
+    must(
+      typeof s.editor === 'string' && s.editor.trim().length > 0,
+      `dueByRetracted.editor required — a retraction carries a curator signature${ctx}`,
+    )
+    must(
+      typeof s.retractedAt === 'string' && ISO_DATETIME.test(s.retractedAt),
+      `dueByRetracted.retractedAt must be an ISO timestamp${ctx}`,
+    )
+    must(
+      o.dueBy === undefined && o.dueBySource === undefined,
+      `dueByRetracted is set but the row still publishes a plazo — a withdrawn ` +
+        `deadline cannot still be published${ctx}`,
+    )
+  }
+
   const seenBlocs = new Set<string>()
   const votes: VoteByBloc[] = (o.votes as unknown[]).map((raw, i) => {
     const vc = ` (items[${idx}].votes[${i}])`
@@ -1002,6 +1053,15 @@ export function validateVote(v: unknown, idx = -1): PlenoVote {
           },
         }
       : {}),
+    ...(plazoStamp !== undefined
+      ? {
+          dueByRetracted: {
+            reason: String((plazoStamp as Record<string, unknown>).reason).trim(),
+            editor: String((plazoStamp as Record<string, unknown>).editor).trim(),
+            retractedAt: (plazoStamp as Record<string, unknown>).retractedAt as string,
+          },
+        }
+      : {}),
     ...(provenance !== undefined ? { provenance } : {}),
     sourceUrl: o.sourceUrl as string,
     sourcePublisher: (o.sourcePublisher as string).trim(),
@@ -1042,10 +1102,28 @@ export function validateRetraction(r: unknown, idx = -1): VoteRetraction {
   // Nothing is deleted without a record: the withdrawn content is the record.
   let original: PlenoVote | null = null
   let originalVotes: VoteByBloc[] | null = null
+  let originalPlazo: { dueBy: string; dueBySource: string } | null = null
   if (scope === 'record') {
     must(o.original != null, `scope "record" must keep the withdrawn vote in original${ctx}`)
     original = validateVote(o.original, idx)
     must(original.id === o.voteId, `original.id ${original.id} ≠ voteId ${String(o.voteId)}${ctx}`)
+  } else if (scope === 'plazo') {
+    // The withdrawn deadline travels whole — date and clause — or the ledger
+    // cannot say what readers were told, and a revocation could not put it back.
+    const p = o.originalPlazo as Record<string, unknown> | null | undefined
+    must(
+      p != null && typeof p === 'object',
+      `scope "plazo" must keep the withdrawn deadline in originalPlazo${ctx}`,
+    )
+    must(
+      typeof p.dueBy === 'string' && ISO_DATE.test(p.dueBy),
+      `originalPlazo.dueBy must be an ISO date${ctx}`,
+    )
+    must(
+      typeof p.dueBySource === 'string' && p.dueBySource.trim().length >= 20,
+      `originalPlazo.dueBySource must be the ≥20-char clause it was published with${ctx}`,
+    )
+    originalPlazo = { dueBy: p.dueBy as string, dueBySource: (p.dueBySource as string).trim() }
   } else {
     must(
       Array.isArray(o.originalVotes) && (o.originalVotes as unknown[]).length > 0,
@@ -1069,6 +1147,10 @@ export function validateRetraction(r: unknown, idx = -1): VoteRetraction {
     )
     originalBreakdownSource = validateSourceRef(o.originalBreakdownSource, 'breakdown', ctx)
   }
+  must(
+    o.originalPlazo == null || scope === 'plazo',
+    `originalPlazo belongs to a plazo retraction, not a "${scope}" one${ctx}`,
+  )
 
   const revokedFields = [o.revokedAt, o.revokedBy, o.revokedReason].filter((x) => x !== undefined)
   must(
@@ -1102,6 +1184,7 @@ export function validateRetraction(r: unknown, idx = -1): VoteRetraction {
     original,
     originalVotes,
     ...(originalBreakdownSource !== undefined ? { originalBreakdownSource } : {}),
+    ...(scope === 'plazo' ? { originalPlazo } : {}),
     ...(revokedFields.length === 3
       ? {
           revokedAt: o.revokedAt as string,
@@ -1183,6 +1266,19 @@ export function validateSnapshot(raw: unknown): PlenoVotesSnapshot {
           `explicit signed revocation: npm run retract-vote -- ${r.voteId} ` +
           `--unretract --reason "…" --editor "…"`,
       )
+    } else if (r.scope === 'plazo') {
+      const item = byId.get(r.voteId)
+      must(
+        item != null,
+        `plazo retraction ${r.voteId} has no vote in items[] — withdrawing a ` +
+          `deadline keeps the item published; use scope "record" to withdraw the whole vote`,
+      )
+      must(
+        item.dueBy === undefined && item.dueByRetracted != null,
+        `vote ${r.voteId} has a live plazo retraction but publishes a deadline again. ` +
+          `Republishing it needs an explicit signed revocation: npm run retract-vote -- ` +
+          `${r.voteId} --plazo --unretract --reason "…" --editor "…"`,
+      )
     } else {
       const item = byId.get(r.voteId)
       must(
@@ -1208,6 +1304,16 @@ export function validateSnapshot(raw: unknown): PlenoVotesSnapshot {
         `retractions[] — the withdrawn tuples would be unrecoverable`,
     )
   }
+  const livePlazos = new Set(
+    retractions.filter((r) => isLiveRetraction(r) && r.scope === 'plazo').map((r) => r.voteId),
+  )
+  for (const it of items) {
+    must(
+      it.dueByRetracted == null || livePlazos.has(it.id),
+      `vote ${it.id} carries a dueByRetracted stamp with no live retraction in ` +
+        `retractions[] — the withdrawn deadline would be unrecoverable`,
+    )
+  }
 
   const byOutcome: Record<VoteOutcome, number> = {
     aprobado: 0,
@@ -1220,7 +1326,12 @@ export function validateSnapshot(raw: unknown): PlenoVotesSnapshot {
     byOutcome[it.outcome] += 1
     byPleno[it.plenoId] = (byPleno[it.plenoId] ?? 0) + 1
   }
-  const retracted: Record<VoteRetractionScope, number> = { record: 0, breakdown: 0 }
+  // Derived from the scope list, not spelled out: a new scope cannot be left
+  // out of the count by forgetting this line.
+  const retracted = Object.fromEntries(RETRACTION_SCOPES.map((s) => [s, 0])) as Record<
+    VoteRetractionScope,
+    number
+  >
   for (const r of retractions) if (isLiveRetraction(r)) retracted[r.scope] += 1
 
   return {
@@ -1237,9 +1348,9 @@ export function validateSnapshot(raw: unknown): PlenoVotesSnapshot {
 
 // ── retraction: the pure half ────────────────────────────────────────────────
 // A retraction is a WEAKENING. Every function below removes a claim from what
-// readers see; none of them adds or alters one. `retractVoteBreakdown` is the
-// only one that writes to a published row at all, and all it writes is the
-// signed reason the tally is gone.
+// readers see; none of them adds or alters one. `retractVoteBreakdown` and
+// `retractVoteDueBy` are the only ones that write to a published row at all,
+// and all they write is the signed reason what they withdrew is gone.
 //
 // IO, argument parsing and the re-validate-before-write live in
 // scripts/retract-pleno-vote.ts, per this repo's parser/CLI split.
@@ -1373,6 +1484,50 @@ export function retractVoteBreakdown(
 }
 
 /**
+ * Withdraw ONLY the deadline. The row, its outcome, its tally and their sources
+ * stay published — they are what the cited sources carry. The date and its
+ * clause are tombstoned and the row is stamped, so the plazo stops driving the
+ * «plazos vencidos» flag and the ledger still says what readers were told.
+ */
+export function retractVoteDueBy(
+  snap: PlenoVotesSnapshot,
+  voteId: string,
+  sig: RetractionSignature,
+): PlenoVotesSnapshot {
+  checkSignature(sig)
+  const target = snap.items.find((v) => v.id === voteId)
+  refuse(target != null, `vote "${voteId}" is not published in items[] — nothing to retract`)
+  refuse(
+    target.dueBy != null && target.dueBySource != null,
+    `vote "${voteId}" publishes no plazo — nothing to withdraw` +
+      (findLiveRetraction(snap, voteId, 'plazo') ? ' (it is already withdrawn)' : ''),
+  )
+  const stamp: VoteBreakdownRetractionStamp = {
+    reason: sig.reason.trim(),
+    editor: sig.editor.trim(),
+    retractedAt: sig.at,
+  }
+  const { dueBy, dueBySource, ...rest } = target
+  return {
+    ...snap,
+    items: snap.items.map((v) => (v.id === voteId ? { ...rest, dueByRetracted: stamp } : v)),
+    retractions: [
+      ...snap.retractions,
+      {
+        voteId,
+        scope: 'plazo',
+        reason: stamp.reason,
+        editor: stamp.editor,
+        retractedAt: sig.at,
+        original: null,
+        originalVotes: null,
+        originalPlazo: { dueBy: dueBy as string, dueBySource: dueBySource as string },
+      },
+    ],
+  }
+}
+
+/**
  * Lift a retraction so a corrected record can be published again.
  *
  * The ledger entry is STAMPED, never removed: the id's history stays legible
@@ -1424,7 +1579,21 @@ export function revokeRetraction(
               votes: live.originalVotes ?? [],
             }
           })
-        : snap.items,
+        : scope === 'plazo'
+          ? snap.items.map((v) => {
+              if (v.id !== voteId) return v
+              const { dueByRetracted: _dropped, ...rest } = v
+              return {
+                ...rest,
+                ...(live.originalPlazo
+                  ? {
+                      dueBy: live.originalPlazo.dueBy,
+                      dueBySource: live.originalPlazo.dueBySource,
+                    }
+                  : {}),
+              }
+            })
+          : snap.items,
     retractions: snap.retractions.map((r) =>
       r === live
         ? {

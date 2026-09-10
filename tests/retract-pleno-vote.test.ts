@@ -13,6 +13,7 @@ import {
   PlenoVoteValidationError,
   PlenoVoteRetractionError,
   RETRACTION_REASON_MIN,
+  RETRACTION_SCOPES,
   type PlenoVote,
   type VoteRetraction,
   type PlenoVotesSnapshot,
@@ -184,7 +185,8 @@ describe('retraction fixtures — the corpus under test is real', () => {
     expect(snap.items.some((v) => v.votes.some((t) => t.bloc === null))).toBe(true)
     // The starting point of every case: nothing has been withdrawn yet.
     expect(snap.retractions).toEqual([])
-    expect(snap.stats.retracted).toEqual({ record: 0, breakdown: 0 })
+    // Derived from the scope list: a new scope must not leave this pin behind.
+    expect(snap.stats.retracted).toEqual(Object.fromEntries(RETRACTION_SCOPES.map((s) => [s, 0])))
   })
 
   it('refuses to build a fixture the parser would reject', () => {
@@ -670,7 +672,9 @@ describe('the published snapshot upholds the retraction invariants', () => {
     // `empty` is a legitimate state here (no retractions yet) and so is `ok`;
     // what is asserted is that the check RAN over the whole ledger.
     expect(r.checked).toBe(
-      published().retractions.length + published().items.filter((v) => v.votesRetracted).length,
+      published().retractions.length +
+        published().items.filter((v) => v.votesRetracted).length +
+        published().items.filter((v) => v.dueByRetracted).length,
     )
   })
 })
