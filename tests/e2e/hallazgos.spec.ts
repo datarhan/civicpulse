@@ -43,11 +43,11 @@ test.describe('Hallazgos (/hallazgos)', () => {
     await expect(page.getByText(/Ninguno coincide|Crítico/i).first()).toBeVisible({ timeout: 5000 })
   })
 
-  test('rail icon on landing links to /hallazgos', async ({ page }) => {
+  test('la barra de la portada lleva a /hallazgos desde «Vigilancia»', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' })
-    const link = page.locator('a[href="/hallazgos"]').first()
-    await expect(link).toBeVisible({ timeout: 10_000 })
-    await link.click()
+    const barra = page.getByRole('navigation', { name: 'Secciones' })
+    await barra.getByRole('button', { name: 'Vigilancia', exact: true }).click({ timeout: 10_000 })
+    await barra.getByRole('link', { name: /^Hallazgos/ }).click()
     await expect(page).toHaveURL(/\/hallazgos$/)
   })
 

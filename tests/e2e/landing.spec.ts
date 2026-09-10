@@ -87,8 +87,12 @@ test.describe('Landing (/)', () => {
 
     // 3 · the mayor's government strip, under a «Gobierno municipal · 2025»
     // heading beside a one-year budget.
+    //
+    // Scoped to the column: the section bar's «Dinero» panel also links to
+    // /presupuesto, and its sentence names contratos. Closed, that link sits
+    // FIRST in the DOM and hidden — and `.first()` would pick it.
     const govLink = page
-      .locator('a[href="/presupuesto"]')
+      .locator('.d-editorial a[href="/presupuesto"]')
       .filter({ hasText: /contratos/i })
       .first()
     await expect(govLink).toContainText(awarded, { timeout: 8000 })
