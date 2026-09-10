@@ -242,6 +242,7 @@
     "eval:transcribe": "npx tsx scripts/eval-transcribe-ab.ts",
     "check:secrets": "npx tsx scripts/check-secrets.ts",
     "check:privado": "npx tsx scripts/check-privado.ts",
+    "check:editorial": "npx tsx scripts/check-editorial.ts",
     "prerender:meta": "npx tsx scripts/prerender-meta.ts",
     "check:claim-provenance": "npx tsx scripts/check-claim-provenance.ts",
     "retract-attribution": "npx tsx scripts/retract-claim-attribution.ts",
