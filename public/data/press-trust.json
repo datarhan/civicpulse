@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-10T08:03:45.751Z",
+  "generatedAt": "2026-09-10T08:24:10.135Z",
   "windowDays": 30,
   "articles": [
     {
@@ -437,12 +437,12 @@
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
-        "municipalSourceMatch": false,
+        "municipalSourceMatch": null,
         "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": true,
+        "factualClaimsPresent": false,
         "opinionFraction": 0
       },
-      "score": 4
+      "score": 2
     },
     {
       "articleId": "pbm4v6",
@@ -928,11 +928,11 @@
         "verificado": 1,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 22,
+        "sin-datos": 21,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 3.1,
-      "verifiedRatio": 0.043,
+      "meanTrustScore": 2.9,
+      "verifiedRatio": 0.045,
       "contradictedRatio": 0
     },
     {
@@ -1088,7 +1088,7 @@
   ],
   "builtFrom": {
     "plenos-agendas.json": "26e4d265fb2f",
-    "press-claims-verified.json": "7326a705ac02",
+    "press-claims-verified.json": "b5f74f13740a",
     "press.json": "e21420d7bd19",
     "promises.json": "d18811c11210"
   }

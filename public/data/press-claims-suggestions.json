@@ -1,21 +1,21 @@
 {
-  "generatedAt": "2026-09-09T08:26:36.136Z",
+  "generatedAt": "2026-09-10T08:16:23.216Z",
   "source": {
     "description": "Press claims extracted by the laboratory pipeline",
     "contract": "src/scraper/press-claim.ts"
   },
   "stats": {
-    "total": 44,
+    "total": 43,
     "byType": {
       "promesa": 0,
-      "afirmacion_numerica": 31,
+      "afirmacion_numerica": 30,
       "cita_obra": 2,
       "cita_convenio": 0,
       "acusacion_publica": 1,
       "dato_municipal": 10
     },
     "bySource": {
-      "Periòdic del Camp de Túria": 23,
+      "Periòdic del Camp de Túria": 22,
       "Ayuntamiento de Riba-roja de Túria": 17,
       "elperiodic.com": 1,
       "El Periódico de Aquí": 1,
@@ -23,7 +23,7 @@
     },
     "byTopic": {
       "fiscal": 1,
-      "vivienda": 1,
+      "vivienda": 0,
       "movilidad": 5,
       "medio-ambiente": 12,
       "social": 0,
@@ -38,7 +38,7 @@
       "other": 3
     },
     "byAttributedSource": {
-      "outlet": 18,
+      "outlet": 17,
       "municipal": 25,
       "opposition": 1,
       "unspecified": 0
@@ -46,8 +46,8 @@
     "articlesProcessed": 25,
     "articlesAvailable": 153,
     "llmUnavailable": 0,
-    "windowFrom": "2026-08-25T07:39:21.000Z",
-    "windowTo": "2026-09-08T08:48:49.000Z"
+    "windowFrom": "2026-08-27T11:17:54.000Z",
+    "windowTo": "2026-09-09T04:02:29.000Z"
   },
   "items": [
     {
@@ -1042,29 +1042,6 @@
       },
       "confidence": 0.7,
       "reasoning": "Afirmación sobre instituciones colaboradoras en el plan, verificable en convenios o documentación oficial del PSTD.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "vxu9zk-0-num",
-      "articleId": "vxu9zk",
-      "articleFingerprint": "oh3lx0",
-      "articleSource": "Periòdic del Camp de Túria",
-      "articleSourceHost": "infoturia.com",
-      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85756-riba-roja-destina-140-000-euros-a-la-rehabilitacio-de-les-facanes-lavaluacio-dedificis-i-laccessibilitat-dels-habitatges.html",
-      "articleDate": "2026-08-25T09:48:44.000Z",
-      "segmentIndex": 0,
-      "segmentKind": "title",
-      "type": "afirmacion_numerica",
-      "attributedSource": "outlet",
-      "verbatim": "Riba-roja destina 140.000 euros a la rehabilitació de les façanes, l'avaluació d'edificis i l'accessibilitat dels habitatges",
-      "context": "Titular del artículo publicado en Periòdic del Camp de Túria (25/08/2026) sobre inversión municipal en rehabilitación de fachadas, evaluación de edificios y accesibilidad de viviendas en Riba-roja de Túria.",
-      "topic": "vivienda",
-      "entities": {
-        "amountEuros": 140000,
-        "referencedEntity": "Riba-roja de Túria"
-      },
-      "confidence": 0.6,
-      "reasoning": "Cifra concreta de inversión municipal (140.000 euros) verificable contra presupuestos o convocatorias de ayudas del Ayuntamiento, aunque solo se dispone del titular sin cuerpo del artículo que confirme la fuente exacta.",
       "requiresHumanApproval": true
     }
   ]
