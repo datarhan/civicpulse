@@ -44,6 +44,27 @@ npm run check:secrets --silent -- --staged
 # npm run check:privado
 npm run check:privado --silent -- --staged
 
+# Y refúsate a meter en git PROSA NO REVISADA SOBRE UNA PERSONA VIVA.
+#
+# Tercera puerta, y por la misma razón que hay dos arriba: cada una pregunta lo
+# que las otras no pueden. `check:secrets` reconoce por la FORMA, y un borrador
+# no tiene forma de nada. `check:privado` exige que el sujeto seamos NOSOTROS, y
+# esto va de TERCEROS — queda fuera por diseño, no por fallo.
+#
+# El 2026-09-10 `git ls-files editorial/` devolvía 27 borradores del agente
+# periodista sobre concejales vivos y nombrados, con `legalSensitivity: high`, y
+# los 27 estaban en main. `editorial/` lleva en el .gitignore desde agosto: lo
+# que faltaba saber es que **.gitignore no desrastrea lo ya rastreado**, sólo
+# impide añadir lo que no está. Entraron con `git add -f` porque la habilidad
+# `biografia-concejal` lo mandaba, y con el repositorio PRIVADO eso era
+# razonable. El 8-sep se abrió y dejó de serlo sin que nada lo volviera a mirar.
+#
+# Algo seguro bajo `private` no avisa cuando eso deja de ser cierto. Por eso la
+# regla baja del documento al gancho.
+#
+# Sólo lo ESTAMPADO. Auditoría completa: npm run check:editorial
+npm run check:editorial --silent -- --staged
+
 # Y refúsate a comitear desde un árbol PODADO.
 #
 # Aquí no se usa `sparse-checkout` en ningún sitio, así que si aparece uno viene
