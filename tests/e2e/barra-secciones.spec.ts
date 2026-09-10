@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test'
+import { test, expect, type Page } from '@playwright/test'
 
 /**
  * La barra de secciones de la portada (lámina 1b de «Portada · Revisión»):
@@ -6,8 +6,9 @@ import { test, expect } from '@playwright/test'
  *
  * Vitest fija el contrato de ARIA y de teclado
  * (tests/components/barra-secciones.test.jsx). Aquí se mira lo otro: que cada
- * panel se abre ENTERO y dentro de la pantalla a todos los anchos, y que el
- * teclado llega de verdad a una página.
+ * panel se abre ENTERO y dentro de la pantalla a todos los anchos, que abrir
+ * un grupo no mueve a los demás, que la acción principal se ve en un móvil, y
+ * que el teclado llega de verdad a una página.
  *
  * «Entero» no se puede medir con getBoundingClientRect: un panel recortado por
  * la fila deslizante —el fallo que evita el cambio de ancla de
@@ -16,23 +17,45 @@ import { test, expect } from '@playwright/test'
  * ese punto está el mapa.
  */
 
-const GRUPOS = ['Gobierno', 'Dinero', 'Vigilancia', 'Ciudadanía', 'Laboratorio', 'Índice']
-
 // Por encima de 800 px el panel cuelga de su botón; por debajo, de la barra
 // entera (BARRA_COMPACTA, en barra-secciones.css.js). Se miden los dos lados.
 const ANCHOS = [1440, 1024, 820, 768, 430, 375]
 
+/** El ancho de cada botón de la barra, en el orden del DOM. */
+const anchosDeBotones = (page: Page) =>
+  page.evaluate(() =>
+    [...document.querySelectorAll('.d-sec button[aria-controls]')].map(
+      (b) => Math.round(b.getBoundingClientRect().width * 10) / 10,
+    ),
+  )
+
 test.describe('Barra de secciones de la portada', () => {
   for (const ancho of ANCHOS) {
-    test(`${ancho}px — cada panel se abre entero y dentro de la pantalla`, async ({ page }) => {
+    test(`${ancho}px — cada panel se abre entero, dentro de la pantalla y sin mover a los demás`, async ({
+      page,
+    }) => {
       await page.setViewportSize({ width: ancho, height: 900 })
       await page.goto('/', { waitUntil: 'domcontentloaded' })
       const barra = page.getByRole('navigation', { name: 'Secciones' })
       await expect(barra).toBeVisible({ timeout: 10_000 })
 
-      let medidos = 0
-      for (const nombre of GRUPOS) {
-        const boton = barra.getByRole('button', { name: nombre, exact: true })
+      // Los botones se leen del DOM, no de una lista escrita aquí: un grupo
+      // nuevo se mide sin tocar esta prueba.
+      const botones = barra.locator('button[aria-controls]')
+      const cuantos = await botones.count()
+      expect(cuantos, 'cinco grupos y el índice, como poco').toBeGreaterThanOrEqual(6)
+      // La referencia se toma con la fuente definitiva. Medidos antes de que
+      // llegue Outfit, TODOS los botones «encogen» a la vez cuando llega —dos
+      // o tres píxeles cada uno—, y eso no es la negrita de un grupo abierto
+      // empujando a sus vecinos. Pasó dos veces en una pasada completa.
+      await page.evaluate(async () => {
+        await document.fonts.ready
+      })
+      const anchosCerrados = await anchosDeBotones(page)
+
+      for (let i = 0; i < cuantos; i++) {
+        const boton = botones.nth(i)
+        const nombre = (await boton.innerText()).trim()
         await boton.click()
         await expect(boton).toHaveAttribute('aria-expanded', 'true')
         const id = (await boton.getAttribute('aria-controls'))!
@@ -71,12 +94,45 @@ test.describe('Barra de secciones de la portada', () => {
         expect(m.doc, `${nombre} a ${ancho}px · el documento no se ensancha`).toBeLessThanOrEqual(
           m.vw + 6,
         )
+        // El abierto va en negrita; si no reservara su ancho, empujaría a los
+        // de su derecha. Se comparan anchos y no posiciones: en estrecho, pulsar
+        // desliza la fila y las posiciones cambian sin que nada se mueva.
+        expect(await anchosDeBotones(page), `${nombre} · nadie cambia de ancho`).toEqual(
+          anchosCerrados,
+        )
 
         await page.keyboard.press('Escape')
         await expect(boton).toHaveAttribute('aria-expanded', 'false')
-        medidos++
       }
-      expect(medidos).toBe(GRUPOS.length)
+    })
+  }
+
+  for (const ancho of [768, 430, 375]) {
+    test(`${ancho}px — «Poner una queja» se ve sin deslizar la fila`, async ({ page }) => {
+      // En estrecho la fila se desliza, y la acción es lo último de ella: a
+      // 375 px quedaba fuera de la pantalla, sin nada que dijera que estaba
+      // ahí. Es en el móvil donde más probable es que empiece una queja.
+      await page.setViewportSize({ width: ancho, height: 900 })
+      await page.goto('/', { waitUntil: 'domcontentloaded' })
+      const accion = page
+        .getByRole('navigation', { name: 'Secciones' })
+        .getByRole('link', { name: /Poner una queja/ })
+      await expect(accion).toBeAttached({ timeout: 10_000 })
+      // Sin desplazar nada: `evaluate` no hace scroll, y toBeVisible daría por
+      // visible una acción deslizada fuera de la fila.
+      const m = await accion.evaluate((a) => {
+        const r = a.getBoundingClientRect()
+        const pintado = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2)
+        return {
+          izq: r.left,
+          der: r.right,
+          vw: window.innerWidth,
+          seVe: !!pintado && a.contains(pintado),
+        }
+      })
+      expect(m.izq, `a ${ancho}px · borde izquierdo`).toBeGreaterThanOrEqual(0)
+      expect(m.der, `a ${ancho}px · borde derecho`).toBeLessThanOrEqual(m.vw)
+      expect(m.seVe, `a ${ancho}px · nada la tapa`).toBe(true)
     })
   }
 

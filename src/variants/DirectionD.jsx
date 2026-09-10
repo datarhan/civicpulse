@@ -67,12 +67,13 @@ export default function DirectionD() {
         */
         .d-shell { height: 100vh; display: flex; flex-direction: column; }
         /*
-          Por encima de la barra de secciones (1010), que va a su vez por encima
-          de las esquinas de control de Leaflet (1000): el desplegable del
-          tiempo, el aire y el metro cuelga de esta cabecera y tiene que caer
-          sobre la barra, no por debajo de ella.
+          Por encima de la barra de secciones (2), que va a su vez por encima
+          del mapa: lo que cuelga de esta cabecera tiene que caer sobre la
+          barra y no por debajo. (Hoy lo único que cuelga, el detalle del
+          tiempo, el aire y el metro, no se ve en ningún caso: lo recorta el
+          overflow-x de su propia tira, .cp-livestrip. Es anterior a la barra.)
         */
-        .d-topbar { height: 54px; position: relative; z-index: 1020; }
+        .d-topbar { height: 54px; position: relative; z-index: 3; }
         .d-brand { min-width: 0; }
         .cp-livestrip { overflow-x: auto; -webkit-overflow-scrolling: touch; }
         .d-root { flex: 1; display: flex; min-height: 0; }
@@ -82,8 +83,18 @@ export default function DirectionD() {
         /* Clips the absolutely-positioned overlays (ticker marquee, event
            strip) to the pane. Without it the marquee — two chip lists
            back to back, deliberately wider than the screen — escapes and drags
-           the document sideways once the shell is no longer a clipping box. */
-        .d-mappane { flex: 1; position: relative; min-width: 0; overflow: hidden; }
+           the document sideways once the shell is no longer a clipping box.
+
+           isolation: el mapa se apila en su propio contexto. Leaflet pinta sus
+           esquinas de control a z-index 1000 y sus capas entre 200 y 700;
+           aisladas aquí, esas cifras sólo compiten entre ellas, y la barra de
+           secciones y la cabecera les pasan por encima con un 2 y un 3 en vez
+           de pujar por encima de mil — que es lo que dejaría debajo a
+           cualquier diálogo que un día se monte en esta página. */
+        .d-mappane {
+          flex: 1; position: relative; min-width: 0; overflow: hidden;
+          isolation: isolate;
+        }
         .d-editorial {
           width: 420px; flex-shrink: 0; overflow-y: auto;
           padding: 24px 26px;

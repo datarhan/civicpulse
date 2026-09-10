@@ -27,10 +27,9 @@ import { SectionGlyph } from '../../components/SectionGlyph'
 import { GRUPO_PROYECTO, NAV_GROUPS, entradasDeGrupo } from '../../nav'
 import { useT } from '../../i18n'
 import { estiloBarraSecciones } from './barra-secciones.css.js'
-
-// El mismo destino que la llamada «Denuncia un bache» de la columna, con el
-// mismo parámetro de arranque: una sola puerta al bot, no dos que discrepen.
-const BOT_QUEJAS = 'https://t.me/munigraph_bot?start=landing'
+// La misma constante que la llamada «Denuncia un bache» de la columna: una
+// sola puerta al bot, no dos copias que puedan discrepar.
+import { BOT_QUEJAS } from './tokens'
 
 const INDICE = 'indice'
 const idPanel = (id) => `d-sec-panel-${id}`

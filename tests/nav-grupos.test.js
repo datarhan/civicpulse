@@ -59,6 +59,22 @@ describe('nav — los grupos de la portada', () => {
     expect(revisadas).toBeGreaterThan(10)
   })
 
+  it('ninguna frase ni lema lleva una cifra', () => {
+    // La lámina decía «21 concejales». Una cifra escrita a mano en el catálogo
+    // no la vigila ninguna prueba de datos: se queda vieja sola, y la página a
+    // la que lleva ya publica la suya, derivada del snapshot.
+    let revisadas = 0
+    for (const g of NAV_GROUPS) {
+      for (const clave of [g.ledeKey, ...entradasDeGrupo(g.id).map((n) => n.descKey)]) {
+        for (const loc of LOCALES) {
+          expect(CATALOGUE[loc][clave], `${loc} · ${clave}`).not.toMatch(/\d/)
+          revisadas++
+        }
+      }
+    }
+    expect(revisadas).toBeGreaterThan(30)
+  })
+
   it('todo rótulo que pinta la barra existe en los dos idiomas', () => {
     // La barra lateral de desarrollo llevaba `nav.curator` sin clave, y t()
     // cae a la clave cruda: se veía «nav.curator». El índice de la portada lo

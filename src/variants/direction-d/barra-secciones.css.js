@@ -4,8 +4,8 @@
  * Regla de la casa: el prop `style` no puede llevar media queries ni
  * pseudo-clases, y aquí hacen falta las dos. El desplegable necesita :hover
  * con su pareja :focus-visible —lo que cambia al pasar el ratón cambia igual
- * al llegar con el teclado—, y por debajo de BARRA_COMPACTA la fila se desliza
- * y los paneles cambian de ancla.
+ * al llegar con el teclado—, y por debajo de BARRA_COMPACTA la fila se desliza,
+ * los paneles cambian de ancla y la acción principal se queda a la vista.
  *
  * El cambio de ancla es lo que no se ve venir. Una fila con overflow-x recorta
  * a todo descendiente cuyo bloque contenedor esté DENTRO de ella, así que un
@@ -31,7 +31,10 @@ export const BARRA_COMPACTA = 800
 export const estiloBarraSecciones = `
 .d-sec {
   position: relative;
-  z-index: 1010;
+  /* Por encima del mapa. Basta un 2 porque el mapa se apila en su propio
+     contexto (isolation en .d-mappane, DirectionD): el 1000 de las esquinas
+     de Leaflet compite sólo dentro de él y aquí no hay que pujar contra él. */
+  z-index: 2;
   flex-shrink: 0;
   background: ${PALETTE.bg};
   border-bottom: 1px solid ${PALETTE.hair};
@@ -89,10 +92,13 @@ export const estiloBarraSecciones = `
   font-weight: 600;
 }
 /* El anillo del sitio sale 2 px hacia fuera, y en estrecho la fila recorta:
-   se lo comería por arriba y por abajo. Hacia dentro se ve siempre. */
+   se lo comería por arriba y por abajo. Hacia dentro se ve siempre. Y sin
+   radio: el del anillo general curvaría las puntas del subrayado del grupo
+   abierto. */
 .d-sec-boton:focus-visible,
 .d-sec-indice:focus-visible {
   outline-offset: -2px;
+  border-radius: 0;
 }
 
 /* El rótulo reserva el ancho de su negrita. Sin esto, abrir un grupo empuja
@@ -125,8 +131,9 @@ export const estiloBarraSecciones = `
   border-radius: 0 0 var(--r-card) var(--r-card);
   box-shadow: 0 14px 34px rgba(11, 15, 25, 0.16);
 }
-/* Una regla de autor con display gana al [hidden] de la hoja del navegador:
-   sin esto un panel «cerrado» seguiría pintado. */
+/* Una regla de autor que diera display al panel ganaría al [hidden] de la
+   hoja del navegador, y un panel «cerrado» seguiría pintado. Hoy no la hay;
+   esto impide que la haya sin que nadie se entere. */
 .d-sec-panel[hidden] {
   display: none;
 }
@@ -278,6 +285,7 @@ export const estiloBarraSecciones = `
   padding: 0;
   overflow: hidden;
   clip: rect(0 0 0 0);
+  clip-path: inset(50%);
   white-space: nowrap;
   border: 0;
 }
@@ -286,6 +294,12 @@ export const estiloBarraSecciones = `
   .d-sec-fila {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    /* El margen derecho lo pone la acción, pegada al borde: con el de la fila
+       debajo, los grupos asomarían a su derecha al deslizar. */
+    padding-right: 0;
+    /* Lo que el foco o un scrollIntoView traen a la vista se para antes de la
+       acción pegada, en vez de quedar tapado debajo de ella. */
+    scroll-padding-right: 160px;
   }
   .d-sec-grupo {
     position: static;
@@ -298,6 +312,16 @@ export const estiloBarraSecciones = `
   }
   .d-sec-indice-rejilla {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  /* La acción es lo último de la fila: deslizada, a 375 px quedaba fuera de
+     la pantalla sin nada que dijera que estaba ahí, y es en el móvil donde
+     más fácil empieza una queja. Se queda pegada al borde derecho y los
+     grupos pasan por debajo, fundiéndose en el papel. */
+  .d-sec-accion {
+    position: sticky;
+    right: 0;
+    padding: 0 12px 0 20px;
+    background: linear-gradient(90deg, transparent, ${PALETTE.bg} 14px);
   }
 }
 `

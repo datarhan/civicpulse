@@ -14,7 +14,7 @@ import { fireEvent, render, screen, within } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 
 import { BarraSecciones } from '../../src/variants/direction-d/BarraSecciones'
-import { LocaleProvider } from '../../src/i18n'
+import { CATALOGUE, LocaleProvider } from '../../src/i18n'
 import { NAV, NAV_SECONDARY } from '../../src/nav'
 
 function pinta() {
@@ -53,7 +53,9 @@ describe('BarraSecciones', () => {
 
     const cargos = within(panel).getByRole('link', { name: /^Cargos/ })
     expect(cargos).toHaveAttribute('href', '/cargos')
-    expect(cargos).toHaveTextContent('Concejales, áreas y retribuciones')
+    // La frase se lee del catálogo: lo que se prueba es que la fila pinta la
+    // SUYA, no una redacción concreta que cualquier corrección cambiaría.
+    expect(cargos).toHaveTextContent(CATALOGUE.es['nav.desc.cargos'])
 
     // Sólo las de su grupo: el presupuesto es de «Dinero».
     expect(within(panel).queryByRole('link', { name: /^Presupuesto/ })).toBeNull()
@@ -89,6 +91,19 @@ describe('BarraSecciones', () => {
     fireEvent.keyDown(cargos, { key: 'Escape' })
     expect(gobierno).toHaveAttribute('aria-expanded', 'false')
     expect(document.activeElement).toBe(gobierno)
+  })
+
+  it('Escape con el foco fuera de la barra cierra sin llevarse el foco', () => {
+    // Quien abrió con el ratón y siguió en otra parte de la página no debe ver
+    // saltar su foco a la barra por pulsar Escape.
+    pinta()
+    const gobierno = boton('Gobierno')
+    fireEvent.click(gobierno)
+    const fuera = boton('fuera')
+    fuera.focus()
+    fireEvent.keyDown(fuera, { key: 'Escape' })
+    expect(gobierno).toHaveAttribute('aria-expanded', 'false')
+    expect(document.activeElement).toBe(fuera)
   })
 
   it('flecha abajo abre el grupo y lleva al primer enlace, y las flechas lo recorren', () => {
@@ -132,12 +147,37 @@ describe('BarraSecciones', () => {
     expect(document.activeElement).toBe(gobierno)
   })
 
+  it('y dan la vuelta: del índice se pasa al primer grupo, y al revés', () => {
+    pinta()
+    const indice = boton('Índice')
+    const gobierno = boton('Gobierno')
+    indice.focus()
+    fireEvent.keyDown(indice, { key: 'ArrowRight' })
+    expect(document.activeElement).toBe(gobierno)
+    fireEvent.keyDown(gobierno, { key: 'ArrowLeft' })
+    expect(document.activeElement).toBe(indice)
+  })
+
   it('pulsar fuera de la barra cierra el panel', () => {
     pinta()
     const gobierno = boton('Gobierno')
     fireEvent.click(gobierno)
     fireEvent.pointerDown(boton('fuera'))
     expect(gobierno).toHaveAttribute('aria-expanded', 'false')
+  })
+
+  it('pulsar DENTRO del panel, en un hueco, no lo cierra', () => {
+    // Un clic en el fondo del panel dispara pointerdown dentro de la barra y
+    // deja el foco en el body: focusout con relatedTarget nulo. Ninguna de las
+    // dos cosas es «irse», y cerrar ahí le quitaría el panel a quien lo lee.
+    pinta()
+    const gobierno = boton('Gobierno')
+    fireEvent.click(gobierno)
+    const panel = panelDe(gobierno)
+    fireEvent.pointerDown(panel)
+    fireEvent.focusOut(gobierno, { relatedTarget: null })
+    expect(gobierno).toHaveAttribute('aria-expanded', 'true')
+    expect(panel).toBeVisible()
   })
 
   it('sacar el foco de la barra con el tabulador cierra el panel', () => {

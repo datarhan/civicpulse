@@ -68,4 +68,9 @@ function useClock(intervalMs = 30000) {
   }, [intervalMs])
   return now
 }
-export { RIBA_ROJA_CENTER, SERIF, SANS, MONO, PALETTE, fmtClock, fmtDateLong, useClock }
+// La puerta al bot de quejas desde la portada. Una sola constante para las dos
+// llamadas que la abren —la de la columna y la de la barra de secciones—, con
+// el mismo parámetro de arranque, para que no puedan discrepar.
+const BOT_QUEJAS = 'https://t.me/munigraph_bot?start=landing'
+
+export { RIBA_ROJA_CENTER, SERIF, SANS, MONO, PALETTE, BOT_QUEJAS, fmtClock, fmtDateLong, useClock }

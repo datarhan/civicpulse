@@ -122,7 +122,10 @@ test.describe('Landing (/)', () => {
 
     // Y que NO la lleven todas: una salvedad en las cuatro filas es una
     // salvedad que no distingue nada.
-    const filas = page.locator('a[href="/presupuesto"]').first()
+    //
+    // En la columna: sin acotar, esto lo satisfacía el enlace del carril, y
+    // ahora lo haría el de «Dinero», cerrado y oculto. Ninguno es una fila.
+    const filas = page.locator('.d-editorial a[href="/presupuesto"]').first()
     expect(await filas.count()).toBeGreaterThan(0)
     expect(cuantas).toBeLessThan(4)
 
