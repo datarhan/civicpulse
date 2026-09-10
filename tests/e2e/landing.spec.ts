@@ -14,8 +14,13 @@ test.describe('Landing (/)', () => {
     await expect(page.getByText(/Robert Raga/i).first()).toBeVisible({ timeout: 8000 })
 
     // KPI strip: the labels include the current year ("Población 2025", "Presup. 2025" etc.)
-    await expect(page.getByText(/Población/i).first()).toBeVisible()
-    await expect(page.getByText(/Presup/i).first()).toBeVisible()
+    //
+    // Scoped to the strip's cells. The section bar's closed panels carry
+    // «población» and «Presupuesto» in hidden text that comes first in the DOM,
+    // and a page-wide `.first()` resolved to it — hidden, so the test failed on
+    // a page that was fine.
+    await expect(page.locator('.d-kpi-cell', { hasText: /Población/i }).first()).toBeVisible()
+    await expect(page.locator('.d-kpi-cell', { hasText: /Presup/i }).first()).toBeVisible()
 
     // Map tiles loaded (Leaflet attribution link appears when tiles are live)
     await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 8000 })
