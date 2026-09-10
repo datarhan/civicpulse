@@ -1,8 +1,32 @@
 name: Weekly batch reminder
 
+# Recuerda al moderador, los lunes, cuántas quejas verificadas esperan registro
+# en sede. Es el puente legal del bot: sin este aviso el lote se queda parado y
+# los plazos del ayuntamiento corren igual.
+#
+# POR QUÉ SE REESCRIBIÓ EL 2026-09-10. La versión anterior **no podía fallar**, y
+# por eso llevaba desde abril sin avisar de nada sin que nadie se enterara:
+#
+#   1. El trabajo entero colgaba de
+#      `if: vars.BOT_EXPORT_URL != '' && vars.BATCH_REMINDER_CHAT_ID != ''`.
+#      `BATCH_REMINDER_CHAT_ID` nunca se definió, así que el trabajo se SALTABA
+#      y el workflow salía **verde**. Verde por no ejecutarse, que es el defecto
+#      que este repositorio lleva pagando desde que existe.
+#   2. Y si llegaba a ejecutarse, el paso del aviso hacía `exit 0` cuando
+#      faltaba el token. Dos capas independientes de no hacer nada en silencio.
+#
+# Con las dos, un lunes sin mensaje significaba a la vez «no hay nada que
+# registrar» y «esto lleva meses roto», que son cosas distintas y el moderador
+# no podía distinguirlas. Ahora la configuración incompleta **falla con el
+# motivo delante**, así que el silencio sólo puede significar lo primero.
+#
+# Si algún día se decide no usar este aviso, lo que se retira es el `schedule`
+# —o el fichero—, no la comprobación: un workflow que finge estar bien es peor
+# que uno que no existe.
+
 on:
   schedule:
-    - cron: '0 8 * * 1' # Mondays 08:00 UTC (10:00 Madrid summer, 09:00 winter)
+    - cron: '0 8 * * 1' # Lunes 08:00 UTC (10:00 Madrid en verano, 09:00 en invierno)
   workflow_dispatch:
 
 permissions:
@@ -11,33 +35,85 @@ permissions:
 jobs:
   remind:
     runs-on: ubuntu-latest
-    if: ${{ vars.BOT_EXPORT_URL != '' && vars.BATCH_REMINDER_CHAT_ID != '' }}
     steps:
-      - name: Fetch current batch size
+      # Primero la configuración, y falla AQUÍ si falta algo: es el único sitio
+      # donde el motivo se puede decir entero. Más adelante un fallo aparecería
+      # como un 401 de Telegram o un jq vacío, que no se leen igual de bien.
+      - name: Comprobar la configuración
+        env:
+          EXPORT_URL: ${{ vars.BOT_EXPORT_URL }}
+          CHAT_ID: ${{ vars.BATCH_REMINDER_CHAT_ID }}
+          TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: |
+          faltan=()
+          [ -n "$EXPORT_URL" ] || faltan+=("vars.BOT_EXPORT_URL")
+          [ -n "$CHAT_ID" ]    || faltan+=("vars.BATCH_REMINDER_CHAT_ID")
+          [ -n "$TOKEN" ]      || faltan+=("secrets.TELEGRAM_BOT_TOKEN")
+          if [ ${#faltan[@]} -gt 0 ]; then
+            {
+              echo "### ⛔ Aviso semanal SIN CONFIGURAR"
+              echo
+              echo "Falta por definir:"
+              for f in "${faltan[@]}"; do echo "- \`$f\`"; done
+              echo
+              echo 'Se definen con:'
+              echo '```'
+              echo 'gh secret set TELEGRAM_BOT_TOKEN     # el token del bot (NO lo pegues en un fichero)'
+              echo 'gh variable set BATCH_REMINDER_CHAT_ID --body "<chat id del moderador>"'
+              echo '```'
+            } >> "$GITHUB_STEP_SUMMARY"
+            echo "::error::Faltan ${#faltan[@]} valor(es) de configuración: ${faltan[*]}"
+            exit 1
+          fi
+          echo "[batch-reminder] configuración completa"
+
+      - name: Contar el lote verificado
         id: batch
         env:
           EXPORT_URL: ${{ vars.BOT_EXPORT_URL }}
           EXPORT_TOKEN: ${{ secrets.BOT_EXPORT_TOKEN }}
         run: |
           if [ -n "$EXPORT_TOKEN" ]; then
-            total=$(curl -fsS -H "Authorization: Bearer $EXPORT_TOKEN" "$EXPORT_URL" | jq '[.items[] | select(.status == "apoyada_verificada")] | length')
+            total=$(curl -fsS -H "Authorization: Bearer $EXPORT_TOKEN" "$EXPORT_URL" \
+              | jq '[.items[] | select(.status == "apoyada_verificada")] | length')
           else
-            total=$(curl -fsS "$EXPORT_URL" | jq '[.items[] | select(.status == "apoyada_verificada")] | length')
+            total=$(curl -fsS "$EXPORT_URL" \
+              | jq '[.items[] | select(.status == "apoyada_verificada")] | length')
           fi
+          # Un recuento que no es un número NO es un cero. Si jq devuelve vacío o
+          # `null` —export cambiado, respuesta truncada— el aviso diría «null
+          # queja(s)» y quedaría verde. Se falla en su lugar.
+          case "$total" in
+            ''|*[!0-9]*)
+              echo "::error::El recuento no es un número: '$total'. ¿Cambió el formato de $EXPORT_URL?"
+              exit 1
+              ;;
+          esac
           echo "verified=$total" >> "$GITHUB_OUTPUT"
+          echo "[batch-reminder] quejas verificadas pendientes de registro: $total"
 
-      - name: Ping moderator
+      - name: Avisar al moderador
         if: ${{ steps.batch.outputs.verified != '0' }}
         env:
           TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           CHAT_ID: ${{ vars.BATCH_REMINDER_CHAT_ID }}
           VERIFIED: ${{ steps.batch.outputs.verified }}
         run: |
-          if [ -z "$TOKEN" ]; then
-            echo "TELEGRAM_BOT_TOKEN not set — skipping."
-            exit 0
-          fi
+          # `-f` hace que un 400/401 de Telegram —chat id equivocado, token
+          # caducado— falle el paso en vez de pasar por enviado.
           curl -fsS "https://api.telegram.org/bot$TOKEN/sendMessage" \
             -d "chat_id=$CHAT_ID" \
             -d "parse_mode=Markdown" \
-            --data-urlencode "text=🗓 Lunes · hay *$VERIFIED* queja(s) verificadas listas para registro. Usa /batch para ver el lote y /batch_register tras firmar en sede.ribarroja.es."
+            --data-urlencode "text=🗓 Lunes · hay *$VERIFIED* queja(s) verificadas listas para registro. Usa /batch para ver el lote y /batch_register tras firmar en sede.ribarroja.es." \
+            > /dev/null
+          echo "### 📨 Aviso enviado · $VERIFIED queja(s) esperando registro" >> "$GITHUB_STEP_SUMMARY"
+
+      # Los desenlaces se dicen por separado. «No había nada que registrar» es
+      # información —el lote está al día—, no un aprobado silencioso, y tiene que
+      # poder distinguirse en el historial de un lunes en que esto no corrió.
+      - name: Decir que no había nada que avisar
+        if: ${{ steps.batch.outputs.verified == '0' }}
+        run: |
+          echo "### ✅ Nada que registrar esta semana" >> "$GITHUB_STEP_SUMMARY"
+          echo "El lote está al día: 0 quejas en \`apoyada_verificada\`." >> "$GITHUB_STEP_SUMMARY"
+          echo "[batch-reminder] 0 verificadas · no se envía aviso"

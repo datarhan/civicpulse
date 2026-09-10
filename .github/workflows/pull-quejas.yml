@@ -11,9 +11,29 @@ permissions:
 jobs:
   pull:
     runs-on: ubuntu-latest
-    # Skip if the bot host isn't configured yet (feature-flagged rollout).
-    if: ${{ vars.BOT_EXPORT_URL != '' }}
     steps:
+      # Antes esto era un `if:` a nivel de trabajo — «skip if the bot host isn't
+      # configured yet (feature-flagged rollout)»—, y aquella razón caducó: el
+      # bot lleva desplegado en Fly desde hace meses. Lo que quedaba era la
+      # forma peligrosa: si alguien borra la variable, el trabajo se SALTA, el
+      # workflow sale **verde** y las quejas dejan de actualizarse sin que nada
+      # lo diga. Este fichero comitea datos publicados; el silencio ahí no es
+      # una molestia, es un dato viejo presentado como actual.
+      #
+      # Es el mismo defecto que tenía `batch-reminder.yml`, que sí llevaba
+      # meses sin avisar de nada en verde (2026-09-10).
+      - name: Comprobar la configuración
+        env:
+          EXPORT_URL: ${{ vars.BOT_EXPORT_URL }}
+        run: |
+          if [ -z "$EXPORT_URL" ]; then
+            echo "::error::Falta vars.BOT_EXPORT_URL — sin ella no se puede traer quejas.json."
+            echo '### ⛔ Sin `vars.BOT_EXPORT_URL`' >> "$GITHUB_STEP_SUMMARY"
+            echo 'Se define con `gh variable set BOT_EXPORT_URL --body "<url del export del bot>"`.' >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+          echo "[pull-quejas] configuración completa"
+
       - uses: actions/checkout@v5
 
       - name: Pull snapshot
