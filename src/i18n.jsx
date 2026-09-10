@@ -830,7 +830,8 @@ export const CATALOGUE = {
     'plazo.hint':
       'Fecha de compromiso superada sin que se haya registrado evidencia de ejecución. El estado editorial NO cambia automáticamente.',
     'liveTicker.plazosVencidos': 'plazos vencidos',
-    'liveTicker.plazosVencidos.none': 'sin plazos vencidos · todo en regla',
+    'liveTicker.plazosVencidos.aria':
+      '{n} compromisos municipales con plazo vencido sin evidencia de ejecución — abrir el panel de departamentos',
 
     // Accessibility chrome
     'a11y.skipToContent': 'Saltar al contenido',
@@ -1586,7 +1587,8 @@ export const CATALOGUE = {
     'plazo.hint':
       "Data de compromís superada sense que s'haja registrat evidència d'execució. L'estat editorial NO canvia automàticament.",
     'liveTicker.plazosVencidos': 'terminis vençuts',
-    'liveTicker.plazosVencidos.none': 'sense terminis vençuts · tot en regla',
+    'liveTicker.plazosVencidos.aria':
+      '{n} compromisos municipals amb termini vençut sense evidència d’execució — obrir el tauler de departaments',
 
     // Accessibilitat
     'a11y.skipToContent': 'Saltar al contingut',

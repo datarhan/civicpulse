@@ -103,6 +103,8 @@ export interface RelationsCheckInputs {
       itemNumber?: number
       votes?: unknown[]
       votesRetracted?: unknown
+      dueBy?: string
+      dueByRetracted?: unknown
       provenance?: {
         outcome?: VoteRefShape
         breakdown?: VoteRefShape | null
@@ -684,6 +686,7 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
         (votes?.items ?? []).filter((v) => v?.id).map((v) => [v.id as string, v]),
       )
       const liveBreakdowns = new Set<string>()
+      const livePlazos = new Set<string>()
       for (const r of votes?.retractions ?? []) {
         checked += 1
         const id = r?.voteId ?? '?'
@@ -701,6 +704,14 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
           } else if ((item.votes?.length ?? 0) > 0 || item.votesRetracted == null) {
             broken.push(`${id} has a live breakdown retraction but publishes a tally again`)
           }
+        } else if (r?.scope === 'plazo') {
+          livePlazos.add(id)
+          const item = published.get(id)
+          if (!item) {
+            broken.push(`${id} has a plazo retraction but no vote in items[]`)
+          } else if (item.dueBy != null || item.dueByRetracted == null) {
+            broken.push(`${id} has a live plazo retraction but publishes a deadline again`)
+          }
         } else {
           broken.push(`${id} has unknown retraction scope "${String(r?.scope)}"`)
         }
@@ -712,6 +723,13 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
         checked += 1
         if (!liveBreakdowns.has(v.id as string)) {
           broken.push(`${v?.id ?? '?'} is stamped votesRetracted with no live ledger entry`)
+        }
+      }
+      for (const v of votes?.items ?? []) {
+        if (v?.dueByRetracted == null) continue
+        checked += 1
+        if (!livePlazos.has(v.id as string)) {
+          broken.push(`${v?.id ?? '?'} is stamped dueByRetracted with no live ledger entry`)
         }
       }
       return { checked, broken }

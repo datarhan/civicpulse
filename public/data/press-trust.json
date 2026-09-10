@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-10T09:25:31.968Z",
+  "generatedAt": "2026-09-10T14:13:46.999Z",
   "windowDays": 30,
   "articles": [
     {
@@ -1004,30 +1004,13 @@
         "opinionFraction": 0
       },
       "score": 2
-    },
-    {
-      "articleId": "624g92",
-      "articleFingerprint": "1ozjfls",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia%2C-aviso/bando-de-alcald%C3%ADa-con-motivo-del-eclipse-solar-del-d%C3%ADa-12-de-agosto-de-2026",
-      "date": "2026-08-11T12:00:23.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 19,
+      "articleCount": 18,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 1,
@@ -1035,7 +1018,7 @@
         "sin-datos": 16,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.79,
+      "meanTrustScore": 2.83,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -1221,7 +1204,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "a3297e605a0a",
+    "plenos-agendas.json": "3109d9fe4960",
     "press-claims-verified.json": "b5f74f13740a",
     "press.json": "38ebbc3f973b",
     "promises.json": "d18811c11210"

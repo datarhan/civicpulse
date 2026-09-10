@@ -6,6 +6,8 @@ import { usePress, timeAgo as pressTimeAgo } from '../hooks/usePress'
 import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
 import { usePromises, isPromiseFrozen } from '../hooks/usePromises'
 import { readableInk } from '../lib/contrast'
+import { rotuloPlazosVencidos } from '../lib/plazos-vencidos'
+import { useT } from '../i18n'
 
 /* ============================================================
    Bloomberg-style auto-scrolling data ticker.
@@ -201,6 +203,7 @@ function Sparkline24({ values, width = 180, height = 36, color = CIVIC }) {
  * headlines. Returns null when the snapshot isn't useful yet.
  */
 function useTickerItems() {
+  const t = useT()
   const { data } = useSpainTicker()
   const { data: press } = usePress()
   const { data: agendas } = usePlenoAgendas()
@@ -220,10 +223,10 @@ function useTickerItems() {
         icon: '⚠',
         label: 'Riba-roja',
         value: `${plazosVencidos}`,
-        extra: 'plazos vencidos',
+        extra: rotuloPlazosVencidos(plazosVencidos, t),
         accent: WARN,
         navTo: '/departamentos',
-        ariaLabel: `${plazosVencidos} compromisos municipales con plazo vencido sin evidencia de ejecución — abrir dashboard de departamentos`,
+        ariaLabel: t('liveTicker.plazosVencidos.aria').replace('{n}', String(plazosVencidos)),
       })
     }
 
@@ -351,7 +354,7 @@ function useTickerItems() {
       pi++
     }
     return woven
-  }, [data, press, plazosVencidos])
+  }, [data, press, plazosVencidos, t])
 }
 
 function PressChip({ p, onClick }) {

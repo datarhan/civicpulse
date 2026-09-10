@@ -46,7 +46,7 @@ function formatDate(iso) {
  *  Counts live (non-revoked) retractions only — a revoked one is back in
  *  `items[]` and would be counted twice. */
 function retractionNote(retracted) {
-  const n = (retracted?.record ?? 0) + (retracted?.breakdown ?? 0)
+  const n = Object.values(retracted ?? {}).reduce((s, x) => s + (x ?? 0), 0)
   return n > 0 ? ` · ${n} retirada${n === 1 ? '' : 's'}` : ''
 }
 

@@ -3,6 +3,7 @@ import { usePromises, isPromiseFrozen } from '../../../hooks/usePromises'
 import { usePlenoAgendas } from '../../../hooks/usePlenoAgendas'
 import { PALETTE, MONO } from '../tokens'
 import { useT } from '../../../i18n'
+import { rotuloPlazosVencidos } from '../../../lib/plazos-vencidos'
 import { SectionHeader } from '../SectionHeader'
 
 export function CoalitionRing() {
@@ -199,7 +200,7 @@ export function DepartamentosBlockD() {
                 fontWeight: 700,
               }}
             >
-              ⚠ {vencidos} plazos vencidos
+              ⚠ {vencidos} {rotuloPlazosVencidos(vencidos, t)}
             </span>
           )
         }
