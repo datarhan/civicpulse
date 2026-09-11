@@ -1,55 +1,15 @@
 {
-  "generatedAt": "2026-09-10T09:13:53.380Z",
+  "generatedAt": "2026-09-11T09:06:24.957Z",
   "source": {
     "url": "https://www.ribarroja.es/es/eventos/rss.xml",
     "platform": "Drupal RSS (oficial)"
   },
   "stats": {
     "total": 50,
-    "upcoming": 27,
-    "nextDate": "2026-09-10T18:00:00.000Z"
+    "upcoming": 29,
+    "nextDate": "2026-09-11T16:00:00.000Z"
   },
   "events": [
-    {
-      "id": "uxwbx2",
-      "title": "Competiciones deportivas 6 de junio de 2026",
-      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-6-de-junio-de-2026",
-      "eventDate": "2026-06-06T07:30:00.000Z",
-      "eventDateText": "06 de junio de 2026 09:30",
-      "publishedDate": "2026-06-04T10:51:35.000Z",
-      "excerpt": null,
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas.jpg?itok=QwfknWQ4"
-    },
-    {
-      "id": "ntnzkw",
-      "title": "Competiciones deportivas 7 de junio de 2026",
-      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-7-de-junio-de-2026",
-      "eventDate": "2026-06-07T07:30:00.000Z",
-      "eventDateText": "07 de junio de 2026 09:30",
-      "publishedDate": "2026-06-04T10:53:57.000Z",
-      "excerpt": null,
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas_0.jpg?itok=SmAN0llL"
-    },
-    {
-      "id": "1hi28cw",
-      "title": "Competiciones deportivas 13 de junio de 2026",
-      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-13-de-junio-de-2026",
-      "eventDate": "2026-06-13T13:00:00.000Z",
-      "eventDateText": "13 de junio de 2026 15:00",
-      "publishedDate": "2026-06-11T10:32:00.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas_1.jpg?itok=a2cQQxSs"
-    },
-    {
-      "id": "7r9o6k",
-      "title": "Competiciones deportivas 14 de junio de 2026",
-      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-14-de-junio-de-2026",
-      "eventDate": "2026-06-14T07:00:00.000Z",
-      "eventDateText": "14 de junio de 2026 09:00",
-      "publishedDate": "2026-06-11T10:35:07.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas_2.jpg?itok=gSz0fTro"
-    },
     {
       "id": "1rqi4as",
       "title": "RibaJazz 2026: Vira León Swingtet (Jazz Swing)",
@@ -241,6 +201,16 @@
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_11.png?itok=goWFDA70"
     },
     {
+      "id": "1yef69d",
+      "title": "Xarrada explicativa Projecte Rehabilitació del Pont Vell",
+      "link": "https://www.ribarroja.es/va/evento/xarrada-explicativa-projecte-rehabilitaci%C3%B3-del-pont-vell",
+      "eventDate": "2026-09-10T17:00:00.000Z",
+      "eventDateText": "10 de septiembre de 2026 19:00",
+      "publishedDate": "2026-09-10T14:06:27.000Z",
+      "excerpt": null,
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/IMG-20260910-WA0016.jpg?itok=jCNSFgUr"
+    },
+    {
       "id": "v923a3",
       "title": "Actes festes Crist 2026 - dijous 10 de setembre",
       "link": "https://www.ribarroja.es/es/evento/actes-festes-crist-2026-dijous-10-de-setembre",
@@ -249,6 +219,16 @@
       "publishedDate": "2026-08-28T10:13:49.000Z",
       "excerpt": "&nbsp;",
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_12.png?itok=9TRMkYZ8"
+    },
+    {
+      "id": "3amk2c",
+      "title": "Competiciones deportivas 11 de septiembre de 2026",
+      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-11-de-septiembre-de-2026",
+      "eventDate": "2026-09-11T16:00:00.000Z",
+      "eventDateText": "11 de septiembre de 2026 18:00",
+      "publishedDate": "2026-09-11T07:42:38.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_1_0.png?itok=rz_wlhus"
     },
     {
       "id": "316nrd",
@@ -261,6 +241,16 @@
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_13.png?itok=BDm_UH0r"
     },
     {
+      "id": "3fijiw",
+      "title": "Competiciones deportivas 12 de septiembre de 2026",
+      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-12-de-septiembre-de-2026",
+      "eventDate": "2026-09-12T07:00:00.000Z",
+      "eventDateText": "12 de septiembre de 2026 09:00",
+      "publishedDate": "2026-09-11T07:50:27.000Z",
+      "excerpt": null,
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_1_1.png?itok=J5v7jOxo"
+    },
+    {
       "id": "erbkv8",
       "title": "Actes festes Crist 2026 - dissabte 12 de setembre",
       "link": "https://www.ribarroja.es/es/evento/actes-festes-crist-2026-dissabte-12-de-setembre",
@@ -269,6 +259,16 @@
       "publishedDate": "2026-08-28T10:16:44.000Z",
       "excerpt": "&nbsp;",
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_14.png?itok=9yUtmqmL"
+    },
+    {
+      "id": "1j0i6w2",
+      "title": "Competiciones deportivas 13 de septiembre de 2026",
+      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-13-de-septiembre-de-2026",
+      "eventDate": "2026-09-13T07:00:00.000Z",
+      "eventDateText": "13 de septiembre de 2026 09:00",
+      "publishedDate": "2026-09-11T07:54:14.000Z",
+      "excerpt": null,
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_1_2.png?itok=IHY_nivA"
     },
     {
       "id": "1yr9oon",
@@ -301,6 +301,16 @@
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_17.png?itok=PkIlsi31"
     },
     {
+      "id": "b8u8us",
+      "title": "II Jornadas abolicionistas",
+      "link": "https://www.ribarroja.es/es/evento/ii-jornadas-abolicionistas",
+      "eventDate": "2026-09-18T15:00:00.000Z",
+      "eventDateText": "18 de septiembre de 2026 17:00",
+      "publishedDate": "2026-09-11T07:29:03.000Z",
+      "excerpt": "Una jornada de reflexión y sensibilización en torno a la prostitución, la explotación sexual y la defensa de los derechos humanos, que contará con la participación de destacadas voces del ámbito académico, profesional y…",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/II%20Jornadas%20abolicionistas.png?itok=H7vrXbUp"
+    },
+    {
       "id": "3zyqj6",
       "title": "Marxa solidària 'RunCàncer'",
       "link": "https://www.ribarroja.es/es/evento/marxa-solid%C3%A0ria-%27runc%C3%A0ncer%27",
@@ -309,16 +319,6 @@
       "publishedDate": "2026-08-28T10:23:32.000Z",
       "excerpt": "&nbsp;",
       "image": null
-    },
-    {
-      "id": "1s18y44",
-      "title": "Ópera 'Madama Butterfly'",
-      "link": "https://www.ribarroja.es/es/evento/%C3%B3pera-%27madama-butterfly%27",
-      "eventDate": "2026-09-26T17:00:00.000Z",
-      "eventDateText": "26 de septiembre de 2026 19:00",
-      "publishedDate": "2026-05-31T12:01:10.000Z",
-      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/21%20madama%20buterflay.jpg?itok=ZByBU8pL"
     },
     {
       "id": "wwknro",

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-09T09:09:24.255Z",
+  "generatedAt": "2026-09-11T09:06:09.858Z",
   "source": {
     "name": "Boletín Oficial de la Provincia de València",
     "home": "https://bop.dival.es/bop/",
@@ -10,9 +10,19 @@
     "daysCovered": 22,
     "daysRequested": 30,
     "fetchFailures": 0,
-    "latestDate": "2026-09-07"
+    "latestDate": "2026-09-10"
   },
   "anuncios": [
+    {
+      "id": "162c14481bf0",
+      "regNumber": "2026/10993",
+      "title": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre la delegación de competencias para la celebración de matrimonios civiles",
+      "entity": "Ayuntamiento de Riba-roja de Túria",
+      "date": "2026-09-10",
+      "bulletinDate": "10/09/2026",
+      "pdfUrl": "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F10993",
+      "bulletinUrl": "https://bop.dival.es/bop/downloads?boletinFecha=10%2F09%2F2026"
+    },
     {
       "id": "91a8914f0c74",
       "regNumber": "2026/10923",
@@ -72,16 +82,6 @@
       "bulletinDate": "14/08/2026",
       "pdfUrl": "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F10262",
       "bulletinUrl": "https://bop.dival.es/bop/downloads?boletinFecha=14%2F08%2F2026"
-    },
-    {
-      "id": "326439418684",
-      "regNumber": "2026/10172",
-      "title": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre la convocatoria de subvenciones destinadas a la concesión de los premios EcoRiba 2026. Identificador BDNS: 923287",
-      "entity": "Ayuntamiento de Riba-roja de Túria",
-      "date": "2026-08-12",
-      "bulletinDate": "12/08/2026",
-      "pdfUrl": "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F10172",
-      "bulletinUrl": "https://bop.dival.es/bop/downloads?boletinFecha=12%2F08%2F2026"
     }
   ]
 }

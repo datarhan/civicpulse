@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-10T09:25:29.813Z",
+  "generatedAt": "2026-09-11T09:22:59.429Z",
   "source": {
-    "tenders": "2026-09-10T09:07:34.656Z",
-    "geo": "2026-09-10T09:14:01.338Z"
+    "tenders": "2026-09-11T09:05:22.532Z",
+    "geo": "2026-09-11T09:07:23.707Z"
   },
   "universe": {
-    "totalContracts": 696,
-    "totalAmount": 123702482.78999995,
+    "totalContracts": 705,
+    "totalAmount": 124033832.53999993,
     "locatedContracts": 47,
     "locatedAmount": 2225591.15,
     "situatedContracts": 127,
@@ -14,7 +14,7 @@
     "danaContracts": 10,
     "danaAmount": 276297.42000000004,
     "danaAwardedContracts": 81,
-    "danaAwardedAmount": 2827158.5399999986,
+    "danaAwardedAmount": 2827158.539999998,
     "dateMin": "2017-07-06",
     "dateMax": "2026-05-27"
   },
@@ -1964,24 +1964,24 @@
       }
     },
     {
-      "id": "1550047",
+      "id": "1566052",
       "zones": [],
       "matchedAlias": {},
       "dana": false,
-      "amount": 143801.44,
+      "amount": 14000,
       "amountKind": "final",
-      "date": "2021-10-22",
-      "contractType": "construction",
-      "categoryTitle": "construction",
+      "date": "2019-12-08",
+      "contractType": "services",
+      "categoryTitle": "other",
       "point": [
-        39.47822,
-        -0.58302
+        39.5473561,
+        -0.5639968
       ],
       "place": {
-        "kind": "urbanizacion",
-        "name": "Polígono Industrial Masía Baló",
-        "matchedText": "Polígono Industrial Masía Baló",
-        "sourceId": "poligon-industrial-masia-balo"
+        "kind": "poi",
+        "name": "Col·legi d'Educació Infantil i Primària Eres Altes",
+        "matchedText": "Col·legi d'Educació Infantil i Primària Eres Altes",
+        "sourceId": "way-1178031442"
       }
     },
     {
@@ -2036,6 +2036,27 @@
       "date": "2021-12-13",
       "contractType": "supplies",
       "categoryTitle": "security",
+      "point": [
+        39.47822,
+        -0.58302
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "Polígono Industrial Masía Baló",
+        "matchedText": "Polígono Industrial Masía Baló",
+        "sourceId": "poligon-industrial-masia-balo"
+      }
+    },
+    {
+      "id": "1550047",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 143801.44,
+      "amountKind": "final",
+      "date": "2021-10-22",
+      "contractType": "construction",
+      "categoryTitle": "construction",
       "point": [
         39.47822,
         -0.58302
@@ -2367,24 +2388,24 @@
       }
     },
     {
-      "id": "440383",
+      "id": "543949",
       "zones": [],
       "matchedAlias": {},
       "dana": false,
-      "amount": 24908.52,
+      "amount": 37850,
       "amountKind": "final",
-      "date": "2018-11-05",
+      "date": "2019-07-13",
       "contractType": "construction",
       "categoryTitle": "other",
       "point": [
-        39.5469545,
-        -0.5666236
+        39.5433427,
+        -0.5731124
       ],
       "place": {
         "kind": "poi",
-        "name": "Ajuntament de Riba-roja de Túria",
-        "matchedText": "Ajuntament de Riba-roja de Túria",
-        "sourceId": "node-5809597354"
+        "name": "Col·legi d'Educació Infantil i Primària Cervantes",
+        "matchedText": "Col·legi d'Educació Infantil i Primària Cervantes",
+        "sourceId": "way-1097452806"
       }
     },
     {
@@ -2415,6 +2436,27 @@
       }
     },
     {
+      "id": "440383",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 24908.52,
+      "amountKind": "final",
+      "date": "2018-11-05",
+      "contractType": "construction",
+      "categoryTitle": "other",
+      "point": [
+        39.5469545,
+        -0.5666236
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Ajuntament de Riba-roja de Túria",
+        "matchedText": "Ajuntament de Riba-roja de Túria",
+        "sourceId": "node-5809597354"
+      }
+    },
+    {
       "id": "440687",
       "zones": [],
       "matchedAlias": {},
@@ -2433,27 +2475,6 @@
         "name": "Plaça de la Torre",
         "matchedText": "Plaça de la Torre",
         "sourceId": "placa-de-la-torre"
-      }
-    },
-    {
-      "id": "543949",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 37850,
-      "amountKind": "final",
-      "date": "2019-07-13",
-      "contractType": "construction",
-      "categoryTitle": "other",
-      "point": [
-        39.5433427,
-        -0.5731124
-      ],
-      "place": {
-        "kind": "poi",
-        "name": "Col·legi d'Educació Infantil i Primària Cervantes",
-        "matchedText": "Col·legi d'Educació Infantil i Primària Cervantes",
-        "sourceId": "way-1097452806"
       }
     },
     {
@@ -2630,27 +2651,6 @@
         "name": "Carreró de l'Església",
         "matchedText": "Carreró de l'Església",
         "sourceId": "carrero-de-l-esglesia"
-      }
-    },
-    {
-      "id": "1566052",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 14000,
-      "amountKind": "final",
-      "date": "2019-12-08",
-      "contractType": "services",
-      "categoryTitle": "other",
-      "point": [
-        39.5473561,
-        -0.5639968
-      ],
-      "place": {
-        "kind": "poi",
-        "name": "Col·legi d'Educació Infantil i Primària Eres Altes",
-        "matchedText": "Col·legi d'Educació Infantil i Primària Eres Altes",
-        "sourceId": "way-1178031442"
       }
     },
     {
@@ -3813,11 +3813,11 @@
     }
   ],
   "builtFrom": {
-    "civic-poi.json": "543a2701729d",
+    "civic-poi.json": "82e228862ff0",
     "gazetteer-supplement.json": "813c38c1dc80",
-    "geo.json": "a71f935542ee",
+    "geo.json": "94d1e1b93284",
     "place-overrides.json": "5a4641410141",
-    "streets.json": "c7c4865a0320",
-    "tenders.json": "890c5d24352f"
+    "streets.json": "f66e53c5f27e",
+    "tenders.json": "1d4a0671ac5c"
   }
 }

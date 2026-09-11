@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-09-10T09:25:10.610Z",
+  "generatedAt": "2026-09-11T09:22:45.218Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
   "counts": {
     "total": 23,
     "byProposedStatus": {
-      "en-progreso": 6,
-      "documentada": 17
+      "en-progreso": 5,
+      "documentada": 18
     },
     "llmEvidence": 0
   },
@@ -66,7 +66,7 @@
           "date": "2026-07-10",
           "quote": "Una década de espera: la depuradora de Riba-roja de Túria se amplía por fin con una inversión de 23,6 millones de euros",
           "kind": "press",
-          "publisher": "valenciaextra.com",
+          "publisher": "València Extra",
           "matchedKeywords": [
             "millon",
             "euro"
@@ -74,7 +74,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-10T09:25:10.514Z"
+      "generatedAt": "2026-09-11T09:22:45.096Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -86,7 +86,7 @@
           "date": "2026-07-10",
           "quote": "Una década de espera: la depuradora de Riba-roja de Túria se amplía por fin con una inversión de 23,6 millones de euros",
           "kind": "press",
-          "publisher": "valenciaextra.com",
+          "publisher": "València Extra",
           "matchedKeywords": [
             "inversion",
             "millon",
@@ -139,12 +139,12 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-10T09:25:10.514Z"
+      "generatedAt": "2026-09-11T09:22:45.096Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
-      "proposedStatus": "en-progreso",
-      "confidence": 0.575,
+      "proposedStatus": "documentada",
+      "confidence": 0.287,
       "reasoning": [
         {
           "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-ejecuta-a-buen-ritmo-las-inversiones-hidr%C3%A1ulicas-en-el-marco-de-la-reconstrucci%C3%B3n-tras-la-dana",
@@ -171,11 +171,11 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxQNmRMX3pCa29hVGJpZFdxdFI5NUw3eFRCOE9DSWxVZlJoNXNSU3pmZzA0b09OcS1BaFdqbGJkWWt1dDV6T2F3V2dFX1JZWHh0bmpaM2lGZk9sU2h6X1RpUDBCMGhKUUJUV25ybmIxZHQ5cWdMcWdraUlHRE5OUElJQTFXTDJBbGJMUEJZbU9ZVzl5eE9oLWE1R0tqUjNFTnJGOVNaTlk1Q09aR1Fhb3h1NlJuVi0ycFl4bkpHWFVjcVhva2VpQTV2QVZ6Nl9DZ3U1aU93R0xxNDBZZ1B6T2VXMTdacUZpSENsbFdpMS03b2duZjVUMW5Qcg?oc=5",
-          "date": "2026-09-09",
-          "quote": "Primer paso para el nuevo Conservatorio de Utiel tras la Dana: el Consell adjudica la redacción del proyecto",
+          "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOUTZVZ3EtWVEwclhsOVppLXdSNGZqWF9CT1JxNXk1bkNIU3lGSVEyUFJXSUdHQmZUdThvSTd6WGw5MFY0U2NqUDNDUGE3Q2ZtVkdmSWFuZnA1bzE0aU9uMmRqalo3Q3J5eS1JTXhJa2dSc25CamtYZXJlRUxiS2pwODc3a0VHWDRPR25FVDVfb3FwdHhOaGNXX1d6UFAwYmY4MC1KWFBlbXlnWkc5T1U1T3RtbVdIUG1JUzV1aWJmcDFQWk1VZU5DaHNMcXo2S2c3QTh0a19jbEhQYmlRMElONjNvNGQ5Zw?oc=5",
+          "date": "2026-09-01",
+          "quote": "La CHJ recupera la conectividad del Parque Fluvial del Turia tras la dana con cuatro pasarelas nuevas",
           "kind": "press",
-          "publisher": "Valencia Plaza",
+          "publisher": "Europa Press",
           "matchedKeywords": [
             "dana",
             "tras"
@@ -193,11 +193,11 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOUTZVZ3EtWVEwclhsOVppLXdSNGZqWF9CT1JxNXk1bkNIU3lGSVEyUFJXSUdHQmZUdThvSTd6WGw5MFY0U2NqUDNDUGE3Q2ZtVkdmSWFuZnA1bzE0aU9uMmRqalo3Q3J5eS1JTXhJa2dSc25CamtYZXJlRUxiS2pwODc3a0VHWDRPR25FVDVfb3FwdHhOaGNXX1d6UFAwYmY4MC1KWFBlbXlnWkc5T1U1T3RtbVdIUG1JUzV1aWJmcDFQWk1VZU5DaHNMcXo2S2c3QTh0a19jbEhQYmlRMElONjNvNGQ5Zw?oc=5",
-          "date": "2026-09-01",
-          "quote": "La CHJ recupera la conectividad del Parque Fluvial del Turia tras la dana con cuatro pasarelas nuevas",
+          "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxNTTNEZzBxcE9NTUNYNzV4bDh0dW1veWxGRHNOT0l0bkM0LTFyaEQzZmhiWVFOY1hQTFZrYkg0SGpiV1cxSEEwQTVqdFdVZkpYLVNhYU5jdVFOUlhwaFh5akZqNDZsamdyYWRMSFRrN0VKbW9DVnNfbkM2Zl9tZ3MtMEV3MUlPWTdUVHpmeU1hRXRtUWZjdVphZEN2MUlvaV9hWUUtcHF4ajRnd0FoVDFQQVN6NzVqWGNoYy16TFRadjBDenRWc25NSzRWRkhza25XTGRlNi1KbnBKdDlWTFBWV29jV0MwRXJqMExjMNIB8gFBVV95cUxPTi1qYUtLWnhKTDNnTnNTSlUyMnZKejkweHdteTlOTjJYeGNaMFpZRW1rZE9DUFJ6Z012VG9VYm5mYkc2X2ZEOEFkeFM4ZnFNQ3F2XzNBV2JiQ1B0ZFM3cjNsaHpfbEVWeGdRWmNuTHBSdmNNRjdyZ1RzbVA2c1laWjNpeUpjSXlXYzlnZmdiSnhseXZrRFN6YjRaYzc1Q1FmVmRBWUY5ZXlBZlFOcDR2MnlmanVrV1hNSzBnNERJRmczOFZqYXJTd0s0N0FwYlhQazEyd0pDeUZXSmxUdk9fTWlrU1RxZm83ZXRrelE3TFlJUQ?oc=5",
+          "date": "2026-07-28",
+          "quote": "Las exhumaciones del cementerio musulmán de Riba-roja se realizaron por las obras de la mota tras la dana",
           "kind": "press",
-          "publisher": "Europa Press",
+          "publisher": "Levante-EMV",
           "matchedKeywords": [
             "dana",
             "tras"
@@ -205,24 +205,13 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-10T09:25:10.514Z"
+      "generatedAt": "2026-09-11T09:22:45.096Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
       "proposedStatus": "documentada",
       "confidence": 0.175,
       "reasoning": [
-        {
-          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQcXBWS2FyYTR3TzJ2UDE3SlBaaWZPNGQ4QkhNWkdVY2ZWVmpFZnlEdHAtRi15b1o2Vm5NUDdpNVlBVVlLd08ybTYtR3dNeG40dUszVnlxdW81ZC1UMWV4Vl92S2tuNFctUk90S0NuQWw4SHdRY0VKeFA3OV92dEpRbktLWE81NGRrdUg0aXRPMzk1LWZOM0E?oc=5",
-          "date": "2026-08-19",
-          "quote": "Riba-roja de Túria cede suelo público para levantar nuevas viviendas",
-          "kind": "press",
-          "publisher": "boletinbien.com",
-          "matchedKeywords": [
-            "suelo",
-            "vivienda"
-          ]
-        },
         {
           "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxPQ2JhQ21ISGticDB0NTBFMHpEMHIxWUdBR3B5QUt1ZVNYcDVqSE04dGZhY1VIMTcwNlhzN2hWelVfVElXRjd0N3ZQcnVacUZKYWQ4eVIyekxQXzdYU0JEWGZ5cW9tZE5WRmVxV3dHdURyU1VOU3dXU2NOT1FJWC1OellLeVB1R0UzZmpEeWl3b0xwREZfOFcwUVpOcXU5dktGRTJ0Wm50TUZITXlsQmRiRkNmbGhKTHNydmRPbU1LalJXWXJjc0ppeWI2c201cURhSWk1NGpNeDNxUkRCeUJYTkY4Qy1NQlh1dng5bHZfUEdzSFZf?oc=5",
           "date": "2026-07-07",
@@ -258,7 +247,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-10T09:25:10.514Z"
+      "generatedAt": "2026-09-11T09:22:45.096Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -343,7 +332,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-10T09:25:10.514Z"
+      "generatedAt": "2026-09-11T09:22:45.096Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -374,7 +363,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-10T09:25:10.514Z"
+      "generatedAt": "2026-09-11T09:22:45.096Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -394,7 +383,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-10T09:25:10.514Z"
+      "generatedAt": "2026-09-11T09:22:45.096Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -402,7 +391,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-10T09:25:10.514Z"
+      "generatedAt": "2026-09-11T09:22:45.096Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -410,7 +399,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-10T09:25:10.514Z"
+      "generatedAt": "2026-09-11T09:22:45.096Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -445,7 +434,7 @@
           "date": "2026-07-10",
           "quote": "Una década de espera: la depuradora de Riba-roja de Túria se amplía por fin con una inversión de 23,6 millones de euros",
           "kind": "press",
-          "publisher": "valenciaextra.com",
+          "publisher": "València Extra",
           "matchedKeywords": [
             "millon",
             "euro"
@@ -475,7 +464,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-10T09:25:10.514Z"
+      "generatedAt": "2026-09-11T09:22:45.096Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -495,7 +484,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-10T09:25:10.514Z"
+      "generatedAt": "2026-09-11T09:22:45.096Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
@@ -535,7 +524,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-10T09:25:10.514Z"
+      "generatedAt": "2026-09-11T09:22:45.096Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -579,7 +568,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-10T09:25:10.514Z"
+      "generatedAt": "2026-09-11T09:22:45.096Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -634,7 +623,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-10T09:25:10.514Z"
+      "generatedAt": "2026-09-11T09:22:45.096Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -664,7 +653,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-10T09:25:10.514Z"
+      "generatedAt": "2026-09-11T09:22:45.096Z"
     },
     {
       "promiseId": "ac-psoe-1cbkzxt",
@@ -695,7 +684,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-10T09:25:10.514Z"
+      "generatedAt": "2026-09-11T09:22:45.096Z"
     },
     {
       "promiseId": "ac-psoe-1v0679f",
@@ -751,7 +740,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-10T09:25:10.514Z"
+      "generatedAt": "2026-09-11T09:22:45.096Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -759,7 +748,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-10T09:25:10.514Z"
+      "generatedAt": "2026-09-11T09:22:45.096Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -778,7 +767,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-10T09:25:10.514Z"
+      "generatedAt": "2026-09-11T09:22:45.096Z"
     },
     {
       "promiseId": "ac-psoe-pl3lsq",
@@ -823,7 +812,7 @@
           "date": "2026-07-10",
           "quote": "Una década de espera: la depuradora de Riba-roja de Túria se amplía por fin con una inversión de 23,6 millones de euros",
           "kind": "press",
-          "publisher": "valenciaextra.com",
+          "publisher": "València Extra",
           "matchedKeywords": [
             "millon",
             "euro"
@@ -842,7 +831,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-10T09:25:10.514Z"
+      "generatedAt": "2026-09-11T09:22:45.096Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -865,7 +854,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-10T09:25:10.514Z"
+      "generatedAt": "2026-09-11T09:22:45.096Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -896,7 +885,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-10T09:25:10.514Z"
+      "generatedAt": "2026-09-11T09:22:45.096Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -938,7 +927,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-10T09:25:10.514Z"
+      "generatedAt": "2026-09-11T09:22:45.096Z"
     }
   ],
   "llmEvidence": [],

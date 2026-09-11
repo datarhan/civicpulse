@@ -1,7 +1,58 @@
 {
-  "generatedAt": "2026-09-10T09:25:31.968Z",
+  "generatedAt": "2026-09-11T09:23:01.918Z",
   "windowDays": 30,
   "articles": [
+    {
+      "articleId": "6jgek0",
+      "articleFingerprint": "ujh1gf",
+      "outlet": "fotocasa.es",
+      "outletHost": "fotocasa.es",
+      "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNSktNU1FiRjZzWGhQUGw2SFlfaEVybXpBVkVta1RqR3FJUlZMSEhXWjVtM19LYXNVWFpJU2JlekppaGktSnBWTllnSUJqeXRLenpRdmtKOHR6UmMtLTFwRHlJdUlCSjNKWFI0RGhrVHpidFd1N3MtTUxXc2EyRFdybFlXcklPX0MwOXFJ?oc=5",
+      "date": "2026-09-10T16:41:33.000Z",
+      "indicators": {
+        "localCoverage": false,
+        "datedArticle": true,
+        "municipalSourceMatch": null,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 1
+    },
+    {
+      "articleId": "wjoq5s",
+      "articleFingerprint": "o69qn8",
+      "outlet": "Levante-EMV",
+      "outletHost": "levante-emv.com",
+      "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxOU3lpbTczUlB5bWtLMDFJMlRQT3c0WnRfelduTHpjeE9fMjZLVjFCdDhlbVIwUE54TUhMekFpcThYcDNMR2sxT1VjZmhoeGFwQzh1YnREbHF1NzJ1bDdtNlVQV2t5LWYwalN6UXBQUFBNSnZNbEdENXBDQkZPb2J4RXJVVS1ySVJFTEIxZlFfcnU0UXMxNHcwd2Y0a1ZzQ1lzSnVwWERwelg4SHlPeDg0enpfRkdQTlVGT1QxWnlLaU1DOWRmQ1N5SzQ5Tk8xR1VEajU3ckxwMTYxZ1RJeVJUOERDNNIB4wFBVV95cUxOU3lpbTczUlB5bWtLMDFJMlRQT3c0WnRfelduTHpjeE9fMjZLVjFCdDhlbVIwUE54TUhMekFpcThYcDNMR2sxT1VjZmhoeGFwQzh1YnREbHF1NzJ1bDdtNlVQV2t5LWYwalN6UXBQUFBNSnZNbEdENXBDQkZPb2J4RXJVVS1ySVJFTEIxZlFfcnU0UXMxNHcwd2Y0a1ZzQ1lzSnVwWERwelg4SHlPeDg0enpfRkdQTlVGT1QxWnlLaU1DOWRmQ1N5SzQ5Tk8xR1VEajU3ckxwMTYxZ1RJeVJUOERDNA?oc=5",
+      "date": "2026-09-10T14:37:52.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": null,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 2
+    },
+    {
+      "articleId": "1p0chgo",
+      "articleFingerprint": "zeuxbp",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-con-una-unidad-espec%C3%ADfica-en-centro-ordinario-%28ueco%29-para-el-alumnado-de-secundaria",
+      "date": "2026-09-10T12:00:05.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": null,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 2
+    },
     {
       "articleId": "1qcfmrw",
       "articleFingerprint": "1e5gx14",
@@ -77,23 +128,6 @@
       "outletHost": "ribarroja.es",
       "url": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-escolar-con-3.375-alumnos-apoyando-a-las-familias-un-a%C3%B1o-m%C3%A1s-con-el-bono-vuelve-al-cole",
       "date": "2026-09-09T12:42:33.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
-    },
-    {
-      "articleId": "11or5k0",
-      "articleFingerprint": "1j3gz88",
-      "outlet": "Valencia Plaza",
-      "outletHost": "valenciaplaza.com",
-      "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxQNmRMX3pCa29hVGJpZFdxdFI5NUw3eFRCOE9DSWxVZlJoNXNSU3pmZzA0b09OcS1BaFdqbGJkWWt1dDV6T2F3V2dFX1JZWHh0bmpaM2lGZk9sU2h6X1RpUDBCMGhKUUJUV25ybmIxZHQ5cWdMcWdraUlHRE5OUElJQTFXTDJBbGJMUEJZbU9ZVzl5eE9oLWE1R0tqUjNFTnJGOVNaTlk1Q09aR1Fhb3h1NlJuVi0ycFl4bkpHWFVjcVhva2VpQTV2QVZ6Nl9DZ3U1aU93R0xxNDBZZ1B6T2VXMTdacUZpSENsbFdpMS03b2duZjVUMW5Qcg?oc=5",
-      "date": "2026-09-09T12:20:10.000Z",
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
@@ -241,23 +275,6 @@
       "score": 4
     },
     {
-      "articleId": "16zc27c",
-      "articleFingerprint": "1rb28v0",
-      "outlet": "Valenciabonita",
-      "outletHost": "valenciabonita.es",
-      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPRFFiUmJza2FDY1hYQU1CY2tJaFdJMTF5dHVJVjlkZ3Z3cW1FTXg0TGNyVjgzLUd5MGItNDJfYkZqalplSHRpQkNlajhKYzJrWG1LOEpBSjRhenpPRXk5eV9pWURYRFdDTmlpZlBTcHRIWDkyRGUwdm5uenpzUk11Q0NKLXJwQ0NwNDlLaGdGSQ?oc=5",
-      "date": "2026-09-01T12:07:50.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": true,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
-    },
-    {
       "articleId": "cty6i0",
       "articleFingerprint": "zyinyc",
       "outlet": "Europa Press",
@@ -290,6 +307,23 @@
         "opinionFraction": 0
       },
       "score": 4
+    },
+    {
+      "articleId": "16zc27c",
+      "articleFingerprint": "1rb28v0",
+      "outlet": "Valenciabonita",
+      "outletHost": "valenciabonita.es",
+      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPRFFiUmJza2FDY1hYQU1CY2tJaFdJMTF5dHVJVjlkZ3Z3cW1FTXg0TGNyVjgzLUd5MGItNDJfYkZqalplSHRpQkNlajhKYzJrWG1LOEpBSjRhenpPRXk5eV9pWURYRFdDTmlpZlBTcHRIWDkyRGUwdm5uenpzUk11Q0NKLXJwQ0NwNDlLaGdGSQ?oc=5",
+      "date": "2026-09-01T07:00:00.000Z",
+      "indicators": {
+        "localCoverage": false,
+        "datedArticle": true,
+        "municipalSourceMatch": null,
+        "corroboratedAcrossOutlets": true,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 2
     },
     {
       "articleId": "jzze8c",
@@ -413,7 +447,7 @@
     {
       "articleId": "171dh22",
       "articleFingerprint": "y0ksbk",
-      "outlet": "Turisme Comunitat Valenciana",
+      "outlet": "comunitatvalenciana.com",
       "outletHost": "comunitatvalenciana.com",
       "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQaTU5aXFDZGo2RW1sWllKNEszMVNJQ283T2lpUUZEdnh0RFliV2stYlJFNFp1cVFyQlNuN2RuZlhvLUFGOXNLcHFEajl1THkxd2I0SzZjN2NPWnpRWUU5eFFzcUVnQWtPMUpXeGxIUVNQTTNMX0dZOVNFU2xkQ183UFVZRVZ4TVJRMnJJOUJYQmV3alM4LW9mQmg3dW1UYWdaTFBjTnlxc1l4bjF0b1A5UFVXdDhaTzct?oc=5",
       "date": "2026-08-29T20:57:21.000Z",
@@ -819,23 +853,6 @@
       "score": 2
     },
     {
-      "articleId": "1me17d8",
-      "articleFingerprint": "1lbfhoi",
-      "outlet": "boletinbien.com",
-      "outletHost": "boletinbien.com",
-      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQcXBWS2FyYTR3TzJ2UDE3SlBaaWZPNGQ4QkhNWkdVY2ZWVmpFZnlEdHAtRi15b1o2Vm5NUDdpNVlBVVlLd08ybTYtR3dNeG40dUszVnlxdW81ZC1UMWV4Vl92S2tuNFctUk90S0NuQWw4SHdRY0VKeFA3OV92dEpRbktLWE81NGRrdUg0aXRPMzk1LWZOM0E?oc=5",
-      "date": "2026-08-19T07:00:00.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 1
-    },
-    {
       "articleId": "33vp63",
       "articleFingerprint": "1ij1q5o",
       "outlet": "Ayuntamiento de Riba-roja de Túria",
@@ -1004,23 +1021,6 @@
         "opinionFraction": 0
       },
       "score": 2
-    },
-    {
-      "articleId": "624g92",
-      "articleFingerprint": "1ozjfls",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia%2C-aviso/bando-de-alcald%C3%ADa-con-motivo-del-eclipse-solar-del-d%C3%ADa-12-de-agosto-de-2026",
-      "date": "2026-08-11T12:00:23.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     }
   ],
   "outlets": [
@@ -1055,9 +1055,24 @@
       "contradictedRatio": 0
     },
     {
+      "outlet": "Levante-EMV",
+      "outletHost": "levante-emv.com",
+      "articleCount": 7,
+      "verdictCounts": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 1,
+        "promesa-repetida": 0
+      },
+      "meanTrustScore": 2.71,
+      "verifiedRatio": 0,
+      "contradictedRatio": null
+    },
+    {
       "outlet": "boletinbien.com",
       "outletHost": "boletinbien.com",
-      "articleCount": 8,
+      "articleCount": 7,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -1066,36 +1081,6 @@
         "promesa-repetida": 0
       },
       "meanTrustScore": 1,
-      "verifiedRatio": null,
-      "contradictedRatio": null
-    },
-    {
-      "outlet": "Levante-EMV",
-      "outletHost": "levante-emv.com",
-      "articleCount": 6,
-      "verdictCounts": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 1,
-        "promesa-repetida": 0
-      },
-      "meanTrustScore": 2.83,
-      "verifiedRatio": 0,
-      "contradictedRatio": null
-    },
-    {
-      "outlet": "Valencia Plaza",
-      "outletHost": "valenciaplaza.com",
-      "articleCount": 4,
-      "verdictCounts": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      },
-      "meanTrustScore": 2.75,
       "verifiedRatio": null,
       "contradictedRatio": null
     },
@@ -1130,8 +1115,23 @@
       "contradictedRatio": null
     },
     {
-      "outlet": "elperiodic.com",
-      "outletHost": "elperiodic.com",
+      "outlet": "Valencia Plaza",
+      "outletHost": "valenciaplaza.com",
+      "articleCount": 3,
+      "verdictCounts": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      },
+      "meanTrustScore": 3,
+      "verifiedRatio": null,
+      "contradictedRatio": null
+    },
+    {
+      "outlet": "fotocasa.es",
+      "outletHost": "fotocasa.es",
       "articleCount": 1,
       "verdictCounts": {
         "verificado": 0,
@@ -1145,8 +1145,8 @@
       "contradictedRatio": null
     },
     {
-      "outlet": "Valenciabonita",
-      "outletHost": "valenciabonita.es",
+      "outlet": "elperiodic.com",
+      "outletHost": "elperiodic.com",
       "articleCount": 1,
       "verdictCounts": {
         "verificado": 0,
@@ -1155,7 +1155,7 @@
         "sin-datos": 0,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2,
+      "meanTrustScore": 1,
       "verifiedRatio": null,
       "contradictedRatio": null
     },
@@ -1175,7 +1175,22 @@
       "contradictedRatio": null
     },
     {
-      "outlet": "Turisme Comunitat Valenciana",
+      "outlet": "Valenciabonita",
+      "outletHost": "valenciabonita.es",
+      "articleCount": 1,
+      "verdictCounts": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      },
+      "meanTrustScore": 2,
+      "verifiedRatio": null,
+      "contradictedRatio": null
+    },
+    {
+      "outlet": "comunitatvalenciana.com",
       "outletHost": "comunitatvalenciana.com",
       "articleCount": 1,
       "verdictCounts": {
@@ -1221,9 +1236,9 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "a3297e605a0a",
+    "plenos-agendas.json": "0bdcd917d6f7",
     "press-claims-verified.json": "b5f74f13740a",
-    "press.json": "38ebbc3f973b",
+    "press.json": "76f770347eeb",
     "promises.json": "d18811c11210"
   }
 }

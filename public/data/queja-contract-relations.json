@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-10T09:25:32.974Z",
+  "generatedAt": "2026-09-11T09:23:03.081Z",
   "source": "queja-contract-relations engine v1 (deterministic)",
   "stats": {
     "frozen": false,
     "quejasScanned": 1,
-    "contractsScanned": 701,
+    "contractsScanned": 710,
     "tierA": 4,
-    "tierB": 25,
+    "tierB": 30,
     "reason": null
   },
   "links": [
@@ -283,6 +283,24 @@
     },
     {
       "quejaId": "Q-KJY6XSVG",
+      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SWowCY8dnwmcCF8sV%2BqtYA%3D%3D",
+      "tenderId": "5106848",
+      "via": "deterministic",
+      "signals": {
+        "department": {
+          "slug": "urbanismo"
+        },
+        "temporal": {
+          "monthsAfter": 2.2516604938271607
+        }
+      },
+      "tier": "B",
+      "score": 0.55,
+      "relationLabel": "misma materia y fechas próximas",
+      "requiresHumanApproval": true
+    },
+    {
+      "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HOM%2FHPDB2NAS7pcxhTeWOg%3D%3D",
       "tenderId": "4718569",
       "via": "deterministic",
@@ -534,12 +552,84 @@
       "score": 0.55,
       "relationLabel": "misma materia y fechas próximas",
       "requiresHumanApproval": true
+    },
+    {
+      "quejaId": "Q-KJY6XSVG",
+      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SWowCY8dnwmcCF8sV%2BqtYA%3D%3D",
+      "tenderId": "5106848#1",
+      "via": "deterministic",
+      "signals": {
+        "department": {
+          "slug": "urbanismo"
+        },
+        "temporal": {
+          "monthsAfter": 2.2516604938271607
+        }
+      },
+      "tier": "B",
+      "score": 0.55,
+      "relationLabel": "misma materia y fechas próximas",
+      "requiresHumanApproval": true
+    },
+    {
+      "quejaId": "Q-KJY6XSVG",
+      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SWowCY8dnwmcCF8sV%2BqtYA%3D%3D",
+      "tenderId": "5106848#2",
+      "via": "deterministic",
+      "signals": {
+        "department": {
+          "slug": "urbanismo"
+        },
+        "temporal": {
+          "monthsAfter": 2.2516604938271607
+        }
+      },
+      "tier": "B",
+      "score": 0.55,
+      "relationLabel": "misma materia y fechas próximas",
+      "requiresHumanApproval": true
+    },
+    {
+      "quejaId": "Q-KJY6XSVG",
+      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=bZhrUOv3%2FSEeC9GJQOEBkQ%3D%3D",
+      "tenderId": "4889055#16",
+      "via": "deterministic",
+      "signals": {
+        "department": {
+          "slug": "urbanismo"
+        },
+        "temporal": {
+          "monthsAfter": 2.118327160493827
+        }
+      },
+      "tier": "B",
+      "score": 0.55,
+      "relationLabel": "misma materia y fechas próximas",
+      "requiresHumanApproval": true
+    },
+    {
+      "quejaId": "Q-KJY6XSVG",
+      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=jfZGSii8nvVLAIVZdUs8KA%3D%3D",
+      "tenderId": "4889055#17",
+      "via": "deterministic",
+      "signals": {
+        "department": {
+          "slug": "urbanismo"
+        },
+        "temporal": {
+          "monthsAfter": 2.284993827160494
+        }
+      },
+      "tier": "B",
+      "score": 0.55,
+      "relationLabel": "misma materia y fechas próximas",
+      "requiresHumanApproval": true
     }
   ],
   "builtFrom": {
     "promises.json": "d18811c11210",
-    "quejas.json": "46f7a6bd98db",
-    "tender-geo.json": "d1b70dc477d6",
-    "tenders.json": "890c5d24352f"
+    "quejas.json": "b30e57ce0677",
+    "tender-geo.json": "48093d34460c",
+    "tenders.json": "1d4a0671ac5c"
   }
 }
