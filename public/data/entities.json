@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-11T09:23:00.704Z",
+  "generatedAt": "2026-09-12T08:59:29.412Z",
   "source": "derived: tenders.json assignees + officials.json · overrides: entity-overrides.json",
   "stats": {
     "companies": 375,
@@ -6101,7 +6101,7 @@
   ],
   "builtFrom": {
     "entity-overrides.json": "a41cc20172e9",
-    "officials.json": "ded0f9ae58b2",
-    "tenders.json": "1d4a0671ac5c"
+    "officials.json": "3cc72d8bbf1f",
+    "tenders.json": "0f169390ed96"
   }
 }

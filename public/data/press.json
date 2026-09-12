@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-11T09:06:21.868Z",
+  "generatedAt": "2026-09-12T08:50:25.581Z",
   "feeds": [
     {
       "url": "https://www.ribarroja.es/es/noticias/rss.xml",
@@ -17,13 +17,13 @@
       "url": "https://news.google.com/rss/search?q=%22Riba-roja%20de%20T%C3%BAria%22&hl=es&gl=ES&ceid=ES:es",
       "platform": "Google News RSS",
       "ok": true,
-      "items": 96
+      "items": 98
     }
   ],
   "stats": {
-    "total": 152,
-    "sources": 22,
-    "latestDate": "2026-09-10T16:41:33.000Z",
+    "total": 154,
+    "sources": 21,
+    "latestDate": "2026-09-11T13:47:49.000Z",
     "carriedForward": 0
   },
   "sources": [
@@ -43,7 +43,6 @@
     "València Extra",
     "boletinbien.com",
     "comunica.gva.es",
-    "comunitatvalenciana.com",
     "elperiodic.com",
     "fotocasa.es",
     "iberdrolaespana.com",
@@ -52,13 +51,42 @@
   ],
   "items": [
     {
-      "id": "6jgek0",
-      "title": "1 Casas y pisos de alquiler en Calle Iregua, Riba-roja de Túria",
-      "link": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNSktNU1FiRjZzWGhQUGw2SFlfaEVybXpBVkVta1RqR3FJUlZMSEhXWjVtM19LYXNVWFpJU2JlekppaGktSnBWTllnSUJqeXRLenpRdmtKOHR6UmMtLTFwRHlJdUlCSjNKWFI0RGhrVHpidFd1N3MtTUxXc2EyRFdybFlXcklPX0MwOXFJ?oc=5",
+      "id": "k09yi8",
+      "title": "1 Casas y pisos en Calle Rosalia de Castro, Riba-roja de Túria",
+      "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOd0NWSkRNdE52QW15ejJMdWoyTEdDcTlhN21PNHJmeF9ZUTZsVllHbk5tMHpEQVg5LUhEQ1JCOFA1ekpvMEI0MXZMd09yNmdreWJyOFJXV2YtUGxwdUVDRlo1R2lHcjNwVGI4S2JJY011VWJHTDdJbE5PRlhYblVmRnN4ZHdFa2pfcGlUUTh1c21Ca0kxSmtUdg?oc=5",
       "source": "fotocasa.es",
       "sourceHost": "fotocasa.es",
-      "date": "2026-09-10T16:41:33.000Z",
-      "fingerprint": "ujh1gf"
+      "date": "2026-09-11T13:47:49.000Z",
+      "fingerprint": "1jot0ek"
+    },
+    {
+      "id": "1xjj30k",
+      "title": "La rehabilitación del Pont Vell de Riba-roja aumenta su capacidad y respeta su huella histórica",
+      "link": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPM0tZRWpKUDFXOTZqQWtMLTR5bTBDZmY2MDVDR1VWcEVyWjF4bzJiLUJWQ19aaDNRNWlQZXJxNkQyMUdObnloSzBXaWNVMXlUTjMwaklONzQ3ck9xYnBVTVJMMEFaellUNWxDcDNhNnRnTEQzLUNybVFjSmgyTHBrNDVHWFBIV0Rmb0w1REstRzVUTjlzZ0kzYVk5X0tDT3BKa1RRZEIteU11NEdpWVhyT3NRczdmV1dNeWJ2ejlZWjd5TmFqcWRrNldZdGV1dVdaaURFbElidldoYmQxNmltXzBfd3laR2xB?oc=5",
+      "source": "Valencia Plaza",
+      "sourceHost": "valenciaplaza.com",
+      "date": "2026-09-11T12:10:21.000Z",
+      "fingerprint": "107j3y8"
+    },
+    {
+      "id": "1drhtvs",
+      "title": "Riba-roja ultima la rehabilitación del Pont Vell para resistir a futuras riadas sin perder su huella histórica",
+      "link": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxPb3gyUkVfcS1Ta1JzMlZRRlVVb2EyR0lYUlFzM1M1Z3hZZWx4NVMyaXdHcVFRNVpzcm5pOThtQi1yM0YybXhkWVhBemx4dWVMTE1PUUxIODBYdEU0SEUxcGxDcW5EYUg2djVUWmdKT1V4YUhGOHN6YUlrM2hYZ2JHRFpob2U2czhDZXcxdHBOMjlnLXo4dWthTlJWMXdaVlRfTW45RHNkTl9KdzM0YUhPTlRWaE11eUo4T2hzM0YtLXVnMWt0d3hIWnBLU3h6UWFFYkNXUnkwcl9VUXdyYXRFYzlBc9IB4wFBVV95cUxPb3gyUkVfcS1Ta1JzMlZRRlVVb2EyR0lYUlFzM1M1Z3hZZWx4NVMyaXdHcVFRNVpzcm5pOThtQi1yM0YybXhkWVhBemx4dWVMTE1PUUxIODBYdEU0SEUxcGxDcW5EYUg2djVUWmdKT1V4YUhGOHN6YUlrM2hYZ2JHRFpob2U2czhDZXcxdHBOMjlnLXo4dWthTlJWMXdaVlRfTW45RHNkTl9KdzM0YUhPTlRWaE11eUo4T2hzM0YtLXVnMWt0d3hIWnBLU3h6UWFFYkNXUnkwcl9VUXdyYXRFYzlBcw?oc=5",
+      "source": "Levante-EMV",
+      "sourceHost": "levante-emv.com",
+      "date": "2026-09-11T10:49:15.000Z",
+      "fingerprint": "p4som4"
+    },
+    {
+      "id": "153mirg",
+      "title": "Riba-roja de Túria ultima la rehabilitación del Pont Vell aumentando su capacidad hidráulica y respetando su huella histórica",
+      "link": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-ultima-la-rehabilitaci%C3%B3n-del-pont-vell-aumentando-su-capacidad-hidr%C3%A1ulica-y-respetando-su-huella-hist%C3%B3rica",
+      "source": "Ayuntamiento de Riba-roja de Túria",
+      "sourceHost": "ribarroja.es",
+      "date": "2026-09-11T08:10:15.000Z",
+      "fingerprint": "2w05ns",
+      "official": true,
+      "section": "Patrimonio y Turismo"
     },
     {
       "id": "wjoq5s",
@@ -298,15 +326,6 @@
       "fingerprint": "179vgi0"
     },
     {
-      "id": "171dh22",
-      "title": "Llavador Municipal in Riba-roja de Túria",
-      "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQaTU5aXFDZGo2RW1sWllKNEszMVNJQ283T2lpUUZEdnh0RFliV2stYlJFNFp1cVFyQlNuN2RuZlhvLUFGOXNLcHFEajl1THkxd2I0SzZjN2NPWnpRWUU5eFFzcUVnQWtPMUpXeGxIUVNQTTNMX0dZOVNFU2xkQ183UFVZRVZ4TVJRMnJJOUJYQmV3alM4LW9mQmg3dW1UYWdaTFBjTnlxc1l4bjF0b1A5UFVXdDhaTzct?oc=5",
-      "source": "comunitatvalenciana.com",
-      "sourceHost": "comunitatvalenciana.com",
-      "date": "2026-08-29T20:57:21.000Z",
-      "fingerprint": "y0ksbk"
-    },
-    {
       "id": "qt6rcw",
       "title": "La Vuelta a España llega a Camp de Túria: carreteras cortadas, horarios y sitios prohibidos para aparcar",
       "link": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOUnB3UTRaWktudHJjRnJTbHZIYUtQWmw4WjhZb2lWTFN0Sm11TEtGQ2IwUnY5NkZ2Wlp5b20tclZrWVNQVnhXalIwLVdhQUNMVmJMU1hObzh0Q0o1cjdfQ1J4Y2VodVVsVVgzczgtQXl6NEg2Z3BSRW9MS1JqaWJTRjJJSXFHS05uS0Q1bGhENHFlM05yOXBfeDdWZl9QdjViYkRYVXpNQXlwUVVQZDNPRkZBSzNQakw0aG1jdGRhRjJYNGdVelp0V0ZHVjVNOUJxOGY5NC1GTnRqbEtvMHVqRtIB5gFBVV95cUxPWW9pN21DLVNmdnRtQ3Z3WW9HOUtzLXpibWducmRURG5BWTZXdDNGVFlwQ1pLZEdreGk0X3FiM0xhTHhPSVpHbEhRWjdvd1JDa2ZYV1FjZDFrYnZtTk45ZTNIZkNFWnZVSl8wN1lTOXoySGJJZWJBZmE5UHJUNzNzaTJHRHBZVW5VdlVDTDZyczRIWXNfMVRUaDQzdzFWUjJLYUgwTC1QY2tKWEhZS1o5NW1LTGc5dVhPMXF2bzNtWU0zSDRRV0VubjZ2REJXQnY1cUNnQ284aEszQzJXcTNxQ0lGVW1idw?oc=5",
@@ -427,15 +446,6 @@
       "section": "Fomento economico y Comercio"
     },
     {
-      "id": "d5303u",
-      "title": "La localidad valenciana de Riba-roja de Túria blinda la cosecha de la algarroba con drones: \"Es el futuro de las policías locales\"",
-      "link": "https://news.google.com/rss/articles/CBMiqAJBVV95cUxNVHRBRzFPVGNPWkc0LVh4Wkp0RjBWSVRZZzRtYjAwU1FITmptLW1SOHk5VUctZVBkYWNhajdNemlSXzdoaldWaUI5eHpqT3p2eEhldE1FREhvY0xERVk3ejVNVXN1ajhKRXpDZU9CS2hMWUtuemhRT3UyTXZzNEpxanZYcUtZZzh3NWx0X2NfSzhyY1p1SE01WDJZQmVSbkxzWktINng3Q3J1eW1DTFRwdmV6Ykx3cHg5UlNaM1RqNGRHVnJNX2lJV2JmdjRYWjFZLWpPMGkxbDFkYUVNRnZRejA0SFRkZ0FEaUphN1pnWWR6REtCdzZ6WFhMZGwxcmtUTFNvM3ZVeUJpQ0lpMzdLckFrd3FzR3l6a25CS2E4WFMtT3hMdF8xTtIBrgJBVV95cUxNWmtweVVUc0I4bE1jMUNJZURxOVJ0UWIwUWpucVZVbmxGV3UwV3pUZjc2czNWdHZuMW5FX19rSm9uWHh6MTR4UkZ1ZWpES3E2OWVJMFZKTm83c1FrSlh2cHlNaTJOeFk4WlR3d0VqX3NJYzA0eWg5QWFBVnBZcGpfaUM5UUNvd2p6ekNqX2pjam5pWkttRlg5c2QwMm81ZWZsZ25XelBONnZZU2IySXhpRTRGSDZMeFRJTkhpaEJmQ1RRano3d0NGVjktVkcxR2VLbHZsMGs2amdKUm8xOEdDaTNDNDZTNy0xZ245cGxfVk1ITzJKRDY4eDVvUUFBZ3l0cjVaTjlWMnhvcHNCb19qT1JZaHJuUzQ2WGs3b0tBZmhjS2xsWS12a0VrRHRjZw?oc=5",
-      "source": "COPE",
-      "sourceHost": "cope.es",
-      "date": "2026-08-24T07:00:00.000Z",
-      "fingerprint": "1810o54"
-    },
-    {
       "id": "17iw9j4",
       "title": "Riba-roja dispara un 31,6 % la contratación en julio y alcanza un récord de 22.156 afiliados",
       "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNVW94SUZNUGlFN2VWYS04NC02cFV3bFNkUjkydk8xcXJvaG90SHEyZ0xyVjZYNXNFSkVhcGE5LThBTzVLMnRTeHd4b2dPRTdCZzI5UlRvakJrV3lISmozd0hGSm1wQ3JmRVluZmFJTFAzbjVGNGk2cjhnV1R5WHVNdEpVVjhoMjdWeVp1aG5SbXQxejk4V243SHc5UmFOZFZBaXpVWUwtb3FVSWRpY1pBdtIBtgFBVV95cUxQd2pLa2xWTERQd000UHRRU1o1X25qbEVJUldvVmR3VUptc0lfNkFnaGJobUtJVDJLR0F1WjVnRGFUVmNaQzRoQlFQZEFaUU1OLWlZUFJnekxpeVNHQ2J3TzdmS192ODRmZUR6NWxxOGF4LUJqYVVOTGFfN0hrNko3akxUSzdVeDFlM0ZNWldjMUtkcnZkdFN4eEJ6anQ0cGwtN3NWeVZMdnJteEdKbzNZT0tvU1JkZw?oc=5",
@@ -443,6 +453,15 @@
       "sourceHost": "levante-emv.com",
       "date": "2026-08-24T07:00:00.000Z",
       "fingerprint": "re5p73"
+    },
+    {
+      "id": "d5303u",
+      "title": "La localidad valenciana de Riba-roja de Túria blinda la cosecha de la algarroba con drones: \"Es el futuro de las policías locales\"",
+      "link": "https://news.google.com/rss/articles/CBMiqAJBVV95cUxNVHRBRzFPVGNPWkc0LVh4Wkp0RjBWSVRZZzRtYjAwU1FITmptLW1SOHk5VUctZVBkYWNhajdNemlSXzdoaldWaUI5eHpqT3p2eEhldE1FREhvY0xERVk3ejVNVXN1ajhKRXpDZU9CS2hMWUtuemhRT3UyTXZzNEpxanZYcUtZZzh3NWx0X2NfSzhyY1p1SE01WDJZQmVSbkxzWktINng3Q3J1eW1DTFRwdmV6Ykx3cHg5UlNaM1RqNGRHVnJNX2lJV2JmdjRYWjFZLWpPMGkxbDFkYUVNRnZRejA0SFRkZ0FEaUphN1pnWWR6REtCdzZ6WFhMZGwxcmtUTFNvM3ZVeUJpQ0lpMzdLckFrd3FzR3l6a25CS2E4WFMtT3hMdF8xTtIBrgJBVV95cUxNWmtweVVUc0I4bE1jMUNJZURxOVJ0UWIwUWpucVZVbmxGV3UwV3pUZjc2czNWdHZuMW5FX19rSm9uWHh6MTR4UkZ1ZWpES3E2OWVJMFZKTm83c1FrSlh2cHlNaTJOeFk4WlR3d0VqX3NJYzA0eWg5QWFBVnBZcGpfaUM5UUNvd2p6ekNqX2pjam5pWkttRlg5c2QwMm81ZWZsZ25XelBONnZZU2IySXhpRTRGSDZMeFRJTkhpaEJmQ1RRano3d0NGVjktVkcxR2VLbHZsMGs2amdKUm8xOEdDaTNDNDZTNy0xZ245cGxfVk1ITzJKRDY4eDVvUUFBZ3l0cjVaTjlWMnhvcHNCb19qT1JZaHJuUzQ2WGs3b0tBZmhjS2xsWS12a0VrRHRjZw?oc=5",
+      "source": "COPE",
+      "sourceHost": "cope.es",
+      "date": "2026-08-24T07:00:00.000Z",
+      "fingerprint": "1810o54"
     },
     {
       "id": "y1bw9k",
@@ -743,6 +762,15 @@
       "sourceHost": "elperiodicodeaqui.com",
       "date": "2026-08-05T07:00:00.000Z",
       "fingerprint": "1svsczg"
+    },
+    {
+      "id": "y76g8e",
+      "title": "Riba-roja de Túria culmina su Plan de Accesibilidad Turística para consolidarse como un destino más inclusivo",
+      "link": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNMXRONU1PUWxxYlhqWEFHNVNFU044S0V6Q0phSHpYZDZhUGNYZU9RQ0k3ME5zeUU0NjJ1bVBadlFfNmxxWHlHWWk0c3hTYy1TU1JCRGx4M3hkRGFtNXlrMFlwejlRcXBva3ctOFFEekJKZFdxLUl1b0RKQm1CQk9UOVNUTGE1cGEwZ0kwQVBmaU13bHJ6NWZ6SkpNdEs1M0F5b05zdTZMRmR3WFc3Z2NHYTZGeDBkdUgxQXl6MEVXYUMtZ1JBWWp6dmZnQ0FEaXNm0gHWAUFVX3lxTE9xNnN1MS1RalZyNlZrc0ZpTXoxZlEwZzdPR0ptN1lzYXhfc29qbVAxS3VHemtrX2NBaDVVei10cXZHdEJMaWZ4NHBlVFlBRFdvcjJycmpwY1RZN1ZfY2R5Z3Z6azcwTHFTLW0zdVRfU3Q5MUhKcHlLWHY4X0pabXpNSU1nMC1PLVF1THMtYXdPR2Z2dnZLaklNbjk3OUZNT1N5S3Y2MlpEMUNMcnZ5MEFTWEstUXhDQnp6OTR1aHBfM2lBSEdxNFl2WjdFQWhxemdBNGU5LUE?oc=5",
+      "source": "Levante-EMV",
+      "sourceHost": "levante-emv.com",
+      "date": "2026-08-05T07:00:00.000Z",
+      "fingerprint": "yryvmk"
     },
     {
       "id": "1bbx1m0",
@@ -1050,15 +1078,13 @@
       "section": null
     },
     {
-      "id": "higxho",
+      "id": "1dsjjq",
       "title": "El Ayuntamiento de Riba-roja de Túria completa el informe de Diagnóstico DTI",
-      "link": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-completa-el-informe-de-diagn%C3%B3stico-dti",
-      "source": "Ayuntamiento de Riba-roja de Túria",
-      "sourceHost": "ribarroja.es",
-      "date": "2026-07-15T11:41:52.000Z",
-      "fingerprint": "1sifhiw",
-      "official": true,
-      "section": "Patrimonio y Turismo"
+      "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPQVEza1pKTGI4N0c1N3VGd2JRQzNUZXNrT3lDX1BfNnFHeHlWTm1rNi1NQmR3ZUZSajhZUFJTcnBsNnFpaC1qZlY1RjNYdkVNc0ZUVnNvMzUta3VzUGFWY0JaU3kzUXU0S1IxNkVjYV84TE5sUFlxbkE1OTVRbXBZRkx4RDdQUkd6YkpNUWxmejl3WEF3YnNjd1J4Z2FyUkxuSmg4cTh3dzJIOGNMZWRzand5UFBVanl6N21HQ3VxeWNaZ1hhbTRBelpiSWs3X00?oc=5",
+      "source": "Valencia Plaza",
+      "sourceHost": "valenciaplaza.com",
+      "date": "2026-07-15T07:00:00.000Z",
+      "fingerprint": "1sifhiw"
     },
     {
       "id": "2c5kl0",
@@ -1410,15 +1436,6 @@
       "sourceHost": "cadenaser.com",
       "date": "2026-05-31T07:00:00.000Z",
       "fingerprint": "hic6yp"
-    },
-    {
-      "id": "lh4ab6",
-      "title": "Las V Jornades de Memòria Històrica de Riba-roja abordarán la exhumación de los tres vecinos fusilados",
-      "link": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQY3FqOHItNmF5cEF4NHVlZEU0WDBDOW56THVIazdZN2VrdG8yajd2em93TlZSaEVsWGpBVXJhY2g0SDhLR2oyd3dpaFhVWml6WmdfQjFva1dPdktNZjFhc1JsbmZSQ1VhdlZfNkVUOXVrcldqTVNRRmVqdjZub3F6SHJrNWp5cWZBX1FTdmJ2bld6aFBSczVVMHFoOG5xZDNreWxpdlZkbm9kYkhRV0JHRzQyUkY4Zlkxbkx6RUNUOE9aNXY3VVdua0NiakpITXZGd212ONIB2gFBVV95cUxPYVk3VFluRGt4amdvTnIxU00tdmc5Mi1wdTYzTlNtN1JiQngzSEJCTW43NkxYUGpHQWc1Q1pXLThmSk5sNEMyWDhVRXRiNC10UjJZOURhbHV4Vi0zSFZOYmhqVDRVNExENGJCOEMzazJVN0VESm81eEV2RDN0WHU4WGxPT05QTFJqZ196aHFMVTBxdDg5ODdSM3NiNmtmYW1mc1VsVFJteTZ4MktnazBaQjd1Q3k5dUpPUU1LejJueVBZdm9QNlJTZVNQMHVLZTIxZkVxZlh0R2JLZw?oc=5",
-      "source": "Levante-EMV",
-      "sourceHost": "levante-emv.com",
-      "date": "2026-05-26T07:00:00.000Z",
-      "fingerprint": "1skiarc"
     },
     {
       "id": "1xyzbnc",

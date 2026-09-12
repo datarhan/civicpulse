@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-11T09:22:45.218Z",
+  "generatedAt": "2026-09-12T08:59:10.745Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -74,7 +74,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-11T09:22:45.096Z"
+      "generatedAt": "2026-09-12T08:59:10.608Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -139,7 +139,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-11T09:22:45.096Z"
+      "generatedAt": "2026-09-12T08:59:10.608Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
@@ -205,7 +205,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-11T09:22:45.096Z"
+      "generatedAt": "2026-09-12T08:59:10.608Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
@@ -247,7 +247,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-11T09:22:45.096Z"
+      "generatedAt": "2026-09-12T08:59:10.608Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -332,7 +332,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-11T09:22:45.096Z"
+      "generatedAt": "2026-09-12T08:59:10.608Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -363,7 +363,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-11T09:22:45.096Z"
+      "generatedAt": "2026-09-12T08:59:10.608Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -383,7 +383,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-11T09:22:45.096Z"
+      "generatedAt": "2026-09-12T08:59:10.608Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -391,7 +391,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-11T09:22:45.096Z"
+      "generatedAt": "2026-09-12T08:59:10.608Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -399,7 +399,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-11T09:22:45.096Z"
+      "generatedAt": "2026-09-12T08:59:10.608Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -464,7 +464,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-11T09:22:45.096Z"
+      "generatedAt": "2026-09-12T08:59:10.608Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -484,7 +484,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-11T09:22:45.096Z"
+      "generatedAt": "2026-09-12T08:59:10.608Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
@@ -524,7 +524,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-11T09:22:45.096Z"
+      "generatedAt": "2026-09-12T08:59:10.608Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -568,7 +568,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-11T09:22:45.096Z"
+      "generatedAt": "2026-09-12T08:59:10.608Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -623,7 +623,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-11T09:22:45.096Z"
+      "generatedAt": "2026-09-12T08:59:10.608Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -653,7 +653,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-11T09:22:45.096Z"
+      "generatedAt": "2026-09-12T08:59:10.608Z"
     },
     {
       "promiseId": "ac-psoe-1cbkzxt",
@@ -684,7 +684,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-11T09:22:45.096Z"
+      "generatedAt": "2026-09-12T08:59:10.608Z"
     },
     {
       "promiseId": "ac-psoe-1v0679f",
@@ -740,7 +740,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-11T09:22:45.096Z"
+      "generatedAt": "2026-09-12T08:59:10.608Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -748,7 +748,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-11T09:22:45.096Z"
+      "generatedAt": "2026-09-12T08:59:10.608Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -767,7 +767,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-11T09:22:45.096Z"
+      "generatedAt": "2026-09-12T08:59:10.608Z"
     },
     {
       "promiseId": "ac-psoe-pl3lsq",
@@ -831,7 +831,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-11T09:22:45.096Z"
+      "generatedAt": "2026-09-12T08:59:10.608Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -854,7 +854,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-11T09:22:45.096Z"
+      "generatedAt": "2026-09-12T08:59:10.608Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -885,7 +885,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-11T09:22:45.096Z"
+      "generatedAt": "2026-09-12T08:59:10.608Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -927,7 +927,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-11T09:22:45.096Z"
+      "generatedAt": "2026-09-12T08:59:10.608Z"
     }
   ],
   "llmEvidence": [],
