@@ -567,7 +567,7 @@ overwrites it. Change the bot's SQLite instead.
 
 - **Pipeline** — **bot-owned** · `bot/src/services/snapshot.ts`
 - **Source** — The bot runs on **Fly.io** (`munigraph-ribarroja`, webhook mode) and serves its own snapshot at `/export/quejas.json` behind `EXPORT_TOKEN`; `pull-quejas.yml` fetches it daily at 04:00 UTC. `npm run export` is the local equivalent, writing from whatever SQLite is on the host — useful in development, not the production path. Payload is Open311 GeoReport v2-flavoured; only non-PII fields are published
-- **Surfaces** — `/quejas` feed + heatmap · `/quejas/dashboard` analytics · `/quejas/:id` detail view · `/cargos` QuejaBadge
+- **Surfaces** — `/quejas` feed + heatmap · `/quejas/dashboard` analytics (incl. «Quejas por responsable político») · `/quejas/:id` detail view · `/cargos` QuejaBadge · `/cargos/:slug` ficha. Las tres cifras de respuesta (resueltas · pendientes · silencios) salen por `src/lib/reloj-lpacap.js` en las tres superficies que las ponen al lado de un nombre: sin registro no hay reloj LPACAP, así que enseñan «—» con su motivo
 
 ### Queja responses (curated, right-of-reply)
 

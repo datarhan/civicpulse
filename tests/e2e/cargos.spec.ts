@@ -444,7 +444,13 @@ test.describe('Cargos (/cargos)', () => {
     const c = cargoConQuejas()
     expect(c, 'la instantánea publicada no asigna ninguna queja a nadie').not.toBeNull()
     await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
-    const tarjeta = page.locator('.cp-card').filter({ hasText: c!.nombre }).first()
+    // Anclada al enlace de ESA ficha, no al nombre: `hasText` casa también con
+    // cualquier tarjeta ancestra que lo contenga, y la aserción se mudaría de
+    // sitio sin avisar.
+    const tarjeta = page
+      .locator('.cp-card')
+      .filter({ has: page.locator(`a[href="/cargos/${c!.slug}"]`) })
+      .first()
     await expect(tarjeta).toBeVisible({ timeout: 8000 })
     const texto = await tarjeta.innerText()
     if (c!.r.medible) {

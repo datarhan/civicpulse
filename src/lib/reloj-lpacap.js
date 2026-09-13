@@ -13,18 +13,38 @@
  *     (`buildSnapshot`, bot/src/services/snapshot.ts) mientras `stats` las
  *     cuenta todas, así que con el listado truncado no se puede saber cuáles se
  *     registraron;
- *   - y al menos una queja de ESE cargo tiene fecha de registro.
+ *   - la fila del cargo trae las tres cifras y son enteros no negativos;
+ *   - y al menos una queja de ESE cargo tiene fecha de registro utilizable.
  *
  * Si no, las tres son null y `motivo` dice por qué. Cada motivo tiene su texto
  * en el catálogo: `quejas.reloj.<motivo>` y `quejas.reloj.<motivo>.corto`.
  *
- * El total de quejas asignadas se da siempre: es un hecho del canal, no una nota
- * sobre las respuestas del ayuntamiento. Un cargo sin fila en `byConcejal` tiene
- * cero —el recuento cubre todas las quejas—, y eso es un dato, no una ausencia.
+ * `total` —cuántas quejas se asignaron a esa área— es un hecho del canal y no
+ * una nota sobre el ayuntamiento, así que se da SIEMPRE que la instantánea se
+ * pueda leer. Cuando no se puede, es **null y no cero**: un cero se publicaba
+ * como «sin quejas asignadas», que es convertir una ausencia en un dato — la
+ * regla 3 de DATA_INTEGRITY, y justo lo que este módulo existe para no hacer.
+ * Un cargo sin fila con la instantánea leída sí tiene cero de verdad.
+ *
+ * Pendiente para el día que `cerrada_no_registrada` tenga quien lo escriba
+ * (hoy está en el enum y nadie lo pone): una queja que el ayuntamiento cierra
+ * SIN registrar es una respuesta suya, y entonces el criterio querrá ser
+ * «registrada O en un estado terminal de respuesta».
  */
 
 /** Por qué un cargo se queda sin cifras. */
 export const MOTIVOS_SIN_CIFRA = ['sinDatos', 'exportIncompleto', 'sinRegistro']
+
+/** Un recuento publicable: entero y no negativo. */
+function esRecuento(n) {
+  return Number.isInteger(n) && n >= 0
+}
+
+/** Una fecha de registro utilizable, con el mismo criterio que usa el panel
+ *  para contar días («ReadyToEscalate» hace `new Date(...).getTime()`). */
+function registroUtilizable(valor) {
+  return typeof valor === 'string' && Number.isFinite(Date.parse(valor))
+}
 
 /**
  * @typedef {{ total: number, resueltas: number, pendientes: number, silencios: number }} FilaCargo
@@ -40,9 +60,8 @@ export const MOTIVOS_SIN_CIFRA = ['sinDatos', 'exportIncompleto', 'sinRegistro']
 export function contadoresDeCargo(instantanea, slug) {
   const stats = instantanea?.stats
   const fila = stats?.byConcejal?.[slug]
-  const total = fila?.total ?? 0
-  /** @param {string} motivo */
-  const sinCifras = (motivo) => ({
+  /** @param {string} motivo @param {number | null} total */
+  const sinCifras = (motivo, total) => ({
     total,
     medible: false,
     motivo,
@@ -51,11 +70,22 @@ export function contadoresDeCargo(instantanea, slug) {
     silencios: null,
   })
 
-  if (!stats || typeof stats.total !== 'number') return sinCifras('sinDatos')
+  // La instantánea no se puede leer: ni el total es un dato todavía.
+  if (!stats || !esRecuento(stats.total)) return sinCifras('sinDatos', null)
+
+  const total = esRecuento(fila?.total) ? fila.total : 0
   const items = instantanea?.items ?? []
-  if (items.length !== stats.total) return sinCifras('exportIncompleto')
-  if (!fila || !items.some((q) => q.concejal_slug === slug && q.registered_at)) {
-    return sinCifras('sinRegistro')
+  if (items.length !== stats.total) return sinCifras('exportIncompleto', total)
+  // Una fila A MEDIAS no se publica tal cual: `✓ undefined` es lo que sale de
+  // confiar en que el productor siempre manda las cuatro cifras. Ojo a la
+  // distinción: que no haya fila NO es un dato a medias —es un cargo con cero
+  // quejas asignadas, y ahí lo que falta es el registro, no el dato—, así que
+  // ese caso sigue su camino hasta `sinRegistro`.
+  if (fila && ![fila.resueltas, fila.pendientes, fila.silencios].every(esRecuento)) {
+    return sinCifras('sinDatos', total)
+  }
+  if (!items.some((q) => q.concejal_slug === slug && registroUtilizable(q.registered_at))) {
+    return sinCifras('sinRegistro', total)
   }
   return {
     total,

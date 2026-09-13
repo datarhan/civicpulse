@@ -240,9 +240,16 @@ function SlaPanel({ quejas, officials }) {
           lineHeight: 1.5,
         }}
       >
-        ✓ resueltas · ⏳ pendientes (capturadas + registradas + en trámite) · ⚠ silencios (&gt;plazo
-        LPACAP sin respuesta). Las quejas se asignan al área municipal competente automáticamente;
-        el responsable político figura como titular de esa área.
+        {/* La leyenda de los símbolos sólo si hay alguna fila que los use: una
+            clave de ✓ ⏳ ⚠ sobre una tabla entera de «—» explica lo que no está. */}
+        {entries.some((e) => e.medible) && (
+          <>
+            ✓ resueltas · ⏳ pendientes (capturadas + registradas + en trámite) · ⚠ silencios
+            (&gt;plazo LPACAP sin respuesta).{' '}
+          </>
+        )}
+        Las quejas se asignan al área municipal competente automáticamente; el responsable político
+        figura como titular de esa área.
         {motivos.map((m) => (
           <div key={m} style={{ marginTop: 6 }}>
             <span className="mono">—</span> {t(`quejas.reloj.${m}`)}

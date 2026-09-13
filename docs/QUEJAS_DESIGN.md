@@ -227,8 +227,28 @@ data from **official registers**:
 - Contracts awarded under their área (from `tenders.json` / PLACSP)
 - Number of quejas assigned to their *concejalía* (aggregate, not personal)
 
-**Never shown per-concejal:** resolution time, SLA performance. Those belong to
-the department, not the political figure.
+**The SLA counters, and the line they must not cross.** `resueltas`,
+`pendientes` and `silencios` DO render beside the titular of the área — on
+`/cargos/:slug`, on the `/cargos` card and in `/quejas/dashboard`'s «Quejas por
+responsable político» — and the reason they are defensible is the same one that
+governs `/eficiencia`: what is published is **who holds the competence**, which
+the council itself puts on its transparency portal, so a reader knows who to
+ask. The router assigns a queja to an área, never to a person.
+
+Two rules keep that from becoming a scoreboard of people:
+
+- **A count of the channel is not a claim about the council.** «Quejas
+  asignadas» is a fact about where the router sent things, and renders always.
+  The three SLA counters are claims about the council's answers, and the LPACAP
+  clock only starts at **registro** — so they render only once the published
+  list is whole and at least one queja of that área carries a registration
+  date. Otherwise the page shows «—» with the reason
+  (`src/lib/reloj-lpacap.js`). Before 2026-09-13 they rendered arithmetic:
+  «⏳ 1 · ⚠ 0» beside a councillor's name for a queja the council had never
+  received — an unearned pass and a debt that did not exist.
+- **No resolution TIME, and no ranking of people.** No average, no percentile,
+  no league table of concejales. Per-barrio resolution rates exist; per-person
+  ones do not.
 
 ### Stage 7 · ESCALATE (external institutions do the sanctioning)
 

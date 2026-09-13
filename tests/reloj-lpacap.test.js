@@ -39,6 +39,28 @@ const instantanea = ({ items, byConcejal, total = items.length }) => ({
 const CASOS = [
   ['sin instantánea', null, 'sinDatos'],
   ['una instantánea sin recuento', { items: [queja()] }, 'sinDatos'],
+  ['un recuento que no es un número', { stats: { total: Number.NaN }, items: [] }, 'sinDatos'],
+  [
+    'la fila del cargo viene a medias',
+    instantanea({
+      items: [queja({ registered_at: REGISTRADA })],
+      byConcejal: { [SLUG]: { total: 1 } },
+    }),
+    'sinDatos',
+  ],
+  [
+    'la fila trae una cifra imposible',
+    instantanea({
+      items: [queja({ registered_at: REGISTRADA })],
+      byConcejal: { [SLUG]: { total: 1, resueltas: -3, pendientes: 1, silencios: 0 } },
+    }),
+    'sinDatos',
+  ],
+  [
+    'la fecha de registro no se puede leer',
+    instantanea({ items: [queja({ registered_at: 'jueves' })], byConcejal: { [SLUG]: FILA } }),
+    'sinRegistro',
+  ],
   [
     'el listado publicado está truncado',
     instantanea({
@@ -109,6 +131,16 @@ describe('contadoresDeCargo: cuándo SÍ', () => {
   it('el total de quejas asignadas se da también sin registro, y es cero sin fila', () => {
     const conFila = instantanea({ items: [queja()], byConcejal: { [SLUG]: FILA } })
     expect(contadoresDeCargo(conFila, SLUG).total).toBe(1)
+    expect(contadoresDeCargo(instantanea({ items: [], byConcejal: {} }), SLUG).total).toBe(0)
+  })
+
+  it('sin instantánea el total es null, no cero: una ausencia no es un dato', () => {
+    // El cero se publicaba como «Sin quejas asignadas actualmente» en la ficha y
+    // hacía desaparecer la tarjeta del listado, así que un fetch fallido —o el
+    // tic de carga— se leía como un hecho sobre el buzón del ayuntamiento.
+    expect(contadoresDeCargo(null, SLUG).total).toBeNull()
+    expect(contadoresDeCargo({ items: [] }, SLUG).total).toBeNull()
+    // Y con la instantánea leída, un cargo sin fila tiene cero DE VERDAD.
     expect(contadoresDeCargo(instantanea({ items: [], byConcejal: {} }), SLUG).total).toBe(0)
   })
 })

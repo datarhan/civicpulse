@@ -1026,7 +1026,13 @@ export default function CargoDetalle() {
             ) : null
           }
         />
-        {quejaStats.total === 0 ? (
+        {quejaStats.total == null ? (
+          // Una instantánea que no se ha podido leer NO es «no hay quejas»: eso
+          // convertiría una ausencia en un dato sobre el buzón del ayuntamiento.
+          <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 8 }}>
+            {t(`quejas.reloj.${quejaStats.motivo}`)}
+          </p>
+        ) : quejaStats.total === 0 ? (
           <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 8 }}>
             {t('cargos.detalle.quejas.empty')}
           </p>

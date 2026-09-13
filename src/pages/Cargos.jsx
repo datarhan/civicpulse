@@ -74,7 +74,10 @@ function QuejaBadge({ slug }) {
   // respuestas del ayuntamiento, y sin ninguna queja registrada no hay respuesta
   // que contar: el plazo de la LPACAP corre desde el registro.
   const c = contadoresDeCargo(data, slug)
-  if (c.total === 0) return null
+  // `null` es «no se ha podido leer la instantánea» y `0` es «ninguna queja
+  // asignada»: en los dos casos la tarjeta no dice nada, pero por motivos
+  // distintos, y ninguno de los dos se publica como el otro.
+  if (c.total == null || c.total === 0) return null
   return (
     <div
       style={{
