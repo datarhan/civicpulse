@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest'
-import { summarizeSessions, resumenPlenos } from '../src/lib/pleno-summary'
+import { summarizeSessions, resumenPlenos, rotuloRetiradas } from '../src/lib/pleno-summary'
+import { RETRACTION_SCOPES } from '../src/scraper/pleno-votes'
 
 const input = {
   plenos: [
@@ -102,7 +103,16 @@ describe('resumenPlenos', () => {
         total: 4,
         byOutcome: { aprobado: 3, rechazado: 1 },
         byPleno: { b: 4 },
-        retracted: { record: 2, breakdown: 1 },
+        // Completo y derivado del enum: si el modelo gana un alcance, el fixture
+        // lo trae y la aserción exige que el resumen lo publique. La versión
+        // anterior nombraba dos a mano, así que no pudo fallar cuando llegó el
+        // tercero y /plenos se quedó publicando una cifra distinta de /datos.
+        retracted: {
+          ...Object.fromEntries(RETRACTION_SCOPES.map((s) => [s, 0])),
+          record: 2,
+          breakdown: 1,
+          plazo: 1,
+        },
       },
     },
     findings: { items: input.findings },
@@ -146,13 +156,12 @@ describe('resumenPlenos', () => {
 
   it('las votaciones traen su desenlace y sus retiradas', () => {
     const { votos } = resumenPlenos(snapshots)
-    expect(votos).toMatchObject({
-      total: 4,
-      aprobado: 3,
-      rechazado: 1,
-      sesiones: 1,
-      retiradas: { record: 2, breakdown: 1 },
-    })
+    expect(votos).toMatchObject({ total: 4, aprobado: 3, rechazado: 1, sesiones: 1 })
+    // Las retiradas llegan ENTERAS. Un `toMatchObject` con dos alcances escritos
+    // a mano no podía fallar cuando el modelo ganó el tercero: se compara con lo
+    // que trae la instantánea y se exige una clave por alcance del enum.
+    expect(votos.retiradas).toEqual(snapshots.votes.stats.retracted)
+    expect(Object.keys(votos.retiradas).sort()).toEqual([...RETRACTION_SCOPES].sort())
   })
 
   /** Un slug sin etiqueta canónica se queda con su nombre crudo, no con «undefined». */

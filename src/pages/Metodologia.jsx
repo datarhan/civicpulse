@@ -578,7 +578,10 @@ export default function Metodologia() {
           <li>
             <strong>El plazo debe venir del acta.</strong> Para los votos de pleno, un{' '}
             <code>dueBy</code> sólo se publica acompañado de una cita verbatim del acuerdo (
-            <code>dueBySource</code>, ≥20 caracteres). Sin cita literal no hay plazo.
+            <code>dueBySource</code>, ≥20 caracteres). Sin cita literal no hay plazo. Lo que
+            comprueba el validador es la forma —que la cita exista y tenga cuerpo—; que sea{' '}
+            <em>literal del acta</em> lo comprueba una persona, y cuando un plazo no lo aguanta se
+            retira con su motivo firmado, sin tocar el resultado de la votación.
           </li>
           <li>
             <strong>El grupo también debe venir de la fuente.</strong> Cuando la fuente registra un

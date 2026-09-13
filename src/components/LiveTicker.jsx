@@ -6,7 +6,7 @@ import { usePress, timeAgo as pressTimeAgo } from '../hooks/usePress'
 import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
 import { usePromises, isPromiseFrozen } from '../hooks/usePromises'
 import { readableInk } from '../lib/contrast'
-import { rotuloPlazosVencidos } from '../lib/plazos-vencidos'
+import { ariaPlazosVencidos, rotuloPlazosVencidos } from '../lib/plazos-vencidos'
 import { useT } from '../i18n'
 
 /* ============================================================
@@ -226,7 +226,7 @@ function useTickerItems() {
         extra: rotuloPlazosVencidos(plazosVencidos, t),
         accent: WARN,
         navTo: '/departamentos',
-        ariaLabel: t('liveTicker.plazosVencidos.aria').replace('{n}', String(plazosVencidos)),
+        ariaLabel: ariaPlazosVencidos(plazosVencidos, t),
       })
     }
 

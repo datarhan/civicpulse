@@ -9,7 +9,7 @@
  */
 import { describe, expect, it } from 'vitest'
 
-import { rotuloPlazosVencidos } from '../src/lib/plazos-vencidos'
+import { rotuloPlazosVencidos, ariaPlazosVencidos } from '../src/lib/plazos-vencidos'
 import { CATALOGUE, LOCALES } from '../src/i18n'
 
 describe('rotuloPlazosVencidos', () => {
@@ -24,6 +24,37 @@ describe('rotuloPlazosVencidos', () => {
       expect(CATALOGUE[loc]['departamentos.plazoVencido']).toBeTruthy()
       expect(CATALOGUE[loc]['departamentos.plazoVencido']).not.toBe(
         CATALOGUE[loc]['liveTicker.plazosVencidos'],
+      )
+    })
+  }
+})
+
+/**
+ * El chip del tícker es un botón, y su nombre accesible decía «1 compromisos
+ * municipales con plazo vencido» — con la cuenta que de verdad se publicó. El
+ * rótulo visible ya distinguía singular de plural; el nombre que oye quien
+ * navega con lector de pantalla, no.
+ */
+describe('ariaPlazosVencidos', () => {
+  for (const loc of LOCALES) {
+    const t = (k) => CATALOGUE[loc][k] ?? k
+
+    it(`${loc}: el nombre accesible también distingue uno de varios`, () => {
+      const uno = ariaPlazosVencidos(1, t)
+      const dos = ariaPlazosVencidos(2, t)
+
+      expect(uno).toBe(CATALOGUE[loc]['liveTicker.plazosVencidos.aria.uno'])
+      expect(dos).toBe(CATALOGUE[loc]['liveTicker.plazosVencidos.aria'].replace('{n}', '2'))
+      // Ninguna deja el hueco sin rellenar ni cuela el plural en el singular.
+      expect(uno).not.toContain('{n}')
+      expect(dos).not.toContain('{n}')
+      expect(dos).toContain('2')
+
+      // Las dos claves existen y son frases distintas: si no, esto pasaría con
+      // cualquier implementación.
+      expect(CATALOGUE[loc]['liveTicker.plazosVencidos.aria.uno']).toBeTruthy()
+      expect(CATALOGUE[loc]['liveTicker.plazosVencidos.aria.uno']).not.toBe(
+        CATALOGUE[loc]['liveTicker.plazosVencidos.aria'],
       )
     })
   }

@@ -310,6 +310,30 @@ describe('revocar una retracción de plazo es explícito, firmado y deja registr
   })
 })
 
+describe('revocar sin la fecha archivada se niega, como con el desglose', () => {
+  it('una entrada sin originalPlazo no se revoca: dejaría la fila sin fecha y sin sello', () => {
+    // El paso puro está exportado, así que puede llegarle una entrada escrita a
+    // mano o de antes de que existiera `originalPlazo`. Sin la fecha archivada,
+    // revocar quitaba el sello y no devolvía nada: la fila se quedaba sin plazo
+    // Y sin lápida, y el validador la aceptaba porque la entrada ya estaba
+    // revocada. El desglose se niega en ese caso desde el principio.
+    const snap = corpus()
+    const id = conPlazo(snap).id
+    const retirado = validateSnapshot(retractVoteDueBy(snap, id, SIG))
+    expect(() => revokeRetraction(retirado, id, 'plazo', REVOKE)).not.toThrow() // ablación
+
+    const sinArchivo = {
+      ...retirado,
+      retractions: retirado.retractions.map((r) =>
+        r.voteId === id && r.scope === 'plazo' ? { ...r, originalPlazo: null } : r,
+      ),
+    }
+    expect(() => revokeRetraction(sinArchivo, id, 'plazo', REVOKE)).toThrow(
+      PlenoVoteRetractionError,
+    )
+  })
+})
+
 describe('check:relations vigila también el sello del plazo', () => {
   const run = (votes: unknown) =>
     runRelationsChecks({ votes: votes as never }).find((r) => r.name === 'votes-retractions')!

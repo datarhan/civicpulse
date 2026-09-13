@@ -1,5 +1,7 @@
 import { test, expect } from '@playwright/test'
+import { readFileSync } from 'node:fs'
 import { collectErrors, appErrors } from './_console'
+import { CONCESSION_CONTRACT_TYPES, contractTermYears } from '../../src/lib/contract-status'
 
 test.describe('Landing (/)', () => {
   test('renders editorial column + KPI strip with real data', async ({ page }) => {
@@ -104,34 +106,45 @@ test.describe('Landing (/)', () => {
     await expect(govLink).toContainText(span)
   })
 
-  test('una concesión de la lista dice que su importe es por todo el plazo', async ({ page }) => {
-    // Las cuatro «últimas adjudicaciones» son 13.100 €, 7.500 €, 55.685.178,79 €
-    // y 417.600 €, todas de las mismas cinco semanas. La tercera se adjudica de
-    // una vez por sus diecisiete años; entre las otras se lee como un
-    // compromiso puntual 1,34 veces mayor que el presupuesto anual, que está
-    // impreso en esta misma pantalla.
+  test('la portada pinta la salvedad de cada concesión que trae la lista', async ({ page }) => {
+    // Una concesión se adjudica de una vez por todo su plazo: leída entre
+    // contratos anuales, la del agua —55,7 M€ por diecisiete años— parecía un
+    // compromiso puntual mayor que el presupuesto del año, impreso en esta
+    // misma pantalla.
+    //
+    // Lo esperado se DERIVA del snapshot publicado. «Las cuatro últimas
+    // adjudicaciones» es una ventana que rota con cada nocturna: el 13-09-2026
+    // entraron cuatro contratos de septiembre, la concesión salió de la ventana
+    // y esta prueba se puso roja sin que el código cambiara. La frase en sí la
+    // vigila tests/components/concesion-nota.test.jsx, que no depende del dato
+    // vivo; aquí se comprueba la mitad que sólo puede verse en la página.
+    const tenders = JSON.parse(readFileSync('public/data/tenders.json', 'utf8'))
+    const recientes = (tenders.top?.recentAwarded ?? []).slice(0, 4)
+    const concesiones = recientes.filter((c: { contractType?: string | null }) =>
+      CONCESSION_CONTRACT_TYPES.includes(c.contractType ?? ''),
+    )
+
     await page.goto('/', { waitUntil: 'domcontentloaded' })
 
+    // Que la comprobación haya EVALUADO algo: el snapshot trae filas y el
+    // bloque las pinta. Sin esto, «cero salvedades» lo satisfaría una portada
+    // en blanco, que es justo la forma de la que este repo ya ha pagado dos.
+    expect(recientes.length, 'el snapshot no trae últimas adjudicaciones').toBeGreaterThan(0)
+    const primeraFila = String(recientes[0].title ?? '').slice(0, 40)
+    await expect(page.getByText(primeraFila).first()).toBeVisible({ timeout: 8000 })
+
     const notas = page.locator('.cp-concesion-nota')
-    await expect(notas.first()).toBeVisible({ timeout: 8000 })
+    await expect(notas).toHaveCount(concesiones.length)
 
-    // Que la comprobación haya EVALUADO algo: si la lista dejara de traer una
-    // concesión, esto se cae en vez de pasar por no encontrar nada.
-    const cuantas = await notas.count()
-    expect(cuantas).toBeGreaterThan(0)
-
-    // Y que NO la lleven todas: una salvedad en las cuatro filas es una
-    // salvedad que no distingue nada.
-    //
-    // En la columna: sin acotar, esto lo satisfacía el enlace del carril, y
-    // ahora lo haría el de «Dinero», cerrado y oculto. Ninguno es una fila.
-    const filas = page.locator('.d-editorial a[href="/presupuesto"]').first()
-    expect(await filas.count()).toBeGreaterThan(0)
-    expect(cuantas).toBeLessThan(4)
-
-    // El plazo sale del dato, no de la prosa: diecisiete años.
-    await expect(notas.first()).toContainText(/17 años/)
-    await expect(notas.first()).toContainText(/no un gasto anual/)
+    if (concesiones.length > 0) {
+      // Y que NO la lleven todas: una salvedad en todas las filas no distingue
+      // nada.
+      expect(concesiones.length).toBeLessThan(recientes.length)
+      // El plazo sale del dato, nunca de la prosa.
+      const anios = contractTermYears(concesiones[0])
+      if (anios) await expect(notas.first()).toContainText(new RegExp(`${anios} años`))
+      await expect(notas.first()).toContainText(/no un gasto anual/)
+    }
   })
 
   test('has a heading outline a screen reader can navigate', async ({ page }) => {

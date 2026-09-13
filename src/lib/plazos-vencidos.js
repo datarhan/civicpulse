@@ -12,3 +12,20 @@
 export function rotuloPlazosVencidos(n, t) {
   return n === 1 ? t('departamentos.plazoVencido') : t('liveTicker.plazosVencidos')
 }
+
+/**
+ * El nombre accesible del chip del tícker, con la misma distinción de número.
+ *
+ * El rótulo visible ya decía «1 plazo vencido» y el `aria-label` del mismo
+ * botón seguía diciendo «1 compromisos municipales con plazo vencido»: la
+ * frase que oye quien navega con lector de pantalla era justo la que este
+ * módulo existe para arreglar.
+ *
+ * @param {number} n  cuántos plazos vencidos hay
+ * @param {(key: string) => string} t  la función de traducción de la página
+ */
+export function ariaPlazosVencidos(n, t) {
+  return n === 1
+    ? t('liveTicker.plazosVencidos.aria.uno')
+    : t('liveTicker.plazosVencidos.aria').replace('{n}', String(n))
+}

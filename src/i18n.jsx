@@ -832,6 +832,8 @@ export const CATALOGUE = {
     'liveTicker.plazosVencidos': 'plazos vencidos',
     'liveTicker.plazosVencidos.aria':
       '{n} compromisos municipales con plazo vencido sin evidencia de ejecución — abrir el panel de departamentos',
+    'liveTicker.plazosVencidos.aria.uno':
+      'un compromiso municipal con plazo vencido sin evidencia de ejecución — abrir el panel de departamentos',
 
     // Accessibility chrome
     'a11y.skipToContent': 'Saltar al contenido',
@@ -1589,6 +1591,8 @@ export const CATALOGUE = {
     'liveTicker.plazosVencidos': 'terminis vençuts',
     'liveTicker.plazosVencidos.aria':
       '{n} compromisos municipals amb termini vençut sense evidència d’execució — obrir el tauler de departaments',
+    'liveTicker.plazosVencidos.aria.uno':
+      'un compromís municipal amb termini vençut sense evidència d’execució — obrir el tauler de departaments',
 
     // Accessibilitat
     'a11y.skipToContent': 'Saltar al contingut',

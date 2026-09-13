@@ -1559,6 +1559,21 @@ export function revokeRetraction(
         `with: npm run pleno-vote -- --file <vote.json>, stating provenance.breakdown.`,
     )
   }
+  // Simétrico con el desglose: sin la fecha archivada, revocar quitaría el
+  // sello y no devolvería nada, así que la fila se quedaría sin plazo Y sin
+  // lápida — y `validateSnapshot` la aceptaría, porque la entrada ya estaría
+  // revocada. El CLI no puede llegar aquí (`validateRetraction` exige
+  // `originalPlazo`), pero este paso está exportado y lo puede llamar un
+  // fichero escrito a mano.
+  if (scope === 'plazo') {
+    refuse(
+      live.originalPlazo != null,
+      `the withdrawn plazo for "${voteId}" was recorded without originalPlazo ` +
+        `(retracted ${live.retractedAt}), so revoking would drop the stamp and restore ` +
+        `nothing. Republish the deadline with its verbatim clause instead: ` +
+        `npm run pleno-vote -- --file <vote.json>.`,
+    )
+  }
   return {
     ...snap,
     items:
