@@ -107,6 +107,15 @@ export const CATALOGUE = {
     'nav.grupo.laboratorio': 'Laboratorio',
     'nav.grupo.laboratorio.lede': 'datos y experimentos',
     'nav.grupo.proyecto': 'Sobre CivicPulse',
+    // La tira de datos vivos de la cabecera. Sólo el armazón del panel: los
+    // rótulos del tiempo y del aire viven en sus hooks, que los comparten con
+    // los globos del mapa, y se mueven cuando el chip «Hoy» rehaga esa parte.
+    'vivo.clima.aria': 'Tiempo en Riba-roja — abrir el detalle',
+    'vivo.aire.aria': 'Calidad del aire — abrir el detalle',
+    'vivo.aire.titulo': 'Calidad del aire',
+    'vivo.metro.aria': 'Metro L9 — abrir el detalle',
+    'vivo.metro.titulo': 'Metro L9',
+    'vivo.cerrar': 'Cerrar el detalle',
     'nav.desc.cambios': 'Lo que ha cambiado en los últimos días',
     'nav.desc.cargos': 'Concejales, áreas y retribuciones',
     'nav.desc.presup': 'Lo aprobado, lo ejecutado, contratos y deuda',
@@ -980,6 +989,12 @@ export const CATALOGUE = {
     'nav.grupo.ciudadania.lede': 'què pots fer',
     'nav.grupo.laboratorio': 'Laboratori',
     'nav.grupo.laboratorio.lede': 'dades i experiments',
+    'vivo.clima.aria': 'Temps a Riba-roja — obrir el detall',
+    'vivo.aire.aria': 'Qualitat de l’aire — obrir el detall',
+    'vivo.aire.titulo': 'Qualitat de l’aire',
+    'vivo.metro.aria': 'Metro L9 — obrir el detall',
+    'vivo.metro.titulo': 'Metro L9',
+    'vivo.cerrar': 'Tancar el detall',
     'nav.grupo.proyecto': 'Sobre CivicPulse',
     'nav.desc.cambios': 'El que ha canviat en els últims dies',
     'nav.desc.cargos': 'Regidors, àrees i retribucions',

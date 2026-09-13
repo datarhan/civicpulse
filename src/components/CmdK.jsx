@@ -8,7 +8,58 @@ import { usePromises } from '../hooks/usePromises'
 import { useQuejas, CATEGORY_LABEL, STATE_LABEL } from '../hooks/useQuejas'
 import { usePlenoFindings } from '../hooks/usePlenoFindings'
 
+/**
+ * El buscador rápido, partido en dos a propósito.
+ *
+ * `CmdK` es la cáscara: escucha el atajo y se acuerda de quién lo abrió. Los
+ * cuatro hooks de datos viven en `PanelCmdK`, que sólo se monta abierto.
+ *
+ * Antes estaban los cuatro en el cuerpo de `CmdK`, y los hooks corren aunque el
+ * componente devuelva null: con el panel cerrado ya se habían descargado
+ * officials, promises, quejas y `pleno-findings.json` —274 KB—. Mientras el
+ * buscador sólo vivía dentro del shell eso era una factura repartida entre
+ * páginas; montarlo también en la portada la habría puesto en la PRIMERA
+ * pantalla del sitio, que es exactamente lo que no se quería.
+ */
 export function CmdK({ open, onClose, onOpen }) {
+  const abridor = useRef(null)
+  const abiertoAntes = useRef(false)
+
+  // Se apunta EN EL RENDER, no en un efecto. El input del panel lleva autoFocus,
+  // así que cuando un efecto de esta cáscara corre el foco ya se lo ha llevado
+  // él: el efecto guardaba el propio input y al cerrar lo devolvía a un nodo
+  // desmontado, o sea al body. En el render del paso de cerrado a abierto el
+  // foco todavía está donde estaba.
+  if (open && !abiertoAntes.current) abridor.current = document.activeElement
+  abiertoAntes.current = open
+
+  useEffect(() => {
+    const onK = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault()
+        if (open) onClose()
+        else onOpen()
+      }
+      if (e.key === 'Escape' && open) onClose()
+    }
+    window.addEventListener('keydown', onK)
+    return () => window.removeEventListener('keydown', onK)
+  }, [open, onClose, onOpen])
+
+  // Al cerrar, el foco vuelve a quien lo abrió. Si ese nodo ya no está en la
+  // página —una navegación cerró el panel—, no se toca nada: el navegador deja
+  // el foco donde la nueva vista lo ponga.
+  useEffect(() => {
+    if (open) return
+    const previo = abridor.current
+    if (previo instanceof HTMLElement && document.contains(previo)) previo.focus()
+  }, [open])
+
+  if (!open) return null
+  return <PanelCmdK onClose={onClose} />
+}
+
+function PanelCmdK({ onClose }) {
   const navigate = useNavigate()
   const [q, setQ] = useState('')
   const trapRef = useRef(null)
@@ -80,35 +131,6 @@ export function CmdK({ open, onClose, onOpen }) {
         : all,
     [all, q],
   )
-
-  useEffect(() => {
-    if (open) setQ('')
-  }, [open])
-
-  // Return focus to whatever had it before the palette opened (a11y: the
-  // dialog steals focus via autoFocus; closing must restore it).
-  useEffect(() => {
-    if (!open) return
-    const prev = document.activeElement
-    return () => {
-      if (prev && typeof prev.focus === 'function') prev.focus()
-    }
-  }, [open])
-
-  useEffect(() => {
-    const onK = (e) => {
-      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
-        e.preventDefault()
-        if (open) onClose()
-        else onOpen()
-      }
-      if (e.key === 'Escape' && open) onClose()
-    }
-    window.addEventListener('keydown', onK)
-    return () => window.removeEventListener('keydown', onK)
-  }, [open, onClose, onOpen])
-
-  if (!open) return null
 
   const go = (to) => {
     if (to) navigate(to)
