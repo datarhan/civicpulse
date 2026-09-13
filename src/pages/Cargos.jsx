@@ -15,6 +15,7 @@ import { useDedicaciones, dedicacionForSlug, fijadoTramos } from '../hooks/useDe
 import { useJsonFetch } from '../hooks/useJsonFetch'
 import { useBioReportRoutes } from '../hooks/useBioReportRoutes'
 import { useQuejas } from '../hooks/useQuejas'
+import { contadoresDeCargo } from '../lib/reloj-lpacap'
 import { useSocialFor, SOCIAL_PLATFORM_META } from '../hooks/useOfficialsSocial'
 import { canonicalizeDepartments, DEPARTMENT_LABEL } from '../scraper/departments'
 import { EncajeCard } from '../components/EncajeDeclarado'
@@ -67,12 +68,16 @@ function SocialLinks({ slug }) {
 }
 
 function QuejaBadge({ slug }) {
+  const t = useT()
   const { data } = useQuejas()
-  const stats = data?.stats?.byConcejal?.[slug]
-  if (!stats || stats.total === 0) return null
-  const ok = stats.resueltas
-  const pending = stats.pendientes
-  const silencios = stats.silencios
+  // Las quejas asignadas son un hecho del canal y se dan siempre; ✓ ⏳ ⚠ cuentan
+  // respuestas del ayuntamiento, y sin ninguna queja registrada no hay respuesta
+  // que contar: el plazo de la LPACAP corre desde el registro.
+  const c = contadoresDeCargo(data, slug)
+  // `null` es «no se ha podido leer la instantánea» y `0` es «ninguna queja
+  // asignada»: en los dos casos la tarjeta no dice nada, pero por motivos
+  // distintos, y ninguno de los dos se publica como el otro.
+  if (c.total == null || c.total === 0) return null
   return (
     <div
       style={{
@@ -99,11 +104,19 @@ function QuejaBadge({ slug }) {
         Quejas asignadas
       </Link>
       <span className="mono" style={{ fontWeight: 700, color: 'var(--ink)' }}>
-        {stats.total}
+        {c.total}
       </span>
-      <span style={{ color: 'var(--ok-ink)' }}>✓ {ok}</span>
-      <span style={{ color: 'var(--civic)' }}>⏳ {pending}</span>
-      {silencios > 0 && <span style={{ color: 'var(--crit-ink)' }}>⚠ {silencios}</span>}
+      {c.medible ? (
+        <>
+          <span style={{ color: 'var(--ok-ink)' }}>✓ {c.resueltas}</span>
+          <span style={{ color: 'var(--civic)' }}>⏳ {c.pendientes}</span>
+          {c.silencios > 0 && <span style={{ color: 'var(--crit-ink)' }}>⚠ {c.silencios}</span>}
+        </>
+      ) : (
+        <span className="mono" style={{ color: 'var(--ink50)' }}>
+          {t(`quejas.reloj.${c.motivo}.corto`)}
+        </span>
+      )}
     </div>
   )
 }

@@ -1,5 +1,8 @@
 import { test, expect } from '@playwright/test'
+import { readFileSync } from 'node:fs'
 import { collectErrors, appErrors } from './_console'
+import { contadoresDeCargo } from '../../src/lib/reloj-lpacap'
+import { CATALOGUE } from '../../src/i18n'
 
 test.describe('Cargos (/cargos)', () => {
   test('renders the corporación grid with mayor + party breakdown', async ({ page }) => {
@@ -391,6 +394,71 @@ test.describe('Cargos (/cargos)', () => {
     await expect(page.locator('a[href^="/laboratorio/agentes/"]').first()).toBeVisible({
       timeout: 8000,
     })
+  })
+
+  /**
+   * El cargo con más quejas asignadas en la instantánea publicada, y lo que la
+   * página tiene que decir de él según el mismo criterio que usa la página. Se
+   * DERIVA en vez de fijarse: el día que se registre la primera queja, estas dos
+   * pruebas pasan a exigir las cifras sin que nadie las toque.
+   */
+  const cargoConQuejas = () => {
+    const snap = JSON.parse(readFileSync('public/data/quejas.json', 'utf8'))
+    const oficiales = JSON.parse(readFileSync('public/data/officials.json', 'utf8')).officials
+    const filas = Object.entries(snap?.stats?.byConcejal ?? {}) as [string, { total: number }][]
+    const [slug] = filas.sort((a, b) => b[1].total - a[1].total)[0] ?? []
+    if (!slug) return null
+    return {
+      slug,
+      nombre: oficiales.find((o: { slug: string; name: string }) => o.slug === slug)?.name ?? '',
+      r: contadoresDeCargo(snap, slug),
+    }
+  }
+
+  test('la ficha no cuenta respuestas del ayuntamiento a quejas que no le han llegado', async ({
+    page,
+  }) => {
+    // «Silencios 0» y «Pendientes 1» junto a la ficha de una concejala eran una
+    // nota al ayuntamiento sobre una queja que nunca se registró: el plazo legal
+    // corre desde el registro.
+    const c = cargoConQuejas()
+    expect(c, 'la instantánea publicada no asigna ninguna queja a nadie').not.toBeNull()
+    await page.goto(`/cargos/${c!.slug}`, { waitUntil: 'domcontentloaded' })
+    const seccion = page.getByRole('region', {
+      name: CATALOGUE.es['cargos.detalle.quejas.title'],
+    })
+    await expect(seccion).toBeVisible({ timeout: 8000 })
+    const texto = await seccion.innerText()
+    if (c!.r.medible) {
+      expect(texto).toMatch(new RegExp(`silencios\\s*${c!.r.silencios}`, 'i'))
+      expect(texto).toMatch(new RegExp(`pendientes\\s*${c!.r.pendientes}`, 'i'))
+    } else {
+      expect(texto).toContain(CATALOGUE.es[`quejas.reloj.${c!.r.motivo}`])
+      for (const cifra of [/resueltas\s*\d/i, /pendientes\s*\d/i, /silencios\s*\d/i]) {
+        expect(texto).not.toMatch(cifra)
+      }
+    }
+  })
+
+  test('la tarjeta del listado tampoco', async ({ page }) => {
+    const c = cargoConQuejas()
+    expect(c, 'la instantánea publicada no asigna ninguna queja a nadie').not.toBeNull()
+    await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
+    // Anclada al enlace de ESA ficha, no al nombre: `hasText` casa también con
+    // cualquier tarjeta ancestra que lo contenga, y la aserción se mudaría de
+    // sitio sin avisar.
+    const tarjeta = page
+      .locator('.cp-card')
+      .filter({ has: page.locator(`a[href="/cargos/${c!.slug}"]`) })
+      .first()
+    await expect(tarjeta).toBeVisible({ timeout: 8000 })
+    const texto = await tarjeta.innerText()
+    if (c!.r.medible) {
+      expect(texto).toMatch(new RegExp(`⏳\\s*${c!.r.pendientes}`))
+    } else {
+      expect(texto).toContain(CATALOGUE.es[`quejas.reloj.${c!.r.motivo}.corto`])
+      expect(texto).not.toMatch(/[✓⏳⚠]\s*\d/)
+    }
   })
 
   test('clicking a councillor link navigates into the detail view', async ({ page }) => {

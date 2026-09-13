@@ -369,6 +369,16 @@ export const CATALOGUE = {
 
     // Quejas empty state
     'quejas.empty.title': 'El canal de quejas ciudadanas ya está abierto — no hay datos todavía',
+    // Por qué un cargo no lleva cifras de respuesta. El plazo de la LPACAP corre
+    // desde el registro: sin registro no hay respuesta que contar, ni silencio.
+    'quejas.reloj.sinRegistro':
+      'Ninguna queja de esta área ha llegado todavía al registro del ayuntamiento. El plazo legal corre desde el registro: sin él no hay respuesta que contar, ni silencio.',
+    'quejas.reloj.sinRegistro.corto': 'sin registro',
+    'quejas.reloj.exportIncompleto':
+      'El listado publicado no coincide con el recuento del bot, así que no se puede saber qué quejas llegaron al registro.',
+    'quejas.reloj.exportIncompleto.corto': 'listado parcial',
+    'quejas.reloj.sinDatos': 'No se han podido leer las quejas publicadas.',
+    'quejas.reloj.sinDatos.corto': 'sin datos',
     'dashboard.empty.title': 'El canal está abierto, aún no hay quejas',
 
     // Cambios · delta-digest page
@@ -1212,6 +1222,16 @@ export const CATALOGUE = {
       'Sessió registrada. Encara no hem recollit el seu ordre del dia, i encara no hi ha votacions transcrites, declaracions contrastables ni troballes.',
 
     'quejas.empty.title': 'El canal de queixes ciutadanes ja està obert — encara no hi ha dades',
+    // Per què un càrrec no porta xifres de resposta. El termini de la LPACAP
+    // corre des del registre: sense registre no hi ha resposta que comptar.
+    'quejas.reloj.sinRegistro':
+      'Cap queixa d’aquesta àrea ha arribat encara al registre de l’ajuntament. El termini legal corre des del registre: sense ell no hi ha resposta que comptar, ni silenci.',
+    'quejas.reloj.sinRegistro.corto': 'sense registre',
+    'quejas.reloj.exportIncompleto':
+      'El llistat publicat no coincideix amb el recompte del bot, així que no es pot saber quines queixes van arribar al registre.',
+    'quejas.reloj.exportIncompleto.corto': 'llistat parcial',
+    'quejas.reloj.sinDatos': 'No s’han pogut llegir les queixes publicades.',
+    'quejas.reloj.sinDatos.corto': 'sense dades',
     'dashboard.empty.title': 'El canal està obert, encara no hi ha queixes',
 
     'cambios.eyebrow': 'Esta setmana a Riba-roja',
