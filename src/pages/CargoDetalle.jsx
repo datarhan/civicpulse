@@ -15,6 +15,7 @@ import { latestVoteShare } from '../lib/party-alias'
 import { canonicalizeDepartments, DEPARTMENT_LABEL } from '../scraper/departments'
 import { EncajeMatrix, QueExigeLaLey } from '../components/EncajeDeclarado'
 import { useT, useLocale } from '../i18n'
+import { contadoresDeCargo } from '../lib/reloj-lpacap'
 
 function flattenAgendas(snap) {
   if (!snap?.plenos) return []
@@ -643,13 +644,12 @@ export default function CargoDetalle() {
   agendaItems.sort((a, b) => b.plenoDate.localeCompare(a.plenoDate))
 
   // Quejas assigned to this official (via the pre-aggregated byConcejal stats
-  // from quejas.json). Never fabricate: if absent, render 0.
-  const quejaStats = quejasSnap.data?.stats?.byConcejal?.[slug] ?? {
-    total: 0,
-    resueltas: 0,
-    pendientes: 0,
-    silencios: 0,
-  }
+  // from quejas.json). Never fabricate: `contadoresDeCargo` da el total —un hecho
+  // del canal— y deja resueltas, pendientes y silencios en null mientras esas
+  // tres no puedan leerse como respuestas del ayuntamiento. El plazo de la
+  // LPACAP corre desde el REGISTRO, así que sin ninguna queja registrada «0
+  // silencios» junto a un nombre era un aprobado que nadie se había ganado.
+  const quejaStats = contadoresDeCargo(quejasSnap.data, slug)
 
   return (
     <div style={{ padding: '28px 28px 48px', maxWidth: 920, margin: '0 auto' }}>
@@ -835,8 +835,8 @@ export default function CargoDetalle() {
         <MiniStat label={t('cargos.detalle.stat.agendaItems')} value={agendaItems.length} />
         <MiniStat
           label={t('cargos.detalle.stat.quejas')}
-          value={quejaStats.pendientes}
-          tone={quejaStats.silencios > 0 ? 'crit' : undefined}
+          value={quejaStats.medible ? quejaStats.pendientes : '—'}
+          tone={quejaStats.medible && quejaStats.silencios > 0 ? 'crit' : undefined}
         />
       </div>
 
@@ -1004,8 +1004,10 @@ export default function CargoDetalle() {
         )}
       </section>
 
-      {/* Quejas assigned */}
-      <section style={{ marginBottom: 28 }}>
+      {/* Quejas assigned. Con nombre accesible: es la sección que publica cifras
+          al lado de una persona, y la prueba de extremo a extremo tiene que poder
+          apuntar a ella sin agarrarse a un `div` cualquiera. */}
+      <section aria-label={t('cargos.detalle.quejas.title')} style={{ marginBottom: 28 }}>
         <SectionHead
           eyebrow={t('cargos.detalle.quejas.eyebrow')}
           title={t('cargos.detalle.quejas.title')}
@@ -1029,23 +1031,44 @@ export default function CargoDetalle() {
             {t('cargos.detalle.quejas.empty')}
           </p>
         ) : (
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
-              gap: 10,
-              marginTop: 10,
-            }}
-          >
-            <MiniStat label="Total" value={quejaStats.total} />
-            <MiniStat label="Resueltas" value={quejaStats.resueltas} />
-            <MiniStat label="Pendientes" value={quejaStats.pendientes} />
-            <MiniStat
-              label="Silencios"
-              value={quejaStats.silencios}
-              tone={quejaStats.silencios > 0 ? 'crit' : undefined}
-            />
-          </div>
+          <>
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
+                gap: 10,
+                marginTop: 10,
+              }}
+            >
+              {/* El total es un hecho del canal —cuántas quejas se asignaron a
+                  esta área— y se da siempre. Las otras tres cuentan respuestas
+                  del ayuntamiento, así que sólo salen cuando el reloj legal ha
+                  podido empezar a correr. */}
+              <MiniStat label="Total" value={quejaStats.total} />
+              <MiniStat label="Resueltas" value={quejaStats.medible ? quejaStats.resueltas : '—'} />
+              <MiniStat
+                label="Pendientes"
+                value={quejaStats.medible ? quejaStats.pendientes : '—'}
+              />
+              <MiniStat
+                label="Silencios"
+                value={quejaStats.medible ? quejaStats.silencios : '—'}
+                tone={quejaStats.medible && quejaStats.silencios > 0 ? 'crit' : undefined}
+              />
+            </div>
+            {!quejaStats.medible && (
+              <p
+                style={{
+                  fontSize: 'var(--fs-aux)',
+                  color: 'var(--ink50)',
+                  marginTop: 8,
+                  lineHeight: 1.5,
+                }}
+              >
+                {t(`quejas.reloj.${quejaStats.motivo}`)}
+              </p>
+            )}
+          </>
         )}
       </section>
 

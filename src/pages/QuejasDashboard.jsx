@@ -10,6 +10,7 @@ import {
 import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { useT } from '../i18n'
+import { contadoresDeCargo } from '../lib/reloj-lpacap'
 
 const TELEGRAM_BOT_URL = 'https://t.me/munigraph_bot'
 
@@ -116,29 +117,40 @@ function Bar({ label, n, max, color, subline }) {
   )
 }
 
-function SlaPanel({ byConcejal, officials }) {
-  const entries = Object.entries(byConcejal || {})
-    .map(([slug, s]) => {
+/**
+ * Resueltas, pendientes y silencios por cargo — y «—» cuando esas tres cifras no
+ * significan nada todavía.
+ *
+ * Contaban respuestas del ayuntamiento aunque ninguna queja hubiera llegado a su
+ * registro, que es desde donde corre el plazo de la LPACAP: con la única queja
+ * publicada, capturada y sin registrar, la fila decía «⏳ 1 · ⚠ 0» junto al
+ * nombre de una concejala. El cero se leía como un aprobado y el uno como una
+ * deuda del ayuntamiento; ninguno de los dos era una afirmación sostenible.
+ * `contadoresDeCargo` decide, y el motivo se publica: corto en la fila, entero
+ * al pie una vez por motivo presente.
+ */
+const TITULO_SLA = 'Quejas por responsable político'
+
+function SlaPanel({ quejas, officials }) {
+  const t = useT()
+  const entries = Object.entries(quejas?.stats?.byConcejal || {})
+    .map(([slug]) => {
       const off = officials?.officials?.find((o) => o.slug === slug)
       return {
         slug,
         name: off?.name || slug,
         party: off?.party || '',
-        total: s.total,
-        resueltas: s.resueltas,
-        pendientes: s.pendientes,
-        silencios: s.silencios,
-        pct: s.total > 0 ? Math.round((s.resueltas / s.total) * 100) : 0,
+        ...contadoresDeCargo(quejas, slug),
       }
     })
     .sort((a, b) => b.total - a.total)
   if (entries.length === 0) return null
+  // Los motivos presentes, para explicarlos una vez al pie en vez de repetir la
+  // misma frase en cada fila.
+  const motivos = [...new Set(entries.filter((e) => !e.medible).map((e) => e.motivo))]
   return (
-    <Card style={{ marginTop: 14 }}>
-      <SectionHead
-        eyebrow="Rendición de cuentas · concejalía"
-        title="Quejas por responsable político"
-      />
+    <Card role="region" aria-label={TITULO_SLA} style={{ marginTop: 14 }}>
+      <SectionHead eyebrow="Rendición de cuentas · concejalía" title={TITULO_SLA} />
       <div style={{ marginTop: 10, display: 'flex', flexDirection: 'column', gap: 6 }}>
         {entries.map((e) => (
           <div
@@ -182,28 +194,40 @@ function SlaPanel({ byConcejal, officials }) {
               >
                 {e.name}
               </div>
+              {!e.medible && (
+                <span
+                  className="mono"
+                  style={{
+                    fontSize: 'var(--fs-micro)',
+                    color: 'var(--ink50)',
+                    flexShrink: 0,
+                  }}
+                >
+                  {t(`quejas.reloj.${e.motivo}.corto`)}
+                </span>
+              )}
             </div>
             <div
               className="mono"
               style={{ fontSize: 'var(--fs-meta)', color: 'var(--ok-ink)', textAlign: 'right' }}
             >
-              ✓ {e.resueltas}
+              {e.medible ? `✓ ${e.resueltas}` : '—'}
             </div>
             <div
               className="mono"
               style={{ fontSize: 'var(--fs-meta)', color: 'var(--civic)', textAlign: 'right' }}
             >
-              ⏳ {e.pendientes}
+              {e.medible ? `⏳ ${e.pendientes}` : '—'}
             </div>
             <div
               className="mono"
               style={{
                 fontSize: 'var(--fs-meta)',
-                color: e.silencios > 0 ? 'var(--crit)' : 'var(--ink50)',
+                color: e.medible && e.silencios > 0 ? 'var(--crit)' : 'var(--ink50)',
                 textAlign: 'right',
               }}
             >
-              ⚠ {e.silencios}
+              {e.medible ? `⚠ ${e.silencios}` : '—'}
             </div>
           </div>
         ))}
@@ -219,6 +243,11 @@ function SlaPanel({ byConcejal, officials }) {
         ✓ resueltas · ⏳ pendientes (capturadas + registradas + en trámite) · ⚠ silencios (&gt;plazo
         LPACAP sin respuesta). Las quejas se asignan al área municipal competente automáticamente;
         el responsable político figura como titular de esa área.
+        {motivos.map((m) => (
+          <div key={m} style={{ marginTop: 6 }}>
+            <span className="mono">—</span> {t(`quejas.reloj.${m}`)}
+          </div>
+        ))}
       </div>
     </Card>
   )
@@ -652,7 +681,7 @@ export default function QuejasDashboard() {
           </div>
 
           <ReadyToEscalate items={items} />
-          <SlaPanel byConcejal={stats.byConcejal} officials={officials} />
+          <SlaPanel quejas={data} officials={officials} />
           <TopPending items={items} />
         </>
       )}
