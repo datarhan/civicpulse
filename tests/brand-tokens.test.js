@@ -227,10 +227,15 @@ describe('el guard demuestra que miró', () => {
     expect(Object.keys(OSCURO).length, 'tokens en html.dark').toBeGreaterThan(8)
     expect(ESCANEADOS.length, 'ficheros escaneados').toBeGreaterThan(50)
     expect(hexCandidatos, 'hexes candidatos leídos').toBeGreaterThan(20)
-    // Y que el patrón CODIFICADO mire algo. Si el favicon dejara de ir en un
-    // data: URI, `%23` no casaría con nada y este guard volvería a dar su visto
-    // bueno sobre una forma que ya no vigila — que es el defecto que lo trajo.
-    expect(hexCodificados, 'hexes codificados %23 leídos').toBeGreaterThan(0)
+    // Y que el patrón CODIFICADO mire DONDE IMPORTA. Sumado sobre los cientos
+    // de ficheros escaneados, un `%23aabbcc` cualquiera en otro SVG mantendría
+    // el visto bueno aunque el favicon —el único sitio donde este repo escribe
+    // un color codificado— se hubiera mudado a un fichero aparte.
+    const enElFavicon = (
+      readFileSync(join(ROOT, 'index.html'), 'utf8').match(/%23[0-9a-f]{6}\b/gi) || []
+    ).length
+    expect(enElFavicon, 'hexes codificados %23 en index.html').toBeGreaterThan(0)
+    expect(hexCodificados, 'hexes codificados %23 leídos').toBeGreaterThanOrEqual(enElFavicon)
     expect(Object.keys(PARTY_COLORS).length, 'partidos importados').toBeGreaterThan(3)
   })
 

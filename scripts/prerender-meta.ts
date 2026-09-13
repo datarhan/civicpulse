@@ -83,6 +83,19 @@ function main(): void {
     /<meta[^>]*property="og:description"[^>]*content="([^"]*)"/.exec(plantilla)?.[1]?.trim() ??
     /<meta[^>]*name="description"[^>]*content="([^"]*)"/.exec(plantilla)?.[1]?.trim() ??
     ''
+  // Y si no encuentra ninguna, se para. Con el `?? ''` solo, renombrar esas dos
+  // etiquetas escribía todas las fichas con `description=""` y salía 0: el
+  // `concluyente` de abajo mira TÍTULOS, así que la única señal de que la ficha
+  // del sitio se había perdido era abrir el HTML. Regla 2 de DATA_INTEGRITY
+  // —una pasada tiene que demostrar que hizo el trabajo— apuntada al campo que
+  // este script había dejado de vigilar.
+  if (!descripcionSitio) {
+    process.stderr.write(
+      '[prerender-meta] index.html no trae og:description ni description: ' +
+        'las fichas de todas las rutas saldrían vacías\n',
+    )
+    process.exit(1)
+  }
 
   const metas = construirMetas({
     rutas,

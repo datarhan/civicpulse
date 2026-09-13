@@ -63,11 +63,16 @@ describe('la ficha del sitio es el one-liner de DESCRIPCION.md', () => {
     })
   }
 
-  it('ninguna lleva una cifra', () => {
-    // Una cifra en el HTML no se refresca con los datos: «16 fuentes» siguió
-    // ahí mientras el número real se movía.
+  it('ninguna congela un total', () => {
+    // La regla del repo no prohíbe dígitos: prohíbe CONGELAR un total, que es
+    // lo que hacía «16 fuentes abiertas» mientras el número real se movía. Un
+    // año —«mayo de 2027», que está en los textos canónicos de al lado— es
+    // legítimo, y vigilar `\d` pondría esta prueba a contradecir a las de
+    // arriba, que copian el one-liner literal, sin decir cuál de las dos manda.
+    // Manda el documento.
+    const TOTAL_CONGELADO = /\d[\d.,]*\s*(fuentes|municipios|contratos|plenos|quejas|días|€|%)/i
     for (const [atributo, nombre] of ETIQUETAS) {
-      expect(contenido(atributo, nombre), nombre).not.toMatch(/\d/)
+      expect(contenido(atributo, nombre), nombre).not.toMatch(TOTAL_CONGELADO)
     }
   })
 })
