@@ -15,6 +15,21 @@ test.describe('CmdK spotlight', () => {
     await expect(input).not.toBeVisible()
   })
 
+  test('en la portada, que no tiene shell, el atajo también abre', async ({ page }) => {
+    // La portada se pinta FUERA de InnerShell, así que hasta ahora no montaba el
+    // buscador: ni el atajo ni el botón abrían nada. Se espera a la cabecera de
+    // la portada, no a la barra lateral, que ahí no existe.
+    await page.goto('/', { waitUntil: 'domcontentloaded' })
+    await expect(page.locator('.d-topbar')).toBeVisible({ timeout: 10_000 })
+
+    await page.keyboard.press('Meta+k')
+    const input = page.getByPlaceholder('Saltar a…')
+    await expect(input).toBeVisible({ timeout: 5000 })
+
+    await page.keyboard.press('Escape')
+    await expect(input).not.toBeVisible()
+  })
+
   test('typing filters results and clicking a row navigates', async ({ page }) => {
     await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
     await expect(page.locator('.cp-shell-sidebar')).toBeVisible({ timeout: 10_000 })
