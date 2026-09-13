@@ -5,6 +5,7 @@ import { useDepartmentStats } from '../hooks/useDepartmentStats'
 import { usePromises, isPromiseFrozen, PARTY_TONE } from '../hooks/usePromises'
 import { useAreaFit, fitAggregate } from '../hooks/useAreaFit'
 import { useT, useLocale } from '../i18n'
+import { rotuloPlazosVencidos } from '../lib/plazos-vencidos'
 
 /** Compact euros for a card stat: 61.262.695 € reads as "61,3 M€". */
 function formatEurosCompact(eur) {
@@ -320,10 +321,7 @@ export default function Departamentos() {
               separate things, which is a second wrong answer, not a fix. */}
             {!frozen && totalVencidos > 0 && (
               <Pill tone="warn" size="sm">
-                ⚠ {totalVencidos}{' '}
-                {totalVencidos === 1
-                  ? t('departamentos.plazoVencido')
-                  : t('liveTicker.plazosVencidos')}
+                ⚠ {totalVencidos} {rotuloPlazosVencidos(totalVencidos, t)}
                 {/* Weight alone carries the de-emphasis. An `opacity` here
                   dropped this text under the WCAG AA contrast floor inside the
                   warn pill and axe caught it — fading a warning until it is hard

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Card } from '../Primitives'
+import { rotuloRetiradas } from '../../lib/pleno-summary'
 
 const RELLENO = {
   aprobado: 'var(--ok)',
@@ -30,7 +31,7 @@ export function TarjetaVotaciones({ votos, total }) {
   if (!votos?.total) return null
   const presentes = [...new Set(votos.lista.filter(Boolean))]
   const cuenta = (o) => votos.lista.filter((x) => x === o).length
-  const { record, breakdown } = votos.retiradas
+  const frase = rotuloRetiradas(votos.retiradas)
 
   return (
     <Card style={{ padding: 20 }}>
@@ -107,8 +108,12 @@ export function TarjetaVotaciones({ votos, total }) {
 
       {/* La retirada se publica. Es la mitad que la auditoría echaba en falta:
           existía el registro y no lo contaba ninguna pantalla. Las cifras salen
-          de `stats.retracted`, no de una frase escrita a mano. */}
-      {(record > 0 || breakdown > 0) && (
+          de `stats.retracted`, no de una frase escrita a mano — y la frase se
+          construye recorriendo los alcances que trae la instantánea, igual que
+          la tira de desenlaces. Nombrar dos a mano es lo que hizo que esta
+          tarjeta dijera «2 registros y 1 desglose» mientras /datos, que los suma
+          todos, decía cuatro: el mismo fichero y dos cifras publicadas. */}
+      {frase && (
         <p
           style={{
             margin: '10px 0 0',
@@ -121,12 +126,9 @@ export function TarjetaVotaciones({ votos, total }) {
             color: 'var(--ink70)',
           }}
         >
-          <strong>
-            {record} {record === 1 ? 'registro' : 'registros'} y {breakdown}{' '}
-            {breakdown === 1 ? 'desglose' : 'desgloses'} retirados.
-          </strong>{' '}
-          Cuando la transcripción no sostiene el reparto que se publicó, el registro se retira y se
-          dice — no se corrige en silencio.
+          <strong>{frase}.</strong> Cuando la fuente no sostiene lo que se publicó, se retira la
+          parte que no aguanta —el registro entero, el reparto por grupos o sólo el plazo— y se
+          dice, en vez de corregirlo en silencio.
         </p>
       )}
 

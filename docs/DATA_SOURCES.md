@@ -646,11 +646,20 @@ overwrites it. Change the bot's SQLite instead.
   extracts retired Drupal markup; plain `http://`; no npm script runs it), zero
   actas are cached, and every transcript on disk is Whisper output. Messages
   about this state must say _unreachable_, not _unread_
-- **Withdrawal** — `npm run retract-vote` is the only way out. Two scopes, because the
-  two halves of a record do not share a provenance: `--reason/--editor` alone withdraws
+- **Withdrawal** — `npm run retract-vote` is the only way out. Three scopes, because the
+  parts of a record do not share a provenance: `--reason/--editor` alone withdraws
   the **whole vote** (it leaves `items[]`, so it stops counting everywhere that reads
-  `items`), while `--breakdown` withdraws **only the per-bloc tally** and leaves item,
-  outcome and source published. Retractions are tombstoned into `retractions[]` with the
+  `items`); `--breakdown` withdraws **only the per-bloc tally** and leaves item,
+  outcome and source published; and `--plazo` withdraws **only the deadline** —
+  `dueBy` and `dueBySource` leave the row, which keeps a signed `dueByRetracted` stamp,
+  and the ledger entry archives the withdrawn date and clause in `originalPlazo`, so an
+  `--unretract` puts both back or refuses. The third scope exists because a `dueBy` is
+  only as good as the verbatim clause under it, and withdrawing the whole record would
+  also retract an outcome that IS sourced — the case was `rx4hb4-11`, whose «clause»
+  paraphrased a Whisper line about a grant application deadline. `/plenos` names the scope
+  in its retraction sentence and `/datos` counts it, but **the row's own `dueByRetracted`
+  stamp is rendered nowhere**: on `/departamentos/:slug` the vote simply shows no deadline,
+  where a withdrawn breakdown shows `VoteBreakdownRetracted` in the tally's place. Retractions are tombstoned into `retractions[]` with the
   original content, and `validateSnapshot` then refuses to let that id back into `items[]`
   — `pleno-vote` and `promote-vote` both run it, so a withdrawn vote cannot reappear
   without an explicit signed `--unretract`. Read-side twin: `check:relations`

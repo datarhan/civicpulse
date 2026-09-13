@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-13T10:00:09.228Z",
+  "generatedAt": "2026-09-13T10:45:16.601Z",
   "windowDays": 30,
   "articles": [
     {
@@ -953,30 +953,13 @@
         "opinionFraction": 0
       },
       "score": 3
-    },
-    {
-      "articleId": "1p108so",
-      "articleFingerprint": "ihcy3c",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/nuevo-canal-de-informaci%C3%B3n-urbanizaciones",
-      "date": "2026-08-14T10:32:15.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 18,
+      "articleCount": 17,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 1,
@@ -984,7 +967,7 @@
         "sin-datos": 16,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.94,
+      "meanTrustScore": 3,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -1155,7 +1138,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "dcc0f58e226d",
+    "plenos-agendas.json": "8cb8a3d9a5a5",
     "press-claims-verified.json": "b5f74f13740a",
     "press.json": "9373bbc77f9b",
     "promises.json": "d18811c11210"

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-05T10:40:42.016Z",
+  "generatedAt": "2026-09-10T14:13:45.412Z",
   "source": {
     "description": "Curated voting records for the Ayuntamiento de Riba-roja de Túria. Each record cites its two halves separately in `provenance`: the OUTCOME comes from the council's session portal (regmeet.com), which publishes the orden del día and the result but no per-bloc tally; the BREAKDOWN comes from the automatic transcript of the session audio published at /data/pleno-transcripts/. A breakdown stays `verification: \"sin-verificar\"` until a curator cotejes it against the acta and signs for it.",
     "contract": "Human-edited, schema-validated. Mutations only via npm run pleno-vote / promote-vote / retract-vote. A breakdown attributed to a source that does not publish one is refused at write time."
@@ -23,7 +23,8 @@
     },
     "retracted": {
       "record": 2,
-      "breakdown": 1
+      "breakdown": 1,
+      "plazo": 1
     }
   },
   "items": [
@@ -508,8 +509,11 @@
           "seats": 1
         }
       ],
-      "dueBy": "2026-02-14",
-      "dueBySource": "el día 14 este sábado es el último día",
+      "dueByRetracted": {
+        "reason": "La fecha no sale de un acta. La cláusula publicada («el día 14 este sábado es el último día») resume una línea de la transcripción automática (rx4hb4.txt, línea 2444) que habla del último día para presentar la solicitud a la convocatoria de senda financera, no de un plazo para ejecutar el acuerdo.",
+        "editor": "Sergei Lutchenko",
+        "retractedAt": "2026-09-10T14:13:45.411Z"
+      },
       "provenance": {
         "outcome": {
           "kind": "regmeet",
@@ -989,6 +993,19 @@
           "seats": 1
         }
       ]
+    },
+    {
+      "voteId": "rx4hb4-11",
+      "scope": "plazo",
+      "reason": "La fecha no sale de un acta. La cláusula publicada («el día 14 este sábado es el último día») resume una línea de la transcripción automática (rx4hb4.txt, línea 2444) que habla del último día para presentar la solicitud a la convocatoria de senda financera, no de un plazo para ejecutar el acuerdo.",
+      "editor": "Sergei Lutchenko",
+      "retractedAt": "2026-09-10T14:13:45.411Z",
+      "original": null,
+      "originalVotes": null,
+      "originalPlazo": {
+        "dueBy": "2026-02-14",
+        "dueBySource": "el día 14 este sábado es el último día"
+      }
     }
   ]
 }

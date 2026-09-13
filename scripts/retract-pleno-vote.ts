@@ -16,7 +16,12 @@
  *       and source stay published. Use this when the outcome is sourced but the
  *       breakdown is not — regmeet publishes the former and never the latter.
  *
- *   npm run retract-vote -- <voteId> --unretract [--breakdown] \
+ *   npm run retract-vote -- <voteId> --plazo --reason "…" --editor "…"
+ *       Withdraw ONLY the deadline (dueBy + dueBySource). Item, outcome and
+ *       tally stay published; the date stops driving «plazos vencidos». Use it
+ *       when the date is not stated verbatim by an acta.
+ *
+ *   npm run retract-vote -- <voteId> --unretract [--breakdown | --plazo] \
  *       --reason "…" --editor "…"
  *       Return an id to publication. The ledger entry is stamped, never
  *       removed. This is the ONLY way a withdrawn vote can come back, and it
@@ -35,6 +40,7 @@ import {
   validateSnapshot,
   retractVoteRecord,
   retractVoteBreakdown,
+  retractVoteDueBy,
   revokeRetraction,
   findLiveRetraction,
   RETRACTION_REASON_MIN,
@@ -62,9 +68,11 @@ function usage(): never {
     'Usage:\n' +
       '  npm run retract-vote -- <voteId> --reason "<≥20 chars>" --editor "<name>"\n' +
       '  npm run retract-vote -- <voteId> --breakdown --reason "…" --editor "…"\n' +
-      '  npm run retract-vote -- <voteId> --unretract [--breakdown] --reason "…" --editor "…"\n' +
+      '  npm run retract-vote -- <voteId> --plazo --reason "…" --editor "…"\n' +
+      '  npm run retract-vote -- <voteId> --unretract [--breakdown | --plazo] --reason "…" --editor "…"\n' +
       '  (add --dry-run to preview)\n\n' +
       '  --breakdown  withdraw only the per-bloc tally; item + outcome stay published\n' +
+      '  --plazo      withdraw only the deadline (dueBy + dueBySource); item + outcome stay\n' +
       '  --unretract  lift a retraction so a corrected record can be published again\n',
   )
   process.exit(1)
@@ -76,6 +84,7 @@ function summarise(snap: PlenoVotesSnapshot, voteId: string) {
     published: item != null,
     outcome: item?.outcome ?? null,
     tuples: item?.votes.length ?? 0,
+    plazo: item?.dueBy ?? null,
     items: snap.items.length,
     retracted: snap.stats.retracted,
   }
@@ -87,7 +96,14 @@ function main() {
 
   const reason = getFlag('--reason')
   const editor = getFlag('--editor')
-  const scope: VoteRetractionScope = hasFlag('--breakdown') ? 'breakdown' : 'record'
+  if (hasFlag('--breakdown') && hasFlag('--plazo')) {
+    bail('--breakdown and --plazo are separate retractions: run them one at a time')
+  }
+  const scope: VoteRetractionScope = hasFlag('--breakdown')
+    ? 'breakdown'
+    : hasFlag('--plazo')
+      ? 'plazo'
+      : 'record'
   const unretract = hasFlag('--unretract')
   const dryRun = hasFlag('--dry-run')
 
@@ -124,6 +140,12 @@ function main() {
       }
       next = retractVoteBreakdown(snap, voteId, sig)
       verb = 'withdrew the per-bloc breakdown of'
+    } else if (scope === 'plazo') {
+      if (findLiveRetraction(snap, voteId, 'plazo')) {
+        bail(`vote "${voteId}" already has a live plazo retraction`)
+      }
+      next = retractVoteDueBy(snap, voteId, sig)
+      verb = 'withdrew the plazo of'
     } else {
       if (findLiveRetraction(snap, voteId, 'record')) {
         bail(`vote "${voteId}" is already retracted`)
@@ -151,9 +173,11 @@ function main() {
       `  published in items[]: ${before.published} → ${after.published}\n` +
       `  outcome:              ${before.outcome ?? '—'} → ${after.outcome ?? '—'}\n` +
       `  per-bloc tuples:      ${before.tuples} → ${after.tuples}\n` +
+      `  plazo:                ${before.plazo ?? '—'} → ${after.plazo ?? '—'}\n` +
       `  items total:          ${before.items} → ${after.items}\n` +
-      `  live retractions:     record ${before.retracted.record}→${after.retracted.record} · ` +
-      `breakdown ${before.retracted.breakdown}→${after.retracted.breakdown}\n` +
+      `  live retractions:     ${(Object.keys(after.retracted) as VoteRetractionScope[])
+        .map((s) => `${s} ${before.retracted[s]}→${after.retracted[s]}`)
+        .join(' · ')}\n` +
       `  editor:               ${editor}\n`,
   )
 

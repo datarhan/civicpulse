@@ -181,10 +181,13 @@ export function resumenPlenos({ plenos, agendas, manifest, votes, findings } = {
       (vs.byOutcome?.rechazado ?? 0),
     sesiones: Object.keys(votesByPleno).length,
     lista: votosLista,
-    retiradas: {
-      record: vs.retracted?.record ?? 0,
-      breakdown: vs.retracted?.breakdown ?? 0,
-    },
+    // Tal cual las trae la instantánea, alcance a alcance. Nombrar dos aquí es
+    // lo que hacía que /plenos dijera «2 registros y 1 desglose retirados»
+    // mientras /datos, que los suma todos, decía cuatro: el mismo fichero y dos
+    // cifras publicadas. `validateSnapshot` ya deriva `stats.retracted` de
+    // RETRACTION_SCOPES al escribir, así que copiar la lista aquí sólo puede
+    // quedarse corta cuando aparezca un alcance nuevo — y apareció.
+    retiradas: { ...(vs.retracted ?? {}) },
   }
 
   const tops = agendas?.topDepartments ?? []
@@ -224,4 +227,40 @@ export function resumenPlenos({ plenos, agendas, manifest, votes, findings } = {
       retiradas: (findings?.retractions ?? []).length,
     },
   }
+}
+
+/**
+ * El rótulo de cada alcance, en singular y en plural.
+ *
+ * Un alcance sin rótulo aquí saldría por su clave —visible y feo, que es mejor
+ * que una frase que se calla una retirada—, y `tests/pleno-retiradas-rotulo`
+ * exige uno por alcance del modelo para que no llegue a pasar.
+ */
+const ROTULO_RETIRADA = {
+  record: ['registro', 'registros'],
+  breakdown: ['desglose', 'desgloses'],
+  plazo: ['plazo', 'plazos'],
+}
+
+/**
+ * «2 registros, 1 desglose y 1 plazo retirados», o `null` si no hay ninguna.
+ *
+ * Recorre lo que trae la instantánea en vez de nombrar alcances, que es lo que
+ * dejó a /plenos publicando «2 registros y 1 desglose» —tres— mientras /datos
+ * sumaba las cuatro retiradas vivas del mismo fichero.
+ *
+ * @param {Record<string, number>|null|undefined} retiradas  `stats.retracted`
+ * @returns {string|null}
+ */
+export function rotuloRetiradas(retiradas) {
+  const vivas = Object.entries(retiradas ?? {}).filter(([, n]) => typeof n === 'number' && n > 0)
+  if (vivas.length === 0) return null
+  const partes = vivas.map(([alcance, n]) => {
+    const [uno, varios] = ROTULO_RETIRADA[alcance] ?? [alcance, alcance]
+    return `${n} ${n === 1 ? uno : varios}`
+  })
+  const lista =
+    partes.length === 1 ? partes[0] : `${partes.slice(0, -1).join(', ')} y ${partes.at(-1)}`
+  const total = vivas.reduce((s, [, n]) => s + n, 0)
+  return `${lista} ${total === 1 ? 'retirado' : 'retirados'}`
 }

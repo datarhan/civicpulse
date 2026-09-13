@@ -578,7 +578,11 @@ export default function Metodologia() {
           <li>
             <strong>El plazo debe venir del acta.</strong> Para los votos de pleno, un{' '}
             <code>dueBy</code> sólo se publica acompañado de una cita verbatim del acuerdo (
-            <code>dueBySource</code>, ≥20 caracteres). Sin cita literal no hay plazo.
+            <code>dueBySource</code>, ≥20 caracteres). Sin cita literal no hay plazo. Lo que
+            comprueba el validador es la forma —que la cita exista y tenga cuerpo—; que la cita
+            sostenga de verdad el plazo lo firma una persona, y contra la fuente que hay, porque el
+            acta no se puede descargar (dos puntos más arriba). Un plazo que no lo aguanta se retira
+            con su motivo firmado, sin tocar el resultado de la votación.
           </li>
           <li>
             <strong>El grupo también debe venir de la fuente.</strong> Cuando la fuente registra un
@@ -614,14 +618,16 @@ export default function Metodologia() {
           </li>
           <li>
             <strong>Una votación publicada se puede retirar.</strong> Cuando la fuente contradice lo
-            publicado, un curador humano la retracta con firma y motivo. Hay dos alcances, porque
-            las dos mitades del registro no tienen el mismo respaldo documental:{' '}
+            publicado, un curador humano la retracta con firma y motivo. Hay tres alcances, porque
+            las partes del registro no tienen el mismo respaldo documental:{' '}
             <strong>retirar la votación entera</strong> —desaparece del sitio y deja de contar en
-            los recuentos de /plenos y /departamentos y en el aviso de plazo vencido— o{' '}
+            los recuentos de /plenos y /departamentos y en el aviso de plazo vencido—;{' '}
             <strong>retirar sólo el desglose por grupos</strong>, dejando publicados el punto, el
-            resultado y la fuente. Lo retirado no se borra: queda archivado con su contenido
-            original, quién lo retiró y por qué, y el validador impide que vuelva a publicarse sin
-            una revocación explícita, también firmada. Nunca se retracta de forma automática.
+            resultado y la fuente; o <strong>retirar sólo el plazo</strong>, cuando la fecha no sale
+            literal de un acta, para que deje de contar en el aviso de plazo vencido sin tocar el
+            resultado. Lo retirado no se borra: queda archivado con su contenido original, quién lo
+            retiró y por qué, y el validador impide que vuelva a publicarse sin una revocación
+            explícita, también firmada. Nunca se retracta de forma automática.
           </li>
         </ul>
       </Card>
