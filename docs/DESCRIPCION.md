@@ -344,6 +344,7 @@ la frase sale de los textos **antes** de que la copia se envíe a nadie.
 | `README.md`                           | tagline · «Why this exists» · tabla de superficies                          |
 | `src/pages/Nosotros.jsx`              | tarjeta «Qué es CivicPulse»                                                 |
 | `src/pages/About.jsx`                 | primera tarjeta (identidad) + «The gap» + «The proof»                       |
+| `index.html`                          | la ficha del sitio: `description`, `og:description`, `twitter:description`  |
 
 > **Las superficies de campaña ya no viven en el repositorio.** El kit de
 > Goteo, la propuesta de NLnet y el kit de prensa derivan igualmente de este

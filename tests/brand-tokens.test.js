@@ -107,20 +107,29 @@ const ESCANEADOS = [
   join(ROOT, 'index.html'),
 ].filter((p) => !p.endsWith(join('src', 'lib', 'party-colors.js')))
 
-/** Todas las formas en que este repo escribe un color: `#rrggbb` y `rgba(r,g,b,…)`. */
+/** Todas las formas en que este repo escribe un color: `#rrggbb`, el mismo hex
+ *  CODIFICADO PARA UNA URL (`%23rrggbb`) y `rgba(r,g,b,…)`.
+ *
+ *  La forma codificada la usa el favicon de index.html, que viaja como data:
+ *  URI dentro de un atributo. Sin ella este guard no podía ver que el icono del
+ *  sitio —lo primero que se ve de la marca, en cada pestaña— estaba pintado con
+ *  el azul del PP: buscaba `#2463EB` y el HTML decía `%232463EB`. */
 function patronesDe(hex) {
   const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16))
   return [
     new RegExp(hex, 'gi'),
+    new RegExp(`%23${hex.slice(1)}`, 'gi'),
     new RegExp(`rgba?\\(\\s*${r}\\s*,\\s*${g}\\s*,\\s*${b}\\s*[,)]`, 'gi'),
   ]
 }
 
 const hallazgos = []
 let hexCandidatos = 0
+let hexCodificados = 0
 for (const p of ESCANEADOS) {
   const txt = readFileSync(p, 'utf8')
   hexCandidatos += (txt.match(/#[0-9a-f]{6}\b/gi) || []).length
+  hexCodificados += (txt.match(/%23[0-9a-f]{6}\b/gi) || []).length
   const rel = relative(ROOT, p).split(sep).join('/')
   for (const [partido, hex] of Object.entries(PARTIDOS)) {
     const n = patronesDe(hex).reduce((s, re) => s + (txt.match(re) || []).length, 0)
@@ -218,6 +227,15 @@ describe('el guard demuestra que miró', () => {
     expect(Object.keys(OSCURO).length, 'tokens en html.dark').toBeGreaterThan(8)
     expect(ESCANEADOS.length, 'ficheros escaneados').toBeGreaterThan(50)
     expect(hexCandidatos, 'hexes candidatos leídos').toBeGreaterThan(20)
+    // Y que el patrón CODIFICADO mire DONDE IMPORTA. Sumado sobre los cientos
+    // de ficheros escaneados, un `%23aabbcc` cualquiera en otro SVG mantendría
+    // el visto bueno aunque el favicon —el único sitio donde este repo escribe
+    // un color codificado— se hubiera mudado a un fichero aparte.
+    const enElFavicon = (
+      readFileSync(join(ROOT, 'index.html'), 'utf8').match(/%23[0-9a-f]{6}\b/gi) || []
+    ).length
+    expect(enElFavicon, 'hexes codificados %23 en index.html').toBeGreaterThan(0)
+    expect(hexCodificados, 'hexes codificados %23 leídos').toBeGreaterThanOrEqual(enElFavicon)
     expect(Object.keys(PARTY_COLORS).length, 'partidos importados').toBeGreaterThan(3)
   })
 
