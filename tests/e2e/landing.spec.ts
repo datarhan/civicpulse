@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 import { readFileSync } from 'node:fs'
 import { collectErrors, appErrors } from './_console'
-import { CONCESSION_CONTRACT_TYPES, contractTermYears } from '../../src/lib/contract-status'
+import { contractTermYears, isConcession } from '../../src/lib/contract-status'
 
 test.describe('Landing (/)', () => {
   test('renders editorial column + KPI strip with real data', async ({ page }) => {
@@ -120,9 +120,9 @@ test.describe('Landing (/)', () => {
     // vivo; aquí se comprueba la mitad que sólo puede verse en la página.
     const tenders = JSON.parse(readFileSync('public/data/tenders.json', 'utf8'))
     const recientes = (tenders.top?.recentAwarded ?? []).slice(0, 4)
-    const concesiones = recientes.filter((c: { contractType?: string | null }) =>
-      CONCESSION_CONTRACT_TYPES.includes(c.contractType ?? ''),
-    )
+    // El predicado de producción, no la lista de tipos: si `isConcession` gana
+    // una condición, lo esperado y lo pintado no pueden separarse.
+    const concesiones = recientes.filter(isConcession)
 
     await page.goto('/', { waitUntil: 'domcontentloaded' })
 
@@ -131,6 +131,9 @@ test.describe('Landing (/)', () => {
     // en blanco, que es justo la forma de la que este repo ya ha pagado dos.
     expect(recientes.length, 'el snapshot no trae últimas adjudicaciones').toBeGreaterThan(0)
     const primeraFila = String(recientes[0].title ?? '').slice(0, 40)
+    // Un título vacío convertiría el ancla en `getByText('')`, que casa con
+    // todo: el hueco volvería por la puerta de al lado.
+    expect(primeraFila.length, 'la primera adjudicación no trae título').toBeGreaterThan(10)
     await expect(page.getByText(primeraFila).first()).toBeVisible({ timeout: 8000 })
 
     const notas = page.locator('.cp-concesion-nota')

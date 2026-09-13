@@ -29,8 +29,11 @@ describe('rotuloRetiradas', () => {
     for (const alcance of RETRACTION_SCOPES) {
       const uno = rotuloRetiradas({ [alcance]: 1 })
       const dos = rotuloRetiradas({ [alcance]: 2 })
-      expect(uno, alcance).toMatch(/^1 \S+ retirado$/)
-      expect(dos, alcance).toMatch(/^2 \S+ retirados$/)
+      // El participio no se fija en masculino: los tres alcances de hoy lo son,
+      // y uno femenino («atribución») necesitaría género en ROTULO_RETIRADA.
+      // Lo que sí se exige aquí es que el número concuerde.
+      expect(uno, alcance).toMatch(/^1 \S+ retirad[oa]$/)
+      expect(dos, alcance).toMatch(/^2 \S+ retirad[oa]s$/)
       expect(uno.split(' ')[1], `${alcance}: singular y plural son la misma palabra`).not.toBe(
         dos.split(' ')[1],
       )
