@@ -314,17 +314,33 @@ test.describe('Mobile shell (iPhone 13 mini / 375px)', () => {
         const b = el.getBoundingClientRect()
         return { top: Math.round(b.top), bottom: Math.round(b.bottom) }
       }
+      const panel = document.querySelector('.d-mappane')
       const mapa = document.querySelector('.leaflet-container')
-      const chips = document.querySelector('[role="group"]')
+      // Por el asidero de las capas, NO por el orden del documento. Con
+      // `querySelector('[role="group"]')` esto medía el primer grupo de la
+      // página: al ganar la cabecera sus paneles desplegables, el ancla se mudó
+      // allí —a un panel oculto, con el rectángulo a cero— y dos de las
+      // aserciones de abajo empezaron a cumplirse solas. `data-capa` no se
+      // traduce ni cambia de sitio.
+      const chips = document.querySelector('[data-capa]')?.closest('[role="group"]')
       const pila = chips?.parentElement
-      if (!mapa || !chips || !pila) return null
-      return { mapa: r(mapa), pila: r(pila), chips: r(chips), alto: window.innerHeight }
+      if (!panel || !mapa || !chips || !pila) return null
+      return {
+        mapa: r(mapa),
+        pila: r(pila),
+        chips: r(chips),
+        alto: window.innerHeight,
+        // Que el ancla siga dentro del panel del mapa: si vuelve a mudarse, esto
+        // se pone en falso en vez de medir la caja equivocada en silencio.
+        enElPanel: panel.contains(mapa) && panel.contains(chips),
+      }
     })
 
-    // Que la comprobación haya EVALUADO algo: sin los tres nodos no mide nada
+    // Que la comprobación haya EVALUADO algo: sin los cuatro nodos no mide nada
     // y pasaría igual, que es el defecto que este repo ya ha pagado dos veces.
     expect(medida).not.toBeNull()
     const m = medida!
+    expect(m.enElPanel, 'el ancla de las capas ya no está en el panel del mapa').toBe(true)
     expect(m.mapa.bottom).toBeGreaterThan(m.mapa.top)
 
     expect(m.pila.top).toBeGreaterThanOrEqual(m.mapa.top)

@@ -8,14 +8,13 @@ import { EditorialColumn } from './direction-d/EditorialColumn'
 import { KpiStrip } from './direction-d/KpiStrip'
 import { useT } from '../i18n'
 
-/**
- * Below this width the side-by-side shell stops working and the panes stack.
- *
- * Vive en `tokens` porque lo necesitan también las hojas `*.css.js` de la
- * portada, y de aquí no pueden importarlo sin cerrar un ciclo. Se reexporta para
- * quien ya lo importaba de este módulo.
+/*
+ * `STACK_BREAKPOINT` —el ancho por debajo del cual los dos paneles se apilan—
+ * vive en `tokens` porque lo necesitan también las hojas `*.css.js` de la
+ * portada, y de aquí no podrían importarlo sin cerrar un ciclo. Aquí sólo se usa
+ * en la consulta de medios de más abajo: no se reexporta, porque nadie lo
+ * importaba de este módulo.
  */
-export { STACK_BREAKPOINT }
 
 export default function DirectionD() {
   const now = useClock(60000)

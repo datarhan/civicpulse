@@ -44,11 +44,16 @@ test.describe('Cabecera de la portada', () => {
     await page.goto('/', { waitUntil: 'domcontentloaded' })
     const chip = page.getByRole('button', { name: CHIP_METRO })
     await expect(chip).toBeVisible({ timeout: 8000 })
-    const idPanel = String(await chip.getAttribute('aria-controls'))
-    expect(idPanel).toBeTruthy()
+    const idPanel = await chip.getAttribute('aria-controls')
+    // Sin el `String()` de antes: envolver un `null` daba la cadena «null», que
+    // es verdadera, y esta comprobación no podía fallar nunca.
+    expect(idPanel, 'el chip no declara qué panel abre').not.toBeNull()
 
     // ABLACIÓN: cerrado, en ese píxel no hay panel. Sin esto, «hay panel» podría
-    // cumplirlo un panel que estuviera abierto desde el principio.
+    // cumplirlo un panel que estuviera abierto desde el principio. Y primero que
+    // el panel EXISTA: `toBeHidden` se cumple igual con un panel que no está en
+    // el DOM, y entonces la ablación no distinguiría «oculto» de «ausente».
+    await expect(page.locator(`#${idPanel}`)).toHaveCount(1)
     await expect(page.locator(`#${idPanel}`)).toBeHidden()
 
     await chip.click()
@@ -112,7 +117,7 @@ test.describe('Cabecera de la portada', () => {
 
   test('el buscador de la portada abre con el botón y con el atajo', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' })
-    const buscar = page.getByRole('button', { name: CATALOGUE.es['topbar.search.aria'] })
+    const buscar = page.getByRole('button', { name: CATALOGUE.es['topbar.search'] })
     await expect(buscar).toBeVisible({ timeout: 8000 })
     await buscar.click()
     const entrada = page.getByPlaceholder('Saltar a…')
@@ -123,5 +128,44 @@ test.describe('Cabecera de la portada', () => {
     // Y el atajo, que en la portada no estaba montado en absoluto.
     await page.keyboard.press('Meta+k')
     await expect(entrada).toBeVisible({ timeout: 5000 })
+  })
+
+  test('a 375 el buscador se queda en icono y conserva su nombre', async ({ page }) => {
+    // La clase `cp-topbar-search` trae más que la regla de impresión que decía su
+    // comentario: por debajo de 720px `index.css` esconde la pista y el «⌘K» con
+    // `!important`, así que el botón se queda SIN texto visible. Medido: 57×28 px
+    // pegado a la derecha, sin desbordar el documento, que está bien.
+    //
+    // Lo que no puede pasar es que se quede además sin nombre, y ese es el fallo
+    // que ningún ancho de escritorio puede ver: aquí el nombre sólo puede venir
+    // de la etiqueta, porque contenido ya no hay.
+    await page.setViewportSize({ width: 375, height: 812 })
+    await page.goto('/', { waitUntil: 'domcontentloaded' })
+    const buscar = page.getByRole('button', { name: CATALOGUE.es['topbar.search'] })
+    await expect(buscar).toBeVisible({ timeout: 8000 })
+
+    // ABLACIÓN del nombre: sin texto visible, la aserción de arriba sólo puede
+    // haberse cumplido por el aria-label. Si algún día vuelve a haber texto, esta
+    // línea se cae y avisa de que la de arriba ya no prueba lo que dice.
+    expect((await buscar.innerText()).trim(), 'a 375 el botón no debería tener texto').toBe('')
+
+    const caja = await buscar.boundingBox()
+    expect(caja).not.toBeNull()
+    // Diana mínima de 24×24 (WCAG 2.2, criterio 2.5.8).
+    expect(Math.round(caja!.width), 'la diana es más estrecha de 24px').toBeGreaterThanOrEqual(24)
+    expect(Math.round(caja!.height), 'la diana es más baja de 24px').toBeGreaterThanOrEqual(24)
+
+    const medida = await page.evaluate(() => ({
+      doc: document.documentElement.scrollWidth,
+      vista: window.innerWidth,
+    }))
+    expect(medida.doc, 'el botón estirado saca el documento de cuadro').toBeLessThanOrEqual(
+      medida.vista + 1,
+    )
+
+    // Y sigue abriendo: un icono sin texto que tampoco abriera sería el defecto
+    // original otra vez, más pequeño.
+    await buscar.click()
+    await expect(page.getByPlaceholder('Saltar a…')).toBeVisible({ timeout: 5000 })
   })
 })

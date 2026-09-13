@@ -21,11 +21,19 @@ import { estiloVivo } from './vivo.css.js'
  *
  * El patrón es el desplegable de la APG, el mismo que la barra de secciones:
  * botón con `aria-expanded` y `aria-controls`, el panel en el DOM aunque esté
- * oculto, Escape cierra y devuelve el foco al chip que abrió.
+ * oculto, Escape cierra esté donde esté el foco y lo devuelve al chip si estaba
+ * dentro. Los oyentes van en `document`, como los de la barra: un `onKeyDown` de
+ * React sólo salta si el evento BURBUJEA desde el nodo enfocado, y pinchar el
+ * texto del panel deja el foco en el `body`, que no cuelga del envoltorio — con
+ * lo que Escape no cerraba nada. En la prueba de unidad no se veía porque ahí el
+ * evento se despacha sobre el panel, tenga el foco quien lo tenga.
  *
- * Una fuente que falla no pinta su chip. Los tres hooks devuelven `data: null`
- * ante cualquier fallo, y la cabecera prefiere no decir nada a publicar un «0°»
- * o un «—°» que se lea como una medición.
+ * Una fuente que falla no pinta su chip, y tampoco una que contesta 200 con algo
+ * inservible: `useLiveWeather` y `useAirQuality` devuelven `data: null` ante un
+ * error, pero ante un cuerpo bien formado SIN lectura dejan los campos a `null`,
+ * y «🌤 °» o «AQI – —» se leen como una medición. Así que el chip del tiempo pide
+ * `tempC` y el del aire `eaqi`. El del metro no depende de la red: `useNextMetro`
+ * es puro y siempre responde, así que ese se pinta siempre.
  */
 export function Vivo() {
   const t = useT()
@@ -56,39 +64,41 @@ export function Vivo() {
         afterMidnight: gtfsNext.afterMidnight,
         heading: 'València',
         scheduleValidUntil: gtfsRibaRoja.validThrough,
-        scheduleSource: 'FGV GTFS',
       }
     : fallbackMetro
 
-  // Pulsar fuera cierra. Un pointerdown DENTRO del envoltorio no es «irse».
+  // Pulsar fuera cierra, y Escape también, esté donde esté el foco; si estaba
+  // dentro, vuelve al chip que abrió. Los dos oyentes en `document` y con
+  // `pointerdown`, igual que la barra de secciones: un `pointerdown` DENTRO del
+  // envoltorio no es «irse».
   useEffect(() => {
     if (!abierto) return
     const fuera = (e) => {
       if (!envoltorio.current?.contains(e.target)) setAbierto(null)
     }
-    window.addEventListener('mousedown', fuera)
-    return () => window.removeEventListener('mousedown', fuera)
+    const escape = (e) => {
+      if (e.key !== 'Escape') return
+      if (envoltorio.current?.contains(document.activeElement)) chips.current[abierto]?.focus()
+      setAbierto(null)
+    }
+    document.addEventListener('pointerdown', fuera)
+    document.addEventListener('keydown', escape)
+    return () => {
+      document.removeEventListener('pointerdown', fuera)
+      document.removeEventListener('keydown', escape)
+    }
   }, [abierto])
 
-  if (!weather && !metro && !air) return null
+  // Un 200 con el cuerpo vacío deja los campos a `null`: sin cifra no hay chip,
+  // ni panel que abrir desde un chip que no existe.
+  const hayClima = weather?.tempC != null
+  const hayAire = air?.eaqi != null
+  if (!hayClima && !metro && !hayAire) return null
 
   const [emoji, wmoLabel] = weather ? describeWmo(weather.weatherCode) : ['', '']
   const aqi = air ? describeAqi(air.eaqi) : null
 
   const alterna = (id) => setAbierto((previo) => (previo === id ? null : id))
-  // Escape cierra y devuelve el foco al chip: quien abrió con el teclado no se
-  // queda sin sitio en la página.
-  const onKeyDown = (e) => {
-    if (e.key !== 'Escape' || !abierto) return
-    const chip = chips.current[abierto]
-    setAbierto(null)
-    // El foco vuelve al chip cuando el Escape viene de DENTRO —de la tira o del
-    // panel—, que es lo que hace quien está leyendo el detalle. Se mira el
-    // origen del evento y no `document.activeElement`: pulsar Escape sobre el
-    // panel sin haber tabulado a nada deja el foco en el body, y con esa
-    // comprobación el chip no lo recuperaba nunca.
-    if (chip && envoltorio.current?.contains(e.target)) chip.focus()
-  }
 
   const idPanel = (id) => `vivo-panel-${id}`
   const chip = (id, aria, contenido) => (
@@ -107,14 +117,14 @@ export function Vivo() {
     </button>
   )
 
+  // El panel no lleva `role="group"`, igual que los de la barra de secciones: el
+  // `aria-controls` del chip ya los relaciona y el título va escrito dentro. Y
+  // ponerlo rompía algo a distancia: `mobile.spec.ts` se anclaba en el PRIMER
+  // [role="group"] del documento, y esta cabecera va antes que el mapa, así que
+  // acabó midiendo este panel —oculto, con el rectángulo a cero— en lugar de la
+  // pila de controles del mapa. Allí el ancla también está arreglada.
   const panel = (id, titulo, cuerpo, fuente) => (
-    <div
-      id={idPanel(id)}
-      className="cp-vivo-panel"
-      role="group"
-      aria-label={titulo}
-      hidden={abierto !== id}
-    >
+    <div id={idPanel(id)} className="cp-vivo-panel" hidden={abierto !== id}>
       <div
         style={{
           display: 'flex',
@@ -156,10 +166,10 @@ export function Vivo() {
   const separador = <span className="cp-vivo-sep" aria-hidden />
 
   return (
-    <div className="cp-vivo" ref={envoltorio} onKeyDown={onKeyDown}>
+    <div className="cp-vivo" ref={envoltorio}>
       <style>{estiloVivo}</style>
       <div className="cp-vivo-tira" data-vivo-tira>
-        {weather &&
+        {hayClima &&
           chip(
             'clima',
             'vivo.clima.aria',
@@ -184,9 +194,8 @@ export function Vivo() {
             </>,
           )}
 
-        {air && aqi && weather && separador}
-        {air &&
-          aqi &&
+        {hayAire && hayClima && separador}
+        {hayAire &&
           chip(
             'aire',
             'vivo.aire.aria',
@@ -211,7 +220,7 @@ export function Vivo() {
             </>,
           )}
 
-        {metro && (weather || air) && separador}
+        {metro && (hayClima || hayAire) && separador}
         {metro &&
           chip(
             'metro',
@@ -253,7 +262,7 @@ export function Vivo() {
 
       {/* Los paneles son HERMANOS de la tira, no descendientes: es lo que hace
           que se vean. Siguen en el DOM cerrados, que es el patrón de la APG. */}
-      {weather &&
+      {hayClima &&
         panel(
           'clima',
           `${emoji} ${wmoLabel}`,
@@ -288,8 +297,7 @@ export function Vivo() {
           'Open-Meteo · actualizado cada 10 min',
         )}
 
-      {air &&
-        aqi &&
+      {hayAire &&
         panel(
           'aire',
           `${t('vivo.aire.titulo')} · ${aqi.label}`,
@@ -332,6 +340,36 @@ export function Vivo() {
             <Fila k="Faltan" v={metro.minutesAway === 0 ? 'ahora' : `${metro.minutesAway} min`} />
             <Fila k="Sentido" v={`Hacia ${metro.heading || 'València'}`} />
             <Fila k="Estación" v={`${metro.stationName} (terminus)`} />
+            <Fila k="Fuente" v="FGV · fgv.es" />
+            {/* Las tres cosas de abajo venían del panel viejo y estaban
+                publicadas. Se mudan con la tira en vez de caerse por el camino:
+                el aviso del mapa sigue siendo verdad —las estaciones de L9 se
+                pulsan— y el enlace es lo único que permite ir al horario oficial
+                cuando el pie dice «confirma en fgv.es». */}
+            <div
+              style={{
+                marginTop: 6,
+                padding: '6px 8px',
+                background: '#FFF7E6',
+                border: '1px solid #F3D9A8',
+                borderRadius: 'var(--r-input)',
+                fontSize: 'var(--fs-micro)',
+                color: '#7C4A00',
+              }}
+            >
+              Pulsa cualquier estación de L9 en el mapa para ver los próximos trenes en ambos
+              sentidos.
+            </div>
+            <div style={{ marginTop: 10 }}>
+              <a
+                href="https://www.metrovalencia.es"
+                target="_blank"
+                rel="noreferrer"
+                style={{ fontSize: 'var(--fs-meta)', color: PALETTE.civic }}
+              >
+                Ver horario oficial →
+              </a>
+            </div>
           </>,
           fuenteDelHorario(metro),
         )}

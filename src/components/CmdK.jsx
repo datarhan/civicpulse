@@ -16,10 +16,11 @@ import { usePlenoFindings } from '../hooks/usePlenoFindings'
  *
  * Antes estaban los cuatro en el cuerpo de `CmdK`, y los hooks corren aunque el
  * componente devuelva null: con el panel cerrado ya se habían descargado
- * officials, promises, quejas y `pleno-findings.json` —274 KB—. Mientras el
- * buscador sólo vivía dentro del shell eso era una factura repartida entre
- * páginas; montarlo también en la portada la habría puesto en la PRIMERA
- * pantalla del sitio, que es exactamente lo que no se quería.
+ * officials, promises, quejas y `pleno-findings.json`, que es de largo el más
+ * gordo de los cuatro. Mientras el buscador sólo vivía dentro del shell eso era
+ * una factura repartida entre páginas; montarlo también en la portada la habría
+ * puesto en la PRIMERA pantalla del sitio, que es exactamente lo que no se
+ * quería.
  */
 export function CmdK({ open, onClose, onOpen }) {
   const abridor = useRef(null)

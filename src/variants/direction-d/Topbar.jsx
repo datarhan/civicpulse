@@ -89,7 +89,12 @@ function Header({ now }) {
         type="button"
         className="cp-topbar-search"
         onClick={abrirBuscador}
-        aria-label={t('topbar.search.aria')}
+        // El nombre accesible es el MISMO texto que se ve (WCAG 2.5.3): con un
+        // «Buscar» a secas, quien dicta por voz lo que lee en pantalla no
+        // acierta. Y hace falta la etiqueta, no basta el contenido: por debajo
+        // de 720px `index.css` esconde la pista y el «⌘K», así que sin ella el
+        // botón se quedaría sin nombre en el móvil.
+        aria-label={t('topbar.search')}
         aria-keyshortcuts="Meta+K Control+K"
         style={{
           display: 'flex',

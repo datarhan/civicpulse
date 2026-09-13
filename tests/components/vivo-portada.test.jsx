@@ -124,9 +124,31 @@ describe('Vivo — el detalle de la cabecera', () => {
     render(<Vivo />)
     const clima = await chip('vivo.clima.aria')
     fireEvent.click(clima)
+    // Pinchar un botón en un navegador LO ENFOCA; `fireEvent.click` no mueve el
+    // foco, así que aquí se enfoca a mano. Sin esto la prueba estaría midiendo
+    // una situación que en pantalla no ocurre.
+    clima.focus()
     fireEvent.keyDown(panelDe(clima), { key: 'Escape' })
     expect(clima).toHaveAttribute('aria-expanded', 'false')
     expect(document.activeElement).toBe(clima)
+  })
+
+  it('Escape cierra aunque el foco se haya quedado en el body', async () => {
+    // El defecto que esto fija, y que no veía ninguna prueba: con un `onKeyDown`
+    // de React en el envoltorio, la tecla sólo llega si el evento BURBUJEA desde
+    // el nodo enfocado. Quien abre el detalle y pincha su texto —un div, no
+    // enfocable— deja el foco en el body, que no cuelga del envoltorio, así que
+    // Escape no cerraba nada. En Safari es peor: un clic no enfoca al botón, y
+    // entonces no cerraba ni abriendo y pulsando Escape. El oyente va en
+    // `document`, como el de la barra de secciones.
+    render(<Vivo />)
+    const clima = await chip('vivo.clima.aria')
+    fireEvent.click(clima)
+    clima.blur()
+    expect(document.activeElement).toBe(document.body)
+    fireEvent.keyDown(document, { key: 'Escape' })
+    expect(clima).toHaveAttribute('aria-expanded', 'false')
+    expect(panelDe(clima)).not.toBeVisible()
   })
 
   it('el detalle del aire trae su serie de PM₂.₅', async () => {
@@ -148,5 +170,19 @@ describe('Vivo — el detalle de la cabecera', () => {
     await chip('vivo.metro.aria')
     expect(screen.queryByText(/0°/)).toBeNull()
     expect(screen.queryByRole('button', { name: CATALOGUE.es['vivo.clima.aria'] })).toBeNull()
+  })
+
+  it('un 200 con el cuerpo vacío tampoco pinta chip: un «°» a secas no es una medición', async () => {
+    // Un fallo no es lo único que deja sin dato. Los hooks devuelven `data: null`
+    // ante un error, pero ante un 200 con un cuerpo bien formado y SIN lectura
+    // —un renombre en la API, que Open-Meteo ya hizo una vez con `current`, o un
+    // intermediario que contesta «{}»— dejan todos los campos a `null`, y el
+    // chip pintaba «🌤 °» y «AQI – —» como si fueran medidas. Un centinela no es
+    // un valor. El propio banco de pruebas ya recorría este camino sin mirarlo.
+    globalThis.fetch = vi.fn(async () => new Response('{}', { status: 200 }))
+    render(<Vivo />)
+    await chip('vivo.metro.aria')
+    expect(screen.queryByRole('button', { name: CATALOGUE.es['vivo.clima.aria'] })).toBeNull()
+    expect(screen.queryByRole('button', { name: CATALOGUE.es['vivo.aire.aria'] })).toBeNull()
   })
 })
