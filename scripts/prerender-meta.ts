@@ -73,10 +73,12 @@ function main(): void {
   // El título y la descripción del sitio salen del propio HTML, no de una
   // constante paralela: si alguien los cambia en `index.html`, esto los sigue.
   const tituloSitio = /<title>([\s\S]*?)<\/title>/.exec(plantilla)?.[1]?.trim() ?? 'CivicPulse'
-  // Se toma la de `og:description`, NO la de `name="description"`. Las dos
-  // existen y no dicen lo mismo, y la que ya viajaba en las tarjetas es la
-  // primera: leer la otra habría cambiado la ficha de la portada sin que nadie
-  // lo pidiera, que es reescribir prosa publicada de tapadillo.
+  // Se toma la de `og:description`, que es la que viaja en las tarjetas. Hoy
+  // las tres etiquetas dicen lo mismo —el one-liner de docs/DESCRIPCION.md, y
+  // `tests/metaetiquetas.test.js` lo exige—, así que la elección no cambia nada;
+  // si algún día se separan, manda la de las tarjetas. Cuando SÍ decían cosas
+  // distintas, leer la otra habría reescrito la ficha de la portada sin que
+  // nadie lo pidiera, que es cambiar prosa publicada de tapadillo.
   const descripcionSitio =
     /<meta[^>]*property="og:description"[^>]*content="([^"]*)"/.exec(plantilla)?.[1]?.trim() ??
     /<meta[^>]*name="description"[^>]*content="([^"]*)"/.exec(plantilla)?.[1]?.trim() ??
