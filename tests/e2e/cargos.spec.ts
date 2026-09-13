@@ -428,12 +428,17 @@ test.describe('Cargos (/cargos)', () => {
       name: CATALOGUE.es['cargos.detalle.quejas.title'],
     })
     await expect(seccion).toBeVisible({ timeout: 8000 })
-    const texto = await seccion.innerText()
+    // La región se pinta antes de que llegue la instantánea de quejas, así que
+    // la espera va en la aserción POSITIVA, que reintenta. Leer el texto de una
+    // vez y exigir «aquí no hay cifras» se cumple solo mientras carga — y desde
+    // que CmdK dejó de traerse quejas.json en todas las rutas, esa ventana es
+    // más ancha: antes la portada y las fichas heredaban su descarga.
     if (c!.r.medible) {
-      expect(texto).toMatch(new RegExp(`silencios\\s*${c!.r.silencios}`, 'i'))
-      expect(texto).toMatch(new RegExp(`pendientes\\s*${c!.r.pendientes}`, 'i'))
+      await expect(seccion).toContainText(new RegExp(`silencios\\s*${c!.r.silencios}`, 'i'))
+      await expect(seccion).toContainText(new RegExp(`pendientes\\s*${c!.r.pendientes}`, 'i'))
     } else {
-      expect(texto).toContain(CATALOGUE.es[`quejas.reloj.${c!.r.motivo}`])
+      await expect(seccion).toContainText(CATALOGUE.es[`quejas.reloj.${c!.r.motivo}`])
+      const texto = await seccion.innerText()
       for (const cifra of [/resueltas\s*\d/i, /pendientes\s*\d/i, /silencios\s*\d/i]) {
         expect(texto).not.toMatch(cifra)
       }
@@ -452,12 +457,12 @@ test.describe('Cargos (/cargos)', () => {
       .filter({ has: page.locator(`a[href="/cargos/${c!.slug}"]`) })
       .first()
     await expect(tarjeta).toBeVisible({ timeout: 8000 })
-    const texto = await tarjeta.innerText()
+    // Igual que arriba: la tarjeta existe antes que su distintivo de quejas.
     if (c!.r.medible) {
-      expect(texto).toMatch(new RegExp(`⏳\\s*${c!.r.pendientes}`))
+      await expect(tarjeta).toContainText(new RegExp(`⏳\\s*${c!.r.pendientes}`))
     } else {
-      expect(texto).toContain(CATALOGUE.es[`quejas.reloj.${c!.r.motivo}.corto`])
-      expect(texto).not.toMatch(/[✓⏳⚠]\s*\d/)
+      await expect(tarjeta).toContainText(CATALOGUE.es[`quejas.reloj.${c!.r.motivo}.corto`])
+      expect(await tarjeta.innerText()).not.toMatch(/[✓⏳⚠]\s*\d/)
     }
   })
 

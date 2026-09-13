@@ -4,6 +4,7 @@ import { Sidebar } from './components/Sidebar'
 import { entradaNavActiva } from './nav'
 import { Topbar } from './components/Topbar'
 import { CmdK } from './components/CmdK'
+import { AbrirBuscador } from './lib/buscador'
 import { TweaksPanel, TweaksButton } from './components/TweaksPanel'
 import { SkipLink } from './components/SkipLink'
 import { useHashScroll } from './hooks/useHashScroll'
@@ -237,9 +238,17 @@ export default function App() {
     return (
       <>
         <SkipLink />
-        <Suspense fallback={<Loading />}>
-          <DirectionD />
-        </Suspense>
+        {/* El buscador se monta AQUÍ, en la rama de la portada, y quien lo abre
+            viaja por contexto: `<DirectionD />` tiene que seguir sin atributos
+            porque `tests/route-graph-portada.test.ts` lee de esta rama cuál es
+            el módulo de la portada, y de ahí salen las rutas de la revisión
+            lectora. Cerrado no descarga nada: los hooks viven en el panel. */}
+        <AbrirBuscador.Provider value={() => setCmdK(true)}>
+          <Suspense fallback={<Loading />}>
+            <DirectionD />
+          </Suspense>
+        </AbrirBuscador.Provider>
+        <CmdK open={cmdK} onOpen={() => setCmdK(true)} onClose={() => setCmdK(false)} />
       </>
     )
   }

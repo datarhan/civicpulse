@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test'
+import { STACK_BREAKPOINT } from '../../src/variants/direction-d/tokens'
 
 /**
  * The landing's responsive contract.
@@ -17,8 +18,12 @@ import { test, expect } from '@playwright/test'
 /** Both panes must remain usable, so measure both — not just the document. */
 const WIDTHS = [1440, 1280, 1024, 900, 820, 768, 600, 430, 375]
 
-/** Below this the panes stack (kept in sync with STACK_BREAKPOINT). */
-const STACK_BELOW = 1024
+/**
+ * Below this the panes stack. IMPORTED, not copied: «kept in sync» was a promise
+ * this file could not keep, and a constant restated beside a comment saying so
+ * is the shape this repo has already had to throw away twice.
+ */
+const STACK_BELOW = STACK_BREAKPOINT
 
 async function measure(page: import('@playwright/test').Page) {
   return page.evaluate(() => {

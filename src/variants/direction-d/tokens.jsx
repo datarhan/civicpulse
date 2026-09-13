@@ -2,6 +2,18 @@ import { useEffect, useState } from 'react'
 
 const RIBA_ROJA_CENTER = [39.5439, -0.5711]
 
+/**
+ * Por debajo de este ancho el armazón de dos paneles deja de funcionar y la
+ * portada se apila — y, con ella, la cabecera se envuelve en varias filas.
+ *
+ * Vive aquí, con los tokens, y no en DirectionD, porque lo necesitan también
+ * las hojas `*.css.js` de la portada: importarlo de DirectionD cerraría un
+ * ciclo (DirectionD → Topbar → Vivo → vivo.css.js → DirectionD), y copiar el
+ * 1024 a mano en cada hoja es la constante repetida que este repo ya ha pagado
+ * dos veces. DirectionD lo reexporta para quien lo importaba de allí.
+ */
+const STACK_BREAKPOINT = 1024
+
 const SERIF = "'Fraunces', Georgia, serif"
 const SANS = "'Outfit', system-ui, -apple-system, sans-serif"
 const MONO = "'DM Mono', ui-monospace, monospace"
@@ -73,4 +85,15 @@ function useClock(intervalMs = 30000) {
 // el mismo parámetro de arranque, para que no puedan discrepar.
 const BOT_QUEJAS = 'https://t.me/munigraph_bot?start=landing'
 
-export { RIBA_ROJA_CENTER, SERIF, SANS, MONO, PALETTE, BOT_QUEJAS, fmtClock, fmtDateLong, useClock }
+export {
+  RIBA_ROJA_CENTER,
+  SERIF,
+  SANS,
+  MONO,
+  PALETTE,
+  BOT_QUEJAS,
+  STACK_BREAKPOINT,
+  fmtClock,
+  fmtDateLong,
+  useClock,
+}

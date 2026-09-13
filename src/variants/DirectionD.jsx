@@ -1,6 +1,6 @@
 import StylizedMap from '../components/LiveCity/StylizedMap'
 import LiveTicker from '../components/LiveTicker'
-import { RIBA_ROJA_CENTER, PALETTE, SANS, useClock } from './direction-d/tokens'
+import { RIBA_ROJA_CENTER, PALETTE, SANS, STACK_BREAKPOINT, useClock } from './direction-d/tokens'
 import { Header } from './direction-d/Topbar'
 import { BarraSecciones } from './direction-d/BarraSecciones'
 import { EventTicker } from './direction-d/MapOverlays'
@@ -8,8 +8,13 @@ import { EditorialColumn } from './direction-d/EditorialColumn'
 import { KpiStrip } from './direction-d/KpiStrip'
 import { useT } from '../i18n'
 
-/** Below this width the side-by-side shell stops working and the panes stack. */
-export const STACK_BREAKPOINT = 1024
+/*
+ * `STACK_BREAKPOINT` —el ancho por debajo del cual los dos paneles se apilan—
+ * vive en `tokens` porque lo necesitan también las hojas `*.css.js` de la
+ * portada, y de aquí no podrían importarlo sin cerrar un ciclo. Aquí sólo se usa
+ * en la consulta de medios de más abajo: no se reexporta, porque nadie lo
+ * importaba de este módulo.
+ */
 
 export default function DirectionD() {
   const now = useClock(60000)
@@ -68,14 +73,14 @@ export default function DirectionD() {
         .d-shell { height: 100vh; display: flex; flex-direction: column; }
         /*
           Por encima de la barra de secciones (2), que va a su vez por encima
-          del mapa: lo que cuelga de esta cabecera tiene que caer sobre la
-          barra y no por debajo. (Hoy lo único que cuelga, el detalle del
-          tiempo, el aire y el metro, no se ve en ningún caso: lo recorta el
-          overflow-x de su propia tira, .cp-livestrip. Es anterior a la barra.)
+          del mapa: lo que cuelga de esta cabecera tiene que caer sobre la barra
+          y no por debajo. Y ahora cuelga de verdad: el detalle del tiempo, el
+          aire y el metro se pinta. Quien lo recortaba era el overflow-x de su
+          propia tira, y el panel ya no cuelga de ella — el porqué y el cambio
+          de ancla en estrecho están en vivo.css.js.
         */
         .d-topbar { height: 54px; position: relative; z-index: 3; }
         .d-brand { min-width: 0; }
-        .cp-livestrip { overflow-x: auto; -webkit-overflow-scrolling: touch; }
         .d-root { flex: 1; display: flex; min-height: 0; }
         .d-kpi { height: 76px; }
         .d-kpi-cell { flex: 1; min-width: 0; }
@@ -112,15 +117,18 @@ export default function DirectionD() {
              the x-axis is not an escape hatch either; per CSS Overflow §3 a
              visible axis paired with a clipped one computes to auto. Overflow
              is contained at its own sources instead: the map pane clips the
-             ticker, the live strip, the section bar and the KPI strip scroll
-             themselves. */
+             ticker, and the live strip, the section bar and the KPI strip each
+             scroll themselves — the first of those from vivo.css.js, which is
+             where that rule lives now. (Sin comillas invertidas aquí dentro:
+             esto vive en la plantilla que sostiene estas reglas, y una las
+             cierra. La guarda de tests/css-en-literal.test.js sólo descubre las
+             hojas *.css.js, así que a este bloque sólo lo cubre la build.) */
           .d-shell { height: auto; min-height: 100vh; }
           .d-topbar {
             height: auto; min-height: 54px;
             flex-wrap: wrap; padding: 8px 14px; row-gap: 8px; column-gap: 12px;
           }
           .d-brand { flex-wrap: wrap; }
-          .cp-livestrip { max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
           .d-root { flex-direction: column; min-height: 0; }
           .d-main { flex-direction: column; }
           /* Enough map to be a map, not so much that it buries the column. */
