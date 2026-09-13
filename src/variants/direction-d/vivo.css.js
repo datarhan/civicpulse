@@ -91,6 +91,16 @@ export const estiloVivo = `
   background: ${PALETTE.paper};
   box-shadow: 0 12px 32px rgba(11, 15, 25, 0.12);
   font-family: ${SANS};
+  /* La portada de escritorio es un shell de 100vh: no desplaza el documento, así
+     que un panel más alto que la ventana no se alcanza NUNCA. Con las tres
+     secciones dentro mide 871 px medidos en una ventana de 900, y la última —el
+     metro— se quedaba fuera de la pantalla: igual de inalcanzable que cuando el
+     detalle no se pintaba, que es el defecto del que sale todo esto. Se desplaza
+     por dentro. El descuento son la cabecera (54) más el hueco del ancla (8) más
+     aire para no pegarlo al borde. */
+  max-height: calc(100vh - 84px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .cp-vivo-fuente {
@@ -114,8 +124,23 @@ export const estiloVivo = `
   .cp-vivo-panel {
     left: 14px;
     right: 14px;
-    max-width: none;
+    /* Con las dos anclas puestas y sin tope, el panel se estiraba de lado a lado
+       de la cabecera: medido, 872 px de losa en una ventana de 900. Anclarlo a la
+       cabecera hacía falta para que a 375 no se saliera, no para convertirlo en
+       una franja. El tope lo corta, y el margen automático de la izquierda
+       resuelve la sobrerrestricción pegándolo al borde derecho, que es donde está
+       el chip. A 375 el hueco disponible (347) ya es menor que el tope, así que
+       ahí no cambia nada y sigue cabiendo entero.
+
+       (Y sí: la primera versión de este comentario citaba la propiedad entre
+       acentos invertidos y cerró el literal a media hoja. Lo dice el encabezado
+       de este fichero, cuatro líneas de nada más arriba.) */
+    max-width: 380px;
+    margin-left: auto;
     min-width: 0;
+    /* Aquí el ancla es la cabecera, y envuelta mide 116 px medidos a 375: el tope
+       tiene que descontar eso o el panel se vuelve a salir por abajo. */
+    max-height: calc(100vh - 150px);
   }
 }
 `

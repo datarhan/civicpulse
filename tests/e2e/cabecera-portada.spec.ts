@@ -15,11 +15,53 @@ import { STACK_BREAKPOINT } from '../../src/variants/direction-d/tokens'
  * recortado CONSERVA su rectángulo, así que medirlo habría dado verde sobre un
  * panel invisible. Lo que se pregunta es qué hay pintado en ese píxel.
  *
- * El chip elegido es el del metro, y no el del tiempo, a propósito: su horario
- * es cálculo puro, sin red, así que esta prueba no depende de que Open-Meteo
- * conteste desde el runner.
+ * Ya no hay que elegir qué chip anclar: la cabecera tiene UNO —«Hoy»— con el
+ * tiempo, el aire y el metro dentro. Y se pinta aunque Open-Meteo no conteste
+ * desde el runner, porque el metro no depende de la red: su horario es cálculo
+ * puro, y sin temperatura el chip se compone con su propia cadena en vez de
+ * dejar el hueco escrito.
  */
-const CHIP_METRO = CATALOGUE.es['vivo.metro.aria']
+const CHIP_HOY = CATALOGUE.es['vivo.hoy.aria']
+
+/**
+ * Open-Meteo servido DESDE la prueba.
+ *
+ * Sin esto el runner no llega a la red, el chip se queda sólo con el metro y el
+ * panel mide una sección de 329 px: «el pie lo pinta el panel» se cumplía por ser
+ * corto, no por estar bien. Con las tres secciones mide 871 px en una ventana de
+ * 900 —medido en el navegador— y sin tope se salía de la pantalla, con la sección
+ * del metro inalcanzable. O sea que la prueba pasaba justo donde el defecto vivía.
+ */
+const CLIMA = {
+  current: {
+    temperature_2m: 21.4,
+    apparent_temperature: 20.8,
+    weather_code: 2,
+    relative_humidity_2m: 54,
+    wind_speed_10m: 12.2,
+  },
+  daily: {
+    temperature_2m_min: [14.1, 13.2],
+    temperature_2m_max: [26.3, 25.1],
+    precipitation_probability_max: [10],
+    sunrise: ['2026-09-14T07:41'],
+    sunset: ['2026-09-14T20:29'],
+  },
+}
+const AIRE = {
+  current: { european_aqi: 24, pm2_5: 7.1, pm10: 12.4, nitrogen_dioxide: 8.2, ozone: 61.3 },
+  hourly: { pm2_5: Array.from({ length: 30 }, (_, i) => 5 + (i % 4)) },
+}
+
+async function sirveElTiempo(page: import('@playwright/test').Page) {
+  await page.route(/open-meteo\.com/, (route) =>
+    route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: JSON.stringify(route.request().url().includes('air-quality') ? AIRE : CLIMA),
+    }),
+  )
+}
 
 /** Qué está pintado en el pie del panel: el panel mismo, o quien lo recorta. */
 async function quienPintaElPie(page: import('@playwright/test').Page, idPanel: string) {
@@ -41,8 +83,11 @@ async function quienPintaElPie(page: import('@playwright/test').Page, idPanel: s
 
 test.describe('Cabecera de la portada', () => {
   test('el detalle del chip se pinta, y no lo recorta la tira', async ({ page }) => {
+    // Con las tres secciones dentro, que es el panel de verdad: con una sola, el
+    // pie cae tan arriba que esta prueba pasaría aunque el panel se saliera.
+    await sirveElTiempo(page)
     await page.goto('/', { waitUntil: 'domcontentloaded' })
-    const chip = page.getByRole('button', { name: CHIP_METRO })
+    const chip = page.getByRole('button', { name: CHIP_HOY })
     await expect(chip).toBeVisible({ timeout: 8000 })
     const idPanel = await chip.getAttribute('aria-controls')
     // Sin el `String()` de antes: envolver un `null` daba la cadena «null», que
@@ -66,11 +111,62 @@ test.describe('Cabecera de la portada', () => {
     ).toBe(true)
   })
 
+  test('con las tres secciones el panel cabe en la ventana', async ({ page }) => {
+    // El defecto que esto fija: la portada de escritorio es un shell de 100vh y no
+    // desplaza el documento, así que un panel más alto que la ventana no se
+    // alcanza. Medido antes del tope: 871 px de panel en 900 de ventana, con la
+    // sección del metro fuera de la pantalla.
+    await sirveElTiempo(page)
+    await page.goto('/', { waitUntil: 'domcontentloaded' })
+    const chip = page.getByRole('button', { name: CHIP_HOY })
+    await expect(chip).toBeVisible({ timeout: 8000 })
+    await chip.click()
+    const idPanel = await chip.getAttribute('aria-controls')
+    expect(idPanel).not.toBeNull()
+
+    // Que estén las TRES: con menos, el panel es corto y esto no mide nada.
+    await expect(page.locator(`#${idPanel} [role="group"]`)).toHaveCount(3)
+
+    const m = await page.evaluate((id) => {
+      const p = document.getElementById(id as string)
+      if (!p) return null
+      const b = p.getBoundingClientRect()
+      return {
+        fondo: Math.round(b.bottom),
+        ventana: window.innerHeight,
+        visible: Math.round(p.clientHeight),
+        contenido: Math.round(p.scrollHeight),
+        desbordeY: getComputedStyle(p).overflowY,
+      }
+    }, idPanel)
+    expect(m).not.toBeNull()
+    expect(m!.fondo, 'el panel se sale por abajo de la ventana').toBeLessThanOrEqual(m!.ventana + 1)
+    // Y lo que no cabe se alcanza desplazando DENTRO del panel. Se mira el
+    // `overflow-y` CALCULADO, no la aritmética: comparar contenido con hueco
+    // visible es una tautología —o cabe, o no cabe— y no puede fallar nunca, que
+    // es precisamente la clase de aserción decorativa que este PR ha arreglado ya
+    // dos veces. Recortado sin desplazamiento sería contenido publicado e
+    // inalcanzable, que es el defecto del que sale todo esto.
+    if (m!.contenido > m!.visible + 1) {
+      expect(
+        ['auto', 'scroll'].includes(m!.desbordeY),
+        `el panel recorta ${m!.contenido - m!.visible}px sin forma de llegar a ellos (overflow-y: ${m!.desbordeY})`,
+      ).toBe(true)
+    }
+    // Y que la comprobación de arriba haya tenido algo que comprobar: si el panel
+    // cupiera entero, no diría nada del recorte, así que se exige que las tres
+    // secciones sumen más que el hueco visible a esta altura de ventana.
+    expect(
+      m!.contenido,
+      'el panel ya no desborda: esta prueba dejó de medir el recorte',
+    ).toBeGreaterThan(m!.visible + 1)
+  })
+
   test('abrir el detalle no ensancha el documento', async ({ page }) => {
     for (const ancho of [1440, STACK_BREAKPOINT - 124, 375]) {
       await page.setViewportSize({ width: ancho, height: 900 })
       await page.goto('/', { waitUntil: 'domcontentloaded' })
-      const chip = page.getByRole('button', { name: CHIP_METRO })
+      const chip = page.getByRole('button', { name: CHIP_HOY })
       await expect(chip).toBeVisible({ timeout: 8000 })
       await chip.click()
       const medida = await page.evaluate(() => ({
@@ -88,7 +184,7 @@ test.describe('Cabecera de la portada', () => {
     // filas, el panel se salía por un lado. En estrecho se ancla a la cabecera.
     await page.setViewportSize({ width: 375, height: 812 })
     await page.goto('/', { waitUntil: 'domcontentloaded' })
-    const chip = page.getByRole('button', { name: CHIP_METRO })
+    const chip = page.getByRole('button', { name: CHIP_HOY })
     await expect(chip).toBeVisible({ timeout: 8000 })
     await chip.click()
     const idPanel = String(await chip.getAttribute('aria-controls'))
@@ -103,7 +199,7 @@ test.describe('Cabecera de la portada', () => {
 
   test('Escape cierra el detalle y el foco se queda en el chip', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' })
-    const chip = page.getByRole('button', { name: CHIP_METRO })
+    const chip = page.getByRole('button', { name: CHIP_HOY })
     await expect(chip).toBeVisible({ timeout: 8000 })
     await chip.click()
     const idPanel = String(await chip.getAttribute('aria-controls'))
@@ -112,7 +208,7 @@ test.describe('Cabecera de la portada', () => {
     const enfocado = await page.evaluate(
       () => document.activeElement?.getAttribute('aria-label') ?? null,
     )
-    expect(enfocado).toBe(CHIP_METRO)
+    expect(enfocado).toBe(CHIP_HOY)
   })
 
   test('el buscador de la portada abre con el botón y con el atajo', async ({ page }) => {

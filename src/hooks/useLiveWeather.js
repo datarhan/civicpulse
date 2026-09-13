@@ -27,33 +27,42 @@ const URL =
 
 const REFRESH_MS = 10 * 60 * 1000
 
-/** WMO weather codes → emoji + short Spanish label. Not exhaustive; unknown
- *  codes fall back to the catch-all sun+cloud icon. */
+/**
+ * WMO weather codes → emoji + CATALOGUE KEY. Not exhaustive; unknown codes fall
+ * back to the catch-all sun+cloud icon and `vivo.wmo.variable`.
+ *
+ * Las etiquetas vivían aquí escritas en castellano, así que la portada en
+ * valencià las pintaba en castellano también: el catálogo sólo traduce lo que
+ * pasa por él, y estas cadenas nunca entraron. Ahora se devuelve la clave y
+ * traduce quien pinta. Las claves son `vivo.wmo.<código>`, sin hueco ninguno,
+ * para poder buscarlas por código.
+ */
 const WMO = {
-  0: ['☀️', 'Despejado'],
-  1: ['🌤', 'Mayormente despejado'],
-  2: ['⛅', 'Parcialmente nublado'],
-  3: ['☁️', 'Nublado'],
-  45: ['🌫', 'Niebla'],
-  48: ['🌫', 'Niebla helada'],
-  51: ['🌦', 'Llovizna ligera'],
-  53: ['🌦', 'Llovizna'],
-  55: ['🌧', 'Llovizna intensa'],
-  61: ['🌦', 'Lluvia ligera'],
-  63: ['🌧', 'Lluvia'],
-  65: ['🌧', 'Lluvia intensa'],
-  71: ['🌨', 'Nieve ligera'],
-  73: ['🌨', 'Nieve'],
-  75: ['❄️', 'Nieve intensa'],
-  80: ['🌦', 'Chubascos'],
-  81: ['🌧', 'Chubascos fuertes'],
-  82: ['⛈', 'Aguacero violento'],
-  95: ['⛈', 'Tormenta'],
-  96: ['⛈', 'Tormenta con granizo'],
+  0: ['☀️', 'vivo.wmo.0'],
+  1: ['🌤', 'vivo.wmo.1'],
+  2: ['⛅', 'vivo.wmo.2'],
+  3: ['☁️', 'vivo.wmo.3'],
+  45: ['🌫', 'vivo.wmo.45'],
+  48: ['🌫', 'vivo.wmo.48'],
+  51: ['🌦', 'vivo.wmo.51'],
+  53: ['🌦', 'vivo.wmo.53'],
+  55: ['🌧', 'vivo.wmo.55'],
+  61: ['🌦', 'vivo.wmo.61'],
+  63: ['🌧', 'vivo.wmo.63'],
+  65: ['🌧', 'vivo.wmo.65'],
+  71: ['🌨', 'vivo.wmo.71'],
+  73: ['🌨', 'vivo.wmo.73'],
+  75: ['❄️', 'vivo.wmo.75'],
+  80: ['🌦', 'vivo.wmo.80'],
+  81: ['🌧', 'vivo.wmo.81'],
+  82: ['⛈', 'vivo.wmo.82'],
+  95: ['⛈', 'vivo.wmo.95'],
+  96: ['⛈', 'vivo.wmo.96'],
 }
 
+/** @returns {[string, string]} emoji y clave de catálogo, nunca una frase. */
 export function describeWmo(code) {
-  return WMO[code] || ['🌤', 'Variable']
+  return WMO[code] || ['🌤', 'vivo.wmo.variable']
 }
 
 export function useLiveWeather() {

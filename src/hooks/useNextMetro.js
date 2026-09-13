@@ -319,7 +319,10 @@ export function useNextMetro() {
     minutesAway: minsAway,
     afterMidnight: next.afterMidnight,
     scheduleValidUntil: SCHEDULE.validUntil,
-    scheduleSource: 'FGV · fgv.es (schedule transcribed)',
+    // En castellano porque ahora se PINTA: la cabecera nombra la fuente del
+    // horario que publica, y desde que puede ser el GTFS o esta tabla, decir
+    // cuál es deja de ser un detalle interno.
+    scheduleSource: 'FGV · fgv.es (horario transcrito)',
     departureLabel: fmtHHMM(next.at),
     heading: 'València',
   }
