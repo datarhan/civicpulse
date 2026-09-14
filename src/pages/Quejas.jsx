@@ -17,7 +17,8 @@ import { useSindicExpedientes } from '../hooks/useSindicExpedientes'
 import QuejasHeatmap from '../components/QuejasHeatmap'
 import QuejasSpendOverlap from '../components/Quejas/QuejasSpendOverlap'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
-import { fmtDateShort } from '../lib/formatters'
+import { fmtDateShort, porcentajeLegible } from '../lib/formatters'
+import { medibilidad, registroUtilizable } from '../lib/reloj-lpacap'
 import { useT } from '../i18n'
 
 const TELEGRAM_BOT_URL = 'https://t.me/munigraph_bot'
@@ -808,8 +809,10 @@ function EmptyState() {
           <p>
             Esta página publica el feed agregado — categoría, barrio, plazo legal y estado —{' '}
             <strong>nunca identifica al vecino</strong>. Las quejas con 10 apoyos vecinales entran
-            en el lote semanal al Registro Electrónico del Ayuntamiento. Si el Ayuntamiento no
-            responde en 3 meses, escalamos al Síndic de Greuges de la Comunitat Valenciana.
+            en un lote que una persona que modera el canal presenta en el registro electrónico del
+            ayuntamiento. Desde ese registro corre el plazo para responder: tres meses con carácter
+            general, un mes si es una petición de transparencia. Si vence sin respuesta, puede
+            prepararse la plantilla para acudir al Síndic de Greuges de la Comunitat Valenciana.
           </p>
         </div>
       </Card>
@@ -954,6 +957,7 @@ function StatCard({ label, value, tone = 'neutral', sub }) {
 }
 
 function DashboardView({ data }) {
+  const t = useT()
   const items = data.items || []
   const stats = data.stats || { total: 0, byState: {}, byNeighborhood: {}, byCategory: {} }
 
@@ -965,13 +969,17 @@ function DashboardView({ data }) {
     (stats.byState.registrada || 0) +
     (stats.byState.notificada_10d || 0) +
     (stats.byState.en_tramite || 0)
-  const resolucionPct = stats.total > 0 ? Math.round((resueltas / stats.total) * 100) : 0
 
-  // The LPACAP clock only starts once a queja is registered in sede. Until then
-  // "silencios: 0" is arithmetic, not municipal performance — it cannot be
-  // anything else — yet it reads as "nobody has been left unanswered". Show the
-  // metric only when at least one queja could actually have breached the plazo.
-  const conRelojEnMarcha = items.filter((q) => q.registered_at).length
+  // Resueltas y silencios son respuestas del ayuntamiento, y sólo puede darlas
+  // —o callar— desde que la queja entra en su registro. La regla vive en
+  // lib/reloj-lpacap y la usan /cargos, los barrios y /departamentos. Aquí había
+  // una copia que contaba `registered_at` sin mirar si el listado estaba entero,
+  // y las resueltas se dividían entre TODAS las quejas: «0% del total» antes de
+  // que el ayuntamiento hubiera recibido ninguna.
+  const reloj = medibilidad(data, () => true)
+  const registradas = items.filter((q) => registroUtilizable(q.registered_at)).length
+  const sobreRegistradas = `sobre ${registradas} registrada${registradas === 1 ? '' : 's'}`
+  const motivo = reloj.medible ? null : t(`quejas.reloj.${reloj.motivo}.corto`)
 
   const sortedCats = Object.entries(stats.byCategory || {})
     .sort((a, b) => b[1] - a[1])
@@ -995,9 +1003,13 @@ function DashboardView({ data }) {
         <StatCard label="Total quejas" value={stats.total} sub="desde el inicio del canal" />
         <StatCard
           label="Resueltas"
-          value={resueltas}
-          tone="ok"
-          sub={`${resolucionPct}% del total`}
+          value={reloj.medible ? resueltas : '—'}
+          tone={reloj.medible ? 'ok' : 'ghost'}
+          sub={
+            reloj.medible
+              ? `${porcentajeLegible(resueltas, registradas)}% · ${sobreRegistradas}`
+              : motivo
+          }
         />
         <StatCard
           label="Pendientes"
@@ -1007,13 +1019,9 @@ function DashboardView({ data }) {
         />
         <StatCard
           label="Silencios + escaladas"
-          value={conRelojEnMarcha === 0 ? '—' : silencios}
-          tone={conRelojEnMarcha === 0 ? 'ghost' : 'warn'}
-          sub={
-            conRelojEnMarcha === 0
-              ? 'ninguna queja registrada en sede todavía'
-              : `>plazo LPACAP · sobre ${conRelojEnMarcha} registrada${conRelojEnMarcha === 1 ? '' : 's'}`
-          }
+          value={reloj.medible ? silencios : '—'}
+          tone={reloj.medible ? 'warn' : 'ghost'}
+          sub={reloj.medible ? `>plazo LPACAP · ${sobreRegistradas}` : motivo}
         />
       </div>
       {/* Lo que explica el «—» de ahí arriba, dicho donde se lee: el plazo no

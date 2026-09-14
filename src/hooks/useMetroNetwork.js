@@ -14,8 +14,13 @@ export function useMetroNetwork() {
   return useJsonFetch('/data/metro-network.json')
 }
 
-/** Map helpers — given the network payload, return a { "L1": "#…" } lookup. */
+/**
+ * Map helpers — given the network payload, return a { "L1": "#…" } lookup.
+ *
+ * @returns {Record<string, string>}
+ */
 export function indexLineColors(data) {
+  /** @type {Record<string, string>} */
   const out = {}
   for (const l of data?.lines || []) out[l.ref] = l.color
   return out

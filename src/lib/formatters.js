@@ -190,3 +190,21 @@ export function safeHref(url) {
 export function rellena(plantilla, vars = {}) {
   return Object.entries(vars).reduce((s, [k, v]) => s.split(`{${k}}`).join(String(v)), plantilla)
 }
+
+/**
+ * Un porcentaje para leer: lo que no es cero no se escribe «0», ni lo que no
+ * llega al total «100». Con 2 declaraciones de 1.005 la ficha de urbanismo decía
+ * «0%», y quien lee concluye que no hay ninguna. Devuelve la cifra sin el signo;
+ * sin total no hay proporción, y eso es `null`, no un cero.
+ *
+ * @param {number} parte
+ * @param {number} total
+ * @returns {string | null}
+ */
+export function porcentajeLegible(parte, total) {
+  if (!(total > 0)) return null
+  const bruto = (parte / total) * 100
+  if (bruto > 0 && bruto < 1) return '<1'
+  if (bruto > 99 && bruto < 100) return '>99'
+  return String(Math.round(bruto))
+}

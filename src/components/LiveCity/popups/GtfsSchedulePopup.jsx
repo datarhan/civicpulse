@@ -1,10 +1,14 @@
 // @ts-check
+import { useT } from '../../../i18n'
 import { readableInk } from '../../../lib/contrast'
+import { rellena } from '../../../lib/formatters'
+import { pieDelHorario, vigenciaDe } from '../../../lib/metro-portada'
 
 /** Render the station popup using real FGV GTFS data. At the Riba-roja
  *  terminus we hide the inbound-arrival row (it's just trains pulling
  *  into the terminus, not a boardable departure). */
-export function GtfsSchedulePopup({ gtfs, match, name }) {
+export function GtfsSchedulePopup({ gtfs, match, name, ahora = new Date() }) {
+  const t = useT()
   const isTerminus = match?.kind === 'l9' && match.station.terminus
   const station = match?.station
   const lineColor = match?.kind === 'other' ? station.lineBadgeBg : '#A47E52'
@@ -13,11 +17,18 @@ export function GtfsSchedulePopup({ gtfs, match, name }) {
     : gtfs.departures
   // Group by line for the badge.
   const lines = [...new Set(departures.map((d) => d.line))]
-  // Honesty: metro-schedule.json's validThrough can lie in the past (FGV hasn't
-  // republished). Don't claim "válido hasta" a date that has already passed —
-  // present it as a reference year instead.
-  const validDate = gtfs.validThrough ? new Date(gtfs.validThrough) : null
-  const expired = !!validDate && validDate.getTime() < Date.now()
+  // La vigencia la decide `vigenciaDe`, la regla de la portada. Aquí había otra:
+  // `new Date('AAAA-MM-DD')` es la medianoche UTC, así que el último día válido
+  // este globo decía «(referencia)» mientras su padre —que sólo lo pinta en
+  // vigor— y la portada decían que valía.
+  const pie = pieDelHorario(
+    {
+      fuente: 'FGV GTFS',
+      validoHasta: gtfs.validThrough ?? null,
+      vigencia: vigenciaDe(gtfs.validThrough, ahora),
+    },
+    t,
+  )
   return (
     <div style={{ fontFamily: 'Outfit, system-ui, sans-serif', minWidth: 260 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
@@ -57,7 +68,7 @@ export function GtfsSchedulePopup({ gtfs, match, name }) {
               marginLeft: 'auto',
             }}
           >
-            Terminus
+            {t('map.estacion.terminal')}
           </span>
         )}
       </div>
@@ -93,8 +104,7 @@ export function GtfsSchedulePopup({ gtfs, match, name }) {
                 color: '#0B0F19',
               }}
             >
-              {d.label}
-              {d.afterMidnight ? ' (mañana)' : ''}
+              {d.afterMidnight ? rellena(t('vivo.metro.manana'), { hora: d.label }) : d.label}
             </span>
             <span
               style={{
@@ -103,7 +113,9 @@ export function GtfsSchedulePopup({ gtfs, match, name }) {
                 color: '#B45309',
               }}
             >
-              {d.minutesAway === 0 ? 'ahora' : `${d.minutesAway} min`}
+              {d.minutesAway === 0
+                ? t('vivo.hoy.ahora')
+                : rellena(t('vivo.hoy.espera'), { m: d.minutesAway })}
             </span>
           </div>
         ))}
@@ -117,9 +129,7 @@ export function GtfsSchedulePopup({ gtfs, match, name }) {
           letterSpacing: '.04em',
         }}
       >
-        {expired
-          ? `FGV GTFS · horario ${validDate.getFullYear()} (referencia)`
-          : `FGV GTFS · válido hasta ${gtfs.validThrough}`}
+        {pie}
       </div>
       <a
         href="https://www.metrovalencia.es/es/consulta-de-horarios-y-planificador/"
@@ -133,7 +143,7 @@ export function GtfsSchedulePopup({ gtfs, match, name }) {
           textDecoration: 'none',
         }}
       >
-        Ver horario oficial →
+        {t('vivo.metro.oficial')}
       </a>
     </div>
   )

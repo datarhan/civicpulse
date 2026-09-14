@@ -18,6 +18,8 @@ import { render, screen } from '@testing-library/react'
 
 import { StationSchedulePopup } from '../../src/components/LiveCity/popups/StationSchedulePopup'
 import { findMetroStation } from '../../src/hooks/useNextMetro'
+import { LocaleProvider } from '../../src/i18n'
+import { detectorDeCastellano, loQueSeLee } from '../setup/castellano'
 
 const NOMBRE = 'Riba-roja de Túria'
 /** La firma de que se ha pintado el globo del GTFS y no el de la transcripción. */
@@ -102,4 +104,123 @@ describe('el globo de estación elige por vigencia', () => {
     pinta()
     expect(await screen.findByText(FIRMA_GTFS)).toBeInTheDocument()
   })
+})
+
+/**
+ * El globo y la portada dicen lo mismo del mismo horario, y en valencià.
+ *
+ * Tres sitios del globo decidían la vigencia por su cuenta: el del GTFS leía
+ * «AAAA-MM-DD» como la medianoche UTC, y las dos tablas transcritas (L9 y L2)
+ * decían «válido hasta» sin mirar la fecha. Cada instante lleva su desfase, así
+ * que el fichero significa lo mismo en el reloj de Madrid y en el UTC de la CI.
+ */
+describe('el globo dice lo que dice la portada, y en valencià', () => {
+  afterEach(() => {
+    vi.useRealTimers()
+    localStorage.clear()
+  })
+  const alas = (iso) => {
+    vi.useFakeTimers({ shouldAdvanceTime: true })
+    vi.setSystemTime(new Date(iso))
+  }
+  const estacion = (nombre) =>
+    render(
+      <StationSchedulePopup
+        name={nombre}
+        match={findMetroStation(nombre)}
+        rawStation={{ name: nombre }}
+      />,
+    )
+
+  it('el último día de validez, el GTFS dice «válido hasta», no «referencia»', async () => {
+    alas('2026-09-14T12:00:00+02:00')
+    globalThis.fetch = sirveGtfs('2026-09-14')
+    pinta()
+    const pie = await screen.findByText(FIRMA_GTFS)
+    expect(pie.textContent).toContain('válido hasta 2026-09-14')
+    expect(pie.textContent).not.toMatch(/referencia/i)
+  })
+
+  it('la tabla transcrita caducada es REFERENCIA, no «válido hasta»', async () => {
+    alas('2027-01-15T12:00:00+01:00')
+    globalThis.fetch = sirveGtfs('2025-12-31')
+    const { container } = pinta()
+    await vi.waitFor(() => expect(container.textContent).toMatch(/Horario transcrito/))
+    expect(container.textContent).toMatch(/REFERENCIA/)
+    expect(container.textContent).not.toMatch(/válido hasta/i)
+  })
+
+  it('y en vigor sigue diciendo «válido hasta» (el control)', async () => {
+    alas('2026-09-14T12:00:00+02:00')
+    globalThis.fetch = sirveGtfs('2025-12-31')
+    const { container } = pinta()
+    await vi.waitFor(() => expect(container.textContent).toMatch(/Horario transcrito/))
+    expect(container.textContent).toContain('válido hasta 2026-12-31')
+  })
+
+  it('la L2 caducada tampoco se anuncia vigente', async () => {
+    alas('2027-01-15T12:00:00+01:00')
+    globalThis.fetch = sirveGtfs('2025-12-31') // no trae «el-clot»: la L2 va por su tabla
+    const { container } = estacion('El Clot')
+    await vi.waitFor(() => expect(container.textContent).toMatch(/horario aproximado/i))
+    expect(container.textContent).toMatch(/REFERENCIA/)
+    expect(container.textContent).not.toMatch(/válido hasta/i)
+  })
+
+  const { castellanoEn } = detectorDeCastellano([
+    'FGV GTFS',
+    'FGV',
+    'L9',
+    'L2',
+    'min',
+    'fgv.es',
+    'metrovalencia.es',
+    'Metrovalencia',
+    'Adif',
+    'Renfe Cercanías València',
+  ])
+  const RAMAS = [
+    {
+      rama: 'GTFS en vigor',
+      nombre: 'Riba-roja de Túria',
+      validThrough: '2027-06-30',
+      marca: 'FGV GTFS',
+    },
+    {
+      rama: 'tabla transcrita de L9',
+      nombre: 'Riba-roja de Túria',
+      validThrough: '2025-12-31',
+      marca: 'fgv.es',
+    },
+    { rama: 'L2 aproximada', nombre: 'El Clot', validThrough: '2025-12-31', marca: 'L2' },
+    {
+      rama: 'estación de Adif',
+      nombre: 'Estació de Riba-roja',
+      validThrough: '2025-12-31',
+      marca: 'Adif',
+    },
+  ]
+
+  it.each(RAMAS)(
+    '$rama: en valencià no queda castellano',
+    async ({ nombre, validThrough, marca }) => {
+      alas('2026-09-14T12:00:00+02:00')
+      localStorage.setItem('cp:lang', 'ca')
+      globalThis.fetch = sirveGtfs(validThrough)
+      const { container } = render(
+        <LocaleProvider>
+          <StationSchedulePopup
+            name={nombre}
+            match={findMetroStation(nombre)}
+            rawStation={{ name: nombre }}
+          />
+        </LocaleProvider>,
+      )
+      // Pintó SU rama: sin la marca, una rama que no se pintara pasaría sin comparar nada.
+      await vi.waitFor(() => expect(container.textContent).toContain(marca))
+      const texto = loQueSeLee(container).join(' · ')
+      expect(texto.length, 'hay poco texto que leer').toBeGreaterThan(40)
+      expect(castellanoEn(texto)).toEqual([])
+    },
+  )
 })

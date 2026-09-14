@@ -223,7 +223,7 @@ export function DepartamentosBlockD() {
               letterSpacing: '.1em',
             }}
           >
-            Concejalías
+            {t('landing.rendicion.concejalias')}
           </div>
           <div
             className="mono"
@@ -243,7 +243,7 @@ export function DepartamentosBlockD() {
                 letterSpacing: '.1em',
               }}
             >
-              Con responsable
+              {t('landing.rendicion.conResponsable')}
             </div>
             <div
               className="mono"
@@ -264,7 +264,7 @@ export function DepartamentosBlockD() {
                 letterSpacing: '.1em',
               }}
             >
-              Concejales
+              {t('landing.rendicion.concejales')}
             </div>
             <div
               className="mono"

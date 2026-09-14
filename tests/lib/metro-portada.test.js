@@ -20,7 +20,14 @@
  */
 import { describe, expect, it } from 'vitest'
 
-import { estaEnVigor, metroDeLaPortada, VIGENCIA } from '../../src/lib/metro-portada'
+import { CATALOGUE } from '../../src/i18n'
+import {
+  estaEnVigor,
+  metroDeLaPortada,
+  pieDelHorario,
+  vigenciaDe,
+  VIGENCIA,
+} from '../../src/lib/metro-portada'
 
 /** El GTFS tal y como lo devuelve `findNext(slug, now)`. */
 const gtfs = (validThrough, salidas = [{ line: 'L9', heading: 'València' }]) => ({
@@ -265,5 +272,38 @@ describe('metroDeLaPortada · ausencia, no cero', () => {
     expect(r.origen).toBe('gtfs')
     expect(r.vigencia).toBe(VIGENCIA.referencia)
     expect(r.validoHasta).toBeNull()
+  })
+})
+
+/**
+ * Un solo pie de horario para la portada y para el globo de estación del mapa.
+ * El globo decidía la vigencia por su cuenta y escribía su propio pie; aquí se
+ * fija la pieza que comparten, en castellano y con la vigencia ya decidida.
+ */
+describe('un solo pie de horario para la portada y el mapa', () => {
+  const t = (clave) => CATALOGUE.es[clave]
+
+  it('en vigor dice hasta cuándo', () => {
+    const pie = pieDelHorario(
+      { fuente: 'FGV GTFS', validoHasta: '2026-12-31', vigencia: VIGENCIA.enVigor },
+      t,
+    )
+    expect(pie).toBe('FGV GTFS · válido hasta 2026-12-31')
+  })
+
+  it('caducado dice que es referencia, con su año', () => {
+    const pie = pieDelHorario(
+      { fuente: 'FGV GTFS', validoHasta: '2025-12-31', vigencia: VIGENCIA.referencia },
+      t,
+    )
+    expect(pie).toBe('FGV GTFS (2025) · horario de REFERENCIA, no vigente; confirma en fgv.es')
+  })
+
+  it('vigenciaDe pregunta a estaEnVigor: el último día de Madrid todavía vale', () => {
+    expect(vigenciaDe('2026-09-14', new Date('2026-09-14T23:30:00+02:00'))).toBe(VIGENCIA.enVigor)
+    expect(vigenciaDe('2026-09-14', new Date('2026-09-15T00:30:00+02:00'))).toBe(
+      VIGENCIA.referencia,
+    )
+    expect(vigenciaDe(null, new Date('2026-09-14T12:00:00+02:00'))).toBe(VIGENCIA.referencia)
   })
 })

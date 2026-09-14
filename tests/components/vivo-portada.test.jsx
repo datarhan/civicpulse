@@ -23,6 +23,7 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 
 import { Vivo } from '../../src/variants/direction-d/Vivo'
 import { CATALOGUE, LocaleProvider } from '../../src/i18n'
+import { detectorDeCastellano, loQueSeLee, SOLO_CASTELLANO } from '../setup/castellano'
 
 /** Open-Meteo y el horario del metro, servidos por URL y no por ruta exacta:
  *  las dos primeras llevan query, y fijarla aquí ataría la prueba a los
@@ -406,20 +407,6 @@ describe('Vivo — en valencià se lee en valencià', () => {
  * en medio de la página valenciana y la suite sigue en verde.
  */
 describe('Vivo — el panel entero en valencià, sin nada en castellano', () => {
-  /** Lo que el lector recibe de un nodo: sus textos y lo que sólo oye (`aria-label`). */
-  function loQueSeLee(nodo, out = []) {
-    if (nodo.nodeType === 3) {
-      const s = nodo.textContent.trim()
-      if (s) out.push(s)
-      return out
-    }
-    if (nodo.nodeType !== 1) return out
-    const aria = nodo.getAttribute('aria-label')
-    if (aria) out.push(aria)
-    for (const hijo of nodo.childNodes) loQueSeLee(hijo, out)
-    return out
-  }
-
   /**
    * Lo que puede leerse igual en los dos idiomas sin ser un olvido: contenido de
    * dato, que en esta casa se queda en su idioma (CLAUDE.md). Las siglas del
@@ -439,53 +426,9 @@ describe('Vivo — el panel entero en valencià, sin nada en castellano', () => 
     'min',
   ]
 
-  /**
-   * Lo que el catálogo escribe igual en los dos idiomas («Metro», «Aire»): eso sí
-   * pasó por él.
-   *
-   * Y el límite que eso deja, dicho y medido: una traducción valenciana SIN hueco
-   * copiada tal cual del castellano pasa por aquí como si fuera una palabra que
-   * se escribe igual. Con hueco no: «{estacion} (terminus)» copiado se pinta
-   * relleno, deja de ser el valor del catálogo y cae. Cerrarlo del todo pediría
-   * una lista de las palabras que de verdad coinciden, escrita a mano.
-   */
-  const IGUALES_EN_EL_CATALOGO = new Set(
-    Object.keys(CATALOGUE.es)
-      .filter((k) => CATALOGUE.es[k] === CATALOGUE.ca[k])
-      .map((k) => CATALOGUE.es[k]),
-  )
-
-  /** Lo que se lee igual en castellano y en valencià sin ser dato. */
-  function sinTraducir(pares) {
-    return pares
-      .filter(([es, ca]) => es === ca && !IGUALES_EN_EL_CATALOGO.has(es))
-      .map(([es]) => es)
-      .filter((s) => /\p{L}/u.test(NO_SE_TRADUCE.reduce((r, dato) => r.split(dato).join(' '), s)))
-  }
-
-  /** Las palabras de un texto, en minúsculas. */
-  const palabras = (s) => s.toLowerCase().match(/\p{L}+/gu) ?? []
-
-  /**
-   * Las palabras que sólo usa el castellano del catálogo: las de sus cadenas que
-   * no aparecen en ninguna valenciana. Salen del catálogo, así que crecen con él
-   * y nadie tiene que mantenerlas. Las que las dos lenguas comparten —«de»,
-   * «no», «metro»— no están en ella.
-   */
-  const SOLO_CASTELLANO = (() => {
-    const valencianas = new Set(Object.values(CATALOGUE.ca).flatMap((v) => palabras(String(v))))
-    return new Set(
-      Object.values(CATALOGUE.es)
-        .flatMap((v) => palabras(String(v)))
-        .filter((p) => !valencianas.has(p)),
-    )
-  })()
-
-  /** Las palabras castellanas que asoman en un texto, aunque vayan pegadas a otras traducidas. */
-  function castellanoEn(texto) {
-    const resto = NO_SE_TRADUCE.reduce((r, dato) => r.split(dato).join(' '), texto)
-    return [...new Set(palabras(resto).filter((p) => SOLO_CASTELLANO.has(p)))]
-  }
+  // El detector vive en tests/setup/castellano.js, que comparte con el bloque de
+  // rendición de cuentas de la portada; aquí se ata a lo que este panel no traduce.
+  const { sinTraducir, castellanoEn } = detectorDeCastellano(NO_SE_TRADUCE)
 
   /**
    * Cuatro horas, porque hay texto que sólo existe a según qué hora: la espera

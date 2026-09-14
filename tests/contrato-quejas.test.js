@@ -127,4 +127,23 @@ describe('el contrato de las quejas dice lo que hace el código', () => {
     expect(METODOLOGIA).toContain(`${enLetra(transparencia)} mes`)
     expect(QUEJAS).toContain(`${general} meses legales (${transparencia} mes si es transparencia)`)
   })
+
+  it('la tarjeta «Estado» de /quejas no promete un escalado que nadie hace, ni un solo plazo', () => {
+    // `plano()` quita las etiquetas CON sus atributos, así que el título del
+    // SectionHead no sirve de ancla: se ancla en el texto del párrafo y en el
+    // primer paso de «Cómo funciona», que va detrás.
+    const desde = QUEJAS.indexOf('CivicPulse opera su propio canal')
+    const hasta = QUEJAS.indexOf('tu queja al bot', desde)
+    expect(desde, 'no encuentro la tarjeta «Estado»').toBeGreaterThan(-1)
+    expect(hasta, 'no encuentro «Cómo funciona» detrás').toBeGreaterThan(desde)
+    const estado = QUEJAS.slice(desde, hasta)
+    // Mide algo: el trozo es la tarjeta y habla del lote.
+    expect(estado).toContain('lote')
+    expect(estado, 'la plantilla se prepara; nadie escala en nombre del canal').not.toMatch(
+      /escalamos/i,
+    )
+    expect(estado, 'el plazo corre desde el registro').toContain('Desde ese registro')
+    expect(estado).toContain(`${enLetra(meses(DIAS_GENERAL))} meses`)
+    expect(estado).toContain(`${enLetra(meses(DIAS_TRANSPARENCIA))} mes`)
+  })
 })
