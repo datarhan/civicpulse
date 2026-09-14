@@ -328,7 +328,15 @@ function VerdictMixBar({ d }) {
   ]
   const total = segs.reduce((a, s) => a + s.n, 0)
   if (total === 0) return null
-  const pct = Math.round(((d.conEvidencia || 0) / total) * 100)
+  // Una proporción que no es cero no se publica como «0 %», ni una que no es el
+  // total como «100 %». Con 2 declaraciones contrastadas de 1.005 esta barra
+  // decía «0% con evidencia», debajo del nombre de quien dirige el área, y la
+  // revisión lectora leyó —con razón— que no había ninguna. Es el criterio de la
+  // cobertura del gasto situado del mapa (`MoneyCoverage`); un cero de verdad
+  // sigue siendo «0 %».
+  const bruto = ((d.conEvidencia || 0) / total) * 100
+  const pct =
+    bruto > 0 && bruto < 1 ? '<1' : bruto > 99 && bruto < 100 ? '>99' : String(Math.round(bruto))
   const visible = segs.filter((s) => s.n > 0)
   return (
     <div
