@@ -7,7 +7,7 @@ import { METRO_COLOR } from '../../components/LiveCity/shared'
 import { readableInk } from '../../lib/contrast'
 import { useT } from '../../i18n'
 import { rellena } from '../../lib/formatters'
-import { metroDeLaPortada, VIGENCIA } from '../../lib/metro-portada'
+import { metroDeLaPortada, pieDelHorario } from '../../lib/metro-portada'
 import { MONO, PALETTE, SANS } from './tokens'
 import { estiloVivo } from './vivo.css.js'
 
@@ -456,7 +456,16 @@ export function Vivo() {
                   </a>
                 </div>
               </>,
-              fuenteDelHorario(metro, t),
+              // El pie sale de `pieDelHorario`, el mismo del globo de estación del
+              // mapa. «FGV GTFS» no se traduce: es el nombre del feed.
+              pieDelHorario(
+                {
+                  fuente: metro.origen === 'gtfs' ? 'FGV GTFS' : t('vivo.horario.transcrito'),
+                  validoHasta: metro.validoHasta,
+                  vigencia: metro.vigencia,
+                },
+                t,
+              ),
             )}
         </>,
         // El pie del panel ya lo pone cada sección con su fuente: repetirlo aquí
@@ -522,39 +531,6 @@ function Chispa({ values, color, width = 96, height = 18 }) {
       <path d={d} fill="none" stroke={color} strokeWidth="1.4" opacity="0.85" />
     </svg>
   )
-}
-
-/**
- * El pie del horario: qué fuente se está publicando y si está en vigor.
- *
- * Las dos cosas vienen decididas de `metroDeLaPortada` —el origen y la vigencia—
- * y aquí sólo se escriben. Antes esta función daba por hecho que la fuente era
- * siempre la tabla transcrita y recalculaba la caducidad con su propio
- * `Date.now()`: llamaba «horario transcrito» a un feed en cuanto el GTFS podía
- * ganar, y eran dos sitios decidiendo lo mismo.
- *
- * Lo que no cambia es el motivo de fondo: «válido hasta 2025-12-31» impreso en
- * 2026 se lee como la garantía de un horario que caducó hace meses, así que un
- * horario fuera de vigencia se publica diciendo que es de REFERENCIA en vez de
- * citar una fecha ya pasada como si valiera.
- */
-function fuenteDelHorario(metro, t) {
-  // El pie nombra la fuente que se está publicando, no una fija: desde que
-  // `metroDeLaPortada` puede elegir el GTFS, decir «horario transcrito» siempre
-  // era llamar transcripción a un feed. Y la vigencia viene ya decidida por el
-  // selector; recalcularla aquí con otro `Date.now()` serían dos sitios para una
-  // sola regla, que es como en este repo se queda una rancia.
-  //
-  // Y las frases, del catálogo. Esta función no está en el JSX, así que un pase
-  // que sólo mirase los rótulos de fila habría dejado el pie del metro entero en
-  // castellano en la portada valenciana (#19). «FGV GTFS» no se traduce: es el
-  // nombre del feed.
-  const nombre = metro.origen === 'gtfs' ? 'FGV GTFS' : t('vivo.horario.transcrito')
-  if (metro.vigencia === VIGENCIA.referencia) {
-    const año = metro.validoHasta ? ` (${String(metro.validoHasta).slice(0, 4)})` : ''
-    return rellena(t('vivo.horario.referencia'), { fuente: `${nombre}${año}` })
-  }
-  return rellena(t('vivo.horario.valido'), { fuente: nombre, fecha: metro.validoHasta })
 }
 
 function horaLocal(iso) {

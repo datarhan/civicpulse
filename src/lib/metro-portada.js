@@ -36,11 +36,12 @@
  * `+` de las salidas de después de medianoche, como «00:17+»—. Esto sólo elige
  * entre dos respuestas ya hechas.
  *
- * Pendiente de converger: `LiveCity/popups/GtfsSchedulePopup.jsx` decide lo mismo
- * por su cuenta (`expired`, y su propio «horario {año} (referencia)»). Son dos
- * sitios para una sola regla, que es como en este repo se queda una rancia. El
- * mapa es otra superficie con sus propias pruebas, así que la mudanza va aparte.
+ * El globo de estación del mapa pregunta lo mismo: `vigenciaDe` y `pieDelHorario`
+ * viven aquí para que la portada y el mapa no puedan decir dos cosas distintas
+ * del mismo horario. Hasta que se mudaron, el globo del GTFS leía «AAAA-MM-DD»
+ * como la medianoche UTC y las dos tablas transcritas no miraban la fecha.
  */
+import { rellena } from './formatters'
 
 /** En vigor a la hora de mirar, o publicado como referencia declarada. */
 export const VIGENCIA = /** @type {const} */ ({
@@ -135,6 +136,38 @@ export function estaEnVigor(validez, ahora = new Date()) {
 }
 
 /**
+ * La vigencia de una validez a una hora: la pregunta de `estaEnVigor`, con nombre.
+ * La usan la portada (`metroDeLaPortada`) y el globo de estación del mapa.
+ *
+ * @param {string | null | undefined} validez
+ * @param {Date} [ahora]
+ */
+export function vigenciaDe(validez, ahora = new Date()) {
+  return estaEnVigor(validez, ahora) ? VIGENCIA.enVigor : VIGENCIA.referencia
+}
+
+/**
+ * El pie de un horario, el mismo en la portada y en el globo de estación del mapa.
+ *
+ * `fuente` llega ya escrita en el idioma de quien lee: «FGV GTFS» no se traduce
+ * (es el nombre del feed) y la tabla transcrita sí. Un horario fuera de vigencia
+ * se publica diciendo que es de REFERENCIA, con su año, en vez de citar una fecha
+ * ya pasada como si valiera: «válido hasta 2025-12-31» impreso en 2026 se lee
+ * como la garantía de un horario que caducó hace meses.
+ *
+ * @param {{ fuente: string, validoHasta: string | null | undefined, vigencia: string }} horario
+ * @param {(clave: string) => string} t
+ * @returns {string}
+ */
+export function pieDelHorario({ fuente, validoHasta, vigencia }, t) {
+  if (vigencia === VIGENCIA.referencia) {
+    const año = validoHasta ? ` (${String(validoHasta).slice(0, 4)})` : ''
+    return rellena(t('vivo.horario.referencia'), { fuente: `${fuente}${año}` })
+  }
+  return rellena(t('vivo.horario.valido'), { fuente, fecha: validoHasta ?? '' })
+}
+
+/**
  * El GTFS reducido a la salida que la portada publica: L9 hacia València desde
  * el término de Riba-roja. Sin esa dirección no hay fuente — está bien formado y
  * no trae el dato, que es ausencia, no un dato vacío.
@@ -194,6 +227,6 @@ export function metroDeLaPortada({ gtfs, transcripcion, ahora = new Date() }) {
   const { hasta, ...publicable } = elegido
   return {
     ...publicable,
-    vigencia: estaEnVigor(elegido.validoHasta, ahora) ? VIGENCIA.enVigor : VIGENCIA.referencia,
+    vigencia: vigenciaDe(elegido.validoHasta, ahora),
   }
 }

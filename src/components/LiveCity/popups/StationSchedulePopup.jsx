@@ -6,9 +6,12 @@ import { ExtLink } from '../../Primitives'
 import { GTFS_SLUG_BY_NAME, METRO_COLOR } from '../shared'
 import { readableInk } from '../../../lib/contrast'
 import { GtfsSchedulePopup } from './GtfsSchedulePopup'
-import { estaEnVigor } from '../../../lib/metro-portada'
+import { estaEnVigor, pieDelHorario, vigenciaDe } from '../../../lib/metro-portada'
+import { useT } from '../../../i18n'
+import { rellena } from '../../../lib/formatters'
 
 export function StationSchedulePopup({ name, match, rawStation }) {
+  const t = useT()
   // Tick every 30s so the popup stays fresh while open. Cheap — no network.
   const [tick, setTick] = useState(() => Date.now())
   useEffect(() => {
@@ -31,8 +34,19 @@ export function StationSchedulePopup({ name, match, rawStation }) {
   // globo la pregunta, en vez de tener su propia copia.
   const gtfsVigente = gtfs && estaEnVigor(gtfs.validThrough, new Date(tick))
   if (gtfsVigente && gtfs.departures.length > 0 && match) {
-    return <GtfsSchedulePopup gtfs={gtfs} match={match} name={name} />
+    return <GtfsSchedulePopup gtfs={gtfs} match={match} name={name} ahora={new Date(tick)} />
   }
+
+  // Las frases de cada salida, del catálogo del panel «Hoy»: una frase, una
+  // traducción. Antes el globo entero estaba escrito a mano en castellano.
+  /** La hora de una salida; la de después de medianoche dice que es de mañana. */
+  const hora = (dep) =>
+    dep.afterMidnight ? rellena(t('vivo.metro.manana'), { hora: dep.label }) : dep.label
+  /** Cuánto falta: «ahora» o «N min». */
+  const falta = (dep) =>
+    dep.minutesAway === 0
+      ? t('vivo.hoy.ahora')
+      : rellena(t('vivo.hoy.espera'), { m: dep.minutesAway })
 
   if (match?.kind === 'other') {
     // Metrovalencia station on a different line (currently L2). Schedule
@@ -86,8 +100,7 @@ export function StationSchedulePopup({ name, match, rawStation }) {
                     color: '#0B0F19',
                   }}
                 >
-                  {d.label}
-                  {d.afterMidnight ? ' (mañana)' : ''}
+                  {hora(d)}
                 </span>
                 <span
                   style={{
@@ -96,10 +109,10 @@ export function StationSchedulePopup({ name, match, rawStation }) {
                     color: '#B45309',
                   }}
                 >
-                  {d.minutesAway === 0 ? 'ahora' : `${d.minutesAway} min`}
+                  {falta(d)}
                 </span>
                 <span style={{ fontSize: 'var(--fs-micro)', color: 'rgba(11,15,25,.45)' }}>
-                  aprox
+                  {t('map.estacion.aprox')}
                 </span>
               </div>
             ))}
@@ -126,7 +139,7 @@ export function StationSchedulePopup({ name, match, rawStation }) {
                     color: 'rgba(11,15,25,.55)',
                   }}
                 >
-                  ver horario en metrovalencia.es
+                  {t('map.estacion.verEnMetrovalencia')}
                 </span>
               </div>
             ))}
@@ -140,8 +153,11 @@ export function StationSchedulePopup({ name, match, rawStation }) {
           }}
         >
           {sched
-            ? `Línea ${station.line} — horario aproximado (headway ${station.schedule.weekday.intervalMin} min).`
-            : `Línea ${station.line} — Metrovalencia (FGV).`}
+            ? rellena(t('map.estacion.aproximado'), {
+                linea: station.line,
+                min: station.schedule.weekday.intervalMin,
+              })
+            : rellena(t('map.estacion.linea'), { linea: station.line })}
         </div>
         {sched && (
           <div
@@ -153,7 +169,16 @@ export function StationSchedulePopup({ name, match, rawStation }) {
               letterSpacing: '.04em',
             }}
           >
-            Válido hasta {sched.scheduleValidUntil} · confirma en fgv.es
+            {/* La vigencia se pregunta, no se da por hecha: la tabla caduca el
+                2026-12-31 y desde el día siguiente decía «válido hasta» igual. */}
+            {pieDelHorario(
+              {
+                fuente: t('map.estacion.estimacion'),
+                validoHasta: sched.scheduleValidUntil,
+                vigencia: vigenciaDe(sched.scheduleValidUntil, now),
+              },
+              t,
+            )}
           </div>
         )}
         <ExtLink
@@ -166,7 +191,7 @@ export function StationSchedulePopup({ name, match, rawStation }) {
             textDecoration: 'none',
           }}
         >
-          Horario oficial {station.line} →
+          {rellena(t('map.estacion.oficialLinea'), { linea: station.line })}
         </ExtLink>
       </div>
     )
@@ -199,11 +224,10 @@ export function StationSchedulePopup({ name, match, rawStation }) {
         </div>
         <div style={{ borderTop: '1px solid #DCD7C8', paddingTop: 6, fontSize: 'var(--fs-meta)' }}>
           <div style={{ color: 'rgba(11,15,25,.75)', marginBottom: 4 }}>
-            Estación sobre la línea de Adif (ferrocarril convencional). No forma parte de L9
-            Metrovalencia.
+            {t('map.estacion.adif')}
           </div>
           <div style={{ color: 'rgba(11,15,25,.55)', fontSize: 'var(--fs-micro)' }}>
-            {rawStation?.operator || 'Adif · Red convencional'}
+            {rawStation?.operator || t('map.estacion.adifOperador')}
           </div>
         </div>
         <a
@@ -218,7 +242,7 @@ export function StationSchedulePopup({ name, match, rawStation }) {
             textDecoration: 'none',
           }}
         >
-          Horarios Renfe Cercanías València →
+          {t('map.estacion.renfe')}
         </a>
       </div>
     )
@@ -240,16 +264,17 @@ export function StationSchedulePopup({ name, match, rawStation }) {
           color: '#0B0F19',
         }}
       >
-        {dep.label}
-        {dep.afterMidnight ? ' (mañana)' : ''}
+        {hora(dep)}
       </span>
       <span
         style={{ fontFamily: 'DM Mono, monospace', fontSize: 'var(--fs-micro)', color: '#B45309' }}
       >
-        {dep.minutesAway === 0 ? 'ahora' : `${dep.minutesAway} min`}
+        {falta(dep)}
       </span>
       {isApprox && (
-        <span style={{ fontSize: 'var(--fs-micro)', color: 'rgba(11,15,25,.45)' }}>aprox</span>
+        <span style={{ fontSize: 'var(--fs-micro)', color: 'rgba(11,15,25,.45)' }}>
+          {t('map.estacion.aprox')}
+        </span>
       )}
     </div>
   )
@@ -295,7 +320,7 @@ export function StationSchedulePopup({ name, match, rawStation }) {
               marginLeft: 'auto',
             }}
           >
-            Terminus
+            {t('map.estacion.terminal')}
           </span>
         )}
       </div>
@@ -312,7 +337,16 @@ export function StationSchedulePopup({ name, match, rawStation }) {
           letterSpacing: '.04em',
         }}
       >
-        Horario transcrito de fgv.es · válido hasta {sched.scheduleValidUntil}
+        {/* La tabla transcrita también caduca: desde el día siguiente a su fecha
+            este pie decía «válido hasta» igual. Ahora lo pregunta, como la portada. */}
+        {pieDelHorario(
+          {
+            fuente: t('vivo.horario.transcrito'),
+            validoHasta: sched.scheduleValidUntil,
+            vigencia: vigenciaDe(sched.scheduleValidUntil, now),
+          },
+          t,
+        )}
       </div>
       <a
         href="https://www.metrovalencia.es"
@@ -326,7 +360,7 @@ export function StationSchedulePopup({ name, match, rawStation }) {
           textDecoration: 'none',
         }}
       >
-        Ver horario oficial →
+        {t('vivo.metro.oficial')}
       </a>
     </div>
   )
