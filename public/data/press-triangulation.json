@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-13T10:45:16.603Z",
+  "generatedAt": "2026-09-14T08:45:47.093Z",
   "clusters": [
     {
       "clusterId": "1hy1xq8",
@@ -15,17 +15,12 @@
       ],
       "earliestDate": "2026-08-31T07:00:00.000Z",
       "latestDate": "2026-09-01T07:00:00.000Z",
-      "amountDrift": {
-        "min": 40000,
-        "max": 40000,
-        "spread": 0,
-        "spreadPct": 0
-      },
+      "amountDrift": null,
       "verdictMix": {
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 3,
+        "sin-datos": 1,
         "promesa-repetida": 0
       }
     },
@@ -62,27 +57,6 @@
       ],
       "earliestDate": "2026-08-25T06:55:58.000Z",
       "latestDate": "2026-08-25T07:00:00.000Z",
-      "amountDrift": null,
-      "verdictMix": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      }
-    },
-    {
-      "clusterId": "1ato0ec",
-      "articleIds": [
-        "17gleav",
-        "bp13b8"
-      ],
-      "outlets": [
-        "Las Provincias",
-        "Levante-EMV"
-      ],
-      "earliestDate": "2026-08-15T07:00:00.000Z",
-      "latestDate": "2026-08-15T07:00:00.000Z",
       "amountDrift": null,
       "verdictMix": {
         "verificado": 0,
@@ -193,18 +167,18 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 0,
+        "sin-datos": 10,
         "promesa-repetida": 0
       }
     }
   ],
   "stats": {
-    "totalClusters": 9,
+    "totalClusters": 8,
     "triangulated3Plus": 1
   },
   "builtFrom": {
     "plenos-agendas.json": "8cb8a3d9a5a5",
-    "press-claims-verified.json": "b5f74f13740a",
+    "press-claims-verified.json": "02d9ec8cc450",
     "press.json": "9373bbc77f9b",
     "promises.json": "d18811c11210"
   }

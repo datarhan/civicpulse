@@ -1,20 +1,1019 @@
 {
-  "generatedAt": "2026-09-10T08:16:26.528Z",
+  "generatedAt": "2026-09-14T08:30:48.663Z",
   "source": {
     "description": "Press claims verified against municipal data",
     "contract": "src/scraper/press-verifier.ts"
   },
   "stats": {
-    "total": 43,
+    "total": 52,
     "byVerdict": {
-      "verificado": 1,
-      "parcial": 1,
+      "verificado": 0,
+      "parcial": 0,
       "contradicho": 0,
-      "sin-datos": 41,
+      "sin-datos": 52,
       "promesa-repetida": 0
     }
   },
   "items": [
+    {
+      "claim": {
+        "id": "1p0chgo-0-dat",
+        "articleId": "1p0chgo",
+        "articleFingerprint": "zeuxbp",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-con-una-unidad-espec%C3%ADfica-en-centro-ordinario-%28ueco%29-para-el-alumnado-de-secundaria",
+        "articleDate": "2026-09-10T12:00:05.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "La propuesta solicitada por el consistorio y las familias fue finalmente autorizada en periodo extraordinario",
+        "context": "La propuesta solicitada por el consistorio y las familias fue finalmente autorizada en periodo extraordinario 10 de septiembre de 2026. El alumnado de Educación Secundaria de Riba-roja de Túria con NEE comenzará el curso en la UECO habilitada por la Generalitat Valenciana en el IES El Quint.",
+        "topic": "educacion",
+        "entities": {
+          "referencedEntity": "Generalitat Valenciana"
+        },
+        "confidence": 0.6,
+        "reasoning": "Afirma que la propuesta fue autorizada en periodo extraordinario, dato verificable contra resoluciones de la Conselleria de Educación.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1p0chgo-0-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-con-una-unidad-espec%C3%ADfica-en-centro-ordinario-%28ueco%29-para-el-alumnado-de-secundaria",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "zeuxbp"
+      }
+    },
+    {
+      "claim": {
+        "id": "1p0chgo-1-num",
+        "articleId": "1p0chgo",
+        "articleFingerprint": "zeuxbp",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-con-una-unidad-espec%C3%ADfica-en-centro-ordinario-%28ueco%29-para-el-alumnado-de-secundaria",
+        "articleDate": "2026-09-10T12:00:05.000Z",
+        "segmentIndex": 1,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "El aula tendrá capacidad para ocho alumnos",
+        "context": "El aula tendrá capacidad para ocho alumnos (de los cuales se han matriculado 6) y dispondrá de profesionales especializados en Pedagogía Terapéutica, Audición y Lenguaje y un educador en Educación Especial.",
+        "topic": "educacion",
+        "entities": {
+          "count": 8,
+          "countUnit": "alumnos (capacidad del aula UECO)",
+          "referencedEntity": "IES El Quint"
+        },
+        "confidence": 0.85,
+        "reasoning": "Cifra concreta de capacidad del aula, verificable con la Conselleria de Educación o el propio centro.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1p0chgo-1-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-con-una-unidad-espec%C3%ADfica-en-centro-ordinario-%28ueco%29-para-el-alumnado-de-secundaria",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "zeuxbp"
+      }
+    },
+    {
+      "claim": {
+        "id": "1p0chgo-2-num",
+        "articleId": "1p0chgo",
+        "articleFingerprint": "zeuxbp",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-con-una-unidad-espec%C3%ADfica-en-centro-ordinario-%28ueco%29-para-el-alumnado-de-secundaria",
+        "articleDate": "2026-09-10T12:00:05.000Z",
+        "segmentIndex": 2,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "de los cuales se han matriculado 6",
+        "context": "El aula tendrá capacidad para ocho alumnos (de los cuales se han matriculado 6) y dispondrá de profesionales especializados en Pedagogía Terapéutica, Audición y Lenguaje y un educador en Educación Especial.",
+        "topic": "educacion",
+        "entities": {
+          "count": 6,
+          "countUnit": "alumnos matriculados",
+          "referencedEntity": "IES El Quint"
+        },
+        "confidence": 0.85,
+        "reasoning": "Cifra concreta de matriculación inicial, contrastable con los registros del centro.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1p0chgo-2-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-con-una-unidad-espec%C3%ADfica-en-centro-ordinario-%28ueco%29-para-el-alumnado-de-secundaria",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "zeuxbp"
+      }
+    },
+    {
+      "claim": {
+        "id": "1p0chgo-3-dat",
+        "articleId": "1p0chgo",
+        "articleFingerprint": "zeuxbp",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-con-una-unidad-espec%C3%ADfica-en-centro-ordinario-%28ueco%29-para-el-alumnado-de-secundaria",
+        "articleDate": "2026-09-10T12:00:05.000Z",
+        "segmentIndex": 3,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "El listado provisional publicado el 8 de mayo no contemplaba inicialmente ninguna nueva UECO de Secundaria para Riba-roja de Túria",
+        "context": "El listado provisional publicado el 8 de mayo no contemplaba inicialmente ninguna nueva UECO de Secundaria para Riba-roja de Túria, pese a haberse remitido el informe de idoneidad correspondiente. Sin embargo, durante el mes de junio se produjo una revisión de las necesidades de escolarización.",
+        "topic": "educacion",
+        "entities": {
+          "date": "2026-05-08",
+          "referencedEntity": "Riba-roja de Túria"
+        },
+        "confidence": 0.65,
+        "reasoning": "Afirma fecha y contenido de un listado oficial provisional, contrastable con la publicación correspondiente de la Conselleria.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1p0chgo-3-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-con-una-unidad-espec%C3%ADfica-en-centro-ordinario-%28ueco%29-para-el-alumnado-de-secundaria",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "zeuxbp"
+      }
+    },
+    {
+      "claim": {
+        "id": "1p0chgo-4-dat",
+        "articleId": "1p0chgo",
+        "articleFingerprint": "zeuxbp",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-con-una-unidad-espec%C3%ADfica-en-centro-ordinario-%28ueco%29-para-el-alumnado-de-secundaria",
+        "articleDate": "2026-09-10T12:00:05.000Z",
+        "segmentIndex": 4,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "se reunieron el pasado 1 de julio con la directora general de Inclusión Educativa, Xaro Escrig",
+        "context": "Atendiendo esta petición y sensibles a la preocupación de las familias, el alcalde de Riba-roja de Túria y la concejal de Educación se reunieron el pasado 1 de julio con la directora general de Inclusión Educativa, Xaro Escrig, para trasladarle el sentir de las familias.",
+        "topic": "educacion",
+        "entities": {
+          "date": "2026-07-01",
+          "referencedEntity": "Dirección General de Inclusión Educativa"
+        },
+        "confidence": 0.65,
+        "reasoning": "Afirma una reunión concreta en fecha determinada con un cargo de la Generalitat, contrastable mediante agendas institucionales.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1p0chgo-4-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-con-una-unidad-espec%C3%ADfica-en-centro-ordinario-%28ueco%29-para-el-alumnado-de-secundaria",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "zeuxbp"
+      }
+    },
+    {
+      "claim": {
+        "id": "1p0chgo-5-dat",
+        "articleId": "1p0chgo",
+        "articleFingerprint": "zeuxbp",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-con-una-unidad-espec%C3%ADfica-en-centro-ordinario-%28ueco%29-para-el-alumnado-de-secundaria",
+        "articleDate": "2026-09-10T12:00:05.000Z",
+        "segmentIndex": 5,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "municipal",
+        "verbatim": "Desde el Ayuntamiento se han mantenido diversas reuniones en las que se les asesoró respecto a las tramitaciones administrativas con el departamento de Planificación Educativa",
+        "context": "«El contacto con las familias procedentes de las aulas UECO de los CEIP Camp de Túria y Mas d'Escoto, ha sido permanente. Desde el Ayuntamiento se han mantenido diversas reuniones en las que se les asesoró respecto a las tramitaciones administrativas con el departamento de Planificación Educativa», subraya el alcalde de Riba-roja.",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "departamento de Planificación Educativa"
+        },
+        "confidence": 0.5,
+        "reasoning": "Declaración institucional citada sobre reuniones de asesoramiento administrativo, verificable mediante actas o registros municipales.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1p0chgo-5-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-con-una-unidad-espec%C3%ADfica-en-centro-ordinario-%28ueco%29-para-el-alumnado-de-secundaria",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "zeuxbp"
+      }
+    },
+    {
+      "claim": {
+        "id": "1p0chgo-6-pro",
+        "articleId": "1p0chgo",
+        "articleFingerprint": "zeuxbp",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-con-una-unidad-espec%C3%ADfica-en-centro-ordinario-%28ueco%29-para-el-alumnado-de-secundaria",
+        "articleDate": "2026-09-10T12:00:05.000Z",
+        "segmentIndex": 6,
+        "segmentKind": "body",
+        "type": "promesa",
+        "attributedSource": "outlet",
+        "verbatim": "El centro se comprometió a reorganizar y flexibilizar sus recursos para disponer de un aula adecuada",
+        "context": "Finalmente el equipo directivo del IES El Quint trasladó a Inspección su voluntad de acoger la unidad, aun siendo consciente de las dificultades de espacio existentes. El centro se comprometió a reorganizar y flexibilizar sus recursos para disponer de un aula adecuada.",
+        "topic": "educacion",
+        "entities": {
+          "referencedEntity": "IES El Quint"
+        },
+        "confidence": 0.6,
+        "reasoning": "Compromiso institucional concreto de reorganizar recursos para habilitar el aula, contrastable comprobando si el aula quedó operativa.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1p0chgo-6-pro",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "promises"
+        ],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-con-una-unidad-espec%C3%ADfica-en-centro-ordinario-%28ueco%29-para-el-alumnado-de-secundaria",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "zeuxbp"
+      }
+    },
+    {
+      "claim": {
+        "id": "1p0chgo-7-dat",
+        "articleId": "1p0chgo",
+        "articleFingerprint": "zeuxbp",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-con-una-unidad-espec%C3%ADfica-en-centro-ordinario-%28ueco%29-para-el-alumnado-de-secundaria",
+        "articleDate": "2026-09-10T12:00:05.000Z",
+        "segmentIndex": 7,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "facilitaría el acercamiento de alumnado de Riba-roja de Túria, actualmente matriculado en Manises",
+        "context": "la necesidad de garantizar una respuesta educativa inclusiva que evitara que el alumnado tuviera que desplazarse a otros municipios para disponer de este recurso educativo, al mismo tiempo que facilitaría el acercamiento de alumnado de Riba-roja de Túria, actualmente matriculado en Manises.",
+        "topic": "movilidad",
+        "entities": {
+          "referencedEntity": "Manises"
+        },
+        "confidence": 0.6,
+        "reasoning": "Afirma que existe alumnado de Riba-roja actualmente escolarizado en Manises, dato contrastable con registros de escolarización.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1p0chgo-7-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-con-una-unidad-espec%C3%ADfica-en-centro-ordinario-%28ueco%29-para-el-alumnado-de-secundaria",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "zeuxbp"
+      }
+    },
+    {
+      "claim": {
+        "id": "1p0chgo-8-dat",
+        "articleId": "1p0chgo",
+        "articleFingerprint": "zeuxbp",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-con-una-unidad-espec%C3%ADfica-en-centro-ordinario-%28ueco%29-para-el-alumnado-de-secundaria",
+        "articleDate": "2026-09-10T12:00:05.000Z",
+        "segmentIndex": 8,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "a la espera de que la GVA dote las aulas del mobiliario y material informático intrínseco a la dotación de estas aulas",
+        "context": "El Ayuntamiento de Riba-roja de Túria y el IES El Quint están trabajando conjuntamente en preparar la incorporación del alumnado a la espera de que la GVA dote las aulas del mobiliario y material informático intrínseco a la dotación de estas aulas.",
+        "topic": "educacion",
+        "entities": {
+          "referencedEntity": "Generalitat Valenciana (GVA)"
+        },
+        "confidence": 0.55,
+        "reasoning": "Afirma que la GVA aún no ha dotado de mobiliario y material informático el aula, dato verificable en el arranque del curso.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1p0chgo-8-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-con-una-unidad-espec%C3%ADfica-en-centro-ordinario-%28ueco%29-para-el-alumnado-de-secundaria",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "zeuxbp"
+      }
+    },
+    {
+      "claim": {
+        "id": "1p0chgo-9-dat",
+        "articleId": "1p0chgo",
+        "articleFingerprint": "zeuxbp",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-con-una-unidad-espec%C3%ADfica-en-centro-ordinario-%28ueco%29-para-el-alumnado-de-secundaria",
+        "articleDate": "2026-09-10T12:00:05.000Z",
+        "segmentIndex": 9,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "dispondrá de profesionales especializados en Pedagogía Terapéutica, Audición y Lenguaje y un educador en Educación Especial",
+        "context": "El aula tendrá capacidad para ocho alumnos (de los cuales se han matriculado 6) y dispondrá de profesionales especializados en Pedagogía Terapéutica, Audición y Lenguaje y un educador en Educación Especial.",
+        "topic": "educacion",
+        "entities": {
+          "referencedEntity": "IES El Quint"
+        },
+        "confidence": 0.6,
+        "reasoning": "Afirma la dotación de personal especializado concreto, contrastable con la plantilla asignada al centro.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1p0chgo-9-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-con-una-unidad-espec%C3%ADfica-en-centro-ordinario-%28ueco%29-para-el-alumnado-de-secundaria",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "zeuxbp"
+      }
+    },
+    {
+      "claim": {
+        "id": "p99a2g-0-num",
+        "articleId": "p99a2g",
+        "articleFingerprint": "1abth98",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86041-riba-roja-inicia-el-curs-amb-3-375-alumnes-fent-costat-a-les-families-amb-el-bo-torna-al-colle.html",
+        "articleDate": "2026-09-09T14:06:51.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "Un total de 3.375 alumnes i alumnes han començat hui el nou curs escolar en els centres educatius de Riba-roja de Túria.",
+        "context": "Un total de 3.375 alumnes i alumnes han començat hui el nou curs escolar en els centres educatius de Riba-roja de Túria. L'alumnat es distribueix entre la escoleta municipal, els centres d'Educació Infantil i Primària i els instituts d'Educació Secundària del municipi.",
+        "topic": "educacion",
+        "entities": {
+          "count": 3375,
+          "countUnit": "alumnes",
+          "date": "2026-09-09",
+          "referencedEntity": "Riba-roja de Túria"
+        },
+        "confidence": 0.85,
+        "reasoning": "Cifra concreta de alumnado matriculado, contrastable con datos de la Conselleria d'Educació o del propio Ayuntamiento.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "p99a2g-0-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86041-riba-roja-inicia-el-curs-amb-3-375-alumnes-fent-costat-a-les-families-amb-el-bo-torna-al-colle.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "1abth98"
+      }
+    },
+    {
+      "claim": {
+        "id": "p99a2g-1-dat",
+        "articleId": "p99a2g",
+        "articleFingerprint": "1abth98",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86041-riba-roja-inicia-el-curs-amb-3-375-alumnes-fent-costat-a-les-families-amb-el-bo-torna-al-colle.html",
+        "articleDate": "2026-09-09T14:06:51.000Z",
+        "segmentIndex": 1,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "municipal",
+        "verbatim": "El consistori ha destinat 160.000 euros a aquesta iniciativa",
+        "context": "L'Ajuntament de Riba-roja de Túria torna a posar en marxa el Bo Torna al Col·le, una campanya de suport a les famílies desenvolupada en col·laboració amb la Cambra de Comerç de València. El consistori ha destinat 160.000 euros a aquesta iniciativa.",
+        "topic": "educacion",
+        "entities": {
+          "amountEuros": 160000,
+          "referencedEntity": "Ajuntament de Riba-roja de Túria"
+        },
+        "confidence": 0.85,
+        "reasoning": "Importe presupuestario municipal concreto destinado al programa, contrastable en las cuentas o convocatoria del Ayuntamiento.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "p99a2g-1-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86041-riba-roja-inicia-el-curs-amb-3-375-alumnes-fent-costat-a-les-families-amb-el-bo-torna-al-colle.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "1abth98"
+      }
+    },
+    {
+      "claim": {
+        "id": "p99a2g-2-num",
+        "articleId": "p99a2g",
+        "articleFingerprint": "1abth98",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86041-riba-roja-inicia-el-curs-amb-3-375-alumnes-fent-costat-a-les-families-amb-el-bo-torna-al-colle.html",
+        "articleDate": "2026-09-09T14:06:51.000Z",
+        "segmentIndex": 2,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "disposar d'un bo de 65 euros per alumne o alumna",
+        "context": "El consistori ha destinat 160.000 euros a aquesta iniciativa, que permet a les famílies beneficiàries disposar d'un bo de 65 euros per alumne o alumna, amb una aportació de 5 euros per part de la família.",
+        "topic": "educacion",
+        "entities": {
+          "amountEuros": 65,
+          "count": 1,
+          "countUnit": "bo per alumne",
+          "referencedEntity": "Bo Torna al Col·le"
+        },
+        "confidence": 0.85,
+        "reasoning": "Importe exacto del bono por alumno, verificable en las bases de la convocatoria municipal.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "p99a2g-2-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86041-riba-roja-inicia-el-curs-amb-3-375-alumnes-fent-costat-a-les-families-amb-el-bo-torna-al-colle.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "1abth98"
+      }
+    },
+    {
+      "claim": {
+        "id": "p99a2g-3-num",
+        "articleId": "p99a2g",
+        "articleFingerprint": "1abth98",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86041-riba-roja-inicia-el-curs-amb-3-375-alumnes-fent-costat-a-les-families-amb-el-bo-torna-al-colle.html",
+        "articleDate": "2026-09-09T14:06:51.000Z",
+        "segmentIndex": 3,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "amb una aportació de 5 euros per part de la família",
+        "context": "...disposar d'un bo de 65 euros per alumne o alumna, amb una aportació de 5 euros per part de la família.",
+        "topic": "educacion",
+        "entities": {
+          "amountEuros": 5,
+          "referencedEntity": "Bo Torna al Col·le"
+        },
+        "confidence": 0.8,
+        "reasoning": "Importe exacto de la aportación familiar exigida, verificable en las bases de la convocatoria.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "p99a2g-3-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86041-riba-roja-inicia-el-curs-amb-3-375-alumnes-fent-costat-a-les-families-amb-el-bo-torna-al-colle.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "1abth98"
+      }
+    },
+    {
+      "claim": {
+        "id": "p99a2g-4-dat",
+        "articleId": "p99a2g",
+        "articleFingerprint": "1abth98",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86041-riba-roja-inicia-el-curs-amb-3-375-alumnes-fent-costat-a-les-families-amb-el-bo-torna-al-colle.html",
+        "articleDate": "2026-09-09T14:06:51.000Z",
+        "segmentIndex": 4,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "municipal",
+        "verbatim": "El saldo del bo podrà #utilitzar fins al 31 d'octubre en els comerços adherits de Riba-roja de Túria.",
+        "context": "Com a novetat, aquesta edició incorpora un format 100% digital... El saldo del bo podrà #utilitzar fins al 31 d'octubre en els comerços adherits de Riba-roja de Túria.",
+        "topic": "educacion",
+        "entities": {
+          "date": "2026-10-31",
+          "referencedEntity": "Bo Torna al Col·le"
+        },
+        "confidence": 0.8,
+        "reasoning": "Fecha límite administrativa concreta para el uso del bono, contrastable con las bases del programa.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "p99a2g-4-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86041-riba-roja-inicia-el-curs-amb-3-375-alumnes-fent-costat-a-les-families-amb-el-bo-torna-al-colle.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "1abth98"
+      }
+    },
+    {
+      "claim": {
+        "id": "p99a2g-5-con",
+        "articleId": "p99a2g",
+        "articleFingerprint": "1abth98",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86041-riba-roja-inicia-el-curs-amb-3-375-alumnes-fent-costat-a-les-families-amb-el-bo-torna-al-colle.html",
+        "articleDate": "2026-09-09T14:06:51.000Z",
+        "segmentIndex": 5,
+        "segmentKind": "body",
+        "type": "cita_convenio",
+        "attributedSource": "municipal",
+        "verbatim": "una campanya de suport a les famílies desenvolupada en col·laboració amb la Cambra de Comerç de València",
+        "context": "l'Ajuntament de Riba-roja de Túria torna a posar en marxa el Bo Torna al Col·le, una campanya de suport a les famílies desenvolupada en col·laboració amb la Cambra de Comerç de València.",
+        "topic": "educacion",
+        "entities": {
+          "referencedEntity": "Cambra de Comerç de València"
+        },
+        "confidence": 0.7,
+        "reasoning": "Afirma una colaboración institucional formal con la Cambra de Comerç, contrastable mediante el convenio correspondiente.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "p99a2g-5-con",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86041-riba-roja-inicia-el-curs-amb-3-375-alumnes-fent-costat-a-les-families-amb-el-bo-torna-al-colle.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "1abth98"
+      }
+    },
+    {
+      "claim": {
+        "id": "p99a2g-6-dat",
+        "articleId": "p99a2g",
+        "articleFingerprint": "1abth98",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86041-riba-roja-inicia-el-curs-amb-3-375-alumnes-fent-costat-a-les-families-amb-el-bo-torna-al-colle.html",
+        "articleDate": "2026-09-09T14:06:51.000Z",
+        "segmentIndex": 6,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "municipal",
+        "verbatim": "han presentat el projecte educatiu per al curs 2026-2027 centrat en el món de l'art",
+        "context": "L'alcalde i la regidora d'Educació han acompanyat aquest matí la comunitat educativa durant l'inici del curs en el CEIP Cervantes on han presentat el projecte educatiu per al curs 2026-2027 centrat en el món de l'art.",
+        "topic": "educacion",
+        "entities": {
+          "date": "2026-2027",
+          "referencedEntity": "CEIP Cervantes"
+        },
+        "confidence": 0.7,
+        "reasoning": "Afirma la presentación de un proyecto educativo concreto para el curso 2026-2027, verificable con el centro CEIP Cervantes.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "p99a2g-6-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86041-riba-roja-inicia-el-curs-amb-3-375-alumnes-fent-costat-a-les-families-amb-el-bo-torna-al-colle.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "1abth98"
+      }
+    },
+    {
+      "claim": {
+        "id": "p99a2g-7-dat",
+        "articleId": "p99a2g",
+        "articleFingerprint": "1abth98",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86041-riba-roja-inicia-el-curs-amb-3-375-alumnes-fent-costat-a-les-families-amb-el-bo-torna-al-colle.html",
+        "articleDate": "2026-09-09T14:06:51.000Z",
+        "segmentIndex": 7,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "municipal",
+        "verbatim": "aquesta edició incorpora un format 100% digital, de manera que les famílies reben el bo directament per correu electrònic",
+        "context": "Com a novetat, aquesta edició incorpora un format 100% digital, de manera que les famílies reben el bo directament per correu electrònic i poden utilitzar-lo mitjançant un codi QR o a través de l'aplicació habilitada per a la campanya.",
+        "topic": "educacion",
+        "entities": {
+          "referencedEntity": "Bo Torna al Col·le"
+        },
+        "confidence": 0.65,
+        "reasoning": "Describe un cambio operativo concreto (formato 100% digital) que es verificable comprobando el funcionamiento real del programa.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "p99a2g-7-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86041-riba-roja-inicia-el-curs-amb-3-375-alumnes-fent-costat-a-les-families-amb-el-bo-torna-al-colle.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "1abth98"
+      }
+    },
+    {
+      "claim": {
+        "id": "1kho40w-0-num",
+        "articleId": "1kho40w",
+        "articleFingerprint": "aj28vw",
+        "articleSource": "El Periódico de Aquí",
+        "articleSourceHost": "elperiodicodeaqui.com",
+        "articleUrl": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxObTAtLU9UWHNrTkNvWW5icy03TGhpWWlHMTlZNmdsemhBZUk0ZjFjbWczNGMzY1dsX0JydnJwS1NrTW5Pa3BQZnNGYXZvMjMwWVUta3dRamxHd3BSUVFvZVMtUjNiNHB4d2UxSlJiY1BpV2hMLVlmZnpTU210Mzdmd0k2OUc1ZVlvMERMZnRpcWV2WXl5YmxXM1lqbWk0eUo1NTFvSG9UdDF1TFQ3QUc2M2g3aHhBekFDTDJEb2F3c1dZaU0?oc=5",
+        "articleDate": "2026-09-09T13:45:53.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "Riba-roja destina 160.000 euros al Bono Vuelve al Cole para ayudar a las familias con los gastos escolares",
+        "context": "Riba-roja destina 160.000 euros al Bono Vuelve al Cole para ayudar a las familias con los gastos escolares",
+        "topic": "educacion",
+        "entities": {
+          "amountEuros": 160000,
+          "referencedEntity": "Bono Vuelve al Cole"
+        },
+        "confidence": 0.75,
+        "reasoning": "Afirma una cifra presupuestaria concreta (160.000 euros) destinada a un programa municipal, verificable contra las cuentas o acuerdos del Ayuntamiento.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1kho40w-0-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ],
+        "articleUrl": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxObTAtLU9UWHNrTkNvWW5icy03TGhpWWlHMTlZNmdsemhBZUk0ZjFjbWczNGMzY1dsX0JydnJwS1NrTW5Pa3BQZnNGYXZvMjMwWVUta3dRamxHd3BSUVFvZVMtUjNiNHB4d2UxSlJiY1BpV2hMLVlmZnpTU210Mzdmd0k2OUc1ZVlvMERMZnRpcWV2WXl5YmxXM1lqbWk0eUo1NTFvSG9UdDF1TFQ3QUc2M2g3aHhBekFDTDJEb2F3c1dZaU0?oc=5",
+        "articleSource": "El Periódico de Aquí",
+        "articleSourceHost": "elperiodicodeaqui.com",
+        "articleFingerprint": "aj28vw"
+      }
+    },
+    {
+      "claim": {
+        "id": "h2cshb-0-num",
+        "articleId": "h2cshb",
+        "articleFingerprint": "e93t0c",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-escolar-con-3.375-alumnos-apoyando-a-las-familias-un-a%C3%B1o-m%C3%A1s-con-el-bono-vuelve-al-cole",
+        "articleDate": "2026-09-09T12:42:33.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "Un total de 3.375 alumnos y alumnas han comenzado hoy el nuevo curso escolar en los centros educativos de Riba-roja de Túria.",
+        "context": "Un total de 3.375 alumnos y alumnas han comenzado hoy el nuevo curso escolar en los centros educativos de Riba-roja de Túria. El alumnado se distribuye entre la escoleta municipal, los centros de Educación Infantil y Primaria y los institutos de Educación Secundaria del municipio.",
+        "topic": "educacion",
+        "entities": {
+          "count": 3375,
+          "countUnit": "alumnos",
+          "date": "2026-09-09",
+          "referencedEntity": "Riba-roja de Túria"
+        },
+        "confidence": 0.9,
+        "reasoning": "Cifra oficial de alumnado escolarizado en el municipio, contrastable con los datos de matriculación de los centros educativos.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "h2cshb-0-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-escolar-con-3.375-alumnos-apoyando-a-las-familias-un-a%C3%B1o-m%C3%A1s-con-el-bono-vuelve-al-cole",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "e93t0c"
+      }
+    },
+    {
+      "claim": {
+        "id": "h2cshb-1-dat",
+        "articleId": "h2cshb",
+        "articleFingerprint": "e93t0c",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-escolar-con-3.375-alumnos-apoyando-a-las-familias-un-a%C3%B1o-m%C3%A1s-con-el-bono-vuelve-al-cole",
+        "articleDate": "2026-09-09T12:42:33.000Z",
+        "segmentIndex": 1,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "El consistorio ha destinado 160.000 euros a esta iniciativa",
+        "context": "El Ayuntamiento de Riba-roja de Túria vuelve a poner en marcha el Bono Vuelve al Cole... El consistorio ha destinado 160.000 euros a esta iniciativa, que permite a las familias beneficiarias disponer de un bono de 65 euros por alumno o alumna.",
+        "topic": "educacion",
+        "entities": {
+          "amountEuros": 160000,
+          "date": "2026-09-09",
+          "referencedEntity": "Bono Vuelve al Cole"
+        },
+        "confidence": 0.85,
+        "reasoning": "Importe presupuestario municipal asignado a la campaña, verificable en las cuentas o presupuestos del Ayuntamiento.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "h2cshb-1-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-escolar-con-3.375-alumnos-apoyando-a-las-familias-un-a%C3%B1o-m%C3%A1s-con-el-bono-vuelve-al-cole",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "e93t0c"
+      }
+    },
+    {
+      "claim": {
+        "id": "h2cshb-2-num",
+        "articleId": "h2cshb",
+        "articleFingerprint": "e93t0c",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-escolar-con-3.375-alumnos-apoyando-a-las-familias-un-a%C3%B1o-m%C3%A1s-con-el-bono-vuelve-al-cole",
+        "articleDate": "2026-09-09T12:42:33.000Z",
+        "segmentIndex": 2,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "disponer de un bono de 65 euros por alumno o alumna",
+        "context": "El consistorio ha destinado 160.000 euros a esta iniciativa, que permite a las familias beneficiarias disponer de un bono de 65 euros por alumno o alumna, con una aportación de 5 euros por parte de la familia.",
+        "topic": "educacion",
+        "entities": {
+          "amountEuros": 65,
+          "countUnit": "euros por alumno",
+          "referencedEntity": "Bono Vuelve al Cole"
+        },
+        "confidence": 0.85,
+        "reasoning": "Importe concreto del bono por alumno, dato verificable en las bases de la convocatoria.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "h2cshb-2-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-escolar-con-3.375-alumnos-apoyando-a-las-familias-un-a%C3%B1o-m%C3%A1s-con-el-bono-vuelve-al-cole",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "e93t0c"
+      }
+    },
+    {
+      "claim": {
+        "id": "h2cshb-3-num",
+        "articleId": "h2cshb",
+        "articleFingerprint": "e93t0c",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-escolar-con-3.375-alumnos-apoyando-a-las-familias-un-a%C3%B1o-m%C3%A1s-con-el-bono-vuelve-al-cole",
+        "articleDate": "2026-09-09T12:42:33.000Z",
+        "segmentIndex": 3,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "con una aportación de 5 euros por parte de la familia",
+        "context": "que permite a las familias beneficiarias disponer de un bono de 65 euros por alumno o alumna, con una aportación de 5 euros por parte de la familia.",
+        "topic": "educacion",
+        "entities": {
+          "amountEuros": 5,
+          "countUnit": "euros",
+          "referencedEntity": "Bono Vuelve al Cole"
+        },
+        "confidence": 0.85,
+        "reasoning": "Importe de la aportación familiar exigida para acceder al bono, verificable en las bases del programa.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "h2cshb-3-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-escolar-con-3.375-alumnos-apoyando-a-las-familias-un-a%C3%B1o-m%C3%A1s-con-el-bono-vuelve-al-cole",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "e93t0c"
+      }
+    },
+    {
+      "claim": {
+        "id": "h2cshb-4-con",
+        "articleId": "h2cshb",
+        "articleFingerprint": "e93t0c",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-escolar-con-3.375-alumnos-apoyando-a-las-familias-un-a%C3%B1o-m%C3%A1s-con-el-bono-vuelve-al-cole",
+        "articleDate": "2026-09-09T12:42:33.000Z",
+        "segmentIndex": 4,
+        "segmentKind": "body",
+        "type": "cita_convenio",
+        "attributedSource": "outlet",
+        "verbatim": "una campaña de apoyo a las familias desarrollada en colaboración con la Cámara de Comercio de Valencia",
+        "context": "el Ayuntamiento de Riba-roja de Túria vuelve a poner en marcha el Bono Vuelve al Cole, una campaña de apoyo a las familias desarrollada en colaboración con la Cámara de Comercio de Valencia.",
+        "topic": "educacion",
+        "entities": {
+          "referencedEntity": "Cámara de Comercio de Valencia"
+        },
+        "confidence": 0.8,
+        "reasoning": "Referencia a una colaboración institucional concreta, contrastable con la Cámara de Comercio de Valencia.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "h2cshb-4-con",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-escolar-con-3.375-alumnos-apoyando-a-las-familias-un-a%C3%B1o-m%C3%A1s-con-el-bono-vuelve-al-cole",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "e93t0c"
+      }
+    },
+    {
+      "claim": {
+        "id": "h2cshb-5-dat",
+        "articleId": "h2cshb",
+        "articleFingerprint": "e93t0c",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-escolar-con-3.375-alumnos-apoyando-a-las-familias-un-a%C3%B1o-m%C3%A1s-con-el-bono-vuelve-al-cole",
+        "articleDate": "2026-09-09T12:42:33.000Z",
+        "segmentIndex": 5,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "El saldo del bono podrá utilizarse hasta el 31 de octubre en los comercios adheridos de Riba-roja de Túria.",
+        "context": "y pueden utilizarlo mediante un código QR o a través de la aplicación habilitada para la campaña. El saldo del bono podrá utilizarse hasta el 31 de octubre en los comercios adheridos de Riba-roja de Túria.",
+        "topic": "educacion",
+        "entities": {
+          "date": "2026-10-31",
+          "referencedEntity": "Bono Vuelve al Cole"
+        },
+        "confidence": 0.8,
+        "reasoning": "Plazo oficial de vigencia del saldo del bono, comprobable en las bases de la convocatoria.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "h2cshb-5-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-escolar-con-3.375-alumnos-apoyando-a-las-familias-un-a%C3%B1o-m%C3%A1s-con-el-bono-vuelve-al-cole",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "e93t0c"
+      }
+    },
+    {
+      "claim": {
+        "id": "h2cshb-6-dat",
+        "articleId": "h2cshb",
+        "articleFingerprint": "e93t0c",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-escolar-con-3.375-alumnos-apoyando-a-las-familias-un-a%C3%B1o-m%C3%A1s-con-el-bono-vuelve-al-cole",
+        "articleDate": "2026-09-09T12:42:33.000Z",
+        "segmentIndex": 6,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "esta edición incorpora un formato 100 % digital, de manera que las familias reciben el bono directamente por correo electrónico",
+        "context": "Como novedad, esta edición incorpora un formato 100 % digital, de manera que las familias reciben el bono directamente por correo electrónico y pueden utilizarlo mediante un código QR o a través de la aplicación habilitada para la campaña.",
+        "topic": "educacion",
+        "entities": {
+          "referencedEntity": "Bono Vuelve al Cole"
+        },
+        "confidence": 0.6,
+        "reasoning": "Descripción del nuevo funcionamiento digital de la campaña, contrastable comprobando el sistema real de entrega del bono.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "h2cshb-6-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-escolar-con-3.375-alumnos-apoyando-a-las-familias-un-a%C3%B1o-m%C3%A1s-con-el-bono-vuelve-al-cole",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "e93t0c"
+      }
+    },
+    {
+      "claim": {
+        "id": "h2cshb-7-dat",
+        "articleId": "h2cshb",
+        "articleFingerprint": "e93t0c",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-escolar-con-3.375-alumnos-apoyando-a-las-familias-un-a%C3%B1o-m%C3%A1s-con-el-bono-vuelve-al-cole",
+        "articleDate": "2026-09-09T12:42:33.000Z",
+        "segmentIndex": 7,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "han presentado el proyecto educativo para el curso 2026-2027 centrado en el mundo del arte",
+        "context": "han acompañado esta mañana a la comunidad educativa durante el inicio del curso en el CEIP Cervantes donde han presentado el proyecto educativo para el curso 2026-2027 centrado en el mundo del arte.",
+        "topic": "educacion",
+        "entities": {
+          "referencedEntity": "CEIP Cervantes"
+        },
+        "confidence": 0.5,
+        "reasoning": "Presentación de un proyecto educativo específico en un centro concreto, verificable en la programación del CEIP Cervantes.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "h2cshb-7-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-escolar-con-3.375-alumnos-apoyando-a-las-familias-un-a%C3%B1o-m%C3%A1s-con-el-bono-vuelve-al-cole",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "e93t0c"
+      }
+    },
     {
       "claim": {
         "id": "17rvqvc-0-num",
@@ -830,7 +1829,7 @@
         "articleSource": "El Periódico de Aquí",
         "articleSourceHost": "elperiodicodeaqui.com",
         "articleUrl": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOeFZuWE10YkNHY3B1WS02SE54eVJ6amV6T09iMHExMTRnM2x1YllpdXNHemluTFhRMFlEajF5dnhMZTVtMGd4dEJENG41V0p4WFQzeThRcEFJTGdWVEJCak93UTBwWVBaOXh2SEIwcWd1ZVVsb0kxcXBNV1l1RTZTdTJfeWMxbDRFMmZwYTlOQ0V3ZmxpU2xlNGRtUGVPNVlFYUVxbWs1VkctRnhEMHRWRDBLLW5QQ1IyTGpHRnJKa2R1TGlmX1FNWG5PWXlEbVB3TVpiaWR3TGpWRjJaVXc?oc=5",
-        "articleDate": "2026-09-01T10:59:39.000Z",
+        "articleDate": "2026-09-01T07:00:00.000Z",
         "segmentIndex": 0,
         "segmentKind": "title",
         "type": "afirmacion_numerica",
@@ -861,84 +1860,6 @@
         "articleSource": "El Periódico de Aquí",
         "articleSourceHost": "elperiodicodeaqui.com",
         "articleFingerprint": "fkx730"
-      }
-    },
-    {
-      "claim": {
-        "id": "tfe81a-0-num",
-        "articleId": "tfe81a",
-        "articleFingerprint": "1nbr4f4",
-        "articleSource": "Levante-EMV",
-        "articleSourceHost": "levante-emv.com",
-        "articleUrl": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQS3JXeG1kREItVzRYTGctdXN2cmNLR1RENzJkci1FdG9aMnhpTnkyQnh2MXVXWWNvdmZJX09rd3BuRm1ZN2Q4dklJMkYySG9VUTlvcmEzb0NQdENwY3J3Qjh0Q1dXX3ZWLXV3UHBubFY2UE44NWpkeHNvdmV1SlBrUGtYTWRwN3ZqeGptb1pKUTRfSFFUZUUyYXV1RURZTXlqX0FTZnpOM2JxZDRLSkw1c29RQ1pzMlBSMzNUUXdSWHprR3FnSTBDa1pDZ9IB0AFBVV95cUxNTDMwRkw2YmZRRTBjMTByRlJzWWhwZnc5azhsUlRXdjhLR0pDUkxVYUc5TVBJX19zZmhUdjFaSDVLY0RtOWxodS1wcTIwc2tmSkd4X3BuVUs1MFAxVzBwTWpLYmxnZC1QUnY4aDhrNjVndFQtWGhrYjRlMU1Fd0taUE5SM0FGdGR5b25Sc0lKTkU2eTJkS1lobGxwMGV5LWRqRnN0RWZhV2tGVFQtOXkwdndYaXdpRGllOXd3eFFEaHBsb1l2WklrNi1LLXQ5VXJx?oc=5",
-        "articleDate": "2026-09-01T10:16:52.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "title",
-        "type": "afirmacion_numerica",
-        "attributedSource": "outlet",
-        "verbatim": "El Parque Fluvial del Turia recupera la conectividad con cuatro nuevas pasarelas reconstruidas por el Gobierno",
-        "context": "El Parque Fluvial del Turia recupera la conectividad con cuatro nuevas pasarelas reconstruidas por el Gobierno",
-        "topic": "movilidad",
-        "entities": {
-          "count": 4,
-          "countUnit": "pasarelas",
-          "referencedEntity": "Gobierno"
-        },
-        "confidence": 0.5,
-        "reasoning": "El titular afirma una cifra concreta y verificable (cuatro pasarelas reconstruidas) atribuida a una actuación gubernamental, contrastable con fuentes oficiales del proyecto.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "tfe81a-0-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQS3JXeG1kREItVzRYTGctdXN2cmNLR1RENzJkci1FdG9aMnhpTnkyQnh2MXVXWWNvdmZJX09rd3BuRm1ZN2Q4dklJMkYySG9VUTlvcmEzb0NQdENwY3J3Qjh0Q1dXX3ZWLXV3UHBubFY2UE44NWpkeHNvdmV1SlBrUGtYTWRwN3ZqeGptb1pKUTRfSFFUZUUyYXV1RURZTXlqX0FTZnpOM2JxZDRLSkw1c29RQ1pzMlBSMzNUUXdSWHprR3FnSTBDa1pDZ9IB0AFBVV95cUxNTDMwRkw2YmZRRTBjMTByRlJzWWhwZnc5azhsUlRXdjhLR0pDUkxVYUc5TVBJX19zZmhUdjFaSDVLY0RtOWxodS1wcTIwc2tmSkd4X3BuVUs1MFAxVzBwTWpLYmxnZC1QUnY4aDhrNjVndFQtWGhrYjRlMU1Fd0taUE5SM0FGdGR5b25Sc0lKTkU2eTJkS1lobGxwMGV5LWRqRnN0RWZhV2tGVFQtOXkwdndYaXdpRGllOXd3eFFEaHBsb1l2WklrNi1LLXQ5VXJx?oc=5",
-        "articleSource": "Levante-EMV",
-        "articleSourceHost": "levante-emv.com",
-        "articleFingerprint": "1nbr4f4"
-      }
-    },
-    {
-      "claim": {
-        "id": "1lnhg7g-0-num",
-        "articleId": "1lnhg7g",
-        "articleFingerprint": "1hy1xq8",
-        "articleSource": "Levante-EMV",
-        "articleSourceHost": "levante-emv.com",
-        "articleUrl": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPNWpWeDdjLW1XeThCd2Q3LVlsQUg1VnZyNTA1Z0RCb3FSUk1JanFvZ1U2eGs4M3NWQkdZM045UC1ETGNwNlQ0VlhVSlJKZG9lUTZYZ3pTdUZuNkV3TmNFLWEzQmdyV2dmSUljT09QQlQxakZ6V3c2WjViVVJFRWJwbGFlUUEwdW9ueXdIRlNDOUk5TUFBeWg0Z0VSdFd4M1FIVm43eU05TUE3Qkx6UVVKbXRaXzVrOW4wSVZaY3gzYlJSdThsTjExeGRqVWhWcjkwTE000gHYAUFVX3lxTFB1U3JHcGR6dEZWSmc2WlkzSXVqOE5mVjVBck9JS2tsczFJbkRaT3BPdEFwbWdJYXE1UkV2cXVxc21qN19DaGZOc2hia2Y5MHc4T1gxdTFBX1dZanFDR2lXZ21hUzNJa3o2ZEF6cHhxYURoVmhEMC1GMUJqbDFZTWk4UDVWc0lxbjRsQWlfTTgwdUxRUUIwcGc5c05sTXFReUU3c3BBdmdFcTV1ZjdaVHVBeEhCT2lNMGp1VndaMFZSNmxlR3hadk9NT3NJZVpMbnR2Y0tLejZtag?oc=5",
-        "articleDate": "2026-08-31T16:37:16.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "title",
-        "type": "afirmacion_numerica",
-        "attributedSource": "outlet",
-        "verbatim": "El Auditorio de Riba-roja de Túria invierte 40.000 euros en la modernización de sus instalaciones",
-        "context": "Titular publicado por Levante-EMV (31-08-2026) referido al Auditorio de Riba-roja de Túria. No se dispone de cuerpo de artículo adicional para contrastar detalles.",
-        "topic": "cultura",
-        "entities": {
-          "amountEuros": 40000,
-          "referencedEntity": "Auditorio de Riba-roja de Túria"
-        },
-        "confidence": 0.55,
-        "reasoning": "Cifra concreta de inversión (40.000 euros) en una instalación municipal, verificable contra presupuestos o contratos públicos.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1lnhg7g-0-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ],
-        "articleUrl": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPNWpWeDdjLW1XeThCd2Q3LVlsQUg1VnZyNTA1Z0RCb3FSUk1JanFvZ1U2eGs4M3NWQkdZM045UC1ETGNwNlQ0VlhVSlJKZG9lUTZYZ3pTdUZuNkV3TmNFLWEzQmdyV2dmSUljT09QQlQxakZ6V3c2WjViVVJFRWJwbGFlUUEwdW9ueXdIRlNDOUk5TUFBeWg0Z0VSdFd4M1FIVm43eU05TUE3Qkx6UVVKbXRaXzVrOW4wSVZaY3gzYlJSdThsTjExeGRqVWhWcjkwTE000gHYAUFVX3lxTFB1U3JHcGR6dEZWSmc2WlkzSXVqOE5mVjVBck9JS2tsczFJbkRaT3BPdEFwbWdJYXE1UkV2cXVxc21qN19DaGZOc2hia2Y5MHc4T1gxdTFBX1dZanFDR2lXZ21hUzNJa3o2ZEF6cHhxYURoVmhEMC1GMUJqbDFZTWk4UDVWc0lxbjRsQWlfTTgwdUxRUUIwcGc5c05sTXFReUU3c3BBdmdFcTV1ZjdaVHVBeEhCT2lNMGp1VndaMFZSNmxlR3hadk9NT3NJZVpMbnR2Y0tLejZtag?oc=5",
-        "articleSource": "Levante-EMV",
-        "articleSourceHost": "levante-emv.com",
-        "articleFingerprint": "1hy1xq8"
       }
     },
     {
@@ -981,651 +1902,7 @@
         "articleSourceHost": "infoturia.com",
         "articleFingerprint": "1s8fa60"
       }
-    },
-    {
-      "claim": {
-        "id": "1t1ctq4-0-dat",
-        "articleId": "1t1ctq4",
-        "articleFingerprint": "1js11tg",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/el-auditorio-municipal-de-riba-roja-de-t%C3%BAria-invierte-40.000-euros-en-la-modernizaci%C3%B3n-de-sus-instalaciones-y-equipamientos-t%C3%A9cnicos",
-        "articleDate": "2026-08-31T09:04:15.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "title",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "El Auditorio Municipal de Riba-roja de Túria invierte 40.000 euros en la modernización de sus instalaciones y equipamientos técnicos",
-        "context": "El Auditorio Municipal de Riba-roja de Túria invierte 40.000 euros en la modernización de sus instalaciones y equipamientos técnicos",
-        "topic": "cultura",
-        "entities": {
-          "amountEuros": 40000,
-          "referencedEntity": "Auditorio Municipal de Riba-roja de Túria"
-        },
-        "confidence": 0.75,
-        "reasoning": "El titular aporta una cifra concreta (40.000 €) de inversión municipal en un equipamiento público, contrastable con el presupuesto o las actas municipales.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1t1ctq4-0-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/el-auditorio-municipal-de-riba-roja-de-t%C3%BAria-invierte-40.000-euros-en-la-modernizaci%C3%B3n-de-sus-instalaciones-y-equipamientos-t%C3%A9cnicos",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "1js11tg"
-      }
-    },
-    {
-      "claim": {
-        "id": "3jikj8-0-num",
-        "articleId": "3jikj8",
-        "articleFingerprint": "1haxv4s",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-finaliza-las-%C3%BAltimas-actuaciones-de-su-plan-de-sostenibilidad-tur%C3%ADstica-para-reforzar-la-vertebraci%C3%B3n-tur%C3%ADstica-del-municipio",
-        "articleDate": "2026-08-27T11:26:49.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "body",
-        "type": "afirmacion_numerica",
-        "attributedSource": "municipal",
-        "verbatim": "El primero con un presupuesto base de licitación de 774.500 euros",
-        "context": "La actuación de adecuación del Barranc dels Moros se ha estructurado en dos lotes. El primero con un presupuesto base de licitación de 774.500 euros y el segundo, ha contado con un presupuesto de 142.347,15 euros, ambos ejecutados por Becsa.",
-        "topic": "urbanismo",
-        "entities": {
-          "amountEuros": 774500,
-          "referencedEntity": "Barranc dels Moros - Lote 1 (Becsa)"
-        },
-        "confidence": 0.9,
-        "reasoning": "Cifra de licitación pública verificable en el expediente de contratación municipal.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "3jikj8-0-num",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=POJYBO8NDn2cCF8sV%2BqtYA%3D%3D",
-            "snippet": "Obras Adecuación del Barranc dels Moros como itinerario turístico y peatonal (Fase I) de Riba-roja de Túria dividido en dos lotes, en el marco del Plan de Recuperación, Transformación y Resiliencia-  Financiado por la  Unión Europea, Next Generation” · Ayuntamiento de Riba-roja de Túria · construction · 757.725 €",
-            "similarity": 0.63,
-            "stance": "checked"
-          }
-        ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-finaliza-las-%C3%BAltimas-actuaciones-de-su-plan-de-sostenibilidad-tur%C3%ADstica-para-reforzar-la-vertebraci%C3%B3n-tur%C3%ADstica-del-municipio",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "1haxv4s"
-      }
-    },
-    {
-      "claim": {
-        "id": "3jikj8-1-num",
-        "articleId": "3jikj8",
-        "articleFingerprint": "1haxv4s",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-finaliza-las-%C3%BAltimas-actuaciones-de-su-plan-de-sostenibilidad-tur%C3%ADstica-para-reforzar-la-vertebraci%C3%B3n-tur%C3%ADstica-del-municipio",
-        "articleDate": "2026-08-27T11:26:49.000Z",
-        "segmentIndex": 1,
-        "segmentKind": "body",
-        "type": "afirmacion_numerica",
-        "attributedSource": "municipal",
-        "verbatim": "el segundo, ha contado con un presupuesto de 142.347,15 euros, ambos ejecutados por Becsa",
-        "context": "La actuación de adecuación del Barranc dels Moros se ha estructurado en dos lotes. El primero con un presupuesto base de licitación de 774.500 euros y el segundo, ha contado con un presupuesto de 142.347,15 euros, ambos ejecutados por Becsa.",
-        "topic": "urbanismo",
-        "entities": {
-          "amountEuros": 142347.15,
-          "referencedEntity": "Barranc dels Moros - Lote 2 (Becsa)"
-        },
-        "confidence": 0.9,
-        "reasoning": "Cifra de presupuesto de contrato público verificable, con empresa adjudicataria identificada.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "3jikj8-1-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-finaliza-las-%C3%BAltimas-actuaciones-de-su-plan-de-sostenibilidad-tur%C3%ADstica-para-reforzar-la-vertebraci%C3%B3n-tur%C3%ADstica-del-municipio",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "1haxv4s"
-      }
-    },
-    {
-      "claim": {
-        "id": "3jikj8-2-num",
-        "articleId": "3jikj8",
-        "articleFingerprint": "1haxv4s",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-finaliza-las-%C3%BAltimas-actuaciones-de-su-plan-de-sostenibilidad-tur%C3%ADstica-para-reforzar-la-vertebraci%C3%B3n-tur%C3%ADstica-del-municipio",
-        "articleDate": "2026-08-27T11:26:49.000Z",
-        "segmentIndex": 2,
-        "segmentKind": "body",
-        "type": "afirmacion_numerica",
-        "attributedSource": "municipal",
-        "verbatim": "con una inversión de 158.916,51 euros, IVA incluido, ejecutadas por la empresa Nerco Infraestructuras",
-        "context": "También han finalizado las obras de instalación de pérgolas con vegetación autóctona para el fomento de la resiliencia frente al cambio climático, con una inversión de 158.916,51 euros, IVA incluido, ejecutadas por la empresa Nerco Infraestructuras.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "amountEuros": 158916.51,
-          "referencedEntity": "Pérgolas vegetales (Nerco Infraestructuras)"
-        },
-        "confidence": 0.9,
-        "reasoning": "Importe de inversión y contratista identificados, verificable en fuentes de contratación municipal.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "3jikj8-2-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-finaliza-las-%C3%BAltimas-actuaciones-de-su-plan-de-sostenibilidad-tur%C3%ADstica-para-reforzar-la-vertebraci%C3%B3n-tur%C3%ADstica-del-municipio",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "1haxv4s"
-      }
-    },
-    {
-      "claim": {
-        "id": "3jikj8-3-num",
-        "articleId": "3jikj8",
-        "articleFingerprint": "1haxv4s",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-finaliza-las-%C3%BAltimas-actuaciones-de-su-plan-de-sostenibilidad-tur%C3%ADstica-para-reforzar-la-vertebraci%C3%B3n-tur%C3%ADstica-del-municipio",
-        "articleDate": "2026-08-27T11:26:49.000Z",
-        "segmentIndex": 3,
-        "segmentKind": "body",
-        "type": "afirmacion_numerica",
-        "attributedSource": "municipal",
-        "verbatim": "Se han implantado cuatro estructuras situadas en puntos especialmente expuestos al sol",
-        "context": "Se han implantado cuatro estructuras situadas en puntos especialmente expuestos al sol. Las pérgolas están diseñadas para que, una vez crezca la vegetación autóctona enredadera, proporcionen sombra y mayor confort.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "count": 4,
-          "countUnit": "pérgolas/estructuras",
-          "referencedEntity": "Pérgolas vegetales"
-        },
-        "confidence": 0.85,
-        "reasoning": "Cantidad concreta de estructuras instaladas, comprobable mediante inspección física o memoria del proyecto.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "3jikj8-3-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-finaliza-las-%C3%BAltimas-actuaciones-de-su-plan-de-sostenibilidad-tur%C3%ADstica-para-reforzar-la-vertebraci%C3%B3n-tur%C3%ADstica-del-municipio",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "1haxv4s"
-      }
-    },
-    {
-      "claim": {
-        "id": "3jikj8-4-num",
-        "articleId": "3jikj8",
-        "articleFingerprint": "1haxv4s",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-finaliza-las-%C3%BAltimas-actuaciones-de-su-plan-de-sostenibilidad-tur%C3%ADstica-para-reforzar-la-vertebraci%C3%B3n-tur%C3%ADstica-del-municipio",
-        "articleDate": "2026-08-27T11:26:49.000Z",
-        "segmentIndex": 4,
-        "segmentKind": "body",
-        "type": "afirmacion_numerica",
-        "attributedSource": "municipal",
-        "verbatim": "con una inversión de 296.195,90 euros, ejecutada por la empresa Obra Civil i Edificaciones Escrimar",
-        "context": "La tercera actuación recientemente finalizada corresponde al proyecto de \"Mejora del carril bici y la ejecución o mejora de refugios climáticos\", con una inversión de 296.195,90 euros, ejecutada por la empresa Obra Civil i Edificaciones Escrimar.",
-        "topic": "movilidad",
-        "entities": {
-          "amountEuros": 296195.9,
-          "referencedEntity": "Mejora del carril bici y refugios climáticos (Obra Civil i Edificaciones Escrimar)"
-        },
-        "confidence": 0.9,
-        "reasoning": "Importe de inversión y contratista identificados para obra de movilidad, verificable en contratación pública.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "3jikj8-4-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-finaliza-las-%C3%BAltimas-actuaciones-de-su-plan-de-sostenibilidad-tur%C3%ADstica-para-reforzar-la-vertebraci%C3%B3n-tur%C3%ADstica-del-municipio",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "1haxv4s"
-      }
-    },
-    {
-      "claim": {
-        "id": "3jikj8-5-num",
-        "articleId": "3jikj8",
-        "articleFingerprint": "1haxv4s",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-finaliza-las-%C3%BAltimas-actuaciones-de-su-plan-de-sostenibilidad-tur%C3%ADstica-para-reforzar-la-vertebraci%C3%B3n-tur%C3%ADstica-del-municipio",
-        "articleDate": "2026-08-27T11:26:49.000Z",
-        "segmentIndex": 5,
-        "segmentKind": "body",
-        "type": "afirmacion_numerica",
-        "attributedSource": "municipal",
-        "verbatim": "ha incluido un total de 18 intervenciones y una inversión total de 2.112.907 euros en el municipio",
-        "context": "El Plan de Sostenibilidad Turística en Destinos de Riba-roja de Túria ha incluido un total de 18 intervenciones y una inversión total de 2.112.907 euros en el municipio, destinada a impulsar la sostenibilidad turística.",
-        "topic": "urbanismo",
-        "entities": {
-          "amountEuros": 2112907,
-          "count": 18,
-          "countUnit": "actuaciones",
-          "referencedEntity": "Plan de Sostenibilidad Turística en Destinos (PSTD)"
-        },
-        "confidence": 0.9,
-        "reasoning": "Cifra agregada de número de actuaciones e inversión total del plan, contrastable con el expediente del PSTD.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "3jikj8-5-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-finaliza-las-%C3%BAltimas-actuaciones-de-su-plan-de-sostenibilidad-tur%C3%ADstica-para-reforzar-la-vertebraci%C3%B3n-tur%C3%ADstica-del-municipio",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "1haxv4s"
-      }
-    },
-    {
-      "claim": {
-        "id": "3jikj8-6-dat",
-        "articleId": "3jikj8",
-        "articleFingerprint": "1haxv4s",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-finaliza-las-%C3%BAltimas-actuaciones-de-su-plan-de-sostenibilidad-tur%C3%ADstica-para-reforzar-la-vertebraci%C3%B3n-tur%C3%ADstica-del-municipio",
-        "articleDate": "2026-08-27T11:26:49.000Z",
-        "segmentIndex": 6,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "El desarrollo del PSTD ha contado con la colaboración del Ministerio de Industria y Turismo, la Generalitat Valenciana, Turisme Comunitat Valenciana y el Ayuntamiento de Riba-roja de Túria",
-        "context": "El desarrollo del PSTD ha contado con la colaboración del Ministerio de Industria y Turismo, la Generalitat Valenciana, Turisme Comunitat Valenciana y el Ayuntamiento de Riba-roja de Túria.",
-        "topic": "other",
-        "entities": {
-          "referencedEntity": "Ministerio de Industria y Turismo, Generalitat Valenciana, Turisme Comunitat Valenciana, Ayuntamiento de Riba-roja de Túria"
-        },
-        "confidence": 0.75,
-        "reasoning": "Enumeración de instituciones colaboradoras, verificable con convenios o documentación del PSTD.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "3jikj8-6-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-finaliza-las-%C3%BAltimas-actuaciones-de-su-plan-de-sostenibilidad-tur%C3%ADstica-para-reforzar-la-vertebraci%C3%B3n-tur%C3%ADstica-del-municipio",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "1haxv4s"
-      }
-    },
-    {
-      "claim": {
-        "id": "3jikj8-7-dat",
-        "articleId": "3jikj8",
-        "articleFingerprint": "1haxv4s",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-finaliza-las-%C3%BAltimas-actuaciones-de-su-plan-de-sostenibilidad-tur%C3%ADstica-para-reforzar-la-vertebraci%C3%B3n-tur%C3%ADstica-del-municipio",
-        "articleDate": "2026-08-27T11:26:49.000Z",
-        "segmentIndex": 7,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "financiado por la Unión Europea a través de los fondos NextGenerationEU",
-        "context": "Estas actuaciones se desarrollan en el marco del Plan de Recuperación, Transformación y Resiliencia (PRTR), financiado por la Unión Europea a través de los fondos NextGenerationEU.",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "PRTR / NextGenerationEU"
-        },
-        "confidence": 0.8,
-        "reasoning": "Afirmación sobre el origen de la financiación pública, contrastable con la documentación oficial del PRTR.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "3jikj8-7-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-finaliza-las-%C3%BAltimas-actuaciones-de-su-plan-de-sostenibilidad-tur%C3%ADstica-para-reforzar-la-vertebraci%C3%B3n-tur%C3%ADstica-del-municipio",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "1haxv4s"
-      }
-    },
-    {
-      "claim": {
-        "id": "1gwkjpc-0-num",
-        "articleId": "1gwkjpc",
-        "articleFingerprint": "xdgmdo",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85804-riba-roja-finalitza-les-actuacions-del-seu-pla-de-sostenibilitat-turistica.html",
-        "articleDate": "2026-08-27T11:17:54.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "body",
-        "type": "afirmacion_numerica",
-        "attributedSource": "municipal",
-        "verbatim": "amb un pressupost base de licitació de 774.500 euros",
-        "context": "L'actuació s'ha estructurat en dos lots. El primer amb un pressupost base de licitació de 774.500 euros i el segon, ha comptat amb un pressupost de 142.347,15 euros, tots dos executats per Becsa.",
-        "topic": "urbanismo",
-        "entities": {
-          "amountEuros": 774500,
-          "referencedEntity": "Becsa"
-        },
-        "confidence": 0.85,
-        "reasoning": "Cifra de presupuesto de licitación pública, verificable en el expediente de contratación municipal.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1gwkjpc-0-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85804-riba-roja-finalitza-les-actuacions-del-seu-pla-de-sostenibilitat-turistica.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "xdgmdo"
-      }
-    },
-    {
-      "claim": {
-        "id": "1gwkjpc-1-num",
-        "articleId": "1gwkjpc",
-        "articleFingerprint": "xdgmdo",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85804-riba-roja-finalitza-les-actuacions-del-seu-pla-de-sostenibilitat-turistica.html",
-        "articleDate": "2026-08-27T11:17:54.000Z",
-        "segmentIndex": 1,
-        "segmentKind": "body",
-        "type": "afirmacion_numerica",
-        "attributedSource": "municipal",
-        "verbatim": "el segon, ha comptat amb un pressupost de 142.347,15 euros, tots dos executats per Becsa",
-        "context": "L'actuació s'ha estructurat en dos lots. El primer amb un pressupost base de licitació de 774.500 euros i el segon, ha comptat amb un pressupost de 142.347,15 euros, tots dos executats per Becsa.",
-        "topic": "urbanismo",
-        "entities": {
-          "amountEuros": 142347.15,
-          "referencedEntity": "Becsa"
-        },
-        "confidence": 0.85,
-        "reasoning": "Cifra de presupuesto del segundo lote y adjudicataria, contrastable en el registro de contratos públicos.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1gwkjpc-1-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85804-riba-roja-finalitza-les-actuacions-del-seu-pla-de-sostenibilitat-turistica.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "xdgmdo"
-      }
-    },
-    {
-      "claim": {
-        "id": "1gwkjpc-2-num",
-        "articleId": "1gwkjpc",
-        "articleFingerprint": "xdgmdo",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85804-riba-roja-finalitza-les-actuacions-del-seu-pla-de-sostenibilitat-turistica.html",
-        "articleDate": "2026-08-27T11:17:54.000Z",
-        "segmentIndex": 2,
-        "segmentKind": "body",
-        "type": "afirmacion_numerica",
-        "attributedSource": "municipal",
-        "verbatim": "amb una inversió de 158.916,51 euros, IVA inclòs, executades per l'empresa Nerco Infraestructuras",
-        "context": "També han finalitzat les obres d'instal·lació de pèrgoles amb vegetació autòctona per al foment de la resiliència davant del canvi climàtic, amb una inversió de 158.916,51 euros, IVA inclòs, executades per l'empresa Nerco Infraestructuras.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "amountEuros": 158916.51,
-          "referencedEntity": "Nerco Infraestructuras"
-        },
-        "confidence": 0.85,
-        "reasoning": "Importe de inversión y empresa ejecutora contrastables mediante el contrato o factura municipal.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1gwkjpc-2-num",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ujgt5qEIoTA2wEhQbcAqug%3D%3D",
-            "snippet": "Contrato administrativo de obras para la ejecución del proyecto de “Obras de Instalación de pérgolas con vegetación autóctona para fomento de la resiliencia frente al cambio climático, en el marco del Plan de Recuperación, Transformación y Resiliencia financiado por la Unión Europea- Next Generation · Ayuntamiento de Riba-roja de Túria · NERCO INFRAESTRUCTURAS, S.L. · construction · 131.336 €",
-            "similarity": 0.81,
-            "stance": "checked"
-          }
-        ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85804-riba-roja-finalitza-les-actuacions-del-seu-pla-de-sostenibilitat-turistica.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "xdgmdo"
-      }
-    },
-    {
-      "claim": {
-        "id": "1gwkjpc-3-num",
-        "articleId": "1gwkjpc",
-        "articleFingerprint": "xdgmdo",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85804-riba-roja-finalitza-les-actuacions-del-seu-pla-de-sostenibilitat-turistica.html",
-        "articleDate": "2026-08-27T11:17:54.000Z",
-        "segmentIndex": 3,
-        "segmentKind": "body",
-        "type": "afirmacion_numerica",
-        "attributedSource": "municipal",
-        "verbatim": "S'han implantat quatre estructures situades en punts especialment exposats al sol",
-        "context": "amb una inversió de 158.916,51 euros, IVA inclòs, executades per l'empresa Nerco Infraestructuras. S'han implantat quatre estructures situades en punts especialment exposats al sol.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "count": 4,
-          "countUnit": "pèrgoles"
-        },
-        "confidence": 0.8,
-        "reasoning": "Número concreto de estructuras instaladas, verificable in situ o en la memoria del proyecto.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1gwkjpc-3-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85804-riba-roja-finalitza-les-actuacions-del-seu-pla-de-sostenibilitat-turistica.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "xdgmdo"
-      }
-    },
-    {
-      "claim": {
-        "id": "1gwkjpc-4-num",
-        "articleId": "1gwkjpc",
-        "articleFingerprint": "xdgmdo",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85804-riba-roja-finalitza-les-actuacions-del-seu-pla-de-sostenibilitat-turistica.html",
-        "articleDate": "2026-08-27T11:17:54.000Z",
-        "segmentIndex": 4,
-        "segmentKind": "body",
-        "type": "afirmacion_numerica",
-        "attributedSource": "municipal",
-        "verbatim": "amb una inversió de 296.195,90 euros, executada per l'empresa Obra Civil i Edificaciones Escrimar",
-        "context": "La tercera actuació recentment finalitzada correspon al projecte de \"Millora del carril bici i l'execució o millora de refugis climàtics\", amb una inversió de 296.195,90 euros, executada per l'empresa Obra Civil i Edificaciones Escrimar.",
-        "topic": "movilidad",
-        "entities": {
-          "amountEuros": 296195.9,
-          "referencedEntity": "Obra Civil i Edificaciones Escrimar"
-        },
-        "confidence": 0.85,
-        "reasoning": "Importe de inversión y empresa adjudicataria del carril bici, contrastable en el expediente de contratación.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1gwkjpc-4-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85804-riba-roja-finalitza-les-actuacions-del-seu-pla-de-sostenibilitat-turistica.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "xdgmdo"
-      }
-    },
-    {
-      "claim": {
-        "id": "1gwkjpc-5-num",
-        "articleId": "1gwkjpc",
-        "articleFingerprint": "xdgmdo",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85804-riba-roja-finalitza-les-actuacions-del-seu-pla-de-sostenibilitat-turistica.html",
-        "articleDate": "2026-08-27T11:17:54.000Z",
-        "segmentIndex": 5,
-        "segmentKind": "body",
-        "type": "afirmacion_numerica",
-        "attributedSource": "municipal",
-        "verbatim": "ha inclòs un total de 18 intervencions i una inversió total de 2.112.907 euros en el municipi",
-        "context": "El Pla de Sostenibilitat Turística en Destins de Riba-roja de Túria ha inclòs un total de 18 intervencions i una inversió total de 2.112.907 euros en el municipi, destinada a impulsar la sostenibilitat turística...",
-        "topic": "other",
-        "entities": {
-          "amountEuros": 2112907,
-          "count": 18,
-          "countUnit": "actuacions",
-          "referencedEntity": "Pla de Sostenibilitat Turística en Destins (PSTD)"
-        },
-        "confidence": 0.85,
-        "reasoning": "Cifra global de inversión y número de actuaciones del plan, contrastable con las cuentas y convenios del PSTD.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1gwkjpc-5-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85804-riba-roja-finalitza-les-actuacions-del-seu-pla-de-sostenibilitat-turistica.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "xdgmdo"
-      }
-    },
-    {
-      "claim": {
-        "id": "1gwkjpc-6-dat",
-        "articleId": "1gwkjpc",
-        "articleFingerprint": "xdgmdo",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85804-riba-roja-finalitza-les-actuacions-del-seu-pla-de-sostenibilitat-turistica.html",
-        "articleDate": "2026-08-27T11:17:54.000Z",
-        "segmentIndex": 6,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "ha comptat amb la col·laboració del Ministeri d'Indústria i Turisme, la Generalitat Valenciana, Turisme Comunitat Valenciana i l'Ajuntament de Riba-roja de Túria",
-        "context": "El desenvolupament del PSTD ha comptat amb la col·laboració del Ministeri d'Indústria i Turisme, la Generalitat Valenciana, Turisme Comunitat Valenciana i l'Ajuntament de Riba-roja de Túria.",
-        "topic": "other",
-        "entities": {
-          "referencedEntity": "Ministeri d'Indústria i Turisme, Generalitat Valenciana, Turisme Comunitat Valenciana"
-        },
-        "confidence": 0.7,
-        "reasoning": "Afirmación sobre instituciones colaboradoras en el plan, verificable en convenios o documentación oficial del PSTD.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1gwkjpc-6-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85804-riba-roja-finalitza-les-actuacions-del-seu-pla-de-sostenibilitat-turistica.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "xdgmdo"
-      }
     }
   ],
-  "sourceGeneratedAt": "2026-09-10T08:16:23.216Z"
+  "sourceGeneratedAt": "2026-09-14T08:30:30.865Z"
 }

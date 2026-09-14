@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-13T10:45:16.601Z",
+  "generatedAt": "2026-09-14T08:45:47.079Z",
   "windowDays": 30,
   "articles": [
     {
@@ -97,12 +97,12 @@
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
-        "municipalSourceMatch": null,
+        "municipalSourceMatch": false,
         "corroboratedAcrossOutlets": true,
-        "factualClaimsPresent": false,
+        "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 3
+      "score": 5
     },
     {
       "articleId": "1qcfmrw",
@@ -148,12 +148,12 @@
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
-        "municipalSourceMatch": null,
+        "municipalSourceMatch": false,
         "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
+        "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 2
+      "score": 4
     },
     {
       "articleId": "1kho40w",
@@ -165,12 +165,12 @@
       "indicators": {
         "localCoverage": false,
         "datedArticle": true,
-        "municipalSourceMatch": null,
+        "municipalSourceMatch": false,
         "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
+        "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 1
+      "score": 3
     },
     {
       "articleId": "h2cshb",
@@ -182,12 +182,12 @@
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
-        "municipalSourceMatch": null,
+        "municipalSourceMatch": false,
         "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
+        "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 2
+      "score": 4
     },
     {
       "articleId": "jxh8xl",
@@ -437,12 +437,12 @@
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
-        "municipalSourceMatch": false,
+        "municipalSourceMatch": null,
         "corroboratedAcrossOutlets": true,
-        "factualClaimsPresent": true,
+        "factualClaimsPresent": false,
         "opinionFraction": 0
       },
-      "score": 5
+      "score": 3
     },
     {
       "articleId": "1lnhg7g",
@@ -454,12 +454,12 @@
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
-        "municipalSourceMatch": false,
+        "municipalSourceMatch": null,
         "corroboratedAcrossOutlets": true,
-        "factualClaimsPresent": true,
+        "factualClaimsPresent": false,
         "opinionFraction": 0
       },
-      "score": 5
+      "score": 3
     },
     {
       "articleId": "64xnxs",
@@ -573,12 +573,12 @@
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
-        "municipalSourceMatch": true,
+        "municipalSourceMatch": null,
         "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": true,
+        "factualClaimsPresent": false,
         "opinionFraction": 0
       },
-      "score": 5
+      "score": 2
     },
     {
       "articleId": "1gwkjpc",
@@ -590,12 +590,12 @@
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
-        "municipalSourceMatch": true,
+        "municipalSourceMatch": null,
         "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": true,
+        "factualClaimsPresent": false,
         "opinionFraction": 0
       },
-      "score": 5
+      "score": 2
     },
     {
       "articleId": "vxu9zk",
@@ -919,40 +919,6 @@
         "opinionFraction": 0
       },
       "score": 3
-    },
-    {
-      "articleId": "17gleav",
-      "articleFingerprint": "1xd1f7z",
-      "outlet": "Levante-EMV",
-      "outletHost": "levante-emv.com",
-      "url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxNV09VM0VsOFQ2NndmVlNDVFdOMXdJQ3JtZm5KRWdMbWtEdXBpUzlhUml0VGhHbFFuVjNKWFJ2ZmVYeTlpMm5fR2Q2YkREb1RPam9HRHdtYW1hMTYyVGJSZmd5ZUhzNm00UXl3MDlTcEFrSFVnWjU0TDZkbGp6TXpVcnFRR2d6UGZyUXZsTkRCRFdic20tQ1lvVDZFVHJwazBLUUdYNmNoWmFvTUtDVFNQWlVlRW5ZWkxXUFR5cnRsR0lQT0VmQ3dVVlFrdVc1cW9fYk95ak5keFcwNmhDVURGNzdTT29UcWN5dlItd0t3Rl9xVmhyNXA1bVJkUkNJUDlv0gGGAkFVX3lxTE9iVTNob2J1TGoxT2tfc2FHSGhxeWtPWGJrYThNQ1RRczkzdGU3U2dhSk0ycjVYSjFjbl9NU1BQTW5ZR1JVS09zUy00WWFzVWNXLUNUNVJyOGxhU25mMkxrV2lNVkVJeFhZSU10UXlJSnRibnVkU0pqMVFpTE4yRXM0Z2ZoU3dmbnhqMWRHVVFZQmVSMThiSUZIRjN6Mmo2SzFCclZsVnpWa0FfVTRrNmpVRnVaUXBTOFVLZHhhMlR6NU14Vi1yTmp1Q2phN0xfWjVxalNCRTJ6OWlTcTBHT05QTm5RTUNoWVZRQl9ab0JabnY4ckxYS3lGQlhvUXFqNmNHRVMzQnc?oc=5",
-      "date": "2026-08-15T07:00:00.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": true,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 3
-    },
-    {
-      "articleId": "bp13b8",
-      "articleFingerprint": "1ato0ec",
-      "outlet": "Las Provincias",
-      "outletHost": "lasprovincias.es",
-      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNYXBUQURFRkc2clZXSDlvWWJiVVVTY2JLczNEb2xiMFFCZmw4NkhkWlJBN2JTN1VaSUhhVWY4TVBoMDhQZm1lMDhYd0JNUXVEYzJ3VzZaamdrc1otREZzMkt3OUt5X0lUNGVuRXF5bENudjkxS1dxSUg5WXRaUzdhNjZZa2ZkUlBGMXlacDVBeU81LXR4em1NRmNHTkR3eGVJclHSAacBQVVfeXFMUDJGRDE5Y1JNd2czUVI2c3kwN1REY3ZCTXhmblpXWW1SeXNXMk03YzVWNXB1LXN1eHlBSk1iUWdzZEVWQTN0M2JwVGlPa1FJRjZYeU5XOVFkSWhHZDRLdnI0TU5HSHdlaGlXMVd3WW5jYjdBS3pvNDRtNlBEeTBsbHlqRFl3NUlxMjhoY0M0Z1NQWm9uSUwyZDVPODZYUXVzZGV2cjNKR1U?oc=5",
-      "date": "2026-08-15T07:00:00.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": true,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 3
     }
   ],
   "outlets": [
@@ -962,12 +928,12 @@
       "articleCount": 17,
       "verdictCounts": {
         "verificado": 0,
-        "parcial": 1,
+        "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 16,
+        "sin-datos": 26,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 3,
+      "meanTrustScore": 2.94,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -976,28 +942,13 @@
       "outletHost": "infoturia.com",
       "articleCount": 10,
       "verdictCounts": {
-        "verificado": 1,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 21,
-        "promesa-repetida": 0
-      },
-      "meanTrustScore": 2.9,
-      "verifiedRatio": 0.045,
-      "contradictedRatio": 0
-    },
-    {
-      "outlet": "Levante-EMV",
-      "outletHost": "levante-emv.com",
-      "articleCount": 7,
-      "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 1,
+        "sin-datos": 23,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.86,
+      "meanTrustScore": 2.8,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -1013,6 +964,21 @@
         "promesa-repetida": 0
       },
       "meanTrustScore": 1,
+      "verifiedRatio": null,
+      "contradictedRatio": null
+    },
+    {
+      "outlet": "Levante-EMV",
+      "outletHost": "levante-emv.com",
+      "articleCount": 6,
+      "verdictCounts": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      },
+      "meanTrustScore": 2.5,
       "verifiedRatio": null,
       "contradictedRatio": null
     },
@@ -1034,7 +1000,7 @@
     {
       "outlet": "Las Provincias",
       "outletHost": "lasprovincias.es",
-      "articleCount": 4,
+      "articleCount": 3,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -1042,7 +1008,7 @@
         "sin-datos": 0,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.5,
+      "meanTrustScore": 2.33,
       "verifiedRatio": null,
       "contradictedRatio": null
     },
@@ -1054,10 +1020,10 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 1,
+        "sin-datos": 2,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.5,
+      "meanTrustScore": 3.5,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -1139,7 +1105,7 @@
   ],
   "builtFrom": {
     "plenos-agendas.json": "8cb8a3d9a5a5",
-    "press-claims-verified.json": "b5f74f13740a",
+    "press-claims-verified.json": "02d9ec8cc450",
     "press.json": "9373bbc77f9b",
     "promises.json": "d18811c11210"
   }
