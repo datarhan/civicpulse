@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-09-13T09:57:51.486Z",
+  "generatedAt": "2026-09-14T10:27:12.352Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 66,
-    "openTotal": 65,
+    "total": 65,
+    "openTotal": 64,
     "inRibaRoja": 40,
     "closingSoon": 14,
-    "withDetail": 66,
+    "withDetail": 65,
     "byMonth": {
       "2026-09": 13,
       "2026-08": 29,
-      "2026-07": 15,
+      "2026-07": 14,
       "2026-06": 1,
       "2026-05": 3,
       "2026-04": 2,
@@ -4545,93 +4545,6 @@
         "horario": "jornada completa/parcial",
         "salario": "segun convenio",
         "funciones": "Capacidad para realizar tareas de limpieza en centros deportivos, club náuticos, comunidades, etc.",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2488",
-      "fo": 2488,
-      "codigo": "2026/00187",
-      "titulo": "Auxiliar administrativo/a",
-      "publishedAt": "2026-07-13",
-      "deadline": "2026-09-13",
-      "location": "POLIGONO INDUSTRIAL Loriguilla (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2488",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00187"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Auxiliar administrativo/a"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Buscamos incorporar un/a Auxiliar Administrativo/a para nuestra oficina de Loriguilla, con capacidad de organización, atención al detalle y experiencia en tareas administrativas relacionadas con el sector de la construcción, movimiento de tierras o maquinaria. Requisitos : Formación en Administración, Gestión Administrativa o similar. Se valorará experiencia previa en empresas de construcción, obra civil, maquinaria o sectores afines. Experiencia en el manejo de plataformas documentales empresariales. Dominio de Microsoft Office, especialmente Excel. Persona organizada, resolutiva, metódica y con capacidad para gestionar varias tareas simultáneamente. Vehículo propio para desplazarse al centro de trabajo. INCORPORACIÓN DURANTE EL MES DE SEPTIEMBRE"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "CONSTRUCCIÓN"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "AUXILIARES ADMINISTRATIVOS"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "POLIGONO INDUSTRIAL, Municipio: Loriguilla, Provincia: Valencia, CP: 46393"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno partido"
-          },
-          {
-            "label": "Horario",
-            "value": "Lunes a jueves: de 09:00 a 14:00 h y de 15:00 a 18:30 h. Viernes: de 08:00 a 14:00 h."
-          },
-          {
-            "label": "Salario",
-            "value": "1500"
-          },
-          {
-            "label": "Funciones",
-            "value": "- Control diario de partes de trabajo del personal. - Revisión y gestión de albaranes de maquinaria y transporte. Preparación y seguimiento de certificaciones mensuales. - Gestión documental de clientes y proveedores. - Administración de plataformas documentales como Nalanda, Quioo, ProAPP, Achilles y otras similares. - Archivo y control de documentación administrativa. - Apoyo al departamento de administración en las tareas propias del puesto. - Coordinación documental con los diferentes departamentos de la empresa."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "1",
-        "categoria": "AUXILIARES ADMINISTRATIVOS",
-        "observaciones": "Buscamos incorporar un/a Auxiliar Administrativo/a para nuestra oficina de Loriguilla, con capacidad de organización, atención al detalle y experiencia en tareas administrativas relacionadas con el sector de la construcción, movimiento de tierras o maquinaria. Requisitos : Formación en Administración, Gestión Administrativa o similar. Se valorará experiencia previa en empresas de construcción, obra civil, maquinaria o sectores afines. Experiencia en el manejo de plataformas documentales empresariales. Dominio de Microsoft Office, especialmente Excel. Persona organizada, resolutiva, metódica y con capacidad para gestionar varias tareas simultáneamente. Vehículo propio para desplazarse al centro de trabajo. INCORPORACIÓN DURANTE EL MES DE SEPTIEMBRE",
-        "municipio": "Loriguilla",
-        "provincia": "Valencia",
-        "cp": "46393",
-        "jornada": "Completa Turnos: Turno partido",
-        "horario": "Lunes a jueves: de 09:00 a 14:00 h y de 15:00 a 18:30 h. Viernes: de 08:00 a 14:00 h.",
-        "salario": "1500",
-        "funciones": "- Control diario de partes de trabajo del personal. - Revisión y gestión de albaranes de maquinaria y transporte. Preparación y seguimiento de certificaciones mensuales. - Gestión documental de clientes y proveedores. - Administración de plataformas documentales como Nalanda, Quioo, ProAPP, Achilles y otras similares. - Archivo y control de documentación administrativa. - Apoyo al departamento de administración en las tareas propias del puesto. - Coordinación documental con los diferentes departamentos de la empresa.",
         "vehiculo": "Sí",
         "ocupaciones": []
       }
