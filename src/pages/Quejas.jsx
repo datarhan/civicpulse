@@ -834,8 +834,8 @@ function EmptyState() {
             entra al lote oficial.
           </li>
           <li>
-            <strong>Lote semanal al sede</strong>: cada lunes un voluntario firma las quejas
-            verificadas con Cl@ve.
+            <strong>Lote semanal a la sede</strong>: una persona voluntaria presenta las quejas
+            verificadas, firmadas con su Cl@ve.
           </li>
           <li>
             <strong>3 meses legales</strong> (1 mes si es transparencia). Base legal: art. 21.3 y 24
@@ -845,6 +845,24 @@ function EmptyState() {
             <strong>Silencio → Síndic de Greuges CV</strong>: plantilla autogenerada y pública.
           </li>
         </ol>
+        {/* La línea que faltaba: el panel publica plazos y silencios y ninguna
+            página decía desde cuándo cuentan. El camino entero, y sus límites,
+            vive en el contrato publicado; aquí sólo se enlaza. */}
+        <p
+          style={{
+            fontSize: 'var(--fs-aux)',
+            color: 'var(--ink70)',
+            marginTop: 8,
+            lineHeight: 1.6,
+          }}
+        >
+          El plazo legal corre desde el registro, no desde que la queja se publica aquí. El camino
+          completo, con sus límites, está en{' '}
+          <a href="/metodologia#camino-de-una-queja" style={{ color: 'var(--civic)' }}>
+            la metodología
+          </a>
+          .
+        </p>
       </Card>
 
       <Card style={{ marginTop: 14 }}>
@@ -998,6 +1016,27 @@ function DashboardView({ data }) {
           }
         />
       </div>
+      {/* Lo que explica el «—» de ahí arriba, dicho donde se lee: el plazo no
+          corre desde que la queja se publica, sino desde que entra en el
+          registro del ayuntamiento. La primera versión de esta línea vivía
+          sólo en el estado vacío, que con una queja publicada no se pinta: el
+          navegador lo enseñó y la suite no. El camino entero vive en el
+          contrato publicado; aquí sólo se enlaza. */}
+      <p
+        style={{
+          fontSize: 'var(--fs-aux)',
+          color: 'var(--ink70)',
+          lineHeight: 1.6,
+          margin: '-6px 0 18px',
+        }}
+      >
+        El plazo legal corre desde el registro, no desde que la queja se publica aquí. El camino
+        completo, con sus límites, está en{' '}
+        <a href="/metodologia#camino-de-una-queja" style={{ color: 'var(--civic)' }}>
+          la metodología
+        </a>
+        .
+      </p>
 
       <QuejasSpendOverlap />
 

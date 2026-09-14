@@ -983,7 +983,7 @@ export const CATALOGUE = {
       'Compromisos públicos documentados con cita verbatim y fuente primaria. Sin juicios automáticos de cumplimiento.',
     'landing.promesas.cta': 'Ver tracker completo →',
     'landing.rendicion.blurb':
-      'Cruza votos de pleno, promesas electorales y quejas ciudadanas por concejalía. Un plazo vencido se marca como aviso editorial — el estado nunca se modifica de forma automática.',
+      'Reúne por concejalía los votos de pleno, las promesas electorales y las quejas del canal, que sólo se cuentan como pendientes de respuesta cuando han llegado al registro del ayuntamiento. Un plazo vencido se marca como aviso editorial — el estado nunca se modifica de forma automática.',
     'landing.rendicion.cta': 'Ver dashboard por departamento →',
     'landing.escanos': 'escaños',
     'landing.titulares': 'titulares',
@@ -1812,7 +1812,7 @@ export const CATALOGUE = {
       'Compromisos públics documentats amb cita verbatim i font primària. Sense judicis automàtics de compliment.',
     'landing.promesas.cta': 'Veure el tracker complet →',
     'landing.rendicion.blurb':
-      "Creua vots de ple, promeses electorals i queixes ciutadanes per regidoria. Un termini vençut es marca com a avís editorial — l'estat mai es modifica de manera automàtica.",
+      "Reunix per regidoria els vots de ple, les promeses electorals i les queixes del canal, que només es compten com a pendents de resposta quan han arribat al registre de l'ajuntament. Un termini vençut es marca com a avís editorial — l'estat mai es modifica de manera automàtica.",
     'landing.rendicion.cta': 'Veure el tauler per departament →',
     'landing.escanos': 'escons',
     'landing.titulares': 'titulars',
