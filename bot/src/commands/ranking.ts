@@ -18,9 +18,21 @@ interface BarrioStats {
   resolucionPct: number
 }
 
-function computeRanking(db: Db): BarrioStats[] {
+/**
+ * El ranking por barrios de los últimos 60 días.
+ *
+ * Exportada para poder probarla: lo único que salía de este fichero era
+ * `registerRanking`, que necesita un `Bot` de grammy, así que la parte con
+ * aritmética dentro no tenía forma de comprobarse. `computeDigest`, al lado, ya
+ * se exporta por el mismo motivo.
+ */
+export function computeRanking(db: Db): BarrioStats[] {
   const rows = db
     .prepare(
+      // Las retiradas con `/olvidar` fuera. No es sólo un recuento de más: al
+      // entrar en `total` mueven el DENOMINADOR del porcentaje de resolución, así
+      // que el barrio aparecía con peor (o mejor) nota por quejas que ya no
+      // existen y que su autor borró.
       `SELECT
          neighborhood,
          COUNT(*) as total,
@@ -29,6 +41,7 @@ function computeRanking(db: Db): BarrioStats[] {
          SUM(CASE WHEN state IN ('capturada','apoyada_verificada','registrada','notificada_10d','en_tramite') THEN 1 ELSE 0 END) as pendientes
        FROM quejas
        WHERE neighborhood IS NOT NULL
+         AND deleted_at IS NULL
          AND date(created_at) > date('now','-60 days')
        GROUP BY neighborhood`,
     )

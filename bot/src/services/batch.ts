@@ -60,12 +60,22 @@ export interface RegisterBatchResult {
 export function selectBatch(db: Db, limit = 10): BatchItem[] {
   const rows = db
     .prepare(
+      // El filtro de retiradas: el lote se imprime, se firma y se presenta en el
+      // registro del ayuntamiento, así que una queja que su autor haya retirado
+      // con /olvidar saldría del sitio en papel, con el texto del vecino dentro.
+      //
+      // Y el comentario va AQUÍ, fuera del literal, no dentro del SQL: la primera
+      // versión lo escribió dentro con `--` y citando /olvidar entre acentos
+      // invertidos, que cierran la plantilla. El resultado fue
+      // «ReferenceError: olvidar is not defined» y las nueve pruebas de este
+      // fichero muertas de golpe. Tercera vez hoy con la misma piedra.
       `SELECT q.*, COALESCE(a.n, 0) as apoyos_count
        FROM quejas q
        LEFT JOIN (
          SELECT queja_id, COUNT(*) as n FROM apoyos GROUP BY queja_id
        ) a ON a.queja_id = q.id
        WHERE q.state = 'apoyada_verificada'
+         AND q.deleted_at IS NULL
        ORDER BY apoyos_count DESC, q.created_at ASC
        LIMIT ?`,
     )

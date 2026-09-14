@@ -1,6 +1,12 @@
 import { describe, expect, it, beforeEach } from 'vitest'
 import { openDb, type Db } from '../src/db/client'
-import { addApoyo, createQueja, setState, type NewQuejaInput } from '../src/db/queries'
+import {
+  addApoyo,
+  createQueja,
+  setState,
+  softDeleteQueja,
+  type NewQuejaInput,
+} from '../src/db/queries'
 import { buildSindicTemplate, renderSindicMarkdown, renderSindicHtml } from '../src/services/sindic'
 import { checkSilencio } from '../src/services/cron'
 import { routeUsingLocalOfficials } from '../src/services/router'
@@ -129,6 +135,29 @@ describe('cron — checkSilencio', () => {
     const r = checkSilencio(db, channel as never, future)
     expect(r.transitioned.length).toBe(1)
     expect(r.transitioned[0].state).toBe('silencio_negativo')
+  })
+
+  it('no transiciona ni difunde una queja OLVIDADA por su autor', () => {
+    // El caso más grave de los cuatro que tiene este defecto. `postSilencio`
+    // publica el id y el TÍTULO literal en el canal público:
+    //
+    //   ⚠️ SILENCIO ADMINISTRATIVO · Q-xxxx
+    //   *Bache profundo*
+    //
+    // Una queja retirada con `/olvidar` —que es el punto de cumplimiento del
+    // derecho al olvido— seguía entrando aquí si ya estaba registrada, así que
+    // meses después su título volvía a publicarse. Borrar y que te republiquen
+    // es peor que no haber borrado: el vecino cree que lo retiró.
+    const q = seed(db)
+    register(db, q.id)
+    const row = db.prepare('SELECT registered_at FROM quejas WHERE id = ?').get(q.id) as {
+      registered_at: string
+    }
+    softDeleteQueja(db, q.id, 1)
+    const future = new Date(new Date(row.registered_at).getTime() + 95 * 86_400_000)
+    const r = checkSilencio(db, channel as never, future)
+    expect(r.transitioned.length, 'ha transicionado una queja retirada').toBe(0)
+    expect(channel.emitted, 'ha publicado una queja retirada en el canal').toEqual([])
   })
 
   it('leaves in-time quejas alone', () => {

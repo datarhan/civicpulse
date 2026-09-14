@@ -72,9 +72,16 @@ export function checkSilencio(
   }
   const rows = db
     .prepare(
+      // `deleted_at IS NULL` no es una optimización: es el derecho al olvido.
+      // `postSilencio` publica en el canal el id y el TÍTULO literal de la
+      // queja, así que una retirada con `/olvidar` que siguiera entrando aquí
+      // volvía a publicarse meses después de que su autor la borrara. La fila se
+      // conserva para auditoría (cinco años, art. 55 LOPD-GDD); lo que no se
+      // conserva es el derecho a seguir publicándola.
       `SELECT * FROM quejas
        WHERE state IN ('registrada','notificada_10d')
-         AND registered_at IS NOT NULL`,
+         AND registered_at IS NOT NULL
+         AND deleted_at IS NULL`,
     )
     .all() as QuejaRow[]
 
