@@ -92,8 +92,11 @@ export function Vivo() {
     }
   }, [abierto])
 
-  // Un 200 con el cuerpo vacío deja los campos a `null`: sin cifra no hay chip,
-  // ni panel que abrir desde un chip que no existe.
+  // Un 200 con el cuerpo vacío deja los campos a `null`, y una cifra que no
+  // existe no se publica: sin `tempC` no hay temperatura en el chip ni sección
+  // del tiempo en el panel, y sin `eaqi` lo mismo con el aire. El chip en sí sigue
+  // ahí mientras quede algo que decir —el metro es cálculo puro y casi siempre
+  // queda—, con la plantilla que corresponda a lo que sí hay.
   const hayClima = weather?.tempC != null
   const hayAire = air?.eaqi != null
   if (!hayClima && !metro && !hayAire) return null
@@ -185,15 +188,38 @@ export function Vivo() {
   // que el lector quiere saber de un vistazo es si hace frío y cuándo pasa el
   // metro. El detalle sigue entero, dentro, en tres secciones con nombre.
   //
-  // El texto se compone con `rellena` y con DOS claves, no con una a medias: sin
-  // temperatura, la plantilla de arriba dejaría «{t}» escrito en la cabecera, que
-  // es exactamente lo que /empleo publicó una vez. El metro no falta nunca
-  // —`useNextMetro` es puro—, así que no hay tercera combinación.
+  // El texto se compone con `rellena` y con UNA PLANTILLA POR COMBINACIÓN, nunca
+  // rellenando una a medias: dejar «{t}» o «{m}» sin sustituir es lo que /empleo
+  // publicó una vez («sobre 24 de {total} ofertas»). Y son cuatro, no dos, porque
+  // «el metro no falta nunca» es casi verdad y no verdad: `useNextMetro` es puro,
+  // pero si algún día no hubiera salida, un `m: ''` pintaría «L9  » en la cabecera.
+  //
+  // La espera lleva su palabra, también del catálogo: el chip decía «L9 0 min»
+  // donde el panel dice «ahora», y a las 22:52 «L9 419 min» sin contar que ese
+  // tren es el primero de mañana.
+  const espera = metro
+    ? metro.minutesAway === 0
+      ? t('vivo.hoy.ahora')
+      : rellena(t(metro.afterMidnight ? 'vivo.hoy.manana' : 'vivo.hoy.espera'), {
+          m: metro.minutesAway,
+        })
+    : null
   const textoChip = hayClima
-    ? rellena(t('vivo.hoy.chip'), { t: weather.tempC, m: metro ? metro.minutesAway : '' })
-    : rellena(t('vivo.hoy.chip.sinTiempo'), { m: metro ? metro.minutesAway : '' })
+    ? metro
+      ? rellena(t('vivo.hoy.chip'), { t: weather.tempC, m: espera })
+      : rellena(t('vivo.hoy.chip.sinMetro'), { t: weather.tempC })
+    : metro
+      ? rellena(t('vivo.hoy.chip.sinTiempo'), { m: espera })
+      : t('vivo.hoy.chip.solo')
 
-  /** Una sección con nombre dentro del panel único. Sin fuente, no se pinta. */
+  /**
+   * Una sección con nombre dentro del panel único, con su procedencia al pie.
+   *
+   * Quien decide si una sección existe es la guarda de su fuente en el sitio donde
+   * se llama —`hayClima`, `hayAire`, `metro`—, no este ayudante: aquí el pie se
+   * pinta siempre, porque una sección que llega hasta aquí tiene algo que contar y
+   * de algún sitio ha salido.
+   */
   const seccion = (etiqueta, filas, fuente) => (
     <div role="group" aria-label={etiqueta} style={{ marginBottom: 10 }}>
       <div
@@ -292,7 +318,7 @@ export function Vivo() {
                 <Fila k={`${emoji} ${wmoLabel}`} v={`${weather.tempC}°`} />
                 {weather.todayMin != null && weather.todayMax != null && (
                   <Fila
-                    k="Hoy"
+                    k={t('vivo.fila.hoy')}
                     v={`${Math.round(weather.todayMin)}° / ${Math.round(weather.todayMax)}°`}
                   />
                 )}
@@ -362,7 +388,16 @@ export function Vivo() {
                 />
                 <Fila k="Sentido" v={`Hacia ${metro.heading || 'València'}`} />
                 <Fila k="Estación" v={`${metro.stationName} (terminus)`} />
-                <Fila k="Fuente" v={metro.fuente || 'FGV · fgv.es'} />
+                {/* La fuente, nombrada desde el origen que ganó. Venía de un
+                    campo que traía el propio selector, y era una cadena en
+                    castellano escrita dentro de un hook: en valencià se leía en
+                    castellano, que es el defecto que este cambio arregla en el
+                    tiempo y el aire. «FGV GTFS» no se traduce porque es el nombre
+                    del feed. */}
+                <Fila
+                  k="Fuente"
+                  v={metro.origen === 'gtfs' ? 'FGV GTFS' : t('vivo.fuente.transcrita')}
+                />
                 {/* Las dos cosas de abajo venían del panel viejo y estaban
                     publicadas. Se mudan en vez de caerse por el camino: el aviso
                     del mapa sigue siendo verdad —las estaciones de L9 se pulsan—
@@ -462,9 +497,18 @@ function Chispa({ values, color, width = 96, height = 18 }) {
 }
 
 /**
- * «válido hasta 2025-12-31» impreso en 2026 se lee como la garantía de un
- * horario que caducó hace meses. FGV no ha republicado el GTFS, así que las
- * salidas son una REFERENCIA y se dice, en vez de citar una fecha ya pasada.
+ * El pie del horario: qué fuente se está publicando y si está en vigor.
+ *
+ * Las dos cosas vienen decididas de `metroDeLaPortada` —el origen y la vigencia—
+ * y aquí sólo se escriben. Antes esta función daba por hecho que la fuente era
+ * siempre la tabla transcrita y recalculaba la caducidad con su propio
+ * `Date.now()`: llamaba «horario transcrito» a un feed en cuanto el GTFS podía
+ * ganar, y eran dos sitios decidiendo lo mismo.
+ *
+ * Lo que no cambia es el motivo de fondo: «válido hasta 2025-12-31» impreso en
+ * 2026 se lee como la garantía de un horario que caducó hace meses, así que un
+ * horario fuera de vigencia se publica diciendo que es de REFERENCIA en vez de
+ * citar una fecha ya pasada como si valiera.
  */
 function fuenteDelHorario(metro) {
   // El pie nombra la fuente que se está publicando, no una fija: desde que

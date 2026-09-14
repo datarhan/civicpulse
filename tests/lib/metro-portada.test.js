@@ -20,7 +20,7 @@
  */
 import { describe, expect, it } from 'vitest'
 
-import { metroDeLaPortada, VIGENCIA } from '../../src/lib/metro-portada'
+import { estaEnVigor, metroDeLaPortada, VIGENCIA } from '../../src/lib/metro-portada'
 
 /** El GTFS tal y como lo devuelve `findNext(slug, now)`. */
 const gtfs = (validThrough, salidas = [{ line: 'L9', heading: 'València' }]) => ({
@@ -42,7 +42,6 @@ const transcrito = (validUntil = '2026-12-31') => ({
   afterMidnight: false,
   heading: 'València',
   scheduleValidUntil: validUntil,
-  scheduleSource: 'FGV · fgv.es (schedule transcribed)',
 })
 
 const AHORA = new Date('2026-09-13T12:14:00+02:00')
@@ -97,6 +96,34 @@ describe('metroDeLaPortada · elige por vigencia, no por quién contesta', () =>
     expect(r.validoHasta).toBe('2025-12-31')
   })
 
+  it('con las dos caducadas manda la MENOS vieja, aunque sea la transcripción', () => {
+    // El caso que llega el 1 de enero de 2027 y que ninguna de las pruebas de
+    // arriba veía: las dos caducadas, y la más reciente es la transcripción.
+    // Todas las demás esperan el GTFS, que además es el PRIMER candidato, así que
+    // «devuelve el primero» —sin ordenar por fecha— las pasaba todas. Esto es lo
+    // que lo mata, y describe el estado de producción dentro de tres meses.
+    const r = metroDeLaPortada({
+      gtfs: gtfs('2025-12-31'),
+      transcripcion: transcrito('2026-12-31'),
+      ahora: new Date('2027-01-02T12:00:00+01:00'),
+    })
+    expect(r.origen).toBe('transcripcion')
+    expect(r.vigencia).toBe(VIGENCIA.referencia)
+    expect(r.validoHasta).toBe('2026-12-31')
+  })
+
+  it('una validez por días vale hasta el final del día, no hasta su principio', () => {
+    // `new Date('2026-12-31')` es medianoche UTC, así que en Madrid el día 31
+    // quedaba «no vigente» desde la 01:00: veintitrés horas de un día que valía.
+    const r = metroDeLaPortada({
+      gtfs: gtfs('2025-12-31'),
+      transcripcion: transcrito('2026-12-31'),
+      ahora: new Date('2026-12-31T18:00:00+01:00'),
+    })
+    expect(r.origen).toBe('transcripcion')
+    expect(r.vigencia).toBe(VIGENCIA.enVigor)
+  })
+
   it('nunca dice «tiempo real»: ninguna de las dos lo es', () => {
     for (const caso of [
       { gtfs: gtfs('2027-01-01'), transcripcion: transcrito() },
@@ -106,6 +133,40 @@ describe('metroDeLaPortada · elige por vigencia, no por quién contesta', () =>
       expect(r).not.toHaveProperty('isRealtime')
       expect(JSON.stringify(r)).not.toMatch(/realtime|tiempo real/i)
     }
+  })
+})
+
+describe('estaEnVigor · la regla, a solas', () => {
+  // Se prueba aparte porque el globo de estación del mapa la usa sin pasar por el
+  // selector: es la única forma de que el mapa y la cabecera no vuelvan a decidir
+  // cada uno por su cuenta. Y porque una mutación que la hacía devolver siempre
+  // `true` sobrevivía a todo lo de arriba mientras el selector se la saltaba.
+  const AHORA_2026 = new Date('2026-09-14T12:00:00+02:00')
+
+  it('una fecha futura está en vigor', () => {
+    expect(estaEnVigor('2027-06-30', AHORA_2026)).toBe(true)
+  })
+
+  it('una fecha pasada no lo está', () => {
+    expect(estaEnVigor('2025-12-31', AHORA_2026)).toBe(false)
+  })
+
+  it('el ÚLTIMO día vale entero, no hasta su medianoche UTC', () => {
+    // `new Date('2026-09-14')` es medianoche UTC: a las 18:00 de Madrid el día
+    // seguía valiendo y esto decía que no. Veintitrés horas mal por cada validez.
+    expect(estaEnVigor('2026-09-14', new Date('2026-09-14T18:00:00+02:00'))).toBe(true)
+    expect(estaEnVigor('2026-09-14', new Date('2026-09-15T00:30:00+02:00'))).toBe(false)
+  })
+
+  it('una validez ilegible o ausente no está en vigor', () => {
+    for (const malo of ['pronto', '', null, undefined, 20261231]) {
+      expect(estaEnVigor(malo, AHORA_2026), `«${String(malo)}» no es una fecha`).toBe(false)
+    }
+  })
+
+  it('una marca con hora se respeta tal cual', () => {
+    expect(estaEnVigor('2026-09-14T13:00:00+02:00', AHORA_2026)).toBe(true)
+    expect(estaEnVigor('2026-09-14T11:00:00+02:00', AHORA_2026)).toBe(false)
   })
 })
 

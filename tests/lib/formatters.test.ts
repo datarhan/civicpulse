@@ -184,7 +184,8 @@ describe('rellena', () => {
     expect(rellena('{n} de {total}', { n: 24 })).toBe('24 de {total}')
   })
 
-  it('convierte el valor a texto en vez de pegar «[object Object]» a ciegas', () => {
+  it('un 0 se escribe «0» en vez de desaparecer por ser falso', () => {
+    // El nombre de antes hablaba de «[object Object]», que no es lo que mide.
     expect(rellena('{n}', { n: 0 })).toBe('0')
   })
 })

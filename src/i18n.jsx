@@ -107,9 +107,9 @@ export const CATALOGUE = {
     'nav.grupo.laboratorio': 'Laboratorio',
     'nav.grupo.laboratorio.lede': 'datos y experimentos',
     'nav.grupo.proyecto': 'Sobre CivicPulse',
-    // La tira de datos vivos de la cabecera. Sólo el armazón del panel: los
-    // rótulos del tiempo y del aire viven en sus hooks, que los comparten con
-    // los globos del mapa, y se mueven cuando el chip «Hoy» rehaga esa parte.
+    // El chip «Hoy» de la cabecera y su detalle. Los rótulos del tiempo y del
+    // aire ya viven aquí abajo —estaban escritos dentro de sus hooks— y ningún
+    // globo del mapa los consume.
     'vivo.cerrar': 'Cerrar el detalle',
     // El tiempo y el aire, que vivían escritos dentro de los hooks y por eso la
     // portada en valencià los pintaba en castellano. Ninguna lleva hueco, así
@@ -147,12 +147,23 @@ export const CATALOGUE = {
     // El chip único. Los dos huecos los rellena quien pinta, y
     // `i18n-catalogue.test.ts` exige que los rellene LOS DOS: una cadena con
     // «{m}» sin sustituir ya se publicó una vez en /empleo.
-    'vivo.hoy.chip': 'Hoy · {t}° · L9 {m} min',
-    // Sin temperatura hace falta OTRA cadena, no la de arriba a medias: dejar
-    // «{t}» sin sustituir es literalmente lo que /empleo publicó una vez
-    // («sobre 24 de {total} ofertas»), y el metro sí está siempre —`useNextMetro`
-    // es puro—, así que esta es la única combinación que falta.
-    'vivo.hoy.chip.sinTiempo': 'Hoy · L9 {m} min',
+    // Una plantilla por combinación, en vez de una rellenada a medias: dejar
+    // «{t}» o «{m}» sin sustituir es literalmente lo que /empleo publicó una vez
+    // («sobre 24 de {total} ofertas»). El metro casi nunca falta —`useNextMetro`
+    // es puro— pero «casi» no es «nunca», y con `m: ''` el chip decía «L9  ».
+    'vivo.hoy.chip': 'Hoy · {t}° · L9 {m}',
+    'vivo.hoy.chip.sinTiempo': 'Hoy · L9 {m}',
+    'vivo.hoy.chip.sinMetro': 'Hoy · {t}°',
+    'vivo.hoy.chip.solo': 'Hoy',
+    // La espera, con su palabra. El chip decía «L9 0 min» donde el panel dice
+    // «ahora», y a las 22:52 «L9 419 min» sin contar que ese tren es de mañana.
+    'vivo.hoy.espera': '{m} min',
+    'vivo.hoy.ahora': 'ahora',
+    'vivo.hoy.manana': '{m} min (mañana)',
+    // El rótulo de la fila del panel, que era un «Hoy» a pelo en el código y se
+    // leía en castellano justo debajo de «Hui a Riba-roja».
+    'vivo.fila.hoy': 'Hoy',
+    'vivo.fuente.transcrita': 'FGV · fgv.es (horario transcrito)',
     'vivo.hoy.aria': 'El tiempo, el aire y el metro de hoy — abrir el detalle',
     'vivo.hoy.titulo': 'Hoy en Riba-roja',
     'vivo.hoy.tiempo': 'Tiempo',
@@ -1060,8 +1071,15 @@ export const CATALOGUE = {
     'vivo.aqi.muyMala': 'Molt dolenta',
     'vivo.aqi.extrema': 'Extremadament dolenta',
     'vivo.aqi.sinDato': 'sense lectura',
-    'vivo.hoy.chip': 'Hui · {t}° · L9 {m} min',
-    'vivo.hoy.chip.sinTiempo': 'Hui · L9 {m} min',
+    'vivo.hoy.chip': 'Hui · {t}° · L9 {m}',
+    'vivo.hoy.chip.sinTiempo': 'Hui · L9 {m}',
+    'vivo.hoy.chip.sinMetro': 'Hui · {t}°',
+    'vivo.hoy.chip.solo': 'Hui',
+    'vivo.hoy.espera': '{m} min',
+    'vivo.hoy.ahora': 'ara',
+    'vivo.hoy.manana': '{m} min (demà)',
+    'vivo.fila.hoy': 'Hui',
+    'vivo.fuente.transcrita': 'FGV · fgv.es (horari transcrit)',
     'vivo.hoy.aria': 'El temps, l’aire i el metro d’hui — obrir el detall',
     'vivo.hoy.titulo': 'Hui a Riba-roja',
     'vivo.hoy.tiempo': 'Temps',

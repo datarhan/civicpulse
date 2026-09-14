@@ -182,6 +182,11 @@ test.describe('Cabecera de la portada', () => {
   test('en estrecho el panel cabe en la pantalla', async ({ page }) => {
     // Anclado a la derecha del envoltorio, con la cabecera envuelta en varias
     // filas, el panel se salía por un lado. En estrecho se ancla a la cabecera.
+    //
+    // Con las tres secciones servidas: el tope de altura de estrecho descuenta una
+    // cabecera envuelta de 116 px, y sin las tres el panel es corto y ese tope no
+    // se pone a prueba nunca.
+    await sirveElTiempo(page)
     await page.setViewportSize({ width: 375, height: 812 })
     await page.goto('/', { waitUntil: 'domcontentloaded' })
     const chip = page.getByRole('button', { name: CHIP_HOY })

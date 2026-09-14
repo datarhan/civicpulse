@@ -19,8 +19,12 @@ import { useJsonFetch } from './useJsonFetch'
  *   [{ line: 'L9', heading: 'València', label: '06:06', afterMidnight,
  *      minutesAway, sourceHhmm }]
  *
- * If the data is unavailable (fetch error, slug not covered) the caller
- * should fall back to the hardcoded tables in `useNextMetro.js`.
+ * Quién manda entre este feed y la tabla transcrita de `useNextMetro.js` ya no es
+ * «el que responda»: lo decide `src/lib/metro-portada.js`, y lo decide por
+ * VIGENCIA. Importa, porque este GTFS declara `validThrough: 2025-12-31` desde
+ * que FGV dejó de republicarlo, así que responder no lo hace válido. Si no hay
+ * datos —error de red, parada no cubierta— `findNext` devuelve null y el selector
+ * se queda con la otra fuente.
  */
 export function useMetroSchedule() {
   const state = useJsonFetch('/data/metro-schedule.json')

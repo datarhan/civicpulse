@@ -36,8 +36,14 @@ const REFRESH_MS = 10 * 60 * 1000
  * pasa por él, y estas cadenas nunca entraron. Ahora se devuelve la clave y
  * traduce quien pinta. Las claves son `vivo.wmo.<código>`, sin hueco ninguno,
  * para poder buscarlas por código.
+ *
+ * Se EXPORTA para que la prueba recorra esta tabla en vez de copiar la lista de
+ * códigos. Una lista copiada se queda corta en silencio: el día que se añada un
+ * código sin su entrada en el catálogo, la prueba no lo recorre, la cabecera
+ * pinta la clave cruda —«vivo.wmo.77»— y la suite sigue verde. Es la primera
+ * regla de docs/DATA_INTEGRITY.md: exporta el enum, nunca lo reescribas.
  */
-const WMO = {
+export const WMO = {
   0: ['☀️', 'vivo.wmo.0'],
   1: ['🌤', 'vivo.wmo.1'],
   2: ['⛅', 'vivo.wmo.2'],

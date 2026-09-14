@@ -71,13 +71,6 @@ export const estiloVivo = `
   background: ${PALETTE.civicWash};
 }
 
-.cp-vivo-sep {
-  width: 1px;
-  height: 18px;
-  flex-shrink: 0;
-  background: ${PALETTE.hair};
-}
-
 .cp-vivo-panel {
   position: absolute;
   top: calc(100% + 8px);

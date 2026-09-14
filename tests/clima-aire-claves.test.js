@@ -14,7 +14,7 @@
  */
 import { describe, expect, it } from 'vitest'
 
-import { describeWmo } from '../src/hooks/useLiveWeather'
+import { describeWmo, WMO } from '../src/hooks/useLiveWeather'
 import { describeAqi } from '../src/hooks/useAirQuality'
 import { CATALOGUE, LOCALES } from '../src/i18n'
 
@@ -27,8 +27,15 @@ function esClaveTraducida(clave) {
   })
 }
 
-/** Los códigos WMO que el hook mapea, más uno que no existe (el comodín). */
-const CODIGOS = [0, 1, 2, 3, 45, 48, 51, 53, 55, 61, 63, 65, 71, 73, 75, 80, 81, 82, 95, 96, 7777]
+/**
+ * Los códigos que el hook mapea, LEÍDOS DEL HOOK, más uno que no existe (el
+ * comodín).
+ *
+ * Copiarlos aquí era la primera regla de DATA_INTEGRITY al revés: el día que se
+ * añada un código sin su entrada en el catálogo, una lista copiada no lo recorre,
+ * la cabecera pinta la clave cruda —«vivo.wmo.77»— y la suite sigue en verde.
+ */
+const CODIGOS = [...Object.keys(WMO).map(Number), 7777]
 
 describe('describeWmo · describe con claves, no con castellano', () => {
   it('hay códigos que comprobar (si no, esto no mide nada)', () => {

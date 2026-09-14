@@ -26,8 +26,10 @@
  *      prefiere no pintar el chip a pintar una salida que no puede sostener.
  *
  * Ninguna de las dos es tiempo real, y aquí no hay campo que lo sugiera: FGV no
- * publica una API libre de llegadas. El campo `isRealtime` que arrastraba la
- * cabecera se va con esto.
+ * publica una API libre de llegadas. (El `isRealtime` que arrastraba la cabecera
+ * ya no existía cuando se escribió esto: se fue en el PR anterior. La prueba que
+ * lo vigila es una fianza de política, no la red de un defecto vivo, y conviene
+ * saber cuál de las dos cosas es.)
  *
  * La aritmética de las salidas no vive aquí: la tabla transcrita la fija
  * `tests/parse-next-metro.test.ts` y el GTFS lo normaliza `findNext` —incluido el
@@ -46,11 +48,33 @@ export const VIGENCIA = /** @type {const} */ ({
   referencia: 'referencia',
 })
 
-/** Los milisegundos de una fecha de validez, o null si no se puede leer. */
+/**
+ * Los milisegundos en que CADUCA una validez, o null si no se puede leer.
+ *
+ * Una fecha sin hora —«2026-12-31»— la lee `Date` como medianoche UTC, así que en
+ * Madrid ese día quedaba «no vigente» desde la 01:00: veintitrés horas de un día
+ * que todavía valía. Una validez por días vale hasta el final del día, no hasta
+ * su principio.
+ */
 function finDeVigencia(valor) {
   if (typeof valor !== 'string') return null
-  const t = new Date(valor).getTime()
+  const soloFecha = /^\d{4}-\d{2}-\d{2}$/.test(valor)
+  const t = new Date(soloFecha ? `${valor}T23:59:59` : valor).getTime()
   return Number.isFinite(t) ? t : null
+}
+
+/**
+ * ¿Vale esta validez a esta hora?
+ *
+ * Exportada porque el globo de estación del mapa tiene que preguntar LO MISMO.
+ * Mientras lo decidía por su cuenta —«si el GTFS contesta, el GTFS»— la cabecera
+ * publicaba el horario en vigor y el globo al que ella misma manda al lector
+ * seguía sirviendo el GTFS de 2025: a las 22:55 de un laborable, 22:51 arriba y
+ * 23:02 en el mapa. Una sola regla y un solo sitio donde vive.
+ */
+export function estaEnVigor(validez, ahora = new Date()) {
+  const hasta = finDeVigencia(validez)
+  return hasta != null && hasta >= ahora.getTime()
 }
 
 /**
@@ -70,9 +94,6 @@ function candidatoGtfs(gtfs) {
     heading: salida.heading,
     validoHasta: typeof gtfs?.validThrough === 'string' ? gtfs.validThrough : null,
     hasta: finDeVigencia(gtfs?.validThrough),
-    // La procedencia sale del propio fichero, no de una copia escrita aquí.
-    fuente: gtfs?.source?.feed ?? null,
-    fuenteUrl: gtfs?.source?.url ?? null,
   }
 }
 
@@ -88,8 +109,6 @@ function candidatoTranscripcion(t) {
     heading: t.heading || 'València',
     validoHasta: typeof t.scheduleValidUntil === 'string' ? t.scheduleValidUntil : null,
     hasta: finDeVigencia(t.scheduleValidUntil),
-    fuente: t.scheduleSource ?? null,
-    fuenteUrl: null,
   }
 }
 
@@ -97,17 +116,20 @@ function candidatoTranscripcion(t) {
  * @param {{gtfs: any, transcripcion: any, ahora?: Date}} entrada
  * @returns {null | {origen: string, vigencia: string, stationName: string,
  *   departureLabel: string, minutesAway: number, afterMidnight: boolean,
- *   heading: string, validoHasta: string|null, fuente: string|null,
- *   fuenteUrl: string|null}}
+ *   heading: string, validoHasta: string|null}}
  */
 export function metroDeLaPortada({ gtfs, transcripcion, ahora = new Date() }) {
-  const t = ahora.getTime()
   // El GTFS primero en los dos desempates: en vigor manda por ser la fuente, y
   // caducado empata por fecha, no por preferencia.
   const candidatos = [candidatoGtfs(gtfs), candidatoTranscripcion(transcripcion)].filter(Boolean)
   if (!candidatos.length) return null
 
-  const enVigor = candidatos.filter((c) => c.hasta != null && c.hasta >= t)
+  // La vigencia se PREGUNTA a `estaEnVigor`; no se recalcula aquí. Tenerla dos
+  // veces en el mismo fichero es la misma trampa que tenerla en dos ficheros, y se
+  // vio: una mutación que hacía al predicado devolver siempre `true` sobrevivía a
+  // todas las pruebas de este módulo, porque ninguna pasaba por él — y el globo de
+  // estación del mapa sí pasa.
+  const enVigor = candidatos.filter((c) => estaEnVigor(c.validoHasta, ahora))
   const elegido = enVigor.length
     ? enVigor[0]
     : [...candidatos].sort((a, b) => (b.hasta ?? -Infinity) - (a.hasta ?? -Infinity))[0]
@@ -115,6 +137,6 @@ export function metroDeLaPortada({ gtfs, transcripcion, ahora = new Date() }) {
   const { hasta, ...publicable } = elegido
   return {
     ...publicable,
-    vigencia: hasta != null && hasta >= t ? VIGENCIA.enVigor : VIGENCIA.referencia,
+    vigencia: estaEnVigor(elegido.validoHasta, ahora) ? VIGENCIA.enVigor : VIGENCIA.referencia,
   }
 }
