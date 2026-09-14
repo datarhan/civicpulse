@@ -48,10 +48,46 @@ function registroUtilizable(valor) {
 
 /**
  * @typedef {{ total: number, resueltas: number, pendientes: number, silencios: number }} FilaCargo
- * @typedef {{ concejal_slug?: string | null, registered_at?: string | null }} QuejaPublicada
+ * @typedef {{ concejal_slug?: string | null, address_string?: string | null,
+ *   registered_at?: string | null }} QuejaPublicada
  * @typedef {{ stats?: { total?: number, byConcejal?: Record<string, FilaCargo> },
  *   items?: QuejaPublicada[] }} InstantaneaQuejas
  */
+
+/**
+ * ¿Se pueden leer como respuestas del ayuntamiento las cifras de un subconjunto
+ * de quejas?
+ *
+ * El criterio vive AQUÍ y sólo aquí, porque hay dos superficies que lo
+ * necesitan: los cargos (`contadoresDeCargo`, abajo) y los barrios
+ * (`lib/neighborhood-aggregate`). Escribirlo dos veces sería escribir dos veces
+ * la misma regla legal, y eso es exactamente cómo este defecto sobrevivió al PR
+ * que arregló los cargos: se corrigió una copia y la otra siguió publicando
+ * «⏳ 1» sobre el mapa.
+ *
+ * `pertenece` dice qué quejas son del sujeto que se está juzgando —un cargo, un
+ * barrio— y es lo ÚNICO que cambia entre las dos superficies.
+ *
+ * @param {InstantaneaQuejas | null | undefined} instantanea  public/data/quejas.json
+ * @param {(q: QuejaPublicada) => boolean} pertenece
+ * @returns {{ medible: boolean, motivo: string | null }}
+ */
+export function medibilidad(instantanea, pertenece) {
+  const stats = instantanea?.stats
+  // La instantánea no se puede leer: no hay nada que juzgar todavía.
+  if (!stats || !esRecuento(stats.total)) return { medible: false, motivo: 'sinDatos' }
+  const items = Array.isArray(instantanea?.items) ? instantanea.items : []
+  // El bot exporta como mucho mil quejas mientras `stats` las cuenta todas, así
+  // que con el listado truncado no se puede saber cuáles se registraron.
+  if (items.length !== stats.total) return { medible: false, motivo: 'exportIncompleto' }
+  // El plazo de la LPACAP corre desde el REGISTRO: sin una sola queja registrada
+  // el ayuntamiento no ha recibido nada que pudiera contestar o dejar sin
+  // contestar.
+  if (!items.some((q) => pertenece(q) && registroUtilizable(q.registered_at))) {
+    return { medible: false, motivo: 'sinRegistro' }
+  }
+  return { medible: true, motivo: null }
+}
 
 /**
  * @param {InstantaneaQuejas | null | undefined} instantanea  public/data/quejas.json
@@ -70,12 +106,16 @@ export function contadoresDeCargo(instantanea, slug) {
     silencios: null,
   })
 
+  // El criterio compartido con los barrios. El ORDEN de lo que sigue importa y
+  // se conserva: un listado truncado se reporta como tal aunque además la fila
+  // venga a medias.
+  const m = medibilidad(instantanea, (q) => q.concejal_slug === slug)
+
   // La instantánea no se puede leer: ni el total es un dato todavía.
-  if (!stats || !esRecuento(stats.total)) return sinCifras('sinDatos', null)
+  if (m.motivo === 'sinDatos') return sinCifras('sinDatos', null)
 
   const total = esRecuento(fila?.total) ? fila.total : 0
-  const items = instantanea?.items ?? []
-  if (items.length !== stats.total) return sinCifras('exportIncompleto', total)
+  if (m.motivo === 'exportIncompleto') return sinCifras('exportIncompleto', total)
   // Una fila A MEDIAS no se publica tal cual: `✓ undefined` es lo que sale de
   // confiar en que el productor siempre manda las cuatro cifras. Ojo a la
   // distinción: que no haya fila NO es un dato a medias —es un cargo con cero
@@ -84,9 +124,7 @@ export function contadoresDeCargo(instantanea, slug) {
   if (fila && ![fila.resueltas, fila.pendientes, fila.silencios].every(esRecuento)) {
     return sinCifras('sinDatos', total)
   }
-  if (!items.some((q) => q.concejal_slug === slug && registroUtilizable(q.registered_at))) {
-    return sinCifras('sinRegistro', total)
-  }
+  if (m.motivo === 'sinRegistro') return sinCifras('sinRegistro', total)
   return {
     total,
     medible: true,

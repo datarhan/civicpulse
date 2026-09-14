@@ -3,7 +3,8 @@ import { useMemo } from 'react'
 import { Circle, Tooltip } from 'react-leaflet'
 import { useGeo } from '../../../hooks/useGeo'
 import { useQuejas, prettyNeighborhood } from '../../../hooks/useQuejas'
-import { computePerNeighborhood, healthFromCounts } from '../../../lib/neighborhood-aggregate'
+import { computePerNeighborhood } from '../../../lib/neighborhood-aggregate'
+import { useT } from '../../../i18n'
 
 // Radius scales by sqrt(count) so 1 queja isn't an invisible dot and 100 don't
 // swamp the map — identical formula to the /quejas heatmap so both surfaces read
@@ -19,17 +20,19 @@ const bubbleRadius = (count) => 100 + Math.sqrt(count) * 90 // meters
  * schematic-L9 MetroTrainsLayer in the map's layer control.
  */
 export function QuejasLayer() {
+  const t = useT()
   const { data: geo } = useGeo()
   const { data: quejas } = useQuejas()
+  // La instantánea entera: ver `lib/neighborhood-aggregate`.
   const rows = useMemo(
-    () => computePerNeighborhood(quejas?.items ?? [], geo?.neighborhoods),
+    () => computePerNeighborhood(quejas, geo?.neighborhoods),
     [quejas, geo?.neighborhoods],
   )
   if (rows.length === 0) return null
   return (
     <>
       {rows.map((n) => {
-        const { color } = healthFromCounts(n.total, n.resueltas, n.silencios)
+        const { color } = n.health
         return (
           <Circle
             key={n.slug}
@@ -60,13 +63,27 @@ export function QuejasLayer() {
                     popup, y axe no lo ve porque un popup de Leaflet no existe
                     hasta que se abre. Es el mismo fallo que ya se corrigió en
                     /quejas, vivo todavía aquí. */}
-                {n.total} queja{n.total === 1 ? '' : 's'} ·{' '}
-                <span style={{ color: 'var(--ok-ink)' }}>✓ {n.resueltas}</span> ·{' '}
-                <span style={{ color: 'var(--civic)' }}>⏳ {n.pendientes}</span>
-                {n.silencios > 0 && (
+                {n.total} queja{n.total === 1 ? '' : 's'}
+                {/* Sin registro no hay respuesta municipal que contar: ver
+                    `lib/reloj-lpacap`. */}
+                {n.medible ? (
                   <>
                     {' '}
-                    · <span style={{ color: 'var(--crit-ink)' }}>⚠ {n.silencios}</span>
+                    · <span style={{ color: 'var(--ok-ink)' }}>✓ {n.resueltas}</span> ·{' '}
+                    <span style={{ color: 'var(--civic)' }}>⏳ {n.pendientes}</span>
+                    {n.silencios > 0 && (
+                      <>
+                        {' '}
+                        · <span style={{ color: 'var(--crit-ink)' }}>⚠ {n.silencios}</span>
+                      </>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    <br />
+                    <span style={{ color: 'rgba(11,15,25,.55)' }}>
+                      {t(`quejas.reloj.${n.motivo}.corto`)}
+                    </span>
                   </>
                 )}
               </div>
