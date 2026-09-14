@@ -1,6 +1,12 @@
 import { describe, expect, it, beforeEach } from 'vitest'
 import { openDb, type Db } from '../src/db/client'
-import { addApoyo, createQueja, setState, type NewQuejaInput } from '../src/db/queries'
+import {
+  addApoyo,
+  createQueja,
+  setState,
+  softDeleteQueja,
+  type NewQuejaInput,
+} from '../src/db/queries'
 import {
   buildBatch,
   registerBatch,
@@ -46,6 +52,20 @@ describe('batch — selectBatch', () => {
     const picked = selectBatch(db)
     expect(picked.length).toBe(1)
     expect(picked[0].queja.title).toBe('verified')
+  })
+
+  it('no manda al ayuntamiento una queja OLVIDADA por su autor', () => {
+    // El lote se imprime, se firma y se presenta en el registro del
+    // ayuntamiento: una queja retirada con `/olvidar` que entre aquí sale del
+    // sitio en papel y con el texto del vecino dentro. La fila se conserva para
+    // auditoría —cinco años, art. 55 LOPD-GDD— pero no se publica ni se tramita.
+    const viva = seed(db, { title: 'sigue-en-pie' })
+    const retirada = seed(db, { title: 'retirada-por-su-autor' })
+    verify(db, viva.id)
+    verify(db, retirada.id)
+    softDeleteQueja(db, retirada.id, 1)
+    const picked = selectBatch(db)
+    expect(picked.map((p) => p.queja.title)).toEqual(['sigue-en-pie'])
   })
 
   it('orders by apoyos desc, then age asc', () => {
