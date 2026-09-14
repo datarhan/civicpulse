@@ -9,6 +9,7 @@
     "start": "tsx src/index.ts",
     "test": "vitest run",
     "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
     "migrate": "tsx src/db/migrate.ts",
     "process-photos": "tsx src/services/process-photos.ts",
     "export": "tsx src/services/export.ts",
