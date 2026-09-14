@@ -280,7 +280,7 @@ la frase sale de los textos **antes** de que la copia se envíe a nadie.
 | «dónde se acaban los datos oficiales»                                                         | `/lab-health` + `MoneyCoverage` + las especificaciones fallidas de `/laboratorio/frontera`.                                                                   |
 | «todo abierto — código, datos y método»                                                       | AGPL-3.0 + `/datos` + `/metodologia`.                                                                                                                        |
 | «derecho de réplica»                                                                          | Flujo extremo a extremo: issue → CLI con validador → commit.                                                                                                 |
-| «los ~8.100 municipios por código INE»                                                        | CONPREL, PLACSP, BDNS, INE, SEPE y boletines indexan por municipio a escala estatal. Censo comprobado: **8.147** municipios.                                 |
+| «los ~8.100 municipios por código INE»                                                        | CONPREL, PLACSP, BDNS, INE, SEPE y boletines indexan por municipio a escala estatal. Censo vigente: **8.132** municipios.                                    |
 
 ## Reglas de registro
 
@@ -345,6 +345,8 @@ la frase sale de los textos **antes** de que la copia se envíe a nadie.
 | `src/pages/Nosotros.jsx`              | tarjeta «Qué es CivicPulse»                                                 |
 | `src/pages/About.jsx`                 | primera tarjeta (identidad) + «The gap» + «The proof»                       |
 | `index.html`                          | la ficha del sitio: `description`, `og:description`, `twitter:description`  |
+| `/blog/building-civicpulse-with-ai`   | la cifra de los desiertos informativos con su cita                          |
+| `docs/blog/…-solo-with-ai.md`         | la misma cifra (copia cruzada de esa entrada)                                |
 
 > **Las superficies de campaña ya no viven en el repositorio.** El kit de
 > Goteo, la propuesta de NLnet y el kit de prensa derivan igualmente de este
