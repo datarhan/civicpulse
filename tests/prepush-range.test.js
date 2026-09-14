@@ -125,3 +125,62 @@ describe('el rango del gancho de pre-push', () => {
     expect(codigo).toMatch(/directa\(s\)/)
   })
 })
+
+/**
+ * Y lo que el gancho dice cuando NO ha podido leer.
+ *
+ * Salía con «build falló; se omite la revisión» y código 0. El 13-09-2026 un
+ * acento invertido dentro del `<style>` en línea de DirectionD.jsx rompió la
+ * build: el gancho anunció 33 rutas, se saltó las 33 y salió 0. No se publicó
+ * nada —ese error concreto lo caza el `format:check` del pre-commit— pero su
+ * todo-bien era indistinguible de una lectura limpia. Es la forma de
+ * `r?.findings ?? []` que persigue docs/DATA_INTEGRITY.md: doblar «no he podido
+ * comprobar» dentro de «no he encontrado nada», y entonces la puerta imprime su
+ * propio visto bueno.
+ *
+ * El arreglo NO es salir distinto de 0: la cabecera del gancho documenta tres
+ * capas estructurales para que nunca pueda bloquear, y un gancho que bloquea se
+ * salta con --no-verify a la tercera. El arreglo es lo que DICE.
+ */
+describe('el gancho no puede insinuar que leyó', () => {
+  it('una build fallida se anuncia como omitida, no como limpia', () => {
+    expect(codigo).toMatch(/LA BUILD FALLÓ/)
+    // La misma fórmula que ya usa el camino del preview que no levanta: si una
+    // de las dos se reescribe, que se vea que eran la misma promesa.
+    expect(codigo.match(/omitida ≠ limpia/g) ?? []).toHaveLength(2)
+  })
+
+  it('y sigue sin bloquear: ese camino sale 0', () => {
+    const desde = codigo.indexOf('LA BUILD FALLÓ')
+    expect(desde, 'no se encontró el aviso de build fallida').toBeGreaterThan(-1)
+    expect(codigo.slice(desde, desde + 700)).toMatch(/exit 0/)
+  })
+
+  it('enseña por qué falló la build en vez de tirar su salida', () => {
+    // Antes: `npm run build >/dev/null 2>&1`. El gancho sabía que había fallado
+    // y no decía una palabra de la causa, así que había que reproducirla a mano.
+    expect(codigo).toMatch(/BUILD_LOG/)
+    const aLaBasura = codigo.match(/npm run build\s*>\s*\/dev\/null/g) ?? []
+    expect(
+      aLaBasura,
+      'la salida de la build es la única pista de por qué no se pudo leer nada',
+    ).toEqual([])
+  })
+
+  it('dice cuántas rutas leyó en los CUATRO desenlaces', () => {
+    // build fallida, parcial, completa y «sin resumen». Un parte sin recuento es
+    // lo que dejó pasar 33 rutas sin leer bajo un código de salida 0.
+    const conRecuento = codigo.match(/de \$N_RUTAS ruta\(s\)/g) ?? []
+    expect(
+      conRecuento.length,
+      'cada desenlace tiene que decir cuántas de las rutas que toca el push se leyeron',
+    ).toBeGreaterThanOrEqual(4)
+  })
+
+  it('el recuento se toma del resumen del script, no se recuenta en el gancho', () => {
+    // Dos cuentas que pueden discrepar son peor que una, y la del script es la
+    // que sabe qué fragmentos se leyeron de cada página.
+    expect(codigo).toMatch(/LEIDAS=/)
+    expect(codigo).toMatch(/revisada\(s\) al completo/)
+  })
+})
