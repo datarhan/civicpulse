@@ -15,24 +15,53 @@ import { resolve } from 'node:path'
 
 const SCRIPT = resolve('scripts/refine-transcript.ts')
 
-function run(args: string[]): { code: number; out: string; err: string } {
+/**
+ * Cuánto se espera a que el CLI conteste. Arrancar `npx tsx` en frío y cargar el
+ * cliente de LLM que importa el guion cuesta unos 300 ms en el portátil, pero en un
+ * runner de CI cargado las tres llamadas de este fichero tardaron 17,6 s (PR #33),
+ * y con los 15 s de antes la tercera se quedó sin tiempo.
+ */
+const ESPERA_MS = 60_000
+
+function run(args: string[]): { code: number; out: string; err: string; error?: string } {
   const r = spawnSync('npx', ['tsx', SCRIPT, ...args], {
     encoding: 'utf8',
-    timeout: 15_000,
+    timeout: ESPERA_MS,
     env: { ...process.env, NODE_ENV: 'test', LLM_BACKEND: 'ollama' }, // never actually called
   })
-  return { code: r.status ?? 1, out: r.stdout ?? '', err: r.stderr ?? '' }
+  return {
+    code: r.status ?? 1,
+    out: r.stdout ?? '',
+    err: r.stderr ?? '',
+    error: (r.error as NodeJS.ErrnoException | undefined)?.code,
+  }
+}
+
+/**
+ * Un CLI que no contesta a tiempo no es un CLI que contesta mal. Cuando
+ * `spawnSync` agota la espera mata al proceso: el código sale distinto de 0 —y
+ * «no es 0» se cumple— y stderr sale VACÍO, así que el fallo se leía «expected ''
+ * to match /transcript missing/», como si el guion hubiera cambiado su mensaje.
+ * Se comprueba primero que el proceso terminó solo, y si no, se dice por qué.
+ */
+function terminoSolo(r: { error?: string }) {
+  expect(
+    r.error,
+    `el CLI no contestó en ${ESPERA_MS / 1000} s y se mató el proceso: stderr sale vacío por eso`,
+  ).toBeUndefined()
 }
 
 describe('refine-transcript CLI surface', () => {
   it('rejects calls with no positional plenoId', () => {
     const r = run([])
+    terminoSolo(r)
     expect(r.code).not.toBe(0)
     expect(r.err).toMatch(/usage:/)
   })
 
   it('rejects unknown flags', () => {
     const r = run(['--bogus', 'k4olcs'])
+    terminoSolo(r)
     expect(r.code).not.toBe(0)
     expect(r.err).toMatch(/unknown flag: --bogus/)
   })
@@ -40,6 +69,7 @@ describe('refine-transcript CLI surface', () => {
   it('errors on missing transcript file', () => {
     // Use a guaranteed-nonexistent pleno id that still passes the parser
     const r = run(['__nonexistent-pleno-id__'])
+    terminoSolo(r)
     expect(r.code).not.toBe(0)
     expect(r.err).toMatch(/transcript missing/)
   })
