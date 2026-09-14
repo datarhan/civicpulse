@@ -238,6 +238,33 @@ jobs:
           set -uo pipefail
           git config user.name  "civicpulse-bot"
           git config user.email "bot@civicpulse"
+
+          # ── Rederivar ANTES de estacar ─────────────────────────────────────
+          #
+          # `scrape-all.sh` ya llama a `npm run refresh` al final, y ése es el
+          # sitio correcto para una ejecución que TERMINA. El 14-09-2026 no
+          # terminó: «Run scraper(s)» agotó sus 22 minutos (ejecución
+          # 34831225509) 107 segundos después de que el raspado reescribiera
+          # `plenos-agendas.json` entero, así que el hacha cayó antes del bloque
+          # de derivaciones —en todo el registro no aparece ni un
+          # «[scrape-all] running: refresh»— y este paso, que corre con
+          # `always()` a propósito, empujó a main los snapshots nuevos con los
+          # nodos derivados sin reconstruir. Seis fallos en
+          # `tests/data-graph-frescura.test.ts`, la puerta de salud en rojo y el
+          # despliegue saltado: el sitio sirvió los datos del día anterior.
+          #
+          # Éste es el único paso que sobrevive al hacha, así que aquí se
+          # rederiva. Barato e idempotente: sólo reconstruye lo que sus entradas
+          # hayan movido —2,6 s medidos con los cinco nodos rancios de ese día—,
+          # y por eso NO hace falta tocar el tope de 5 min, que además no habría
+          # de dónde subir: el presupuesto de la nocturna deja 3 min de holgura.
+          #
+          # Tolerante a propósito. Un derivado que no se pueda reconstruir no
+          # puede costar la noche entera de datos, que es el daño que `always()`
+          # existe para evitar; y si algo queda sin reconstruir, la guarda de
+          # frescura lo dice a gritos en el paso siguiente.
+          npm run refresh || echo "::warning::refresh falló dentro del paso del commit — los datos se comitean igual; tests/data-graph-frescura.test.ts rojeará esta ejecución si algún nodo derivado quedó sin reconstruir"
+
           git add public/data
           if git diff --cached --quiet; then
             echo "No upstream changes today."
