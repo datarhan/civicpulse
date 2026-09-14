@@ -30,6 +30,7 @@ import {
   eventosRepoVistos,
   marcarEventoRepoVisto,
   podarEventosRepo,
+  reconcileApoyadas,
 } from './db/queries.ts'
 import { routeUsingLocalOfficials } from './services/router.ts'
 import { logger } from './util/log.ts'
@@ -43,6 +44,16 @@ function makeBot() {
 
   const bot = new Bot<MyContext>(token)
   const db = openDb()
+
+  // Las que reunieron sus apoyos mientras la promoción estaba rota: nadie va a
+  // volver a apoyarlas para que `addApoyo` las empuje ahora. Idempotente, y se
+  // informa de lo intentado y de lo promovido por separado — «0 de 0» y «0 de 7»
+  // dicen cosas muy distintas y con un solo número se leen igual.
+  const reconciliadas = reconcileApoyadas(db)
+  console.log(
+    `[arranque] apoyos al día: ${reconciliadas.promovidas} promovida(s) de ${reconciliadas.intentadas} con umbral alcanzado`,
+  )
+
   const channel = makeChannel(bot)
 
   bot.use(session({ initial: (): SessionData => ({}) }))

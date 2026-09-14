@@ -220,17 +220,95 @@ export function addApoyo(
   const count = countApoyos(db, quejaId)
   if (result.changes === 0) return { added: false, count }
 
-  if (count === VERIFIED_THRESHOLD) {
-    const already = db
-      .prepare(`SELECT 1 FROM events WHERE queja_id = ? AND kind = 'apoyada_verificada' LIMIT 1`)
-      .get(quejaId)
-    if (!already) {
-      db.prepare(
-        `INSERT INTO events (queja_id, kind, payload) VALUES (?, 'apoyada_verificada', ?)`,
-      ).run(quejaId, JSON.stringify({ count }))
-    }
+  // Al llegar al umbral, la queja PASA DE ESTADO. Antes esto sólo insertaba el
+  // evento y dejaba la columna en `capturada`, y el lote semanal selecciona
+  // `WHERE q.state = 'apoyada_verificada'` (services/batch.ts): no podía coger
+  // nada, ninguna queja se registraba y el plazo de la LPACAP no arrancaba nunca.
+  // El evento decía que el hito había ocurrido; la columna decía que no.
+  //
+  // En UNA transacción, y con el evento del hito haciendo también de evento de la
+  // transición: `setState` inserta uno con el `kind` del estado nuevo, así que
+  // llamarlo desde aquí emitiría dos `apoyada_verificada`.
+  //
+  // `>=` y no `==`: con la guarda de «ya hay evento» es idempotente igual, y así
+  // una fila que rebase el umbral sin caer justo en él también promueve.
+  //
+  // Sólo desde `capturada`. Una queja registrada tiene número de entrada y plazo
+  // en marcha; más apoyos no pueden devolverla a la cola.
+  if (count >= VERIFIED_THRESHOLD) {
+    const tx = db.transaction(() => {
+      const promovida = db
+        .prepare(
+          `UPDATE quejas SET state = 'apoyada_verificada', updated_at = datetime('now')
+           WHERE id = ? AND state = 'capturada'`,
+        )
+        .run(quejaId)
+      const already = db
+        .prepare(`SELECT 1 FROM events WHERE queja_id = ? AND kind = 'apoyada_verificada' LIMIT 1`)
+        .get(quejaId)
+      if (!already && promovida.changes > 0) {
+        db.prepare(
+          `INSERT INTO events (queja_id, kind, payload) VALUES (?, 'apoyada_verificada', ?)`,
+        ).run(quejaId, JSON.stringify({ count }))
+      }
+    })
+    tx()
   }
   return { added: true, count }
+}
+
+/**
+ * Promueve las quejas que ya reunieron los apoyos y se quedaron sin promover.
+ *
+ * Hace falta porque el defecto estuvo publicado: hay filas con diez apoyos o más
+ * y el estado en `capturada`, y nadie las va a volver a apoyar para que el nuevo
+ * `addApoyo` las empuje. Es idempotente —la segunda pasada no promueve nada— y va
+ * en el arranque, una vez por proceso.
+ *
+ * Informa de lo INTENTADO y de lo PROMOVIDO por separado, que es la regla 2 de
+ * docs/DATA_INTEGRITY.md: doblar «no se intentó» dentro de «sin cambios» es lo
+ * que dejó a un pase diciendo «re-judged 1017» sin haber hecho una sola llamada.
+ */
+export function reconcileApoyadas(db: Db): { intentadas: number; promovidas: number } {
+  const pendientes = db
+    .prepare(
+      `SELECT q.id FROM quejas q
+       JOIN (SELECT queja_id, COUNT(*) as n FROM apoyos GROUP BY queja_id) a ON a.queja_id = q.id
+       WHERE q.state = 'capturada' AND q.deleted_at IS NULL AND a.n >= ?`,
+    )
+    .all(VERIFIED_THRESHOLD) as Array<{ id: string }>
+
+  let promovidas = 0
+  const tx = db.transaction(() => {
+    for (const { id } of pendientes) {
+      const r = db
+        .prepare(
+          `UPDATE quejas SET state = 'apoyada_verificada', updated_at = datetime('now')
+           WHERE id = ? AND state = 'capturada'`,
+        )
+        .run(id)
+      // La cuenta sale del `changes` del UPDATE, no de cuántas filas se
+      // seleccionaron. Hoy parece lo mismo, porque el `WHERE` de arriba y el de
+      // aquí piden lo mismo y SQLite serializa la transacción — de hecho una
+      // mutación que borra esta línea SOBREVIVE a las pruebas, y se deja escrito
+      // en vez de fingir que está cubierta. Se queda porque los dos criterios
+      // pueden separarse el día que alguien toque uno solo, y entonces contar lo
+      // seleccionado diría «promoví siete» habiendo promovido cero, que es la
+      // regla 2 de docs/DATA_INTEGRITY.md exactamente.
+      if (r.changes === 0) continue
+      promovidas += 1
+      const already = db
+        .prepare(`SELECT 1 FROM events WHERE queja_id = ? AND kind = 'apoyada_verificada' LIMIT 1`)
+        .get(id)
+      if (!already) {
+        db.prepare(
+          `INSERT INTO events (queja_id, kind, payload) VALUES (?, 'apoyada_verificada', ?)`,
+        ).run(id, JSON.stringify({ reconciliada: true }))
+      }
+    }
+  })
+  tx()
+  return { intentadas: pendientes.length, promovidas }
 }
 
 export function countApoyos(db: Db, quejaId: string): number {
