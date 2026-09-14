@@ -1557,6 +1557,12 @@ export default function Metodologia() {
             .
           </li>
         </ul>
+        <p style={{ marginTop: 8 }}>
+          <strong>Contrastadas</strong> es la suma de las verificadas, las parciales y las
+          contradichas: las declaraciones que se pudieron comparar con un documento municipal,
+          saliera a favor o en contra. No quiere decir que estén respaldadas; el veredicto de cada
+          una va en su tarjeta.
+        </p>
 
         <h3 style={{ marginTop: 16, fontSize: 'var(--fs-head)' }}>Disciplina antilibellos</h3>
         <ul style={{ margin: '6px 0 0', paddingLeft: 20 }}>

@@ -214,7 +214,10 @@ function OLabel({ children }) {
   )
 }
 
-/** con-evidencia vs sin-contraste proportion for the session's declarations. */
+/**
+ * Contrastadas frente a sin contraste, en las declaraciones de la sesión. Sin
+ * verde: «contrastadas» incluye las contradichas, y en verde se leía como respaldo.
+ */
 function DeclMixBar({ items }) {
   const g = items.filter((it) => GROUNDED.has(it.verification?.verdict)).length
   const s = items.filter((it) => it.verification?.verdict === 'sin-datos').length
@@ -230,15 +233,20 @@ function DeclMixBar({ items }) {
           background: 'var(--soft)',
         }}
       >
-        {g > 0 && <div style={{ flex: g, background: 'var(--ok)' }} />}
+        {g > 0 && <div style={{ flex: g, background: 'var(--civic)' }} />}
         {s > 0 && <div style={{ flex: s, background: 'var(--ink50)' }} />}
       </div>
       <div style={{ display: 'flex', gap: 14, marginTop: 8, fontSize: 'var(--fs-micro)' }}>
         <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
           <span
-            style={{ width: 9, height: 9, borderRadius: 'var(--r-input)', background: 'var(--ok)' }}
+            style={{
+              width: 9,
+              height: 9,
+              borderRadius: 'var(--r-input)',
+              background: 'var(--civic)',
+            }}
           />
-          <span style={{ color: 'var(--ink70)' }}>con evidencia</span>
+          <span style={{ color: 'var(--ink70)' }}>contrastadas</span>
           <strong className="mono" style={{ color: 'var(--ink)' }}>
             {g}
           </strong>
@@ -392,7 +400,7 @@ export default function PlenoDetalle() {
           value={votes.length > 0 ? votes.length : '—'}
           sub={votes.length ? `${aprobados} aprob.` : t('plenoDetail.votesPending')}
         />
-        <Tile label={t('plenoDetail.declarations')} value={groundedCount} sub="con evidencia" />
+        <Tile label={t('plenoDetail.declarations')} value={groundedCount} />
         <Tile
           label={t('plenoDetail.findings')}
           value={findings.length}
@@ -479,8 +487,8 @@ export default function PlenoDetalle() {
               </>
             )}
             {' · '}
-            <strong style={{ color: 'var(--ink)' }}>{groundedCount}</strong> declaraciones con
-            evidencia
+            <strong style={{ color: 'var(--ink)' }}>{groundedCount}</strong> declaraciones
+            contrastadas
             {findings.length > 0 && (
               <>
                 {' · '}

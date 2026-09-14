@@ -330,11 +330,9 @@ export default function Declaraciones() {
         }}
       >
         <MiniStat label={t('declaraciones.stat.total')} value={stats.total} />
-        <MiniStat
-          label={t('declaraciones.stat.conEvidencia')}
-          value={stats.withEvidence}
-          tone="ok"
-        />
+        {/* Sin verde: el agregado incluye las contradichas, y en verde se leía como respaldo.
+            Las cifras de cada veredicto, al lado, conservan su tono. */}
+        <MiniStat label={t('declaraciones.stat.conEvidencia')} value={stats.withEvidence} />
         <MiniStat label="verificado" value={stats.byVerdict.verificado} tone="ok" />
         <MiniStat label="parcial" value={stats.byVerdict.parcial} tone="warn" />
         <MiniStat label="contradicho" value={stats.byVerdict.contradicho} tone="crit" />
@@ -397,7 +395,6 @@ export default function Declaraciones() {
             label={t('declaraciones.filter.conEvidencia')}
             count={stats.withEvidence}
             onClick={() => setVerdictFilter('with-evidence')}
-            tone="ok"
           />
           <FilterChip
             active={verdictFilter === 'all'}
