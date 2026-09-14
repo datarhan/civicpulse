@@ -808,8 +808,10 @@ function EmptyState() {
           <p>
             Esta página publica el feed agregado — categoría, barrio, plazo legal y estado —{' '}
             <strong>nunca identifica al vecino</strong>. Las quejas con 10 apoyos vecinales entran
-            en el lote semanal al Registro Electrónico del Ayuntamiento. Si el Ayuntamiento no
-            responde en 3 meses, escalamos al Síndic de Greuges de la Comunitat Valenciana.
+            en un lote que una persona que modera el canal presenta en el registro electrónico del
+            ayuntamiento. Desde ese registro corre el plazo para responder: tres meses con carácter
+            general, un mes si es una petición de transparencia. Si vence sin respuesta, puede
+            prepararse la plantilla para acudir al Síndic de Greuges de la Comunitat Valenciana.
           </p>
         </div>
       </Card>
