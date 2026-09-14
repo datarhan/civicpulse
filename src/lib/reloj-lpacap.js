@@ -41,8 +41,10 @@ function esRecuento(n) {
 }
 
 /** Una fecha de registro utilizable, con el mismo criterio que usa el panel
- *  para contar días («ReadyToEscalate» hace `new Date(...).getTime()`). */
-function registroUtilizable(valor) {
+ *  para contar días («ReadyToEscalate» hace `new Date(...).getTime()`).
+ *  Exportada porque el panel de /quejas da sus proporciones sobre las
+ *  registradas, y contarlas con otro criterio sería otra copia de la regla. */
+export function registroUtilizable(valor) {
   return typeof valor === 'string' && Number.isFinite(Date.parse(valor))
 }
 

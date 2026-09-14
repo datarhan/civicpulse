@@ -6,6 +6,7 @@ import {
   truncateAtWord,
   fmtDateHuman,
   rellena,
+  porcentajeLegible,
 } from '../../src/lib/formatters'
 
 // Build an ISO string a given number of milliseconds in the past.
@@ -187,5 +188,22 @@ describe('rellena', () => {
   it('un 0 se escribe «0» en vez de desaparecer por ser falso', () => {
     // El nombre de antes hablaba de «[object Object]», que no es lo que mide.
     expect(rellena('{n}', { n: 0 })).toBe('0')
+  })
+})
+
+describe('porcentajeLegible', () => {
+  it('lo que no es cero no se escribe «0», ni lo que no es el total «100»', () => {
+    expect(porcentajeLegible(2, 1005)).toBe('<1')
+    expect(porcentajeLegible(1004, 1005)).toBe('>99')
+  })
+
+  it('un cero, una mitad y un total de verdad se quedan como están', () => {
+    expect(porcentajeLegible(0, 4)).toBe('0')
+    expect(porcentajeLegible(1, 2)).toBe('50')
+    expect(porcentajeLegible(4, 4)).toBe('100')
+  })
+
+  it('sin total no hay proporción: null, no un cero', () => {
+    expect(porcentajeLegible(0, 0)).toBeNull()
   })
 })

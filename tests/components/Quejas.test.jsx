@@ -334,3 +334,87 @@ describe('/quejas — la tarjeta del Síndic', () => {
     expect(cuerpo).not.toMatch(/expedientes?\s+contra el Ayuntamiento de Riba-roja/i)
   })
 })
+
+/**
+ * «Resueltas» y «Silencios» cuentan respuestas del ayuntamiento, y el
+ * ayuntamiento sólo puede darlas —o callar— desde que la queja entra en su
+ * registro. La instantánea publicada hoy tiene una queja capturada y ninguna
+ * registrada, y la tarjeta decía «Resueltas 0 · 0% del total».
+ */
+describe('/quejas — resueltas y silencios sólo desde el registro', () => {
+  const OTRAS = {
+    '/data/sindic.json': {
+      generatedAt: '2026-04-20T00:00:00Z',
+      source: { platform: 'S', portal: 'https://www.elsindic.com' },
+      items: [],
+    },
+    '/data/ctbg.json': {
+      generatedAt: '2026-04-20T00:00:00Z',
+      source: { url: 'x', platform: 'p', spec: 's' },
+      query: 'Riba-roja',
+      stats: { totalEntries: 10, matchedEntries: 0, years: [], bySentido: {} },
+      matched: [],
+    },
+    '/data/geo.json': { boundary: { polygon: [] }, neighborhoods: [] },
+  }
+  const queja = (id, status, registered_at = null) => ({
+    service_request_id: id,
+    status,
+    service_code: 'via_publica',
+    service_name: 'via_publica',
+    description: `Queja ${id}`,
+    requested_datetime: '2026-04-20T08:30:00Z',
+    updated_datetime: '2026-04-20T08:30:00Z',
+    lat: null,
+    long: null,
+    address_string: 'santa-rosa',
+    apoyos: 0,
+    concejalia_area: 'Obra Pública',
+    concejal_slug: 'teresa-pozuelo-martin',
+    registro_entry_number: registered_at ? 'RE-1' : null,
+    registered_at,
+  })
+  const snapshot = (items, total = items.length) => ({
+    generatedAt: '2026-04-20T12:00:00Z',
+    source: { platform: 'CivicPulse bot · Telegram capture', spec: 'Open311 GeoReport v2' },
+    stats: {
+      total,
+      byState: items.reduce((a, q) => ({ ...a, [q.status]: (a[q.status] ?? 0) + 1 }), {}),
+      byNeighborhood: { 'santa-rosa': items.length },
+      byCategory: { via_publica: items.length },
+      byConcejal: {},
+    },
+    items,
+  })
+  /** La tarjeta de un rótulo: rótulo, cifra y pie comparten padre. */
+  const tarjeta = async (rotulo) => (await screen.findByText(rotulo)).parentElement
+  /** La cifra grande de una tarjeta, leída como el lector la ve. */
+  const cifra = (t) => [...t.children].map((d) => d.textContent)
+
+  it('sin ninguna registrada, «Resueltas» es «—» con su motivo, no «0% del total»', async () => {
+    mountWith({ ...OTRAS, '/data/quejas.json': snapshot([queja('Q-ABC12301', 'capturada')]) })
+    const t = await tarjeta('Resueltas')
+    expect(cifra(t)).toContain('—')
+    expect(t.textContent).toContain('sin registro')
+    expect(t.textContent).not.toMatch(/del total/)
+  })
+
+  it('con el listado truncado no hay cifra: no se sabe cuáles se registraron', async () => {
+    const una = [queja('Q-ABC12301', 'resuelta', '2026-05-02T10:00:00Z')]
+    mountWith({ ...OTRAS, '/data/quejas.json': snapshot(una, 2) })
+    expect((await tarjeta('Resueltas')).textContent).toContain('listado parcial')
+    expect((await tarjeta('Silencios + escaladas')).textContent).toContain('listado parcial')
+  })
+
+  it('con una registrada: la cifra y su proporción sobre las registradas', async () => {
+    const dos = [
+      queja('Q-ABC12301', 'resuelta', '2026-05-02T10:00:00Z'),
+      queja('Q-ABC12302', 'capturada'),
+    ]
+    mountWith({ ...OTRAS, '/data/quejas.json': snapshot(dos) })
+    const t = await tarjeta('Resueltas')
+    expect(cifra(t)).toContain('1')
+    expect(t.textContent).toContain('100% · sobre 1 registrada')
+    expect((await tarjeta('Silencios + escaladas')).textContent).toContain('sobre 1 registrada')
+  })
+})
