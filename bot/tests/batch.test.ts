@@ -23,9 +23,14 @@ function seed(db: Db, overrides: Partial<NewQuejaInput> = {}) {
 }
 
 function verify(db: Db, id: string) {
-  // 10 apoyos → auto milestone; then promote state manually (the bot does this).
+  // Sólo los apoyos: promover es cosa de `addApoyo`.
+  //
+  // Aquí había un `setState(db, id, 'apoyada_verificada')` a mano, comentado como
+  // «(the bot does this)», y el bot era justo lo que NO lo hacía: dejaba el estado
+  // en `capturada` y el lote —que filtra por estado— no podía coger nada. Con esa
+  // línea puesta, estas catorce pruebas tenían siempre su fila y el defecto no se
+  // veía por ninguna parte. Si la promoción se rompe, ahora se enteran las catorce.
   for (let u = 200; u < 210; u++) addApoyo(db, id, u)
-  setState(db, id, 'apoyada_verificada')
 }
 
 describe('batch — selectBatch', () => {
