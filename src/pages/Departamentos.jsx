@@ -138,11 +138,19 @@ function DepartmentCard({ bucket, frozen, contratacionYears }) {
                   : undefined
               }
             />
+            {/* Las abiertas son respuestas que el ayuntamiento DEBE, y sólo puede
+              deberlas desde que la queja entra en su registro: hasta entonces,
+              «—» y el motivo, como en /cargos y en los barrios. La regla la
+              decide lib/department-stats con lib/reloj-lpacap; aquí sólo se
+              pinta. */}
             <Stat
               label={t('departamentos.card.quejas')}
-              value={bucket.quejas.abiertas}
-              tone={bucket.quejas.silencios > 0 ? 'crit' : undefined}
+              value={bucket.quejas.medible ? bucket.quejas.abiertas : '—'}
+              tone={bucket.quejas.medible && bucket.quejas.silencios > 0 ? 'crit' : undefined}
               muted={bucket.quejas.total === 0}
+              sub={
+                bucket.quejas.medible ? undefined : t(`quejas.reloj.${bucket.quejas.motivo}.corto`)
+              }
             />
             <Stat
               label={t('departamentos.card.declaraciones')}

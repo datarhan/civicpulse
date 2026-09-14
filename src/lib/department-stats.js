@@ -20,6 +20,24 @@ import {
   departmentForTender,
 } from '../scraper/departments'
 import { topicToDeptSlugs, promiseDeptSlug } from './department-claim-topics'
+import { medibilidad } from './reloj-lpacap'
+
+/** Los estados en que una queja ya no está abierta. */
+export const ESTADOS_CERRADOS = new Set(['resuelta', 'cerrada_no_registrada'])
+
+/**
+ * La concejalía de una queja publicada.
+ *
+ * `quejas.json` es un GeoReport de Open311 (bot/src/services/snapshot.ts): la
+ * categoría va en `service_code`. Se exporta porque la ficha del departamento
+ * filtra su lista con la misma regla, y cuando la escribía por su cuenta leía
+ * `category` —un nombre que ninguna instantánea publicada ha traído— y la lista
+ * salía vacía con el contador de encima diciendo que había quejas. El
+ * `category` de respaldo mantiene la forma antigua escrita a mano.
+ */
+export function departamentoDeQueja(q) {
+  return canonicalizeDepartment(q?.service_code ?? q?.category)
+}
 
 /**
  * @typedef {Object} DepartmentStats
@@ -30,7 +48,8 @@ import { topicToDeptSlugs, promiseDeptSlug } from './department-claim-topics'
  * @property {object} plenoVotes  { aprobado, rechazado, retirado, aplazado, plazosVencidos, total }
  * @property {object} plenoAgendas { total, sinVoto }
  * @property {object} promesas  { total, docs, enProgreso, plazosVencidos }
- * @property {object} quejas  { abiertas, silencios, total }
+ * @property {object} quejas  { total, abiertas, silencios, medible, motivo }: abiertas y
+ *   silencios son null, con su motivo, mientras ninguna queja del área esté registrada
  * @property {object} contratacion  { contratos, importeEur } — awarded spend owned by this concejalía
  * @property {object} declaraciones  { total, verificado, parcial, contradicho, promesaRepetida, sinDatos, conEvidencia }
  */
@@ -51,7 +70,7 @@ function emptyBucket(slug) {
     },
     plenoAgendas: { total: 0, sinVoto: 0 },
     promesas: { total: 0, docs: 0, enProgreso: 0, plazosVencidos: 0 },
-    quejas: { abiertas: 0, silencios: 0, total: 0 },
+    quejas: { total: 0, abiertas: 0, silencios: 0, medible: true, motivo: null },
     /** Awarded public spending owned by this concejalía. Only contracts whose
      *  Gobierto category maps unambiguously to a department are counted, so the
      *  figure UNDER-states rather than mis-attributes. */
@@ -216,22 +235,54 @@ export function computeDepartmentStats({
   }
 
   // Quejas (optional, read-only)
+  //
+  // quejas.json is an Open311 GeoReport payload (bot/src/services/snapshot.ts),
+  // so the category is `service_code` and the lifecycle is `status`. This once
+  // read `q.category` / `q.state` — names no published snapshot has ever
+  // carried — so EVERY queja was skipped for EVERY department, while the unit
+  // fixture used the same invented shape and stayed green. The fallbacks keep
+  // the older hand-written shape working.
   const quejaList = quejas?.items ?? []
-  const CLOSED_STATES = new Set(['resuelta', 'cerrada_no_registrada'])
+  const crudas = {}
   for (const q of quejaList) {
-    // quejas.json is an Open311 GeoReport payload (bot/src/services/snapshot.ts),
-    // so the category is `service_code` and the lifecycle is `status`. This read
-    // `q.category` / `q.state` — names no published snapshot has ever carried —
-    // so canonicalizeDepartment(undefined) returned null and EVERY queja was
-    // skipped for EVERY department. The unit fixture used the same invented
-    // shape, so the suite stayed green while /departamentos showed zero citizen
-    // complaints. The fallbacks keep the older hand-written shape working.
-    const slug = canonicalizeDepartment(q.service_code ?? q.category)
+    const slug = departamentoDeQueja(q)
     if (!slug || !buckets[slug]) continue
     const status = q.status ?? q.state
-    buckets[slug].quejas.total += 1
-    if (!CLOSED_STATES.has(status)) buckets[slug].quejas.abiertas += 1
-    if (status === 'silencio_negativo') buckets[slug].quejas.silencios += 1
+    if (!crudas[slug]) crudas[slug] = { total: 0, abiertas: 0, silencios: 0 }
+    crudas[slug].total += 1
+    if (!ESTADOS_CERRADOS.has(status)) crudas[slug].abiertas += 1
+    if (status === 'silencio_negativo') crudas[slug].silencios += 1
+  }
+  // Y se publican con la regla del registro, la misma que por cargo y por barrio
+  // (`lib/reloj-lpacap`), que es donde vive y no se reescribe aquí. «Quejas
+  // abiertas 1» junto al nombre de quien dirige el área afirma que el
+  // ayuntamiento debe una respuesta, y sólo puede deberla desde que la queja
+  // entra en su registro. Con la única queja publicada —capturada y sin
+  // registrar— esta página decía justo eso. Cuántas se asignaron sí se da: es un
+  // hecho del canal, no una nota sobre el ayuntamiento.
+  //
+  // Primero el listado ENTERO. Sin él ni un «0» es un dato: las quejas que faltan
+  // podrían ser de un área que ahora no tiene ninguna listada.
+  const listado = medibilidad(quejas, () => false).motivo
+  const sinCifras = (motivo, total) => ({
+    total,
+    abiertas: null,
+    silencios: null,
+    medible: false,
+    motivo,
+  })
+  for (const slug of ALLOWED_DEPARTMENT_SLUGS) {
+    const c = crudas[slug] ?? { total: 0, abiertas: 0, silencios: 0 }
+    if (listado === 'sinDatos' || listado === 'exportIncompleto') {
+      buckets[slug].quejas = sinCifras(listado, null)
+    } else if (c.total === 0) {
+      buckets[slug].quejas = { ...c, medible: true, motivo: null }
+    } else {
+      const m = medibilidad(quejas, (q) => departamentoDeQueja(q) === slug)
+      buckets[slug].quejas = m.medible
+        ? { ...c, medible: true, motivo: null }
+        : sinCifras(m.motivo, c.total)
+    }
   }
 
   // Contratación. The largest money dataset had no owner at all: Gobierto

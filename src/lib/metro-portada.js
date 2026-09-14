@@ -55,12 +55,69 @@ export const VIGENCIA = /** @type {const} */ ({
  * Madrid ese día quedaba «no vigente» desde la 01:00: veintitrés horas de un día
  * que todavía valía. Una validez por días vale hasta el final del día, no hasta
  * su principio.
+ *
+ * Y hasta el final del día EN MADRID, que es donde circula el metro. La versión
+ * anterior leía «23:59:59» en la zona del reloj que ejecuta el código: en un
+ * navegador de Riba-roja da lo mismo, pero en la integración continua, que va en
+ * UTC, el día acababa dos horas tarde, y a un lector de fuera el horario le
+ * caducaba a la medianoche de su casa. Salió la primera vez que la suite corrió
+ * en un PR.
  */
 function finDeVigencia(valor) {
   if (typeof valor !== 'string') return null
-  const soloFecha = /^\d{4}-\d{2}-\d{2}$/.test(valor)
-  const t = new Date(soloFecha ? `${valor}T23:59:59` : valor).getTime()
+  if (/^\d{4}-\d{2}-\d{2}$/.test(valor)) return finDelDiaEnMadrid(valor)
+  const t = new Date(valor).getTime()
   return Number.isFinite(t) ? t : null
+}
+
+/** La hora civil de Madrid de un instante, por partes. */
+const RELOJ_DE_MADRID = new Intl.DateTimeFormat('en-US', {
+  timeZone: 'Europe/Madrid',
+  hourCycle: 'h23',
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+  hour: '2-digit',
+  minute: '2-digit',
+  second: '2-digit',
+})
+
+/**
+ * El último segundo de un día civil de Madrid, como instante; null si ese día no
+ * existe («2026-02-30» no es un día que se pueda agotar).
+ *
+ * La diferencia con UTC se lee del calendario de zonas y no se escribe a mano: es
+ * +01:00 en invierno y +02:00 en verano, y un desfase fijo correría el final del
+ * día una hora durante medio año. Se mide a las 23:59:59 UTC de esa fecha, que en
+ * Madrid cae entre la 00:59:59 y la 01:59:59 del día siguiente: antes de las 02:00
+ * y las 03:00 a las que cambia la hora, así que es el desfase de esa misma noche.
+ *
+ * @param {string} fecha  «AAAA-MM-DD»
+ * @returns {number | null}
+ */
+function finDelDiaEnMadrid(fecha) {
+  const [anio, mes, dia] = fecha.split('-').map(Number)
+  const comoSiFueraUTC = Date.UTC(anio, mes - 1, dia, 23, 59, 59)
+  const leido = new Date(comoSiFueraUTC)
+  if (
+    leido.getUTCFullYear() !== anio ||
+    leido.getUTCMonth() !== mes - 1 ||
+    leido.getUTCDate() !== dia
+  ) {
+    return null
+  }
+  const partes = Object.fromEntries(
+    RELOJ_DE_MADRID.formatToParts(leido).map((p) => [p.type, p.value]),
+  )
+  const relojDeMadrid = Date.UTC(
+    Number(partes.year),
+    Number(partes.month) - 1,
+    Number(partes.day),
+    Number(partes.hour),
+    Number(partes.minute),
+    Number(partes.second),
+  )
+  return comoSiFueraUTC - (relojDeMadrid - comoSiFueraUTC)
 }
 
 /**

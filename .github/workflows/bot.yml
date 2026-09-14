@@ -23,7 +23,9 @@ name: Bot tests
 # y siga disparándose solo. Su primera versión buscaba «bot» y «npm test» en el
 # mismo workflow y pasaba en verde sin que existiera ninguno: la nocturna dice
 # «civicpulse-bot» al comitear y corre `npm test`, el de la raíz. Ahora exige el
-# directorio de trabajo.
+# directorio de trabajo — y desde el 2026-09-14 también el paso de TIPOS, con
+# el mismo directorio, porque unas pruebas en verde no dicen que el arranque
+# compile.
 
 on:
   push:
@@ -56,6 +58,19 @@ jobs:
         working-directory: bot
         timeout-minutes: 8
         run: npm ci
+
+      # Los TIPOS, antes que las pruebas. El 2026-09-14 una llamada a
+      # `reconcileApoyadas` sin su import dejó `bot/src/index.ts` sin compilar
+      # con todas las pruebas del bot en verde, porque ninguna importa el
+      # arranque (#20). `tsc` lo cazaba al primer intento y no lo ejecutaba
+      # nadie: el `typecheck` de `e2e.yml` es el de la RAÍZ, y su tsconfig no
+      # cubre `bot/`. Un arranque roto se fusionaba en verde y `bot-deploy.yml`
+      # lo desplegaba. Con `bot` de directorio, por la misma razón que las
+      # pruebas: fuera de él, `npm run typecheck` es el de otro proyecto.
+      - name: Typecheck bot (tsc --noEmit)
+        working-directory: bot
+        timeout-minutes: 5
+        run: npm run typecheck
 
       - name: Run bot tests
         working-directory: bot

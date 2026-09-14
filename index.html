@@ -25,8 +25,14 @@
          fuente; `npm run render:og` la rasteriza. -->
     <meta property="og:image" content="https://civicpulse.es/og.png" />
     <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+    <!-- Los píxeles del FICHERO, no un tamaño lógico: ogp.me define las dos
+         etiquetas como «the number of pixels wide/high», y Facebook las usa para
+         pintar la tarjeta antes de descargar la imagen. `render:og` rasteriza a
+         2× (2400×1260) desde el 13-08-2026; el 1200×630 de antes era un resto
+         de cuando og:image apuntaba al SVG. `tests/og-card.test.js` compara estas
+         dos cifras con la cabecera IHDR del PNG. -->
+    <meta property="og:image:width" content="2400" />
+    <meta property="og:image:height" content="1260" />
     <meta
       property="og:image:alt"
       content="CivicPulse · Riba-roja de Túria — quién dirige tu ayuntamiento, qué hace y cuánto cuesta, con una fuente para cada cifra"

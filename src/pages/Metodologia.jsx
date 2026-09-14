@@ -515,9 +515,15 @@ export default function Metodologia() {
           <a href="/departamentos" style={{ color: 'var(--civic)' }}>
             /departamentos
           </a>{' '}
-          cruza promesas electorales, votos de pleno y quejas ciudadanas por concejalía. Cuando un
-          compromiso con fecha (<code>dueBy</code>) supera su plazo sin que se haya registrado
-          evidencia de ejecución, se muestra el aviso{' '}
+          reúne por concejalía los votos de pleno y las promesas electorales —lo único que puede
+          llevar plazo— y las quejas ciudadanas de cada área. Las quejas no entran en este aviso: su
+          plazo es el de la ley y corre desde que llegan al registro del ayuntamiento (ver{' '}
+          <a href="#camino-de-una-queja" style={{ color: 'var(--civic)' }}>
+            cómo llega una queja al ayuntamiento
+          </a>
+          ), y mientras ninguna de un área lo haya hecho sus cifras de respuesta se publican como
+          «—». Cuando un compromiso con fecha (<code>dueBy</code>) supera su plazo sin que se haya
+          registrado evidencia de ejecución, se muestra el aviso{' '}
           <strong>«plazo vencido · sin evidencia de ejecución»</strong>. Reglas que rigen este
           aviso:
         </p>
@@ -628,6 +634,94 @@ export default function Metodologia() {
             resultado. Lo retirado no se borra: queda archivado con su contenido original, quién lo
             retiró y por qué, y el validador impide que vuelva a publicarse sin una revocación
             explícita, también firmada. Nunca se retracta de forma automática.
+          </li>
+        </ul>
+      </Card>
+
+      <Card style={{ marginTop: 14, scrollMarginTop: 24 }} id="camino-de-una-queja">
+        <SectionHead eyebrow="Quejas ciudadanas" title="Cómo llega una queja al ayuntamiento" />
+        <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
+          Una queja publicada en{' '}
+          <a href="/quejas" style={{ color: 'var(--civic)' }}>
+            /quejas
+          </a>{' '}
+          todavía no ha llegado al ayuntamiento. Llega cuando entra en su registro electrónico, y
+          sólo desde entonces tiene algo que contestar:{' '}
+          <strong>
+            el plazo legal para responder cuenta desde la fecha de ese registro, no desde la de
+            publicación
+          </strong>{' '}
+          (art. 21.3 de la Ley 39/2015, LPACAP). Éste es el camino:
+        </p>
+        <ol style={{ margin: '10px 0 0', paddingLeft: 20 }}>
+          <li>
+            <strong>Se presenta por Telegram.</strong> Categoría, título, detalle y, si se quiere,
+            ubicación y foto. Se publica sin identificar a nadie: el barrio y nunca las coordenadas;
+            la foto, sólo anonimizada, y si la anonimización no puede ejecutarse se retiene en vez
+            de publicarse sin tratar.
+          </li>
+          <li>
+            <strong>Necesita diez apoyos.</strong> Cualquier otra persona puede apoyarla con{' '}
+            <code>/apoyar</code>; quien la escribió no cuenta, y cada cuenta de Telegram apoya una
+            sola vez. Es un criterio editorial, no legal: el filtro que decide qué se lleva al
+            ayuntamiento en nombre del vecindario.
+          </li>
+          <li>
+            <strong>Se registra por lotes.</strong> Presentarla en nombre de cada vecino exigiría
+            acreditar su representación, así que una persona que modera el canal presenta en la sede
+            electrónica del ayuntamiento una única solicitud, firmada con su propia identificación,
+            que agrupa hasta diez quejas verificadas, primero las más apoyadas. Un aviso semanal le
+            recuerda cuántas esperan.
+          </li>
+          <li>
+            <strong>El registro devuelve un número y un CSV.</strong> La sede anota el asiento y
+            emite un recibo con número de entrada y código seguro de verificación. Cada queja del
+            lote queda como «registrada» con ese número, y desde ahí corre el plazo.
+          </li>
+          <li>
+            <strong>El plazo y el silencio.</strong> Depende de la materia: con carácter general,
+            tres meses; una petición de transparencia, un mes (art. 20 de la Ley 19/2013). Si vence
+            sin respuesta en un procedimiento de silencio negativo, la queja pasa a «silencio
+            administrativo» —un estado legal, no un juicio sobre nadie— y puede prepararse la
+            plantilla para acudir al Síndic de Greuges de la Comunitat Valenciana.
+          </li>
+        </ol>
+        <ul style={{ margin: '10px 0 0', paddingLeft: 20 }}>
+          <li>
+            <strong>Antes del registro no hay cifras de respuesta.</strong> Resueltas, pendientes,
+            abiertas y silencios cuentan respuestas del ayuntamiento, y sólo puede contestar a lo
+            que le ha llegado. Por eso{' '}
+            <a href="/quejas/dashboard" style={{ color: 'var(--civic)' }}>
+              /quejas/dashboard
+            </a>
+            ,{' '}
+            <a href="/departamentos" style={{ color: 'var(--civic)' }}>
+              /departamentos
+            </a>
+            , la ficha de cada cargo y los mapas por barrio publican «—» con el motivo mientras
+            ninguna queja de esa área o ese barrio esté registrada. Las quejas en sí no se esconden:
+            que existan es un hecho del canal.
+          </li>
+          <li>
+            <strong>Los apoyos se cuentan por cuenta de Telegram.</strong> El bot no verifica quién
+            hay detrás de cada una, así que el umbral mide cuentas distintas, no personas distintas.
+          </li>
+          <li>
+            <strong>Entre los diez apoyos y el registro pasan días.</strong> Lo presenta una
+            persona, no el bot, y mientras tanto el plazo legal no ha empezado.
+          </li>
+          <li>
+            <strong>Quien escribió la queja puede retirarla</strong> en cualquier momento con{' '}
+            <code>/olvidar</code>: sale de todas las páginas, del JSON publicado y con su foto. El
+            detalle está en el{' '}
+            <a href="/aviso-legal" style={{ color: 'var(--civic)' }}>
+              aviso legal
+            </a>
+            .
+          </li>
+          <li>
+            <strong>Suspensión electoral (LOREG).</strong> Bajo <code>frozenUntil</code> se detiene
+            el cálculo automático del silencio.
           </li>
         </ul>
       </Card>

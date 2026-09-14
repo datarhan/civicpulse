@@ -96,6 +96,40 @@ const tira = () => document.querySelector('[data-vivo-tira]')
 const chipHoy = (idioma = 'es') =>
   screen.findByRole('button', { name: CATALOGUE[idioma]['vivo.hoy.aria'] })
 
+/**
+ * El chip, con la cabecera ya pintada después de que contesten sus TRES fuentes
+ * —bien o mal—.
+ *
+ * `findByRole` devuelve en cuanto existe el botón, y eso ocurre en el primer
+ * pintado: el metro transcrito es cálculo puro, así que el chip sale enseguida
+ * con la plantilla «sin tiempo», antes de que Open-Meteo y el horario contesten.
+ * Comprobar ahí la temperatura, el aire o el GTFS es comprobar una pantalla que
+ * aún no ha llegado, y el resultado dependía de si el render con los datos caía
+ * antes o después de la aserción — con la suite entera en marcha, a veces caía
+ * después. Medido retrasando 150 ms las respuestas del banco: caían cuatro
+ * pruebas de este fichero (la temperatura, las tres secciones, la serie del aire
+ * y el GTFS en vigor).
+ *
+ * Esperar a la temperatura habría arreglado las que la esperan, y no las que
+ * comprueban que algo NO se pinta. Una ausencia afirmada en el primer pintado se
+ * cumple sola, pase lo que pase después: con las respuestas retrasadas, «sin
+ * tiempo ni aire» y «un 200 vacío no pinta cifra» seguían en verde sin haber
+ * visto llegar nada, y ahí no hay nada positivo a lo que esperar. Por eso se
+ * espera a que la cabecera deje de decir que carga (`data-vivo-cargando`, en
+ * `Vivo.jsx`), y sólo entonces se afirma lo que haya que afirmar, en las dos
+ * direcciones.
+ */
+async function chipAsentado(idioma = 'es') {
+  const b = await chipHoy(idioma)
+  await waitFor(() =>
+    expect(
+      document.querySelector('.cp-vivo'),
+      'la cabecera sigue esperando a alguna de sus tres fuentes',
+    ).not.toHaveAttribute('data-vivo-cargando'),
+  )
+  return b
+}
+
 describe('Vivo — el chip «Hoy» y su detalle', () => {
   beforeEach(() => {
     globalThis.fetch = sirveLoVivo()
@@ -125,7 +159,7 @@ describe('Vivo — el chip «Hoy» y su detalle', () => {
 
   it('el chip dice la temperatura y los minutos, sin dejar ningún hueco escrito', async () => {
     render(<Vivo />)
-    const b = await chipHoy()
+    const b = await chipAsentado()
     expect(b.textContent).toContain('Hoy · 21° · L9 ')
     expect(b.textContent).toMatch(/L9 \d+ min/)
     // La comprobación que importa: una llave sin sustituir es lo que /empleo
@@ -163,7 +197,7 @@ describe('Vivo — el chip «Hoy» y su detalle', () => {
     // su sección con nombre, que es lo que un lector de pantalla anuncia al
     // entrar. Cerradas no cuentan: `hidden` las saca del árbol de accesibilidad.
     render(<Vivo />)
-    const b = await chipHoy()
+    const b = await chipAsentado()
     expect(screen.queryAllByRole('group'), 'cerrado no hay secciones').toHaveLength(0)
     fireEvent.click(b)
     for (const clave of ['vivo.hoy.tiempo', 'vivo.hoy.aire', 'vivo.hoy.metro']) {
@@ -207,7 +241,7 @@ describe('Vivo — el chip «Hoy» y su detalle', () => {
 
   it('la sección del aire trae su serie de PM₂.₅', async () => {
     render(<Vivo />)
-    const b = await chipHoy()
+    const b = await chipAsentado()
     fireEvent.click(b)
     const panel = panelDe(b)
     expect(panel.textContent).toContain('PM₂.₅')
@@ -219,9 +253,12 @@ describe('Vivo — el chip «Hoy» y su detalle', () => {
   it('sin tiempo ni aire, el chip no dice «°» y esas secciones no se pintan', async () => {
     // Los hooks devuelven data: null ante cualquier fallo, y la cabecera no
     // publica un cero que parezca una medición. El metro sigue: es cálculo puro.
+    //
+    // Asentado, no en el primer pintado: ahí no hay «°» ni sección del tiempo
+    // tanto si el 500 se maneja bien como si se maneja mal.
     globalThis.fetch = vi.fn(async () => new Response('nope', { status: 500 }))
     render(<Vivo />)
-    const b = await chipHoy()
+    const b = await chipAsentado()
     expect(b.textContent).toContain('Hoy · L9 ')
     expect(b.textContent, 'un grado sin temperatura detrás').not.toContain('°')
     expect(b.textContent).not.toContain('{')
@@ -239,7 +276,7 @@ describe('Vivo — el chip «Hoy» y su detalle', () => {
     // pintaba «🌤 °» como si fuera una medida. Un centinela no es un valor.
     globalThis.fetch = vi.fn(async () => new Response('{}', { status: 200 }))
     render(<Vivo />)
-    const b = await chipHoy()
+    const b = await chipAsentado()
     expect(b.textContent).not.toContain('°')
     expect(b.textContent).toContain('Hoy · L9 ')
   })
@@ -254,11 +291,13 @@ describe('Vivo — el chip «Hoy» y su detalle', () => {
     // 06:06— y por eso las dos aserciones significan algo. Con el reloj de verdad
     // la negativa se cumplía sola: medido, 06:06 sólo es la siguiente salida del
     // banco durante una hora de las veinticuatro, así que por la tarde la prueba
-    // pasaba sin que el arreglo estuviera puesto.
+    // pasaba sin que el arreglo estuviera puesto. Y se afirma con el horario ya
+    // cargado, por la misma razón: antes de que llegue, «no pinta 06:06» se
+    // cumple sin que haya GTFS ninguno entre el que elegir.
     vi.setSystemTime(new Date('2026-09-14T05:00:00'))
     globalThis.fetch = sirveLoVivo({ validThrough: '2025-12-31' })
     render(<Vivo />)
-    const b = await chipHoy()
+    const b = await chipAsentado()
     fireEvent.click(b)
     const panel = panelDe(b)
     expect(panel.textContent, 'no se está pintando la hora en vigor').toContain('05:51')
@@ -274,7 +313,7 @@ describe('Vivo — el chip «Hoy» y su detalle', () => {
     vi.setSystemTime(new Date('2026-09-14T05:00:00'))
     globalThis.fetch = sirveLoVivo({ validThrough: '2027-06-30' })
     render(<Vivo />)
-    const b = await chipHoy()
+    const b = await chipAsentado()
     fireEvent.click(b)
     const panel = panelDe(b)
     expect(panel.textContent, 'el GTFS en vigor tendría que mandar').toContain('06:06')
@@ -300,36 +339,21 @@ describe('Vivo — en valencià se lee en valencià', () => {
 
   beforeEach(() => {
     localStorage.clear()
-    // Reloj de verdad, dicho aquí y no heredado. Este bloque no congela nada,
-    // pero corría con lo que le dejara puesto quien fuera antes: en la suite
-    // completa llegaba con temporizadores falsos y el fetch del tiempo no
-    // resolvía nunca, así que el chip se quedaba en «Hui · L9 851 min» y la
-    // comparación con «Hui · 21°» fallaba. Suelto pasaba; con 461 ficheros, no.
+    // Reloj de verdad, dicho aquí y no heredado: este bloque no congela nada.
+    // (Se escribió creyendo que el «Hui · L9 851 min» de la suite completa era
+    // un reloj falso heredado del bloque de arriba. No lo era: ese bloque
+    // restaura el suyo en cada `afterEach` y cada fichero corre aislado. Era la
+    // aserción, hecha antes de que llegara el tiempo, que es lo que espera ahora
+    // `chipAsentado`.)
     vi.useRealTimers()
   })
-
-  /**
-   * El chip CON su temperatura ya pintada.
-   *
-   * `findByRole` devuelve en cuanto existe el botón, y eso ocurre en el primer
-   * render — antes de que Open-Meteo conteste. Hasta entonces el chip es el
-   * legítimo «sin tiempo», que no lleva grado: comparar ahí contra «21°» es
-   * comparar contra una pantalla que aún no ha llegado. Así que se espera al
-   * dato, y se comprueba que HA llegado, porque si no llegara la aserción de
-   * abajo pasaría sola contra la plantilla corta.
-   */
-  async function chipConTemperatura(idioma) {
-    const b = await chipHoy(idioma)
-    await waitFor(() => expect(b.textContent).toContain('21°'))
-    return b
-  }
 
   it('el chip, el cielo y la banda del aire salen traducidos', async () => {
     // El código 2 del clima que sirve el banco es «Parcialment ennuvolat», y el
     // EAQI 24 cae en «Raonable». Ninguna de las dos se parece a su castellano,
     // así que esto no puede pasar por casualidad.
     pinta('ca')
-    const b = await chipConTemperatura('ca')
+    const b = await chipAsentado('ca')
     expect(b.textContent).toContain('Hui · 21°')
     fireEvent.click(b)
     const panel = panelDe(b)
@@ -342,11 +366,243 @@ describe('Vivo — en valencià se lee en valencià', () => {
     // Sin este control, «sale en valencià» lo cumpliría un componente que
     // pintara valencià siempre.
     pinta('es')
-    const b = await chipConTemperatura('es')
+    const b = await chipAsentado('es')
     expect(b.textContent).toContain('Hoy · 21°')
     fireEvent.click(b)
     const panel = panelDe(b)
     expect(panel.textContent).toContain(CATALOGUE.es['vivo.aqi.razonable'])
     expect(panel.textContent).not.toContain(CATALOGUE.ca['vivo.aqi.razonable'])
   })
+})
+
+/**
+ * El panel ENTERO en valencià: ningún rótulo, valor ni pie en castellano (#19).
+ *
+ * Al mudar al catálogo las etiquetas del tiempo y del aire, el resto del panel
+ * quedó a medio traducir: «Sensación térmica», «Humedad», «Próximo tren»,
+ * «Fuente», el aviso del mapa, los pies de Open-Meteo. Y lo que una lista de
+ * rótulos no habría visto: el pie del metro lo arma una función que no está en
+ * el JSX (`fuenteDelHorario`), y «Hacia València», «(terminus)» o el «ahora» de
+ * la espera son VALORES, no rótulos.
+ *
+ * Así que la prueba no enumera cadenas. Pinta el mismo panel, con los mismos
+ * datos y a la misma hora, en castellano y en valencià, y compara lo que se lee
+ * posición a posición. Lo que se lee IGUAL en los dos idiomas es, o un dato que
+ * no se traduce —una cifra, una unidad, una sigla—, o algo que no ha pasado por
+ * el catálogo. Un rótulo nuevo escrito a mano cae aquí sin que nadie tenga que
+ * acordarse de añadirlo a ninguna lista.
+ *
+ * Y una segunda mirada, porque la primera tiene un punto ciego que se midió: una
+ * cadena que pega un trozo traducido a otro en castellano se lee DISTINTA en los
+ * dos idiomas y pasaba. Con el pie de REFERENCIA reescrito a mano —«Horari
+ * transcrit de fgv.es (2026) · horario de REFERENCIA, no vigente…», con el
+ * nombre ya traducido delante— la comparación salió en verde. Así que además se
+ * buscan, dentro de cada texto valenciano, las palabras que sólo usa el
+ * castellano del catálogo («horario», «vigente», «hacia»), sacadas del propio
+ * catálogo y no escritas aquí.
+ *
+ * No basta con que las claves existan: el catálogo cae al castellano cuando
+ * falta una, así que una traducción olvidada no rompe nada, se lee castellano
+ * en medio de la página valenciana y la suite sigue en verde.
+ */
+describe('Vivo — el panel entero en valencià, sin nada en castellano', () => {
+  /** Lo que el lector recibe de un nodo: sus textos y lo que sólo oye (`aria-label`). */
+  function loQueSeLee(nodo, out = []) {
+    if (nodo.nodeType === 3) {
+      const s = nodo.textContent.trim()
+      if (s) out.push(s)
+      return out
+    }
+    if (nodo.nodeType !== 1) return out
+    const aria = nodo.getAttribute('aria-label')
+    if (aria) out.push(aria)
+    for (const hijo of nodo.childNodes) loQueSeLee(hijo, out)
+    return out
+  }
+
+  /**
+   * Lo que puede leerse igual en los dos idiomas sin ser un olvido: contenido de
+   * dato, que en esta casa se queda en su idioma (CLAUDE.md). Las siglas del
+   * aire, la línea, el nombre del feed y las unidades. Es la lista de lo que NO
+   * se traduce, que es corta y casi no cambia — no la de lo que sí.
+   */
+  const NO_SE_TRADUCE = [
+    'EAQI',
+    'PM₂.₅',
+    'PM₁₀',
+    'NO₂',
+    'O₃',
+    'FGV GTFS',
+    'L9',
+    'km/h',
+    'µg/m³',
+    'min',
+  ]
+
+  /**
+   * Lo que el catálogo escribe igual en los dos idiomas («Metro», «Aire»): eso sí
+   * pasó por él.
+   *
+   * Y el límite que eso deja, dicho y medido: una traducción valenciana SIN hueco
+   * copiada tal cual del castellano pasa por aquí como si fuera una palabra que
+   * se escribe igual. Con hueco no: «{estacion} (terminus)» copiado se pinta
+   * relleno, deja de ser el valor del catálogo y cae. Cerrarlo del todo pediría
+   * una lista de las palabras que de verdad coinciden, escrita a mano.
+   */
+  const IGUALES_EN_EL_CATALOGO = new Set(
+    Object.keys(CATALOGUE.es)
+      .filter((k) => CATALOGUE.es[k] === CATALOGUE.ca[k])
+      .map((k) => CATALOGUE.es[k]),
+  )
+
+  /** Lo que se lee igual en castellano y en valencià sin ser dato. */
+  function sinTraducir(pares) {
+    return pares
+      .filter(([es, ca]) => es === ca && !IGUALES_EN_EL_CATALOGO.has(es))
+      .map(([es]) => es)
+      .filter((s) => /\p{L}/u.test(NO_SE_TRADUCE.reduce((r, dato) => r.split(dato).join(' '), s)))
+  }
+
+  /** Las palabras de un texto, en minúsculas. */
+  const palabras = (s) => s.toLowerCase().match(/\p{L}+/gu) ?? []
+
+  /**
+   * Las palabras que sólo usa el castellano del catálogo: las de sus cadenas que
+   * no aparecen en ninguna valenciana. Salen del catálogo, así que crecen con él
+   * y nadie tiene que mantenerlas. Las que las dos lenguas comparten —«de»,
+   * «no», «metro»— no están en ella.
+   */
+  const SOLO_CASTELLANO = (() => {
+    const valencianas = new Set(Object.values(CATALOGUE.ca).flatMap((v) => palabras(String(v))))
+    return new Set(
+      Object.values(CATALOGUE.es)
+        .flatMap((v) => palabras(String(v)))
+        .filter((p) => !valencianas.has(p)),
+    )
+  })()
+
+  /** Las palabras castellanas que asoman en un texto, aunque vayan pegadas a otras traducidas. */
+  function castellanoEn(texto) {
+    const resto = NO_SE_TRADUCE.reduce((r, dato) => r.split(dato).join(' '), texto)
+    return [...new Set(palabras(resto).filter((p) => SOLO_CASTELLANO.has(p)))]
+  }
+
+  /**
+   * Cuatro horas, porque hay texto que sólo existe a según qué hora: la espera
+   * «ahora», el tren «de mañana», el pie del GTFS y el de un horario que ya no
+   * está en vigor. Cada escenario lleva la `marca` que demuestra que pintó su
+   * rama: sin ella, uno que no la pintara pasaría sin haber comparado nada.
+   */
+  const ESCENARIOS = [
+    {
+      nombre: 'GTFS en vigor a mediodía',
+      hora: '2026-09-14T12:14:00',
+      validThrough: '2026-12-31',
+      marca: 'FGV GTFS',
+    },
+    {
+      nombre: 'el tren sale ahora',
+      hora: '2026-09-14T06:06:00',
+      validThrough: '2026-12-31',
+      marca: `L9 ${CATALOGUE.es['vivo.hoy.ahora']}`,
+    },
+    {
+      nombre: 'el próximo es de mañana, con la transcripción',
+      hora: '2026-09-14T23:50:00',
+      validThrough: '2026-12-31',
+      marca: '05:51',
+    },
+    {
+      nombre: 'ninguno en vigor: horario de referencia',
+      hora: '2027-01-11T12:14:00',
+      validThrough: '2025-12-31',
+      marca: 'REFERENCIA',
+    },
+  ]
+
+  beforeEach(() => {
+    localStorage.clear()
+    vi.useRealTimers()
+  })
+
+  afterEach(() => {
+    // `setSystemTime` sin reloj falso sólo simula `Date`, y esto lo devuelve.
+    vi.useRealTimers()
+    localStorage.clear()
+  })
+
+  /** Lo que se lee en el chip y en su panel abierto, en un idioma y a una hora. */
+  async function lee(idioma, { hora, validThrough }) {
+    localStorage.setItem('cp:lang', idioma)
+    vi.setSystemTime(new Date(hora))
+    globalThis.fetch = sirveLoVivo({ validThrough })
+    const vista = render(
+      <LocaleProvider>
+        <Vivo />
+      </LocaleProvider>,
+    )
+    const b = await chipAsentado(idioma)
+    fireEvent.click(b)
+    const leido = [...loQueSeLee(b), ...loQueSeLee(panelDe(b))]
+    vista.unmount()
+    return leido
+  }
+
+  it('el detector distingue un rótulo sin traducir de un dato', () => {
+    expect(sinTraducir([['Humedad', 'Humedad']])).toEqual(['Humedad'])
+    expect(sinTraducir([['Humedad', 'Humitat']])).toEqual([])
+    const datos = [
+      '21°',
+      '12 km/h',
+      '7.1 µg/m³',
+      '682 min',
+      '↑ 07:41',
+      'PM₂.₅',
+      'FGV GTFS',
+      'L9',
+      '×',
+    ]
+    expect(sinTraducir(datos.map((d) => [d, d])), 'un dato no se traduce').toEqual([])
+    // Igual en los dos idiomas, pero sale del catálogo: no es un olvido.
+    const metro = [CATALOGUE.es['vivo.hoy.metro'], CATALOGUE.ca['vivo.hoy.metro']]
+    expect(sinTraducir([metro])).toEqual([])
+    // Y ni una sigla ni un nombre propio tapan la palabra que llevan al lado.
+    expect(sinTraducir([['PM₂.₅ · últimas 24 h', 'PM₂.₅ · últimas 24 h']])).toHaveLength(1)
+    expect(sinTraducir([['Hacia València', 'Hacia València']])).toHaveLength(1)
+  })
+
+  it('y ve el castellano pegado a un trozo traducido, que la comparación entera no ve', () => {
+    // Mide algo: sin vocabulario que buscar, «no hay castellano» sería gratis.
+    expect(SOLO_CASTELLANO.size).toBeGreaterThan(100)
+    // El caso medido: el nombre ya en valencià delante y el resto escrito a mano.
+    const mezcla = 'Horari transcrit de fgv.es (2026) · horario de REFERENCIA, no vigente'
+    const suCastellano = mezcla.replace('Horari transcrit', 'Horario transcrito')
+    expect(sinTraducir([[suCastellano, mezcla]]), 'la comparación entera no lo ve').toEqual([])
+    expect(castellanoEn(mezcla)).toEqual(expect.arrayContaining(['horario', 'vigente']))
+    // Y la traducción buena, con sus palabras compartidas, no da nada.
+    const bien = CATALOGUE.ca['vivo.horario.referencia'].replace(
+      '{fuente}',
+      'Horari transcrit de fgv.es (2026)',
+    )
+    expect(castellanoEn(bien)).toEqual([])
+    expect(castellanoEn('Cap a València · Riba-roja de Túria (final de línia)')).toEqual([])
+  })
+
+  it.each(ESCENARIOS)(
+    '$nombre: en valencià no queda nada en castellano',
+    async ({ marca, ...escenario }) => {
+      const es = await lee('es', escenario)
+      const ca = await lee('ca', escenario)
+      expect(es.join(' · '), 'el escenario no ha pintado la rama que dice').toContain(marca)
+      expect(es.length, 'hay poco texto que comparar').toBeGreaterThan(20)
+      expect(ca.length, 'los dos idiomas no pintan la misma estructura').toBe(es.length)
+      const pares = es.map((s, i) => [s, ca[i]])
+      expect(sinTraducir(pares), 'se leen en castellano también en valencià').toEqual([])
+      const mezclas = ca
+        .map((s) => ({ s, castellano: castellanoEn(s) }))
+        .filter((m) => m.castellano.length)
+        .map((m) => `${m.s}  ←  ${m.castellano.join(', ')}`)
+      expect(mezclas, 'palabras castellanas dentro de textos valencianos').toEqual([])
+    },
+  )
 })

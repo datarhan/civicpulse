@@ -13,6 +13,7 @@ import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
 import { usePlenoVotes, OUTCOME_LABEL, OUTCOME_TONE } from '../hooks/usePlenoVotes'
 import { useQuejas, STATE_LABEL, STATE_TONE } from '../hooks/useQuejas'
 import { canonicalizeDepartment } from '../scraper/departments'
+import { ESTADOS_CERRADOS, departamentoDeQueja } from '../lib/department-stats'
 import { ClaimLedger } from '../components/ClaimLedger'
 import { VoteTallyBar, DirectionLegend } from '../components/plenos/VoteTallyBar'
 import { VoteBreakdownRetracted } from '../components/plenos/VoteBreakdownRetracted'
@@ -239,52 +240,76 @@ function UnvotedAgendasSection({ slug, votesSnap }) {
   )
 }
 
-function QuejasSection({ slug }) {
+function QuejasSection({ slug, motivo }) {
   const t = useT()
   const snap = useQuejas()
   if (snap.loading) return null
+  // Open311, como lo publica el bot, y con la regla del agregador. Esto filtraba
+  // por `category` y `state`, enlazaba por `id` y titulaba con `title`: nombres
+  // que ninguna instantánea publicada ha traído, así que la lista salía vacía
+  // con el contador de encima diciendo que había quejas.
   const items = (snap.data?.items ?? [])
-    .filter((q) => canonicalizeDepartment(q.category) === slug)
-    .filter((q) => q.state !== 'resuelta' && q.state !== 'cerrada_no_registrada')
+    .filter((q) => departamentoDeQueja(q) === slug)
+    .filter((q) => !ESTADOS_CERRADOS.has(q.status ?? q.state))
+  const nota = { fontSize: 'var(--fs-aux)', color: 'var(--ink50)', lineHeight: 1.5, marginTop: 8 }
+  // Por qué no hay cifras, dicho donde se lee la lista. Que una queja exista es
+  // un hecho del canal y se enseña; que el ayuntamiento la deba, todavía no.
+  const porQue = motivo ? <p style={nota}>{t(`quejas.reloj.${motivo}`)}</p> : null
   if (items.length === 0) {
     return (
-      <p
-        style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', lineHeight: 1.5, marginTop: 8 }}
-      >
-        {t('departamentos.detalle.empty.quejas')}
-      </p>
+      <>
+        {porQue}
+        {/* Sin instantánea legible no se sabe si hay quejas, y «sin quejas
+            activas» sería afirmarlo. */}
+        {motivo === 'sinDatos' ? null : (
+          <p style={nota}>{t('departamentos.detalle.empty.quejas')}</p>
+        )}
+      </>
     )
   }
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 12 }}>
-      {items.slice(0, 10).map((q) => (
-        <Link
-          key={q.id}
-          to={`/quejas/${q.id}`}
-          style={{
-            textDecoration: 'none',
-            padding: '8px 12px',
-            border: '1px solid var(--border2)',
-            borderRadius: 'var(--r-input)',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            gap: 10,
-            color: 'inherit',
-          }}
-        >
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: 'var(--fs-aux)', fontWeight: 500 }}>{q.title || q.id}</div>
-            <div className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-              {q.createdAt?.slice(0, 10)}
+    <>
+      {porQue}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 12 }}>
+        {items.slice(0, 10).map((q) => (
+          <Link
+            key={q.service_request_id}
+            to={`/quejas/${String(q.service_request_id).toLowerCase()}`}
+            style={{
+              textDecoration: 'none',
+              padding: '8px 12px',
+              border: '1px solid var(--border2)',
+              borderRadius: 'var(--r-input)',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              gap: 10,
+              color: 'inherit',
+            }}
+          >
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div
+                style={{
+                  fontSize: 'var(--fs-aux)',
+                  fontWeight: 500,
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                {q.description || q.service_request_id}
+              </div>
+              <div className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
+                {q.requested_datetime?.slice(0, 10)}
+              </div>
             </div>
-          </div>
-          <Pill tone={STATE_TONE[q.state] || 'neutral'} size="xs">
-            {STATE_LABEL[q.state] || q.state}
-          </Pill>
-        </Link>
-      ))}
-    </div>
+            <Pill tone={STATE_TONE[q.status ?? q.state] || 'neutral'} size="xs">
+              {STATE_LABEL[q.status ?? q.state] || (q.status ?? q.state)}
+            </Pill>
+          </Link>
+        ))}
+      </div>
+    </>
   )
 }
 
@@ -303,7 +328,15 @@ function VerdictMixBar({ d }) {
   ]
   const total = segs.reduce((a, s) => a + s.n, 0)
   if (total === 0) return null
-  const pct = Math.round(((d.conEvidencia || 0) / total) * 100)
+  // Una proporción que no es cero no se publica como «0 %», ni una que no es el
+  // total como «100 %». Con 2 declaraciones contrastadas de 1.005 esta barra
+  // decía «0% con evidencia», debajo del nombre de quien dirige el área, y la
+  // revisión lectora leyó —con razón— que no había ninguna. Es el criterio de la
+  // cobertura del gasto situado del mapa (`MoneyCoverage`); un cero de verdad
+  // sigue siendo «0 %».
+  const bruto = ((d.conEvidencia || 0) / total) * 100
+  const pct =
+    bruto > 0 && bruto < 1 ? '<1' : bruto > 99 && bruto < 100 ? '>99' : String(Math.round(bruto))
   const visible = segs.filter((s) => s.n > 0)
   return (
     <div
@@ -512,7 +545,14 @@ export default function DepartamentoDetalle() {
               : undefined
           }
         />
-        <MiniStat label={t('departamentos.card.quejas')} value={bucket.quejas.abiertas} />
+        {/* Las abiertas, con la regla del registro: «—» hasta que alguna queja
+            del área haya entrado en el del ayuntamiento. El motivo va en la
+            sección de quejas, donde se lee la lista. */}
+        <MiniStat
+          label={t('departamentos.card.quejas')}
+          value={bucket.quejas.medible ? bucket.quejas.abiertas : '—'}
+          tone={bucket.quejas.medible && bucket.quejas.silencios > 0 ? 'crit' : undefined}
+        />
       </div>
 
       <VerdictMixBar d={bucket.declaraciones} />
@@ -534,7 +574,7 @@ export default function DepartamentoDetalle() {
 
       <section style={{ marginTop: 28 }}>
         <SectionHead title={t('departamentos.detalle.quejas')} />
-        <QuejasSection slug={slug} />
+        <QuejasSection slug={slug} motivo={bucket.quejas.medible ? null : bucket.quejas.motivo} />
       </section>
 
       <section style={{ marginTop: 28 }}>

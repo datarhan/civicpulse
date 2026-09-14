@@ -66,6 +66,23 @@ jobs:
           bash scripts/ci-apt-fuentes-rotas.sh
           npx playwright install-deps chromium
 
+      # Las pruebas de UNIDAD, que hasta el 2026-09-14 no ejecutaba ningún PR.
+      #
+      # Este workflow hacía lint, typecheck, build y Playwright, y `npm test` sólo
+      # lo corría la nocturna: en `main`, de madrugada y con `continue-on-error`.
+      # Las pruebas de unidad guardaban un PR sólo si quien lo abría se acordaba
+      # de pasarlas, y así llegó a `main` una prueba frágil de la portada que
+      # encontró después el PR de otro subsistema (#23).
+      #
+      # DESPUÉS de instalar Chromium, porque `reader-review-resiliencia` levanta
+      # un navegador de verdad y sin él falla con «Executable doesn't exist», que
+      # no se parece a su causa. ANTES de la build, porque falla más barato que el
+      # e2e. `tests/workflows-unidad-en-pr.test.js` fija el paso, su directorio y
+      # su orden.
+      - name: Unit tests (npm test)
+        timeout-minutes: 10
+        run: npm test
+
       - name: Build production bundle
         run: npm run build
         env:

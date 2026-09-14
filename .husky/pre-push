@@ -184,8 +184,34 @@ echo "[pre-push] leyendo esas páginas como un lector (hasta ${PRESUPUESTO}s)…
 # NO MONTADA en vez de revisarlo, así que esto son dos capas y no una: la
 # bandera evita el caso, y la comprobación evita que vuelva en silencio si
 # alguien añade una ruta tras otra bandera.
-VITE_ENABLE_PERIODISTAS=true VITE_ENABLE_EFICIENCIA=true \
-  npm run build >/dev/null 2>&1 || { echo "[pre-push] build falló; se omite la revisión."; exit 0; }
+# Y si la build falla, se DICE que no se ha leído nada — con el mismo cuidado que
+# el resto del fichero pone en no insinuar lo contrario.
+#
+# Decía «build falló; se omite la revisión» y salía 0. El 13-09-2026 un acento
+# invertido dentro del `<style>` en línea de DirectionD.jsx rompió la build: el
+# gancho anunció 33 rutas, se saltó las 33 y salió 0. No se publicó nada —ese
+# error concreto lo caza el `format:check` del pre-commit— pero el todo-bien del
+# gancho era indistinguible de una lectura limpia, que es la forma de
+# `r?.findings ?? []` que docs/DATA_INTEGRITY.md persigue: doblar «no he podido
+# comprobar» dentro de «no he encontrado nada».
+#
+# Sigue saliendo 0, porque este gancho NUNCA bloquea (ver la cabecera). Lo que
+# cambia es que ahora no se puede leer como un veredicto, dice cuántas rutas se
+# quedaron sin leer, y enseña por qué falló la build: antes su salida iba a
+# /dev/null, así que el gancho sabía que había fallado y no decía ni una palabra
+# de la causa.
+BUILD_LOG="${TMPDIR:-/tmp}/prepush-build.$$.log"
+if ! VITE_ENABLE_PERIODISTAS=true VITE_ENABLE_EFICIENCIA=true \
+     npm run build >"$BUILD_LOG" 2>&1; then
+  echo "[pre-push] ⚠︎ LA BUILD FALLÓ — revisión OMITIDA (omitida ≠ limpia)."
+  echo "[pre-push]   leídas 0 de $N_RUTAS ruta(s): $(printf '%s ' $RUTAS)"
+  echo "[pre-push]   Nadie ha leído estas páginas. El push continúa —este gancho nunca bloquea—,"
+  echo "[pre-push]   pero una build rota es lo que hay que arreglar antes de mirar la prosa."
+  tail -12 "$BUILD_LOG" | sed 's/^/[pre-push]   │ /'
+  rm -f "$BUILD_LOG"
+  exit 0
+fi
+rm -f "$BUILD_LOG"
 
 # Its OWN port, never the 4173 a developer runs `npm run preview` on. Sharing it
 # was not a cosmetic clash: `--strictPort` made this preview exit instantly, the
@@ -257,14 +283,21 @@ env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY \
 # avería, en la otra dirección, que un verde que no midió nada.
 if grep -q '^\[review\]' "$LOG" 2>/dev/null; then
   DURACION=$(( $(date +%s) - STARTED ))
+  # CUÁNTAS se leyeron enteras, en los tres desenlaces.
+  #
+  # «6 rutas · 0 señalamientos» con todas sin leer es la forma exacta de un
+  # todo-bien que nadie midió, y el resumen del script ya lo cuenta. Se TOMA de
+  # ahí en vez de recontarlo aquí: dos recuentos que pueden discrepar son peor
+  # que uno, y el del script es el que sabe qué fragmentos se leyeron.
+  LEIDAS=$(sed -n 's/.*· \([0-9]*\) revisada(s) al completo.*/\1/p' "$LOG" | head -1)
   if grep -qE 'NO se llegó a|PARCIAL' "$LOG" 2>/dev/null; then
-    echo "[pre-push] ⚠︎ revisión PARCIAL (${DURACION}s): no dio tiempo a todas las rutas que toca este push."
+    echo "[pre-push] ⚠︎ revisión PARCIAL (${DURACION}s): leídas enteras ${LEIDAS:-0} de $N_RUTAS ruta(s)."
     echo "[pre-push]   Las que faltan van arriba. Pásalas con: npm run review:surfaces -- <ruta>"
   else
-    echo "[pre-push] revisión completa de las $N_RUTAS ruta(s) que toca este push (${DURACION}s) — informativa, nunca bloquea."
+    echo "[pre-push] revisión completa (${DURACION}s): leídas enteras ${LEIDAS:-0} de $N_RUTAS ruta(s) — informativa, nunca bloquea."
   fi
 else
-  echo "[pre-push] ⚠︎ la revisión NO llegó a emitir resumen — NO SE REVISÓ NADA ($(( $(date +%s) - STARTED ))s)."
+  echo "[pre-push] ⚠︎ la revisión NO llegó a emitir resumen — leídas 0 de $N_RUTAS ruta(s) ($(( $(date +%s) - STARTED ))s)."
   echo "[pre-push]   El push continúa igualmente, porque este gancho nunca bloquea, pero nadie ha leído estas páginas."
 fi
 

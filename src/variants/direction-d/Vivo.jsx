@@ -45,10 +45,10 @@ import { estiloVivo } from './vivo.css.js'
  */
 export function Vivo() {
   const t = useT()
-  const { data: weather } = useLiveWeather()
+  const { data: weather, loading: cargandoTiempo } = useLiveWeather()
   const fallbackMetro = useNextMetro()
-  const { findNext } = useMetroSchedule()
-  const { data: air } = useAirQuality()
+  const { findNext, loading: cargandoHorario } = useMetroSchedule()
+  const { data: air, loading: cargandoAire } = useAirQuality()
   const [abierto, setAbierto] = useState(null)
   const [nowTick, setNowTick] = useState(() => Date.now())
   const envoltorio = useRef(null)
@@ -241,8 +241,17 @@ export function Vivo() {
     </div>
   )
 
+  // Mientras alguna de las tres fuentes no ha contestado, la cabecera lo dice en
+  // un atributo. No va para el lector de pantalla —un `aria-busy` podría esconder
+  // el chip todo lo que Open-Meteo tarde, y Open-Meteo puede no contestar nunca—,
+  // sino para quien COMPRUEBA la cabecera. El primer pintado llega antes que el
+  // tiempo, el aire y el horario, así que una ausencia afirmada ahí («el chip no
+  // pinta °») se cumple sola; con esto, «todavía no ha llegado» y «no ha llegado
+  // nada» dejan de ser el mismo DOM.
+  const cargando = cargandoTiempo || cargandoAire || cargandoHorario
+
   return (
-    <div className="cp-vivo" ref={envoltorio}>
+    <div className="cp-vivo" ref={envoltorio} data-vivo-cargando={cargando ? '' : undefined}>
       <style>{estiloVivo}</style>
       <div className="cp-vivo-tira" data-vivo-tira>
         {chip(
@@ -323,25 +332,31 @@ export function Vivo() {
                   />
                 )}
                 {weather.feelsLikeC != null && (
-                  <Fila k="Sensación térmica" v={`${weather.feelsLikeC}°`} />
+                  <Fila k={t('vivo.fila.sensacion')} v={`${weather.feelsLikeC}°`} />
                 )}
-                {weather.humidity != null && <Fila k="Humedad" v={`${weather.humidity}%`} />}
-                {weather.windKmh != null && <Fila k="Viento" v={`${weather.windKmh} km/h`} />}
+                {weather.humidity != null && (
+                  <Fila k={t('vivo.fila.humedad')} v={`${weather.humidity}%`} />
+                )}
+                {weather.windKmh != null && (
+                  <Fila k={t('vivo.fila.viento')} v={`${weather.windKmh} km/h`} />
+                )}
                 {weather.precipProbMax != null && (
-                  <Fila k="Prob. lluvia (hoy)" v={`${weather.precipProbMax}%`} />
+                  <Fila k={t('vivo.fila.lluvia')} v={`${weather.precipProbMax}%`} />
                 )}
                 {weather.sunriseIso && (
-                  <Fila k="Amanece" v={`↑ ${horaLocal(weather.sunriseIso)}`} />
+                  <Fila k={t('vivo.fila.amanece')} v={`↑ ${horaLocal(weather.sunriseIso)}`} />
                 )}
-                {weather.sunsetIso && <Fila k="Anochece" v={`↓ ${horaLocal(weather.sunsetIso)}`} />}
+                {weather.sunsetIso && (
+                  <Fila k={t('vivo.fila.anochece')} v={`↓ ${horaLocal(weather.sunsetIso)}`} />
+                )}
                 {weather.tomorrowMin != null && weather.tomorrowMax != null && (
                   <Fila
-                    k="Mañana"
+                    k={t('vivo.fila.manana')}
                     v={`${Math.round(weather.tomorrowMin)}° / ${Math.round(weather.tomorrowMax)}°`}
                   />
                 )}
               </>,
-              'Open-Meteo · actualizado cada 10 min',
+              t('vivo.fuente.tiempo'),
             )}
 
           {hayAire &&
@@ -365,13 +380,13 @@ export function Vivo() {
                         fontFamily: MONO,
                       }}
                     >
-                      PM₂.₅ · últimas 24 h
+                      {t('vivo.aire.serie')}
                     </div>
                     <Chispa values={air.pm25Last24h} color={aqi.color} width={260} height={36} />
                   </div>
                 )}
               </>,
-              'Open-Meteo Air Quality · EAQI (EEA) · actualizado cada 15 min',
+              t('vivo.fuente.aire'),
             )}
 
           {metro &&
@@ -379,15 +394,29 @@ export function Vivo() {
               t('vivo.hoy.metro'),
               <>
                 <Fila
-                  k="Próximo tren"
-                  v={`${metro.departureLabel}${metro.afterMidnight ? ' (mañana)' : ''}`}
+                  k={t('vivo.fila.proximo')}
+                  v={
+                    metro.afterMidnight
+                      ? rellena(t('vivo.metro.manana'), { hora: metro.departureLabel })
+                      : metro.departureLabel
+                  }
                 />
                 <Fila
-                  k="Faltan"
-                  v={metro.minutesAway === 0 ? 'ahora' : `${metro.minutesAway} min`}
+                  k={t('vivo.fila.faltan')}
+                  v={
+                    metro.minutesAway === 0
+                      ? t('vivo.hoy.ahora')
+                      : rellena(t('vivo.hoy.espera'), { m: metro.minutesAway })
+                  }
                 />
-                <Fila k="Sentido" v={`Hacia ${metro.heading || 'València'}`} />
-                <Fila k="Estación" v={`${metro.stationName} (terminus)`} />
+                <Fila
+                  k={t('vivo.fila.sentido')}
+                  v={rellena(t('vivo.metro.hacia'), { destino: metro.heading || 'València' })}
+                />
+                <Fila
+                  k={t('vivo.fila.estacion')}
+                  v={rellena(t('vivo.metro.estacion'), { estacion: metro.stationName })}
+                />
                 {/* La fuente, nombrada desde el origen que ganó. Venía de un
                     campo que traía el propio selector, y era una cadena en
                     castellano escrita dentro de un hook: en valencià se leía en
@@ -395,7 +424,7 @@ export function Vivo() {
                     tiempo y el aire. «FGV GTFS» no se traduce porque es el nombre
                     del feed. */}
                 <Fila
-                  k="Fuente"
+                  k={t('vivo.fila.fuente')}
                   v={metro.origen === 'gtfs' ? 'FGV GTFS' : t('vivo.fuente.transcrita')}
                 />
                 {/* Las dos cosas de abajo venían del panel viejo y estaban
@@ -414,8 +443,7 @@ export function Vivo() {
                     color: '#7C4A00',
                   }}
                 >
-                  Pulsa cualquier estación de L9 en el mapa para ver los próximos trenes en ambos
-                  sentidos.
+                  {t('vivo.metro.aviso')}
                 </div>
                 <div style={{ marginTop: 10 }}>
                   <a
@@ -424,11 +452,11 @@ export function Vivo() {
                     rel="noreferrer"
                     style={{ fontSize: 'var(--fs-meta)', color: PALETTE.civic }}
                   >
-                    Ver horario oficial →
+                    {t('vivo.metro.oficial')}
                   </a>
                 </div>
               </>,
-              fuenteDelHorario(metro),
+              fuenteDelHorario(metro, t),
             )}
         </>,
         // El pie del panel ya lo pone cada sección con su fuente: repetirlo aquí
@@ -510,18 +538,23 @@ function Chispa({ values, color, width = 96, height = 18 }) {
  * horario fuera de vigencia se publica diciendo que es de REFERENCIA en vez de
  * citar una fecha ya pasada como si valiera.
  */
-function fuenteDelHorario(metro) {
+function fuenteDelHorario(metro, t) {
   // El pie nombra la fuente que se está publicando, no una fija: desde que
   // `metroDeLaPortada` puede elegir el GTFS, decir «horario transcrito» siempre
   // era llamar transcripción a un feed. Y la vigencia viene ya decidida por el
   // selector; recalcularla aquí con otro `Date.now()` serían dos sitios para una
   // sola regla, que es como en este repo se queda una rancia.
-  const nombre = metro.origen === 'gtfs' ? 'FGV GTFS' : 'Horario transcrito de fgv.es'
+  //
+  // Y las frases, del catálogo. Esta función no está en el JSX, así que un pase
+  // que sólo mirase los rótulos de fila habría dejado el pie del metro entero en
+  // castellano en la portada valenciana (#19). «FGV GTFS» no se traduce: es el
+  // nombre del feed.
+  const nombre = metro.origen === 'gtfs' ? 'FGV GTFS' : t('vivo.horario.transcrito')
   if (metro.vigencia === VIGENCIA.referencia) {
     const año = metro.validoHasta ? ` (${String(metro.validoHasta).slice(0, 4)})` : ''
-    return `${nombre}${año} · horario de REFERENCIA, no vigente; confirma en fgv.es`
+    return rellena(t('vivo.horario.referencia'), { fuente: `${nombre}${año}` })
   }
-  return `${nombre} · válido hasta ${metro.validoHasta}`
+  return rellena(t('vivo.horario.valido'), { fuente: nombre, fecha: metro.validoHasta })
 }
 
 function horaLocal(iso) {
