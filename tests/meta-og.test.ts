@@ -27,7 +27,13 @@ import { construirMetas, inyectarMeta, type MetaRuta } from '../src/scraper/meta
 
 const BASE = 'https://www.civicpulse.es'
 const TITULO_SITIO = 'CivicPulse · Riba-roja de Túria'
-const DESC_SITIO = 'Qué hace el ayuntamiento, con una cita por cada afirmación.'
+// El one-liner de docs/DESCRIPCION.md, que es lo que `prerender-meta` extrae de
+// la `og:description` de index.html en producción. Aquí es sólo la entrada del
+// caso de prueba —y se compara contra sí misma—, pero citar la frase vieja hacía
+// que este fichero afirmara como descripción del sitio un orden que
+// DESCRIPCION.md retiró el 2026-09-08.
+const DESC_SITIO =
+  'CivicPulse enseña quién dirige tu ayuntamiento, qué hace y cuánto cuesta — con una fuente para cada cifra.'
 
 const opciones = (extra = {}) => ({
   rutas: ['/', '/presupuesto', '/reportajes/conteo-visitantes'],
