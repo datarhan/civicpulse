@@ -47,9 +47,18 @@ describe('la tarjeta social', () => {
     expect(png.subarray(0, 8).toString('hex')).toBe('89504e470d0a1a0a')
     const ancho = png.readUInt32BE(16)
     const alto = png.readUInt32BE(20)
+    // La proporción de la tarjeta grande (1,91:1), que es lo que recortan las
+    // plataformas. Esto por sí solo es ciego al 2×: 2400/1260 da lo mismo que
+    // 1200/630.
     expect(ancho / alto).toBeCloseTo(1200 / 630, 2)
-    expect(html).toMatch(/og:image:width"\s+content="1200"/)
-    expect(html).toMatch(/og:image:height"\s+content="630"/)
+    // Y lo que el nombre de la prueba promete: que index.html declare los
+    // píxeles que el fichero MIDE, leídos de su IHDR. Antes se comparaban las
+    // etiquetas con un literal, así que un PNG a 2× con las etiquetas a 1× —lo
+    // que hubo desde el 13-08-2026 hasta el 14-09— pasaba en verde.
+    const declarado = (prop) =>
+      Number(html.match(new RegExp(`property="og:image:${prop}"\\s+content="(\\d+)"`))?.[1])
+    expect(declarado('width'), 'og:image:width no dice lo que mide og.png').toBe(ancho)
+    expect(declarado('height'), 'og:image:height no dice lo que mide og.png').toBe(alto)
   })
 
   it('el PNG salió del SVG que hay ahora, no de uno anterior', () => {
