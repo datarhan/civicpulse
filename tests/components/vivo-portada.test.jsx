@@ -19,7 +19,7 @@
  * en el DOM aunque esté oculto, y Escape cierra esté donde esté el foco.
  */
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 
 import { Vivo } from '../../src/variants/direction-d/Vivo'
 import { CATALOGUE, LocaleProvider } from '../../src/i18n'
@@ -300,14 +300,36 @@ describe('Vivo — en valencià se lee en valencià', () => {
 
   beforeEach(() => {
     localStorage.clear()
+    // Reloj de verdad, dicho aquí y no heredado. Este bloque no congela nada,
+    // pero corría con lo que le dejara puesto quien fuera antes: en la suite
+    // completa llegaba con temporizadores falsos y el fetch del tiempo no
+    // resolvía nunca, así que el chip se quedaba en «Hui · L9 851 min» y la
+    // comparación con «Hui · 21°» fallaba. Suelto pasaba; con 461 ficheros, no.
+    vi.useRealTimers()
   })
+
+  /**
+   * El chip CON su temperatura ya pintada.
+   *
+   * `findByRole` devuelve en cuanto existe el botón, y eso ocurre en el primer
+   * render — antes de que Open-Meteo conteste. Hasta entonces el chip es el
+   * legítimo «sin tiempo», que no lleva grado: comparar ahí contra «21°» es
+   * comparar contra una pantalla que aún no ha llegado. Así que se espera al
+   * dato, y se comprueba que HA llegado, porque si no llegara la aserción de
+   * abajo pasaría sola contra la plantilla corta.
+   */
+  async function chipConTemperatura(idioma) {
+    const b = await chipHoy(idioma)
+    await waitFor(() => expect(b.textContent).toContain('21°'))
+    return b
+  }
 
   it('el chip, el cielo y la banda del aire salen traducidos', async () => {
     // El código 2 del clima que sirve el banco es «Parcialment ennuvolat», y el
     // EAQI 24 cae en «Raonable». Ninguna de las dos se parece a su castellano,
     // así que esto no puede pasar por casualidad.
     pinta('ca')
-    const b = await chipHoy('ca')
+    const b = await chipConTemperatura('ca')
     expect(b.textContent).toContain('Hui · 21°')
     fireEvent.click(b)
     const panel = panelDe(b)
@@ -320,7 +342,7 @@ describe('Vivo — en valencià se lee en valencià', () => {
     // Sin este control, «sale en valencià» lo cumpliría un componente que
     // pintara valencià siempre.
     pinta('es')
-    const b = await chipHoy('es')
+    const b = await chipConTemperatura('es')
     expect(b.textContent).toContain('Hoy · 21°')
     fireEvent.click(b)
     const panel = panelDe(b)
