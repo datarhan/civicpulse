@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img"
-     aria-label="CivicPulse · Riba-roja de Túria — qué hace el ayuntamiento, con una cita por cada afirmación">
+     aria-label="CivicPulse · Riba-roja de Túria — quién dirige tu ayuntamiento, qué hace y cuánto cuesta, con una fuente para cada cifra">
   <!--
     Brandbook v3 §12. La tarjeta que circula fuera del sitio es la pieza más
     vista del proyecto y era la única que ninguna regla gobernaba. Lo que había
@@ -56,14 +56,31 @@
   <text x="202" y="163" font-family="DM Mono, ui-monospace, monospace" font-size="17"
         fill="#9DA2AB" letter-spacing="2.4">RIBA-ROJA DE TÚRIA · INE 46214</text>
 
-  <!-- Titular: qué hace el sitio. Sin eslogan, sin serif, sin cifra que caduque. -->
+  <!--
+    Titular: primero QUIÉN, después medir.
+
+    Es el orden fijo de «Identidad y orden» de docs/DESCRIPCION.md, que el
+    2026-09-08 puso el «quién» delante: el sitio ya empezaba por ahí —/cargos es
+    la primera ruta tras la portada— y la descripción hablaba de dinero y de
+    promesas sin mencionar a nadie. Un vecino que quiere saber si su
+    ayuntamiento funciona empieza preguntando quién lo dirige.
+
+    Esta tarjeta se quedó con el orden viejo cuando las tres etiquetas de texto
+    de index.html pasaron al one-liner, y es la superficie MÁS vista: la que se
+    abre en WhatsApp. Ahora dice lo que dice la fuente, y en su orden.
+
+    Cambia también la promesa: era «una cita por cada afirmación» y el one-liner
+    dice «una fuente para cada cifra». Sin eslogan, sin serif y sin cifra que
+    caduque, como antes. Medido con las fuentes de marca cargadas: 792 y 678 px
+    de ancho sobre una banda útil de 1040, así que la caja no se toca.
+  -->
   <text x="80" y="316" font-family="Outfit, system-ui, sans-serif" font-size="62" font-weight="700"
-        fill="#F1F5F9" letter-spacing="-1.8">Qué hace el ayuntamiento,</text>
+        fill="#F1F5F9" letter-spacing="-1.8">Quién dirige tu ayuntamiento,</text>
   <text x="80" y="392" font-family="Outfit, system-ui, sans-serif" font-size="62" font-weight="700"
-        letter-spacing="-1.8"><tspan fill="#F1F5F9">con una </tspan><tspan fill="#4FB3BD">cita por cada afirmación</tspan><tspan fill="#F1F5F9">.</tspan></text>
+        letter-spacing="-1.8"><tspan fill="#F1F5F9">qué hace y </tspan><tspan fill="#4FB3BD">cuánto cuesta</tspan><tspan fill="#F1F5F9">.</tspan></text>
 
   <text x="80" y="450" font-family="Outfit, system-ui, sans-serif" font-size="25" fill="#9DA2AB">
-    Presupuesto, contratos, votaciones de pleno, promesas y quejas vecinales.
+    Una fuente para cada cifra: presupuesto, contratos, plenos, promesas y quejas.
   </text>
 
   <!-- Filete de petróleo: el mismo recurso con el que §03b marca la cita. -->
