@@ -96,6 +96,40 @@ const tira = () => document.querySelector('[data-vivo-tira]')
 const chipHoy = (idioma = 'es') =>
   screen.findByRole('button', { name: CATALOGUE[idioma]['vivo.hoy.aria'] })
 
+/**
+ * El chip, con la cabecera ya pintada después de que contesten sus TRES fuentes
+ * —bien o mal—.
+ *
+ * `findByRole` devuelve en cuanto existe el botón, y eso ocurre en el primer
+ * pintado: el metro transcrito es cálculo puro, así que el chip sale enseguida
+ * con la plantilla «sin tiempo», antes de que Open-Meteo y el horario contesten.
+ * Comprobar ahí la temperatura, el aire o el GTFS es comprobar una pantalla que
+ * aún no ha llegado, y el resultado dependía de si el render con los datos caía
+ * antes o después de la aserción — con la suite entera en marcha, a veces caía
+ * después. Medido retrasando 150 ms las respuestas del banco: caían cuatro
+ * pruebas de este fichero (la temperatura, las tres secciones, la serie del aire
+ * y el GTFS en vigor).
+ *
+ * Esperar a la temperatura habría arreglado las que la esperan, y no las que
+ * comprueban que algo NO se pinta. Una ausencia afirmada en el primer pintado se
+ * cumple sola, pase lo que pase después: con las respuestas retrasadas, «sin
+ * tiempo ni aire» y «un 200 vacío no pinta cifra» seguían en verde sin haber
+ * visto llegar nada, y ahí no hay nada positivo a lo que esperar. Por eso se
+ * espera a que la cabecera deje de decir que carga (`data-vivo-cargando`, en
+ * `Vivo.jsx`), y sólo entonces se afirma lo que haya que afirmar, en las dos
+ * direcciones.
+ */
+async function chipAsentado(idioma = 'es') {
+  const b = await chipHoy(idioma)
+  await waitFor(() =>
+    expect(
+      document.querySelector('.cp-vivo'),
+      'la cabecera sigue esperando a alguna de sus tres fuentes',
+    ).not.toHaveAttribute('data-vivo-cargando'),
+  )
+  return b
+}
+
 describe('Vivo — el chip «Hoy» y su detalle', () => {
   beforeEach(() => {
     globalThis.fetch = sirveLoVivo()
@@ -125,7 +159,7 @@ describe('Vivo — el chip «Hoy» y su detalle', () => {
 
   it('el chip dice la temperatura y los minutos, sin dejar ningún hueco escrito', async () => {
     render(<Vivo />)
-    const b = await chipHoy()
+    const b = await chipAsentado()
     expect(b.textContent).toContain('Hoy · 21° · L9 ')
     expect(b.textContent).toMatch(/L9 \d+ min/)
     // La comprobación que importa: una llave sin sustituir es lo que /empleo
@@ -163,7 +197,7 @@ describe('Vivo — el chip «Hoy» y su detalle', () => {
     // su sección con nombre, que es lo que un lector de pantalla anuncia al
     // entrar. Cerradas no cuentan: `hidden` las saca del árbol de accesibilidad.
     render(<Vivo />)
-    const b = await chipHoy()
+    const b = await chipAsentado()
     expect(screen.queryAllByRole('group'), 'cerrado no hay secciones').toHaveLength(0)
     fireEvent.click(b)
     for (const clave of ['vivo.hoy.tiempo', 'vivo.hoy.aire', 'vivo.hoy.metro']) {
@@ -207,7 +241,7 @@ describe('Vivo — el chip «Hoy» y su detalle', () => {
 
   it('la sección del aire trae su serie de PM₂.₅', async () => {
     render(<Vivo />)
-    const b = await chipHoy()
+    const b = await chipAsentado()
     fireEvent.click(b)
     const panel = panelDe(b)
     expect(panel.textContent).toContain('PM₂.₅')
@@ -219,9 +253,12 @@ describe('Vivo — el chip «Hoy» y su detalle', () => {
   it('sin tiempo ni aire, el chip no dice «°» y esas secciones no se pintan', async () => {
     // Los hooks devuelven data: null ante cualquier fallo, y la cabecera no
     // publica un cero que parezca una medición. El metro sigue: es cálculo puro.
+    //
+    // Asentado, no en el primer pintado: ahí no hay «°» ni sección del tiempo
+    // tanto si el 500 se maneja bien como si se maneja mal.
     globalThis.fetch = vi.fn(async () => new Response('nope', { status: 500 }))
     render(<Vivo />)
-    const b = await chipHoy()
+    const b = await chipAsentado()
     expect(b.textContent).toContain('Hoy · L9 ')
     expect(b.textContent, 'un grado sin temperatura detrás').not.toContain('°')
     expect(b.textContent).not.toContain('{')
@@ -239,7 +276,7 @@ describe('Vivo — el chip «Hoy» y su detalle', () => {
     // pintaba «🌤 °» como si fuera una medida. Un centinela no es un valor.
     globalThis.fetch = vi.fn(async () => new Response('{}', { status: 200 }))
     render(<Vivo />)
-    const b = await chipHoy()
+    const b = await chipAsentado()
     expect(b.textContent).not.toContain('°')
     expect(b.textContent).toContain('Hoy · L9 ')
   })
@@ -254,11 +291,13 @@ describe('Vivo — el chip «Hoy» y su detalle', () => {
     // 06:06— y por eso las dos aserciones significan algo. Con el reloj de verdad
     // la negativa se cumplía sola: medido, 06:06 sólo es la siguiente salida del
     // banco durante una hora de las veinticuatro, así que por la tarde la prueba
-    // pasaba sin que el arreglo estuviera puesto.
+    // pasaba sin que el arreglo estuviera puesto. Y se afirma con el horario ya
+    // cargado, por la misma razón: antes de que llegue, «no pinta 06:06» se
+    // cumple sin que haya GTFS ninguno entre el que elegir.
     vi.setSystemTime(new Date('2026-09-14T05:00:00'))
     globalThis.fetch = sirveLoVivo({ validThrough: '2025-12-31' })
     render(<Vivo />)
-    const b = await chipHoy()
+    const b = await chipAsentado()
     fireEvent.click(b)
     const panel = panelDe(b)
     expect(panel.textContent, 'no se está pintando la hora en vigor').toContain('05:51')
@@ -274,7 +313,7 @@ describe('Vivo — el chip «Hoy» y su detalle', () => {
     vi.setSystemTime(new Date('2026-09-14T05:00:00'))
     globalThis.fetch = sirveLoVivo({ validThrough: '2027-06-30' })
     render(<Vivo />)
-    const b = await chipHoy()
+    const b = await chipAsentado()
     fireEvent.click(b)
     const panel = panelDe(b)
     expect(panel.textContent, 'el GTFS en vigor tendría que mandar').toContain('06:06')
@@ -300,36 +339,21 @@ describe('Vivo — en valencià se lee en valencià', () => {
 
   beforeEach(() => {
     localStorage.clear()
-    // Reloj de verdad, dicho aquí y no heredado. Este bloque no congela nada,
-    // pero corría con lo que le dejara puesto quien fuera antes: en la suite
-    // completa llegaba con temporizadores falsos y el fetch del tiempo no
-    // resolvía nunca, así que el chip se quedaba en «Hui · L9 851 min» y la
-    // comparación con «Hui · 21°» fallaba. Suelto pasaba; con 461 ficheros, no.
+    // Reloj de verdad, dicho aquí y no heredado: este bloque no congela nada.
+    // (Se escribió creyendo que el «Hui · L9 851 min» de la suite completa era
+    // un reloj falso heredado del bloque de arriba. No lo era: ese bloque
+    // restaura el suyo en cada `afterEach` y cada fichero corre aislado. Era la
+    // aserción, hecha antes de que llegara el tiempo, que es lo que espera ahora
+    // `chipAsentado`.)
     vi.useRealTimers()
   })
-
-  /**
-   * El chip CON su temperatura ya pintada.
-   *
-   * `findByRole` devuelve en cuanto existe el botón, y eso ocurre en el primer
-   * render — antes de que Open-Meteo conteste. Hasta entonces el chip es el
-   * legítimo «sin tiempo», que no lleva grado: comparar ahí contra «21°» es
-   * comparar contra una pantalla que aún no ha llegado. Así que se espera al
-   * dato, y se comprueba que HA llegado, porque si no llegara la aserción de
-   * abajo pasaría sola contra la plantilla corta.
-   */
-  async function chipConTemperatura(idioma) {
-    const b = await chipHoy(idioma)
-    await waitFor(() => expect(b.textContent).toContain('21°'))
-    return b
-  }
 
   it('el chip, el cielo y la banda del aire salen traducidos', async () => {
     // El código 2 del clima que sirve el banco es «Parcialment ennuvolat», y el
     // EAQI 24 cae en «Raonable». Ninguna de las dos se parece a su castellano,
     // así que esto no puede pasar por casualidad.
     pinta('ca')
-    const b = await chipConTemperatura('ca')
+    const b = await chipAsentado('ca')
     expect(b.textContent).toContain('Hui · 21°')
     fireEvent.click(b)
     const panel = panelDe(b)
@@ -342,7 +366,7 @@ describe('Vivo — en valencià se lee en valencià', () => {
     // Sin este control, «sale en valencià» lo cumpliría un componente que
     // pintara valencià siempre.
     pinta('es')
-    const b = await chipConTemperatura('es')
+    const b = await chipAsentado('es')
     expect(b.textContent).toContain('Hoy · 21°')
     fireEvent.click(b)
     const panel = panelDe(b)

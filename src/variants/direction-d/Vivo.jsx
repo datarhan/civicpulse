@@ -45,10 +45,10 @@ import { estiloVivo } from './vivo.css.js'
  */
 export function Vivo() {
   const t = useT()
-  const { data: weather } = useLiveWeather()
+  const { data: weather, loading: cargandoTiempo } = useLiveWeather()
   const fallbackMetro = useNextMetro()
-  const { findNext } = useMetroSchedule()
-  const { data: air } = useAirQuality()
+  const { findNext, loading: cargandoHorario } = useMetroSchedule()
+  const { data: air, loading: cargandoAire } = useAirQuality()
   const [abierto, setAbierto] = useState(null)
   const [nowTick, setNowTick] = useState(() => Date.now())
   const envoltorio = useRef(null)
@@ -241,8 +241,17 @@ export function Vivo() {
     </div>
   )
 
+  // Mientras alguna de las tres fuentes no ha contestado, la cabecera lo dice en
+  // un atributo. No va para el lector de pantalla —un `aria-busy` podría esconder
+  // el chip todo lo que Open-Meteo tarde, y Open-Meteo puede no contestar nunca—,
+  // sino para quien COMPRUEBA la cabecera. El primer pintado llega antes que el
+  // tiempo, el aire y el horario, así que una ausencia afirmada ahí («el chip no
+  // pinta °») se cumple sola; con esto, «todavía no ha llegado» y «no ha llegado
+  // nada» dejan de ser el mismo DOM.
+  const cargando = cargandoTiempo || cargandoAire || cargandoHorario
+
   return (
-    <div className="cp-vivo" ref={envoltorio}>
+    <div className="cp-vivo" ref={envoltorio} data-vivo-cargando={cargando ? '' : undefined}>
       <style>{estiloVivo}</style>
       <div className="cp-vivo-tira" data-vivo-tira>
         {chip(
