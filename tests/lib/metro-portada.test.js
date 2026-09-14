@@ -158,6 +158,40 @@ describe('estaEnVigor · la regla, a solas', () => {
     expect(estaEnVigor('2026-09-14', new Date('2026-09-15T00:30:00+02:00'))).toBe(false)
   })
 
+  it('y ese día acaba a la medianoche de MADRID, en el reloj que sea', () => {
+    // La regla leía «23:59:59» en la zona del reloj que ejecuta el código. En un
+    // navegador de Riba-roja es lo mismo, y por eso la prueba de arriba pasaba en
+    // el portátil; en la integración continua, que corre en UTC, el día acababa
+    // dos horas tarde y esa prueba salió roja la primera vez que la suite se
+    // ejecutó en un PR. El metro circula en Madrid: la validez de su horario acaba
+    // cuando acaba el día allí, mire quien mire.
+    const antes = process.env.TZ
+    const DESFASE_EN_SEPTIEMBRE = { UTC: 0, 'America/New_York': 240, 'Asia/Tokyo': -540 }
+    try {
+      for (const [zona, desfase] of Object.entries(DESFASE_EN_SEPTIEMBRE)) {
+        process.env.TZ = zona
+        // Mide algo: que el proceso haya cambiado de zona de verdad. Sin esto, en
+        // un portátil de Madrid el bucle probaría tres veces Madrid y pasaría solo.
+        expect(new Date(2026, 8, 14, 12).getTimezoneOffset(), `no se aplicó ${zona}`).toBe(desfase)
+        // Verano: Madrid va a +02:00.
+        expect(estaEnVigor('2026-09-14', new Date('2026-09-14T23:59:00+02:00')), zona).toBe(true)
+        expect(estaEnVigor('2026-09-14', new Date('2026-09-15T00:00:30+02:00')), zona).toBe(false)
+        // Invierno: a +01:00. Un desfase fijo correría el final del día una hora.
+        expect(estaEnVigor('2026-12-31', new Date('2026-12-31T23:59:00+01:00')), zona).toBe(true)
+        expect(estaEnVigor('2026-12-31', new Date('2027-01-01T00:00:30+01:00')), zona).toBe(false)
+      }
+    } finally {
+      if (antes === undefined) delete process.env.TZ
+      else process.env.TZ = antes
+    }
+  })
+
+  it('un día que no existe no es una validez', () => {
+    // Leer la fecha por partes no puede convertir «2026-02-30» en el 2 de marzo.
+    expect(estaEnVigor('2026-02-30', new Date('2026-01-01T12:00:00+01:00'))).toBe(false)
+    expect(estaEnVigor('2026-13-01', new Date('2026-01-01T12:00:00+01:00'))).toBe(false)
+  })
+
   it('una validez ilegible o ausente no está en vigor', () => {
     for (const malo of ['pronto', '', null, undefined, 20261231]) {
       expect(estaEnVigor(malo, AHORA_2026), `«${String(malo)}» no es una fecha`).toBe(false)
