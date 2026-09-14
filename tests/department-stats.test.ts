@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { computeDepartmentStats } from '../src/lib/department-stats'
 import { promiseDeptSlug } from '../src/lib/department-claim-topics'
+import { MOTIVOS_SIN_CIFRA } from '../src/lib/reloj-lpacap'
 
 const NOW = new Date('2026-04-21T00:00:00Z')
 
@@ -215,13 +216,65 @@ describe('computeDepartmentStats', () => {
     expect(r.bySlug.transparencia.promesas.total).toBe(1)
   })
 
-  it('counts quejas per dept (open vs silencios)', () => {
-    const r = computeDepartmentStats({ officials, promises, agendas, votes, quejas, now: NOW })
-    expect(r.bySlug.urbanismo.quejas.total).toBe(2)
-    expect(r.bySlug.urbanismo.quejas.abiertas).toBe(2)
-    expect(r.bySlug.urbanismo.quejas.silencios).toBe(1)
-    expect(r.bySlug['medio-ambiente'].quejas.total).toBe(1)
-    expect(r.bySlug['medio-ambiente'].quejas.abiertas).toBe(0)
+  // Las quejas, con la misma regla legal que los cargos y los barrios
+  // (`lib/reloj-lpacap`). Cuántas se asignaron a un área es un hecho del canal y
+  // se da siempre; abiertas y silencios cuentan respuestas que el ayuntamiento
+  // debe, y sólo puede deberlas desde que la queja entra en su registro, que es
+  // desde donde corre el plazo de la LPACAP. Antes la tarjeta decía «Quejas
+  // abiertas 1» por una queja capturada y sin registrar, al lado del nombre de
+  // quien dirige el área: una deuda que el ayuntamiento no tenía.
+  const REGISTRADA = '2026-03-05T10:00:00Z'
+  const conRegistro = {
+    stats: { total: 3 },
+    items: [
+      { ...quejas.items[0], registered_at: REGISTRADA },
+      { ...quejas.items[1], registered_at: REGISTRADA },
+      { ...quejas.items[2], registered_at: null },
+    ],
+  }
+  const stats = (q) =>
+    computeDepartmentStats({ officials, promises, agendas, votes, quejas: q, now: NOW })
+
+  it('counts quejas per dept once the área has a registered one (open vs silencios)', () => {
+    expect(stats(conRegistro).bySlug.urbanismo.quejas).toEqual({
+      total: 2,
+      abiertas: 2,
+      silencios: 1,
+      medible: true,
+      motivo: null,
+    })
+  })
+
+  it('an área whose quejas never reached the registry publishes no response figures', () => {
+    const q = stats(conRegistro).bySlug['medio-ambiente'].quejas
+    expect(q.total, 'cuántas se asignaron sí se da: es un hecho del canal').toBe(1)
+    expect(q.abiertas).toBeNull()
+    expect(q.silencios).toBeNull()
+    expect(q.medible).toBe(false)
+    expect(MOTIVOS_SIN_CIFRA).toContain(q.motivo)
+    expect(q.motivo).toBe('sinRegistro')
+  })
+
+  it('an área with no quejas has real zeros, and no motive to excuse them', () => {
+    expect(stats(conRegistro).bySlug.turismo.quejas).toEqual({
+      total: 0,
+      abiertas: 0,
+      silencios: 0,
+      medible: true,
+      motivo: null,
+    })
+  })
+
+  it('a truncated export publishes no figure anywhere, not even a zero', () => {
+    // El bot exporta como mucho mil quejas mientras `stats` las cuenta todas:
+    // con el listado recortado no se sabe cuáles se registraron ni de quién son
+    // las que faltan, así que un «0» de un área sin quejas listadas tampoco vale.
+    const r = stats({ ...conRegistro, stats: { total: 8 } })
+    for (const slug of ['urbanismo', 'medio-ambiente', 'turismo']) {
+      expect(r.bySlug[slug].quejas.abiertas, slug).toBeNull()
+      expect(r.bySlug[slug].quejas.silencios, slug).toBeNull()
+      expect(r.bySlug[slug].quejas.motivo, slug).toBe('exportIncompleto')
+    }
   })
 
   it('computes the total plazosVencidos scalar (vote + promise flags)', () => {
@@ -241,6 +294,13 @@ describe('computeDepartmentStats', () => {
     })
     expect(r.plazosVencidosCount).toBe(0)
     expect(r.list.every((b) => b.plenoVotes.total === 0)).toBe(true)
+    // Sin instantánea de quejas no hay «0 abiertas»: no se ha podido leer nada,
+    // y un cero ahí sería convertir una ausencia en un dato.
+    const sinLeer = r.list.filter(
+      (b) =>
+        b.quejas.total !== null || b.quejas.abiertas !== null || b.quejas.motivo !== 'sinDatos',
+    )
+    expect(sinLeer.map((b) => b.slug)).toEqual([])
   })
 })
 
