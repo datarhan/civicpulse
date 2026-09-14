@@ -1561,7 +1561,9 @@ export default function Metodologia() {
           <strong>Contrastadas</strong> es la suma de las verificadas, las parciales y las
           contradichas: las declaraciones que se pudieron comparar con un documento municipal,
           saliera a favor o en contra. No quiere decir que estén respaldadas; el veredicto de cada
-          una va en su tarjeta.
+          una va en su tarjeta. En la ficha de cada concejalía se agrupan por tema, no por quien
+          habló: una declaración sobre urbanismo cuenta en esa área la pronunciara quien la
+          pronunciara, y su atribución sigue siendo de bloque.
         </p>
 
         <h3 style={{ marginTop: 16, fontSize: 'var(--fs-head)' }}>Disciplina antilibellos</h3>

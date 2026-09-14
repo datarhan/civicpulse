@@ -44,7 +44,7 @@ function monta(byTopicVerdict) {
 async function titular() {
   // En la ficha hay DOS textos iguales: el de la barra y el antetítulo de la
   // sección de afirmaciones. El de la barra es un <span>.
-  const rotulo = await screen.findByText('Verificación de declaraciones', { selector: 'span' })
+  const rotulo = await screen.findByText('Contraste con los datos', { selector: 'span' })
   return rotulo.parentElement
 }
 
@@ -77,5 +77,32 @@ describe('/departamentos/:slug · la proporción de declaraciones con evidencia'
   it('y una proporción corriente se redondea como siempre', async () => {
     monta({ urbanismo: { verificado: 1, 'sin-datos': 1 } })
     expect(within(await titular()).getByText('50%')).toBeInTheDocument()
+  })
+})
+
+/**
+ * Las declaraciones de la ficha se agrupan por TEMA (`deptSlugToClaimTopics`), las
+ * dijera quien las dijera, y la atribución es de bloque. La barra iba justo debajo
+ * del nombre de quien dirige el área y la lista se titulaba «Afirmaciones de esta
+ * concejalía en plenos»: se leían como suyas.
+ */
+describe('/departamentos/:slug · las declaraciones se leen por tema, no por persona', () => {
+  const AVISO = 'Las pronunció cualquier grupo municipal, no necesariamente quien dirige el área'
+
+  it('la barra vive en la sección que dice de quién son las palabras, detrás de las quejas', async () => {
+    monta({ urbanismo: { parcial: 2, 'sin-datos': 1003 } })
+    const rotulo = await titular()
+    const seccion = screen.getByText(AVISO, { exact: false }).closest('section')
+    expect(seccion, 'el aviso no está dentro de una sección').not.toBeNull()
+    expect(seccion.contains(rotulo), 'la barra no está junto al aviso').toBe(true)
+    const quejas = screen.getByText('Quejas ciudadanas activas')
+    expect(quejas.compareDocumentPosition(rotulo) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+  })
+
+  it('y el título ya no dice «de esta concejalía»', async () => {
+    const { container } = monta({ urbanismo: { parcial: 2, 'sin-datos': 1003 } })
+    await titular()
+    expect(container.textContent).not.toMatch(/de esta concejalía en plenos/i)
+    expect(container.textContent).toContain('Lo que se dijo en pleno sobre los temas de esta área')
   })
 })

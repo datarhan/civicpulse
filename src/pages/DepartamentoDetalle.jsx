@@ -14,7 +14,7 @@ import { usePlenoVotes, OUTCOME_LABEL, OUTCOME_TONE } from '../hooks/usePlenoVot
 import { useQuejas, STATE_LABEL, STATE_TONE } from '../hooks/useQuejas'
 import { canonicalizeDepartment } from '../scraper/departments'
 import { ESTADOS_CERRADOS, departamentoDeQueja } from '../lib/department-stats'
-import { porcentajeLegible } from '../lib/formatters'
+import { porcentajeLegible, rellena } from '../lib/formatters'
 import { ClaimLedger } from '../components/ClaimLedger'
 import { VoteTallyBar, DirectionLegend } from '../components/plenos/VoteTallyBar'
 import { VoteBreakdownRetracted } from '../components/plenos/VoteBreakdownRetracted'
@@ -315,12 +315,14 @@ function QuejasSection({ slug, motivo }) {
 }
 
 /**
- * Verdict-mix infographic: a stacked proportion bar + legend over the
- * concejalía's pleno declarations. Surfaces "how much of what this department
- * said is actually grounded in the open data" at a glance, instead of burying
- * it in the text ledger below.
+ * La mezcla de veredictos de las declaraciones en pleno sobre los temas de esta
+ * área, las dijera quien las dijera: una barra de proporciones y su leyenda, para
+ * ver de un vistazo cuántas se pudieron contrastar con los datos. No son las
+ * declaraciones de quien dirige el área —la atribución es de bloque—, y por eso la
+ * barra vive en la sección que lo dice, no debajo de su nombre.
  */
 function VerdictMixBar({ d }) {
+  const t = useT()
   const segs = [
     { n: d.verificado || 0, color: 'var(--ok)', label: 'Verificado' },
     { n: d.parcial || 0, color: 'var(--warn)', label: 'Parcial' },
@@ -362,13 +364,13 @@ function VerdictMixBar({ d }) {
             color: 'var(--ink50)',
           }}
         >
-          Verificación de declaraciones
+          {t('departamentos.detalle.barra.titulo')}
         </span>
         <span style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
           <strong className="mono" style={{ fontSize: 'var(--fs-head)', color: 'var(--ink)' }}>
             {pct}%
           </strong>{' '}
-          contrastadas · {total} en total
+          {rellena(t('departamentos.detalle.barra.resto'), { total })}
         </span>
       </div>
       <div
@@ -552,8 +554,6 @@ export default function DepartamentoDetalle() {
         />
       </div>
 
-      <VerdictMixBar d={bucket.declaraciones} />
-
       <section style={{ marginTop: 28 }}>
         <SectionHead title={t('departamentos.detalle.compromisos')} />
         <VotesSection slug={slug} frozen={frozen} />
@@ -576,17 +576,29 @@ export default function DepartamentoDetalle() {
 
       <section style={{ marginTop: 28 }}>
         <SectionHead
-          eyebrow="Verificación de declaraciones"
-          title="Afirmaciones de esta concejalía en plenos"
+          eyebrow={t('departamentos.detalle.declaraciones.eyebrow')}
+          title={t('departamentos.detalle.declaraciones.title')}
         />
-        <ClaimLedger
-          filter={(it) => {
-            const topics = deptSlugToClaimTopics(slug)
-            return topics.has(it.claim.topic)
+        {/* Se agrupan por TEMA (deptSlugToClaimTopics), las dijera quien las dijera:
+            la atribución es de bloque, nunca de una persona. La barra vivía justo
+            debajo del nombre de quien dirige el área y el título decía «de esta
+            concejalía», así que se leían como suyas. */}
+        <p
+          style={{
+            margin: '6px 0 0',
+            fontSize: 'var(--fs-aux)',
+            color: 'var(--ink70)',
+            lineHeight: 1.55,
           }}
+        >
+          {t('departamentos.detalle.declaraciones.aviso')}
+        </p>
+        <VerdictMixBar d={bucket.declaraciones} />
+        <ClaimLedger
+          filter={(it) => deptSlugToClaimTopics(slug).has(it.claim.topic)}
           limit={10}
           showSummary
-          emptyHint="Sin declaraciones verificadas para esta concejalía todavía."
+          emptyHint={t('departamentos.detalle.declaraciones.vacio')}
         />
       </section>
 

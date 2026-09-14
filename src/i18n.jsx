@@ -935,6 +935,15 @@ export const CATALOGUE = {
     'departamentos.detalle.promesas': 'Promesas electorales',
     'departamentos.detalle.agendas': 'Puntos debatidos sin voto transcrito',
     'departamentos.detalle.quejas': 'Quejas ciudadanas activas',
+    'departamentos.detalle.declaraciones.eyebrow': 'Declaraciones en pleno',
+    'departamentos.detalle.declaraciones.title':
+      'Lo que se dijo en pleno sobre los temas de esta área',
+    'departamentos.detalle.declaraciones.aviso':
+      'Las pronunció cualquier grupo municipal, no necesariamente quien dirige el área: se agrupan por tema, no por quien habla.',
+    'departamentos.detalle.declaraciones.vacio':
+      'Todavía no hay declaraciones contrastadas sobre los temas de esta área.',
+    'departamentos.detalle.barra.titulo': 'Contraste con los datos',
+    'departamentos.detalle.barra.resto': 'contrastadas · {total} en total',
     'departamentos.detalle.empty.votes':
       '0 votos transcritos para esta concejalía — contribuye vía `npm run pleno-vote` o la plantilla de issue.',
     'departamentos.detalle.empty.promesas': 'Sin promesas registradas para esta concejalía.',
@@ -1785,6 +1794,15 @@ export const CATALOGUE = {
     'departamentos.detalle.promesas': 'Promeses electorals',
     'departamentos.detalle.agendas': 'Punts debatuts sense vot transcrit',
     'departamentos.detalle.quejas': 'Queixes ciutadanes actives',
+    'departamentos.detalle.declaraciones.eyebrow': 'Declaracions en ple',
+    'departamentos.detalle.declaraciones.title':
+      'El que es va dir en ple sobre els temes d’aquesta àrea',
+    'departamentos.detalle.declaraciones.aviso':
+      'Les va pronunciar qualsevol grup municipal, no necessàriament qui dirigeix l’àrea: s’agrupen per tema, no per qui parla.',
+    'departamentos.detalle.declaraciones.vacio':
+      'Encara no hi ha declaracions contrastades sobre els temes d’aquesta àrea.',
+    'departamentos.detalle.barra.titulo': 'Contrast amb les dades',
+    'departamentos.detalle.barra.resto': 'contrastades · {total} en total',
     'departamentos.detalle.empty.votes':
       "0 vots transcrits per a aquesta regidoria — contribueix via `npm run pleno-vote` o la plantilla d'issue.",
     'departamentos.detalle.empty.promesas': 'Sense promeses registrades per a aquesta regidoria.',
