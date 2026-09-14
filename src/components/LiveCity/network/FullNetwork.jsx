@@ -3,7 +3,7 @@ import { CircleMarker, Polyline, Popup } from 'react-leaflet'
 import { useGeo } from '../../../hooks/useGeo'
 import { useMetroNetwork, indexLineColors } from '../../../hooks/useMetroNetwork'
 import { normaliseStationName } from '../shared'
-import { readableInk } from '../../../lib/contrast'
+import { NetworkStationPopup } from '../popups/NetworkStationPopup'
 
 /**
  * Render the whole Metrovalencia + FGV network (10 lines · ~1k tracks ·
@@ -77,43 +77,7 @@ export function FullNetwork() {
             }}
           >
             <Popup closeButton={true} autoPan={true}>
-              <div style={{ fontFamily: 'Outfit, system-ui, sans-serif', minWidth: 180 }}>
-                <div style={{ fontWeight: 700, fontSize: 'var(--fs-body)', marginBottom: 6 }}>
-                  {s.name}
-                </div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
-                  {refs.map((r) => (
-                    <span
-                      key={r}
-                      style={{
-                        background: colors[r] || '#64748B',
-                        color: readableInk(colors[r] || '#64748B'),
-                        fontFamily: 'DM Mono, monospace',
-                        fontSize: 'var(--fs-micro)',
-                        fontWeight: 800,
-                        padding: '2px 6px',
-                        borderRadius: 'var(--r-input)',
-                      }}
-                    >
-                      {r}
-                    </span>
-                  ))}
-                </div>
-                <a
-                  href="https://www.metrovalencia.es"
-                  target="_blank"
-                  rel="noreferrer"
-                  style={{
-                    marginTop: 8,
-                    display: 'inline-block',
-                    fontSize: 'var(--fs-meta)',
-                    color: 'var(--civic)',
-                    textDecoration: 'none',
-                  }}
-                >
-                  Ver horarios en metrovalencia.es →
-                </a>
-              </div>
+              <NetworkStationPopup name={s.name} refs={refs} colors={colors} />
             </Popup>
           </CircleMarker>
         )
