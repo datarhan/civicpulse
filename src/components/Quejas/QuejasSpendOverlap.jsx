@@ -33,10 +33,13 @@ export default function QuejasSpendOverlap() {
   const { data: geo } = useGeo()
   const { data: tenderGeo } = useTenderGeo()
   const { data: quejas } = useQuejas()
+  // Estas dos cifras NO se gatean por el registro: `quejas` es cuántas pusieron
+  // los vecinos y el gasto situado es del mapa. Ninguna afirma que el
+  // ayuntamiento deba una respuesta, al contrario que ✓ ⏳ ⚠.
   const rows = computeOverlapRows({
     neighborhoods: geo?.neighborhoods,
     zones: tenderGeo?.zones,
-    quejaItems: quejas?.items,
+    instantanea: quejas,
   })
   if (rows.length === 0) return null
 

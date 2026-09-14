@@ -20,11 +20,11 @@ export function NeighborhoodsLayer() {
   const { data: quejas } = useQuejas()
   if (loading || error || !geo?.neighborhoods) return null
   const zones = tgeo?.zones || []
-  const quejaItems = quejas?.items || []
   return (
     <>
       {geo.neighborhoods.map((n) => {
-        const agg = aggregateNeighborhood({ neighborhood: n, zones, quejaItems })
+        // La instantánea entera, no sólo `items`: ver `lib/neighborhood-aggregate`.
+        const agg = aggregateNeighborhood({ neighborhood: n, zones, instantanea: quejas })
         const icon = L.divIcon({
           className: 'cp-osm-neigh',
           html: `<div class="cp-osm-neigh-dot"></div>

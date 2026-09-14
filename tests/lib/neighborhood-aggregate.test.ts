@@ -16,12 +16,24 @@ const ZONES = [
     danaAmount: 274000,
   },
 ]
+
+/**
+ * Las quejas llevan `registered_at` porque las cifras de respuesta sólo se
+ * publican cuando alguna llegó al registro del ayuntamiento — el criterio de
+ * `lib/reloj-lpacap`, compartido con los cargos. Sin esa fecha lo que se
+ * comprobaría aquí es el caso «no medible», que tiene su propia tabla en
+ * `tests/lib/barrio-medible.test.js`.
+ */
+const REGISTRADA = '2026-07-10T09:00:00.000Z'
 const QUEJAS = [
-  { address_string: 'la-reva', status: 'resuelta' },
-  { address_string: 'la-reva', status: 'silencio_negativo' },
-  { address_string: 'la-reva', status: 'capturada' },
-  { address_string: 'otro-barrio', status: 'resuelta' },
+  { address_string: 'la-reva', status: 'resuelta', registered_at: REGISTRADA },
+  { address_string: 'la-reva', status: 'silencio_negativo', registered_at: REGISTRADA },
+  { address_string: 'la-reva', status: 'capturada', registered_at: null },
+  { address_string: 'otro-barrio', status: 'resuelta', registered_at: REGISTRADA },
 ]
+
+/** La instantánea publicada: `stats.total` tiene que cuadrar con `items`. */
+const INSTANTANEA = { stats: { total: QUEJAS.length }, items: QUEJAS }
 
 describe('lib/neighborhood-aggregate', () => {
   it('healthFromCounts is NEUTRAL when there are zero quejas (never infers health from absence)', () => {
@@ -38,22 +50,36 @@ describe('lib/neighborhood-aggregate', () => {
   })
 
   it('aggregateNeighborhood joins money + quejas for a located zone', () => {
-    const agg = aggregateNeighborhood({ neighborhood: NEIGH, zones: ZONES, quejaItems: QUEJAS })
+    const agg = aggregateNeighborhood({
+      neighborhood: NEIGH,
+      zones: ZONES,
+      instantanea: INSTANTANEA,
+    })
     expect(agg.population).toBe(1200)
     expect(agg.amount).toBe(274000)
     expect(agg.danaAmount).toBe(274000)
     expect(agg.contractCount).toBe(3)
-    expect(agg.quejas).toEqual({ total: 3, resueltas: 1, pendientes: 1, silencios: 1 })
+    expect(agg.quejas).toMatchObject({
+      total: 3,
+      medible: true,
+      resueltas: 1,
+      pendientes: 1,
+      silencios: 1,
+    })
     expect(agg.health.level).toBe('crit') // 1/3 silencio ≥ 30%
   })
 
   it('aggregateNeighborhood reports honest zeros for a barrio with no zone and no quejas', () => {
     const empty = { slug: 'sense-res', name: 'Sense Res', centroid: [39.5, -0.5], population: 300 }
-    const agg = aggregateNeighborhood({ neighborhood: empty, zones: ZONES, quejaItems: QUEJAS })
+    const agg = aggregateNeighborhood({
+      neighborhood: empty,
+      zones: ZONES,
+      instantanea: INSTANTANEA,
+    })
     expect(agg.population).toBe(300)
     expect(agg.amount).toBe(0)
     expect(agg.contractCount).toBe(0)
-    expect(agg.quejas).toEqual({ total: 0, resueltas: 0, pendientes: 0, silencios: 0 })
+    expect(agg.quejas).toMatchObject({ total: 0, resueltas: 0, pendientes: 0, silencios: 0 })
     expect(agg.health.level).toBe('neutral')
   })
 
@@ -62,9 +88,11 @@ describe('lib/neighborhood-aggregate', () => {
       { slug: 'la-reva', name: 'La Reva', centroid: [39.5, -0.5] },
       { slug: 'el-molinet', name: 'El Molinet', centroid: [39.5, -0.5] },
     ]
-    const rows = computePerNeighborhood(QUEJAS, neighborhoods)
+    const rows = computePerNeighborhood(INSTANTANEA, neighborhoods)
     // 'otro-barrio' has no geo entry → ignored; el-molinet has 0 → dropped.
     expect(rows.map((r) => r.slug)).toEqual(['la-reva'])
     expect(rows[0]).toMatchObject({ total: 3, resueltas: 1, silencios: 1, pendientes: 1 })
+    // El tono viaja en la fila, ya calculado con los recuentos crudos.
+    expect(rows[0].health.level).toBe('crit')
   })
 })

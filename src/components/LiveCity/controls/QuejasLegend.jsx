@@ -3,7 +3,7 @@ import { useMemo } from 'react'
 import { useT } from '../../../i18n'
 import { useGeo } from '../../../hooks/useGeo'
 import { useQuejas } from '../../../hooks/useQuejas'
-import { computePerNeighborhood, healthFromCounts } from '../../../lib/neighborhood-aggregate'
+import { computePerNeighborhood } from '../../../lib/neighborhood-aggregate'
 
 const cardStyle = {
   background: 'rgba(255,255,255,.94)',
@@ -61,13 +61,13 @@ export function QuejasLegend() {
   const { data: geo } = useGeo()
   const { data: quejas } = useQuejas()
   const pintados = useMemo(
-    () => computePerNeighborhood(quejas?.items ?? [], geo?.neighborhoods),
+    () => computePerNeighborhood(quejas, geo?.neighborhoods),
     [quejas, geo?.neighborhoods],
   )
+  // Cada fila trae su tono ya calculado, así que la leyenda no puede discrepar
+  // de la capa ni por un redondeo: las dos leen el mismo `health`.
   const nivelesPintados = useMemo(() => {
-    const s = new Set(
-      pintados.map((n) => healthFromCounts(n.total, n.resueltas, n.silencios).level),
-    )
+    const s = new Set(pintados.map((n) => n.health.level))
     return LEVELS.filter((l) => s.has(l.level))
   }, [pintados])
   const totalQuejas = pintados.reduce((n, x) => n + x.total, 0)

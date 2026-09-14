@@ -16,10 +16,11 @@ const quejaItems = [
   { address_string: 'a', status: 'resuelta' },
   { address_string: 'c', status: 'pendiente' }, // gap: quejas but no situated spend
 ]
+const instantanea = { stats: { total: quejaItems.length }, items: quejaItems }
 
 describe('computeOverlapRows', () => {
   it('joins quejas + situated spend per barrio, sorts (quejas desc, amount desc), flags gaps', () => {
-    const rows = computeOverlapRows({ neighborhoods, zones, quejaItems })
+    const rows = computeOverlapRows({ neighborhoods, zones, instantanea })
     // a: 2 quejas + 50k; c: 1 queja + 0; b: 0 quejas + 10k; z: nothing (dropped)
     expect(rows.map((r) => r.slug)).toEqual(['a', 'c', 'b'])
     const c = rows.find((r) => r.slug === 'c')
@@ -31,12 +32,31 @@ describe('computeOverlapRows', () => {
     expect(b.amount).toBe(10000)
     expect(b.gap).toBe(false)
   })
+
   it('drops barrios with neither quejas nor situated spend', () => {
     const rows = computeOverlapRows({
       neighborhoods: [{ slug: 'z', name: 'Z' }],
       zones: [],
-      quejaItems: [],
+      instantanea: { stats: { total: 0 }, items: [] },
     })
     expect(rows).toEqual([])
+  })
+
+  /**
+   * Estas cifras NO se gatean por el registro, y conviene fijarlo: `quejas` es
+   * cuántas pusieron los vecinos y `gap` es si hay gasto situado allí. Ninguna
+   * de las dos afirma que el ayuntamiento deba una respuesta, así que esconderlas
+   * cuando nada está registrado ocultaría un dato legítimo — al contrario que
+   * ✓ ⏳ ⚠, que sí son respuestas suyas.
+   */
+  it('sin ninguna queja registrada, el cruce sigue publicando sus cifras', () => {
+    const sinRegistro = quejaItems.map((q) => ({ ...q, registered_at: null }))
+    const rows = computeOverlapRows({
+      neighborhoods,
+      zones,
+      instantanea: { stats: { total: sinRegistro.length }, items: sinRegistro },
+    })
+    expect(rows.find((r) => r.slug === 'a').quejas).toBe(2)
+    expect(rows.find((r) => r.slug === 'c').gap).toBe(true)
   })
 })

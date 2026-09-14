@@ -11,7 +11,8 @@ import {
 import { BASEMAP_ATTRIBUTION, BASEMAP_URL } from '../lib/basemap'
 import { useGeo } from '../hooks/useGeo'
 import { useQuejas, prettyNeighborhood } from '../hooks/useQuejas'
-import { computePerNeighborhood, healthFromCounts } from '../lib/neighborhood-aggregate'
+import { computePerNeighborhood } from '../lib/neighborhood-aggregate'
+import { useT } from '../i18n'
 
 const RIBA_CENTER = [39.5439, -0.5711]
 
@@ -46,13 +47,16 @@ function Boundary() {
 const bubbleRadius = (count) => 100 + Math.sqrt(count) * 90 // meters
 
 export default function QuejasHeatmap() {
+  const t = useT()
   const { data: geo } = useGeo()
   const { data: quejas } = useQuejas()
   const items = useMemo(() => quejas?.items ?? [], [quejas])
   const hasData = items.some((q) => q.address_string)
+  // La instantánea entera, no sólo `items`: decidir si ✓ ⏳ ⚠ significan algo
+  // exige saber si el listado publicado está completo, y eso vive en `stats`.
   const perNeighborhood = useMemo(
-    () => computePerNeighborhood(items, geo?.neighborhoods),
-    [items, geo?.neighborhoods],
+    () => computePerNeighborhood(quejas, geo?.neighborhoods),
+    [quejas, geo?.neighborhoods],
   )
 
   if (!hasData || perNeighborhood.length === 0) return null
@@ -82,7 +86,9 @@ export default function QuejasHeatmap() {
         <AttributionControl prefix={false} />
         <Boundary />
         {perNeighborhood.map((n) => {
-          const { color } = healthFromCounts(n.total, n.resueltas, n.silencios)
+          // El tono viene ya calculado en la fila, con los recuentos crudos: sale
+          // de lo que reportaron los vecinos, no de la respuesta municipal.
+          const { color } = n.health
           const radius = bubbleRadius(n.total)
           return (
             <Circle
@@ -101,13 +107,28 @@ export default function QuejasHeatmap() {
                 <div style={{ fontFamily: 'Outfit, sans-serif', fontSize: 'var(--fs-meta)' }}>
                   <strong>{prettyNeighborhood(n.name || n.slug)}</strong>
                   <br />
-                  {n.total} queja{n.total === 1 ? '' : 's'} ·{' '}
-                  <span style={{ color: '#16A34A' }}>✓ {n.resueltas}</span> ·{' '}
-                  <span style={{ color: 'var(--civic)' }}>⏳ {n.pendientes}</span>
-                  {n.silencios > 0 && (
+                  {n.total} queja{n.total === 1 ? '' : 's'}
+                  {/* ✓ ⏳ ⚠ cuentan respuestas del ayuntamiento, y el plazo de la
+                      LPACAP corre desde el REGISTRO: sin ninguna queja del barrio
+                      registrada, «⏳ 1» apuntaba una deuda que no tiene. */}
+                  {n.medible ? (
                     <>
                       {' '}
-                      · <span style={{ color: '#DC2626' }}>⚠ {n.silencios}</span>
+                      · <span style={{ color: '#16A34A' }}>✓ {n.resueltas}</span> ·{' '}
+                      <span style={{ color: 'var(--civic)' }}>⏳ {n.pendientes}</span>
+                      {n.silencios > 0 && (
+                        <>
+                          {' '}
+                          · <span style={{ color: '#DC2626' }}>⚠ {n.silencios}</span>
+                        </>
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      <br />
+                      <span style={{ color: 'var(--ink50)' }}>
+                        {t(`quejas.reloj.${n.motivo}.corto`)}
+                      </span>
                     </>
                   )}
                 </div>
