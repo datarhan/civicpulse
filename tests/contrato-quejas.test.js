@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { readFileSync } from 'node:fs'
+import { readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 /**
@@ -145,5 +145,59 @@ describe('el contrato de las quejas dice lo que hace el código', () => {
     expect(estado, 'el plazo corre desde el registro').toContain('Desde ese registro')
     expect(estado).toContain(`${enLetra(meses(DIAS_GENERAL))} meses`)
     expect(estado).toContain(`${enLetra(meses(DIAS_TRANSPARENCIA))} mes`)
+  })
+})
+
+/** Los workflows, el despliegue del bot y el cron que trae las quejas: donde viven los tiempos. */
+const WORKFLOWS = readdirSync(join(RAIZ, '.github/workflows'))
+  .filter((f) => /\.ya?ml$/.test(f))
+  .map((f) => lee(`.github/workflows/${f}`))
+const LANZAN_FOTOS = [...WORKFLOWS, lee('bot/fly.toml'), lee('bot/Dockerfile')].some((s) =>
+  s.includes('process-photos'),
+)
+const CRON_QUEJAS = lee('.github/workflows/pull-quejas.yml').match(/cron: '([^']+)'/)?.[1]
+
+/**
+ * El aviso legal y la respuesta del bot a `/olvidar` prometían que una queja
+ * retirada, y su foto, desaparecían «inmediatamente» de todas las superficies. El
+ * bot deja de exportarla en el acto, pero esta web trae `quejas.json` una vez al día
+ * y las fotos anonimizadas sólo se escriben y se podan cuando alguien lanza
+ * `npm run process-photos`. Y el aviso se contradecía sobre si alguien revisa la
+ * foto antes de publicarla: nadie lo hace.
+ */
+describe('el aviso legal dice cuándo se retira lo que se pide con /olvidar', () => {
+  const AVISO = plano('src/pages/AvisoLegal.jsx')
+  // Sólo el tramo de las quejas: de la foto adjunta a la base jurídica de la retención.
+  const desde = AVISO.indexOf('Fotografía adjunta (si la envías)')
+  const hasta = AVISO.indexOf('Base jurídica de la retención por defecto')
+  const TRAMO = AVISO.slice(desde, hasta)
+  const RESPUESTA = lee('bot/src/commands/olvidar.ts')
+
+  it('lee de dónde viven los tiempos (si no, no mide nada)', () => {
+    expect(desde, 'no encuentro la foto adjunta en el aviso').toBeGreaterThan(-1)
+    expect(hasta, 'no encuentro la base jurídica detrás').toBeGreaterThan(desde)
+    expect(TRAMO).toContain('/olvidar')
+    expect(WORKFLOWS.length).toBeGreaterThan(5)
+    expect(CRON_QUEJAS, 'pull-quejas.yml ya no tiene cron').toBeTruthy()
+  })
+
+  it('la web se actualiza a diario: nada promete retirarla «de inmediato»', () => {
+    expect(CRON_QUEJAS, 'minuto y hora fijos, todos los días').toMatch(/^\d+ \d+ \* \* \*$/)
+    expect(TRAMO, '/aviso-legal promete inmediatez').not.toMatch(/inmediat/i)
+    expect(RESPUESTA, 'la respuesta del bot promete que ya ha desaparecido').not.toMatch(
+      /ha desaparecido|inmediat/i,
+    )
+    expect(TRAMO).toContain('siguiente actualización diaria')
+    expect(METODOLOGIA).toContain('siguiente actualización diaria')
+  })
+
+  it('la foto: nadie la revisa, y si nada lanza la anonimización, el aviso lo dice', () => {
+    expect(TRAMO, 'se contradecía: «tras revisión» y «sin revisión humana previa»').not.toMatch(
+      /tras revisión/i,
+    )
+    expect(TRAMO).toContain('nadie revisa la imagen')
+    if (!LANZAN_FOTOS) {
+      expect(TRAMO, 'la pasada de anonimización hoy se lanza a mano').toContain('a mano')
+    }
   })
 })

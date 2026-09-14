@@ -712,8 +712,9 @@ export default function Metodologia() {
           </li>
           <li>
             <strong>Quien escribió la queja puede retirarla</strong> en cualquier momento con{' '}
-            <code>/olvidar</code>: sale de todas las páginas, del JSON publicado y con su foto. El
-            detalle está en el{' '}
+            <code>/olvidar</code>: el bot deja de exportarla en el acto; las páginas y el JSON
+            publicado la retiran en la siguiente actualización diaria, y su foto, en la siguiente
+            pasada de anonimización. El detalle está en el{' '}
             <a href="/aviso-legal" style={{ color: 'var(--civic)' }}>
               aviso legal
             </a>
