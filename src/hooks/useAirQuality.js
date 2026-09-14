@@ -26,15 +26,26 @@ const URL =
 
 const REFRESH_MS = 15 * 60 * 1000
 
-/** EAQI band → Spanish label + tone. Thresholds per EEA guidelines. */
+/**
+ * EAQI band → catalogue key + tone + colour. Thresholds per EEA guidelines.
+ *
+ * Devuelve `clave`, no `label`: la banda escrita aquí en castellano se pintaba
+ * igual en la portada en valencià, porque el catálogo sólo traduce lo que pasa
+ * por él. Y la ausencia de lectura tiene su propia clave en vez del «—» de
+ * antes: un guion donde va una banda se lee como medición, y así se publicó un
+ * chip «AQI – —» en la cabecera.
+ *
+ * @returns {{clave: string, tone: string, color: string}}
+ */
 export function describeAqi(eaqi) {
-  if (eaqi == null || Number.isNaN(eaqi)) return { label: '—', tone: 'neutral', color: '#64748B' }
-  if (eaqi <= 20) return { label: 'Buena', tone: 'ok', color: '#15803D' }
-  if (eaqi <= 40) return { label: 'Razonable', tone: 'ok', color: '#65A30D' }
-  if (eaqi <= 60) return { label: 'Moderada', tone: 'warn', color: '#CA8A04' }
-  if (eaqi <= 80) return { label: 'Mala', tone: 'warn', color: '#EA580C' }
-  if (eaqi <= 100) return { label: 'Muy mala', tone: 'crit', color: '#DC2626' }
-  return { label: 'Extremadamente mala', tone: 'crit', color: '#7F1D1D' }
+  if (typeof eaqi !== 'number' || !Number.isFinite(eaqi))
+    return { clave: 'vivo.aqi.sinDato', tone: 'neutral', color: '#64748B' }
+  if (eaqi <= 20) return { clave: 'vivo.aqi.buena', tone: 'ok', color: '#15803D' }
+  if (eaqi <= 40) return { clave: 'vivo.aqi.razonable', tone: 'ok', color: '#65A30D' }
+  if (eaqi <= 60) return { clave: 'vivo.aqi.moderada', tone: 'warn', color: '#CA8A04' }
+  if (eaqi <= 80) return { clave: 'vivo.aqi.mala', tone: 'warn', color: '#EA580C' }
+  if (eaqi <= 100) return { clave: 'vivo.aqi.muyMala', tone: 'crit', color: '#DC2626' }
+  return { clave: 'vivo.aqi.extrema', tone: 'crit', color: '#7F1D1D' }
 }
 
 export function useAirQuality() {

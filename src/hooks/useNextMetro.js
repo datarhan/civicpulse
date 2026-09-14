@@ -319,7 +319,9 @@ export function useNextMetro() {
     minutesAway: minsAway,
     afterMidnight: next.afterMidnight,
     scheduleValidUntil: SCHEDULE.validUntil,
-    scheduleSource: 'FGV · fgv.es (schedule transcribed)',
+    // Sin `scheduleSource`: nombrar la fuente es cosa de quien pinta, y con una
+    // cadena aquí dentro la habría pintado en castellano también en valencià —
+    // que es justo el defecto que este cambio arregla en el tiempo y el aire.
     departureLabel: fmtHHMM(next.at),
     heading: 'València',
   }

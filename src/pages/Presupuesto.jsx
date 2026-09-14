@@ -24,7 +24,7 @@ import {
   capitulosACero,
 } from '../scraper/presupuesto-lectura'
 import { isCommittedContract, committedAwardYearSpan } from '../lib/contract-status'
-import { fmtDateShort, fmtDateLong } from '../lib/formatters'
+import { fmtDateShort, fmtDateLong, rellena } from '../lib/formatters'
 import { yearSpan } from '../lib/year-span'
 import { EFICIENCIA_ENABLED } from '../flags'
 import { useT } from '../i18n'
@@ -80,11 +80,6 @@ const num = (n) => Number(n).toLocaleString('es-ES')
 function listaProsa(partes, y) {
   if (partes.length <= 1) return partes.join('')
   return `${partes.slice(0, -1).join(', ')} ${y} ${partes[partes.length - 1]}`
-}
-
-/** Rellena `{clave}` con su valor. Sin regex: una llave no es un patrón. */
-function rellena(plantilla, vars = {}) {
-  return Object.entries(vars).reduce((s, [k, v]) => s.split(`{${k}}`).join(String(v)), plantilla)
 }
 
 /** Un par de asteriscos en el catálogo marca negrita. */

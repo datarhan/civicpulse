@@ -6,6 +6,7 @@ import { ExtLink } from '../../Primitives'
 import { GTFS_SLUG_BY_NAME, METRO_COLOR } from '../shared'
 import { readableInk } from '../../../lib/contrast'
 import { GtfsSchedulePopup } from './GtfsSchedulePopup'
+import { estaEnVigor } from '../../../lib/metro-portada'
 
 export function StationSchedulePopup({ name, match, rawStation }) {
   // Tick every 30s so the popup stays fresh while open. Cheap — no network.
@@ -21,7 +22,15 @@ export function StationSchedulePopup({ name, match, rawStation }) {
   const gtfsSlug = GTFS_SLUG_BY_NAME[name]
   const gtfs = gtfsSlug ? findNext(gtfsSlug, new Date(tick)) : null
 
-  if (gtfs && gtfs.departures.length > 0 && match) {
+  // Y EN VIGOR, no sólo presente. Este globo prefería el GTFS por el mero hecho
+  // de que contestara, que es lo que hacía la cabecera antes de
+  // `metroDeLaPortada`. Desde que allí manda la vigencia, el mapa servía un
+  // horario distinto del que publica la propia cabecera —a las 22:55 de un
+  // laborable, 22:51 arriba y 23:02 aquí— y encima el panel de la cabecera manda
+  // al lector a pulsar estaciones en el mapa. La regla vive en un sitio y este
+  // globo la pregunta, en vez de tener su propia copia.
+  const gtfsVigente = gtfs && estaEnVigor(gtfs.validThrough, new Date(tick))
+  if (gtfsVigente && gtfs.departures.length > 0 && match) {
     return <GtfsSchedulePopup gtfs={gtfs} match={match} name={name} />
   }
 

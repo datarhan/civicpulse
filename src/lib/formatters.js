@@ -167,3 +167,26 @@ export function safeHref(url) {
     return null
   }
 }
+
+/**
+ * Rellena `{clave}` con su valor. Sin regex: una llave no es un patrón.
+ *
+ * Vivía dentro de /presupuesto, que la estrenó, y aquí llega sin cambiarle una
+ * coma porque ya tiene dos consumidores: la cabecera de la portada compone su
+ * chip con ella. Copiarla habría sido la trampa de siempre —una forma repetida
+ * en vez de importada— y con una función de sustitución el coste de que las dos
+ * copias deriven lo paga el lector en mitad de una frase.
+ *
+ * Y `split`/`join` en vez de `String.replace` a propósito, que es lo que hace
+ * que merezca la pena centralizarla: con un patrón de TEXTO, `replace` cambia
+ * sólo la PRIMERA aparición —una plantilla que repite `{n}` se queda a medias— y
+ * además interpreta `$&` y compañía en el valor, de modo que un dato que
+ * contenga `$&` se reescribe solo. Las dos cosas están fijadas en la prueba.
+ *
+ * @param {string} plantilla
+ * @param {Record<string, string|number>} vars
+ * @returns {string}
+ */
+export function rellena(plantilla, vars = {}) {
+  return Object.entries(vars).reduce((s, [k, v]) => s.split(`{${k}}`).join(String(v)), plantilla)
+}

@@ -5,6 +5,7 @@ import {
   safeHref,
   truncateAtWord,
   fmtDateHuman,
+  rellena,
 } from '../../src/lib/formatters'
 
 // Build an ISO string a given number of milliseconds in the past.
@@ -155,5 +156,36 @@ describe('fmtDateHuman', () => {
 
   it('passes any non-ISO string through rather than guessing', () => {
     expect(fmtDateHuman('primavera de 2026')).toBe('primavera de 2026')
+  })
+})
+
+/**
+ * `rellena` — las dos cosas que `String.replace` hace mal.
+ *
+ * Vivía dentro de /presupuesto y ahora la comparten dos superficies, así que lo
+ * que la hace preferible queda fijado aquí y no en un comentario. Las dos
+ * aserciones fallan si alguien la reescribe con `replace(`{clave}`, valor)`.
+ */
+describe('rellena', () => {
+  it('sustituye TODAS las apariciones, no sólo la primera', () => {
+    // Con `String.replace` y un patrón de texto, la segunda se queda sin poner:
+    // la plantilla llega al lector con «{n}» escrito.
+    expect(rellena('{n} de {n}', { n: 3 })).toBe('3 de 3')
+  })
+
+  it('un `$&` en el VALOR se escribe tal cual', () => {
+    // `String.replace` lo interpreta como «lo que casó» y reescribe el dato.
+    expect(rellena('total: {x}', { x: '$& y $1' })).toBe('total: $& y $1')
+  })
+
+  it('deja intacto el hueco que nadie nombra', () => {
+    // Dejar «{total}» a la vista es el defecto original de /empleo, y es mejor
+    // que inventarse un valor: se ve, y se arregla.
+    expect(rellena('{n} de {total}', { n: 24 })).toBe('24 de {total}')
+  })
+
+  it('un 0 se escribe «0» en vez de desaparecer por ser falso', () => {
+    // El nombre de antes hablaba de «[object Object]», que no es lo que mide.
+    expect(rellena('{n}', { n: 0 })).toBe('0')
   })
 })
