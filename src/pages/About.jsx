@@ -103,7 +103,7 @@ export default function About() {
         <SectionHead eyebrow="The gap" title="Spain's municipal news deserts" />
         <p>
           <strong>
-            6,304 of Spain&rsquo;s 8,147 municipalities &mdash; 77.53% &mdash; are news deserts
+            6,304 of Spain&rsquo;s 8,131 municipalities &mdash; 77.53% &mdash; are news deserts
           </strong>
           , home to 11.6 million people, roughly a quarter of the country. A further 523 are at risk
           of becoming one. (Negreira-Rey, Vázquez-Herrero &amp; López-García,{' '}
