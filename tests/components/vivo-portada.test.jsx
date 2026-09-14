@@ -374,3 +374,235 @@ describe('Vivo — en valencià se lee en valencià', () => {
     expect(panel.textContent).not.toContain(CATALOGUE.ca['vivo.aqi.razonable'])
   })
 })
+
+/**
+ * El panel ENTERO en valencià: ningún rótulo, valor ni pie en castellano (#19).
+ *
+ * Al mudar al catálogo las etiquetas del tiempo y del aire, el resto del panel
+ * quedó a medio traducir: «Sensación térmica», «Humedad», «Próximo tren»,
+ * «Fuente», el aviso del mapa, los pies de Open-Meteo. Y lo que una lista de
+ * rótulos no habría visto: el pie del metro lo arma una función que no está en
+ * el JSX (`fuenteDelHorario`), y «Hacia València», «(terminus)» o el «ahora» de
+ * la espera son VALORES, no rótulos.
+ *
+ * Así que la prueba no enumera cadenas. Pinta el mismo panel, con los mismos
+ * datos y a la misma hora, en castellano y en valencià, y compara lo que se lee
+ * posición a posición. Lo que se lee IGUAL en los dos idiomas es, o un dato que
+ * no se traduce —una cifra, una unidad, una sigla—, o algo que no ha pasado por
+ * el catálogo. Un rótulo nuevo escrito a mano cae aquí sin que nadie tenga que
+ * acordarse de añadirlo a ninguna lista.
+ *
+ * Y una segunda mirada, porque la primera tiene un punto ciego que se midió: una
+ * cadena que pega un trozo traducido a otro en castellano se lee DISTINTA en los
+ * dos idiomas y pasaba. Con el pie de REFERENCIA reescrito a mano —«Horari
+ * transcrit de fgv.es (2026) · horario de REFERENCIA, no vigente…», con el
+ * nombre ya traducido delante— la comparación salió en verde. Así que además se
+ * buscan, dentro de cada texto valenciano, las palabras que sólo usa el
+ * castellano del catálogo («horario», «vigente», «hacia»), sacadas del propio
+ * catálogo y no escritas aquí.
+ *
+ * No basta con que las claves existan: el catálogo cae al castellano cuando
+ * falta una, así que una traducción olvidada no rompe nada, se lee castellano
+ * en medio de la página valenciana y la suite sigue en verde.
+ */
+describe('Vivo — el panel entero en valencià, sin nada en castellano', () => {
+  /** Lo que el lector recibe de un nodo: sus textos y lo que sólo oye (`aria-label`). */
+  function loQueSeLee(nodo, out = []) {
+    if (nodo.nodeType === 3) {
+      const s = nodo.textContent.trim()
+      if (s) out.push(s)
+      return out
+    }
+    if (nodo.nodeType !== 1) return out
+    const aria = nodo.getAttribute('aria-label')
+    if (aria) out.push(aria)
+    for (const hijo of nodo.childNodes) loQueSeLee(hijo, out)
+    return out
+  }
+
+  /**
+   * Lo que puede leerse igual en los dos idiomas sin ser un olvido: contenido de
+   * dato, que en esta casa se queda en su idioma (CLAUDE.md). Las siglas del
+   * aire, la línea, el nombre del feed y las unidades. Es la lista de lo que NO
+   * se traduce, que es corta y casi no cambia — no la de lo que sí.
+   */
+  const NO_SE_TRADUCE = [
+    'EAQI',
+    'PM₂.₅',
+    'PM₁₀',
+    'NO₂',
+    'O₃',
+    'FGV GTFS',
+    'L9',
+    'km/h',
+    'µg/m³',
+    'min',
+  ]
+
+  /**
+   * Lo que el catálogo escribe igual en los dos idiomas («Metro», «Aire»): eso sí
+   * pasó por él.
+   *
+   * Y el límite que eso deja, dicho y medido: una traducción valenciana SIN hueco
+   * copiada tal cual del castellano pasa por aquí como si fuera una palabra que
+   * se escribe igual. Con hueco no: «{estacion} (terminus)» copiado se pinta
+   * relleno, deja de ser el valor del catálogo y cae. Cerrarlo del todo pediría
+   * una lista de las palabras que de verdad coinciden, escrita a mano.
+   */
+  const IGUALES_EN_EL_CATALOGO = new Set(
+    Object.keys(CATALOGUE.es)
+      .filter((k) => CATALOGUE.es[k] === CATALOGUE.ca[k])
+      .map((k) => CATALOGUE.es[k]),
+  )
+
+  /** Lo que se lee igual en castellano y en valencià sin ser dato. */
+  function sinTraducir(pares) {
+    return pares
+      .filter(([es, ca]) => es === ca && !IGUALES_EN_EL_CATALOGO.has(es))
+      .map(([es]) => es)
+      .filter((s) => /\p{L}/u.test(NO_SE_TRADUCE.reduce((r, dato) => r.split(dato).join(' '), s)))
+  }
+
+  /** Las palabras de un texto, en minúsculas. */
+  const palabras = (s) => s.toLowerCase().match(/\p{L}+/gu) ?? []
+
+  /**
+   * Las palabras que sólo usa el castellano del catálogo: las de sus cadenas que
+   * no aparecen en ninguna valenciana. Salen del catálogo, así que crecen con él
+   * y nadie tiene que mantenerlas. Las que las dos lenguas comparten —«de»,
+   * «no», «metro»— no están en ella.
+   */
+  const SOLO_CASTELLANO = (() => {
+    const valencianas = new Set(Object.values(CATALOGUE.ca).flatMap((v) => palabras(String(v))))
+    return new Set(
+      Object.values(CATALOGUE.es)
+        .flatMap((v) => palabras(String(v)))
+        .filter((p) => !valencianas.has(p)),
+    )
+  })()
+
+  /** Las palabras castellanas que asoman en un texto, aunque vayan pegadas a otras traducidas. */
+  function castellanoEn(texto) {
+    const resto = NO_SE_TRADUCE.reduce((r, dato) => r.split(dato).join(' '), texto)
+    return [...new Set(palabras(resto).filter((p) => SOLO_CASTELLANO.has(p)))]
+  }
+
+  /**
+   * Cuatro horas, porque hay texto que sólo existe a según qué hora: la espera
+   * «ahora», el tren «de mañana», el pie del GTFS y el de un horario que ya no
+   * está en vigor. Cada escenario lleva la `marca` que demuestra que pintó su
+   * rama: sin ella, uno que no la pintara pasaría sin haber comparado nada.
+   */
+  const ESCENARIOS = [
+    {
+      nombre: 'GTFS en vigor a mediodía',
+      hora: '2026-09-14T12:14:00',
+      validThrough: '2026-12-31',
+      marca: 'FGV GTFS',
+    },
+    {
+      nombre: 'el tren sale ahora',
+      hora: '2026-09-14T06:06:00',
+      validThrough: '2026-12-31',
+      marca: `L9 ${CATALOGUE.es['vivo.hoy.ahora']}`,
+    },
+    {
+      nombre: 'el próximo es de mañana, con la transcripción',
+      hora: '2026-09-14T23:50:00',
+      validThrough: '2026-12-31',
+      marca: '05:51',
+    },
+    {
+      nombre: 'ninguno en vigor: horario de referencia',
+      hora: '2027-01-11T12:14:00',
+      validThrough: '2025-12-31',
+      marca: 'REFERENCIA',
+    },
+  ]
+
+  beforeEach(() => {
+    localStorage.clear()
+    vi.useRealTimers()
+  })
+
+  afterEach(() => {
+    // `setSystemTime` sin reloj falso sólo simula `Date`, y esto lo devuelve.
+    vi.useRealTimers()
+    localStorage.clear()
+  })
+
+  /** Lo que se lee en el chip y en su panel abierto, en un idioma y a una hora. */
+  async function lee(idioma, { hora, validThrough }) {
+    localStorage.setItem('cp:lang', idioma)
+    vi.setSystemTime(new Date(hora))
+    globalThis.fetch = sirveLoVivo({ validThrough })
+    const vista = render(
+      <LocaleProvider>
+        <Vivo />
+      </LocaleProvider>,
+    )
+    const b = await chipAsentado(idioma)
+    fireEvent.click(b)
+    const leido = [...loQueSeLee(b), ...loQueSeLee(panelDe(b))]
+    vista.unmount()
+    return leido
+  }
+
+  it('el detector distingue un rótulo sin traducir de un dato', () => {
+    expect(sinTraducir([['Humedad', 'Humedad']])).toEqual(['Humedad'])
+    expect(sinTraducir([['Humedad', 'Humitat']])).toEqual([])
+    const datos = [
+      '21°',
+      '12 km/h',
+      '7.1 µg/m³',
+      '682 min',
+      '↑ 07:41',
+      'PM₂.₅',
+      'FGV GTFS',
+      'L9',
+      '×',
+    ]
+    expect(sinTraducir(datos.map((d) => [d, d])), 'un dato no se traduce').toEqual([])
+    // Igual en los dos idiomas, pero sale del catálogo: no es un olvido.
+    const metro = [CATALOGUE.es['vivo.hoy.metro'], CATALOGUE.ca['vivo.hoy.metro']]
+    expect(sinTraducir([metro])).toEqual([])
+    // Y ni una sigla ni un nombre propio tapan la palabra que llevan al lado.
+    expect(sinTraducir([['PM₂.₅ · últimas 24 h', 'PM₂.₅ · últimas 24 h']])).toHaveLength(1)
+    expect(sinTraducir([['Hacia València', 'Hacia València']])).toHaveLength(1)
+  })
+
+  it('y ve el castellano pegado a un trozo traducido, que la comparación entera no ve', () => {
+    // Mide algo: sin vocabulario que buscar, «no hay castellano» sería gratis.
+    expect(SOLO_CASTELLANO.size).toBeGreaterThan(100)
+    // El caso medido: el nombre ya en valencià delante y el resto escrito a mano.
+    const mezcla = 'Horari transcrit de fgv.es (2026) · horario de REFERENCIA, no vigente'
+    const suCastellano = mezcla.replace('Horari transcrit', 'Horario transcrito')
+    expect(sinTraducir([[suCastellano, mezcla]]), 'la comparación entera no lo ve').toEqual([])
+    expect(castellanoEn(mezcla)).toEqual(expect.arrayContaining(['horario', 'vigente']))
+    // Y la traducción buena, con sus palabras compartidas, no da nada.
+    const bien = CATALOGUE.ca['vivo.horario.referencia'].replace(
+      '{fuente}',
+      'Horari transcrit de fgv.es (2026)',
+    )
+    expect(castellanoEn(bien)).toEqual([])
+    expect(castellanoEn('Cap a València · Riba-roja de Túria (final de línia)')).toEqual([])
+  })
+
+  it.each(ESCENARIOS)(
+    '$nombre: en valencià no queda nada en castellano',
+    async ({ marca, ...escenario }) => {
+      const es = await lee('es', escenario)
+      const ca = await lee('ca', escenario)
+      expect(es.join(' · '), 'el escenario no ha pintado la rama que dice').toContain(marca)
+      expect(es.length, 'hay poco texto que comparar').toBeGreaterThan(20)
+      expect(ca.length, 'los dos idiomas no pintan la misma estructura').toBe(es.length)
+      const pares = es.map((s, i) => [s, ca[i]])
+      expect(sinTraducir(pares), 'se leen en castellano también en valencià').toEqual([])
+      const mezclas = ca
+        .map((s) => ({ s, castellano: castellanoEn(s) }))
+        .filter((m) => m.castellano.length)
+        .map((m) => `${m.s}  ←  ${m.castellano.join(', ')}`)
+      expect(mezclas, 'palabras castellanas dentro de textos valencianos').toEqual([])
+    },
+  )
+})
