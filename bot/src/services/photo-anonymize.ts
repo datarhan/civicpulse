@@ -35,24 +35,22 @@ export const ANON_DEFAULTS = {
 
 export type AnonConfig = typeof ANON_DEFAULTS
 
-export type VisionBackend = 'gemini' | 'openai'
+export type VisionBackend = 'gemini'
 
-/** Prefer gemini (free tier) over the metered OpenAI fallback. */
+/**
+ * El único servicio que recibe la imagen es la API Gemini de Google, y el aviso
+ * legal lo nombra. Había un respaldo en OpenAI cuando sólo existía su clave: la
+ * regla del proyecto es no mandar nada a OpenAI, y un segundo destino que depende
+ * de qué claves haya en el entorno dejaba el aviso incompleto. Sin clave de Gemini
+ * no hay análisis, y la foto se retiene.
+ */
 export function chooseVisionBackend(env: Record<string, string | undefined>): VisionBackend | null {
-  if (env.GEMINI_API_KEY) return 'gemini'
-  if (env.OPENAI_API_KEY) return 'openai'
-  return null
+  return env.GEMINI_API_KEY ? 'gemini' : null
 }
 
 export function extractGeminiText(json: unknown): string {
   const t = (json as any)?.candidates?.[0]?.content?.parts?.[0]?.text
   if (typeof t !== 'string') throw new Error('gemini response missing text part')
-  return t
-}
-
-export function extractOpenAIText(json: unknown): string {
-  const t = (json as any)?.choices?.[0]?.message?.content
-  if (typeof t !== 'string') throw new Error('openai response missing content')
   return t
 }
 
@@ -73,7 +71,6 @@ export interface DetectOptions {
   env?: Record<string, string | undefined>
   fetchImpl?: typeof fetch
   geminiModel?: string
-  openaiModel?: string
 }
 
 async function safeText(res: { text?: () => Promise<string> }): Promise<string> {
@@ -94,52 +91,25 @@ export async function detectSensitiveRegions(
 ): Promise<NormBox[]> {
   const env = opts.env ?? process.env
   const fetchImpl = opts.fetchImpl ?? fetch
-  const backend = chooseVisionBackend(env)
-  if (!backend) {
-    throw new Error(
-      'no vision backend configured (set GEMINI_API_KEY or OPENAI_API_KEY) — holding photo',
-    )
+  if (!chooseVisionBackend(env)) {
+    throw new Error('no vision backend configured (set GEMINI_API_KEY) — holding photo')
   }
   const b64 = buf.toString('base64')
   const prompt = buildVisionPrompt()
-
-  if (backend === 'gemini') {
-    const model = opts.geminiModel ?? env.GEMINI_VISION_MODEL ?? 'gemini-2.5-flash'
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${env.GEMINI_API_KEY}`
-    const res = await fetchImpl(url, {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({
-        contents: [
-          { parts: [{ text: prompt }, { inline_data: { mime_type: 'image/jpeg', data: b64 } }] },
-        ],
-        generationConfig: { temperature: 0 },
-      }),
-    })
-    if (!res.ok) throw new Error(`gemini vision HTTP ${res.status}: ${await safeText(res)}`)
-    return parseVisionBoxes(extractGeminiText(await res.json()))
-  }
-
-  // openai fallback
-  const model = opts.openaiModel ?? env.OPENAI_VISION_MODEL ?? 'gpt-4o-mini'
-  const res = await fetchImpl('https://api.openai.com/v1/chat/completions', {
+  const model = opts.geminiModel ?? env.GEMINI_VISION_MODEL ?? 'gemini-2.5-flash'
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${env.GEMINI_API_KEY}`
+  const res = await fetchImpl(url, {
     method: 'POST',
-    headers: { 'content-type': 'application/json', authorization: `Bearer ${env.OPENAI_API_KEY}` },
+    headers: { 'content-type': 'application/json' },
     body: JSON.stringify({
-      model,
-      messages: [
-        {
-          role: 'user',
-          content: [
-            { type: 'text', text: prompt },
-            { type: 'image_url', image_url: { url: `data:image/jpeg;base64,${b64}` } },
-          ],
-        },
+      contents: [
+        { parts: [{ text: prompt }, { inline_data: { mime_type: 'image/jpeg', data: b64 } }] },
       ],
+      generationConfig: { temperature: 0 },
     }),
   })
-  if (!res.ok) throw new Error(`openai vision HTTP ${res.status}: ${await safeText(res)}`)
-  return parseVisionBoxes(extractOpenAIText(await res.json()))
+  if (!res.ok) throw new Error(`gemini vision HTTP ${res.status}: ${await safeText(res)}`)
+  return parseVisionBoxes(extractGeminiText(await res.json()))
 }
 
 /**
