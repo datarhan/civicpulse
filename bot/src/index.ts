@@ -26,7 +26,7 @@ import { startConvocatoriasCron } from './services/convocatorias.ts'
 import { startEventosRepoCron } from './services/eventos-repo.ts'
 import { parseAdminIds } from './util/admins.ts'
 import {
-  getQueja,
+  getQuejaViva,
   eventosRepoVistos,
   marcarEventoRepoVisto,
   podarEventosRepo,
@@ -224,7 +224,7 @@ async function main() {
           }
         }
         const quejaId = sindicMatch[1].toUpperCase()
-        const q = getQueja(db, quejaId)
+        const q = getQuejaViva(db, quejaId)
         if (!q) {
           res.statusCode = 404
           res.end('not found')

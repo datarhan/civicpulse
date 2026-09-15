@@ -15,8 +15,7 @@ export function registerMis(bot: Bot<MyContext>, db: Db) {
         day: 'numeric',
         month: 'short',
       })
-      const deletedMark = q.deleted_at ? ' · 🗑 *eliminada*' : ''
-      return `\`${q.id}\` · ${date} · ${q.state}${deletedMark}\n  ${q.title.slice(0, 80)}`
+      return `\`${q.id}\` · ${date} · ${q.state}\n  ${q.title.slice(0, 80)}`
     })
     await ctx.reply(
       `📋 *Tus quejas:*\n\n${lines.join('\n\n')}\n\n` +

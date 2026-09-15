@@ -39,15 +39,16 @@ export interface SilencioResult {
 async function postSilencioWithRetry(
   channel: Channel,
   q: QuejaRow,
+  plazoDias: number,
   retryDelayMs: number,
 ): Promise<boolean> {
   try {
-    await channel.postSilencio(q)
+    await channel.postSilencio(q, plazoDias)
     return true
   } catch {
     await new Promise((resolve) => setTimeout(resolve, retryDelayMs))
     try {
-      await channel.postSilencio(q)
+      await channel.postSilencio(q, plazoDias)
       return true
     } catch (err) {
       console.error(`[cron] broadcast failed twice for ${q.id}:`, err)
@@ -86,6 +87,8 @@ export function checkSilencio(
     .all() as QuejaRow[]
 
   const transitioned: QuejaRow[] = []
+  // El plazo de cada una viaja con ella hasta el aviso: el canal no lo recalcula.
+  const avisos: Array<{ queja: QuejaRow; plazoDias: number }> = []
   for (const r of rows) {
     const routing = routeUsingLocalOfficials({
       title: r.title,
@@ -104,13 +107,16 @@ export function checkSilencio(
     const updated = setState(db, r.id, 'silencio_negativo')
     if (updated) {
       transitioned.push(updated)
+      avisos.push({ queja: updated, plazoDias: plazoDays })
     }
   }
 
   // Detached broadcasts (non-blocking for the transition path) with one
   // retry each + an aggregate count so missed notifications leave a trace.
   const broadcasts = Promise.all(
-    transitioned.map((q) => postSilencioWithRetry(channel, q, retryDelayMs)),
+    avisos.map(({ queja, plazoDias }) =>
+      postSilencioWithRetry(channel, queja, plazoDias, retryDelayMs),
+    ),
   ).then((oks) => {
     const sent = oks.filter(Boolean).length
     const failed = oks.length - sent
