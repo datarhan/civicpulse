@@ -1,17 +1,17 @@
 {
-  "generatedAt": "2026-09-10T07:51:53.705Z",
+  "generatedAt": "2026-09-15T08:41:12.732Z",
   "source": {
     "description": "Claims extracted automatically from YouTube-derived pleno transcripts. Each record carries requiresHumanApproval:true and is cross-referenced against tenders / BDNS / budget / promises by the verifier pass before any editorial surface.",
     "contract": "Machine-written; never substitutes for the published human-verified record. Speaker attribution at bloc level only — no individual naming."
   },
   "stats": {
-    "total": 6919,
+    "total": 6984,
     "byType": {
       "promesa": 509,
-      "afirmacion_numerica": 2011,
-      "cita_obra": 1560,
-      "cita_convenio": 583,
-      "acusacion_publica": 2256,
+      "afirmacion_numerica": 2015,
+      "cita_obra": 1578,
+      "cita_convenio": 577,
+      "acusacion_publica": 2305,
       "valoracion_politica": 0
     },
     "byPleno": {
@@ -23,7 +23,7 @@
       "k4olcs": 452,
       "ma87e0": 234,
       "1sqj7is": 142,
-      "rx4hb4": 51,
+      "rx4hb4": 116,
       "19gax3o": 505,
       "1pe3qs8": 33,
       "toa3rc": 15,
@@ -39,19 +39,19 @@
       "1r6yy0": 28
     },
     "byTopic": {
-      "fiscal": 1028,
+      "fiscal": 1026,
       "vivienda": 187,
       "movilidad": 171,
-      "medio-ambiente": 645,
-      "social": 436,
+      "medio-ambiente": 635,
+      "social": 455,
       "cultura": 268,
-      "seguridad": 249,
+      "seguridad": 264,
       "empleo": 267,
-      "urbanismo": 977,
+      "urbanismo": 1000,
       "salud": 200,
-      "transparencia": 1252,
-      "educacion": 404,
-      "other": 835
+      "transparencia": 1255,
+      "educacion": 414,
+      "other": 842
     }
   },
   "items": [
@@ -38602,913 +38602,2049 @@
       "requiresHumanApproval": true
     },
     {
-      "id": "rx4hb4-439-afi-b51241",
+      "id": "rx4hb4-002-cit-1ec83e",
       "plenoId": "rx4hb4",
       "plenoDate": "2026-02-09",
-      "segmentIndex": 439,
-      "type": "afirmacion_numerica",
-      "speakerGroup": null,
-      "verbatim": "faltan 5 días para presentarse",
-      "context": "El concejal advierte del plazo inminente de la convocatoria DANA: 'lo que sí que quería [...] o sea que entiendo que faltan 5 días para presentarse', situando el límite en torno al 14 de febrero de 2026.",
-      "topic": "fiscal",
+      "segmentIndex": 2,
+      "type": "cita_obra",
+      "speakerGroup": "PSOE",
+      "verbatim": "Con resolución de alcaldía iniciamos el documento de inicio de evaluación ambiental y territorial y borrador del plan de reforma interior de la unidad de ejecución de Santa Rosa.",
+      "context": "En este caso, la unidad de Santa Rosa hemos hecho dos cosas. Por una parte, lo de los documentos de inicio de evaluación ambiental y territorial y luego el PRI y el plan de reforma interiores porque es una zona muy consolidada y había que tratar con mucho cariño.",
+      "topic": "urbanismo",
       "entities": {
-        "count": 5,
-        "countUnit": "días",
-        "date": "2026-02-14",
-        "referencedEntity": "convocatoria dana"
-      },
-      "confidence": 0.65,
-      "reasoning": "El hablante cifra en 5 días el plazo restante para presentarse a la convocatoria relacionada con la DANA (contexto del punto 11 del orden del día, PAI EDIL / senda financiera). Verificable consultando la convocatoria oficial y su fecha límite de presentación.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "rx4hb4-439-afi-e031c5",
-      "plenoId": "rx4hb4",
-      "plenoDate": "2026-02-09",
-      "segmentIndex": 439,
-      "type": "afirmacion_numerica",
-      "speakerGroup": null,
-      "verbatim": "los 3 meses es el término para presentarse",
-      "context": "El concejal argumenta que la convocatoria lleva publicada desde hace aproximadamente 3 meses y que ese es el plazo oficial de presentación: 'yo lo que he visto es que eso se va a presentar hace 3 meses porque en el documento que ya pone se publica y los 3 meses es el término para presentarse'.",
-      "topic": "fiscal",
-      "entities": {
-        "count": 3,
-        "countUnit": "meses",
-        "referencedEntity": "convocatoria dana"
-      },
-      "confidence": 0.62,
-      "reasoning": "El hablante afirma que el plazo oficial de la convocatoria DANA es de 3 meses desde su publicación. Verificable cotejando la fecha de publicación en el BOE/DOGV y el término establecido en las bases de la convocatoria referenciada.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "rx4hb4-439-acu-75f41b",
-      "plenoId": "rx4hb4",
-      "plenoDate": "2026-02-09",
-      "segmentIndex": 439,
-      "type": "acusacion_publica",
-      "speakerGroup": null,
-      "verbatim": "en esos 3 meses que ha pasado porque estamos un poco al límite vale",
-      "context": "El concejal implica que el ayuntamiento ha dejado pasar los 3 meses del plazo sin actuar, llegando al límite: 'en esos 3 meses que ha pasado porque estamos un poco al límite vale'. La expresión sugiere una crítica a la gestión del tiempo disponible.",
-      "topic": "fiscal",
-      "entities": {
-        "count": 3,
-        "countUnit": "meses",
-        "referencedEntity": "convocatoria dana"
-      },
-      "accusationSubtype": "opinativa",
-      "confidence": 0.52,
-      "reasoning": "El hablante insinúa que la corporación ha gestionado con retraso la convocatoria DANA al llegar 'al límite' del plazo de 3 meses. La afirmación es valorativa sobre la gestión sin citar cifras concretas de inversión ni entidades formales verificables, por lo que se clasifica como opinativa.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "rx4hb4-440-afi-3593f5",
-      "plenoId": "rx4hb4",
-      "plenoDate": "2026-02-09",
-      "segmentIndex": 440,
-      "type": "afirmacion_numerica",
-      "speakerGroup": null,
-      "verbatim": "entendemos que en el presupuesto del año 2026 va a estar ya la primera partida para este proyecto",
-      "context": "también una de las cosas que quería preguntar que es lo que ya has comentado los dinero que va a poner el ayuntamiento entendemos que en el presupuesto del año 2026 va a estar ya la primera partida para este proyecto",
-      "topic": "fiscal",
-      "entities": {
-        "referencedEntity": "presupuesto municipal 2026"
-      },
-      "confidence": 0.65,
-      "reasoning": "El orador afirma (con 'entendemos que') que el presupuesto 2026 ya contempla una primera partida para el proyecto en cuestión. Verificable contra budget.json / CONPREL 2026 y las aplicaciones presupuestarias aprobadas. El hedge 'entendemos' rebaja ligeramente la certeza.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "rx4hb4-440-afi-1045a2",
-      "plenoId": "rx4hb4",
-      "plenoDate": "2026-02-09",
-      "segmentIndex": 440,
-      "type": "afirmacion_numerica",
-      "speakerGroup": null,
-      "verbatim": "el 31 de marzo del año 2027 ya tiene que estar como al menos el 40% del gasto",
-      "context": "pone también en la normativa que el 31 de marzo del año 2027 ya tiene que estar como al menos el 40% del gasto eso realmente significa o sea que de los dineros que tiene que poner Ri[ba-roja]",
-      "topic": "fiscal",
-      "entities": {
-        "count": 40,
-        "countUnit": "% del gasto ejecutado",
-        "date": "2027-03-31",
-        "referencedEntity": "normativa convocatoria pai edil / senda financiera"
-      },
-      "confidence": 0.8,
-      "reasoning": "El orador cita literalmente un requisito normativo: ejecutar al menos el 40 % del gasto antes del 31 de marzo de 2027. Altamente verificable contra las bases reguladoras de la convocatoria referenciada en el punto 11 del orden del día ('senda financiera'). Fecha y porcentaje son concretos y precisos.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "rx4hb4-441-pro-5a50ba",
-      "plenoId": "rx4hb4",
-      "plenoDate": "2026-02-09",
-      "segmentIndex": 441,
-      "type": "promesa",
-      "speakerGroup": null,
-      "verbatim": "en el presupuesto del año 2026 va a estar ya la primera partida para este proyecto",
-      "context": "El interviniente comenta que 'los dinero que va a poner el ayuntamiento entendemos que en el presupuesto del año 2026 va a estar ya la primera partida para este proyecto y dos y tres', refiriéndose al expediente de la senda financiera (PAI EDIL).",
-      "topic": "fiscal",
-      "entities": {
-        "referencedEntity": "presupuesto municipal 2026 / pai edil"
-      },
-      "confidence": 0.62,
-      "reasoning": "Afirma que la primera dotación presupuestaria para el proyecto (aparentemente PAI EDIL / senda financiera, punto 11 del orden del día) debe figurar en el presupuesto de 2026. Verificable contrastando las aplicaciones presupuestarias del CONPREL 2026 del Ayuntamiento de Riba-roja de Túria.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "rx4hb4-441-cit-1b4914",
-      "plenoId": "rx4hb4",
-      "plenoDate": "2026-02-09",
-      "segmentIndex": 441,
-      "type": "cita_convenio",
-      "speakerGroup": null,
-      "verbatim": "es demandar fondos europeos",
-      "context": "El interviniente valora positivamente la propuesta: 'creo que es súper importante y además si es una cosa buena para Riva Rocha y únicamente es estas cuestiones', describiéndola como una solicitud de fondos europeos ('es demandar fondos europeos').",
-      "topic": "fiscal",
-      "entities": {
-        "referencedEntity": "fondos europeos / senda financiera pai edil"
+        "referencedEntity": "pri unidad de ejecución santa rosa (santa rosa 2)"
       },
       "confidence": 0.55,
-      "reasoning": "Identifica el PAI EDIL / senda financiera como un mecanismo de captación de fondos europeos. Verificable contrastando el expediente 647/2026/GEN con la BDNS y los fondos europeos Next Generation o similares en los que se enmarcaría la convocatoria.",
+      "reasoning": "Afirma que mediante resolución de alcaldía se ha iniciado formalmente el expediente del PRI de Santa Rosa 2, lo cual es verificable contrastando con el expediente 5543/2020/GEN y la fecha/resolución de alcaldía correspondiente.",
       "requiresHumanApproval": true
     },
     {
-      "id": "rx4hb4-442-afi-6a4ea6",
+      "id": "rx4hb4-001-cit-7f89b2",
       "plenoId": "rx4hb4",
       "plenoDate": "2026-02-09",
-      "segmentIndex": 442,
-      "type": "afirmacion_numerica",
-      "speakerGroup": null,
-      "verbatim": "nos han dado 24.180.000 euros",
-      "context": "Una cosa es la reconstrucción que nos han dado 24.180.000 euros y en esos 24.180.000 euros que son 11 subvenciones de las cuales no hay de varios ministerios y ahí entra toda la recuperación",
-      "topic": "urbanismo",
-      "entities": {
-        "amountEuros": 24180000,
-        "referencedEntity": "reconstrucción post-dana riba-roja de túria"
-      },
-      "confidence": 0.88,
-      "reasoning": "Cifra concreta de subvenciones recibidas para la reconstrucción, repetida dos veces en el fragmento; verificable cruzando BDNS (MinHac) por convocatorias adjudicadas al municipio 46214 con ese importe agregado.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "rx4hb4-442-afi-7f1544",
-      "plenoId": "rx4hb4",
-      "plenoDate": "2026-02-09",
-      "segmentIndex": 442,
-      "type": "afirmacion_numerica",
-      "speakerGroup": null,
-      "verbatim": "que son 11 subvenciones de las cuales no hay de varios ministerios",
-      "context": "Nos han dado 24.180.000 euros y en esos 24.180.000 euros que son 11 subvenciones de las cuales no hay de varios ministerios y ahí entra toda la recuperación",
-      "topic": "fiscal",
-      "entities": {
-        "amountEuros": 24180000,
-        "count": 11,
-        "countUnit": "subvenciones",
-        "referencedEntity": "subvenciones reconstrucción post-dana varios ministerios"
-      },
-      "confidence": 0.82,
-      "reasoning": "Número concreto de subvenciones que componen los 24,18 M€; verificable en BDNS filtrando por beneficiario Ayuntamiento de Riba-roja de Túria y convocantes ministeriales.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "rx4hb4-442-cit-722cbf",
-      "plenoId": "rx4hb4",
-      "plenoDate": "2026-02-09",
-      "segmentIndex": 442,
+      "segmentIndex": 1,
       "type": "cita_obra",
-      "speakerGroup": null,
-      "verbatim": "hay 29 proyectos que recuperarán el polígono al 100% la pedanía el tema de la Riva",
-      "context": "Ahí entra toda la recuperación hay 29 proyectos que recuperarán el polígono al 100% la pedanía el tema de la Riva el tema de los polos",
-      "topic": "urbanismo",
-      "entities": {
-        "count": 29,
-        "countUnit": "proyectos",
-        "referencedEntity": "recuperación polígono industrial y pedanía post-dana riba-roja de túria"
-      },
-      "confidence": 0.78,
-      "reasoning": "Afirmación concreta sobre el número de proyectos de recuperación y su alcance (100% del polígono + pedanía); verificable en el expediente de las subvenciones y en el plan de reconstrucción municipal publicado.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "rx4hb4-443-cit-8f3173",
-      "plenoId": "rx4hb4",
-      "plenoDate": "2026-02-09",
-      "segmentIndex": 443,
-      "type": "cita_convenio",
-      "speakerGroup": null,
-      "verbatim": "nos han dado 24.180.000 euros y en esos 24.180.000 euros que son 11 subvenciones de las cuales no hay de varios ministerios",
-      "context": "El interviniente describe los fondos recibidos para la reconstrucción: 24.180.000 euros canalizados a través de 11 subvenciones procedentes de varios ministerios, para proyectos de recuperación del polígono, pedanía, casco urbano y otros ámbitos.",
-      "topic": "urbanismo",
-      "entities": {
-        "amountEuros": 24180000,
-        "count": 11,
-        "countUnit": "subvenciones",
-        "referencedEntity": "subvenciones ministeriales reconstrucción post-dana riba-roja de túria"
-      },
-      "confidence": 0.87,
-      "reasoning": "La cantidad de 24.180.000 € se repite tres veces en el fragmento, lo que refuerza la consistencia. Es contrastable contra el BDNS filtrando convocatorias/concesiones con beneficiario Ayuntamiento de Riba-roja de Túria y descripción relacionada con la DANA o reconstrucción.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "rx4hb4-443-afi-f2cce9",
-      "plenoId": "rx4hb4",
-      "plenoDate": "2026-02-09",
-      "segmentIndex": 443,
-      "type": "afirmacion_numerica",
-      "speakerGroup": null,
-      "verbatim": "hay 29 proyectos que recuperarán el polígono al 100% la pedanía el tema de la Riva el tema de los polos y el casco urbano",
-      "context": "Dentro de los 24.180.000 euros de fondos ministeriales, el interviniente afirma que se articulan 29 proyectos destinados a la recuperación integral del polígono, la pedanía, la Riva, los polos y el casco urbano.",
-      "topic": "urbanismo",
-      "entities": {
-        "count": 29,
-        "countUnit": "proyectos",
-        "referencedEntity": "proyectos de recuperación post-dana riba-roja de túria"
-      },
-      "confidence": 0.8,
-      "reasoning": "El número de 29 proyectos es verificable cruzando las memorias presentadas al ministerio con el listado de expedientes de obras/contratos en PLACSP/Gobierto o con la documentación del PAI de reconstrucción. Los topónimos 'la Riva' y 'los polos' pueden ser errores de Whisper (pedanías o áreas industriales), de ahí la confianza moderada.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "rx4hb4-443-pro-278117",
-      "plenoId": "rx4hb4",
-      "plenoDate": "2026-02-09",
-      "segmentIndex": 443,
-      "type": "promesa",
-      "speakerGroup": null,
-      "verbatim": "29 proyectos que recuperarán el polígono al 100% la pedanía el tema de la Riva el tema de los polos y el casco urbano",
-      "context": "El interviniente presenta como compromiso que los 29 proyectos encuadrados en las 11 subvenciones ministeriales lograrán la recuperación al 100% del polígono, la pedanía, la Riva, los polos y el casco urbano, señalando que las memorias están pendientes de aprobación ministerial.",
-      "topic": "urbanismo",
-      "entities": {
-        "amountEuros": 24180000,
-        "count": 29,
-        "countUnit": "proyectos",
-        "referencedEntity": "recuperación integral post-dana polígono y casco urbano riba-roja de túria"
-      },
-      "confidence": 0.75,
-      "reasoning": "El uso del futuro 'recuperarán… al 100%' constituye un compromiso público concreto de resultado (recuperación total), vinculado a fondos ya asignados (24,18 M€) pero sujeto a aprobación ministerial de memorias; su cumplimiento es contrastable a futuro contra licitaciones publicadas y estado de obras.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "rx4hb4-444-cit-cbfc4e",
-      "plenoId": "rx4hb4",
-      "plenoDate": "2026-02-09",
-      "segmentIndex": 444,
-      "type": "cita_convenio",
       "speakerGroup": "PSOE",
-      "verbatim": "aprobamos la agenda urbana en octubre del 24 para poder optar por los 15 millones que queríamos del edil",
-      "context": "El ponente explica que la aprobación de la agenda urbana de reconstrucción en octubre de 2024 fue un requisito previo para concursar a los 15 millones del programa EDIL (Estrategia de Desarrollo Urbano Integrado Local), acción que quedó condicionada por la DANA.",
+      "verbatim": "el Ayuntamiento como órgano promotor ha intervenido también como órgano ambiental y territorial mediante el acuerdo de pleno de mayo del 2021",
+      "context": "Sabéis que como el Ayuntamiento como órgano promotor ha intervenido también como órgano ambiental y territorial mediante el acuerdo de pleno de mayo del 2021, en el marco de la tramitación del PRI de la UE Santa Rosa 2.",
       "topic": "urbanismo",
       "entities": {
-        "amountEuros": 15000000,
-        "referencedEntity": "agenda urbana de reconstrucción / edil (estrategia de desarrollo urbano integrado local)"
+        "referencedEntity": "pri ue santa rosa 2 / acuerdo de pleno mayo 2021"
       },
-      "confidence": 0.78,
-      "reasoning": "La aprobación de la agenda urbana en octubre de 2024 es un acuerdo plenario verificable en el índice de plenos de ribarroja.es; el importe de 15 M€ es contrastable contra la convocatoria EDIL de los PERTE/PRTR o los DUSI del FEDER 2021-2027.",
+      "confidence": 0.65,
+      "reasoning": "Cita un acuerdo de pleno concreto de mayo de 2021 por el que el Ayuntamiento asumió el rol de órgano ambiental y territorial; verificable contra las actas de pleno de esa fecha.",
       "requiresHumanApproval": true
     },
     {
-      "id": "rx4hb4-444-pro-832167",
+      "id": "rx4hb4-004-cit-64f1e9",
       "plenoId": "rx4hb4",
       "plenoDate": "2026-02-09",
-      "segmentIndex": 444,
-      "type": "promesa",
+      "segmentIndex": 4,
+      "type": "cita_obra",
       "speakerGroup": "PSOE",
-      "verbatim": "vamos a optar por el edil de la general que era por eso aprobamos la agenda urbana en octubre del 24 para poder optar por los 15 millones que queríamos del edil pero cuando entramos eso como pasó la DAN",
-      "context": "El ponente anuncia que el municipio se va a presentar a la convocatoria EDIL de la senda financiera general (agenda item 11: Aprobación PAI EDIL), vinculando esta decisión con la agenda urbana aprobada en octubre de 2024 y con el impacto de la DANA que modificó el escenario original.",
+      "verbatim": "se han solicitado informes al Departamento de Calidad Ambiental, Área de Actividades, Medio Ambiente, Paisaje, constatando informe de urbanismo y de medio ambiente en el expediente.",
+      "context": "Bueno, pues además se han solicitado informes al Departamento de Calidad Ambiental, Área de Actividades, Medio Ambiente, Paisaje, constatando informe de urbanismo y de medio ambiente en el expediente.",
       "topic": "urbanismo",
       "entities": {
-        "referencedEntity": "pai edil / senda financiera general"
-      },
-      "confidence": 0.68,
-      "reasoning": "Compromiso futuro concreto de solicitar el PAI EDIL, verificable cuando se publique la resolución de la convocatoria en BDNS o en el BOE/DOGV; la frase queda truncada por Whisper ('DAN' en lugar de 'DANA'), lo que reduce ligeramente la confianza.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "rx4hb4-445-cit-479bf6",
-      "plenoId": "rx4hb4",
-      "plenoDate": "2026-02-09",
-      "segmentIndex": 445,
-      "type": "cita_convenio",
-      "speakerGroup": "PSOE",
-      "verbatim": "trajeron los pueblos de DANA para hacer una convocatoria especial",
-      "context": "El orador argumenta que, tras la DANA, la administración (estatal o autonómica) generó una convocatoria específica para los municipios afectados, distinta de la línea EDIL general, orientada a la reconstrucción. Esto modificó el marco de financiación disponible para el ayuntamiento.",
-      "topic": "urbanismo",
-      "entities": {
-        "referencedEntity": "convocatoria especial municipios dana / reconstrucción post-dana"
-      },
-      "confidence": 0.72,
-      "reasoning": "La existencia de una convocatoria especial para municipios DANA es verificable contra el BDNS y el BOE/DOGV. El término 'convocatoria especial' es suficientemente concreto para buscar el instrumento normativo que la habilita.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "rx4hb4-446-cit-add122",
-      "plenoId": "rx4hb4",
-      "plenoDate": "2026-02-09",
-      "segmentIndex": 446,
-      "type": "cita_convenio",
-      "speakerGroup": null,
-      "verbatim": "trajeron los pueblos de DANA para hacer una convocatoria especial",
-      "context": "El interviniente explica que los municipios afectados por la DANA no estaban pensando en una subvención sino en recuperar sus pueblos, y que se creó una convocatoria especial dirigida a dichos municipios: 'trajeron los pueblos de DANA para hacer una convocatoria especial'.",
-      "topic": "social",
-      "entities": {
-        "referencedEntity": "convocatoria especial dana pueblos afectados"
+        "referencedEntity": "pri santa rosa 2 (expedient 5543/2020/gen)"
       },
       "confidence": 0.6,
-      "reasoning": "Referencia a una convocatoria de subvención específica para municipios afectados por la DANA; verificable consultando BDNS o BOE/DOGV en busca de convocatorias extraordinarias post-DANA dirigidas a ayuntamientos.",
+      "reasoning": "Afirma que se tramitaron informes concretos (calidad ambiental, urbanismo, medio ambiente) dentro del expediente del PRI Santa Rosa 2, verificable contra la documentación administrativa del expediente 5543/2020/GEN.",
       "requiresHumanApproval": true
     },
     {
-      "id": "rx4hb4-446-cit-317f4b",
+      "id": "rx4hb4-004-cit-18a74c",
       "plenoId": "rx4hb4",
       "plenoDate": "2026-02-09",
-      "segmentIndex": 446,
+      "segmentIndex": 4,
       "type": "cita_obra",
       "speakerGroup": null,
-      "verbatim": "nosotros hemos hecho estudios de inundabilidad y hicimos un estudio claro que tenemos un contrato en AWARD",
-      "context": "El interviniente defiende la posición del equipo de gobierno ante las críticas de la oposición sobre inundabilidad, afirmando haber realizado estudios y tener un contrato registrado (posiblemente en una plataforma de licitación transcrita como 'AWARD' por Whisper): 'nosotros hemos hecho estudios de inundabilidad y hicimos un estudio claro que tenemos un contrato en AWARD'.",
+      "verbatim": "Por resolución de alcaldía, de ocho de mayo del 23, se emitió informe ambiental y territorial estratégico favorable en el plan de reforma interior de Santa Rosa,",
+      "context": "Por resolución de alcaldía, de ocho de mayo del 23, se emitió informe ambiental y territorial estratégico favorable en el plan de reforma interior de Santa Rosa, de reforma interior.",
+      "topic": "urbanismo",
+      "entities": {
+        "date": "2023-05-08",
+        "referencedEntity": "plan de reforma interior santa rosa 2"
+      },
+      "confidence": 0.75,
+      "reasoning": "Cita una fecha y un acto administrativo concreto (resolución de alcaldía del 8 de mayo de 2023 con informe ambiental y territorial estratégico favorable) verificable contra el registro de resoluciones de alcaldía y el expediente del PRI Santa Rosa.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-004-cit-645c7d",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 4,
+      "type": "cita_obra",
+      "speakerGroup": "PSOE",
+      "verbatim": "se han redactado la propuesta del plan para su sometimiento al trámite de información pública, incluyendo las conclusiones del trámite de evaluación ambiental y territorial estratégico.",
+      "context": "Por parte de la oficina técnica municipal se han redactado la propuesta del plan para su sometimiento al trámite de información pública, incluyendo las conclusiones del trámite de evaluación ambiental y territorial estratégico.",
+      "topic": "urbanismo",
+      "entities": {
+        "referencedEntity": "pri santa rosa 2 (expedient 5543/2020/gen)"
+      },
+      "confidence": 0.6,
+      "reasoning": "Afirma un hecho procedimental concreto (redacción de la propuesta del plan por la oficina técnica municipal para información pública) que coincide con el punto 2 del orden del día y es verificable contra el expediente.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-005-cit-a20246",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 5,
+      "type": "cita_obra",
+      "speakerGroup": null,
+      "verbatim": "se emitió informe ambiental y territorial estratégico favorable en el plan de reforma interior de Santa Rosa",
+      "context": "se emitió informe ambiental y territorial estratégico favorable en el plan de reforma interior de Santa Rosa, de reforma interior. Por parte de la oficina técnica municipal se han redactado la propuesta del plan para su sometimiento al trámite de información pública",
+      "topic": "urbanismo",
+      "entities": {
+        "referencedEntity": "pri de la ue santa rosa 2 - informe ambiental i territorial estratègic"
+      },
+      "confidence": 0.75,
+      "reasoning": "Afirma la existencia y sentido favorable de un informe ambiental y territorial estratégico sobre el PRI Santa Rosa 2 (expediente 5543/2020/GEN), verificable contrastando el expediente administrativo publicado.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-005-cit-39a7e5",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 5,
+      "type": "cita_obra",
+      "speakerGroup": null,
+      "verbatim": "Visto el informe conjunto de la arquitecta municipal de estado de urbanismo de fecha 19 de enero del 26",
+      "context": "Visto el informe conjunto de la arquitecta municipal de estado de urbanismo de fecha 19 de enero del 26 y el informe de secretaría municipal de fecha 22 de enero del 26 y constando en el expediente la versión preliminar del plan",
+      "topic": "urbanismo",
+      "entities": {
+        "date": "2026-01-19",
+        "referencedEntity": "informe conjunt arquitecta municipal - pri santa rosa 2"
+      },
+      "confidence": 0.65,
+      "reasoning": "Cita un informe técnico municipal concreto con fecha específica dentro del expediente 5543/2020/GEN, verificable contrastando la fecha y autoría en el expediente publicado; Whisper puede haber transcrito mal 'del 26' (2026).",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-005-cit-64ffdc",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 5,
+      "type": "cita_obra",
+      "speakerGroup": null,
+      "verbatim": "el informe de secretaría municipal de fecha 22 de enero del 26",
+      "context": "Visto el informe conjunto de la arquitecta municipal de estado de urbanismo de fecha 19 de enero del 26 y el informe de secretaría municipal de fecha 22 de enero del 26 y constando en el expediente la versión preliminar del plan",
+      "topic": "urbanismo",
+      "entities": {
+        "date": "2026-01-22",
+        "referencedEntity": "informe secretaria municipal - pri santa rosa 2"
+      },
+      "confidence": 0.65,
+      "reasoning": "Cita un informe de secretaría municipal con fecha concreta ligado al expediente 5543/2020/GEN, verificable contrastando la fecha registrada en el expediente administrativo.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-006-afi-d89235",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 6,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "Someter al trámite de información pública por periódico por periodo de cuarenta y cinco días el el plan de reforma interior de unidad de la unidad de ejecución de Santa Rosa dos.",
+      "context": "Someter al trámite de información pública por periódico por periodo de cuarenta y cinco días el el plan de reforma interior de unidad de la unidad de ejecución de Santa Rosa dos. Publicar el anuncio en el diario oficial de la comunidad valenciana indicando dirección electrónica para su consulta.",
+      "topic": "urbanismo",
+      "entities": {
+        "count": 45,
+        "countUnit": "días",
+        "referencedEntity": "pri (plan de reforma interior) ue santa rosa 2"
+      },
+      "confidence": 0.7,
+      "reasoning": "Se fija un plazo concreto (45 días) de información pública para el PRI de la UE Santa Rosa 2, dato verificable contra el acuerdo publicado en el DOCV y el expediente 5543/2020/GEN.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-006-cit-13b19d",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 6,
+      "type": "cita_obra",
+      "speakerGroup": null,
+      "verbatim": "el el plan de reforma interior de unidad de la unidad de ejecución de Santa Rosa dos",
+      "context": "Someter al trámite de información pública por periódico por periodo de cuarenta y cinco días el el plan de reforma interior de unidad de la unidad de ejecución de Santa Rosa dos.",
+      "topic": "urbanismo",
+      "entities": {
+        "referencedEntity": "pri ue santa rosa 2"
+      },
+      "confidence": 0.65,
+      "reasoning": "Referencia explícita al instrumento urbanístico PRI de la UE Santa Rosa 2, que corresponde al punto 2 del orden del día y es verificable contra el expediente 5543/2020/GEN.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-009-afi-4f598d",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 9,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "son veintidós unidades de ejecución las que tenemos con conflictos eh dentro de nuestro municipio",
+      "context": "os hemos dicho en más de una ocasión que son veintidós unidades de ejecución las que tenemos con conflictos eh dentro de nuestro municipio, dentro de esas habrían unas seis o siete que son las prioritarias",
+      "topic": "urbanismo",
+      "entities": {
+        "count": 22,
+        "countUnit": "unidades de ejecución",
+        "referencedEntity": "unidades de ejecución con conflictos en el municipio"
+      },
+      "confidence": 0.8,
+      "reasoning": "Cifra concreta sobre el número de unidades de ejecución urbanística con conflictos en el municipio, contrastable con el listado de expedientes urbanísticos del ayuntamiento.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-009-afi-b08f55",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 9,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "dentro de esas habrían unas seis o siete que son las Las prioritarias me refiero porque no puede llevar 22 unidades de ejecución a la vez.",
+      "context": "son veintidós unidades de ejecución las que tenemos con conflictos... dentro de esas habrían unas seis o siete que son las prioritarias me refiero porque no puede llevar 22 unidades de ejecución a la vez.",
+      "topic": "urbanismo",
+      "entities": {
+        "countUnit": "unidades de ejecución prioritarias",
+        "referencedEntity": "unidades de ejecución prioritarias en tramitación"
+      },
+      "confidence": 0.7,
+      "reasoning": "Afirmación con cifra aproximada (seis o siete) sobre cuántas unidades de ejecución se tramitan de forma prioritaria, verificable contra el orden del día y expedientes urbanísticos en curso.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-009-cit-44807a",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 9,
+      "type": "cita_obra",
+      "speakerGroup": null,
+      "verbatim": "Estamos con esas seis o siete, entre ellas Santa Rosa 2 es una de ellas,",
+      "context": "Estamos con esas seis o siete, entre ellas Santa Rosa 2 es una de ellas, Casco 1,",
+      "topic": "urbanismo",
+      "entities": {
+        "referencedEntity": "unidad de ejecución santa rosa 2"
+      },
+      "confidence": 0.75,
+      "reasoning": "Menciona un proyecto urbanístico concreto (unidad de ejecución Santa Rosa 2) en tramitación, coincidente con el expediente 5543/2020/GEN del orden del día, verificable contra el estado real de tramitación.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-010-afi-4acd61",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 10,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "Las prioritarias me refiero porque no puede llevar 22 unidades de ejecución a la vez.",
+      "context": "dentro de esas habrían unas seis o siete que son las... Las prioritarias me refiero porque no puede llevar 22 unidades de ejecución a la vez. Estamos con esas seis o siete, entre ellas Santa Rosa 2 es una de ellas.",
+      "topic": "urbanismo",
+      "entities": {
+        "countUnit": "unidades de ejecución prioritarias (seis o siete)",
+        "referencedEntity": "unidades de ejecución prioritarias"
+      },
+      "confidence": 0.7,
+      "reasoning": "Afirma un subconjunto de 6-7 unidades de ejecución consideradas prioritarias frente al total de 22, contrastable con el orden de tramitación real de expedientes urbanísticos.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-010-cit-3b8b1e",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 10,
+      "type": "cita_obra",
+      "speakerGroup": null,
+      "verbatim": "Casco 1, que viene ya a la par en el trámite.",
+      "context": "Estamos con esas seis o siete, entre ellas Santa Rosa 2 es una de ellas, Casco 1, que viene ya a la par en el trámite. Si no pasa nada, en el próximo pleno traeremos la misma fase que en esta.",
+      "topic": "urbanismo",
+      "entities": {
+        "referencedEntity": "ue casco 1"
+      },
+      "confidence": 0.75,
+      "reasoning": "Menciona el estado de tramitación de la unidad de ejecución Casco 1, verificable contra el registro de expedientes urbanísticos municipales.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-010-pro-793a37",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 10,
+      "type": "promesa",
+      "speakerGroup": null,
+      "verbatim": "en el próximo pleno traeremos la misma fase que en esta",
+      "context": "Casco 1, que viene ya a la par en el trámite. Si no pasa nada, en el próximo pleno traeremos la misma fase que en esta y poco a poco intentar ir resolviendo aquellas unidades de ejecución.",
+      "topic": "urbanismo",
+      "entities": {
+        "referencedEntity": "ue casco 1"
+      },
+      "confidence": 0.65,
+      "reasoning": "Compromiso concreto de llevar la UE Casco 1 a la misma fase de tramitación en el próximo pleno, verificable comprobando el orden del día del siguiente pleno municipal.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-011-afi-abba73",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 11,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "Estamos con esas seis o siete, entre ellas Santa Rosa 2 es una de ellas,",
+      "context": "Estamos con esas seis o siete, entre ellas Santa Rosa 2 es una de ellas, Casco 1, que viene ya a la par en el trámite.",
+      "topic": "urbanismo",
+      "entities": {
+        "countUnit": "unidades de ejecución",
+        "referencedEntity": "santa rosa 2"
+      },
+      "confidence": 0.55,
+      "reasoning": "Cifra ambigua ('seis o siete') sobre el número de unidades de ejecución urbanística pendientes en el municipio; verificable cruzando con el listado oficial de UE en tramitación y confirmando si Santa Rosa 2 figura entre ellas.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-011-pro-2797c7",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 11,
+      "type": "promesa",
+      "speakerGroup": "PSOE",
+      "verbatim": "tendrá que ser la Administración, el Ayuntamiento en este caso, quien las haga",
+      "context": "Ninguna gente externo, ningún promotor quiera lanzarse a ellas y que tendrá que ser la Administración, el Ayuntamiento en este caso, quien las haga.",
+      "topic": "urbanismo",
+      "entities": {
+        "referencedEntity": "unidades de ejecución sin promotor privado"
+      },
+      "confidence": 0.6,
+      "reasoning": "Anuncio de que el ayuntamiento asumirá directamente la ejecución de unidades urbanísticas ante la falta de promotores privados; verificable con futuras partidas presupuestarias o acuerdos de ejecución directa municipal.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-015-afi-225617",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 15,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "per un import de 3.514,64 euros que correspon a estudis i treballs tècnics sobre l'actuació de pèrgoles en vegetació.",
+      "context": "la proposta és deixar sense efecte una modificació de crèdit, una part d'ella, per un import de 3.514,64 euros que correspon a estudis i treballs tècnics sobre l'actuació de pèrgoles en vegetació. Eso es lo que debemos hacer.",
       "topic": "medio-ambiente",
       "entities": {
-        "referencedEntity": "estudios de inundabilidad riba-roja de túria"
+        "amountEuros": 3514.64,
+        "referencedEntity": "modificació de crèdit pressupost 1-2026 - direcció facultativa obres pèrgoles amb vegetació autòctona (expedient 191/2026/gen)"
+      },
+      "confidence": 0.8,
+      "reasoning": "Cifra concreta (3.514,64€) citada como el importe que se deja sin efecto de la modificación de crédito para estudios técnicos de pérgolas con vegetación; verificable contra el documento presupuestario del expediente 191/2026/GEN.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-016-cit-56ecad",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 16,
+      "type": "cita_convenio",
+      "speakerGroup": null,
+      "verbatim": "que se financiará a través del remanente PMS.",
+      "context": "Dejar de ser sense efecto a eso, que se financiará a través del remanente PMS. Y si no, no tienen que hacer el trámite que se alarga más en una modificación de este tipo.",
+      "topic": "fiscal",
+      "entities": {
+        "referencedEntity": "remanente pms (patrimonio/plan municipal del suelo)"
+      },
+      "confidence": 0.55,
+      "reasoning": "Se afirma que la modificación/desistimiento de crédito se financiará con el remanente del PMS; es verificable contra los documentos presupuestarios y el expediente de modificación de crédito, aunque Whisper transcribe después 'Plan Municipal del SOL', lo que sugiere degradación del término técnico (probablemente Patrimonio Municipal del Suelo).",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-016-acu-e0ed8b",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 16,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "El pleno anterior presenta esta modificación de crédito, pero un trámite de urgencia. Es publica y a las pocas semanas nos presentan ahora una modificación parcial porque hay una travía de financiamiento, que es a través del PMS, el Plan Municipal del SOL.",
+      "context": "Desde nuestro grupo no vamos a entrar en el fondo de la cuestión, ya va a comentar en el último pleno, pero que era destinado este... Estas modificaciones de crédito, lo que sí que cuestionemos la forma de la gestión. El pleno anterior presenta esta modificación de crédito, pero un trámite de urgencia.",
+      "topic": "fiscal",
+      "entities": {
+        "referencedEntity": "modificación de crédito presupuesto 1-2026 (trámite de urgencia, posterior modificación parcial)"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.5,
+      "reasoning": "Se cuestiona la gestión con un hecho procesal verificable: tramitación por urgencia en el pleno anterior y, semanas después, modificación parcial por problemas de financiación. Contrastable con actas del pleno anterior y expediente 191/2026/GEN; 'travía de financiamiento' parece degradado por Whisper.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-028-cit-436bdd",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 28,
+      "type": "cita_convenio",
+      "speakerGroup": null,
+      "verbatim": "I així 2 milions 200.000 euros",
+      "context": "Tras mencionar de forma genérica una subvención de otras administraciones de 'dos milions i pico', el interviniente precisa la cifra en 2 millones 200.000 euros, señalando además que el trámite y la financiación son diferentes y más rápidos.",
+      "topic": "fiscal",
+      "entities": {
+        "amountEuros": 2200000,
+        "referencedEntity": "subvencions d'altres administracions"
+      },
+      "confidence": 0.7,
+      "reasoning": "Cifra concreta de 2.200.000 euros presentada como importe de una subvención/financiación recibida de otra administración; contrastable contra convenios o subvenciones registradas en BDNS o en el expediente municipal correspondiente.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-020-afi-3d0371",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 20,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "este estudi val 3.514 euros, i en un moment donat...",
+      "context": "És un estudi que n'hi ha que fer para una inversió important, este estudi val 3.514 euros, i en un moment donat... I, tècnicament, se va a proposar fer una modificació de crèdit.",
+      "topic": "fiscal",
+      "entities": {
+        "amountEuros": 3514,
+        "referencedEntity": "estudi tècnic per a inversió (pms)"
+      },
+      "confidence": 0.6,
+      "reasoning": "Cifra exacta (3.514 euros) citada como coste de un estudio técnico previo a una modificación de crédito; contrastable con el expediente de contratación o la memoria económica del punto correspondiente.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-018-acu-b2b506",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 18,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "no sabem per què este PMS no s'utilitzava des del principi",
+      "context": "El PMS-2 sabem que no apareix de fa tres setmanes a este, no sabem per què este PMS no s'utilitzava des del principi. Clar, estes modificacions al final donen una sensació o transmitissen un poc d'improvisació.",
+      "topic": "fiscal",
+      "entities": {
+        "referencedEntity": "pms-2"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.55,
+      "reasoning": "Se acusa a que la partida/plan PMS-2 no se usó desde el inicio del ejercicio; verificable contrastando el histórico de ejecución o modificaciones de esa partida en los expedientes presupuestarios.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-018-afi-415439",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 18,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "una planificació és complicada quan hi ha modificacions cada tres setmanes",
+      "context": "però sí que és de veres que una planificació és complicada quan hi ha modificacions cada tres setmanes. Al final entenem que si això té que vore amb els cabdals, amb els diners públics, doncs lo menys que exigirem és rigor.",
+      "topic": "fiscal",
+      "entities": {
+        "count": 3,
+        "countUnit": "setmanes",
+        "referencedEntity": "modificacions de crèdit"
+      },
+      "confidence": 0.6,
+      "reasoning": "Afirma una frecuencia concreta (modificaciones de crédito cada tres semanas) que puede contrastarse contando los expedientes de modificación presupuestaria presentados a pleno en ese periodo.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-018-acu-39d4a9",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 18,
+      "type": "acusacion_publica",
+      "speakerGroup": "PP",
+      "verbatim": "per què fa tres setmanes no es podia gastar del PMS, ara sí,",
+      "context": "Repetim, no estem plandejant el per a què es destina, sinó per què fa tres setmanes no es podia gastar del PMS, ara sí, entenem que tindrien que tindre un poc més de planificació en aquest aspecte.",
+      "topic": "fiscal",
+      "entities": {
+        "count": 3,
+        "countUnit": "setmanes",
+        "referencedEntity": "pms"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.55,
+      "reasoning": "Se afirma que hace tres semanas no era posible gastar de la partida PMS y que ahora sí, un cambio de estado verificable contrastando el expediente de modificación de crédito y sus fechas de aprobación.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-022-acu-d356df",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 22,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "si fa un mes vostès ho duen per tràmit d'urgència perquè és urgent, tres setmanes després estem en el mateix punt que la setmana passada o que l'últim pleno.",
+      "context": "Ens pot dir en què fa tres setmanes no. Vull dir, si fa un mes vostès ho duen per tràmit d'urgència perquè és urgent, tres setmanes després estem en el mateix punt que la setmana passada o que l'últim pleno. Això és el que nosaltres aixequem i se, baix el nostre punt de vista, falta de planificació i improvisació.",
+      "topic": "medio-ambiente",
+      "entities": {
+        "referencedEntity": "tràmit d'urgència de la modificació de crèdit per a les pèrgoles amb vegetació autòctona"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.55,
+      "reasoning": "Se acusa que un expediente (probablemente el punto 3 del orden del día, sobre pérgolas con vegetación autóctona) fue tramitado como urgente hace un mes y tres semanas después sigue sin avanzar; esto es contrastable con las actas del pleno anterior (19 enero 2026) y el expediente 191/2026/GEN.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-022-acu-5c226e",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 22,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "falta de planificació i improvisació. Si era urgent en gener,",
+      "context": "Això és el que nosaltres aixequem i se, baix el nostre punt de vista, falta de planificació i improvisació. Si era urgent en gener, [frase interrumpida por el fragmento]",
+      "topic": "medio-ambiente",
+      "entities": {
+        "referencedEntity": "gestión del expediente de pérgolas/modificación de crédito"
+      },
+      "accusationSubtype": "opinativa",
+      "confidence": 0.5,
+      "reasoning": "Es una valoración de estilo político ('falta de planificación e improvisación') sin cifras ni entidades concretas verificables automáticamente; solo revisión editorial, aunque conecta con la acusación factual anterior sobre el trámite de urgencia.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-023-acu-5c735d",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 23,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "Vull dir, si fa un mes vostès ho duen per tràmit d'urgència perquè és urgent, tres setmanes després estem en el mateix punt que la setmana passada o que l'últim pleno. Això és el que nosaltres aixequem i se, baix el nostre punt de vista, falta de planificació i improvisació. Si era urgent en gener, estem en febrer i encara no s'ha pogut ficar en marxa.",
+      "context": "Ens pot dir en què fa tres setmanes no. Vull dir, si fa un mes vostès ho duen per tràmit d'urgència perquè és urgent, tres setmanes després estem en el mateix punt que la setmana passada o que l'últim pleno... falta de planificació i improvisació. Si era urgent en gener, estem en febrer i encara no s'ha pogut ficar en marxa. Pero bueno, en este caso nuestro grupo votará en contra, gracias.",
+      "topic": "other",
+      "entities": {
+        "referencedEntity": "expedient tramitat per urgència al gener sense avançar en febrer"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.55,
+      "reasoning": "Se acusa de que un expediente tramitado por urgencia en enero sigue sin ponerse en marcha tres semanas después / en el pleno de febrero; es verificable cruzando la fecha de declaración de urgencia y el estado real del expediente en las actas municipales, aunque el fragmento no identifica con certeza a qué expediente concreto se refiere.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-024-acu-f392a5",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 24,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "vostès van a votar en contra de l'estudi i treballs tècnics per fer una inversió molt important per a Rivarroja, per a les avellins de Rivarroja.",
+      "context": "Al contrario, y si fa falta el mes que ve tornare madurlo, perquè vostès van a votar en contra de l'estudi i treballs tècnics per fer una inversió molt important per a Rivarroja, per a les avellins de Rivarroja.",
+      "topic": "other",
+      "entities": {
+        "referencedEntity": "estudi i treballs tècnics per a una inversió a riba-roja"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.55,
+      "reasoning": "Afirma un voto en contra sobre un estudio/trabajos técnicos para una inversión concreta; verificable contrastando con el resultado real de la votación en el acta del pleno.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-024-acu-13a8c5",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 24,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "Vostès, el no per el no i tirarse així mitja hora tergiversant lo que duem així, quan realment lo que duem és un canvi.",
+      "context": "Vostès, el no per el no i tirarse així mitja hora tergiversant lo que duem així, quan realment lo que duem és un canvi.",
+      "topic": "other",
+      "entities": {},
+      "accusationSubtype": "opinativa",
+      "confidence": 0.5,
+      "reasoning": "Valoración sobre la actitud política ('el no por el no', 'tergiversar') sin cifras ni entidades concretas; no es verificable de forma automática, solo revisión editorial.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-026-acu-1f258c",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 26,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "vostès continuen en el no per el no i en votar en contra de fer una inversió molt important per al municipi de Riba Rocha, per als veïns de Riba Rocha.",
+      "context": "Però vostès continuen en el no per el no i en votar en contra de fer una inversió molt important per al municipi de Riba Rocha, per als veïns de Riba Rocha. Continuem, continuem en aquesta política.",
+      "topic": "other",
+      "entities": {},
+      "accusationSubtype": "opinativa",
+      "confidence": 0.5,
+      "reasoning": "Acusación de voto sistemático en contra ('no per el no') sin identificar expediente ni cifra concreta; es una caracterización de estilo político no verificable automáticamente. Topónimo 'Riba Rocha' probablemente degradado por Whisper (Riba-roja).",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-026-cit-157e95",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 26,
+      "type": "cita_convenio",
+      "speakerGroup": null,
+      "verbatim": "votar en contra de un trámite que mejora y que pueden dar adelante dos millones, doce mil euros, que financia la Unión Europea para mejorar nuestro pueblo",
+      "context": "Sorpresa, votar en contra de un trámite que mejora y que pueden dar adelante dos millones, doce mil euros, que financia la Unión Europea para mejorar nuestro pueblo y simplemente por un tema que efectivamente también mejora el procedimiento y además el PMS voten que no.",
+      "topic": "urbanismo",
+      "entities": {
+        "amountEuros": 2012000,
+        "referencedEntity": "fondos de la unión europea"
+      },
+      "confidence": 0.55,
+      "reasoning": "Se cita una cifra concreta (2.012.000 €) de financiación europea para un trámite municipal; contrastable con expedientes de fondos europeos o BDNS vinculados al punto del orden del día, aunque la transcripción numérica de Whisper ('dos millones, doce mil euros') podría estar distorsionada.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-025-acu-914d77",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 25,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "vostès van a votar en contra de l'estudi i treballs tècnics per fer una inversió molt important per a Rivarroja, per a les avellins de Rivarroja.",
+      "context": "Al contrario, y si fa falta el mes que ve tornare madurlo, perquè vostès van a votar en contra de l'estudi i treballs tècnics per fer una inversió molt important per a Rivarroja, per a les avellins de Rivarroja.",
+      "topic": "urbanismo",
+      "entities": {
+        "referencedEntity": "estudi i treballs tècnics per a una inversió municipal a riba-roja"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.6,
+      "reasoning": "Acusa a otro grupo de ir a votar en contra de un estudio y trabajos técnicos para una inversión municipal concreta; contrastable con el acta de votación del punto correspondiente del pleno.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-025-acu-bce05e",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 25,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "vostès continuen en el no per el no i en votar en contra de fer una inversió molt important per al municipi de Riba Rocha, per als veïns de Riba Rocha.",
+      "context": "Però vostès continuen en el no per el no i en votar en contra de fer una inversió molt important per al municipi de Riba Rocha, per als veïns de Riba Rocha. Continuem, continuem en aquesta política.",
+      "topic": "urbanismo",
+      "entities": {
+        "referencedEntity": "inversió municipal important per a riba-roja"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.6,
+      "reasoning": "Reitera la acusación de voto en contra de una inversión municipal relevante; verificable cruzando con el resultado de votación registrado para el expediente tratado en este punto del pleno.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-027-acu-874f6c",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 27,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "votar en contra de un trámite que mejora y que pueden dar adelante dos millones, doce mil euros, que financia la Unión Europea para mejorar nuestro pueblo y simplemente por un tema que efectivamente también mejora el procedimiento y además el PMS voten que no,",
+      "context": "Sorpresa, votar en contra de un trámite que mejora y que pueden dar adelante dos millones, doce mil euros, que financia la Unión Europea para mejorar nuestro pueblo y simplemente por un tema que efectivamente también mejora el procedimiento y además el PMS voten que no, pero bueno, cada uno interpreta lo que interpreta y de la manera que pueda interpretar, pero la realidad es la que dicta el rechidor.",
+      "topic": "fiscal",
+      "entities": {
+        "amountEuros": 2012000,
+        "referencedEntity": "financiación de la unión europea"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.55,
+      "reasoning": "Se acusa a un grupo (transcrito de forma confusa como 'el PMS' por Whisper) de votar en contra de un trámite financiado por la UE por 2.012.000€; verificable contra el acta de votación del pleno y el expediente/convenio de financiación europea correspondiente.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-028-afi-a4ddfe",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 28,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "aquest govern està treballant en subvencions que venen d'altres administracions molt importants, després parlem d'una altra, en aquest cas dos milions i pico d'euros",
+      "context": "El interviniente afirma que el gobierno municipal está tramitando subvenciones de otras administraciones, citando una cifra aproximada de dos millones y pico de euros, y que otros pueblos de la comarca no las tienen a pesar de presumir de ser los mejores en Europa.",
+      "topic": "fiscal",
+      "entities": {
+        "amountEuros": 2000000,
+        "referencedEntity": "subvencions d'altres administracions"
+      },
+      "confidence": 0.55,
+      "reasoning": "Cifra aproximada de subvención citada como hecho ('dos milions i pico'); verificable contra el registro de subvenciones/convenios recibidos por el ayuntamiento en BDNS u otras fuentes, aunque la imprecisión de Whisper y del propio hablante reduce la confianza.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-027-cit-acf23f",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 27,
+      "type": "cita_convenio",
+      "speakerGroup": null,
+      "verbatim": "aquest govern està treballant en subvencions que venen d'altres administracions molt importants, després parlem d'una altra, en aquest cas dos milions i pico d'euros, i que altres pobles no ho tenen",
+      "context": "I a poble el més important és que sàpiga que aquest govern està treballant en subvencions que venen d'altres administracions molt importants, després parlem d'una altra, en aquest cas dos milions i pico d'euros, i que altres pobles no ho tenen, encara que diuen que són els millors en Europa, ho he vist en premsa, en aquesta comarca, sense citar pobles, eh?",
+      "topic": "fiscal",
+      "entities": {
+        "referencedEntity": "subvencions d'altres administracions"
       },
       "confidence": 0.5,
-      "reasoning": "Afirmación de haber contratado estudios de riesgo de inundación con registro en plataforma de contratación (posiblemente PLACE/PLACSP; 'AWARD' es probable distorsión Whisper). Verificable cruzando tenders.json o ribalicita.ribarroja.es con términos 'inundabilidad' o 'estudio hidrológico'.",
+      "reasoning": "Afirma que el govern municipal està obtenint subvencions d'altres administracions per un import aproximat ('dos milions i pico d'euros') que altres pobles de la comarca no obtenen; verificable contra els expedients de subvenció/BDNS de l'ajuntament.",
       "requiresHumanApproval": true
     },
     {
-      "id": "rx4hb4-446-cit-2bb401",
+      "id": "rx4hb4-032-afi-de786a",
       "plenoId": "rx4hb4",
       "plenoDate": "2026-02-09",
-      "segmentIndex": 446,
-      "type": "cita_convenio",
+      "segmentIndex": 32,
+      "type": "afirmacion_numerica",
       "speakerGroup": null,
-      "verbatim": "el edil no solo les va a la reconstrucción, va a la residencia, va a la prevención y va a muchas cosas más",
-      "context": "Dentro del debate sobre el PAI EDIL (punto 11 del orden del día, expediente 647/2026/GEN), el interviniente argumenta que el programa cubre un alcance más amplio que la mera reconstrucción post-DANA: incluye residencia, prevención y otras actuaciones.",
-      "topic": "social",
+      "verbatim": "el trámite de aprobación de toda la documentación presentada por el agente urbanizador se produjo el cinco de noviembre de 2003",
+      "context": "Por poner en antecedentes, decirles que el trámite de aprobación de toda la documentación presentada por el agente urbanizador se produjo el cinco de noviembre de 2003, para que temporalicemos un poco lo que son las cosas.",
+      "topic": "urbanismo",
       "entities": {
-        "referencedEntity": "pai edil expediente 647/2026/gen"
-      },
-      "confidence": 0.62,
-      "reasoning": "Descripción del objeto del PAI EDIL aprobado en este pleno; verificable consultando el expediente 647/2026/GEN y la convocatoria de senda financiera asociada para comprobar si el programa incluye efectivamente las líneas de residencia y prevención citadas.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "rx4hb4-447-cit-6f2305",
-      "plenoId": "rx4hb4",
-      "plenoDate": "2026-02-09",
-      "segmentIndex": 447,
-      "type": "cita_convenio",
-      "speakerGroup": "PSOE",
-      "verbatim": "nosotros hemos hecho estudios de inundabilidad y hicimos un estudio claro que tenemos un contrato en AWARD",
-      "context": "El portavoz defiende la actuación municipal ante la oposición afirmando que se han realizado estudios de inundabilidad con respaldo contractual registrado, en respuesta a críticas sobre la gestión del riesgo de inundaciones en la zona de Paca d'Arc.",
-      "topic": "medio-ambiente",
-      "entities": {
-        "referencedEntity": "contrato estudios de inundabilidad award"
+        "date": "2003-11-05",
+        "referencedEntity": "aprobació documentació agent urbanitzador ue2 la gavina"
       },
       "confidence": 0.6,
-      "reasoning": "Afirma la existencia de un contrato adjudicado para estudios de inundabilidad contrastable contra el portal de licitaciones (Gobierto/PLACSP/tenders.json). 'AWARD' podría ser un error de Whisper sobre un nombre de plataforma o proyecto, de ahí la confianza reducida.",
+      "reasoning": "Fecha concreta de un trámite administrativo de urbanismo que debería constar en el expediente 5490/2025/GEN o antecedentes del mismo; verificable contra el expediente municipal.",
       "requiresHumanApproval": true
     },
     {
-      "id": "rx4hb4-447-afi-285aa4",
+      "id": "rx4hb4-032-afi-496c3f",
       "plenoId": "rx4hb4",
       "plenoDate": "2026-02-09",
-      "segmentIndex": 447,
-      "type": "afirmacion_numerica",
-      "speakerGroup": "PSOE",
-      "verbatim": "si hubiera lluvia en Paca d'Arc lo mismo que lluvia en Pedralba ya te digo yo que en la avenida hubiera habido medio metro de agua",
-      "context": "El edil argumenta que sin las infraestructuras proyectadas, una lluvia equivalente a la registrada en Pedralba habría causado inundaciones de 0,5 m en la avenida de Paca d'Arc, citando implícitamente los resultados del estudio de inundabilidad contratado.",
-      "topic": "medio-ambiente",
-      "entities": {
-        "referencedEntity": "estudio de inundabilidad zona paca d'arc / lluvia pedralba (dana)"
-      },
-      "confidence": 0.52,
-      "reasoning": "Cifra verificable (0,5 m) derivada del estudio de inundabilidad; contrastable contra el informe técnico del contrato citado. Al ser una proyección condicional, la verificación directa requiere acceder al propio estudio.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "rx4hb4-447-cit-b780a4",
-      "plenoId": "rx4hb4",
-      "plenoDate": "2026-02-09",
-      "segmentIndex": 447,
-      "type": "cita_obra",
-      "speakerGroup": "PSOE",
-      "verbatim": "hay infraestructuras de colectores de pluviales de recogida de agua de la zona de Paca d'Arc porque toda la montaña de Paca d'Arc va el agua a morir ahí",
-      "context": "El portavoz describe proyectos de infraestructura de drenaje pluvial en la zona de Paca d'Arc como parte de la respuesta municipal al riesgo de inundación, señalando que los caudales de la montaña convergen en ese punto.",
-      "topic": "medio-ambiente",
-      "entities": {
-        "referencedEntity": "colectores de pluviales zona paca d'arc"
-      },
-      "confidence": 0.7,
-      "reasoning": "Obra de drenaje pluvial contrastable contra el registro de licitaciones/contratos municipales (tenders.json / PLACSP) y contra el pleno-agenda del expediente correspondiente.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "rx4hb4-448-cit-c47b51",
-      "plenoId": "rx4hb4",
-      "plenoDate": "2026-02-09",
-      "segmentIndex": 448,
-      "type": "cita_obra",
-      "speakerGroup": null,
-      "verbatim": "estos colectores de pluviales vamos a separar el pluvial del fecal porque ahora están juntos",
-      "context": "Dentro de la explicación del proyecto de drenaje, el portavoz afirma que el objetivo es segregar la red de aguas pluviales de la red de aguas residuales, señalando que en la actualidad ambas redes comparten el mismo conducto.",
-      "topic": "medio-ambiente",
-      "entities": {
-        "referencedEntity": "separación red pluvial-fecal"
-      },
-      "confidence": 0.78,
-      "reasoning": "Contiene dos hechos verificables: (1) el proyecto contempla separación pluvial/fecal, contrastable contra el pliego técnico de la licitación; (2) la afirmación de que actualmente las redes están unidas, contrastable contra informes técnicos municipales o el expediente de obra.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "rx4hb4-448-pro-5e60a0",
-      "plenoId": "rx4hb4",
-      "plenoDate": "2026-02-09",
-      "segmentIndex": 448,
-      "type": "promesa",
-      "speakerGroup": null,
-      "verbatim": "si llueve lo mismo que llueve Pedralba así vamos a evitar un problema serio en la parte del baile de Baix que ya lo tiene actualmente",
-      "context": "El portavoz usa las inundaciones de Pedralba como escenario de referencia para justificar el proyecto de colectores, afirmando que la infraestructura proyectada evitará un problema grave de inundación en el barrio del Baile de Baix, zona que según él ya sufre problemas hidráulicos en la actualidad.",
-      "topic": "medio-ambiente",
-      "entities": {
-        "referencedEntity": "proyecto drenaje baile de baix / referencia inundaciones pedralba"
-      },
-      "confidence": 0.62,
-      "reasoning": "Compromiso futuro condicionado ('vamos a evitar') asociado a una zona geográfica concreta (Baile de Baix). El estado actual de riesgo hidráulico es parcialmente verificable contra informes de protección civil o el expediente urbanístico; la referencia a Pedralba alude a un evento pluviométrico real contrastable.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "rx4hb4-449-afi-4e5f1e",
-      "plenoId": "rx4hb4",
-      "plenoDate": "2026-02-09",
-      "segmentIndex": 449,
+      "segmentIndex": 32,
       "type": "afirmacion_numerica",
       "speakerGroup": null,
-      "verbatim": "el diámetro del tubo son de 400 y estos son de 1200 que dará el doble cobertura para todo",
-      "context": "El interviniente compara el diámetro de los tubos existentes (400 mm) con los nuevos colectores de pluviales proyectados (1200 mm), afirmando que la nueva sección multiplicará la capacidad de evacuación.",
-      "topic": "medio-ambiente",
+      "verbatim": "consta el ingreso de 72.471 euros",
+      "context": "Consta ingreso de fianza, ya lo comentamos en el pleno de diciembre del 25, cuando iniciamos el expediente de resolución de agente urbanizador, consta el ingreso de 72.471 euros.",
+      "topic": "urbanismo",
       "entities": {
-        "count": 1200,
-        "countUnit": "mm diámetro tubo",
-        "referencedEntity": "colectores pluviales barri de baix"
+        "amountEuros": 72471,
+        "referencedEntity": "fianza agent urbanitzador ue2 la gavina"
       },
-      "confidence": 0.82,
-      "reasoning": "Las dimensiones técnicas de tubería (DN400 vs DN1200) son verificables contra el proyecto de licitación o memoria técnica del contrato de obra; contrastable en el portal Gobierto/PLACSP si la obra está licitada.",
+      "confidence": 0.75,
+      "reasoning": "Importe concreto de una fianza ingresada por el agente urbanizador, verificable contra los registros contables/expediente 5490/2025/GEN del ayuntamiento.",
       "requiresHumanApproval": true
     },
     {
-      "id": "rx4hb4-449-cit-acc608",
+      "id": "rx4hb4-035-cit-987490",
       "plenoId": "rx4hb4",
       "plenoDate": "2026-02-09",
-      "segmentIndex": 449,
-      "type": "cita_convenio",
+      "segmentIndex": 35,
+      "type": "cita_obra",
       "speakerGroup": null,
-      "verbatim": "así estamos hablando de una subvención que por Europa para desarrollar ciertas zonas nos dan y que no podemos olvidar y no podemos dejarlo para pasar",
-      "context": "El interviniente distingue el proyecto de colectores de pluviales de las obras de reconstrucción, indicando que está financiado con una subvención de origen europeo destinada al desarrollo de determinadas zonas del municipio.",
-      "topic": "medio-ambiente",
+      "verbatim": "presentamos a pleno en la inicio del expediente de resolución de la gente urbanizador,",
+      "context": "En el pleno de diciembre, como he comentado antes, he visto en los informes de la arquitecta municipal y del TAG de urbanismo, presentamos a pleno en la inicio del expediente de resolución de la gente urbanizador, por una parte resolver con ellos, por otra proponer la asunción de gestión directa del Ayuntamiento.",
+      "topic": "urbanismo",
       "entities": {
-        "referencedEntity": "subvención europea colectores pluviales barri de baix"
+        "referencedEntity": "expediente de inici de resolució de la condició d'agent urbanitzador (ue 2 - sector npr-1 la gavina)"
       },
       "confidence": 0.55,
-      "reasoning": "La referencia a una subvención europea es verificable contra la base BDNS filtrando convocatorias con beneficiario Riba-roja y objeto relacionado con saneamiento/pluviales; la transcripción Whisper degrada la construcción sintáctica ('que por Europa') reduciendo la certeza del importe y fondo concreto.",
+      "reasoning": "Referencia a un expediente concreto presentado en el pleno de diciembre sobre la resolución de la condición de agente urbanizador; verificable contrastando el acta de ese pleno anterior y el expediente 5490/2025/GEN. Whisper probablemente degradó 'el agente urbanizador' a 'la gente urbanizador'.",
       "requiresHumanApproval": true
     },
     {
-      "id": "rx4hb4-450-cit-d97570",
+      "id": "rx4hb4-035-afi-16208a",
       "plenoId": "rx4hb4",
       "plenoDate": "2026-02-09",
-      "segmentIndex": 450,
-      "type": "cita_convenio",
+      "segmentIndex": 35,
+      "type": "afirmacion_numerica",
       "speakerGroup": null,
-      "verbatim": "hablando de una subvención que por Europa para desarrollar ciertas zonas nos dan y que no podemos olvidar y no podemos dejarlo para pasar porque lo otro es una cosa y eso es otra",
-      "context": "El portavoz diferencia la subvención europea para desarrollo de zonas municipales de los fondos de reconstrucción post-DANA, argumentando que son fuentes independientes que no deben confundirse ni descartarse.",
-      "topic": "fiscal",
+      "verbatim": "indemnización por los daños y perjuicios inicialmente valorados en 27.482,36 euros,",
+      "context": "En tercer lugar también llevamos lo que era la inicial. indemnización por los daños y perjuicios inicialmente valorados en 27.482,36 euros, si habéis visto en las publicaciones en las redes del Ayuntamiento, hemos hecho una nota informativa a nivel general...",
+      "topic": "urbanismo",
       "entities": {
-        "referencedEntity": "subvención europea para desarrollo de zonas"
+        "amountEuros": 27482.36,
+        "referencedEntity": "indemnización por daños y perjuicios - resolución agente urbanizador ue 2 sector npr-1 la gavina"
       },
-      "confidence": 0.6,
-      "reasoning": "La existencia de la subvención europea es contrastable contra BDNS; la vaguedad del fragmento Whisper impide identificar el fondo o programa concreto.",
+      "confidence": 0.85,
+      "reasoning": "Cifra concreta citada como valoración inicial de una indemnización por daños y perjuicios, verificable contra la documentación del expediente 5490/2025/GEN y las actas del pleno.",
       "requiresHumanApproval": true
     },
     {
-      "id": "rx4hb4-450-cit-2fcc01",
+      "id": "rx4hb4-033-cit-773e71",
       "plenoId": "rx4hb4",
       "plenoDate": "2026-02-09",
-      "segmentIndex": 450,
+      "segmentIndex": 33,
       "type": "cita_obra",
       "speakerGroup": null,
-      "verbatim": "hay dos documentos claves para poder optar que es la agenda urbana de reconstrucción porque teníamos que dar fe en esa agenda donde queríamos actuar porque si no nos darían el dinero",
-      "context": "El portavoz explica que la 'agenda urbana de reconstrucción' era requisito documental imprescindible para acceder a la subvención europea, y que sin ella el municipio no recibiría la financiación.",
+      "verbatim": "el trámite de aprobación de toda la documentación presentada por el agente urbanizador se produjo el cinco de noviembre de 2003",
+      "context": "En este caso es la Gabina, la unidad de ejecución dos. Por poner en antecedentes, decirles que el trámite de aprobación de toda la documentación presentada por el agente urbanizador se produjo el cinco de noviembre de 2003, para que temporalicemos un poco lo que son las cosas.",
       "topic": "urbanismo",
       "entities": {
-        "count": 2,
-        "countUnit": "documentos",
-        "referencedEntity": "agenda urbana de reconstrucción"
+        "date": "2003-11-05",
+        "referencedEntity": "agente urbanizador ue 2 sector npr-1 la gavina"
       },
-      "confidence": 0.7,
-      "reasoning": "La 'agenda urbana de reconstrucción' como documento habilitante para la subvención europea es contrastable contra el expediente oficial de la convocatoria y los archivos municipales.",
+      "confidence": 0.75,
+      "reasoning": "Fija una fecha concreta de un trámite administrativo del expediente de agente urbanizador de La Gavina, contrastable con el expediente 5490/2025/GEN y las actas municipales de 2003.",
       "requiresHumanApproval": true
     },
     {
-      "id": "rx4hb4-451-cit-152d64",
+      "id": "rx4hb4-033-cit-330463",
       "plenoId": "rx4hb4",
       "plenoDate": "2026-02-09",
-      "segmentIndex": 451,
-      "type": "cita_convenio",
-      "speakerGroup": "PSOE",
-      "verbatim": "gracias a un dinero que nos dio el ministerio de agenda urbana de urbanismo y agenda urbana nos darán 126.000 euros a todos los pueblos de Ana",
-      "context": "El portavoz explica que gracias a una subvención del Ministerio de Vivienda y Agenda Urbana, los municipios afectados por la DANA ('pueblos de Ana', probable error Whisper de 'pueblos DANA') recibirán 126.000 euros para financiar la agenda urbana de reconstrucción, anticipando el Ayuntamiento esos fondos.",
+      "segmentIndex": 33,
+      "type": "cita_obra",
+      "speakerGroup": null,
+      "verbatim": "La Comisión Territorial de Urbanismo, en octubre del dos mil once, aprobó la apr aprobó la aprobación definitiva de homologación y plan parcial del sector NPR uno, La Gavina.",
+      "context": "La Comisión Territorial de Urbanismo, en octubre del dos mil once, aprobó la apr aprobó la aprobación definitiva de homologación y plan parcial del sector NPR uno, La Gavina. Empezamos en el dos mil tres, como os he comentado, en el 2011 la Comisión Territorial aprueba esa unidad de ejecución.",
       "topic": "urbanismo",
       "entities": {
-        "amountEuros": 126000,
-        "referencedEntity": "ministerio de vivienda y agenda urbana - subvención agenda urbana reconstrucción dana"
-      },
-      "confidence": 0.68,
-      "reasoning": "Importe concreto (126.000 €) atribuido a una convocatoria ministerial. Verificable contra BDNS buscando convocatorias del Ministerio de Vivienda y Agenda Urbana destinadas a municipios DANA; 'pueblos de Ana' es probable transcripción Whisper de 'pueblos DANA', lo que reduce ligeramente la confianza.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "rx4hb4-451-pro-f5d1c0",
-      "plenoId": "rx4hb4",
-      "plenoDate": "2026-02-09",
-      "segmentIndex": 451,
-      "type": "promesa",
-      "speakerGroup": "PSOE",
-      "verbatim": "anticiparemos nosotros haremos un contrato en AWARD para adjudicar a una empresa el que nos hará la agenda urbana",
-      "context": "Tras explicar la subvención de 126.000 € del ministerio, el portavoz anuncia que el Ayuntamiento anticipará esos fondos y licitará un contrato —a través de una plataforma denominada 'AWARD' (posible error Whisper de nombre de plataforma de contratación)— para que una empresa elabore la agenda urbana de reconstrucción.",
-      "topic": "urbanismo",
-      "entities": {
-        "referencedEntity": "contrato agenda urbana de reconstrucción dana - plataforma award"
-      },
-      "confidence": 0.62,
-      "reasoning": "Compromiso futuro concreto de licitar un contrato para la agenda urbana de reconstrucción. Verificable en PLACSP/Gobierto bajo el expediente del Ayuntamiento de Riba-roja; 'AWARD' es probablemente un nombre de plataforma distorsionado por Whisper, lo que introduce incertidumbre sobre el canal exacto.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "rx4hb4-453-pro-7c7176",
-      "plenoId": "rx4hb4",
-      "plenoDate": "2026-02-09",
-      "segmentIndex": 453,
-      "type": "promesa",
-      "speakerGroup": "PSOE",
-      "verbatim": "poner 100 kilovatios de fotovoltaicos en la malla cambiar",
-      "context": "El portavoz del equipo de gobierno describe un proyecto de transformación energética que incluye aerotermia y la instalación de 100 kilovatios de paneles fotovoltaicos en la red municipal, señalando que llevan dos o tres años trabajando en ello.",
-      "topic": "medio-ambiente",
-      "entities": {
-        "count": 100,
-        "countUnit": "kilovatios fotovoltaicos",
-        "referencedEntity": "instalación fotovoltaica red municipal riba-roja"
-      },
-      "confidence": 0.68,
-      "reasoning": "Cifra concreta de potencia fotovoltaica (100 kW) que puede contrastarse contra tenders municipales, licencias de obra o subvenciones BDNS/IDAE vinculadas al proyecto. El fragmento está ligeramente degradado por Whisper en el contexto pero la cifra es inequívoca.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "rx4hb4-453-pro-3f4974",
-      "plenoId": "rx4hb4",
-      "plenoDate": "2026-02-09",
-      "segmentIndex": 453,
-      "type": "promesa",
-      "speakerGroup": "PSOE",
-      "verbatim": "tener la malla en un cambio de manera energética tener aerotermia y llevar el gas y enviarlo a hacer la huela para todos los problemas que tenemos",
-      "context": "El representante del equipo de gobierno anuncia el proyecto de transformar la red energética municipal incorporando aerotermia, vinculándolo a una futura convocatoria de subvención en la que buscan apoyo de una empresa externa para formular la solicitud.",
-      "topic": "medio-ambiente",
-      "entities": {
-        "referencedEntity": "proyecto aerotermia y transformación energética red municipal"
-      },
-      "confidence": 0.52,
-      "reasoning": "La instalación de aerotermia en la red municipal es una actuación verificable contra tenders (Gobierto/PLACSP) y posibles subvenciones BDNS/IDAE. Confianza reducida por degradación Whisper notable ('la huela' parece transcripción errónea).",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "rx4hb4-454-afi-492125",
-      "plenoId": "rx4hb4",
-      "plenoDate": "2026-02-09",
-      "segmentIndex": 454,
-      "type": "afirmacion_numerica",
-      "speakerGroup": "PSOE",
-      "verbatim": "yo llevo vamos dos o tres años mamá mía eso",
-      "context": "El concejal del equipo de gobierno explica el tiempo que llevan trabajando en el proyecto de la malla: 'que yo llevo vamos dos o tres años mamá mía eso porque tenemos la ilusión desde el equipo de gobierno de desarrollar que eso va a ser un puntazo'.",
-      "topic": "urbanismo",
-      "entities": {
-        "referencedEntity": "proyecto de la malla"
+        "referencedEntity": "homologación y plan parcial del sector npr-1 la gavina, comisión territorial de urbanismo"
       },
       "confidence": 0.65,
-      "reasoning": "Afirmación verificable de duración (2-3 años) sobre un proyecto activo; contrastable con el historial de plenos y actas del equipo de gobierno para datar el inicio del expediente.",
+      "reasoning": "Cita un acto administrativo concreto (aprobación definitiva de homologación y plan parcial) atribuido a la Comisión Territorial de Urbanismo en octubre de 2011, verificable contra el DOGV/BOP y el expediente urbanístico del sector NPR-1.",
       "requiresHumanApproval": true
     },
     {
-      "id": "rx4hb4-454-pro-ae16c1",
+      "id": "rx4hb4-034-cit-6d3fc5",
       "plenoId": "rx4hb4",
       "plenoDate": "2026-02-09",
-      "segmentIndex": 454,
-      "type": "promesa",
-      "speakerGroup": "PSOE",
-      "verbatim": "hacer balsas de laminación dentro de la malla en parques y recorridos ciclistas",
-      "context": "El concejal enumera actuaciones previstas: 'hacer balsas de laminación dentro de la malla en parques y recorridos ciclistas hacer dos pistas deportivas polivalentes para que los niños no tengan que votar al campo de fútbol'.",
-      "topic": "medio-ambiente",
-      "entities": {
-        "referencedEntity": "proyecto de la malla – balsas de laminación y parques"
-      },
-      "confidence": 0.75,
-      "reasoning": "Compromiso de infraestructura de gestión pluvial (balsas de laminación) dentro de la malla; verificable contra el proyecto de urbanización o pliego técnico del PAI correspondiente.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "rx4hb4-454-pro-2fc92e",
-      "plenoId": "rx4hb4",
-      "plenoDate": "2026-02-09",
-      "segmentIndex": 454,
-      "type": "promesa",
-      "speakerGroup": "PSOE",
-      "verbatim": "hacer dos pistas deportivas polivalentes para que los niños no tengan que votar al campo de fútbol y tengan ganar ahí para jugar",
-      "context": "El concejal concreta los equipamientos deportivos previstos en la malla: 'hacer dos pistas esportivas polivalentes para que los niños no tengan que votar al campo de fútbol y tengan ganar ahí para jugar'.",
-      "topic": "social",
-      "entities": {
-        "count": 2,
-        "countUnit": "pistas deportivas polivalentes",
-        "referencedEntity": "proyecto de la malla – equipamiento deportivo"
-      },
-      "confidence": 0.85,
-      "reasoning": "Número concreto de instalaciones deportivas (2 pistas polivalentes) prometidas para la malla; verificable contra el programa de actuación integrada (PAI) o licitaciones de obra en PLACSP.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "rx4hb4-455-cit-5e90b2",
-      "plenoId": "rx4hb4",
-      "plenoDate": "2026-02-09",
-      "segmentIndex": 455,
+      "segmentIndex": 34,
       "type": "cita_obra",
       "speakerGroup": null,
-      "verbatim": "primer objetivo de la agenda urbana de reconstrucción... recuperar y restablecer las infraestructuras equipamientos servicios urbanos y espacios naturales afectados por la DAN",
-      "context": "El ponente cita el primer objetivo de la agenda urbana de reconstrucción post-DANA —\"recuperar y restablecer las infraestructuras equipamientos servicios urbanos y espacios naturales afectados por la DAN[A]\"— para contrastar su redacción con la posición del equipo de gobierno, interpelando directamente a \"Alberto\".",
+      "verbatim": "Empezamos en el dos mil tres, como os he comentado,",
+      "context": "aprobación definitiva de homologación y plan parcial del sector NPR uno, La Gavina. Empezamos en el dos mil tres, como os he comentado, En el 2011 la Comisión Territorial aprueba esa unidad de ejecución.",
       "topic": "urbanismo",
       "entities": {
-        "referencedEntity": "agenda urbana de reconstrucción post-dana"
+        "referencedEntity": "inicio de la tramitación del sector npr-1 la gavina"
       },
-      "confidence": 0.62,
-      "reasoning": "El ponente cita literalmente el enunciado del primer objetivo de un documento oficial llamado 'agenda urbana de reconstrucción'. Es verificable contrastando el texto del plan de reconstrucción post-DANA publicado por el Ayuntamiento o la Generalitat Valenciana; Whisper trunca 'DANA' en 'DAN'.",
+      "confidence": 0.5,
+      "reasoning": "Afirma un año concreto (2003) como inicio de la tramitación del sector NPR-1 La Gavina, dato verificable contra el expediente urbanístico aunque el fragmento aporta poco contexto adicional.",
       "requiresHumanApproval": true
     },
     {
-      "id": "rx4hb4-456-cit-00419e",
+      "id": "rx4hb4-038-afi-8f93fb",
       "plenoId": "rx4hb4",
       "plenoDate": "2026-02-09",
-      "segmentIndex": 456,
-      "type": "cita_convenio",
+      "segmentIndex": 38,
+      "type": "afirmacion_numerica",
       "speakerGroup": null,
-      "verbatim": "primer objetivo de la agenda urbana de reconstrucción [...] recuperar y restablecer las infraestructuras equipamientos servicios urbanos y espacios naturales afectados por la DANA",
-      "context": "El interviniente cita el primer objetivo de la agenda urbana de reconstrucción y pregunta retóricamente si el proyecto en cuestión encaja con ese marco, señalando «es ahí China o no es ahí China lo que fija la agenda urbana de reconstrucción».",
-      "topic": "medio-ambiente",
+      "verbatim": "presentó dos alegaciones. Una de ellas manifestaba la disconformidad al derecho del expediente de resolución del contrato por incumplimiento.",
+      "context": "presentó dos alegaciones. Una de ellas manifestaba la disconformidad al derecho del expediente de resolución del contrato por incumplimiento.",
+      "topic": "urbanismo",
       "entities": {
-        "referencedEntity": "agenda urbana de reconstrucción post-dana"
+        "count": 2,
+        "countUnit": "alegaciones",
+        "referencedEntity": "expediente de resolución del contrato con el agente urbanizador"
       },
       "confidence": 0.75,
-      "reasoning": "La existencia y el contenido del primer objetivo de la agenda urbana de reconstrucción es verificable contra el documento oficial publicado por el Ministerio de Vivienda / GVA tras la DANA de octubre 2024.",
+      "reasoning": "Cifra concreta de alegaciones presentadas contra el expediente de resolución del contrato, verificable contra el registro del expediente 5490/2025/GEN.",
       "requiresHumanApproval": true
     },
     {
-      "id": "rx4hb4-456-afi-cfd7e3",
+      "id": "rx4hb4-038-acu-55322f",
       "plenoId": "rx4hb4",
       "plenoDate": "2026-02-09",
-      "segmentIndex": 456,
-      "type": "afirmacion_numerica",
-      "speakerGroup": null,
-      "verbatim": "cincuenta mil metros cuadrados",
-      "context": "El interviniente argumenta que el espacio referenciado —descrito como «el más afectado por la DANA»— tiene una superficie de cincuenta mil metros cuadrados y que se prevé invertir en él nueve millones de euros.",
-      "topic": "urbanismo",
-      "entities": {
-        "count": 50000,
-        "countUnit": "metros cuadrados",
-        "referencedEntity": "espacio afectado por la dana (riba-roja de túria)"
-      },
-      "confidence": 0.82,
-      "reasoning": "La superficie de 50.000 m² es un dato contrastable contra el expediente urbanístico o el proyecto de inversión ligado a la agenda de reconstrucción; puede cruzarse con planos catastrales y documentos del expediente municipal.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "rx4hb4-456-afi-82338c",
-      "plenoId": "rx4hb4",
-      "plenoDate": "2026-02-09",
-      "segmentIndex": 456,
-      "type": "afirmacion_numerica",
-      "speakerGroup": null,
-      "verbatim": "nueve millones de euros",
-      "context": "El interviniente menciona que para el espacio de cincuenta mil metros cuadrados se proyecta una inversión de «nueve millones de euros», y lo enmarca dentro de los fondos o proyectos ligados a la reconstrucción post-DANA.",
-      "topic": "fiscal",
-      "entities": {
-        "amountEuros": 9000000,
-        "referencedEntity": "inversión reconstrucción post-dana riba-roja de túria"
-      },
-      "confidence": 0.85,
-      "reasoning": "La cifra de 9 M€ es verificable contra el presupuesto municipal (CONPREL), convocatorias BDNS, o el expediente de la agenda urbana de reconstrucción registrado en la Generalitat Valenciana o el Ministerio.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "rx4hb4-456-acu-41d6fc",
-      "plenoId": "rx4hb4",
-      "plenoDate": "2026-02-09",
-      "segmentIndex": 456,
+      "segmentIndex": 38,
       "type": "acusacion_publica",
       "speakerGroup": null,
-      "verbatim": "dos o tres años trabajando en ello o sea antes de la DANA es un espacio afectado por la DANA el más afectado por la DANA para invertir",
-      "context": "El interviniente cuestiona que el espacio en que se van a invertir los fondos de reconstrucción post-DANA sea realmente un espacio afectado por la DANA, señalando que llevaban «dos o tres años trabajando en ello» antes del evento, lo que implicaría que el proyecto preexistía a la catástrofe y no debería acogerse al marco de reconstrucción.",
-      "topic": "medio-ambiente",
+      "verbatim": "Se establece que nos encontramos ante un incumplimiento culpable del urbanizador y que procede la incautación de la garantía así como indemnizar a la Administración los daños y prejuicios ocasionados en lo que sean del importe de la garantía incautada.",
+      "context": "se desestima esa primera alegación que comentan. Se establece que nos encontramos ante un incumplimiento culpable del urbanizador y que procede la incautación de la garantía así como indemnizar a la Administración los daños y prejuicios ocasionados en lo que sean del importe de la garantía incautada.",
+      "topic": "urbanismo",
       "entities": {
-        "referencedEntity": "agenda urbana de reconstrucción post-dana / proyecto previo a la dana"
+        "referencedEntity": "incautación de garantía al agente urbanizador"
       },
       "accusationSubtype": "factual",
       "confidence": 0.65,
-      "reasoning": "La acusación es factual: si existieran expedientes municipales o contratos licitados con anterioridad a octubre 2024 para ese espacio, contradiría la justificación de acogerse a los fondos DANA; verificable contra el registro de tenders/licitaciones y actas de plenos previos a la DANA.",
+      "reasoning": "Afirmación formal de incumplimiento culpable del agente urbanizador y procedencia de incautar su garantía e indemnizar a la Administración, contrastable con la resolución del expediente 5490/2025/GEN y su tramitación administrativa.",
       "requiresHumanApproval": true
     },
     {
-      "id": "rx4hb4-457-afi-1c9b97",
+      "id": "rx4hb4-037-afi-0ef9be",
       "plenoId": "rx4hb4",
       "plenoDate": "2026-02-09",
-      "segmentIndex": 457,
+      "segmentIndex": 37,
       "type": "afirmacion_numerica",
       "speakerGroup": null,
-      "verbatim": "nueve millones de euros",
-      "context": "Inmediatamente tras citar los cincuenta mil metros cuadrados, el interviniente señala 'nueve millones de euros' como importe de la inversión prevista en ese espacio afectado por la DANA.",
+      "verbatim": "también incautamos el aval bancario que se había comentado antes de setenta y dos mil euros",
+      "context": "Se dio trámite de audiencia de plazo de quince días hábiles y también incautamos el aval bancario que se había comentado antes de setenta y dos mil euros.",
       "topic": "urbanismo",
       "entities": {
-        "amountEuros": 9000000,
-        "referencedEntity": "inversión en espacio afectado por la dana - agenda urbana reconstrucción"
+        "amountEuros": 72000,
+        "referencedEntity": "aval bancario incautado en expediente de resolución de contrato de agente urbanitzador"
       },
-      "confidence": 0.75,
-      "reasoning": "Importe concreto contrastable contra la partida presupuestaria o la convocatoria de fondos de reconstrucción post-DANA que ampara el proyecto; la cifra es pronunciada con claridad dentro de un párrafo coherente.",
+      "confidence": 0.8,
+      "reasoning": "Cita un importe concreto (72.000 euros) correspondiente a un aval bancario incautado en un expediente administrativo, verificable contra la documentación del expediente municipal referido.",
       "requiresHumanApproval": true
     },
     {
-      "id": "rx4hb4-457-cit-731b25",
+      "id": "rx4hb4-036-cit-21ec40",
       "plenoId": "rx4hb4",
       "plenoDate": "2026-02-09",
-      "segmentIndex": 457,
-      "type": "cita_convenio",
+      "segmentIndex": 36,
+      "type": "cita_obra",
       "speakerGroup": null,
-      "verbatim": "basarse en la agenda urbana de reconstrucción para hacer un proyecto que todos dos o tres años trabajando",
-      "context": "El interviniente critica que se use la agenda urbana de reconstrucción como marco justificativo de un proyecto en el que lleva dos o tres años trabajando, sugiriendo que existía antes de la DANA.",
+      "verbatim": "En el trámite de audiencia abierto por acuerdo plenario de diciembre, en el que se iniciaba el expediente por incumplimiento de sus obligaciones, la mercantil formuló oposición,",
+      "context": "En el trámite de audiencia abierto por acuerdo plenario de diciembre, en el que se iniciaba el expediente por incumplimiento de sus obligaciones, la mercantil formuló oposición,",
       "topic": "urbanismo",
       "entities": {
-        "referencedEntity": "agenda urbana de reconstrucción post-dana"
+        "referencedEntity": "expediente de resolución de condición de agent urbanitzador (ue 2 sector npr-1 la gavina)"
       },
       "confidence": 0.6,
-      "reasoning": "La 'agenda urbana de reconstrucción' es un programa o plan formal (posiblemente el Plan de Reconstrucción DANA de la Generalitat Valenciana o un instrumento municipal homólogo); su existencia, convocatoria y fecha de aprobación son verificables en el BOE/DOGV.",
+      "reasoning": "Referencia a un acuerdo plenario de diciembre que inició expediente por incumplimiento de obligaciones frente al agente urbanizador, verificable contra las actas plenarias y el expediente administrativo correspondiente.",
       "requiresHumanApproval": true
     },
     {
-      "id": "rx4hb4-457-acu-e8dddb",
+      "id": "rx4hb4-039-acu-262cc6",
       "plenoId": "rx4hb4",
       "plenoDate": "2026-02-09",
-      "segmentIndex": 457,
+      "segmentIndex": 39,
       "type": "acusacion_publica",
       "speakerGroup": null,
-      "verbatim": "excusarte en la DANA de hace un año",
-      "context": "El interviniente concluye su argumento reprochando al grupo gobernante que use la DANA —ocurrida aproximadamente un año antes del pleno (octubre-noviembre 2024)— como excusa para justificar retrasos en un proyecto ya en marcha.",
+      "verbatim": "Se tratan de obras ejecutadas al margen de la legalidad y con anterioridad a la ejecución de la condición de agente urbanizado.",
+      "context": "en cuanto a las obras realizadas a las que se refiere, cabe incidir de nuevo en lo que manifestado en contestación a la alegación primera relativa a las obras de urbanización. Se tratan de obras ejecutadas al margen de la legalidad y con anterioridad a la ejecución de la condición de agente urbanizado.",
       "topic": "urbanismo",
       "entities": {
-        "referencedEntity": "dana octubre-noviembre 2024"
+        "referencedEntity": "agent urbanitzador ue núm. 2 sector npr-1 la gavina"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.65,
+      "reasoning": "Afirma que unas obras de urbanización concretas se ejecutaron ilegalmente y antes de la condición de agente urbanizador, un hecho verificable contra el expediente administrativo 5490/2025/GEN.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-040-acu-5b2b06",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 40,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "en base a todo lo cual también se vuelve a desestimar esa alegación que presenta la gente urbanizadora",
+      "context": "las circunstancias llegan a esto que veis. En base a todo lo cual también se vuelve a desestimar esa alegación que presenta la gente urbanizadora.",
+      "topic": "urbanismo",
+      "entities": {
+        "referencedEntity": "alegación del agente urbanizador"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.5,
+      "reasoning": "Se afirma que el pleno desestima formalmente la alegación presentada por el agente urbanizador sobre los costes de urbanización; verificable contra el acta y el resultado de la votación del expediente correspondiente.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-043-cit-7732e5",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 43,
+      "type": "cita_obra",
+      "speakerGroup": null,
+      "verbatim": "desde el 2015 cuando hicimos toda una revisión de las unidades de ejecución que estaban afectadas",
+      "context": "Bueno, sí que quiero aprovechar y decir que igual que en este caso en la Gavina, desde el 2015 cuando hicimos toda una revisión de las unidades de ejecución que estaban afectadas, lo primero que hicimos fue contactar con los agentes urbanizadores, saber cuál era su problemática.",
+      "topic": "urbanismo",
+      "entities": {
+        "referencedEntity": "revisión de las unidades de ejecución urbanística afectadas"
+      },
+      "confidence": 0.65,
+      "reasoning": "Afirma que en 2015 se realizó una revisión municipal de las unidades de ejecución urbanística afectadas y se contactó con los agentes urbanizadores; verificable contra expedientes urbanísticos y actas de esa fecha.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-044-cit-7f47e8",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 44,
+      "type": "cita_obra",
+      "speakerGroup": null,
+      "verbatim": "en los cuales se les dio unos plazos para que nos presentaran cuál era su plan de seguir adelante",
+      "context": "Hablo de la gabina, hablo de gallipón, hablo de Valencia la Bella en varias unidades que tenemos. En algunos de ellos no tuvimos respuesta, en otros sí, como es el caso de aquí de la gabina o de Valencia la Bella, en los cuales se les dio unos plazos para que nos presentaran cuál era su plan de seguir adelante.",
+      "topic": "urbanismo",
+      "entities": {
+        "referencedEntity": "plazos otorgados a agentes urbanizadores de la gavina y valencia la bella"
+      },
+      "confidence": 0.5,
+      "reasoning": "Afirma que se concedieron plazos formales a los agentes urbanizadores de La Gavina y Valencia la Bella para presentar su plan; verificable en el expediente 5490/2025/GEN u otros documentos administrativos relacionados con esas unidades de ejecución.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-046-pro-8b2c25",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 46,
+      "type": "promesa",
+      "speakerGroup": null,
+      "verbatim": "tenemos que resolver con el agente urbanizador y hacer los trámites pertinentes. Gestión directa la asumiremos",
+      "context": "Esa respuesta pasa porque tenemos que resolver con el agente urbanizador y hacer los trámites pertinentes. Gestión directa la asumiremos y si en ese plazo tuviésemos la fortuna de que existe movimiento o bien por parte de los propietarios o de algún agente externo, pues fenomenal.",
+      "topic": "urbanismo",
+      "entities": {
+        "referencedEntity": "agente urbanizador ue la gavina"
+      },
+      "confidence": 0.6,
+      "reasoning": "Compromiso concreto de asumir la gestión directa del expediente urbanístico (probablemente la UE La Gavina, punto 4 del orden del día); verificable contrastando futuros acuerdos plenarios o resoluciones municipales sobre esa gestión directa.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-045-cit-6d71a7",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 45,
+      "type": "cita_obra",
+      "speakerGroup": null,
+      "verbatim": "como es el caso de aquí de la gabina o de Valencia la Bella, en los cuales se les dio unos plazos para que nos presentaran cuál era su plan de seguir adelante",
+      "context": "hablo de gallipón, hablo de Valencia la Bella en varias unidades que tenemos. En algunos de ellos no tuvimos respuesta, en otros sí, como es el caso de aquí de la gabina o de Valencia la Bella, en los cuales se les dio unos plazos para que nos presentaran cuál era su plan de seguir adelante.",
+      "topic": "urbanismo",
+      "entities": {
+        "referencedEntity": "agente urbanizador de la gavina / valencia la bella"
+      },
+      "confidence": 0.5,
+      "reasoning": "Afirma que se concedieron plazos formales a agentes urbanizadores de determinadas unidades (probablemente 'La Gavina', degradado por Whisper como 'gabina'/'gallipón') para presentar su plan de actuación; verificable contra expedientes administrativos y actas municipales de esas unidades de ejecución.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-045-pro-34a57f",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 45,
+      "type": "promesa",
+      "speakerGroup": null,
+      "verbatim": "Esa respuesta pasa porque tenemos que resolver con el agente urbanizador y hacer los trámites pertinentes. Gestión directa la asumiremos",
+      "context": "tenemos unos vecinos afectados en los que no ven solución ante esto y piden al ayuntamiento... que esté con ellos y darle una respuesta. Esa respuesta pasa porque tenemos que resolver con el agente urbanizador y hacer los trámites pertinentes. Gestión directa la asumiremos y si en ese plazo tuviésemos la fortuna de que existe movimiento o bien por parte de los propietarios o de algún agente externo, pues fenomenal, porque tendríamos otra unidad que podría ponerse en marcha.",
+      "topic": "urbanismo",
+      "entities": {
+        "referencedEntity": "la gavina - gestión directa del ayuntamiento"
+      },
+      "confidence": 0.55,
+      "reasoning": "Compromiso concreto de que el ayuntamiento asumirá la gestión directa tras resolver con el agente urbanizador, presumiblemente de la UE núm. 2 del Sector NPR-1 La Gavina (punto 4 del orden del día); verificable frente a futuros acuerdos plenarios o resoluciones sobre gestión directa de esa unidad.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-047-pro-01b59a",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 47,
+      "type": "promesa",
+      "speakerGroup": null,
+      "verbatim": "Gestión directa la asumiremos y si en ese plazo tuviésemos la fortuna de que existe movimiento o bien por parte de los propietarios o de algún agente externo, pues fenomenal, porque tendríamos otra unidad que podría ponerse en marcha.",
+      "context": "Esa respuesta pasa porque tenemos que resolver con el agente urbanizador y hacer los trámites pertinentes. Gestión directa la asumiremos y si en ese plazo tuviésemos la fortuna de que existe movimiento o bien por parte de los propietarios o de algún agente externo, pues fenomenal, porque tendríamos otra unidad que podría ponerse en marcha.",
+      "topic": "urbanismo",
+      "entities": {
+        "referencedEntity": "gestión directa de unidad de ejecución tras resolución de agente urbanizador"
+      },
+      "confidence": 0.55,
+      "reasoning": "Es un compromiso de asumir la gestión directa de una unidad de ejecución urbanística tras resolver la condición de agente urbanizador; verificable comprobando si el ayuntamiento efectivamente tramita esa gestión directa en expedientes posteriores.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-048-acu-40abb7",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 48,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "Atrapats en una borralla immobiliària que crea el Partit Popular en el seu govern del pelotazo urbanístico, que ha sigut duríssim,",
+      "context": "22 unitats de execució significa que centenars de veïns del poble estan entre... Atrapats en una borralla immobiliària que crea el Partit Popular en el seu govern del pelotazo urbanístico, que ha sigut duríssim, que se preocupa més pels temes comportxinos i altres temes de reclasificacions agrícoles per a ser urbanes",
+      "topic": "urbanismo",
+      "entities": {
+        "count": 22,
+        "countUnit": "unidades de ejecución",
+        "referencedEntity": "partit popular - gestión urbanística ('pelotazo urbanístico')"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.55,
+      "reasoning": "Acusa a un gobierno del Partido Popular de haber generado, mediante un 'pelotazo urbanístico', las 22 unidades de ejecución paralizadas; es verificable cruzando la cronología de esos expedientes con los periodos de gobierno municipal, aunque Whisper degrada la frase ('borralla immobiliària').",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-049-acu-85430a",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 49,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "Atrapats en una borralla immobiliària que crea el Partit Popular en el seu govern del pelotazo urbanístico, que ha sigut duríssim,",
+      "context": "22 unitats de execució significa que centenars de veïns del poble estan entre... Atrapats en una borralla immobiliària que crea el Partit Popular en el seu govern del pelotazo urbanístico, que ha sigut duríssim, que se preocupa més pels temes comportxinos i altres temes de reclasificacions agrícoles per a ser urbanes.",
+      "topic": "urbanismo",
+      "entities": {
+        "referencedEntity": "partit popular - gestió urbanística (pelotazo urbanístico)"
+      },
+      "accusationSubtype": "opinativa",
+      "confidence": 0.5,
+      "reasoning": "Es una acusación de mala praxis urbanística ('pelotazo urbanístico', 'borralla immobiliària') contra una gestión anterior, pero se apoya en caracterización valorativa sin cifras ni expedientes concretos citados, por lo que solo sería verificable de forma editorial cruzando con actas urbanísticas de la época; la transcripción Whisper también parece degradada ('borralla').",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-056-afi-9c8816",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 56,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "aquests veïns i veïnes que tenen una parcel·la, que han pagat l'anticipació, que volien urbanitzar i que duen des del 2004, 2005, 2006",
+      "context": "Però aquests veïns i veïnes que tenen una parcel·la, que han pagat l'anticipació, que volien urbanitzar i que duen des del 2004, 2005, 2006, doncs, en fi, demanar-li disculpes ara perquè ens toca.",
+      "topic": "urbanismo",
+      "entities": {
+        "countUnit": "veïns",
+        "referencedEntity": "parcel·les pendents d'urbanitzar des de 2004-2006"
+      },
+      "confidence": 0.55,
+      "reasoning": "Se afirma que un grupo de vecinos con parcelas pagadas llevan esperando la urbanización desde 2004-2006, un dato de cronología verificable contra los expedientes urbanísticos municipales (posiblemente relacionado con el expediente del agente urbanizador de la UE núm. 2, punto 4 del orden del día); la transcripción de Whisper presenta el término 'anticipació' de forma dudosa.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-055-acu-f59198",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 55,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "que se modificava en un consort previ amb més de 14 milions de metres quadrats per darrere, sense saber el poble, tant industrial com residencial",
+      "context": "ni ha manat una modificació encoberta del pla general d'ordenació urbana del 96, que se modificava en un consort previ amb més de 14 milions de metres quadrats per darrere, sense saber el poble, tant industrial com residencial. I dic això, i vull insistir-ho, perquè ho ha tret la meva companya.",
+      "topic": "urbanismo",
+      "entities": {
+        "count": 14000000,
+        "countUnit": "metres quadrats",
+        "referencedEntity": "consorci previ / modificació del pla general d'ordenació urbana del 96"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.55,
+      "reasoning": "Cifra concreta (14 millones de m² industrial y residencial) atribuida a una modificación previa hecha 'sin que el pueblo lo supiera'; contrastable contra el expediente/convenio de consorcio urbanístico correspondiente si existe registro público.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-059-cit-76d020",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 59,
+      "type": "cita_convenio",
+      "speakerGroup": null,
+      "verbatim": "el novembre del 25 que el Consell va autoritzar la pròrroga i modificació del conveni",
+      "context": "Posaren coneixement que es va autoritzar, com sabeu, el novembre del 25 que el Consell va autoritzar la pròrroga i modificació del conveni que se van iniciar les obres del nou conservatori i per aquesta raó és preceptiu realitzar aquest tràmit.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "conveni amb el consell (generalitat valenciana) per al nou conservatori de dansa"
+      },
+      "confidence": 0.6,
+      "reasoning": "Afirma una autorització concreta del Consell (pròrroga i modificació d'un conveni) a novembre de 2025; verificable contra actes/resolucions del Consell i el conveni amb l'Ajuntament.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-059-cit-32c454",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 59,
+      "type": "cita_obra",
+      "speakerGroup": null,
+      "verbatim": "se van iniciar les obres del nou conservatori",
+      "context": "el novembre del 25 que el Consell va autoritzar la pròrroga i modificació del conveni que se van iniciar les obres del nou conservatori i per aquesta raó és preceptiu realitzar aquest tràmit en què consta en acta que en el ple municipal s'ha aprovat el canvi d'ubicació.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "obres del nou conservatori professional municipal de dansa de riba-roja de túria"
+      },
+      "confidence": 0.65,
+      "reasoning": "Afirma l'inici d'unes obres concretes (nou edifici del conservatori de dansa), verificable contra expedients d'obra i actes municipals de seguiment.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-062-cit-e7ff67",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 62,
+      "type": "cita_obra",
+      "speakerGroup": null,
+      "verbatim": "La nova seu serà per tant el carrer Major, 135B, i actualment està en carrer Major, 133.",
+      "context": "s'ajusten al disposat en la normativa aplicable a requisits. La nova seu serà per tant el carrer Major, 135B, i actualment està en carrer Major, 133.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "conservatori professional municipal de dansa - trasllat de seu"
+      },
+      "confidence": 0.8,
+      "reasoning": "Afirma una ubicació concreta (carrer Major 135B) com a nova seu i el carrer Major 133 com a ubicació actual; verificable contra l'expedient 346/2026/GEN i el cadastre municipal.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-062-cit-944980",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 62,
+      "type": "cita_obra",
+      "speakerGroup": null,
+      "verbatim": "Les propostes són aprovar el trasllat de les instal·lacions del Conservatori Professional Municipal de Danza de Ribarrocha des de la seva ubicació actual en el carrer 133 a la futura infraestructura situada en carrer Major 135B.",
+      "context": "aquest tràmit administratiu... la plaça Carlos Laviors és el que haurà de fer el tràmit corresponent al servei tècnic de la conselleria. Les propostes són aprovar el trasllat de les instal·lacions del Conservatori Professional Municipal de Danza de Ribarrocha des de la seva ubicació actual en el carrer 133 a la futura infraestructura situada en carrer Major 135B.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "conservatori professional municipal de dansa - proposta formal de trasllat"
+      },
+      "confidence": 0.85,
+      "reasoning": "És el text de la proposta formal sotmesa a votació al ple; verificable contra l'acta i la resolució de l'expedient 346/2026/GEN.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-060-cit-383d46",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 60,
+      "type": "cita_convenio",
+      "speakerGroup": null,
+      "verbatim": "es va autoritzar, com sabeu, el novembre del 25 que el Consell va autoritzar la pròrroga i modificació del conveni",
+      "context": "Posaren coneixement que es va autoritzar, com sabeu, el novembre del 25 que el Consell va autoritzar la pròrroga i modificació del conveni que se van iniciar les obres del nou conservatori i per aquesta raó és preceptiu realitzar aquest tràmit.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "conveni amb el consell (generalitat) - pròrroga i modificació per al conservatori de dansa"
+      },
+      "confidence": 0.6,
+      "reasoning": "Afirma que el Consell (Generalitat) va autoritzar el novembre de 2025 una pròrroga i modificació d'un conveni; verificable contrastant amb el registre de convenis/BDNS o resolucions del Consell d'aquella data.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-060-cit-709d45",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 60,
+      "type": "cita_obra",
+      "speakerGroup": null,
+      "verbatim": "que se van iniciar les obres del nou conservatori",
+      "context": "el Consell va autoritzar la pròrroga i modificació del conveni que se van iniciar les obres del nou conservatori i per aquesta raó és preceptiu realitzar aquest tràmit en què consta en acta que en el ple municipal s'ha aprovat el canvi d'ubicació.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "obres de construcció del nou conservatori professional municipal de dansa"
+      },
+      "confidence": 0.55,
+      "reasoning": "Afirma que ja s'han iniciat les obres de construcció del nou edifici del conservatori; verificable contrastant amb l'expedient d'obres municipal i el seu calendari d'execució.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-060-cit-715b24",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 60,
+      "type": "cita_obra",
+      "speakerGroup": null,
+      "verbatim": "estaran en el carrer Major, 135B,",
+      "context": "els serveis competents en infrastructures i educatives han de verificar que les instal·lacions de la nova seu estaran en el carrer Major, 135B, i s'ajusten al disposat en la normativa aplicable a requisits.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "nova seu del conservatori professional municipal de dansa - carrer major 135b"
+      },
+      "confidence": 0.5,
+      "reasoning": "Cita una adreça concreta (carrer Major, 135B) com a nova ubicació del conservatori; verificable contra l'expedient de trasllat i la llicència/certificat d'idoneïtat de les instal·lacions, tot i que el número exacte pot estar degradat per Whisper.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-061-cit-fcac7c",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 61,
+      "type": "cita_obra",
+      "speakerGroup": null,
+      "verbatim": "actualment està en carrer Major, 133",
+      "context": "La nova seu serà per tant el carrer Major, 135B, i actualment està en carrer Major, 133.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "seu actual del conservatori professional municipal de dansa - carrer major 133"
+      },
+      "confidence": 0.6,
+      "reasoning": "Indica l'adreça actual (prèvia al trasllat) del conservatori; contrastable amb el registre municipal d'equipaments abans de l'aprovació del canvi d'ubicació.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-063-cit-b0acf9",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 63,
+      "type": "cita_obra",
+      "speakerGroup": null,
+      "verbatim": "aprovar el trasllat de les instal·lacions del Conservatori Professional Municipal de Danza de Ribarrocha des de la seva ubicació actual en el carrer 133 a la futura infraestructura situada en carrer Major 135B",
+      "context": "Les propostes són aprovar el trasllat de les instal·lacions del Conservatori Professional Municipal de Danza de Ribarrocha des de la seva ubicació actual en el carrer 133 a la futura infraestructura situada en carrer Major 135B.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "conservatori professional municipal de dansa de riba-roja de túria - trasllat a carrer major 135b"
+      },
+      "confidence": 0.55,
+      "reasoning": "Afirmació verificable sobre un trasllat concret d'infraestructura municipal amb adreces específiques (encara que possiblement degradades per Whisper: 'carrer 133' i 'Ribarrocha'); es pot contrastar amb l'expedient 346/2026/GEN i la ubicació real del nou edifici del Conservatori.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-063-pro-d73ef0",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 63,
+      "type": "promesa",
+      "speakerGroup": null,
+      "verbatim": "solicitar al Conselleria d'Educació, Cultura, Universitat i Empleo la modificació de l'autorització",
+      "context": "La segona part serà solicitar al Conselleria d'Educació, Cultura, Universitat i Empleo la modificació de l'autorització, però això solament es podrà fer aprovant aquest tràmit inicial.",
+      "topic": "educacion",
+      "entities": {
+        "referencedEntity": "conselleria d'educació, cultura, universitat i ocupació - modificació d'autorització del conservatori"
+      },
+      "confidence": 0.5,
+      "reasoning": "Compromís concret de tramitar una sol·licitud administrativa davant la Conselleria per modificar l'autorització del centre, verificable contrastant si eixa sol·licitud es va presentar efectivament.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-072-pro-ca2290",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 72,
+      "type": "promesa",
+      "speakerGroup": null,
+      "verbatim": "¿Qué proponemos? Pues establecer en el ámbito de las dependencias municipales una condición funcional de acceso.",
+      "context": "Tras exponer los fundamentos jurídicos (potestad de autoorganización y policía administrativa, artículo 10 de la Constitución, igualdad, neutralidad de la Administración), el interviniente formula la propuesta concreta de la moción: establecer una condición funcional de acceso en las dependencias municipales.",
+      "topic": "seguridad",
+      "entities": {
+        "referencedEntity": "regulación de acceso a dependencias municipales en casos de ocultación integral del rostro"
+      },
+      "confidence": 0.55,
+      "reasoning": "Es la propuesta concreta de la moción sometida a votación; se puede verificar si el pleno la aprobó y si posteriormente el Ayuntamiento implementó dicha condición funcional de acceso en sus dependencias.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-074-pro-5ce02f",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 74,
+      "type": "promesa",
+      "speakerGroup": null,
+      "verbatim": "No se permitirá el acceso o permanencia en dependencias municipales a personas que oculten el rostro.",
+      "context": "se considerará una ocultación integral del rostro aquella producida por prendas que impiden esa visualización, como el nicab o el burka. No se permitirá el acceso o permanencia en dependencias municipales a personas que oculten el rostro.",
+      "topic": "seguridad",
+      "entities": {
+        "referencedEntity": "restricción de acceso a dependencias municipales por ocultación del rostro"
+      },
+      "confidence": 0.7,
+      "reasoning": "Plantea una medida normativa concreta que, de aprobarse, sería verificable contrastando si el ayuntamiento efectivamente prohíbe el acceso a personas con el rostro cubierto en sus dependencias.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-076-acu-45bc48",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 76,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "Esta moción va claramente en contra de la inmigración y de la cruzada que está llevando Vox por toda España.",
+      "context": "Bueno, esta moción, y sobre todo tiene que quedar claro a los vecinos, no va ni a favor de las mujeres ni tampoco va a favor de regular nada. Esta moción va claramente en contra de la inmigración y de la cruzada que está llevando Vox por toda España. Y por lo que sea ya nos ha llegado aquí a Rivarrocha.",
+      "topic": "social",
+      "entities": {
+        "referencedEntity": "vox"
+      },
+      "accusationSubtype": "opinativa",
+      "confidence": 0.7,
+      "reasoning": "Caracteriza la intención política detrás de la moción como parte de una 'cruzada' nacional, una valoración de motivación sin cifras ni hechos contrastables, por lo que solo cabe revisión editorial.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-076-acu-71b53e",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 76,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "porque has nombrado ciertos artículos de la Constitución pero te has dejado tres que también tiene la Constitución, que ahora los leeremos.",
+      "context": "un pueblo que sí que es constitucional y un pueblo que es democrático, porque has nombrado ciertos artículos de la Constitución pero te has dejado tres que también tiene la Constitución, que ahora los leeremos.",
+      "topic": "other",
+      "entities": {
+        "count": 3,
+        "countUnit": "artículos de la Constitución",
+        "referencedEntity": "constitución española"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.6,
+      "reasoning": "Afirma que una intervención previa citó solo ciertos artículos constitucionales y omitió otros tres; es verificable contrastando la transcripción completa de la intervención anterior para comprobar qué artículos se citaron.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-076-acu-5e8c8a",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 76,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "para Vox, cuando le viene bien la Constitución la cogemos, pero cuando no nos viene bien lo ocultamos en una moción.",
+      "context": "Entonces vemos aquí que para Vox, cuando le viene bien la Constitución la cogemos, pero cuando no nos viene bien lo ocultamos en una moción.",
+      "topic": "social",
+      "entities": {
+        "referencedEntity": "vox"
+      },
+      "accusationSubtype": "opinativa",
+      "confidence": 0.7,
+      "reasoning": "Acusación de uso selectivo e hipócrita de la Constitución por parte de Vox; es una valoración de carácter/estrategia sin cifras ni entidades concretas verificables automáticamente, solo revisión editorial.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-077-acu-a13e89",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 77,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "está diciendo claramente que las mujeres que lleven burka o nícara no puedan entrar al Ayuntamiento",
+      "context": "que está totalmente camuflada por una regulación y que está diciendo claramente que las mujeres que lleven burka o nícara no puedan entrar al Ayuntamiento",
+      "topic": "social",
+      "entities": {
+        "referencedEntity": "moción sobre ocultación integral del rostre (niqab/burca) en dependencias municipales"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.75,
+      "reasoning": "Describe el contenido concreto de una moción presentada al pleno (punto 6 del orden del día), verificable contrastando con el texto literal de dicha moción.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-077-acu-e235e1",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 77,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "cuando le viene bien la Constitución la cogemos, pero cuando no nos viene bien lo ocultamos en una moción",
+      "context": "Entonces vemos aquí que para Vox, cuando le viene bien la Constitución la cogemos, pero cuando no nos viene bien lo ocultamos en una moción.",
+      "topic": "other",
+      "entities": {
+        "referencedEntity": "constitución española"
+      },
+      "accusationSubtype": "opinativa",
+      "confidence": 0.6,
+      "reasoning": "Es una valoración sobre la coherencia/intención política al citar la Constitución de forma selectiva, sin cifra ni dato concreto que se pueda contrastar automáticamente.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-077-acu-4d6209",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 77,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "independientemente de si van a hacerse cualquier DNI que tendrían que ir a la oficina de Policía Nacional. No van a poder entrar en el Ayuntamiento.",
+      "context": "independientemente de si van a hacerse cualquier DNI que tendrían que ir a la oficina de Policía Nacional. No van a poder entrar en el Ayuntamiento. Esto es lo que Vox está diciendo hoy en día.",
+      "topic": "social",
+      "entities": {
+        "referencedEntity": "moción sobre ocultación integral del rostre (niqab/burca) en dependencias municipales"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.65,
+      "reasoning": "Describe una consecuencia práctica específica atribuida al texto de la moción (impedir el acceso al Ayuntamiento incluso para trámites de DNI), contrastable con el redactado literal de la moción.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-075-pro-4b9e8e",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 75,
+      "type": "promesa",
+      "speakerGroup": null,
+      "verbatim": "se solicitará que los servicios jurídicos municipales la redacción",
+      "context": "y queda excluido la aplicación los supuestos que debidamente se acrediten por razones médicas salud o exigencia de seguridad laboral no es aplicable a la vía pública y se solicitará que los servicios jurídicos municipales la redacción aprobación de un reglamento a estos efectos",
+      "topic": "seguridad",
+      "entities": {
+        "referencedEntity": "reglamento municipal sobre ocultación del rostro en dependencias municipales"
+      },
+      "confidence": 0.5,
+      "reasoning": "Es un compromiso concreto de solicitar a los servicios jurídicos municipales la redacción y aprobación de un reglamento; verificable comprobando si dicho encargo se formalizó y si el reglamento llegó a redactarse/aprobarse.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-075-acu-c05b2e",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 75,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "no va ni a favor de las mujeres ni tampoco va a favor de regular nada. Esta moción va claramente en contra de la inmigración y de la cruzada que está llevando Vox por toda España.",
+      "context": "Bueno, esta moción, y sobre todo tiene que quedar claro a los vecinos, no va ni a favor de las mujeres ni tampoco va a favor de regular nada. Esta moción va claramente en contra de la inmigración y de la cruzada que está llevando Vox por toda España. Y por lo que sea ya nos ha llegado aquí a Rivarrocha.",
+      "topic": "social",
+      "entities": {
+        "referencedEntity": "vox"
+      },
+      "accusationSubtype": "opinativa",
+      "confidence": 0.75,
+      "reasoning": "Acusación sobre la intención real de la moción (calificada de 'cruzada' antiinmigración nacional de Vox) sin cifras ni entidades verificables concretas, por lo que solo admite revisión editorial, no verificación automática.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-080-acu-9b9d2e",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 80,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "no apoyamos la violencia de género porque decimos y nos creemos que los hombres y las mujeres son lo mismo, pero cuando llegamos a la religión, ahí ya no nos gusta.",
+      "context": "Es decir, lo que no podemos hacer, como muchas veces hace VOX, es, bueno, no apoyamos la violencia de género porque decimos y nos creemos que los hombres y las mujeres son lo mismo, pero cuando llegamos a la religión, ahí ya no nos gusta. Ahí ya vamos a coger otros artículos de la Constitución.",
+      "topic": "social",
+      "entities": {
+        "referencedEntity": "vox"
+      },
+      "accusationSubtype": "opinativa",
+      "confidence": 0.6,
+      "reasoning": "Es una acusación de incoherencia ideológica (defender la igualdad de género pero no aplicar el mismo criterio a la neutralidad religiosa) sin cifras ni hechos concretos citables, por lo que es una valoración de opinión que solo cabe revisión editorial, no verificación automática.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-078-acu-575fa5",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 78,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "las mujeres que lleven burka o nícara no puedan entrar al Ayuntamiento, independientemente de si van a hacerse cualquier DNI que tendrían que ir a la oficina de Policía Nacional. No van a poder entrar en el Ayuntamiento. Esto es lo que Vox está diciendo hoy en día.",
+      "context": "que está totalmente camuflada por una regulación y que está diciendo claramente que las mujeres que lleven burka o nícara no puedan entrar al Ayuntamiento, independientemente de si van a hacerse cualquier DNI que tendrían que ir a la oficina de Policía Nacional. No van a poder entrar en el Ayuntamiento. Esto es lo que Vox está diciendo hoy en día, en el pleno 2026.",
+      "topic": "seguridad",
+      "entities": {
+        "referencedEntity": "moción vox sobre acceso a dependencias municipales en casos de ocultación integral del rostro (niqab/burka)"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.65,
+      "reasoning": "Resume el contenido concreto de la moción de VOX (punto 6 del orden del día) sobre prohibición de entrada al Ayuntamiento a mujeres con burka/niqab incluso para trámites de DNI; es verificable cotejando el texto literal de la moción presentada.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-083-acu-2970f3",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 83,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "vostè el que presenta així és el racisme, el feixisme i l'odi cap a les persones migrants.",
+      "context": "vostè presenta esta moció avui no per responsabilitat institucional, no per millorar la seguretat del nostre poble sinó perquè vostè el que presenta així és el racisme, el feixisme i l'odi cap a les persones migrants.",
+      "topic": "social",
+      "entities": {
+        "referencedEntity": "moció sobre ocultació integral del rostre"
+      },
+      "accusationSubtype": "opinativa",
+      "confidence": 0.6,
+      "reasoning": "Es una valoración de intención política (racisme, feixisme, odi) sin cifras ni entidades contrastables; solo cabe revisión editorial, no verificación automática.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-083-acu-eb3051",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 83,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "Vostè representa la ignorància i vostè representa la intolerància cap a les persones que pensen diferent o tenen una cultura diferent a la seua.",
+      "context": "sinó perquè vostè el que presenta així és el racisme, el feixisme i l'odi cap a les persones migrants. Vostè representa la ignorància i vostè representa la intolerància cap a les persones que pensen diferent o tenen una cultura diferent a la seua.",
+      "topic": "social",
+      "entities": {},
+      "accusationSubtype": "opinativa",
+      "confidence": 0.65,
+      "reasoning": "Valoración de carácter (ignorancia, intolerancia) sin cifras ni hechos verificables; queda como acusación opinativa de revisión editorial únicamente.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-084-acu-6d8358",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 84,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "vostè presenta esta moció sense aportar ninguna evidència, sense aportar... ningun dato clar del nostre poble que evidencie el problema que vostè està plantejant. Vostè no presenta absolutament res.",
+      "context": "Dic això perquè vostè presenta esta moció sense aportar ninguna evidència, sense aportar... ningun dato clar del nostre poble que evidencie el problema que vostè està plantejant. Vostè no presenta absolutament res.",
+      "topic": "seguridad",
+      "entities": {
+        "referencedEntity": "moció sobre ocultació integral del rostre en dependències municipals"
+      },
+      "accusationSubtype": "opinativa",
+      "confidence": 0.7,
+      "reasoning": "Acusación general sobre la falta de datos o evidencia en la moción presentada; no cita cifras ni entidades concretas verificables contra fuentes estructuradas, por lo que se clasifica como opinativa, aunque un curador podría contrastarla leyendo el texto íntegro de la moción.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-086-acu-f7846b",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 86,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "Vull fer-li una primera pregunta i és en quin registre, en quin dato, en quina evidència s'ha basat per a plantejar aquest problema en el nostre poble, si és que s'ha basat en algun.",
+      "context": "El interviniente pregunta retóricamente en qué registro, dato o evidencia se ha basado el proponente de la moción para plantear el problema, y a continuación él mismo responde que en ninguno.",
+      "topic": "social",
+      "entities": {
+        "referencedEntity": "registre/dades sobre incidents relacionats amb l'ocultació del rostre"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.7,
+      "reasoning": "Afirma que no existe ningún registro, dato o evidencia que sustente el problema planteado en la moción; es contrastable con registros municipales o policiales sobre incidencias relacionadas con la ocultación del rostro.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-086-acu-d17f28",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 86,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "Però ja li conteste jo: en ninguno.",
+      "context": "Tras preguntar en qué dato o evidencia se basa el problema planteado, el interviniente responde él mismo que no se basa en ninguno.",
+      "topic": "social",
+      "entities": {
+        "referencedEntity": "evidència sobre el problema plantejat a la moció"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.65,
+      "reasoning": "Declaración explícita de ausencia total de base empírica para la moción, verificable contrastando si existen expedientes, quejas o informes municipales al respecto.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-086-afi-6ea884",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 86,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "que no hi ha ninguna incidencia en esta materia,",
+      "context": "Saben les dades, saben. que no hi ha ninguna incidencia en esta materia, però retenen regular algo que no està, que no existís.",
+      "topic": "social",
+      "entities": {
+        "count": 0,
+        "countUnit": "incidències",
+        "referencedEntity": "incidències relacionades amb l'ocultació integral del rostre en dependències municipals"
+      },
+      "confidence": 0.65,
+      "reasoning": "Afirma como hecho que el número de incidencias registradas en esta materia es cero; es una cifra concreta contrastable con registros municipales o de seguridad.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-086-acu-ddc0de",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 86,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "que el partit que representa i vostè són ignorants o que estan mentint a la gent.",
+      "context": "I això realment és profundament lamentable i és profundament preocupant perquè el que fa és inventar-se un problema... I això correspon a dues raons. Una, que el partit que representa i vostè són ignorants o que estan mentint a la gent.",
+      "topic": "social",
+      "entities": {},
+      "accusationSubtype": "opinativa",
+      "confidence": 0.7,
+      "reasoning": "Acusación de ignorancia o mentira dirigida a un partido y su representante, sin cifras ni entidades concretas que permitan verificación automática; queda para revisión editorial.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-086-acu-3f56c2",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 86,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "el que fa és inventar-se un problema i voler regular un problema que no existís.",
+      "context": "I això realment és profundament lamentable i és profundament preocupant perquè el que fa és inventar-se un problema i voler regular un problema que no existís.",
+      "topic": "social",
+      "entities": {
+        "referencedEntity": "moció sobre ocultació integral del rostre en dependències municipals"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.65,
+      "reasoning": "Acusación de que la moción regula un problema inexistente, verificable cruzando con datos de incidencias reales relacionadas con el tema de la moción del orden del día.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-086-acu-8efa1e",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 86,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "però ja van a un col·lectiu concret i ja volen difondre eixa por a aquest col·lectiu i eixa amenaça, que és el que vostè representa.",
+      "context": "però retenen regular algo que no està, que no existís, però ja van a un col·lectiu concret i ja volen difondre eixa por a aquest col·lectiu i eixa amenaça, que és el que vostè representa.",
+      "topic": "social",
+      "entities": {
+        "referencedEntity": "col·lectiu afectat per la moció sobre ocultació del rostre"
       },
       "accusationSubtype": "opinativa",
       "confidence": 0.55,
-      "reasoning": "Acusación de usar la DANA como coartada; no cita entidades, importes ni votos concretos, por lo que se clasifica como opinativa y no se verifica automáticamente. La datación implícita ('hace un año') es consistente con la fecha del pleno (febrero 2026).",
+      "reasoning": "Acusación de intención de difundir miedo y amenaza hacia un colectivo concreto; es una valoración de intención sin cifras ni entidades verificables, apta solo para revisión editorial.",
       "requiresHumanApproval": true
     },
     {
-      "id": "rx4hb4-458-acu-c41475",
+      "id": "rx4hb4-085-acu-bf33bc",
       "plenoId": "rx4hb4",
       "plenoDate": "2026-02-09",
-      "segmentIndex": 458,
+      "segmentIndex": 85,
       "type": "acusacion_publica",
       "speakerGroup": null,
-      "verbatim": "basarse en la agenda urbana de reconstrucción para hacer un proyecto que todos dos o tres años trabajando y después excusarte en la DANA de hace un año",
-      "context": "El interviniente critica que proyectos que llevan en desarrollo dos o tres años se justifican ahora bajo la agenda urbana de reconstrucción post-DANA, tachándolo de excusa posterior.",
-      "topic": "urbanismo",
-      "entities": {
-        "referencedEntity": "agenda urbana de reconstrucción post-dana"
-      },
-      "accusationSubtype": "factual",
-      "confidence": 0.62,
-      "reasoning": "Afirmación verificable cruzando la fecha de inicio de los expedientes urbanísticos (plenos-agendas.json, tenders.json) con la fecha de la DANA (oct-2024) para comprobar si los proyectos son efectivamente anteriores.",
+      "verbatim": "que el partit que representa i vostè són ignorants o que estan mentint a la gent",
+      "context": "I això realment és profundament lamentable i és profundament preocupant perquè el que fa és inventar-se un problema i voler regular un problema que no existís. I això correspon a dues raons. Una, que el partit que representa i vostè són ignorants o que estan mentint a la gent.",
+      "topic": "seguridad",
+      "entities": {},
+      "accusationSubtype": "opinativa",
+      "confidence": 0.8,
+      "reasoning": "Acusación de carácter (ignorancia o mentira) sin cifras ni entidades verificables; corresponde a una valoración de intención/estilo que solo admite revisión editorial, no verificación automática.",
       "requiresHumanApproval": true
     },
     {
-      "id": "rx4hb4-458-acu-3fb391",
+      "id": "rx4hb4-087-afi-1303b8",
       "plenoId": "rx4hb4",
       "plenoDate": "2026-02-09",
-      "segmentIndex": 458,
+      "segmentIndex": 87,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "li dic clarament que no existís cap registre ni incidència en el nostre municipi que faça referència al que vostè planteja",
+      "context": "Saben les dades, saben que no hi ha ninguna incidencia en esta materia, però retenen regular algo que no està... Jo, que segueixen les dades, li dic clarament que no existís cap registre ni incidència en el nostre municipi que faça referència al que vostè planteja. Per tant no es pot regular allò que no existeix.",
+      "topic": "seguridad",
+      "entities": {
+        "count": 0,
+        "countUnit": "incidències",
+        "referencedEntity": "registre d'incidències municipals sobre ocultació facial (niqab/burca)"
+      },
+      "confidence": 0.7,
+      "reasoning": "Afirma como hecho que no existe ningún registro ni incidencia en el municipio relacionada con la ocultación facial que motiva la moción; es verificable contrastando con registros/actas municipales o informes de policía local sobre incidencias de este tipo.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-087-acu-7c4f24",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 87,
       "type": "acusacion_publica",
       "speakerGroup": null,
-      "verbatim": "estáis gastando los dineros del ministerio de la DANA en esos proyectos que no son afectados por la DANA",
-      "context": "El interviniente acusa al equipo de gobierno de destinar fondos del Ministerio canalizados por la DANA a proyectos que no sufrieron daños por esa catástrofe, poniendo como ejemplo posible el techo del polideportivo.",
-      "topic": "fiscal",
-      "entities": {
-        "referencedEntity": "fondos ministerio dana"
-      },
-      "accusationSubtype": "factual",
-      "confidence": 0.67,
-      "reasoning": "Acusación verificable contra el BDNS (bdns.json) y tenders (tenders.json): si los contratos o subvenciones vinculados a fondos DANA financian obras en instalaciones sin constancia de daños en la DANA de octubre 2024.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "rx4hb4-458-cit-b68f07",
-      "plenoId": "rx4hb4",
-      "plenoDate": "2026-02-09",
-      "segmentIndex": 458,
-      "type": "cita_obra",
-      "speakerGroup": null,
-      "verbatim": "cambiar el techo del pabellón del polideportivo",
-      "context": "El interviniente menciona como ejemplo de obra posiblemente financiada con fondos DANA sin ser obra afectada directamente por la DANA el cambio de cubierta del pabellón del polideportivo municipal.",
+      "verbatim": "el que vostè fa en esta moció i el seu espai polític és una estratègia política racista i xenòfoba i el que vostè fa és alimentar l'odi cap a les persones migrants",
+      "context": "Per tant no es pot regular allò que no existeix. A més, el que vostè fa en esta moció i el seu espai polític és una estratègia política racista i xenòfoba i el que vostè fa és alimentar l'odi cap a les persones migrants.",
       "topic": "social",
       "entities": {
-        "referencedEntity": "cubierta pabellón polideportivo riba-roja de túria"
+        "referencedEntity": "moció sobre ocultació integral del rostre en dependències municipals"
       },
-      "confidence": 0.58,
-      "reasoning": "Obra concreta en instalación pública municipal; verificable cruzando con tenders.json o plenos-agendas.json para localizar el expediente de la cubierta del polideportivo y su fuente de financiación. Confianza reducida por artefactos Whisper ('no lo desconecto' probablemente 'no lo descarto').",
+      "accusationSubtype": "opinativa",
+      "confidence": 0.65,
+      "reasoning": "Es una valoración sobre la intención y el carácter de la moción y de quien la presenta (calificándola de estrategia racista y xenófoba que alimenta el odio), sin cifras ni entidades verificables que permitan un contraste automático de datos; queda como acusación opinativa para revisión editorial.",
       "requiresHumanApproval": true
     },
     {
-      "id": "rx4hb4-459-acu-7f378c",
+      "id": "rx4hb4-087-acu-781306",
       "plenoId": "rx4hb4",
       "plenoDate": "2026-02-09",
-      "segmentIndex": 459,
+      "segmentIndex": 87,
       "type": "acusacion_publica",
       "speakerGroup": null,
-      "verbatim": "vosotros ya también estáis gastando los dineros del ministerio de la DANA en esos proyectos que no son afectados por la DANA",
-      "context": "El interviniente sugiere que podrían usarse fondos del ministerio para la DANA en proyectos como el techo del polideportivo, y acusa directamente: 'vosotros ya también estáis gastando los dineros del ministerio de la DANA en esos proyectos que no son afectados por la DANA'.",
-      "topic": "fiscal",
+      "verbatim": "que el partit que representa i vostè són ignorants o que estan mentint a la gent",
+      "context": "que el partit que representa i vostè són ignorants o que estan mentint a la gent. Saben les dades, saben que no hi ha ninguna incidencia en esta materia, però retenen regular algo que no existís.",
+      "topic": "other",
+      "entities": {},
+      "accusationSubtype": "opinativa",
+      "confidence": 0.6,
+      "reasoning": "Acusación sobre el carácter o la honestidad del partido interpelado ('ignorantes' o 'mintiendo'), sin datos ni entidades concretas que permitan verificación automática; es una valoración opinativa que requiere revisión editorial.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-088-acu-1df134",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 88,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "el que vostè fa és alimentar l'odi cap a les persones migrants",
+      "context": "és una estratègia política racista i xenòfoba i el que vostè fa és alimentar l'odi cap a les persones migrants.",
+      "topic": "social",
+      "entities": {},
+      "accusationSubtype": "opinativa",
+      "confidence": 0.75,
+      "reasoning": "Judici de valor sobre l'efecte de la moció ('alimentar l'odi'), sense dades ni entitats verificables; caràcter merament opinatiu.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-088-acu-80b981",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 88,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "la seua proposta és absolutament innecessària perquè ja existixen mecanismes legals per poder identificar les persones quan cal, d'una manera puntual i proporcional.",
+      "context": "A més, la seua proposta és absolutament innecessària perquè ja existixen mecanismes legals per poder identificar les persones quan cal, d'una manera puntual i proporcional.",
+      "topic": "seguridad",
       "entities": {
-        "referencedEntity": "fondos ministerio dana"
+        "referencedEntity": "mecanismes legals d'identificació de persones"
       },
       "accusationSubtype": "factual",
-      "confidence": 0.65,
-      "reasoning": "Acusación concreta y verificable: afirma que fondos ministeriales para la DANA se estarían destinando a proyectos no dañados por el desastre. Contrastable contra los expedientes de gasto de la convocatoria DANA (BDNS/tenders) y los proyectos declarados elegibles.",
+      "confidence": 0.5,
+      "reasoning": "Afirma que ja existeixen mecanismes legals aplicables per a la identificació puntual de persones, fet contrastable amb la normativa de seguretat ciutadana vigent i ordenances municipals.",
       "requiresHumanApproval": true
     },
     {
-      "id": "rx4hb4-459-acu-3fc66c",
+      "id": "rx4hb4-089-acu-5ef71b",
       "plenoId": "rx4hb4",
       "plenoDate": "2026-02-09",
-      "segmentIndex": 459,
+      "segmentIndex": 89,
       "type": "acusacion_publica",
       "speakerGroup": null,
-      "verbatim": "lo desconectamos porque no participáis a la oposición de todo lo que estáis llevando a cabo",
-      "context": "El interviniente justifica su desconexión o falta de apoyo alegando que el equipo de gobierno no hace partícipe a la oposición de los proyectos que está desarrollando.",
+      "verbatim": "Vostè lo que fa, i el seu espai polític, és confondre la identificació puntual en prohibicions generals.",
+      "context": "Vostè lo que fa, i el seu espai polític, és confondre la identificació puntual en prohibicions generals.",
+      "topic": "seguridad",
+      "entities": {},
+      "accusationSubtype": "opinativa",
+      "confidence": 0.6,
+      "reasoning": "Acusación de que la propuesta contraria confunde dos conceptos jurídicos distintos (identificación puntual vs. prohibición general); es una valoración de intención/estilo sin datos verificables, por lo que es opinativa.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-089-acu-887183",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 89,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "Aquesta moció és falsa jurídicament.",
+      "context": "també lo que fa és basar-se en una fundamentació jurídica que és errònia. Aquesta moció és falsa jurídicament.",
+      "topic": "seguridad",
+      "entities": {
+        "referencedEntity": "moció debatuda"
+      },
+      "accusationSubtype": "opinativa",
+      "confidence": 0.65,
+      "reasoning": "Afirma que la moción debatida carece de fundamento jurídico correcto, pero no cita norma, artículo o sentencia concreta que permita una verificación factual automatizada.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-089-acu-16de8b",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 89,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "Vostè utilitza el concepte de relació especial de subjecció de manera errònia.",
+      "context": "Aquesta moció és falsa jurídicament. Vostè utilitza el concepte de relació especial de subjecció de manera errònia. Vostè, en la seua moció, diu: L'accés a dependències municipals es troba en una relació especial de subjecció.",
+      "topic": "seguridad",
+      "entities": {
+        "referencedEntity": "relació especial de subjecció"
+      },
+      "accusationSubtype": "opinativa",
+      "confidence": 0.6,
+      "reasoning": "Acusa al proponente de aplicar erróneamente el concepto jurídico-administrativo de 'relación especial de sujeción' para justificar la moción; es una valoración jurídica sin citar norma o jurisprudencia concreta, no verificable con datos estructurados.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-091-acu-45825f",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 91,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "Vostè basa aquesta moció en un error jurídic.",
+      "context": "L'accés a dependències municipals es troba en una relació especial de subjecció. Aquesta afirmació és falsa jurídicament. Vostè basa aquesta moció en un error jurídic.",
+      "topic": "seguridad",
+      "entities": {
+        "referencedEntity": "moció sobre ocultació integral del rostre en dependències municipals"
+      },
+      "accusationSubtype": "opinativa",
+      "confidence": 0.55,
+      "reasoning": "Es una acusación sobre la solidez jurídica de una moción formal presentada por otro grupo, pero no cita artículo legal, sentencia ni dato concreto verificable en bases de datos; queda como valoración de fondo revisable solo editorialmente.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-090-acu-115f4b",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 90,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "L'accés a dependències municipals es troba en una relació especial de subjecció.",
+      "context": "El orador cita textualmente lo que según él dice la moción del otro grupo, para después calificar esa afirmación como jurídicamente falsa.",
+      "topic": "seguridad",
+      "entities": {
+        "referencedEntity": "moció sobre ocultació del rostre en dependències municipals"
+      },
+      "accusationSubtype": "opinativa",
+      "confidence": 0.5,
+      "reasoning": "Es una cita reportada del texto de la moción contraria; verificable comparando con el texto oficial de la moción del punto 6 del orden del día.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-095-acu-c4a577",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 95,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "políticament és racista, jurídicament és incorrecta i reglamentàriament és innecessària.",
+      "context": "SPEAKER_42: políticament és racista, jurídicament és incorrecta i reglamentàriament és innecessària. SPEAKER_43: Es paraules compromís a fons.",
+      "topic": "seguridad",
+      "entities": {
+        "referencedEntity": "moció sobre regulació d'accés a dependències municipals en casos d'ocultació integral del rostre"
+      },
+      "accusationSubtype": "opinativa",
+      "confidence": 0.5,
+      "reasoning": "Es tracta d'una valoració qualificativa (racista, jurídicament incorrecta, reglamentàriament innecessària) sobre una proposta normativa, sense xifres ni entitats concretes; és una acusació de tipus opinatiu que només podria revisar-se editorialment contrastant el text i debat de la moció corresponent.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-095-cit-eb530f",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 95,
+      "type": "cita_obra",
+      "speakerGroup": null,
+      "verbatim": "Lo primero que van a hacer va a ser retirar unos tornos que ni había en la entrada de este ayuntamiento.",
+      "context": "he de comentar i he de dir que en el 2015, quan vàrem formar un govern de coalició i vàrem governar aquest ajuntament, Lo primero que van a hacer va a ser retirar unos tornos que ni había en la entrada de este ayuntamiento. Unos tornos que prohibían o que no dejaban la libre entrada de nuestros vecinos y vecinas en la casa, porque eso es la casa de todos y todas.",
+      "topic": "transparencia",
+      "entities": {
+        "referencedEntity": "retirada dels tornos d'accés a l'entrada de l'ajuntament (govern de coalició de 2015)"
+      },
+      "confidence": 0.6,
+      "reasoning": "Afirma que en 2015, en formar-se un govern de coalició a l'ajuntament, la primera actuació va ser retirar uns tornos que restringien l'entrada lliure dels veïns a la casa consistorial; és un fet verificable contra actes municipals o hemeroteca local d'aquell període, tot i que la transcripció Whisper conté una possible incoherència ('que ni había') que en redueix la fiabilitat literal.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-093-acu-2ba85a",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 93,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "Lo que diu esta moció és fals. El forament jurídic no és correcte.",
+      "context": "Sap vostè que està defensant una emoció que és falsa jurídicament? Sap vostè que la seva emoció no té fonament jurídic perquè cau? Lo que diu esta moció és fals. El forament jurídic no és correcte.",
+      "topic": "social",
+      "entities": {
+        "referencedEntity": "moció sobre regulació d'accés a dependències municipals en casos d'ocultació integral del rostre"
+      },
+      "accusationSubtype": "opinativa",
+      "confidence": 0.5,
+      "reasoning": "El orador afirma que la moción sobre el velo integral carece de fundamento jurídico; es una valoración de fondo legal sin citar artículos, sentencias o normativa concreta, por lo que encaja como acusación pública de tipo opinativo más que un dato contrastable directamente.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-093-acu-abca8d",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 93,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "políticament és racista,",
+      "context": "Jo crec sincerament que lo que vostè ha de fer així és retirar esta moció de una manera clara, per tres raons diverses. Una, políticament és racista,",
+      "topic": "social",
+      "entities": {
+        "referencedEntity": "moció sobre regulació d'accés a dependències municipals en casos d'ocultació integral del rostre"
+      },
+      "accusationSubtype": "opinativa",
+      "confidence": 0.6,
+      "reasoning": "Acusación de carácter político (racismo) sobre el contenido o la motivación de la moción, sin cifras ni entidades verificables; se trata de una valoración de intención, propia de la subcategoría opinativa.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-094-acu-cf2dc3",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 94,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "¿Sap vostè que està defensant una emoció que és falsa jurídicament?",
+      "context": "Per tant, li torne a fer altra pregunta. ¿Sap vostè que està defensant una emoció que és falsa jurídicament? ¿Sap vostè que la seva emoció no té fonament jurídic perquè cau?",
+      "topic": "seguridad",
+      "entities": {
+        "referencedEntity": "moció sobre ocultació integral del rostre"
+      },
+      "accusationSubtype": "opinativa",
+      "confidence": 0.55,
+      "reasoning": "Acusación de que la moción defendida por el interlocutor carece de fundamento jurídico, sin citar artículo, sentencia o dictamen concreto (Whisper confunde 'moció' con 'emoció'); es una valoración de carácter legal que sólo admite revisión editorial, no verificación automática.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-094-acu-6f59e0",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 94,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "és conscient o és conscient i lo que vol és mentir a la ciutadania.",
+      "context": "¿Sap vostè que la seva emoció no té fonament jurídic perquè cau? és conscient o és conscient i lo que vol és mentir a la ciutadania.",
       "topic": "transparencia",
       "entities": {},
       "accusationSubtype": "opinativa",
       "confidence": 0.6,
-      "reasoning": "Acusación de opacidad hacia la oposición sin cifras ni entidades verificables concretas; calificada como opinativa porque se refiere a un patrón de comportamiento general sin citar acto administrativo específico. No se verifica automáticamente.",
+      "reasoning": "Acusación de mala fe (querer mentir a la ciudadanía) sin aportar hechos, cifras o pruebas concretas; es una valoración de intención política que sólo puede evaluarse mediante revisión editorial.",
       "requiresHumanApproval": true
     },
     {
-      "id": "rx4hb4-460-cit-9e68d0",
+      "id": "rx4hb4-094-acu-e33298",
       "plenoId": "rx4hb4",
       "plenoDate": "2026-02-09",
-      "segmentIndex": 460,
-      "type": "cita_obra",
+      "segmentIndex": 94,
+      "type": "acusacion_publica",
       "speakerGroup": null,
-      "verbatim": "la agenda urbana cuando se aprueba es genérica es para toda la reconstrucción la agenda urbana tiene unos objetivos que es ordenar e",
-      "context": "Tras el debate procedimental sobre tiempos de intervención, el concejal identificado como José Alberto afirma que la agenda urbana aprobada es de carácter genérico y está orientada a toda la reconstrucción, con objetivos de ordenación.",
-      "topic": "urbanismo",
+      "verbatim": "políticament és racista, jurídicament és incorrecta i reglamentàriament és innecessària.",
+      "context": "Jo crec sincerament que lo que vostè ha de fer així és retirar esta moció de una manera clara, per tres raons diverses. Una, políticament és racista, jurídicament és incorrecta i reglamentàriament és innecessària.",
+      "topic": "social",
       "entities": {
-        "referencedEntity": "agenda urbana reconstrucción post-dana"
+        "referencedEntity": "moció sobre ocultació integral del rostre (niqab, burca)"
       },
+      "accusationSubtype": "opinativa",
+      "confidence": 0.7,
+      "reasoning": "Calificación de la moción como racista, ilegal e innecesaria sin especificar norma, sentencia o precedente concreto; es una valoración política de carácter/intención que requiere revisión editorial y no verificación automática de datos.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-096-acu-d15738",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 96,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "Unos tornos que prohibían o que no dejaban la libre entrada de nuestros vecinos y vecinas en la casa,",
+      "context": "Lo primero que van a hacer va a ser retirar unos tornos que ni había en la entrada de este ayuntamiento. Unos tornos que prohibían o que no dejaban la libre entrada de nuestros vecinos y vecinas en la casa, porque eso es la casa de todos y todas.",
+      "topic": "transparencia",
+      "entities": {
+        "referencedEntity": "tornos d'accés a l'entrada de l'ajuntament"
+      },
+      "accusationSubtype": "factual",
       "confidence": 0.55,
-      "reasoning": "Se cita la aprobación y el alcance de una agenda urbana vinculada a la reconstrucción (presumiblemente post-DANA); verificable contrastando el documento oficial de la agenda urbana del municipio y su ámbito de aplicación declarado. Confianza reducida por el fragmento truncado al final y por la posible degradación Whisper en los nombres propios.",
+      "reasoning": "Afirma que hi havia torns físics a l'entrada de l'ajuntament que impedien l'entrada lliure de veïns i veïnes; és una afirmació sobre una instal·lació concreta que es pot contrastar amb fotografies, expedients o notícies de premsa de l'època.",
       "requiresHumanApproval": true
     },
     {
-      "id": "rx4hb4-461-cit-811afb",
+      "id": "rx4hb4-096-cit-3a8b2d",
       "plenoId": "rx4hb4",
       "plenoDate": "2026-02-09",
-      "segmentIndex": 461,
+      "segmentIndex": 96,
       "type": "cita_obra",
       "speakerGroup": null,
-      "verbatim": "la agenda urbana tiene unos objetivos que es ordenar el territorio evitar la dispersión urbana prevenir y reducir el impacto del cambio climático",
-      "context": "Un concejal explica el alcance de la agenda urbana distinguiéndola de la mera reconstrucción post-DANA, enumerando sus objetivos formales.",
-      "topic": "urbanismo",
+      "verbatim": "crec que va ser una de les primeres accions que vàrem fer, llevar aquests torts.",
+      "context": "Nosaltres, això, així ni ho entenien, i crec que va ser una de les primeres accions que vàrem fer, llevar aquests torts.",
+      "topic": "transparencia",
       "entities": {
-        "referencedEntity": "agenda urbana"
-      },
-      "confidence": 0.68,
-      "reasoning": "Los objetivos enunciados son verificables contrastándolos con el texto oficial de la Agenda Urbana Española o la Agenda Urbana de la Comunitat Valenciana; cualquier discrepancia sería material.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "rx4hb4-461-cit-85e069",
-      "plenoId": "rx4hb4",
-      "plenoDate": "2026-02-09",
-      "segmentIndex": 461,
-      "type": "cita_obra",
-      "speakerGroup": null,
-      "verbatim": "la agenda urbana abarca no sólo la reconstrucción de lo que está añadido sino más cosas",
-      "context": "El concejal argumenta que la agenda urbana tiene un alcance superior al de las infraestructuras dañadas por la DANA, incluyendo objetivos de ordenación territorial más amplios.",
-      "topic": "urbanismo",
-      "entities": {
-        "referencedEntity": "agenda urbana"
+        "referencedEntity": "retirada de torns a l'ajuntament"
       },
       "confidence": 0.5,
-      "reasoning": "Afirmación sobre el ámbito material de un instrumento de planificación concreto; contrastable contra el articulado aprobado del documento de agenda urbana municipal o autonómica.",
+      "reasoning": "Segona confirmació que retirar els torns va ser una de les primeres accions de govern; contrastable amb actes de ple o decrets del període inicial del mandat corresponent (paraula 'torts' probablement error de transcripció Whisper per 'torns').",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-098-acu-a2f316",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 98,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "No s'entén específicament el sentit de l'emoció més enllà del populisme, evidentment, i de crear separació de la societat i estigmatitzar a una persona per la seva religió.",
+      "context": "En el debat sobre la moció relativa a l'ocultació integral del rostre en dependències municipals, un dels intervinents qualifica la proposta com a populista i acusa d'estigmatitzar les persones per motius religiosos.",
+      "topic": "social",
+      "entities": {
+        "referencedEntity": "moció sobre ocultació del rostre en dependències municipals"
+      },
+      "accusationSubtype": "opinativa",
+      "confidence": 0.6,
+      "reasoning": "Es una valoració d'intenció (populisme, estigmatització) sense xifres ni dades contrastables; només revisió editorial, no verificació automàtica.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-098-acu-76252a",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 98,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "Pensem que l'excessiva regulació moltes vegades al final també és una prohibició que és el que vostès pretenen.",
+      "context": "Tancament de la intervenció sobre la moció d'ocultació del rostre, acusant la part contrària d'utilitzar la regulació com a via encoberta per a una prohibició.",
+      "topic": "social",
+      "entities": {},
+      "accusationSubtype": "opinativa",
+      "confidence": 0.6,
+      "reasoning": "Acusació d'intenció política (voler prohibir encobertament) sense cap dada ni xifra verificable; és una valoració, no un fet contrastable.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-097-acu-fdd6d4",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 97,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "no hi ha cap cas en aquest ajuntament en el que una persona està entrant, entrat, ocultant el seu rostre en la dependència municipal per no fer una cosa que és legal com un tràmit administratiu",
+      "context": "En quant a la seva emoció, és una amalgama de suposits que realment no s'han produït. Jo, que jo conegui, no hi ha cap cas en aquest ajuntament en el que una persona està entrant, entrat, ocultant el seu rostre en la dependència municipal per no fer una cosa que és legal com un tràmit administratiu.",
+      "topic": "social",
+      "entities": {
+        "referencedEntity": "moció sobre ocultació del rostre en dependències municipals"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.55,
+      "reasoning": "Afirma la inexistencia de casos documentados en el ayuntamiento de personas que oculten el rostro para eludir un trámite administrativo; es una negación fáctica contrastable con registros o incidencias municipales, aunque el matiz 'que jo conegui' (que yo sepa) limita su alcance probatorio.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rx4hb4-097-acu-ba7e97",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "segmentIndex": 97,
+      "type": "acusacion_publica",
+      "speakerGroup": null,
+      "verbatim": "El marc actual ja permet resoldre els supòsits que Vox planteja.",
+      "context": "El marc actual ja permet resoldre els supòsits que Vox planteja. Des de compromís pensem que si ha de fer un tràmit davant d'un funcionari i aquest tràmit requerir la identificació del rostre,",
+      "topic": "social",
+      "entities": {
+        "referencedEntity": "marc legal/normatiu actual sobre identificació en tràmits municipals"
+      },
+      "accusationSubtype": "factual",
+      "confidence": 0.55,
+      "reasoning": "Afirma que la normativa vigente ya cubre los supuestos que plantea la moción, lo cual es contrastable con la legislación y ordenanzas municipales aplicables (p.ej. requisitos de identificación en trámites administrativos).",
       "requiresHumanApproval": true
     },
     {
@@ -121699,11 +122835,11 @@
     }
   ],
   "builtFrom": {
-    "officials.json": "678f552e44f5",
+    "officials.json": "7a24c450f232",
     "pleno-findings.json": "8fcb977dcdb3",
-    "pleno-speaker-map/": "82e6b7416f8d",
+    "pleno-speaker-map/": "d3046eb9010c",
     "pleno-transcripts/": "852b7466ab7f",
-    "plenos-agendas.json": "16602ca1060a",
-    "plenos.json": "7343cde9a5e8"
+    "plenos-agendas.json": "530574e5fcc8",
+    "plenos.json": "6aabdb6b6ef5"
   }
 }
