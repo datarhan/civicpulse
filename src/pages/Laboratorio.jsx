@@ -23,7 +23,7 @@ import { usePressLab } from '../hooks/usePressLab'
 import ClaimReviewJsonLd from '../components/ClaimReviewJsonLd'
 import DataAsOf from '../components/DataAsOf'
 import { fmtDateShort } from '../lib/formatters'
-import { pressLabSummary } from '../lib/press-lab'
+import { pressLabSummary, fraseVeredictos } from '../lib/press-lab'
 
 const VERDICT_LABEL = {
   verificado: 'Verificado',
@@ -738,14 +738,14 @@ export default function Laboratorio() {
         >
           {/* Decía «Cada titular … se contrasta», que describe el PROCESO pero
               se lee como el RESULTADO, justo encima de una tasa de
-              verificación del 3 %. Se intenta con todos; la mayoría vuelve sin
-              dato municipal que confirme ni desmienta, y eso es lo que dicen
-              las tasas de al lado. */}
+              verificación del 3 %. Se intenta con todos, y cuántas llegan a un
+              veredicto lo dice una frase que sale del mismo recuento que las
+              tasas: escrita a mano, decía «la mayoría» encima de «0 de 64»
+              (revisión lectora, 15-09-2026). */}
           De cada titular sobre Riba-roja se extraen sus afirmaciones y se intenta contrastarlas
           contra los datos municipales públicos (presupuesto, contratos PLACSP, subvenciones BDNS,
-          padrón INE, paro SEPE, plenos). La mayoría vuelve sin nada que las confirme ni las
-          desmienta: las tasas de aquí abajo dicen cuántas llegaron a un veredicto. Indicadores de
-          fiabilidad inspirados en el{' '}
+          padrón INE, paro SEPE, plenos). {fraseVeredictos(summary)} Indicadores de fiabilidad
+          inspirados en el{' '}
           <a
             href="https://thetrustproject.org/"
             target="_blank"
