@@ -195,7 +195,14 @@ const expectWithdrawn = (id: string): void => {
  * superficies, no una pasada de citas — un sumario puede afirmar de más aunque
  * todas sus citas estén bien marcadas, porque quien lo lee no lee los chips.
  */
-const TOTAL_CORRECTIONS = 147
+/*
+ * 147 → 148 el 2026-09-15: `f-2025-12-01-cit-66cd62` citaba de la transcripción sólo
+ * «El plan rehabilita más de 900.000 euros», y así se leía que el resto de la cita no
+ * estaba en ella, cuando la transcripción recoge la frase entera. Lo leyó así la
+ * revisión lectora de superficies. La corrección va por `correct-pleno-finding` y no
+ * es de ningún lote: en LOTE_3 cambia sólo lo que su fila mide en la prosa viva.
+ */
+const TOTAL_CORRECTIONS = 148
 const TOTAL_REMOVALS = 35
 
 /** One row of a review batch's fixture: enough to locate its own entries. */
@@ -1894,10 +1901,15 @@ const LOTE_3: Lote3Case[] = [
       // grupo señala» and left a broken, lower-case-after-a-full-stop clause.
       'un grupo no identificado grupo señala',
       'un plan de rehabilitación por más de 900.000 euros',
+      'la transcripción dice «El plan rehabilita más de 900.000 euros»',
     ],
+    // La corrección del 15-09-2026, que no es de este lote, cambió la frase que citaba
+    // la transcripción: daba sólo su comienzo y se leía como si el resto de la cita no
+    // estuviera en ella. Lo que el lote dejó —la cita literal y que no se sabe de qué
+    // plan habla— sigue en la prosa, con otras palabras.
     keeps: [
-      '«El plan rehabilita más de 900.000 euros»',
-      'no permite determinar de qué plan se trata',
+      '«El plan rehabilita más de 900.000 euros con una bolsa en el ayuntamiento para los autónomos y pequeñas empresas de Riva Roja»',
+      'no dice de qué plan se trata',
       'Un grupo no identificado señala que esta iniciativa se extiende',
     ],
     // A 2019 music performance matched on the word «comercio». Weak, unnamed,
@@ -2147,9 +2159,12 @@ describe('published pleno findings — lote 3 of the row 36–51 review', () => 
     // El corpus perdió 11 hallazgos el 2026-08-11 (todos aquellos cuyas citas
     // retiene la puerta editorial al completo). El suelo baja con él: sigue
     // probando que la pasada recorrió algo, que es para lo único que está.
-    expect(spans).toBeGreaterThanOrEqual(5)
-    // El corpus perdió 11 hallazgos el 2026-08-11. El suelo baja con él.
-    expect(fromQuote).toBeGreaterThanOrEqual(4)
+    // Y el 2026-09-15 la corrección de `66cd62` juntó sus dos entrecomillados en la
+    // cita entera, que sale de su propia cita: un tramo menos, y el suelo baja uno.
+    expect(spans).toBeGreaterThanOrEqual(4)
+    // El corpus perdió 11 hallazgos el 2026-08-11. El suelo baja con él, y otro más
+    // el 2026-09-15 por el mismo tramo de `66cd62`.
+    expect(fromQuote).toBeGreaterThanOrEqual(3)
   })
 
   it.each(live(AFIRMACIONES_DOCUMENTALES_FALSAS))(
@@ -3454,7 +3469,9 @@ describe('published pleno findings — el reanclaje del 2026-08-10', () => {
     // El corpus perdió 11 hallazgos el 2026-08-11 (todos aquellos cuyas citas
     // retiene la puerta editorial al completo). El suelo baja con él: sigue
     // probando que la pasada recorrió algo, que es para lo único que está.
-    expect(phrases).toBeGreaterThan(10)
+    // Y el 2026-09-15 la corrección de `66cd62` juntó sus dos entrecomillados en la
+    // cita entera, que sale de su propia cita: un tramo menos, y el suelo baja uno.
+    expect(phrases).toBeGreaterThan(9)
     // Los cuatro que ya lo estaban antes de esta tanda, nominalmente, para que
     // uno nuevo no pueda esconderse dentro de un recuento.
     // `bba0e9` salió de la lista al retirarse el hallazgo entero el
