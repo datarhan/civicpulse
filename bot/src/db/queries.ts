@@ -139,14 +139,22 @@ export function getQuejaViva(db: Db, id: string): QuejaRow | null {
 }
 
 /**
- * LOPD/GDPR right-to-be-forgotten. Soft-delete: the row stays for audit
- * (5-year retention window per Art. 55 LOPD-GDD public-interest processing),
- * but every list/export helper below filters out rows with a deleted_at
- * timestamp. The citizen retains the ability to see their own deleted rows
- * via /mis (so they can confirm the deletion actually took effect).
+ * Derecho al olvido (RGPD art. 17). La fila se conserva como rastro de auditoría
+ * durante el plazo de conservación (cinco años, art. 55 LOPD-GDD), pero sin nada
+ * que diga quién la escribió ni desde dónde: en la misma transacción que marca
+ * `deleted_at` se borran la identidad de Telegram (id y usuario), las coordenadas
+ * y la referencia a la foto. Quedan el texto, la categoría, las fechas y los
+ * estados, y todo listado y export sigue filtrando por `deleted_at`.
  *
- * Returns true if a row was deleted, false if the id was missing OR not
- * owned by the requesting user (never leaks existence to unauthorised users).
+ * El aviso legal y la respuesta del bot prometían un «registro anónimo» y esta
+ * función sólo ponía `deleted_at`: lo único anónimo era el nombre del evento. La
+ * identidad servía, según el propio aviso, para consultar, apoyar o eliminar tus
+ * quejas, y ese propósito se acaba con la retirada. Consecuencias buscadas: una
+ * segunda petición del mismo autor ya no la encuentra, porque el registro ya no
+ * sabe que era suya, y /mis deja de listarla.
+ *
+ * Devuelve true si la retira y false si el id no existe o no es de quien lo pide:
+ * la misma respuesta en los dos casos, para no confirmar ids ajenos.
  */
 export function softDeleteQueja(db: Db, id: string, userId: number): boolean {
   const row = db.prepare('SELECT telegram_user_id, deleted_at FROM quejas WHERE id = ?').get(id) as
@@ -154,10 +162,16 @@ export function softDeleteQueja(db: Db, id: string, userId: number): boolean {
     | undefined
   if (!row) return false
   if (row.telegram_user_id !== userId) return false // never confirm existence cross-user
-  if (row.deleted_at) return true // idempotent — already deleted counts as success
+  // Sólo llega aquí una retirada de antes de este cambio que aún conserva su autor
+  // (`anonimizaRetiradas` las limpia al abrir la base): cuenta como hecha.
+  if (row.deleted_at) return true
   const tx = db.transaction(() => {
     db.prepare(
-      `UPDATE quejas SET deleted_at = datetime('now'), updated_at = datetime('now') WHERE id = ?`,
+      `UPDATE quejas
+          SET deleted_at = datetime('now'), updated_at = datetime('now'),
+              telegram_user_id = 0, telegram_username = NULL,
+              lat = NULL, lng = NULL, photo_file_id = NULL
+        WHERE id = ?`,
     ).run(id)
     db.prepare(`INSERT INTO events (queja_id, kind, payload) VALUES (?, 'anonymised', ?)`).run(
       id,
@@ -166,6 +180,25 @@ export function softDeleteQueja(db: Db, id: string, userId: number): boolean {
   })
   tx()
   return true
+}
+
+/**
+ * Las quejas retiradas ANTES de que /olvidar borrara la identidad conservan la fila
+ * entera, y a quienes las retiraron se les dijo lo mismo: «registro anónimo».
+ * `openDb` la llama al abrir la base, así que el primer arranque tras desplegar las
+ * deja como las de ahora. Idempotente: devuelve cuántas tocó, y la segunda vez, 0.
+ */
+export function anonimizaRetiradas(db: Db): number {
+  return db
+    .prepare(
+      `UPDATE quejas
+          SET telegram_user_id = 0, telegram_username = NULL,
+              lat = NULL, lng = NULL, photo_file_id = NULL
+        WHERE deleted_at IS NOT NULL
+          AND (telegram_user_id != 0 OR telegram_username IS NOT NULL
+               OR lat IS NOT NULL OR lng IS NOT NULL OR photo_file_id IS NOT NULL)`,
+    )
+    .run().changes
 }
 
 /**
@@ -185,8 +218,8 @@ export function softDeleteQueja(db: Db, id: string, userId: number): boolean {
  * `rowid` lo asigna SQLite en orden de inserción y no depende de relojes.
  */
 export function listUserQuejas(db: Db, userId: number, limit = 20): QuejaRow[] {
-  // Includes soft-deleted rows so the citizen can confirm their /olvidar
-  // request took effect. The UI marks them visually.
+  // Una queja retirada con /olvidar ya no sale aquí sin necesidad de filtrarla: el
+  // registro deja de saber de quién era (`telegram_user_id = 0`).
   return db
     .prepare(
       'SELECT * FROM quejas WHERE telegram_user_id = ? ORDER BY created_at DESC, rowid DESC LIMIT ?',
