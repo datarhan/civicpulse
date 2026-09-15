@@ -1,7 +1,7 @@
 // @ts-check
 import { useEffect, useRef, useState } from 'react'
 import { fmtDateShort } from '../../../lib/formatters'
-import { useT } from '../../../i18n'
+import { useLocale } from '../../../i18n'
 import { MoneyCoverage } from './MoneyCoverage'
 
 const cardStyle = {
@@ -28,6 +28,10 @@ const cardStyle = {
  * esta tarjeta sólo queda la línea de cobertura (las reglas viven en DirectionD.jsx,
  * y en escritorio no se nota). Lo plegable lleva la clase `cp-plegable`; el botón de
  * detalle va dentro de la línea de cobertura, que es lo que sigue a la vista.
+ *
+ * La fecha del cursor y el nombre accesible del deslizador siguen el idioma de la
+ * portada: la fecha sólo cambia el nombre del mes, y los importes van en `es-ES` en
+ * los dos idiomas.
  */
 export function MoneyTimeSlider({
   snapshot,
@@ -42,7 +46,7 @@ export function MoneyTimeSlider({
   plegada = true,
   onPlegar,
 }) {
-  const t = useT()
+  const { t, locale } = useLocale()
   const [playing, setPlaying] = useState(false)
   const raf = useRef(0)
   const acc = useRef(value)
@@ -75,7 +79,7 @@ export function MoneyTimeSlider({
   }, [playing])
 
   if (!min || !max || min >= max) return null
-  const label = fmtDateShort(new Date(value).toISOString())
+  const label = fmtDateShort(new Date(value).toISOString(), locale)
 
   return (
     <div className="cp-dinero" style={cardStyle}>
@@ -160,7 +164,7 @@ export function MoneyTimeSlider({
               setPlaying(false)
               onChange(Number(e.target.value))
             }}
-            aria-label="Línea de tiempo de los contratos situados por zona"
+            aria-label={t('map.money.slider')}
             aria-valuetext={label}
             style={{ flex: 1, accentColor: 'var(--civic)' }}
           />

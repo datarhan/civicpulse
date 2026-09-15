@@ -3,6 +3,7 @@ import { Marker, Pane, Tooltip } from 'react-leaflet'
 import L from 'leaflet'
 import { useCivicPoi } from '../../../hooks/useCivicPoi'
 import { POI_CATEGORIES, POI_HALO, POI_INK, POI_SHAPES, POI_VIEWBOX } from '../../../lib/civic-poi'
+import { PoiTooltip } from '../popups/Tooltips'
 
 /**
  * Public-service points of interest (schools, health, parks, sport, culture,
@@ -61,13 +62,7 @@ export function CivicPoiLayer() {
         return (
           <Marker key={p.id} position={[p.lat, p.lng]} icon={icon} title={p.name}>
             <Tooltip direction="top" offset={[0, -6]}>
-              <div style={{ fontFamily: 'Outfit, sans-serif', fontSize: 'var(--fs-meta)' }}>
-                <strong>{p.name}</strong>
-                <br />
-                <span style={{ color: cat ? cat.color : undefined, fontWeight: 600 }}>
-                  {cat ? cat.label : p.category}
-                </span>
-              </div>
+              <PoiTooltip poi={p} />
             </Tooltip>
           </Marker>
         )

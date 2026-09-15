@@ -1,6 +1,7 @@
 // @ts-check
 import { useIncendios } from '../../../hooks/useIncendios'
 import { useT } from '../../../i18n'
+import { rellena } from '../../../lib/formatters'
 import { TONOS_RECENCIA, repartoDeCausas } from '../../../lib/incendios'
 import { IncendiosCobertura } from './IncendiosCobertura'
 
@@ -58,7 +59,7 @@ export function IncendiosLegend() {
                 }}
               />
               <span style={{ fontSize: 'var(--fs-micro)', color: 'rgba(11,15,25,.7)' }}>
-                {tono.corta}
+                {t(tono.claveCorta)}
               </span>
             </div>
           ))}
@@ -75,7 +76,7 @@ export function IncendiosLegend() {
               lineHeight: 1.35,
             }}
           >
-            <div style={{ ...titleStyle, marginBottom: 3 }}>Causa según el parte</div>
+            <div style={{ ...titleStyle, marginBottom: 3 }}>{t('map.incendios.causaTitulo')}</div>
             {reparto.grupos.map((g) => (
               <div
                 key={g.causa}
@@ -91,8 +92,10 @@ export function IncendiosLegend() {
             <div style={{ marginTop: 3, fontSize: 'var(--fs-micro)', color: 'rgba(11,15,25,.55)' }}>
               {/* El denominador, a la vista. Los partes sin causa determinada
                 quedan fuera: «no se sabe» no es una causa. */}
-              Sobre {reparto.conCausa} partes con causa determinada
-              {reparto.sinClasificar > 0 && `; en otros ${reparto.sinClasificar} no consta`}.
+              {rellena(t('map.incendios.sobre'), { n: reparto.conCausa })}
+              {reparto.sinClasificar > 0 &&
+                rellena(t('map.incendios.noConsta'), { n: reparto.sinClasificar })}
+              .
             </div>
           </div>
         )}

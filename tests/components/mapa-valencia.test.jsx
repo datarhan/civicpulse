@@ -26,6 +26,8 @@ import { LocaleProvider } from '../../src/i18n'
 import { peekSnapshot } from '../../src/lib/snapshot-store'
 import { prettyNeighborhood } from '../../src/hooks/useQuejas'
 import { aggregateNeighborhood, computePerNeighborhood } from '../../src/lib/neighborhood-aggregate'
+import { porAnyo } from '../../src/lib/incendios'
+import { POI_CATEGORIES } from '../../src/lib/civic-poi'
 import { NeighborhoodPopup } from '../../src/components/LiveCity/popups/NeighborhoodPopup'
 import { PlacePopup } from '../../src/components/LiveCity/popups/PlacePopup'
 import { IncendioPopup } from '../../src/components/LiveCity/popups/IncendioPopup'
@@ -35,8 +37,18 @@ import {
   BarrioTooltip,
   IncendioTooltip,
   PinDineroTooltip,
+  PoiTooltip,
   QuejasTooltip,
 } from '../../src/components/LiveCity/popups/Tooltips'
+import { MoneyTimeSlider } from '../../src/components/LiveCity/controls/MoneyTimeSlider'
+import { MoneyCoverage } from '../../src/components/LiveCity/controls/MoneyCoverage'
+import { FloodLegend } from '../../src/components/LiveCity/controls/FloodLegend'
+import { IncendiosYearSlider } from '../../src/components/LiveCity/controls/IncendiosYearSlider'
+import { IncendiosLegend } from '../../src/components/LiveCity/controls/IncendiosLegend'
+import { IncendiosCobertura } from '../../src/components/LiveCity/controls/IncendiosCobertura'
+import { PoiLegend } from '../../src/components/LiveCity/controls/PoiLegend'
+import { QuejasLegend } from '../../src/components/LiveCity/controls/QuejasLegend'
+import { LayerControl, MAP_LAYERS } from '../../src/components/LiveCity/controls/LayerControl'
 import { ContractCard } from '../../src/components/tenders/ContractCard'
 import { installFetchMock } from '../setup/mockFetch'
 import { detectorDeCastellano, IGUALES_EN_EL_CATALOGO, loQueSeLee } from '../setup/castellano'
@@ -240,6 +252,59 @@ const AGG_SIN_PADRON = aggregateNeighborhood({
 })
 const [FILA_MEDIBLE] = computePerNeighborhood(QUEJAS_MEDIBLES, [BARRIO])
 const [FILA_SIN_REGISTRO] = computePerNeighborhood(QUEJAS_SIN_REGISTRO, [BARRIO])
+const EQUIPAMIENTO = {
+  id: 'poi-escola',
+  name: 'CEIP La Reva',
+  category: 'educacion',
+  lat: 39.5,
+  lng: -0.5,
+}
+/** Una categoría fuera del enum se enseña tal cual llega: es un dato, no un rótulo. */
+const EQUIPAMIENTO_SIN_CATEGORIA = {
+  id: 'poi-punt-net',
+  name: 'Ecoparc de Riba-roja',
+  category: 'reciclaje',
+  lat: 39.5,
+  lng: -0.5,
+}
+
+// Leyendas y deslizadores.
+const noHaceNada = () => {}
+const UNIVERSO_DINERO = {
+  locatedAmount: 2_200_000,
+  totalAmount: 124_000_000,
+  locatedContracts: 47,
+  totalContracts: 696,
+  dateMin: '2017-01-01',
+  dateMax: '2026-06-30',
+}
+const AVISO_ICV = 'No están cartografiados todos los incendios forestales del periodo'
+const ESTE_ANYO = new Date().getFullYear()
+const incendioDeLaSerie = (over) => ({ ...INCENDIO_PROPIO_SIN_DATOS, intersecta: true, ...over })
+const INCENDIOS_CON_CAUSAS = [
+  incendioDeLaSerie({ id: 'serie-a', anyo: 2012, causa: 'intencionado' }),
+  incendioDeLaSerie({ id: 'serie-b', anyo: 2015, causa: 'rayo' }),
+  incendioDeLaSerie({ id: 'serie-c', anyo: 2019, causa: 'sinClasificar' }),
+]
+const snapIncendios = (universe) => ({
+  generatedAt: '2026-09-01T00:00:00.000Z',
+  fuente: FUENTE_INCENDIOS,
+  universe: { aviso: AVISO_ICV, ...universe },
+  incendios: INCENDIOS_CON_CAUSAS,
+})
+const TENDER_GEO_SIN_PUNTOS = {
+  generatedAt: null,
+  universe: null,
+  zones: [],
+  places: [],
+  assignments: [],
+}
+const CONTRATOS_DE_INCENDIOS = {
+  contracts: [
+    { id: 'inc-1', title: 'Servicio de prevención de incendios forestales en el término' },
+    { id: 'inc-2', title: 'Desbroce de caminos y cortafuegos del monte municipal' },
+  ],
+}
 
 // ─── Escenarios ────────────────────────────────────────────────────────────────
 
@@ -357,13 +422,16 @@ const GLOBOS = [
   },
   {
     nombre: 'los rótulos flotantes de las capas',
-    cubre: [PinDineroTooltip, BarrioTooltip, IncendioTooltip, QuejasTooltip],
+    cubre: [PinDineroTooltip, BarrioTooltip, IncendioTooltip, QuejasTooltip, PoiTooltip],
     datos: [
       PIN_UNA_OBRA.name,
       PIN_VARIAS_OBRAS.name,
       prettyNeighborhood(BARRIO.name),
       prettyNeighborhood(BARRIO_SIN_PADRON.name),
       INCENDIO_AJENO.paraje,
+      EQUIPAMIENTO.name,
+      EQUIPAMIENTO_SIN_CATEGORIA.name,
+      EQUIPAMIENTO_SIN_CATEGORIA.category,
     ],
     pinta: () => (
       <>
@@ -375,13 +443,157 @@ const GLOBOS = [
         <IncendioTooltip incendio={INCENDIO_PROPIO_SIN_DATOS} />
         <QuejasTooltip fila={FILA_MEDIBLE} />
         <QuejasTooltip fila={FILA_SIN_REGISTRO} />
+        <PoiTooltip poi={EQUIPAMIENTO} />
+        <PoiTooltip poi={EQUIPAMIENTO_SIN_CATEGORIA} />
       </>
     ),
     listo: (c) => c.textContent.includes(PIN_VARIAS_OBRAS.name),
   },
 ]
 
-const ESCENARIOS = [...GLOBOS]
+/** Las leyendas, los deslizadores y los chips que se apilan sobre el mapa. */
+const LEYENDAS = [
+  {
+    nombre: 'el deslizador del dinero situado, desplegado y con su cobertura',
+    cubre: [MoneyTimeSlider, MoneyCoverage],
+    datos: [],
+    siglas: ['DANA'],
+    pinta: () => (
+      <MoneyTimeSlider
+        snapshot={{ universe: UNIVERSO_DINERO }}
+        min={Date.parse('2018-01-01')}
+        max={Date.parse('2025-12-31')}
+        value={Date.parse('2024-06-15')}
+        onChange={noHaceNada}
+        danaOnly={false}
+        onToggleDana={noHaceNada}
+        obrasOnly={false}
+        onToggleObras={noHaceNada}
+        plegada={false}
+        onPlegar={noHaceNada}
+      />
+    ),
+    listo: (c) => !!c.querySelector('input[type=range]') && /M€/.test(c.textContent),
+  },
+  {
+    nombre: 'la leyenda de inundación, cargando y cuando el servicio falla',
+    cubre: [FloodLegend],
+    datos: [],
+    siglas: ['PATRICOVA', 'Generalitat Valenciana', 'ICV'],
+    pinta: () => (
+      <>
+        <FloodLegend estado="cargando" />
+        <FloodLegend estado="error" />
+      </>
+    ),
+    listo: (c) => c.textContent.includes('PATRICOVA'),
+  },
+  {
+    nombre: 'serie de incendios: un año con incendio, dos fuera del término y contratos sin situar',
+    cubre: [IncendiosYearSlider, IncendiosLegend, IncendiosCobertura],
+    datos: [AVISO_ICV],
+    siglas: ['ICV'],
+    fetch: {
+      '/data/incendios.json': snapIncendios({
+        dibujados: 90,
+        anyoMin: 1993,
+        anyoMax: 2024,
+        superficieHaTotal: 214.87,
+        atribuidosSinPerimetroAqui: 2,
+        superficieHaSinPerimetroAqui: 150,
+      }),
+      '/data/tenders.json': CONTRATOS_DE_INCENDIOS,
+      '/data/tender-geo.json': TENDER_GEO_SIN_PUNTOS,
+    },
+    pinta: () => (
+      <IncendiosYearSlider
+        anyoMin={1993}
+        anyoMax={2024}
+        value={2012}
+        onChange={noHaceNada}
+        serie={porAnyo(INCENDIOS_CON_CAUSAS, 1993, 2024)}
+      />
+    ),
+    listo: (c) =>
+      c.textContent.includes(AVISO_ICV) &&
+      c.textContent.includes(String(CONTRATOS_DE_INCENDIOS.contracts.length)),
+  },
+  {
+    nombre:
+      'serie de incendios: un año vacío, uno fuera del término y la cartografía de hace meses',
+    cubre: [IncendiosYearSlider, IncendiosLegend, IncendiosCobertura],
+    datos: [AVISO_ICV],
+    siglas: ['ICV'],
+    fetch: {
+      '/data/incendios.json': snapIncendios({
+        dibujados: 3,
+        anyoMin: 2000,
+        anyoMax: ESTE_ANYO - 1,
+        superficieHaTotal: 9,
+        atribuidosSinPerimetroAqui: 1,
+        superficieHaSinPerimetroAqui: 40,
+      }),
+      '/data/tenders.json': { contracts: [] },
+      '/data/tender-geo.json': TENDER_GEO_SIN_PUNTOS,
+    },
+    pinta: () => (
+      <IncendiosYearSlider
+        anyoMin={2000}
+        anyoMax={ESTE_ANYO - 1}
+        value={2001}
+        onChange={noHaceNada}
+        serie={porAnyo(INCENDIOS_CON_CAUSAS, 2000, ESTE_ANYO - 1)}
+      />
+    ),
+    listo: (c) => c.textContent.includes(AVISO_ICV) && c.textContent.includes('2001'),
+  },
+  {
+    nombre: 'la leyenda de servicios públicos, con una de cada categoría',
+    cubre: [PoiLegend],
+    datos: [],
+    siglas: ['OpenStreetMap'],
+    fetch: {
+      '/data/civic-poi.json': {
+        generatedAt: '2026-09-01T00:00:00.000Z',
+        source: 'OpenStreetMap',
+        pois: Object.keys(POI_CATEGORIES).map((category, i) => ({
+          id: `poi-${i}`,
+          name: `Equipamiento ${i}`,
+          category,
+          lat: 39.5,
+          lng: -0.5,
+        })),
+      },
+    },
+    pinta: () => <PoiLegend />,
+    listo: (c) => c.textContent.includes('OpenStreetMap'),
+  },
+  {
+    nombre: 'la leyenda de quejas, con la escala que pinta la capa',
+    cubre: [QuejasLegend],
+    datos: [],
+    fetch: {
+      '/data/geo.json': { neighborhoods: [BARRIO] },
+      '/data/quejas.json': QUEJAS_MEDIBLES,
+    },
+    pinta: () => <QuejasLegend />,
+    listo: (c) => new RegExp(`\\b${QUEJAS_MEDIBLES.items.length}\\b`).test(c.textContent),
+  },
+  {
+    nombre: 'los chips de capas',
+    cubre: [LayerControl],
+    datos: [],
+    pinta: () => (
+      <LayerControl
+        layers={{ money: true, poi: false, quejas: false, flood: false, incendios: false }}
+        onToggle={noHaceNada}
+      />
+    ),
+    listo: (c) => c.querySelectorAll('[data-capa]').length === MAP_LAYERS.length,
+  },
+]
+
+const ESCENARIOS = [...GLOBOS, ...LEYENDAS]
 
 /**
  * Pinta un escenario en un idioma y devuelve lo que se lee, cuando ya no se mueve.
@@ -468,10 +680,13 @@ describe('la comparación, probada', () => {
  * Cobertura: todo componente exportado de las carpetas vigiladas tiene su
  * escenario.
  *
- * Un globo nuevo nace sin leer en valencià, y nadie lo notaría. El glob los
- * encuentra solos y exige que algún escenario declare cubrirlo.
+ * Un globo o una leyenda nuevos nacen sin leer en valencià, y nadie lo notaría. El
+ * glob los encuentra solos y exige que algún escenario declare cubrirlos.
  */
-const MODULOS = import.meta.glob(['../../src/components/LiveCity/popups/*.jsx'], { eager: true })
+const MODULOS = import.meta.glob(
+  ['../../src/components/LiveCity/popups/*.jsx', '../../src/components/LiveCity/controls/*.jsx'],
+  { eager: true },
+)
 /** Los dos globos de estación ya se leen en valencià en `globo-estacion.test.jsx`. */
 const LEIDOS_EN_OTRA_PRUEBA = new Set([
   'StationSchedulePopup.jsx#StationSchedulePopup',
@@ -487,6 +702,10 @@ describe('cobertura de la guarda', () => {
     )
     // Mide algo: un patrón mal escrito devuelve un objeto vacío, no un error.
     expect(componentes.length).toBeGreaterThan(LEIDOS_EN_OTRA_PRUEBA.size)
+    expect(
+      componentes.some((c) => c.id.startsWith('FloodLegend.jsx#')),
+      'el glob no ve las leyendas',
+    ).toBe(true)
     const exentosQueNoExisten = [...LEIDOS_EN_OTRA_PRUEBA].filter(
       (id) => !componentes.some((c) => c.id === id),
     )

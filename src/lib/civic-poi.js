@@ -73,16 +73,20 @@ export const POI_SHAPES = {
   cruz: 'M6.1 2.5H9.9V6.1H13.5V9.9H9.9V13.5H6.1V9.9H2.5V6.1H6.1Z',
 }
 
-/** Etiqueta + color + silueta por categoría cívica. Orden = orden de la leyenda.
+/** Clave de rótulo + color + silueta por categoría cívica. Orden = orden de la leyenda.
  *  Los dos canales son REDUNDANTES a propósito: cada uno solo ya identifica la
- *  categoría, así que perder uno —daltonismo, gris, solape— no cuesta el dato. */
+ *  categoría, así que perder uno —daltonismo, gris, solape— no cuesta el dato.
+ *
+ *  El rótulo es una clave del catálogo y no un texto: «Educación» escrito aquí salía
+ *  en castellano en la leyenda y en el rótulo flotante de la portada valenciana.
+ *  `civico` reutiliza el título de la capa, que dice lo mismo. */
 export const POI_CATEGORIES = {
-  educacion: { label: 'Educación', color: '#1F5FA8', shape: 'cuadrado' },
-  salud: { label: 'Salud', color: '#C0392B', shape: 'cruz' },
-  verde: { label: 'Zonas verdes', color: '#2E7D32', shape: 'triangulo' },
-  deporte: { label: 'Deporte', color: '#7B3FA0', shape: 'circulo' },
-  cultura: { label: 'Cultura', color: '#A3197D', shape: 'rombo' },
-  civico: { label: 'Servicios públicos', color: '#4E5A65', shape: 'trianguloInvertido' },
+  educacion: { labelKey: 'map.poi.categoria.educacion', color: '#1F5FA8', shape: 'cuadrado' },
+  salud: { labelKey: 'map.poi.categoria.salud', color: '#C0392B', shape: 'cruz' },
+  verde: { labelKey: 'map.poi.categoria.verde', color: '#2E7D32', shape: 'triangulo' },
+  deporte: { labelKey: 'map.poi.categoria.deporte', color: '#7B3FA0', shape: 'circulo' },
+  cultura: { labelKey: 'map.poi.categoria.cultura', color: '#A3197D', shape: 'rombo' },
+  civico: { labelKey: 'map.poi.title', color: '#4E5A65', shape: 'trianguloInvertido' },
 }
 
 /**
@@ -100,19 +104,19 @@ export function poiShapePath(category) {
 }
 
 /**
- * Group POIs into a Map<category, {label, color, shape, path, items[]}>, in
+ * Group POIs into a Map<category, {labelKey, color, shape, path, items[]}>, in
  * POI_CATEGORIES order, omitting categories with no POIs (so the legend never
  * lists an empty bucket).
  * @param {Array<{category:string}>} [pois]
- * @returns {Map<string, {label:string, color:string, shape:string, path:string, items:any[]}>}
+ * @returns {Map<string, {labelKey:string, color:string, shape:string, path:string, items:any[]}>}
  */
 export function groupPoiByCategory(pois) {
   const out = new Map()
   for (const key of Object.keys(POI_CATEGORIES)) {
     const items = (pois ?? []).filter((p) => p.category === key)
     if (items.length === 0) continue
-    const { label, color, shape } = POI_CATEGORIES[key]
-    out.set(key, { label, color, shape, path: POI_SHAPES[shape], items })
+    const { labelKey, color, shape } = POI_CATEGORIES[key]
+    out.set(key, { labelKey, color, shape, path: POI_SHAPES[shape], items })
   }
   return out
 }

@@ -1,6 +1,7 @@
 // @ts-check
 import { useEffect, useRef, useState } from 'react'
 import { useT } from '../../../i18n'
+import { rellena } from '../../../lib/formatters'
 import { IncendiosLegend } from './IncendiosLegend'
 
 const cardStyle = {
@@ -132,13 +133,13 @@ export function IncendiosYearSlider({ anyoMin, anyoMax, value, onChange, serie }
           {actual}
           {/* Un año sin incendios se dice, no se deja en blanco: el hueco es
               parte de la serie. */}
-          {esteAnyo > 0 ? ` · +${esteAnyo}` : ' · sin incendios'}
+          {esteAnyo > 0 ? ` · +${esteAnyo}` : ` · ${t('map.incendios.sinIncendios')}`}
         </span>
         <span>{anyoMax}</span>
       </div>
 
       <div style={{ marginTop: 3, fontSize: 'var(--fs-aux)', color: 'rgba(11,15,25,.7)' }}>
-        {acumulados} incendios acumulados desde {anyoMin}
+        {rellena(t('map.incendios.acumulados'), { n: acumulados, desde: anyoMin })}
       </div>
 
       {/* Leyenda y cobertura DENTRO de esta tarjeta, no en una segunda: el

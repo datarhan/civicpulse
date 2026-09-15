@@ -17,10 +17,31 @@
  * —un atributo `fill` de un SVG de Leaflet no resuelve `var()`— y evitan el
  * naranja DANA `#E08600` de la capa de gasto para que no se confundan.
  */
+//
+// El rótulo corto de la leyenda es una clave del catálogo (`claveCorta`): «−10
+// años» escrito aquí salía en castellano en la portada valenciana.
 export const TONOS_RECENCIA = [
-  { color: '#8C2A12', etiqueta: 'Últimos 10 años', corta: '−10 años', desde: 0, hasta: 0.34 },
-  { color: '#C4653C', etiqueta: 'Hace 10-20 años', corta: '10-20', desde: 0.34, hasta: 0.67 },
-  { color: '#CFA98E', etiqueta: 'Hace más de 20 años', corta: '+20 años', desde: 0.67, hasta: 1 },
+  {
+    color: '#8C2A12',
+    etiqueta: 'Últimos 10 años',
+    claveCorta: 'map.incendios.tono.reciente',
+    desde: 0,
+    hasta: 0.34,
+  },
+  {
+    color: '#C4653C',
+    etiqueta: 'Hace 10-20 años',
+    claveCorta: 'map.incendios.tono.medio',
+    desde: 0.34,
+    hasta: 0.67,
+  },
+  {
+    color: '#CFA98E',
+    etiqueta: 'Hace más de 20 años',
+    claveCorta: 'map.incendios.tono.antiguo',
+    desde: 0.67,
+    hasta: 1,
+  },
 ]
 
 /**

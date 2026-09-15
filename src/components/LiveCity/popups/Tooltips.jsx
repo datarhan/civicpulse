@@ -1,11 +1,12 @@
 // @ts-check
 import { prettyNeighborhood } from '../../../hooks/useQuejas'
 import { useT } from '../../../i18n'
+import { POI_CATEGORIES } from '../../../lib/civic-poi'
 import { rellena } from '../../../lib/formatters'
 
 /**
  * Los rótulos que flotan al pasar por encima de un pin de dinero, un barrio, un
- * incendio o una burbuja de quejas.
+ * incendio, una burbuja de quejas o un equipamiento.
  *
  * Vivían escritos dentro de cada capa, y una capa no se monta sin un mapa de
  * Leaflet: ninguna prueba podía leerlos, y en la portada valenciana decían
@@ -99,6 +100,25 @@ export function QuejasTooltip({ fila: n }) {
           <span style={{ color: 'rgba(11,15,25,.55)' }}>{t(`quejas.reloj.${n.motivo}.corto`)}</span>
         </>
       )}
+    </div>
+  )
+}
+
+/**
+ * Un equipamiento: su nombre y su categoría, con el color de la categoría. Una
+ * categoría que no está en el enum se enseña tal cual llega, porque entonces es un
+ * dato sin rótulo y no una categoría que la leyenda explique.
+ */
+export function PoiTooltip({ poi }) {
+  const t = useT()
+  const cat = POI_CATEGORIES[poi.category]
+  return (
+    <div style={cuerpo}>
+      <strong>{poi.name}</strong>
+      <br />
+      <span style={{ color: cat ? cat.color : undefined, fontWeight: 600 }}>
+        {cat ? t(cat.labelKey) : poi.category}
+      </span>
     </div>
   )
 }

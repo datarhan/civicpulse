@@ -40,7 +40,7 @@ export function PoiLegend() {
     <div className="cp-poi-legend" style={cardStyle}>
       <div style={titleStyle}>{t('map.poi.title')}</div>
       <div style={{ display: 'grid', gap: 3 }}>
-        {[...grouped.entries()].map(([key, { label, color, path, items }]) => (
+        {[...grouped.entries()].map(([key, { labelKey, color, path, items }]) => (
           <div
             key={key}
             style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 'var(--fs-micro)' }}
@@ -61,7 +61,7 @@ export function PoiLegend() {
                 strokeLinejoin="round"
               />
             </svg>
-            <span style={{ flex: 1, color: 'rgba(11,15,25,.75)' }}>{label}</span>
+            <span style={{ flex: 1, color: 'rgba(11,15,25,.75)' }}>{t(labelKey)}</span>
             <span className="mono" style={{ fontWeight: 700, color: '#0B0F19' }}>
               {items.length}
             </span>

@@ -22,6 +22,8 @@ import { CATALOGUE } from '../src/i18n'
 import { CONTRACT_STATUS, TENDER_STATUS } from '../src/scraper/tenders'
 import { CAUSAS } from '../src/scraper/incendios'
 import { PLACE_KINDS } from '../src/scraper/place-resolver'
+import { POI_CATEGORIES } from '../src/lib/civic-poi'
+import { TONOS_RECENCIA } from '../src/lib/incendios'
 
 const IDIOMAS = ['es', 'ca'] as const
 const tabla = CATALOGUE as unknown as Record<(typeof IDIOMAS)[number], Record<string, string>>
@@ -79,5 +81,30 @@ describe('los enums del mapa tienen rótulo en los dos idiomas', () => {
   it.each(FAMILIAS)('$familia', ({ prefijo, valores }) => {
     expect(valores.length, 'la familia no mide ningún valor').toBeGreaterThan(0)
     expect(sinRotulo(valores.map((v) => `${prefijo}${v}`))).toEqual([])
+  })
+})
+
+/**
+ * Las dos tablas que pintan las leyendas no guardan el rótulo sino su clave: las
+ * categorías de equipamiento y los tres tonos de antigüedad de un incendio. Cada
+ * fila tiene que traer una, y la clave existir en los dos idiomas.
+ */
+const TABLAS_CON_CLAVE = [
+  {
+    tabla: 'categorías de equipamiento (POI_CATEGORIES)',
+    claves: Object.values(POI_CATEGORIES).map((c) => (c as { labelKey?: unknown }).labelKey),
+  },
+  {
+    tabla: 'tonos de antigüedad de los incendios (TONOS_RECENCIA)',
+    claves: TONOS_RECENCIA.map((t) => (t as { claveCorta?: unknown }).claveCorta),
+  },
+]
+
+describe('las tablas de las leyendas guardan claves con rótulo en los dos idiomas', () => {
+  it.each(TABLAS_CON_CLAVE)('$tabla', ({ claves }) => {
+    expect(claves.length, 'la tabla no tiene filas').toBeGreaterThan(0)
+    const sinClave = claves.filter((k) => typeof k !== 'string' || k === '')
+    expect(sinClave.length, 'hay filas sin clave de rótulo').toBe(0)
+    expect(sinRotulo(claves as string[])).toEqual([])
   })
 })

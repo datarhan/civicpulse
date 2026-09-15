@@ -388,6 +388,35 @@ export const CATALOGUE = {
     'map.flood.error': 'el servicio del ICV no responde ahora mismo',
     'map.incendios.title': 'Incendios forestales',
     'map.incendios.serie': 'Serie de incendios',
+    'map.incendios.sinIncendios': 'sin incendios',
+    'map.incendios.acumulados': '{n} incendios acumulados desde {desde}',
+    'map.incendios.tono.reciente': '−10 años',
+    'map.incendios.tono.medio': '10-20',
+    'map.incendios.tono.antiguo': '+20 años',
+    'map.incendios.causaTitulo': 'Causa según el parte',
+    'map.incendios.sobre': 'Sobre {n} partes con causa determinada',
+    'map.incendios.noConsta': '; en otros {n} no consta',
+    'map.incendios.resumen': '{n} incendios · {desde}–{hasta} · {ha} ha',
+    'map.incendios.superficie':
+      'La superficie es la de cada incendio completo, no sólo la parte que ardió dentro del término.',
+    'map.incendios.cartografia.meses':
+      'La cartografía del ICV llega a {hasta}: de los últimos meses no hay perímetros dibujados, ni constancia aquí de si hubo incendios.',
+    'map.incendios.cartografia.anios':
+      'La cartografía del ICV llega a {hasta}: de los últimos {n} años no hay perímetros dibujados, ni constancia aquí de si hubo incendios.',
+    'map.incendios.fueraDelTermino.uno':
+      'Otro incendio ({ha} ha) consta a nombre de Riba-roja pero la Generalitat lo dibuja fuera del término, así que no se pinta.',
+    'map.incendios.fueraDelTermino.varios':
+      'Otros {n} incendios ({ha} ha) constan a nombre de Riba-roja pero la Generalitat los dibuja fuera del término, así que no se pintan.',
+    'map.incendios.contratosSinSituar':
+      'El ayuntamiento tiene {n} contratos que hablan de incendios y ninguno se puede situar en el mapa: la prevención se contrata para todo el municipio y no nombra ningún paraje.',
+    'map.poi.categoria.educacion': 'Educación',
+    'map.poi.categoria.salud': 'Salud',
+    'map.poi.categoria.verde': 'Zonas verdes',
+    'map.poi.categoria.deporte': 'Deporte',
+    'map.poi.categoria.cultura': 'Cultura',
+    'map.money.slider': 'Línea de tiempo de los contratos situados por zona',
+    'map.flood.nota':
+      'Zonas oficiales de peligrosidad · {fuente} (Generalitat Valenciana / ICV). Tonos más intensos = mayor riesgo.',
 
     // Globos y rótulos flotantes del mapa. Estaban escritos a mano en cada
     // componente y la portada valenciana los pintaba en castellano; cada valor es
@@ -1440,6 +1469,35 @@ export const CATALOGUE = {
     'map.flood.error': 'el servei de l’ICV no respon ara mateix',
     'map.incendios.title': 'Incendis forestals',
     'map.incendios.serie': 'Sèrie d’incendis',
+    'map.incendios.sinIncendios': 'sense incendis',
+    'map.incendios.acumulados': '{n} incendis acumulats des de {desde}',
+    'map.incendios.tono.reciente': '−10 anys',
+    'map.incendios.tono.medio': '10-20',
+    'map.incendios.tono.antiguo': '+20 anys',
+    'map.incendios.causaTitulo': 'Causa segons el part',
+    'map.incendios.sobre': 'Sobre {n} parts amb causa determinada',
+    'map.incendios.noConsta': '; en altres {n} no hi consta',
+    'map.incendios.resumen': '{n} incendis · {desde}–{hasta} · {ha} ha',
+    'map.incendios.superficie':
+      'La superfície és la de cada incendi complet, no sols la part que va cremar dins del terme.',
+    'map.incendios.cartografia.meses':
+      'La cartografia de l’ICV arriba a {hasta}: dels últims mesos no hi ha perímetres dibuixats, ni constància ací de si hi va haver incendis.',
+    'map.incendios.cartografia.anios':
+      'La cartografia de l’ICV arriba a {hasta}: dels últims {n} anys no hi ha perímetres dibuixats, ni constància ací de si hi va haver incendis.',
+    'map.incendios.fueraDelTermino.uno':
+      'Un altre incendi ({ha} ha) consta a nom de Riba-roja, però la Generalitat el dibuixa fora del terme, així que no es pinta.',
+    'map.incendios.fueraDelTermino.varios':
+      'Uns altres {n} incendis ({ha} ha) consten a nom de Riba-roja, però la Generalitat els dibuixa fora del terme, així que no es pinten.',
+    'map.incendios.contratosSinSituar':
+      'L’ajuntament té {n} contractes que parlen d’incendis i cap no es pot situar al mapa: la prevenció es contracta per a tot el municipi i no nomena cap paratge.',
+    'map.poi.categoria.educacion': 'Educació',
+    'map.poi.categoria.salud': 'Salut',
+    'map.poi.categoria.verde': 'Zones verdes',
+    'map.poi.categoria.deporte': 'Esport',
+    'map.poi.categoria.cultura': 'Cultura',
+    'map.money.slider': 'Línia de temps dels contractes situats per zona',
+    'map.flood.nota':
+      'Zones oficials de perillositat · {fuente} (Generalitat Valenciana / ICV). Tons més intensos = més risc.',
 
     // Globos y rótulos flotantes del mapa: ver la nota del bloque castellano.
     'map.barrio.habitantes': '{n} hab.',
