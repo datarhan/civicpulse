@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-14T11:07:30.109Z",
+  "generatedAt": "2026-09-15T08:34:33.172Z",
   "windowDays": 30,
   "articles": [
     {
@@ -12,12 +12,12 @@
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
-        "municipalSourceMatch": null,
+        "municipalSourceMatch": false,
         "corroboratedAcrossOutlets": false,
         "factualClaimsPresent": false,
         "opinionFraction": 0
       },
-      "score": 2
+      "score": 3
     },
     {
       "articleId": "rfy3q8",
@@ -80,12 +80,12 @@
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
-        "municipalSourceMatch": null,
+        "municipalSourceMatch": false,
         "corroboratedAcrossOutlets": true,
-        "factualClaimsPresent": false,
+        "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 3
+      "score": 5
     },
     {
       "articleId": "tel2rn",
@@ -437,12 +437,12 @@
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
-        "municipalSourceMatch": false,
+        "municipalSourceMatch": null,
         "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": true,
+        "factualClaimsPresent": false,
         "opinionFraction": 0
       },
-      "score": 4
+      "score": 2
     },
     {
       "articleId": "1t1ctq4",
@@ -964,10 +964,10 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 26,
+        "sin-datos": 39,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 3,
+      "meanTrustScore": 3.12,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -979,10 +979,10 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 23,
+        "sin-datos": 22,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.8,
+      "meanTrustScore": 2.6,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -1024,11 +1024,11 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 0,
+        "sin-datos": 1,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.8,
-      "verifiedRatio": null,
+      "meanTrustScore": 3,
+      "verifiedRatio": 0,
       "contradictedRatio": null
     },
     {
@@ -1153,8 +1153,8 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "d61b59026ce9",
-    "press-claims-verified.json": "02d9ec8cc450",
+    "plenos-agendas.json": "530574e5fcc8",
+    "press-claims-verified.json": "6a611f70e384",
     "press.json": "c825d880c2fb",
     "promises.json": "d18811c11210"
   }
