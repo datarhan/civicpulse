@@ -50,6 +50,7 @@ import { PoiLegend } from '../../src/components/LiveCity/controls/PoiLegend'
 import { QuejasLegend } from '../../src/components/LiveCity/controls/QuejasLegend'
 import { LayerControl, MAP_LAYERS } from '../../src/components/LiveCity/controls/LayerControl'
 import { ContractCard } from '../../src/components/tenders/ContractCard'
+import { EventTicker } from '../../src/variants/direction-d/MapOverlays'
 import { installFetchMock } from '../setup/mockFetch'
 import { detectorDeCastellano, IGUALES_EN_EL_CATALOGO, loQueSeLee } from '../setup/castellano'
 
@@ -593,7 +594,57 @@ const LEYENDAS = [
   },
 ]
 
-const ESCENARIOS = [...GLOBOS, ...LEYENDAS]
+// ─── Lo que flota sobre el mapa ────────────────────────────────────────────────
+
+const DIA = 24 * 60 * 60 * 1000
+/** El mismo cálculo que `useTodayEvents`: el día UTC de ahora y el de dentro de 24 h. */
+const HOY = new Date().toISOString().slice(0, 10)
+const MANANA = new Date(Date.now() + DIA).toISOString().slice(0, 10)
+const aviso = (id, kind, dia, title) => ({
+  id,
+  slug: `aviso-${id}`,
+  title,
+  link: `https://participa.ribarroja.es/aviso-${id}/`,
+  date: `${dia}T18:00:00`,
+  kind,
+})
+const snapParticipa = (items) => ({
+  generatedAt: '2026-09-01T00:00:00.000Z',
+  source: 'participa.ribarroja.es',
+  stats: { total: items.length },
+  items,
+})
+const AVISOS_CON_CLASE = [
+  aviso(1, 'activity', HOY, 'Taller de huertos urbanos'),
+  aviso(2, 'survey', MANANA, 'Encuesta de movilidad al polígono'),
+]
+/** `other` tiene rótulo propio; una clase que el mapa no conoce cae en la genérica. */
+const AVISOS_SIN_CLASE = [
+  aviso(3, 'other', HOY, 'Corte de agua en el casco antiguo'),
+  aviso(4, 'boletin', MANANA, 'Boletín de participación de septiembre'),
+]
+
+/** Los avisos de hoy y de mañana de participa.ribarroja.es, sobre el mapa. */
+const AVISOS = [
+  {
+    nombre: 'los avisos de hoy y de mañana: una actividad y una encuesta',
+    cubre: [EventTicker],
+    datos: AVISOS_CON_CLASE.flatMap((a) => [a.title, a.date]),
+    fetch: { '/data/participa.json': snapParticipa(AVISOS_CON_CLASE) },
+    pinta: () => <EventTicker />,
+    listo: (c) => c.textContent.includes(AVISOS_CON_CLASE[1].title),
+  },
+  {
+    nombre: 'un aviso a secas y uno de una clase que el mapa no conoce',
+    cubre: [EventTicker],
+    datos: AVISOS_SIN_CLASE.flatMap((a) => [a.title, a.date]),
+    fetch: { '/data/participa.json': snapParticipa(AVISOS_SIN_CLASE) },
+    pinta: () => <EventTicker />,
+    listo: (c) => c.textContent.includes(AVISOS_SIN_CLASE[1].title),
+  },
+]
+
+const ESCENARIOS = [...GLOBOS, ...LEYENDAS, ...AVISOS]
 
 /**
  * Pinta un escenario en un idioma y devuelve lo que se lee, cuando ya no se mueve.

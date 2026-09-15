@@ -24,6 +24,7 @@ import { CAUSAS } from '../src/scraper/incendios'
 import { PLACE_KINDS } from '../src/scraper/place-resolver'
 import { POI_CATEGORIES } from '../src/lib/civic-poi'
 import { TONOS_RECENCIA } from '../src/lib/incendios'
+import { KIND_ICON } from '../src/hooks/useParticipa'
 
 const IDIOMAS = ['es', 'ca'] as const
 const tabla = CATALOGUE as unknown as Record<(typeof IDIOMAS)[number], Record<string, string>>
@@ -40,6 +41,18 @@ const FILAS: Fila[] = [...(snapshot.contracts ?? []), ...(snapshot.tenders ?? []
 const publicados = (campo: keyof Fila) => [
   ...new Set(
     FILAS.map((f) => f[campo]).filter((v): v is string => typeof v === 'string' && v !== ''),
+  ),
+]
+
+/** Las clases de aviso que participa.ribarroja.es publica hoy. */
+const participa = JSON.parse(readFileSync(resolve('public/data/participa.json'), 'utf8')) as {
+  items?: { kind?: unknown }[]
+}
+const clasesPublicadas = [
+  ...new Set(
+    (participa.items ?? [])
+      .map((i) => i.kind)
+      .filter((v): v is string => typeof v === 'string' && v !== ''),
   ),
 ]
 
@@ -75,6 +88,16 @@ const FAMILIAS = [
     valores: lista(CAUSAS),
   },
   { familia: 'clases de lugar (PLACE_KINDS)', prefijo: 'map.lugar.', valores: lista(PLACE_KINDS) },
+  {
+    familia: 'clases de aviso de participa (KIND_ICON)',
+    prefijo: 'participa.tipo.',
+    valores: lista(Object.keys(KIND_ICON ?? {})),
+  },
+  {
+    familia: 'clases de aviso publicadas en participa.json',
+    prefijo: 'participa.tipo.',
+    valores: clasesPublicadas,
+  },
 ]
 
 describe('los enums del mapa tienen rótulo en los dos idiomas', () => {

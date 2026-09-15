@@ -1,8 +1,10 @@
 import { useTodayEvents } from '../../hooks/useTodayEvents'
+import { rotuloDe, useT } from '../../i18n'
 import { SANS, MONO } from './tokens'
 import { ExtLink } from '../../components/Primitives'
 
 function EventTicker() {
+  const t = useT()
   const { events } = useTodayEvents()
   if (events.length === 0) return null
   // Keep it to the top 2 so the card never dominates the map.
@@ -24,70 +26,75 @@ function EventTicker() {
         width: 'calc(100% - 64px)',
       }}
     >
-      {top.map((ev) => (
-        <ExtLink
-          key={ev.id}
-          href={ev.url}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 10,
-            background: 'rgba(14,20,34,.82)',
-            backdropFilter: 'blur(14px)',
-            WebkitBackdropFilter: 'blur(14px)',
-            border: '1px solid rgba(96,165,250,.22)',
-            borderRadius: 'var(--r-card)',
-            padding: '9px 13px',
-            color: 'white',
-            textDecoration: 'none',
-            pointerEvents: 'auto',
-            minWidth: 0,
-          }}
-          title={`${ev.kindLabel} · ${ev.date}`}
-        >
-          <span style={{ fontSize: 'var(--fs-head)', lineHeight: 1 }} aria-hidden="true">
-            {ev.icon}
-          </span>
-          <div style={{ minWidth: 0, flex: 1 }}>
-            <div
+      {top.map((ev) => {
+        // La clase del aviso pasa por el catálogo, en el idioma de la interfaz. Una
+        // clase que el mapa no conoce cae en la genérica, como antes caía en
+        // «Participación».
+        const clase = rotuloDe(t, `participa.tipo.${ev.kind}`, t('participa.tipo.desconocido'))
+        return (
+          <ExtLink
+            key={ev.id}
+            href={ev.url}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 10,
+              background: 'rgba(14,20,34,.82)',
+              backdropFilter: 'blur(14px)',
+              WebkitBackdropFilter: 'blur(14px)',
+              border: '1px solid rgba(96,165,250,.22)',
+              borderRadius: 'var(--r-card)',
+              padding: '9px 13px',
+              color: 'white',
+              textDecoration: 'none',
+              pointerEvents: 'auto',
+              minWidth: 0,
+            }}
+            title={`${clase} · ${ev.date}`}
+          >
+            <span style={{ fontSize: 'var(--fs-head)', lineHeight: 1 }} aria-hidden="true">
+              {ev.icon}
+            </span>
+            <div style={{ minWidth: 0, flex: 1 }}>
+              <div
+                style={{
+                  fontFamily: MONO,
+                  fontSize: 'var(--fs-micro)',
+                  color: 'rgba(255,255,255,.55)',
+                  letterSpacing: '.12em',
+                }}
+              >
+                {t(ev.isToday ? 'map.eventos.hoy' : 'map.eventos.manana')} · {clase.toUpperCase()}
+              </div>
+              <div
+                style={{
+                  fontFamily: SANS,
+                  fontSize: 'var(--fs-aux)',
+                  fontWeight: 600,
+                  color: '#E2E8F0',
+                  marginTop: 2,
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                {ev.title}
+              </div>
+            </div>
+            <span
               style={{
                 fontFamily: MONO,
                 fontSize: 'var(--fs-micro)',
-                color: 'rgba(255,255,255,.55)',
-                letterSpacing: '.12em',
+                color: '#F5B544',
+                letterSpacing: '.06em',
+                flexShrink: 0,
               }}
             >
-              {ev.isToday ? 'HOY EN RIBA-ROJA' : 'MAÑANA EN RIBA-ROJA'} ·{' '}
-              {ev.kindLabel.toUpperCase()}
-            </div>
-            <div
-              style={{
-                fontFamily: SANS,
-                fontSize: 'var(--fs-aux)',
-                fontWeight: 600,
-                color: '#E2E8F0',
-                marginTop: 2,
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                whiteSpace: 'nowrap',
-              }}
-            >
-              {ev.title}
-            </div>
-          </div>
-          <span
-            style={{
-              fontFamily: MONO,
-              fontSize: 'var(--fs-micro)',
-              color: '#F5B544',
-              letterSpacing: '.06em',
-              flexShrink: 0,
-            }}
-          >
-            participa ›
-          </span>
-        </ExtLink>
-      ))}
+              {t('map.eventos.participa')}
+            </span>
+          </ExtLink>
+        )
+      })}
     </div>
   )
 }

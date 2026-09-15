@@ -415,6 +415,14 @@ export const CATALOGUE = {
     'map.poi.categoria.deporte': 'Deporte',
     'map.poi.categoria.cultura': 'Cultura',
     'map.money.slider': 'Línea de tiempo de los contratos situados por zona',
+    'map.eventos.hoy': 'HOY EN RIBA-ROJA',
+    'map.eventos.manana': 'MAÑANA EN RIBA-ROJA',
+    'map.eventos.participa': 'participa ›',
+    'participa.tipo.activity': 'Actividad',
+    'participa.tipo.survey': 'Encuesta',
+    'participa.tipo.other': 'Aviso',
+    'participa.tipo.desconocido': 'Participación',
+    'liveTicker.aria': 'Datos nacionales en directo',
     'map.flood.nota':
       'Zonas oficiales de peligrosidad · {fuente} (Generalitat Valenciana / ICV). Tonos más intensos = mayor riesgo.',
 
@@ -1496,6 +1504,14 @@ export const CATALOGUE = {
     'map.poi.categoria.deporte': 'Esport',
     'map.poi.categoria.cultura': 'Cultura',
     'map.money.slider': 'Línia de temps dels contractes situats per zona',
+    'map.eventos.hoy': 'HUI A RIBA-ROJA',
+    'map.eventos.manana': 'DEMÀ A RIBA-ROJA',
+    'map.eventos.participa': 'participa ›',
+    'participa.tipo.activity': 'Activitat',
+    'participa.tipo.survey': 'Enquesta',
+    'participa.tipo.other': 'Avís',
+    'participa.tipo.desconocido': 'Participació',
+    'liveTicker.aria': 'Dades nacionals en directe',
     'map.flood.nota':
       'Zones oficials de perillositat · {fuente} (Generalitat Valenciana / ICV). Tons més intensos = més risc.',
 

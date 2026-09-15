@@ -622,6 +622,7 @@ function DetailPanel({ item, onClose }) {
 }
 
 export default function LiveTicker() {
+  const t = useT()
   const items = useTickerItems()
   const [expanded, setExpanded] = useState(null)
   const containerRef = useRef(null)
@@ -669,7 +670,7 @@ export default function LiveTicker() {
         height: 36,
         fontFamily: SANS,
       }}
-      aria-label="Datos nacionales en directo"
+      aria-label={t('liveTicker.aria')}
     >
       <div
         style={{
