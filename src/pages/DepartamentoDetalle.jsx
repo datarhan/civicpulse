@@ -524,8 +524,12 @@ export default function DepartamentoDetalle() {
         </div>
       )}
 
-      {/* Summary strip */}
+      {/* Summary strip. A 375 px, cuatro columnas dejaban 48 px de contenido por
+          celda: «APROBADOS» y el motivo de debajo pasaban el borde. `.cp-kpi-grid`
+          la baja a dos columnas en un teléfono, como las cifras de /presupuesto;
+          va en la hoja porque el estilo inline no admite una media query. */}
       <div
+        className="cp-kpi-grid"
         style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
