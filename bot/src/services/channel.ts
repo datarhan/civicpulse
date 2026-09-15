@@ -29,7 +29,7 @@ export interface Channel {
   postApoyoMilestone(q: QuejaRow, apoyos: number): Promise<void>
   postRegistrada(q: QuejaRow): Promise<void>
   postResuelta(q: QuejaRow, daysToResolve: number): Promise<void>
-  postSilencio(q: QuejaRow): Promise<void>
+  postSilencio(q: QuejaRow, plazoDias: number): Promise<void>
   postEscaladaSindic(q: QuejaRow): Promise<void>
 }
 
@@ -121,14 +121,18 @@ class TelegramChannel implements Channel {
     )
   }
 
-  async postSilencio(q: QuejaRow) {
+  // El plazo llega con cada queja desde el enrutador, que es el que decide cuándo
+  // hay silencio: escrito aquí a mano, el aviso decía «90 días» también a una
+  // petición de transparencia, cuyo plazo es de un mes. Y no promete escalar
+  // nada: lo que hay es una plantilla para acudir al Síndic.
+  async postSilencio(q: QuejaRow, plazoDias: number) {
     await this.send(
       [
         `⚠️ *SILENCIO ADMINISTRATIVO* · \`${q.id}\``,
         `*${q.title}*`,
         '',
-        '90 días desde el registro sin respuesta expresa. Silencio negativo (art. 24 LPACAP).',
-        'Escalamos al Síndic de Greuges de la Comunitat Valenciana.',
+        `${plazoDias} días desde el registro sin respuesta expresa. Silencio negativo (art. 24 LPACAP).`,
+        'Puede prepararse la plantilla para acudir al Síndic de Greuges de la Comunitat Valenciana.',
       ].join('\n'),
     )
   }

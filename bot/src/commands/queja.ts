@@ -129,14 +129,14 @@ export function quejaConversationBuilder(db: Db, channel: Channel) {
 
     const responsible = routing.concejalia.responsible
     const confirmation =
-      `✅ *Queja registrada:* \`${saved.id}\`\n\n` +
+      `✅ *Queja recibida:* \`${saved.id}\`\n\n` +
       `*Categoría:* ${catLabel}\n` +
       `*Área responsable:* ${routing.concejalia.area}\n` +
       (responsible ? `*Responsable político:* ${responsible.name} (${responsible.party})\n` : '') +
-      `\n*Plazo legal:* ${routing.timeLimits.find((t) => t.kind === 'resolucion')?.days} días (${routing.silencio === 'positivo' ? 'silencio positivo' : 'silencio negativo'})\n` +
+      `\n*Plazo legal, desde que se registre:* ${routing.timeLimits.find((t) => t.kind === 'resolucion')?.days} días (${routing.silencio === 'positivo' ? 'silencio positivo' : 'silencio negativo'})\n` +
       `*Base legal:* ${routing.legalBasis[0]?.law} ${routing.legalBasis[0]?.article}\n\n` +
       `Al llegar a *10 apoyos*, entrará en el lote semanal al Registro Electrónico.\n` +
-      `Si nadie responde en plazo, escalamos al *Síndic de Greuges CV*.\n\n` +
+      `Si vence sin respuesta, puede prepararse la plantilla para acudir al *Síndic de Greuges CV*.\n\n` +
       `• Estado: /estado\\_${saved.id.replace('Q-', '').toLowerCase()}\n` +
       `• Apoyar: /apoyar\\_${saved.id.replace('Q-', '').toLowerCase()}`
 

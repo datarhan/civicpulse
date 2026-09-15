@@ -148,6 +148,75 @@ describe('el contrato de las quejas dice lo que hace el código', () => {
   })
 })
 
+/**
+ * Lo que el bot le dice al vecino, contra lo que hacen el código y las páginas.
+ *
+ * #33 quitó de /quejas «escalamos al Síndic»: nadie escala en nombre del canal, se
+ * prepara una plantilla. El bot lo seguía diciendo en tres sitios —la bienvenida,
+ * la confirmación de cada queja y el aviso de silencio—, y la confirmación llamaba
+ * «registrada» a una queja que sólo se había recibido, en un proyecto donde
+ * «registrada» es el registro del ayuntamiento, desde el que corre el plazo.
+ */
+describe('lo que el bot le dice al vecino dice lo mismo que las páginas', () => {
+  const INICIO = lee('bot/src/commands/start.ts')
+  const QUEJA = lee('bot/src/commands/queja.ts')
+  const CANAL = lee('bot/src/services/channel.ts')
+  const OLVIDAR = lee('bot/src/commands/olvidar.ts')
+  const CONSULTAS = lee('bot/src/db/queries.ts')
+
+  it('lee los cuatro mensajes (si no, no mide nada)', () => {
+    for (const texto of [INICIO, QUEJA, CANAL, OLVIDAR]) expect(texto.length).toBeGreaterThan(500)
+  })
+
+  it('ninguno promete que el canal escala al Síndic', () => {
+    const conEscalamos = Object.entries({
+      'commands/start.ts': INICIO,
+      'commands/queja.ts': QUEJA,
+      'services/channel.ts': CANAL,
+    })
+      .filter(([, texto]) => /escalamos/i.test(texto))
+      .map(([fichero]) => fichero)
+    expect(conEscalamos, 'se prepara una plantilla; nadie escala en nombre del canal').toEqual([])
+  })
+
+  it('la bienvenida da los dos plazos del enrutador y no dice que el canal envía el lote', () => {
+    expect(INICIO).toContain(`${meses(DIAS_GENERAL)} meses`)
+    expect(INICIO).toContain(`${meses(DIAS_TRANSPARENCIA)} mes`)
+    expect(INICIO, 'el lote lo presenta una persona').not.toMatch(/enviamos el lote/i)
+  })
+
+  it('una queja recién presentada no se llama «registrada»', () => {
+    expect(QUEJA).not.toContain('Queja registrada')
+  })
+
+  it('el aviso de silencio no escribe un plazo fijo: el del enrutador cambia con la queja', () => {
+    // Con parámetro: sin él, la primera coincidencia es el `postSilencio() {}` vacío
+    // del canal mudo, y la prueba medía un método sin texto.
+    const cuerpo = CANAL.slice(
+      CANAL.indexOf('async postSilencio(q'),
+      CANAL.indexOf('async postEscaladaSindic(q'),
+    )
+    expect(cuerpo.length, 'no encuentro postSilencio').toBeGreaterThan(50)
+    expect(cuerpo, 'escribe los días a mano').not.toMatch(/\b\d+ días/)
+  })
+
+  it('la respuesta a /olvidar dice lo que pasa: «anónima» sólo si la identidad se borra, y nada de /mis', () => {
+    const retirada = CONSULTAS.slice(
+      CONSULTAS.indexOf('export function softDeleteQueja'),
+      CONSULTAS.indexOf('export function anonimizaRetiradas'),
+    )
+    expect(retirada.length, 'no encuentro softDeleteQueja').toBeGreaterThan(100)
+    if (!/telegram_user_id = 0/.test(retirada)) {
+      expect(OLVIDAR, 'promete un registro anónimo que el código no hace').not.toMatch(
+        /anonimizada|como anónima/i,
+      )
+    }
+    // Sin identidad, /mis ya no puede listarla: invitar a comprobarlo allí es mandar
+    // al vecino a buscar algo que no va a encontrar.
+    expect(OLVIDAR).not.toMatch(/verificarlo ahora mismo con \/mis/i)
+  })
+})
+
 /** Los workflows, el despliegue del bot y el cron que trae las quejas: donde viven los tiempos. */
 const WORKFLOWS = readdirSync(join(RAIZ, '.github/workflows'))
   .filter((f) => /\.ya?ml$/.test(f))
