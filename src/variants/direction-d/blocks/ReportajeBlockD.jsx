@@ -5,7 +5,7 @@ import { loadSnapshotOptional } from '../../../lib/snapshot-store'
 import { truncateAtWord, fmtDateHuman } from '../../../lib/formatters'
 import { PALETTE, SERIF, MONO } from '../tokens'
 import { SectionHeader } from '../SectionHeader'
-import { useT } from '../../../i18n'
+import { useLocale } from '../../../i18n'
 
 /**
  * The landing column's lead block: CivicPulse's own long-form investigations.
@@ -59,7 +59,7 @@ function useReportajesPublicados() {
 }
 
 export function ReportajeBlockD() {
-  const t = useT()
+  const { t, locale } = useLocale()
   const items = useReportajesPublicados()
   if (!items || items.length === 0) return null
   return (
@@ -71,7 +71,7 @@ export function ReportajeBlockD() {
       />
       {items.map(({ slug, meta }, i) => {
         const topic = reportajeTopic(meta.seccion)
-        const fecha = fmtDateHuman(meta.publicadoEl || meta.fechaDatos)
+        const fecha = fmtDateHuman(meta.publicadoEl || meta.fechaDatos, locale)
         const correcciones = meta.correcciones?.length ?? 0
         return (
           <div

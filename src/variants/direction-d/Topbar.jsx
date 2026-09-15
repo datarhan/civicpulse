@@ -1,10 +1,10 @@
 import { Ic } from '../../components/Icons'
 import { PALETTE, SANS, MONO, fmtClock } from './tokens'
-import { useT } from '../../i18n'
+import { useLocale } from '../../i18n'
 import { useAbrirBuscador } from '../../lib/buscador'
 import { Vivo } from './Vivo'
 function Header({ now }) {
-  const t = useT()
+  const { t, locale } = useLocale()
   const abrirBuscador = useAbrirBuscador()
   return (
     // Fixed 54px row on desktop; below the breakpoint it wraps and grows
@@ -146,7 +146,7 @@ function Header({ now }) {
             color: PALETTE.ink,
           }}
         >
-          {fmtClock(now)}
+          {fmtClock(now, locale)}
         </span>
         <span
           style={{
@@ -157,7 +157,7 @@ function Header({ now }) {
             textTransform: 'uppercase',
           }}
         >
-          ed. mañana
+          {t('landing.topbar.edicion')}
         </span>
       </div>
 

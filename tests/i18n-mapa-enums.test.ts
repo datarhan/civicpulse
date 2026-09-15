@@ -1,5 +1,5 @@
 /**
- * Los rótulos de los enums del mapa, en los dos idiomas.
+ * Los rótulos de los enums del mapa y de la portada, en los dos idiomas.
  *
  * Un estado de contrato, una causa de incendio o una clase de lugar se pintan
  * pasando su valor por el catálogo (`contrato.estado.<valor>`…). Si falta la
@@ -25,11 +25,14 @@ import { PLACE_KINDS } from '../src/scraper/place-resolver'
 import { POI_CATEGORIES } from '../src/lib/civic-poi'
 import { TONOS_RECENCIA } from '../src/lib/incendios'
 import { KIND_ICON } from '../src/hooks/useParticipa'
+import { PLENO_TONE } from '../src/hooks/usePlenos'
+import { CLAVE_RELACION, RELATION_LABELS } from '../src/scraper/queja-contract-relations'
+import { NIVELES_AEMET } from '../src/scraper/spain-ticker'
 
 const IDIOMAS = ['es', 'ca'] as const
 const tabla = CATALOGUE as unknown as Record<(typeof IDIOMAS)[number], Record<string, string>>
 
-type Fila = { contractType?: unknown; processType?: unknown }
+type Fila = { contractType?: unknown; processType?: unknown; categoryTitle?: unknown }
 const snapshot = JSON.parse(readFileSync(resolve('public/data/tenders.json'), 'utf8')) as {
   contracts?: Fila[]
   tenders?: Fila[]
@@ -83,6 +86,11 @@ const FAMILIAS = [
     valores: publicados('processType'),
   },
   {
+    familia: 'categorías de Gobierto publicadas en tenders.json',
+    prefijo: 'contrato.categoria.',
+    valores: publicados('categoryTitle'),
+  },
+  {
     familia: 'causas de incendio (CAUSAS)',
     prefijo: 'map.incendio.causa.',
     valores: lista(CAUSAS),
@@ -98,9 +106,29 @@ const FAMILIAS = [
     prefijo: 'participa.tipo.',
     valores: clasesPublicadas,
   },
+  {
+    familia: 'relaciones entre una queja y un contrato (RELATION_LABELS → CLAVE_RELACION)',
+    prefijo: 'contrato.relacion.',
+    // La clave no puede ser el valor: «misma zona y materia» lleva espacios. Un valor
+    // que CLAVE_RELACION no nombra se queda sin clave, y así lo dice la lista.
+    valores: lista(RELATION_LABELS).map(
+      (valor) =>
+        (CLAVE_RELACION as Record<string, string> | undefined)?.[valor] ?? `sin-clave·${valor}`,
+    ),
+  },
+  {
+    familia: 'niveles de aviso de AEMET (NIVELES_AEMET)',
+    prefijo: 'liveTicker.aemet.nivel.',
+    valores: lista(NIVELES_AEMET),
+  },
+  {
+    familia: 'clases de sesión plenaria (PLENO_TONE)',
+    prefijo: 'pleno.tipo.',
+    valores: lista(Object.keys(PLENO_TONE ?? {})),
+  },
 ]
 
-describe('los enums del mapa tienen rótulo en los dos idiomas', () => {
+describe('los enums del mapa y de la portada tienen rótulo en los dos idiomas', () => {
   it.each(FAMILIAS)('$familia', ({ prefijo, valores }) => {
     expect(valores.length, 'la familia no mide ningún valor').toBeGreaterThan(0)
     expect(sinRotulo(valores.map((v) => `${prefijo}${v}`))).toEqual([])

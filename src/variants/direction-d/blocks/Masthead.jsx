@@ -1,8 +1,8 @@
 import { PALETTE, SERIF, SANS, MONO, BOT_QUEJAS, fmtDateLong } from '../tokens'
-import { useT } from '../../../i18n'
+import { useLocale, useT } from '../../../i18n'
 
 export function EditorialMasthead({ now }) {
-  const t = useT()
+  const { t, locale } = useLocale()
   return (
     <div style={{ borderBottom: '2px solid ' + PALETTE.rule, paddingBottom: 10 }}>
       <div
@@ -20,7 +20,7 @@ export function EditorialMasthead({ now }) {
         }}
       >
         <span>{t('landing.masthead.kicker')}</span>
-        <span>{fmtDateLong(now)}</span>
+        <span>{fmtDateLong(now, locale)}</span>
       </div>
       {/* The page's only h1. Until Aug 2026 the landing's single heading was
           the LeadStory press headline — so the homepage's h1 was a third-party

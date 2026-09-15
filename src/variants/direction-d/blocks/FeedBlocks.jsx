@@ -11,10 +11,18 @@ import { PALETTE } from '../tokens'
 import { SectionHeader } from '../SectionHeader'
 import { ExtLink } from '../../../components/Primitives'
 import { RetiredSourceNote } from '../../../components/RetiredSourceNote'
-import { useT } from '../../../i18n'
+import { rellena } from '../../../lib/formatters'
+import { rotuloDe, useLocale } from '../../../i18n'
+
+/** Día y mes corto, en el idioma de la interfaz: «15 sept» salía igual en valencià. */
+const diaYMes = (iso, locale) =>
+  new Date(iso).toLocaleDateString(locale === 'ca' ? 'ca-ES' : 'es-ES', {
+    day: 'numeric',
+    month: 'short',
+  })
 
 export function EmpleoBlockD() {
-  const t = useT()
+  const { t, locale } = useLocale()
   const { loading, error, data } = useEmpleo()
   if (loading || error || !data) return null
   const items = data.items || []
@@ -25,7 +33,6 @@ export function EmpleoBlockD() {
     .slice()
     .sort((a, b) => (a.deadline && b.deadline ? a.deadline.localeCompare(b.deadline) : 0))
     .slice(0, 3)
-  const fmt = (iso) => new Date(iso).toLocaleDateString('es-ES', { day: 'numeric', month: 'short' })
   return (
     <div>
       <SectionHeader
@@ -54,7 +61,9 @@ export function EmpleoBlockD() {
             </div>
             <div className="mono" style={{ fontSize: 'var(--fs-micro)', color: PALETTE.ink60 }}>
               {muni.length > 30 ? muni.slice(0, 30) + '…' : muni}
-              {o.deadline ? ` · cierra ${fmt(o.deadline)}` : ''}
+              {o.deadline
+                ? ` · ${rellena(t('landing.empleo.cierra'), { fecha: diaYMes(o.deadline, locale) })}`
+                : ''}
             </div>
           </div>
         )
@@ -77,7 +86,7 @@ export function EmpleoBlockD() {
 }
 
 export function LiveContracts() {
-  const t = useT()
+  const { t, locale } = useLocale()
   const { loading, error, data } = useTenders()
   if (loading || error || !data) return null
   const recent = (data.top?.recentAwarded || []).slice(0, 4)
@@ -152,10 +161,16 @@ export function LiveContracts() {
                 fontWeight: 700,
               }}
             >
-              {c.categoryTitle || c.contractType || 'Contrato'}
+              {/* La categoría de Gobierto es un token en inglés («architecture»): se
+                  rotula por catálogo, y sin ella, el tipo de contrato. */}
+              {(c.categoryTitle &&
+                rotuloDe(t, `contrato.categoria.${c.categoryTitle}`, c.categoryTitle)) ||
+                (c.contractType &&
+                  rotuloDe(t, `contrato.tipo.${c.contractType}`, c.contractType)) ||
+                t('landing.contratos.sinCategoria')}
             </span>
             <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: PALETTE.ink50 }}>
-              {formatTenderDate(c.awardDate)}
+              {formatTenderDate(c.awardDate, locale)}
             </span>
           </div>
           <div
@@ -173,7 +188,7 @@ export function LiveContracts() {
           <div
             style={{ display: 'flex', gap: 10, fontSize: 'var(--fs-micro)', color: PALETTE.ink60 }}
           >
-            <span>{c.contractor || 'Sin adjudicatario'}</span>
+            <span>{c.contractor || t('landing.contratos.sinAdjudicatario')}</span>
             <span
               style={{ marginLeft: 'auto', fontWeight: 700, color: PALETTE.ink }}
               className="mono"
@@ -203,8 +218,8 @@ export function LiveContracts() {
               }}
             >
               {contractTermYears(c)
-                ? `Concesión: el importe es el valor estimado por todo su plazo —${contractTermYears(c)} años—, no un gasto anual.`
-                : 'Concesión: el importe es el valor estimado por todo su plazo, no un gasto anual.'}
+                ? rellena(t('landing.contratos.concesionAnios'), { anios: contractTermYears(c) })
+                : t('landing.contratos.concesion')}
             </div>
           )}
         </div>
@@ -214,12 +229,11 @@ export function LiveContracts() {
 }
 
 export function ParticipaBlockD() {
-  const t = useT()
+  const { t, locale } = useLocale()
   const { loading, error, data } = useParticipa()
   if (loading || error || !data) return null
   const items = (data.items || []).slice(0, 3)
   if (items.length === 0) return null
-  const fmt = (iso) => new Date(iso).toLocaleDateString('es-ES', { day: 'numeric', month: 'short' })
   return (
     <div>
       <SectionHeader
@@ -267,7 +281,7 @@ export function ParticipaBlockD() {
               </ExtLink>
             </div>
             <div className="mono" style={{ fontSize: 'var(--fs-micro)', color: PALETTE.ink60 }}>
-              {fmt(it.date)} · {it.categories[0] || 'aviso'}
+              {diaYMes(it.date, locale)} · {it.categories[0] || t('landing.participa.aviso')}
             </div>
           </div>
         </div>
@@ -277,7 +291,7 @@ export function ParticipaBlockD() {
 }
 
 export function PressBlockD() {
-  const t = useT()
+  const { t, locale } = useLocale()
   const { loading, error, data } = usePress()
   if (loading || error || !data) return null
   const items = (data.items || []).slice(0, 5)
@@ -313,7 +327,7 @@ export function PressBlockD() {
             {p.official && (
               <span
                 className="mono"
-                title="Fuente primaria · Ayuntamiento"
+                title={t('landing.prensa.oficial.title')}
                 style={{
                   fontSize: 'var(--fs-micro)',
                   fontWeight: 700,
@@ -325,11 +339,11 @@ export function PressBlockD() {
                   borderRadius: 'var(--r-input)',
                 }}
               >
-                Oficial
+                {t('landing.prensa.oficial')}
               </span>
             )}
             <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: PALETTE.ink50 }}>
-              {pressTimeAgo(p.date)}
+              {pressTimeAgo(p.date, { t, locale })}
             </span>
           </div>
           <div style={{ fontSize: 'var(--fs-aux)', fontWeight: 600, lineHeight: 1.35 }}>
@@ -344,7 +358,7 @@ export function PressBlockD() {
 }
 
 export function EventsBlockD() {
-  const t = useT()
+  const { t, locale } = useLocale()
   const { loading, error, data } = useEvents()
   if (loading || error || !data) return null
   const items = upcomingEvents(data).slice(0, 4)
@@ -379,7 +393,7 @@ export function EventsBlockD() {
               textTransform: 'uppercase',
             }}
           >
-            {formatEventWhen(e.eventDate, e.eventDateText)}
+            {formatEventWhen(e.eventDate, e.eventDateText, locale)}
           </div>
           <div style={{ flex: 1, minWidth: 0 }}>
             <div

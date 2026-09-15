@@ -296,12 +296,20 @@ export function parseInIpc(raw: string): IpcSnapshot {
  * 5. AEMET avisos Valencia (HTML with embedded alert icons)
  * ============================================================ */
 
+/**
+ * Los niveles de aviso de AEMET, en runtime. La cinta de la portada los rotula por
+ * catálogo (`liveTicker.aemet.nivel.<nivel>`): hasta #38, «NARANJA» se leía igual con
+ * la interfaz en valencià.
+ */
+export const NIVELES_AEMET = ['amarillo', 'naranja', 'rojo'] as const
+export type NivelAemet = (typeof NIVELES_AEMET)[number]
+
 export interface AemetSnapshot {
   ok: boolean
   error?: string
   asOf: string
   active: boolean
-  highestLevel: 'amarillo' | 'naranja' | 'rojo' | null
+  highestLevel: NivelAemet | null
   counts: { amarillo: number; naranja: number; rojo: number } | null
   sourceUrl: string
 }

@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import {
   timeAgo,
   prettyNeighborhood,
@@ -10,6 +10,7 @@ import {
   rellena,
   porcentajeLegible,
 } from '../../src/lib/formatters'
+import { CATALOGUE } from '../../src/i18n'
 
 // Build an ISO string a given number of milliseconds in the past.
 const ago = (ms: number) => new Date(Date.now() - ms).toISOString()
@@ -46,6 +47,52 @@ describe('timeAgo (unified canonical: round / 24h / 30d)', () => {
     expect(out).not.toBe('ahora')
     // Localised "12 abr 2026"-style string — contains a 4-digit year.
     expect(out).toMatch(/\d{4}/)
+  })
+})
+
+/**
+ * La portada valenciana escribía «hace 3 h» junto a cada titular de prensa: el
+ * tiempo relativo sólo sabía castellano. Las palabras salen ahora del catálogo,
+ * que `formatters` no puede importar —no depende de React—, así que quien pinta le
+ * pasa su `t` y su idioma. Sin ellos escribe exactamente lo de siempre.
+ */
+describe('timeAgo en el idioma de la interfaz', () => {
+  const traductor = (idioma: 'es' | 'ca') => (clave: string) =>
+    (CATALOGUE[idioma] as Record<string, string>)[clave] ?? clave
+  const cadena = (idioma: 'es' | 'ca', clave: string) =>
+    (CATALOGUE[idioma] as Record<string, string>)[clave]
+
+  it('con el catálogo castellano escribe lo mismo que sin él (el control)', () => {
+    for (const ms of [10_000, 5 * MIN, 3 * HOUR, 5 * DAY, 60 * DAY]) {
+      const iso = ago(ms)
+      expect(timeAgo(iso, { t: traductor('es'), locale: 'es' })).toBe(timeAgo(iso))
+    }
+  })
+
+  it('en valencià, cada tramo con su cadena del catálogo', () => {
+    // Mide algo: las cuatro cadenas existen en valencià y no son las castellanas.
+    for (const clave of ['tiempo.ahora', 'tiempo.haceMin', 'tiempo.haceHoras', 'tiempo.haceDias']) {
+      expect(cadena('ca', clave), `falta ${clave} en valencià`).toBeTruthy()
+      expect(cadena('ca', clave)).not.toBe(cadena('es', clave))
+    }
+    const ca = { t: traductor('ca'), locale: 'ca' }
+    expect(timeAgo(ago(10_000), ca)).toBe(cadena('ca', 'tiempo.ahora'))
+    expect(timeAgo(ago(5 * MIN), ca)).toBe(rellena(cadena('ca', 'tiempo.haceMin'), { n: 5 }))
+    expect(timeAgo(ago(3 * HOUR), ca)).toBe(rellena(cadena('ca', 'tiempo.haceHoras'), { n: 3 }))
+    expect(timeAgo(ago(5 * DAY), ca)).toBe(rellena(cadena('ca', 'tiempo.haceDias'), { n: 5 }))
+  })
+
+  it('pasado el mes, la fecha va en ca-ES; sin idioma, en es-ES', () => {
+    vi.useFakeTimers({ toFake: ['Date'] })
+    try {
+      vi.setSystemTime(new Date('2026-09-15T12:00:00Z'))
+      const iso = '2026-06-03T10:00:00Z'
+      expect(timeAgo(iso, { t: traductor('ca'), locale: 'ca' })).toMatch(/juny/)
+      expect(timeAgo(iso)).toMatch(/jun/)
+      expect(timeAgo(iso)).not.toMatch(/juny/)
+    } finally {
+      vi.useRealTimers()
+    }
   })
 })
 
