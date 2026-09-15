@@ -90,6 +90,11 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
   // Money-timeline cursor. `null` = "not yet touched" → resolves to dateMax so
   // the layer opens on the full cumulative picture; scrubbing/playing sets it.
   const [at, setAt] = useState(null)
+  // La pila de controles, plegada por defecto. Sólo se nota por debajo de
+  // MAPA_COMPACTO (la regla vive en DirectionD.jsx): a 375 px, desplegada, tapaba
+  // las cuatro estaciones de Riba-roja. Plegada deja a la vista los chips y la
+  // línea de cobertura del dinero, que es la declaración de honestidad de la capa.
+  const [plegada, setPlegada] = useState(true)
   // null = sin tocar: se ve la serie entera hasta el último año cartografiado.
   const [anyoIncendios, setAnyoIncendios] = useState(null)
   const [danaOnly, setDanaOnly] = useState(false)
@@ -186,6 +191,8 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
           viewport entirely, unreachable rather than merely overlapping. The
           chip row is the last flex child, so it is what stays pinned. */}
       <div
+        className="cp-mapa-pila"
+        data-plegada={plegada ? 'true' : 'false'}
         style={{
           position: 'absolute',
           bottom: 28,
@@ -212,6 +219,8 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
             onToggleDana={setDanaOnly}
             obrasOnly={obrasOnly}
             onToggleObras={setObrasOnly}
+            plegada={plegada}
+            onPlegar={setPlegada}
           />
         )}
         {layers.poi && <PoiLegend />}

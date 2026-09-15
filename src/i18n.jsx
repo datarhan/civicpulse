@@ -377,6 +377,7 @@ export const CATALOGUE = {
     // Neutral en tipo, como el título del propio panel («Gasto situado»), que
     // vale igual con el filtro puesto que sin él.
     'map.money.accum': 'adjudicado acumulado',
+    'map.money.detalle': 'Detalle',
     'map.money.of': 'de',
     'map.money.coverage':
       'Sólo los contratos cuyo título nombra un lugar. El resto son servicios de ámbito municipal —la concesión del agua, la recogida de residuos, la limpieza viaria— adjudicados por todo su plazo y sin un punto en el mapa.',
@@ -1329,6 +1330,7 @@ export const CATALOGUE = {
     // Ver la nota del bloque castellano: el rótulo decía «obra» sobre una capa
     // que pinta todo el gasto situado. Aquí además estaba sin traducir.
     'map.money.accum': 'adjudicat acumulat',
+    'map.money.detalle': 'Detall',
     'map.money.of': 'de',
     'map.money.coverage':
       "Només els contractes el títol dels quals nomena un lloc. La resta són serveis d'àmbit municipal —la concessió de l'aigua, la recollida de residus, la neteja viària— adjudicats per tot el seu termini i sense un punt al mapa.",
