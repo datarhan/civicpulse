@@ -122,6 +122,23 @@ export function getQueja(db: Db, id: string): QuejaRow | null {
 }
 
 /**
+ * La queja a la que el bot puede responder: la que existe y no se ha retirado con
+ * /olvidar. `getQueja` a secas devuelve también las retiradas —la usa quien acaba
+ * de escribir la fila—, y cinco sitios la llamaban para contestar a quien
+ * preguntara por un id: /estado enseñaba el título de una retirada a cualquiera
+ * que lo tuviera, /apoyar le sumaba apoyos y al décimo la volvía a anunciar en el
+ * canal, /escalar la mandaba al Síndic, el lote la registraba y el documento del
+ * Síndic la servía por HTTP. Para todos ellos, una retirada y un id que no existe
+ * contestan igual.
+ */
+export function getQuejaViva(db: Db, id: string): QuejaRow | null {
+  const row = db.prepare('SELECT * FROM quejas WHERE id = ? AND deleted_at IS NULL').get(id) as
+    | QuejaRow
+    | undefined
+  return row ?? null
+}
+
+/**
  * LOPD/GDPR right-to-be-forgotten. Soft-delete: the row stays for audit
  * (5-year retention window per Art. 55 LOPD-GDD public-interest processing),
  * but every list/export helper below filters out rows with a deleted_at

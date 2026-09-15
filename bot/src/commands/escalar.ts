@@ -13,7 +13,7 @@ import type { Bot } from 'grammy'
 import type { Db } from '../db/client.ts'
 import type { Channel } from '../services/channel.ts'
 import type { MyContext } from '../types.ts'
-import { getQueja, setState } from '../db/queries.ts'
+import { getQuejaViva, setState } from '../db/queries.ts'
 import { routeUsingLocalOfficials } from '../services/router.ts'
 import { buildSindicTemplate, renderSindicMarkdown } from '../services/sindic.ts'
 
@@ -57,7 +57,7 @@ export function registerEscalar(bot: Bot<MyContext>, db: Db, channel: Channel) {
       await ctx.reply('Uso: `/escalar Q-XXXX`', { parse_mode: 'Markdown' })
       return
     }
-    const q = getQueja(db, id)
+    const q = getQuejaViva(db, id)
     if (!q) {
       await ctx.reply(`No encuentro la queja \`${id}\`.`, { parse_mode: 'Markdown' })
       return

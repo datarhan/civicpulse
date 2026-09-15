@@ -16,8 +16,17 @@
  * porque «no devuelve nada» también haría pasar un filtro que lo borre todo.
  */
 import { beforeEach, describe, expect, it } from 'vitest'
+import { readdirSync, readFileSync } from 'node:fs'
+import { join } from 'node:path'
 import { openDb, type Db } from '../src/db/client'
-import { createQueja, setState, softDeleteQueja, type NewQuejaInput } from '../src/db/queries'
+import {
+  createQueja,
+  getQuejaViva,
+  setState,
+  softDeleteQueja,
+  type NewQuejaInput,
+} from '../src/db/queries'
+import { registerBatch } from '../src/services/batch'
 import { computeRanking } from '../src/commands/ranking'
 import { computeDigest } from '../src/commands/digest'
 
@@ -133,3 +142,75 @@ function seedYRetira(db: Db, overrides: Partial<NewQuejaInput> = {}) {
   softDeleteQueja(db, q.id, 1)
   return q
 }
+
+/**
+ * Lo mismo, del lado de quien PREGUNTA por un id. `getQueja` a secas devuelve
+ * también las retiradas, y cinco sitios la usaban para contestar: /estado
+ * enseñaba el título de una queja retirada a cualquiera que tuviera su id —y los
+ * id se publican—, /apoyar le sumaba apoyos y al décimo la volvía a anunciar en
+ * el canal, /escalar la mandaba al Síndic, el lote la registraba en el
+ * ayuntamiento y el documento del Síndic la servía por HTTP.
+ *
+ * Los comandos no se pueden montar sin un `Bot` de grammy, así que la regla vive
+ * en una función de `db/queries.ts` y una guarda comprueba que nadie más la
+ * esquiva llamando a `getQueja`.
+ */
+describe('una retirada no se enseña, no se apoya, no se escala ni entra en un lote', () => {
+  let db: Db
+  beforeEach(() => {
+    db = openDb(':memory:')
+  })
+
+  it('getQuejaViva no devuelve la retirada, y sí la viva (el control)', () => {
+    const viva = seed(db)
+    const ida = seedYRetira(db)
+    expect(getQuejaViva(db, ida.id)).toBeNull()
+    expect(getQuejaViva(db, viva.id)?.id).toBe(viva.id)
+  })
+
+  it('registerBatch rechaza la retirada como si no existiera', () => {
+    // Verificada ANTES de retirarse: con 0 apoyos el lote ya la rechazaría por
+    // «insufficient apoyos» y la prueba pasaría por el motivo equivocado.
+    const ida = seed(db)
+    setState(db, ida.id, 'apoyada_verificada')
+    softDeleteQueja(db, ida.id, 1)
+    const r = registerBatch(db, {
+      ids: [ida.id],
+      entry_number: 'RE-1',
+      csv: 'x',
+      moderator_user_id: 9,
+    })
+    expect(r.registered).toEqual([])
+    expect(r.failed).toEqual([{ id: ida.id, reason: 'not found' }])
+  })
+
+  it('una verificada y viva sí entra en el lote (el control)', () => {
+    const viva = seed(db)
+    setState(db, viva.id, 'apoyada_verificada')
+    const r = registerBatch(db, {
+      ids: [viva.id],
+      entry_number: 'RE-2',
+      csv: 'y',
+      moderator_user_id: 9,
+    })
+    expect(r.registered.map((q) => q.id)).toEqual([viva.id])
+  })
+
+  it('nadie fuera de db/queries.ts llama a getQueja: la regla vive en un sitio', () => {
+    const RAIZ = join(__dirname, '../src')
+    const ts = (d: string): string[] =>
+      readdirSync(d, { withFileTypes: true }).flatMap((e) =>
+        e.isDirectory() ? ts(join(d, e.name)) : e.name.endsWith('.ts') ? [join(d, e.name)] : [],
+      )
+    const sinComentarios = (s: string) =>
+      s.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '')
+    const ficheros = ts(RAIZ)
+    expect(ficheros.length, 'no lee el código del bot').toBeGreaterThan(20)
+    const llaman = ficheros
+      .filter((f) => !f.endsWith(join('db', 'queries.ts')))
+      .filter((f) => /\bgetQueja\(/.test(sinComentarios(readFileSync(f, 'utf8'))))
+      .map((f) => f.slice(RAIZ.length + 1))
+      .sort()
+    expect(llaman).toEqual([])
+  })
+})
