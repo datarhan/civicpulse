@@ -458,6 +458,7 @@ export const CATALOGUE = {
     'plenoDetail.empty.votes':
       'Todavía no hemos transcrito las votaciones del acta de esta sesión. No significa que no las hubiera.',
     'plenoDetail.votesPending': 'sin transcribir',
+    'plenoDetail.extractionPending': 'sin extraer',
     'plenoDetail.empty.findings': 'Sin hallazgos editoriales para esta sesión.',
     // "Todavía no lo hemos recogido" ≠ "no hubo puntos". La sesión se celebró;
     // lo que falta es nuestra ingesta, no el orden del día.
@@ -1405,6 +1406,7 @@ export const CATALOGUE = {
     'plenoDetail.empty.votes':
       "Encara no hem transcrit les votacions de l'acta d'aquesta sessió. No vol dir que no n'hi haguera.",
     'plenoDetail.votesPending': 'sense transcriure',
+    'plenoDetail.extractionPending': 'sense extraure',
     'plenoDetail.empty.findings': 'Sense troballes editorials per a aquesta sessió.',
     'plenoDetail.agendaPending': 'sense recollir',
     'plenoDetail.agendaPendingLong': 'Ordre del dia encara no recollit per a aquesta sessió',

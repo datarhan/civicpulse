@@ -118,3 +118,15 @@ export function usePlenoChunk(plenoId) {
     EMPTY_CHUNK,
   )
 }
+
+/**
+ * Si la sesión tiene declaraciones extraídas. `usePlenoChunk` resuelve el 404 de
+ * una sesión sin extraer a `EMPTY_CHUNK` —no es un error—, así que «hay datos» es
+ * verdad también cuando no hay fichero. Lo que distingue las dos cosas es la
+ * identidad de esa constante: un fichero real llega siempre como un objeto nuevo.
+ *
+ * @param {unknown} chunk  el `data` de `usePlenoChunk`
+ */
+export function chunkExtraido(chunk) {
+  return chunk != null && chunk !== EMPTY_CHUNK
+}
