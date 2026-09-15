@@ -4,15 +4,8 @@ import { CircleMarker, Popup, Tooltip } from 'react-leaflet'
 import { placeAmountsAt } from '../../../lib/tender-points'
 import { useCpvLabels } from '../../../hooks/useCpvLabels'
 import { PlacePopup } from '../popups/PlacePopup'
+import { PinDineroTooltip } from '../popups/Tooltips'
 import { FitToPins } from './FitToPins'
-
-const fmtEur = (n) =>
-  new Intl.NumberFormat('es-ES', {
-    style: 'currency',
-    currency: 'EUR',
-    maximumFractionDigits: 0,
-    notation: 'compact',
-  }).format(n)
 
 /** Pixel radius for a money pin, √-scaled so a €500k obra doesn't dwarf a €20k one. */
 function pinRadius(amount) {
@@ -67,11 +60,7 @@ export function MoneyLayer({ snapshot, at, danaOnly, obrasOnly, contractsById })
             }}
           >
             <Tooltip direction="top">
-              <div style={{ fontFamily: 'Outfit, sans-serif', fontSize: 'var(--fs-meta)' }}>
-                <strong>{p.name}</strong>
-                <br />
-                {fmtEur(p.amount)} · {p.count} obra{p.count === 1 ? '' : 's'}
-              </div>
+              <PinDineroTooltip lugar={p} />
             </Tooltip>
             <Popup closeButton={true} autoPan={true} maxWidth={320}>
               <PlacePopup

@@ -1,55 +1,7 @@
 // @ts-check
 import { CircleMarker, Popup, Tooltip } from 'react-leaflet'
+import { ObraPopup } from '../popups/ObraPopup'
 import { FitToPins } from './FitToPins'
-
-const fmtEur = (n) =>
-  typeof n === 'number'
-    ? new Intl.NumberFormat('es-ES', {
-        style: 'currency',
-        currency: 'EUR',
-        maximumFractionDigits: 0,
-      }).format(n)
-    : '—'
-
-const PROGRAMA_LABEL = {
-  feder: 'FEDER 2019–20',
-  renove: 'Plan RENOVE 2023–24',
-}
-
-function renderObraDetail(o) {
-  const importe = o.importeAdjudicacion ?? o.costePrevisto
-  const importeLabel = o.importeAdjudicacion != null ? 'adj.' : 'previsto'
-  const fecha = o.inicio
-    ? `inicio ${o.inicio}`
-    : o.fechaEjecucion
-      ? `ejecución ${o.fechaEjecucion}`
-      : ''
-  return (
-    <div key={o.id} style={{ marginBottom: 6 }}>
-      <strong>{o.nombre}</strong>
-      {o.programa && (
-        <span style={{ fontSize: 'var(--fs-micro)', marginLeft: 6, opacity: 0.7 }}>
-          {PROGRAMA_LABEL[o.programa] ?? o.programa}
-        </span>
-      )}
-      <div style={{ fontSize: 'var(--fs-meta)', marginTop: 2 }}>
-        {o.empresa ? `${o.empresa}` : ''}
-        {importe != null ? ` · ${fmtEur(importe)} ${importeLabel}` : ''}
-        {typeof o.bajaPct === 'number' ? ` · baja ${o.bajaPct}%` : ''}
-        {o.plazoMeses ? ` · ${o.plazoMeses} meses` : ''}
-        {fecha ? ` · ${fecha}` : ''}
-      </div>
-      <a
-        href={o.fichaUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{ fontSize: 'var(--fs-micro)' }}
-      >
-        Ver ficha ↗
-      </a>
-    </div>
-  )
-}
 
 /**
  * Obra pins on the landing map. One CircleMarker per resolved point (obra name
@@ -80,7 +32,7 @@ export function ObrasLayer({ obras }) {
         >
           <Tooltip>{group.map((o) => o.nombre).join(' · ')}</Tooltip>
           <Popup>
-            <div style={{ minWidth: 180 }}>{group.map((o) => renderObraDetail(o))}</div>
+            <ObraPopup obras={group} />
           </Popup>
         </CircleMarker>
       ))}

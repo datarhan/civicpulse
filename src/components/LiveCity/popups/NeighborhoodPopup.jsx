@@ -1,6 +1,8 @@
 // @ts-check
 import { prettyNeighborhood } from '../../../hooks/useQuejas'
 import { useT } from '../../../i18n'
+import { rellena } from '../../../lib/formatters'
+import { NIVELES_QUEJAS } from '../controls/QuejasLegend'
 
 const fmtEur = (n) =>
   new Intl.NumberFormat('es-ES', {
@@ -9,14 +11,6 @@ const fmtEur = (n) =>
     maximumFractionDigits: 0,
     notation: 'compact',
   }).format(n)
-
-const HEALTH_LABEL = {
-  crit: 'silencio alto',
-  warn: 'silencio moderado',
-  ok: 'mayoría resueltas',
-  civic: 'en curso',
-  neutral: '',
-}
 
 const labelStyle = {
   fontFamily: "'DM Mono', monospace",
@@ -32,39 +26,50 @@ const subStyle = { fontSize: 'var(--fs-micro)', color: 'rgba(11,15,25,.55)' }
  * Aggregated civic card for one neighborhood: population (always), located
  * contract spend (or an honest "sin obras" note), and quejas with a health chip
  * — but only when quejas exist. Never colours a barrio from an absence of data.
+ *
+ * Los rótulos salen del catálogo: escritos aquí, la portada valenciana pintaba
+ * «Población», «Inversión situada» y «Quejas ciudadanas» en castellano. El tono
+ * de salud se nombra con los niveles de la leyenda de quejas (`NIVELES_QUEJAS`),
+ * así que la tarjeta y la leyenda no pueden llamar de dos maneras al mismo color.
  */
 export function NeighborhoodPopup({ agg }) {
   const t = useT()
   const { name, population, contractCount, amount, danaAmount, quejas, health } = agg
+  const nivel = NIVELES_QUEJAS.find((l) => l.level === health.level)
   return (
     <div style={{ fontFamily: 'Outfit, system-ui, sans-serif', minWidth: 210, maxWidth: 280 }}>
       <div style={{ fontSize: 'var(--fs-body)', fontWeight: 700 }}>{prettyNeighborhood(name)}</div>
       <div style={{ marginTop: 7, display: 'grid', gap: 8 }}>
         <div>
-          <div style={labelStyle}>Población</div>
+          <div style={labelStyle}>{t('eficiencia.pares.poblacion')}</div>
           <div style={valueStyle}>
-            {population ? `${population.toLocaleString('es-ES')} hab.` : '—'}
+            {population
+              ? rellena(t('map.barrio.habitantes'), { n: population.toLocaleString('es-ES') })
+              : '—'}
           </div>
         </div>
 
         <div>
-          <div style={labelStyle}>Inversión situada</div>
+          <div style={labelStyle}>{t('map.barrio.inversion')}</div>
           {contractCount > 0 ? (
             <>
               <div style={valueStyle}>
-                {fmtEur(amount)} · {contractCount} obra{contractCount === 1 ? '' : 's'}
+                {fmtEur(amount)} · {contractCount}{' '}
+                {t(contractCount === 1 ? 'map.obras.una' : 'map.obras.varias')}
               </div>
               {danaAmount > 0 && (
-                <div style={subStyle}>incluye {fmtEur(danaAmount)} recuperación DANA</div>
+                <div style={subStyle}>
+                  {rellena(t('map.barrio.danaIncluida'), { importe: fmtEur(danaAmount) })}
+                </div>
               )}
             </>
           ) : (
-            <div style={subStyle}>sin obras cuyo título nombre el barrio</div>
+            <div style={subStyle}>{t('map.barrio.sinObras')}</div>
           )}
         </div>
 
         <div>
-          <div style={labelStyle}>Quejas ciudadanas</div>
+          <div style={labelStyle}>{t('quejas.title')}</div>
           {quejas.total > 0 ? (
             <div
               style={{
@@ -96,7 +101,7 @@ export function NeighborhoodPopup({ agg }) {
                   </span>
                 )}
               </span>
-              {quejas.medible && HEALTH_LABEL[health.level] && (
+              {quejas.medible && nivel && (
                 <span
                   style={{
                     fontSize: 'var(--fs-micro)',
@@ -107,7 +112,7 @@ export function NeighborhoodPopup({ agg }) {
                     padding: '1px 6px',
                   }}
                 >
-                  {HEALTH_LABEL[health.level]}
+                  {t(nivel.labelKey)}
                 </span>
               )}
             </div>
@@ -115,7 +120,7 @@ export function NeighborhoodPopup({ agg }) {
             // «sin quejas registradas» era inexacto: `total` cuenta las que
             // pusieron los vecinos, registradas o no. Registrar es el paso
             // siguiente, y es justo el que decide si se publican ✓ ⏳ ⚠.
-            <div style={subStyle}>sin quejas de vecinos</div>
+            <div style={subStyle}>{t('map.barrio.sinQuejas')}</div>
           )}
         </div>
       </div>

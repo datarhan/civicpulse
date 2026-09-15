@@ -7,6 +7,7 @@ import { useQuejas, prettyNeighborhood } from '../../../hooks/useQuejas'
 import { aggregateNeighborhood } from '../../../lib/neighborhood-aggregate'
 import { escapeHtml } from '../shared'
 import { NeighborhoodPopup } from '../popups/NeighborhoodPopup'
+import { BarrioTooltip } from '../popups/Tooltips'
 
 /**
  * The 21 OSM neighborhoods — same dot + label as before, but now INTERACTIVE:
@@ -35,13 +36,7 @@ export function NeighborhoodsLayer() {
         return (
           <Marker key={n.id} position={n.centroid} icon={icon} title={prettyNeighborhood(n.name)}>
             <Tooltip direction="top" offset={[0, -4]}>
-              <div style={{ fontFamily: 'Outfit, sans-serif', fontSize: 'var(--fs-meta)' }}>
-                <strong>{prettyNeighborhood(n.name)}</strong>
-                <br />
-                {agg.population ? `${agg.population.toLocaleString('es-ES')} hab.` : 'Barrio OSM'}
-                {agg.quejas.total > 0 &&
-                  ` · ${agg.quejas.total} queja${agg.quejas.total === 1 ? '' : 's'}`}
-              </div>
+              <BarrioTooltip agg={agg} />
             </Tooltip>
             <Popup closeButton autoPan maxWidth={300}>
               <NeighborhoodPopup agg={agg} />

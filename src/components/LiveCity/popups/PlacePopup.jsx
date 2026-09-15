@@ -1,4 +1,6 @@
 // @ts-check
+import { rotuloDe, useT } from '../../../i18n'
+import { rellena } from '../../../lib/formatters'
 import { ContractCard } from '../../tenders/ContractCard'
 
 const fmtEur = (n) =>
@@ -8,20 +10,18 @@ const fmtEur = (n) =>
     maximumFractionDigits: 0,
   }).format(n)
 
-const KIND_LABEL = {
-  street: 'Calle / camino',
-  poi: 'Equipamiento',
-  urbanizacion: 'Urbanización',
-  barrio: 'Barrio',
-}
-
 /**
  * Map popup for a precise "obra situada" pin. Lists every located contract that
  * resolved to this place (via the multi-source resolver) using the shared
  * ContractCard. Honest by construction: a contract only appears here because its
  * title named this street / equipment / zone.
+ *
+ * La clase del lugar se rotula por su clave, `map.lugar.<clase>`, sobre el enum
+ * `PLACE_KINDS` del resolutor. Una clase que no tenga clave se pinta con su token,
+ * como se pintaba antes la que faltaba en la tabla escrita aquí.
  */
 export function PlacePopup({ place, assignments, contractsById, danaOnly, obrasOnly, cpvDict }) {
+  const t = useT()
   const works = (assignments || [])
     .filter(
       (a) =>
@@ -52,7 +52,8 @@ export function PlacePopup({ place, assignments, contractsById, danaOnly, obrasO
           className="mono"
           style={{ fontSize: 'var(--fs-meta)', fontWeight: 700, color: 'var(--civic)' }}
         >
-          {fmtEur(total)} · {works.length} obra{works.length === 1 ? '' : 's'}
+          {fmtEur(total)} · {works.length}{' '}
+          {t(works.length === 1 ? 'map.obras.una' : 'map.obras.varias')}
         </span>
         <span
           style={{
@@ -66,7 +67,7 @@ export function PlacePopup({ place, assignments, contractsById, danaOnly, obrasO
             padding: '1px 5px',
           }}
         >
-          {KIND_LABEL[place.kind] || place.kind}
+          {rotuloDe(t, `map.lugar.${place.kind}`, place.kind)}
         </span>
       </div>
       <div style={{ marginTop: 6, maxHeight: 260, overflowY: 'auto' }}>
@@ -88,7 +89,7 @@ export function PlacePopup({ place, assignments, contractsById, danaOnly, obrasO
                   margin: '2px 2px 8px',
                 }}
               >
-                Lote de: «{a.parentTitle}»
+                {rellena(t('map.lugar.lote'), { titulo: a.parentTitle })}
               </div>
             )}
           </div>
@@ -103,7 +104,7 @@ export function PlacePopup({ place, assignments, contractsById, danaOnly, obrasO
           letterSpacing: '.03em',
         }}
       >
-        Solo obras cuyo título nombra una calle, zona o equipamiento · PLACSP/TED
+        {t('map.lugar.pie')}
       </div>
     </div>
   )

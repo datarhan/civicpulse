@@ -1,6 +1,7 @@
 // @ts-check
 import { useIncendios } from '../../../hooks/useIncendios'
-import { TONOS_RECENCIA, repartoDeCausas, CAUSA_ETIQUETA } from '../../../lib/incendios'
+import { useT } from '../../../i18n'
+import { TONOS_RECENCIA, repartoDeCausas } from '../../../lib/incendios'
 import { IncendiosCobertura } from './IncendiosCobertura'
 
 const titleStyle = {
@@ -24,6 +25,7 @@ const nf1 = new Intl.NumberFormat('es-ES', { maximumFractionDigits: 0 })
  * causa no pueden estar dentro de un porcentaje sobre causas.
  */
 export function IncendiosLegend() {
+  const t = useT()
   const { data } = useIncendios()
   const reparto = repartoDeCausas(data?.incendios ?? [])
 
@@ -79,7 +81,8 @@ export function IncendiosLegend() {
                 key={g.causa}
                 style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}
               >
-                <span>{CAUSA_ETIQUETA[g.causa]}</span>
+                {/* La misma clave que el globo del incendio: una causa, un nombre. */}
+                <span>{t(`map.incendio.causa.${g.causa}`)}</span>
                 <span style={{ fontFamily: "'DM Mono', monospace" }}>
                   {g.total} · {nf1.format(g.pct)}%
                 </span>

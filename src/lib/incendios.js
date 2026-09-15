@@ -4,10 +4,11 @@
  * para que el deslizador, la leyenda y la cobertura lean lo mismo y no puedan
  * desviarse entre ellos.
  *
- * Reexporta las etiquetas de causa del parser en vez de copiarlas: el enum
- * tiene un dueño, y los componentes entran por aquí sin tocar src/scraper.
+ * Las etiquetas de causa ya no se reexportan desde el parser: eran castellano
+ * escrito en código, y la portada valenciana las pintaba tal cual. Viven en el
+ * catálogo, `map.incendio.causa.<causa>`, con una clave por cada valor de
+ * `CAUSAS`, que sigue teniendo su dueño en src/scraper.
  */
-export { CAUSA_ETIQUETA } from '../scraper/incendios'
 
 /**
  * La escala de recencia, declarada una sola vez. La leyenda pinta ESTOS

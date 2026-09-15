@@ -389,6 +389,105 @@ export const CATALOGUE = {
     'map.incendios.title': 'Incendios forestales',
     'map.incendios.serie': 'Serie de incendios',
 
+    // Globos y rótulos flotantes del mapa. Estaban escritos a mano en cada
+    // componente y la portada valenciana los pintaba en castellano; cada valor es
+    // el texto exacto que ya pintaba su componente. «Población», «Quejas
+    // ciudadanas», «días» y los tonos de salud no se repiten aquí: reutilizan
+    // `eficiencia.pares.poblacion`, `quejas.title`, `empleo.days` y
+    // `map.quejas.crit|warn|ok|civic`. Una frase, una traducción.
+    'map.barrio.habitantes': '{n} hab.',
+    'map.barrio.osm': 'Barrio OSM',
+    'map.barrio.inversion': 'Inversión situada',
+    'map.barrio.danaIncluida': 'incluye {importe} recuperación DANA',
+    'map.barrio.sinObras': 'sin obras cuyo título nombre el barrio',
+    'map.barrio.sinQuejas': 'sin quejas de vecinos',
+    // Un nombre que se escribe igual en los dos idiomas («obra», «licitador»,
+    // «adj.», «Causa») va solo en su nodo de texto: pegado a una cifra dentro de
+    // una plantilla, tests/components/mapa-valencia.test.jsx no podría
+    // distinguirlo de un rótulo sin traducir.
+    'map.obras.una': 'obra',
+    'map.obras.varias': 'obras',
+    'map.quejas.una': '{n} queja',
+    'map.quejas.varias': '{n} quejas',
+    'map.lugar.street': 'Calle / camino',
+    'map.lugar.poi': 'Equipamiento',
+    'map.lugar.urbanizacion': 'Urbanización',
+    'map.lugar.barrio': 'Barrio',
+    'map.lugar.lote': 'Lote de: «{titulo}»',
+    'map.lugar.pie': 'Solo obras cuyo título nombra una calle, zona o equipamiento · PLACSP/TED',
+    'map.incendio.deAnyo': 'Incendio de {anyo}',
+    'map.incendio.superficie': 'superficie del incendio completo',
+    'map.incendio.atribuido':
+      'Atribuido por la Generalitat a {municipio}; su perímetro entra en Riba-roja.',
+    'map.incendio.detectado': 'Detectado',
+    'map.incendio.extinguido': 'Extinguido',
+    'map.incendio.sinFecha': 'sin fecha en el parte',
+    'map.incendio.causaRotulo': 'Causa',
+    'map.incendio.causaNoConsta': 'no consta en el parte',
+    'map.incendio.reparto': 'Reparto',
+    'map.incendio.repartoHa': '{arbolada} ha arboladas · {noArbolada} ha no arboladas',
+    'map.incendio.parte': 'Parte {id} · {fuente}',
+    'map.incendio.otroTermino': 'consta en otro término',
+    // Una clave por valor del enum `CAUSAS`, el centinela incluido: el globo y la
+    // leyenda no lo pintan como causa, pero el enum lo trae.
+    'map.incendio.causa.intencionado': 'Intencionado',
+    'map.incendio.causa.negligencia': 'Negligencia o accidente',
+    'map.incendio.causa.rayo': 'Rayo',
+    'map.incendio.causa.sinClasificar': 'Sin determinar',
+    'map.obra.adjudicado': 'adj.',
+    'map.obra.previsto': 'previsto',
+    'map.obra.inicio': 'inicio {fecha}',
+    'map.obra.ejecucion': 'ejecución {fecha}',
+    'map.obra.baja': 'baja {pct}%',
+    'map.obra.meses': '{n} meses',
+    'map.obra.verFicha': 'Ver ficha ↗',
+
+    // La tarjeta de contrato: el globo de un pin de dinero y /presupuesto. Los
+    // estados son el vocabulario de `src/scraper/tenders.ts`, y `STATUS_LABEL`
+    // lee de aquí su castellano, así que el listado de /presupuesto pinta lo que
+    // pintaba; por qué cada estado se llama como se llama está contado en
+    // useTenders.js. Tipos y procedimientos son los de Gobierto, y
+    // tests/i18n-mapa-enums.test.ts exige una clave por cada valor que traiga
+    // tenders.json: de ahí `special_administrative`, que sólo sale en las
+    // licitaciones.
+    'contrato.adjudicatario': 'Adjudicatario:',
+    'contrato.baja': 'Baja de adjudicación (adjudicación vs licitación)',
+    'contrato.sinFecha': 'sin fecha',
+    'contrato.licitador': 'licitador',
+    'contrato.licitadores': 'licitadores',
+    'contrato.importeLicitacion': 'importe de licitación',
+    'contrato.situadoPor': 'situado por «{lugar}»',
+    'contrato.quejasRelacionadas': 'Quejas ciudadanas relacionadas',
+    'contrato.estado.awarded': 'Adjudicado',
+    'contrato.estado.formalized': 'Formalizado',
+    'contrato.estado.void': 'Anulado',
+    'contrato.estado.revoked': 'Renuncia',
+    'contrato.estado.abandoned': 'Desistido',
+    'contrato.estado.withdrawn': 'Retirado',
+    'contrato.estado.provisionally_awarded': 'Provisional',
+    'contrato.estado.in_progress': 'En curso',
+    'contrato.estado.open': 'Abierto',
+    'contrato.estado.evaluation': 'Valoración',
+    'contrato.estado.pending': 'Pendiente',
+    'contrato.estado.draft': 'Borrador',
+    'contrato.estado.finalized': 'Finalizado',
+    'contrato.estado.closed': 'Cerrado',
+    'contrato.estado.unknown': 'Sin clasificar',
+    'contrato.tipo.services': 'Servicios',
+    'contrato.tipo.construction': 'Obras',
+    'contrato.tipo.supplies': 'Suministros',
+    'contrato.tipo.patrimonial': 'Patrimonial',
+    'contrato.tipo.public_services_management': 'Gestión de servicios públicos',
+    'contrato.tipo.special_administrative': 'Administrativo especial',
+    'contrato.tipo.other': 'Otros',
+    'contrato.procedimiento.open': 'Abierto',
+    'contrato.procedimiento.open_simplified': 'Abierto simplificado',
+    'contrato.procedimiento.restricted': 'Restringido',
+    'contrato.procedimiento.negotiated_without_publicity': 'Negociado sin publicidad',
+    'contrato.procedimiento.negotiated_with_publicity': 'Negociado con publicidad',
+    'contrato.procedimiento.minor_contract': 'Contrato menor',
+    'contrato.procedimiento.based_on_agreement': 'Basado en acuerdo marco',
+
     // Common
     'common.loading': 'Cargando…',
     'common.noData': 'Sin datos',
@@ -1342,6 +1441,88 @@ export const CATALOGUE = {
     'map.incendios.title': 'Incendis forestals',
     'map.incendios.serie': 'Sèrie d’incendis',
 
+    // Globos y rótulos flotantes del mapa: ver la nota del bloque castellano.
+    'map.barrio.habitantes': '{n} hab.',
+    'map.barrio.osm': 'Barri OSM',
+    'map.barrio.inversion': 'Inversió situada',
+    'map.barrio.danaIncluida': 'inclou {importe} de recuperació DANA',
+    'map.barrio.sinObras': 'sense obres el títol de les quals nomene el barri',
+    'map.barrio.sinQuejas': 'sense queixes de veïns',
+    'map.obras.una': 'obra',
+    'map.obras.varias': 'obres',
+    'map.quejas.una': '{n} queixa',
+    'map.quejas.varias': '{n} queixes',
+    'map.lugar.street': 'Carrer / camí',
+    'map.lugar.poi': 'Equipament',
+    'map.lugar.urbanizacion': 'Urbanització',
+    'map.lugar.barrio': 'Barri',
+    'map.lugar.lote': 'Lot de: «{titulo}»',
+    'map.lugar.pie':
+      'Només obres el títol de les quals nomena un carrer, una zona o un equipament · PLACSP/TED',
+    'map.incendio.deAnyo': 'Incendi de {anyo}',
+    'map.incendio.superficie': 'superfície de l’incendi complet',
+    'map.incendio.atribuido':
+      'La Generalitat l’atribueix a {municipio}; el seu perímetre entra a Riba-roja.',
+    'map.incendio.detectado': 'Detectat',
+    'map.incendio.extinguido': 'Extingit',
+    'map.incendio.sinFecha': 'sense data en el part',
+    'map.incendio.causaRotulo': 'Causa',
+    'map.incendio.causaNoConsta': 'no consta en el part',
+    'map.incendio.reparto': 'Repartiment',
+    'map.incendio.repartoHa': '{arbolada} ha arbrades · {noArbolada} ha no arbrades',
+    'map.incendio.parte': 'Part {id} · {fuente}',
+    'map.incendio.otroTermino': 'consta en un altre terme',
+    'map.incendio.causa.intencionado': 'Intencionat',
+    'map.incendio.causa.negligencia': 'Negligència o accident',
+    'map.incendio.causa.rayo': 'Llamp',
+    'map.incendio.causa.sinClasificar': 'Sense determinar',
+    'map.obra.adjudicado': 'adj.',
+    'map.obra.previsto': 'previst',
+    'map.obra.inicio': 'inici {fecha}',
+    'map.obra.ejecucion': 'execució {fecha}',
+    'map.obra.baja': 'baixa {pct}%',
+    'map.obra.meses': '{n} mesos',
+    'map.obra.verFicha': 'Veure la fitxa ↗',
+
+    // La tarjeta de contrato: ver la nota del bloque castellano.
+    'contrato.adjudicatario': 'Adjudicatari:',
+    'contrato.baja': 'Baixa d’adjudicació (adjudicació vs. licitació)',
+    'contrato.sinFecha': 'sense data',
+    'contrato.licitador': 'licitador',
+    'contrato.licitadores': 'licitadors',
+    'contrato.importeLicitacion': 'import de licitació',
+    'contrato.situadoPor': 'situat per «{lugar}»',
+    'contrato.quejasRelacionadas': 'Queixes ciutadanes relacionades',
+    'contrato.estado.awarded': 'Adjudicat',
+    'contrato.estado.formalized': 'Formalitzat',
+    'contrato.estado.void': 'Anul·lat',
+    'contrato.estado.revoked': 'Renúncia',
+    'contrato.estado.abandoned': 'Desistit',
+    'contrato.estado.withdrawn': 'Retirat',
+    'contrato.estado.provisionally_awarded': 'Provisional',
+    'contrato.estado.in_progress': 'En curs',
+    'contrato.estado.open': 'Obert',
+    'contrato.estado.evaluation': 'Valoració',
+    'contrato.estado.pending': 'Pendent',
+    'contrato.estado.draft': 'Esborrany',
+    'contrato.estado.finalized': 'Finalitzat',
+    'contrato.estado.closed': 'Tancat',
+    'contrato.estado.unknown': 'Sense classificar',
+    'contrato.tipo.services': 'Serveis',
+    'contrato.tipo.construction': 'Obres',
+    'contrato.tipo.supplies': 'Subministraments',
+    'contrato.tipo.patrimonial': 'Patrimonial',
+    'contrato.tipo.public_services_management': 'Gestió de serveis públics',
+    'contrato.tipo.special_administrative': 'Administratiu especial',
+    'contrato.tipo.other': 'Altres',
+    'contrato.procedimiento.open': 'Obert',
+    'contrato.procedimiento.open_simplified': 'Obert simplificat',
+    'contrato.procedimiento.restricted': 'Restringit',
+    'contrato.procedimiento.negotiated_without_publicity': 'Negociat sense publicitat',
+    'contrato.procedimiento.negotiated_with_publicity': 'Negociat amb publicitat',
+    'contrato.procedimiento.minor_contract': 'Contracte menor',
+    'contrato.procedimiento.based_on_agreement': 'Basat en un acord marc',
+
     'common.loading': 'Carregant…',
     'common.noData': 'Sense dades',
 
@@ -1924,4 +2105,24 @@ export function useLocale() {
 
 export function useT() {
   return useContext(LocaleContext).t
+}
+
+/**
+ * El rótulo de un valor de enum: su clave del catálogo, o `reserva` si la clave
+ * no existe en ningún idioma.
+ *
+ * `t` devuelve la clave tal cual cuando falta, y «contrato.estado.formalized»
+ * pintado en una pastilla es peor que el token crudo o que nada. Cada llamada
+ * elige su reserva para pintar lo que se pintaba antes: el token crudo donde la
+ * tabla escrita a mano caía a él (`STATUS_LABEL[s] || s`), `null` donde un valor
+ * sin rótulo no se pintaba.
+ *
+ * @param {(clave: string) => string} t
+ * @param {string} clave
+ * @param {string | null} reserva
+ * @returns {string | null}
+ */
+export function rotuloDe(t, clave, reserva) {
+  const rotulo = t(clave)
+  return rotulo === clave ? reserva : rotulo
 }
