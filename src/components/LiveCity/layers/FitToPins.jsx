@@ -4,14 +4,21 @@ import { useMap } from 'react-leaflet'
 import L from 'leaflet'
 
 /**
- * On layer enable, make sure every pin is actually on screen: the map's
- * default framing centers the casco and can clip the southern strip — Leaflet
- * culls off-view circles to an empty path, so a clipped pin silently doesn't
- * paint and nothing hints it exists. If any pin lies outside the current view,
- * fitBounds to the pins (padded; never zooms in). One-shot per layer enable —
- * waits for the snapshot if it's still loading, and deliberately does NOT
- * refit on later filter/timeline changes (a map that keeps jumping is worse
- * than a stable frame).
+ * Encuadra UNA vez los puntos que recibe, para que ninguno quede fuera de la vista.
+ *
+ * El encuadre de partida centra el casco y puede cortar la franja sur, y Leaflet no
+ * pinta un círculo fuera de la vista: un pin cortado desaparece sin que nada lo
+ * delate. Si algún punto cae fuera, `fitBounds` a todos, con margen y sin acercar
+ * nunca. Una sola vez por montaje, y a propósito no vuelve a encuadrar cuando
+ * cambian los filtros o la línea de tiempo: un mapa que salta es peor que un
+ * encuadre quieto.
+ *
+ * Tiene que haber uno por mapa. El dinero situado y las obras montaban cada uno el
+ * suyo, en cuanto llegaba su instantánea, y el segundo medía la vista del primero a
+ * mitad de su animación: el mapa acababa a zoom 11 o a zoom 12 según el orden de
+ * llegada. En la CI de #39 cayó a 12, y a 375×629 una estación de Riba-roja quedó
+ * bajo la pila de controles. StylizedMap le pasa la unión de los dos puntos cuando
+ * han llegado las dos instantáneas.
  */
 export function FitToPins({ points }) {
   const map = useMap()

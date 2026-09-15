@@ -5,7 +5,6 @@ import { placeAmountsAt } from '../../../lib/tender-points'
 import { useCpvLabels } from '../../../hooks/useCpvLabels'
 import { PlacePopup } from '../popups/PlacePopup'
 import { PinDineroTooltip } from '../popups/Tooltips'
-import { FitToPins } from './FitToPins'
 
 /** Pixel radius for a money pin, √-scaled so a €500k obra doesn't dwarf a €20k one. */
 function pinRadius(amount) {
@@ -31,7 +30,8 @@ export function MoneyLayer({ snapshot, at, danaOnly, obrasOnly, contractsById })
 
   return (
     <>
-      <FitToPins points={places.map((p) => p.point)} />
+      {/* El encuadre lo hace StylizedMap, una sola vez y con las obras: dos encuadres
+          sueltos acababan en un zoom u otro según qué instantánea llegara antes. */}
       {places.map((p) => {
         // Petróleo, no el hex del PP. Leaflet escribe esto en un atributo SVG,
         // donde var(--civic) no resuelve, así que el literal es obligado.

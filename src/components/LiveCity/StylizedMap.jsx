@@ -26,7 +26,8 @@ import { MoneyTimeSlider } from './controls/MoneyTimeSlider'
 import { FloodLegend } from './controls/FloodLegend'
 import { PoiLegend } from './controls/PoiLegend'
 import { QuejasLegend } from './controls/QuejasLegend'
-import { obrasWithoutMoneyPin } from '../../lib/tender-points'
+import { obrasWithoutMoneyPin, placeAmountsAt } from '../../lib/tender-points'
+import { FitToPins } from './layers/FitToPins'
 
 function MapAttribution() {
   return (
@@ -76,9 +77,9 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
   })
   const toggleLayer = (k) => setLayers((s) => ({ ...s, [k]: !s[k] }))
 
-  const { data: tgeo } = useTenderGeo()
+  const { data: tgeo, loading: tgeoCargando } = useTenderGeo()
   const { data: tenders } = useTenders()
-  const { data: obrasData } = useObras()
+  const { data: obrasData, loading: obrasCargando } = useObras()
   // El índice de incendios (sin geometría, ~7 KB comprimido) hace falta aquí
   // para el rango del deslizador; los anillos los pide la capa, y sólo cuando
   // alguien la enciende.
@@ -125,6 +126,20 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
     [obrasData, snapshot],
   )
 
+  // Un solo encuadre para todo el mapa: los pines del dinero y las obras sin pin,
+  // juntos, y sólo cuando han llegado las dos instantáneas. Cada capa encuadraba por
+  // su lado, y el mapa acababa a un zoom u otro según cuál llegaba antes (FitToPins).
+  const puntosDelEncuadre = useMemo(() => {
+    if (tgeoCargando || obrasCargando) return []
+    const dinero = [
+      ...placeAmountsAt(snapshot.assignments, { at: effectiveAt, danaOnly, obrasOnly }).values(),
+    ].map((p) => p.point)
+    const obras = unplacedObras
+      .filter((o) => typeof o.lat === 'number' && typeof o.lng === 'number')
+      .map((o) => [o.lat, o.lng])
+    return [...dinero, ...obras]
+  }, [tgeoCargando, obrasCargando, snapshot, effectiveAt, danaOnly, obrasOnly, unplacedObras])
+
   return (
     <div style={{ position: 'relative', width: '100%', height: '100%', background: '#EFE9D9' }}>
       <MapContainer
@@ -158,6 +173,7 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
           pines se comería sus clics. */}
         {layers.incendios && <IncendiosLayer anyoVisible={anyoIncendios} />}
         {layers.poi && <CivicPoiLayer />}
+        {layers.money && <FitToPins points={puntosDelEncuadre} />}
         {layers.money && (
           <MoneyLayer
             snapshot={snapshot}

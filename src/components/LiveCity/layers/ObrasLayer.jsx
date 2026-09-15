@@ -1,7 +1,6 @@
 // @ts-check
 import { CircleMarker, Popup, Tooltip } from 'react-leaflet'
 import { ObraPopup } from '../popups/ObraPopup'
-import { FitToPins } from './FitToPins'
 
 /**
  * Obra pins on the landing map. One CircleMarker per resolved point (obra name
@@ -22,7 +21,8 @@ export function ObrasLayer({ obras }) {
   }
   return (
     <>
-      <FitToPins points={located.map((o) => [o.lat, o.lng])} />
+      {/* El encuadre lo hace StylizedMap, una sola vez y con las obras: dos encuadres
+          sueltos acababan en un zoom u otro según qué instantánea llegara antes. */}
       {[...byPoint.values()].map((group) => (
         <CircleMarker
           key={group[0].id}
