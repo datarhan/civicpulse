@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-14T11:07:30.495Z",
+  "generatedAt": "2026-09-15T09:54:54.837Z",
   "source": "queja-contract-relations engine v1 (deterministic)",
   "stats": {
     "frozen": false,
@@ -20,7 +20,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -1.8455617283950618
+          "monthsAfter": -1.8483395061728396
         }
       },
       "tier": "B",
@@ -38,7 +38,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -1.0122283950617283
+          "monthsAfter": -1.0150061728395061
         }
       },
       "tier": "B",
@@ -56,7 +56,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -1.0122283950617283
+          "monthsAfter": -1.0150061728395061
         }
       },
       "tier": "B",
@@ -74,7 +74,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -2.4455617283950617
+          "monthsAfter": -2.4483395061728395
         }
       },
       "tier": "B",
@@ -92,7 +92,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -2.3788950617283953
+          "monthsAfter": -2.381672839506173
         }
       },
       "tier": "B",
@@ -110,7 +110,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -2.4455617283950617
+          "monthsAfter": -2.4483395061728395
         }
       },
       "tier": "B",
@@ -147,7 +147,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -1.1455617283950617
+          "monthsAfter": -1.1483395061728394
         }
       },
       "tier": "B",
@@ -165,7 +165,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -2.8455617283950616
+          "monthsAfter": -2.8483395061728394
         }
       },
       "tier": "B",
@@ -183,7 +183,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -0.4788950617283951
+          "monthsAfter": -0.48167283950617285
         }
       },
       "tier": "B",
@@ -201,7 +201,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -0.7122283950617284
+          "monthsAfter": -0.7150061728395062
         }
       },
       "tier": "B",
@@ -219,7 +219,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -1.1455617283950617
+          "monthsAfter": -1.1483395061728394
         }
       },
       "tier": "B",
@@ -237,7 +237,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -1.1455617283950617
+          "monthsAfter": -1.1483395061728394
         }
       },
       "tier": "B",
@@ -255,7 +255,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -1.178895061728395
+          "monthsAfter": -1.1816728395061729
         }
       },
       "tier": "B",
@@ -273,7 +273,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": 1.5877716049382715
+          "monthsAfter": 1.5849938271604938
         }
       },
       "tier": "B",
@@ -291,7 +291,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": 2.2544382716049385
+          "monthsAfter": 2.2516604938271607
         }
       },
       "tier": "B",
@@ -328,7 +328,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -2.3455617283950616
+          "monthsAfter": -2.3483395061728394
         }
       },
       "tier": "B",
@@ -381,7 +381,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -0.4788950617283951
+          "monthsAfter": -0.48167283950617285
         }
       },
       "tier": "B",
@@ -399,7 +399,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -0.4788950617283951
+          "monthsAfter": -0.48167283950617285
         }
       },
       "tier": "B",
@@ -433,7 +433,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -0.012228395061728395
+          "monthsAfter": -0.015006172839506173
         }
       },
       "tier": "B",
@@ -455,7 +455,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -1.2122283950617283
+          "monthsAfter": -1.215006172839506
         }
       },
       "tier": "A",
@@ -473,7 +473,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -1.178895061728395
+          "monthsAfter": -1.1816728395061729
         }
       },
       "tier": "B",
@@ -491,7 +491,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -0.012228395061728395
+          "monthsAfter": -0.015006172839506173
         }
       },
       "tier": "B",
@@ -509,7 +509,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -1.1455617283950617
+          "monthsAfter": -1.1483395061728394
         }
       },
       "tier": "B",
@@ -527,7 +527,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -0.7122283950617284
+          "monthsAfter": -0.7150061728395062
         }
       },
       "tier": "B",
@@ -545,7 +545,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -1.1455617283950617
+          "monthsAfter": -1.1483395061728394
         }
       },
       "tier": "B",
@@ -563,7 +563,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": 2.2544382716049385
+          "monthsAfter": 2.2516604938271607
         }
       },
       "tier": "B",
@@ -581,7 +581,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": 2.2544382716049385
+          "monthsAfter": 2.2516604938271607
         }
       },
       "tier": "B",
@@ -599,7 +599,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": 2.1211049382716047
+          "monthsAfter": 2.118327160493827
         }
       },
       "tier": "B",
@@ -617,7 +617,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": 2.2877716049382717
+          "monthsAfter": 2.284993827160494
         }
       },
       "tier": "B",
@@ -628,8 +628,8 @@
   ],
   "builtFrom": {
     "promises.json": "d18811c11210",
-    "quejas.json": "b39d37063879",
-    "tender-geo.json": "da53b32bd5f0",
-    "tenders.json": "4afb047e13ec"
+    "quejas.json": "ee5d2cdd3c1f",
+    "tender-geo.json": "8630a802fd26",
+    "tenders.json": "32c0a61e0a92"
   }
 }
