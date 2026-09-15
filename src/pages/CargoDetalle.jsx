@@ -245,8 +245,17 @@ function AreaActivity({ slugs }) {
               {locale === 'ca' ? b.labelCa : b.labelEs} →
             </Link>
             <span style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-              <span className="mono">{b.plenoVotes.total}</span>{' '}
-              {t('cargos.detalle.actividad.votos')}
+              {/* Sin ninguna votación transcrita del área no hay cifra que dar:
+                  «0 votaciones» diría que en sus concejalías no se votó nada, y lo
+                  único que se sabe es que nadie ha transcrito esas votaciones. */}
+              {b.plenoVotes.total === 0 ? (
+                t('departamentos.card.sinVotoTranscrito')
+              ) : (
+                <>
+                  <span className="mono">{b.plenoVotes.total}</span>{' '}
+                  {t('cargos.detalle.actividad.votos')}
+                </>
+              )}
               {' · '}
               <span className="mono">{b.declaraciones.conEvidencia}</span>{' '}
               {t('cargos.detalle.actividad.declaraciones')}
