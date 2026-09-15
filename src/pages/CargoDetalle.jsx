@@ -1,7 +1,7 @@
 import { Link, useParams } from 'react-router-dom'
 import { Card, Pill, SectionHead, ExtLink } from '../components/Primitives'
 import { useOfficials, partyColor, findOfficial } from '../hooks/useOfficials'
-import { fmtDateLong } from '../lib/formatters'
+import { fmtDateLong, rellena } from '../lib/formatters'
 import { usePromises, STATUS_LABEL, STATUS_TONE } from '../hooks/usePromises'
 import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
 import { useQuejas } from '../hooks/useQuejas'
@@ -69,12 +69,22 @@ function AreaSpend({ slugs }) {
   if (rows.length === 0) return null
   const totalEur = rows.reduce((n, b) => n + b.contratacion.importeEur, 0)
   const totalN = rows.reduce((n, b) => n + b.contratacion.contratos, 0)
+  // El periodo de EXACTAMENTE las filas que se suman: el de cada área, unido. Sin
+  // él, «Dinero adjudicado en las concejalías que dirige» sumaba contratos desde
+  // 2017 junto al nombre de quien las dirige hoy, y se leía como la contratación
+  // de su mandato. Sin ningún contrato con fecha no hay periodo que inventar.
+  const conFecha = rows.map((b) => b.contratacion.anios).filter(Boolean)
+  const desde = conFecha.length ? Math.min(...conFecha.map((a) => a.desde)) : null
+  const hasta = conFecha.length ? Math.max(...conFecha.map((a) => a.hasta)) : null
+  const titulo =
+    desde === null
+      ? t('cargos.detalle.area.title')
+      : desde === hasta
+        ? rellena(t('cargos.detalle.area.titleAnio'), { anio: desde })
+        : rellena(t('cargos.detalle.area.titleRango'), { desde, hasta })
   return (
     <section style={{ marginBottom: 28 }}>
-      <SectionHead
-        eyebrow={t('cargos.detalle.area.eyebrow')}
-        title={t('cargos.detalle.area.title')}
-      />
+      <SectionHead eyebrow={t('cargos.detalle.area.eyebrow')} title={titulo} />
       <Card>
         <div
           style={{
