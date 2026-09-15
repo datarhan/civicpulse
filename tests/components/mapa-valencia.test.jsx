@@ -54,8 +54,26 @@ import { EventTicker } from '../../src/variants/direction-d/MapOverlays'
 import { installFetchMock } from '../setup/mockFetch'
 import { detectorDeCastellano, IGUALES_EN_EL_CATALOGO, loQueSeLee } from '../setup/castellano'
 
+/**
+ * La unidad del dinero compacto, leída del ICU de ESTE runtime y no escrita a mano.
+ * El Node 20.12 del portátil (CLDR 44) escribe «2 M€», y el Node 20.20 de la CI
+ * (CLDR 48), «2 M €», con un espacio duro antes del euro. Escrita «M€», la guarda
+ * pasaba en el portátil y en la CI leía cada cifra en millones como castellano. Las
+ * opciones son las de los tres formateadores del mapa, que escriben las cifras en
+ * es-ES en los dos idiomas.
+ */
+const DINERO_COMPACTO = new Intl.NumberFormat('es-ES', {
+  style: 'currency',
+  currency: 'EUR',
+  maximumFractionDigits: 1,
+  notation: 'compact',
+})
+const UNIDAD_MILLONES = DINERO_COMPACTO.format(2_000_000)
+  .replace(/^[\d.,\s]+/u, '')
+  .trim()
+
 /** Unidades: se escriben igual en los dos idiomas porque no son lengua. */
-const UNIDADES = ['M€', 'ha', 'hab.']
+const UNIDADES = [UNIDAD_MILLONES, 'ha', 'hab.']
 
 /** Primero las más largas: «hab.» se tiene que quitar antes que «ha». */
 const masLargasPrimero = (xs) =>
@@ -474,7 +492,7 @@ const LEYENDAS = [
         onPlegar={noHaceNada}
       />
     ),
-    listo: (c) => !!c.querySelector('input[type=range]') && /M€/.test(c.textContent),
+    listo: (c) => !!c.querySelector('input[type=range]') && c.textContent.includes(UNIDAD_MILLONES),
   },
   {
     nombre: 'la leyenda de inundación, cargando y cuando el servicio falla',
@@ -713,7 +731,7 @@ describe('la comparación, probada', () => {
       sinTraducir([
         ['Inversión situada', 'Inversión situada'],
         [dato, dato],
-        ['2,4 M€', '2,4 M€'],
+        [DINERO_COMPACTO.format(2_400_000), DINERO_COMPACTO.format(2_400_000)],
         ['1.200 hab.', '1.200 hab.'],
         ['ha', 'ha'],
         [igual, igual],
