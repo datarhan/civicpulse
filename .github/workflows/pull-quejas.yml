@@ -8,6 +8,14 @@ on:
 permissions:
   contents: write
 
+# El bot lo lanza al confirmar cada /olvidar (bot/src/services/republicar.ts). Dos
+# ejecuciones a la vez traerían la misma instantánea y la segunda fallaría al
+# empujar; en cola, la de detrás trae la instantánea más nueva. Sin cancelar la que
+# está en marcha, que podría estar a mitad del commit.
+concurrency:
+  group: pull-quejas
+  cancel-in-progress: false
+
 jobs:
   pull:
     runs-on: ubuntu-latest

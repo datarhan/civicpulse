@@ -67,4 +67,14 @@ describe('y el workflow que trae quejas.json la ejecuta', () => {
       'if [ -d public/data/quejas-photos ]; then git add -A -- public/data/quejas-photos; fi',
     )
   })
+
+  it('no corre dos veces a la vez: dos /olvidar seguidos no se pisan el push', () => {
+    // El bot lo lanza al confirmar cada /olvidar. Dos ejecuciones a la vez traerían
+    // la misma instantánea y la segunda fallaría al empujar; en cola, la de detrás
+    // trae la instantánea más nueva. Cancelar la que está en marcha dejaría un commit
+    // a medias.
+    const bloque = WORKFLOW.match(/^concurrency:\n((?:[ \t]+.*\n)+)/m)?.[1] ?? ''
+    expect(bloque, 'pull-quejas.yml no declara concurrency').toMatch(/group:\s*pull-quejas\b/)
+    expect(bloque).toMatch(/cancel-in-progress:\s*false/)
+  })
 })

@@ -1,6 +1,7 @@
 import type { Bot } from 'grammy'
 import type { Db } from '../db/client.ts'
 import { softDeleteQueja } from '../db/queries.ts'
+import { pedirRepublicacion, type PeticionRepublicar } from '../services/republicar.ts'
 import type { MyContext } from '../types.ts'
 
 /**
@@ -9,10 +10,12 @@ import type { MyContext } from '../types.ts'
  * `softDeleteQueja` la saca de todo listado y export y, en la misma transacción,
  * borra del registro interno la identidad de Telegram, las coordenadas y la
  * referencia a la foto; el texto queda como rastro de auditoría durante el plazo de
- * conservación. La web se entera en su siguiente actualización diaria, y esa misma
- * actualización poda la foto publicada (`scripts/fotos-quejas.mjs`). La respuesta
- * cuenta exactamente eso, sin prometer que ya no queda rastro en ninguna parte ni
- * invitar a comprobarlo en /mis, donde una queja sin autor ya no puede salir.
+ * conservación. Después el bot pide a GitHub que republique (`republicar.ts`): si
+ * GitHub acepta la petición, la web la retira en minutos; si no, en su
+ * actualización diaria. Esa misma actualización poda la foto publicada
+ * (`scripts/fotos-quejas.mjs`). La respuesta cuenta lo que de verdad pasó, sin
+ * prometer que ya no queda rastro en ninguna parte ni invitar a comprobarlo en
+ * /mis, donde una queja sin autor ya no puede salir.
  *
  * No confirma ids ajenos: el de otra persona y uno que no existe contestan igual.
  */
@@ -44,14 +47,31 @@ export function registerOlvidar(bot: Bot<MyContext>, db: Db) {
       )
       return
     }
-    await ctx.reply(
-      `✅ Queja \`${id}\` retirada.\n\n` +
-        `Ya no sale en el listado que exporta el bot, y el registro interno ya no guarda quién la escribió. ` +
-        `La web la quita del feed, del heatmap, del dashboard y del snapshot abierto en su siguiente ` +
-        `actualización, que es diaria, y en esa misma actualización borra su foto si se había publicado.\n\n` +
-        `Quedan el texto y las fechas, sin tu identidad, durante el plazo legal de conservación ` +
-        `(5 años, Art. 55 LOPD-GDD), y después se destruyen. Por eso ya no aparecerá en /mis.`,
-      { parse_mode: 'Markdown' },
-    )
+    const peticion = await pedirRepublicacion()
+    await ctx.reply(mensajeRetirada(id, peticion), { parse_mode: 'Markdown' })
   })
+}
+
+/**
+ * Lo que el bot contesta al retirar una queja. «Unos minutos» sólo cuando GitHub
+ * aceptó la petición de republicar; sin token o con la petición fallida, el plazo
+ * es la actualización diaria, y eso es lo único que se promete.
+ */
+export function mensajeRetirada(id: string, peticion: PeticionRepublicar): string {
+  const cuando =
+    peticion === 'pedida'
+      ? `La web la quita del feed, del heatmap, del dashboard y del snapshot abierto en cuanto ` +
+        `termine la actualización que el bot acaba de pedir, que suele tardar unos minutos (si ` +
+        `fallara, en la siguiente actualización diaria), y en esa misma actualización borra su ` +
+        `foto si se había publicado.`
+      : `La web la quita del feed, del heatmap, del dashboard y del snapshot abierto en su ` +
+        `siguiente actualización, que es diaria, y en esa misma actualización borra su foto si ` +
+        `se había publicado.`
+  return (
+    `✅ Queja \`${id}\` retirada.\n\n` +
+    `Ya no sale en el listado que exporta el bot, y el registro interno ya no guarda quién la ` +
+    `escribió. ${cuando}\n\n` +
+    `Quedan el texto y las fechas, sin tu identidad, durante el plazo legal de conservación ` +
+    `(5 años, Art. 55 LOPD-GDD), y después se destruyen. Por eso ya no aparecerá en /mis.`
+  )
 }
