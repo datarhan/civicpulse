@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { notaAcusacionSinContrastar } from '../src/components/PlenoFindings'
+import { notaAcusacionSinContrastar, ROTULO_CITA_RETENIDA } from '../src/components/PlenoFindings'
 import { isMachineAuthored } from '../src/scraper/finding-authorship'
 
 const ROOT = join(__dirname, '..')
@@ -32,6 +32,19 @@ describe('la nota de «acusación no contrastada» no inventa un editor humano',
       const nota = notaAcusacionSinContrastar(quien)
       expect(nota, `curador «${quien}»`).not.toMatch(/aparece igualmente|aquí aparece/i)
       expect(nota, `curador «${quien}»`).toMatch(/no se publica/i)
+    }
+  })
+
+  it('dice cuál es el literal que no se publica: el del hueco que la ficha deja a la vista', () => {
+    // La revisión lectora leyó dos veces «su literal no se publica» como si hablara de
+    // la cita impresa de al lado, cuando hablaba de la retenida: el 29-08-2026 sobre
+    // f-2026-05-11-cit-a0a379 y el 15-09-2026 sobre f-2026-05-11-cit-7f7619. La nota
+    // no decía cuál. Ahora nombra el hueco con el mismo rótulo que lo pinta.
+    expect(ROTULO_CITA_RETENIDA, 'el rótulo del hueco no se exporta').toBeTruthy()
+    for (const quien of ['auto-curation-v1', 'civicpulse-curator', '']) {
+      expect(notaAcusacionSinContrastar(quien), `curador «${quien}»`).toContain(
+        `«${ROTULO_CITA_RETENIDA}»`,
+      )
     }
   })
 
