@@ -152,10 +152,11 @@ function DepartmentCard({ bucket, frozen, contratacionYears }) {
                 bucket.quejas.medible ? undefined : t(`quejas.reloj.${bucket.quejas.motivo}.corto`)
               }
             />
+            {/* Sin rojo: las contradichas son de cualquier grupo que habló de los temas
+                del área, y esta tarjeta lleva el nombre de quien la dirige. */}
             <Stat
               label={t('departamentos.card.declaraciones')}
               value={bucket.declaraciones.conEvidencia}
-              tone={bucket.declaraciones.contradicho > 0 ? 'crit' : undefined}
               muted={bucket.declaraciones.conEvidencia === 0}
               sub={
                 bucket.declaraciones.sinDatos > 0

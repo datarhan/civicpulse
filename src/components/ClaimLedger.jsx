@@ -236,7 +236,7 @@ export function ClaimLedger({ filter, limit = 20, emptyHint, items, showSummary 
             paddingBottom: 2,
           }}
         >
-          <strong style={{ color: 'var(--ink)' }}>{mix.conEvidencia}</strong> con evidencia
+          <strong style={{ color: 'var(--ink)' }}>{mix.conEvidencia}</strong> contrastadas
           {' · '}
           <strong style={{ color: 'var(--ink)' }}>{mix.sinContraste}</strong> sin contraste en los
           datos

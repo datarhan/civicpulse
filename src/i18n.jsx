@@ -398,13 +398,13 @@ export const CATALOGUE = {
     'declaraciones.subtitle':
       'Cada afirmación, promesa o acusación detectada en los plenos municipales, cruzada contra los datos abiertos publicados (PLACSP, BDNS, presupuesto, promesas electorales). Atribución a nivel de grupo. El veredicto de cada fila lo pone un cotejo automático, salvo en las que llevan la marca «corregido por un curador», donde una persona lo ha rectificado a la baja: las declaraciones sin atribuir o sin evidencia se mantienen visibles porque se han hecho, y ninguna de ellas se convierte en un hallazgo editorial sin que una persona lo firme.',
     'declaraciones.stat.total': 'Total',
-    'declaraciones.stat.conEvidencia': 'Con evidencia',
+    'declaraciones.stat.conEvidencia': 'Contrastadas',
     'declaraciones.filter.verdict': 'Verdicto',
     'declaraciones.filter.bloc': 'Grupo',
     'declaraciones.filter.topic': 'Tema',
     'declaraciones.filter.todas': 'Todas',
     'declaraciones.filter.todos': 'Todos',
-    'declaraciones.filter.conEvidencia': 'Con evidencia',
+    'declaraciones.filter.conEvidencia': 'Contrastadas',
     'declaraciones.filter.atribuidas': 'Atribuidas',
     'declaraciones.filter.sinCorpus': 'Sin corpus que consultar',
     'declaraciones.filter.comprobadoSinHallar': 'Comprobada, no aparece',
@@ -537,7 +537,7 @@ export const CATALOGUE = {
     'cargos.detalle.actividad.intro':
       'Cifras de las áreas que dirige, no de la persona. Las votaciones se registran por grupo político y las declaraciones se atribuyen al grupo que habló, nunca a un concejal concreto: por eso se enlazan aquí en lugar de mostrarse bajo su ficha.',
     'cargos.detalle.actividad.votos': 'votaciones',
-    'cargos.detalle.actividad.declaraciones': 'declaraciones con evidencia',
+    'cargos.detalle.actividad.declaraciones': 'declaraciones contrastadas',
     'cargos.detalle.actividad.hallazgos': 'hallazgos del área →',
     'datos.boe.eyebrow': 'Boletín Oficial del Estado',
     'datos.boe.intro':
@@ -927,7 +927,7 @@ export const CATALOGUE = {
     'departamentos.card.contratos': 'contratos',
     'departamentos.card.promesas': 'Promesas',
     'departamentos.card.quejas': 'Quejas abiertas',
-    'departamentos.card.declaraciones': 'Declaraciones con evidencia',
+    'departamentos.card.declaraciones': 'Declaraciones contrastadas',
     'departamentos.card.sinContraste': 'sin contraste',
     'departamentos.card.sinVotoTranscrito': 'sin voto transcrito',
     'departamentos.detalle.back': '← Todos los departamentos',
@@ -935,6 +935,15 @@ export const CATALOGUE = {
     'departamentos.detalle.promesas': 'Promesas electorales',
     'departamentos.detalle.agendas': 'Puntos debatidos sin voto transcrito',
     'departamentos.detalle.quejas': 'Quejas ciudadanas activas',
+    'departamentos.detalle.declaraciones.eyebrow': 'Declaraciones en pleno',
+    'departamentos.detalle.declaraciones.title':
+      'Lo que se dijo en pleno sobre los temas de esta área',
+    'departamentos.detalle.declaraciones.aviso':
+      'Las pronunció cualquier grupo municipal, no necesariamente quien dirige el área: se agrupan por tema, no por quien habla.',
+    'departamentos.detalle.declaraciones.vacio':
+      'Todavía no hay declaraciones contrastadas sobre los temas de esta área.',
+    'departamentos.detalle.barra.titulo': 'Contraste con los datos',
+    'departamentos.detalle.barra.resto': 'contrastadas · {total} en total',
     'departamentos.detalle.empty.votes':
       '0 votos transcritos para esta concejalía — contribuye vía `npm run pleno-vote` o la plantilla de issue.',
     'departamentos.detalle.empty.promesas': 'Sin promesas registradas para esta concejalía.',
@@ -1338,13 +1347,13 @@ export const CATALOGUE = {
     'declaraciones.subtitle':
       "Cada afirmació, promesa o acusació detectada als plens municipals, creuada contra les dades obertes publicades (PLACSP, BDNS, pressupost, promeses electorals). Atribució a nivell de grup. El veredicte de cada fila el posa un acarament automàtic: les declaracions sense atribuir o sense evidència es mantenen visibles perquè es van fer, i cap d'elles es converteix en una troballa editorial sense que una persona la signe.",
     'declaraciones.stat.total': 'Total',
-    'declaraciones.stat.conEvidencia': 'Amb evidència',
+    'declaraciones.stat.conEvidencia': 'Contrastades',
     'declaraciones.filter.verdict': 'Veredicte',
     'declaraciones.filter.bloc': 'Grup',
     'declaraciones.filter.topic': 'Tema',
     'declaraciones.filter.todas': 'Totes',
     'declaraciones.filter.todos': 'Tots',
-    'declaraciones.filter.conEvidencia': 'Amb evidència',
+    'declaraciones.filter.conEvidencia': 'Contrastades',
     'declaraciones.filter.atribuidas': 'Atribuïdes',
     'declaraciones.filter.sinCorpus': 'Sense corpus a consultar',
     'declaraciones.filter.comprobadoSinHallar': 'Comprovada, no apareix',
@@ -1456,7 +1465,7 @@ export const CATALOGUE = {
     'cargos.detalle.actividad.intro':
       "Xifres de les àrees que dirigeix, no de la persona. Les votacions es registren per grup polític i les declaracions s'atribueixen al grup que va parlar, mai a un regidor concret: per això s'enllacen ací en lloc de mostrar-se sota la seua fitxa.",
     'cargos.detalle.actividad.votos': 'votacions',
-    'cargos.detalle.actividad.declaraciones': 'declaracions amb evidència',
+    'cargos.detalle.actividad.declaraciones': 'declaracions contrastades',
     'cargos.detalle.actividad.hallazgos': "troballes de l'àrea →",
     'datos.boe.eyebrow': "Butlletí Oficial de l'Estat",
     'datos.boe.intro':
@@ -1777,7 +1786,7 @@ export const CATALOGUE = {
     'departamentos.card.contratos': 'contractes',
     'departamentos.card.promesas': 'Promeses',
     'departamentos.card.quejas': 'Queixes obertes',
-    'departamentos.card.declaraciones': 'Declaracions amb evidència',
+    'departamentos.card.declaraciones': 'Declaracions contrastades',
     'departamentos.card.sinContraste': 'sense contrast',
     'departamentos.card.sinVotoTranscrito': 'sense vot transcrit',
     'departamentos.detalle.back': '← Tots els departaments',
@@ -1785,6 +1794,15 @@ export const CATALOGUE = {
     'departamentos.detalle.promesas': 'Promeses electorals',
     'departamentos.detalle.agendas': 'Punts debatuts sense vot transcrit',
     'departamentos.detalle.quejas': 'Queixes ciutadanes actives',
+    'departamentos.detalle.declaraciones.eyebrow': 'Declaracions en ple',
+    'departamentos.detalle.declaraciones.title':
+      'El que es va dir en ple sobre els temes d’aquesta àrea',
+    'departamentos.detalle.declaraciones.aviso':
+      'Les va pronunciar qualsevol grup municipal, no necessàriament qui dirigeix l’àrea: s’agrupen per tema, no per qui parla.',
+    'departamentos.detalle.declaraciones.vacio':
+      'Encara no hi ha declaracions contrastades sobre els temes d’aquesta àrea.',
+    'departamentos.detalle.barra.titulo': 'Contrast amb les dades',
+    'departamentos.detalle.barra.resto': 'contrastades · {total} en total',
     'departamentos.detalle.empty.votes':
       "0 vots transcrits per a aquesta regidoria — contribueix via `npm run pleno-vote` o la plantilla d'issue.",
     'departamentos.detalle.empty.promesas': 'Sense promeses registrades per a aquesta regidoria.',

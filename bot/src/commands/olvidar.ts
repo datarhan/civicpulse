@@ -46,7 +46,7 @@ export function registerOlvidar(bot: Bot<MyContext>, db: Db) {
     }
     await ctx.reply(
       `✅ Queja \`${id}\` eliminada.\n\n` +
-        `Ha desaparecido del feed público, del heatmap, del dashboard y del snapshot abierto. ` +
+        `Ya no sale en el listado que exporta el bot. La web la quita del feed, del heatmap, del dashboard y del snapshot abierto en su siguiente actualización, que es diaria, y la foto, si la había, cuando vuelva a pasar la anonimización. ` +
         `La incidencia sigue registrada como anónima en el historial interno durante el plazo ` +
         `legal de conservación (5 años, Art. 55 LOPD-GDD) y después será destruida.\n\n` +
         `Puedes verificarlo ahora mismo con /mis.`,

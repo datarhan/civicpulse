@@ -351,8 +351,9 @@ export default function AvisoLegal() {
             eliminar tus propias quejas
           </li>
           <li>
-            <strong>Fotografía adjunta</strong> (si la envías) — se almacena internamente para el
-            expediente; puede publicarse en el dashboard tras revisión si el contenido lo permite
+            <strong>Fotografía adjunta</strong> (si la envías) — el original se guarda en el almacén
+            del bot para el expediente y nunca se publica; lo que se publica es una copia
+            anonimizada, como se explica más abajo
           </li>
         </ul>
         <p>
@@ -375,18 +376,23 @@ export default function AvisoLegal() {
           todos los metadatos (incluida la geolocalización EXIF). Sólo esa versión anonimizada llega
           al repositorio público; la imagen original nunca se publica ni se sube a git — permanece
           en el almacén local del bot bajo el mismo plazo de conservación y derecho al olvido que el
-          resto de la queja. La anonimización es automática y sin revisión humana previa: si
-          detectas que ha quedado algún dato personal visible, ejerce el derecho al olvido y la
-          imagen se retira de inmediato. La detección automática puede fallar; por eso mantenemos el
-          difuminado global de refuerzo y la vía de retirada inmediata.
+          resto de la queja. El proceso es automático y nadie revisa la imagen antes de publicarla:
+          si el análisis que localiza caras y matrículas no puede ejecutarse, la foto se retiene y
+          no se publica. Hoy esa pasada de anonimización se lanza a mano, así que una foto nueva
+          puede tardar en aparecer. La detección automática puede fallar; por eso mantenemos un
+          difuminado global de refuerzo, y si ves que ha quedado algún dato personal visible puedes
+          retirar la foto con el derecho al olvido.
         </p>
         <p>
           <strong>Derecho al olvido (RGPD art. 17)</strong>: en cualquier momento puedes enviar{' '}
-          <code>/olvidar Q-XXXXXXXX</code> al bot para eliminar tu queja del dashboard, del heatmap,
-          del feed público, del snapshot abierto y de la foto anonimizada publicada. La queja
-          desaparece inmediatamente de todas las superficies públicas; queda un registro anónimo
-          interno durante el plazo legal de conservación, y después se destruye. Sólo el autor
-          original puede ejercer este derecho sobre su propia queja.
+          <code>/olvidar Q-XXXXXXXX</code> al bot para retirar tu queja. El bot deja de incluirla en
+          el acto en el listado que exporta; esta web la retira del dashboard, del heatmap, del feed
+          público y del snapshot abierto en su siguiente actualización diaria; y el fichero de la
+          foto anonimizada se borra en la siguiente pasada de anonimización, que hoy se lanza a
+          mano: hasta entonces sigue siendo accesible en su dirección, aunque ninguna página la
+          enlace. Queda un registro anónimo interno durante el plazo legal de conservación, y
+          después se destruye. Sólo el autor original puede ejercer este derecho sobre su propia
+          queja.
         </p>
         <p>
           <strong>Historial git e inmutabilidad de la cadena de custodia</strong>: el snapshot
@@ -398,9 +404,9 @@ export default function AvisoLegal() {
         </p>
         <ul>
           <li>
-            <strong>Eliminación inmediata del snapshot vigente</strong>: en el momento en que envías{' '}
-            <code>/olvidar Q-XXXXXXXX</code> tu queja desaparece de las páginas públicas y del JSON
-            que se sirve a los visitantes.
+            <strong>Retirada del snapshot vigente</strong>: tras enviar{' '}
+            <code>/olvidar Q-XXXXXXXX</code>, tu queja deja de aparecer en las páginas públicas y en
+            el JSON que se sirve a los visitantes en la siguiente actualización diaria.
           </li>
           <li>
             <strong>Reescritura del historial bajo solicitud formal</strong>: si requieres además

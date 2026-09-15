@@ -17,8 +17,8 @@ test.describe('Declaraciones (/declaraciones)', () => {
     // Stats strip — at least the "Total" mini-stat renders.
     await expect(page.getByText(/^Total$/i).first()).toBeVisible({ timeout: 5000 })
 
-    // Filter chip "Con evidencia" exists (default-selected).
-    await expect(page.getByRole('button', { name: /Con evidencia/i }).first()).toBeVisible()
+    // Filter chip "Contrastadas" exists (default-selected).
+    await expect(page.getByRole('button', { name: /Contrastadas/i }).first()).toBeVisible()
 
     // At least one claim card renders (we have 4658+ claims at time of writing).
     await expect(page.locator('text=/«[^»]+»/').first()).toBeVisible({ timeout: 8000 })
@@ -76,7 +76,7 @@ test.describe('Reclasificaciones en el registro (/declaraciones)', () => {
       expect(item!.claim.type).toBe(e.type)
 
       await page.goto('/declaraciones', { waitUntil: 'networkidle' })
-      // El filtro arranca en «Con evidencia»; la fila reclasificada puede ser
+      // El filtro arranca en «Contrastadas»; la fila reclasificada puede ser
       // sin-datos, así que primero «Todas» y después el buscador de literal.
       await page.getByRole('button', { name: /Todas/i }).first().click()
       await page.locator('input').first().fill(item!.claim.verbatim.slice(0, 30))

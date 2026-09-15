@@ -712,8 +712,9 @@ export default function Metodologia() {
           </li>
           <li>
             <strong>Quien escribió la queja puede retirarla</strong> en cualquier momento con{' '}
-            <code>/olvidar</code>: sale de todas las páginas, del JSON publicado y con su foto. El
-            detalle está en el{' '}
+            <code>/olvidar</code>: el bot deja de exportarla en el acto; las páginas y el JSON
+            publicado la retiran en la siguiente actualización diaria, y su foto, en la siguiente
+            pasada de anonimización. El detalle está en el{' '}
             <a href="/aviso-legal" style={{ color: 'var(--civic)' }}>
               aviso legal
             </a>
@@ -1557,6 +1558,14 @@ export default function Metodologia() {
             .
           </li>
         </ul>
+        <p style={{ marginTop: 8 }}>
+          <strong>Contrastadas</strong> es la suma de las verificadas, las parciales y las
+          contradichas: las declaraciones que se pudieron comparar con un documento municipal,
+          saliera a favor o en contra. No quiere decir que estén respaldadas; el veredicto de cada
+          una va en su tarjeta. En la ficha de cada concejalía se agrupan por tema, no por quien
+          habló: una declaración sobre urbanismo cuenta en esa área la pronunciara quien la
+          pronunciara, y su atribución sigue siendo de bloque.
+        </p>
 
         <h3 style={{ marginTop: 16, fontSize: 'var(--fs-head)' }}>Disciplina antilibellos</h3>
         <ul style={{ margin: '6px 0 0', paddingLeft: 20 }}>

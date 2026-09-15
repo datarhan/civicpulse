@@ -82,10 +82,10 @@ const ROUTES: Route[] = [
   { path: `/plenos/${FIRST_PLENO_ID}`, ready: /\d{1,2} de [a-záéíóúñ]+ de \d{4}/i }, // session date
   { path: '/promesas', ready: /\d+ compromisos en seguimiento/ },
   { path: '/departamentos', ready: /De \d+ concejalías con delegación/ },
-  { path: '/departamentos/urbanismo', ready: /\d+% con evidencia · \d+ en total/ },
+  { path: '/departamentos/urbanismo', ready: /\d+% contrastadas · \d+ en total/ },
   { path: '/hallazgos', ready: /TOTAL HALLAZGOS \d+/ },
   { path: '/reportajes', ready: /REPORTAJE · /i },
-  { path: '/declaraciones', ready: /TOTAL \d+ CON EVIDENCIA \d+/ },
+  { path: '/declaraciones', ready: /TOTAL \d+ CONTRASTADAS \d+/ },
   // Tablas de cinco columnas en un móvil: el sitio exacto donde una fila se
   // sale sin que ninguna prueba de datos lo note. /eficiencia/:id no estaba en
   // esta lista y por eso nadie lo midió a 375.
