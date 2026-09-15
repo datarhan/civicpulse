@@ -11,8 +11,10 @@
  * stops inside Riba-roja municipality.
  *
  * Usage: npm run scrape:metro-network
+ *        npm run scrape:metro-network -- --save-raw    guarda además el payload crudo
+ *        npm run scrape:metro-network -- --from-cache  parsea el payload guardado, sin red
  */
-import { mkdir, writeFile } from 'node:fs/promises'
+import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { fetchOverpass, OVERPASS_ENDPOINTS } from '../src/scraper/overpass-fetch'
@@ -21,6 +23,9 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 const PROJECT_ROOT = join(__dirname, '..')
 const OUT = join(PROJECT_ROOT, 'public/data/metro-network.json')
+// El payload crudo de Overpass, fuera de git: para iterar sin volver a pedirlo y
+// para recortar de él el fixture del parser, como `.cache/incendios`.
+const CACHE = join(PROJECT_ROOT, '.cache/metro-network/overpass.json')
 
 // Recorded in the emitted payload for provenance; the shared fetcher rotates
 // across all OVERPASS_ENDPOINTS with 429/5xx retry.
@@ -87,9 +92,23 @@ function normaliseRef(raw: string | undefined): string | null {
   return `L${n}`
 }
 
-async function main() {
+async function traePayload(): Promise<string> {
+  if (process.argv.includes('--from-cache')) {
+    console.log(`[metro-network] parseando el payload guardado en ${CACHE}`)
+    return readFile(CACHE, 'utf8')
+  }
   console.log('[metro-network] fetching full Metrovalencia network…')
   const raw = await runQuery(NETWORK_QL)
+  if (process.argv.includes('--save-raw')) {
+    await mkdir(dirname(CACHE), { recursive: true })
+    await writeFile(CACHE, raw)
+    console.log(`[metro-network] payload crudo guardado en ${CACHE}`)
+  }
+  return raw
+}
+
+async function main() {
+  const raw = await traePayload()
   const data = JSON.parse(raw) as { elements: OsmElement[] }
 
   const relations = data.elements.filter((e): e is OsmRelation => e.type === 'relation')
