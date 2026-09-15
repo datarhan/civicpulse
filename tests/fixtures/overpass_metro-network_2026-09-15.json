@@ -1,0 +1,798 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-09-15T12:00:01Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+    {
+      "type": "relation",
+      "id": 5626069,
+      "members": [
+        {
+          "type": "way",
+          "ref": 144113984,
+          "role": ""
+        },
+        {
+          "type": "way",
+          "ref": 325744503,
+          "role": ""
+        },
+        {
+          "type": "way",
+          "ref": 554308940,
+          "role": ""
+        },
+        {
+          "type": "node",
+          "ref": 429453723,
+          "role": "stop"
+        },
+        {
+          "type": "node",
+          "ref": 3357315773,
+          "role": "stop"
+        },
+        {
+          "type": "node",
+          "ref": 6888561893,
+          "role": "stop"
+        }
+      ],
+      "tags": {
+        "colour": "#B7814F",
+        "from": "Riba-roja de Túria",
+        "name": "Línia 9: Riba-roja de Túria => Alboraia Peris Aragó",
+        "network": "Metrovalencia",
+        "network:wikidata": "Q511171",
+        "network:wikipedia": "ca:Metrovalència",
+        "operator": "Ferrocarrils de la Generalitat Valenciana",
+        "operator:short": "FGV",
+        "operator:wikidata": "Q750832",
+        "operator:wikipedia": "ca:Ferrocarrils de la Generalitat Valenciana",
+        "owner:wikidata": "Q750832",
+        "public_transport:version": "2",
+        "ref": "9",
+        "route": "subway",
+        "to": "Alboraia Peris Aragó",
+        "type": "route",
+        "wikidata": "Q18613779",
+        "wikipedia": "ca:Línia 9 de Metrovalència"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 5622354,
+      "members": [
+        {
+          "type": "way",
+          "ref": 26217950,
+          "role": ""
+        },
+        {
+          "type": "way",
+          "ref": 326405767,
+          "role": ""
+        },
+        {
+          "type": "way",
+          "ref": 326405768,
+          "role": ""
+        },
+        {
+          "type": "node",
+          "ref": 3330430139,
+          "role": "stop"
+        },
+        {
+          "type": "node",
+          "ref": 503262205,
+          "role": "stop"
+        },
+        {
+          "type": "node",
+          "ref": 503262270,
+          "role": "stop"
+        }
+      ],
+      "tags": {
+        "colour": "#FDC600",
+        "duration": "01:42",
+        "from": "Castelló",
+        "name": "Línia 1: Castelló => Bétera",
+        "network": "Metrovalencia",
+        "network:wikidata": "Q511171",
+        "network:wikipedia": "ca:Metrovalència",
+        "operator": "Ferrocarrils de la Generalitat Valenciana",
+        "operator:short": "FGV",
+        "operator:wikidata": "Q750832",
+        "operator:wikipedia": "ca:Ferrocarrils de la Generalitat Valenciana",
+        "owner:wikidata": "Q750832",
+        "public_transport:version": "2",
+        "ref": "1",
+        "route": "subway",
+        "to": "Bétera",
+        "type": "route",
+        "wikidata": "Q2165952",
+        "wikipedia": "ca:Línia 1 de Metrovalència"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 190196,
+      "members": [
+        {
+          "type": "way",
+          "ref": 1172986092,
+          "role": ""
+        },
+        {
+          "type": "way",
+          "ref": 249568110,
+          "role": ""
+        },
+        {
+          "type": "way",
+          "ref": 1172986089,
+          "role": ""
+        },
+        {
+          "type": "node",
+          "ref": 4213602752,
+          "role": "stop"
+        },
+        {
+          "type": "node",
+          "ref": 4213596792,
+          "role": "stop"
+        },
+        {
+          "type": "node",
+          "ref": 4213596790,
+          "role": "stop"
+        }
+      ],
+      "tags": {
+        "colour": "#d72028",
+        "fixme": "Aquesta línia s'ajustaria més a light_train",
+        "from": "Luceros",
+        "name": "TRAM L1: Alicante-Luceros ⇒ Benidorm",
+        "name:ca": "TRAM L1: Alacant-Estels ⇒ Benidorm",
+        "network": "TRAM Metropolità d'Alacant",
+        "network:wikidata": "Q2063567",
+        "network:wikipedia": "ca:TRAM Metropolità d'Alacant",
+        "operator": "Ferrocarrils de la Generalitat Valenciana",
+        "operator:short": "FGV",
+        "operator:wikidata": "Q750832",
+        "operator:wikipedia": "ca:Ferrocarrils de la Generalitat Valenciana",
+        "owner:wikidata": "Q750832",
+        "public_transport:version": "2",
+        "ref": "L1",
+        "route": "tram",
+        "to": "Benidorm",
+        "type": "route",
+        "wikidata": "Q594538",
+        "wikipedia": "ca:Línia 1 del TRAM Metropolità d'Alacant"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 404372,
+      "members": [
+        {
+          "type": "way",
+          "ref": 421778247,
+          "role": ""
+        },
+        {
+          "type": "way",
+          "ref": 539598273,
+          "role": ""
+        },
+        {
+          "type": "way",
+          "ref": 486742156,
+          "role": ""
+        },
+        {
+          "type": "node",
+          "ref": 5072920252,
+          "role": "stop"
+        },
+        {
+          "type": "node",
+          "ref": 5981522896,
+          "role": "stop"
+        },
+        {
+          "type": "node",
+          "ref": 633232797,
+          "role": "stop"
+        }
+      ],
+      "tags": {
+        "alt_name": "Trenet de la Marina",
+        "colour": "#706e6d",
+        "fee": "yes",
+        "from": "Benidorm",
+        "loc_name": "Trenet de la Marina",
+        "name": "L9: Benidorm => Dénia",
+        "network": "TRAM Metropolità d'Alacant",
+        "network:wikidata": "Q2063567",
+        "network:wikipedia": "ca:TRAM Metropolità d'Alacant",
+        "operator": "Ferrocarrils de la Generalitat Valenciana",
+        "operator:short": "FGV",
+        "operator:wikidata": "Q750832",
+        "operator:wikipedia": "ca:Ferrocarrils de la Generalitat Valenciana",
+        "owner:wikidata": "Q750832",
+        "public_transport:version": "2",
+        "ref": "L9",
+        "roundtrip": "no",
+        "route": "light_rail",
+        "service": "regional",
+        "to": "Dénia",
+        "type": "route",
+        "wheelchair": "yes",
+        "wikidata": "Q11690013",
+        "wikipedia": "ca:Línia 9 del TRAM Metropolità d'Alacant"
+      }
+    },
+    {
+      "type": "way",
+      "id": 144113984,
+      "nodes": [],
+      "geometry": [
+        {
+          "lat": 39.5435579,
+          "lon": -0.5602908
+        },
+        {
+          "lat": 39.5434987,
+          "lon": -0.5600964
+        },
+        {
+          "lat": 39.543432,
+          "lon": -0.5598827
+        }
+      ],
+      "tags": {
+        "electrified": "contact_line",
+        "frequency": "0",
+        "gauge": "1000",
+        "maxspeed": "80",
+        "operator": "Ferrocarrils de la Generalitat Valenciana",
+        "operator:short": "FGV",
+        "operator:wikidata": "Q750832",
+        "owner": "Ferrocarrils de la Generalitat Valenciana",
+        "owner:short": "FGV",
+        "owner:wikidata": "Q750832",
+        "railway": "subway",
+        "ref": "VT-012",
+        "voltage": "1500"
+      }
+    },
+    {
+      "type": "way",
+      "id": 325744503,
+      "nodes": [],
+      "geometry": [
+        {
+          "lat": 39.5377571,
+          "lon": -0.5455572
+        },
+        {
+          "lat": 39.5378484,
+          "lon": -0.5458486
+        },
+        {
+          "lat": 39.5379021,
+          "lon": -0.5460118
+        }
+      ],
+      "tags": {
+        "electrified": "contact_line",
+        "frequency": "0",
+        "gauge": "1000",
+        "maxspeed": "80",
+        "operator": "Ferrocarrils de la Generalitat Valenciana",
+        "operator:short": "FGV",
+        "operator:wikidata": "Q750832",
+        "owner": "Ferrocarrils de la Generalitat Valenciana",
+        "owner:short": "FGV",
+        "owner:wikidata": "Q750832",
+        "railway": "subway",
+        "ref": "VT-012",
+        "voltage": "1500"
+      }
+    },
+    {
+      "type": "way",
+      "id": 554308940,
+      "nodes": [],
+      "geometry": [
+        {
+          "lat": 39.5377571,
+          "lon": -0.5455572
+        },
+        {
+          "lat": 39.5377318,
+          "lon": -0.5454933
+        },
+        {
+          "lat": 39.5366006,
+          "lon": -0.5426461
+        }
+      ],
+      "tags": {
+        "electrified": "contact_line",
+        "frequency": "0",
+        "gauge": "1000",
+        "maxspeed": "80",
+        "operator": "Ferrocarrils de la Generalitat Valenciana",
+        "operator:short": "FGV",
+        "operator:wikidata": "Q750832",
+        "owner": "Ferrocarrils de la Generalitat Valenciana",
+        "owner:short": "FGV",
+        "owner:wikidata": "Q750832",
+        "railway": "subway",
+        "ref": "VT-012",
+        "voltage": "1500"
+      }
+    },
+    {
+      "type": "way",
+      "id": 26217950,
+      "nodes": [],
+      "geometry": [
+        {
+          "lat": 39.0803424,
+          "lon": -0.5130485
+        },
+        {
+          "lat": 39.0807248,
+          "lon": -0.5133481
+        },
+        {
+          "lat": 39.0818539,
+          "lon": -0.51424
+        }
+      ],
+      "tags": {
+        "electrified": "contact_line",
+        "frequency": "0",
+        "gauge": "1000",
+        "maxspeed": "50",
+        "operator": "Ferrocarrils de la Generalitat Valenciana",
+        "operator:short": "FGV",
+        "operator:wikidata": "Q750832",
+        "owner": "Ferrocarrils de la Generalitat Valenciana",
+        "owner:short": "FGV",
+        "owner:wikidata": "Q750832",
+        "railway": "subway",
+        "ref": "VT-001",
+        "tunnel": "no",
+        "voltage": "1500"
+      }
+    },
+    {
+      "type": "way",
+      "id": 326405767,
+      "nodes": [],
+      "geometry": [
+        {
+          "lat": 39.0844035,
+          "lon": -0.5160712
+        },
+        {
+          "lat": 39.084495,
+          "lon": -0.5160992
+        }
+      ],
+      "tags": {
+        "bridge": "yes",
+        "electrified": "contact_line",
+        "frequency": "0",
+        "gauge": "1000",
+        "layer": "1",
+        "maxspeed": "50",
+        "operator": "Ferrocarrils de la Generalitat Valenciana",
+        "operator:short": "FGV",
+        "operator:wikidata": "Q750832",
+        "owner": "Ferrocarrils de la Generalitat Valenciana",
+        "owner:short": "FGV",
+        "owner:wikidata": "Q750832",
+        "railway": "subway",
+        "ref": "VT-001",
+        "voltage": "1500"
+      }
+    },
+    {
+      "type": "way",
+      "id": 326405768,
+      "nodes": [],
+      "geometry": [
+        {
+          "lat": 39.084495,
+          "lon": -0.5160992
+        },
+        {
+          "lat": 39.0845574,
+          "lon": -0.5161161
+        },
+        {
+          "lat": 39.084646,
+          "lon": -0.5161385
+        }
+      ],
+      "tags": {
+        "electrified": "contact_line",
+        "frequency": "0",
+        "gauge": "1000",
+        "maxspeed": "50",
+        "operator": "Ferrocarrils de la Generalitat Valenciana",
+        "operator:short": "FGV",
+        "operator:wikidata": "Q750832",
+        "owner": "Ferrocarrils de la Generalitat Valenciana",
+        "owner:short": "FGV",
+        "owner:wikidata": "Q750832",
+        "railway": "subway",
+        "ref": "VT-001",
+        "tunnel": "no",
+        "voltage": "1500"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1172986092,
+      "nodes": [],
+      "geometry": [
+        {
+          "lat": 38.3458375,
+          "lon": -0.4910288
+        },
+        {
+          "lat": 38.3459859,
+          "lon": -0.4905968
+        },
+        {
+          "lat": 38.346171,
+          "lon": -0.4901004
+        }
+      ],
+      "tags": {
+        "electrified": "contact_line",
+        "frequency": "0",
+        "gauge": "1000",
+        "layer": "-2",
+        "oneway": "yes",
+        "railway": "light_rail",
+        "ref": "AT-001",
+        "source": "field_work",
+        "tunnel": "yes",
+        "voltage": "750"
+      }
+    },
+    {
+      "type": "way",
+      "id": 249568110,
+      "nodes": [],
+      "geometry": [
+        {
+          "lat": 38.3463999,
+          "lon": -0.4895574
+        },
+        {
+          "lat": 38.3483041,
+          "lon": -0.4843621
+        },
+        {
+          "lat": 38.348403,
+          "lon": -0.4840896
+        }
+      ],
+      "tags": {
+        "electrified": "contact_line",
+        "frequency": "0",
+        "gauge": "1000",
+        "layer": "-2",
+        "maxspeed": "100",
+        "oneway": "yes",
+        "railway": "light_rail",
+        "ref": "AT-001",
+        "tunnel": "yes",
+        "voltage": "750"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1172986089,
+      "nodes": [],
+      "geometry": [
+        {
+          "lat": 38.3511889,
+          "lon": -0.4799449
+        },
+        {
+          "lat": 38.351301,
+          "lon": -0.4798163
+        },
+        {
+          "lat": 38.3513685,
+          "lon": -0.479728
+        }
+      ],
+      "tags": {
+        "electrified": "contact_line",
+        "frequency": "0",
+        "gauge": "1000",
+        "layer": "-2",
+        "maxspeed": "50",
+        "oneway": "yes",
+        "railway": "light_rail",
+        "ref": "AT-001",
+        "tunnel": "yes",
+        "voltage": "750"
+      }
+    },
+    {
+      "type": "way",
+      "id": 421778247,
+      "nodes": [],
+      "geometry": [
+        {
+          "lat": 38.5481623,
+          "lon": -0.1351438
+        },
+        {
+          "lat": 38.5481158,
+          "lon": -0.1347131
+        },
+        {
+          "lat": 38.5480524,
+          "lon": -0.1341264
+        }
+      ],
+      "tags": {
+        "electrified": "contact_line",
+        "frequency": "0",
+        "gauge": "1000",
+        "railway": "light_rail",
+        "railway:atc": "yes",
+        "ref": "AT-001",
+        "voltage": "750"
+      }
+    },
+    {
+      "type": "way",
+      "id": 539598273,
+      "nodes": [],
+      "geometry": [
+        {
+          "lat": 38.5480187,
+          "lon": -0.1338225
+        },
+        {
+          "lat": 38.5480109,
+          "lon": -0.1337423
+        },
+        {
+          "lat": 38.5480058,
+          "lon": -0.1336804
+        }
+      ],
+      "tags": {
+        "electrified": "contact_line",
+        "frequency": "0",
+        "gauge": "1000",
+        "railway": "light_rail",
+        "railway:atc": "yes",
+        "ref": "AT-002",
+        "voltage": "750"
+      }
+    },
+    {
+      "type": "way",
+      "id": 486742156,
+      "nodes": [],
+      "geometry": [
+        {
+          "lat": 38.5482269,
+          "lon": -0.1307686
+        },
+        {
+          "lat": 38.5482206,
+          "lon": -0.1306853
+        }
+      ],
+      "tags": {
+        "bridge": "yes",
+        "electrified": "contact_line",
+        "frequency": "0",
+        "gauge": "1000",
+        "railway": "light_rail",
+        "railway:atc": "yes",
+        "ref": "AT-002",
+        "voltage": "750"
+      }
+    },
+    {
+      "type": "node",
+      "id": 429453723,
+      "lat": 39.5432765,
+      "lon": -0.5594314,
+      "tags": {
+        "name": "Riba-roja de Túria",
+        "name:ca": "Riba-roja de Túria",
+        "public_transport": "stop_position",
+        "subway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3357315773,
+      "lat": 39.5382008,
+      "lon": -0.5467618,
+      "tags": {
+        "name": "Masia de Traver",
+        "name:ca": "Masia de Traver",
+        "public_transport": "stop_position",
+        "subway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6888561893,
+      "lat": 39.5304373,
+      "lon": -0.5342686,
+      "tags": {
+        "name": "València la Vella",
+        "name:ca": "València la Vella",
+        "public_transport": "stop_position",
+        "railway": "stop",
+        "subway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 3330430139,
+      "lat": 39.0807248,
+      "lon": -0.5133481,
+      "tags": {
+        "name": "Castelló",
+        "name:ca": "Castelló",
+        "old_name": "Villanueva de Castellón",
+        "public_transport": "stop_position",
+        "railway": "stop",
+        "subway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 503262205,
+      "lat": 39.1170067,
+      "lon": -0.5236343,
+      "tags": {
+        "name": "Alberic",
+        "name:ca": "Alberic",
+        "public_transport": "stop_position",
+        "subway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 503262270,
+      "lat": 39.1441594,
+      "lon": -0.518408,
+      "tags": {
+        "name": "Massalavés",
+        "name:ca": "Massalavés",
+        "public_transport": "stop_position",
+        "subway": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4213602752,
+      "lat": 38.3459859,
+      "lon": -0.4905968,
+      "tags": {
+        "name": "Luceros",
+        "name:ca": "Estels",
+        "name:es": "Luceros",
+        "network": "Transporte Alicante Metropolitano",
+        "network:short": "TAM",
+        "network:wikidata": "Q2063567",
+        "operator": "Ferrocarrils de la Generalitat Valenciana",
+        "operator:short": "FGV",
+        "operator:wikidata": "Q750832",
+        "operator:wikipedia": "ca:Ferrocarrils de la Generalitat Valenciana",
+        "owner:wikidata": "Q750832",
+        "public_transport": "stop_position",
+        "railway": "tram_stop",
+        "tram": "yes",
+        "wheelchair": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4213596792,
+      "lat": 38.3483041,
+      "lon": -0.4843621,
+      "tags": {
+        "name": "Mercado",
+        "network": "TRAM Metropolità d'Alacant",
+        "network:wikidata": "Q2063567",
+        "operator": "Ferrocarrils de la Generalitat Valenciana",
+        "operator:short": "FGV",
+        "operator:wikidata": "Q750832",
+        "operator:wikipedia": "ca:Ferrocarrils de la Generalitat Valenciana",
+        "owner:wikidata": "Q750832",
+        "public_transport": "stop_position",
+        "railway": "tram_stop",
+        "tram": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4213596790,
+      "lat": 38.3519618,
+      "lon": -0.4762305,
+      "tags": {
+        "name": "MARQ-Castillo",
+        "network": "Transporte Alicante Metropolitano",
+        "network:short": "TAM",
+        "network:wikidata": "Q2063567",
+        "operator": "Ferrocarrils de la Generalitat Valenciana",
+        "operator:short": "FGV",
+        "operator:wikidata": "Q750832",
+        "operator:wikipedia": "ca:Ferrocarrils de la Generalitat Valenciana",
+        "owner:wikidata": "Q750832",
+        "public_transport": "stop_position",
+        "railway": "tram_stop",
+        "tram": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5072920252,
+      "lat": 38.5481623,
+      "lon": -0.1351438,
+      "tags": {
+        "name": "Benidorm",
+        "name:ca": "Benidorm",
+        "public_transport": "stop_position",
+        "railway": "tram_stop",
+        "tram": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5981522896,
+      "lat": 38.5482937,
+      "lon": -0.1233809,
+      "tags": {
+        "light_rail": "yes",
+        "name": "Benidorm Intermodal",
+        "public_transport": "stop_position",
+        "railway": "stop"
+      }
+    },
+    {
+      "type": "node",
+      "id": 633232797,
+      "lat": 38.5594193,
+      "lon": -0.1041655,
+      "tags": {
+        "light_rail": "yes",
+        "name": "Camí Coves",
+        "name:ca": "Camí Coves",
+        "public_transport": "stop_position",
+        "railway": "stop",
+        "wikidata": "Q17624385",
+        "wikipedia": "es:Parada de Camí Coves (TRAM Alicante)"
+      }
+    }
+  ]
+}

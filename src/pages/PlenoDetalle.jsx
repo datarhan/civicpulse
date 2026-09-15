@@ -8,7 +8,7 @@ import { VoteProvenance } from '../components/plenos/VoteProvenance'
 import { FindingCard } from '../components/PlenoFindings'
 import { ClaimLedger } from '../components/ClaimLedger'
 import { usePlenos, PLENO_TONE, PLENO_LABEL } from '../hooks/usePlenos'
-import { usePlenoChunk } from '../hooks/usePlenoClaims'
+import { usePlenoChunk, chunkExtraido } from '../hooks/usePlenoClaims'
 import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
 import { usePlenoVotes, OUTCOME_LABEL, OUTCOME_TONE } from '../hooks/usePlenoVotes'
 import { usePlenoVideos, indexVideosByPleno } from '../hooks/usePlenoVideos'
@@ -307,6 +307,10 @@ export default function PlenoDetalle() {
   // that about a real council meeting.
   const agendaKnown = agenda !== undefined
   const claimItems = useMemo(() => chunk?.items ?? [], [chunk])
+  // Una sesión sin declaraciones extraídas no tiene fichero, y el hook resuelve ese
+  // 404 a un fragmento vacío: `chunk` existe igual. «Extraída y sin nada» y «sin
+  // extraer» sólo se distinguen por de dónde vino.
+  const extraida = chunkExtraido(chunk)
   const groundedCount = useMemo(
     () => claimItems.filter((it) => GROUNDED.has(it.verification?.verdict)).length,
     [claimItems],
@@ -334,9 +338,20 @@ export default function PlenoDetalle() {
       label: t('plenoDetail.agenda'),
       count: agendaKnown ? agendaItems.length : null,
     },
-    { key: 'votos', label: t('plenoDetail.votes'), count: votes.length },
+    // Una cifra en la pestaña afirma que se midió: sin votaciones transcritas, o sin
+    // declaraciones extraídas y ningún hallazgo, no hay cero que dar. Es la regla del
+    // orden del día de al lado, de las fichas del resumen y del índice de /plenos.
+    {
+      key: 'votos',
+      label: t('plenoDetail.votes'),
+      count: votes.length > 0 ? votes.length : null,
+    },
     { key: 'declaraciones', label: t('plenoDetail.declarations'), count: groundedCount || null },
-    { key: 'hallazgos', label: t('plenoDetail.findings'), count: findings.length },
+    {
+      key: 'hallazgos',
+      label: t('plenoDetail.findings'),
+      count: findings.length > 0 ? findings.length : extraida ? 0 : null,
+    },
     { key: 'transcripcion', label: t('plenoDetail.transcript'), count: null },
   ]
 
@@ -391,19 +406,25 @@ export default function PlenoDetalle() {
           value={agendaKnown ? agendaItems.length : '—'}
           sub={agendaKnown ? undefined : t('plenoDetail.agendaPending')}
         />
-        {/* `—`, not 0, when nothing is transcribed. Votes are curated by hand
-            from the acta and only 7 of 61 sessions have any, so "0" asserted
-            that an ordinario held no votes at all — which it certainly did.
-            The agenda tile beside it already made this distinction. */}
+        {/* «—» y no 0 para lo que nadie ha medido. Las votaciones se transcriben a
+            mano desde el acta y una sesión puede no tener ninguna transcrita: «0»
+            afirmaba que un pleno ordinario no votó nada, y seguro que votó. Las
+            declaraciones y los hallazgos, igual: de una sesión sin extraer no hay
+            cero que dar. La ficha del orden del día ya lo distinguía. */}
         <Tile
           label={t('plenoDetail.votes')}
           value={votes.length > 0 ? votes.length : '—'}
           sub={votes.length ? `${aprobados} aprob.` : t('plenoDetail.votesPending')}
         />
-        <Tile label={t('plenoDetail.declarations')} value={groundedCount} />
+        <Tile
+          label={t('plenoDetail.declarations')}
+          value={extraida ? groundedCount : '—'}
+          sub={extraida ? undefined : t('plenoDetail.extractionPending')}
+        />
         <Tile
           label={t('plenoDetail.findings')}
-          value={findings.length}
+          value={findings.length > 0 || extraida ? findings.length : '—'}
+          sub={findings.length > 0 || extraida ? undefined : t('plenoDetail.extractionPending')}
           tone={findings.length ? 'crit' : undefined}
         />
       </div>

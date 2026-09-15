@@ -1,6 +1,7 @@
 // @ts-check
 import { useJsonFetch } from './useJsonFetch'
 import { fmtDateShort } from '../lib/formatters'
+import { CATALOGUE } from '../i18n'
 
 export function useTenders() {
   return useJsonFetch('/data/tenders.json')
@@ -34,6 +35,12 @@ export function useTenders() {
  *     las filas de Gobierto son por lote, así que un expediente «Resuelta»
  *     puede contener un lote anulado. Se deja el cognado literal.
  *
+ * El texto de cada rótulo vive ahora en el catálogo, `contrato.estado.<estado>`:
+ * la tarjeta de contrato del mapa lo pinta también en valencià. Este mapa se
+ * queda, con sus claves y su tipo, porque el listado de /presupuesto lo lee, y
+ * lee del catálogo el mismo castellano que tenía escrito: una fuente para las
+ * dos superficies.
+ *
  * @typedef {import('../scraper/tenders').ContractStatus
  *   | import('../scraper/tenders').TenderStatus} EstadoContrato
  */
@@ -41,24 +48,24 @@ export function useTenders() {
 /** @type {Record<EstadoContrato, string>} */
 export const STATUS_LABEL = {
   // Dinero comprometido.
-  awarded: 'Adjudicado',
-  formalized: 'Formalizado',
+  awarded: CATALOGUE.es['contrato.estado.awarded'],
+  formalized: CATALOGUE.es['contrato.estado.formalized'],
   // Se llamó atrás: el dinero nunca llegó a comprometerse.
-  void: 'Anulado',
-  revoked: 'Renuncia',
-  abandoned: 'Desistido',
-  withdrawn: 'Retirado',
+  void: CATALOGUE.es['contrato.estado.void'],
+  revoked: CATALOGUE.es['contrato.estado.revoked'],
+  abandoned: CATALOGUE.es['contrato.estado.abandoned'],
+  withdrawn: CATALOGUE.es['contrato.estado.withdrawn'],
   // Todavía en marcha.
-  provisionally_awarded: 'Provisional',
-  in_progress: 'En curso',
-  open: 'Abierto',
-  evaluation: 'Valoración',
-  pending: 'Pendiente',
-  draft: 'Borrador',
+  provisionally_awarded: CATALOGUE.es['contrato.estado.provisionally_awarded'],
+  in_progress: CATALOGUE.es['contrato.estado.in_progress'],
+  open: CATALOGUE.es['contrato.estado.open'],
+  evaluation: CATALOGUE.es['contrato.estado.evaluation'],
+  pending: CATALOGUE.es['contrato.estado.pending'],
+  draft: CATALOGUE.es['contrato.estado.draft'],
   // Cerrados y el centinela.
-  finalized: 'Finalizado',
-  closed: 'Cerrado',
-  unknown: 'Sin clasificar',
+  finalized: CATALOGUE.es['contrato.estado.finalized'],
+  closed: CATALOGUE.es['contrato.estado.closed'],
+  unknown: CATALOGUE.es['contrato.estado.unknown'],
 }
 
 /** @type {Record<EstadoContrato, 'ok'|'warn'|'crit'|'civic'|'intel'|'neutral'|'ghost'>} */

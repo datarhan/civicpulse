@@ -28,7 +28,11 @@ const titleStyle = {
 // severity order. Swatch colours match the Circle fills exactly.
 // `level` es el que devuelve `healthFromCounts`, no una etiqueta nueva: así la
 // leyenda y la capa no pueden discrepar sobre qué color es cuál.
-const LEVELS = [
+//
+// Exportados: la tarjeta de barrio nombra el tono de salud con estas mismas
+// claves. Tenía su propia tabla castellana, y la portada valenciana decía
+// «silencio alto» en la tarjeta y «silenci alt» en la leyenda de al lado.
+export const NIVELES_QUEJAS = [
   { level: 'crit', color: '#DC2626', labelKey: 'map.quejas.crit' },
   { level: 'warn', color: '#D97706', labelKey: 'map.quejas.warn' },
   { level: 'ok', color: '#16A34A', labelKey: 'map.quejas.ok' },
@@ -68,13 +72,13 @@ export function QuejasLegend() {
   // de la capa ni por un redondeo: las dos leen el mismo `health`.
   const nivelesPintados = useMemo(() => {
     const s = new Set(pintados.map((n) => n.health.level))
-    return LEVELS.filter((l) => s.has(l.level))
+    return NIVELES_QUEJAS.filter((l) => s.has(l.level))
   }, [pintados])
   const totalQuejas = pintados.reduce((n, x) => n + x.total, 0)
   // Sin nada pintado la capa devuelve null y esto no llega a verse; aun así, no
   // se inventa una escala sobre cero.
-  const niveles = nivelesPintados.length > 0 ? nivelesPintados : LEVELS
-  const escalaParcial = nivelesPintados.length > 0 && nivelesPintados.length < LEVELS.length
+  const niveles = nivelesPintados.length > 0 ? nivelesPintados : NIVELES_QUEJAS
+  const escalaParcial = nivelesPintados.length > 0 && nivelesPintados.length < NIVELES_QUEJAS.length
   return (
     <div style={cardStyle}>
       <div style={titleStyle}>{t('map.quejas.title')}</div>

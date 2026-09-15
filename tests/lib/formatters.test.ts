@@ -5,6 +5,8 @@ import {
   safeHref,
   truncateAtWord,
   fmtDateHuman,
+  fmtDateShort,
+  partePorHueco,
   rellena,
   porcentajeLegible,
 } from '../../src/lib/formatters'
@@ -205,5 +207,69 @@ describe('porcentajeLegible', () => {
 
   it('sin total no hay proporción: null, no un cero', () => {
     expect(porcentajeLegible(0, 0)).toBeNull()
+  })
+})
+
+/**
+ * `fmtDateShort` con idioma.
+ *
+ * El deslizador del mapa y la tarjeta de contrato escribían el mes en castellano
+ * también en la portada valenciana, porque la función fijaba `es-ES`. Ahora
+ * recibe el idioma, y sin él —que es como la llaman todas las demás páginas—
+ * escribe lo mismo que escribía. Los números y la moneda siguen en `es-ES` en
+ * los dos idiomas: sólo cambia el nombre del mes.
+ */
+describe('fmtDateShort, en los dos idiomas', () => {
+  // Mediodía UTC: el día es el mismo en cualquier huso en el que corra la suite.
+  const ISO = '2026-06-03T12:00:00Z'
+
+  it('sin idioma, y con «es», escribe lo que escribía', () => {
+    expect(fmtDateShort(ISO)).toBe('3 jun 2026')
+    expect(fmtDateShort(ISO, 'es')).toBe(fmtDateShort(ISO))
+  })
+
+  it('en valencià, el mes en valencià', () => {
+    // ICU escribe «3 de juny del 2026». Se fija el mes y no la forma entera,
+    // que es de ICU y no nuestra.
+    expect(fmtDateShort(ISO, 'ca')).toMatch(/juny/)
+  })
+
+  it('un idioma que el sitio no tiene cae al castellano', () => {
+    expect(fmtDateShort(ISO, 'fr')).toBe(fmtDateShort(ISO))
+  })
+
+  it('sin fecha no hay texto, en ningún idioma', () => {
+    expect(fmtDateShort(null, 'ca')).toBe('')
+  })
+})
+
+/**
+ * `partePorHueco` — para las plantillas que envuelven un dato en `<strong>`.
+ *
+ * «Atribuido por la Generalitat a <strong>Vilamarxant</strong>; …» no cabe en
+ * `rellena`, que devuelve texto: el dato va dentro de un elemento. Se parte la
+ * plantilla por el hueco y el componente pinta las dos mitades alrededor.
+ */
+describe('partePorHueco', () => {
+  it('parte la plantilla alrededor del hueco', () => {
+    expect(
+      partePorHueco(
+        'Atribuido por la Generalitat a {municipio}; su perímetro entra en Riba-roja.',
+        '{municipio}',
+      ),
+    ).toEqual(['Atribuido por la Generalitat a ', '; su perímetro entra en Riba-roja.'])
+  })
+
+  it('con el hueco en un extremo, esa mitad queda vacía', () => {
+    expect(partePorHueco('{fuente} (ICV)', '{fuente}')).toEqual(['', ' (ICV)'])
+  })
+
+  it('sin el hueco, la plantilla va entera delante y el dato no se pierde detrás', () => {
+    // Una traducción que se come el hueco no puede borrar el dato: se pinta
+    // después del texto, que se ve y se arregla, en vez de desaparecer.
+    expect(partePorHueco('Zonas oficiales de peligrosidad', '{fuente}')).toEqual([
+      'Zonas oficiales de peligrosidad',
+      '',
+    ])
   })
 })

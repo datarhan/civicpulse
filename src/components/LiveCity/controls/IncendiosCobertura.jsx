@@ -2,9 +2,12 @@
 import { useMemo } from 'react'
 import { useTenders } from '../../../hooks/useTenders'
 import { useTenderGeo } from '../../../hooks/useTenderGeo'
+import { useT } from '../../../i18n'
+import { rellena } from '../../../lib/formatters'
 import { contratosDeIncendio } from '../../../lib/incendios'
 
 const nf = new Intl.NumberFormat('es-ES', { maximumFractionDigits: 0 })
+const ha = (n) => n.toLocaleString('es-ES', { maximumFractionDigits: 0 })
 
 /**
  * Lo que esta capa NO enseña, con las cifras de la propia capa.
@@ -25,8 +28,12 @@ const nf = new Intl.NumberFormat('es-ES', { maximumFractionDigits: 0 })
  *
  * Igual que MoneyCoverage: sin bloque `universe` no se dice nada, en vez de
  * insinuar una cobertura que no se puede sostener.
+ *
+ * Las frases salen del catálogo, cada una entera y con sus huecos: en la portada
+ * valenciana se leían en castellano. El aviso del ICV es un dato y no se traduce.
  */
 export function IncendiosCobertura({ universe }) {
+  const t = useT()
   const { data: tenders } = useTenders()
   const { data: tgeo } = useTenderGeo()
   const contratos = useMemo(
@@ -51,8 +58,12 @@ export function IncendiosCobertura({ universe }) {
       }}
     >
       <div style={{ fontFamily: "'DM Mono', monospace", color: 'rgba(11,15,25,.75)' }}>
-        {nf.format(universe.dibujados)} incendios · {universe.anyoMin}–{universe.anyoMax} ·{' '}
-        {universe.superficieHaTotal.toLocaleString('es-ES', { maximumFractionDigits: 0 })} ha
+        {rellena(t('map.incendios.resumen'), {
+          n: nf.format(universe.dibujados),
+          desde: universe.anyoMin,
+          hasta: universe.anyoMax,
+          ha: ha(universe.superficieHaTotal),
+        })}
       </div>
 
       {/* La suma es de incendios COMPLETOS. Cada ficha ya lo dice de su
@@ -60,42 +71,43 @@ export function IncendiosCobertura({ universe }) {
           como 215 hectáreas ardidas DENTRO del término. Recortar por la
           frontera daría una cifra nuestra con firma de la Generalitat, así que
           lo que se ajusta es la frase, no el número. */}
-      <div style={{ marginTop: 3 }}>
-        La superficie es la de cada incendio completo, no sólo la parte que ardió dentro del
-        término.
-      </div>
+      <div style={{ marginTop: 3 }}>{t('map.incendios.superficie')}</div>
 
       <div style={{ marginTop: 3 }}>{universe.aviso}.</div>
 
-      {aniosSinCartografiar > 0 && (
+      {aniosSinCartografiar === 1 && (
         <div style={{ marginTop: 3 }}>
-          La cartografía del ICV llega a {universe.anyoMax}: de los últimos{' '}
-          {aniosSinCartografiar === 1 ? 'meses' : `${aniosSinCartografiar} años`} no hay perímetros
-          dibujados, ni constancia aquí de si hubo incendios.
+          {rellena(t('map.incendios.cartografia.meses'), { hasta: universe.anyoMax })}
+        </div>
+      )}
+      {aniosSinCartografiar > 1 && (
+        <div style={{ marginTop: 3 }}>
+          {rellena(t('map.incendios.cartografia.anios'), {
+            hasta: universe.anyoMax,
+            n: aniosSinCartografiar,
+          })}
         </div>
       )}
 
-      {universe.atribuidosSinPerimetroAqui > 0 && (
+      {universe.atribuidosSinPerimetroAqui === 1 && (
         <div style={{ marginTop: 3 }}>
-          {universe.atribuidosSinPerimetroAqui === 1
-            ? 'Otro incendio '
-            : `Otros ${universe.atribuidosSinPerimetroAqui} incendios `}
-          (
-          {universe.superficieHaSinPerimetroAqui.toLocaleString('es-ES', {
-            maximumFractionDigits: 0,
-          })}{' '}
-          ha) {universe.atribuidosSinPerimetroAqui === 1 ? 'consta' : 'constan'} a nombre de
-          Riba-roja pero la Generalitat{' '}
-          {universe.atribuidosSinPerimetroAqui === 1 ? 'lo dibuja' : 'los dibuja'} fuera del
-          término, así que no se {universe.atribuidosSinPerimetroAqui === 1 ? 'pinta' : 'pintan'}.
+          {rellena(t('map.incendios.fueraDelTermino.uno'), {
+            ha: ha(universe.superficieHaSinPerimetroAqui),
+          })}
+        </div>
+      )}
+      {universe.atribuidosSinPerimetroAqui > 1 && (
+        <div style={{ marginTop: 3 }}>
+          {rellena(t('map.incendios.fueraDelTermino.varios'), {
+            n: universe.atribuidosSinPerimetroAqui,
+            ha: ha(universe.superficieHaSinPerimetroAqui),
+          })}
         </div>
       )}
 
       {contratos.total > 0 && contratos.situados === 0 && (
         <div style={{ marginTop: 3 }}>
-          El ayuntamiento tiene {contratos.total} contratos que hablan de incendios y ninguno se
-          puede situar en el mapa: la prevención se contrata para todo el municipio y no nombra
-          ningún paraje.
+          {rellena(t('map.incendios.contratosSinSituar'), { n: contratos.total })}
         </div>
       )}
     </div>

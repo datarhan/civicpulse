@@ -22,6 +22,11 @@ import { yearSpan } from '../../../lib/year-span'
  *
  * Figures come from `tender-geo.json`'s own `universe` block, never hard-coded,
  * so they can't drift from the pins beside them.
+ *
+ * Con la pila plegada (a 375 px, DirectionD.jsx) la línea de las cifras es lo que
+ * queda a la vista de toda la tarjeta, así que el botón de detalle va dentro de ella
+ * (`accion`). El margen y el borde de arriba viven en la clase `cp-cobertura` y no en
+ * el style: plegada, la línea pierde el borde, y un style gana a cualquier clase.
  */
 
 const fmtM = (n) =>
@@ -39,9 +44,9 @@ const fmtPct = (n) => new Intl.NumberFormat('es-ES', { maximumFractionDigits: 1 
 /**
  * @param {{ snapshot?: { universe?: { locatedAmount?: number, totalAmount?: number,
  *   locatedContracts?: number, totalContracts?: number, dateMin?: string|null,
- *   dateMax?: string|null } } }} props
+ *   dateMax?: string|null } }, accion?: import('react').ReactNode }} props
  */
-export function MoneyCoverage({ snapshot }) {
+export function MoneyCoverage({ snapshot, accion = null }) {
   const t = useT()
   const u = snapshot?.universe
   // No universe block ⇒ say nothing rather than imply a coverage we can't back.
@@ -56,10 +61,8 @@ export function MoneyCoverage({ snapshot }) {
 
   return (
     <div
+      className="cp-cobertura"
       style={{
-        marginTop: 6,
-        paddingTop: 6,
-        borderTop: '1px solid #E6E1D4',
         fontFamily: "'Outfit', system-ui, sans-serif",
         fontSize: 'var(--fs-aux)',
         lineHeight: 1.4,
@@ -71,9 +74,11 @@ export function MoneyCoverage({ snapshot }) {
         style={{ fontSize: 'var(--fs-micro)', color: 'rgba(11,15,25,.86)', fontWeight: 700 }}
       >
         {fmtM(u.locatedAmount)} {t('map.money.of')} {fmtM(u.totalAmount)}
-        {span ? ` (${span})` : ''} · {pct < 1 ? '<1' : fmtPct(pct)}%
+        {span ? ` (${span})` : ''} · {pct < 1 ? '<1' : fmtPct(pct)}%{accion}
       </div>
-      <div style={{ marginTop: 3 }}>{t('map.money.coverage')}</div>
+      <div id="cp-dinero-nota" className="cp-plegable" style={{ marginTop: 3 }}>
+        {t('map.money.coverage')}
+      </div>
     </div>
   )
 }

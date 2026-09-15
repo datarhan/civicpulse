@@ -16,16 +16,15 @@ scripts/scrape-<x>.ts   fetch + CLI wrapper (the only place `fetch` lives)
   → src/hooks/use<X>.js   one hook per domain, returns { loading, error, data }
 ```
 
-32 of the 41 pipeline scripts follow it exactly. Derive the file names rather
-than looking them up. `compute-*` and `build-*` scripts derive a snapshot from
-other snapshots instead of fetching.
+Most pipeline scripts follow it exactly. Derive the file names rather than
+looking them up. `compute-*` and `build-*` scripts derive a snapshot from other
+snapshots instead of fetching.
 
 **Exceptions** (parser is inline in the script, or the output name differs):
 `build-cpv-labels`, `compute-dept-stats` (writes into `plenos-agendas.json.stats`),
 `compute-press-analytics`, `scrape-fgv-gtfs` (→ `metro-schedule.json`),
-`scrape-metro-network`, `scrape-officials`, `scrape-pleno-agendas`
-(→ `plenos-agendas.json`), `scrape-promise-suggestions`, `scrape-transparency`
-(→ `transparency-docs.json`).
+`scrape-officials`, `scrape-pleno-agendas` (→ `plenos-agendas.json`),
+`scrape-promise-suggestions`, `scrape-transparency` (→ `transparency-docs.json`).
 
 Counts of rows, contracts, euros and sessions are **not** recorded here. Every
 one that used to be was wrong when audited on 2026-08-03 — some by 4×. Each
@@ -434,8 +433,9 @@ overwrites it. Change the bot's SQLite instead.
 
 ### Full Metrovalencia network (L1–L10)
 
-- **Pipeline** — `scrape-metro-network.ts` → `metro-network.json`
-- **Source** — **OSM Overpass API** — every `route=subway\|tram\|light_rail` relation tagged `network=Metrovalencia`/`operator=FGV`; platform polygons filtered out. Brand colours sourced from metrovalencia.es icon SVGs
+- **Pipeline** — `scrape-metro-network.ts` → `src/scraper/metro-network.ts` (fixture `tests/fixtures/overpass_metro-network_2026-09-15.json`) → `metro-network.json`
+- **Source** — **OSM Overpass API** — every `route=subway\|tram\|light_rail` relation tagged `network=Metrovalencia` or `operator=FGV`; platform polygons filtered out. Brand colours sourced from metrovalencia.es icon SVGs
+- **Scope** — FGV also operates the TRAM d'Alacant, whose relations answer the `operator` clause and whose line refs collide with València's (L1–L5 and L9, measured 2026-09-15). Before the parser split them, the legend titled València lines with TRAM names and the snapshot carried Alicante's stations. `ambitoDeLaRelacion` keeps a relation only when its `network` is Metrovalencia, or it has none, and none of its geometry lies south of latitude 39.0 (between Dénia and Castelló). The snapshot's `ambito` block counts the relations queried, included, without a line ref, and excluded by reason and network; `tests/metro-network-ambito.test.ts` reds on anything out of scope in the published file
 - **Surfaces** — Direction D StylizedMap `FullNetwork` layer: thin coloured polylines + small station dots across the whole region, plus a line-legend pill row
 
 ### Metrovalencia GTFS static schedule (L9 + L2 at 4 local stations)

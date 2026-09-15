@@ -36,21 +36,21 @@ export type Causa = 'intencionado' | 'negligencia' | 'rayo' | 'sinClasificar'
  */
 export const CAUSA_SIN_CLASIFICAR = 'sinClasificar' as const
 
-/** El enum. Impórtalo — no lo repitas en un test. */
+/**
+ * El enum. Impórtalo — no lo repitas en un test.
+ *
+ * Su rótulo legible vive en el catálogo, `map.incendio.causa.<causa>`, para que
+ * el globo y la leyenda lo pinten también en valencià. La tabla castellana que
+ * había aquí hacía que la portada valenciana nombrara la causa en castellano;
+ * `tests/i18n-mapa-enums.test.ts` lee este enum y exige la clave en los dos
+ * idiomas.
+ */
 export const CAUSAS: readonly Causa[] = [
   'intencionado',
   'negligencia',
   'rayo',
   CAUSA_SIN_CLASIFICAR,
 ]
-
-/** Etiqueta legible por grupo, para la leyenda y el popup. */
-export const CAUSA_ETIQUETA: Record<Causa, string> = {
-  intencionado: 'Intencionado',
-  negligencia: 'Negligencia o accidente',
-  rayo: 'Rayo',
-  sinClasificar: 'Sin determinar',
-}
 
 /**
  * Cada grafía observada en el corpus 1993-2024, plegada a minúsculas y sin

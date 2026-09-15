@@ -85,6 +85,12 @@ function useClock(intervalMs = 30000) {
 // el mismo parámetro de arranque, para que no puedan discrepar.
 const BOT_QUEJAS = 'https://t.me/munigraph_bot?start=landing'
 
+// Por debajo de este ancho la pila de controles del mapa se pliega por defecto: a
+// 375 px medía más de 300 px de alto sobre un mapa de 277 a 357 y tapaba las cuatro
+// estaciones de Riba-roja. Lo lee la media query de DirectionD.jsx, para que el
+// umbral y la regla que lo aplica no puedan discrepar.
+const MAPA_COMPACTO = 560
+
 export {
   RIBA_ROJA_CENTER,
   SERIF,
@@ -92,6 +98,7 @@ export {
   MONO,
   PALETTE,
   BOT_QUEJAS,
+  MAPA_COMPACTO,
   STACK_BREAKPOINT,
   fmtClock,
   fmtDateLong,

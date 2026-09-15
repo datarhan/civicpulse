@@ -48,6 +48,11 @@ function chipStyle(on) {
     display: 'inline-flex',
     alignItems: 'center',
     gap: 5,
+    // Con la fila en una sola línea a 375 px (DirectionD.jsx), un chip no se encoge
+    // ni parte su rótulo: la fila se desplaza. `all: 'unset'` borra ambos valores, así
+    // que se escriben aquí; en escritorio no cambia nada.
+    flexShrink: 0,
+    whiteSpace: 'nowrap',
     fontSize: 'var(--fs-meta)',
     fontWeight: 600,
     padding: '4px 9px',
@@ -63,8 +68,11 @@ export function LayerControl({ layers, onToggle }) {
   const t = useT()
   return (
     <div style={cardStyle} role="group" aria-label={t('map.layers.title')}>
-      <div style={titleStyle}>{t('map.layers.title')}</div>
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+      <div className="cp-capas-titulo" style={titleStyle}>
+        {t('map.layers.title')}
+      </div>
+      {/* `flex-wrap` vive en la clase: a 375 px la fila deja de saltar de línea. */}
+      <div className="cp-capas-chips" style={{ display: 'flex', gap: 6 }}>
         {MAP_LAYERS.map(({ key, labelKey, glyph }) => {
           const on = !!layers[key]
           return (

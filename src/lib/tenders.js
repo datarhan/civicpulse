@@ -1,31 +1,15 @@
 // @ts-check
 /**
- * Display helpers for contract detail — Spanish labels for the Gobierto
- * `process_type` / `contract_type` enums, plus the baja (savings vs budget).
- * Kept as pure functions/constants so the ContractCard and any future surface
- * agree on wording from one source.
+ * Display helpers for contract detail — the baja (savings vs budget) and the
+ * PLACSP score-as-amount guard. Kept as pure functions so the ContractCard and
+ * any future surface agree on them from one source.
+ *
+ * Los rótulos de `process_type` y `contract_type` de Gobierto ya no viven aquí:
+ * están en el catálogo (`contrato.procedimiento.*`, `contrato.tipo.*`) para que la
+ * tarjeta de contrato los pinte también en valencià, y
+ * `tests/i18n-mapa-enums.test.ts` exige una clave por cada valor que traiga el
+ * `tenders.json` publicado.
  */
-
-/** Procedimiento de adjudicación (Gobierto `process_type`). */
-export const PROCESS_TYPE_LABEL = {
-  open: 'Abierto',
-  open_simplified: 'Abierto simplificado',
-  restricted: 'Restringido',
-  negotiated_without_publicity: 'Negociado sin publicidad',
-  negotiated_with_publicity: 'Negociado con publicidad',
-  minor_contract: 'Contrato menor',
-  based_on_agreement: 'Basado en acuerdo marco',
-}
-
-/** Tipo de contrato (Gobierto `contract_type`). */
-export const CONTRACT_TYPE_LABEL = {
-  services: 'Servicios',
-  construction: 'Obras',
-  supplies: 'Suministros',
-  patrimonial: 'Patrimonial',
-  public_services_management: 'Gestión de servicios públicos',
-  other: 'Otros',
-}
 
 function amt(v) {
   const n = Number(v)

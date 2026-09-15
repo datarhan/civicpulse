@@ -18,12 +18,18 @@
  * exceptions that stay local: the landing topbar's weekday-long banner
  * (tokens.jsx) and the day+month-no-year KPI chips (KpiStrip/EditorialColumn).
  *
+ * `idioma` sólo cambia el nombre del mes. El deslizador del mapa y la tarjeta de
+ * contrato escribían «3 jun 2026» también en la portada valenciana; con «ca» sale
+ * «3 de juny del 2026». Sin idioma —como la llaman todas las demás páginas— o con
+ * uno que el sitio no tiene, escribe lo mismo que escribía.
+ *
  * @param {string|null|undefined} iso
+ * @param {string} [idioma]  'es' (por defecto) o 'ca'
  * @returns {string} e.g. "3 jun 2026" — empty string when iso is falsy
  */
-export function fmtDateShort(iso) {
+export function fmtDateShort(iso, idioma = 'es') {
   if (!iso) return ''
-  return new Date(iso).toLocaleDateString('es-ES', {
+  return new Date(iso).toLocaleDateString(idioma === 'ca' ? 'ca-ES' : 'es-ES', {
     day: 'numeric',
     month: 'short',
     year: 'numeric',
@@ -189,6 +195,27 @@ export function safeHref(url) {
  */
 export function rellena(plantilla, vars = {}) {
   return Object.entries(vars).reduce((s, [k, v]) => s.split(`{${k}}`).join(String(v)), plantilla)
+}
+
+/**
+ * Parte una plantilla por su hueco: `[antes, despues]`.
+ *
+ * Para las frases del catálogo que envuelven un dato en un elemento —«Atribuido
+ * por la Generalitat a <strong>{municipio}</strong>; …»—, que `rellena` no puede
+ * componer porque devuelve texto. El componente pinta `antes`, el elemento con el
+ * dato y `despues`, y cada idioma pone el hueco donde su gramática lo pide.
+ *
+ * Una plantilla sin el hueco no se come el dato: va entera delante y el dato se
+ * pinta detrás, que se ve y se arregla, en vez de desaparecer sin que se note.
+ *
+ * @param {string} plantilla
+ * @param {string} hueco  p. ej. '{municipio}'
+ * @returns {[string, string]}
+ */
+export function partePorHueco(plantilla, hueco) {
+  const donde = plantilla.indexOf(hueco)
+  if (donde === -1) return [plantilla, '']
+  return [plantilla.slice(0, donde), plantilla.slice(donde + hueco.length)]
 }
 
 /**
