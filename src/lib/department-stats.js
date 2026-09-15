@@ -50,7 +50,8 @@ export function departamentoDeQueja(q) {
  * @property {object} promesas  { total, docs, enProgreso, plazosVencidos }
  * @property {object} quejas  { total, abiertas, silencios, medible, motivo }: abiertas y
  *   silencios son null, con su motivo, mientras ninguna queja del área esté registrada
- * @property {object} contratacion  { contratos, importeEur } — awarded spend owned by this concejalía
+ * @property {object} contratacion  { contratos, importeEur, anios } — awarded spend owned by this
+ *   concejalía; `anios` es { desde, hasta } de SUS contratos con fecha, o null si no tiene ninguno
  * @property {object} declaraciones  { total, verificado, parcial, contradicho, promesaRepetida, sinDatos, conEvidencia }
  */
 
@@ -74,7 +75,7 @@ function emptyBucket(slug) {
     /** Awarded public spending owned by this concejalía. Only contracts whose
      *  Gobierto category maps unambiguously to a department are counted, so the
      *  figure UNDER-states rather than mis-attributes. */
-    contratacion: { contratos: 0, importeEur: 0 },
+    contratacion: { contratos: 0, importeEur: 0, anios: null },
     /** Claims surfaced from the verifier (deterministic + LLM-second-pass).
      *  conEvidencia = verificado + parcial + contradicho — the editorially
      *  meaningful number. sinDatos is excluded; promesa-repetida tracked
@@ -288,8 +289,6 @@ export function computeDepartmentStats({
   // Contratación. The largest money dataset had no owner at all: Gobierto
   // labels each contract with an English `categoryTitle`, which the Spanish
   // keyword rules never matched, so all 804 awarded contracts reached no
-  let contratacionFrom = null
-  let contratacionTo = null
   // concejalía. Only awarded rows count — a tender still open has moved no
   // money — and only unambiguous categories, so the number under-states
   // instead of putting a wrong owner on a spending figure.
@@ -312,10 +311,18 @@ export function computeDepartmentStats({
     // defect the landing page shipped with «Presup. 2025 €41,6M» beside
     // «Contratos adj. €68,0M». Computed, never typed: a hardcoded «2017-2026»
     // goes false on its own the next time the scraper runs.
+    //
+    // Y POR ÁREA, no uno para todas. Era un solo periodo global, el de todos los
+    // contratos atribuidos, pegado a cada tarjeta: «Vivienda» decía 2017–2026 con
+    // sus contratos entre 2018 y 2025, y la ficha de un cargo no tenía de dónde
+    // sacar el de sus áreas. Un contrato sin fecha suma dinero, pero no estira el
+    // periodo: no hay año que poner.
     const year = Number(String(c.awardDate ?? '').slice(0, 4))
     if (Number.isFinite(year) && year > 1990) {
-      if (contratacionFrom === null || year < contratacionFrom) contratacionFrom = year
-      if (contratacionTo === null || year > contratacionTo) contratacionTo = year
+      const anios = buckets[slug].contratacion.anios
+      buckets[slug].contratacion.anios = anios
+        ? { desde: Math.min(anios.desde, year), hasta: Math.max(anios.hasta, year) }
+        : { desde: year, hasta: year }
     }
   }
 
@@ -368,9 +375,5 @@ export function computeDepartmentStats({
     list,
     plazosVencidosCount,
     unbucketedOverdueVotes,
-    contratacionYears:
-      contratacionFrom !== null && contratacionTo !== null
-        ? { from: contratacionFrom, to: contratacionTo }
-        : null,
   }
 }

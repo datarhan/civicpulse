@@ -6,6 +6,7 @@ import { usePromises, isPromiseFrozen, PARTY_TONE } from '../hooks/usePromises'
 import { useAreaFit, fitAggregate } from '../hooks/useAreaFit'
 import { useT, useLocale } from '../i18n'
 import { rotuloPlazosVencidos } from '../lib/plazos-vencidos'
+import { yearSpan } from '../lib/year-span'
 
 /** Compact euros for a card stat: 61.262.695 € reads as "61,3 M€". */
 function formatEurosCompact(eur) {
@@ -15,10 +16,12 @@ function formatEurosCompact(eur) {
   return `${Math.round(eur)} €`
 }
 
-function DepartmentCard({ bucket, frozen, contratacionYears }) {
+function DepartmentCard({ bucket, frozen }) {
   const t = useT()
   const { locale } = useLocale()
   const label = locale === 'ca' ? bucket.labelCa : bucket.labelEs
+  const { anios } = bucket.contratacion
+  const periodoContratacion = anios ? yearSpan([String(anios.desde), String(anios.hasta)]) : null
   const official = bucket.responsableOfficial
   const partyColor = official?.party ? PARTY_TONE[official.party] || 'var(--ink50)' : null
   const vencidos = bucket.plenoVotes.plazosVencidos + bucket.promesas.plazosVencidos
@@ -97,9 +100,13 @@ function DepartmentCard({ bucket, frozen, contratacionYears }) {
               fontSize: 'var(--fs-micro)',
             }}
           >
+            {/* Las votaciones se transcriben a mano desde el acta y la mayoría de
+              las áreas no tiene ninguna. Sin ellas no hay cero que dar: «Aprobados
+              0» junto a quien dirige el área dice que no se le aprobó nada, y lo
+              único que se sabe es que nadie ha transcrito sus votaciones. */}
             <Stat
               label={t('departamentos.card.aprobados')}
-              value={bucket.plenoVotes.aprobado}
+              value={bucket.plenoVotes.total === 0 ? '—' : bucket.plenoVotes.aprobado}
               muted={bucket.plenoVotes.total === 0}
               sub={
                 bucket.plenoVotes.total === 0
@@ -119,11 +126,12 @@ function DepartmentCard({ bucket, frozen, contratacionYears }) {
               The PERIOD is part of the label, not a footnote. Without it the
               card puts a nine-year accumulation beside a one-year municipal
               budget and a reader concludes one concejalía moves a large share
-              of the annual spend. Read from the counted rows, never typed. */}
+              of the annual spend. Read from THIS card's counted rows, never
+              typed: it used to be one global span stamped on every card. */}
             <Stat
               label={
-                contratacionYears
-                  ? `${t('departamentos.card.contratacion')} ${contratacionYears.from}–${contratacionYears.to}`
+                periodoContratacion
+                  ? `${t('departamentos.card.contratacion')} ${periodoContratacion}`
                   : t('departamentos.card.contratacion')
               }
               value={
@@ -391,12 +399,7 @@ export default function Departamentos() {
         }}
       >
         {list.map((bucket) => (
-          <DepartmentCard
-            key={bucket.slug}
-            bucket={bucket}
-            frozen={frozen}
-            contratacionYears={stats.data.contratacionYears}
-          />
+          <DepartmentCard key={bucket.slug} bucket={bucket} frozen={frozen} />
         ))}
       </div>
     </div>

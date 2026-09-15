@@ -454,8 +454,65 @@ describe('computeDepartmentStats — contratación por concejalía', () => {
       quejas,
       tenders,
     })
-    expect(bySlug['obras-publicas'].contratacion).toEqual({ contratos: 2, importeEur: 150000 })
-    expect(bySlug['medio-ambiente'].contratacion).toEqual({ contratos: 1, importeEur: 25000 })
+    // Sin `awardDate` en estos contratos no hay periodo que publicar: `anios` es null.
+    expect(bySlug['obras-publicas'].contratacion).toEqual({
+      contratos: 2,
+      importeEur: 150000,
+      anios: null,
+    })
+    expect(bySlug['medio-ambiente'].contratacion).toEqual({
+      contratos: 1,
+      importeEur: 25000,
+      anios: null,
+    })
+  })
+
+  it('cada área lleva el periodo de SUS contratos, no el de toda la contratación', () => {
+    // /departamentos ponía en cada tarjeta el periodo de TODOS los contratos
+    // atribuidos, así que «Vivienda» decía 2017–2026 con sus contratos entre 2018 y
+    // 2025. Un periodo medido sobre más filas de las que suma la cifra es el mismo
+    // defecto que el que se quería evitar, un nivel más abajo.
+    const conFechas = {
+      contracts: [
+        {
+          id: 'u1',
+          categoryTitle: 'architecture',
+          assignee: 'A SL',
+          finalAmount: 10,
+          awardDate: '2018-03-01',
+        },
+        {
+          id: 'u2',
+          categoryTitle: 'architecture',
+          assignee: 'A SL',
+          finalAmount: 20,
+          awardDate: '2025-06-01',
+        },
+        // Sin fecha: suma dinero, pero no puede estirar el periodo.
+        { id: 'u3', categoryTitle: 'architecture', assignee: 'A SL', finalAmount: 30 },
+        {
+          id: 'v1',
+          categoryTitle: 'real_estate',
+          assignee: 'B SA',
+          finalAmount: 40,
+          awardDate: '2017-01-16',
+        },
+      ],
+    }
+    const { bySlug } = computeDepartmentStats({
+      officials,
+      promises,
+      agendas,
+      votes,
+      quejas,
+      tenders: conFechas,
+    })
+    expect(bySlug.urbanismo.contratacion).toEqual({
+      contratos: 3,
+      importeEur: 60,
+      anios: { desde: 2018, hasta: 2025 },
+    })
+    expect(bySlug.vivienda.contratacion.anios).toEqual({ desde: 2017, hasta: 2017 })
   })
 
   it('leaves ambiguous categories unattributed rather than guessing', () => {
@@ -473,7 +530,11 @@ describe('computeDepartmentStats — contratación por concejalía', () => {
 
   it('reports zero contratación when no tenders snapshot is supplied', () => {
     const { bySlug } = computeDepartmentStats({ officials, promises, agendas, votes, quejas })
-    expect(bySlug['obras-publicas'].contratacion).toEqual({ contratos: 0, importeEur: 0 })
+    expect(bySlug['obras-publicas'].contratacion).toEqual({
+      contratos: 0,
+      importeEur: 0,
+      anios: null,
+    })
   })
 })
 

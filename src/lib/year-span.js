@@ -12,7 +12,7 @@
  * Always DERIVE the span from the counted rows; never type it. A literal
  * «2017–2026» is correct only until the next scraper run, and it goes stale
  * silently — nothing fails, the page just starts lying. `department-stats.js`
- * computes `contratacionYears` the same way and for the same reason.
+ * keeps each area's `contratacion.anios` the same way and for the same reason.
  *
  * Pass the dates of exactly the rows the number counts. A span measured over a
  * wider set than the figure describes is the same defect one level down.
