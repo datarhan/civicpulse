@@ -17,13 +17,15 @@ import { registerBatchCommand } from './commands/batch.ts'
 import { registerEscalar } from './commands/escalar.ts'
 import { registerCurarCommand } from './commands/curar.ts'
 import { makeChannel } from './services/channel.ts'
-import { buildSnapshot } from './services/snapshot.ts'
+import { buildSnapshot, directorioFotos } from './services/snapshot.ts'
 import { buildBatch, renderBatchHtml, renderBatchMarkdown } from './services/batch.ts'
 import { buildSindicTemplate, renderSindicHtml, renderSindicMarkdown } from './services/sindic.ts'
 import { startSilencioCron } from './services/cron.ts'
 import { startDigestCron } from './services/digest.ts'
 import { startConvocatoriasCron } from './services/convocatorias.ts'
 import { startEventosRepoCron } from './services/eventos-repo.ts'
+import { startFotosCron } from './services/fotos-cron.ts'
+import { sirveFotoExportada } from './services/foto-exportada.ts'
 import { parseAdminIds } from './util/admins.ts'
 import {
   getQuejaViva,
@@ -114,6 +116,13 @@ function makeBot() {
     podar: () => podarEventosRepo(db),
   })
 
+  // Y las fotos de las quejas, anonimizadas AQUÍ cada hora, contra la base de
+  // producción y sobre el volumen (`QUEJAS_PHOTOS_DIR`). Hasta ahora la pasada sólo
+  // se lanzaba a mano, desde un portátil con una copia vieja de la base, y no la
+  // lanzaba nadie. Sin la variable no se arma; sin GEMINI_API_KEY retiene cada foto.
+  // No se pausa con el bloqueo LOREG: no publica nada sobre cargos electos.
+  startFotosCron({ db, token })
+
   bot.catch((err) => {
     console.error('[bot] error:', err)
   })
@@ -175,6 +184,12 @@ async function main() {
           },
         })
       ) {
+        return
+      }
+
+      // Las fotos anonimizadas del volumen, para que pull-quejas.yml las publique:
+      // sólo con el token en la cabecera y sólo de quejas vivas (foto-exportada.ts).
+      if (sirveFotoExportada(req, res, { db, photosDir: directorioFotos(), exportToken })) {
         return
       }
 

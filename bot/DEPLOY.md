@@ -78,6 +78,23 @@ Optional secrets you can set now or later:
   The bot must be added as an admin of that channel.
 - `ADMIN_USER_IDS=123,456` — Telegram user IDs allowed to run `/batch`,
   `/batch_register`, `/escalar`. Find yours via [@userinfobot](https://t.me/userinfobot).
+- `GEMINI_API_KEY` — la clave del análisis que localiza caras y matrículas en las
+  fotos (`src/services/photo-anonymize.ts`). Sin ella, la pasada horaria retiene cada
+  foto y no se publica ninguna; el arranque lo dice en el log (`[fotos] cron armado`).
+- `GITHUB_DISPATCH_TOKEN` — un token de acceso personal **de grano fino**, limitado a
+  este repositorio (`datarhan/civicpulse`) y con un único permiso, «Actions: Read and
+  write». Con él, al confirmar `/olvidar` el bot lanza `pull-quejas.yml` y la web
+  retira la queja en minutos (`src/services/republicar.ts`); sin él, en la
+  actualización diaria. Estos tokens caducan: cuando caduque, el log dirá
+  `GitHub contestó 401` y la retirada volverá a esperar a la actualización diaria.
+
+Estos dos no se pasan como argumentos, que acabarían en el historial de la shell: se
+escriben en un fichero, se importan y se borra el fichero.
+
+```bash
+# secret.env: una línea por secreto, GEMINI_API_KEY=… y GITHUB_DISPATCH_TOKEN=…
+flyctl secrets import --app munigraph-ribarroja < secret.env && rm secret.env
+```
 
 ### 5. Deploy
 
@@ -116,7 +133,11 @@ gh secret set BOT_EXPORT_TOKEN --body "$EXPORT_TOKEN"
 
 The GH Action in `.github/workflows/pull-quejas.yml` then runs daily at
 04:00 UTC, curls the endpoint, and commits the fresh `quejas.json` to
-the repo (which Vercel redeploys automatically).
+the repo (which Vercel redeploys automatically). En el mismo paso trae las fotos
+anonimizadas que el export enlaza, de `/export/quejas-photos/<id>.jpg` y con el
+mismo token, y poda las de las quejas que ya no están. Con `GITHUB_DISPATCH_TOKEN`
+en Fly, el bot lanza además esta misma ejecución cada vez que alguien confirma
+`/olvidar`.
 
 ## Day-two operations
 

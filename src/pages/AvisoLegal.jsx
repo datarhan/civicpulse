@@ -378,25 +378,26 @@ export default function AvisoLegal() {
           servicio externo, la API Gemini de Google, que recibe la imagen sólo para eso. Sólo la
           versión anonimizada llega al repositorio público; la original nunca se publica ni se sube
           a git. El proceso es automático y nadie revisa la imagen antes de publicarla: si el
-          análisis no puede ejecutarse, la foto se retiene y no se publica.{' '}
-          <strong>
-            Hoy esa pasada no se está ejecutando, así que ninguna foto nueva se publica.
-          </strong>{' '}
-          La detección automática puede fallar; por eso se aplica además un difuminado global. Si la
-          enviaste tú, puedes retirarla con el derecho al olvido; si apareces en ella sin haberla
-          enviado, pide su retirada por la vía de rectificación de esta página.
+          análisis no puede ejecutarse, la foto se retiene y no se publica. La pasada se ejecuta
+          cada hora en el servidor del bot, que guarda allí la copia anonimizada; esta web la
+          publica en su siguiente actualización. La detección automática puede fallar; por eso se
+          aplica además un difuminado global. Si la enviaste tú, puedes retirarla con el derecho al
+          olvido; si apareces en ella sin haberla enviado, pide su retirada por la vía de
+          rectificación de esta página.
         </p>
         <p>
           <strong>Derecho al olvido (RGPD art. 17)</strong>: en cualquier momento puedes enviar{' '}
           <code>/olvidar Q-XXXXXXXX</code> al bot para retirar tu queja. El bot deja de incluirla en
-          el acto en el listado que exporta y borra de su registro interno tu identidad de Telegram,
-          la ubicación y la referencia a la foto. Esta web la retira del dashboard, del heatmap, del
-          feed público y del snapshot abierto en su siguiente actualización diaria, y en esa misma
-          actualización borra el fichero de la foto anonimizada si se había publicado. En el
-          registro interno quedan el texto, las fechas y los estados de la queja, sin tu identidad
-          de Telegram, durante el plazo legal de conservación; después se destruyen. Sólo el autor
-          puede ejercer este derecho sobre su propia queja, y una vez ejercido el bot ya no puede
-          saber quién la escribió.
+          el acto en el listado que exporta, borra de su registro interno tu identidad de Telegram,
+          la ubicación y la referencia a la foto, borra la copia anonimizada de la foto que guarda
+          su servidor y pide a GitHub que esta web se vuelva a publicar. Esta web la retira del
+          dashboard, del heatmap, del feed público y del snapshot abierto en cuanto termina esa
+          actualización, que suele tardar unos minutos; si la petición falla, en la siguiente
+          actualización diaria. En esa misma actualización borra el fichero de la foto anonimizada
+          si se había publicado. En el registro interno quedan el texto, las fechas y los estados de
+          la queja, sin tu identidad de Telegram, durante el plazo legal de conservación; después se
+          destruyen. Sólo el autor puede ejercer este derecho sobre su propia queja, y una vez
+          ejercido el bot ya no puede saber quién la escribió.
         </p>
         <p>
           <strong>Historial git e inmutabilidad de la cadena de custodia</strong>: el snapshot
@@ -410,7 +411,9 @@ export default function AvisoLegal() {
           <li>
             <strong>Retirada del snapshot vigente</strong>: tras enviar{' '}
             <code>/olvidar Q-XXXXXXXX</code>, tu queja deja de aparecer en las páginas públicas y en
-            el JSON que se sirve a los visitantes en la siguiente actualización diaria.
+            el JSON que se sirve a los visitantes en cuanto termina la actualización que el bot pide
+            al confirmar la retirada, que suele tardar unos minutos, o en la siguiente actualización
+            diaria si esa petición falla.
           </li>
           <li>
             <strong>Reescritura del historial bajo solicitud formal</strong>: si requieres además
@@ -432,10 +435,11 @@ export default function AvisoLegal() {
             individual del titular del dato, no como práctica habitual.
           </li>
           <li>
-            <strong>Plazo</strong>: la retirada del snapshot vigente llega con la siguiente
-            actualización diaria. La reescritura del historial git se ejecuta en un plazo máximo de
-            30 días desde la recepción de la solicitud; la purga de las copias de GitHub sigue los
-            plazos de GitHub.
+            <strong>Plazo</strong>: la retirada del snapshot vigente llega con la actualización que
+            el bot pide al confirmar <code>/olvidar</code>, que suele tardar unos minutos, y como
+            tarde con la siguiente actualización diaria. La reescritura del historial git se ejecuta
+            en un plazo máximo de 30 días desde la recepción de la solicitud; la purga de las copias
+            de GitHub sigue los plazos de GitHub.
           </li>
         </ul>
         <p>
