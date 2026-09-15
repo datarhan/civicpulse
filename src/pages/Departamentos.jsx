@@ -100,9 +100,13 @@ function DepartmentCard({ bucket, frozen }) {
               fontSize: 'var(--fs-micro)',
             }}
           >
+            {/* Las votaciones se transcriben a mano desde el acta y la mayoría de
+              las áreas no tiene ninguna. Sin ellas no hay cero que dar: «Aprobados
+              0» junto a quien dirige el área dice que no se le aprobó nada, y lo
+              único que se sabe es que nadie ha transcrito sus votaciones. */}
             <Stat
               label={t('departamentos.card.aprobados')}
-              value={bucket.plenoVotes.aprobado}
+              value={bucket.plenoVotes.total === 0 ? '—' : bucket.plenoVotes.aprobado}
               muted={bucket.plenoVotes.total === 0}
               sub={
                 bucket.plenoVotes.total === 0

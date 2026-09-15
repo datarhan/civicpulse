@@ -533,7 +533,16 @@ export default function DepartamentoDetalle() {
           marginTop: 16,
         }}
       >
-        <MiniStat label={t('departamentos.card.aprobados')} value={bucket.plenoVotes.aprobado} />
+        {/* Como en la tarjeta del índice: «—» y el motivo mientras el área no
+            tenga ninguna votación transcrita, porque un 0 diría que no se le
+            aprobó nada. */}
+        <MiniStat
+          label={t('departamentos.card.aprobados')}
+          value={bucket.plenoVotes.total === 0 ? '—' : bucket.plenoVotes.aprobado}
+          sub={
+            bucket.plenoVotes.total === 0 ? t('departamentos.card.sinVotoTranscrito') : undefined
+          }
+        />
         <MiniStat label={t('departamentos.card.promesas')} value={bucket.promesas.total} />
         <MiniStat
           label={t('departamentos.card.vencidos')}
@@ -638,7 +647,7 @@ export default function DepartamentoDetalle() {
   )
 }
 
-function MiniStat({ label, value, tone }) {
+function MiniStat({ label, value, tone, sub }) {
   const color =
     tone === 'warn' ? 'var(--warn-ink)' : tone === 'crit' ? 'var(--crit-ink)' : 'var(--ink)'
   return (
@@ -666,6 +675,14 @@ function MiniStat({ label, value, tone }) {
       >
         {value}
       </div>
+      {sub && (
+        <div
+          className="mono"
+          style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 1 }}
+        >
+          {sub}
+        </div>
+      )}
     </div>
   )
 }
