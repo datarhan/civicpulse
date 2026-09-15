@@ -188,3 +188,18 @@ export function validarRegistroSolicitudes(
     }
   }
 }
+
+/**
+ * El título de la tabla de solicitudes de /laboratorio/cobertura, sacado de los
+ * mismos estados que pinta la tabla.
+ *
+ * Decía siempre «Lo que hemos pedido, y lo que han contestado», y el 15-09-2026 el
+ * registro estaba vacío: todas las filas decían «Todavía no lo hemos pedido» debajo
+ * de un título que afirmaba lo contrario. Sin ninguna solicitud presentada, el título
+ * dice lo que la tabla es.
+ */
+export function tituloSolicitudes(estados: readonly EstadoSolicitud[]): string {
+  return estados.some((e) => e !== 'sin-solicitar')
+    ? 'Lo que hemos pedido, y lo que han contestado'
+    : 'Lo que habría que pedir'
+}

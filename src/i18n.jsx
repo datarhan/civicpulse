@@ -801,8 +801,8 @@ export const CATALOGUE = {
     'presupuesto.deuda.noPublicados':
       'Sin entrega publicada todavía: {lista}. La serie se corta ahí porque el Ministerio aún no ha publicado ese ejercicio, no porque no haya deuda.',
     'presupuesto.deuda.fuente': 'Ministerio de Hacienda · deuda viva EE.LL.',
-    'presupuesto.contra.eyebrow': 'Contratación · con este dinero',
-    'presupuesto.contra.title': 'Lo que se adjudica con este dinero',
+    'presupuesto.contra.eyebrow': 'Contratación y subvenciones',
+    'presupuesto.contra.title': 'Lo que se ha adjudicado, cada cifra con su periodo',
     'presupuesto.contra.intro':
       'El presupuesto se aprueba y se ejecuta cada año; la contratación se acumula a lo largo de varios ejercicios. Así que **estos cuatro recuentos no son el reparto del presupuesto de arriba**: cada uno lleva el periodo que abarca. Van **medidos sobre los contratos adjudicados y sin IVA**, con los mismos predicados que las fichas de abajo, y cada uno abre la suya.',
     'presupuesto.contra.menores': 'Contratos menores',
@@ -1842,8 +1842,8 @@ export const CATALOGUE = {
     'presupuesto.deuda.noPublicados':
       'Sense entrega publicada encara: {lista}. La sèrie es talla ací perquè el Ministeri encara no ha publicat eixe exercici, no perquè no hi haja deute.',
     'presupuesto.deuda.fuente': "Ministeri d'Hisenda · deute viu EE.LL.",
-    'presupuesto.contra.eyebrow': 'Contractació · amb estos diners',
-    'presupuesto.contra.title': "El que s'adjudica amb estos diners",
+    'presupuesto.contra.eyebrow': 'Contractació i subvencions',
+    'presupuesto.contra.title': "El que s'ha adjudicat, cada xifra amb el seu període",
     'presupuesto.contra.intro':
       "El pressupost s'aprova i s'executa cada any; la contractació s'acumula al llarg de diversos exercicis. Així que **estos quatre recomptes no són el repartiment del pressupost de dalt**: cadascun porta el període que abasta. Van **mesurats sobre els contractes adjudicats i sense IVA**, amb els mateixos predicats que les fitxes de baix, i cadascun obri la seua.",
     'presupuesto.contra.menores': 'Contractes menors',
