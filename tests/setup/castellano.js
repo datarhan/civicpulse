@@ -25,6 +25,22 @@ export function loQueSeLee(nodo, out = []) {
   return out
 }
 
+/**
+ * Lo que el lector recibe de un contenedor: sus textos, lo que sólo oye
+ * (`aria-label`) y lo que le sale al pasar por encima (`title`), en orden de
+ * documento. Vivía dentro de `mapa-valencia.test.jsx`; la portada lee igual.
+ */
+export const lectura = (container) => [
+  ...loQueSeLee(container),
+  ...[...container.querySelectorAll('[title]')].map((el) => el.getAttribute('title')),
+]
+
+/** Primero las más largas: «hab.» se tiene que quitar antes que «ha». */
+export const masLargasPrimero = (xs) =>
+  [...new Set(xs.filter((x) => x != null && x !== '').map(String))].sort(
+    (a, b) => b.length - a.length,
+  )
+
 /** Las palabras de un texto, en minúsculas. */
 export const palabras = (s) => s.toLowerCase().match(/\p{L}+/gu) ?? []
 

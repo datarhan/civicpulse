@@ -5,6 +5,7 @@ import { fmtDateShort, rellena } from '../../lib/formatters'
 import { bajaPct } from '../../lib/tenders'
 import { uniqueCpvLabels } from '../../lib/cpv'
 import { rotuloDe, useLocale } from '../../i18n'
+import { CLAVE_RELACION } from '../../scraper/relation-labels'
 
 const fmtEur = (n) =>
   new Intl.NumberFormat('es-ES', {
@@ -212,7 +213,11 @@ export function ContractCard(props) {
                   marginRight: 5,
                 }}
               >
-                {r.relationLabel}
+                {rotuloDe(
+                  t,
+                  `contrato.relacion.${CLAVE_RELACION[r.relationLabel]}`,
+                  r.relationLabel,
+                )}
               </span>
               {r.description ? r.description.slice(0, 60) : r.quejaId}
               {r.description && r.description.length > 60 ? '…' : ''}

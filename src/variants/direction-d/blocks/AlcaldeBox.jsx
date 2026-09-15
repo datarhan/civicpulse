@@ -9,11 +9,12 @@ import { useBdns } from '../../../hooks/useBdns'
 import { isCommittedContract } from '../../../lib/contract-status'
 import { yearSpan } from '../../../lib/year-span'
 import { canonicalizeDepartment, DEPARTMENT_LABEL } from '../../../scraper/departments'
+import { rellena } from '../../../lib/formatters'
 import { PALETTE, MONO } from '../tokens'
-import { useT } from '../../../i18n'
+import { useLocale } from '../../../i18n'
 
 export function AlcaldeBox() {
-  const t = useT()
+  const { t, locale } = useLocale()
   const { loading, error, data } = useOfficials()
   const { data: promisesData } = usePromises()
   const { data: agendasData } = usePlenoAgendas()
@@ -165,20 +166,24 @@ export function AlcaldeBox() {
             <a
               href="/promesas"
               style={{ color: PALETTE.ink80, textDecoration: 'none' }}
-              title={`Promesas documentadas del grupo ${mayor.party}`}
+              title={rellena(t('landing.alcalde.promesas.title'), { grupo: mayor.party })}
             >
               <span style={{ fontWeight: 700 }}>{partyPromises}</span>
-              <span style={{ color: PALETTE.ink50, marginLeft: 5 }}>promesas · {mayor.party}</span>
+              <span style={{ color: PALETTE.ink50, marginLeft: 5 }}>
+                {t('landing.alcalde.promesas')} · {mayor.party}
+              </span>
             </a>
           )}
           {agendaHits > 0 && slugs[0] && (
             <a
               href={`/departamentos/${slugs[0]}`}
               style={{ color: PALETTE.ink80, textDecoration: 'none' }}
-              title="Puntos de orden del día gestionados por concejalías del Alcalde"
+              title={t('landing.alcalde.puntos.title')}
             >
               <span style={{ fontWeight: 700 }}>{agendaHits}</span>
-              <span style={{ color: PALETTE.ink50, marginLeft: 5 }}>puntos en pleno</span>
+              <span style={{ color: PALETTE.ink50, marginLeft: 5 }}>
+                {t('landing.alcalde.puntos')}
+              </span>
             </a>
           )}
         </div>
@@ -209,7 +214,7 @@ export function AlcaldeBox() {
                 fontWeight: 600,
               }}
             >
-              {DEPARTMENT_LABEL[slug].es} →
+              {DEPARTMENT_LABEL[slug][locale] ?? DEPARTMENT_LABEL[slug].es} →
             </a>
           ))}
         </div>
@@ -234,7 +239,7 @@ export function AlcaldeBox() {
                 precisión: ponía un marco falso encima y volvía a invitar a la
                 comparación que las tres líneas existen para impedir. Lo señaló
                 la revisión lectora. */}
-            Gobierno municipal
+            {t('landing.alcalde.gobierno')}
           </div>
           <div
             style={{
@@ -253,8 +258,8 @@ export function AlcaldeBox() {
                 style={{ color: PALETTE.ink80, textDecoration: 'none' }}
                 title={
                   magnitud?.etapa === 'definitivo'
-                    ? 'Crédito definitivo del ejercicio: lo aprobado más las modificaciones de crédito, según el estado de ejecución del Ayuntamiento. Al lado, las obligaciones reconocidas.'
-                    : 'Presupuesto de gastos aprobado del ejercicio, según CONPREL (Ministerio de Hacienda). No es lo ejecutado.'
+                    ? t('landing.alcalde.definitivo.title')
+                    : t('landing.alcalde.aprobado.title')
                 }
               >
                 <span style={{ fontWeight: 700 }}>{formatBudgetEuros(budgetEuros)}</span>{' '}
@@ -279,7 +284,9 @@ export function AlcaldeBox() {
                   volvió, porque lo que estaba mal era la cifra elegida.
                 */}
                 <span style={{ color: PALETTE.ink50 }}>
-                  {magnitud?.etapa === 'definitivo' ? 'crédito definitivo' : 'presupuesto aprobado'}
+                  {magnitud?.etapa === 'definitivo'
+                    ? t('landing.alcalde.definitivo')
+                    : t('landing.alcalde.aprobado')}
                   {budgetYear ? ` ${budgetYear}` : ''}
                 </span>
                 {magnitud?.ejecutado ? (
@@ -288,7 +295,7 @@ export function AlcaldeBox() {
                     <span style={{ fontWeight: 700, color: PALETTE.ink80 }}>
                       {formatBudgetEuros(magnitud.ejecutado)}
                     </span>{' '}
-                    ejecutado
+                    {t('landing.alcalde.ejecutado')}
                   </span>
                 ) : null}
               </a>
@@ -310,7 +317,7 @@ export function AlcaldeBox() {
                 // every run. A fix applied where it cannot be read is the
                 // front-end twin of a test that is green while measuring
                 // nothing.
-                title="Contratos adjudicados registrados en el portal de contratación, no solo los de este mandato"
+                title={t('landing.alcalde.contratos.title')}
               >
                 <span style={{ fontWeight: 700 }}>{tendersAwarded}</span>{' '}
                 <span style={{ color: PALETTE.ink50 }}>
@@ -318,7 +325,8 @@ export function AlcaldeBox() {
               otras dos superficies que publican este mismo par —la tira de KPI
               («acumulado · Gobierto/PLACSP») y FeedBlocks («Acumulado
               2017–2026»)—, y ésta era la única de las tres sin ella. */}
-                  contratos acumulados{tendersYears ? ` ${tendersYears}` : ''}
+                  {t('landing.alcalde.contratos')}
+                  {tendersYears ? ` ${tendersYears}` : ''}
                   {tendersEuros ? ` · ${formatBudgetEuros(tendersEuros)}` : ''}
                 </span>
               </a>
@@ -327,11 +335,12 @@ export function AlcaldeBox() {
               <a
                 href="/presupuesto"
                 style={{ color: PALETTE.ink80, textDecoration: 'none' }}
-                title="Subvenciones concedidas por el Ayuntamiento (registro BDNS)"
+                title={t('landing.alcalde.subvenciones.title')}
               >
                 <span style={{ fontWeight: 700 }}>{bdnsGranted}</span>{' '}
                 <span style={{ color: PALETTE.ink50 }}>
-                  subvenciones{bdnsYears ? ` ${bdnsYears}` : ''}
+                  {t('landing.alcalde.subvenciones')}
+                  {bdnsYears ? ` ${bdnsYears}` : ''}
                 </span>
               </a>
             )}

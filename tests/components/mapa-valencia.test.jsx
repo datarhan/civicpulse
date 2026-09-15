@@ -52,7 +52,12 @@ import { LayerControl, MAP_LAYERS } from '../../src/components/LiveCity/controls
 import { ContractCard } from '../../src/components/tenders/ContractCard'
 import { EventTicker } from '../../src/variants/direction-d/MapOverlays'
 import { installFetchMock } from '../setup/mockFetch'
-import { detectorDeCastellano, IGUALES_EN_EL_CATALOGO, loQueSeLee } from '../setup/castellano'
+import {
+  detectorDeCastellano,
+  IGUALES_EN_EL_CATALOGO,
+  lectura,
+  masLargasPrimero,
+} from '../setup/castellano'
 
 /**
  * La unidad del dinero compacto, leída del ICU de ESTE runtime y no escrita a mano.
@@ -74,18 +79,6 @@ const UNIDAD_MILLONES = DINERO_COMPACTO.format(2_000_000)
 
 /** Unidades: se escriben igual en los dos idiomas porque no son lengua. */
 const UNIDADES = [UNIDAD_MILLONES, 'ha', 'hab.']
-
-/** Primero las más largas: «hab.» se tiene que quitar antes que «ha». */
-const masLargasPrimero = (xs) =>
-  [...new Set(xs.filter((x) => x != null && x !== '').map(String))].sort(
-    (a, b) => b.length - a.length,
-  )
-
-/** Lo que el lector recibe: textos, `aria-label` y `title`, en orden de documento. */
-const lectura = (container) => [
-  ...loQueSeLee(container),
-  ...[...container.querySelectorAll('[title]')].map((el) => el.getAttribute('title')),
-]
 
 // ─── Datos de los escenarios ───────────────────────────────────────────────────
 
@@ -187,7 +180,12 @@ const CONTRATO_ZONA = {
   finalAmountNoTaxes: 26000,
 }
 const PROCEDENCIA = 'El Clot'
-/** `relationLabel` es de /presupuesto y queda fuera de esta tarea: se pasa como dato. */
+/**
+ * `relationLabel` NO es un dato: es un valor del enum de
+ * `queja-contract-relations.ts`, y su pastilla se lee en el idioma de la interfaz
+ * como el resto de la tarjeta. Hasta #38 se pasaba aquí como dato, y la tarjeta
+ * decía «misma zona» también en la portada valenciana.
+ */
 const QUEJA_RELACIONADA = {
   quejaId: 'Q-7',
   relationLabel: 'misma zona',
@@ -389,7 +387,6 @@ const GLOBOS = [
       CONTRATO_ZONA.title,
       CONTRATO_ZONA.assignee,
       PROCEDENCIA,
-      QUEJA_RELACIONADA.relationLabel,
       QUEJA_RELACIONADA.description,
     ],
     siglas: ['DANA'],

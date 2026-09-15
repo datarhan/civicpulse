@@ -90,7 +90,8 @@ export const STATUS_TONE = {
   unknown: 'ghost',
 }
 
-// Kept as a re-export shim — pages historically import formatDate from here.
-export function formatDate(iso) {
-  return fmtDateShort(iso)
+// Kept as a re-export shim — pages historically import formatDate from here. The
+// landing passes its locale; every other caller keeps the Castilian month.
+export function formatDate(iso, idioma) {
+  return fmtDateShort(iso, idioma)
 }

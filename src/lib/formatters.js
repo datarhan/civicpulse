@@ -55,21 +55,27 @@ export function fmtDateLong(iso) {
  * previously-divergent copies in usePress (floor / 48h / 14d) and useQuejas
  * (round / 24h / 30d); the useQuejas thresholds are the canonical choice.
  *
+ * Con `{ t, locale }` las palabras salen del catálogo (`tiempo.*`) y la fecha va en
+ * el idioma de la interfaz: la portada valenciana escribía «hace 3 h» junto a cada
+ * titular. Este módulo no importa el catálogo —no depende de React—, así que quien
+ * pinta le pasa su `t`. Sin ellos escribe exactamente lo de siempre.
+ *
  * @param {string|null|undefined} iso  ISO timestamp
+ * @param {{ t?: (clave: string) => string, locale?: string }} [idioma]
  * @returns {string}
  */
-export function timeAgo(iso) {
+export function timeAgo(iso, { t, locale } = {}) {
   if (!iso) return ''
   const now = Date.now()
   const then = new Date(iso).getTime()
   const mins = Math.round((now - then) / 60000)
-  if (mins < 1) return 'ahora'
-  if (mins < 60) return `hace ${mins} min`
+  if (mins < 1) return t ? t('tiempo.ahora') : 'ahora'
+  if (mins < 60) return t ? rellena(t('tiempo.haceMin'), { n: mins }) : `hace ${mins} min`
   const hours = Math.round(mins / 60)
-  if (hours < 24) return `hace ${hours} h`
+  if (hours < 24) return t ? rellena(t('tiempo.haceHoras'), { n: hours }) : `hace ${hours} h`
   const days = Math.round(hours / 24)
-  if (days < 30) return `hace ${days} d`
-  return new Date(iso).toLocaleDateString('es-ES', {
+  if (days < 30) return t ? rellena(t('tiempo.haceDias'), { n: days }) : `hace ${days} d`
+  return new Date(iso).toLocaleDateString(locale === 'ca' ? 'ca-ES' : 'es-ES', {
     day: 'numeric',
     month: 'short',
     year: 'numeric',
@@ -132,14 +138,18 @@ export function truncateAtWord(text, max) {
  * Date('2026-07-06')` is UTC midnight, which renders as the 5th for any reader
  * west of Greenwich. A publication date has no time zone.
  *
+ * `idioma` sólo cambia el nombre del mes, como en `fmtDateShort`: la portada
+ * valenciana fechaba sus reportajes «6 de julio de 2026».
+ *
  * @param {string|null|undefined} value
+ * @param {string} [idioma]  'es' (por defecto) o 'ca'
  * @returns {string}
  */
-export function fmtDateHuman(value) {
+export function fmtDateHuman(value, idioma = 'es') {
   if (!value) return ''
   const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(value)
   if (!m) return value
-  return new Date(+m[1], +m[2] - 1, +m[3]).toLocaleDateString('es-ES', {
+  return new Date(+m[1], +m[2] - 1, +m[3]).toLocaleDateString(idioma === 'ca' ? 'ca-ES' : 'es-ES', {
     day: 'numeric',
     month: 'long',
     year: 'numeric',

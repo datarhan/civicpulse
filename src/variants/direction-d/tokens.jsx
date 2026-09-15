@@ -59,12 +59,19 @@ const PALETTE = {
   amber: '#92400E',
 }
 
-function fmtClock(d) {
-  return d.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })
+function fmtClock(d, idioma = 'es') {
+  return d.toLocaleTimeString(idioma === 'ca' ? 'ca-ES' : 'es-ES', {
+    hour: '2-digit',
+    minute: '2-digit',
+  })
 }
 
-function fmtDateLong(d) {
-  return d.toLocaleDateString('es-ES', {
+/**
+ * El día del membrete de la columna, en el idioma de la interfaz: «martes, 15 de
+ * septiembre de 2026» salía igual en la portada valenciana.
+ */
+function fmtDateLong(d, idioma = 'es') {
+  return d.toLocaleDateString(idioma === 'ca' ? 'ca-ES' : 'es-ES', {
     weekday: 'long',
     day: 'numeric',
     month: 'long',
