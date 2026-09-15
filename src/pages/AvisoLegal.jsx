@@ -351,9 +351,10 @@ export default function AvisoLegal() {
             eliminar tus propias quejas
           </li>
           <li>
-            <strong>Fotografía adjunta</strong> (si la envías) — el original se guarda en el almacén
-            del bot para el expediente y nunca se publica; lo que se publica es una copia
-            anonimizada, como se explica más abajo
+            <strong>Fotografía adjunta</strong> (si la envías) — el bot no guarda la imagen
+            original: queda en los servidores de Telegram, en tu conversación con el bot, y el bot
+            conserva sólo la referencia que le permite descargarla para anonimizarla. Lo que se
+            publica es una copia anonimizada, como se explica más abajo
           </li>
         </ul>
         <p>
@@ -371,28 +372,32 @@ export default function AvisoLegal() {
           indefinidamente.
         </p>
         <p>
-          <strong>Fotografías adjuntas</strong>: si adjuntas una foto a tu queja, antes de
-          publicarla se procesa automáticamente para difuminar caras y matrículas y se le eliminan
-          todos los metadatos (incluida la geolocalización EXIF). Sólo esa versión anonimizada llega
-          al repositorio público; la imagen original nunca se publica ni se sube a git — permanece
-          en el almacén local del bot bajo el mismo plazo de conservación y derecho al olvido que el
-          resto de la queja. El proceso es automático y nadie revisa la imagen antes de publicarla:
-          si el análisis que localiza caras y matrículas no puede ejecutarse, la foto se retiene y
-          no se publica. Hoy esa pasada de anonimización se lanza a mano, así que una foto nueva
-          puede tardar en aparecer. La detección automática puede fallar; por eso mantenemos un
-          difuminado global de refuerzo, y si ves que ha quedado algún dato personal visible puedes
-          retirar la foto con el derecho al olvido.
+          <strong>Fotografías adjuntas</strong>: antes de publicar una foto se procesa
+          automáticamente para difuminar caras y matrículas y se le eliminan todos los metadatos
+          (incluida la geolocalización EXIF). El análisis que localiza caras y matrículas lo hace un
+          servicio externo, la API Gemini de Google, que recibe la imagen sólo para eso. Sólo la
+          versión anonimizada llega al repositorio público; la original nunca se publica ni se sube
+          a git. El proceso es automático y nadie revisa la imagen antes de publicarla: si el
+          análisis no puede ejecutarse, la foto se retiene y no se publica. La pasada se ejecuta
+          cada hora en el servidor del bot, que guarda allí la copia anonimizada; esta web la
+          publica en su siguiente actualización. La detección automática puede fallar; por eso se
+          aplica además un difuminado global. Si la enviaste tú, puedes retirarla con el derecho al
+          olvido; si apareces en ella sin haberla enviado, pide su retirada por la vía de
+          rectificación de esta página.
         </p>
         <p>
           <strong>Derecho al olvido (RGPD art. 17)</strong>: en cualquier momento puedes enviar{' '}
           <code>/olvidar Q-XXXXXXXX</code> al bot para retirar tu queja. El bot deja de incluirla en
-          el acto en el listado que exporta; esta web la retira del dashboard, del heatmap, del feed
-          público y del snapshot abierto en su siguiente actualización diaria; y el fichero de la
-          foto anonimizada se borra en la siguiente pasada de anonimización, que hoy se lanza a
-          mano: hasta entonces sigue siendo accesible en su dirección, aunque ninguna página la
-          enlace. Queda un registro anónimo interno durante el plazo legal de conservación, y
-          después se destruye. Sólo el autor original puede ejercer este derecho sobre su propia
-          queja.
+          el acto en el listado que exporta, borra de su registro interno tu identidad de Telegram,
+          la ubicación y la referencia a la foto, borra la copia anonimizada de la foto que guarda
+          su servidor y pide a GitHub que esta web se vuelva a publicar. Esta web la retira del
+          dashboard, del heatmap, del feed público y del snapshot abierto en cuanto termina esa
+          actualización, que suele tardar unos minutos; si la petición falla, en la siguiente
+          actualización diaria. En esa misma actualización borra el fichero de la foto anonimizada
+          si se había publicado. En el registro interno quedan el texto, las fechas y los estados de
+          la queja, sin tu identidad de Telegram, durante el plazo legal de conservación; después se
+          destruyen. Sólo el autor puede ejercer este derecho sobre su propia queja, y una vez
+          ejercido el bot ya no puede saber quién la escribió.
         </p>
         <p>
           <strong>Historial git e inmutabilidad de la cadena de custodia</strong>: el snapshot
@@ -406,16 +411,21 @@ export default function AvisoLegal() {
           <li>
             <strong>Retirada del snapshot vigente</strong>: tras enviar{' '}
             <code>/olvidar Q-XXXXXXXX</code>, tu queja deja de aparecer en las páginas públicas y en
-            el JSON que se sirve a los visitantes en la siguiente actualización diaria.
+            el JSON que se sirve a los visitantes en cuanto termina la actualización que el bot pide
+            al confirmar la retirada, que suele tardar unos minutos, o en la siguiente actualización
+            diaria si esa petición falla.
           </li>
           <li>
             <strong>Reescritura del historial bajo solicitud formal</strong>: si requieres además
             que se borren las versiones presentes en el historial git (commits anteriores), usa la
             misma vía de rectificación contactando al responsable del tratamiento. Procederemos a
-            reescribir el historial (<code>git filter-repo</code> o equivalente) y a forzar la
-            actualización del repositorio público y de los <em>mirrors</em> de Vercel, dejando traza
-            interna de la solicitud y de la fecha de ejecución (sin republicar el contenido
-            eliminado).
+            reescribir el historial (<code>git filter-repo</code> o equivalente), a forzar la
+            actualización del repositorio público y a borrar los despliegues antiguos de Vercel que
+            la contengan. Reescribir no alcanza las copias que no controlamos: las referencias que
+            GitHub guarda de cada solicitud de cambio y sus vistas en caché sólo las purga GitHub,
+            así que en la misma gestión le pedimos esa purga; tampoco alcanza a quien ya hubiera
+            clonado o bifurcado el repositorio. Dejamos traza interna de la solicitud y de la fecha
+            de ejecución (sin republicar el contenido eliminado).
           </li>
           <li>
             <strong>Base jurídica de la retención por defecto</strong>: la conservación del
@@ -425,9 +435,11 @@ export default function AvisoLegal() {
             individual del titular del dato, no como práctica habitual.
           </li>
           <li>
-            <strong>Plazo</strong>: la eliminación del snapshot vigente es instantánea (≤24 h). La
-            reescritura del historial git se ejecuta en un plazo máximo de 30 días desde la
-            recepción de la solicitud.
+            <strong>Plazo</strong>: la retirada del snapshot vigente llega con la actualización que
+            el bot pide al confirmar <code>/olvidar</code>, que suele tardar unos minutos, y como
+            tarde con la siguiente actualización diaria. La reescritura del historial git se ejecuta
+            en un plazo máximo de 30 días desde la recepción de la solicitud; la purga de las copias
+            de GitHub sigue los plazos de GitHub.
           </li>
         </ul>
         <p>

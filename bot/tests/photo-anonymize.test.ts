@@ -4,7 +4,6 @@ import {
   ANON_DEFAULTS,
   chooseVisionBackend,
   extractGeminiText,
-  extractOpenAIText,
   detectSensitiveRegions,
   anonymizeImage,
 } from '../src/services/photo-anonymize'
@@ -28,8 +27,11 @@ describe('chooseVisionBackend', () => {
   it('prefers gemini (free tier) when both keys are present', () => {
     expect(chooseVisionBackend({ GEMINI_API_KEY: 'g', OPENAI_API_KEY: 'o' })).toBe('gemini')
   })
-  it('falls back to openai when only that key is set', () => {
-    expect(chooseVisionBackend({ OPENAI_API_KEY: 'o' })).toBe('openai')
+  it('sin clave de Gemini no hay análisis: la foto se retiene, nunca va a OpenAI', () => {
+    // El aviso legal nombra un solo servicio que recibe la imagen, la API Gemini
+    // de Google, y la regla del proyecto no manda nada a OpenAI: con sólo su
+    // clave, no hay backend.
+    expect(chooseVisionBackend({ OPENAI_API_KEY: 'o' })).toBeNull()
   })
   it('returns null when no vision key is configured', () => {
     expect(chooseVisionBackend({})).toBeNull()
@@ -43,16 +45,25 @@ describe('response extractors', () => {
     }
     expect(extractGeminiText(json)).toContain('0.1')
   })
-  it('pulls text out of an openai chat.completions response', () => {
-    const json = { choices: [{ message: { content: '[]' } }] }
-    expect(extractOpenAIText(json)).toBe('[]')
-  })
 })
 
 describe('detectSensitiveRegions — fail closed', () => {
   it('throws when no vision backend is configured (so the caller holds the photo)', async () => {
     const buf = await twoToneImage()
     await expect(detectSensitiveRegions(buf, { env: {} })).rejects.toThrow()
+  })
+
+  it('con sólo la clave de OpenAI también se retiene, sin llamar a nadie', async () => {
+    const buf = await twoToneImage()
+    let llamadas = 0
+    const fetchImpl = async () => {
+      llamadas++
+      return { ok: true, status: 200, json: async () => ({}) } as unknown as Response
+    }
+    await expect(
+      detectSensitiveRegions(buf, { env: { OPENAI_API_KEY: 'o' }, fetchImpl }),
+    ).rejects.toThrow(/GEMINI_API_KEY/)
+    expect(llamadas, 'la imagen no puede salir hacia ningún servicio').toBe(0)
   })
 
   it('returns parsed boxes from a stubbed gemini call', async () => {

@@ -15,7 +15,7 @@
 import type { Db } from '../db/client.ts'
 import {
   countApoyos,
-  getQueja,
+  getQuejaViva,
   setState,
   VERIFIED_THRESHOLD,
   type QuejaRow,
@@ -248,7 +248,7 @@ export function registerBatch(db: Db, input: RegisterBatchInput): RegisterBatchR
 
   const tx = db.transaction(() => {
     for (const id of input.ids) {
-      const q = getQueja(db, id)
+      const q = getQuejaViva(db, id)
       if (!q) {
         failed.push({ id, reason: 'not found' })
         continue

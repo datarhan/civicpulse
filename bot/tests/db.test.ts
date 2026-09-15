@@ -1,4 +1,7 @@
 import { describe, expect, it, beforeEach } from 'vitest'
+import { mkdtempSync, rmSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
 import { openDb, type Db } from '../src/db/client'
 import {
   createQueja,
@@ -11,6 +14,7 @@ import {
   listEvents,
   setState,
   softDeleteQueja,
+  anonimizaRetiradas,
   aggregateStats,
   type NewQuejaInput,
 } from '../src/db/queries'
@@ -216,7 +220,8 @@ describe('bot db — softDeleteQueja (RGPD art. 17 right-to-be-forgotten)', () =
 
   beforeEach(() => {
     db = openDb(':memory:')
-    quejaId = createQueja(db, sampleQueja()).id
+    // Con usuario, coordenadas y foto: lo que /olvidar tiene que borrar del registro.
+    quejaId = createQueja(db, sampleQueja({ photo_file_id: 'AgACAgQAAxkBAAIBfoto' })).id
   })
 
   it('soft-deletes the queja (row survives, deleted_at set)', () => {
@@ -227,16 +232,32 @@ describe('bot db — softDeleteQueja (RGPD art. 17 right-to-be-forgotten)', () =
     expect(row!.deleted_at).toBeTruthy()
   })
 
+  it('el registro que queda no guarda quién la escribió, ni dónde, ni su foto', () => {
+    softDeleteQueja(db, quejaId, 42)
+    const row = getQueja(db, quejaId)!
+    // Lo que el aviso legal y la respuesta del bot prometen borrar…
+    expect(row.telegram_user_id).toBe(0)
+    expect(row.telegram_username).toBeNull()
+    expect(row.lat).toBeNull()
+    expect(row.lng).toBeNull()
+    expect(row.photo_file_id).toBeNull()
+    // …y lo que queda como rastro de auditoría.
+    expect(row.title).toBe('Bache profundo')
+    expect(row.detail).toBe('Bache en Av. Primera que lleva 2 meses sin reparar')
+    expect(row.category).toBe('via_publica')
+    expect(row.state).toBe('capturada')
+  })
+
   it('emits an anonymised audit event', () => {
     softDeleteQueja(db, quejaId, 42)
     const kinds = listEvents(db, quejaId).map((e) => e.kind)
     expect(kinds).toContain('anonymised')
   })
 
-  it('is idempotent — second call on an already-deleted row succeeds', () => {
+  it('una segunda petición del mismo autor ya no la encuentra: el registro no sabe quién la escribió', () => {
     expect(softDeleteQueja(db, quejaId, 42)).toBe(true)
-    expect(softDeleteQueja(db, quejaId, 42)).toBe(true)
-    // And only emits one anonymised event
+    // Antes contestaba «true» otra vez, y eso exigía seguir sabiendo que era suya.
+    expect(softDeleteQueja(db, quejaId, 42)).toBe(false)
     const events = listEvents(db, quejaId).filter((e) => e.kind === 'anonymised')
     expect(events.length).toBe(1)
   })
@@ -265,17 +286,60 @@ describe('bot db — softDeleteQueja (RGPD art. 17 right-to-be-forgotten)', () =
     expect(listByNeighborhood(db, 'casco').map((r) => r.id)).not.toContain(quejaId)
   })
 
-  it('still exposes deleted rows to the owner via listUserQuejas (so they can confirm)', () => {
+  it('/mis deja de listarla: ya no es de nadie', () => {
+    const otra = createQueja(db, sampleQueja({ title: 'Sigue viva' })).id
     softDeleteQueja(db, quejaId, 42)
-    const own = listUserQuejas(db, 42).find((r) => r.id === quejaId)
-    expect(own).toBeTruthy()
-    expect(own!.deleted_at).toBeTruthy()
+    const ids = listUserQuejas(db, 42).map((r) => r.id)
+    expect(ids).not.toContain(quejaId)
+    expect(ids, 'la viva del mismo autor sí sale (el control)').toContain(otra)
   })
 
   it('excludes deleted rows from aggregateStats.total', () => {
     createQueja(db, sampleQueja({ title: 'Also kept' }))
     softDeleteQueja(db, quejaId, 42)
     expect(aggregateStats(db).total).toBe(1)
+  })
+
+  it('anonimizaRetiradas borra la identidad de las que se retiraron antes de este cambio', () => {
+    const viva = createQueja(db, sampleQueja({ title: 'Viva' })).id
+    // Retirada «a la antigua»: sólo `deleted_at`, con la fila entera dentro.
+    db.prepare(`UPDATE quejas SET deleted_at = datetime('now') WHERE id = ?`).run(quejaId)
+    expect(anonimizaRetiradas(db)).toBe(1)
+    const ida = getQueja(db, quejaId)!
+    expect([
+      ida.telegram_user_id,
+      ida.telegram_username,
+      ida.lat,
+      ida.lng,
+      ida.photo_file_id,
+    ]).toEqual([0, null, null, null, null])
+    expect(anonimizaRetiradas(db), 'la segunda vez no toca nada').toBe(0)
+    const sigue = getQueja(db, viva)!
+    expect(
+      [sigue.telegram_user_id, sigue.telegram_username],
+      'una viva conserva su autor (el control)',
+    ).toEqual([42, 'maria'])
+  })
+
+  it('y se aplica al abrir la base: una retirada antigua sale anónima del siguiente arranque', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'cp-bot-db-'))
+    try {
+      const ruta = join(dir, 'bot.db')
+      const antes = openDb(ruta)
+      const id = createQueja(antes, sampleQueja({ photo_file_id: 'AgACfoto' })).id
+      antes.prepare(`UPDATE quejas SET deleted_at = datetime('now') WHERE id = ?`).run(id)
+      antes.close()
+      const despues = openDb(ruta)
+      const fila = getQueja(despues, id)!
+      despues.close()
+      expect([fila.telegram_user_id, fila.telegram_username, fila.photo_file_id]).toEqual([
+        0,
+        null,
+        null,
+      ])
+    } finally {
+      rmSync(dir, { recursive: true, force: true })
+    }
   })
 })
 

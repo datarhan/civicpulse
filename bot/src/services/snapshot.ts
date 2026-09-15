@@ -38,21 +38,28 @@ export interface SnapshotOptions {
   /**
    * Resolve the public URL for a queja's anonymized photo, or null when none
    * has been published. Injected for testability; defaults to a filesystem
-   * probe of `<dir of quejas.json>/quejas-photos/<id>.jpg`.
+   * probe of `<directorioFotos()>/<id>.jpg`.
    */
   photoUrlFor?: (id: string) => string | null
 }
 
-/** Directory the anonymized photos live in — next to the exported quejas.json. */
-function defaultPhotosDir(): string {
-  const out = resolve(process.cwd(), process.env.QUEJAS_JSON_OUT ?? '../public/data/quejas.json')
+/**
+ * Dónde viven las fotos anonimizadas. En Fly, en el volumen (`QUEJAS_PHOTOS_DIR`,
+ * bot/fly.toml): la imagen del bot se reconstruye en cada despliegue, y lo que se
+ * escribiera dentro se perdería con ella. Sin la variable, junto al quejas.json
+ * exportado, como en el portátil.
+ */
+export function directorioFotos(env: Record<string, string | undefined> = process.env): string {
+  const fija = env.QUEJAS_PHOTOS_DIR?.trim()
+  if (fija) return resolve(fija)
+  const out = resolve(process.cwd(), env.QUEJAS_JSON_OUT ?? '../public/data/quejas.json')
   return join(dirname(out), 'quejas-photos')
 }
 
 /** Default resolver: a published photo exists iff the anonymized file is on disk. */
 function defaultPhotoUrlFor(id: string): string | null {
   const slug = id.toLowerCase()
-  return existsSync(join(defaultPhotosDir(), `${slug}.jpg`))
+  return existsSync(join(directorioFotos(), `${slug}.jpg`))
     ? `/data/quejas-photos/${slug}.jpg`
     : null
 }

@@ -517,8 +517,10 @@ tightly, cache raw payloads locally while iterating. Aggregate anything
 personal — citizen complaints especially — to neighbourhood level before it
 lands in `public/data/`.
 
-Queja photos are never published raw. `cd bot && npm run process-photos` boxes faces,
-plates and ID text with a vision model, hard-mosaics them, strips EXIF/GPS, and
-**fails closed** — if the vision call cannot run, the photo is held, never
-published. `/olvidar` prunes the image; that is the right-to-be-forgotten
-enforcement point.
+Queja photos are never published raw. The bot's hourly pass on Fly
+(`bot/src/services/fotos-cron.ts`; by hand, `cd bot && npm run process-photos`) boxes
+faces, plates and ID text with a vision model, hard-mosaics them, strips EXIF/GPS,
+and **fails closed** — if the vision call cannot run, the photo is held, never
+published. It writes to the bot's volume, and `pull-quejas.yml` fetches what the
+export links. `/olvidar` deletes the bot's copy at once and `pull-quejas.yml` prunes
+the published file; that is the right-to-be-forgotten enforcement point.

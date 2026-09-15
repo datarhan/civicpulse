@@ -2,6 +2,7 @@ import Database from 'better-sqlite3'
 import { readFileSync, mkdirSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { anonimizaRetiradas } from './queries.ts'
 
 const HERE = dirname(fileURLToPath(import.meta.url))
 const SCHEMA_PATH = resolve(HERE, 'schema.sql')
@@ -23,5 +24,8 @@ export function openDb(path?: string): Db {
   db.pragma('synchronous = NORMAL')
   const schema = readFileSync(SCHEMA_PATH, 'utf8')
   db.exec(schema)
+  // Las retiradas de antes de que /olvidar borrara la identidad salen anónimas
+  // del primer arranque: ver `anonimizaRetiradas`.
+  anonimizaRetiradas(db)
   return db
 }

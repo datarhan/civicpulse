@@ -8,6 +8,14 @@ on:
 permissions:
   contents: write
 
+# El bot lo lanza al confirmar cada /olvidar (bot/src/services/republicar.ts). Dos
+# ejecuciones a la vez traerían la misma instantánea y la segunda fallaría al
+# empujar; en cola, la de detrás trae la instantánea más nueva. Sin cancelar la que
+# está en marcha, que podría estar a mitad del commit.
+concurrency:
+  group: pull-quejas
+  cancel-in-progress: false
+
 jobs:
   pull:
     runs-on: ubuntu-latest
@@ -62,14 +70,33 @@ jobs:
           "
           echo "Pulled $(jq '.stats.total' public/data/quejas.json) quejas"
 
+      # Las fotos viven AQUÍ, donde está la instantánea que manda el bot de producción.
+      # La poda del derecho al olvido la hacía antes `npm run process-photos` contra la
+      # base de datos que tuviera a mano —en el portátil, una copia de agosto—, así que
+      # una queja retirada con /olvidar en Fly no podaba nunca su foto; ahora la foto se
+      # va en el mismo commit que la queja. Y las fotos nuevas las anonimiza el bot cada
+      # hora en su volumen: este paso trae las que la instantánea enlaza y aún no están,
+      # con el mismo token que quejas.json.
+      - name: Traer y podar las fotos de quejas
+        env:
+          EXPORT_URL: ${{ vars.BOT_EXPORT_URL }}
+          EXPORT_TOKEN: ${{ secrets.BOT_EXPORT_TOKEN }}
+        run: node scripts/fotos-quejas.mjs
+
       - name: Commit diff (only if changed)
         run: |
           git config user.name 'civicpulse-bot'
           git config user.email 'bot@civicpulse.local'
-          if git diff --quiet public/data/quejas.json; then
+          # `git status` y no `git diff`: una foto recién traída es un fichero nuevo, y
+          # `git diff` no ve lo que todavía no está en el índice.
+          if [ -z "$(git status --porcelain -- public/data/quejas.json public/data/quejas-photos)" ]; then
             echo "no changes"
             exit 0
           fi
-          git add public/data/quejas.json
+          git add -- public/data/quejas.json
+          # La carpeta de fotos puede no existir: si un día se podan todas, git no
+          # guarda carpetas vacías, y `git add` con una ruta que no casa con nada
+          # falla en seco (medido).
+          if [ -d public/data/quejas-photos ]; then git add -A -- public/data/quejas-photos; fi
           git commit -m "chore(quejas): daily snapshot from bot"
           git push

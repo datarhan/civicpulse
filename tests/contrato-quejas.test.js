@@ -148,42 +148,149 @@ describe('el contrato de las quejas dice lo que hace el código', () => {
   })
 })
 
+/**
+ * Lo que el bot le dice al vecino, contra lo que hacen el código y las páginas.
+ *
+ * #33 quitó de /quejas «escalamos al Síndic»: nadie escala en nombre del canal, se
+ * prepara una plantilla. El bot lo seguía diciendo en tres sitios —la bienvenida,
+ * la confirmación de cada queja y el aviso de silencio—, y la confirmación llamaba
+ * «registrada» a una queja que sólo se había recibido, en un proyecto donde
+ * «registrada» es el registro del ayuntamiento, desde el que corre el plazo.
+ */
+describe('lo que el bot le dice al vecino dice lo mismo que las páginas', () => {
+  const INICIO = lee('bot/src/commands/start.ts')
+  const QUEJA = lee('bot/src/commands/queja.ts')
+  const CANAL = lee('bot/src/services/channel.ts')
+  const OLVIDAR = lee('bot/src/commands/olvidar.ts')
+  const CONSULTAS = lee('bot/src/db/queries.ts')
+
+  it('lee los cuatro mensajes (si no, no mide nada)', () => {
+    for (const texto of [INICIO, QUEJA, CANAL, OLVIDAR]) expect(texto.length).toBeGreaterThan(500)
+  })
+
+  it('ninguno promete que el canal escala al Síndic', () => {
+    const conEscalamos = Object.entries({
+      'commands/start.ts': INICIO,
+      'commands/queja.ts': QUEJA,
+      'services/channel.ts': CANAL,
+    })
+      .filter(([, texto]) => /escalamos/i.test(texto))
+      .map(([fichero]) => fichero)
+    expect(conEscalamos, 'se prepara una plantilla; nadie escala en nombre del canal').toEqual([])
+  })
+
+  it('la bienvenida da los dos plazos del enrutador y no dice que el canal envía el lote', () => {
+    expect(INICIO).toContain(`${meses(DIAS_GENERAL)} meses`)
+    expect(INICIO).toContain(`${meses(DIAS_TRANSPARENCIA)} mes`)
+    expect(INICIO, 'el lote lo presenta una persona').not.toMatch(/enviamos el lote/i)
+  })
+
+  it('una queja recién presentada no se llama «registrada»', () => {
+    expect(QUEJA).not.toContain('Queja registrada')
+  })
+
+  it('el aviso de silencio no escribe un plazo fijo: el del enrutador cambia con la queja', () => {
+    // Con parámetro: sin él, la primera coincidencia es el `postSilencio() {}` vacío
+    // del canal mudo, y la prueba medía un método sin texto.
+    const cuerpo = CANAL.slice(
+      CANAL.indexOf('async postSilencio(q'),
+      CANAL.indexOf('async postEscaladaSindic(q'),
+    )
+    expect(cuerpo.length, 'no encuentro postSilencio').toBeGreaterThan(50)
+    expect(cuerpo, 'escribe los días a mano').not.toMatch(/\b\d+ días/)
+  })
+
+  it('la respuesta a /olvidar dice lo que pasa: «anónima» sólo si la identidad se borra, y nada de /mis', () => {
+    const retirada = CONSULTAS.slice(
+      CONSULTAS.indexOf('export function softDeleteQueja'),
+      CONSULTAS.indexOf('export function anonimizaRetiradas'),
+    )
+    expect(retirada.length, 'no encuentro softDeleteQueja').toBeGreaterThan(100)
+    if (!/telegram_user_id = 0/.test(retirada)) {
+      expect(OLVIDAR, 'promete un registro anónimo que el código no hace').not.toMatch(
+        /anonimizada|como anónima/i,
+      )
+    }
+    // Sin identidad, /mis ya no puede listarla: invitar a comprobarlo allí es mandar
+    // al vecino a buscar algo que no va a encontrar.
+    expect(OLVIDAR).not.toMatch(/verificarlo ahora mismo con \/mis/i)
+  })
+})
+
 /** Los workflows, el despliegue del bot y el cron que trae las quejas: donde viven los tiempos. */
 const WORKFLOWS = readdirSync(join(RAIZ, '.github/workflows'))
   .filter((f) => /\.ya?ml$/.test(f))
   .map((f) => lee(`.github/workflows/${f}`))
-const LANZAN_FOTOS = [...WORKFLOWS, lee('bot/fly.toml'), lee('bot/Dockerfile')].some((s) =>
-  s.includes('process-photos'),
-)
+/**
+ * Un fichero de configuración sin sus líneas de comentario. Nombrar un script en un
+ * comentario no lo ejecuta, y contarlo lo daba por lanzado: el comentario de
+ * `pull-quejas.yml` que explica por qué la poda ya no vive en `process-photos`
+ * bastaba para que este contrato exigiera al aviso decir que la pasada corre.
+ */
+const sinLineasDeComentario = (texto) =>
+  texto
+    .split('\n')
+    .filter((l) => !/^\s*#/.test(l))
+    .join('\n')
+/** Lo mismo para TypeScript: una llamada dentro de un comentario no arma nada. */
+const sinComentariosTs = (texto) =>
+  texto.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '')
+/** Si algo lanza la pasada que anonimiza las fotos: un workflow, el despliegue o el propio bot. */
+const LANZAN_FOTOS =
+  [...WORKFLOWS, lee('bot/fly.toml'), lee('bot/Dockerfile')].some((s) =>
+    sinLineasDeComentario(s).includes('process-photos'),
+  ) || sinComentariosTs(lee('bot/src/index.ts')).includes('startFotosCron(')
 const CRON_QUEJAS = lee('.github/workflows/pull-quejas.yml').match(/cron: '([^']+)'/)?.[1]
+/** Si el workflow que trae quejas.json poda también las fotos. */
+const PODA_FOTOS = sinLineasDeComentario(lee('.github/workflows/pull-quejas.yml')).includes(
+  'node scripts/fotos-quejas.mjs',
+)
+const CONSULTAS_BOT = lee('bot/src/db/queries.ts')
+const ANALISIS_FOTOS = lee('bot/src/services/photo-anonymize.ts')
 
 /**
- * El aviso legal y la respuesta del bot a `/olvidar` prometían que una queja
- * retirada, y su foto, desaparecían «inmediatamente» de todas las superficies. El
- * bot deja de exportarla en el acto, pero esta web trae `quejas.json` una vez al día
- * y las fotos anonimizadas sólo se escriben y se podan cuando alguien lanza
- * `npm run process-photos`. Y el aviso se contradecía sobre si alguien revisa la
- * foto antes de publicarla: nadie lo hace.
+ * El aviso legal es el contrato con quien presenta una queja, y cada frase de su
+ * tramo sobre /olvidar describe algo que hace el código. Aquí se lee ese código.
+ *
+ * Prometía que una queja retirada, y su foto, desaparecían «inmediatamente»; luego
+ * que la retirada era «instantánea (≤24 h)», cuando GitHub arranca la ejecución
+ * diaria horas tarde y dos seguidas pueden distar más de un día. Decía que el
+ * original de la foto se guarda en el almacén del bot, que sólo guarda la
+ * referencia de Telegram; que quedaba un «registro anónimo» mientras la fila
+ * conservaba al autor; y mandaba a cualquier lector a usar /olvidar, que sólo sirve
+ * a quien envió la queja.
  */
-describe('el aviso legal dice cuándo se retira lo que se pide con /olvidar', () => {
+describe('el aviso legal dice lo que hace /olvidar, cuándo y con qué foto', () => {
   const AVISO = plano('src/pages/AvisoLegal.jsx')
-  // Sólo el tramo de las quejas: de la foto adjunta a la base jurídica de la retención.
+  // Todo el tramo de las quejas: de la foto de la lista a los derechos adicionales.
   const desde = AVISO.indexOf('Fotografía adjunta (si la envías)')
-  const hasta = AVISO.indexOf('Base jurídica de la retención por defecto')
+  const hasta = AVISO.indexOf('Derechos adicionales')
   const TRAMO = AVISO.slice(desde, hasta)
+  const FOTO_EN_LA_LISTA = TRAMO.slice(0, TRAMO.indexOf('Base jurídica'))
   const RESPUESTA = lee('bot/src/commands/olvidar.ts')
+  const RETIRADA = CONSULTAS_BOT.slice(
+    CONSULTAS_BOT.indexOf('export function softDeleteQueja'),
+    CONSULTAS_BOT.indexOf('export function anonimizaRetiradas'),
+  )
+  const FICHA = plano('src/pages/QuejaDetail.jsx')
 
   it('lee de dónde viven los tiempos (si no, no mide nada)', () => {
     expect(desde, 'no encuentro la foto adjunta en el aviso').toBeGreaterThan(-1)
-    expect(hasta, 'no encuentro la base jurídica detrás').toBeGreaterThan(desde)
+    expect(hasta, 'no encuentro los derechos adicionales detrás').toBeGreaterThan(desde)
+    expect(FOTO_EN_LA_LISTA.length, 'no encuentro la base jurídica tras la lista').toBeGreaterThan(
+      20,
+    )
     expect(TRAMO).toContain('/olvidar')
     expect(WORKFLOWS.length).toBeGreaterThan(5)
     expect(CRON_QUEJAS, 'pull-quejas.yml ya no tiene cron').toBeTruthy()
+    expect(RETIRADA.length, 'no encuentro softDeleteQueja').toBeGreaterThan(100)
   })
 
-  it('la web se actualiza a diario: nada promete retirarla «de inmediato»', () => {
+  it('la web se actualiza a diario: nada promete retirarla «de inmediato» ni en horas', () => {
     expect(CRON_QUEJAS, 'minuto y hora fijos, todos los días').toMatch(/^\d+ \d+ \* \* \*$/)
-    expect(TRAMO, '/aviso-legal promete inmediatez').not.toMatch(/inmediat/i)
+    expect(TRAMO, '/aviso-legal promete inmediatez o un plazo en horas').not.toMatch(
+      /inmediat|instantáne|≤\s*24\s*h/i,
+    )
     expect(RESPUESTA, 'la respuesta del bot promete que ya ha desaparecido').not.toMatch(
       /ha desaparecido|inmediat/i,
     )
@@ -191,13 +298,83 @@ describe('el aviso legal dice cuándo se retira lo que se pide con /olvidar', ()
     expect(METODOLOGIA).toContain('siguiente actualización diaria')
   })
 
-  it('la foto: nadie la revisa, y si nada lanza la anonimización, el aviso lo dice', () => {
+  it('la foto se va en la misma actualización que la queja, porque el workflow la poda', () => {
+    expect(PODA_FOTOS, 'pull-quejas.yml ya no poda las fotos').toBe(true)
+    expect(TRAMO).toContain('misma actualización')
+    expect(METODOLOGIA).toContain('misma actualización')
+  })
+
+  it('la foto: el bot no guarda el original, nadie la revisa y el servicio que la analiza tiene nombre', () => {
     expect(TRAMO, 'se contradecía: «tras revisión» y «sin revisión humana previa»').not.toMatch(
       /tras revisión/i,
     )
     expect(TRAMO).toContain('nadie revisa la imagen')
-    if (!LANZAN_FOTOS) {
-      expect(TRAMO, 'la pasada de anonimización hoy se lanza a mano').toContain('a mano')
+    expect(TRAMO, 'el bot sólo guarda la referencia de Telegram').not.toMatch(
+      /almacén (local )?del bot/i,
+    )
+    expect(FOTO_EN_LA_LISTA).toContain('Telegram')
+    // Un solo destino para la imagen: si el código vuelve a tener otro, el aviso se queda corto.
+    expect(ANALISIS_FOTOS).not.toMatch(/api\.openai\.com/)
+    expect(TRAMO).toContain('Gemini')
+    if (LANZAN_FOTOS) {
+      expect(TRAMO).not.toContain('no se está ejecutando')
+      expect(TRAMO, 'el bot lanza la pasada y el aviso no dice cuándo corre').toContain('cada hora')
+    } else {
+      expect(TRAMO, 'hoy nada lanza la anonimización, y el aviso tiene que decirlo').toContain(
+        'no se está ejecutando',
+      )
     }
+  })
+
+  it('«unos minutos» sólo si el bot pide republicar al confirmar /olvidar', () => {
+    // El plazo que el aviso promete depende de una llamada del bot. Si alguien la
+    // quita, el aviso seguiría prometiendo minutos que ya nada pide; si existe y el
+    // aviso sólo dice «diaria», el bot le cuenta al vecino otra cosa que la página.
+    const PIDE_REPUBLICAR = sinComentariosTs(RESPUESTA).includes('pedirRepublicacion(')
+    const inicio = METODOLOGIA.indexOf('puede retirarla')
+    const RETIRADA_METODOLOGIA = METODOLOGIA.slice(
+      inicio,
+      METODOLOGIA.indexOf('aviso legal', inicio),
+    )
+    expect(RETIRADA_METODOLOGIA.length, 'no encuentro la retirada en /metodologia').toBeGreaterThan(
+      80,
+    )
+    if (PIDE_REPUBLICAR) {
+      expect(TRAMO, 'el bot pide republicar y el aviso no dice cuánto tarda').toContain(
+        'unos minutos',
+      )
+      expect(RETIRADA_METODOLOGIA).toContain('unos minutos')
+    } else {
+      expect(TRAMO, 'el aviso promete minutos que nada pide').not.toContain('minutos')
+      expect(RETIRADA_METODOLOGIA).not.toContain('minutos')
+    }
+  })
+
+  it('lo que el aviso dice que se borra del registro, lo borra la retirada', () => {
+    expect(TRAMO, 'prometía un «registro anónimo» mientras la fila guardaba al autor').not.toMatch(
+      /registro anónimo/i,
+    )
+    expect(TRAMO).toContain('tu identidad de Telegram')
+    for (const campo of [
+      'telegram_user_id = 0',
+      'telegram_username = NULL',
+      'lat = NULL',
+      'lng = NULL',
+      'photo_file_id = NULL',
+    ]) {
+      expect(RETIRADA, `la retirada no hace ${campo}`).toContain(campo)
+    }
+  })
+
+  it('/olvidar sólo lo usa quien envió la queja, y el aviso y la ficha lo dicen así', () => {
+    expect(FICHA).toContain('Si la enviaste tú')
+    expect(TRAMO).toContain('Si la enviaste tú')
+  })
+
+  it('la reescritura del historial dice hasta dónde no llega', () => {
+    // Las referencias que GitHub guarda de cada solicitud de cambio no se reescriben
+    // desde el repositorio: este mismo repositorio tuvo que borrarse y recrearse.
+    expect(TRAMO).toContain('solicitud de cambio')
+    expect(TRAMO).toContain('clonado')
   })
 })

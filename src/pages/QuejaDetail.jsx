@@ -474,8 +474,13 @@ export default function QuejaDetail() {
               }}
             >
               🔒 Imagen anonimizada automáticamente · caras y matrículas difuminadas antes de
-              publicar. Si detectas datos personales visibles, escribe{' '}
-              <code>/olvidar {queja.service_request_id}</code> al bot para retirarla.
+              publicar. Si la enviaste tú y ves datos personales, escribe{' '}
+              <code>/olvidar {queja.service_request_id}</code> al bot para retirarla; si apareces en
+              ella, pide su retirada desde el{' '}
+              <Link to="/aviso-legal" style={{ color: 'var(--civic)' }}>
+                aviso legal
+              </Link>
+              .
             </figcaption>
           </figure>
         </Card>

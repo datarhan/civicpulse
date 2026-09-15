@@ -6,21 +6,24 @@
  *     → download raw bytes from Telegram (in memory — raw NEVER hits disk)
  *     → detectSensitiveRegions()         (throws → HOLD, never publish raw)
  *     → anonymizeImage()                 (metadata strip + degrade + mosaic)
- *     → write public/data/quejas-photos/<id>.jpg
+ *     → write <directorioFotos()>/<id>.jpg
  *
  * The public snapshot (snapshot.ts) then attaches the photo URL for any queja
- * whose anonymized file exists. Run before `npm run export`.
+ * whose anonymized file exists.
  *
- * Usage: npm run process-photos     (from the bot package)
+ * En producción corre dentro del bot, cada hora y sobre el volumen
+ * (`fotos-cron.ts`), y `pull-quejas.yml` trae de allí las fotos que el export enlaza.
+ * A mano: npm run process-photos     (from the bot package)
  */
 
 import { existsSync, mkdirSync, readdirSync, rmSync, writeFileSync } from 'node:fs'
-import { dirname, join, resolve } from 'node:path'
+import { join } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import dotenv from 'dotenv'
 import { openDb, type Db } from '../db/client.ts'
 import { listQuejasWithPhoto, type QuejaRow } from '../db/queries.ts'
 import { anonymizeImage, detectSensitiveRegions } from './photo-anonymize.ts'
+import { directorioFotos } from './snapshot.ts'
 
 /** Rows still needing an anonymized image (has a file_id, not yet published). */
 export function selectQuejasToProcess<T extends { id: string; photo_file_id: string | null }>(
@@ -137,11 +140,8 @@ async function main() {
   const token = process.env.BOT_TOKEN
   if (!token) throw new Error('BOT_TOKEN missing — set it in bot/.env or the environment')
 
-  const outPath = resolve(
-    process.cwd(),
-    process.env.QUEJAS_JSON_OUT ?? '../public/data/quejas.json',
-  )
-  const photosDir = join(dirname(outPath), 'quejas-photos')
+  // La misma carpeta que enlaza el export: el volumen en Fly, junto a quejas.json en local.
+  const photosDir = directorioFotos()
 
   const db = openDb()
   const res = await processPhotos({ db, token, photosDir })
