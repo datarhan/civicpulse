@@ -1,6 +1,6 @@
 {
   "plenoId": "1sqj7is",
-  "generatedAt": "2026-09-15T08:07:08.472Z",
+  "generatedAt": "2026-09-16T07:49:26.922Z",
   "model": "gemini-3.5-flash",
   "promptVersion": "speaker-map-v2",
   "chunkSeconds": 600,
@@ -14320,8 +14320,8 @@
       },
       {
         "chunk": 27,
-        "why": "covered 61% (floor 85%)",
-        "attempts": 2,
+        "why": "covered 83% (floor 85%)",
+        "attempts": 3,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
           "floor": 0.85,
@@ -14329,7 +14329,7 @@
         }
       }
     ],
-    "labelsSeen": 7,
+    "labelsSeen": 0,
     "rowsAccepted": 21,
     "rowsRejected": 60,
     "rejectedBy": {
@@ -14338,8 +14338,8 @@
       "evidence-speaker-mismatch": 13,
       "ambiguous": 5
     },
-    "attemptedThisRun": 4,
-    "apiCalls": 11,
+    "attemptedThisRun": 1,
+    "apiCalls": 3,
     "coverage": 0.7611015564846326
   }
 }
