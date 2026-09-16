@@ -32,8 +32,8 @@
     },
     {
       "route": "/hallazgos",
-      "quote": "no se publica su literal aquí — tampoco se publica en el registro de declaraciones",
-      "reason": "El revisor lee el recuadro de «Literal retenido» como si hablara de la cita impresa que tiene encima, y habla de otra. En f-2026-05-11-cit-a0a379 las retenidas son la [1] (PP) y la [3] (PSOE), las dos con gate hidden; la del origen de la Fira en 2001, que es la que el revisor pone como desmentido, es la [0] y su gate es toggle: se muestra. Son citas distintas. La segunda mitad de la frase también se sostiene — con gate hidden la puerta editorial la suprime igualmente en /plenos. Lo que sí queda es un riesgo de maquetación, no de texto: 37 de 131 citas del corpus están retenidas, así que un recuadro punteado cayendo bajo una cita impresa es frecuente. Eso se arregla con la caja, no callando la frase. Comprobado el 29-08-2026.",
+      "quote": "su literal no se publica: ni aquí, donde queda a la vista el hueco",
+      "reason": "El revisor lee el recuadro de «Literal retenido» como si hablara de la cita impresa que tiene encima, y habla de otra. En f-2026-05-11-cit-a0a379 las retenidas son la [1] (PP) y la [3] (PSOE), las dos con gate hidden; la del origen de la Fira en 2001, que es la que el revisor pone como desmentido, es la [0] y su gate es toggle: se muestra. Son citas distintas. La segunda mitad de la frase también se sostiene — con gate hidden la puerta editorial la suprime igualmente en /plenos. Lo que sí queda es un riesgo de maquetación, no de texto: 37 de 131 citas del corpus están retenidas, así que un recuadro punteado cayendo bajo una cita impresa es frecuente. Eso se arregla con la caja, no callando la frase. Comprobado el 29-08-2026. · RE-ANCLADO el 16-09-2026: la PR #42 reescribió la frase para que nombrara el hueco del que habla, así que el ancla vieja dejó de casar y el señalamiento —descartado ya dos veces— volvió. Se ancla en el texto publicado, que no lleva ninguna cifra viva.",
       "editor": "claude-opus-5",
       "at": "2026-08-29"
     },
@@ -127,6 +127,13 @@
       "reason": "El «contradictedBy» que aporta el revisor es texto DE LA PROPIA PÁGINA, y lo que hace es confirmar la frase, no desmentirla. La relación empresa/producto está dicha cuatro veces y sin ambigüedad: «Deepsense, S.L. — el panel», «Su producto es una plataforma repetible: LinkSense», «El producto de Deepsense que compró el municipio, LinkSense», y en las fuentes «LinkSense (Deepsense) · página de producto». No hay dos proveedores repartiéndose nada: hay una empresa y su producto con marca, que es exactamente lo que la pieza sostiene. Comprobado contra public/data/reportajes/inteligencia-turistica.json el 8-09-2026.",
       "editor": "claude-opus-5",
       "at": "2026-09-08"
+    },
+    {
+      "route": "/reportajes/inteligencia-turistica",
+      "quote": "La oferta ganadora quedó un 43 % por debajo del presupuesto base.",
+      "reason": "Comprobado el 16-09-2026, y sale igual por los dos lados. Los precios de la tabla son CON IVA y la cabecera lo dice («Precio (IVA inc.)»): con IVA, (55.000 − 31.323,70) / 55.000 = 43,0 %; sin IVA, (45.454,55 − 25.887,36) / 45.454,55 = 43,0 %, y ese 25.887 € es el contrato de Deepsense que la corrección del 02-08-2026 de esta misma pieza ya publica. Que 36.300,00 y 41.079,50 den 30.000,00 y 33.950,00 exactos al dividir por 1,21 confirma que la columna va con IVA. Los dos presupuestos distintos que el revisor cita son los del PLIEGO, y la pieza los publica ella misma en su párrafo de erratas; el que se usó para adjudicar es 45.454,55 € sin IVA, y con el otro (43.450 €) el porcentaje sería 40,4 %, no 43 %. Las cifras están congeladas en el reportaje, así que esta cita no se mueve.",
+      "editor": "claude-opus-5",
+      "at": "2026-09-16"
     }
   ]
 }
