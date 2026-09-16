@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-09-16T07:19:12.156Z",
+  "generatedAt": "2026-09-16T09:48:53.913Z",
   "source": {
-    "tenders": "2026-09-16T07:19:11.384Z",
-    "geo": "2026-09-15T09:37:46.949Z"
+    "tenders": "2026-09-16T09:28:42.753Z",
+    "geo": "2026-09-16T09:31:27.017Z"
   },
   "universe": {
     "totalContracts": 705,
@@ -614,8 +614,8 @@
       "name": "Carrer de Toledo",
       "kind": "street",
       "point": [
-        39.5409819,
-        -0.5722426
+        39.5408141,
+        -0.5716581
       ],
       "contractCount": 1,
       "amount": 25550.45,
@@ -722,8 +722,8 @@
       "name": "Carretera de Vilamarxant",
       "kind": "street",
       "point": [
-        39.5490165,
-        -0.5824119
+        39.5484923,
+        -0.5816335
       ],
       "contractCount": 2,
       "amount": 19537,
@@ -770,7 +770,7 @@
       "name": "Parc Municipal Maldonado",
       "kind": "poi",
       "point": [
-        39.5477716,
+        39.5477533,
         -0.5797717
       ],
       "contractCount": 1,
@@ -1237,8 +1237,8 @@
       "contractType": "supplies",
       "categoryTitle": "industry",
       "point": [
-        39.5490165,
-        -0.5824119
+        39.5484923,
+        -0.5816335
       ],
       "place": {
         "kind": "street",
@@ -1597,8 +1597,8 @@
       "contractType": "construction",
       "categoryTitle": "other",
       "point": [
-        39.5490165,
-        -0.5824119
+        39.5484923,
+        -0.5816335
       ],
       "place": {
         "kind": "street",
@@ -3062,7 +3062,7 @@
       "contractType": "construction",
       "categoryTitle": "construction",
       "point": [
-        39.5477716,
+        39.5477533,
         -0.5797717
       ],
       "place": {
@@ -3545,8 +3545,8 @@
       "contractType": "construction",
       "categoryTitle": "construction",
       "point": [
-        39.5409819,
-        -0.5722426
+        39.5408141,
+        -0.5716581
       ],
       "place": {
         "kind": "street",
@@ -3813,11 +3813,11 @@
     }
   ],
   "builtFrom": {
-    "civic-poi.json": "bb9de4771366",
+    "civic-poi.json": "071a1c3ad9f6",
     "gazetteer-supplement.json": "813c38c1dc80",
-    "geo.json": "b855e63b9113",
+    "geo.json": "e1749c5b6518",
     "place-overrides.json": "5a4641410141",
-    "streets.json": "eac36e60b86a",
-    "tenders.json": "74336432a522"
+    "streets.json": "eb015c13c03a",
+    "tenders.json": "d575f7867ed3"
   }
 }

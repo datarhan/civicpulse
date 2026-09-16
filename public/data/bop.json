@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-15T09:37:04.915Z",
+  "generatedAt": "2026-09-16T09:29:30.841Z",
   "source": {
     "name": "Boletín Oficial de la Provincia de València",
     "home": "https://bop.dival.es/bop/",
@@ -10,9 +10,19 @@
     "daysCovered": 22,
     "daysRequested": 30,
     "fetchFailures": 0,
-    "latestDate": "2026-09-10"
+    "latestDate": "2026-09-16"
   },
   "anuncios": [
+    {
+      "id": "f5654e4d832b",
+      "regNumber": "2026/11237",
+      "title": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre la convocatoria de subvenciones destinadas a ayudas a la rehabilitación de fachadas de viviendas, en régimen de concurrencia competitiva para los ejercicios 2026-2027. Identificador BDNS: 928143",
+      "entity": "Ayuntamiento de Riba-roja de Túria",
+      "date": "2026-09-16",
+      "bulletinDate": "16/09/2026",
+      "pdfUrl": "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F11237",
+      "bulletinUrl": "https://bop.dival.es/bop/downloads?boletinFecha=16%2F09%2F2026"
+    },
     {
       "id": "162c14481bf0",
       "regNumber": "2026/10993",
@@ -62,16 +72,6 @@
       "bulletinDate": "19/08/2026",
       "pdfUrl": "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F10441",
       "bulletinUrl": "https://bop.dival.es/bop/downloads?boletinFecha=19%2F08%2F2026"
-    },
-    {
-      "id": "ee667dfb0062",
-      "regNumber": "2026/10322",
-      "title": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre la exposición pública y notificación colectiva de los padrones fiscales correspondientes al impuesto de bienes inmuebles de naturaleza rústica del ejercicio 2026",
-      "entity": "Ayuntamiento de Riba-roja de Túria",
-      "date": "2026-08-17",
-      "bulletinDate": "17/08/2026",
-      "pdfUrl": "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F10322",
-      "bulletinUrl": "https://bop.dival.es/bop/downloads?boletinFecha=17%2F08%2F2026"
     }
   ]
 }
