@@ -1206,6 +1206,19 @@ export const CATALOGUE = {
     // as one summer's spending.
     'landing.contratos.acumulado': 'Acumulado',
     'landing.contratos.recientes': 'abajo, las últimas adjudicaciones',
+    // La ficha de PLACSP que abre cada fila TITULA el presupuesto base y
+    // esconde la adjudicación detrás de «Ver detalle de la adjudicación». Sin
+    // nombrar la magnitud, el lector que comprobaba la cita encontraba otro
+    // número y no tenía forma de saber cuál era cuál.
+    'landing.contratos.importes': 'importe adjudicado, sin IVA',
+    'landing.contratos.lote.conBase':
+      'Lote {n} de {total}{exp}. El enlace abre la ficha del expediente entero, cuyo presupuesto base es {base}.',
+    'landing.contratos.lote.deTotal':
+      'Lote {n} de {total}{exp}. El enlace abre la ficha del expediente entero, no la de este lote.',
+    'landing.contratos.lote.simple':
+      'Lote {n}{exp}. El enlace abre la ficha del expediente entero, no la de este lote.',
+    'landing.contratos.lote.sinNumero':
+      'Uno de varios contratos que comparten expediente{exp}. El enlace abre su ficha entera, no la de este contrato.',
     'landing.section.empleo': 'Empleo · Agència de Col·locació',
     'landing.section.eventos': 'Próximos eventos',
     'landing.section.participa': 'Participación ciudadana',
@@ -2308,6 +2321,15 @@ export const CATALOGUE = {
     'landing.section.contratos': 'Contractes adjudicats',
     'landing.contratos.acumulado': 'Acumulat',
     'landing.contratos.recientes': 'a sota, les últimes adjudicacions',
+    'landing.contratos.importes': 'import adjudicat, sense IVA',
+    'landing.contratos.lote.conBase':
+      "Lot {n} de {total}{exp}. L'enllaç obri la fitxa de l'expedient sencer, el pressupost base del qual és {base}.",
+    'landing.contratos.lote.deTotal':
+      "Lot {n} de {total}{exp}. L'enllaç obri la fitxa de l'expedient sencer, no la d'este lot.",
+    'landing.contratos.lote.simple':
+      "Lot {n}{exp}. L'enllaç obri la fitxa de l'expedient sencer, no la d'este lot.",
+    'landing.contratos.lote.sinNumero':
+      "Un de diversos contractes que comparteixen expedient{exp}. L'enllaç obri la seua fitxa sencera, no la d'este contracte.",
     'landing.section.empleo': 'Ocupació · Agència de Col·locació',
     'landing.section.eventos': 'Pròxims esdeveniments',
     'landing.section.participa': 'Participació ciutadana',

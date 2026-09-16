@@ -123,6 +123,19 @@ export interface Contract {
   formalizedDate: string | null
   /** Contracted execution period, in days (Gobierto `duration`). */
   duration: number
+  /**
+   * Lote al que corresponde esta fila (Gobierto `batch_number`), 0 cuando la
+   * fuente no lo declara.
+   *
+   * Gobierto sirve la tabla `contratos` con UNA FILA POR LOTE, y las filas de
+   * un mismo expediente comparten `id` y `permalink`. Sin este número, aguas
+   * abajo un lote era indistinguible de un contrato suelto: la portada
+   * publicaba «UE casco 5 · 6.900 €» enlazando a la ficha de PLACSP del
+   * expediente entero —tres lotes, 53.409,63 € de presupuesto base—, y el
+   * lector que comprobaba la cita encontraba otro número. Ver
+   * `src/lib/tender-lotes.js` y `tests/tenders-lotes.test.ts`.
+   */
+  batchNumber: number
   /** Winning firm (Gobierto `assignee`) — the adjudicatario. */
   assignee: string | null
   /** Contracting body (Gobierto `contractor`) — usually the Ayuntamiento. */
@@ -213,6 +226,7 @@ export function parseRibalicitaContracts(csv: string): Contract[] {
       awardDate: nullable(row.award_date),
       formalizedDate: nullable(row.formalized_date),
       duration: num(row.duration),
+      batchNumber: num(row.batch_number),
       assignee: nullable(row.assignee),
       contractor: nullable(row.contractor),
       contractorId: nullable(row.contractor_id),
