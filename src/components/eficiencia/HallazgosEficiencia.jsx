@@ -1,5 +1,6 @@
 import { Card, ExtLink, Pill, SectionHead } from '../Primitives'
 import { MARGEN_ANCLA } from './anclas'
+import { ROTULO_TEXTO_RETIRADO, ROTULO_TEXTO_VIGENTE } from '../BitacoraCorrecciones'
 
 /**
  * Las fichas firmadas sobre desviaciones del panel.
@@ -168,9 +169,9 @@ function FichaEficiencia({ ficha }) {
               </summary>
               {ficha.corrections.map((c) => (
                 <p key={`${c.field}-${c.correctedAt}`} style={{ margin: '4px 0 0' }}>
-                  <strong>Corregido el {c.correctedAt}</strong> ({c.field}):{' '}
-                  <span style={{ textDecoration: 'line-through' }}>{c.original}</span> →{' '}
-                  {c.corrected}. Motivo: {c.reason}
+                  <strong>Corregido el {c.correctedAt}</strong> ({c.field}): {ROTULO_TEXTO_RETIRADO}
+                  : <del>{c.original}</del> · {ROTULO_TEXTO_VIGENTE}: {c.corrected}. Motivo:{' '}
+                  {c.reason}
                 </p>
               ))}
             </details>
