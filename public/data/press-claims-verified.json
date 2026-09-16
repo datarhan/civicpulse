@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-09-15T08:19:47.793Z",
+  "generatedAt": "2026-09-16T08:16:17.342Z",
   "source": {
     "description": "Press claims verified against municipal data",
     "contract": "src/scraper/press-verifier.ts"
   },
   "stats": {
-    "total": 65,
+    "total": 67,
     "byVerdict": {
       "verificado": 0,
       "parcial": 0,
       "contradicho": 0,
-      "sin-datos": 65,
+      "sin-datos": 67,
       "promesa-repetida": 0
     }
   },
@@ -20,7 +20,7 @@
         "id": "yfbsr-0-dat",
         "articleId": "yfbsr",
         "articleFingerprint": "1ayfpd2",
-        "articleSource": "valenciaplaza.com",
+        "articleSource": "Valencia Plaza",
         "articleSourceHost": "valenciaplaza.com",
         "articleUrl": "https://news.google.com/rss/articles/CBMiiAJBVV95cUxON3cyWjNNX05UVHIxX0dBSXFMdk5fUk50eGFIMjhzaEJhSVhDenkzQUxYNk85cS02Q2lIWkZhZDh0ZjhKVlk1ekF3T0JhY3pBcFZES3lYM05ZOGhPNU5DLWpYd0xCMjRnMTZ5UWFiMjdmdC1wbXNPTXBGdE1nOS04OEs3UmxwOFBoMFluNXpEaEFFYW9FVmpqajhhR1E1MjlxYVVwbFhUQ0l0cUNZNmhzRXlMS0NLUXlGYWdQd1ZXaWo1VHA1YUJBRXBFSlcweEotTG1qa2dHWl9xaWJiQmNsczR4b3RubEdRenJUX2NKZVNDcUtXVFZxU3d3M3ltemQxYUVjeXY0TkY?oc=5",
         "articleDate": "2026-09-14T04:02:28.000Z",
@@ -45,7 +45,7 @@
         "evidence": [],
         "checkedAgainst": [],
         "articleUrl": "https://news.google.com/rss/articles/CBMiiAJBVV95cUxON3cyWjNNX05UVHIxX0dBSXFMdk5fUk50eGFIMjhzaEJhSVhDenkzQUxYNk85cS02Q2lIWkZhZDh0ZjhKVlk1ekF3T0JhY3pBcFZES3lYM05ZOGhPNU5DLWpYd0xCMjRnMTZ5UWFiMjdmdC1wbXNPTXBGdE1nOS04OEs3UmxwOFBoMFluNXpEaEFFYW9FVmpqajhhR1E1MjlxYVVwbFhUQ0l0cUNZNmhzRXlMS0NLUXlGYWdQd1ZXaWo1VHA1YUJBRXBFSlcweEotTG1qa2dHWl9xaWJiQmNsczR4b3RubEdRenJUX2NKZVNDcUtXVFZxU3d3M3ltemQxYUVjeXY0TkY?oc=5",
-        "articleSource": "valenciaplaza.com",
+        "articleSource": "Valencia Plaza",
         "articleSourceHost": "valenciaplaza.com",
         "articleFingerprint": "1ayfpd2"
       }
@@ -1202,7 +1202,7 @@
         "id": "1kho40w-0-num",
         "articleId": "1kho40w",
         "articleFingerprint": "aj28vw",
-        "articleSource": "elperiodicodeaqui.com",
+        "articleSource": "El Periódico de Aquí",
         "articleSourceHost": "elperiodicodeaqui.com",
         "articleUrl": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxObTAtLU9UWHNrTkNvWW5icy03TGhpWWlHMTlZNmdsemhBZUk0ZjFjbWczNGMzY1dsX0JydnJwS1NrTW5Pa3BQZnNGYXZvMjMwWVUta3dRamxHd3BSUVFvZVMtUjNiNHB4d2UxSlJiY1BpV2hMLVlmZnpTU210Mzdmd0k2OUc1ZVlvMERMZnRpcWV2WXl5YmxXM1lqbWk0eUo1NTFvSG9UdDF1TFQ3QUc2M2g3aHhBekFDTDJEb2F3c1dZaU0?oc=5",
         "articleDate": "2026-09-09T13:45:53.000Z",
@@ -1233,7 +1233,7 @@
           "budget"
         ],
         "articleUrl": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxObTAtLU9UWHNrTkNvWW5icy03TGhpWWlHMTlZNmdsemhBZUk0ZjFjbWczNGMzY1dsX0JydnJwS1NrTW5Pa3BQZnNGYXZvMjMwWVUta3dRamxHd3BSUVFvZVMtUjNiNHB4d2UxSlJiY1BpV2hMLVlmZnpTU210Mzdmd0k2OUc1ZVlvMERMZnRpcWV2WXl5YmxXM1lqbWk0eUo1NTFvSG9UdDF1TFQ3QUc2M2g3aHhBekFDTDJEb2F3c1dZaU0?oc=5",
-        "articleSource": "elperiodicodeaqui.com",
+        "articleSource": "El Periódico de Aquí",
         "articleSourceHost": "elperiodicodeaqui.com",
         "articleFingerprint": "aj28vw"
       }
@@ -2347,10 +2347,47 @@
     },
     {
       "claim": {
+        "id": "cty6i0-0-num",
+        "articleId": "cty6i0",
+        "articleFingerprint": "zyinyc",
+        "articleSource": "Europa Press",
+        "articleSourceHost": "europapress.es",
+        "articleUrl": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOUTZVZ3EtWVEwclhsOVppLXdSNGZqWF9CT1JxNXk1bkNIU3lGSVEyUFJXSUdHQmZUdThvSTd6WGw5MFY0U2NqUDNDUGE3Q2ZtVkdmSWFuZnA1bzE0aU9uMmRqalo3Q3J5eS1JTXhJa2dSc25CamtYZXJlRUxiS2pwODc3a0VHWDRPR25FVDVfb3FwdHhOaGNXX1d6UFAwYmY4MC1KWFBlbXlnWkc5T1U1T3RtbVdIUG1JUzV1aWJmcDFQWk1VZU5DaHNMcXo2S2c3QTh0a19jbEhQYmlRMElONjNvNGQ5Zw?oc=5",
+        "articleDate": "2026-09-01T11:10:58.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "La CHJ recupera la conectividad del Parque Fluvial del Turia tras la dana con cuatro pasarelas nuevas",
+        "context": "Titular de la noticia de Europa Press (01/09/2026): 'La CHJ recupera la conectividad del Parque Fluvial del Turia tras la dana con cuatro pasarelas nuevas'. No se dispone del cuerpo del artículo, solo del titular.",
+        "topic": "movilidad",
+        "entities": {
+          "count": 4,
+          "countUnit": "pasarelas",
+          "referencedEntity": "CHJ (Confederación Hidrográfica del Júcar) - Parque Fluvial del Turia"
+        },
+        "confidence": 0.55,
+        "reasoning": "El titular afirma una cifra concreta y verificable (cuatro pasarelas nuevas construidas por la CHJ) que puede contrastarse con fuentes oficiales, aunque no se dispone del cuerpo del artículo para más contexto.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "cty6i0-0-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOUTZVZ3EtWVEwclhsOVppLXdSNGZqWF9CT1JxNXk1bkNIU3lGSVEyUFJXSUdHQmZUdThvSTd6WGw5MFY0U2NqUDNDUGE3Q2ZtVkdmSWFuZnA1bzE0aU9uMmRqalo3Q3J5eS1JTXhJa2dSc25CamtYZXJlRUxiS2pwODc3a0VHWDRPR25FVDVfb3FwdHhOaGNXX1d6UFAwYmY4MC1KWFBlbXlnWkc5T1U1T3RtbVdIUG1JUzV1aWJmcDFQWk1VZU5DaHNMcXo2S2c3QTh0a19jbEhQYmlRMElONjNvNGQ5Zw?oc=5",
+        "articleSource": "Europa Press",
+        "articleSourceHost": "europapress.es",
+        "articleFingerprint": "zyinyc"
+      }
+    },
+    {
+      "claim": {
         "id": "1baly32-0-num",
         "articleId": "1baly32",
         "articleFingerprint": "fkx730",
-        "articleSource": "elperiodicodeaqui.com",
+        "articleSource": "El Periódico de Aquí",
         "articleSourceHost": "elperiodicodeaqui.com",
         "articleUrl": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOeFZuWE10YkNHY3B1WS02SE54eVJ6amV6T09iMHExMTRnM2x1YllpdXNHemluTFhRMFlEajF5dnhMZTVtMGd4dEJENG41V0p4WFQzeThRcEFJTGdWVEJCak93UTBwWVBaOXh2SEIwcWd1ZVVsb0kxcXBNV1l1RTZTdTJfeWMxbDRFMmZwYTlOQ0V3ZmxpU2xlNGRtUGVPNVlFYUVxbWs1VkctRnhEMHRWRDBLLW5QQ1IyTGpHRnJKa2R1TGlmX1FNWG5PWXlEbVB3TVpiaWR3TGpWRjJaVXc?oc=5",
         "articleDate": "2026-09-01T07:00:00.000Z",
@@ -2381,11 +2418,52 @@
           "budget"
         ],
         "articleUrl": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOeFZuWE10YkNHY3B1WS02SE54eVJ6amV6T09iMHExMTRnM2x1YllpdXNHemluTFhRMFlEajF5dnhMZTVtMGd4dEJENG41V0p4WFQzeThRcEFJTGdWVEJCak93UTBwWVBaOXh2SEIwcWd1ZVVsb0kxcXBNV1l1RTZTdTJfeWMxbDRFMmZwYTlOQ0V3ZmxpU2xlNGRtUGVPNVlFYUVxbWs1VkctRnhEMHRWRDBLLW5QQ1IyTGpHRnJKa2R1TGlmX1FNWG5PWXlEbVB3TVpiaWR3TGpWRjJaVXc?oc=5",
-        "articleSource": "elperiodicodeaqui.com",
+        "articleSource": "El Periódico de Aquí",
         "articleSourceHost": "elperiodicodeaqui.com",
         "articleFingerprint": "fkx730"
       }
+    },
+    {
+      "claim": {
+        "id": "1bt7s8w-0-num",
+        "articleId": "1bt7s8w",
+        "articleFingerprint": "1s8fa60",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85857-el-auditori-municipal-de-riba-roja-invertix-40-000-euros-en-les-installacions-i-equipaments-tecnics.html",
+        "articleDate": "2026-08-31T13:34:56.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "L'Auditori Municipal de Riba-roja invertix 40.000 euros en les instal·lacions i equipaments tècnics",
+        "context": "Titular del Periòdic del Camp de Túria (31/08/2026): 'L'Auditori Municipal de Riba-roja invertix 40.000 euros en les instal·lacions i equipaments tècnics'. No se dispone del cuerpo del artículo, solo del titular.",
+        "topic": "cultura",
+        "entities": {
+          "amountEuros": 40000,
+          "referencedEntity": "Auditori Municipal de Riba-roja"
+        },
+        "confidence": 0.55,
+        "reasoning": "Cifra concreta de inversión (40.000 euros) en un equipamiento municipal, contrastable mediante presupuestos o contratos públicos, aunque solo se dispone del titular sin cuerpo de noticia.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1bt7s8w-0-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85857-el-auditori-municipal-de-riba-roja-invertix-40-000-euros-en-les-installacions-i-equipaments-tecnics.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "1s8fa60"
+      }
     }
   ],
-  "sourceGeneratedAt": "2026-09-15T08:19:44.739Z"
+  "sourceGeneratedAt": "2026-09-16T08:16:13.826Z"
 }
