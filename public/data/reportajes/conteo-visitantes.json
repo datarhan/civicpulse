@@ -8,7 +8,12 @@
     "estado": "publicado",
     "publicadoEl": "9 de septiembre de 2026",
     "fechaDatos": "9 de septiembre de 2026",
-    "correcciones": []
+    "correcciones": [
+      {
+        "fecha": "2026-09-16",
+        "texto": "**Se ha ajustado el alcance de una frase sobre la falta de mediciones previas.** Decíamos que los dieciséis puntos por instalar más aparatos de los necesarios se baremaban «en un municipio sin ninguna medición previa que dijera cuántos hacían falta». Eso afirma algo sobre el municipio entero, y lo que esta pieza comprobó es lo que hay en el expediente: en la memoria y en el pliego no aparece una sola cifra de visitantes —ni una estimación de afluencia, ni una serie histórica, ni un aforo de referencia—, y por eso la pieza le pregunta al Ayuntamiento sobre qué estimación dimensionó el número mínimo de dispositivos. La frase dice ahora eso: lo que falta en el expediente, que es lo que se ha mirado. Ninguna cifra cambia."
+      }
+    ]
   },
   "kpis": [
     {
@@ -108,7 +113,7 @@
         "tipo": "fórmula"
       }
     ],
-    "texto": "Dieciséis de cada cien puntos por instalar más aparatos de los necesarios, en un municipio sin ninguna medición previa que dijera cuántos hacían falta. Se presentaron seis ofertas y ganó Gimeno Digital Technologies S.L. —que opera como IoTsens y pertenece al Grupo Gimeno— por 61.050,21 €, un 13 % por debajo del presupuesto base. En el contrato de campañas segmentadas se presentó una sola oferta, la de Autoritas Consulting S.A.",
+    "texto": "Dieciséis de cada cien puntos por instalar más aparatos de los necesarios, sin que el expediente traiga una sola cifra de visitantes que dijera cuántos hacían falta. Se presentaron seis ofertas y ganó Gimeno Digital Technologies S.L. —que opera como IoTsens y pertenece al Grupo Gimeno— por 61.050,21 €, un 13 % por debajo del presupuesto base. En el contrato de campañas segmentadas se presentó una sola oferta, la de Autoritas Consulting S.A.",
     "contrapunto": "En este contrato los criterios sujetos a juicio de valor sumaban 40 de 100 puntos, por debajo del umbral que habría obligado a constituir un comité de expertos. En el contrato hermano del panel de inteligencia turística se fijaron en 49, una unidad por debajo de ese mismo umbral."
   },
   "datos": {
