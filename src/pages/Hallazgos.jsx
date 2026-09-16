@@ -26,6 +26,7 @@ import { findingMatchesArea } from '../lib/finding-area'
 import { contarHallazgos, pasaFiltros } from '../lib/hallazgos-filtros'
 import { DEPARTMENT_LABEL } from '../scraper/departments'
 import { useT } from '../i18n'
+import { BitacoraCorrecciones } from '../components/BitacoraCorrecciones'
 import { blocLabel } from '../lib/party-label.js'
 import { EFICIENCIA_ENABLED } from '../flags'
 
@@ -245,68 +246,7 @@ export function FindingDetailCard({ f, permalink }) {
           </div>
         )}
       </EvidenceBand>
-      {f.corrections?.length > 0 && (
-        <details
-          style={{
-            marginTop: 10,
-            paddingLeft: 10,
-            borderLeft: '2px solid var(--border)',
-          }}
-        >
-          <summary
-            style={{
-              cursor: 'pointer',
-              fontSize: 'var(--fs-micro)',
-              color: 'var(--ink70)',
-              textTransform: 'uppercase',
-              letterSpacing: '.06em',
-            }}
-          >
-            Bitácora de correcciones · {f.corrections.length}
-          </summary>
-          <ol
-            style={{
-              margin: '6px 0 0',
-              paddingLeft: 18,
-              display: 'grid',
-              gap: 8,
-              fontSize: 'var(--fs-aux)',
-            }}
-          >
-            {f.corrections.map((c, idx) => (
-              <li key={idx}>
-                <div
-                  className="mono"
-                  style={{
-                    fontSize: 'var(--fs-micro)',
-                    color: 'var(--ink50)',
-                    marginBottom: 2,
-                  }}
-                >
-                  {c.field} · {c.correctedAt.slice(0, 10)} · {c.editor}
-                </div>
-                <div
-                  style={{
-                    textDecoration: 'line-through',
-                    color: 'var(--ink50)',
-                  }}
-                >
-                  {c.original}
-                </div>
-                <div style={{ color: 'var(--ink)', marginTop: 1 }}>{c.corrected}</div>
-                <div
-                  style={{
-                    marginTop: 2,
-                    color: 'var(--ink70)',
-                  }}
-                >
-                  Motivo: {c.reason}
-                </div>
-              </li>
-            ))}
-          </ol>
-        </details>
-      )}
+      <BitacoraCorrecciones correcciones={f.corrections} />
     </Card>
   )
 }

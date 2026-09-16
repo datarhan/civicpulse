@@ -14,6 +14,7 @@
 import { useMemo, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { Card, ExtLink, SectionHead } from '../components/Primitives'
+import { ROTULO_TEXTO_RETIRADO, ROTULO_TEXTO_VIGENTE } from '../components/BitacoraCorrecciones'
 import { trozos } from '../lib/texto-negrita.js'
 import { useOfficials } from '../hooks/useOfficials'
 import {
@@ -115,10 +116,17 @@ export function CorrectionLog({ corrections }) {
               {c.correctedAt} · {c.editor} · {c.field}
             </div>
             <div style={{ marginTop: 4, color: 'var(--ink50)' }}>
-              <s>
+              {/* Rotulado, no sólo tachado: un estilo no viaja en `textContent`
+                  y esta ficha nombra a personas. Ver BitacoraCorrecciones.jsx. */}
+              <span className="mono" style={{ fontSize: 'var(--fs-micro)' }}>
+                {ROTULO_TEXTO_RETIRADO}:{' '}
+              </span>
+              <del>
                 <Recorte texto={c.original} />
-              </s>{' '}
-              →{' '}
+              </del>{' '}
+              <span className="mono" style={{ fontSize: 'var(--fs-micro)' }}>
+                {ROTULO_TEXTO_VIGENTE}:{' '}
+              </span>
               <span style={{ color: 'var(--ink70)' }}>
                 <Recorte texto={c.corrected} />
               </span>
