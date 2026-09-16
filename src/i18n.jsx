@@ -813,7 +813,7 @@ export const CATALOGUE = {
     'presupuesto.cascada.noCuadra':
       'El listado municipal declara un definitivo que no es la suma de inicial y modificaciones ({suma}); se publican las cuatro cifras tal cual y se retira el porcentaje de crecimiento.',
     'presupuesto.callout.denominador':
-      '**El «{pctDef} % ejecutado» es un cociente sobre el presupuesto definitivo.** Sobre el crédito que se aprobó en enero, lo ejecutado es el {pctIni} %. No es que se ejecutara menos de lo previsto: es que durante el año se previó mucho más.',
+      '**El «{pctDef} % ejecutado» es un cociente sobre el presupuesto definitivo.** Sobre el crédito que se aprobó en enero, lo ejecutado es el {pctIni} %. Cada cifra responde a una pregunta distinta: cuánto se ejecutó de lo que se aprobó en enero, y cuánto de lo que se acabó autorizando.',
     'presupuesto.callout.asimetria.entro':
       '**Entró {mucho}más de lo que salió.** De ingresos se ejecutó el {pctIng} % —{ingEj}— frente al {pctGas} % de gastos: {gasEj}. La asimetría entre esos dos porcentajes es el dato, no cada uno por su lado.',
     'presupuesto.callout.asimetria.salio':
@@ -1996,7 +1996,7 @@ export const CATALOGUE = {
     'presupuesto.cascada.noCuadra':
       "El llistat municipal declara un definitiu que no és la suma d'inicial i modificacions ({suma}); es publiquen les quatre xifres tal qual i es retira el percentatge de creixement.",
     'presupuesto.callout.denominador':
-      "**El «{pctDef} % executat» és un quocient sobre el pressupost definitiu.** Sobre el crèdit que es va aprovar al gener, l'executat és el {pctIni} %. No és que s'executara menys del previst: és que durant l'any es va preveure molt més.",
+      "**El «{pctDef} % executat» és un quocient sobre el pressupost definitiu.** Sobre el crèdit que es va aprovar al gener, l'executat és el {pctIni} %. Cada xifra respon a una pregunta distinta: quant es va executar del que es va aprovar al gener, i quant del que es va acabar autoritzant.",
     'presupuesto.callout.asimetria.entro':
       "**Va entrar {mucho}més del que va eixir.** D'ingressos es va executar el {pctIng} % —{ingEj}— enfront del {pctGas} % de despeses: {gasEj}. L'asimetria entre eixos dos percentatges és la dada, no cadascun pel seu compte.",
     'presupuesto.callout.asimetria.salio':
