@@ -62,14 +62,27 @@ jobs:
           "
           echo "Pulled $(jq '.stats.total' public/data/quejas.json) quejas"
 
+      # La poda del derecho al olvido sobre las fotos vive AQUÍ, donde está la
+      # instantánea que manda el bot de producción. Antes la hacía
+      # `npm run process-photos` contra la base de datos que tuviera a mano —en el
+      # portátil, una copia de agosto—, así que una queja retirada con /olvidar en
+      # Fly no podaba nunca su foto. Ahora la foto se va en el mismo commit que la
+      # queja.
+      - name: Podar las fotos de quejas que ya no se publican
+        run: node scripts/fotos-quejas.mjs
+
       - name: Commit diff (only if changed)
         run: |
           git config user.name 'civicpulse-bot'
           git config user.email 'bot@civicpulse.local'
-          if git diff --quiet public/data/quejas.json; then
+          if git diff --quiet -- public/data/quejas.json public/data/quejas-photos; then
             echo "no changes"
             exit 0
           fi
-          git add public/data/quejas.json
+          git add -- public/data/quejas.json
+          # La carpeta de fotos puede no existir: si un día se podan todas, git no
+          # guarda carpetas vacías, y `git add` con una ruta que no casa con nada
+          # falla en seco (medido).
+          if [ -d public/data/quejas-photos ]; then git add -A -- public/data/quejas-photos; fi
           git commit -m "chore(quejas): daily snapshot from bot"
           git push

@@ -1,6 +1,6 @@
 import type { Bot } from 'grammy'
 import type { Db } from '../db/client.ts'
-import { countApoyos, getQueja, listEvents } from '../db/queries.ts'
+import { countApoyos, getQuejaViva, listEvents } from '../db/queries.ts'
 import { routeUsingLocalOfficials } from '../services/router.ts'
 import type { MyContext } from '../types.ts'
 
@@ -53,7 +53,7 @@ export function registerEstado(bot: Bot<MyContext>, db: Db) {
       await ctx.reply('Uso: `/estado Q-XXXX`', { parse_mode: 'Markdown' })
       return
     }
-    const q = getQueja(db, id)
+    const q = getQuejaViva(db, id)
     if (!q) {
       await ctx.reply(`No encuentro la queja \`${id}\`.`, { parse_mode: 'Markdown' })
       return

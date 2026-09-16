@@ -35,6 +35,7 @@ docker compose restart            # pick up a new bot/.env value
 ```
 
 The container:
+
 - runs in long-polling mode (no `WEBHOOK_URL` in `.env` ⇒ no inbound),
 - bind-mounts `bot/data/` so SQLite + logs survive `down`,
 - restarts on crash via `restart: unless-stopped`,
@@ -64,6 +65,7 @@ bash bot/scripts/launchd-install.sh
 ```
 
 That script:
+
 1. Verifies `bot/.env` has a `BOT_TOKEN`.
 2. Clears any pre-existing Telegram webhook (so long-polling is allowed).
 3. Writes `~/Library/LaunchAgents/com.civicpulse.munigraph.bot.plist`.
@@ -86,6 +88,7 @@ bash bot/scripts/launchd-install-export.sh
 ```
 
 It runs `bot/scripts/local-export.sh` which:
+
 1. Dumps SQLite → `public/data/quejas.json`.
 2. Only commits + pushes if the JSON changed semantically.
 3. Vercel picks up the push and redeploys the dashboard.
@@ -96,23 +99,28 @@ soon as you wake the laptop. No missed runs.
 ## Ops
 
 **Check both agents:**
+
 ```bash
 launchctl list | grep munigraph
 ```
+
 Expect to see `.bot` (with a PID) and `.export` (no PID — it's scheduled,
 not resident).
 
 **Manually run the export once:**
+
 ```bash
 bash bot/scripts/local-export.sh
 ```
 
 **Restart the bot** (e.g. after a code change):
+
 ```bash
 launchctl kickstart -k "gui/$(id -u)/com.civicpulse.munigraph.bot"
 ```
 
 **Rotate the BOT_TOKEN:**
+
 1. `@BotFather → /revoke → pick @munigraph_bot` → copy the new token.
 2. Edit `bot/.env` with the new value.
 3. `launchctl kickstart -k "gui/$(id -u)/com.civicpulse.munigraph.bot"` — picks up the new env.
@@ -140,37 +148,42 @@ doesn't fabricate a fresh timestamp — `public/data/quejas.json` keeps
 its real last-successful-run date until the script actually runs.
 
 **Uninstall everything:**
+
 ```bash
 bash bot/scripts/launchd-install.sh uninstall
 bash bot/scripts/launchd-install-export.sh uninstall
 ```
+
 SQLite data in `bot/data/bot.db` is kept — remove it by hand if you want.
 
 ## RGPD / right-to-be-forgotten verification
 
-Every citizen can delete their own queja with `/olvidar Q-XXXXXXXX`. The
-mechanic is soft-delete: the row stays in SQLite for the 5-year retention
-window (Art. 55 LOPD-GDD), but every public surface filters it out. To
-verify the flow end-to-end after deployment:
+Every citizen can withdraw their own queja with `/olvidar Q-XXXXXXXX`. The
+row stays in SQLite for the 5-year retention window (Art. 55 LOPD-GDD) as an
+audit trail, but in the same transaction the bot erases the author's Telegram id
+and username, the coordinates and the photo reference, and every listing and
+export filters the row out. The site drops it at the next daily
+`pull-quejas.yml`, which also prunes its published photo
+(`scripts/fotos-quejas.mjs`). To verify the flow end-to-end after deployment:
 
 ```bash
-# Pick a test queja id you've submitted yourself
+# Pick a test queja you submitted yourself, from a test Telegram account
 TEST_ID=Q-ABC12301
 
-# 1. From a test Telegram account, send: /olvidar Q-ABC12301
-#    You should see: ✅ Queja Q-ABC12301 eliminada.
+# 1. Send: /olvidar Q-ABC12301
+#    You should see: ✅ Queja Q-ABC12301 retirada.
 
-# 2. Confirm soft-delete marker in SQLite
-sqlite3 bot/data/bot.db "SELECT id, state, deleted_at FROM quejas WHERE id = '$TEST_ID';"
-# deleted_at should be a recent UTC timestamp
-
-# 3. Run an export manually and confirm the row is NOT in the public snapshot
-bash bot/scripts/local-export.sh
-jq '.items[] | select(.service_request_id == "'"$TEST_ID"'")' public/data/quejas.json
+# 2. The export no longer lists it
+curl -fsS -H "Authorization: Bearer $EXPORT_TOKEN" \
+  https://munigraph-ribarroja.fly.dev/export/quejas.json \
+  | jq '.items[] | select(.service_request_id == "'"$TEST_ID"'")'
 # Expected: empty output
 
-# 4. The user can still see their own deleted queja (marked with 🗑 eliminada)
-#    via /mis — this is by design so they can confirm the deletion worked.
+# 3. The internal record kept no identity (on a copy of the bot's database)
+sqlite3 bot.db "SELECT deleted_at, telegram_user_id, telegram_username, lat, lng, photo_file_id FROM quejas WHERE id = '$TEST_ID';"
+# Expected: a timestamp, then 0 and four empty columns
+
+# 4. /mis no longer lists it: the record does not know whose it was.
 ```
 
 If any of these steps fail, the `/olvidar` pipeline is broken and citizen
@@ -179,6 +192,7 @@ rights are being violated — treat as P0.
 ## When to graduate to always-on hosting
 
 Cases where this setup is no longer enough:
+
 - You need the bot up while the laptop is closed.
 - Multiple moderators use `/batch_register` and need predictable
   availability.
@@ -186,6 +200,7 @@ Cases where this setup is no longer enough:
   and missed broadcasts are a problem.
 
 When that happens, options in order of friction:
+
 1. **Cheapest DIY:** a Raspberry Pi or old laptop running Ubuntu,
    Tailscale installed. Copy the monorepo, run the systemd equivalent
    of these launchd plists. No external services, no cards.

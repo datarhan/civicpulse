@@ -4,17 +4,17 @@ import { softDeleteQueja } from '../db/queries.ts'
 import type { MyContext } from '../types.ts'
 
 /**
- * /olvidar Q-XXXX — RGPD right-to-be-forgotten endpoint.
+ * /olvidar Q-XXXX — derecho al olvido (RGPD art. 17).
  *
- * Soft-deletes the queja: the row is kept for the audit trail (required by
- * Art. 55 LOPD-GDD public-interest processing) but every public renderer +
- * exporter filters rows whose deleted_at IS NOT NULL. The citizen's original
- * text is preserved in the database for the 5-year retention window, but is
- * no longer visible on any public surface.
+ * `softDeleteQueja` la saca de todo listado y export y, en la misma transacción,
+ * borra del registro interno la identidad de Telegram, las coordenadas y la
+ * referencia a la foto; el texto queda como rastro de auditoría durante el plazo de
+ * conservación. La web se entera en su siguiente actualización diaria, y esa misma
+ * actualización poda la foto publicada (`scripts/fotos-quejas.mjs`). La respuesta
+ * cuenta exactamente eso, sin prometer que ya no queda rastro en ninguna parte ni
+ * invitar a comprobarlo en /mis, donde una queja sin autor ya no puede salir.
  *
- * The command refuses to confirm existence of quejas owned by other users —
- * a wrong-id reply from someone else's queja and a "not found" reply look
- * identical (prevents cross-user enumeration of IDs).
+ * No confirma ids ajenos: el de otra persona y uno que no existe contestan igual.
  */
 export function registerOlvidar(bot: Bot<MyContext>, db: Db) {
   bot.command('olvidar', async (ctx) => {
@@ -22,9 +22,9 @@ export function registerOlvidar(bot: Bot<MyContext>, db: Db) {
     if (!raw) {
       await ctx.reply(
         'Usa: /olvidar Q-XXXXXXXX\n\n' +
-          'Elimina permanentemente la queja de las listas públicas y del snapshot abierto. ' +
-          'La incidencia queda marcada como anonimizada en el registro interno — ejercitas ' +
-          'tu derecho al olvido (RGPD art. 17).',
+          'Retira tu queja de las listas públicas y del snapshot abierto, y borra del registro ' +
+          'interno tu identidad de Telegram, la ubicación y la referencia a la foto ' +
+          '(derecho al olvido, RGPD art. 17).',
       )
       return
     }
@@ -38,18 +38,19 @@ export function registerOlvidar(bot: Bot<MyContext>, db: Db) {
       // Intentionally ambiguous — don't confirm existence across users.
       await ctx.reply(
         `No se encontró una queja con ID \`${id}\` que puedas eliminar. Sólo el autor original ` +
-          `puede ejercer el derecho al olvido sobre su propia queja. Si crees que es un error, ` +
-          `puedes consultar tus quejas con /mis.`,
+          `puede ejercer el derecho al olvido sobre su propia queja, y una queja que ya retiraste ` +
+          `deja de constar como tuya. Si crees que es un error, puedes consultar tus quejas con /mis.`,
         { parse_mode: 'Markdown' },
       )
       return
     }
     await ctx.reply(
-      `✅ Queja \`${id}\` eliminada.\n\n` +
-        `Ya no sale en el listado que exporta el bot. La web la quita del feed, del heatmap, del dashboard y del snapshot abierto en su siguiente actualización, que es diaria, y la foto, si la había, cuando vuelva a pasar la anonimización. ` +
-        `La incidencia sigue registrada como anónima en el historial interno durante el plazo ` +
-        `legal de conservación (5 años, Art. 55 LOPD-GDD) y después será destruida.\n\n` +
-        `Puedes verificarlo ahora mismo con /mis.`,
+      `✅ Queja \`${id}\` retirada.\n\n` +
+        `Ya no sale en el listado que exporta el bot, y el registro interno ya no guarda quién la escribió. ` +
+        `La web la quita del feed, del heatmap, del dashboard y del snapshot abierto en su siguiente ` +
+        `actualización, que es diaria, y en esa misma actualización borra su foto si se había publicado.\n\n` +
+        `Quedan el texto y las fechas, sin tu identidad, durante el plazo legal de conservación ` +
+        `(5 años, Art. 55 LOPD-GDD), y después se destruyen. Por eso ya no aparecerá en /mis.`,
       { parse_mode: 'Markdown' },
     )
   })

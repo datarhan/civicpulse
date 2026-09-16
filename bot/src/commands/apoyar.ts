@@ -1,6 +1,6 @@
 import type { Bot } from 'grammy'
 import type { Db } from '../db/client.ts'
-import { addApoyo, getQueja, VERIFIED_THRESHOLD } from '../db/queries.ts'
+import { addApoyo, getQuejaViva, VERIFIED_THRESHOLD } from '../db/queries.ts'
 import type { Channel } from '../services/channel.ts'
 import type { MyContext } from '../types.ts'
 
@@ -22,7 +22,7 @@ export function registerApoyar(bot: Bot<MyContext>, db: Db, channel: Channel) {
       await ctx.reply('Uso: `/apoyar Q-XXXX`', { parse_mode: 'Markdown' })
       return
     }
-    const q = getQueja(db, id)
+    const q = getQuejaViva(db, id)
     if (!q) {
       await ctx.reply(`No encuentro la queja \`${id}\`.`, { parse_mode: 'Markdown' })
       return

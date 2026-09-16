@@ -18,9 +18,9 @@ Soy el canal directo entre vecinos y Ayuntamiento. Con este bot puedes:
 
 1. Presentas tu queja con /queja
 2. Tus vecinos la apoyan 👍 (a 10 apoyos entra al lote oficial)
-3. Cada lunes enviamos el lote al Registro Electrónico del Ayuntamiento
-4. El Ayuntamiento tiene *3 meses* (1 mes si es transparencia) para responder
-5. Si no responde, escalamos al *Síndic de Greuges de la Comunitat Valenciana*
+3. Cada semana, una persona que modera el canal presenta el lote en el Registro Electrónico del Ayuntamiento
+4. Desde ese registro, el Ayuntamiento tiene *3 meses* (1 mes si es transparencia) para responder
+5. Si vence sin respuesta, puede prepararse la plantilla para acudir al *Síndic de Greuges de la Comunitat Valenciana*
 
 *Privacidad y datos*
 
