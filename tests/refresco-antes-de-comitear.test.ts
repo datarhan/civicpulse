@@ -52,7 +52,16 @@ interface NodoDerivado {
 const DERIVADOS = DATA_GRAPH.filter((n) => n.tier === 'derived') as unknown as NodoDerivado[]
 
 function rederiva(cuerpo: string): boolean {
-  return /npm run refresh\b/.test(cuerpo)
+  // `--silent` en medio: desde el 16-09-2026 las tuberías capturan la salida de
+  // refresh (`npm run --silent refresh -- --rebuilt-paths`) para añadir al
+  // pathspec lo que acaba de rederivar, y un emparejador que exigiera las dos
+  // palabras pegadas leía eso como «no rederiva». La regla que mide es «llama a
+  // refresh», no «lo llama con estas letras exactas».
+  // Y `cron_rutas_rederivadas`, el ayudante de `scripts/lib/cron-git.sh` que
+  // llama a refresh y filtra su salida a rutas existentes antes de que nadie la
+  // use como pathspec. Llamarlo ES rederivar: lo que esta regla mide es que la
+  // tubería reconstruya antes de comitear, no con qué letras lo escribe.
+  return /npm run (?:--silent )?refresh\b|cron_rutas_rederivadas/.test(cuerpo)
 }
 
 /** Qué salidas de nodos derivados reescribe esta tubería. */
@@ -90,6 +99,11 @@ describe('quien publica un derivado rederiva antes de comitear', () => {
   it('el emparejador de refresh sabe decir que NO', () => {
     expect(rederiva('#!/usr/bin/env bash\nnpm run auto-curate\ngit commit -m x\n')).toBe(false)
     expect(rederiva('npm run refresh || true')).toBe(true)
+    // La forma que capturan las tuberías desde el 16-09-2026.
+    expect(rederiva('REDERIVADOS="$(npm run --silent refresh -- --rebuilt-paths)"')).toBe(true)
+    expect(rederiva('REDERIVADOS="$(cron_rutas_rederivadas)"')).toBe(true)
+    // Y no vale cualquier cosa que lleve la palabra.
+    expect(rederiva('# antes esto llamaba a refresh a mano')).toBe(false)
   })
 
   for (const { f, cuerpo, escribe } of tuberias) {

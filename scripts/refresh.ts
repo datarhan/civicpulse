@@ -41,6 +41,38 @@ interface Row {
   node: DataNode
   outcome: Outcome
   detail: string
+  /** Si esta fila escribió ficheros en el árbol (reconstruir o sellar). */
+  escrito?: boolean
+}
+
+/**
+ * Dónde vive lo que un nodo escribe, con la regla de `hashOf`: un nombre pelado
+ * está en `public/data`; lo que lleva separador es relativo a la raíz, y si no
+ * está en `public/data` se mira la raíz antes de darlo por ausente.
+ */
+export function rutaDeSalida(w: string): string {
+  const limpio = w.replace(/\/$/, '')
+  if (!limpio.includes('/')) return `${DATA_DIR}/${limpio}`
+  return existsSync(resolve(DATA_DIR, limpio)) ? `${DATA_DIR}/${limpio}` : limpio
+}
+
+/**
+ * Las rutas que una pasada dejó reescritas, para que quien comitea las añada a
+ * su pathspec.
+ *
+ * Sin esto, una tubería que comitea la ENTRADA de un derivado publica la
+ * entrada y deja el derivado rederivado SIN comitear: `main` incumple entonces
+ * su propia `tests/data-graph-frescura.test.ts` hasta que pasa la nocturna, y
+ * la CI de cualquier PR que construya en esa ventana sale roja por ello.
+ * Medido el 16-09-2026: ochenta minutos, tres tuberías, una PR ajena en rojo.
+ */
+export function rutasEscritas(rows: Row[]): string[] {
+  const out = new Set<string>()
+  for (const r of rows) {
+    if (!r.escrito) continue
+    for (const w of r.node.writes) out.add(rutaDeSalida(w))
+  }
+  return [...out].sort()
 }
 
 function run(command: string): { ok: boolean; detail: string } {
@@ -69,6 +101,10 @@ function llevaSello(salida: string): boolean {
 function main() {
   const argv = process.argv.slice(2)
   const dryRun = argv.includes('--dry-run')
+  // `--rebuilt-paths`: por stdout, SÓLO las rutas que esta pasada reescribió;
+  // el informe humano se va a stderr para no ensuciar la sustitución de quien
+  // llama. Lo usa la tubería que comitea para añadirlas a su pathspec.
+  const rutasPorStdout = argv.includes('--rebuilt-paths')
   const listIdx = argv.indexOf('--list')
   const listTier = listIdx >= 0 ? (argv[listIdx + 1] as NodeTier | undefined) : undefined
 
@@ -182,10 +218,12 @@ function main() {
     rows.push(
       stampErr
         ? { node, outcome: 'failed', detail: stampErr }
-        : { node, outcome: 'rebuilt', detail: why },
+        : { node, outcome: 'rebuilt', detail: why, escrito: true },
     )
   }
 
+  const informe = (s: string) =>
+    rutasPorStdout ? process.stderr.write(s) : process.stdout.write(s)
   const by = (o: Outcome) => rows.filter((r) => r.outcome === o)
   const label: Record<Outcome, string> = {
     rebuilt: dryRun ? 'would rebuild' : 'rebuilt',
@@ -199,9 +237,9 @@ function main() {
   for (const outcome of Object.keys(label) as Outcome[]) {
     const group = by(outcome)
     if (group.length === 0) continue
-    process.stdout.write(`\n${label[outcome]} (${group.length})\n`)
+    informe(`\n${label[outcome]} (${group.length})\n`)
     for (const r of group) {
-      process.stdout.write(`  ${r.node.id.padEnd(34)} ${r.detail}\n`)
+      informe(`  ${r.node.id.padEnd(34)} ${r.detail}\n`)
     }
   }
 
@@ -218,15 +256,19 @@ function main() {
     }
   }
 
-  process.stdout.write(
+  informe(
     `\n[refresh] ${rows.length} node(s) · ` +
       (['rebuilt', 'fresh', 'failed', 'stale-llm', 'stale-curated', 'unreachable'] as Outcome[])
         .map((o) => `${by(o).length} ${label[o]}`)
         .join(' · ') +
       '\n',
   )
-  for (const n of notes) process.stdout.write(`[refresh] ${n}\n`)
-  if (dryRun) process.stdout.write('[refresh] --dry-run: nothing was written\n')
+  for (const n of notes) informe(`[refresh] ${n}\n`)
+  if (dryRun) informe('[refresh] --dry-run: nothing was written\n')
+
+  if (rutasPorStdout) {
+    for (const ruta of rutasEscritas(rows)) process.stdout.write(`${ruta}\n`)
+  }
 
   if (by('failed').length > 0) process.exitCode = 1
 }

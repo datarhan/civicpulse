@@ -94,7 +94,13 @@ npm run auto-curate -- --max 5
 # staged read as "no new findings" and this run's batch was silently dropped.
 # Worse, the `git commit` under it carried no pathspec at all, so it took the
 # WHOLE index — that is how f182c61 published a subagent's in-flight work.
-if ! cron_git_stage_and_check public/data/pleno-findings.json; then
+REDERIVADOS="$(cron_rutas_rederivadas)" || REDERIVADOS=""
+# Lo que esta escritura obliga a rederivar viaja con ella. `--rebuilt-paths`
+# imprime SÓLO lo que la pasada reconstruyó, así que el pathspec sigue siendo tan
+# estrecho como era —nunca barre el trabajo de otro cron— y `main` deja de
+# incumplir `tests/data-graph-frescura.test.ts` entre este commit y la nocturna.
+# shellcheck disable=SC2086  # deliberado: REDERIVADOS es una lista de rutas
+if ! cron_git_stage_and_check public/data/pleno-findings.json $REDERIVADOS; then
   echo "[$(date '+%F %T')] no new findings — nothing to commit"
   exit 0
 fi
