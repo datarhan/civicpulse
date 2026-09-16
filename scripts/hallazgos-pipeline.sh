@@ -469,7 +469,13 @@ npm run ifcn:cadence --silent -- --strict \
 # Va aquí, después de TODO el trabajo de datos y antes del commit, para que las
 # derivaciones describan el estado final y no uno intermedio. Es
 # dependency-driven: no hay lista que mantener.
-npm run refresh \
+# `--rebuilt-paths` escribe por stdout SÓLO lo que esta pasada reconstruyó, para
+# añadirlo al pathspec de abajo. Sin eso, esta tubería comitea la ENTRADA de un
+# derivado y deja fuera el derivado que acaba de rederivar: `main` incumple
+# entonces `tests/data-graph-frescura.test.ts` hasta la nocturna, y la CI de
+# cualquier PR que construya en esa ventana sale roja por ello. Medido el
+# 16-09-2026: ochenta minutos en rojo y una PR ajena caída dentro.
+REDERIVADOS="$(cron_rutas_rederivadas)" \
   || log "warn: refresh falló — puede comitearse un derivado sin rederivar (lo caza tests/data-graph-frescura.test.ts)"
 
 # ---- commit + push the regenerated data -------------------------------
@@ -493,7 +499,8 @@ npm run refresh \
 # map loose in the working tree for the next run's `pull --rebase --autostash`
 # to shuffle; and a healthy night commits the re-extracted corpus carrying
 # attribution that map established, without the map. Irreproducible either way.
-if ! cron_git_stage_and_check public/data pleno-speaker-map \
+# shellcheck disable=SC2086  # deliberado: REDERIVADOS es una lista de rutas
+if ! cron_git_stage_and_check public/data pleno-speaker-map $REDERIVADOS \
        ':(exclude)public/data/quejas.json' \
        ':(exclude)public/data/promises.json'; then
   log "nothing changed — done (no commit)"; exit 0

@@ -552,6 +552,37 @@ _cron_git_con_lock() {
 # Stages first, because `git commit -- <pathspec>` will not pick up a file git
 # does not already know about (a brand-new snapshot).
 # ---------------------------------------------------------------------------
+# ---------------------------------------------------------------------------
+# cron_rutas_rederivadas
+#
+# Ejecuta `refresh` y escribe las rutas que ESA PASADA reconstruyó, para que
+# quien comitea las añada a su pathspec: sin ellas, publica la ENTRADA de un
+# derivado y deja fuera el derivado, y `main` incumple su propia
+# `tests/data-graph-frescura.test.ts` hasta la nocturna (medido el 16-09-2026:
+# ochenta minutos, tres tuberías, la CI de una PR ajena en rojo).
+#
+# Filtra a rutas QUE EXISTEN, y eso no es cinturón de más: lo que salga por
+# stdout acaba siendo un pathspec, y un pathspec con una palabra que no es una
+# ruta apaga la red de seguridad entera —`git add` falla, la puerta de «¿hay
+# algo que comitear?» se confunde y el commit se lleva el índice completo, que
+# es exactamente el accidente f182c61 que `cron_git_commit_pathspec` existe para
+# impedir—. Lo enseñó `tests/scripts/cron-git-safety.test.ts`, cuyo `npm` de
+# mentira escribe «[stub] ran refresh» por stdout: sin este filtro, esas tres
+# palabras entraban en el pathspec y las cinco tuberías comiteaban el fichero de
+# un extraño.
+# ---------------------------------------------------------------------------
+cron_rutas_rederivadas() {
+  local salida ruta
+  salida="$(npm run --silent refresh -- --rebuilt-paths 2>/dev/null)" || return 0
+  while IFS= read -r ruta; do
+    [ -n "$ruta" ] || continue
+    [ -e "$ruta" ] || continue
+    printf '%s\n' "$ruta"
+  done <<EOF
+$salida
+EOF
+}
+
 cron_git_stage_and_check() {
   # Before the `git add`, not just before the commit: staging into a branch
   # that appeared under us is already a write to someone else's index, and it

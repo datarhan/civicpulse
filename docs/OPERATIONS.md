@@ -64,6 +64,31 @@ report-only inside `scrape:all`.
 `workflow_dispatch` takes an `adapters` input for on-demand re-runs; add new
 adapter names to the `case` switch.
 
+### A pipeline publishes what its own commit made stale
+
+`refresh` rebuilds derived snapshots, and `tests/refresco-antes-de-comitear.test.ts`
+already required every pipeline that writes a derived node's **output** to run it.
+The other half — a pipeline that writes an **input** — left the rederivation to the
+nightly, and that opened a window where `main` failed its own
+`tests/data-graph-frescura.test.ts`. Measured on 2026-09-16 by checking out each
+commit's `public/data` and running that gate against it: eighty minutes red across
+three pipelines, and the only casualty was an unrelated pull request whose CI
+happened to build inside the window. Data-only commits do not run the suite on
+`main`, so the red always surfaces somewhere other than its cause.
+
+So `npm run refresh -- --rebuilt-paths` writes to stdout **only** the paths that
+pass rebuilt — the human report goes to stderr — and every committing pipeline adds
+them to its pathspec. The pathspec stays as narrow as it was: it gains exactly the
+derived outputs that this commit's input change invalidated, never another cron's
+work. `tests/frescura-de-las-tuberias.test.ts` derives the pipeline list from the
+graph and from the literal paths each script names, so a new pipeline is covered
+without anyone editing a list.
+
+One gap is left open on purpose, because it is a different defect with its own
+reproducer: when a push is rejected, these pipelines `pull --rebase` and push again
+**without** re-running `refresh`, so they can inherit staleness from whichever cron
+landed first. That is what happened to `94359907` on 2026-09-16.
+
 ## The other GitHub workflows
 
 | Workflow                          | Trigger                                                                                                                                                                                                                                                                                                                                                                                                                                    |

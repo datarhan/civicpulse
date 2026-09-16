@@ -102,7 +102,13 @@ echo "[$(date '+%F %T')] auto-curate-promises-daily done · queue refreshed"
 # the working tree against the INDEX, so a promises.json someone else had
 # already staged read as "nothing to commit" and this run's auto-published rows
 # were silently dropped; the old `git commit` then took the whole index anyway.
-if ! cron_git_stage_and_check public/data/promises.json; then
+REDERIVADOS="$(cron_rutas_rederivadas)" || REDERIVADOS=""
+# Lo que esta escritura obliga a rederivar viaja con ella. `--rebuilt-paths`
+# imprime SÓLO lo que la pasada reconstruyó, así que el pathspec sigue siendo tan
+# estrecho como era —nunca barre el trabajo de otro cron— y `main` deja de
+# incumplir `tests/data-graph-frescura.test.ts` entre este commit y la nocturna.
+# shellcheck disable=SC2086  # deliberado: REDERIVADOS es una lista de rutas
+if ! cron_git_stage_and_check public/data/promises.json $REDERIVADOS; then
   echo "[$(date '+%F %T')] no auto-published promises — nothing to commit"
   exit 0
 fi

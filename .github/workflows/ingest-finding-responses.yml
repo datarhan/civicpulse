@@ -105,7 +105,16 @@ jobs:
           fi
           git config user.name  "civicpulse-bot"
           git config user.email "bot@civicpulse"
+          # Este fichero es ENTRADA de un nodo derivado: publicarlo solo deja ese
+          # derivado rancio en `main` hasta la nocturna, y la CI de cualquier PR
+          # que construya entretanto sale roja por ello (medido el 16-09-2026).
+          # `--rebuilt-paths` imprime sólo lo que la pasada reconstruyó, así que
+          # el pathspec no se ensancha más de lo que esta escritura obliga. Se
+          # filtra a rutas que EXISTEN: una palabra que no es ruta en un pathspec
+          # apaga la red de seguridad del commit entera.
+          REDERIVADOS="$(npm run --silent refresh -- --rebuilt-paths 2>/dev/null | while IFS= read -r p; do [ -e "$p" ] && printf '%s ' "$p"; done)" || REDERIVADOS=""
           git add public/data/pleno-findings.json
+          if [ -n "$REDERIVADOS" ]; then git add -- $REDERIVADOS; fi
           git commit -m "feat(findings): ingest réplica from #${{ github.event.issue.number || inputs.issue_number }}"
           git push
 
