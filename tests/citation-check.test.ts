@@ -156,6 +156,13 @@ describe('doc-fetch: status → state', () => {
     [301, 'unverifiable'], // fetch follows redirects; a bare 3xx means it did not
     [401, 'unverifiable'],
     [403, 'unverifiable'],
+    // 406 es «no en estos términos», no «no está». Medido el 16-09-2026: los
+    // tres enlaces de Levante-EMV que bloqueaban la puerta devuelven 406 a
+    // nuestro User-Agent identificado y 200 al de un navegador. Los artículos
+    // están vivos; lo que falla es que el WAF no nos quiere. Clasificarlos como
+    // muertos cerró `check:citations` —y con él la promoción de cualquier
+    // claim— por una causa que no es la que dice.
+    [406, 'unverifiable'],
     [404, 'dead'],
     [410, 'dead'],
     [429, 'unverifiable'],
