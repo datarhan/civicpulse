@@ -529,6 +529,35 @@ function tenderCouldRefute(
   return amount <= maxContract * 10
 }
 
+/**
+ * El expediente que MÁS se parece por objeto, mire lo que mire el resto.
+ *
+ * Existe para una sola frase: la de `sin-datos`. El emparejador entra a los
+ * contratos por el IMPORTE, y cuando la cifra citada no es la del contrato
+ * —15uvjew-015-cit-c4edb0 cita el canon, 3,5 M€, y la concesión del agua vale
+ * 55,69 M€— la fila se cae y el veredicto acaba diciendo «No se encontró
+ * registro en tenders». El expediente estaba ahí y se leyó: lo que no había era
+ * una magnitud que cuadrara. Fundir las dos cosas es la avería del
+ * `r?.findings ?? []`, y aquí sale publicada en /hallazgos.
+ *
+ * Mide con la regla mutua —la misma que el camino de sólo-objeto usa con su
+ * suelo de 0,34—, y NO mira el importe: una fila sin importe publicado también
+ * cuenta, porque lo que separa «no hay ninguno» de «hay uno y no dice eso» no
+ * es el importe. No funda nada: quien la use la marca como no-fundante.
+ */
+function mejorCasiPorObjeto(
+  entity: string | undefined,
+  rows: TenderRow[],
+): { row: TenderRow; sim: number } | null {
+  if (!entity) return null
+  let mejor: { row: TenderRow; sim: number } | null = null
+  for (const t of rows) {
+    const sim = puntuacionObjeto(solapamientoMutuo(entity, tenderTitle(t)))
+    if (sim >= 0.34 && (mejor === null || sim > mejor.sim)) mejor = { row: t, sim }
+  }
+  return mejor
+}
+
 function similarAmount(claimed: number, found: number): number {
   if (claimed <= 0 || found <= 0) return 0
   const ratio = Math.min(claimed, found) / Math.max(claimed, found)
@@ -1106,6 +1135,38 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
       checkedAgainst: checked,
     }
   }
+  // «No lo encontré» y «lo encontré y no dice eso» no son lo mismo, y hasta el
+  // 16-09-2026 salían con la misma frase. El veredicto NO se mueve —los
+  // automáticos sólo bajan—: lo que cambia es que el expediente que se miró se
+  // enseña, y la frase dice por qué no sostiene la cifra.
+  const casi = evidence.some((e) => e.kind === 'tender')
+    ? null
+    : mejorCasiPorObjeto(claim.entities.referencedEntity, tenderList)
+  if (casi) {
+    evidence.push({
+      kind: 'tender',
+      ref: casi.row.permalink ?? '',
+      snippet: `${tenderTitle(casi.row)}${
+        tenderAmount(casi.row) != null
+          ? ` · ${Math.round(tenderAmount(casi.row)!).toLocaleString('es-ES')} €`
+          : ' · importe no publicado'
+      }`,
+      similarity: Math.round(casi.sim * 100) / 100,
+      // Se enseña porque se miró, no porque acredite: el objeto coincide y la
+      // cifra no, que es exactamente lo que el lector necesita saber.
+      stance: 'checked',
+    })
+    marcarNoFundante()
+    return {
+      claimId: claim.id,
+      verdict: 'sin-datos',
+      summary:
+        'El objeto citado aparece en un expediente municipal, pero ninguna de sus magnitudes coincide con la cifra del claim. No es que no haya registro: es que el que hay no dice eso.',
+      evidence,
+      checkedAgainst: checked,
+    }
+  }
+
   return {
     claimId: claim.id,
     verdict: 'sin-datos',
