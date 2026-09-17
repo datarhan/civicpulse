@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { paginar } from '../lib/paginacion'
+import { rellena } from '../lib/formatters'
+import { useT } from '../i18n'
 
 /**
  * Los controles de página, y el estado que los acompaña.
@@ -43,12 +45,13 @@ function Paso({ children, onClick, disabled, label }) {
  *   Es la firma de los filtros: sin ella, filtrar deja al lector a mitad de un
  *   listado que acaba de cambiar debajo.
  * @param {string} props.etiqueta el listado que se pagina, en sintagma nominal
- *   («listado de contratos»). Nombra la navegación Y sus dos botones: con dos
- *   paginaciones en la misma página, un «Página anterior» a secas se oye dos
- *   veces y no dice de cuál de las dos listas es.
+ *   («listado de contratos»), ya en el idioma de la interfaz. Nombra la navegación
+ *   Y sus dos botones: con dos paginaciones en la misma página, un «Página
+ *   anterior» a secas se oye dos veces y no dice de cuál de las dos listas es.
  * @param {(rows: any[], info: {desde: number, hasta: number, pagina: number, paginas: number}) => import('react').ReactNode} props.children
  */
 export default function Paginacion({ items, porPagina = 10, clave = '', etiqueta, children }) {
+  const t = useT()
   const [pedida, setPedida] = useState(1)
   useEffect(() => setPedida(1), [clave])
 
@@ -61,7 +64,7 @@ export default function Paginacion({ items, porPagina = 10, clave = '', etiqueta
       {children(rows, { desde, hasta, pagina, paginas })}
       {paginas > 1 && (
         <nav
-          aria-label={`Paginación del ${etiqueta}`}
+          aria-label={rellena(t('paginacion.aria'), { etiqueta })}
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -74,9 +77,9 @@ export default function Paginacion({ items, porPagina = 10, clave = '', etiqueta
           <Paso
             onClick={() => setPedida(pagina - 1)}
             disabled={pagina <= 1}
-            label={`Página anterior del ${etiqueta}`}
+            label={rellena(t('paginacion.anterior.aria'), { etiqueta })}
           >
-            ← Anterior
+            {t('paginacion.anterior')}
           </Paso>
           {/* `aria-live` porque al cambiar de página no se mueve el foco: sin
               esto, quien usa lector de pantalla pulsa «siguiente» y no se entera
@@ -91,9 +94,9 @@ export default function Paginacion({ items, porPagina = 10, clave = '', etiqueta
           <Paso
             onClick={() => setPedida(pagina + 1)}
             disabled={pagina >= paginas}
-            label={`Página siguiente del ${etiqueta}`}
+            label={rellena(t('paginacion.siguiente.aria'), { etiqueta })}
           >
-            Siguiente →
+            {t('paginacion.siguiente')}
           </Paso>
         </nav>
       )}

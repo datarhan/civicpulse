@@ -5,6 +5,8 @@ import {
   relatedQuejasForContract,
 } from '../../hooks/useQuejaContractRelations'
 import { useQuejas } from '../../hooks/useQuejas'
+import { rellena } from '../../lib/formatters'
+import { useT } from '../../i18n'
 
 const fmtEur = (n) =>
   new Intl.NumberFormat('es-ES', {
@@ -21,6 +23,7 @@ export default function ZoneDrilldown({
   onClear,
   cpvDict,
 }) {
+  const t = useT()
   const { data: relations } = useQuejaContractRelations()
   const { data: approvals } = useQuejaRelationApprovals()
   const { data: quejas } = useQuejas()
@@ -43,7 +46,7 @@ export default function ZoneDrilldown({
           color: 'var(--civic)',
         }}
       >
-        ← todas las zonas
+        {t('presupuesto.gasto.zona.todas')}
       </button>
       <div style={{ fontSize: 'var(--fs-head)', fontWeight: 700, marginTop: 4 }}>{zone.name}</div>
       {/* Contratos, no «obras»: la zona suma todo contrato cuyo título la nombra, y
@@ -51,7 +54,15 @@ export default function ZoneDrilldown({
           suministros, en 8 de las 12 zonas. Una zona con cinco servicios y una obra
           decía «6 obras». */}
       <div className="mono" style={{ fontSize: 'var(--fs-aux)', fontWeight: 700 }}>
-        {fmtEur(total)} · {works.length} contrato{works.length === 1 ? '' : 's'}
+        {fmtEur(total)} ·{' '}
+        {rellena(
+          t(
+            works.length === 1
+              ? 'presupuesto.gasto.contratos.uno'
+              : 'presupuesto.gasto.contratos.varios',
+          ),
+          { n: works.length },
+        )}
       </div>
       <div style={{ marginTop: 8, maxHeight: 360, overflowY: 'auto' }}>
         {works.map(({ a, c }) => (

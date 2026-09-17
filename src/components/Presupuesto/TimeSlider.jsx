@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
-import { fmtDateShort } from '../../lib/formatters'
+import { fmtDateCompacta } from '../../lib/formatters'
+import { useLocale } from '../../i18n'
 
 export default function TimeSlider({ min, max, value, onChange }) {
+  const { locale, t } = useLocale()
   const [playing, setPlaying] = useState(false)
   const raf = useRef(0)
   const acc = useRef(value)
@@ -34,7 +36,8 @@ export default function TimeSlider({ min, max, value, onChange }) {
   }, [playing])
 
   if (!min || !max || min >= max) return null
-  const label = fmtDateShort(new Date(value).toISOString())
+  // Compacta: la etiqueta vive en 92 px, y en valencià «de maig del» no cabe.
+  const label = fmtDateCompacta(new Date(value).toISOString(), locale)
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 8 }}>
       <button
@@ -42,7 +45,9 @@ export default function TimeSlider({ min, max, value, onChange }) {
           if (value >= max) onChange(min)
           setPlaying((p) => !p)
         }}
-        aria-label={playing ? 'Pausar línea de tiempo' : 'Reproducir línea de tiempo'}
+        aria-label={
+          playing ? t('presupuesto.gasto.tiempo.pausar') : t('presupuesto.gasto.tiempo.reproducir')
+        }
         style={{ all: 'unset', cursor: 'pointer', fontSize: 'var(--fs-head)' }}
       >
         {playing ? '⏸' : '▶'}
@@ -57,7 +62,7 @@ export default function TimeSlider({ min, max, value, onChange }) {
           setPlaying(false)
           onChange(Number(e.target.value))
         }}
-        aria-label="Línea de tiempo del gasto situado"
+        aria-label={t('presupuesto.gasto.tiempo.aria')}
         aria-valuetext={label}
         // Sin accentColor el navegador pinta el control con SU azul de sistema.
         // Es el gemelo del deslizador del aterrizaje, que sí lo declaraba: un

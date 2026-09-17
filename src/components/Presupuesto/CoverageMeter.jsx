@@ -1,3 +1,7 @@
+import { rellena } from '../../lib/formatters'
+import { conHuecos } from '../../lib/huecos'
+import { useT } from '../../i18n'
+
 const fmtEur = (n) =>
   new Intl.NumberFormat('es-ES', {
     style: 'currency',
@@ -7,6 +11,7 @@ const fmtEur = (n) =>
   }).format(n)
 
 export default function CoverageMeter({ universe, zones, onSelectZone }) {
+  const t = useT()
   const total = universe?.totalAmount || 0
   const located = universe?.locatedAmount || 0
   const pct = total > 0 ? (located / total) * 100 : 0
@@ -28,15 +33,24 @@ export default function CoverageMeter({ universe, zones, onSelectZone }) {
   return (
     <div>
       <div style={{ fontSize: 'var(--fs-aux)', lineHeight: 1.4 }}>
-        De <strong>{fmtEur(total)}</strong> adjudicados en contratos (sin IVA)
-        {span ? (
-          <>
-            {' '}
-            <strong>a lo largo de {span}</strong> —suma acumulada de {yearMax - yearMin + 1}{' '}
-            ejercicios, no de un año—
-          </>
-        ) : null}
-        , <strong>{fmtEur(located)}</strong> ({pct.toFixed(0)}%) se pueden situar en el mapa.
+        {conHuecos(
+          t(
+            span
+              ? 'presupuesto.gasto.cobertura.conPeriodo'
+              : 'presupuesto.gasto.cobertura.sinPeriodo',
+          ),
+          {
+            '{total}': <strong>{fmtEur(total)}</strong>,
+            '{periodo}': (
+              <strong>
+                {rellena(t('presupuesto.gasto.cobertura.aLoLargo'), { periodo: span })}
+              </strong>
+            ),
+            '{n}': yearMax - yearMin + 1,
+            '{situado}': <strong>{fmtEur(located)}</strong>,
+            '{pct}': pct.toFixed(0),
+          },
+        )}
       </div>
       <div
         style={{
@@ -58,9 +72,7 @@ export default function CoverageMeter({ universe, zones, onSelectZone }) {
           lineHeight: 1.4,
         }}
       >
-        El resto de ese importe adjudicado son contratos cuyo título no nombra una zona (servicios,
-        suministros y obras sin lugar citado): no se inventa una ubicación. Un contrato que cita dos
-        zonas suma en ambas, pero cuenta una sola vez aquí.
+        {t('presupuesto.gasto.cobertura.resto')}
       </div>
       <div style={{ marginTop: 10, display: 'flex', flexDirection: 'column', gap: 5 }}>
         {top.map((z) => (

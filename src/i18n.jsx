@@ -604,6 +604,11 @@ export const CATALOGUE = {
     'common.compartirWhatsApp': 'Compartir en WhatsApp',
     'dataAsOf.datos': 'Datos',
     'dataAsOf.sinFecha': 'sin fecha de generación',
+    'paginacion.aria': 'Paginación del {etiqueta}',
+    'paginacion.anterior.aria': 'Página anterior del {etiqueta}',
+    'paginacion.siguiente.aria': 'Página siguiente del {etiqueta}',
+    'paginacion.anterior': '← Anterior',
+    'paginacion.siguiente': 'Siguiente →',
 
     // Declaraciones page (global verified-claim browse)
     'declaraciones.eyebrow': 'Verificación de declaraciones',
@@ -987,6 +992,136 @@ export const CATALOGUE = {
     'presupuesto.title.sinAnio': 'Presupuesto municipal',
     'presupuesto.loading': 'Cargando datos reales de MinHac (CONPREL)…',
     'presupuesto.error': 'No se pudo cargar el presupuesto real.',
+    // /presupuesto bajo la cascada: la tarjeta del mapa de lo adjudicado y sus
+    // pestañas (presupuesto.gasto), las subvenciones, las obras, la contratación
+    // menor y el titular de la deuda, que se compone de sus campos en src/lib.
+    'presupuesto.gasto.eyebrow': 'Contratación municipal · {periodo} · Gobierto/PLACSP',
+    'presupuesto.gasto.eyebrow.sinPeriodo': 'Contratación municipal · Gobierto/PLACSP',
+    'presupuesto.gasto.titulo': '¿A dónde va el dinero en contratos?',
+    'presupuesto.gasto.adjudicadoSinIva': 'adjudicado sin IVA',
+    'presupuesto.gasto.ejercicios': '{n} ejercicios, no un año',
+    'presupuesto.gasto.intro.total': 'El total de arriba es {todo}:',
+    'presupuesto.gasto.intro.todo': 'todo lo adjudicado en contratos, no solo obras',
+    'presupuesto.gasto.intro.obrasPct': 'las obras son el {pct} %',
+    'presupuesto.gasto.intro.grueso': 'el grueso',
+    'presupuesto.gasto.intro.resto':
+      'y el resto son servicios de ámbito municipal, suministros y otros —el desglose completo está en «{pestana}».',
+    'presupuesto.gasto.intro.periodo':
+      'Y es de {periodo}, no de un solo ejercicio: puesto sin periodo al lado de un presupuesto anual se lee mucho mayor de lo que es.',
+    'presupuesto.gasto.intro.noRepartido': 'No es un volumen repartido:',
+    'presupuesto.gasto.intro.mayorConcesion':
+      'el mayor contrato —una concesión de {importe} M€— se lleva él solo el {pct} % del total, porque una concesión se adjudica por todo su plazo de una vez.',
+    'presupuesto.gasto.intro.mayor':
+      'el mayor contrato —{importe} M€— se lleva él solo el {pct} % del total.',
+    'presupuesto.gasto.intro.situados':
+      'Solo se sitúan los contratos cuyo título nombra una zona, y ahí sí predominan las obras ({pct} %). Tamaño del círculo = € adjudicado en la zona · ámbar cuando la mitad o más es recuperación DANA.',
+    'presupuesto.gasto.intro.situadosSinPct':
+      'Solo se sitúan los contratos cuyo título nombra una zona. Tamaño del círculo = € adjudicado en la zona · ámbar cuando la mitad o más es recuperación DANA.',
+    'presupuesto.gasto.soloDana': 'Solo DANA',
+    'presupuesto.gasto.pestana.explorar': 'Explorar contratos',
+    'presupuesto.gasto.pestana.contratistas': '¿Quién recibe el dinero?',
+    'presupuesto.gasto.pestana.tipos': 'Tipos de gasto',
+    'presupuesto.gasto.pestanas.aria': 'Vistas del gasto',
+    'presupuesto.gasto.mapa.aria': 'Mapa interactivo del gasto municipal por zona',
+    'presupuesto.gasto.mapa.ariaVacio': 'Mapa del gasto municipal por zona',
+    'presupuesto.gasto.mapa.vacio': 'Aún no hay contratos situables en el periodo seleccionado.',
+    'presupuesto.gasto.contratos.uno': '{n} contrato',
+    'presupuesto.gasto.contratos.varios': '{n} contratos',
+    'presupuesto.gasto.tiempo.reproducir': 'Reproducir línea de tiempo',
+    'presupuesto.gasto.tiempo.pausar': 'Pausar línea de tiempo',
+    'presupuesto.gasto.tiempo.aria': 'Línea de tiempo del gasto situado',
+    'presupuesto.gasto.cobertura.conPeriodo':
+      'De {total} adjudicados en contratos (sin IVA) {periodo} —suma acumulada de {n} ejercicios, no de un año—, {situado} ({pct}%) se pueden situar en el mapa.',
+    'presupuesto.gasto.cobertura.sinPeriodo':
+      'De {total} adjudicados en contratos (sin IVA), {situado} ({pct}%) se pueden situar en el mapa.',
+    'presupuesto.gasto.cobertura.aLoLargo': 'a lo largo de {periodo}',
+    'presupuesto.gasto.cobertura.resto':
+      'El resto de ese importe adjudicado son contratos cuyo título no nombra una zona (servicios, suministros y obras sin lugar citado): no se inventa una ubicación. Un contrato que cita dos zonas suma en ambas, pero cuenta una sola vez aquí.',
+    'presupuesto.gasto.zona.todas': '← todas las zonas',
+    'presupuesto.gasto.buscar': 'Buscar contrato o empresa…',
+    'presupuesto.gasto.filtro.zona': 'Filtrar por zona',
+    'presupuesto.gasto.filtro.zonas': 'Todas las zonas',
+    'presupuesto.gasto.filtro.tipo': 'Filtrar por tipo',
+    'presupuesto.gasto.filtro.tipos': 'Todo tipo',
+    'presupuesto.gasto.resultado.uno': 'resultado',
+    'presupuesto.gasto.resultado.varios': 'resultados',
+    'presupuesto.gasto.resultado.pagina': '{desde}–{hasta}, página {pagina} de {paginas}',
+    'presupuesto.gasto.comprometido': 'son dinero comprometido (adjudicado o formalizado).',
+    'presupuesto.gasto.fueraDeCifras.uno':
+      'El otro consta en el registro público pero no cuenta en las cifras de arriba:',
+    'presupuesto.gasto.fueraDeCifras.varios':
+      'Los otros {n} constan en el registro público pero no cuentan en las cifras de arriba:',
+    'presupuesto.gasto.listado': 'listado de contratos',
+    'presupuesto.gasto.razonesSociales': '{n} razones sociales',
+    'presupuesto.gasto.dana': 'Recuperación DANA ≈ {pct}% del importe adjudicado.',
+    'presupuesto.subvenciones.eyebrow': 'BDNS · {total} convocatorias · {municipales} municipales',
+    'presupuesto.subvenciones.titulo': 'Subvenciones · Base Nacional',
+    'presupuesto.subvenciones.fuente': 'Datos reales de MinHac BDNS · pap.hacienda.gob.es',
+    'presupuesto.obras.eyebrow': 'Urbanismo · infraestructuras',
+    'presupuesto.obras.titulo': 'Obras de infraestructura · fichas municipales 2019–2024',
+    'presupuesto.obras.intro':
+      '{n} obras publicadas por el Ayuntamiento en fichas oficiales: {renove} actuaciones del Plan RENOVE de adecuación de viales (ejecutadas 2023–2024) y {feder} obras de 2019–2020 cofinanciadas con el FEDER de la Comunitat Valenciana 2014–2020.',
+    'presupuesto.obras.intro.soloFeder':
+      '{n} obras publicadas por el Ayuntamiento en fichas oficiales: {feder} obras de 2019–2020 cofinanciadas con el FEDER de la Comunitat Valenciana 2014–2020.',
+    'presupuesto.obras.ultimas': 'Últimas fichas publicadas: feb 2024',
+    'presupuesto.obras.ejecutadas': 'obras ya ejecutadas · no refleja obras posteriores',
+    'presupuesto.obras.renove': 'Plan RENOVE',
+    'presupuesto.obras.baja': 'baja',
+    'presupuesto.obras.adj': 'adj.',
+    'presupuesto.obras.previsto': 'previsto',
+    'presupuesto.obras.meses': '{n} meses',
+    'presupuesto.obras.inicio': 'inicio {fecha}',
+    'presupuesto.obras.ejecucion': 'ejecución {fecha}',
+    'presupuesto.obras.verFicha': 'Ver ficha ↗',
+    'presupuesto.obras.fuente':
+      'Fuente: Ayuntamiento de Riba-roja de Túria — Portal de Transparencia («obras de infraestructuras en curso») y página del Plan RENOVE de adecuación de viales.',
+    'presupuesto.obras.listado': 'listado de obras',
+    'presupuesto.menores.eyebrow': 'Contratación · vía directa',
+    'presupuesto.menores.titulo': 'Contratos menores: {n} de {total}, {importe}',
+    'presupuesto.menores.intro':
+      'El contrato menor se adjudica {sinLicitacion}. Son el {pct} % de los contratos adjudicados o firmados y{importe}: muchos expedientes y poca parte del dinero.',
+    'presupuesto.menores.intro.sinLicitacion': 'sin licitación ni publicidad previa',
+    'presupuesto.menores.intro.importe': 'el {pct} % del importe',
+    'presupuesto.menores.peso':
+      'Ese segundo porcentaje depende mucho del denominador — una sola concesión de {importe}, adjudicada de una vez por todo su plazo, es el {cuota} % de todo lo contratado; apartándola, los menores serían el {sin} %.',
+    'presupuesto.menores.iva':
+      'Todas las cifras van {sinIva}, porque así define el techo el art. 118 de la Ley 9/2017 —{obras} en obras, {servicios} en servicios y suministros.',
+    'presupuesto.menores.iva.sinIva': 'sin IVA',
+    'presupuesto.menores.sobreTecho': '{n} por encima del techo del art. 118',
+    'presupuesto.menores.frente': 'frente a',
+    'presupuesto.menores.marca':
+      'La marca «contrato menor» la pone el portal de contratación, no nosotros, y una etiqueta equivocada en origen se parece exactamente a un incumplimiento. Esto mide la distancia al límite legal y la publica; llamarlo infracción es un paso que no da un programa.',
+    'presupuesto.menores.sinTecho': '{n} sin techo declarado para su tipo de contrato',
+    'presupuesto.menores.sinImporte': '{n} sin importe neto publicado',
+    'presupuesto.menores.sinComparar':
+      '{lista}: no se comparan con el límite, en vez de darlos por dentro.',
+    'presupuesto.menores.anulados':
+      'Otros {n} venían marcados como menores y su adjudicación se deshizo: no cuentan como gasto ni se les mide el techo.',
+    'presupuesto.menores.norma': 'Ley 9/2017, art. 118',
+    'presupuesto.deuda.titular.igual': 'Sin cambio en {anio}',
+    'presupuesto.deuda.titular.sube': 'Sube en {anio}',
+    'presupuesto.deuda.titular.baja': 'Baja en {anio}',
+    'presupuesto.deuda.titular.sigueSubiendo': 'Sube por {ordinal} año seguido',
+    'presupuesto.deuda.titular.sigueBajando': 'Baja por {ordinal} año seguido',
+    'presupuesto.deuda.titular.subioYBaja': 'Subió en {anterior} y en {anio} baja',
+    'presupuesto.deuda.titular.bajoYSube': 'Bajó en {anterior} y en {anio} vuelve a subir',
+    'presupuesto.deuda.titular.subioAniosYBaja': 'Subió {cardinal} años seguidos, y en {anio} baja',
+    'presupuesto.deuda.titular.bajoAniosYSube':
+      'Bajó {cardinal} años seguidos, y en {anio} vuelve a subir',
+    'presupuesto.deuda.ordinal.2': 'segundo',
+    'presupuesto.deuda.ordinal.3': 'tercer',
+    'presupuesto.deuda.ordinal.4': 'cuarto',
+    'presupuesto.deuda.ordinal.5': 'quinto',
+    'presupuesto.deuda.ordinal.6': 'sexto',
+    'presupuesto.deuda.ordinal.7': 'séptimo',
+    'presupuesto.deuda.ordinal.otro': '{n}º',
+    'presupuesto.deuda.cardinal.2': 'dos',
+    'presupuesto.deuda.cardinal.3': 'tres',
+    'presupuesto.deuda.cardinal.4': 'cuatro',
+    'presupuesto.deuda.cardinal.5': 'cinco',
+    'presupuesto.deuda.cardinal.6': 'seis',
+    'presupuesto.deuda.cardinal.7': 'siete',
+    'presupuesto.deuda.cardinal.otro': '{n}',
     'presupuesto.lede':
       'El ayuntamiento abrió el año con {inicial} de crédito, lo amplió en {mod} durante el ejercicio —un {pct} % más— y ejecutó {ejecutado}.',
     'presupuesto.lede.dominanteCero':
@@ -2030,6 +2165,11 @@ export const CATALOGUE = {
     'common.compartirWhatsApp': 'Compartir per WhatsApp',
     'dataAsOf.datos': 'Dades',
     'dataAsOf.sinFecha': 'sense data de generació',
+    'paginacion.aria': 'Paginació del {etiqueta}',
+    'paginacion.anterior.aria': 'Pàgina anterior del {etiqueta}',
+    'paginacion.siguiente.aria': 'Pàgina següent del {etiqueta}',
+    'paginacion.anterior': '← Anterior',
+    'paginacion.siguiente': 'Següent →',
 
     'declaraciones.eyebrow': 'Verificació de declaracions',
     'declaraciones.title': 'Declaracions en plenari',
@@ -2385,6 +2525,135 @@ export const CATALOGUE = {
     'presupuesto.title.sinAnio': 'Pressupost municipal',
     'presupuesto.loading': 'Carregant dades reals de MinHac (CONPREL)…',
     'presupuesto.error': "No s'ha pogut carregar el pressupost real.",
+    'presupuesto.gasto.eyebrow': 'Contractació municipal · {periodo} · Gobierto/PLACSP',
+    'presupuesto.gasto.eyebrow.sinPeriodo': 'Contractació municipal · Gobierto/PLACSP',
+    'presupuesto.gasto.titulo': 'On van els diners dels contractes?',
+    'presupuesto.gasto.adjudicadoSinIva': 'adjudicat sense IVA',
+    'presupuesto.gasto.ejercicios': '{n} exercicis, no un any',
+    'presupuesto.gasto.intro.total': 'El total de dalt és {todo}:',
+    'presupuesto.gasto.intro.todo': 'tot el que s’ha adjudicat en contractes, no només obres',
+    'presupuesto.gasto.intro.obrasPct': 'les obres són el {pct} %',
+    'presupuesto.gasto.intro.grueso': 'la major part',
+    'presupuesto.gasto.intro.resto':
+      'i la resta són serveis d’àmbit municipal, subministraments i altres —el desglossament complet és a «{pestana}».',
+    'presupuesto.gasto.intro.periodo':
+      'I és de {periodo}, no d’un sol exercici: posat sense període al costat d’un pressupost anual es llig molt més gran del que és.',
+    'presupuesto.gasto.intro.noRepartido': 'No és un volum repartit:',
+    'presupuesto.gasto.intro.mayorConcesion':
+      'el contracte més gran —una concessió de {importe} M€— s’emporta ell sol el {pct} % del total, perquè una concessió s’adjudica per tot el seu termini d’una vegada.',
+    'presupuesto.gasto.intro.mayor':
+      'el contracte més gran —{importe} M€— s’emporta ell sol el {pct} % del total.',
+    'presupuesto.gasto.intro.situados':
+      'Només se situen els contractes el títol dels quals anomena una zona, i ací sí que predominen les obres ({pct} %). Mida del cercle = € adjudicat a la zona · ambre quan la meitat o més és recuperació DANA.',
+    'presupuesto.gasto.intro.situadosSinPct':
+      'Només se situen els contractes el títol dels quals anomena una zona. Mida del cercle = € adjudicat a la zona · ambre quan la meitat o més és recuperació DANA.',
+    'presupuesto.gasto.soloDana': 'Només DANA',
+    'presupuesto.gasto.pestana.explorar': 'Explorar contractes',
+    'presupuesto.gasto.pestana.contratistas': 'Qui rep els diners?',
+    'presupuesto.gasto.pestana.tipos': 'Tipus de despesa',
+    'presupuesto.gasto.pestanas.aria': 'Vistes de la despesa',
+    'presupuesto.gasto.mapa.aria': 'Mapa interactiu de la despesa municipal per zona',
+    'presupuesto.gasto.mapa.ariaVacio': 'Mapa de la despesa municipal per zona',
+    'presupuesto.gasto.mapa.vacio':
+      'Encara no hi ha contractes situables en el període seleccionat.',
+    'presupuesto.gasto.contratos.uno': '{n} contracte',
+    'presupuesto.gasto.contratos.varios': '{n} contractes',
+    'presupuesto.gasto.tiempo.reproducir': 'Reproduir la línia de temps',
+    'presupuesto.gasto.tiempo.pausar': 'Pausar la línia de temps',
+    'presupuesto.gasto.tiempo.aria': 'Línia de temps de la despesa situada',
+    'presupuesto.gasto.cobertura.conPeriodo':
+      'Dels {total} adjudicats en contractes (sense IVA) {periodo} —la suma acumulada de {n} exercicis, no d’un any—, {situado} ({pct}%) es poden situar al mapa.',
+    'presupuesto.gasto.cobertura.sinPeriodo':
+      'Dels {total} adjudicats en contractes (sense IVA), {situado} ({pct}%) es poden situar al mapa.',
+    'presupuesto.gasto.cobertura.aLoLargo': 'al llarg de {periodo}',
+    'presupuesto.gasto.cobertura.resto':
+      'La resta d’eixe import adjudicat són contractes el títol dels quals no anomena cap zona (serveis, subministraments i obres sense lloc citat): no s’inventa una ubicació. Un contracte que cita dues zones suma en totes dues, però compta una sola vegada ací.',
+    'presupuesto.gasto.zona.todas': '← totes les zones',
+    'presupuesto.gasto.buscar': 'Cerca un contracte o una empresa…',
+    'presupuesto.gasto.filtro.zona': 'Filtrar per zona',
+    'presupuesto.gasto.filtro.zonas': 'Totes les zones',
+    'presupuesto.gasto.filtro.tipo': 'Filtrar per tipus',
+    'presupuesto.gasto.filtro.tipos': 'Tots els tipus',
+    'presupuesto.gasto.resultado.uno': 'resultat',
+    'presupuesto.gasto.resultado.varios': 'resultats',
+    'presupuesto.gasto.resultado.pagina': '{desde}–{hasta}, pàgina {pagina} de {paginas}',
+    'presupuesto.gasto.comprometido': 'són diners compromesos (adjudicats o formalitzats).',
+    'presupuesto.gasto.fueraDeCifras.uno':
+      'L’altre consta en el registre públic però no compta en les xifres de dalt:',
+    'presupuesto.gasto.fueraDeCifras.varios':
+      'Els altres {n} consten en el registre públic però no compten en les xifres de dalt:',
+    'presupuesto.gasto.listado': 'llistat de contractes',
+    'presupuesto.gasto.razonesSociales': '{n} raons socials',
+    'presupuesto.gasto.dana': 'Recuperació DANA ≈ {pct}% de l’import adjudicat.',
+    'presupuesto.subvenciones.eyebrow': 'BDNS · {total} convocatòries · {municipales} municipals',
+    'presupuesto.subvenciones.titulo': 'Subvencions · Base Nacional',
+    'presupuesto.subvenciones.fuente': 'Dades reals de MinHac BDNS · pap.hacienda.gob.es',
+    'presupuesto.obras.eyebrow': 'Urbanisme · infraestructures',
+    'presupuesto.obras.titulo': 'Obres d’infraestructura · fitxes municipals 2019–2024',
+    'presupuesto.obras.intro':
+      '{n} obres publicades per l’Ajuntament en fitxes oficials: {renove} actuacions del Pla RENOVE d’adequació de vials (executades 2023–2024) i {feder} obres de 2019–2020 cofinançades amb el FEDER de la Comunitat Valenciana 2014–2020.',
+    'presupuesto.obras.intro.soloFeder':
+      '{n} obres publicades per l’Ajuntament en fitxes oficials: {feder} obres de 2019–2020 cofinançades amb el FEDER de la Comunitat Valenciana 2014–2020.',
+    'presupuesto.obras.ultimas': 'Últimes fitxes publicades: febr. 2024',
+    'presupuesto.obras.ejecutadas': 'obres ja executades · no reflecteix obres posteriors',
+    'presupuesto.obras.renove': 'Pla RENOVE',
+    'presupuesto.obras.baja': 'baixa',
+    'presupuesto.obras.adj': 'adj.',
+    'presupuesto.obras.previsto': 'previst',
+    'presupuesto.obras.meses': '{n} mesos',
+    'presupuesto.obras.inicio': 'inici {fecha}',
+    'presupuesto.obras.ejecucion': 'execució {fecha}',
+    'presupuesto.obras.verFicha': 'Veure la fitxa ↗',
+    'presupuesto.obras.fuente':
+      'Font: Ajuntament de Riba-roja de Túria — Portal de Transparència («obras de infraestructuras en curso») i pàgina del Pla RENOVE d’adequació de vials.',
+    'presupuesto.obras.listado': 'llistat d’obres',
+    'presupuesto.menores.eyebrow': 'Contractació · via directa',
+    'presupuesto.menores.titulo': 'Contractes menors: {n} de {total}, {importe}',
+    'presupuesto.menores.intro':
+      'El contracte menor s’adjudica {sinLicitacion}. Són el {pct} % dels contractes adjudicats o signats i{importe}: molts expedients i poca part dels diners.',
+    'presupuesto.menores.intro.sinLicitacion': 'sense licitació ni publicitat prèvia',
+    'presupuesto.menores.intro.importe': 'el {pct} % de l’import',
+    'presupuesto.menores.peso':
+      'Eixe segon percentatge depén molt del denominador — una sola concessió de {importe}, adjudicada d’una vegada per tot el seu termini, és el {cuota} % de tot el que s’ha contractat; si s’aparta, els menors serien el {sin} %.',
+    'presupuesto.menores.iva':
+      'Totes les xifres van {sinIva}, perquè així defineix el sostre l’art. 118 de la Llei 9/2017 —{obras} en obres, {servicios} en serveis i subministraments.',
+    'presupuesto.menores.iva.sinIva': 'sense IVA',
+    'presupuesto.menores.sobreTecho': '{n} per damunt del sostre de l’art. 118',
+    'presupuesto.menores.frente': 'enfront de',
+    'presupuesto.menores.marca':
+      'La marca «contracte menor» la posa el portal de contractació, no nosaltres, i una etiqueta equivocada en origen s’assembla exactament a un incompliment. Açò mesura la distància al límit legal i la publica; anomenar-ho infracció és un pas que no fa un programa.',
+    'presupuesto.menores.sinTecho': '{n} sense sostre declarat per al seu tipus de contracte',
+    'presupuesto.menores.sinImporte': '{n} sense import net publicat',
+    'presupuesto.menores.sinComparar':
+      '{lista}: no es comparen amb el límit, en compte de donar-los per dins.',
+    'presupuesto.menores.anulados':
+      'Altres {n} venien marcats com a menors i la seua adjudicació es va desfer: no compten com a despesa ni se’ls mesura el sostre.',
+    'presupuesto.menores.norma': 'Llei 9/2017, art. 118',
+    'presupuesto.deuda.titular.igual': 'Sense canvis en {anio}',
+    'presupuesto.deuda.titular.sube': 'Puja en {anio}',
+    'presupuesto.deuda.titular.baja': 'Baixa en {anio}',
+    'presupuesto.deuda.titular.sigueSubiendo': 'Puja per {ordinal} any seguit',
+    'presupuesto.deuda.titular.sigueBajando': 'Baixa per {ordinal} any seguit',
+    'presupuesto.deuda.titular.subioYBaja': 'Va pujar en {anterior} i en {anio} baixa',
+    'presupuesto.deuda.titular.bajoYSube': 'Va baixar en {anterior} i en {anio} torna a pujar',
+    'presupuesto.deuda.titular.subioAniosYBaja':
+      'Va pujar {cardinal} anys seguits, i en {anio} baixa',
+    'presupuesto.deuda.titular.bajoAniosYSube':
+      'Va baixar {cardinal} anys seguits, i en {anio} torna a pujar',
+    'presupuesto.deuda.ordinal.2': 'segon',
+    'presupuesto.deuda.ordinal.3': 'tercer',
+    'presupuesto.deuda.ordinal.4': 'quart',
+    'presupuesto.deuda.ordinal.5': 'cinqué',
+    'presupuesto.deuda.ordinal.6': 'sisé',
+    'presupuesto.deuda.ordinal.7': 'seté',
+    'presupuesto.deuda.ordinal.otro': '{n}é',
+    'presupuesto.deuda.cardinal.2': 'dos',
+    'presupuesto.deuda.cardinal.3': 'tres',
+    'presupuesto.deuda.cardinal.4': 'quatre',
+    'presupuesto.deuda.cardinal.5': 'cinc',
+    'presupuesto.deuda.cardinal.6': 'sis',
+    'presupuesto.deuda.cardinal.7': 'set',
+    'presupuesto.deuda.cardinal.otro': '{n}',
     'presupuesto.lede':
       "L'ajuntament va obrir l'any amb {inicial} de crèdit, el va ampliar en {mod} durant l'exercici —un {pct} % més— i va executar {ejecutado}.",
     'presupuesto.lede.dominanteCero':
@@ -2477,7 +2746,7 @@ export const CATALOGUE = {
       "És el saldo que l'Ajuntament devia en tancar l'exercici. **No és el capítol «Deute públic» del pressupost**{importe}, que és el que s'aparta cada any per a atendre'l: són dos xifres distintes i no se sumen.",
     'presupuesto.deuda.nota1.importe': ' —{x} en {year}—',
     'presupuesto.deuda.nota2':
-      "Riba-roja queda **per damunt del {percentil} %** dels {n} ajuntaments de l'entrega —dels quals **{aCero} declaren zero deute**—, així que la mediana del repartiment és {mediana} i el percentil diu poc per si sol. El p90 de l'entrega està en {p90}.",
+      "Riba-roja se situa **per damunt del {percentil} %** dels {n} ajuntaments de l'entrega —dels quals **{aCero} declaren zero deute**—, així que la mediana del repartiment és {mediana} i el percentil diu poc per si sol. El p90 de l'entrega està en {p90}.",
     'presupuesto.deuda.noPublicados':
       'Sense entrega publicada encara: {lista}. La sèrie es talla ací perquè el Ministeri encara no ha publicat eixe exercici, no perquè no hi haja deute.',
     'presupuesto.deuda.fuente': "Ministeri d'Hisenda · deute viu EE.LL.",
