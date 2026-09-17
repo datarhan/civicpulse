@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-16T09:48:55.734Z",
+  "generatedAt": "2026-09-17T04:53:11.979Z",
   "windowDays": 30,
   "articles": [
     {
@@ -851,30 +851,13 @@
         "opinionFraction": 0
       },
       "score": 3
-    },
-    {
-      "articleId": "15tpe88",
-      "articleFingerprint": "1v2ow04",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/riba-roja-cede-una-parcela-municipal-de-1.945-metros-cuadrados-para-construir-36-viviendas-de-protecci%C3%B3n-p%C3%BAblica-tras-constatar-una-tensi%C3%B3n-en-el-mercado-inmobiliario",
-      "date": "2026-08-17T11:54:37.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 17,
+      "articleCount": 16,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -882,7 +865,7 @@
         "sin-datos": 39,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 3,
+      "meanTrustScore": 3.06,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -1008,7 +991,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "b5cb94232738",
+    "plenos-agendas.json": "c28180952944",
     "press-claims-verified.json": "7ecf7f5f826c",
     "press.json": "452399f350e3",
     "promises.json": "d18811c11210"
