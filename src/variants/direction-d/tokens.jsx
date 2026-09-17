@@ -98,6 +98,25 @@ const BOT_QUEJAS = 'https://t.me/munigraph_bot?start=landing'
 // umbral y la regla que lo aplica no puedan discrepar.
 const MAPA_COMPACTO = 560
 
+// Alto del MAPA por debajo del cual la pila de controles se pliega, midiera lo
+// que midiera la ventana. El pliegue cortaba sólo por ANCHO, y el eje era el
+// equivocado: la pila va anclada abajo y mide unos 310-340 px, y las estaciones de
+// Riba-roja caen a unos 225-345 px del borde de arriba del mapa, así que lo que
+// decide si las tapa es cuánto mide el mapa de alto. Barrido el 17-09-2026 con la
+// pila desplegada:
+//
+//   ventana     mapa       estaciones tapadas
+//   600×900     600×468    4 de 4
+//   900×900     900×468    3 de 4   ← ancho de sobra y el mapa, bajo
+//   768×1024    768×532    1 de 4
+//   1024×768    604×593    1 de 4
+//   1100×900    680×725    0 de 4   ← más estrecho que 900 y ninguna tapada
+//   1280×900    860×725    0 de 4
+//
+// 700 deja plegados todos los que tapaban y sin tocar los de 725, que es el
+// escritorio. Lo lee la container query de DirectionD.jsx.
+const MAPA_PLEGADO_ALTO = 700
+
 export {
   RIBA_ROJA_CENTER,
   SERIF,
@@ -106,6 +125,7 @@ export {
   PALETTE,
   BOT_QUEJAS,
   MAPA_COMPACTO,
+  MAPA_PLEGADO_ALTO,
   STACK_BREAKPOINT,
   fmtClock,
   fmtDateLong,
