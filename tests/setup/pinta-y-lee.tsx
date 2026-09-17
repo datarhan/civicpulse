@@ -18,6 +18,10 @@
  *   - `faltanAdrede` (opcional): rutas que el escenario no sirve a propósito.
  *   - `interactua(container)` (opcional): lo que hay que pulsar; devuelve más
  *     piezas leídas, que van detrás de las de la carga.
+ *   - `alPulsar` (opcional): rutas servidas que la página sólo pide al pulsar
+ *     algo —una pestaña, una zona—. No se esperan en la carga, y si ninguna
+ *     pulsación las pide se devuelven en `servidasSinPedir`: servir de más
+ *     también es una lista que miente.
  */
 import type { ReactElement } from 'react'
 import { expect } from 'vitest'
@@ -40,13 +44,14 @@ export interface Escenario {
   listo: (container: HTMLElement) => boolean
   faltanAdrede?: string[]
   interactua?: (container: HTMLElement) => Promise<string[]> | string[]
+  alPulsar?: string[]
 }
 
 export async function pintaYLee(
   escenario: Escenario,
   idioma: 'es' | 'ca',
   { lee = lectura }: { lee?: (container: HTMLElement) => string[] } = {},
-): Promise<{ piezas: string[]; pedidasSinServir: string[] }> {
+): Promise<{ piezas: string[]; pedidasSinServir: string[]; servidasSinPedir: string[] }> {
   // La caché de instantáneas vive lo que la sesión, y el setup sólo la vacía entre
   // pruebas: una prueba que pinte dos escenarios leería en el segundo lo del primero.
   // Se vacía sólo cuando cambian los datos. Pintar el mismo escenario en el otro
@@ -56,7 +61,10 @@ export async function pintaYLee(
   // quieta con un bloque sin pintar —medido: 226 piezas en castellano, 188 en
   // valencià—.
   const mapa = escenario.fetch ?? {}
-  if (mapa !== ultimoMapa) {
+  // Con la caché llena la página no vuelve a pedir nada, así que qué se pidió
+  // sólo se puede medir en la pasada que la vació.
+  const fresca = mapa !== ultimoMapa
+  if (fresca) {
     invalidateSnapshots()
     ultimoMapa = mapa
   }
@@ -67,7 +75,8 @@ export async function pintaYLee(
       <LocaleProvider>{escenario.pinta()}</LocaleProvider>
     </MemoryRouter>,
   )
-  const rutas = Object.keys(mapa)
+  const alPulsar = escenario.alPulsar ?? []
+  const rutas = Object.keys(mapa).filter((r) => !alPulsar.includes(r))
   let previa: string[] | null = null
   await waitFor(
     () => {
@@ -84,12 +93,15 @@ export async function pintaYLee(
     },
     { timeout: 15000 },
   )
-  const pedidasSinServir = [
-    ...new Set(fetchFn.mock.calls.map(([u]) => String(u).replace(/^https?:\/\/[^/]+/, ''))),
-  ].filter(
+  const extra = escenario.interactua ? await escenario.interactua(container) : []
+  // Después de pulsar: lo que se pide al pulsar también cuenta.
+  const pedidas = new Set(
+    fetchFn.mock.calls.map(([u]) => String(u).replace(/^https?:\/\/[^/]+/, '')),
+  )
+  const pedidasSinServir = [...pedidas].filter(
     (p) => p.startsWith('/data/') && !(p in mapa) && !(escenario.faltanAdrede ?? []).includes(p),
   )
-  const extra = escenario.interactua ? await escenario.interactua(container) : []
+  const servidasSinPedir = fresca ? alPulsar.filter((r) => !pedidas.has(r)) : []
   unmount()
-  return { piezas: [...previa, ...extra], pedidasSinServir }
+  return { piezas: [...previa, ...extra], pedidasSinServir, servidasSinPedir }
 }
