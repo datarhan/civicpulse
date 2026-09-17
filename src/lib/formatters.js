@@ -38,11 +38,12 @@ export function fmtDateShort(iso, idioma = 'es') {
 
 /**
  * @param {string|null|undefined} iso
+ * @param {string} [idioma] el de la interfaz: «3 de juny de 2026» en valencià
  * @returns {string} e.g. "3 de junio de 2026" — empty string when iso is falsy
  */
-export function fmtDateLong(iso) {
+export function fmtDateLong(iso, idioma = 'es') {
   if (!iso) return ''
-  return new Date(iso).toLocaleDateString('es-ES', {
+  return new Date(iso).toLocaleDateString(idioma === 'ca' ? 'ca-ES' : 'es-ES', {
     day: 'numeric',
     month: 'long',
     year: 'numeric',

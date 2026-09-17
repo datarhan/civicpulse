@@ -28,7 +28,7 @@ import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
 import { CATALOGUE, LocaleProvider } from '../../src/i18n'
-import { peekSnapshot } from '../../src/lib/snapshot-store'
+import { invalidateSnapshots, peekSnapshot } from '../../src/lib/snapshot-store'
 import { prettyNeighborhood } from '../../src/lib/formatters'
 import QuejaDetail from '../../src/pages/QuejaDetail'
 import { RELATION_LABELS, scoreRelation } from '../../src/scraper/queja-contract-relations'
@@ -307,6 +307,10 @@ function leeLoCompartido(container) {
  * lo que la ficha pidió sin que la prueba lo sirviera.
  */
 async function pintaYLee(escenario, idioma) {
+  // La caché de instantáneas vive lo que la sesión, y el setup sólo la vacía entre
+  // pruebas: la cobertura pinta todos los escenarios dentro de una, y sin esto el
+  // segundo leería la queja del primero.
+  invalidateSnapshots()
   localStorage.setItem('cp:lang', idioma)
   const fetchFn = installFetchMock(escenario.fetch)
   const { container, unmount } = render(

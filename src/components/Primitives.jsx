@@ -1,5 +1,6 @@
 import { Ic } from './Icons'
 import { safeHref } from '../lib/formatters'
+import { useT } from '../i18n'
 
 const TONES = {
   neutral: { bg: 'var(--soft)', fg: 'var(--ink)' },
@@ -536,6 +537,7 @@ export function LegendDot({ color, label }) {
  *        current URL at click time.
  */
 export function ShareWA({ text, url, size = 10.5 }) {
+  const t = useT()
   const onClick = (e) => {
     e.stopPropagation()
     const targetUrl = url || (typeof window !== 'undefined' ? window.location.href : '')
@@ -547,8 +549,8 @@ export function ShareWA({ text, url, size = 10.5 }) {
     <button
       type="button"
       onClick={onClick}
-      aria-label="Compartir en WhatsApp"
-      title="Compartir en WhatsApp"
+      aria-label={t('common.compartirWhatsApp')}
+      title={t('common.compartirWhatsApp')}
       className="mono"
       style={{
         display: 'inline-flex',
