@@ -162,22 +162,28 @@ Every citizen can withdraw their own queja with `/olvidar Q-XXXXXXXX`. The
 row stays in SQLite for the 5-year retention window (Art. 55 LOPD-GDD) as an
 audit trail, but in the same transaction the bot erases the author's Telegram id
 and username, the coordinates and the photo reference, and every listing and
-export filters the row out. The site drops it at the next daily
-`pull-quejas.yml`, which also prunes its published photo
-(`scripts/fotos-quejas.mjs`). To verify the flow end-to-end after deployment:
+export filters the row out. The bot deletes its own copy of the photo at once
+and, with `GITHUB_DISPATCH_TOKEN` set, dispatches `pull-quejas.yml`: the site drops
+the queja when that run finishes (minutes, or the next daily run if the dispatch
+failed), and the same run prunes its published photo (`scripts/fotos-quejas.mjs`).
+To verify the flow end-to-end after deployment:
 
 ```bash
 # Pick a test queja you submitted yourself, from a test Telegram account
 TEST_ID=Q-ABC12301
 
 # 1. Send: /olvidar Q-ABC12301
-#    You should see: ✅ Queja Q-ABC12301 retirada.
+#    You should see: ✅ Queja Q-ABC12301 retirada. It promises «unos minutos» only
+#    when GitHub accepted the dispatch; the bot's log then says «[republicar] pedida».
 
-# 2. The export no longer lists it
+# 2. The export no longer lists it, and its photo is no longer served
 curl -fsS -H "Authorization: Bearer $EXPORT_TOKEN" \
   https://munigraph-ribarroja.fly.dev/export/quejas.json \
   | jq '.items[] | select(.service_request_id == "'"$TEST_ID"'")'
 # Expected: empty output
+curl -s -o /dev/null -w '%{http_code}\n' -H "Authorization: Bearer $EXPORT_TOKEN" \
+  "https://munigraph-ribarroja.fly.dev/export/quejas-photos/$(echo "$TEST_ID" | tr A-Z a-z).jpg"
+# Expected: 404
 
 # 3. The internal record kept no identity (on a copy of the bot's database)
 sqlite3 bot.db "SELECT deleted_at, telegram_user_id, telegram_username, lat, lng, photo_file_id FROM quejas WHERE id = '$TEST_ID';"

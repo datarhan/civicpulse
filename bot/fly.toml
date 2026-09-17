@@ -75,6 +75,14 @@ primary_region = "cdg"
   # Where the public site lives, used to build links inside bot replies.
   PUBLIC_BASE_URL = "https://www.civicpulse.es"
 
+  # Las fotos anonimizadas, en el VOLUMEN y no en la imagen: la imagen se reconstruye
+  # en cada despliegue y lo escrito dentro se perdería con ella. Con esta variable el
+  # bot arma su pasada horaria (src/services/fotos-cron.ts), el export enlaza lo que
+  # hay aquí y /export/quejas-photos/ lo sirve para que pull-quejas.yml lo publique.
+  # Sin ella la pasada no se arma. El análisis necesita además el secreto
+  # GEMINI_API_KEY (bot/DEPLOY.md); sin él, cada foto se retiene.
+  QUEJAS_PHOTOS_DIR = "/data/quejas-photos"
+
 [mounts]
   source = "botdata"
   destination = "/data"

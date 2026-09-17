@@ -234,9 +234,14 @@ const sinLineasDeComentario = (texto) =>
     .split('\n')
     .filter((l) => !/^\s*#/.test(l))
     .join('\n')
-const LANZAN_FOTOS = [...WORKFLOWS, lee('bot/fly.toml'), lee('bot/Dockerfile')].some((s) =>
-  sinLineasDeComentario(s).includes('process-photos'),
-)
+/** Lo mismo para TypeScript: una llamada dentro de un comentario no arma nada. */
+const sinComentariosTs = (texto) =>
+  texto.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '')
+/** Si algo lanza la pasada que anonimiza las fotos: un workflow, el despliegue o el propio bot. */
+const LANZAN_FOTOS =
+  [...WORKFLOWS, lee('bot/fly.toml'), lee('bot/Dockerfile')].some((s) =>
+    sinLineasDeComentario(s).includes('process-photos'),
+  ) || sinComentariosTs(lee('bot/src/index.ts')).includes('startFotosCron(')
 const CRON_QUEJAS = lee('.github/workflows/pull-quejas.yml').match(/cron: '([^']+)'/)?.[1]
 /** Si el workflow que trae quejas.json poda también las fotos. */
 const PODA_FOTOS = sinLineasDeComentario(lee('.github/workflows/pull-quejas.yml')).includes(
@@ -319,10 +324,35 @@ describe('el aviso legal dice lo que hace /olvidar, cuándo y con qué foto', ()
     expect(TRAMO).toContain('Gemini')
     if (LANZAN_FOTOS) {
       expect(TRAMO).not.toContain('no se está ejecutando')
+      expect(TRAMO, 'el bot lanza la pasada y el aviso no dice cuándo corre').toContain('cada hora')
     } else {
       expect(TRAMO, 'hoy nada lanza la anonimización, y el aviso tiene que decirlo').toContain(
         'no se está ejecutando',
       )
+    }
+  })
+
+  it('«unos minutos» sólo si el bot pide republicar al confirmar /olvidar', () => {
+    // El plazo que el aviso promete depende de una llamada del bot. Si alguien la
+    // quita, el aviso seguiría prometiendo minutos que ya nada pide; si existe y el
+    // aviso sólo dice «diaria», el bot le cuenta al vecino otra cosa que la página.
+    const PIDE_REPUBLICAR = sinComentariosTs(RESPUESTA).includes('pedirRepublicacion(')
+    const inicio = METODOLOGIA.indexOf('puede retirarla')
+    const RETIRADA_METODOLOGIA = METODOLOGIA.slice(
+      inicio,
+      METODOLOGIA.indexOf('aviso legal', inicio),
+    )
+    expect(RETIRADA_METODOLOGIA.length, 'no encuentro la retirada en /metodologia').toBeGreaterThan(
+      80,
+    )
+    if (PIDE_REPUBLICAR) {
+      expect(TRAMO, 'el bot pide republicar y el aviso no dice cuánto tarda').toContain(
+        'unos minutos',
+      )
+      expect(RETIRADA_METODOLOGIA).toContain('unos minutos')
+    } else {
+      expect(TRAMO, 'el aviso promete minutos que nada pide').not.toContain('minutos')
+      expect(RETIRADA_METODOLOGIA).not.toContain('minutos')
     }
   })
 
