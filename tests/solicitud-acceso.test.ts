@@ -4,6 +4,7 @@ import {
   estadoDeSolicitud,
   venceEl,
   frasePublica,
+  SENTIDOS_RESPUESTA,
   validarRegistroSolicitudes,
   type SolicitudAcceso,
 } from '../src/scraper/solicitud-acceso'
@@ -105,5 +106,27 @@ describe('validarRegistroSolicitudes', () => {
     expect([...ESTADOS_SOLICITUD].sort()).toEqual(
       ['en-plazo', 'reclamada', 'respondida', 'sin-solicitar', 'vencida-sin-respuesta'].sort(),
     )
+  })
+})
+
+/**
+ * Cada sentido del enum tiene su frase, EN EJECUCIÓN.
+ *
+ * El 2026-09-17 entró `no-les-corresponde` y `frasePublica` llevaba su propia
+ * copia de la tabla de frases como literal sin tipar. Con `"strict": false` en
+ * el tsconfig, indexar ese literal con la unión ampliada da `any` en silencio:
+ * tsc aprobó y la frase habría salido «undefined el …» en `/laboratorio/cobertura`
+ * en cuanto alguien registrara una respuesta así con el CLI, cuyo validador ya
+ * la aceptaba. Dos copias escritas a mano de la misma tabla se separaron en el
+ * mismo commit que las necesitaba juntas.
+ */
+describe('frasePublica · cada sentido compone una frase entera', () => {
+  it.each([...SENTIDOS_RESPUESTA])('«%s»', (sentido) => {
+    const r = { ...base, respuesta: { fecha: '2026-10-02', sentido } }
+    const f = frasePublica(r, '2026-10-20')
+    expect(f).not.toMatch(/undefined/)
+    // La fecha delante del verbo: «no les corresponde el 2026-10-02» se lee como
+    // si dejara de corresponderles ese día.
+    expect(f).toMatch(/El 2026-10-02 [a-záéíóú]/)
   })
 })

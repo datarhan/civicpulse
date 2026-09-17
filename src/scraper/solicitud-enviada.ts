@@ -28,7 +28,7 @@
  * firmar un plazo que no podemos acreditar, en una página cuyo trato con el
  * lector es una cita por afirmación.
  */
-import { venceEl, type SentidoRespuesta } from './solicitud-acceso'
+import { QUE_HICIERON, venceEl, type SentidoRespuesta } from './solicitud-acceso'
 
 export const ESTADOS_ENVIO = ['en-plazo', 'vencida-sin-respuesta', 'respondida'] as const
 export type EstadoEnvio = (typeof ESTADOS_ENVIO)[number]
@@ -59,7 +59,17 @@ export interface EnvioSolicitud {
   enviadaEl: string
   /** Por dónde salió. Importa para el art. 17.2 y para lo que se puede probar. */
   via: string
-  respuesta: { fecha: string; sentido: SentidoRespuesta; url?: string } | null
+  respuesta: {
+    fecha: string
+    sentido: SentidoRespuesta
+    url?: string
+    /**
+     * Lo que dijeron, en hechos y a mano. El sentido sólo clasifica; una
+     * respuesta que no entrega documentos pero afirma cosas —«el plazo se
+     * amplió», «se ha ejecutado»— necesita que esas cosas consten, atribuidas.
+     */
+    resumen?: string
+  } | null
 }
 
 const MESES = [
@@ -98,12 +108,6 @@ export function estadoDeEnvio(e: EnvioSolicitud, hoy: string): EstadoEnvio {
   return hoy > venceEl(e.enviadaEl) ? 'vencida-sin-respuesta' : 'en-plazo'
 }
 
-const QUE_HICIERON: Record<SentidoRespuesta, string> = {
-  concedido: 'Lo concedieron',
-  parcial: 'Lo concedieron en parte',
-  denegado: 'Lo denegaron',
-}
-
 /**
  * Lo que la página dice de un envío. En hechos, no en calificaciones.
  *
@@ -118,7 +122,7 @@ export function fraseDeEnvio(e: EnvioSolicitud, hoy: string): string {
   const estado = estadoDeEnvio(e, hoy)
 
   if (estado === 'respondida' && e.respuesta) {
-    return `${cabeza} ${QUE_HICIERON[e.respuesta.sentido]} el ${enCastellano(e.respuesta.fecha)}.`
+    return `${cabeza} El ${enCastellano(e.respuesta.fecha)} ${QUE_HICIERON[e.respuesta.sentido]}.`
   }
 
   if (estado === 'vencida-sin-respuesta') {
