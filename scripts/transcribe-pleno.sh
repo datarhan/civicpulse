@@ -177,6 +177,13 @@ OUT_PATH="$TRANSCRIPT_DIR/$PLENO_ID.txt"
 # Va antes del reparto de motores, así que da igual cuál escriba después y da
 # igual que la pasada acabe fallando: lo que había queda guardado.
 INCUMBENTE=""
+# Declarado FUERA del `if`, igual que INCUMBENTE: la línea que elige el
+# incumbente lo lee siempre, y con `set -u` una sesión que nunca se había
+# transcrito moría ahí mismo, antes del reparto de motores, sin escribir nada —y
+# a la mañana siguiente, igual—. Medido: `1xmr0do`, la sesión más reciente, cayó
+# así el 15, el 16 y el 17 de septiembre de 2026, bajando cada vez su audio para
+# nada. Lo fija tests/scripts/transcribe-primera-vez.test.ts.
+SUPERSEDED_MAIN=""
 if [ -f "$OUT_PATH" ]; then
   SUPERSEDED_DIR="$(dirname "$OUT_PATH")/superseded"
   SUPERSEDED_MAIN="$SUPERSEDED_DIR/$(basename "$OUT_PATH")"
