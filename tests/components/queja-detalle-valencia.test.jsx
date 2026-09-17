@@ -22,17 +22,15 @@
  * `quejas.detalle.*` del catálogo tiene que pintarse en alguno.
  */
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { fireEvent, render, waitFor } from '@testing-library/react'
+import { fireEvent, render } from '@testing-library/react'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
 import { CATALOGUE, LocaleProvider } from '../../src/i18n'
-import { invalidateSnapshots, peekSnapshot } from '../../src/lib/snapshot-store'
 import { prettyNeighborhood } from '../../src/lib/formatters'
 import QuejaDetail from '../../src/pages/QuejaDetail'
 import { RELATION_LABELS, scoreRelation } from '../../src/scraper/queja-contract-relations'
-import { installFetchMock } from '../setup/mockFetch'
 import {
   cadenasDe,
   datosPintados,
@@ -40,6 +38,7 @@ import {
   lectura,
   masLargasPrimero,
 } from '../setup/castellano'
+import { pintaYLee } from '../setup/pinta-y-lee'
 
 // ─── Qué no es lengua ──────────────────────────────────────────────────────────
 
@@ -197,20 +196,29 @@ const DERIVADOS = [prettyNeighborhood(BARRIO)]
 
 const pintaLa = (c, texto) => c.textContent.includes(texto)
 
+/** La ficha detrás de su ruta, como la monta App.jsx. */
+const laFicha = () => (
+  <Routes>
+    <Route path="/quejas/:id" element={<QuejaDetail />} />
+  </Routes>
+)
+
 const ESCENARIOS = [
   {
     nombre: 'capturada: foto, área, responsable y las tres clases de relación',
     ruta: `/quejas/${ID}`,
+    pinta: laFicha,
     fetch: sirve({ relaciones: RELACIONES, aprobadas: APROBADAS }),
     listo: (c) =>
       pintaLa(c, QUEJA.description) &&
       pintaLa(c, CONCEJAL.name) &&
       c.querySelectorAll('a[href*="idEvl=guarda-"]').length === CONTRATOS.length,
-    comparte: true,
+    interactua: leeLoCompartido,
   },
   {
     nombre: 'en trámite: verificada, registrada, en plazo y con respuesta del Ayuntamiento',
     ruta: `/quejas/${ID}`,
+    pinta: laFicha,
     fetch: sirve({
       queja: {
         ...QUEJA,
@@ -227,11 +235,12 @@ const ESCENARIOS = [
       respuestas: [RESPUESTA],
     }),
     listo: (c) => pintaLa(c, RESPUESTA.text) && pintaLa(c, '2026-RE-0847'),
-    comparte: true,
+    interactua: leeLoCompartido,
   },
   {
     nombre: 'en silencio: el plazo excedido y la puerta del Síndic',
     ruta: `/quejas/${ID}`,
+    pinta: laFicha,
     fetch: sirve({
       queja: {
         ...QUEJA,
@@ -245,6 +254,7 @@ const ESCENARIOS = [
   {
     nombre: 'escalada al Síndic',
     ruta: `/quejas/${ID}`,
+    pinta: laFicha,
     fetch: sirve({
       queja: {
         ...QUEJA,
@@ -259,6 +269,7 @@ const ESCENARIOS = [
   {
     nombre: 'resuelta: sin reloj',
     ruta: `/quejas/${ID}`,
+    pinta: laFicha,
     fetch: sirve({
       queja: {
         ...QUEJA,
@@ -273,6 +284,7 @@ const ESCENARIOS = [
   {
     nombre: 'una queja que el fichero no publica',
     ruta: '/quejas/Q-NOESTA99',
+    pinta: laFicha,
     fetch: sirve({ encontrada: false }),
     listo: (c) => pintaLa(c, 'Q-NOESTA99'),
   },
@@ -302,51 +314,6 @@ function leeLoCompartido(container) {
     .filter(Boolean)
 }
 
-/**
- * Pinta un escenario en un idioma y devuelve lo que se lee, cuando ya no se mueve, y
- * lo que la ficha pidió sin que la prueba lo sirviera.
- */
-async function pintaYLee(escenario, idioma) {
-  // La caché de instantáneas vive lo que la sesión, y el setup sólo la vacía entre
-  // pruebas: la cobertura pinta todos los escenarios dentro de una, y sin esto el
-  // segundo leería la queja del primero.
-  invalidateSnapshots()
-  localStorage.setItem('cp:lang', idioma)
-  const fetchFn = installFetchMock(escenario.fetch)
-  const { container, unmount } = render(
-    <MemoryRouter initialEntries={[escenario.ruta]}>
-      <LocaleProvider>
-        <Routes>
-          <Route path="/quejas/:id" element={<QuejaDetail />} />
-        </Routes>
-      </LocaleProvider>
-    </MemoryRouter>,
-  )
-  const rutas = Object.keys(escenario.fetch)
-  let previa = null
-  await waitFor(
-    () => {
-      const sinLlegar = rutas.filter((r) => peekSnapshot(r)?.status !== 'ready')
-      expect(sinLlegar, `${escenario.nombre} (${idioma}): datos sin llegar`).toEqual([])
-      expect(
-        escenario.listo(container),
-        `${escenario.nombre} (${idioma}): no ha pintado su rama`,
-      ).toBe(true)
-      const ahora = leeFicha(container)
-      const quieta = previa !== null && JSON.stringify(ahora) === JSON.stringify(previa)
-      previa = ahora
-      expect(quieta, `${escenario.nombre} (${idioma}): la lectura todavía se mueve`).toBe(true)
-    },
-    { timeout: 15000 },
-  )
-  const pedidasSinServir = [
-    ...new Set(fetchFn.mock.calls.map(([u]) => String(u).replace(/^https?:\/\/[^/]+/, ''))),
-  ].filter((p) => p.startsWith('/data/') && !(p in escenario.fetch))
-  const compartido = escenario.comparte ? leeLoCompartido(container) : []
-  unmount()
-  return { piezas: [...previa, ...compartido], pedidasSinServir }
-}
-
 afterEach(() => localStorage.clear())
 
 // ─── Lo que se compara ─────────────────────────────────────────────────────────
@@ -370,8 +337,8 @@ describe('la ficha de una queja en valencià: nada se lee igual que en castellan
   it.each(ESCENARIOS)(
     '$nombre',
     async (escenario) => {
-      const es = await pintaYLee(escenario, 'es')
-      const ca = await pintaYLee(escenario, 'ca')
+      const es = await pintaYLee(escenario, 'es', { lee: leeFicha })
+      const ca = await pintaYLee(escenario, 'ca', { lee: leeFicha })
       expect(es.piezas.length, 'el escenario no pintó nada que leer').toBeGreaterThan(0)
       expect.soft(es.pedidasSinServir, 'la ficha pide datos que la prueba no sirve').toEqual([])
 
@@ -428,7 +395,8 @@ describe('cobertura de la guarda de la ficha', () => {
     // Mide algo: sin claves no hay nada que cubrir.
     expect(claves.length, 'el catálogo no tiene cadenas de la ficha').toBeGreaterThan(20)
     const leido = []
-    for (const escenario of ESCENARIOS) leido.push(...(await pintaYLee(escenario, 'es')).piezas)
+    for (const escenario of ESCENARIOS)
+      leido.push(...(await pintaYLee(escenario, 'es', { lee: leeFicha })).piezas)
     const texto = leido.join('\n')
     const sinPintar = claves.filter((clave) =>
       CATALOGUE.es[clave]
