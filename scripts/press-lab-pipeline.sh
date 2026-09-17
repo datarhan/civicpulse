@@ -418,6 +418,22 @@ else
   if ! git push origin main; then
     log "push rejected — pull-rebase + retry"
     cron_git_pull_rebase "pull-rebase de reintento tras push rechazado"
+    # El rebase trae el trabajo de OTRO cron, y ese trabajo puede haber movido la
+    # entrada de un nodo derivado: publicar sin volver a derivar deja `main`
+    # incumpliendo su propia `tests/data-graph-frescura.test.ts`. Le pasó a
+    # `94359907` el 16-09-2026, que rebaseó sobre la instantánea de quejas y
+    # publicó dos nodos rancios. La PR #46 cerró este agujero para el commit
+    # normal y lo dejó abierto justo aquí.
+    REDERIVADOS_REBASE="$(cron_rutas_rederivadas)"
+    if [ -n "$REDERIVADOS_REBASE" ]; then
+      # shellcheck disable=SC2086  # deliberado: es una lista de rutas
+      if cron_git_stage_and_check $REDERIVADOS_REBASE; then
+        cron_git_commit_pathspec "chore(datos): rederivado tras el rebase" || true
+      fi
+      log "rederivado tras el rebase:$REDERIVADOS_REBASE"
+    else
+      log "rederivado tras el rebase: nada que reconstruir"
+    fi
     git push origin main
   fi
 fi

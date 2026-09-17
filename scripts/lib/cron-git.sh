@@ -573,14 +573,25 @@ _cron_git_con_lock() {
 # ---------------------------------------------------------------------------
 cron_rutas_rederivadas() {
   local salida ruta
-  salida="$(npm run --silent refresh -- --rebuilt-paths 2>/dev/null)" || return 0
+  salida="$(npm run --silent refresh -- --rebuilt-paths 2>/dev/null)" || {
+    # Un refresh que falla no puede quedar callado: quien llama se quedaría sin
+    # rutas y lo leería como «no había nada que rederivar».
+    cron_git_log "refresh falló al pedirle qué rederivó — no se añade nada al pathspec" >&2
+    return 0
+  }
+  local n=0
   while IFS= read -r ruta; do
     [ -n "$ruta" ] || continue
     [ -e "$ruta" ] || continue
+    n=$((n + 1))
     printf '%s\n' "$ruta"
   done <<EOF
 $salida
 EOF
+  # Por stderr, NUNCA por stdout: stdout es el valor que quien llama captura.
+  # Y se dice también cuando son cero, que es la diferencia entre «no hacía
+  # falta» y «no se preguntó».
+  cron_git_log "refresh rederivó $n ruta(s)" >&2
 }
 
 cron_git_stage_and_check() {

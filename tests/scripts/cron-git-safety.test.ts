@@ -49,6 +49,7 @@ import {
   mkdirSync,
   mkdtempSync,
   readFileSync,
+  readdirSync,
   writeFileSync,
 } from 'node:fs'
 import { tmpdir } from 'node:os'
@@ -103,6 +104,21 @@ fi
 # completó sus siete pasos y perdió el commit así —«fatal: No se puede crear
 # '.git/index.lock'»—, porque el otro proceso era yo comiteando a la vez.
 # Se toma en el ÚLTIMO paso, que es donde la ventana real está.
+# Otro cron publica en origin MIENTRAS este corre, que es la carrera real: el
+# de quejas empuja cada minuto. Se hace desde un clon aparte para no tocar el
+# árbol que la tubería está usando: advanceOrigin rebobina con reset --hard y
+# aquí eso se llevaría por delante el trabajo del run.
+if [ -n "\${STUB_ADVANCE_ORIGIN_ON:-}" ] && [ "$name" = "\${STUB_ADVANCE_ORIGIN_ON}" ]; then
+  _tmp="$(mktemp -d)"
+  git clone -q "$(git remote get-url origin)" "$_tmp" 2>/dev/null
+  ( cd "$_tmp" \
+    && printf '{"items":[{"id":"otro-cron"}]}\\n' > public/data/press.json \
+    && git add -- public/data/press.json \
+    && git -c user.email=otro@cron -c user.name=otro commit -qm 'otro cron: publica mientras tanto' \
+    && git push -q origin HEAD:main ) >/dev/null 2>&1
+  rm -rf "$_tmp"
+  echo "[stub] otro cron publicó en origin durante \${name}"
+fi
 if [ -n "\${STUB_HOLD_LOCK_ON:-}" ] && [ "$name" = "\${STUB_HOLD_LOCK_ON}" ]; then
   : > .git/index.lock
   echo "[stub] tomó .git/index.lock durante \${STUB_HOLD_LOCK_SECS:-4}s"
@@ -753,6 +769,72 @@ describe('cron pipelines · the opening pull races the guard as well', () => {
     expect(r.log).not.toContain('[stub] ran ')
     expect(r.status).not.toBe(0)
   }, 120_000)
+})
+
+// ---------------------------------------------------------------------------
+describe('cron pipelines · tras el rebase se vuelve a derivar', () => {
+  // El `pull --rebase` de estas tuberías trae el trabajo de OTRO cron, y ese
+  // trabajo puede haber movido la entrada de un nodo derivado. Si nadie rederiva
+  // después, lo que se publica incumple `tests/data-graph-frescura.test.ts` — el
+  // mismo agujero que la PR #46 cerró para el commit normal y dejó abierto aquí.
+  // Medido el 16-09-2026: `94359907` rebaseó sobre la instantánea de quejas y
+  // publicó dos nodos rancios.
+  //
+  // Se observa por el LOG, no por el `[stub] ran refresh`: desde la PR #46 la
+  // llamada a refresh va dentro de `cron_rutas_rederivadas`, que captura su
+  // stdout, así que la marca del stub ya no llega al log del cron.
+  it('press-lab-pipeline.sh rederiva DESPUÉS del pull de reintento', () => {
+    const dir = makeSandbox()
+    // El pull de apertura absorbería un origin adelantado antes de empezar, así
+    // que el otro cron publica a mitad de la pasada: eso es lo que rechaza el
+    // push y dispara el reintento.
+    const r = runScript(dir, 'scripts/press-lab-pipeline.sh', {
+      STUB_ADVANCE_ORIGIN_ON: 'audit-press-links',
+    })
+
+    // Las condiciones estaban de verdad: corrió, comiteó y le rechazaron el push.
+    expect(r.log, 'no step ran — the run measured nothing').toContain('[stub] ran ')
+    expect(r.log, 'el push no se rechazó: no hay reintento que medir').toContain(
+      'push rejected — pull-rebase + retry',
+    )
+
+    // Se ancla en la línea que el guion SÍ escribe: `cron_git_pull_rebase` no
+    // registra nada cuando el pull sale bien, sólo cuando aborta.
+    const iPull = r.log.lastIndexOf('push rejected — pull-rebase + retry')
+    // El arenero sólo recoge stdout —`execFileSync` devuelve eso—, y el resumen
+    // que `cron_rutas_rederivadas` escribe va por stderr para no ensuciar el
+    // valor que quien la llama captura. Así que aquí se ancla en la línea que el
+    // guion escribe él mismo: quitar el bloque del reintento la quita.
+    const iRederiva = r.log.lastIndexOf('rederivado tras el rebase')
+    expect(iPull, 'no consta el reintento').toBeGreaterThan(-1)
+    expect(
+      iRederiva,
+      'no dice si rederivó tras el rebase: publica lo que traiga el rebase sin comprobarlo',
+    ).toBeGreaterThan(iPull)
+  }, 120_000)
+
+  it('y toda tubería que rebasa antes de publicar lo dice en su cuerpo', () => {
+    // La lista sale de los propios guiones, no de aquí: una tubería nueva que
+    // rebase y no rederive queda cubierta sola.
+    const dir = join(__dirname, '../../scripts')
+    const sinComentarios = (s: string) => s.replace(/^\s*#.*$/gm, '')
+    const tuberias = readdirSync(dir)
+      .filter((f) => f.endsWith('.sh'))
+      .map((f) => ({ f, cuerpo: sinComentarios(readFileSync(join(dir, f), 'utf8')) }))
+      .filter(
+        ({ cuerpo }) => cuerpo.includes('cron_git_pull_rebase') && cuerpo.includes('git push'),
+      )
+    expect(tuberias.length, 'no ha leído ninguna tubería que rebase y publique').toBeGreaterThan(1)
+    for (const { f, cuerpo } of tuberias) {
+      const iPull = cuerpo.lastIndexOf('cron_git_pull_rebase')
+      const iRederiva = cuerpo.lastIndexOf('cron_rutas_rederivadas')
+      expect(
+        iRederiva > iPull,
+        `${f} hace su último pull --rebase y publica sin volver a derivar: lo que traiga ` +
+          `ese rebase se publica sin comprobar si deja un derivado rancio`,
+      ).toBe(true)
+    }
+  })
 })
 
 // ---------------------------------------------------------------------------
