@@ -29,6 +29,9 @@ import { invalidateSnapshots, peekSnapshot } from '../../src/lib/snapshot-store'
 import { installFetchMock } from './mockFetch'
 import { lectura } from './castellano'
 
+/** Los datos del último pintado: si el siguiente trae otros, la caché se vacía. */
+let ultimoMapa: Record<string, unknown> | null = null
+
 export interface Escenario {
   nombre: string
   fetch?: Record<string, unknown>
@@ -46,9 +49,18 @@ export async function pintaYLee(
 ): Promise<{ piezas: string[]; pedidasSinServir: string[] }> {
   // La caché de instantáneas vive lo que la sesión, y el setup sólo la vacía entre
   // pruebas: una prueba que pinte dos escenarios leería en el segundo lo del primero.
-  invalidateSnapshots()
-  localStorage.setItem('cp:lang', idioma)
+  // Se vacía sólo cuando cambian los datos. Pintar el mismo escenario en el otro
+  // idioma reutiliza lo ya servido, como hacía la guarda de la portada antes de
+  // compartir esto: vaciarla también ahí obligaba a la segunda pasada a volver a
+  // pedirlo todo, y con la suite entera en paralelo la columna editorial se quedó
+  // quieta con un bloque sin pintar —medido: 226 piezas en castellano, 188 en
+  // valencià—.
   const mapa = escenario.fetch ?? {}
+  if (mapa !== ultimoMapa) {
+    invalidateSnapshots()
+    ultimoMapa = mapa
+  }
+  localStorage.setItem('cp:lang', idioma)
   const fetchFn = installFetchMock(mapa)
   const { container, unmount } = render(
     <MemoryRouter initialEntries={escenario.ruta ? [escenario.ruta] : undefined}>
