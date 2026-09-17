@@ -122,7 +122,9 @@ export default function GastoMap({ snapshot, sliderTime, danaOnly, selectedZone,
                 <div style={{ fontFamily: 'Outfit, sans-serif', fontSize: 'var(--fs-meta)' }}>
                   <strong>{z.name}</strong>
                   <br />
-                  {fmtEur(z.live.amount)} · {z.live.count} obra{z.live.count === 1 ? '' : 's'}
+                  {/* Contratos, no «obras»: ver ZoneDrilldown. */}
+                  {fmtEur(z.live.amount)} · {z.live.count} contrato
+                  {z.live.count === 1 ? '' : 's'}
                 </div>
               </Tooltip>
             </Circle>

@@ -46,8 +46,12 @@ export default function ZoneDrilldown({
         ← todas las zonas
       </button>
       <div style={{ fontSize: 'var(--fs-head)', fontWeight: 700, marginTop: 4 }}>{zone.name}</div>
+      {/* Contratos, no «obras»: la zona suma todo contrato cuyo título la nombra, y
+          medido el 17-09-2026, 22 de los 47 contratos situados eran servicios o
+          suministros, en 8 de las 12 zonas. Una zona con cinco servicios y una obra
+          decía «6 obras». */}
       <div className="mono" style={{ fontSize: 'var(--fs-aux)', fontWeight: 700 }}>
-        {fmtEur(total)} · {works.length} obra{works.length === 1 ? '' : 's'}
+        {fmtEur(total)} · {works.length} contrato{works.length === 1 ? '' : 's'}
       </div>
       <div style={{ marginTop: 8, maxHeight: 360, overflowY: 'auto' }}>
         {works.map(({ a, c }) => (
