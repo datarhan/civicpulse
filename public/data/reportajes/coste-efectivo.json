@@ -2,13 +2,13 @@
   "meta": {
     "slug": "coste-efectivo",
     "titulo": "El panel se enciende y se apaga justo donde está el dinero",
-    "subtitulo": "El coste efectivo del agua en Riba-roja aparece y desaparece: el ayuntamiento declara cifra en cinco de las diez entregas y cero en las otras cinco, porque el servicio está concedido y lo cobra la empresa del recibo de cada casa. Diez días antes de que se publicara la primera versión de esta pieza, el Ayuntamiento adjudicó ese servicio por diecisiete años y 55,7 millones. El expediente había tardado siete.",
+    "subtitulo": "El coste efectivo del agua en Riba-roja aparece y desaparece: el ayuntamiento declara cifra en cinco de las diez entregas y cero en las otras cinco, aunque declara el servicio concedido en todas y la norma manda declarar, cuando el concesionario cobra del recibo, lo que se recauda por tarifas. Veinte días antes de que se publicara la primera versión de esta pieza, el Ayuntamiento acordó adjudicar ese servicio por diecisiete años y 55,7 millones. El expediente había tardado siete, cinco de ellos suspendido por orden de un juzgado.",
     "seccion": "Reportaje · datos",
     "municipio": "Riba-roja de Túria",
-    "fechaDatos": "2026-08-23",
+    "fechaDatos": "2026-09-17",
     "publicadoEl": "2026-08-16",
     "ampliadoEl": "23 de agosto de 2026",
-    "notaAmpliacion": "La primera versión de esta pieza, del 16 de agosto de 2026, contaba tres defectos en cómo el ayuntamiento rinde el coste efectivo al ministerio. Todo aquello sigue aquí, en las secciones 5 a 7, con sus cifras intactas. Lo que se ha añadido el 23 de agosto es lo que faltaba: qué hay detrás de las dos casillas que ese panel dejaba en blanco. Al ampliarla no se retiró ni se corrigió ninguna cifra de la versión anterior.",
+    "notaAmpliacion": "La primera versión de esta pieza, del 16 de agosto de 2026, contaba tres defectos en cómo el ayuntamiento rinde el coste efectivo al ministerio. Todo aquello sigue aquí, en las secciones 5 a 7; las cifras que han cambiado desde entonces lo han hecho con una corrección anotada arriba. Lo que se añadió el 23 de agosto es lo que faltaba: qué hay detrás de las dos casillas que ese panel dejaba en blanco. Al ampliarla no se retiró ni se corrigió ninguna cifra de la versión anterior.",
     "estado": "publicado",
     "derechoReplica": "abierto",
     "correcciones": [
@@ -23,6 +23,10 @@
       {
         "fecha": "2026-09-02",
         "texto": "**El panel ya calcula las dos fichas del agua, y esta pieza decía que no podía.** Hasta hoy el motor de /eficiencia se negaba a dividir el coste de cualquier servicio concedido, mirase o no la casilla. Esa negativa se ha acotado a lo que la justifica —la casilla vacía o a cero, donde dividir publicaría que el agua sale gratis—, así que las entregas en las que el ministerio sí declara cifra pasan a tener coste unitario: **7,01 €/m de red** en el abastecimiento de agua y **1,73 €/m** en el alcantarillado, en la entrega de 2024, comparadas sólo contra otras concesiones. Se corrige el titular «El panel se queda en blanco donde está el dinero», la entradilla que decía que el ayuntamiento «no declara ni un euro» y el primer dato de cabecera, que seguía siendo un «0 €» — los tres afirmaban lo que la corrección del 29 de agosto ya había retirado del cuerpo.\n\nCon las dos fichas dentro, el panel pasa de trece cocientes a quince, y eso mueve la sección 06: los denominadores que el ayuntamiento no vuelve a medir son trece **de quince**, no trece de trece. Los dos que sí se remiden son justo estos dos. La banda de comparables se recompone con ellos: 52 municipios y una mediana del 57,7 %, antes 50 y 63,1 %.\n\n**Qué NO cambia.** Que el coste declarado de una concesión no sale del presupuesto municipal: lo cobra el concesionario del recibo, y por eso el cociente dice lo que cuesta el servicio y no lo que gasta el ayuntamiento. Que cinco de las diez entregas siguen viniendo a cero. Y que la tarifa que paga un vecino sigue sin estar publicada en ningún sitio que se pueda enlazar, que es la sección 09 y no la toca nada de esto."
+      },
+      {
+        "fecha": "2026-09-17",
+        "texto": "**Se han corregido cuatro errores de fondo y varios menores, encontrados al volver a leer cada afirmación de la pieza contra su documento de origen.**\n\n**1. El cero del agua no se explica por la concesión.** Decíamos que el ayuntamiento declara cero «porque el servicio está concedido» y que «en una concesión la entidad local no paga». La Orden HAP/2075/2014 dice qué hay que declarar en ese caso: cuando el concesionario cobra del recibo, «el coste efectivo vendrá determinado por los ingresos derivados de las tarifas que aquellos abonen» (artículo 6). Y las diez entregas declaran la concesión, también las cinco que traen cifra, así que la concesión no explica los cinco ceros.\n\n**2. La tarifa del agua sí está publicada.** Decíamos que lo que paga un vecino no estaba publicado en ningún sitio que se pudiera enlazar, y que los documentos del expediente se servían por enlaces que caducan. Las dos cosas eran falsas: la tarifa está en el DOGV de 23 de enero de 2013 y en el estudio de viabilidad de la concesión, y los enlaces de la Plataforma de Contratación funcionan desde cualquier sesión si se copian enteros. La corrección del 2 de septiembre lo repetía, y tampoco era cierto allí.\n\n**3. La entrega de 2020 ya no se cuelga de un concejal.** La sección que la acompañaba daba el nombre del concejal que tenía delegada la Hacienda municipal. No se sostenía por dos motivos: la norma encarga la remisión a la Intervención municipal (artículo 4.1.b de la Orden HAP/2105/2012), no a un área de gobierno, y el decreto que citábamos no era el que estaba en vigor en 2021, así que le atribuía materias que para entonces ya no tenía. Se retira el nombre. Que la entrega no se rindió sigue en pie, y ahora con fuente oficial: el Ministerio de Hacienda la lista como incumplimiento.\n\n**4. La suspensión de cinco años la ordenó un juzgado.** Decíamos que los recursos y la sentencia no estaban en la ficha del expediente y que esta pieza no los había visto. Estaban, y la cronología omitía lo que cuentan: el concurso se paró en 2021 porque un juzgado lo suspendió en el pleito de otra empresa contra el pliego, que llegó hasta el Tribunal Supremo. Los dos recursos de 2019 ante el tribunal de contratación se inadmitieron en semanas. La cronología trae ahora esos hitos.\n\n**Y los menores.** No se publicaron «once actas, de la primera a la undécima», sino diez, y no hay ninguna rotulada nº 7. La adjudicación se acordó el 27 de julio, veinte días antes de la primera versión de esta pieza; el 6 de agosto es la fecha en que se publicó. El contrato aún no se ha formalizado, así que no está «vigente hasta 2043»: tiene diecisiete años de plazo. El relevo llevaba casi cuatro años suspendido, no tres y medio. En pavimentación, la subida por metro cuadrado viene de que la superficie declarada bajó más que el coste, no de un encarecimiento. En transporte, la entrega de 2014 declaraba que no se prestaba el servicio. Y el método decía que las cifras de la primera versión «no se han tocado», cuando la corrección del 2 de septiembre recompuso la banda de comparables.\n\n**Lo que no cambia.** Cinco de las diez entregas siguen trayendo cero para el agua, trece de los quince denominadores siguen sin remedirse y la entrega de 2020 sigue sin rendir. Cambia la explicación del cero, que ya no es la concesión, y desaparece un nombre que ningún documento ligaba a la entrega que falta."
       }
     ]
   },
@@ -34,19 +38,19 @@
   "kpis": [
     {
       "n": "1,9 M€",
-      "l": "declara el ayuntamiento que cuesta el agua en la entrega de 2024; en cinco de las diez, cero"
+      "l": "declara el ayuntamiento como coste efectivo del agua en la entrega de 2024; en cinco de las diez, cero"
     },
     {
       "n": "55,7 M€",
-      "l": "valor del contrato de agua adjudicado en agosto de 2026, hasta 2043"
+      "l": "valor estimado del contrato de agua adjudicado en julio de 2026, por diecisiete años"
     },
     {
       "n": "7 años",
-      "l": "desde que se anunció el concurso hasta que se adjudicó"
+      "l": "desde que se anunció el concurso hasta que se acordó adjudicarlo"
     },
     {
       "n": "5 años",
-      "l": "que el procedimiento estuvo suspendido, de febrero de 2021 a abril de 2026"
+      "l": "que el procedimiento estuvo suspendido por orden judicial, de febrero de 2021 a abril de 2026"
     }
   ],
   "concesion": {
@@ -54,32 +58,40 @@
     "adjudicataria": "HIDRAQUA, Gestión Integral de Aguas de Levante, S.A.",
     "importe": 55685178.79,
     "importeQue": "Valor estimado del contrato por todo su plazo. No es un gasto anual, y en una concesión no sale del presupuesto municipal: lo paga el vecino en la factura del agua.",
-    "adjudicadaEl": "2026-08-06",
-    "hasta": "2043-07-27",
+    "adjudicadaEl": "2026-07-27",
+    "publicadaEl": "2026-08-06",
     "anios": 17,
     "ofertas": 7,
     "procedimiento": "abierto, mejor relación calidad-precio",
-    "formalizacion": "En la ficha del expediente no consta, a 23 de agosto de 2026, ninguna entrada de formalización del contrato.",
+    "formalizacion": "A 17 de septiembre de 2026 la ficha del expediente no trae ninguna entrada de formalización del contrato. La última es del 3 de septiembre: la que hace constar que nadie interpuso recurso especial contra la adjudicación, que es lo que la ley manda esperar antes de firmar.",
     "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D"
   },
   "cronologia": {
-    "nota": "Fechas y rótulos tomados uno a uno del historial de documentos que publica la ficha del expediente en la Plataforma de Contratación del Sector Público. Los rótulos van como los emite la plataforma.",
+    "nota": "Fechas tomadas de la ficha del expediente en la Plataforma de Contratación del Sector Público y de los documentos que publica. Donde el documento fecha el acto en otro día que su publicación, se da la fecha del acto y se dice cuándo lo publicó la ficha.",
     "hitos": [
+      {
+        "f": "17 de abril de 2019",
+        "t": "El Pleno aprueba el expediente de la concesión."
+      },
       {
         "f": "23 de abril de 2019",
         "t": "Anuncio de licitación y pliego. Al día siguiente, dos rectificaciones: una del anuncio y otra del pliego."
+      },
+      {
+        "f": "16 de mayo de 2019",
+        "t": "Acciona Agua y Servicios y FCC Aqualia recurren el pliego ante el Tribunal Administrativo Central de Recursos Contractuales (TACRC). La ficha publica los dos recursos el 4 de julio."
       },
       {
         "f": "24 de mayo de 2019",
         "t": "Se amplía el plazo de presentación de ofertas y se vuelve a rectificar anuncio y pliego."
       },
       {
-        "f": "6 de junio de 2019",
-        "t": "Acuerdo de suspensión del procedimiento."
+        "f": "5 de junio de 2019",
+        "t": "Se suspende el procedimiento como medida cautelar frente a los recursos. La ficha lo publica al día siguiente."
       },
       {
-        "f": "4 de julio de 2019",
-        "t": "Dos recursos ante el TACRC, el tribunal administrativo de contratación pública."
+        "f": "27 de junio de 2019",
+        "t": "El TACRC inadmite los recursos de Acciona Agua y FCC Aqualia (resolución 711/2019). El 18 de julio inadmite también el del grupo municipal Riba-roja Pot (resolución 837/2019)."
       },
       {
         "f": "18 de septiembre de 2019",
@@ -87,29 +99,45 @@
       },
       {
         "f": "26 de mayo de 2020",
-        "t": "Acto público de apertura de ofertas."
+        "t": "La ficha publica el acto público de apertura de ofertas."
       },
       {
-        "f": "11 de febrero de 2021",
-        "t": "Suspensión del procedimiento. Es la última entrada del expediente en cinco años."
+        "f": "9 de diciembre de 2020",
+        "t": "En el pleito de Global Omnium contra el pliego, el Juzgado de lo Contencioso-Administrativo nº 3 de València, que dos días antes lo había anulado (sentencia 294/2020), ordena suspender la licitación y prohíbe al Pleno adjudicar el contrato."
+      },
+      {
+        "f": "8 de febrero de 2021",
+        "t": "El Pleno acuerda cumplir el auto y suspende el procedimiento. La ficha lo publica el 11 de febrero, y es su última entrada en cinco años."
+      },
+      {
+        "f": "22 de noviembre de 2022",
+        "t": "El Tribunal Superior de Justicia de la Comunitat Valenciana estima la apelación del Ayuntamiento y de Hidraqua, revoca la sentencia de 2020 y anula sólo una cláusula del pliego, la 12.1.3 (sentencia 904/2022)."
+      },
+      {
+        "f": "23 de febrero de 2026",
+        "t": "El Tribunal Supremo declara no haber lugar al recurso de casación de Global Omnium (sentencia 205/2026)."
       },
       {
         "f": "28 de abril de 2026",
-        "t": "Sentencia del recurso. Esa misma tarde, entre las 14:05 y las 14:17, se publican once actas de la mesa de contratación, de la primera a la undécima."
+        "t": "La ficha publica la sentencia del Supremo y, entre las 14:05 y las 14:17, diez actas de la mesa de contratación, rotuladas nº 1 a 6 y 8 a 11. No hay ninguna rotulada nº 7, y la rotulada nº 11 se encabeza «Acta 10»."
       },
       {
         "f": "30 de junio de 2026",
         "t": "Acta número 12 de la mesa de contratación."
       },
       {
-        "f": "6 de agosto de 2026",
-        "t": "Adjudicación a Hidraqua por 55.685.178,79 €."
+        "f": "27 de julio de 2026",
+        "t": "Se acuerda adjudicar la concesión a Hidraqua por 55.685.178,79 €. La ficha publica la adjudicación el 6 de agosto."
+      },
+      {
+        "f": "3 de septiembre de 2026",
+        "t": "La ficha publica que no se interpuso recurso especial contra la adjudicación (resolución 2858/2026)."
       }
     ],
-    "loQueNoConsta": "El expediente publica que hubo dos recursos y que recayó sentencia, pero no qué alegaban ni qué resolvió: esos documentos no están en la ficha pública. Esta pieza no afirma nada sobre su contenido."
+    "loQueNoConsta": "Los recursos y las sentencias se pueden leer en la propia ficha del expediente. Los dos recursos de 2019 impugnaban el pliego, y el TACRC no llegó a entrar en el fondo: los inadmitió. El pleito que paró el concurso cinco años fue otro, el de Global Omnium, y acabó con el pliego confirmado salvo una cláusula. Esta pieza resume lo que resolvieron los tribunales; no valora quién tenía razón."
   },
   "panelCiego": {
-    "nota": "Los dos servicios del contrato son también las dos fichas que el panel de /eficiencia sólo puede calcular la mitad de los años. No es un hueco de esta página: es cómo funciona la fuente.",
+    "nota": "Los dos servicios del contrato son también las dos fichas que el panel de /eficiencia sólo puede calcular la mitad de los años. No es un hueco de esta página: es lo que el ayuntamiento declaró.",
     "servicios": [
       {
         "programa": "a161",
@@ -124,7 +152,7 @@
         "motivo": "concesión · serie partida"
       }
     ],
-    "porQue": "El coste efectivo mide lo que le cuesta el servicio a la entidad local. En una concesión la entidad local no paga: cobra el concesionario, directamente del recibo. El formulario del ministerio recoge eso de forma errática: Riba-roja declaró cero en las entregas de 2018, 2019, 2021, 2022 y 2023, y en cambio 1.898.034,08 € para el agua y 514.318,78 € para el alcantarillado en la de 2024, la más reciente, con importes del mismo orden en 2014, 2015, 2016 y 2017. El panel divide las entregas que traen cifra y deja en blanco las que traen cero, porque un cero ahí no es un precio: es la casilla sin rellenar, y dividirlo publicaría que el agua sale gratis. Queda una serie que se enciende y se apaga en el servicio donde el dinero es mayor y llega a más casas — y el euro que de verdad paga un vecino, la tarifa, no está en ninguna de las dos mitades."
+    "porQue": "Cuando un servicio está concedido y el concesionario cobra directamente del recibo, la Orden HAP/2075/2014 dice qué hay que declarar como coste efectivo: «el coste efectivo vendrá determinado por los ingresos derivados de las tarifas que aquellos abonen» (artículo 6). Riba-roja declara la concesión en las diez entregas, pero cifra sólo en cinco: 1.898.034,08 € para el agua y 514.318,78 € para el alcantarillado en la de 2024, la más reciente, con importes del mismo orden en 2014, 2015, 2016 y 2017, y cero en las de 2018, 2019, 2021, 2022 y 2023. Con el mismo modo de gestión en todas, la concesión no explica por qué unas entregas traen cifra y otras no. El panel divide las que traen cifra y deja en blanco las que traen cero, porque dividir un cero publicaría que el agua sale gratis. Si se declaró como manda la Orden, la cifra de los años con dato es lo recaudado por tarifas en todo el municipio; lo que no da es cuánto paga cada casa por metro cúbico, que es lo que cuenta el apartado de la tarifa, más arriba."
   },
   "dinero": {
     "nota": "Recuento propio sobre los contratos adjudicados que publica el portal de contratación del ayuntamiento, 2017-2026.",
@@ -165,7 +193,7 @@
         "unidad": "€/efectivo"
       }
     ],
-    "transporte": "En transporte colectivo urbano el ayuntamiento declara el gasto del servicio cada entrega con la casilla de viajeros a cero. No siempre fue así: en las entregas de 2015 y 2016 declaró 155.624 viajeros al año y en las de 2017 y 2018, 120.000. Desde la de 2019 la casilla va a cero en todas, mientras 22 de sus municipios comparables la siguen rellenando."
+    "transporte": "En transporte colectivo urbano, la casilla de viajeros va a cero en todas las entregas desde la de 2019, aunque el ayuntamiento sigue declarando el gasto del servicio. No siempre fue así: en la de 2014 declaró que no prestaba el servicio; en las de 2015 y 2016, 155.624 viajeros al año, y en las de 2017 y 2018, 120.000. En la de 2024, 22 de sus municipios comparables sí rellenan esa casilla."
   },
   "entregas": {
     "publicadas": [
@@ -184,7 +212,7 @@
     "noPresentadas": [
       2020
     ],
-    "nota": "El libro de la Comunitat Valenciana de 2020 está descargado y trae unas 90.000 filas: los demás municipios sí figuran. Riba-roja aparece en 6 filas, todas de la tabla CE4 —donde la Mancomunitat Camp de Túria la nombra como municipio al que presta servicio— y en ninguna de las tablas de coste, gestión o unidades físicas. En 2019 y en 2021 declara sus 43 filas completas."
+    "nota": "El libro de la Comunitat Valenciana de 2020 está descargado y trae unas 90.000 filas: los demás municipios sí figuran. Riba-roja aparece en 6 filas, todas de la tabla CE4 —donde la Mancomunitat Camp de Túria la nombra como municipio al que presta servicio— y en ninguna de las tablas de coste, gestión o unidades físicas. En 2019 y en 2021 declara sus 43 filas completas. Y no es sólo una ausencia: el Ministerio de Hacienda, en su relación de incumplimientos de suministro de información del ejercicio 2021, publicada el 13 de mayo de 2022, lista a Riba-roja con uno, en la columna «Coste efectivo de los servicios prestados por las entidades locales 2020»."
   },
   "rendicionCV": {
     "nota": "Ayuntamientos de la Comunitat Valenciana presentes en las tablas de coste, gestión o unidades (CE1, CE2 o CE3) del libro por comunidad de cada entrega. Recuento propio sobre los ficheros del ministerio.",
@@ -286,15 +314,16 @@
         "real": 72.5
       }
     ],
-    "nota": "Variación entre la primera y la última entrega con datos comprobables contra sus pares. «Constantes» es en euros de 2024. La comparación entre municipios no se deflacta: enfrenta un año contra ese mismo año."
+    "nota": "Variación entre la primera y la última entrega con datos comprobables contra sus pares. «Constantes» es en euros de 2024. La comparación entre municipios no se deflacta: enfrenta un año contra ese mismo año.",
+    "denominador": "Y en pavimentación, ni siquiera lo que queda es un encarecimiento. El coste declarado bajó un 30,6 % entre 2014 y 2024, de 484.881,96 € a 336.272,52 €, pero la superficie declarada bajó más, un 46,4 %, de 1.990.000 a 1.066.694 metros cuadrados. El euro por metro cuadrado sube porque se divide entre menos metros, no porque el servicio cueste más."
   },
   "queNoDice": [
-    "No dice que la adjudicación sea irregular. Un procedimiento puede suspenderse, recurrirse y resolverse en derecho, y que tarde siete años no lo convierte en ilegal: lo que esta pieza publica es cuánto tardó y qué pasos consta que se dieron.",
-    "No dice qué alegaban los dos recursos ni qué resolvió la sentencia. Esos documentos no están en la ficha pública del expediente y esta pieza no los ha visto.",
-    "No dice nada sobre cómo presta Hidraqua el servicio, ni sobre el precio del agua. Este reportaje trata de lo que la contabilidad municipal deja ver y lo que no.",
+    "No dice que la adjudicación sea irregular. Un procedimiento puede suspenderse, recurrirse y resolverse en derecho, y que tarde siete años no lo convierte en ilegal: cinco de esos años los ordenó un juzgado. Lo que esta pieza publica es cuánto tardó y qué pasos consta que se dieron.",
+    "No valora los pleitos: resume lo que resolvieron los tribunales, con los documentos que publica la ficha del expediente, sin entrar en quién tenía razón.",
+    "No dice nada sobre cómo presta Hidraqua el servicio, ni si la tarifa es cara o barata: dice dónde está publicada y cuánto es. Este reportaje trata de lo que la contabilidad municipal deja ver y lo que no.",
     "No dice que las cifras del coste efectivo sean falsas: una cantidad estable puede ser perfectamente correcta, y hay magnitudes que pasan años sin moverse de verdad.",
     "No dice que ningún servicio esté mal gestionado: la declaración no es el servicio, y la fuente no publica ni un indicador de calidad con el que contrastar un coste.",
-    "No cuelga ninguna de estas cifras de una persona. En /eficiencia cada ficha dice qué concejal tiene delegada esa área, que es a quién preguntar; no es lo mismo que decir que la cifra sea responsabilidad suya."
+    "No cuelga ninguna de estas cifras de una persona, tampoco la entrega que falta. En /eficiencia cada ficha dice qué concejal tiene delegada esa área, que es a quién preguntar; no es lo mismo que decir que la cifra sea responsabilidad suya."
   ],
   "fuentes": [
     {
@@ -314,6 +343,26 @@
       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-1985-5392"
     },
     {
+      "label": "Relación de incumplimientos de suministro de información de las entidades locales · Ministerio de Hacienda (la del ejercicio 2021 incluye el coste efectivo de 2020)",
+      "url": "https://www.hacienda.gob.es/es-ES/CDI/Paginas/InformacionPresupuestaria/InformacionCCLLs/IncumplimientoSuministroCCLL-LOEPSF.aspx"
+    },
+    {
+      "label": "Orden HAP/2105/2012, artículo 4.1.b (la remisión la centraliza la Intervención) y artículo 19",
+      "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2012-12423"
+    },
+    {
+      "label": "DOGV núm. 6949, de 23 de enero de 2013 · tarifas de agua de Riba-roja de Túria, apartado 3.23",
+      "url": "https://dogv.gva.es/datos/2013/01/23/pdf/2013_500.pdf"
+    },
+    {
+      "label": "Estudio de viabilidad de la concesión, abril de 2019 · tarifas iniciales, páginas 9 y 10",
+      "url": "https://contrataciondelestado.es/FileSystem/servlet/GetDocumentByIdServlet?cifrado=QUC1GjXXSiLkydRHJBmbpw%3D%3D&DocumentIdParam=zpUyMDGjYYbfY5wXh4UoAf%2BfAEdbU8g38S5q/2w7B5/b1WTnlvjUGZ/Q4pGVQHCmoiF%2Bx/ppi%2B21UlH8k6j2MkOupV96W3Kk%2BfF7afVlxu8%3D"
+    },
+    {
+      "label": "Sentencia del Tribunal Supremo 205/2026 · en la ficha del expediente",
+      "url": "https://contrataciondelestado.es/FileSystem/servlet/GetDocumentByIdServlet?cifrado=QUC1GjXXSiLkydRHJBmbpw%3D%3D&DocumentIdParam=jnqd81/mVQXhnGN3JO00ptv2TBYFRFMdUzHFE1gRhIYas3I3ZaRjWpwU7Is1/XEJ8GBEhNSSWhOvm8wLNhXywZUDqL7bIdlsVNUzM/%2BAp0j6CYyL7SIrUOBFfNf52ZqA"
+    },
+    {
       "label": "Ley 9/2017 de Contratos del Sector Público",
       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2017-12902"
     },
@@ -327,19 +376,20 @@
     }
   ],
   "metodo": [
-    "Los datos de la concesión —adjudicataria, importe, fechas, número de licitadores y el historial de documentos con sus rótulos— se leyeron uno a uno en la ficha del expediente en la Plataforma de Contratación del Sector Público, que se enlaza arriba. No se tomaron del volcado intermedio del portal municipal: ese volcado publica el mismo expediente dos veces, como licitación y como contrato, con estados que se contradicen entre sí.",
+    "Los datos de la concesión —adjudicataria, importe, fechas, número de licitadores y el historial de documentos— se leyeron uno a uno en la ficha del expediente en la Plataforma de Contratación del Sector Público y en los documentos que publica: pliego, estudio de viabilidad, actas, recursos, sentencias y adjudicación. No se tomaron del volcado intermedio del portal municipal: ese volcado publica el mismo expediente dos veces, como licitación y como contrato, con estados que se contradicen entre sí.",
     "Del importe se dice lo que es: el valor estimado del contrato por sus diecisiete años. No es gasto anual y no sale del presupuesto municipal.",
     "Las cifras de contratación (concentración, licitador único, adjudicación sin llamada abierta) son un recuento propio sobre los contratos adjudicados del portal municipal, y llevan al lado la cautela de que una sola concesión pesa el 45 % del importe del periodo.",
     "Las cifras del coste efectivo salen de los libros por comunidad autónoma de la aplicación de consulta del ministerio (once entregas, 2014-2024), leídos con las reglas de filtrado y comparabilidad publicadas en la metodología.",
-    "La no-presentación de 2020 se comprueba por presencia: el fichero está, los demás municipios figuran en él y Riba-roja no aparece en CE1, CE2 ni CE3. No es un hueco de descarga.",
+    "La no-presentación de 2020 se comprueba dos veces. Por presencia: el fichero está, los demás municipios figuran en él y Riba-roja no aparece en CE1, CE2 ni CE3, buscada por su código de entidad y no por el nombre. Y en la relación de incumplimientos del Ministerio de Hacienda, que la lista.",
     "La explicación por la pandemia se descartó con un control: en 2020 rindieron 503 ayuntamientos valencianos, más que en cualquiera de las cuatro entregas siguientes (2021-2024) y más que en 2015, 2018 y 2019; de las once entregas publicadas sólo 2014, 2016 y 2017 —517, 515 y 513— rindieron más.",
     "Un denominador cuenta como congelado cuando sus últimas cuatro entregas o más traen el mismo valor hasta el cuarto decimal; repetir dos años es normal y no cuenta.",
     "Las variaciones en euros constantes usan la media anual del IPC general del INE con base en la entrega de 2024; las cifras exactas de cada servicio, con su celda de origen, están en /eficiencia.",
-    "Las cifras de la primera versión de esta pieza quedaron congeladas el 16 de agosto de 2026 y no se han tocado; las que se añaden el 23 de agosto quedan congeladas a esa fecha. Si el ministerio revisa una entrega o el expediente avanza, la corrección se anota aquí, no se reescribe en silencio."
+    "Las cifras de esta pieza quedaron congeladas al publicarse, el 16 de agosto de 2026, y al ampliarse, el 23; las que han cambiado después lo han hecho con una corrección anotada arriba. Si el ministerio revisa una entrega o el expediente avanza, la corrección se anota, no se reescribe en silencio.",
+    "El 17 de septiembre de 2026 se volvió a leer cada afirmación de la pieza contra su documento de origen —el BOE, el DOGV, el BOP, la ficha del expediente y los libros del ministerio—; lo que no se sostenía está en la corrección de esa fecha."
   ],
   "duranteLaEspera": {
     "titulo": "Lo que significan cinco años de suspensión",
-    "intro": "Mientras el concurso estaba parado, el servicio seguía prestándose y la red seguía rompiéndose. La DANA del 29 de octubre de 2024 dejó daños en el abastecimiento, en la depuración y en el saneamiento de pluviales, y el ayuntamiento contrató las reparaciones de urgencia con la empresa que ya operaba esa red: la misma cuyo relevo llevaba entonces tres años y medio congelado.",
+    "intro": "Mientras el concurso estaba suspendido por orden judicial, el servicio seguía prestándose y la red seguía rompiéndose. La DANA del 29 de octubre de 2024 dejó daños en el abastecimiento, en la depuración y en el saneamiento de pluviales, y el ayuntamiento contrató las reparaciones de urgencia con la empresa que ya operaba esa red: la misma cuyo relevo llevaba entonces casi cuatro años suspendido.",
     "contratos": [
       {
         "objeto": "Actuaciones de emergencia del Servicio Municipal de Agua Potable",
@@ -359,34 +409,36 @@
     "fecha": "2024-12-12",
     "expediente": "55V/2024 (SIGA 6418/2024/GEN), el mayor de los tres",
     "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RR%2FbMyphbH170UvEyYJSGw%3D%3D",
-    "comoSeLee": "Los tres se formalizaron el 12 de diciembre de 2024 por tramitación de emergencia y negociado sin publicidad, con un solo licitador cada uno. Eso es lo que significa la tramitación de emergencia y no un indicio de nada: el artículo 120 de la Ley de Contratos la prevé precisamente para que una administración pueda reparar sin concurso cuando el daño ya está hecho, y quien tiene las cuadrillas y los planos de una red es quien la explota. Lo que estas cifras cuentan no es cómo se adjudicaron, sino qué se estaba haciendo mientras el expediente que debía renovar esa explotación llevaba años sin moverse.",
+    "comoSeLee": "Los tres se publicaron el 12 de diciembre de 2024 como formalización de contratos verbales de emergencia, con un solo licitador cada uno. Eso es lo que significa la tramitación de emergencia y no un indicio de nada: el artículo 120 de la Ley de Contratos la prevé precisamente para que una administración pueda reparar sin concurso cuando el daño ya está hecho, y quien tiene las cuadrillas y los planos de una red es quien la explota. Lo que estas cifras cuentan no es cómo se adjudicaron, sino qué se estaba haciendo mientras el expediente que debía renovar esa explotación seguía suspendido.",
     "importeNota": "Importes de adjudicación sin IVA, que es como los encabeza la ficha del expediente. Con IVA suman 141.992,10 €."
   },
   "laTarifa": {
-    "titulo": "Lo que pagará un vecino no está publicado en ningún sitio que se pueda enlazar",
-    "cuerpo": "En una concesión el dinero sale del recibo, así que la cifra que de verdad afecta a una casa de Riba-roja no es la de 55,7 millones: es lo que costará el metro cúbico durante los próximos diecisiete años. Esa cifra no se ha podido publicar aquí, y merece la pena contar por qué.",
+    "titulo": "La tarifa del agua está publicada: en el diario oficial de la Generalitat y en el expediente",
+    "cuerpo": "En una concesión el dinero sale del recibo, así que la cifra que de verdad afecta a una casa de Riba-roja no es la de 55,7 millones: es lo que cuesta el metro cúbico. Ese precio está publicado, y se puede enlazar.",
     "buscadoEn": [
       {
-        "donde": "Las ordenanzas fiscales del ayuntamiento",
-        "resultado": "No hay ninguna de agua. Es coherente con que el servicio esté concedido: lo que paga el vecino no es una tasa municipal sino una tarifa, y no se aprueba en la ordenanza fiscal.",
-        "url": "https://www.ribarroja.es/es/ordenanzas/ordenanzas_contenido_economico/ordenanzas_fiscales_2025_vigentes/contenidos/7281734/9852782"
+        "donde": "Diari Oficial de la Generalitat Valenciana · 23 de enero de 2013",
+        "resultado": "En la Comunitat Valenciana la tarifa del agua pasa por la Comisión de Precios de la Generalitat, que la informa, y su autorización se publica en el DOGV. La última modificación de las tarifas de Riba-roja que hemos localizado es ésta (apartado 3.23, a solicitud de Aquagest Levante): una cuota de servicio de 3,71 € al mes con contador de 13 mm y cuatro bloques de consumo, de 0,1806, 0,4158, 0,5267 y 0,7566 € por metro cúbico, más IVA. No hemos podido establecer si ha habido revisiones posteriores.",
+        "url": "https://dogv.gva.es/datos/2013/01/23/pdf/2013_500.pdf"
       },
       {
-        "donde": "Los documentos del expediente en la Plataforma de Contratación",
-        "resultado": "El expediente publica 52 documentos —pliego, estudio de viabilidad, memoria justificativa, actas—, pero se sirven por enlaces que caducan: pedidos de nuevo desde otra sesión devuelven un error del servidor. No se pueden citar, y una fuente que el lector no puede abrir no es una fuente.",
-        "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D"
+        "donde": "El expediente de la nueva concesión · Plataforma de Contratación del Sector Público",
+        "resultado": "El estudio de viabilidad de abril de 2019 fija las «tarifas iniciales del servicio» del contrato (páginas 9 y 10), y las del agua coinciden con las que se autorizaron en 2013. El pliego puntuaba además una «tarifa finalista» para financiar las obras del contrato, de hasta 0,33 € por abonado y mes; Hidraqua ofertó 0 € (acta nº 6 de la mesa, 3 de junio de 2020). Los documentos del expediente se abren y se citan con su enlace completo.",
+        "url": "https://contrataciondelestado.es/FileSystem/servlet/GetDocumentByIdServlet?cifrado=QUC1GjXXSiLkydRHJBmbpw%3D%3D&DocumentIdParam=zpUyMDGjYYbfY5wXh4UoAf%2BfAEdbU8g38S5q/2w7B5/b1WTnlvjUGZ/Q4pGVQHCmoiF%2Bx/ppi%2B21UlH8k6j2MkOupV96W3Kk%2BfF7afVlxu8%3D"
+      },
+      {
+        "donde": "Las ordenanzas del ayuntamiento",
+        "resultado": "No hay ninguna que regule la tarifa del agua. Lo que paga el vecino no es una tasa sino una tarifa, pero desde 2018 la ley pide regularla también por ordenanza (artículo 20.6 del texto refundido de la Ley Reguladora de las Haciendas Locales), y no la hemos encontrado publicada.",
+        "url": "https://www.ribarroja.es/es/ordenanzas/ordenanzas_contenido_economico/ordenanzas_fiscales_2025_vigentes/contenidos/7281734/9852782"
       }
     ],
-    "cierre": "Hay agregadores privados que publican un precio del agua para Riba-roja. No se recoge aquí: un agregador no es la fuente, es alguien que la copió, y esta pieza sólo publica lo que puede enlazar. Queda dicho como lo que es — un hueco, y uno que encaja con todo lo demás: el instrumento con el que el Estado mide lo que cuestan los servicios municipales no ve este servicio, y el precio que lo sustituye tampoco está donde un vecino pueda encontrarlo."
+    "cierre": "Hay agregadores privados que publican un precio del agua para Riba-roja. No se recoge aquí: un agregador no es la fuente, es alguien que la copió, y esta pieza sólo publica lo que puede enlazar. Lo que queda por comprobar es otra cosa: si la tarifa se ha revisado desde 2013, y con qué ordenanza se regula hoy."
   },
-  "quienRespondia2020": {
-    "titulo": "Quién tenía delegada esa competencia cuando la entrega no se rindió",
-    "salvedad": "Antes del nombre, lo que este dato no es. El coste efectivo lo rinde la entidad local en su conjunto, y la fuente del ministerio no registra quién cumplimenta el formulario: esta pieza no atribuye a ninguna persona el hecho de que la entrega no se presentara, porque ningún documento lo sostiene. Lo que sí consta, y en el Boletín Oficial de la Provincia, es qué concejal tenía delegada el área de Hacienda en aquella corporación. Se publica por lo mismo que el panel dice quién responde de cada servicio: para que quien quiera preguntar sepa a qué área dirigirse.",
-    "cuerpo": "La entrega que falta es la del ejercicio 2020, que debía comunicarse al ministerio antes del 1 de noviembre de 2021. Gobernaba entonces la corporación salida de las elecciones del 26 de mayo de 2019, constituida el 15 de junio. Su decreto de delegación —resolución de Alcaldía 1841/2019, de 21 de junio, publicada en el BOP de València el 19 de julio— situaba la Hacienda municipal en el área de Gestión Municipal y Gobierno Abierto, y delegaba esa área en el segundo teniente de alcalde, José Ángel Hernández Carrizosa. Es el mismo concejal que hoy tiene delegadas las finanzas públicas y la compra pública, según el decreto de la corporación actual.",
-    "cita": "AREA DE GESTIÓN MUNICIPAL Y GOBIERNO ABIERTO. COMPETENCIAS: Hacienda, Servicios Generales, Servicios jurídicos, RRHH, Contratación pública, Patrimonio e Inventario, Áreas Industriales, Actividades, Transparencia, Participación Ciudadana y Administración Electrónica. DELEGACIÓNES ESPECIALES: Se delega en el 2ª Teniente de alcalde José Ángel Hernández Carrizosa la coordinación de ésta área así como las competencias que al Alcalde corresponden en materia de Hacienda, Contratación Pública, Patrimonio e Inventario, Áreas Industriales, Edificios públicos e Infraestructuras, Actividades y Fomento Económico.",
-    "citaNota": "Transcrito del anuncio del BOP; se han unido las palabras que el PDF parte con guion al final de línea.",
-    "fuente": "BOP de València núm. 138, de 19 de julio de 2019 · Resolución de Alcaldía 1841/2019, de 21 de junio",
-    "url": "https://bop.dival.es/bop/downloads?boletinFecha=19%2F07%2F2019",
-    "replica": "Como cualquier persona nombrada en estas páginas, tiene derecho de réplica y su respuesta se publicará íntegra."
+  "quienRemite": {
+    "titulo": "Quién tiene que remitirlo",
+    "cuerpo": "El coste efectivo lo rinde la entidad local, y la norma dice quién lo remite: la Orden HAP/2105/2012, que regula cómo llega la información de los ayuntamientos al Ministerio de Hacienda, centraliza la remisión en la Intervención municipal, y la guía del ministerio para la entrega de 2020 lo repite. Es una función de la administración municipal, no un área de gobierno, y por eso esta pieza no cuelga la entrega que falta de ningún concejal. Lo que sí consta es que Hacienda la registró: su relación de incumplimientos de suministro de información del ejercicio 2021, publicada el 13 de mayo de 2022, lista a Riba-roja con uno, el del coste efectivo de 2020. La misma Orden prevé para ese caso un requerimiento de cumplimiento con un plazo de no más de quince días naturales; si lo hubo y qué se contestó no consta en ninguna fuente publicada.",
+    "cita": "La remisión de la información económico-financiera correspondiente a la totalidad de las unidades dependientes de cada Comunidad Autónoma o Corporación Local se centralizará a través de: […] b) En las Corporaciones Locales, la intervención o unidad que ejerza sus funciones.",
+    "fuente": "Orden HAP/2105/2012, de 1 de octubre, artículo 4.1",
+    "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2012-12423"
   }
 }

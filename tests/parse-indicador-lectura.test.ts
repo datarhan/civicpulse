@@ -209,7 +209,8 @@ describe('la lectura no repite lo que la tarjeta ya enseña', () => {
 
   it('conserva el motivo cuando no hay cifra que lo repita', () => {
     // Una tarjeta bloqueada no tiene número ni banda: ahí `que` ES el
-    // contenido («no hay coste por unidad porque el servicio está concedido»).
+    // contenido («no hay coste por unidad: el servicio está concedido y la
+    // entrega trae su coste vacío o a cero…»).
     // Construido por lo mismo que arriba: el panel publicado ya no trae
     // ninguna ficha sin cifra, y `find` devolvía `undefined` — que en un test
     // se ve como un TypeError, con suerte, y como un verde vacío sin ella.

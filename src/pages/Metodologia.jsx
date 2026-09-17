@@ -1905,16 +1905,21 @@ export default function Metodologia() {
                 describía además la decisión vieja —no dividir NINGUNA concesión—
                 que se levantó el 2026-09-02. En el contrato editorial, que es lo
                 que es esta página, una regla que ya no se aplica es peor que
-                ninguna. */}
+                ninguna.
+                Y decía que el formulario «se rellena de forma errática», como si el cero
+                fuera cosa de la fuente: la Orden HAP/2075/2014 (art. 6) manda declarar, en
+                una concesión cobrada del recibo, lo recaudado por tarifas. Corregido el
+                2026-09-17 con el reportaje de coste efectivo. */}
             <strong>Concesión con la casilla vacía.</strong> Si el servicio lo presta un
-            concesionario a su riesgo y ventura, el coste lo soporta él y lo recupera vía tarifa, y
-            el formulario del ministerio se rellena de forma errática: unas entregas traen el
-            importe del servicio y otras un cero. Cuando trae cero no hay coste que dividir —hacerlo
-            publicaría que el agua es gratis—, así que no se calcula cociente ni se compara. Cuando
-            trae importe sí se divide, y entonces la ficha lleva dos salvedades que no caben dentro
-            del número: que ese dinero no sale del presupuesto municipal sino del recibo de cada
-            casa, y que la comparación es sólo contra las otras concesiones que también rellenan la
-            casilla, no contra todas las que tienen el servicio concedido.
+            concesionario a su riesgo y ventura y cobra del recibo, la Orden HAP/2075/2014 manda
+            declarar como coste efectivo lo que se recauda por tarifas (artículo 6), pero no todas
+            las entregas lo hacen: unas traen el importe del servicio y otras un cero. Cuando trae
+            cero no hay coste que dividir —hacerlo publicaría que el agua es gratis—, así que no se
+            calcula cociente ni se compara. Cuando trae importe sí se divide, y entonces la ficha
+            lleva dos salvedades que no caben dentro del número: que ese dinero no sale del
+            presupuesto municipal sino del recibo de cada casa, y que la comparación es sólo contra
+            las otras concesiones que también rellenan la casilla, no contra todas las que tienen el
+            servicio concedido.
           </li>
           <li>
             <strong>Cero sin declarar.</strong> Una unidad física a cero junto a un gasto real

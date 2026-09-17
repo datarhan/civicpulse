@@ -38,7 +38,14 @@ test.describe('Reportaje · coste efectivo (/reportajes/coste-efectivo)', () => 
     // Y el esperado se deriva del snapshot en vez de recitarse, que es el
     // defecto que obligó a esta corrección: la frase publicada llevaba dos
     // cifras a mano sobre un gráfico recortado, y era falsa.
-    await expect(page.getByText('sin rendir').first()).toBeVisible()
+    // Dentro de la figura de las casillas: desde el 17-09 la nota de corrección
+    // plegada dice «sigue sin rendir», y un `getByText('sin rendir').first()`
+    // suelto resolvía a ese texto OCULTO — la misma trampa del 26-08.
+    await expect(
+      page
+        .locator('figure', { hasText: 'Entregas rendidas por el ayuntamiento' })
+        .getByText('sin rendir'),
+    ).toBeVisible()
 
     const porAnio = snap.rendicionCV.porAnio
     const ausente = snap.entregas.noPresentadas[0]
@@ -60,13 +67,36 @@ test.describe('Reportaje · coste efectivo (/reportajes/coste-efectivo)', () => 
     await expect(
       page.getByText(`mediana · ${snap.congelados.banda.mediana.toLocaleString('es-ES')} %`),
     ).toBeVisible()
-    await expect(page.getByText(`Riba-roja · ${snap.congelados.banda.propio} %`)).toBeVisible()
+    // En es-ES, como sus tres vecinas. Esta línea fijaba `${propio} %` en crudo
+    // y así fijaba el defecto: «86.7 %» con punto inglés junto a «41,3 %».
+    await expect(
+      page.getByText(`Riba-roja · ${snap.congelados.banda.propio.toLocaleString('es-ES')} %`),
+    ).toBeVisible()
 
     // Hallazgo 3 · nominal contra constante, con las cifras congeladas.
     await expect(page.getByText(/22,8\s?%/).first()).toBeVisible()
     for (const s of snap.inflacion.servicios) {
       await expect(page.getByText(s.nombre).first()).toBeVisible()
     }
+
+    // LA VERIFICACIÓN DEL 17-09-2026. Cuatro frases eran falsas con la cifra
+    // bien; `tests/coste-efectivo-afirmaciones.test.js` vigila que no vuelvan
+    // al JSON y esto comprueba que lo que las sustituye se VE. Cada esperado se
+    // ancla en texto del CUERPO leído del snapshot: la nota de corrección, que
+    // va plegada ARRIBA, cita varias de estas frases, y un `.first()` sobre
+    // ellas resolvería al texto oculto (la trampa de la corrección del 26-08).
+    //
+    // 1. El cero no se explica por la concesión: la Orden manda declarar tarifas.
+    await expect(page.getByText(snap.panelCiego.porQue.slice(0, 80))).toBeVisible()
+    // 2. La tarifa está publicada, y se enlaza.
+    await expect(
+      page.getByRole('link', { name: /Diari Oficial de la Generalitat Valenciana/ }),
+    ).toBeVisible()
+    // 3. Quién remite, según la norma — y ningún nombre donde la norma pone un órgano.
+    await expect(page.getByText(snap.quienRemite.cuerpo.slice(0, 80))).toBeVisible()
+    expect(await page.getByText(/Carrizosa/).count()).toBe(0)
+    // 4. La suspensión la ordenó un juzgado, y la cronología lo dice.
+    await expect(page.getByText(/Juzgado de lo Contencioso-Administrativo nº 3/)).toBeVisible()
 
     // El límite de la pieza, dicho en la pieza.
     await expect(page.getByText(/Lo que esta pieza no dice/i).first()).toBeVisible()
