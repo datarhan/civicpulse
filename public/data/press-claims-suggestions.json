@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-16T08:16:13.826Z",
+  "generatedAt": "2026-09-17T08:15:21.648Z",
   "source": {
     "description": "Press claims extracted by the laboratory pipeline",
     "contract": "src/scraper/press-claim.ts"
@@ -8,27 +8,27 @@
     "total": 67,
     "byType": {
       "promesa": 2,
-      "afirmacion_numerica": 28,
+      "afirmacion_numerica": 27,
       "cita_obra": 3,
       "cita_convenio": 2,
       "acusacion_publica": 1,
-      "dato_municipal": 31
+      "dato_municipal": 32
     },
     "bySource": {
       "Valencia Plaza": 1,
-      "Ayuntamiento de Riba-roja de Túria": 39,
+      "Ayuntamiento de Riba-roja de Túria": 40,
       "Periòdic del Camp de Túria": 23,
-      "El Periódico de Aquí": 2,
+      "El Periódico de Aquí": 1,
       "elperiodic.com": 1,
-      "Europa Press": 1
+      "Levante-EMV": 1
     },
     "byTopic": {
       "fiscal": 1,
       "vivienda": 0,
-      "movilidad": 5,
+      "movilidad": 4,
       "medio-ambiente": 9,
       "social": 1,
-      "cultura": 6,
+      "cultura": 7,
       "seguridad": 0,
       "empleo": 0,
       "urbanismo": 19,
@@ -39,15 +39,15 @@
       "other": 0
     },
     "byAttributedSource": {
-      "outlet": 48,
-      "municipal": 18,
+      "outlet": 47,
+      "municipal": 19,
       "opposition": 1,
       "unspecified": 0
     },
     "articlesProcessed": 25,
-    "articlesAvailable": 155,
+    "articlesAvailable": 156,
     "llmUnavailable": 0,
-    "windowFrom": "2026-08-31T13:34:56.000Z",
+    "windowFrom": "2026-08-31T07:00:00.000Z",
     "windowTo": "2026-09-14T04:02:28.000Z"
   },
   "items": [
@@ -1531,53 +1531,6 @@
       "requiresHumanApproval": true
     },
     {
-      "id": "cty6i0-0-num",
-      "articleId": "cty6i0",
-      "articleFingerprint": "zyinyc",
-      "articleSource": "Europa Press",
-      "articleSourceHost": "europapress.es",
-      "articleUrl": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOUTZVZ3EtWVEwclhsOVppLXdSNGZqWF9CT1JxNXk1bkNIU3lGSVEyUFJXSUdHQmZUdThvSTd6WGw5MFY0U2NqUDNDUGE3Q2ZtVkdmSWFuZnA1bzE0aU9uMmRqalo3Q3J5eS1JTXhJa2dSc25CamtYZXJlRUxiS2pwODc3a0VHWDRPR25FVDVfb3FwdHhOaGNXX1d6UFAwYmY4MC1KWFBlbXlnWkc5T1U1T3RtbVdIUG1JUzV1aWJmcDFQWk1VZU5DaHNMcXo2S2c3QTh0a19jbEhQYmlRMElONjNvNGQ5Zw?oc=5",
-      "articleDate": "2026-09-01T11:10:58.000Z",
-      "segmentIndex": 0,
-      "segmentKind": "title",
-      "type": "afirmacion_numerica",
-      "attributedSource": "outlet",
-      "verbatim": "La CHJ recupera la conectividad del Parque Fluvial del Turia tras la dana con cuatro pasarelas nuevas",
-      "context": "Titular de la noticia de Europa Press (01/09/2026): 'La CHJ recupera la conectividad del Parque Fluvial del Turia tras la dana con cuatro pasarelas nuevas'. No se dispone del cuerpo del artículo, solo del titular.",
-      "topic": "movilidad",
-      "entities": {
-        "count": 4,
-        "countUnit": "pasarelas",
-        "referencedEntity": "CHJ (Confederación Hidrográfica del Júcar) - Parque Fluvial del Turia"
-      },
-      "confidence": 0.55,
-      "reasoning": "El titular afirma una cifra concreta y verificable (cuatro pasarelas nuevas construidas por la CHJ) que puede contrastarse con fuentes oficiales, aunque no se dispone del cuerpo del artículo para más contexto.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "1baly32-0-num",
-      "articleId": "1baly32",
-      "articleFingerprint": "fkx730",
-      "articleSource": "El Periódico de Aquí",
-      "articleSourceHost": "elperiodicodeaqui.com",
-      "articleUrl": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOeFZuWE10YkNHY3B1WS02SE54eVJ6amV6T09iMHExMTRnM2x1YllpdXNHemluTFhRMFlEajF5dnhMZTVtMGd4dEJENG41V0p4WFQzeThRcEFJTGdWVEJCak93UTBwWVBaOXh2SEIwcWd1ZVVsb0kxcXBNV1l1RTZTdTJfeWMxbDRFMmZwYTlOQ0V3ZmxpU2xlNGRtUGVPNVlFYUVxbWs1VkctRnhEMHRWRDBLLW5QQ1IyTGpHRnJKa2R1TGlmX1FNWG5PWXlEbVB3TVpiaWR3TGpWRjJaVXc?oc=5",
-      "articleDate": "2026-09-01T07:00:00.000Z",
-      "segmentIndex": 0,
-      "segmentKind": "title",
-      "type": "afirmacion_numerica",
-      "attributedSource": "outlet",
-      "verbatim": "El Auditorio de Riba-roja invierte 40.000 euros en modernizar sus instalaciones",
-      "context": "Titular de El Periódico de Aquí (01/09/2026): 'El Auditorio de Riba-roja invierte 40.000 euros en modernizar sus instalaciones'. No se dispone del cuerpo del artículo para más contexto.",
-      "topic": "cultura",
-      "entities": {
-        "amountEuros": 40000,
-        "referencedEntity": "Auditorio de Riba-roja"
-      },
-      "confidence": 0.55,
-      "reasoning": "Cifra concreta de inversión (40.000€) en una instalación pública, verificable frente a presupuestos o contratos municipales.",
-      "requiresHumanApproval": true
-    },
-    {
       "id": "1bt7s8w-0-num",
       "articleId": "1bt7s8w",
       "articleFingerprint": "1s8fa60",
@@ -1598,6 +1551,52 @@
       },
       "confidence": 0.55,
       "reasoning": "Cifra concreta de inversión (40.000 euros) en un equipamiento municipal, contrastable mediante presupuestos o contratos públicos, aunque solo se dispone del titular sin cuerpo de noticia.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "1t1ctq4-0-dat",
+      "articleId": "1t1ctq4",
+      "articleFingerprint": "1js11tg",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/el-auditorio-municipal-de-riba-roja-de-t%C3%BAria-invierte-40.000-euros-en-la-modernizaci%C3%B3n-de-sus-instalaciones-y-equipamientos-t%C3%A9cnicos",
+      "articleDate": "2026-08-31T09:04:15.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "title",
+      "type": "dato_municipal",
+      "attributedSource": "municipal",
+      "verbatim": "El Auditorio Municipal de Riba-roja de Túria invierte 40.000 euros en la modernización de sus instalaciones y equipamientos técnicos",
+      "context": "El Auditorio Municipal de Riba-roja de Túria invierte 40.000 euros en la modernización de sus instalaciones y equipamientos técnicos",
+      "topic": "cultura",
+      "entities": {
+        "amountEuros": 40000,
+        "referencedEntity": "Auditorio Municipal de Riba-roja de Túria"
+      },
+      "confidence": 0.75,
+      "reasoning": "El titular aporta una cifra concreta (40.000 €) de inversión municipal en un equipamiento público, contrastable con el presupuesto o las actas municipales.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "1lnhg7g-0-num",
+      "articleId": "1lnhg7g",
+      "articleFingerprint": "1hy1xq8",
+      "articleSource": "Levante-EMV",
+      "articleSourceHost": "levante-emv.com",
+      "articleUrl": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPNWpWeDdjLW1XeThCd2Q3LVlsQUg1VnZyNTA1Z0RCb3FSUk1JanFvZ1U2eGs4M3NWQkdZM045UC1ETGNwNlQ0VlhVSlJKZG9lUTZYZ3pTdUZuNkV3TmNFLWEzQmdyV2dmSUljT09QQlQxakZ6V3c2WjViVVJFRWJwbGFlUUEwdW9ueXdIRlNDOUk5TUFBeWg0Z0VSdFd4M1FIVm43eU05TUE3Qkx6UVVKbXRaXzVrOW4wSVZaY3gzYlJSdThsTjExeGRqVWhWcjkwTE000gHYAUFVX3lxTFB1U3JHcGR6dEZWSmc2WlkzSXVqOE5mVjVBck9JS2tsczFJbkRaT3BPdEFwbWdJYXE1UkV2cXVxc21qN19DaGZOc2hia2Y5MHc4T1gxdTFBX1dZanFDR2lXZ21hUzNJa3o2ZEF6cHhxYURoVmhEMC1GMUJqbDFZTWk4UDVWc0lxbjRsQWlfTTgwdUxRUUIwcGc5c05sTXFReUU3c3BBdmdFcTV1ZjdaVHVBeEhCT2lNMGp1VndaMFZSNmxlR3hadk9NT3NJZVpMbnR2Y0tLejZtag?oc=5",
+      "articleDate": "2026-08-31T07:00:00.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "title",
+      "type": "afirmacion_numerica",
+      "attributedSource": "outlet",
+      "verbatim": "El Auditorio de Riba-roja de Túria invierte 40.000 euros en la modernización de sus instalaciones",
+      "context": "Titular publicado por Levante-EMV (31-08-2026) referido al Auditorio de Riba-roja de Túria. No se dispone de cuerpo de artículo adicional para contrastar detalles.",
+      "topic": "cultura",
+      "entities": {
+        "amountEuros": 40000,
+        "referencedEntity": "Auditorio de Riba-roja de Túria"
+      },
+      "confidence": 0.55,
+      "reasoning": "Cifra concreta de inversión (40.000 euros) en una instalación municipal, verificable contra presupuestos o contratos públicos.",
       "requiresHumanApproval": true
     }
   ]

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-17T04:53:11.979Z",
+  "generatedAt": "2026-09-17T08:24:57.257Z",
   "windowDays": 30,
   "articles": [
     {
@@ -386,12 +386,12 @@
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
-        "municipalSourceMatch": null,
+        "municipalSourceMatch": false,
         "corroboratedAcrossOutlets": true,
-        "factualClaimsPresent": false,
+        "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 3
+      "score": 5
     },
     {
       "articleId": "1lnhg7g",
@@ -403,12 +403,12 @@
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
-        "municipalSourceMatch": null,
+        "municipalSourceMatch": false,
         "corroboratedAcrossOutlets": true,
-        "factualClaimsPresent": false,
+        "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 3
+      "score": 5
     },
     {
       "articleId": "64xnxs",
@@ -829,28 +829,11 @@
         "localCoverage": true,
         "datedArticle": true,
         "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": true,
+        "corroboratedAcrossOutlets": false,
         "factualClaimsPresent": false,
         "opinionFraction": 0
       },
-      "score": 3
-    },
-    {
-      "articleId": "1yotn1k",
-      "articleFingerprint": "1ijhbip",
-      "outlet": "Valencia Plaza",
-      "outletHost": "valenciaplaza.com",
-      "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOeDhkMlBHa2ZFNFJKRWZQNXdKb0VhdTRnaEJEcEthOEw1dGdxTUtnbDdWLUtQa2g1UGRxaGpKWm5vekRxQVE3a292NlZqdzBWVmNpTi1HU3NYVnZmZXBBX2ZfR05abURPRERCN01MMDFOM1dwSjhiZ004Y2c3THdJb3ZuVVJhYzZIVVNHNDV3S29NZEVBX1Y1czZUZTR2Zk5uY01IcFB5QlpmVHBUX2VXWlNRVGNhZThMSS1kZzVIVk9tRGJmVW95dThyM205LTBMU0E5cGxISWNIT1NFN0liOU42QmFIYjQ?oc=5",
-      "date": "2026-08-18T07:00:00.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": true,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 3
+      "score": 2
     }
   ],
   "outlets": [
@@ -862,10 +845,10 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 39,
+        "sin-datos": 40,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 3.06,
+      "meanTrustScore": 3.13,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -892,11 +875,11 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 0,
+        "sin-datos": 1,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.5,
-      "verifiedRatio": null,
+      "meanTrustScore": 2.75,
+      "verifiedRatio": 0,
       "contradictedRatio": null
     },
     {
@@ -917,7 +900,7 @@
     {
       "outlet": "Valencia Plaza",
       "outletHost": "valenciaplaza.com",
-      "articleCount": 4,
+      "articleCount": 3,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -991,8 +974,8 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "c28180952944",
-    "press-claims-verified.json": "7ecf7f5f826c",
+    "plenos-agendas.json": "5bcdfbc5a431",
+    "press-claims-verified.json": "843ee810b6e7",
     "press.json": "452399f350e3",
     "promises.json": "d18811c11210"
   }
