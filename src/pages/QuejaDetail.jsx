@@ -1,13 +1,7 @@
+import { Fragment } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Card, ExtLink, Pill, SectionHead, ShareWA } from '../components/Primitives'
-import {
-  useQuejas,
-  useQuejaResponses,
-  STATE_LABEL,
-  STATE_TONE,
-  CATEGORY_LABEL,
-  prettyNeighborhood,
-} from '../hooks/useQuejas'
+import { useQuejas, useQuejaResponses, STATE_TONE, prettyNeighborhood } from '../hooks/useQuejas'
 import {
   useQuejaContractRelations,
   useQuejaRelationApprovals,
@@ -15,14 +9,17 @@ import {
 } from '../hooks/useQuejaContractRelations'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
-import { fmtDateLong } from '../lib/formatters'
+import { fmtDateLong, rellena } from '../lib/formatters'
+import { rotuloDe, useLocale } from '../i18n'
+import { CLAVE_RELACION } from '../scraper/relation-labels'
+import { DEPARTMENT_LABEL } from '../scraper/departments'
 
 const SINDIC_PORTAL = 'https://www.elsindic.com/es/presenta-una-queja'
 
-function fmt(iso) {
+function fmt(iso, idioma) {
   if (!iso) return '—'
   try {
-    return new Date(iso).toLocaleString('es-ES', {
+    return new Date(iso).toLocaleString(idioma === 'ca' ? 'ca-ES' : 'es-ES', {
       day: 'numeric',
       month: 'short',
       year: 'numeric',
@@ -34,8 +31,21 @@ function fmt(iso) {
   }
 }
 
-function fmtDate(iso) {
-  return fmtDateLong(iso) || '—'
+function fmtDate(iso, idioma) {
+  return fmtDateLong(iso, idioma) || '—'
+}
+
+/**
+ * Una frase del catálogo con elementos dentro: cada `{hueco}` se pinta con el suyo,
+ * donde la gramática de cada idioma lo pone. Un hueco sin elemento se queda escrito y
+ * se ve, en vez de comerse el dato sin que se note, como en `partePorHueco`.
+ */
+function conHuecos(plantilla, elementos) {
+  return plantilla
+    .split(/(\{\w+\})/)
+    .map((trozo, i) =>
+      Object.hasOwn(elementos, trozo) ? <Fragment key={i}>{elementos[trozo]}</Fragment> : trozo,
+    )
 }
 
 function daysSince(iso) {
@@ -49,7 +59,7 @@ function plazoFor(category) {
   return 90
 }
 
-function TimelineItem({ date, label, tone = 'neutral', detail }) {
+function TimelineItem({ date, label, tone = 'neutral', detail, idioma }) {
   const color =
     tone === 'ok'
       ? 'var(--ok)'
@@ -71,7 +81,7 @@ function TimelineItem({ date, label, tone = 'neutral', detail }) {
       }}
     >
       <div className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-        {fmtDate(date)}
+        {fmtDate(date, idioma)}
       </div>
       <div style={{ position: 'relative', height: '100%' }}>
         <div
@@ -112,6 +122,7 @@ function TimelineItem({ date, label, tone = 'neutral', detail }) {
 }
 
 function CorrelationsCard({ quejaId }) {
+  const { locale, t } = useLocale()
   const { data } = useQuejaContractRelations()
   const { data: approvals } = useQuejaRelationApprovals()
   const items = relationsForQueja(data, quejaId, approvals?.approvals)
@@ -119,8 +130,8 @@ function CorrelationsCard({ quejaId }) {
   return (
     <Card style={{ marginTop: 14, borderLeft: '3px solid var(--intel)' }}>
       <SectionHead
-        eyebrow="Relación por zona y materia · no causal"
-        title="Posibles actuaciones municipales relacionadas"
+        eyebrow={t('quejas.detalle.relacion.eyebrow')}
+        title={t('quejas.detalle.relacion.titulo')}
       />
       <div
         style={{
@@ -131,13 +142,21 @@ function CorrelationsCard({ quejaId }) {
           lineHeight: 1.5,
         }}
       >
-        Contratos municipales que coinciden con esta queja en <strong>zona</strong> y/o{' '}
-        <strong>materia</strong>. La coincidencia <strong>no</strong> implica que el contrato
-        resuelva el problema — es una relación de contexto, no causal.
+        {conHuecos(t('quejas.detalle.relacion.nota'), {
+          '{zona}': <strong>{t('quejas.detalle.relacion.zona')}</strong>,
+          '{materia}': <strong>{t('quejas.detalle.relacion.materia')}</strong>,
+          '{no}': <strong>{t('quejas.detalle.relacion.no')}</strong>,
+        })}
       </div>
       {items.map((l, i) => {
         const place = l.signals?.place?.slug
         const dept = l.signals?.department?.slug
+        // El motor guarda slugs: el lugar se escribe como en el resto de la ficha, y la
+        // materia con el nombre del departamento —o de la categoría, cuando el motor cae
+        // al código de la queja— en el idioma de la interfaz.
+        const materia = dept
+          ? (DEPARTMENT_LABEL[dept]?.[locale] ?? rotuloDe(t, `quejas.categoria.${dept}`, dept))
+          : null
         return (
           <div
             key={i}
@@ -167,9 +186,13 @@ function CorrelationsCard({ quejaId }) {
                   background: 'var(--ok-soft)',
                   color: 'var(--ok-ink)',
                 }}
-                title="Relación determinista y verificable — coincidencia de zona y/o materia"
+                title={t('quejas.detalle.relacion.pastilla')}
               >
-                {l.relationLabel}
+                {rotuloDe(
+                  t,
+                  `contrato.relacion.${CLAVE_RELACION[l.relationLabel]}`,
+                  l.relationLabel,
+                )}
               </span>
             </div>
             <div
@@ -182,13 +205,17 @@ function CorrelationsCard({ quejaId }) {
             >
               {place && (
                 <>
-                  zona: <strong>{place}</strong>
+                  {t('quejas.detalle.relacion.zona')}
+                  {': '}
+                  <strong>{prettyNeighborhood(place)}</strong>
                 </>
               )}
-              {place && dept && ' · '}
-              {dept && (
+              {place && materia && ' · '}
+              {materia && (
                 <>
-                  materia: <strong>{dept}</strong>
+                  {t('quejas.detalle.relacion.materia')}
+                  {': '}
+                  <strong>{materia}</strong>
                 </>
               )}
             </div>
@@ -201,7 +228,7 @@ function CorrelationsCard({ quejaId }) {
                 textUnderlineOffset: 2,
               }}
             >
-              Ver contrato en contrataciondelestado.es →
+              {t('quejas.detalle.relacion.verContrato')}
             </ExtLink>
           </div>
         )
@@ -211,6 +238,7 @@ function CorrelationsCard({ quejaId }) {
 }
 
 export default function QuejaDetail() {
+  const { locale, t } = useLocale()
   const { id: rawId } = useParams()
   const { loading, data } = useQuejas()
   const { data: responses } = useQuejaResponses()
@@ -228,7 +256,9 @@ export default function QuejaDetail() {
         className="cp-page"
         style={{ padding: '24px 24px 48px', maxWidth: 900, margin: '0 auto' }}
       >
-        <div style={{ color: 'var(--ink50)', fontSize: 'var(--fs-aux)' }}>Cargando…</div>
+        <div style={{ color: 'var(--ink50)', fontSize: 'var(--fs-aux)' }}>
+          {t('common.loading')}
+        </div>
       </div>
     )
   }
@@ -240,14 +270,16 @@ export default function QuejaDetail() {
         style={{ padding: '24px 24px 48px', maxWidth: 900, margin: '0 auto' }}
       >
         <Card>
-          <SectionHead eyebrow="No encontrada" title={`Queja ${id}`} />
+          <SectionHead
+            eyebrow={t('quejas.detalle.noEncontrada.eyebrow')}
+            title={rellena(t('quejas.detalle.noEncontrada.titulo'), { id })}
+          />
           <div style={{ fontSize: 'var(--fs-body)', color: 'var(--ink70)', marginTop: 8 }}>
-            Esta queja no aparece en el snapshot actual. Puede que haya sido archivada o que el
-            identificador sea incorrecto.
+            {t('quejas.detalle.noEncontrada.texto')}
           </div>
           <div style={{ marginTop: 12 }}>
             <Link to="/quejas" style={{ color: 'var(--civic)' }}>
-              ← Volver al feed público
+              {t('quejas.detalle.noEncontrada.volver')}
             </Link>
           </div>
         </Card>
@@ -256,6 +288,8 @@ export default function QuejaDetail() {
   }
 
   const category = queja.service_code
+  const categoria = rotuloDe(t, `quejas.categoria.${category}`, category)
+  const estado = rotuloDe(t, `quejas.estado.${queja.status}`, queja.status)
   const plazo = plazoFor(category)
   const registeredDays = daysSince(queja.registered_at)
   const diasRestantes = registeredDays != null ? plazo - registeredDays : null
@@ -264,46 +298,51 @@ export default function QuejaDetail() {
   const timeline = []
   timeline.push({
     date: queja.requested_datetime,
-    label: 'Capturada en CivicPulse',
+    label: t('quejas.detalle.hito.capturada'),
     tone: 'neutral',
-    detail: `Vía Telegram bot · barrio ${prettyNeighborhood(queja.address_string) || '—'}`,
+    detail: rellena(t('quejas.detalle.hito.capturada.detalle'), {
+      barrio: prettyNeighborhood(queja.address_string) || '—',
+    }),
   })
   if (queja.apoyos >= 10) {
     timeline.push({
       date: queja.updated_datetime,
-      label: 'Verificada por la comunidad',
+      label: t('quejas.detalle.hito.verificada'),
       tone: 'civic',
-      detail: `${queja.apoyos} apoyos vecinales · incluida en el lote semanal`,
+      detail: rellena(t('quejas.detalle.hito.verificada.detalle'), { n: queja.apoyos }),
     })
   }
   if (queja.registered_at) {
     timeline.push({
       date: queja.registered_at,
-      label: 'Registrada en sede electrónica',
+      label: t('quejas.detalle.hito.registrada'),
       tone: 'civic',
-      detail: `Asiento ${queja.registro_entry_number || '—'} · inicio del reloj legal (${plazo} días)`,
+      detail: rellena(t('quejas.detalle.hito.registrada.detalle'), {
+        asiento: queja.registro_entry_number || '—',
+        n: plazo,
+      }),
     })
   }
   if (queja.status === 'silencio_negativo') {
     timeline.push({
       date: queja.updated_datetime,
-      label: 'Silencio administrativo negativo',
+      label: t('quejas.detalle.hito.silencio'),
       tone: 'warn',
-      detail: `Plazo legal vencido · art. 24 LPACAP`,
+      detail: t('quejas.detalle.hito.silencio.detalle'),
     })
   }
   if (queja.status === 'escalada_sindic') {
     timeline.push({
       date: queja.updated_datetime,
-      label: 'Escalada al Síndic de Greuges CV',
+      label: t('quejas.detalle.hito.sindic'),
       tone: 'crit',
-      detail: `Ley 11/1988 · resoluciones públicas`,
+      detail: t('quejas.detalle.hito.sindic.detalle'),
     })
   }
   if (queja.status === 'resuelta') {
     timeline.push({
       date: queja.updated_datetime,
-      label: 'Resuelta',
+      label: t('quejas.detalle.hito.resuelta'),
       tone: 'ok',
     })
   }
@@ -312,7 +351,7 @@ export default function QuejaDetail() {
     <div className="cp-page" style={{ padding: '24px 24px 48px', maxWidth: 900, margin: '0 auto' }}>
       <div style={{ marginBottom: 10 }}>
         <Link to="/quejas" style={{ fontSize: 'var(--fs-meta)', color: 'var(--civic)' }}>
-          ← Feed de quejas
+          {t('quejas.detalle.volver')}
         </Link>
       </div>
 
@@ -336,7 +375,7 @@ export default function QuejaDetail() {
                 textTransform: 'uppercase',
               }}
             >
-              Queja ciudadana · {queja.service_request_id}
+              {rellena(t('quejas.detalle.eyebrow'), { id: queja.service_request_id })}
             </div>
             <div
               style={{
@@ -351,10 +390,14 @@ export default function QuejaDetail() {
           </div>
           <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
             <ShareWA
-              text={`Queja ${queja.service_request_id} · ${CATEGORY_LABEL[category] || category} · ${STATE_LABEL[queja.status] || queja.status}\n${queja.description.split('\n')[0].slice(0, 140)}`}
+              text={`${rellena(t('quejas.detalle.compartir'), {
+                id: queja.service_request_id,
+                categoria,
+                estado,
+              })}\n${queja.description.split('\n')[0].slice(0, 140)}`}
             />
             <Pill tone={STATE_TONE[queja.status] || 'ghost'} size="xs">
-              {STATE_LABEL[queja.status] || queja.status}
+              {estado}
             </Pill>
           </div>
         </div>
@@ -368,10 +411,10 @@ export default function QuejaDetail() {
             color: 'var(--ink50)',
           }}
         >
-          <span>📂 {CATEGORY_LABEL[category] || category}</span>
+          <span>📂 {categoria}</span>
           {queja.address_string && <span>📍 {prettyNeighborhood(queja.address_string)}</span>}
           {queja.concejalia_area && <span>🏛 {queja.concejalia_area}</span>}
-          <span>👍 {queja.apoyos} apoyos</span>
+          <span>👍 {rellena(t('quejas.detalle.apoyos'), { n: queja.apoyos })}</span>
         </div>
 
         {concejal && (
@@ -410,7 +453,7 @@ export default function QuejaDetail() {
                   textTransform: 'uppercase',
                 }}
               >
-                Responsable político
+                {t('quejas.detalle.responsable')}
               </div>
               <div style={{ fontSize: 'var(--fs-body)', fontWeight: 600 }}>{concejal.name}</div>
               <span
@@ -434,7 +477,10 @@ export default function QuejaDetail() {
       </Card>
 
       <Card style={{ marginTop: 14 }}>
-        <SectionHead eyebrow="Texto de la queja" title="Detalle ciudadano (verbatim)" />
+        <SectionHead
+          eyebrow={t('quejas.detalle.texto.eyebrow')}
+          title={t('quejas.detalle.texto.titulo')}
+        />
         <div
           style={{
             fontSize: 'var(--fs-body)',
@@ -450,11 +496,14 @@ export default function QuejaDetail() {
 
       {queja.photo && (
         <Card style={{ marginTop: 14 }}>
-          <SectionHead eyebrow="Imagen adjunta" title="Foto ciudadana (anonimizada)" />
+          <SectionHead
+            eyebrow={t('quejas.detalle.foto.eyebrow')}
+            title={t('quejas.detalle.foto.titulo')}
+          />
           <figure style={{ margin: '10px 0 0' }}>
             <img
               src={queja.photo}
-              alt="Imagen de la queja anonimizada automáticamente"
+              alt={t('quejas.detalle.foto.alt')}
               loading="lazy"
               style={{
                 width: '100%',
@@ -473,14 +522,14 @@ export default function QuejaDetail() {
                 lineHeight: 1.5,
               }}
             >
-              🔒 Imagen anonimizada automáticamente · caras y matrículas difuminadas antes de
-              publicar. Si la enviaste tú y ves datos personales, escribe{' '}
-              <code>/olvidar {queja.service_request_id}</code> al bot para retirarla; si apareces en
-              ella, pide su retirada desde el{' '}
-              <Link to="/aviso-legal" style={{ color: 'var(--civic)' }}>
-                aviso legal
-              </Link>
-              .
+              {conHuecos(t('quejas.detalle.foto.pie'), {
+                '{olvidar}': <code>/olvidar {queja.service_request_id}</code>,
+                '{aviso}': (
+                  <Link to="/aviso-legal" style={{ color: 'var(--civic)' }}>
+                    {t('quejas.detalle.foto.avisoLegal')}
+                  </Link>
+                ),
+              })}
             </figcaption>
           </figure>
         </Card>
@@ -490,7 +539,10 @@ export default function QuejaDetail() {
 
       {queja.registered_at && queja.status !== 'resuelta' && (
         <Card style={{ marginTop: 14 }}>
-          <SectionHead eyebrow="Reloj legal" title="Plazo LPACAP en curso" />
+          <SectionHead
+            eyebrow={t('quejas.detalle.reloj.eyebrow')}
+            title={t('quejas.detalle.reloj.titulo')}
+          />
           <div style={{ display: 'flex', gap: 20, marginTop: 10, flexWrap: 'wrap' }}>
             <div>
               <div
@@ -502,10 +554,10 @@ export default function QuejaDetail() {
                   letterSpacing: '.06em',
                 }}
               >
-                Registrada
+                {t('quejas.detalle.reloj.registrada')}
               </div>
               <div style={{ fontSize: 'var(--fs-body)', fontWeight: 600, marginTop: 2 }}>
-                {fmtDate(queja.registered_at)}
+                {fmtDate(queja.registered_at, locale)}
               </div>
             </div>
             <div>
@@ -518,10 +570,10 @@ export default function QuejaDetail() {
                   letterSpacing: '.06em',
                 }}
               >
-                Plazo máximo
+                {t('quejas.detalle.reloj.plazoMaximo')}
               </div>
               <div style={{ fontSize: 'var(--fs-body)', fontWeight: 600, marginTop: 2 }}>
-                {plazo} días
+                {rellena(t('quejas.detalle.reloj.dias'), { n: plazo })}
               </div>
             </div>
             <div>
@@ -534,7 +586,9 @@ export default function QuejaDetail() {
                   letterSpacing: '.06em',
                 }}
               >
-                {diasRestantes >= 0 ? 'Días restantes' : 'Días excedidos'}
+                {diasRestantes >= 0
+                  ? t('quejas.detalle.reloj.restantes')
+                  : t('quejas.detalle.reloj.excedidos')}
               </div>
               <div
                 style={{
@@ -563,7 +617,7 @@ export default function QuejaDetail() {
                     letterSpacing: '.06em',
                   }}
                 >
-                  Asiento sede
+                  {t('quejas.detalle.reloj.asiento')}
                 </div>
                 <div
                   className="mono"
@@ -578,17 +632,23 @@ export default function QuejaDetail() {
       )}
 
       <Card style={{ marginTop: 14 }}>
-        <SectionHead eyebrow="Historial" title="Línea temporal" />
+        <SectionHead
+          eyebrow={t('quejas.detalle.historial.eyebrow')}
+          title={t('quejas.detalle.historial.titulo')}
+        />
         <div style={{ marginTop: 10 }}>
-          {timeline.map((t, i) => (
-            <TimelineItem key={i} {...t} />
+          {timeline.map((hito, i) => (
+            <TimelineItem key={i} {...hito} idioma={locale} />
           ))}
         </div>
       </Card>
 
       {qResponses.length > 0 && (
         <Card style={{ marginTop: 14, borderLeft: '3px solid var(--civic)' }}>
-          <SectionHead eyebrow="Derecho de réplica oficial" title="Respuesta del Ayuntamiento" />
+          <SectionHead
+            eyebrow={t('quejas.detalle.replica.eyebrow')}
+            title={t('quejas.detalle.replica.titulo')}
+          />
           <div style={{ marginTop: 10, display: 'flex', flexDirection: 'column', gap: 14 }}>
             {qResponses.map((r) => (
               <div
@@ -604,7 +664,7 @@ export default function QuejaDetail() {
                     textTransform: 'uppercase',
                   }}
                 >
-                  {r.role} · {r.firmante} · {fmt(r.appliedAt)}
+                  {r.role} · {r.firmante} · {fmt(r.appliedAt, locale)}
                 </div>
                 <div
                   style={{
@@ -619,7 +679,7 @@ export default function QuejaDetail() {
                 {r.source_url && (
                   <div style={{ marginTop: 6, fontSize: 'var(--fs-meta)' }}>
                     <ExtLink href={r.source_url} style={{ color: 'var(--civic)' }}>
-                      Fuente primaria →
+                      {t('quejas.detalle.replica.fuente')}
                     </ExtLink>
                   </div>
                 )}
@@ -630,7 +690,10 @@ export default function QuejaDetail() {
       )}
 
       <Card style={{ marginTop: 14 }}>
-        <SectionHead eyebrow="Acciones" title="¿Qué puedes hacer?" />
+        <SectionHead
+          eyebrow={t('quejas.detalle.acciones.eyebrow')}
+          title={t('quejas.detalle.acciones.titulo')}
+        />
         <ul
           style={{
             paddingLeft: 20,
@@ -641,12 +704,14 @@ export default function QuejaDetail() {
           }}
         >
           <li>
-            <strong>Apoyar:</strong> escribe <code>/apoyar {queja.service_request_id}</code> al bot
-            de Telegram.
+            <strong>{t('quejas.detalle.acciones.apoyar')}</strong>{' '}
+            {conHuecos(t('quejas.detalle.acciones.apoyar.texto'), {
+              '{comando}': <code>/apoyar {queja.service_request_id}</code>,
+            })}
           </li>
           {(queja.status === 'silencio_negativo' || queja.status === 'escalada_sindic') && (
             <li>
-              <strong>Presentar queja al Síndic:</strong>{' '}
+              <strong>{t('quejas.detalle.acciones.sindic')}</strong>{' '}
               <a
                 href={SINDIC_PORTAL}
                 target="_blank"
@@ -658,12 +723,14 @@ export default function QuejaDetail() {
             </li>
           )}
           <li>
-            <strong>Responder como responsable público:</strong> contacta con la redacción según se
-            indica en{' '}
-            <a href="/aviso-legal" style={{ color: 'var(--civic)' }}>
-              /aviso-legal
-            </a>
-            .
+            <strong>{t('quejas.detalle.acciones.responder')}</strong>{' '}
+            {conHuecos(t('quejas.detalle.acciones.responder.texto'), {
+              '{aviso}': (
+                <a href="/aviso-legal" style={{ color: 'var(--civic)' }}>
+                  /aviso-legal
+                </a>
+              ),
+            })}
           </li>
         </ul>
       </Card>

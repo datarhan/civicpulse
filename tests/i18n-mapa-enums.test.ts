@@ -59,6 +59,20 @@ const clasesPublicadas = [
   ),
 ]
 
+/**
+ * Los enums de una queja son tipos, no valores: `QuejaState` vive en el bot y
+ * `QuejaCategory` en el enrutador, y no hay nada que importar. Se leen de su fuente,
+ * que es su dueño, y no de las tablas de useQuejas, que los recitan. Un tipo que ya
+ * no se encuentra vale cero valores, y la familia lo dice.
+ */
+const unionDe = (ruta: string, tipo: string): string[] => {
+  const fuente = readFileSync(resolve(ruta), 'utf8')
+  const desde = fuente.indexOf(`export type ${tipo} =`)
+  if (desde === -1) return []
+  const bloque = fuente.slice(desde, fuente.indexOf('\n\n', desde))
+  return [...bloque.matchAll(/\|\s*'([^']+)'/g)].map((m) => m[1])
+}
+
 /** Un enum que no se exporta vale cero valores y la familia lo dice, en vez de
  *  romper la carga del fichero y callar a todas las demás. */
 const lista = (xs: Iterable<string> | null | undefined): string[] => [...(xs ?? [])]
@@ -120,6 +134,16 @@ const FAMILIAS = [
     familia: 'niveles de aviso de AEMET (NIVELES_AEMET)',
     prefijo: 'liveTicker.aemet.nivel.',
     valores: lista(NIVELES_AEMET),
+  },
+  {
+    familia: 'estados de una queja (QuejaState, en el bot)',
+    prefijo: 'quejas.estado.',
+    valores: unionDe('bot/src/db/queries.ts', 'QuejaState'),
+  },
+  {
+    familia: 'categorías de una queja (QuejaCategory, en el enrutador)',
+    prefijo: 'quejas.categoria.',
+    valores: unionDe('src/scraper/queja-router.ts', 'QuejaCategory'),
   },
   {
     familia: 'clases de sesión plenaria (PLENO_TONE)',
