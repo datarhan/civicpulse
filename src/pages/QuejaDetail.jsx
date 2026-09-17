@@ -1,4 +1,3 @@
-import { Fragment } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Card, ExtLink, Pill, SectionHead, ShareWA } from '../components/Primitives'
 import { useQuejas, useQuejaResponses, STATE_TONE, prettyNeighborhood } from '../hooks/useQuejas'
@@ -10,6 +9,7 @@ import {
 import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { fmtDateLong, rellena } from '../lib/formatters'
+import { conHuecos } from '../lib/huecos'
 import { rotuloDe, useLocale } from '../i18n'
 import { CLAVE_RELACION } from '../scraper/relation-labels'
 import { DEPARTMENT_LABEL } from '../scraper/departments'
@@ -33,19 +33,6 @@ function fmt(iso, idioma) {
 
 function fmtDate(iso, idioma) {
   return fmtDateLong(iso, idioma) || '—'
-}
-
-/**
- * Una frase del catálogo con elementos dentro: cada `{hueco}` se pinta con el suyo,
- * donde la gramática de cada idioma lo pone. Un hueco sin elemento se queda escrito y
- * se ve, en vez de comerse el dato sin que se note, como en `partePorHueco`.
- */
-function conHuecos(plantilla, elementos) {
-  return plantilla
-    .split(/(\{\w+\})/)
-    .map((trozo, i) =>
-      Object.hasOwn(elementos, trozo) ? <Fragment key={i}>{elementos[trozo]}</Fragment> : trozo,
-    )
 }
 
 function daysSince(iso) {

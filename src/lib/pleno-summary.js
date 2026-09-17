@@ -24,6 +24,8 @@
  *           ahí. Sin declaraciones extraídas no hemos mirado.
  */
 import { DEPARTMENT_LABEL } from '../scraper/departments'
+import { CATALOGUE } from '../i18n'
+import { rellena } from './formatters'
 
 /** La etiqueta canónica del slug, o el nombre crudo si el slug no la tiene. */
 function nombreDepartamento(department, slug) {
@@ -77,18 +79,15 @@ export function summarizeSessions({
 /**
  * Los cinco filtros del índice. Cada uno se define por su predicado y CUENTA
  * las filas que deja pasar: un chip que promete «7» y enseña 4 es peor que no
- * tener filtro, así que el rótulo se calcula, nunca se escribe.
+ * tener filtro, así que la cifra se calcula, nunca se escribe. El rótulo lo pone
+ * la tabla con `plenos.indice.filtro.<id>`, en el idioma de la interfaz.
  */
 const FILTROS = [
-  { id: 'todas', rotulo: 'Todas', pasa: () => true },
-  { id: 'votos', rotulo: 'Con votaciones', pasa: (f) => f.votos !== null },
-  { id: 'declaraciones', rotulo: 'Con declaraciones', pasa: (f) => f.decl !== null },
-  { id: 'sin-orden', rotulo: 'Sin orden del día', pasa: (f) => f.puntos === null },
-  {
-    id: 'no-ordinarias',
-    rotulo: 'Extraordinarias y urgentes',
-    pasa: (f) => f.kind !== 'ordinario',
-  },
+  { id: 'todas', pasa: () => true },
+  { id: 'votos', pasa: (f) => f.votos !== null },
+  { id: 'declaraciones', pasa: (f) => f.decl !== null },
+  { id: 'sin-orden', pasa: (f) => f.puntos === null },
+  { id: 'no-ordinarias', pasa: (f) => f.kind !== 'ordinario' },
 ]
 
 /**
@@ -117,12 +116,13 @@ export function resumenPlenos({ plenos, agendas, manifest, votes, findings } = {
 
   // Cuatro escalones sobre el MISMO denominador. El tono no lo elige el
   // escalón: lo elige la COLUMNA que representa, para que la barra de la
-  // escalera y la cifra de la tabla se pinten igual.
+  // escalera y la cifra de la tabla se pinten igual. El rótulo lo pone la
+  // escalera con `plenos.indice.escalera.<id>`.
   const escalera = [
-    { id: 'sesiones', rotulo: 'Sesiones celebradas', n: total, tono: 'civic' },
-    { id: 'orden', rotulo: 'Con orden del día extraído', n: conOrden, tono: 'civic' },
-    { id: 'declaraciones', rotulo: 'Con declaraciones extraídas', n: conDecl, tono: 'intel' },
-    { id: 'votaciones', rotulo: 'Con votaciones transcritas', n: conVotos, tono: 'warn' },
+    { id: 'sesiones', n: total, tono: 'civic' },
+    { id: 'orden', n: conOrden, tono: 'civic' },
+    { id: 'declaraciones', n: conDecl, tono: 'intel' },
+    { id: 'votaciones', n: conVotos, tono: 'warn' },
   ].map((e) => ({ ...e, de: total, cuota: total ? e.n / total : 0 }))
 
   // La escalera decía «cada escalón es un subconjunto del anterior» y no lo
@@ -229,18 +229,8 @@ export function resumenPlenos({ plenos, agendas, manifest, votes, findings } = {
   }
 }
 
-/**
- * El rótulo de cada alcance, en singular y en plural.
- *
- * Un alcance sin rótulo aquí saldría por su clave —visible y feo, que es mejor
- * que una frase que se calla una retirada—, y `tests/pleno-retiradas-rotulo`
- * exige uno por alcance del modelo para que no llegue a pasar.
- */
-const ROTULO_RETIRADA = {
-  record: ['registro', 'registros'],
-  breakdown: ['desglose', 'desgloses'],
-  plazo: ['plazo', 'plazos'],
-}
+/** El castellano del catálogo, para quien llama sin idioma. */
+const enCastellano = (clave) => CATALOGUE.es[clave] ?? clave
 
 /**
  * «2 registros, 1 desglose y 1 plazo retirados», o `null` si no hay ninguna.
@@ -249,18 +239,30 @@ const ROTULO_RETIRADA = {
  * dejó a /plenos publicando «2 registros y 1 desglose» —tres— mientras /datos
  * sumaba las cuatro retiradas vivas del mismo fichero.
  *
+ * El rótulo de cada alcance, en singular y en plural, vive en el catálogo
+ * (`plenos.retirada.<alcance>.uno|varios`). Un alcance sin clave sale por su
+ * nombre —visible y feo, que es mejor que una frase que se calla una retirada—,
+ * y `tests/pleno-retiradas-rotulo` exige una por alcance del modelo. La lista se
+ * une con `Intl.ListFormat`, que pone la «y» o la «i» de cada idioma. Sin `t`
+ * escribe en castellano, como antes.
+ *
  * @param {Record<string, number>|null|undefined} retiradas  `stats.retracted`
+ * @param {{ t?: (clave: string) => string, locale?: string }} [idioma]
  * @returns {string|null}
  */
-export function rotuloRetiradas(retiradas) {
+export function rotuloRetiradas(retiradas, { t = enCastellano, locale = 'es' } = {}) {
   const vivas = Object.entries(retiradas ?? {}).filter(([, n]) => typeof n === 'number' && n > 0)
   if (vivas.length === 0) return null
   const partes = vivas.map(([alcance, n]) => {
-    const [uno, varios] = ROTULO_RETIRADA[alcance] ?? [alcance, alcance]
-    return `${n} ${n === 1 ? uno : varios}`
+    const clave = `plenos.retirada.${alcance}.${n === 1 ? 'uno' : 'varios'}`
+    const rotulo = t(clave)
+    return `${n} ${rotulo === clave ? alcance : rotulo}`
   })
-  const lista =
-    partes.length === 1 ? partes[0] : `${partes.slice(0, -1).join(', ')} y ${partes.at(-1)}`
+  const lista = new Intl.ListFormat(locale === 'ca' ? 'ca' : 'es', { type: 'conjunction' }).format(
+    partes,
+  )
   const total = vivas.reduce((s, [, n]) => s + n, 0)
-  return `${lista} ${total === 1 ? 'retirado' : 'retirados'}`
+  return rellena(t(total === 1 ? 'plenos.retirada.frase.uno' : 'plenos.retirada.frase.varios'), {
+    lista,
+  })
 }

@@ -11,6 +11,13 @@
  */
 import { CATALOGUE } from '../../src/i18n'
 
+/**
+ * Lo que no se lee aunque sea texto del DOM: una hoja de estilo en un `<style>` —con
+ * sus comentarios en castellano— o un script. /plenos monta la suya dentro de la
+ * página, y sin esto la guarda le pedía traducir los comentarios del CSS.
+ */
+const NO_SE_LEE = new Set(['STYLE', 'SCRIPT', 'TEMPLATE', 'NOSCRIPT'])
+
 /** Lo que el lector recibe de un nodo: sus textos y lo que sólo oye (`aria-label`). */
 export function loQueSeLee(nodo, out = []) {
   if (nodo.nodeType === 3) {
@@ -18,7 +25,7 @@ export function loQueSeLee(nodo, out = []) {
     if (s) out.push(s)
     return out
   }
-  if (nodo.nodeType !== 1) return out
+  if (nodo.nodeType !== 1 || NO_SE_LEE.has(nodo.tagName)) return out
   const aria = nodo.getAttribute('aria-label')
   if (aria) out.push(aria)
   for (const hijo of nodo.childNodes) loQueSeLee(hijo, out)

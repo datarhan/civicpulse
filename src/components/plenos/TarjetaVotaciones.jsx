@@ -1,19 +1,15 @@
 import { Link } from 'react-router-dom'
 import { Card } from '../Primitives'
 import { rotuloRetiradas } from '../../lib/pleno-summary'
+import { rellena } from '../../lib/formatters'
+import { conHuecos } from '../../lib/huecos'
+import { rotuloDe, useLocale } from '../../i18n'
 
 const RELLENO = {
   aprobado: 'var(--ok)',
   rechazado: 'var(--crit)',
   retirado: 'var(--ink30)',
   aplazado: 'var(--ink30)',
-}
-
-const ROTULO = {
-  aprobado: 'aprobado',
-  rechazado: 'rechazado',
-  retirado: 'retirado',
-  aplazado: 'aplazado',
 }
 
 /**
@@ -28,10 +24,11 @@ const ROTULO = {
  * tinta y usan el `-ink`, que es el que se redefine en oscuro.
  */
 export function TarjetaVotaciones({ votos, total }) {
+  const { locale, t } = useLocale()
   if (!votos?.total) return null
   const presentes = [...new Set(votos.lista.filter(Boolean))]
   const cuenta = (o) => votos.lista.filter((x) => x === o).length
-  const frase = rotuloRetiradas(votos.retiradas)
+  const frase = rotuloRetiradas(votos.retiradas, { t, locale })
 
   return (
     <Card style={{ padding: 20 }}>
@@ -44,12 +41,15 @@ export function TarjetaVotaciones({ votos, total }) {
           color: 'var(--ink50)',
         }}
       >
-        Votaciones transcritas · {votos.sesiones} sesiones de {total}
+        {rellena(t('plenos.indice.votos.eyebrow'), { n: votos.sesiones, total })}
       </div>
       <h2
         style={{ fontSize: 'var(--fs-head)', fontWeight: 700, margin: '7px 0 0', lineHeight: 1.3 }}
       >
-        De {votos.total} votaciones registradas, {votos.aprobado} se aprobaron
+        {rellena(t('plenos.indice.votos.titulo'), {
+          total: votos.total,
+          aprobado: votos.aprobado,
+        })}
       </h2>
 
       <div style={{ display: 'flex', gap: 3, marginTop: 14 }} aria-hidden="true">
@@ -88,7 +88,7 @@ export function TarjetaVotaciones({ votos, total }) {
                 flex: 'none',
               }}
             />
-            {ROTULO[o] || o} · {cuenta(o)}
+            {rotuloDe(t, `plenos.indice.votos.desenlace.${o}`, o)} · {cuenta(o)}
           </span>
         ))}
       </div>
@@ -101,9 +101,9 @@ export function TarjetaVotaciones({ votos, total }) {
           color: 'var(--ink70)',
         }}
       >
-        Los desgloses por grupo salen de una <strong>transcripción automática</strong> del vídeo, no
-        del acta: el resultado lo publica el ayuntamiento, el reparto de votos lo infiere el
-        sistema. Por eso cada uno lleva su procedencia por separado.
+        {conHuecos(t('plenos.indice.votos.desglose'), {
+          '{transcripcion}': <strong>{t('plenos.indice.votos.transcripcion')}</strong>,
+        })}
       </p>
 
       {/* La retirada se publica. Es la mitad que la auditoría echaba en falta:
@@ -126,15 +126,13 @@ export function TarjetaVotaciones({ votos, total }) {
             color: 'var(--ink70)',
           }}
         >
-          <strong>{frase}.</strong> Cuando la fuente no sostiene lo que se publicó, se retira la
-          parte que no aguanta —el registro entero, el reparto por grupos o sólo el plazo— y se
-          dice, en vez de corregirlo en silencio.
+          <strong>{frase}.</strong> {t('plenos.indice.votos.retirada')}
         </p>
       )}
 
       <div style={{ marginTop: 11 }}>
         <Link to="/metodologia" style={{ fontSize: 'var(--fs-aux)', color: 'var(--civic)' }}>
-          Cómo se procesa una sesión →
+          {t('plenos.indice.comoSeProcesa')}
         </Link>
       </div>
     </Card>

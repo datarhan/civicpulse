@@ -37,6 +37,28 @@ export function fmtDateShort(iso, idioma = 'es') {
 }
 
 /**
+ * La fecha de una columna estrecha: «24 may 2023» en castellano, «24 maig 2023» en
+ * valencià.
+ *
+ * `fmtDateShort` en valencià escribe «24 de maig del 2023», que en la columna de
+ * fechas del índice de plenos saltaba a dos líneas casi en cada fila. El CLDR
+ * catalán mete la preposición dentro del propio mes —`formatToParts` devuelve «de
+ * maig» como mes—, así que quitar los literales no basta; con el mes suelto sí. En
+ * castellano escribe exactamente lo que `fmtDateShort`: medido mes a mes, con el
+ * Node de la CI y con el de desarrollo, y fijado en `tests/fecha-compacta.test.js`.
+ *
+ * @param {string|null|undefined} iso
+ * @param {string} [idioma]
+ * @returns {string}
+ */
+export function fmtDateCompacta(iso, idioma = 'es') {
+  if (!iso) return ''
+  const d = new Date(iso)
+  const mes = d.toLocaleDateString(idioma === 'ca' ? 'ca-ES' : 'es-ES', { month: 'short' })
+  return `${d.getDate()} ${mes} ${d.getFullYear()}`
+}
+
+/**
  * @param {string|null|undefined} iso
  * @param {string} [idioma] el de la interfaz: «3 de juny de 2026» en valencià
  * @returns {string} e.g. "3 de junio de 2026" — empty string when iso is falsy

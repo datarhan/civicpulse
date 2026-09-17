@@ -4,6 +4,7 @@ import { MemoryRouter } from 'react-router-dom'
 
 import { TablaSesiones } from '../../src/components/plenos/TablaSesiones'
 import { resumenPlenos } from '../../src/lib/pleno-summary'
+import { CATALOGUE } from '../../src/i18n'
 
 /**
  * La tabla del índice de plenos, y las dos cosas que la hacen distinta de la
@@ -103,9 +104,12 @@ describe('TablaSesiones · las cifras describen lo que se ve', () => {
 
   it('cada chip promete exactamente las filas que deja', () => {
     const r = pinta()
+    // El rótulo de cada chip sale del catálogo: sin LocaleProvider, en castellano.
     for (const f of r.filtros) {
-      fireEvent.click(screen.getByRole('button', { name: new RegExp(`${f.rotulo} · ${f.n}`) }))
-      expect(document.querySelectorAll('.cp-plenos-fila').length, f.rotulo).toBe(f.n)
+      const rotulo = CATALOGUE.es[`plenos.indice.filtro.${f.id}`]
+      expect(rotulo, `${f.id} sin rótulo en el catálogo`).toBeTruthy()
+      fireEvent.click(screen.getByRole('button', { name: new RegExp(`${rotulo} · ${f.n}`) }))
+      expect(document.querySelectorAll('.cp-plenos-fila').length, rotulo).toBe(f.n)
     }
   })
 })

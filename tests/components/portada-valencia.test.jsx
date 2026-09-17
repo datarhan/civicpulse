@@ -23,13 +23,10 @@
  * nunca a «listo».
  */
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { fireEvent, render, waitFor } from '@testing-library/react'
-import { MemoryRouter } from 'react-router-dom'
+import { fireEvent, waitFor } from '@testing-library/react'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
-import { LocaleProvider } from '../../src/i18n'
-import { peekSnapshot } from '../../src/lib/snapshot-store'
 import { REPORTAJE_SLUGS } from '../../src/reportajes'
 import { CONCESSION_CONTRACT_TYPES } from '../../src/lib/contract-status'
 import { canonicalizeDepartment, DEPARTMENT_LABEL } from '../../src/scraper/departments'
@@ -56,7 +53,6 @@ import {
   PressBlockD,
 } from '../../src/variants/direction-d/blocks/FeedBlocks'
 import LiveTicker from '../../src/components/LiveTicker'
-import { installFetchMock } from '../setup/mockFetch'
 import {
   cadenasDe,
   datosPintados,
@@ -64,6 +60,7 @@ import {
   lectura,
   masLargasPrimero,
 } from '../setup/castellano'
+import { pintaYLee } from '../setup/pinta-y-lee'
 
 // El chip «Hoy» de la cabecera ya se lee en valencià en `vivo-portada.test.jsx`, con
 // sus tres fuentes servidas por URL. Aquí sólo estorbaría: esta prueba lee lo demás.
@@ -356,46 +353,6 @@ const ESCENARIOS = [
     interactua: abreCadaPanel,
   },
 ]
-
-/**
- * Pinta un escenario en un idioma y devuelve lo que se lee, cuando ya no se mueve, y
- * lo que la portada pidió sin que la prueba lo sirviera.
- */
-async function pintaYLee(escenario, idioma) {
-  localStorage.setItem('cp:lang', idioma)
-  const mapa = escenario.fetch ?? {}
-  const fetchFn = installFetchMock(mapa)
-  const { container, unmount } = render(
-    <MemoryRouter>
-      <LocaleProvider>{escenario.pinta()}</LocaleProvider>
-    </MemoryRouter>,
-  )
-  const rutas = Object.keys(mapa)
-  let previa = null
-  await waitFor(
-    () => {
-      const sinLlegar = rutas.filter((r) => peekSnapshot(r)?.status !== 'ready')
-      expect(sinLlegar, `${escenario.nombre} (${idioma}): datos sin llegar`).toEqual([])
-      expect(
-        escenario.listo(container),
-        `${escenario.nombre} (${idioma}): no ha pintado su rama`,
-      ).toBe(true)
-      const ahora = lectura(container)
-      const quieta = previa !== null && JSON.stringify(ahora) === JSON.stringify(previa)
-      previa = ahora
-      expect(quieta, `${escenario.nombre} (${idioma}): la lectura todavía se mueve`).toBe(true)
-    },
-    { timeout: 15000 },
-  )
-  const pedidasSinServir = [
-    ...new Set(fetchFn.mock.calls.map(([u]) => String(u).replace(/^https?:\/\/[^/]+/, ''))),
-  ].filter(
-    (p) => p.startsWith('/data/') && !(p in mapa) && !(escenario.faltanAdrede ?? []).includes(p),
-  )
-  const extra = escenario.interactua ? await escenario.interactua(container) : []
-  unmount()
-  return { piezas: [...previa, ...extra], pedidasSinServir }
-}
 
 afterEach(() => localStorage.clear())
 
