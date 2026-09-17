@@ -1,4 +1,10 @@
 import { test, expect } from '@playwright/test'
+import {
+  estadoDeSolicitud,
+  tituloSolicitudes,
+  type SolicitudAcceso,
+} from '../../src/scraper/solicitud-acceso'
+import { CLASES_PEDIBLES } from '../../src/scraper/clase-documental'
 import { readFileSync, readdirSync } from 'node:fs'
 import { collectErrors, appErrors } from './_console'
 
@@ -145,12 +151,27 @@ test.describe('Cobertura de comprobación (/laboratorio/cobertura)', () => {
  * es el competente para un ayuntamiento valenciano (el CTBG estatal no lo es).
  */
 test.describe('Solicitudes de acceso (/laboratorio/cobertura)', () => {
+  // El título sale de los mismos estados que pinta la tabla, con las mismas funciones
+  // que la página: con el registro vacío dice «Lo que habría que pedir».
+  const REGISTRO = JSON.parse(readFileSync('public/data/solicitudes-acceso.json', 'utf8')) as {
+    items?: SolicitudAcceso[]
+  }
+  const HOY = new Date().toISOString().slice(0, 10)
+  const TITULO_SOLICITUDES = new RegExp(
+    tituloSolicitudes(
+      CLASES_PEDIBLES.map((clase) =>
+        estadoDeSolicitud((REGISTRO.items ?? []).find((x) => x.clase === clase) ?? null, HOY),
+      ),
+    ).replace(/[.*+?^${}()|[\]\\]/g, '\\$&'),
+    'i',
+  )
+
   const CLASES = JSON.parse(readFileSync('public/data/pleno-claims/index.json', 'utf8')).totals
     .cobertura.porClaseDocumental as { porClase: Record<string, number>; sinDocumento: number }
 
   test('una fila por clase pedible, con su recuento real', async ({ page }) => {
     await page.goto('/laboratorio/cobertura', { waitUntil: 'domcontentloaded' })
-    await expect(page.getByRole('heading', { name: /Lo que hemos pedido/i })).toBeVisible({
+    await expect(page.getByRole('heading', { name: TITULO_SOLICITUDES })).toBeVisible({
       timeout: 8000,
     })
     const texto = await page.locator('body').innerText()
@@ -165,7 +186,7 @@ test.describe('Solicitudes de acceso (/laboratorio/cobertura)', () => {
     // Doblar «no lo hemos pedido» dentro de «pendiente de respuesta» le
     // atribuiría al Ayuntamiento una tardanza que no ha tenido.
     await page.goto('/laboratorio/cobertura', { waitUntil: 'domcontentloaded' })
-    await expect(page.getByRole('heading', { name: /Lo que hemos pedido/i })).toBeVisible({
+    await expect(page.getByRole('heading', { name: TITULO_SOLICITUDES })).toBeVisible({
       timeout: 8000,
     })
     const texto = await page.locator('body').innerText()
@@ -175,7 +196,7 @@ test.describe('Solicitudes de acceso (/laboratorio/cobertura)', () => {
 
   test('nombra el órgano competente, que es el Consell y no el CTBG', async ({ page }) => {
     await page.goto('/laboratorio/cobertura', { waitUntil: 'domcontentloaded' })
-    await expect(page.getByRole('heading', { name: /Lo que hemos pedido/i })).toBeVisible({
+    await expect(page.getByRole('heading', { name: TITULO_SOLICITUDES })).toBeVisible({
       timeout: 8000,
     })
     const texto = await page.locator('body').innerText()
@@ -185,7 +206,7 @@ test.describe('Solicitudes de acceso (/laboratorio/cobertura)', () => {
 
   test('no promete desbloquear nada por pedirlo', async ({ page }) => {
     await page.goto('/laboratorio/cobertura', { waitUntil: 'domcontentloaded' })
-    await expect(page.getByRole('heading', { name: /Lo que hemos pedido/i })).toBeVisible({
+    await expect(page.getByRole('heading', { name: TITULO_SOLICITUDES })).toBeVisible({
       timeout: 8000,
     })
     const texto = await page.locator('body').innerText()

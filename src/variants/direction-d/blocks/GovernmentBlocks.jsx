@@ -112,7 +112,7 @@ export function PromesasBlockD() {
                 fontWeight: 700,
               }}
             >
-              LOREG · congelado
+              {t('landing.promesas.congelado')}
             </span>
           )
         }

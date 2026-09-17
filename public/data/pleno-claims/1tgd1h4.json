@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-10T08:02:51.298Z",
+  "generatedAt": "2026-09-17T09:45:01.573Z",
   "version": "1",
   "plenoId": "1tgd1h4",
   "plenoDate": "2024-07-29",
@@ -305,8 +305,16 @@
       "verification": {
         "claimId": "1tgd1h4-004-afi-fedfb6",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "summary": "El objeto citado aparece en un expediente municipal, pero ninguna de sus magnitudes coincide con la cifra del claim. No es que no haya registro: es que el que hay no dice eso.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
+            "snippet": "Aplicativo área de policía local · Ayuntamiento de Riba-roja de Túria · it · importe no publicado",
+            "similarity": 0.4,
+            "stance": "checked"
+          }
+        ],
         "checkedAgainst": []
       },
       "visibility": "toggle"
@@ -5903,8 +5911,16 @@
       "verification": {
         "claimId": "1tgd1h4-080-afi-6f1c72",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "summary": "El objeto citado aparece en un expediente municipal, pero ninguna de sus magnitudes coincide con la cifra del claim. No es que no haya registro: es que el que hay no dice eso.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=PWq6zyuzw1qmq21uxhbaVQ%3D%3D",
+            "snippet": "Servicio de conservación, mantenimiento, limpieza y mejora de los Parques, jardines, zonas verdes, interfaz, zonas de esparcimiento canino, zona ajardinada de la CV-370, carril bici, solares de propiedad municipal y todas aquellas que constan en el PPT de Riba-roja de Túria, mejor relación calidad-precio, varios criterios de adjudicación. · Ayuntamiento de Riba-roja de Túria · S.A. AGRICULTORES DE LA VEGA DE VALENCIA · architecture · 3.212.524 €",
+            "similarity": 1,
+            "stance": "checked"
+          }
+        ],
         "checkedAgainst": []
       },
       "visibility": "toggle"
@@ -13609,8 +13625,16 @@
       "verification": {
         "claimId": "1tgd1h4-197-cit-751504",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "summary": "El objeto citado aparece en un expediente municipal, pero ninguna de sus magnitudes coincide con la cifra del claim. No es que no haya registro: es que el que hay no dice eso.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Sn3tl1a79p4uf4aBO%2BvQlQ%3D%3D",
+            "snippet": "Contrato Menor de consultoría y asistencia jurídica especializada en relación al contrato de servicio de gestión integral del agua y los procedimientos judiciales que le afectan. · Ayuntamiento de Riba-roja de Túria · JOSE MARIA BAñO LEON ABOGADOS SLP · legal · 14.000 €",
+            "similarity": 1,
+            "stance": "checked"
+          }
+        ],
         "checkedAgainst": []
       },
       "visibility": "toggle"

@@ -4,11 +4,12 @@ import { useBudgetExecution } from '../../hooks/useBudgetExecution'
 import { magnitudDelEjercicio } from '../../scraper/presupuesto-lectura'
 import { useTenders } from '../../hooks/useTenders'
 import { useParo } from '../../hooks/useParo'
-import { usePlenos, PLENO_LABEL } from '../../hooks/usePlenos'
+import { usePlenos } from '../../hooks/usePlenos'
 import { isCommittedContract } from '../../lib/contract-status'
+import { rellena } from '../../lib/formatters'
 import { yearSpan } from '../../lib/year-span'
 import { PALETTE, SERIF, SANS, MONO } from './tokens'
-import { useT } from '../../i18n'
+import { rotuloDe, useLocale } from '../../i18n'
 
 function MiniSpark({ data, color }) {
   const max = Math.max(...data)
@@ -114,7 +115,7 @@ function Kpi({ label, value, delta, tone, sub, spark, sparkColor, serif }) {
 }
 
 function KpiStrip() {
-  const t = useT()
+  const { t, locale } = useLocale()
   const padron = usePadron().data
   const budget = useBudget().data
   const tenders = useTenders().data
@@ -141,11 +142,13 @@ function KpiStrip() {
   const budgetValue = magnitud ? formatBudgetEuros(magnitud.valor, { compact: true }) : '—'
   const budgetSub = magnitud
     ? magnitud.etapa === 'definitivo'
-      ? `Ayto. · definitivo${
-          magnitud.pctEjecutado !== null ? ` · ${Math.round(magnitud.pctEjecutado)} % ejec.` : ''
+      ? `${t('landing.kpi.presupuesto.definitivo')}${
+          magnitud.pctEjecutado !== null
+            ? ` · ${rellena(t('landing.kpi.presupuesto.ejec'), { pct: Math.round(magnitud.pctEjecutado) })}`
+            : ''
         }`
-      : 'CONPREL · aprobado'
-    : 'sin dato'
+      : t('landing.kpi.presupuesto.aprobado')
+    : t('landing.kpi.sinDato')
 
   const awardedTotal = tenders?.stats?.awardedTotalEuros
   const awardedCount = tenders?.stats?.awardedContracts
@@ -165,9 +168,12 @@ function KpiStrip() {
 
   const nextPleno = (plenos?.items || [])[0]
   const plenoDate = nextPleno
-    ? new Date(nextPleno.date).toLocaleDateString('es-ES', { day: 'numeric', month: 'short' })
+    ? new Date(nextPleno.date).toLocaleDateString(locale === 'ca' ? 'ca-ES' : 'es-ES', {
+        day: 'numeric',
+        month: 'short',
+      })
     : '—'
-  const plenoKind = nextPleno ? PLENO_LABEL[nextPleno.kind] || nextPleno.kind : ''
+  const plenoKind = nextPleno ? rotuloDe(t, `pleno.tipo.${nextPleno.kind}`, nextPleno.kind) : ''
   const totalPlenos = plenos?.stats?.total
 
   return (
@@ -192,11 +198,15 @@ function KpiStrip() {
       }}
     >
       <Kpi
-        label={padron ? `Población ${padron.latestYear}` : 'Población'}
+        label={
+          padron
+            ? rellena(t('landing.kpi.poblacionAnio'), { anio: padron.latestYear })
+            : t('landing.kpi.poblacion')
+        }
         value={popLatest ? popLatest.toFixed(1) + 'k' : '—'}
         delta={popDeltaStr}
         tone={popDecade > 0 ? 'ok' : 'warn'}
-        sub={padron ? `10 años · INE` : 'INE Padrón'}
+        sub={padron ? t('landing.kpi.poblacion.sub') : t('landing.kpi.poblacion.subSinDato')}
         spark={popSpark}
         serif
       />
@@ -209,7 +219,11 @@ function KpiStrip() {
           El descuadre se publica donde se puede argumentar, junto a los
           ingresos de los que sale. */}
       <Kpi
-        label={budgetYear ? `Presup. ${budgetYear}` : 'Presupuesto'}
+        label={
+          budgetYear
+            ? rellena(t('landing.kpi.presupuestoAnio'), { anio: budgetYear })
+            : t('landing.kpi.presupuesto')
+        }
         value={budgetValue}
         sub={budgetSub}
       />
@@ -224,13 +238,13 @@ function KpiStrip() {
           Por eso las dos vienen ahora de una sola decisión de fuente, dentro
           de `magnitudDelEjercicio`: divergir dejó de ser posible. */}
       <Kpi
-        label="Presup. personal"
+        label={t('landing.kpi.personal')}
         value={
           magnitud?.personal ? formatBudgetEuros(magnitud.personal.valor, { compact: true }) : '—'
         }
         delta={magnitud?.personal ? `${magnitud.personal.pct.toFixed(0)}%` : '—'}
         tone="civic"
-        sub="Cap.1 económico"
+        sub={t('landing.kpi.personal.sub')}
       />
       {/* The period is not decoration. This sits next to "Presup. 2025 · €41,6M",
           an ANNUAL figure, while this one is CUMULATIVE over a decade of awards
@@ -246,14 +260,22 @@ function KpiStrip() {
           comment (€68,0M and «the €15,8M waste contract») while nothing on
           screen was wrong — the drift this repo built a hook for. */}
       <Kpi
-        label={awardedYears ? `Contratos adj. ${awardedYears}` : 'Contratos adj.'}
+        label={
+          awardedYears
+            ? rellena(t('landing.kpi.contratosAnios'), { anios: awardedYears })
+            : t('landing.kpi.contratos')
+        }
         value={awardedValue}
         delta={awardedCount ? '· ' + awardedCount : '—'}
         tone="ok"
-        sub="acumulado · Gobierto/PLACSP"
+        sub={t('landing.kpi.contratos.sub')}
       />
       <Kpi
-        label={paro ? `Paro ${paro.latestPeriod || ''}` : 'Paro'}
+        label={
+          paro
+            ? rellena(t('landing.kpi.paroPeriodo'), { periodo: paro.latestPeriod || '' })
+            : t('landing.kpi.paro')
+        }
         value={paro ? paro.latestTotal.toLocaleString('es-ES') : '—'}
         delta={(() => {
           if (!paro?.series || paro.series.length < 2) return '—'
@@ -268,16 +290,20 @@ function KpiStrip() {
           const prev = paro.series[paro.series.length - 2].total
           return last < prev ? 'ok' : 'warn'
         })()}
-        sub="SEPE · paro registrado"
+        sub={t('landing.kpi.paro.sub')}
         spark={paro?.series?.slice(-12).map((p) => p.total) || null}
         sparkColor={PALETTE.accent}
       />
       <Kpi
-        label="Último pleno"
+        label={t('landing.kpi.pleno')}
         value={plenoDate}
         delta={plenoKind || '—'}
         tone="civic"
-        sub={totalPlenos ? `${totalPlenos} sesiones` : 'ribarroja.es'}
+        sub={
+          totalPlenos
+            ? rellena(t('landing.kpi.pleno.sesiones'), { n: totalPlenos })
+            : 'ribarroja.es'
+        }
       />
     </footer>
   )

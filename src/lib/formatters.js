@@ -18,12 +18,18 @@
  * exceptions that stay local: the landing topbar's weekday-long banner
  * (tokens.jsx) and the day+month-no-year KPI chips (KpiStrip/EditorialColumn).
  *
+ * `idioma` sólo cambia el nombre del mes. El deslizador del mapa y la tarjeta de
+ * contrato escribían «3 jun 2026» también en la portada valenciana; con «ca» sale
+ * «3 de juny del 2026». Sin idioma —como la llaman todas las demás páginas— o con
+ * uno que el sitio no tiene, escribe lo mismo que escribía.
+ *
  * @param {string|null|undefined} iso
+ * @param {string} [idioma]  'es' (por defecto) o 'ca'
  * @returns {string} e.g. "3 jun 2026" — empty string when iso is falsy
  */
-export function fmtDateShort(iso) {
+export function fmtDateShort(iso, idioma = 'es') {
   if (!iso) return ''
-  return new Date(iso).toLocaleDateString('es-ES', {
+  return new Date(iso).toLocaleDateString(idioma === 'ca' ? 'ca-ES' : 'es-ES', {
     day: 'numeric',
     month: 'short',
     year: 'numeric',
@@ -31,12 +37,35 @@ export function fmtDateShort(iso) {
 }
 
 /**
+ * La fecha de una columna estrecha: «24 may 2023» en castellano, «24 maig 2023» en
+ * valencià.
+ *
+ * `fmtDateShort` en valencià escribe «24 de maig del 2023», que en la columna de
+ * fechas del índice de plenos saltaba a dos líneas casi en cada fila. El CLDR
+ * catalán mete la preposición dentro del propio mes —`formatToParts` devuelve «de
+ * maig» como mes—, así que quitar los literales no basta; con el mes suelto sí. En
+ * castellano escribe exactamente lo que `fmtDateShort`: medido mes a mes, con el
+ * Node de la CI y con el de desarrollo, y fijado en `tests/fecha-compacta.test.js`.
+ *
  * @param {string|null|undefined} iso
+ * @param {string} [idioma]
+ * @returns {string}
+ */
+export function fmtDateCompacta(iso, idioma = 'es') {
+  if (!iso) return ''
+  const d = new Date(iso)
+  const mes = d.toLocaleDateString(idioma === 'ca' ? 'ca-ES' : 'es-ES', { month: 'short' })
+  return `${d.getDate()} ${mes} ${d.getFullYear()}`
+}
+
+/**
+ * @param {string|null|undefined} iso
+ * @param {string} [idioma] el de la interfaz: «3 de juny de 2026» en valencià
  * @returns {string} e.g. "3 de junio de 2026" — empty string when iso is falsy
  */
-export function fmtDateLong(iso) {
+export function fmtDateLong(iso, idioma = 'es') {
   if (!iso) return ''
-  return new Date(iso).toLocaleDateString('es-ES', {
+  return new Date(iso).toLocaleDateString(idioma === 'ca' ? 'ca-ES' : 'es-ES', {
     day: 'numeric',
     month: 'long',
     year: 'numeric',
@@ -49,21 +78,27 @@ export function fmtDateLong(iso) {
  * previously-divergent copies in usePress (floor / 48h / 14d) and useQuejas
  * (round / 24h / 30d); the useQuejas thresholds are the canonical choice.
  *
+ * Con `{ t, locale }` las palabras salen del catálogo (`tiempo.*`) y la fecha va en
+ * el idioma de la interfaz: la portada valenciana escribía «hace 3 h» junto a cada
+ * titular. Este módulo no importa el catálogo —no depende de React—, así que quien
+ * pinta le pasa su `t`. Sin ellos escribe exactamente lo de siempre.
+ *
  * @param {string|null|undefined} iso  ISO timestamp
+ * @param {{ t?: (clave: string) => string, locale?: string }} [idioma]
  * @returns {string}
  */
-export function timeAgo(iso) {
+export function timeAgo(iso, { t, locale } = {}) {
   if (!iso) return ''
   const now = Date.now()
   const then = new Date(iso).getTime()
   const mins = Math.round((now - then) / 60000)
-  if (mins < 1) return 'ahora'
-  if (mins < 60) return `hace ${mins} min`
+  if (mins < 1) return t ? t('tiempo.ahora') : 'ahora'
+  if (mins < 60) return t ? rellena(t('tiempo.haceMin'), { n: mins }) : `hace ${mins} min`
   const hours = Math.round(mins / 60)
-  if (hours < 24) return `hace ${hours} h`
+  if (hours < 24) return t ? rellena(t('tiempo.haceHoras'), { n: hours }) : `hace ${hours} h`
   const days = Math.round(hours / 24)
-  if (days < 30) return `hace ${days} d`
-  return new Date(iso).toLocaleDateString('es-ES', {
+  if (days < 30) return t ? rellena(t('tiempo.haceDias'), { n: days }) : `hace ${days} d`
+  return new Date(iso).toLocaleDateString(locale === 'ca' ? 'ca-ES' : 'es-ES', {
     day: 'numeric',
     month: 'short',
     year: 'numeric',
@@ -126,14 +161,18 @@ export function truncateAtWord(text, max) {
  * Date('2026-07-06')` is UTC midnight, which renders as the 5th for any reader
  * west of Greenwich. A publication date has no time zone.
  *
+ * `idioma` sólo cambia el nombre del mes, como en `fmtDateShort`: la portada
+ * valenciana fechaba sus reportajes «6 de julio de 2026».
+ *
  * @param {string|null|undefined} value
+ * @param {string} [idioma]  'es' (por defecto) o 'ca'
  * @returns {string}
  */
-export function fmtDateHuman(value) {
+export function fmtDateHuman(value, idioma = 'es') {
   if (!value) return ''
   const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(value)
   if (!m) return value
-  return new Date(+m[1], +m[2] - 1, +m[3]).toLocaleDateString('es-ES', {
+  return new Date(+m[1], +m[2] - 1, +m[3]).toLocaleDateString(idioma === 'ca' ? 'ca-ES' : 'es-ES', {
     day: 'numeric',
     month: 'long',
     year: 'numeric',
@@ -189,6 +228,27 @@ export function safeHref(url) {
  */
 export function rellena(plantilla, vars = {}) {
   return Object.entries(vars).reduce((s, [k, v]) => s.split(`{${k}}`).join(String(v)), plantilla)
+}
+
+/**
+ * Parte una plantilla por su hueco: `[antes, despues]`.
+ *
+ * Para las frases del catálogo que envuelven un dato en un elemento —«Atribuido
+ * por la Generalitat a <strong>{municipio}</strong>; …»—, que `rellena` no puede
+ * componer porque devuelve texto. El componente pinta `antes`, el elemento con el
+ * dato y `despues`, y cada idioma pone el hueco donde su gramática lo pide.
+ *
+ * Una plantilla sin el hueco no se come el dato: va entera delante y el dato se
+ * pinta detrás, que se ve y se arregla, en vez de desaparecer sin que se note.
+ *
+ * @param {string} plantilla
+ * @param {string} hueco  p. ej. '{municipio}'
+ * @returns {[string, string]}
+ */
+export function partePorHueco(plantilla, hueco) {
+  const donde = plantilla.indexOf(hueco)
+  if (donde === -1) return [plantilla, '']
+  return [plantilla.slice(0, donde), plantilla.slice(donde + hueco.length)]
 }
 
 /**

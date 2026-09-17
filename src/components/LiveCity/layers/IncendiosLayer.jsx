@@ -5,6 +5,7 @@ import { useIncendios } from '../../../hooks/useIncendios'
 import { useIncendiosPerimetros } from '../../../hooks/useIncendiosPerimetros'
 import { tonoPorRecencia } from '../../../lib/incendios'
 import { IncendioPopup } from '../popups/IncendioPopup'
+import { IncendioTooltip } from '../popups/Tooltips'
 
 /**
  * Perímetros de incendio forestal del ICV que cruzan el término municipal,
@@ -68,13 +69,7 @@ export function IncendiosLayer({ anyoVisible = null }) {
           }}
         >
           <Tooltip direction="top" sticky>
-            <div style={{ fontFamily: 'Outfit, sans-serif', fontSize: 'var(--fs-meta)' }}>
-              <strong>{i.anyo}</strong>
-              {i.paraje ? ` · ${i.paraje}` : ''}
-              <br />
-              {i.superficieHa.toLocaleString('es-ES', { maximumFractionDigits: 2 })} ha
-              {!i.propio && ' · consta en otro término'}
-            </div>
+            <IncendioTooltip incendio={i} />
           </Tooltip>
           <Popup closeButton autoPan maxWidth={320}>
             <IncendioPopup incendio={i} fuente={indice?.fuente} />

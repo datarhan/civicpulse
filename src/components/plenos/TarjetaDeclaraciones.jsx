@@ -1,5 +1,8 @@
 import { Link } from 'react-router-dom'
 import { Card } from '../Primitives'
+import { rellena } from '../../lib/formatters'
+import { conHuecos } from '../../lib/huecos'
+import { useT } from '../../i18n'
 
 const n = (v) => v.toLocaleString('es-ES')
 
@@ -22,22 +25,23 @@ const n = (v) => v.toLocaleString('es-ES')
  * aquí.
  */
 export function TarjetaDeclaraciones({ embudo }) {
+  const t = useT()
   if (!embudo?.extraidas) return null
 
   const filas = [
     {
       id: 'extraidas',
-      rotulo: 'Extraídas de la transcripción',
+      rotulo: t('plenos.indice.decl.extraidas'),
       valor: n(embudo.extraidas),
       tono: 'var(--ink)',
-      nota: `en ${embudo.sesiones} sesiones con transcripción`,
+      nota: rellena(t('plenos.indice.decl.extraidas.nota'), { n: embudo.sesiones }),
     },
     {
       id: 'retenidas',
-      rotulo: 'Retenidas por la puerta editorial',
+      rotulo: t('plenos.indice.decl.retenidas'),
       valor: n(embudo.retenidas),
       tono: 'var(--warn-ink)',
-      nota: 'acusaciones públicas sin contrastar: no se publican aquí',
+      nota: t('plenos.indice.decl.retenidas.nota'),
     },
     // Segundo motivo de retirada, y de otra clase: arriba se retiene lo que no
     // podemos contrastar, aquí lo que no podemos demostrar que se dijera. Sólo
@@ -47,26 +51,26 @@ export function TarjetaDeclaraciones({ embudo }) {
       ? [
           {
             id: 'sin-procedencia',
-            rotulo: 'Retenidas por falta de procedencia',
+            rotulo: t('plenos.indice.decl.sinProcedencia'),
             valor: n(embudo.retenidasSinProcedencia),
             tono: 'var(--warn-ink)',
-            nota: 'su literal no consta en ninguna transcripción nuestra: no se publican',
+            nota: t('plenos.indice.decl.sinProcedencia.nota'),
           },
         ]
       : []),
     {
       id: 'sin-datos',
-      rotulo: 'Publicadas sin datos que las contrasten',
+      rotulo: t('plenos.indice.decl.sinDatos'),
       valor: n(embudo.sinDatos),
       tono: 'var(--ink70)',
-      nota: 'ni confirmadas ni desmentidas',
+      nota: t('plenos.indice.decl.sinDatos.nota'),
     },
     {
       id: 'contrastadas',
-      rotulo: 'Parciales o verificadas',
+      rotulo: t('plenos.indice.decl.contrastadas'),
       valor: `${n(embudo.parcial)} · ${n(embudo.verificado)}`,
       tono: 'var(--ok-ink)',
-      nota: 'lo único que cotejó un documento municipal',
+      nota: t('plenos.indice.decl.contrastadas.nota'),
     },
   ]
 
@@ -81,12 +85,15 @@ export function TarjetaDeclaraciones({ embudo }) {
           color: 'var(--ink50)',
         }}
       >
-        Declaraciones extraídas · {embudo.sesiones} sesiones
+        {rellena(t('plenos.indice.decl.eyebrow'), { n: embudo.sesiones })}
       </div>
       <h2
         style={{ fontSize: 'var(--fs-head)', fontWeight: 700, margin: '7px 0 0', lineHeight: 1.3 }}
       >
-        {n(embudo.extraidas)} declaraciones, {n(embudo.verificado)} verificadas
+        {rellena(t('plenos.indice.decl.titulo'), {
+          extraidas: n(embudo.extraidas),
+          verificado: n(embudo.verificado),
+        })}
       </h2>
 
       <div style={{ marginTop: 13 }}>
@@ -145,15 +152,20 @@ export function TarjetaDeclaraciones({ embudo }) {
           color: 'var(--ink70)',
         }}
       >
-        Un «sin datos» no desmiente nada: dice que no encontramos ningún documento municipal que
-        hable de eso. De los {n(embudo.sinDatos)},{' '}
-        <strong>{n(embudo.sinCorpus)} no tenían corpus donde buscar</strong> y{' '}
-        {n(embudo.comprobadoSinHallar)} se comprobaron sin hallar nada.
+        {conHuecos(t('plenos.indice.decl.sinDatosNota'), {
+          '{sinDatos}': n(embudo.sinDatos),
+          '{sinCorpus}': (
+            <strong>
+              {rellena(t('plenos.indice.decl.sinCorpus'), { n: n(embudo.sinCorpus) })}
+            </strong>
+          ),
+          '{comprobado}': n(embudo.comprobadoSinHallar),
+        })}
       </p>
 
       <div style={{ marginTop: 11 }}>
         <Link to="/declaraciones" style={{ fontSize: 'var(--fs-aux)', color: 'var(--civic)' }}>
-          Verificación de declaraciones, todas las sesiones →
+          {t('plenos.indice.decl.enlace')}
         </Link>
       </div>
     </Card>

@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-09-14T10:27:12.352Z",
+  "generatedAt": "2026-09-16T09:46:41.288Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 65,
-    "openTotal": 64,
-    "inRibaRoja": 40,
-    "closingSoon": 14,
-    "withDetail": 65,
+    "total": 62,
+    "openTotal": 61,
+    "inRibaRoja": 38,
+    "closingSoon": 13,
+    "withDetail": 62,
     "byMonth": {
-      "2026-09": 13,
+      "2026-09": 14,
       "2026-08": 29,
-      "2026-07": 14,
+      "2026-07": 10,
       "2026-06": 1,
       "2026-05": 3,
       "2026-04": 2,
@@ -23,6 +23,74 @@
     }
   },
   "items": [
+    {
+      "id": "2535",
+      "fo": 2535,
+      "codigo": "2026/00234",
+      "titulo": "Técnico/a",
+      "publishedAt": "2026-09-15",
+      "deadline": "2026-11-15",
+      "location": "C/ Pedrapiquers, s/n-Pol. Ind. \"El Oliveral\" 46190 Ribarroja del Turia (Valencia) Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2535",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00234"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Técnico/a"
+          },
+          {
+            "label": "Observaciones",
+            "value": "En CyTEM, laboratorio especializado en control de calidad para el sector de la construcción, queremos incorporar un/a Técnico/a para unirse al departamento de pruebas de servicio e instalaciones. Si eres una persona meticulosa y organizada y buscas un rol técnico para trabajar con autonomía, queremos conocerte. ¿Qué buscamos? Estudios Universitarios: Grado en Ingeniería Técnica Industrial, Grado en Arquitectura Técnica, Grado en Ingeniería Eléctrica o similar. Manejo de Excel y Autocad. Carnet de conducir y vehículo propio para acceder al centro de trabajo. Ser una persona organizada y meticulosa. Valorable experiencia en obras de edificación. ¡Disponer de motivación y ganas de querer dar lo mejor desde el primer día para crecer con todo el equipo! ¡No es imprescindible contar con experiencia previa! En CyTEM formaremos a la persona que se incorpore. Ubicación y movilidad: El centro de trabajo está ubicado en Ribarroja del Turia y se podrán realizar desplazamientos puntuales al centro de Alicante para formación y visitas a obras para realizar pruebas de servicio e instalaciones. ¿Qué ofrecemos? Incorporación inmediata. Contrato indefinido. Jornada completa. Horario de 08:00h. a 18:00h. de lunes a jueves y viernes de 08:00h. a 14:30h. ¡Viernes por la tarde libre! Estabilidad laboral. Empresa en continuo crecimiento con proyección de futuro preocupada por el bienestar del personal. Comunicación abierta y equipo cercano. Buen ambiente de trabajo, con profesionales altamente cualificad@s y caracterizados por un alto grado de especialización. Cultura basada en el rigor, la calidad y el compromiso. Si estás buscando un proyecto profesional donde crecer junto a un equipo comprometido, ¡Laboratorios CyTEM es tu lugar! Envíanos tu candidatura y sé parte del equipo de #CyTEM. Web: https://www.cytemsl.com/"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "C/ Pedrapiquers, s/n-Pol. Ind. \"El Oliveral\" 46190 Ribarroja del Turia (Valencia), Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio + variable"
+          },
+          {
+            "label": "Funciones",
+            "value": "- Emitirás actas del departamento de pruebas de servicio e instalaciones. - Realizarás informes técnicos. - Visitarás obras para realizar ensayos."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "numPuestos": "1",
+        "observaciones": "En CyTEM, laboratorio especializado en control de calidad para el sector de la construcción, queremos incorporar un/a Técnico/a para unirse al departamento de pruebas de servicio e instalaciones. Si eres una persona meticulosa y organizada y buscas un rol técnico para trabajar con autonomía, queremos conocerte. ¿Qué buscamos? Estudios Universitarios: Grado en Ingeniería Técnica Industrial, Grado en Arquitectura Técnica, Grado en Ingeniería Eléctrica o similar. Manejo de Excel y Autocad. Carnet de conducir y vehículo propio para acceder al centro de trabajo. Ser una persona organizada y meticulosa. Valorable experiencia en obras de edificación. ¡Disponer de motivación y ganas de querer dar lo mejor desde el primer día para crecer con todo el equipo! ¡No es imprescindible contar con experiencia previa! En CyTEM formaremos a la persona que se incorpore. Ubicación y movilidad: El centro de trabajo está ubicado en Ribarroja del Turia y se podrán realizar desplazamientos puntuales al centro de Alicante para formación y visitas a obras para realizar pruebas de servicio e instalaciones. ¿Qué ofrecemos? Incorporación inmediata. Contrato indefinido. Jornada completa. Horario de 08:00h. a 18:00h. de lunes a jueves y viernes de 08:00h. a 14:30h. ¡Viernes por la tarde libre! Estabilidad laboral. Empresa en continuo crecimiento con proyección de futuro preocupada por el bienestar del personal. Comunicación abierta y equipo cercano. Buen ambiente de trabajo, con profesionales altamente cualificad@s y caracterizados por un alto grado de especialización. Cultura basada en el rigor, la calidad y el compromiso. Si estás buscando un proyecto profesional donde crecer junto a un equipo comprometido, ¡Laboratorios CyTEM es tu lugar! Envíanos tu candidatura y sé parte del equipo de #CyTEM. Web: https://www.cytemsl.com/",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "jornada": "Completa",
+        "salario": "Según convenio + variable",
+        "funciones": "- Emitirás actas del departamento de pruebas de servicio e instalaciones. - Realizarás informes técnicos. - Visitarás obras para realizar ensayos.",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
     {
       "id": "2534",
       "fo": 2534,
@@ -4219,332 +4287,6 @@
         "horario": "L-D 6:00-13:36/ 14.20-21:56h (2 días de descanso)",
         "salario": "1444 € brutos/mes 12 pagas",
         "funciones": "Limpieza de comedor, oficinas, exterior, salas comunes, baños.",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2494",
-      "fo": 2494,
-      "codigo": "2026/00193",
-      "titulo": "Personal para establecimiento comercial",
-      "publishedAt": "2026-07-15",
-      "deadline": "2026-09-15",
-      "location": "Riba-roja Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2494",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00193"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Personal para establecimiento comercial"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Personal para atención al público Ubicación y traslado de género Elaboración de producto Limpieza establecimiento"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Riba-roja, Municipio: Riba-roja de Túria, Provincia: Valencia"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa"
-          },
-          {
-            "label": "Horario",
-            "value": "Lunes, martes, viernes, sábado y domingo de 6.00-14.00 Miércoles y jueves libre"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          },
-          {
-            "label": "Habilidades",
-            "value": "Actitud y ganas de trabajar"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "1",
-        "observaciones": "Personal para atención al público Ubicación y traslado de género Elaboración de producto Limpieza establecimiento",
-        "jornada": "Completa",
-        "horario": "Lunes, martes, viernes, sábado y domingo de 6.00-14.00 Miércoles y jueves libre",
-        "salario": "Según convenio",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2493",
-      "fo": 2493,
-      "codigo": "2026/00192",
-      "titulo": "Operario/a de control de calidad de pruebas de servicio e instalaciones (área fontanería y/o electricidad)",
-      "publishedAt": "2026-07-15",
-      "deadline": "2026-09-15",
-      "location": "C/ Pedrapiquers, s/n-Pol. Ind. Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2493",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00192"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Operario/a de control de calidad de pruebas de servicio e instalaciones (área fontanería y/o electricidad)"
-          },
-          {
-            "label": "Observaciones",
-            "value": "¿Qué ofrecemos?"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "2"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "C/ Pedrapiquers, s/n-Pol. Ind., Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio + variable"
-          },
-          {
-            "label": "Funciones",
-            "value": "La persona seleccionada tendrá como misión realizar el control de calidad en obra acudiendo con la furgoneta de empresa, siguiendo la ruta marcada por el responsable, realizando las siguientes funciones: Realización de ensayos en obra según normativa. Pruebas de estanqueidad en cubiertas y ventanas para comprobar filtraciones, pruebas de fontanería, saneamiento, baja tensión, PCI, ACS, climatización, Blower Door Registro de datos de los ensayos realizados. Mantenimiento básico de equipos y vehículos. Apoyo en oficina técnica. Realización de informes. Apoyo en el laboratorio. Orden y limpieza."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          },
-          {
-            "label": "Habilidades",
-            "value": "Requisitos: Conocimientos y/o experiencia previa realizando tareas de fontanería/electricidad. Se valorará poseer estudios, diplomas y/o carnets relacionados con edificación y obra civil, eficiencia energética, fontanería, electricidad, instalación y mantenimiento Carnet de conducir y vehículo propio para acceder a nuestras instalaciones. Manejo de dispositivo móvil a nivel usuario. Ser una persona organizada y con capacidad para la resolución de incidencias. Ganas de querer dar lo mejor desde el primer día y de crecer con todo el equipo."
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "2",
-        "observaciones": "¿Qué ofrecemos?",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46190",
-        "salario": "Según convenio + variable",
-        "funciones": "La persona seleccionada tendrá como misión realizar el control de calidad en obra acudiendo con la furgoneta de empresa, siguiendo la ruta marcada por el responsable, realizando las siguientes funciones: Realización de ensayos en obra según normativa. Pruebas de estanqueidad en cubiertas y ventanas para comprobar filtraciones, pruebas de fontanería, saneamiento, baja tensión, PCI, ACS, climatización, Blower Door Registro de datos de los ensayos realizados. Mantenimiento básico de equipos y vehículos. Apoyo en oficina técnica. Realización de informes. Apoyo en el laboratorio. Orden y limpieza.",
-        "vehiculo": "Sí",
-        "ocupaciones": [
-          {
-            "nombre": "Electricistas de la construcción y afines"
-          },
-          {
-            "nombre": "Fontaneros"
-          }
-        ]
-      }
-    },
-    {
-      "id": "2492",
-      "fo": 2492,
-      "codigo": "2026/00191",
-      "titulo": "Operario/a de recogida de muestras en obras de construcción",
-      "publishedAt": "2026-07-15",
-      "deadline": "2026-09-15",
-      "location": "C/ Pedrapiquers, s/n-Pol. Ind. Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2492",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00191"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Operario/a de recogida de muestras en obras de construcción"
-          },
-          {
-            "label": "Observaciones",
-            "value": "¿Qué ofrecemos?"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "2"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "C/ Pedrapiquers, s/n-Pol. Ind., Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio + variable"
-          },
-          {
-            "label": "Funciones",
-            "value": "La persona seleccionada tendrá como misión realizar el control de calidad en obra acudiendo con la furgoneta de empresa, siguiendo la ruta marcada por el responsable, realizando las siguientes funciones: Realización de ensayos de materiales en obra según normativa. Toma de muestras. Registro de datos de las muestras recogidas. Recogida de muestras de materiales de obra (hormigón, morteros, aceros, ladrillos, suelos, zahorras, etc.). Categorización de las muestras obtenidas. Transporte de muestras recogidas al laboratorio para su posterior análisis. Mantenimiento básico de equipos y vehículos. Apoyo en el laboratorio descargando, cargando y desmoldando probetas. Orden y limpieza."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          },
-          {
-            "label": "Habilidades",
-            "value": "Requisitos: Experiencia previa en el sector de construcción. Carnet de conducir y vehículo propio para acceder a nuestras instalaciones. Manejo de dispositivo móvil nivel usuario. Ser una persona organizada y con capacidad para la resolución de incidencias. Ganas de querer dar lo mejor desde el primer día y de crecer con todo el equipo."
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "2",
-        "observaciones": "¿Qué ofrecemos?",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46190",
-        "jornada": "Completa",
-        "salario": "Según convenio + variable",
-        "funciones": "La persona seleccionada tendrá como misión realizar el control de calidad en obra acudiendo con la furgoneta de empresa, siguiendo la ruta marcada por el responsable, realizando las siguientes funciones: Realización de ensayos de materiales en obra según normativa. Toma de muestras. Registro de datos de las muestras recogidas. Recogida de muestras de materiales de obra (hormigón, morteros, aceros, ladrillos, suelos, zahorras, etc.). Categorización de las muestras obtenidas. Transporte de muestras recogidas al laboratorio para su posterior análisis. Mantenimiento básico de equipos y vehículos. Apoyo en el laboratorio descargando, cargando y desmoldando probetas. Orden y limpieza.",
-        "vehiculo": "Sí",
-        "ocupaciones": [
-          {
-            "nombre": "PEONES DE LA CONSTRUCCIÓN DE EDIFICIOS"
-          },
-          {
-            "nombre": "Peones de la construcción de edificios"
-          },
-          {
-            "nombre": "ENCOFRADORES"
-          },
-          {
-            "nombre": "Encofradores y operarios de puesta en obra de hormigón"
-          },
-          {
-            "nombre": "Albañiles"
-          },
-          {
-            "nombre": "ALBAÑILES"
-          }
-        ]
-      }
-    },
-    {
-      "id": "2491",
-      "fo": 2491,
-      "codigo": "2026/00189",
-      "titulo": "Personal para puesto de limpieza",
-      "publishedAt": "2026-07-15",
-      "deadline": "2026-09-15",
-      "location": "MANISES-VALENCIA Manises (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2491",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00189"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Personal para puesto de limpieza"
-          },
-          {
-            "label": "Observaciones",
-            "value": "- Incorporación inmediata"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "OTROS SERVICIOS"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "2"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "MANISES-VALENCIA, Municipio: Manises, Provincia: Valencia, CP: 46940"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa"
-          },
-          {
-            "label": "Horario",
-            "value": "jornada completa/parcial"
-          },
-          {
-            "label": "Salario",
-            "value": "segun convenio"
-          },
-          {
-            "label": "Funciones",
-            "value": "Capacidad para realizar tareas de limpieza en centros deportivos, club náuticos, comunidades, etc."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "2",
-        "observaciones": "- Incorporación inmediata",
-        "municipio": "Manises",
-        "provincia": "Valencia",
-        "cp": "46940",
-        "jornada": "Completa",
-        "horario": "jornada completa/parcial",
-        "salario": "segun convenio",
-        "funciones": "Capacidad para realizar tareas de limpieza en centros deportivos, club náuticos, comunidades, etc.",
         "vehiculo": "Sí",
         "ocupaciones": []
       }

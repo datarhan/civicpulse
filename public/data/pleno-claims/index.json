@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-10T08:02:51.298Z",
+  "generatedAt": "2026-09-17T09:45:01.573Z",
   "version": "1",
   "plenos": [
     {
@@ -34,7 +34,7 @@
         "movilidad": 4,
         "salud": 1
       },
-      "bytes": 415387
+      "bytes": 421303
     },
     {
       "plenoId": "brxx5g",
@@ -86,7 +86,7 @@
         "fiscal": 9,
         "other": 9
       },
-      "bytes": 93847
+      "bytes": 94626
     },
     {
       "plenoId": "11025xk",
@@ -143,7 +143,7 @@
         "vivienda": 65,
         "cultura": 41
       },
-      "bytes": 355447
+      "bytes": 359461
     },
     {
       "plenoId": "k4olcs",
@@ -175,7 +175,7 @@
         "empleo": 3,
         "movilidad": 1
       },
-      "bytes": 388706
+      "bytes": 393682
     },
     {
       "plenoId": "ma87e0",
@@ -205,7 +205,7 @@
         "other": 3,
         "salud": 1
       },
-      "bytes": 241284
+      "bytes": 242579
     },
     {
       "plenoId": "1sqj7is",
@@ -232,30 +232,40 @@
         "medio-ambiente": 2,
         "vivienda": 12
       },
-      "bytes": 139204
+      "bytes": 141816
     },
     {
       "plenoId": "rx4hb4",
       "plenoDate": "2026-02-09",
       "chunkPath": "pleno-claims/rx4hb4.json",
-      "itemCount": 44,
-      "toggleCount": 44,
+      "itemCount": 276,
+      "toggleCount": 273,
       "byVerdict": {
-        "sin-datos": 44
+        "sin-datos": 273,
+        "parcial": 3
       },
       "byType": {
-        "afirmacion_numerica": 13,
-        "promesa": 9,
-        "cita_convenio": 12,
-        "cita_obra": 10
+        "cita_obra": 71,
+        "afirmacion_numerica": 133,
+        "promesa": 30,
+        "cita_convenio": 42
       },
       "byTopic": {
-        "fiscal": 9,
-        "urbanismo": 19,
-        "social": 4,
-        "medio-ambiente": 12
+        "urbanismo": 71,
+        "medio-ambiente": 31,
+        "fiscal": 79,
+        "educacion": 15,
+        "seguridad": 16,
+        "social": 19,
+        "transparencia": 4,
+        "salud": 10,
+        "other": 12,
+        "movilidad": 9,
+        "empleo": 6,
+        "cultura": 2,
+        "vivienda": 2
       },
-      "bytes": 67671
+      "bytes": 400996
     },
     {
       "plenoId": "19gax3o",
@@ -287,7 +297,7 @@
         "social": 4,
         "educacion": 2
       },
-      "bytes": 469474
+      "bytes": 472496
     },
     {
       "plenoId": "1pe3qs8",
@@ -308,7 +318,7 @@
         "medio-ambiente": 10,
         "other": 1
       },
-      "bytes": 18131
+      "bytes": 18621
     },
     {
       "plenoId": "toa3rc",
@@ -354,7 +364,7 @@
         "salud": 1,
         "cultura": 2
       },
-      "bytes": 209047
+      "bytes": 209767
     },
     {
       "plenoId": "qz6weg",
@@ -386,7 +396,7 @@
         "movilidad": 2,
         "seguridad": 1
       },
-      "bytes": 596741
+      "bytes": 602884
     },
     {
       "plenoId": "1du4rf5",
@@ -416,7 +426,7 @@
         "seguridad": 1,
         "cultura": 7
       },
-      "bytes": 330116
+      "bytes": 332326
     },
     {
       "plenoId": "otxq2c",
@@ -479,7 +489,7 @@
         "movilidad": 15,
         "cultura": 3
       },
-      "bytes": 336603
+      "bytes": 339323
     },
     {
       "plenoId": "rmtyr",
@@ -511,7 +521,7 @@
         "vivienda": 6,
         "salud": 1
       },
-      "bytes": 365539
+      "bytes": 368880
     },
     {
       "plenoId": "1tgd1h4",
@@ -543,7 +553,7 @@
         "educacion": 1,
         "vivienda": 2
       },
-      "bytes": 1398337
+      "bytes": 1400124
     },
     {
       "plenoId": "1080zow",
@@ -612,85 +622,86 @@
         "urbanismo": 3,
         "other": 1
       },
-      "bytes": 35583
+      "bytes": 36329
     }
   ],
   "totals": {
-    "items": 4663,
+    "items": 4895,
     "plenos": 22,
     "byVerdict": {
-      "sin-datos": 4649,
-      "parcial": 12,
+      "sin-datos": 4878,
+      "parcial": 15,
       "verificado": 2
     },
     "byTopicVerdict": {
       "cultura": {
-        "sin-datos": 206
+        "sin-datos": 208
       },
       "empleo": {
-        "sin-datos": 203
+        "sin-datos": 209
       },
       "other": {
-        "sin-datos": 396
+        "sin-datos": 408
       },
       "fiscal": {
-        "sin-datos": 742,
+        "sin-datos": 812,
         "parcial": 2
       },
       "medio-ambiente": {
-        "sin-datos": 540,
+        "sin-datos": 559,
         "parcial": 7
       },
       "urbanismo": {
-        "sin-datos": 855,
-        "parcial": 2
+        "sin-datos": 905,
+        "parcial": 4
       },
       "transparencia": {
-        "sin-datos": 619,
+        "sin-datos": 623,
         "verificado": 1
       },
       "educacion": {
-        "sin-datos": 220,
+        "sin-datos": 235,
         "parcial": 1
       },
       "vivienda": {
-        "sin-datos": 148
+        "sin-datos": 150
       },
       "social": {
-        "sin-datos": 306
+        "sin-datos": 321
       },
       "seguridad": {
-        "sin-datos": 119
+        "sin-datos": 135
       },
       "movilidad": {
-        "sin-datos": 150,
+        "sin-datos": 159,
         "verificado": 1
       },
       "salud": {
-        "sin-datos": 145
+        "sin-datos": 154,
+        "parcial": 1
       }
     },
     "cobertura": {
       "porTipo": {
         "promesa": {
-          "total": 509,
-          "sinCorpus": 60,
-          "comprobadoSinHallar": 449
+          "total": 530,
+          "sinCorpus": 57,
+          "comprobadoSinHallar": 473
         },
         "cita_convenio": {
-          "total": 582,
-          "sinCorpus": 541,
-          "comprobadoSinHallar": 41
+          "total": 612,
+          "sinCorpus": 564,
+          "comprobadoSinHallar": 48
         },
         "afirmacion_numerica": {
-          "total": 2011,
-          "sinCorpus": 1654,
-          "comprobadoSinHallar": 357
+          "total": 2131,
+          "sinCorpus": 1728,
+          "comprobadoSinHallar": 403
         },
         "cita_obra": {
-          "total": 1560,
-          "sinCorpus": 552,
-          "comprobadoSinHallar": 1008
+          "total": 1621,
+          "sinCorpus": 548,
+          "comprobadoSinHallar": 1073
         },
         "valoracion_politica": {
           "total": 1,
@@ -700,103 +711,103 @@
       },
       "porTema": {
         "cultura": {
-          "total": 206,
-          "sinCorpus": 102,
-          "comprobadoSinHallar": 104
-        },
-        "empleo": {
-          "total": 203,
-          "sinCorpus": 149,
-          "comprobadoSinHallar": 54
-        },
-        "other": {
-          "total": 396,
-          "sinCorpus": 258,
-          "comprobadoSinHallar": 138
-        },
-        "fiscal": {
-          "total": 744,
-          "sinCorpus": 469,
-          "comprobadoSinHallar": 275
-        },
-        "medio-ambiente": {
-          "total": 547,
-          "sinCorpus": 263,
-          "comprobadoSinHallar": 284
-        },
-        "urbanismo": {
-          "total": 857,
-          "sinCorpus": 444,
-          "comprobadoSinHallar": 413
-        },
-        "transparencia": {
-          "total": 620,
-          "sinCorpus": 509,
-          "comprobadoSinHallar": 111
-        },
-        "educacion": {
-          "total": 221,
-          "sinCorpus": 116,
+          "total": 208,
+          "sinCorpus": 103,
           "comprobadoSinHallar": 105
         },
+        "empleo": {
+          "total": 209,
+          "sinCorpus": 154,
+          "comprobadoSinHallar": 55
+        },
+        "other": {
+          "total": 408,
+          "sinCorpus": 266,
+          "comprobadoSinHallar": 142
+        },
+        "fiscal": {
+          "total": 814,
+          "sinCorpus": 504,
+          "comprobadoSinHallar": 310
+        },
+        "medio-ambiente": {
+          "total": 566,
+          "sinCorpus": 271,
+          "comprobadoSinHallar": 295
+        },
+        "urbanismo": {
+          "total": 909,
+          "sinCorpus": 452,
+          "comprobadoSinHallar": 457
+        },
+        "transparencia": {
+          "total": 624,
+          "sinCorpus": 511,
+          "comprobadoSinHallar": 113
+        },
+        "educacion": {
+          "total": 236,
+          "sinCorpus": 118,
+          "comprobadoSinHallar": 118
+        },
         "vivienda": {
-          "total": 148,
-          "sinCorpus": 82,
-          "comprobadoSinHallar": 66
+          "total": 150,
+          "sinCorpus": 83,
+          "comprobadoSinHallar": 67
         },
         "social": {
-          "total": 306,
-          "sinCorpus": 183,
-          "comprobadoSinHallar": 123
+          "total": 321,
+          "sinCorpus": 188,
+          "comprobadoSinHallar": 133
         },
         "seguridad": {
-          "total": 119,
-          "sinCorpus": 96,
-          "comprobadoSinHallar": 23
+          "total": 135,
+          "sinCorpus": 108,
+          "comprobadoSinHallar": 27
         },
         "movilidad": {
-          "total": 151,
+          "total": 160,
           "sinCorpus": 61,
-          "comprobadoSinHallar": 90
+          "comprobadoSinHallar": 99
         },
         "salud": {
-          "total": 145,
-          "sinCorpus": 76,
-          "comprobadoSinHallar": 69
+          "total": 155,
+          "sinCorpus": 79,
+          "comprobadoSinHallar": 76
         }
       },
       "corpus": {
-        "promises": 449,
-        "tenders": 1406,
-        "tenders-ted": 1406,
-        "bdns": 411,
-        "budget": 411,
+        "promises": 473,
+        "tenders": 1524,
+        "tenders-ted": 1524,
+        "bdns": 464,
+        "budget": 464,
         "curator-downgrade": 41,
-        "verdict-engine": 886
+        "verdict-engine": 874
       },
       "porClaseDocumental": {
         "porClase": {
           "contrato": 122,
           "acta": 21,
-          "informe-tecnico": 67,
-          "presupuesto": 109,
+          "informe-tecnico": 68,
+          "presupuesto": 110,
           "convenio": 34,
-          "plan-interno": 49,
-          "expediente": 34,
+          "plan-interno": 50,
+          "expediente": 35,
           "ordenanza": 19
         },
-        "sinDocumento": 2375,
-        "total": 2808
+        "sinDocumento": 2462,
+        "total": 2898
       }
     },
     "retenidas": {
-      "acusacion_publica": 2255,
+      "acusacion_publica": 2581,
       "cita_convenio": 1
     },
     "retenidasSinProcedencia": 2,
     "sinDatosPorque": {
-      "sinCorpus": 2803,
-      "comprobadoSinHallar": 1846
+      "sinCorpus": 2893,
+      "comprobadoSinHallar": 1985
     }
   }
 }

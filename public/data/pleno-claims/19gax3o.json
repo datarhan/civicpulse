@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-10T08:02:51.298Z",
+  "generatedAt": "2026-09-17T09:45:01.573Z",
   "version": "1",
   "plenoId": "19gax3o",
   "plenoDate": "2026-01-19",
@@ -58,8 +58,16 @@
       "verification": {
         "claimId": "19gax3o-003-afi-7bb0da",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "summary": "El objeto citado aparece en un expediente municipal, pero ninguna de sus magnitudes coincide con la cifra del claim. No es que no haya registro: es que el que hay no dice eso.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=czdZT44wsgAtm4eBPtV6eQ%3D%3D",
+            "snippet": "Contratación servicio dirección obra y dirección ejecución material, coordinación en seguridad y salud para el proyecto obras Instalación de pérgolas con vegetación autóctona como refugio climático en Riba-roja de Túria (Valencia), derivado del SDA de servicios de arquitectura e ingeniería, consultoría y asistencia técnica a las diferentes áreas municipales (Ctto94/2026). · Ayuntamiento de Riba-roja de Túria · José Luis Moreno Delgado · architecture · 1742 €",
+            "similarity": 1,
+            "stance": "checked"
+          }
+        ],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
@@ -387,8 +395,16 @@
       "verification": {
         "claimId": "19gax3o-009-afi-ea72ad",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "summary": "El objeto citado aparece en un expediente municipal, pero ninguna de sus magnitudes coincide con la cifra del claim. No es que no haya registro: es que el que hay no dice eso.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=czdZT44wsgAtm4eBPtV6eQ%3D%3D",
+            "snippet": "Contratación servicio dirección obra y dirección ejecución material, coordinación en seguridad y salud para el proyecto obras Instalación de pérgolas con vegetación autóctona como refugio climático en Riba-roja de Túria (Valencia), derivado del SDA de servicios de arquitectura e ingeniería, consultoría y asistencia técnica a las diferentes áreas municipales (Ctto94/2026). · Ayuntamiento de Riba-roja de Túria · José Luis Moreno Delgado · architecture · 1742 €",
+            "similarity": 1,
+            "stance": "checked"
+          }
+        ],
         "checkedAgainst": []
       },
       "visibility": "toggle"
@@ -560,8 +576,16 @@
       "verification": {
         "claimId": "19gax3o-011-afi-add9e6",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "summary": "El objeto citado aparece en un expediente municipal, pero ninguna de sus magnitudes coincide con la cifra del claim. No es que no haya registro: es que el que hay no dice eso.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=czdZT44wsgAtm4eBPtV6eQ%3D%3D",
+            "snippet": "Contratación servicio dirección obra y dirección ejecución material, coordinación en seguridad y salud para el proyecto obras Instalación de pérgolas con vegetación autóctona como refugio climático en Riba-roja de Túria (Valencia), derivado del SDA de servicios de arquitectura e ingeniería, consultoría y asistencia técnica a las diferentes áreas municipales (Ctto94/2026). · Ayuntamiento de Riba-roja de Túria · José Luis Moreno Delgado · architecture · 1742 €",
+            "similarity": 1,
+            "stance": "checked"
+          }
+        ],
         "checkedAgainst": []
       },
       "visibility": "toggle"
@@ -9608,8 +9632,16 @@
       "verification": {
         "claimId": "19gax3o-185-afi-a3b53f",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "summary": "El objeto citado aparece en un expediente municipal, pero ninguna de sus magnitudes coincide con la cifra del claim. No es que no haya registro: es que el que hay no dice eso.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2BeIYUqGWw5nkY6rls5tG9A%3D%3D",
+            "snippet": "Contrato menor del servicio de consultoría y asistencia técnica para la redacción de documentos en la licitación de contratos vinculados al área de Acción Social y Políticas Inclusivas y otros (Ctto73M/2025) · Ayuntamiento de Riba-roja de Túria · GESTIÓN TÉCNICA Y LICITACIONES S.L. · legal · 13.000 €",
+            "similarity": 1,
+            "stance": "checked"
+          }
+        ],
         "checkedAgainst": []
       },
       "visibility": "toggle"

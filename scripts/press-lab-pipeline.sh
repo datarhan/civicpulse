@@ -329,7 +329,13 @@ if [ -n "$CHAIN_FAILED" ] || [ -n "$CHAIN_SKIPPED" ]; then RUN_INCOMPLETE=1; fi
 # sería cambiar un defecto pequeño por uno grande. Lo caza
 # tests/data-graph-frescura.test.ts, y que esta llamada exista lo fija
 # tests/refresco-antes-de-comitear.test.ts.
-npm run refresh \
+# `--rebuilt-paths` escribe por stdout SÓLO lo que esta pasada reconstruyó, para
+# añadirlo al pathspec de abajo. Sin eso, esta tubería comitea la ENTRADA de un
+# derivado y deja fuera el derivado que acaba de rederivar: `main` incumple
+# entonces `tests/data-graph-frescura.test.ts` hasta la nocturna, y la CI de
+# cualquier PR que construya en esa ventana sale roja por ello. Medido el
+# 16-09-2026: ochenta minutos en rojo y una PR ajena caída dentro.
+REDERIVADOS="$(cron_rutas_rederivadas)" \
   || log "warn: refresh falló — puede comitearse un derivado sin rederivar (lo caza tests/data-graph-frescura.test.ts)"
 
 # ---- commit + push ONLY snapshots owned by steps that SUCCEEDED -------
@@ -345,6 +351,8 @@ npm run refresh \
 # two-independent-layers pattern, this being the second.
 STAGE_PATHS=""
 for _s in $CHAIN_OK; do STAGE_PATHS="$STAGE_PATHS $(outputs_of "$_s")"; done
+# Y lo que el refresh de arriba rederivó, que viaja con la entrada que lo movió.
+STAGE_PATHS="$STAGE_PATHS $REDERIVADOS"
 WITHHELD_PATHS=""
 for _s in $CHAIN_FAILED $CHAIN_SKIPPED; do WITHHELD_PATHS="$WITHHELD_PATHS $(outputs_of "$_s")"; done
 if [ -n "$WITHHELD_PATHS" ]; then
@@ -410,6 +418,22 @@ else
   if ! git push origin main; then
     log "push rejected — pull-rebase + retry"
     cron_git_pull_rebase "pull-rebase de reintento tras push rechazado"
+    # El rebase trae el trabajo de OTRO cron, y ese trabajo puede haber movido la
+    # entrada de un nodo derivado: publicar sin volver a derivar deja `main`
+    # incumpliendo su propia `tests/data-graph-frescura.test.ts`. Le pasó a
+    # `94359907` el 16-09-2026, que rebaseó sobre la instantánea de quejas y
+    # publicó dos nodos rancios. La PR #46 cerró este agujero para el commit
+    # normal y lo dejó abierto justo aquí.
+    REDERIVADOS_REBASE="$(cron_rutas_rederivadas)"
+    if [ -n "$REDERIVADOS_REBASE" ]; then
+      # shellcheck disable=SC2086  # deliberado: es una lista de rutas
+      if cron_git_stage_and_check $REDERIVADOS_REBASE; then
+        cron_git_commit_pathspec "chore(datos): rederivado tras el rebase" || true
+      fi
+      log "rederivado tras el rebase:$REDERIVADOS_REBASE"
+    else
+      log "rederivado tras el rebase: nada que reconstruir"
+    fi
     git push origin main
   fi
 fi

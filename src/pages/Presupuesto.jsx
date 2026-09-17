@@ -24,10 +24,12 @@ import {
   capitulosACero,
 } from '../scraper/presupuesto-lectura'
 import { isCommittedContract, committedAwardYearSpan } from '../lib/contract-status'
-import { fmtDateShort, fmtDateLong, rellena } from '../lib/formatters'
+import { fmtDateCompacta, fmtDateLong, rellena } from '../lib/formatters'
+import { conHuecos } from '../lib/huecos'
+import { titularDeuda } from '../lib/deuda-titular'
 import { yearSpan } from '../lib/year-span'
 import { EFICIENCIA_ENABLED } from '../flags'
-import { useT } from '../i18n'
+import { useLocale, useT } from '../i18n'
 import Paginacion from '../components/Paginacion'
 import GastoDashboard from '../components/Presupuesto/GastoDashboard'
 import { TedNotices } from '../components/Presupuesto/TedNotices'
@@ -186,7 +188,7 @@ function ChapterRow({ label, amount, total, nota }) {
 /* ------------------------------------------------------------------------ */
 
 function Cabecera() {
-  const t = useT()
+  const { locale, t } = useLocale()
   const { loading, error, data } = useBudget()
   // Read before the early return — rules of hooks. Used only to state that the
   // town's own execution statement disagrees with CONPREL about the approved
@@ -325,7 +327,7 @@ function Cabecera() {
               gastos: eurM(s.totalExpense, 2),
               porHab: eur0(perCapita),
               hab: num(s.population),
-              fecha: fmtDateLong(data.generatedAt),
+              fecha: fmtDateLong(data.generatedAt, locale),
             })}
           </span>
           <DataAsOf iso={data.generatedAt} label="CONPREL" />
@@ -1107,7 +1109,7 @@ function DeudaVivaSection() {
     <Card>
       <SectionHead
         eyebrow={t('presupuesto.deuda.eyebrow')}
-        title={tendencia.titular}
+        title={titularDeuda(tendencia, t)}
         right={
           <div style={{ textAlign: 'right', flexShrink: 0 }}>
             <div
@@ -1436,16 +1438,19 @@ function ContratacionBanda() {
 }
 
 function RealSubsidies() {
+  const { locale, t } = useLocale()
   const { loading, error, data } = useBdns()
   if (loading || error || !data) return null
   const items = (data.items || []).filter((i) => i.direction === 'granted').slice(0, 6)
   if (items.length === 0) return null
-  const fmt = fmtDateShort
   return (
     <Card id="subvenciones" style={{ scrollMarginTop: 24 }}>
       <SectionHead
-        eyebrow={`BDNS · ${data.stats.total} convocatorias · ${data.stats.granted} municipales`}
-        title="Subvenciones · Base Nacional"
+        eyebrow={rellena(t('presupuesto.subvenciones.eyebrow'), {
+          total: data.stats.total,
+          municipales: data.stats.granted,
+        })}
+        title={t('presupuesto.subvenciones.titulo')}
       />
       <div
         style={{
@@ -1455,7 +1460,7 @@ function RealSubsidies() {
           marginBottom: 10,
         }}
       >
-        Datos reales de MinHac BDNS · pap.hacienda.gob.es
+        {t('presupuesto.subvenciones.fuente')}
       </div>
       {items.map((s, i) => (
         <div
@@ -1470,7 +1475,7 @@ function RealSubsidies() {
               BDNS {s.bdnsCode}
             </Pill>
             <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-              {fmt(s.date)}
+              {fmtDateCompacta(s.date, locale)}
             </span>
           </div>
           <div style={{ fontSize: 'var(--fs-aux)', lineHeight: 1.4 }}>
@@ -1485,6 +1490,7 @@ function RealSubsidies() {
 }
 
 function ObrasEnCursoSection() {
+  const t = useT()
   const { data } = useObras()
   const obras = data?.obras ?? []
   if (obras.length === 0) return null
@@ -1493,10 +1499,7 @@ function ObrasEnCursoSection() {
   const feder = obras.filter((o) => o.programa !== 'renove')
   return (
     <Card id="obras" style={{ scrollMarginTop: 24 }}>
-      <SectionHead
-        eyebrow="Urbanismo · infraestructuras"
-        title="Obras de infraestructura · fichas municipales 2019–2024"
-      />
+      <SectionHead eyebrow={t('presupuesto.obras.eyebrow')} title={t('presupuesto.obras.titulo')} />
       <p
         style={{
           fontSize: 'var(--fs-aux)',
@@ -1505,11 +1508,16 @@ function ObrasEnCursoSection() {
           maxWidth: '68ch',
         }}
       >
-        {obras.length} obras publicadas por el Ayuntamiento en fichas oficiales:{' '}
-        {renove.length > 0 &&
-          `${renove.length} actuaciones del Plan RENOVE de adecuación de viales (ejecutadas 2023–2024) y `}
-        {feder.length} obras de 2019–2020 cofinanciadas con el FEDER de la Comunitat Valenciana
-        2014–2020.
+        {renove.length > 0
+          ? rellena(t('presupuesto.obras.intro'), {
+              n: obras.length,
+              renove: renove.length,
+              feder: feder.length,
+            })
+          : rellena(t('presupuesto.obras.intro.soloFeder'), {
+              n: obras.length,
+              feder: feder.length,
+            })}
       </p>
       <div
         style={{
@@ -1520,21 +1528,28 @@ function ObrasEnCursoSection() {
           flexWrap: 'wrap',
         }}
       >
-        <Pill tone="warn">Últimas fichas publicadas: feb 2024</Pill>
+        <Pill tone="warn">{t('presupuesto.obras.ultimas')}</Pill>
         <span style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
-          obras ya ejecutadas · no refleja obras posteriores
+          {t('presupuesto.obras.ejecutadas')}
         </span>
       </div>
       {/* Catorce fichas de obra seguidas medían más de 1.800 px y dejaban la
           sección siguiente fuera de la pantalla. Se paginan con el mismo
           componente que el listado de contratos: una sola implementación del
           acotado, del reinicio y de los botones. */}
-      <Paginacion items={obras} porPagina={POR_PAGINA_OBRAS} etiqueta="listado de obras">
+      <Paginacion
+        items={obras}
+        porPagina={POR_PAGINA_OBRAS}
+        etiqueta={t('presupuesto.obras.listado')}
+      >
         {(pagina) => (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             {pagina.map((o) => {
               const importe = o.importeAdjudicacion ?? o.costePrevisto
-              const importeLabel = o.importeAdjudicacion != null ? 'adj.' : 'previsto'
+              const importeLabel =
+                o.importeAdjudicacion != null
+                  ? t('presupuesto.obras.adj')
+                  : t('presupuesto.obras.previsto')
               return (
                 <div
                   key={o.id}
@@ -1551,11 +1566,11 @@ function ObrasEnCursoSection() {
                     <span style={{ fontWeight: 600 }}>{o.nombre}</span>
                     <span style={{ display: 'flex', gap: 6, alignItems: 'baseline' }}>
                       <Pill tone="neutral">
-                        {o.programa === 'renove' ? 'Plan RENOVE' : 'FEDER'}
+                        {o.programa === 'renove' ? t('presupuesto.obras.renove') : 'FEDER'}
                       </Pill>
                       {typeof o.bajaPct === 'number' && (
                         <Pill tone={o.bajaPct >= 20 ? 'ok' : 'neutral'}>
-                          baja <span className="mono">{o.bajaPct}%</span>
+                          {t('presupuesto.obras.baja')} <span className="mono">{o.bajaPct}%</span>
                         </Pill>
                       )}
                     </span>
@@ -1566,9 +1581,15 @@ function ObrasEnCursoSection() {
                   >
                     {o.empresa ? `${o.empresa} · ` : ''}
                     {importe != null ? `${eur(importe)} ${importeLabel}` : ''}
-                    {o.plazoMeses ? ` · ${o.plazoMeses} meses` : ''}
-                    {o.inicio ? ` · inicio ${o.inicio}` : ''}
-                    {o.fechaEjecucion ? ` · ejecución ${o.fechaEjecucion}` : ''}
+                    {o.plazoMeses
+                      ? ` · ${rellena(t('presupuesto.obras.meses'), { n: o.plazoMeses })}`
+                      : ''}
+                    {o.inicio
+                      ? ` · ${rellena(t('presupuesto.obras.inicio'), { fecha: o.inicio })}`
+                      : ''}
+                    {o.fechaEjecucion
+                      ? ` · ${rellena(t('presupuesto.obras.ejecucion'), { fecha: o.fechaEjecucion })}`
+                      : ''}
                   </div>
                   <a
                     href={o.fichaUrl}
@@ -1581,7 +1602,7 @@ function ObrasEnCursoSection() {
                       textDecoration: 'underline',
                     }}
                   >
-                    Ver ficha ↗
+                    {t('presupuesto.obras.verFicha')}
                   </a>
                 </div>
               )
@@ -1597,8 +1618,7 @@ function ObrasEnCursoSection() {
           marginBottom: 0,
         }}
       >
-        Fuente: Ayuntamiento de Riba-roja de Túria — Portal de Transparencia («obras de
-        infraestructuras en curso») y página del Plan RENOVE de adecuación de viales.
+        {t('presupuesto.obras.fuente')}
       </p>
     </Card>
   )
@@ -1617,6 +1637,7 @@ function ObrasEnCursoSection() {
  * importes brutos salían quince contratos por encima del límite y son cuatro.
  */
 function ContratacionMenorSection() {
+  const t = useT()
   const { data } = useTenders()
   const contratos = data?.contracts ?? []
   if (contratos.length === 0) return null
@@ -1645,8 +1666,12 @@ function ContratacionMenorSection() {
   return (
     <Card id="menores" style={{ scrollMarginTop: 24 }}>
       <SectionHead
-        eyebrow="Contratación · vía directa"
-        title={`Contratos menores: ${r.n} de ${adjudicados.length}, ${eur(r.importeSinIva)}`}
+        eyebrow={t('presupuesto.menores.eyebrow')}
+        title={rellena(t('presupuesto.menores.titulo'), {
+          n: r.n,
+          total: adjudicados.length,
+          importe: eur(r.importeSinIva),
+        })}
       />
       <p
         style={{
@@ -1656,21 +1681,28 @@ function ContratacionMenorSection() {
           maxWidth: '68ch',
         }}
       >
-        El contrato menor se adjudica <strong>sin licitación ni publicidad previa</strong>. Son el{' '}
-        {Math.round((r.n / adjudicados.length) * 100)} % de los contratos adjudicados o firmados y
-        {cuota != null ? ` el ${cuota.toFixed(1)} % del importe` : ''}: muchos expedientes y poca
-        parte del dinero.{' '}
+        {conHuecos(t('presupuesto.menores.intro'), {
+          '{sinLicitacion}': <strong>{t('presupuesto.menores.intro.sinLicitacion')}</strong>,
+          '{pct}': Math.round((r.n / adjudicados.length) * 100),
+          '{importe}':
+            cuota != null
+              ? ` ${rellena(t('presupuesto.menores.intro.importe'), { pct: cuota.toFixed(1) })}`
+              : '',
+        })}{' '}
         {peso && (
           <>
-            Ese segundo porcentaje depende mucho del denominador — una sola concesión de{' '}
-            {eur(peso.importeDelMayor)}, adjudicada de una vez por todo su plazo, es el{' '}
-            {peso.cuotaDelMayor} % de todo lo contratado; apartándola, los menores serían el{' '}
-            {peso.cuotaSinElMayor} %.{' '}
+            {rellena(t('presupuesto.menores.peso'), {
+              importe: eur(peso.importeDelMayor),
+              cuota: peso.cuotaDelMayor,
+              sin: peso.cuotaSinElMayor,
+            })}{' '}
           </>
         )}
-        Todas las cifras van <strong>sin IVA</strong>, porque así define el techo el art. 118 de la
-        Ley 9/2017 —{eur(TECHO_MENOR_SIN_IVA.construction)} en obras,{' '}
-        {eur(TECHO_MENOR_SIN_IVA.services)} en servicios y suministros.
+        {conHuecos(t('presupuesto.menores.iva'), {
+          '{sinIva}': <strong>{t('presupuesto.menores.iva.sinIva')}</strong>,
+          '{obras}': eur(TECHO_MENOR_SIN_IVA.construction),
+          '{servicios}': eur(TECHO_MENOR_SIN_IVA.services),
+        })}
       </p>
 
       <div style={{ display: 'grid', gap: 5, margin: '0 0 12px' }}>
@@ -1711,7 +1743,9 @@ function ContratacionMenorSection() {
 
       {r.sobreTecho.length > 0 && (
         <div style={{ margin: '0 0 10px' }}>
-          <Pill tone="warn">{r.sobreTecho.length} por encima del techo del art. 118</Pill>
+          <Pill tone="warn">
+            {rellena(t('presupuesto.menores.sobreTecho'), { n: r.sobreTecho.length })}
+          </Pill>
           <ul
             style={{
               margin: '8px 0 0',
@@ -1722,8 +1756,9 @@ function ContratacionMenorSection() {
           >
             {r.sobreTecho.map((c) => (
               <li key={c.title} style={{ marginBottom: 3 }}>
-                <span className="mono">{eur(c.importeSinIva)}</span> frente a{' '}
-                <span className="mono">{eur(c.techo)}</span> — {c.title}
+                <span className="mono">{eur(c.importeSinIva)}</span>{' '}
+                {t('presupuesto.menores.frente')} <span className="mono">{eur(c.techo)}</span> —{' '}
+                {c.title}
               </li>
             ))}
           </ul>
@@ -1735,27 +1770,28 @@ function ContratacionMenorSection() {
               maxWidth: '68ch',
             }}
           >
-            La marca «contrato menor» la pone el portal de contratación, no nosotros, y una etiqueta
-            equivocada en origen se parece exactamente a un incumplimiento. Esto mide la distancia
-            al límite legal y la publica; llamarlo infracción es un paso que no da un programa.
+            {t('presupuesto.menores.marca')}
           </p>
         </div>
       )}
 
       {(r.sinTecho > 0 || r.sinImporte > 0) && (
         <p style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', margin: '0 0 8px' }}>
-          {r.sinTecho > 0 && `${r.sinTecho} sin techo declarado para su tipo de contrato`}
-          {r.sinTecho > 0 && r.sinImporte > 0 && ' · '}
-          {r.sinImporte > 0 && `${r.sinImporte} sin importe neto publicado`}: no se comparan con el
-          límite, en vez de darlos por dentro.
-          {r.anulados > 0 &&
-            ` Otros ${r.anulados} venían marcados como menores y su adjudicación se deshizo: no cuentan como gasto ni se les mide el techo.`}
+          {rellena(t('presupuesto.menores.sinComparar'), {
+            lista: [
+              r.sinTecho > 0 && rellena(t('presupuesto.menores.sinTecho'), { n: r.sinTecho }),
+              r.sinImporte > 0 && rellena(t('presupuesto.menores.sinImporte'), { n: r.sinImporte }),
+            ]
+              .filter(Boolean)
+              .join(' · '),
+          })}
+          {r.anulados > 0 && ` ${rellena(t('presupuesto.menores.anulados'), { n: r.anulados })}`}
         </p>
       )}
 
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
         <DataAsOf iso={data?.generatedAt} file="tenders.json" />
-        <ExtLink href={NORMA_MENOR}>Ley 9/2017, art. 118</ExtLink>
+        <ExtLink href={NORMA_MENOR}>{t('presupuesto.menores.norma')}</ExtLink>
       </div>
     </Card>
   )
@@ -1766,7 +1802,7 @@ function ContratacionMenorSection() {
 /* ------------------------------------------------------------------------ */
 
 function PiePresupuesto() {
-  const t = useT()
+  const { locale, t } = useLocale()
   const { data: budget } = useBudget()
   const { data: deuda } = useDeudaViva()
   if (!budget) return null
@@ -1798,7 +1834,9 @@ function PiePresupuesto() {
         <ExtLink href={deuda?.source?.portal} style={{ color: 'var(--civic)' }}>
           {t('presupuesto.pie.fuentes.deuda')}
         </ExtLink>
-        {rellena(t('presupuesto.pie.fuentes.c'), { fecha: fmtDateLong(budget.generatedAt) })}
+        {rellena(t('presupuesto.pie.fuentes.c'), {
+          fecha: fmtDateLong(budget.generatedAt, locale),
+        })}
       </p>
       <span style={{ flex: 1 }} />
       <div

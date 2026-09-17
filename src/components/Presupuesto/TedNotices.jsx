@@ -1,7 +1,22 @@
 import { Card, ExtLink } from '../Primitives'
 import { useTendersTed } from '../../hooks/useTendersTed'
 import { yearSpan } from '../../lib/year-span'
-import { useT } from '../../i18n'
+import { rotuloDe, useT } from '../../i18n'
+
+/**
+ * La naturaleza de un anuncio TED, con el nombre del tipo de contrato del catálogo.
+ * El TED la da en su vocabulario —works, supplies, services— y la fila la pintaba
+ * tal cual, en inglés, también en la página castellana. Un valor que no esté aquí
+ * sigue saliendo crudo, que se ve y se arregla.
+ */
+const TIPO_DE_NATURALEZA = { works: 'construction', supplies: 'supplies', services: 'services' }
+
+function naturalezaDe(t, anuncio) {
+  const naturaleza = (anuncio.contractNature ?? [])[0]
+  if (!naturaleza) return '—'
+  const tipo = TIPO_DE_NATURALEZA[naturaleza]
+  return tipo ? rotuloDe(t, `contrato.tipo.${tipo}`, naturaleza) : naturaleza
+}
 
 const eur = (n) =>
   n >= 1e6 ? `${(n / 1e6).toFixed(2).replace('.', ',')} M€` : `${Math.round(n / 1e3)} k€`
@@ -104,9 +119,7 @@ export function TedNotices() {
             <ExtLink href={n.htmlUrl} style={{ color: 'var(--civic)', textDecoration: 'none' }}>
               {n.publicationNumber} ↗
             </ExtLink>
-            <span style={{ color: 'var(--ink50)', marginLeft: 8 }}>
-              {(n.contractNature ?? [])[0] ?? '—'}
-            </span>
+            <span style={{ color: 'var(--ink50)', marginLeft: 8 }}>{naturalezaDe(t, n)}</span>
           </span>
           <span style={{ whiteSpace: 'nowrap' }}>
             <span className="mono" style={{ fontWeight: 600 }}>

@@ -101,7 +101,7 @@ fi
 # `refresh` es dependency-driven: reconstruye lo que sus entradas hayan movido y
 # nada más, así que no hay lista que mantener aquí.
 echo "[ci-blocked] $(date '+%F %T') running refresh (derivaciones dependientes)"
-npm run refresh || echo "[ci-blocked] WARN: refresh falló — puede comitearse un derivado sin rederivar (lo caza tests/data-graph-frescura.test.ts)"
+REDERIVADOS="$(cron_rutas_rederivadas)" || echo "[ci-blocked] WARN: refresh falló — puede comitearse un derivado sin rederivar (lo caza tests/data-graph-frescura.test.ts)"
 
 # Can a reader still FOLLOW the citations under published claims about named
 # councillors? This is the half of check:citations that needs the network, and
@@ -128,21 +128,20 @@ npm run check:citations || echo "[ci-blocked] check:citations reported findings 
 # achieved that: `git commit` with no pathspec takes the WHOLE index, so
 # anything anyone else had staged went in too. Now the same pathspec stages,
 # gates and commits.
-# Las tres de `press-*` NO las raspa este cron: las DERIVA el refresh de arriba,
-# porque `compute:press-analytics` lee plenos-agendas.json. Sin ellas aquí, el
-# commit publicaría una agenda nueva junto a unos análisis que ya no salen de
-# ella, y las derivaciones se quedarían sueltas en el árbol para que el
-# `pull --rebase --autostash` de la siguiente pasada las zarandeara. El conjunto
-# sale del cierre transitivo de DATA_GRAPH sobre los siete adaptadores de
-# arriba; si el grafo crece y esta lista no, lo caza
-# `tests/data-graph-frescura.test.ts` — lo comiteado quedaría rancio.
+# Lo derivado ya no se escribe a mano aquí: `$REDERIVADOS` lo trae el propio
+# refresh (`--rebuilt-paths`), que sabe qué reconstruyó. Antes iban las tres de
+# `press-*` en una lista sacada del cierre transitivo del grafo, con el aviso de
+# que «si el grafo crece y esta lista no, lo caza data-graph-frescura»: una lista
+# a mano dentro de un control contra el desfase se desfasa ella sola, que es el
+# chiste que este repositorio ya ha contado dos veces. Sin esto, el commit
+# publicaría una agenda nueva junto a unos análisis que ya no salen de ella.
+# shellcheck disable=SC2086  # deliberado: REDERIVADOS es una lista de rutas
 if ! cron_git_stage_and_check \
        public/data/paro.json public/data/plenos-agendas.json public/data/consell-cv.json \
        public/data/procesos-selectivos.json public/data/asociaciones.json \
        public/data/obras.json public/data/sindicatura.json \
        public/data/sindic-expedientes.json \
-       public/data/press-coverage-gaps.json public/data/press-triangulation.json \
-       public/data/press-trust.json; then
+       $REDERIVADOS; then
   echo "[ci-blocked] no changes"
   exit ${#failed[@]}
 fi
@@ -169,6 +168,23 @@ if ! cron_git_pull_rebase "pull-rebase previo al push"; then
   echo "[ci-blocked] ERROR: git pull --rebase falló — el commit existe en local pero NO se ha hecho push; el próximo run reintenta"
   exit 1
 fi
+# El rebase trae el trabajo de OTRO cron, y ese trabajo puede haber movido la
+# entrada de un nodo derivado: publicar sin volver a derivar deja `main`
+# incumpliendo su propia `tests/data-graph-frescura.test.ts`. Le pasó a
+# `94359907` el 16-09-2026, que rebaseó sobre la instantánea de quejas y
+# publicó dos nodos rancios. La PR #46 cerró este agujero para el commit
+# normal y lo dejó abierto justo aquí.
+REDERIVADOS_REBASE="$(cron_rutas_rederivadas)"
+if [ -n "$REDERIVADOS_REBASE" ]; then
+  # shellcheck disable=SC2086  # deliberado: es una lista de rutas
+  if cron_git_stage_and_check $REDERIVADOS_REBASE; then
+    cron_git_commit_pathspec "chore(datos): rederivado tras el rebase" || true
+  fi
+  echo "[ci-blocked] rederivado tras el rebase:$REDERIVADOS_REBASE"
+else
+  echo "[ci-blocked] rederivado tras el rebase: nada que reconstruir"
+fi
+
 # La revisión lectora corre AQUÍ, ANTES del push, y el push va con --no-verify.
 #
 # No es por saltarse el control: es que el control no cabe dentro de un push.

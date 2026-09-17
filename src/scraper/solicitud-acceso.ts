@@ -36,8 +36,39 @@ export const ESTADOS_SOLICITUD = [
 
 export type EstadoSolicitud = (typeof ESTADOS_SOLICITUD)[number]
 
-export const SENTIDOS_RESPUESTA = ['concedido', 'parcial', 'denegado'] as const
+/**
+ * `no-les-corresponde` entró el 2026-09-17 con la primera respuesta real: la
+ * Secretaría de Estado de Turismo no concedió acceso a nada ni lo denegó, dijo
+ * que no le correspondía y señaló a quién preguntar. Forzarla a `parcial` habría
+ * publicado un acceso que no hubo. No se llama «remitida»: en la Ley 19/2013
+ * remitir es reenviar la solicitud al competente (art. 19.1), y precisamente eso
+ * es lo que un organismo puede no hacer al contestar así.
+ */
+export const SENTIDOS_RESPUESTA = [
+  'concedido',
+  'parcial',
+  'denegado',
+  'no-les-corresponde',
+] as const
 export type SentidoRespuesta = (typeof SENTIDOS_RESPUESTA)[number]
+
+/**
+ * Qué hicieron, por sentido. UNA tabla para las dos superficies que lo dicen
+ * —`frasePublica` aquí y `fraseDeEnvio` en `solicitud-enviada.ts`—: el día que
+ * entró `no-les-corresponde` había dos copias, una sin tipar, y con
+ * `"strict": false` la sin tipar habría impreso «undefined» sin que tsc dijera
+ * nada.
+ *
+ * En minúscula porque van DETRÁS de la fecha: «El 16 de septiembre contestaron
+ * que no les corresponde». Con la fecha al final, «no les corresponde el 16» se
+ * lee como si dejara de corresponderles ese día.
+ */
+export const QUE_HICIERON: Record<SentidoRespuesta, string> = {
+  concedido: 'lo concedieron',
+  parcial: 'lo concedieron en parte',
+  denegado: 'lo denegaron',
+  'no-les-corresponde': 'contestaron que no les corresponde',
+}
 
 /** El competente para un ayuntamiento valenciano es el Consell. */
 export const ORGANOS_RECLAMACION = ['consell-cv', 'ctbg'] as const
@@ -116,12 +147,7 @@ export function frasePublica(s: SolicitudAcceso | null, hoy: string): string {
     )
   }
   if (estado === 'respondida' && s.respuesta) {
-    const q = {
-      concedido: 'Lo concedieron',
-      parcial: 'Lo concedieron en parte',
-      denegado: 'Lo denegaron',
-    }[s.respuesta.sentido]
-    return `Solicitado el ${s.presentadaEl}. ${q} el ${s.respuesta.fecha}.`
+    return `Solicitado el ${s.presentadaEl}. El ${s.respuesta.fecha} ${QUE_HICIERON[s.respuesta.sentido]}.`
   }
   if (s.reclamacion) {
     return (
@@ -187,4 +213,19 @@ export function validarRegistroSolicitudes(
       }
     }
   }
+}
+
+/**
+ * El título de la tabla de solicitudes de /laboratorio/cobertura, sacado de los
+ * mismos estados que pinta la tabla.
+ *
+ * Decía siempre «Lo que hemos pedido, y lo que han contestado», y el 15-09-2026 el
+ * registro estaba vacío: todas las filas decían «Todavía no lo hemos pedido» debajo
+ * de un título que afirmaba lo contrario. Sin ninguna solicitud presentada, el título
+ * dice lo que la tabla es.
+ */
+export function tituloSolicitudes(estados: readonly EstadoSolicitud[]): string {
+  return estados.some((e) => e !== 'sin-solicitar')
+    ? 'Lo que hemos pedido, y lo que han contestado'
+    : 'Lo que habría que pedir'
 }

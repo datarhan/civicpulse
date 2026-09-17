@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-10T08:02:51.298Z",
+  "generatedAt": "2026-09-17T09:45:01.573Z",
   "version": "1",
   "plenoId": "1237hbp",
   "plenoDate": "2026-07-03",
@@ -85,8 +85,16 @@
       "verification": {
         "claimId": "1237hbp-005-cit-c325f1",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "summary": "El objeto citado aparece en un expediente municipal, pero ninguna de sus magnitudes coincide con la cifra del claim. No es que no haya registro: es que el que hay no dice eso.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=uFxo%2FcUcMxsuf4aBO%2BvQlQ%3D%3D",
+            "snippet": "Contrato de obras de la glorieta de acceso sureste del Polígono Industrial l'Oliveral de Riba-roja de Túria por procedimiento \nabierto simplificado, un solo criterio de adjudicación, con condición especial de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 9 relativo a industria, innovación e infraestructura. · Ayuntamiento de Riba-roja de Túria · PAVASAL EMPRESA CONSTRUCTORA, S.A. · construction · 231.509 €",
+            "similarity": 1,
+            "stance": "checked"
+          }
+        ],
         "checkedAgainst": []
       },
       "visibility": "toggle"

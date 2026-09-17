@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-10T08:02:51.298Z",
+  "generatedAt": "2026-09-17T09:45:01.573Z",
   "version": "1",
   "plenoId": "1sqj7is",
   "plenoDate": "2026-03-09",
@@ -971,8 +971,16 @@
       "verification": {
         "claimId": "1sqj7is-037-pro-e3b07c",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "summary": "El objeto citado aparece en un expediente municipal, pero ninguna de sus magnitudes coincide con la cifra del claim. No es que no haya registro: es que el que hay no dice eso.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eQSvV%2FmKsbQSugstABGr5A%3D%3D",
+            "snippet": "Contrato de suministro para el MOBILIARIO en el CENTRO SOCIAL “LA BOTAIA” (DESPACHO DEL 9 AL 16) derivado del Sistema Dinámico de Adquisición de suministro de materiales y productos de utilización diaria del Ayuntamiento de Riba-Roja de Túria. · Ayuntamiento de Riba-roja de Túria · Basal Mobiliario, S.L. · textile · 6382 €",
+            "similarity": 1,
+            "stance": "checked"
+          }
+        ],
         "checkedAgainst": [
           "promises"
         ]
@@ -1451,8 +1459,16 @@
       "verification": {
         "claimId": "1sqj7is-066-afi-26fa49",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "summary": "El objeto citado aparece en un expediente municipal, pero ninguna de sus magnitudes coincide con la cifra del claim. No es que no haya registro: es que el que hay no dice eso.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eQSvV%2FmKsbQSugstABGr5A%3D%3D",
+            "snippet": "Contrato de suministro para el MOBILIARIO en el CENTRO SOCIAL “LA BOTAIA” (DESPACHO DEL 9 AL 16) derivado del Sistema Dinámico de Adquisición de suministro de materiales y productos de utilización diaria del Ayuntamiento de Riba-Roja de Túria. · Ayuntamiento de Riba-roja de Túria · Basal Mobiliario, S.L. · textile · 6382 €",
+            "similarity": 1,
+            "stance": "checked"
+          }
+        ],
         "checkedAgainst": []
       },
       "visibility": "toggle"
@@ -1478,8 +1494,16 @@
       "verification": {
         "claimId": "1sqj7is-066-afi-dadf77",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "summary": "El objeto citado aparece en un expediente municipal, pero ninguna de sus magnitudes coincide con la cifra del claim. No es que no haya registro: es que el que hay no dice eso.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eQSvV%2FmKsbQSugstABGr5A%3D%3D",
+            "snippet": "Contrato de suministro para el MOBILIARIO en el CENTRO SOCIAL “LA BOTAIA” (DESPACHO DEL 9 AL 16) derivado del Sistema Dinámico de Adquisición de suministro de materiales y productos de utilización diaria del Ayuntamiento de Riba-Roja de Túria. · Ayuntamiento de Riba-roja de Túria · Basal Mobiliario, S.L. · textile · 6382 €",
+            "similarity": 1,
+            "stance": "checked"
+          }
+        ],
         "checkedAgainst": []
       },
       "visibility": "toggle"
@@ -1534,8 +1558,16 @@
       "verification": {
         "claimId": "1sqj7is-067-afi-2bdb26",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "summary": "El objeto citado aparece en un expediente municipal, pero ninguna de sus magnitudes coincide con la cifra del claim. No es que no haya registro: es que el que hay no dice eso.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eQSvV%2FmKsbQSugstABGr5A%3D%3D",
+            "snippet": "Contrato de suministro para el MOBILIARIO en el CENTRO SOCIAL “LA BOTAIA” (DESPACHO DEL 9 AL 16) derivado del Sistema Dinámico de Adquisición de suministro de materiales y productos de utilización diaria del Ayuntamiento de Riba-Roja de Túria. · Ayuntamiento de Riba-roja de Túria · Basal Mobiliario, S.L. · textile · 6382 €",
+            "similarity": 1,
+            "stance": "checked"
+          }
+        ],
         "checkedAgainst": []
       },
       "visibility": "toggle"

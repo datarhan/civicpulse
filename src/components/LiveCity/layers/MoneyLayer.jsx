@@ -4,15 +4,7 @@ import { CircleMarker, Popup, Tooltip } from 'react-leaflet'
 import { placeAmountsAt } from '../../../lib/tender-points'
 import { useCpvLabels } from '../../../hooks/useCpvLabels'
 import { PlacePopup } from '../popups/PlacePopup'
-import { FitToPins } from './FitToPins'
-
-const fmtEur = (n) =>
-  new Intl.NumberFormat('es-ES', {
-    style: 'currency',
-    currency: 'EUR',
-    maximumFractionDigits: 0,
-    notation: 'compact',
-  }).format(n)
+import { PinDineroTooltip } from '../popups/Tooltips'
 
 /** Pixel radius for a money pin, √-scaled so a €500k obra doesn't dwarf a €20k one. */
 function pinRadius(amount) {
@@ -38,7 +30,8 @@ export function MoneyLayer({ snapshot, at, danaOnly, obrasOnly, contractsById })
 
   return (
     <>
-      <FitToPins points={places.map((p) => p.point)} />
+      {/* El encuadre lo hace StylizedMap, una sola vez y con las obras: dos encuadres
+          sueltos acababan en un zoom u otro según qué instantánea llegara antes. */}
       {places.map((p) => {
         // Petróleo, no el hex del PP. Leaflet escribe esto en un atributo SVG,
         // donde var(--civic) no resuelve, así que el literal es obligado.
@@ -67,11 +60,7 @@ export function MoneyLayer({ snapshot, at, danaOnly, obrasOnly, contractsById })
             }}
           >
             <Tooltip direction="top">
-              <div style={{ fontFamily: 'Outfit, sans-serif', fontSize: 'var(--fs-meta)' }}>
-                <strong>{p.name}</strong>
-                <br />
-                {fmtEur(p.amount)} · {p.count} obra{p.count === 1 ? '' : 's'}
-              </div>
+              <PinDineroTooltip lugar={p} />
             </Tooltip>
             <Popup closeButton={true} autoPan={true} maxWidth={320}>
               <PlacePopup

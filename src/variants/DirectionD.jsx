@@ -1,6 +1,14 @@
 import StylizedMap from '../components/LiveCity/StylizedMap'
 import LiveTicker from '../components/LiveTicker'
-import { RIBA_ROJA_CENTER, PALETTE, SANS, STACK_BREAKPOINT, useClock } from './direction-d/tokens'
+import {
+  RIBA_ROJA_CENTER,
+  PALETTE,
+  SANS,
+  MAPA_COMPACTO,
+  MAPA_PLEGADO_ALTO,
+  STACK_BREAKPOINT,
+  useClock,
+} from './direction-d/tokens'
 import { Header } from './direction-d/Topbar'
 import { BarraSecciones } from './direction-d/BarraSecciones'
 import { EventTicker } from './direction-d/MapOverlays'
@@ -99,6 +107,12 @@ export default function DirectionD() {
         .d-mappane {
           flex: 1; position: relative; min-width: 0; overflow: hidden;
           isolation: isolate;
+          /* Contenedor con nombre para que la pila se pliegue según lo que mide
+             EL MAPA, no la ventana: ver MAPA_PLEGADO_ALTO en tokens.jsx. Su alto
+             viene siempre de fuera —el flex de la fila, o el vh de los anchos
+             estrechos—, así que la contención de tamaño no lo cambia. */
+          container-type: size;
+          container-name: mapa;
         }
         .d-editorial {
           width: 420px; flex-shrink: 0; overflow-y: auto;
@@ -142,9 +156,44 @@ export default function DirectionD() {
           .d-kpi-cell { flex: 0 0 auto; min-width: 150px; }
         }
 
-        @media (max-width: 560px) {
+        /* La pila de controles del mapa. Sus reglas que cambian con el ancho viven
+           aquí y no en el style de cada componente, que no admite media queries y
+           gana a cualquier clase. En ancho de escritorio no cambia nada: la fila de
+           chips salta de línea y el botón de plegar no existe. */
+        .cp-capas-chips { flex-wrap: wrap; }
+        .cp-cobertura { margin-top: 6px; padding-top: 6px; border-top: 1px solid #E6E1D4; }
+        .cp-pila-plegar { display: none; }
+
+        @media (max-width: ${MAPA_COMPACTO}px) {
           .d-mappane { height: 44vh; min-height: 260px; }
           .d-region { display: none; }
+        }
+
+        /* El pliegue de la pila, por el ALTO del mapa y no por el ancho de la
+           ventana. A 375 px sigue plegándose, porque ese mapa mide menos de 400; lo
+           nuevo es que también se pliega entre el móvil y el escritorio, donde un
+           mapa de 468 a 593 px dejaba las cuatro estaciones debajo de la pila. */
+        @container mapa (max-height: ${MAPA_PLEGADO_ALTO}px) {
+          /* A 375 px la pila medía más de 300 px sobre un mapa de 277 a 357 y tapaba
+             las cuatro estaciones de Riba-roja. Plegada deja los chips en una sola
+             fila que se desplaza, con el borde difuminado para que se note que
+             sigue, y la línea de cobertura del dinero con su botón de detalle.
+             La cobertura es la declaración de honestidad de la capa: sólo se pliega
+             la tarjeta que la lleva, y ella nunca. */
+          .cp-capas-titulo { display: none; }
+          .cp-capas-chips {
+            flex-wrap: nowrap; overflow-x: auto; overscroll-behavior-x: contain;
+            scrollbar-width: none;
+            mask-image: linear-gradient(to right, #000 calc(100% - 24px), transparent);
+            -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 24px), transparent);
+          }
+          .cp-pila-plegar { display: inline-flex; }
+          .cp-mapa-pila[data-plegada='true'] .cp-dinero:has(.cp-cobertura) .cp-plegable {
+            display: none;
+          }
+          .cp-mapa-pila[data-plegada='true'] .cp-cobertura {
+            margin-top: 0; padding-top: 0; border-top: 0;
+          }
         }
       `}</style>
 

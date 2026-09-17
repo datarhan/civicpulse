@@ -14,7 +14,15 @@
  */
 import { stripDiacritics } from './normalize'
 
-export type PlaceKind = 'poi' | 'street' | 'urbanizacion' | 'barrio'
+/**
+ * Las clases de lugar que el resolutor sabe situar, de la más precisa a la más
+ * gruesa. Exportadas para que el mapa rotule cada una por su clave de catálogo
+ * (`map.lugar.<clase>`) y `tests/i18n-mapa-enums.test.ts` las lea de aquí en vez
+ * de recitarlas. Ninguna puerta del resolutor cambia.
+ */
+export const PLACE_KINDS = ['poi', 'street', 'urbanizacion', 'barrio'] as const
+
+export type PlaceKind = (typeof PLACE_KINDS)[number]
 
 export interface Candidate {
   kind: PlaceKind

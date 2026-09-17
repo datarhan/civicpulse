@@ -7,7 +7,8 @@ import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
 import { usePromises, isPromiseFrozen } from '../hooks/usePromises'
 import { readableInk } from '../lib/contrast'
 import { ariaPlazosVencidos, rotuloPlazosVencidos } from '../lib/plazos-vencidos'
-import { useT } from '../i18n'
+import { rotuloDe, useLocale, useT } from '../i18n'
+import { rellena } from '../lib/formatters'
 
 /* ============================================================
    Bloomberg-style auto-scrolling data ticker.
@@ -235,13 +236,13 @@ function useTickerItems() {
       items.push({
         key: 'luz',
         icon: '⚡',
-        label: 'Luz PVPC',
+        label: t('liveTicker.luz'),
         value: `${s.luz.currentValue.toFixed(3)} €/kWh`,
         delta:
           typeof delta === 'number' ? `${signArrow(delta)} ${Math.abs(delta).toFixed(1)}%` : null,
         deltaTone: signedTone(delta),
         source: s.luz,
-        ariaLabel: `Precio de la luz ${s.luz.currentValue.toFixed(3)} euros por kilovatio hora`,
+        ariaLabel: rellena(t('liveTicker.luz.aria'), { valor: s.luz.currentValue.toFixed(3) }),
       })
     }
 
@@ -250,21 +251,29 @@ function useTickerItems() {
         items.push({
           key: 'g95',
           icon: '⛽',
-          label: 'Gasolina 95',
+          label: t('liveTicker.gasolina95'),
           value: `${s.gasolina.gasolina95.toFixed(3)} €/L`,
           source: s.gasolina,
-          extra: s.gasolina.stationCount ? `${s.gasolina.stationCount} est.` : null,
-          ariaLabel: `Gasolina 95 promedio ${s.gasolina.gasolina95.toFixed(3)} euros por litro`,
+          // El sustantivo va en su propio nodo: «est.» se escribe igual en valencià, y
+          // pegado a la cifra dejaría de ser el valor del catálogo.
+          extra: s.gasolina.stationCount ? (
+            <>
+              {s.gasolina.stationCount} {t('liveTicker.gasolina.estaciones')}
+            </>
+          ) : null,
+          ariaLabel: rellena(t('liveTicker.gasolina95.aria'), {
+            valor: s.gasolina.gasolina95.toFixed(3),
+          }),
         })
       }
       if (typeof s.gasolina.diesel === 'number') {
         items.push({
           key: 'diesel',
           icon: '⛽',
-          label: 'Diésel A',
+          label: t('liveTicker.diesel'),
           value: `${s.gasolina.diesel.toFixed(3)} €/L`,
           source: s.gasolina,
-          ariaLabel: `Diésel A promedio ${s.gasolina.diesel.toFixed(3)} euros por litro`,
+          ariaLabel: rellena(t('liveTicker.diesel.aria'), { valor: s.gasolina.diesel.toFixed(3) }),
         })
       }
     }
@@ -276,12 +285,12 @@ function useTickerItems() {
       items.push({
         key: 'euribor',
         icon: '📈',
-        label: 'Euribor 12m',
+        label: t('liveTicker.euribor'),
         value: `${s.euribor12m.value.toFixed(3)}%`,
         delta: delta != null ? `${signArrow(delta)} ${Math.abs(delta * 100).toFixed(0)}bps` : null,
         deltaTone: signedTone(delta),
         source: s.euribor12m,
-        ariaLabel: `Euribor 12 meses ${s.euribor12m.value.toFixed(3)} por ciento`,
+        ariaLabel: rellena(t('liveTicker.euribor.aria'), { valor: s.euribor12m.value.toFixed(3) }),
       })
     }
 
@@ -289,12 +298,12 @@ function useTickerItems() {
       items.push({
         key: 'ipc',
         icon: '🧾',
-        label: 'IPC España',
+        label: t('liveTicker.ipc'),
         value: `${s.ipc.yoyChange.toFixed(1)}%`,
         extra: s.ipc.period,
         source: s.ipc,
         deltaTone: signedTone(s.ipc.yoyChange),
-        ariaLabel: `IPC interanual España ${s.ipc.yoyChange.toFixed(1)} por ciento`,
+        ariaLabel: rellena(t('liveTicker.ipc.aria'), { valor: s.ipc.yoyChange.toFixed(1) }),
       })
     }
 
@@ -302,35 +311,48 @@ function useTickerItems() {
       items.push({
         key: 'bce',
         icon: '🏛️',
-        label: 'BCE MRO',
+        label: t('liveTicker.bce'),
         value: `${s.bceMRO.value.toFixed(2)}%`,
         source: s.bceMRO,
-        ariaLabel: `Tipo principal del BCE ${s.bceMRO.value.toFixed(2)} por ciento`,
+        ariaLabel: rellena(t('liveTicker.bce.aria'), { valor: s.bceMRO.value.toFixed(2) }),
       })
     }
 
     if (s.aemet?.ok && s.aemet.active) {
+      // El nivel es un enum de AEMET: se rotula en el idioma de la interfaz, y el
+      // color sigue saliendo del valor crudo.
+      const nivel = rotuloDe(
+        t,
+        `liveTicker.aemet.nivel.${s.aemet.highestLevel}`,
+        s.aemet.highestLevel || '',
+      )
       items.push({
         key: 'aemet',
         icon: '⚠',
-        label: 'AEMET Valencia',
-        value: (s.aemet.highestLevel || '').toUpperCase(),
+        label: t('liveTicker.aemet'),
+        value: nivel.toUpperCase(),
         accent: AEMET_COLORS[s.aemet.highestLevel] || WARN,
         source: s.aemet,
-        ariaLabel: `Alerta meteorológica AEMET nivel ${s.aemet.highestLevel}`,
+        ariaLabel: rellena(t('liveTicker.aemet.aria'), { nivel }),
       })
     }
 
     if (s.dgt?.ok && s.dgt.incidents.length > 0) {
       const roads = Array.from(new Set(s.dgt.incidents.slice(0, 6).map((i) => i.road))).join(' · ')
+      const n = s.dgt.incidents.length
       items.push({
         key: 'dgt',
         icon: '🚧',
-        label: 'DGT tráfico',
-        value: `${s.dgt.incidents.length} incid.`,
+        label: t('liveTicker.dgt'),
+        value: (
+          <>
+            {n} {t('liveTicker.dgt.incidencias')}
+          </>
+        ),
         extra: roads,
         source: s.dgt,
-        ariaLabel: `${s.dgt.incidents.length} incidencias de tráfico en la zona`,
+        ariaLabel:
+          n === 1 ? t('liveTicker.dgt.aria.una') : rellena(t('liveTicker.dgt.aria'), { n }),
       })
     }
 
@@ -358,6 +380,7 @@ function useTickerItems() {
 }
 
 function PressChip({ p, onClick }) {
+  const { t, locale } = useLocale()
   return (
     <button
       type="button"
@@ -377,7 +400,7 @@ function PressChip({ p, onClick }) {
         whiteSpace: 'nowrap',
         flexShrink: 0,
       }}
-      aria-label={`Noticia de ${p.source}: ${p.title}`}
+      aria-label={rellena(t('liveTicker.noticia.aria'), { fuente: p.source, titulo: p.title })}
     >
       <span style={{ fontSize: 'var(--fs-aux)' }} aria-hidden="true">
         📰
@@ -400,13 +423,14 @@ function PressChip({ p, onClick }) {
         {p.title.length > 80 ? p.title.slice(0, 80) + '…' : p.title}
       </span>
       <span style={{ fontFamily: MONO, fontSize: 'var(--fs-micro)', color: INK_DIM }}>
-        {pressTimeAgo(p.date)}
+        {pressTimeAgo(p.date, { t, locale })}
       </span>
     </button>
   )
 }
 
 function DetailPanel({ item, onClose }) {
+  const t = useT()
   if (!item) return null
   const isPress = !!item.press
   const title = isPress ? item.press.source : item.label
@@ -460,7 +484,7 @@ function DetailPanel({ item, onClose }) {
         <button
           type="button"
           onClick={onClose}
-          aria-label="Cerrar"
+          aria-label={t('liveTicker.panel.cerrar')}
           style={{
             width: 22,
             height: 22,
@@ -509,7 +533,7 @@ function DetailPanel({ item, onClose }) {
               marginBottom: 4,
             }}
           >
-            Curva 24h · €/kWh
+            {t('liveTicker.luz.curva')}
           </div>
           <Sparkline24 values={sourceObj.hourlyCurve} color={WARN} />
           <div
@@ -522,8 +546,12 @@ function DetailPanel({ item, onClose }) {
               marginTop: 2,
             }}
           >
-            <span>min {sourceObj.dayMin?.toFixed(3)}</span>
-            <span>max {sourceObj.dayMax?.toFixed(3)}</span>
+            <span>
+              {t('liveTicker.panel.min')} {sourceObj.dayMin?.toFixed(3)}
+            </span>
+            <span>
+              {t('liveTicker.panel.max')} {sourceObj.dayMax?.toFixed(3)}
+            </span>
           </div>
         </div>
       )}
@@ -569,7 +597,7 @@ function DetailPanel({ item, onClose }) {
                 marginTop: 4,
               }}
             >
-              +{sourceObj.incidents.length - 6} más
+              {rellena(t('liveTicker.dgt.mas'), { n: sourceObj.incidents.length - 6 })}
             </div>
           )}
         </div>
@@ -596,7 +624,7 @@ function DetailPanel({ item, onClose }) {
                 marginBottom: 4,
               }}
             >
-              IPC últimos 12 meses · %
+              {t('liveTicker.ipc.historia')}
             </div>
             <Sparkline24 values={sourceObj.history.map((h) => h.value)} color={CIVIC} width={240} />
           </div>
@@ -614,7 +642,7 @@ function DetailPanel({ item, onClose }) {
             letterSpacing: '.04em',
           }}
         >
-          Fuente oficial →
+          {t('liveTicker.panel.fuente')}
         </ExtLink>
       )}
     </div>
@@ -622,6 +650,7 @@ function DetailPanel({ item, onClose }) {
 }
 
 export default function LiveTicker() {
+  const t = useT()
   const items = useTickerItems()
   const [expanded, setExpanded] = useState(null)
   const containerRef = useRef(null)
@@ -669,7 +698,7 @@ export default function LiveTicker() {
         height: 36,
         fontFamily: SANS,
       }}
-      aria-label="Datos nacionales en directo"
+      aria-label={t('liveTicker.aria')}
     >
       <div
         style={{
@@ -719,7 +748,7 @@ export default function LiveTicker() {
               letterSpacing: '.14em',
             }}
           >
-            DIRECTO
+            {t('liveTicker.directo')}
           </span>
         </span>
         {/* Clip the marquee to the area RIGHT of the DIRECTO pill. Without

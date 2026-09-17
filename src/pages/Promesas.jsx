@@ -10,6 +10,7 @@ import {
   STATUS_TONE,
   TOPIC_LABEL,
 } from '../hooks/usePromises'
+import { V1_STATUSES } from '../scraper/promises'
 import { fmtDateLong } from '../lib/formatters'
 import { useT } from '../i18n'
 import { useCitationHealth, citationStatus, citationArchive } from '../hooks/useCitationHealth'
@@ -149,8 +150,12 @@ function CompositionBar({ items }) {
   )
 }
 
-function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
+export function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
   const citations = useCitationHealth()
+  // La fuente ni resuelve ni tiene copia: lo que la tarjeta dice del estado no
+  // puede dar por consultable lo que ella misma acaba de marcar como roto.
+  const fuenteIlocalizable =
+    citationStatus(citations, p.source.url) === 'dead' && !citationArchive(citations, p.source.url)
   const color = PARTY_TONE[p.party] || '#64748B'
   const fmt = fmtDateLong
   const showSuggestion = suggestion && !frozen && suggestion.reasoning.length > 0
@@ -264,6 +269,45 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
           </Pill>
         )}
       </div>
+
+      {p.evidence.length === 0 && (
+        /**
+         * La ausencia se dice. Antes esta sección sólo existía cuando había
+         * filas, así que una promesa sin evidencia no enseñaba ni la sección ni
+         * su falta: bajo el estado venía directamente el bloque del motor, y
+         * eso es lo único que el lector encontraba debajo de «Documentada». Es
+         * el defecto de `check:area-fit` —el silencio se lee como limpio— en la
+         * página que más cuidado pide.
+         */
+        <div style={{ marginTop: 10, fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
+          <div
+            className="mono"
+            style={{
+              fontSize: 'var(--fs-micro)',
+              color: 'var(--ink50)',
+              letterSpacing: '.08em',
+              textTransform: 'uppercase',
+              marginBottom: 4,
+            }}
+          >
+            Sin evidencia curada
+          </div>
+          <div>
+            {/**
+             * «recogida con su fuente» sería MENTIRA dos líneas debajo de
+             * «enlace roto · sin copia archivada», y la revisión lectora lo
+             * señaló en cuanto se escribió: en la promesa del Metro L9 la
+             * fuente está muerta y sin copia, así que ahí la frase dice lo que
+             * queda —que la promesa se registró— y nombra lo que falta.
+             */}
+            {V1_STATUSES.has(p.status)
+              ? fuenteIlocalizable
+                ? `«${STATUS_LABEL[p.status] || p.status}» dice que la promesa quedó registrada, no que su ejecución esté acreditada — y su fuente ya no se puede consultar.`
+                : `«${STATUS_LABEL[p.status] || p.status}» dice que la promesa está recogida con su fuente, no que su ejecución esté acreditada.`
+              : 'Ningún documento curado acredita todavía su ejecución.'}
+          </div>
+        </div>
+      )}
 
       {p.evidence.length > 0 && (
         <div style={{ marginTop: 10, fontSize: 'var(--fs-micro)' }}>

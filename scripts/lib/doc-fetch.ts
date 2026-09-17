@@ -86,13 +86,21 @@ export function ssrfReason(url: URL): string | null {
 /**
  * Map an HTTP status to a state.
  *
- * 401/403/429 are `unverifiable`, not `dead`: they mean "not to you, not now".
+ * 401/403/429/406 are `unverifiable`, not `dead`: they mean "not to you, not
+ * now", "not in these terms". El 406 se añadió el 16-09-2026 con la medición
+ * delante: los tres enlaces de Levante-EMV que tenían BLOQUEADO
+ * `check:citations` —y con él la promoción de cualquier claim— devuelven 406 a
+ * nuestro User-Agent identificado y 200 al de un navegador. Los artículos están
+ * vivos. Y no se arregla disfrazando el agente: este proyecto se identifica a
+ * propósito, así que lo honesto es decir que desde aquí no se puede comprobar.
  * ribarroja.es fronts some paths with a WAF that 403s a non-browser UA, and
  * three of this project's own sources sit behind one.
  */
 export function stateForStatus(status: number): UrlState {
   if (status >= 200 && status < 300) return 'alive'
-  if (status === 401 || status === 403 || status === 429) return 'unverifiable'
+  if (status === 401 || status === 403 || status === 406 || status === 429) {
+    return 'unverifiable'
+  }
   if (status >= 400 && status < 500) return 'dead'
   return 'unverifiable' // 5xx: the server is broken, the document may be fine
 }

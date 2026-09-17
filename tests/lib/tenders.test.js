@@ -1,40 +1,10 @@
 import { describe, it, expect } from 'vitest'
-import {
-  PROCESS_TYPE_LABEL,
-  CONTRACT_TYPE_LABEL,
-  bajaPct,
-  isScoreArtifactAmount,
-} from '../../src/lib/tenders'
+import { bajaPct, isScoreArtifactAmount } from '../../src/lib/tenders'
 
-describe('lib/tenders — label maps', () => {
-  it('labels every process_type enum value seen in the data', () => {
-    for (const k of [
-      'restricted',
-      'minor_contract',
-      'open',
-      'open_simplified',
-      'negotiated_without_publicity',
-      'based_on_agreement',
-    ]) {
-      expect(typeof PROCESS_TYPE_LABEL[k]).toBe('string')
-      expect(PROCESS_TYPE_LABEL[k].length).toBeGreaterThan(3)
-    }
-  })
-
-  it('labels every contract_type enum value seen in the data', () => {
-    for (const k of [
-      'services',
-      'construction',
-      'supplies',
-      'other',
-      'patrimonial',
-      'public_services_management',
-    ]) {
-      expect(typeof CONTRACT_TYPE_LABEL[k]).toBe('string')
-      expect(CONTRACT_TYPE_LABEL[k].length).toBeGreaterThan(3)
-    }
-  })
-})
+// Los rótulos de `process_type` y `contract_type` se mudaron al catálogo, y con
+// ellos las dos pruebas que los miraban aquí. Aquéllas recitaban a mano los
+// valores «vistos en los datos»; `tests/i18n-mapa-enums.test.ts` los lee del
+// `tenders.json` publicado y exige la clave en los dos idiomas.
 
 describe('lib/tenders — bajaPct (savings vs budget)', () => {
   it('computes the sin-IVA baja when both figures are present', () => {

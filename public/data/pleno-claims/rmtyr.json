@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-10T08:02:51.298Z",
+  "generatedAt": "2026-09-17T09:45:01.573Z",
   "version": "1",
   "plenoId": "rmtyr",
   "plenoDate": "2025-07-31",
@@ -797,8 +797,16 @@
       "verification": {
         "claimId": "rmtyr-037-cit-c6eb5f",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "summary": "El objeto citado aparece en un expediente municipal, pero ninguna de sus magnitudes coincide con la cifra del claim. No es que no haya registro: es que el que hay no dice eso.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ig2hivipy%2FJ6nTs9LZ9RhQ%3D%3D",
+            "snippet": "Contrato obras, proyectos Reasfaltado casco urbano calles Furs del Regne, Luis Santagel, Doctor Freming, Lepanto, Av Camp de Turia, Perpinyanet y Pl Germanies y Asfaltado camino rural Enllaç Llidona-Potros, de Riba-roja de Túria, incluidas en el Plan de Inversiones 2022-2023 de Diputación de Valencia, dividido en dos lotes. · Ayuntamiento de Riba-roja de Túria · construction · 165.289 €",
+            "similarity": 1,
+            "stance": "checked"
+          }
+        ],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
@@ -2157,8 +2165,16 @@
       "verification": {
         "claimId": "rmtyr-093-afi-86a49a",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "summary": "El objeto citado aparece en un expediente municipal, pero ninguna de sus magnitudes coincide con la cifra del claim. No es que no haya registro: es que el que hay no dice eso.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dUGFcdEbjniiEJrVRqloyA%3D%3D",
+            "snippet": "Contrato Menor de Suministro de dos perros para la Unidad Canina del Cuerpo de Policía Local del Ayuntamiento de Riba-Roja de Túria. · Ayuntamiento de Riba-roja de Túria · Megafor SAnta Security, s.l. · catering · 2666 €",
+            "similarity": 1,
+            "stance": "checked"
+          }
+        ],
         "checkedAgainst": []
       },
       "visibility": "toggle"
@@ -3020,8 +3036,16 @@
       "verification": {
         "claimId": "rmtyr-116-cit-607c4b",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "summary": "El objeto citado aparece en un expediente municipal, pero ninguna de sus magnitudes coincide con la cifra del claim. No es que no haya registro: es que el que hay no dice eso.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=05AJhpHeBL57h85%2Fpmmsfw%3D%3D",
+            "snippet": "Contrato de servicio “Programa del mayor: actividades formativas, culturales, lúdicas y de promoción de la salud física y mental para el colectivo de mayores” por procedimiento abierto, simplificado mejor relación calidad-precio, varios criterios de adjudicación con cláusulas sociales como criterio de adjudicación y con condición especial de ejecución de carácter social. · Ayuntamiento de Riba-roja de Túria · SERGEVAMA, S.L. · culture · 30.700 €",
+            "similarity": 1,
+            "stance": "checked"
+          }
+        ],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
@@ -6746,8 +6770,16 @@
       "verification": {
         "claimId": "rmtyr-251-afi-778655",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "summary": "El objeto citado aparece en un expediente municipal, pero ninguna de sus magnitudes coincide con la cifra del claim. No es que no haya registro: es que el que hay no dice eso.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=W%2Fgt%2FOWQ%2FxbzAq95uGTrDQ%3D%3D",
+            "snippet": "Inicio expediente y adjudicación directa del contrato menor puente de Suministro por plazo de 2 meses mediante arrendamiento de 4 furgonetas de 5 plazas destinadas al el Plan de Empleo DANA a favor de TRANSTEL SA con CIF A46063814. · Ayuntamiento de Riba-roja de Túria · TRANSTEL,S.A. · transportation · 5200 €",
+            "similarity": 1,
+            "stance": "checked"
+          }
+        ],
         "checkedAgainst": []
       },
       "visibility": "toggle"
@@ -7408,8 +7440,16 @@
       "verification": {
         "claimId": "rmtyr-265-afi-876f13",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "summary": "El objeto citado aparece en un expediente municipal, pero ninguna de sus magnitudes coincide con la cifra del claim. No es que no haya registro: es que el que hay no dice eso.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Vi9fsWz1xwl70UvEyYJSGw%3D%3D",
+            "snippet": "Servicio Público de Transporte Urbano, EEII, Interinstitutos y Servicios Complementarios por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación y con condición de ejecución de carácter social, medioambiental y técnico. · Ayuntamiento de Riba-roja de Túria · AUTOBUSES DURA, S.L · transportation · 295.500 €",
+            "similarity": 1,
+            "stance": "checked"
+          }
+        ],
         "checkedAgainst": []
       },
       "visibility": "toggle"

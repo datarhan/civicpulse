@@ -1,5 +1,7 @@
 import { useMemo } from 'react'
 import { contractTypeTotals } from '../../lib/tender-geo'
+import { rellena } from '../../lib/formatters'
+import { rotuloDe, useT } from '../../i18n'
 
 const fmtEur = (n) =>
   new Intl.NumberFormat('es-ES', {
@@ -9,14 +11,6 @@ const fmtEur = (n) =>
     notation: 'compact',
   }).format(n)
 
-const TYPE_LABEL = {
-  construction: 'Obras',
-  services: 'Servicios',
-  supplies: 'Suministros',
-  public_services_management: 'Gestión de servicios',
-  patrimonial: 'Patrimonial',
-  other: 'Otros',
-}
 // Esta barra SÍ es una composición apilada con leyenda, así que el color aquí
 // distingue de verdad y no puede reducirse a uno. Lo que no puede es ser un
 // arcoíris: llevaba el azul exacto del PP en «obra» y el morado --intel —que en
@@ -38,6 +32,11 @@ const TYPE_COLOR = {
 }
 
 export default function SpendingTypeBreakdown({ contracts, snapshot }) {
+  const t = useT()
+  // El nombre de cada tipo sale del catálogo que ya rotula la tarjeta de contrato. La
+  // tabla que había aquí decía «Gestión de servicios» donde el catálogo dice
+  // «Gestión de servicios públicos», que es el tipo de contrato de la LCSP.
+  const tipo = (tp) => rotuloDe(t, `contrato.tipo.${tp}`, tp)
   // Shared with the section's own summary line, which now states the obras
   // share out loud. Two copies of this loop would let the heading and the chart
   // that justifies it disagree one scroll apart.
@@ -61,7 +60,7 @@ export default function SpendingTypeBreakdown({ contracts, snapshot }) {
         {rows.map((r) => (
           <div
             key={r.type}
-            title={`${TYPE_LABEL[r.type] || r.type}: ${fmtEur(r.amount)}`}
+            title={`${tipo(r.type)}: ${fmtEur(r.amount)}`}
             style={{
               width: (r.amount / total) * 100 + '%',
               background: TYPE_COLOR[r.type] || '#94A3B8',
@@ -88,7 +87,7 @@ export default function SpendingTypeBreakdown({ contracts, snapshot }) {
               background: TYPE_COLOR[r.type] || '#94A3B8',
             }}
           />
-          <span style={{ flex: 1 }}>{TYPE_LABEL[r.type] || r.type}</span>
+          <span style={{ flex: 1 }}>{tipo(r.type)}</span>
           <span className="mono" style={{ fontWeight: 700 }}>
             {fmtEur(r.amount)}
           </span>
@@ -106,7 +105,7 @@ export default function SpendingTypeBreakdown({ contracts, snapshot }) {
         </div>
       ))}
       <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 8 }}>
-        Recuperación DANA ≈ {danaPct.toFixed(0)}% del importe adjudicado.
+        {rellena(t('presupuesto.gasto.dana'), { pct: danaPct.toFixed(0) })}
       </div>
     </div>
   )

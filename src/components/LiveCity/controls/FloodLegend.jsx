@@ -1,5 +1,6 @@
 // @ts-check
 import { useT } from '../../../i18n'
+import { partePorHueco } from '../../../lib/formatters'
 
 const cardStyle = {
   background: 'rgba(255,255,255,.94)',
@@ -33,9 +34,13 @@ const titleStyle = {
  *
  * Es tonta a propósito: recibe `cargando`, no lo averigua. Quien monta la capa
  * es quien recibe los eventos de Leaflet, y por tanto quien lo sabe.
+ *
+ * La nota sale del catálogo con un hueco para el nombre del servicio, que va en
+ * negrita: cada idioma pone el hueco donde su frase lo pide.
  */
 export function FloodLegend({ estado = null }) {
   const t = useT()
+  const [antes, despues] = partePorHueco(t('map.flood.nota'), '{fuente}')
   return (
     <div style={cardStyle}>
       <div style={{ ...titleStyle, display: 'flex', justifyContent: 'space-between', gap: 6 }}>
@@ -47,8 +52,9 @@ export function FloodLegend({ estado = null }) {
         )}
       </div>
       <div style={{ fontSize: 'var(--fs-aux)', color: 'rgba(11,15,25,.7)', lineHeight: 1.35 }}>
-        Zonas oficiales de peligrosidad · <strong>PATRICOVA</strong> (Generalitat Valenciana / ICV).
-        Tonos más intensos = mayor riesgo.
+        {antes}
+        <strong>PATRICOVA</strong>
+        {despues}
       </div>
       {/* Un mapa en blanco con el interruptor encendido es una capa que miente
           por omisión: el lector no puede distinguir «aquí no hay riesgo» de

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-03T08:10:37.846Z",
+  "generatedAt": "2026-09-17T07:40:20.337Z",
   "source": {
     "description": "Vote suggestions inferred automatically from YouTube-derived pleno transcripts. Every record carries requiresHumanApproval:true and MUST be reviewed by a curator before promotion to pleno-votes.json via `npm run pleno-vote`.",
     "contract": "Machine-written; never substitutes for the published human-verified record."
@@ -39,7 +39,11 @@
       ],
       "confidence": 0.8,
       "requiresHumanApproval": true,
-      "engine": "regex"
+      "engine": "regex",
+      "regmeetCheck": {
+        "regmeetOutcome": null,
+        "status": "no-regmeet"
+      }
     },
     {
       "plenoId": "k4olcs",
@@ -67,7 +71,11 @@
       ],
       "confidence": 0.7,
       "requiresHumanApproval": true,
-      "engine": "regex"
+      "engine": "regex",
+      "regmeetCheck": {
+        "regmeetOutcome": null,
+        "status": "no-regmeet"
+      }
     },
     {
       "plenoId": "19gax3o",
@@ -95,7 +103,11 @@
       ],
       "confidence": 0.7,
       "requiresHumanApproval": true,
-      "engine": "regex"
+      "engine": "regex",
+      "regmeetCheck": {
+        "regmeetOutcome": null,
+        "status": "no-regmeet"
+      }
     },
     {
       "plenoId": "19gax3o",
@@ -123,7 +135,11 @@
       ],
       "confidence": 0.7,
       "requiresHumanApproval": true,
-      "engine": "regex"
+      "engine": "regex",
+      "regmeetCheck": {
+        "regmeetOutcome": null,
+        "status": "no-regmeet"
+      }
     },
     {
       "plenoId": "c8kr44",

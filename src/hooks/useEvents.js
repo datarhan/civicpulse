@@ -22,10 +22,16 @@ export function upcomingEvents(data, now = new Date()) {
   return (data?.events || []).filter((e) => e.eventDate && e.eventDate >= iso)
 }
 
-/** Format an event's ISO datetime as a short Spanish "12 jul · 19:00" label. */
-export function formatEventWhen(eventDate, eventDateText) {
+/**
+ * Format an event's ISO datetime as a short "12 jul" label, in the interface
+ * language: the landing in valencià wrote the Castilian month.
+ */
+export function formatEventWhen(eventDate, eventDateText, idioma = 'es') {
   if (!eventDate) return eventDateText || ''
   const d = new Date(eventDate)
   if (!Number.isFinite(d.getTime())) return eventDateText || ''
-  return d.toLocaleDateString('es-ES', { day: 'numeric', month: 'short' })
+  return d.toLocaleDateString(idioma === 'ca' ? 'ca-ES' : 'es-ES', {
+    day: 'numeric',
+    month: 'short',
+  })
 }

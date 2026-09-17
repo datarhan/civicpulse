@@ -6,7 +6,7 @@ import { esMarcaDePasada } from '../scraper/claim-verdicts'
 import { useT } from '../i18n'
 import { useSolicitudesAcceso } from '../hooks/useSolicitudesAcceso'
 import { CLASES_PEDIBLES, CLASE_ETIQUETA } from '../scraper/clase-documental'
-import { estadoDeSolicitud, frasePublica } from '../scraper/solicitud-acceso'
+import { estadoDeSolicitud, frasePublica, tituloSolicitudes } from '../scraper/solicitud-acceso'
 
 /**
  * /laboratorio/cobertura — de lo que se dice en un pleno, ¿contra qué podemos
@@ -316,8 +316,18 @@ export default function Cobertura() {
         dependen de él, y si lo hemos pedido.
       */}
       <Card style={{ marginTop: 12 }}>
+        {/* El título sale de los estados que pinta la tabla: decía «Lo que hemos
+            pedido» con el registro vacío y todas las filas «Todavía no lo hemos
+            pedido» (revisión lectora, 15-09-2026). */}
         <h3 style={{ fontSize: 'var(--fs-card)', margin: '0 0 8px' }}>
-          Lo que hemos pedido, y lo que han contestado
+          {tituloSolicitudes(
+            CLASES_PEDIBLES.map((clase) =>
+              estadoDeSolicitud(
+                (solicitudes?.items ?? []).find((x) => x.clase === clase) ?? null,
+                hoy,
+              ),
+            ),
+          )}
         </h3>
         <p style={{ color: 'var(--ink70)', fontSize: 'var(--fs-meta)', marginTop: 0 }}>
           Cuando una declaración depende de un documento municipal que no se publica, ningún corpus

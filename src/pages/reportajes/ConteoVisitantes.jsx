@@ -1,6 +1,7 @@
 import { useReportaje } from '../../hooks/useReportaje'
 import { Card, Pill } from '../../components/Primitives'
 import { CorrectionNote } from '../../components/reportajes/CorrectionNote'
+import { fmtDateHuman } from '../../lib/formatters'
 import {
   estadoDeEnvio,
   fraseDeEnvio,
@@ -229,6 +230,20 @@ function SolicitudesEnviadas({ bloque }) {
             <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink70)', lineHeight: 1.5 }}>
               {fraseDeEnvio(e, hoy)}
             </div>
+            {/* Lo que dijeron, atribuido. Va con la tinta de la frase y no con la
+                de lo pedido: es la respuesta, no el contexto. */}
+            {e.respuesta?.resumen && (
+              <div
+                style={{
+                  fontSize: 'var(--fs-aux)',
+                  color: 'var(--ink70)',
+                  lineHeight: 1.5,
+                  marginTop: 4,
+                }}
+              >
+                {e.respuesta.resumen}
+              </div>
+            )}
             <div
               style={{
                 fontSize: 'var(--fs-aux)',
@@ -326,7 +341,7 @@ export default function ConteoVisitantes() {
         {m.subtitulo}
       </p>
       <div className="mono" style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
-        Publicado el {m.publicadoEl} · cifras congeladas a {m.fechaDatos}
+        Publicado el {fmtDateHuman(m.publicadoEl)} · cifras congeladas a {m.fechaDatos}
       </div>
 
       <CorrectionNote correcciones={m.correcciones} />

@@ -20,19 +20,17 @@ import { canonicalizeDepartment } from './departments'
 import { tenderMatchesQuejaCpv } from '../llm/queja-to-cpv'
 import type { QuejaCategory } from './queja-router'
 
+import type { RelationLabel } from './relation-labels'
+
 // NOTE: a 'mismo expediente' tier is deferred to the deliverable that adds the
 // pleno-agenda bridge (queja dept ↔ agenda item expediente ↔ contract). A queja
 // carries no expediente of its own, so a direct field match is not possible in
 // D1 — Tier A here is strictly place + department.
-export type RelationLabel =
-  | 'misma zona y materia'
-  | 'misma zona'
-  /**
-   * Department + temporal proximity. Plain 'misma materia' (department alone)
-   * was retired: it linked one queja to 37% of every contract the town has
-   * signed, which made the review queue unusable.
-   */
-  | 'misma materia y fechas próximas'
+//
+// Las etiquetas viven en `relation-labels.ts`, sin el motor, porque las pinta la
+// tarjeta de contrato de la portada; este módulo sigue siendo su dueño.
+export { CLAVE_RELACION, RELATION_LABELS } from './relation-labels'
+export type { RelationLabel } from './relation-labels'
 
 export interface RelQueja {
   id: string

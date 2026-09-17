@@ -44,6 +44,15 @@ jobs:
 
       - uses: actions/checkout@v5
 
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '20'
+          cache: npm
+      # Hacen falta las dependencias para `npm run refresh` (tsx) del paso de
+      # commit: sin ellas este workflow publica la entrada y deja el derivado
+      # rancio, que es justo lo que arregla.
+      - run: npm ci --no-audit --no-fund
+
       - name: Pull snapshot
         env:
           EXPORT_URL: ${{ vars.BOT_EXPORT_URL }}
@@ -93,7 +102,16 @@ jobs:
             echo "no changes"
             exit 0
           fi
+          # quejas.json es ENTRADA de un nodo derivado, así que publicarla sola
+          # deja `queja-contract-relations.json` rancio en `main` hasta la
+          # nocturna: medido el 16-09-2026 (commit bc812d8e, tres nodos rancios).
+          # `--rebuilt-paths` imprime sólo lo que la pasada reconstruyó, y se
+          # filtra a rutas que EXISTEN: lo que salga por stdout acaba en un
+          # pathspec, y una palabra que no es una ruta apaga la red de seguridad
+          # del commit entera.
+          REDERIVADOS="$(npm run --silent refresh -- --rebuilt-paths 2>/dev/null | while IFS= read -r p; do [ -e "$p" ] && printf '%s ' "$p"; done)" || REDERIVADOS=""
           git add -- public/data/quejas.json
+          if [ -n "$REDERIVADOS" ]; then git add -- $REDERIVADOS; fi
           # La carpeta de fotos puede no existir: si un día se podan todas, git no
           # guarda carpetas vacías, y `git add` con una ruta que no casa con nada
           # falla en seco (medido).

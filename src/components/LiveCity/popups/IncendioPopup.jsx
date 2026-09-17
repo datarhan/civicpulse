@@ -1,5 +1,6 @@
 // @ts-check
-import { CAUSA_ETIQUETA } from '../../../lib/incendios'
+import { useT } from '../../../i18n'
+import { partePorHueco, rellena } from '../../../lib/formatters'
 
 // Un popup de Leaflet es siempre blanco, mire el tema lo que mire, así que
 // esta ficha lleva su propia tinta fija — el mismo convenio que ContractCard.
@@ -21,6 +22,8 @@ const fecha = (iso) => {
   return `${d}/${m}/${a}`
 }
 
+const hectareas = (n) => n.toLocaleString('es-ES', { maximumFractionDigits: 2 })
+
 /**
  * Ficha de un incendio. Cita el parte oficial —que es lo que la hace
  * verificable— y dice dos cosas que el número solo no dice:
@@ -29,31 +32,43 @@ const fecha = (iso) => {
  *   del término, porque recortarla daría una cifra nuestra con firma ajena;
  * - si la GVA lo archiva en otro municipio, se dice, en vez de dejar que el
  *   lector suponga que todo lo pintado es de Riba-roja.
+ *
+ * El cromo sale del catálogo, la causa por su clave de enum
+ * (`map.incendio.causa.<causa>`): en la portada valenciana la ficha entera se
+ * leía en castellano.
  */
 export function IncendioPopup({ incendio, fuente }) {
+  const t = useT()
   const i = incendio
   const causaConocida = i.causa !== 'sinClasificar'
+  // El municipio va en negrita DENTRO de la frase, y cada idioma lo coloca donde
+  // su gramática lo pide: la plantilla se parte por el hueco.
+  const [antesDelMunicipio, despuesDelMunicipio] = partePorHueco(
+    t('map.incendio.atribuido'),
+    '{municipio}',
+  )
   return (
     <div style={{ fontFamily: 'Outfit, system-ui, sans-serif', minWidth: 250, maxWidth: 320 }}>
       <div style={{ fontSize: 'var(--fs-body)', fontWeight: 700, color: INK }}>
-        {i.paraje || `Incendio de ${i.anyo}`}
+        {i.paraje || rellena(t('map.incendio.deAnyo'), { anyo: i.anyo })}
       </div>
 
       <div style={{ marginTop: 4, display: 'flex', alignItems: 'baseline', gap: 8 }}>
         <span
           style={{ fontFamily: "'DM Mono', monospace", fontSize: 'var(--fs-meta)', color: INK }}
         >
-          {i.superficieHa.toLocaleString('es-ES', { maximumFractionDigits: 2 })} ha
+          {hectareas(i.superficieHa)} ha
         </span>
-        <span style={{ ...etiqueta, textTransform: 'none' }}>superficie del incendio completo</span>
+        <span style={{ ...etiqueta, textTransform: 'none' }}>{t('map.incendio.superficie')}</span>
       </div>
 
       {!i.propio && (
         // La atribución oficial es de otro pueblo. Se dice aquí, no se
         // esconde: el perímetro entra en Riba-roja, el parte no.
         <div style={{ marginTop: 6, fontSize: 'var(--fs-aux)', color: INK70 }}>
-          Atribuido por la Generalitat a <strong>{i.municipio}</strong>; su perímetro entra en
-          Riba-roja.
+          {antesDelMunicipio}
+          <strong>{i.municipio}</strong>
+          {despuesDelMunicipio}
         </div>
       )}
 
@@ -61,29 +76,32 @@ export function IncendioPopup({ incendio, fuente }) {
         style={{ marginTop: 8, display: 'grid', gap: 3, fontSize: 'var(--fs-aux)', color: INK70 }}
       >
         <div>
-          <span style={etiqueta}>Detectado</span> {fecha(i.detectadoEl) ?? 'sin fecha en el parte'}
+          <span style={etiqueta}>{t('map.incendio.detectado')}</span>{' '}
+          {fecha(i.detectadoEl) ?? t('map.incendio.sinFecha')}
           {i.horaDeteccion ? ` · ${i.horaDeteccion}` : ''}
         </div>
         {i.extinguidoEl && (
           <div>
-            <span style={etiqueta}>Extinguido</span> {fecha(i.extinguidoEl)}
+            <span style={etiqueta}>{t('map.incendio.extinguido')}</span> {fecha(i.extinguidoEl)}
           </div>
         )}
         <div>
-          <span style={etiqueta}>Causa</span>{' '}
+          <span style={etiqueta}>{t('map.incendio.causaRotulo')}</span>{' '}
           {causaConocida ? (
-            CAUSA_ETIQUETA[i.causa]
+            t(`map.incendio.causa.${i.causa}`)
           ) : (
             // «Otras Causas» y «Causa desconocida» significan «no se sabe».
             // Publicarlas como una causa las convertiría en un hecho.
-            <span style={{ color: INK55 }}>no consta en el parte</span>
+            <span style={{ color: INK55 }}>{t('map.incendio.causaNoConsta')}</span>
           )}
         </div>
         {(i.arboladaHa > 0 || i.noArboladaHa > 0) && (
           <div>
-            <span style={etiqueta}>Reparto</span>{' '}
-            {i.arboladaHa.toLocaleString('es-ES', { maximumFractionDigits: 2 })} ha arboladas ·{' '}
-            {i.noArboladaHa.toLocaleString('es-ES', { maximumFractionDigits: 2 })} ha no arboladas
+            <span style={etiqueta}>{t('map.incendio.reparto')}</span>{' '}
+            {rellena(t('map.incendio.repartoHa'), {
+              arbolada: hectareas(i.arboladaHa),
+              noArbolada: hectareas(i.noArboladaHa),
+            })}
           </div>
         )}
       </div>
@@ -99,7 +117,10 @@ export function IncendioPopup({ incendio, fuente }) {
           letterSpacing: '.03em',
         }}
       >
-        Parte {i.id} · {fuente?.atribucion ?? 'Institut Cartogràfic Valencià (ICV)'}
+        {rellena(t('map.incendio.parte'), {
+          id: i.id,
+          fuente: fuente?.atribucion ?? 'Institut Cartogràfic Valencià (ICV)',
+        })}
       </div>
     </div>
   )

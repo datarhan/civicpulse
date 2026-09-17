@@ -1,50 +1,6 @@
 {
-  "generatedAt": "2026-09-14T11:07:30.111Z",
+  "generatedAt": "2026-09-17T09:05:33.445Z",
   "clusters": [
-    {
-      "clusterId": "1hy1xq8",
-      "articleIds": [
-        "1baly32",
-        "1lnhg7g",
-        "1t1ctq4"
-      ],
-      "outlets": [
-        "Ayuntamiento de Riba-roja de Túria",
-        "Levante-EMV",
-        "elperiodicodeaqui.com"
-      ],
-      "earliestDate": "2026-08-31T07:00:00.000Z",
-      "latestDate": "2026-09-01T07:00:00.000Z",
-      "amountDrift": null,
-      "verdictMix": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 1,
-        "promesa-repetida": 0
-      }
-    },
-    {
-      "clusterId": "107j3y8",
-      "articleIds": [
-        "153mirg",
-        "1xjj30k"
-      ],
-      "outlets": [
-        "Ayuntamiento de Riba-roja de Túria",
-        "valenciaplaza.com"
-      ],
-      "earliestDate": "2026-09-11T08:10:15.000Z",
-      "latestDate": "2026-09-11T12:10:21.000Z",
-      "amountDrift": null,
-      "verdictMix": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      }
-    },
     {
       "clusterId": "13vj4ds",
       "articleIds": [
@@ -74,7 +30,7 @@
       ],
       "outlets": [
         "Ayuntamiento de Riba-roja de Túria",
-        "valenciaplaza.com"
+        "Valencia Plaza"
       ],
       "earliestDate": "2026-08-20T07:00:00.000Z",
       "latestDate": "2026-08-20T11:55:27.000Z",
@@ -88,23 +44,28 @@
       }
     },
     {
-      "clusterId": "1ij1q5o",
+      "clusterId": "1hy1xq8",
       "articleIds": [
-        "1yotn1k",
-        "33vp63"
+        "1lnhg7g",
+        "1t1ctq4"
       ],
       "outlets": [
         "Ayuntamiento de Riba-roja de Túria",
-        "valenciaplaza.com"
+        "Levante-EMV"
       ],
-      "earliestDate": "2026-08-18T07:00:00.000Z",
-      "latestDate": "2026-08-18T09:26:42.000Z",
-      "amountDrift": null,
+      "earliestDate": "2026-08-31T07:00:00.000Z",
+      "latestDate": "2026-08-31T09:04:15.000Z",
+      "amountDrift": {
+        "min": 40000,
+        "max": 40000,
+        "spread": 0,
+        "spreadPct": 0
+      },
       "verdictMix": {
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 0,
+        "sin-datos": 2,
         "promesa-repetida": 0
       }
     },
@@ -137,31 +98,10 @@
       ],
       "outlets": [
         "Ayuntamiento de Riba-roja de Túria",
-        "valenciaplaza.com"
+        "Valencia Plaza"
       ],
       "earliestDate": "2026-08-21T07:00:00.000Z",
       "latestDate": "2026-08-21T12:04:33.000Z",
-      "amountDrift": null,
-      "verdictMix": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      }
-    },
-    {
-      "clusterId": "1v2ow04",
-      "articleIds": [
-        "15tpe88",
-        "17vhhpk"
-      ],
-      "outlets": [
-        "Ayuntamiento de Riba-roja de Túria",
-        "Las Provincias"
-      ],
-      "earliestDate": "2026-08-17T07:00:00.000Z",
-      "latestDate": "2026-08-17T11:54:37.000Z",
       "amountDrift": null,
       "verdictMix": {
         "verificado": 0,
@@ -194,13 +134,13 @@
     }
   ],
   "stats": {
-    "totalClusters": 9,
-    "triangulated3Plus": 1
+    "totalClusters": 6,
+    "triangulated3Plus": 0
   },
   "builtFrom": {
-    "plenos-agendas.json": "d61b59026ce9",
-    "press-claims-verified.json": "02d9ec8cc450",
-    "press.json": "c825d880c2fb",
+    "plenos-agendas.json": "167834af76e4",
+    "press-claims-verified.json": "843ee810b6e7",
+    "press.json": "452399f350e3",
     "promises.json": "d18811c11210"
   }
 }

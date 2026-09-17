@@ -1,7 +1,27 @@
 import { test, expect } from '@playwright/test'
+import { readFileSync } from 'node:fs'
 import { collectErrors, appErrors } from './_console'
+import { fraseVeredictos, pressLabSummary } from '../../src/lib/press-lab'
 
 test.describe('Laboratorio (/laboratorio)', () => {
+  // La entradilla dice cuántas afirmaciones llegan a un veredicto con la frase que
+  // sale del mismo recuento que las tasas, no con una cuantía escrita a mano: decía
+  // «La mayoría vuelve sin nada…» encima de «0 de 64» (revisión lectora, 15-09-2026).
+  test('la entradilla dice cuántas llegan a un veredicto con el recuento publicado', async ({
+    page,
+  }) => {
+    const press = JSON.parse(readFileSync('public/data/press.json', 'utf8'))
+    const verificadas = JSON.parse(readFileSync('public/data/press-claims-verified.json', 'utf8'))
+    const resumen = pressLabSummary({
+      press: press.items ?? press,
+      verified: verificadas.items ?? verificadas.claims ?? verificadas,
+    })
+    // Mide algo: hay afirmaciones publicadas que contar.
+    expect(resumen.totalClaims).toBeGreaterThan(0)
+    await page.goto('/laboratorio', { waitUntil: 'domcontentloaded' })
+    await expect(page.getByText(fraseVeredictos(resumen))).toBeVisible({ timeout: 8000 })
+  })
+
   test('renders header, KPI strip, and dashboard rail', async ({ page }) => {
     const errors = collectErrors(page)
 

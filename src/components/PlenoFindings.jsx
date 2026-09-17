@@ -335,10 +335,13 @@ export function notaAcusacionSinContrastar(curatorName) {
   // cierta el día que las dos superficies pasaron a obedecer la misma puerta.
   // Es la prosa que se queda rancia cuando se mueve el dato, y la escribí yo
   // media hora antes de invalidarla.
+  // Cuarta pasada, 2026-09-15: la nota no decía de qué literal hablaba, y la revisión
+  // lectora la leyó dos veces como si negara la cita impresa de al lado (29-08 y
+  // 15-09). Ahora nombra el hueco con el mismo rótulo que lo pinta.
   const base =
     'es una acusación pública sobre la gestión municipal que el verificador no ha podido ' +
-    'contrastar, así que su literal no se publica: ni en el registro de declaraciones del pleno ' +
-    'ni aquí. El hueco queda a la vista, con su motivo'
+    'contrastar, así que su literal no se publica: ni aquí, donde queda a la vista el hueco ' +
+    `«${ROTULO_CITA_RETENIDA}» con su motivo, ni en el registro de declaraciones del pleno`
   const quien = (curatorName ?? '').trim()
   if (!quien) return `${base}; el pie de la ficha dice quién la editó.`
   return isMachineAuthored(quien)
@@ -466,6 +469,12 @@ export function citaRetenida(entry) {
 }
 
 /**
+ * El rótulo del hueco que deja una cita retenida. Lo pinta `CitaRetenida` y lo nombra
+ * la nota de «acusación no contrastada», para que se sepa de qué literal habla la nota.
+ */
+export const ROTULO_CITA_RETENIDA = 'Literal retenido'
+
+/**
  * El hueco que deja una cita retenida — autoexplicativo a propósito.
  *
  * `QuoteProvenanceNote` agrega los motivos bajo el grupo de citas, pero una
@@ -483,7 +492,7 @@ export function CitaRetenida({ attribution, tone }) {
       }}
     >
       <div style={{ fontSize: 'var(--fs-body)', color: 'var(--ink50)', lineHeight: 1.5 }}>
-        Literal retenido.
+        {ROTULO_CITA_RETENIDA}.
       </div>
       <figcaption
         style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink70)', marginTop: 4, lineHeight: 1.5 }}

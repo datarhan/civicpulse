@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest'
+import { readFileSync } from 'node:fs'
 import {
   enCastellano,
   estadoDeEnvio,
@@ -6,6 +7,7 @@ import {
   resumirEnvios,
   type EnvioSolicitud,
 } from '../src/scraper/solicitud-enviada'
+import { SENTIDOS_RESPUESTA } from '../src/scraper/solicitud-acceso'
 
 /**
  * Las solicitudes que salieron POR CORREO, contadas en el propio reportaje.
@@ -161,5 +163,98 @@ describe('etiquetas y tonos · derivados, no a mano', () => {
     expect(ESTADO_ENVIO_TONO['en-plazo']).toBe('civic')
     expect(ESTADO_ENVIO_TONO['vencida-sin-respuesta']).toBe('warn')
     expect(ESTADO_ENVIO_TONO.respondida).toBe('ok')
+  })
+})
+
+/**
+ * La primera respuesta que llegó no cabía en ninguno de los tres sentidos.
+ *
+ * El 16-09-2026 contestó la Secretaría de Estado de Turismo. No concedió acceso
+ * a nada —no entregó un solo documento— ni lo denegó: dijo que no le
+ * corresponde y que preguntemos al Ayuntamiento y a la Generalitat. Meter eso en
+ * «parcial» («lo concedieron en parte») publicaría un acceso que no hubo, y en
+ * «denegado», una negativa que tampoco. Es la regla del centinela: se nombra la
+ * cosa o no se escribe.
+ *
+ * Y el verbo tiene trampa. En la Ley 19/2013 «remitir» es REENVIAR la solicitud
+ * al competente (art. 19.1), y eso es justo lo que no hicieron. Escribir
+ * «remitieron» sería falso aunque suene a lo que pasó.
+ */
+describe('respuesta · «no les corresponde»', () => {
+  const ministerio: EnvioSolicitud = {
+    organismo: 'Secretaría de Estado de Turismo',
+    enviadaEl: '2026-09-09',
+    via: 'correo electrónico',
+    respuesta: { fecha: '2026-09-16', sentido: 'no-les-corresponde' as never },
+  }
+
+  it('es un sentido propio, no uno forzado', () => {
+    expect(SENTIDOS_RESPUESTA).toContain('no-les-corresponde')
+  })
+
+  it('dice lo que contestaron, sin conceder ni denegar', () => {
+    const f = fraseDeEnvio(ministerio, '2026-09-17')
+    expect(f).toMatch(/no les corresponde/i)
+    expect(f).not.toMatch(/conced|deneg/i)
+  })
+
+  it('no dice «remitieron», que en esta ley significa otra cosa', () => {
+    expect(fraseDeEnvio(ministerio, '2026-09-17')).not.toMatch(/\bremit/i)
+  })
+
+  it('la fecha va delante: «no les corresponde el 16» se leería como otra cosa', () => {
+    expect(fraseDeEnvio(ministerio, '2026-09-17')).toContain(
+      'El 16 de septiembre de 2026 contestaron que no les corresponde.',
+    )
+  })
+
+  // vitest despoja los tipos: que `QUE_HICIERON` sea un Record completo lo
+  // comprueba tsc, pero en ejecución una clave olvidada imprime «undefined» en
+  // una página pública. Se recorre el enum EXPORTADO, así que un sentido nuevo
+  // entra aquí solo.
+  it.each([...SENTIDOS_RESPUESTA])('el sentido «%s» compone una frase entera', (sentido) => {
+    const f = fraseDeEnvio(
+      { ...ministerio, respuesta: { fecha: '2026-10-02', sentido: sentido as never } },
+      '2026-10-20',
+    )
+    expect(f).not.toMatch(/undefined/)
+    expect(f).toMatch(/El 2 de octubre de 2026 [a-záéíóú]/)
+  })
+})
+
+/**
+ * Lo que está PUBLICADO tiene que usar sentidos que existen.
+ *
+ * El bloque `solicitudes` del reportaje no pasa por ningún validador: es JSON
+ * escrito a mano. Un sentido mal tecleado no rompería nada en el build y sí
+ * imprimiría «undefined» delante de los lectores. Se lee la instantánea real, no
+ * un fixture que la copie.
+ */
+describe('instantánea publicada · conteo-visitantes', () => {
+  const d = JSON.parse(readFileSync('public/data/reportajes/conteo-visitantes.json', 'utf8')) as {
+    solicitudes: { items: EnvioSolicitud[] }
+  }
+
+  it('trae solicitudes que mirar (si no, esta prueba aprobaría por no ver nada)', () => {
+    expect(d.solicitudes.items.length).toBeGreaterThan(0)
+  })
+
+  // El 17-09-2026 un mismo organismo pasó a tener DOS filas (la solicitud y su
+  // seguimiento). El componente usa `organismo + enviadaEl` como clave de React,
+  // y dos filas con la misma clave no dan error visible: React reutiliza una y la
+  // otra desaparece de la página, que es la forma más silenciosa de perder un
+  // reloj legal.
+  it('no hay dos solicitudes al mismo organismo el mismo día (la clave de la fila)', () => {
+    const claves = d.solicitudes.items.map((e) => `${e.organismo}-${e.enviadaEl}`)
+    const repetidas = claves.filter((k, i) => claves.indexOf(k) !== i)
+    expect(repetidas).toEqual([])
+  })
+
+  it('toda respuesta publicada usa un sentido del enum', () => {
+    const malos = d.solicitudes.items
+      .filter((e) => e.respuesta)
+      .map((e) => e.respuesta!.sentido)
+      .filter((s) => !(SENTIDOS_RESPUESTA as readonly string[]).includes(s))
+    expect(malos).toEqual([])
   })
 })

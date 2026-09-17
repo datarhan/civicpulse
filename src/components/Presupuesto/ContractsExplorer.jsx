@@ -1,8 +1,9 @@
 import { useMemo, useState } from 'react'
 import { ExtLink, Pill } from '../Primitives'
 import Paginacion from '../Paginacion'
-import { STATUS_LABEL, STATUS_TONE } from '../../hooks/useTenders'
-import { fmtDateShort } from '../../lib/formatters'
+import { STATUS_TONE } from '../../hooks/useTenders'
+import { fmtDateCompacta, rellena } from '../../lib/formatters'
+import { rotuloDe, useLocale } from '../../i18n'
 import { filterContracts, contractAmount, contractsListSummary } from '../../lib/tender-geo'
 
 const fmtEur = (n) =>
@@ -34,6 +35,8 @@ const INP = {
 }
 
 export default function ContractsExplorer({ contracts, snapshot }) {
+  const { locale, t } = useLocale()
+  const estado = (s) => rotuloDe(t, `contrato.estado.${s}`, s)
   const [text, setText] = useState('')
   const [zoneSlug, setZone] = useState('')
   const [type, setType] = useState('')
@@ -56,7 +59,7 @@ export default function ContractsExplorer({ contracts, snapshot }) {
     <div>
       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 10 }}>
         <input
-          placeholder="Buscar contrato o empresa…"
+          placeholder={t('presupuesto.gasto.buscar')}
           value={text}
           onChange={(e) => setText(e.target.value)}
           style={{ ...INP, flex: 1, minWidth: 160 }}
@@ -65,9 +68,9 @@ export default function ContractsExplorer({ contracts, snapshot }) {
           value={zoneSlug}
           onChange={(e) => setZone(e.target.value)}
           style={INP}
-          aria-label="Filtrar por zona"
+          aria-label={t('presupuesto.gasto.filtro.zona')}
         >
-          <option value="">Todas las zonas</option>
+          <option value="">{t('presupuesto.gasto.filtro.zonas')}</option>
           {zones.map((z) => (
             <option key={z.slug} value={z.slug}>
               {z.name}
@@ -78,12 +81,12 @@ export default function ContractsExplorer({ contracts, snapshot }) {
           value={type}
           onChange={(e) => setType(e.target.value)}
           style={INP}
-          aria-label="Filtrar por tipo"
+          aria-label={t('presupuesto.gasto.filtro.tipo')}
         >
-          <option value="">Todo tipo</option>
-          <option value="construction">Obras</option>
-          <option value="services">Servicios</option>
-          <option value="supplies">Suministros</option>
+          <option value="">{t('presupuesto.gasto.filtro.tipos')}</option>
+          <option value="construction">{t('contrato.tipo.construction')}</option>
+          <option value="services">{t('contrato.tipo.services')}</option>
+          <option value="supplies">{t('contrato.tipo.supplies')}</option>
         </select>
         <label
           style={{ fontSize: 'var(--fs-meta)', display: 'flex', alignItems: 'center', gap: 4 }}
@@ -95,7 +98,7 @@ export default function ContractsExplorer({ contracts, snapshot }) {
         items={matched}
         porPagina={POR_PAGINA}
         clave={`${text}|${zoneSlug}|${type}|${dana}`}
-        etiqueta="listado de contratos"
+        etiqueta={t('presupuesto.gasto.listado')}
       >
         {(rows, { desde, pagina, paginas }) => (
           <>
@@ -104,22 +107,33 @@ export default function ContractsExplorer({ contracts, snapshot }) {
                 <span className="mono" style={{ color: 'var(--ink)', fontWeight: 700 }}>
                   {resumen.total}
                 </span>{' '}
-                resultado{resumen.total === 1 ? '' : 's'}
+                {t(
+                  resumen.total === 1
+                    ? 'presupuesto.gasto.resultado.uno'
+                    : 'presupuesto.gasto.resultado.varios',
+                )}
                 {paginas > 1
-                  ? ` · ${desde + 1}–${desde + rows.length}, página ${pagina} de ${paginas}`
+                  ? ` · ${rellena(t('presupuesto.gasto.resultado.pagina'), {
+                      desde: desde + 1,
+                      hasta: desde + rows.length,
+                      pagina,
+                      paginas,
+                    })}`
                   : ''}
               </div>
               {resumen.rest > 0 && (
                 <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-                  <span className="mono">{resumen.committed}</span> son dinero comprometido
-                  (adjudicado o formalizado).{' '}
-                  {resumen.rest === 1 ? 'El otro consta' : `Los otros ${resumen.rest} constan`} en
-                  el registro público pero no cuenta{resumen.rest === 1 ? '' : 'n'} en las cifras de
-                  arriba:{' '}
+                  <span className="mono">{resumen.committed}</span>{' '}
+                  {t('presupuesto.gasto.comprometido')}{' '}
+                  {resumen.rest === 1
+                    ? t('presupuesto.gasto.fueraDeCifras.uno')
+                    : rellena(t('presupuesto.gasto.fueraDeCifras.varios'), {
+                        n: resumen.rest,
+                      })}{' '}
                   {resumen.restByStatus.map((r, i) => (
                     <span key={r.status} style={{ whiteSpace: 'nowrap' }}>
                       {i > 0 ? ' · ' : ''}
-                      {STATUS_LABEL[r.status]} <span className="mono">{r.count}</span>
+                      {estado(r.status)} <span className="mono">{r.count}</span>
                     </span>
                   ))}
                   .
@@ -145,7 +159,7 @@ export default function ContractsExplorer({ contracts, snapshot }) {
                     {c.title.length > 100 ? c.title.slice(0, 100) + '…' : c.title}
                   </ExtLink>
                   <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-                    {c.assignee || '—'} · {fmtDateShort(c.awardDate) || '—'}
+                    {c.assignee || '—'} · {fmtDateCompacta(c.awardDate, locale) || '—'}
                   </div>
                 </div>
                 <span className="mono" style={{ textAlign: 'right', fontWeight: 700 }}>
@@ -153,7 +167,7 @@ export default function ContractsExplorer({ contracts, snapshot }) {
                 </span>
                 <span style={{ textAlign: 'right' }}>
                   <Pill tone={STATUS_TONE[c.status] || 'ghost'} size="xs">
-                    {STATUS_LABEL[c.status] || c.status}
+                    {estado(c.status)}
                   </Pill>
                 </span>
               </div>

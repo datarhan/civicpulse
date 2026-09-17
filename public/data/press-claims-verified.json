@@ -1,20 +1,544 @@
 {
-  "generatedAt": "2026-09-14T08:30:48.663Z",
+  "generatedAt": "2026-09-17T08:15:41.261Z",
   "source": {
     "description": "Press claims verified against municipal data",
     "contract": "src/scraper/press-verifier.ts"
   },
   "stats": {
-    "total": 52,
+    "total": 67,
     "byVerdict": {
       "verificado": 0,
       "parcial": 0,
       "contradicho": 0,
-      "sin-datos": 52,
+      "sin-datos": 67,
       "promesa-repetida": 0
     }
   },
   "items": [
+    {
+      "claim": {
+        "id": "yfbsr-0-dat",
+        "articleId": "yfbsr",
+        "articleFingerprint": "1ayfpd2",
+        "articleSource": "Valencia Plaza",
+        "articleSourceHost": "valenciaplaza.com",
+        "articleUrl": "https://news.google.com/rss/articles/CBMiiAJBVV95cUxON3cyWjNNX05UVHIxX0dBSXFMdk5fUk50eGFIMjhzaEJhSVhDenkzQUxYNk85cS02Q2lIWkZhZDh0ZjhKVlk1ekF3T0JhY3pBcFZES3lYM05ZOGhPNU5DLWpYd0xCMjRnMTZ5UWFiMjdmdC1wbXNPTXBGdE1nOS04OEs3UmxwOFBoMFluNXpEaEFFYW9FVmpqajhhR1E1MjlxYVVwbFhUQ0l0cUNZNmhzRXlMS0NLUXlGYWdQd1ZXaWo1VHA1YUJBRXBFSlcweEotTG1qa2dHWl9xaWJiQmNsczR4b3RubEdRenJUX2NKZVNDcUtXVFZxU3d3M3ltemQxYUVjeXY0TkY?oc=5",
+        "articleDate": "2026-09-14T04:02:28.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "La patronal de la construcción recurre el concurso para ampliar la depuradora de Riba-roja por una cláusula de igualdad",
+        "context": "Titular del artículo publicado por valenciaplaza.com: La patronal de la construcción recurre el concurso para ampliar la depuradora de Riba-roja por una cláusula de igualdad.",
+        "topic": "social",
+        "entities": {
+          "referencedEntity": "depuradora de Riba-roja"
+        },
+        "confidence": 0.4,
+        "reasoning": "Es un hecho contrastable mediante registros administrativos: puede verificarse si la patronal presentó efectivamente un recurso contra el concurso público alegando la cláusula de igualdad citada.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "yfbsr-0-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://news.google.com/rss/articles/CBMiiAJBVV95cUxON3cyWjNNX05UVHIxX0dBSXFMdk5fUk50eGFIMjhzaEJhSVhDenkzQUxYNk85cS02Q2lIWkZhZDh0ZjhKVlk1ekF3T0JhY3pBcFZES3lYM05ZOGhPNU5DLWpYd0xCMjRnMTZ5UWFiMjdmdC1wbXNPTXBGdE1nOS04OEs3UmxwOFBoMFluNXpEaEFFYW9FVmpqajhhR1E1MjlxYVVwbFhUQ0l0cUNZNmhzRXlMS0NLUXlGYWdQd1ZXaWo1VHA1YUJBRXBFSlcweEotTG1qa2dHWl9xaWJiQmNsczR4b3RubEdRenJUX2NKZVNDcUtXVFZxU3d3M3ltemQxYUVjeXY0TkY?oc=5",
+        "articleSource": "Valencia Plaza",
+        "articleSourceHost": "valenciaplaza.com",
+        "articleFingerprint": "1ayfpd2"
+      }
+    },
+    {
+      "claim": {
+        "id": "153mirg-0-dat",
+        "articleId": "153mirg",
+        "articleFingerprint": "2w05ns",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-ultima-la-rehabilitaci%C3%B3n-del-pont-vell-aumentando-su-capacidad-hidr%C3%A1ulica-y-respetando-su-huella-hist%C3%B3rica",
+        "articleDate": "2026-09-11T08:10:15.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "El paso de la fuerte avenida de agua el 29 de octubre de 2024 por el Túria provocó la erosión de las fábricas de ladrillo, mampostería y sillares, la destrucción de los estribos, rampas y accesos al puente, así como daños en las cimentaciones, la pérdida de protección del tablero principal o zona de paso y una grave afectación a los depósitos salinos.",
+        "context": "Este elemento patrimonial sufrió un duro golpe con el paso de la Dana por el río Túria y provocó graves daños sobre su estructura, eliminando el paso peatonal que une la zona norte del municipio con el centro urbano.",
+        "topic": "urbanismo",
+        "entities": {
+          "date": "2024-10-29",
+          "referencedEntity": "Pont Vell"
+        },
+        "confidence": 0.6,
+        "reasoning": "Describe daños estructurales concretos y fechados, verificables mediante informe técnico de daños.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "153mirg-0-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-ultima-la-rehabilitaci%C3%B3n-del-pont-vell-aumentando-su-capacidad-hidr%C3%A1ulica-y-respetando-su-huella-hist%C3%B3rica",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "2w05ns"
+      }
+    },
+    {
+      "claim": {
+        "id": "153mirg-1-num",
+        "articleId": "153mirg",
+        "articleFingerprint": "2w05ns",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-ultima-la-rehabilitaci%C3%B3n-del-pont-vell-aumentando-su-capacidad-hidr%C3%A1ulica-y-respetando-su-huella-hist%C3%B3rica",
+        "articleDate": "2026-09-11T08:10:15.000Z",
+        "segmentIndex": 1,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "Gracias a una inversión de 1,5 millones de euros a cargo del Ministerio de Transportes, el municipio de Riba-roja de Túria podrá recuperar este puente del siglo XVI",
+        "context": "Gracias a una inversión de 1,5 millones de euros a cargo del Ministerio de Transportes, el municipio de Riba-roja de Túria podrá recuperar este puente del siglo XVI, mejorando la seguridad de los vecinos y vecinas frente a futuras avenidas de agua.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 1500000,
+          "referencedEntity": "Ministerio de Transportes"
+        },
+        "confidence": 0.85,
+        "reasoning": "Cifra de inversión y organismo financiador son datos públicos verificables.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "153mirg-1-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-ultima-la-rehabilitaci%C3%B3n-del-pont-vell-aumentando-su-capacidad-hidr%C3%A1ulica-y-respetando-su-huella-hist%C3%B3rica",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "2w05ns"
+      }
+    },
+    {
+      "claim": {
+        "id": "153mirg-2-num",
+        "articleId": "153mirg",
+        "articleFingerprint": "2w05ns",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-ultima-la-rehabilitaci%C3%B3n-del-pont-vell-aumentando-su-capacidad-hidr%C3%A1ulica-y-respetando-su-huella-hist%C3%B3rica",
+        "articleDate": "2026-09-11T08:10:15.000Z",
+        "segmentIndex": 2,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "Las obras de rehabilitación comenzaron el 2 de junio de 2025, a cargo del Ministerio de Transportes con una inversión de 1,5 millones de euros y en unos meses estarán culminadas.",
+        "context": "Las obras de rehabilitación comenzaron el 2 de junio de 2025, a cargo del Ministerio de Transportes con una inversión de 1,5 millones de euros y en unos meses estarán culminadas.",
+        "topic": "urbanismo",
+        "entities": {
+          "amountEuros": 1500000,
+          "date": "2025-06-02",
+          "referencedEntity": "Ministerio de Transportes"
+        },
+        "confidence": 0.85,
+        "reasoning": "Fecha de inicio de obra e importe son verificables en el expediente de contratación pública.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "153mirg-2-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-ultima-la-rehabilitaci%C3%B3n-del-pont-vell-aumentando-su-capacidad-hidr%C3%A1ulica-y-respetando-su-huella-hist%C3%B3rica",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "2w05ns"
+      }
+    },
+    {
+      "claim": {
+        "id": "153mirg-3-obr",
+        "articleId": "153mirg",
+        "articleFingerprint": "2w05ns",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-ultima-la-rehabilitaci%C3%B3n-del-pont-vell-aumentando-su-capacidad-hidr%C3%A1ulica-y-respetando-su-huella-hist%C3%B3rica",
+        "articleDate": "2026-09-11T08:10:15.000Z",
+        "segmentIndex": 3,
+        "segmentKind": "body",
+        "type": "cita_obra",
+        "attributedSource": "municipal",
+        "verbatim": "recuperar este puente supone, además de la salvaguardar nuestro patrimonio histórico y restituir la memoria colectiva de Riba-roja, garantizar la conexión ciclo peatonal desde el centro urbano hasta el Clot de Navarrete y disponer de un entrada relevante por el Camí de les Ànimes",
+        "context": "El alcalde de Riba-roja reconoció a los ingenieros el trabajo realizado, \"recuperar este puente supone, además de la salvaguardar nuestro patrimonio histórico y restituir la memoria colectiva de Riba-roja, garantizar la conexión ciclo peatonal desde el centro urbano hasta el Clot de Navarrete...\"",
+        "topic": "movilidad",
+        "entities": {
+          "referencedEntity": "Clot de Navarrete"
+        },
+        "confidence": 0.5,
+        "reasoning": "Afirma una conexión ciclopeatonal garantizada que podrá contrastarse una vez finalizada la obra.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "153mirg-3-obr",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted"
+        ],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-ultima-la-rehabilitaci%C3%B3n-del-pont-vell-aumentando-su-capacidad-hidr%C3%A1ulica-y-respetando-su-huella-hist%C3%B3rica",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "2w05ns"
+      }
+    },
+    {
+      "claim": {
+        "id": "153mirg-4-dat",
+        "articleId": "153mirg",
+        "articleFingerprint": "2w05ns",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-ultima-la-rehabilitaci%C3%B3n-del-pont-vell-aumentando-su-capacidad-hidr%C3%A1ulica-y-respetando-su-huella-hist%C3%B3rica",
+        "articleDate": "2026-09-11T08:10:15.000Z",
+        "segmentIndex": 4,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "La rehabilitación del Pont Vell (1548), Bien de Relevancia Local, entra ya en su recta final.",
+        "context": "La rehabilitación del Pont Vell (1548), Bien de Relevancia Local, entra ya en su recta final. Este elemento patrimonial, emblema del municipio ribereño de Riba-roja de Túria, sufrió un duro golpe con el paso de la Dana.",
+        "topic": "cultura",
+        "entities": {
+          "date": "1548",
+          "referencedEntity": "Pont Vell"
+        },
+        "confidence": 0.55,
+        "reasoning": "Fecha de construcción y catalogación patrimonial son datos comprobables en el registro de bienes.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "153mirg-4-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-ultima-la-rehabilitaci%C3%B3n-del-pont-vell-aumentando-su-capacidad-hidr%C3%A1ulica-y-respetando-su-huella-hist%C3%B3rica",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "2w05ns"
+      }
+    },
+    {
+      "claim": {
+        "id": "153mirg-5-dat",
+        "articleId": "153mirg",
+        "articleFingerprint": "2w05ns",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-ultima-la-rehabilitaci%C3%B3n-del-pont-vell-aumentando-su-capacidad-hidr%C3%A1ulica-y-respetando-su-huella-hist%C3%B3rica",
+        "articleDate": "2026-09-11T08:10:15.000Z",
+        "segmentIndex": 5,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "las riadas que datan del año 1776 que a punto estuvo de acabar con esta construcción, con la rotura de tres de los doce arcos que se dibujan en él",
+        "context": "Los agentes meteorológicos han afectado en más ocasiones a la historia de este conocido puente, como las riadas que datan del año 1776 que a punto estuvo de acabar con esta construcción, con la rotura de tres de los doce arcos que se dibujan en él.",
+        "topic": "cultura",
+        "entities": {
+          "count": 3,
+          "countUnit": "arcos",
+          "date": "1776",
+          "referencedEntity": "Pont Vell"
+        },
+        "confidence": 0.55,
+        "reasoning": "Dato histórico concreto y numérico sobre daños estructurales, contrastable en archivos patrimoniales.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "153mirg-5-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-ultima-la-rehabilitaci%C3%B3n-del-pont-vell-aumentando-su-capacidad-hidr%C3%A1ulica-y-respetando-su-huella-hist%C3%B3rica",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "2w05ns"
+      }
+    },
+    {
+      "claim": {
+        "id": "153mirg-6-dat",
+        "articleId": "153mirg",
+        "articleFingerprint": "2w05ns",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-ultima-la-rehabilitaci%C3%B3n-del-pont-vell-aumentando-su-capacidad-hidr%C3%A1ulica-y-respetando-su-huella-hist%C3%B3rica",
+        "articleDate": "2026-09-11T08:10:15.000Z",
+        "segmentIndex": 6,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "para evitar el paso de las tropas francesas en el año 1811, se cortaron dos arcos como forma de parar el avance hacia la zona sur de Valencia",
+        "context": "Además, para evitar el paso de las tropas francesas en el año 1811, se cortaron dos arcos como forma de parar el avance hacia la zona sur de Valencia.",
+        "topic": "cultura",
+        "entities": {
+          "count": 2,
+          "countUnit": "arcos",
+          "date": "1811",
+          "referencedEntity": "Pont Vell"
+        },
+        "confidence": 0.5,
+        "reasoning": "Hecho histórico datado y cuantificado, verificable en registros históricos locales.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "153mirg-6-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-ultima-la-rehabilitaci%C3%B3n-del-pont-vell-aumentando-su-capacidad-hidr%C3%A1ulica-y-respetando-su-huella-hist%C3%B3rica",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "2w05ns"
+      }
+    },
+    {
+      "claim": {
+        "id": "153mirg-7-dat",
+        "articleId": "153mirg",
+        "articleFingerprint": "2w05ns",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-ultima-la-rehabilitaci%C3%B3n-del-pont-vell-aumentando-su-capacidad-hidr%C3%A1ulica-y-respetando-su-huella-hist%C3%B3rica",
+        "articleDate": "2026-09-11T08:10:15.000Z",
+        "segmentIndex": 7,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "el Conde de Revillagigedo, como propietario del puente, lo cedió a la Comunidad de Regantes de la huerta de Riba-roja de Túria en el año 1897",
+        "context": "Fue entonces cuando el Conde de Revillagigedo, como propietario del puente, lo cedió a la Comunidad de Regantes de la huerta de Riba-roja de Túria en el año 1897.",
+        "topic": "urbanismo",
+        "entities": {
+          "date": "1897",
+          "referencedEntity": "Comunidad de Regantes de la huerta de Riba-roja de Túria"
+        },
+        "confidence": 0.55,
+        "reasoning": "Cambio de titularidad histórico del puente es un dato registral potencialmente contrastable.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "153mirg-7-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-ultima-la-rehabilitaci%C3%B3n-del-pont-vell-aumentando-su-capacidad-hidr%C3%A1ulica-y-respetando-su-huella-hist%C3%B3rica",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "2w05ns"
+      }
+    },
+    {
+      "claim": {
+        "id": "153mirg-8-dat",
+        "articleId": "153mirg",
+        "articleFingerprint": "2w05ns",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-ultima-la-rehabilitaci%C3%B3n-del-pont-vell-aumentando-su-capacidad-hidr%C3%A1ulica-y-respetando-su-huella-hist%C3%B3rica",
+        "articleDate": "2026-09-11T08:10:15.000Z",
+        "segmentIndex": 8,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "En el año 1921 se iniciaron las obras de reparación y ampliación del puente",
+        "context": "En el año 1921 se iniciaron las obras de reparación y ampliación del puente que, nuevamente, se verían maltrechas por la riada del año 1957.",
+        "topic": "urbanismo",
+        "entities": {
+          "date": "1921",
+          "referencedEntity": "Pont Vell"
+        },
+        "confidence": 0.5,
+        "reasoning": "Fecha de obras históricas de reparación es un dato verificable en archivos municipales.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "153mirg-8-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-ultima-la-rehabilitaci%C3%B3n-del-pont-vell-aumentando-su-capacidad-hidr%C3%A1ulica-y-respetando-su-huella-hist%C3%B3rica",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "2w05ns"
+      }
+    },
+    {
+      "claim": {
+        "id": "153mirg-9-dat",
+        "articleId": "153mirg",
+        "articleFingerprint": "2w05ns",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-ultima-la-rehabilitaci%C3%B3n-del-pont-vell-aumentando-su-capacidad-hidr%C3%A1ulica-y-respetando-su-huella-hist%C3%B3rica",
+        "articleDate": "2026-09-11T08:10:15.000Z",
+        "segmentIndex": 9,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "se verían maltrechas por la riada del año 1957 y, diez años más tarde, se construyó el puente nuevo",
+        "context": "En el año 1921 se iniciaron las obras de reparación y ampliación del puente que, nuevamente, se verían maltrechas por la riada del año 1957 y, diez años más tarde, se construyó el puente nuevo.",
+        "topic": "urbanismo",
+        "entities": {
+          "count": 10,
+          "countUnit": "años",
+          "date": "1957",
+          "referencedEntity": "puente nuevo"
+        },
+        "confidence": 0.5,
+        "reasoning": "Fecha de riada y de construcción del nuevo puente son datos históricos contrastables.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "153mirg-9-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-ultima-la-rehabilitaci%C3%B3n-del-pont-vell-aumentando-su-capacidad-hidr%C3%A1ulica-y-respetando-su-huella-hist%C3%B3rica",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "2w05ns"
+      }
+    },
+    {
+      "claim": {
+        "id": "153mirg-10-dat",
+        "articleId": "153mirg",
+        "articleFingerprint": "2w05ns",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-ultima-la-rehabilitaci%C3%B3n-del-pont-vell-aumentando-su-capacidad-hidr%C3%A1ulica-y-respetando-su-huella-hist%C3%B3rica",
+        "articleDate": "2026-09-11T08:10:15.000Z",
+        "segmentIndex": 10,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "Desde el 7 abril de 2025, este puente pertenece al Ayuntamiento de Riba-roja de Túria tras una cesión por parte de la Comunidad de Regantes Lorca y Quint",
+        "context": "Desde el 7 abril de 2025, este puente pertenece al Ayuntamiento de Riba-roja de Túria tras una cesión por parte de la Comunidad de Regantes Lorca y Quint.",
+        "topic": "urbanismo",
+        "entities": {
+          "date": "2025-04-07",
+          "referencedEntity": "Comunidad de Regantes Lorca y Quint"
+        },
+        "confidence": 0.7,
+        "reasoning": "Cesión de titularidad con fecha concreta es un dato registral verificable.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "153mirg-10-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-ultima-la-rehabilitaci%C3%B3n-del-pont-vell-aumentando-su-capacidad-hidr%C3%A1ulica-y-respetando-su-huella-hist%C3%B3rica",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "2w05ns"
+      }
+    },
+    {
+      "claim": {
+        "id": "153mirg-11-dat",
+        "articleId": "153mirg",
+        "articleFingerprint": "2w05ns",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-ultima-la-rehabilitaci%C3%B3n-del-pont-vell-aumentando-su-capacidad-hidr%C3%A1ulica-y-respetando-su-huella-hist%C3%B3rica",
+        "articleDate": "2026-09-11T08:10:15.000Z",
+        "segmentIndex": 11,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "incrementar su capacidad hidráulica gracias a la incorporación de nuevos materiales, como el uso de mortero de cal y lechadas de cemento, que han permitido la consolidación del puente",
+        "context": "La intervención se ha centrado en mantener las \"cicatrices históricas\" del Pont Vell, pero incorporando nuevos materiales para mejorar su resiliencia, además de incrementar su capacidad hidráulica gracias a la incorporación de nuevos materiales.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "referencedEntity": "Pont Vell"
+        },
+        "confidence": 0.45,
+        "reasoning": "Afirmación técnica sobre materiales y capacidad hidráulica verificable mediante el proyecto de obra.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "153mirg-11-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-ultima-la-rehabilitaci%C3%B3n-del-pont-vell-aumentando-su-capacidad-hidr%C3%A1ulica-y-respetando-su-huella-hist%C3%B3rica",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "2w05ns"
+      }
+    },
+    {
+      "claim": {
+        "id": "153mirg-12-pro",
+        "articleId": "153mirg",
+        "articleFingerprint": "2w05ns",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-ultima-la-rehabilitaci%C3%B3n-del-pont-vell-aumentando-su-capacidad-hidr%C3%A1ulica-y-respetando-su-huella-hist%C3%B3rica",
+        "articleDate": "2026-09-11T08:10:15.000Z",
+        "segmentIndex": 12,
+        "segmentKind": "body",
+        "type": "promesa",
+        "attributedSource": "outlet",
+        "verbatim": "dispondrá de una barandilla más permeable y dos pebeteros monumentales como remates ornamentales en los pilares principales",
+        "context": "posteriormente se procederá a la colocación de la estructura, adecuada a normativa, que dispondrá de una barandilla más permeable y dos pebeteros monumentales como remates ornamentales en los pilares principales.",
+        "topic": "cultura",
+        "entities": {
+          "count": 2,
+          "countUnit": "pebeteros monumentales",
+          "referencedEntity": "Pont Vell"
+        },
+        "confidence": 0.55,
+        "reasoning": "Especificación de diseño final comprobable al completarse la obra (presencia de pebeteros y barandilla).",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "153mirg-12-pro",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "promises"
+        ],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-ultima-la-rehabilitaci%C3%B3n-del-pont-vell-aumentando-su-capacidad-hidr%C3%A1ulica-y-respetando-su-huella-hist%C3%B3rica",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "2w05ns"
+      }
+    },
     {
       "claim": {
         "id": "1p0chgo-0-dat",
@@ -1823,47 +2347,6 @@
     },
     {
       "claim": {
-        "id": "1baly32-0-num",
-        "articleId": "1baly32",
-        "articleFingerprint": "fkx730",
-        "articleSource": "El Periódico de Aquí",
-        "articleSourceHost": "elperiodicodeaqui.com",
-        "articleUrl": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOeFZuWE10YkNHY3B1WS02SE54eVJ6amV6T09iMHExMTRnM2x1YllpdXNHemluTFhRMFlEajF5dnhMZTVtMGd4dEJENG41V0p4WFQzeThRcEFJTGdWVEJCak93UTBwWVBaOXh2SEIwcWd1ZVVsb0kxcXBNV1l1RTZTdTJfeWMxbDRFMmZwYTlOQ0V3ZmxpU2xlNGRtUGVPNVlFYUVxbWs1VkctRnhEMHRWRDBLLW5QQ1IyTGpHRnJKa2R1TGlmX1FNWG5PWXlEbVB3TVpiaWR3TGpWRjJaVXc?oc=5",
-        "articleDate": "2026-09-01T07:00:00.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "title",
-        "type": "afirmacion_numerica",
-        "attributedSource": "outlet",
-        "verbatim": "El Auditorio de Riba-roja invierte 40.000 euros en modernizar sus instalaciones",
-        "context": "Titular de El Periódico de Aquí (01/09/2026): 'El Auditorio de Riba-roja invierte 40.000 euros en modernizar sus instalaciones'. No se dispone del cuerpo del artículo para más contexto.",
-        "topic": "cultura",
-        "entities": {
-          "amountEuros": 40000,
-          "referencedEntity": "Auditorio de Riba-roja"
-        },
-        "confidence": 0.55,
-        "reasoning": "Cifra concreta de inversión (40.000€) en una instalación pública, verificable frente a presupuestos o contratos municipales.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1baly32-0-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ],
-        "articleUrl": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOeFZuWE10YkNHY3B1WS02SE54eVJ6amV6T09iMHExMTRnM2x1YllpdXNHemluTFhRMFlEajF5dnhMZTVtMGd4dEJENG41V0p4WFQzeThRcEFJTGdWVEJCak93UTBwWVBaOXh2SEIwcWd1ZVVsb0kxcXBNV1l1RTZTdTJfeWMxbDRFMmZwYTlOQ0V3ZmxpU2xlNGRtUGVPNVlFYUVxbWs1VkctRnhEMHRWRDBLLW5QQ1IyTGpHRnJKa2R1TGlmX1FNWG5PWXlEbVB3TVpiaWR3TGpWRjJaVXc?oc=5",
-        "articleSource": "El Periódico de Aquí",
-        "articleSourceHost": "elperiodicodeaqui.com",
-        "articleFingerprint": "fkx730"
-      }
-    },
-    {
-      "claim": {
         "id": "1bt7s8w-0-num",
         "articleId": "1bt7s8w",
         "articleFingerprint": "1s8fa60",
@@ -1902,7 +2385,84 @@
         "articleSourceHost": "infoturia.com",
         "articleFingerprint": "1s8fa60"
       }
+    },
+    {
+      "claim": {
+        "id": "1t1ctq4-0-dat",
+        "articleId": "1t1ctq4",
+        "articleFingerprint": "1js11tg",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-auditorio-municipal-de-riba-roja-de-t%C3%BAria-invierte-40.000-euros-en-la-modernizaci%C3%B3n-de-sus-instalaciones-y-equipamientos-t%C3%A9cnicos",
+        "articleDate": "2026-08-31T09:04:15.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "dato_municipal",
+        "attributedSource": "municipal",
+        "verbatim": "El Auditorio Municipal de Riba-roja de Túria invierte 40.000 euros en la modernización de sus instalaciones y equipamientos técnicos",
+        "context": "El Auditorio Municipal de Riba-roja de Túria invierte 40.000 euros en la modernización de sus instalaciones y equipamientos técnicos",
+        "topic": "cultura",
+        "entities": {
+          "amountEuros": 40000,
+          "referencedEntity": "Auditorio Municipal de Riba-roja de Túria"
+        },
+        "confidence": 0.75,
+        "reasoning": "El titular aporta una cifra concreta (40.000 €) de inversión municipal en un equipamiento público, contrastable con el presupuesto o las actas municipales.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1t1ctq4-0-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-auditorio-municipal-de-riba-roja-de-t%C3%BAria-invierte-40.000-euros-en-la-modernizaci%C3%B3n-de-sus-instalaciones-y-equipamientos-t%C3%A9cnicos",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1js11tg"
+      }
+    },
+    {
+      "claim": {
+        "id": "1lnhg7g-0-num",
+        "articleId": "1lnhg7g",
+        "articleFingerprint": "1hy1xq8",
+        "articleSource": "Levante-EMV",
+        "articleSourceHost": "levante-emv.com",
+        "articleUrl": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPNWpWeDdjLW1XeThCd2Q3LVlsQUg1VnZyNTA1Z0RCb3FSUk1JanFvZ1U2eGs4M3NWQkdZM045UC1ETGNwNlQ0VlhVSlJKZG9lUTZYZ3pTdUZuNkV3TmNFLWEzQmdyV2dmSUljT09QQlQxakZ6V3c2WjViVVJFRWJwbGFlUUEwdW9ueXdIRlNDOUk5TUFBeWg0Z0VSdFd4M1FIVm43eU05TUE3Qkx6UVVKbXRaXzVrOW4wSVZaY3gzYlJSdThsTjExeGRqVWhWcjkwTE000gHYAUFVX3lxTFB1U3JHcGR6dEZWSmc2WlkzSXVqOE5mVjVBck9JS2tsczFJbkRaT3BPdEFwbWdJYXE1UkV2cXVxc21qN19DaGZOc2hia2Y5MHc4T1gxdTFBX1dZanFDR2lXZ21hUzNJa3o2ZEF6cHhxYURoVmhEMC1GMUJqbDFZTWk4UDVWc0lxbjRsQWlfTTgwdUxRUUIwcGc5c05sTXFReUU3c3BBdmdFcTV1ZjdaVHVBeEhCT2lNMGp1VndaMFZSNmxlR3hadk9NT3NJZVpMbnR2Y0tLejZtag?oc=5",
+        "articleDate": "2026-08-31T07:00:00.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "El Auditorio de Riba-roja de Túria invierte 40.000 euros en la modernización de sus instalaciones",
+        "context": "Titular publicado por Levante-EMV (31-08-2026) referido al Auditorio de Riba-roja de Túria. No se dispone de cuerpo de artículo adicional para contrastar detalles.",
+        "topic": "cultura",
+        "entities": {
+          "amountEuros": 40000,
+          "referencedEntity": "Auditorio de Riba-roja de Túria"
+        },
+        "confidence": 0.55,
+        "reasoning": "Cifra concreta de inversión (40.000 euros) en una instalación municipal, verificable contra presupuestos o contratos públicos.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1lnhg7g-0-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ],
+        "articleUrl": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPNWpWeDdjLW1XeThCd2Q3LVlsQUg1VnZyNTA1Z0RCb3FSUk1JanFvZ1U2eGs4M3NWQkdZM045UC1ETGNwNlQ0VlhVSlJKZG9lUTZYZ3pTdUZuNkV3TmNFLWEzQmdyV2dmSUljT09QQlQxakZ6V3c2WjViVVJFRWJwbGFlUUEwdW9ueXdIRlNDOUk5TUFBeWg0Z0VSdFd4M1FIVm43eU05TUE3Qkx6UVVKbXRaXzVrOW4wSVZaY3gzYlJSdThsTjExeGRqVWhWcjkwTE000gHYAUFVX3lxTFB1U3JHcGR6dEZWSmc2WlkzSXVqOE5mVjVBck9JS2tsczFJbkRaT3BPdEFwbWdJYXE1UkV2cXVxc21qN19DaGZOc2hia2Y5MHc4T1gxdTFBX1dZanFDR2lXZ21hUzNJa3o2ZEF6cHhxYURoVmhEMC1GMUJqbDFZTWk4UDVWc0lxbjRsQWlfTTgwdUxRUUIwcGc5c05sTXFReUU3c3BBdmdFcTV1ZjdaVHVBeEhCT2lNMGp1VndaMFZSNmxlR3hadk9NT3NJZVpMbnR2Y0tLejZtag?oc=5",
+        "articleSource": "Levante-EMV",
+        "articleSourceHost": "levante-emv.com",
+        "articleFingerprint": "1hy1xq8"
+      }
     }
   ],
-  "sourceGeneratedAt": "2026-09-14T08:30:30.865Z"
+  "sourceGeneratedAt": "2026-09-17T08:15:21.648Z"
 }

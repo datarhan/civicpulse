@@ -87,3 +87,34 @@ export function pressLabSummary({ press = [], verified = [] } = {}, now = Date.n
     hasEditorialContent: !sinResolver,
   }
 }
+
+/**
+ * La frase de la entradilla de /laboratorio sobre cuántas afirmaciones llegan a un
+ * veredicto, sacada del mismo recuento que las tasas.
+ *
+ * Decía siempre «La mayoría vuelve sin nada que las confirme ni las desmienta», y el
+ * 15-09-2026 estaba encima de «0 de 64»: ninguna había llegado a un veredicto. Una
+ * cuantía escrita a mano es la prosa que se queda rancia cuando se mueve el dato.
+ * «Resuelta» significa lo mismo que en la tasa de discrepancia —verificada o
+ * contradicha—; `sin-datos` y `parcial` no resuelven nada.
+ */
+export function fraseVeredictos(summary) {
+  const total = summary?.totalClaims ?? 0
+  const resueltas = summary?.resueltasClaims ?? 0
+  if (total === 0) {
+    return 'Todavía no hay afirmaciones analizadas; cuando las haya, las tasas de aquí abajo dirán cuántas llegan a un veredicto.'
+  }
+  if (resueltas === 0) {
+    return 'Por ahora ninguna ha llegado a un veredicto que la confirme o la desmienta, y así lo dicen las tasas de aquí abajo.'
+  }
+  if (resueltas === total) {
+    return 'Todas han llegado a un veredicto; las tasas de aquí abajo dicen en qué sentido.'
+  }
+  if (resueltas * 2 === total) {
+    return 'La mitad llega a un veredicto y la otra mitad vuelve sin nada que la confirme ni la desmienta: las tasas de aquí abajo lo detallan.'
+  }
+  if (resueltas * 2 < total) {
+    return 'La mayoría vuelve sin nada que las confirme ni las desmienta: las tasas de aquí abajo dicen cuántas llegaron a un veredicto.'
+  }
+  return 'La mayoría llega a un veredicto: las tasas de aquí abajo dicen cuántas, y en qué sentido.'
+}

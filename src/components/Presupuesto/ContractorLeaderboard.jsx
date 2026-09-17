@@ -2,6 +2,8 @@ import { useMemo, useState } from 'react'
 import { topContractors, contractAmount } from '../../lib/tender-geo'
 import { useEntities } from '../../hooks/useEntities'
 import { isCommittedContract } from '../../lib/contract-status.js'
+import { rellena } from '../../lib/formatters'
+import { useT } from '../../i18n'
 
 const fmtEur = (n) =>
   new Intl.NumberFormat('es-ES', {
@@ -11,6 +13,7 @@ const fmtEur = (n) =>
   }).format(n)
 
 export default function ContractorLeaderboard({ contracts }) {
+  const t = useT()
   const [open, setOpen] = useState(null)
   const entities = useEntities()
   // Raw razón social → canonical entity, from the nightly registry.
@@ -44,14 +47,14 @@ export default function ContractorLeaderboard({ contracts }) {
   const max = top.length ? top[0].amount : 1
   return (
     <div>
-      {top.map((t) => (
+      {top.map((fila) => (
         <div
-          key={t.assignee}
+          key={fila.assignee}
           style={{ borderBottom: '1px solid var(--border2)', padding: '8px 0' }}
         >
           <button
-            onClick={() => setOpen(open === t.assignee ? null : t.assignee)}
-            aria-expanded={open === t.assignee}
+            onClick={() => setOpen(open === fila.assignee ? null : fila.assignee)}
+            aria-expanded={open === fila.assignee}
             style={{
               all: 'unset',
               cursor: 'pointer',
@@ -62,23 +65,23 @@ export default function ContractorLeaderboard({ contracts }) {
             }}
           >
             <span style={{ flex: 1, fontSize: 'var(--fs-meta)', fontWeight: 500 }}>
-              {t.assignee}
-              {t.variantCount > 1 && (
+              {fila.assignee}
+              {fila.variantCount > 1 && (
                 <span style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginLeft: 6 }}>
-                  · {t.variantCount} razones sociales
+                  · {rellena(t('presupuesto.gasto.razonesSociales'), { n: fila.variantCount })}
                 </span>
               )}
             </span>
             <span
               style={{
                 height: 6,
-                width: Math.max(6, (t.amount / max) * 120),
+                width: Math.max(6, (fila.amount / max) * 120),
                 background: 'var(--civic)',
                 borderRadius: 'var(--r-input)',
               }}
             />
             <span className="mono" style={{ fontWeight: 700, fontSize: 'var(--fs-meta)' }}>
-              {fmtEur(t.amount)}
+              {fmtEur(fila.amount)}
             </span>
             <span
               style={{
@@ -88,12 +91,19 @@ export default function ContractorLeaderboard({ contracts }) {
                 textAlign: 'right',
               }}
             >
-              {t.count} contrato{t.count === 1 ? '' : 's'}
+              {rellena(
+                t(
+                  fila.count === 1
+                    ? 'presupuesto.gasto.contratos.uno'
+                    : 'presupuesto.gasto.contratos.varios',
+                ),
+                { n: fila.count },
+              )}
             </span>
           </button>
-          {open === t.assignee && (
+          {open === fila.assignee && (
             <div style={{ paddingLeft: 8, marginTop: 4 }}>
-              {(byAssignee.get(t.assignee) || []).slice(0, 20).map((c) => (
+              {(byAssignee.get(fila.assignee) || []).slice(0, 20).map((c) => (
                 <div
                   key={c.id}
                   style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', padding: '3px 0' }}

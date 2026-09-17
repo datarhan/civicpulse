@@ -1,9 +1,11 @@
 // @ts-check
 import { ExtLink, Pill } from '../Primitives'
-import { STATUS_LABEL, STATUS_TONE } from '../../hooks/useTenders'
-import { fmtDateShort } from '../../lib/formatters'
-import { PROCESS_TYPE_LABEL, CONTRACT_TYPE_LABEL, bajaPct } from '../../lib/tenders'
+import { STATUS_TONE } from '../../hooks/useTenders'
+import { fmtDateShort, rellena } from '../../lib/formatters'
+import { bajaPct } from '../../lib/tenders'
 import { uniqueCpvLabels } from '../../lib/cpv'
+import { rotuloDe, useLocale } from '../../i18n'
+import { CLAVE_RELACION } from '../../scraper/relation-labels'
 
 const fmtEur = (n) =>
   new Intl.NumberFormat('es-ES', {
@@ -31,16 +33,25 @@ const INK45 = 'rgba(11,15,25,.45)'
  * Props: contract (full Contract row · required), amount, amountKind
  * ('final'|'initial'), date, dana, provenance (matched place-name), cpvDict
  * (codes map from useCpvLabels).
+ *
+ * Su cromo pasa por el catálogo: la tarjeta vive en el globo de un pin del mapa
+ * de la portada, y en valencià decía «Adjudicatario:», «Formalizado» y
+ * «licitadores». Estado, tipo y procedimiento se rotulan por su clave de enum
+ * (`contrato.estado.*`, `contrato.tipo.*`, `contrato.procedimiento.*`). Los
+ * importes siguen en `es-ES` en los dos idiomas; de la fecha cambia el mes.
  * @param {any} props
  */
 export function ContractCard(props) {
   const { contract: c, amount, amountKind, date, dana, provenance, cpvDict, relatedQuejas } = props
+  const { t, locale } = useLocale()
   if (!c) return null
   const shown = typeof amount === 'number' ? amount : c.finalAmountNoTaxes || c.finalAmount || 0
   const baja = bajaPct(c)
   const cpvLabels = uniqueCpvLabels(c.cpvs, cpvDict, 3)
-  const tipo = CONTRACT_TYPE_LABEL[c.contractType]
-  const proc = PROCESS_TYPE_LABEL[c.processType]
+  // Tipo y procedimiento con reserva `null`: un valor sin clave no se pinta,
+  // igual que antes no se pintaba el que faltaba en la tabla.
+  const tipo = rotuloDe(t, `contrato.tipo.${c.contractType}`, null)
+  const proc = rotuloDe(t, `contrato.procedimiento.${c.processType}`, null)
   const nBids = Number(c.numberOfProposals) || 0
   const dias = Number(c.duration) || 0
 
@@ -99,7 +110,7 @@ export function ContractCard(props) {
             alignItems: 'baseline',
           }}
         >
-          <span style={{ color: INK45 }}>Adjudicatario:</span>
+          <span style={{ color: INK45 }}>{t('contrato.adjudicatario')}</span>
           <strong style={{ color: INK, fontWeight: 600 }}>{c.assignee}</strong>
           {baja !== null && (
             <span
@@ -112,7 +123,7 @@ export function ContractCard(props) {
                 color: baja >= 0 ? '#0F7B3E' : '#B4232A',
                 background: baja >= 0 ? 'rgba(22,163,74,.14)' : 'rgba(220,38,38,.12)',
               }}
-              title="Baja de adjudicación (adjudicación vs licitación)"
+              title={t('contrato.baja')}
             >
               {baja >= 0 ? '−' : '+'}
               {Math.abs(baja)}%
@@ -140,20 +151,24 @@ export function ContractCard(props) {
           flexWrap: 'wrap',
         }}
       >
-        <span>{fmtDateShort(date) || 'sin fecha'}</span>
+        <span>{fmtDateShort(date, locale) || t('contrato.sinFecha')}</span>
         <Pill tone={STATUS_TONE[c.status] || 'ghost'} size="xs">
-          {STATUS_LABEL[c.status] || c.status}
+          {rotuloDe(t, `contrato.estado.${c.status}`, c.status)}
         </Pill>
         {tipo && <span>· {tipo}</span>}
         {proc && <span>· {proc}</span>}
         {nBids > 0 && (
           <span>
-            · {nBids} licitador{nBids === 1 ? '' : 'es'}
+            · {nBids} {t(nBids === 1 ? 'contrato.licitador' : 'contrato.licitadores')}
           </span>
         )}
-        {dias > 0 && <span>· {dias} días</span>}
-        {amountKind === 'initial' && <span>· importe de licitación</span>}
-        {provenance && <span>· situado por «{provenance}»</span>}
+        {dias > 0 && (
+          <span>
+            · {dias} {t('empleo.days')}
+          </span>
+        )}
+        {amountKind === 'initial' && <span>· {t('contrato.importeLicitacion')}</span>}
+        {provenance && <span>· {rellena(t('contrato.situadoPor'), { lugar: provenance })}</span>}
       </div>
 
       {/* Contract-side reverse view: citizen complaints related by zone/materia
@@ -171,7 +186,7 @@ export function ContractCard(props) {
               marginBottom: 3,
             }}
           >
-            Quejas ciudadanas relacionadas
+            {t('contrato.quejasRelacionadas')}
           </div>
           {relatedQuejas.map((r) => (
             <a
@@ -198,7 +213,11 @@ export function ContractCard(props) {
                   marginRight: 5,
                 }}
               >
-                {r.relationLabel}
+                {rotuloDe(
+                  t,
+                  `contrato.relacion.${CLAVE_RELACION[r.relationLabel]}`,
+                  r.relationLabel,
+                )}
               </span>
               {r.description ? r.description.slice(0, 60) : r.quejaId}
               {r.description && r.description.length > 60 ? '…' : ''}

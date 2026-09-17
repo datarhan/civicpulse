@@ -1,6 +1,6 @@
 {
   "plenoId": "1sqj7is",
-  "generatedAt": "2026-09-10T07:51:24.059Z",
+  "generatedAt": "2026-09-16T07:49:26.922Z",
   "model": "gemini-3.5-flash",
   "promptVersion": "speaker-map-v2",
   "chunkSeconds": 600,
@@ -13324,6 +13324,294 @@
       "end": 17048.1,
       "speaker": "c28/SPEAKER_02",
       "text": "El debate político ya sabemos las diferencias que son abismales entre unos y otros. Gracias a la memoria por el trabajo que estáis haciendo y alzamos el pleno. Gracias."
+    },
+    {
+      "start": 13200,
+      "end": 13217,
+      "speaker": "c22/SPEAKER_00",
+      "text": "una vida digna. La crisis actual, alimentada per un model rendista que convertix un dret bàsic en mercaderia especulativa, està generant una emergència que afecta especialment joves, famílies i classes populars, posant en risc la convivència. L'habitatge no pot continuar sent un factor de desigualtat, ha de ser l'eix d'un projecte de justícia social i sostenibilitat que mantinga la societat unida i garantisca un futur digne per a totes i tots."
+    },
+    {
+      "start": 13217,
+      "end": 13231,
+      "speaker": "c22/SPEAKER_00",
+      "text": "La realitat és que el País Valencià i Múrcia són les comunitats que més han vist incrementat el preu de la vivenda i poques accions s'han dut a terme per a solucionar este problema. Les notícies de les últimes setmanes donen poques esperances, ja que el Partit Popular pareix que està més pel benefici personal que per solucionar els problemes de la gent."
+    },
+    {
+      "start": 13231,
+      "end": 13245,
+      "speaker": "c22/SPEAKER_00",
+      "text": "L'escàndol de les VPO d'Alacant mostra com al PP se li'n s'enginya sempre per a intentar fer negoci amb els seus amiguets. Moltes de les persones adjudicatàries de les vivendes de protecció oficial estaven vinculades amb el PP, fins i tot la dona de l'alcalde Luis Barcala o la regidora d'Urbanisme,"
+    },
+    {
+      "start": 13245,
+      "end": 13259,
+      "speaker": "c22/SPEAKER_00",
+      "text": "per la qual cosa hi ha hagut dimissions i obertura d'expedients. Així que el PP d'Alacant, mentre el preu de la vivenda s'ha incrementat un vint per cent en la seua ciutat en els últims anys, es dedica a fer habitatges en zones exclusives de la ciutat per a després regalar-li-les a la jet set a la cantina. I ara venen ací a parlar-nos del problema de l'ocupació il·legal."
+    },
+    {
+      "start": 13259,
+      "end": 13273,
+      "speaker": "c22/SPEAKER_00",
+      "text": "Són qüestions de prioritats. Jo, respecte a les declaracions del portaveu de de Vox, que quan manen ells van a tirar a a ocupes, a mi m'agradaria que manaren en Alacant, així tirarien a ocupes de les vivendes de protecció oficial. Gràcies."
+    },
+    {
+      "start": 13273,
+      "end": 13277,
+      "speaker": "c22/SPEAKER_01",
+      "text": "Més paraules. Últim torn d'intervenció, un minut."
+    },
+    {
+      "start": 13277,
+      "end": 13281,
+      "speaker": "c22/SPEAKER_02",
+      "text": "I, Raquel, no tinc cap problema en condenar l'actitud dels que governen i aprofiten el càrrec per a ocupar vivendes."
+    },
+    {
+      "start": 13281,
+      "end": 13295,
+      "speaker": "c22/SPEAKER_02",
+      "text": "I espere la mateixa resposta de tu quan n'hi han responsables en el Ministeri o han hagut responsables en el Ministeri del Partit Socialista i han sigut puteros i encara no he vist a vostés que ho condemnen."
+    },
+    {
+      "start": 13295,
+      "end": 13298,
+      "speaker": "c22/SPEAKER_02",
+      "text": "Això va a això vaig a per davant."
+    },
+    {
+      "start": 13298,
+      "end": 13312,
+      "speaker": "c22/SPEAKER_02",
+      "text": "Nosaltres pensem que la ocupació és un problema i la falta de vivenda també. Que vostés no feren res durant els huit anys de govern, aixina és, demostrat en números, en quantitat, zero."
+    },
+    {
+      "start": 13312,
+      "end": 13326,
+      "speaker": "c22/SPEAKER_02",
+      "text": "Vostés traslladen el problema de la ocupació, que no existix per a vostés, a a els propietaris de les vivendes. Què passa de ser la família vulnerable, l'inquilí, a ser la família vulnerable, el propietari."
+    },
+    {
+      "start": 13326,
+      "end": 13340,
+      "speaker": "c22/SPEAKER_02",
+      "text": "Vostés la ocupació, ja ho han comentat, els preocupa zero. Vostés dediquen el problema a la vivenda, que sí que és un problema, però per què no s'oferten vivendes d'alquiler? Perquè els propietaris tenen por a que la vivenda siga ocupada."
+    },
+    {
+      "start": 13340,
+      "end": 13354,
+      "speaker": "c22/SPEAKER_02",
+      "text": "Per un problema contractual, civil, vale. Què és al final un inquilí o un in- o un inquio-ocupa? Lo mateix que un ocupa, un caradura, un geta que s'aprofita d'un bé que no és seu per a benefici propi i trasllada el problema al propietari."
+    },
+    {
+      "start": 13354,
+      "end": 13368,
+      "speaker": "c22/SPEAKER_02",
+      "text": "L'Estat nomena \"família vulnerable, se tiene que quedar\", però no se fa càrrec l'Estat de la decisió judicial, se fa càrrec el propietari, trasllada el problema d'una persona a altra."
+    },
+    {
+      "start": 13368,
+      "end": 13382,
+      "speaker": "c22/SPEAKER_02",
+      "text": "Nosaltres pensem que la ocupació és un problema més que altres que s'han tractat en este Ajuntament i que mereix una regulació. Hui que hem parlat del pla anual normatiu de l'Ajuntament i que se podria crear una ordenança per a previndre, per a conscienciar, per a ajudar, i no se crea perquè la idea no partix de vostés."
+    },
+    {
+      "start": 13382,
+      "end": 13391,
+      "speaker": "c22/SPEAKER_02",
+      "text": "Açò deixa clar en cada cada partit i cada espai polític on es troba. Moltes gràcies."
+    },
+    {
+      "start": 13391,
+      "end": 13396,
+      "speaker": "c22/SPEAKER_01",
+      "text": "Pues coincidix que lo que diu el Partit Popular, exactament retracta a cadascú."
+    },
+    {
+      "start": 13396,
+      "end": 13410,
+      "speaker": "c22/SPEAKER_01",
+      "text": "Primera perquè, com ja he preguntat, u no està en la FVMP, açò no és de la Federació Valenciana de Municipis i Províncies, i la xarxa MAU no té res que veure amb Mao Tse-tung del Partit Comunista ni a la cervesa."
+    },
+    {
+      "start": 13410,
+      "end": 13424,
+      "speaker": "c22/SPEAKER_01",
+      "text": "La xarxa MAU té que veure, ja li ho diré perquè vosté no ho sap massa, en la pressió de Vox al seu partit per a donar-los les majories i traure, com ha dit, històries i logos per a entrar en eixe mecanisme que volen de que, com en les enquestes, tots pensen lo que ells volen que pensen per a que els voten."
+    },
+    {
+      "start": 13424,
+      "end": 13438,
+      "speaker": "c22/SPEAKER_01",
+      "text": "Eixa és la realitat, fabricar pues un fake news, una mentira, per a a partir d'ahí trobar una realitat, que això està estudiat i superestudiat. Ho fan en Amèrica i es va bé, és veritat, se sap, i estan encertant. Però estem alguns per a combatre-ho."
+    },
+    {
+      "start": 13438,
+      "end": 13452,
+      "speaker": "c22/SPEAKER_01",
+      "text": "I vosté tenia que saber que els portaveus de la FVMP, entre ells el que parla, portaveu de la Federació de tota la Comunitat, junt amb Compromís, estem en contra de esta xarxa, perquè no és la xarxa de la FVMP, és del PP i Vox, d'això s'ha d'aclarir."
+    },
+    {
+      "start": 13452,
+      "end": 13466,
+      "speaker": "c22/SPEAKER_01",
+      "text": "La xarxa de la FVMP és quan hi ha un acord, la FVMP és una federació de municipis, i quan hi ha un acord polític, que sempre n'hi ha hagut acords, excepte ara, des de que han entrat en joc Vox, val? Pues creen eixa xarxa, bueno, pues per a traure estos titulars que van a traure de segur."
+    },
+    {
+      "start": 13466,
+      "end": 13480,
+      "speaker": "c22/SPEAKER_01",
+      "text": "I realment se s'equivoquen una vegada més, bueno, cadascú vota lo que vulga, allà cadascú amb el seu problema, estan fabricant una qüestió que efectivament nosaltres, pues clar que un va a estar al costat d'un propietari que té una vivenda i li l'han entrat i i n'hi ha gent ahí ocupant-la."
+    },
+    {
+      "start": 13480,
+      "end": 13494,
+      "speaker": "c22/SPEAKER_01",
+      "text": "Però diferenciem les coses, eh? Que no és lo mateix no tindre vivenda i tindre quaranta vivendes parades de fons buitre i gent que no té on viure entrar per a viure, que lo que vostés volen dir. Per tant, diferenciem les coses, no les o si les mesclen, nosaltres estem per a aclarir-les."
+    },
+    {
+      "start": 13494,
+      "end": 13508,
+      "speaker": "c22/SPEAKER_01",
+      "text": "Estem en contra d'eixa ocupació, com bé diem, però cuidado amb lo que està passant amb la vivenda i el negoci que estan fent vostés, el Partit Popular, en la llei que ja va fer Aznar de lliberació del sòl, que ens va dur a una crisis de vivenda importantíssima. Això és Lehman Brothers, que és el capitalisme més pur que n'hi ha."
+    },
+    {
+      "start": 13508,
+      "end": 13522,
+      "speaker": "c22/SPEAKER_01",
+      "text": "I per tant, d'eixe sentit poques lliçons en quant a la vivenda. El Botànic, entre altres coses, va fer el dret de retracteu, que se'ls han encarregat, comprar vivendes. Ací mateix s'ha invertit quasi un milió d'euros en les vivendes de caràcter social per a la gent que no té."
+    },
+    {
+      "start": 13522,
+      "end": 13536,
+      "speaker": "c22/SPEAKER_01",
+      "text": "No un milió d'euros per a eixir un familiar del PP a explicar quins sofàs cap a la vista del que tenen, tots els familiars del PP i els funcionaris d'alt rango, que és lo que estan fent, que tenien que demanar perdó."
+    },
+    {
+      "start": 13536,
+      "end": 13550,
+      "speaker": "c22/SPEAKER_01",
+      "text": "Ajudar en els lloguers, com bé sap, les polítiques socials i inclusives del Botànic, posant en mecanismes d'ajuda als joves, en línies clars, que vostés s'estan encarregant. I així diria tot lo que va fer el Botànic en els pocs anys que ha estat."
+    },
+    {
+      "start": 13550,
+      "end": 13564,
+      "speaker": "c22/SPEAKER_01",
+      "text": "Retraure els vint anys de govern del Partit Popular, que eren d'un tal Olivas, d'un tal Camps, d'un tal Zaplana, d'un tal Mazón, i eixos són els que han governat amb vostés, i miren on ens han dut."
+    },
+    {
+      "start": 13564,
+      "end": 13578,
+      "speaker": "c22/SPEAKER_01",
+      "text": "I en huit anys sols ho revertirem pràcticament quasi tot. I ara vostés estan modificant altra vegada la llei de sòl per a poder construir quasi dins del mar, que és lo que estan fent ara, per a tornar a especular, que és lo que saben fer, especular, especular i especular, i ho veurem. El temps anirà posant cadascun al seu lloc."
+    },
+    {
+      "start": 13578,
+      "end": 13592,
+      "speaker": "c22/SPEAKER_01",
+      "text": "Val? Per tant, en eixe sentit, esta xarxa és ineficient, no falta per a res, no du res bo, no té cap de sentit, val? Perquè a més el problema no està en lo que tenen que tindre una xarxa per a fer vivendes, que eixa és la que ens importa, una xarxa per a tindre vivendes assequibles per a les famílies, per a la gent que li fa falta, i en això estem empleats des de l'àrea d'urbanisme,"
+    },
+    {
+      "start": 13592,
+      "end": 13606,
+      "speaker": "c22/SPEAKER_01",
+      "text": "des de l'àrea de serveis socials, però malauradament en un govern de PP-Vox que no està funcionant, i ahí està el Pla Viu. De l'any vint-i-tres, pràcticament quan canvia el govern, entregarem el el sòl per a fer vint-i-una vivendes, ahí estan, zero vivendes."
+    },
+    {
+      "start": 13606,
+      "end": 13620,
+      "speaker": "c22/SPEAKER_01",
+      "text": "Zero vivendes, eixa és la realitat que s'han trobat. I la que jo ja li vaig dir al president, que vaig tindre amb ell i ho vaig dir, eixe és un dels problemes, per exemple. Val? Per no seguir més, per tant, esta xarxa anem a votar-la en contra nosaltres, val? Perquè a més ni va pactada per la Federació, en nom de la Federació, ve del Partit Popular, és unilateral i a proposta de Vox, que és el que efectivament el soci que el té pillat."
+    },
+    {
+      "start": 13620,
+      "end": 13623,
+      "speaker": "c22/SPEAKER_01",
+      "text": "Anem a passar a la votació d'esta moció."
+    },
+    {
+      "start": 13623,
+      "end": 13625,
+      "speaker": "c22/SPEAKER_01",
+      "text": "Val, pues ja està votat. Eh, no queda aprovada per tretze vots en contra i huit a favor. Grup Popular?"
+    },
+    {
+      "start": 13625,
+      "end": 13626,
+      "speaker": "c22/SPEAKER_01",
+      "text": "Ai, grup socialista, perdó."
+    },
+    {
+      "start": 13626,
+      "end": 13627,
+      "speaker": "c22/SPEAKER_03",
+      "text": "En contra."
+    },
+    {
+      "start": 13627,
+      "end": 13628,
+      "speaker": "c22/SPEAKER_01",
+      "text": "En contra. Grup Popular?"
+    },
+    {
+      "start": 13628,
+      "end": 13629,
+      "speaker": "c22/SPEAKER_02",
+      "text": "A favor."
+    },
+    {
+      "start": 13629,
+      "end": 13630,
+      "speaker": "c22/SPEAKER_01",
+      "text": "Vox?"
+    },
+    {
+      "start": 13630,
+      "end": 13631,
+      "speaker": "c22/SPEAKER_04",
+      "text": "A favor."
+    },
+    {
+      "start": 13631,
+      "end": 13632,
+      "speaker": "c22/SPEAKER_01",
+      "text": "Esquerra Unida-Podem?"
+    },
+    {
+      "start": 13632,
+      "end": 13633,
+      "speaker": "c22/SPEAKER_00",
+      "text": "En contra."
+    },
+    {
+      "start": 13633,
+      "end": 13635,
+      "speaker": "c22/SPEAKER_01",
+      "text": "I Rafa, Compromís?"
+    },
+    {
+      "start": 13635,
+      "end": 13636,
+      "speaker": "c22/SPEAKER_05",
+      "text": "En contra."
+    },
+    {
+      "start": 13636,
+      "end": 13640,
+      "speaker": "c22/SPEAKER_01",
+      "text": "Passem al següent punt. El onze."
+    },
+    {
+      "start": 13640,
+      "end": 13645,
+      "speaker": "c22/SPEAKER_01",
+      "text": "És una urgència que duem al ple, que ja heu parlat els portaveus, no? Però anem a a dir-ho per a que Votem primer la urgència i després entrem a la a la moció. Eh, José. Votem primer la urgència, que és obligat."
+    },
+    {
+      "start": 13645,
+      "end": 13659,
+      "speaker": "c22/SPEAKER_06",
+      "text": "Bé. Bueno, la la la urgència o la urgència de de este de esta proposta és la rescissió definitiva del contracte del servici de recollida de residus sòlids urbans, po i voluminosos, per l'incompliment grave en la prestació de serveis estipulats en el contracte."
     }
   ],
   "rows": [
@@ -13630,6 +13918,38 @@
       ],
       "namesIndividual": true,
       "weak": false
+    },
+    {
+      "label": "c22/SPEAKER_04",
+      "bloc": "VOX",
+      "slug": "jose-luis-fernandez-santamaria",
+      "heardAs": null,
+      "evidence": [
+        {
+          "spokenBy": "c22/SPEAKER_01",
+          "at": 13629,
+          "quote": "Vox?",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": true,
+      "weak": false
+    },
+    {
+      "label": "c22/SPEAKER_05",
+      "bloc": "Compromís",
+      "slug": "rafael-folgado-navarro",
+      "heardAs": "Rafa",
+      "evidence": [
+        {
+          "spokenBy": "c22/SPEAKER_01",
+          "at": 13633,
+          "quote": "I Rafa, Compromís?",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": true,
+      "weak": false
     }
   ],
   "rejected": [
@@ -13907,11 +14227,36 @@
       "label": "c24/SPEAKER_01",
       "reason": "unresolvable",
       "detail": "heard \"José, concejal de Hacienda\" but the cited quote does not contain it"
+    },
+    {
+      "label": "c22/SPEAKER_00",
+      "reason": "unresolvable",
+      "detail": "no name in the cited quote and the party is not single-seat"
+    },
+    {
+      "label": "c22/SPEAKER_01",
+      "reason": "evidence-speaker-mismatch",
+      "detail": "433s is SPEAKER_01, cited as SPEAKER_05"
+    },
+    {
+      "label": "c22/SPEAKER_02",
+      "reason": "unresolvable",
+      "detail": "no name in the cited quote and the party is not single-seat"
+    },
+    {
+      "label": "c22/SPEAKER_03",
+      "reason": "unresolvable",
+      "detail": "no name in the cited quote and the party is not single-seat"
+    },
+    {
+      "label": "c22/SPEAKER_06",
+      "reason": "ambiguous",
+      "detail": "heard \"José\" fits 6: José Luis Ramos March, José Ángel Hernández Carrizosa, José Manuel Vila Oltra, María José Pradas Ramo, José Luis Fernández Santamaría, José Manuel Gallardo Martínez"
     }
   ],
   "stats": {
     "chunksExpected": 29,
-    "chunksTranscribed": 21,
+    "chunksTranscribed": 22,
     "failedChunks": [
       {
         "chunk": 3,
@@ -13954,19 +14299,9 @@
         }
       },
       {
-        "chunk": 22,
-        "why": "covered 49% (floor 85%)",
-        "attempts": 2,
-        "givenUpUnder": {
-          "prompt": "speaker-map-v2",
-          "floor": 0.85,
-          "thinking": "low"
-        }
-      },
-      {
         "chunk": 25,
-        "why": "covered 82% (floor 85%)",
-        "attempts": 2,
+        "why": "covered 69% (floor 85%)",
+        "attempts": 3,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
           "floor": 0.85,
@@ -13976,7 +14311,7 @@
       {
         "chunk": 26,
         "why": "covered 83% (floor 85%)",
-        "attempts": 2,
+        "attempts": 3,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
           "floor": 0.85,
@@ -13985,8 +14320,8 @@
       },
       {
         "chunk": 27,
-        "why": "covered 61% (floor 85%)",
-        "attempts": 1,
+        "why": "covered 83% (floor 85%)",
+        "attempts": 3,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
           "floor": 0.85,
@@ -13994,17 +14329,17 @@
         }
       }
     ],
-    "labelsSeen": 5,
-    "rowsAccepted": 19,
-    "rowsRejected": 55,
+    "labelsSeen": 0,
+    "rowsAccepted": 21,
+    "rowsRejected": 60,
     "rejectedBy": {
-      "unresolvable": 22,
+      "unresolvable": 25,
       "relation-contradicted": 17,
-      "evidence-speaker-mismatch": 12,
-      "ambiguous": 4
+      "evidence-speaker-mismatch": 13,
+      "ambiguous": 5
     },
-    "attemptedThisRun": 5,
-    "apiCalls": 13,
-    "coverage": 0.7280721322328318
+    "attemptedThisRun": 1,
+    "apiCalls": 3,
+    "coverage": 0.7611015564846326
   }
 }

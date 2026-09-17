@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-10T08:02:51.298Z",
+  "generatedAt": "2026-09-17T09:45:01.573Z",
   "version": "1",
   "plenoId": "1r6yy0",
   "plenoDate": "2023-01-23",
@@ -113,8 +113,16 @@
       "verification": {
         "claimId": "1r6yy0-008-afi-0b4c66",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "summary": "El objeto citado aparece en un expediente municipal, pero ninguna de sus magnitudes coincide con la cifra del claim. No es que no haya registro: es que el que hay no dice eso.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=KJ1sOCgMoomXQV0WE7lYPw%3D%3D",
+            "snippet": "Servicio para la realización de actividades no acuáticas en el Complejo Deportivo La Mallá por procedimiento abierti, mejor relación calidad-precio, varios criterios de adjudicación con fomento de mejoras salariales y fomento de la conciliación de la vida laboral y familiar y con condición especial de ejecución de carácter social y de perspectiva de género. · Ayuntamiento de Riba-roja de Túria · culture · 151.935 €",
+            "similarity": 1,
+            "stance": "checked"
+          }
+        ],
         "checkedAgainst": []
       },
       "visibility": "toggle"

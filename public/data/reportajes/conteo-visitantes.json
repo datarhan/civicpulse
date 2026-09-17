@@ -6,9 +6,18 @@
     "titulo": "Contar visitantes en un pueblo que nunca ha contado visitantes",
     "subtitulo": "Riba-roja adjudicó 87.050 € para medir su turismo con fondos europeos. La memoria que justificaba cada contrato describe otro proyecto, y ninguna de las dos cita una sola cifra de visitantes.",
     "estado": "publicado",
-    "publicadoEl": "9 de septiembre de 2026",
+    "publicadoEl": "2026-09-09",
     "fechaDatos": "9 de septiembre de 2026",
-    "correcciones": []
+    "correcciones": [
+      {
+        "fecha": "2026-09-16",
+        "texto": "**Se ha ajustado el alcance de una frase sobre la falta de mediciones previas.** Decíamos que los dieciséis puntos por instalar más aparatos de los necesarios se baremaban «en un municipio sin ninguna medición previa que dijera cuántos hacían falta». Eso afirma algo sobre el municipio entero, y lo que esta pieza comprobó es lo que hay en el expediente: en la memoria y en el pliego no aparece una sola cifra de visitantes —ni una estimación de afluencia, ni una serie histórica, ni un aforo de referencia—, y por eso la pieza le pregunta al Ayuntamiento sobre qué estimación dimensionó el número mínimo de dispositivos. La frase dice ahora eso: lo que falta en el expediente, que es lo que se ha mirado. Ninguna cifra cambia."
+      },
+      {
+        "fecha": "2026-09-17",
+        "texto": "**Se ha completado el apartado sobre el plazo europeo.** Enfrentaba el hito nº 221, que fija el segundo trimestre de 2026 para terminar los proyectos, con un contrato de seis meses que vencía en julio, sin decir que el plazo del plan de Riba-roja se había ampliado. La Secretaría de Estado de Turismo contestó el 16 de septiembre a la solicitud de este medio y confirmó que lo alargó hasta agosto de 2026, al amparo del artículo 18 del Real Decreto-ley 7/2024. El apartado lo dice ahora, junto con la afirmación de la Secretaría de que el plan se ha ejecutado, y la fila de su solicitud deja de figurar como pendiente. Ninguna cifra cambia."
+      }
+    ]
   },
   "kpis": [
     {
@@ -108,7 +117,7 @@
         "tipo": "fórmula"
       }
     ],
-    "texto": "Dieciséis de cada cien puntos por instalar más aparatos de los necesarios, en un municipio sin ninguna medición previa que dijera cuántos hacían falta. Se presentaron seis ofertas y ganó Gimeno Digital Technologies S.L. —que opera como IoTsens y pertenece al Grupo Gimeno— por 61.050,21 €, un 13 % por debajo del presupuesto base. En el contrato de campañas segmentadas se presentó una sola oferta, la de Autoritas Consulting S.A.",
+    "texto": "Dieciséis de cada cien puntos por instalar más aparatos de los necesarios, sin que el expediente traiga una sola cifra de visitantes que dijera cuántos hacían falta. Se presentaron seis ofertas y ganó Gimeno Digital Technologies S.L. —que opera como IoTsens y pertenece al Grupo Gimeno— por 61.050,21 €, un 13 % por debajo del presupuesto base. En el contrato de campañas segmentadas se presentó una sola oferta, la de Autoritas Consulting S.A.",
     "contrapunto": "En este contrato los criterios sujetos a juicio de valor sumaban 40 de 100 puntos, por debajo del umbral que habría obligado a constituir un comité de expertos. En el contrato hermano del panel de inteligencia turística se fijaron en 49, una unidad por debajo de ese mismo umbral."
   },
   "datos": {
@@ -129,7 +138,7 @@
   },
   "plazo": {
     "titulo": "Y el plazo europeo",
-    "texto": "El hito nº 221 del Plan de Recuperación fija, para el segundo trimestre de 2026, la «finalización de todos los proyectos» incluidos en los planes de sostenibilidad turística. El contrato de sensores se formalizó el 19 de enero de 2026, con un plazo de ejecución de seis meses y sin prórrogas previstas. Este medio no ha localizado publicada la certificación de ejecución final ante la Comisión de Seguimiento."
+    "texto": "El hito nº 221 del Plan de Recuperación fija, para el segundo trimestre de 2026, la «finalización de todos los proyectos» incluidos en los planes de sostenibilidad turística. El contrato de sensores se formalizó el 19 de enero de 2026, con un plazo de ejecución de seis meses y sin prórrogas previstas. Pero el plazo del plan de Riba-roja se amplió: la Secretaría de Estado de Turismo ha confirmado a este medio que lo alargó hasta agosto de 2026, al amparo del artículo 18 del Real Decreto-ley 7/2024, que permite a los beneficiarios de ayudas en las zonas declaradas gravemente afectadas por la DANA solicitar esa ampliación. El plazo del contrato, que vencía el 20 de julio, queda dentro. La Secretaría afirma también que el plan «ha sido efectivamente ejecutado». Este medio no ha localizado publicada la certificación de ejecución final ante la Comisión de Seguimiento, y la Secretaría indica que esa documentación hay que pedirla al Ayuntamiento y a la Generalitat."
   },
   "limites": {
     "titulo": "Lo que este reportaje no afirma",
@@ -200,7 +209,18 @@
         "enviadaEl": "2026-09-09",
         "via": "correo electrónico",
         "pide": "Qué verificaciones administrativas se hicieron conforme a la Orden HFP/1030/2021 y copia de las listas de comprobación; el grado de ejecución certificado a efectos de los hitos nº 220 y nº 221 del CID; los entregables exigidos como prueba de finalización; si el Ayuntamiento pidió reprogramar tras la DANA; el acta de la Comisión de Seguimiento; y la evaluación del riesgo de fraude prevista en el artículo 6 de esa misma orden.",
-        "respuesta": null
+        "respuesta": {
+          "fecha": "2026-09-16",
+          "sentido": "no-les-corresponde",
+          "resumen": "Indican que la Generalitat es «la responsable última de su coordinación y justificación», que lo relativo a los expedientes hay que preguntarlo al Ayuntamiento y que las comisiones mixtas de seguimiento tienen lugar entre el Ayuntamiento y la Generalitat. Añaden dos datos: que el plazo de ejecución del plan de Riba-roja se amplió hasta agosto de 2026 al amparo del artículo 18 del Real Decreto-ley 7/2024, y que el plan «ha sido efectivamente ejecutado». No acompañan ninguno de los documentos pedidos."
+        }
+      },
+      {
+        "organismo": "Secretaría de Estado de Turismo",
+        "enviadaEl": "2026-09-17",
+        "via": "correo electrónico",
+        "respuesta": null,
+        "pide": "Seguimiento de su respuesta del 16 de septiembre. Como su correo confirma que fue esa Secretaría de Estado la que amplió el plazo, se le pide lo que obra en su poder: copia de la resolución por la que lo amplió hasta agosto de 2026, de la solicitud de ampliación que la motivó —con quién la presentó y cuándo— y del documento en que se basa su afirmación de que el plan «ha sido efectivamente ejecutado»."
       },
       {
         "organismo": "Turisme Comunitat Valenciana",

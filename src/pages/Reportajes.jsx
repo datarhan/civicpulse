@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { useReportaje } from '../hooks/useReportaje'
 import { REPORTAJE_SLUGS } from '../reportajes'
 import { fmtDateHuman } from '../lib/formatters'
-import { useT } from '../i18n'
+import { useT, useLocale } from '../i18n'
 
 const SERIF = "'Fraunces', Georgia, serif"
 
@@ -10,6 +10,8 @@ const SERIF = "'Fraunces', Georgia, serif"
  * meta.estado === 'publicado' (borradores pending right-of-reply never list). */
 function ReportajeCard({ slug, readLabel }) {
   const { loading, error, data } = useReportaje(slug)
+  // Antes de cualquier return: los hooks no se saltan.
+  const { locale } = useLocale()
   if (loading || error || !data) return null
   const m = data.meta || {}
   if (m.estado !== 'publicado') return null
@@ -33,11 +35,13 @@ function ReportajeCard({ slug, readLabel }) {
         }}
       >
         {m.seccion}
-        {/* fmtDateHuman, not the raw value: `publicadoEl` is prose ("15 de
-            julio de 2026") but `fechaDatos` is ISO, so the fallback branch was
-            printing "2026-07-06" next to a Spanish date on the same page. */}
+        {/* Las dos son ISO desde el 16-09-2026: `publicadoEl` se guardaba
+            escrito a mano en castellano —«15 de julio de 2026»— y
+            `fmtDateHuman` pasa verbatim lo que no es ISO, así que la fecha se
+            quedaba en castellano aunque la página estuviera en valencià. Con
+            la fecha en ISO, el mismo formateador la escribe en su idioma. */}
         {(m.publicadoEl || m.fechaDatos) && (
-          <span> · {fmtDateHuman(m.publicadoEl || m.fechaDatos)}</span>
+          <span> · {fmtDateHuman(m.publicadoEl || m.fechaDatos, locale)}</span>
         )}
       </div>
       <h2

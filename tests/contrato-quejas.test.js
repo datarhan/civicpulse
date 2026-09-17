@@ -2,6 +2,8 @@ import { describe, it, expect } from 'vitest'
 import { readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
+import { CATALOGUE } from '../src/i18n'
+
 /**
  * Lo que el contrato publicado cuenta del camino de una queja, contra el código
  * que lo recorre.
@@ -272,7 +274,11 @@ describe('el aviso legal dice lo que hace /olvidar, cuándo y con qué foto', ()
     CONSULTAS_BOT.indexOf('export function softDeleteQueja'),
     CONSULTAS_BOT.indexOf('export function anonimizaRetiradas'),
   )
-  const FICHA = plano('src/pages/QuejaDetail.jsx')
+  // El pie de la foto vive en el catálogo desde que la ficha se lee en valencià (#38):
+  // se mira que la ficha lo pinta y lo que dice en los dos idiomas.
+  const FICHA = lee('src/pages/QuejaDetail.jsx')
+  const PIE_DE_FOTO = CATALOGUE.es['quejas.detalle.foto.pie'] ?? ''
+  const PIE_DE_FOTO_CA = CATALOGUE.ca['quejas.detalle.foto.pie'] ?? ''
 
   it('lee de dónde viven los tiempos (si no, no mide nada)', () => {
     expect(desde, 'no encuentro la foto adjunta en el aviso').toBeGreaterThan(-1)
@@ -367,7 +373,9 @@ describe('el aviso legal dice lo que hace /olvidar, cuándo y con qué foto', ()
   })
 
   it('/olvidar sólo lo usa quien envió la queja, y el aviso y la ficha lo dicen así', () => {
-    expect(FICHA).toContain('Si la enviaste tú')
+    expect(FICHA, 'la ficha ya no pinta el pie de su foto').toContain("'quejas.detalle.foto.pie'")
+    expect(PIE_DE_FOTO).toContain('Si la enviaste tú')
+    expect(PIE_DE_FOTO_CA).toContain('Si la vas enviar tu')
     expect(TRAMO).toContain('Si la enviaste tú')
   })
 

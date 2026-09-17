@@ -1,13 +1,16 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import {
   timeAgo,
   prettyNeighborhood,
   safeHref,
   truncateAtWord,
   fmtDateHuman,
+  fmtDateShort,
+  partePorHueco,
   rellena,
   porcentajeLegible,
 } from '../../src/lib/formatters'
+import { CATALOGUE } from '../../src/i18n'
 
 // Build an ISO string a given number of milliseconds in the past.
 const ago = (ms: number) => new Date(Date.now() - ms).toISOString()
@@ -44,6 +47,52 @@ describe('timeAgo (unified canonical: round / 24h / 30d)', () => {
     expect(out).not.toBe('ahora')
     // Localised "12 abr 2026"-style string — contains a 4-digit year.
     expect(out).toMatch(/\d{4}/)
+  })
+})
+
+/**
+ * La portada valenciana escribía «hace 3 h» junto a cada titular de prensa: el
+ * tiempo relativo sólo sabía castellano. Las palabras salen ahora del catálogo,
+ * que `formatters` no puede importar —no depende de React—, así que quien pinta le
+ * pasa su `t` y su idioma. Sin ellos escribe exactamente lo de siempre.
+ */
+describe('timeAgo en el idioma de la interfaz', () => {
+  const traductor = (idioma: 'es' | 'ca') => (clave: string) =>
+    (CATALOGUE[idioma] as Record<string, string>)[clave] ?? clave
+  const cadena = (idioma: 'es' | 'ca', clave: string) =>
+    (CATALOGUE[idioma] as Record<string, string>)[clave]
+
+  it('con el catálogo castellano escribe lo mismo que sin él (el control)', () => {
+    for (const ms of [10_000, 5 * MIN, 3 * HOUR, 5 * DAY, 60 * DAY]) {
+      const iso = ago(ms)
+      expect(timeAgo(iso, { t: traductor('es'), locale: 'es' })).toBe(timeAgo(iso))
+    }
+  })
+
+  it('en valencià, cada tramo con su cadena del catálogo', () => {
+    // Mide algo: las cuatro cadenas existen en valencià y no son las castellanas.
+    for (const clave of ['tiempo.ahora', 'tiempo.haceMin', 'tiempo.haceHoras', 'tiempo.haceDias']) {
+      expect(cadena('ca', clave), `falta ${clave} en valencià`).toBeTruthy()
+      expect(cadena('ca', clave)).not.toBe(cadena('es', clave))
+    }
+    const ca = { t: traductor('ca'), locale: 'ca' }
+    expect(timeAgo(ago(10_000), ca)).toBe(cadena('ca', 'tiempo.ahora'))
+    expect(timeAgo(ago(5 * MIN), ca)).toBe(rellena(cadena('ca', 'tiempo.haceMin'), { n: 5 }))
+    expect(timeAgo(ago(3 * HOUR), ca)).toBe(rellena(cadena('ca', 'tiempo.haceHoras'), { n: 3 }))
+    expect(timeAgo(ago(5 * DAY), ca)).toBe(rellena(cadena('ca', 'tiempo.haceDias'), { n: 5 }))
+  })
+
+  it('pasado el mes, la fecha va en ca-ES; sin idioma, en es-ES', () => {
+    vi.useFakeTimers({ toFake: ['Date'] })
+    try {
+      vi.setSystemTime(new Date('2026-09-15T12:00:00Z'))
+      const iso = '2026-06-03T10:00:00Z'
+      expect(timeAgo(iso, { t: traductor('ca'), locale: 'ca' })).toMatch(/juny/)
+      expect(timeAgo(iso)).toMatch(/jun/)
+      expect(timeAgo(iso)).not.toMatch(/juny/)
+    } finally {
+      vi.useRealTimers()
+    }
   })
 })
 
@@ -205,5 +254,69 @@ describe('porcentajeLegible', () => {
 
   it('sin total no hay proporción: null, no un cero', () => {
     expect(porcentajeLegible(0, 0)).toBeNull()
+  })
+})
+
+/**
+ * `fmtDateShort` con idioma.
+ *
+ * El deslizador del mapa y la tarjeta de contrato escribían el mes en castellano
+ * también en la portada valenciana, porque la función fijaba `es-ES`. Ahora
+ * recibe el idioma, y sin él —que es como la llaman todas las demás páginas—
+ * escribe lo mismo que escribía. Los números y la moneda siguen en `es-ES` en
+ * los dos idiomas: sólo cambia el nombre del mes.
+ */
+describe('fmtDateShort, en los dos idiomas', () => {
+  // Mediodía UTC: el día es el mismo en cualquier huso en el que corra la suite.
+  const ISO = '2026-06-03T12:00:00Z'
+
+  it('sin idioma, y con «es», escribe lo que escribía', () => {
+    expect(fmtDateShort(ISO)).toBe('3 jun 2026')
+    expect(fmtDateShort(ISO, 'es')).toBe(fmtDateShort(ISO))
+  })
+
+  it('en valencià, el mes en valencià', () => {
+    // ICU escribe «3 de juny del 2026». Se fija el mes y no la forma entera,
+    // que es de ICU y no nuestra.
+    expect(fmtDateShort(ISO, 'ca')).toMatch(/juny/)
+  })
+
+  it('un idioma que el sitio no tiene cae al castellano', () => {
+    expect(fmtDateShort(ISO, 'fr')).toBe(fmtDateShort(ISO))
+  })
+
+  it('sin fecha no hay texto, en ningún idioma', () => {
+    expect(fmtDateShort(null, 'ca')).toBe('')
+  })
+})
+
+/**
+ * `partePorHueco` — para las plantillas que envuelven un dato en `<strong>`.
+ *
+ * «Atribuido por la Generalitat a <strong>Vilamarxant</strong>; …» no cabe en
+ * `rellena`, que devuelve texto: el dato va dentro de un elemento. Se parte la
+ * plantilla por el hueco y el componente pinta las dos mitades alrededor.
+ */
+describe('partePorHueco', () => {
+  it('parte la plantilla alrededor del hueco', () => {
+    expect(
+      partePorHueco(
+        'Atribuido por la Generalitat a {municipio}; su perímetro entra en Riba-roja.',
+        '{municipio}',
+      ),
+    ).toEqual(['Atribuido por la Generalitat a ', '; su perímetro entra en Riba-roja.'])
+  })
+
+  it('con el hueco en un extremo, esa mitad queda vacía', () => {
+    expect(partePorHueco('{fuente} (ICV)', '{fuente}')).toEqual(['', ' (ICV)'])
+  })
+
+  it('sin el hueco, la plantilla va entera delante y el dato no se pierde detrás', () => {
+    // Una traducción que se come el hueco no puede borrar el dato: se pinta
+    // después del texto, que se ve y se arregla, en vez de desaparecer.
+    expect(partePorHueco('Zonas oficiales de peligrosidad', '{fuente}')).toEqual([
+      'Zonas oficiales de peligrosidad',
+      '',
+    ])
   })
 })

@@ -1,7 +1,7 @@
 import { Link, useParams } from 'react-router-dom'
 import { Card, Pill, SectionHead, ExtLink } from '../components/Primitives'
 import { useOfficials, partyColor, findOfficial } from '../hooks/useOfficials'
-import { fmtDateLong } from '../lib/formatters'
+import { fmtDateLong, rellena } from '../lib/formatters'
 import { usePromises, STATUS_LABEL, STATUS_TONE } from '../hooks/usePromises'
 import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
 import { useQuejas } from '../hooks/useQuejas'
@@ -69,12 +69,22 @@ function AreaSpend({ slugs }) {
   if (rows.length === 0) return null
   const totalEur = rows.reduce((n, b) => n + b.contratacion.importeEur, 0)
   const totalN = rows.reduce((n, b) => n + b.contratacion.contratos, 0)
+  // El periodo de EXACTAMENTE las filas que se suman: el de cada área, unido. Sin
+  // él, «Dinero adjudicado en las concejalías que dirige» sumaba contratos desde
+  // 2017 junto al nombre de quien las dirige hoy, y se leía como la contratación
+  // de su mandato. Sin ningún contrato con fecha no hay periodo que inventar.
+  const conFecha = rows.map((b) => b.contratacion.anios).filter(Boolean)
+  const desde = conFecha.length ? Math.min(...conFecha.map((a) => a.desde)) : null
+  const hasta = conFecha.length ? Math.max(...conFecha.map((a) => a.hasta)) : null
+  const titulo =
+    desde === null
+      ? t('cargos.detalle.area.title')
+      : desde === hasta
+        ? rellena(t('cargos.detalle.area.titleAnio'), { anio: desde })
+        : rellena(t('cargos.detalle.area.titleRango'), { desde, hasta })
   return (
     <section style={{ marginBottom: 28 }}>
-      <SectionHead
-        eyebrow={t('cargos.detalle.area.eyebrow')}
-        title={t('cargos.detalle.area.title')}
-      />
+      <SectionHead eyebrow={t('cargos.detalle.area.eyebrow')} title={titulo} />
       <Card>
         <div
           style={{
@@ -235,8 +245,17 @@ function AreaActivity({ slugs }) {
               {locale === 'ca' ? b.labelCa : b.labelEs} →
             </Link>
             <span style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-              <span className="mono">{b.plenoVotes.total}</span>{' '}
-              {t('cargos.detalle.actividad.votos')}
+              {/* Sin ninguna votación transcrita del área no hay cifra que dar:
+                  «0 votaciones» diría que en sus concejalías no se votó nada, y lo
+                  único que se sabe es que nadie ha transcrito esas votaciones. */}
+              {b.plenoVotes.total === 0 ? (
+                t('departamentos.card.sinVotoTranscrito')
+              ) : (
+                <>
+                  <span className="mono">{b.plenoVotes.total}</span>{' '}
+                  {t('cargos.detalle.actividad.votos')}
+                </>
+              )}
               {' · '}
               <span className="mono">{b.declaraciones.conEvidencia}</span>{' '}
               {t('cargos.detalle.actividad.declaraciones')}
@@ -631,6 +650,10 @@ export default function CargoDetalle() {
   }
   const slugs = portfolioSlugs(official)
   const slugsSet = new Set(slugs)
+  // Las áreas delegadas cuyo nombre no llega a ninguna ficha de /departamentos.
+  const sinFicha = (official.portfolios ?? []).filter(
+    (p) => canonicalizeDepartments(p).length === 0,
+  )
 
   // Party-level promises. We never misattribute individual promises to one
   // councillor — even the mayor. The card shows N promesas del grupo X.
@@ -830,7 +853,14 @@ export default function CargoDetalle() {
           marginBottom: 24,
         }}
       >
-        <MiniStat label={t('cargos.detalle.stat.portfolios')} value={slugs.length} />
+        {/* La cifra junto a la cabecera cuenta lo que la cabecera nombra: las áreas
+            delegadas. Contaba las fichas de /departamentos a las que llegan esos
+            nombres, que pueden fundirse (dos nombres, una ficha) o partirse, y
+            «Concejalías 3» junto a cuatro nombres no se explicaba. */}
+        <MiniStat
+          label={t('cargos.detalle.stat.areasDelegadas')}
+          value={official.portfolios?.length ?? 0}
+        />
         <MiniStat label={t('cargos.detalle.stat.partyPromises')} value={partyPromises.length} />
         <MiniStat label={t('cargos.detalle.stat.agendaItems')} value={agendaItems.length} />
         <MiniStat
@@ -853,7 +883,7 @@ export default function CargoDetalle() {
       <AreaActivity slugs={slugs} />
 
       {/* Portfolio department chips */}
-      {slugs.length > 0 && (
+      {(slugs.length > 0 || sinFicha.length > 0) && (
         <section style={{ marginBottom: 28 }}>
           <SectionHead
             eyebrow={t('cargos.detalle.portfolios.eyebrow')}
@@ -880,6 +910,21 @@ export default function CargoDetalle() {
               </Link>
             ))}
           </div>
+          {/* Un área delegada que no llega a ninguna ficha se nombra en vez de
+              desaparecer: la cabecera la lista, y sin esta línea la cifra y los
+              botones no casaban con ella sin explicación. */}
+          {sinFicha.length > 0 && (
+            <p
+              style={{
+                margin: '10px 0 0',
+                fontSize: 'var(--fs-aux)',
+                color: 'var(--ink70)',
+                lineHeight: 1.5,
+              }}
+            >
+              {rellena(t('cargos.detalle.portfolios.sinFicha'), { lista: sinFicha.join(' · ') })}
+            </p>
+          )}
         </section>
       )}
 

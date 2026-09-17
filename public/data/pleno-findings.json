@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-08-29T11:20:48.151Z",
+  "generatedAt": "2026-09-15T18:54:12.611Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. Los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, salvo los que llevan la firma de una persona, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -2517,7 +2517,7 @@
       "plenoId": "qz6weg",
       "plenoDate": "2025-12-01",
       "title": "Pleno ordinario de Riba-roja de Túria, 2025-12-01: Debates sobre sistemas dinámicos de adquisición y bolsa de autónomos",
-      "summary": "El PSOE afirma que los sistemas dinámicos de adquisición aprobados recientemente incluyen la cesión de una bolsa de autónomos a otros ayuntamientos. Cita además «más de 900.000 euros con una bolsa en el ayuntamiento para los autónomos y pequeñas empresas»: la transcripción dice «El plan rehabilita más de 900.000 euros», y no permite determinar de qué plan se trata. Un grupo no identificado señala que esta iniciativa se extiende a varios municipios como parte de una campaña para el comercio local.",
+      "summary": "El PSOE afirma que los sistemas dinámicos de adquisición aprobados recientemente incluyen la cesión de una bolsa de autónomos a otros ayuntamientos. Cita además «El plan rehabilita más de 900.000 euros con una bolsa en el ayuntamiento para los autónomos y pequeñas empresas de Riva Roja»: la transcripción recoge la frase entera, pero no dice de qué plan se trata. Un grupo no identificado señala que esta iniciativa se extiende a varios municipios como parte de una campaña para el comercio local.",
       "severity": "informational",
       "sourceClaimIds": [
         "qz6weg-185-cit-66cd62",
@@ -2579,6 +2579,14 @@
           "reason": "Dos defectos. El barrido automático de agosto sustituyó el relleno del extractor dentro de una frase y la dejó rota y en minúscula tras punto, así se publicó. Y «un plan de rehabilitación» era una lectura interpretativa de una transcripción degradada, con una cifra en euros colgando de ella; se cita al hablante literalmente y se dice qué no se puede determinar.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T18:22:28.138Z"
+        },
+        {
+          "field": "summary",
+          "original": "El PSOE afirma que los sistemas dinámicos de adquisición aprobados recientemente incluyen la cesión de una bolsa de autónomos a otros ayuntamientos. Cita además «más de 900.000 euros con una bolsa en el ayuntamiento para los autónomos y pequeñas empresas»: la transcripción dice «El plan rehabilita más de 900.000 euros», y no permite determinar de qué plan se trata. Un grupo no identificado señala que esta iniciativa se extiende a varios municipios como parte de una campaña para el comercio local.",
+          "corrected": "El PSOE afirma que los sistemas dinámicos de adquisición aprobados recientemente incluyen la cesión de una bolsa de autónomos a otros ayuntamientos. Cita además «El plan rehabilita más de 900.000 euros con una bolsa en el ayuntamiento para los autónomos y pequeñas empresas de Riva Roja»: la transcripción recoge la frase entera, pero no dice de qué plan se trata. Un grupo no identificado señala que esta iniciativa se extiende a varios municipios como parte de una campaña para el comercio local.",
+          "reason": "La corrección del 9-08-2026 citaba de la transcripción sólo «El plan rehabilita más de 900.000 euros», y así se leía que el resto de la cita no estaba en ella. La transcripción recoge la frase entera (sesión qz6weg, segmento 185); lo que no permite es saber de qué plan habla. La revisión lectora del 15-09-2026 la leyó como una cita recortada.",
+          "editor": "claude-opus-5",
+          "correctedAt": "2026-09-15T18:54:12.610Z"
         }
       ]
     },

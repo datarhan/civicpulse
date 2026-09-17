@@ -6,12 +6,13 @@ import { normaliseStationName } from '../shared'
 import { NetworkStationPopup } from '../popups/NetworkStationPopup'
 
 /**
- * Render the whole Metrovalencia + FGV network (10 lines · ~1k tracks ·
- * ~215 stations). Tracks are colour-coded by the line ref (L1..L10); a
- * station that serves multiple lines gets a concentric-ring look. Tracks
- * inside the Riba-roja municipality are also rendered by the local
- * `Railways()` component, so we drop our own track render for
- * L9+L2 refs (VT-005/VT-012) to avoid double-stroking near Riba-roja.
+ * La red completa de Metrovalencia, y sólo Metrovalencia: `scrape-metro-network`
+ * deja fuera lo que FGV opera en otras redes, como el TRAM d'Alacant, que comparte
+ * refs de línea. Tracks are colour-coded by the line ref; a station that serves
+ * multiple lines gets a concentric-ring look. Tracks inside the Riba-roja
+ * municipality are also rendered by the local `Railways()` component, so we drop
+ * our own track render for L9+L2 refs (VT-005/VT-012) to avoid double-stroking
+ * near Riba-roja.
  */
 export function FullNetwork() {
   const { loading, error, data } = useMetroNetwork()

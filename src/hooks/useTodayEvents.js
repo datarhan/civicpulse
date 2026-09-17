@@ -1,6 +1,6 @@
 // @ts-check
 import { useMemo } from 'react'
-import { useParticipa, KIND_ICON, KIND_LABEL } from './useParticipa'
+import { useParticipa, KIND_ICON } from './useParticipa'
 
 /**
  * Filter participa.ribarroja.es posts to "hoy y mañana" for a small
@@ -14,6 +14,10 @@ import { useParticipa, KIND_ICON, KIND_LABEL } from './useParticipa'
  * Rolling window: today + tomorrow (local time), so the ticker stays
  * relevant for someone checking the dashboard in the evening before a
  * next-day event.
+ *
+ * Devuelve la clase del aviso (`kind`) y no su rótulo: quien lo pinta lo pasa por
+ * el catálogo, en el idioma de la interfaz. Con el rótulo hecho aquí, el aviso salía
+ * en castellano también en la portada valenciana.
  */
 
 function isoDay(date) {
@@ -37,7 +41,6 @@ export function useTodayEvents() {
         title: it.title,
         kind: it.kind,
         icon: KIND_ICON[it.kind] || '📢',
-        kindLabel: KIND_LABEL[it.kind] || 'Participación',
         date: it.date,
         url: it.link,
         isToday: it.date?.slice(0, 10) === today,

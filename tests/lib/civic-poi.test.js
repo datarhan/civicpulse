@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { describe, it, expect } from 'vitest'
+import { CATALOGUE } from '../../src/i18n'
 import {
   groupPoiByCategory,
   poiShapePath,
@@ -36,11 +37,15 @@ describe('lib/civic-poi', () => {
     expect([...Object.keys(POI_CATEGORIES)].sort()).toEqual([...CATEGORIAS_DEL_SCRAPER].sort())
   })
 
-  it('2 · cada categoría tiene etiqueta, color y una silueta que existe', () => {
+  it('2 · cada categoría tiene rótulo en los dos idiomas, color y una silueta que existe', () => {
     for (const key of CATEGORIAS_DEL_SCRAPER) {
       expect(POI_CATEGORIES[key], key).toBeDefined()
-      expect(typeof POI_CATEGORIES[key].label).toBe('string')
-      expect(POI_CATEGORIES[key].label.length).toBeGreaterThan(0)
+      // Una clave del catálogo, no un texto: escrito aquí, el rótulo salía en
+      // castellano también en la portada valenciana.
+      const clave = POI_CATEGORIES[key].labelKey
+      expect(typeof clave, `clave de rótulo de ${key}`).toBe('string')
+      expect(CATALOGUE.es[clave], `es · ${clave}`).toBeTruthy()
+      expect(CATALOGUE.ca[clave], `ca · ${clave}`).toBeTruthy()
       expect(POI_CATEGORIES[key].color, `color de ${key}`).toMatch(/^#[0-9A-Fa-f]{6}$/)
       expect(POI_SHAPES[POI_CATEGORIES[key].shape], `silueta de ${key}`).toBeTruthy()
       expect(poiShapePath(key)).toBe(POI_SHAPES[POI_CATEGORIES[key].shape])
@@ -145,7 +150,8 @@ describe('lib/civic-poi', () => {
     ]
     const grouped = groupPoiByCategory(pois)
     expect(grouped.get('educacion').items).toHaveLength(2)
-    expect(grouped.get('educacion').label).toBe(POI_CATEGORIES.educacion.label)
+    expect(grouped.get('educacion').labelKey).toBe(POI_CATEGORIES.educacion.labelKey)
+    expect(grouped.get('educacion').labelKey, 'la leyenda no recibe una clave').toBeTruthy()
     // La leyenda pinta esta `path`; el marcador del mapa pinta la suya desde el
     // mismo módulo. Que sean la misma cadena es lo que impide que el swatch
     // explique una forma que el mapa dejó de dibujar.

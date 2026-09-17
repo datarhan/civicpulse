@@ -552,6 +552,48 @@ _cron_git_con_lock() {
 # Stages first, because `git commit -- <pathspec>` will not pick up a file git
 # does not already know about (a brand-new snapshot).
 # ---------------------------------------------------------------------------
+# ---------------------------------------------------------------------------
+# cron_rutas_rederivadas
+#
+# Ejecuta `refresh` y escribe las rutas que ESA PASADA reconstruyó, para que
+# quien comitea las añada a su pathspec: sin ellas, publica la ENTRADA de un
+# derivado y deja fuera el derivado, y `main` incumple su propia
+# `tests/data-graph-frescura.test.ts` hasta la nocturna (medido el 16-09-2026:
+# ochenta minutos, tres tuberías, la CI de una PR ajena en rojo).
+#
+# Filtra a rutas QUE EXISTEN, y eso no es cinturón de más: lo que salga por
+# stdout acaba siendo un pathspec, y un pathspec con una palabra que no es una
+# ruta apaga la red de seguridad entera —`git add` falla, la puerta de «¿hay
+# algo que comitear?» se confunde y el commit se lleva el índice completo, que
+# es exactamente el accidente f182c61 que `cron_git_commit_pathspec` existe para
+# impedir—. Lo enseñó `tests/scripts/cron-git-safety.test.ts`, cuyo `npm` de
+# mentira escribe «[stub] ran refresh» por stdout: sin este filtro, esas tres
+# palabras entraban en el pathspec y las cinco tuberías comiteaban el fichero de
+# un extraño.
+# ---------------------------------------------------------------------------
+cron_rutas_rederivadas() {
+  local salida ruta
+  salida="$(npm run --silent refresh -- --rebuilt-paths 2>/dev/null)" || {
+    # Un refresh que falla no puede quedar callado: quien llama se quedaría sin
+    # rutas y lo leería como «no había nada que rederivar».
+    cron_git_log "refresh falló al pedirle qué rederivó — no se añade nada al pathspec" >&2
+    return 0
+  }
+  local n=0
+  while IFS= read -r ruta; do
+    [ -n "$ruta" ] || continue
+    [ -e "$ruta" ] || continue
+    n=$((n + 1))
+    printf '%s\n' "$ruta"
+  done <<EOF
+$salida
+EOF
+  # Por stderr, NUNCA por stdout: stdout es el valor que quien llama captura.
+  # Y se dice también cuando son cero, que es la diferencia entre «no hacía
+  # falta» y «no se preguntó».
+  cron_git_log "refresh rederivó $n ruta(s)" >&2
+}
+
 cron_git_stage_and_check() {
   # Before the `git add`, not just before the commit: staging into a branch
   # that appeared under us is already a write to someone else's index, and it

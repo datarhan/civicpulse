@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test'
 import { readFileSync } from 'node:fs'
 import { collectErrors, appErrors } from './_console'
+import { afirmaPulsables, cargaYEncuadra, sondea } from './_estaciones'
 import { contractTermYears, isConcession } from '../../src/lib/contract-status'
 
 test.describe('Landing (/)', () => {
@@ -299,6 +300,16 @@ test.describe('Landing (/)', () => {
     await expect(layerControl.getByRole('button', { name: /Tren L9/i })).toHaveCount(0)
     await layerControl.getByRole('button', { name: /^Quejas$/i }).click()
     await expect(page.getByText(/Quejas por barrio/i).first()).toBeVisible({ timeout: 6000 })
+  })
+
+  test('las estaciones de Riba-roja se pueden pulsar: nada del mapa se les pone encima', async ({
+    page,
+  }) => {
+    // Los pines del dinero situado, los puntos de barrio y las vías de la red completa
+    // se pintaban encima de los discos de las estaciones: se veían y un clic no les
+    // llegaba. La medida vive en tests/e2e/_estaciones.ts.
+    await cargaYEncuadra(page)
+    afirmaPulsables(await sondea(page))
   })
 })
 
