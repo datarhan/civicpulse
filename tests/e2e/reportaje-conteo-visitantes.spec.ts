@@ -38,8 +38,18 @@ test.describe('Reportaje · conteo de visitantes (/reportajes/conteo-visitantes)
     // legal: la pieza nombra a dos empresas y a un ayuntamiento.
     await expect(page.getByText(/derecho de réplica/).first()).toBeVisible()
 
-    // Las tres solicitudes, con su reloj CALCULADO el día que se lee.
-    await expect(page.getByText(/Secretaría de Estado de Turismo · enviada el/)).toBeVisible()
+    // Las solicitudes, con su reloj CALCULADO el día que se lee.
+    //
+    // A la Secretaría de Estado se le escribió DOS veces: la solicitud del 9-sep
+    // (contestada el 16) y el seguimiento del 17-sep, que pide la resolución de
+    // ampliación que obra en su poder. Cada una tiene su reloj, así que son dos
+    // filas. Se ancla en la cabeza «enviada el <fecha>» porque es lo único de la
+    // fila que no cambia cuando el estado pasa de «en plazo» a «sin respuesta» o
+    // «respondida»: una prueba atada a la frase del estado caduca sola.
+    expect(await page.getByText(/Secretaría de Estado de Turismo · enviada el/).count()).toBe(2)
+    await expect(
+      page.getByText(/Secretaría de Estado de Turismo · enviada el 17 de septiembre de 2026/),
+    ).toBeVisible()
     await expect(page.getByText(/Turisme Comunitat Valenciana · enviada el/)).toBeVisible()
 
     // LA SALVEDAD JURÍDICA, y es la que no puede caerse. Salieron por correo:

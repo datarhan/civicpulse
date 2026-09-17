@@ -239,6 +239,17 @@ describe('instantánea publicada · conteo-visitantes', () => {
     expect(d.solicitudes.items.length).toBeGreaterThan(0)
   })
 
+  // El 17-09-2026 un mismo organismo pasó a tener DOS filas (la solicitud y su
+  // seguimiento). El componente usa `organismo + enviadaEl` como clave de React,
+  // y dos filas con la misma clave no dan error visible: React reutiliza una y la
+  // otra desaparece de la página, que es la forma más silenciosa de perder un
+  // reloj legal.
+  it('no hay dos solicitudes al mismo organismo el mismo día (la clave de la fila)', () => {
+    const claves = d.solicitudes.items.map((e) => `${e.organismo}-${e.enviadaEl}`)
+    const repetidas = claves.filter((k, i) => claves.indexOf(k) !== i)
+    expect(repetidas).toEqual([])
+  })
+
   it('toda respuesta publicada usa un sentido del enum', () => {
     const malos = d.solicitudes.items
       .filter((e) => e.respuesta)
