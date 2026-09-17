@@ -27,17 +27,19 @@
  *            esas fuentes una a una.
  */
 import { Pill } from './Primitives'
+import { useLocale } from '../i18n'
 import { timeAgo } from '../hooks/usePress'
 import { freshnessTone } from '../lib/data-freshness'
 import { expectationFor } from '../scraper/snapshot-cadence'
 
 export default function DataAsOf({ iso, label, size = 'xs', file = null, tone: toneProp, title }) {
+  const { locale, t } = useLocale()
   const tone = toneProp ?? freshnessTone(iso, Date.now(), expectationFor(file)?.maxAgeDays ?? null)
-  const rel = iso ? timeAgo(iso) : ''
+  const rel = iso ? timeAgo(iso, { t, locale }) : ''
   const text = rel || '—'
-  const display = label ? `${label} · ${text}` : `Datos · ${text}`
+  const display = `${label || t('dataAsOf.datos')} · ${text}`
   return (
-    <span title={title || iso || 'sin fecha de generación'} style={{ display: 'inline-flex' }}>
+    <span title={title || iso || t('dataAsOf.sinFecha')} style={{ display: 'inline-flex' }}>
       <Pill tone={tone} size={size}>
         {display}
       </Pill>

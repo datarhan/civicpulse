@@ -1,17 +1,12 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Card, Pill } from '../Primitives'
-import { PLENO_TONE, PLENO_LABEL } from '../../hooks/usePlenos'
-import { fmtDateShort } from '../../lib/formatters'
+import { PLENO_TONE } from '../../hooks/usePlenos'
+import { fmtDateShort, rellena } from '../../lib/formatters'
+import { rotuloDe, useLocale } from '../../i18n'
 
-const COLUMNAS = [
-  { id: 'fecha', rotulo: 'Fecha' },
-  { id: 'tipo', rotulo: 'Tipo' },
-  { id: 'puntos', rotulo: 'Puntos del orden del día' },
-  { id: 'decl', rotulo: 'Declaraciones' },
-  { id: 'votos', rotulo: 'Votaciones' },
-  { id: 'hall', rotulo: 'Hallazgos' },
-]
+/** Las columnas de la tabla; su rótulo es `plenos.indice.columna.<id>`. */
+const COLUMNAS = ['fecha', 'tipo', 'puntos', 'decl', 'votos', 'hall']
 
 /** El ancho de la barra de puntos, a escala común con la sesión más cargada. */
 function anchoBarra(n, maximo) {
@@ -65,22 +60,23 @@ function Celda({ rotulo, n, ausente, tono }) {
 }
 
 function Fila({ fila, maximoPuntos }) {
+  const { locale, t } = useLocale()
   return (
     <Link to={`/plenos/${fila.id}`} className="cp-plenos-fila">
       <span className="cp-plenos-celda">
-        <span className="cp-plenos-rotulo">Fecha</span>
+        <span className="cp-plenos-rotulo">{t('plenos.indice.columna.fecha')}</span>
         <span className="mono" style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink70)' }}>
-          {fmtDateShort(fila.date)}
+          {fmtDateShort(fila.date, locale)}
         </span>
       </span>
       <span className="cp-plenos-celda">
-        <span className="cp-plenos-rotulo">Tipo</span>
+        <span className="cp-plenos-rotulo">{t('plenos.indice.columna.tipo')}</span>
         <Pill tone={PLENO_TONE[fila.kind] || 'ghost'} size="xs">
-          {PLENO_LABEL[fila.kind] || fila.kind}
+          {rotuloDe(t, `pleno.tipo.${fila.kind}`, fila.kind)}
         </Pill>
       </span>
       <span className="cp-plenos-celda">
-        <span className="cp-plenos-rotulo">Puntos</span>
+        <span className="cp-plenos-rotulo">{t('plenos.indice.celda.puntos')}</span>
         <span style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 0 }}>
           {fila.puntos !== null && (
             <span
@@ -107,7 +103,7 @@ function Fila({ fila, maximoPuntos }) {
                 whiteSpace: 'nowrap',
               }}
             >
-              sin extraer
+              {t('plenos.indice.sinExtraer')}
             </span>
           ) : (
             <span className="mono" style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink70)' }}>
@@ -116,9 +112,24 @@ function Fila({ fila, maximoPuntos }) {
           )}
         </span>
       </span>
-      <Celda rotulo="Declaraciones" n={fila.decl} ausente="sin extraer" tono="var(--intel-ink)" />
-      <Celda rotulo="Votaciones" n={fila.votos} ausente="sin transcribir" tono="var(--warn-ink)" />
-      <Celda rotulo="Hallazgos" n={fila.hall} ausente="sin extraer" tono="var(--intel-ink)" />
+      <Celda
+        rotulo={t('plenos.indice.columna.decl')}
+        n={fila.decl}
+        ausente={t('plenos.indice.sinExtraer')}
+        tono="var(--intel-ink)"
+      />
+      <Celda
+        rotulo={t('plenos.indice.columna.votos')}
+        n={fila.votos}
+        ausente={t('plenos.indice.sinTranscribir')}
+        tono="var(--warn-ink)"
+      />
+      <Celda
+        rotulo={t('plenos.indice.columna.hall')}
+        n={fila.hall}
+        ausente={t('plenos.indice.sinExtraer')}
+        tono="var(--intel-ink)"
+      />
       <span
         className="mono cp-plenos-flecha"
         aria-hidden="true"
@@ -146,6 +157,7 @@ function Fila({ fila, maximoPuntos }) {
  *    no tener filtro.
  */
 export function TablaSesiones({ filas, filtros, porAnio, loading }) {
+  const { t } = useLocale()
   const [activo, setActivo] = useState('todas')
   const filtro = filtros.find((f) => f.id === activo) ?? filtros[0]
   const visibles = filtro ? filas.filter(filtro.pasa) : filas
@@ -161,7 +173,9 @@ export function TablaSesiones({ filas, filtros, porAnio, loading }) {
   const notaAnio = (anio) => {
     const total = totalPorAnio.get(anio)
     const vistas = visiblesPorAnio.get(anio)
-    return vistas === total ? `${total} sesiones` : `${vistas} de ${total} sesiones`
+    return vistas === total
+      ? rellena(t('plenos.indice.nSesiones'), { n: total })
+      : rellena(t('plenos.indice.anio.deSesiones'), { n: vistas, total })
   }
 
   let anioPrevio = null
@@ -187,18 +201,23 @@ export function TablaSesiones({ filas, filtros, porAnio, loading }) {
               color: 'var(--ink50)',
             }}
           >
-            Las sesiones ·{' '}
-            {visibles.length === filas.length
-              ? filas.length
-              : `${visibles.length} de ${filas.length}`}
+            {rellena(t('plenos.indice.tabla.eyebrow'), {
+              n:
+                visibles.length === filas.length
+                  ? filas.length
+                  : rellena(t('plenos.indice.deTotal'), {
+                      n: visibles.length,
+                      total: filas.length,
+                    }),
+            })}
           </div>
           <h2 style={{ fontSize: 'var(--fs-head)', fontWeight: 700, margin: '6px 0 0' }}>
-            Una fila por sesión, de la última a la primera
+            {t('plenos.indice.tabla.titulo')}
           </h2>
         </div>
         <div
           role="group"
-          aria-label="Filtrar sesiones"
+          aria-label={t('plenos.indice.filtros.aria')}
           style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}
         >
           <span
@@ -210,7 +229,7 @@ export function TablaSesiones({ filas, filtros, porAnio, loading }) {
               color: 'var(--ink50)',
             }}
           >
-            Ver
+            {t('plenos.indice.filtros.ver')}
           </span>
           {filtros.map((f) => (
             <button
@@ -220,7 +239,7 @@ export function TablaSesiones({ filas, filtros, porAnio, loading }) {
               aria-pressed={activo === f.id}
               onClick={() => setActivo(f.id)}
             >
-              {f.rotulo} · {f.n}
+              {t(`plenos.indice.filtro.${f.id}`)} · {f.n}
             </button>
           ))}
         </div>
@@ -238,7 +257,7 @@ export function TablaSesiones({ filas, filtros, porAnio, loading }) {
           >
             {COLUMNAS.map((c) => (
               <div
-                key={c.id}
+                key={c}
                 style={{
                   fontSize: 'var(--fs-micro)',
                   fontWeight: 500,
@@ -247,7 +266,7 @@ export function TablaSesiones({ filas, filtros, porAnio, loading }) {
                   color: 'var(--ink50)',
                 }}
               >
-                {c.rotulo}
+                {t(`plenos.indice.columna.${c}`)}
               </div>
             ))}
             <div />
@@ -259,7 +278,7 @@ export function TablaSesiones({ filas, filtros, porAnio, loading }) {
 
           {!loading && visibles.length === 0 && (
             <div style={{ padding: 14, fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
-              Ninguna sesión cumple ese filtro.
+              {t('plenos.indice.filtroVacio')}
             </div>
           )}
 
@@ -322,7 +341,7 @@ export function TablaSesiones({ filas, filtros, porAnio, loading }) {
                   flex: 'none',
                 }}
               />
-              puntos del orden del día, a escala común
+              {t('plenos.indice.leyenda.puntos')}
             </span>
             <span
               style={{
@@ -344,9 +363,9 @@ export function TablaSesiones({ filas, filtros, porAnio, loading }) {
                   flex: 'none',
                 }}
               >
-                sin extraer
+                {t('plenos.indice.sinExtraer')}
               </span>
-              la sesión se celebró; esa parte del acta no está procesada
+              {t('plenos.indice.leyenda.sinExtraer')}
             </span>
             {/* El cero habla del REGISTRO, no del mundo. Decir «no había nada»
                 afirmaría que miramos y estaba vacío, y para los hallazgos eso
@@ -363,11 +382,11 @@ export function TablaSesiones({ filas, filtros, porAnio, loading }) {
               <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
                 0
               </span>
-              procesada, y nada publicado en esa columna
+              {t('plenos.indice.leyenda.cero')}
             </span>
             <span style={{ flex: 1 }} />
             <span style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-              Ninguna cifra de esta tabla mide la actividad del pleno.
+              {t('plenos.indice.leyenda.noMide')}
             </span>
           </div>
         </div>

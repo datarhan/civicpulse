@@ -1,4 +1,8 @@
 import { Link } from 'react-router-dom'
+import { rellena } from '../../lib/formatters'
+import { conHuecos } from '../../lib/huecos'
+import { useLocale } from '../../i18n'
+import { DEPARTMENT_LABEL } from '../../scraper/departments'
 
 /**
  * Qué áreas llevan el orden del día — y sobre cuántas sesiones se dice.
@@ -14,6 +18,7 @@ import { Link } from 'react-router-dom'
  * áreas, no una cobertura.
  */
 export function RepartoPorArea({ departamentos, agenda, sesiones }) {
+  const { locale, t } = useLocale()
   if (!departamentos?.length) return null
   return (
     <div>
@@ -36,14 +41,17 @@ export function RepartoPorArea({ departamentos, agenda, sesiones }) {
               color: 'var(--ink50)',
             }}
           >
-            Reparto por área · {agenda.puntos} puntos de {agenda.sesiones} sesiones
+            {rellena(t('plenos.indice.reparto.eyebrow'), {
+              puntos: agenda.puntos,
+              sesiones: agenda.sesiones,
+            })}
           </div>
           <h2 style={{ fontSize: 'var(--fs-head)', fontWeight: 700, margin: '6px 0 0' }}>
-            Qué áreas llevan el orden del día
+            {t('plenos.indice.reparto.titulo')}
           </h2>
         </div>
         <Link to="/departamentos" style={{ fontSize: 'var(--fs-aux)', color: 'var(--civic)' }}>
-          Ver el panel por departamento →
+          {t('plenos.indice.reparto.enlace')}
         </Link>
       </div>
 
@@ -54,7 +62,9 @@ export function RepartoPorArea({ departamentos, agenda, sesiones }) {
             to={d.slug ? `/departamentos/${d.slug}` : '/departamentos'}
             className="cp-plenos-area"
           >
-            <span style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink70)' }}>{d.nombre}</span>
+            <span style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink70)' }}>
+              {(d.slug && DEPARTMENT_LABEL[d.slug]?.[locale]) || d.nombre}
+            </span>
             <span
               className="cp-plenos-area-barra"
               aria-hidden="true"
@@ -97,10 +107,16 @@ export function RepartoPorArea({ departamentos, agenda, sesiones }) {
           maxWidth: '96ch',
         }}
       >
-        Son los puntos de las <strong>{agenda.sesiones} sesiones con orden del día extraído</strong>
-        , no de las {sesiones}. Y sólo {agenda.conDepartamento} de los {agenda.puntos} puntos llevan
-        área asignada. Un área con pocos puntos puede tener mucha actividad en sesiones que aún no
-        hemos procesado: este reparto describe nuestra cobertura tanto como el trabajo del pleno.
+        {conHuecos(t('plenos.indice.reparto.nota'), {
+          '{sesionesConOrden}': (
+            <strong>
+              {rellena(t('plenos.indice.reparto.sesionesConOrden'), { n: agenda.sesiones })}
+            </strong>
+          ),
+          '{total}': sesiones,
+          '{con}': agenda.conDepartamento,
+          '{puntos}': agenda.puntos,
+        })}
       </p>
     </div>
   )

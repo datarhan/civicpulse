@@ -14,8 +14,9 @@ import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
 import { usePlenoFindings } from '../hooks/usePlenoFindings'
 import { usePlenoVotes } from '../hooks/usePlenoVotes'
 import { resumenPlenos } from '../lib/pleno-summary'
-import { fmtDateLong } from '../lib/formatters'
-import { useT } from '../i18n'
+import { fmtDateLong, rellena } from '../lib/formatters'
+import { conHuecos } from '../lib/huecos'
+import { useLocale } from '../i18n'
 
 const PORTAL_PARTICIPA = 'https://participa.ribarroja.es'
 
@@ -47,7 +48,7 @@ const PORTAL_PARTICIPA = 'https://participa.ribarroja.es'
  * partidos. La marca es `--civic`.
  */
 export default function Plenos() {
-  const t = useT()
+  const { locale, t } = useLocale()
   const { loading, data: plenosData } = usePlenos()
   const { data: manifest } = usePlenoClaimsManifest()
   const { data: agendasData } = usePlenoAgendas()
@@ -109,11 +110,27 @@ export default function Plenos() {
               maxWidth: '62ch',
             }}
           >
-            El ayuntamiento ha celebrado <strong>{r.total} sesiones</strong>
-            {r.ventana.desde && <> desde el {fmtDateLong(r.ventana.desde)}</>}. De ésas, tenemos el
-            orden del día de {r.agenda.sesiones}, declaraciones extraídas de {r.embudo.sesiones} y{' '}
-            <strong>votaciones transcritas de {r.votos.sesiones}</strong>. Lo que esta página no
-            cuenta no es que no ocurriera: es que aún no lo hemos leído.
+            {conHuecos(
+              t(
+                r.ventana.desde
+                  ? 'plenos.indice.lede.celebradas'
+                  : 'plenos.indice.lede.celebradasSinFecha',
+              ),
+              {
+                '{sesiones}': (
+                  <strong>{rellena(t('plenos.indice.nSesiones'), { n: r.total })}</strong>
+                ),
+                '{fecha}': fmtDateLong(r.ventana.desde, locale),
+              },
+            )}{' '}
+            {conHuecos(t('plenos.indice.lede.cobertura'), {
+              '{agenda}': r.agenda.sesiones,
+              '{decl}': r.embudo.sesiones,
+              '{votos}': (
+                <strong>{rellena(t('plenos.indice.lede.votos'), { n: r.votos.sesiones })}</strong>
+              ),
+            })}{' '}
+            {t('plenos.indice.lede.aviso')}
           </p>
           <p
             style={{
@@ -124,9 +141,9 @@ export default function Plenos() {
               maxWidth: '66ch',
             }}
           >
-            Cada sesión enlaza a su acta en regmeet.com, el gestor del propio ayuntamiento.{' '}
+            {t('plenos.indice.actaEnRegmeet')}{' '}
             <Link to="/metodologia" style={{ color: 'var(--civic)' }}>
-              Cómo se procesa una sesión →
+              {t('plenos.indice.comoSeProcesa')}
             </Link>
           </p>
         </div>
@@ -156,10 +173,18 @@ export default function Plenos() {
             maxWidth: '60ch',
           }}
         >
-          Fuente: actas y vídeos publicados por el Ayuntamiento de Riba-roja de Túria en
-          regmeet.com.
-          {r.ventana.hasta && <> Última sesión recogida: {fmtDateLong(r.ventana.hasta)}.</>}{' '}
-          {plenosData?.generatedAt && <DataAsOf iso={plenosData.generatedAt} label="Plenos" />}
+          {t('plenos.indice.fuente')}
+          {r.ventana.hasta && (
+            <>
+              {' '}
+              {rellena(t('plenos.indice.ultimaSesion'), {
+                fecha: fmtDateLong(r.ventana.hasta, locale),
+              })}
+            </>
+          )}{' '}
+          {plenosData?.generatedAt && (
+            <DataAsOf iso={plenosData.generatedAt} label={t('nav.plenos')} />
+          )}
         </p>
         <span style={{ flex: 1 }} />
         {/* La participación ciudadana sale del índice de plenos: es contenido
@@ -168,13 +193,13 @@ export default function Plenos() {
             volcado nuestro; el snapshot sigue catalogado en /datos. */}
         <div style={{ display: 'flex', gap: 16, fontSize: 'var(--fs-aux)', flexWrap: 'wrap' }}>
           <ExtLink href={PORTAL_PARTICIPA} style={{ color: 'var(--civic)' }}>
-            Participación ciudadana →
+            {t('plenos.indice.enlace.participacion')}
           </ExtLink>
           <Link to="/hallazgos" style={{ color: 'var(--civic)' }}>
-            Hallazgos →
+            {t('plenos.indice.enlace.hallazgos')}
           </Link>
           <Link to="/metodologia" style={{ color: 'var(--civic)' }}>
-            Metodología →
+            {t('plenos.indice.enlace.metodologia')}
           </Link>
         </div>
       </div>
