@@ -1,5 +1,5 @@
 import 'dotenv/config'
-import { Bot, session, webhookCallback } from 'grammy'
+import { Bot, session } from 'grammy'
 import { conversations } from '@grammyjs/conversations'
 import { openDb } from './db/client.ts'
 import type { MyContext, SessionData } from './types.ts'
@@ -26,6 +26,7 @@ import { startConvocatoriasCron } from './services/convocatorias.ts'
 import { startEventosRepoCron } from './services/eventos-repo.ts'
 import { startFotosCron } from './services/fotos-cron.ts'
 import { sirveFotoExportada } from './services/foto-exportada.ts'
+import { webhookTelegram } from './services/webhook-telegram.ts'
 import { parseAdminIds } from './util/admins.ts'
 import {
   getQuejaViva,
@@ -150,11 +151,11 @@ function makeBot() {
     ])
     .catch(() => undefined)
 
-  return { bot, db }
+  return { bot, db, token }
 }
 
 async function main() {
-  const { bot, db } = makeBot()
+  const { bot, db, token } = makeBot()
 
   const webhook = process.env.WEBHOOK_URL
   const port = Number(process.env.PORT ?? 3000)
@@ -163,7 +164,11 @@ async function main() {
   if (webhook) {
     // Production: webhook mode + export endpoint on one HTTP server.
     const http = await import('node:http')
-    const handler = webhookCallback(bot, 'std/http')
+    // Sólo Telegram entra por el webhook: el secreto se registra y se exige en el
+    // mismo módulo (webhook-telegram.ts). Hasta que el alta termina, /health dice que
+    // no está autenticado; si el alta falla, `main` revienta y Fly reinicia la máquina.
+    const telegram = webhookTelegram(bot, { url: webhook, token })
+    let webhookAutenticado = false
 
     const server = http.createServer(async (req, res) => {
       const url = new URL(req.url ?? '/', `http://${req.headers.host ?? 'localhost'}`)
@@ -219,6 +224,7 @@ async function main() {
               mode: 'webhook',
               uptimeSec: Math.round(process.uptime()),
               pid: process.pid,
+              webhookAuthenticated: webhookAutenticado,
             }),
           ),
         )
@@ -293,32 +299,15 @@ async function main() {
         return
       }
 
-      try {
-        const body: string = await new Promise((resolve, reject) => {
-          const chunks: Buffer[] = []
-          req.on('data', (c) => chunks.push(c))
-          req.on('end', () => resolve(Buffer.concat(chunks).toString('utf8')))
-          req.on('error', reject)
-        })
-        const fetchReq = new Request(new URL(url.pathname, webhook).toString(), {
-          method: req.method ?? 'POST',
-          headers: req.headers as HeadersInit,
-          body: body || undefined,
-        })
-        const r = await handler(fetchReq)
-        res.statusCode = r.status
-        r.headers.forEach((v, k) => res.setHeader(k, v))
-        res.end(await r.text())
-      } catch (err) {
-        console.error('[http] error:', err)
-        res.statusCode = 500
-        res.end('error')
-      }
+      // Lo que queda sólo puede ser Telegram: POST a la ruta del webhook y con el
+      // secreto. Todo lo demás, 404 o 401 sin llegar al bot.
+      await telegram.atender(req, res)
     })
 
     server.listen(port)
-    await bot.api.setWebhook(webhook)
-    console.log(`[bot] webhook mode · ${webhook} · :${port}`)
+    await telegram.registrar()
+    webhookAutenticado = true
+    console.log(`[bot] webhook mode · ${webhook} · :${port} · secret_token registrado`)
   } else {
     logger.info('bot.started', { mode: 'long-polling', pid: process.pid })
 
