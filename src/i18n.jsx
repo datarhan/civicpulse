@@ -2105,8 +2105,10 @@ export const CATALOGUE = {
     'plenos.indice.columna.votos': 'Votacions',
     'plenos.indice.columna.hall': 'Troballes',
     'plenos.indice.celda.puntos': 'Punts',
-    'plenos.indice.sinExtraer': 'sense extraure',
-    'plenos.indice.sinTranscribir': 'sense transcriure',
+    // «per extraure» y no «sense extraure»: a 1280 px «sense transcriure» se salía 2 px
+    // de su columna y tocaba la de al lado. Miden lo mismo que el castellano.
+    'plenos.indice.sinExtraer': 'per extraure',
+    'plenos.indice.sinTranscribir': 'per transcriure',
     'plenos.indice.tabla.eyebrow': 'Les sessions · {n}',
     'plenos.indice.tabla.titulo': 'Una fila per sessió, de l’última a la primera',
     'plenos.indice.filtros.aria': 'Filtrar sessions',

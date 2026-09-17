@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Card, Pill } from '../Primitives'
 import { PLENO_TONE } from '../../hooks/usePlenos'
-import { fmtDateShort, rellena } from '../../lib/formatters'
+import { fmtDateCompacta, rellena } from '../../lib/formatters'
 import { rotuloDe, useLocale } from '../../i18n'
 
 /** Las columnas de la tabla; su rótulo es `plenos.indice.columna.<id>`. */
@@ -66,7 +66,7 @@ function Fila({ fila, maximoPuntos }) {
       <span className="cp-plenos-celda">
         <span className="cp-plenos-rotulo">{t('plenos.indice.columna.fecha')}</span>
         <span className="mono" style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink70)' }}>
-          {fmtDateShort(fila.date, locale)}
+          {fmtDateCompacta(fila.date, locale)}
         </span>
       </span>
       <span className="cp-plenos-celda">
