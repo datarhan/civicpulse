@@ -53,6 +53,27 @@ test.describe('Reportaje · conteo de visitantes (/reportajes/conteo-visitantes)
     // Y la fecha se lee en castellano, no en ISO: es prosa, no un volcado.
     expect(await page.getByText(/enviada el \d{4}-\d{2}-\d{2}/).count()).toBe(0)
 
+    // LA PRIMERA RESPUESTA (16-09-2026). La Secretaría de Estado no concedió ni
+    // denegó: dijo que no le corresponde. La fila no puede seguir «en plazo», y
+    // tiene que constar que no entregaron documentos — si esa frase cae, la
+    // página parece haber recibido algo que no recibió.
+    await expect(
+      page.getByText(/El 16 de septiembre de 2026 contestaron que no les corresponde/),
+    ).toBeVisible()
+    await expect(page.getByText(/No acompañan ninguno de los documentos pedidos/)).toBeVisible()
+
+    // Y el plazo europeo, completado: sin la ampliación, el apartado enfrenta el
+    // hito del 2T-2026 con un contrato que vencía en julio y el lector saca una
+    // conclusión que el Ministerio desmiente.
+    await expect(
+      page.getByText(/El plazo del contrato, que vencía el 20 de julio, queda dentro/),
+    ).toBeVisible()
+
+    // «Remitieron» sería falso: en la Ley 19/2013 remitir es REENVIAR la
+    // solicitud al competente (art. 19.1), justo lo que no hicieron. Se prohíbe
+    // en la prosa escrita a mano, que no pasa por la prueba unitaria de la frase.
+    expect(await page.getByText(/\bremitieron\b/).count()).toBe(0)
+
     expect(appErrors(errors)).toEqual([])
   })
 })
