@@ -349,6 +349,15 @@ flyctl deploy --config bot/fly.toml --dockerfile bot/Dockerfile --remote-only .
 Full setup, secrets and volume creation: the header of `bot/fly.toml` and
 `bot/DEPLOY.md`.
 
+The webhook only accepts Telegram. At boot the bot registers it with a `secret_token`
+derived from `BOT_TOKEN` (`bot/src/services/webhook-telegram.ts`) and requires that
+header on every update: anything without it gets 401 before its body is read, and
+anything that is not a POST to the webhook path gets 404. There is no extra secret to
+set, and it rotates with the bot token. Until 2026-09-17 it had none, and anyone could
+post an update claiming to be any account, the admin included. `/health` reports
+`webhookAuthenticated`; if the bot stops answering right after a deploy, check that
+field first — a registered secret that differs from the required one mutes the bot.
+
 Besides the webhook, the bot runs its own hourly ticks. One anonymizes the queja
 photos on the volume (`QUEJAS_PHOTOS_DIR`) and needs `GEMINI_API_KEY`: without the
 key it holds every photo, and its boot line says so. On a confirmed `/olvidar` the

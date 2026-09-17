@@ -47,6 +47,7 @@ Telegram  ──────→  grammy bot  ──────→  SQLite (WAL,
                       └─→ freeze.ts         (reads promises.json frozenUntil)
 
 HTTP (webhook mode only):
+  POST <path of WEBHOOK_URL>  (Telegram only: X-Telegram-Bot-Api-Secret-Token, else 401)
   GET /health
   GET /export/quejas.json    (bearer-auth via EXPORT_TOKEN)
   GET /batch/current.{md,html}

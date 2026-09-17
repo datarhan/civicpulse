@@ -113,13 +113,26 @@ Subsequent deploys are ~30s.
 ### 6. Verify
 
 ```bash
-curl https://munigraph-ribarroja.fly.dev/health       # → ok
+curl https://munigraph-ribarroja.fly.dev/health       # → JSON, "webhookAuthenticated": true
 curl "https://munigraph-ribarroja.fly.dev/export/quejas.json" \
      -H "Authorization: Bearer $EXPORT_TOKEN"          # → JSON payload
+curl -X POST https://munigraph-ribarroja.fly.dev/ -d '{}' -o /dev/null -w '%{http_code}\n'
+                                                       # → 401: sin el secreto no entra nada
 ```
 
 On Telegram, DM [@munigraph_bot](https://t.me/munigraph_bot) with `/start`
 — should respond within 1–2 s.
+
+El webhook sólo atiende a Telegram. Al arrancar, el bot lo registra con un
+`secret_token` DERIVADO de `BOT_TOKEN` (`src/services/webhook-telegram.ts`), y Telegram
+lo devuelve en cada update en `X-Telegram-Bot-Api-Secret-Token`: lo que no lo trae
+recibe 401 antes de leerse, y lo que no es un POST a la ruta del webhook, 404. No hay
+secreto que poner. Hasta el 17-09-2026 no lo tenía, y cualquiera podía mandar un update
+haciéndose pasar por otra cuenta, administrador incluido. `/health` lo dice con
+`webhookAuthenticated`: `false` mientras el alta no ha terminado, `true` después. Si
+`/start` deja de contestar justo tras un despliegue, lo primero es mirar ese campo y
+`flyctl logs`: un secreto registrado distinto del exigido deja el bot mudo, con cada
+update rechazado con 401.
 
 ### 7. Wire the nightly cron
 
@@ -169,7 +182,9 @@ flyctl ssh console --app munigraph-ribarroja
 flyctl secrets set BOT_TOKEN=<new-token> --app munigraph-ribarroja
 ```
 
-Fly automatically restarts the machine after a secret change.
+Fly automatically restarts the machine after a secret change. El `secret_token` del
+webhook sale de `BOT_TOKEN`, así que rota con él: al arrancar, el bot registra el
+webhook con el secreto nuevo y exige ese mismo. No hay nada más que cambiar.
 
 ### Scale up if the queja volume spikes
 

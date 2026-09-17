@@ -33,11 +33,18 @@ export interface BotHealth {
   capabilities: BotCapabilities
   /** Human-readable list of what is off, empty when fully operational. */
   degraded: string[]
+  /**
+   * Webhook mode only: whether Telegram was registered with the `secret_token` the
+   * handler requires (src/services/webhook-telegram.ts). Until 2026-09-17 it was not,
+   * and the webhook accepted forged updates from anyone; nothing outside the machine
+   * could tell. A boolean, never the secret.
+   */
+  webhookAuthenticated?: boolean
 }
 
 export function buildHealth(
   env: NodeJS.ProcessEnv,
-  opts: { mode: string; uptimeSec: number; pid: number },
+  opts: { mode: string; uptimeSec: number; pid: number; webhookAuthenticated?: boolean },
 ): BotHealth {
   const capabilities: BotCapabilities = {
     capture: Boolean(env.BOT_TOKEN),
@@ -50,6 +57,12 @@ export function buildHealth(
     degraded.push('CHANNEL_ID missing — public [SILENCIO] broadcasts disabled')
   if (!capabilities.adminCommands)
     degraded.push('ADMIN_USER_IDS missing — /batch, /batch_register and /escalar disabled')
+  // A webhook-mode caller that does not say is read as unauthenticated: silence
+  // here would print the all-clear this field exists to withhold.
+  const webhookAuthenticated =
+    opts.mode === 'webhook' ? opts.webhookAuthenticated === true : undefined
+  if (webhookAuthenticated === false)
+    degraded.push('webhook not registered with its secret_token — updates are not authenticated')
   return {
     status: degraded.length === 0 ? 'ok' : 'degraded',
     mode: opts.mode,
@@ -57,5 +70,6 @@ export function buildHealth(
     pid: opts.pid,
     capabilities,
     degraded,
+    ...(webhookAuthenticated === undefined ? {} : { webhookAuthenticated }),
   }
 }

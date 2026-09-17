@@ -85,7 +85,7 @@ describe('scraper/redact-secrets', () => {
   // Un número con dos puntos no es un token: si esto tapara una hora o un id,
   // el registro saldría ilegible y nadie lo volvería a generar.
   it('no confunde una hora ni un identificador con un token', () => {
-    const texto = 'a las 11:03:16 el turno 782818609 del pleno 2026:01'
+    const texto = 'a las 11:03:16 el turno 314159265 del pleno 2026:01'
     expect(redactSecrets(texto)).toBe(texto)
   })
 
