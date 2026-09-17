@@ -1,6 +1,7 @@
 import { useReportaje } from '../../hooks/useReportaje'
 import { Card, Pill } from '../../components/Primitives'
 import { CorrectionNote } from '../../components/reportajes/CorrectionNote'
+import { fmtDateHuman } from '../../lib/formatters'
 import {
   estadoDeEnvio,
   fraseDeEnvio,
@@ -326,7 +327,7 @@ export default function ConteoVisitantes() {
         {m.subtitulo}
       </p>
       <div className="mono" style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
-        Publicado el {m.publicadoEl} · cifras congeladas a {m.fechaDatos}
+        Publicado el {fmtDateHuman(m.publicadoEl)} · cifras congeladas a {m.fechaDatos}
       </div>
 
       <CorrectionNote correcciones={m.correcciones} />
