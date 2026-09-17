@@ -12,14 +12,19 @@ import TimeSlider from './TimeSlider'
 import ContractsExplorer from './ContractsExplorer'
 import ContractorLeaderboard from './ContractorLeaderboard'
 import SpendingTypeBreakdown from './SpendingTypeBreakdown'
+import { rellena } from '../../lib/formatters'
+import { conHuecos } from '../../lib/huecos'
+import { useT } from '../../i18n'
 
+/** Las pestañas; su rótulo es `presupuesto.gasto.pestana.<id>`, detrás del icono. */
 const TABS = [
-  { id: 'explorar', label: '🔎 Explorar contratos' },
-  { id: 'contratistas', label: '🏗️ ¿Quién recibe el dinero?' },
-  { id: 'tipos', label: '📊 Tipos de gasto' },
+  { id: 'explorar', icono: '🔎' },
+  { id: 'contratistas', icono: '🏗️' },
+  { id: 'tipos', icono: '📊' },
 ]
 
 export default function GastoDashboard() {
+  const t = useT()
   const { data: tg } = useTenderGeo()
   const { data: tenders } = useTenders()
   const { data: cpv } = useCpvLabels()
@@ -117,8 +122,12 @@ export default function GastoDashboard() {
           en un rótulo, y un rótulo que la insinúa sin explicarla estorba más de
           lo que informa. */}
       <SectionHead
-        eyebrow={`Contratación municipal · ${span ? `${span} · ` : ''}Gobierto/PLACSP`}
-        title="¿A dónde va el dinero en contratos?"
+        eyebrow={
+          span
+            ? rellena(t('presupuesto.gasto.eyebrow'), { periodo: span })
+            : t('presupuesto.gasto.eyebrow.sinPeriodo')
+        }
+        title={t('presupuesto.gasto.titulo')}
         right={
           totalUniverso > 0 ? (
             <div style={{ textAlign: 'right', flexShrink: 0 }}>
@@ -129,8 +138,10 @@ export default function GastoDashboard() {
                 {eurM(totalUniverso)}
               </div>
               <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}>
-                adjudicado sin IVA
-                {nEjercicios ? ` · ${nEjercicios} ejercicios, no un año` : ''}
+                {t('presupuesto.gasto.adjudicadoSinIva')}
+                {nEjercicios
+                  ? ` · ${rellena(t('presupuesto.gasto.ejercicios'), { n: nEjercicios })}`
+                  : ''}
               </div>
             </div>
           ) : null
@@ -156,33 +167,39 @@ export default function GastoDashboard() {
             por todo su plazo. Es la misma corrección que ya se hizo en la
             portada (`tests/i18n-dinero-adjudicado.test.ts`), y la señaló la
             revisión lectora del push que renombró el rótulo. */}
-        El total de arriba es <strong>todo lo adjudicado en contratos, no solo obras</strong>:
-        {obrasPct != null ? ` las obras son el ${pct0(obrasPct)} %` : ' el grueso'} y el resto son
-        servicios de ámbito municipal, suministros y otros —el desglose completo está en «Tipos de
-        gasto».
-        {span
-          ? ` Y es de ${span}, no de un solo ejercicio: puesto sin periodo al lado de un presupuesto anual se lee mucho mayor de lo que es.`
-          : ''}{' '}
+        {conHuecos(t('presupuesto.gasto.intro.total'), {
+          '{todo}': <strong>{t('presupuesto.gasto.intro.todo')}</strong>,
+        })}
+        {obrasPct != null
+          ? ` ${rellena(t('presupuesto.gasto.intro.obrasPct'), { pct: pct0(obrasPct) })}`
+          : ` ${t('presupuesto.gasto.intro.grueso')}`}{' '}
+        {rellena(t('presupuesto.gasto.intro.resto'), {
+          pestana: t('presupuesto.gasto.pestana.tipos'),
+        })}
+        {span ? ` ${rellena(t('presupuesto.gasto.intro.periodo'), { periodo: span })}` : ''}{' '}
         {mayor && mayor.cuota >= 25 ? (
           <>
             {' '}
-            <strong>No es un volumen repartido:</strong> el mayor contrato{' '}
-            {mayor.esConcesion ? '—una concesión de ' : '—'}
-            {(mayor.importe / 1e6).toLocaleString('es-ES', {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            })}{' '}
-            M€— se lleva él solo el {pct0(mayor.cuota)} % del total
-            {mayor.esConcesion
-              ? ', porque una concesión se adjudica por todo su plazo de una vez'
-              : ''}
-            .
+            <strong>{t('presupuesto.gasto.intro.noRepartido')}</strong>{' '}
+            {rellena(
+              t(
+                mayor.esConcesion
+                  ? 'presupuesto.gasto.intro.mayorConcesion'
+                  : 'presupuesto.gasto.intro.mayor',
+              ),
+              {
+                importe: (mayor.importe / 1e6).toLocaleString('es-ES', {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                }),
+                pct: pct0(mayor.cuota),
+              },
+            )}
           </>
         ) : null}{' '}
-        Solo se sitúan los contratos cuyo título nombra una zona
-        {obrasPctMapa != null ? `, y ahí sí predominan las obras (${pct0(obrasPctMapa)} %)` : ''}.
-        Tamaño del círculo = € adjudicado en la zona · ámbar cuando la mitad o más es recuperación
-        DANA.
+        {obrasPctMapa != null
+          ? rellena(t('presupuesto.gasto.intro.situados'), { pct: pct0(obrasPctMapa) })
+          : t('presupuesto.gasto.intro.situadosSinPct')}
       </div>
       <div style={{ marginBottom: 10 }}>
         <button
@@ -191,7 +208,8 @@ export default function GastoDashboard() {
           style={{ all: 'unset', cursor: 'pointer' }}
         >
           <Pill tone={danaOnly ? 'warn' : 'ghost'} size="xs">
-            {danaOnly ? '● Solo DANA' : '○ Solo DANA'}
+            {danaOnly ? '● ' : '○ '}
+            {t('presupuesto.gasto.soloDana')}
           </Pill>
         </button>
       </div>
@@ -234,7 +252,7 @@ export default function GastoDashboard() {
       <div style={{ marginTop: 16 }}>
         <div
           role="tablist"
-          aria-label="Vistas del gasto"
+          aria-label={t('presupuesto.gasto.pestanas.aria')}
           style={{
             display: 'flex',
             gap: 6,
@@ -242,24 +260,25 @@ export default function GastoDashboard() {
             flexWrap: 'wrap',
           }}
         >
-          {TABS.map((t) => (
+          {TABS.map((pestana) => (
             <button
-              key={t.id}
-              id={`tab-${t.id}`}
+              key={pestana.id}
+              id={`tab-${pestana.id}`}
               role="tab"
-              aria-selected={tab === t.id}
-              onClick={() => setTab(t.id)}
+              aria-selected={tab === pestana.id}
+              onClick={() => setTab(pestana.id)}
               style={{
                 all: 'unset',
                 cursor: 'pointer',
                 fontSize: 'var(--fs-meta)',
                 padding: '8px 12px',
-                borderBottom: tab === t.id ? '2px solid var(--civic)' : '2px solid transparent',
-                color: tab === t.id ? 'var(--civic)' : 'var(--ink50)',
-                fontWeight: tab === t.id ? 700 : 500,
+                borderBottom:
+                  tab === pestana.id ? '2px solid var(--civic)' : '2px solid transparent',
+                color: tab === pestana.id ? 'var(--civic)' : 'var(--ink50)',
+                fontWeight: tab === pestana.id ? 700 : 500,
               }}
             >
-              {t.label}
+              {pestana.icono} {t(`presupuesto.gasto.pestana.${pestana.id}`)}
             </button>
           ))}
         </div>

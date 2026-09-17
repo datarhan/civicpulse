@@ -11,6 +11,8 @@ import {
 import { BASEMAP_ATTRIBUTION, BASEMAP_URL } from '../../lib/basemap'
 import { useGeo } from '../../hooks/useGeo'
 import { moneyRadiusMeters, zoneAmountsAt } from '../../lib/tender-geo'
+import { rellena } from '../../lib/formatters'
+import { useT } from '../../i18n'
 
 const RIBA_CENTER = [39.52, -0.55]
 const fmtEur = (n) =>
@@ -42,6 +44,7 @@ function Boundary() {
 }
 
 export default function GastoMap({ snapshot, sliderTime, danaOnly, selectedZone, onSelectZone }) {
+  const t = useT()
   const amounts = useMemo(
     () => zoneAmountsAt(snapshot?.assignments, { at: sliderTime, danaOnly }),
     [snapshot, sliderTime, danaOnly],
@@ -54,7 +57,7 @@ export default function GastoMap({ snapshot, sliderTime, danaOnly, selectedZone,
     return (
       <div
         role="region"
-        aria-label="Mapa del gasto municipal por zona"
+        aria-label={t('presupuesto.gasto.mapa.ariaVacio')}
         style={{
           height: 360,
           display: 'grid',
@@ -69,7 +72,7 @@ export default function GastoMap({ snapshot, sliderTime, danaOnly, selectedZone,
             names a zone — services and supplies among them — so an empty state
             that says «obras» tells the reader the map is narrower than it is,
             the same overreach the section heading above used to make. */}
-        Aún no hay contratos situables en el periodo seleccionado.
+        {t('presupuesto.gasto.mapa.vacio')}
       </div>
     )
   }
@@ -77,7 +80,7 @@ export default function GastoMap({ snapshot, sliderTime, danaOnly, selectedZone,
   return (
     <div
       role="region"
-      aria-label="Mapa interactivo del gasto municipal por zona"
+      aria-label={t('presupuesto.gasto.mapa.aria')}
       style={{
         height: 360,
         borderRadius: 'var(--r-card)',
@@ -122,7 +125,16 @@ export default function GastoMap({ snapshot, sliderTime, danaOnly, selectedZone,
                 <div style={{ fontFamily: 'Outfit, sans-serif', fontSize: 'var(--fs-meta)' }}>
                   <strong>{z.name}</strong>
                   <br />
-                  {fmtEur(z.live.amount)} · {z.live.count} obra{z.live.count === 1 ? '' : 's'}
+                  {/* Contratos, no «obras»: ver ZoneDrilldown. */}
+                  {fmtEur(z.live.amount)} ·{' '}
+                  {rellena(
+                    t(
+                      z.live.count === 1
+                        ? 'presupuesto.gasto.contratos.uno'
+                        : 'presupuesto.gasto.contratos.varios',
+                    ),
+                    { n: z.live.count },
+                  )}
                 </div>
               </Tooltip>
             </Circle>
