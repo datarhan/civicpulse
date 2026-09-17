@@ -98,3 +98,45 @@ export function detectorDeCastellano(noSeTraduce) {
     ],
   }
 }
+
+// ─── Qué es dato y qué es rótulo (compartido por las guardas bilingües) ─────
+
+/** Todas las cadenas de un valor JSON. */
+export const cadenasDe = (valor, out = new Set()) => {
+  if (typeof valor === 'string') out.add(valor)
+  else if (valor && typeof valor === 'object')
+    for (const v of Object.values(valor)) cadenasDe(v, out)
+  return out
+}
+
+/**
+ * Un token de máquina —«services», «awarded», «naranja»— nunca es un dato para el
+ * lector: pintado tal cual, es un enum sin rótulo, y esta guarda lo tiene que ver.
+ */
+export const esToken = (s) => /^[a-z][a-z0-9_-]*$/.test(s)
+
+/**
+ * Lo que la lectura castellana pinta de las instantáneas servidas: dato, no rótulo.
+ *
+ * Una cadena corta cuenta sólo si es la pieza ENTERA: la categoría «Obras» de un
+ * contrato no puede tapar un rótulo «Obras». Una larga cuenta también dentro de una
+ * pieza, o recortada con «…», que es como se pintan los titulares.
+ */
+export const datosPintados = (piezas, cadenas) => {
+  const enteras = new Set(piezas)
+  const todo = piezas.join('\n')
+  const recortadas = piezas
+    .filter((p) => p.length >= 12 && p.endsWith('…'))
+    .map((p) => p.slice(0, -1))
+  const out = new Set()
+  for (const bruta of cadenas) {
+    const s = bruta.trim()
+    if (s.length < 2 || !/\p{L}/u.test(s) || esToken(s)) continue
+    if (enteras.has(s)) out.add(s)
+    else if (s.length >= 12) {
+      if (todo.includes(s)) out.add(s)
+      for (const r of recortadas) if (s.startsWith(r)) out.add(r)
+    }
+  }
+  return [...out]
+}
