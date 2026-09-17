@@ -28,7 +28,7 @@ export const GESTION = {
  */
 export const MOTIVO = {
   concesion:
-    'El servicio está concedido y en esta entrega el ayuntamiento no declara coste: la casilla viene vacía o a cero porque el concesionario cobra del recibo. Un cero ahí no es un precio, y dividirlo diría que aquí el servicio es gratis. Las entregas en las que sí declara cifra sí tienen cociente, comparado sólo contra otras concesiones.',
+    'El servicio está concedido y en esta entrega el ayuntamiento no declara coste: la casilla viene vacía o a cero. Cuando el concesionario cobra del recibo, la norma manda declarar lo que se recauda por tarifas (Orden HAP/2075/2014, art. 6), así que ese cero no es un precio, y dividirlo diría que aquí el servicio es gratis. Las entregas en las que sí declara cifra sí tienen cociente, comparado sólo contra otras concesiones.',
   'cero-sin-declarar':
     'Hay gasto declarado, pero la unidad física viene a cero. Un cero junto a un presupuesto real significa «no se declaró», no «no hubo» (regla 3).',
   'filas-duplicadas':

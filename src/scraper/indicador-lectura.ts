@@ -258,9 +258,12 @@ export function leerIndicador(i: Indicador): Lectura {
     // Una tarjeta bloqueada también necesita lectura: el motivo ES el
     // contenido, y casi siempre dice algo sobre cómo rinde cuentas la casa.
     const motivo = i.numerador.motivo ?? i.denominador.motivo
+    // La de la concesión NO da la concesión como causa del cero: la Orden
+    // HAP/2075/2014 (art. 6) manda declarar, cuando el concesionario cobra del
+    // recibo, lo recaudado por tarifas. Hasta el 2026-09-17 decía lo contrario.
     const que =
       motivo === 'concesion'
-        ? 'No hay coste por unidad porque el servicio está concedido: lo paga el concesionario y lo recupera de la tarifa.'
+        ? 'No hay coste por unidad: el servicio está concedido y la entrega trae su coste vacío o a cero, aunque la norma manda declarar lo que se recauda por tarifas.'
         : motivo === 'cero-sin-declarar'
           ? 'No hay coste por unidad porque el ayuntamiento declaró un gasto real y dejó la magnitud física a cero.'
           : motivo === 'filas-duplicadas'

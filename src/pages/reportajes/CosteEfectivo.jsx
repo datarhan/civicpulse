@@ -2,6 +2,7 @@ import { useReportaje } from '../../hooks/useReportaje'
 import { CorrectionNote } from '../../components/reportajes/CorrectionNote'
 import { FichaSociedad } from '../../components/reportajes/FichaSociedad'
 import { useSociedades, indexarSociedades } from '../../hooks/useSociedades'
+import { enCastellano } from '../../scraper/solicitud-enviada'
 
 const SERIF = "'Fraunces', Georgia, serif"
 
@@ -194,14 +195,18 @@ function BarrasRendicion({ porAnio, anioPropio }) {
 }
 
 /* ---- La franja de comparables: mitad central sombreada, mediana marcada,
-        Riba-roja como punto en el 100. Misma gramática que BandaPares en
-        /eficiencia, congelada a la cifra de esta pieza. ---- */
+        Riba-roja como punto. Misma gramática que BandaPares en /eficiencia,
+        congelada a la cifra de esta pieza. ---- */
 function FranjaComparables({ banda }) {
+  // Las cuatro cifras en es-ES. La de Riba-roja iba en crudo y se publicó
+  // «86.7 %» con punto inglés al lado de «41,3 %»: sólo había pasado
+  // desapercibida mientras valía 100, sin decimales que delataran el formato.
+  const es = (v) => v.toLocaleString('es-ES')
   return (
     <div
       role="img"
-      aria-label={`Entre ${banda.n} municipios comparables, la mediana repite el ${banda.mediana} % de sus denominadores; el rango intercuartílico va del ${banda.p25} % al ${banda.p75} %. Riba-roja repite el ${banda.propio} %.`}
-      style={{ position: 'relative', height: 64, margin: '6px 0 2px' }}
+      aria-label={`Entre ${banda.n} municipios comparables, la mediana repite el ${es(banda.mediana)} % de sus denominadores; el rango intercuartílico va del ${es(banda.p25)} % al ${es(banda.p75)} %. Riba-roja repite el ${es(banda.propio)} %.`}
+      style={{ position: 'relative', height: 82, margin: '6px 0 2px' }}
     >
       <div
         style={{
@@ -278,7 +283,7 @@ function FranjaComparables({ banda }) {
         p75 · {banda.p75.toLocaleString('es-ES')} %
       </span>
       <div
-        title={`Riba-roja: ${banda.propio} %`}
+        title={`Riba-roja: ${es(banda.propio)} %`}
         style={{
           position: 'absolute',
           left: `${banda.propio}%`,
@@ -291,18 +296,22 @@ function FranjaComparables({ banda }) {
           boxShadow: '0 0 0 2px var(--paper)',
         }}
       />
+      {/* Una fila propia, debajo de la de la mediana. Compartían fila y a 375px
+          «mediana · 57,7 %» y «Riba-roja · 86,7 %» se pisaban 50px: con el
+          punto propio a la derecha de la mediana, las dos etiquetas crecen una
+          hacia la otra. Medido con getBoundingClientRect, no a ojo. */}
       <span
         className="mono"
         style={{
           position: 'absolute',
           right: 0,
-          top: 44,
+          top: 62,
           fontSize: 'var(--fs-micro)',
           color: 'var(--warn-ink)',
           fontWeight: 700,
         }}
       >
-        Riba-roja · {banda.propio} %
+        Riba-roja · {es(banda.propio)} %
       </span>
     </div>
   )
@@ -413,7 +422,7 @@ function DuranteLaEspera({ bloque }) {
       </h3>
       <P>{b.intro}</P>
       <Figura
-        titulo={`Contratos de emergencia tras la DANA · ${b.fecha.split('-').reverse().join('-')}`}
+        titulo={`Contratos de emergencia tras la DANA · publicados el ${b.fecha.split('-').reverse().join('-')}`}
         pie={b.importeNota}
       >
         <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
@@ -462,9 +471,12 @@ function DuranteLaEspera({ bloque }) {
   )
 }
 
-/* ---- El hueco de la tarifa. Se publica DÓNDE se buscó y qué respondió cada
-        sitio, porque un hueco documentado es información y un hueco callado
-        parece un descuido. ---- */
+/* ---- La tarifa: dónde está publicada y qué dice cada sitio. Hasta el
+        2026-09-17 este bloque contaba un hueco que no existía —la tarifa está
+        en el DOGV de 2013 y en el estudio de viabilidad del expediente—, porque
+        la búsqueda no miró el DOGV y dio por caducados unos enlaces que sólo
+        fallaban truncados. Cada sitio lleva su enlace para que el lector lo
+        compruebe sin fiarse de nosotros. ---- */
 function LaTarifa({ bloque }) {
   const b = bloque
   return (
@@ -508,12 +520,14 @@ function LaTarifa({ bloque }) {
   )
 }
 
-/* ---- Quién tenía delegada la Hacienda cuando faltó la entrega de 2020.
-        La SALVEDAD se pinta antes que el nombre, no después: es lo que gobierna
-        cómo se lee todo lo demás, y puesta debajo llegaría cuando el lector ya
-        ha sacado su conclusión — el mismo error que la tarjeta de /eficiencia
-        corrigió moviendo el aviso de escalón por delante de la cifra. ---- */
-function QuienRespondia({ bloque }) {
+/* ---- Quién remite el coste efectivo, según la norma que lo regula.
+        Hasta el 2026-09-17 aquí iba el nombre del concejal con la Hacienda
+        delegada en 2019, con una salvedad delante. Se retiró: la Orden
+        HAP/2105/2012 (art. 4.1.b) centraliza la remisión en la Intervención, y
+        el decreto citado ya no estaba en vigor cuando venció la entrega. Una
+        salvedad no arregla un nombre que ningún documento liga al hecho; lo
+        arregla no ponerlo. Lo que se publica es la norma, con su cita. ---- */
+function QuienRemite({ bloque }) {
   const b = bloque
   return (
     <>
@@ -527,20 +541,6 @@ function QuienRespondia({ bloque }) {
       >
         {b.titulo}
       </h3>
-      <p
-        style={{
-          margin: '10px 0 0',
-          padding: '10px 12px',
-          background: 'var(--soft)',
-          border: '1px solid var(--border)',
-          borderRadius: 'var(--r-card)',
-          fontSize: 'var(--fs-aux)',
-          color: 'var(--ink70)',
-          lineHeight: 1.55,
-        }}
-      >
-        {b.salvedad}
-      </p>
       <P>{b.cuerpo}</P>
       <figure
         style={{
@@ -568,9 +568,8 @@ function QuienRespondia({ bloque }) {
             rel="noreferrer noopener"
             style={{ color: 'var(--civic)' }}
           >
-            boletín completo ↗
+            texto consolidado en el BOE ↗
           </a>
-          . {b.citaNota} {b.replica}
         </figcaption>
       </figure>
     </>
@@ -749,13 +748,19 @@ export default function CosteEfectivo() {
         kicker="Lo que se adjudicó"
         title="Diecisiete años de agua, en un expediente de siete"
       />
+      {/* Las dos fechas salen del snapshot y se dicen las dos. Decía «El 6 de
+          agosto… adjudicó», y el 6 de agosto es cuando la ficha PUBLICÓ la
+          adjudicación: el acuerdo es del 27 de julio. Y decía «hasta 2043»,
+          una fecha de fin que la fuente no da —dice «17 Año(s)»— para un
+          contrato que aún no se ha formalizado. */}
       <P>
-        El 6 de agosto de 2026 el Ayuntamiento adjudicó a <strong>{c.adjudicataria}</strong> la
-        concesión del {c.objeto.toLowerCase()}, por un valor estimado de{' '}
-        <strong className="mono">{eur(c.importe)}</strong> y hasta{' '}
-        <span className="mono">{c.hasta.slice(0, 4)}</span>. Concurrieron{' '}
-        <span className="mono">{c.ofertas}</span> ofertas en un procedimiento {c.procedimiento}.
-        Diez días después se publicó la primera versión de este reportaje, que no lo mencionaba.
+        El {enCastellano(c.adjudicadaEl)} el Ayuntamiento acordó adjudicar a{' '}
+        <strong>{c.adjudicataria}</strong> la concesión del {c.objeto.toLowerCase()}, por un valor
+        estimado de <strong className="mono">{eur(c.importe)}</strong> y{' '}
+        <span className="mono">{c.anios}</span> años de plazo. Concurrieron{' '}
+        <span className="mono">{c.ofertas}</span> ofertas en un procedimiento {c.procedimiento}. La
+        adjudicación se publicó el {enCastellano(c.publicadaEl)}, diez días antes de la primera
+        versión de este reportaje, que no la mencionaba.
       </P>
       <P>{c.importeQue}</P>
       <Cronologia cronologia={data.cronologia} />
@@ -779,10 +784,9 @@ export default function CosteEfectivo() {
           lector puede ir a comprobar sin fiarse de nosotros. */}
       <FichaSociedad sociedad={ficha} />
 
-      {/* El hueco de la tarifa va detrás de la ficha societaria y antes de la
-          sección 02: cierra «quién cobra» con «cuánto cobra», que es la
-          pregunta que un vecino hace a continuación — y cuya respuesta es que
-          no está publicada donde se pueda enlazar. */}
+      {/* La tarifa va detrás de la ficha societaria y antes de la sección 02:
+          cierra «quién cobra» con «cuánto cobra», que es la pregunta que un
+          vecino hace a continuación. */}
       {data.laTarifa && <LaTarifa bloque={data.laTarifa} />}
 
       {/* «El coste oficial del agua es cero», decía este titular, y la
@@ -934,7 +938,7 @@ export default function CosteEfectivo() {
         Ley de Bases de Régimen Local. El ministerio ha publicado once ejercicios. En el libro de la
         Comunitat Valenciana de 2020, Riba-roja no aparece en ninguna de las tablas de coste, de
         modo de gestión ni de unidades físicas; en 2019 y en 2021 declara sus cuarenta y tres filas
-        completas.
+        completas. El Ministerio de Hacienda lo registra como incumplimiento.
       </P>
       <Figura titulo="Entregas rendidas por el ayuntamiento · 2014–2024" pie={data.entregas.nota}>
         <CasillasEntregas
@@ -943,7 +947,7 @@ export default function CosteEfectivo() {
         />
       </Figura>
 
-      {data.quienRespondia2020 && <QuienRespondia bloque={data.quienRespondia2020} />}
+      {data.quienRemite && <QuienRemite bloque={data.quienRemite} />}
       <P>
         La explicación cómoda sería la pandemia. No se sostiene: en {entregaAusente} rindieron{' '}
         <strong className="mono">{nAusente.toLocaleString('es-ES')}</strong> ayuntamientos
@@ -1010,6 +1014,11 @@ export default function CosteEfectivo() {
       <Figura titulo="Variación del coste unitario, primera → última entrega" pie={inf.nota}>
         <ParNominalReal servicios={inf.servicios} />
       </Figura>
+      {/* Deflactar separa el nivel de precios, pero no el denominador. En
+          pavimentación la superficie declarada bajó más que el coste, así que
+          el +29 % por m² ni siquiera es un encarecimiento: se decía sin esto
+          hasta el 2026-09-17. */}
+      {inf.denominador && <P>{inf.denominador}</P>}
 
       <div
         style={{
