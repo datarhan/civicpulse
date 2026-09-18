@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-18T04:55:40.451Z",
+  "generatedAt": "2026-09-18T09:26:12.595Z",
   "note": "Índice de expedientes del Síndic de Greuges CV, transcrito del buscador del propio organismo. Materia, asunto, administración y el título de cada resolución van verbatim: este fichero NO emite ningún juicio. Las fichas firmadas —con resumen verbatim leído del PDF— viven en sindic.json y las escribe una persona con `npm run sindic:add`. «contraAyuntamiento» y «vecinosOtrasAdministraciones» responden a preguntas distintas y NO se suman.",
   "source": {
     "platform": "Síndic de Greuges de la Comunitat Valenciana",
@@ -19,8 +19,8 @@
           "frase": true,
           "anyoActual": 2026
         },
-        "declarado": 47,
-        "recogidas": 47,
+        "declarado": 50,
+        "recogidas": 50,
         "paginas": 5,
         "irreconocibles": 0
       },
@@ -53,6 +53,58 @@
       "asunto": "Molestias por ubicación de contenedores",
       "administracion": "Ayuntamiento de Riba-roja de Túria",
       "resoluciones": []
+    },
+    {
+      "expediente": "202601067",
+      "anio": 2026,
+      "materia": "Procedimientos administrativos",
+      "asunto": "Falta de respuesta a una reclamación por molestias vecinales",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de consideraciones a la Administración",
+          "fecha": "2026-04-22",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2026/202601067/12496682.pdf"
+        },
+        {
+          "tipo": "Resolución de cierre",
+          "fecha": "2026-06-10",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2026/202601067/12533254.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "202600533",
+      "anio": 2026,
+      "materia": "Procedimientos administrativos",
+      "asunto": "Responsabilidad patrimonial: falta de resolución del procedimiento",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de cierre",
+          "fecha": "2026-04-24",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2026/202600533/12499022.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "202600493",
+      "anio": 2026,
+      "materia": "Procedimientos administrativos",
+      "asunto": "Falta de respuesta responsabilidad patrimonial.",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de consideraciones a la Administración",
+          "fecha": "2026-05-22",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2026/202600493/12518774.pdf"
+        },
+        {
+          "tipo": "Resolución de cierre",
+          "fecha": "2026-07-09",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2026/202600493/12554702.pdf"
+        }
+      ]
     },
     {
       "expediente": "202504669",
@@ -782,21 +834,21 @@
     }
   ],
   "stats": {
-    "contraAyuntamiento": 35,
-    "conResolucionPublicada": 34,
+    "contraAyuntamiento": 38,
+    "conResolucionPublicada": 37,
     "vecinosOtrasAdministraciones": 12,
     "porTipoResolucion": {
-      "Resolución de consideraciones a la Administración": 11,
-      "Resolución de cierre": 16,
+      "Resolución de consideraciones a la Administración": 13,
+      "Resolución de cierre": 19,
       "Petición de informe. Resolución.": 17
     },
     "porMateria": {
       "Servicios públicos y medio ambiente": 19,
+      "Procedimientos administrativos": 4,
       "Hacienda pública": 2,
       "Urbanismo": 1,
       "Empleo": 5,
       "Servicios sociales": 3,
-      "Procedimientos administrativos": 1,
       "Educación": 1,
       "Transparencia": 1,
       "Otros": 2

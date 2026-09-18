@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-09-16T09:46:41.288Z",
+  "generatedAt": "2026-09-18T09:25:33.564Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 62,
-    "openTotal": 61,
-    "inRibaRoja": 38,
+    "total": 64,
+    "openTotal": 63,
+    "inRibaRoja": 41,
     "closingSoon": 13,
-    "withDetail": 62,
+    "withDetail": 64,
     "byMonth": {
-      "2026-09": 14,
+      "2026-09": 17,
       "2026-08": 29,
-      "2026-07": 10,
+      "2026-07": 9,
       "2026-06": 1,
       "2026-05": 3,
       "2026-04": 2,
@@ -23,6 +23,228 @@
     }
   },
   "items": [
+    {
+      "id": "2538",
+      "fo": 2538,
+      "codigo": "2026/00237",
+      "titulo": "AUXILIAR ENFERMERIA",
+      "publishedAt": "2026-09-17",
+      "deadline": "2026-11-17",
+      "location": "URBANIZACION LA LLOBATERA, CALLE OBOE 54 Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2538",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00237"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "AUXILIAR ENFERMERIA"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "ACTIVIDADES SANITARIAS Y DE SERVICIOS SOCIALES"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "5"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "URBANIZACION LA LLOBATERA, CALLE OBOE 54, Municipio: Riba-roja de Túria, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Salario",
+            "value": "SEGUN CONVENIO"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "5",
+        "jornada": "Completa",
+        "salario": "SEGUN CONVENIO",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2537",
+      "fo": 2537,
+      "codigo": "2026/00236",
+      "titulo": "ENFERMERO/A",
+      "publishedAt": "2026-09-17",
+      "deadline": "2026-11-17",
+      "location": "CALLE OBOE 54, URBANIZACION LA LLOBATERA Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2537",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00236"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "ENFERMERO/A"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "ACTIVIDADES SANITARIAS Y DE SERVICIOS SOCIALES"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "3"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "CALLE OBOE 54, URBANIZACION LA LLOBATERA, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Indiferente"
+          },
+          {
+            "label": "Observaciones jornada",
+            "value": "HAY JORNADA COMPLETA Y TAMBIÉN PODRÍA SER JORNADA PARCIAL"
+          },
+          {
+            "label": "Salario",
+            "value": "SEGUN CONVENIO"
+          },
+          {
+            "label": "Funciones",
+            "value": "FUNCIONES PROPIAS DEL PUESTO DE ENFERMERÍA EN CENTRO RESIDENCIAL DE PERSONAS CON ENFERMEDAD MENTAL"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "3",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "jornada": "Indiferente",
+        "salario": "SEGUN CONVENIO",
+        "funciones": "FUNCIONES PROPIAS DEL PUESTO DE ENFERMERÍA EN CENTRO RESIDENCIAL DE PERSONAS CON ENFERMEDAD MENTAL",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2536",
+      "fo": 2536,
+      "codigo": "2026/00235",
+      "titulo": "Mecánico/a de carretillas elevadoras",
+      "publishedAt": "2026-09-16",
+      "deadline": "2026-11-16",
+      "location": "Polígono Industrial Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2536",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00235"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Mecánico/a de carretillas elevadoras"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "OTROS SERVICIOS"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "OFICIAL DE 3ª y ESPECIALISTAS"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Polígono Industrial, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46394"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno partido"
+          },
+          {
+            "label": "Horario",
+            "value": "7:30 a 14:00 / 15:30 a 17:00"
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          },
+          {
+            "label": "Funciones",
+            "value": "Realizará los trabajos de reparación mecánica, mantenimiento preventivo y correctivo de maquinaria y carretillas elevadoras."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "1",
+        "categoria": "OFICIAL DE 3ª y ESPECIALISTAS",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46394",
+        "jornada": "Completa Turnos: Turno partido",
+        "horario": "7:30 a 14:00 / 15:30 a 17:00",
+        "salario": "Según convenio",
+        "funciones": "Realizará los trabajos de reparación mecánica, mantenimiento preventivo y correctivo de maquinaria y carretillas elevadoras.",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
     {
       "id": "2535",
       "fo": 2535,
@@ -4205,88 +4427,6 @@
         "horario": "8:00 - 14:00/15:00 - 17:00",
         "salario": "SEGÚN CONVENIO",
         "funciones": "Trasporte de vehículos (recogida y entrega)",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2496",
-      "fo": 2496,
-      "codigo": "2026/00195",
-      "titulo": "Operari@ de limpieza con discapaciad",
-      "publishedAt": "2026-07-17",
-      "deadline": "2026-09-17",
-      "location": "Cheste (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2496",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00195"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Operari@ de limpieza con discapaciad"
-          },
-          {
-            "label": "Porcentaje de discapacidad",
-            "value": "Igual o superior a 33%"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATACION DISCAPACIDAD"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "De 1 a 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "2"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "PEONES"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Municipio: Cheste, Provincia: Valencia, CP: 46380"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Turnos: Turno mañana, Turno tarde"
-          },
-          {
-            "label": "Horario",
-            "value": "L-D 6:00-13:36/ 14.20-21:56h (2 días de descanso)"
-          },
-          {
-            "label": "Salario",
-            "value": "1444 € brutos/mes 12 pagas"
-          },
-          {
-            "label": "Funciones",
-            "value": "Limpieza de comedor, oficinas, exterior, salas comunes, baños."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATACION DISCAPACIDAD",
-        "duracion": "De 1 a 6 meses",
-        "numPuestos": "2",
-        "categoria": "PEONES",
-        "municipio": "Cheste",
-        "provincia": "Valencia",
-        "cp": "46380",
-        "jornada": "Turnos: Turno mañana, Turno tarde",
-        "horario": "L-D 6:00-13:36/ 14.20-21:56h (2 días de descanso)",
-        "salario": "1444 € brutos/mes 12 pagas",
-        "funciones": "Limpieza de comedor, oficinas, exterior, salas comunes, baños.",
         "vehiculo": "Sí",
         "ocupaciones": []
       }

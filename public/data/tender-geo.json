@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-09-16T09:48:53.913Z",
+  "generatedAt": "2026-09-18T09:27:40.273Z",
   "source": {
-    "tenders": "2026-09-16T09:28:42.753Z",
-    "geo": "2026-09-16T09:31:27.017Z"
+    "tenders": "2026-09-18T09:13:58.035Z",
+    "geo": "2026-09-18T09:15:18.947Z"
   },
   "universe": {
-    "totalContracts": 705,
-    "totalAmount": 124033832.53999993,
+    "totalContracts": 706,
+    "totalAmount": 124039832.53999993,
     "locatedContracts": 47,
-    "locatedAmount": 2225591.15,
+    "locatedAmount": 2225591.150000001,
     "situatedContracts": 127,
-    "situatedAmount": 6085027.840000002,
+    "situatedAmount": 6085027.840000001,
     "danaContracts": 10,
     "danaAmount": 276297.42000000004,
     "danaAwardedContracts": 81,
@@ -246,7 +246,7 @@
         -0.5912189
       ],
       "contractCount": 8,
-      "amount": 243107.9,
+      "amount": 243107.90000000002,
       "danaAmount": 16382.03
     },
     {
@@ -770,7 +770,7 @@
       "name": "Parc Municipal Maldonado",
       "kind": "poi",
       "point": [
-        39.5477533,
+        39.5477716,
         -0.5797717
       ],
       "contractCount": 1,
@@ -1097,6 +1097,27 @@
       }
     },
     {
+      "id": "85485",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 92820.91,
+      "amountKind": "final",
+      "date": "2018-03-14",
+      "contractType": "services",
+      "categoryTitle": "environment",
+      "point": [
+        39.5518584,
+        -0.5277984
+      ],
+      "place": {
+        "kind": "street",
+        "name": "Carrer de la Piscina",
+        "matchedText": "Carrer de la Piscina",
+        "sourceId": "carrer-de-la-piscina"
+      }
+    },
+    {
       "id": "2520342",
       "zones": [],
       "matchedAlias": {},
@@ -1203,27 +1224,6 @@
         "name": "Gallipont",
         "matchedText": "Gallipont",
         "sourceId": "gallipont"
-      }
-    },
-    {
-      "id": "85485",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 92820.91,
-      "amountKind": "final",
-      "date": "2018-03-14",
-      "contractType": "services",
-      "categoryTitle": "environment",
-      "point": [
-        39.5518584,
-        -0.5277984
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Carrer de la Piscina",
-        "matchedText": "Carrer de la Piscina",
-        "sourceId": "carrer-de-la-piscina"
       }
     },
     {
@@ -1421,56 +1421,6 @@
         "name": "Cementerio de San Jaime",
         "matchedText": "Cementerio de San Jaime",
         "sourceId": "way-740051593"
-      }
-    },
-    {
-      "id": "9975923",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 24020.82,
-      "amountKind": "final",
-      "date": "2026-04-20",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.5433045,
-        -0.5757486
-      ],
-      "place": {
-        "kind": "poi",
-        "name": "Complex Esportiu La Mallà",
-        "matchedText": "Complex Esportiu La Mallà",
-        "sourceId": "way-1095351062"
-      }
-    },
-    {
-      "id": "1554203",
-      "zones": [
-        "el-pou-d-escoto",
-        "urbanitzacio-valencia-la-vella",
-        "poligono-industrial-entrevias"
-      ],
-      "matchedAlias": {
-        "el-pou-d-escoto": "escoto",
-        "urbanitzacio-valencia-la-vella": "valencia la vella",
-        "poligono-industrial-entrevias": "entrevias"
-      },
-      "dana": false,
-      "amount": 54552.7,
-      "amountKind": "final",
-      "date": "2022-01-11",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.5405303,
-        -0.5508958
-      ],
-      "place": {
-        "kind": "urbanizacion",
-        "name": "Polígono Industrial Entrevías",
-        "matchedText": "Polígono Industrial Entrevías",
-        "sourceId": "poligono-industrial-entrevias"
       }
     },
     {
@@ -1876,6 +1826,27 @@
       }
     },
     {
+      "id": "5456102",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 38387.18,
+      "amountKind": "final",
+      "date": "2023-12-29",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.54798,
+        -0.56508
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Castillo de Riba-roja de Túria",
+        "matchedText": "Castillo de Riba-roja de Túria",
+        "sourceId": "castell-de-riba-roja"
+      }
+    },
+    {
       "id": "2460010",
       "zones": [],
       "matchedAlias": {},
@@ -1894,6 +1865,27 @@
         "name": "Cementerio de San Jaime",
         "matchedText": "Cementerio de San Jaime",
         "sourceId": "way-740051593"
+      }
+    },
+    {
+      "id": "1524361",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 195035.04,
+      "amountKind": "final",
+      "date": "2021-11-15",
+      "contractType": "supplies",
+      "categoryTitle": "furniture",
+      "point": [
+        39.5452787,
+        -0.5807577
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Camp de futbol Municipal Francisco Soriano",
+        "matchedText": "Camp de futbol Municipal Francisco Soriano",
+        "sourceId": "way-152520274"
       }
     },
     {
@@ -1940,48 +1932,6 @@
         "name": "Barranc dels Moros",
         "matchedText": "Barranc dels Moros",
         "sourceId": "barranc-dels-moros"
-      }
-    },
-    {
-      "id": "5456102",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 38387.18,
-      "amountKind": "final",
-      "date": "2023-12-29",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.54798,
-        -0.56508
-      ],
-      "place": {
-        "kind": "poi",
-        "name": "Castillo de Riba-roja de Túria",
-        "matchedText": "Castillo de Riba-roja de Túria",
-        "sourceId": "castell-de-riba-roja"
-      }
-    },
-    {
-      "id": "1566052",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 14000,
-      "amountKind": "final",
-      "date": "2019-12-08",
-      "contractType": "services",
-      "categoryTitle": "other",
-      "point": [
-        39.5473561,
-        -0.5639968
-      ],
-      "place": {
-        "kind": "poi",
-        "name": "Col·legi d'Educació Infantil i Primària Eres Altes",
-        "matchedText": "Col·legi d'Educació Infantil i Primària Eres Altes",
-        "sourceId": "way-1178031442"
       }
     },
     {
@@ -2089,31 +2039,6 @@
         "sourceId": "carrer-de-la-malla"
       },
       "parentTitle": "Contrato suministro mediante arrendamiento con opción a compra del equipamiento deportivo cardiorespiratorio en el C.D. La Mallá (Riba-roja de Turia)"
-    },
-    {
-      "id": "1891608",
-      "zones": [
-        "el-pou-d-escoto"
-      ],
-      "matchedAlias": {
-        "el-pou-d-escoto": "escoto"
-      },
-      "dana": false,
-      "amount": 10471.95,
-      "amountKind": "final",
-      "date": "2023-04-26",
-      "contractType": "supplies",
-      "categoryTitle": "electrical",
-      "point": [
-        39.5483742,
-        -0.5912189
-      ],
-      "place": {
-        "kind": "urbanizacion",
-        "name": "el Pou d'Escoto",
-        "matchedText": "el Pou d'Escoto",
-        "sourceId": "el-pou-d-escoto"
-      }
     },
     {
       "id": "1892105#4",
@@ -2654,6 +2579,27 @@
       }
     },
     {
+      "id": "1566052",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 14000,
+      "amountKind": "final",
+      "date": "2019-12-08",
+      "contractType": "services",
+      "categoryTitle": "other",
+      "point": [
+        39.5473561,
+        -0.5639968
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Col·legi d'Educació Infantil i Primària Eres Altes",
+        "matchedText": "Col·legi d'Educació Infantil i Primària Eres Altes",
+        "sourceId": "way-1178031442"
+      }
+    },
+    {
       "id": "1598936",
       "zones": [],
       "matchedAlias": {},
@@ -3062,7 +3008,7 @@
       "contractType": "construction",
       "categoryTitle": "construction",
       "point": [
-        39.5477533,
+        39.5477716,
         -0.5797717
       ],
       "place": {
@@ -3210,27 +3156,6 @@
         "name": "Urbanització La Reva",
         "matchedText": "Urbanització La Reva",
         "sourceId": "urbanitzacio-la-reva"
-      }
-    },
-    {
-      "id": "1524361",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 195035.04,
-      "amountKind": "final",
-      "date": "2021-11-15",
-      "contractType": "supplies",
-      "categoryTitle": "furniture",
-      "point": [
-        39.5452787,
-        -0.5807577
-      ],
-      "place": {
-        "kind": "poi",
-        "name": "Camp de futbol Municipal Francisco Soriano",
-        "matchedText": "Camp de futbol Municipal Francisco Soriano",
-        "sourceId": "way-152520274"
       }
     },
     {
@@ -3810,14 +3735,89 @@
         "matchedText": "Carrer de les Ànimes",
         "sourceId": "carrer-de-les-animes"
       }
+    },
+    {
+      "id": "1891608",
+      "zones": [
+        "el-pou-d-escoto"
+      ],
+      "matchedAlias": {
+        "el-pou-d-escoto": "escoto"
+      },
+      "dana": false,
+      "amount": 10471.95,
+      "amountKind": "final",
+      "date": "2023-04-26",
+      "contractType": "supplies",
+      "categoryTitle": "electrical",
+      "point": [
+        39.5483742,
+        -0.5912189
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "el Pou d'Escoto",
+        "matchedText": "el Pou d'Escoto",
+        "sourceId": "el-pou-d-escoto"
+      }
+    },
+    {
+      "id": "1554203",
+      "zones": [
+        "el-pou-d-escoto",
+        "urbanitzacio-valencia-la-vella",
+        "poligono-industrial-entrevias"
+      ],
+      "matchedAlias": {
+        "el-pou-d-escoto": "escoto",
+        "urbanitzacio-valencia-la-vella": "valencia la vella",
+        "poligono-industrial-entrevias": "entrevias"
+      },
+      "dana": false,
+      "amount": 54552.7,
+      "amountKind": "final",
+      "date": "2022-01-11",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.5405303,
+        -0.5508958
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "Polígono Industrial Entrevías",
+        "matchedText": "Polígono Industrial Entrevías",
+        "sourceId": "poligono-industrial-entrevias"
+      }
+    },
+    {
+      "id": "9975923",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 24020.82,
+      "amountKind": "final",
+      "date": "2026-04-20",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.5433045,
+        -0.5757486
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Complex Esportiu La Mallà",
+        "matchedText": "Complex Esportiu La Mallà",
+        "sourceId": "way-1095351062"
+      }
     }
   ],
   "builtFrom": {
-    "civic-poi.json": "071a1c3ad9f6",
+    "civic-poi.json": "c3415f21ba25",
     "gazetteer-supplement.json": "813c38c1dc80",
-    "geo.json": "e1749c5b6518",
+    "geo.json": "aea9385248bc",
     "place-overrides.json": "5a4641410141",
-    "streets.json": "eb015c13c03a",
-    "tenders.json": "d575f7867ed3"
+    "streets.json": "789417e083d1",
+    "tenders.json": "d95509fe6b3a"
   }
 }

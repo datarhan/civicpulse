@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-16T09:31:16.621Z",
+  "generatedAt": "2026-09-18T09:14:57.688Z",
   "source": {
     "url": "https://www.ribarroja.es/es/eventos/rss.xml",
     "platform": "Drupal RSS (oficial)"
@@ -311,6 +311,16 @@
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/II%20Jornadas%20abolicionistas.png?itok=H7vrXbUp"
     },
     {
+      "id": "1ti535k",
+      "title": "Competiciones deportivas 19 de septiembre de 2026",
+      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-19-de-septiembre-de-2026",
+      "eventDate": "2026-09-19T07:00:00.000Z",
+      "eventDateText": "19 de septiembre de 2026 09:00",
+      "publishedDate": "2026-09-18T08:54:07.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_3.png?itok=ibBcvDlY"
+    },
+    {
       "id": "3zyqj6",
       "title": "Marxa solidària 'RunCàncer'",
       "link": "https://www.ribarroja.es/es/evento/marxa-solid%C3%A0ria-%27runc%C3%A0ncer%27",
@@ -319,6 +329,16 @@
       "publishedDate": "2026-08-28T10:23:32.000Z",
       "excerpt": "&nbsp;",
       "image": null
+    },
+    {
+      "id": "18xsxmi",
+      "title": "Competiciones deportivas 20 de septiembre de 2026",
+      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-20-de-septiembre-de-2026",
+      "eventDate": "2026-09-20T07:00:00.000Z",
+      "eventDateText": "20 de septiembre de 2026 09:00",
+      "publishedDate": "2026-09-18T08:58:36.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_4.png?itok=SYXJB4Jk"
     },
     {
       "id": "wwknro",
@@ -359,16 +379,6 @@
       "publishedDate": "2026-08-31T06:52:12.000Z",
       "excerpt": "&nbsp;",
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20burundanga.jpg?itok=35yx-aCt"
-    },
-    {
-      "id": "z5khol",
-      "title": "Teatro 'Els sants inocents'",
-      "link": "https://www.ribarroja.es/es/evento/teatro-%27els-sants-inocents%27",
-      "eventDate": "2026-10-16T17:00:00.000Z",
-      "eventDateText": "16 de octubre de 2026 19:00",
-      "publishedDate": "2026-06-26T09:35:11.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/22%20A%20el%20sants%20inocents.jpg?itok=GU_k-2ML"
     },
     {
       "id": "1raez6o",
@@ -479,16 +489,6 @@
       "publishedDate": "2026-08-31T07:12:24.000Z",
       "excerpt": "&nbsp;",
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20los%20juegos%20del%20hambre_0.jpg?itok=C-JZ4cvj"
-    },
-    {
-      "id": "53mxwc",
-      "title": "Monólogos 'Navidades llenas de risas'",
-      "link": "https://www.ribarroja.es/es/evento/mon%C3%B3logos-%27navidades-llenas-de-risas%27",
-      "eventDate": "2026-12-12T17:00:00.000Z",
-      "eventDateText": "12 de diciembre de 2026 18:00",
-      "publishedDate": "2026-06-26T09:38:05.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/26%20humoristes.jpg?itok=VWdaK3q_"
     },
     {
       "id": "1h5htqs",

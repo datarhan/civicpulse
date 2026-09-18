@@ -1,26 +1,26 @@
 {
-  "generatedAt": "2026-09-18T08:40:01.729Z",
+  "generatedAt": "2026-09-18T09:27:43.948Z",
   "source": "queja-contract-relations engine v1 (deterministic)",
   "stats": {
     "frozen": false,
     "quejasScanned": 1,
-    "contractsScanned": 710,
+    "contractsScanned": 711,
     "tierA": 4,
-    "tierB": 30,
+    "tierB": 31,
     "reason": null
   },
   "links": [
     {
       "quejaId": "Q-KJY6XSVG",
-      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=8p%2Fwsq%2B3XH9eKgd8LfVV9g%3D%3D",
-      "tenderId": "4889055#1",
+      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=e18%2FPP3l84B%2FR5QFTlaM4A%3D%3D",
+      "tenderId": "4889055",
       "via": "deterministic",
       "signals": {
         "department": {
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -1.8483395061728396
+          "monthsAfter": -1.0150061728395061
         }
       },
       "tier": "B",
@@ -30,7 +30,7 @@
     },
     {
       "quejaId": "Q-KJY6XSVG",
-      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=e18%2FPP3l84B%2FR5QFTlaM4A%3D%3D",
+      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=8p%2Fwsq%2B3XH9eKgd8LfVV9g%3D%3D",
       "tenderId": "4889055#2",
       "via": "deterministic",
       "signals": {
@@ -38,7 +38,7 @@
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": -1.0150061728395061
+          "monthsAfter": -1.8483395061728396
         }
       },
       "tier": "B",
@@ -99,43 +99,6 @@
       "score": 0.55,
       "relationLabel": "misma materia y fechas próximas",
       "requiresHumanApproval": true
-    },
-    {
-      "quejaId": "Q-KJY6XSVG",
-      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=TxQvZ6saR0ScCF8sV%2BqtYA%3D%3D",
-      "tenderId": "9975923",
-      "via": "deterministic",
-      "signals": {
-        "department": {
-          "slug": "urbanismo"
-        },
-        "temporal": {
-          "monthsAfter": -2.4483395061728395
-        }
-      },
-      "tier": "B",
-      "score": 0.55,
-      "relationLabel": "misma materia y fechas próximas",
-      "requiresHumanApproval": true
-    },
-    {
-      "quejaId": "Q-KJY6XSVG",
-      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4SHbaq5ifysBPRBxZ4nJ%2Fg%3D%3D",
-      "tenderId": "1554203",
-      "via": "deterministic",
-      "signals": {
-        "place": {
-          "granularity": "barrio",
-          "slug": "urbanitzacio-valencia-la-vella"
-        },
-        "department": {
-          "slug": "urbanismo"
-        }
-      },
-      "tier": "A",
-      "score": 0.85,
-      "relationLabel": "misma zona y materia",
-      "requiresHumanApproval": false
     },
     {
       "quejaId": "Q-KJY6XSVG",
@@ -283,6 +246,24 @@
     },
     {
       "quejaId": "Q-KJY6XSVG",
+      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=jfZGSii8nvVLAIVZdUs8KA%3D%3D",
+      "tenderId": "4889055#9",
+      "via": "deterministic",
+      "signals": {
+        "department": {
+          "slug": "urbanismo"
+        },
+        "temporal": {
+          "monthsAfter": 2.284993827160494
+        }
+      },
+      "tier": "B",
+      "score": 0.55,
+      "relationLabel": "misma materia y fechas próximas",
+      "requiresHumanApproval": true
+    },
+    {
+      "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SWowCY8dnwmcCF8sV%2BqtYA%3D%3D",
       "tenderId": "5106848",
       "via": "deterministic",
@@ -317,6 +298,24 @@
       "score": 0.85,
       "relationLabel": "misma zona y materia",
       "requiresHumanApproval": false
+    },
+    {
+      "quejaId": "Q-KJY6XSVG",
+      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2BtxCxaMNXsG7JOCXkOhcDg%3D%3D",
+      "tenderId": "1794430#28",
+      "via": "deterministic",
+      "signals": {
+        "department": {
+          "slug": "urbanismo"
+        },
+        "temporal": {
+          "monthsAfter": 2.5516604938271605
+        }
+      },
+      "tier": "B",
+      "score": 0.55,
+      "relationLabel": "misma materia y fechas próximas",
+      "requiresHumanApproval": true
     },
     {
       "quejaId": "Q-KJY6XSVG",
@@ -374,7 +373,7 @@
     {
       "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pRdXS4R%2FGo9%2FR5QFTlaM4A%3D%3D",
-      "tenderId": "1794430#35",
+      "tenderId": "1794430#36",
       "via": "deterministic",
       "signals": {
         "department": {
@@ -392,7 +391,7 @@
     {
       "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Tjxv4MOw0JC8ebB%2FXTwy0A%3D%3D",
-      "tenderId": "4889055#9",
+      "tenderId": "4889055#10",
       "via": "deterministic",
       "signals": {
         "department": {
@@ -609,15 +608,34 @@
     },
     {
       "quejaId": "Q-KJY6XSVG",
-      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=jfZGSii8nvVLAIVZdUs8KA%3D%3D",
-      "tenderId": "4889055#17",
+      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4SHbaq5ifysBPRBxZ4nJ%2Fg%3D%3D",
+      "tenderId": "1554203",
+      "via": "deterministic",
+      "signals": {
+        "place": {
+          "granularity": "barrio",
+          "slug": "urbanitzacio-valencia-la-vella"
+        },
+        "department": {
+          "slug": "urbanismo"
+        }
+      },
+      "tier": "A",
+      "score": 0.85,
+      "relationLabel": "misma zona y materia",
+      "requiresHumanApproval": false
+    },
+    {
+      "quejaId": "Q-KJY6XSVG",
+      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=TxQvZ6saR0ScCF8sV%2BqtYA%3D%3D",
+      "tenderId": "9975923",
       "via": "deterministic",
       "signals": {
         "department": {
           "slug": "urbanismo"
         },
         "temporal": {
-          "monthsAfter": 2.284993827160494
+          "monthsAfter": -2.4483395061728395
         }
       },
       "tier": "B",
@@ -629,7 +647,7 @@
   "builtFrom": {
     "promises.json": "d18811c11210",
     "quejas.json": "8be23f5ca316",
-    "tender-geo.json": "9fc96a8cec33",
-    "tenders.json": "d575f7867ed3"
+    "tender-geo.json": "101505d4533a",
+    "tenders.json": "d95509fe6b3a"
   }
 }
