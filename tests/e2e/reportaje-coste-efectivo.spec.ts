@@ -98,6 +98,19 @@ test.describe('Reportaje · coste efectivo (/reportajes/coste-efectivo)', () => 
     // 4. La suspensión la ordenó un juzgado, y la cronología lo dice.
     await expect(page.getByText(/Juzgado de lo Contencioso-Administrativo nº 3/)).toBeVisible()
 
+    // 5. Los tres escritos que salieron el 18-09, con el reloj calculado el día
+    // que se lee. Se ancla en la cabeza «enviada el <fecha>», lo único de la
+    // fila que no cambia cuando el estado pase de «en plazo» a «sin respuesta»,
+    // y el recuento se deriva del snapshot: si mañana entra un cuarto escrito y
+    // la página no lo pinta, esto se pone rojo.
+    expect(await page.getByText(/enviada el 18 de septiembre de 2026/).count()).toBe(
+      snap.solicitudes.items.length,
+    )
+    await expect(page.getByText(/Comisión de Precios de la Generalitat · enviada el/)).toBeVisible()
+    // La salvedad del art. 20.1, que es la que no puede caerse: de un correo
+    // consta el envío, no la recepción por el órgano competente.
+    await expect(page.getByText(/no como vencimiento acreditado/)).toBeVisible()
+
     // El límite de la pieza, dicho en la pieza.
     await expect(page.getByText(/Lo que esta pieza no dice/i).first()).toBeVisible()
     await expect(page.getByText(/la declaración no es el servicio/).first()).toBeVisible()

@@ -440,5 +440,32 @@
     "cita": "La remisión de la información económico-financiera correspondiente a la totalidad de las unidades dependientes de cada Comunidad Autónoma o Corporación Local se centralizará a través de: […] b) En las Corporaciones Locales, la intervención o unidad que ejerza sus funciones.",
     "fuente": "Orden HAP/2105/2012, de 1 de octubre, artículo 4.1",
     "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2012-12423"
+  },
+  "solicitudes": {
+    "titulo": "Lo que se ha pedido, a quién y desde cuándo corre el plazo",
+    "nota": "El artículo 17.2 de la Ley 19/2013 admite «cualquier medio que permita tener constancia» de la identidad de quien pide, de la información solicitada y de una dirección de contacto: un correo que lleve las tres cosas es una vía válida. El artículo 20.1, en cambio, cuenta el mes «desde la recepción de la solicitud por el órgano competente para resolver», y de un correo consta el envío, no esa recepción. Por eso las dos que salieron por correo llevan la fecha contada desde el envío y no como vencimiento acreditado. La tercera se presentó en el registro electrónico de la Generalitat, que sí deja asiento. Toda respuesta se publicará íntegra.",
+    "items": [
+      {
+        "organismo": "Ministerio de Hacienda · Subdirección General de Estudios y Financiación de Entidades Locales",
+        "enviadaEl": "2026-09-18",
+        "via": "correo electrónico",
+        "pide": "Copia del requerimiento de cumplimiento previsto en el artículo 19 de la Orden HAP/2105/2012 por la falta de remisión del coste efectivo de 2020, si lo hubo, y si el Ayuntamiento lo atendió o remitió la información más tarde; las medidas adoptadas; cualquier comunicación dirigida al Ayuntamiento sobre la declaración de cero en abastecimiento y alcantarillado en cinco entregas. Y dos consultas: qué debe declararse cuando el concesionario cobra del recibo, y qué validez tienen las unidades físicas que el libro publica para un servicio declarado en concesión.",
+        "respuesta": null
+      },
+      {
+        "organismo": "Ayuntamiento de Riba-roja de Túria",
+        "enviadaEl": "2026-09-18",
+        "via": "correo electrónico",
+        "pide": "Si la Intervención remitió el coste efectivo del ejercicio 2020 y en qué fecha, y copia del requerimiento del ministerio y de la contestación municipal; a qué corresponden las cifras declaradas en abastecimiento y alcantarillado —ingresos por tarifas o pagos al concesionario— y por qué cinco entregas traen cero; si se han vuelto a medir las toneladas de residuos, los metros cuadrados de limpieza y los puntos de luz; las tarifas vigentes con su resolución y la ordenanza que las regula; copia de las actas nº 7 y nº 11 de la mesa de contratación; y la fecha de formalización del contrato.",
+        "respuesta": null
+      },
+      {
+        "organismo": "Comisión de Precios de la Generalitat",
+        "enviadaEl": "2026-09-18",
+        "via": "la sede electrónica de la Generalitat",
+        "pide": "La relación de resoluciones de autorización o modificación de tarifas de agua de Riba-roja de Túria dictadas desde 2013, con la referencia de su publicación en el DOGV; los informes de la Comisión de Precios sobre esas tarifas, con la fecha y el solicitante de cada expediente; y si consta alguna solicitud o informe sobre las tarifas del contrato adjudicado en 2026.",
+        "respuesta": null
+      }
+    ]
   }
 }
