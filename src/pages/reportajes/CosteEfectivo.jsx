@@ -2,7 +2,15 @@ import { useReportaje } from '../../hooks/useReportaje'
 import { CorrectionNote } from '../../components/reportajes/CorrectionNote'
 import { FichaSociedad } from '../../components/reportajes/FichaSociedad'
 import { useSociedades, indexarSociedades } from '../../hooks/useSociedades'
-import { enCastellano } from '../../scraper/solicitud-enviada'
+import { Card, Pill } from '../../components/Primitives'
+import {
+  enCastellano,
+  estadoDeEnvio,
+  fraseDeEnvio,
+  resumirEnvios,
+  ESTADO_ENVIO_ETIQUETA,
+  ESTADO_ENVIO_TONO,
+} from '../../scraper/solicitud-enviada'
 
 const SERIF = "'Fraunces', Georgia, serif"
 
@@ -576,6 +584,95 @@ function QuienRemite({ bloque }) {
   )
 }
 
+/* ---- Las solicitudes que salieron sobre esta pieza, con su reloj.
+        Mismo módulo, mismos tonos y misma frase que en el reportaje del conteo:
+        dos superficies que cuentan el mismo plazo con palabras distintas son una
+        de las dos mintiendo, y desde fuera no se sabe cuál. El estado se calcula
+        con el «hoy» de quien lee, así que la página envejece sola en vez de
+        quedarse con un «en plazo» escrito a mano. ---- */
+function SolicitudesEnviadas({ bloque }) {
+  const hoy = new Date().toISOString().slice(0, 10)
+  const items = bloque?.items ?? []
+  const resumen = resumirEnvios(items, hoy)
+  // Sin solicitudes no se pinta una tarjeta vacía: un hueco se lee como limpio.
+  if (!resumen.concluyente) return null
+
+  return (
+    <Card style={{ padding: '12px 14px', margin: '14px 0' }}>
+      <div
+        className="mono"
+        style={{
+          fontSize: 'var(--fs-micro)',
+          color: 'var(--ink50)',
+          letterSpacing: '.04em',
+          marginBottom: 10,
+        }}
+      >
+        {bloque.titulo}
+      </div>
+
+      {items.map((e, i) => {
+        const estado = estadoDeEnvio(e, hoy)
+        const ultimo = i === items.length - 1
+        return (
+          <div
+            key={`${e.organismo}-${e.enviadaEl}`}
+            style={{
+              marginBottom: ultimo ? 0 : 12,
+              paddingBottom: ultimo ? 0 : 12,
+              borderBottom: ultimo ? 'none' : '1px solid var(--border)',
+            }}
+          >
+            <div style={{ marginBottom: 5 }}>
+              <Pill tone={ESTADO_ENVIO_TONO[estado]} size="xs">
+                {ESTADO_ENVIO_ETIQUETA[estado]}
+              </Pill>
+            </div>
+            <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink70)', lineHeight: 1.5 }}>
+              {fraseDeEnvio(e, hoy)}
+            </div>
+            {e.respuesta?.resumen && (
+              <div
+                style={{
+                  fontSize: 'var(--fs-aux)',
+                  color: 'var(--ink70)',
+                  lineHeight: 1.5,
+                  marginTop: 4,
+                }}
+              >
+                {e.respuesta.resumen}
+              </div>
+            )}
+            <div
+              style={{
+                fontSize: 'var(--fs-aux)',
+                color: 'var(--ink50)',
+                lineHeight: 1.5,
+                marginTop: 4,
+              }}
+            >
+              {e.pide}
+            </div>
+          </div>
+        )
+      })}
+
+      <div
+        style={{
+          fontSize: 'var(--fs-micro)',
+          color: 'var(--ink50)',
+          lineHeight: 1.5,
+          marginTop: 12,
+          paddingTop: 10,
+          borderTop: '1px solid var(--border)',
+        }}
+      >
+        {bloque.nota}
+      </div>
+    </Card>
+  )
+}
+
 export default function CosteEfectivo() {
   const { loading, error, data } = useReportaje('coste-efectivo')
   const { data: sociedades } = useSociedades()
@@ -1019,6 +1116,17 @@ export default function CosteEfectivo() {
           el +29 % por m² ni siquiera es un encarecimiento: se decía sin esto
           hasta el 2026-09-17. */}
       {inf.denominador && <P>{inf.denominador}</P>}
+
+      {/* Lo preguntado va DESPUÉS de los tres hallazgos y antes de los límites:
+          es lo que se ha hecho con ellos. Y va en la pieza, no sólo en una
+          libreta, porque un plazo que corre sin que el lector lo vea es un plazo
+          que sólo existe para nosotros. */}
+      {data.solicitudes && (
+        <>
+          <SecHead num="08" kicker="Lo que hemos preguntado" title="Tres escritos, y sus relojes" />
+          <SolicitudesEnviadas bloque={data.solicitudes} />
+        </>
+      )}
 
       <div
         style={{

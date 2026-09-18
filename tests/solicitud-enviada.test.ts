@@ -230,13 +230,29 @@ describe('respuesta · «no les corresponde»', () => {
  * imprimiría «undefined» delante de los lectores. Se lee la instantánea real, no
  * un fixture que la copie.
  */
-describe('instantánea publicada · conteo-visitantes', () => {
-  const d = JSON.parse(readFileSync('public/data/reportajes/conteo-visitantes.json', 'utf8')) as {
+// Desde el 18-09-2026 son DOS las piezas que publican solicitudes con reloj
+// (el conteo y el coste efectivo), y las dos usan este módulo. La prueba recorre
+// las instantáneas en vez de fijar una: la siguiente pieza que publique un
+// escrito entra sola, y no hereda un candado escrito sólo para la primera.
+const PIEZAS = ['conteo-visitantes', 'coste-efectivo'] as const
+
+describe.each(PIEZAS)('instantánea publicada · %s', (slug) => {
+  const d = JSON.parse(readFileSync(`public/data/reportajes/${slug}.json`, 'utf8')) as {
     solicitudes: { items: EnvioSolicitud[] }
   }
 
   it('trae solicitudes que mirar (si no, esta prueba aprobaría por no ver nada)', () => {
     expect(d.solicitudes.items.length).toBeGreaterThan(0)
+  })
+
+  // `via` es lo que hace legible el plazo: de un correo consta el envío y no la
+  // recepción (art. 20.1), y de un registro sí. Sin ella la frase publicada
+  // diría «enviada el … por undefined».
+  it('cada envío dice por dónde salió y cuándo', () => {
+    for (const e of d.solicitudes.items) {
+      expect(e.via, `${e.organismo}: falta la vía`).toBeTruthy()
+      expect(e.enviadaEl).toMatch(/^\d{4}-\d{2}-\d{2}$/)
+    }
   })
 
   // El 17-09-2026 un mismo organismo pasó a tener DOS filas (la solicitud y su
