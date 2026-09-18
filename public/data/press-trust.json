@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-17T09:05:33.441Z",
+  "generatedAt": "2026-09-18T04:55:48.559Z",
   "windowDays": 30,
   "articles": [
     {
@@ -817,30 +817,13 @@
         "opinionFraction": 0
       },
       "score": 2
-    },
-    {
-      "articleId": "33vp63",
-      "articleFingerprint": "1ij1q5o",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/riba-roja-pone-en-marcha-el-aula-tea%2C-un-nuevo-servicio-municipal-gratuito-de-atenci%C3%B3n-terap%C3%A9utica-especializada-para-menores-con-trastorno-del-espectro-autista",
-      "date": "2026-08-18T09:26:42.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 16,
+      "articleCount": 15,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -848,7 +831,7 @@
         "sin-datos": 40,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 3.13,
+      "meanTrustScore": 3.2,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -974,7 +957,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "167834af76e4",
+    "plenos-agendas.json": "2e87d794adb9",
     "press-claims-verified.json": "843ee810b6e7",
     "press.json": "452399f350e3",
     "promises.json": "d18811c11210"
