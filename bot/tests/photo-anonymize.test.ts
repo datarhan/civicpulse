@@ -94,6 +94,60 @@ describe('detectSensitiveRegions — fail closed', () => {
   })
 })
 
+/**
+ * La clave de Gemini viaja en la cabecera `x-goog-api-key`, nunca en la URL.
+ *
+ * Una URL acaba en sitios que una cabecera no: en el mensaje de un error de red, en el
+ * registro de un proxy, en el argv de un proceso. El 1-sep-2026 la clave entró en git
+ * justo así, dentro del mensaje de un curl fallido que llevaba `?key=…` (ver
+ * src/scraper/redact-secrets.ts en la raíz). Desde el 17-09 esta llamada corre cada hora
+ * en el servidor del bot y lo que falle acaba en su log.
+ */
+describe('detectSensitiveRegions — la clave va en la cabecera', () => {
+  const CLAVE = 'clave-de-gemini-de-prueba-0123456789'
+  const respuestaVacia = {
+    ok: true,
+    status: 200,
+    json: async () => ({ candidates: [{ content: { parts: [{ text: '[]' }] } }] }),
+  } as unknown as Response
+
+  it('manda la clave en x-goog-api-key y deja la URL sin ella', async () => {
+    const buf = await twoToneImage()
+    const llamadas: Array<{ url: string; init: RequestInit }> = []
+    const fetchImpl = async (url: string | URL | Request, init?: RequestInit) => {
+      llamadas.push({ url: String(url), init: init ?? {} })
+      return respuestaVacia
+    }
+    await detectSensitiveRegions(buf, {
+      env: { GEMINI_API_KEY: CLAVE },
+      fetchImpl: fetchImpl as typeof fetch,
+    })
+    expect(llamadas).toHaveLength(1)
+    const { url, init } = llamadas[0]
+    // El control: es la llamada de verdad, al modelo configurado.
+    expect(url).toContain(':generateContent')
+    expect(url).not.toContain(CLAVE)
+    expect(new URL(url).searchParams.has('key')).toBe(false)
+    expect((init.headers as Record<string, string>)['x-goog-api-key']).toBe(CLAVE)
+  })
+
+  it('un fallo de red que cita la URL no arrastra la clave al mensaje', async () => {
+    const buf = await twoToneImage()
+    // Así fallan muchos clientes HTTP: con la URL pedida dentro del mensaje.
+    const fetchImpl = async (url: string | URL | Request) => {
+      throw new Error(`fetch failed: ${String(url)}`)
+    }
+    const error = await detectSensitiveRegions(buf, {
+      env: { GEMINI_API_KEY: CLAVE },
+      fetchImpl: fetchImpl as typeof fetch,
+    }).catch((e: unknown) => e)
+    // El control: falló, y por la llamada (el mensaje trae la URL).
+    expect(error).toBeInstanceOf(Error)
+    expect((error as Error).message).toContain('generativelanguage.googleapis.com')
+    expect((error as Error).message).not.toContain(CLAVE)
+  })
+})
+
 describe('anonymizeImage', () => {
   it('downscales to the max width and emits a metadata-stripped jpeg', async () => {
     const big = await sharp({
