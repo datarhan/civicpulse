@@ -97,10 +97,14 @@ export async function detectSensitiveRegions(
   const b64 = buf.toString('base64')
   const prompt = buildVisionPrompt()
   const model = opts.geminiModel ?? env.GEMINI_VISION_MODEL ?? 'gemini-2.5-flash'
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${env.GEMINI_API_KEY}`
+  // La clave va en la cabecera y no en la URL: una URL acaba en el mensaje de un error de
+  // red, en el registro de un proxy o en el argv de un proceso, y esta llamada corre cada
+  // hora en el servidor del bot. Así entró la clave en git el 1-sep-2026, dentro del
+  // mensaje de un curl fallido que llevaba `?key=…`.
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`
   const res = await fetchImpl(url, {
     method: 'POST',
-    headers: { 'content-type': 'application/json' },
+    headers: { 'content-type': 'application/json', 'x-goog-api-key': env.GEMINI_API_KEY! },
     body: JSON.stringify({
       contents: [
         { parts: [{ text: prompt }, { inline_data: { mime_type: 'image/jpeg', data: b64 } }] },
