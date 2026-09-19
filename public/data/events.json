@@ -1,45 +1,15 @@
 {
-  "generatedAt": "2026-09-18T09:14:57.688Z",
+  "generatedAt": "2026-09-19T09:02:02.179Z",
   "source": {
     "url": "https://www.ribarroja.es/es/eventos/rss.xml",
     "platform": "Drupal RSS (oficial)"
   },
   "stats": {
     "total": 50,
-    "upcoming": 21,
-    "nextDate": "2026-09-18T15:00:00.000Z"
+    "upcoming": 17,
+    "nextDate": "2026-09-19T16:00:00.000Z"
   },
   "events": [
-    {
-      "id": "1rqi4as",
-      "title": "RibaJazz 2026: Vira León Swingtet (Jazz Swing)",
-      "link": "https://www.ribarroja.es/es/evento/ribajazz-2026%3A-vira-le%C3%B3n-swingtet-%28jazz-swing%29",
-      "eventDate": "2026-07-09T20:00:00.000Z",
-      "eventDateText": "09 de julio de 2026 22:00",
-      "publishedDate": "2026-07-01T06:26:38.000Z",
-      "excerpt": null,
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Cartel%20A3%201%20of%201.jpg?itok=4jUzHY6t"
-    },
-    {
-      "id": "1yghquc",
-      "title": "RibaJazz 2026: Marquina-Selfa Trío (Jazz Contemporáneo)",
-      "link": "https://www.ribarroja.es/es/evento/ribajazz-2026%3A-marquina-selfa-tr%C3%ADo-%28jazz-contempor%C3%A1neo%29",
-      "eventDate": "2026-07-10T20:00:00.000Z",
-      "eventDateText": "10 de julio de 2026 22:00",
-      "publishedDate": "2026-07-01T06:31:22.000Z",
-      "excerpt": null,
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Cartel%20A3%201%20of%201_0.jpg?itok=XsWodjbq"
-    },
-    {
-      "id": "1lgmwmz",
-      "title": "RibaJazz 2026: Keith Dunn Blues Dúo (Delta Blues)",
-      "link": "https://www.ribarroja.es/es/evento/ribajazz-2026%3A-keith-dunn-blues-d%C3%BAo-%28delta-blues%29",
-      "eventDate": "2026-07-11T20:00:00.000Z",
-      "eventDateText": "11 de julio de 2026 22:00",
-      "publishedDate": "2026-07-01T06:48:03.000Z",
-      "excerpt": null,
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Cartel%20A3%201%20of%201_1.jpg?itok=NH3XCHm3"
-    },
     {
       "id": "scb32k",
       "title": "Donación sangre 3 de agosto de 2026",
@@ -301,6 +271,36 @@
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_17.png?itok=PkIlsi31"
     },
     {
+      "id": "1wt499i",
+      "title": "Bous al carrer",
+      "link": "https://www.ribarroja.es/es/evento/bous-al-carrer",
+      "eventDate": "2026-09-17T15:00:00.000Z",
+      "eventDateText": "17 de septiembre de 2026 17:00",
+      "publishedDate": "2026-09-18T10:44:37.000Z",
+      "excerpt": null,
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260915%20IMG_0853.jpg?itok=g9Bw5BfZ"
+    },
+    {
+      "id": "al8y3b",
+      "title": "Encuentro coral 'Voces de la Memoria'",
+      "link": "https://www.ribarroja.es/es/evento/encuentro-coral-%27voces-de-la-memoria%27",
+      "eventDate": "2026-09-17T17:00:00.000Z",
+      "eventDateText": "17 de septiembre de 2026 19:00",
+      "publishedDate": "2026-09-18T10:05:56.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260915%202026%20SEPTIEMBRE%20VOCES%20DE%20LA%20MEMORIA%20copia%20%281%29.jpg?itok=_6fppg9O"
+    },
+    {
+      "id": "1u45itn",
+      "title": "Actuación del Grupo Besarabia",
+      "link": "https://www.ribarroja.es/es/evento/actuaci%C3%B3n-del-grupo-besarabia",
+      "eventDate": "2026-09-17T17:00:00.000Z",
+      "eventDateText": "17 de septiembre de 2026 19:00",
+      "publishedDate": "2026-09-18T09:52:41.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260915%20IMG_0855%20Grupo%20Besarabia.jpg?itok=ul3bAsR3"
+    },
+    {
       "id": "b8u8us",
       "title": "II Jornadas abolicionistas",
       "link": "https://www.ribarroja.es/es/evento/ii-jornadas-abolicionistas",
@@ -309,6 +309,26 @@
       "publishedDate": "2026-09-11T07:29:03.000Z",
       "excerpt": "Una jornada de reflexión y sensibilización en torno a la prostitución, la explotación sexual y la defensa de los derechos humanos, que contará con la participación de destacadas voces del ámbito académico, profesional y…",
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/II%20Jornadas%20abolicionistas.png?itok=H7vrXbUp"
+    },
+    {
+      "id": "1pkh0hc",
+      "title": "Riba-rock 2026",
+      "link": "https://www.ribarroja.es/es/evento/riba-rock-2026",
+      "eventDate": "2026-09-18T15:30:00.000Z",
+      "eventDateText": "18 de septiembre de 2026 17:30",
+      "publishedDate": "2026-09-18T10:15:01.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260915%20Riba_roc%20_2874543723519142061_n.jpeg?itok=Zj1MyBG-"
+    },
+    {
+      "id": "12gjcdw",
+      "title": "Inauguración de la III Semana Fotográfica 'RibaFoto 2026'",
+      "link": "https://www.ribarroja.es/es/evento/inauguraci%C3%B3n-de-la-iii-semana-fotogr%C3%A1fica-%27ribafoto-2026%27",
+      "eventDate": "2026-09-18T16:30:00.000Z",
+      "eventDateText": "18 de septiembre de 2026 18:30",
+      "publishedDate": "2026-09-18T10:10:21.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260915%20IMG_0854%20Semana%20fotografica.jpg?itok=aNn0cWAn"
     },
     {
       "id": "1ti535k",
@@ -328,7 +348,7 @@
       "eventDateText": "19 de septiembre de 2026 18:00",
       "publishedDate": "2026-08-28T10:23:32.000Z",
       "excerpt": "&nbsp;",
-      "image": null
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260915%20Run%20cancer%20_6258990035176528132_n.jpeg?itok=9mOOTORc"
     },
     {
       "id": "18xsxmi",
@@ -339,6 +359,16 @@
       "publishedDate": "2026-09-18T08:58:36.000Z",
       "excerpt": "&nbsp;",
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_4.png?itok=SYXJB4Jk"
+    },
+    {
+      "id": "6vv8sw",
+      "title": "Presentación Libro 'A la Jota, Jota'",
+      "link": "https://www.ribarroja.es/es/evento/presentaci%C3%B3n-libro-%27a-la-jota%2C-jota%27",
+      "eventDate": "2026-09-20T17:00:00.000Z",
+      "eventDateText": "20 de septiembre de 2026 19:00",
+      "publishedDate": "2026-09-18T10:28:04.000Z",
+      "excerpt": "&nbsp;",
+      "image": null
     },
     {
       "id": "wwknro",
@@ -451,16 +481,6 @@
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20street%20figher_0.jpg?itok=QX-3iMTN"
     },
     {
-      "id": "19jtvs8",
-      "title": "Danza 'Al compás de Nino'",
-      "link": "https://www.ribarroja.es/es/evento/danza-%27al-comp%C3%A1s-de-nino%27",
-      "eventDate": "2026-12-04T18:00:00.000Z",
-      "eventDateText": "04 de diciembre de 2026 19:00",
-      "publishedDate": "2026-07-21T11:50:53.000Z",
-      "excerpt": null,
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260717%2025%20A%20al%20compas%20de%20Nino.jpg?itok=h2v72top"
-    },
-    {
       "id": "1vyndzw",
       "title": "Cine 'Willwood'",
       "link": "https://www.ribarroja.es/es/evento/cine-%27willwood%27",
@@ -489,26 +509,6 @@
       "publishedDate": "2026-08-31T07:12:24.000Z",
       "excerpt": "&nbsp;",
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20los%20juegos%20del%20hambre_0.jpg?itok=C-JZ4cvj"
-    },
-    {
-      "id": "1h5htqs",
-      "title": "Riba-roja ilusiona Gala de Navidad",
-      "link": "https://www.ribarroja.es/es/evento/riba-roja-ilusiona-gala-de-navidad",
-      "eventDate": "2026-12-13T17:00:00.000Z",
-      "eventDateText": "13 de diciembre de 2026 18:00",
-      "publishedDate": "2026-06-26T09:41:16.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/27%20gala%20de%20la%20magia.jpg?itok=yrsZ2nB_"
-    },
-    {
-      "id": "bny1t7",
-      "title": "Mickey y la biblioteca mágica",
-      "link": "https://www.ribarroja.es/es/evento/mickey-y-la-biblioteca-m%C3%A1gica",
-      "eventDate": "2026-12-20T11:00:00.000Z",
-      "eventDateText": "20 de diciembre de 2026 12:00",
-      "publishedDate": "2026-06-26T09:54:16.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/28%20mikey%20y%20la%20biblioteca.jpg?itok=gvSaVHK8"
     }
   ]
 }
