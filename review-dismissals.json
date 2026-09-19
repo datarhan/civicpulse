@@ -134,6 +134,13 @@
       "reason": "Comprobado el 16-09-2026, y sale igual por los dos lados. Los precios de la tabla son CON IVA y la cabecera lo dice («Precio (IVA inc.)»): con IVA, (55.000 − 31.323,70) / 55.000 = 43,0 %; sin IVA, (45.454,55 − 25.887,36) / 45.454,55 = 43,0 %, y ese 25.887 € es el contrato de Deepsense que la corrección del 02-08-2026 de esta misma pieza ya publica. Que 36.300,00 y 41.079,50 den 30.000,00 y 33.950,00 exactos al dividir por 1,21 confirma que la columna va con IVA. Los dos presupuestos distintos que el revisor cita son los del PLIEGO, y la pieza los publica ella misma en su párrafo de erratas; el que se usó para adjudicar es 45.454,55 € sin IVA, y con el otro (43.450 €) el porcentaje sería 40,4 %, no 43 %. Las cifras están congeladas en el reportaje, así que esta cita no se mueve.",
       "editor": "claude-opus-5",
       "at": "2026-09-16"
+    },
+    {
+      "route": "/laboratorio/agentes/a-robert-raga-bio-v4",
+      "quote": "los 804 expedientes de contratación que constaban en el corpus municipal en julio de 2026",
+      "reason": "Comprobado el 19-09-2026 contra public/data/tenders.json: hoy tiene 812 filas (710 con adjudicatario), y en julio de 2026, cuando se hizo el barrido nominal que la frase cuenta, tenía 804. La frase fecha su propio recuento («que constaban … en julio de 2026 —adjudicados o no—»): es una comprobación congelada en su fecha, no una descripción del corpus de hoy, y por eso no se actualiza sola. Es la misma redacción que se publicó en otra biografía el 07-09-2026 tras un señalamiento que SÍ era cierto («804 contratos adjudicados»). La versión siguiente de esta biografía repite el barrido con el recuento del día.",
+      "editor": "claude-fable-5-1",
+      "at": "2026-09-19"
     }
   ]
 }

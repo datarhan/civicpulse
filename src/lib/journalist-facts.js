@@ -96,3 +96,37 @@ export function latestOffice(items) {
     return (i.endYear ?? 0) > (best.endYear ?? 0) ? i : best
   })
 }
+
+/**
+ * El índice agregado «Datos biográficos del alcalde/sa y concejales» del portal
+ * de transparencia. Hasta la mudanza del portal (septiembre de 2026) fue el
+ * `cvUrl` de los 21 concejales, y por eso es el `portrait.cvUrl` congelado de
+ * todas las biografías de esa hornada. El Ayuntamiento lo retiró sin redirigir:
+ * contesta 403 «Acceso denegado» también en un navegador (medido el 19-09-2026).
+ * No es un enlace, es un centinela — y un centinela nunca es un valor.
+ */
+export const RETIRED_CV_INDEX_RE = /\/datos_biograficos_del_alcalde_sa_y_concejales\//
+
+/**
+ * A qué documento lleva «CV oficial ↗» en la cabecera de una biografía.
+ *
+ * El retrato de un informe es una foto del padrón del día en que corrió el
+ * agente; el enlace al CV caduca cuando el Ayuntamiento mueve el documento, y
+ * la biografía no se re-ejecuta por eso. Misma regla que `/cargos/:slug`: el
+ * documento VIGENTE del padrón de concejales en activo; si no lo hay, el enlace
+ * congelado del informe, salvo que sea el índice retirado. Sin enlace que
+ * funcione, `null` — la cabecera no pinta botón.
+ *
+ * Los excargos no aportan enlace: su fila conserva el `cvUrl` del día en que
+ * dejaron el padrón, que para esta corporación es el índice retirado.
+ *
+ * @param {{ portraitCvUrl?: string | null, officialSlug?: string | null,
+ *           roster?: { officials?: Array<{ slug: string, cvUrl?: string | null }> } | null }} args
+ * @returns {string | null}
+ */
+export function heroCvUrl({ portraitCvUrl, officialSlug, roster }) {
+  const usable = (/** @type {unknown} */ u) =>
+    typeof u === 'string' && u.trim() !== '' && !RETIRED_CV_INDEX_RE.test(u) ? u : null
+  const vigente = (roster?.officials ?? []).find((o) => o.slug === officialSlug)?.cvUrl
+  return usable(vigente) ?? usable(portraitCvUrl)
+}
