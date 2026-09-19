@@ -83,7 +83,11 @@ function KeyFactsStrip({ report, tone }) {
 
 // ─── Hero band ───────────────────────────────────────────────────────────
 
-export function HeroBand({ subjectName, portraitPayload, report, party, soulDownloadUrl }) {
+// `cvUrl` llega YA resuelto por la página (`heroCvUrl`): el documento vigente
+// del padrón, no el enlace congelado del retrato. Las 21 biografías llevaban en
+// `portrait.cvUrl` el mismo índice del portal, que el Ayuntamiento retiró en
+// septiembre de 2026 y contesta 403: el botón estuvo muerto en todas.
+export function HeroBand({ subjectName, portraitPayload, report, party, soulDownloadUrl, cvUrl }) {
   const tone = portraitPayload?.partyTone || 'civic'
   const identity = report.sections.find((s) => s.kind === 'identity')?.payload
   const careerItems =
@@ -195,8 +199,8 @@ export function HeroBand({ subjectName, portraitPayload, report, party, soulDown
             </div>
           )}
           <div style={{ marginTop: 16, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-            {portraitPayload?.cvUrl && (
-              <ExtLink href={portraitPayload.cvUrl} style={heroActionStyle}>
+            {cvUrl && (
+              <ExtLink href={cvUrl} style={heroActionStyle}>
                 CV oficial ↗
               </ExtLink>
             )}

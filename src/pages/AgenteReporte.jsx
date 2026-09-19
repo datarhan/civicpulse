@@ -16,6 +16,7 @@ import { useParams, Link } from 'react-router-dom'
 import { Card, ExtLink, SectionHead } from '../components/Primitives'
 import { ROTULO_TEXTO_RETIRADO, ROTULO_TEXTO_VIGENTE } from '../components/BitacoraCorrecciones'
 import { trozos } from '../lib/texto-negrita.js'
+import { heroCvUrl } from '../lib/journalist-facts.js'
 import { useOfficials } from '../hooks/useOfficials'
 import {
   FactsSidebar,
@@ -284,6 +285,12 @@ export default function AgenteReporte() {
   const party = officialsState.data?.officials?.find(
     (o) => o.slug === portraitPayload?.officialSlug,
   )?.party
+  // El CV vigente del padrón, no el enlace congelado del retrato (ver heroCvUrl).
+  const cvUrl = heroCvUrl({
+    portraitCvUrl: portraitPayload?.cvUrl,
+    officialSlug: portraitPayload?.officialSlug,
+    roster: officialsState.data,
+  })
 
   if (loading) {
     return <div style={{ padding: '40px 24px', color: 'var(--ink50)' }}>Cargando informe…</div>
@@ -372,6 +379,7 @@ export default function AgenteReporte() {
         report={report}
         party={party}
         soulDownloadUrl={soulDownloadUrl}
+        cvUrl={cvUrl}
       />
 
       <div className="cp-agente-shell">
