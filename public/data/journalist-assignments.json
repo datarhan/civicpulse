@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-09-07T12:04:32.972Z",
+  "generatedAt": "2026-09-19T19:35:50.878Z",
   "items": [
     {
       "id": "a-robert-raga-bio",
@@ -365,6 +365,20 @@
       "createdAt": "2026-09-07T11:17:25.509Z",
       "status": "promoted",
       "lastRunAt": "2026-09-07T11:30:51.199Z"
+    },
+    {
+      "id": "a-robert-raga-bio-v5",
+      "kind": "biography",
+      "subject": {
+        "slug": "robert-raga-gadea",
+        "name": "Robert Raga Gadea",
+        "kind": "official"
+      },
+      "brief": "Actualización de la biografía del alcalde con documentos oficiales y prensa localizados en septiembre de 2026: candidaturas municipales desde 2007, nombramiento en la Diputació de València en 2011, cargos en entidades supramunicipales y en su partido, actos oficiales de delegación de la alcaldía y resoluciones judiciales firmes que le nombran. Se conservan las secciones ya verificadas de la versión anterior.",
+      "createdBy": "Sergei Lutchenko",
+      "createdAt": "2026-09-19T19:21:40.567Z",
+      "status": "drafted",
+      "lastRunAt": "2026-09-19T19:35:50.878Z"
     }
   ]
 }
