@@ -1,21 +1,8 @@
 import 'dotenv/config'
-import { Bot, session } from 'grammy'
-import { conversations } from '@grammyjs/conversations'
+import { Bot } from 'grammy'
 import { openDb } from './db/client.ts'
-import type { MyContext, SessionData } from './types.ts'
-import { registerStart } from './commands/start.ts'
-import { registerQueja } from './commands/queja.ts'
-import { registerEstado } from './commands/estado.ts'
-import { registerApoyar } from './commands/apoyar.ts'
-import { registerMis } from './commands/mis.ts'
-import { registerOlvidar } from './commands/olvidar.ts'
-import { registerSubscribe } from './commands/subscribe.ts'
-import { registerBarrio } from './commands/barrio.ts'
-import { registerRanking } from './commands/ranking.ts'
-import { registerDigest } from './commands/digest.ts'
-import { registerBatchCommand } from './commands/batch.ts'
-import { registerEscalar } from './commands/escalar.ts'
-import { registerCurarCommand } from './commands/curar.ts'
+import type { MyContext } from './types.ts'
+import { registrarComandos } from './commands/registrar.ts'
 import { makeChannel } from './services/channel.ts'
 import { buildSnapshot, directorioFotos } from './services/snapshot.ts'
 import { buildBatch, renderBatchHtml, renderBatchMarkdown } from './services/batch.ts'
@@ -59,24 +46,10 @@ function makeBot() {
 
   const channel = makeChannel(bot)
 
-  bot.use(session({ initial: (): SessionData => ({}) }))
-  bot.use(conversations())
-
-  // Conversation handler must come before plain command handlers that
-  // share trigger names.
-  registerQueja(bot, db, channel)
-  registerStart(bot)
-  registerEstado(bot, db)
-  registerApoyar(bot, db, channel)
-  registerMis(bot, db)
-  registerOlvidar(bot, db)
-  registerSubscribe(bot, db)
-  registerBarrio(bot, db)
-  registerRanking(bot, db)
-  registerDigest(bot, db)
-  registerBatchCommand(bot, db, channel)
-  registerEscalar(bot, db, channel)
-  registerCurarCommand(bot, db)
+  // Todos los comandos, detrás de un primer middleware que no deja contestar fuera de
+  // un chat privado más que lo público (commands/registrar.ts). Aquí no se registra
+  // ningún manejador más: uno puesto antes que éste se saltaría la guarda.
+  registrarComandos(bot, db, channel)
 
   // Silencio cron — hourly tick that auto-transitions aged registered
   // quejas to silencio_negativo. Paused during LOREG freeze.

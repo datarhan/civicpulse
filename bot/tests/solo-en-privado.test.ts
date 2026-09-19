@@ -90,8 +90,11 @@ function queja(db: Db, autor: number): string {
   return createQueja(db, input).id
 }
 
-/** Los comandos que registra el código del bot, leídos del propio código. */
-function comandosRegistrados(): string[] {
+/**
+ * Los comandos que registra el código del bot, leídos del propio código. Con
+ * `soloDeAdmin`, sólo los de los ficheros que dan permisos con ADMIN_USER_IDS.
+ */
+function comandosRegistrados({ soloDeAdmin = false } = {}): string[] {
   const RAIZ = join(__dirname, '../src')
   const ts = (d: string): string[] =>
     readdirSync(d, { withFileTypes: true }).flatMap((e) =>
@@ -100,6 +103,7 @@ function comandosRegistrados(): string[] {
   const nombres = new Set<string>()
   for (const f of ts(RAIZ)) {
     const src = readFileSync(f, 'utf8')
+    if (soloDeAdmin && !src.includes('ADMIN_USER_IDS')) continue
     for (const m of src.matchAll(/\.command\(\s*(\[[^\]]*\]|'[^']*'|"[^"]*")/g)) {
       for (const nombre of m[1].matchAll(/['"]([^'"]+)['"]/g)) nombres.add(nombre[1])
     }
@@ -243,6 +247,31 @@ describe('solo en privado', () => {
   it('COMANDOS_PUBLICOS sólo nombra comandos que existen', () => {
     const todos = new Set(comandosRegistrados())
     expect([...COMANDOS_PUBLICOS].filter((c) => !todos.has(c))).toEqual([])
+  })
+
+  it('ningún comando de administración es público', () => {
+    const deAdmin = comandosRegistrados({ soloDeAdmin: true })
+    // El control: la lectura encuentra los de administración que ya sabemos que hay.
+    expect(deAdmin).toEqual(expect.arrayContaining(['curar', 'batch', 'escalar']))
+    expect(deAdmin.filter((c) => COMANDOS_PUBLICOS.has(c))).toEqual([])
+  })
+
+  /**
+   * Esto SÍ repite la lista, y a propósito. La prueba de arriba toma por privado todo lo
+   * que no esté en COMANDOS_PUBLICOS, así que meter ahí un comando por error lo sacaría
+   * también de la comprobación, sin que nada se pusiera en rojo. Ampliar la lista es una
+   * decisión de privacidad: con esto se hace en dos sitios y se ve en la PR.
+   */
+  it('la lista de públicos es la acordada', () => {
+    expect([...COMANDOS_PUBLICOS].sort()).toEqual([
+      'apoyar',
+      'barrio',
+      'digest',
+      'estado',
+      'help',
+      'ranking',
+      'start',
+    ])
   })
 
   it('en un grupo, lo que no es un comando para este bot no recibe respuesta', async () => {

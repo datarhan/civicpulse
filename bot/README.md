@@ -31,6 +31,13 @@ Admin-only (gated by `ADMIN_USER_IDS` env, comma-separated Telegram IDs):
 | `/batch_register <asiento> <CSV>` | After signing at `sede.ribarroja.es`, records the entry nº + CSV on every queja in the batch. Broadcasts `[REGISTRADA]` per queja |
 | `/escalar Q-XXXX` | Transitions a silencio-negativo queja to `escalada_sindic`, broadcasts `[ESCALADA]`, returns the Síndic de Greuges template URL |
 
+Outside a private chat the bot only answers the public commands (`COMANDOS_PUBLICOS`
+in `src/services/solo-en-privado.ts`, which only show what the site already publishes).
+Every other command, admin ones included, gets a one-line «escríbeme en privado», and
+anything that is not a command is ignored. The guard is the first middleware
+(`src/commands/registrar.ts`), so a new command is private until someone adds it to the
+list. Group joining is also disabled in BotFather.
+
 ## Architecture
 
 ```
