@@ -1,6 +1,6 @@
 {
   "plenoId": "rx4hb4",
-  "generatedAt": "2026-09-18T07:50:31.599Z",
+  "generatedAt": "2026-09-19T07:45:39.389Z",
   "model": "gemini-3.5-flash",
   "promptVersion": "speaker-map-v2",
   "chunkSeconds": 600,
@@ -12454,6 +12454,1392 @@
       "end": 14247.5,
       "speaker": "c23/SPEAKER_04",
       "text": "Ahora, vale. Bueno, es... es un ruego que quería realizar el Partit Popular, eh, en cuanto al protocolo, las confirmaciones. Eh, el otro día el divendres teníamos un acto en el castell de del tío Enrique, un llibre que, bueno, se presentaba..."
+    },
+    {
+      "start": 14400,
+      "end": 14408.1,
+      "speaker": "c24/SPEAKER_00",
+      "text": "i, bueno, com sabeu, és Elo qui porta les confirmacions, ademés està molt pendent per a que li contesteu, en eixe cas no li confirmàreu,"
+    },
+    {
+      "start": 14408.1,
+      "end": 14418.9,
+      "speaker": "c24/SPEAKER_00",
+      "text": "i la sorpresa és que quan apleguem a l'acte, que ademés era un acte molt multitudinari, estava el castell, pues, ple, la gent s'havia quedat de peu,"
+    },
+    {
+      "start": 14418.9,
+      "end": 14427.9,
+      "speaker": "c24/SPEAKER_00",
+      "text": "eh, bueno, pues, aparegueren tres regidors del Partit Popular i se sentaren en primera fila."
+    },
+    {
+      "start": 14427.9,
+      "end": 14430.1,
+      "speaker": "c24/SPEAKER_00",
+      "text": "Què passa? Pues que eixes primeres files estaven reservades"
+    },
+    {
+      "start": 14430.1,
+      "end": 14439.4,
+      "speaker": "c24/SPEAKER_00",
+      "text": "per als familiars, en este cas, del tio Enrique, també per als familiars de Ariadna, que era la pianista,"
+    },
+    {
+      "start": 14439.4,
+      "end": 14448.1,
+      "speaker": "c24/SPEAKER_00",
+      "text": "i, clar, sense preguntar, se sentaren en primera fila. Nosaltres ens haguérem, no per res, sinó si ho haguérem sabut, els haguem donat el seu lloc, no es tracta ací de,"
+    },
+    {
+      "start": 14448.1,
+      "end": 14456.5,
+      "speaker": "c24/SPEAKER_00",
+      "text": "eh, aleshores, simplement és un prec per a que, per favor, confirmen en els actes, sobretot, pues, bueno, en tots els que, els que són,"
+    },
+    {
+      "start": 14456.5,
+      "end": 14461.5,
+      "speaker": "c24/SPEAKER_00",
+      "text": "però per a evitar, en este cas, pues que s'alçaren els familiars i que se sentiren que anar darrere,"
+    },
+    {
+      "start": 14461.5,
+      "end": 14464.5,
+      "speaker": "c24/SPEAKER_00",
+      "text": "val? Simplement eixe prec. Gràcies."
+    },
+    {
+      "start": 14464.5,
+      "end": 14469.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "Jo t'he de dir, en favor de José, que a la junta local ja va passar també, i tu ho saps, Javi."
+    },
+    {
+      "start": 14469.1,
+      "end": 14471.1,
+      "speaker": "c24/SPEAKER_02",
+      "text": "No, no."
+    },
+    {
+      "start": 14471.1,
+      "end": 14474.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "Tenir problemes amb les falles, no? És a dir, les coses quan toquen."
+    },
+    {
+      "start": 14474.1,
+      "end": 14481.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "Per tant, per a nosaltres no hi ha problema, sempre se reserva, però el que no és possible és que a última hora se vulga sentar i no estiga reservat. Així que vos demanaríem, per favor,"
+    },
+    {
+      "start": 14481.1,
+      "end": 14486.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "en fi, que que parlàreu en en la part corresponent i se reservarà, val?"
+    },
+    {
+      "start": 14486.1,
+      "end": 14491.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "Fet el prec, passem a precs i preguntes del Partit Popular. Precs i preguntes."
+    },
+    {
+      "start": 14491.1,
+      "end": 14493.1,
+      "speaker": "c24/SPEAKER_03",
+      "text": "A veure, pel que fa al prec."
+    },
+    {
+      "start": 14493.1,
+      "end": 14498.1,
+      "speaker": "c24/SPEAKER_03",
+      "text": "Fet el prec, eh, dir, els familiars no s'alçaren, estaven sentats en la segona fila."
+    },
+    {
+      "start": 14498.1,
+      "end": 14504.1,
+      "speaker": "c24/SPEAKER_03",
+      "text": "Nosaltres ens sentàrem on mos, els familiars estaven, son pare i sa mare de la xiqueta estaven sentats darrere de mi."
+    },
+    {
+      "start": 14504.1,
+      "end": 14506.1,
+      "speaker": "c24/SPEAKER_03",
+      "text": "No s'alçaren per a que jo me sentara."
+    },
+    {
+      "start": 14506.1,
+      "end": 14508.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "Els de Jarabú."
+    },
+    {
+      "start": 14508.1,
+      "end": 14511.1,
+      "speaker": "c24/SPEAKER_03",
+      "text": "No, no, no, els de Jarabú estaven a la dreta, davant de tu quan vares parlar."
+    },
+    {
+      "start": 14511.1,
+      "end": 14515.1,
+      "speaker": "c24/SPEAKER_00",
+      "text": "Estaven a la segona fila i jo els vaig posar a la primera."
+    },
+    {
+      "start": 14515.1,
+      "end": 14517.1,
+      "speaker": "c24/SPEAKER_03",
+      "text": "No, no, a veure, no ho discutim."
+    },
+    {
+      "start": 14517.1,
+      "end": 14521.1,
+      "speaker": "c24/SPEAKER_03",
+      "text": "No, bé, no ho discutim, però és que no m'ha, no s'alçaren els pares de la xiqueta Ariadna ni els pares de"
+    },
+    {
+      "start": 14521.1,
+      "end": 14523.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "No tinguem un debat d'això, per favor."
+    },
+    {
+      "start": 14523.1,
+      "end": 14525.1,
+      "speaker": "c24/SPEAKER_03",
+      "text": "fills de Jarabú."
+    },
+    {
+      "start": 14525.1,
+      "end": 14527.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "Un momentet. Eh, a veure, no és un tema de Jarabú, no."
+    },
+    {
+      "start": 14527.1,
+      "end": 14531.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "És un tema de confirmar quan tenen, quan toca."
+    },
+    {
+      "start": 14531.1,
+      "end": 14535.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "I ja està, és una nota. I com està documentat, hi ha que confirmar."
+    },
+    {
+      "start": 14535.1,
+      "end": 14537.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "Vale, apague el"
+    },
+    {
+      "start": 14537.1,
+      "end": 14543.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "El lloc de vostès se confirma i queda documentat. Si no se confirma, després ve el lío i és desagradable per a tots, per a vosaltres i per a nosaltres."
+    },
+    {
+      "start": 14543.1,
+      "end": 14551.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "Per tant, n'hi ha una persona que és per a confirmar, pues, quan s'envia el correu o el WhatsApp, confirmeu i ja està, i no passa res. I si n'hi ha algo de última hora, tampoc passa res."
+    },
+    {
+      "start": 14551.1,
+      "end": 14556.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "S'avisa abans i es diu: \"Escolta, que passa, hem tingut un problema, ho intentem arreglar\", val? Per favor, se ho demanem, perquè mos passa moltes vegades."
+    },
+    {
+      "start": 14556.1,
+      "end": 14559.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "Eh, anem a precs i preguntes del Partit Popular."
+    },
+    {
+      "start": 14559.1,
+      "end": 14564.1,
+      "speaker": "c24/SPEAKER_04",
+      "text": "Bueno, jo, en precs i preguntes, aprofite perquè jo sóc la de protocol, per eixir a dir-ho, del Partit Popular i conteste que"
+    },
+    {
+      "start": 14564.1,
+      "end": 14571.1,
+      "speaker": "c24/SPEAKER_04",
+      "text": "tota la raó del món, en este acte concret no vaig, eh, confirmar, se me va passar, ho sent molt, la veritat, és aixina."
+    },
+    {
+      "start": 14571.1,
+      "end": 14573.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "No passa res, no passa res."
+    },
+    {
+      "start": 14573.1,
+      "end": 14577.1,
+      "speaker": "c24/SPEAKER_04",
+      "text": "Ja, ja, però, bueno, per a que quede constància."
+    },
+    {
+      "start": 14577.1,
+      "end": 14583.1,
+      "speaker": "c24/SPEAKER_04",
+      "text": "Però també te dic que, justament este mateix cap de setmana, eh, me va parlar Elo, diguem-me que no havíem confirmat a una presentació"
+    },
+    {
+      "start": 14583.1,
+      "end": 14588.1,
+      "speaker": "c24/SPEAKER_04",
+      "text": "i tinguí que pujar un poquet en la conversa i dir-li: \"El dimecres\". I ella me digué:"
+    },
+    {
+      "start": 14588.1,
+      "end": 14593.1,
+      "speaker": "c24/SPEAKER_04",
+      "text": "\"Vaja\". Saps? Vull dir-te que estem un poc ahí, però jo intente quadrar sempre."
+    },
+    {
+      "start": 14593.1,
+      "end": 14596.1,
+      "speaker": "c24/SPEAKER_04",
+      "text": "Per a això, per a que ho sàpien. I després, jo, ja preguntes."
+    },
+    {
+      "start": 14596.1,
+      "end": 14601.1,
+      "speaker": "c24/SPEAKER_04",
+      "text": "Eh, nada, quería hacer una pregunta para la concejal de Seguridad Ciudadana."
+    },
+    {
+      "start": 14601.1,
+      "end": 14603.1,
+      "speaker": "c24/SPEAKER_04",
+      "text": "Bueno, varias. Eh, una es que,"
+    },
+    {
+      "start": 14603.1,
+      "end": 14609.1,
+      "speaker": "c24/SPEAKER_04",
+      "text": "siendo Riba-roja una de las ratios de policía por habitantes más altas de España, como tú bien dices,"
+    },
+    {
+      "start": 14609.1,
+      "end": 14618.1,
+      "speaker": "c24/SPEAKER_04",
+      "text": "eh, ¿podrías explicarnos por qué hay un documento con fecha de cinco de febrero pidiendo urgentemente la apertura de una bolsa de agentes comisionados de incorporación inmediata a la Policía Local de Riba-roja,"
+    },
+    {
+      "start": 14618.1,
+      "end": 14620.1,
+      "speaker": "c24/SPEAKER_04",
+      "text": "eh, del jueves pasado?"
+    },
+    {
+      "start": 14620.1,
+      "end": 14625.1,
+      "speaker": "c24/SPEAKER_04",
+      "text": "Eh, ¿esto quiere decir que Riba-roja no es una de estas ratios más elevadas y usted no ha dicho la verdad en redes sociales?"
+    },
+    {
+      "start": 14625.1,
+      "end": 14631.1,
+      "speaker": "c24/SPEAKER_04",
+      "text": "¿O que Riba-roja no es tan segura como usted la vende y se necesitan más agentes para cubrir las patrullas diarias?"
+    },
+    {
+      "start": 14631.1,
+      "end": 14637.1,
+      "speaker": "c24/SPEAKER_04",
+      "text": "¿O que Riba-roja sí que dispone de los agentes, pero tal vez en demasiados puestos de despachos y segundas actividades?"
+    },
+    {
+      "start": 14637.1,
+      "end": 14640.1,
+      "speaker": "c24/SPEAKER_04",
+      "text": "No lo sé, yo le pregunto a usted."
+    },
+    {
+      "start": 14640.1,
+      "end": 14645.1,
+      "speaker": "c24/SPEAKER_04",
+      "text": "De esta unidad de la que usted siempre habla y enseña la misma foto del dos mil veintitrés,"
+    },
+    {
+      "start": 14645.1,
+      "end": 14651.1,
+      "speaker": "c24/SPEAKER_04",
+      "text": "tirando de la hemeroteca, en la que habían diez agentes ahí en Valencia la Vella,"
+    },
+    {
+      "start": 14651.1,
+      "end": 14656.1,
+      "speaker": "c24/SPEAKER_04",
+      "text": "¿cuántos agentes actualmente a día de hoy, nueve de febrero,"
+    },
+    {
+      "start": 14656.1,
+      "end": 14659.1,
+      "speaker": "c24/SPEAKER_04",
+      "text": "forman esta unidad específica de de urbanizaciones?"
+    },
+    {
+      "start": 14659.1,
+      "end": 14665.1,
+      "speaker": "c24/SPEAKER_04",
+      "text": "¿Piensa usted que realmente con una patrulla de esta unidad específica de urbanizaciones por secuencia,"
+    },
+    {
+      "start": 14665.1,
+      "end": 14671.1,
+      "speaker": "c24/SPEAKER_04",
+      "text": "dos agentes cada semana, se pueden vigilar las más de seis urbanizaciones que tiene este municipio?"
+    },
+    {
+      "start": 14671.1,
+      "end": 14673.1,
+      "speaker": "c24/SPEAKER_04",
+      "text": "Gracias."
+    },
+    {
+      "start": 14673.1,
+      "end": 14677.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "Eh, acabe les preguntes i contestem, por favor, del Partit Popular. Alguna més?"
+    },
+    {
+      "start": 14677.1,
+      "end": 14679.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "¿Alguna más?"
+    },
+    {
+      "start": 14679.1,
+      "end": 14683.1,
+      "speaker": "c24/SPEAKER_00",
+      "text": "Jo diria que, més que una pregunta, podria fer una moció,"
+    },
+    {
+      "start": 14683.1,
+      "end": 14691.1,
+      "speaker": "c24/SPEAKER_00",
+      "text": "perquè els interessa tant la seguretat que podien fer perfectament una moció i, de fet, ara que estem fent el segon pla de Riba-roja més segura i més resilient, proposar."
+    },
+    {
+      "start": 14691.1,
+      "end": 14696.1,
+      "speaker": "c24/SPEAKER_00",
+      "text": "De fet, els vaig a dir directament que proposen, perquè els veig molt preocupats per la seguretat. Eh, com ha fet tantes preguntes i comprendrà, demanarem que ho passe per escrit i se li contestarà al partit. Gràcies."
+    },
+    {
+      "start": 14696.1,
+      "end": 14701.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "Passem ací en precs i preguntes."
+    },
+    {
+      "start": 14701.1,
+      "end": 14703.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "Precs i preguntes."
+    },
+    {
+      "start": 14703.1,
+      "end": 14707.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "No? Val, perfecte, pues si no n'hi ha, ah, serà, seua pregunta, Paco. Nada, nada, té la paraula."
+    },
+    {
+      "start": 14707.1,
+      "end": 14710.1,
+      "speaker": "c24/SPEAKER_05",
+      "text": "Sí, m'he portat bé."
+    },
+    {
+      "start": 14710.1,
+      "end": 14719.1,
+      "speaker": "c24/SPEAKER_05",
+      "text": "Porta, vamos, marcat, eh. Home, abans faltaven quatre segons i m'ha dit que me n'estava passant de temps, però, bueno, no passa res. Eh, s'agraeix."
+    },
+    {
+      "start": 14719.1,
+      "end": 14721.1,
+      "speaker": "c24/SPEAKER_05",
+      "text": "Vale, ara,"
+    },
+    {
+      "start": 14721.1,
+      "end": 14727.1,
+      "speaker": "c24/SPEAKER_05",
+      "text": "eh, una pregunta, senyor alcalde. Abans ha comentat vostè que, bueno, i ho he vist"
+    },
+    {
+      "start": 14727.1,
+      "end": 14733.1,
+      "speaker": "c24/SPEAKER_05",
+      "text": "per damunt, en les xarxes socials, que hui s'ha reunit, hui mateix s'ha reunit en el president de la Diputació,"
+    },
+    {
+      "start": 14733.1,
+      "end": 14739.1,
+      "speaker": "c24/SPEAKER_05",
+      "text": "vale? Que és la primera vegada que se reunix, supose que des de que ell està com a president de la Diputació, va fer"
+    },
+    {
+      "start": 14739.1,
+      "end": 14744.1,
+      "speaker": "c24/SPEAKER_05",
+      "text": "posem dos anys i mig, per no allargar-ho molt,"
+    },
+    {
+      "start": 14744.1,
+      "end": 14749.1,
+      "speaker": "c24/SPEAKER_05",
+      "text": "i és la primera vegada que se reunix. Supose que, a lo millor, eixa rapidesa en la"
+    },
+    {
+      "start": 14749.1,
+      "end": 14757.1,
+      "speaker": "c24/SPEAKER_05",
+      "text": "en estar en esta compareixença o en esta reunió haurà sigut donada per l'ajuda del coordinador"
+    },
+    {
+      "start": 14757.1,
+      "end": 14762.1,
+      "speaker": "c24/SPEAKER_05",
+      "text": "del grup popular de la Diputació"
+    },
+    {
+      "start": 14762.1,
+      "end": 14765.1,
+      "speaker": "c24/SPEAKER_05",
+      "text": "per a que l'atenguera el senyor president de la Diputació."
+    },
+    {
+      "start": 14765.1,
+      "end": 14771.1,
+      "speaker": "c24/SPEAKER_05",
+      "text": "I, la veritat és que m'agradaria que ens explicara lo més escuetament possible, perquè sé que ja estem tots cansat i cansades,"
+    },
+    {
+      "start": 14771.1,
+      "end": 14776.1,
+      "speaker": "c24/SPEAKER_05",
+      "text": "eh, quines promeses li ha fet el president de la Diputació, quines peticions portava i quines li ha dit que \"nai-nai\","
+    },
+    {
+      "start": 14776.1,
+      "end": 14782.1,
+      "speaker": "c24/SPEAKER_05",
+      "text": "i si, eh, una pregunta molt molt personal, és si, eh, té la percepció"
+    },
+    {
+      "start": 14782.1,
+      "end": 14790.1,
+      "speaker": "c24/SPEAKER_05",
+      "text": "que van a complir en les seues en les propostes que li ha que li ha fet. Gràcies."
+    },
+    {
+      "start": 14790.1,
+      "end": 14797.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "Bueno, és una pregunta, efectivament, hui s'ha publicat i, per tant, té sentit, bueno, agrair-la també. Eh, jo pense que s'ha fet una, hem tingut una reunió,"
+    },
+    {
+      "start": 14797.1,
+      "end": 14805.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "bueno, ha tardat un poc perquè també el president de la Diputació, pues, té molta faena que fer, estem en tota la reconstrucció, però al final l'important era, eh, primer, nosaltres sempre hem mantés un respecte institucional a totes les administracions, val? Tant a,"
+    },
+    {
+      "start": 14805.1,
+      "end": 14814.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "eh, de fet, quan vàrem fer l'acte de, famós, que n'hi ha hagut moltes crítiques pel tema de, o algunes crítiques pel tema de de la DANA,"
+    },
+    {
+      "start": 14814.1,
+      "end": 14822.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "vàrem convidar a totes les administracions per a parlar, a la Generalitat Valenciana, a la Diputació Provincial, al Govern d'Espanya, i va vindre el que va voler."
+    },
+    {
+      "start": 14822.1,
+      "end": 14827.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "Si no va vindre més gent a parlar en representació, en contra de les teories d'algun partit, que també les tenien, val?"
+    },
+    {
+      "start": 14827.1,
+      "end": 14831.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "De la Generalitat, perquè no va voler, podria haver vingut el president o el que haguera volgut, val?"
+    },
+    {
+      "start": 14831.1,
+      "end": 14834.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "Eh, dic, de estos puestos, val?"
+    },
+    {
+      "start": 14834.1,
+      "end": 14837.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "La Diputació amb nosaltres sempre ha tingut una relació bona,"
+    },
+    {
+      "start": 14837.1,
+      "end": 14844.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "vull dir-ho aixina, en un sentit o en un altre, i estem agraïts en la part que ens toca perquè, ademés dels fondos, eh, de la Diputació, que són importants,"
+    },
+    {
+      "start": 14844.1,
+      "end": 14851.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "és veritat que veníem de l'altra legislatura, perquè els fondos ja venien d'abans, no són nous, però en eixe sentit els fondos s'han complit, no tinc res que dir,"
+    },
+    {
+      "start": 14851.1,
+      "end": 14857.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "i han complit en temps i forma en tot lo que tenien que fer, val?"
+    },
+    {
+      "start": 14857.1,
+      "end": 14861.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "Ara bé, sí que n'hi ha un tema que nosaltres pensàvem que, eh, bueno, està ahí pendent,"
+    },
+    {
+      "start": 14861.1,
+      "end": 14865.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "que era repassar totes les infraestructures com estan."
+    },
+    {
+      "start": 14865.1,
+      "end": 14869.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "Per exemple, temes importants, pues, la tres-cents-setanta,"
+    },
+    {
+      "start": 14869.1,
+      "end": 14875.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "que és la que estan fent ara, pues, tenim un problema en la en la"
+    },
+    {
+      "start": 14875.1,
+      "end": 14881.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "en la torre, val? Eh, de moment, possiblement la obriran en la torre perquè ho permeten legalment, hasta que Red Eléctrica la puga portar i ja tinguem els expropiats,"
+    },
+    {
+      "start": 14881.1,
+      "end": 14888.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "perquè afecta al huitanta per cent de la de la de la electricitat que donem a València."
+    },
+    {
+      "start": 14888.1,
+      "end": 14894.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "Per tant, és una una línia molt important i no poden jugar en ella i, per tant, va un poc retrasat i, per tant, eixa eixa carretera pensem"
+    },
+    {
+      "start": 14894.1,
+      "end": 14901.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "que en temps, pràcticament, dos o tres mesos se podrà inaugurar i, sobretot, per als veïns nostres, per als veïns que es fan, val?"
+    },
+    {
+      "start": 14901.1,
+      "end": 14905.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "Que és important. Després, la carretera de Sant Antoni,"
+    },
+    {
+      "start": 14905.1,
+      "end": 14911.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "que sabeu que han fet una rotonda, estan fent una rotonda que afecta a l'Eliana, que eixa no la treballa Riba-roja, la treballa l'Eliana, per tant, però ens afecta,"
+    },
+    {
+      "start": 14911.1,
+      "end": 14917.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "i serà una bona entrada i eixida per al Club de la Barreta, per a tots els veïns nostres d'allí, que és important."
+    },
+    {
+      "start": 14917.1,
+      "end": 14923.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "Després, estem també en un treball de manteniment de Santa Rosa, de"
+    },
+    {
+      "start": 14923.1,
+      "end": 14929.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "d'emmurallament de com passen els cotxes, que també estem col·laborant."
+    },
+    {
+      "start": 14929.1,
+      "end": 14933.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "Després, un tema importantíssim, que tenim bones notícies,"
+    },
+    {
+      "start": 14933.1,
+      "end": 14938.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "és de la rotonda de anar entrar a la Reva i distribució al polígon."
+    },
+    {
+      "start": 14938.1,
+      "end": 14943.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "Pues tot això hem repassat un poquetet. També hem repassat lo que és lo que el desvio,"
+    },
+    {
+      "start": 14943.1,
+      "end": 14949.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "diríem, de les escoletes a la cooperativa,"
+    },
+    {
+      "start": 14949.1,
+      "end": 14953.1,
+      "speaker": "c24/SPEAKER_01",
+      "text": "que és molt important també, i n'hi han notícies positives de col·laboració."
+    },
+    {
+      "start": 15000,
+      "end": 15004.9,
+      "speaker": "c25/SPEAKER_00",
+      "text": "Ja sé que els terminis sempre tarden un poquet, però tot està encarrilat."
+    },
+    {
+      "start": 15004.9,
+      "end": 15011.4,
+      "speaker": "c25/SPEAKER_00",
+      "text": "Aleshores, jo en eixe sentit, en quant a infraestructures, segurament anem en la línia adequada, en Sanitat n'hi ha bon rotllo, que dic jo,"
+    },
+    {
+      "start": 15011.4,
+      "end": 15014.8,
+      "speaker": "c25/SPEAKER_00",
+      "text": "en la Diputació també, i en el president també, val?"
+    },
+    {
+      "start": 15014.8,
+      "end": 15018.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "Sí que és veritat, pues, que el que no plora no mama, i quan un va, pues sempre plora."
+    },
+    {
+      "start": 15018.1,
+      "end": 15021.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "Què ha plorat? Pues, bueno, li he dit que lo que puga ser, anem a veure,"
+    },
+    {
+      "start": 15021.1,
+      "end": 15028.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "perquè n'hi han convenis singulars, n'hi han setanta mil coses que fer en el poble, les sabeu, i tot lo que ajude a que vinga serà bona."
+    },
+    {
+      "start": 15028.1,
+      "end": 15030.5,
+      "speaker": "c25/SPEAKER_00",
+      "text": "Si se pot, pues espere que sí,"
+    },
+    {
+      "start": 15030.5,
+      "end": 15034.5,
+      "speaker": "c25/SPEAKER_00",
+      "text": "i si no se pot, pues complirem lo que tenim promés, que és lo important."
+    },
+    {
+      "start": 15034.5,
+      "end": 15039.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "Aixina és que jo he agraït el to i la col·laboració del president,"
+    },
+    {
+      "start": 15039.1,
+      "end": 15041.4,
+      "speaker": "c25/SPEAKER_00",
+      "text": "i en eixe sentit no tinc més que dir."
+    },
+    {
+      "start": 15041.4,
+      "end": 15048.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "Hem demanat també una reunió en el president nou, en Juanfran, o Juan Pere, o Llorca,"
+    },
+    {
+      "start": 15048.1,
+      "end": 15051.4,
+      "speaker": "c25/SPEAKER_00",
+      "text": "el conec personalment perquè estem els dos de portaveus,"
+    },
+    {
+      "start": 15051.4,
+      "end": 15055.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "esperem que ell o el vicepresident ens atenga, n'hi ha una presidència de,"
+    },
+    {
+      "start": 15055.1,
+      "end": 15057.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "una vicepresidència, diríem,"
+    },
+    {
+      "start": 15057.1,
+      "end": 15100.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "per a parlar de el centre de salut, de les inversions que ens queden. Ojalá també tinguem bones notícies, però en eixe sentit hem vist a Alberto, estava allí i l'hem saludat, val? Passava i, bueno, i les relacions sempre són institucionals i bones, val? Que és lo important. Què m'agradaria a mi? Pues que tot lo que hem, com sempre hem dit, que tot lo que ens puguen ajudar ens ajuden, però sí que he vist que hui en el debat, pues eixe m'ha quedat un poc desabut, els nou milions, perquè no crec que siga, no crec, no, però com tenim aprofite que el Pisuerga pasa por, pero pasa por Valladolid, no? En el sentit que, bueno, esperem que lo que quede de legislatura, pues totes les subvencions que puguen arribar, pues tots estiguen d'acord. I podem discutir si van ací o van allà, quan se puga discutir. Jo invite a tot el món a que parle en la reconstrucció, José, que és el que està coordinant, en Urbanisme i en Sanitat, fer tot lo possible i per a que ens isca bé, som molts contractes, n'hi ha molta faena que fer, n'hi ha molta faena, ho sabeu, perquè no som nosaltres, tots els pobles de la comarca. Aixina que, si no n'hi ha res més, gràcies i alcem el ple al públic."
+    },
+    {
+      "start": 15100.1,
+      "end": 15101.8,
+      "speaker": "c25/SPEAKER_01",
+      "text": "Jo, jo."
+    },
+    {
+      "start": 15101.8,
+      "end": 15104.8,
+      "speaker": "c25/SPEAKER_00",
+      "text": "Ah, Teresa, no te n'havia vist, disculpa."
+    },
+    {
+      "start": 15104.8,
+      "end": 15105.8,
+      "speaker": "c25/SPEAKER_01",
+      "text": "Teresa."
+    },
+    {
+      "start": 15105.8,
+      "end": 15108.8,
+      "speaker": "c25/SPEAKER_02",
+      "text": "Bona nit. El senyor alcalde tindria que saber que quan se parla d'animals,"
+    },
+    {
+      "start": 15108.8,
+      "end": 15110.8,
+      "speaker": "c25/SPEAKER_00",
+      "text": "Sí, ah, és que no te n'havia vist, Teresa."
+    },
+    {
+      "start": 15110.8,
+      "end": 15112.8,
+      "speaker": "c25/SPEAKER_02",
+      "text": "Teresa ve a parlar."
+    },
+    {
+      "start": 15112.8,
+      "end": 15114.8,
+      "speaker": "c25/SPEAKER_00",
+      "text": "Però és que no te n'havia vist, Teresa."
+    },
+    {
+      "start": 15114.8,
+      "end": 15119.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "Però és que, però és que no tenen veu, val?"
+    },
+    {
+      "start": 15119.1,
+      "end": 15122.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "En primer lloc, agrair-li a José Manuel"
+    },
+    {
+      "start": 15122.1,
+      "end": 15126.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "que no ha rebutjat eixa moció i que ha defensat"
+    },
+    {
+      "start": 15126.1,
+      "end": 15131.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "els drets de tots els animals com a éssers sentents, val?"
+    },
+    {
+      "start": 15131.1,
+      "end": 15135.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "No només els domèstics,"
+    },
+    {
+      "start": 15135.1,
+      "end": 15142.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "i que, per cert, quan parlem de mascotes, mascotes, pues alguns per a nosaltres no són mascotes, és algo més que mascotes."
+    },
+    {
+      "start": 15142.1,
+      "end": 15147.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "El llenguatge no verbal també diu molt, senyor alcalde."
+    },
+    {
+      "start": 15147.1,
+      "end": 15152.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "A vosté el tema de lo dels animals de sempre li ha, no li ha agradat, val?"
+    },
+    {
+      "start": 15152.1,
+      "end": 15157.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "I de fet, hui quan anava eixa moció, se la n'anava a votar i de fet li ha donat un poquet de risa perquè se la s'ha votat."
+    },
+    {
+      "start": 15157.1,
+      "end": 15161.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "Sé que a vosté este tema li interessa molt poc."
+    },
+    {
+      "start": 15161.1,
+      "end": 15166.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "Però el tema que estava dient José Manuel de lo dels bous,"
+    },
+    {
+      "start": 15166.1,
+      "end": 15172.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "vosté ha parlat de que Xiva, Vilamarxant, és de veres, tenen tradició,"
+    },
+    {
+      "start": 15172.1,
+      "end": 15175.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "val? Tenen tradició de bous al carrer."
+    },
+    {
+      "start": 15175.1,
+      "end": 15179.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "Ací a Riba-roja no n'hi havia tradició."
+    },
+    {
+      "start": 15179.1,
+      "end": 15187.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "I, sin embargo, s'ha consentit no sols el tema dels bous al carrer i les vaquetes, sinó també del bou embolat."
+    },
+    {
+      "start": 15187.1,
+      "end": 15190.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "I això és una barbaritat."
+    },
+    {
+      "start": 15190.1,
+      "end": 15198.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "I això què passa? Un ajuntament, que consentix que un ajuntament que, en teoria, és d'esquerres,"
+    },
+    {
+      "start": 15198.1,
+      "end": 15202.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "progressista, a mi em dol moltíssim."
+    },
+    {
+      "start": 15202.1,
+      "end": 15206.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "Ja sé que l'anterior alcalde també era molt taurí, i que a sa mare i vosté també,"
+    },
+    {
+      "start": 15206.1,
+      "end": 15212.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "però està bé que ho digam, perquè hi ha que progressar i de fet, i de fet,"
+    },
+    {
+      "start": 15212.1,
+      "end": 15217.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "en el els segles anteriors els negres tenien que estar segregats,"
+    },
+    {
+      "start": 15217.1,
+      "end": 15221.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "en acabant les dones no podien votar i se va avançant."
+    },
+    {
+      "start": 15221.1,
+      "end": 15229.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "I en el tema dels animals no tenen que parar-se únicament en lo que ens dona vots de, ai, què bé lo del benestar animal,"
+    },
+    {
+      "start": 15229.1,
+      "end": 15233.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "que en el, crec que en l'ordenança aquella del, no sé si al dos mil disset, una cosa aixina,"
+    },
+    {
+      "start": 15233.1,
+      "end": 15238.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "vàrem presentar al·legacions Esquerra Unida i Podem,"
+    },
+    {
+      "start": 15238.1,
+      "end": 15244.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "i llavors no era Unides Podem, crec que era Podem o Podem o no sé com es deia, val? I"
+    },
+    {
+      "start": 15244.1,
+      "end": 15249.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "llavors vàrem fer, vàrem fer unes al·legacions"
+    },
+    {
+      "start": 15249.1,
+      "end": 15254.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "demanant que se, que s'eliminara el tema dels bous ací i algunes coses més, val?"
+    },
+    {
+      "start": 15254.1,
+      "end": 15257.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "No vàrem fer vostés gens de cas."
+    },
+    {
+      "start": 15257.1,
+      "end": 15266.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "Val, cadascú té el seu criteri i com té majoria absoluta, pues faran lo que vullguen, i els demés podrem dir lo que siga i podrem votar a qui ens done la gana."
+    },
+    {
+      "start": 15266.1,
+      "end": 15272.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "Però en el tema de lo dels animals, ja que he dit això i li agraïa a José Manuel,"
+    },
+    {
+      "start": 15272.1,
+      "end": 15274.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "també tinc que dir"
+    },
+    {
+      "start": 15274.1,
+      "end": 15278.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "que el tema de l'avanç"
+    },
+    {
+      "start": 15278.1,
+      "end": 15281.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "de lo dels gats"
+    },
+    {
+      "start": 15281.1,
+      "end": 15284.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "i les colònies i les adopcions,"
+    },
+    {
+      "start": 15284.1,
+      "end": 15286.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "això no és mèrit d'este Ajuntament."
+    },
+    {
+      "start": 15286.1,
+      "end": 15292.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "Això és mèrit de les associacions que han estat,"
+    },
+    {
+      "start": 15292.1,
+      "end": 15297.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "fent les associacions precisament per a protegir-los i poder tindre la subvenció de l'Ajuntament."
+    },
+    {
+      "start": 15297.1,
+      "end": 15302.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "Que, per cert, en els pressupostos del vint-i-dos"
+    },
+    {
+      "start": 15302.1,
+      "end": 15308.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "hi havien unes quantitats dedicades a això i no se varen convocar les subvencions,"
+    },
+    {
+      "start": 15308.1,
+      "end": 15314.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "i no se'n va entregar ninguna quantitat de diners a les, a les, a les associacions,"
+    },
+    {
+      "start": 15314.1,
+      "end": 15317.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "que han ficat diners de la nostra butxaca."
+    },
+    {
+      "start": 15317.1,
+      "end": 15320.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "I que ara no és qüestió de subvencions,"
+    },
+    {
+      "start": 15320.1,
+      "end": 15327.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "que molt bé que hagem fet el ple nou i que abans que la vàrem fer perquè tingueren de seguida la subvenció i diuen que ja se la va tindre,"
+    },
+    {
+      "start": 15327.1,
+      "end": 15331.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "però que no és tema de subvencions, és obligació de l'Ajuntament, val? Que ho tinguen clar que és obligació."
+    },
+    {
+      "start": 15331.1,
+      "end": 15333.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "I, per altra banda, vull dir"
+    },
+    {
+      "start": 15333.1,
+      "end": 15337.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "que lo de la fira animalista, que al senyor de Compromís li fa tanta il·lusió,"
+    },
+    {
+      "start": 15337.1,
+      "end": 15342.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "pues també li podria fer il·lusió ajudar en el tema de les colònies, de les associacions,"
+    },
+    {
+      "start": 15342.1,
+      "end": 15346.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "és que lo de les fires ens agrada molt en este poble, les festes,"
+    },
+    {
+      "start": 15346.1,
+      "end": 15347.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "val?"
+    },
+    {
+      "start": 15347.1,
+      "end": 15351.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "I, per últim, dir una cosa que pensava que mai en la vida la diria,"
+    },
+    {
+      "start": 15351.1,
+      "end": 15355.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "val? Perquè si n'hi ha un tono, jo sóc poc xilloneta per a parlar, perquè tinc eixe, eixe to,"
+    },
+    {
+      "start": 15355.1,
+      "end": 15356.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "però"
+    },
+    {
+      "start": 15356.1,
+      "end": 15360.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "el respecte, no n'hi ha que faltar al respecte."
+    },
+    {
+      "start": 15360.1,
+      "end": 15362.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "I jo veig que açò"
+    },
+    {
+      "start": 15362.1,
+      "end": 15363.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "és, vamos,"
+    },
+    {
+      "start": 15363.1,
+      "end": 15368.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "una forma de parlar-se, i lo que dic jo que mai pensava que ho podria dir és que al senyor representant de Vox,"
+    },
+    {
+      "start": 15368.1,
+      "end": 15373.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "que estarem tota la vida enfrontats ideològicament,"
+    },
+    {
+      "start": 15373.1,
+      "end": 15376.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "xapó per la forma de parlar."
+    },
+    {
+      "start": 15376.1,
+      "end": 15381.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "I tampoc sé per què, quan parleu en ell, li parleu en castellà, perquè ell ja entén el valencià."
+    },
+    {
+      "start": 15381.1,
+      "end": 15387.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "Llavors, la pregunta era si va a fer lo possible per a que no n'hi isquen, per lo menos, bous embolats."
+    },
+    {
+      "start": 15387.1,
+      "end": 15393.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "I l'altra pregunta, que no sé si és per a José Ángel o per a la regidora de Benestar Animal,"
+    },
+    {
+      "start": 15393.1,
+      "end": 15403.1,
+      "speaker": "c25/SPEAKER_02",
+      "text": "els diners del vint-i-dos que anaven per als animals, per als gats, a on estan o si se van a recuperar? Moltes gràcies."
+    },
+    {
+      "start": 15403.1,
+      "end": 15407.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "Bueno, després de la pregunta exposició que has fet."
+    },
+    {
+      "start": 15407.1,
+      "end": 15412.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "Bueno, ja saps que tenim diferències abismals en el pensament i en altres coses."
+    },
+    {
+      "start": 15412.1,
+      "end": 15416.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "Des del respecte, no compartim part de lo que tu estàs dient."
+    },
+    {
+      "start": 15416.1,
+      "end": 15421.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "I vull dir-te només que, bueno, n'hi ha majoria, però n'hi ha un tripartit,"
+    },
+    {
+      "start": 15421.1,
+      "end": 15425.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "i acordarem uns acords polítics, entre ells, que els bous no es tocaven."
+    },
+    {
+      "start": 15425.1,
+      "end": 15429.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "Entre, sí, sí, sí, sí, sí, sí, perdona, que tu no estaves, però jo sí."
+    },
+    {
+      "start": 15429.1,
+      "end": 15435.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "En els acords polítics del Botànic, del del Ateneu, s'acordà això."
+    },
+    {
+      "start": 15435.1,
+      "end": 15438.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "I això, Espanya funciona per acords i no per desacords."
+    },
+    {
+      "start": 15438.1,
+      "end": 15442.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "I hem avançat moltíssim, no sols per les associacions,"
+    },
+    {
+      "start": 15442.1,
+      "end": 15447.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "sinó perquè hi ha hagut polítiques que no existien abans, que han pres en compte a les associacions,"
+    },
+    {
+      "start": 15447.1,
+      "end": 15451.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "perquè si haguera estat fa deu anys, ningú t'haguera fet cas, que no te feia cas ningú."
+    },
+    {
+      "start": 15451.1,
+      "end": 15455.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "Exceptat quan sí que te quedaven els bous, que tots te feien cas, tot el món."
+    },
+    {
+      "start": 15455.1,
+      "end": 15459.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "Però quan han deixat de fer-te cas els bous, és que governant ni te fan ni cas."
+    },
+    {
+      "start": 15459.1,
+      "end": 15460.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "Sí, sí, això és aixina."
+    },
+    {
+      "start": 15460.1,
+      "end": 15463.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "Perquè quan un diu una cosa, té que escoltar la otra."
+    },
+    {
+      "start": 15463.1,
+      "end": 15466.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "I el to, pues va en referència del calor del debat polític."
+    },
+    {
+      "start": 15466.1,
+      "end": 15470.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "Per tant, ací no hi ha hagut cap d'insult, n'hi ha un to, pot agradar més, pot agradar menys,"
+    },
+    {
+      "start": 15470.1,
+      "end": 15474.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "val? I cadascú es posa lo que creu convenient."
+    },
+    {
+      "start": 15474.1,
+      "end": 15478.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "No s'ha faltat el respecte a ningú i és veritat, pues, que la batalla política,"
+    },
+    {
+      "start": 15478.1,
+      "end": 15481.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "bu, vestit en els Corts, allò ja és, ahí s'insulten i diuen de tot."
+    },
+    {
+      "start": 15481.1,
+      "end": 15485.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "Per tant, agraïsc la teua aportació,"
+    },
+    {
+      "start": 15485.1,
+      "end": 15488.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "saps que, efectivament, estem funcionant"
+    },
+    {
+      "start": 15488.1,
+      "end": 15490.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "en tots els col·lectius,"
+    },
+    {
+      "start": 15490.1,
+      "end": 15493.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "que anem a fer una fira que no existia,"
+    },
+    {
+      "start": 15493.1,
+      "end": 15496.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "que van a estar aquelles persones que volen col·laborar"
+    },
+    {
+      "start": 15496.1,
+      "end": 15498.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "i que és un colp més per a dalt."
+    },
+    {
+      "start": 15498.1,
+      "end": 15501.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "Jo sempre he sigut, ho he de dir moltes vegades en privat,"
+    },
+    {
+      "start": 15501.1,
+      "end": 15504.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "i això de la cullereta de café, no de la sopera."
+    },
+    {
+      "start": 15504.1,
+      "end": 15507.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "Perquè quan tu dones la cullera de la sopera, s'atraganten."
+    },
+    {
+      "start": 15507.1,
+      "end": 15511.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "I la cullereta de café, tot va poquet a poquet cap a dins. I això aconseguirem."
+    },
+    {
+      "start": 15511.1,
+      "end": 15515.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "Aixina que, gràcies als que, no, acabe, acabe, acabe la pregunta, acabe."
+    },
+    {
+      "start": 15515.1,
+      "end": 15518.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "Dir que les subvencions del vint-i-dos ja,"
+    },
+    {
+      "start": 15518.1,
+      "end": 15521.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "no podem fer res, si n'hi haguera un fallo, ja l'explicarem,"
+    },
+    {
+      "start": 15521.1,
+      "end": 15526.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "però seguim en les polítiques d'animals de protecció i de respecte"
+    },
+    {
+      "start": 15526.1,
+      "end": 15530.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "absolutament a les tradicions i a allò que vol Espanya en el seu conjunt,"
+    },
+    {
+      "start": 15530.1,
+      "end": 15535.1,
+      "speaker": "c25/SPEAKER_00",
+      "text": "que sempre hem dit que un municipi no té que anar a part d'una llei, aixina que lo que vulguen en el Parlament. Gràcies i bona nit."
     }
   ],
   "rows": [
@@ -12695,6 +14081,22 @@
         }
       ],
       "namesIndividual": true,
+      "weak": false
+    },
+    {
+      "label": "c25/SPEAKER_02",
+      "bloc": "PSOE",
+      "slug": "teresa-pozuelo-martin",
+      "heardAs": "Teresa",
+      "evidence": [
+        {
+          "spokenBy": "c25/SPEAKER_00",
+          "at": 15109,
+          "quote": "Sí, ah, és que no te n'havia vist, Teresa",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": false,
       "weak": false
     }
   ],
@@ -13003,11 +14405,51 @@
       "label": "c23/SPEAKER_04",
       "reason": "relation-contradicted",
       "detail": "turn-grant, but 423.5s is followed by SPEAKER_00"
+    },
+    {
+      "label": "c24/SPEAKER_00",
+      "reason": "relation-contradicted",
+      "detail": "turn-grant, but 86.1s is followed by SPEAKER_03"
+    },
+    {
+      "label": "c24/SPEAKER_01",
+      "reason": "relation-contradicted",
+      "detail": "reply, but 321.1s follows SPEAKER_05"
+    },
+    {
+      "label": "c24/SPEAKER_02",
+      "reason": "unresolvable",
+      "detail": "no name in the cited quote and the party is not single-seat"
+    },
+    {
+      "label": "c24/SPEAKER_03",
+      "reason": "unresolvable",
+      "detail": "no name in the cited quote and the party is not single-seat"
+    },
+    {
+      "label": "c24/SPEAKER_04",
+      "reason": "unresolvable",
+      "detail": "no name in the cited quote and the party is not single-seat"
+    },
+    {
+      "label": "c24/SPEAKER_05",
+      "reason": "unresolvable",
+      "detail": "heard \"Paco\" matches nobody"
+    },
+    {
+      "label": "c25/SPEAKER_00",
+      "reason": "relation-contradicted",
+      "detail": "reply, but 146s follows SPEAKER_02"
+    },
+    {
+      "label": "c25/SPEAKER_01",
+      "reason": "unresolvable",
+      "detail": "no name in the cited quote and the party is not single-seat"
     }
   ],
   "stats": {
     "chunksExpected": 27,
-    "chunksTranscribed": 22,
+    "chunksTranscribed": 24,
     "failedChunks": [
       {
         "chunk": 7,
@@ -13022,7 +14464,7 @@
       {
         "chunk": 20,
         "why": "covered 73% (floor 85%)",
-        "attempts": 1,
+        "attempts": 2,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
           "floor": 0.85,
@@ -13032,33 +14474,25 @@
       {
         "chunk": 22,
         "why": "covered 48% (floor 85%)",
-        "attempts": 1,
+        "attempts": 2,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
           "floor": 0.85,
           "thinking": "low"
         }
-      },
-      {
-        "chunk": 24,
-        "why": "never attempted (call budget spent; resumes next run)"
-      },
-      {
-        "chunk": 25,
-        "why": "never attempted (call budget spent; resumes next run)"
       }
     ],
-    "labelsSeen": 24,
-    "rowsAccepted": 15,
-    "rowsRejected": 61,
+    "labelsSeen": 9,
+    "rowsAccepted": 16,
+    "rowsRejected": 69,
     "rejectedBy": {
-      "relation-contradicted": 25,
-      "unresolvable": 29,
+      "relation-contradicted": 28,
+      "unresolvable": 34,
       "ambiguous": 5,
       "evidence-speaker-mismatch": 2
     },
-    "attemptedThisRun": 9,
-    "apiCalls": 16,
-    "coverage": 0.8036280196125333
+    "attemptedThisRun": 4,
+    "apiCalls": 9,
+    "coverage": 0.8849632265008376
   }
 }

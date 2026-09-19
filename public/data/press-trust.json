@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-19T04:50:50.074Z",
+  "generatedAt": "2026-09-19T07:48:53.317Z",
   "windowDays": 30,
   "articles": [
     {
@@ -795,28 +795,11 @@
         "localCoverage": true,
         "datedArticle": true,
         "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": true,
+        "corroboratedAcrossOutlets": false,
         "factualClaimsPresent": false,
         "opinionFraction": 0
       },
-      "score": 3
-    },
-    {
-      "articleId": "1t8kbao",
-      "articleFingerprint": "1czgd5z",
-      "outlet": "Valencia Plaza",
-      "outletHost": "valenciaplaza.com",
-      "url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxNeHI4OWthbHJIQUxCRWFiZ2N1S0xZRHdFTHQ1LXhXaXRYamwwQ1JTWmd0dEtiZ29rZnhFd3JKU1lVMWVtam5XcVV5QUdpMHVyWUpBdHF1RFBPcGVDZ2plS3laR3dkOXlwRHA5a2lHVVgwWDItZWZ1NjRKekx1WWV6c3dXUktnWF9rYnk2anVELXpGTGtZZVk4RVJNd0Jkcll3b09vaS1kMWtyZXlGdHVDdng2U0g5Z203YkdYeTlCSTJOTXByUjBWaVFqeXhKSzhnMm9LaTg2YkV6NEJjejFHeXRnajFLRnVoRnFXUk50VTB5UGM?oc=5",
-      "date": "2026-08-20T07:00:00.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": true,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 3
+      "score": 2
     }
   ],
   "outlets": [
@@ -831,7 +814,7 @@
         "sin-datos": 40,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.75,
+      "meanTrustScore": 2.7,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -954,25 +937,10 @@
       "meanTrustScore": 1,
       "verifiedRatio": null,
       "contradictedRatio": null
-    },
-    {
-      "outlet": "Valencia Plaza",
-      "outletHost": "valenciaplaza.com",
-      "articleCount": 1,
-      "verdictCounts": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      },
-      "meanTrustScore": 3,
-      "verifiedRatio": null,
-      "contradictedRatio": null
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "553831f06b5f",
+    "plenos-agendas.json": "75d3aab0d86f",
     "press-claims-verified.json": "972b0280a9e7",
     "press.json": "fbdd65249ee0",
     "promises.json": "d18811c11210"
