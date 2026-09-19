@@ -358,6 +358,12 @@ post an update claiming to be any account, the admin included. `/health` reports
 `webhookAuthenticated`; if the bot stops answering right after a deploy, check that
 field first — a registered secret that differs from the required one mutes the bot.
 
+Outside a private chat it only answers the public commands (`COMANDOS_PUBLICOS`,
+`bot/src/services/solo-en-privado.ts`): until 2026-09-17 every command replied wherever
+it was typed, so an admin's `/curar` in a group showed the whole unreviewed draft to
+everyone there, and a resident's `/mis` their complaints. Group joining is disabled in
+BotFather as well; the guard keeps that true if the setting is ever switched back on.
+
 Besides the webhook, the bot runs its own hourly ticks. One anonymizes the queja
 photos on the volume (`QUEJAS_PHOTOS_DIR`) and needs `GEMINI_API_KEY`: without the
 key it holds every photo, and its boot line says so. On a confirmed `/olvidar` the
