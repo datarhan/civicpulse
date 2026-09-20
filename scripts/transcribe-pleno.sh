@@ -604,12 +604,15 @@ elif [ "$WHISPER_ENGINE" = "gemini" ]; then
         sleep "$BACKOFF"
       fi
       # The key goes in the 0600 config file, never on the command line —
-      # curl's argv is world-readable in the process table.
-      printf 'url = "https://generativelanguage.googleapis.com/v1beta/interactions?key=%s"\n' \
-        "$GEMINI_API_KEY" > "$CURL_AUTH_CONF"
+      # curl's argv is world-readable in the process table. And as a HEADER,
+      # not inside the url: a URL travels into error messages, redirects and
+      # proxy logs, which is how this key ended up committed to git on 2026-09-01.
+      # Same shape as the OPENAI_API_KEY branch above.
+      printf 'header = "x-goog-api-key: %s"\n' "$GEMINI_API_KEY" > "$CURL_AUTH_CONF"
       HTTP_CODE=$(curl -sS -o "$RESP_JSON" -w "%{http_code}" \
         --config "$CURL_AUTH_CONF" \
         --connect-timeout 30 --max-time 1800 \
+        https://generativelanguage.googleapis.com/v1beta/interactions \
         -H 'Content-Type: application/json' \
         --data-binary "@$REQ_JSON" 2>/dev/null || true)
       if [ "$HTTP_CODE" = "200" ]; then

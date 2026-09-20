@@ -231,10 +231,12 @@ async function main() {
       `[eval-transcribe] sending ${(readFileSync(clip).length / 1e6).toFixed(1)} MB to ${body.model}…`,
     )
     const res = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/interactions?key=${key}`,
+      // La clave en la cabecera, no en la URL: una URL acaba en el mensaje de un error
+      // o en el registro de un proxy, y así llegó esta clave a un commit el 1-09-2026.
+      'https://generativelanguage.googleapis.com/v1beta/interactions',
       {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'x-goog-api-key': key },
         body: JSON.stringify(body),
         signal: AbortSignal.timeout(1_800_000),
       },
