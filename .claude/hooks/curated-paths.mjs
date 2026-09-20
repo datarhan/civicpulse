@@ -27,7 +27,7 @@
  * review never does. Matching a normalized file path is exact, so it denies.
  * Scanning a shell command is inference, so it asks.
  */
-import { existsSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { basename, normalize } from 'node:path'
 
 /**
@@ -101,7 +101,7 @@ export const canonical = (p) =>
 // this repo just fixed on /eficiencia, where a caveat excused a figure with a
 // motive that was not the real one. What IS true of all of them is the part
 // that matters: the CLI is the validator and the audit trail.
-const denyCurated = (name) => ({
+const denyCurated = (name, sello = null) => ({
   decision: 'deny',
   reason:
     `${name} is curated: schema-validated, human-edited, and never written by ` +
@@ -110,16 +110,67 @@ const denyCurated = (name) => ({
     `Use instead:  ${CURATED[name]}\n\n` +
     `The CLI re-validates the whole snapshot before writing, so an invariant ` +
     `cannot silently slip. Shelling out to achieve the same edit is the same ` +
-    `bypass with extra steps. See docs/DATA_SOURCES.md.`,
+    `bypass with extra steps. See docs/DATA_SOURCES.md.` +
+    recordatorioDeSello(name, sello),
 })
 
+/**
+ * A file with a CLI gets its stamp moved by the CLI. A hand-edited one has
+ * nobody: the person applying the edit has to move it, and this message is what
+ * the session relays to that person — so this is where it has to be said.
+ *
+ * On 2026-09-17 (16f5ee62) the Hidraqua ficha in `sociedades.json` was corrected
+ * by hand, validated, and `generatedAt` stayed on 23 August. `check:stamps`
+ * caught it two days later, over Telegram; the first time was c66cf931 on
+ * `promises.json`. A guard that names the defect after the commit is a report,
+ * not a guard.
+ *
+ * Only for files that ARE hand-edited and DO carry a stamp, read off the file:
+ * the reason has to be true of every file it is shown for, and two hand-edited
+ * files (`eficiencia-preguntas`, `gazetteer-supplement`) carry none.
+ */
+const recordatorioDeSello = (name, sello) =>
+  sello && /hand-edit/.test(CURATED[name] ?? '')
+    ? `\n\nNo CLI owns ${name}, so NOTHING moves its stamp: whoever applies this ` +
+      `edit by hand must also set "${sello.clave}" (now ${sello.valor}) to the day ` +
+      `of the change, in the same commit — or, once the edit is committed, run ` +
+      `\`npm run restamp -- ${name} --motivo "…"\`, which moves the stamp and ` +
+      `nothing else and takes the date from that commit. Otherwise the published ` +
+      `file claims a date older than its own content and \`npm run check:stamps\` ` +
+      `reds the health digest until someone does. Say so when you hand the edit over.`
+    : ''
+
+/**
+ * Which field STAMPS this file's content: `composedAt` on a composed file,
+ * whose `generatedAt` is a lineage pointer, and `generatedAt` otherwise. Decided
+ * by reading the file, never from a list. `scripts/check-curated-stamps.ts`
+ * imports this one — a second copy of the rule would be the defect that opens
+ * docs/DATA_INTEGRITY.md.
+ */
+export function claveDelSello(obj) {
+  return typeof obj?.composedAt === 'string' && obj.composedAt ? 'composedAt' : 'generatedAt'
+}
+
+/** The stamp a file carries on disk, or null if it has none or cannot be read. */
+const selloEnDisco = (path, leer) => {
+  try {
+    const obj = JSON.parse(leer(path, 'utf8'))
+    const clave = claveDelSello(obj)
+    return typeof obj?.[clave] === 'string' && obj[clave] ? { clave, valor: obj[clave] } : null
+  } catch {
+    // Missing or unparsable: nothing to say about a stamp. The deny still fires.
+    return null
+  }
+}
+
 /** Write / Edit / NotebookEdit — exact path match, so it denies. */
-export const decide = (path, exists = existsSync) => {
+export const decide = (path, exists = existsSync, leer = readFileSync) => {
   if (!path) return null
   const p = canonical(path)
   const name = basename(p)
 
-  if (CURATED[name] && p.includes('public/data/')) return denyCurated(name)
+  if (CURATED[name] && p.includes('public/data/'))
+    return denyCurated(name, selloEnDisco(path, leer))
 
   if (p.includes('public/') && DRAFTY.test(name) && !exists(path)) {
     return {

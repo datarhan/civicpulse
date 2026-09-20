@@ -38,7 +38,7 @@ import { resolve } from 'node:path'
 // La lista canónica vive en el hook y es la que manda. Copiarla aquí es
 // exactamente el defecto que abre docs/DATA_INTEGRITY.md: seis pruebas
 // recitaron una forma y siguieron verdes mientras producción no casaba nada.
-import { CURATED } from '../.claude/hooks/curated-paths.mjs'
+import { CURATED, claveDelSello as claveDelSelloDelGuard } from '../.claude/hooks/curated-paths.mjs'
 
 const DATA = 'public/data'
 
@@ -74,10 +74,13 @@ function git(args: string[]): string {
  * Se decide LEYENDO EL FICHERO, no consultando una lista. Una tabla de
  * excepciones a mano dentro de un control contra el rancio se queda rancia
  * ella, que es el chiste que este repositorio ya ha contado dos veces.
+ *
+ * La regla vive en el guard (`curated-paths.mjs`) y aquí sólo se tipa: el guard
+ * la necesita para recordar el sello al entregar una edición a mano, y dos
+ * copias de una regla de una línea son la manera de que una se quede atrás.
  */
 export function claveDelSello(obj: unknown): 'composedAt' | 'generatedAt' {
-  const o = obj as { composedAt?: unknown } | null
-  return typeof o?.composedAt === 'string' && o.composedAt ? 'composedAt' : 'generatedAt'
+  return claveDelSelloDelGuard(obj) as 'composedAt' | 'generatedAt'
 }
 
 /**
@@ -206,6 +209,32 @@ function mirar(nombre: string): FilaSello {
   }
 }
 
+/**
+ * Qué hacer con un sello quieto — y tiene que ser algo que se PUEDA hacer.
+ *
+ * Decía «se arregla reescribiendo el fichero por su CLI … no editando la fecha a
+ * mano», y el 19-09-2026 eso le llegó a alguien por `sociedades.json`, que no
+ * tiene CLI: lo edita una persona vía PR. La edición a mano desde una sesión la
+ * deniega el guard. Las dos salidas del consejo estaban cerradas, y la que
+ * existe —`npm run restamp`, que nació de esta misma puerta— no salía nombrada.
+ *
+ * El comando va ESCRITO, con el fichero: mueve el sello y nada más, deriva la
+ * fecha del commit que cambió el contenido, respeta la granularidad del fichero
+ * y pide un motivo. Ver scripts/restamp-curated.ts.
+ */
+export function remedioDelSello(ficheros: string[]): string {
+  if (ficheros.length === 0) return ''
+  return (
+    `\n  El sello publicado es más viejo que el contenido que sella. Hay una puerta\n` +
+    `  para esto, que mueve el sello y NADA MÁS y pone la fecha del commit que\n` +
+    `  cambió el contenido:\n\n` +
+    ficheros.map((f) => `    npm run restamp -- ${f} --motivo "…"\n`).join('') +
+    `\n  Con --dry-run enseña lo que haría. No se arregla editando la fecha desde una\n` +
+    `  sesión —el guard lo deniega, y con razón— ni esperando a que la mueva un CLI\n` +
+    `  de contenido: los ficheros de edición humana no tienen ninguno.\n`
+  )
+}
+
 function main() {
   const filas = Object.keys(CURATED as Record<string, string>).map(mirar)
 
@@ -243,13 +272,7 @@ function main() {
     for (const f of filas.filter((r) => r.desenlace === 'sin-mirar')) {
       process.stdout.write(`  sin mirar     ${f.file.padEnd(34)} ${f.nota}\n`)
     }
-    if (malos.length > 0) {
-      process.stdout.write(
-        `\n  El sello publicado es más viejo que el contenido que sella. Se arregla\n` +
-          `  reescribiendo el fichero por su CLI (docs/DATA_SOURCES.md dice cuál), que\n` +
-          `  pone la fecha al escribir — no editando la fecha a mano.\n`,
-      )
-    }
+    process.stdout.write(remedioDelSello(malos.map((f) => f.file)))
   }
 
   process.exit(malos.length > 0 ? 1 : 0)
