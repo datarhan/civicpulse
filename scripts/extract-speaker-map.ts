@@ -32,6 +32,7 @@ import { redactSecrets } from '../src/scraper/redact-secrets'
 import {
   existsSync,
   mkdirSync,
+  mkdtempSync,
   readFileSync,
   writeFileSync,
   rmSync,
@@ -161,17 +162,52 @@ function sh(cmd: string, args: string[], opts: { input?: string } = {}): string 
       input: opts.input,
     })
   } catch (err) {
-    // `execFileSync` pone el argv COMPLETO en el mensaje, y el argv lleva
-    // `?key=<GEMINI_API_KEY>`. Ese mensaje se guarda como el `why` de un trozo
-    // fallido, así que el 1-sep-2026 la clave acabó comiteada en dos mapas de
-    // voces y empujada al remoto en tres ramas. El motivo se sigue guardando
-    // —sin él «no pude» se lee igual que «no había nada»—; lo que no viaja es
-    // el secreto. Ver src/scraper/redact-secrets.ts.
+    // `execFileSync` pone el argv COMPLETO en el mensaje, y el mensaje se guarda
+    // como el `why` de un trozo fallido: el 1-sep-2026 el argv llevaba
+    // `?key=<GEMINI_API_KEY>` y la clave acabó comiteada en dos mapas de voces y
+    // empujada al remoto en tres ramas. Desde el 20-09-2026 la clave ya no está en
+    // el argv —va en un fichero de cabeceras, ver `cabeceraConLaClave`—, así que
+    // esta limpieza es la segunda puerta y no la única: un secreto no puede
+    // sobrevivir a un mensaje de error, venga por donde venga. El motivo se sigue
+    // guardando, porque sin él «no pude» se lee igual que «no había nada».
+    // Ver src/scraper/redact-secrets.ts.
     const e = err as Error
     const clean = new Error(redactSecrets(e.message, [process.env.GEMINI_API_KEY]))
     clean.name = e.name
     throw clean
   }
+}
+
+/**
+ * La clave, en un fichero 0600 que curl lee con `-H @…`: ni en la URL ni en el argv.
+ *
+ * El argv de curl lo ve cualquiera con `ps`, y además viaja dentro del mensaje de
+ * `execFileSync` de aquí arriba; `redactSecrets` tapa lo segundo, esto quita lo
+ * primero. El fichero vive en un directorio temporal propio y se borra al terminar el
+ * proceso, salga como salga.
+ */
+let cabecerasCurl: string | null = null
+function cabeceraConLaClave(apiKey: string): string {
+  if (!cabecerasCurl) {
+    const dir = mkdtempSync(join(tmpdir(), 'cp-gemini-'))
+    cabecerasCurl = join(dir, 'cabeceras.txt')
+    writeFileSync(cabecerasCurl, `x-goog-api-key: ${apiKey}\n`, { mode: 0o600 })
+    const borrar = () => {
+      try {
+        rmSync(dir, { recursive: true, force: true })
+      } catch {
+        /* el temporal del sistema se limpia solo */
+      }
+    }
+    process.on('exit', borrar)
+    for (const senal of ['SIGINT', 'SIGTERM', 'SIGHUP'] as const) {
+      process.on(senal, () => {
+        borrar()
+        process.exit(1)
+      })
+    }
+  }
+  return `@${cabecerasCurl}`
 }
 
 /**
@@ -337,7 +373,9 @@ function transcribeChunk(
     '/dev/null',
     '-X',
     'POST',
-    `${BASE}/upload/v1beta/files?key=${apiKey}`,
+    `${BASE}/upload/v1beta/files`,
+    '-H',
+    cabeceraConLaClave(apiKey),
     '-H',
     'X-Goog-Upload-Protocol: resumable',
     '-H',
@@ -382,7 +420,9 @@ function transcribeChunk(
   let state = 'PROCESSING'
   for (let i = 0; i < 120 && state === 'PROCESSING'; i++) {
     spawnSync('sleep', ['3'])
-    state = JSON.parse(sh('curl', ['-s', `${BASE}/v1beta/${fileName}?key=${apiKey}`]))?.state ?? '?'
+    state =
+      JSON.parse(sh('curl', ['-s', `${BASE}/v1beta/${fileName}`, '-H', cabeceraConLaClave(apiKey)]))
+        ?.state ?? '?'
   }
   if (state !== 'ACTIVE') throw new Error(`uploaded file stuck in ${state}`)
 
@@ -413,7 +453,9 @@ function transcribeChunk(
       '3600',
       '-X',
       'POST',
-      `${BASE}/v1beta/models/${MODEL}:streamGenerateContent?alt=sse&key=${apiKey}`,
+      `${BASE}/v1beta/models/${MODEL}:streamGenerateContent?alt=sse`,
+      '-H',
+      cabeceraConLaClave(apiKey),
       '-H',
       'Content-Type: application/json',
       '--data-binary',
