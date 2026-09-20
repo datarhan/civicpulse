@@ -12,6 +12,7 @@ import { fmtDateLong, rellena } from '../lib/formatters'
 import { conHuecos } from '../lib/huecos'
 import { rotuloDe, useLocale } from '../i18n'
 import { CLAVE_RELACION } from '../scraper/relation-labels'
+import { diasDePlazo, plazoDeResolucion } from '../scraper/queja-router'
 import { DEPARTMENT_LABEL } from '../scraper/departments'
 
 const SINDIC_PORTAL = 'https://www.elsindic.com/es/presenta-una-queja'
@@ -41,9 +42,32 @@ function daysSince(iso) {
   return Math.floor(ms / (1000 * 60 * 60 * 24))
 }
 
-function plazoFor(category) {
-  if (category === 'transparencia') return 30
-  return 90
+/**
+ * El plazo máximo de resolución, leído del enrutador y no copiado de él.
+ *
+ * Esto eran dos números a mano —30 y 90— que repetían los de `profileFor`, y
+ * además los daban por días cuando la norma los fija en MESES: art. 21.3
+ * LPACAP «tres meses», art. 20 de la Ley 19/2013 «un mes». El art. 30.4 manda
+ * contar los meses de fecha a fecha, así que tres meses duran 90 o 91 días
+ * según cuándo empiecen y el contador se desviaba por ahí.
+ *
+ * Devuelve las dos cosas porque la ficha necesita las dos: el plazo se PUBLICA
+ * en meses, que es lo que dice la ley, y se CUENTA en los días que de verdad
+ * tiene esa queja.
+ */
+function plazoFor(category, registeredAt) {
+  const limite = plazoDeResolucion(category)
+  return {
+    limite,
+    dias: registeredAt ? diasDePlazo(limite, registeredAt) : null,
+  }
+}
+
+/** «3 meses» / «1 mes», con el catálogo poniendo las palabras. */
+function plazoHumano(t, limite) {
+  return limite.amount === 1
+    ? t('quejas.detalle.reloj.mes')
+    : rellena(t('quejas.detalle.reloj.meses'), { n: limite.amount })
 }
 
 function TimelineItem({ date, label, tone = 'neutral', detail, idioma }) {
@@ -277,9 +301,10 @@ export default function QuejaDetail() {
   const category = queja.service_code
   const categoria = rotuloDe(t, `quejas.categoria.${category}`, category)
   const estado = rotuloDe(t, `quejas.estado.${queja.status}`, queja.status)
-  const plazo = plazoFor(category)
+  const plazo = plazoFor(category, queja.registered_at)
   const registeredDays = daysSince(queja.registered_at)
-  const diasRestantes = registeredDays != null ? plazo - registeredDays : null
+  const diasRestantes =
+    registeredDays != null && plazo.dias != null ? plazo.dias - registeredDays : null
 
   // Synthetic timeline derived from the row's timestamps + state.
   const timeline = []
@@ -293,7 +318,11 @@ export default function QuejaDetail() {
   })
   if (queja.apoyos >= 10) {
     timeline.push({
-      date: queja.updated_datetime,
+      // `updated_datetime` es la última vez que la fila cambió por cualquier
+      // motivo, no cuándo llegó a los apoyos: en una queja ya registrada es la
+      // fecha del registro, puesta encima del hito anterior. Sólo coincide
+      // mientras ése siga siendo su estado, así que fuera de ahí no se fecha.
+      date: queja.status === 'apoyada_verificada' ? queja.updated_datetime : null,
       label: t('quejas.detalle.hito.verificada'),
       tone: 'civic',
       detail: rellena(t('quejas.detalle.hito.verificada.detalle'), { n: queja.apoyos }),
@@ -306,7 +335,7 @@ export default function QuejaDetail() {
       tone: 'civic',
       detail: rellena(t('quejas.detalle.hito.registrada.detalle'), {
         asiento: queja.registro_entry_number || '—',
-        n: plazo,
+        plazo: plazoHumano(t, plazo.limite),
       }),
     })
   }
@@ -560,7 +589,7 @@ export default function QuejaDetail() {
                 {t('quejas.detalle.reloj.plazoMaximo')}
               </div>
               <div style={{ fontSize: 'var(--fs-body)', fontWeight: 600, marginTop: 2 }}>
-                {rellena(t('quejas.detalle.reloj.dias'), { n: plazo })}
+                {plazoHumano(t, plazo.limite)}
               </div>
             </div>
             <div>

@@ -2,6 +2,7 @@ import type { Bot } from 'grammy'
 import type { Db } from '../db/client.ts'
 import { countApoyos, getQuejaViva, listEvents } from '../db/queries.ts'
 import { routeUsingLocalOfficials } from '../services/router.ts'
+import { plazoHumano } from '../../../src/scraper/queja-router.ts'
 import type { MyContext } from '../types.ts'
 
 function parseQuejaId(raw: string | undefined): string | null {
@@ -71,7 +72,7 @@ export function registerEstado(bot: Bot<MyContext>, db: Db) {
       .join('\n')
 
     const responsible = routing.concejalia.responsible
-    const plazo = routing.timeLimits.find((t) => t.kind === 'resolucion')?.days ?? 90
+    const plazo = routing.timeLimits.find((t) => t.kind === 'resolucion')
 
     const body =
       `🗂 *${q.id}* · ${q.category}\n` +
@@ -80,7 +81,7 @@ export function registerEstado(bot: Bot<MyContext>, db: Db) {
       `*Apoyos:* ${apoyos} / 10 para verificación\n` +
       `*Área:* ${routing.concejalia.area}\n` +
       (responsible ? `*Responsable político:* ${responsible.name} (${responsible.party})\n` : '') +
-      `*Plazo legal:* ${plazo} días (${routing.silencio === 'positivo' ? 'silencio positivo' : 'silencio negativo'})\n` +
+      `*Plazo legal:* ${plazo ? plazoHumano(plazo) : '—'} (${routing.silencio === 'positivo' ? 'silencio positivo' : 'silencio negativo'})\n` +
       (q.registro_entry_number
         ? `*Asiento:* \`${q.registro_entry_number}\`\n*Registrada:* ${formatDate(q.registered_at)}\n`
         : '*No registrada aún en sede.*\n') +

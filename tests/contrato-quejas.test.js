@@ -64,27 +64,29 @@ const LOTE = numero(
   /export function selectBatch\(db: Db, limit = (\d+)\)/,
   'el tamaño del lote',
 )
-const DIAS_GENERAL = numero(
+// Los plazos se leen YA en meses. Estaban escritos en el enrutador como 90 y
+// 30 días y aquí se dividían entre 30 para escribir la prosa, que es la misma
+// conversión equivocada dos veces: el art. 21.3 LPACAP dice «tres meses» y el
+// art. 30.4 manda contarlos de fecha a fecha, así que un mes no son 30 días
+// (#62). Ahora la fuente ya está en la unidad de la norma y no hay nada que
+// convertir.
+const MESES_GENERAL = numero(
   'src/scraper/queja-router.ts',
-  /const PROFILE_STANDARD[\s\S]*?resolucionDays: (\d+)/,
+  /const PROFILE_STANDARD[\s\S]*?resolucionMeses: (\d+)/,
   'el plazo general',
 )
-const DIAS_TRANSPARENCIA = numero(
+const MESES_TRANSPARENCIA = numero(
   'src/scraper/queja-router.ts',
-  /const PROFILE_TRANSPARENCIA[\s\S]*?resolucionDays: (\d+)/,
+  /const PROFILE_TRANSPARENCIA[\s\S]*?resolucionMeses: (\d+)/,
   'el plazo de transparencia',
 )
-const meses = (dias) => {
-  if (dias % 30 !== 0) throw new Error(`${dias} días no son meses enteros`)
-  return dias / 30
-}
 
 const METODOLOGIA = plano('src/pages/Metodologia.jsx')
 const QUEJAS = plano('src/pages/Quejas.jsx')
 
 describe('el contrato de las quejas dice lo que hace el código', () => {
   it('lee las cuatro cifras de donde viven (si no, no mide nada)', () => {
-    for (const n of [UMBRAL, LOTE, DIAS_GENERAL, DIAS_TRANSPARENCIA]) {
+    for (const n of [UMBRAL, LOTE, MESES_GENERAL, MESES_TRANSPARENCIA]) {
       expect(Number.isInteger(n) && n > 0).toBe(true)
     }
     // Y la tarjeta que se vigila existe: sin ella, «no dice nada falso» es gratis.
@@ -123,11 +125,11 @@ describe('el contrato de las quejas dice lo que hace el código', () => {
   })
 
   it('los plazos son los del enrutador', () => {
-    const general = meses(DIAS_GENERAL)
-    const transparencia = meses(DIAS_TRANSPARENCIA)
-    expect(METODOLOGIA).toContain(`${enLetra(general)} meses`)
-    expect(METODOLOGIA).toContain(`${enLetra(transparencia)} mes`)
-    expect(QUEJAS).toContain(`${general} meses legales (${transparencia} mes si es transparencia)`)
+    expect(METODOLOGIA).toContain(`${enLetra(MESES_GENERAL)} meses`)
+    expect(METODOLOGIA).toContain(`${enLetra(MESES_TRANSPARENCIA)} mes`)
+    expect(QUEJAS).toContain(
+      `${MESES_GENERAL} meses legales (${MESES_TRANSPARENCIA} mes si es transparencia)`,
+    )
   })
 
   it('la tarjeta «Estado» de /quejas no promete un escalado que nadie hace, ni un solo plazo', () => {
@@ -145,8 +147,8 @@ describe('el contrato de las quejas dice lo que hace el código', () => {
       /escalamos/i,
     )
     expect(estado, 'el plazo corre desde el registro').toContain('Desde ese registro')
-    expect(estado).toContain(`${enLetra(meses(DIAS_GENERAL))} meses`)
-    expect(estado).toContain(`${enLetra(meses(DIAS_TRANSPARENCIA))} mes`)
+    expect(estado).toContain(`${enLetra(MESES_GENERAL)} meses`)
+    expect(estado).toContain(`${enLetra(MESES_TRANSPARENCIA)} mes`)
   })
 })
 
@@ -182,8 +184,8 @@ describe('lo que el bot le dice al vecino dice lo mismo que las páginas', () =>
   })
 
   it('la bienvenida da los dos plazos del enrutador y no dice que el canal envía el lote', () => {
-    expect(INICIO).toContain(`${meses(DIAS_GENERAL)} meses`)
-    expect(INICIO).toContain(`${meses(DIAS_TRANSPARENCIA)} mes`)
+    expect(INICIO).toContain(`${MESES_GENERAL} meses`)
+    expect(INICIO).toContain(`${MESES_TRANSPARENCIA} mes`)
     expect(INICIO, 'el lote lo presenta una persona').not.toMatch(/enviamos el lote/i)
   })
 

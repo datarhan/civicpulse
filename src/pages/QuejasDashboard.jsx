@@ -1,15 +1,10 @@
 import { Link } from 'react-router-dom'
 import { Card, Pill, SectionHead } from '../components/Primitives'
-import {
-  useQuejas,
-  STATE_LABEL,
-  STATE_TONE,
-  CATEGORY_LABEL,
-  prettyNeighborhood,
-} from '../hooks/useQuejas'
+import { useQuejas, useEtiquetasDeQueja, STATE_TONE, prettyNeighborhood } from '../hooks/useQuejas'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { useT } from '../i18n'
+import { diasDePlazo, plazoDeResolucion } from '../scraper/queja-router'
 import { contadoresDeCargo } from '../lib/reloj-lpacap'
 
 const TELEGRAM_BOT_URL = 'https://t.me/munigraph_bot'
@@ -261,6 +256,7 @@ function SlaPanel({ quejas, officials }) {
 }
 
 function StateBreakdown({ byState, total }) {
+  const etiqueta = useEtiquetasDeQueja()
   if (total === 0) return null
   const order = [
     'capturada',
@@ -294,7 +290,7 @@ function StateBreakdown({ byState, total }) {
                     : tone === 'intel'
                       ? 'var(--civic)'
                       : 'var(--ink50)'
-          return <Bar key={s} label={STATE_LABEL[s] || s} n={n} max={max} color={color} />
+          return <Bar key={s} label={etiqueta.estado(s)} n={n} max={max} color={color} />
         })}
       </div>
     </Card>
@@ -302,6 +298,7 @@ function StateBreakdown({ byState, total }) {
 }
 
 function CategoryBreakdown({ byCategory }) {
+  const etiqueta = useEtiquetasDeQueja()
   const entries = Object.entries(byCategory || {}).sort((a, b) => b[1] - a[1])
   if (entries.length === 0) return null
   const max = Math.max(...entries.map((e) => e[1]))
@@ -310,7 +307,7 @@ function CategoryBreakdown({ byCategory }) {
       <SectionHead eyebrow="Qué se reporta" title="Categorías" />
       <div style={{ marginTop: 12 }}>
         {entries.map(([cat, n]) => (
-          <Bar key={cat} label={CATEGORY_LABEL[cat] || cat} n={n} max={max} color="var(--civic)" />
+          <Bar key={cat} label={etiqueta.categoria(cat)} n={n} max={max} color="var(--civic)" />
         ))}
       </div>
     </Card>
@@ -333,12 +330,20 @@ function NeighborhoodBreakdown({ byNeighborhood }) {
   )
 }
 
-function plazoForCategory(cat) {
-  if (cat === 'transparencia') return 30
-  return 90
+/**
+ * Los días que dura el plazo de ESA queja, leídos del enrutador.
+ *
+ * Eran los mismos 30 y 90 escritos a mano que tenía la ficha, y la norma los
+ * fija en meses (art. 21.3 LPACAP y art. 20 de la Ley 19/2013), que de fecha a
+ * fecha son 90 o 91 días según cuándo se registre. Aquí el número decide qué
+ * quejas se llaman urgentes, así que la desviación no es sólo un rótulo.
+ */
+function plazoForQueja(q) {
+  return diasDePlazo(plazoDeResolucion(q.service_code), q.registered_at)
 }
 
 function ReadyToEscalate({ items }) {
+  const etiqueta = useEtiquetasDeQueja()
   const now = Date.now()
   const urgent = (items || [])
     .filter(
@@ -350,7 +355,7 @@ function ReadyToEscalate({ items }) {
           q.status === 'silencio_negativo'),
     )
     .map((q) => {
-      const plazo = plazoForCategory(q.service_code)
+      const plazo = plazoForQueja(q)
       const regMs = new Date(q.registered_at).getTime()
       const ageDays = (now - regMs) / (1000 * 60 * 60 * 24)
       const pct = plazo > 0 ? ageDays / plazo : 0
@@ -414,7 +419,7 @@ function ReadyToEscalate({ items }) {
                   className="mono"
                   style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}
                 >
-                  {CATEGORY_LABEL[q.service_code] || q.service_code}
+                  {etiqueta.categoria(q.service_code)}
                   {q.concejalia_area ? ' · ' + q.concejalia_area : ''}
                   {' · plazo ' + plazo + ' días'}
                 </div>
@@ -442,6 +447,7 @@ function ReadyToEscalate({ items }) {
 }
 
 function TopPending({ items }) {
+  const etiqueta = useEtiquetasDeQueja()
   const pending = (items || [])
     .filter((q) =>
       ['capturada', 'apoyada_verificada', 'registrada', 'notificada_10d', 'en_tramite'].includes(
@@ -489,7 +495,7 @@ function TopPending({ items }) {
                 className="mono"
                 style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}
               >
-                {CATEGORY_LABEL[q.service_code] || q.service_code}
+                {etiqueta.categoria(q.service_code)}
                 {q.address_string ? ` · ${prettyNeighborhood(q.address_string)}` : ''}
               </div>
             </div>
@@ -505,7 +511,7 @@ function TopPending({ items }) {
               👍 {q.apoyos}
             </span>
             <Pill tone={STATE_TONE[q.status] || 'ghost'} size="xs">
-              {STATE_LABEL[q.status] || q.status}
+              {etiqueta.estado(q.status)}
             </Pill>
           </Link>
         ))}

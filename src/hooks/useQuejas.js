@@ -1,6 +1,6 @@
 // @ts-check
 import { useJsonFetch } from './useJsonFetch'
-import { CATALOGUE } from '../i18n'
+import { CATALOGUE, rotuloDe, useT } from '../i18n'
 
 /**
  * El rótulo castellano de cada estado, leído del catálogo. La ficha de una queja lo
@@ -66,6 +66,28 @@ export const CATEGORY_LABEL = {
   igualdad: CATALOGUE.es['quejas.categoria.igualdad'],
   bienestar_animal: CATALOGUE.es['quejas.categoria.bienestar_animal'],
   otros: CATALOGUE.es['quejas.categoria.otros'],
+}
+
+/**
+ * El rótulo de una categoría y de un estado, en el idioma de la interfaz.
+ *
+ * `CATEGORY_LABEL` y `STATE_LABEL` son el castellano del catálogo y siguen
+ * siendo la reserva: existen para que una superficie sin catálogo no pueda
+ * discrepar de una con él. Pero /quejas y /quejas/dashboard las leían TAL CUAL
+ * dentro de un `LocaleProvider`, así que con la interfaz en valencià seguían
+ * escribiendo «Neteja» como «Limpieza» — con las claves traducidas ya escritas
+ * desde #59, esperando a que alguien las leyera.
+ *
+ * Un enum del bot no es dato del lector: `service_code` y `status` son máquina,
+ * y el rótulo que los nombra es interfaz. Por eso se traducen, mientras que el
+ * texto de la queja —que lo escribió un vecino— se queda como está.
+ */
+export function useEtiquetasDeQueja() {
+  const t = useT()
+  return {
+    categoria: (code) => rotuloDe(t, `quejas.categoria.${code}`, CATEGORY_LABEL[code] || code),
+    estado: (code) => rotuloDe(t, `quejas.estado.${code}`, STATE_LABEL[code] || code),
+  }
 }
 
 export function useQuejas() {

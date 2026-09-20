@@ -3,7 +3,7 @@
  *   - category (27 canonical categories mirroring Avisa Madrid + RR portfolios)
  *   - responsible concejalía (matched by portfolio) + alcalde fallback
  *   - legal basis with BOE URLs
- *   - time limits (10-day acuse, resolución 30/90 días, silencio type)
+ *   - time limits (acuse de 10 días, resolución de 1 o 3 MESES, silencio type)
  *   - escalation ladder (sede → Síndic CV → CTBG → contencioso-administrativo)
  *   - Spanish human-readable explanation
  *
@@ -61,9 +61,24 @@ export interface LegalArticle {
   says: string
 }
 
+/**
+ * Un plazo, en la unidad EN QUE LO FIJA LA NORMA.
+ *
+ * Tenía un solo campo `days`, y los dos plazos que se publican aquí no están
+ * fijados en la misma unidad: el acuse de recibo sí («en el plazo de diez
+ * días», art. 21.4 LPACAP), pero la resolución no («tres meses», art. 21.3;
+ * «un mes» en el art. 20 de la Ley 19/2013). Escribir los meses como 90 y 30
+ * días parece inocuo y no lo es: el art. 30.4 manda contar los meses de fecha a
+ * fecha, así que tres meses duran 90 o 91 días según cuándo empiecen, y el
+ * contador de /quejas/:id se desviaba por ahí.
+ *
+ * `diasDePlazo()` convierte a días cuando hace falta contar, y necesita la
+ * fecha de inicio precisamente porque la respuesta depende de ella.
+ */
 export interface TimeLimit {
   kind: 'acuse' | 'resolucion' | 'reclamacion' | 'recurso'
-  days: number
+  unit: 'days' | 'months'
+  amount: number
   basis: LegalArticle
 }
 
@@ -472,7 +487,8 @@ export function classifyQueja(q: QuejaInput): {
 interface LegalProfile {
   basis: string[] // keys into LEGAL_CATALOG
   acuseDays: number
-  resolucionDays: number
+  /** En MESES, que es como lo fija la norma. Ver `TimeLimit`. */
+  resolucionMeses: number
   silencio: 'positivo' | 'negativo'
   escalationKey: keyof typeof ESCALATION_PROFILES
 }
@@ -488,7 +504,7 @@ const PROFILE_STANDARD: LegalProfile = {
     'CONSTITUCION_29',
   ],
   acuseDays: 10,
-  resolucionDays: 90,
+  resolucionMeses: 3, // art. 21.3 LPACAP
   silencio: 'negativo',
   escalationKey: 'standard',
 }
@@ -496,7 +512,7 @@ const PROFILE_STANDARD: LegalProfile = {
 const PROFILE_TRANSPARENCIA: LegalProfile = {
   basis: ['LTBG_8', 'LTBG_20', 'LTBG_24', 'LPACAP_16'],
   acuseDays: 0, // no formal 10-day acuse; resolución en 1 mes
-  resolucionDays: 30,
+  resolucionMeses: 1, // art. 20 Ley 19/2013
   silencio: 'negativo',
   escalationKey: 'transparencia',
 }
@@ -504,7 +520,7 @@ const PROFILE_TRANSPARENCIA: LegalProfile = {
 const PROFILE_URBANISMO_LICENCIA: LegalProfile = {
   basis: ['LRBRL_18', 'LPACAP_16', 'LPACAP_21_3', 'LPACAP_21_4', 'LPACAP_24'],
   acuseDays: 10,
-  resolucionDays: 90,
+  resolucionMeses: 3, // art. 21.3 LPACAP
   silencio: 'positivo', // Licencia de obra menor → art. 24.1 LPACAP
   escalationKey: 'standard',
 }
@@ -516,6 +532,79 @@ function profileFor(category: QuejaCategory, q: QuejaInput): LegalProfile {
     if (text.includes('licencia')) return PROFILE_URBANISMO_LICENCIA
   }
   return PROFILE_STANDARD
+}
+
+/**
+ * El plazo máximo de resolución de una queja, sin necesidad de enrutarla.
+ *
+ * La ficha de /quejas/:id no tiene la instantánea de cargos a mano, así que
+ * tenía los 30 y los 90 días copiados a mano en un `plazoFor` propio. Una
+ * constante copiada de otra es lo mismo que un enum recitado en una prueba: se
+ * quedan igual de verdes cuando la de al lado cambia. `routeQueja` publica
+ * exactamente esto, y una prueba compara las dos vías.
+ *
+ * `q` sólo hace falta para distinguir la licencia urbanística del resto de
+ * urbanismo, que comparten plazo pero no tipo de silencio; sin ella devuelve el
+ * del perfil general de la categoría.
+ */
+export function plazoDeResolucion(
+  category: QuejaCategory,
+  q: QuejaInput = { title: '', detail: '' },
+): TimeLimit {
+  const profile = profileFor(category, q)
+  return {
+    kind: 'resolucion',
+    unit: 'months',
+    amount: profile.resolucionMeses,
+    basis:
+      profile.escalationKey === 'transparencia' ? LEGAL_CATALOG.LTBG_20 : LEGAL_CATALOG.LPACAP_21_3,
+  }
+}
+
+/**
+ * El día en que vence un plazo fijado en meses — art. 30.4 LPACAP: «el plazo
+ * concluirá el mismo día en que se produjo la notificación […] en el mes de
+ * vencimiento. Si en el mes de vencimiento no hubiera día equivalente a aquel en
+ * que comienza el cómputo, se entenderá que el plazo expira el último día del
+ * mes».
+ *
+ * Ese segundo inciso es el que un `setMonth` a secas se salta: el 31 de enero
+ * más un mes da el 3 de marzo, y la norma dice el 28 de febrero. Se cuenta en
+ * UTC —las marcas de tiempo del bot llegan en UTC— para que la respuesta no
+ * dependa de en qué huso corra la prueba.
+ */
+export function venceEnMeses(desde: Date | string, meses: number): Date {
+  const inicio = desde instanceof Date ? new Date(desde.getTime()) : new Date(desde)
+  const dia = inicio.getUTCDate()
+  const vence = new Date(inicio.getTime())
+  vence.setUTCMonth(vence.getUTCMonth() + meses)
+  if (vence.getUTCDate() !== dia) vence.setUTCDate(0)
+  return vence
+}
+
+/**
+ * El plazo dicho en castellano y en su unidad: «10 días», «1 mes», «3 meses».
+ *
+ * Vive aquí porque lo escriben tres sitios —el bot, el documento del lote y el
+ * escrito al Síndic— y porque uno de ellos CITA el artículo justo antes de
+ * decirlo: el escrito al Síndic invocaba el art. 21.3 y a continuación lo
+ * traducía a «90 días naturales», que no es lo que dice el artículo.
+ */
+export function plazoHumano(limite: TimeLimit): string {
+  if (limite.unit === 'days') return `${limite.amount} días`
+  return limite.amount === 1 ? '1 mes' : `${limite.amount} meses`
+}
+
+/**
+ * Cuántos días dura ESE plazo empezando ESE día. Un plazo en días son sus días;
+ * uno en meses depende de cuáles sean: tres meses desde el 1 de diciembre son
+ * 90 y desde el 1 de enero de un bisiesto son 91.
+ */
+export function diasDePlazo(limite: TimeLimit, desde: Date | string): number {
+  if (limite.unit === 'days') return limite.amount
+  const inicio = desde instanceof Date ? new Date(desde.getTime()) : new Date(desde)
+  const vence = venceEnMeses(inicio, limite.amount)
+  return Math.round((vence.getTime() - inicio.getTime()) / 86_400_000)
 }
 
 // ============================================================================
@@ -655,16 +744,14 @@ export function routeQueja(q: QuejaInput, officials: OfficialsSnapshot): QuejaRo
   if (profile.acuseDays > 0) {
     timeLimits.push({
       kind: 'acuse',
-      days: profile.acuseDays,
+      unit: 'days',
+      amount: profile.acuseDays,
       basis: LEGAL_CATALOG.LPACAP_21_4,
     })
   }
-  timeLimits.push({
-    kind: 'resolucion',
-    days: profile.resolucionDays,
-    basis:
-      profile.escalationKey === 'transparencia' ? LEGAL_CATALOG.LTBG_20 : LEGAL_CATALOG.LPACAP_21_3,
-  })
+  // Lo mismo que leen las páginas por su cuenta, desde la misma función: si se
+  // compusiera aquí otra vez, las dos vías podrían decir cosas distintas.
+  timeLimits.push(plazoDeResolucion(category, q))
 
   const escalation = ESCALATION_PROFILES[profile.escalationKey].map((s) => ({ ...s }))
 
@@ -718,12 +805,10 @@ function composeExplanation(ctx: {
       ? 'silencio administrativo positivo (se entiende estimada si no hay resolución expresa en plazo)'
       : 'silencio administrativo negativo (se entiende desestimada si no hay resolución expresa en plazo, sin perjuicio de la obligación de resolver)'
 
+  // Antes era una escalera de `=== 30 ? '1 mes' : === 90 ? '3 meses'`: los
+  // mismos dos números otra vez, traducidos a mano a la unidad que ya tenían.
   const resolucionHumano =
-    profile.resolucionDays === 30
-      ? '1 mes'
-      : profile.resolucionDays === 90
-        ? '3 meses'
-        : `${profile.resolucionDays} días`
+    profile.resolucionMeses === 1 ? '1 mes' : `${profile.resolucionMeses} meses`
 
   return [
     `Asunto: ${queja.title}`,

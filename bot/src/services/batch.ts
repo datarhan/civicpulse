@@ -21,11 +21,18 @@ import {
   type QuejaRow,
 } from '../db/queries.ts'
 import { routeUsingLocalOfficials } from './router.ts'
+import { plazoHumano, type TimeLimit } from '../../../src/scraper/queja-router.ts'
 
 export interface BatchItem {
   queja: QuejaRow
   apoyos: number
-  plazoDias: number
+  /**
+   * El plazo de resolución en la unidad de la norma. Era `plazoDias: number`
+   * con un `?? 90` detrás, y aquí el número no se podía calcular en días
+   * aunque se quisiera: el lote es lo que TODAVÍA no se ha registrado, así que
+   * no hay fecha desde la que contar los tres meses del art. 21.3.
+   */
+  plazo: TimeLimit
   baseLegal: string
   silencio: 'positivo' | 'negativo'
   area: string
@@ -87,11 +94,11 @@ export function selectBatch(db: Db, limit = 10): BatchItem[] {
       detail: r.detail,
       category: r.category as never,
     })
-    const plazo = routing.timeLimits.find((t) => t.kind === 'resolucion')?.days ?? 90
+    const plazo = routing.timeLimits.find((t) => t.kind === 'resolucion')
     return {
       queja: r,
       apoyos: r.apoyos_count,
-      plazoDias: plazo,
+      plazo: plazo!,
       baseLegal:
         `${routing.legalBasis[0]?.law ?? ''} ${routing.legalBasis[0]?.article ?? ''}`.trim(),
       silencio: routing.silencio,
@@ -149,7 +156,7 @@ export function renderBatchMarkdown(batch: Batch): string {
     lines.push(`- **Fecha de captura:** ${q.created_at}`)
     lines.push(`- **Apoyos vecinales verificados:** ${item.apoyos}`)
     lines.push(`- **Base legal aplicable:** ${item.baseLegal}`)
-    lines.push(`- **Plazo máximo de resolución:** ${item.plazoDias} días naturales`)
+    lines.push(`- **Plazo máximo de resolución:** ${plazoHumano(item.plazo)}`)
     lines.push(`- **Silencio administrativo:** ${item.silencio}`)
     lines.push('')
     lines.push('**Detalle ciudadano (verbatim):**')
