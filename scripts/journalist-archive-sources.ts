@@ -157,8 +157,9 @@ export function makeArchiveOne(io: {
   }
 }
 
-// This CLI owes the reader a copy, so it pays for the slow second opinion when
-// the Availability API refuses: the CDX index, seconds per URL instead of ms.
+// This CLI owes the reader a copy, so it pays for the slow second opinion — the
+// CDX index, seconds per URL instead of ms — whenever the Availability API does
+// not produce one. A save is the scarce thing; the API's «none» is not reliable.
 const archiveOneLive = makeArchiveOne({
   find: (url) => findExistingSnapshot(url, { cdxFallback: true }),
   save: (url) => archiveOnWayback(url),

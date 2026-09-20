@@ -62,8 +62,9 @@ export interface ArchiveOptions {
   /** Hard timeout in ms. Default 30000. */
   timeoutMs?: number
   /**
-   * `findExistingSnapshot` only. When the Availability API FAILS (it answers
-   * 429 for hours at a time), ask the CDX index instead — a different service.
+   * `findExistingSnapshot` only. When the Availability API does not produce a
+   * copy — it FAILED, or it answered «none», which it sometimes does for URLs
+   * that have one — ask the CDX index too, a different service.
    * Off unless asked for: the index takes 9 s on a hit and 25 s on a miss, which
    * a best-effort caller (the agent's fetches, the daily audit of 170-odd press
    * links) must not pay for a link that is a courtesy there. The caller that
@@ -239,9 +240,16 @@ async function findViaCdx(
  *   · `failed` — nobody answered. NOT the same as `none`: call this before
  *     deciding to spend a Save Page Now request, and do not spend it on `failed`.
  *
- * With `cdxFallback: true`, a failed Availability API (it answers 429 for hours
- * at a stretch) sends the question to the CDX index instead — a different
- * service, which was answering on the day the API refused everything.
+ * With `cdxFallback: true` the CDX index — a different service — is asked
+ * whenever the API did not produce a copy, for either reason:
+ *   · it FAILED (it answers 429 for hours at a stretch; the index was answering
+ *     on the day the API refused everything);
+ *   · it answered «none». That answer is not reliable: on 2026-09-20 it was a
+ *     clean 200 with `archived_snapshots: {}` for three URLs whose 200 captures,
+ *     hours old, were in the index — and one refused save was spent on them.
+ * If the index does not answer either, the API's word stands: `failed` stays
+ * `failed`, and «none» stays `none` (the index times out often, and its silence
+ * must not veto every save) — `cdxError` says the second opinion was not had.
  */
 export async function findExistingSnapshot(
   url: string,
@@ -254,7 +262,8 @@ export async function findExistingSnapshot(
     return { ok: false, ...base, error: 'invalid url', lookup: 'failed' }
   }
 
-  let apiError: string
+  // What the Availability API established, before any second opinion.
+  let api: { lookup: 'none' | 'failed'; error: string }
   try {
     const apiUrl = `https://archive.org/wayback/available?url=${encodeURIComponent(url)}`
     const res = await fetchImpl(apiUrl, {
@@ -265,26 +274,26 @@ export async function findExistingSnapshot(
         archived_snapshots?: { closest?: { available?: boolean; url?: string; timestamp?: string } }
       }
       const closest = json.archived_snapshots?.closest
-      if (!closest || closest.available !== true || !closest.url) {
-        return { ok: false, ...base, error: 'no snapshot available', lookup: 'none' }
+      if (closest && closest.available === true && closest.url) {
+        return {
+          ok: true,
+          archivedUrl: closest.url,
+          timestamp: closest.timestamp ?? null,
+          archivedAt,
+          error: null,
+          lookup: 'found',
+        }
       }
-      return {
-        ok: true,
-        archivedUrl: closest.url,
-        timestamp: closest.timestamp ?? null,
-        archivedAt,
-        error: null,
-        lookup: 'found',
-      }
+      api = { lookup: 'none', error: 'no snapshot available' }
+    } else {
+      api = { lookup: 'failed', error: `HTTP ${res.status}` }
     }
-    apiError = `HTTP ${res.status}`
   } catch (err) {
-    apiError = (err as Error).message || 'network error'
+    api = { lookup: 'failed', error: (err as Error).message || 'network error' }
   }
 
-  if (opts.cdxFallback !== true) {
-    return { ok: false, ...base, error: apiError, lookup: 'failed' }
-  }
+  if (opts.cdxFallback !== true) return { ok: false, ...base, ...api }
+
   const cdx = await findViaCdx(url, fetchImpl, opts.timeoutMs ?? CDX_TIMEOUT_MS)
   if ('timestamp' in cdx) {
     return {
@@ -297,5 +306,5 @@ export async function findExistingSnapshot(
     }
   }
   if ('none' in cdx) return { ok: false, ...base, error: 'no snapshot available', lookup: 'none' }
-  return { ok: false, ...base, error: apiError, lookup: 'failed', cdxError: cdx.error }
+  return { ok: false, ...base, ...api, cdxError: cdx.error }
 }

@@ -254,10 +254,17 @@ fetch|pdf|chrome`; `trust` is never accepted from the file — it comes from
   answered 429 to everything, `findExistingSnapshot` returned the same
   `ok:false` it returns for «none», and the CLI spent a save on every source —
   all refused as well, each refusal extending the block. So the lookup now says
-  `found` / `none` / `failed`; this CLI (and only this one — it takes seconds
-  per URL) falls back to the CDX index when the API refuses; nothing saves on
-  `failed`; and after the first 429 from Save Page Now the pass stops saving,
-  keeps looking up, and counts the rest as not attempted rather than failed.
+  `found` / `none` / `failed`; nothing saves on `failed`; and after the first
+  429 from Save Page Now the pass stops saving, keeps looking up, and counts
+  the rest as not attempted rather than failed. The first pass with the fixed
+  tool showed what the old one had been hiding: more than half of the sources
+  it had reported as «failed» already HAD a copy, most of them made by its own
+  first pass that morning — Save Page Now captures the page and answers 500
+  anyway, so **a failed save is not proof there is no copy; the next lookup
+  is**. And it showed that the API's «none» is not reliable either: a clean 200
+  with `archived_snapshots: {}` for URLs whose captures, hours old, were in the
+  CDX index. So this CLI (and only this one — it takes seconds per URL) asks
+  the index whenever the API does not produce a copy, refused or «none».
   The daily press-link audit and the agent's `audit()` had the same
   save-on-refusal branch and follow the same rule. Re-run the CLI later for
   what was left: it only asks for sources that still have no copy.
