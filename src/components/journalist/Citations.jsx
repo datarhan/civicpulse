@@ -14,8 +14,20 @@ export { SOURCE_INDEX }
 
 export function CitationPills({ ids, sourceMap }) {
   if (!ids || ids.length === 0) return null
+  // `flexWrap`: sin él la fila es un bloque irrompible tan ancho como sus
+  // píldoras. Con 15 citas medía 536 px y ensanchaba la página entera en un
+  // móvil (600 px en una ventana de 361, medido el 20-09-2026). El defecto lo
+  // activaban los DATOS: bastaba con que una sección citara mucho.
   return (
-    <span style={{ display: 'inline-flex', gap: 4, marginLeft: 6, verticalAlign: 'baseline' }}>
+    <span
+      style={{
+        display: 'inline-flex',
+        flexWrap: 'wrap',
+        gap: 4,
+        marginLeft: 6,
+        verticalAlign: 'baseline',
+      }}
+    >
       {ids.map((id) => {
         const hit = sourceMap.get(id)
         if (!hit) return null
