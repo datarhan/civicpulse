@@ -726,7 +726,8 @@ export async function audit(
     if (existing.ok) {
       archiveUrl = existing.archivedUrl
       archivedAt = existing.archivedAt
-    } else if (!alive && opts.saveIfDead) {
+    } else if (!alive && opts.saveIfDead && existing.lookup === 'none') {
+      // Only an ANSWERED «none» spends a save: a refused lookup is not «no copy».
       const saved = await archiveOnWayback(url)
       if (saved.ok) {
         archiveUrl = saved.archivedUrl

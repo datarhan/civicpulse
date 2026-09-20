@@ -8,10 +8,21 @@
  * only looks up an existing snapshot and never saves one (a deliberate choice
  * there — Save Page Now is slow and rate-limited). This CLI makes the promise
  * true after the fact, one report at a time, and proves what it did: every
- * target ends in exactly one of existing / archived / failed, printed
- * separately, and the run manifest carries the same counts (DATA_INTEGRITY
+ * target ends in exactly one of existing / archived / failed / not attempted,
+ * printed separately, and the run manifest carries the same counts (DATA_INTEGRITY
  * rule 2). Anonymous Wayback allows about six saves a minute, so saves are
  * spaced by `--min-gap-ms` (10 s by default); an existing copy costs no gap.
+ *
+ * Two rules that came from the day Wayback answered 429 to everything
+ * (2026-09-20), when a refused LOOKUP was read as «no copy» and the tool spent a
+ * save on every source — 23 in one pass, 23 in the next, all refused, each one
+ * extending the block:
+ *   1. No blind saves. If the lookup could not be made (`lookup: 'failed'`,
+ *      after the CDX fallback too), the source fails with that reason and no
+ *      save is attempted.
+ *   2. After the first 429 from Save Page Now, the rest of that pass stops
+ *      saving. Lookups go on — they are what finds existing copies — and what
+ *      was left unsaved is reported as NOT ATTEMPTED, apart from what failed.
  *
  * Writes journalist-reports.json and the per-id chunk through the validator —
  * this is one of the sanctioned doors the curated-write guard names.
@@ -24,7 +35,7 @@ import {
   type JournalistReport,
   type SourceCitation,
 } from '../src/scraper/journalist'
-import { archiveOnWayback, findExistingSnapshot } from '../src/scraper/wayback'
+import { archiveOnWayback, findExistingSnapshot, type WaybackResult } from '../src/scraper/wayback'
 import { NO_LLM_STATS, startRun } from '../src/scraper/run-manifest'
 
 const REPORTS = resolve('public/data/journalist-reports.json')
@@ -58,19 +69,26 @@ export function applyArchiveUrls(
   }
 }
 
-export type ArchiveOneResult = { archiveUrl: string; via: 'existing' | 'saved' } | { error: string }
+export type ArchiveOneResult =
+  | { archiveUrl: string; via: 'existing' | 'saved' }
+  /** `rateLimited`: Save Page Now answered 429 — the caller stops saving for the rest of the pass. */
+  | { error: string; rateLimited?: true }
+  /** Looked, found no copy, and saving was closed: never asked, so not a failure. */
+  | { notAttempted: string }
 
 export interface ArchiveOutcome {
   id: string
   url: string
-  status: 'existing' | 'archived' | 'failed'
+  status: 'existing' | 'archived' | 'failed' | 'not-attempted'
   detail?: string
 }
+
+export const SAVES_CLOSED = 'Wayback limitó los guardados (429) en esta pasada'
 
 export async function archiveReportSources(
   report: JournalistReport,
   deps: {
-    archiveOne: (url: string) => Promise<ArchiveOneResult>
+    archiveOne: (url: string, o: { allowSave: boolean }) => Promise<ArchiveOneResult>
     sleep: (ms: number) => Promise<void>
     minGapMs: number
     max?: number
@@ -82,12 +100,21 @@ export async function archiveReportSources(
   // Only a SAVE consumes the Wayback budget; an availability lookup that
   // returns an existing copy does not, so the gap follows saves only.
   let lastWasSave = false
+  // Closed by the first 429 from Save Page Now and never reopened in this pass:
+  // every further save would be refused too, and each refusal extends the block.
+  let savesOpen = true
   for (const t of targets) {
     const url = t.url as string
     if (lastWasSave && deps.minGapMs > 0) await deps.sleep(deps.minGapMs)
-    const r = await deps.archiveOne(url)
+    const r = await deps.archiveOne(url, { allowSave: savesOpen })
+    if ('notAttempted' in r) {
+      outcomes.push({ id: t.id, url, status: 'not-attempted', detail: r.notAttempted })
+      lastWasSave = false
+      continue
+    }
     if ('error' in r) {
       outcomes.push({ id: t.id, url, status: 'failed', detail: r.error })
+      if (r.rateLimited) savesOpen = false
       lastWasSave = false
       continue
     }
@@ -103,15 +130,39 @@ export async function archiveReportSources(
   return { report: applyArchiveUrls(report, found), outcomes }
 }
 
-/** The real adapter: availability lookup first, Save Page Now only when needed. */
-async function archiveOneLive(url: string): Promise<ArchiveOneResult> {
-  const existing = await findExistingSnapshot(url)
-  if (existing.ok && existing.archivedUrl)
-    return { archiveUrl: existing.archivedUrl, via: 'existing' }
-  const saved = await archiveOnWayback(url)
-  if (saved.ok && saved.archivedUrl) return { archiveUrl: saved.archivedUrl, via: 'saved' }
-  return { error: saved.error ?? existing.error ?? 'unknown wayback error' }
+/**
+ * Lookup first, Save Page Now only when the lookup ANSWERED «none» — and only
+ * while the pass is still allowed to save. Injectable so the policy is tested
+ * without a network; `archiveOneLive` below is the same thing over real Wayback.
+ */
+export function makeArchiveOne(io: {
+  find: (url: string) => Promise<WaybackResult>
+  save: (url: string) => Promise<WaybackResult>
+}): (url: string, o: { allowSave: boolean }) => Promise<ArchiveOneResult> {
+  return async (url, { allowSave }) => {
+    const existing = await io.find(url)
+    if (existing.ok && existing.archivedUrl)
+      return { archiveUrl: existing.archivedUrl, via: 'existing' }
+    // Only an ANSWERED «none» opens the door to a save. Anything else — a
+    // refusal, a timeout, a result that does not say — is «could not look».
+    if (existing.lookup !== 'none') {
+      const cdx = existing.cdxError ? ` · CDX: ${existing.cdxError}` : ''
+      return { error: `consulta fallida: ${existing.error ?? 'sin motivo'}${cdx}` }
+    }
+    if (!allowSave) return { notAttempted: SAVES_CLOSED }
+    const saved = await io.save(url)
+    if (saved.ok && saved.archivedUrl) return { archiveUrl: saved.archivedUrl, via: 'saved' }
+    const error = saved.error ?? 'unknown wayback error'
+    return error === 'HTTP 429' ? { error, rateLimited: true } : { error }
+  }
 }
+
+// This CLI owes the reader a copy, so it pays for the slow second opinion when
+// the Availability API refuses: the CDX index, seconds per URL instead of ms.
+const archiveOneLive = makeArchiveOne({
+  find: (url) => findExistingSnapshot(url, { cdxFallback: true }),
+  save: (url) => archiveOnWayback(url),
+})
 
 function usage(): never {
   process.stderr.write(
@@ -184,20 +235,23 @@ async function main(): Promise<void> {
     minGapMs: opts.minGapMs,
     ...(opts.max !== undefined ? { max: opts.max } : {}),
   })
-  const counts = { existing: 0, archived: 0, failed: 0 }
+  const counts = { existing: 0, archived: 0, failed: 0, 'not-attempted': 0 }
   for (const o of outcomes) {
     counts[o.status] += 1
     process.stdout.write(
-      `  · ${o.status.padEnd(8)} ${o.id} ${o.url}${o.detail ? ` → ${o.detail}` : ''}\n`,
+      `  · ${o.status.padEnd(13)} ${o.id} ${o.url}${o.detail ? ` → ${o.detail}` : ''}\n`,
     )
   }
-  rec.attempt(outcomes.length)
+  // «Not attempted» is its own number: a save the pass declined to make is
+  // neither a failure nor work done.
+  rec.attempt(outcomes.length - counts['not-attempted'])
   rec.judge(counts.existing + counts.archived)
   if (counts.failed > 0) rec.skip('wayback-failed', counts.failed)
   rec.record('existing', counts.existing)
   rec.record('saved', counts.archived)
-  // Targets beyond --max were never asked.
-  rec.neverAttempt(Math.max(0, targets.length - outcomes.length))
+  rec.record('saves-closed-by-429', counts['not-attempted'])
+  // Targets beyond --max were never asked either.
+  rec.neverAttempt(counts['not-attempted'] + Math.max(0, targets.length - outcomes.length))
 
   if (counts.existing + counts.archived > 0) {
     const items = [...snap.items]
@@ -211,7 +265,8 @@ async function main(): Promise<void> {
   }
   process.stdout.write(
     `[journalist:archive-sources] ${report.id}: attempted ${outcomes.length} of ${targets.length} target(s) · ` +
-      `archived ${counts.archived} · existing ${counts.existing} · failed ${counts.failed}\n`,
+      `archived ${counts.archived} · existing ${counts.existing} · failed ${counts.failed} · ` +
+      `not attempted ${counts['not-attempted']}\n`,
   )
   rec.finish({ exitCode: 0 })
 }

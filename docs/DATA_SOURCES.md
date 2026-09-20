@@ -507,7 +507,7 @@ overwrites it. Change the bot's SQLite instead.
 ### Press link rot + Wayback archival index
 
 - **Pipeline** — **derived** · `audit-press-links.ts` → `press-link-rot.json`
-- **Source** — Daily job. HEAD-checks every unique `articleUrl` in `press-claims-suggestions.json`, calls Wayback's Availability API to find an existing snapshot, optionally Save Page Now for dead/forced URLs. Writes `{articleUrl, status: alive\|dead\|error, archivedUrl, archivedAt, checkedAt, …}`. Chained nightly after `auto-curate-press`.
+- **Source** — Daily job. HEAD-checks every unique `articleUrl` in `press-claims-suggestions.json`, calls Wayback's Availability API to find an existing snapshot, optionally Save Page Now for dead/forced URLs — only when the lookup ANSWERED that none exists, never when it was refused. A row's `archivedUrl: null` still means «none, OR could not look» — the snapshot does not tell them apart yet. Measured on 2026-09-20 over the last fourteen runs: of the URLs that showed a copy in some run, most «lost» it in a later one and got it back afterwards, and a Wayback copy does not vanish — those nulls were lookups the API refused, which is also why `stats.archived` wanders between runs over the same URL set. Writes `{articleUrl, status: alive\|dead\|error, archivedUrl, archivedAt, checkedAt, …}`. Chained nightly after `auto-curate-press`.
 - **Surfaces** — `/laboratorio` — each press card shows "🔗 Wayback ↗" when a snapshot exists; "Ver original" link flips to red ⚠︎ when status='dead' so curators cite the snapshot instead.
 
 ### Press finding corrections log

@@ -168,9 +168,17 @@ llevan, no el agregador.
 ## Archivo
 
 Cada URL nueva que se cite se guarda con `npm run journalist:archive-sources`
-(consulta primero si ya hay copia; Save Page Now sólo si no; 10 s entre guardados).
-Wayback anónimo admite unas seis peticiones por minuto: el archivo se hace desde
-la sesión central, nunca dentro del bucle de un subagente.
+(consulta primero si ya hay copia; Save Page Now sólo si Wayback CONTESTA que no;
+10 s entre guardados). Wayback anónimo admite unas seis peticiones por minuto: el
+archivo se hace desde la sesión central, nunca dentro del bucle de un subagente.
+
+El parte tiene cuatro desenlaces y los cuatro se anotan en el `manifest.json` del
+dossier: `existing`, `archived`, `failed` y `not-attempted`. El último no es un
+fallo: tras el primer 429 de Save Page Now la pasada deja de guardar (cada rechazo
+alarga el bloqueo de la IP) y lo que quedaba se cuenta aparte. **No se repite la
+pasada el mismo rato «a ver si ahora»**: se vuelve a lanzar horas después, y sólo
+pregunta por lo que sigue sin copia. Una biografía se publica igual con copias
+pendientes — el enlace original sigue ahí —, pero el parte lo dice.
 
 ## Lo que un subagente NO puede hacer (medido en la prueba del 06-09-2026)
 

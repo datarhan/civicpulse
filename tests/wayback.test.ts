@@ -196,9 +196,23 @@ const porServicio = (disponibilidad: () => Response, cdx: () => Response) => {
 const r429 = () => new Response('Too Many Requests', { status: 429 })
 
 describe('findExistingSnapshot — tres desenlaces, no dos', () => {
-  it('cuando la API de disponibilidad rechaza, pregunta al índice CDX y devuelve la captura', async () => {
+  // El CDX tarda 9 s cuando acierta y 25 s cuando no. Quien sólo quiere un enlace
+  // de cortesía (las lecturas del agente, la auditoría diaria de 174 enlaces) no
+  // lo paga: se entera de que no pudo mirar, y ya. Lo pide quien le DEBE una copia
+  // al lector — `journalist:archive-sources`.
+  it('por defecto no pregunta al CDX: una consulta rechazada dice «no se pudo mirar» y nada más', async () => {
     const f = porServicio(r429, () => new Response(CDX_REAL, { status: 200 }))
     const r = await findExistingSnapshot(FVMP, { fetchImpl: f.fetchImpl })
+    expect(f.llamadas).toEqual(['disponibilidad'])
+    expect(r.ok).toBe(false)
+    expect(r.lookup).toBe('failed')
+    expect(r.error).toBe('HTTP 429')
+    expect(r.cdxError).toBeUndefined()
+  })
+
+  it('cuando la API de disponibilidad rechaza, pregunta al índice CDX y devuelve la captura', async () => {
+    const f = porServicio(r429, () => new Response(CDX_REAL, { status: 200 }))
+    const r = await findExistingSnapshot(FVMP, { fetchImpl: f.fetchImpl, cdxFallback: true })
     expect(f.llamadas).toEqual(['disponibilidad', 'cdx'])
     expect(r.ok).toBe(true)
     expect(r.lookup).toBe('found')
@@ -216,7 +230,7 @@ describe('findExistingSnapshot — tres desenlaces, no dos', () => {
       }
       return r429()
     }) as typeof fetch
-    await findExistingSnapshot(FVMP, { fetchImpl })
+    await findExistingSnapshot(FVMP, { fetchImpl, cdxFallback: true })
     expect(pedida).toContain(`url=${encodeURIComponent(FVMP)}`)
     expect(pedida).toContain('filter=statuscode%3A200')
     expect(pedida).toContain('limit=-1')
@@ -225,7 +239,7 @@ describe('findExistingSnapshot — tres desenlaces, no dos', () => {
 
   it('un CDX vacío es «no hay copia», no un fallo', async () => {
     const f = porServicio(r429, () => new Response('[]', { status: 200 }))
-    const r = await findExistingSnapshot(FVMP, { fetchImpl: f.fetchImpl })
+    const r = await findExistingSnapshot(FVMP, { fetchImpl: f.fetchImpl, cdxFallback: true })
     expect(r.ok).toBe(false)
     expect(r.lookup).toBe('none')
     expect(r.error).toBe('no snapshot available')
@@ -233,7 +247,7 @@ describe('findExistingSnapshot — tres desenlaces, no dos', () => {
 
   it('si el CDX también falla, el desenlace es «no se pudo mirar» y conserva los dos motivos', async () => {
     const f = porServicio(r429, () => new Response('<html>504</html>', { status: 504 }))
-    const r = await findExistingSnapshot(FVMP, { fetchImpl: f.fetchImpl })
+    const r = await findExistingSnapshot(FVMP, { fetchImpl: f.fetchImpl, cdxFallback: true })
     expect(r.ok).toBe(false)
     expect(r.lookup).toBe('failed')
     expect(r.error).toBe('HTTP 429')
@@ -242,7 +256,7 @@ describe('findExistingSnapshot — tres desenlaces, no dos', () => {
 
   it('un CDX que contesta 200 con algo que no es su JSON es un fallo, no un vacío', async () => {
     const f = porServicio(r429, () => new Response('<html>mantenimiento</html>', { status: 200 }))
-    const r = await findExistingSnapshot(FVMP, { fetchImpl: f.fetchImpl })
+    const r = await findExistingSnapshot(FVMP, { fetchImpl: f.fetchImpl, cdxFallback: true })
     expect(r.lookup).toBe('failed')
     expect(r.cdxError).toMatch(/cdx/i)
   })
@@ -252,7 +266,7 @@ describe('findExistingSnapshot — tres desenlaces, no dos', () => {
       () => new Response(JSON.stringify({ archived_snapshots: {} }), { status: 200 }),
       () => new Response(CDX_REAL, { status: 200 }),
     )
-    const r = await findExistingSnapshot(FVMP, { fetchImpl: f.fetchImpl })
+    const r = await findExistingSnapshot(FVMP, { fetchImpl: f.fetchImpl, cdxFallback: true })
     expect(f.llamadas).toEqual(['disponibilidad'])
     expect(r.lookup).toBe('none')
   })
