@@ -1,0 +1,87 @@
+{
+  "_comentario": "Payload real. `indice` son tres filas de public/data/sindic-expedientes.json tal como se publicó el 19-09-2026 (commit d2dc2396); `fichas` son las fichas firmadas de public/data/sindic.json para esos expedientes. El 17-09 el buscador listaba para 202600533 sus consideraciones (12475700.pdf, 23-03-2026) y su cierre; desde el 18-09 sólo el cierre. La ficha se sigue cotejando literal contra ese PDF (check:sindic-fichas, 20-09-2026).",
+  "casos": {
+    "202203596": "sin ficha: sus consideraciones fueron para la Conselleria, no para el Ayuntamiento",
+    "202600533": "con ficha firmada, y el buscador YA NO lista sus consideraciones (sólo el cierre)",
+    "202601067": "con ficha firmada, y el buscador lista consideraciones + cierre"
+  },
+  "generatedAtDelIndice": "2026-09-19T09:11:46.126Z",
+  "indice": [
+    {
+      "expediente": "202601067",
+      "anio": 2026,
+      "materia": "Procedimientos administrativos",
+      "asunto": "Falta de respuesta a una reclamación por molestias vecinales",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de consideraciones a la Administración",
+          "fecha": "2026-04-22",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2026/202601067/12496682.pdf"
+        },
+        {
+          "tipo": "Resolución de cierre",
+          "fecha": "2026-06-10",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2026/202601067/12533254.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "202600533",
+      "anio": 2026,
+      "materia": "Procedimientos administrativos",
+      "asunto": "Responsabilidad patrimonial: falta de resolución del procedimiento",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de cierre",
+          "fecha": "2026-04-24",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2026/202600533/12499022.pdf"
+        }
+      ]
+    },
+    {
+      "expediente": "202203596",
+      "anio": 2022,
+      "materia": "Servicios sociales",
+      "asunto": "Dependencia. Demora revisión grado.",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de consideraciones a la Administración",
+          "fecha": "2023-03-16",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2022/202203596/11947833.pdf"
+        },
+        {
+          "tipo": "Resolución de cierre",
+          "fecha": "2023-04-18",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2022/202203596/11958782.pdf"
+        }
+      ]
+    }
+  ],
+  "fichas": [
+    {
+      "id": "sindic-202601067-12496682",
+      "expediente": "202601067",
+      "fecha": "2026-04-22",
+      "materia": "procedimiento-administrativo",
+      "sentido": "recomendacion",
+      "titulo": "Falta de respuesta a una reclamación por molestias vecinales",
+      "resumen": "1.- RECORDAMOS el deber legal de contestar en plazo, de forma expresa y motivada, las solicitudes y escritos presentados por la ciudadanía, de acuerdo con lo previsto en los artículos 21 y 35.1 de la Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas. 2.- RECOMENDAMOS que, si no lo hubiera hecho todavía, proceda a dictar y notificar resolución expresa y motivada respecto de la instancia presentada el 07/01/2026 por la Comunidad de Propietarios (...), relativa a las molestias, ruidos y posibles incumplimientos normativos denunciados, adoptando, en su caso, las actuaciones y medidas que resulten procedentes. 3.-RECORDAMOS que el personal al servicio de las administraciones públicas y los titulares de los órganos competentes para instruir y resolver los procedimientos son directamente responsables, en el ámbito de sus competencias, del cumplimiento de la obligación legal de dictar resolución expresa en plazo, y que el incumplimiento de dicha obligación puede dar lugar a la exigencia de responsabilidad disciplinaria, conforme a lo previsto en el artículo 21.6 de la Ley 39/2015. 4.- RECORDAMOS el deber legal de colaborar con el Síndic de Greuges, facilitando la información solicitada y respondiendo motivadamente a las recomendaciones y recordatorios de deberes legales que se formulen.",
+      "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2026/202601067/12496682.pdf",
+      "quejaIdRelacionada": null
+    },
+    {
+      "id": "sindic-202600533-12475700",
+      "expediente": "202600533",
+      "fecha": "2026-03-23",
+      "materia": "procedimiento-administrativo",
+      "sentido": "recordatorio-deberes",
+      "titulo": "Responsabilidad patrimonial: falta de resolución del procedimiento",
+      "resumen": "1. RECORDAMOS EL DEBER LEGAL de resolver los procedimientos de responsabilidad patrimonial en el plazo de 6 meses desde su iniciación, mediante el dictado de una resolución por el órgano competente, completa, congruente, motivada y con indicación de los recursos que, en caso de desacuerdo, puedan interponerse. Todo ello con notificación a los interesados en el modo y forma legalmente previstos. 2. ADVERTIMOS que, dado el tiempo transcurrido, a la mayor brevedad y en todo caso en el plazo de 1 mes, resuelva el procedimiento de responsabilidad patrimonial cuyo inicio fue solicitado por la interesada el 05/10/2021, en los términos plasmados en la consideración anterior.",
+      "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2026/202600533/12475700.pdf",
+      "quejaIdRelacionada": null
+    }
+  ]
+}
