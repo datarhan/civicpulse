@@ -10,6 +10,7 @@ import type { Bot } from 'grammy'
 import type { MyContext } from '../types.ts'
 import type { QuejaRow } from '../db/queries.ts'
 import type { QuejaRouting } from '../../../src/scraper/queja-router.ts'
+import { plazoHumano } from '../../../src/scraper/queja-router.ts'
 import { isLoregFrozen } from './freeze.ts'
 
 function formatNeighborhood(slug: string | null | undefined): string {
@@ -68,14 +69,14 @@ class TelegramChannel implements Channel {
 
   async postNuevaQueja(q: QuejaRow, routing: QuejaRouting) {
     const responsible = routing.concejalia.responsible
-    const plazo = routing.timeLimits.find((t) => t.kind === 'resolucion')?.days ?? 90
+    const plazo = routing.timeLimits.find((t) => t.kind === 'resolucion')
     const lines = [
       `🆕 *NUEVA QUEJA* · \`${q.id}\``,
       `*${q.title}*`,
       '',
       `📍 ${formatNeighborhood(q.neighborhood)} · 🏛 ${routing.concejalia.area}`,
       responsible ? `👤 Responsable: ${responsible.name} (${responsible.party})` : '',
-      `⏱ Plazo legal: ${plazo} días (silencio ${routing.silencio})`,
+      `⏱ Plazo legal: ${plazo ? plazoHumano(plazo) : '—'} (silencio ${routing.silencio})`,
       `📜 ${routing.legalBasis[0]?.law} ${routing.legalBasis[0]?.article}`,
       '',
       `Apoyar: escribe /apoyar\\_${q.id.replace('Q-', '').toLowerCase()} al bot`,

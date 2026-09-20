@@ -12,6 +12,7 @@
 
 import type { QuejaRow } from '../db/queries.ts'
 import type { QuejaRouting } from '../../../src/scraper/queja-router.ts'
+import { plazoHumano } from '../../../src/scraper/queja-router.ts'
 
 const SINDIC_PORTAL = 'https://www.elsindic.com/es/presenta-una-queja'
 
@@ -36,7 +37,11 @@ export function buildSindicTemplate(
 
 export function renderSindicMarkdown(t: SindicTemplate): string {
   const { queja: q, routing, diasTranscurridos } = t
-  const plazo = routing.timeLimits.find((tl) => tl.kind === 'resolucion')?.days ?? 90
+  const limite = routing.timeLimits.find((tl) => tl.kind === 'resolucion')
+  // El escrito CITA el art. 21.3 en la misma frase, y el artículo dice «tres
+  // meses»: traducirlo a «90 días naturales» contradecía la cita en el
+  // documento que se presenta ante el Síndic.
+  const plazo = limite ? plazoHumano(limite) : '—'
   const today = new Date(t.generatedAt).toLocaleDateString('es-ES', {
     day: 'numeric',
     month: 'long',
@@ -78,7 +83,7 @@ export function renderSindicMarkdown(t: SindicTemplate): string {
   lines.push(`   > ${q.detail.replace(/\n+/g, '\n   > ')}`)
   lines.push('')
   lines.push(
-    `3. Conforme al artículo 21.3 de la Ley 39/2015 (LPACAP), el plazo máximo para dictar y notificar resolución expresa era de **${plazo} días naturales** desde la entrada en registro. A fecha de hoy (${today}), han transcurrido **${diasTranscurridos} días** sin que la Administración haya dictado resolución expresa ni haya sido notificado el plazo máximo en los términos del art. 21.4 LPACAP.`,
+    `3. Conforme al artículo 21.3 de la Ley 39/2015 (LPACAP), el plazo máximo para dictar y notificar resolución expresa era de **${plazo}** desde la entrada en registro. A fecha de hoy (${today}), han transcurrido **${diasTranscurridos} días** sin que la Administración haya dictado resolución expresa ni haya sido notificado el plazo máximo en los términos del art. 21.4 LPACAP.`,
   )
   lines.push('')
   lines.push(

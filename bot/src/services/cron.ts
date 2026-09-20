@@ -16,6 +16,7 @@ import type { Db } from '../db/client.ts'
 import type { QuejaRow } from '../db/queries.ts'
 import { setState } from '../db/queries.ts'
 import { routeUsingLocalOfficials } from './router.ts'
+import { diasDePlazo } from '../../../src/scraper/queja-router.ts'
 import { isLoregFrozen } from './freeze.ts'
 import type { Channel } from './channel.ts'
 
@@ -95,12 +96,25 @@ export function checkSilencio(
       detail: r.detail,
       category: r.category as never,
     })
-    const plazoDays = routing.timeLimits.find((t) => t.kind === 'resolucion')?.days ?? 90
+    const limite = routing.timeLimits.find((t) => t.kind === 'resolucion')
+    if (!limite) {
+      // No se inventa un plazo. El `?? 90` que había aquí convertía «no sé
+      // cuánto» en tres meses y pico, y esto es lo que decide que una queja
+      // pase a silencio administrativo: un valor por defecto lo haría callando.
+      console.error(`[cron] ${r.id} sin plazo de resolución en la ruta: no se evalúa`)
+      continue
+    }
     // Silencio negativo only — positive silencio means the queja is
     // presumed granted by operation of law; we don't flag that as a
     // failure.
     if (routing.silencio !== 'negativo') continue
     const registered = new Date(r.registered_at!)
+    // Los días QUE DURA ESE plazo desde ESA fecha: el art. 21.3 lo fija en
+    // meses y el art. 30.4 manda contarlos de fecha a fecha, así que tres meses
+    // son 90 o 91 días según cuándo se registrara. Con el 90 fijo, una queja
+    // registrada en enero de un año bisiesto pasaba a silencio un día antes de
+    // que el plazo hubiera vencido de verdad.
+    const plazoDays = diasDePlazo(limite, registered)
     const ageDays = (now.getTime() - registered.getTime()) / (1000 * 60 * 60 * 24)
     if (ageDays < plazoDays) continue
 

@@ -6,7 +6,14 @@ import { createQueja, type NewQuejaInput } from '../db/queries.ts'
 import { routeUsingLocalOfficials } from '../services/router.ts'
 import { matchNeighborhood } from '../services/neighborhoods.ts'
 import type { Channel } from '../services/channel.ts'
-import type { QuejaCategory } from '../../../src/scraper/queja-router.ts'
+import type { QuejaCategory, QuejaRouting } from '../../../src/scraper/queja-router.ts'
+import { plazoHumano } from '../../../src/scraper/queja-router.ts'
+
+/** «3 meses» / «1 mes»: la unidad en que lo fija la norma, no días. */
+const plazoDeLaRuta = (r: QuejaRouting) => {
+  const limite = r.timeLimits.find((t) => t.kind === 'resolucion')
+  return limite ? plazoHumano(limite) : '—'
+}
 import type { MyContext, MyConversation } from '../types.ts'
 
 const CATEGORIES: Array<{ id: QuejaCategory; label: string }> = [
@@ -133,7 +140,7 @@ export function quejaConversationBuilder(db: Db, channel: Channel) {
       `*Categoría:* ${catLabel}\n` +
       `*Área responsable:* ${routing.concejalia.area}\n` +
       (responsible ? `*Responsable político:* ${responsible.name} (${responsible.party})\n` : '') +
-      `\n*Plazo legal, desde que se registre:* ${routing.timeLimits.find((t) => t.kind === 'resolucion')?.days} días (${routing.silencio === 'positivo' ? 'silencio positivo' : 'silencio negativo'})\n` +
+      `\n*Plazo legal, desde que se registre:* ${plazoDeLaRuta(routing)} (${routing.silencio === 'positivo' ? 'silencio positivo' : 'silencio negativo'})\n` +
       `*Base legal:* ${routing.legalBasis[0]?.law} ${routing.legalBasis[0]?.article}\n\n` +
       `Al llegar a *10 apoyos*, entrará en el lote semanal al Registro Electrónico.\n` +
       `Si vence sin respuesta, puede prepararse la plantilla para acudir al *Síndic de Greuges CV*.\n\n` +

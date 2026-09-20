@@ -92,7 +92,10 @@ describe('batch — selectBatch', () => {
     const q = seed(db, { category: 'transparencia', title: 'Acceso contratos' })
     verify(db, q.id)
     const [item] = selectBatch(db)
-    expect(item.plazoDias).toBe(30) // Ley 19/2013 art. 20
+    // En la unidad de la norma: el art. 20 de la Ley 19/2013 dice «un mes», y
+    // el lote es justo lo que aún no se ha registrado, así que no hay fecha
+    // desde la que convertirlo a días.
+    expect(item.plazo).toMatchObject({ unit: 'months', amount: 1 })
     expect(item.silencio).toBe('negativo')
     expect(item.baseLegal).toMatch(/19\/2013|LTBG/)
   })
