@@ -352,6 +352,43 @@ i {
   letter-spacing: -0.01em;
 }
 
+/* La fila de `SectionHead`: el título a la izquierda y, cuando la hay, una
+   leyenda a la derecha. Vivía en el `style` del JSX, donde no cabe nada que
+   dependa del ancho — que es justo lo que le faltaba.
+
+   A 375 px la columna del título se quedaba en 0 px de ancho por 314 de alto,
+   una palabra por línea, con la leyenda pintada encima del eyebrow. La causa
+   son dos decisiones correctas por separado: la columna lleva `min-width: 0`
+   para que un título largo no desborde la tarjeta, y las leyendas llevan
+   `flex-shrink: 0` para no romperse por dentro. Juntas dejan una sola parte que
+   pueda ceder, y es siempre la misma. Medido en «Capítulo a capítulo» de
+   /presupuesto: la leyenda se llevaba 282 de los 285 px de la fila.
+
+   El arreglo es dejar que la fila ENVUELVA y dar a la columna del título un
+   ancho por debajo del cual no negocia: si las dos no caben, la leyenda baja
+   sola a la línea siguiente.
+
+   14rem, y el número está medido, no elegido. Con 10rem —la primera versión—
+   el título de la tarjeta de deuda se quedaba en 145 px de los 285 y partía
+   «Bajó dos años seguidos, y en 2025 vuelve a subir» en cuatro líneas al lado
+   de una leyenda de 128; con 14rem la leyenda baja y el título se lee en dos.
+   Y la raíz de este sitio mide 14 px, no 16 —el control de densidad la mueve
+   entre 13,5 y 15—, así que 14rem son 196 px aquí: por eso la prueba lee el
+   `flex-basis` calculado en vez de repetir un número que depende de la
+   densidad. Lo mide `tests/e2e/cabecera-seccion-mobile.spec.ts`. */
+.cp-sec-head-fila {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.cp-sec-head-fila > :first-child {
+  flex: 1 1 14rem;
+  min-width: 0;
+}
+
 /* La paleta de la «Direction C (Civic Briefing)» vivía aquí: doce tokens, un
    ::selection propio y una clase de serif, todo scoped a `.briefing-root`.
    `/briefing` es una de las rutas legadas que se retiraron, y ni la clase ni

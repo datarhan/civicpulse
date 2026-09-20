@@ -417,16 +417,11 @@ export function EvidenceBand({ n, title, children }) {
  */
 export function SectionHead({ eyebrow, title, right, as: Nivel = 'h2', size = 'card', id }) {
   return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'baseline',
-        justifyContent: 'space-between',
-        marginBottom: 10,
-        gap: 12,
-      }}
-    >
-      <div style={{ minWidth: 0 }}>
+    // La fila y el ancho mínimo de la columna del título viven en
+    // `.cp-sec-head-fila` (index.css) porque dependen de si las dos piezas
+    // caben, y un `style` en línea no puede envolver: ver el comentario de ahí.
+    <div className="cp-sec-head-fila">
+      <div>
         {eyebrow && (
           <div
             className="mono"
