@@ -158,6 +158,8 @@ describe('guard: una edición a mano no tiene quién le mueva el sello', () => {
       expect(v.reason, name).toContain('"generatedAt"')
       expect(v.reason, name).toContain(sello(name))
       expect(v.reason, name).toMatch(/check:stamps/)
+      // Y la puerta que existe para moverlo sin tocar nada más.
+      expect(v.reason, name).toContain(`npm run restamp -- ${name}`)
     }
   })
 
