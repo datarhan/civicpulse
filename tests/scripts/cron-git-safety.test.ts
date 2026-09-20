@@ -67,6 +67,7 @@ const SCRIPTS = [
   'scripts/press-lab-pipeline.sh',
   'scripts/scrape-ci-blocked.sh',
   'scripts/lib/cron-git.sh',
+  'scripts/lib/claude-probe.sh',
 ]
 
 /** The file a concurrent subagent had staged when f182c61 swept it up. */

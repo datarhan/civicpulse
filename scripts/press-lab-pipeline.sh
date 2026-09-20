@@ -60,6 +60,8 @@ log() { echo "[press-lab-pipeline] [$(date '+%F %T')] $*"; }
 # ---- branch guard + pathspec-limited commit (shared) ------------------
 # shellcheck source=scripts/lib/cron-git.sh
 . "$REPO_DIR/scripts/lib/cron-git.sh"
+# shellcheck source=scripts/lib/claude-probe.sh
+. "$REPO_DIR/scripts/lib/claude-probe.sh"
 # Before the lock and before any LLM step. PRESS_LAB_NO_REMOTE composes rather
 # than fights: the guard is there to stop a run publishing from a branch whose
 # commits would never reach origin/main, and a rehearsal that skips BOTH the
@@ -96,9 +98,14 @@ export LLM_CONCURRENCY="${LLM_CONCURRENCY:-1}"
 # src/llm/client.ts will spawn (CLAUDE_CODE_BIN, default `claude`) — probing a
 # bare `claude` while the client used an override meant the probe could pass
 # for a backend that was never going to be used, and vice versa.
+#
+# The CLI's own reason is logged, not a guessed remedy. This line used to advise
+# «run: claude, then /login» whatever had happened; on 2026-09-19 what had
+# happened was a weekly limit, and re-authenticating a session that is logged in
+# fixes nothing. See scripts/lib/claude-probe.sh.
 if [ "$LLM_BACKEND" = claude-code ] &&
-   ! "${CLAUDE_CODE_BIN:-claude}" -p "ok" --strict-mcp-config --model "$CLAUDE_CODE_MODEL" >/dev/null 2>&1; then
-  log "warn: 'claude -p' probe failed — Max login may have lapsed (run: claude, then /login). LLM steps will no-op this run."
+   ! claude_probe "${CLAUDE_CODE_BIN:-claude}" "$CLAUDE_CODE_MODEL"; then
+  log "warn: 'claude -p' probe failed — $CLAUDE_PROBE_MOTIVO. LLM steps will no-op this run."
 fi
 
 log "starting · llm=$LLM_BACKEND/${CLAUDE_CODE_MODEL} · extract≤$MAX_EXTRACT · summarize≤$MAX_SUMMARIZE · step-cap=${LLM_TIMEOUT}s"
