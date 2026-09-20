@@ -179,6 +179,37 @@ describe('scraper/indicador-lectura', () => {
     const sinPares = municipales.find((m) => !m.pares && m.valor !== null)!
     expect(leerIndicadorMunicipal(sinPares).donde).toBeNull()
   })
+
+  it('la lectura corta de la ejecución no afirma más que su salvedad larga', () => {
+    // Señalamiento de la revisión lectora en /gestion, 20-09-2026, y era cierto.
+    // La ficha lleva la misma salvedad dos veces y las dos no decían lo mismo:
+    // la larga fecha con cuidado —«a lo largo del ejercicio —algunas a final de
+    // año»—, y la corta lo comprimía en «hinchado con modificaciones de última
+    // hora: … crédito que nunca pudo gastarse». Eso son dos afirmaciones que el
+    // dato no sostiene: CUÁNDO (el listado trae un solo corte, a 31 de
+    // diciembre, y no fecha ninguna modificación) y POR QUÉ («nunca pudo» es
+    // imposibilidad; lo medido es que no se gastó). Y excusa al ayuntamiento
+    // con una causa que nadie ha comprobado, que es tan poco nuestro como
+    // acusarlo.
+    const eje = munById('ejecucion-presupuestaria')
+    const corta = leerIndicadorMunicipal(eje).como
+
+    expect(corta).not.toMatch(/última hora/i)
+    expect(corta).not.toMatch(/nunca pudo/i)
+
+    // Una página no puede sostener las dos frases, así que se comprueban
+    // juntas: si la larga deja de matizar, esta prueba tiene que enterarse.
+    expect(eje.caveats.some((c) => /a lo largo del ejercicio/.test(c))).toBe(true)
+    expect(eje.caveats.some((c) => /algunas a final de año/.test(c))).toBe(true)
+
+    // Lo que SÍ está medido se sigue diciendo: el divisor es el definitivo, y
+    // el crédito añadido por modificación apenas se ejecutó (inversiones reales
+    // partió de cero, incorporó 22,06 M€ y ejecutó el 4,7 %).
+    expect(corta).toMatch(/crédito definitivo/i)
+    expect(corta).toMatch(/no llegó a gastarse/i)
+    // Y lo que no se sabe, se dice que no se sabe.
+    expect(corta).toMatch(/no dice cuándo/i)
+  })
 })
 
 describe('la lectura no repite lo que la tarjeta ya enseña', () => {
