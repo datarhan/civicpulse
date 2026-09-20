@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-19T08:27:53.753Z",
+  "generatedAt": "2026-09-20T08:22:51.455Z",
   "source": {
     "description": "Daily press-article link-rot audit + Wayback Machine archival index. Used to surface dead source URLs on /laboratorio and let curators cite the snapshot instead."
   },
@@ -8,7 +8,7 @@
     "alive": 170,
     "dead": 4,
     "error": 0,
-    "archived": 4
+    "archived": 6
   },
   "items": [
     {
@@ -18,7 +18,7 @@
       "articleSource": "Valencia Plaza",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:16:12.396Z",
+      "checkedAt": "2026-09-20T08:16:16.256Z",
       "error": null
     },
     {
@@ -28,7 +28,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:16:18.485Z",
+      "checkedAt": "2026-09-20T08:16:17.058Z",
       "error": null
     },
     {
@@ -38,7 +38,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:16:23.790Z",
+      "checkedAt": "2026-09-20T08:16:19.055Z",
       "error": null
     },
     {
@@ -48,7 +48,7 @@
       "articleSource": "Periòdic del Camp de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:16:25.771Z",
+      "checkedAt": "2026-09-20T08:16:21.676Z",
       "error": null
     },
     {
@@ -58,7 +58,7 @@
       "articleSource": "El Periódico de Aquí",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:16:29.198Z",
+      "checkedAt": "2026-09-20T08:16:23.859Z",
       "error": null
     },
     {
@@ -68,7 +68,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:16:32.962Z",
+      "checkedAt": "2026-09-20T08:16:26.656Z",
       "error": null
     },
     {
@@ -78,7 +78,7 @@
       "articleSource": "Periòdic del Camp de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:16:36.956Z",
+      "checkedAt": "2026-09-20T08:16:28.642Z",
       "error": null
     },
     {
@@ -88,7 +88,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:16:38.150Z",
+      "checkedAt": "2026-09-20T08:16:33.237Z",
       "error": null
     },
     {
@@ -98,7 +98,7 @@
       "articleSource": "elperiodic.com",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:16:42.314Z",
+      "checkedAt": "2026-09-20T08:16:34.790Z",
       "error": null
     },
     {
@@ -108,7 +108,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:16:48.631Z",
+      "checkedAt": "2026-09-20T08:16:35.421Z",
       "error": null
     },
     {
@@ -118,7 +118,7 @@
       "articleSource": "Periòdic del Camp de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:16:49.426Z",
+      "checkedAt": "2026-09-20T08:16:36.518Z",
       "error": null
     },
     {
@@ -127,8 +127,8 @@
       "httpStatus": 200,
       "articleSource": "Periòdic del Camp de Túria",
       "archivedUrl": "http://web.archive.org/web/20260831134132/https://www.infoturia.com/riba-roja-de-turia/85857-el-auditori-municipal-de-riba-roja-invertix-40-000-euros-en-les-installacions-i-equipaments-tecnics.html",
-      "archivedAt": "2026-09-19T08:16:49.927Z",
-      "checkedAt": "2026-09-19T08:16:52.318Z",
+      "archivedAt": "2026-09-20T08:16:37.972Z",
+      "checkedAt": "2026-09-20T08:16:40.926Z",
       "error": null
     },
     {
@@ -138,7 +138,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:16:59.893Z",
+      "checkedAt": "2026-09-20T08:16:45.363Z",
       "error": null
     },
     {
@@ -148,7 +148,7 @@
       "articleSource": "Levante-EMV",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:17:02.559Z",
+      "checkedAt": "2026-09-20T08:16:47.391Z",
       "error": null
     },
     {
@@ -158,7 +158,7 @@
       "articleSource": "Levante-EMV",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:17:06.330Z",
+      "checkedAt": "2026-09-20T08:16:49.680Z",
       "error": null
     },
     {
@@ -168,7 +168,7 @@
       "articleSource": "Valencia Plaza",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:17:07.850Z",
+      "checkedAt": "2026-09-20T08:16:51.771Z",
       "error": null
     },
     {
@@ -178,7 +178,7 @@
       "articleSource": "Valencia Plaza",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:17:18.532Z",
+      "checkedAt": "2026-09-20T08:17:00.136Z",
       "error": "HTTP 404"
     },
     {
@@ -188,7 +188,7 @@
       "articleSource": "Levante-EMV",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:17:24.159Z",
+      "checkedAt": "2026-09-20T08:17:08.342Z",
       "error": null
     },
     {
@@ -198,7 +198,7 @@
       "articleSource": "elDiario.es",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:17:30.124Z",
+      "checkedAt": "2026-09-20T08:17:09.493Z",
       "error": null
     },
     {
@@ -208,7 +208,7 @@
       "articleSource": "Valencia Plaza",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:17:34.389Z",
+      "checkedAt": "2026-09-20T08:17:10.686Z",
       "error": null
     },
     {
@@ -218,7 +218,7 @@
       "articleSource": "Valencia Plaza",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:17:37.054Z",
+      "checkedAt": "2026-09-20T08:17:12.530Z",
       "error": null
     },
     {
@@ -228,7 +228,7 @@
       "articleSource": "Levante-EMV",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:17:48.345Z",
+      "checkedAt": "2026-09-20T08:17:20.742Z",
       "error": "HTTP 406"
     },
     {
@@ -238,7 +238,7 @@
       "articleSource": "Levante-EMV",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:17:52.347Z",
+      "checkedAt": "2026-09-20T08:17:22.519Z",
       "error": null
     },
     {
@@ -248,7 +248,7 @@
       "articleSource": "Levante-EMV",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:17:57.834Z",
+      "checkedAt": "2026-09-20T08:17:24.683Z",
       "error": null
     },
     {
@@ -258,7 +258,7 @@
       "articleSource": "Levante-EMV",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:18:07.582Z",
+      "checkedAt": "2026-09-20T08:17:33.503Z",
       "error": "HTTP 406"
     },
     {
@@ -267,8 +267,8 @@
       "httpStatus": 200,
       "articleSource": "Ayuntamiento Riba-roja · Transparencia",
       "archivedUrl": "http://web.archive.org/web/20260418171553/https://ribalicita.ribarroja.es/",
-      "archivedAt": "2026-09-19T08:18:08.162Z",
-      "checkedAt": "2026-09-19T08:18:09.895Z",
+      "archivedAt": "2026-09-20T08:17:34.028Z",
+      "checkedAt": "2026-09-20T08:17:37.954Z",
       "error": null
     },
     {
@@ -277,8 +277,8 @@
       "httpStatus": 200,
       "articleSource": "elperiodic.com",
       "archivedUrl": "http://web.archive.org/web/20260511060248/https://www.elperiodic.com/ribaroja_turia",
-      "archivedAt": "2026-09-19T08:18:10.388Z",
-      "checkedAt": "2026-09-19T08:18:10.862Z",
+      "archivedAt": "2026-09-20T08:17:38.433Z",
+      "checkedAt": "2026-09-20T08:17:39.427Z",
       "error": null
     },
     {
@@ -288,7 +288,7 @@
       "articleSource": "El Periódico de Aquí",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:18:12.155Z",
+      "checkedAt": "2026-09-20T08:17:42.239Z",
       "error": null
     },
     {
@@ -296,9 +296,9 @@
       "status": "alive",
       "httpStatus": 200,
       "articleSource": "esRadio Valencia",
-      "archivedUrl": null,
-      "archivedAt": null,
-      "checkedAt": "2026-09-19T08:18:18.677Z",
+      "archivedUrl": "http://web.archive.org/web/20260410170137/https://esradiovalencia.com/noticias/alberto-gimeno-pp-critica-la-gestion-socialista-en-riba-roja-han-hipotecado-el-municipio-y-dejado-sin-servicios-basicos-a-los-vecinos/",
+      "archivedAt": "2026-09-20T08:17:43.488Z",
+      "checkedAt": "2026-09-20T08:17:44.324Z",
       "error": null
     },
     {
@@ -308,7 +308,7 @@
       "articleSource": "El Periódico de Aquí",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:18:29.168Z",
+      "checkedAt": "2026-09-20T08:17:52.735Z",
       "error": "HTTP 404"
     },
     {
@@ -317,8 +317,8 @@
       "httpStatus": 200,
       "articleSource": "Valencia Plaza",
       "archivedUrl": "http://web.archive.org/web/20230718120335/https://valenciaplaza.com/riba-roja-reduce-el-numero-de-concejales-con-dedicacion-exclusiva-y-ahorra-42000-euros-anuales",
-      "archivedAt": "2026-09-19T08:18:30.414Z",
-      "checkedAt": "2026-09-19T08:18:33.482Z",
+      "archivedAt": "2026-09-20T08:17:53.180Z",
+      "checkedAt": "2026-09-20T08:17:54.141Z",
       "error": null
     },
     {
@@ -328,7 +328,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:18:37.562Z",
+      "checkedAt": "2026-09-20T08:17:57.294Z",
       "error": null
     },
     {
@@ -338,7 +338,7 @@
       "articleSource": "Las Provincias",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:18:42.569Z",
+      "checkedAt": "2026-09-20T08:18:00.452Z",
       "error": null
     },
     {
@@ -348,7 +348,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:18:47.821Z",
+      "checkedAt": "2026-09-20T08:18:02.132Z",
       "error": null
     },
     {
@@ -358,7 +358,7 @@
       "articleSource": "Las Provincias",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:18:50.692Z",
+      "checkedAt": "2026-09-20T08:18:03.452Z",
       "error": null
     },
     {
@@ -368,7 +368,7 @@
       "articleSource": "El Periódico de Aquí",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:18:55.706Z",
+      "checkedAt": "2026-09-20T08:18:05.226Z",
       "error": null
     },
     {
@@ -378,7 +378,7 @@
       "articleSource": "El Periódico de Aquí",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:19:00.972Z",
+      "checkedAt": "2026-09-20T08:18:06.830Z",
       "error": null
     },
     {
@@ -388,7 +388,17 @@
       "articleSource": "Levante-EMV",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:19:04.638Z",
+      "checkedAt": "2026-09-20T08:18:10.002Z",
+      "error": null
+    },
+    {
+      "articleUrl": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNMmxLYkVncFZtSFlseFUxQWpTZ2pKemFoenI3UFhndVdTVDA2Y3RXUW1UODlGR1VnWlZRUXkxRGZreHFIcllPMUQ0N3VaV2t2SnBVOHNFZnBfbWNGM1ZSaVFSUGdJVWFSTmJCbTRiam5nZFhqT3I3TkFiMmlvZzFId0RQZzgxZWFrRE5DTzQxOTlKNFBNYXpKSlpSSW9PLVRCeU1SSmdMZWtWUDl0bjR1bUg4a211MGxVVDJoQTVXQnlIbU9YX0RVQWJ6QVFDRS0tVFdad3FjWjlzUdIB3wFBVV95cUxQQTBqaVJOTDZURHpobVBwemcyTnpWQmJBWTl1Z3Uyd1ZSb1ltaTJiYTVfTjBVdUZwTm1FUkN2My0tNVkxTlJBMklOMFRQcDNqblNNVTZUNFpPQ19aWEJnRERfM0ZmS012UjZBT3JqWFFmRmtLelhpZ3JKY2R5TVQ0VHR6bnVKTjZVQ0JIRS1nUVdNZm5ENl9kMWN5NkJ3bGhvM0VhSlRocElmM1J6YlZNVVEzbzVnb0dzZl81a3UyZmdySHhKUEJJSFF1ZUFWaFhEd0wzOUQ2TkFBZ0FBQjhn?oc=5",
+      "status": "alive",
+      "httpStatus": 200,
+      "articleSource": "Levante-EMV",
+      "archivedUrl": null,
+      "archivedAt": null,
+      "checkedAt": "2026-09-20T08:18:15.490Z",
       "error": null
     },
     {
@@ -398,7 +408,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:19:06.852Z",
+      "checkedAt": "2026-09-20T08:18:18.699Z",
       "error": null
     },
     {
@@ -408,7 +418,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:19:08.584Z",
+      "checkedAt": "2026-09-20T08:18:19.552Z",
       "error": null
     },
     {
@@ -418,7 +428,7 @@
       "articleSource": "Periòdic del Camp de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:19:11.521Z",
+      "checkedAt": "2026-09-20T08:18:21.554Z",
       "error": null
     },
     {
@@ -428,7 +438,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:19:16.616Z",
+      "checkedAt": "2026-09-20T08:18:24.034Z",
       "error": null
     },
     {
@@ -438,7 +448,7 @@
       "articleSource": "boletinbien.com",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:19:23.587Z",
+      "checkedAt": "2026-09-20T08:18:25.709Z",
       "error": null
     },
     {
@@ -448,7 +458,17 @@
       "articleSource": "boletinbien.com",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:19:29.645Z",
+      "checkedAt": "2026-09-20T08:18:27.141Z",
+      "error": null
+    },
+    {
+      "articleUrl": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPSlY0NVZheS1yMDN2Y3JxbWtPd3JXUl9NWVEtVHVHVXhVT2l3UUNPQXpDZG5GaHp0QjlrMmM2d24yVW9wRzFZanZuX1pLZmNmUkFZTEJGbmo2M0J1NTVYYmoyWXZMY1B2ZGVncTNtQk9CSVdSMHhtS0RzaWFQd2VlMlpaUkh1bXJtVmYwQmN5SDViQTlYaUNhbjREU0M?oc=5",
+      "status": "alive",
+      "httpStatus": 200,
+      "articleSource": "boletinbien.com",
+      "archivedUrl": null,
+      "archivedAt": null,
+      "checkedAt": "2026-09-20T08:18:29.975Z",
       "error": null
     },
     {
@@ -458,7 +478,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:19:32.442Z",
+      "checkedAt": "2026-09-20T08:18:33.794Z",
       "error": null
     },
     {
@@ -468,47 +488,47 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:19:35.521Z",
+      "checkedAt": "2026-09-20T08:18:37.492Z",
       "error": null
     },
     {
-      "articleUrl": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9wZjBkMzRTcF9haFhBX0ZSMGlYYWRpUm05Y0NPSE1LUEF4T3NJckhXSU9KZXVNWTZMS2NMTHhJekkyaVFwOTNSRDhwdjc2TjN5RElWNDNJRGdxZw?oc=5",
+      "articleUrl": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOd0NWSkRNdE52QW15ejJMdWoyTEdDcTlhN21PNHJmeF9ZUTZsVllHbk5tMHpEQVg5LUhEQ1JCOFA1ekpvMEI0MXZMd09yNmdreWJyOFJXV2YtUGxwdUVDRlo1R2lHcjNwVGI4S2JJY011VWJHTDdJbE5PRlhYblVmRnN4ZHdFa2pfcGlUUTh1c21Ca0kxSmtUdg?oc=5",
       "status": "alive",
       "httpStatus": 200,
-      "articleSource": "tiempodehoy.com",
+      "articleSource": "fotocasa.es",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:19:41.517Z",
+      "checkedAt": "2026-09-20T08:18:39.602Z",
       "error": null
     },
     {
-      "articleUrl": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNaUJXV0RmYlZ3NGhnamZ3WWNkQVpfOXkxODAxSldDY2Q0VHNGeW1GdXdaQnBzUTlpLVJ1Y3dsMkRfTV9vTHBUZUJwOTYwa3VIMXg2ZmI4RlJGdVdEQm5mTnNzLVNuNlVMU2hoRmt3UHppczMxM0V1V0JDa3JRWFU4aU1ENVFVU09OZmhjX2xvNDZ2Umh6c0FBRzBwdHE0OEtua0M2SXZtZXJpNjVKZXFF0gG0AUFVX3lxTE9UV01Ga3BPZGFvT083bTNOQkpyTXhRNDhFMFFRNUpRZk9WQzNuZlowOUpqRXNUVEFiMG54TUF5VVBlWk5Eblppc1NTRllRVXYzM3pLOVN4MnhnczFIZmNTZzl1VDdhdmFveUhtekdoR1NFeXBxUWZDUmt5S3lRRnVzVWxfZy12TkpneklzWElIQ1hZM0RqUnpnN3ZiYzB6WTJicmNsRHVYLTFFYy1MQ0hIa0hmTg?oc=5",
+      "articleUrl": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPM0tZRWpKUDFXOTZqQWtMLTR5bTBDZmY2MDVDR1VWcEVyWjF4bzJiLUJWQ19aaDNRNWlQZXJxNkQyMUdObnloSzBXaWNVMXlUTjMwaklONzQ3ck9xYnBVTVJMMEFaellUNWxDcDNhNnRnTEQzLUNybVFjSmgyTHBrNDVHWFBIV0Rmb0w1REstRzVUTjlzZ0kzYVk5X0tDT3BKa1RRZEIteU11NEdpWVhyT3NRczdmV1dNeWJ2ejlZWjd5TmFqcWRrNldZdGV1dVdaaURFbElidldoYmQxNmltXzBfd3laR2xB?oc=5",
       "status": "alive",
       "httpStatus": 200,
-      "articleSource": "Las Provincias",
+      "articleSource": "Valencia Plaza",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:19:45.867Z",
+      "checkedAt": "2026-09-20T08:18:41.917Z",
       "error": null
     },
     {
-      "articleUrl": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQSDlkckNDZTFuUHZVejhDZ29nZmp2amRtM01iUDlwQV9fUVJGRmxUazVCM1ZEY05XdnhrUnYzOWFSWjhqZ2YzeFFpVWsteGFuQmxGRnZabENpaUYwcFV6TUFUZzdmTUZ6WDBEanZORzNxdGtRdTJhTGNFMkpCNktKWi1CcDZWV0lkeTAxenJZekhoU3NFdmJLaFRrMHJmaEFtYm10cXhVT3NfV0x2S3ozcjJYY1lQSUtUUmk0MHNIWVhiUkRpMGY1bTgzUkxubDVXOHVUbDl3VElpTjhpRkHSAeMBQVVfeXFMT294MlJFX3EtU2tSczJWUUZVVW9hMkdJWFJRczNTNWd4WWVseDVTMml3R3FRUTVac3JuaTk4bUItcjNGMm14ZFlYQXpseHVlTExNT1FMSDgwWHRFNEhFMXBsQ3FuRGFINnY1VFpnSk9VeGFIRjhzemFJazNoWGdiR0RaaG9lNnM4Q2V3MXRwTjI5Zy16OHVrYU5SVjF3WlZUX01uOURzZE5fSnczNGFIT05UVmhNdXlKOE9oczNGLS11ZzFrdHd4SFpwS1N4elFhRWJDV1J5MHJfVVF3cmF0RWM5QXM?oc=5",
+      "articleUrl": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOVEZTWXVfZ3djTDM1Nm8zQzhQaWpuaWFRX0h0S3U2U01IbEdQRDlQU3N0S2JjR0lNTzMxRDhrVFJnT2NhTnVnTnpCc3A2cDFqV3hKR01rXy0tWDZwcGVBbUt4VzZXSmxFWFpPNWZoQm0yYzFUQUFkYlZ6all5QmlDY0tWU0p5TzlsVlB1RnBlQzRPSnZKZlVhcEFVQ0FmbjF4NFJJMVNONEhJRDVSVHpHcWJNYjRsVXVIUTMxWTJCTDkxbnhjNDBYRWw1YnNkXzZEQ3doMWkxWmE0WFhHYXfSAeMBQVVfeXFMTlN5aW03M1JQeW1rSzAxSTJUUE93NFp0X3pXbkx6Y3hPXzI2S1YxQnQ4ZW1SMFBOeE1ITHpBaXE4WHAzTEdrMU9VY2ZoaHhhcEM4dWJ0RGxxdTcydWw3bTZVUFdreS1mMGpTelFwUFBQTUp2TWxHRDVwQ0JGT29ieEVyVVUtcklSRUxCMWZRX3J1NFFzMTR3MHdmNGtWc0NZc0p1cFhEcHpYOEh5T3g4NHp6X0ZHUE5VRk9UMVp5S2lNQzlkZkNTeUs0OU5PMUdVRGo1N3JMcDE2MWdUSXlSVDhEQzQ?oc=5",
       "status": "alive",
       "httpStatus": 200,
       "articleSource": "Levante-EMV",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:19:48.733Z",
+      "checkedAt": "2026-09-20T08:18:43.490Z",
       "error": null
     },
     {
-      "articleUrl": "https://news.google.com/rss/articles/CBMihwFBVV95cUxNa0JMbTlDTWE3ZkNiQzRMN05kUk9zRzV0dDdXMjhHVFZlSEpId2p1UEJmTzQyZ2RVbmwweFViQ2IwREJRanRjUFZ2ME54bnpuZVJsMEVOSGlkQUFzaThPSU4xU2pGSF85SS1PQndaX21mSkV3Vy12QWJSTHZEV1ZEYnZoT25Dbzg?oc=5",
+      "articleUrl": "https://news.google.com/rss/articles/CBMiekFVX3lxTFB1Vk1NWXRRaHE2NTh5ejRtOHVzaXhBVmtvQ2Y1dFJENUVrQmtraHlVWHgyTUs1dWN0UDRyVnpvTG5EYjYtZ3FBV09DYk9IQ1IxOWJ2b1M3TDlEZFZROV9FZTRQazRjMkUtY212aUMwTU1QSlE2S0F2eVFB?oc=5",
       "status": "alive",
       "httpStatus": 200,
       "articleSource": "boletinbien.com",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:19:51.188Z",
+      "checkedAt": "2026-09-20T08:18:45.241Z",
       "error": null
     },
     {
@@ -518,7 +538,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:19:53.588Z",
+      "checkedAt": "2026-09-20T08:18:46.380Z",
       "error": null
     },
     {
@@ -528,7 +548,7 @@
       "articleSource": "boletinbien.com",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:19:59.689Z",
+      "checkedAt": "2026-09-20T08:18:47.952Z",
       "error": null
     },
     {
@@ -538,7 +558,27 @@
       "articleSource": "boletinbien.com",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:20:05.582Z",
+      "checkedAt": "2026-09-20T08:18:53.263Z",
+      "error": null
+    },
+    {
+      "articleUrl": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOeFZuWE10YkNHY3B1WS02SE54eVJ6amV6T09iMHExMTRnM2x1YllpdXNHemluTFhRMFlEajF5dnhMZTVtMGd4dEJENG41V0p4WFQzeThRcEFJTGdWVEJCak93UTBwWVBaOXh2SEIwcWd1ZVVsb0kxcXBNV1l1RTZTdTJfeWMxbDRFMmZwYTlOQ0V3ZmxpU2xlNGRtUGVPNVlFYUVxbWs1VkctRnhEMHRWRDBLLW5QQ1IyTGpHRnJKa2R1TGlmX1FNWG5PWXlEbVB3TVpiaWR3TGpWRjJaVXc?oc=5",
+      "status": "alive",
+      "httpStatus": 200,
+      "articleSource": "El Periódico de Aquí",
+      "archivedUrl": null,
+      "archivedAt": null,
+      "checkedAt": "2026-09-20T08:18:54.489Z",
+      "error": null
+    },
+    {
+      "articleUrl": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPRFFiUmJza2FDY1hYQU1CY2tJaFdJMTF5dHVJVjlkZ3Z3cW1FTXg0TGNyVjgzLUd5MGItNDJfYkZqalplSHRpQkNlajhKYzJrWG1LOEpBSjRhenpPRXk5eV9pWURYRFdDTmlpZlBTcHRIWDkyRGUwdm5uenpzUk11Q0NKLXJwQ0NwNDlLaGdGSQ?oc=5",
+      "status": "alive",
+      "httpStatus": 200,
+      "articleSource": "Valenciabonita",
+      "archivedUrl": null,
+      "archivedAt": null,
+      "checkedAt": "2026-09-20T08:18:55.814Z",
       "error": null
     },
     {
@@ -548,27 +588,17 @@
       "articleSource": "boletinbien.com",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:20:08.138Z",
+      "checkedAt": "2026-09-20T08:18:59.856Z",
       "error": null
     },
     {
-      "articleUrl": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOYjNJaFVVdW5YVVBaY3dUaGl1ajZzbVpJZXYwYjl6ZVBDSFZzTllwVVliOTVYRkpSczdjSWxFdnZvaHkzdUU1bHVjcVY5ZGg5aDRHcEhXUzBHZ2V0Y09YY2w1S2kxZ0JTRF8zVVZ4THFiSUFNZ0t0VFAwekotU3BwTG1CcVBTWlV4UGs1bEVDVnpCUXE5?oc=5",
+      "articleUrl": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQOGdKbWt2cmRqaVpRV0N5UTFJYk9MejRtcU5FQUxjTXh5a1hZNy1jd0gxWnppZXlCeFNfWFJicGhQRlNVSnlPeTBvZ0JKQjNKblptX3F2MHNvcDFOU3J4S0JGNmotV3JqZjdtYWVBWmYzbllGbG1XaDlOUUg2TjFfV2MydmFUNkNpa2FUdWpBTE5MV2sycXFkT05ZYW9SUDUzOVlwQURXXzZoYjR0czhBQU5nb1Y0NHdVT3lB0gHAAUFVX3lxTE0xbWVmcS1XMVBWNnRmeDZuVEZuVTRSWXVfak5yMHVBVnJxS0RtZC1lTWVEdTMxMGVwcVk2cmNEcWliNEdrMGRENFNmY1dQVFF6R0QyMnNmS0JxQncxRDVQUU9XUFQzTlBGNUk3SXZ5REJxenN5ZjJlUlpfaUZJV2d5VHBnTUtOVk83N1pNQjFyN3dNWFR0OHFOOGlETUc1RUpoSzVhWC1yVVRYQlQ1Uy1sQm9OSHhKS29UMDBPNXVidg?oc=5",
       "status": "alive",
       "httpStatus": 200,
-      "articleSource": "boletinbien.com",
+      "articleSource": "Las Provincias",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:20:10.595Z",
-      "error": null
-    },
-    {
-      "articleUrl": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOWHhlTEFQVkRyem5TMnpMRmRqbHBpU1hPVnktMlh3QUFXekNHczdvSEhiclFDUEF0Z0RJM282YlFoM1ZDSGZXTnpXYkFRakFzVThRZGV5di02MjFUQlcwWmszbE5tckRva0kxTXBjWEdVZjNjZGhMVmdQa2g0T1kxTTRiRW9VUGZSVDg5NDQwVjQxd1Bj?oc=5",
-      "status": "alive",
-      "httpStatus": 200,
-      "articleSource": "boletinbien.com",
-      "archivedUrl": null,
-      "archivedAt": null,
-      "checkedAt": "2026-09-19T08:20:13.183Z",
+      "checkedAt": "2026-09-20T08:19:01.183Z",
       "error": null
     },
     {
@@ -578,7 +608,17 @@
       "articleSource": "Turisme Comunitat Valenciana",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:20:16.421Z",
+      "checkedAt": "2026-09-20T08:19:02.783Z",
+      "error": null
+    },
+    {
+      "articleUrl": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOUnB3UTRaWktudHJjRnJTbHZIYUtQWmw4WjhZb2lWTFN0Sm11TEtGQ2IwUnY5NkZ2Wlp5b20tclZrWVNQVnhXalIwLVdhQUNMVmJMU1hObzh0Q0o1cjdfQ1J4Y2VodVVsVVgzczgtQXl6NEg2Z3BSRW9MS1JqaWJTRjJJSXFHS05uS0Q1bGhENHFlM05yOXBfeDdWZl9QdjViYkRYVXpNQXlwUVVQZDNPRkZBSzNQakw0aG1jdGRhRjJYNGdVelp0V0ZHVjVNOUJxOGY5NC1GTnRqbEtvMHVqRtIB5gFBVV95cUxPWW9pN21DLVNmdnRtQ3Z3WW9HOUtzLXpibWducmRURG5BWTZXdDNGVFlwQ1pLZEdreGk0X3FiM0xhTHhPSVpHbEhRWjdvd1JDa2ZYV1FjZDFrYnZtTk45ZTNIZkNFWnZVSl8wN1lTOXoySGJJZWJBZmE5UHJUNzNzaTJHRHBZVW5VdlVDTDZyczRIWXNfMVRUaDQzdzFWUjJLYUgwTC1QY2tKWEhZS1o5NW1LTGc5dVhPMXF2bzNtWU0zSDRRV0VubjZ2REJXQnY1cUNnQ284aEszQzJXcTNxQ0lGVW1idw?oc=5",
+      "status": "alive",
+      "httpStatus": 200,
+      "articleSource": "Levante-EMV",
+      "archivedUrl": null,
+      "archivedAt": null,
+      "checkedAt": "2026-09-20T08:19:04.269Z",
       "error": null
     },
     {
@@ -588,7 +628,7 @@
       "articleSource": "Periòdic del Camp de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:20:17.761Z",
+      "checkedAt": "2026-09-20T08:19:06.464Z",
       "error": null
     },
     {
@@ -598,7 +638,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:20:21.643Z",
+      "checkedAt": "2026-09-20T08:19:08.058Z",
       "error": null
     },
     {
@@ -608,7 +648,7 @@
       "articleSource": "Levante-EMV",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:20:24.257Z",
+      "checkedAt": "2026-09-20T08:19:10.041Z",
       "error": null
     },
     {
@@ -618,7 +658,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:20:27.247Z",
+      "checkedAt": "2026-09-20T08:19:11.024Z",
       "error": null
     },
     {
@@ -628,7 +668,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:20:29.891Z",
+      "checkedAt": "2026-09-20T08:19:12.374Z",
       "error": null
     },
     {
@@ -638,7 +678,7 @@
       "articleSource": "Periòdic del Camp de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:20:32.397Z",
+      "checkedAt": "2026-09-20T08:19:13.391Z",
       "error": null
     },
     {
@@ -648,7 +688,7 @@
       "articleSource": "Periòdic del Camp de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:20:35.584Z",
+      "checkedAt": "2026-09-20T08:19:15.028Z",
       "error": null
     },
     {
@@ -658,7 +698,17 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:20:37.478Z",
+      "checkedAt": "2026-09-20T08:19:15.613Z",
+      "error": null
+    },
+    {
+      "articleUrl": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQSjIzVFJONlJSTzg4ekpmU3dKM3AtenBUeWdqaDIyZ084VXpIRGhyQUg0cFBhWHdkbWRoYVBmcTd2MmstQkdzaGpSSlQ5ZldwTkFBOUFDX3V1bGRjcFdPWHpudEJObDlZLWNnYzR4MlhwcF81SllEMmpMRlkyWHhnaUVpNFY3eFR5T1o5dXJXY1p5RjFKVVlBUU55Nmo1Z3Jwa1gxVG1JOXVrdW0wLWRmaDY3WTlwdHNOd0ZaNkhmV1ZmQ0hGU05IYzBGV1JkMDFrS1NoYS0zbW12dTBn0gHiAUFVX3lxTE4yeHBabkwxVU9QN2NnUXlUVTZNel8tY0Q5UTBYdk9VbS1Wd0NhUUlDZkhqeFgyTVR3R1lhMDBHZ2hzc0ZnUklwZ25CY0JyQ1hlNVlqQmNiRE9WNlRBZFU5c2RpYk00dlBSNS1ueE55NDhGczJaa0J1UDFWMlJDd3I2TS14NGJJb0dScDhEM2I2Nzd1bWdpdTVSRkQySHhFQVp1NXZZMnlvYmpUUERld2NYMkxwNzNZMEhIeVY1QWZld0NWVXhlYW5sVVZES2dvMm9Qbk9FTlkwcy1ZVlJwOWlmR2c?oc=5",
+      "status": "alive",
+      "httpStatus": 200,
+      "articleSource": "Levante-EMV",
+      "archivedUrl": null,
+      "archivedAt": null,
+      "checkedAt": "2026-09-20T08:19:19.317Z",
       "error": null
     },
     {
@@ -668,7 +718,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:20:43.619Z",
+      "checkedAt": "2026-09-20T08:19:20.033Z",
       "error": null
     },
     {
@@ -678,7 +728,7 @@
       "articleSource": "Periòdic del Camp de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:20:45.490Z",
+      "checkedAt": "2026-09-20T08:19:20.852Z",
       "error": null
     },
     {
@@ -688,17 +738,27 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:20:49.495Z",
+      "checkedAt": "2026-09-20T08:19:23.904Z",
       "error": null
     },
     {
-      "articleUrl": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNVW94SUZNUGlFN2VWYS04NC02cFV3bFNkUjkydk8xcXJvaG90SHEyZ0xyVjZYNXNFSkVhcGE5LThBTzVLMnRTeHd4b2dPRTdCZzI5UlRvakJrV3lISmozd0hGSm1wQ3JmRVluZmFJTFAzbjVGNGk2cjhnV1R5WHVNdEpVVjhoMjdWeVp1aG5SbXQxejk4V243SHc5UmFOZFZBaXpVWUwtb3FVSWRpY1pBdtIBtgFBVV95cUxQd2pLa2xWTERQd000UHRRU1o1X25qbEVJUldvVmR3VUptc0lfNkFnaGJobUtJVDJLR0F1WjVnRGFUVmNaQzRoQlFQZEFaUU1OLWlZUFJnekxpeVNHQ2J3TzdmS192ODRmZUR6NWxxOGF4LUJqYVVOTGFfN0hrNko3akxUSzdVeDFlM0ZNWldjMUtkcnZkdFN4eEJ6anQ0cGwtN3NWeVZMdnJteEdKbzNZT0tvU1JkZw?oc=5",
+      "articleUrl": "https://news.google.com/rss/articles/CBMiqAJBVV95cUxNVHRBRzFPVGNPWkc0LVh4Wkp0RjBWSVRZZzRtYjAwU1FITmptLW1SOHk5VUctZVBkYWNhajdNemlSXzdoaldWaUI5eHpqT3p2eEhldE1FREhvY0xERVk3ejVNVXN1ajhKRXpDZU9CS2hMWUtuemhRT3UyTXZzNEpxanZYcUtZZzh3NWx0X2NfSzhyY1p1SE01WDJZQmVSbkxzWktINng3Q3J1eW1DTFRwdmV6Ykx3cHg5UlNaM1RqNGRHVnJNX2lJV2JmdjRYWjFZLWpPMGkxbDFkYUVNRnZRejA0SFRkZ0FEaUphN1pnWWR6REtCdzZ6WFhMZGwxcmtUTFNvM3ZVeUJpQ0lpMzdLckFrd3FzR3l6a25CS2E4WFMtT3hMdF8xTtIBrgJBVV95cUxNWmtweVVUc0I4bE1jMUNJZURxOVJ0UWIwUWpucVZVbmxGV3UwV3pUZjc2czNWdHZuMW5FX19rSm9uWHh6MTR4UkZ1ZWpES3E2OWVJMFZKTm83c1FrSlh2cHlNaTJOeFk4WlR3d0VqX3NJYzA0eWg5QWFBVnBZcGpfaUM5UUNvd2p6ekNqX2pjam5pWkttRlg5c2QwMm81ZWZsZ25XelBONnZZU2IySXhpRTRGSDZMeFRJTkhpaEJmQ1RRano3d0NGVjktVkcxR2VLbHZsMGs2amdKUm8xOEdDaTNDNDZTNy0xZ245cGxfVk1ITzJKRDY4eDVvUUFBZ3l0cjVaTjlWMnhvcHNCb19qT1JZaHJuUzQ2WGs3b0tBZmhjS2xsWS12a0VrRHRjZw?oc=5",
+      "status": "alive",
+      "httpStatus": 200,
+      "articleSource": "cope.es",
+      "archivedUrl": null,
+      "archivedAt": null,
+      "checkedAt": "2026-09-20T08:19:25.959Z",
+      "error": null
+    },
+    {
+      "articleUrl": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxONFg2NE9XdlYtMS05MmZ4VWhKUjBxVnlnazdma2dMWkZWbWVPdDJTQjlQcDRkZEh2NHlfVHUtbk9XSXFxal9tQlpyNm5ZNzhCNFhWbkFtS3R3cnVYTjFhUHpnNWRycjlrWGxUYm9NUDBGdEJnTWNZZGdGeERKNm9aRWlHR1kxdVNHbnJvS3B4M1NuSmJOdTB5cGVLVjdhbkx4N084LTZqY2NBeERkYUJTZUZHTmdfQzMtckdhc212VnZWUlFoOGhKVTNjYlZ6VUlV0gHWAUFVX3lxTE45OTBENlFIQzZDU3RiUFlGNFJoR1VKWjBhb3pLajJkX2c0cktoQ0xZSWdUanN3MENzWVBhaG1vclp4dVZBYkR4enhiUEdjWE00aTlIS3FILWFfUUh4QTJhWHM4WnFkdEFYZ0tKVUNxUkxFWXVNdFV1T0h4ZXZ1WktDdGVBejM0dGlybTJvV3d0OWdjeEtPMG1zZkdPUk1zUW1aUVVFZFJRbUFVa3RNNEV2RVJfclduVUpyNXJZUGcwRktGOTFhZDkxXzNrMTJjckRCRDUxMUE?oc=5",
       "status": "alive",
       "httpStatus": 200,
       "articleSource": "Levante-EMV",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:20:51.914Z",
+      "checkedAt": "2026-09-20T08:19:27.479Z",
       "error": null
     },
     {
@@ -708,7 +768,7 @@
       "articleSource": "Periòdic del Camp de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:20:53.346Z",
+      "checkedAt": "2026-09-20T08:19:28.375Z",
       "error": null
     },
     {
@@ -716,9 +776,19 @@
       "status": "alive",
       "httpStatus": 200,
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "archivedUrl": "http://web.archive.org/web/20260904081944/https://www.ribarroja.es/es/noticia/un-novedoso-veh%C3%ADculo-controlar%C3%A1-30-puntos-de-imagen-captados-por-once-c%C3%A1maras-de-vigilancia-para-garantizar-la-seguridad-durante-las-fiestas-de-fadrins",
+      "archivedAt": "2026-09-20T08:19:28.694Z",
+      "checkedAt": "2026-09-20T08:19:29.164Z",
+      "error": null
+    },
+    {
+      "articleUrl": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPTTRDT1I4MXBzbE9PcC13Zkw2R2pUTjF6elRWOUJ6Y0NuaTk4bVkzN2czWVNQZkJDejd3S1dPQUZnT3RIYTEwZ2FjRnVhUEwtRldWSmxfeWdXQlZfMkJWMmh5YThoLVA3N0czSTBSaVJ3TF9lN2ZGZGxad3NwaWRxNFdUZ0oxWlJwdlZVMXBLR2dZV1BYeWcyZUdScnZuRFZHZmliYlVQYXI4bmtBT3JCMV9FSVBUYTlTSXpsa25EZEtNVzktcXBSbXdydlIyaEZSTUhBdkNVUGJ2UmpLa0JobjVVbXpQZXFFWnE0a1BNenk?oc=5",
+      "status": "alive",
+      "httpStatus": 200,
+      "articleSource": "Valencia Plaza",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:20:59.776Z",
+      "checkedAt": "2026-09-20T08:19:31.991Z",
       "error": null
     },
     {
@@ -728,7 +798,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:21:02.324Z",
+      "checkedAt": "2026-09-20T08:19:36.067Z",
       "error": null
     },
     {
@@ -738,7 +808,7 @@
       "articleSource": "Valencia Plaza",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:21:05.229Z",
+      "checkedAt": "2026-09-20T08:19:37.388Z",
       "error": null
     },
     {
@@ -748,7 +818,7 @@
       "articleSource": "Las Provincias",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:21:09.808Z",
+      "checkedAt": "2026-09-20T08:19:39.332Z",
       "error": null
     },
     {
@@ -758,17 +828,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:21:15.056Z",
-      "error": null
-    },
-    {
-      "articleUrl": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOeDhkMlBHa2ZFNFJKRWZQNXdKb0VhdTRnaEJEcEthOEw1dGdxTUtnbDdWLUtQa2g1UGRxaGpKWm5vekRxQVE3a292NlZqdzBWVmNpTi1HU3NYVnZmZXBBX2ZfR05abURPRERCN01MMDFOM1dwSjhiZ004Y2c3THdJb3ZuVVJhYzZIVVNHNDV3S29NZEVBX1Y1czZUZTR2Zk5uY01IcFB5QlpmVHBUX2VXWlNRVGNhZThMSS1kZzVIVk9tRGJmVW95dThyM205LTBMU0E5cGxISWNIT1NFN0liOU42QmFIYjQ?oc=5",
-      "status": "alive",
-      "httpStatus": 200,
-      "articleSource": "Valencia Plaza",
-      "archivedUrl": null,
-      "archivedAt": null,
-      "checkedAt": "2026-09-19T08:21:21.031Z",
+      "checkedAt": "2026-09-20T08:19:40.902Z",
       "error": null
     },
     {
@@ -778,7 +838,17 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:21:24.125Z",
+      "checkedAt": "2026-09-20T08:19:41.552Z",
+      "error": null
+    },
+    {
+      "articleUrl": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNYXBUQURFRkc2clZXSDlvWWJiVVVTY2JLczNEb2xiMFFCZmw4NkhkWlJBN2JTN1VaSUhhVWY4TVBoMDhQZm1lMDhYd0JNUXVEYzJ3VzZaamdrc1otREZzMkt3OUt5X0lUNGVuRXF5bENudjkxS1dxSUg5WXRaUzdhNjZZa2ZkUlBGMXlacDVBeU81LXR4em1NRmNHTkR3eGVJclHSAacBQVVfeXFMUDJGRDE5Y1JNd2czUVI2c3kwN1REY3ZCTXhmblpXWW1SeXNXMk03YzVWNXB1LXN1eHlBSk1iUWdzZEVWQTN0M2JwVGlPa1FJRjZYeU5XOVFkSWhHZDRLdnI0TU5HSHdlaGlXMVd3WW5jYjdBS3pvNDRtNlBEeTBsbHlqRFl3NUlxMjhoY0M0Z1NQWm9uSUwyZDVPODZYUXVzZGV2cjNKR1U?oc=5",
+      "status": "alive",
+      "httpStatus": 200,
+      "articleSource": "Las Provincias",
+      "archivedUrl": null,
+      "archivedAt": null,
+      "checkedAt": "2026-09-20T08:19:43.082Z",
       "error": null
     },
     {
@@ -788,7 +858,7 @@
       "articleSource": "Levante-EMV",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:21:28.944Z",
+      "checkedAt": "2026-09-20T08:19:44.418Z",
       "error": null
     },
     {
@@ -798,7 +868,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:21:35.202Z",
+      "checkedAt": "2026-09-20T08:19:45.659Z",
       "error": null
     },
     {
@@ -808,7 +878,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:21:37.247Z",
+      "checkedAt": "2026-09-20T08:19:47.194Z",
       "error": null
     },
     {
@@ -818,7 +888,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:21:41.683Z",
+      "checkedAt": "2026-09-20T08:19:49.044Z",
       "error": null
     },
     {
@@ -828,7 +898,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:21:44.105Z",
+      "checkedAt": "2026-09-20T08:19:50.239Z",
       "error": null
     },
     {
@@ -838,7 +908,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:21:46.902Z",
+      "checkedAt": "2026-09-20T08:19:51.753Z",
       "error": null
     },
     {
@@ -848,17 +918,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:21:49.155Z",
-      "error": null
-    },
-    {
-      "articleUrl": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPSTQ1ZHFLLTNRRXdudEs2RHpkMXdKam1SUjdjM21jRkx3TFZEcVd1eFJ5cloycFVpNHFFeG1UeXYyVHpFcXVyaEsxRVgzajlLdnI2ZmVoT3ZpMDJXa1h2WUN3REplYjJIN3QydlB2TWFWYTBpdnZ4QU5oY1VXTWlITUlCSDQwaGhCY0RocnZYTUR0THVERkJqOWpTMmtzMmNmRDhXaWlIcGNCZmNOaXM1d1BTVUZ4TmhUSm5DTGdmODlyeWw2bUY4UUc2OUN6MUZIZnRjNlZqSGRxeTd1QTVVUFd4bHpJNjhG?oc=5",
-      "status": "alive",
-      "httpStatus": 200,
-      "articleSource": "Valencia Plaza",
-      "archivedUrl": null,
-      "archivedAt": null,
-      "checkedAt": "2026-09-19T08:21:55.356Z",
+      "checkedAt": "2026-09-20T08:19:53.328Z",
       "error": null
     },
     {
@@ -868,7 +928,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:21:59.892Z",
+      "checkedAt": "2026-09-20T08:19:53.925Z",
       "error": null
     },
     {
@@ -878,7 +938,7 @@
       "articleSource": "Valenciabonita",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:22:02.911Z",
+      "checkedAt": "2026-09-20T08:19:55.377Z",
       "error": null
     },
     {
@@ -888,7 +948,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:22:05.809Z",
+      "checkedAt": "2026-09-20T08:19:56.151Z",
       "error": null
     },
     {
@@ -898,7 +958,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:22:09.320Z",
+      "checkedAt": "2026-09-20T08:19:56.783Z",
       "error": null
     },
     {
@@ -908,7 +968,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:22:12.083Z",
+      "checkedAt": "2026-09-20T08:19:57.466Z",
       "error": null
     },
     {
@@ -918,7 +978,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:22:16.593Z",
+      "checkedAt": "2026-09-20T08:19:58.335Z",
       "error": null
     },
     {
@@ -928,7 +988,7 @@
       "articleSource": "El Periódico de Aquí",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:22:22.743Z",
+      "checkedAt": "2026-09-20T08:20:00.528Z",
       "error": null
     },
     {
@@ -938,7 +998,7 @@
       "articleSource": "Levante-EMV",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:22:24.295Z",
+      "checkedAt": "2026-09-20T08:20:01.876Z",
       "error": null
     },
     {
@@ -948,7 +1008,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:22:31.037Z",
+      "checkedAt": "2026-09-20T08:20:04.915Z",
       "error": null
     },
     {
@@ -958,7 +1018,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:22:34.519Z",
+      "checkedAt": "2026-09-20T08:20:05.545Z",
       "error": null
     },
     {
@@ -968,7 +1028,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:22:38.267Z",
+      "checkedAt": "2026-09-20T08:20:06.162Z",
       "error": null
     },
     {
@@ -978,7 +1038,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:22:42.579Z",
+      "checkedAt": "2026-09-20T08:20:07.117Z",
       "error": null
     },
     {
@@ -988,7 +1048,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:22:46.096Z",
+      "checkedAt": "2026-09-20T08:20:08.711Z",
       "error": null
     },
     {
@@ -998,7 +1058,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:22:52.464Z",
+      "checkedAt": "2026-09-20T08:20:09.374Z",
       "error": null
     },
     {
@@ -1008,7 +1068,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:22:55.306Z",
+      "checkedAt": "2026-09-20T08:20:11.444Z",
       "error": null
     },
     {
@@ -1018,7 +1078,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:22:58.354Z",
+      "checkedAt": "2026-09-20T08:20:13.477Z",
       "error": null
     },
     {
@@ -1028,7 +1088,7 @@
       "articleSource": "Valenciabonita",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:23:02.375Z",
+      "checkedAt": "2026-09-20T08:20:15.510Z",
       "error": null
     },
     {
@@ -1038,7 +1098,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:23:04.113Z",
+      "checkedAt": "2026-09-20T08:20:21.085Z",
       "error": null
     },
     {
@@ -1048,7 +1108,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:23:06.878Z",
+      "checkedAt": "2026-09-20T08:20:21.701Z",
       "error": null
     },
     {
@@ -1058,7 +1118,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:23:12.403Z",
+      "checkedAt": "2026-09-20T08:20:23.229Z",
       "error": null
     },
     {
@@ -1068,7 +1128,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:23:18.831Z",
+      "checkedAt": "2026-09-20T08:20:26.639Z",
       "error": null
     },
     {
@@ -1078,7 +1138,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:23:21.588Z",
+      "checkedAt": "2026-09-20T08:20:27.275Z",
       "error": null
     },
     {
@@ -1088,7 +1148,7 @@
       "articleSource": "Levante-EMV",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:23:28.062Z",
+      "checkedAt": "2026-09-20T08:20:28.743Z",
       "error": null
     },
     {
@@ -1098,7 +1158,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:23:34.823Z",
+      "checkedAt": "2026-09-20T08:20:30.709Z",
       "error": null
     },
     {
@@ -1108,7 +1168,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:23:39.894Z",
+      "checkedAt": "2026-09-20T08:20:33.914Z",
       "error": null
     },
     {
@@ -1118,7 +1178,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:23:46.679Z",
+      "checkedAt": "2026-09-20T08:20:34.625Z",
       "error": null
     },
     {
@@ -1128,7 +1188,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:23:47.429Z",
+      "checkedAt": "2026-09-20T08:20:35.955Z",
       "error": null
     },
     {
@@ -1138,7 +1198,7 @@
       "articleSource": "El Periódico de Aquí",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:23:50.912Z",
+      "checkedAt": "2026-09-20T08:20:38.446Z",
       "error": null
     },
     {
@@ -1148,7 +1208,7 @@
       "articleSource": "Levante-EMV",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:23:56.871Z",
+      "checkedAt": "2026-09-20T08:20:39.863Z",
       "error": null
     },
     {
@@ -1158,7 +1218,37 @@
       "articleSource": "Levante-EMV",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:24:00.121Z",
+      "checkedAt": "2026-09-20T08:20:41.516Z",
+      "error": null
+    },
+    {
+      "articleUrl": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPQVEza1pKTGI4N0c1N3VGd2JRQzNUZXNrT3lDX1BfNnFHeHlWTm1rNi1NQmR3ZUZSajhZUFJTcnBsNnFpaC1qZlY1RjNYdkVNc0ZUVnNvMzUta3VzUGFWY0JaU3kzUXU0S1IxNkVjYV84TE5sUFlxbkE1OTVRbXBZRkx4RDdQUkd6YkpNUWxmejl3WEF3YnNjd1J4Z2FyUkxuSmg4cTh3dzJIOGNMZWRzand5UFBVanl6N21HQ3VxeWNaZ1hhbTRBelpiSWs3X00?oc=5",
+      "status": "alive",
+      "httpStatus": 200,
+      "articleSource": "Valencia Plaza",
+      "archivedUrl": null,
+      "archivedAt": null,
+      "checkedAt": "2026-09-20T08:20:42.777Z",
+      "error": null
+    },
+    {
+      "articleUrl": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPckdBZElla0FxR2MzNUdnWWRGVzZyUHlvZm5oNVlockd0VV9fd0lTeWFTR29nRTJIdGhMbVZNWlFKcllidFk4UDB3X0IxQXd1bW42aUYwV0VqX2NhVk9zU002aGdpcXNCTXBBT0dJVWhWMzVDWTcxbm9kZTlvV1lNQjZMLVN6UndJTjZfSFpubE44SmNZRjFWOGc1eWRwR2dKNGY1b0t0VDJHZU9GcjdR0gG0AUFVX3lxTE9OTldLUU0tNmxPaDROUlU1VkRoZWFsNWN6NWRTYnJxeVVCcExENUdQMEM1akM5YXRVV2t0RWpOTXhjdjBMd1BueGRrdi02OWZseE9QMmlLQUxzTTB3TlI0amFMMWs3N1lRNE5EZTYyVDdCMHNyQmpOSk9kNzh0TjVFbTRMeGZVeEF6RnYxdzFJZ0FXQ2hrVU15eUNKLVBIbkVYMFl2a3dSd2VXc3QtZjhXLWJfTQ?oc=5",
+      "status": "alive",
+      "httpStatus": 200,
+      "articleSource": "Las Provincias",
+      "archivedUrl": null,
+      "archivedAt": null,
+      "checkedAt": "2026-09-20T08:20:44.344Z",
+      "error": null
+    },
+    {
+      "articleUrl": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxOSTRVWWpaYXFDeFJIaGdOc01MSG9vQXJVTEhuVEFJRDFQLWJCQU1BTEtaOE9ENjNpcUtCeEpTME9jdnhXUkRGeXdTdGMtc3Bva080WDNRM0o5VzdXN2lvdzB2ZGRHSjMtdVJxWjZodHdOWWwwTkJoQmVXNTM5ZGVtVENaSUlESTItZTlCSV80RVFra1hTdkdFOWtacmotcTA3MG4ydExVS0hZOC1uOTFqOEQyT05uN1ZfQk9kdXVMZG44UThhVVpFc1NjS0xVYlBmSXV2YWxWb1hTdXlpd1FDMlpsSTZWRkFGRmh4aU5SX3k?oc=5",
+      "status": "alive",
+      "httpStatus": 200,
+      "articleSource": "Valencia Plaza",
+      "archivedUrl": null,
+      "archivedAt": null,
+      "checkedAt": "2026-09-20T08:20:46.476Z",
       "error": null
     },
     {
@@ -1168,27 +1258,17 @@
       "articleSource": "Levante-EMV",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:24:06.295Z",
+      "checkedAt": "2026-09-20T08:20:47.806Z",
       "error": null
     },
     {
       "articleUrl": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQVFRnWlRKekJVM3pyQUZLN1hOYkpJTEd3NU1VdVYxNF9OQkpmNWVSc2VvcWhEQnlVa0hHUjZXSG1LcV9lTFJGSDQ2Y1lKMVZyUVRweWhLNms0V21KbkFQUXFGVDh0SWtBWkVFY2NhY1FqMHg4MWZKb1pjdXFnTGhFejlTNzhrS1pkRkZwYjl3cTRrSnd0UHdsYTRQM3pZaThYUUV0cG5NQWpKOXRTNGxLdUN4RGZqdC1nYVptNHVn?oc=5",
       "status": "alive",
       "httpStatus": 200,
-      "articleSource": "RETEMA",
+      "articleSource": "retema.es",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:24:09.466Z",
-      "error": null
-    },
-    {
-      "articleUrl": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQLXpNVFF4dXhIbXpqaTJQXzN6dVN4Rl9vSFZndThNUFMtdWluaTNMUUp3dnh2QThhamFZWERDM2s2aWV1R1dqLW1mODV3UnIyeHcyRHkwdmQ2YVlhb3pxRnFJQjJMcEhYYmFBVmlwYjdGWEVFUE1teFBtODZmcVVncDRJaFlYVV9fd3JyRzRqdXBqcmFCLXhFZHZVSWJMcGtJSzN0NVpLSGpaZ1A3b0tZV3hxMWJJRk5aRGh3eTlGeng0MGduVktLcnVzQnU0MHhBSDF1eUZCaWRWSUZMM2prMno2Mi1zdnhxMVFURlp2UTd5bFIwYlpmOWF3a2U0OVhMTklIZXJ4NA?oc=5",
-      "status": "alive",
-      "httpStatus": 200,
-      "articleSource": "València Extra",
-      "archivedUrl": null,
-      "archivedAt": null,
-      "checkedAt": "2026-09-19T08:24:15.834Z",
+      "checkedAt": "2026-09-20T08:20:49.721Z",
       "error": null
     },
     {
@@ -1198,17 +1278,17 @@
       "articleSource": "Levante-EMV",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:24:20.289Z",
+      "checkedAt": "2026-09-20T08:20:51.158Z",
       "error": null
     },
     {
-      "articleUrl": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPVXRLcnZocVE2VEgzeF9hVVhwMDZEelRzcUtjeGlacHg0MWRhUHd3NDMwa28yaVpvZGVwT3VPOXFfN2ljcnYzNW5zT2lXMUkweTlYR1AtYld4SUVKR2JJTlFURWdzWDgxbXVEekt0SDZmdUZQZldSOGhkM29EM1dGSUZZR0Frb1VIdFFNYUYtRXozVUpOMzRfYmppcWNpV1M3QUJ1RWlJUFNETmdaZDMyRzFod2M3RmJCU2doT190cmdNWVpoNkhlTDB6bmxFVTdOWDgxekkxektJYVFuOW8teHM3WjdERGdhaUV0SWNnM1U?oc=5",
+      "articleUrl": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQWEtNMmtPdEFpcDhLZVE4aXFDWVJjRW8xS21zMjFQamZUQ3VWZ3JXSGJUWF9PSV9Xc2ZYazMwTGlaVjg0cmROSE1heXV0QlBBY0QtczBjMjZEYTZfZGRjLUtSem9ESXdWamxLeVJ2VGRkNFBRRGtVeWFjaVJKNWc0Q3YtSVQ2TE9ESlk4dzNOSnpZeV9BSjhwcVBiOFk0Z0NKNngwMmc4TjVPa0x0bkVpSE9ncWplZGEyZ2Nwb01qdEg1a24zLTY4UkJhbEVVVTNhZzZlQk5vMmhuVHNNbHRaMw?oc=5",
       "status": "alive",
       "httpStatus": 200,
-      "articleSource": "Valencia Plaza",
+      "articleSource": "El Periódico de Aquí",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:24:27.110Z",
+      "checkedAt": "2026-09-20T08:20:54.305Z",
       "error": null
     },
     {
@@ -1218,7 +1298,7 @@
       "articleSource": "Valencia Plaza",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:24:33.060Z",
+      "checkedAt": "2026-09-20T08:20:55.666Z",
       "error": null
     },
     {
@@ -1228,17 +1308,17 @@
       "articleSource": "Valenciabonita",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:24:35.117Z",
+      "checkedAt": "2026-09-20T08:21:02.040Z",
       "error": null
     },
     {
-      "articleUrl": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxQYjhkbEJKbGZKZFlKWW0tWGdFd19DUEY1S0FSbHZJUG9veUZ5QjY5YlpNS21MOHd4NW0zM1pWNU5rV3ZIOGNISmtWckgzRHg1RUJkdFN2TjdRMjZpME9zcEx6YUM4ZHRCYW9PUkZkUkZLOWdnSThlWG9uNDdrenZyeG1CMEpvR2VQdERQbzZqcXN4V2hYMm9yUHVrX0VTWF9MV1hla1hfVXFOOTZKS2xZdEZCazNyNWNrRXhjUVRJcWZFX3ZWWUVtTXhWUTNkMzZadXhrVUItMkVxTTZSYWVtR3BEV19hZlh00gHuAUFVX3lxTE1rbVplVFBQU1lwZ216Ny1zRlRBd1VxRDFQeHR0SkRuWjFNWk1tRk51aVZWT1QwWmVMVXNqZzdoazV4OEFpMm9DMTRfVnVMbmlsNEFHeTBHYVBQWUJNaVBwVUM5dzdXc0x6TXQ5VkduNFpvakt0RjgxY1pLLXNOVUViRXVPeTFCSVNXbGVEMk9jYl9CcUV2bkhWWWRWekEwZng4QzZiZGoyRmZ3WkdtSUZpRnNIWlNiTlMtb2Z1NXBmSUhsdUxSWTdzZlpyMlk1ZWExd1ByZUE1aWVqbk5oN01vWmFjb21lYnZpeVAwb1E?oc=5",
+      "articleUrl": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOX0I4azN2Zzl4VEUwdm1mVjAtaUZoT21tWjQ1dmJhc212ZGFHX0x1aFVWRDBVZDhLTFFXOWFXY3pwdlBXVUhYZ3FtV1pQaGtYaWlsWENET25oSWd3U2R2OXJHbG9SM25tVENwOTQ0LUJ4RUNMenhrR0hrMERIRktaeEZvSWJndU13cm1XWmZlTlhQSmFoRlNCdnFJQVVRcmw4bzA4TEZKdUVHTWx5dmw5UllZcFFIRHhzWVlTZ2E4bXVSWmI1eVVwdnVR?oc=5",
       "status": "alive",
       "httpStatus": 200,
-      "articleSource": "Levante-EMV",
+      "articleSource": "elperiodic.com",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:24:41.402Z",
+      "checkedAt": "2026-09-20T08:21:05.101Z",
       "error": null
     },
     {
@@ -1248,7 +1328,7 @@
       "articleSource": "Levante-EMV",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:24:45.490Z",
+      "checkedAt": "2026-09-20T08:21:07.310Z",
       "error": null
     },
     {
@@ -1258,17 +1338,7 @@
       "articleSource": "Valencia Plaza",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:24:51.534Z",
-      "error": null
-    },
-    {
-      "articleUrl": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQSWlLN1hwMGlBNXR3ZmpnNnU5OFhiU3l6dlI3a3loNldUVS1hcktKZk9RVHBWclRLUDFRdWgzRkx5Ny1rQW9icl9nOGJvcGlncF8xT3VsUkMzS0ItQUgwTlZJT1FRRWstOHZiRlBmdUxnRDFyQXh1QzRhYWZxdE1ETzN5ZTZZOFdGc21kNmJ4TElBN21YWXdfeUQ5cElveGNIeXA2X1pqZGsyQ0J6ekc5YXVLOFFUcGFXY1g4enRPMEdNZHpsQld0amVRa0VrUktjbUJGM21wcGVvM2EyWFhGWEwwRQ?oc=5",
-      "status": "alive",
-      "httpStatus": 200,
-      "articleSource": "Valencia Plaza",
-      "archivedUrl": null,
-      "archivedAt": null,
-      "checkedAt": "2026-09-19T08:24:53.839Z",
+      "checkedAt": "2026-09-20T08:21:09.036Z",
       "error": null
     },
     {
@@ -1278,17 +1348,27 @@
       "articleSource": "Levante-EMV",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:24:59.890Z",
+      "checkedAt": "2026-09-20T08:21:11.153Z",
       "error": null
     },
     {
-      "articleUrl": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPa2w5YnVNMW9nbFNtcFY2VERrS0ZaY1hvR0RMdmFGRXlfU29aTXY0UE1KUzRoQjNxTGtTVDJFaWY0anVlY09OcDM3b3cwcmJKLU4waFRiTENyVUxEanlMMVVaZkRaLXBFdFlzTk8zMVRkcnIzdHhqWFBjeS11eEY2NENLRnN1ZjJMMEpFVnFNRXo4YjV1Y1FhOU01Qmh5N09IYzNycGhpb0FhTnk2aGU5d2RPTExWVjVBdktpR1Z4NTlEeWZsMHE0UE1B?oc=5",
+      "articleUrl": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOMlItcW5wQTgzZHl3aGtQc2RzdEZWQm1hWUxZYy1lcXVVSWxCd3JGaDFfWnF3emY4U29LdUNKVHJpRExiclNzb2tyOGJpQmYzcHFjcXN1RHZ4Nk8zV183d0ZlaGdvMXJTQ1NEMlBNYUgtSXV6ZzVyT1JZYVVHLWJ2QjBSV1ZBbnRSaFRPSGljeDI0N3RvbGtrVW9wcnUzN1I4WTlSSVFlMEZ4X2xuUkF3by1kMkJFN3pKMnc?oc=5",
       "status": "alive",
       "httpStatus": 200,
-      "articleSource": "El Periódico de Aquí",
+      "articleSource": "elperiodic.com",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:25:05.971Z",
+      "checkedAt": "2026-09-20T08:21:12.704Z",
+      "error": null
+    },
+    {
+      "articleUrl": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNdkwxcWJZOXRjajlDelVISGFiVVZxS0VDckdqNk4zLVhKcTh6X1BSZzc4UGpUTy10UmtpdDRyUVdyMjJNS01WSmF6NS1BbFJSVU42WVhGVTdMS3E3NVFQbVg4ODRTMnFqOERPVk13eGlycng0UGwzSzc5cDdzZl82SVE2U1EwVXR6RUNVVFdyLURCZXNmdFp0OTBLUWd0ckk4dDFibGhnaTJVWDJZeGdtcGtSeDMxOTNrN1Y0WHBXcU85VkYyZkHSAcsBQVVfeXFMUEJDNE1fTnAxTURibnlfS2llY1lZU011TGg4eDNzTDByeWM0RlBYVjN5RXRnYzl1aW5TN2RYM0ViU0V3NzhOMnFIZUJmZlE5ZjRQby12THl4UTR3Q0U1cncydVpETjlhYVEzMmdLS3hQWmZwM0tUbVVwV1RKYi1KV0tiVnpxM0YwVGFTeEFPcklmWHhtQVZGR0ZWdi1IWmtSVHRBSUt1UlliaWNxYjV1N29KcHVGYUNxd2JIeEdvaUpTdWp5TC1jN3d5dE0?oc=5",
+      "status": "alive",
+      "httpStatus": 200,
+      "articleSource": "Levante-EMV",
+      "archivedUrl": null,
+      "archivedAt": null,
+      "checkedAt": "2026-09-20T08:21:14.750Z",
       "error": null
     },
     {
@@ -1298,17 +1378,27 @@
       "articleSource": "Valencia Plaza",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:25:07.509Z",
+      "checkedAt": "2026-09-20T08:21:16.580Z",
+      "error": null
+    },
+    {
+      "articleUrl": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPY2hhanVEWFJIeUYzQ1c1QTJna2VsV21VSW92VXAtUENLOEp5dkRsWVlpejRVdHZBVjJvRWNrSWMzWWtrT01yM04tMm5KemJlZHJQTTN2aXBUOWVLc3BfMm9rdktrSUw2N1dZazV6N1BDdzJnd1g4SGUxY0JlQWVPUjRSSGJDVnFjS3ZwbEN3c0RNOS1Jc1NPMjY3Tm1FeWFrTlVQVW00eXFhVkM4dWdSdUJEaEJObGJ0UTBLWFNVbmxCSVhMMXpRX1B6amVkM2gxQjJV0gHYAUFVX3lxTE9Eb2dlMmNTVmhSNTUtb292V01XUUtJNUJ1ODJwZGxZa0tjQ0xlNGQxWlBFOW5MNkppVEN4QWtGM2s5dTF0VWlMWW80MXdrMWtXdW00emZpZGJjRU9McmpHYXVQaXctYk5BejJ0SzR4aHEzWjBLM2xMZ2RVZEk3azFYV0NrSkV6Z0NUa1g4bWg5ZDhEVDJUc3E4WjVrVFRrTjRzOF9sMTl6ZHQ0OWlRbkRTWmx4UEsyckJrZnRSQjB1N0sxZGpiYlk1SW8wcFp0OXoxdFhqcDVIZw?oc=5",
+      "status": "alive",
+      "httpStatus": 200,
+      "articleSource": "Levante-EMV",
+      "archivedUrl": null,
+      "archivedAt": null,
+      "checkedAt": "2026-09-20T08:21:18.165Z",
       "error": null
     },
     {
       "articleUrl": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQMUc5WFB3cXJXcEpCazZCV2RWSWswWVNMb2tBTWJvMnBheXhGd1QyLXJSUWdXQnE3QmRXc1g5MTJfbS1Fd3Byb05fZEZGVWdPQmZXMHY0NG9CSXF6SWhrNk1QUFlpcXVabmxZNk1leU9EcDhCcC1oUVVWdTZTX21JQlRvQjFzaWE2Nkh3N2c5TmJSeFRUa0hB?oc=5",
       "status": "alive",
       "httpStatus": 200,
-      "articleSource": "Fotocasa",
+      "articleSource": "fotocasa.es",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:25:11.387Z",
+      "checkedAt": "2026-09-20T08:21:20.674Z",
       "error": null
     },
     {
@@ -1318,7 +1408,7 @@
       "articleSource": "Valencia Plaza",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:25:17.137Z",
+      "checkedAt": "2026-09-20T08:21:22.864Z",
       "error": null
     },
     {
@@ -1328,7 +1418,7 @@
       "articleSource": "todotransporte.com",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:25:23.367Z",
+      "checkedAt": "2026-09-20T08:21:26.616Z",
       "error": null
     },
     {
@@ -1338,7 +1428,7 @@
       "articleSource": "Levante-EMV",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:25:24.697Z",
+      "checkedAt": "2026-09-20T08:21:30.340Z",
       "error": null
     },
     {
@@ -1348,7 +1438,7 @@
       "articleSource": "Levante-EMV",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:25:26.861Z",
+      "checkedAt": "2026-09-20T08:21:36.310Z",
       "error": null
     },
     {
@@ -1358,7 +1448,7 @@
       "articleSource": "Levante-EMV",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:25:29.314Z",
+      "checkedAt": "2026-09-20T08:21:38.131Z",
       "error": null
     },
     {
@@ -1368,7 +1458,7 @@
       "articleSource": "Levante-EMV",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:25:35.630Z",
+      "checkedAt": "2026-09-20T08:21:39.453Z",
       "error": null
     },
     {
@@ -1378,7 +1468,7 @@
       "articleSource": "rfet.es",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:25:39.299Z",
+      "checkedAt": "2026-09-20T08:21:41.015Z",
       "error": null
     },
     {
@@ -1388,27 +1478,17 @@
       "articleSource": "Levante-EMV",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:25:40.971Z",
-      "error": null
-    },
-    {
-      "articleUrl": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNUGNTY3hQa05YcDR3a0EwUWkwRTJISHQxeDhHM2FyNFlSUmMtQ1JpVENBUVdGN2Q4OTVfbUFaLXFoa3R3NGRmR1FJcm1MYllYblpVTmlHSDdBeU5ncHNja1V6T2ppcWh3SGdZZmxTcGdfOEpTX24xcXVUT1h5OXNqWjB2SW1GdFR6bEM4OUtmWWVIaG5BcFJxa1ozckllTUtRZVQ4eTQ5OWMwelFwWDBlXzc0blFZVFNjRV9ydtIBwgFBVV95cUxOcVRsbkFGWWFaaVlwQWZUSldTU0NCRlp6Nl9PYVBMN3ExeC1ReXE1ZEpmazEzVW1VY3draEVPa2p2OW9JaXdEMGZUNnpweUdKZ3QzU0xwQ0NROXNkaXFXZl9kcW1COEhqVGNoSlVoM3ZOZTMtVjhFNThMSl9GTXlTcUZqYlNoM25aeF9jVktFM2ltd2cxeW1VOXRtTkJFRXkxclBaT2lrOXNTOVg2SmZCNkJwMmxyWmhzcVJYNnZ4eUpiZw?oc=5",
-      "status": "alive",
-      "httpStatus": 200,
-      "articleSource": "Las Provincias",
-      "archivedUrl": null,
-      "archivedAt": null,
-      "checkedAt": "2026-09-19T08:25:44.988Z",
+      "checkedAt": "2026-09-20T08:21:43.613Z",
       "error": null
     },
     {
       "articleUrl": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOQlFtS1NIYTNSV2RZbXNKMW5Ga1VlanFFTGZNS0xGYmpTbURiTU5mNFg5WDdNMjAwSm8xUXIwaUhPZF9BVHZiNmVob0VYeF9MUjU2ZGt4Y0Rpb3lFNnRzUHc5Zmh4eTdUNU5nSERZY3l5UlpRanE4MlotekRNZFhtR091anUyWVcyMl9qaHRZd2NyQQ?oc=5",
       "status": "alive",
       "httpStatus": 200,
-      "articleSource": "Fotocasa",
+      "articleSource": "fotocasa.es",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:25:46.389Z",
+      "checkedAt": "2026-09-20T08:21:44.917Z",
       "error": null
     },
     {
@@ -1418,7 +1498,7 @@
       "articleSource": "Levante-EMV",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:25:48.059Z",
+      "checkedAt": "2026-09-20T08:21:46.507Z",
       "error": null
     },
     {
@@ -1428,17 +1508,7 @@
       "articleSource": "Las Provincias",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:25:50.231Z",
-      "error": null
-    },
-    {
-      "articleUrl": "https://news.google.com/rss/articles/CBMijAJBVV95cUxOeXNrVDZ3cmc3bTRNRmwyTmhhRmx2VTB1bjNWR2NFVmE3cm1GU19xbmN2aXV5Sk5ocF9ET0RVQnBrZFdlRndhOUdYQ1pVc2lXX2FLT0pvdy00THRTZGZldE1GSmtkaHp0T3ZORXFkUlNuWkQwV1I2bjJVRTZmMzRlWFpmME05eFoybV9UanZyZWZFcVZCdGFZQUNUa3NlQi1ZSm1NZnRxU3dxOEpvOWZObjNMQUk0YmdNaGhWY0ZsazNwMlo5TzEtNkc5VHFWQ05JU2dObVdLZWJEajVlT1FkaFZUQVpTLTZfc2o5cTQxYlJJTzFrTU9GeDJJdFRPLVkySXRDeUVBVGZpYm9Z?oc=5",
-      "status": "alive",
-      "httpStatus": 200,
-      "articleSource": "Valencia Plaza",
-      "archivedUrl": null,
-      "archivedAt": null,
-      "checkedAt": "2026-09-19T08:25:55.092Z",
+      "checkedAt": "2026-09-20T08:21:47.943Z",
       "error": null
     },
     {
@@ -1448,17 +1518,17 @@
       "articleSource": "Levante-EMV",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:26:01.182Z",
+      "checkedAt": "2026-09-20T08:21:49.362Z",
       "error": null
     },
     {
-      "articleUrl": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNOHo1YnNONTdzNzB6dVpSUFNYTFBvSFViWUNpZVZFVmNUQU5ZaGxlR3hVVHljQkJPVVJFcjQ0TXdEY0VWRkFkdHk5ZWMwblhVREVjX1pXQmxCMnZ4QWhWOFA5Y09qeEUwZWxXeUV2ZjdJUk1qLWNPNXRLWUFUYk5aTnh4cFEzWWN2ZFlhc0cwSFY2Y2plWUlsWVoxTTQ5MUdKX1ZySnJIUkxwUjZoZHU4UkwxX3BUTzkxLVlTeU9leXVIc1FQa0ZWTWp3ejd3LW0z0gHWAUFVX3lxTFA5V1RGLVRJaklRR0JsaXFKV0lzZlhkLWJoYW91UGNxTUd0c2pOQm5LQkRIU0puejgzUEt5NjEzZV8xMVJodk5YSTJpMFJpbGp3N3M2MXZuVWR6WW9TVnZjc1hoZDBYcG9oam9jRFNxV3EtRHcwa29fMzU0WWQ0TnhwelhTXzdzVV9KY2ZwV25QdUVnM1VTWEtSLVBNT0JTMmxOM0V4OWZZazBaRlYzdWh5NlBpY3hpMEx6RkdLWl9mZmxnemMyMTFyc0FfZWk2WmtEcXQ3V1E?oc=5",
+      "articleUrl": "https://news.google.com/rss/articles/CBMijAJBVV95cUxOeXNrVDZ3cmc3bTRNRmwyTmhhRmx2VTB1bjNWR2NFVmE3cm1GU19xbmN2aXV5Sk5ocF9ET0RVQnBrZFdlRndhOUdYQ1pVc2lXX2FLT0pvdy00THRTZGZldE1GSmtkaHp0T3ZORXFkUlNuWkQwV1I2bjJVRTZmMzRlWFpmME05eFoybV9UanZyZWZFcVZCdGFZQUNUa3NlQi1ZSm1NZnRxU3dxOEpvOWZObjNMQUk0YmdNaGhWY0ZsazNwMlo5TzEtNkc5VHFWQ05JU2dObVdLZWJEajVlT1FkaFZUQVpTLTZfc2o5cTQxYlJJTzFrTU9GeDJJdFRPLVkySXRDeUVBVGZpYm9Z?oc=5",
       "status": "alive",
       "httpStatus": 200,
-      "articleSource": "Levante-EMV",
+      "articleSource": "Valencia Plaza",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:26:07.311Z",
+      "checkedAt": "2026-09-20T08:21:50.802Z",
       "error": null
     },
     {
@@ -1468,27 +1538,17 @@
       "articleSource": "Levante-EMV",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:26:08.825Z",
-      "error": null
-    },
-    {
-      "articleUrl": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxPTW1FTzVrLXlXM21GUC0zb0lZT19jOVM5aWpHdl9wRnZnbzgyeW5HWTJXb1dXdEJLbUVKV2V3d2U5MldKbTJVcEUxM3dfdTV5eXFydUtEd0hyVlkyaGZsSlByMl93SnJuZ3ptVDVVb0hFd1FvVlNYR3FxRkU4ZEx0MTNEaWdZUEFnNXFzN3U2cDJINk5rWWFzalZ0VURudlhlY0tDdTZBZ19oSkI4VnJiNlh5SFdxOFE2Q2t4RDI2OVo4VmIyUW5fazJtMG9KTi1XRkxabnVmODNSbXp0RGVjVDZCMGVaaWozMmZQVXFiYklzOFc5TVRLcHQ2ZjI?oc=5",
-      "status": "alive",
-      "httpStatus": 200,
-      "articleSource": "Valencia Plaza",
-      "archivedUrl": null,
-      "archivedAt": null,
-      "checkedAt": "2026-09-19T08:26:11.101Z",
+      "checkedAt": "2026-09-20T08:21:56.257Z",
       "error": null
     },
     {
       "articleUrl": "https://news.google.com/rss/articles/CBMiggJBVV95cUxOSTZTSEJUNmZHSVZyTDdXdGZ6N0lvVk9EaVdmd05HaEZGcFhBRndBSFpjdHJTeEVOQVIycEE2amVNY3RkaXlLbEFud1BYSS0yQlY0UVJ5dTlELUFMamVNczljdXZyaEMxWWF0MF9leldQSlg3Y1ZCY0c5cVEzeTQyc1RCTGdYajFROXl6cjdwOFNLczk3Q2pKLXJXaldQYlNyQVp2UDZUV3JuTi1iN0tjSXlFMkxKTlRYQW5lRXdqTDU0cFBBemp6OVMzMEdBMklENXFpWHlWbnlIUy1DSnlGYWU0M0JNQWdsZ0dfRU5rRlp0ZXpNSjluTXpyT3FRazZnSmfSAZYCQVVfeXFMUHh6RV9ndWtqd21tSkRoTkdjTHhvRVNsUVVjUnRCOUg4clVOaEhiV0lqZVR1VEFVQ3RjUDZ3SDI1YVdoT01JbUQtc1ctSDJZOS02ZE10VFU2LWNJbkV6MDlrdThaemlMaUNkU3c5cUVLZGplRDhaQURsZGJQX0ozbkI2WDdUS3hWNkcxajJFdENQSXQ1MURVVURyTTI5bm1ILURELUk0VFFzVTcxWTFlOVltMVNPc1oyTm5VcHJLeV9ISkNBSkRJdkZrRFM1TFI2dlRWanViS1cyRnpEYmpFWkt3OW1vdlJ5eW0wMW1PWVhIV1ZDQmdTQU9nV3E1QkJlVlZQWk9IOHZBcHEzRDFaRHFvZzdiQWc?oc=5",
       "status": "alive",
       "httpStatus": 200,
-      "articleSource": "Cadena SER",
+      "articleSource": "cadenaser.com",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:26:17.140Z",
+      "checkedAt": "2026-09-20T08:22:01.090Z",
       "error": null
     },
     {
@@ -1498,17 +1558,17 @@
       "articleSource": "Levante-EMV",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:26:23.087Z",
+      "checkedAt": "2026-09-20T08:22:06.356Z",
       "error": null
     },
     {
-      "articleUrl": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxNVFJmQlF0NEI5VFktcWJLazNmUy00VGlNb19wVFJHaG5XMG1KOHByRE5KZnNKMFE3N001RFgtUV80UUc2U2tfbm80djl5QjhEUFFvenpaY2tUOEFxTUNtZFlCeHZTSHJoOVh6UEtack84a1pqQ09fajBxQXBPSkpKY1B6SE5jVXFyUkE5LUd4MTlwUmd0VXlubWdIbHR5Wmlha2hBWEJCVkNTSEVhQVJlX0g0aFMyM011MVA2Z2psOF9WbU9QQlA0cjc3Q3M1aGI1aC1VemhwZ2JiZTVlUzRROGFiUG16R1NTMDk2ajFZY0FQYWRwcUt5LU5DV2Z0UdIBgwJBVV95cUxNOHVVNTlwM2RkTXVQRHlsalJTeFAxeGlpSVF2Z2tuMFRocnhJaVNTMDczb0U5OXpRd2dFU0N3djgtS2VHWXpjZTZDWXR2THpsc0pJWFpFZ05lQy0zWTNvZW0zU2ptVENqMGdUYU4yN0xyek1hektKTE9lbkJfZUJlMWJXOENyUy1nRksyTFQtRGNmUGxrLWRzR0twNFFFeHB5bkNXLVB5NkxPZk1QNVpwb0VOZnBmdlZ6OHNLZXZBWERPeFNxV2ROWXVsU3lad2YxQjdrSF9Dd3VYbDFmdkktVHgtUkV4Z3YwdFlrYUFINWM1MFAtcVBOLVRtOXFVeDI2UU9z?oc=5",
+      "articleUrl": "https://news.google.com/rss/articles/CBMigAJBVV95cUxNM1JWN1FmYTc5bkdoRXVvM3Z0dXpidks5bFc2VGphT29ZUEtOeF9WaHNNOE9DYWo1WTZzVUs1WjJfZWhKV0I4RGpkZlVLY0VWVndfajRiR28xQVBOSzFDVFQ5NU1VRllLQ0Q2eFZzdVlJUHdSczF2YnJLZ1E4WFdJV2lDbW9DRTVWRkhWYTM4Q0ttUGFBcmJ2V1RSNmlRSFlRakx2anBPNzNiWEtxLWlzMUhrcENsMFdUd2w2WEV6cndJOXB6VDRZWGFhS1JMOExLdGx0ZVo2TG1NYW9oamw1ZmlaT0RIUTlpdWE5WW1JUWJxVnUtZmttVDBWYWlSSGtI?oc=5",
       "status": "alive",
       "httpStatus": 200,
-      "articleSource": "Levante-EMV",
+      "articleSource": "Valencia Plaza",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:26:27.136Z",
+      "checkedAt": "2026-09-20T08:22:09.423Z",
       "error": null
     },
     {
@@ -1518,7 +1578,7 @@
       "articleSource": "Levante-EMV",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:26:33.217Z",
+      "checkedAt": "2026-09-20T08:22:10.728Z",
       "error": null
     },
     {
@@ -1528,7 +1588,7 @@
       "articleSource": "Levante-EMV",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:26:39.781Z",
+      "checkedAt": "2026-09-20T08:22:15.255Z",
       "error": null
     },
     {
@@ -1538,7 +1598,7 @@
       "articleSource": "Levante-EMV",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:26:42.258Z",
+      "checkedAt": "2026-09-20T08:22:17.821Z",
       "error": null
     },
     {
@@ -1548,7 +1608,7 @@
       "articleSource": "elperiodic.com",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:26:43.563Z",
+      "checkedAt": "2026-09-20T08:22:20.812Z",
       "error": null
     },
     {
@@ -1558,7 +1618,7 @@
       "articleSource": "iberdrolaespana.com",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:26:46.427Z",
+      "checkedAt": "2026-09-20T08:22:24.485Z",
       "error": null
     },
     {
@@ -1568,17 +1628,27 @@
       "articleSource": "Levante-EMV",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:26:50.810Z",
+      "checkedAt": "2026-09-20T08:22:28.859Z",
       "error": null
     },
     {
-      "articleUrl": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOZlk1VmszdWhDQUl1VW1oa3FidjU0Z20walJrUjFseXRPTmhaUEFkcEtydEJqclZvTWlwOUZtRXo4RkNraGV1TW9TU2ZmTHhlQ1ZaMUFuLW1lNFpNVk80T09XbHNaZlVuaVdHdkdmTkVtUEh2aEE1MGtKQlBuVDAtQXo0WUFVRGhkejg3cHpiZU1PWWNiVm9RTHRXWlhnWDNHVGhmbTJZVHV0RjE3X0ZYdUFXbURGRzZENHQ1Mm1IWnRwVnZrOGpKLWhzcGZSUURCdnF0YnptdGp2VGp6UmNQWnlvMDU2RW_SAewBQVVfeXFMTktYRldRZGdvcmdYX2xGWHZpUndGUUhOcjUxR25VOE5URXdMVU9sTF9OVzRPa0F5T2lxeXB2bUJ6a1NnQUM2eVotbW9xNnkzWVVQUkpXRE02THYzU1VtaHUwTDU4M1VWOF9WcTQxRGEzLXpoTUt6Z0czTEtOU2ZTYTJvbl96c2ZWX2hxZGhYdGRuMXY4US16S0FBS2VKSHdzWW1oRXBGb0IxVTVHYlpIQmVpV1J5QkxUU0VOVm9SUmFKSE40aEotaElmZzMxMlV1RnlhTFA3dkFWeGM5WHU5QzY2NUFTTTVPZDAyazU?oc=5",
+      "articleUrl": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxPM0dvdXpaelp5NVNtaEE3WXBQZjN3bUtHQjhWR29Uc0I5Mzl1QlowUWMxLU1VMFVBSTNyWUthTWh1OF9PRDJpa1JOY2ZBQ1VnX1FKb0U2WmJmX2FpSEV5ajRvOEFvd2dVT25xVUROal8yMFdyN1YwWUFmY3NuYTViN0dxcUpfckR3NEVSODg1cDdhWk9KZjA1WHNsdVlqWE84V2lPY2t5SWZfZlphQ29MYllNS1dLZXV5RGphZXVqRWpxelJUVWVucEg5eGw0clFXeHZLTmR3UmRoZzBPR1RmRFB4d1E4SWNSdnN5Yg?oc=5",
       "status": "alive",
       "httpStatus": 200,
-      "articleSource": "Levante-EMV",
+      "articleSource": "Valencia Plaza",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:26:56.058Z",
+      "checkedAt": "2026-09-20T08:22:30.350Z",
+      "error": null
+    },
+    {
+      "articleUrl": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQLTVMa2VDMlA3VUFYWml5WjRtdjJPT09vM3BUN3Fmb3pkcGoweDFhUGlYYkJ6NUdUMVo3QUM1Zms1NHZ0cTNEX1gxOFF3MElRbUtUUXgzVkh0VmRqUGtTYU5LSkNGemRqOGJIQ1RHdGdpVVZHOWFPYUdDR2ZlQTBoWkJ4aWtiNlVFRmZLeHFMU2p5dE1lQlU3QWYxeEpHT1Y5ekc2NjF5bFZORTg4SXVnby1LRFBIWWtyMzY2VklDYWxUZHFkMmVCYjBac2hpVnN5R3N1aFNpcEJiSU42S0xPSzBobm13dw?oc=5",
+      "status": "alive",
+      "httpStatus": 200,
+      "articleSource": "Valencia Plaza",
+      "archivedUrl": null,
+      "archivedAt": null,
+      "checkedAt": "2026-09-20T08:22:31.822Z",
       "error": null
     },
     {
@@ -1588,7 +1658,7 @@
       "articleSource": "Comunica GVA",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:26:58.922Z",
+      "checkedAt": "2026-09-20T08:22:33.014Z",
       "error": null
     },
     {
@@ -1598,7 +1668,7 @@
       "articleSource": "Valencia Plaza",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:27:03.018Z",
+      "checkedAt": "2026-09-20T08:22:34.280Z",
       "error": null
     },
     {
@@ -1608,27 +1678,7 @@
       "articleSource": "Levante-EMV",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:27:04.773Z",
-      "error": null
-    },
-    {
-      "articleUrl": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNc3FTbjlrYVozR1AwZm5jY1FlT0g2T0kzeEN3dzBCTC1fd3dXUTY3M0x2dTZQVUR2QzlhVlg3QVdkNDdXWkJKVFVvMTdlNFdieXAwU0xNcG1VczU2NWxKMEQyODVOb3ctYnJOS0g5TnNzQUVScE91Uy01WjEycEtyc21jVWt0dkJvZWZCVUUtQ2xfOEk2NGUxSkRrSThsZjhGajdDRGJzbEFQU25TUGJoTk9ZNXMzTmdfS1g1OUdCR0xtNVlPRkozTlRnZkVGNmVuZFl2LdIB2gFBVV95cUxPRmtUZExVTkNEeEFCNl9JM3JEMGxxTlN4UVJjRGZlZWpPUDc3QmlfNDM1d2Zvby1uNlR0SGpnY0ZnbDlaR2xtWGFrUVl3MjlxVjZObW95WVVrVkhDaldiWWlyNlppc0prNGFxbXJBcUZVZjMzZzBaWFhzOHdIVVpRY1Bib3ZwaElDZWdubDdHN1dFUUw3U29aQmUtX0x4RlJiZndLZkJiRzVDemNBTElRRVFaUktSREhmWTlMdXM2bVF0WTQzVGdwOVUzNTRSUm5KVUJyMXJUU2luUQ?oc=5",
-      "status": "alive",
-      "httpStatus": 200,
-      "articleSource": "Levante-EMV",
-      "archivedUrl": null,
-      "archivedAt": null,
-      "checkedAt": "2026-09-19T08:27:08.058Z",
-      "error": null
-    },
-    {
-      "articleUrl": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxPOFJNVTN0NG1DS2VRdFRTWHNlSlhxNFdOWlBORVpOWXhzS0JLd2J3NFhzem1kaDRGV1BOYnkzaFVaNWlSZzRTSGo3UEhRdmxHekdYbTV2UmlxRjl3bVhIeFVnb044cWQ0bWVxdExwSmVRWTNqYnhqVk8ycFJfb2c1UDJnei1KcGM5dTg3VTVUXzkyck5SOURTSXFKSFNnVVdOTmRnRWwzQlk5WmNmMUl4am1HaE1pRnpBTEVlNTJVWG9JODd6Qk95Sm5uV0stRFNtWTJCWDVJUGZkWlVNaExPLU9CeTIwRjVCSnRv0gHwAUFVX3lxTE1mNjJTbEs4NktPb0lhRm1PeUJ3UVRIRWo4eTR1RG5tN0dMdzZXZVczVmZHTmt2eE9CakxmWVl4MGJTNGc5YXlYUVZmc0xjMDU1MkJtcm5uYnNTRTQxWE1UZ3ZYdlRJelVwQlVlVktaSlI2c3JIelpVbFVOMXZLUzk3dFAwVjk3cDJlZTN5aUQ5SFpReG92VF9nbW5iT0NNdU5NQkxsN20tT0szbkI2VmJSX1oyVk1aNmZNVVhkeTVfZ005RzVxTXNzaWI2SWROMk1peVB4OVRDeVhfbnY5TUs5Mk5XTG9oWVJvVUhrSW1NNA?oc=5",
-      "status": "alive",
-      "httpStatus": 200,
-      "articleSource": "Levante-EMV",
-      "archivedUrl": null,
-      "archivedAt": null,
-      "checkedAt": "2026-09-19T08:27:10.072Z",
+      "checkedAt": "2026-09-20T08:22:36.714Z",
       "error": null
     },
     {
@@ -1638,27 +1688,7 @@
       "articleSource": "Valencia Plaza",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:27:16.034Z",
-      "error": null
-    },
-    {
-      "articleUrl": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNSXVDNFh4b2F5Q050eW9vX1BJclVqRHVqM2tKdkhoY2xkSkF6S1lrN2szdEZDZkhIQ1pjYUJ1dmd5Y2M0dXM1bkwwNEZTVXhWMS1UUHFBTzlNb1djaW5fYVd4Z1BiTDdELWNKdUE2U04wNnhmNWN2cnFPVkRaN1ZmV0tDSVlCZ20wTDdLd1FWSER0dVNESlBTeThwYUo3UEFlQW44MkhHSGNtdlJ0ZkdaN3YtUkVjd3ZTQVZjbGstTkZncmtfMUhvYWdFcGl6eXVEWjFlQ1lSTmVSR3VuS0Z5T3dDNGtxazZxZlV1XzhR?oc=5",
-      "status": "alive",
-      "httpStatus": 200,
-      "articleSource": "Valencia Plaza",
-      "archivedUrl": null,
-      "archivedAt": null,
-      "checkedAt": "2026-09-19T08:27:17.356Z",
-      "error": null
-    },
-    {
-      "articleUrl": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNVEJieDNEWW1fWnp2S29PWGp0dm5TaS1jOXpOYVpKaGRRQW5xWXI5QjRrdUctajRYWFFlSk1xZDd1VFZNOUlLY2ZCVER3c2kxYU11WUh4V1BubWZfeHlKeWdwSk42MnExajhMY3U0OTdkMnFCQVptMG96cHBjdWFVVjNVb3VwbEZweUlSb1dFTThreTlRV054a1dZeV90YXZ0NlIwUDVya0lOeUI2aEpkTllTYzlNendyaXRxNHZR0gHDAUFVX3lxTFBSdE80R0gtOE9oT3dXRkEyYjNNVVNsQjZta0NQUlQza0pNYXN3N3cyd25qaW95NFM3S0RXQjZ1ZkZuMFFKRllxQmxXQlMwbXR0QnV1bHJlMzd2Tm9wOGJ0SmpZUi0yYUhvbUtTcmJabXJJN2NCWG5OX21wZ2tXYTRDa25JTlk1bnNNU01EQVVjZGRnRGh0Mk9WcjhzNDRiSG5FRm9vRlo2Zk1LUksyeGZGb3NBLUJjYWpNQ0ZXcnAwVGRDTQ?oc=5",
-      "status": "alive",
-      "httpStatus": 200,
-      "articleSource": "Las Provincias",
-      "archivedUrl": null,
-      "archivedAt": null,
-      "checkedAt": "2026-09-19T08:27:19.024Z",
+      "checkedAt": "2026-09-20T08:22:39.476Z",
       "error": null
     },
     {
@@ -1668,7 +1698,27 @@
       "articleSource": "Umivale Activa",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:27:21.649Z",
+      "checkedAt": "2026-09-20T08:22:42.318Z",
+      "error": null
+    },
+    {
+      "articleUrl": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxPREdjNDFUMDAtZVdTOXdNNTdnUEVpRGRoX2NTQ0h0bjJ6MnhNZ1dHYmpkLTRDbXAtRVJpTmZTWVpRUnlVUFNiSWZYYU1YcDJKNEZDaW1TVFdteFhjVjNlTG52S1R5M3B1Tlk3Z2xTWk9ScEl6Zzl3Q19IT0FMQ0QzTlNSbm1FTEM2MlFxLV96UjFCeDRaQnd4YTEzczN4OWh1YTU4b0F0clRkUkV1Qm1ka0ZiOXBzTUU3NU1jdGh6b3diRDFpV01uaWZUVm5ELWIySEtHTGJRX0E4RnoyMTJ3VnZXSGN4aWhCMG13LWIwNGhVX0E?oc=5",
+      "status": "alive",
+      "httpStatus": 200,
+      "articleSource": "Valencia Plaza",
+      "archivedUrl": null,
+      "archivedAt": null,
+      "checkedAt": "2026-09-20T08:22:43.789Z",
+      "error": null
+    },
+    {
+      "articleUrl": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBKQW1yYUJWS3h0TERMb2ozdTgzeWxVTFhLcVZTQ2JOS3FWWGp3RHFqamdtLWEyWS1TZm9vVkVPdV9pbk55LTdDWHJzNVFJVTNJMlJFYkhIb0pSX1ZfSndYOE5MV0k1XzExcEdqYW5tdw?oc=5",
+      "status": "alive",
+      "httpStatus": 200,
+      "articleSource": "Comunica GVA",
+      "archivedUrl": null,
+      "archivedAt": null,
+      "checkedAt": "2026-09-20T08:22:47.212Z",
       "error": null
     },
     {
@@ -1678,7 +1728,7 @@
       "articleSource": "Levante-EMV",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:27:25.000Z",
+      "checkedAt": "2026-09-20T08:22:48.647Z",
       "error": null
     },
     {
@@ -1688,67 +1738,17 @@
       "articleSource": "Valenciabonita",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:27:30.178Z",
+      "checkedAt": "2026-09-20T08:22:49.833Z",
       "error": null
     },
     {
-      "articleUrl": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNQmE1Z1hQRWlwbllib0RSNWlQTTZ1M0ZIRElmTndWb0VzY1kxRjFOblktSHhWVUVvWTYwNTdlS3hoejN0QmZmY2dpcFpaVGktSFNIVXI4RS1MUmtnc3Fqa1RYODlWMlp0V3cxaUtOLXdPemMzdVVneXE0UUI5bVV3N2NIM0FiQmVSSG5pTUJ6a0tDY0hoT1lqSkJ4WEFUYWtuUFd0SHdUcWhLVjlyMXJ5elFlNFJVaXUwWkFJQdIBwgFBVV95cUxPSFhBT0wyTFFWUHlLNDREbFdxZ00zYUtSVm0teVpWOUEtRWJ0Yk5yUHBuTnVyRFFKNDc0bklZMW9kd1Rrd21oci1pVWJPcHlOZGhZRzYtUExDdHRxaWJKQVpRb2FfcTF2ZzM0eTNxVWxSMC1ZQTJRZ09tVFcyNUhIT1JtMXQ0WUJjWHY0MTh3SVc4SUdLWURtTnVnSGZEOVlJdzJFZDl1SldEcVFVNFFLRk9sRDdSTE8wOGwxWnl6TzdrQQ?oc=5",
-      "status": "alive",
-      "httpStatus": 200,
-      "articleSource": "Las Provincias",
-      "archivedUrl": null,
-      "archivedAt": null,
-      "checkedAt": "2026-09-19T08:27:33.374Z",
-      "error": null
-    },
-    {
-      "articleUrl": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQWW93M283Z3pTTDE2bU1QRmJRVlk5WnFWckZGOG9yWFI0cHJjZEdIU05jYXNqLVJ0dTdIaElNOGJTNl84bWpmQmxLNjdQZmg3Qld3SUJpV25xNno0eG5PYTE3Rmx0MzRFYXRYS2VoYzhvcEFKU2JVOE5tUnpITV83VWk4YVIzT3ZNZzZHaUNtOTVTazBBOUtYOEJvdnBzanI5ZmdDeEMyZ0tNZnJ4Z1p0MnFVd0xyUG0xTEpRdWtaOGpZWmZHbG00VjBlbmhNUUFYa00zZUdWRDc5bDM2UE1YS0NmeXY0QdIB6wFBVV95cUxQclh4QmxaSmpXZTByRXVKcjJHWGVUMDZCY19xZFZrMjNjaFRfeUI4dHhGeUNiT1UzSGhJN2R0S05rdFdBS1V6ZENQdXZNem52aDNvX0otM1JNbXMtanVxQTZkdG40QklmY2Y0QlA1RV80V0xhajFuRTItUktueDRiWlpLRHhadURtWUs5SElHTmp1cTR4eDQtVjdHVzlpVldaM0ZqQ0VHOFdzWW0wTDRmRG1lMlY0Q3pkbVVCUkdqU2hqR1Y2N3REUVM4OFJXbzNzRjd4NFRGdFk5eWVhUmZqWXlEVFEwaGF5bWpF?oc=5",
-      "status": "alive",
-      "httpStatus": 200,
-      "articleSource": "Levante-EMV",
-      "archivedUrl": null,
-      "archivedAt": null,
-      "checkedAt": "2026-09-19T08:27:38.851Z",
-      "error": null
-    },
-    {
-      "articleUrl": "https://news.google.com/rss/articles/CBMihAJBVV95cUxQaGRtV2FkRDFueG5qdm1JUDJkdWNOQVI5LURwSmtzVnFNUGdxblAxRjVPODM5RXJfdk0tQU1yVjJWRVNQXzJkcnRNRHdYNFpLMlpteFJSQk9obmw5cW1iM2g4V093c2JVX0IzcGxBbmw2THFrMnk4UWlfQ1hHWWpFVmFseTlGOTlqdlcxMEJTa3JRR3BaMVJwc1RERlY5MXZQMUZMbmlrWE5qME0tN0NSSVA4ZFlKV3JJTURjLUJYTTl1T2F2ZFpUTElrQzB2U2ZzQnVrODg0TzB5cGdxNnMwSVB4NG5aRnBISFE4ZTNfY2lkeHJtUlVGcTdPeFg2RjhKc1MxaA?oc=5",
+      "articleUrl": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxNZ2ZLZVItLUJ6ekJfVGgxMzNTUDJLNkd0alNRejl0eXhFZGRkUU1BR29kb3cxSkRnRE9NQ1VJUElCZEdYNUZCTG51Qm04TnVfcWxfX2h3RVhtc2Y1dVNnVkcwRzRNYTJwbnBpbmthU0pjZ0xOMUZtZmxxZ0FRa2cxZUVCUTd4UmRwZFMxRGFnaDBzU2ZoMWZsQTF4QWZKdUhmbE5SVksxaHR5a0cxTmVxTVYzc1pOMlktb05HbEdySk1LTUVBUTAydlE3MnpBenRhbm1Wc2hMdmNwbGU3cXBjT0FZY19PRjNzc1JoYi1kSFljTUtUR1E?oc=5",
       "status": "alive",
       "httpStatus": 200,
       "articleSource": "Valencia Plaza",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-09-19T08:27:41.492Z",
-      "error": null
-    },
-    {
-      "articleUrl": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOQkJrTllwdmN3clZkRXV1eTEtVFpsSkpfTmFUeXJZMFQ2R0w5R3ZxNkJ1TGw5REpETTFySXpzdHlCWFhleWJ3a3hMRkJobkpfZkxvUWM0TXZLNEk0ZWlpVDFzVXotYkNjVXRyTFJZYmhtUXZtZlcwbTlGSk5BY1dqb0lkTUgzY0ZQSFhLVFA0bFpmOU94cXd3SkM1aFlPcTVUeGFqcGFPcUNjajJRakFGdlVWUUpjQ2JMYlJWbUdNT1F5dVoyYVlYN19n?oc=5",
-      "status": "alive",
-      "httpStatus": 200,
-      "articleSource": "Valencia Plaza",
-      "archivedUrl": null,
-      "archivedAt": null,
-      "checkedAt": "2026-09-19T08:27:44.309Z",
-      "error": null
-    },
-    {
-      "articleUrl": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPdFVCU1BLS2ZrQnZRbFhvYXEtVDRnS0o2XzJpT1ZKcnNWWGx6a21Cd2dIdzBkanB6R1RzcXBwcTlMVTI3ek9CZnlUREdUUXBSMU82WGl3Sko0LWY5SnVVVnB2QnhjcXgtZ0tkR0hJdXdEUjc3STJoUUZtOHBna1JkdXNLVHBmcWNETkpnNHlxcXhNX2ZUTjRnajBNUWIzV01FYTY1SmdBUmdiLWx3UmI0MVhER29xTjV6eXNMX2ZTQ0RtMkZ5X2s4UWd6Rm9VQUHSAdQBQVVfeXFMUHNsWjVTeldZUDFrLXhYcjZ1alNjdUxmRGFsZ00zRWRvcVAzSjhieHBYTElRUzVXdFFJYk9mRWdTU0I2N3NmcDlDZ20wbFk5ZDZ2cmpITlZ2V2ZXQ3dad05tRmZVZGU4eE00aFNIbS1Nd1BIX3BYRGhtbjdXaUxYUXpYX3ZBZnIwVThyeUFGU0xsOG9KRmh4VzZsUndZc1JvYjRmYUZfYVhMRTZwei1WWGVFTzVzSjVOTlhGQTRLTjZWdnM1X0pBSThHcFpfX2laUXozZ1k?oc=5",
-      "status": "alive",
-      "httpStatus": 200,
-      "articleSource": "Levante-EMV",
-      "archivedUrl": null,
-      "archivedAt": null,
-      "checkedAt": "2026-09-19T08:27:47.513Z",
-      "error": null
-    },
-    {
-      "articleUrl": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNX2lpZndkUmg2dUZvRnlkczJXc2pHdXhCbUtzV2hnSnV0RHJzQ0ZHU3Nlc2VJaVFpM0V3TEdHdGtkZmw1UmZHU0RNbXVuQTE5M2lGdVNQV2NOMkpyMjAtVEs5cjZaSHMtTmdudFppOE9mYVlvV3FKUmtuaHUyVGlMbF9ZMFJ4UU1EeTdPMF9RTW1ZdHlGTEdrWjdpaXJ3cWJJaGdYcGxuODNEc1VnNGN0RjJOcjdXVDdockRTZVNB?oc=5",
-      "status": "alive",
-      "httpStatus": 200,
-      "articleSource": "RETEMA",
-      "archivedUrl": null,
-      "archivedAt": null,
-      "checkedAt": "2026-09-19T08:27:53.544Z",
+      "checkedAt": "2026-09-20T08:22:51.239Z",
       "error": null
     }
   ]
