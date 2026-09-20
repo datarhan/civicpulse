@@ -3,6 +3,7 @@ import {
   archiveTargets,
   applyArchiveUrls,
   archiveReportSources,
+  makeArchiveOne,
 } from '../scripts/journalist-archive-sources'
 import {
   validateReportsSnapshot,
@@ -189,5 +190,160 @@ describe('archiveReportSources', () => {
     })
     expect(r.outcomes).toHaveLength(1)
     expect(input).toEqual(before)
+  })
+})
+
+/**
+ * Lo que pasó el 20-09-2026: Wayback contestaba 429 a TODO. La consulta de
+ * disponibilidad fallaba, el CLI la leía como «sin copia» y gastaba un guardado
+ * por fuente — 23 en una pasada, 23 en la siguiente, todos rechazados, y cada
+ * rechazo alargaba el bloqueo. Dos reglas:
+ *   1. si no se pudo MIRAR, no se guarda a ciegas;
+ *   2. tras el primer 429 de Save Page Now, el resto de guardados de esa pasada
+ *      no se intenta, y se cuenta aparte de los fallos (regla 2 de
+ *      DATA_INTEGRITY: «nunca intentado» no es «falló»).
+ */
+const encontrada = (url: string) => ({
+  ok: true,
+  lookup: 'found' as const,
+  archivedUrl: `https://web.archive.org/web/20250101000000/${url}`,
+  timestamp: '20250101000000',
+  archivedAt: '2026-09-20T00:00:00.000Z',
+  error: null,
+})
+const ninguna = () => ({
+  ok: false,
+  lookup: 'none' as const,
+  archivedUrl: null,
+  timestamp: null,
+  archivedAt: '2026-09-20T00:00:00.000Z',
+  error: 'no snapshot available',
+})
+const noSePudoMirar = () => ({
+  ok: false,
+  lookup: 'failed' as const,
+  archivedUrl: null,
+  timestamp: null,
+  archivedAt: '2026-09-20T00:00:00.000Z',
+  error: 'HTTP 429',
+  cdxError: 'HTTP 504',
+})
+const guardada = (url: string) => ({
+  ok: true,
+  archivedUrl: `https://web.archive.org/web/20260920000000/${url}`,
+  timestamp: '20260920000000',
+  archivedAt: '2026-09-20T00:00:00.000Z',
+  error: null,
+})
+const rechazada = (codigo: number) => ({
+  ok: false,
+  archivedUrl: null,
+  timestamp: null,
+  archivedAt: '2026-09-20T00:00:00.000Z',
+  error: `HTTP ${codigo}`,
+})
+
+describe('makeArchiveOne — consultar antes de guardar, y no guardar a ciegas', () => {
+  it('una copia existente no gasta un guardado', async () => {
+    let guardados = 0
+    const one = makeArchiveOne({
+      find: async (u) => encontrada(u),
+      save: async (u) => (guardados++, guardada(u)),
+    })
+    const r = await one('https://example.org/a', { allowSave: true })
+    expect(r).toEqual({
+      archiveUrl: 'https://web.archive.org/web/20250101000000/https://example.org/a',
+      via: 'existing',
+    })
+    expect(guardados).toBe(0)
+  })
+
+  it('«sin copia» sí guarda', async () => {
+    const one = makeArchiveOne({ find: async () => ninguna(), save: async (u) => guardada(u) })
+    const r = await one('https://example.org/b', { allowSave: true })
+    expect(r).toEqual({
+      archiveUrl: 'https://web.archive.org/web/20260920000000/https://example.org/b',
+      via: 'saved',
+    })
+  })
+
+  it('si no se pudo MIRAR, no guarda a ciegas: falla diciendo por qué', async () => {
+    let guardados = 0
+    const one = makeArchiveOne({
+      find: async () => noSePudoMirar(),
+      save: async (u) => (guardados++, guardada(u)),
+    })
+    const r = await one('https://example.org/c', { allowSave: true })
+    expect(guardados).toBe(0)
+    expect(r).toEqual({ error: 'consulta fallida: HTTP 429 · CDX: HTTP 504' })
+  })
+
+  it('un 429 del guardado se marca como límite de peticiones', async () => {
+    const one = makeArchiveOne({ find: async () => ninguna(), save: async () => rechazada(429) })
+    expect(await one('https://example.org/d', { allowSave: true })).toEqual({
+      error: 'HTTP 429',
+      rateLimited: true,
+    })
+  })
+
+  it('un 500 del guardado es un fallo corriente, no un límite', async () => {
+    const one = makeArchiveOne({ find: async () => ninguna(), save: async () => rechazada(500) })
+    expect(await one('https://example.org/e', { allowSave: true })).toEqual({ error: 'HTTP 500' })
+  })
+
+  it('con los guardados cerrados sigue consultando, y «sin copia» queda sin intentar', async () => {
+    let guardados = 0
+    const one = makeArchiveOne({
+      find: async (u) => (u.endsWith('/f') ? encontrada(u) : ninguna()),
+      save: async (u) => (guardados++, guardada(u)),
+    })
+    expect(await one('https://example.org/f', { allowSave: false })).toEqual({
+      archiveUrl: 'https://web.archive.org/web/20250101000000/https://example.org/f',
+      via: 'existing',
+    })
+    expect(await one('https://example.org/g', { allowSave: false })).toEqual({
+      notAttempted: 'Wayback limitó los guardados (429) en esta pasada',
+    })
+    expect(guardados).toBe(0)
+  })
+})
+
+describe('archiveReportSources — tras un 429 del guardado deja de guardar', () => {
+  const TRES: SourceCitation[] = [src({ id: 'src-1' }), src({ id: 'src-2' }), src({ id: 'src-3' })]
+
+  it('el primero agota el límite; los demás se consultan pero no se guardan, y se cuentan aparte', async () => {
+    const permisos: boolean[] = []
+    const r = await archiveReportSources(report(TRES), {
+      archiveOne: async (url, o) => {
+        permisos.push(o.allowSave)
+        if (url.endsWith('src-1')) return { error: 'HTTP 429', rateLimited: true }
+        if (url.endsWith('src-2'))
+          return {
+            archiveUrl: `https://web.archive.org/web/20250101000000/${url}`,
+            via: 'existing',
+          }
+        return { notAttempted: 'Wayback limitó los guardados (429) en esta pasada' }
+      },
+      sleep: async () => {},
+      minGapMs: 0,
+    })
+    expect(permisos).toEqual([true, false, false])
+    expect(r.outcomes.map((o) => o.status)).toEqual(['failed', 'existing', 'not-attempted'])
+    expect(r.outcomes[2].detail).toBe('Wayback limitó los guardados (429) en esta pasada')
+    expect(r.report.sources.find((s) => s.id === 'src-2')?.archiveUrl).toBeDefined()
+    expect(r.report.sources.find((s) => s.id === 'src-3')?.archiveUrl).toBeUndefined()
+  })
+
+  it('un fallo que no es de límite no cierra los guardados', async () => {
+    const permisos: boolean[] = []
+    await archiveReportSources(report(TRES), {
+      archiveOne: async (_url, o) => {
+        permisos.push(o.allowSave)
+        return { error: 'HTTP 500' }
+      },
+      sleep: async () => {},
+      minGapMs: 0,
+    })
+    expect(permisos).toEqual([true, true, true])
   })
 })
