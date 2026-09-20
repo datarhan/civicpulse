@@ -19,6 +19,7 @@ import QuejasSpendOverlap from '../components/Quejas/QuejasSpendOverlap'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { fmtDateShort, porcentajeLegible } from '../lib/formatters'
 import { medibilidad, registroUtilizable } from '../lib/reloj-lpacap'
+import { contarConsideraciones } from '../lib/sindic-consideraciones'
 import { useT } from '../i18n'
 
 const TELEGRAM_BOT_URL = 'https://t.me/munigraph_bot'
@@ -119,7 +120,13 @@ function SindicCard() {
   const vecinos = data.vecinosOtrasAdministraciones || []
   const s = data.stats || {}
   const cob = data.cobertura || {}
-  const consideraciones = s.porTipoResolucion?.['Resolución de consideraciones a la Administración']
+  // Por PDF, y uniendo lo que el buscador lista con lo que nuestras fichas citan:
+  // el bloque `stats` del índice sólo sabe lo que el buscador lista HOY, y el
+  // 18-09-2026 dejó de listar una resolución que tenemos firmada y cotejada
+  // contra su PDF. Ver lib/sindic-consideraciones.
+  const cons = contarConsideraciones(contra, fichas)
+  const consideraciones = cons.total
+  const noListadas = cons.fueraDelIndice
   const porExpediente = new Map(fichas.map((f) => [f.expediente, f]))
 
   return (
@@ -142,16 +149,17 @@ function SindicCard() {
           : ''}
         , {s.conResolucionPublicada} con resolución publicada
         {consideraciones
-          ? ` y ${consideraciones} que terminaron en «consideraciones a la Administración»`
+          ? ` y ${consideraciones} con una resolución de «consideraciones a la Administración»`
           : ''}
         .
       </div>
 
       {/* Investigada NO es lo mismo que señalada, y la distinción está medida:
-          de las 14 resoluciones de consideraciones, una va dirigida a la
-          Conselleria —el ayuntamiento sólo informó como parte—. Publicar «38
-          expedientes CONTRA el Ayuntamiento», como decía esta tarjeta el
-          24-08-2026, afirmaba más de lo que el registro sostiene. */}
+          de las resoluciones de consideraciones, una va dirigida a la
+          Conselleria —el ayuntamiento sólo informó como parte—, y por eso hay
+          una ficha menos que resoluciones. Publicar «expedientes CONTRA el
+          Ayuntamiento», como decía esta tarjeta el 24-08-2026, afirmaba más de
+          lo que el registro sostiene. */}
       <div
         style={{
           fontSize: 'var(--fs-aux)',
@@ -171,6 +179,18 @@ function SindicCard() {
             <strong style={{ color: 'var(--ink)' }}>{fichas.length} fichas</strong>, una por cada
             resolución cuyas consideraciones van dirigidas al Ayuntamiento. El texto que
             reproducimos es literal.
+            {noListadas.length > 0 && (
+              <>
+                {' '}
+                El buscador del Síndic ya no lista{' '}
+                {noListadas.length === 1 ? 'una de ellas' : `${noListadas.length} de ellas`} (
+                {noListadas.length === 1 ? 'expediente' : 'expedientes'}{' '}
+                {noListadas.map((f) => f.expediente).join(', ')}):{' '}
+                {noListadas.length === 1
+                  ? 'sigue publicada en el PDF que su ficha enlaza, y por eso la contamos.'
+                  : 'siguen publicadas en el PDF que su ficha enlaza, y por eso las contamos.'}
+              </>
+            )}
           </>
         ) : (
           <>No hemos firmado todavía ninguna ficha propia sobre estos expedientes.</>
