@@ -317,6 +317,27 @@ What the first v2 taught (Gimeno, 2026-09-06/07), each fixed in code:
   have skipped every open-web query while still exiting 0 with a draft. Pass
   `SEARXNG_URL=http://127.0.0.1:<port>` (the container's port, `docker port
 civicpulse-searxng`) explicitly, and read the backend line the run prints.
+- What the third v2 taught (the mayor, 2026-09-20), all four caught by a gate
+  AFTER the promotion, none by reading the draft:
+  - **A v2 must not reword a `career-professional` or `education` row that a
+    signed «encaje declarado» row cites.** `area-fit.json` stores the credential
+    by its WHOLE label (`role @ org`), and `tests/parse-area-fit.test.ts` reds
+    when the report no longer has that text. In this model the row IS the
+    credential as the official declares it; what a gazette says instead («personal
+    eventual adscrito al Grupo Socialista», where the CV says «Asesor
+    institucional») goes in the narrative, the timeline and the graph. The rebind
+    moves `reportId`, not labels.
+  - **Look at the v2 at 375 px even when no component changed.** A section citing
+    15 sources made the citation-pill row 536 px wide and the whole page 600 px in
+    a 361 px viewport; no v1 had ever cited more than eight. Data can trigger a
+    layout defect that no code change introduced.
+  - **Re-promoting wipes every `archiveUrl`,** and the Wayback Machine may be
+    answering 429 that day. A post-promotion patch copies them from the published
+    chunk into the draft (match on id AND url) before re-promoting.
+  - **High sensitivity: `cmp` the sign-off sheet before every promotion.** The
+    editor signs a rendered sheet, not a JSON. Regenerating that sheet from the
+    draft and comparing it byte for byte with the signed copy is what proves a
+    later patch did not touch a signed sentence.
 - **`journalist:entorno`** (2026-09-07) — a councillor's business surroundings,
   read from the file outward and never from the family inward. It starts from
   what is public because it is the council's (awardees in `tenders.json`,
