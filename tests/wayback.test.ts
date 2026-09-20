@@ -175,6 +175,18 @@ describe('findExistingSnapshot', () => {
  */
 const CDX_REAL = readFileSync(resolve(__dirname, 'fixtures/wayback_cdx_2026-09-20.json'), 'utf8')
 const FVMP = 'https://www.fvmp.es/la-federacion/composicion/'
+// El par que se contradice (ver el último bloque): la misma URL, el mismo minuto,
+// la API dice «ninguna» y el índice tiene la captura.
+const API_NINGUNA = readFileSync(
+  resolve(__dirname, 'fixtures/wayback_available_ninguna_2026-09-20.json'),
+  'utf8',
+)
+const CDX_LA_TIENE = readFileSync(
+  resolve(__dirname, 'fixtures/wayback_cdx_la_tiene_2026-09-20.json'),
+  'utf8',
+)
+const CV_PDF =
+  'https://www.ribarroja.es/sites/www.ribarroja.es/files/PSOE%20Robert%20Raga%20Gadea_0.pdf'
 
 /** Un fetch falso que contesta distinto a cada servicio y anota a quién se llamó. */
 const porServicio = (disponibilidad: () => Response, cdx: () => Response) => {
@@ -261,12 +273,12 @@ describe('findExistingSnapshot — tres desenlaces, no dos', () => {
     expect(r.cdxError).toMatch(/cdx/i)
   })
 
-  it('una respuesta limpia «sin copia» de la API no gasta una consulta al CDX', async () => {
+  it('sin cdxFallback, un «sin copia» de la API se cree y no gasta una consulta al CDX', async () => {
     const f = porServicio(
-      () => new Response(JSON.stringify({ archived_snapshots: {} }), { status: 200 }),
-      () => new Response(CDX_REAL, { status: 200 }),
+      () => new Response(API_NINGUNA, { status: 200 }),
+      () => new Response(CDX_LA_TIENE, { status: 200 }),
     )
-    const r = await findExistingSnapshot(FVMP, { fetchImpl: f.fetchImpl, cdxFallback: true })
+    const r = await findExistingSnapshot(CV_PDF, { fetchImpl: f.fetchImpl })
     expect(f.llamadas).toEqual(['disponibilidad'])
     expect(r.lookup).toBe('none')
   })
@@ -291,5 +303,61 @@ describe('findExistingSnapshot — tres desenlaces, no dos', () => {
     const r = await findExistingSnapshot(FVMP, { fetchImpl: f.fetchImpl })
     expect(f.llamadas).toEqual(['disponibilidad'])
     expect(r.lookup).toBe('found')
+  })
+})
+
+/**
+ * Un «ninguna» de la API de disponibilidad TAMPOCO es fiable.
+ *
+ * La primera pasada con la herramienta arreglada (20-09-2026, 17:30) dejó tres
+ * fuentes como «sin copia» — y gastó en la primera de ellas el único Save Page
+ * Now de la pasada, rechazado con 429 — cuando las tres tenían una captura 200
+ * de esa misma mañana en el índice CDX. La API contestaba 200 con
+ * `archived_snapshots: {}`: ni un error ni un rechazo, una respuesta limpia y
+ * falsa. Minutos después contestaba bien para dos de ellas y seguía diciendo
+ * «ninguna» para la tercera.
+ *
+ * Los dos fixtures son ESE par: la misma URL, pedida a los dos servicios en el
+ * mismo minuto. Quien le debe una copia al lector (`cdxFallback: true`) confirma
+ * el «ninguna» en el índice antes de gastar un guardado, que es lo escaso.
+ */
+describe('findExistingSnapshot — con cdxFallback, un «ninguna» de la API se confirma en el índice', () => {
+  it('el par real: la API dice «ninguna», el CDX tiene la captura → found', async () => {
+    const f = porServicio(
+      () => new Response(API_NINGUNA, { status: 200 }),
+      () => new Response(CDX_LA_TIENE, { status: 200 }),
+    )
+    const r = await findExistingSnapshot(CV_PDF, { fetchImpl: f.fetchImpl, cdxFallback: true })
+    expect(f.llamadas).toEqual(['disponibilidad', 'cdx'])
+    expect(r.ok).toBe(true)
+    expect(r.lookup).toBe('found')
+    expect(r.timestamp).toBe('20260920063547')
+    expect(r.archivedUrl).toBe(`https://web.archive.org/web/20260920063547/${CV_PDF}`)
+  })
+
+  it('los dos dicen «ninguna» → none: ahora sí es una respuesta', async () => {
+    const f = porServicio(
+      () => new Response(API_NINGUNA, { status: 200 }),
+      () => new Response('[]', { status: 200 }),
+    )
+    const r = await findExistingSnapshot(CV_PDF, { fetchImpl: f.fetchImpl, cdxFallback: true })
+    expect(f.llamadas).toEqual(['disponibilidad', 'cdx'])
+    expect(r.lookup).toBe('none')
+    expect(r.cdxError).toBeUndefined()
+  })
+
+  // El CDX da 504 a menudo. Si su silencio vetara el guardado, los días en que
+  // anda mal no se archivaría nada: la API SÍ contestó, así que vale su «ninguna»
+  // — un guardado de más es una captura duplicada, no un daño — y el motivo del
+  // CDX se conserva para el parte.
+  it('la API dice «ninguna» y el CDX no contesta → none, con el motivo del CDX anotado', async () => {
+    const f = porServicio(
+      () => new Response(API_NINGUNA, { status: 200 }),
+      () => new Response('<html>504</html>', { status: 504 }),
+    )
+    const r = await findExistingSnapshot(CV_PDF, { fetchImpl: f.fetchImpl, cdxFallback: true })
+    expect(r.lookup).toBe('none')
+    expect(r.error).toBe('no snapshot available')
+    expect(r.cdxError).toBe('HTTP 504')
   })
 })
