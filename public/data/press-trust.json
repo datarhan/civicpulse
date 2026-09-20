@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-19T09:13:18.993Z",
+  "generatedAt": "2026-09-20T04:55:12.656Z",
   "windowDays": 30,
   "articles": [
     {
@@ -919,30 +919,13 @@
         "opinionFraction": 0
       },
       "score": 3
-    },
-    {
-      "articleId": "sctwe4",
-      "articleFingerprint": "1o4si8s",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/el-uso-de-drones-en-riba-roja-refuerza-la-vigilancia-contra-los-robos-e-infracciones-durante-la-campa%C3%B1a-estival-de-la-algarroba",
-      "date": "2026-08-20T11:55:27.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 20,
+      "articleCount": 19,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -950,7 +933,7 @@
         "sin-datos": 40,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.9,
+      "meanTrustScore": 2.95,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -1121,7 +1104,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "4fe4304bd82d",
+    "plenos-agendas.json": "f13bed1f98c4",
     "press-claims-verified.json": "972b0280a9e7",
     "press.json": "174c25c4c53a",
     "promises.json": "d18811c11210"
