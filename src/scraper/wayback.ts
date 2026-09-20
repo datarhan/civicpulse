@@ -90,6 +90,15 @@ function parseTimestampFromBody(body: string): string | null {
  * Archive a URL on the Wayback Machine. Returns a structured result
  * envelope — never throws on HTTP errors. The caller decides whether
  * to retry, log, or proceed without an archived copy.
+ *
+ * `ok: false` with `HTTP 500` is NOT proof that nothing was captured. The sync
+ * endpoint captures the page and then tries to replay the new snapshot; when
+ * the replay fails it answers 500 («This snapshot cannot be displayed due to an
+ * internal error») with the capture already made. Measured on 2026-09-20: most
+ * of the saves that «failed» that way were in the index minutes later. So a
+ * caller should not retry a 500 straight away — look the URL up again after a
+ * few minutes (`findExistingSnapshot`), and only then decide. A 429 is the
+ * other way round: nothing was captured, and retrying extends the block.
  */
 export async function archiveOnWayback(
   url: string,

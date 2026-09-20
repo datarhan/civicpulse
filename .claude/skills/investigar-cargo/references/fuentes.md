@@ -173,12 +173,21 @@ Cada URL nueva que se cite se guarda con `npm run journalist:archive-sources`
 archivo se hace desde la sesión central, nunca dentro del bucle de un subagente.
 
 El parte tiene cuatro desenlaces y los cuatro se anotan en el `manifest.json` del
-dossier: `existing`, `archived`, `failed` y `not-attempted`. El último no es un
-fallo: tras el primer 429 de Save Page Now la pasada deja de guardar (cada rechazo
-alarga el bloqueo de la IP) y lo que quedaba se cuenta aparte. **No se repite la
-pasada el mismo rato «a ver si ahora»**: se vuelve a lanzar horas después, y sólo
-pregunta por lo que sigue sin copia. Una biografía se publica igual con copias
-pendientes — el enlace original sigue ahí —, pero el parte lo dice.
+dossier: `existing`, `archived`, `failed` y `not-attempted`. Volver a lanzarlo es
+seguro — sólo pregunta por lo que sigue sin copia —, pero CUÁNDO depende del
+motivo, y son dos casos opuestos:
+
+- **`failed → HTTP 500`**: lo más probable es que la copia SE HAYA HECHO. Save
+  Page Now captura la página y luego intenta enseñarla; si eso falla contesta 500
+  con la captura ya en el índice. Se vuelve a lanzar a los diez minutos y la
+  consulta la encuentra (`existing`). Dos 500 seguidos sin que aparezca copia sí
+  son un fallo de verdad: el medio no se deja capturar.
+- **`HTTP 429` / `not-attempted`**: no se ha capturado nada, y tras el primer 429
+  la pasada deja de guardar (cada rechazo alarga el bloqueo de la IP). **No se
+  repite «a ver si ahora»**: se vuelve horas después.
+
+Una biografía se publica igual con copias pendientes — el enlace original sigue
+ahí —, pero el parte lo dice, con su motivo.
 
 ## Lo que un subagente NO puede hacer (medido en la prueba del 06-09-2026)
 
