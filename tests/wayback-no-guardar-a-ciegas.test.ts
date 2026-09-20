@@ -45,7 +45,7 @@ describe('maybeArchive (auditoría diaria de enlaces de prensa)', () => {
       save: async (u) => (guardados++, guardada(u)),
     })
     expect(guardados).toBe(0)
-    expect(r).toEqual({ archivedUrl: null, archivedAt: null })
+    expect(r).toEqual({ archivedUrl: null, archivedAt: null, archiveLookup: 'failed' })
   })
 
   it('--archive + consulta rechazada → tampoco guarda', async () => {
