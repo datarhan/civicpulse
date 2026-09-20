@@ -1,0 +1,130 @@
+{
+  "plenoId": "19gax3o",
+  "generatedAt": "2026-09-20T07:55:42.530Z",
+  "model": "gemini-3.5-flash",
+  "promptVersion": "speaker-map-v2",
+  "chunkSeconds": 600,
+  "segments": [
+    {
+      "start": 1.2,
+      "end": 11.4,
+      "speaker": "c00/SPEAKER_00",
+      "text": "El punt número set és el dictamen de la comissió informativa de polítiques d'infraestructures, medi ambient, mobilitat, transició ecològica i serveis públics,"
+    },
+    {
+      "start": 11.4,
+      "end": 18.9,
+      "speaker": "c00/SPEAKER_00",
+      "text": "sobre l'aprovació de la modificació de l'ordenança reguladora de les prestacions patrimonials de caràcter públic no tributari,"
+    },
+    {
+      "start": 18.9,
+      "end": 23.4,
+      "speaker": "c00/SPEAKER_00",
+      "text": "pel servei de clavegueram i depuració de Riba-roja de Túria."
+    },
+    {
+      "start": 23.4,
+      "end": 25.9,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Té la paraula el regidor de l'àrea, José Ángel."
+    }
+  ],
+  "rows": [],
+  "rejected": [
+    {
+      "label": "c00/SPEAKER_00",
+      "reason": "relation-contradicted",
+      "detail": "turn-grant, but 23.4s is followed by nothing"
+    }
+  ],
+  "stats": {
+    "chunksExpected": 15,
+    "chunksTranscribed": 1,
+    "failedChunks": [
+      {
+        "chunk": 1,
+        "why": "covered 55% (floor 85%)",
+        "attempts": 1,
+        "givenUpUnder": {
+          "prompt": "speaker-map-v2",
+          "floor": 0.85,
+          "thinking": "low"
+        }
+      },
+      {
+        "chunk": 2,
+        "why": "covered 59% (floor 85%)",
+        "attempts": 1,
+        "givenUpUnder": {
+          "prompt": "speaker-map-v2",
+          "floor": 0.85,
+          "thinking": "low"
+        }
+      },
+      {
+        "chunk": 3,
+        "why": "covered 69% (floor 85%)",
+        "attempts": 1,
+        "givenUpUnder": {
+          "prompt": "speaker-map-v2",
+          "floor": 0.85,
+          "thinking": "low"
+        }
+      },
+      {
+        "chunk": 4,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 5,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 6,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 7,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 8,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 9,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 10,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 11,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 12,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 13,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 14,
+        "why": "never attempted (call budget spent; resumes next run)"
+      }
+    ],
+    "labelsSeen": 1,
+    "rowsAccepted": 0,
+    "rowsRejected": 1,
+    "rejectedBy": {
+      "relation-contradicted": 1
+    },
+    "attemptedThisRun": 4,
+    "apiCalls": 10,
+    "coverage": 0.0034747622531089983
+  }
+}
