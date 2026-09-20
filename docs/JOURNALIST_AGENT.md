@@ -245,11 +245,29 @@ fetch|pdf|chrome`; `trust` is never accepted from the file — it comes from
   promoted, published, and about the same subject. Until this CLI the only
   path was the hand edit that removed Raga v1–v3 (f4e7c5bd).
 - **`journalist:archive-sources`** — gives a report's cited `web` /
-  `official-doc` / `boe` sources a Wayback copy (`archiveUrl`): availability
-  lookup first, Save Page Now only when none exists, saves spaced 10 s apart,
-  every target reported as existing / archived / failed, run manifest
-  included. 0 of 380 published sources had a copy before it, because the
-  agent's `fetchUrl` deliberately never saves.
+  `official-doc` / `boe` sources a Wayback copy (`archiveUrl`): lookup first,
+  Save Page Now only when the lookup ANSWERED that none exists, saves spaced
+  10 s apart, every target reported as existing / archived / failed / not
+  attempted, run manifest included. 0 of 380 published sources had a copy
+  before it, because the agent's `fetchUrl` deliberately never saves.
+  **A refused lookup is not «no copy».** On 2026-09-20 the Availability API
+  answered 429 to everything, `findExistingSnapshot` returned the same
+  `ok:false` it returns for «none», and the CLI spent a save on every source —
+  all refused as well, each refusal extending the block. So the lookup now says
+  `found` / `none` / `failed`; nothing saves on `failed`; and after the first
+  429 from Save Page Now the pass stops saving, keeps looking up, and counts
+  the rest as not attempted rather than failed. The first pass with the fixed
+  tool showed what the old one had been hiding: more than half of the sources
+  it had reported as «failed» already HAD a copy, most of them made by its own
+  first pass that morning — Save Page Now captures the page and answers 500
+  anyway, so **a failed save is not proof there is no copy; the next lookup
+  is**. And it showed that the API's «none» is not reliable either: a clean 200
+  with `archived_snapshots: {}` for URLs whose captures, hours old, were in the
+  CDX index. So this CLI (and only this one — it takes seconds per URL) asks
+  the index whenever the API does not produce a copy, refused or «none».
+  The daily press-link audit and the agent's `audit()` had the same
+  save-on-refusal branch and follow the same rule. Re-run the CLI later for
+  what was left: it only asks for sources that still have no copy.
 - **`journalist:sondeo`** — one door over the readers the repo already has
   (BOE, DOGV, Dialnet, hemeroteca, press, plenos, local snapshots, the
   officials row, and a whole-word surname sweep of `tenders.json` winners),

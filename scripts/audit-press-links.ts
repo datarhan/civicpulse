@@ -28,7 +28,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { archiveOnWayback, findExistingSnapshot } from '../src/scraper/wayback'
+import { archiveOnWayback, findExistingSnapshot, type WaybackResult } from '../src/scraper/wayback'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -62,7 +62,7 @@ function delay(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
-type LinkStatus = 'alive' | 'dead' | 'error'
+export type LinkStatus = 'alive' | 'dead' | 'error'
 
 interface PressClaimsSnapshot {
   items?: Array<{ articleUrl?: string; articleSource?: string }>
@@ -129,19 +129,34 @@ async function headCheck(
   }
 }
 
-async function maybeArchive(
+/** The two Wayback calls, injectable so the policy below is tested without a network. */
+interface WaybackIo {
+  find: (url: string) => Promise<WaybackResult>
+  save: (url: string) => Promise<WaybackResult>
+}
+const WAYBACK_LIVE: WaybackIo = {
+  find: (url) => findExistingSnapshot(url),
+  save: (url) => archiveOnWayback(url),
+}
+
+export async function maybeArchive(
   url: string,
   status: LinkStatus,
   forceArchive: boolean,
+  io: WaybackIo = WAYBACK_LIVE,
 ): Promise<{ archivedUrl: string | null; archivedAt: string | null }> {
-  const existing = await findExistingSnapshot(url)
+  const existing = await io.find(url)
   if (existing.ok) {
     return { archivedUrl: existing.archivedUrl, archivedAt: existing.archivedAt }
   }
+  // «Could not look» is not «no copy». A refused lookup (the Availability API
+  // answers 429 for hours at a time) used to fall through to a save — refused as
+  // well, and each refusal extends the block for every job on this IP.
+  if (existing.lookup !== 'none') return { archivedUrl: null, archivedAt: null }
   // No existing snapshot. Save Page Now is rate-limited; only spend a slot
   // when forced OR the original is dead (so users still have a copy).
   if (!forceArchive && status === 'alive') return { archivedUrl: null, archivedAt: null }
-  const saved = await archiveOnWayback(url)
+  const saved = await io.save(url)
   return { archivedUrl: saved.archivedUrl, archivedAt: saved.ok ? saved.archivedAt : null }
 }
 
@@ -245,7 +260,11 @@ async function main() {
   )
 }
 
-main().catch((err) => {
-  console.error('[audit-press-links] failed:', err)
-  process.exit(1)
-})
+// Guarded so `maybeArchive` can be unit-tested without the audit running against
+// 170-odd live URLs on import (same shape as journalist-archive-sources.ts).
+if (import.meta.url === `file://${process.argv[1]}`) {
+  main().catch((err) => {
+    console.error('[audit-press-links] failed:', err)
+    process.exit(1)
+  })
+}
