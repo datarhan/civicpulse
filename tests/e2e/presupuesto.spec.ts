@@ -76,7 +76,7 @@ test.describe('Presupuesto (/presupuesto)', () => {
     const claimed = introText.match(/las obras son el (\d+) %/)
     expect(claimed, `no obras share in: ${introText}`).not.toBeNull()
 
-    await page.getByRole('tab', { name: /Tipos de gasto/ }).click()
+    await page.getByRole('tab', { name: /Tipos de contrato/ }).click()
     const panelLoc = page.locator('[role="tabpanel"]')
     await expect(panelLoc).toContainText('Obras', { timeout: 8000 })
     const panel = await panelLoc.innerText()
@@ -283,6 +283,35 @@ test.describe('Presupuesto (/presupuesto)', () => {
     expect(m.anchoMax, 'la pastilla más ancha no supera los 90 px de antes').toBeGreaterThan(90)
     expect(m.fuera, 'pastillas de estado fuera de su fila a 375 px').toBe(0)
     expect(m.scrollH, 'la página desborda a lo ancho a 375 px').toBeLessThanOrEqual(1)
+  })
+
+  /**
+   * El separador decimal de la contratación menor (#62).
+   *
+   * La tarjeta escribía «el 2.5 % del importe» —`cuota.toFixed(1)`— y, una
+   * frase después, «serían el 7.4 %», porque `String(7.4)` también lleva punto.
+   * Dos líneas más arriba, la misma tarjeta escribe «22,06 M€». Ningún dato
+   * estaba mal; el idioma del número sí, y en castellano y en valencià el
+   * separador decimal es la coma.
+   *
+   * Se mide sobre la página servida, no sobre la función: lo que estaba mal era
+   * lo que leía el visitante. El punto de los millares —«1.034.231 €»— no
+   * cuenta, y por eso el patrón exige que el punto NO venga detrás de otro
+   * dígito.
+   */
+  test('los porcentajes de la contratación menor se escriben con coma', async ({ page }) => {
+    await page.goto('/presupuesto', { waitUntil: 'domcontentloaded' })
+    const tarjeta = page.locator('#menores')
+    await expect(tarjeta).toContainText(/sin licitación ni publicidad previa/, { timeout: 15000 })
+    const texto = (await tarjeta.innerText()).replace(/\s+/g, ' ')
+
+    // El control: que haya un decimal que mirar. Si algún día las dos cuotas
+    // salieran enteras, esta prueba no estaría comprobando nada y más vale que
+    // lo diga en vez de dar verde.
+    expect(texto, `sin ningún porcentaje decimal que comprobar: ${texto}`).toMatch(/\d+,\d+ %/)
+    expect(texto, `un porcentaje con punto decimal: ${texto}`).not.toMatch(
+      /(?<!\d)\d{1,3}\.\d{1,2} %/,
+    )
   })
 
   test('clicking a tab switches the panel', async ({ page }) => {

@@ -9,6 +9,7 @@ import {
   partePorHueco,
   rellena,
   porcentajeLegible,
+  decimal,
 } from '../../src/lib/formatters'
 import { CATALOGUE } from '../../src/i18n'
 
@@ -237,6 +238,43 @@ describe('rellena', () => {
   it('un 0 se escribe «0» en vez de desaparecer por ser falso', () => {
     // El nombre de antes hablaba de «[object Object]», que no es lo que mide.
     expect(rellena('{n}', { n: 0 })).toBe('0')
+  })
+})
+
+/**
+ * El separador decimal (#62).
+ *
+ * /presupuesto escribía «el 2.5 % del importe» con punto —`cuota.toFixed(1)`— y
+ * la frase siguiente «serían el 7.4 %» con otro, porque `String(7.4)` también
+ * lleva punto. En la misma tarjeta, dos líneas más arriba, la página escribe
+ * «62,12 M€». Ningún dato estaba mal: el idioma del número sí.
+ *
+ * Se fija aquí en vez de en la página porque son dos sitios en una sola frase, y
+ * dos copias de una decisión de formato es exactamente lo que acaba derivando.
+ * El CLDR de la CI no es el del portátil —ya escribe «2 M €» donde el portátil
+ * escribe «2 M€»—, así que la coma se comprueba en las dos.
+ */
+describe('decimal', () => {
+  it('escribe el decimal con coma, como el resto de la página', () => {
+    expect(decimal(2.5)).toBe('2,5')
+    expect(decimal(7.4)).toBe('7,4')
+  })
+
+  it('no inventa un decimal que no hay', () => {
+    expect(decimal(7)).toBe('7')
+    expect(decimal(0)).toBe('0')
+  })
+
+  it('redondea a la precisión pedida', () => {
+    expect(decimal(7.44)).toBe('7,4')
+    expect(decimal(7.46)).toBe('7,5')
+    expect(decimal(7.456, 2)).toBe('7,46')
+  })
+
+  it('sin número no escribe un cero', () => {
+    expect(decimal(null)).toBe('')
+    expect(decimal(undefined)).toBe('')
+    expect(decimal(Number.NaN)).toBe('')
   })
 })
 
