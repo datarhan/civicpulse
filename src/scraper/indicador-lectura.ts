@@ -423,8 +423,14 @@ const COMO_MUNICIPAL: Record<string, string> = {
   // se gastó. Excusar al ayuntamiento con una causa sin comprobar es tan poco
   // nuestro como acusarlo. Lo señaló la revisión lectora el 20-09-2026;
   // `tests/parse-indicador-lectura.test.ts` comprueba las dos frases juntas.
+  //
+  // Lo que se declara ignorado es CUÁNTO llegó tarde, no SI alguna lo hizo. La
+  // primera versión de este arreglo decía «el listado no dice cuándo se
+  // incorporó», y vista en el navegador encima de la salvedad larga —«algunas a
+  // final de año»— las dos se pisaban: si el listado no dice cuándo, ¿de dónde
+  // sale «algunas»? Las pruebas no podían verlo; se vio mirando la página.
   'ejecucion-presupuestaria':
-    'El divisor es el crédito definitivo, que suma al aprobado las modificaciones del ejercicio: buena parte de un porcentaje bajo es crédito añadido que no llegó a gastarse, y el listado no dice cuándo se incorporó.',
+    'El divisor es el crédito definitivo, que suma al aprobado las modificaciones del ejercicio: buena parte de un porcentaje bajo es crédito añadido que no llegó a gastarse, y el listado no dice cuánto llegó demasiado tarde para gastarlo.',
 }
 
 export function leerIndicadorMunicipal(m: IndicadorMunicipal): Lectura {

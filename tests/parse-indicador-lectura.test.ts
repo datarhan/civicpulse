@@ -207,8 +207,11 @@ describe('scraper/indicador-lectura', () => {
     // partió de cero, incorporó 22,06 M€ y ejecutó el 4,7 %).
     expect(corta).toMatch(/crédito definitivo/i)
     expect(corta).toMatch(/no llegó a gastarse/i)
-    // Y lo que no se sabe, se dice que no se sabe.
-    expect(corta).toMatch(/no dice cuándo/i)
+    // Y lo que no se sabe, se dice que no se sabe — que es CUÁNTO llegó tarde, no
+    // si alguna lo hizo: «no dice cuándo» pisaba el «algunas a final de año» de
+    // la larga, dos renglones más abajo en la misma ficha.
+    expect(corta).toMatch(/no dice cuánto llegó demasiado tarde/i)
+    expect(corta).not.toMatch(/no dice cuándo/i)
   })
 })
 
