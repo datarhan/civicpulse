@@ -23,12 +23,22 @@ import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 const src = readFileSync(join(__dirname, '..', 'src/pages/Gestion.jsx'), 'utf8')
-/** El primer párrafo tras el <h1>, con los espacios colapsados. */
-const entradilla = (src.split('</h1>')[1] ?? '').split('</p>')[0].replace(/\s+/g, ' ')
+/**
+ * El primer párrafo tras el <h1>, SIN comentarios y con los espacios colapsados.
+ *
+ * Sin comentarios porque el que explica este arreglo cita la frase vieja, y una
+ * prueba que lee el fuente la encontraría ahí y se pondría roja por lo que el
+ * lector no ve. Es la misma trampa que `tests/prepush-range.test.js` esquiva.
+ */
+const entradilla = (src.split('</h1>')[1] ?? '')
+  .split('</p>')[0]
+  .replace(/\{\/\*[\s\S]*?\*\/\}/g, ' ')
+  .replace(/\s+/g, ' ')
 
 describe('/gestion — la entradilla', () => {
-  it('mide algo: la entradilla se encontró', () => {
+  it('mide algo: la entradilla se encontró, y sin sus comentarios', () => {
     expect(entradilla).toMatch(/Cuánto tarda en pagar/)
+    expect(entradilla).not.toMatch(/\/\*/)
   })
 
   it('no promete «lo aprobado frente a lo ejecutado»: ninguna ficha divide eso', () => {
