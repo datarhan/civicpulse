@@ -1,6 +1,6 @@
 {
   "plenoId": "19gax3o",
-  "generatedAt": "2026-09-20T07:55:42.530Z",
+  "generatedAt": "2026-09-20T15:31:35.612Z",
   "model": "gemini-3.5-flash",
   "promptVersion": "speaker-map-v2",
   "chunkSeconds": 600,
@@ -44,8 +44,8 @@
     "failedChunks": [
       {
         "chunk": 1,
-        "why": "covered 55% (floor 85%)",
-        "attempts": 1,
+        "why": "covered 69% (floor 85%)",
+        "attempts": 2,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
           "floor": 0.85,
@@ -54,8 +54,8 @@
       },
       {
         "chunk": 2,
-        "why": "covered 59% (floor 85%)",
-        "attempts": 1,
+        "why": "covered 71% (floor 85%)",
+        "attempts": 2,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
           "floor": 0.85,
@@ -64,67 +64,61 @@
       },
       {
         "chunk": 3,
-        "why": "covered 69% (floor 85%)",
-        "attempts": 1,
-        "givenUpUnder": {
-          "prompt": "speaker-map-v2",
-          "floor": 0.85,
-          "thinking": "low"
-        }
+        "why": "quota exhausted, never attempted further"
       },
       {
         "chunk": 4,
-        "why": "never attempted (call budget spent; resumes next run)"
+        "why": "never attempted (quota exhausted earlier in the run)"
       },
       {
         "chunk": 5,
-        "why": "never attempted (call budget spent; resumes next run)"
+        "why": "never attempted (quota exhausted earlier in the run)"
       },
       {
         "chunk": 6,
-        "why": "never attempted (call budget spent; resumes next run)"
+        "why": "never attempted (quota exhausted earlier in the run)"
       },
       {
         "chunk": 7,
-        "why": "never attempted (call budget spent; resumes next run)"
+        "why": "never attempted (quota exhausted earlier in the run)"
       },
       {
         "chunk": 8,
-        "why": "never attempted (call budget spent; resumes next run)"
+        "why": "never attempted (quota exhausted earlier in the run)"
       },
       {
         "chunk": 9,
-        "why": "never attempted (call budget spent; resumes next run)"
+        "why": "never attempted (quota exhausted earlier in the run)"
       },
       {
         "chunk": 10,
-        "why": "never attempted (call budget spent; resumes next run)"
+        "why": "never attempted (quota exhausted earlier in the run)"
       },
       {
         "chunk": 11,
-        "why": "never attempted (call budget spent; resumes next run)"
+        "why": "never attempted (quota exhausted earlier in the run)"
       },
       {
         "chunk": 12,
-        "why": "never attempted (call budget spent; resumes next run)"
+        "why": "never attempted (quota exhausted earlier in the run)"
       },
       {
         "chunk": 13,
-        "why": "never attempted (call budget spent; resumes next run)"
+        "why": "never attempted (quota exhausted earlier in the run)"
       },
       {
         "chunk": 14,
-        "why": "never attempted (call budget spent; resumes next run)"
+        "why": "never attempted (quota exhausted earlier in the run)"
       }
     ],
-    "labelsSeen": 1,
+    "labelsSeen": 0,
     "rowsAccepted": 0,
     "rowsRejected": 1,
     "rejectedBy": {
       "relation-contradicted": 1
     },
-    "attemptedThisRun": 4,
-    "apiCalls": 10,
+    "attemptedThisRun": 3,
+    "apiCalls": 7,
     "coverage": 0.0034747622531089983
   }
 }

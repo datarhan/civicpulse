@@ -1,0 +1,1971 @@
+{
+  "generatedAt": "2026-09-20T16:53:05.487Z",
+  "version": "1",
+  "plenoId": "1xmr0do",
+  "plenoDate": "2026-09-07",
+  "items": [
+    {
+      "claim": {
+        "id": "1xmr0do-001-afi-1befd0",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 1,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "30 días es lo legal y estamos en 56",
+        "context": "Durante el debate del punto de tesorería sobre el informe trimestral del PMP se afirma: «30 días es lo legal y estamos en 56. Una situación que es repetir trimestre tras trimestre.»",
+        "topic": "fiscal",
+        "entities": {
+          "count": 30,
+          "countUnit": "días",
+          "referencedEntity": "límite legal del periodo medio de pago (30 días) frente a pmp actual de 56 días"
+        },
+        "confidence": 0.8,
+        "reasoning": "Se cita el límite legal de 30 días del PMP (normativa de morosidad) y el valor actual de 56 días; contrastable con el informe de PMP del 2T-2026 y la normativa aplicable.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-001-afi-1befd0",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-002-afi-811fb2",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 2,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "Solo se han pagado 20 en el periodo de pagamento",
+        "context": "Al analizar las facturas pagadas en el informe del PMP: \"Solo se han pagado 20 en el periodo de pagamento. Las restantes 600 se han pagado fuera. No, las restantes 1.377, fuera del periodo.\"",
+        "topic": "fiscal",
+        "entities": {
+          "count": 20,
+          "countUnit": "facturas pagadas dentro del periodo legal de pago",
+          "referencedEntity": "informe trimestral pmp 2t 2026"
+        },
+        "confidence": 0.55,
+        "reasoning": "El número de facturas pagadas dentro del periodo legal figura en el desglose del informe trimestral de morosidad/PMP y puede contrastarse con él.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-002-afi-811fb2",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-003-afi-826a35",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 3,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "Las restantes 600 se han pagado fuera. No, las restantes 1.377, fuera del periodo.",
+        "context": "Tras indicar que solo 20 facturas se pagaron en plazo, se cita primero 600 como restantes pagadas fuera de plazo y de inmediato se corrige a 1.377 facturas fuera del periodo.",
+        "topic": "fiscal",
+        "entities": {
+          "count": 1377,
+          "countUnit": "facturas pagadas fuera del periodo de pago",
+          "referencedEntity": "informe trimestral de morosidad (facturas pagadas fuera de plazo)"
+        },
+        "confidence": 0.7,
+        "reasoning": "El informe trimestral de morosidad recoge el nº de facturas pagadas fuera del periodo legal; se esperaría verificar la cifra corregida de 1.377 frente a los 600 mencionados inicialmente.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-003-afi-826a35",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-004-afi-3787bc",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 4,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "facturas de llum que han tardado en pagarles 330 días, 224, 219",
+        "context": "Ejemplos de facturas con retraso en el pago: se citan facturas de suministro eléctrico que habrían tardado 330, 224 y 219 días en abonarse.",
+        "topic": "fiscal",
+        "entities": {
+          "count": 330,
+          "countUnit": "días de pago (facturas de luz)",
+          "referencedEntity": "facturas de suministro eléctrico"
+        },
+        "confidence": 0.7,
+        "reasoning": "Plazos concretos de pago de facturas de electricidad; se esperaría encontrarlos en el listado de facturas con fecha de registro y fecha de pago.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-004-afi-3787bc",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-004-afi-b1ba70",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 4,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "Facturas como puede ser el mantenimiento de los ascensores, de los edificios municipales, que han tardado 148 días.",
+        "context": "Otro ejemplo de retraso en el pago: facturas de mantenimiento de ascensores de edificios municipales, con una demora de 148 días, mencionadas junto a otras de grandes empresas.",
+        "topic": "fiscal",
+        "entities": {
+          "count": 148,
+          "countUnit": "días de pago (factura mantenimiento ascensores)",
+          "referencedEntity": "mantenimiento de ascensores de edificios municipales"
+        },
+        "confidence": 0.75,
+        "reasoning": "Plazo de pago concreto de una factura de mantenimiento de ascensores; verificable con el registro de facturas y fechas de pago del Ayuntamiento.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-004-afi-b1ba70",
+        "verdict": "sin-datos",
+        "summary": "El objeto citado aparece en un expediente municipal, pero ninguna de sus magnitudes coincide con la cifra del claim. No es que no haya registro: es que el que hay no dice eso.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=z9Rkh6a2Oj8QK2TEfXGy%2BA%3D%3D",
+            "snippet": "Mantenimiento de las instalaciones contraincendios en edificios municipales · Ayuntamiento de Riba-roja de Túria · security · 29.859 €",
+            "similarity": 0.43,
+            "stance": "checked"
+          }
+        ],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-005-afi-fbd383",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 5,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "Relativamente bajas, 124 días en cobrar una factura.",
+        "context": "Tras citar a grandes empresas, se menciona otro proveedor local (transcrito como «Foros del Pueblo», posible distorsión de Whisper) con facturas de importe relativamente bajo que habría tardado 124 días en cobrar.",
+        "topic": "fiscal",
+        "entities": {
+          "count": 124,
+          "countUnit": "días de demora en cobro de factura",
+          "referencedEntity": "proveedor «foros del pueblo» (nombre dudoso en la transcripción)"
+        },
+        "confidence": 0.55,
+        "reasoning": "Cifra concreta de 124 días de cobro para facturas de importe bajo; verificable en el registro de facturas, aunque el nombre del proveedor puede estar distorsionado por Whisper.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-005-afi-fbd383",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-009-afi-9fdb38",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 9,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "fondos propios del ayuntamiento, de 1.440.000 euros",
+        "context": "Al responder sobre la situación de tesorería y el pago a proveedores, se citan los recursos disponibles: \"Hoy en el escóndito del ayuntamiento, ni han dado millones 440.000 euros... Pero fondos propios del ayuntamiento, de 1.440.000 euros, meses 4.000.000 euros\".",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 1440000,
+          "referencedEntity": "fondos propios / tesorería del ayuntamiento"
+        },
+        "confidence": 0.65,
+        "reasoning": "Cifra de fondos propios del ayuntamiento (1,44 M€) repetida dos veces en el fragmento; contrastable con el estado de tesorería, el remanente de tesorería o los saldos bancarios en la fecha del pleno.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-009-afi-9fdb38",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-009-afi-18d2ac",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 9,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "una póliza de crédito de 4 millones de euros en sed disposar",
+        "context": "En el mismo turno sobre liquidez y morosidad se dice: \"me sabán dar una póliza de crédito de 4 millones de euros en sed disposar. No siga, porque se puede utilizar en cualquier momento\", además de los fondos propios y al margen de los recursos de reconstrucción.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 4000000,
+          "referencedEntity": "póliza de crédito sin disponer"
+        },
+        "confidence": 0.6,
+        "reasoning": "Se afirma la existencia de una póliza de crédito de 4 M€ sin disponer (transcripción degradada en 'en sed disposar'); verificable en operaciones de crédito a corto plazo, contratos con entidades financieras o informes de tesorería/intervención.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-009-afi-18d2ac",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-011-afi-5ff34f",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 11,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "pues se va reduciendo poco a poco",
+        "context": "Se habla de la evolución del PMP: «Si miramos la mitad del PMP de los últimos meses, de los últimos trimestres, que efectivamente continuamos perdiendo [...] pues se va reduciendo poco a poco. Estamos trabajando en ese aspecto.»",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "pmp (periodo medio de pago a proveedores)"
+        },
+        "confidence": 0.5,
+        "reasoning": "Tendencia decreciente del PMP en los últimos trimestres, verificable con los datos trimestrales de periodo medio de pago publicados por Hacienda; partes de la frase están degradadas ('la mitad', 'perdiendo').",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-011-afi-5ff34f",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-012-afi-3d8570",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 12,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "No vamos a ser malos del 2024, que era de 104 días.",
+        "context": "Comparativa del PMP entre periodos: se cita que en 2024 era de 104 días para concluir que la reducción posterior es importante. El inicio de la frase está degradado por la transcripción.",
+        "topic": "fiscal",
+        "entities": {
+          "count": 104,
+          "countUnit": "días",
+          "referencedEntity": "pmp (periodo medio de pago) 2024"
+        },
+        "confidence": 0.55,
+        "reasoning": "Cifra de PMP de 2024 (104 días) contrastable con los informes oficiales de periodo medio de pago del ayuntamiento; el periodo exacto (año o trimestre) es ambiguo.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-012-afi-3d8570",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-015-cit-495808",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 15,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "Ahora hemos aprobado una oferta de empleo público",
+        "context": "Ahora hemos aprobado una oferta de empleo público, un capítulo que algunos no han aprobado así, y que es la herramienta en la que podemos trabajar ahora a través de la oferta de empleo público, ya de acuerdo en la tabla en el sindicato,",
+        "topic": "empleo",
+        "entities": {
+          "referencedEntity": "oferta de empleo público (oep) y acuerdo en la mesa de negociación con el sindicato"
+        },
+        "confidence": 0.55,
+        "reasoning": "La aprobación de una oferta de empleo público es comprobable en actas de pleno o junta de gobierno y en su publicación en el BOP; el acuerdo sindical en las actas de la mesa de negociación.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-015-cit-495808",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-016-afi-ff77f6",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 16,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "Por eso el PMP te da 56 días, que es dentro del ratio.",
+        "context": "Se habla de plazos de pago de facturas: unas se abonan a 120 días y otras en 20 días, y se cita el PMP (periodo medio de pago) resultante como dentro del ratio legal.",
+        "topic": "fiscal",
+        "entities": {
+          "count": 56,
+          "countUnit": "días",
+          "referencedEntity": "pmp (periodo medio de pago)"
+        },
+        "confidence": 0.85,
+        "reasoning": "Cifra concreta de periodo medio de pago verificable en los datos de morosidad/PMP publicados por el ayuntamiento y el Ministerio de Hacienda; esperaríamos un PMP en torno a 56 días.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-016-afi-ff77f6",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-016-afi-b8a8f6",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 16,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "el ayuntamiento tiene una disponibilidad de 14 millones de euros, 10 de saldo y 4 de un préstamo o de una póliza",
+        "context": "Se recoge lo comentado antes: \"Usted nos comenta que el ayuntamiento tiene una disponibilidad de 14 millones de euros, 10 de saldo y 4 de un préstamo o de una póliza\", y a continuación se plantea cómo proceder ante la póliza.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 14000000,
+          "referencedEntity": "disponibilidad de tesorería (10 m€ de saldo + 4 m€ de préstamo/póliza)"
+        },
+        "confidence": 0.8,
+        "reasoning": "Cifra de liquidez (14 M€: 10 de saldo y 4 de póliza/préstamo) contrastable con el saldo de tesorería y la operación de crédito aprobada o propuesta en pleno.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-016-afi-b8a8f6",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-016-pro-f96f54",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 16,
+        "type": "promesa",
+        "speakerGroup": null,
+        "verbatim": "una póliza que nosotros votaremos en contra para no pagar los posibles intereses que se puedan derivar",
+        "context": "Tras citar los 14 millones de disponibilidad (10 de saldo y 4 de préstamo o póliza), se anuncia el sentido del voto respecto a esa póliza para evitar el pago de intereses.",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "póliza/préstamo de tesorería"
+        },
+        "confidence": 0.6,
+        "reasoning": "Compromiso de voto en contra de una póliza de crédito, verificable después contra el resultado de la votación registrada en el pleno.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-016-pro-f96f54",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "promises"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-016-cit-57c8ff",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 16,
+        "type": "cita_obra",
+        "speakerGroup": null,
+        "verbatim": "Ahora hemos aprobado una oferta de empleo público",
+        "context": "Se afirma que se ha aprobado una oferta de empleo público, acordada en la mesa sindical, como herramienta para dotar de técnicos al ayuntamiento y mejorar el PMP.",
+        "topic": "empleo",
+        "entities": {
+          "referencedEntity": "oferta de empleo público"
+        },
+        "confidence": 0.55,
+        "reasoning": "La aprobación de una OEP es verificable en actas, resoluciones o publicación en el BOP/DOGV.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-016-cit-57c8ff",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-016-pro-914a6c",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 16,
+        "type": "promesa",
+        "speakerGroup": null,
+        "verbatim": "vamos a hacer procedimientos para técnicos que necesita el ayuntamiento para continuar mejorando, entre otras cosas, el PMP",
+        "context": "Tras mencionar la oferta de empleo público acordada en la mesa sindical, se anuncia que se convocarán procedimientos selectivos para técnicos con el fin de seguir mejorando, entre otras cosas, el PMP.",
+        "topic": "empleo",
+        "entities": {
+          "referencedEntity": "procedimientos selectivos de técnicos (oep)"
+        },
+        "confidence": 0.5,
+        "reasoning": "Compromiso de convocar procesos selectivos de técnicos, comprobable después en convocatorias y bases publicadas; poco concreto en plazos y número de plazas.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-016-pro-914a6c",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "promises"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-017-pro-759099",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 17,
+        "type": "promesa",
+        "speakerGroup": null,
+        "verbatim": "una póliza que nosotros votaremos en contra para no pagar los posibles intereses que se puedan derivar",
+        "context": "Al comentar la disponibilidad de 14 millones (10 de saldo y 4 de préstamo o póliza), el orador anuncia que votará en contra de esa póliza para evitar pagar posibles intereses.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 4000000,
+          "referencedEntity": "póliza de crédito / préstamo de 4 m€"
+        },
+        "confidence": 0.5,
+        "reasoning": "Compromiso de voto en contra de la póliza o préstamo; verificable en el resultado de la votación del punto correspondiente (pleno-votes). El importe de 4 M€ se deduce del contexto.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-017-pro-759099",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "promises"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-018-afi-edd38e",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 18,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "lo que está claro es que se deben 2.172.000 euros en facturas, de las cuales sólo se estaba presupuestando 950.000",
+        "context": "Se afirma que el importe total de facturas adeudadas asciende a 2.172.000 euros, de los cuales solo había 950.000 euros presupuestados.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 2172000,
+          "referencedEntity": "facturas pendientes de pago; crédito presupuestado 950.000 €"
+        },
+        "confidence": 0.85,
+        "reasoning": "Importe total de facturas (2.172.000 €) y crédito presupuestado (950.000 €) verificables en el expediente del punto del pleno y en el presupuesto municipal.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-018-afi-edd38e",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-018-afi-7bbf87",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 18,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "Ambos. 6.000 una factura y 4.000 otra. Y no estaba presupuestado. Impuesto presupuestario para la factura, cero.",
+        "context": "Se citan facturas recurrentes (mantenimiento de software) y las de dos proyectos, el del barrio de Esmoros y el de la vivienda tutelada, de 6.000 y 4.000 euros, sin crédito presupuestario.",
+        "topic": "fiscal",
+        "entities": {
+          "count": 2,
+          "countUnit": "facturas",
+          "referencedEntity": "facturas proyecto barrio de esmoros y vivienda tutelada (6.000 € y 4.000 €), sin crédito presupuestario"
+        },
+        "confidence": 0.6,
+        "reasoning": "Importes de dos facturas y ausencia de consignación presupuestaria verificables en el listado de facturas del expediente; 'Impuesto presupuestario' parece distorsión de Whisper.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-018-afi-7bbf87",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-019-afi-a6b78a",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 19,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "Un millón de euros de más.",
+        "context": "Tras citar 2.172.000 euros en facturas y 950.000 presupuestados, se concluye sobre el gasto: «...nosotros votaremos en contra a lo que ustedes han gastado. Un millón de euros de más.»",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 1000000,
+          "referencedEntity": "desviación entre gasto en facturas y presupuesto"
+        },
+        "confidence": 0.5,
+        "reasoning": "Cifra aproximada de sobregasto sobre lo presupuestado; verificable contrastando facturas vs. crédito (la resta de 2.172.000 − 950.000 da ≈1,22 M€, así que el verificador debe valorar la aproximación); la frase previa está degradada por Whisper.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-019-afi-a6b78a",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-020-afi-d42b63",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 20,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "6.000 una factura y 4.000 otra. Y no estaba presupuestado. Impuesto presupuestario para la factura, cero.",
+        "context": "Se habla de facturas recurrentes y no previstas; como ejemplo se citan las de los proyectos del barrio de Esmoros (nombre posiblemente distorsionado por Whisper) y de la vivienda tutelada: una de 6.000 y otra de 4.000, ambas sin consignación presupuestaria.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 6000,
+          "count": 2,
+          "countUnit": "facturas",
+          "referencedEntity": "facturas proyecto barrio esmoros y vivienda tutelada (6.000 € y 4.000 €) sin crédito presupuestario"
+        },
+        "confidence": 0.7,
+        "reasoning": "Cifra concreta de dos facturas (6.000 € y 4.000 €) con partida presupuestaria a cero; verificable en el registro de facturas/contratos menores y en el estado de ejecución del presupuesto.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-020-afi-d42b63",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-020-afi-681452",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 20,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "los mocajones que se hicieron en fallas para los gatos, estos grotes. 600 euros. Cero de presupuesto.",
+        "context": "Como otro ejemplo de gasto no presupuestado se menciona una factura de 600 euros por unos elementos instalados en Fallas (término distorsionado por Whisper: «mocajones», «gatos», «grotes»), sin partida presupuestaria.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 600,
+          "referencedEntity": "factura elementos instalados en fallas, sin partida presupuestaria"
+        },
+        "confidence": 0.55,
+        "reasoning": "Importe concreto (600 €) con presupuesto cero; verificable en facturas/contratos menores del área de fiestas, aunque el objeto exacto está degradado por la transcripción.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-020-afi-681452",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-022-afi-71e637",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 22,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "un software que todos los meses pagamos 2.300 euros, eso no estaba previsto en presupuesto",
+        "context": "Se cita el pago mensual de un software como gasto no contemplado en el presupuesto, y se contrapone lo presupuestado con lo efectivamente facturado.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 2300,
+          "referencedEntity": "pago mensual de software (partida presupuestaria no prevista)"
+        },
+        "confidence": 0.75,
+        "reasoning": "Se puede contrastar con contratos/facturas de software y con las partidas del presupuesto municipal: cuota mensual de 2.300 € y ausencia de crédito presupuestado.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-022-afi-71e637",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-026-cit-1ba15a",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 26,
+        "type": "cita_obra",
+        "speakerGroup": null,
+        "verbatim": "Está en el plan económico y financiero, Rafa. Y estamos utilizando el plan económico y financiero para durar adelante todo lo que estamos haciendo.",
+        "context": "Ante la petición de que se concrete el importe mensual de recursos destinados a pago de proveedores y las medidas cuantificadas para reducir el periodo medio de pago (PMP), se responde que ese contenido figura en el plan económico y financiero y que dicho plan se está utilizando como hoja de ruta.",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "plan económico y financiero (reducción del periodo medio de pago)"
+        },
+        "confidence": 0.5,
+        "reasoning": "Se afirma que las medidas y recursos pedidos constan en el plan económico y financiero y que este se aplica; se puede contrastar con el documento del PEF aprobado en pleno y su seguimiento.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-026-cit-1ba15a",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-029-afi-bef72e",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 29,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "Desde el 2023, este Gobierno ha consolidado a 139 personas.",
+        "context": "Desde el 2023, este Gobierno ha consolidado a 139 personas. Una mala gestión que se ve que ha hecho este Ayuntamiento. Este Ayuntamiento, este Gobierno se ha encontrado a personas que duran así 18 años en interinidad.",
+        "topic": "empleo",
+        "entities": {
+          "count": 139,
+          "countUnit": "personas consolidadas",
+          "referencedEntity": "consolidación/estabilización de empleo público municipal desde 2023"
+        },
+        "confidence": 0.85,
+        "reasoning": "Cifra concreta de personal consolidado desde 2023; verificable en las resoluciones de procesos de estabilización/consolidación y ofertas de empleo público del Ayuntamiento.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-029-afi-bef72e",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-029-afi-751e15",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 29,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "Y ahora estamos en otro procedimiento de 130 y pico personas más.",
+        "context": "Y ahora estamos en otro procedimiento de 130 y pico personas más. Trabajados de este Ayuntamiento. En eso estamos.",
+        "topic": "empleo",
+        "entities": {
+          "count": 130,
+          "countUnit": "personas (cifra aproximada)",
+          "referencedEntity": "nuevo procedimiento de consolidación de empleo público"
+        },
+        "confidence": 0.6,
+        "reasoning": "Cita un procedimiento en curso para unas 130 plazas/personas; contrastable con la oferta de empleo público o bases del proceso de estabilización vigente.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-029-afi-751e15",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-030-afi-894cfc",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 30,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "Este Ayuntamiento, este Gobierno se ha encontrado a personas que duran así 18 años en interinidad.",
+        "context": "Este Ayuntamiento, este Gobierno se ha encontrado a personas que duran así 18 años en interinidad. Interines. Sin el puesto de trabajo y aún fijo. Pero eso son muy malos gestos. 139.",
+        "topic": "empleo",
+        "entities": {
+          "count": 18,
+          "countUnit": "años en interinidad",
+          "referencedEntity": "personal interino del ayuntamiento"
+        },
+        "confidence": 0.55,
+        "reasoning": "Cita una antigüedad de 18 años en interinidad como hecho; se podría contrastar con la relación de puestos de trabajo y las fechas de nombramiento del personal interino.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-030-afi-894cfc",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-032-afi-b78c37",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 32,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "En el Tesorería hay 248.000 euros pendientes de pago.",
+        "context": "Se debate la cifra de pagos pendientes y el PMP. El orador niega que haya «dos millones y pico de euros pendientes de pago» y da como dato actual ('ahora mismo') que en Tesorería hay 248.000 euros pendientes.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 248000,
+          "referencedEntity": "tesorería municipal – pagos pendientes / pmp"
+        },
+        "confidence": 0.8,
+        "reasoning": "Cifra concreta de pagos pendientes en Tesorería; se puede contrastar con el informe de morosidad/PMP y el estado de pagos pendientes del Ayuntamiento.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-032-afi-b78c37",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-032-afi-2bcfdb",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 32,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "Porque eso es del 30 de junio. El 30 de junio. No el 6 de septiembre.",
+        "context": "Tras contraponer los 248.000 euros actuales, el orador afirma que la cifra de «dos millones y pico» citada por otro interviniente corresponde al segundo trimestre, con datos a 30 de junio, y no a la situación de septiembre.",
+        "topic": "fiscal",
+        "entities": {
+          "date": "2026-06-30",
+          "referencedEntity": "pagos pendientes / pmp segundo trimestre 2026"
+        },
+        "confidence": 0.6,
+        "reasoning": "Afirma que la cifra de más de 2 millones es un dato a 30 de junio (2T); se contrasta con el informe trimestral de morosidad/PMP publicado del segundo trimestre.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-032-afi-2bcfdb",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-033-afi-efe49b",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 33,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "Estos datos no son de ahora. Sino del 30 de junio. Son del segundo trimestre.",
+        "context": "Se afirma que las cifras de pagos pendientes citadas previamente corresponden al cierre del segundo trimestre (30 de junio) y no a la situación actual, y que se revisarán con la liquidación del tercer trimestre.",
+        "topic": "fiscal",
+        "entities": {
+          "date": "2026-06-30",
+          "referencedEntity": "datos de pagos pendientes / morosidad 2t 2026"
+        },
+        "confidence": 0.6,
+        "reasoning": "Fija la fecha de corte (30-jun, segundo trimestre) de los datos discutidos; se puede contrastar con el informe trimestral de morosidad del 2T 2026 y su fecha de publicación.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-033-afi-efe49b",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-035-afi-cc472d",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 35,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "Ha habido un ingreso de 840.000 euros. 838.000 euros al Ayuntamiento.",
+        "context": "El orador relata una anécdota de tesorería: un día de agosto (la transcripción dice \"A7-10-8 de agosto\", confusa) una técnica de tesorería le comunicó un ingreso al Ayuntamiento cuyo origen no se conocía.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 838000,
+          "referencedEntity": "ingreso de origen no identificado en tesorería municipal (agosto)"
+        },
+        "confidence": 0.5,
+        "reasoning": "Cifra concreta de un ingreso (840.000 y 838.000 €) contrastable con el extracto bancario y los mandamientos de ingreso de tesorería de agosto; las dos cifras y la fecha están distorsionadas en la transcripción.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-035-afi-cc472d",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-036-cit-73889a",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 36,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "Pues mira ya sabemos de qué son. Son de servicios sociales. Del 2025.",
+        "context": "Tras investigar el ingreso de unos 838.000 euros, el orador afirma que corresponde a servicios sociales del ejercicio 2025, es decir, a una transferencia de la Generalitat que se ha abonado con retraso.",
+        "topic": "social",
+        "entities": {
+          "amountEuros": 838000,
+          "referencedEntity": "transferencia generalitat servicios sociales 2025"
+        },
+        "confidence": 0.55,
+        "reasoning": "Se afirma que el ingreso corresponde a financiación de servicios sociales de 2025; contrastable con resoluciones/convenios de la Generalitat en materia de servicios sociales y con BDNS o la contabilidad municipal.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-036-cit-73889a",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-037-afi-4f8aa1",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 37,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "El 3 de agosto son 227 días. Pues 227 días. Ha tardado en pagar la Generalitat.",
+        "context": "Se habla de partidas de servicios sociales del 2025 que ya se han pagado y se cuentan los días transcurridos desde el 1 de enero hasta el 3 de agosto para medir cuánto tardó la Generalitat en pagar.",
+        "topic": "fiscal",
+        "entities": {
+          "count": 227,
+          "countUnit": "días",
+          "referencedEntity": "pago de la generalitat de partidas de servicios sociales 2025"
+        },
+        "confidence": 0.55,
+        "reasoning": "Cifra de días de demora contrastable con la fecha de pago de la transferencia de servicios sociales 2025; ojo: del 1 de enero al 3 de agosto hay unos 214 días, no 227, o la transcripción está degradada.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-037-afi-4f8aa1",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-042-cit-93496a",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 42,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "Hoy nos damos una noticia. De la ejecución de los 4,4 millones de euros. Que el gobierno de España.",
+        "context": "Al final del fragmento, tras hablar de la DANA y de la modificación de prioridades, se anuncia la ejecución de 4,4 millones de euros procedentes del Gobierno de España. La frase queda cortada al final del fragmento.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 4400000,
+          "referencedEntity": "4,4 millones de euros del gobierno de españa (ejecución)"
+        },
+        "confidence": 0.6,
+        "reasoning": "Cita una cifra concreta de fondos del Gobierno de España y su ejecución; se esperaría una subvención, transferencia o ayuda de 4,4 M€ en BDNS o en las liquidaciones presupuestarias municipales. La frase está truncada, por eso la confianza es moderada.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-042-cit-93496a",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-043-afi-e1c29c",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 43,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "De la ejecución de los 4,4 millones de euros",
+        "context": "Se anuncia una noticia sobre la ejecución de 4,4 millones de euros, con mención al gobierno de España, en un contexto de infraestructuras más resilientes y modernas que antes de la dana. La frase está cortada y la transcripción es confusa.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 4400000,
+          "referencedEntity": "ejecución de 4,4 millones de euros (mención al gobierno de españa; infraestructuras post-dana)"
+        },
+        "confidence": 0.5,
+        "reasoning": "Se cita una cifra concreta (4,4 M€) como ejecutada; cabría contrastarla con la ejecución presupuestaria, expedientes de contratación o ayudas post-dana, aunque la frase queda incompleta y su origen es ambiguo.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-043-afi-e1c29c",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-046-afi-7da7bd",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 46,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "Hemos reducido. Como ha dicho el regidor. El periodo de pago.",
+        "context": "Se afirma que se ha reducido el periodo de pago, y a continuación se mencionan dos bajas largas en tesorería (la interventora y una técnica) como dificultad para el departamento.",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "periodo medio de pago a proveedores"
+        },
+        "confidence": 0.5,
+        "reasoning": "Es contrastable con la serie publicada del periodo medio de pago (PMP) del ayuntamiento; se esperaría una tendencia descendente, aunque la frase no da cifras y está fragmentada.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-046-afi-7da7bd",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-049-afi-4c9d97",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 49,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "Más de 10 millones de liquidez en los contes del ayuntamiento",
+        "context": "Se citan los datos como lo importante del punto: más de 10 millones de liquidez en las cuentas municipales, junto a una póliza sin gastar y sin intereses.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 10000000,
+          "referencedEntity": "liquidez en cuentas del ayuntamiento"
+        },
+        "confidence": 0.8,
+        "reasoning": "Cifra de tesorería contrastable con el informe de tesorería o los saldos bancarios municipales del periodo correspondiente.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-049-afi-4c9d97",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-050-afi-3d5653",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 50,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "Más de 20 millones de euros que tenemos en diferentes contes para la reconstrucción",
+        "context": "Se afirma que el ayuntamiento tiene más de 20 millones de euros repartidos en diferentes cuentas destinados a la reconstrucción.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 20000000,
+          "referencedEntity": "fondos para la reconstrucción (post-dana)"
+        },
+        "confidence": 0.7,
+        "reasoning": "Cifra contrastable con los saldos de cuentas y partidas de reconstrucción (DANA) en la contabilidad municipal; esperable un total superior a 20 M€.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-050-afi-3d5653",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-050-cit-a23d4b",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 50,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "nos han aprobado 9 millones y medio de euros, 9 millones al 100% de la Unión Europea, para mejorar nuestro pueblo, concretamente en el proyecto de mejora de Paca d'Arles y de replegar a Uies, por temas de la dana",
+        "context": "Se anuncia como buena noticia la aprobación de 9,5 millones de euros, con 9 millones financiados al 100% por la Unión Europea, para un proyecto de mejora vinculado a la dana. El nombre del proyecto está degradado por la transcripción.",
+        "topic": "urbanismo",
+        "entities": {
+          "amountEuros": 9500000,
+          "referencedEntity": "fondos unión europea (100%) proyecto de mejora por la dana"
+        },
+        "confidence": 0.6,
+        "reasoning": "Ayuda europea comprobable en resoluciones de concesión o BDNS; esperable una ayuda de ~9,5 M€ (9 M€ UE) vinculada a la dana, aunque el nombre del proyecto está distorsionado.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-050-cit-a23d4b",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-051-cit-3b7557",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 51,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "más los 2 millones de turismo,",
+        "context": "Tras citar los 9 millones aprobados, se suman 2 millones de turismo que, según se afirma a continuación, ya están ejecutados y financiados al 100% por Europa.",
+        "topic": "other",
+        "entities": {
+          "amountEuros": 2000000,
+          "referencedEntity": "fondos europeos proyecto de turismo (ya ejecutado, 100% financiado por europa)"
+        },
+        "confidence": 0.55,
+        "reasoning": "Se afirma un proyecto de turismo de 2 M€ ya ejecutado y financiado al 100% con fondos europeos; se esperaría hallar la subvención en BDNS/registros de fondos UE y su ejecución en contratos.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-051-cit-3b7557",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-052-cit-f60629",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 52,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "financiados al 100% por Europa",
+        "context": "Se habla de proyectos ya ejecutados que, según el texto, están financiados íntegramente con fondos europeos; a continuación se añade que el ayuntamiento tiene un proyecto desde 2015 y equipos técnicos que gestionan la financiación ante Europa.",
+        "topic": "fiscal",
+        "entities": {
+          "count": 100,
+          "countUnit": "% de financiación europea",
+          "referencedEntity": "proyectos ejecutados financiados al 100% con fondos europeos"
+        },
+        "confidence": 0.55,
+        "reasoning": "Afirma financiación europea del 100% de unos proyectos ejecutados; se esperaría encontrar en BDNS/portales de fondos UE resoluciones de ayuda con cofinanciación del 100%, aunque el fragmento no identifica los proyectos.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-052-cit-f60629",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-053-cit-08ca6d",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 53,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "Miren a ver cuántos ayuntamientos han recibido 9 millones de euros.",
+        "context": "Miren a ver cuántos ayuntamientos han recibido 9 millones de euros. Miren a ver cuántos ayuntamientos en turismo tienen 2 millones de euros. Agradecer a los trabajadores de turismo y a todos los trabajadores técnicos que han hecho posible que este financiamiento extraordinario... Así que, como el punto era dar cuenta.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 9000000,
+          "referencedEntity": "financiamiento extraordinario recibido por el ayuntamiento"
+        },
+        "confidence": 0.55,
+        "reasoning": "Se sugiere que el ayuntamiento recibió 9 millones de euros de financiación extraordinaria; cabría contrastarlo con BDNS, subvenciones o convenios y con el punto de 'dar cuenta' del pleno.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-053-cit-08ca6d",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-057-pro-9f216c",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 57,
+        "type": "promesa",
+        "speakerGroup": null,
+        "verbatim": "cuando se cobre la próxima tasa, que es a partir de noviembre, tendrá la reducción correspondiente",
+        "context": "Al hablar de la tasa de residuos/basura, se afirma que el próximo cobro, a partir de noviembre, incluirá una reducción cuyo porcentaje depende de informes técnicos y de una reunión prevista para el día siguiente.",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "reducción de la tasa de residuos (próximo cobro, a partir de noviembre)"
+        },
+        "confidence": 0.7,
+        "reasoning": "Compromiso concreto y verificable: cabría encontrar una modificación de la ordenanza fiscal o el recibo de la tasa de residuos de noviembre de 2026 con la reducción aplicada.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-057-pro-9f216c",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "promises"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-058-pro-e6ad43",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 58,
+        "type": "promesa",
+        "speakerGroup": null,
+        "verbatim": "Bueno, cuando se cobre la próxima tasa, que es a partir de noviembre, tendrá la reducción correspondiente.",
+        "context": "Se debate sobre la tasa de residuos: se afirma que el próximo cobro, a partir de noviembre, incluirá la reducción correspondiente, y que se están elaborando informes para fijar su porcentaje.",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "reducción de la tasa de residuos (próximo cobro a partir de noviembre)"
+        },
+        "confidence": 0.6,
+        "reasoning": "Compromiso de aplicar una reducción en el próximo cobro de la tasa de residuos (desde noviembre); verificable contra la ordenanza fiscal modificada y los recibos emitidos en noviembre.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-058-pro-e6ad43",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "promises"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-059-pro-6aa78e",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 59,
+        "type": "promesa",
+        "speakerGroup": null,
+        "verbatim": "en noviembre, cuando tiremos el rebut de la tasa de residuos, tendrá la bonificación correspondiente",
+        "context": "Tras referirse a varias casuísticas que se están elaborando y a la tasa del complexo de la Mallá durante 2026, se afirma que en el recibo de noviembre de la tasa de residuos se aplicará la bonificación correspondiente.",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "bonificación en la tasa de residuos (recibo de noviembre 2026)"
+        },
+        "confidence": 0.55,
+        "reasoning": "Compromiso de aplicar una bonificación en el recibo de la tasa de residuos de noviembre; verificable contra la ordenanza fiscal, el padrón/recibo emitido y los acuerdos municipales, aunque la transcripción está parcialmente degradada.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-059-pro-6aa78e",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "promises"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-060-cit-ea4e4a",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 60,
+        "type": "cita_obra",
+        "speakerGroup": null,
+        "verbatim": "que hemos remodelado toda la parte interna de la Mallá para hacerla, bueno, pues de una piscina",
+        "context": "Se informa de que en la Mallá «estamos en machudicar ya las obras que hemos remodelado toda la parte interna de la Mallá para hacerla, bueno, pues de una piscina que de ahora es ciertamente complicada, por decir eso, me callo ahí, para modernizarla». La palabra «machudicar» es una distorsión de Whisper y no está claro si la obra está terminada, en curso o en adjudicación.",
+        "topic": "urbanismo",
+        "entities": {
+          "referencedEntity": "obras de remodelación interior del complexo/piscina de la mallá"
+        },
+        "confidence": 0.5,
+        "reasoning": "Cita una obra concreta de remodelación interior de la instalación de la Mallá; se esperaría un contrato de obra o adjudicación en la plataforma de contratación y su estado de ejecución.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-060-cit-ea4e4a",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-061-cit-8b119e",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 61,
+        "type": "cita_obra",
+        "speakerGroup": null,
+        "verbatim": "hemos remodelado toda la parte interna de la Mallá para hacerla, bueno, pues de una piscina que de ahora es ciertamente complicada",
+        "context": "Se informa de la reforma del interior de la instalación de la Mallá (piscina), con la finalidad de modernizarla; se reconoce que hay molestias mientras duran las obras.",
+        "topic": "urbanismo",
+        "entities": {
+          "referencedEntity": "remodelación interior de la mallá (piscina)"
+        },
+        "confidence": 0.7,
+        "reasoning": "Obra citada como ejecutada o en ejecución; se esperaría un contrato/licitación o expediente de obra de reforma de la instalación de la Mallá en el perfil de contratante o en actas.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-061-cit-8b119e",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-061-pro-6bc2d8",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 61,
+        "type": "promesa",
+        "speakerGroup": null,
+        "verbatim": "Y el exterior de la Mallá será para el 2027, la parte externa, que también estamos trabajando y en financiamiento externo",
+        "context": "Tras describir la reforma interior de la Mallá, se anuncia que la parte exterior se acometerá en 2027 y que se trabaja en obtener financiación externa.",
+        "topic": "urbanismo",
+        "entities": {
+          "referencedEntity": "reforma exterior de la mallá (2027, financiación externa)"
+        },
+        "confidence": 0.6,
+        "reasoning": "Compromiso con horizonte temporal (2027) verificable en presupuestos, planes de inversión o subvenciones/financiación externa solicitadas para la parte exterior de la Mallá.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-061-pro-6bc2d8",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "promises"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-061-afi-47c48a",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 61,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "225.000 usuarios que hemos tenido el 25, 225.000 gratuidos, o sea, que la gente no paga",
+        "context": "Al hablar del servicio de autobuses, se cita una cifra de usuarios del año 2025 y se indica que el servicio es gratuito, como argumento para externalizarlo.",
+        "topic": "movilidad",
+        "entities": {
+          "count": 225000,
+          "countUnit": "usuarios gratuitos del servicio de autobús (2025)",
+          "referencedEntity": "servicio municipal de autobús"
+        },
+        "confidence": 0.7,
+        "reasoning": "Cifra de viajeros o usuarios de 2025 contrastable con datos de explotación del servicio de autobús municipal y memorias o informes de gestión; el \"el 25\" puede ser distorsión de Whisper de \"2025\".",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-061-afi-47c48a",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-062-pro-cf9af5",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 62,
+        "type": "promesa",
+        "speakerGroup": null,
+        "verbatim": "en breve veremos así, en palabra de los trabajadores, una externalización del servicio",
+        "context": "Se afirma que el asunto está en vía de resolución y que en breve se producirá una externalización del servicio, basándose en lo que dicen los trabajadores; se añade que el volumen de uso justifica externalizarlo.",
+        "topic": "movilidad",
+        "entities": {
+          "referencedEntity": "externalización del servicio de autobús municipal"
+        },
+        "confidence": 0.5,
+        "reasoning": "Compromiso/anuncio de externalizar el servicio a corto plazo, verificable con expedientes de contratación, licitaciones o acuerdos plenarios posteriores; el plazo \"en breve\" es vago y la frase está atribuida a los trabajadores.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-062-pro-cf9af5",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "promises"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-063-pro-409262",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 63,
+        "type": "promesa",
+        "speakerGroup": null,
+        "verbatim": "después que sean eléctricos o híbridos, para cumplir con lo que tenemos previsto en el PACE",
+        "context": "Al describir los requisitos que se exigirán a la nueva empresa adjudicataria del transporte urbano: primero cumplimiento de la normativa, después que los autobuses sean eléctricos o híbridos, en línea con lo previsto en el PACE.",
+        "topic": "movilidad",
+        "entities": {
+          "referencedEntity": "pace (plan de acción para el clima y la energía) - flota de autobuses eléctricos o híbridos"
+        },
+        "confidence": 0.6,
+        "reasoning": "Compromiso de que la flota del nuevo contrato sea eléctrica o híbrida; verificable en el pliego de la licitación y en las medidas del PACE municipal.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-063-pro-409262",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "promises"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-064-pro-67a0ee",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 64,
+        "type": "promesa",
+        "speakerGroup": null,
+        "verbatim": "En octubre duraremos esa propuesta, primero de externalización, y esperamos, si no pasa nada, que tengamos el pleg, y en el 27 adjudiquemos ya a una nueva empresa",
+        "context": "Al hablar del transporte urbano, se anuncia un calendario: propuesta de externalización del servicio de autobús en octubre, pliego después y adjudicación a una nueva empresa en 2027, con la cautela 'si no pasa nada'.",
+        "topic": "movilidad",
+        "entities": {
+          "referencedEntity": "externalización y adjudicación del servicio de autobús urbano"
+        },
+        "confidence": 0.55,
+        "reasoning": "Compromiso de calendario (propuesta en octubre, pliego, adjudicación en 2027) verificable con actas, licitaciones publicadas y la plataforma de contratación; Whisper distorsiona 'duraremos' y 'pleg'.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-064-pro-67a0ee",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "promises"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-064-pro-41a593",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 64,
+        "type": "promesa",
+        "speakerGroup": null,
+        "verbatim": "que primero que los autobusos cumplan la normativa, porque no son accesibles todos, que es importante, después que sean eléctricos o híbridos, para cumplir con lo que tenemos previsto en el PACE",
+        "context": "Se describen los requisitos que se exigirán a la nueva empresa del servicio de autobús: cumplimiento de la normativa de accesibilidad y vehículos eléctricos o híbridos, en línea con el PACE.",
+        "topic": "movilidad",
+        "entities": {
+          "referencedEntity": "pace (plan de acción por el clima y la energía)"
+        },
+        "confidence": 0.55,
+        "reasoning": "Se puede comprobar si el pliego de la nueva licitación exige flota accesible y eléctrica/híbrida y si es coherente con el PACE; la redacción de Whisper es confusa.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-064-pro-41a593",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "promises"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-064-afi-b0960b",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 64,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "hemos tenido por ahora 2.000 usuarios en el bus joven. En el bus joven, en la Festa de Padrines, han utilizado 2.000 chavales y chavales.",
+        "context": "Al responder sobre transporte, se cita el uso del servicio 'bus joven' durante la Festa de Padrines, con 2.000 jóvenes usuarios hasta el momento.",
+        "topic": "movilidad",
+        "entities": {
+          "count": 2000,
+          "countUnit": "usuarios del bus joven",
+          "referencedEntity": "bus joven festa de padrines"
+        },
+        "confidence": 0.85,
+        "reasoning": "Cifra de usuarios contrastable con los datos de ocupación/billetaje del servicio o con el informe del contrato y de la organización de las fiestas.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-064-afi-b0960b",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-064-afi-4d03c5",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 64,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "han llegado a casa seguros, no han tenido ningún accidente",
+        "context": "Tras citar los 2.000 usuarios del bus joven en las fiestas, se afirma que volvieron a casa con seguridad y sin ningún accidente durante o después de las fiestas.",
+        "topic": "movilidad",
+        "entities": {
+          "count": 0,
+          "countUnit": "accidentes",
+          "referencedEntity": "bus joven festa de padrines"
+        },
+        "confidence": 0.5,
+        "reasoning": "Afirmación de cero accidentes contrastable con partes de Policía Local, Protección Civil o del servicio; la frase completa está algo degradada por la transcripción.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-064-afi-4d03c5",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-065-cit-52f7aa",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 65,
+        "type": "cita_obra",
+        "speakerGroup": null,
+        "verbatim": "prácticamente somos de los pocos ayuntamientos, pero no diría el único, que cuando hay fiestas asegura que los jóvenes tengan un transporte gratis y seguro.",
+        "context": "Se presenta el bus joven como un servicio gratuito y seguro durante las fiestas y se afirma que pocos ayuntamientos ofrecen algo similar, sin llegar a decir que sea el único.",
+        "topic": "movilidad",
+        "entities": {
+          "referencedEntity": "bus joven gratuito en fiestas"
+        },
+        "confidence": 0.5,
+        "reasoning": "Cita un servicio municipal (transporte joven gratuito en fiestas) verificable en el contrato o la aprobación del servicio; la comparación con otros ayuntamientos es vaga y difícil de contrastar.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-065-cit-52f7aa",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-066-cit-4f12ca",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 66,
+        "type": "cita_obra",
+        "speakerGroup": null,
+        "verbatim": "cuando hay fiestas asegura que los jóvenes tengan un transporte gratis y seguro",
+        "context": "Se debate el servicio de transporte para jóvenes durante las fiestas locales y la gestión de los autobuses por parte de la empresa contratada.",
+        "topic": "movilidad",
+        "entities": {
+          "referencedEntity": "servicio de transporte gratuito para jóvenes en fiestas"
+        },
+        "confidence": 0.5,
+        "reasoning": "Se afirma que existe un servicio municipal de transporte gratuito durante las fiestas; se esperaría encontrar el contrato o la partida del servicio de autobuses de fiestas (la comparación con otros ayuntamientos no es verificable).",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-066-cit-4f12ca",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-069-pro-28b156",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 69,
+        "type": "promesa",
+        "speakerGroup": null,
+        "verbatim": "si no pasa nada durante esta semana, volveremos a trabajar luz en ese tramo, que es el puente y toda la estalada rotunda",
+        "context": "Se habla de una avería que dejó sin alumbrado el tramo del puente y una rotonda; se indica que, salvo imprevistos durante esta semana, se restablecerá la luz en ese tramo.",
+        "topic": "urbanismo",
+        "entities": {
+          "referencedEntity": "restablecimiento del alumbrado en el puente y la rotonda"
+        },
+        "confidence": 0.5,
+        "reasoning": "Compromiso condicionado con plazo (esta semana) de restablecer el alumbrado en un tramo concreto; verificable con partes de obra/incidencias de alumbrado público; Whisper degradó 'volveremos a trabajar luz' y 'estalada rotunda'.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-069-pro-28b156",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "promises"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-069-afi-58faf6",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 69,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "llevaremos más de un mes y medio sin luz",
+        "context": "Al explicar la avería del alumbrado en el puente y la rotonda se afirma que el tramo lleva más de un mes y medio sin luz.",
+        "topic": "urbanismo",
+        "entities": {
+          "referencedEntity": "corte de alumbrado en el puente y la rotonda (más de un mes y medio)"
+        },
+        "confidence": 0.55,
+        "reasoning": "Cifra temporal citada como hecho (más de mes y medio sin alumbrado) contrastable con registros de incidencias/averías y fecha de inicio de la avería; 'llevaremos' probablemente es 'llevamos' mal transcrito.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-069-afi-58faf6",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-072-cit-9205bc",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 72,
+        "type": "cita_obra",
+        "speakerGroup": null,
+        "verbatim": "esas rotundas las gestiona la Diputación, no el ayuntamiento",
+        "context": "Y decir una cosa, las rotundas de las que estamos hablando, independientemente de la avería que hay, el ayuntamiento, esas rotundas las gestiona la Diputación, no el ayuntamiento. Donde tú trabajes, gestiona las rotundas.",
+        "topic": "movilidad",
+        "entities": {
+          "referencedEntity": "rotondas gestionadas por la diputación (incl. rotonda de la estrella)"
+        },
+        "confidence": 0.6,
+        "reasoning": "Afirma que la titularidad/gestión de las rotondas corresponde a la Diputación y no al ayuntamiento; contrastable con el inventario de viales, la titularidad de la carretera y posibles convenios de cesión o mantenimiento.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-072-cit-9205bc",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-079-cit-a75acc",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 79,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "la empresa, que es un contrato de emergencia, que quiero recordar, que es, digo, no es un contrato, diríamos, de una empresa para trece años, o cinco, o siete, sino que es de emergencia",
+        "context": "Al explicar los problemas puntuales en el servicio de recogida de basuras (averías de camiones, bajas de trabajadores), se afirma que el contrato vigente no es un contrato ordinario de larga duración sino un contrato de emergencia.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "referencedEntity": "contrato de emergencia del servicio de recogida de basuras"
+        },
+        "confidence": 0.6,
+        "reasoning": "Se puede contrastar en el registro de contratos/licitaciones si el servicio de recogida de residuos se adjudicó por procedimiento de emergencia y no por un contrato ordinario plurianual.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-079-cit-a75acc",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-080-afi-f1d07a",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 80,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "el conjunto de los 720 contenedores que despleguemos prácticamente todos los días, se está desplegando pronto",
+        "context": "Se asegura que el conjunto de 720 contenedores se atiende prácticamente todos los días y que las incidencias vecinales son puntuales. El verbo 'despleguemos/desplegando' puede ser una degradación de Whisper.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "count": 720,
+          "countUnit": "contenedores",
+          "referencedEntity": "servicio de contenedores de residuos"
+        },
+        "confidence": 0.6,
+        "reasoning": "Cifra de 720 contenedores atendidos casi a diario, contrastable con el pliego o memoria del contrato de emergencia y los registros de servicio.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-080-afi-f1d07a",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-083-pro-de7f0a",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 83,
+        "type": "promesa",
+        "speakerGroup": null,
+        "verbatim": "¿Quién tiene la idea o el compromiso que a finales de octubre todos los contenedores de carga lateral, que son prácticamente casco urbano, y todas las urbanizaciones estén cambiados, ¿vale?",
+        "context": "son contenedores modernos que tienen un 40% más de carga, y por tanto la producción pues casi no puede. ¿Quién tiene la idea o el compromiso que a finales de octubre todos los contenedores de carga lateral, que son prácticamente casco urbano, y todas las urbanizaciones estén cambiados, ¿vale? Pasemos a...",
+        "topic": "medio-ambiente",
+        "entities": {
+          "referencedEntity": "sustitución de contenedores de carga lateral (casco urbano y urbanizaciones), plazo finales de octubre 2026"
+        },
+        "confidence": 0.55,
+        "reasoning": "Compromiso con plazo (finales de octubre) de tener sustituidos todos los contenedores de carga lateral y los de las urbanizaciones; verificable contra el estado real del cambio de contenedores tras esa fecha, aunque la frase transcrita está distorsionada por Whisper.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-083-pro-de7f0a",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "promises"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-083-afi-0d0303",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 83,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "son contenedores modernos que tienen un 40% más de carga",
+        "context": "Son contenedores importantes, son contenedores modernos que tienen un 40% más de carga, y por tanto la producción pues casi no puede.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "count": 40,
+          "countUnit": "% más de carga",
+          "referencedEntity": "nuevos contenedores de residuos"
+        },
+        "confidence": 0.7,
+        "reasoning": "Cifra técnica (40% más de capacidad de carga) contrastable con el pliego técnico o la ficha del contrato de suministro de contenedores.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-083-afi-0d0303",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1xmr0do-083-pro-c892d6",
+        "plenoId": "1xmr0do",
+        "plenoDate": "2026-09-07",
+        "segmentIndex": 83,
+        "type": "promesa",
+        "speakerGroup": null,
+        "verbatim": "después pasaremos a urbanización, y avisaremos a los vecinos conforme los estén cambiando",
+        "context": "¿Cómo lo hacemos? Comenzamos por el casco antiguo, y más ahora que estamos en festas, pero a diciembre más, digamos, pues más con caltoca, después pasamos al casco en general, que es la Vila Marchant, después pasaremos a urbanización, y avisaremos a los vecinos conforme los estén cambiando, pero en principio el ritmo de producción de la empresa solo es el que es, ¿vale?",
+        "topic": "medio-ambiente",
+        "entities": {
+          "referencedEntity": "calendario de sustitución de contenedores (casco antiguo, casco general, urbanizaciones) y aviso a vecinos"
+        },
+        "confidence": 0.5,
+        "reasoning": "Plan de despliegue por fases (casco antiguo, casco general, urbanizaciones) con compromiso de avisar a los vecinos; verificable contra el orden y las comunicaciones reales del cambio de contenedores, aunque Whisper degrada parte del fragmento.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1xmr0do-083-pro-c892d6",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "promises"
+        ]
+      },
+      "visibility": "toggle"
+    }
+  ]
+}

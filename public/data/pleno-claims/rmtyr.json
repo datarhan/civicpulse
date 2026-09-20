@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-17T09:45:01.573Z",
+  "generatedAt": "2026-09-20T16:53:05.487Z",
   "version": "1",
   "plenoId": "rmtyr",
   "plenoDate": "2025-07-31",
@@ -6775,7 +6775,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=W%2Fgt%2FOWQ%2FxbzAq95uGTrDQ%3D%3D",
-            "snippet": "Inicio expediente y adjudicación directa del contrato menor puente de Suministro por plazo de 2 meses mediante arrendamiento de 4 furgonetas de 5 plazas destinadas al el Plan de Empleo DANA a favor de TRANSTEL SA con CIF A46063814. · Ayuntamiento de Riba-roja de Túria · TRANSTEL,S.A. · transportation · 5200 €",
+            "snippet": "Inicio expediente y adjudicación directa del contrato menor puente de Suministro por plazo de 2 meses mediante arrendamiento de 4 furgonetas de 5 plazas destinadas al el Plan de Empleo DANA a favor de TRANSTEL SA con CIF A46063814. · Ayuntamiento de Riba-roja de Túria · TRANS TEL S.A. · transportation · 5200 €",
             "similarity": 1,
             "stance": "checked"
           }
