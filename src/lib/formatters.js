@@ -252,6 +252,30 @@ export function partePorHueco(plantilla, hueco) {
 }
 
 /**
+ * Un decimal escrito como lo escribe esta página: con coma.
+ *
+ * /presupuesto publicaba «el 2.5 % del importe» —`cuota.toFixed(1)`— y, una
+ * frase después, «los menores serían el 4.5 %», porque `String(4.5)` también
+ * lleva punto. Dos líneas más arriba, la misma tarjeta escribe «22,06 M€». El
+ * dato estaba bien las dos veces; el idioma del número no, y en castellano y en
+ * valencià el separador decimal es la coma.
+ *
+ * Vive aquí y no en la página porque eran dos sitios dentro de UNA frase: dos
+ * copias de una decisión de formato es exactamente lo que acaba derivando.
+ *
+ * No inventa decimales que no hay —`decimal(7)` es «7», no «7,0»— y sin número
+ * devuelve la cadena vacía en vez de un cero, que es un dato que nadie midió.
+ *
+ * @param {number|null|undefined} n
+ * @param {number} [digitos]  el máximo de decimales, 1 por defecto
+ * @returns {string}
+ */
+export function decimal(n, digitos = 1) {
+  if (n == null || !Number.isFinite(Number(n))) return ''
+  return Number(n).toLocaleString('es-ES', { maximumFractionDigits: digitos })
+}
+
+/**
  * Un porcentaje para leer: lo que no es cero no se escribe «0», ni lo que no
  * llega al total «100». Con 2 declaraciones de 1.005 la ficha de urbanismo decía
  * «0%», y quien lee concluye que no hay ninguna. Devuelve la cifra sin el signo;

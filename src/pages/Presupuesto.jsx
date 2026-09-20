@@ -24,7 +24,7 @@ import {
   capitulosACero,
 } from '../scraper/presupuesto-lectura'
 import { isCommittedContract, committedAwardYearSpan } from '../lib/contract-status'
-import { fmtDateCompacta, fmtDateLong, rellena } from '../lib/formatters'
+import { decimal, fmtDateCompacta, fmtDateLong, rellena } from '../lib/formatters'
 import { conHuecos } from '../lib/huecos'
 import { titularDeuda } from '../lib/deuda-titular'
 import { yearSpan } from '../lib/year-span'
@@ -1686,7 +1686,7 @@ function ContratacionMenorSection() {
           '{pct}': Math.round((r.n / adjudicados.length) * 100),
           '{importe}':
             cuota != null
-              ? ` ${rellena(t('presupuesto.menores.intro.importe'), { pct: cuota.toFixed(1) })}`
+              ? ` ${rellena(t('presupuesto.menores.intro.importe'), { pct: decimal(cuota) })}`
               : '',
         })}{' '}
         {peso && (
@@ -1694,7 +1694,10 @@ function ContratacionMenorSection() {
             {rellena(t('presupuesto.menores.peso'), {
               importe: eur(peso.importeDelMayor),
               cuota: peso.cuotaDelMayor,
-              sin: peso.cuotaSinElMayor,
+              // `cuotaSinElMayor` trae un decimal, y `String(4.5)` lo escribe
+              // con punto: el mismo defecto que la frase de arriba, una línea
+              // después.
+              sin: decimal(peso.cuotaSinElMayor),
             })}{' '}
           </>
         )}
