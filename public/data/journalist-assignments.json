@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-09-19T19:35:50.878Z",
+  "generatedAt": "2026-09-20T07:06:18.310Z",
   "items": [
     {
       "id": "a-robert-raga-bio",
@@ -55,7 +55,7 @@
       "brief": "Biografía pública del alcalde Robert Raga Gadea (julio 2026, pipeline endurecido): cobertura de web abierta con niveles de confianza por dominio, declaraciones verbatim de los plenos vía corpus transcrito, contraste determinista de cifras contra las fuentes citadas, reconstrucción post-DANA, trayectoria y red institucional.",
       "createdBy": "civicpulse-curator",
       "createdAt": "2026-07-29T19:32:34.624Z",
-      "status": "promoted",
+      "status": "archived",
       "lastRunAt": "2026-07-30T15:55:53.133Z"
     },
     {
@@ -377,7 +377,7 @@
       "brief": "Actualización de la biografía del alcalde con documentos oficiales y prensa localizados en septiembre de 2026: candidaturas municipales desde 2007, nombramiento en la Diputació de València en 2011, cargos en entidades supramunicipales y en su partido, actos oficiales de delegación de la alcaldía y resoluciones judiciales firmes que le nombran. Se conservan las secciones ya verificadas de la versión anterior.",
       "createdBy": "Sergei Lutchenko",
       "createdAt": "2026-09-19T19:21:40.567Z",
-      "status": "drafted",
+      "status": "promoted",
       "lastRunAt": "2026-09-19T19:35:50.878Z"
     }
   ]
