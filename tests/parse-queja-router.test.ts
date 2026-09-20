@@ -4,6 +4,9 @@ import { resolve } from 'node:path'
 import {
   classifyQueja,
   routeQueja,
+  diasDePlazo,
+  plazoDeResolucion,
+  venceEnMeses,
   LEGAL_CATALOG,
   ESCALATION_PROFILES,
   type OfficialsSnapshot,
@@ -187,13 +190,26 @@ describe('queja-router — legal basis', () => {
   })
 })
 
+/**
+ * El plazo de resolución va en MESES, que es como lo fija la norma (#62).
+ *
+ * El art. 21.3 LPACAP dice «tres meses» y el art. 20 de la Ley 19/2013 «un
+ * mes»; aquí estaban escritos como 90 y 30 días. No es lo mismo: el art. 30.4
+ * manda contar los meses de fecha a fecha, así que tres meses desde el 1 de
+ * diciembre vencen el 1 de marzo —90 días serían el 2— y desde el 1 de enero de
+ * un año bisiesto vencen el 1 de abril, que son 91. El contador de días
+ * restantes de /quejas/:id se desviaba por ahí, y la página además repetía a
+ * mano los dos números en vez de leerlos.
+ */
 describe('queja-router — time limits and silencio', () => {
-  it('returns 10d acuse + 90d (3 meses) resolución for standard quejas', () => {
+  it('el plazo de resolución se publica en la unidad que usa la norma', () => {
     const r = routeQueja({ title: 'Bache', detail: 'bache' }, officials)
     const acuse = r.timeLimits.find((t) => t.kind === 'acuse')
     const res = r.timeLimits.find((t) => t.kind === 'resolucion')
-    expect(acuse?.days).toBe(10)
-    expect(res?.days).toBe(90)
+    // El acuse sí lo fija el art. 21.4 en días: «en el plazo de diez días».
+    expect(acuse).toMatchObject({ unit: 'days', amount: 10 })
+    expect(res).toMatchObject({ unit: 'months', amount: 3 })
+    expect(res?.basis.article).toMatch(/21\.3/)
   })
 
   it('defaults silencio to negativo for a bare queja (art. 24 LPACAP)', () => {
@@ -201,13 +217,63 @@ describe('queja-router — time limits and silencio', () => {
     expect(r.silencio).toBe('negativo')
   })
 
-  it('returns 30d resolución for transparencia (1 mes art. 20 Ley 19/2013)', () => {
+  it('transparencia resuelve en 1 mes (art. 20 Ley 19/2013)', () => {
     const r = routeQueja(
       { title: 'Acceso a información pública', detail: 'pido copia de contratos' },
       officials,
     )
     const res = r.timeLimits.find((t) => t.kind === 'resolucion')
-    expect(res?.days).toBe(30)
+    expect(res).toMatchObject({ unit: 'months', amount: 1 })
+    expect(res?.basis.law).toMatch(/19\/2013/)
+  })
+
+  it('`plazoDeResolucion` es lo que leen las páginas, y dice lo mismo que la ruta', () => {
+    // La ficha de una queja no tiene la instantánea de cargos a mano, así que
+    // necesita leer el plazo sin enrutar. Si las dos vías pudieran discrepar,
+    // volveríamos a tener el número escrito dos veces, que es el hallazgo.
+    for (const q of [
+      { title: 'Bache', detail: 'bache' },
+      { title: 'Acceso a información pública', detail: 'pido copia de contratos' },
+    ]) {
+      const r = routeQueja(q, officials)
+      const suelto = plazoDeResolucion(r.category, q)
+      expect(suelto).toEqual(r.timeLimits.find((t) => t.kind === 'resolucion'))
+    }
+  })
+
+  it('`venceEnMeses` cuenta de fecha a fecha (art. 30.4 LPACAP)', () => {
+    const iso = (d: Date) => d.toISOString().slice(0, 10)
+    expect(iso(venceEnMeses('2026-12-01T09:00:00Z', 3))).toBe('2027-03-01')
+    expect(iso(venceEnMeses('2026-01-15T09:00:00Z', 1))).toBe('2026-02-15')
+  })
+
+  it('sin día equivalente en el mes de vencimiento, el último día del mes', () => {
+    // «Si en el mes de vencimiento no hubiera día equivalente a aquel en que
+    // comienza el cómputo, se entenderá que el plazo expira el último día del
+    // mes» — art. 30.4. Sin esto, JavaScript desborda al mes siguiente y el 31
+    // de enero más un mes daría el 3 de marzo.
+    const iso = (d: Date) => d.toISOString().slice(0, 10)
+    expect(iso(venceEnMeses('2026-01-31T09:00:00Z', 1))).toBe('2026-02-28')
+    expect(iso(venceEnMeses('2028-01-31T09:00:00Z', 1))).toBe('2028-02-29')
+    expect(iso(venceEnMeses('2026-05-31T09:00:00Z', 1))).toBe('2026-06-30')
+  })
+
+  it('en días, tres meses NO son siempre noventa', () => {
+    // La medida del hallazgo: el mismo plazo legal dura distinto según cuándo
+    // se registre, y por eso no puede vivir como una constante.
+    const limite = plazoDeResolucion('via_publica')
+    const diciembre = diasDePlazo(limite, '2026-12-01T09:00:00Z')
+    const enero = diasDePlazo(limite, '2028-01-01T09:00:00Z')
+    expect(diciembre).toBe(90)
+    expect(enero).toBe(91)
+    expect(enero).not.toBe(diciembre)
+  })
+
+  it('un plazo fijado en días se cuenta en días, venga de donde venga', () => {
+    const acuse = routeQueja({ title: 'Bache', detail: 'bache' }, officials).timeLimits.find(
+      (t) => t.kind === 'acuse',
+    )!
+    expect(diasDePlazo(acuse, '2026-01-31T09:00:00Z')).toBe(10)
   })
 
   it('silencio positivo for licencia de obra menor', () => {
@@ -283,7 +349,7 @@ describe('queja-router — Spanish explanation', () => {
     expect(r.explanationEs.length).toBeGreaterThan(300)
     // name of responsible + deadline + escalation body all appear
     expect(r.explanationEs).toMatch(/Teresa Pozuelo/)
-    expect(r.explanationEs).toMatch(/3 meses|90 días/)
+    expect(r.explanationEs).toMatch(/3 meses/)
     expect(r.explanationEs).toMatch(/Síndic/)
   })
 
