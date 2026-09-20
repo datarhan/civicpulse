@@ -131,7 +131,7 @@ export function topContractors(contracts, n = 15, resolver = null) {
  * town-wide services. Correcting the heading meant publishing the actual share,
  * and a share published beside the breakdown that proves it must come from the
  * SAME computation, or the two drift and the page contradicts itself one scroll
- * apart. So the summary line and the «Tipos de gasto» chart both call this.
+ * apart. So the summary line and the «Tipos de contrato» chart both call this.
  *
  * `contractType` is Gobierto's own field, not an inference from the title.
  * Rows with no type land in `other` rather than being dropped, so the shares

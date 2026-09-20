@@ -30,11 +30,20 @@
  * incendios forestales. Renombrar sin mirar eso lo habría empeorado —habría
  * dicho «de los contratos»— así que ahora son neutras y compartidas a
  * propósito, con `map.timeline.*`.
+ *
+ * Y la misma tarjeta otra vez, en /presupuesto, encontrada al revisar la
+ * traducción de #38 (issue #62). Allí el mapa vive dentro de «¿A dónde va el
+ * dinero en contratos?», cuya cifra se rotula «adjudicado sin IVA» — y aun así
+ * la pestaña se llamaba «Tipos de gasto», las pestañas se anunciaban como
+ * «Vistas del gasto» y el deslizador como «Línea de tiempo del gasto situado».
+ * Se arregla en ESTE fichero, no en uno nuevo: dos guardas del mismo
+ * vocabulario derivan, y la que nadie lee es la que se queda atrás.
  */
 import { describe, expect, it } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { CATALOGUE, LOCALES } from '../src/i18n'
 import { isCommittedContract } from '../src/lib/contract-status'
+import { contractAmount, contractTypeTotals } from '../src/lib/tender-geo'
 
 /** La cifra, su cobertura, y el nombre de la capa que las pinta. */
 const ROTULOS_DE_CIFRA = [
@@ -101,5 +110,62 @@ describe('portada · «gasto» no es «adjudicado»', () => {
     // no ve el botón.
     const slider = readFileSync('src/components/LiveCity/controls/IncendiosYearSlider.jsx', 'utf8')
     expect(slider).not.toMatch(/map\.money\./)
+  })
+})
+
+/**
+ * Los rótulos de la tarjeta de contratos de /presupuesto: la pestaña que se
+ * lee, las dos etiquetas que sólo oye quien no ve la pantalla y el nombre del
+ * mapa. Las `aria-*` entran a propósito: son invisibles, y por eso son donde
+ * un rótulo equivocado dura más.
+ */
+const ROTULOS_DE_PRESUPUESTO = [
+  'presupuesto.gasto.pestana.tipos',
+  'presupuesto.gasto.pestanas.aria',
+  'presupuesto.gasto.mapa.aria',
+  'presupuesto.gasto.mapa.ariaVacio',
+  'presupuesto.gasto.tiempo.aria',
+]
+
+describe('/presupuesto · la tarjeta de contratos, el mismo vocabulario', () => {
+  it('lo que agrupa la pestaña de tipos son contratos comprometidos, no ejecución', () => {
+    // La premisa, medida y no supuesta: el total de la pestaña se reconstruye
+    // ENTERO desde el universo que la tarjeta rotula «adjudicado sin IVA», más
+    // un resto que también se mide. No es un «se parece»: la diferencia son
+    // exactamente los contratos comprometidos que no publican importe de
+    // adjudicación, donde `contractAmount` cae al de licitación. Ni un euro del
+    // desglose viene de ejecución presupuestaria, que es lo que hace falsa la
+    // palabra «gasto». Si algún día entrara ejecución ahí, esto se cae antes
+    // que el vocabulario.
+    const contratos = JSON.parse(readFileSync('public/data/tenders.json', 'utf8')).contracts
+    const universo = JSON.parse(readFileSync('public/data/tender-geo.json', 'utf8')).universe
+    const { rows, total } = contractTypeTotals(contratos)
+    expect(rows.length).toBeGreaterThan(0)
+
+    const sinAdjudicacion = contratos.filter(
+      (c: { finalAmountNoTaxes?: number; finalAmount?: number }) =>
+        isCommittedContract(c) && !(c.finalAmountNoTaxes! > 0) && !(c.finalAmount! > 0),
+    )
+    const resto = sinAdjudicacion.reduce((a: number, c: object) => a + contractAmount(c), 0)
+    expect(total).toBeCloseTo(universo.totalAmount + resto, 2)
+  })
+
+  it('ningún rótulo de la tarjeta usa la palabra de la ejecución', () => {
+    for (const locale of LOCALES) {
+      for (const clave of ROTULOS_DE_PRESUPUESTO) {
+        const texto = CATALOGUE[locale]?.[clave]
+        expect(texto, `${locale} · ${clave} no existe`).toBeTruthy()
+        expect(texto, `${locale} · ${clave}`).not.toMatch(FAMILIA_GASTO)
+        expect(texto, `${locale} · ${clave}`).toMatch(FAMILIA_ADJUDICADO)
+      }
+    }
+  })
+
+  it('la frase que remite a la pestaña la nombra por el catálogo, no a mano', () => {
+    // El lede dice «el desglose completo está en «…»». Copiar ahí el rótulo en
+    // vez de leer su clave deja la frase apuntando a una pestaña que ya no se
+    // llama así, y nada lo nota.
+    const fuente = readFileSync('src/components/Presupuesto/GastoDashboard.jsx', 'utf8')
+    expect(fuente).toMatch(/pestana: t\('presupuesto\.gasto\.pestana\.tipos'\)/)
   })
 })
