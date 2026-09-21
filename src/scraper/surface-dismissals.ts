@@ -173,6 +173,60 @@ export function descartesHuerfanos(
   })
 }
 
+/**
+ * Lo que un huérfano NO contesta: ¿sigue publicada la frase?
+ *
+ * `descartesHuerfanos` dice «hoy no silencia nada», y el aviso que se imprime
+ * con esa lista lo reconoce: «comprueba si la frase sigue publicada antes de
+ * quitarlos». Le pide a una persona una comprobación que el barrido tiene a un
+ * paso, porque ya ha renderizado el texto de cada ruta para revisarla.
+ *
+ * Hacerla por fuera no vale. El 21-09-2026 se comprobaron las 23 citas con un
+ * script que pedía cada `route` como si fuera una URL: 7 «no aparecían», y la
+ * mayoría era el script — `/ [capas]` no es una dirección sino la etiqueta de
+ * las capas del mapa, que hay que ENCENDER para que su leyenda exista en el DOM,
+ * y los apartados en pestaña hay que abrirlos. Sólo quien sabe montar la página
+ * puede decir si una frase sigue ahí.
+ *
+ * Tres desenlaces, y el tercero es el que importa: «no he mirado esa ruta» no es
+ * «la frase no está». Plegarlos daría por sobrante todo descarte de una ruta que
+ * la pasada no visitó, y alguien los borraría — la regla 2 de DATA_INTEGRITY
+ * aplicada a un fichero que se edita a mano.
+ *
+ * Se compara con `normaliza` + contención, EXACTAMENTE como `estaDescartado`: si
+ * las dos divergieran, un descarte podría callar un señalamiento y anunciarse a
+ * la vez como «sin rastro», que es decir dos cosas contrarias del mismo
+ * registro. Ya pasó una vez, con `descartesHuerfanos` comparando por igualdad.
+ *
+ * Una cita más corta que `SOLAPE_MINIMO` puede casar con una página por
+ * casualidad; ésas las nombra `descartesInertes` por su propio canal, porque
+ * tampoco silencian nada. No se pliegan aquí.
+ */
+export type RastroDeDescarte = 'vigente' | 'sin-rastro' | 'no-mirada'
+
+export interface DescarteConRastro {
+  descarte: Descarte
+  rastro: RastroDeDescarte
+}
+
+export function rastroDeDescartes(
+  registro: RegistroDescartes | null,
+  textoPorRuta: Map<string, string>,
+): DescarteConRastro[] {
+  if (!registro?.items?.length) return []
+  const normalizado = new Map<string, string>()
+  for (const [ruta, texto] of textoPorRuta) normalizado.set(ruta, normaliza(texto))
+  return registro.items.map((descarte) => {
+    const cuerpo = normalizado.get(descarte.route)
+    if (cuerpo === undefined) return { descarte, rastro: 'no-mirada' as const }
+    const cita = normaliza(descarte.quote)
+    return {
+      descarte,
+      rastro: (cita && cuerpo.includes(cita) ? 'vigente' : 'sin-rastro') as RastroDeDescarte,
+    }
+  })
+}
+
 /** Un registro sin motivo o sin editor no es un registro, es un silenciador. */
 export function validarDescartes(raw: unknown): RegistroDescartes {
   const r = raw as RegistroDescartes
