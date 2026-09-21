@@ -137,6 +137,30 @@ export function publicaImporteAdjudicado(c) {
 }
 
 /**
+ * Cuántas filas firmadas NO publican su importe de adjudicación.
+ *
+ * Existe porque las tres superficies de la portada pintan pegados un recuento y
+ * una suma que describen conjuntos distintos: `awardedContracts` cuenta los
+ * comprometidos (711 el 2026-09-21) y `awardedTotalEuros` suma los que traen
+ * importe (706). Cada cifra por separado es cierta; «711 contratos que suman
+ * 124,0 M€» no lo es, porque deja fuera lo que se adjudicó en cinco contratos
+ * cuyo importe la fuente no publica — que no es cero, es desconocido.
+ *
+ * Se DERIVA de las filas, como `yearSpan`, en vez de vivir en el `stats` del
+ * snapshot: así no puede quedarse vieja respecto al fichero que la acompaña.
+ *
+ * @param {Array<object>|null|undefined} contracts
+ * @returns {number}
+ */
+export function comprometidosSinImporte(contracts) {
+  let n = 0
+  for (const c of contracts ?? []) {
+    if (isCommittedContract(c) && importeAdjudicado(c) === null) n += 1
+  }
+  return n
+}
+
+/**
  * El presupuesto base de LICITACIÓN, sin IVA. `null` si no consta.
  *
  * Se pide por su nombre, nunca cayendo desde `importeAdjudicado`: quien enseña

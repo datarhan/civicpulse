@@ -1593,6 +1593,10 @@ export const CATALOGUE = {
     // nombrar la magnitud, el lector que comprobaba la cita encontraba otro
     // número y no tenía forma de saber cuál era cuál.
     'landing.contratos.importes': 'importe adjudicado, sin IVA',
+    // El recuento y la suma de al lado describen conjuntos distintos: el primero
+    // cuenta los contratos firmados y la segunda sólo los que publican importe.
+    // La diferencia no es cero euros, es un importe que la fuente no da.
+    'landing.contratos.sinImporte': '{n} sin importe publicado',
     'landing.contratos.lote.conBase':
       'Lote {n} de {total}{exp}. El enlace abre la ficha del expediente entero, cuyo presupuesto base es {base}.',
     'landing.contratos.lote.deTotal':
@@ -3069,6 +3073,7 @@ export const CATALOGUE = {
     'landing.contratos.acumulado': 'Acumulat',
     'landing.contratos.recientes': 'a sota, les últimes adjudicacions',
     'landing.contratos.importes': 'import adjudicat, sense IVA',
+    'landing.contratos.sinImporte': '{n} sense import publicat',
     'landing.contratos.lote.conBase':
       "Lot {n} de {total}{exp}. L'enllaç obri la fitxa de l'expedient sencer, el pressupost base del qual és {base}.",
     'landing.contratos.lote.deTotal':

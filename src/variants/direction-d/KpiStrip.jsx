@@ -5,7 +5,7 @@ import { magnitudDelEjercicio } from '../../scraper/presupuesto-lectura'
 import { useTenders } from '../../hooks/useTenders'
 import { useParo } from '../../hooks/useParo'
 import { usePlenos } from '../../hooks/usePlenos'
-import { isCommittedContract } from '../../lib/contract-status'
+import { isCommittedContract, comprometidosSinImporte } from '../../lib/contract-status'
 import { rellena } from '../../lib/formatters'
 import { yearSpan } from '../../lib/year-span'
 import { PALETTE, SERIF, SANS, MONO } from './tokens'
@@ -165,6 +165,11 @@ function KpiStrip() {
   const awardedYears = yearSpan(
     (tenders?.contracts ?? []).filter(isCommittedContract).map((c) => c.awardDate),
   )
+  // El mismo cuidado que el periodo, en el otro eje: el valor de esta celda son
+  // los euros de los contratos que publican importe y el `delta` cuenta TODOS
+  // los firmados, que son cinco más. La diferencia no es cero euros, es un
+  // importe que la fuente no da, y por eso se dice en vez de cuadrarlo.
+  const sinImporte = comprometidosSinImporte(tenders?.contracts)
 
   const nextPleno = (plenos?.items || [])[0]
   const plenoDate = nextPleno
@@ -268,7 +273,17 @@ function KpiStrip() {
         value={awardedValue}
         delta={awardedCount ? '· ' + awardedCount : '—'}
         tone="ok"
-        sub={t('landing.kpi.contratos.sub')}
+        // Entre paréntesis, no detrás de un « · », porque en esta celda el
+        // rótulo cabe justo y la salvedad se va a la segunda línea: con el
+        // separador delante, esa línea empieza por «· 5 sin importe publicado»,
+        // que es un punto huérfano. Un paréntesis se lee como unidad esté donde
+        // esté el corte. Las otras dos superficies encadenan con « · » porque
+        // allí la línea rompe dentro de la frase, no antes del separador.
+        sub={
+          sinImporte > 0
+            ? `${t('landing.kpi.contratos.sub')} (${rellena(t('landing.contratos.sinImporte'), { n: sinImporte })})`
+            : t('landing.kpi.contratos.sub')
+        }
       />
       <Kpi
         label={

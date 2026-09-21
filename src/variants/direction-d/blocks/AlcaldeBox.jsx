@@ -6,7 +6,7 @@ import { useBudgetExecution } from '../../../hooks/useBudgetExecution'
 import { magnitudDelEjercicio } from '../../../scraper/presupuesto-lectura'
 import { useTenders } from '../../../hooks/useTenders'
 import { useBdns } from '../../../hooks/useBdns'
-import { isCommittedContract } from '../../../lib/contract-status'
+import { isCommittedContract, comprometidosSinImporte } from '../../../lib/contract-status'
 import { yearSpan } from '../../../lib/year-span'
 import { canonicalizeDepartment, DEPARTMENT_LABEL } from '../../../scraper/departments'
 import { rellena } from '../../../lib/formatters'
@@ -49,6 +49,10 @@ export function AlcaldeBox() {
   const tendersYears = yearSpan(
     (tendersData?.contracts ?? []).filter(isCommittedContract).map((c) => c.awardDate),
   )
+  // El mismo cuidado que el periodo, en el otro eje: el recuento son los
+  // contratos firmados y los euros de al lado sólo los que publican importe,
+  // cinco menos. La diferencia no es cero euros, es un importe que no consta.
+  const sinImporteContratos = comprometidosSinImporte(tendersData?.contracts)
   const bdnsYears = yearSpan(
     (bdnsData?.items ?? []).filter((g) => g.direction === 'granted').map((g) => g.date),
   )
@@ -328,6 +332,9 @@ export function AlcaldeBox() {
                   {t('landing.alcalde.contratos')}
                   {tendersYears ? ` ${tendersYears}` : ''}
                   {tendersEuros ? ` · ${formatBudgetEuros(tendersEuros)}` : ''}
+                  {tendersEuros && sinImporteContratos > 0
+                    ? ` · ${rellena(t('landing.contratos.sinImporte'), { n: sinImporteContratos })}`
+                    : ''}
                 </span>
               </a>
             )}
