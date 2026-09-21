@@ -70,7 +70,8 @@ export function applyArchiveUrls(
 }
 
 export type ArchiveOneResult =
-  | { archiveUrl: string; via: 'existing' | 'saved' }
+  /** `redirectedTo`: the copy is of THAT url — where the cited one permanently redirects. */
+  | { archiveUrl: string; via: 'existing' | 'saved'; redirectedTo?: string }
   /** `rateLimited`: Save Page Now answered 429 — the caller stops saving for the rest of the pass. */
   | { error: string; rateLimited?: true }
   /** Looked, found no copy, and saving was closed: never asked, so not a failure. */
@@ -123,31 +124,95 @@ export async function archiveReportSources(
       id: t.id,
       url,
       status: r.via === 'existing' ? 'existing' : 'archived',
-      detail: r.archiveUrl,
+      detail: r.redirectedTo
+        ? `${r.archiveUrl} (copia de ${r.redirectedTo}, adonde redirige la citada)`
+        : r.archiveUrl,
     })
     lastWasSave = r.via === 'saved'
   }
   return { report: applyArchiveUrls(report, found), outcomes }
 }
 
+/** Host without `www.`, path without a trailing slash: what Wayback already treats as one URL. */
+function mismaParaWayback(a: URL, b: URL): boolean {
+  const host = (u: URL) => u.hostname.replace(/^www\./, '').toLowerCase()
+  const ruta = (u: URL) => u.pathname.replace(/\/+$/, '')
+  return host(a) === host(b) && ruta(a) === ruta(b) && a.search === b.search
+}
+
+/** A path a CMS sends a dead or gated article to. Not the article. */
+const NO_ES_EL_ARTICULO =
+  /(^|\/)(404|error|not-?found|no-?encontrad|login|acceso|registro|suscri|subscri|paywall)/i
+
+/**
+ * Whether the page a cited URL permanently redirects to may stand in for it
+ * when looking for a copy.
+ *
+ * It exists because of one source: El Periódico de Aquí's cited link
+ * (`/epda-noticias/<slug>/194308`) answers 301 to its canonical URL
+ * (`/<slug>_194308_102.html`); Save Page Now followed the redirect and archived
+ * the canonical one on the first pass, and five passes kept asking for the cited
+ * one — a different key to Wayback — and reporting «no copy».
+ *
+ * Like the place-resolver, it under-matches on purpose: an honest miss beats a
+ * wrong link. A CMS that sends a dead article «up» redirects too, and a copy of
+ * the home page is not a copy of the article.
+ */
+export function redirectTargetStandsIn(cited: string, target: string): boolean {
+  let a: URL
+  let b: URL
+  try {
+    a = new URL(cited)
+    b = new URL(target)
+  } catch {
+    return false
+  }
+  if (!/^https?:$/.test(b.protocol)) return false
+  const host = (u: URL) => u.hostname.replace(/^www\./, '').toLowerCase()
+  if (host(a) !== host(b)) return false
+  // Same URL to Wayback: the first lookup already covered it.
+  if (mismaParaWayback(a, b)) return false
+  const destino = b.pathname.replace(/\/+$/, '')
+  if (destino === '') return false // the home page
+  // A section the cited path hangs from: the soft 404 of a CMS.
+  if (a.pathname.startsWith(`${destino}/`)) return false
+  if (NO_ES_EL_ARTICULO.test(b.pathname)) return false
+  return true
+}
+
 /**
  * Lookup first, Save Page Now only when the lookup ANSWERED «none» — and only
  * while the pass is still allowed to save. Injectable so the policy is tested
  * without a network; `archiveOneLive` below is the same thing over real Wayback.
+ *
+ * `resolve` says where the cited URL permanently redirects, or null. It is asked
+ * only after a «none»: a copy of the cited URL needs no request to the publisher.
  */
 export function makeArchiveOne(io: {
   find: (url: string) => Promise<WaybackResult>
   save: (url: string) => Promise<WaybackResult>
+  resolve?: (url: string) => Promise<string | null>
 }): (url: string, o: { allowSave: boolean }) => Promise<ArchiveOneResult> {
+  const motivo = (r: WaybackResult) =>
+    `${r.error ?? 'sin motivo'}${r.cdxError ? ` · CDX: ${r.cdxError}` : ''}`
   return async (url, { allowSave }) => {
     const existing = await io.find(url)
     if (existing.ok && existing.archivedUrl)
       return { archiveUrl: existing.archivedUrl, via: 'existing' }
     // Only an ANSWERED «none» opens the door to a save. Anything else — a
     // refusal, a timeout, a result that does not say — is «could not look».
-    if (existing.lookup !== 'none') {
-      const cdx = existing.cdxError ? ` · CDX: ${existing.cdxError}` : ''
-      return { error: `consulta fallida: ${existing.error ?? 'sin motivo'}${cdx}` }
+    if (existing.lookup !== 'none') return { error: `consulta fallida: ${motivo(existing)}` }
+    // The copy may be under the URL the cited one redirects to.
+    const target = (await io.resolve?.(url)) ?? null
+    if (target && redirectTargetStandsIn(url, target)) {
+      const underTarget = await io.find(target)
+      if (underTarget.ok && underTarget.archivedUrl)
+        return { archiveUrl: underTarget.archivedUrl, via: 'existing', redirectedTo: target }
+      if (underTarget.lookup !== 'none') {
+        return {
+          error: `consulta fallida (destino de la redirección, ${target}): ${motivo(underTarget)}`,
+        }
+      }
     }
     if (!allowSave) return { notAttempted: SAVES_CLOSED }
     const saved = await io.save(url)
@@ -160,9 +225,47 @@ export function makeArchiveOne(io: {
 // This CLI owes the reader a copy, so it pays for the slow second opinion — the
 // CDX index, seconds per URL instead of ms — whenever the Availability API does
 // not produce one. A save is the scarce thing; the API's «none» is not reliable.
+const UA = 'CivicPulse/0.1 (+https://github.com/datarhan/civicpulse) civic-tech ingestion'
+
+/**
+ * Where a URL PERMANENTLY redirects (301/308), hop by hop, or null. Temporary
+ * redirects are not followed: a 302 is how consent walls, logins and geo-blocks
+ * answer, and none of those is the publisher saying «this page lives there now».
+ * A publisher that cannot be reached is null too — no redirect known, the normal
+ * path goes on.
+ */
+export async function resolvePermanentRedirect(
+  url: string,
+  fetchImpl: typeof fetch = fetch,
+): Promise<string | null> {
+  let current = url
+  for (let hop = 0; hop < 5; hop++) {
+    let res: Response
+    try {
+      res = await fetchImpl(current, {
+        method: 'GET',
+        redirect: 'manual',
+        headers: { 'User-Agent': UA, Range: 'bytes=0-0', Accept: 'text/html,*/*;q=0.5' },
+        signal: AbortSignal.timeout(15_000),
+      })
+    } catch {
+      return null
+    }
+    const location = res.headers.get('location')
+    if ((res.status !== 301 && res.status !== 308) || !location) break
+    try {
+      current = new URL(location, current).toString()
+    } catch {
+      return null
+    }
+  }
+  return current === url ? null : current
+}
+
 const archiveOneLive = makeArchiveOne({
   find: (url) => findExistingSnapshot(url, { cdxFallback: true }),
   save: (url) => archiveOnWayback(url),
+  resolve: (url) => resolvePermanentRedirect(url),
 })
 
 function usage(): never {

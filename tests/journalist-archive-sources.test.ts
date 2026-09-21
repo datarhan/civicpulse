@@ -5,12 +5,14 @@ import {
   archiveReportSources,
   makeArchiveOne,
   redirectTargetStandsIn,
+  resolvePermanentRedirect,
 } from '../scripts/journalist-archive-sources'
 import {
   validateReportsSnapshot,
   type JournalistReport,
   type SourceCitation,
 } from '../src/scraper/journalist'
+import type { WaybackResult } from '../src/scraper/wayback'
 
 /**
  * /laboratorio/agentes prometía «las fuentes citadas se archivan en Wayback»
@@ -418,9 +420,7 @@ describe('redirectTargetStandsIn — ¿vale el destino de la redirección por la
 
 describe('makeArchiveOne — la copia puede estar bajo la URL a la que redirige la citada', () => {
   /** `find` contesta «ninguna» para la citada y lo que se le diga para la canónica. */
-  const montaje = (
-    deLaCanonica: () => ReturnType<typeof ninguna> | ReturnType<typeof encontrada>,
-  ) => {
+  const montaje = (deLaCanonica: () => WaybackResult) => {
     const consultadas: string[] = []
     const cuenta = { guardados: 0 }
     const one = makeArchiveOne({
@@ -521,5 +521,74 @@ describe('archiveReportSources — una copia hallada bajo el destino de la redir
     expect(r.report.sources[0].archiveUrl).toBe(
       `https://web.archive.org/web/20260920063817/${EPDA_CANONICA}`,
     )
+  })
+})
+
+describe('resolvePermanentRedirect — adónde se ha MUDADO una URL, según quien la publica', () => {
+  /** Un medio falso: a cada URL, su respuesta. Anota lo que se le pidió. */
+  const medio = (rutas: Record<string, { status: number; location?: string }>) => {
+    const pedidas: string[] = []
+    const fetchImpl = (async (u: string | URL | Request) => {
+      const url = String(u)
+      pedidas.push(url)
+      const r = rutas[url]
+      if (!r) throw new Error('ECONNRESET')
+      return new Response(null, {
+        status: r.status,
+        headers: r.location ? { location: r.location } : {},
+      })
+    }) as typeof fetch
+    return { pedidas, fetchImpl }
+  }
+
+  it('el caso real: un 301 con Location RELATIVA → la URL canónica, absoluta', async () => {
+    const m = medio({
+      [EPDA_CITADA]: {
+        status: 301,
+        location: '/robert-raga-nuevo-presidente-del-consorcio-valencia-interior_194308_102.html',
+      },
+      [EPDA_CANONICA]: { status: 200 },
+    })
+    expect(await resolvePermanentRedirect(EPDA_CITADA, m.fetchImpl)).toBe(EPDA_CANONICA)
+  })
+
+  it('una redirección TEMPORAL no se sigue: es como contestan los muros de consentimiento y de acceso', async () => {
+    for (const status of [302, 303, 307]) {
+      const m = medio({
+        'https://example.org/a': { status, location: 'https://example.org/consent?next=/a' },
+      })
+      expect(await resolvePermanentRedirect('https://example.org/a', m.fetchImpl)).toBeNull()
+      expect(m.pedidas).toEqual(['https://example.org/a'])
+    }
+  })
+
+  it('sigue una cadena de permanentes (301 → 308 → 200) hasta el final', async () => {
+    const m = medio({
+      'http://example.org/a': { status: 301, location: 'https://example.org/a' },
+      'https://example.org/a': { status: 308, location: 'https://example.org/b.html' },
+      'https://example.org/b.html': { status: 200 },
+    })
+    expect(await resolvePermanentRedirect('http://example.org/a', m.fetchImpl)).toBe(
+      'https://example.org/b.html',
+    )
+  })
+
+  it('una URL que no redirige → null', async () => {
+    const m = medio({ 'https://example.org/a': { status: 200 } })
+    expect(await resolvePermanentRedirect('https://example.org/a', m.fetchImpl)).toBeNull()
+  })
+
+  it('un medio que no contesta → null: sin redirección conocida, sigue el camino de siempre', async () => {
+    const m = medio({})
+    expect(await resolvePermanentRedirect('https://example.org/a', m.fetchImpl)).toBeNull()
+  })
+
+  it('un bucle de redirecciones se corta, no se sigue para siempre', async () => {
+    const m = medio({
+      'https://example.org/a': { status: 301, location: 'https://example.org/b' },
+      'https://example.org/b': { status: 301, location: 'https://example.org/a' },
+    })
+    await resolvePermanentRedirect('https://example.org/a', m.fetchImpl)
+    expect(m.pedidas.length).toBeLessThanOrEqual(5)
   })
 })
