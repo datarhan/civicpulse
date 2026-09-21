@@ -4,12 +4,15 @@ import {
   applyArchiveUrls,
   archiveReportSources,
   makeArchiveOne,
+  redirectTargetStandsIn,
+  resolvePermanentRedirect,
 } from '../scripts/journalist-archive-sources'
 import {
   validateReportsSnapshot,
   type JournalistReport,
   type SourceCitation,
 } from '../src/scraper/journalist'
+import type { WaybackResult } from '../src/scraper/wayback'
 
 /**
  * /laboratorio/agentes prometía «las fuentes citadas se archivan en Wayback»
@@ -345,5 +348,247 @@ describe('archiveReportSources — tras un 429 del guardado deja de guardar', ()
       minGapMs: 0,
     })
     expect(permisos).toEqual([true, true, true])
+  })
+})
+
+/**
+ * La copia puede estar bajo OTRA URL: aquella a la que redirige la citada.
+ *
+ * El 21-09-2026 quedaban dos fuentes de la biografía del alcalde «sin copia»
+ * tras cinco pasadas y ocho guardados. Una de ellas la tenía desde la primera
+ * mañana: el enlace citado de El Periódico de Aquí
+ * (`/epda-noticias/<slug>/194308`) contesta 301 a su URL canónica
+ * (`/<slug>_194308_102.html`), Save Page Now siguió la redirección y archivó la
+ * canónica — y todas las consultas preguntaban por la citada, que para Wayback
+ * es otra clave. El par de abajo es el real.
+ *
+ * Como el resolvedor de lugares: mejor no encontrar que enlazar mal. Un CMS que
+ * manda un artículo muerto «hacia arriba» (a la portada, a su sección) también
+ * redirige, y esa copia no es la del artículo.
+ */
+const EPDA_CITADA =
+  'https://www.elperiodicodeaqui.com/epda-noticias/robert-raga-nuevo-presidente-del-consorcio-valencia-interior/194308'
+const EPDA_CANONICA =
+  'https://www.elperiodicodeaqui.com/robert-raga-nuevo-presidente-del-consorcio-valencia-interior_194308_102.html'
+
+describe('redirectTargetStandsIn — ¿vale el destino de la redirección por la URL citada?', () => {
+  it('el par real: la citada redirige a su URL canónica → sí', () => {
+    expect(redirectTargetStandsIn(EPDA_CITADA, EPDA_CANONICA)).toBe(true)
+  })
+
+  it('la misma URL con otro esquema, www o barra final → no: Wayback ya las trata como una', () => {
+    const u = 'https://www.example.org/noticia/123'
+    expect(redirectTargetStandsIn(u, 'http://example.org/noticia/123/')).toBe(false)
+    expect(redirectTargetStandsIn(u, u)).toBe(false)
+  })
+
+  it('a la portada → no: es el «no encontrado» de un CMS', () => {
+    expect(redirectTargetStandsIn(EPDA_CITADA, 'https://www.elperiodicodeaqui.com/')).toBe(false)
+  })
+
+  it('a la sección de la que cuelga la citada → no', () => {
+    expect(
+      redirectTargetStandsIn(
+        'https://www.levante-emv.com/comunitat-valenciana/camp-de-turia/2018/06/26/raga-declara-11892195.html',
+        'https://www.levante-emv.com/comunitat-valenciana/camp-de-turia/',
+      ),
+    ).toBe(false)
+  })
+
+  it('a otro sitio → no', () => {
+    expect(redirectTargetStandsIn(EPDA_CITADA, 'https://dominio-aparcado.example/')).toBe(false)
+    expect(
+      redirectTargetStandsIn(EPDA_CITADA, EPDA_CANONICA.replace('elperiodicodeaqui', 'otro')),
+    ).toBe(false)
+  })
+
+  it('a una página de error, de acceso o de suscripción → no', () => {
+    for (const destino of [
+      'https://www.example.org/404',
+      'https://www.example.org/error/no-encontrado',
+      'https://www.example.org/login?next=/noticia/123',
+      'https://www.example.org/suscripcion/muro',
+    ]) {
+      expect(redirectTargetStandsIn('https://www.example.org/noticia/123', destino)).toBe(false)
+    }
+  })
+
+  it('algo que no es una URL → no', () => {
+    expect(redirectTargetStandsIn(EPDA_CITADA, 'no es una url')).toBe(false)
+  })
+})
+
+describe('makeArchiveOne — la copia puede estar bajo la URL a la que redirige la citada', () => {
+  /** `find` contesta «ninguna» para la citada y lo que se le diga para la canónica. */
+  const montaje = (deLaCanonica: () => WaybackResult) => {
+    const consultadas: string[] = []
+    const cuenta = { guardados: 0 }
+    const one = makeArchiveOne({
+      find: async (u) => {
+        consultadas.push(u)
+        return u === EPDA_CANONICA ? deLaCanonica() : ninguna()
+      },
+      save: async (u) => (cuenta.guardados++, guardada(u)),
+      resolve: async () => EPDA_CANONICA,
+    })
+    return { one, consultadas, cuenta }
+  }
+
+  it('«ninguna» para la citada, copia bajo la canónica → existing, sin gastar un guardado, y lo dice', async () => {
+    const m = montaje(() => encontrada(EPDA_CANONICA))
+    const r = await m.one(EPDA_CITADA, { allowSave: true })
+    expect(m.consultadas).toEqual([EPDA_CITADA, EPDA_CANONICA])
+    expect(m.cuenta.guardados).toBe(0)
+    expect(r).toEqual({
+      archiveUrl: `https://web.archive.org/web/20250101000000/${EPDA_CANONICA}`,
+      via: 'existing',
+      redirectedTo: EPDA_CANONICA,
+    })
+  })
+
+  it('tampoco hay copia bajo la canónica → se guarda la CITADA, como siempre', async () => {
+    const m = montaje(() => ninguna())
+    const r = await m.one(EPDA_CITADA, { allowSave: true })
+    expect(m.cuenta.guardados).toBe(1)
+    expect(r).toEqual({
+      archiveUrl: `https://web.archive.org/web/20260920000000/${EPDA_CITADA}`,
+      via: 'saved',
+    })
+  })
+
+  it('si no se pudo MIRAR la canónica, no se guarda a ciegas', async () => {
+    const m = montaje(() => noSePudoMirar())
+    const r = await m.one(EPDA_CITADA, { allowSave: true })
+    expect(m.cuenta.guardados).toBe(0)
+    expect(r).toEqual({
+      error: `consulta fallida (destino de la redirección, ${EPDA_CANONICA}): HTTP 429 · CDX: HTTP 504`,
+    })
+  })
+
+  it('un destino que no vale por la citada ni se consulta', async () => {
+    const consultadas: string[] = []
+    const one = makeArchiveOne({
+      find: async (u) => (consultadas.push(u), ninguna()),
+      save: async (u) => guardada(u),
+      resolve: async () => 'https://www.elperiodicodeaqui.com/',
+    })
+    await one(EPDA_CITADA, { allowSave: true })
+    expect(consultadas).toEqual([EPDA_CITADA])
+  })
+
+  it('una URL que no redirige (resolve → null) sigue el camino de siempre', async () => {
+    const consultadas: string[] = []
+    const one = makeArchiveOne({
+      find: async (u) => (consultadas.push(u), ninguna()),
+      save: async (u) => guardada(u),
+      resolve: async () => null,
+    })
+    const r = await one(EPDA_CITADA, { allowSave: true })
+    expect(consultadas).toEqual([EPDA_CITADA])
+    expect(r).toEqual({
+      archiveUrl: `https://web.archive.org/web/20260920000000/${EPDA_CITADA}`,
+      via: 'saved',
+    })
+  })
+
+  it('con copia de la citada no se resuelve nada: es una petición al medio que sobra', async () => {
+    let resueltas = 0
+    const one = makeArchiveOne({
+      find: async (u) => encontrada(u),
+      save: async (u) => guardada(u),
+      resolve: async () => (resueltas++, EPDA_CANONICA),
+    })
+    await one(EPDA_CITADA, { allowSave: true })
+    expect(resueltas).toBe(0)
+  })
+})
+
+describe('archiveReportSources — una copia hallada bajo el destino de la redirección lo dice en el parte', () => {
+  it('el detalle nombra la URL de la que es copia', async () => {
+    const r = await archiveReportSources(report([src({ id: 'src-1', url: EPDA_CITADA })]), {
+      archiveOne: async () => ({
+        archiveUrl: `https://web.archive.org/web/20260920063817/${EPDA_CANONICA}`,
+        via: 'existing',
+        redirectedTo: EPDA_CANONICA,
+      }),
+      sleep: async () => {},
+      minGapMs: 0,
+    })
+    expect(r.outcomes[0].status).toBe('existing')
+    expect(r.outcomes[0].detail).toBe(
+      `https://web.archive.org/web/20260920063817/${EPDA_CANONICA} (copia de ${EPDA_CANONICA}, adonde redirige la citada)`,
+    )
+    expect(r.report.sources[0].archiveUrl).toBe(
+      `https://web.archive.org/web/20260920063817/${EPDA_CANONICA}`,
+    )
+  })
+})
+
+describe('resolvePermanentRedirect — adónde se ha MUDADO una URL, según quien la publica', () => {
+  /** Un medio falso: a cada URL, su respuesta. Anota lo que se le pidió. */
+  const medio = (rutas: Record<string, { status: number; location?: string }>) => {
+    const pedidas: string[] = []
+    const fetchImpl = (async (u: string | URL | Request) => {
+      const url = String(u)
+      pedidas.push(url)
+      const r = rutas[url]
+      if (!r) throw new Error('ECONNRESET')
+      return new Response(null, {
+        status: r.status,
+        headers: r.location ? { location: r.location } : {},
+      })
+    }) as typeof fetch
+    return { pedidas, fetchImpl }
+  }
+
+  it('el caso real: un 301 con Location RELATIVA → la URL canónica, absoluta', async () => {
+    const m = medio({
+      [EPDA_CITADA]: {
+        status: 301,
+        location: '/robert-raga-nuevo-presidente-del-consorcio-valencia-interior_194308_102.html',
+      },
+      [EPDA_CANONICA]: { status: 200 },
+    })
+    expect(await resolvePermanentRedirect(EPDA_CITADA, m.fetchImpl)).toBe(EPDA_CANONICA)
+  })
+
+  it('una redirección TEMPORAL no se sigue: es como contestan los muros de consentimiento y de acceso', async () => {
+    for (const status of [302, 303, 307]) {
+      const m = medio({
+        'https://example.org/a': { status, location: 'https://example.org/consent?next=/a' },
+      })
+      expect(await resolvePermanentRedirect('https://example.org/a', m.fetchImpl)).toBeNull()
+      expect(m.pedidas).toEqual(['https://example.org/a'])
+    }
+  })
+
+  it('sigue una cadena de permanentes (301 → 308 → 200) hasta el final', async () => {
+    const m = medio({
+      'http://example.org/a': { status: 301, location: 'https://example.org/a' },
+      'https://example.org/a': { status: 308, location: 'https://example.org/b.html' },
+      'https://example.org/b.html': { status: 200 },
+    })
+    expect(await resolvePermanentRedirect('http://example.org/a', m.fetchImpl)).toBe(
+      'https://example.org/b.html',
+    )
+  })
+
+  it('una URL que no redirige → null', async () => {
+    const m = medio({ 'https://example.org/a': { status: 200 } })
+    expect(await resolvePermanentRedirect('https://example.org/a', m.fetchImpl)).toBeNull()
+  })
+
+  it('un medio que no contesta → null: sin redirección conocida, sigue el camino de siempre', async () => {
+    const m = medio({})
+    expect(await resolvePermanentRedirect('https://example.org/a', m.fetchImpl)).toBeNull()
+  })
+
+  it('un bucle de redirecciones se corta, no se sigue para siempre', async () => {
+    const m = medio({
+      'https://example.org/a': { status: 301, location: 'https://example.org/b' },
+      'https://example.org/b': { status: 301, location: 'https://example.org/a' },
+    })
+    await resolvePermanentRedirect('https://example.org/a', m.fetchImpl)
+    expect(m.pedidas.length).toBeLessThanOrEqual(5)
   })
 })
