@@ -179,9 +179,21 @@ motivo, y son dos casos opuestos:
 
 - **`failed → HTTP 500`**: lo más probable es que la copia SE HAYA HECHO. Save
   Page Now captura la página y luego intenta enseñarla; si eso falla contesta 500
-  con la captura ya en el índice. Se vuelve a lanzar a los diez minutos y la
-  consulta la encuentra (`existing`). Dos 500 seguidos sin que aparezca copia sí
-  son un fallo de verdad: el medio no se deja capturar.
+  con la captura hecha. Lo que tarda en APARECER va de minutos a HORAS: el
+  20-09-2026 tres capturas estaban en el índice a los pocos minutos, y la de un
+  PDF municipal guardado a las 17:44 no estaba a las 18:18 y sí a la mañana
+  siguiente. Así que tras un 500 **no se vuelve a guardar ese día**: se relanza
+  la pasada al rato y, si sigue sin copia, al día siguiente — la consulta la
+  encuentra (`existing`). Sólo lo que sigue sin copia UN DÍA DESPUÉS es un fallo
+  de verdad.
+- **Un fallo de verdad no quiere decir que el medio no se deje archivar.** Se
+  mira antes de escribirlo: una consulta al índice por PREFIJO (`matchType=prefix`)
+  dice si Wayback tiene capturas recientes de ese medio. Levante-EMV contesta 406
+  a lo que no sea un navegador y aun así tiene capturas de 2026: quien no llega
+  es el extremo anónimo de Save Page Now, que no usa navegador. El flujo completo
+  (el del formulario de web.archive.org/save) sí lo usa, pero rechaza a un cliente
+  que no lo sea (401 «You need to be logged in») — queda el formulario a mano, o
+  una cuenta de archive.org.
 - **`HTTP 429` / `not-attempted`**: no se ha capturado nada, y tras el primer 429
   la pasada deja de guardar (cada rechazo alarga el bloqueo de la IP). **No se
   repite «a ver si ahora»**: se vuelve horas después.
