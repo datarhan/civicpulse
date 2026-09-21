@@ -643,6 +643,21 @@ function SolicitudesEnviadas({ bloque }) {
                 {e.respuesta.resumen}
               </div>
             )}
+            {/* Una contestación que no resuelve: se publica, y el estado no se
+                mueve. Misma gramática que en el reportaje del conteo. */}
+            {(e.incidencias ?? []).map((inc) => (
+              <div
+                key={inc.fecha}
+                style={{
+                  fontSize: 'var(--fs-aux)',
+                  color: 'var(--ink70)',
+                  lineHeight: 1.5,
+                  marginTop: 4,
+                }}
+              >
+                {inc.texto}
+              </div>
+            ))}
             <div
               style={{
                 fontSize: 'var(--fs-aux)',

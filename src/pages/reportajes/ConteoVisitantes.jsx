@@ -244,6 +244,23 @@ function SolicitudesEnviadas({ bloque }) {
                 {e.respuesta.resumen}
               </div>
             )}
+            {/* Lo que contestaron sin resolver. Va con la tinta de la frase, no
+                con la de lo pedido: es algo que dijeron. Y va SIN pastilla de
+                estado propia, porque el estado no ha cambiado — que es
+                justamente lo que hay que enseñar. */}
+            {(e.incidencias ?? []).map((inc) => (
+              <div
+                key={inc.fecha}
+                style={{
+                  fontSize: 'var(--fs-aux)',
+                  color: 'var(--ink70)',
+                  lineHeight: 1.5,
+                  marginTop: 4,
+                }}
+              >
+                {inc.texto}
+              </div>
+            ))}
             <div
               style={{
                 fontSize: 'var(--fs-aux)',

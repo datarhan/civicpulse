@@ -52,6 +52,14 @@ test.describe('Reportaje · conteo de visitantes (/reportajes/conteo-visitantes)
     ).toBeVisible()
     await expect(page.getByText(/Turisme Comunitat Valenciana · enviada el/)).toBeVisible()
 
+    // LA CONTESTACIÓN QUE NO RESUELVE (21-09-2026). Turisme CV dijo que por
+    // correo no la atiende y que hay que usar su trámite electrónico. Tiene que
+    // VERSE —si no, la página calla que contestaron— y la fila NO puede pasar a
+    // «respondida»: no concedieron, no denegaron y no dijeron que no les
+    // correspondiera, así que el mes del artículo 20 sigue corriendo.
+    await expect(page.getByText(/por su trámite electrónico/)).toBeVisible()
+    await expect(page.getByText(/el mes del artículo 20 sigue corriendo/)).toBeVisible()
+
     // LA SALVEDAD JURÍDICA, y es la que no puede caerse. Salieron por correo:
     // consta el envío, no la recepción por el órgano competente, que es donde
     // el art. 20.1 arranca el mes. Sin esta frase la página estaría afirmando

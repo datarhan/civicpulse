@@ -70,6 +70,19 @@ export interface EnvioSolicitud {
      */
     resumen?: string
   } | null
+  /**
+   * Lo que contestaron SIN resolver: acuses, traslados internos, o —el caso que
+   * estrenó el campo— «por esta vía no podemos atenderla, preséntela por el
+   * trámite electrónico» (Turisme Comunitat Valenciana, 21-09-2026).
+   *
+   * No cabe en `respuesta`. Los cuatro sentidos del enum dicen qué se resolvió
+   * —conceder, conceder en parte, denegar, decir que no corresponde— y ninguno
+   * describe una contestación que deja la solicitud donde estaba. Forzar una
+   * publicaría «respondida» sobre algo sin contestar, y además pararía el reloj
+   * del artículo 20 por un escrito que no lo agota. Así que se publica al lado, y
+   * el estado lo siguen mandando `respuesta` y la fecha.
+   */
+  incidencias?: { fecha: string; texto: string }[]
 }
 
 const MESES = [
