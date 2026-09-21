@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-09-20T09:46:26.353Z",
+  "generatedAt": "2026-09-21T10:35:49.983Z",
   "source": {
-    "tenders": "2026-09-20T09:30:34.502Z",
-    "geo": "2026-09-20T09:32:00.316Z"
+    "tenders": "2026-09-21T10:15:14.319Z",
+    "geo": "2026-09-21T10:16:36.371Z"
   },
   "universe": {
     "totalContracts": 706,
@@ -370,8 +370,8 @@
       "danaAmount": 0
     },
     {
-      "slug": "carrer-eres-altes",
-      "name": "Carrer Eres Altes",
+      "slug": "carrer-de-les-eres-altes",
+      "name": "Carrer de les Eres Altes",
       "kind": "street",
       "point": [
         39.5465682,
@@ -850,8 +850,8 @@
       "danaAmount": 0
     },
     {
-      "slug": "carrer-de-les-animes",
-      "name": "Carrer de les Ànimes",
+      "slug": "cami-de-les-animes",
+      "name": "Camí de les Ànimes",
       "kind": "street",
       "point": [
         39.5487019,
@@ -965,9 +965,9 @@
       ],
       "place": {
         "kind": "street",
-        "name": "Carrer de les Ànimes",
-        "matchedText": "Carrer de les Ànimes",
-        "sourceId": "carrer-de-les-animes"
+        "name": "Camí de les Ànimes",
+        "matchedText": "Camí de les Ànimes",
+        "sourceId": "cami-de-les-animes"
       }
     },
     {
@@ -1460,9 +1460,9 @@
       ],
       "place": {
         "kind": "street",
-        "name": "Carrer Eres Altes",
-        "matchedText": "Carrer Eres Altes",
-        "sourceId": "carrer-eres-altes"
+        "name": "Carrer de les Eres Altes",
+        "matchedText": "Carrer de les Eres Altes",
+        "sourceId": "carrer-de-les-eres-altes"
       }
     },
     {
@@ -2858,9 +2858,9 @@
       ],
       "place": {
         "kind": "street",
-        "name": "Carrer Eres Altes",
-        "matchedText": "Carrer Eres Altes",
-        "sourceId": "carrer-eres-altes"
+        "name": "Carrer de les Eres Altes",
+        "matchedText": "Carrer de les Eres Altes",
+        "sourceId": "carrer-de-les-eres-altes"
       }
     },
     {
@@ -3731,9 +3731,9 @@
       ],
       "place": {
         "kind": "street",
-        "name": "Carrer de les Ànimes",
-        "matchedText": "Carrer de les Ànimes",
-        "sourceId": "carrer-de-les-animes"
+        "name": "Camí de les Ànimes",
+        "matchedText": "Camí de les Ànimes",
+        "sourceId": "cami-de-les-animes"
       }
     },
     {
@@ -3813,11 +3813,11 @@
     }
   ],
   "builtFrom": {
-    "civic-poi.json": "6be42e6fa340",
+    "civic-poi.json": "7c252f32e809",
     "gazetteer-supplement.json": "813c38c1dc80",
-    "geo.json": "f770366bf7e3",
+    "geo.json": "b2577c16c3b7",
     "place-overrides.json": "5a4641410141",
-    "streets.json": "f7171224126f",
-    "tenders.json": "fec576392e9f"
+    "streets.json": "8363b66af61d",
+    "tenders.json": "25a55b18f7b1"
   }
 }

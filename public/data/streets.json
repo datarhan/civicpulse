@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-20T09:37:05.981Z",
+  "generatedAt": "2026-09-21T10:23:28.144Z",
   "source": {
     "platform": "OSM Overpass API",
     "endpoint": "https://overpass-api.de/api/interpreter",
@@ -447,6 +447,16 @@
       ]
     },
     {
+      "id": "way-39525563",
+      "name": "Camí de les Ànimes",
+      "slug": "cami-de-les-animes",
+      "kind": "camino",
+      "point": [
+        39.5487019,
+        -0.5619531
+      ]
+    },
+    {
       "id": "way-61045827",
       "name": "Camí de Possa",
       "slug": "cami-de-possa",
@@ -462,8 +472,8 @@
       "slug": "cami-de-sant-roca",
       "kind": "camino",
       "point": [
-        39.551861,
-        -0.5716965
+        39.5521563,
+        -0.5723389
       ]
     },
     {
@@ -1907,13 +1917,13 @@
       ]
     },
     {
-      "id": "way-39525569",
+      "id": "way-152508622",
       "name": "Carrer de la Masia de Plater",
       "slug": "carrer-de-la-masia-de-plater",
       "kind": "calle",
       "point": [
-        39.5476587,
-        -0.5635098
+        39.5473425,
+        -0.562454
       ]
     },
     {
@@ -2227,16 +2237,6 @@
       ]
     },
     {
-      "id": "way-39525563",
-      "name": "Carrer de les Ànimes",
-      "slug": "carrer-de-les-animes",
-      "kind": "calle",
-      "point": [
-        39.5487019,
-        -0.5619531
-      ]
-    },
-    {
       "id": "way-696236870",
       "name": "Carrer de les Bodeguetes",
       "slug": "carrer-de-les-bodeguetes",
@@ -2274,6 +2274,16 @@
       "point": [
         39.5115196,
         -0.5326277
+      ]
+    },
+    {
+      "id": "way-39525583",
+      "name": "Carrer de les Eres Altes",
+      "slug": "carrer-de-les-eres-altes",
+      "kind": "calle",
+      "point": [
+        39.5465682,
+        -0.5637041
       ]
     },
     {
@@ -3917,16 +3927,6 @@
       ]
     },
     {
-      "id": "way-39525583",
-      "name": "Carrer Eres Altes",
-      "slug": "carrer-eres-altes",
-      "kind": "calle",
-      "point": [
-        39.5465682,
-        -0.5637041
-      ]
-    },
-    {
       "id": "way-615780389",
       "name": "Carrer Eresma",
       "slug": "carrer-eresma",
@@ -5177,6 +5177,16 @@
       ]
     },
     {
+      "id": "way-100968203",
+      "name": "Carretera de Bétera",
+      "slug": "carretera-de-betera",
+      "kind": "carretera",
+      "point": [
+        39.5461367,
+        -0.5627151
+      ]
+    },
+    {
       "id": "way-29109664",
       "name": "Carretera de Cheste a Loriguilla",
       "slug": "carretera-de-cheste-a-loriguilla",
@@ -5188,7 +5198,7 @@
     },
     {
       "id": "way-35599247",
-      "name": "Carretera de L'Eliana",
+      "name": "Carretera de l'Eliana",
       "slug": "carretera-de-l-eliana",
       "kind": "carretera",
       "point": [
@@ -5398,12 +5408,12 @@
     }
   ],
   "stats": {
-    "total": 539,
+    "total": 540,
     "byKind": {
       "avenida": 37,
-      "calle": 465,
-      "camino": 20,
-      "carretera": 12,
+      "calle": 464,
+      "camino": 21,
+      "carretera": 13,
       "plaza": 5
     }
   }

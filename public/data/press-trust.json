@@ -1,7 +1,24 @@
 {
-  "generatedAt": "2026-09-21T09:30:10.897Z",
+  "generatedAt": "2026-09-21T10:35:52.458Z",
   "windowDays": 30,
   "articles": [
+    {
+      "articleId": "dfbxk4",
+      "articleFingerprint": "wj3k7x",
+      "outlet": "Las Provincias",
+      "outletHost": "lasprovincias.es",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNTGJaUjllSG5GTXdzQWtFNGVZZWE3QlM3VHNvZUlBWk5UMl9DX3lHMFZ4Y2dRWTdkU0NjOGhvS2FkY3EtOFZDcUF4bHRzdnZmSFlqbEQ4dU9YVlkwSlpLQm55YXQ3WUo3cDJoT0JlTzlxUVFiWFVyQTNOZF85SHJRWk4xNkkyb21LcjVCdmZYbllWbGVQdWRQR3M2dVZVeS1UaDF5ZzFnN2llbW1GT2htdXg5ZnBycXdLZFpCYm1DNFZnNkhweEHSAcsBQVVfeXFMTklKeDZROXVET2FYTDE3WGhSMzZRdjBhUWV0Zk5abjJIZk5EYWlHR0dOblhVS1kyaHdyWDZzb0ZUQXVCelkzVGZScVB4X2VJMlp6U3Y0eG9ndTR5WEJKVmp1YVZ0MGlkczFTWnp4eFZ0eE1xTmI4SWlBUmpRVUd0QU9fTy1NSktnTGo2REtpSTRzWnRoTGRqRjZXeExKT04yYlRCaGtEMzJMb2w3VlZRczBVRHlaZXp6S3UzNHJyMVpNcWFQaTh1YmVteEU?oc=5",
+      "date": "2026-09-20T22:09:19.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": null,
+        "corroboratedAcrossOutlets": true,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
     {
       "articleId": "1tckrjk",
       "articleFingerprint": "10fja0",
@@ -22,7 +39,7 @@
     {
       "articleId": "1a5f1pr",
       "articleFingerprint": "15h67us",
-      "outlet": "Levante-EMV",
+      "outlet": "levante-emv.com",
       "outletHost": "levante-emv.com",
       "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNMmxLYkVncFZtSFlseFUxQWpTZ2pKemFoenI3UFhndVdTVDA2Y3RXUW1UODlGR1VnWlZRUXkxRGZreHFIcllPMUQ0N3VaV2t2SnBVOHNFZnBfbWNGM1ZSaVFSUGdJVWFSTmJCbTRiam5nZFhqT3I3TkFiMmlvZzFId0RQZzgxZWFrRE5DTzQxOTlKNFBNYXpKSlpSSW9PLVRCeU1SSmdMZWtWUDl0bjR1bUg4a211MGxVVDJoQTVXQnlIbU9YX0RVQWJ6QVFDRS0tVFdad3FjWjlzUdIB3wFBVV95cUxQQTBqaVJOTDZURHpobVBwemcyTnpWQmJBWTl1Z3Uyd1ZSb1ltaTJiYTVfTjBVdUZwTm1FUkN2My0tNVkxTlJBMklOMFRQcDNqblNNVTZUNFpPQ19aWEJnRERfM0ZmS012UjZBT3JqWFFmRmtLelhpZ3JKY2R5TVQ0VHR6bnVKTjZVQ0JIRS1nUVdNZm5ENl9kMWN5NkJ3bGhvM0VhSlRocElmM1J6YlZNVVEzbzVnb0dzZl81a3UyZmdySHhKUEJJSFF1ZUFWaFhEd0wzOUQ2TkFBZ0FBQjhn?oc=5",
       "date": "2026-09-19T04:00:48.000Z",
@@ -207,23 +224,6 @@
       "score": 3
     },
     {
-      "articleId": "9gh8vk",
-      "articleFingerprint": "1y58ibg",
-      "outlet": "tiempodehoy.com",
-      "outletHost": "tiempodehoy.com",
-      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9wZjBkMzRTcF9haFhBX0ZSMGlYYWRpUm05Y0NPSE1LUEF4T3NJckhXSU9KZXVNWTZMS2NMTHhJekkyaVFwOTNSRDhwdjc2TjN5RElWNDNJRGdxZw?oc=5",
-      "date": "2026-09-12T09:44:47.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 1
-    },
-    {
       "articleId": "153mirg",
       "articleFingerprint": "2w05ns",
       "outlet": "Ayuntamiento de Riba-roja de Túria",
@@ -273,23 +273,6 @@
         "opinionFraction": 0
       },
       "score": 5
-    },
-    {
-      "articleId": "tel2rn",
-      "articleFingerprint": "o69qn8",
-      "outlet": "Levante-EMV",
-      "outletHost": "levante-emv.com",
-      "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOVEZTWXVfZ3djTDM1Nm8zQzhQaWpuaWFRX0h0S3U2U01IbEdQRDlQU3N0S2JjR0lNTzMxRDhrVFJnT2NhTnVnTnpCc3A2cDFqV3hKR01rXy0tWDZwcGVBbUt4VzZXSmxFWFpPNWZoQm0yYzFUQUFkYlZ6all5QmlDY0tWU0p5TzlsVlB1RnBlQzRPSnZKZlVhcEFVQ0FmbjF4NFJJMVNONEhJRDVSVHpHcWJNYjRsVXVIUTMxWTJCTDkxbnhjNDBYRWw1YnNkXzZEQ3doMWkxWmE0WFhHYXfSAeMBQVVfeXFMTlN5aW03M1JQeW1rSzAxSTJUUE93NFp0X3pXbkx6Y3hPXzI2S1YxQnQ4ZW1SMFBOeE1ITHpBaXE4WHAzTEdrMU9VY2ZoaHhhcEM4dWJ0RGxxdTcydWw3bTZVUFdreS1mMGpTelFwUFBQTUp2TWxHRDVwQ0JGT29ieEVyVVUtcklSRUxCMWZRX3J1NFFzMTR3MHdmNGtWc0NZc0p1cFhEcHpYOEh5T3g4NHp6X0ZHUE5VRk9UMVp5S2lNQzlkZkNTeUs0OU5PMUdVRGo1N3JMcDE2MWdUSXlSVDhEQzQ?oc=5",
-      "date": "2026-09-10T07:00:00.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": true,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 3
     },
     {
       "articleId": "1qcfmrw",
@@ -496,11 +479,11 @@
       "score": 4
     },
     {
-      "articleId": "rg3vyc",
-      "articleFingerprint": "r6fpwo",
-      "outlet": "boletinbien.com",
-      "outletHost": "boletinbien.com",
-      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQX2Rib05kZU8wOUJOdjNwY1ZRV0J2My1temZzNVh2ZV8xcm5xbW5RQzZnSzEtUTdfTXRGZlpXeG15MV84VVRiNzFwZ1BIY2tPYmg5WXR0VnVzTzBoSjFlS085Qk1EM0RzZVUwLUlyeFVhUEJoZDQ4ZWpIRnB1ZzF2RFN2Vk1MX2kyS0FDa3ZYeUZmREVaMTgzYnFLUQ?oc=5",
+      "articleId": "16zc27c",
+      "articleFingerprint": "1rb28v0",
+      "outlet": "Valenciabonita",
+      "outletHost": "valenciabonita.es",
+      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPRFFiUmJza2FDY1hYQU1CY2tJaFdJMTF5dHVJVjlkZ3Z3cW1FTXg0TGNyVjgzLUd5MGItNDJfYkZqalplSHRpQkNlajhKYzJrWG1LOEpBSjRhenpPRXk5eV9pWURYRFdDTmlpZlBTcHRIWDkyRGUwdm5uenpzUk11Q0NKLXJwQ0NwNDlLaGdGSQ?oc=5",
       "date": "2026-09-01T07:00:00.000Z",
       "indicators": {
         "localCoverage": false,
@@ -549,7 +532,7 @@
     {
       "articleId": "1lnhg7g",
       "articleFingerprint": "1hy1xq8",
-      "outlet": "Levante-EMV",
+      "outlet": "levante-emv.com",
       "outletHost": "levante-emv.com",
       "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPNWpWeDdjLW1XeThCd2Q3LVlsQUg1VnZyNTA1Z0RCb3FSUk1JanFvZ1U2eGs4M3NWQkdZM045UC1ETGNwNlQ0VlhVSlJKZG9lUTZYZ3pTdUZuNkV3TmNFLWEzQmdyV2dmSUljT09QQlQxakZ6V3c2WjViVVJFRWJwbGFlUUEwdW9ueXdIRlNDOUk5TUFBeWg0Z0VSdFd4M1FIVm43eU05TUE3Qkx6UVVKbXRaXzVrOW4wSVZaY3gzYlJSdThsTjExeGRqVWhWcjkwTE000gHYAUFVX3lxTFB1U3JHcGR6dEZWSmc2WlkzSXVqOE5mVjVBck9JS2tsczFJbkRaT3BPdEFwbWdJYXE1UkV2cXVxc21qN19DaGZOc2hia2Y5MHc4T1gxdTFBX1dZanFDR2lXZ21hUzNJa3o2ZEF6cHhxYURoVmhEMC1GMUJqbDFZTWk4UDVWc0lxbjRsQWlfTTgwdUxRUUIwcGc5c05sTXFReUU3c3BBdmdFcTV1ZjdaVHVBeEhCT2lNMGp1VndaMFZSNmxlR3hadk9NT3NJZVpMbnR2Y0tLejZtag?oc=5",
       "date": "2026-08-31T07:00:00.000Z",
@@ -583,7 +566,7 @@
     {
       "articleId": "171dh22",
       "articleFingerprint": "y0ksbk",
-      "outlet": "comunitatvalenciana.com",
+      "outlet": "Turisme Comunitat Valenciana",
       "outletHost": "comunitatvalenciana.com",
       "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQaTU5aXFDZGo2RW1sWllKNEszMVNJQ283T2lpUUZEdnh0RFliV2stYlJFNFp1cVFyQlNuN2RuZlhvLUFGOXNLcHFEajl1THkxd2I0SzZjN2NPWnpRWUU5eFFzcUVnQWtPMUpXeGxIUVNQTTNMX0dZOVNFU2xkQ183UFVZRVZ4TVJRMnJJOUJYQmV3alM4LW9mQmg3dW1UYWdaTFBjTnlxc1l4bjF0b1A5UFVXdDhaTzct?oc=5",
       "date": "2026-08-29T20:57:21.000Z",
@@ -600,7 +583,7 @@
     {
       "articleId": "qt6rcw",
       "articleFingerprint": "1b5ktzg",
-      "outlet": "Levante-EMV",
+      "outlet": "levante-emv.com",
       "outletHost": "levante-emv.com",
       "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOUnB3UTRaWktudHJjRnJTbHZIYUtQWmw4WjhZb2lWTFN0Sm11TEtGQ2IwUnY5NkZ2Wlp5b20tclZrWVNQVnhXalIwLVdhQUNMVmJMU1hObzh0Q0o1cjdfQ1J4Y2VodVVsVVgzczgtQXl6NEg2Z3BSRW9MS1JqaWJTRjJJSXFHS05uS0Q1bGhENHFlM05yOXBfeDdWZl9QdjViYkRYVXpNQXlwUVVQZDNPRkZBSzNQakw0aG1jdGRhRjJYNGdVelp0V0ZHVjVNOUJxOGY5NC1GTnRqbEtvMHVqRtIB5gFBVV95cUxPWW9pN21DLVNmdnRtQ3Z3WW9HOUtzLXpibWducmRURG5BWTZXdDNGVFlwQ1pLZEdreGk0X3FiM0xhTHhPSVpHbEhRWjdvd1JDa2ZYV1FjZDFrYnZtTk45ZTNIZkNFWnZVSl8wN1lTOXoySGJJZWJBZmE5UHJUNzNzaTJHRHBZVW5VdlVDTDZyczRIWXNfMVRUaDQzdzFWUjJLYUgwTC1QY2tKWEhZS1o5NW1LTGc5dVhPMXF2bzNtWU0zSDRRV0VubjZ2REJXQnY1cUNnQ284aEszQzJXcTNxQ0lGVW1idw?oc=5",
       "date": "2026-08-29T07:00:00.000Z",
@@ -651,7 +634,7 @@
     {
       "articleId": "go2bww",
       "articleFingerprint": "1t6n8t8",
-      "outlet": "Levante-EMV",
+      "outlet": "levante-emv.com",
       "outletHost": "levante-emv.com",
       "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQbVlYRXltUmVaUU1TMnlNeWhYRlF4VENScXJva196OHRPeXk2bTQ3dTZkS2pzcWhFdGVaVW5RT1VLczI2MjhMbzcyWWVxdFNyLUVYcmFDMjhZaTlmLUk5dERzcHZZOHJKUXB6QmdDZHU4X19JaFJmdmxILV9qdEtYY3JIRmJLUXdzcUthR3pNTC1BNXBxSkR2c1dHcThYZkJmT1kxX3RXYzlCSi1TQkZhcmtyQy1PR1BQQUczLdIBwgFBVV95cUxNX0NDeHJHQXBnUUtuR096Yi10ZEVFMk80Mm5KQ2lZR204VjdDek81VkdMcGMyRm1CaDN1Z3NBWDRPcWhOUXJBMll0dnpES2JrU0VMSEh3QkwyLURWaFUxZmhQd0JZem9TcU9qcWVTQXFSZm1GcEN6bDlJYTdQdUxYOGF4Z1JQakRVNGlKX3lPQ2hYZVFYdFBVYVduY1dudWwwalRBaG0xb0RTSVJPLUdXLUEwWDNLdmczYWJjc1Jqd1p1dw?oc=5",
       "date": "2026-08-28T07:00:00.000Z",
@@ -753,7 +736,7 @@
     {
       "articleId": "1ezylig",
       "articleFingerprint": "13vj4ds",
-      "outlet": "Levante-EMV",
+      "outlet": "levante-emv.com",
       "outletHost": "levante-emv.com",
       "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQSjIzVFJONlJSTzg4ekpmU3dKM3AtenBUeWdqaDIyZ084VXpIRGhyQUg0cFBhWHdkbWRoYVBmcTd2MmstQkdzaGpSSlQ5ZldwTkFBOUFDX3V1bGRjcFdPWHpudEJObDlZLWNnYzR4MlhwcF81SllEMmpMRlkyWHhnaUVpNFY3eFR5T1o5dXJXY1p5RjFKVVlBUU55Nmo1Z3Jwa1gxVG1JOXVrdW0wLWRmaDY3WTlwdHNOd0ZaNkhmV1ZmQ0hGU05IYzBGV1JkMDFrS1NoYS0zbW12dTBn0gHiAUFVX3lxTE4yeHBabkwxVU9QN2NnUXlUVTZNel8tY0Q5UTBYdk9VbS1Wd0NhUUlDZkhqeFgyTVR3R1lhMDBHZ2hzc0ZnUklwZ25CY0JyQ1hlNVlqQmNiRE9WNlRBZFU5c2RpYk00dlBSNS1ueE55NDhGczJaa0J1UDFWMlJDd3I2TS14NGJJb0dScDhEM2I2Nzd1bWdpdTVSRkQySHhFQVp1NXZZMnlvYmpUUERld2NYMkxwNzNZMEhIeVY1QWZld0NWVXhlYW5sVVZES2dvMm9Qbk9FTlkwcy1ZVlJwOWlmR2c?oc=5",
       "date": "2026-08-25T07:00:00.000Z",
@@ -838,7 +821,7 @@
     {
       "articleId": "y1bw9k",
       "articleFingerprint": "i5wpe4",
-      "outlet": "Levante-EMV",
+      "outlet": "levante-emv.com",
       "outletHost": "levante-emv.com",
       "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxONFg2NE9XdlYtMS05MmZ4VWhKUjBxVnlnazdma2dMWkZWbWVPdDJTQjlQcDRkZEh2NHlfVHUtbk9XSXFxal9tQlpyNm5ZNzhCNFhWbkFtS3R3cnVYTjFhUHpnNWRycjlrWGxUYm9NUDBGdEJnTWNZZGdGeERKNm9aRWlHR1kxdVNHbnJvS3B4M1NuSmJOdTB5cGVLVjdhbkx4N084LTZqY2NBeERkYUJTZUZHTmdfQzMtckdhc212VnZWUlFoOGhKVTNjYlZ6VUlV0gHWAUFVX3lxTE45OTBENlFIQzZDU3RiUFlGNFJoR1VKWjBhb3pLajJkX2c0cktoQ0xZSWdUanN3MENzWVBhaG1vclp4dVZBYkR4enhiUEdjWE00aTlIS3FILWFfUUh4QTJhWHM4WnFkdEFYZ0tKVUNxUkxFWXVNdFV1T0h4ZXZ1WktDdGVBejM0dGlybTJvV3d0OWdjeEtPMG1zZkdPUk1zUW1aUVVFZFJRbUFVa3RNNEV2RVJfclduVUpyNXJZUGcwRktGOTFhZDkxXzNrMTJjckRCRDUxMUE?oc=5",
       "date": "2026-08-23T07:00:00.000Z",
@@ -885,9 +868,9 @@
       "contradictedRatio": null
     },
     {
-      "outlet": "Levante-EMV",
+      "outlet": "levante-emv.com",
       "outletHost": "levante-emv.com",
-      "articleCount": 7,
+      "articleCount": 6,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -895,14 +878,14 @@
         "sin-datos": 1,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.86,
+      "meanTrustScore": 2.83,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
     {
       "outlet": "boletinbien.com",
       "outletHost": "boletinbien.com",
-      "articleCount": 7,
+      "articleCount": 6,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -917,7 +900,7 @@
     {
       "outlet": "Las Provincias",
       "outletHost": "lasprovincias.es",
-      "articleCount": 2,
+      "articleCount": 3,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -925,7 +908,7 @@
         "sin-datos": 0,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2,
+      "meanTrustScore": 2.33,
       "verifiedRatio": null,
       "contradictedRatio": null
     },
@@ -960,21 +943,6 @@
       "contradictedRatio": null
     },
     {
-      "outlet": "tiempodehoy.com",
-      "outletHost": "tiempodehoy.com",
-      "articleCount": 1,
-      "verdictCounts": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      },
-      "meanTrustScore": 1,
-      "verifiedRatio": null,
-      "contradictedRatio": null
-    },
-    {
       "outlet": "El Periódico de Aquí",
       "outletHost": "elperiodicodeaqui.com",
       "articleCount": 1,
@@ -1005,7 +973,22 @@
       "contradictedRatio": null
     },
     {
-      "outlet": "comunitatvalenciana.com",
+      "outlet": "Valenciabonita",
+      "outletHost": "valenciabonita.es",
+      "articleCount": 1,
+      "verdictCounts": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      },
+      "meanTrustScore": 1,
+      "verifiedRatio": null,
+      "contradictedRatio": null
+    },
+    {
+      "outlet": "Turisme Comunitat Valenciana",
       "outletHost": "comunitatvalenciana.com",
       "articleCount": 1,
       "verdictCounts": {
@@ -1036,9 +1019,9 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "f99e8e2b74eb",
+    "plenos-agendas.json": "8330424daade",
     "press-claims-verified.json": "972b0280a9e7",
-    "press.json": "7533a4c1b09a",
+    "press.json": "adcc40bb411f",
     "promises.json": "d18811c11210"
   }
 }

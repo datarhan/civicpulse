@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-09-20T09:44:14.188Z",
+  "generatedAt": "2026-09-21T10:33:45.213Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 64,
-    "openTotal": 63,
-    "inRibaRoja": 41,
-    "closingSoon": 17,
-    "withDetail": 64,
+    "total": 63,
+    "openTotal": 62,
+    "inRibaRoja": 38,
+    "closingSoon": 16,
+    "withDetail": 63,
     "byMonth": {
-      "2026-09": 17,
-      "2026-08": 29,
-      "2026-07": 9,
+      "2026-09": 19,
+      "2026-08": 28,
+      "2026-07": 7,
       "2026-06": 1,
       "2026-05": 3,
       "2026-04": 2,
@@ -24,10 +24,269 @@
   },
   "items": [
     {
+      "id": "2539",
+      "fo": 2539,
+      "codigo": "2026/00238",
+      "titulo": "Electricista",
+      "publishedAt": "2026-09-21",
+      "deadline": "2026-11-21",
+      "location": "Centro de Conservación de Carreteras, autovía A-7/E-15, km 328, sentido Barcelona Paterna (Valencia)",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2539",
+      "inRibaRoja": false,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00238"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Electricista"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Experiencia previa en mantenimiento eléctrico industrial, instalaciones eléctricas o revisiones técnicas en baja tensión. Valorable experiencia en realización de termografías o inspecciones eléctricas. Carnet de conducir B. Necesaria formación vigente de PRL 20h ( parte común+ electricidad). Valorable formación PRL de trabajos COEX, en altura y PEMP. Desplazamientos a instalaciones de cliente con coches/furgonetas de empresa."
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "CONSTRUCCIÓN"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "OFICIAL DE 1ª"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Centro de Conservación de Carreteras, autovía A-7/E-15, km 328, sentido Barcelona, Municipio: Paterna, Provincia: Valencia, CP: 46988"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno mañana"
+          },
+          {
+            "label": "Observaciones jornada",
+            "value": "Guardias puntuales"
+          },
+          {
+            "label": "Horario",
+            "value": "Lunes a viernes de 7h a 15h"
+          },
+          {
+            "label": "Salario",
+            "value": "Convenio + Complementos (a convenir según valía)"
+          },
+          {
+            "label": "Funciones",
+            "value": "- Revisión preventiva de cuadros eléctricos, líneas, conexiones, protecciones y otros elementos de baja tensión. - Detección de anomalías, puntos calientes, sobrecargas o posibles riesgos eléctricos. - Ejecución de pequeñas correcciones, ajustes y reparaciones derivadas de las revisiones realizadas. - Mantenimiento preventivo y correctivo de instalaciones eléctricas industriales. - Realización de pruebas, verificaciones y diagnósticos eléctricos. - Elaboración o apoyo en la recogida de información técnica tras las revisiones realizadas. - Desplazamiento a diferentes instalaciones de clientes con vehículo de empresa. - Cumplimiento de la normativa vigente en materia de seguridad, calidad y prevención de riesgos laborales. - Coordinación con el equipo técnico y responsables de proyecto para reportar incidencias o necesidades detectadas."
+          },
+          {
+            "label": "Habilidades",
+            "value": "- Conocimientos sólidos en electricidad de baja tensión, cuadros eléctricos y sistemas industriales. - Capacidad para realizar diagnósticos eléctricos y detectar incidencias en instalaciones. - Conocimiento de normativa eléctrica."
+          },
+          {
+            "label": "Informática",
+            "value": "Ofimática nivel usuario, redacción de informes, etc."
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "1",
+        "categoria": "OFICIAL DE 1ª",
+        "observaciones": "Experiencia previa en mantenimiento eléctrico industrial, instalaciones eléctricas o revisiones técnicas en baja tensión. Valorable experiencia en realización de termografías o inspecciones eléctricas. Carnet de conducir B. Necesaria formación vigente de PRL 20h ( parte común+ electricidad). Valorable formación PRL de trabajos COEX, en altura y PEMP. Desplazamientos a instalaciones de cliente con coches/furgonetas de empresa.",
+        "municipio": "Paterna",
+        "provincia": "Valencia",
+        "cp": "46988",
+        "jornada": "Completa Turnos: Turno mañana",
+        "horario": "Lunes a viernes de 7h a 15h",
+        "salario": "Convenio + Complementos (a convenir según valía)",
+        "funciones": "- Revisión preventiva de cuadros eléctricos, líneas, conexiones, protecciones y otros elementos de baja tensión. - Detección de anomalías, puntos calientes, sobrecargas o posibles riesgos eléctricos. - Ejecución de pequeñas correcciones, ajustes y reparaciones derivadas de las revisiones realizadas. - Mantenimiento preventivo y correctivo de instalaciones eléctricas industriales. - Realización de pruebas, verificaciones y diagnósticos eléctricos. - Elaboración o apoyo en la recogida de información técnica tras las revisiones realizadas. - Desplazamiento a diferentes instalaciones de clientes con vehículo de empresa. - Cumplimiento de la normativa vigente en materia de seguridad, calidad y prevención de riesgos laborales. - Coordinación con el equipo técnico y responsables de proyecto para reportar incidencias o necesidades detectadas.",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2411",
+      "fo": 2411,
+      "codigo": "2026/00112",
+      "titulo": "Electromecánico",
+      "publishedAt": "2026-09-21",
+      "deadline": "2026-11-21",
+      "location": "Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2411",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00112"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Electromecánico"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Requisitos : Ciclo formativo de mecánica o similar Experiencia mínima no necesaria Vehículo propio"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "2"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Horario",
+            "value": "De 7:00 a 15:00 horas"
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          },
+          {
+            "label": "Funciones",
+            "value": "Mantenimiento y reparación de carretillas elevadoras"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "2",
+        "observaciones": "Requisitos : Ciclo formativo de mecánica o similar Experiencia mínima no necesaria Vehículo propio",
+        "jornada": "Completa",
+        "horario": "De 7:00 a 15:00 horas",
+        "salario": "Según convenio",
+        "funciones": "Mantenimiento y reparación de carretillas elevadoras",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2109",
+      "fo": 2109,
+      "codigo": "2025/00139",
+      "titulo": "Operario/a en conservación de carreteras",
+      "publishedAt": "2026-09-21",
+      "deadline": "2026-11-21",
+      "location": "Autovía A-7/E-15, km 328, sentido Barcelona Paterna (Valencia)",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2109",
+      "inRibaRoja": false,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2025/00139"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Operario/a en conservación de carreteras"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "CONSTRUCCIÓN"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "5"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "OFICIAL DE 2ª"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Autovía A-7/E-15, km 328, sentido Barcelona, Municipio: Paterna, Provincia: Valencia, CP: 46988"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno mañana, Turno tarde, Turno noche, Turno rotativo, Festivos"
+          },
+          {
+            "label": "Observaciones jornada",
+            "value": "Turno rotativo"
+          },
+          {
+            "label": "Horario",
+            "value": "Mañana , Tarde y noche"
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio + Complementos"
+          },
+          {
+            "label": "Funciones",
+            "value": "Detección y subsanación de incidencias y daños en la carretera, atención a accidentes, señalización en carretera , borrado de pintadas, retirada de obstáculos, limpieza y reposición de balizamiento, reparación de baches , limpieza de drenajes , retirada desprendimientos, etc..."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          },
+          {
+            "label": "Habilidades",
+            "value": "Valorable carnet C (+E), Mov. Tierras, PRL, albañilería, soldadura, etc..."
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "5",
+        "categoria": "OFICIAL DE 2ª",
+        "municipio": "Paterna",
+        "provincia": "Valencia",
+        "cp": "46988",
+        "jornada": "Completa Turnos: Turno mañana, Turno tarde, Turno noche, Turno rotativo, Festivos",
+        "horario": "Mañana , Tarde y noche",
+        "salario": "Según convenio + Complementos",
+        "funciones": "Detección y subsanación de incidencias y daños en la carretera, atención a accidentes, señalización en carretera , borrado de pintadas, retirada de obstáculos, limpieza y reposición de balizamiento, reparación de baches , limpieza de drenajes , retirada desprendimientos, etc...",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
       "id": "2538",
       "fo": 2538,
       "codigo": "2026/00237",
-      "titulo": "AUXILIAR ENFERMERIA",
+      "titulo": "Auxiliar de enfermería",
       "publishedAt": "2026-09-17",
       "deadline": "2026-11-17",
       "location": "URBANIZACION LA LLOBATERA, CALLE OBOE 54 Riba-roja de Túria",
@@ -43,7 +302,7 @@
           },
           {
             "label": "Nombre de la oferta",
-            "value": "AUXILIAR ENFERMERIA"
+            "value": "Auxiliar de enfermería"
           },
           {
             "label": "Sector CNAE",
@@ -71,7 +330,7 @@
           },
           {
             "label": "Salario",
-            "value": "SEGUN CONVENIO"
+            "value": "Según convenio"
           },
           {
             "label": "Requiere vehículo propio",
@@ -82,7 +341,7 @@
         "duracion": "Más de 6 meses",
         "numPuestos": "5",
         "jornada": "Completa",
-        "salario": "SEGUN CONVENIO",
+        "salario": "Según convenio",
         "vehiculo": "Sí",
         "ocupaciones": []
       }
@@ -91,7 +350,7 @@
       "id": "2537",
       "fo": 2537,
       "codigo": "2026/00236",
-      "titulo": "ENFERMERO/A",
+      "titulo": "Enfermero/a",
       "publishedAt": "2026-09-17",
       "deadline": "2026-11-17",
       "location": "CALLE OBOE 54, URBANIZACION LA LLOBATERA Riba-roja de Túria",
@@ -107,7 +366,7 @@
           },
           {
             "label": "Nombre de la oferta",
-            "value": "ENFERMERO/A"
+            "value": "Enfermero/a"
           },
           {
             "label": "Sector CNAE",
@@ -135,7 +394,7 @@
           },
           {
             "label": "Observaciones jornada",
-            "value": "HAY JORNADA COMPLETA Y TAMBIÉN PODRÍA SER JORNADA PARCIAL"
+            "value": "Hay jornada completa y también podría ser jornada parcial"
           },
           {
             "label": "Salario",
@@ -491,7 +750,7 @@
       "id": "2532",
       "fo": 2532,
       "codigo": "2026/00231",
-      "titulo": "COMERCIAL",
+      "titulo": "Comercial",
       "publishedAt": "2026-09-09",
       "deadline": "2026-11-09",
       "location": "Vilamarxant (Valencia)",
@@ -507,7 +766,7 @@
           },
           {
             "label": "Nombre de la oferta",
-            "value": "COMERCIAL"
+            "value": "Comercial"
           },
           {
             "label": "Sector CNAE",
@@ -539,7 +798,7 @@
           },
           {
             "label": "Funciones",
-            "value": "COMERCIAL DE BEBIDAS, ALIMENTACIÓN Y DIFERENTES PRODUCTOS PARA HOSTELERÍA"
+            "value": "Comercial de bebidas, alimentación y diferentes productos para hostelería"
           }
         ],
         "tipoContrato": "CONTRATO INDEFINIDO",
@@ -550,7 +809,7 @@
         "cp": "46191",
         "jornada": "Completa",
         "salario": "1500 NETOS aprox. + INCENTIVOS DE VENTA",
-        "funciones": "COMERCIAL DE BEBIDAS, ALIMENTACIÓN Y DIFERENTES PRODUCTOS PARA HOSTELERÍA",
+        "funciones": "Comercial de bebidas, alimentación y diferentes productos para hostelería",
         "ocupaciones": []
       }
     },
@@ -774,105 +1033,6 @@
         "ocupaciones": [
           {
             "nombre": "CONDUCTORES-OPERADORES DE GRÚA EN CAMIÓN"
-          }
-        ]
-      }
-    },
-    {
-      "id": "2530",
-      "fo": 2530,
-      "codigo": "2026/00229",
-      "titulo": "Auxiliar administrativa/o polivalente",
-      "publishedAt": "2026-09-04",
-      "deadline": "2026-09-20",
-      "location": "POLIGONO INDUSTRIAL ENTREVIES (JUNTO A METRO RIBARROJA Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2530",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00229"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Auxiliar administrativa/o polivalente"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Puesto de auxiliar administrativo/a polivalente en Turia-Regs."
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "AGRICULTURA, GANADERÍA, SILVICULTURA Y PESCA"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "AUXILIARES ADMINISTRATIVOS"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "POLIGONO INDUSTRIAL ENTREVIES (JUNTO A METRO RIBARROJA, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Indiferente Turnos: Turno mañana"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "Trabajo presencial. Posibilidad de jornada completa o parcial. (6-8 horas / día)"
-          },
-          {
-            "label": "Horario",
-            "value": "Horario estable a acordar según disponibilidad y necesidades de la empresa. Por ejemplo, puede plantearse una jornada de 8:00 a 14:00..."
-          },
-          {
-            "label": "Salario",
-            "value": "17.000"
-          },
-          {
-            "label": "Funciones",
-            "value": "Introducción, revisión y organización de albaranes. Preparación y emisión de facturas. Registro en el sistema de materiales recibidos y facturas de proveedores. Apoyo en la compra de material y seguimiento de pedidos a proveedores. Apoyo administrativo al almacén. Apoyo puntual en la atención al cliente y comunicaciones relacionadas con pedidos, material recibido o disponibilidad. Organización de documentación de vehículos, PRL y otra documentación interna. Otras tareas administrativas y de apoyo que vayan surgiendo."
-          },
-          {
-            "label": "Habilidades",
-            "value": "Persona organizada, práctica y resolutiva. Capacidad para trabajar con tareas variadas, cambiar de una tarea a otra según las necesidades, aprender nuevos procedimientos y sacar el trabajo adelante con autonomía. Atención al detalle, iniciativa, sentido común y facilidad para trabajar en equipo."
-          },
-          {
-            "label": "Informática",
-            "value": "Manejo fluido del ordenador y facilidad para trabajar con programas de gestión. Experiencia con software de facturación/ERP, correo electrónico, gestión documental y paquete Office. Se valorará especialmente soltura con Excel y facilidad para aprender nuevas aplicaciones."
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "1",
-        "categoria": "AUXILIARES ADMINISTRATIVOS",
-        "observaciones": "Puesto de auxiliar administrativo/a polivalente en Turia-Regs.",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46190",
-        "jornada": "Indiferente Turnos: Turno mañana",
-        "horario": "Horario estable a acordar según disponibilidad y necesidades de la empresa. Por ejemplo, puede plantearse una jornada de 8:00 a 14:00...",
-        "salario": "17.000",
-        "funciones": "Introducción, revisión y organización de albaranes. Preparación y emisión de facturas. Registro en el sistema de materiales recibidos y facturas de proveedores. Apoyo en la compra de material y seguimiento de pedidos a proveedores. Apoyo administrativo al almacén. Apoyo puntual en la atención al cliente y comunicaciones relacionadas con pedidos, material recibido o disponibilidad. Organización de documentación de vehículos, PRL y otra documentación interna. Otras tareas administrativas y de apoyo que vayan surgiendo.",
-        "ocupaciones": [
-          {
-            "nombre": "Asistentes de dirección y administrativos",
-            "experiencia": "3 Años"
           }
         ]
       }
@@ -3473,85 +3633,6 @@
       }
     },
     {
-      "id": "2509",
-      "fo": 2509,
-      "codigo": "2026/00208",
-      "titulo": "Personal de limpieza sustitución agosto",
-      "publishedAt": "2026-08-04",
-      "deadline": "2026-10-04",
-      "location": "Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2509",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00208"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Personal de limpieza sustitución agosto"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Requisitos : Preferible experiencia previa Vehículo propio"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO DE OBRA O SERVICIO DETERMINADO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "De 1 a 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "2"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "Sustitución por vacaciones"
-          },
-          {
-            "label": "Horario",
-            "value": "29 horas semanales 39 horas semanales"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          },
-          {
-            "label": "Funciones",
-            "value": "Tareas de limpieza"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO DE OBRA O SERVICIO DETERMINADO",
-        "duracion": "De 1 a 6 meses",
-        "numPuestos": "2",
-        "observaciones": "Requisitos : Preferible experiencia previa Vehículo propio",
-        "jornada": "Completa",
-        "horario": "29 horas semanales 39 horas semanales",
-        "salario": "Según convenio",
-        "funciones": "Tareas de limpieza",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
       "id": "2507",
       "fo": 2507,
       "codigo": "2026/00207",
@@ -3999,71 +4080,6 @@
       }
     },
     {
-      "id": "2502",
-      "fo": 2502,
-      "codigo": "2026/00201",
-      "titulo": "Mozo almacén departamento internacional",
-      "publishedAt": "2026-07-23",
-      "deadline": "2026-09-23",
-      "location": "Área Industrial Riba-roja Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2502",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00201"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Mozo almacén departamento internacional"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Carnet de carretillero/a. Importante nivel de inglés, mínimo B2. Experiencia en lanzaderas, como mozo almacén, preparador/a pedidos, factor, similar. Manejo de excell, power b, tablas dinámicas, etc.,. Grabad@r datos Contrato indefinido con 3 meses de prueba. Categoría de mozo especialista. SBA el correspondiente según convenio de transporte 2026 acorde a su categoría profesional de mozo especialista. Coche propio. Horario desde las 08:00 hasta las 17:00 (-1 hora comida). Fecha de incorporación INMEDIATA."
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "3 MESES DE PRUEBA + INDEFINIDO"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Área Industrial Riba-roja, Municipio: Riba-roja de Túria, Provincia: Valencia"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa"
-          },
-          {
-            "label": "Horario",
-            "value": "Desde las 08:00 hasta las 17:00 (-1 hora comida)."
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio de moz@ especialista"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "3 MESES DE PRUEBA + INDEFINIDO",
-        "numPuestos": "1",
-        "observaciones": "Carnet de carretillero/a. Importante nivel de inglés, mínimo B2. Experiencia en lanzaderas, como mozo almacén, preparador/a pedidos, factor, similar. Manejo de excell, power b, tablas dinámicas, etc.,. Grabad@r datos Contrato indefinido con 3 meses de prueba. Categoría de mozo especialista. SBA el correspondiente según convenio de transporte 2026 acorde a su categoría profesional de mozo especialista. Coche propio. Horario desde las 08:00 hasta las 17:00 (-1 hora comida). Fecha de incorporación INMEDIATA.",
-        "jornada": "Completa",
-        "horario": "Desde las 08:00 hasta las 17:00 (-1 hora comida).",
-        "salario": "Según convenio de moz@ especialista",
-        "ocupaciones": []
-      }
-    },
-    {
       "id": "2501",
       "fo": 2501,
       "codigo": "2026/00200",
@@ -4215,7 +4231,7 @@
       "codigo": "2026/00197",
       "titulo": "Celador/a",
       "publishedAt": "2026-07-21",
-      "deadline": "2026-09-21",
+      "deadline": "2026-10-21",
       "location": "Riba-roja de Túria",
       "status": "Abierta",
       "statusTone": "ok",
@@ -4345,88 +4361,6 @@
         "jornada": "Completa",
         "salario": "18.000€ - 24.000€",
         "funciones": "- Montaje y desmontaje de neumáticos con maquinaria especializada. - Balanceo dinámico y estático, asegurando un correcto rendimiento del vehículo. - Alineación de dirección (si aplica) con equipos específicos. - Reparación segura de pinchazos y daños en neumáticos. - Revisión técnica del estado de los neumáticos (presión, dibujo, deformaciones). - Mantenimiento y cuidado de herramientas y equipos. - Atención al cliente en taller, ofreciendo un servicio profesional y cordial.",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2497",
-      "fo": 2497,
-      "codigo": "2026/00196",
-      "titulo": "Conductor grúa rígido y articulado",
-      "publishedAt": "2026-07-20",
-      "deadline": "2026-09-20",
-      "location": "POLÍGONO INDUSTRIAL Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2497",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00196"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Conductor grúa rígido y articulado"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "TRANSPORTE Y ALMACENAMIENTO"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "3"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "OFICIAL DE 3ª y ESPECIALISTAS"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "POLÍGONO INDUSTRIAL, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa"
-          },
-          {
-            "label": "Horario",
-            "value": "8:00 - 14:00/15:00 - 17:00"
-          },
-          {
-            "label": "Salario",
-            "value": "SEGÚN CONVENIO"
-          },
-          {
-            "label": "Funciones",
-            "value": "Trasporte de vehículos (recogida y entrega)"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "3",
-        "categoria": "OFICIAL DE 3ª y ESPECIALISTAS",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46190",
-        "jornada": "Completa",
-        "horario": "8:00 - 14:00/15:00 - 17:00",
-        "salario": "SEGÚN CONVENIO",
-        "funciones": "Trasporte de vehículos (recogida y entrega)",
         "vehiculo": "Sí",
         "ocupaciones": []
       }

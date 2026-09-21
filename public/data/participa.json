@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-20T09:31:38.997Z",
+  "generatedAt": "2026-09-21T10:16:04.712Z",
   "source": {
     "posts": "https://participa.ribarroja.es/wp-json/wp/v2/posts?per_page=100&_fields=id,date,title,link,excerpt,content,categories,slug,status",
     "categories": "https://participa.ribarroja.es/wp-json/wp/v2/categories?per_page=100",
