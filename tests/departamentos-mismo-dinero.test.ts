@@ -98,15 +98,12 @@ describe('/departamentos mide el dinero con la regla del resto del sitio', () =>
       (a: number, s: string) => a + bySlug[s].contratacion.importeEur,
       0,
     )
-    const conIva = tenders.contracts.reduce(
-      (a: number, c: { finalAmount?: number; initialAmount?: number }) => {
-        if (!isCommittedContract(c)) return a
-        const slug = departmentForTender(c)
-        if (!slug || !ALLOWED_DEPARTMENT_SLUGS.includes(slug)) return a
-        return a + Number(c.finalAmount || c.initialAmount || 0)
-      },
-      0,
-    )
+    const conIva = tenders.contracts.reduce((a: number, c: Record<string, unknown>) => {
+      if (!isCommittedContract(c)) return a
+      const slug = departmentForTender(c)
+      if (!slug || !ALLOWED_DEPARTMENT_SLUGS.includes(slug)) return a
+      return a + Number(c.finalAmount || c.initialAmount || 0)
+    }, 0)
     expect(publicado).toBeLessThan(conIva)
   })
 

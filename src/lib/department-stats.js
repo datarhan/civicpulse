@@ -21,6 +21,7 @@ import {
 } from '../scraper/departments'
 import { topicToDeptSlugs, promiseDeptSlug } from './department-claim-topics'
 import { medibilidad } from './reloj-lpacap'
+import { isCommittedContract, importeAdjudicado } from './contract-status'
 
 /** Los estados en que una queja ya no está abierta. */
 export const ESTADOS_CERRADOS = new Set(['resuelta', 'cerrada_no_registrada'])
@@ -293,18 +294,33 @@ export function computeDepartmentStats({
   // money — and only unambiguous categories, so the number under-states
   // instead of putting a wrong owner on a spending figure.
   for (const c of tenders?.contracts ?? []) {
-    // Count a contract as spent money when it names a WINNER and was not
-    // revoked — not when `status === 'awarded'`. Gobierto leaves status as
-    // "unknown" on 413 of 804 rows that plainly are awarded (assignee,
-    // awardDate and amount all present), so trusting that field reported
-    // €15M of €138M attributable spend.
-    if (!c.assignee || c.status === 'revoked') continue
+    // EL predicado del sitio, no uno propio. Este módulo tenía el suyo —«nombra
+    // adjudicatario y no está revocado»— escrito para esquivar el `status ===
+    // 'awarded'` que dejaba fuera los 413 de 804 que Gobierto manda en blanco.
+    // `isCommittedContract` ya resuelve ese caso, y además los dos que el de
+    // aquí no miraba: una licitación ABIERTA que ya nombre adjudicatario no es
+    // gasto, y una adjudicación deshecha tampoco cuando el estado es `void`,
+    // `abandoned` o `withdrawn` en vez de `revoked`.
+    //
+    // Medido el 2026-09-21: los dos predicados dan las mismas 711 filas, así
+    // que esto no mueve ninguna cifra hoy. Tapa el agujero antes de que lo
+    // cruce algo, que es cuando sale barato.
+    if (!isCommittedContract(c)) continue
     // Prefer the filed CPV codes over Gobierto's coarse category: the category
     // alone put 40 contracts under Salud that were never health spending.
     const slug = departmentForTender(c)
     if (!slug || !buckets[slug]) continue
     buckets[slug].contratacion.contratos += 1
-    buckets[slug].contratacion.importeEur += Number(c.finalAmount || c.initialAmount || 0)
+    // SIN IVA, como el resto del sitio. Aquí se sumaba `finalAmount ||
+    // initialAmount`: con impuestos, y cayendo al presupuesto de licitación
+    // cuando la fila no publica adjudicación. Las dos cosas hinchan. Medido
+    // sobre lo que llega a las fichas, el total atribuido baja de 72.056.226 €
+    // a 61.706.105 € —un 14,4 %—, con todas las áreas entre el −3,6 % de
+    // hacienda y el −24,5 % de educación; un lector que comparase la ficha de
+    // su concejalía con los 124,0 M€ de /presupuesto estaba comparando dos
+    // magnitudes distintas. `null` no suma: un contrato firmado sin importe de
+    // adjudicación cuenta como contrato y no como euros.
+    buckets[slug].contratacion.importeEur += importeAdjudicado(c) ?? 0
     // The span these euros cover, read from the rows we actually counted.
     // Without it the card shows a nine-year accumulation next to a one-year
     // municipal budget and invites the reader to compare them — the same

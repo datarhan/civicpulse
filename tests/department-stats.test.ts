@@ -455,9 +455,16 @@ describe('computeDepartmentStats — contratación por concejalía', () => {
       tenders,
     })
     // Sin `awardDate` en estos contratos no hay periodo que publicar: `anios` es null.
+    //
+    // Y son DOS contratos que suman el importe de UNO. `c2` es una fila firmada
+    // —estado en blanco con adjudicatario, el caso que Gobierto manda en 413 de
+    // 804— que sólo publica `initialAmount`, o sea su presupuesto de licitación.
+    // Antes se sumaban esos 50.000 € como si fueran la adjudicación; ahora
+    // cuenta como contrato y no como euros, porque nadie ha publicado por
+    // cuánto se firmó. En el fichero de verdad son cinco filas así.
     expect(bySlug['obras-publicas'].contratacion).toEqual({
       contratos: 2,
-      importeEur: 150000,
+      importeEur: 100000,
       anios: null,
     })
     expect(bySlug['medio-ambiente'].contratacion).toEqual({
