@@ -95,11 +95,60 @@ export function isCommittedContract(c) {
   return Boolean(c.assignee)
 }
 
-/** Amount to attribute, sin IVA where available. Never negative. */
-export function contractAmountEur(c) {
-  const v = c?.finalAmountNoTaxes ?? c?.initialAmountNoTaxes ?? c?.finalAmount ?? c?.initialAmount
+/** Un importe publicado y positivo, o `null`. Nunca un cero que se pueda sumar. */
+function positivo(v) {
   const n = Number(v)
-  return Number.isFinite(n) && n > 0 ? n : 0
+  return Number.isFinite(n) && n > 0 ? n : null
+}
+
+/**
+ * Cuánto se ADJUDICÓ este contrato, sin IVA. `null` cuando la fuente no lo
+ * publica.
+ *
+ * Sin IVA primero para casar con el titular «Importe de adjudicación» de la
+ * ficha de PLACSP (contrataciondelestado.es) y con la convención española del
+ * valor estimado, que va siempre sin impuestos. El importe CON IVA sólo entra
+ * cuando la fila no trae el otro.
+ *
+ * **No cae al presupuesto base de licitación**, y esa es la razón de que esta
+ * función exista. Lo licitado es lo que el ayuntamiento sacó a concurso y lo
+ * adjudicado es por lo que se firmó: dos magnitudes distintas, casi siempre la
+ * primera mayor que la segunda. Rellenar el hueco con la de al lado publica
+ * como adjudicación algo que nadie adjudicó. El 2026-09-21 eran cinco
+ * contratos firmados y 309.855,55 € colados en una tarjeta rotulada
+ * «adjudicado sin IVA», por una caída que su propio comentario declaraba
+ * imposible («none do today»).
+ *
+ * Devuelve `null`, no `0`: adjudicar por cero euros y no publicar el importe
+ * son cosas distintas, y un cero se suma, se compara y se pinta sin que nadie
+ * lo note. Quien agrega descarta el `null`; quien pinta dice que falta.
+ *
+ * @param {{finalAmountNoTaxes?:number, finalAmount?:number}|null} [c]
+ * @returns {number|null}
+ */
+export function importeAdjudicado(c) {
+  if (!c) return null
+  return positivo(c.finalAmountNoTaxes) ?? positivo(c.finalAmount)
+}
+
+/** ¿Publica la fuente el importe de adjudicación de esta fila? */
+export function publicaImporteAdjudicado(c) {
+  return importeAdjudicado(c) !== null
+}
+
+/**
+ * El presupuesto base de LICITACIÓN, sin IVA. `null` si no consta.
+ *
+ * Se pide por su nombre, nunca cayendo desde `importeAdjudicado`: quien enseña
+ * esta cifra tiene que saber que está enseñando otra magnitud, y por eso es
+ * otra llamada y no un segundo parámetro.
+ *
+ * @param {{initialAmountNoTaxes?:number, initialAmount?:number}|null} [c]
+ * @returns {number|null}
+ */
+export function importeLicitacion(c) {
+  if (!c) return null
+  return positivo(c.initialAmountNoTaxes) ?? positivo(c.initialAmount)
 }
 
 /**

@@ -8,7 +8,7 @@
 import { mkdir, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { isCommittedContract } from '../src/lib/contract-status.js'
+import { isCommittedContract, importeAdjudicado } from '../src/lib/contract-status.js'
 import {
   parseRibalicitaContracts,
   parseRibalicitaTenders,
@@ -65,12 +65,13 @@ async function main() {
   const contracts = parseRibalicitaContracts(contractsCsv)
   const tenders = parseRibalicitaTenders(tendersCsv)
 
-  // Sin IVA — matches the PLACSP "Importe de adjudicación" headline (the
-  // tax-excluded figure) and Spanish valor-estimado convention. Falls back to
-  // the tax-included finalAmount only when a row lacks the sin-IVA value.
+  // La precedencia se importa; era la sexta copia de la misma regla y la que
+  // produce la cifra de la portada. Coincidía en el número —es la versión
+  // estricta— pero un sitio más donde volver a escribirla es un sitio más donde
+  // se puede escribir distinto.
   const awardedTotal = contracts
     .filter((c) => isCommittedContract(c))
-    .reduce((s, c) => s + (c.finalAmountNoTaxes > 0 ? c.finalAmountNoTaxes : c.finalAmount || 0), 0)
+    .reduce((s, c) => s + (importeAdjudicado(c) ?? 0), 0)
 
   const payload = {
     generatedAt: new Date().toISOString(),

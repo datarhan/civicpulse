@@ -1,6 +1,5 @@
-import { Fragment } from 'react'
 import { Link } from 'react-router-dom'
-import { Card, ExtLink, Pill, SectionHead } from '../components/Primitives'
+import { Card, ExtLink, Marcado, Pill, SectionHead } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
 import { useBudget, formatEuros } from '../hooks/useBudget'
 import { contrastarPresupuesto, TOLERANCIA_EQUILIBRIO } from '../scraper/budget-contraste'
@@ -23,7 +22,11 @@ import {
   tendenciaDeuda,
   capitulosACero,
 } from '../scraper/presupuesto-lectura'
-import { isCommittedContract, committedAwardYearSpan } from '../lib/contract-status'
+import {
+  isCommittedContract,
+  committedAwardYearSpan,
+  importeAdjudicado,
+} from '../lib/contract-status'
 import { decimal, fmtDateCompacta, fmtDateLong, rellena } from '../lib/formatters'
 import { conHuecos } from '../lib/huecos'
 import { titularDeuda } from '../lib/deuda-titular'
@@ -82,13 +85,6 @@ const num = (n) => Number(n).toLocaleString('es-ES')
 function listaProsa(partes, y) {
   if (partes.length <= 1) return partes.join('')
   return `${partes.slice(0, -1).join(', ')} ${y} ${partes[partes.length - 1]}`
-}
-
-/** Un par de asteriscos en el catálogo marca negrita. */
-function Marcado({ texto }) {
-  return String(texto)
-    .split('**')
-    .map((p, i) => (i % 2 ? <strong key={i}>{p}</strong> : <Fragment key={i}>{p}</Fragment>))
 }
 
 const EYEBROW = {
@@ -617,12 +613,21 @@ function Swatch({ color, opacity = 1 }) {
 function CapitulosCard() {
   const t = useT()
   const { data } = useBudgetExecution()
+  const { data: aprobado } = useBudget()
   const p = data?.latest
   const total = p?.gastos?.total
   const filas = lecturaCapitulos(p?.gastos?.chapters, total)
   if (!p || filas.length === 0 || !(total?.actual > 0)) return null
   const dominante = capituloDominante(p.gastos.chapters, total)
   const capMax = Math.max(...filas.map((f) => f.definitivo), 1)
+  // Qué dice de ese mismo capítulo la OTRA fuente. `contrastarPresupuesto`
+  // devuelve null cuando los ejercicios no casan, y entonces no hay dos
+  // presupuestos del mismo año que contrastar: la frase se queda en la simple.
+  const contraste = contrastarPresupuesto(aprobado?.snapshot, p)
+  const segunConprel =
+    dominante && contraste
+      ? contraste.capitulos.find((c) => c.code === String(dominante.capitulo))
+      : null
 
   const notaDe = (f) => {
     // La cuota de la ampliación NO se repite aquí cuando el capítulo abrió en
@@ -794,6 +799,7 @@ function CapitulosCard() {
         })}
       </div>
       <p
+        data-pie="capitulos"
         style={{
           margin: '16px 0 0',
           paddingTop: 14,
@@ -808,10 +814,28 @@ function CapitulosCard() {
         {dominante && (
           <Marcado
             texto={rellena(
+              // Tres frases, y la del medio es la que faltaba. «Ese crédito no
+              // estaba en el presupuesto que se aprobó» está bien dicho de un
+              // ayuntamiento con UN presupuesto aprobado, y esta página publica
+              // dos: el estado de ejecución del propio ayuntamiento abre
+              // Inversiones reales en 0 € y el remitido a CONPREL le da
+              // 905.517,35 €. La frase elegía una de las dos sin decirlo, y
+              // elegía justo en el capítulo donde más discrepan — mientras la
+              // tarjeta de más abajo se titula «Dos fuentes, dos presupuestos
+              // aprobados» y promete que cada cifra dice de cuál viene.
+              //
+              // Derivado, no escrito: el día que las dos coincidan en ese
+              // capítulo, la frase vuelve sola a la simple. Y la clave se
+              // nombra AQUÍ, en la misma llamada que rellena sus huecos, no en
+              // una variable: el guard de `i18n-catalogue` lee el objeto pegado
+              // al literal, y con la clave escondida en un ayudante se pone
+              // rojo, que es lo que tiene que hacer un guard que no puede mirar.
               t(
-                dominante.abrioEnCero
-                  ? 'presupuesto.cap.pie.cero'
-                  : 'presupuesto.cap.pie.dominante',
+                !dominante.abrioEnCero
+                  ? 'presupuesto.cap.pie.dominante'
+                  : segunConprel?.conprel > 0
+                    ? 'presupuesto.cap.pie.ceroDiscrepan'
+                    : 'presupuesto.cap.pie.cero',
               ),
               {
                 capitulo: dominante.rotulo,
@@ -819,6 +843,12 @@ function CapitulosCard() {
                 inicial: eurM(dominante.definitivo - dominante.modificaciones, 2),
                 cuota: pct0(dominante.cuotaAmpliacion * 100),
                 pct: pct1(dominante.pctEjecutado),
+                // Al euro, no en millones como el resto de la frase: esta cifra
+                // es una REMISIÓN a la tarjeta de CONPREL que hay dos pantallas
+                // más abajo, donde ese capítulo aparece como «905.517 €». La
+                // frase existe para que el lector lo compruebe allí, y un
+                // «0,91 M€» le pone una conversión por delante.
+                conprel: eur0(segunConprel?.conprel ?? 0),
               },
             )}
           />
@@ -1313,9 +1343,7 @@ function ContratacionBanda() {
   const contratos = tenders?.contracts ?? []
   const r = contratos.length > 0 ? resumenMenores(contratos) : null
   const adjudicados = contratos.filter((c) => isCommittedContract(c))
-  const totalNeto = adjudicados
-    .map((c) => c.finalAmountNoTaxes ?? c.initialAmountNoTaxes ?? 0)
-    .reduce((a, b) => a + b, 0)
+  const totalNeto = adjudicados.map((c) => importeAdjudicado(c) ?? 0).reduce((a, b) => a + b, 0)
 
   const obras = obrasData?.obras ?? []
   const renove = obras.filter((o) => o.programa === 'renove').length
@@ -1650,15 +1678,13 @@ function ContratacionMenorSection() {
   // ellas diluye el peso de la vía directa —23 % en vez del 26 % real— y lo
   // cazó la revisión lectora antes de que esto se publicara.
   const adjudicados = contratos.filter((c) => isCommittedContract(c))
-  const totalNeto = adjudicados
-    .map((c) => c.finalAmountNoTaxes ?? c.initialAmountNoTaxes ?? 0)
-    .reduce((a, b) => a + b, 0)
+  const totalNeto = adjudicados.map((c) => importeAdjudicado(c) ?? 0).reduce((a, b) => a + b, 0)
   const cuota = totalNeto > 0 ? (r.importeSinIva / totalNeto) * 100 : null
   // El total lo domina una sola concesión adjudicada de una vez por todo su
   // plazo, así que «2,5 % del importe» dicho solo tranquiliza más de lo que el
   // dato sostiene. Derivado, nunca escrito: una concesión nueva lo mueve.
   const peso = pesoDelMayor(
-    adjudicados.map((c) => c.finalAmountNoTaxes ?? c.initialAmountNoTaxes ?? 0),
+    adjudicados.map((c) => importeAdjudicado(c) ?? 0),
     r.importeSinIva,
   )
   const topeAnio = Math.max(...r.porAnio.map((a) => a.n), 1)

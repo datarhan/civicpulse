@@ -1,5 +1,5 @@
 import { stripDiacritics } from './normalize'
-import { isCommittedContract } from '../lib/contract-status.js'
+import { isCommittedContract, importeAdjudicado } from '../lib/contract-status.js'
 import {
   resolvePlace,
   resolveDistinctPlaces,
@@ -143,18 +143,19 @@ export function foldText(s: string): string {
 }
 
 function amountOf(c: ContractInput): { amount: number; kind: 'final' | 'initial' } | null {
-  // Awarded-only universe, SIN IVA — matches the authoritative PLACSP "Importe
-  // de adjudicación" headline (contrataciondelestado.es) and the Spanish
-  // valor-estimado convention. Non-awarded contracts (open/in-tender/
-  // in-progress) are excluded entirely. Prefers the tax-excluded figure; falls
-  // back to the tax-included finalAmount only when a row lacks the sin-IVA
-  // value (none do today — defensive).
+  // Universo sólo-adjudicado. Los contratos no adjudicados —abiertos, en
+  // licitación, en curso— quedan fuera enteros, y también los firmados cuya
+  // fila no publica importe de adjudicación: su presupuesto de licitación es
+  // otra magnitud y meterlo aquí inflaría el universo con dinero que nadie
+  // adjudicó.
+  //
+  // La precedencia NO se escribe aquí. Esta función y `contractAmount` en
+  // `src/lib/tender-geo.js` eran dos copias de la misma regla que discrepaban
+  // en justo ese caso, y el resultado fue que la tarjeta de /presupuesto y el
+  // mapa que vive dentro de ella publicaban dos totales distintos.
   if (!isCommittedContract(c)) return null
-  if (typeof c.finalAmountNoTaxes === 'number' && c.finalAmountNoTaxes > 0)
-    return { amount: c.finalAmountNoTaxes, kind: 'final' }
-  if (typeof c.finalAmount === 'number' && c.finalAmount > 0)
-    return { amount: c.finalAmount, kind: 'final' }
-  return null
+  const amount = importeAdjudicado(c)
+  return amount === null ? null : { amount, kind: 'final' }
 }
 
 function dateOf(c: ContractInput): string | null {

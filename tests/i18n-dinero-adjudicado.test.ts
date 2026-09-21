@@ -42,8 +42,8 @@
 import { describe, expect, it } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { CATALOGUE, LOCALES } from '../src/i18n'
-import { isCommittedContract } from '../src/lib/contract-status'
-import { contractAmount, contractTypeTotals } from '../src/lib/tender-geo'
+import { isCommittedContract, importeAdjudicado } from '../src/lib/contract-status'
+import { contractTypeTotals } from '../src/lib/tender-geo'
 
 /** La cifra, su cobertura, y el nombre de la capa que las pinta. */
 const ROTULOS_DE_CIFRA = [
@@ -70,17 +70,17 @@ describe('portada · «gasto» no es «adjudicado»', () => {
     const contratos = JSON.parse(readFileSync('public/data/tenders.json', 'utf8')).contracts
     const universo = JSON.parse(readFileSync('public/data/tender-geo.json', 'utf8')).universe
 
+    // La precedencia se IMPORTA. Esta reconstrucción la copiaba a mano —la
+    // regla 1 de DATA_INTEGRITY cometida por la guarda escrita contra el mismo
+    // defecto— y así no podía ver que la copia de al lado, `contractAmount`,
+    // dijera otra cosa sobre las mismas filas. Decía otra cosa: ver
+    // `tests/importe-adjudicado.test.ts`.
     let suma = 0
     let n = 0
     for (const c of contratos) {
       if (!isCommittedContract(c)) continue
-      const a =
-        typeof c.finalAmountNoTaxes === 'number' && c.finalAmountNoTaxes > 0
-          ? c.finalAmountNoTaxes
-          : typeof c.finalAmount === 'number' && c.finalAmount > 0
-            ? c.finalAmount
-            : 0
-      if (!a) continue
+      const a = importeAdjudicado(c)
+      if (a === null) continue
       suma += a
       n++
     }
@@ -129,25 +129,21 @@ const ROTULOS_DE_PRESUPUESTO = [
 
 describe('/presupuesto · la tarjeta de contratos, el mismo vocabulario', () => {
   it('lo que agrupa la pestaña de tipos son contratos comprometidos, no ejecución', () => {
-    // La premisa, medida y no supuesta: el total de la pestaña se reconstruye
-    // ENTERO desde el universo que la tarjeta rotula «adjudicado sin IVA», más
-    // un resto que también se mide. No es un «se parece»: la diferencia son
-    // exactamente los contratos comprometidos que no publican importe de
-    // adjudicación, donde `contractAmount` cae al de licitación. Ni un euro del
-    // desglose viene de ejecución presupuestaria, que es lo que hace falsa la
-    // palabra «gasto». Si algún día entrara ejecución ahí, esto se cae antes
-    // que el vocabulario.
+    // La premisa, medida y no supuesta: el total de la pestaña ES el universo
+    // que la tarjeta rotula «adjudicado sin IVA». Ni un euro del desglose viene
+    // de ejecución presupuestaria, que es lo que haría falsa la palabra
+    // «gasto». Si algún día entrara ejecución ahí, esto se cae antes que el
+    // vocabulario.
+    //
+    // Esta afirmación llevaba un «+ resto» que documentaba una diferencia de
+    // 309.855,55 € en vez de arreglarla: era `contractAmount` cayendo al
+    // importe de licitación en cinco contratos firmados. La suma cuadra sin
+    // término de corrección desde que las dos leen la misma regla.
     const contratos = JSON.parse(readFileSync('public/data/tenders.json', 'utf8')).contracts
     const universo = JSON.parse(readFileSync('public/data/tender-geo.json', 'utf8')).universe
     const { rows, total } = contractTypeTotals(contratos)
     expect(rows.length).toBeGreaterThan(0)
-
-    const sinAdjudicacion = contratos.filter(
-      (c: { finalAmountNoTaxes?: number; finalAmount?: number }) =>
-        isCommittedContract(c) && !(c.finalAmountNoTaxes! > 0) && !(c.finalAmount! > 0),
-    )
-    const resto = sinAdjudicacion.reduce((a: number, c: object) => a + contractAmount(c), 0)
-    expect(total).toBeCloseTo(universo.totalAmount + resto, 2)
+    expect(total).toBeCloseTo(universo.totalAmount, 2)
   })
 
   it('ningún rótulo de la tarjeta usa la palabra de la ejecución', () => {
@@ -167,5 +163,57 @@ describe('/presupuesto · la tarjeta de contratos, el mismo vocabulario', () => 
     // llama así, y nada lo nota.
     const fuente = readFileSync('src/components/Presupuesto/GastoDashboard.jsx', 'utf8')
     expect(fuente).toMatch(/pestana: t\('presupuesto\.gasto\.pestana\.tipos'\)/)
+  })
+})
+
+/**
+ * Y la tercera superficie: el cruce de /quejas.
+ *
+ * `QuejasSpendOverlap` rotulaba su columna de euros «Gasto situado» y lo
+ * repetía cuatro veces en la prosa, sobre exactamente los mismos euros que el
+ * mapa de la portada y la tarjeta de /presupuesto rotulan «adjudicado». Duró
+ * porque estaba escrito A MANO dentro del componente: fuera del catálogo y por
+ * tanto fuera de esta guarda, que sólo sabe leer claves.
+ *
+ * Así que la guarda pide las dos cosas —que las cadenas existan en el catálogo
+ * y que digan la palabra correcta—, porque arreglar sólo la segunda dejaría el
+ * siguiente rótulo escrito en el sitio donde nadie lo mira. Y de paso la
+ * tarjeta pasa a hablar valencià, que es lo que #38 dejó a medias aquí.
+ */
+const ROTULOS_DEL_CRUCE = [
+  'quejas.cruce.titulo',
+  'quejas.cruce.intro',
+  'quejas.cruce.periodos',
+  'quejas.cruce.cierre',
+  'quejas.cruce.col.adjudicado',
+  'quejas.cruce.sinSituado',
+]
+
+describe('/quejas · el cruce por barrio, el mismo vocabulario', () => {
+  it('la tarjeta no escribe su prosa a mano: la lee del catálogo', () => {
+    const fuente = readFileSync('src/components/Quejas/QuejasSpendOverlap.jsx', 'utf8')
+    for (const clave of ROTULOS_DEL_CRUCE) {
+      expect(fuente, `no lee ${clave}`).toMatch(new RegExp(clave.replace(/\./g, '\\.')))
+    }
+  })
+
+  it('ningún rótulo del cruce usa la palabra de la ejecución', () => {
+    for (const locale of LOCALES) {
+      for (const clave of ROTULOS_DEL_CRUCE) {
+        const texto = CATALOGUE[locale]?.[clave]
+        expect(texto, `${locale} · ${clave} no existe`).toBeTruthy()
+        expect(texto, `${locale} · ${clave}`).not.toMatch(FAMILIA_GASTO)
+      }
+    }
+  })
+
+  it('la columna de euros dice de qué dinero habla', () => {
+    // No basta con quitar «gasto»: una columna rotulada «Situado» a secas no
+    // dice qué se situó. Las dos que nombran la magnitud tienen que nombrarla.
+    for (const locale of LOCALES) {
+      for (const clave of ['quejas.cruce.titulo', 'quejas.cruce.col.adjudicado']) {
+        expect(CATALOGUE[locale]?.[clave], `${locale} · ${clave}`).toMatch(FAMILIA_ADJUDICADO)
+      }
+    }
   })
 })

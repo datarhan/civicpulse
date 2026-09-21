@@ -68,16 +68,33 @@ export const IGUALES_EN_EL_CATALOGO = new Set(
 )
 
 /**
+ * El nombre de un hueco no es prosa de nadie.
+ *
+ * `{barrio}`, `{importe}`, `{asiento}` son etiquetas de máquina que viajan
+ * IDÉNTICAS en los dos idiomas, porque el código las sustituye por la clave y
+ * no por el idioma. Contarlas como palabras valencianas es lo que dejó a este
+ * detector ciego a treinta y nueve palabras castellanas —«barrio», «aviso»,
+ * «acuerdo», «aprobado», «asiento»…—: cada una aparecía en el lado valencià
+ * sólo porque algún `{hueco}` se llamaba así, de modo que la resta la daba por
+ * compartida entre las dos lenguas.
+ *
+ * Se vio al revés, que es como suelen verse: una tarjeta nueva de /quejas trajo
+ * un `{quejas}` al catálogo valencià y `mapa-valencia` —tres rutas más allá—
+ * dejó de reconocer «quejas» como castellana. La palabra era el caso 40.
+ */
+const sinHuecos = (s) => String(s).replace(/\{\w+\}/g, ' ')
+
+/**
  * Las palabras que sólo usa el castellano del catálogo: las de sus cadenas que
  * no aparecen en ninguna valenciana. Salen del catálogo, así que crecen con él
  * y nadie tiene que mantenerlas. Las que las dos lenguas comparten —«de»,
  * «no», «metro»— no están en ella.
  */
 export const SOLO_CASTELLANO = (() => {
-  const valencianas = new Set(Object.values(CATALOGUE.ca).flatMap((v) => palabras(String(v))))
+  const valencianas = new Set(Object.values(CATALOGUE.ca).flatMap((v) => palabras(sinHuecos(v))))
   return new Set(
     Object.values(CATALOGUE.es)
-      .flatMap((v) => palabras(String(v)))
+      .flatMap((v) => palabras(sinHuecos(v)))
       .filter((p) => !valencianas.has(p)),
   )
 })()

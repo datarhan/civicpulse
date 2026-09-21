@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import { Ic } from './Icons'
 import { safeHref } from '../lib/formatters'
 import { useT } from '../i18n'
@@ -380,6 +381,22 @@ export function EvidenceBand({ n, title, children }) {
       {children}
     </section>
   )
+}
+
+/**
+ * Un par de asteriscos en el catálogo marca negrita.
+ *
+ * Vivía suelto en `Presupuesto.jsx`. Se comparte porque la alternativa, cuando
+ * una segunda página quiere una frase con negrita dentro, es partir esa frase
+ * en tres claves y dejar que cada idioma las recomponga en su orden — que es
+ * como se escriben las traducciones que no se pueden revisar.
+ *
+ * @param {{texto: string}} p
+ */
+export function Marcado({ texto }) {
+  return String(texto)
+    .split('**')
+    .map((p, i) => (i % 2 ? <strong key={i}>{p}</strong> : <Fragment key={i}>{p}</Fragment>))
 }
 
 /**

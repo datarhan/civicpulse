@@ -757,6 +757,26 @@ export const CATALOGUE = {
     'presup.title': 'Presupuesto municipal',
     'quejas.eyebrow': 'Voz ciudadana',
     'quejas.title': 'Quejas ciudadanas',
+    // El cruce por barrio. La columna de euros son las zonas de
+    // `tender-geo.json`: importe de ADJUDICACIÓN sin IVA, los mismos euros que
+    // la portada rotula «adjudicado acumulado» y /presupuesto «adjudicado sin
+    // IVA». Se llamaba «gasto situado» porque esta prosa vivía escrita a mano
+    // dentro del componente, fuera del catálogo y fuera de la guarda.
+    'quejas.cruce.eyebrow': 'Cruce de datos · sin causalidad',
+    'quejas.cruce.titulo': 'Quejas y contratos situados por barrio',
+    'quejas.cruce.intro':
+      'Por barrio: número de quejas ciudadanas frente a lo adjudicado en contratos ya situados allí. **Las dos columnas no cubren el mismo periodo**',
+    'quejas.cruce.periodos':
+      ': las quejas se recogen desde {periodoQuejas} y lo situado acumula adjudicaciones de {periodoContratos}',
+    'quejas.cruce.periodos.sinFechas':
+      ' — el canal de quejas es mucho más reciente que el registro de contratación',
+    'quejas.cruce.cierre':
+      ', así que comparar una columna con la otra no mide la respuesta municipal. Son cifras de contexto — la ausencia de contratos situados **no** implica desatención: muchas actuaciones no nombran el lugar en el título y por eso no se sitúan (ver',
+    'quejas.cruce.metodologia': 'metodología',
+    'quejas.cruce.col.barrio': 'Barrio',
+    'quejas.cruce.col.quejas': 'Quejas',
+    'quejas.cruce.col.adjudicado': 'Adjudicado situado',
+    'quejas.cruce.sinSituado': 'sin contratos situados',
     'dashboard.eyebrow': 'Voz ciudadana · Dashboard',
     'dashboard.title': 'Salud del canal de quejas',
 
@@ -1049,6 +1069,10 @@ export const CATALOGUE = {
     'presupuesto.gasto.resultado.varios': 'resultados',
     'presupuesto.gasto.resultado.pagina': '{desde}–{hasta}, página {pagina} de {paginas}',
     'presupuesto.gasto.comprometido': 'son dinero comprometido (adjudicado o formalizado).',
+    // La cifra de esa fila es el presupuesto base de licitación, no el importe
+    // por el que se firmó, porque la fuente no publica el segundo. Se avisa
+    // sólo ahí: en una fila sin adjudicar la pastilla de estado ya lo dice.
+    'presupuesto.gasto.sinAdjudicacion': 'importe de licitación',
     'presupuesto.gasto.fueraDeCifras.uno':
       'El otro consta en el registro público pero no cuenta en las cifras de arriba:',
     'presupuesto.gasto.fueraDeCifras.varios':
@@ -1177,8 +1201,15 @@ export const CATALOGUE = {
     'presupuesto.cap.leyenda.ejecutado': 'ejecutado',
     'presupuesto.cap.nota.cero': 'crédito inicial 0 €',
     'presupuesto.cap.nota.cuota': '{cuota} % de toda la ampliación',
+    // Dos frases para el capítulo que abre en cero, y la diferencia es de quién
+    // es el cero. Esta página publica DOS presupuestos aprobados del mismo
+    // ejercicio: cuando el otro también abre el capítulo en cero, el crédito no
+    // estaba en ninguno y la frase puede decirlo. Cuando no —2025, Inversiones
+    // reales—, decirlo en singular elige una fuente sin nombrarla.
     'presupuesto.cap.pie.cero':
-      '**{capitulo} abrió el ejercicio con 0 € y acabó con {definitivo}** —el {cuota} % de toda la ampliación—, de los que se ejecutó el {pct} %. Un capítulo que empieza en cero y recibe todo su crédito durante el ejercicio no es una desviación de ejecución: es que ese crédito no estaba en el presupuesto que se aprobó.',
+      '**{capitulo} abrió el ejercicio con 0 € y acabó con {definitivo}** —el {cuota} % de toda la ampliación—, de los que se ejecutó el {pct} %. Un capítulo que empieza en cero y recibe todo su crédito durante el ejercicio no es una desviación de ejecución: ese crédito no estaba en ninguno de los dos presupuestos aprobados que publica esta página.',
+    'presupuesto.cap.pie.ceroDiscrepan':
+      '**{capitulo} abrió el ejercicio con 0 € y acabó con {definitivo}** —el {cuota} % de toda la ampliación—, de los que se ejecutó el {pct} %. Ese cero es el del estado de ejecución del propio Ayuntamiento: **el presupuesto que se remitió a CONPREL le da {conprel} de crédito inicial a ese mismo capítulo**. Las dos fuentes son oficiales y no se reconcilian, así que parte de lo que aquí figura como ampliación ya estaba aprobado en la otra.',
     'presupuesto.cap.pie.dominante':
       '**{capitulo} se llevó el {cuota} % de toda la ampliación**: de {inicial} a {definitivo}, de los que se ejecutó el {pct} %.',
     'presupuesto.cap.pie.cociente':
@@ -2318,6 +2349,21 @@ export const CATALOGUE = {
     'presup.title': 'Pressupost municipal',
     'quejas.eyebrow': 'Veu ciutadana',
     'quejas.title': 'Queixes ciutadanes',
+    'quejas.cruce.eyebrow': 'Creuament de dades · sense causalitat',
+    'quejas.cruce.titulo': 'Queixes i contractes situats per barri',
+    'quejas.cruce.intro':
+      'Per barri: nombre de queixes ciutadanes enfront del que s’ha adjudicat en contractes ja situats allí. **Les dos columnes no cobrixen el mateix període**',
+    'quejas.cruce.periodos':
+      ': les queixes es recullen des de {periodoQuejas} i el que està situat acumula adjudicacions de {periodoContratos}',
+    'quejas.cruce.periodos.sinFechas':
+      ' — el canal de queixes és molt més recent que el registre de contractació',
+    'quejas.cruce.cierre':
+      ', així que comparar una columna amb l’altra no mesura la resposta municipal. Són xifres de context — l’absència de contractes situats **no** implica desatenció: moltes actuacions no anomenen el lloc en el títol i per això no se situen (vore',
+    'quejas.cruce.metodologia': 'metodologia',
+    'quejas.cruce.col.barrio': 'Barri',
+    'quejas.cruce.col.quejas': 'Queixes',
+    'quejas.cruce.col.adjudicado': 'Adjudicat situat',
+    'quejas.cruce.sinSituado': 'sense contractes situats',
     'dashboard.eyebrow': 'Veu ciutadana · Tauler',
     'dashboard.title': 'Salut del canal de queixes',
 
@@ -2582,6 +2628,7 @@ export const CATALOGUE = {
     'presupuesto.gasto.resultado.varios': 'resultats',
     'presupuesto.gasto.resultado.pagina': '{desde}–{hasta}, pàgina {pagina} de {paginas}',
     'presupuesto.gasto.comprometido': 'són diners compromesos (adjudicats o formalitzats).',
+    'presupuesto.gasto.sinAdjudicacion': 'import de licitació',
     'presupuesto.gasto.fueraDeCifras.uno':
       'L’altre consta en el registre públic però no compta en les xifres de dalt:',
     'presupuesto.gasto.fueraDeCifras.varios':
@@ -2708,7 +2755,9 @@ export const CATALOGUE = {
     'presupuesto.cap.nota.cero': 'crèdit inicial 0 €',
     'presupuesto.cap.nota.cuota': "{cuota} % de tota l'ampliació",
     'presupuesto.cap.pie.cero':
-      "**{capitulo} va obrir l'exercici amb 0 € i va acabar amb {definitivo}** —el {cuota} % de tota l'ampliació—, dels quals es va executar el {pct} %. Un capítol que comença en zero i rep tot el seu crèdit durant l'exercici no és una desviació d'execució: és que eixe crèdit no estava en el pressupost que es va aprovar.",
+      "**{capitulo} va obrir l'exercici amb 0 € i va acabar amb {definitivo}** —el {cuota} % de tota l'ampliació—, dels quals es va executar el {pct} %. Un capítol que comença en zero i rep tot el seu crèdit durant l'exercici no és una desviació d'execució: eixe crèdit no estava en cap dels dos pressupostos aprovats que publica esta pàgina.",
+    'presupuesto.cap.pie.ceroDiscrepan':
+      "**{capitulo} va obrir l'exercici amb 0 € i va acabar amb {definitivo}** —el {cuota} % de tota l'ampliació—, dels quals es va executar el {pct} %. Eixe zero és el de l'estat d'execució del propi Ajuntament: **el pressupost que es va remetre a CONPREL li dóna {conprel} de crèdit inicial a eixe mateix capítol**. Les dos fonts són oficials i no es reconcilien, així que part del que ací figura com a ampliació ja estava aprovat en l'altra.",
     'presupuesto.cap.pie.dominante':
       "**{capitulo} es va emportar el {cuota} % de tota l'ampliació**: de {inicial} a {definitivo}, dels quals es va executar el {pct} %.",
     'presupuesto.cap.pie.cociente':

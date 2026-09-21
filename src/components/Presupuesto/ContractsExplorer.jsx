@@ -4,7 +4,12 @@ import Paginacion from '../Paginacion'
 import { STATUS_TONE } from '../../hooks/useTenders'
 import { fmtDateCompacta, rellena } from '../../lib/formatters'
 import { rotuloDe, useLocale } from '../../i18n'
-import { filterContracts, contractAmount, contractsListSummary } from '../../lib/tender-geo'
+import { filterContracts, contractsListSummary } from '../../lib/tender-geo'
+import {
+  importeAdjudicado,
+  importeLicitacion,
+  isCommittedContract,
+} from '../../lib/contract-status'
 
 const fmtEur = (n) =>
   new Intl.NumberFormat('es-ES', {
@@ -32,6 +37,38 @@ const INP = {
   borderRadius: 'var(--r-input)',
   background: 'var(--paper)',
   color: 'var(--ink)',
+}
+
+/**
+ * La celda del importe: lo adjudicado si consta y, si no, el presupuesto base
+ * de licitación.
+ *
+ * El aviso «licitación» sale SÓLO cuando la fila está firmada, que es justo
+ * donde la pastilla de al lado engaña: dice «Adjudicado» y la cifra no es una
+ * adjudicación. En una fila abierta o en licitación la pastilla ya lo cuenta y
+ * repetirlo en cada renglón sería ruido en más de cien filas.
+ *
+ * El hueco existe: el 2026-09-21 son cinco contratos firmados que publican su
+ * presupuesto de licitación y no el importe por el que se firmaron. Enseñar
+ * «0 €» ahí sería otra cifra falsa, y un guión escondería un dato que la
+ * fuente sí publica.
+ */
+function Importe({ c, t }) {
+  const adjudicado = importeAdjudicado(c)
+  const licitacion = adjudicado === null ? importeLicitacion(c) : null
+  const importe = adjudicado ?? licitacion
+  return (
+    <div style={{ textAlign: 'right' }}>
+      <div className="mono" style={{ fontWeight: 700 }}>
+        {importe === null ? '—' : fmtEur(importe)}
+      </div>
+      {licitacion !== null && isCommittedContract(c) && (
+        <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--warn-ink)', lineHeight: 1.3 }}>
+          {t('presupuesto.gasto.sinAdjudicacion')}
+        </div>
+      )}
+    </div>
+  )
 }
 
 export default function ContractsExplorer({ contracts, snapshot }) {
@@ -162,9 +199,7 @@ export default function ContractsExplorer({ contracts, snapshot }) {
                     {c.assignee || '—'} · {fmtDateCompacta(c.awardDate, locale) || '—'}
                   </div>
                 </div>
-                <span className="mono" style={{ textAlign: 'right', fontWeight: 700 }}>
-                  {fmtEur(contractAmount(c))}
-                </span>
+                <Importe c={c} t={t} />
                 <span style={{ textAlign: 'right' }}>
                   <Pill tone={STATUS_TONE[c.status] || 'ghost'} size="xs">
                     {estado(c.status)}

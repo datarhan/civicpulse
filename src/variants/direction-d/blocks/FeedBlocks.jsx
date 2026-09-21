@@ -1,8 +1,13 @@
 import { Link } from 'react-router-dom'
 import { useTenders, formatDate as formatTenderDate } from '../../../hooks/useTenders'
-import { contractAmount } from '../../../lib/tender-geo'
+
 import { agrupaPorExpediente, infoLote } from '../../../lib/tender-lotes'
-import { isCommittedContract, isConcession, contractTermYears } from '../../../lib/contract-status'
+import {
+  isCommittedContract,
+  isConcession,
+  contractTermYears,
+  importeAdjudicado,
+} from '../../../lib/contract-status'
 import { yearSpan } from '../../../lib/year-span'
 import { useParticipa, KIND_ICON } from '../../../hooks/useParticipa'
 import { usePress, timeAgo as pressTimeAgo } from '../../../hooks/usePress'
@@ -161,53 +166,60 @@ export function LiveContracts() {
           {t('landing.contratos.importes')}
         </div>
       )}
-      {recent.map((c, i) => (
-        <div
-          key={c.id}
-          style={{
-            padding: '10px 0',
-            borderTop: i === 0 ? 'none' : '1px solid ' + PALETTE.hair,
-          }}
-        >
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 3 }}>
-            <span
-              className="mono"
-              style={{
-                fontSize: 'var(--fs-micro)',
-                color: PALETTE.accent,
-                letterSpacing: '.1em',
-                textTransform: 'uppercase',
-                fontWeight: 700,
-              }}
-            >
-              {/* La categoría de Gobierto es un token en inglés («architecture»): se
-                  rotula por catálogo, y sin ella, el tipo de contrato. */}
-              {(c.categoryTitle &&
-                rotuloDe(t, `contrato.categoria.${c.categoryTitle}`, c.categoryTitle)) ||
-                (c.contractType &&
-                  rotuloDe(t, `contrato.tipo.${c.contractType}`, c.contractType)) ||
-                t('landing.contratos.sinCategoria')}
-            </span>
-            <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: PALETTE.ink50 }}>
-              {formatTenderDate(c.awardDate, locale)}
-            </span>
-          </div>
+      {recent.map((c, i) => {
+        const importe = importeAdjudicado(c)
+        return (
           <div
+            key={c.id}
             style={{
-              fontSize: 'var(--fs-aux)',
-              fontWeight: 600,
-              lineHeight: 1.35,
-              marginBottom: 2,
+              padding: '10px 0',
+              borderTop: i === 0 ? 'none' : '1px solid ' + PALETTE.hair,
             }}
           >
-            <ExtLink href={c.permalink} style={{ color: 'inherit', textDecoration: 'none' }}>
-              {c.title.length > 100 ? c.title.slice(0, 100) + '…' : c.title}
-            </ExtLink>
-          </div>
-          <div
-            style={{ display: 'flex', gap: 10, fontSize: 'var(--fs-micro)', color: PALETTE.ink60 }}
-          >
-            {/* `assignee`, no `contractor`. `contractor` es el ÓRGANO DE
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 3 }}>
+              <span
+                className="mono"
+                style={{
+                  fontSize: 'var(--fs-micro)',
+                  color: PALETTE.accent,
+                  letterSpacing: '.1em',
+                  textTransform: 'uppercase',
+                  fontWeight: 700,
+                }}
+              >
+                {/* La categoría de Gobierto es un token en inglés («architecture»): se
+                  rotula por catálogo, y sin ella, el tipo de contrato. */}
+                {(c.categoryTitle &&
+                  rotuloDe(t, `contrato.categoria.${c.categoryTitle}`, c.categoryTitle)) ||
+                  (c.contractType &&
+                    rotuloDe(t, `contrato.tipo.${c.contractType}`, c.contractType)) ||
+                  t('landing.contratos.sinCategoria')}
+              </span>
+              <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: PALETTE.ink50 }}>
+                {formatTenderDate(c.awardDate, locale)}
+              </span>
+            </div>
+            <div
+              style={{
+                fontSize: 'var(--fs-aux)',
+                fontWeight: 600,
+                lineHeight: 1.35,
+                marginBottom: 2,
+              }}
+            >
+              <ExtLink href={c.permalink} style={{ color: 'inherit', textDecoration: 'none' }}>
+                {c.title.length > 100 ? c.title.slice(0, 100) + '…' : c.title}
+              </ExtLink>
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                gap: 10,
+                fontSize: 'var(--fs-micro)',
+                color: PALETTE.ink60,
+              }}
+            >
+              {/* `assignee`, no `contractor`. `contractor` es el ÓRGANO DE
                 CONTRATACIÓN y vale «Ayuntamiento de Riba-roja de Túria» en las
                 812 filas, así que este hueco —cuyo respaldo dice «Sin
                 adjudicatario»— publicaba al comprador en el sitio del
@@ -216,15 +228,20 @@ export function LiveContracts() {
                 la portada decía el Ayuntamiento. El explorador de /presupuesto
                 y las fichas de contrato ya leían `assignee`; esta fila era la
                 única del repo que no. */}
-            <span>{c.assignee || t('landing.contratos.sinAdjudicatario')}</span>
-            <span
-              style={{ marginLeft: 'auto', fontWeight: 700, color: PALETTE.ink }}
-              className="mono"
-            >
-              {fmtEur(contractAmount(c))}
-            </span>
-          </div>
-          {/* El enlace de esta fila NO lleva a esta fila: lleva a la ficha del
+              <span>{c.assignee || t('landing.contratos.sinAdjudicatario')}</span>
+              <span
+                style={{ marginLeft: 'auto', fontWeight: 700, color: PALETTE.ink }}
+                className="mono"
+              >
+                {/* Un guión, nunca «0 €»: la columna se rotula «importe
+                  adjudicado, sin IVA» y hay filas firmadas cuya adjudicación no
+                  publica importe. Aquí no cabe explicarlo —la portada da una
+                  línea por contrato— y de las dos formas de callarlo, el guión
+                  es la que no afirma nada. */}
+                {importe === null ? '—' : fmtEur(importe)}
+              </span>
+            </div>
+            {/* El enlace de esta fila NO lleva a esta fila: lleva a la ficha del
               expediente entero, que titula el presupuesto base de todos los
               lotes juntos. El 16-09-2026 la portada publicaba «UE casco 5 ·
               6.900 €» y «UE vella 6 · 20.251 €» con el MISMO enlace, el del
@@ -234,48 +251,48 @@ export function LiveContracts() {
               El total de lotes sale del `numberOfBatches` de la licitación
               homónima —la fuente declarándolo—, nunca de cuántas filas
               tengamos: un denominador que no se puede ver no se escribe. */}
-          {(() => {
-            const lote = infoLote(c, grupos, data.tenders)
-            if (!lote) return null
-            const exp = lote.expediente ? ` (${lote.expediente})` : ''
-            // Cada rama nombra SU clave junto a los huecos que rellena, en vez
-            // de elegir una clave en una variable: así lo ve el guard de
-            // `tests/i18n-catalogue.test.ts`, que lee el objeto pegado al
-            // literal para comprobar que ningún `{hueco}` llega al lector. Con
-            // la clave en una variable el guard no puede leerlo y se pone rojo,
-            // que es justo lo que tiene que hacer un guard que no puede mirar.
-            const texto =
-              lote.numero && lote.total && lote.presupuestoBase
-                ? rellena(t('landing.contratos.lote.conBase'), {
-                    n: lote.numero,
-                    total: lote.total,
-                    exp,
-                    base: fmtEurExacto(lote.presupuestoBase),
-                  })
-                : lote.numero && lote.total
-                  ? rellena(t('landing.contratos.lote.deTotal'), {
+            {(() => {
+              const lote = infoLote(c, grupos, data.tenders)
+              if (!lote) return null
+              const exp = lote.expediente ? ` (${lote.expediente})` : ''
+              // Cada rama nombra SU clave junto a los huecos que rellena, en vez
+              // de elegir una clave en una variable: así lo ve el guard de
+              // `tests/i18n-catalogue.test.ts`, que lee el objeto pegado al
+              // literal para comprobar que ningún `{hueco}` llega al lector. Con
+              // la clave en una variable el guard no puede leerlo y se pone rojo,
+              // que es justo lo que tiene que hacer un guard que no puede mirar.
+              const texto =
+                lote.numero && lote.total && lote.presupuestoBase
+                  ? rellena(t('landing.contratos.lote.conBase'), {
                       n: lote.numero,
                       total: lote.total,
                       exp,
+                      base: fmtEurExacto(lote.presupuestoBase),
                     })
-                  : lote.numero
-                    ? rellena(t('landing.contratos.lote.simple'), { n: lote.numero, exp })
-                    : rellena(t('landing.contratos.lote.sinNumero'), { exp })
-            return (
-              <div
-                className="cp-lote-nota"
-                style={{
-                  marginTop: 4,
-                  fontSize: 'var(--fs-micro)',
-                  color: PALETTE.ink60,
-                  lineHeight: 1.35,
-                }}
-              >
-                {texto}
-              </div>
-            )
-          })()}
-          {/* Una concesión se adjudica por TODO su plazo de una vez, así que su
+                  : lote.numero && lote.total
+                    ? rellena(t('landing.contratos.lote.deTotal'), {
+                        n: lote.numero,
+                        total: lote.total,
+                        exp,
+                      })
+                    : lote.numero
+                      ? rellena(t('landing.contratos.lote.simple'), { n: lote.numero, exp })
+                      : rellena(t('landing.contratos.lote.sinNumero'), { exp })
+              return (
+                <div
+                  className="cp-lote-nota"
+                  style={{
+                    marginTop: 4,
+                    fontSize: 'var(--fs-micro)',
+                    color: PALETTE.ink60,
+                    lineHeight: 1.35,
+                  }}
+                >
+                  {texto}
+                </div>
+              )
+            })()}
+            {/* Una concesión se adjudica por TODO su plazo de una vez, así que su
               importe no es comparable con el de las filas que tiene al lado ni
               con el presupuesto anual impreso en esta misma pantalla. Sin esta
               línea, la del agua —55,7 M€ entre una de 7.500 € y otra de 418 k€,
@@ -286,23 +303,24 @@ export function LiveContracts() {
               exactamente el número que alguien teclea una vez y se queda viejo
               cuando el registro cambia una fecha. Mismo convenio que
               `committedAwardYearSpan` y que la ficha de /eficiencia. */}
-          {isConcession(c) && (
-            <div
-              className="cp-concesion-nota"
-              style={{
-                marginTop: 4,
-                fontSize: 'var(--fs-micro)',
-                color: PALETTE.ink60,
-                lineHeight: 1.35,
-              }}
-            >
-              {contractTermYears(c)
-                ? rellena(t('landing.contratos.concesionAnios'), { anios: contractTermYears(c) })
-                : t('landing.contratos.concesion')}
-            </div>
-          )}
-        </div>
-      ))}
+            {isConcession(c) && (
+              <div
+                className="cp-concesion-nota"
+                style={{
+                  marginTop: 4,
+                  fontSize: 'var(--fs-micro)',
+                  color: PALETTE.ink60,
+                  lineHeight: 1.35,
+                }}
+              >
+                {contractTermYears(c)
+                  ? rellena(t('landing.contratos.concesionAnios'), { anios: contractTermYears(c) })
+                  : t('landing.contratos.concesion')}
+              </div>
+            )}
+          </div>
+        )
+      })}
     </div>
   )
 }

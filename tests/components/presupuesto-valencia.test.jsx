@@ -26,7 +26,8 @@ import { peekSnapshot } from '../../src/lib/snapshot-store'
 import Presupuesto, { formatEuros } from '../../src/pages/Presupuesto'
 import { lecturaCapitulos } from '../../src/scraper/presupuesto-lectura'
 import { isCommittedContract } from '../../src/lib/contract-status'
-import { contractAmount, topContractors } from '../../src/lib/tender-geo'
+import { topContractors } from '../../src/lib/tender-geo'
+import { importeAdjudicado } from '../../src/lib/contract-status'
 import {
   cadenasDe,
   datosPintados,
@@ -257,7 +258,9 @@ function ramasRaras() {
 
   const contratos = mapa[CONTRATOS].contracts
   const comprometidos = contratos.filter(isCommittedContract)
-  const mayor = comprometidos.reduce((a, b) => (contractAmount(b) > contractAmount(a) ? b : a))
+  const mayor = comprometidos.reduce((a, b) =>
+    (importeAdjudicado(b) ?? 0) > (importeAdjudicado(a) ?? 0) ? b : a,
+  )
   mayor.contractType = 'services'
   const noComprometidos = contratos.filter((c) => !isCommittedContract(c))
   for (const c of noComprometidos.slice(1)) c.status = 'awarded'
