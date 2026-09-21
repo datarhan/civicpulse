@@ -42,8 +42,8 @@
 import { describe, expect, it } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { CATALOGUE, LOCALES } from '../src/i18n'
-import { isCommittedContract } from '../src/lib/contract-status'
-import { contractAmount, contractTypeTotals } from '../src/lib/tender-geo'
+import { isCommittedContract, importeAdjudicado } from '../src/lib/contract-status'
+import { contractTypeTotals } from '../src/lib/tender-geo'
 
 /** La cifra, su cobertura, y el nombre de la capa que las pinta. */
 const ROTULOS_DE_CIFRA = [
@@ -70,17 +70,17 @@ describe('portada · «gasto» no es «adjudicado»', () => {
     const contratos = JSON.parse(readFileSync('public/data/tenders.json', 'utf8')).contracts
     const universo = JSON.parse(readFileSync('public/data/tender-geo.json', 'utf8')).universe
 
+    // La precedencia se IMPORTA. Esta reconstrucción la copiaba a mano —la
+    // regla 1 de DATA_INTEGRITY cometida por la guarda escrita contra el mismo
+    // defecto— y así no podía ver que la copia de al lado, `contractAmount`,
+    // dijera otra cosa sobre las mismas filas. Decía otra cosa: ver
+    // `tests/importe-adjudicado.test.ts`.
     let suma = 0
     let n = 0
     for (const c of contratos) {
       if (!isCommittedContract(c)) continue
-      const a =
-        typeof c.finalAmountNoTaxes === 'number' && c.finalAmountNoTaxes > 0
-          ? c.finalAmountNoTaxes
-          : typeof c.finalAmount === 'number' && c.finalAmount > 0
-            ? c.finalAmount
-            : 0
-      if (!a) continue
+      const a = importeAdjudicado(c)
+      if (a === null) continue
       suma += a
       n++
     }
@@ -129,25 +129,21 @@ const ROTULOS_DE_PRESUPUESTO = [
 
 describe('/presupuesto · la tarjeta de contratos, el mismo vocabulario', () => {
   it('lo que agrupa la pestaña de tipos son contratos comprometidos, no ejecución', () => {
-    // La premisa, medida y no supuesta: el total de la pestaña se reconstruye
-    // ENTERO desde el universo que la tarjeta rotula «adjudicado sin IVA», más
-    // un resto que también se mide. No es un «se parece»: la diferencia son
-    // exactamente los contratos comprometidos que no publican importe de
-    // adjudicación, donde `contractAmount` cae al de licitación. Ni un euro del
-    // desglose viene de ejecución presupuestaria, que es lo que hace falsa la
-    // palabra «gasto». Si algún día entrara ejecución ahí, esto se cae antes
-    // que el vocabulario.
+    // La premisa, medida y no supuesta: el total de la pestaña ES el universo
+    // que la tarjeta rotula «adjudicado sin IVA». Ni un euro del desglose viene
+    // de ejecución presupuestaria, que es lo que haría falsa la palabra
+    // «gasto». Si algún día entrara ejecución ahí, esto se cae antes que el
+    // vocabulario.
+    //
+    // Esta afirmación llevaba un «+ resto» que documentaba una diferencia de
+    // 309.855,55 € en vez de arreglarla: era `contractAmount` cayendo al
+    // importe de licitación en cinco contratos firmados. La suma cuadra sin
+    // término de corrección desde que las dos leen la misma regla.
     const contratos = JSON.parse(readFileSync('public/data/tenders.json', 'utf8')).contracts
     const universo = JSON.parse(readFileSync('public/data/tender-geo.json', 'utf8')).universe
     const { rows, total } = contractTypeTotals(contratos)
     expect(rows.length).toBeGreaterThan(0)
-
-    const sinAdjudicacion = contratos.filter(
-      (c: { finalAmountNoTaxes?: number; finalAmount?: number }) =>
-        isCommittedContract(c) && !(c.finalAmountNoTaxes! > 0) && !(c.finalAmount! > 0),
-    )
-    const resto = sinAdjudicacion.reduce((a: number, c: object) => a + contractAmount(c), 0)
-    expect(total).toBeCloseTo(universo.totalAmount + resto, 2)
+    expect(total).toBeCloseTo(universo.totalAmount, 2)
   })
 
   it('ningún rótulo de la tarjeta usa la palabra de la ejecución', () => {

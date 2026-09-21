@@ -24,7 +24,7 @@
 
 import { fnv32 } from './hash'
 import { stripDiacritics } from './normalize'
-import { isCommittedContract } from '../lib/contract-status.js'
+import { isCommittedContract, importeAdjudicado } from '../lib/contract-status.js'
 
 // Longest-first within each shadowing group; matched repeatedly against
 // the END of the token list. The FAMILY survives as a canonical token in
@@ -222,12 +222,16 @@ interface TenderLikeRow {
   awardDate?: string | null
 }
 
-/** Same precedence as src/lib/tender-geo.js contractAmount — sin IVA first. */
+/**
+ * Lo adjudicado a esta empresa, o 0 si la fila no lo publica.
+ *
+ * Era una copia de la precedencia —su propio comentario decía «same precedence
+ * as src/lib/tender-geo.js contractAmount»— y la copiada resultó ser la que
+ * caía al importe de licitación. Un registro de empresas que atribuye a una
+ * razón social dinero que no se le adjudicó es peor que uno que se queda corto.
+ */
 function amountOf(c: TenderLikeRow): number {
-  if ((c.finalAmountNoTaxes ?? 0) > 0) return c.finalAmountNoTaxes as number
-  if ((c.finalAmount ?? 0) > 0) return c.finalAmount as number
-  if ((c.initialAmountNoTaxes ?? 0) > 0) return c.initialAmountNoTaxes as number
-  return c.initialAmount || 0
+  return importeAdjudicado(c) ?? 0
 }
 
 export function buildEntityRegistry(input: {

@@ -23,7 +23,11 @@ import {
   tendenciaDeuda,
   capitulosACero,
 } from '../scraper/presupuesto-lectura'
-import { isCommittedContract, committedAwardYearSpan } from '../lib/contract-status'
+import {
+  isCommittedContract,
+  committedAwardYearSpan,
+  importeAdjudicado,
+} from '../lib/contract-status'
 import { decimal, fmtDateCompacta, fmtDateLong, rellena } from '../lib/formatters'
 import { conHuecos } from '../lib/huecos'
 import { titularDeuda } from '../lib/deuda-titular'
@@ -1313,9 +1317,7 @@ function ContratacionBanda() {
   const contratos = tenders?.contracts ?? []
   const r = contratos.length > 0 ? resumenMenores(contratos) : null
   const adjudicados = contratos.filter((c) => isCommittedContract(c))
-  const totalNeto = adjudicados
-    .map((c) => c.finalAmountNoTaxes ?? c.initialAmountNoTaxes ?? 0)
-    .reduce((a, b) => a + b, 0)
+  const totalNeto = adjudicados.map((c) => importeAdjudicado(c) ?? 0).reduce((a, b) => a + b, 0)
 
   const obras = obrasData?.obras ?? []
   const renove = obras.filter((o) => o.programa === 'renove').length
@@ -1650,15 +1652,13 @@ function ContratacionMenorSection() {
   // ellas diluye el peso de la vía directa —23 % en vez del 26 % real— y lo
   // cazó la revisión lectora antes de que esto se publicara.
   const adjudicados = contratos.filter((c) => isCommittedContract(c))
-  const totalNeto = adjudicados
-    .map((c) => c.finalAmountNoTaxes ?? c.initialAmountNoTaxes ?? 0)
-    .reduce((a, b) => a + b, 0)
+  const totalNeto = adjudicados.map((c) => importeAdjudicado(c) ?? 0).reduce((a, b) => a + b, 0)
   const cuota = totalNeto > 0 ? (r.importeSinIva / totalNeto) * 100 : null
   // El total lo domina una sola concesión adjudicada de una vez por todo su
   // plazo, así que «2,5 % del importe» dicho solo tranquiliza más de lo que el
   // dato sostiene. Derivado, nunca escrito: una concesión nueva lo mueve.
   const peso = pesoDelMayor(
-    adjudicados.map((c) => c.finalAmountNoTaxes ?? c.initialAmountNoTaxes ?? 0),
+    adjudicados.map((c) => importeAdjudicado(c) ?? 0),
     r.importeSinIva,
   )
   const topeAnio = Math.max(...r.porAnio.map((a) => a.n), 1)

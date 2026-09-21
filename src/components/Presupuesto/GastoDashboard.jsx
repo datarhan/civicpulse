@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Card, SectionHead, Pill } from '../Primitives'
-import { contractTypeTotals, obrasSharePct, contractAmount } from '../../lib/tender-geo'
-import { isCommittedContract, isConcession } from '../../lib/contract-status'
+import { contractTypeTotals, obrasSharePct } from '../../lib/tender-geo'
+import { isCommittedContract, isConcession, importeAdjudicado } from '../../lib/contract-status'
 import { useTenders } from '../../hooks/useTenders'
 import { useTenderGeo } from '../../hooks/useTenderGeo'
 import { useCpvLabels } from '../../hooks/useCpvLabels'
@@ -70,12 +70,17 @@ export default function GastoDashboard() {
   const mayor = useMemo(() => {
     const comprometidos = contracts.filter(isCommittedContract)
     if (comprometidos.length === 0) return null
-    const total = comprometidos.reduce((s2, c) => s2 + contractAmount(c), 0)
+    // El denominador de esta cuota es EL MISMO que la cifra que la tarjeta
+    // enseña arriba. Se calculaba con una regla propia que caía al importe de
+    // licitación, así que la cuota se dividía entre 309.855,55 € que el titular
+    // de al lado no contaba: numerador, denominador y porcentaje tienen que
+    // cuadrar entre sí o la frase no dice lo que parece.
+    const total = comprometidos.reduce((s2, c) => s2 + (importeAdjudicado(c) ?? 0), 0)
     if (!(total > 0)) return null
     const top = comprometidos.reduce((a2, b2) =>
-      contractAmount(b2) > contractAmount(a2) ? b2 : a2,
+      (importeAdjudicado(b2) ?? 0) > (importeAdjudicado(a2) ?? 0) ? b2 : a2,
     )
-    const importe = contractAmount(top)
+    const importe = importeAdjudicado(top) ?? 0
     // Se comprueba que el mayor SEA una concesión antes de llamarlo así. El
     // motivo de la salvedad —se adjudica por todo su plazo de una vez— sólo
     // vale para una concesión, y afirmar la categoría sin mirarla es el

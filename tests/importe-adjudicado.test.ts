@@ -56,14 +56,40 @@ import { contractTypeTotals, topContractors } from '../src/lib/tender-geo'
 const contratos = JSON.parse(readFileSync('public/data/tenders.json', 'utf8')).contracts
 const universo = JSON.parse(readFileSync('public/data/tender-geo.json', 'utf8')).universe
 
+/**
+ * Una fila con los CUATRO importes, como la sirve Gobierto.
+ *
+ * Existe porque las dos funciones declaran tipos estrechos —`importeAdjudicado`
+ * sólo conoce los dos finales y `importeLicitacion` sólo los dos iniciales— y
+ * eso es media guarda gratis: un literal que intente colarle un importe inicial
+ * a la primera no compila. La comprobación de propiedades sobrantes sólo aplica
+ * a los literales, así que las llamadas de verdad, que pasan una variable, no
+ * se enteran; y aquí hace falta pasar la fila entera precisamente para mirar
+ * que el hueco NO se rellene con la de al lado.
+ */
+const fila = (f: {
+  finalAmountNoTaxes?: number
+  finalAmount?: number
+  initialAmountNoTaxes?: number
+  initialAmount?: number
+}) => f
+
 describe('importeAdjudicado · la regla, en un solo sitio', () => {
   it('prefiere el sin IVA, acepta el con IVA y no inventa el de licitación', () => {
-    expect(importeAdjudicado({ finalAmountNoTaxes: 100, finalAmount: 121 })).toBe(100)
-    expect(importeAdjudicado({ finalAmount: 121 })).toBe(121)
+    expect(importeAdjudicado(fila({ finalAmountNoTaxes: 100, finalAmount: 121 }))).toBe(100)
+    expect(importeAdjudicado(fila({ finalAmount: 121 }))).toBe(121)
+    // La fila real de los cinco: los dos finales a cero y el de licitación
+    // publicado. Es el contrato 4454052, el del carburante.
     expect(
-      importeAdjudicado({ finalAmountNoTaxes: 0, finalAmount: 0, initialAmount: 999 }),
+      importeAdjudicado(
+        fila({
+          finalAmountNoTaxes: 0,
+          finalAmount: 0,
+          initialAmountNoTaxes: 81166.08,
+          initialAmount: 98210.96,
+        }),
+      ),
     ).toBeNull()
-    expect(importeAdjudicado({ initialAmountNoTaxes: 81166.08 })).toBeNull()
   })
 
   it('sin adjudicación devuelve `null`, nunca cero: no se adjudicó por cero euros', () => {
@@ -71,18 +97,20 @@ describe('importeAdjudicado · la regla, en un solo sitio', () => {
     // regla 3 de DATA_INTEGRITY —«un centinela nunca es un valor»— aplicada al
     // hueco que dejó la fuente.
     expect(importeAdjudicado(null)).toBeNull()
-    expect(importeAdjudicado({})).toBeNull()
-    expect(importeAdjudicado({ finalAmountNoTaxes: -5 })).toBeNull()
-    expect(publicaImporteAdjudicado({ finalAmountNoTaxes: 0, initialAmount: 999 })).toBe(false)
-    expect(publicaImporteAdjudicado({ finalAmountNoTaxes: 12 })).toBe(true)
+    expect(importeAdjudicado(fila({}))).toBeNull()
+    expect(importeAdjudicado(fila({ finalAmountNoTaxes: -5 }))).toBeNull()
+    expect(publicaImporteAdjudicado(fila({ finalAmountNoTaxes: 0, initialAmount: 999 }))).toBe(
+      false,
+    )
+    expect(publicaImporteAdjudicado(fila({ finalAmountNoTaxes: 12 }))).toBe(true)
   })
 
   it('el importe de licitación se pide por su nombre, no cayendo desde el otro', () => {
-    expect(importeLicitacion({ initialAmountNoTaxes: 81166.08, initialAmount: 98210.96 })).toBe(
-      81166.08,
-    )
-    expect(importeLicitacion({ initialAmount: 98210.96 })).toBe(98210.96)
-    expect(importeLicitacion({ finalAmountNoTaxes: 100 })).toBeNull()
+    expect(
+      importeLicitacion(fila({ initialAmountNoTaxes: 81166.08, initialAmount: 98210.96 })),
+    ).toBe(81166.08)
+    expect(importeLicitacion(fila({ initialAmount: 98210.96 }))).toBe(98210.96)
+    expect(importeLicitacion(fila({ finalAmountNoTaxes: 100 }))).toBeNull()
   })
 })
 

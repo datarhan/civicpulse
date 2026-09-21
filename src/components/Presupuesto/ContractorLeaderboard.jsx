@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
-import { topContractors, contractAmount } from '../../lib/tender-geo'
+import { topContractors } from '../../lib/tender-geo'
 import { useEntities } from '../../hooks/useEntities'
-import { isCommittedContract } from '../../lib/contract-status.js'
+import { isCommittedContract, importeAdjudicado } from '../../lib/contract-status.js'
 import { rellena } from '../../lib/formatters'
 import { useT } from '../../i18n'
 
@@ -34,7 +34,7 @@ export default function ContractorLeaderboard({ contracts }) {
     const m = new Map()
     for (const c of contracts || []) {
       if (!c.assignee) continue
-      if (!(isCommittedContract(c) && contractAmount(c) > 0)) continue
+      if (!(isCommittedContract(c) && importeAdjudicado(c) > 0)) continue
       // Key the drill-down by the same display name the row uses, so a
       // merged company lists the contracts of every razón social variant.
       const display = resolver?.(c.assignee)?.canonicalName ?? c.assignee
@@ -109,7 +109,7 @@ export default function ContractorLeaderboard({ contracts }) {
                   style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', padding: '3px 0' }}
                 >
                   {c.title.length > 90 ? c.title.slice(0, 90) + '…' : c.title} —{' '}
-                  <span className="mono">{fmtEur(contractAmount(c))}</span>
+                  <span className="mono">{fmtEur(importeAdjudicado(c))}</span>
                 </div>
               ))}
             </div>

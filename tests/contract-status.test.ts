@@ -3,7 +3,6 @@ import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import {
   isCommittedContract,
-  contractAmountEur,
   committedAwardYearSpan,
   isConcession,
   contractTermYears,
@@ -38,14 +37,13 @@ describe('contract-status', () => {
     expect(isCommittedContract({ status: 'unknown' })).toBe(false)
   })
 
-  it('prefers the sin-IVA amount', () => {
-    expect(contractAmountEur({ finalAmountNoTaxes: 100, finalAmount: 121 })).toBe(100)
-  })
-
-  it('treats missing or non-positive amounts as zero', () => {
-    expect(contractAmountEur({})).toBe(0)
-    expect(contractAmountEur({ finalAmountNoTaxes: -5 })).toBe(0)
-  })
+  // `importeAdjudicado` vive en este módulo y se comprueba ENTERO en
+  // `tests/importe-adjudicado.test.ts`, junto a las cinco copias que sustituye
+  // y a la medida que las descubrió. Aquí había dos afirmaciones sobre el
+  // antiguo `contractAmountEur` que pasaban con cualquiera de las cinco reglas
+  // —«prefiere el sin IVA» y «lo que falta vale cero»— así que no veían la
+  // única diferencia que importaba. Partir la guarda en dos ficheros es como
+  // se quedó atrás la que nadie lee.
 })
 
 describe('isCommittedContract — in-flight statuses', () => {

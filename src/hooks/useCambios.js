@@ -6,8 +6,7 @@ import { usePress } from './usePress'
 import { useTenders, formatDate } from './useTenders'
 import { useBdns } from './useBdns'
 import { useParticipa, KIND_LABEL } from './useParticipa'
-import { contractAmount } from '../lib/tender-geo'
-import { isCommittedContract } from '../lib/contract-status.js'
+import { isCommittedContract, importeAdjudicado } from '../lib/contract-status.js'
 
 /**
  * Hook that aggregates "what changed" across every real-data corpus into a
@@ -109,7 +108,7 @@ export function useCambios(days = DEFAULT_WINDOW_DAYS) {
       // the feed would have announced one as if it stood. Same predicate the
       // money totals use, so "adjudicado" means one thing across the site.
       if (!isCommittedContract(c)) continue
-      const amt = contractAmount(c) // sin IVA (PLACSP)
+      const amt = importeAdjudicado(c) ?? 0 // sin IVA (PLACSP)
       const amount = amt > 0 ? `€${amt.toLocaleString('es-ES')}` : ''
       out.push({
         kind: 'licitacion',

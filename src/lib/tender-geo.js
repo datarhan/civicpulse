@@ -3,26 +3,15 @@
  * Pure client helpers over a tender-geo snapshot. No React, no fetch — shared
  * by the dashboard components and unit-tested in isolation.
  */
-import { isCommittedContract } from './contract-status.js'
+import { isCommittedContract, importeAdjudicado } from './contract-status.js'
 
-/**
- * Canonical euro figure to DISPLAY and AGGREGATE for a contract — SIN IVA, to
- * match the authoritative PLACSP detail page (contrataciondelestado.es), whose
- * "Importe de adjudicación" / "Presupuesto base de licitación" headline the
- * tax-excluded amount, and Spanish public-procurement convention (valor
- * estimado is always sin impuestos). Prefers the awarded tax-excluded figure;
- * falls back to the tax-included one, then to the initial amounts, only when a
- * source row lacks the sin-IVA value (none do today — defensive).
- * @param {{finalAmountNoTaxes?:number, finalAmount?:number, initialAmountNoTaxes?:number, initialAmount?:number}} [c]
- * @returns {number}
- */
-export function contractAmount(c) {
-  if (!c) return 0
-  if (c.finalAmountNoTaxes > 0) return c.finalAmountNoTaxes
-  if (c.finalAmount > 0) return c.finalAmount
-  if (c.initialAmountNoTaxes > 0) return c.initialAmountNoTaxes
-  return c.initialAmount || 0
-}
+// `contractAmount` vivía aquí y era una de cinco copias de la misma
+// precedencia, cada una con su matiz. La regla está ahora en
+// `contract-status.js`, al lado de `isCommittedContract`, porque las dos
+// contestan la misma pregunta —qué cuenta como dinero adjudicado— y separarlas
+// fue lo que dejó que una dijera que sí y la otra que no sobre la misma fila.
+// El nombre se cambió a propósito: así el cambio rompe a quien lo lea, uno por
+// uno, en vez de dejarlos leyendo otra cifra en silencio.
 
 export const EMPTY_TENDER_GEO = {
   generatedAt: null,
@@ -103,7 +92,7 @@ export function topContractors(contracts, n = 15, resolver = null) {
   for (const c of contracts || []) {
     // Committed money only — "who received the money". Sin IVA (PLACSP).
     if (!isCommittedContract(c)) continue
-    const amount = contractAmount(c)
+    const amount = importeAdjudicado(c)
     if (!(amount > 0)) continue
     const name = c.assignee
     if (!name) continue
@@ -145,7 +134,7 @@ export function contractTypeTotals(contracts) {
   let total = 0
   for (const c of contracts || []) {
     if (!isCommittedContract(c)) continue
-    const amount = contractAmount(c)
+    const amount = importeAdjudicado(c)
     if (!(amount > 0)) continue
     const type = c.contractType || 'other'
     const cur = m.get(type) || { type, amount: 0, count: 0 }
