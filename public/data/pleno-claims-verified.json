@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-09-20T16:53:03.980Z",
-  "composedAt": "2026-09-20T16:53:04.114Z",
+  "composedAt": "2026-09-21T05:54:40.778Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
@@ -8,14 +8,14 @@
   "stats": {
     "total": 7564,
     "byVerdict": {
-      "verificado": 3,
+      "verificado": 2,
       "parcial": 15,
       "contradicho": 0,
-      "sin-datos": 7546,
+      "sin-datos": 7547,
       "promesa-repetida": 0
     },
     "sinDatosPorque": {
-      "sinCorpus": 4538,
+      "sinCorpus": 4539,
       "comprobadoSinHallar": 3008
     }
   },
@@ -55769,22 +55769,11 @@
       },
       "verification": {
         "claimId": "ma87e0-111-afi-083d71",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "bdns",
-            "ref": "bdns:",
-            "snippet": "CONVENIO DE COLABORACIÓN DEL AYUNTAMIENTO DE RIBA-ROJA DE TÚRIA Y LA FUNDACIÓN PADRE JUAN SCHENK: BIBLIOTECA SOLIDARIA MISIONERA EJERCICIO 2026 · LOCAL · RIBA-R · importe no publicado",
-            "similarity": 1,
-            "stance": "checked"
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Afirmación numérica («70.000 euros») dada por verificada contra un convenio BDNS cuyo importe consta como «no publicado» y con ref vacía: coincidencia de texto, ninguna cifra que cotejar. El verificador determinista la subió de sin-datos en 4c92cf31 (20-09-2026).",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
+          "curator-downgrade"
         ]
       }
     },
