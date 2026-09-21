@@ -195,7 +195,7 @@
   "preguntasNota": "Estas preguntas se han remitido al Ayuntamiento de Riba-roja de Túria junto con una solicitud de acceso a la información amparada en la Ley 19/2013. Su respuesta se publicará íntegra y sin editar junto a este reportaje, y se hará constar qué preguntas quedaron sin responder.",
   "solicitudes": {
     "titulo": "Lo que se ha pedido, a quién y desde cuándo corre el plazo",
-    "nota": "El artículo 17.2 de la Ley 19/2013 admite «cualquier medio que permita tener constancia» de la identidad de quien pide, de la información solicitada y de una dirección de contacto: un correo que lleve las tres cosas es una vía válida de presentación. El artículo 20.1, en cambio, cuenta el mes «desde la recepción de la solicitud por el órgano competente para resolver», y de un correo consta el envío, no esa recepción. Por eso las fechas van contadas desde el envío y no se presentan como vencimientos acreditados.",
+    "nota": "El artículo 17.2 de la Ley 19/2013 admite «cualquier medio que permita tener constancia» de la identidad de quien pide, de la información solicitada y de una dirección de contacto: un correo que lleve las tres cosas es una vía válida de presentación. El artículo 20.1, en cambio, cuenta el mes «desde la recepción de la solicitud por el órgano competente para resolver», y de un correo consta el envío, no esa recepción. Por eso las fechas van contadas desde el envío y no se presentan como vencimientos acreditados. Una de ellas, en cambio, se presentó por el registro electrónico de la Generalitat: de ésa consta el asiento, así que su plazo no se cuenta desde el envío sino desde su entrada en el registro, y se puede afirmar.",
     "items": [
       {
         "organismo": "Ayuntamiento de Riba-roja de Túria",
@@ -231,9 +231,17 @@
         "incidencias": [
           {
             "fecha": "2026-09-21",
-            "texto": "El 21 de septiembre contestaron que por correo electrónico no pueden atender la solicitud y que hay que presentarla por su trámite electrónico (procedimiento 17472 de la sede de la Generalitat). No la resuelven: ni la conceden, ni la deniegan, ni dicen que no les corresponda, así que el mes del artículo 20 sigue corriendo."
+            "texto": "El 21 de septiembre contestaron que por correo electrónico no pueden atender la solicitud y que hay que presentarla por su trámite electrónico (procedimiento 17472 de la sede de la Generalitat). No la resuelven: ni la conceden, ni la deniegan, ni dicen que no les corresponda, así que el mes del artículo 20 sigue corriendo. Se presentó de nuevo por ese trámite el 21 de septiembre, con registro GVRTE/2026/4309357, sin retirar ésta."
           }
         ]
+      },
+      {
+        "organismo": "Turisme Comunitat Valenciana",
+        "enviadaEl": "2026-09-21",
+        "via": "el registro electrónico de la Generalitat",
+        "registro": "GVRTE/2026/4309357",
+        "pide": "El mismo escrito del 9 de septiembre, presentado por el trámite que Turisme Comunitat Valenciana indicó al contestar que por correo no podía atenderlo. Añade una pregunta que no existía entonces: si la ampliación del plazo del plan hasta agosto de 2026 —que la Secretaría de Estado de Turismo confirmó el 16 de septiembre— se tramitó a través de Turisme Comunitat Valenciana, copia de la solicitud y de la resolución.",
+        "respuesta": null
       }
     ]
   }

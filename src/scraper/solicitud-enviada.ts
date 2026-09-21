@@ -59,6 +59,16 @@ export interface EnvioSolicitud {
   enviadaEl: string
   /** Por dónde salió. Importa para el art. 17.2 y para lo que se puede probar. */
   via: string
+  /**
+   * El asiento, cuando se presentó por un registro.
+   *
+   * Es lo que separa «consta el envío» de «consta la entrada»: con número, el
+   * mes del art. 20.1 ya no se cuenta desde el envío por cautela, se cuenta
+   * desde el registro y el vencimiento se puede afirmar. Sin número no se
+   * inventa: una solicitud presentada por sede cuyo asiento no tengamos apuntado
+   * sigue publicándose con la cautela, que es verdadera aunque se quede corta.
+   */
+  registro?: string
   respuesta: {
     fecha: string
     sentido: SentidoRespuesta
@@ -131,24 +141,39 @@ export function estadoDeEnvio(e: EnvioSolicitud, hoy: string): EstadoEnvio {
  * falla con el primer organismo que no encaja.
  */
 export function fraseDeEnvio(e: EnvioSolicitud, hoy: string): string {
-  const cabeza = `${e.organismo} · enviada el ${enCastellano(e.enviadaEl)} por ${e.via}.`
+  const cabeza =
+    `${e.organismo} · enviada el ${enCastellano(e.enviadaEl)} por ${e.via}` +
+    (e.registro ? `, con registro ${e.registro}.` : '.')
   const estado = estadoDeEnvio(e, hoy)
+  const vence = enCastellano(venceEl(e.enviadaEl))
 
   if (estado === 'respondida' && e.respuesta) {
     return `${cabeza} El ${enCastellano(e.respuesta.fecha)} ${QUE_HICIERON[e.respuesta.sentido]}.`
   }
 
+  // Con asiento, el plazo se afirma; sin él, se dice desde dónde se cuenta. La
+  // diferencia no es de estilo: de un correo consta el envío y no la recepción
+  // por el órgano competente, que es donde el art. 20.1 arranca el mes.
   if (estado === 'vencida-sin-respuesta') {
+    const arranque = e.registro
+      ? `El mes del artículo 20 terminó el ${vence}`
+      : `Contado desde el envío, el mes del artículo 20 terminó el ${vence}`
     return (
-      `${cabeza} Contado desde el envío, el mes del artículo 20 terminó el ` +
-      `${enCastellano(venceEl(e.enviadaEl))} y no han contestado. La ley da a ese silencio efecto ` +
+      `${cabeza} ${arranque} y no han contestado. La ley da a ese silencio efecto ` +
       'desestimatorio, pero lo que ha ocurrido es que no hubo respuesta.'
+    )
+  }
+
+  if (e.registro) {
+    return (
+      `${cabeza} El artículo 20 de la Ley 19/2013 da un mes desde su entrada en el registro del ` +
+      `órgano competente para resolver: vence el ${vence}.`
     )
   }
 
   return (
     `${cabeza} El artículo 20 de la Ley 19/2013 da un mes desde que la solicitud llega al ` +
-    `órgano competente para resolver: contado desde el envío, el ${enCastellano(venceEl(e.enviadaEl))}.`
+    `órgano competente para resolver: contado desde el envío, el ${vence}.`
   )
 }
 
