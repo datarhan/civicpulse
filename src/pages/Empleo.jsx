@@ -16,7 +16,7 @@ import {
   shortContract,
   normalizeJornada,
 } from '../lib/empleo'
-import { fmtDateShort } from '../lib/formatters'
+import { fmtDateShort, rellena } from '../lib/formatters'
 import { useT } from '../i18n'
 
 /** Deadline chip: "cierra en N días" / "cerrada" / the date, tone by urgency. */
@@ -110,8 +110,20 @@ function OfferRow({ o, t }) {
           <span aria-hidden="true" style={{ color: 'var(--ink20)' }}>
             ·
           </span>
+          {/* ROTULADA. Esta fecha es la de PUBLICACIÓN y vivía aquí desnuda, en
+              la misma tarjeta que lleva arriba una píldora «Cierra en N días»:
+              una fecha suelta al lado de una cuenta atrás se lee como la fecha
+              a la que apunta la cuenta atrás.
+
+              No se veía porque en 47 de las 63 ofertas la publicación y el
+              plazo caen casi juntos. Se veía en `ING climatización y frio
+              industrial`: publicada el 2026-05-24, cierra el 2026-09-24, y la
+              tarjeta decía «Cierra en 3 días» sobre «24 may 2026».
+
+              Se rotula en vez de cambiarla: el plazo ya está en la píldora y
+              esta fecha dice otra cosa que sirve — cuánto lleva colgada. */}
           <span className="mono" style={{ color: 'var(--ink50)' }}>
-            {fmtDateShort(o.publishedAt)}
+            {rellena(t('empleo.card.publicada'), { fecha: fmtDateShort(o.publishedAt) })}
           </span>
         </div>
 

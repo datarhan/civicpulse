@@ -258,6 +258,11 @@ export const CATALOGUE = {
     'empleo.kpi.offers': 'Ofertas abiertas',
     'empleo.kpi.positions': 'Puestos ofertados',
     'empleo.kpi.inRiba': 'En Riba-roja',
+    // La fecha de la tarjeta va ROTULADA. Desnuda, y con una píldora «Cierra en
+    // 3 días» justo encima, se lee como el plazo: `ING climatización y frio
+    // industrial` se publicó el 24-05-2026 y cierra el 24-09-2026, y la tarjeta
+    // enseñaba «Cierra en 3 días» sobre «24 may 2026».
+    'empleo.card.publicada': 'publicada {fecha}',
     'empleo.kpi.closing': 'Cierran ≤14 días',
     'empleo.kpi.of': 'de',
     'empleo.kpi.ofShown': 'de {n} mostradas',
@@ -266,8 +271,14 @@ export const CATALOGUE = {
     'empleo.chart.byContract': 'Tipo de contrato',
     'empleo.chart.byMunicipio': 'Dónde',
     'empleo.stats.thin': 'Pocos datos',
+    // Dos cosas, y la segunda es la que cuadra la página: cuántas quedan fuera
+    // del gráfico, y cuántas de ésas cuenta el KPI «En Riba-roja», que lee la
+    // localidad del listado y no la ficha. Con las dos, 26 + 12 = 38 se puede
+    // seguir; sin la segunda, el lector tiene que adivinar.
     'empleo.chart.coverage':
       '{n} ofertas no traen municipio en su ficha y quedan fuera de este gráfico',
+    'empleo.chart.coverage.enRiba':
+      ' — de ellas, {enRiba} sí dicen Riba-roja de Túria en el listado, y son las que el recuento de arriba suma y este gráfico no',
     'empleo.filterMunicipio': 'Municipio',
     'empleo.allMunicipios': 'Todos los municipios',
     'empleo.filterContract': 'Tipo de contrato',
@@ -1890,6 +1901,7 @@ export const CATALOGUE = {
     'empleo.kpi.offers': 'Ofertes obertes',
     'empleo.kpi.positions': 'Llocs oferits',
     'empleo.kpi.inRiba': 'A Riba-roja',
+    'empleo.card.publicada': 'publicada {fecha}',
     'empleo.kpi.closing': 'Tanquen ≤14 dies',
     'empleo.kpi.of': 'de',
     'empleo.kpi.ofShown': 'de {n} mostrades',
@@ -1900,6 +1912,8 @@ export const CATALOGUE = {
     'empleo.stats.thin': 'Poques dades',
     'empleo.chart.coverage':
       '{n} ofertes no porten municipi en la seua fitxa i queden fora d’aquest gràfic',
+    'empleo.chart.coverage.enRiba':
+      ' — d’elles, {enRiba} sí que diuen Riba-roja de Túria en el llistat, i són les que el recompte de dalt suma i aquest gràfic no',
     'empleo.filterMunicipio': 'Municipi',
     'empleo.allMunicipios': 'Tots els municipis',
     'empleo.filterContract': 'Tipus de contracte',

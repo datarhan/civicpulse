@@ -79,11 +79,18 @@ describe('/empleo · las dos cifras de Riba-roja se pueden cuadrar', () => {
   })
 
   it('la salvedad del gráfico publica el puente, en los dos idiomas', () => {
+    // En su propia clave, no dentro de la de cobertura: el puente es
+    // CONDICIONAL —el día que no haya ninguna sin ficha vale cero— y una sola
+    // cadena imprimiría «de ellas, 0 sí dicen Riba-roja», que es ruido con
+    // forma de dato.
     for (const locale of LOCALES) {
-      const texto = CATALOGUE[locale]?.['empleo.chart.coverage']
-      expect(texto, `${locale} · falta la clave`).toBeTruthy()
-      expect(texto, `${locale} · no dice cuántas quedan fuera`).toMatch(/\{n\}/)
-      expect(texto, `${locale} · no dice cuántas de ésas son de Riba-roja`).toMatch(/\{enRiba\}/)
+      const cobertura = CATALOGUE[locale]?.['empleo.chart.coverage']
+      expect(cobertura, `${locale} · falta la clave de cobertura`).toBeTruthy()
+      expect(cobertura, `${locale} · no dice cuántas quedan fuera`).toMatch(/\{n\}/)
+
+      const puente = CATALOGUE[locale]?.['empleo.chart.coverage.enRiba']
+      expect(puente, `${locale} · falta el puente`).toBeTruthy()
+      expect(puente, `${locale} · el puente no trae su cifra`).toMatch(/\{enRiba\}/)
     }
   })
 

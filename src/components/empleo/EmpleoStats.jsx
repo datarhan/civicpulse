@@ -246,6 +246,15 @@ export default function EmpleoStats({ stats, t, totalAll, offers }) {
                 justo debajo de un KPI que decía 45 por casualidad —son
                 conjuntos distintos— e invitaba a leerlos como el mismo. */}
               {t('empleo.chart.coverage').replace('{n}', stats.total - stats.byMunicipioCoverage)}
+              {/* Y el PUENTE, que es lo que faltaba para poder cuadrar las dos
+                cifras de Riba-roja que esta tarjeta publica. Decir cuántas
+                quedan fuera explica el denominador del gráfico; no explica por
+                qué arriba pone 38 y aquí 26. Con esta frase sí: 26 + 12 = 38.
+
+                Condicional y derivado: el día que la ficha traiga el municipio
+                de esas doce, vale cero y desaparece sola. */}
+              {stats.sinMunicipioEnRiba > 0 &&
+                t('empleo.chart.coverage.enRiba').replace('{enRiba}', stats.sinMunicipioEnRiba)}
             </div>
           )}
         </Panel>
