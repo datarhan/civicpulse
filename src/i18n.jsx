@@ -1072,7 +1072,7 @@ export const CATALOGUE = {
     // La cifra de esa fila es el presupuesto base de licitación, no el importe
     // por el que se firmó, porque la fuente no publica el segundo. Se avisa
     // sólo ahí: en una fila sin adjudicar la pastilla de estado ya lo dice.
-    'presupuesto.gasto.sinAdjudicacion': 'licitación; adjudicación sin importe',
+    'presupuesto.gasto.sinAdjudicacion': 'importe de licitación',
     'presupuesto.gasto.fueraDeCifras.uno':
       'El otro consta en el registro público pero no cuenta en las cifras de arriba:',
     'presupuesto.gasto.fueraDeCifras.varios':
@@ -2628,7 +2628,7 @@ export const CATALOGUE = {
     'presupuesto.gasto.resultado.varios': 'resultats',
     'presupuesto.gasto.resultado.pagina': '{desde}–{hasta}, pàgina {pagina} de {paginas}',
     'presupuesto.gasto.comprometido': 'són diners compromesos (adjudicats o formalitzats).',
-    'presupuesto.gasto.sinAdjudicacion': 'licitació; adjudicació sense import',
+    'presupuesto.gasto.sinAdjudicacion': 'import de licitació',
     'presupuesto.gasto.fueraDeCifras.uno':
       'L’altre consta en el registre públic però no compta en les xifres de dalt:',
     'presupuesto.gasto.fueraDeCifras.varios':

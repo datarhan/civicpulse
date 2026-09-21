@@ -119,8 +119,14 @@ describe('/presupuesto · el capítulo que abre en cero dice en QUÉ presupuesto
     const pie = piezas.join(' ')
     expect(pie, 'no encuentro el pie de la tarjeta de capítulos').toBeTruthy()
     expect(pie, 'el pie habla de un solo presupuesto aprobado').toMatch(/CONPREL/)
-    // La cifra de la otra fuente, escrita como la escribe la página.
-    expect(pie, 'el pie no dice cuánto le da la otra fuente').toMatch(/0,9\d M€|905\.517/)
+    // AL EURO, no en millones como el resto de la frase, y eso es deliberado:
+    // la cifra es una remisión a la tarjeta de CONPREL de dos pantallas más
+    // abajo, que la publica así. Con «0,91 M€» el lector tiene que convertir
+    // para comprobar justo lo que la frase le invita a comprobar.
+    expect(pie, 'el pie no dice cuánto le da la otra fuente, al euro').toMatch(/905\.517\s*€/)
+    expect(pie, 'la remisión va en millones y la tarjeta de destino en euros').not.toMatch(
+      /0,91 M€/,
+    )
   })
 
   it('y no afirma en singular que el crédito no estuviera aprobado', async () => {

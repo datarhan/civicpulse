@@ -843,7 +843,12 @@ function CapitulosCard() {
                 inicial: eurM(dominante.definitivo - dominante.modificaciones, 2),
                 cuota: pct0(dominante.cuotaAmpliacion * 100),
                 pct: pct1(dominante.pctEjecutado),
-                conprel: eurM(segunConprel?.conprel ?? 0, 2),
+                // Al euro, no en millones como el resto de la frase: esta cifra
+                // es una REMISIÓN a la tarjeta de CONPREL que hay dos pantallas
+                // más abajo, donde ese capítulo aparece como «905.517 €». La
+                // frase existe para que el lector lo compruebe allí, y un
+                // «0,91 M€» le pone una conversión por delante.
+                conprel: eur0(segunConprel?.conprel ?? 0),
               },
             )}
           />
