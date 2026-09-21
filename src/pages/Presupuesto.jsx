@@ -613,12 +613,21 @@ function Swatch({ color, opacity = 1 }) {
 function CapitulosCard() {
   const t = useT()
   const { data } = useBudgetExecution()
+  const { data: aprobado } = useBudget()
   const p = data?.latest
   const total = p?.gastos?.total
   const filas = lecturaCapitulos(p?.gastos?.chapters, total)
   if (!p || filas.length === 0 || !(total?.actual > 0)) return null
   const dominante = capituloDominante(p.gastos.chapters, total)
   const capMax = Math.max(...filas.map((f) => f.definitivo), 1)
+  // Qué dice de ese mismo capítulo la OTRA fuente. `contrastarPresupuesto`
+  // devuelve null cuando los ejercicios no casan, y entonces no hay dos
+  // presupuestos del mismo año que contrastar: la frase se queda en la simple.
+  const contraste = contrastarPresupuesto(aprobado?.snapshot, p)
+  const segunConprel =
+    dominante && contraste
+      ? contraste.capitulos.find((c) => c.code === String(dominante.capitulo))
+      : null
 
   const notaDe = (f) => {
     // La cuota de la ampliación NO se repite aquí cuando el capítulo abrió en
@@ -790,6 +799,7 @@ function CapitulosCard() {
         })}
       </div>
       <p
+        data-pie="capitulos"
         style={{
           margin: '16px 0 0',
           paddingTop: 14,
@@ -804,10 +814,28 @@ function CapitulosCard() {
         {dominante && (
           <Marcado
             texto={rellena(
+              // Tres frases, y la del medio es la que faltaba. «Ese crédito no
+              // estaba en el presupuesto que se aprobó» está bien dicho de un
+              // ayuntamiento con UN presupuesto aprobado, y esta página publica
+              // dos: el estado de ejecución del propio ayuntamiento abre
+              // Inversiones reales en 0 € y el remitido a CONPREL le da
+              // 905.517,35 €. La frase elegía una de las dos sin decirlo, y
+              // elegía justo en el capítulo donde más discrepan — mientras la
+              // tarjeta de más abajo se titula «Dos fuentes, dos presupuestos
+              // aprobados» y promete que cada cifra dice de cuál viene.
+              //
+              // Derivado, no escrito: el día que las dos coincidan en ese
+              // capítulo, la frase vuelve sola a la simple. Y la clave se
+              // nombra AQUÍ, en la misma llamada que rellena sus huecos, no en
+              // una variable: el guard de `i18n-catalogue` lee el objeto pegado
+              // al literal, y con la clave escondida en un ayudante se pone
+              // rojo, que es lo que tiene que hacer un guard que no puede mirar.
               t(
-                dominante.abrioEnCero
-                  ? 'presupuesto.cap.pie.cero'
-                  : 'presupuesto.cap.pie.dominante',
+                !dominante.abrioEnCero
+                  ? 'presupuesto.cap.pie.dominante'
+                  : segunConprel?.conprel > 0
+                    ? 'presupuesto.cap.pie.ceroDiscrepan'
+                    : 'presupuesto.cap.pie.cero',
               ),
               {
                 capitulo: dominante.rotulo,
@@ -815,6 +843,7 @@ function CapitulosCard() {
                 inicial: eurM(dominante.definitivo - dominante.modificaciones, 2),
                 cuota: pct0(dominante.cuotaAmpliacion * 100),
                 pct: pct1(dominante.pctEjecutado),
+                conprel: eurM(segunConprel?.conprel ?? 0, 2),
               },
             )}
           />

@@ -1201,8 +1201,15 @@ export const CATALOGUE = {
     'presupuesto.cap.leyenda.ejecutado': 'ejecutado',
     'presupuesto.cap.nota.cero': 'crédito inicial 0 €',
     'presupuesto.cap.nota.cuota': '{cuota} % de toda la ampliación',
+    // Dos frases para el capítulo que abre en cero, y la diferencia es de quién
+    // es el cero. Esta página publica DOS presupuestos aprobados del mismo
+    // ejercicio: cuando el otro también abre el capítulo en cero, el crédito no
+    // estaba en ninguno y la frase puede decirlo. Cuando no —2025, Inversiones
+    // reales—, decirlo en singular elige una fuente sin nombrarla.
     'presupuesto.cap.pie.cero':
-      '**{capitulo} abrió el ejercicio con 0 € y acabó con {definitivo}** —el {cuota} % de toda la ampliación—, de los que se ejecutó el {pct} %. Un capítulo que empieza en cero y recibe todo su crédito durante el ejercicio no es una desviación de ejecución: es que ese crédito no estaba en el presupuesto que se aprobó.',
+      '**{capitulo} abrió el ejercicio con 0 € y acabó con {definitivo}** —el {cuota} % de toda la ampliación—, de los que se ejecutó el {pct} %. Un capítulo que empieza en cero y recibe todo su crédito durante el ejercicio no es una desviación de ejecución: ese crédito no estaba en ninguno de los dos presupuestos aprobados que publica esta página.',
+    'presupuesto.cap.pie.ceroDiscrepan':
+      '**{capitulo} abrió el ejercicio con 0 € y acabó con {definitivo}** —el {cuota} % de toda la ampliación—, de los que se ejecutó el {pct} %. Ese cero es el del estado de ejecución del propio Ayuntamiento: **el presupuesto que se remitió a CONPREL le da {conprel} de crédito inicial a ese mismo capítulo**. Las dos fuentes son oficiales y no se reconcilian, así que parte de lo que aquí figura como ampliación ya estaba aprobado en la otra.',
     'presupuesto.cap.pie.dominante':
       '**{capitulo} se llevó el {cuota} % de toda la ampliación**: de {inicial} a {definitivo}, de los que se ejecutó el {pct} %.',
     'presupuesto.cap.pie.cociente':
@@ -2748,7 +2755,9 @@ export const CATALOGUE = {
     'presupuesto.cap.nota.cero': 'crèdit inicial 0 €',
     'presupuesto.cap.nota.cuota': "{cuota} % de tota l'ampliació",
     'presupuesto.cap.pie.cero':
-      "**{capitulo} va obrir l'exercici amb 0 € i va acabar amb {definitivo}** —el {cuota} % de tota l'ampliació—, dels quals es va executar el {pct} %. Un capítol que comença en zero i rep tot el seu crèdit durant l'exercici no és una desviació d'execució: és que eixe crèdit no estava en el pressupost que es va aprovar.",
+      "**{capitulo} va obrir l'exercici amb 0 € i va acabar amb {definitivo}** —el {cuota} % de tota l'ampliació—, dels quals es va executar el {pct} %. Un capítol que comença en zero i rep tot el seu crèdit durant l'exercici no és una desviació d'execució: eixe crèdit no estava en cap dels dos pressupostos aprovats que publica esta pàgina.",
+    'presupuesto.cap.pie.ceroDiscrepan':
+      "**{capitulo} va obrir l'exercici amb 0 € i va acabar amb {definitivo}** —el {cuota} % de tota l'ampliació—, dels quals es va executar el {pct} %. Eixe zero és el de l'estat d'execució del propi Ajuntament: **el pressupost que es va remetre a CONPREL li dóna {conprel} de crèdit inicial a eixe mateix capítol**. Les dos fonts són oficials i no es reconcilien, així que part del que ací figura com a ampliació ja estava aprovat en l'altra.",
     'presupuesto.cap.pie.dominante':
       "**{capitulo} es va emportar el {cuota} % de tota l'ampliació**: de {inicial} a {definitivo}, dels quals es va executar el {pct} %.",
     'presupuesto.cap.pie.cociente':
