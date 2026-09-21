@@ -8,6 +8,7 @@ import {
   validarDescartes,
   type RegistroDescartes,
   descartesInertes,
+  rastroDeDescartes,
   SOLAPE_MINIMO,
 } from '../src/scraper/surface-dismissals'
 import type { ReaderFinding } from '../src/scraper/reader-review'
@@ -357,5 +358,115 @@ describe('un descarte que silencia no se anuncia además como huérfano', () => 
   it('un descarte que de verdad no casa con nada SÍ sigue saliendo — control', () => {
     const otro = f('una frase completamente distinta que nadie ha descartado nunca aquí')
     expect(descartesHuerfanos(reg, new Map([['/hallazgos', [otro]]]))).toHaveLength(1)
+  })
+})
+
+/**
+ * El tercer desenlace que faltaba: ¿sigue publicada la frase?
+ *
+ * `descartesHuerfanos` contesta «hoy no silencia nada», que no es lo mismo, y el
+ * aviso que imprime lo reconoce: «comprueba si la frase sigue publicada antes de
+ * quitarlos». Le pide a una persona una comprobación que la herramienta tiene a
+ * un paso — el texto renderizado de cada ruta ya lo ha leído para revisarla.
+ *
+ * Sin ella, un descarte cuya frase ya no existe y otro armado y correcto salen
+ * escritos igual, y se leen igual: una lista que hay que repasar entera a mano
+ * cada vez. El 21-09-2026 eran 23 descartes y 3 huérfanos; al comprobar las
+ * citas con un script tosco —que pedía `/ [capas]` como si fuera una URL y no
+ * encendía ninguna capa— 7 de los 23 «no aparecían». La mayoría era el script,
+ * no el registro: por eso la comprobación tiene que hacerla quien SÍ sabe montar
+ * la página, que es el propio barrido.
+ *
+ * Tres desenlaces, sin plegar ninguno:
+ *
+ *   vigente     la frase está en el texto de esa ruta → armado y correcto
+ *   sin-rastro  la ruta se leyó y la frase NO está    → sobra, que lo mire alguien
+ *   no-mirada   esta pasada no visitó esa ruta        → no se sabe, y se dice
+ *
+ * Plegar «no la he mirado» dentro de «no está» es la regla 2 de DATA_INTEGRITY
+ * —la que dejó a una pasada declarando «re-juzgados 1017» sin una sola llamada—
+ * aplicada al silenciador.
+ */
+describe('rastroDeDescartes — ¿sigue publicada la frase que se descartó?', () => {
+  const reg: RegistroDescartes = {
+    version: 1,
+    items: [
+      {
+        route: '/datos',
+        quote: '805 contratos indexados en el registro municipal',
+        reason: 'r'.repeat(12),
+        editor: 'Alguien',
+        at: '2026-09-01',
+      },
+      {
+        route: '/datos',
+        quote: 'una frase que ya no está en ninguna parte de la página',
+        reason: 'r'.repeat(12),
+        editor: 'Alguien',
+        at: '2026-09-01',
+      },
+      {
+        route: '/plenos',
+        quote: 'otra frase, de una ruta que esta pasada no ha visitado',
+        reason: 'r'.repeat(12),
+        editor: 'Alguien',
+        at: '2026-09-01',
+      },
+    ],
+  }
+
+  const texto = new Map([
+    [
+      '/datos',
+      'Datos abiertos\n805 contratos indexados en el registro municipal\nFuente: Gobierto',
+    ],
+  ])
+
+  it('separa los tres desenlaces y no pliega ninguno', () => {
+    const r = rastroDeDescartes(reg, texto)
+    expect(r.map((x) => x.rastro)).toEqual(['vigente', 'sin-rastro', 'no-mirada'])
+  })
+
+  it('«no mirada» no es «no está»: una ruta ausente del mapa no se juzga', () => {
+    // El defecto que esto evita: con el mapa vacío —una pasada que no visitó
+    // nada— todos los descartes saldrían como sobrantes y alguien los borraría.
+    expect(rastroDeDescartes(reg, new Map()).every((x) => x.rastro === 'no-mirada')).toBe(true)
+  })
+
+  it('usa la MISMA normalización que el silenciador, no una parecida', () => {
+    // Si divergieran, un descarte podría silenciar un señalamiento y salir a la
+    // vez como «sin rastro»: dos cosas contrarias del mismo registro. Ya pasó
+    // con `descartesHuerfanos`, que comparaba por igualdad mientras el
+    // silenciador casaba por contención.
+    const tipografico: RegistroDescartes = {
+      version: 1,
+      items: [
+        {
+          route: '/x',
+          quote: 'l’Alfàs del Pi — «un ejemplo» con comillas de las otras',
+          reason: 'r'.repeat(12),
+          editor: 'Alguien',
+          at: '2026-09-01',
+        },
+      ],
+    }
+    const conOtraPuntuacion = new Map([
+      ['/x', 'Texto: l\'Alfàs del Pi - "un ejemplo" con comillas de las otras. Y más.'],
+    ])
+    expect(rastroDeDescartes(tipografico, conOtraPuntuacion)[0].rastro).toBe('vigente')
+  })
+
+  it('casa por contención: la página es mucho más larga que la cita', () => {
+    const largo = new Map([
+      [
+        '/datos',
+        'a'.repeat(4000) + '805 contratos indexados en el registro municipal' + 'b'.repeat(4000),
+      ],
+    ])
+    expect(rastroDeDescartes(reg, largo)[0].rastro).toBe('vigente')
+  })
+
+  it('sin registro no inventa filas', () => {
+    expect(rastroDeDescartes(null, texto)).toEqual([])
   })
 })
