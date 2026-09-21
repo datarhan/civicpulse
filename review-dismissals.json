@@ -59,13 +59,6 @@
       "at": "2026-09-04"
     },
     {
-      "route": "/empleo",
-      "quote": "EN RIBA-ROJA\n37\n63%",
-      "reason": "La página YA explica la diferencia que el revisor presenta como no explicada. Son dos poblaciones distintas y medidas: el KPI cuenta `inRibaRoja`, derivado de `location` por la política de alias (37 de 59), y el gráfico agrupa `detail.municipio`, que sólo traen 42 de las 59 ofertas (24 de ellas Riba-roja). Justo debajo del gráfico, EmpleoStats pinta «17 ofertas no traen municipio en su ficha y quedan fuera de este gráfico», derivado de byMunicipioCoverage y no escrito a mano. Es además exactamente este defecto, ya arreglado: el comentario del componente lo cuenta —iba sobre 44 de 67 con el KPI sobre 67— y razona por qué se cuenta lo EXCLUIDO y no lo incluido. Medido contra empleo.json el 4-09-2026: 59 ofertas, 37 inRibaRoja, 24 con detail.municipio de Riba-roja, 17 sin detail.municipio.",
-      "editor": "claude-opus-5",
-      "at": "2026-09-04"
-    },
-    {
       "route": "/hallazgos",
       "quote": "La ficha la atribuye a PSOE.",
       "reason": "Tercera cara del mismo señalamiento que ya se descartó dos veces el 29-08-2026, con las dos citas invertidas: el revisor lee la pastilla del recuadro «Literal retenido» como si rotulara la cita impresa que tiene encima. Son citas distintas de f-2026-05-11-cit-a0a379: la de publicar el convenio va sin atribuir, y la atribuida a PSOE es la [3], retenida. En texto plano —que es lo que lee la revisión— el borde punteado y el «Literal retenido.» que separan los dos bloques desaparecen, así que el señalamiento nace de la maquetación aplanada, no del dato. Comprobado contra pleno-findings.json el 4-09-2026. Lo que sí queda pendiente, como ya decía el descarte del 29-08, es la caja: 37 de 131 citas están retenidas y el recuadro cae bajo una cita impresa a menudo.",
@@ -90,20 +83,6 @@
       "route": "/reportajes/basuras",
       "quote": "Riba-roja formaliza el contrato con Garbialdi, tres semanas después de que ISS hiciera pública la compra.",
       "reason": "El revisor ancla «hacer pública la compra» en la NOTIFICACIÓN a la CNMC (2025-09-22) y de ahí saca siete semanas. El reportaje distingue tres fechas del mismo expediente C/1600/25 y las publica las tres: notificada 2025-09-22, autorizada 2025-10-01 y ANUNCIADA 2025-10-21. Del anuncio a la formalización del 2025-11-11 hay 21 días exactos: tres semanas, que es lo que dice la frase. Mismo patrón que los descartes de /gestion y /quejas — el revisor juzga la frase contra un universo más ancho que el que la frase nombra. Comprobado contra public/data/reportajes/basuras.json el 5-09-2026.",
-      "editor": "claude-opus-5",
-      "at": "2026-09-05"
-    },
-    {
-      "route": "/ [capas]",
-      "quote": "PRESUP. 2025\n€41,6M\n▲\nMinHac CONPREL",
-      "reason": "La tarjeta acredita su fuente en el mismo sitio: «PRESUP. 2025 · 41,6 M€ · MinHac CONPREL». Nombrar la cifra del ministerio como presupuesto de 2025 es exacto — lo es—, y la tarjeta dice de dónde sale. El señalamiento nace de que la ficha del revisor llevaba, durante unas horas del 5-09-2026, una CONCLUSIÓN («no coincide ni con el crédito inicial ni con el definitivo») donde debía llevar un hecho; el modelo la aplicó a cualquier página que nombrara la cifra. La etiqueta se ha reescrito para enumerar y no concluir. Las tres magnitudes municipales siguen en la ficha por separado, así que el cotejo se puede hacer, sólo que ya no viene hecho de fábrica. (Anotado primero contra la ruta «/» por error: los rótulos de las tarjetas del mapa sólo se leen con las capas encendidas, y esa lectura va bajo la clave «/ [capas]». Un descarte con la ruta equivocada no silencia nada y no lo dice: `estaDescartado` exige coincidencia exacta de ruta.) (La cita anterior de este descarte, «PRESUP. 2025», tenía 12 caracteres y SOLAPE_MINIMO son 25: no podía casar con nada. Un descarte demasiado corto no silencia y tampoco avisa de que no silencia.)",
-      "editor": "claude-opus-5",
-      "at": "2026-09-05"
-    },
-    {
-      "route": "/ [capas]",
-      "quote": "41.578.252 € presupuesto 2025",
-      "reason": "Lo mismo un rótulo más abajo y sobre la cifra completa: llamar «presupuesto 2025» a los 41.578.252,26 € que el ayuntamiento rindió al ministerio es exacto. La discrepancia con el listado municipal —crédito inicial 37.599.838,15 €, definitivo 62.123.153,08 €— existe y la publica /presupuesto, que se niega a reconciliarla por escrito; no es un defecto de cada página que mencione la cifra. Mismo origen que el descarte de arriba: una ficha de hechos que concluía en vez de enumerar. (Anotado primero contra la ruta «/» por error: los rótulos de las tarjetas del mapa sólo se leen con las capas encendidas, y esa lectura va bajo la clave «/ [capas]». Un descarte con la ruta equivocada no silencia nada y no lo dice: `estaDescartado` exige coincidencia exacta de ruta.)",
       "editor": "claude-opus-5",
       "at": "2026-09-05"
     },
