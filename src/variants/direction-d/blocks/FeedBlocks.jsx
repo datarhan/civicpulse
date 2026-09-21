@@ -4,6 +4,7 @@ import { useTenders, formatDate as formatTenderDate } from '../../../hooks/useTe
 import { agrupaPorExpediente, infoLote } from '../../../lib/tender-lotes'
 import {
   isCommittedContract,
+  comprometidosSinImporte,
   isConcession,
   contractTermYears,
   importeAdjudicado,
@@ -132,6 +133,12 @@ export function LiveContracts() {
   const awardedYears = yearSpan(
     (data.contracts ?? []).filter(isCommittedContract).map((c) => c.awardDate),
   )
+  // El mismo cuidado que el periodo, en el otro eje. `awardedContracts` cuenta
+  // los firmados y `awardedTotalEuros` suma los que publican importe: el par
+  // describe dos conjuntos que se diferencian en cinco filas, y la diferencia no
+  // es cero euros sino un importe que la fuente no da. Condicional y derivado:
+  // el día que las publique todas, la salvedad desaparece sola.
+  const sinImporte = comprometidosSinImporte(data.contracts)
 
   return (
     <div>
@@ -164,6 +171,9 @@ export function LiveContracts() {
         >
           {t('landing.contratos.acumulado')} {awardedYears} · {t('landing.contratos.recientes')} ·{' '}
           {t('landing.contratos.importes')}
+          {sinImporte > 0
+            ? ` · ${rellena(t('landing.contratos.sinImporte'), { n: sinImporte })}`
+            : ''}
         </div>
       )}
       {recent.map((c, i) => {

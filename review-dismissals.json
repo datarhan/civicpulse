@@ -11,17 +11,17 @@
     },
     {
       "route": "/quejas",
-      "quote": "el gasto situado acumula adjudicaciones de 2018–2026",
-      "reason": "El revisor mide el rango sobre las 130 asignaciones de tender-geo.json y la etiqueta habla de las 47 que SÍ tienen barrio, que es lo único que la columna suma. Medido: todas 2017–2026, situadas 2018–2026, y CERO situadas anteriores a 2018. La página acierta. Y el estrechamiento es deliberado: el filtro `zones.length > 0` de QuejasSpendOverlap.jsx lleva un comentario explicando que etiquetar con un periodo más ancho que el dinero que rotula es el mismo defecto un nivel más abajo. Mismo patrón que el descarte de /gestion: el revisor compara un universo más ancho que la frase que juzga.",
+      "quote": "lo situado acumula adjudicaciones de 2018–2026",
+      "reason": "El revisor mide el rango sobre las 130 asignaciones de tender-geo.json y la etiqueta habla de las 47 que SÍ tienen barrio, que es lo único que la columna suma. Medido: todas 2017–2026, situadas 2018–2026, y CERO situadas anteriores a 2018. La página acierta. Y el estrechamiento es deliberado: el filtro `zones.length > 0` de QuejasSpendOverlap.jsx lleva un comentario explicando que etiquetar con un periodo más ancho que el dinero que rotula es el mismo defecto un nivel más abajo. Mismo patrón que el descarte de /gestion: el revisor compara un universo más ancho que la frase que juzga. — REFIRMADO el 2026-09-21 sobre el texto nuevo. La PR #78 renombró esta tarjeta: la columna de euros dejó de llamarse «gasto situado» y pasa a «Adjudicado situado», que es lo que de verdad suma — importe de adjudicación sin IVA, los mismos euros que rotulan la portada y /presupuesto. El motivo del descarte NO era la palabra sino el PERIODO, y el periodo no ha cambiado ni cómo se mide: sigue saliendo de las asignaciones que cayeron en un barrio, que es lo único que la columna suma. Se vuelve a apuntar a la frase nueva en vez de retirarlo, porque el revisor la señalará por lo mismo.",
       "editor": "Sergei Lutchenko",
-      "at": "2026-08-24"
+      "at": "2026-09-21"
     },
     {
       "route": "/quejas",
-      "quote": "GASTO SITUADO 2018–2026",
-      "reason": "El revisor mide el rango sobre las 130 asignaciones de tender-geo.json y la etiqueta habla de las 47 que SÍ tienen barrio, que es lo único que la columna suma. Medido: todas 2017–2026, situadas 2018–2026, y CERO situadas anteriores a 2018. La página acierta. Y el estrechamiento es deliberado: el filtro `zones.length > 0` de QuejasSpendOverlap.jsx lleva un comentario explicando que etiquetar con un periodo más ancho que el dinero que rotula es el mismo defecto un nivel más abajo. Mismo patrón que el descarte de /gestion: el revisor compara un universo más ancho que la frase que juzga. Es el encabezado de la misma columna que la frase de arriba, señalado por lo mismo.",
+      "quote": "Adjudicado situado 2018–2026",
+      "reason": "El revisor mide el rango sobre las 130 asignaciones de tender-geo.json y la etiqueta habla de las 47 que SÍ tienen barrio, que es lo único que la columna suma. Medido: todas 2017–2026, situadas 2018–2026, y CERO situadas anteriores a 2018. La página acierta. Y el estrechamiento es deliberado: el filtro `zones.length > 0` de QuejasSpendOverlap.jsx lleva un comentario explicando que etiquetar con un periodo más ancho que el dinero que rotula es el mismo defecto un nivel más abajo. Mismo patrón que el descarte de /gestion: el revisor compara un universo más ancho que la frase que juzga. Es el encabezado de la misma columna que la frase de arriba, señalado por lo mismo. — REFIRMADO el 2026-09-21 sobre el texto nuevo. La PR #78 renombró esta tarjeta: la columna de euros dejó de llamarse «gasto situado» y pasa a «Adjudicado situado», que es lo que de verdad suma — importe de adjudicación sin IVA, los mismos euros que rotulan la portada y /presupuesto. El motivo del descarte NO era la palabra sino el PERIODO, y el periodo no ha cambiado ni cómo se mide: sigue saliendo de las asignaciones que cayeron en un barrio, que es lo único que la columna suma. Se vuelve a apuntar a la frase nueva en vez de retirarlo, porque el revisor la señalará por lo mismo.",
       "editor": "Sergei Lutchenko",
-      "at": "2026-08-24"
+      "at": "2026-09-21"
     },
     {
       "route": "/hallazgos",
