@@ -227,7 +227,13 @@
         "enviadaEl": "2026-09-09",
         "via": "correo electrónico",
         "pide": "El mismo escrito, como gestora del Plan Territorial de Sostenibilidad Turística en Destino de la Comunitat Valenciana — Programa 2022, en el que se integra el plan de Riba-roja.",
-        "respuesta": null
+        "respuesta": null,
+        "incidencias": [
+          {
+            "fecha": "2026-09-21",
+            "texto": "El 21 de septiembre contestaron que por correo electrónico no pueden atender la solicitud y que hay que presentarla por su trámite electrónico (procedimiento 17472 de la sede de la Generalitat). No la resuelven: ni la conceden, ni la deniegan, ni dicen que no les corresponda, así que el mes del artículo 20 sigue corriendo."
+          }
+        ]
       }
     ]
   }

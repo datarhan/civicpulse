@@ -230,6 +230,41 @@ describe('respuesta · «no les corresponde»', () => {
  * imprimiría «undefined» delante de los lectores. Se lee la instantánea real, no
  * un fixture que la copie.
  */
+/**
+ * Una contestación que NO resuelve no es una respuesta, y no puede parar el reloj.
+ *
+ * El 21-09-2026 Turisme Comunitat Valenciana contestó al escrito del 9 de
+ * septiembre que por correo no podía atenderlo y que había que presentarlo por su
+ * trámite electrónico. Ni concede, ni deniega, ni dice que no le corresponda: no
+ * resuelve. Meterlo en `respuesta` con cualquiera de los sentidos del enum
+ * publicaría «respondida» sobre una solicitud que sigue sin contestar —y pararía
+ * el cómputo del art. 20 por una contestación que no lo agota—, así que va en su
+ * propio campo y el estado lo sigue mandando `respuesta` + la fecha.
+ */
+describe('una contestación que no resuelve deja el reloj corriendo', () => {
+  const conIncidencia: EnvioSolicitud = {
+    organismo: 'Turisme Comunitat Valenciana',
+    enviadaEl: '2026-09-09',
+    via: 'correo electrónico',
+    respuesta: null,
+    incidencias: [
+      {
+        fecha: '2026-09-21',
+        texto: 'Contestan que por esta vía no pueden atenderla y que hay que usar su trámite.',
+      },
+    ],
+  }
+
+  it('sigue en plazo mientras el mes no vence', () => {
+    expect(estadoDeEnvio(conIncidencia, '2026-09-30')).toBe('en-plazo')
+  })
+
+  it('y vence como cualquier otra, sin convertirse en respondida', () => {
+    expect(estadoDeEnvio(conIncidencia, '2026-10-10')).toBe('vencida-sin-respuesta')
+    expect(fraseDeEnvio(conIncidencia, '2026-10-10')).toMatch(/no han contestado/)
+  })
+})
+
 // Desde el 18-09-2026 son DOS las piezas que publican solicitudes con reloj
 // (el conteo y el coste efectivo), y las dos usan este módulo. La prueba recorre
 // las instantáneas en vez de fijar una: la siguiente pieza que publique un
