@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-27T13:21:51.359Z",
+  "generatedAt": "2026-09-21T05:53:59.613Z",
   "entries": {
     "k4olcs-005-acu-7c0edd": {
       "verification": {
@@ -21514,6 +21514,21 @@
       "reason": "La evidencia acredita que l'escola d'estiu existe como servicio municipal contratado (2018), no la afirmación de la cita sobre sus condiciones actuales.",
       "editor": "Sergei Lutchenko",
       "appliedAt": "2026-08-18T12:56:26.853Z"
+    },
+    "ma87e0-111-afi-083d71": {
+      "verification": {
+        "claimId": "ma87e0-111-afi-083d71",
+        "verdict": "sin-datos",
+        "summary": "Afirmación numérica («70.000 euros») dada por verificada contra un convenio BDNS cuyo importe consta como «no publicado» y con ref vacía: coincidencia de texto, ninguna cifra que cotejar. El verificador determinista la subió de sin-datos en 4c92cf31 (20-09-2026).",
+        "evidence": [],
+        "checkedAgainst": [
+          "curator-downgrade"
+        ]
+      },
+      "source": "curator-downgrade",
+      "reason": "Afirmación numérica («70.000 euros») dada por verificada contra un convenio BDNS cuyo importe consta como «no publicado» y con ref vacía: coincidencia de texto, ninguna cifra que cotejar. El verificador determinista la subió de sin-datos en 4c92cf31 (20-09-2026).",
+      "editor": "claude-fable-5.1",
+      "appliedAt": "2026-09-21T05:53:59.613Z"
     }
   }
 }
