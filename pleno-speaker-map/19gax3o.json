@@ -1,6 +1,6 @@
 {
   "plenoId": "19gax3o",
-  "generatedAt": "2026-09-20T15:31:35.612Z",
+  "generatedAt": "2026-09-21T07:47:48.652Z",
   "model": "gemini-3.5-flash",
   "promptVersion": "speaker-map-v2",
   "chunkSeconds": 600,
@@ -28,24 +28,791 @@
       "end": 25.9,
       "speaker": "c00/SPEAKER_00",
       "text": "Té la paraula el regidor de l'àrea, José Ángel."
+    },
+    {
+      "start": 3000,
+      "end": 3002,
+      "speaker": "c05/SPEAKER_00",
+      "text": "que antecedía en EDUSI,"
+    },
+    {
+      "start": 3002,
+      "end": 3005.9,
+      "speaker": "c05/SPEAKER_00",
+      "text": "y este era el documento clave para poder optar a que nos lo donaren."
+    },
+    {
+      "start": 3005.9,
+      "end": 3010,
+      "speaker": "c05/SPEAKER_00",
+      "text": "El tema es que la convocatoria aquella"
+    },
+    {
+      "start": 3010,
+      "end": 3014.5,
+      "speaker": "c05/SPEAKER_00",
+      "text": "se se habría a finales de octubre y finalizaba en febrero,"
+    },
+    {
+      "start": 3014.5,
+      "end": 3020.1,
+      "speaker": "c05/SPEAKER_00",
+      "text": "y nosotros, como pueblo intermedio, íbamos a optar a quince millones de euros,"
+    },
+    {
+      "start": 3020.1,
+      "end": 3022.8,
+      "speaker": "c05/SPEAKER_00",
+      "text": "pero vino la DANA"
+    },
+    {
+      "start": 3022.8,
+      "end": 3027.7,
+      "speaker": "c05/SPEAKER_00",
+      "text": "y nos aconsejaron que los pueblos DANA no entraren en la general,"
+    },
+    {
+      "start": 3027.7,
+      "end": 3029.1,
+      "speaker": "c05/SPEAKER_00",
+      "text": "básicamente porque"
+    },
+    {
+      "start": 3029.1,
+      "end": 3034.9,
+      "speaker": "c05/SPEAKER_00",
+      "text": "eh no tenían tiempo porque estaban todos abocados a lo que era la reconstrucción y la DANA,"
+    },
+    {
+      "start": 3034.9,
+      "end": 3039.8,
+      "speaker": "c05/SPEAKER_00",
+      "text": "y el hacer esa documentación para presentar en febrero, eso era un caos."
+    },
+    {
+      "start": 3039.8,
+      "end": 3046.1,
+      "speaker": "c05/SPEAKER_00",
+      "text": "Por lo tanto, nos aconsejaron que no participáramos en la general porque iban a hacer una convocatoria pueblos DANA."
+    },
+    {
+      "start": 3046.1,
+      "end": 3052.9,
+      "speaker": "c05/SPEAKER_00",
+      "text": "Habían pueblos que, a pesar de estar en la DANA, se han presentado a la general, como puede ser Torrent, y les han dado cinco o seis millones, pero"
+    },
+    {
+      "start": 3052.9,
+      "end": 3058.1,
+      "speaker": "c05/SPEAKER_00",
+      "text": "nosotros optamos por la general, que es la convocatoria de hará un mes,"
+    },
+    {
+      "start": 3058.1,
+      "end": 3061.4,
+      "speaker": "c05/SPEAKER_00",
+      "text": "y que ahora eh el documento clave"
+    },
+    {
+      "start": 3061.4,
+      "end": 3067.1,
+      "speaker": "c05/SPEAKER_00",
+      "text": "es la Agenda Urbana de Reconstrucción, que es adaptar el tema de lo que pasó en la DANA a la agenda anterior."
+    },
+    {
+      "start": 3067.1,
+      "end": 3073.9,
+      "speaker": "c05/SPEAKER_00",
+      "text": "Pues bueno, eh es un documento, volver a repetir, que que ahora llevamos ahora por la agenda urbana"
+    },
+    {
+      "start": 3073.9,
+      "end": 3078.9,
+      "speaker": "c05/SPEAKER_00",
+      "text": "y, si no pasa nada, el mes que viene portaremos el PAE. El PAE es el documento de presentación"
+    },
+    {
+      "start": 3078.9,
+      "end": 3082.6,
+      "speaker": "c05/SPEAKER_00",
+      "text": "de la de la subvención del de esta que vamos a hacer de fondos FEDER,"
+    },
+    {
+      "start": 3082.6,
+      "end": 3085.9,
+      "speaker": "c05/SPEAKER_00",
+      "text": "y que eh tenemos que aprobar esta esta agenda"
+    },
+    {
+      "start": 3085.9,
+      "end": 3090.1,
+      "speaker": "c05/SPEAKER_00",
+      "text": "sí o sí para poder optar a esa a esa subvención. Por lo tanto,"
+    },
+    {
+      "start": 3090.1,
+      "end": 3093.1,
+      "speaker": "c05/SPEAKER_00",
+      "text": "proponemos al pleno el siguiente acuerdo: el primero es aprobar"
+    },
+    {
+      "start": 3093.1,
+      "end": 3097.9,
+      "speaker": "c05/SPEAKER_00",
+      "text": "la Agenda Urbana de Reconstrucción como hoja de ruta para el desarrollo local hasta el dos mil treinta;"
+    },
+    {
+      "start": 3097.9,
+      "end": 3102.9,
+      "speaker": "c05/SPEAKER_00",
+      "text": "y segundo, dar publicidad al presente acuerdo en el BOP, el tablón de anuncios municipal,"
+    },
+    {
+      "start": 3102.9,
+      "end": 3106.5,
+      "speaker": "c05/SPEAKER_00",
+      "text": "así como publicarlo en el portal de transparencia de la web municipal."
+    },
+    {
+      "start": 3106.5,
+      "end": 3107.4,
+      "speaker": "c05/SPEAKER_00",
+      "text": "Gracias."
+    },
+    {
+      "start": 3107.4,
+      "end": 3111.5,
+      "speaker": "c05/SPEAKER_01",
+      "text": "¿Más palabras? ¿Alberto? ¿Pepe?"
+    },
+    {
+      "start": 3111.5,
+      "end": 3115.4,
+      "speaker": "c05/SPEAKER_02",
+      "text": "Nosotros ya en el seu dia votarem a favor de la agenda urbana"
+    },
+    {
+      "start": 3115.4,
+      "end": 3120.9,
+      "speaker": "c05/SPEAKER_02",
+      "text": "eh porque pensábamos que era necesa- bueno, pensamos, sabemos que es necesaria para poder optar a los fondos europeos, como bien ha dicho José Luis,"
+    },
+    {
+      "start": 3120.9,
+      "end": 3125.5,
+      "speaker": "c05/SPEAKER_02",
+      "text": "pero se quedaremos esperando a que presentaran algún"
+    },
+    {
+      "start": 3125.5,
+      "end": 3129.1,
+      "speaker": "c05/SPEAKER_02",
+      "text": "proyecto dentro de la agenda urbana, que no se presentaran."
+    },
+    {
+      "start": 3129.1,
+      "end": 3133.5,
+      "speaker": "c05/SPEAKER_02",
+      "text": "El plan de contratación de la agenda urbana. Nosotros eh"
+    },
+    {
+      "start": 3133.5,
+      "end": 3138.5,
+      "speaker": "c05/SPEAKER_02",
+      "text": "en aquel momento aprobamos, sabemos que ahora es una una ampliación de la de la existente."
+    },
+    {
+      "start": 3138.5,
+      "end": 3143.5,
+      "speaker": "c05/SPEAKER_02",
+      "text": "Nosotros nos abstendremos porque los fines ni los sabremos antes"
+    },
+    {
+      "start": 3143.5,
+      "end": 3145.5,
+      "speaker": "c05/SPEAKER_02",
+      "text": "ni los conocemos ahora."
+    },
+    {
+      "start": 3145.5,
+      "end": 3149.5,
+      "speaker": "c05/SPEAKER_02",
+      "text": "Eh son proyectos que se tienen, sí que sabemos más o menos eh quiénes son,"
+    },
+    {
+      "start": 3149.5,
+      "end": 3154.5,
+      "speaker": "c05/SPEAKER_02",
+      "text": "pero no sabemos si la forma de ejecutarlos o la ejecución final será será la correcta"
+    },
+    {
+      "start": 3154.5,
+      "end": 3157.5,
+      "speaker": "c05/SPEAKER_02",
+      "text": "desde nuestro punto de vista. Entonces, nosotros nos abstendremos en este punto."
+    },
+    {
+      "start": 3157.5,
+      "end": 3158.4,
+      "speaker": "c05/SPEAKER_02",
+      "text": "Gracias."
+    },
+    {
+      "start": 3158.4,
+      "end": 3162.5,
+      "speaker": "c05/SPEAKER_01",
+      "text": "¿Más palabras? José Luis, Vox."
+    },
+    {
+      "start": 3162.5,
+      "end": 3165.9,
+      "speaker": "c05/SPEAKER_03",
+      "text": "Gracias, alcalde. Yo aquí creo que me voy a quedar solo"
+    },
+    {
+      "start": 3165.9,
+      "end": 3167.9,
+      "speaker": "c05/SPEAKER_03",
+      "text": "porque,"
+    },
+    {
+      "start": 3167.9,
+      "end": 3172.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "desde luego, Vox rechaza de forma frontal"
+    },
+    {
+      "start": 3172.5,
+      "end": 3177.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "cualquier agenda de reconstrucción cuando está vinculada a una agenda dos mil treinta"
+    },
+    {
+      "start": 3177.5,
+      "end": 3181.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "o planes urbanos sostenibles promovidos desde Bruselas"
+    },
+    {
+      "start": 3181.5,
+      "end": 3184.9,
+      "speaker": "c05/SPEAKER_03",
+      "text": "o desde gobiernos de izquierda."
+    },
+    {
+      "start": 3184.9,
+      "end": 3186.9,
+      "speaker": "c05/SPEAKER_03",
+      "text": "¿Y qué proponemos?"
+    },
+    {
+      "start": 3186.9,
+      "end": 3192.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "Pues proponemos en su lugar un urbanismo orientado de verdad a una palabra eh"
+    },
+    {
+      "start": 3192.5,
+      "end": 3197.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "que es libertad, libertad económica y necesidades inmediatas de los vecinos. Eso es lo que se propone,"
+    },
+    {
+      "start": 3197.5,
+      "end": 3201.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "aquí en Riba-roja y en cualquier otro municipio de España."
+    },
+    {
+      "start": 3201.5,
+      "end": 3205.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "Aun así, es cierto que hay que defender unos planes de reconstrucción"
+    },
+    {
+      "start": 3205.5,
+      "end": 3210.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "cuando se centran en infraestructuras, en seguridad o en ayudas directas"
+    },
+    {
+      "start": 3210.5,
+      "end": 3215.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "a afectados sin condicionar ideología o falso ecologismo"
+    },
+    {
+      "start": 3215.5,
+      "end": 3220.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "o un ecologismo radical y fanático, que además es el que nos lleva a muchas de las desgracias que nos pasan."
+    },
+    {
+      "start": 3220.5,
+      "end": 3224.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "Por lo tanto, eh nosotros rechazamos una agenda urbana"
+    },
+    {
+      "start": 3224.5,
+      "end": 3228.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "relacionada con la agenda dos mil treinta porque esa agenda urbana dos mil treinta"
+    },
+    {
+      "start": 3228.5,
+      "end": 3233.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "en ámbito municipal introduce políticas globalistas claramente,"
+    },
+    {
+      "start": 3233.5,
+      "end": 3237.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "que erosionan la propiedad privada, la libertad individual"
+    },
+    {
+      "start": 3237.5,
+      "end": 3241.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "y la soberanía nacional. Esa es nuestra idea."
+    },
+    {
+      "start": 3241.5,
+      "end": 3245.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "Además, hay un urbanismo que denominan sostenible"
+    },
+    {
+      "start": 3245.5,
+      "end": 3249.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "y lo que Vox sí que comenta es que hay muchos planes de movilidad"
+    },
+    {
+      "start": 3249.5,
+      "end": 3254.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "y de regeneración urbana que hoy castigan al vehículo privado."
+    },
+    {
+      "start": 3254.5,
+      "end": 3259.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "Es de todos conocido que en las zonas de bajas emisiones, en los ayuntamientos donde tenemos capacidad,"
+    },
+    {
+      "start": 3259.5,
+      "end": 3264.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "eh las vamos a suprimir porque al final están castigando a las personas"
+    },
+    {
+      "start": 3264.5,
+      "end": 3269.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "normalmente más desfavorecidas que no se pueden comprar un coche eléctrico. Sé que esto aquí en Riba-roja eh"
+    },
+    {
+      "start": 3269.5,
+      "end": 3274.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "no ocurre, pero hay que decírselo a la ciudadanía, que al final son los gobiernos en los que que pretenden"
+    },
+    {
+      "start": 3274.5,
+      "end": 3279.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "implantar esta agenda fanática dos mil treinta,"
+    },
+    {
+      "start": 3279.5,
+      "end": 3283.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "pero no trabajan sobre las necesidades reales de los barrios."
+    },
+    {
+      "start": 3283.5,
+      "end": 3288.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "Entonces, ese ecologismo radical y pacto verde y agenda dos mil treinta que,"
+    },
+    {
+      "start": 3288.5,
+      "end": 3293.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "según el discurso, según nuestro discurso, encarecen vida de las familias y empresas"
+    },
+    {
+      "start": 3293.5,
+      "end": 3298.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "y subordinan un urbanismo a agendas climáticas"
+    },
+    {
+      "start": 3298.5,
+      "end": 3301.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "y además de género."
+    },
+    {
+      "start": 3301.5,
+      "end": 3305.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "Pero al final, hay cuando se trata de reconstruir,"
+    },
+    {
+      "start": 3305.5,
+      "end": 3308.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "sí, pero sin ideología."
+    },
+    {
+      "start": 3308.5,
+      "end": 3313.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "Eh cuando se trata de reconstruir zonas de reconstruir zonas afectadas por catástrofes, por ejemplo, la DANA,"
+    },
+    {
+      "start": 3313.5,
+      "end": 3317.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "lo que estamos solicitando es que se establezca un plan de reconstrucción nacional"
+    },
+    {
+      "start": 3317.5,
+      "end": 3322.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "centrado en infraestructuras hidráulicas, protección civil eficaz,"
+    },
+    {
+      "start": 3322.5,
+      "end": 3327.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "ayudas directas sin usar la tragedia para imponer esas restricciones verdes"
+    },
+    {
+      "start": 3327.5,
+      "end": 3331.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "ni condicionar ayudas eh a los vehículos eléctricos, por ejemplo."
+    },
+    {
+      "start": 3331.5,
+      "end": 3336.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "Y al final, el modelo urbano que proponer que proponemos es un modelo urbano al servicio de la gente,"
+    },
+    {
+      "start": 3336.5,
+      "end": 3341.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "con prioridades y con infraestructuras de verdad, como eh nos ha pasado aquí en"
+    },
+    {
+      "start": 3341.5,
+      "end": 3346.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "en la Comunidad Valenciana, que de verdad se trabaje con proyectos a medio plazo,"
+    },
+    {
+      "start": 3346.5,
+      "end": 3351.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "aunque urgentes, para poder evitar cualquier otra inundación,"
+    },
+    {
+      "start": 3351.5,
+      "end": 3356.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "frente a esos grandísimos planes estratégicos de la agenda dos mil treinta."
+    },
+    {
+      "start": 3356.5,
+      "end": 3361.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "Y esto es al final lo que pretendemos, un entorno urbano accesible para todos,"
+    },
+    {
+      "start": 3361.5,
+      "end": 3365.5,
+      "speaker": "c05/SPEAKER_03",
+      "text": "centrándose en las familias y, sobre todo, centrándose en la libertad. Gracias."
+    },
+    {
+      "start": 3365.5,
+      "end": 3369.5,
+      "speaker": "c05/SPEAKER_01",
+      "text": "¿Más palabras? Esquerra Unida Podem."
+    },
+    {
+      "start": 3369.5,
+      "end": 3374.5,
+      "speaker": "c05/SPEAKER_04",
+      "text": "Nosaltres eh considerem que és un punt essencialment important i a més eh"
+    },
+    {
+      "start": 3374.5,
+      "end": 3379.5,
+      "speaker": "c05/SPEAKER_04",
+      "text": "volem també confrontar el discurs de José Luis de Vox perquè"
+    },
+    {
+      "start": 3379.5,
+      "end": 3384.5,
+      "speaker": "c05/SPEAKER_04",
+      "text": "jo, sincerament, o és un discurs eh"
+    },
+    {
+      "start": 3384.5,
+      "end": 3389.5,
+      "speaker": "c05/SPEAKER_04",
+      "text": "que no t'has llegit l'expedient, o siga, no no no, jo crec que no, perquè és un discurs absolutament"
+    },
+    {
+      "start": 3389.5,
+      "end": 3394.5,
+      "speaker": "c05/SPEAKER_04",
+      "text": "eh abstracte amb un discurs totalment de Vox i de la llibertat, però sense rigor."
+    },
+    {
+      "start": 3394.5,
+      "end": 3399.5,
+      "speaker": "c05/SPEAKER_04",
+      "text": "O siga, vull dir, eh si tu veus l'expedient, perquè que tu valores este expedient des de si es complix o no,"
+    },
+    {
+      "start": 3399.5,
+      "end": 3404.5,
+      "speaker": "c05/SPEAKER_04",
+      "text": "ho entenem perfectament, però has dit eh coses com necessitats reals."
+    },
+    {
+      "start": 3404.5,
+      "end": 3409.5,
+      "speaker": "c05/SPEAKER_04",
+      "text": "És un expedient que si tu mires els indicadors, estan parlant de coses municipals,"
+    },
+    {
+      "start": 3409.5,
+      "end": 3414.5,
+      "speaker": "c05/SPEAKER_04",
+      "text": "i hi ha indicadors que, per exemple, parlen de l'ombratge en el CIC. És a dir, això no és eh"
+    },
+    {
+      "start": 3414.5,
+      "end": 3419.5,
+      "speaker": "c05/SPEAKER_04",
+      "text": "qüestions abstractes, són absolutament necessitats reals del nostre poble. Per tant, si estàs en contra"
+    },
+    {
+      "start": 3419.5,
+      "end": 3424.5,
+      "speaker": "c05/SPEAKER_04",
+      "text": "de Riba-roja, és un problema i has de justificar-ho, però no pots tindre un discurs que està totalment fora"
+    },
+    {
+      "start": 3424.5,
+      "end": 3427.5,
+      "speaker": "c05/SPEAKER_04",
+      "text": "de lo que parla este expedient."
+    },
+    {
+      "start": 3427.5,
+      "end": 3432.5,
+      "speaker": "c05/SPEAKER_04",
+      "text": "Dit això, crec també que el discurs que estàs plantejant és una falta de respecte al treball que hi ha darrere d'esta d'esta agenda."
+    },
+    {
+      "start": 3432.5,
+      "end": 3437.5,
+      "speaker": "c05/SPEAKER_04",
+      "text": "Jo crec que la qüestió o la crítica ha d'estar en si es complixen o no estes qüestions,"
+    },
+    {
+      "start": 3437.5,
+      "end": 3442.5,
+      "speaker": "c05/SPEAKER_04",
+      "text": "en què puguen fiscalitzar que es complisca eh eh este este expedient perquè al final"
+    },
+    {
+      "start": 3442.5,
+      "end": 3446.5,
+      "speaker": "c05/SPEAKER_04",
+      "text": "de lo que parla és d'una millora absolutament substancial."
+    },
+    {
+      "start": 3446.5,
+      "end": 3451.5,
+      "speaker": "c05/SPEAKER_04",
+      "text": "Dit això, tot el respecte al treball que hi ha darrere, crec sincerament que hi ha un diagnòstic molt eh rigorós"
+    },
+    {
+      "start": 3451.5,
+      "end": 3456.5,
+      "speaker": "c05/SPEAKER_04",
+      "text": "de lo que va passar en en el nostre poble,"
+    },
+    {
+      "start": 3456.5,
+      "end": 3461.5,
+      "speaker": "c05/SPEAKER_04",
+      "text": "i sí que m'agradaria parlar de dels indicadors, que és una cosa que crec que és molt important perquè parla d'indicadors globals,"
+    },
+    {
+      "start": 3461.5,
+      "end": 3466.5,
+      "speaker": "c05/SPEAKER_04",
+      "text": "estratègics i també de programa de reconstrucció. Estos indicadors,"
+    },
+    {
+      "start": 3466.5,
+      "end": 3471.5,
+      "speaker": "c05/SPEAKER_04",
+      "text": "jo lo que volia preguntar en tot el seu conjunt és si hi ha una temporalitat, si se planifica des d'una temporalitat o se vol"
+    },
+    {
+      "start": 3471.5,
+      "end": 3476.5,
+      "speaker": "c05/SPEAKER_04",
+      "text": "eh valorar estos indicadors de quina forma, perquè al final hi ha indicadors que són molt molt exigents,"
+    },
+    {
+      "start": 3476.5,
+      "end": 3481.5,
+      "speaker": "c05/SPEAKER_04",
+      "text": "que són positius per al nostre poble, però és veritat que són molt ambiciosos,"
+    },
+    {
+      "start": 3481.5,
+      "end": 3486.5,
+      "speaker": "c05/SPEAKER_04",
+      "text": "i sí que volia saber si eh en quant a la presentació dels fons europeus,"
+    },
+    {
+      "start": 3486.5,
+      "end": 3491.5,
+      "speaker": "c05/SPEAKER_04",
+      "text": "si estos indicadors si no se compliren en la seua totalitat o veure si hi ha alguna temporalitat, si pot afectar a la hora de que mos donen"
+    },
+    {
+      "start": 3491.5,
+      "end": 3495.5,
+      "speaker": "c05/SPEAKER_04",
+      "text": "més o menys en estes en estes matèries, val?"
+    },
+    {
+      "start": 3495.5,
+      "end": 3500.5,
+      "speaker": "c05/SPEAKER_04",
+      "text": "I, per altra banda, també volia saber, perquè hi ha indicadors que també es basen en els pressupost municipal,"
+    },
+    {
+      "start": 3500.5,
+      "end": 3505.5,
+      "speaker": "c05/SPEAKER_04",
+      "text": "si se planteja com una partida pressupostària per a estes eh"
+    },
+    {
+      "start": 3505.5,
+      "end": 3510.5,
+      "speaker": "c05/SPEAKER_04",
+      "text": "indicadors o si la temporalitat per a l'any que ve o com seria. Gràcies."
+    },
+    {
+      "start": 3510.5,
+      "end": 3513.5,
+      "speaker": "c05/SPEAKER_01",
+      "text": "Més paraules. Rafa."
+    },
+    {
+      "start": 3513.5,
+      "end": 3517.5,
+      "speaker": "c05/SPEAKER_05",
+      "text": "Bueno, eh nosaltres des del grup municipal de Compromís anem a"
+    },
+    {
+      "start": 3517.5,
+      "end": 3521.5,
+      "speaker": "c05/SPEAKER_05",
+      "text": "a recolzar esta proposta,"
+    },
+    {
+      "start": 3521.5,
+      "end": 3526.5,
+      "speaker": "c05/SPEAKER_05",
+      "text": "més que res perquè nosaltres sí que creguem en la Agenda 2030."
     }
   ],
-  "rows": [],
+  "rows": [
+    {
+      "label": "c05/SPEAKER_03",
+      "bloc": "VOX",
+      "slug": "jose-luis-fernandez-santamaria",
+      "heardAs": "José Luis Gómez",
+      "evidence": [
+        {
+          "spokenBy": "c05/SPEAKER_01",
+          "at": 3160,
+          "quote": "José Luis, Vox",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": true,
+      "weak": false
+    },
+    {
+      "label": "c05/SPEAKER_04",
+      "bloc": "EU-Podem",
+      "slug": "jose-manuel-gallardo-martinez",
+      "heardAs": null,
+      "evidence": [
+        {
+          "spokenBy": "c05/SPEAKER_01",
+          "at": 3368,
+          "quote": "Esquerra Unida Podem",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": true,
+      "weak": false
+    }
+  ],
   "rejected": [
     {
       "label": "c00/SPEAKER_00",
       "reason": "relation-contradicted",
       "detail": "turn-grant, but 23.4s is followed by nothing"
+    },
+    {
+      "label": "c05/SPEAKER_00",
+      "reason": "unresolvable",
+      "detail": "heard \"José Luis Ruiz\" but the cited quote does not contain it"
+    },
+    {
+      "label": "c05/SPEAKER_01",
+      "reason": "unresolvable",
+      "detail": "heard \"Robert Raga\" but the cited quote does not contain it"
+    },
+    {
+      "label": "c05/SPEAKER_02",
+      "reason": "unresolvable",
+      "detail": "heard \"Pepe Blanco\" but the cited quote does not contain it"
+    },
+    {
+      "label": "c05/SPEAKER_05",
+      "reason": "ambiguous",
+      "detail": "heard \"Rafa\" fits 2: Rafael Gómez Sánchez, Rafael Folgado Navarro"
     }
   ],
   "stats": {
     "chunksExpected": 15,
-    "chunksTranscribed": 1,
+    "chunksTranscribed": 2,
     "failedChunks": [
       {
         "chunk": 1,
         "why": "covered 69% (floor 85%)",
-        "attempts": 2,
+        "attempts": 3,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
           "floor": 0.85,
@@ -54,8 +821,8 @@
       },
       {
         "chunk": 2,
-        "why": "covered 71% (floor 85%)",
-        "attempts": 2,
+        "why": "covered 59% (floor 85%)",
+        "attempts": 3,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
           "floor": 0.85,
@@ -64,61 +831,77 @@
       },
       {
         "chunk": 3,
-        "why": "quota exhausted, never attempted further"
+        "why": "covered 69% (floor 85%)",
+        "attempts": 1,
+        "givenUpUnder": {
+          "prompt": "speaker-map-v2",
+          "floor": 0.85,
+          "thinking": "low"
+        }
       },
       {
         "chunk": 4,
-        "why": "never attempted (quota exhausted earlier in the run)"
-      },
-      {
-        "chunk": 5,
-        "why": "never attempted (quota exhausted earlier in the run)"
+        "why": "covered 69% (floor 85%)",
+        "attempts": 1,
+        "givenUpUnder": {
+          "prompt": "speaker-map-v2",
+          "floor": 0.85,
+          "thinking": "low"
+        }
       },
       {
         "chunk": 6,
-        "why": "never attempted (quota exhausted earlier in the run)"
+        "why": "covered 83% (floor 85%)",
+        "attempts": 1,
+        "givenUpUnder": {
+          "prompt": "speaker-map-v2",
+          "floor": 0.85,
+          "thinking": "low"
+        }
       },
       {
         "chunk": 7,
-        "why": "never attempted (quota exhausted earlier in the run)"
+        "why": "never attempted (call budget spent; resumes next run)"
       },
       {
         "chunk": 8,
-        "why": "never attempted (quota exhausted earlier in the run)"
+        "why": "never attempted (call budget spent; resumes next run)"
       },
       {
         "chunk": 9,
-        "why": "never attempted (quota exhausted earlier in the run)"
+        "why": "never attempted (call budget spent; resumes next run)"
       },
       {
         "chunk": 10,
-        "why": "never attempted (quota exhausted earlier in the run)"
+        "why": "never attempted (call budget spent; resumes next run)"
       },
       {
         "chunk": 11,
-        "why": "never attempted (quota exhausted earlier in the run)"
+        "why": "never attempted (call budget spent; resumes next run)"
       },
       {
         "chunk": 12,
-        "why": "never attempted (quota exhausted earlier in the run)"
+        "why": "never attempted (call budget spent; resumes next run)"
       },
       {
         "chunk": 13,
-        "why": "never attempted (quota exhausted earlier in the run)"
+        "why": "never attempted (call budget spent; resumes next run)"
       },
       {
         "chunk": 14,
-        "why": "never attempted (quota exhausted earlier in the run)"
+        "why": "never attempted (call budget spent; resumes next run)"
       }
     ],
-    "labelsSeen": 0,
-    "rowsAccepted": 0,
-    "rowsRejected": 1,
+    "labelsSeen": 6,
+    "rowsAccepted": 2,
+    "rowsRejected": 5,
     "rejectedBy": {
-      "relation-contradicted": 1
+      "relation-contradicted": 1,
+      "unresolvable": 3,
+      "ambiguous": 1
     },
-    "attemptedThisRun": 3,
-    "apiCalls": 7,
-    "coverage": 0.0034747622531089983
+    "attemptedThisRun": 6,
+    "apiCalls": 17,
+    "coverage": 0.07754206291148502
   }
 }
