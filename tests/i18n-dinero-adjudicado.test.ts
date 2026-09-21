@@ -165,3 +165,55 @@ describe('/presupuesto · la tarjeta de contratos, el mismo vocabulario', () => 
     expect(fuente).toMatch(/pestana: t\('presupuesto\.gasto\.pestana\.tipos'\)/)
   })
 })
+
+/**
+ * Y la tercera superficie: el cruce de /quejas.
+ *
+ * `QuejasSpendOverlap` rotulaba su columna de euros «Gasto situado» y lo
+ * repetía cuatro veces en la prosa, sobre exactamente los mismos euros que el
+ * mapa de la portada y la tarjeta de /presupuesto rotulan «adjudicado». Duró
+ * porque estaba escrito A MANO dentro del componente: fuera del catálogo y por
+ * tanto fuera de esta guarda, que sólo sabe leer claves.
+ *
+ * Así que la guarda pide las dos cosas —que las cadenas existan en el catálogo
+ * y que digan la palabra correcta—, porque arreglar sólo la segunda dejaría el
+ * siguiente rótulo escrito en el sitio donde nadie lo mira. Y de paso la
+ * tarjeta pasa a hablar valencià, que es lo que #38 dejó a medias aquí.
+ */
+const ROTULOS_DEL_CRUCE = [
+  'quejas.cruce.titulo',
+  'quejas.cruce.intro',
+  'quejas.cruce.periodos',
+  'quejas.cruce.cierre',
+  'quejas.cruce.col.adjudicado',
+  'quejas.cruce.sinSituado',
+]
+
+describe('/quejas · el cruce por barrio, el mismo vocabulario', () => {
+  it('la tarjeta no escribe su prosa a mano: la lee del catálogo', () => {
+    const fuente = readFileSync('src/components/Quejas/QuejasSpendOverlap.jsx', 'utf8')
+    for (const clave of ROTULOS_DEL_CRUCE) {
+      expect(fuente, `no lee ${clave}`).toMatch(new RegExp(clave.replace(/\./g, '\\.')))
+    }
+  })
+
+  it('ningún rótulo del cruce usa la palabra de la ejecución', () => {
+    for (const locale of LOCALES) {
+      for (const clave of ROTULOS_DEL_CRUCE) {
+        const texto = CATALOGUE[locale]?.[clave]
+        expect(texto, `${locale} · ${clave} no existe`).toBeTruthy()
+        expect(texto, `${locale} · ${clave}`).not.toMatch(FAMILIA_GASTO)
+      }
+    }
+  })
+
+  it('la columna de euros dice de qué dinero habla', () => {
+    // No basta con quitar «gasto»: una columna rotulada «Situado» a secas no
+    // dice qué se situó. Las dos que nombran la magnitud tienen que nombrarla.
+    for (const locale of LOCALES) {
+      for (const clave of ['quejas.cruce.titulo', 'quejas.cruce.col.adjudicado']) {
+        expect(CATALOGUE[locale]?.[clave], `${locale} · ${clave}`).toMatch(FAMILIA_ADJUDICADO)
+      }
+    }
+  })
+})
