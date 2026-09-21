@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-23T00:00:00.000Z",
+  "generatedAt": "2026-09-17T00:00:00.000Z",
   "metodo": "Barrido de la sección de empresarios del BORME (Registro Mercantil de Alicante) entre el 1 de enero de 2022 y el 23 de agosto de 2026, con `npm run scrape:borme`: 1.696 días pedidos, 1.049 secciones leídas y 101.767 anuncios recorridos, de los que 31 corresponden a esta sociedad. El CIF sale del expediente de contratación, no del BORME, que no lo publica. Cada dato de abajo lleva el anuncio del que sale y su texto literal; lo que no aparece en un anuncio concreto no se publica y consta en «límites». Las ocho citas de esta ficha se comprobaron literales contra su fuente el 23 de agosto de 2026: se descargó cada URL y se buscó el texto citado dentro.",
   "sociedades": [
     {

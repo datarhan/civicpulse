@@ -141,6 +141,27 @@
       "reason": "Comprobado el 19-09-2026 contra public/data/tenders.json: hoy tiene 812 filas (710 con adjudicatario), y en julio de 2026, cuando se hizo el barrido nominal que la frase cuenta, tenía 804. La frase fecha su propio recuento («que constaban … en julio de 2026 —adjudicados o no—»): es una comprobación congelada en su fecha, no una descripción del corpus de hoy, y por eso no se actualiza sola. Es la misma redacción que se publicó en otra biografía el 07-09-2026 tras un señalamiento que SÍ era cierto («804 contratos adjudicados»). La versión siguiente de esta biografía repite el barrido con el recuento del día.",
       "editor": "claude-fable-5-1",
       "at": "2026-09-19"
+    },
+    {
+      "route": "/hallazgos",
+      "quote": "así que no se publica su literal aquí — tampoco se publica en el registro de declaraciones.",
+      "reason": "Cuarta cara del señalamiento descartado el 29-08 y el 4-09 y re-anclado el 16-09-2026: el revisor lee el pie del recuadro «Literal retenido» como si negara la cita impresa que tiene encima, y el recuadro habla de OTRA cita de la misma ficha. Medido el 20-09-2026 en f-2025-12-01-cit-66709b, que es la ficha del convenio (los descartes anteriores la llamaban a0a379, que es la de la Fira): finding-quote-provenance.json da gate toggle a la [0] —«publicar el convenio en el portal de transparencia municipal», sin atribuir, que SE IMPRIME— y gate hidden a la [1] y la [2], las dos de PSOE, que son las que pintan el recuadro. `PlenoFindings.jsx` hace `citaRetenida(prov[i]) ? <CitaRetenida/> : <Quote/>`: para una misma cita sale el literal O el hueco, nunca los dos. El re-anclaje del 16-09 casó la nota de `notaAcusacionSinContrastar`; este es el pie de `CitaRetenida`, que dice lo mismo con otras palabras y no se había anclado nunca. Texto sin cifras vivas. Sigue pendiente lo que ya decían los otros tres descartes: en texto plano —lo que lee la revisión— el borde punteado que separa los bloques desaparece; eso se arregla con la caja, no callando la frase.",
+      "editor": "claude-fable-5.1",
+      "at": "2026-09-20"
+    },
+    {
+      "route": "/hallazgos",
+      "quote": "Es una acusación que el verificador no ha podido contrastar con ningún registro municipal",
+      "reason": "El revisor da por hecho que la cita retenida va «marcada igual que las anteriores con la etiqueta sin contraste en los datos», y no es así: son dos puertas distintas con dos rótulos distintos. `CONTRAST_MARK` en PlenoFindings.jsx: gate toggle → pastilla «sin contraste en los datos», cuya nota dice «no es una acusación» y cuyo literal SE PUBLICA; gate hidden → «acusación no contrastada», cuyo literal se retiene. Medido el 20-09-2026 en f-2025-12-01-cit-66709b contra finding-quote-provenance.json: la [0] es toggle y la [1] y la [2] son hidden. El recuadro `CitaRetenida` no pinta ninguna pastilla de contraste —sólo el rótulo «Literal retenido» y su pie—, así que la etiqueta que el revisor le atribuye pertenece a la cita impresa de al lado. La página no se contradice: llama acusación a la que retiene y no-acusación a la que publica. Mismo origen que el descarte de arriba: la maquetación aplanada. El propio revisor lo puntuó «unclear».",
+      "editor": "claude-fable-5.1",
+      "at": "2026-09-20"
+    },
+    {
+      "route": "/promesas",
+      "quote": "Riba-roja de Túria aprueba su presupuesto municipal de 2026, el más alto de su historia con 46 millones",
+      "reason": "El revisor desmiente «el más alto de su historia con 46 millones» con el crédito ACTUAL de 2025 (62,12 M€, inicial más modificaciones), y son dos magnitudes distintas: un presupuesto que se APRUEBA es crédito inicial, y el inicial de 2025 fue 37,60 M€ (budget-execution.json, gastos.total.inicial, medido el 20-09-2026). Comparar un inicial con un definitivo es justo la confusión de magnitudes que `magnitudes-fiscales.ts` existe para cazar en nuestra prosa, cometida aquí por quien revisa. Además la frase no es nuestra: es el campo `quote` de la promesa psoe-presupuesto-2026-46m, el titular literal de la fuente, impreso entre comillas en una promesa en estado `documentada` —el estado que dice «consta que se dijo», no «es cierto»—. El contenido en su lengua de origen se queda literal. Lo que NO podemos afirmar es que ningún año anterior tuviera un inicial mayor —budget.json sólo trae 2025—, y por eso la página no lo afirma: lo cita.",
+      "editor": "claude-fable-5.1",
+      "at": "2026-09-20"
     }
   ]
 }

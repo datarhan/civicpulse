@@ -59,6 +59,8 @@ log() { echo "[hallazgos-pipeline] [$(date '+%F %T')] $*"; }
 # ---- branch guard + pathspec-limited commit (shared) ------------------
 # shellcheck source=scripts/lib/cron-git.sh
 . "$REPO_DIR/scripts/lib/cron-git.sh"
+# shellcheck source=scripts/lib/claude-probe.sh
+. "$REPO_DIR/scripts/lib/claude-probe.sh"
 # Before the lock, before the pull, before Whisper and the extractor: off main
 # this run would rebase the checked-out branch onto origin/main, commit there,
 # and push an untouched local main — hours of transcription that can never be
@@ -113,11 +115,20 @@ export AGY_MODEL="${AGY_MODEL:-gemini-3.8-flash-medium}"  # only read if LLM_BAC
 # goes through it and degrades safely on its own (an unadjudicated row stays
 # `weak` and yields no attribution), and the post-map re-extraction already
 # knows how to say «map kept, claims still unattributed» and come back tomorrow.
+#
+# The reason is KEPT. This used to send the probe to /dev/null and log a guess —
+# «(quota or auth)» — while the CLI was saying exactly what was wrong. On
+# 2026-09-18 and -19 that was «You've hit your weekly limit · resets Sep 19 at
+# 8pm»: two degraded mornings whose only remedy was to wait, reported to the
+# phone as «extract-pleno-claims: última hace 49h». See scripts/lib/claude-probe.sh.
 TEXT_BACKEND=ok
+TEXT_BACKEND_MOTIVO=""
 if [ "$LLM_BACKEND" = claude-code ] &&
-   ! claude -p "ok" --strict-mcp-config --model "$CLAUDE_CODE_MODEL" >/dev/null 2>&1; then
+   ! claude_probe claude "$CLAUDE_CODE_MODEL"; then
   TEXT_BACKEND=down
-  log "claude-code unavailable (quota or auth) — pasada DEGRADADA: se saltan extracción y auto-curación,"
+  TEXT_BACKEND_MOTIVO="$CLAUDE_PROBE_MOTIVO"
+  log "claude-code unavailable — $CLAUDE_PROBE_MOTIVO"
+  log "  pasada DEGRADADA: se saltan extracción y auto-curación,"
   log "  se mantienen los pasos que no dependen de ese backend (mapas de hablantes, cuota Gemini aparte)"
 fi
 # openai (API, metered ~$0.006/min ≈ $0.72 per 2h pleno) replaced mlx as the
@@ -566,7 +577,7 @@ fi
 [ "${PARTIAL_MAPS:-0}" -gt 0 ] && RUN_VERDICT="${RUN_VERDICT} · ${PARTIAL_MAPS} mapa(s) parcial(es)"
 # Una pasada que corrió media tubería no puede firmar la línea de una completa.
 [ "$TEXT_BACKEND" != ok ] &&
-  RUN_VERDICT="${RUN_VERDICT} · DEGRADADA: sin backend de texto (extracción y auto-curación en espera)"
+  RUN_VERDICT="${RUN_VERDICT} · DEGRADADA: sin backend de texto (extracción y auto-curación en espera) — claude: ${TEXT_BACKEND_MOTIVO}"
 
 log "done · ${NEW} transcribed · ${NEW_FINDINGS} new finding(s) pushed${RUN_VERDICT}"
 if [ -n "$RUN_VERDICT" ]; then

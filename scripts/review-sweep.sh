@@ -41,6 +41,8 @@ log() { echo "[review-sweep] $(date '+%F %T') $*"; }
 
 # shellcheck source=scripts/lib/cron-git.sh
 . "$REPO_DIR/scripts/lib/cron-git.sh"
+# shellcheck source=scripts/lib/claude-probe.sh
+. "$REPO_DIR/scripts/lib/claude-probe.sh"
 # No commitea nada, pero SÍ construye y lee el sitio: en otra rama estaría
 # leyendo unas páginas y dando el parte como si fueran las publicadas.
 cron_require_main "review-sweep"
@@ -59,8 +61,10 @@ if ! command -v claude >/dev/null 2>&1; then
   log "claude CLI ausente — barrido DIFERIDO (diferido ≠ limpio)"
   exit 0
 fi
-if ! claude -p "ok" --strict-mcp-config --model "$CLAUDE_MODEL" >/dev/null 2>&1; then
-  log "claude-code no responde (cuota o auth) — barrido DIFERIDO en vez de gastar en un backend de pago"
+# El motivo lo dice el CLI y se escribe tal cual: antes iba a /dev/null y aquí
+# quedaba «(cuota o auth)», una conjetura. Ver scripts/lib/claude-probe.sh.
+if ! claude_probe claude "$CLAUDE_MODEL"; then
+  log "claude-code no responde — $CLAUDE_PROBE_MOTIVO — barrido DIFERIDO en vez de gastar en un backend de pago"
   exit 0
 fi
 

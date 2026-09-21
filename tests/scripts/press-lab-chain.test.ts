@@ -31,6 +31,7 @@ import { afterAll, describe, expect, it } from 'vitest'
 const REPO = resolve(__dirname, '../..')
 const PIPELINE = join(REPO, 'scripts/press-lab-pipeline.sh')
 const CRON_GIT_LIB = join(REPO, 'scripts/lib/cron-git.sh')
+const CLAUDE_PROBE_LIB = join(REPO, 'scripts/lib/claude-probe.sh')
 
 /** Every snapshot the pipeline may publish, and which step owns it. */
 const OWNS: Record<string, string[]> = {
@@ -62,6 +63,7 @@ function makeSandbox(): string {
   // The pipeline sources the shared cron-git helper (branch guard +
   // pathspec-limited commit); without it the script aborts at line one.
   copyFileSync(CRON_GIT_LIB, join(dir, 'scripts/lib/cron-git.sh'))
+  copyFileSync(CLAUDE_PROBE_LIB, join(dir, 'scripts/lib/claude-probe.sh'))
 
   // Committed baseline: the "already published" corpus the run must not lose.
   for (const f of ALL_SNAPSHOTS) {

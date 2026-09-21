@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-20T09:46:08.997Z",
+  "generatedAt": "2026-09-21T10:35:36.144Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -22,7 +22,7 @@
           "date": "2026-03-17",
           "quote": "Riba-roja de Túria aprueba su presupuesto municipal de 2026, el más alto de su historia con 46 millones",
           "kind": "press",
-          "publisher": "Levante-EMV",
+          "publisher": "levante-emv.com",
           "matchedKeywords": [
             "presupuesto",
             "2026",
@@ -79,7 +79,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-20T09:46:08.873Z"
+      "generatedAt": "2026-09-21T10:35:36.020Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -102,18 +102,6 @@
             "euro",
             "entre",
             "destaca"
-          ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQLXpNVFF4dXhIbXpqaTJQXzN6dVN4Rl9vSFZndThNUFMtdWluaTNMUUp3dnh2QThhamFZWERDM2s2aWV1R1dqLW1mODV3UnIyeHcyRHkwdmQ2YVlhb3pxRnFJQjJMcEhYYmFBVmlwYjdGWEVFUE1teFBtODZmcVVncDRJaFlYVV9fd3JyRzRqdXBqcmFCLXhFZHZVSWJMcGtJSzN0NVpLSGpaZ1A3b0tZV3hxMWJJRk5aRGh3eTlGeng0MGduVktLcnVzQnU0MHhBSDF1eUZCaWRWSUZMM2prMno2Mi1zdnhxMVFURlp2UTd5bFIwYlpmOWF3a2U0OVhMTklIZXJ4NA?oc=5",
-          "date": "2026-07-10",
-          "quote": "Una década de espera: la depuradora de Riba-roja de Túria se amplía por fin con una inversión de 23,6 millones de euros",
-          "kind": "press",
-          "publisher": "valenciaextra.com",
-          "matchedKeywords": [
-            "inversion",
-            "millon",
-            "euro"
           ]
         },
         {
@@ -148,10 +136,21 @@
             "inversion",
             "euro"
           ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMixwJBVV95cUxNX0NZVU5CeU5jNzRhR0ZfTkV1ZnZtcFhYbFZCZDA5UFBrUHBpdUh2dGdqWi0teDZKa2c4aEo3ZDNMUl9VUzBmQVZmWlpCUlctbFdjMUROSVd0NVZzMWt5MnYwZ0hnbXhaejBSa1N6UHRxVmduQmdqaUp5b2ktNWZ2TzFxQ2Y4NXlIcnVjQnVpQmdabGlVenpQS1BsRW52SVIxYkROdmJZTDRzMzlwbmFuVm1JVTBnYkFVSm9WdEpiYXNZNHBxZkFYUy1XSVMzYTR4TEU5ZmlWNlZ4N1haWUc3dVoxNVlrTkpuX0h3THBiTmZqU3luVHFINWxhMFdfR0Vuc2p5cEtJdXMzanJnZjBMS0JiVmdhbEZLU2dBTEdXTFl0bkllXzhDejQxb3FnTTQyUGlhcVpBZVkta0RVSXpGeDhod2xIX28?oc=5",
+          "date": "2026-07-03",
+          "quote": "Riba-roja aprueba el Plan Territorial Municipal de Emergencias para proteger a la población frente a las olas de calor, los incendios, las inundaciones o los temporales",
+          "kind": "press",
+          "publisher": "Valencia Plaza",
+          "matchedKeywords": [
+            "plan",
+            "aprueba"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-20T09:46:08.873Z"
+      "generatedAt": "2026-09-21T10:35:36.020Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
@@ -175,7 +174,7 @@
           "date": "2026-05-11",
           "quote": "Iberdrola invierte más de 10 millones en Riba-roja de Túria para reforzar su red eléctrica tras la dana",
           "kind": "press",
-          "publisher": "Levante-EMV",
+          "publisher": "levante-emv.com",
           "matchedKeywords": [
             "dana",
             "millon",
@@ -183,33 +182,34 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxNTTNEZzBxcE9NTUNYNzV4bDh0dW1veWxGRHNOT0l0bkM0LTFyaEQzZmhiWVFOY1hQTFZrYkg0SGpiV1cxSEEwQTVqdFdVZkpYLVNhYU5jdVFOUlhwaFh5akZqNDZsamdyYWRMSFRrN0VKbW9DVnNfbkM2Zl9tZ3MtMEV3MUlPWTdUVHpmeU1hRXRtUWZjdVphZEN2MUlvaV9hWUUtcHF4ajRnd0FoVDFQQVN6NzVqWGNoYy16TFRadjBDenRWc25NSzRWRkhza25XTGRlNi1KbnBKdDlWTFBWV29jV0MwRXJqMExjMNIB8gFBVV95cUxPTi1qYUtLWnhKTDNnTnNTSlUyMnZKejkweHdteTlOTjJYeGNaMFpZRW1rZE9DUFJ6Z012VG9VYm5mYkc2X2ZEOEFkeFM4ZnFNQ3F2XzNBV2JiQ1B0ZFM3cjNsaHpfbEVWeGdRWmNuTHBSdmNNRjdyZ1RzbVA2c1laWjNpeUpjSXlXYzlnZmdiSnhseXZrRFN6YjRaYzc1Q1FmVmRBWUY5ZXlBZlFOcDR2MnlmanVrV1hNSzBnNERJRmczOFZqYXJTd0s0N0FwYlhQazEyd0pDeUZXSmxUdk9fTWlrU1RxZm83ZXRrelE3TFlJUQ?oc=5",
-          "date": "2026-07-28",
-          "quote": "Las exhumaciones del cementerio musulmán de Riba-roja se realizaron por las obras de la mota tras la dana",
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxObjdKRWFscUNmRFN3LV9VRnhMNzJzTzNUZUhfNzZXcS1SR0g2WVJRN0ptWUZtS1hYdlVyM3pDcU1IOVZJWFdtUzlaZEE1bE9wdzlEU0tBd2toU3laTGhFTzMzcmU4TkhzZGZlWktocW42eWs0UFBwMmJHMVFyc2plaGxlRmRkYlEyUVE?oc=5",
+          "date": "2026-05-11",
+          "quote": "Iberdrola invierte 10 millones en Riba-roja para reforzar la red eléctrica tras la dana",
           "kind": "press",
-          "publisher": "Levante-EMV",
+          "publisher": "Valencia News",
+          "matchedKeywords": [
+            "dana",
+            "millon",
+            "tras"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPRFFiUmJza2FDY1hYQU1CY2tJaFdJMTF5dHVJVjlkZ3Z3cW1FTXg0TGNyVjgzLUd5MGItNDJfYkZqalplSHRpQkNlajhKYzJrWG1LOEpBSjRhenpPRXk5eV9pWURYRFdDTmlpZlBTcHRIWDkyRGUwdm5uenpzUk11Q0NKLXJwQ0NwNDlLaGdGSQ?oc=5",
+          "date": "2026-09-01",
+          "quote": "El Parque Fluvial del Turia recupera cuatro de sus pasarelas tras la dana, infraestructuras que no son «a prueba de riadas»",
+          "kind": "press",
+          "publisher": "Valenciabonita",
           "matchedKeywords": [
             "dana",
             "tras"
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQMFIxMi1hRmdyRlFDNWxETmNkX2tldkVZTEpSSC0tZWptTEdwSE81b1k1cFJKaVpYVVVhQ2puN1c5N1VzMXhwXzRtNzA5QVpFVll2ZjBhcF9fbjNHeVBPSndoTVl6UWdwTWxPUGc4OHZaall3aUR3REJMNlozTkpvUjNMVFhZVXM0LWY3Z2ZGeU03WU5JS0ExSG9COEN3RFdfXzB5ZTFBZkc5dWtVZHFXbXMwelVMUHJuWE1r?oc=5",
-          "date": "2026-05-11",
-          "quote": "Iberdrola España invierte más de 10 millones de euros en Riba-roja para la renovación de instalaciones afectadas por la DANA",
+          "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNdkwxcWJZOXRjajlDelVISGFiVVZxS0VDckdqNk4zLVhKcTh6X1BSZzc4UGpUTy10UmtpdDRyUVdyMjJNS01WSmF6NS1BbFJSVU42WVhGVTdMS3E3NVFQbVg4ODRTMnFqOERPVk13eGlycng0UGwzSzc5cDdzZl82SVE2U1EwVXR6RUNVVFdyLURCZXNmdFp0OTBLUWd0ckk4dDFibGhnaTJVWDJZeGdtcGtSeDMxOTNrN1Y0WHBXcU85VkYyZkHSAcsBQVVfeXFMUEJDNE1fTnAxTURibnlfS2llY1lZU011TGg4eDNzTDByeWM0RlBYVjN5RXRnYzl1aW5TN2RYM0ViU0V3NzhOMnFIZUJmZlE5ZjRQby12THl4UTR3Q0U1cncydVpETjlhYVEzMmdLS3hQWmZwM0tUbVVwV1RKYi1KV0tiVnpxM0YwVGFTeEFPcklmWHhtQVZGR0ZWdi1IWmtSVHRBSUt1UlliaWNxYjV1N29KcHVGYUNxd2JIeEdvaUpTdWp5TC1jN3d5dE0?oc=5",
+          "date": "2026-06-30",
+          "quote": "Riba-roja desmonta el puente militar que conectó a más de 3.500 vecinos tras la dana",
           "kind": "press",
-          "publisher": "iberdrolaespana.com",
-          "matchedKeywords": [
-            "dana",
-            "millon"
-          ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxPM0dvdXpaelp5NVNtaEE3WXBQZjN3bUtHQjhWR29Uc0I5Mzl1QlowUWMxLU1VMFVBSTNyWUthTWh1OF9PRDJpa1JOY2ZBQ1VnX1FKb0U2WmJmX2FpSEV5ajRvOEFvd2dVT25xVUROal8yMFdyN1YwWUFmY3NuYTViN0dxcUpfckR3NEVSODg1cDdhWk9KZjA1WHNsdVlqWE84V2lPY2t5SWZfZlphQ29MYllNS1dLZXV5RGphZXVqRWpxelJUVWVucEg5eGw0clFXeHZLTmR3UmRoZzBPR1RmRFB4d1E4SWNSdnN5Yg?oc=5",
-          "date": "2026-05-08",
-          "quote": "Riba-roja de Túria repone señalética en el Parque Natural del Túria y casco histórico tras la Dana",
-          "kind": "press",
-          "publisher": "Valencia Plaza",
+          "publisher": "levante-emv.com",
           "matchedKeywords": [
             "dana",
             "tras"
@@ -217,7 +217,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-20T09:46:08.873Z"
+      "generatedAt": "2026-09-21T10:35:36.020Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
@@ -236,11 +236,11 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQUDZUUXF2WnBXR0l3cmpJZE1rUExhMWExNUtGSkFuZWhJaXBzNmVJdGgwN19uWHZacVZ2MTlYTTRqLWQ0Z0JPRmpZbW0xZkpvY3lqVUJ3Q3NNWFI3QjJSNUxwa196YkxEcXhCWk5FdTktMU5PUk1waVBkbHhXVUZtbDFtQjJtWUpRZ18xZFIxdTlqMEh6LTJlVDVoSEx3aDE2UEhlQ1h3bFRZNW96cm5HV2JaSmRMdmFTeVZKcWoya1B6bTdHSlJzSVM2SC1rbjRtckY2eERWWlVKbFNKMFBLdmVuNkt6SXh6d1BCQ0g3aXQ3Smljb3gtWVV5c19hN0Q0ME9GSzJ0Yw?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBZbEd6d0tIQVpvaGtySWY4VVFQR1JDREpvaEJMOV83V2ZUUmNXczllTjV1TDFrSGxPUHRycy05YkhKdWZicldYbnhJUm1XX1R1NFZhY2hjdFRVSjRoajd3RlZ3QVNJTEItSGtoY0hTbw?oc=5",
           "date": "2026-05-18",
-          "quote": "La Generalitat y Riba-roja de Túria acuerdan la construcción de 36 viviendas protegidas en el marco del Plan Vive Dana",
+          "quote": "La Generalitat acuerda con Riba-roja de Túria la construcción de 36 viviendas protegidas industrializadas en el marco del Plan Vive Dana",
           "kind": "press",
-          "publisher": "Valencia Plaza",
+          "publisher": "Comunica GVA",
           "matchedKeywords": [
             "plan",
             "vivienda"
@@ -248,7 +248,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-20T09:46:08.873Z"
+      "generatedAt": "2026-09-21T10:35:36.020Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -290,11 +290,11 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQUDZUUXF2WnBXR0l3cmpJZE1rUExhMWExNUtGSkFuZWhJaXBzNmVJdGgwN19uWHZacVZ2MTlYTTRqLWQ0Z0JPRmpZbW0xZkpvY3lqVUJ3Q3NNWFI3QjJSNUxwa196YkxEcXhCWk5FdTktMU5PUk1waVBkbHhXVUZtbDFtQjJtWUpRZ18xZFIxdTlqMEh6LTJlVDVoSEx3aDE2UEhlQ1h3bFRZNW96cm5HV2JaSmRMdmFTeVZKcWoya1B6bTdHSlJzSVM2SC1rbjRtckY2eERWWlVKbFNKMFBLdmVuNkt6SXh6d1BCQ0g3aXQ3Smljb3gtWVV5c19hN0Q0ME9GSzJ0Yw?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBZbEd6d0tIQVpvaGtySWY4VVFQR1JDREpvaEJMOV83V2ZUUmNXczllTjV1TDFrSGxPUHRycy05YkhKdWZicldYbnhJUm1XX1R1NFZhY2hjdFRVSjRoajd3RlZ3QVNJTEItSGtoY0hTbw?oc=5",
           "date": "2026-05-18",
-          "quote": "La Generalitat y Riba-roja de Túria acuerdan la construcción de 36 viviendas protegidas en el marco del Plan Vive Dana",
+          "quote": "La Generalitat acuerda con Riba-roja de Túria la construcción de 36 viviendas protegidas industrializadas en el marco del Plan Vive Dana",
           "kind": "press",
-          "publisher": "Valencia Plaza",
+          "publisher": "Comunica GVA",
           "matchedKeywords": [
             "construccion",
             "vivienda"
@@ -305,7 +305,7 @@
           "date": "2026-05-18",
           "quote": "La Generalitat impulsará 36 viviendas industrializadas de alquiler asequible en Riba-roja de Túria",
           "kind": "press",
-          "publisher": "Levante-EMV",
+          "publisher": "levante-emv.com",
           "matchedKeywords": [
             "vivienda",
             "impulsara"
@@ -333,7 +333,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-20T09:46:08.873Z"
+      "generatedAt": "2026-09-21T10:35:36.020Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -345,7 +345,7 @@
           "date": "2026-04-16",
           "quote": "Riba-roja de Túria finalizará en julio cinco pasarelas en el Parc Natural del Túria",
           "kind": "press",
-          "publisher": "Levante-EMV",
+          "publisher": "levante-emv.com",
           "matchedKeywords": [
             "cinco",
             "pasarela",
@@ -360,7 +360,7 @@
           "date": "2026-09-19",
           "quote": "Riba-roja contará cuántas personas visitan el Parc Natural del Túria con un nuevo sistema inteligente",
           "kind": "press",
-          "publisher": "Levante-EMV",
+          "publisher": "levante-emv.com",
           "matchedKeywords": [
             "parc",
             "natural"
@@ -382,7 +382,7 @@
           "date": "2026-05-14",
           "quote": "Riba-roja instala una malla en ocho hectáreas del Parc Natural del Túria para frenar especies invasoras y minimizar el riesgo de incendios",
           "kind": "press",
-          "publisher": "Levante-EMV",
+          "publisher": "levante-emv.com",
           "matchedKeywords": [
             "parc",
             "natural"
@@ -390,7 +390,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-20T09:46:08.873Z"
+      "generatedAt": "2026-09-21T10:35:36.020Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -402,7 +402,7 @@
           "date": "2026-03-17",
           "quote": "El alcalde de Riba-roja de Túria retoma los encuentros 'Espai Obert' con los vecinos para explicar el presupuesto de 2026",
           "kind": "press",
-          "publisher": "Levante-EMV",
+          "publisher": "levante-emv.com",
           "matchedKeywords": [
             "retoma",
             "encuentro",
@@ -431,7 +431,7 @@
           "date": "2026-03-17",
           "quote": "Riba-roja de Túria aprueba su presupuesto municipal de 2026, el más alto de su historia con 46 millones",
           "kind": "press",
-          "publisher": "Levante-EMV",
+          "publisher": "levante-emv.com",
           "matchedKeywords": [
             "presupuesto",
             "2026"
@@ -439,7 +439,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-20T09:46:08.873Z"
+      "generatedAt": "2026-09-21T10:35:36.020Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -447,7 +447,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-20T09:46:08.873Z"
+      "generatedAt": "2026-09-21T10:35:36.020Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -455,7 +455,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-20T09:46:08.873Z"
+      "generatedAt": "2026-09-21T10:35:36.020Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -486,22 +486,22 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQLXpNVFF4dXhIbXpqaTJQXzN6dVN4Rl9vSFZndThNUFMtdWluaTNMUUp3dnh2QThhamFZWERDM2s2aWV1R1dqLW1mODV3UnIyeHcyRHkwdmQ2YVlhb3pxRnFJQjJMcEhYYmFBVmlwYjdGWEVFUE1teFBtODZmcVVncDRJaFlYVV9fd3JyRzRqdXBqcmFCLXhFZHZVSWJMcGtJSzN0NVpLSGpaZ1A3b0tZV3hxMWJJRk5aRGh3eTlGeng0MGduVktLcnVzQnU0MHhBSDF1eUZCaWRWSUZMM2prMno2Mi1zdnhxMVFURlp2UTd5bFIwYlpmOWF3a2U0OVhMTklIZXJ4NA?oc=5",
-          "date": "2026-07-10",
-          "quote": "Una década de espera: la depuradora de Riba-roja de Túria se amplía por fin con una inversión de 23,6 millones de euros",
-          "kind": "press",
-          "publisher": "valenciaextra.com",
-          "matchedKeywords": [
-            "millon",
-            "euro"
-          ]
-        },
-        {
           "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQd1UxVjZrYVA3VS1Ua1NyaktPSF8wYlRqM1lhcnl0SFgyRlE5MS1ERUEzTC1VQzB5QUtmVnpWY1VTXzViYTM3Q0w2SjM1Q1RZN1Q3U0N6cnRMbnVGX3oyYjdoYmdSVm9jSXU1cTJyQklhRmktTjlYY2x1YzhfR1VaOWNaRjAzSldYS0c1OWFMX0tXUTlQRU16TjhOQjQ3a3ZQSTdDaDV2TUtJaGt4MExROWtBRzFsazRhdHhiYlY3LW5GQzlmV2NDT21kWDFoeW_SAdQBQVVfeXFMUGwxa280Ti1MMHFTaW1IWW9GN3REUlFoZnJkVzV4YzFlQm52T2ItdmZ6b21wb2FaYWFSMloxQWJuZmpCbl95TkpIcXpfMko2cXNRTmRHQ0U4Y1R1aHJnR3k2akRVNDVfUi1yS3JtbW9ibEh5MGIyUWd0Y0Jnamdmc3JfbzcySXVqM1JUWTQtVXdWSVptaERlMnd3UF9zcVZJb0lycTBWVjFZbEhhb0ZPNTlleU51c3Rfb2FZSTJtVlVFWk90VFpSLXNndkE1WlRsVEluVFQ?oc=5",
           "date": "2026-05-11",
           "quote": "Iberdrola invierte más de 10 millones en Riba-roja de Túria para reforzar su red eléctrica tras la dana",
           "kind": "press",
-          "publisher": "Levante-EMV",
+          "publisher": "levante-emv.com",
+          "matchedKeywords": [
+            "dana",
+            "millon"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxObjdKRWFscUNmRFN3LV9VRnhMNzJzTzNUZUhfNzZXcS1SR0g2WVJRN0ptWUZtS1hYdlVyM3pDcU1IOVZJWFdtUzlaZEE1bE9wdzlEU0tBd2toU3laTGhFTzMzcmU4TkhzZGZlWktocW42eWs0UFBwMmJHMVFyc2plaGxlRmRkYlEyUVE?oc=5",
+          "date": "2026-05-11",
+          "quote": "Iberdrola invierte 10 millones en Riba-roja para reforzar la red eléctrica tras la dana",
+          "kind": "press",
+          "publisher": "Valencia News",
           "matchedKeywords": [
             "dana",
             "millon"
@@ -520,7 +520,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-20T09:46:08.873Z"
+      "generatedAt": "2026-09-21T10:35:36.020Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -532,7 +532,7 @@
           "date": "2026-07-14",
           "quote": "La urbanización València la Vella en Riba-roja reclama medidas urgentes contra el riesgo de incendios",
           "kind": "press",
-          "publisher": "Levante-EMV",
+          "publisher": "levante-emv.com",
           "matchedKeywords": [
             "contra",
             "riesgo"
@@ -540,7 +540,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-20T09:46:08.873Z"
+      "generatedAt": "2026-09-21T10:35:36.020Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
@@ -580,7 +580,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-20T09:46:08.873Z"
+      "generatedAt": "2026-09-21T10:35:36.020Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -624,7 +624,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-20T09:46:08.873Z"
+      "generatedAt": "2026-09-21T10:35:36.020Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -679,7 +679,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-20T09:46:08.873Z"
+      "generatedAt": "2026-09-21T10:35:36.020Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -709,7 +709,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-20T09:46:08.873Z"
+      "generatedAt": "2026-09-21T10:35:36.020Z"
     },
     {
       "promiseId": "ac-psoe-1cbkzxt",
@@ -751,7 +751,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-20T09:46:08.873Z"
+      "generatedAt": "2026-09-21T10:35:36.020Z"
     },
     {
       "promiseId": "ac-psoe-1v0679f",
@@ -769,10 +769,22 @@
             "medio",
             "ambiente"
           ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNdkwxcWJZOXRjajlDelVISGFiVVZxS0VDckdqNk4zLVhKcTh6X1BSZzc4UGpUTy10UmtpdDRyUVdyMjJNS01WSmF6NS1BbFJSVU42WVhGVTdMS3E3NVFQbVg4ODRTMnFqOERPVk13eGlycng0UGwzSzc5cDdzZl82SVE2U1EwVXR6RUNVVFdyLURCZXNmdFp0OTBLUWd0ckk4dDFibGhnaTJVWDJZeGdtcGtSeDMxOTNrN1Y0WHBXcU85VkYyZkHSAcsBQVVfeXFMUEJDNE1fTnAxTURibnlfS2llY1lZU011TGg4eDNzTDByeWM0RlBYVjN5RXRnYzl1aW5TN2RYM0ViU0V3NzhOMnFIZUJmZlE5ZjRQby12THl4UTR3Q0U1cncydVpETjlhYVEzMmdLS3hQWmZwM0tUbVVwV1RKYi1KV0tiVnpxM0YwVGFTeEFPcklmWHhtQVZGR0ZWdi1IWmtSVHRBSUt1UlliaWNxYjV1N29KcHVGYUNxd2JIeEdvaUpTdWp5TC1jN3d5dE0?oc=5",
+          "date": "2026-06-30",
+          "quote": "Riba-roja desmonta el puente militar que conectó a más de 3.500 vecinos tras la dana",
+          "kind": "press",
+          "publisher": "levante-emv.com",
+          "matchedKeywords": [
+            "tras",
+            "puente",
+            "militar"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-20T09:46:08.873Z"
+      "generatedAt": "2026-09-21T10:35:36.020Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -780,7 +792,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-20T09:46:08.873Z"
+      "generatedAt": "2026-09-21T10:35:36.020Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -799,7 +811,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-20T09:46:08.873Z"
+      "generatedAt": "2026-09-21T10:35:36.020Z"
     },
     {
       "promiseId": "ac-psoe-pl3lsq",
@@ -838,21 +850,10 @@
             "contenedor",
             "nueva"
           ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQLXpNVFF4dXhIbXpqaTJQXzN6dVN4Rl9vSFZndThNUFMtdWluaTNMUUp3dnh2QThhamFZWERDM2s2aWV1R1dqLW1mODV3UnIyeHcyRHkwdmQ2YVlhb3pxRnFJQjJMcEhYYmFBVmlwYjdGWEVFUE1teFBtODZmcVVncDRJaFlYVV9fd3JyRzRqdXBqcmFCLXhFZHZVSWJMcGtJSzN0NVpLSGpaZ1A3b0tZV3hxMWJJRk5aRGh3eTlGeng0MGduVktLcnVzQnU0MHhBSDF1eUZCaWRWSUZMM2prMno2Mi1zdnhxMVFURlp2UTd5bFIwYlpmOWF3a2U0OVhMTklIZXJ4NA?oc=5",
-          "date": "2026-07-10",
-          "quote": "Una década de espera: la depuradora de Riba-roja de Túria se amplía por fin con una inversión de 23,6 millones de euros",
-          "kind": "press",
-          "publisher": "valenciaextra.com",
-          "matchedKeywords": [
-            "millon",
-            "euro"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-20T09:46:08.873Z"
+      "generatedAt": "2026-09-21T10:35:36.020Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -864,7 +865,7 @@
           "date": "2026-06-16",
           "quote": "Riba-roja de Túria repartirá más de 2000 helados gratis a los asistentes de Cinema d'Estiu",
           "kind": "press",
-          "publisher": "Levante-EMV",
+          "publisher": "levante-emv.com",
           "matchedKeywords": [
             "helado",
             "cinema",
@@ -875,7 +876,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-20T09:46:08.873Z"
+      "generatedAt": "2026-09-21T10:35:36.020Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -898,7 +899,7 @@
           "date": "2026-06-16",
           "quote": "Riba-roja de Túria repartirá más de 2000 helados gratis a los asistentes de Cinema d'Estiu",
           "kind": "press",
-          "publisher": "Levante-EMV",
+          "publisher": "levante-emv.com",
           "matchedKeywords": [
             "cinema",
             "estiu"
@@ -906,7 +907,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-20T09:46:08.873Z"
+      "generatedAt": "2026-09-21T10:35:36.020Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -937,7 +938,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-20T09:46:08.873Z"
+      "generatedAt": "2026-09-21T10:35:36.020Z"
     }
   ],
   "llmEvidence": [],

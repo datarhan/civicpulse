@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-20T16:53:05.487Z",
+  "generatedAt": "2026-09-21T05:54:42.584Z",
   "version": "1",
   "plenoId": "ma87e0",
   "plenoDate": "2026-03-16",
@@ -1180,25 +1180,14 @@
       },
       "verification": {
         "claimId": "ma87e0-111-afi-083d71",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "bdns",
-            "ref": "bdns:",
-            "snippet": "CONVENIO DE COLABORACIÓN DEL AYUNTAMIENTO DE RIBA-ROJA DE TÚRIA Y LA FUNDACIÓN PADRE JUAN SCHENK: BIBLIOTECA SOLIDARIA MISIONERA EJERCICIO 2026 · LOCAL · RIBA-R · importe no publicado",
-            "similarity": 1,
-            "stance": "checked"
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Afirmación numérica («70.000 euros») dada por verificada contra un convenio BDNS cuyo importe consta como «no publicado» y con ref vacía: coincidencia de texto, ninguna cifra que cotejar. El verificador determinista la subió de sin-datos en 4c92cf31 (20-09-2026).",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
+          "curator-downgrade"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

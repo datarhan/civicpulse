@@ -562,6 +562,7 @@ overwrites it. Change the bot's SQLite instead.
 - **Pipeline** — **human-curated** · `sindic.ts` schema validator
 - **Source** — Added via `npm run sindic:add` after a curator READS the resolución PDF. La división con el índice de arriba es la que importa: aquél transcribe un registro público sin emitir juicio y puede ser automático; una ficha de aquí lleva el `resumen` **verbatim** y un `sentido` que alguien ha decidido, y eso no lo escribe un cron. El `id` se **deriva** del expediente + el documento del PDF (`idResolucion`) y el validador comprueba la derivación: `sindic-<expediente>` colisionaba entre las dos resoluciones de un mismo expediente
 - **Surfaces** — `/quejas` `SindicCard`, contadas aparte de los expedientes del índice para que un 0 firmado nunca se lea como «no hay nada»
+- **El índice es un suelo, no un techo** — la cifra de resoluciones de consideraciones de `/quejas` es la UNIÓN por PDF de lo que el buscador lista y lo que una ficha firmada cita (`src/lib/sindic-consideraciones.js`), no el bloque `stats` del índice. El 18-09-2026 el Síndic reindexó tres expedientes: durante unas horas su buscador declaró menos resultados y la página publicó más fichas que resoluciones; después uno volvió listando sólo su cierre. Una ficha cotejada cada noche contra su PDF (`check:sindic-fichas`) es conocimiento que el índice no puede restar, y cuando el buscador deja de listar una, la tarjeta lo dice con el número de expediente.
 
 ### Quejas ciudadanas (Telegram-captured, SQLite-backed)
 

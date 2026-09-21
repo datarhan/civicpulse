@@ -43,6 +43,7 @@ import { CURATED } from '../.claude/hooks/curated-paths.mjs'
 import { validatePromisesSnapshot } from '../src/scraper/promises'
 import { validateFindingsSnapshot } from '../src/scraper/pleno-finding'
 import { validarCompetencias } from '../src/scraper/competencias'
+import { validarSociedades } from '../src/scraper/sociedades'
 
 const DIA_MS = 86_400_000
 const DATA = 'public/data'
@@ -52,10 +53,14 @@ const DATA = 'public/data'
  * inventan aquí: quedan cubiertos por la prueba estructural, y el CLI lo dice
  * en pantalla en vez de dejar creer que revalidó.
  */
-const VALIDADORES: Record<string, (raw: string) => unknown> = {
+export const VALIDADORES: Record<string, (raw: string) => unknown> = {
   'promises.json': (raw) => validatePromisesSnapshot(raw),
   'pleno-findings.json': (raw) => validateFindingsSnapshot(raw),
   'competencias.json': (raw) => validarCompetencias(JSON.parse(raw)),
+  // Faltaba, y no por la firma: `validarSociedades(raw: unknown)` es idéntica a
+  // la de competencias. El 20-09-2026 hubo que re-sellar justo este fichero y el
+  // CLI avisaba de que sólo lo comparaba.
+  'sociedades.json': (raw) => validarSociedades(JSON.parse(raw)),
 }
 
 /** Un sello escrito a medianoche exacta guarda el DÍA, no el instante. */

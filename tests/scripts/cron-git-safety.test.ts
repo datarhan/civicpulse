@@ -67,6 +67,7 @@ const SCRIPTS = [
   'scripts/press-lab-pipeline.sh',
   'scripts/scrape-ci-blocked.sh',
   'scripts/lib/cron-git.sh',
+  'scripts/lib/claude-probe.sh',
 ]
 
 /** The file a concurrent subagent had staged when f182c61 swept it up. */
@@ -925,6 +926,27 @@ describe('hallazgos-pipeline.sh · un backend caído no se lleva por delante los
     // Una pasada degradada que se lee como una normal es la avería que este
     // fichero entero persigue.
     expect(r.log).toMatch(/degradad|sin backend de texto|text backend/i)
+  }, 120_000)
+
+  it('dice POR QUÉ no contestó claude, con la frase del CLI y no con una conjetura', () => {
+    // El 18 y el 19-sep-2026 el log decía «(quota or auth)» y el CLI había dicho
+    // cuándo se reponía el límite. El sondeo iba a /dev/null. Ver
+    // tests/scripts/claude-probe.test.ts.
+    const dir = makeSandbox()
+    const env = withDeadClaude(dir)
+    const motivo = "You've hit your weekly limit · resets Sep 19 at 8pm (Europe/Madrid)"
+    // Por stdout y con stderr vacío, que es como vino en producción.
+    writeFileSync(join(dir, 'fakebin', 'claude'), `#!/bin/sh\necho "${motivo}"\nexit 1\n`)
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', env)
+    expect(r.log, 'el preflight de claude-code no llegó a fallar').toMatch(/degradad/i)
+    expect(r.log).toContain(motivo)
+    // Y el resumen final —el renglón que acaba en el parte— también lo lleva.
+    const resumen =
+      r.log
+        .split('\n')
+        .filter((l) => /done ·/.test(l))
+        .pop() ?? ''
+    expect(resumen, 'el renglón final no dice el motivo').toContain('weekly limit')
   }, 120_000)
 
   it('con el backend sano no se salta nada — control', () => {

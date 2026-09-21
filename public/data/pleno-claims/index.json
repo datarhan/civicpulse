@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-20T16:53:05.487Z",
+  "generatedAt": "2026-09-21T05:54:42.584Z",
   "version": "1",
   "plenos": [
     {
@@ -208,10 +208,9 @@
       "plenoDate": "2026-03-16",
       "chunkPath": "pleno-claims/ma87e0.json",
       "itemCount": 161,
-      "toggleCount": 160,
+      "toggleCount": 161,
       "byVerdict": {
-        "sin-datos": 160,
-        "verificado": 1
+        "sin-datos": 161
       },
       "byType": {
         "promesa": 42,
@@ -232,7 +231,7 @@
         "other": 3,
         "salud": 1
       },
-      "bytes": 242866
+      "bytes": 242653
     },
     {
       "plenoId": "1sqj7is",
@@ -656,9 +655,9 @@
     "items": 4960,
     "plenos": 23,
     "byVerdict": {
-      "sin-datos": 4942,
+      "sin-datos": 4943,
       "parcial": 15,
-      "verificado": 3
+      "verificado": 2
     },
     "byTopicVerdict": {
       "fiscal": {
@@ -687,8 +686,7 @@
         "parcial": 7
       },
       "cultura": {
-        "sin-datos": 207,
-        "verificado": 1
+        "sin-datos": 208
       },
       "transparencia": {
         "sin-datos": 623,
@@ -713,8 +711,8 @@
       "porTipo": {
         "afirmacion_numerica": {
           "total": 2167,
-          "sinCorpus": 1751,
-          "comprobadoSinHallar": 416
+          "sinCorpus": 1752,
+          "comprobadoSinHallar": 415
         },
         "cita_convenio": {
           "total": 620,
@@ -775,8 +773,8 @@
         },
         "cultura": {
           "total": 208,
-          "sinCorpus": 103,
-          "comprobadoSinHallar": 105
+          "sinCorpus": 104,
+          "comprobadoSinHallar": 104
         },
         "transparencia": {
           "total": 624,
@@ -805,12 +803,12 @@
         }
       },
       "corpus": {
-        "tenders": 1549,
-        "tenders-ted": 1549,
-        "bdns": 482,
-        "budget": 482,
+        "tenders": 1548,
+        "tenders-ted": 1548,
+        "bdns": 481,
+        "budget": 481,
         "promises": 487,
-        "curator-downgrade": 41,
+        "curator-downgrade": 42,
         "verdict-engine": 874
       },
       "porClaseDocumental": {
@@ -818,14 +816,14 @@
           "contrato": 123,
           "acta": 21,
           "informe-tecnico": 68,
-          "presupuesto": 110,
+          "presupuesto": 111,
           "convenio": 34,
           "plan-interno": 50,
           "expediente": 35,
           "ordenanza": 19
         },
         "sinDocumento": 2487,
-        "total": 2924
+        "total": 2925
       }
     },
     "retenidas": {
@@ -834,7 +832,7 @@
     },
     "retenidasSinProcedencia": 2,
     "sinDatosPorque": {
-      "sinCorpus": 2919,
+      "sinCorpus": 2920,
       "comprobadoSinHallar": 2023
     }
   }

@@ -66,9 +66,16 @@ export default function Gestion() {
         Cómo funciona la casa por dentro
       </h1>
       <p style={{ color: 'var(--ink70)', maxWidth: '64ch' }}>
+        {/* Decía «qué distancia hay entre el presupuesto que se aprobó y el que se
+            ejecutó», y ninguna ficha mide eso: el panel lo hace en DOS saltos, con
+            dos divisores —crédito añadido sobre el inicial, y ejecutado sobre el
+            DEFINITIVO—. Quien emparejaba la frase con «30,4 %» leía «un 30 % de lo
+            aprobado», y contra lo aprobado sería la mitad. Señalado por la
+            revisión lectora el 20-09-2026; ver tests/gestion-entradilla.test.js. */}
         Cuánto tarda en pagar, cuánto dedica por vecino, cuánta competencia hubo en sus contratos y
-        qué distancia hay entre el presupuesto que se aprobó y el que se ejecutó. Son medidas de
-        plazo y de fricción, no de coste: lo que cuesta cada servicio está en{' '}
+        qué fue del presupuesto después de aprobarlo: cuánto crédito se le añadió por el camino y
+        qué parte del total llegó a ejecutarse. Son medidas de plazo y de fricción, no de coste: lo
+        que cuesta cada servicio está en{' '}
         <a href="/eficiencia" style={{ color: 'var(--civic)' }}>
           eficiencia
         </a>

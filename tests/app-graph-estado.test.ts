@@ -6,8 +6,8 @@
  * de ejecución» no es «esta pieza falla», y tampoco es «va bien».
  */
 import { describe, it, expect } from 'vitest'
-import { join, resolve } from 'node:path'
 import { readdirSync } from 'node:fs'
+import { resolve } from 'node:path'
 import { leerEntradas } from '../scripts/lib/app-graph-io'
 import { medirEstado, veredictoDeParte } from '../scripts/lib/app-graph-estado'
 import { construirGrafoApp, ENTRADAS_VACIAS } from '../src/scraper/app-graph'
@@ -140,23 +140,26 @@ describe('lo que no es un fichero no se mide como si lo fuera', () => {
 
   it('pero una colección publicada SÍ se mide: sus ficheros están aquí', () => {
     // `public/data/pleno-claims/` también es un directorio, y la diferencia con
-    // `bot/data/` es que sus ficheros están en esta máquina. Decir «no medido»
-    // de algo que se puede medir es el mismo defecto por el otro lado.
+    // `bot/data/` es que sus ficheros están en esta máquina. Decir «no medido» de
+    // algo que se puede medir es el mismo defecto por el otro lado.
     //
-    // El recuento se LEE del disco, no se escribe. Estuvo escrito —«23
-    // ficheros»— y se puso rojo solo en cuanto la tubería de /hallazgos
-    // transcribió dos plenos más y comiteó el vigésimo cuarto (4c92cf31): una
-    // guarda contra la desactualización que caducaba ella sola cada vez que el
-    // trabajo que vigila salía bien. Lo que la prueba quiere saber es que la
-    // medición fue al directorio de verdad, y eso lo dice igual de bien —mejor—
-    // comparando contra lo que hay.
+    // Cuántos son se CUENTA, no se escribe. Aquí ponía `/23 ficheros/`, y el
+    // 20-09-2026 la tubería de hallazgos publicó el trozo del pleno del 7-sep
+    // (`1xmr0do.json`): 24. `main` se quedó rojo por un dato bueno, y se habría
+    // quedado otra vez con cada pleno nuevo — más o menos uno al mes. Es la regla
+    // que CLAUDE.md da para los documentos («nunca escribas un recuento»), que
+    // vale igual para una prueba: la carpeta sabe cuántos tiene.
     const raiz = resolve(__dirname, '..')
-    const cuantos = readdirSync(join(raiz, 'public/data/pleno-claims')).length
-    expect(cuantos, 'la colección está vacía: no hay nada que medir').toBeGreaterThan(0)
+    const enDisco = readdirSync(resolve(raiz, 'public/data/pleno-claims'), {
+      withFileTypes: true,
+    }).filter((d) => d.isFile()).length
+    // La prueba midió algo: una carpeta vacía casaría con «0 ficheros».
+    expect(enDisco).toBeGreaterThan(0)
+
     const grafo = construirGrafoApp(leerEntradas(raiz))
     const e = medirEstado(raiz, grafo)['snapshot:pleno-claims/']
     expect(e?.tono).not.toBe('no-medido')
-    expect(e?.lineas.join(' ')).toMatch(new RegExp(`${cuantos} ficheros`))
+    expect(e?.lineas.join(' ')).toMatch(new RegExp(`(^|\\D)${enDisco} ficheros`))
     expect(e?.lineas.join(' ')).toMatch(/KB|MB/)
   })
 

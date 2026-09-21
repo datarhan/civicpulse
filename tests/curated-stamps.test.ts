@@ -18,8 +18,9 @@ import {
   selloEnDiff,
   selloEsDeDia,
   contenidoCambioTrasElSello,
+  remedioDelSello,
 } from '../scripts/check-curated-stamps'
-import { soloCambiaElSello, selloParaFecha } from '../scripts/restamp-curated'
+import { soloCambiaElSello, selloParaFecha, VALIDADORES } from '../scripts/restamp-curated'
 import { CURATED } from '../.claude/hooks/curated-paths.mjs'
 
 describe('selloEnDiff', () => {
@@ -269,4 +270,58 @@ describe('restamp — un fichero compuesto no se sella a mano', () => {
     expect(err).toContain('COMPUESTO')
     expect(err).toContain('composedAt')
   }, 60_000)
+})
+
+/**
+ * Un aviso cuyo remedio no puede funcionar es peor que ninguno.
+ *
+ * El 19-09-2026 el parte trajo «[sello-quieto] sociedades.json», y la puerta
+ * aconsejaba: «se arregla reescribiendo el fichero por su CLI … no editando la
+ * fecha a mano». `sociedades.json` no tiene CLI —lo edita una persona vía PR— y
+ * la edición a mano desde una sesión la deniega el guard. Las dos salidas que el
+ * mensaje ofrecía estaban cerradas, y la que sí existe, `npm run restamp`, nacida
+ * justo para esto, no salía nombrada.
+ */
+describe('el remedio que imprime la puerta tiene que poder funcionar', () => {
+  it('nombra restamp, con el fichero que hay que re-sellar', () => {
+    const r = remedioDelSello(['sociedades.json', 'promises.json'])
+    expect(r).toContain('npm run restamp -- sociedades.json --motivo')
+    expect(r).toContain('npm run restamp -- promises.json --motivo')
+  })
+
+  it('restamp existe de verdad en package.json — un remedio que nombra un script ausente es el mismo defecto', () => {
+    const pkg = JSON.parse(readFileSync(resolve('package.json'), 'utf8'))
+    expect(pkg.scripts.restamp).toMatch(/restamp-curated/)
+  })
+
+  it('no manda a «su CLI»: los ficheros de edición humana no tienen ninguno', () => {
+    expect(remedioDelSello(['sociedades.json'])).not.toMatch(/por su CLI/)
+    // La premisa, medida y no supuesta.
+    expect(CURATED['sociedades.json']).toMatch(/hand-edit/)
+  })
+
+  it('sin ficheros no imprime consejo', () => {
+    expect(remedioDelSello([])).toBe('')
+  })
+})
+
+describe('restamp — revalida lo que tiene validador de firma simple', () => {
+  it('sociedades.json se revalida, no sólo se compara', () => {
+    // El 20-09-2026 el dry-run decía «no tiene validador de firma simple aquí»,
+    // y `validarSociedades(raw: unknown)` tiene exactamente la firma de
+    // `validarCompetencias`, que sí estaba enchufado.
+    expect(Object.keys(VALIDADORES)).toContain('sociedades.json')
+    const raw = readFileSync(resolve('public/data/sociedades.json'), 'utf8')
+    expect(() => VALIDADORES['sociedades.json'](raw)).not.toThrow()
+  })
+
+  it('y el validador enchufado rechaza de verdad — no es un adorno', () => {
+    // El mensaje se exige: un `toThrow()` a secas se cumple también con el
+    // TypeError de un `VALIDADORES` sin exportar, y esta prueba habría nacido
+    // verde sin medir nada.
+    expect(typeof VALIDADORES['sociedades.json']).toBe('function')
+    expect(() => VALIDADORES['sociedades.json']('{"generatedAt": 3}')).toThrow(
+      /sociedades|generatedAt/i,
+    )
+  })
 })

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-21T05:15:45.423Z",
+  "generatedAt": "2026-09-21T10:35:51.273Z",
   "source": "derived: tenders.json assignees + officials.json · overrides: entity-overrides.json",
   "stats": {
     "companies": 377,
@@ -727,7 +727,7 @@
         "68373"
       ],
       "contractCount": 10,
-      "awardedTotalEur": 326758.24,
+      "awardedTotalEur": 339141.57,
       "firstAwardDate": "2018-05-09",
       "lastAwardDate": "2024-12-12"
     },
@@ -841,6 +841,25 @@
       "awardedTotalEur": 268656.57,
       "firstAwardDate": "2019-01-16",
       "lastAwardDate": "2021-11-04"
+    },
+    {
+      "id": "co-zkqa48",
+      "nameKey": "industrial gil folgado sl",
+      "canonicalName": "INDUSTRIAL GIL FOLGADO SL",
+      "variants": [
+        "INDUSTRIAL GIL FOLGADO SL"
+      ],
+      "contractIds": [
+        "4454052",
+        "99310",
+        "1467871#1",
+        "1741944",
+        "4577678"
+      ],
+      "contractCount": 5,
+      "awardedTotalEur": 259831.91,
+      "firstAwardDate": "2018-02-13",
+      "lastAwardDate": "2024-12-02"
     },
     {
       "id": "co-i3oafz",
@@ -1650,6 +1669,21 @@
       "lastAwardDate": "2021-07-09"
     },
     {
+      "id": "co-1ls9a7c",
+      "nameKey": "mestres sc",
+      "canonicalName": "MESTRES,SC",
+      "variants": [
+        "MESTRES,SC"
+      ],
+      "contractIds": [
+        "1910764"
+      ],
+      "contractCount": 1,
+      "awardedTotalEur": 96818.05,
+      "firstAwardDate": "2022-11-28",
+      "lastAwardDate": "2022-11-28"
+    },
+    {
       "id": "co-1wo8m5d",
       "nameKey": "academia insitu s c",
       "canonicalName": "ACADEMIA INSITU, S.C.",
@@ -1959,25 +1993,6 @@
       "awardedTotalEur": 74409.29,
       "firstAwardDate": "2019-12-28",
       "lastAwardDate": "2019-12-28"
-    },
-    {
-      "id": "co-zkqa48",
-      "nameKey": "industrial gil folgado sl",
-      "canonicalName": "INDUSTRIAL GIL FOLGADO SL",
-      "variants": [
-        "INDUSTRIAL GIL FOLGADO SL"
-      ],
-      "contractIds": [
-        "4454052",
-        "99310",
-        "1467871#1",
-        "1741944",
-        "4577678"
-      ],
-      "contractCount": 5,
-      "awardedTotalEur": 74027.74,
-      "firstAwardDate": "2018-02-13",
-      "lastAwardDate": "2024-12-02"
     },
     {
       "id": "co-12gbxio",
@@ -4105,6 +4120,21 @@
       "lastAwardDate": "2021-07-07"
     },
     {
+      "id": "co-1klsjlg",
+      "nameKey": "leckman urbanistas sl",
+      "canonicalName": "LECKMAN URBANISTAS SL",
+      "variants": [
+        "LECKMAN URBANISTAS SL"
+      ],
+      "contractIds": [
+        "6221473"
+      ],
+      "contractCount": 1,
+      "awardedTotalEur": 14850,
+      "firstAwardDate": "2024-05-15",
+      "lastAwardDate": "2024-05-15"
+    },
+    {
       "id": "co-cpcku8",
       "nameKey": "tirso jose avila aguilera",
       "canonicalName": "TIRSO JOSÉ AVILA AGUILERA",
@@ -5967,36 +5997,6 @@
       "awardedTotalEur": 2.89,
       "firstAwardDate": "2025-07-04",
       "lastAwardDate": "2025-07-04"
-    },
-    {
-      "id": "co-1klsjlg",
-      "nameKey": "leckman urbanistas sl",
-      "canonicalName": "LECKMAN URBANISTAS SL",
-      "variants": [
-        "LECKMAN URBANISTAS SL"
-      ],
-      "contractIds": [
-        "6221473"
-      ],
-      "contractCount": 1,
-      "awardedTotalEur": 0,
-      "firstAwardDate": "2024-05-15",
-      "lastAwardDate": "2024-05-15"
-    },
-    {
-      "id": "co-1ls9a7c",
-      "nameKey": "mestres sc",
-      "canonicalName": "MESTRES,SC",
-      "variants": [
-        "MESTRES,SC"
-      ],
-      "contractIds": [
-        "1910764"
-      ],
-      "contractCount": 1,
-      "awardedTotalEur": 0,
-      "firstAwardDate": "2022-11-28",
-      "lastAwardDate": "2022-11-28"
     }
   ],
   "people": [
@@ -6129,7 +6129,7 @@
   ],
   "builtFrom": {
     "entity-overrides.json": "a41cc20172e9",
-    "officials.json": "3f7e08193803",
-    "tenders.json": "fec576392e9f"
+    "officials.json": "98ac3afa73e9",
+    "tenders.json": "25a55b18f7b1"
   }
 }
