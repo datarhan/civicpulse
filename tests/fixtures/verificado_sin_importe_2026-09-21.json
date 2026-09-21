@@ -1,0 +1,35 @@
+{
+  "_comentario": "Payload real. `claim` es ma87e0-111-afi-083d71 tal como consta en public/data/pleno-claims-verified.json; `bdns` son las filas de public/data/bdns.json que nombran la Biblioteca Solidaria Misionera, a 21-09-2026. El 20-09-2026 (4c92cf31) el verificador determinista subió esta afirmación NUMÉRICA de sin-datos a verificado con la fila de 2026, que no publica importe.",
+  "claim": {
+    "id": "ma87e0-111-afi-083d71",
+    "plenoId": "ma87e0",
+    "plenoDate": "2026-03-16",
+    "segmentIndex": 111,
+    "type": "afirmacion_numerica",
+    "speakerGroup": "PSOE",
+    "verbatim": "con 70.000 euros, el presupuesto para este 2026 de las actividades que se van a realizar allí",
+    "context": "Tras citar los 30.000 € de constitución, el interviniente señala que el presupuesto municipal 2026 contempla 70.000 euros para actividades en la Fundación ECA, argumentando que 'no hay nada que esconder' ya que figura explícitamente en el documento presupuestario.",
+    "topic": "cultura",
+    "entities": {
+      "amountEuros": 70000,
+      "date": "2026-01-01",
+      "referencedEntity": "fundación eca"
+    },
+    "confidence": 0.87,
+    "reasoning": "Los 70.000 € para actividades de la Fundación ECA en 2026 son directamente contrastables en el presupuesto municipal aprobado (Capítulo II o IV según naturaleza); el verificador puede cruzar esta cifra con budget.json y el CONPREL.",
+    "requiresHumanApproval": true
+  },
+  "bdns": [
+    {
+      "id": 1131342,
+      "bdnsCode": "929781",
+      "description": "CONVENIO DE COLABORACIÓN DEL AYUNTAMIENTO DE RIBA-ROJA DE TÚRIA Y LA FUNDACIÓN PADRE JUAN SCHENK: BIBLIOTECA SOLIDARIA MISIONERA EJERCICIO 2026",
+      "date": "2026-09-16T00:00:00.000Z",
+      "organ": "LOCAL · RIBA-ROJA DE TÚRIA · AYUNTAMIENTO DE RIBA-ROJA DE TÚRIA",
+      "level1": "LOCAL",
+      "level2": "RIBA-ROJA DE TÚRIA",
+      "direction": "granted",
+      "sourceUrl": "https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocatoria/929781"
+    }
+  ]
+}

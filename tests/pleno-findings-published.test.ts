@@ -202,7 +202,33 @@ const expectWithdrawn = (id: string): void => {
  * revisión lectora de superficies. La corrección va por `correct-pleno-finding` y no
  * es de ningún lote: en LOTE_3 cambia sólo lo que su fila mide en la prosa viva.
  */
-const TOTAL_CORRECTIONS = 148
+/*
+ * 148 → 150 el 2026-09-21, y son las dos caras de una misma frase: los resúmenes de
+ * `f-2026-01-19-cit-c80e68` y `f-2026-01-19-cit-cc8758` ponían en boca de VOX «la
+ * ausencia / la falta de una agenda de reconstrucción» en Riba-roja.
+ *
+ * La CITA que lo sostenía ya se había retirado de las dos fichas el 2026-08-10 —lo
+ * dicen sus filas en LOTE_2 y LOTE_3: «appears nowhere in the current transcript
+ * … the signature of the superseded engine looping»—. Lo que sobrevivió fue la
+ * FRASE DEL RESUMEN que la parafraseaba, y este fichero la tenía en `keeps`: no
+ * porque alguien la hubiera dado por cierta, sino porque `keeps` ancla texto para
+ * que un resumen vaciado no pase por corregido.
+ *
+ * Y no era una imprecisión, era lo contrario. En la transcripción vigente (segundos
+ * 3175 a 3405) VOX rechaza «de forma frontal» la agenda urbana de reconstrucción
+ * que se votaba, por ir ligada a la Agenda 2030, y pide un plan nacional. La
+ * retirada había deformado «Eso es lo que se propone aquí en Riva Roja y en
+ * cualquier otro municipio de España» en «Aquí en Riva Roja, en el pleno, no hay una
+ * agenda de reconstrucción, no hay una agenda de reconstrucción…».
+ *
+ * Es la QUINTA del patrón que describen los bloques de arriba —un resumen que
+ * afirma de más cuando a su cita le cambia el suelo—, y la primera en la que lo
+ * que afirmaba de más era FALSO y no sólo sin salvedad. La cazó, otra vez, la
+ * revisión lectora de superficies. Van por `correct-pleno-finding` y no son de
+ * ningún lote: en LOTE_2, LOTE_3 y LOTE_4 cambia sólo lo que su fila mide en la
+ * prosa viva, y la frase retirada pasa de `keeps` a `drops`.
+ */
+const TOTAL_CORRECTIONS = 150
 const TOTAL_REMOVALS = 35
 
 /** One row of a review batch's fixture: enough to locate its own entries. */
@@ -1110,10 +1136,16 @@ const LOTE_2: Lote2Case[] = [
     priorCorrections: 1,
     // The one row of this batch the review upheld. Nothing was retracted and
     // the claim it makes is unchanged — only the pasted sentinel went.
-    drops: ['estado: unknown', '· Ayuntamiento de Riba-roja de Túria ·'],
+    // La tercera es del 2026-09-21: la frase sobre VOX que este lote dejó en pie
+    // resultó ser lo contrario de lo que VOX dijo. Ver el bloque «148 → 150».
+    drops: [
+      'estado: unknown',
+      '· Ayuntamiento de Riba-roja de Túria ·',
+      'la ausencia de una agenda de reconstrucción local',
+    ],
     keeps: [
       "el registro municipal incluye el contrato 'Servicio mantenimiento instalaciones en complejo deportivo La Malla'",
-      'la ausencia de una agenda de reconstrucción local',
+      'el grupo VOX pide «un plan de reconstrucción nacional',
     ],
     // Lote 4 took the dirección-de-obra row that used to lead this list.
     // The expediente the summary names by title is a different one — and the
@@ -1821,15 +1853,17 @@ const LOTE_3: Lote3Case[] = [
     id: 'f-2026-01-19-cit-cc8758',
     added: ['crossChecked.0'],
     priorCorrections: 1,
-    drops: [],
+    drops: ['VOX, en cambio, denunció la falta de una agenda de reconstrucción'],
     // La primera la reescribió la corrección del 2026-08-14: la mención del PP
     // sigue en la ficha —es lo que la sostiene— pero ya no enumerada como asunto
     // asentado, porque su cita lleva «no consta en la transcripción revisada».
     // Se ancla al texto vigente.
+    // La frase sobre VOX que cerraba el resumen se retiró el 2026-09-21: la ficha
+    // no lleva ninguna cita de VOX y la frase decía lo contrario de lo que consta.
+    // Ver el bloque «148 → 150». La frase pasa a `drops`, arriba.
     keeps: [
       'Se atribuye al PP la mención de subsanar problemas',
       'no consta en la transcripción vigente',
-      'VOX, en cambio, denunció la falta de una agenda de reconstrucción',
     ],
     // The Pacadar cotejo STAYS here too, and this is the row where that costs
     // something to say. What a curator retired from its twin `8b29a9` on
@@ -2476,8 +2510,9 @@ const LOTE_4: Lote4Case[] = [
         permalink: `${PLACSP}56xTbbVhVpxxseVhcqrkhw%3D%3D`,
       },
     ],
-    drops: [],
-    keeps: ['señala la ausencia de una agenda de reconstrucción local'],
+    // 2026-09-21: la frase que este lote anclaba se retiró (bloque «148 → 150»).
+    drops: ['señala la ausencia de una agenda de reconstrucción local'],
+    keeps: ['el grupo VOX pide «un plan de reconstrucción nacional'],
     namesDoc: 'Servicio mantenimiento instalaciones en complejo deportivo La Malla',
     refs: [
       'tender|Servicio mantenimiento instalaciones en ',

@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-09-15T18:54:12.611Z",
+  "generatedAt": "2026-09-21T10:48:44.673Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. Los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, salvo los que llevan la firma de una persona, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -1767,7 +1767,7 @@
       "plenoId": "19gax3o",
       "plenoDate": "2026-01-19",
       "title": "Pleno del 2026-01-19: Debate sobre urbanismo",
-      "summary": "En la sesión del pleno del 19 de enero de 2026, el grupo PSOE afirmó que «la parte de la reconstrucción, aunque los contratos no se hacen así, sino a través de trazas». Por su parte, un grupo no identificado señaló que se basan en fondos europeos para la reconstrucción tras la DANA. Se atribuye al PP la mención de subsanar problemas en el pabellón y el complejo esportivo, con una cita que no consta en la transcripción vigente. VOX, en cambio, denunció la falta de una agenda de reconstrucción en Riba Roja.",
+      "summary": "En la sesión del pleno del 19 de enero de 2026, el grupo PSOE afirmó que «la parte de la reconstrucción, aunque los contratos no se hacen así, sino a través de trazas». Por su parte, un grupo no identificado señaló que se basan en fondos europeos para la reconstrucción tras la DANA. Se atribuye al PP la mención de subsanar problemas en el pabellón y el complejo esportivo, con una cita que no consta en la transcripción vigente.",
       "severity": "informational",
       "sourceClaimIds": [
         "19gax3o-016-cit-cc8758",
@@ -1846,6 +1846,14 @@
           "reason": "El resumen enumeraba la intervención del PP al mismo nivel que las demás, como asunto asentado, cuando la cita que la sostiene lleva la marca «no consta en la transcripción revisada»: es literalidad del primer transcriptor, no confirmada contra el texto vigente. Se marca en la propia frase en vez de dejar que sólo lo diga el chip de debajo. Lo señaló review:surfaces; corrección instruida por el propietario del sitio.",
           "editor": "claude-opus-5",
           "correctedAt": "2026-08-14T08:51:18.981Z"
+        },
+        {
+          "field": "summary",
+          "original": "En la sesión del pleno del 19 de enero de 2026, el grupo PSOE afirmó que «la parte de la reconstrucción, aunque los contratos no se hacen así, sino a través de trazas». Por su parte, un grupo no identificado señaló que se basan en fondos europeos para la reconstrucción tras la DANA. Se atribuye al PP la mención de subsanar problemas en el pabellón y el complejo esportivo, con una cita que no consta en la transcripción vigente. VOX, en cambio, denunció la falta de una agenda de reconstrucción en Riba Roja.",
+          "corrected": "En la sesión del pleno del 19 de enero de 2026, el grupo PSOE afirmó que «la parte de la reconstrucción, aunque los contratos no se hacen así, sino a través de trazas». Por su parte, un grupo no identificado señaló que se basan en fondos europeos para la reconstrucción tras la DANA. Se atribuye al PP la mención de subsanar problemas en el pabellón y el complejo esportivo, con una cita que no consta en la transcripción vigente.",
+          "reason": "Se retira la frase que atribuía a VOX denunciar la falta de una agenda de reconstrucción. Esta ficha no lleva ninguna cita de VOX, y la frase venía de una transcripción ya retirada que deformó el pasaje: en la vigente (segundos 3175 a 3405) VOX rechaza la agenda que se votaba y pide un plan nacional, que es lo contrario de echarla en falta. Lo señaló la revisión lectora el 21-09-2026.",
+          "editor": "claude-fable-5.1",
+          "correctedAt": "2026-09-21T10:48:44.673Z"
         }
       ]
     },
@@ -1854,7 +1862,7 @@
       "plenoId": "19gax3o",
       "plenoDate": "2026-01-19",
       "title": "Debate sobre urbanismo y mantenimiento de infraestructuras en el pleno del 2026-01-19",
-      "summary": "Durante la sesión, un grupo no identificado señala deficiencias y reparaciones en el complejo la malla desde su inicio en 2006. En relación con este debate, el registro municipal incluye el contrato 'Servicio mantenimiento instalaciones en complejo deportivo La Malla'. Por su parte, el grupo VOX señala la ausencia de una agenda de reconstrucción local en el municipio.",
+      "summary": "Durante la sesión, un grupo no identificado señala deficiencias y reparaciones en el complejo la malla desde su inicio en 2006. En relación con este debate, el registro municipal incluye el contrato 'Servicio mantenimiento instalaciones en complejo deportivo La Malla'. Por su parte, el grupo VOX pide «un plan de reconstrucción nacional centrado en infraestructuras hidráulicas, protección civil eficaz, ayudas directas».",
       "severity": "informational",
       "sourceClaimIds": [
         "19gax3o-051-cit-c80e68",
@@ -1933,6 +1941,14 @@
           "reason": "Se retira un literal que no consta en ningún punto de la transcripción vigente y cuya forma, una cláusula repetida sobre sí misma, es firma de alucinación del motor que se sustituyó. El tramo de la sesión está cubierto sin huecos y el fichero vigente pesa más que el que reemplazó, así que la ausencia no es falta de cobertura. No hay en la vigente un pasaje equivalente al que reanclarla.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-10T12:54:18.366Z"
+        },
+        {
+          "field": "summary",
+          "original": "Durante la sesión, un grupo no identificado señala deficiencias y reparaciones en el complejo la malla desde su inicio en 2006. En relación con este debate, el registro municipal incluye el contrato 'Servicio mantenimiento instalaciones en complejo deportivo La Malla'. Por su parte, el grupo VOX señala la ausencia de una agenda de reconstrucción local en el municipio.",
+          "corrected": "Durante la sesión, un grupo no identificado señala deficiencias y reparaciones en el complejo la malla desde su inicio en 2006. En relación con este debate, el registro municipal incluye el contrato 'Servicio mantenimiento instalaciones en complejo deportivo La Malla'. Por su parte, el grupo VOX pide «un plan de reconstrucción nacional centrado en infraestructuras hidráulicas, protección civil eficaz, ayudas directas».",
+          "reason": "El resumen atribuía a VOX señalar que faltaba una agenda de reconstrucción local. La frase venía de una transcripción ya retirada, que deformó el pasaje; en la vigente (segundos 3175 a 3405) VOX rechaza la agenda urbana de reconstrucción que se votaba, por ir ligada a la Agenda 2030, y pide un plan nacional. La única cita de VOX que lleva esta ficha es esa petición, y el resumen pasa a decir lo que la cita dice. Lo señaló la revisión lectora el 21-09-2026.",
+          "editor": "claude-fable-5.1",
+          "correctedAt": "2026-09-21T10:48:44.306Z"
         }
       ]
     },
