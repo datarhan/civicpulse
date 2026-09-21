@@ -333,6 +333,76 @@ describe('/quejas — la tarjeta del Síndic', () => {
     const cuerpo = document.body.textContent
     expect(cuerpo).not.toMatch(/expedientes?\s+contra el Ayuntamiento de Riba-roja/i)
   })
+
+  /**
+   * Las fichas nunca pueden ser más que las resoluciones de las que salen.
+   *
+   * El 18-09-2026 la página publicó «11 que terminaron en consideraciones» junto
+   * a «13 fichas, una por cada resolución»: el buscador del Síndic estaba
+   * reindexando y declaraba 47 resultados en vez de 50. Horas después los tres
+   * expedientes volvieron, pero uno —el 202600533— volvió sin sus
+   * consideraciones, y la cuenta quedó en 13 resoluciones, una de ellas para la
+   * Conselleria, y 13 fichas al Ayuntamiento. Ver tests/sindic-consideraciones.test.js.
+   */
+  const FICHA = (expediente, pdf) => ({
+    id: `sindic-${expediente}-${pdf}`,
+    expediente,
+    fecha: '2026-03-23',
+    materia: 'procedimiento-administrativo',
+    sentido: 'recordatorio-deberes',
+    titulo: 'Falta de resolución del procedimiento',
+    resumen: 'RECORDAMOS EL DEBER LEGAL de resolver.',
+    urlPdf: `https://www.elsindic.com/resoluciones/expedientes/${expediente.slice(0, 4)}/${expediente}/${pdf}.pdf`,
+    quejaIdRelacionada: null,
+  })
+
+  it('cuenta la resolución que una ficha cita aunque el buscador ya no la liste, y lo dice', async () => {
+    // El índice de EXPEDIENTES lista UNA de consideraciones (202502231) y trae el
+    // 202602608 sin resoluciones. La segunda ficha cita un PDF que el índice no lista.
+    mountWith({
+      '/data/quejas.json': QUEJAS_VACIO,
+      '/data/sindic.json': {
+        ...SINDIC_VACIO,
+        items: [FICHA('202502231', '12337532'), FICHA('202602608', '12560129')],
+      },
+      '/data/sindic-expedientes.json': EXPEDIENTES,
+    })
+    await waitFor(() => expect(screen.getByText(/2 fichas/)).toBeInTheDocument())
+    // Dos resoluciones constan, no la una que dice el bloque `stats` del índice.
+    expect(
+      screen.getByText(/y 2 con una resolución de «consideraciones a la Administración»/),
+    ).toBeInTheDocument()
+    // Y la diferencia con el buscador se explica, con el expediente a la vista.
+    const nota = screen.getByText(/El buscador del Síndic ya no lista una de ellas/)
+    expect(nota).toBeInTheDocument()
+    expect(nota.textContent).toMatch(/202602608/)
+    expect(nota.textContent).toMatch(/sigue publicada en el PDF/)
+  })
+
+  it('cuando el buscador las lista todas no añade ninguna nota — control', async () => {
+    mountWith({
+      '/data/quejas.json': QUEJAS_VACIO,
+      '/data/sindic.json': { ...SINDIC_VACIO, items: [FICHA('202502231', '12337532')] },
+      '/data/sindic-expedientes.json': EXPEDIENTES,
+    })
+    await waitFor(() => expect(screen.getByText(/1 fichas/)).toBeInTheDocument())
+    expect(
+      screen.getByText(/y 1 con una resolución de «consideraciones a la Administración»/),
+    ).toBeInTheDocument()
+    expect(screen.queryByText(/El buscador del Síndic ya no lista/)).not.toBeInTheDocument()
+  })
+
+  it('no dice que «terminaron» en consideraciones: tras ellas suele venir un cierre', async () => {
+    // Dos de los tres expedientes reindexados el 18-09 tienen consideraciones Y
+    // un cierre posterior. «Terminaron en» afirmaba un final que no es.
+    mountWith({
+      '/data/quejas.json': QUEJAS_VACIO,
+      '/data/sindic.json': SINDIC_VACIO,
+      '/data/sindic-expedientes.json': EXPEDIENTES,
+    })
+    await waitFor(() => expect(screen.getByText('2 expedientes')).toBeInTheDocument())
+    expect(document.body.textContent).not.toMatch(/terminaron en/)
+  })
 })
 
 /**

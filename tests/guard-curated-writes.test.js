@@ -124,6 +124,72 @@ describe('guard: bypasses that used to work', () => {
   })
 })
 
+/**
+ * Un fichero que se edita A MANO no tiene CLI que le mueva el sello.
+ *
+ * `apply-promise-draft`, `sindic:add` y los demás CLIs estampan `generatedAt` al
+ * escribir. Siete ficheros curados no tienen CLI: los edita una persona vía PR, y
+ * el guard, al rechazar la escritura, es quien le dice a la sesión que pase el
+ * cambio a esa persona. Hasta aquí ese mensaje no decía nada del sello.
+ *
+ * El 17-09-2026 (16f5ee62) pasó exactamente eso con `sociedades.json`: la ficha
+ * de Hidraqua se corrigió a mano, bien y validada, y `generatedAt` se quedó en el
+ * 23 de agosto. `check:stamps` lo cazó —es la segunda vez, tras c66cf931 con
+ * `promises.json`— pero a posteriori y por Telegram. El momento de decirlo es
+ * cuando se entrega la edición, no dos días después.
+ */
+describe('guard: una edición a mano no tiene quién le mueva el sello', () => {
+  const aMano = Object.entries(CURATED).filter(([, owner]) => /hand-edit/.test(owner))
+  const sello = (name) => {
+    const o = JSON.parse(readFileSync(resolve('public/data', name), 'utf8'))
+    return typeof o.generatedAt === 'string' ? o.generatedAt : null
+  }
+
+  it('mide algo: hay ficheros a mano con sello y al menos uno sin él', () => {
+    // Sin las dos clases en disco, las pruebas de abajo pasarían sin comprobar nada.
+    expect(aMano.filter(([n]) => sello(n)).length).toBeGreaterThan(0)
+    expect(aMano.filter(([n]) => !sello(n)).length).toBeGreaterThan(0)
+  })
+
+  it('recuerda el sello al rechazar la escritura, con el valor que el fichero lleva hoy', () => {
+    for (const [name] of aMano.filter(([n]) => sello(n))) {
+      const v = decide(`public/data/${name}`)
+      expect(v.decision, name).toBe('deny')
+      expect(v.reason, name).toContain('"generatedAt"')
+      expect(v.reason, name).toContain(sello(name))
+      expect(v.reason, name).toMatch(/check:stamps/)
+      // Y la puerta que existe para moverlo sin tocar nada más.
+      expect(v.reason, name).toContain(`npm run restamp -- ${name}`)
+    }
+  })
+
+  it('el reproductor: sociedades.json', () => {
+    expect(decide('public/data/sociedades.json').reason).toMatch(/check:stamps/)
+  })
+
+  it('no promete un sello a un fichero que no lo lleva', () => {
+    // El motivo tiene que ser cierto de CADA fichero para el que se enseña: un
+    // aviso con un motivo que no aplica es uno que se deja de leer.
+    for (const [name] of aMano.filter(([n]) => !sello(n))) {
+      expect(decide(`public/data/${name}`).reason, name).not.toMatch(/check:stamps/)
+    }
+  })
+
+  it('no dice nada del sello cuando el dueño es un CLI: ese sí lo mueve', () => {
+    const conCli = Object.entries(CURATED).filter(([, owner]) => !/hand-edit/.test(owner))
+    expect(conCli.length).toBeGreaterThan(0)
+    for (const [name] of conCli) {
+      expect(decide(`public/data/${name}`).reason, name).not.toMatch(/check:stamps/)
+    }
+  })
+
+  it('un fichero ilegible se sigue rechazando, sin sello que recordar', () => {
+    const v = decide('public/data/sociedades.json', undefined, () => '{ esto no es json')
+    expect(v.decision).toBe('deny')
+    expect(v.reason).not.toMatch(/check:stamps/)
+  })
+})
+
 describe('guard: published surface', () => {
   it('asks before creating a NEW draft/suggestion file under public/', () => {
     const v = decide('public/data/journalist-reports-suggestions.json', never)

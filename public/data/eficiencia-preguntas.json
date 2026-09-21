@@ -75,7 +75,7 @@
             },
             {
               "q": "¿Qué parte del crédito definitivo que queda sin ejecutar corresponde a crédito incorporado que nunca pudo gastarse, y qué parte a actuaciones previstas y no ejecutadas?",
-              "base": "El indicador de ejecución divide lo ejecutado entre un crédito definitivo hinchado con modificaciones; el propio panel avisa de que buena parte de un porcentaje bajo es crédito que nunca pudo gastarse — la pregunta es qué parte.",
+              "base": "El indicador de ejecución divide lo ejecutado entre un crédito definitivo que incluye las modificaciones del ejercicio; el propio panel avisa de que buena parte de un porcentaje bajo es crédito añadido que no llegó a gastarse, y de que el listado no dice cuánto llegó demasiado tarde para gastarlo — la pregunta es qué parte.",
               "href": "/gestion"
             },
             {

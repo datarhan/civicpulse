@@ -414,8 +414,23 @@ const COMO_MUNICIPAL: Record<string, string> = {
     'Mide concentración del importe adjudicado en el periodo, no gasto anual: las concesiones se adjudican por todo su plazo de una vez.',
   'modificaciones-presupuestarias':
     'Las modificaciones son legales y a veces inevitables: lo que mide es cuánto se aleja el crédito finalmente disponible del que se debatió y aprobó — no lo gastado, que es otra cifra y bastante menor.',
+  // Decía «hinchado con modificaciones de última hora: … crédito que nunca pudo
+  // gastarse», y eran dos afirmaciones sin dato debajo. CUÁNDO: el listado trae
+  // un solo corte, a 31 de diciembre, y no fecha ninguna modificación —la
+  // salvedad larga de esta misma ficha dice «a lo largo del ejercicio —algunas a
+  // final de año—», así que la página se contradecía a dos renglones de
+  // distancia—. Y POR QUÉ: «nunca pudo» es imposibilidad, y lo medido es que no
+  // se gastó. Excusar al ayuntamiento con una causa sin comprobar es tan poco
+  // nuestro como acusarlo. Lo señaló la revisión lectora el 20-09-2026;
+  // `tests/parse-indicador-lectura.test.ts` comprueba las dos frases juntas.
+  //
+  // Lo que se declara ignorado es CUÁNTO llegó tarde, no SI alguna lo hizo. La
+  // primera versión de este arreglo decía «el listado no dice cuándo se
+  // incorporó», y vista en el navegador encima de la salvedad larga —«algunas a
+  // final de año»— las dos se pisaban: si el listado no dice cuándo, ¿de dónde
+  // sale «algunas»? Las pruebas no podían verlo; se vio mirando la página.
   'ejecucion-presupuestaria':
-    'El divisor es el crédito definitivo, hinchado con modificaciones de última hora: buena parte de un porcentaje bajo es crédito que nunca pudo gastarse.',
+    'El divisor es el crédito definitivo, que suma al aprobado las modificaciones del ejercicio: buena parte de un porcentaje bajo es crédito añadido que no llegó a gastarse, y el listado no dice cuánto llegó demasiado tarde para gastarlo.',
 }
 
 export function leerIndicadorMunicipal(m: IndicadorMunicipal): Lectura {
