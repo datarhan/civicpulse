@@ -88,9 +88,16 @@ function main() {
     )
   }
   if (huerfanos.length > 0) {
+    // Este comando lee la CACHÉ; no monta ninguna página, así que no puede
+    // saber si la frase descartada sigue publicada — y por eso no lo dice.
+    // Quien lo sabe es `review:surfaces`, que renderiza cada ruta para
+    // revisarla y ahora separa los tres desenlaces (vigente / sin rastro / no
+    // mirada). Mandar a alguien a comprobarlo a mano era mandarlo a hacer algo
+    // que la otra herramienta hace sola, y a hacerlo peor: `/ [capas]` no es
+    // una URL sino unas capas que hay que encender.
     console.error(
       `[check-surfaces] ${huerfanos.length} descarte(s) sin señalamiento vivo hoy ` +
-        `(siguen armados; comprueba si la frase sigue publicada antes de quitarlos): ` +
+        `(siguen armados; «npm run review:surfaces -- <ruta>» dice si su frase sigue publicada): ` +
         huerfanos.map((d) => `${d.route} «${d.quote.slice(0, 40).replace(/\n/g, ' ')}»`).join(', '),
     )
   }

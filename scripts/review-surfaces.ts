@@ -64,7 +64,10 @@ import {
 import {
   sinDescartar,
   descartesHuerfanos,
+  rastroDeDescartes,
   validarDescartes,
+  type Descarte,
+  type RastroDeDescarte,
   type RegistroDescartes,
 } from '../src/scraper/surface-dismissals'
 import { authorshipBreakdown } from '../src/scraper/finding-authorship'
@@ -555,6 +558,14 @@ async function main() {
     console.log(`      pero los datos dicen: ${f.contradictedBy}`)
   }
 
+  // El texto de cada ruta que esta pasada ha llegado a renderizar, para poder
+  // contestar la pregunta que el aviso de huérfanos le hacía a una persona:
+  // ¿sigue publicada la frase que se descartó? Se llena DESPUÉS del render y
+  // antes del acierto de caché, así que también cubre las rutas que se sirven
+  // de caché —se han montado igual— y deja fuera las que no se visitaron, que
+  // son las que no se pueden juzgar.
+  const textoPorRuta = new Map<string, string>()
+
   for (const route of routes) {
     // Checked BEFORE the render, so an exhausted budget costs nothing and the
     // route is reported as unreached rather than as anything else.
@@ -728,6 +739,7 @@ async function main() {
 
     // The WHOLE page. No `.slice()` here, ever — see `chunkRenderedText`.
     const renderedText = await page.locator('body').innerText()
+    textoPorRuta.set(route, renderedText)
 
     // ── El pase DETERMINISTA, antes de gastar una sola llamada ──────────────
     //
@@ -1180,13 +1192,42 @@ async function main() {
       vivosPorRuta,
     )
     if (huerfanos.length > 0) {
-      console.log(
-        `           ${huerfanos.length} descarte(s) sin señalamiento vivo hoy ` +
-          `(siguen armados; comprueba si la frase sigue publicada antes de quitarlos): ` +
-          huerfanos
-            .map((d) => `${d.route} «${d.quote.slice(0, 40).replace(/\n/g, ' ')}»`)
-            .join(', '),
+      // Ya no se le pide a nadie que «compruebe si la frase sigue publicada»:
+      // se comprueba aquí, contra el texto que esta misma pasada renderizó.
+      // Tres desenlaces separados, porque «no he mirado esa ruta» no es «la
+      // frase ya no está» y confundirlos haría borrar descartes buenos.
+      const conRastro = rastroDeDescartes(
+        { version: descartes?.version ?? 1, items: huerfanos },
+        textoPorRuta,
       )
+      const cita = (d: Descarte) => `${d.route} «${d.quote.slice(0, 40).replace(/\n/g, ' ')}»`
+      const de = (r: RastroDeDescarte) =>
+        conRastro.filter((x) => x.rastro === r).map((x) => cita(x.descarte))
+
+      const vigentes = de('vigente')
+      const sinRastro = de('sin-rastro')
+      const noMiradas = de('no-mirada')
+
+      console.log(`           ${huerfanos.length} descarte(s) sin señalamiento vivo hoy:`)
+      if (vigentes.length > 0) {
+        console.log(
+          `             · ${vigentes.length} con su frase AÚN PUBLICADA (armados y en su sitio): ` +
+            vigentes.join(', '),
+        )
+      }
+      if (sinRastro.length > 0) {
+        console.log(
+          `             · ${sinRastro.length} SIN RASTRO en la página leída hoy ` +
+            `(la frase descartada ya no está; míralos antes de quitarlos): ` +
+            sinRastro.join(', '),
+        )
+      }
+      if (noMiradas.length > 0) {
+        console.log(
+          `             · ${noMiradas.length} de rutas que esta pasada NO visitó, así que no se sabe: ` +
+            noMiradas.join(', '),
+        )
+      }
     }
   }
 
