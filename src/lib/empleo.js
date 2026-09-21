@@ -77,6 +77,15 @@ export function computeEmpleoStats(offers, now = Date.now()) {
   // total: 23 de 67 no traen ficha, y el gráfico salía al lado de un KPI
   // calculado sobre las 67 sin que nada dijera que son poblaciones distintas.
   let byMunicipioCoverage = 0
+  // El PUENTE entre las dos cifras de Riba-roja que publica esta página.
+  //
+  // El KPI cuenta `inRibaRoja` —la columna LOCALIDAD del listado— y el gráfico
+  // agrupa `detail.municipio`, de la ficha. Son dos campos, y el lector ve 38
+  // arriba y 26 abajo sin poder cuadrarlos. La diferencia son exactamente las
+  // ofertas cuya localidad dice Riba-roja y cuya ficha no dice municipio: 12 el
+  // 2026-09-21, y 26 + 12 = 38. Decir cuántas quedan fuera del gráfico ya se
+  // decía; lo que faltaba era decir cuántas de ésas son de aquí.
+  let sinMunicipioEnRiba = 0
   let closingSoon = 0
   let vehicleRequired = 0
   const monthMap = new Map()
@@ -96,8 +105,14 @@ export function computeEmpleoStats(offers, now = Date.now()) {
       if (d.municipio) {
         muniMap.set(d.municipio, (muniMap.get(d.municipio) || 0) + 1)
         byMunicipioCoverage++
+      } else if (o.inRibaRoja) {
+        sinMunicipioEnRiba++
       }
     }
+    // Una oferta sin ficha tampoco trae municipio, y también cuenta para el
+    // puente: lo que el gráfico no puede colocar es todo lo que no tiene
+    // `detail.municipio`, haya ficha o no.
+    if (!d && o.inRibaRoja) sinMunicipioEnRiba++
     const du = daysUntil(o.deadline, now)
     if (du !== null && du >= 0 && du <= 14) closingSoon++
     const ym = (o.publishedAt || '').slice(0, 7)
@@ -118,6 +133,7 @@ export function computeEmpleoStats(offers, now = Date.now()) {
     total,
     open,
     byMunicipioCoverage,
+    sinMunicipioEnRiba,
     positions,
     inRibaRoja,
     inRibaRojaPct: total ? Math.round((inRibaRoja / total) * 100) : 0,
