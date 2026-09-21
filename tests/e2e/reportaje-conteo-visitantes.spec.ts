@@ -50,7 +50,24 @@ test.describe('Reportaje · conteo de visitantes (/reportajes/conteo-visitantes)
     await expect(
       page.getByText(/Secretaría de Estado de Turismo · enviada el 17 de septiembre de 2026/),
     ).toBeVisible()
-    await expect(page.getByText(/Turisme Comunitat Valenciana · enviada el/)).toBeVisible()
+    // A Turisme CV se le escribió DOS veces: el 9 de septiembre por correo y el
+    // 21 por la sede, después de que contestara que por correo no lo atendía.
+    // Dos filas, dos relojes — y un `getByText` suelto resolvería a las dos y
+    // rompería por modo estricto, que es como se vio esto la primera vez.
+    expect(await page.getByText(/Turisme Comunitat Valenciana · enviada el/).count()).toBe(2)
+    await expect(
+      page.getByText(/Turisme Comunitat Valenciana · enviada el 21 de septiembre de 2026/),
+    ).toBeVisible()
+
+    // Con asiento, el plazo se AFIRMA: es lo que un número de registro compra.
+    // El número sale DOS veces en la página —también en la contestación del 21,
+    // que dice que se volvió a presentar—, así que se ancla en la fila entera.
+    await expect(
+      page.getByText(
+        /enviada el 21 de septiembre de 2026 por el registro electrónico de la Generalitat, con registro GVRTE\/2026\/4309357/,
+      ),
+    ).toBeVisible()
+    await expect(page.getByText(/vence el 21 de octubre de 2026/)).toBeVisible()
 
     // LA CONTESTACIÓN QUE NO RESUELVE (21-09-2026). Turisme CV dijo que por
     // correo no la atiende y que hay que usar su trámite electrónico. Tiene que

@@ -231,6 +231,43 @@ describe('respuesta · «no les corresponde»', () => {
  * un fixture que la copie.
  */
 /**
+ * Con asiento de registro, el plazo deja de ser «contado desde el envío».
+ *
+ * De un correo consta el ENVÍO y no la recepción por el órgano competente, y por
+ * eso la frase de siempre dice de dónde cuenta. Un asiento de registro sí prueba
+ * la entrada: el 21-09-2026 el escrito a Turisme CV se presentó por la sede de la
+ * Generalitat con el número GVRTE/2026/4309357. Publicar entonces la misma
+ * salvedad sería disculparse por algo que ya consta, y no publicar el número
+ * sería quedarse sin la prueba de que consta.
+ */
+describe('una solicitud con registro dice su número y vence de verdad', () => {
+  const conRegistro: EnvioSolicitud = {
+    organismo: 'Turisme Comunitat Valenciana',
+    enviadaEl: '2026-09-21',
+    via: 'el registro electrónico de la Generalitat',
+    registro: 'GVRTE/2026/4309357',
+    respuesta: null,
+  }
+
+  it('la frase trae el número de registro', () => {
+    expect(fraseDeEnvio(conRegistro, '2026-09-30')).toContain('GVRTE/2026/4309357')
+  })
+
+  it('y el vencimiento se afirma, sin «contado desde el envío»', () => {
+    const f = fraseDeEnvio(conRegistro, '2026-09-30')
+    expect(f).toContain('21 de octubre de 2026')
+    expect(f).not.toMatch(/contado desde el envío/)
+  })
+
+  it('sin registro, la salvedad sigue intacta', () => {
+    // El control: si la frase perdiera la cautela para TODAS, esta prueba lo
+    // dice. Las tres del coste efectivo y dos del conteo salieron por correo.
+    const porCorreo: EnvioSolicitud = { ...conRegistro, registro: undefined }
+    expect(fraseDeEnvio(porCorreo, '2026-09-30')).toMatch(/contado desde el envío/)
+  })
+})
+
+/**
  * Una contestación que NO resuelve no es una respuesta, y no puede parar el reloj.
  *
  * El 21-09-2026 Turisme Comunitat Valenciana contestó al escrito del 9 de
