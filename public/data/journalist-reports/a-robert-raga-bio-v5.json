@@ -1175,13 +1175,13 @@
       "id": "src-110",
       "kind": "official-doc",
       "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/20260723%20Robert%20Raga_0.pdf",
+      "archiveUrl": "http://web.archive.org/web/20260920154419/https://www.ribarroja.es/sites/www.ribarroja.es/files/20260723%20Robert%20Raga_0.pdf",
       "title": "CV vigente en la ficha municipal (PDF de mayo de 2026) — Robert Raga Gadea",
       "publisher": "Ajuntament de Riba-roja de Túria",
       "retrievedAt": "2026-09-19T19:30:00.000Z",
       "excerpt": "FORMACIÓN ACCESO A UNIVERSIDAD MAYORES DE 25 AÑOS• COLEGIO PÚBLICO MIGUEL CERVANTES• Matriculación en magisterio EGB• COLEGIO PÚBLICO MIGUEL CERVANTES• Educación 2ª obligatoria EXPERIENCIA PROFESIONAL ASESOR • 2011 - 2015• DIPUTACIÓ DE VALÈNCIA Asesor institucional",
       "trust": "high",
-      "selfDeclared": true,
-      "archiveUrl": "http://web.archive.org/web/20260920154419/https://www.ribarroja.es/sites/www.ribarroja.es/files/20260723%20Robert%20Raga_0.pdf"
+      "selfDeclared": true
     },
     {
       "id": "src-111",
@@ -1206,7 +1206,8 @@
       "retrievedAt": "2026-09-19T19:30:00.000Z",
       "excerpt": "El Consorcio Valencia Interior es elente supramunicipal que lleva a cabo el tratamiento de los residuosde 61 municipios de las cinco comarcas del interior de la provinciade Valencia: Camp de Túria, los Serranos, la Hoya de Buñol-Chiva,la Plana Utiel-Requena y el Rincón de Ademuz.",
       "trust": "medium",
-      "selfDeclared": false
+      "selfDeclared": false,
+      "archiveUrl": "http://web.archive.org/web/20260920063817/https://www.elperiodicodeaqui.com/robert-raga-nuevo-presidente-del-consorcio-valencia-interior_194308_102.html"
     },
     {
       "id": "src-113",
@@ -1386,7 +1387,8 @@
       "retrievedAt": "2026-09-19T18:30:00.000Z",
       "excerpt": "Raga justificó que en aquel proceso la alcaldía se ciñó a los expedientes presentados que cumplían con los requisitos de la Secretaría y la Intervención.",
       "trust": "medium",
-      "selfDeclared": false
+      "selfDeclared": false,
+      "archiveUrl": "https://web.archive.org/web/20260921053130/https://www.levante-emv.com/comunitat-valenciana/camp-de-turia/2018/06/26/raga-declara-juez-cino-expedientes-11892195.html"
     },
     {
       "id": "src-127",

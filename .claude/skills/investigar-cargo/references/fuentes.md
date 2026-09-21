@@ -186,14 +186,28 @@ motivo, y son dos casos opuestos:
   la pasada al rato y, si sigue sin copia, al día siguiente — la consulta la
   encuentra (`existing`). Sólo lo que sigue sin copia UN DÍA DESPUÉS es un fallo
   de verdad.
-- **Un fallo de verdad no quiere decir que el medio no se deje archivar.** Se
-  mira antes de escribirlo: una consulta al índice por PREFIJO (`matchType=prefix`)
-  dice si Wayback tiene capturas recientes de ese medio. Levante-EMV contesta 406
-  a lo que no sea un navegador y aun así tiene capturas de 2026: quien no llega
-  es el extremo anónimo de Save Page Now, que no usa navegador. El flujo completo
-  (el del formulario de web.archive.org/save) sí lo usa, pero rechaza a un cliente
-  que no lo sea (401 «You need to be logged in») — queda el formulario a mano, o
-  una cuenta de archive.org.
+- **La copia puede estar bajo OTRA URL.** Si la citada redirige de forma
+  permanente (301/308) — El Periódico de Aquí manda `/epda-noticias/<slug>/<id>` a
+  `/<slug>_<id>_102.html` —, Save Page Now sigue la redirección y archiva el
+  destino, y preguntar por la citada contesta «ninguna» para siempre. El CLI ya
+  mira adónde redirige antes de gastar un guardado, y el parte lo dice («copia de
+  …, adonde redirige la citada»). No acepta como destino la portada, la sección de
+  la que cuelga la citada, otro sitio ni una página de error o de acceso: un CMS
+  que manda un artículo muerto «hacia arriba» también redirige.
+- **Un fallo de verdad no quiere decir que el medio no se deje archivar** — y aquí
+  se escribió dos veces lo contrario antes de medirlo. Levante-EMV contesta 406 a
+  lo que no sea un navegador, y el extremo anónimo que usa el CLI no lo capturó en
+  cuatro intentos; el FORMULARIO de web.archive.org/save, que captura con
+  navegador, lo capturó a la primera. Ese formulario no se puede usar desde un
+  script (rechaza a un cliente que no sea un navegador, 401), y enviarlo en el
+  Chrome del editor es enviar un formulario: **se le pide permiso antes**. Ojo a
+  su mensaje: dijo «The target server replied that the request is not acceptable
+  (HTTP status=406)» y en ese mismo segundo guardó una captura 200 con el artículo
+  entero. **Ninguna respuesta de un extremo de guardado prueba nada — ni el 500,
+  ni ese 406: la única autoridad es el índice, y después el contenido de la
+  copia.** Para una copia que no es una captura corriente de la URL citada se
+  comprueba lo que comprueba `repoint-source-url`: que el extracto citado siga
+  LITERAL en el documento archivado.
 - **`HTTP 429` / `not-attempted`**: no se ha capturado nada, y tras el primer 429
   la pasada deja de guardar (cada rechazo alarga el bloqueo de la IP). **No se
   repite «a ver si ahora»**: se vuelve horas después.
