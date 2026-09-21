@@ -1,11 +1,13 @@
 // @ts-check
 import { Fragment } from 'react'
-import { Card, SectionHead } from '../Primitives'
+import { Card, SectionHead, Marcado } from '../Primitives'
 import { useGeo } from '../../hooks/useGeo'
 import { useTenderGeo } from '../../hooks/useTenderGeo'
 import { useQuejas } from '../../hooks/useQuejas'
 import { computeOverlapRows } from '../../lib/neighborhood-aggregate'
 import { yearSpan } from '../../lib/year-span'
+import { rellena } from '../../lib/formatters'
+import { useT } from '../../i18n'
 
 const fmtEur = (n) =>
   new Intl.NumberFormat('es-ES', {
@@ -23,19 +25,30 @@ const HEAD = {
 }
 
 /**
- * Town-wide overlap: per barrio, citizen quejas vs. already-situated municipal
- * spend. Strictly neutral — a barrio with quejas but €0 situated shows a plain
- * "sin gasto situado" tag, never a claim of neglect (much spend simply isn't
- * geolocatable from the contract title). Reuses computeOverlapRows so the
- * figures match the map + heatmap. Renders nothing when there's no data.
+ * Town-wide overlap: per barrio, citizen quejas vs. the municipal contracts
+ * already situated there. Strictly neutral — a barrio with quejas and nothing
+ * situated shows a plain "sin contratos situados" tag, never a claim of
+ * neglect (most municipal money simply isn't geolocatable from the contract
+ * title). Reuses computeOverlapRows so the figures match the map + heatmap.
+ * Renders nothing when there's no data.
+ *
+ * La columna de euros es ADJUDICADO, no gasto. Son las zonas de
+ * `tender-geo.json`, o sea importe de adjudicación sin IVA: los mismos euros
+ * que la portada rotula «adjudicado acumulado» y /presupuesto «adjudicado sin
+ * IVA». Esta tarjeta los llamó «gasto situado» durante meses porque su prosa
+ * estaba escrita aquí dentro, fuera del catálogo y por tanto fuera de la
+ * guarda que vigila esa palabra (`tests/i18n-dinero-adjudicado.test.ts`).
+ * Ahora vive en `quejas.cruce.*`, que además es lo que hacía falta para que la
+ * tarjeta hable valencià.
  */
 export default function QuejasSpendOverlap() {
+  const t = useT()
   const { data: geo } = useGeo()
   const { data: tenderGeo } = useTenderGeo()
   const { data: quejas } = useQuejas()
   // Estas dos cifras NO se gatean por el registro: `quejas` es cuántas pusieron
-  // los vecinos y el gasto situado es del mapa. Ninguna afirma que el
-  // ayuntamiento deba una respuesta, al contrario que ✓ ⏳ ⚠.
+  // los vecinos y lo adjudicado es del mapa. Ninguna afirma que el ayuntamiento
+  // deba una respuesta, al contrario que ✓ ⏳ ⚠.
   const rows = computeOverlapRows({
     neighborhoods: geo?.neighborhoods,
     zones: tenderGeo?.zones,
@@ -49,22 +62,22 @@ export default function QuejasSpendOverlap() {
   // The complaints channel is months old; the money is years of accumulated
   // awards.
   //
-  // Both spans are measured over the rows actually shown. The spend span comes
+  // Both spans are measured over the rows actually shown. The awarded span comes
   // from the assignments that landed in a ZONE — the same subset the zone
   // amounts are summed from — and deliberately not from `universe.dateMin`,
   // which spans all 693 contracts including the ones no barrio ever gets
   // credited with. A period wider than the money it labels is the same defect
   // one level down.
-  const spendSpan = yearSpan(
+  const spanContratos = yearSpan(
     (tenderGeo?.assignments ?? []).filter((a) => (a.zones?.length ?? 0) > 0).map((a) => a.date),
   )
-  const quejaSpan = yearSpan((quejas?.items ?? []).map((q) => q.requested_datetime))
+  const spanQuejas = yearSpan((quejas?.items ?? []).map((q) => q.requested_datetime))
 
   return (
     <Card style={{ marginTop: 14 }}>
       <SectionHead
-        eyebrow="Cruce de datos · sin causalidad"
-        title="Quejas y gasto situado por barrio"
+        eyebrow={t('quejas.cruce.eyebrow')}
+        title={t('quejas.cruce.titulo')}
         right={null}
       />
       <div
@@ -76,24 +89,19 @@ export default function QuejasSpendOverlap() {
           lineHeight: 1.5,
         }}
       >
-        Por barrio: número de quejas ciudadanas frente al gasto municipal ya situado en obras allí.{' '}
-        <strong>Las dos columnas no cubren el mismo periodo</strong>
-        {quejaSpan && spendSpan ? (
-          <>
-            : las quejas se recogen desde {quejaSpan} y el gasto situado acumula adjudicaciones de{' '}
-            {spendSpan}
-          </>
-        ) : (
-          ' — el canal de quejas es mucho más reciente que el registro de contratación'
-        )}
-        , así que comparar una columna con la otra no mide la respuesta municipal. Son cifras de
-        contexto — la ausencia de gasto situado <strong>no</strong> implica desatención: muchas
-        actuaciones no nombran el lugar en el título y por eso no se sitúan (ver{' '}
+        <Marcado texto={t('quejas.cruce.intro')} />
+        {spanQuejas && spanContratos
+          ? rellena(t('quejas.cruce.periodos'), {
+              periodoQuejas: spanQuejas,
+              periodoContratos: spanContratos,
+            })
+          : t('quejas.cruce.periodos.sinFechas')}
+        <Marcado texto={t('quejas.cruce.cierre')} />{' '}
         <a
           href="/metodologia#relacion-quejas-contratos"
           style={{ color: 'var(--civic)', textDecoration: 'underline' }}
         >
-          metodología
+          {t('quejas.cruce.metodologia')}
         </a>
         ).
       </div>
@@ -106,10 +114,14 @@ export default function QuejasSpendOverlap() {
           alignItems: 'baseline',
         }}
       >
-        <div style={HEAD}>Barrio</div>
-        <div style={{ ...HEAD, textAlign: 'right' }}>Quejas{quejaSpan ? ` ${quejaSpan}` : ''}</div>
+        <div style={HEAD}>{t('quejas.cruce.col.barrio')}</div>
         <div style={{ ...HEAD, textAlign: 'right' }}>
-          Gasto situado{spendSpan ? ` ${spendSpan}` : ''}
+          {t('quejas.cruce.col.quejas')}
+          {spanQuejas ? ` ${spanQuejas}` : ''}
+        </div>
+        <div style={{ ...HEAD, textAlign: 'right' }}>
+          {t('quejas.cruce.col.adjudicado')}
+          {spanContratos ? ` ${spanContratos}` : ''}
         </div>
         {rows.map((r) => (
           <Fragment key={r.slug}>
@@ -127,7 +139,7 @@ export default function QuejasSpendOverlap() {
                     borderRadius: 'var(--r-input)',
                   }}
                 >
-                  sin gasto situado
+                  {t('quejas.cruce.sinSituado')}
                 </span>
               )}
             </div>

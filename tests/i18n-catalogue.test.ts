@@ -17,6 +17,7 @@ import { readdirSync, readFileSync, statSync } from 'node:fs'
 import { join } from 'node:path'
 
 import { CATALOGUE, LOCALES } from '../src/i18n'
+import { SOLO_CASTELLANO } from './setup/castellano.js'
 
 const SRC = join(__dirname, '..', 'src')
 
@@ -150,6 +151,28 @@ function fuentes(dir: string, out: string[] = []): string[] {
 }
 const TEXTO = fuentes(SRC).map((f) => readFileSync(f, 'utf8'))
 
+/**
+ * `SOLO_CASTELLANO` recalculado sobre un catálogo de mentira, con la MISMA
+ * regla que `tests/setup/castellano.js`: las palabras del lado castellano que
+ * no aparecen en el valenciano, con los huecos fuera de la cuenta en los dos
+ * lados.
+ *
+ * Se repite aquí a propósito, y es la única copia que este repo acepta: la
+ * prueba de abajo comprueba que el detector NO cuente los huecos, y pedírselo
+ * al propio detector sería preguntarle si acierta usando su respuesta.
+ */
+function palabrasCastellanasDe(cat: { es: Record<string, string>; ca: Record<string, string> }) {
+  const palabrasDe = (s: string) =>
+    String(s)
+      .replace(/\{\w+\}/g, ' ')
+      .toLowerCase()
+      .match(/\p{L}+/gu) ?? []
+  const enCa = new Set(Object.values(cat.ca).flatMap(palabrasDe))
+  return Object.values(cat.es)
+    .flatMap(palabrasDe)
+    .filter((p) => !enCa.has(p))
+}
+
 describe('catálogo i18n — paridad entre idiomas', () => {
   it('los dos idiomas tienen exactamente las mismas claves', () => {
     const [a, b] = LOCALES as string[]
@@ -168,6 +191,32 @@ describe('catálogo i18n — paridad entre idiomas', () => {
   it('mira algo: el catálogo no está vacío', () => {
     // Sin esto, un catálogo que no cargue imprimiría «0 claves, 0 problemas».
     expect(Object.keys(CATALOGUE.es).length).toBeGreaterThan(100)
+  })
+
+  it('el nombre de un hueco no cuenta como palabra de ningún idioma', () => {
+    // `SOLO_CASTELLANO` (tests/setup/castellano.js) se deriva restando las
+    // palabras del catálogo valencià a las del castellano. Un hueco viaja
+    // IDÉNTICO en los dos idiomas —lo sustituye el código, no el traductor—,
+    // así que contarlo como palabra valenciana borra esa palabra de la lista
+    // para todo el sitio.
+    //
+    // No es hipotético: llevaba tapando treinta y nueve —«barrio», «aviso»,
+    // «acuerdo», «asiento»…—, y se vio al traer al catálogo una tarjeta de
+    // /quejas con un `{quejas}` dentro, que hizo la cuarenta y la cazó
+    // `mapa-valencia` tres rutas más allá.
+    //
+    // Se comprueba por INYECCIÓN, sobre texto de mentira, porque la lista de
+    // verdad crece con el catálogo y escribirla aquí sería la guarda caducando
+    // sola. Si el detector volviera a contar los huecos, esto se pone rojo.
+    expect(SOLO_CASTELLANO.has('barrio'), '«barrio» ya no se reconoce como castellana').toBe(true)
+    const conHuecoCastellano = palabrasCastellanasDe({
+      es: { 'x.a': 'sin quejas de vecinos' },
+      ca: { 'x.a': 'des de {quejas} fins ara' },
+    })
+    expect(
+      conHuecoCastellano,
+      'un `{quejas}` en la traducción valenciana tapa la palabra «quejas»',
+    ).toContain('quejas')
   })
 })
 

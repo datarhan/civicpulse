@@ -1,6 +1,5 @@
-import { Fragment } from 'react'
 import { Link } from 'react-router-dom'
-import { Card, ExtLink, Pill, SectionHead } from '../components/Primitives'
+import { Card, ExtLink, Marcado, Pill, SectionHead } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
 import { useBudget, formatEuros } from '../hooks/useBudget'
 import { contrastarPresupuesto, TOLERANCIA_EQUILIBRIO } from '../scraper/budget-contraste'
@@ -86,13 +85,6 @@ const num = (n) => Number(n).toLocaleString('es-ES')
 function listaProsa(partes, y) {
   if (partes.length <= 1) return partes.join('')
   return `${partes.slice(0, -1).join(', ')} ${y} ${partes[partes.length - 1]}`
-}
-
-/** Un par de asteriscos en el catálogo marca negrita. */
-function Marcado({ texto }) {
-  return String(texto)
-    .split('**')
-    .map((p, i) => (i % 2 ? <strong key={i}>{p}</strong> : <Fragment key={i}>{p}</Fragment>))
 }
 
 const EYEBROW = {

@@ -757,6 +757,26 @@ export const CATALOGUE = {
     'presup.title': 'Presupuesto municipal',
     'quejas.eyebrow': 'Voz ciudadana',
     'quejas.title': 'Quejas ciudadanas',
+    // El cruce por barrio. La columna de euros son las zonas de
+    // `tender-geo.json`: importe de ADJUDICACIÓN sin IVA, los mismos euros que
+    // la portada rotula «adjudicado acumulado» y /presupuesto «adjudicado sin
+    // IVA». Se llamaba «gasto situado» porque esta prosa vivía escrita a mano
+    // dentro del componente, fuera del catálogo y fuera de la guarda.
+    'quejas.cruce.eyebrow': 'Cruce de datos · sin causalidad',
+    'quejas.cruce.titulo': 'Quejas y contratos situados por barrio',
+    'quejas.cruce.intro':
+      'Por barrio: número de quejas ciudadanas frente a lo adjudicado en contratos ya situados allí. **Las dos columnas no cubren el mismo periodo**',
+    'quejas.cruce.periodos':
+      ': las quejas se recogen desde {periodoQuejas} y lo situado acumula adjudicaciones de {periodoContratos}',
+    'quejas.cruce.periodos.sinFechas':
+      ' — el canal de quejas es mucho más reciente que el registro de contratación',
+    'quejas.cruce.cierre':
+      ', así que comparar una columna con la otra no mide la respuesta municipal. Son cifras de contexto — la ausencia de contratos situados **no** implica desatención: muchas actuaciones no nombran el lugar en el título y por eso no se sitúan (ver',
+    'quejas.cruce.metodologia': 'metodología',
+    'quejas.cruce.col.barrio': 'Barrio',
+    'quejas.cruce.col.quejas': 'Quejas',
+    'quejas.cruce.col.adjudicado': 'Adjudicado situado',
+    'quejas.cruce.sinSituado': 'sin contratos situados',
     'dashboard.eyebrow': 'Voz ciudadana · Dashboard',
     'dashboard.title': 'Salud del canal de quejas',
 
@@ -2322,6 +2342,21 @@ export const CATALOGUE = {
     'presup.title': 'Pressupost municipal',
     'quejas.eyebrow': 'Veu ciutadana',
     'quejas.title': 'Queixes ciutadanes',
+    'quejas.cruce.eyebrow': 'Creuament de dades · sense causalitat',
+    'quejas.cruce.titulo': 'Queixes i contractes situats per barri',
+    'quejas.cruce.intro':
+      'Per barri: nombre de queixes ciutadanes enfront del que s’ha adjudicat en contractes ja situats allí. **Les dos columnes no cobrixen el mateix període**',
+    'quejas.cruce.periodos':
+      ': les queixes es recullen des de {periodoQuejas} i el que està situat acumula adjudicacions de {periodoContratos}',
+    'quejas.cruce.periodos.sinFechas':
+      ' — el canal de queixes és molt més recent que el registre de contractació',
+    'quejas.cruce.cierre':
+      ', així que comparar una columna amb l’altra no mesura la resposta municipal. Són xifres de context — l’absència de contractes situats **no** implica desatenció: moltes actuacions no anomenen el lloc en el títol i per això no se situen (vore',
+    'quejas.cruce.metodologia': 'metodologia',
+    'quejas.cruce.col.barrio': 'Barri',
+    'quejas.cruce.col.quejas': 'Queixes',
+    'quejas.cruce.col.adjudicado': 'Adjudicat situat',
+    'quejas.cruce.sinSituado': 'sense contractes situats',
     'dashboard.eyebrow': 'Veu ciutadana · Tauler',
     'dashboard.title': 'Salut del canal de queixes',
 
