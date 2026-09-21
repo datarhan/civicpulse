@@ -313,7 +313,23 @@ interface TenderRow {
   date?: string
 }
 
+/**
+ * Una fila de `bdns.json`.
+ *
+ * Los nombres de ARRIBA son los que el snapshot publica hoy (`src/scraper/bdns.ts`):
+ * medido el 21-09-2026, las 177 filas traen `bdnsCode`, `description`, `organ` y
+ * `sourceUrl`, y NINGUNA trae importe. Los de abajo son los que este fichero leía
+ * — un esquema que no es el de la fuente—, y se conservan por si una fila vieja o
+ * un fixture los usa. Es la clase nº 2 de docs/DATA_INTEGRITY.md («nombre de campo
+ * desalineado»): leer `url` y `convocatoriaId` en filas que no los tienen dejaba
+ * TODA cita de BDNS en `bdns:`, vacía, y nadie lo veía porque seguía siendo una
+ * cadena.
+ */
 interface BdnsRow {
+  bdnsCode?: string
+  description?: string
+  organ?: string
+  sourceUrl?: string
   convocatoriaId?: string
   titulo?: string
   organo?: string
@@ -638,8 +654,16 @@ function bdnsAmount(r: BdnsRow): number | null {
 
 /** Searchable text for a grant row — `titulo`/`organo` are not its field names. */
 function bdnsText(r: BdnsRow): string {
-  const r2 = r as BdnsRow & { description?: string; organ?: string }
-  return [r2.description, r2.organ, r.titulo, r.organo].filter(Boolean).join(' · ')
+  return [r.description, r.organ, r.titulo, r.organo].filter(Boolean).join(' · ')
+}
+
+/**
+ * La cita de una fila de BDNS: su ficha pública, o su código. Nunca `bdns:` a
+ * secas — una cita que no lleva a ningún sitio no es una cita, y
+ * `check:citations` no puede resolver lo que no nombra nada.
+ */
+function bdnsRef(r: BdnsRow): string {
+  return r.sourceUrl ?? r.url ?? `bdns:${r.bdnsCode ?? r.convocatoriaId ?? ''}`
 }
 
 function readPromises(data: unknown): PromiseRow[] {
@@ -882,7 +906,25 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
       let best: { row: BdnsRow; sim: number } | null = null
       for (const b of bdnsList) {
         const bAmount = bdnsAmount(b)
-        const textSim = entity ? overlapScore(entity, bdnsText(b)) : 0
+        // EL MISMO OBJETO, con la misma vara que el tramo de contratos.
+        //
+        // Aquí se usaba `overlapScore`, que tira los tokens de menos de cuatro
+        // letras y divide por el lado corto. «fundación eca» se quedaba en
+        // «fundación», y esa palabra sola, contra CUALQUIER fundación, daba 1,0:
+        // el 20-09-2026 una afirmación del PSOE sobre 70.000 € para la Fundación
+        // ECA salió «verificada» contra el convenio con la Fundación Padre Juan
+        // Schenk (4c92cf31). Es el defecto que este mismo fichero describe encima
+        // de `solapamientoMutuo` —«dos palabras genéricas saturan el umbral»—, y
+        // el remedio que el tramo de contratos ya aplicaba y éste no.
+        //
+        // Una entidad de UN solo token distintivo contenida entera sólo cuenta
+        // con el importe prácticamente exacto; sin importe en la fila, nunca.
+        const m = entity ? solapamientoMutuo(entity, bdnsText(b)) : null
+        if (m === null) continue
+        const amountSim = bAmount == null ? 0 : similarAmount(amount, bAmount)
+        const entidadContenida = m.tokensEntidad >= 1 && m.compartidas === m.tokensEntidad
+        const textSim =
+          entidadContenida && (m.tokensEntidad >= 2 || amountSim >= 0.98) ? 1 : puntuacionObjeto(m)
         // La misma regla que el camino de los contratos, en el de las
         // subvenciones: la mezcla de abajo es el mismo `sim*0,6 + texto*0,4`
         // con suelo 0,6, así que un importe exacto contra una convocatoria de
@@ -892,8 +934,7 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
         if (textSim <= 0) continue
         // With no amount on the row, the name has to carry the whole match, so
         // the bar is higher than the blended amount+text score.
-        const combined =
-          bAmount == null ? textSim : similarAmount(amount, bAmount) * 0.6 + textSim * 0.4
+        const combined = bAmount == null ? textSim : amountSim * 0.6 + textSim * 0.4
         const floor = bAmount == null ? 0.75 : 0.6
         if (combined >= floor && (best === null || combined > best.sim)) {
           best = { row: b, sim: combined }
@@ -902,7 +943,7 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
       if (best) {
         evidence.push({
           kind: 'bdns',
-          ref: best.row.url ?? `bdns:${best.row.convocatoriaId ?? ''}`,
+          ref: bdnsRef(best.row),
           snippet: (() => {
             const amt = bdnsAmount(best.row)
             const money =
@@ -914,6 +955,14 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
           // are matched on the convocatoria title alone.
           stance: 'checked',
         })
+        // …y por eso una fila SIN importe no funda `verificado`. La regla ya
+        // estaba escrita más abajo —«un parecido de título sostiene `parcial`
+        // pero nunca `verificado`: esa vía no comprueba el importe»— y este
+        // tramo no la aplicaba. Una afirmación NUMÉRICA dada por buena contra
+        // un registro que no trae número es decir que se cotejó lo que no se
+        // cotejó. Hoy es el caso de TODA la BDNS: ninguna fila publica importe.
+        // Sostiene `parcial`, que es lo que es: mismo objeto, cifra sin mirar.
+        if (bdnsAmount(best.row) == null) marcarNoFundante()
       }
     }
 
