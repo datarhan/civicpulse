@@ -1,18 +1,28 @@
 {
-  "generatedAt": "2026-09-20T09:31:30.737Z",
+  "generatedAt": "2026-09-21T10:15:58.872Z",
   "source": {
     "name": "Boletín Oficial de la Provincia de València",
     "home": "https://bop.dival.es/bop/",
     "note": "Last 30 days · anuncios del Ayuntamiento de Riba-roja de Túria"
   },
   "stats": {
-    "total": 5,
-    "daysCovered": 20,
+    "total": 6,
+    "daysCovered": 21,
     "daysRequested": 30,
     "fetchFailures": 0,
-    "latestDate": "2026-09-16"
+    "latestDate": "2026-09-21"
   },
   "anuncios": [
+    {
+      "id": "e24528c54439",
+      "regNumber": "2026/11347",
+      "title": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre el nombramiento de un puesto de inspector de la Policía Local",
+      "entity": "Ayuntamiento de Riba-roja de Túria",
+      "date": "2026-09-21",
+      "bulletinDate": "21/09/2026",
+      "pdfUrl": "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F11347",
+      "bulletinUrl": "https://bop.dival.es/bop/downloads?boletinFecha=21%2F09%2F2026"
+    },
     {
       "id": "f5654e4d832b",
       "regNumber": "2026/11237",

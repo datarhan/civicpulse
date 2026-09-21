@@ -268,6 +268,19 @@ fetch|pdf|chrome`; `trust` is never accepted from the file — it comes from
   The daily press-link audit and the agent's `audit()` had the same
   save-on-refusal branch and follow the same rule. Re-run the CLI later for
   what was left: it only asks for sources that still have no copy.
+  **The copy may be under another URL.** One source stayed «uncopied» through
+  five passes while its copy had existed since the first: the cited link answers
+  301 to the article's canonical URL, Save Page Now followed the redirect and
+  archived that one, and every lookup asked for the cited one — a different key
+  to Wayback. After a «none», the CLI now asks where the URL PERMANENTLY
+  redirects (301/308 only — a 302 is how consent walls and logins answer) and
+  looks there before spending a save; `redirectTargetStandsIn` under-matches on
+  purpose (not the home page, not the section the cited path hangs from, not
+  another site, not an error or login page). The last source of that report
+  needed the Save Page Now web form, which captures with a browser where the
+  anonymous endpoint cannot — and whose own «406 not acceptable» message arrived
+  with a stored 200 capture of the whole article. No answer from a save endpoint
+  proves anything; the index does, and then the content of the copy.
 - **`journalist:sondeo`** — one door over the readers the repo already has
   (BOE, DOGV, Dialnet, hemeroteca, press, plenos, local snapshots, the
   officials row, and a whole-word surname sweep of `tenders.json` winners),

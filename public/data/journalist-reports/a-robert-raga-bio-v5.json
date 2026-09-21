@@ -1084,14 +1084,14 @@
       "id": "src-102",
       "kind": "official-doc",
       "url": "https://bop.dival.es/bop/downloads?boletinFecha=26/04/2011",
+      "archiveUrl": "http://web.archive.org/web/20260920154347/https://bop.dival.es/bop/downloads?boletinFecha=26%2F04%2F2011",
       "title": "BOP de València, 26-04-2011 — candidaturas proclamadas, circunscripción Riba-roja de Túria (candidatura n.º 2, PSOE)",
       "publisher": "Boletín Oficial de la Provincia de València",
       "publishedAt": "2011-04-26",
       "retrievedAt": "2026-09-19T19:30:00.000Z",
       "excerpt": "Candidatura número: 2 [PARTIDO SOCIALISTA OBRERO ESPAÑOL (PSOE): la línea va con los glifos desplazados en el PDF] Orden Nombre y apellidos 1. Don ROBERTO PASCUAL RAGA GADEA",
       "trust": "high",
-      "selfDeclared": false,
-      "archiveUrl": "http://web.archive.org/web/20260920154347/https://bop.dival.es/bop/downloads?boletinFecha=26%2F04%2F2011"
+      "selfDeclared": false
     },
     {
       "id": "src-103",
@@ -1110,27 +1110,27 @@
       "id": "src-104",
       "kind": "official-doc",
       "url": "https://bop.dival.es/bop/downloads?anuncioNumReg=2011/34704",
+      "archiveUrl": "http://web.archive.org/web/20260920154328/https://bop.dival.es/bop/downloads?anuncioNumReg=2011%2F34704",
       "title": "BOP de València n.º 277, 22-11-2011, anuncio 2011/34704 — Diputación de Valencia: resoluciones de la Presidencia sobre nombramiento de personal eventual (Decreto 5622, de 25-07-2011)",
       "publisher": "Boletín Oficial de la Provincia de València",
       "publishedAt": "2011-11-22",
       "retrievedAt": "2026-09-19T19:30:00.000Z",
       "excerpt": "Decreto número nº 5622, de 25 de julio de 2011: “Nombrar personal eventual de esta Corporación, adscrito al Grupo Político Socialista, con efectos del día de la presente Resolución y en los puestos que se especifican a continuación, a: COORDINADORA GRUPO POLÍTICO (nivel 1) Sonia Borruey Montolio ASESORES GRUPO POLÍTICO (nivel 1) Anna San Ruperto Albert Salvador Femenía Peiró Sergi Castillo Prats Jorge Mayor Vallet ASESORES GRUPO POLÍTICO (nivel 2) Roberto Raga Gadea",
       "trust": "high",
-      "selfDeclared": false,
-      "archiveUrl": "http://web.archive.org/web/20260920154328/https://bop.dival.es/bop/downloads?anuncioNumReg=2011%2F34704"
+      "selfDeclared": false
     },
     {
       "id": "src-105",
       "kind": "official-doc",
       "url": "https://bop.dival.es/bop/downloads?anuncioNumReg=2024/14994",
+      "archiveUrl": "http://web.archive.org/web/20260920154343/https://bop.dival.es/bop/downloads?anuncioNumReg=2024%2F14994",
       "title": "BOP de València n.º 215, 07-11-2024, anuncio 2024/14994 — delegación de funciones del alcalde en el segundo teniente de alcalde (Resolución 3669/2024, de 25 de octubre)",
       "publisher": "Boletín Oficial de la Provincia de València",
       "publishedAt": "2024-11-07",
       "retrievedAt": "2026-09-19T19:30:00.000Z",
       "excerpt": "Dada cuenta de la ausencia del Alcalde de la corporación entre los días 25 y 29 de octubre de 2024, ambos inclusive, por encontrarse fuera del término municipal, resulta necesario proceder al nombramiento de otro concejal que asuma sus funciones durante dicho periodo de ausencia.",
       "trust": "high",
-      "selfDeclared": false,
-      "archiveUrl": "http://web.archive.org/web/20260920154343/https://bop.dival.es/bop/downloads?anuncioNumReg=2024%2F14994"
+      "selfDeclared": false
     },
     {
       "id": "src-107",
@@ -1175,6 +1175,7 @@
       "id": "src-110",
       "kind": "official-doc",
       "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/20260723%20Robert%20Raga_0.pdf",
+      "archiveUrl": "http://web.archive.org/web/20260920154419/https://www.ribarroja.es/sites/www.ribarroja.es/files/20260723%20Robert%20Raga_0.pdf",
       "title": "CV vigente en la ficha municipal (PDF de mayo de 2026) — Robert Raga Gadea",
       "publisher": "Ajuntament de Riba-roja de Túria",
       "retrievedAt": "2026-09-19T19:30:00.000Z",
@@ -1205,7 +1206,8 @@
       "retrievedAt": "2026-09-19T19:30:00.000Z",
       "excerpt": "El Consorcio Valencia Interior es elente supramunicipal que lleva a cabo el tratamiento de los residuosde 61 municipios de las cinco comarcas del interior de la provinciade Valencia: Camp de Túria, los Serranos, la Hoya de Buñol-Chiva,la Plana Utiel-Requena y el Rincón de Ademuz.",
       "trust": "medium",
-      "selfDeclared": false
+      "selfDeclared": false,
+      "archiveUrl": "http://web.archive.org/web/20260920063817/https://www.elperiodicodeaqui.com/robert-raga-nuevo-presidente-del-consorcio-valencia-interior_194308_102.html"
     },
     {
       "id": "src-113",
@@ -1385,7 +1387,8 @@
       "retrievedAt": "2026-09-19T18:30:00.000Z",
       "excerpt": "Raga justificó que en aquel proceso la alcaldía se ciñó a los expedientes presentados que cumplían con los requisitos de la Secretaría y la Intervención.",
       "trust": "medium",
-      "selfDeclared": false
+      "selfDeclared": false,
+      "archiveUrl": "https://web.archive.org/web/20260921053130/https://www.levante-emv.com/comunitat-valenciana/camp-de-turia/2018/06/26/raga-declara-juez-cino-expedientes-11892195.html"
     },
     {
       "id": "src-127",
