@@ -13,6 +13,11 @@
  *   · Dead URLs (4xx / 5xx) → status='dead'. Always tries to find
  *     an existing Wayback snapshot via the availability API.
  *   · Unreachable URLs (network errors) → status='error'.
+ *   · The run remembers: a copy an earlier run found (read from the snapshot
+ *     on disk before it is overwritten) is kept until a lookup finds another,
+ *     because the Availability API refuses or answers «none» for URLs that
+ *     have one. See `maybeArchive`. A `--limit` run therefore forgets the
+ *     copies of the URLs it leaves out — it is a smoke test, not a refresh.
  *
  * Usage:
  *   npm run audit-press-links               # check only
@@ -28,7 +33,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { archiveOnWayback, findExistingSnapshot } from '../src/scraper/wayback'
+import { archiveOnWayback, findExistingSnapshot, type WaybackResult } from '../src/scraper/wayback'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -62,21 +67,68 @@ function delay(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
-type LinkStatus = 'alive' | 'dead' | 'error'
+export type LinkStatus = 'alive' | 'dead' | 'error'
 
 interface PressClaimsSnapshot {
   items?: Array<{ articleUrl?: string; articleSource?: string }>
 }
 
-interface LinkRow {
+/** What TODAY's Wayback lookup said about one URL. `failed` is «could not look», never «no copy». */
+export type ArchiveLookup = 'found' | 'saved' | 'none' | 'failed'
+
+interface KnownCopy {
+  archivedUrl: string | null
+  archivedAt: string | null
+}
+
+interface ArchiveColumns extends KnownCopy {
+  archiveLookup: ArchiveLookup
+  /** The copy shown was found by an EARLIER run; today's lookup (see `archiveLookup`) did not produce one. */
+  archiveCarried?: true
+}
+
+interface LinkRow extends ArchiveColumns {
   articleUrl: string
   status: LinkStatus
   httpStatus: number | null
   articleSource: string | null
-  archivedUrl: string | null
-  archivedAt: string | null
   checkedAt: string
   error: string | null
+}
+
+/**
+ * What the previous run knew: the rows of the snapshot on disk that had a copy.
+ * No snapshot, or an unreadable one, is no memory — not a crash.
+ */
+export function knownCopies(previousSnapshot: string | null): Map<string, KnownCopy> {
+  const known = new Map<string, KnownCopy>()
+  if (!previousSnapshot) return known
+  let items: unknown
+  try {
+    items = (JSON.parse(previousSnapshot) as { items?: unknown }).items
+  } catch {
+    return known
+  }
+  if (!Array.isArray(items)) return known
+  for (const r of items as Array<Partial<LinkRow>>) {
+    if (typeof r?.articleUrl === 'string' && typeof r.archivedUrl === 'string' && r.archivedUrl) {
+      known.set(r.articleUrl, { archivedUrl: r.archivedUrl, archivedAt: r.archivedAt ?? null })
+    }
+  }
+  return known
+}
+
+/** A run proves what it did: a low `archived` beside a high `lookupFailed` is «could not look today», not «few copies». */
+export function archiveStats(
+  rows: ReadonlyArray<Pick<ArchiveColumns, 'archivedUrl' | 'archiveLookup' | 'archiveCarried'>>,
+): { archived: number; archivedCarried: number; lookupNone: number; lookupFailed: number } {
+  const n = (f: (r: (typeof rows)[number]) => boolean) => rows.filter(f).length
+  return {
+    archived: n((r) => Boolean(r.archivedUrl)),
+    archivedCarried: n((r) => r.archiveCarried === true),
+    lookupNone: n((r) => r.archiveLookup === 'none'),
+    lookupFailed: n((r) => r.archiveLookup === 'failed'),
+  }
 }
 
 async function getCheck(
@@ -129,20 +181,62 @@ async function headCheck(
   }
 }
 
-async function maybeArchive(
+/** The two Wayback calls, injectable so the policy below is tested without a network. */
+interface WaybackIo {
+  find: (url: string) => Promise<WaybackResult>
+  save: (url: string) => Promise<WaybackResult>
+}
+const WAYBACK_LIVE: WaybackIo = {
+  find: (url) => findExistingSnapshot(url),
+  save: (url) => archiveOnWayback(url),
+}
+
+/**
+ * The archive columns of one row.
+ *
+ * `known` is the copy an earlier run found. **A Wayback copy does not vanish**,
+ * and the Availability API fails to report one in two ways, both seen on
+ * 2026-09-20: it refuses the lookup (429), or it answers a clean 200 with
+ * `archived_snapshots: {}` for a URL that has a capture. Measured over fourteen
+ * runs of this snapshot, without a network: of the eleven URLs that showed a
+ * copy in some run, nine «lost» it in a later one and got it back afterwards —
+ * on /promesas, a citation's archived-copy link appearing and disappearing from
+ * one day to the next. So the known copy stays until a lookup finds another,
+ * the row says it is carried and what Wayback said today, and no save is spent
+ * on a page that has one — least of all a dead one, where the save would
+ * archive the error page. The limit: a capture Wayback has since excluded keeps
+ * being linked, and nothing checks those links yet.
+ */
+export async function maybeArchive(
   url: string,
   status: LinkStatus,
   forceArchive: boolean,
-): Promise<{ archivedUrl: string | null; archivedAt: string | null }> {
-  const existing = await findExistingSnapshot(url)
+  io: WaybackIo = WAYBACK_LIVE,
+  known?: KnownCopy,
+): Promise<ArchiveColumns> {
+  const existing = await io.find(url)
   if (existing.ok) {
-    return { archivedUrl: existing.archivedUrl, archivedAt: existing.archivedAt }
+    return {
+      archivedUrl: existing.archivedUrl,
+      archivedAt: existing.archivedAt,
+      archiveLookup: 'found',
+    }
   }
+  // «Could not look» is not «no copy». A refused lookup (the Availability API
+  // answers 429 for hours at a time) used to fall through to a save — refused as
+  // well, and each refusal extends the block for every job on this IP.
+  const archiveLookup: ArchiveLookup = existing.lookup === 'none' ? 'none' : 'failed'
+  if (known?.archivedUrl) return { ...known, archiveLookup, archiveCarried: true }
+  const nothing = { archivedUrl: null, archivedAt: null, archiveLookup }
+  if (archiveLookup === 'failed') return nothing
   // No existing snapshot. Save Page Now is rate-limited; only spend a slot
   // when forced OR the original is dead (so users still have a copy).
-  if (!forceArchive && status === 'alive') return { archivedUrl: null, archivedAt: null }
-  const saved = await archiveOnWayback(url)
-  return { archivedUrl: saved.archivedUrl, archivedAt: saved.ok ? saved.archivedAt : null }
+  if (!forceArchive && status === 'alive') return nothing
+  const saved = await io.save(url)
+  if (saved.ok && saved.archivedUrl) {
+    return { archivedUrl: saved.archivedUrl, archivedAt: saved.archivedAt, archiveLookup: 'saved' }
+  }
+  return nothing
 }
 
 async function main() {
@@ -200,18 +294,20 @@ async function main() {
       (limit > 0 ? ` · limit=${limit}` : ''),
   )
 
+  // What the run before this one knew, read before the file is overwritten.
+  const known = knownCopies(await readFile(OUT, 'utf8').catch(() => null))
+
   const rows: LinkRow[] = []
   const delayMs = forceArchive ? 1200 : 200
   for (const [url, articleSource] of targetUrls) {
     const head = await headCheck(url)
-    const archive = await maybeArchive(url, head.status, forceArchive)
+    const archive = await maybeArchive(url, head.status, forceArchive, WAYBACK_LIVE, known.get(url))
     rows.push({
       articleUrl: url,
       status: head.status,
       httpStatus: head.httpStatus,
       articleSource,
-      archivedUrl: archive.archivedUrl,
-      archivedAt: archive.archivedAt,
+      ...archive,
       checkedAt: new Date().toISOString(),
       error: head.error,
     })
@@ -223,7 +319,7 @@ async function main() {
     alive: rows.filter((r) => r.status === 'alive').length,
     dead: rows.filter((r) => r.status === 'dead').length,
     error: rows.filter((r) => r.status === 'error').length,
-    archived: rows.filter((r) => r.archivedUrl).length,
+    ...archiveStats(rows),
   }
   const snap = {
     generatedAt: new Date().toISOString(),
@@ -241,11 +337,16 @@ async function main() {
 
   console.log(
     `[audit-press-links] wrote ${OUT} · total=${stats.total} ` +
-      `alive=${stats.alive} dead=${stats.dead} error=${stats.error} archived=${stats.archived}`,
+      `alive=${stats.alive} dead=${stats.dead} error=${stats.error} archived=${stats.archived} ` +
+      `(carried=${stats.archivedCarried}) · wayback: none=${stats.lookupNone} could-not-look=${stats.lookupFailed}`,
   )
 }
 
-main().catch((err) => {
-  console.error('[audit-press-links] failed:', err)
-  process.exit(1)
-})
+// Guarded so `maybeArchive` can be unit-tested without the audit running against
+// 170-odd live URLs on import (same shape as journalist-archive-sources.ts).
+if (import.meta.url === `file://${process.argv[1]}`) {
+  main().catch((err) => {
+    console.error('[audit-press-links] failed:', err)
+    process.exit(1)
+  })
+}

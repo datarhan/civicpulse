@@ -137,7 +137,9 @@ describe('latestOffice: el subtítulo de un ex cargo', () => {
 
 describe('contra los informes publicados (años medidos a mano el 06-09-2026)', () => {
   const ESPERADO = {
-    'a-robert-raga-bio-v4': 2015, // 2010 fue un acta suelta de otra corporación: hueco
+    // La v4 se archivó el 20-09-2026 al promover la v5, que SÍ documenta 2007–2015: cabeza de lista del PSOE y
+    // concejal en la oposición. Esa fila es una candidatura, no el cargo que la página describe: sigue siendo 2015.
+    'a-robert-raga-bio-v5': 2015,
     'a-jose-angel-hernandez-bio': 2015,
     'a-teresa-pozuelo-bio': 2015,
     'a-jose-luis-ramos-bio': 2019,

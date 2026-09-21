@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-20T09:46:28.873Z",
+  "generatedAt": "2026-09-20T16:54:40.040Z",
   "windowDays": 30,
   "articles": [
     {
@@ -851,47 +851,13 @@
         "opinionFraction": 0
       },
       "score": 2
-    },
-    {
-      "articleId": "1e9m0nk",
-      "articleFingerprint": "1c1dk3c",
-      "outlet": "Periòdic del Camp de Túria",
-      "outletHost": "infoturia.com",
-      "url": "https://www.infoturia.com/riba-roja-de-turia/85694-un-vehicle-innovador-controlara-30-punts-dimatge-captats-per-onze-cameres-de-vigilancia-durant-les-festes-de-fadrins.html",
-      "date": "2026-08-21T12:40:16.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
-    },
-    {
-      "articleId": "v4m8ao",
-      "articleFingerprint": "kzwkrw",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/un-novedoso-veh%C3%ADculo-controlar%C3%A1-30-puntos-de-imagen-captados-por-once-c%C3%A1maras-de-vigilancia-para-garantizar-la-seguridad-durante-las-fiestas-de-fadrins",
-      "date": "2026-08-21T12:04:33.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 19,
+      "articleCount": 18,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -899,14 +865,14 @@
         "sin-datos": 40,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.84,
+      "meanTrustScore": 2.89,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
     {
       "outlet": "Periòdic del Camp de Túria",
       "outletHost": "infoturia.com",
-      "articleCount": 10,
+      "articleCount": 9,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -914,7 +880,7 @@
         "sin-datos": 23,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.8,
+      "meanTrustScore": 2.89,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -1070,7 +1036,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "d5d477049c1e",
+    "plenos-agendas.json": "5d0846476774",
     "press-claims-verified.json": "972b0280a9e7",
     "press.json": "7533a4c1b09a",
     "promises.json": "d18811c11210"

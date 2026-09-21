@@ -81,7 +81,11 @@ function formatReport(r: QuejaRouting): string {
   lines.push('── Plazos legales ──────────────────────────────────────────')
   for (const t of r.timeLimits) {
     const kindLabel = t.kind === 'acuse' ? 'Acuse de recibo' : 'Resolución expresa'
-    lines.push(`${kindLabel.padEnd(22)} · ${t.days} días · ${t.basis.law} ${t.basis.article}`)
+    // En la unidad de la norma: el acuse en días, la resolución en meses.
+    const unidad = t.unit === 'months' ? (t.amount === 1 ? 'mes' : 'meses') : 'días'
+    lines.push(
+      `${kindLabel.padEnd(22)} · ${t.amount} ${unidad} · ${t.basis.law} ${t.basis.article}`,
+    )
   }
 
   lines.push('')

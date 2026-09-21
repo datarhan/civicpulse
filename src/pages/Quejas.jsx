@@ -1,13 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Card, ExtLink, Pill, SectionHead, ShareWA } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
-import {
-  useQuejas,
-  STATE_LABEL,
-  STATE_TONE,
-  CATEGORY_LABEL,
-  prettyNeighborhood,
-} from '../hooks/useQuejas'
+import { useQuejas, useEtiquetasDeQueja, STATE_TONE, prettyNeighborhood } from '../hooks/useQuejas'
 import { useCtbg } from '../hooks/useCtbg'
 import { useSindicatura } from '../hooks/useSindicatura'
 import { useBop, formatBopDate } from '../hooks/useBop'
@@ -978,6 +972,7 @@ function StatCard({ label, value, tone = 'neutral', sub }) {
 
 function DashboardView({ data }) {
   const t = useT()
+  const etiqueta = useEtiquetasDeQueja()
   const items = data.items || []
   const stats = data.stats || { total: 0, byState: {}, byNeighborhood: {}, byCategory: {} }
 
@@ -1085,7 +1080,7 @@ function DashboardView({ data }) {
             {sortedCats.map(([cat, n]) => (
               <div key={cat} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                 <span style={{ flex: 1, fontSize: 'var(--fs-aux)' }}>
-                  {CATEGORY_LABEL[cat] || cat}
+                  {etiqueta.categoria(cat)}
                 </span>
                 <span
                   className="mono"
@@ -1206,7 +1201,7 @@ function DashboardView({ data }) {
                   className="mono"
                   style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}
                 >
-                  {CATEGORY_LABEL[it.service_code] || it.service_code}
+                  {etiqueta.categoria(it.service_code)}
                   {it.address_string ? ` · ${prettyNeighborhood(it.address_string)}` : ''}
                   {it.concejalia_area ? ` · ${it.concejalia_area}` : ''}
                 </div>
@@ -1218,11 +1213,11 @@ function DashboardView({ data }) {
                 👍 {it.apoyos}
               </span>
               <ShareWA
-                text={`Queja ${it.service_request_id} · ${CATEGORY_LABEL[it.service_code] || it.service_code}\n${it.description.slice(0, 140)}`}
+                text={`Queja ${it.service_request_id} · ${etiqueta.categoria(it.service_code)}\n${it.description.slice(0, 140)}`}
                 url={`https://civicpulse.es/quejas/${it.service_request_id.toLowerCase()}`}
               />
               <Pill tone={STATE_TONE[it.status] || 'ghost'} size="xs">
-                {STATE_LABEL[it.status] || it.status}
+                {etiqueta.estado(it.status)}
               </Pill>
             </Link>
           ))}

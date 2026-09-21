@@ -1,0 +1,984 @@
+{
+  "plenoId": "1pe3qs8",
+  "generatedAt": "2026-09-20T16:48:37.921Z",
+  "model": "gemini-3.5-flash",
+  "promptVersion": "speaker-map-v2",
+  "chunkSeconds": 600,
+  "segments": [
+    {
+      "start": 1.7,
+      "end": 3.1,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Bon dia a tots i a totes."
+    },
+    {
+      "start": 3.1,
+      "end": 6.1,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Anem a iniciar el el ple extraordinari urgent."
+    },
+    {
+      "start": 6.1,
+      "end": 8.5,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Eh, en dos punts de l'ordre del dia."
+    },
+    {
+      "start": 8.5,
+      "end": 12.4,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Primer, ratificar el caràcter urgent de la sessió i després el tema de la contractació,"
+    },
+    {
+      "start": 12.4,
+      "end": 16.5,
+      "speaker": "c00/SPEAKER_00",
+      "text": "que és la resolució de de contractual que tenim amb l'empresa de recollida de fem"
+    },
+    {
+      "start": 16.5,
+      "end": 18.1,
+      "speaker": "c00/SPEAKER_00",
+      "text": "i residus, val?"
+    },
+    {
+      "start": 18.1,
+      "end": 21.4,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Eh, primer ratifiquem el caràcter urgent de la sessió,"
+    },
+    {
+      "start": 21.4,
+      "end": 22.6,
+      "speaker": "c00/SPEAKER_00",
+      "text": "lo important, val?"
+    },
+    {
+      "start": 22.6,
+      "end": 25.4,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Hem fet una junta de portaveus ahir que informàrem el dijous"
+    },
+    {
+      "start": 25.4,
+      "end": 26.8,
+      "speaker": "c00/SPEAKER_00",
+      "text": "de totes les qüestions."
+    },
+    {
+      "start": 26.8,
+      "end": 29.9,
+      "speaker": "c00/SPEAKER_00",
+      "text": "I, bueno, ja fem este ple que és lo que que és lo important."
+    },
+    {
+      "start": 29.9,
+      "end": 32.1,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Eh, ¿tenemos que votar la urgencia?"
+    },
+    {
+      "start": 32.1,
+      "end": 33.1,
+      "speaker": "c00/SPEAKER_01",
+      "text": "Sí."
+    },
+    {
+      "start": 33.1,
+      "end": 34.1,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Vale."
+    },
+    {
+      "start": 34.1,
+      "end": 36.1,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Pues, eh, vots a favor."
+    },
+    {
+      "start": 36.1,
+      "end": 39.1,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Ah, no, no, no. Vinga, a votar a mà. Vots a favor."
+    },
+    {
+      "start": 39.1,
+      "end": 41.1,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Abstencions."
+    },
+    {
+      "start": 41.1,
+      "end": 45.1,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Pues queda aprovat pels vots a favor del grup socialista i l'abstenció dels altres grups polítics."
+    },
+    {
+      "start": 45.1,
+      "end": 47.1,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Passaríem al punt dos."
+    },
+    {
+      "start": 47.1,
+      "end": 56.1,
+      "speaker": "c00/SPEAKER_00",
+      "text": "El punt dos que és el que es refereix sobre l'elevació definitiva de la penalitat imposada a..."
+    },
+    {
+      "start": 56.1,
+      "end": 57.1,
+      "speaker": "c00/SPEAKER_01",
+      "text": "No m'he unit."
+    },
+    {
+      "start": 57.1,
+      "end": 63.1,
+      "speaker": "c00/SPEAKER_01",
+      "text": "No, disculpa, es que era porque como he visto una chaqueta no sabía si estaba, pero como que no me ha venido, vale. Por confirmar, vale."
+    },
+    {
+      "start": 63.1,
+      "end": 66.1,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Bueno, eh, falta Tere, crec, i..."
+    },
+    {
+      "start": 66.1,
+      "end": 67.1,
+      "speaker": "c00/SPEAKER_01",
+      "text": "Sí."
+    },
+    {
+      "start": 67.1,
+      "end": 68.1,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Vale."
+    },
+    {
+      "start": 68.1,
+      "end": 69.1,
+      "speaker": "c00/SPEAKER_00",
+      "text": "I Laura."
+    },
+    {
+      "start": 69.1,
+      "end": 72.1,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Bueno, el segon punt, com sabeu, és l'elevació a definitiva"
+    },
+    {
+      "start": 72.1,
+      "end": 76.1,
+      "speaker": "c00/SPEAKER_00",
+      "text": "de la penalitat imposada al contractista per incompliment de l'adscripció de mitjans"
+    },
+    {
+      "start": 76.1,
+      "end": 80.1,
+      "speaker": "c00/SPEAKER_00",
+      "text": "personals i materials compromesos des de l'inici del contracte, en el lot uno,"
+    },
+    {
+      "start": 80.1,
+      "end": 83.1,
+      "speaker": "c00/SPEAKER_00",
+      "text": "per la prestació d'este servei, el servei de recollida de residus"
+    },
+    {
+      "start": 83.1,
+      "end": 87.1,
+      "speaker": "c00/SPEAKER_00",
+      "text": "sòlids urbans, poda i voluminosos del municipi, iniciar resolució"
+    },
+    {
+      "start": 87.1,
+      "end": 91.1,
+      "speaker": "c00/SPEAKER_00",
+      "text": "de contracte per a continuar l'incompliment del contracte i desestimació de la sol·licitud"
+    },
+    {
+      "start": 91.1,
+      "end": 95.1,
+      "speaker": "c00/SPEAKER_00",
+      "text": "de successió en la posició del contractista del contracte."
+    },
+    {
+      "start": 95.1,
+      "end": 99.1,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Per això, li done la paraula al regidor de contractes, val?"
+    },
+    {
+      "start": 99.1,
+      "end": 101.1,
+      "speaker": "c00/SPEAKER_00",
+      "text": "A a José Ángel."
+    },
+    {
+      "start": 101.1,
+      "end": 103.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Bon dia, buenos días."
+    },
+    {
+      "start": 103.1,
+      "end": 107.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Efectivamente, el evidente incumplimiento de la prestación del servicio de recogida"
+    },
+    {
+      "start": 107.1,
+      "end": 111.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "de residuos sólidos urbanos, poda y voluminosos por parte de la empresa"
+    },
+    {
+      "start": 111.1,
+      "end": 115.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "resultante adjudicataria del nuevo contrato, con todos los graves problemas"
+    },
+    {
+      "start": 115.1,
+      "end": 119.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "que ha ocasionado y está ocasionando a nuestro municipio."
+    },
+    {
+      "start": 119.1,
+      "end": 122.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Y tras las reiteradas insistentes los reiterados insistentes"
+    },
+    {
+      "start": 122.1,
+      "end": 126.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "requerimientos y exigencias realizadas por el Ayuntamiento para que tomara"
+    },
+    {
+      "start": 126.1,
+      "end": 130.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "las medidas necesarias y urgentes para corregir y encauzar el servicio"
+    },
+    {
+      "start": 130.1,
+      "end": 134.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "para su realización adecuada, tal y como se recoge en el contrato"
+    },
+    {
+      "start": 134.1,
+      "end": 138.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "y a la que se la empresa se comprometió con su oferta la"
+    },
+    {
+      "start": 138.1,
+      "end": 141.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "con su oferta la propia empresa adjudicataria."
+    },
+    {
+      "start": 141.1,
+      "end": 144.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Y pese a nuestros requerimientos, como he dicho, la compañía ha continuado"
+    },
+    {
+      "start": 144.1,
+      "end": 148.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "prestando un servicio inadecuado, deficiente e ineficaz,"
+    },
+    {
+      "start": 148.1,
+      "end": 152.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "incumpliendo las estipulaciones de los pliegos y su propia oferta."
+    },
+    {
+      "start": 152.1,
+      "end": 156.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "En primer lugar, y en el pleno extraordinario del veintitrés de diciembre,"
+    },
+    {
+      "start": 156.1,
+      "end": 160.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "se inició el expediente de imposición de penalidades al contratista"
+    },
+    {
+      "start": 160.1,
+      "end": 164.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "por un importe de ciento cuarenta y tres mil euros, que equivale al uno por cien"
+    },
+    {
+      "start": 164.1,
+      "end": 168.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "del contrato, conforme a la base y los límites establecidos"
+    },
+    {
+      "start": 168.1,
+      "end": 172.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "y de acuerdo con el artículo ciento noventa y ciento noventa y dos"
+    },
+    {
+      "start": 172.1,
+      "end": 175.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "de la Ley nueve barra dos mil diecisiete de contratos del sector público."
+    },
+    {
+      "start": 175.1,
+      "end": 179.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Todo ello respaldado por los informes de la empresa auditora del servicio,"
+    },
+    {
+      "start": 179.1,
+      "end": 183.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Auditesa, la cual le requirió en sus informes que subcontratara"
+    },
+    {
+      "start": 183.1,
+      "end": 186.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "servicios para corregir las deficiencias."
+    },
+    {
+      "start": 186.1,
+      "end": 190.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Además, constan de los informes técnicos y jurídicos del propio Ayuntamiento."
+    },
+    {
+      "start": 190.1,
+      "end": 194.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Y cómo no, por supuesto, de las evidencias de la lamentable situación"
+    },
+    {
+      "start": 194.1,
+      "end": 198.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "de los contenedores repletos y desbordados que toda la ciudadanía"
+    },
+    {
+      "start": 198.1,
+      "end": 201.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "de Riba-roja lo hemos visto y padecido."
+    },
+    {
+      "start": 201.1,
+      "end": 204.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Eh, pero no solo valen las evidencias, todo tiene que estar"
+    },
+    {
+      "start": 204.1,
+      "end": 208.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "recogido, documentado y respaldado por los informes pertinentes."
+    },
+    {
+      "start": 208.1,
+      "end": 211.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Por tanto, pasamos a las propuestas."
+    },
+    {
+      "start": 211.1,
+      "end": 215.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Bien, tras la apertura del expediente de imposición de la penalización,"
+    },
+    {
+      "start": 215.1,
+      "end": 219.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "vencido el plazo establecido, el contratista no ha presentado alegación"
+    },
+    {
+      "start": 219.1,
+      "end": 221.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "alguna al respecto."
+    },
+    {
+      "start": 221.1,
+      "end": 225.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Con lo que se propone al pleno elevar a definitiva la penalidad impuesta"
+    },
+    {
+      "start": 225.1,
+      "end": 229.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "al contratista por incumplimiento en la adecuada realización del servicio"
+    },
+    {
+      "start": 229.1,
+      "end": 233.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "de recogida de residuos sólidos urbanos, poda y voluminosos."
+    },
+    {
+      "start": 233.1,
+      "end": 237.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Y en este caso, además, se propone notificar el presente acuerdo al contratista"
+    },
+    {
+      "start": 237.1,
+      "end": 241.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Garbialdi S.A. y al avalista Banco Santander S.A."
+    },
+    {
+      "start": 241.1,
+      "end": 245.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Asimismo, y dado que la empresa continúa realizando un servicio claramente"
+    },
+    {
+      "start": 245.1,
+      "end": 249.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "deficiente e insuficiente, incumpliendo el contrato, y con los informes"
+    },
+    {
+      "start": 249.1,
+      "end": 253.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "técnicos y jurídicos, es más, en el informe de fecha cinco de enero,"
+    },
+    {
+      "start": 253.1,
+      "end": 257.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "de este lunes pasado, de cinco de enero de dos mil veintiséis,"
+    },
+    {
+      "start": 257.1,
+      "end": 260.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "de la empresa auditora del servicio,"
+    },
+    {
+      "start": 260.1,
+      "end": 264.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "concluye que el servicio sigue siendo globalmente deficiente."
+    },
+    {
+      "start": 264.1,
+      "end": 268.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "La empresa Garbialdi continúa sin disponer de los medios materiales"
+    },
+    {
+      "start": 268.1,
+      "end": 271.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "y humanos mínimos comprometidos."
+    },
+    {
+      "start": 271.1,
+      "end": 275.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Falta de conductores, vehículos averiados sin sustitución,"
+    },
+    {
+      "start": 275.1,
+      "end": 279.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "contratos de personal sin formalizar, las rutas de RSU de RSU"
+    },
+    {
+      "start": 279.1,
+      "end": 283.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "no se han ejecutado ningún día conforme a lo previsto,"
+    },
+    {
+      "start": 283.1,
+      "end": 287.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "persisten contenedores sin vaciar y desbordados,"
+    },
+    {
+      "start": 287.1,
+      "end": 291.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "no se realiza los servicios de voluminosos con normalidad,"
+    },
+    {
+      "start": 291.1,
+      "end": 295.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "ni otros servicios como limpieza de vertederos y contenedores,"
+    },
+    {
+      "start": 295.1,
+      "end": 298.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "y se mantienen numerosas quejas de ciudadanas."
+    },
+    {
+      "start": 298.1,
+      "end": 302.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Esto se recoge en el propio informe de la auditora externa,"
+    },
+    {
+      "start": 302.1,
+      "end": 306.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "además de los informes, repito, de los informes técnicos y jurídicos"
+    },
+    {
+      "start": 306.1,
+      "end": 308.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "del propio Ayuntamiento."
+    },
+    {
+      "start": 308.1,
+      "end": 312.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Además, reitero, de las evidencias que todo el mundo, toda la ciudadanía"
+    },
+    {
+      "start": 312.1,
+      "end": 314.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "ha podido comprobar."
+    },
+    {
+      "start": 314.1,
+      "end": 318.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Por tanto, está plenamente justificado iniciar el procedimiento de rescindir"
+    },
+    {
+      "start": 318.1,
+      "end": 320.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "el contrato."
+    },
+    {
+      "start": 320.1,
+      "end": 323.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Por lo que se propone al pleno inicio de la resolución del contrato"
+    },
+    {
+      "start": 323.1,
+      "end": 327.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "por incumplimiento grave y reiterado de las obligaciones esenciales"
+    },
+    {
+      "start": 327.1,
+      "end": 329.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "de ejecución del servicio."
+    },
+    {
+      "start": 329.1,
+      "end": 333.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Asimismo, la empresa adjudicataria ha sido absorbida"
+    },
+    {
+      "start": 333.1,
+      "end": 336.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "por la empresa ISS Facility Service,"
+    },
+    {
+      "start": 336.1,
+      "end": 340.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "requiriendo esta empresa la transmisión del contrato por absorción"
+    },
+    {
+      "start": 340.1,
+      "end": 344.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "de la empresa Garbialdi, adjudicataria inicial del servicio de RSU."
+    },
+    {
+      "start": 344.1,
+      "end": 348.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Sin embargo, y tal como recoge la jurisprudencia de los tribunales"
+    },
+    {
+      "start": 348.1,
+      "end": 352.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "de justicia y la doctrina de los órganos consultivos en materia de contratación"
+    },
+    {
+      "start": 352.1,
+      "end": 355.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "pública, la sucesión de del contratista no opera"
+    },
+    {
+      "start": 355.1,
+      "end": 359.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "de de modo automático por la mera realización de la operación mercantil,"
+    },
+    {
+      "start": 359.1,
+      "end": 363.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "sino que requiere acuerdo expreso del órgano de contratación,"
+    },
+    {
+      "start": 363.1,
+      "end": 367.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "apreciando que la entidad absorbente absorbente debe reunir"
+    },
+    {
+      "start": 367.1,
+      "end": 371.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "las condiciones de capacidad, ausencia de prohibición de contratar"
+    },
+    {
+      "start": 371.1,
+      "end": 373.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "y solvencia."
+    },
+    {
+      "start": 373.1,
+      "end": 377.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Es decir, el órgano de contratación dispone de potestad para verificar"
+    },
+    {
+      "start": 377.1,
+      "end": 381.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "la concurrencia de los requisitos y puede denegar la sucesión"
+    },
+    {
+      "start": 381.1,
+      "end": 385.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "cuando no se acrediten o cuando la operación resulte contraria"
+    },
+    {
+      "start": 385.1,
+      "end": 387.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "al interés público."
+    },
+    {
+      "start": 387.1,
+      "end": 391.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "A la vista de los reiterados incumplimientos del servicio, concurren"
+    },
+    {
+      "start": 391.1,
+      "end": 395.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "fundamentos jurídicos suficientes para denegar la solicitud de sucesión"
+    },
+    {
+      "start": 395.1,
+      "end": 399.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "del contratista con base a los siguientes motivos:"
+    },
+    {
+      "start": 399.1,
+      "end": 401.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "incumplimientos contractuales, a la vista está;"
+    },
+    {
+      "start": 401.1,
+      "end": 405.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "expediente de penalidades que evidencian una quiebra relevante"
+    },
+    {
+      "start": 405.1,
+      "end": 408.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "de la correcta ejecución del contrato;"
+    },
+    {
+      "start": 408.1,
+      "end": 412.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "falta de medios de personal y materiales que fueron determinantes"
+    },
+    {
+      "start": 412.1,
+      "end": 414.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "a la hora de la adjudicación;"
+    },
+    {
+      "start": 414.1,
+      "end": 418.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "riesgo de la elusión de responsabilidades contractuales"
+    },
+    {
+      "start": 418.1,
+      "end": 422.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "al solicitarse la solicitud la la sucesión precisamente en el momento"
+    },
+    {
+      "start": 422.1,
+      "end": 425.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "en que la empresa originaria se enfrenta a penalidades;"
+    },
+    {
+      "start": 425.1,
+      "end": 429.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "la protección de interés público y de los principios de igualdad,"
+    },
+    {
+      "start": 429.1,
+      "end": 433.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "transparencia, integridad y buena fe contractual;"
+    },
+    {
+      "start": 433.1,
+      "end": 437.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "y el inicio de la resolución contractual con el actual contratista;"
+    },
+    {
+      "start": 437.1,
+      "end": 441.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "y por la facu y, como he dicho anteriormente, por la facultad"
+    },
+    {
+      "start": 441.1,
+      "end": 445.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "del órgano de contratación para denegar la sucesión cuando no se acredite"
+    },
+    {
+      "start": 445.1,
+      "end": 449.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "el cumplimiento estricto de los requisitos o cuando la operación resulta"
+    },
+    {
+      "start": 449.1,
+      "end": 451.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "contraria a la finalidad de la contratación pública."
+    },
+    {
+      "start": 451.1,
+      "end": 455.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Por este motivo, y de acuerdo con los informes jurídicos,"
+    },
+    {
+      "start": 455.1,
+      "end": 458.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "se propone al pleno desestimar la solicitud de sucesión"
+    },
+    {
+      "start": 458.1,
+      "end": 462.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "en la posición de contratista presentado por la mercantil Garbialdi S.A."
+    },
+    {
+      "start": 462.1,
+      "end": 466.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "e ISS Facility Service Sau, y notificar el presente acuerdo"
+    },
+    {
+      "start": 466.1,
+      "end": 468.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "a las partes."
+    },
+    {
+      "start": 468.1,
+      "end": 471.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Y en la situación actual, y disculpe, señor alcalde,"
+    },
+    {
+      "start": 471.1,
+      "end": 475.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "pero requerís un poco de de información al respecto para toda"
+    },
+    {
+      "start": 475.1,
+      "end": 477.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "la ciudadanía,"
+    },
+    {
+      "start": 477.1,
+      "end": 481.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "y en la situación actual y a corto plazo, mientras no se resuelvan,"
+    },
+    {
+      "start": 481.1,
+      "end": 485.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "mientras no se liquide el contrato de acuerdo con los procesos legales"
+    },
+    {
+      "start": 485.1,
+      "end": 487.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "pertinentes, debe continuar realizando el servicio."
+    },
+    {
+      "start": 487.1,
+      "end": 491.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Por lo que proponemos al pleno declarar que el contrato continúa"
+    },
+    {
+      "start": 491.1,
+      "end": 495.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "vigente con la empresa contratista originaria, Garbialdi S.A.,"
+    },
+    {
+      "start": 495.1,
+      "end": 499.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "que mantiene, mientras tanto, la condición de contratista y"
+    },
+    {
+      "start": 499.1,
+      "end": 503.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "la plena responsabilidad por la ejecución del contrato y por los"
+    },
+    {
+      "start": 503.1,
+      "end": 505.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "incumplimientos constatados."
+    },
+    {
+      "start": 505.1,
+      "end": 509.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Pero dado que el servicio prestado es insuficiente e inadecuado,"
+    },
+    {
+      "start": 509.1,
+      "end": 513.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "y con el fin de garantizar los servicios de forma adecuada y eficiente,"
+    },
+    {
+      "start": 513.1,
+      "end": 517.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "se propone al pleno habilitar, en su caso, a la alcaldía"
+    },
+    {
+      "start": 517.1,
+      "end": 521.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "para que realice los contratos de emergencia indispensables y necesarios"
+    },
+    {
+      "start": 521.1,
+      "end": 525.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "para que el servicio se preste de forma adecuada conforme está"
+    },
+    {
+      "start": 525.1,
+      "end": 529.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "establecido en el pliego de prescripciones técnicas y pliego de cláusulas"
+    },
+    {
+      "start": 529.1,
+      "end": 531.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "administrativas."
+    },
+    {
+      "start": 531.1,
+      "end": 533.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Y, por supuesto, la..."
+    }
+  ],
+  "rows": [],
+  "rejected": [],
+  "stats": {
+    "chunksExpected": 7,
+    "chunksTranscribed": 1,
+    "failedChunks": [
+      {
+        "chunk": 1,
+        "why": "quota exhausted, never attempted further"
+      },
+      {
+        "chunk": 2,
+        "why": "never attempted (quota exhausted earlier in the run)"
+      },
+      {
+        "chunk": 3,
+        "why": "never attempted (quota exhausted earlier in the run)"
+      },
+      {
+        "chunk": 4,
+        "why": "never attempted (quota exhausted earlier in the run)"
+      },
+      {
+        "chunk": 5,
+        "why": "never attempted (quota exhausted earlier in the run)"
+      },
+      {
+        "chunk": 6,
+        "why": "never attempted (quota exhausted earlier in the run)"
+      }
+    ],
+    "labelsSeen": 3,
+    "rowsAccepted": 0,
+    "rowsRejected": 0,
+    "rejectedBy": {},
+    "attemptedThisRun": 2,
+    "apiCalls": 2,
+    "coverage": 0.14939135812881288
+  }
+}

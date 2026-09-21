@@ -245,11 +245,29 @@ fetch|pdf|chrome`; `trust` is never accepted from the file — it comes from
   promoted, published, and about the same subject. Until this CLI the only
   path was the hand edit that removed Raga v1–v3 (f4e7c5bd).
 - **`journalist:archive-sources`** — gives a report's cited `web` /
-  `official-doc` / `boe` sources a Wayback copy (`archiveUrl`): availability
-  lookup first, Save Page Now only when none exists, saves spaced 10 s apart,
-  every target reported as existing / archived / failed, run manifest
-  included. 0 of 380 published sources had a copy before it, because the
-  agent's `fetchUrl` deliberately never saves.
+  `official-doc` / `boe` sources a Wayback copy (`archiveUrl`): lookup first,
+  Save Page Now only when the lookup ANSWERED that none exists, saves spaced
+  10 s apart, every target reported as existing / archived / failed / not
+  attempted, run manifest included. 0 of 380 published sources had a copy
+  before it, because the agent's `fetchUrl` deliberately never saves.
+  **A refused lookup is not «no copy».** On 2026-09-20 the Availability API
+  answered 429 to everything, `findExistingSnapshot` returned the same
+  `ok:false` it returns for «none», and the CLI spent a save on every source —
+  all refused as well, each refusal extending the block. So the lookup now says
+  `found` / `none` / `failed`; nothing saves on `failed`; and after the first
+  429 from Save Page Now the pass stops saving, keeps looking up, and counts
+  the rest as not attempted rather than failed. The first pass with the fixed
+  tool showed what the old one had been hiding: more than half of the sources
+  it had reported as «failed» already HAD a copy, most of them made by its own
+  first pass that morning — Save Page Now captures the page and answers 500
+  anyway, so **a failed save is not proof there is no copy; the next lookup
+  is**. And it showed that the API's «none» is not reliable either: a clean 200
+  with `archived_snapshots: {}` for URLs whose captures, hours old, were in the
+  CDX index. So this CLI (and only this one — it takes seconds per URL) asks
+  the index whenever the API does not produce a copy, refused or «none».
+  The daily press-link audit and the agent's `audit()` had the same
+  save-on-refusal branch and follow the same rule. Re-run the CLI later for
+  what was left: it only asks for sources that still have no copy.
 - **`journalist:sondeo`** — one door over the readers the repo already has
   (BOE, DOGV, Dialnet, hemeroteca, press, plenos, local snapshots, the
   officials row, and a whole-word surname sweep of `tenders.json` winners),
@@ -317,6 +335,27 @@ What the first v2 taught (Gimeno, 2026-09-06/07), each fixed in code:
   have skipped every open-web query while still exiting 0 with a draft. Pass
   `SEARXNG_URL=http://127.0.0.1:<port>` (the container's port, `docker port
 civicpulse-searxng`) explicitly, and read the backend line the run prints.
+- What the third v2 taught (the mayor, 2026-09-20), all four caught by a gate
+  AFTER the promotion, none by reading the draft:
+  - **A v2 must not reword a `career-professional` or `education` row that a
+    signed «encaje declarado» row cites.** `area-fit.json` stores the credential
+    by its WHOLE label (`role @ org`), and `tests/parse-area-fit.test.ts` reds
+    when the report no longer has that text. In this model the row IS the
+    credential as the official declares it; what a gazette says instead («personal
+    eventual adscrito al Grupo Socialista», where the CV says «Asesor
+    institucional») goes in the narrative, the timeline and the graph. The rebind
+    moves `reportId`, not labels.
+  - **Look at the v2 at 375 px even when no component changed.** A section citing
+    15 sources made the citation-pill row 536 px wide and the whole page 600 px in
+    a 361 px viewport; no v1 had ever cited more than eight. Data can trigger a
+    layout defect that no code change introduced.
+  - **Re-promoting wipes every `archiveUrl`,** and the Wayback Machine may be
+    answering 429 that day. A post-promotion patch copies them from the published
+    chunk into the draft (match on id AND url) before re-promoting.
+  - **High sensitivity: `cmp` the sign-off sheet before every promotion.** The
+    editor signs a rendered sheet, not a JSON. Regenerating that sheet from the
+    draft and comparing it byte for byte with the signed copy is what proves a
+    later patch did not touch a signed sentence.
 - **`journalist:entorno`** (2026-09-07) — a councillor's business surroundings,
   read from the file outward and never from the family inward. It starts from
   what is public because it is the council's (awardees in `tenders.json`,
