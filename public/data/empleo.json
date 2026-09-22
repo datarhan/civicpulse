@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-09-21T10:33:45.213Z",
+  "generatedAt": "2026-09-22T09:49:05.479Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 63,
-    "openTotal": 62,
-    "inRibaRoja": 38,
-    "closingSoon": 16,
-    "withDetail": 63,
+    "total": 62,
+    "openTotal": 61,
+    "inRibaRoja": 37,
+    "closingSoon": 14,
+    "withDetail": 62,
     "byMonth": {
-      "2026-09": 19,
-      "2026-08": 28,
-      "2026-07": 7,
+      "2026-09": 21,
+      "2026-08": 27,
+      "2026-07": 5,
       "2026-06": 1,
       "2026-05": 3,
       "2026-04": 2,
@@ -23,6 +23,96 @@
     }
   },
   "items": [
+    {
+      "id": "2516",
+      "fo": 2516,
+      "codigo": "2026/00215",
+      "titulo": "Auxiliar de devoluciones y gestión de cascos",
+      "publishedAt": "2026-09-22",
+      "deadline": "2026-11-22",
+      "location": "Poligono Logistico Valencia (Ribarroja de Turia) Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2516",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00215"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Auxiliar de devoluciones y gestión de cascos"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Se trata de un puesto de jornada completa que combina tareas de manipulación y revisión de piezas de recambio de camión con tareas sencillas de gestión informática. Es necesario tener capacidad para manipular piezas que pueden pesar aproximadamente entre 10 y 20 kg, utilizando los medios disponibles para realizar esta tarea de forma segura. No se requiere formación específica ni experiencia previa en el sector, ya que se proporcionará formación sobre los procedimientos de trabajo y la gestión de devoluciones y cascos."
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "COMERCIO AL POR MAYOR Y AL POR MENOR; REPARACIÓN DE VEHÍCULOS DE MOTOR Y MOTOCICLETAS"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "PEONES"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Poligono Logistico Valencia (Ribarroja de Turia), Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno partido"
+          },
+          {
+            "label": "Horario",
+            "value": "De lunes a viernes, de 08:30 a 13:30 y de 14:30 a 17:30"
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          },
+          {
+            "label": "Funciones",
+            "value": "Recepción y revisión de piezas usadas (cascos) procedentes de devoluciones de clientes y delegaciones. Comprobación del estado de las piezas y de su embalaje, identificación y etiquetado de los cascos, colocación y organización del material en almacén y registro de la información en el sistema informático. Realización de abonos y otras tareas administrativas sencillas relacionadas con la gestión de devoluciones. Manipulación de piezas de recambio de camión, algunas de ellas de entre 10 y 20 kg."
+          },
+          {
+            "label": "Habilidades",
+            "value": "Persona responsable, ordenada y cuidadosa. Capacidad para realizar trabajos manuales y manipular piezas de recambio de camión. Capacidad para seguir instrucciones y procedimientos establecidos. Se valorará buena disposición para aprender y trabajar en equipo."
+          },
+          {
+            "label": "Informática",
+            "value": "Manejo básico de ordenador. Se valorará experiencia con Excel y facilidad para aprender programas informáticos de gestión."
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "1",
+        "categoria": "PEONES",
+        "observaciones": "Se trata de un puesto de jornada completa que combina tareas de manipulación y revisión de piezas de recambio de camión con tareas sencillas de gestión informática. Es necesario tener capacidad para manipular piezas que pueden pesar aproximadamente entre 10 y 20 kg, utilizando los medios disponibles para realizar esta tarea de forma segura. No se requiere formación específica ni experiencia previa en el sector, ya que se proporcionará formación sobre los procedimientos de trabajo y la gestión de devoluciones y cascos.",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "jornada": "Completa Turnos: Turno partido",
+        "horario": "De lunes a viernes, de 08:30 a 13:30 y de 14:30 a 17:30",
+        "salario": "Según convenio",
+        "funciones": "Recepción y revisión de piezas usadas (cascos) procedentes de devoluciones de clientes y delegaciones. Comprobación del estado de las piezas y de su embalaje, identificación y etiquetado de los cascos, colocación y organización del material en almacén y registro de la información en el sistema informático. Realización de abonos y otras tareas administrativas sencillas relacionadas con la gestión de devoluciones. Manipulación de piezas de recambio de camión, algunas de ellas de entre 10 y 20 kg.",
+        "ocupaciones": []
+      }
+    },
     {
       "id": "2539",
       "fo": 2539,
@@ -1033,6 +1123,105 @@
         "ocupaciones": [
           {
             "nombre": "CONDUCTORES-OPERADORES DE GRÚA EN CAMIÓN"
+          }
+        ]
+      }
+    },
+    {
+      "id": "2530",
+      "fo": 2530,
+      "codigo": "2026/00229",
+      "titulo": "Auxiliar administrativa/o polivalente",
+      "publishedAt": "2026-09-04",
+      "deadline": "2026-11-04",
+      "location": "POLIGONO INDUSTRIAL ENTREVIES (JUNTO A METRO RIBARROJA Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2530",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00229"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Auxiliar administrativa/o polivalente"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Puesto de auxiliar administrativo/a polivalente en Turia-Regs."
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "AGRICULTURA, GANADERÍA, SILVICULTURA Y PESCA"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "AUXILIARES ADMINISTRATIVOS"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "POLIGONO INDUSTRIAL ENTREVIES (JUNTO A METRO RIBARROJA, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Indiferente Turnos: Turno mañana"
+          },
+          {
+            "label": "Observaciones jornada",
+            "value": "Trabajo presencial. Posibilidad de jornada completa o parcial. (6-8 horas / día)"
+          },
+          {
+            "label": "Horario",
+            "value": "Horario estable a acordar según disponibilidad y necesidades de la empresa. Por ejemplo, puede plantearse una jornada de 8:00 a 14:00..."
+          },
+          {
+            "label": "Salario",
+            "value": "17.000"
+          },
+          {
+            "label": "Funciones",
+            "value": "Introducción, revisión y organización de albaranes. Preparación y emisión de facturas. Registro en el sistema de materiales recibidos y facturas de proveedores. Apoyo en la compra de material y seguimiento de pedidos a proveedores. Apoyo administrativo al almacén. Apoyo puntual en la atención al cliente y comunicaciones relacionadas con pedidos, material recibido o disponibilidad. Organización de documentación de vehículos, PRL y otra documentación interna. Otras tareas administrativas y de apoyo que vayan surgiendo."
+          },
+          {
+            "label": "Habilidades",
+            "value": "Persona organizada, práctica y resolutiva. Capacidad para trabajar con tareas variadas, cambiar de una tarea a otra según las necesidades, aprender nuevos procedimientos y sacar el trabajo adelante con autonomía. Atención al detalle, iniciativa, sentido común y facilidad para trabajar en equipo."
+          },
+          {
+            "label": "Informática",
+            "value": "Manejo fluido del ordenador y facilidad para trabajar con programas de gestión. Experiencia con software de facturación/ERP, correo electrónico, gestión documental y paquete Office. Se valorará especialmente soltura con Excel y facilidad para aprender nuevas aplicaciones."
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "1",
+        "categoria": "AUXILIARES ADMINISTRATIVOS",
+        "observaciones": "Puesto de auxiliar administrativo/a polivalente en Turia-Regs.",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "jornada": "Indiferente Turnos: Turno mañana",
+        "horario": "Horario estable a acordar según disponibilidad y necesidades de la empresa. Por ejemplo, puede plantearse una jornada de 8:00 a 14:00...",
+        "salario": "17.000",
+        "funciones": "Introducción, revisión y organización de albaranes. Preparación y emisión de facturas. Registro en el sistema de materiales recibidos y facturas de proveedores. Apoyo en la compra de material y seguimiento de pedidos a proveedores. Apoyo administrativo al almacén. Apoyo puntual en la atención al cliente y comunicaciones relacionadas con pedidos, material recibido o disponibilidad. Organización de documentación de vehículos, PRL y otra documentación interna. Otras tareas administrativas y de apoyo que vayan surgiendo.",
+        "ocupaciones": [
+          {
+            "nombre": "Asistentes de dirección y administrativos",
+            "experiencia": "3 Años"
           }
         ]
       }
@@ -2896,96 +3085,6 @@
       }
     },
     {
-      "id": "2516",
-      "fo": 2516,
-      "codigo": "2026/00215",
-      "titulo": "Auxiliar de devoluciones y gestión de cascos",
-      "publishedAt": "2026-08-17",
-      "deadline": "2026-10-17",
-      "location": "Poligono Logistico Valencia (Ribarroja de Turia) Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2516",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00215"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Auxiliar de devoluciones y gestión de cascos"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Se trata de un puesto de jornada completa que combina tareas de manipulación y revisión de piezas de recambio de camión con tareas sencillas de gestión informática. Es necesario tener capacidad para manipular piezas que pueden pesar aproximadamente entre 10 y 20 kg, utilizando los medios disponibles para realizar esta tarea de forma segura. No se requiere formación específica ni experiencia previa en el sector, ya que se proporcionará formación sobre los procedimientos de trabajo y la gestión de devoluciones y cascos."
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "COMERCIO AL POR MAYOR Y AL POR MENOR; REPARACIÓN DE VEHÍCULOS DE MOTOR Y MOTOCICLETAS"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "PEONES"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Poligono Logistico Valencia (Ribarroja de Turia), Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno partido"
-          },
-          {
-            "label": "Horario",
-            "value": "De lunes a viernes, de 08:30 a 13:30 y de 14:30 a 17:30"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          },
-          {
-            "label": "Funciones",
-            "value": "Recepción y revisión de piezas usadas (cascos) procedentes de devoluciones de clientes y delegaciones. Comprobación del estado de las piezas y de su embalaje, identificación y etiquetado de los cascos, colocación y organización del material en almacén y registro de la información en el sistema informático. Realización de abonos y otras tareas administrativas sencillas relacionadas con la gestión de devoluciones. Manipulación de piezas de recambio de camión, algunas de ellas de entre 10 y 20 kg."
-          },
-          {
-            "label": "Habilidades",
-            "value": "Persona responsable, ordenada y cuidadosa. Capacidad para realizar trabajos manuales y manipular piezas de recambio de camión. Capacidad para seguir instrucciones y procedimientos establecidos. Se valorará buena disposición para aprender y trabajar en equipo."
-          },
-          {
-            "label": "Informática",
-            "value": "Manejo básico de ordenador. Se valorará experiencia con Excel y facilidad para aprender programas informáticos de gestión."
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "1",
-        "categoria": "PEONES",
-        "observaciones": "Se trata de un puesto de jornada completa que combina tareas de manipulación y revisión de piezas de recambio de camión con tareas sencillas de gestión informática. Es necesario tener capacidad para manipular piezas que pueden pesar aproximadamente entre 10 y 20 kg, utilizando los medios disponibles para realizar esta tarea de forma segura. No se requiere formación específica ni experiencia previa en el sector, ya que se proporcionará formación sobre los procedimientos de trabajo y la gestión de devoluciones y cascos.",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46190",
-        "jornada": "Completa Turnos: Turno partido",
-        "horario": "De lunes a viernes, de 08:30 a 13:30 y de 14:30 a 17:30",
-        "salario": "Según convenio",
-        "funciones": "Recepción y revisión de piezas usadas (cascos) procedentes de devoluciones de clientes y delegaciones. Comprobación del estado de las piezas y de su embalaje, identificación y etiquetado de los cascos, colocación y organización del material en almacén y registro de la información en el sistema informático. Realización de abonos y otras tareas administrativas sencillas relacionadas con la gestión de devoluciones. Manipulación de piezas de recambio de camión, algunas de ellas de entre 10 y 20 kg.",
-        "ocupaciones": []
-      }
-    },
-    {
       "id": "2281",
       "fo": 2281,
       "codigo": "2025/00311",
@@ -4080,71 +4179,6 @@
       }
     },
     {
-      "id": "2501",
-      "fo": 2501,
-      "codigo": "2026/00200",
-      "titulo": "ATC internacional",
-      "publishedAt": "2026-07-23",
-      "deadline": "2026-09-23",
-      "location": "Área Industrial Riba-roja Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2501",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00200"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "ATC internacional"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Incorpración inmediata Imprescindible B2 en inglés, el francés-alemán e italiano suman puntos."
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "3 MESES DE PRUEBA + INDEFINIDO"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Área Industrial Riba-roja, Municipio: Riba-roja de Túria, Provincia: Valencia"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa"
-          },
-          {
-            "label": "Horario",
-            "value": "Desde las 08:00 hasta las 17:00 (- 1 hora comida)."
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio auxiliar admon"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "3 MESES DE PRUEBA + INDEFINIDO",
-        "numPuestos": "1",
-        "observaciones": "Incorpración inmediata Imprescindible B2 en inglés, el francés-alemán e italiano suman puntos.",
-        "jornada": "Completa",
-        "horario": "Desde las 08:00 hasta las 17:00 (- 1 hora comida).",
-        "salario": "Según convenio auxiliar admon",
-        "ocupaciones": []
-      }
-    },
-    {
       "id": "2500",
       "fo": 2500,
       "codigo": "2026/00199",
@@ -4283,84 +4317,6 @@
         "cp": "46190",
         "jornada": "Completa",
         "salario": "segun convenio",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2275",
-      "fo": 2275,
-      "codigo": "2025/00305",
-      "titulo": "Mecánico/a de Taller - Montaje de neumáticos",
-      "publishedAt": "2026-07-21",
-      "deadline": "2026-09-21",
-      "location": "Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2275",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2025/00305"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Mecánico/a de Taller - Montaje de neumáticos"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Incorporación inmediata. Formación en buenas prácticas y seguridad. Persona responsable, comprometida y con ganas de aprender. Requisitos : - Educación mínima. ESO o equivalente (valorables estudios técnicos en automoción) - Experiencia mínima: 1 año en talleres mecánicos o en servicios de neumáticos. - Conocimientos básicos en seguridad laboral. - Capacidad de trabajo en equipo y atención al cliente. - Vehículo propio ."
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "Contrato estable tras periodo de prueba"
-          },
-          {
-            "label": "Salario",
-            "value": "18.000€ - 24.000€"
-          },
-          {
-            "label": "Funciones",
-            "value": "- Montaje y desmontaje de neumáticos con maquinaria especializada. - Balanceo dinámico y estático, asegurando un correcto rendimiento del vehículo. - Alineación de dirección (si aplica) con equipos específicos. - Reparación segura de pinchazos y daños en neumáticos. - Revisión técnica del estado de los neumáticos (presión, dibujo, deformaciones). - Mantenimiento y cuidado de herramientas y equipos. - Atención al cliente en taller, ofreciendo un servicio profesional y cordial."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          },
-          {
-            "label": "Habilidades",
-            "value": "- Experiencia en neumáticos de automóvil, SUV y camión (valorable). - Organización y limpieza en el trabajo. - Buen trato al cliente y habilidades de comunicación."
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "1",
-        "observaciones": "Incorporación inmediata. Formación en buenas prácticas y seguridad. Persona responsable, comprometida y con ganas de aprender. Requisitos : - Educación mínima. ESO o equivalente (valorables estudios técnicos en automoción) - Experiencia mínima: 1 año en talleres mecánicos o en servicios de neumáticos. - Conocimientos básicos en seguridad laboral. - Capacidad de trabajo en equipo y atención al cliente. - Vehículo propio .",
-        "jornada": "Completa",
-        "salario": "18.000€ - 24.000€",
-        "funciones": "- Montaje y desmontaje de neumáticos con maquinaria especializada. - Balanceo dinámico y estático, asegurando un correcto rendimiento del vehículo. - Alineación de dirección (si aplica) con equipos específicos. - Reparación segura de pinchazos y daños en neumáticos. - Revisión técnica del estado de los neumáticos (presión, dibujo, deformaciones). - Mantenimiento y cuidado de herramientas y equipos. - Atención al cliente en taller, ofreciendo un servicio profesional y cordial.",
         "vehiculo": "Sí",
         "ocupaciones": []
       }
