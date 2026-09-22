@@ -447,7 +447,7 @@
   },
   "solicitudes": {
     "titulo": "Lo que se ha pedido, a quién y desde cuándo corre el plazo",
-    "nota": "El artículo 17.2 de la Ley 19/2013 admite «cualquier medio que permita tener constancia» de la identidad de quien pide, de la información solicitada y de una dirección de contacto: un correo que lleve las tres cosas es una vía válida. El artículo 20.1, en cambio, cuenta el mes «desde la recepción de la solicitud por el órgano competente para resolver», y de un correo consta el envío, no esa recepción. Por eso las dos que salieron por correo llevan la fecha contada desde el envío y no como vencimiento acreditado. La tercera se presentó por el registro electrónico de la Generalitat, que sí deja asiento, pero ese número no consta todavía aquí: hasta que conste, su plazo se cuenta igual que el de las otras dos. Toda respuesta se publicará íntegra.",
+    "nota": "El artículo 17.2 de la Ley 19/2013 admite «cualquier medio que permita tener constancia» de la identidad de quien pide, de la información solicitada y de una dirección de contacto: un correo que lleve las tres cosas es una vía válida. El artículo 20.1, en cambio, cuenta el mes «desde la recepción de la solicitud por el órgano competente para resolver», y de un correo consta el envío, no esa recepción. Por eso las dos que salieron por correo llevan la fecha contada desde el envío y no como vencimiento acreditado. La tercera se presentó por el registro electrónico de la Generalitat y la propia Generalitat ha acusado su entrada: de ésa el plazo se cuenta desde esa fecha y se puede afirmar. Este apartado se actualiza cuando hay movimiento, aunque las cifras de la pieza estén congeladas a su fecha: cada fila lleva la fecha de lo que cuenta. Toda respuesta se publicará íntegra.",
     "items": [
       {
         "organismo": "Ministerio de Hacienda · Subdirección General de Estudios y Financiación de Entidades Locales",
@@ -466,9 +466,16 @@
       {
         "organismo": "Comisión de Precios de la Generalitat",
         "enviadaEl": "2026-09-18",
-        "via": "la sede electrónica de la Generalitat",
+        "via": "el registro electrónico de la Generalitat",
+        "registro": "GVRTE/2026/4267645",
         "pide": "La relación de resoluciones de autorización o modificación de tarifas de agua de Riba-roja de Túria dictadas desde 2013, con la referencia de su publicación en el DOGV; los informes de la Comisión de Precios sobre esas tarifas, con la fecha y el solicitante de cada expediente; y si consta alguna solicitud o informe sobre las tarifas del contrato adjudicado en 2026.",
-        "respuesta": null
+        "respuesta": null,
+        "incidencias": [
+          {
+            "fecha": "2026-09-21",
+            "texto": "El 21 de septiembre la Dirección General de Comercio, Artesanía y Consumo comunicó que la solicitud tuvo entrada en el registro electrónico de la Generalitat el 18 de septiembre y que desde esa fecha corre el mes que tiene para resolver el órgano competente de la Conselleria de Industria, Turismo, Innovación y Comercio (expediente GVAGIP/2026/757). Cita el artículo 34.1 de la Ley 1/2022 y advierte de que, si el mes pasa sin resolución, la solicitud se entiende desestimada y cabe reclamar ante el Consejo Valenciano de Transparencia. No resuelve nada de lo pedido: confirma el plazo en vez de agotarlo."
+          }
+        ]
       }
     ]
   }
