@@ -469,3 +469,56 @@ export function tallyDepartments(plenos: Pick<EnrichedPleno, 'agenda'>[]): {
     }))
   return { itemsTotal, itemsWithDepartment, deptCount, topDepartments }
 }
+
+/**
+ * Presupuesto de tiempo para las consultas al archivo (Wayback) de una pasada.
+ *
+ * La fase de archivo no tenía tope y se pagaba entera cada noche: regmeet.com
+ * bloquea las IP de los runners, así que las sesiones sin orden del día caen
+ * TODAS en la Wayback Machine —hasta 30 s de CDX y 60 s de captura cada una—
+ * y casi todas vuelven con 0 puntos porque el archivo no las tiene. Medido:
+ * 5–6 minutos por noche, del 12 al 22 de septiembre de 2026 sin excepción,
+ * para no avanzar nada; y ese tiempo salía del mismo presupuesto del paso
+ * que la nocturna agotó cuatro de nueve noches.
+ *
+ * Vive aquí y no en el guion por lo mismo que `classifyAgendaRun`: la regla es
+ * de contabilidad, no de red, y aquí se prueba. El presupuesto se comprueba
+ * ANTES de cada consulta —una en curso termina aunque se pase— y una sesión
+ * que se queda sin consultar se cuenta aparte de una consultada que falló:
+ * son dos hechos distintos (regla 2 de DATA_INTEGRITY), y doblar «sin
+ * intentar» dentro de «falló» es como una pasada informa de trabajo que no
+ * hizo.
+ */
+export function crearPresupuestoArchivo(budgetMs: number, now: () => number = Date.now) {
+  let gastadoMs = 0
+  let noIntentadas = 0
+  return {
+    get budgetMs() {
+      return budgetMs
+    },
+    get gastadoMs() {
+      return gastadoMs
+    },
+    /** Consultas que NO se hicieron por falta de presupuesto. */
+    get noIntentadas() {
+      return noIntentadas
+    },
+    /** ¿Queda presupuesto? Si no, la consulta se cuenta como no intentada. */
+    puedeIntentar(): boolean {
+      if (gastadoMs >= budgetMs) {
+        noIntentadas += 1
+        return false
+      }
+      return true
+    },
+    /** Ejecuta una consulta y carga su duración al presupuesto, salga como salga. */
+    async medir<T>(fn: () => Promise<T>): Promise<T> {
+      const t0 = now()
+      try {
+        return await fn()
+      } finally {
+        gastadoMs += now() - t0
+      }
+    },
+  }
+}

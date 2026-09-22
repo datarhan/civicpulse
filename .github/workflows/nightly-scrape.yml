@@ -35,7 +35,7 @@ jobs:
     # torcer en silencio. Los minutos no se facturan: el repositorio es público
     # desde el 8-09-2026, así que un tope holgado no cuesta nada y un tope corto
     # cuesta un día de portada.
-    timeout-minutes: 75
+    timeout-minutes: 85
     permissions:
       contents: write
     steps:
@@ -87,14 +87,24 @@ jobs:
         # Time-box the scrape BELOW the job timeout: exceeding this fails
         # only this step (rc stays unset → health gate reds the run), while
         # the always() Commit step still pushes every adapter that
-        # finished before the axe fell. Budget calibrated on the 2026-07-13
-        # dispatched run: ~4 min healthy suite + up to ~8 min of Overpass
-        # mirror rotation on geo + ~4 min of paro/pleno-agendas circuit
-        # breakers when SEPE/regmeet blackhole runner IPs + ~5 min tail.
-        # Medido el 8-09-2026: 17,1 min de los 22, así que el tope es holgura
-        # real y no un número heredado. Que quepa en el trabajo ya no se
-        # razona aquí a mano — lo suma `tests/nightly-budget.test.js`.
-        timeout-minutes: 22
+        # finished before the axe fell.
+        #
+        # Recalibrado el 22-09-2026 sobre la ejecución 35710338380, la cuarta
+        # de nueve noches que agotó los 22 min de entonces: 21,3 min sólo de
+        # adaptadores —civic-poi 6,3 con Overpass devolviendo 504 (el 12-09:
+        # 5 s); pleno-agendas 6,1 en archivo porque regmeet bloquea al runner;
+        # paro 2,7 FUNCIONANDO (el 12-09 fallaba en 6 s); el resto 6,3— más
+        # 1,7 de cola medidos el 20-09. Lo que cambió no fue el tope sino las
+        # escaleras que se lo comían sin techo: Overpass lleva ahora un
+        # presupuesto de 5 min POR PROCESO (era 180 s × 3 intentos × 3
+        # espejos = 27 min por consulta, y geo hace tres) y la fase de
+        # archivo de pleno-agendas 2,5 min (era sin tope: 26 sesiones × hasta
+        # 90 s). Cuenta con topes: 6,3 sanos + 1,7 de cola + paro 5 (su
+        # cortacircuitos) + agendas 4 + un Overpass degradado 5 = 22; treinta
+        # deja sitio a que se degraden TRES adaptadores de Overpass a la vez,
+        # no los cuatro (38). Que quepa en el trabajo lo suma
+        # `tests/nightly-budget.test.js`.
+        timeout-minutes: 30
         # ADAPTERS passed via env (not inline ${{ }}) so a workflow_dispatch
         # input can never break out of the case "..." quoting into the shell.
         env:
