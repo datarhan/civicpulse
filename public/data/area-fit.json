@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-22T06:58:20.872Z",
+  "generatedAt": "2026-09-22T16:47:42.673Z",
   "mandate": "2023-2027",
   "note": "Qué formación y trayectoria declara públicamente quien dirige cada área. No es una calificación: la ley no exige titulación alguna para ser concejal (a diferencia de la secretaría, la intervención y la tesorería municipales, que exigen oposición estatal). «No consta» significa que la fuente publicada no lo recoge, no que la persona carezca de ello.",
   "method": "Un modelo compara, área por área, lo que el CV publicado declara con la materia del área, citando por índice sobre esa misma lista; un curador revisa y firma cada fila antes de publicarse. Nada se publica automáticamente.",
@@ -663,7 +663,7 @@
       "officialSlug": "rafael-gomez-sanchez",
       "portfolio": "barrios y diseminados",
       "departmentSlug": null,
-      "reportId": "r-rafael-gomez-bio-2026-07-30",
+      "reportId": "r-rafael-gomez-bio-v2-2026-09-22",
       "formacion": {
         "value": "sin-relacion-declarada",
         "evidence": [],
@@ -681,7 +681,7 @@
       "officialSlug": "rafael-gomez-sanchez",
       "portfolio": "Movilidad y Deportes",
       "departmentSlug": "deportes",
-      "reportId": "r-rafael-gomez-bio-2026-07-30",
+      "reportId": "r-rafael-gomez-bio-v2-2026-09-22",
       "formacion": {
         "value": "sin-relacion-declarada",
         "evidence": [],
@@ -708,7 +708,7 @@
       "officialSlug": "rafael-gomez-sanchez",
       "portfolio": "Servicios públicos municipales",
       "departmentSlug": "servicios-generales",
-      "reportId": "r-rafael-gomez-bio-2026-07-30",
+      "reportId": "r-rafael-gomez-bio-v2-2026-09-22",
       "formacion": {
         "value": "sin-relacion-declarada",
         "evidence": [],
@@ -735,7 +735,7 @@
       "officialSlug": "rafael-gomez-sanchez",
       "portfolio": "Urbanizaciones",
       "departmentSlug": null,
-      "reportId": "r-rafael-gomez-bio-2026-07-30",
+      "reportId": "r-rafael-gomez-bio-v2-2026-09-22",
       "formacion": {
         "value": "sin-relacion-declarada",
         "evidence": [],
