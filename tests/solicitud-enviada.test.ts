@@ -350,19 +350,26 @@ describe.each(PIEZAS)('instantánea publicada · %s', (slug) => {
   // la página como un visitante— sino que la salvedad esté ESCRITA. Y se guarda
   // la dirección peligrosa: quitarla deja otra vez la página afirmando de más.
   //
-  // La guarda es condicional por naturaleza y enmudece cuando toda presentación
-  // por registro trae su asiento, que es el estado al que se quiere llegar.
-  it('si una solicitud salió por un registro y su asiento no consta, la nota lo dice', () => {
+  // Se guarda en LAS DOS direcciones, y la segunda no es teórica: el 22-09-2026
+  // llegó el asiento de la Comisión de Precios y la salvedad pasó a ser falsa el
+  // mismo día. Una cautela que sobrevive a su motivo dice que no sabemos algo que
+  // sí sabemos, y en una página cuyo trato con el lector es una cita por
+  // afirmación eso cuesta tanto como la afirmación de más.
+  //
+  // De ahí el «si y sólo si»: la nota lleva la salvedad exactamente cuando hay
+  // una fila que la necesita. Así la prueba tampoco puede aprobar por no ver nada.
+  it('la nota advierte de un asiento que falta si y sólo si falta alguno', () => {
     const sinAsiento = d.solicitudes.items.filter(
       (e) => /registro|sede/i.test(e.via) && !e.registro,
     )
-    if (sinAsiento.length > 0) {
-      expect(
-        d.solicitudes.nota,
-        `${sinAsiento.map((e) => e.organismo).join(', ')}: presentada por registro sin asiento ` +
-          'apuntado, y la nota no advierte de que ese número no consta',
-      ).toMatch(/no consta/)
-    }
+    const loDice = /no consta/.test(d.solicitudes.nota)
+    expect(
+      loDice,
+      sinAsiento.length > 0
+        ? `${sinAsiento.map((e) => e.organismo).join(', ')}: presentada por registro sin asiento ` +
+            'apuntado, y la nota no advierte de que ese número no consta'
+        : 'ninguna fila espera asiento y la nota sigue diciendo que uno «no consta»',
+    ).toBe(sinAsiento.length > 0)
   })
 
   it('toda respuesta publicada usa un sentido del enum', () => {

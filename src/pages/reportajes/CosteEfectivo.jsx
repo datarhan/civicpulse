@@ -1279,7 +1279,15 @@ export default function CosteEfectivo() {
           lineHeight: 1.5,
         }}
       >
-        Datos a {m.fechaDatos}. El derecho de réplica está abierto para el Ayuntamiento: cualquier
+        {/* «Datos a <fecha>» se contradecía con el apartado de solicitudes, que
+            cuenta un escrito del 18 de septiembre y una comunicación del 21 bajo
+            una pieza que declara el 17. Lo congelado son las CIFRAS de la
+            investigación; el registro de escritos no lo está ni puede estarlo —su
+            estado se calcula con el «hoy» de quien lee—. La palabra estrecha lo
+            arregla, y es la que ya usa la pieza hermana del conteo. Lo que sí se
+            actualiza lo dice el propio apartado, que es donde el lector se topa
+            con las fechas. */}
+        Cifras a {m.fechaDatos}. El derecho de réplica está abierto para el Ayuntamiento: cualquier
         respuesta se publicará íntegra. Contacto y correcciones:{' '}
         <a href="/aviso-legal" style={{ color: 'var(--civic)' }}>
           aviso legal

@@ -111,6 +111,39 @@ test.describe('Reportaje · coste efectivo (/reportajes/coste-efectivo)', () => 
     // consta el envío, no la recepción por el órgano competente.
     await expect(page.getByText(/no como vencimiento acreditado/)).toBeVisible()
 
+    // Y LA TERCERA YA NO SE CUENTA DESDE EL ENVÍO. El 22-09-2026 la Generalitat
+    // comunicó el asiento —entrada el 18 de septiembre, expediente
+    // GVAGIP/2026/757— así que de ésa el vencimiento se AFIRMA. Se ancla la fila
+    // entera y no el número suelto: es la tercera vez que un `getByText` de un
+    // número de registro resuelve a dos elementos y rompe por modo estricto.
+    await expect(
+      page.getByText(
+        /enviada el 18 de septiembre de 2026 por el registro electrónico de la Generalitat, con registro GVRTE\/2026\/4267645/,
+      ),
+    ).toBeVisible()
+    await expect(
+      page.getByText(
+        /entrada en el registro del órgano competente para resolver: vence el 18 de octubre de 2026/,
+      ),
+    ).toBeVisible()
+    // Quién acusó y qué dijo: el acuse no resuelve nada de lo pedido, así que la
+    // fila sigue «en plazo» y lo que hace es CONFIRMAR el reloj, no agotarlo.
+    await expect(page.getByText(/Dirección General de Comercio, Artesanía y Consumo/)).toBeVisible()
+    // Y la cautela que sobraba desde ese momento no puede seguir en la página:
+    // decir que no consta algo que ya consta miente igual que afirmar de más.
+    expect(await page.getByText(/no consta todavía aquí/).count()).toBe(0)
+
+    // Qué está congelado y qué no. Sin esto la pieza se contradice a sí misma:
+    // declara su fecha de cifras el 17 de septiembre y debajo cuenta un escrito
+    // del 18 y una comunicación del 21. Lo congelado son las CIFRAS; el registro
+    // de escritos se mueve, y su estado se calcula con el «hoy» de quien lee. Se
+    // dice dentro del propio apartado, que es donde el lector ve esas fechas.
+    await expect(
+      page.getByText(/Este apartado se actualiza cuando hay movimiento, aunque las cifras/),
+    ).toBeVisible()
+    // Y el pie usa la palabra estrecha: «datos» abarcaría las solicitudes.
+    await expect(page.getByText(/Cifras a 2026-09-17/)).toBeVisible()
+
     // El límite de la pieza, dicho en la pieza.
     await expect(page.getByText(/Lo que esta pieza no dice/i).first()).toBeVisible()
     await expect(page.getByText(/la declaración no es el servicio/).first()).toBeVisible()
