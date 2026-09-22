@@ -4,7 +4,7 @@
     "slug": "conteo-visitantes",
     "seccion": "Reportaje · Dinero público",
     "titulo": "Contar visitantes en un pueblo que nunca ha contado visitantes",
-    "subtitulo": "Riba-roja adjudicó 87.050 € para medir su turismo con fondos europeos. La memoria que justificaba cada contrato describe otro proyecto, y ninguna de las dos cita una sola cifra de visitantes.",
+    "subtitulo": "Riba-roja adjudicó 87.050 € en dos contratos de su plan turístico con fondos europeos: uno para contar visitantes y otro para promocionarse. La memoria que justificaba cada contrato describe otro proyecto, y ninguna de las dos cita una sola cifra de visitantes.",
     "estado": "publicado",
     "publicadoEl": "2026-09-09",
     "fechaDatos": "9 de septiembre de 2026",
@@ -16,13 +16,17 @@
       {
         "fecha": "2026-09-17",
         "texto": "**Se ha completado el apartado sobre el plazo europeo.** Enfrentaba el hito nº 221, que fija el segundo trimestre de 2026 para terminar los proyectos, con un contrato de seis meses que vencía en julio, sin decir que el plazo del plan de Riba-roja se había ampliado. La Secretaría de Estado de Turismo contestó el 16 de septiembre a la solicitud de este medio y confirmó que lo alargó hasta agosto de 2026, al amparo del artículo 18 del Real Decreto-ley 7/2024. El apartado lo dice ahora, junto con la afirmación de la Secretaría de que el plan se ha ejecutado, y la fila de su solicitud deja de figurar como pendiente. Ninguna cifra cambia."
+      },
+      {
+        "fecha": "2026-09-22",
+        "texto": "**Se han corregido dos frases que decían más de lo que el expediente sostiene.** La primera sumaba los dos contratos como dinero «para medir su turismo»: 61.050,21 € son los sensores de conteo —la novena actuación del plan—, pero los 26.000 € son campañas de promoción segmentada —la octava—, que sirven para atraer visitantes y no para contarlos. El subtítulo, el dato de cabecera y la entradilla lo dicen ahora como es: dos contratos del plan turístico, uno para contar y otro para promocionar. La segunda, en el apartado 07, seguía diciendo que no constaba que Riba-roja pidiera modificar o reprogramar su plan tras la DANA, bajo un título que daba por no usado el margen del artículo 18 del Real Decreto-ley 7/2024, cuando el apartado 08 cuenta desde el 17 de septiembre que la Secretaría de Estado de Turismo amplió el plazo al amparo de ese mismo artículo. El apartado distingue ahora el contenido del plan, del que no consta petición alguna, del calendario, que sí se amplió, y remite a la solicitud de este medio sobre quién pidió esa ampliación y cuándo. Ninguna cifra cambia."
       }
     ]
   },
   "kpis": [
     {
       "n": "87.050 €",
-      "l": "los dos contratos para medir el turismo (sin IVA): 61.050,21 € en sensores y 26.000 € en campañas segmentadas"
+      "l": "los dos contratos adjudicados (sin IVA): 61.050,21 € en sensores de conteo y 26.000 € en campañas de promoción segmentada"
     },
     {
       "n": "0",
@@ -37,7 +41,7 @@
       "l": "puntos del concurso de sensores por «dispositivos adicionales sobre el mínimo exigido»"
     }
   ],
-  "entradilla": "El Ayuntamiento de Riba-roja de Túria adjudicó en diciembre de 2025 dos contratos para saber cuánta gente visita el municipio: 61.050,21 € en sensores de conteo de personas para el Parque Natural del Túria y el casco urbano, y 26.000 € en campañas de promoción «segmentada y geolocalizada». Los dos con fondos europeos del Plan de Recuperación, Transformación y Resiliencia. Los dos terminaron en julio de 2026. El municipio no tiene, ni tenía, ninguna serie oficial de visitantes.",
+  "entradilla": "El Ayuntamiento de Riba-roja de Túria adjudicó en diciembre de 2025 dos contratos de su plan de sostenibilidad turística: 61.050,21 € en sensores de conteo de personas para el Parque Natural del Túria y el casco urbano, y 26.000 € en campañas de promoción «segmentada y geolocalizada». Los dos con fondos europeos del Plan de Recuperación, Transformación y Resiliencia. Los dos terminaron en julio de 2026. El municipio no tiene, ni tenía, ninguna serie oficial de visitantes.",
   "contratos": [
     {
       "exp": "98/2025",
@@ -128,11 +132,11 @@
     "remate": "Este medio no ha localizado publicada ninguna evaluación de impacto relativa a la protección de datos, ni el asiento del registro de actividades de tratamiento que ampare estos tratamientos, ni las categorías de datos que capta cada dispositivo o su plazo de conservación."
   },
   "dana": {
-    "titulo": "La DANA, y lo que sí se podía haber pedido",
+    "titulo": "La DANA, y el calendario",
     "bullets": [
       "El plan se concedió en diciembre de 2022, casi dos años antes de la riada del 29 de octubre de 2024. Es dinero finalista europeo: legalmente no podía desviarse a la reconstrucción.",
       "Pero sí había margen para replantear el calendario. El artículo 18 del RDL 7/2024 permitía ampliar la ejecución hasta agosto de 2026 en las zonas gravemente afectadas —Riba-roja lo estaba, con convenio estatal DANA publicado en el BOE—; la Conferencia Sectorial de Turismo extendió todos los planes hasta junio de 2026; y Turisme CV amplió a agosto de 2026 su línea para entidades locales afectadas.",
-      "No consta en ningún registro público consultado (BOE, DOGV, ministerio, GVA, prensa) que Riba-roja pidiera modificar o reprogramar su plan de 2,11 M€ tras la DANA.",
+      "No consta en ningún registro público consultado (BOE, DOGV, ministerio, GVA, prensa) que Riba-roja pidiera reprogramar el contenido de su plan de 2,11 M€ tras la DANA. El plazo sí se le amplió hasta agosto de 2026 —apartado 08—, y de la solicitud que lo motivó tampoco hay rastro publicado: este medio ha pedido copia.",
       "Lo que sí consta es el calendario: cinco adjudicaciones entre el 16 de diciembre de 2025 y el 2 de enero de 2026. Entre ellas, el 26 de diciembre de 2025, la de los sensores para contar visitantes en el Parque Natural del Túria — el espacio que la riada arrasó catorce meses antes."
     ]
   },

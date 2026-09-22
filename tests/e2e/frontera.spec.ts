@@ -42,12 +42,14 @@ test.describe('Frontera (/laboratorio/frontera)', () => {
   test('pone la calidad de la declaración antes que las puntuaciones', async ({ page }) => {
     // Es la medición que cambia lo que significa todo lo de abajo.
     expect(SNAP.declaracion.unidadCongeladas).toBeGreaterThan(0)
+    // El cuantificador del titular sale del dato («Casi nadie» / «La mayoría»
+    // / …), así que aquí se ancla la parte que no cambia.
     await expect(
-      page.getByRole('heading', { name: /Casi nadie vuelve a medir el denominador/i }),
+      page.getByRole('heading', { name: /vuelve a medir el denominador/i }),
     ).toBeVisible()
 
     const html = await page.content()
-    expect(html.search(/Casi nadie vuelve a medir/i)).toBeLessThan(
+    expect(html.search(/vuelve a medir el denominador/i)).toBeLessThan(
       html.search(/Distancia a la frontera/i),
     )
 
