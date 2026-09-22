@@ -429,7 +429,18 @@ function LabPressCard({ article, summary, claims, trust, triangulation, linkRot 
   )
 }
 
-function OutletScoreboard({ outlets }) {
+/**
+ * Una fila por medio. «Verificado» es una COBERTURA —cuántas de sus
+ * afirmaciones encontraron registro municipal que las confirmara— y el
+ * divisor son sus afirmaciones, no sus artículos: el 22-09-2026 la fila del
+ * Ayuntamiento decía «18 · 0 %» y el 0 % salía de 39 afirmaciones extraídas de
+ * 5 de esos 18 artículos, las 39 «sin-datos». Un lector dividía entre la
+ * columna de al lado. La tarjeta de KPI de arriba ya pone su divisor en el
+ * pie; aquí va en la celda, y «fiabilidad» deja de nombrar una cobertura.
+ */
+export function OutletScoreboard({ outlets }) {
+  const afirmaciones = (o) =>
+    Object.values(o.verdictCounts ?? {}).reduce((acc, n) => acc + (Number(n) || 0), 0)
   if (!outlets || outlets.length === 0) {
     return (
       <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
@@ -440,7 +451,7 @@ function OutletScoreboard({ outlets }) {
   return (
     <table
       style={{ width: '100%', borderCollapse: 'collapse', fontSize: 'var(--fs-meta)' }}
-      aria-label="Tabla de fiabilidad por medio"
+      aria-label="Cobertura de comprobación por medio"
     >
       <thead>
         <tr style={{ textAlign: 'left', color: 'var(--ink70)' }}>
@@ -476,6 +487,12 @@ function OutletScoreboard({ outlets }) {
               className="mono"
             >
               {fmtPct(o.verifiedRatio)}
+              {/* El divisor, en la celda: entre qué se divide el porcentaje. */}
+              {afirmaciones(o) > 0 && (
+                <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
+                  {o.verdictCounts?.verificado ?? 0} de {afirmaciones(o)} afirm.
+                </div>
+              )}
             </td>
             <td
               style={{ padding: '4px 0', textAlign: 'right', color: 'var(--crit-ink)' }}
@@ -953,7 +970,7 @@ export default function Laboratorio() {
         <aside style={{ display: 'grid', gap: 14, position: 'sticky', top: 24 }}>
           <Card>
             <SectionHead
-              eyebrow="Tabla de fiabilidad"
+              eyebrow="Cobertura de comprobación"
               title="Medios monitorizados (últimos 30 días)"
             />
             <div style={{ marginTop: 8 }}>

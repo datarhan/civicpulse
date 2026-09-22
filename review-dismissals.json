@@ -141,6 +141,13 @@
       "reason": "El revisor desmiente «el más alto de su historia con 46 millones» con el crédito ACTUAL de 2025 (62,12 M€, inicial más modificaciones), y son dos magnitudes distintas: un presupuesto que se APRUEBA es crédito inicial, y el inicial de 2025 fue 37,60 M€ (budget-execution.json, gastos.total.inicial, medido el 20-09-2026). Comparar un inicial con un definitivo es justo la confusión de magnitudes que `magnitudes-fiscales.ts` existe para cazar en nuestra prosa, cometida aquí por quien revisa. Además la frase no es nuestra: es el campo `quote` de la promesa psoe-presupuesto-2026-46m, el titular literal de la fuente, impreso entre comillas en una promesa en estado `documentada` —el estado que dice «consta que se dijo», no «es cierto»—. El contenido en su lengua de origen se queda literal. Lo que NO podemos afirmar es que ningún año anterior tuviera un inicial mayor —budget.json sólo trae 2025—, y por eso la página no lo afirma: lo cita.",
       "editor": "claude-fable-5.1",
       "at": "2026-09-20"
+    },
+    {
+      "route": "/reportajes/basuras",
+      "quote": "una flota municipal devuelta destrozada",
+      "reason": "El revisor dice que la descripción de la flota va «sin atribución». Va tres elementos por debajo de una atribución explícita y nominal: «El estado de la flota devuelta no lo describe este reportaje, sino la primera teniente de alcalde de Parla» (Basuras.jsx:515), seguida de su cita literal con figcaption —María Jesús Fúnez, 27 de abril de 2018— y del criterio con el que se publica. El propio campo contradictedBy del señalamiento cita esa atribución como si fuera una contradicción. La asimetría que nota dentro del balance —«según ella misma» y «según UGT» en las quejas de la empresa y del sindicato, nada en la flota— es de principio, no descuido: lo etiquetado son alegaciones de parte sin acto administrativo detrás; la devolución de la flota la publicó el propio Ayuntamiento de Parla (fuente en basuras.json:696, hito :69), y el párrafo cierra con «ningún juzgado ha repartido las culpas, y este reportaje tampoco». Comprobado el 22-09-2026 contra el componente y el JSON.",
+      "editor": "claude-fable-5.1",
+      "at": "2026-09-22"
     }
   ]
 }

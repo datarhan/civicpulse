@@ -1229,8 +1229,9 @@ export default function Metodologia() {
           <strong style={{ color: 'var(--ink)' }}>
             una etapa que sólo puede retractar nunca reforzará una acusación
           </strong>
-          , por bien que le parezca el caso. Es la garantía de que ninguna capa automática endurece
-          lo que se publica sobre nadie.
+          , por bien que le parezca el caso. La única etapa en uso que puede reforzar es el anclaje
+          NLI, y el suelo de evidencia le impide hacerlo sin nombrar el corpus contra el que ancló
+          la afirmación.
         </p>
         <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
           La tabla se dibuja desde la misma declaración que el código aplica, y una prueba comprueba
@@ -1351,8 +1352,9 @@ export default function Metodologia() {
             <strong>«no consta en la transcripción revisada»</strong> — la cita aparece palabra por
             palabra en la transcripción anterior y no en la vigente, y la vigente <em>no</em> es más
             corta. Lo que el lector debe concluir: el intercambio ocurrió, la atribución al grupo se
-            mantiene, y el <em>tenor exacto</em> de las palabras no está confirmado contra el mejor
-            texto disponible.
+            queda como está —la marca habla del texto, no de quién habló—, y el{' '}
+            <em>tenor exacto</em> de las palabras no está confirmado contra el mejor texto
+            disponible.
           </li>
           <li>
             <strong>«no hemos podido comprobarlo»</strong> — en esa sesión la transcripción vigente
