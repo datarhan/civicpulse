@@ -106,6 +106,14 @@ export const FINANCIAL_SOURCE_ALLOW: readonly string[] = [
   // `financial` ni citada por la propia Diputació.
   'dival.es',
   'www.dival.es',
+  // Boletín Oficial de la Provincia de València. No es un portal más: el
+  // art. 75.5 de la Ley 7/1985 obliga a publicar EN ÉL los acuerdos que fijan
+  // las retribuciones de los cargos electos, y los edictos lo dicen con esas
+  // palabras. Añadido el 22-09-2026: hasta entonces la lista conocía
+  // `dival.es` pero no el subdominio del boletín, así que la retribución de un
+  // concejal no podía entrar en `financial` citada por el boletín en el que la
+  // ley manda publicarla.
+  'bop.dival.es',
 ] as const
 
 export type CitationKind =

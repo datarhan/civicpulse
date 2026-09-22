@@ -143,7 +143,12 @@ describe('contra los informes publicados (años medidos a mano el 06-09-2026)', 
     'a-jose-angel-hernandez-bio': 2015,
     'a-teresa-pozuelo-bio': 2015,
     'a-jose-luis-ramos-bio': 2019,
-    'a-rafael-gomez-bio': 2019,
+    // La v1 se archivó el 22-09-2026 al promover la v2, que documenta la cadena entera con actas
+    // de pleno y el BOP: concejal desde el 11-06-2011, de nuevo desde el 22-07-2015 tras una
+    // renuncia, 2019-2023 y el mandato en curso. El chip pasa de 2019 a 2011. La cadena tiene un
+    // hueco real de cinco semanas en el verano de 2015 que las filas, que son por AÑO, no ven; la
+    // biografía lo cuenta en «Trayectoria municipal documentada».
+    'a-rafael-gomez-bio-v2': 2011,
     'a-esther-gomez-bio': 2019,
     'a-salvador-ferrer-bio': 2019, // de Ciudadanos al PP, relevo en 2023
     'a-rfolgado-bio': 2023, // 2015-2019 y hueco

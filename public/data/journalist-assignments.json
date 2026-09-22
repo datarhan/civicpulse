@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-09-20T07:06:18.310Z",
+  "generatedAt": "2026-09-22T17:08:52.216Z",
   "items": [
     {
       "id": "a-robert-raga-bio",
@@ -69,7 +69,7 @@
       "brief": "Biografía de registro público de Rafael Gómez Sánchez, concejal (PSOE) de Servicios públicos municipales, Urbanizaciones, barrios y diseminados, y Movilidad y Deportes en Riba-roja de Túria: identidad y formación, trayectoria previa, resultados electorales, retribución del cargo, actividad plenaria y menciones en boletines o resoluciones oficiales.",
       "createdBy": "civicpulse-curator",
       "createdAt": "2026-07-30T17:33:09.642Z",
-      "status": "promoted",
+      "status": "archived",
       "lastRunAt": "2026-07-30T17:40:06.942Z"
     },
     {
@@ -379,6 +379,20 @@
       "createdAt": "2026-09-19T19:21:40.567Z",
       "status": "promoted",
       "lastRunAt": "2026-09-19T19:35:50.878Z"
+    },
+    {
+      "id": "a-rafael-gomez-bio-v2",
+      "kind": "biography",
+      "subject": {
+        "slug": "rafael-gomez-sanchez",
+        "name": "Rafael Gómez Sánchez",
+        "kind": "official"
+      },
+      "brief": "Actualización de la biografía del concejal Rafael Gómez Sánchez con su trayectoria municipal documentada en actas de pleno y boletines oficiales desde 2011: candidaturas del PSOE en 2011, 2015, 2019 y 2023, toma de posesión como concejal en 2011 y de nuevo en julio de 2015, delegaciones y régimen de dedicación en cada mandato, tenencia de alcaldía en 2019-2023 y composición de la Junta de Gobierno Local en 2023. Incorpora la consulta del Boletín Oficial del Registro Mercantil y la declaración del IRPF de 2019 publicada por el Ayuntamiento, y hace explícito el criterio con el que se clasifican los contratos de sus áreas. Conserva las secciones ya verificadas de la versión anterior.",
+      "createdBy": "Sergei Lutchenko",
+      "createdAt": "2026-09-22T16:23:34.384Z",
+      "status": "promoted",
+      "lastRunAt": "2026-09-22T16:43:51.356Z"
     }
   ]
 }
