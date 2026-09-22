@@ -36,6 +36,22 @@ export function buildLocalCitation(opts: {
   }
 }
 
+/**
+ * Percent-encode the whitespace a URL cannot carry.
+ *
+ * The planner is an LLM and writes URLs the way it reads them. On 2026-09-22 it
+ * asked for «…/files/20260723 Rafa Gómez.pdf» — spaces and all, exactly as the
+ * municipal portal publishes the href — `fetchPdfUrl` downloaded it fine (200,
+ * 360 KB), and the citation was built with the space inside. Four agent stages
+ * later the draft validator killed the whole run: `URL_RE` is /^https?:\/\/\S+$/,
+ * so «sources[26].url must be http(s) URL». Every web citation goes through
+ * here, which makes this the one place worth fixing.
+ *
+ * Only whitespace is touched. Running `encodeURI` over the whole string would
+ * double-encode the URLs that already carry `%20`, which are the majority.
+ */
+const encodeUrlSpaces = (url: string): string => url.replace(/\s/g, '%20')
+
 export function buildWebCitation(opts: {
   url: string
   title: string
@@ -45,19 +61,20 @@ export function buildWebCitation(opts: {
   archiveUrl?: string | null
   trust?: CitationTrust
 }): SourceCitation {
+  const url = encodeUrlSpaces(opts.url)
   return {
     id: nextCitationId(),
     kind: 'web' as CitationKind,
-    url: opts.url,
+    url,
     title: opts.title,
     retrievedAt: nowIso(),
     // Default = the curated domain-trust table (official → high, known
     // press → medium, unknown → low); explicit opts.trust still wins.
-    trust: opts.trust ?? trustForUrl(opts.url),
+    trust: opts.trust ?? trustForUrl(url),
     ...(opts.publisher ? { publisher: opts.publisher } : {}),
     ...(opts.publishedAt ? { publishedAt: opts.publishedAt } : {}),
     ...(opts.excerpt ? { excerpt: opts.excerpt.slice(0, 500) } : {}),
-    ...(opts.archiveUrl ? { archiveUrl: opts.archiveUrl } : {}),
+    ...(opts.archiveUrl ? { archiveUrl: encodeUrlSpaces(opts.archiveUrl) } : {}),
   }
 }
 

@@ -233,6 +233,37 @@ describe('citation builders', () => {
     expect(overridden.trust).toBe('high')
   })
 
+  it('percent-encodes whitespace in a citation URL instead of shipping an invalid one', () => {
+    // El planificador es un LLM y escribe las URL como las lee. El 22-09-2026
+    // propuso descargar «…/files/20260723 Rafa Gómez.pdf» —con espacios, como
+    // los publica el portal municipal—, `fetchPdfUrl` la bajó sin problema
+    // (200, 360 KB) y la cita se construyó con el espacio dentro. Al final de
+    // la ejecución, `URL_RE` (/^https?:\/\/\S+$/) tumbó el borrador entero:
+    // «sources[26].url must be http(s) URL», después de gastar los cuatro
+    // pasos del agente. Un carácter que no cabe en una URL se codifica aquí,
+    // que es el único sitio por el que pasan todas las citas web.
+    tools.resetCitationCounter()
+    const cite = tools.buildWebCitation({
+      url: 'https://www.ribarroja.es/sites/www.ribarroja.es/files/20260723 Rafa Gómez.pdf',
+      title: 'PDF: ribarroja.es',
+      archiveUrl: 'https://web.archive.org/web/2026/https://x/a b.pdf',
+    })
+    expect(cite.url).toBe(
+      'https://www.ribarroja.es/sites/www.ribarroja.es/files/20260723%20Rafa%20Gómez.pdf',
+    )
+    expect(/^https?:\/\/\S+$/.test(cite.url as string)).toBe(true)
+    expect(/^https?:\/\/\S+$/.test(cite.archiveUrl as string)).toBe(true)
+  })
+
+  it('leaves a URL that is already encoded untouched', () => {
+    tools.resetCitationCounter()
+    const cite = tools.buildWebCitation({
+      url: 'https://example.org/a%20b?x=1&y=2',
+      title: 'Ya codificada',
+    })
+    expect(cite.url).toBe('https://example.org/a%20b?x=1&y=2')
+  })
+
   it('builds Wikidata citations with high trust', () => {
     tools.resetCitationCounter()
     const cite = tools.buildWikidataCitation(

@@ -705,6 +705,42 @@ describe('Phase B: financial source-allowlist', () => {
     expect(() => validateDraftsSnapshot(JSON.stringify(snap))).not.toThrow()
   })
 
+  it('accepts a financial row backed by the Boletín Oficial de la Provincia (bop.dival.es)', () => {
+    // El BOP no es un portal más: el art. 75.5 de la Ley 7/1985 obliga a
+    // publicar EN ÉL los acuerdos que fijan las retribuciones de los cargos
+    // electos, y el edicto lo dice con esas palabras. Hasta el 22-09-2026 la
+    // lista conocía `dival.es` pero no `bop.dival.es`, así que la retribución
+    // de un concejal no podía entrar en `financial` citada por el boletín en
+    // el que la ley manda publicarla — medido con el acuerdo de pleno de
+    // 22-07-2015 de Riba-roja, publicado el 03-09-2015.
+    const draft = dossierDraft(
+      {
+        kind: 'financial',
+        payload: {
+          items: [
+            {
+              year: 2015,
+              metric: 'salary',
+              amountEuros: 33865.02,
+              description: 'Dedicación exclusiva fijada por acuerdo de pleno y publicada en el BOP',
+              sourceIds: ['src-bop'],
+            },
+          ],
+        },
+      },
+      [
+        {
+          ...HIGH_TRUST_SOURCE,
+          id: 'src-bop',
+          url: 'https://bop.dival.es/bop/downloads?anuncioNumReg=2015%2F19689',
+          title: 'BOP de València — régimen de retribuciones de los concejales',
+        },
+      ],
+    )
+    const snap = { ...VALID_BASE, items: [draft] }
+    expect(() => validateDraftsSnapshot(JSON.stringify(snap))).not.toThrow()
+  })
+
   it('rejects a financial row whose source is not on FINANCIAL_SOURCE_ALLOW', () => {
     const draft = dossierDraft(
       {

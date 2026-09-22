@@ -65,11 +65,27 @@ function partyFromLogo($img: AnyNode, $: CheerioAPI): Party {
   return 'Otro'
 }
 
+/**
+ * Percent-encode the whitespace the portal leaves inside an href.
+ *
+ * Four fichas del portal enlazan su PDF con espacios sin codificar
+ * («…/files/20260723 Rafa Gómez.pdf»). Un navegador los tolera; una URL válida
+ * no los admite, y el validador del borrador periodístico —`URL_RE` es
+ * /^https?:\/\/\S+$/— tumba la ejecución entera con «sources[N].url must be
+ * http(s) URL» en cuanto el agente construye una cita con ella.
+ *
+ * Sólo se toca el espacio en blanco. Codificar de más (encodeURI sobre la URL
+ * completa) rompería las que YA vienen con `%20`, que son la mayoría.
+ */
+function encodeSpaces(url: string): string {
+  return url.replace(/\s/g, '%20')
+}
+
 function absolutise(url: string | undefined, base: string): string {
   if (!url) return ''
-  if (/^https?:\/\//.test(url)) return url
-  if (url.startsWith('/')) return `${base}${url}`
-  return `${base}/${url}`
+  if (/^https?:\/\//.test(url)) return encodeSpaces(url)
+  if (url.startsWith('/')) return encodeSpaces(`${base}${url}`)
+  return encodeSpaces(`${base}/${url}`)
 }
 
 /**

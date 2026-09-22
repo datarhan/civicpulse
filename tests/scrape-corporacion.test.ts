@@ -36,6 +36,25 @@ describe('scraper/corporacion — canonicalCvUrl (biography link repair)', () =>
   it('leaves an unrecognised href absolutised but untouched', () => {
     expect(canonicalCvUrl('/es/otra-pagina', base)).toBe('https://www.ribarroja.es/es/otra-pagina')
   })
+
+  it('percent-encodes the spaces the portal leaves in a PDF href', () => {
+    // Medido el 22-09-2026: el portal publica cuatro fichas cuyo enlace al PDF
+    // lleva espacios sin codificar («…/20260723 Rafa Gómez.pdf»). Un navegador
+    // los tolera, pero no es una URL válida: el agente periodista construye una
+    // cita con ella y el validador del borrador la rechaza — `URL_RE` es
+    // /^https?:\/\/\S+$/ —, así que la ejecución entera muere con
+    // «sources[N].url must be http(s) URL». El resto de la URL se deja como
+    // viene: codificar de más rompería las que YA vienen codificadas.
+    expect(canonicalCvUrl('/sites/www.ribarroja.es/files/20260723 Rafa Gómez.pdf', base)).toBe(
+      'https://www.ribarroja.es/sites/www.ribarroja.es/files/20260723%20Rafa%20Gómez.pdf',
+    )
+  })
+
+  it('does not double-encode an href that already carries %20', () => {
+    expect(canonicalCvUrl('/sites/www.ribarroja.es/files/20260723%20Rafa.pdf', base)).toBe(
+      'https://www.ribarroja.es/sites/www.ribarroja.es/files/20260723%20Rafa.pdf',
+    )
+  })
 })
 
 describe('scraper/corporacion — stripLeadingListConjunction', () => {
