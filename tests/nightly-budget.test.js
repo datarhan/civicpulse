@@ -94,8 +94,10 @@ describe('el presupuesto de la nocturna', () => {
 
   // El tope del raspado es el que se calibró contra fuentes lentas; que la
   // regla de arriba se cumpla BAJÁNDOLO sería arreglar la cuenta rompiendo lo
-  // que la cuenta protege.
+  // que la cuenta protege. Treinta desde el 22-09-2026: con 22, cuatro de
+  // nueve noches murieron a medio `check:*` (ejecución 35710338380 — 21,3
+  // min de adaptadores con Overpass en 504 y regmeet bloqueando al runner).
   it('no cuadra la cuenta recortando el raspado', () => {
-    expect(paso('Run scraper(s)')['timeout-minutes']).toBeGreaterThanOrEqual(22)
+    expect(paso('Run scraper(s)')['timeout-minutes']).toBeGreaterThanOrEqual(30)
   })
 })

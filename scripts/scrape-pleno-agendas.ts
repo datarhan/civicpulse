@@ -5,6 +5,8 @@
  *   public/data/plenos-agendas.json
  *
  * Polite crawl: 1.5 s between requests, timeout 15 s, no parallel fetches.
+ * The Wayback fallback gets ARCHIVE_BUDGET_MS per run and reports the
+ * sessions it never reached.
  *
  * Usage: npm run scrape:pleno-agendas
  */
@@ -13,6 +15,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import {
   classifyAgendaRun,
+  crearPresupuestoArchivo,
   parsePlenoAgenda,
   mergeAgendaPlenos,
   tallyDepartments,
@@ -93,6 +96,19 @@ async function fetchArchived(url: string): Promise<Buffer | null> {
 /** Sessions this recent are always re-fetched — a convocatoria can be edited. */
 const REFRESH_NEWEST = 6
 
+/**
+ * Tiempo total de consultas al archivo por pasada. Con regmeet bloqueando al
+ * runner, las 26 sesiones sin orden del día iban TODAS a la Wayback Machine a
+ * 5–30 s cada una (y 90 s en el peor caso) para volver casi siempre con 0
+ * puntos: 5–6 minutos por noche sin avanzar nada, del presupuesto de un paso
+ * que la nocturna agotó cuatro de nueve noches. Dos minutos y medio dan para
+ * las seis más recientes y unas cuantas de relleno; el resto lo trae
+ * `scrape-ci-blocked.sh` desde una IP residencial, que es quien de verdad
+ * refresca este adaptador. Se comprueba ANTES de cada consulta, así que el
+ * peor caso es esto más UNA consulta en curso.
+ */
+const ARCHIVE_BUDGET_MS = 150_000
+
 async function readExisting(): Promise<EnrichedPleno[]> {
   try {
     const prev = JSON.parse(await readFile(OUT, 'utf8')) as { plenos?: EnrichedPleno[] }
@@ -134,6 +150,10 @@ async function main() {
   const MAX_CONSECUTIVE_FETCH_FAILURES = 3
   let consecutiveFetchFailures = 0
   let liveDown = false
+  const archivo = crearPresupuestoArchivo(ARCHIVE_BUDGET_MS)
+  // Sesiones a las que esta pasada no fue NI al origen NI al archivo. No son
+  // fallos: se informan aparte y no entran en `attempted`.
+  let sinIntentar = 0
 
   for (let i = 0; i < targets.length; i++) {
     const p = targets[i]
@@ -153,9 +173,21 @@ async function main() {
         )
       }
     }
+    let archiveSkipped = false
     if (!buf) {
-      buf = await fetchArchived(p.link)
-      archived = buf !== null
+      if (archivo.puedeIntentar()) {
+        buf = await archivo.medir(() => fetchArchived(p.link))
+        archived = buf !== null
+      } else {
+        archiveSkipped = true
+      }
+    }
+    if (archiveSkipped && liveDown) {
+      // Ni el origen (caído) ni el archivo (sin presupuesto): con esta sesión
+      // no se intentó nada, y «sin intentar» no es «falló».
+      console.log('sin intentar (origen caído y presupuesto del archivo agotado)')
+      sinIntentar += 1
+      continue
     }
     if (!buf) fetchFailures += 1
 
@@ -232,6 +264,13 @@ async function main() {
   if (fetchFailures > 0) {
     console.warn(`[pleno-agendas] ${fetchFailures}/${targets.length} session pages unavailable`)
   }
+  if (archivo.noIntentadas > 0) {
+    console.warn(
+      `[pleno-agendas] presupuesto del archivo agotado (${Math.round(archivo.gastadoMs / 1_000)} s ` +
+        `de ${Math.round(archivo.budgetMs / 1_000)}): ${archivo.noIntentadas} consulta(s) sin hacer, ` +
+        `${sinIntentar} sesión(es) sin intentar esta noche`,
+    )
+  }
   const payload = {
     generatedAt: new Date().toISOString(),
     source: {
@@ -258,6 +297,9 @@ async function main() {
       recoveredFromLive: fromLive,
       carriedForward,
       recoveredFromArchive: fromArchive,
+      // Lo que esta pasada NO intentó, aparte de lo que intentó y falló.
+      archiveLookupsSkipped: archivo.noIntentadas,
+      sessionsNotAttempted: sinIntentar,
     },
     topDepartments,
     plenos: merged,
@@ -279,7 +321,11 @@ async function main() {
   // desde tres redes distintas — y la pasada salió 0 en verde porque la
   // Wayback Machine devolvió tres sesiones viejas. Los plenos del 6 y del 27
   // de julio se quedaron sin orden del día sin que saltara nada.
-  const desenlace = classifyAgendaRun({ attempted: targets.length, fromLive, fromArchive })
+  const desenlace = classifyAgendaRun({
+    attempted: targets.length - sinIntentar,
+    fromLive,
+    fromArchive,
+  })
   if (!desenlace.ok) {
     console.error(`[pleno-agendas] ${desenlace.outcome}: ${desenlace.motivo}`)
     process.exit(1)
