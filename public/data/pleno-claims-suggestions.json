@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-21T07:48:22.890Z",
+  "generatedAt": "2026-09-22T08:12:08.954Z",
   "source": {
     "description": "Claims extracted automatically from YouTube-derived pleno transcripts. Each record carries requiresHumanApproval:true and is cross-referenced against tenders / BDNS / budget / promises by the verifier pass before any editorial surface.",
     "contract": "Machine-written; never substitutes for the published human-verified record. Speaker attribution at bloc level only — no individual naming."
@@ -133222,5 +133222,13 @@
       "reasoning": "Es un compromiso para llevar a pleno dos de las comisiones en una fecha específica (26 de julio de 2023), verificable en las actas de dicho pleno.",
       "requiresHumanApproval": true
     }
-  ]
+  ],
+  "builtFrom": {
+    "officials.json": "98ac3afa73e9",
+    "pleno-findings.json": "09734558c009",
+    "pleno-speaker-map/": "8e94e19ea500",
+    "pleno-transcripts/": "8c59df9da87e",
+    "plenos-agendas.json": "231ffe5d7c80",
+    "plenos.json": "43f166bce8c5"
+  }
 }

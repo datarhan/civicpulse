@@ -1,34 +1,33 @@
 {
-  "generatedAt": "2026-09-18T08:15:15.903Z",
+  "generatedAt": "2026-09-22T08:21:58.115Z",
   "source": {
     "description": "Press claims extracted by the laboratory pipeline",
     "contract": "src/scraper/press-claim.ts"
   },
   "stats": {
-    "total": 67,
+    "total": 58,
     "byType": {
-      "promesa": 2,
-      "afirmacion_numerica": 27,
+      "promesa": 3,
+      "afirmacion_numerica": 20,
       "cita_obra": 3,
       "cita_convenio": 2,
-      "acusacion_publica": 1,
-      "dato_municipal": 32
+      "acusacion_publica": 0,
+      "dato_municipal": 30
     },
     "bySource": {
+      "levante-emv.com": 1,
+      "Periòdic del Camp de Túria": 16,
+      "Ayuntamiento de Riba-roja de Túria": 39,
       "Valencia Plaza": 1,
-      "Ayuntamiento de Riba-roja de Túria": 40,
-      "Periòdic del Camp de Túria": 23,
-      "El Periódico de Aquí": 1,
-      "elperiodic.com": 1,
-      "Levante-EMV": 1
+      "El Periódico de Aquí": 1
     },
     "byTopic": {
       "fiscal": 1,
       "vivienda": 0,
-      "movilidad": 4,
-      "medio-ambiente": 9,
+      "movilidad": 2,
+      "medio-ambiente": 3,
       "social": 1,
-      "cultura": 7,
+      "cultura": 4,
       "seguridad": 0,
       "empleo": 0,
       "urbanismo": 19,
@@ -36,21 +35,88 @@
       "transparencia": 1,
       "educacion": 25,
       "demografia": 0,
-      "other": 0
+      "other": 2
     },
     "byAttributedSource": {
-      "outlet": 47,
-      "municipal": 19,
-      "opposition": 1,
-      "unspecified": 0
+      "outlet": 39,
+      "municipal": 18,
+      "opposition": 0,
+      "unspecified": 1
     },
     "articlesProcessed": 25,
     "articlesAvailable": 156,
     "llmUnavailable": 0,
-    "windowFrom": "2026-08-31T07:00:00.000Z",
-    "windowTo": "2026-09-14T04:02:28.000Z"
+    "windowFrom": "2026-09-04T10:56:54.000Z",
+    "windowTo": "2026-09-20T22:09:19.000Z"
   },
   "items": [
+    {
+      "id": "1a5f1pr-0-pro",
+      "articleId": "1a5f1pr",
+      "articleFingerprint": "15h67us",
+      "articleSource": "levante-emv.com",
+      "articleSourceHost": "levante-emv.com",
+      "articleUrl": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNMmxLYkVncFZtSFlseFUxQWpTZ2pKemFoenI3UFhndVdTVDA2Y3RXUW1UODlGR1VnWlZRUXkxRGZreHFIcllPMUQ0N3VaV2t2SnBVOHNFZnBfbWNGM1ZSaVFSUGdJVWFSTmJCbTRiam5nZFhqT3I3TkFiMmlvZzFId0RQZzgxZWFrRE5DTzQxOTlKNFBNYXpKSlpSSW9PLVRCeU1SSmdMZWtWUDl0bjR1bUg4a211MGxVVDJoQTVXQnlIbU9YX0RVQWJ6QVFDRS0tVFdad3FjWjlzUdIB3wFBVV95cUxQQTBqaVJOTDZURHpobVBwemcyTnpWQmJBWTl1Z3Uyd1ZSb1ltaTJiYTVfTjBVdUZwTm1FUkN2My0tNVkxTlJBMklOMFRQcDNqblNNVTZUNFpPQ19aWEJnRERfM0ZmS012UjZBT3JqWFFmRmtLelhpZ3JKY2R5TVQ0VHR6bnVKTjZVQ0JIRS1nUVdNZm5ENl9kMWN5NkJ3bGhvM0VhSlRocElmM1J6YlZNVVEzbzVnb0dzZl81a3UyZmdySHhKUEJJSFF1ZUFWaFhEd0wzOUQ2TkFBZ0FBQjhn?oc=5",
+      "articleDate": "2026-09-19T04:00:48.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "title",
+      "type": "promesa",
+      "attributedSource": "unspecified",
+      "verbatim": "Riba-roja contará cuántas personas visitan el Parc Natural del Túria con un nuevo sistema inteligente",
+      "context": "Riba-roja contará cuántas personas visitan el Parc Natural del Túria con un nuevo sistema inteligente",
+      "topic": "medio-ambiente",
+      "entities": {
+        "referencedEntity": "Parc Natural del Túria"
+      },
+      "confidence": 0.4,
+      "reasoning": "El titular anuncia una iniciativa municipal futura y concreta (instalación de un sistema de conteo de visitantes) que es verificable a posteriori.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "1cj48hw-0-dat",
+      "articleId": "1cj48hw",
+      "articleFingerprint": "vw4sri",
+      "articleSource": "Periòdic del Camp de Túria",
+      "articleSourceHost": "infoturia.com",
+      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86207-riba-roja-destina-7-000-euros-per-a-fomentar-lesport-i-millorar-el-rendiment-en-competicions.html",
+      "articleDate": "2026-09-16T11:52:13.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "title",
+      "type": "dato_municipal",
+      "attributedSource": "outlet",
+      "verbatim": "Riba-roja destina 7.000 euros per a fomentar l'esport i millorar el rendiment en competicions",
+      "context": "Titular de l'article publicat per Periòdic del Camp de Túria (16/09/2026) sobre Riba-roja de Túria.",
+      "topic": "other",
+      "entities": {
+        "amountEuros": 7000
+      },
+      "confidence": 0.6,
+      "reasoning": "Cita una cifra presupuestaria concreta (7.000 euros) destinada al fomento del deporte, verificable en las cuentas o notas oficiales del Ayuntamiento.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "2gr6xp-0-num",
+      "articleId": "2gr6xp",
+      "articleFingerprint": "1j0z0p4",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-destina-una-partida-de-7.000-euros-en-subvenciones-para-fomentar-la-pr%C3%A1ctica-del-deporte-y-mejorar-el-rendimiento-en-las-competiciones-oficiales",
+      "articleDate": "2026-09-16T11:42:06.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "title",
+      "type": "afirmacion_numerica",
+      "attributedSource": "municipal",
+      "verbatim": "Riba-roja destina una partida de 7.000 euros en subvenciones para fomentar la práctica del deporte y mejorar el rendimiento en las competiciones oficiales",
+      "context": "Titular de la nota publicada por el Ayuntamiento de Riba-roja de Túria (16/09/2026): \"Riba-roja destina una partida de 7.000 euros en subvenciones para fomentar la práctica del deporte y mejorar el rendimiento en las competiciones oficiales\".",
+      "topic": "other",
+      "entities": {
+        "amountEuros": 7000,
+        "referencedEntity": "Ayuntamiento de Riba-roja de Túria"
+      },
+      "confidence": 0.75,
+      "reasoning": "El titular afirma una cifra presupuestaria concreta (7.000 euros) destinada a subvenciones deportivas, dato verificable contra el presupuesto municipal.",
+      "requiresHumanApproval": true
+    },
     {
       "id": "yfbsr-0-dat",
       "articleId": "yfbsr",
@@ -1318,285 +1384,6 @@
       },
       "confidence": 0.4,
       "reasoning": "Declaración institucional de valoración sobre las obras; es mayormente opinativa (mejora, resiliencia) y poco cuantificable, y la cita supera los 200 caracteres.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "1rrz2ib-0-acu",
-      "articleId": "1rrz2ib",
-      "articleFingerprint": "smhaqs",
-      "articleSource": "elperiodic.com",
-      "articleSourceHost": "elperiodic.com",
-      "articleUrl": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQQmtBX0FObkdRenVFMGQ0cFlsNmtkVTZ3MDhfc0FCTEM4S3V2bURxS1BFLTFxcFlBN3I3N0NRcll6YlNKQ1JHR0dtdHNQQWVkUmE0SEFMeFVNcGUzRFVYSGk4UWd0Slh2ajd0NzJWeG9vNUpIaDcwWU9DSnQyMWRlT2VIcUQ3d0t2ejd1cU4yMlFKM3FlUGVmbVYzS0ZzdUVieFktNkhrRjY3b2Y1YzZXclZTVnhabEhTWVdybVhXUV8?oc=5",
-      "articleDate": "2026-09-03T07:00:00.000Z",
-      "segmentIndex": 0,
-      "segmentKind": "title",
-      "type": "acusacion_publica",
-      "attributedSource": "opposition",
-      "verbatim": "afea al alcalde que culpe a la Diputación de la peligrosidad del tramo de la CV-336 por el que se accede a un colegio",
-      "context": "El PP de Riba-roja afea al alcalde que culpe a la Diputación de la peligrosidad del tramo de la CV-336 por el que se accede a un colegio",
-      "topic": "movilidad",
-      "entities": {
-        "referencedEntity": "Diputación / CV-336"
-      },
-      "accusationSubtype": "opinativa",
-      "confidence": 0.4,
-      "reasoning": "El titular recoge una crítica pública de la oposición (PP) hacia el alcalde por atribuir a la Diputación la responsabilidad de la peligrosidad de un tramo viario concreto, algo verificable revisando la titularidad/competencia de la vía CV-336.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "161q2v1-0-num",
-      "articleId": "161q2v1",
-      "articleFingerprint": "1slb5ao",
-      "articleSource": "Ayuntamiento de Riba-roja de Túria",
-      "articleSourceHost": "ribarroja.es",
-      "articleUrl": "https://www.ribarroja.es/es/noticia/la-confederaci%C3%B3n-hidrogr%C3%A1fica-del-j%C3%BAcar-habilita-tres-pasarelas-sobre-el-t%C3%BAria-a-su-paso-por-riba-roja-para-garantizar-el-paso-ciclo-peatonal",
-      "articleDate": "2026-09-01T12:39:24.000Z",
-      "segmentIndex": 0,
-      "segmentKind": "title",
-      "type": "afirmacion_numerica",
-      "attributedSource": "municipal",
-      "verbatim": "La Confederación Hidrográfica del Júcar habilita tres pasarelas sobre el Túria a su paso por Riba-roja para garantizar el paso ciclo-peatonal",
-      "context": "Titular publicado por el Ayuntamiento de Riba-roja de Túria (01/09/2026) sobre la habilitación de infraestructuras de paso sobre el río Túria.",
-      "topic": "movilidad",
-      "entities": {
-        "count": 3,
-        "countUnit": "pasarelas",
-        "referencedEntity": "Confederación Hidrográfica del Júcar"
-      },
-      "confidence": 0.55,
-      "reasoning": "Afirma una cifra concreta y verificable (tres pasarelas habilitadas por la CHJ) sobre una obra pública identificable en Riba-roja de Túria.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "1v9gr48-0-num",
-      "articleId": "1v9gr48",
-      "articleFingerprint": "1mtqgek",
-      "articleSource": "Periòdic del Camp de Túria",
-      "articleSourceHost": "infoturia.com",
-      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85874-el-parc-del-turia-recupera-la-connectivitat-amb-quatre-noves-passarelles.html",
-      "articleDate": "2026-09-01T12:31:35.000Z",
-      "segmentIndex": 0,
-      "segmentKind": "body",
-      "type": "afirmacion_numerica",
-      "attributedSource": "outlet",
-      "verbatim": "El parc del Túria recupera la connectivitat amb quatre noves passarel·les",
-      "context": "Titular de l'article, que anuncia el nombre total de passarel·les noves instal·lades al parc natural del Túria.",
-      "topic": "medio-ambiente",
-      "entities": {
-        "count": 4,
-        "countUnit": "passarel·les",
-        "referencedEntity": "parc natural del Túria"
-      },
-      "confidence": 0.9,
-      "reasoning": "El titular afirma una xifra concreta i verificable de passarel·les noves instal·lades.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "1v9gr48-1-num",
-      "articleId": "1v9gr48",
-      "articleFingerprint": "1mtqgek",
-      "articleSource": "Periòdic del Camp de Túria",
-      "articleSourceHost": "infoturia.com",
-      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85874-el-parc-del-turia-recupera-la-connectivitat-amb-quatre-noves-passarelles.html",
-      "articleDate": "2026-09-01T12:31:35.000Z",
-      "segmentIndex": 1,
-      "segmentKind": "body",
-      "type": "afirmacion_numerica",
-      "attributedSource": "outlet",
-      "verbatim": "Tres se situen a Riba-roja i una altra a l’entorn de la potabilitzadora de Manises",
-      "context": "Subtítol de l'article que detalla la ubicació de les quatre passarel·les reconstruïdes.",
-      "topic": "medio-ambiente",
-      "entities": {
-        "count": 3,
-        "countUnit": "passarel·les",
-        "referencedEntity": "Riba-roja de Túria"
-      },
-      "confidence": 0.9,
-      "reasoning": "Especifica un repartiment numèric verificable de les passarel·les entre Riba-roja i Manises.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "1v9gr48-2-dat",
-      "articleId": "1v9gr48",
-      "articleFingerprint": "1mtqgek",
-      "articleSource": "Periòdic del Camp de Túria",
-      "articleSourceHost": "infoturia.com",
-      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85874-el-parc-del-turia-recupera-la-connectivitat-amb-quatre-noves-passarelles.html",
-      "articleDate": "2026-09-01T12:31:35.000Z",
-      "segmentIndex": 2,
-      "segmentKind": "body",
-      "type": "dato_municipal",
-      "attributedSource": "outlet",
-      "verbatim": "d’aquestes passarel·les, desaparegudes en la dana de 2024",
-      "context": "La reconstrucció d’aquestes passarel·les, desaparegudes en la dana de 2024, permet recuperar la connectivitat entre tots dos marges del riu Túria.",
-      "topic": "medio-ambiente",
-      "entities": {
-        "date": "2024",
-        "referencedEntity": "dana de 2024"
-      },
-      "confidence": 0.85,
-      "reasoning": "Vincula la destrucció de les passarel·les anteriors a un esdeveniment i any concrets i verificables.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "1v9gr48-3-num",
-      "articleId": "1v9gr48",
-      "articleFingerprint": "1mtqgek",
-      "articleSource": "Periòdic del Camp de Túria",
-      "articleSourceHost": "infoturia.com",
-      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85874-el-parc-del-turia-recupera-la-connectivitat-amb-quatre-noves-passarelles.html",
-      "articleDate": "2026-09-01T12:31:35.000Z",
-      "segmentIndex": 3,
-      "segmentKind": "body",
-      "type": "afirmacion_numerica",
-      "attributedSource": "outlet",
-      "verbatim": "corresponents a avingudes amb un període de retorn de 100 anys",
-      "context": "Aquestes estructures han sigut concebudes per a suportar condicions hidràuliques severes, corresponents a avingudes amb un període de retorn de 100 anys.",
-      "topic": "medio-ambiente",
-      "entities": {
-        "count": 100,
-        "countUnit": "anys (període de retorn)",
-        "referencedEntity": "passarel·les del parc del Túria"
-      },
-      "confidence": 0.85,
-      "reasoning": "Especifica un paràmetre tècnic quantificable sobre la resistència hidràulica dissenyada per a les estructures.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "1v9gr48-4-num",
-      "articleId": "1v9gr48",
-      "articleFingerprint": "1mtqgek",
-      "articleSource": "Periòdic del Camp de Túria",
-      "articleSourceHost": "infoturia.com",
-      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85874-el-parc-del-turia-recupera-la-connectivitat-amb-quatre-noves-passarelles.html",
-      "articleDate": "2026-09-01T12:31:35.000Z",
-      "segmentIndex": 4,
-      "segmentKind": "body",
-      "type": "afirmacion_numerica",
-      "attributedSource": "outlet",
-      "verbatim": "Els assajos s’han dut a terme amb càrregues de 14.700 i 9.450 quilograms, en funció de les característiques de cada passarel·la.",
-      "context": "Les passarel·les s’han posat en servei després de la realització de les proves de càrrega que han permés verificar que les estructures responen segons el que es preveu.",
-      "topic": "medio-ambiente",
-      "entities": {
-        "countUnit": "quilograms (14.700 i 9.450)",
-        "referencedEntity": "proves de càrrega"
-      },
-      "confidence": 0.85,
-      "reasoning": "Detalla xifres exactes de les càrregues de prova aplicades, un dato tècnic contrastable.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "1v9gr48-5-num",
-      "articleId": "1v9gr48",
-      "articleFingerprint": "1mtqgek",
-      "articleSource": "Periòdic del Camp de Túria",
-      "articleSourceHost": "infoturia.com",
-      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85874-el-parc-del-turia-recupera-la-connectivitat-amb-quatre-noves-passarelles.html",
-      "articleDate": "2026-09-01T12:31:35.000Z",
-      "segmentIndex": 5,
-      "segmentKind": "body",
-      "type": "afirmacion_numerica",
-      "attributedSource": "outlet",
-      "verbatim": "Tres d’elles salven el llit d’aigüesbaixes amb una obertura de 24 metres, mentre que la quarta compta amb una obertura de 20 metres.",
-      "context": "Descripció tècnica de les quatre passarel·les reconstruïdes al parc del Túria després de les proves de càrrega.",
-      "topic": "medio-ambiente",
-      "entities": {
-        "countUnit": "metres (24 i 20)",
-        "referencedEntity": "obertura de les passarel·les"
-      },
-      "confidence": 0.85,
-      "reasoning": "Aporta mesures exactes de l'obertura de les passarel·les, un dato tècnic verificable.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "1v9gr48-6-dat",
-      "articleId": "1v9gr48",
-      "articleFingerprint": "1mtqgek",
-      "articleSource": "Periòdic del Camp de Túria",
-      "articleSourceHost": "infoturia.com",
-      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85874-el-parc-del-turia-recupera-la-connectivitat-amb-quatre-noves-passarelles.html",
-      "articleDate": "2026-09-01T12:31:35.000Z",
-      "segmentIndex": 6,
-      "segmentKind": "body",
-      "type": "dato_municipal",
-      "attributedSource": "outlet",
-      "verbatim": "la Confederació Hidrogràfica del Xúquer (CHJ) ha restituït al llarg del parc natural del Túria",
-      "context": "Les passarel·les per als vianants que la Confederació Hidrogràfica del Xúquer (CHJ) ha restituït al llarg del parc natural del Túria ja es troben operatives.",
-      "topic": "medio-ambiente",
-      "entities": {
-        "referencedEntity": "Confederació Hidrogràfica del Xúquer (CHJ)"
-      },
-      "confidence": 0.8,
-      "reasoning": "Identifica l'entitat responsable de la reconstrucció, un dato institucional verificable.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "1bt7s8w-0-num",
-      "articleId": "1bt7s8w",
-      "articleFingerprint": "1s8fa60",
-      "articleSource": "Periòdic del Camp de Túria",
-      "articleSourceHost": "infoturia.com",
-      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/85857-el-auditori-municipal-de-riba-roja-invertix-40-000-euros-en-les-installacions-i-equipaments-tecnics.html",
-      "articleDate": "2026-08-31T13:34:56.000Z",
-      "segmentIndex": 0,
-      "segmentKind": "title",
-      "type": "afirmacion_numerica",
-      "attributedSource": "outlet",
-      "verbatim": "L'Auditori Municipal de Riba-roja invertix 40.000 euros en les instal·lacions i equipaments tècnics",
-      "context": "Titular del Periòdic del Camp de Túria (31/08/2026): 'L'Auditori Municipal de Riba-roja invertix 40.000 euros en les instal·lacions i equipaments tècnics'. No se dispone del cuerpo del artículo, solo del titular.",
-      "topic": "cultura",
-      "entities": {
-        "amountEuros": 40000,
-        "referencedEntity": "Auditori Municipal de Riba-roja"
-      },
-      "confidence": 0.55,
-      "reasoning": "Cifra concreta de inversión (40.000 euros) en un equipamiento municipal, contrastable mediante presupuestos o contratos públicos, aunque solo se dispone del titular sin cuerpo de noticia.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "1t1ctq4-0-dat",
-      "articleId": "1t1ctq4",
-      "articleFingerprint": "1js11tg",
-      "articleSource": "Ayuntamiento de Riba-roja de Túria",
-      "articleSourceHost": "ribarroja.es",
-      "articleUrl": "https://www.ribarroja.es/es/noticia/el-auditorio-municipal-de-riba-roja-de-t%C3%BAria-invierte-40.000-euros-en-la-modernizaci%C3%B3n-de-sus-instalaciones-y-equipamientos-t%C3%A9cnicos",
-      "articleDate": "2026-08-31T09:04:15.000Z",
-      "segmentIndex": 0,
-      "segmentKind": "title",
-      "type": "dato_municipal",
-      "attributedSource": "municipal",
-      "verbatim": "El Auditorio Municipal de Riba-roja de Túria invierte 40.000 euros en la modernización de sus instalaciones y equipamientos técnicos",
-      "context": "El Auditorio Municipal de Riba-roja de Túria invierte 40.000 euros en la modernización de sus instalaciones y equipamientos técnicos",
-      "topic": "cultura",
-      "entities": {
-        "amountEuros": 40000,
-        "referencedEntity": "Auditorio Municipal de Riba-roja de Túria"
-      },
-      "confidence": 0.75,
-      "reasoning": "El titular aporta una cifra concreta (40.000 €) de inversión municipal en un equipamiento público, contrastable con el presupuesto o las actas municipales.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "1lnhg7g-0-num",
-      "articleId": "1lnhg7g",
-      "articleFingerprint": "1hy1xq8",
-      "articleSource": "Levante-EMV",
-      "articleSourceHost": "levante-emv.com",
-      "articleUrl": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPNWpWeDdjLW1XeThCd2Q3LVlsQUg1VnZyNTA1Z0RCb3FSUk1JanFvZ1U2eGs4M3NWQkdZM045UC1ETGNwNlQ0VlhVSlJKZG9lUTZYZ3pTdUZuNkV3TmNFLWEzQmdyV2dmSUljT09QQlQxakZ6V3c2WjViVVJFRWJwbGFlUUEwdW9ueXdIRlNDOUk5TUFBeWg0Z0VSdFd4M1FIVm43eU05TUE3Qkx6UVVKbXRaXzVrOW4wSVZaY3gzYlJSdThsTjExeGRqVWhWcjkwTE000gHYAUFVX3lxTFB1U3JHcGR6dEZWSmc2WlkzSXVqOE5mVjVBck9JS2tsczFJbkRaT3BPdEFwbWdJYXE1UkV2cXVxc21qN19DaGZOc2hia2Y5MHc4T1gxdTFBX1dZanFDR2lXZ21hUzNJa3o2ZEF6cHhxYURoVmhEMC1GMUJqbDFZTWk4UDVWc0lxbjRsQWlfTTgwdUxRUUIwcGc5c05sTXFReUU3c3BBdmdFcTV1ZjdaVHVBeEhCT2lNMGp1VndaMFZSNmxlR3hadk9NT3NJZVpMbnR2Y0tLejZtag?oc=5",
-      "articleDate": "2026-08-31T07:00:00.000Z",
-      "segmentIndex": 0,
-      "segmentKind": "title",
-      "type": "afirmacion_numerica",
-      "attributedSource": "outlet",
-      "verbatim": "El Auditorio de Riba-roja de Túria invierte 40.000 euros en la modernización de sus instalaciones",
-      "context": "Titular publicado por Levante-EMV (31-08-2026) referido al Auditorio de Riba-roja de Túria. No se dispone de cuerpo de artículo adicional para contrastar detalles.",
-      "topic": "cultura",
-      "entities": {
-        "amountEuros": 40000,
-        "referencedEntity": "Auditorio de Riba-roja de Túria"
-      },
-      "confidence": 0.55,
-      "reasoning": "Cifra concreta de inversión (40.000 euros) en una instalación municipal, verificable contra presupuestos o contratos públicos.",
       "requiresHumanApproval": true
     }
   ]

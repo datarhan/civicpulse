@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-22T04:54:59.374Z",
+  "generatedAt": "2026-09-22T08:29:37.226Z",
   "clusters": [
     {
       "clusterId": "13vj4ds",
@@ -34,17 +34,12 @@
       ],
       "earliestDate": "2026-08-31T07:00:00.000Z",
       "latestDate": "2026-08-31T09:04:15.000Z",
-      "amountDrift": {
-        "min": 40000,
-        "max": 40000,
-        "spread": 0,
-        "spreadPct": 0
-      },
+      "amountDrift": null,
       "verdictMix": {
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 2,
+        "sin-datos": 0,
         "promesa-repetida": 0
       }
     },
@@ -96,8 +91,8 @@
     "triangulated3Plus": 0
   },
   "builtFrom": {
-    "plenos-agendas.json": "19b00be01864",
-    "press-claims-verified.json": "972b0280a9e7",
+    "plenos-agendas.json": "419ea7050ceb",
+    "press-claims-verified.json": "426589fc7d58",
     "press.json": "adcc40bb411f",
     "promises.json": "d18811c11210"
   }
