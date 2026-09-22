@@ -310,7 +310,7 @@ const PIEZAS = ['conteo-visitantes', 'coste-efectivo'] as const
 
 describe.each(PIEZAS)('instantánea publicada · %s', (slug) => {
   const d = JSON.parse(readFileSync(`public/data/reportajes/${slug}.json`, 'utf8')) as {
-    solicitudes: { items: EnvioSolicitud[] }
+    solicitudes: { nota: string; items: EnvioSolicitud[] }
   }
 
   it('trae solicitudes que mirar (si no, esta prueba aprobaría por no ver nada)', () => {
@@ -336,6 +336,33 @@ describe.each(PIEZAS)('instantánea publicada · %s', (slug) => {
     const claves = d.solicitudes.items.map((e) => `${e.organismo}-${e.enviadaEl}`)
     const repetidas = claves.filter((k, i) => claves.indexOf(k) !== i)
     expect(repetidas).toEqual([])
+  })
+
+  // UNA FILA PRESENTADA POR REGISTRO PERO SIN ASIENTO APUNTADO es el caso que
+  // hace mentir a la nota del pie. El canal promete un vencimiento acreditado
+  // —por eso se presentó por ahí— y la fila, sin número, lo sigue contando desde
+  // el envío. El 18-09-2026 la solicitud a la Comisión de Precios quedó así y la
+  // nota del coste efectivo decía «se presentó en el registro electrónico de la
+  // Generalitat, que sí deja asiento» y ahí se paraba: el lector salía creyendo
+  // acreditado un plazo que no lo está.
+  //
+  // Lo comprobable no es la implicatura —para eso está `review:surfaces`, que lee
+  // la página como un visitante— sino que la salvedad esté ESCRITA. Y se guarda
+  // la dirección peligrosa: quitarla deja otra vez la página afirmando de más.
+  //
+  // La guarda es condicional por naturaleza y enmudece cuando toda presentación
+  // por registro trae su asiento, que es el estado al que se quiere llegar.
+  it('si una solicitud salió por un registro y su asiento no consta, la nota lo dice', () => {
+    const sinAsiento = d.solicitudes.items.filter(
+      (e) => /registro|sede/i.test(e.via) && !e.registro,
+    )
+    if (sinAsiento.length > 0) {
+      expect(
+        d.solicitudes.nota,
+        `${sinAsiento.map((e) => e.organismo).join(', ')}: presentada por registro sin asiento ` +
+          'apuntado, y la nota no advierte de que ese número no consta',
+      ).toMatch(/no consta/)
+    }
   })
 
   it('toda respuesta publicada usa un sentido del enum', () => {
