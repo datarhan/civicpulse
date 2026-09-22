@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-20T06:35:20.149Z",
+  "generatedAt": "2026-09-22T06:58:20.872Z",
   "mandate": "2023-2027",
   "note": "Qué formación y trayectoria declara públicamente quien dirige cada área. No es una calificación: la ley no exige titulación alguna para ser concejal (a diferencia de la secretaría, la intervención y la tesorería municipales, que exigen oposición estatal). «No consta» significa que la fuente publicada no lo recoge, no que la persona carezca de ello.",
   "method": "Un modelo compara, área por área, lo que el CV publicado declara con la materia del área, citando por índice sobre esa misma lista; un curador revisa y firma cada fila antes de publicarse. Nada se publica automáticamente.",
@@ -863,7 +863,7 @@
       "formacion": {
         "value": "sin-relacion-declarada",
         "evidence": [],
-        "reason": "La formación declarada corresponde a estudios generales de educación básica y obligatoria (EGB, secundaria, acceso a universidad para mayores de 25 años), sin especialización en administración pública, gobierno local o materias afines a la Alcaldía."
+        "reason": "La formación declarada corresponde a estudios generales obligatorios y a una vía de acceso universitaria orientada a magisterio, materias distintas del gobierno municipal y la dirección institucional propias del área de Alcaldía."
       },
       "experiencia": {
         "value": "relacionada",
@@ -883,11 +883,11 @@
             ]
           }
         ],
-        "reason": "El puesto de asesor institucional en una diputación y la condición de funcionario de la Administración Local corresponden a la materia de gestión institucional y administración local propia del área de Alcaldía; la actividad autónoma en energías renovables y seguridad no guarda relación con esa materia.",
+        "reason": "Se declaran un puesto de asesoramiento en una institución provincial y un puesto de funcionario de la Administración Local en un ayuntamiento, ámbitos que coinciden con la materia de gobierno y administración municipal del área de Alcaldía.",
         "respaldo": "autodeclarada"
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-04"
+      "curatedAt": "2026-09-22"
     },
     {
       "officialSlug": "robert-raga-gadea",
@@ -897,15 +897,15 @@
       "formacion": {
         "value": "sin-relacion-declarada",
         "evidence": [],
-        "reason": "La formación declarada corresponde a educación general obligatoria y acceso a la universidad para mayores de 25 años, sin especialidad ni contenido relacionado con innovación."
+        "reason": "La formación declarada se limita a educación general básica y a una vía de acceso a la universidad con matriculación en magisterio, sin contenidos de innovación, tecnología, digitalización o I+D."
       },
       "experiencia": {
         "value": "sin-relacion-declarada",
         "evidence": [],
-        "reason": "Ninguna experiencia declarada (asesoría institucional, autónomo en energías renovables y seguridad, funcionariado de administración local) menciona materias de innovación, tecnología, digitalización o I+D+i."
+        "reason": "Los puestos declarados (asesoría institucional, actividad por cuenta propia en energías renovables y seguridad, y función pública local) no enuncian cometidos de innovación, desarrollo tecnológico o I+D."
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-04"
+      "curatedAt": "2026-09-22"
     },
     {
       "officialSlug": "robert-raga-gadea",
@@ -915,15 +915,15 @@
       "formacion": {
         "value": "sin-relacion-declarada",
         "evidence": [],
-        "reason": "La formación declarada corresponde a estudios de magisterio EGB, educación secundaria obligatoria y acceso a la universidad para mayores de 25 años, sin especialización en planificación estratégica, gestión de proyectos o relaciones de cooperación nacional e internacional."
+        "reason": "Los estudios declarados son de nivel básico y de acceso general a la universidad, sin contenido declarado en planificación estratégica, gestión de proyectos o cooperación entre administraciones."
       },
       "experiencia": {
         "value": "sin-relacion-declarada",
         "evidence": [],
-        "reason": "Ninguna entrada menciona explícitamente planificación estratégica, gestión de grandes proyectos o cooperación nacional/internacional: se citan asesoría institucional sin materia especificada, actividad autónoma en energías renovables y seguridad, y una plaza de funcionario de administración local en excedencia, ninguna vinculada por su descripción a la materia del área."
+        "reason": "Los puestos declarados se enuncian por su encuadre orgánico o sectorial (asesoramiento institucional, actividad privada en energías renovables y seguridad, condición de funcionario local) sin especificar funciones de planificación estratégica, grandes proyectos o cooperación nacional e internacional."
       },
       "curatedBy": "Sergei Lutchenko",
-      "curatedAt": "2026-08-04"
+      "curatedAt": "2026-09-22"
     },
     {
       "officialSlug": "teresa-pozuelo-martin",
