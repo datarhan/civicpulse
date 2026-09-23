@@ -116,7 +116,7 @@ function main() {
   console.error(`[check-surfaces] ${parte}`)
   console.error(
     `[check-surfaces] ${leidas} de ${rutas.length} al día · ` +
-      'el barrido es scripts/review-sweep.sh (cron 07:30); a mano: npm run review:surfaces -- --all',
+      'el barrido es scripts/review-sweep.sh (launchd, lunes y jueves 07:30); a mano: npm run review:surfaces -- --all',
   )
   process.exitCode = 1
 }

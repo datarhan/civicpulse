@@ -341,7 +341,9 @@ async function gather(): Promise<Observations> {
         // «añade fondos a OpenAI» de remedio. Pagar no habría cambiado nada.
         // Ver `src/scraper/transcribe-blocklist.ts`.
         pending: transcriptionPending(transcribable, transcripts),
-        stallDays: 3,
+        // hallazgos corre lunes y jueves: una cola que deja el jueves espera al
+        // lunes (cuatro días) sin estar atascada.
+        stallDays: 5,
         cause: openaiCause,
       },
       {
@@ -368,7 +370,8 @@ async function gather(): Promise<Observations> {
           ? new Date(statSync(resolve(DATA, 'pleno-claims-suggestions.json')).mtimeMs)
           : null,
         pending: [...transcripts].filter((id) => !extracted.has(id)).length,
-        stallDays: 2,
+        // Misma pasada de lunes y jueves que la transcripción.
+        stallDays: 5,
         cause: null,
       },
     ],

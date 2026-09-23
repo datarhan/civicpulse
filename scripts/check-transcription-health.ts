@@ -32,10 +32,11 @@ const PLENOS = resolve('public/data/plenos.json')
 const VIDEOS = resolve('public/data/pleno-videos.json')
 
 /** No transcript in this long, with work outstanding, counts as stalled.
- *  Overridable so the alert path itself can be exercised without waiting three
- *  days for a real stall — an alerting system nobody has ever seen fire is an
+ *  Five days because hallazgos runs Mon+Thu, so a Thursday backlog waits four
+ *  days for Monday without being stuck. Overridable so the alert path itself
+ *  can be exercised without waiting for a real stall — an alerting system nobody has ever seen fire is an
  *  alerting system nobody knows works. */
-const STALL_DAYS = Number(process.env.TRANSCRIPTION_STALL_DAYS ?? 3)
+const STALL_DAYS = Number(process.env.TRANSCRIPTION_STALL_DAYS ?? 5)
 /** Do not repeat an unchanged alert more often than this. */
 const RENOTIFY_DAYS = 7
 

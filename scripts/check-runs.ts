@@ -37,8 +37,10 @@ import {
  *  - **Only instrumented passes.** A script that never calls `startRun` would
  *    be permanently overdue, and a check that is always red is a check
  *    everybody switches off. `assertExpectationsAreReal` enforces it.
- *  - **Slack, not the nominal period.** A daily pass gets 48h, so one missed
- *    night is quiet and two are loud.
+ *  - **Slack, not the nominal period.** The budget covers the longest normal
+ *    gap plus one missed run, so one miss is quiet and two are loud. Since
+ *    2026-09-23 the LLM agents run Mon+Thu (longest gap Thu→Mon, 96h) or on
+ *    Mondays (168h); both get 192h. Daily, they had 48h.
  */
 interface ExpectedPass {
   script: string
@@ -60,8 +62,8 @@ interface ExpectedPass {
 export const EXPECTED_PASSES: ExpectedPass[] = [
   {
     script: 'extract-pleno-claims',
-    everyHours: 48,
-    scheduler: 'hallazgos-pipeline (diario 09:30)',
+    everyHours: 192,
+    scheduler: 'hallazgos-pipeline (lun+jue 09:30)',
     soloCurador: true,
   },
   {
@@ -75,11 +77,11 @@ export const EXPECTED_PASSES: ExpectedPass[] = [
     // Con manifiesto, dos cosas saltan solas: una pasada que corre y no
     // consigue veredictos (`nothing-attempted` + `backend-refusing`), y una
     // pasada que directamente deja de correr. La segunda era la que no tenía
-    // forma de verse. Mismo margen de 48 h que sus vecinas: una mañana perdida
-    // es silencio, dos son ruido.
+    // forma de verse. Semanal desde el 2026-09-23: 168 h entre pasadas y un día
+    // de margen. Un lunes perdido todavía es silencio; dos, no.
     script: 'auto-curate-promises',
-    everyHours: 48,
-    scheduler: 'launchd com.civicpulse.auto-curate-promises (diario 08:30)',
+    everyHours: 192,
+    scheduler: 'launchd com.civicpulse.auto-curate-promises (semanal, lun 08:30)',
     soloCurador: true,
   },
   {
@@ -87,11 +89,11 @@ export const EXPECTED_PASSES: ExpectedPass[] = [
     // for weeks against a 21-session backlog. Its failure modes are all quiet
     // ones: no GEMINI_API_KEY skips the step with a log line, an exhausted
     // quota stops it, and a backlog query that returns nothing looks identical
-    // to a backlog that is finished. Same 48h slack as the pass beside it —
-    // one missed night is quiet, two are loud.
+    // to a backlog that is finished. Same slack as the pass beside it — it
+    // rides the same Mon+Thu run.
     script: 'extract-speaker-map',
-    everyHours: 48,
-    scheduler: 'hallazgos-pipeline (diario 09:30)',
+    everyHours: 192,
+    scheduler: 'hallazgos-pipeline (lun+jue 09:30)',
     soloCurador: true,
   },
 ]
