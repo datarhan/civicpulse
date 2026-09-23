@@ -1,6 +1,7 @@
 #!/usr/bin/env tsx
 /**
- * Transcribe one local audio/video file via Whisper. Used by the
+ * Transcribe one local audio/video file (Whisper locally, gpt-transcribe
+ * on the `openai` engine). Used by the
  * curator dashboard (via the job runner) to ingest non-pleno
  * evidence — press conferences, citizen recordings, etc.
  *
@@ -20,7 +21,15 @@
  * trigger (curator transcripts aren't plenos).
  */
 import { spawnSync } from 'node:child_process'
-import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
+import {
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readdirSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from 'node:fs'
 import { tmpdir } from 'node:os'
 import { basename, join } from 'node:path'
 
@@ -95,47 +104,53 @@ function reencodeToOpus(inPath: string, outPath: string): void {
   if (r.status !== 0) throw new Error(`ffmpeg re-encode failed (exit ${r.status})`)
 }
 
-/** OpenAI Whisper API branch. Splits into ≤24 MB chunks if needed.
- *  Mirrors transcribe-pleno.sh's chunking logic but runs via Node. */
+/** OpenAI transcription branch. Always splits into 20-min chunks, the
+ *  same window transcribe-pleno.sh uses.
+ *
+ *  Chunked by DURATION, not by bytes. The old ≤24 MB test sent anything
+ *  under ~2 h (24 kbps opus) as ONE request — the shape the 2026-07-29
+ *  postmortem caught degenerating into hallucination loops.
+ *
+ *  gpt-transcribe, NOT whisper-1. Measured 2026-09-23 on 15uvjew
+ *  [3600, 4810)s: whisper-1 with `language=es` put the Valencian turns
+ *  into Spanish — «aprofitant el vot a favor que tenim» came back as
+ *  «aprovechando el voto a favor que tenemos», a sentence the councillor
+ *  never said — while gpt-transcribe kept it verbatim. `languages[]=ca`
+ *  + `es` declares the chamber's two tongues without forcing either.
+ *  No `keywords`: this path ingests arbitrary recordings, and a fixed
+ *  vocabulary biases every one of them toward names that may not be
+ *  in the audio. */
 async function transcribeOpenAI(opusPath: string, workdir: string): Promise<string> {
   const apiKey = process.env.OPENAI_API_KEY
   if (!apiKey) throw new Error('OPENAI_API_KEY not set')
-  const sizeBytes = (() => {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const fs: typeof import('node:fs') = require('node:fs')
-    return fs.statSync(opusPath).size
-  })()
-  const CHUNK_BYTES = 24 * 1024 * 1024
-  let chunkPaths: string[]
-  if (sizeBytes <= CHUNK_BYTES) {
-    chunkPaths = [opusPath]
-  } else {
-    logProgress(`splitting ${sizeBytes} bytes into chunks…`)
-    const chunkDir = join(workdir, 'chunks')
-    spawnSync('mkdir', ['-p', chunkDir])
-    spawnSync('ffmpeg', [
-      '-hide_banner',
-      '-loglevel',
-      'error',
-      '-y',
-      '-i',
-      opusPath,
-      '-f',
-      'segment',
-      '-segment_time',
-      '1200',
-      '-c',
-      'copy',
-      join(chunkDir, 'chunk-%03d.ogg'),
-    ])
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const fs: typeof import('node:fs') = require('node:fs')
-    chunkPaths = fs
-      .readdirSync(chunkDir)
-      .filter((f) => f.startsWith('chunk-'))
-      .sort()
-      .map((f) => join(chunkDir, f))
-  }
+  // The key goes in a 0600 header file, not on curl's argv: the process
+  // table is world-readable for the whole upload.
+  const authHeader = join(workdir, 'auth.header')
+  writeFileSync(authHeader, `Authorization: Bearer ${apiKey}\n`, { mode: 0o600 })
+  const chunkDir = join(workdir, 'chunks')
+  mkdirSync(chunkDir, { recursive: true })
+  const seg = spawnSync('ffmpeg', [
+    '-hide_banner',
+    '-loglevel',
+    'error',
+    '-y',
+    '-i',
+    opusPath,
+    '-f',
+    'segment',
+    '-segment_time',
+    '1200',
+    '-c',
+    'copy',
+    join(chunkDir, 'chunk-%03d.ogg'),
+  ])
+  if (seg.status !== 0) throw new Error(`ffmpeg segment failed (exit ${seg.status})`)
+  const chunkPaths = readdirSync(chunkDir)
+    .filter((f) => f.startsWith('chunk-'))
+    .sort()
+    .map((f) => join(chunkDir, f))
+  if (chunkPaths.length === 0) throw new Error('ffmpeg produced no chunks')
+  if (chunkPaths.length > 1) logProgress(`split into ${chunkPaths.length} chunks of ≤20 min`)
 
   const segments: string[] = []
   for (let idx = 0; idx < chunkPaths.length; idx++) {
@@ -143,42 +158,59 @@ async function transcribeOpenAI(opusPath: string, workdir: string): Promise<stri
     // OpenAI multipart upload via curl — same approach as the bash
     // pipeline so we stay close to a known-good code path.
     const respPath = join(workdir, `resp-${idx}.json`)
-    const cr = spawnSync(
-      'curl',
-      [
-        '-sS',
-        '-o',
-        respPath,
-        '-w',
-        '%{http_code}',
-        'https://api.openai.com/v1/audio/transcriptions',
-        '-H',
-        `Authorization: Bearer ${apiKey}`,
-        '-F',
-        `file=@${chunkPaths[idx]}`,
-        '-F',
-        'model=whisper-1',
-        '-F',
-        'language=es',
-        '-F',
-        'response_format=verbose_json',
-      ],
-      { encoding: 'utf8' },
-    )
-    const httpCode = cr.stdout?.trim() ?? '000'
-    if (cr.status !== 0 || httpCode !== '200') {
+    // Retries with backoff, as in transcribe-pleno.sh: a dropped upload
+    // (curl exit, HTTP 000) happens on a 20-min chunk and is not a verdict.
+    let httpCode = '000'
+    let curlErr = ''
+    for (let attempt = 0; attempt < 4; attempt++) {
+      if (attempt > 0) {
+        logProgress(`chunk ${idx + 1} retry ${attempt}/3 (prev HTTP ${httpCode})`)
+        await new Promise((r) => setTimeout(r, 2 ** attempt * 1000))
+      }
+      rmSync(respPath, { force: true })
+      const cr = spawnSync(
+        'curl',
+        [
+          '-sS',
+          '--connect-timeout',
+          '30',
+          '--max-time',
+          '1800',
+          '-o',
+          respPath,
+          '-w',
+          '%{http_code}',
+          'https://api.openai.com/v1/audio/transcriptions',
+          '-H',
+          `@${authHeader}`,
+          '-F',
+          `file=@${chunkPaths[idx]}`,
+          '-F',
+          `model=${process.env.OPENAI_TRANSCRIBE_FILE_MODEL || 'gpt-transcribe'}`,
+          '-F',
+          'languages[]=ca',
+          '-F',
+          'languages[]=es',
+          '-F',
+          'response_format=json',
+        ],
+        { encoding: 'utf8' },
+      )
+      httpCode = cr.stdout?.trim() || '000'
+      curlErr = cr.stderr?.trim() ?? ''
+      if (cr.status === 0 && httpCode === '200') break
+      // A 4xx other than 429 is the request itself; retrying repeats it.
+      if (/^4\d\d$/.test(httpCode) && httpCode !== '429') break
+    }
+    if (httpCode !== '200') {
       const body = existsSync(respPath) ? readFileSync(respPath, 'utf8') : '(no body)'
-      throw new Error(`OpenAI ${httpCode}: ${body.slice(0, 200)}`)
+      throw new Error(`OpenAI ${httpCode}: ${body.slice(0, 200)} ${curlErr.slice(0, 200)}`.trim())
     }
-    const data = JSON.parse(readFileSync(respPath, 'utf8')) as {
-      text?: string
-      segments?: Array<{ text?: string }>
-    }
-    if (Array.isArray(data.segments) && data.segments.length > 0) {
-      for (const s of data.segments) if (s.text) segments.push(s.text.trim())
-    } else if (data.text) {
-      segments.push(data.text.trim())
-    }
+    const data = JSON.parse(readFileSync(respPath, 'utf8')) as { text?: string }
+    // An empty chunk is a hole in the middle of the transcript, not
+    // silence: fail rather than join around it.
+    if (!data.text?.trim()) throw new Error(`chunk ${idx + 1} came back with no text`)
+    segments.push(data.text.trim())
   }
   return segments.join(' ').replace(/\s+/g, ' ').trim()
 }
@@ -232,7 +264,11 @@ async function main() {
   const opts = parseArgs(process.argv.slice(2))
   const startedAt = Date.now()
   const workdir = mkdtempSync(join(tmpdir(), 'cp-curator-trx-'))
-  logProgress(`engine=${opts.engine} model=${opts.whisperModel} file=${opts.path}`)
+  const model =
+    opts.engine === 'openai'
+      ? process.env.OPENAI_TRANSCRIBE_FILE_MODEL || 'gpt-transcribe'
+      : opts.whisperModel
+  logProgress(`engine=${opts.engine} model=${model} file=${opts.path}`)
   try {
     const opus = join(workdir, 'audio.ogg')
     logProgress('re-encoding to 16 kHz mono opus…')
@@ -278,6 +314,3 @@ main().catch((err) => {
   )
   process.exit(1)
 })
-
-// Silence unused-import linter when fs is loaded via require above.
-void writeFileSync
