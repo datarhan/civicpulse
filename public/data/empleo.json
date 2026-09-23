@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-09-22T09:49:05.479Z",
+  "generatedAt": "2026-09-23T09:41:07.365Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 62,
-    "openTotal": 61,
-    "inRibaRoja": 37,
-    "closingSoon": 14,
-    "withDetail": 62,
+    "total": 61,
+    "openTotal": 60,
+    "inRibaRoja": 36,
+    "closingSoon": 15,
+    "withDetail": 61,
     "byMonth": {
       "2026-09": 21,
       "2026-08": 27,
-      "2026-07": 5,
+      "2026-07": 4,
       "2026-06": 1,
       "2026-05": 3,
       "2026-04": 2,
@@ -4176,87 +4176,6 @@
             "experiencia": "1 Años, 6 Meses"
           }
         ]
-      }
-    },
-    {
-      "id": "2500",
-      "fo": 2500,
-      "codigo": "2026/00199",
-      "titulo": "Chofer camión",
-      "publishedAt": "2026-07-22",
-      "deadline": "2026-09-22",
-      "location": "FERCOMETAL S.L. Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2500",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00199"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Chofer camión"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Somos una empresa dedicada al reciclaje de metales no férricos. Necesitamos incorporación con ganas de trabajar y de quedarse en una empresa familiar que lleva más de 50 años dedicada a la recuperación. Buscamos una persona que pueda hacer funciones tanto de chófer como de peón. - Se valorará positivamente manejo de pulpo - Se valorará positivamente carnet E"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "INDUSTRIA MANUFACTURERA"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "FERCOMETAL S.L., Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46394"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Parcial Turnos: Turno partido"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "Jornada parcial con 1h30' para comer y 30' de almuerzo. En Julio hacemos los viernes intensivos."
-          },
-          {
-            "label": "Horario",
-            "value": "De 7:30 - 18:00"
-          },
-          {
-            "label": "Salario",
-            "value": "22.000 brutos anuales"
-          },
-          {
-            "label": "Funciones",
-            "value": "-Realizará las operaciones de carga y descarga con camión 3 ejes o tráiler (en caso de tener el carnet E) -Recogida de materiales metalúrgicos. -Clasificación de los materiales, empaquetar materiales, etc..."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "numPuestos": "1",
-        "observaciones": "Somos una empresa dedicada al reciclaje de metales no férricos. Necesitamos incorporación con ganas de trabajar y de quedarse en una empresa familiar que lleva más de 50 años dedicada a la recuperación. Buscamos una persona que pueda hacer funciones tanto de chófer como de peón. - Se valorará positivamente manejo de pulpo - Se valorará positivamente carnet E",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46394",
-        "jornada": "Parcial Turnos: Turno partido",
-        "horario": "De 7:30 - 18:00",
-        "salario": "22.000 brutos anuales",
-        "funciones": "-Realizará las operaciones de carga y descarga con camión 3 ejes o tráiler (en caso de tener el carnet E) -Recogida de materiales metalúrgicos. -Clasificación de los materiales, empaquetar materiales, etc...",
-        "vehiculo": "Sí",
-        "ocupaciones": []
       }
     },
     {

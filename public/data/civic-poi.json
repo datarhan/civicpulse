@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-22T09:39:06.780Z",
+  "generatedAt": "2026-09-23T09:33:56.773Z",
   "source": {
     "platform": "OSM Overpass API",
     "endpoint": "https://overpass-api.de/api/interpreter",
@@ -263,6 +263,14 @@
       "lng": -0.5797717
     },
     {
+      "id": "way-33654935",
+      "name": "Parc Municipal Montealcedo",
+      "category": "verde",
+      "kind": "park",
+      "lat": 39.5528084,
+      "lng": -0.5415844
+    },
+    {
       "id": "way-551533189",
       "name": "Plaça de Miguel Hernández",
       "category": "verde",
@@ -280,14 +288,14 @@
     }
   ],
   "stats": {
-    "total": 34,
+    "total": 35,
     "byCategory": {
       "civico": 5,
       "cultura": 4,
       "deporte": 7,
       "educacion": 11,
       "salud": 3,
-      "verde": 4
+      "verde": 5
     }
   }
 }

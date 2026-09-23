@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-23T08:59:43.230Z",
+  "generatedAt": "2026-09-23T09:43:14.938Z",
   "clusters": [
     {
       "clusterId": "13vj4ds",
@@ -44,27 +44,6 @@
       }
     },
     {
-      "clusterId": "1l29f9c",
-      "articleIds": [
-        "go2bww",
-        "zkv39w"
-      ],
-      "outlets": [
-        "Ayuntamiento de Riba-roja de Túria",
-        "Levante-EMV"
-      ],
-      "earliestDate": "2026-08-28T07:00:00.000Z",
-      "latestDate": "2026-08-28T07:40:38.000Z",
-      "amountDrift": null,
-      "verdictMix": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      }
-    },
-    {
       "clusterId": "o69qn8",
       "articleIds": [
         "1p0chgo",
@@ -87,13 +66,13 @@
     }
   ],
   "stats": {
-    "totalClusters": 4,
+    "totalClusters": 3,
     "triangulated3Plus": 0
   },
   "builtFrom": {
-    "plenos-agendas.json": "00fc1d0df4cb",
+    "plenos-agendas.json": "f7c39716f7fe",
     "press-claims-verified.json": "426589fc7d58",
-    "press.json": "e97cd1cd9883",
+    "press.json": "42dc5ae698de",
     "promises.json": "d18811c11210"
   }
 }

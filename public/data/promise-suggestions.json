@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-09-22T09:51:01.782Z",
+  "generatedAt": "2026-09-23T09:42:56.688Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
   "counts": {
     "total": 23,
     "byProposedStatus": {
-      "en-progreso": 6,
-      "documentada": 17
+      "en-progreso": 7,
+      "documentada": 16
     },
     "llmEvidence": 0
   },
@@ -76,10 +76,20 @@
             "millon",
             "euro"
           ]
+        },
+        {
+          "url": "https://regmeet.com/aytoribarroja/participaciones/87ae6fb631f7c8a627e8e28785d9992d?idioma=castellano",
+          "date": "2026-07-06",
+          "quote": "Modificación Bases Ejecución Presupuesto Municipal 2026",
+          "kind": "pleno",
+          "matchedKeywords": [
+            "presupuesto",
+            "2026"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-22T09:51:01.676Z"
+      "generatedAt": "2026-09-23T09:42:56.557Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -109,7 +119,7 @@
           "date": "2026-04-08",
           "quote": "Sanidad avanza en los trámites para la construcción del nuevo centro de salud de Riba-roja de Túria que contará con una inversión de 8,3 millones de euros",
           "kind": "press",
-          "publisher": "Comunica GVA",
+          "publisher": "comunica.gva.es",
           "matchedKeywords": [
             "inversion",
             "millon",
@@ -151,13 +161,29 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-22T09:51:01.676Z"
+      "generatedAt": "2026-09-23T09:42:56.557Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
       "proposedStatus": "documentada",
-      "confidence": 0.287,
+      "confidence": 0.4,
       "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxObV9RSjA1QVNRSHZneEtGcXhKaE5EeXdNb1ZxdzNLZlNEZEJJVW5MdV9tNGVBLTJMY2RaX2R5SXEyVHRmajM5N3M4VTlLMWFtamFuNjRiVUloM2tsb09ZQ1JsRUdRUU9rZmRKQks1Zk5KNzRYUGVEcGg4SUVKYWFnOUNJanBSMmxoaHVwNm5IaXBHV3dsN1ZvNVN0VldiQUxFQUZnWkRGX2JGWWx6MGluRDNoSEJuWVN3YWpMdFI5dnpMQ0tKeV8wcThmU1VfS1BqLVpLdVhEaGhpRktW0gHiAUFVX3lxTFA5TU8zTGhDSW5NSzJOUVlZVEdRbEgzSFpPaU43NWtZOW9kdTZuNmZPbHNaVlFpVW9MX3VPV0VUUnNRZ0s4NUtHM0RhSnM0SkJjVXlVb245UXFaSWllWlpGTW9kaWxYV0RQWnlPdmFEYlVMVHNudU5KMkJ5a2RvRF9adHhZRHFqdmpyR1BwR2hyY1ZxMTF1WS11dmV4NFZVcWM2Q2RMa0VpblR4NmN2SWZRcHdVSVVRbmlVNWZiQVZDc25COFlXVWJsLWhXUHlrOThwQ29IV25UbU03Y3l6ZW02V0E?oc=5",
+          "date": "2026-02-10",
+          "quote": "Riba-roja de Túria recibirá 9,5 millones de fondos europeos tras la dana para su reconstrucción",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "reconstruccion",
+            "dana",
+            "millon",
+            "fondo",
+            "europeo",
+            "recibira",
+            "tras"
+          ]
+        },
         {
           "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-ejecuta-a-buen-ritmo-las-inversiones-hidr%C3%A1ulicas-en-el-marco-de-la-reconstrucci%C3%B3n-tras-la-dana",
           "date": "2026-09-04",
@@ -203,21 +229,10 @@
             "dana",
             "tras"
           ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQMFIxMi1hRmdyRlFDNWxETmNkX2tldkVZTEpSSC0tZWptTEdwSE81b1k1cFJKaVpYVVVhQ2puN1c5N1VzMXhwXzRtNzA5QVpFVll2ZjBhcF9fbjNHeVBPSndoTVl6UWdwTWxPUGc4OHZaall3aUR3REJMNlozTkpvUjNMVFhZVXM0LWY3Z2ZGeU03WU5JS0ExSG9COEN3RFdfXzB5ZTFBZkc5dWtVZHFXbXMwelVMUHJuWE1r?oc=5",
-          "date": "2026-05-11",
-          "quote": "Iberdrola España invierte más de 10 millones de euros en Riba-roja para la renovación de instalaciones afectadas por la DANA",
-          "kind": "press",
-          "publisher": "iberdrolaespana.com",
-          "matchedKeywords": [
-            "dana",
-            "millon"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-22T09:51:01.676Z"
+      "generatedAt": "2026-09-23T09:42:56.557Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
@@ -248,7 +263,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-22T09:51:01.676Z"
+      "generatedAt": "2026-09-23T09:42:56.557Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -312,6 +327,16 @@
           ]
         },
         {
+          "url": "https://regmeet.com/aytoribarroja/participaciones/3e195b0793297114c668f772c6e2d9ba?idioma=castellano",
+          "date": "2026-09-07",
+          "quote": "Comercio · Dación cuenta al Pleno de la información trimestral correspondiente al Segundo Trimestre de 2026: Cálculo del Período Medio de Pago a proveedores e Informe trimestral de seguimiento de deuda comercial",
+          "kind": "pleno",
+          "matchedKeywords": [
+            "2026",
+            "periodo"
+          ]
+        },
+        {
           "url": "https://regmeet.com/aytoribarroja/participaciones/74791edf1f8e8b8289a5067737630874?idioma=castellano",
           "date": "2026-05-11",
           "quote": "Comercio · Dación cuenta al Pleno de la información trimestral correspondiente al Primer Trimestre de 2026: Cálculo del Período Medio de Pago aproveedores e Informe trimestral de seguimiento de deuda comercial",
@@ -333,7 +358,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-22T09:51:01.676Z"
+      "generatedAt": "2026-09-23T09:42:56.557Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -376,21 +401,10 @@
             "medio",
             "ambiente"
           ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxNd1N5clNhOXBTNXpQcVlvRE13VFZiS09fYVJSeFlSNktUeThHbHhjQXVXQWJpUWRRZ25TVW84ajJRbExmTTR5aXl1QkdpR0c4QkhKZ0ItOHV2R3k3MGZGM1FvMFh6YmpGNnFYQ01tN3FzSnFNVHI2TlQ3c3E0eVNkdTlXbVBuQmF2QjZPaGEwRmU0NWx2RnU4NVFvdzF3bjdhdElCUGZ5UlU2U0hHdlpjU2RUTnRPNDZoUndNWVlLTEtOLUVNdGVXcE9SWDF1QkVxS0FUZE5PT1FDelNDeHVUSE130gHnAUFVX3lxTE9KWkxNTFFPbVNQNWtMRGl0bHJRRjdKdDFXWW1CblNVQXpfRldsczBMVWc3cG1seFpyeFhFZkQzQjJEbzBQblVRYkJudXAwcGM4UUN0ZzdOYmY0dlVkZUpudENvTmNNY2FLV3NfT3p6T013X184aE93RmhZbHBWU3ZSN3RLNDc5bkZURGl3WHBCU3NiYTRiTTByekdNV085WHRiVUdLeXZBREx5bFA0TkxlaW1mVE5aemUwbjdoamR0UGdWeGNOYVNud1l2NkJ1M0ludXpGVmNnQTFVWGJ3UXRaVVJhbkxIdw?oc=5",
-          "date": "2026-05-14",
-          "quote": "Riba-roja instala una malla en ocho hectáreas del Parc Natural del Túria para frenar especies invasoras y minimizar el riesgo de incendios",
-          "kind": "press",
-          "publisher": "Levante-EMV",
-          "matchedKeywords": [
-            "parc",
-            "natural"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-22T09:51:01.676Z"
+      "generatedAt": "2026-09-23T09:42:56.557Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -436,10 +450,20 @@
             "presupuesto",
             "2026"
           ]
+        },
+        {
+          "url": "https://regmeet.com/aytoribarroja/participaciones/87ae6fb631f7c8a627e8e28785d9992d?idioma=castellano",
+          "date": "2026-07-06",
+          "quote": "Modificación Bases Ejecución Presupuesto Municipal 2026",
+          "kind": "pleno",
+          "matchedKeywords": [
+            "presupuesto",
+            "2026"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-22T09:51:01.676Z"
+      "generatedAt": "2026-09-23T09:42:56.557Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -447,7 +471,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-22T09:51:01.676Z"
+      "generatedAt": "2026-09-23T09:42:56.557Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -455,7 +479,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-22T09:51:01.676Z"
+      "generatedAt": "2026-09-23T09:42:56.557Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -501,7 +525,7 @@
           "date": "2026-04-08",
           "quote": "Sanidad avanza en los trámites para la construcción del nuevo centro de salud de Riba-roja de Túria que contará con una inversión de 8,3 millones de euros",
           "kind": "press",
-          "publisher": "Comunica GVA",
+          "publisher": "comunica.gva.es",
           "matchedKeywords": [
             "millon",
             "euro"
@@ -520,7 +544,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-22T09:51:01.676Z"
+      "generatedAt": "2026-09-23T09:42:56.557Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -543,7 +567,7 @@
           "date": "2026-04-08",
           "quote": "Sanidad avanza en los trámites para la construcción del nuevo centro de salud de Riba-roja de Túria que contará con una inversión de 8,3 millones de euros",
           "kind": "press",
-          "publisher": "Comunica GVA",
+          "publisher": "comunica.gva.es",
           "matchedKeywords": [
             "avanza",
             "inversion"
@@ -551,12 +575,12 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-22T09:51:01.676Z"
+      "generatedAt": "2026-09-23T09:42:56.557Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
-      "proposedStatus": "documentada",
-      "confidence": 0.175,
+      "proposedStatus": "en-progreso",
+      "confidence": 0.35,
       "reasoning": [
         {
           "url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxQaGRtV2FkRDFueG5qdm1JUDJkdWNOQVI5LURwSmtzVnFNUGdxblAxRjVPODM5RXJfdk0tQU1yVjJWRVNQXzJkcnRNRHdYNFpLMlpteFJSQk9obmw5cW1iM2g4V093c2JVX0IzcGxBbmw2THFrMnk4UWlfQ1hHWWpFVmFseTlGOTlqdlcxMEJTa3JRR3BaMVJwc1RERlY5MXZQMUZMbmlrWE5qME0tN0NSSVA4ZFlKV3JJTURjLUJYTTl1T2F2ZFpUTElrQzB2U2ZzQnVrODg0TzB5cGdxNnMwSVB4NG5aRnBISFE4ZTNfY2lkeHJtUlVGcTdPeFg2RjhKc1MxaA?oc=5",
@@ -567,6 +591,17 @@
           "matchedKeywords": [
             "gestion",
             "municipio"
+          ]
+        },
+        {
+          "url": "https://regmeet.com/aytoribarroja/participaciones/9e406957d45fcb6c6f38c2ada7bace91?idioma=castellano",
+          "date": "2026-07-27",
+          "quote": "Contratación · CONTRATACIÓN, Adjudicación del contrato de concesión del servicio público de abastecimiento de agua potable, servicio de gestión de alcantarillado, control de vertidos y depuración del municipio Riba-roja de Túria, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación y con cláusulas medioambientales y con condición especial de ejecución de carácter medioambiental y social. (Ctto. 27/2018)",
+          "kind": "pleno",
+          "matchedKeywords": [
+            "gestion",
+            "municipio",
+            "servicio"
           ]
         },
         {
@@ -589,26 +624,29 @@
             "gestion",
             "servicio"
           ]
-        },
-        {
-          "url": "https://regmeet.com/aytoribarroja/participaciones/895daa408f494ad58006c47a30f51c1f?idioma=castellano",
-          "date": "2026-03-09",
-          "quote": "Medio ambiente · Asunto de Urgencia. Acuerdo relativo a la resolución definitiva del contrato \"servicio de recogida de residuos sólidos urbanos, poda y voluminosos del municipio” (expte. 136/2025 – lote 1) por incumplimiento culpable del contratista, previa resolución de las alegaciones formuladas",
-          "kind": "pleno",
-          "matchedKeywords": [
-            "municipio",
-            "servicio"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-22T09:51:01.676Z"
+      "generatedAt": "2026-09-23T09:42:56.557Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
       "proposedStatus": "documentada",
       "confidence": 0,
       "reasoning": [
+        {
+          "url": "https://regmeet.com/aytoribarroja/participaciones/87ae6fb631f7c8a627e8e28785d9992d?idioma=castellano",
+          "date": "2026-07-06",
+          "quote": "Moción conjunta de los Grupos Municipales Socialista de Riba-roja, Compromís per Riba-roja i EU-Podem por la defensa de la dignidad del profesorado valenciano i la exigencia de una negociación justa y real",
+          "kind": "pleno",
+          "matchedKeywords": [
+            "mocion",
+            "grupo",
+            "socialista",
+            "compromi",
+            "podem"
+          ]
+        },
         {
           "url": "https://regmeet.com/aytoribarroja/participaciones/39ea40e164f970c54b0530436d5a9f7a?idioma=castellano",
           "date": "2026-06-01",
@@ -623,20 +661,9 @@
           ]
         },
         {
-          "url": "https://regmeet.com/aytoribarroja/participaciones/39ea40e164f970c54b0530436d5a9f7a?idioma=castellano",
-          "date": "2026-06-01",
-          "quote": "Moción del Grupo Municipal Socialista de Riba-roja para exigir a la Generalitat Valenciana la ejecución del proyecto de prolongación de la línea 9 de Metrovalencia al centro urbano y construcción de la pasarela peatonal de València la Vella",
-          "kind": "pleno",
-          "matchedKeywords": [
-            "mocion",
-            "grupo",
-            "socialista"
-          ]
-        },
-        {
-          "url": "https://regmeet.com/aytoribarroja/participaciones/74791edf1f8e8b8289a5067737630874?idioma=castellano",
-          "date": "2026-05-11",
-          "quote": "Cultura · Moción del Grupo Municipal Socialista de Riba-roja de medidas para fomentar en la ciudadanía la cultura de la prevención y de la autoprotección frente las emergencias",
+          "url": "https://regmeet.com/aytoribarroja/participaciones/87ae6fb631f7c8a627e8e28785d9992d?idioma=castellano",
+          "date": "2026-07-06",
+          "quote": "Salud · Moción del Grupo Municipal Socialista de Riba-roja para la protección de la salud pública, la calidad de vida y la sostenibilidad territorial en el término municipal de Riba-roja de Túria ante el incremento de la actividad aeroportuaria del Aeropuerto de València-Manises",
           "kind": "pleno",
           "matchedKeywords": [
             "mocion",
@@ -646,7 +673,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-22T09:51:01.676Z"
+      "generatedAt": "2026-09-23T09:42:56.557Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -665,6 +692,19 @@
           ]
         },
         {
+          "url": "https://regmeet.com/aytoribarroja/participaciones/87ae6fb631f7c8a627e8e28785d9992d?idioma=castellano",
+          "date": "2026-07-06",
+          "quote": "Moción conjunta de los Grupos Municipales Socialista de Riba-roja, Compromís per Riba-roja i EU-Podem por la defensa de la dignidad del profesorado valenciano i la exigencia de una negociación justa y real",
+          "kind": "pleno",
+          "matchedKeywords": [
+            "mocion",
+            "grupo",
+            "socialista",
+            "compromi",
+            "podem"
+          ]
+        },
+        {
           "url": "https://regmeet.com/aytoribarroja/participaciones/39ea40e164f970c54b0530436d5a9f7a?idioma=castellano",
           "date": "2026-06-01",
           "quote": "Moción conjunta de los Grupos Municipales Socialista de Riba-roja, Compromís per Riba-roja y EU-Podem Día Internacional del Orgullo LGTBIQ+ 2026",
@@ -678,20 +718,9 @@
           ]
         },
         {
-          "url": "https://regmeet.com/aytoribarroja/participaciones/39ea40e164f970c54b0530436d5a9f7a?idioma=castellano",
-          "date": "2026-06-01",
-          "quote": "Moción del Grupo Municipal Socialista de Riba-roja para exigir a la Generalitat Valenciana la ejecución del proyecto de prolongación de la línea 9 de Metrovalencia al centro urbano y construcción de la pasarela peatonal de València la Vella",
-          "kind": "pleno",
-          "matchedKeywords": [
-            "mocion",
-            "grupo",
-            "socialista"
-          ]
-        },
-        {
-          "url": "https://regmeet.com/aytoribarroja/participaciones/74791edf1f8e8b8289a5067737630874?idioma=castellano",
-          "date": "2026-05-11",
-          "quote": "Cultura · Moción del Grupo Municipal Socialista de Riba-roja de medidas para fomentar en la ciudadanía la cultura de la prevención y de la autoprotección frente las emergencias",
+          "url": "https://regmeet.com/aytoribarroja/participaciones/87ae6fb631f7c8a627e8e28785d9992d?idioma=castellano",
+          "date": "2026-07-06",
+          "quote": "Salud · Moción del Grupo Municipal Socialista de Riba-roja para la protección de la salud pública, la calidad de vida y la sostenibilidad territorial en el término municipal de Riba-roja de Túria ante el incremento de la actividad aeroportuaria del Aeropuerto de València-Manises",
           "kind": "pleno",
           "matchedKeywords": [
             "mocion",
@@ -701,7 +730,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-22T09:51:01.676Z"
+      "generatedAt": "2026-09-23T09:42:56.557Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -731,7 +760,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-22T09:51:01.676Z"
+      "generatedAt": "2026-09-23T09:42:56.557Z"
     },
     {
       "promiseId": "ac-psoe-1cbkzxt",
@@ -773,7 +802,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-22T09:51:01.676Z"
+      "generatedAt": "2026-09-23T09:42:56.557Z"
     },
     {
       "promiseId": "ac-psoe-1v0679f",
@@ -806,7 +835,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-22T09:51:01.676Z"
+      "generatedAt": "2026-09-23T09:42:56.557Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -814,7 +843,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-22T09:51:01.676Z"
+      "generatedAt": "2026-09-23T09:42:56.557Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -833,7 +862,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-22T09:51:01.676Z"
+      "generatedAt": "2026-09-23T09:42:56.557Z"
     },
     {
       "promiseId": "ac-psoe-pl3lsq",
@@ -886,7 +915,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-22T09:51:01.676Z"
+      "generatedAt": "2026-09-23T09:42:56.557Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -909,7 +938,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-22T09:51:01.676Z"
+      "generatedAt": "2026-09-23T09:42:56.557Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -940,7 +969,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-22T09:51:01.676Z"
+      "generatedAt": "2026-09-23T09:42:56.557Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -971,7 +1000,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-22T09:51:01.676Z"
+      "generatedAt": "2026-09-23T09:42:56.557Z"
     }
   ],
   "llmEvidence": [],
