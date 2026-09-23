@@ -12,6 +12,7 @@
  * suggestion and, if correct, runs `npm run pleno-vote` to publish.
  */
 import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs'
+import { fetchConCookies } from './lib/regmeet-fetch'
 import { resolve, basename } from 'node:path'
 import { inferVotesFromTranscript, type InferredVote } from '../src/scraper/pleno-vote-inference'
 import { inferVotesWithLlm } from '../src/scraper/pleno-vote-llm'
@@ -64,7 +65,10 @@ const BROWSER_UA =
 
 async function fetchRegmeetOutcomes(url: string): Promise<RegmeetItem[] | null> {
   try {
-    const res = await fetch(url, {
+    // Con cookies por la misma puerta que scrape-pleno-agendas: sin ellas la
+    // página de sesión se redirige a sí misma y esto devolvía null en silencio,
+    // que el cotejo leía como «no-regmeet».
+    const res = await fetchConCookies(url, {
       headers: { 'user-agent': BROWSER_UA },
       signal: AbortSignal.timeout(25000),
     })
