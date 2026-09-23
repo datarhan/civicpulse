@@ -160,6 +160,20 @@ export function assessManifest(m: RunManifest): ManifestFinding[] {
     })
   }
 
+  // La pasada dijo ella misma que falló. `exitCode` viajaba en el manifiesto y
+  // ninguna regla lo leía: el descubrimiento de promesas no respondió 17 pasadas
+  // de 17 y aquí sólo asomaba un WARN de tasa de fallos. Un script que sale
+  // distinto de cero ya ha juzgado su pasada; no hace falta adivinarlo.
+  if ((m.exitCode ?? 0) !== 0) {
+    out.push({
+      level: 'error',
+      code: 'exit-nonzero',
+      message:
+        `${m.script} exited ${m.exitCode}: the pass itself reported failure. ` +
+        `Its log says which step; the outcome counters below may be partial.`,
+    })
+  }
+
   // The headline failure: work was attempted and nothing came of it. This is
   // the shape that shipped as success three separate times.
   if (!todoSaltadoConMotivo && m.attempted > 0 && m.judged === 0) {

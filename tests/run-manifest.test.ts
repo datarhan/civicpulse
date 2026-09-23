@@ -97,6 +97,23 @@ describe('assessManifest — healthy runs', () => {
  * omits it and is judged exactly as before; making it required would have every
  * other manifest in the repo lying about a number it never measured.
  */
+/**
+ * El código de salida ya viajaba en el manifiesto y ninguna regla lo leía. El
+ * descubrimiento de promesas falló 17 pasadas de 17 y salió 0 todas: al hacerlo
+ * salir 1 cuando no responde, esta regla es la que lo lleva a `check:runs`.
+ */
+describe('assessManifest — a pass that exited non-zero', () => {
+  it('is an error, and says the code', () => {
+    const f = assessManifest(manifest({ exitCode: 1 })).find((x) => x.code === 'exit-nonzero')
+    expect(f?.level).toBe('error')
+    expect(f?.message).toContain('1')
+  })
+
+  it('stays quiet on a clean exit', () => {
+    expect(codes(manifest({ exitCode: 0 }))).not.toContain('exit-nonzero')
+  })
+})
+
 describe('assessManifest — a pass that attempted nothing', () => {
   it('flags a run that had work owed and attempted none of it', () => {
     const m = manifest({ owed: 21, attempted: 0 })
