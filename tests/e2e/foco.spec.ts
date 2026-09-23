@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test'
+import { test, expect, type Page } from '@playwright/test'
 
 /**
  * §11 · foco visible. El brandbook promete «anillo de 2 px en petróleo» y no
@@ -11,14 +11,33 @@ import { test, expect } from '@playwright/test'
  * que el sistema de diseño dice. Y sólo se ve tabulando, que es justamente lo
  * que ninguna prueba de datos hace.
  */
+/**
+ * Abre /hallazgos y tabula hasta un control real, saltándose el enlace de salto.
+ *
+ * Antes de tabular hay que esperar a que la página EXISTA. `domcontentloaded`
+ * no lo garantiza: `createRoot().render()` programa el primer commit en otra
+ * tarea, así que en una máquina lenta el evento llega con `#root` vacío. Eso
+ * fallaba de dos maneras en CI, una vez de cada tantas y verde al reintentar:
+ * los Tab caían sobre la nada y el foco se quedaba en `body` («nada recibió el
+ * foco»); o el primer efecto de `App` —el que aplica `html.dark` según los
+ * ajustes— llegaba ENTRE las dos lecturas del tema y le quitaba a la prueba la
+ * clase que acababa de poner, y claro y oscuro salían iguales. Reproducido
+ * retrasando ese primer commit 400 ms: 3 de 3 en rojo con el mensaje de CI.
+ *
+ * El titular es contenido de la ruta perezosa, así que visible quiere decir
+ * que el shell, la página y los efectos de `App` ya se han aplicado.
+ */
+async function tabularHastaUnControl(page: Page) {
+  await page.goto('/hallazgos', { waitUntil: 'domcontentloaded' })
+  await expect(page.getByText(/Hallazgos sobre declaraciones en pleno/i).first()).toBeVisible()
+  await page.keyboard.press('Tab')
+  await page.keyboard.press('Tab')
+  await page.keyboard.press('Tab')
+}
+
 test.describe('Foco visible (§11)', () => {
   test('el teclado deja anillo de petróleo, y el ratón no deja ninguno', async ({ page }) => {
-    await page.goto('/hallazgos', { waitUntil: 'domcontentloaded' })
-
-    // Tabular hasta un control real, saltándose el enlace de salto.
-    await page.keyboard.press('Tab')
-    await page.keyboard.press('Tab')
-    await page.keyboard.press('Tab')
+    await tabularHastaUnControl(page)
 
     const conTeclado = await page.evaluate(() => {
       const el = document.activeElement as HTMLElement | null
@@ -54,10 +73,16 @@ test.describe('Foco visible (§11)', () => {
   })
 
   test('el anillo cambia con el tema, porque sale del token', async ({ page }) => {
-    await page.goto('/hallazgos', { waitUntil: 'domcontentloaded' })
-    await page.keyboard.press('Tab')
-    await page.keyboard.press('Tab')
-    await page.keyboard.press('Tab')
+    await tabularHastaUnControl(page)
+
+    // Sin esto la prueba pasaba midiendo `body`: su `outline-color` es el color
+    // del texto, que también cambia con el tema. Verde sin haber mirado un
+    // anillo — hay que afirmar que lo que se compara es un control con foco.
+    const enfocado = await page.evaluate(() => {
+      const el = document.activeElement
+      return el && el !== document.body ? el.tagName : null
+    })
+    expect(enfocado, 'nada recibió el foco al tabular').not.toBeNull()
 
     const claro = await page.evaluate(
       () => getComputedStyle(document.activeElement as Element).outlineColor,
