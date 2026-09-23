@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-# Daily promise auto-curator wrapper: runs
+# Promise auto-curator wrapper — WEEKLY since 2026-09-23 (launchd, Mondays
+# 08:30), despite the filename: two months of daily digests had published
+# nothing, and every pass spent Max quota. The name stays because docs and
+# check-runs point at it. Runs
 #   npm run auto-curate-promises -- --max 10 --phase both
 # AUTO-PUBLISH IS ENABLED — grounded, high-confidence (≥0.70) en-progreso
 # status changes + documentada new promises publish to promises.json (stamped
@@ -112,6 +115,6 @@ if ! cron_git_stage_and_check public/data/promises.json $REDERIVADOS; then
   echo "[$(date '+%F %T')] no auto-published promises — nothing to commit"
   exit 0
 fi
-cron_git_commit_pathspec "data: daily promise auto-curate (auto-published · pending review)"
+cron_git_commit_pathspec "data: weekly promise auto-curate (auto-published · pending review)"
 git push origin main
 echo "[$(date '+%F %T')] pushed auto-published promises"
