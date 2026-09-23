@@ -179,14 +179,37 @@ turn it into a function that returns `false` for everything.
 
 Anything needing an LLM backend or a residential IP runs here, not in CI.
 
-| When               | How     | Script                                                                                                                                                                                  |
-| ------------------ | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 06:45 daily        | launchd | `scrape-ci-blocked.sh` — the adapters runners cannot reach (`paro`, `pleno-agendas`, `asociaciones`, `obras`, `procesos-selectivos`, `sindicatura`, `consell-cv`, `sindic-expedientes`) |
-| 07:30 daily        | launchd | `review-sweep.sh` — reads every public route as a visitor (report-only, commits nothing)                                                                                                |
-| 08:30 daily        | launchd | `auto-curate-promises-daily.sh` — `/promesas` status-change miner                                                                                                                       |
-| 09:30 daily        | launchd | `hallazgos-pipeline.sh` — transcribe → extract → verify → auto-curate → push                                                                                                            |
-| 10:15 daily        | launchd | `press-lab-pipeline.sh` — `/laboratorio` press fact-check pass                                                                                                                          |
-| 11:00 every 2 days | cron    | `monitor-health-cron.sh`                                                                                                                                                                |
+| When            | How     | Script                                                                                                                                                                                  |
+| --------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 06:45 daily     | launchd | `scrape-ci-blocked.sh` — the adapters runners cannot reach (`paro`, `pleno-agendas`, `asociaciones`, `obras`, `procesos-selectivos`, `sindicatura`, `consell-cv`, `sindic-expedientes`) |
+| 07:30 Mon + Thu | launchd | `review-sweep.sh` — reads every public route as a visitor (report-only, commits nothing)                                                                                                |
+| 08:30 Mon       | launchd | `auto-curate-promises-daily.sh` — `/promesas` status-change miner                                                                                                                       |
+| 09:30 Mon + Thu | launchd | `hallazgos-pipeline.sh` — transcribe → extract → verify → auto-curate → push                                                                                                            |
+| 10:15 Mon       | launchd | `press-lab-pipeline.sh` — `/laboratorio` press fact-check pass                                                                                                                          |
+| 11:00 daily     | cron    | `monitor-health-cron.sh`                                                                                                                                                                |
+
+### Cadence: why the LLM agents are not daily
+
+Until 2026-09-23 the four agents that call the model ran every morning. They
+use `claude-code` on the Max plan, which costs no cash but draws on the same
+quota as interactive sessions, and their own logs showed most of those runs
+producing nothing: the promise auto-curator's digests had auto-published and
+queued nothing for two months, the press pass kept extracting claims no source
+could verify, `hallazgos` had pushed no new finding since late July because
+plenos are roughly monthly, and the reader sweep — the largest consumer — was
+re-reading pages whose data had not moved. So `review-sweep` and `hallazgos`
+run Monday and Thursday, `press-lab` and `auto-curate-promises` on Mondays, and
+`scrape-ci-blocked`, which makes no model call, stays daily. Per-run caps did
+not go up to compensate: raising them would spend the saving back.
+
+What moved with it, so the health digest does not cry wolf on a normal gap:
+`check:cron` reads `Weekday` and array-form `StartCalendarInterval`;
+`check:runs` gives these passes 192h (the Thursday→Monday gap plus one missed
+run); `DIAS_FRESCURA` and the transcription/extraction stall alerts are five
+days; and the press-lab snapshots carry a nine-day budget (`local-llm` class in
+`snapshot-cadence.ts`) so `/lab-health` does not paint them stale every Monday
+morning. The cost is latency: a new pleno video, or a sentence a data change
+has made false, can wait up to four days for its pass.
 
 ### launchd or cron: the rule, and the two times it was applied wrong
 
@@ -258,14 +281,16 @@ cannot publish it _is_ a failure. Under `CRON_GIT_ALLOW_BRANCH=1` or the
 `PRESS_LAB_NO_REMOTE` rehearsal the branch it pins is the one you actually
 started on, not `main`.
 
-Install helpers: `scripts/cron-install-hallazgos.sh`,
-`scripts/cron-install-press-lab.sh`. Run them from Terminal.
+`scripts/cron-install-hallazgos.sh` and `scripts/cron-install-press-lab.sh`
+are retired: they refuse to install (a crontab line would run the agent a
+second time, and daily), and only `uninstall` still works, to remove an old
+line.
 
 ### The speaker-map sweep: a job measured in weeks, not nights
 
 `hallazgos-pipeline.sh` carries one step that is not a nightly refresh but a
 **multi-week backlog burn**: `extract:speaker-map` works through the sessions
-that have no `pleno-speaker-map/<id>.json`, ~18 chunks a night against the
+that have no `pleno-speaker-map/<id>.json`, ~18 chunks per run (Mon + Thu) against the
 Gemini free tier's 20 requests/day. `npm run speaker-map:backlog -- --why`
 reports where it is. Three things follow from the shape, and each one has cost a
 night or more:

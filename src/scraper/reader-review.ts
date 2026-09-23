@@ -328,7 +328,7 @@ export function parseReviewArgs(argv: string[], budgetEnv?: string) {
      *
      * `--rotate` a secas ordena por «hace más que no se lee», y eso está
      * anti-correlacionado con lo que un push acaba de romper: la página en la
-     * que estás iterando se leyó hace un rato —el barrido pasa a las 07:30— así
+     * que estás iterando se leyó hace poco —el barrido pasa lunes y jueves a las 07:30— así
      * que cae al final y no se lee nunca. Medido el 26-08-2026: /eficiencia y
      * /gestion, leídas a las 08:35, quedaron las últimas de diecinueve en el
      * push que las reescribía enteras.

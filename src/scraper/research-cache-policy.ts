@@ -16,7 +16,7 @@
  *     and the social-media probes for Robert Raga. Every one of those searches
  *     was frozen as "nothing found". The biographies' `gaps-detected` sections
  *     went on asserting we had looked and found nothing about those people,
- *     indefinitely, with a confident face, and the daily 09:30 cron could never
+ *     indefinitely, with a confident face, and the 09:30 cron could never
  *     revisit it because the cache always answered first.
  *   · The same mechanism pins a failure. One entry on disk carries
  *     `error: 'host ribarroja.es not in HEADLESS_FETCH_ALLOW'`; a `401` from an
@@ -214,12 +214,13 @@ export interface ToolTtl {
 }
 
 /**
- * Retry-on-the-next-nightly. Deliberately 18h rather than 24h: the consumer is
- * the 09:30 `hallazgos-pipeline` cron, whose runs are ~24h ± minutes apart, so
- * a 24h TTL is a coin flip at the boundary. 18h is unambiguously shorter than a
- * nightly interval and unambiguously longer than a working day, which means a
+ * Retry-on-the-next-run. Deliberately 18h: the consumer is the 09:30
+ * `hallazgos-pipeline` agent. It ran daily when this was written — ~24h ±
+ * minutes apart, so a 24h TTL was a coin flip at the boundary — and since
+ * 2026-09-23 runs Monday and Thursday, 72h or 96h apart, which 18h is shorter
+ * than by even more. It is also unambiguously longer than a working day, so a
  * developer iterating on a scraper from morning to evening pays exactly one
- * fetch, not several.
+ * fetch, not several. The name is historical.
  */
 const NEXT_NIGHTLY = 18
 const THREE_DAYS = 72
