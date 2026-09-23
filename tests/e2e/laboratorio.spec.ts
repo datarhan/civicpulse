@@ -82,7 +82,13 @@ test.describe('Laboratorio (/laboratorio)', () => {
       ).trim()
 
     const discrepancia = await valorKpi('Tasa de discrepancia')
-    const bannerVisible = await page.getByText(/Extracción pendiente/i).isVisible()
+    // Dos títulos para dos estados: sin afirmaciones, «Extracción pendiente»;
+    // con afirmaciones contrastadas y ninguna resuelta, «Sin veredictos
+    // todavía». Ver `avisoSinVeredicto` en src/lib/press-lab.js.
+    const bannerVisible = await page
+      .getByText(/Extracción pendiente|Sin veredictos todavía/i)
+      .first()
+      .isVisible()
 
     if (discrepancia === '—') {
       expect(bannerVisible, 'sin veredictos resueltos el aviso tiene que salir').toBe(true)

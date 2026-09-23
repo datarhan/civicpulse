@@ -25,6 +25,32 @@ const GROUP_LABEL = {
 
 const TONE_ORDER = { crit: 0, warn: 1, civic: 2, ok: 3 }
 
+// La rejilla de cada fila vive aquí y no en el `style` de la fila: un estilo en
+// línea no admite media queries, y con cinco columnas fijas (120 + 1fr + 110 +
+// 110 + 80 px) la página desbordaba 138 px a 375 px de ancho.
+const estiloLabHealth = `
+.lh-fila {
+  display: grid;
+  grid-template-columns: 120px 1fr 110px 110px 80px;
+  gap: 12px;
+  align-items: center;
+}
+@media (max-width: 640px) {
+  .lh-fila {
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas:
+      'tono nombre nombre'
+      'edad filas peso';
+    gap: 4px 10px;
+  }
+  .lh-fila > :nth-child(1) { grid-area: tono; }
+  .lh-fila > :nth-child(2) { grid-area: nombre; }
+  .lh-fila > :nth-child(3) { grid-area: edad; }
+  .lh-fila > :nth-child(4) { grid-area: filas; }
+  .lh-fila > :nth-child(5) { grid-area: peso; text-align: right; }
+}
+`
+
 /**
  * El tono de una fila, medido contra el plazo del PROPIO fichero cuando
  * `snapshot-cadence` le tiene uno —lo mismo que hacen <DataAsOf> y
@@ -54,11 +80,8 @@ function HealthRow({ row }) {
       : '—'
   return (
     <div
+      className="lh-fila"
       style={{
-        display: 'grid',
-        gridTemplateColumns: '120px 1fr 110px 110px 80px',
-        gap: 12,
-        alignItems: 'center',
         padding: '8px 0',
         borderBottom: '1px solid var(--border)',
         fontSize: 'var(--fs-meta)',
@@ -165,6 +188,7 @@ export default function LabHealth() {
 
   return (
     <div style={{ padding: '24px', maxWidth: 1080, margin: '0 auto' }}>
+      <style>{estiloLabHealth}</style>
       <div style={{ marginBottom: 16 }}>
         <div
           className="mono"

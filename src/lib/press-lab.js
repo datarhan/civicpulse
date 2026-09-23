@@ -98,6 +98,43 @@ export function pressLabSummary({ press = [], verified = [] } = {}, now = Date.n
  * «Resuelta» significa lo mismo que en la tasa de discrepancia —verificada o
  * contradicha—; `sin-datos` y `parcial` no resuelven nada.
  */
+const numero = (n) => new Intl.NumberFormat('es-ES').format(n)
+const plural = (n, uno, varios) => `${numero(n)} ${n === 1 ? uno : varios}`
+
+/**
+ * El aviso de /laboratorio cuando no hay nada resuelto, o null si sí lo hay.
+ *
+ * Eran dos estados con un solo texto. «Extracción pendiente … no se ha examinado
+ * nada» es cierto cuando no hay afirmaciones; con 58 extraídas de 11 artículos y
+ * contrastadas todas, que volvieron `sin-datos`, era falso —y lo decía al lado del
+ * KPI «11 artículos auditados»—. `sin-datos` es «mirado, y sin nada con qué
+ * compararlo»: no resuelve la tasa, pero tampoco es «sin mirar». Las cifras salen
+ * del recuento para que la frase no se quede vieja cuando el dato se mueva.
+ *
+ * @param {ReturnType<typeof pressLabSummary>} summary
+ * @returns {{titulo: string, texto: string} | null}
+ */
+export function avisoSinVeredicto(summary) {
+  const total = summary?.totalClaims ?? 0
+  if ((summary?.resueltasClaims ?? 0) > 0) return null
+  if (total === 0) {
+    return {
+      titulo: 'Extracción pendiente.',
+      texto:
+        `Se están monitorizando ${plural(summary?.monitoredCount ?? 0, 'titular', 'titulares')}, ` +
+        'pero todavía no se ha extraído ninguna afirmación de ellos, así que las tasas no tienen nada que medir.',
+    }
+  }
+  return {
+    titulo: 'Sin veredictos todavía.',
+    texto:
+      `Se han extraído y contrastado ${plural(total, 'afirmación', 'afirmaciones')} de ` +
+      `${plural(summary?.auditedCount ?? 0, 'artículo', 'artículos')}, pero ninguna ha llegado a un ` +
+      'veredicto que la confirme o la desmienta. Por eso la tasa de discrepancia aparece como «—» ' +
+      '—no hay nada resuelto entre lo que dividir— y la de verificación marca el 0 % que le corresponde.',
+  }
+}
+
 export function fraseVeredictos(summary) {
   const total = summary?.totalClaims ?? 0
   const resueltas = summary?.resueltasClaims ?? 0
