@@ -784,7 +784,7 @@ export default function Laboratorio() {
           .
         </p>
         <div style={{ marginTop: 10 }}>
-          <DataAsOf iso={lab.generatedAt} label="Laboratorio" />
+          <DataAsOf iso={lab.generatedAt} label="Laboratorio" file="press-claims-verified.json" />
         </div>
         {/* El laboratorio tiene más de un experimento dentro. Sin este puntero
             la frontera sólo se alcanza por la barra lateral, y un experimento
@@ -860,8 +860,8 @@ export default function Laboratorio() {
           monitorizando {fmtNumber(summary.monitoredCount)} titulares, pero ninguna de sus
           afirmaciones ha llegado todavía a un veredicto: la tasa de discrepancia aparece como «—»
           porque no se ha examinado nada, y la de verificación marca el 0 % que le corresponde. La
-          cadena <code>extract → verify → summarize → analytics</code> puebla estos veredictos
-          (nocturna o ejecución manual).
+          cadena <code>extract → verify → summarize → analytics</code> puebla estos veredictos (una
+          vez por semana, los lunes, o a mano).
         </div>
       )}
 
@@ -950,7 +950,7 @@ export default function Laboratorio() {
                 <code>npm run extract:press-claims</code> + <code>npm run verify:press-claims</code>{' '}
                 + <code>npm run summarize:press</code> +{' '}
                 <code>npm run compute:press-analytics</code> para poblar los snapshots. La cadena
-                completa también corre cada noche.
+                completa también corre sola una vez por semana, los lunes.
               </p>
             </Card>
           )}

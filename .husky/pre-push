@@ -161,12 +161,13 @@ echo "[pre-push] este push toca $N_RUTAS ruta(s), $N_DIRECTAS directa(s): $(prin
 # /plenos 141s) y es un TECHO, no una duración: una ruta rápida sigue tardando
 # lo que tarda.
 #
-# El tope global es 180s y no 480 porque desde que existe el barrido nocturno
+# El tope global es 180s y no 480 porque desde que existe el barrido
 # esto ya no es el único lector del sitio, es el rápido. Con 480 un push que
 # tocaba siete rutas se quedaba cinco minutos y medio parado, y un gancho que
 # hace eso se salta con --no-verify a la tercera — que es como se pierde un
-# control, no fallando sino cansando. Lo que no quepa aquí lo lee el barrido a
-# las 07:30, y `--rotate` hace que las que se queden fuera hoy entren mañana.
+# control, no fallando sino cansando. Lo que no quepa aquí lo lee el barrido
+# (lunes y jueves, 07:30), y `--rotate` hace que las que se queden fuera en este
+# push entren en el siguiente.
 #
 # Si quieres la pasada entera y sin prisa sobre lo que acabas de tocar:
 #   npm run review:surfaces -- <ruta>
@@ -311,12 +312,12 @@ fi
 # número era cierto y la conclusión no.
 #
 # Leerlo aquí no cabe —una pasada con las capas encendidas cuesta ~5 min contra
-# un techo de 180 s—, así que lo lee el barrido nocturno con la clave
+# un techo de 180 s—, así que lo lee el barrido de lunes y jueves con la clave
 # `/ [capas]`. Lo que sí cabe es no llamarlo completo.
 N_CAPAS=$(printf '%s\n' "$CHANGED" | grep -c 'src/components/LiveCity/' || true)
 if [ "${N_CAPAS:-0}" -gt 0 ]; then
   echo "[pre-push] ⚠︎ $N_CAPAS fichero(s) de capas del mapa en este push."
   echo "[pre-push]   Su prosa sólo existe con la capa ENCENDIDA, así que esta revisión no la ha leído."
-  echo "[pre-push]   La lee el barrido nocturno como «/ [capas]»; a mano: npm run review:surfaces -- '/ [capas]'"
+  echo "[pre-push]   La lee el barrido (lunes y jueves) como «/ [capas]»; a mano: npm run review:surfaces -- '/ [capas]'"
 fi
 exit 0

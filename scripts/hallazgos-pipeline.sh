@@ -17,7 +17,7 @@
 #   · No new pleno video → the transcribe/extract loop is a no-op; the
 #     cheap auto-curate still runs to promote any pending verified claims.
 #   · MAX_PLENOS (default 2) bounds each run's wall-clock; a backlog is
-#     cleared a couple plenos per run (weekly cron chews through it).
+#     cleared a couple plenos per run (the Mon + Thu agent chews through it).
 #   · verify:pleno-claims is OVERLAY-SAFE — it writes the gitignored base
 #     (pleno-claims-verified-base.json) then re-applies the committed
 #     public/data/pleno-claims-overlay.json via rebuildVerified(), so it
@@ -397,7 +397,7 @@ fi
 log "embed:agent-corpus (incremental, openai-pinned)…"
 EMBED_BACKEND=openai npm run embed:agent-corpus \
   || log "warn: embed:agent-corpus non-zero — semantic corpus stale; agent falls back to lexical"
-# The verifier corpus rides the same daily slot (same latch/marker/pacing
+# The verifier corpus rides the same Mon + Thu slot (same latch/marker/pacing
 # machinery): best-effort — the verifier's hybrid shortlist degrades to
 # lexical when stale, never crashes.
 log "embed:verifier-corpus (incremental, openai-pinned)…"
@@ -492,7 +492,7 @@ REDERIVADOS="$(cron_rutas_rederivadas)" \
 # ---- commit + push the regenerated data -------------------------------
 # ONE pathspec stages, gates and commits. Everything the pipeline touches under
 # public/data, minus the two files owned by the OTHER crons (quejas per-minute ·
-# promises daily) — carried by ':(exclude)' rather than the old `git add` +
+# promises weekly) — carried by ':(exclude)' rather than the old `git add` +
 # `git reset` pair, so those two are never even staged and a run of this cron
 # can no longer unstage work an operator had staged in them.
 #
@@ -521,7 +521,7 @@ NEW_FINDINGS=$(git diff HEAD -- public/data/pleno-findings.json | grep -cE '^\+ 
 cron_git_commit_pathspec "$(cat <<EOF
 data: /hallazgos pipeline · ${NEW} pleno(s) transcribed · ${NEW_FINDINGS} new finding(s)
 
-Automated by scripts/hallazgos-pipeline.sh (weekly cron).
+Automated by scripts/hallazgos-pipeline.sh (launchd, Mon + Thu).
 transcribe(${WHISPER_ENGINE}) → extract(${LLM_BACKEND}/${CLAUDE_CODE_MODEL:-$AGY_MODEL}) → verify(overlay-safe) → auto-curate.
 All findings tagged \`curatorName: "auto-curation-v1"\`.
 EOF

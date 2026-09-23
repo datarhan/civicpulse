@@ -232,10 +232,12 @@ The same split governs the reader-review. `review:surfaces` asks whether a page
 _says_ something true, which no data check can — the four defects fixed on
 2026-08-12 all had their figure right and their sentence wrong. It runs in two
 places, and the division matters: the **pre-push hook** reads the routes that
-push can have broken, derived from the import graph, every time; the **nightly
-sweep** (`scripts/review-sweep.sh`, local cron — git hooks do not run in
-Actions, and Actions has no $0 LLM backend) reads every public route, because
-the nightly commits data and nobody pushes those pages. `check:surfaces` reports
+push can have broken, derived from the import graph, every time; the
+**twice-weekly sweep** (`scripts/review-sweep.sh`, launchd, Monday and Thursday
+— git hooks do not run in Actions, and Actions has no $0 LLM backend) reads
+every public route, because the nightly commits data and nobody pushes those
+pages. It was daily until 2026-09-23; the cadence and its cost are in
+`docs/OPERATIONS.md`. `check:surfaces` reports
 into the existing `monitor:health` digest when a page goes unread or a flag is
 left standing.
 

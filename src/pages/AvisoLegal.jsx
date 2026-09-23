@@ -173,7 +173,7 @@ export default function AvisoLegal() {
         </p>
         <ul>
           <li>
-            El proceso diario de auto-curación se detiene por completo: no propone ni auto-publica
+            El proceso semanal de auto-curación se detiene por completo: no propone ni auto-publica
             ninguna promesa, y el publicador automático con umbral de confianza queda igualmente
             suspendido.
           </li>
@@ -192,12 +192,12 @@ export default function AvisoLegal() {
       <Card style={{ marginTop: 14 }}>
         <SectionHead eyebrow="Auto-curación" title="Publicación automática con revisión" />
         <p>
-          Un proceso diario puede publicar automáticamente promesas no acusatorias extraídas de
-          fuentes públicas cuando superan un umbral de confianza y su cita textual queda anclada a
-          la fuente. Cada registro auto-publicado se marca como «publicada automáticamente ·
-          revisión pendiente» y es retractable. Los veredictos de incumplimiento y el estado
-          «inviable» siguen requiriendo intervención humana, y todo el proceso se detiene durante el
-          periodo electoral (LOREG art. 50).
+          Un proceso semanal (los lunes) puede publicar automáticamente promesas no acusatorias
+          extraídas de fuentes públicas cuando superan un umbral de confianza y su cita textual
+          queda anclada a la fuente. Cada registro auto-publicado se marca como «publicada
+          automáticamente · revisión pendiente» y es retractable. Los veredictos de incumplimiento y
+          el estado «inviable» siguen requiriendo intervención humana, y todo el proceso se detiene
+          durante el periodo electoral (LOREG art. 50).
         </p>
       </Card>
 

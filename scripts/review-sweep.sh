@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Leer TODAS las páginas públicas como las leería un vecino, cada mañana.
+# Leer TODAS las páginas públicas como las leería un vecino, lunes y jueves
+# (a diario hasta el 2026-09-23: ver docs/OPERATIONS.md, «Cadence»).
 #
 # La revisión de superficies es el único control de este repositorio que
 # responde «¿la página dice algo verdadero?» en lugar de «¿el dato cuadra?».

@@ -15,6 +15,17 @@
 # See project memory `project_bot_runtime_docker.md` for the full recipe.
 set -euo pipefail
 
+# RETIRADO (2026-09-23). Este agente vive en launchd desde que la credencial de
+# claude pasó al llavero, y desde el 23-sep no corre a diario sino lunes y jueves a las 09:30.
+# Reinstalar esta línea de crontab lo pondría a correr DOS veces —y a diario—,
+# así que la instalación se niega; `uninstall` sigue sirviendo para quitar una
+# línea vieja.
+if [ "${1:-install}" != "uninstall" ]; then
+  echo "[cron-install] retirado: hallazgos lo programa launchd (lunes y jueves a las 09:30)." >&2
+  echo "               bash scripts/launchd-install-llm-pipelines.sh" >&2
+  exit 1
+fi
+
 REPO_DIR="$(cd "$(dirname "$0")/.." && pwd -P)"
 SCRIPT="$REPO_DIR/scripts/hallazgos-pipeline.sh"
 LOG="$REPO_DIR/scripts/logs/hallazgos-pipeline.log"

@@ -293,8 +293,8 @@ jobs:
             # not hypothetical — 2026-07-31 lost a clean refresh (oficial=50)
             # because a local `data(journalist)` commit landed at 07:26Z,
             # between this job's 07:19Z checkout and its 07:29Z push. Local
-            # cron pipelines (hallazgos 09:30, press-lab 10:15 Madrid) push
-            # into exactly this window every day, so rebase and retry.
+            # cron pipelines (hallazgos Mon+Thu 09:30, press-lab Mon 10:15
+            # Madrid) push into exactly this window, so rebase and retry.
             #
             # Rebase is safe here: this job only ever stages scraper-owned
             # files under public/data, and the curated snapshots the local

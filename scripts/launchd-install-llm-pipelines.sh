@@ -126,9 +126,9 @@ for label in "${LABELS[@]}"; do
 done
 
 echo
-echo "Horario: scrape-ci-blocked 06:45 · review-sweep 07:30 · hallazgos 09:30 ·"
-echo "         press-lab 10:15, a diario. (auto-curate-promises 08:30 se instala"
-echo "         aparte, con launchd-install-auto-curate-promises.sh.)"
+echo "Horario: scrape-ci-blocked 06:45 a diario · review-sweep 07:30 y hallazgos"
+echo "         09:30 lunes y jueves · press-lab 10:15 los lunes. (auto-curate-promises,"
+echo "         lunes 08:30, se instala aparte con launchd-install-auto-curate-promises.sh.)"
 echo
 echo "QUITA las líneas equivalentes del crontab o correrán las dos cosas:"
 echo "  crontab -e   # borrar hallazgos-pipeline.sh, press-lab-pipeline.sh,"

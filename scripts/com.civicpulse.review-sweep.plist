@@ -34,7 +34,11 @@
     <string>/usr/local/bin:/usr/bin:/bin:/opt/homebrew/bin:/Users/sergeilutchenko/.local/bin</string>
   </dict>
 
-  <!-- 07:30 diario, y el orden importa: la nocturna de GitHub (04:30 UTC ≈
+  <!-- Lunes y jueves, no a diario (2026-09-23): cada pasada gastaba
+       cuota del plan Max —la misma de las sesiones interactivas— y la mayoría
+       no encontraba nada nuevo. Ver docs/OPERATIONS.md, «Cadencia».
+
+       07:30, y el orden importa: la nocturna de GitHub (04:30 UTC ≈
        06:30 local) ya ha comiteado los datos del día y scrape-ci-blocked
        (06:45) ha refrescado lo que los runners no alcanzan. A las 07:30 el
        sitio que se lee es el del día. Va antes que hallazgos (09:30) y
@@ -43,10 +47,18 @@
        macOS agrupa en el siguiente despertar si el Mac está dormido, de modo
        que una tapa cerrada retrasa la pasada en vez de saltársela. -->
   <key>StartCalendarInterval</key>
-  <dict>
-    <key>Hour</key><integer>7</integer>
-    <key>Minute</key><integer>30</integer>
-  </dict>
+  <array>
+    <dict>
+      <key>Weekday</key><integer>1</integer>
+      <key>Hour</key><integer>7</integer>
+      <key>Minute</key><integer>30</integer>
+    </dict>
+    <dict>
+      <key>Weekday</key><integer>4</integer>
+      <key>Hour</key><integer>7</integer>
+      <key>Minute</key><integer>30</integer>
+    </dict>
+  </array>
 
   <key>StandardOutPath</key>
   <string>/Users/sergeilutchenko/dev/CivicPulse/scripts/logs/review-sweep.log</string>

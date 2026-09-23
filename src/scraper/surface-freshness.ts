@@ -21,8 +21,12 @@
 import { readCacheEntry, type ReviewCacheEntry, type ReaderFinding } from './reader-review'
 import { sinDescartar, type RegistroDescartes } from './surface-dismissals'
 
-/** Días tras los cuales una página cuenta como no leída. */
-export const DIAS_FRESCURA = 3
+/**
+ * Días tras los cuales una página cuenta como no leída. El barrido corre lunes
+ * y jueves: el hueco normal más largo, de jueves a lunes, son cuatro días, y
+ * uno más de margen. Con el barrido diario eran tres.
+ */
+export const DIAS_FRESCURA = 5
 
 export interface EstadoRuta {
   route: string
@@ -67,7 +71,7 @@ export function medirFrescura(
     return {
       route,
       // Los que una persona ya miró y descartó no cuentan. Sin esto un falso
-      // positivo es eterno: el barrido lo vuelve a señalar cada mañana, el
+      // positivo es eterno: el barrido lo vuelve a señalar en cada pasada, el
       // check sigue rojo y el digest lo repite hasta que se aprende a
       // ignorarlo. Ver `surface-dismissals.ts`.
       findings: sinDescartar(route, e?.findings ?? [], descartes),

@@ -40,7 +40,7 @@
 # Install cron:  bash scripts/cron-install-press-lab.sh
 set -euo pipefail
 
-# Sonnet 5 over the Max CLI is ~1 min/item, so keep the daily batch modest
+# Sonnet 5 over the Max CLI is ~1 min/item, so keep the weekly (Monday) batch modest
 # (bounds runtime AND Max-quota use). Lower via env if the cron overlaps your
 # interactive Claude Code sessions (they share the Max quota).
 MAX_EXTRACT="${MAX_EXTRACT:-25}"

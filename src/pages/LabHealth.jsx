@@ -12,6 +12,7 @@ import { useMemo } from 'react'
 import { Card, Pill, SectionHead } from '../components/Primitives'
 import { useLabHealth } from '../hooks/useLabHealth'
 import { ageHours, freshnessTone } from '../lib/data-freshness'
+import { expectationFor } from '../scraper/snapshot-cadence'
 import { timeAgo } from '../hooks/usePress'
 
 const GROUP_LABEL = {
@@ -24,6 +25,19 @@ const GROUP_LABEL = {
 
 const TONE_ORDER = { crit: 0, warn: 1, civic: 2, ok: 3 }
 
+/**
+ * El tono de una fila, medido contra el plazo del PROPIO fichero cuando
+ * `snapshot-cadence` le tiene uno —lo mismo que hacen <DataAsOf> y
+ * `check:cadence`—, y con los umbrales planos si no. Con los planos, lo que
+ * escribe el agente de prensa de los lunes salía «desactualizado» cada lunes
+ * por la mañana, antes de que la pasada llegase.
+ */
+function toneOf(row) {
+  if (row.status !== 'ok') return 'crit'
+  const file = row.path?.split('/').pop() ?? null
+  return freshnessTone(row.generatedAt, Date.now(), expectationFor(file)?.maxAgeDays ?? null)
+}
+
 function formatBytes(n) {
   if (n == null) return '—'
   if (n < 1024) return `${n} B`
@@ -32,7 +46,7 @@ function formatBytes(n) {
 }
 
 function HealthRow({ row }) {
-  const tone = row.status === 'ok' ? freshnessTone(row.generatedAt) : 'crit'
+  const tone = toneOf(row)
   const age = row.generatedAt
     ? timeAgo(row.generatedAt)
     : row.status === 'missing'
@@ -121,8 +135,8 @@ export default function LabHealth() {
 
   const sorted = useMemo(() => {
     return [...rows].sort((a, b) => {
-      const ta = a.status === 'ok' ? freshnessTone(a.generatedAt) : 'crit'
-      const tb = b.status === 'ok' ? freshnessTone(b.generatedAt) : 'crit'
+      const ta = toneOf(a)
+      const tb = toneOf(b)
       if (TONE_ORDER[ta] !== TONE_ORDER[tb]) return TONE_ORDER[ta] - TONE_ORDER[tb]
       // Within tone bucket: older first (so dead-and-very-old beats dead-only).
       return ageHours(b.generatedAt) - ageHours(a.generatedAt)
@@ -132,7 +146,7 @@ export default function LabHealth() {
   const stats = useMemo(() => {
     const out = { total: rows.length, ok: 0, civic: 0, warn: 0, crit: 0, oldestHours: 0 }
     for (const r of rows) {
-      const tone = r.status === 'ok' ? freshnessTone(r.generatedAt) : 'crit'
+      const tone = toneOf(r)
       out[tone] = (out[tone] || 0) + 1
       const h = ageHours(r.generatedAt)
       if (Number.isFinite(h) && h > out.oldestHours) out.oldestHours = h
@@ -184,9 +198,10 @@ export default function LabHealth() {
           }}
         >
           Inventario de cada snapshot público que alimenta el panel. Cada fila muestra cuándo fue
-          generado por última vez, cuántas filas trae y su tamaño. Los desactualizados (&gt; 7 d) y
-          sin refresco (&gt; 30 d) aparecen primero para que el equipo pueda detectar fallos
-          silenciosos del scraper nocturno.
+          generado por última vez, cuántas filas trae y su tamaño. Los desactualizados y sin
+          refresco aparecen primero para que el equipo pueda detectar fallos silenciosos. Cada
+          fuente se mide contra su propio plazo cuando lo tiene declarado; si no, desactualizada es
+          más de 7 días y sin refresco, más de 30.
         </p>
       </div>
 
@@ -197,8 +212,8 @@ export default function LabHealth() {
           <Card style={{ marginBottom: 14 }}>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, fontSize: 'var(--fs-aux)' }}>
               <Stat label="Fuentes" value={stats.total} tone="neutral" />
-              <Stat label="Frescas (<36h)" value={stats.ok} tone="ok" />
-              <Stat label="Recientes (<7d)" value={stats.civic} tone="civic" />
+              <Stat label="Frescas" value={stats.ok} tone="ok" />
+              <Stat label="Recientes" value={stats.civic} tone="civic" />
               <Stat label="Desactualizadas" value={stats.warn} tone="warn" />
               <Stat label="Sin refresco" value={stats.crit} tone="crit" />
               <Stat
@@ -236,7 +251,9 @@ export default function LabHealth() {
               lineHeight: 1.55,
             }}
           >
-            Los snapshots se refrescan vía GitHub Actions cada noche a las 04:30 UTC ·{' '}
+            La mayoría de los snapshots se refrescan vía GitHub Actions cada noche a las 04:30 UTC;
+            los del laboratorio de prensa, una vez por semana, los lunes. Cada fuente se mide contra
+            su propio plazo ·{' '}
             <a
               href="/metodologia#laboratorio-prensa"
               style={{ color: 'var(--civic)', textDecoration: 'underline' }}

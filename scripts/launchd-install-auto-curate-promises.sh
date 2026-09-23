@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Install the daily promise auto-curator launchd agent.
+# Install the weekly (Monday 08:30) promise auto-curator launchd agent.
 # Mirrors scripts/launchd-install-auto-curate.sh.
 #
 #   bash scripts/launchd-install-auto-curate-promises.sh           # install + load
@@ -37,7 +37,7 @@ echo "[launchd] installed $LABEL"
 echo "          plist:  $DEST"
 echo "          logs:   $(cd "$(dirname "$0")" && pwd)/logs/auto-curate-promises.{out,err}.log"
 echo
-echo "Schedule: daily at 08:30 local time."
+echo "Schedule: Mondays at 08:30 local time."
 echo "Backend:  LLM_BACKEND=claude-code/sonnet · AUTO-PUBLISH ACTIVO (cambios a en-progreso"
 echo "          y promesas nuevas se publican y se empujan; el resto queda en la cola)."
 echo "Manual run anytime:  bash scripts/auto-curate-promises-daily.sh"

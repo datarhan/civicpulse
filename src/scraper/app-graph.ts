@@ -14,6 +14,7 @@
  * con nueve entradas donde el código tenía sesenta y cuatro).
  */
 import { analyseScriptIo } from './script-io'
+import { describirHorarios, type Horario } from './launchd-horario'
 
 export type Carril =
   | 'fuente'
@@ -112,8 +113,8 @@ export interface EntradaRutas {
 /** Un agente de launchd, leído de su propio plist. */
 export interface CronDeclarado {
   etiqueta: string
-  hora: number | null
-  minuto: number | null
+  /** Vacío cuando el plist no declara `StartCalendarInterval`. */
+  horarios: Horario[]
   /** El plist: el fichero PROPIO del cron, distinto del que ejecuta. */
   fichero: string
   /** Ruta relativa del programa que ejecuta. */
@@ -892,9 +893,9 @@ export function construirGrafoApp(entradas: EntradasGrafo): GrafoApp {
       dominio: null,
       clase: 'cron',
       detalle:
-        c.hora === null
+        c.horarios.length === 0
           ? 'launchd · sin horario declarado'
-          : `launchd · ${String(c.hora).padStart(2, '0')}:${String(c.minuto ?? 0).padStart(2, '0')}`,
+          : `launchd · ${describirHorarios(c.horarios)}`,
       analizado: true,
     })
     aristas.push({ de: id, a: guion(c.programa), tipo: 'programa', origen: 'declarada' })

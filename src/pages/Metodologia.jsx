@@ -325,13 +325,13 @@ export default function Metodologia() {
             exclusivamente humano, con justificación documental.
           </li>
           <li>
-            <strong>Transparencia del algoritmo.</strong> Un proceso diario escanea prensa y plenos
-            con un modelo de lenguaje y emite <em>propuestas</em> con su cadena de razonamiento.
-            Cada propuesta pasa una verificación determinista de anclaje; las que superan el umbral
-            de confianza (≥0,70) y quedan ancladas a su fuente se auto-publican etiquetadas como
-            «publicada automáticamente · revisión pendiente», y las demás se muestran como
-            "propuesta automática · pendiente de revisión humana" y esperan en cola. Todo lo que no
-            sea <EstadosPorEscalon tier="auto" /> pasa siempre por una persona (ver{' '}
+            <strong>Transparencia del algoritmo.</strong> Un proceso semanal (los lunes) escanea
+            prensa y plenos con un modelo de lenguaje y emite <em>propuestas</em> con su cadena de
+            razonamiento. Cada propuesta pasa una verificación determinista de anclaje; las que
+            superan el umbral de confianza (≥0,70) y quedan ancladas a su fuente se auto-publican
+            etiquetadas como «publicada automáticamente · revisión pendiente», y las demás se
+            muestran como "propuesta automática · pendiente de revisión humana" y esperan en cola.
+            Todo lo que no sea <EstadosPorEscalon tier="auto" /> pasa siempre por una persona (ver{' '}
             <a href="#auto-curacion-promesas" style={{ color: 'var(--civic)' }}>
               auto-curación
             </a>
@@ -465,11 +465,12 @@ export default function Metodologia() {
           title="Cómo se auto-publican promesas (y qué nunca se auto-publica)"
         />
         <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
-          Un proceso diario propone promesas nuevas y cambios de estado a partir de fuentes públicas
-          (prensa, plenos) usando un modelo de lenguaje. Cada propuesta pasa por una verificación
-          determinista de anclaje: la URL de la fuente debe resolver y la cita textual debe aparecer
-          literalmente en ella. Sólo se publica automáticamente lo que supera un umbral de confianza
-          (≥0,70) <em>y</em> queda anclado; el resto espera revisión humana en cola.
+          Un proceso semanal, los lunes, propone promesas nuevas y cambios de estado a partir de
+          fuentes públicas (prensa, plenos) usando un modelo de lenguaje. Cada propuesta pasa por
+          una verificación determinista de anclaje: la URL de la fuente debe resolver y la cita
+          textual debe aparecer literalmente en ella. Sólo se publica automáticamente lo que supera
+          un umbral de confianza (≥0,70) <em>y</em> queda anclado; el resto espera revisión humana
+          en cola.
         </p>
         <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
           Los <em>cambios de estado</em> sobre promesas ya publicadas se infieren de licitaciones y
@@ -1628,9 +1629,9 @@ export default function Metodologia() {
           Preservación de fuentes (Wayback)
         </h3>
         <p style={{ marginTop: 6 }}>
-          Una tarea diaria recorre cada URL citada en los reportajes y en los hallazgos y la archiva
-          en Internet Archive (<code>web.archive.org</code>). El snapshot resultante se publica
-          junto al enlace original en cada tarjeta del laboratorio, siguiendo la regla GIJN{' '}
+          Una tarea semanal, los lunes, recorre cada URL citada en los reportajes y en los hallazgos
+          y la archiva en Internet Archive (<code>web.archive.org</code>). El snapshot resultante se
+          publica junto al enlace original en cada tarjeta del laboratorio, siguiendo la regla GIJN{' '}
           <em>"archivar antes de citar"</em>. Si el medio retira la pieza después, el lector aún
           puede acceder a la copia congelada. En las biografías del agente periodista la copia se
           toma informe a informe al publicarlo; las publicadas antes de septiembre de 2026 se están

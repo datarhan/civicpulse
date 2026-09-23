@@ -23,7 +23,13 @@
  * Pure — no fs, no clock. The CLI supplies both.
  */
 
-export type FreshnessClass = 'nightly' | 'ci-blocked' | 'curated' | 'derived' | 'manual'
+export type FreshnessClass =
+  | 'nightly'
+  | 'ci-blocked'
+  | 'local-llm'
+  | 'curated'
+  | 'derived'
+  | 'manual'
 
 export interface DatasetExpectation {
   file: string
@@ -96,6 +102,21 @@ export const DEFAULT_EXPECTATIONS: DatasetExpectation[] = [
     // runner alcanza elsindic.com, pasa a `nightly` con su plazo de 3 días.
     'sindic-expedientes.json',
   ].map((file) => ({ file, cls: 'ci-blocked' as const, maxAgeDays: 8 })),
+  // Clase `local-llm`: lo que escribe `press-lab-pipeline.sh`, un agente de
+  // launchd que corre los LUNES (a diario hasta el 2026-09-23; el cambio fue
+  // por la cuota del plan Max). Siete días entre pasadas y dos de margen: un
+  // lunes perdido pinta la píldora en `warn` a partir del noveno día y no
+  // antes. Sin plazo propio, el umbral plano de /lab-health la ponía en `warn`
+  // cada lunes por la mañana, antes de que la pasada llegase. Van sólo los
+  // cinco que reescribe ESA pasada: `press-trust`, `press-triangulation` y
+  // `press-coverage-gaps` los rehace la nocturna, y `press-findings` es curado.
+  ...[
+    'press-claims-suggestions.json',
+    'press-claims-verified.json',
+    'press-summaries.json',
+    'press-link-rot.json',
+    'factcheck.json',
+  ].map((file) => ({ file, cls: 'local-llm' as const, maxAgeDays: 9 })),
   ...['participa.json', 'elections.json', 'geo.json', 'civic-poi.json', 'streets.json'].map(
     (file) => ({ file, cls: 'derived' as const, maxAgeDays: 45 }),
   ),
@@ -268,7 +289,9 @@ export function classifyFreshness(
           ? `>${exp.maxAgeDays}d — refresh path is manual; run ${exp.hint}`
           : exp.cls === 'ci-blocked'
             ? `>${exp.maxAgeDays}d — CI cannot reach this source; run scripts/scrape-ci-blocked.sh`
-            : `>${exp.maxAgeDays}d for a ${exp.cls} dataset`,
+            : exp.cls === 'local-llm'
+              ? `>${exp.maxAgeDays}d — the Monday press-lab agent has missed twice; npm run check:cron, then bash scripts/press-lab-pipeline.sh`
+              : `>${exp.maxAgeDays}d for a ${exp.cls} dataset`,
       })
       continue
     }

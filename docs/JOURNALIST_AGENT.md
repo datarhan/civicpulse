@@ -56,7 +56,7 @@ only the original public surface.
   2. `fetchedAt` is finally read, so an entry past its TTL is a miss;
   3. an **empty** answer gets a much shorter TTL than a populated one.
      `TOOL_TTL_HOURS` sets both per call site — Wikidata/Wikipedia are stable
-     (30d), an empty `webSearch` is not (12h, so the 09:30 nightly always
+     (30d), an empty `webSearch` is not (12h, so the next Mon/Thu 09:30 run always
      retries it). Anything unregistered falls to a deliberately short default.
      This is not housekeeping: with no TTL, the 21-councillor batch of 31 Jul /
      1 Aug 2026 froze 21 empty education/social-media searches, and the resulting

@@ -9,12 +9,14 @@
  * Se apoya en lo que el repositorio ya sabe medir en vez de volver a medirlo:
  * `classifyFreshness` para la frescura y `readManifests` para las pasadas.
  */
-import { existsSync, readdirSync, statSync } from 'node:fs'
+import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import { classifyFreshness } from '../../src/scraper/snapshot-cadence'
 import { readManifests } from '../../src/scraper/run-manifest'
 import type { RunManifest } from '../../src/scraper/run-manifest'
 import type { GrafoApp } from '../../src/scraper/app-graph'
+import { horariosDePlistXml, ultimaProgramada } from '../../src/scraper/launchd-horario'
+import { TOLERANCIA_HORAS } from '../check-cron'
 
 export type TonoEstado = 'ok' | 'aviso' | 'malo' | 'no-medido'
 
@@ -178,9 +180,18 @@ export function medirEstado(
       salida[n.id] = { tono: 'no-medido', lineas: ['no se encontró su registro en esta máquina'] }
       continue
     }
-    const ms = ahora - statSync(log).mtimeMs
+    const mtime = statSync(log).mtimeMs
+    const ms = ahora - mtime
+    // Atrasado es «no corrió la última vez que le tocaba», con el mismo margen
+    // que `check:cron`. Un umbral fijo de dos días marcaba en aviso, casi toda
+    // la semana, a los agentes que sólo corren los lunes.
+    const plist = n.ruta ? resolve(root, n.ruta) : null
+    const horarios =
+      plist && existsSync(plist) ? horariosDePlistXml(readFileSync(plist, 'utf8')) : []
+    const tocaba = ultimaProgramada(horarios, new Date(ahora))
+    const atrasado = tocaba ? mtime < tocaba.getTime() - TOLERANCIA_HORAS * 3_600_000 : ms > 2 * DIA
     salida[n.id] = {
-      tono: ms > 2 * DIA ? 'aviso' : 'ok',
+      tono: atrasado ? 'aviso' : 'ok',
       lineas: [`su registro se escribió hace ${edad(ms)}`],
     }
   }

@@ -48,7 +48,7 @@ describe('frescura de superficies', () => {
     }
     const f = medirFrescura(['/a', '/b'], cache, AHORA)
     expect(f.rancias.map((e) => e.route)).toEqual(['/a'])
-    expect(parteFrescura(f)).toMatch(/1 ruta\(s\) sin leer desde hace más de 3 días/)
+    expect(parteFrescura(f)).toContain(`1 ruta(s) sin leer desde hace más de ${DIAS_FRESCURA} días`)
   })
 
   it('un señalamiento vivo se reporta aunque la revisión sea de hoy', () => {

@@ -6,11 +6,13 @@ import { join, resolve } from 'node:path'
 
 import {
   TOLERANCIA_HORAS,
+  describirHorarios,
   juzgar,
   leerFlota,
   medirAgente,
   ultimaProgramada,
   ultimoOmitido,
+  type Horario,
 } from '../scripts/check-cron'
 import { pickCheckDiagnosis } from '../src/scraper/health-monitor'
 
@@ -40,7 +42,16 @@ if (!HAY_PLUTIL) {
   console.warn('[check-cron.test] sin `plutil` (no es macOS) — los casos con plist se saltan')
 }
 
-const PLIST = (label: string, log: string, hora: number, minuto: number) =>
+const DICT = (h: Horario) =>
+  `<dict>${h.dia === null ? '' : `<key>Weekday</key><integer>${h.dia}</integer>`}` +
+  `<key>Hour</key><integer>${h.hora}</integer><key>Minute</key><integer>${h.minuto}</integer></dict>`
+
+/**
+ * `StartCalendarInterval` admite un dict o un ARRAY de dicts (launchd.plist(5)).
+ * Un solo horario se escribe como dict —la forma de siempre—; varios, como array,
+ * que es la forma de los agentes de lunes y jueves.
+ */
+const PLIST = (label: string, log: string, horarios: Horario[]) =>
   `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -48,36 +59,87 @@ const PLIST = (label: string, log: string, hora: number, minuto: number) =>
   <key>Label</key><string>${label}</string>
   <key>StandardOutPath</key><string>${log}</string>
   <key>StartCalendarInterval</key>
-  <dict><key>Hour</key><integer>${hora}</integer><key>Minute</key><integer>${minuto}</integer></dict>
+  ${horarios.length === 1 ? DICT(horarios[0]) : `<array>${horarios.map(DICT).join('')}</array>`}
 </dict>
 </plist>
 `
 
-function escenario(opciones: { hora: number; minuto: number; contenido?: string; mtime?: Date }) {
+const DIARIO = (hora: number, minuto: number): Horario[] => [{ dia: null, hora, minuto }]
+
+function escenario(opciones: { horarios: Horario[]; contenido?: string; mtime?: Date }) {
   const dir = mkdtempSync(join(tmpdir(), 'check-cron-'))
   const log = join(dir, 'agente.log')
   writeFileSync(log, opciones.contenido ?? '[agente] arrancó y trabajó\n')
   if (opciones.mtime) utimesSync(log, opciones.mtime, opciones.mtime)
   writeFileSync(
     join(dir, 'com.civicpulse.agente.plist'),
-    PLIST('com.civicpulse.agente', log, opciones.hora, opciones.minuto),
+    PLIST('com.civicpulse.agente', log, opciones.horarios),
   )
   return { dir, log, limpiar: () => rmSync(dir, { recursive: true, force: true }) }
 }
 
+// 2026-09-21 es lunes; el 24, jueves.
+const LUNES_Y_JUEVES = (hora: number, minuto: number): Horario[] => [
+  { dia: 1, hora, minuto },
+  { dia: 4, hora, minuto },
+]
+const LUNES = (hora: number, minuto: number): Horario[] => [{ dia: 1, hora, minuto }]
+
 describe('ultimaProgramada', () => {
   it('es hoy si la hora ya pasó', () => {
     const ahora = new Date('2026-08-29T11:00:00')
-    expect(ultimaProgramada(9, 30, ahora).toISOString()).toBe(
+    expect(ultimaProgramada(DIARIO(9, 30), ahora)?.toISOString()).toBe(
       new Date('2026-08-29T09:30:00').toISOString(),
     )
   })
 
   it('es ayer si la hora aún no ha llegado', () => {
     const ahora = new Date('2026-08-29T08:00:00')
-    expect(ultimaProgramada(9, 30, ahora).toISOString()).toBe(
+    expect(ultimaProgramada(DIARIO(9, 30), ahora)?.toISOString()).toBe(
       new Date('2026-08-28T09:30:00').toISOString(),
     )
+  })
+
+  it('un agente de los lunes, un miércoles, tocaba el lunes', () => {
+    const miercoles = new Date('2026-09-23T12:00:00')
+    expect(ultimaProgramada(LUNES(10, 15), miercoles)?.toISOString()).toBe(
+      new Date('2026-09-21T10:15:00').toISOString(),
+    )
+  })
+
+  it('un lunes antes de la hora, tocaba el lunes ANTERIOR', () => {
+    const lunesTemprano = new Date('2026-09-21T08:00:00')
+    expect(ultimaProgramada(LUNES(10, 15), lunesTemprano)?.toISOString()).toBe(
+      new Date('2026-09-14T10:15:00').toISOString(),
+    )
+  })
+
+  it('lunes y jueves, un sábado: tocaba el jueves, no el lunes', () => {
+    const sabado = new Date('2026-09-26T12:00:00')
+    expect(ultimaProgramada(LUNES_Y_JUEVES(9, 30), sabado)?.toISOString()).toBe(
+      new Date('2026-09-24T09:30:00').toISOString(),
+    )
+  })
+
+  it('Weekday 7 es domingo, igual que 0', () => {
+    const lunes = new Date('2026-09-21T12:00:00')
+    for (const dia of [0, 7]) {
+      expect(ultimaProgramada([{ dia, hora: 9, minuto: 0 }], lunes)?.toISOString()).toBe(
+        new Date('2026-09-20T09:00:00').toISOString(),
+      )
+    }
+  })
+
+  it('sin horarios no hay «última hora programada»', () => {
+    expect(ultimaProgramada([], new Date('2026-09-23T12:00:00'))).toBeNull()
+  })
+})
+
+describe('describirHorarios', () => {
+  it('nombra los días delante de la hora', () => {
+    expect(describirHorarios(DIARIO(9, 30))).toBe('09:30')
+    expect(describirHorarios(LUNES(10, 15))).toBe('lun 10:15')
+    expect(describirHorarios(LUNES_Y_JUEVES(7, 30))).toBe('lun/jue 07:30')
   })
 })
 
@@ -104,25 +166,53 @@ describe('ultimoOmitido', () => {
 
 describe.skipIf(!HAY_PLUTIL)('la flota sale de los plists, no de una tabla', () => {
   it('lee etiqueta, hora y log de cada agente', () => {
-    const e = escenario({ hora: 9, minuto: 30 })
+    const e = escenario({ horarios: DIARIO(9, 30) })
     try {
       const flota = leerFlota(e.dir)
       expect(flota).toHaveLength(1)
       expect(flota[0].label).toBe('com.civicpulse.agente')
-      expect(flota[0].hora).toBe(9)
-      expect(flota[0].minuto).toBe(30)
+      expect(flota[0].horarios).toEqual([{ dia: null, hora: 9, minuto: 30 }])
       expect(flota[0].log).toBe(e.log)
     } finally {
       e.limpiar()
     }
   })
 
+  it('un ARRAY de horarios (lunes y jueves) entra en la flota, no se cae', () => {
+    // El defecto que esto fija: la primera versión exigía `Hour` en la raíz del
+    // intervalo, así que un array —que no lo tiene— se saltaba en silencio y el
+    // parte seguía diciendo «todos han corrido» sin haber mirado al agente.
+    const e = escenario({ horarios: LUNES_Y_JUEVES(9, 30) })
+    try {
+      const flota = leerFlota(e.dir)
+      expect(flota.map((a) => a.label)).toEqual(['com.civicpulse.agente'])
+      expect(flota[0].horarios).toEqual(LUNES_Y_JUEVES(9, 30))
+    } finally {
+      e.limpiar()
+    }
+  })
+
+  it('un plist sin horario legible se informa, no se salta', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'check-cron-roto-'))
+    try {
+      writeFileSync(join(dir, 'com.civicpulse.roto.plist'), 'esto no es un plist')
+      const flota = leerFlota(dir)
+      expect(flota).toHaveLength(1)
+      expect(flota[0].horarios).toEqual([])
+      const h = juzgar([medirAgente(flota[0], new Date('2026-09-23T12:00:00'))])
+      expect(h.map((x) => x.code)).toEqual(['cron-sin-horario'])
+      expect(h[0].message).toContain('roto')
+    } finally {
+      rmSync(dir, { recursive: true, force: true })
+    }
+  })
+
   it('ignora los .plist.disabled', () => {
-    const e = escenario({ hora: 9, minuto: 30 })
+    const e = escenario({ horarios: DIARIO(9, 30) })
     try {
       writeFileSync(
         join(e.dir, 'com.civicpulse.apagado.plist.disabled'),
-        PLIST('com.civicpulse.apagado', e.log, 9, 30),
+        PLIST('com.civicpulse.apagado', e.log, DIARIO(9, 30)),
       )
       expect(leerFlota(e.dir).map((a) => a.label)).toEqual(['com.civicpulse.agente'])
     } finally {
@@ -146,7 +236,7 @@ describe.skipIf(!HAY_PLUTIL)('los tres desenlaces', () => {
   const ahora = new Date('2026-08-29T11:00:00')
 
   it('corrió y trabajó: no dice nada', () => {
-    const e = escenario({ hora: 9, minuto: 30, mtime: new Date('2026-08-29T09:30:05') })
+    const e = escenario({ horarios: DIARIO(9, 30), mtime: new Date('2026-08-29T09:30:05') })
     try {
       expect(juzgar([medirAgente(leerFlota(e.dir)[0], ahora)])).toEqual([])
     } finally {
@@ -158,8 +248,7 @@ describe.skipIf(!HAY_PLUTIL)('los tres desenlaces', () => {
     // La distinción que un manifiesto no puede hacer: un run que se salta no
     // escribe manifiesto, así que para `check:runs` es idéntico a no existir.
     const e = escenario({
-      hora: 7,
-      minuto: 30,
+      horarios: DIARIO(7, 30),
       mtime: new Date('2026-08-29T07:30:02'),
       contenido:
         '[agente] [2026-08-29 07:30:02] agente: OMITIDO — HEAD está en (HEAD desacoplado), no en main.\n',
@@ -174,7 +263,7 @@ describe.skipIf(!HAY_PLUTIL)('los tres desenlaces', () => {
   })
 
   it('no corrió: el log no se ha movido desde ayer', () => {
-    const e = escenario({ hora: 9, minuto: 30, mtime: new Date('2026-08-28T09:30:05') })
+    const e = escenario({ horarios: DIARIO(9, 30), mtime: new Date('2026-08-28T09:30:05') })
     try {
       const h = juzgar([medirAgente(leerFlota(e.dir)[0], ahora)])
       expect(h.map((x) => x.code)).toEqual(['cron-atrasado'])
@@ -193,20 +282,68 @@ describe.skipIf(!HAY_PLUTIL)('los tres desenlaces', () => {
       new Date('2026-08-29T09:30:00').getTime() - (TOLERANCIA_HORAS + 1) * 3_600_000,
     )
 
-    const a = escenario({ hora: 9, minuto: 30, mtime: dentro })
+    const a = escenario({ horarios: DIARIO(9, 30), mtime: dentro })
     try {
       expect(juzgar([medirAgente(leerFlota(a.dir)[0], ahora)])).toEqual([])
     } finally {
       a.limpiar()
     }
 
-    const b = escenario({ hora: 9, minuto: 30, mtime: fuera })
+    const b = escenario({ horarios: DIARIO(9, 30), mtime: fuera })
     try {
       expect(juzgar([medirAgente(leerFlota(b.dir)[0], ahora)]).map((x) => x.code)).toEqual([
         'cron-atrasado',
       ])
     } finally {
       b.limpiar()
+    }
+  })
+})
+
+describe.skipIf(!HAY_PLUTIL)('agentes que no corren a diario', () => {
+  it('uno de los lunes, un miércoles, con el lunes hecho: no está atrasado', () => {
+    const e = escenario({ horarios: LUNES(10, 15), mtime: new Date('2026-09-21T10:15:04') })
+    try {
+      const estado = medirAgente(leerFlota(e.dir)[0], new Date('2026-09-23T12:00:00'))
+      expect(estado.programado).toBe('lun 10:15')
+      expect(juzgar([estado])).toEqual([])
+    } finally {
+      e.limpiar()
+    }
+  })
+
+  it('uno de los lunes, el martes, sin haber corrido el lunes: atrasado', () => {
+    const e = escenario({ horarios: LUNES(10, 15), mtime: new Date('2026-09-14T10:15:04') })
+    try {
+      const h = juzgar([medirAgente(leerFlota(e.dir)[0], new Date('2026-09-22T12:00:00'))])
+      expect(h.map((x) => x.code)).toEqual(['cron-atrasado'])
+      expect(h[0].message).toContain('lun 10:15')
+    } finally {
+      e.limpiar()
+    }
+  })
+
+  it('lunes y jueves, el domingo, con el jueves hecho: no está atrasado', () => {
+    const e = escenario({ horarios: LUNES_Y_JUEVES(9, 30), mtime: new Date('2026-09-24T09:30:04') })
+    try {
+      expect(juzgar([medirAgente(leerFlota(e.dir)[0], new Date('2026-09-27T12:00:00'))])).toEqual(
+        [],
+      )
+    } finally {
+      e.limpiar()
+    }
+  })
+
+  it('lunes y jueves, el viernes, con sólo el lunes hecho: atrasado', () => {
+    const e = escenario({ horarios: LUNES_Y_JUEVES(9, 30), mtime: new Date('2026-09-21T09:30:04') })
+    try {
+      expect(
+        juzgar([medirAgente(leerFlota(e.dir)[0], new Date('2026-09-25T12:00:00'))]).map(
+          (x) => x.code,
+        ),
+      ).toEqual(['cron-atrasado'])
+    } finally {
+      e.limpiar()
     }
   })
 })

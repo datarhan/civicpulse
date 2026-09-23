@@ -16,6 +16,7 @@ import { join, relative, resolve } from 'node:path'
 import { construirGrafoRutas } from './route-graph'
 import { referenciasDelNavegador, repartir } from '../../publication-denylist.js'
 import { DEFAULT_EXPECTATIONS } from '../../src/scraper/snapshot-cadence'
+import { horariosDePlistXml } from '../../src/scraper/launchd-horario'
 import type {
   BotDeclarado,
   ColeccionPresente,
@@ -298,13 +299,12 @@ function leerCrones(root: string): CronDeclarado[] {
       const args = [...texto.matchAll(/<string>([^<]*)<\/string>/g)].map((m) => m[1])
       // El programa es el primer argumento que apunta a un fichero de scripts/.
       const programa = args.find((a) => /scripts\/[\w.-]+\.(sh|ts|mjs)$/.test(a))
-      const hora = clavePlist(texto, 'Hour')
-      const minuto = clavePlist(texto, 'Minute')
       return {
         etiqueta: clavePlist(texto, 'Label') ?? e.replace(/\.plist$/, ''),
         fichero: `scripts/${e}`,
-        hora: hora === null ? null : Number(hora),
-        minuto: minuto === null ? null : Number(minuto),
+        // Un dict o un array de dicts, con o sin Weekday: leer sólo la primera
+        // `Hour` borraba los días de los agentes que no corren a diario.
+        horarios: horariosDePlistXml(texto),
         programa: programa ? programa.slice(programa.indexOf('scripts/')) : '',
         log: clavePlist(texto, 'StandardOutPath'),
       }
