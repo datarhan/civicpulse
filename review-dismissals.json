@@ -155,6 +155,13 @@
       "reason": "El revisor atribuye los 812 contratos a la zona «Monte Alcedo / 289 mil €» porque, leída la página como texto plano, esa línea queda justo encima del contador. No es una zona seleccionada: es la quinta y última fila del reparto por zonas de CoverageMeter, que se pinta con selectedZone a null (GastoDashboard.jsx:91). Debajo, el explorador arranca con zoneSlug vacío (ContractsExplorer.jsx:78) y su desplegable dice «Todas las zonas». Las dos cifras son ciertas y el propio revisor las confirma: tenders.json trae 812 filas y 711 adjudicadas o formalizadas. Comprobado contra el código y el dato el 23-09-2026.",
       "editor": "claude-opus-5.5",
       "at": "2026-09-23"
+    },
+    {
+      "route": "/reportajes/coste-efectivo",
+      "quote": "El 23 de septiembre la Subdirección contestó que ese buzón sólo atiende consultas de las entidades locales sobre interpretación de la normativa presupuestaria, no de empresas ni de particulares",
+      "reason": "El revisor atribuye a «la propia página» la frase «Sus cifras NO se actualizan», que no está en la página: la inyecta el propio revisor, en el AVISO que añade a todo reportaje (scripts/review-surfaces.ts). La página dice «Cifras a 2026-09-17» —lo congelado son las cifras— y la nota del apartado de solicitudes dice que «se actualiza cuando hay movimiento» y que «cada fila lleva la fecha de lo que cuenta». La fila de Hacienda es la primera del apartado y cae en otro fragmento que esa nota, así que el modelo no la lee. El mismo señalamiento sobre la fila de la Comisión de Precios se resolvió el 22-09 escribiendo esa nota; aquí la página no dice nada falso.",
+      "editor": "claude-opus-5.5",
+      "at": "2026-09-23"
     }
   ]
 }

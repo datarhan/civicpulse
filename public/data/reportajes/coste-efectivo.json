@@ -31,6 +31,10 @@
       {
         "fecha": "2026-09-22",
         "texto": "**Se ha corregido una frase del panel de transporte que contaba la entrega de 2020 como declarada.** Decía que la casilla de viajeros «va a cero en todas las entregas desde la de 2019, aunque el ayuntamiento sigue declarando el gasto del servicio». La entrega de 2020 no se rindió —la sección 05 lo cuenta y el Ministerio de Hacienda la lista como incumplimiento—, así que en ella no hay ni un cero de viajeros ni un gasto declarado: la frase publicaba una ausencia como un cero. Dice ahora «en todas las entregas rendidas desde la de 2019 —la de 2020 no se rindió—». Ninguna cifra cambia."
+      },
+      {
+        "fecha": "2026-09-23",
+        "texto": "**Se ha corregido el nombre de la unidad del Ministerio de Hacienda a la que se dirigió uno de los tres escritos.** La llamábamos «Subdirección General de Estudios y Financiación de Entidades Locales». El Real Decreto 206/2024, que fija la estructura del Ministerio, la llama Subdirección General de Estudios Financieros de Entidades Locales (artículo 3.2.c), y así firma ella misma."
       }
     ]
   },
@@ -450,11 +454,17 @@
     "nota": "El artículo 17.2 de la Ley 19/2013 admite «cualquier medio que permita tener constancia» de la identidad de quien pide, de la información solicitada y de una dirección de contacto: un correo que lleve las tres cosas es una vía válida. El artículo 20.1, en cambio, cuenta el mes «desde la recepción de la solicitud por el órgano competente para resolver», y de un correo consta el envío, no esa recepción. Por eso las dos que salieron por correo llevan la fecha contada desde el envío y no como vencimiento acreditado. La tercera se presentó por el registro electrónico de la Generalitat y la propia Generalitat ha acusado su entrada: de ésa el plazo se cuenta desde esa fecha y se puede afirmar. Este apartado se actualiza cuando hay movimiento, aunque las cifras de la pieza estén congeladas a su fecha: cada fila lleva la fecha de lo que cuenta. Toda respuesta se publicará íntegra.",
     "items": [
       {
-        "organismo": "Ministerio de Hacienda · Subdirección General de Estudios y Financiación de Entidades Locales",
+        "organismo": "Ministerio de Hacienda · Subdirección General de Estudios Financieros de Entidades Locales",
         "enviadaEl": "2026-09-18",
         "via": "correo electrónico",
         "pide": "Copia del requerimiento de cumplimiento previsto en el artículo 19 de la Orden HAP/2105/2012 por la falta de remisión del coste efectivo de 2020, si lo hubo, y si el Ayuntamiento lo atendió o remitió la información más tarde; las medidas adoptadas; cualquier comunicación dirigida al Ayuntamiento sobre la declaración de cero en abastecimiento y alcantarillado en cinco entregas. Y dos consultas: qué debe declararse cuando el concesionario cobra del recibo, y qué validez tienen las unidades físicas que el libro publica para un servicio declarado en concesión.",
-        "respuesta": null
+        "respuesta": null,
+        "incidencias": [
+          {
+            "fecha": "2026-09-23",
+            "texto": "El 23 de septiembre la Subdirección contestó que ese buzón sólo atiende consultas de las entidades locales sobre interpretación de la normativa presupuestaria, no de empresas ni de particulares, y enlazó la consulta pública del coste efectivo: la misma fuente de la que salen las cifras de esta pieza. No resuelve lo pedido: ni lo concede, ni lo deniega, ni dice que la información no le corresponda."
+          }
+        ]
       },
       {
         "organismo": "Ayuntamiento de Riba-roja de Túria",
