@@ -148,6 +148,13 @@
       "reason": "El revisor dice que la descripción de la flota va «sin atribución». Va tres elementos por debajo de una atribución explícita y nominal: «El estado de la flota devuelta no lo describe este reportaje, sino la primera teniente de alcalde de Parla» (Basuras.jsx:515), seguida de su cita literal con figcaption —María Jesús Fúnez, 27 de abril de 2018— y del criterio con el que se publica. El propio campo contradictedBy del señalamiento cita esa atribución como si fuera una contradicción. La asimetría que nota dentro del balance —«según ella misma» y «según UGT» en las quejas de la empresa y del sindicato, nada en la flota— es de principio, no descuido: lo etiquetado son alegaciones de parte sin acto administrativo detrás; la devolución de la flota la publicó el propio Ayuntamiento de Parla (fuente en basuras.json:696, hito :69), y el párrafo cierra con «ningún juzgado ha repartido las culpas, y este reportaje tampoco». Comprobado el 22-09-2026 contra el componente y el JSON.",
       "editor": "claude-fable-5.1",
       "at": "2026-09-22"
+    },
+    {
+      "route": "/presupuesto",
+      "quote": "812 resultados · 1–10, página 1 de 82",
+      "reason": "El revisor atribuye los 812 contratos a la zona «Monte Alcedo / 289 mil €» porque, leída la página como texto plano, esa línea queda justo encima del contador. No es una zona seleccionada: es la quinta y última fila del reparto por zonas de CoverageMeter, que se pinta con selectedZone a null (GastoDashboard.jsx:91). Debajo, el explorador arranca con zoneSlug vacío (ContractsExplorer.jsx:78) y su desplegable dice «Todas las zonas». Las dos cifras son ciertas y el propio revisor las confirma: tenders.json trae 812 filas y 711 adjudicadas o formalizadas. Comprobado contra el código y el dato el 23-09-2026.",
+      "editor": "claude-opus-5.5",
+      "at": "2026-09-23"
     }
   ]
 }
