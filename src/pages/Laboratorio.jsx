@@ -784,7 +784,7 @@ export default function Laboratorio() {
           .
         </p>
         <div style={{ marginTop: 10 }}>
-          <DataAsOf iso={lab.generatedAt} label="Laboratorio" />
+          <DataAsOf iso={lab.generatedAt} label="Laboratorio" file="press-claims-verified.json" />
         </div>
         {/* El laboratorio tiene más de un experimento dentro. Sin este puntero
             la frontera sólo se alcanza por la barra lateral, y un experimento
