@@ -152,6 +152,25 @@ describe('coste-efectivo · lo que la verificación del 17-09-2026 encontró fal
     }
   })
 
+  // La unidad de Hacienda a la que se escribió el 18-09-2026 tiene otro nombre
+  // desde el Real Decreto 206/2024 (BOE-A-2024-3792, art. 3.2.c), y así firmó
+  // ella misma su contestación del 23-09-2026, con su código DIR3 EA0044690. La
+  // página la llamaba por un nombre que ese decreto no contiene. Se exige además
+  // el nombre bueno: si la fila desapareciera, la prohibición aprobaría sola.
+  it('la unidad de Hacienda se llama como la llama su decreto de estructura', () => {
+    enNinguna(
+      /Estudios y Financiación de Entidades Locales/,
+      'el Real Decreto 206/2024 la llama «Subdirección General de Estudios Financieros de Entidades Locales»',
+    )
+    const hacienda = pieza.solicitudes.items.filter((e) => /Hacienda/.test(e.organismo))
+    expect(hacienda.length).toBeGreaterThan(0)
+    for (const e of hacienda) {
+      expect(e.organismo).toMatch(
+        /Subdirección General de Estudios Financieros de Entidades Locales/,
+      )
+    }
+  })
+
   it('ninguna fila se pierde en silencio por una clave de React repetida', () => {
     // CorrectionNote usa `key={c.fecha}` y la cronología `key={h.f}`: dos
     // entradas con la misma fecha harían desaparecer una sin error ni aviso.

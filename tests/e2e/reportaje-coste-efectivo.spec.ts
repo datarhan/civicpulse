@@ -133,6 +133,18 @@ test.describe('Reportaje · coste efectivo (/reportajes/coste-efectivo)', () => 
     // decir que no consta algo que ya consta miente igual que afirmar de más.
     expect(await page.getByText(/no consta todavía aquí/).count()).toBe(0)
 
+    // HACIENDA: la unidad con su nombre de hoy y lo que contestó. El nombre es el
+    // del Real Decreto 206/2024 —«Estudios Financieros», no «Estudios y
+    // Financiación»— y es con el que ella firma. La contestación no resuelve: dice
+    // que ese buzón sólo atiende a entidades locales. Tiene que VERSE, porque una
+    // fila sin ella callaría que contestaron.
+    await expect(
+      page.getByText(
+        /Ministerio de Hacienda · Subdirección General de Estudios Financieros de Entidades Locales · enviada el 18 de septiembre de 2026/,
+      ),
+    ).toBeVisible()
+    await expect(page.getByText(/sólo atiende consultas de las entidades locales/)).toBeVisible()
+
     // Qué está congelado y qué no. Sin esto la pieza se contradice a sí misma:
     // declara su fecha de cifras el 17 de septiembre y debajo cuenta un escrito
     // del 18 y una comunicación del 21. Lo congelado son las CIFRAS; el registro
