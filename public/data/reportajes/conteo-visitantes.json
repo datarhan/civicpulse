@@ -20,6 +20,10 @@
       {
         "fecha": "2026-09-22",
         "texto": "**Se han corregido dos frases que decían más de lo que el expediente sostiene.** La primera sumaba los dos contratos como dinero «para medir su turismo»: 61.050,21 € son los sensores de conteo —la novena actuación del plan—, pero los 26.000 € son campañas de promoción segmentada —la octava—, que sirven para atraer visitantes y no para contarlos. El subtítulo, el dato de cabecera y la entradilla lo dicen ahora como es: dos contratos del plan turístico, uno para contar y otro para promocionar. La segunda, en el apartado 07, seguía diciendo que no constaba que Riba-roja pidiera modificar o reprogramar su plan tras la DANA, bajo un título que daba por no usado el margen del artículo 18 del Real Decreto-ley 7/2024, cuando el apartado 08 cuenta desde el 17 de septiembre que la Secretaría de Estado de Turismo amplió el plazo al amparo de ese mismo artículo. El apartado distingue ahora el contenido del plan, del que no consta petición alguna, del calendario, que sí se amplió, y remite a la solicitud de este medio sobre quién pidió esa ampliación y cuándo. Ninguna cifra cambia."
+      },
+      {
+        "fecha": "2026-09-23",
+        "texto": "**La solicitud a Turisme Comunitat Valenciana presentada por registro ya no lleva un vencimiento afirmado.** Su fila decía que el plazo vencía el 21 de octubre, contado desde el asiento del 21 de septiembre como si ése acreditara la entrada en el órgano que tiene que resolver. El 23 de septiembre la Generalitat comunicó que la había remitido a Turisme Comunitat Valenciana por considerarlo el competente, y con esa remisión el asiento ya no basta para saber desde cuándo corre el mes: hace falta la fecha en que la recibió ese órgano, que todavía no consta. Hasta que conste, la fila cuenta el plazo desde la comunicación de la remisión, y lo dice."
       }
     ]
   },
@@ -199,7 +203,7 @@
   "preguntasNota": "Estas preguntas se han remitido al Ayuntamiento de Riba-roja de Túria junto con una solicitud de acceso a la información amparada en la Ley 19/2013. Su respuesta se publicará íntegra y sin editar junto a este reportaje, y se hará constar qué preguntas quedaron sin responder.",
   "solicitudes": {
     "titulo": "Lo que se ha pedido, a quién y desde cuándo corre el plazo",
-    "nota": "El artículo 17.2 de la Ley 19/2013 admite «cualquier medio que permita tener constancia» de la identidad de quien pide, de la información solicitada y de una dirección de contacto: un correo que lleve las tres cosas es una vía válida de presentación. El artículo 20.1, en cambio, cuenta el mes «desde la recepción de la solicitud por el órgano competente para resolver», y de un correo consta el envío, no esa recepción. Por eso las fechas van contadas desde el envío y no se presentan como vencimientos acreditados. Una de ellas, en cambio, se presentó por el registro electrónico de la Generalitat: de ésa consta el asiento, así que su plazo no se cuenta desde el envío sino desde su entrada en el registro, y se puede afirmar.",
+    "nota": "El artículo 17.2 de la Ley 19/2013 admite «cualquier medio que permita tener constancia» de la identidad de quien pide, de la información solicitada y de una dirección de contacto: un correo que lleve las tres cosas es una vía válida de presentación. El artículo 20.1, en cambio, cuenta el mes «desde la recepción de la solicitud por el órgano competente para resolver», y de un correo consta el envío, no esa recepción. Por eso las fechas van contadas desde el envío y no se presentan como vencimientos acreditados. Una de ellas se presentó por el registro electrónico de la Generalitat y de ésa consta el asiento; pero la Generalitat la remitió después a Turisme Comunitat Valenciana por considerarlo el órgano competente, y de la fecha en que éste la recibió —la que cuenta para el artículo 20.1— todavía no hay constancia. Hasta que la haya, su plazo se cuenta desde que se comunicó la remisión y tampoco se presenta como vencimiento acreditado.",
     "items": [
       {
         "organismo": "Ayuntamiento de Riba-roja de Túria",
@@ -245,7 +249,17 @@
         "via": "el registro electrónico de la Generalitat",
         "registro": "GVRTE/2026/4309357",
         "pide": "El mismo escrito del 9 de septiembre, presentado por el trámite que Turisme Comunitat Valenciana indicó al contestar que por correo no podía atenderlo. Añade una pregunta que no existía entonces: si la ampliación del plazo del plan hasta agosto de 2026 —que la Secretaría de Estado de Turismo confirmó el 16 de septiembre— se tramitó a través de Turisme Comunitat Valenciana, copia de la solicitud y de la resolución.",
-        "respuesta": null
+        "respuesta": null,
+        "incidencias": [
+          {
+            "fecha": "2026-09-23",
+            "texto": "El 23 de septiembre la Generalitat comunicó que la información pedida no obra en poder de la Conselleria de Industria, Turismo, Innovación y Comercio y que había remitido la solicitud a Turisme Comunitat Valenciana (expediente GVAGIP/2026/774; cita el artículo 50.1 del Decreto 105/2017). No resuelve nada de lo pedido, ni dice desde qué fecha corre el mes para resolver."
+          }
+        ],
+        "remitida": {
+          "fecha": "2026-09-23",
+          "a": "Turisme Comunitat Valenciana"
+        }
       }
     ]
   }

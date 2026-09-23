@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import {
+  arranqueDelPlazo,
   enCastellano,
   estadoDeEnvio,
   fraseDeEnvio,
@@ -239,6 +240,10 @@ describe('respuesta · «no les corresponde»', () => {
  * Generalitat con el número GVRTE/2026/4309357. Publicar entonces la misma
  * salvedad sería disculparse por algo que ya consta, y no publicar el número
  * sería quedarse sin la prueba de que consta.
+ *
+ * Ese mismo escrito se REMITIÓ después a otro órgano, y el asiento dejó de
+ * acreditar su vencimiento: el bloque siguiente. Esta regla sigue siendo la de
+ * una solicitud que resuelve quien la recibe.
  */
 describe('una solicitud con registro dice su número y vence de verdad', () => {
   const conRegistro: EnvioSolicitud = {
@@ -264,6 +269,95 @@ describe('una solicitud con registro dice su número y vence de verdad', () => {
     // dice. Las tres del coste efectivo y dos del conteo salieron por correo.
     const porCorreo: EnvioSolicitud = { ...conRegistro, registro: undefined }
     expect(fraseDeEnvio(porCorreo, '2026-09-30')).toMatch(/contado desde el envío/)
+  })
+})
+
+/**
+ * Un asiento acredita la entrada donde se presentó. Si quien la recibe la REMITE
+ * a otro por considerarlo competente, el mes ya no se deduce de él.
+ *
+ * Le pasó al escrito del bloque anterior. Presentado el 21-09-2026 con el número
+ * GVRTE/2026/4309357, su fila afirmaba «vence el 21 de octubre». El 23-09 la
+ * Generalitat comunicó que la información no obraba en poder de la Conselleria
+ * de Industria, Turismo, Innovación y Comercio y que había remitido la solicitud
+ * a Turisme Comunitat Valenciana (expediente GVAGIP/2026/774). El art. 20.1
+ * cuenta el mes «desde la recepción de la solicitud por el órgano competente
+ * para resolver», y de esa recepción no consta la fecha: el número seguía siendo
+ * cierto y el vencimiento que se sacaba de él había dejado de estar acreditado.
+ *
+ * Hasta que conste, se cuenta desde la comunicación de la remisión —la primera
+ * fecha en que consta que se le había remitido— y se dice así, igual que un
+ * correo se cuenta «desde el envío». Qué fecha manda después de una remisión no
+ * lo zanja ningún texto (el art. 34.1 de la Ley 1/2022 cuenta desde la entrada
+ * en el registro del organismo competente), así que la frase no toma partido:
+ * no afirma nada hasta que el órgano diga cuándo la recibió.
+ */
+describe('una solicitud remitida a otro órgano no vence desde su asiento', () => {
+  const remitida: EnvioSolicitud = {
+    organismo: 'Turisme Comunitat Valenciana',
+    enviadaEl: '2026-09-21',
+    via: 'el registro electrónico de la Generalitat',
+    registro: 'GVRTE/2026/4309357',
+    respuesta: null,
+    remitida: { fecha: '2026-09-23', a: 'Turisme Comunitat Valenciana' },
+  }
+  const recibida: EnvioSolicitud = {
+    ...remitida,
+    remitida: { fecha: '2026-09-23', a: 'Turisme Comunitat Valenciana', recibidaEl: '2026-09-24' },
+  }
+
+  it('conserva el número de registro, que sigue siendo cierto', () => {
+    expect(fraseDeEnvio(remitida, '2026-09-30')).toContain('GVRTE/2026/4309357')
+  })
+
+  it('no afirma el vencimiento que se deducía del asiento', () => {
+    const f = fraseDeEnvio(remitida, '2026-09-30')
+    expect(f).not.toContain('21 de octubre de 2026')
+    expect(f).not.toMatch(/vence el/)
+  })
+
+  it('dice a quién se remitió, cuándo se comunicó y desde dónde se cuenta', () => {
+    const f = fraseDeEnvio(remitida, '2026-09-30')
+    expect(f).toContain(
+      'El 23 de septiembre de 2026 se comunicó que se había remitido a Turisme Comunitat Valenciana',
+    )
+    expect(f).toMatch(/no consta todavía cuándo la recibió/)
+    expect(f).toMatch(/órgano competente para resolver/)
+    expect(f).toContain('contado desde esa comunicación, el 23 de octubre de 2026')
+  })
+
+  it('el estado se cuenta desde la comunicación, no desde el asiento', () => {
+    expect(estadoDeEnvio(remitida, '2026-10-22')).toBe('en-plazo')
+    expect(estadoDeEnvio(remitida, '2026-10-23')).toBe('en-plazo')
+    expect(estadoDeEnvio(remitida, '2026-10-24')).toBe('vencida-sin-respuesta')
+  })
+
+  it('vencida, sigue diciendo desde dónde se contó', () => {
+    expect(fraseDeEnvio(remitida, '2026-10-24')).toContain(
+      'Contado desde esa comunicación, el mes del artículo 20 terminó el 23 de octubre de 2026 y no han contestado.',
+    )
+  })
+
+  it('cuando consta que la recibió, el vencimiento se afirma desde ahí', () => {
+    const f = fraseDeEnvio(recibida, '2026-09-30')
+    expect(f).toContain('consta que la recibió el 24 de septiembre de 2026')
+    expect(f).toContain('vence el 24 de octubre de 2026')
+    expect(f).not.toMatch(/contado desde/i)
+    expect(estadoDeEnvio(recibida, '2026-10-24')).toBe('en-plazo')
+    expect(estadoDeEnvio(recibida, '2026-10-25')).toBe('vencida-sin-respuesta')
+  })
+
+  // La tabla entera, porque la nota del pie se guarda contra esta función: si
+  // «acreditado» se equivoca, la nota promete o calla un vencimiento en falso.
+  it('arranqueDelPlazo: acredita el asiento propio o la recepción del remitido, nada más', () => {
+    const porCorreo: EnvioSolicitud = { ...remitida, registro: undefined, remitida: undefined }
+    expect(arranqueDelPlazo(porCorreo)).toEqual({ desde: '2026-09-21', acreditado: false })
+    expect(arranqueDelPlazo({ ...remitida, remitida: undefined })).toEqual({
+      desde: '2026-09-21',
+      acreditado: true,
+    })
+    expect(arranqueDelPlazo(remitida)).toEqual({ desde: '2026-09-23', acreditado: false })
+    expect(arranqueDelPlazo(recibida)).toEqual({ desde: '2026-09-24', acreditado: true })
   })
 })
 
@@ -372,6 +466,40 @@ describe.each(PIEZAS)('instantánea publicada · %s', (slug) => {
     ).toBe(sinAsiento.length > 0)
   })
 
+  // LA OTRA MITAD DE LA NOTA: «se puede afirmar». Es una promesa sobre las filas
+  // —que alguna tiene el vencimiento acreditado— y el 23-09-2026 se quedó sin
+  // objeto en el conteo: la única fila con asiento se remitió a otro órgano, su
+  // frase dejó de afirmar y la nota lo seguía prometiendo. Mismo «si y sólo si»
+  // que la salvedad de arriba, y contra la función que decide, no contra una
+  // copia de su regla.
+  it('la nota dice que un plazo «se puede afirmar» si y sólo si alguna fila lo tiene acreditado', () => {
+    const acreditadas = d.solicitudes.items.filter((e) => arranqueDelPlazo(e).acreditado)
+    const loDice = /se puede afirmar/.test(d.solicitudes.nota)
+    expect(
+      loDice,
+      acreditadas.length > 0
+        ? `${acreditadas.map((e) => e.organismo).join(', ')}: vencimiento acreditado y la nota no lo dice`
+        : 'ninguna fila tiene el vencimiento acreditado y la nota dice que uno «se puede afirmar»',
+    ).toBe(acreditadas.length > 0)
+  })
+
+  // Una remisión mueve el reloj, así que tiene que poder leerse: a quién, cuándo,
+  // y lo que dijeron al comunicarla, que va en una incidencia con su misma fecha.
+  // Sin la incidencia la frase diría «se remitió» sin que la página contara quién
+  // lo dijo ni por qué.
+  it('cada remisión nombra a quién, va después del envío y consta dicha', () => {
+    for (const e of d.solicitudes.items.filter((x) => x.remitida)) {
+      const r = e.remitida!
+      expect(r.a.trim(), `${e.organismo}: remitida sin decir a quién`).not.toBe('')
+      expect(r.fecha >= e.enviadaEl, `${e.organismo}: remitida antes de enviarse`).toBe(true)
+      if (r.recibidaEl) expect(r.recibidaEl >= e.enviadaEl).toBe(true)
+      expect(
+        (e.incidencias ?? []).some((i) => i.fecha === r.fecha),
+        `${e.organismo}: la remisión del ${r.fecha} no consta en ninguna incidencia`,
+      ).toBe(true)
+    }
+  })
+
   it('toda respuesta publicada usa un sentido del enum', () => {
     const malos = d.solicitudes.items
       .filter((e) => e.respuesta)
@@ -379,4 +507,18 @@ describe.each(PIEZAS)('instantánea publicada · %s', (slug) => {
       .filter((s) => !(SENTIDOS_RESPUESTA as readonly string[]).includes(s))
     expect(malos).toEqual([])
   })
+})
+
+// Las comprobaciones de remisión de arriba recorren sólo las filas que la tienen,
+// y sobre ninguna aprobarían sin mirar nada. Ésta dice que miraron algo.
+it('mide algo: alguna instantánea publica una remisión', () => {
+  const conRemision = PIEZAS.flatMap(
+    (slug) =>
+      (
+        JSON.parse(readFileSync(`public/data/reportajes/${slug}.json`, 'utf8')) as {
+          solicitudes: { items: EnvioSolicitud[] }
+        }
+      ).solicitudes.items,
+  ).filter((e) => e.remitida)
+  expect(conRemision.length).toBeGreaterThan(0)
 })
