@@ -120,9 +120,19 @@ function unaSinOrdenVariasSinDecl() {
   return mapa
 }
 
-/** Varias con declaraciones sin orden del día, una con votaciones sin declaraciones. */
+/**
+ * Varias con declaraciones sin orden del día, una con votaciones sin declaraciones.
+ *
+ * Las «varias» se FABRICAN, quitando el orden del día a dos sesiones que tienen
+ * declaraciones: el dato publicado no las garantiza. Hasta el 22-09 traía cinco
+ * y el escenario se las fiaba; la nocturna del 23-09 publicó 17 órdenes del día
+ * más, dejó una, y el plural del catálogo se quedó sin pintar.
+ */
 function variasSinOrdenUnaSinDecl() {
   const mapa = structuredClone(sirve())
+  const { orden, decl } = idsCon(mapa)
+  const sinOrden = new Set([...decl].filter((id) => orden.has(id)).slice(0, 2))
+  mapa[RUTAS.agendas].plenos = mapa[RUTAS.agendas].plenos.filter((p) => !sinOrden.has(p.id))
   const votos = mapa[RUTAS.votos]
   for (const id of sinDeclaraciones(mapa, 1)) votos.stats.byPleno[id] = 1
   votos.stats.retracted = { plazo: 1 }
@@ -203,6 +213,24 @@ describe('las mutaciones abren las ramas que dicen', () => {
       (x) => !vistos.has(x),
     )
     expect(faltan).toEqual([])
+  })
+
+  // «Declaraciones sin orden del día» son sesiones del manifiesto sin entrada en
+  // plenos-agendas.json. El escenario de «varias» no las fabricaba: se las fiaba
+  // al dato publicado, que el 22-09 traía cinco. La nocturna del 23-09 publicó 17
+  // órdenes del día más y dejó UNA, así que el plural dejó de pintarse y la
+  // cobertura del catálogo se puso roja con una clave suelta y sin motivo a la
+  // vista. Ésta lo dice en un segundo y por su nombre.
+  it('las declaraciones sin orden del día salen en singular y en plural en algún escenario', () => {
+    const cuentas = ESCENARIOS.map((e) => {
+      const { orden, decl } = idsCon(e.fetch)
+      return [...decl].filter((id) => !orden.has(id)).length
+    })
+    expect(cuentas, 'ningún escenario tiene UNA').toContain(1)
+    expect(
+      cuentas.some((n) => n >= 2),
+      `ningún escenario tiene VARIAS: ${JSON.stringify(cuentas)}`,
+    ).toBe(true)
   })
 })
 
