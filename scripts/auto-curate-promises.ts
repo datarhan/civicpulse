@@ -19,6 +19,8 @@
  *       [--phase discovery|status|both] [--dry-run] [--no-auto-publish]
  */
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs'
+import { adjuntarCuerpos } from '../src/scraper/promise-discovery-bodies'
+import { fetchArticleBody } from '../src/scraper/press-fetcher'
 import { resolve } from 'node:path'
 import { validatePromisesSnapshot, isFrozen, type PromisesSnapshot } from '../src/scraper/promises'
 import {
@@ -292,24 +294,61 @@ async function main() {
   let newQueue: DraftNewPromise[] = []
   const newSkipped: Array<{ draftId: string; reason: string }> = []
   if (doDiscovery) {
-    // Discovery se cuelga: `claude-code timed out after 180s (no output;
-    // killed)`, y no es tamaño —manda 60 titulares—. No sé por qué se cuelga;
-    // lo que sí puedo hacer es dejar de pagar tres minutos por averiguarlo.
-    // Falla blando (abajo), y la fase `status` —la que de verdad mueve
-    // promesas— corre después: cuanto antes llegue, mejor.
+    // Discovery «se colgaba» 17 pasadas de 17 (hasta el 2026-09-23) y no era
+    // un cuelgue: el prompt exige una cita LITERAL y sólo le llegaban titulares,
+    // así que el modelo salía a leer cada artículo con WebFetch, WebSearch y
+    // Bash —denegados todos— hasta que el vigilante lo mataba. Ahora cada fuente
+    // viaja con su cuerpo (la que no tiene se aparta y se cuenta) y `claude -p`
+    // veta esas herramientas por nombre (src/llm/client.ts). El reloj sube de
+    // 45 a 300 s: el de 45 existía para no pagar un cuelgue cuya causa ya no
+    // está, y leer los cuerpos tarda de verdad — medido el 2026-09-23, 36
+    // fuentes, 114 s y 4 candidatas. Es UNA llamada a la semana.
+    const entrada = buildDiscoveryInput(snap, press, agendas)
+    const prensa = entrada.sources.find((f) => f.kind === 'press')
+    let fuentesConCuerpo = 0
+    if (prensa) {
+      const { items, sinCuerpo } = await adjuntarCuerpos(prensa.items, async (url) => {
+        const r = await fetchArticleBody(url)
+        return { body: r.body, robotsAllowed: r.robotsAllowed }
+      })
+      prensa.items = items
+      fuentesConCuerpo = items.length
+      runLog.record('discovery:fuentes', items.length)
+      if (sinCuerpo.length > 0) {
+        runLog.record('discovery:sinCuerpo', sinCuerpo.length)
+        const motivos = new Map<string, number>()
+        for (const x of sinCuerpo) {
+          const m = x.motivo.startsWith('error') ? 'error' : x.motivo
+          motivos.set(m, (motivos.get(m) ?? 0) + 1)
+        }
+        process.stderr.write(
+          `[auto-curate-promises] discovery: ${sinCuerpo.length} fuente(s) sin cuerpo, apartadas ` +
+            `(${[...motivos].map(([m, n]) => `${m} ${n}`).join(' · ')})\n`,
+        )
+      }
+    }
     const relojPrevio = process.env.LLM_CLI_TIMEOUT_MS
-    process.env.LLM_CLI_TIMEOUT_MS = process.env.LLM_CLI_TIMEOUT_MS ?? '45000'
-    let batch: Awaited<ReturnType<typeof discoverPromises>>
+    process.env.LLM_CLI_TIMEOUT_MS = process.env.LLM_CLI_TIMEOUT_MS ?? '300000'
+    let batch: Awaited<ReturnType<typeof discoverPromises>> = null
     try {
-      batch = await discoverPromises(buildDiscoveryInput(snap, press, agendas))
+      if (fuentesConCuerpo > 0) batch = await discoverPromises(entrada)
+      else
+        process.stderr.write(
+          '[auto-curate-promises] discovery: ninguna fuente con cuerpo — no se llama al modelo\n',
+        )
     } finally {
       // Restaurado para no imponerle a `status` el reloj corto de discovery.
       if (relojPrevio === undefined) delete process.env.LLM_CLI_TIMEOUT_MS
       else process.env.LLM_CLI_TIMEOUT_MS = relojPrevio
     }
-    if (!batch) {
+    if (!batch && fuentesConCuerpo > 0) {
+      // Fallaba BLANDO: sin exitCode y fuera del manifiesto, así que 17 pasadas
+      // sin una respuesta quedaron en un WARN de tasa de fallos que nadie leía.
+      // Con fuentes delante y sin respuesta, la pasada no hizo su trabajo.
       process.stderr.write('[auto-curate-promises] discovery: LLM returned null (backend/budget)\n')
-    } else {
+      runLog.record('discovery:sinRespuesta', 1)
+      process.exitCode = 1
+    } else if (batch) {
       process.stdout.write(
         `[auto-curate-promises] discovery: LLM proposed ${batch.promises.length} candidate(s)\n`,
       )

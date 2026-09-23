@@ -800,6 +800,66 @@ async function callAnthropic(req: RawCall): Promise<RawResult> {
   return { raw, tokenCount, costUSD }
 }
 
+/** Las herramientas que un `claude -p` de extracción nunca debe poder intentar. */
+export const CLAUDE_CODE_DISALLOWED_TOOLS = [
+  'WebFetch',
+  'WebSearch',
+  'Bash',
+  'Read',
+  'Write',
+  'Edit',
+  'Glob',
+  'Grep',
+  'Agent',
+  'ToolSearch',
+  'NotebookEdit',
+] as const
+
+/** Los argumentos de `claude -p` para una llamada estructurada. Puro: se prueba solo. */
+export function claudeCodeArgs(
+  req: Pick<RawCall, 'userPrompt' | 'systemPrompt'> & {
+    config: Pick<RawCall['config'], 'claudeCodeModel'>
+  },
+  schemaJson: string,
+): string[] {
+  return [
+    '-p',
+    req.userPrompt,
+    '--system-prompt',
+    req.systemPrompt,
+    '--json-schema',
+    schemaJson,
+    '--output-format',
+    'json',
+    '--model',
+    req.config.claudeCodeModel,
+    '--disable-slash-commands',
+    // Headless isolation (probed 2026-07-04). Without --strict-mcp-config,
+    // each `claude -p` tries to init the user's GLOBAL MCP servers
+    // (Figma/Gmail/…) and HANGS indefinitely — the root cause of the
+    // "claude-code stalls headlessly" folklore. --bare fixes the hang but
+    // also skips keychain reads → "Not logged in"; --strict-mcp-config drops
+    // MCP while keeping Max OAuth. Structured output is delivered via the
+    // internal StructuredOutput tool, so allow ONLY that: a blanket
+    // --disallowedTools '*' denies it and the model loops on permission
+    // denials until it gives up.
+    '--strict-mcp-config',
+    '--allowedTools',
+    'StructuredOutput',
+    // …y veta el resto por su NOMBRE. `--allowedTools` sólo pre-aprueba: las
+    // demás herramientas seguían a la vista y se denegaban al usarlas. El
+    // auto-curador de promesas lo pagó 17 de 17 veces: su descubrimiento pedía
+    // una cita literal de artículos de los que sólo recibía el titular, el
+    // modelo intentaba WebFetch, WebSearch y Bash, cada uno denegado, y el
+    // vigilante lo mataba a los 45 s sin una sola respuesta. Probado el
+    // 2026-09-23 con esta lista: StructuredOutput responde (6 s, 0 denegaciones)
+    // ante un prompt que invita a leer una URL. `'*'` no vale: veta también
+    // StructuredOutput (ver arriba).
+    '--disallowedTools',
+    CLAUDE_CODE_DISALLOWED_TOOLS.join(','),
+  ]
+}
+
 /**
  * Claude Code CLI backend.
  *
@@ -834,31 +894,7 @@ async function callClaudeCode(req: RawCall): Promise<RawResult> {
   const cwd = mkdtempSync(join(tmpdir(), 'cp-claude-cwd-'))
 
   return await new Promise<RawResult>((resolvePromise, rejectPromise) => {
-    const args = [
-      '-p',
-      req.userPrompt,
-      '--system-prompt',
-      req.systemPrompt,
-      '--json-schema',
-      schemaJson,
-      '--output-format',
-      'json',
-      '--model',
-      req.config.claudeCodeModel,
-      '--disable-slash-commands',
-      // Headless isolation (probed 2026-07-04). Without --strict-mcp-config,
-      // each `claude -p` tries to init the user's GLOBAL MCP servers
-      // (Figma/Gmail/…) and HANGS indefinitely — the root cause of the
-      // "claude-code stalls headlessly" folklore. --bare fixes the hang but
-      // also skips keychain reads → "Not logged in"; --strict-mcp-config drops
-      // MCP while keeping Max OAuth. Structured output is delivered via the
-      // internal StructuredOutput tool, so allow ONLY that: a blanket
-      // --disallowedTools '*' denies it and the model loops on permission
-      // denials until it gives up.
-      '--strict-mcp-config',
-      '--allowedTools',
-      'StructuredOutput',
-    ]
+    const args = claudeCodeArgs(req, schemaJson)
     const child = spawn(req.config.claudeCodeBin, args, {
       stdio: ['ignore', 'pipe', 'pipe'],
       cwd,

@@ -13,6 +13,7 @@
  * instruction is belt-and-suspenders, not load-bearing.
  */
 import { ALLOWED_PARTIES, ALLOWED_TOPICS, ALLOWED_KINDS } from '../scraper/promises'
+import { LARGO_EXTRACTO } from '../scraper/promise-discovery-bodies'
 // The ` · sim=0.50` tail below is rendered through this, never inline: the
 // publishing path strips it back off with the inverse in the same module, and
 // two hand-written copies of a format is how a strip stops matching an emitter
@@ -1427,7 +1428,8 @@ Emit the verification JSON.
 }
 
 // ─── Promise discovery (auto-curator Phase 1) ──────────────────────────────
-export const PROMISE_DISCOVERY_PROMPT_VERSION = 'promise-discovery-v1'
+// v2 (2026-09-23): cada fuente trae un extracto de su cuerpo; antes, sólo el titular.
+export const PROMISE_DISCOVERY_PROMPT_VERSION = 'promise-discovery-v2'
 
 export interface PromiseDiscoveryInput {
   existingTitles: string[]
@@ -1481,7 +1483,7 @@ export function buildPromiseDiscoveryUserPrompt(input: PromiseDiscoveryInput): s
       const lines = s.items
         .map(
           (it, i) =>
-            `  [${s.kind}#${i + 1}] ${it.date} · ${it.publisher ?? ''} · ${it.title}\n    URL: ${it.url}\n    ${it.snippet ? `…${it.snippet.slice(0, 240)}…` : ''}`,
+            `  [${s.kind}#${i + 1}] ${it.date} · ${it.publisher ?? ''} · ${it.title}\n    URL: ${it.url}\n    ${it.snippet ? `…${it.snippet.slice(0, LARGO_EXTRACTO)}…` : ''}`,
         )
         .join('\n')
       return `### ${s.kind.toUpperCase()} (${s.items.length})\n${lines}`

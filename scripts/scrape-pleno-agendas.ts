@@ -11,6 +11,7 @@
  * Usage: npm run scrape:pleno-agendas
  */
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
+import { fetchConCookies } from './lib/regmeet-fetch'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import {
@@ -34,7 +35,10 @@ const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
 
 async function fetchPage(url: string): Promise<Buffer | null> {
   try {
-    const res = await fetch(url, {
+    // Con cookies: desde septiembre de 2026 regmeet redirige cada página de
+    // sesión a sí misma poniendo `humano=si`, y un fetch sin cookies da vueltas
+    // hasta «fetch failed». Ver scripts/lib/regmeet-fetch.ts.
+    const res = await fetchConCookies(url, {
       headers: {
         // Browser-like UA: regmeet.com (the post-2026-05 plenos upstream) WAF
         // rejects the bare "CivicPulse/…" UA. Matches scrape-plenos.ts.

@@ -48,7 +48,7 @@ describe('promise discovery schema + prompt', () => {
   })
 
   it('version + prompts are present', () => {
-    expect(PROMISE_DISCOVERY_PROMPT_VERSION).toBe('promise-discovery-v1')
+    expect(PROMISE_DISCOVERY_PROMPT_VERSION).toBe('promise-discovery-v2')
     expect(buildPromiseDiscoverySystemPrompt().length).toBeGreaterThan(100)
     const u = buildPromiseDiscoveryUserPrompt({
       existingTitles: ['Ya seguida'],

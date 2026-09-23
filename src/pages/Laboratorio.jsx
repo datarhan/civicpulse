@@ -24,7 +24,7 @@ import ClaimReviewJsonLd from '../components/ClaimReviewJsonLd'
 import { BitacoraCorrecciones } from '../components/BitacoraCorrecciones'
 import DataAsOf from '../components/DataAsOf'
 import { fmtDateShort } from '../lib/formatters'
-import { pressLabSummary, fraseVeredictos } from '../lib/press-lab'
+import { pressLabSummary, fraseVeredictos, avisoSinVeredicto } from '../lib/press-lab'
 
 const VERDICT_LABEL = {
   verificado: 'Verificado',
@@ -707,6 +707,7 @@ export default function Laboratorio() {
     () => pressLabSummary({ press: lab.press, verified: lab.verified }),
     [lab.press, lab.verified],
   )
+  const aviso = avisoSinVeredicto(summary)
 
   if (lab.loading) {
     return (
@@ -842,7 +843,7 @@ export default function Laboratorio() {
         <KPI label="Hallazgos editoriales" value={fmtNumber(lab.findings.length)} hint="curados" />
       </div>
 
-      {!summary.hasEditorialContent && lab.press.length > 0 && (
+      {aviso && lab.press.length > 0 && (
         <div
           role="status"
           style={{
@@ -856,12 +857,9 @@ export default function Laboratorio() {
             lineHeight: 1.55,
           }}
         >
-          <strong style={{ color: 'var(--warn-ink)' }}>Extracción pendiente.</strong> Se están
-          monitorizando {fmtNumber(summary.monitoredCount)} titulares, pero ninguna de sus
-          afirmaciones ha llegado todavía a un veredicto: la tasa de discrepancia aparece como «—»
-          porque no se ha examinado nada, y la de verificación marca el 0 % que le corresponde. La
-          cadena <code>extract → verify → summarize → analytics</code> puebla estos veredictos (una
-          vez por semana, los lunes, o a mano).
+          <strong style={{ color: 'var(--warn-ink)' }}>{aviso.titulo}</strong> {aviso.texto} La
+          cadena <code>extract → verify → summarize → analytics</code> corre una vez por semana, los
+          lunes, o a mano.
         </div>
       )}
 
