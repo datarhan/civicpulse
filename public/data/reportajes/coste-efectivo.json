@@ -471,7 +471,13 @@
         "enviadaEl": "2026-09-18",
         "via": "correo electrónico",
         "pide": "Si la Intervención remitió el coste efectivo del ejercicio 2020 y en qué fecha, y copia del requerimiento del ministerio y de la contestación municipal; a qué corresponden las cifras declaradas en abastecimiento y alcantarillado —ingresos por tarifas o pagos al concesionario— y por qué cinco entregas traen cero; si se han vuelto a medir las toneladas de residuos, los metros cuadrados de limpieza y los puntos de luz; las tarifas vigentes con su resolución y la ordenanza que las regula; copia de las actas nº 7 y nº 11 de la mesa de contratación; y la fecha de formalización del contrato.",
-        "respuesta": null
+        "respuesta": null,
+        "incidencias": [
+          {
+            "fecha": "2026-09-23",
+            "texto": "El 23 de septiembre el Área de Transparencia, Gobierno Abierto y Participación Ciudadana del Ayuntamiento contestó, acerca de ésta y de la que este medio le envió el 9 de septiembre sobre los sistemas de conteo de personas, que «para proceder a su tramitación formal, es necesario que ambas solicitudes sean presentadas a través del Registro de Entrada del Ayuntamiento», cada una por separado y con el mismo contenido, «sin perjuicio de la información ya recibida por este Ayuntamiento mediante correo electrónico». No la resuelve: ni concede ni deniega el acceso, ni dice que no le corresponda."
+          }
+        ]
       },
       {
         "organismo": "Comisión de Precios de la Generalitat",

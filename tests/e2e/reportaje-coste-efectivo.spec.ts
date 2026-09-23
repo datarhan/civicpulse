@@ -145,6 +145,16 @@ test.describe('Reportaje · coste efectivo (/reportajes/coste-efectivo)', () => 
     ).toBeVisible()
     await expect(page.getByText(/sólo atiende consultas de las entidades locales/)).toBeVisible()
 
+    // EL AYUNTAMIENTO (23-09-2026): pide que se presente por su Registro de
+    // Entrada, y lo dice de las DOS solicitudes que recibió por correo —ésta y la
+    // del conteo de visitantes—. No resuelve: la fila sigue en plazo y lo que
+    // contestaron tiene que verse debajo. Anclada en su frase, citada literal.
+    await expect(
+      page.getByText(
+        /es necesario que ambas solicitudes sean presentadas a través del Registro de Entrada del Ayuntamiento/,
+      ),
+    ).toBeVisible()
+
     // Qué está congelado y qué no. Sin esto la pieza se contradice a sí misma:
     // declara su fecha de cifras el 17 de septiembre y debajo cuenta un escrito
     // del 18 y una comunicación del 21. Lo congelado son las CIFRAS; el registro
