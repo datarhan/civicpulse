@@ -49,8 +49,7 @@ describe('app-graph · la banda de procesos', () => {
       crones: [
         {
           etiqueta: 'com.civicpulse.hallazgos',
-          hora: 9,
-          minuto: 30,
+          horarios: [{ dia: null, hora: 9, minuto: 30 }],
           fichero: 'scripts/com.civicpulse.hallazgos.plist',
           programa: 'scripts/hallazgos-pipeline.sh',
           log: 'scripts/logs/hallazgos-pipeline.log',
@@ -156,8 +155,7 @@ describe('app-graph · las clases de proceso', () => {
       crones: [
         {
           etiqueta: 'com.civicpulse.x',
-          hora: 9,
-          minuto: 0,
+          horarios: [{ dia: null, hora: 9, minuto: 0 }],
           fichero: 'scripts/com.civicpulse.x.plist',
           programa: 'scripts/x.sh',
           log: null,

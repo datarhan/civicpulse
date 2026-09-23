@@ -60,6 +60,14 @@ import { execFileSync } from 'node:child_process'
 import { readdirSync, readFileSync, statSync } from 'node:fs'
 import { homedir } from 'node:os'
 import { join } from 'node:path'
+import {
+  describirHorarios,
+  horariosDe,
+  ultimaProgramada,
+  type Horario,
+} from '../src/scraper/launchd-horario'
+
+export { describirHorarios, horariosDe, ultimaProgramada, type Horario }
 
 /** Dónde vive la flota. Se puede apuntar a otro sitio para ejercer la guarda. */
 const DIR_AGENTES = process.env.CRON_AGENTS_DIR ?? join(homedir(), 'Library', 'LaunchAgents')
@@ -75,8 +83,8 @@ export const TOLERANCIA_HORAS = 3
 
 export interface AgenteProgramado {
   label: string
-  hora: number
-  minuto: number
+  /** Vacío si el plist no declara un horario legible — se informa, no se salta. */
+  horarios: Horario[]
   log: string
 }
 
@@ -86,24 +94,14 @@ export interface EstadoAgente {
   log: string
   /** Momento del último disparo, por la hora del fichero. */
   ultimo: Date | null
-  /** La hora a la que le tocaba por última vez. */
-  tocaba: Date
+  /** La hora a la que le tocaba por última vez; null si no tiene horario. */
+  tocaba: Date | null
   omitidoEn: Date | null
 }
 
 export interface Hallazgo {
   code: string
   message: string
-}
-
-/** La última vez que a este agente le tocaba correr, antes de `ahora`. */
-export function ultimaProgramada(hora: number, minuto: number, ahora: Date): Date {
-  const hoy = new Date(ahora)
-  hoy.setHours(hora, minuto, 0, 0)
-  if (hoy.getTime() <= ahora.getTime()) return hoy
-  const ayer = new Date(hoy)
-  ayer.setDate(ayer.getDate() - 1)
-  return ayer
 }
 
 /**
@@ -134,48 +132,44 @@ export function leerFlota(dir = DIR_AGENTES): AgenteProgramado[] {
   }
   const flota: AgenteProgramado[] = []
   for (const f of ficheros.sort()) {
-    let doc: {
-      Label?: string
-      StandardOutPath?: string
-      StartCalendarInterval?: { Hour?: number; Minute?: number }
-    }
+    let doc: { Label?: string; StandardOutPath?: string; StartCalendarInterval?: unknown } = {}
     try {
       doc = JSON.parse(
         execFileSync('plutil', ['-convert', 'json', '-o', '-', join(dir, f)], {
           encoding: 'utf8',
+          stdio: ['ignore', 'pipe', 'ignore'],
         }),
       )
     } catch {
-      continue
+      // Ilegible: entra con horarios vacíos y `juzgar` lo nombra. Saltarlo era
+      // dejar de vigilarlo sin que el parte lo dijera.
     }
-    const cuando = doc.StartCalendarInterval
-    if (!doc.Label || !doc.StandardOutPath || !cuando || typeof cuando.Hour !== 'number') continue
     flota.push({
-      label: doc.Label,
-      hora: cuando.Hour,
-      minuto: cuando.Minute ?? 0,
-      log: doc.StandardOutPath,
+      label: doc.Label ?? f.replace(/\.plist$/, ''),
+      horarios: horariosDe(doc.StartCalendarInterval),
+      log: doc.StandardOutPath ?? '',
     })
   }
   return flota
 }
 
 export function medirAgente(a: AgenteProgramado, ahora: Date): EstadoAgente {
-  const tocaba = ultimaProgramada(a.hora, a.minuto, ahora)
+  const tocaba = ultimaProgramada(a.horarios, ahora)
   let ultimo: Date | null = null
   let omitidoEn: Date | null = null
-  try {
-    ultimo = statSync(a.log).mtime
-    // Sólo la cola: estos logs pasan de los 300 KB y lo único que se busca está
-    // al final.
-    const texto = readFileSync(a.log, 'utf8')
-    omitidoEn = ultimoOmitido(texto.slice(-20_000))
-  } catch {
-    ultimo = null
-  }
+  if (a.log)
+    try {
+      ultimo = statSync(a.log).mtime
+      // Sólo la cola: estos logs pasan de los 300 KB y lo único que se busca está
+      // al final.
+      const texto = readFileSync(a.log, 'utf8')
+      omitidoEn = ultimoOmitido(texto.slice(-20_000))
+    } catch {
+      ultimo = null
+    }
   return {
     label: a.label,
-    programado: `${String(a.hora).padStart(2, '0')}:${String(a.minuto).padStart(2, '0')}`,
+    programado: describirHorarios(a.horarios),
     log: a.log,
     ultimo,
     tocaba,
@@ -188,6 +182,13 @@ export function juzgar(estados: EstadoAgente[], toleranciaHoras = TOLERANCIA_HOR
   const margen = toleranciaHoras * 3_600_000
   for (const e of estados) {
     const corto = e.label.replace(/^com\.civicpulse\./, '')
+    if (!e.tocaba) {
+      out.push({
+        code: 'cron-sin-horario',
+        message: `${corto} no declara un StartCalendarInterval legible — no se puede decir cuándo le tocaba, así que nadie lo está vigilando.`,
+      })
+      continue
+    }
     if (!e.ultimo) {
       out.push({
         code: 'cron-sin-log',
@@ -199,7 +200,7 @@ export function juzgar(estados: EstadoAgente[], toleranciaHoras = TOLERANCIA_HOR
       const horas = Math.round((Date.now() - e.ultimo.getTime()) / 3_600_000)
       out.push({
         code: 'cron-atrasado',
-        message: `${corto} (${e.programado}) no ha corrido desde hace ${horas} h — le tocaba a las ${e.programado} y su log no se ha movido.`,
+        message: `${corto} (${e.programado}) no ha corrido desde hace ${horas} h — le tocaba el ${e.tocaba.toISOString().slice(0, 16).replace('T', ' ')} y su log no se ha movido.`,
       })
       continue
     }

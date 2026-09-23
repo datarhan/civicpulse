@@ -66,11 +66,7 @@ const PLIST = (label: string, log: string, horarios: Horario[]) =>
 
 const DIARIO = (hora: number, minuto: number): Horario[] => [{ dia: null, hora, minuto }]
 
-function escenario(opciones: {
-  horarios: Horario[]
-  contenido?: string
-  mtime?: Date
-}) {
+function escenario(opciones: { horarios: Horario[]; contenido?: string; mtime?: Date }) {
   const dir = mkdtempSync(join(tmpdir(), 'check-cron-'))
   const log = join(dir, 'agente.log')
   writeFileSync(log, opciones.contenido ?? '[agente] arrancó y trabajó\n')
@@ -240,7 +236,7 @@ describe.skipIf(!HAY_PLUTIL)('los tres desenlaces', () => {
   const ahora = new Date('2026-08-29T11:00:00')
 
   it('corrió y trabajó: no dice nada', () => {
-    const e = escenario({ horarios: DIARIO(9, 30),mtime: new Date('2026-08-29T09:30:05') })
+    const e = escenario({ horarios: DIARIO(9, 30), mtime: new Date('2026-08-29T09:30:05') })
     try {
       expect(juzgar([medirAgente(leerFlota(e.dir)[0], ahora)])).toEqual([])
     } finally {
@@ -267,7 +263,7 @@ describe.skipIf(!HAY_PLUTIL)('los tres desenlaces', () => {
   })
 
   it('no corrió: el log no se ha movido desde ayer', () => {
-    const e = escenario({ horarios: DIARIO(9, 30),mtime: new Date('2026-08-28T09:30:05') })
+    const e = escenario({ horarios: DIARIO(9, 30), mtime: new Date('2026-08-28T09:30:05') })
     try {
       const h = juzgar([medirAgente(leerFlota(e.dir)[0], ahora)])
       expect(h.map((x) => x.code)).toEqual(['cron-atrasado'])
@@ -286,14 +282,14 @@ describe.skipIf(!HAY_PLUTIL)('los tres desenlaces', () => {
       new Date('2026-08-29T09:30:00').getTime() - (TOLERANCIA_HORAS + 1) * 3_600_000,
     )
 
-    const a = escenario({ horarios: DIARIO(9, 30),mtime: dentro })
+    const a = escenario({ horarios: DIARIO(9, 30), mtime: dentro })
     try {
       expect(juzgar([medirAgente(leerFlota(a.dir)[0], ahora)])).toEqual([])
     } finally {
       a.limpiar()
     }
 
-    const b = escenario({ horarios: DIARIO(9, 30),mtime: fuera })
+    const b = escenario({ horarios: DIARIO(9, 30), mtime: fuera })
     try {
       expect(juzgar([medirAgente(leerFlota(b.dir)[0], ahora)]).map((x) => x.code)).toEqual([
         'cron-atrasado',
