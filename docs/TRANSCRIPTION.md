@@ -156,18 +156,71 @@ exists for, and in this window it did so for every Valencian line. Every
   than by the old ≤24 MB test. The same pass found that branch had never run:
   it called `require('node:fs')` in an ESM package, so `--engine openai` died
   with `require is not defined` before any upload.
-- **`keywords[]` is the open question for plenos**: +1 on the two EU-Podem
-  markers, and in the same run one garbled phrase the other variants got right.
-  It would need `gpt-transcribe` + pyannote (`WHISPER_DIARIZE=1`) to keep the
-  speaker tags, so it goes through `eval:transcribe` on more than one window
-  before anything switches. Encoding, measured: `keywords[]=` repeated fields;
-  a JSON-array string is a 400.
+- **`keywords[]` for plenos: tested, rejected** — see below.
 
 **Meta's `muse-voice-transcribe-1.0` was considered and not tried.** Catalan is
 not among the 25 languages Meta validates, and file transcription caps at 10
 min, so a pleno would be 12–18 separately diarized pieces whose speaker labels
 do not carry across. Its published WER is English-only. Revisit if Catalan is
 validated.
+
+### Party-name `keywords`: they write the party over what was said (2026-09-23)
+
+Two structural facts first, both from 400s rather than from the guide:
+
+- **`gpt-4o-transcribe-diarize` takes no hint at all.** `keywords[]` →
+  `invalid_parameter`; `prompt` → «Prompt is not supported for diarization
+  models»; `languages[]` → «not supported for this model». Hints and speaker
+  labels cannot come from the same request.
+- **`gpt-transcribe` returns no timestamps.** Only `json`/`text`;
+  `verbose_json`, `srt` and `diarized_json` are «not compatible», and
+  `timestamp_granularities[]` is silently ignored. Every published line is
+  `[start → end] (SPEAKER_NN) text`, so its output cannot be joined to pyannote's
+  turns either. The only way in would be one request per diarized turn.
+
+That route was only worth building for a clean gain, so the gain was measured:
+`gpt-transcribe` + `languages[]` ca, es, with and without eight party-name
+keywords (`PSOE`, `Partit Socialista`, `Partido Popular`, `Partit Popular`,
+`VOX`, `Compromís`, `Esquerra Unida-Podem`, `EU-Podem`), on four 20-min windows
+from four plenos (`15uvjew`@3600, `1du4rf5`@8400, `brxx5g`@2400,
+`rx4hb4`@6000). Marker totals across the four:
+
+| marker         | published | no keywords | keywords |
+| -------------- | --------- | ----------- | -------- |
+| PSOE           | 10        | 11          | 16       |
+| socialista     | 31        | 32          | 32       |
+| Popular        | 37        | 39          | 40       |
+| VOX            | 20        | 19          | 22       |
+| Compromís      | 20        | 23          | 23       |
+| Esquerra Unida | 15        | 23          | 23       |
+| Podem          | 17        | 23          | 24       |
+
+Reading every disputed occurrence, the extra count is mostly not recovery.
+Two real fixes («demane al SOE» → «PSOE»; «Vox. Escarnia Compromís» → «VOX,
+Esquerra Unida-Podem, Compromís»). Against them, **four places where the
+keyword overwrote a word that sounds like it**:
+
+- «malgrat **els vots** en contra de PP i Vox» → «malgrat **es Vox** en contra…»
+- «i per tant **et pose ahí** en contra d'un cert electorat» → «i per tant **el
+  PSOE** en contra…» — the published transcript agrees it was not the party
+- «alguns companys… **per parlar d'això**» → «… **del PSOE**»
+- «una comisión de investigación, **vos**,» → «…, **Vox**,»
+
+plus spoken forms normalized to the keyword's spelling («amb Esquerra Unida
+Podem» → «amb EU-Podem»; a stumbled «Esquerra Unida... Esquerra Unida... Ui.
+Podemos» smoothed into one clean name). The second one is the reason to stop:
+it puts a position in a party's mouth, and this site publishes quotes
+attributed to named groups. **A keyword is a prior toward writing that word,
+and a party name is the word most likely to be wrong in a way that matters.**
+Do not add keywords to the pleno path.
+
+The finding worth keeping is the middle column: **`gpt-transcribe` with no
+hints hears the parties better than the published model** — Esquerra Unida 23
+against 15, where the published text has «Esquerra Minga Podem», «a ells que
+no hi podem» and «Esquerra Republicana, Podemos». What blocks it is the missing
+timestamps, not its accuracy. If OpenAI ships timestamps or diarization for
+it, that is the A/B to rerun. (Encoding, measured: `keywords[]=` as repeated
+form fields; a JSON-array string is a 400.)
 
 **Audio over 25 min is split into 20-min chunks** re-encoded to 64 kbps mono
 opus. whisper-1 fed ONE multi-hour request degenerates into hallucination loops
