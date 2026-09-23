@@ -59,15 +59,27 @@ test.describe('Reportaje · conteo de visitantes (/reportajes/conteo-visitantes)
       page.getByText(/Turisme Comunitat Valenciana · enviada el 21 de septiembre de 2026/),
     ).toBeVisible()
 
-    // Con asiento, el plazo se AFIRMA: es lo que un número de registro compra.
-    // El número sale DOS veces en la página —también en la contestación del 21,
-    // que dice que se volvió a presentar—, así que se ancla en la fila entera.
+    // El asiento se sigue publicando: es cierto. El número sale DOS veces en la
+    // página —también en la contestación del 21, que dice que se volvió a
+    // presentar—, así que se ancla en la fila entera.
     await expect(
       page.getByText(
         /enviada el 21 de septiembre de 2026 por el registro electrónico de la Generalitat, con registro GVRTE\/2026\/4309357/,
       ),
     ).toBeVisible()
-    await expect(page.getByText(/vence el 21 de octubre de 2026/)).toBeVisible()
+
+    // LA REMISIÓN (23-09-2026). La Generalitat la remitió a Turisme CV por
+    // considerarlo el órgano competente, y el asiento dejó de acreditar el
+    // vencimiento: el mes corre desde que la recibe ese órgano, y esa fecha no
+    // consta. Así que el «21 de octubre» que se deducía del asiento no puede
+    // quedar en ninguna parte —ni «vence» ni «terminó»—, y la fila dice a quién
+    // se remitió, que no consta cuándo la recibió y lo que lo dijo. Todo anclado
+    // en frases que no cambian cuando el estado pase a «sin respuesta»: la
+    // aserción anterior, «vence el 21 de octubre», caducaba sola el día 22.
+    expect(await page.getByText(/21 de octubre de 2026/).count()).toBe(0)
+    await expect(page.getByText(/se había remitido a Turisme Comunitat Valenciana/)).toBeVisible()
+    await expect(page.getByText(/no consta todavía cuándo la recibió/)).toBeVisible()
+    await expect(page.getByText(/GVAGIP\/2026\/774/)).toBeVisible()
 
     // LA CONTESTACIÓN QUE NO RESUELVE (21-09-2026). Turisme CV dijo que por
     // correo no la atiende y que hay que usar su trámite electrónico. Tiene que
