@@ -10,12 +10,12 @@ at a cost in setup, runtime or money.
 
 ## 1 · Whisper engine (`WHISPER_ENGINE`)
 
-| Value    | Cost / speed                                  | Notes                                                                                                                                                                                                                                                                                                                        |
-| -------- | --------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `openai` | ~$0.006/min (~$0.72 per 2 h pleno), 30–60 s   | **The `hallazgos-pipeline` cron default since 2026-07-07.** Zero local GPU/CPU. Needs `OPENAI_API_KEY`.                                                                                                                                                                                                                      |
-| `mlx`    | ~5–10× realtime, $0, local                    | lightning-whisper-mlx on the Apple Neural Engine. Better WER on technical terms than whisper-1 (it gets "UNE 93200:2008" where OpenAI produces "norma 1 en 93.200"). Was the nightly default until 2026-07-07 — retired from cron because it pins the local GPU (~30 min/run) and trips the Metal watchdog on 5 h+ sessions. |
-| `local`  | ~0.3× realtime, $0                            | faster-whisper CPU int8. The fallback when MLX is not bootstrapped.                                                                                                                                                                                                                                                          |
-| `gemini` | **$0** free tier (25 req/day), ~1-2 min/chunk | Gemini 3.5 Transcribe via the Interactions API, verbatim mode + word timestamps. Needs `GEMINI_API_KEY`. **Opt-in only, never a fallback — and MEASURED WORSE than `openai` on the markers that carry attribution; read the A/B result below before using it.**                                                              |
+| Value    | Cost / speed                                  | Notes                                                                                                                                                                                                                                                                                                                                   |
+| -------- | --------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `openai` | per-minute, cents per pleno, 30–60 s          | **The `hallazgos-pipeline` cron default since 2026-07-07.** Plenos go to `gpt-4o-transcribe-diarize` (`OPENAI_TRANSCRIBE_MODEL`), the curator's `transcribe-file.ts` to `gpt-transcribe` (`OPENAI_TRANSCRIBE_FILE_MODEL`) — see below. Zero local GPU/CPU. Needs `OPENAI_API_KEY`.                                                      |
+| `mlx`    | ~5–10× realtime, $0, local                    | lightning-whisper-mlx on the Apple Neural Engine. Better WER on technical terms than the old whisper-1 (it gets "UNE 93200:2008" where whisper-1 produced "norma 1 en 93.200"). Was the nightly default until 2026-07-07 — retired from cron because it pins the local GPU (~30 min/run) and trips the Metal watchdog on 5 h+ sessions. |
+| `local`  | ~0.3× realtime, $0                            | faster-whisper CPU int8. The fallback when MLX is not bootstrapped.                                                                                                                                                                                                                                                                     |
+| `gemini` | **$0** free tier (25 req/day), ~1-2 min/chunk | Gemini 3.5 Transcribe via the Interactions API, verbatim mode + word timestamps. Needs `GEMINI_API_KEY`. **Opt-in only, never a fallback — and MEASURED WORSE than `openai` on the markers that carry attribution; read the A/B result below before using it.**                                                                         |
 
 `WHISPER_MODEL` chooses the weights (`large-v3` default; `medium`/`small` trade
 WER for speed).
@@ -65,7 +65,7 @@ speaker-map step, which reads the turn grants the chair says out loud.
 session.
 
 `scripts/transcribe-file.ts` (the curator dashboard's non-pleno ingest) does NOT
-have this engine — it still validates `mlx|local|openai` and exits 2 on anything
+have the Gemini engine — it still validates `mlx|local|openai` and exits 2 on anything
 else. That is a loud failure rather than a silent fall-through, so an exported
 `WHISPER_ENGINE=gemini` cannot quietly change what the dashboard does; it just
 stops. Wire it there too if the A/B says this engine wins.
@@ -124,6 +124,50 @@ Caveat kept honest: **n = 1 window.** The free-tier quota ran out before a secon
 one could run. That is enough to stop an adoption, not enough to close the
 question — and the cheap next step is `--start 5400`, since the audio is already
 cached.
+
+### OpenAI's models, re-checked against their own guide (2026-09-23)
+
+OpenAI's transcription guide now names `gpt-transcribe` the default for file
+transcription, `gpt-4o-transcribe-diarize` the model for speaker-labelled
+transcripts, and `whisper-1` only for word timestamps, subtitles and
+translation-to-English; `gpt-4o-transcribe` / `-mini-` are legacy. Measured on
+`15uvjew` [3600, 4810)s, same clip for all four:
+
+| request                                    | wall | Esquerra Unida | VOX | Podem | Compromís |
+| ------------------------------------------ | ---- | -------------- | --- | ----- | --------- |
+| `whisper-1`, `language=es`                 | 63 s | 3              | 1   | 3     | 1         |
+| `gpt-transcribe`                           | 23 s | 4              | 2   | 4     | 2         |
+| `gpt-transcribe`, `languages[]` ca+es      | 25 s | 4              | 1   | 4     | 2         |
+| … + `keywords[]` (parties, town, Hidraqua) | 25 s | 5              | 2   | 5     | 2         |
+
+The counts are close; the text is not. On the passage the published transcript
+renders «aprofitant el vot a favor que tenim per part d'Esquerra Unida podem»,
+**`whisper-1` wrote «aprovechando el voto a favor que tenemos»** — it put the
+whole Valencian turn into Spanish, the translation failure the sanity gate
+exists for, and in this window it did so for every Valencian line. Every
+`gpt-transcribe` variant kept the turn verbatim. So:
+
+- **Plenos stay on `gpt-4o-transcribe-diarize`.** `gpt-transcribe` returns
+  `text` + `languages` and no speaker labels, and losing diarization fails the
+  impoverishment gate on its own.
+- **`transcribe-file.ts` moved from `whisper-1` to `gpt-transcribe`** with
+  `languages[]=ca` + `es`, no `keywords` (it ingests arbitrary recordings, and a
+  fixed vocabulary biases all of them), and 20-min chunks by duration rather
+  than by the old ≤24 MB test. The same pass found that branch had never run:
+  it called `require('node:fs')` in an ESM package, so `--engine openai` died
+  with `require is not defined` before any upload.
+- **`keywords[]` is the open question for plenos**: +1 on the two EU-Podem
+  markers, and in the same run one garbled phrase the other variants got right.
+  It would need `gpt-transcribe` + pyannote (`WHISPER_DIARIZE=1`) to keep the
+  speaker tags, so it goes through `eval:transcribe` on more than one window
+  before anything switches. Encoding, measured: `keywords[]=` repeated fields;
+  a JSON-array string is a 400.
+
+**Meta's `muse-voice-transcribe-1.0` was considered and not tried.** Catalan is
+not among the 25 languages Meta validates, and file transcription caps at 10
+min, so a pleno would be 12–18 separately diarized pieces whose speaker labels
+do not carry across. Its published WER is English-only. Revisit if Catalan is
+validated.
 
 **Audio over 25 min is split into 20-min chunks** re-encoded to 64 kbps mono
 opus. whisper-1 fed ONE multi-hour request degenerates into hallucination loops
