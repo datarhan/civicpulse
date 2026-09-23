@@ -200,6 +200,14 @@ export function fraseDeEnvio(e: EnvioSolicitud, hoy: string): string {
     (e.registro ? `, con registro ${e.registro}.` : '.')
   const estado = estadoDeEnvio(e, hoy)
   const vence = enCastellano(venceEl(arranqueDelPlazo(e).desde))
+  // Cómo acaba la frase de una vencida. Si consta que contestaron algo —una
+  // incidencia—, «no han contestado» contradiría la línea de debajo: lo que
+  // falta es la resolución, que es lo que mide el art. 20, y así se dice.
+  const cierre = e.incidencias?.length
+    ? 'sin que la hayan resuelto. La ley da a esa falta de resolución efecto desestimatorio, ' +
+      'pero lo que ha ocurrido es que no hubo resolución.'
+    : 'y no han contestado. La ley da a ese silencio efecto desestimatorio, pero lo que ha ' +
+      'ocurrido es que no hubo respuesta.'
 
   if (estado === 'respondida' && e.respuesta) {
     return `${cabeza} El ${enCastellano(e.respuesta.fecha)} ${QUE_HICIERON[e.respuesta.sentido]}.`
@@ -222,10 +230,7 @@ export function fraseDeEnvio(e: EnvioSolicitud, hoy: string): string {
       const arranque = r.recibidaEl
         ? `El mes del artículo 20 terminó el ${vence}`
         : `Contado desde esa comunicación, el mes del artículo 20 terminó el ${vence}`
-      return (
-        `${cabeza} ${remision} ${arranque} y no han contestado. La ley da a ese silencio efecto ` +
-        'desestimatorio, pero lo que ha ocurrido es que no hubo respuesta.'
-      )
+      return `${cabeza} ${remision} ${arranque} ${cierre}`
     }
     return r.recibidaEl
       ? `${cabeza} ${remision} El artículo 20 de la Ley 19/2013 da un mes desde esa recepción: vence el ${vence}.`
@@ -240,10 +245,7 @@ export function fraseDeEnvio(e: EnvioSolicitud, hoy: string): string {
     const arranque = e.registro
       ? `El mes del artículo 20 terminó el ${vence}`
       : `Contado desde el envío, el mes del artículo 20 terminó el ${vence}`
-    return (
-      `${cabeza} ${arranque} y no han contestado. La ley da a ese silencio efecto ` +
-      'desestimatorio, pero lo que ha ocurrido es que no hubo respuesta.'
-    )
+    return `${cabeza} ${arranque} ${cierre}`
   }
 
   if (e.registro) {

@@ -89,6 +89,16 @@ test.describe('Reportaje · conteo de visitantes (/reportajes/conteo-visitantes)
     await expect(page.getByText(/por su trámite electrónico/)).toBeVisible()
     await expect(page.getByText(/el mes del artículo 20 sigue corriendo/)).toBeVisible()
 
+    // Y LA DEL AYUNTAMIENTO (23-09-2026): pide que se presente por su Registro de
+    // Entrada, y lo dice de las DOS solicitudes que recibió por correo —ésta y la
+    // del coste efectivo—. Tampoco resuelve. Se ancla en su propia frase, citada
+    // literal, que es única en la página.
+    await expect(
+      page.getByText(
+        /es necesario que ambas solicitudes sean presentadas a través del Registro de Entrada del Ayuntamiento/,
+      ),
+    ).toBeVisible()
+
     // LA SALVEDAD JURÍDICA, y es la que no puede caerse. Salieron por correo:
     // consta el envío, no la recepción por el órgano competente, que es donde
     // el art. 20.1 arranca el mes. Sin esta frase la página estaría afirmando

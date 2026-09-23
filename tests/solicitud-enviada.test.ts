@@ -392,7 +392,24 @@ describe('una contestación que no resuelve deja el reloj corriendo', () => {
 
   it('y vence como cualquier otra, sin convertirse en respondida', () => {
     expect(estadoDeEnvio(conIncidencia, '2026-10-10')).toBe('vencida-sin-respuesta')
-    expect(fraseDeEnvio(conIncidencia, '2026-10-10')).toMatch(/no han contestado/)
+  })
+
+  // Vencida, la frase NO puede decir «no han contestado»: justo debajo va la
+  // incidencia que cuenta que sí contestaron. Lo que no hicieron es resolver, y
+  // eso es lo que el art. 20 mide. El 23-09-2026 eran ya tres filas con
+  // incidencia —Turisme CV y el Ayuntamiento en las dos piezas— y la primera
+  // habría vencido el 9 de octubre diciendo lo contrario de su línea de debajo.
+  it('vencida, dice que no la resolvieron — no que no contestaran', () => {
+    const f = fraseDeEnvio(conIncidencia, '2026-10-10')
+    expect(f).toContain('sin que la hayan resuelto')
+    expect(f).not.toMatch(/no han contestado|no hubo respuesta/)
+  })
+
+  it('sin incidencia, el silencio sigue siendo silencio', () => {
+    // El control: el cambio de arriba no puede alcanzar a una fila de la que no
+    // consta contestación alguna.
+    const sinNada: EnvioSolicitud = { ...conIncidencia, incidencias: undefined }
+    expect(fraseDeEnvio(sinNada, '2026-10-10')).toMatch(/y no han contestado/)
   })
 })
 
