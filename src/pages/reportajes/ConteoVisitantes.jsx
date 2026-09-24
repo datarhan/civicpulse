@@ -2,6 +2,7 @@ import { useReportaje } from '../../hooks/useReportaje'
 import Emblema from '../../components/reportajes/Emblema'
 import { Card, Pill } from '../../components/Primitives'
 import { CorrectionNote, CorrectionNotice } from '../../components/reportajes/CorrectionNote'
+import { SecHead, IndicePieza } from '../../components/reportajes/Pieza'
 import { fmtDateHuman } from '../../lib/formatters'
 import {
   estadoDeEnvio,
@@ -12,37 +13,6 @@ import {
 } from '../../scraper/solicitud-enviada'
 
 const SERIF = "'Fraunces', Georgia, serif"
-
-/* ---- Encabezado de sección numerado (mismo patrón que los otros reportajes) ---- */
-function SecHead({ num, kicker, title }) {
-  return (
-    <div style={{ margin: '34px 0 12px' }}>
-      <div
-        className="mono"
-        style={{
-          fontSize: 'var(--fs-micro)',
-          color: 'var(--ink50)',
-          letterSpacing: '.04em',
-          marginBottom: 6,
-        }}
-      >
-        {num} · {kicker}
-      </div>
-      <h2
-        style={{
-          fontFamily: SERIF,
-          fontSize: 'var(--fs-page)',
-          fontWeight: 600,
-          letterSpacing: '-.01em',
-          lineHeight: 1.15,
-          margin: 0,
-        }}
-      >
-        {title}
-      </h2>
-    </div>
-  )
-}
 
 /**
  * Cita literal de un documento. Lleva SIEMPRE su procedencia debajo: una cita
@@ -402,10 +372,14 @@ export default function ConteoVisitantes() {
         ))}
       </div>
 
+      {/* La entradilla iba a --fs-page (26px) también en el móvil: a 375px eran
+          diecisiete líneas de serifa, pantalla y media antes del primer
+          apartado. Ahora escala con el ancho entre dos pasos de la escala, como
+          los --type-* de index.css: --fs-page donde cabe, --fs-card donde no. */}
       <p
         style={{
           fontFamily: SERIF,
-          fontSize: 'var(--fs-page)',
+          fontSize: 'clamp(var(--fs-card), 2.4vw, var(--fs-page))',
           lineHeight: 1.5,
           color: 'var(--ink)',
           margin: '22px 0 0',
@@ -413,6 +387,8 @@ export default function ConteoVisitantes() {
       >
         {data.entradilla}
       </p>
+
+      <IndicePieza />
 
       {/* 1 · los dos contratos */}
       <SecHead num="01" kicker="El expediente" title="Los dos contratos" />

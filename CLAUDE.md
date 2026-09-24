@@ -106,7 +106,12 @@ catch-all → `/`.
 Reportajes are **explicit routes**, not a `:slug` param — each pieza is its own
 component with figures frozen in `public/data/reportajes/<slug>.json`. The
 shared registry `src/reportajes.js` renders one only when
-`meta.estado === 'publicado'`.
+`meta.estado === 'publicado'`. What every pieza shares lives in one place: the
+layout route `pages/reportajes/Armazon.jsx` (reading bar, «Más reportajes» —
+outside the pieza's container, because the corrections log must stay its last
+block) and `components/reportajes/Pieza.jsx` (`SecHead`, the section index read
+from the DOM, the reveal-on-view hook). Figure motion animates marks, never
+text, and the resting state is the complete figure.
 
 `/curator` is the local-only admin dashboard (see the plugin note above).
 

@@ -1,39 +1,9 @@
 import { useReportaje } from '../../hooks/useReportaje'
 import Emblema from '../../components/reportajes/Emblema'
 import { CorrectionNote, CorrectionNotice } from '../../components/reportajes/CorrectionNote'
+import { SecHead, IndicePieza } from '../../components/reportajes/Pieza'
 
 const SERIF = "'Fraunces', Georgia, serif"
-
-/* ---- Encabezado de sección numerado (mismo patrón que ReconstruccionDana) ---- */
-function SecHead({ num, kicker, title }) {
-  return (
-    <div style={{ margin: '34px 0 12px' }}>
-      <div
-        className="mono"
-        style={{
-          fontSize: 'var(--fs-micro)',
-          color: 'var(--ink50)',
-          letterSpacing: '.04em',
-          marginBottom: 6,
-        }}
-      >
-        {num} · {kicker}
-      </div>
-      <h2
-        style={{
-          fontFamily: SERIF,
-          fontSize: 'var(--fs-page)',
-          fontWeight: 600,
-          letterSpacing: '-.01em',
-          lineHeight: 1.15,
-          margin: 0,
-        }}
-      >
-        {title}
-      </h2>
-    </div>
-  )
-}
 
 /* ---- Tabla genérica con scroll horizontal propio ---- */
 function Tabla({ cols, rows, caption }) {
@@ -331,6 +301,8 @@ export default function Basuras() {
       </div>
 
       <article style={{ color: 'var(--ink70)' }}>
+        <IndicePieza />
+
         {/* 01 */}
         <SecHead num="01" kicker="La contrata" title="La empresa que llevaba casi quince años" />
         <p>

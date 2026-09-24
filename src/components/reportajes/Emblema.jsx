@@ -12,10 +12,25 @@
  *
  * Una pieza sin emblema dibujado devuelve null: mejor ninguna figura que una
  * genérica que no diga nada de la pieza.
+ *
+ * Se dibuja al entrar en pantalla (`useRevelado`): crecen las barras, brotan los
+ * puntos, se traza el contorno. Sólo se animan MARCAS, con las clases
+ * `cp-crece-x`, `cp-crece-y`, `cp-brota`, `cp-aparece` y `cp-traza` de
+ * index.css. Ningún texto cambia de valor, de tamaño ni de sitio —nada cuenta
+ * hacia arriba—: una cifra que pasa por valores intermedios es una cifra que
+ * alguien pudo leer mal. Lo más que ocurre es que una barra que crece descubra
+ * la etiqueta clara que lleva encima («14 a. 9 m.»). Sin IntersectionObserver,
+ * con movimiento reducido o en papel, la figura está completa desde el primer
+ * fotograma.
  */
+import { useRevelado } from './Pieza'
 
 const C = {
   ink: 'var(--ink)',
+  // Lo macizo —la barra de la contrata anterior, la de los sensores— va con su
+  // propia variable: en oscuro, `--ink` es casi blanco, y una plancha blanca era
+  // lo más luminoso de la página, por encima de la cifra que la figura señala.
+  macizo: 'var(--em-macizo, var(--ink))',
   ink50: 'var(--ink50)',
   ink20: 'var(--ink20)',
   paper: 'var(--paper)',
@@ -23,6 +38,10 @@ const C = {
   accent: 'var(--crit-ink)',
 }
 const MONO = "'DM Mono', ui-monospace, monospace"
+
+/** El orden de una marca en su animación (`--i`), para escalonarlas. */
+const orden = (/** @type {number} */ i, extra = {}) =>
+  /** @type {import('react').CSSProperties} */ (/** @type {unknown} */ ({ '--i': i, ...extra }))
 
 // de-DE y no es-ES: es-ES no agrupa los miles de cuatro cifras («4514»), y las
 // piezas escriben «87.050 €» y «4.514». Mismo separador decimal, la coma.
@@ -92,14 +111,27 @@ function Basuras({ data }) {
         <T x={40} y={40} fill={C.ink50}>
           contrata anterior
         </T>
-        <rect x={X(sav0)} y={54} width={X(sav1) - X(sav0)} height={64} fill={C.ink} />
+        <rect
+          className="cp-crece-x"
+          // Curva pareja y no de muelle: son quince años, y tienen que tardar.
+          style={orden(0, { '--dur': '1500ms', '--ease': 'var(--ease-base)' })}
+          x={X(sav0)}
+          y={54}
+          width={X(sav1) - X(sav0)}
+          height={64}
+          fill={C.macizo}
+        />
         <T x={X(sav0) + 20} y={97} size={28} fill={C.paper} mono weight={500}>
           {kSav.n}
         </T>
         <T x={X(sav1) - 12} y={170} fill={C.accent} anchor="end" weight={600}>
           {`nueva contrata · ${kNueva.n}`}
         </T>
+        {/* La nueva contrata aparece cuando la anterior ha terminado de crecer:
+            quince años, y luego un mes. */}
         <rect
+          className="cp-crece-y"
+          style={orden(0, { '--d': '1450ms', '--dur': '500ms' })}
           x={X(sav1)}
           y={138}
           width={Math.max(7, X(nueva1) - X(sav1))}
@@ -133,13 +165,17 @@ function ConteoVisitantes({ data }) {
   const total = sens.importe + promo.importe
   const w1 = (640 * sens.importe) / total
   const cero = data.kpis.find((/** @type {{n:string}} */ k) => k.n === '0')
-  const Doc = ({ x }) => (
-    <g transform={`translate(${x},168)`}>
-      <path d="M0 0h44l16 16v76H0z" fill={C.paper} stroke={C.ink50} strokeWidth={2} />
-      <path d="M44 0v16h16" fill="none" stroke={C.ink50} strokeWidth={2} />
-      {[30, 44, 58, 72].map((y) => (
-        <line key={y} x1={10} y1={y} x2={50} y2={y} stroke={C.ink20} strokeWidth={4} />
-      ))}
+  // El `transform` de posición va en un <g> interior: la animación usa la
+  // propiedad CSS `transform`, que pisaría el atributo del mismo elemento.
+  const Doc = ({ x, i }) => (
+    <g className="cp-aparece" style={orden(i, { '--d': '700ms' })}>
+      <g transform={`translate(${x},168)`}>
+        <path d="M0 0h44l16 16v76H0z" fill={C.paper} stroke={C.ink50} strokeWidth={2} />
+        <path d="M44 0v16h16" fill="none" stroke={C.ink50} strokeWidth={2} />
+        {[30, 44, 58, 72].map((y) => (
+          <line key={y} x1={10} y1={y} x2={50} y2={y} stroke={C.ink20} strokeWidth={4} />
+        ))}
+      </g>
     </g>
   )
   return {
@@ -149,12 +185,20 @@ function ConteoVisitantes({ data }) {
         <T x={40} y={36} fill={C.ink50} mono>
           {`${eur0(total)} en dos contratos · sin IVA`}
         </T>
-        <rect x={40} y={50} width={w1} height={56} fill={C.ink} />
-        <rect x={40 + w1} y={50} width={640 - w1} height={56} fill={C.civic} />
+        <rect className="cp-crece-x" x={40} y={50} width={w1} height={56} fill={C.macizo} />
+        <rect
+          className="cp-crece-x"
+          style={orden(0, { '--d': '520ms', '--dur': '600ms' })}
+          x={40 + w1}
+          y={50}
+          width={640 - w1}
+          height={56}
+          fill={C.civic}
+        />
         <T x={40} y={136} size={20}>{`sensores · ${eur0(sens.importe)}`}</T>
         <T x={680} y={136} size={20} anchor="end">{`promoción · ${eur0(promo.importe)}`}</T>
-        <Doc x={40} />
-        <Doc x={116} />
+        <Doc x={40} i={0} />
+        <Doc x={116} i={1} />
         <T x={214} y={250} size={96} fill={C.accent} weight={600}>
           {cero ? cero.n : '0'}
         </T>
@@ -199,6 +243,8 @@ function CosteEfectivo({ data }) {
             <g key={y}>
               {falta ? (
                 <rect
+                  className="cp-aparece"
+                  style={orden(i)}
                   x={x}
                   y={52}
                   width={w}
@@ -209,7 +255,15 @@ function CosteEfectivo({ data }) {
                 />
               ) : v > 0 ? (
                 <>
-                  <rect x={x} y={52} width={w} height={150} fill={C.civic} />
+                  <rect
+                    className="cp-crece-y"
+                    style={orden(i)}
+                    x={x}
+                    y={52}
+                    width={w}
+                    height={150}
+                    fill={C.civic}
+                  />
                   <T
                     x={x + w / 2}
                     y={186}
@@ -225,6 +279,8 @@ function CosteEfectivo({ data }) {
               ) : (
                 <>
                   <rect
+                    className="cp-aparece"
+                    style={orden(i)}
                     x={x + 1.5}
                     y={53.5}
                     width={w - 3}
@@ -299,7 +355,15 @@ function InteligenciaTuristica({ data }) {
     body: (
       <>
         <rect x={40} y={32} width={S} height={S} fill={C.ink20} stroke={C.ink50} strokeWidth={2} />
-        <rect x={40} y={32 + S - s} width={s} height={s} fill={C.accent} />
+        <rect
+          className="cp-brota cp-brota-esquina"
+          style={orden(0, { '--d': '350ms', '--dur': '1100ms' })}
+          x={40}
+          y={32 + S - s}
+          width={s}
+          height={s}
+          fill={C.accent}
+        />
         <T x={310} y={64} size={34} mono weight={500}>
           {eurM(plan)}
         </T>
@@ -354,15 +418,25 @@ function ReconstruccionDana({ data }) {
     label: `Mapa de los lugares que nombran los contratos: ${eurM(t.situatedAmount)} situados; ${eurM(t.danaAmount)} con referencia a la DANA.`,
     body: (
       <>
-        <path d={outline} fill={C.ink20} stroke={C.ink50} strokeWidth={2} strokeLinejoin="round" />
+        <path
+          className="cp-traza"
+          pathLength={1}
+          d={outline}
+          fill={C.ink20}
+          stroke={C.ink50}
+          strokeWidth={2}
+          strokeLinejoin="round"
+        />
         {[...data.places]
           .sort((a, b) => b.amount - a.amount)
-          .map((p) => {
+          .map((p, i) => {
             const [x, y] = P(p.lat, p.lng)
             const dana = p.danaAmount > 0
             return (
               <circle
                 key={p.name}
+                className="cp-brota"
+                style={orden(i, { '--d': '700ms', '--paso': '28ms' })}
                 cx={x}
                 cy={y}
                 r={3 + 15 * Math.sqrt(p.amount / max)}
@@ -413,9 +487,14 @@ export const EMBLEMAS = {
 // Media queries no caben en el prop `style`: van en una hoja. Por debajo de
 // 480px las etiquetas del viewBox bajan de ~9px — por debajo del suelo de
 // 11px del sitio —, así que la figura se oculta: la pieza se lee igual sin ella.
+//
+// `--em-macizo` es el relleno de lo macizo (ver `C.macizo`): la tinta en claro y
+// la tinta al 62 % en oscuro, donde la plena era una plancha blanca.
 const CSS = `
 .cp-emblema { display: block; }
 .cp-emblema svg { display: block; width: 100%; height: auto; }
+html.dark .cp-emblema { --em-macizo: var(--ink50); }
+@media print { html.dark .cp-emblema { --em-macizo: var(--ink); } }
 @media (max-width: 479px) { .cp-emblema { display: none; } }
 `
 
@@ -423,11 +502,18 @@ const CSS = `
  * @param {{ slug: string, data: any, style?: import('react').CSSProperties }} props
  */
 export default function Emblema({ slug, data, style }) {
+  // Antes de cualquier return: los hooks no se saltan.
+  const { ref, marcas } = useRevelado()
   const Figura = EMBLEMAS[slug]
   if (!Figura || !data) return null
   const { label, body } = Figura({ data })
   return (
-    <figure className="cp-emblema" style={{ margin: 0, ...style }}>
+    <figure
+      ref={/** @type {import('react').RefObject<HTMLElement>} */ (ref)}
+      className="cp-emblema"
+      style={{ margin: 0, ...style }}
+      {...marcas}
+    >
       <style>{CSS}</style>
       {/* El dibujo ocupa x 36–684 de un lienzo de 720: el viewBox recorta el
           margen para que el borde de la figura caiga donde el del titular. */}

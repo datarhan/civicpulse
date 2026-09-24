@@ -1,6 +1,7 @@
 import { useReportaje } from '../../hooks/useReportaje'
 import Emblema from '../../components/reportajes/Emblema'
 import { CorrectionNote, CorrectionNotice } from '../../components/reportajes/CorrectionNote'
+import { SecHead, IndicePieza, Revela } from '../../components/reportajes/Pieza'
 import { FichaSociedad } from '../../components/reportajes/FichaSociedad'
 import { useSociedades, indexarSociedades } from '../../hooks/useSociedades'
 import { Card, Pill } from '../../components/Primitives'
@@ -14,37 +15,6 @@ import {
 } from '../../scraper/solicitud-enviada'
 
 const SERIF = "'Fraunces', Georgia, serif"
-
-/* ---- Encabezado de sección numerado (mismo patrón que Basuras) ---- */
-function SecHead({ num, kicker, title }) {
-  return (
-    <div style={{ margin: '34px 0 12px' }}>
-      <div
-        className="mono"
-        style={{
-          fontSize: 'var(--fs-micro)',
-          color: 'var(--ink50)',
-          letterSpacing: '.04em',
-          marginBottom: 6,
-        }}
-      >
-        {num} · {kicker}
-      </div>
-      <h2
-        style={{
-          fontFamily: SERIF,
-          fontSize: 'var(--fs-page)',
-          fontWeight: 600,
-          letterSpacing: '-.01em',
-          lineHeight: 1.15,
-          margin: 0,
-        }}
-      >
-        {title}
-      </h2>
-    </div>
-  )
-}
 
 const P = ({ children }) => (
   <p style={{ fontSize: 'var(--fs-body)', color: 'var(--ink70)', margin: '12px 0' }}>{children}</p>
@@ -146,8 +116,8 @@ function CasillasEntregas({ publicadas, noPresentadas }) {
 function BarrasRendicion({ porAnio, anioPropio }) {
   const max = Math.max(...porAnio.map((f) => f.n))
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-      {porAnio.map((f) => {
+    <Revela style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+      {porAnio.map((f, i) => {
         const propio = f.anio === anioPropio
         return (
           <div
@@ -178,7 +148,10 @@ function BarrasRendicion({ porAnio, anioPropio }) {
               }}
             >
               <div
+                className="cp-crece-x"
                 style={{
+                  '--i': i,
+                  '--paso': '50ms',
                   width: `${(100 * f.n) / max}%`,
                   height: '100%',
                   background: propio ? 'var(--warn)' : 'var(--civic)',
@@ -199,7 +172,7 @@ function BarrasRendicion({ porAnio, anioPropio }) {
           </div>
         )
       })}
-    </div>
+    </Revela>
   )
 }
 
@@ -332,8 +305,8 @@ function ParNominalReal({ servicios }) {
   const fmt = (v) =>
     `${v > 0 ? '+' : ''}${v.toLocaleString('es-ES', { maximumFractionDigits: 0 })} %`
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-      {servicios.map((s) => (
+    <Revela style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+      {servicios.map((s, i) => (
         <div key={s.nombre}>
           <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink)', marginBottom: 6 }}>
             {s.nombre} <span style={{ color: 'var(--ink50)' }}>· {s.tramo}</span>
@@ -341,7 +314,7 @@ function ParNominalReal({ servicios }) {
           {[
             { que: 'corrientes', v: s.nominal, color: 'var(--warn)' },
             { que: 'constantes', v: s.real, color: 'var(--civic)' },
-          ].map((fila) => (
+          ].map((fila, j) => (
             <div
               key={fila.que}
               style={{
@@ -355,7 +328,9 @@ function ParNominalReal({ servicios }) {
               <span style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>{fila.que}</span>
               <div style={{ height: 11, borderRadius: 'var(--r-input)', overflow: 'hidden' }}>
                 <div
+                  className="cp-crece-x"
                   style={{
+                    '--i': 2 * i + j,
                     width: `${Math.max(1.5, (100 * fila.v) / max)}%`,
                     height: '100%',
                     background: fila.color,
@@ -373,7 +348,7 @@ function ParNominalReal({ servicios }) {
           ))}
         </div>
       ))}
-    </div>
+    </Revela>
   )
 }
 
@@ -858,6 +833,8 @@ export default function CosteEfectivo() {
       {/* 01-04: el eje nuevo. Las tres secciones de la primera versión pasan a
           ser 05-07 sin tocar una cifra: lo que se añade es lo que faltaba —qué
           hay detrás de las dos casillas que el panel deja en blanco—. */}
+      <IndicePieza />
+
       <SecHead
         num="01"
         kicker="Lo que se adjudicó"
@@ -966,8 +943,8 @@ export default function CosteEfectivo() {
         titulo={`Contratación municipal · ${data.dinero.contratos.toLocaleString('es-ES')} contratos adjudicados`}
         pie={data.dinero.nota}
       >
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-          {data.dinero.filas.map((f) => (
+        <Revela style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+          {data.dinero.filas.map((f, i) => (
             <div key={f.que}>
               <div
                 style={{
@@ -994,11 +971,19 @@ export default function CosteEfectivo() {
                   overflow: 'hidden',
                 }}
               >
-                <div style={{ width: `${f.pct}%`, height: '100%', background: 'var(--civic)' }} />
+                <div
+                  className="cp-crece-x"
+                  style={{
+                    '--i': i,
+                    width: `${f.pct}%`,
+                    height: '100%',
+                    background: 'var(--civic)',
+                  }}
+                />
               </div>
             </div>
           ))}
-        </div>
+        </Revela>
       </Figura>
       <P>{data.dinero.cautela}</P>
 

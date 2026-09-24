@@ -52,6 +52,7 @@ const InteligenciaTuristica = lazy(() => import('./pages/reportajes/Inteligencia
 const Basuras = lazy(() => import('./pages/reportajes/Basuras'))
 const CosteEfectivoReportaje = lazy(() => import('./pages/reportajes/CosteEfectivo'))
 const ConteoVisitantes = lazy(() => import('./pages/reportajes/ConteoVisitantes'))
+const ArmazonReportaje = lazy(() => import('./pages/reportajes/Armazon'))
 const BuildingCivicPulse = lazy(() => import('./pages/blog/BuildingCivicPulse'))
 // /curator is dev-only — see vite-curator-plugin.js. The lazy import
 // is gated below by `import.meta.env.MODE !== 'production'`. Production
@@ -172,14 +173,18 @@ function InnerShell({ onOpenCmdK }) {
               {/* Long-form data reportajes — indexed at /reportajes (in NAV); each pieza keeps
                   its figures frozen in its own JSON snapshot. */}
               <Route path="/reportajes" element={<Reportajes />} />
-              <Route path="/reportajes/coste-efectivo" element={<CosteEfectivoReportaje />} />
-              <Route path="/reportajes/reconstruccion-dana" element={<ReconstruccionDana />} />
-              <Route
-                path="/reportajes/inteligencia-turistica"
-                element={<InteligenciaTuristica />}
-              />
-              <Route path="/reportajes/basuras" element={<Basuras />} />
-              <Route path="/reportajes/conteo-visitantes" element={<ConteoVisitantes />} />
+              {/* El armazón común —barra de lectura y «más reportajes»— envuelve a
+                  las piezas sin convertirlas en un :slug. */}
+              <Route element={<ArmazonReportaje />}>
+                <Route path="/reportajes/coste-efectivo" element={<CosteEfectivoReportaje />} />
+                <Route path="/reportajes/reconstruccion-dana" element={<ReconstruccionDana />} />
+                <Route
+                  path="/reportajes/inteligencia-turistica"
+                  element={<InteligenciaTuristica />}
+                />
+                <Route path="/reportajes/basuras" element={<Basuras />} />
+                <Route path="/reportajes/conteo-visitantes" element={<ConteoVisitantes />} />
+              </Route>
               {/* English engineering blog post — unlisted (not in NAV), canonical home for HN/civic-tech. */}
               <Route path="/blog/building-civicpulse-with-ai" element={<BuildingCivicPulse />} />
               <Route path="/metodologia" element={<Metodologia />} />

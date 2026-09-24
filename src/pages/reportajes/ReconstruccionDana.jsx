@@ -2,6 +2,7 @@ import { useReportaje } from '../../hooks/useReportaje'
 import Emblema from '../../components/reportajes/Emblema'
 import { Card, SectionHead } from '../../components/Primitives'
 import { CorrectionNote, CorrectionNotice } from '../../components/reportajes/CorrectionNote'
+import { SecHead, IndicePieza, Revela, useRevelado } from '../../components/reportajes/Pieza'
 
 const SERIF = "'Fraunces', Georgia, serif"
 const MES = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic']
@@ -31,8 +32,11 @@ function Timeline({ data }) {
     ih = H - mT - mB
   const max = Math.max(...data.map((d) => d.amount))
   const bw = iw / data.length
+  const { ref, marcas } = useRevelado()
   return (
     <svg
+      ref={ref}
+      {...marcas}
       viewBox={`0 0 ${W} ${H}`}
       style={{ width: '100%', display: 'block' }}
       role="img"
@@ -48,7 +52,16 @@ function Timeline({ data }) {
         return (
           <g key={d.month}>
             {d.amount > 0 && (
-              <rect x={bx} y={mT + ih - bh} width={bwid} height={bh} rx="2" fill="var(--civic)">
+              <rect
+                className="cp-crece-y"
+                style={{ '--i': i, '--paso': '45ms' }}
+                x={bx}
+                y={mT + ih - bh}
+                width={bwid}
+                height={bh}
+                rx="2"
+                fill="var(--civic)"
+              >
                 <title>{`${MES[mo]} ${d.month.slice(0, 4)} · ${eurC(d.amount)} · ${d.count} contrato${d.count > 1 ? 's' : ''}`}</title>
               </rect>
             )}
@@ -63,7 +76,10 @@ function Timeline({ data }) {
                 {eurC(d.amount)}
               </text>
             )}
-            {(i % 2 === 0 || i === data.length - 1) && (
+            {/* Un mes sí y otro no, y siempre el último. Con un número par de
+                meses el penúltimo también es par, y las dos etiquetas finales se
+                montaban («mar 26abr 26»): se salta el penúltimo. */}
+            {((i % 2 === 0 && i !== data.length - 2) || i === data.length - 1) && (
               <text
                 x={x + bw / 2}
                 y={H - 9}
@@ -81,7 +97,12 @@ function Timeline({ data }) {
   )
 }
 
-/* ---- Mapa de contratos geolocalizados ---- */
+/* ---- Mapa de contratos geolocalizados ----
+   Misma clave que la figura de cabecera de esta pieza (Emblema): con referencia
+   DANA en el acento, el resto en petróleo. Antes los dos grupos eran el mismo
+   petróleo con distinta opacidad (0,72 frente a 0,4): en claro costaba
+   distinguirlos y en oscuro no se distinguían, y el pie pedía al lector que
+   viera «los puntos más intensos». */
 function MapaContratos({ boundary, bbox, places, danaPlaces }) {
   const pad = 20
   const cosLat = Math.cos((((bbox.north + bbox.south) / 2) * Math.PI) / 180)
@@ -101,14 +122,19 @@ function MapaContratos({ boundary, bbox, places, danaPlaces }) {
   const rOf = (a) => 4 + Math.sqrt(a / maxAmt) * 16
   const sorted = [...places].sort((a, b) => b.amount - a.amount)
   const anchors = danaPlaces.slice(0, 2)
+  const { ref, marcas } = useRevelado()
   return (
     <svg
+      ref={ref}
+      {...marcas}
       viewBox={`0 0 ${W} ${H}`}
       style={{ width: '100%', maxWidth: 440, margin: '0 auto', display: 'block' }}
       role="img"
-      aria-label="Mapa de Riba-roja de Túria con los contratos geolocalizados"
+      aria-label="Mapa de Riba-roja de Túria con los contratos geolocalizados: en rojo, los lugares con contratos que referencian la DANA"
     >
       <path
+        className="cp-traza"
+        pathLength={1}
         d={path}
         fill="var(--soft)"
         stroke="var(--ink50)"
@@ -118,13 +144,15 @@ function MapaContratos({ boundary, bbox, places, danaPlaces }) {
       {sorted.map((p, i) => (
         <circle
           key={i}
+          className="cp-brota"
+          style={{ '--i': i, '--d': '500ms', '--paso': '22ms' }}
           cx={px(p.lng).toFixed(1)}
           cy={py(p.lat).toFixed(1)}
           r={rOf(p.amount).toFixed(1)}
-          fill="var(--civic)"
-          fillOpacity={p.danaAmount > 0 ? 0.72 : 0.4}
-          stroke={p.danaAmount > 0 ? 'var(--paper)' : 'var(--civic)'}
-          strokeWidth={p.danaAmount > 0 ? 1.2 : 1}
+          fill={p.danaAmount > 0 ? 'var(--crit-ink)' : 'var(--civic)'}
+          fillOpacity={p.danaAmount > 0 ? 0.9 : 0.55}
+          stroke="var(--paper)"
+          strokeWidth={1.2}
         >
           <title>{`${p.name} · ${eurFull(p.amount)} · ${p.contractCount} contrato${p.contractCount > 1 ? 's' : ''}${p.danaAmount > 0 ? ` · DANA ${eurC(p.danaAmount)}` : ''}`}</title>
         </circle>
@@ -159,11 +187,48 @@ function MapaContratos({ boundary, bbox, places, danaPlaces }) {
   )
 }
 
+/* ---- La clave del mapa, en HTML y no dentro del SVG: el SVG se escala con el
+        ancho y sus letras bajarían del suelo de 11px en un móvil. ---- */
+function ClaveMapa() {
+  const punto = (color, opacidad) => ({
+    display: 'inline-block',
+    width: 10,
+    height: 10,
+    borderRadius: '50%',
+    background: color,
+    opacity: opacidad,
+    marginRight: 6,
+    verticalAlign: '-1px',
+  })
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: '6px 18px',
+        justifyContent: 'center',
+        fontSize: 'var(--fs-meta)',
+        color: 'var(--ink70)',
+        marginTop: 10,
+      }}
+    >
+      <span>
+        <span aria-hidden="true" style={punto('var(--crit-ink)', 0.9)} />
+        con referencia DANA
+      </span>
+      <span>
+        <span aria-hidden="true" style={punto('var(--civic)', 0.55)} />
+        sin referencia DANA
+      </span>
+    </div>
+  )
+}
+
 /* ---- Barras horizontales (adjudicatarios / zonas) ---- */
 function Barras({ rows }) {
   const max = Math.max(...rows.map((r) => r.value))
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
+    <Revela style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
       {rows.map((r, i) => (
         <div key={i}>
           <div
@@ -208,7 +273,9 @@ function Barras({ rows }) {
             }}
           >
             <div
+              className="cp-crece-x"
               style={{
+                '--i': i,
                 height: '100%',
                 width: Math.max(3, (r.value / max) * 100) + '%',
                 background: 'var(--civic)',
@@ -218,38 +285,7 @@ function Barras({ rows }) {
           </div>
         </div>
       ))}
-    </div>
-  )
-}
-
-/* ---- Encabezado de sección numerado ---- */
-function SecHead({ num, kicker, title }) {
-  return (
-    <div style={{ margin: '34px 0 12px' }}>
-      <div
-        className="mono"
-        style={{
-          fontSize: 'var(--fs-micro)',
-          color: 'var(--ink50)',
-          letterSpacing: '.04em',
-          marginBottom: 6,
-        }}
-      >
-        {num} · {kicker}
-      </div>
-      <h2
-        style={{
-          fontFamily: SERIF,
-          fontSize: 'var(--fs-page)',
-          fontWeight: 600,
-          letterSpacing: '-.01em',
-          lineHeight: 1.15,
-          margin: 0,
-        }}
-      >
-        {title}
-      </h2>
-    </div>
+    </Revela>
   )
 }
 
@@ -558,6 +594,8 @@ export default function ReconstruccionDana() {
           cifró en 63 contratos de emergencia y 2.048.621 euros su respuesta inmediata a la riada.
         </p>
 
+        <IndicePieza />
+
         <SecHead num="01" kicker="Cuándo" title="La ola y la cola" />
         <p>
           El grueso llegó de golpe. La retirada de fango y la limpieza de caminos y viales coparon
@@ -598,11 +636,13 @@ export default function ReconstruccionDana() {
               places={data.places}
               danaPlaces={data.danaPlaces}
             />
+            <ClaveMapa />
           </div>
         </Card>
         <p style={cap()}>
-          Radio proporcional a √importe; los puntos más intensos concentran gasto DANA. Contorno
-          municipal real (OSM). Fuente: tender-geo · resolutor determinista de topónimos.
+          Radio proporcional a √importe; en rojo, los lugares con algún contrato que referencia la
+          DANA. Contorno municipal real (OSM). Fuente: tender-geo · resolutor determinista de
+          topónimos.
         </p>
 
         <SecHead num="03" kicker="Quién" title="Los adjudicatarios" />
