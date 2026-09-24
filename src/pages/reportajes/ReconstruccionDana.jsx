@@ -1,4 +1,5 @@
 import { useReportaje } from '../../hooks/useReportaje'
+import Emblema from '../../components/reportajes/Emblema'
 import { Card, SectionHead } from '../../components/Primitives'
 import { CorrectionNote } from '../../components/reportajes/CorrectionNote'
 
@@ -464,6 +465,8 @@ export default function ReconstruccionDana() {
       >
         {m.subtitulo}
       </p>
+
+      <Emblema slug="reconstruccion-dana" data={data} style={{ margin: '0 0 26px' }} />
 
       <CorrectionNote correcciones={m.correcciones} />
 

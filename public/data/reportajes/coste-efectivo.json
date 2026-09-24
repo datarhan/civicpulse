@@ -494,5 +494,52 @@
         ]
       }
     ]
+  },
+  "emblema": {
+    "nota": "Serie congelada para la figura de cabecera: coste efectivo del abastecimiento de agua (programa a161) declarado por el ayuntamiento en cada entrega. Un 0 es lo que se declaró; 2020 no tiene fila porque no se presentó la entrega.",
+    "fuente": "public/data/coste-efectivo.json · Ministerio de Hacienda, coste efectivo de los servicios (Orden HAP/2075/2014)",
+    "congeladoEl": "2026-09-24",
+    "agua": [
+      {
+        "anio": 2014,
+        "coste": 1861058.09
+      },
+      {
+        "anio": 2015,
+        "coste": 1804949.27
+      },
+      {
+        "anio": 2016,
+        "coste": 1928056.75
+      },
+      {
+        "anio": 2017,
+        "coste": 1965811.9
+      },
+      {
+        "anio": 2018,
+        "coste": 0
+      },
+      {
+        "anio": 2019,
+        "coste": 0
+      },
+      {
+        "anio": 2021,
+        "coste": 0
+      },
+      {
+        "anio": 2022,
+        "coste": 0
+      },
+      {
+        "anio": 2023,
+        "coste": 0
+      },
+      {
+        "anio": 2024,
+        "coste": 1898034.08
+      }
+    ]
   }
 }

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useReportaje } from '../hooks/useReportaje'
 import { REPORTAJE_SLUGS } from '../reportajes'
+import Emblema from '../components/reportajes/Emblema'
 import { fmtDateHuman } from '../lib/formatters'
 import { useT, useLocale } from '../i18n'
 
@@ -25,6 +26,7 @@ function ReportajeCard({ slug, readLabel }) {
         padding: '22px 24px',
       }}
     >
+      <Emblema slug={slug} data={data} style={{ margin: '0 0 18px' }} />
       <div
         className="mono"
         style={{
