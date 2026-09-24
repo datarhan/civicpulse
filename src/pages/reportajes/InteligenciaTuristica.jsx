@@ -1,5 +1,5 @@
 import { useReportaje } from '../../hooks/useReportaje'
-import Emblema from '../../components/reportajes/Emblema'
+import Emblema, { cifrasDelEmblema } from '../../components/reportajes/Emblema'
 import { Card } from '../../components/Primitives'
 import { CorrectionNote, CorrectionNotice } from '../../components/reportajes/CorrectionNote'
 import { SecHead, IndicePieza } from '../../components/reportajes/Pieza'
@@ -153,10 +153,12 @@ export default function InteligenciaTuristica() {
     )
 
   const m = data.meta
+  // Las tarjetas que la figura de cabecera ya imprime (ver cifrasDelEmblema).
+  const enFigura = new Set(cifrasDelEmblema('inteligencia-turistica', data))
 
   return (
     <div
-      className="cp-page"
+      className="cp-page cp-pieza"
       style={{
         padding: '24px',
         maxWidth: 760,
@@ -184,7 +186,7 @@ export default function InteligenciaTuristica() {
       )}
 
       <div
-        className="mono"
+        className="mono cp-texto"
         style={{
           fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
@@ -235,7 +237,11 @@ export default function InteligenciaTuristica() {
         }}
       >
         {data.kpis.map((s, i) => (
-          <div key={i} style={{ background: 'var(--paper)', padding: '16px 14px' }}>
+          <div
+            key={i}
+            className={enFigura.has(s.n) ? 'cp-kpi-en-figura' : undefined}
+            style={{ background: 'var(--paper)', padding: '16px 14px' }}
+          >
             <div
               className="mono"
               style={{
@@ -338,7 +344,9 @@ export default function InteligenciaTuristica() {
               ])}
           />
         </Card>
-        <p style={cap()}>{data.clusterNota}</p>
+        <p className="cp-pie" style={cap()}>
+          {data.clusterNota}
+        </p>
         <p>
           Tres nombres se repiten. <b>Sien Planificación Inteligente S.L.</b> dirigió el Plan
           Director de Destino Turístico Inteligente en 2021 (contrato menor, 14.650 €), ganó en 2024
@@ -386,7 +394,7 @@ export default function InteligenciaTuristica() {
             ])}
           />
         </Card>
-        <p style={cap()}>
+        <p className="cp-pie" style={cap()}>
           Excluidas antes de la valoración: {data.panel.excluidas.map((e) => e.empresa).join(' y ')}{' '}
           ({data.panel.excluidas[0].motivo}).
         </p>
@@ -517,7 +525,6 @@ export default function InteligenciaTuristica() {
             fontSize: 'var(--fs-head)',
             fontWeight: 500,
             lineHeight: 1.5,
-            maxWidth: '68ch',
             color: 'var(--ink)',
           }}
         >

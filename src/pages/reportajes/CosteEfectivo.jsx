@@ -1,5 +1,5 @@
 import { useReportaje } from '../../hooks/useReportaje'
-import Emblema from '../../components/reportajes/Emblema'
+import Emblema, { cifrasDelEmblema } from '../../components/reportajes/Emblema'
 import { CorrectionNote, CorrectionNotice } from '../../components/reportajes/CorrectionNote'
 import { SecHead, IndicePieza, Revela } from '../../components/reportajes/Pieza'
 import { FichaSociedad } from '../../components/reportajes/FichaSociedad'
@@ -13,12 +13,14 @@ import {
   ESTADO_ENVIO_ETIQUETA,
   ESTADO_ENVIO_TONO,
 } from '../../scraper/solicitud-enviada'
+import { isoDeFecha, msDeIso, silencioDeLaFicha, duracion } from '../../lib/cronologia'
 
 const SERIF = "'Fraunces', Georgia, serif"
 
-const P = ({ children }) => (
-  <p style={{ fontSize: 'var(--fs-body)', color: 'var(--ink70)', margin: '12px 0' }}>{children}</p>
-)
+// El cuerpo, al tamaño de la pieza (--fs-head, heredado del contenedor) como en
+// las otras cuatro. Iba a --fs-body: la única pieza con el texto corrido a 14px,
+// y a la medida de lectura eso eran ochenta y tantos caracteres por línea.
+const P = ({ children }) => <p style={{ color: 'var(--ink70)', margin: '12px 0' }}>{children}</p>
 
 /* ---- Figura con marco y pie, para las tres piezas gráficas ---- */
 function Figura({ titulo, pie, children }) {
@@ -359,10 +361,111 @@ const eur = (v) =>
 /* ---- La cronología del expediente. Siete años en una columna: lo que cuenta
         no es cada hito por separado sino el hueco entre febrero de 2021 y abril
         de 2026, que sólo se ve si están todos en fila. ---- */
+/* ---- La tira: cada hito en la fecha de su acto y, encima, el mayor hueco entre
+        dos publicaciones de la ficha del expediente. El hueco se calcula de las
+        fechas `ficha` que la propia frase de cada hito da (src/lib/cronologia.js);
+        un hito cuya publicación la pieza no fecha no cuenta. La lista de debajo
+        sigue siendo la fuente: la tira sólo pone en fila lo que la lista dice, que
+        es lo que el comentario de arriba pedía —«el hueco sólo se ve si están
+        todos en fila»—. ---- */
+function TiraCronologia({ hitos }) {
+  const puntos = hitos.map((h) => ({ h, iso: isoDeFecha(h.f) }))
+  // Un hito que no se sabe fechar deja la tira sin dibujar: mejor la lista sola
+  // que una tira con un punto de menos.
+  if (!puntos.length || puntos.some((p) => !p.iso)) return null
+  const isos = puntos.map((p) => p.iso).sort()
+  const [primero, ultimo] = [isos[0], isos[isos.length - 1]]
+  const a0 = Number(primero.slice(0, 4))
+  const a1 = Number(ultimo.slice(0, 4)) + 1
+  const t0 = Date.UTC(a0, 0, 1)
+  const t1 = Date.UTC(a1, 0, 1)
+  const x = (iso) => ((msDeIso(iso) - t0) / (t1 - t0)) * 100
+  const anios = Array.from({ length: a1 - a0 }, (_, i) => a0 + i)
+  const silencio = silencioDeLaFicha(hitos)
+  const cuanto = silencio && duracion(silencio.desde, silencio.hasta)
+  const resumen =
+    `${puntos.length} hitos, del ${enCastellano(primero)} al ${enCastellano(ultimo)}.` +
+    (silencio
+      ? ` Entre la entrada de la ficha del ${enCastellano(silencio.desde)} y la siguiente, la del ${enCastellano(silencio.hasta)}, pasan ${cuanto}.`
+      : '')
+  return (
+    <div style={{ margin: '0 0 16px' }}>
+      <Revela className="cp-tira" style={{ height: 94 }}>
+        <div role="img" aria-label={resumen} style={{ position: 'absolute', inset: 0 }}>
+          {silencio && (
+            <>
+              <div
+                className="cp-tira-hueco cp-crece-x"
+                style={{
+                  '--dur': '1200ms',
+                  '--ease': 'var(--ease-base)',
+                  left: `${x(silencio.desde)}%`,
+                  width: `${x(silencio.hasta) - x(silencio.desde)}%`,
+                }}
+              />
+              <div
+                className="mono cp-tira-rotulo"
+                style={{
+                  left: `${x(silencio.desde)}%`,
+                  width: `${x(silencio.hasta) - x(silencio.desde)}%`,
+                }}
+              >
+                <span style={{ color: 'var(--ink)', fontWeight: 500 }}>{cuanto}</span>
+                <span className="cp-tira-rotulo-mas">
+                  {' '}
+                  de una entrada de la ficha a la siguiente
+                </span>
+              </div>
+            </>
+          )}
+          {puntos.map(({ h, iso }, i) => (
+            <div
+              key={h.f}
+              className="cp-tira-punto cp-brota"
+              title={`${h.f}: ${h.t}`}
+              style={{ '--i': i, '--d': '300ms', '--paso': '45ms', left: `${x(iso)}%` }}
+            />
+          ))}
+          <div className="cp-tira-eje" />
+          {anios.map((a, i) => (
+            <div key={a}>
+              <div className="cp-tira-marca" style={{ left: `${x(`${a}-01-01`)}%` }} />
+              <div
+                className={`mono cp-tira-anio${i % 2 ? ' cp-tira-anio--alterno' : ''}`}
+                style={{
+                  left: `${x(`${a}-01-01`)}%`,
+                  width: `${x(`${a + 1}-01-01`) - x(`${a}-01-01`)}%`,
+                }}
+              >
+                {a}
+              </div>
+            </div>
+          ))}
+        </div>
+      </Revela>
+      {silencio && (
+        <p
+          style={{
+            fontSize: 'var(--fs-micro)',
+            color: 'var(--ink50)',
+            lineHeight: 1.5,
+            margin: '8px 0 0',
+          }}
+        >
+          Cada punto es un hito de la lista, en la fecha del acto. La banda va de la entrada de la
+          ficha del {enCastellano(silencio.desde)} a la siguiente que recoge la cronología, la del{' '}
+          {enCastellano(silencio.hasta)}.
+        </p>
+      )}
+    </div>
+  )
+}
+
 function Cronologia({ cronologia }) {
   if (!cronologia?.hitos?.length) return null
   return (
     <Figura titulo="El expediente, hito a hito" pie={cronologia.nota}>
+      <TiraCronologia hitos={cronologia.hitos} />
       <ol style={{ margin: 0, padding: 0, listStyle: 'none' }}>
         {cronologia.hitos.map((h) => (
           <li
@@ -476,7 +579,7 @@ function LaTarifa({ bloque }) {
         {b.titulo}
       </h3>
       <P>{b.cuerpo}</P>
-      <div style={{ margin: '12px 0' }}>
+      <div className="cp-texto" style={{ margin: '12px 0' }}>
         {b.buscadoEn.map((x) => (
           <div
             key={x.donde}
@@ -682,6 +785,8 @@ export default function CosteEfectivo() {
     )
 
   const m = data.meta
+  // Las tarjetas que la figura de cabecera ya imprime (ver cifrasDelEmblema).
+  const enFigura = new Set(cifrasDelEmblema('coste-efectivo', data))
   const c = data.concesion
   const ficha = indexarSociedades(sociedades).get('hidraqua')
   const cong = data.congelados
@@ -704,7 +809,7 @@ export default function CosteEfectivo() {
 
   return (
     <div
-      className="cp-page"
+      className="cp-page cp-pieza"
       style={{
         padding: '24px',
         maxWidth: 760,
@@ -732,7 +837,7 @@ export default function CosteEfectivo() {
       )}
 
       <div
-        className="mono"
+        className="mono cp-texto"
         style={{
           fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
@@ -775,6 +880,7 @@ export default function CosteEfectivo() {
           primera vez tiene derecho a saber qué ha cambiado desde entonces. */}
       {m.notaAmpliacion && (
         <p
+          className="cp-ancho"
           style={{
             fontSize: 'var(--fs-aux)',
             color: 'var(--ink70, var(--ink50))',
@@ -804,7 +910,11 @@ export default function CosteEfectivo() {
         }}
       >
         {data.kpis.map((s, i) => (
-          <div key={i} style={{ background: 'var(--paper)', padding: '16px 14px' }}>
+          <div
+            key={i}
+            className={enFigura.has(s.n) ? 'cp-kpi-en-figura' : undefined}
+            style={{ background: 'var(--paper)', padding: '16px 14px' }}
+          >
             <div
               className="mono"
               style={{

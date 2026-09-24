@@ -35,7 +35,15 @@ const C = {
   ink20: 'var(--ink20)',
   paper: 'var(--paper)',
   civic: 'var(--civic)',
-  accent: 'var(--crit-ink)',
+  // Dos énfasis, y no son intercambiables. `fallo` es el rojo de --crit: lo que
+  // la pieza documenta como un fallo —cero cifras en las memorias, la entrega
+  // sin rendir, la contrata que duró un mes—. `foco` es la tinta de petróleo:
+  // lo que la pieza mira sin reprocharlo —el gasto con referencia a la DANA,
+  // los dos contratos de la nota municipal—. Pintar de rojo el dinero de la
+  // reconstrucción era afirmar con el color lo que la pieza dice que no afirma
+  // («sin atribuir irregularidad»).
+  fallo: 'var(--crit-ink)',
+  foco: 'var(--civic-ink)',
 }
 const MONO = "'DM Mono', ui-monospace, monospace"
 
@@ -89,7 +97,7 @@ function Hatch({ id }) {
         patternUnits="userSpaceOnUse"
         patternTransform="rotate(45)"
       >
-        <line x1="0" y1="0" x2="0" y2="10" stroke={C.accent} strokeWidth="3" />
+        <line x1="0" y1="0" x2="0" y2="10" stroke={C.fallo} strokeWidth="3" />
       </pattern>
     </defs>
   )
@@ -106,6 +114,7 @@ function Basuras({ data }) {
   const nueva1 = sav1 + 1 / 12 // «1 mes», según el kpi
   return {
     label: `La contrata anterior duró ${kSav.n}; la nueva, ${kNueva.n} hasta el expediente de penalidades.`,
+    cifras: [kSav.n, kNueva.n],
     body: (
       <>
         <T x={40} y={40} fill={C.ink50}>
@@ -124,7 +133,7 @@ function Basuras({ data }) {
         <T x={X(sav0) + 20} y={97} size={28} fill={C.paper} mono weight={500}>
           {kSav.n}
         </T>
-        <T x={X(sav1) - 12} y={170} fill={C.accent} anchor="end" weight={600}>
+        <T x={X(sav1) - 12} y={170} fill={C.fallo} anchor="end" weight={600}>
           {`nueva contrata · ${kNueva.n}`}
         </T>
         {/* La nueva contrata aparece cuando la anterior ha terminado de crecer:
@@ -136,7 +145,7 @@ function Basuras({ data }) {
           y={138}
           width={Math.max(7, X(nueva1) - X(sav1))}
           height={64}
-          fill={C.accent}
+          fill={C.fallo}
         />
         <line x1={40} y1={238} x2={680} y2={238} stroke={C.ink50} strokeWidth={2} />
         {[2011, 2015, 2020, 2025].map((y) => (
@@ -180,6 +189,7 @@ function ConteoVisitantes({ data }) {
   )
   return {
     label: `${eur0(total)} en dos contratos; ${cero ? cero.n : '0'} cifras de visitantes en las memorias que los justificaban.`,
+    cifras: [eur0(total), cero?.n].filter(Boolean),
     body: (
       <>
         <T x={40} y={36} fill={C.ink50} mono>
@@ -199,7 +209,7 @@ function ConteoVisitantes({ data }) {
         <T x={680} y={136} size={20} anchor="end">{`promoción · ${eur0(promo.importe)}`}</T>
         <Doc x={40} i={0} />
         <Doc x={116} i={1} />
-        <T x={214} y={250} size={96} fill={C.accent} weight={600}>
+        <T x={214} y={250} size={96} fill={C.fallo} weight={600}>
           {cero ? cero.n : '0'}
         </T>
         <T x={290} y={212} size={24} weight={600}>
@@ -229,6 +239,10 @@ function CosteEfectivo({ data }) {
   const off = years.filter((/** @type {number} */ y) => serie.has(y) && !(serie.get(y) > 0)).length
   return {
     label: `Coste efectivo del agua declarado: cifra en ${on} entregas, cero en ${off} y una sin presentar.`,
+    // Ninguna cifra de la cabecera sale tal cual: la figura escribe «1,90» por
+    // barra y la cabecera «1,9 M€». No se esconde lo que no se repite letra a
+    // letra.
+    cifras: [],
     body: (
       <>
         <Hatch id="emblema-ce-h" />
@@ -250,7 +264,7 @@ function CosteEfectivo({ data }) {
                   width={w}
                   height={150}
                   fill="url(#emblema-ce-h)"
-                  stroke={C.accent}
+                  stroke={C.fallo}
                   strokeWidth={2.5}
                 />
               ) : v > 0 ? (
@@ -299,7 +313,7 @@ function CosteEfectivo({ data }) {
                 x={x + w / 2}
                 y={230}
                 size={19}
-                fill={falta ? C.accent : C.ink50}
+                fill={falta ? C.fallo : C.ink50}
                 anchor="middle"
                 mono
                 weight={falta ? 500 : 400}
@@ -332,7 +346,7 @@ function CosteEfectivo({ data }) {
           width={16}
           height={16}
           fill="url(#emblema-ce-h)"
-          stroke={C.accent}
+          stroke={C.fallo}
           strokeWidth={2}
         />
         <T x={246} y={273} size={19}>
@@ -352,6 +366,7 @@ function InteligenciaTuristica({ data }) {
   const s = Math.max(8, S * Math.sqrt(small / plan))
   return {
     label: `Plan de ${eurM(plan)}; los dos contratos de inteligencia turística, ${eur0(small)} sin IVA.`,
+    cifras: [eurM(plan), eur0(small)],
     body: (
       <>
         <rect x={40} y={32} width={S} height={S} fill={C.ink20} stroke={C.ink50} strokeWidth={2} />
@@ -362,7 +377,7 @@ function InteligenciaTuristica({ data }) {
           y={32 + S - s}
           width={s}
           height={s}
-          fill={C.accent}
+          fill={C.civic}
         />
         <T x={310} y={64} size={34} mono weight={500}>
           {eurM(plan)}
@@ -371,7 +386,7 @@ function InteligenciaTuristica({ data }) {
           Plan de Sostenibilidad Turística 2022
         </T>
         <line x1={310} y1={128} x2={680} y2={128} stroke={C.ink20} strokeWidth={2} />
-        <T x={310} y={176} size={34} fill={C.accent} mono weight={500}>
+        <T x={310} y={176} size={34} fill={C.foco} mono weight={500}>
           {eur0(small)}
         </T>
         <T x={310} y={206} size={20} fill={C.ink50}>
@@ -416,6 +431,7 @@ function ReconstruccionDana({ data }) {
   const tx = 40 + Wm + 50
   return {
     label: `Mapa de los lugares que nombran los contratos: ${eurM(t.situatedAmount)} situados; ${eurM(t.danaAmount)} con referencia a la DANA.`,
+    cifras: [String(t.situatedContracts), String(t.danaContracts)],
     body: (
       <>
         <path
@@ -440,8 +456,8 @@ function ReconstruccionDana({ data }) {
                 cx={x}
                 cy={y}
                 r={3 + 15 * Math.sqrt(p.amount / max)}
-                fill={dana ? C.accent : C.civic}
-                fillOpacity={dana ? 0.9 : 0.55}
+                fill={dana ? C.civic : C.ink50}
+                fillOpacity={dana ? 0.9 : 0.6}
                 stroke={C.paper}
                 strokeWidth={1.5}
               />
@@ -453,17 +469,17 @@ function ReconstruccionDana({ data }) {
         <T x={tx} y={88} size={19} fill={C.ink50}>
           {`en ${t.situatedContracts} emplazamientos con dirección`}
         </T>
-        <T x={tx} y={150} size={32} fill={C.accent} mono weight={500}>
+        <T x={tx} y={150} size={32} fill={C.foco} mono weight={500}>
           {eurM(t.danaAmount)}
         </T>
         <T x={tx} y={178} size={19} fill={C.ink50}>
           {`en ${t.danaContracts} contratos con referencia a la DANA`}
         </T>
-        <circle cx={tx + 8} cy={222} r={8} fill={C.accent} />
+        <circle cx={tx + 8} cy={222} r={8} fill={C.civic} fillOpacity={0.9} />
         <T x={tx + 24} y={228} size={17}>
           con referencia DANA
         </T>
-        <circle cx={tx + 8} cy={250} r={8} fill={C.civic} fillOpacity={0.55} />
+        <circle cx={tx + 8} cy={250} r={8} fill={C.ink50} fillOpacity={0.6} />
         <T x={tx + 24} y={256} size={17}>
           sin referencia DANA
         </T>
@@ -473,6 +489,27 @@ function ReconstruccionDana({ data }) {
       </>
     ),
   }
+}
+
+/**
+ * Las cifras de la cabecera que la figura imprime TAL CUAL. La pieza esconde
+ * esas tarjetas donde la figura se ve (≥480px): repetidas, el lector leía cada
+ * cifra central dos veces antes de llegar a la primera línea. Por debajo de
+ * 480px la figura se oculta y las tarjetas vuelven, así que ninguna cifra
+ * desaparece de la cabecera en ningún ancho.
+ *
+ * Cada figura declara las suyas con las MISMAS expresiones con que las dibuja,
+ * y un test comprueba que cada una está escrita en el SVG y que es el valor de
+ * una tarjeta: nunca se esconde una cifra que la figura no enseña.
+ *
+ * @param {string} slug
+ * @param {any} data
+ * @returns {string[]}
+ */
+export function cifrasDelEmblema(slug, data) {
+  const Figura = EMBLEMAS[slug]
+  if (!Figura || !data) return []
+  return Figura({ data }).cifras ?? []
 }
 
 /** Slugs con emblema dibujado. Exportado para que un test exija uno por pieza. */
@@ -487,6 +524,8 @@ export const EMBLEMAS = {
 // Media queries no caben en el prop `style`: van en una hoja. Por debajo de
 // 480px las etiquetas del viewBox bajan de ~9px — por debajo del suelo de
 // 11px del sitio —, así que la figura se oculta: la pieza se lee igual sin ella.
+// La regla de las tarjetas repetidas (`cifrasDelEmblema`) usa el mismo corte y
+// vive aquí para que no puedan separarse: donde no hay figura, hay tarjeta.
 //
 // `--em-macizo` es el relleno de lo macizo (ver `C.macizo`): la tinta en claro y
 // la tinta al 62 % en oscuro, donde la plena era una plancha blanca.
@@ -496,6 +535,7 @@ const CSS = `
 html.dark .cp-emblema { --em-macizo: var(--ink50); }
 @media print { html.dark .cp-emblema { --em-macizo: var(--ink); } }
 @media (max-width: 479px) { .cp-emblema { display: none; } }
+@media (min-width: 480px) { .cp-kpi-en-figura { display: none; } }
 `
 
 /**

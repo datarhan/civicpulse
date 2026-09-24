@@ -1,5 +1,5 @@
 import { useReportaje } from '../../hooks/useReportaje'
-import Emblema from '../../components/reportajes/Emblema'
+import Emblema, { cifrasDelEmblema } from '../../components/reportajes/Emblema'
 import { Card, SectionHead } from '../../components/Primitives'
 import { CorrectionNote, CorrectionNotice } from '../../components/reportajes/CorrectionNote'
 import { SecHead, IndicePieza, Revela, useRevelado } from '../../components/reportajes/Pieza'
@@ -99,10 +99,11 @@ function Timeline({ data }) {
 
 /* ---- Mapa de contratos geolocalizados ----
    Misma clave que la figura de cabecera de esta pieza (Emblema): con referencia
-   DANA en el acento, el resto en petróleo. Antes los dos grupos eran el mismo
+   DANA en petróleo, el resto en gris. Antes los dos grupos eran el mismo
    petróleo con distinta opacidad (0,72 frente a 0,4): en claro costaba
    distinguirlos y en oscuro no se distinguían, y el pie pedía al lector que
-   viera «los puntos más intensos». */
+   viera «los puntos más intensos». Y no en rojo: el rojo es el color de lo que
+   una pieza documenta como fallo, y ésta no atribuye irregularidad a nadie. */
 function MapaContratos({ boundary, bbox, places, danaPlaces }) {
   const pad = 20
   const cosLat = Math.cos((((bbox.north + bbox.south) / 2) * Math.PI) / 180)
@@ -130,7 +131,7 @@ function MapaContratos({ boundary, bbox, places, danaPlaces }) {
       viewBox={`0 0 ${W} ${H}`}
       style={{ width: '100%', maxWidth: 440, margin: '0 auto', display: 'block' }}
       role="img"
-      aria-label="Mapa de Riba-roja de Túria con los contratos geolocalizados: en rojo, los lugares con contratos que referencian la DANA"
+      aria-label="Mapa de Riba-roja de Túria con los contratos geolocalizados: en azul petróleo, los lugares con contratos que referencian la DANA; en gris, el resto"
     >
       <path
         className="cp-traza"
@@ -149,8 +150,8 @@ function MapaContratos({ boundary, bbox, places, danaPlaces }) {
           cx={px(p.lng).toFixed(1)}
           cy={py(p.lat).toFixed(1)}
           r={rOf(p.amount).toFixed(1)}
-          fill={p.danaAmount > 0 ? 'var(--crit-ink)' : 'var(--civic)'}
-          fillOpacity={p.danaAmount > 0 ? 0.9 : 0.55}
+          fill={p.danaAmount > 0 ? 'var(--civic)' : 'var(--ink50)'}
+          fillOpacity={p.danaAmount > 0 ? 0.9 : 0.6}
           stroke="var(--paper)"
           strokeWidth={1.2}
         >
@@ -213,11 +214,11 @@ function ClaveMapa() {
       }}
     >
       <span>
-        <span aria-hidden="true" style={punto('var(--crit-ink)', 0.9)} />
+        <span aria-hidden="true" style={punto('var(--civic)', 0.9)} />
         con referencia DANA
       </span>
       <span>
-        <span aria-hidden="true" style={punto('var(--civic)', 0.55)} />
+        <span aria-hidden="true" style={punto('var(--ink50)', 0.6)} />
         sin referencia DANA
       </span>
     </div>
@@ -420,6 +421,34 @@ function Callout() {
 
 const CAP = (s) => (s.length > 34 ? s.slice(0, 33) + '…' : s)
 
+/**
+ * Las cuatro cifras de la cabecera. Función y no literal en el JSX: el test de los
+ * emblemas comprueba que las que la figura ya imprime (y que la pieza esconde
+ * donde la figura se ve) son de verdad tarjetas de aquí.
+ */
+export function kpisReconstruccion(t) {
+  return [
+    { n: '14,5 M€', l: 'solo del Estado (Orden TMD/101/2025)', tone: 'var(--civic)' },
+    // Counts read from the data, not hardcoded. They were literals ('73',
+    // '72') beside amounts that came from `t`, so correcting the totals
+    // would have left the count saying 73 next to the corrected 2,75 M€.
+    { n: String(t.danaContracts), l: `contratos ref. DANA · ${eurC(t.danaAmount)}` },
+    { n: String(t.situatedContracts), l: `geolocalizados · ${eurC(t.situatedAmount)}` },
+    // Decía «0 órganos que fiscalizan los contratos municipales», y es falso: la
+    // Sindicatura de Comptes es el órgano de control externo de las entidades locales,
+    // programa «la fiscalización de la contratación en las entidades locales durante
+    // 2023 y 2024» —2024 es el año de la riada— y revisa los reparos de los
+    // interventores locales. Lo que sí es cero, y es lo que sostiene el reportaje, es
+    // el alcance MUNICIPAL de los informes DANA: los dos especiales están acotados al
+    // sector autonómico por su propio título.
+    {
+      n: '0',
+      l: 'informes DANA de la Sindicatura que alcanzan al tramo municipal',
+      tone: 'var(--warn-ink)',
+    },
+  ]
+}
+
 export default function ReconstruccionDana() {
   const { loading, error, data } = useReportaje('reconstruccion-dana')
 
@@ -438,10 +467,12 @@ export default function ReconstruccionDana() {
 
   const t = data.totals
   const m = data.meta
+  // Las tarjetas que la figura de cabecera ya imprime (ver cifrasDelEmblema).
+  const enFigura = new Set(cifrasDelEmblema('reconstruccion-dana', data))
 
   return (
     <div
-      className="cp-page"
+      className="cp-page cp-pieza"
       style={{
         padding: '24px',
         maxWidth: 760,
@@ -469,7 +500,7 @@ export default function ReconstruccionDana() {
       )}
 
       <div
-        className="mono"
+        className="mono cp-texto"
         style={{
           fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
@@ -510,7 +541,10 @@ export default function ReconstruccionDana() {
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
+          // auto-fit y no cuatro columnas fijas: donde la figura se ve, dos tarjetas
+          // se esconden (cifrasDelEmblema), y cuatro columnas dejaban dos huecos. En
+          // el móvil, además, cuatro columnas de 80px no le cabían a «14,5 M€».
+          gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
           gap: 1,
           background: 'var(--border)',
           border: '1px solid var(--border)',
@@ -519,27 +553,12 @@ export default function ReconstruccionDana() {
           margin: '0 0 30px',
         }}
       >
-        {[
-          { n: '14,5 M€', l: 'solo del Estado (Orden TMD/101/2025)', tone: 'var(--civic)' },
-          // Counts read from the data, not hardcoded. They were literals ('73',
-          // '72') beside amounts that came from `t`, so correcting the totals
-          // would have left the count saying 73 next to the corrected 2,75 M€.
-          { n: String(t.danaContracts), l: `contratos ref. DANA · ${eurC(t.danaAmount)}` },
-          { n: String(t.situatedContracts), l: `geolocalizados · ${eurC(t.situatedAmount)}` },
-          // Decía «0 órganos que fiscalizan los contratos municipales», y es falso: la
-          // Sindicatura de Comptes es el órgano de control externo de las entidades locales,
-          // programa «la fiscalización de la contratación en las entidades locales durante
-          // 2023 y 2024» —2024 es el año de la riada— y revisa los reparos de los
-          // interventores locales. Lo que sí es cero, y es lo que sostiene el reportaje, es
-          // el alcance MUNICIPAL de los informes DANA: los dos especiales están acotados al
-          // sector autonómico por su propio título.
-          {
-            n: '0',
-            l: 'informes DANA de la Sindicatura que alcanzan al tramo municipal',
-            tone: 'var(--warn-ink)',
-          },
-        ].map((s, i) => (
-          <div key={i} style={{ background: 'var(--paper)', padding: '16px 14px' }}>
+        {kpisReconstruccion(t).map((s, i) => (
+          <div
+            key={i}
+            className={enFigura.has(s.n) ? 'cp-kpi-en-figura' : undefined}
+            style={{ background: 'var(--paper)', padding: '16px 14px' }}
+          >
             <div
               className="mono"
               style={{
@@ -613,7 +632,7 @@ export default function ReconstruccionDana() {
             <Timeline data={data.timelineFull} />
           </div>
         </Card>
-        <p style={cap()}>
+        <p className="cp-pie" style={cap()}>
           Importe adjudicado (sin IVA) por mes. Fuente: PLACSP/Gobierto · contratos cuyo título
           referencia la DANA.
         </p>
@@ -639,10 +658,10 @@ export default function ReconstruccionDana() {
             <ClaveMapa />
           </div>
         </Card>
-        <p style={cap()}>
-          Radio proporcional a √importe; en rojo, los lugares con algún contrato que referencia la
-          DANA. Contorno municipal real (OSM). Fuente: tender-geo · resolutor determinista de
-          topónimos.
+        <p className="cp-pie" style={cap()}>
+          Radio proporcional a √importe; en azul petróleo, los lugares con algún contrato que
+          referencia la DANA, y en gris el resto. Contorno municipal real (OSM). Fuente: tender-geo
+          · resolutor determinista de topónimos.
         </p>
 
         <SecHead num="03" kicker="Quién" title="Los adjudicatarios" />

@@ -1,5 +1,5 @@
 import { useReportaje } from '../../hooks/useReportaje'
-import Emblema from '../../components/reportajes/Emblema'
+import Emblema, { cifrasDelEmblema } from '../../components/reportajes/Emblema'
 import { CorrectionNote, CorrectionNotice } from '../../components/reportajes/CorrectionNote'
 import { SecHead, IndicePieza } from '../../components/reportajes/Pieza'
 
@@ -188,6 +188,8 @@ export default function Basuras() {
     )
 
   const m = data.meta
+  // Las tarjetas que la figura de cabecera ya imprime (ver cifrasDelEmblema).
+  const enFigura = new Set(cifrasDelEmblema('basuras', data))
   const d = data.dinero
   const ce = data.costeEfectivo
   const cal = data.calendario
@@ -195,7 +197,7 @@ export default function Basuras() {
 
   return (
     <div
-      className="cp-page"
+      className="cp-page cp-pieza"
       style={{
         padding: '24px',
         maxWidth: 760,
@@ -223,7 +225,7 @@ export default function Basuras() {
       )}
 
       <div
-        className="mono"
+        className="mono cp-texto"
         style={{
           fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
@@ -274,7 +276,11 @@ export default function Basuras() {
         }}
       >
         {data.kpis.map((s, i) => (
-          <div key={i} style={{ background: 'var(--paper)', padding: '16px 14px' }}>
+          <div
+            key={i}
+            className={enFigura.has(s.n) ? 'cp-kpi-en-figura' : undefined}
+            style={{ background: 'var(--paper)', padding: '16px 14px' }}
+          >
             <div
               className="mono"
               style={{
@@ -396,7 +402,9 @@ export default function Basuras() {
           cols={[{ label: 'Criterio' }, { label: 'Puntos', right: true, mono: true, strong: true }]}
           rows={data.criterios.filas.map((f) => [f.criterio, num(f.puntos, f.puntos % 1 ? 1 : 0)])}
         />
-        <p style={cap()}>{data.criterios.nota}</p>
+        <p className="cp-pie" style={cap()}>
+          {data.criterios.nota}
+        </p>
 
         <p>
           Garbialdi se llevó los 32 puntos del precio —fue la oferta más barata de las cuatro— y
@@ -454,7 +462,7 @@ export default function Basuras() {
             </ul>
           </div>
         </div>
-        <p style={cap()}>
+        <p className="cp-pie" style={cap()}>
           Los incumplimientos proceden de los informes técnicos municipales y de AUDITESA S.L., la
           empresa que el propio Ayuntamiento contrató por {eur(d.supervisionAuditesa)} para
           supervisar este contrato. Es la parte del expediente que funcionó.
@@ -495,7 +503,7 @@ export default function Basuras() {
         <p>{data.parla.balance}</p>
         <p>El rastro de la empresa en otros lugares es más corto, pero existe:</p>
         {data.expedienteGarbialdi.map((e, i) => (
-          <div key={i} style={{ margin: '14px 0' }}>
+          <div key={i} className="cp-texto" style={{ margin: '14px 0' }}>
             <div
               className="mono"
               style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginBottom: 4 }}
@@ -699,7 +707,9 @@ export default function Basuras() {
             </ul>
           </div>
         </div>
-        <p style={cap()}>{cal.urbanizacionesNota}</p>
+        <p className="cp-pie" style={cap()}>
+          {cal.urbanizacionesNota}
+        </p>
         <p>
           Las reglas: {cal.limites.join('. ')}. Y antes de sacar nada hay que llamar al{' '}
           <span className="mono">{cal.telefono}</span>, gratuito, donde Riba-roja Neta indica el día
@@ -795,7 +805,7 @@ export default function Basuras() {
         {data.preguntas.bloques.map((b, bi) => {
           const offset = data.preguntas.bloques.slice(0, bi).reduce((s, x) => s + x.items.length, 0)
           return (
-            <div key={bi} style={{ margin: '22px 0 0' }}>
+            <div key={bi} className="cp-texto" style={{ margin: '22px 0 0' }}>
               <h3 style={boxH()}>
                 {b.titulo} · {b.destinatario}
               </h3>

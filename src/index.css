@@ -1369,6 +1369,31 @@ main:focus:not(:focus-visible) {
   }
 }
 
+/* La medida de lectura de las piezas. A 712px de columna y 16px, el cuerpo iba a
+   unos noventa caracteres por línea; una pieza larga se lee cómoda entre sesenta
+   y setenta y cinco. Así que el TEXTO CORRIDO —titular, entradilla, párrafos,
+   listas, encabezados de sección— va a la medida y centrado, y lo ENMARCADO
+   —figuras, tablas, tarjetas, avisos, citas en caja— sigue a todo el ancho de la
+   columna, sobresaliendo por los dos lados. Los pies de una figura (`.cp-pie`)
+   van con su figura; un bloque de texto que no es párrafo (`.cp-texto`) va con
+   el texto; un párrafo con caja (`.cp-ancho`) va con las cajas.
+
+   Los márgenes laterales llevan !important porque las piezas escriben los
+   suyos en línea (`margin: '0 0 26px'`) y el centrado tiene que ganarles; sólo
+   se tocan los laterales. En rem, para que la densidad la mueva. Por debajo de
+   la medida —el móvil— no cambia nada: la columna ya es más estrecha. */
+.cp-pieza {
+  /* 38rem = 532px a densidad normal: unos setenta caracteres de Outfit a 16px,
+     medidos sobre los párrafos de las piezas, no supuestos. */
+  --medida: 38rem;
+}
+.cp-pieza > :is(p, ul, ol, h1, h3, [data-seccion], .cp-texto):not(.cp-pie, .cp-ancho),
+.cp-pieza > article > :is(p, ul, ol, h3, [data-seccion], .cp-texto):not(.cp-pie, .cp-ancho) {
+  max-width: var(--medida);
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
 /* «En esta pieza» — índice plegado, leído de los encabezados de la pieza. */
 .cp-indice {
   margin: 26px 0 0;
@@ -1441,6 +1466,75 @@ main:focus:not(:focus-visible) {
   color: var(--ink);
   text-decoration: underline;
   text-underline-offset: 2px;
+}
+
+/* La tira de la cronología (coste-efectivo): los hitos en su fecha y el mayor
+   hueco entre dos entradas de la ficha. En HTML y no en SVG para que sus
+   rótulos no bajen del suelo de 11px en un móvil; las posiciones van en %. */
+.cp-tira {
+  position: relative;
+}
+.cp-tira-hueco {
+  position: absolute;
+  top: 0;
+  height: 62px;
+  background: repeating-linear-gradient(135deg, var(--ink10) 0 6px, transparent 6px 12px);
+  border-left: 1px dashed var(--ink30);
+  border-right: 1px dashed var(--ink30);
+}
+.cp-tira-rotulo {
+  position: absolute;
+  top: 8px;
+  padding: 0 6px;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: var(--fs-micro);
+  line-height: 1.3;
+  color: var(--ink70);
+}
+.cp-tira-punto {
+  position: absolute;
+  top: 40px;
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  border-radius: 50%;
+  background: var(--civic);
+  box-shadow: 0 0 0 2px var(--soft);
+}
+.cp-tira-eje {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 62px;
+  height: 1px;
+  background: var(--ink30);
+}
+.cp-tira-marca {
+  position: absolute;
+  top: 62px;
+  width: 1px;
+  height: 6px;
+  background: var(--ink30);
+}
+.cp-tira-anio {
+  position: absolute;
+  top: 70px;
+  text-align: center;
+  font-size: var(--fs-micro);
+  color: var(--ink50);
+}
+/* Ocho años en 290px no caben con su rótulo cada uno: en el móvil, uno sí y
+   otro no. Y el rótulo de la banda se queda en la duración: entero partía en
+   tres líneas y la última pasaba por debajo de un punto. Lo que se quita lo
+   dice entero el pie de la tira. */
+@media (max-width: 479px) {
+  .cp-tira-anio--alterno {
+    visibility: hidden;
+  }
+  .cp-tira-rotulo-mas {
+    display: none;
+  }
 }
 
 /* La barra de lectura: sobre el borde inferior de la barra superior, que es

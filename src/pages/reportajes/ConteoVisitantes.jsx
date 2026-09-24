@@ -1,5 +1,5 @@
 import { useReportaje } from '../../hooks/useReportaje'
-import Emblema from '../../components/reportajes/Emblema'
+import Emblema, { cifrasDelEmblema } from '../../components/reportajes/Emblema'
 import { Card, Pill } from '../../components/Primitives'
 import { CorrectionNote, CorrectionNotice } from '../../components/reportajes/CorrectionNote'
 import { SecHead, IndicePieza } from '../../components/reportajes/Pieza'
@@ -279,10 +279,12 @@ export default function ConteoVisitantes() {
     )
 
   const m = data.meta
+  // Las tarjetas que la figura de cabecera ya imprime (ver cifrasDelEmblema).
+  const enFigura = new Set(cifrasDelEmblema('conteo-visitantes', data))
 
   return (
     <div
-      className="cp-page"
+      className="cp-page cp-pieza"
       style={{
         padding: '24px',
         maxWidth: 760,
@@ -308,7 +310,7 @@ export default function ConteoVisitantes() {
       )}
 
       <div
-        className="mono"
+        className="mono cp-texto"
         style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', letterSpacing: '.06em' }}
       >
         {m.seccion}
@@ -328,7 +330,7 @@ export default function ConteoVisitantes() {
       <p style={{ color: 'var(--ink70)', fontSize: 'var(--fs-head)', margin: '0 0 6px' }}>
         {m.subtitulo}
       </p>
-      <div className="mono" style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
+      <div className="mono cp-texto" style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
         Publicado el {fmtDateHuman(m.publicadoEl)} · cifras congeladas a {m.fechaDatos}
       </div>
 
@@ -351,7 +353,11 @@ export default function ConteoVisitantes() {
         }}
       >
         {data.kpis.map((k, i) => (
-          <Card key={i} style={{ padding: '12px 14px' }}>
+          <Card
+            key={i}
+            className={enFigura.has(k.n) ? 'cp-kpi-en-figura' : undefined}
+            style={{ padding: '12px 14px' }}
+          >
             <div
               className="mono"
               style={{ fontSize: 'var(--fs-page)', color: 'var(--ink)', fontWeight: 600 }}

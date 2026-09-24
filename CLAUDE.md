@@ -111,7 +111,13 @@ layout route `pages/reportajes/Armazon.jsx` (reading bar, «Más reportajes» �
 outside the pieza's container, because the corrections log must stay its last
 block) and `components/reportajes/Pieza.jsx` (`SecHead`, the section index read
 from the DOM, the reveal-on-view hook). Figure motion animates marks, never
-text, and the resting state is the complete figure.
+text, and the resting state is the complete figure. Running text sits on a
+reading measure (`.cp-pieza`, ~70 characters) while boxed elements keep the full
+column: mark a figure's caption `.cp-pie`, an unboxed text block `.cp-texto`, a
+boxed paragraph `.cp-ancho`. A header card whose value the figure prints verbatim
+hides where the figure shows (`cifrasDelEmblema`, guarded by a test that reads
+the drawn SVG). In a figure, red (`fallo`) marks only what the piece documents as
+a failure; what it merely looks at is petrol (`foco`).
 
 `/curator` is the local-only admin dashboard (see the plugin note above).
 
