@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-09-23T09:40:15.387Z",
+  "generatedAt": "2026-09-24T09:39:26.068Z",
   "source": {
     "baseUrl": "https://regmeet.com",
     "description": "Ayuntamiento de Riba-roja de Túria — sesiones plenarias en regmeet.com (aytoribarroja); cada página individual publica el orden del día en la tabla #tableOrdenDia. El departamento se infiere del título del punto."
   },
   "stats": {
-    "plenosFetched": 56,
-    "agendaItemsTotal": 543,
-    "agendaItemsWithDepartment": 174,
+    "plenosFetched": 62,
+    "agendaItemsTotal": 619,
+    "agendaItemsWithDepartment": 219,
     "plenosWithRuegos": 9,
-    "uniqueDepartments": 22,
+    "uniqueDepartments": 24,
     "sessionsTotal": 62,
-    "sessionsWithAgenda": 56,
-    "refreshedThisRun": 20,
-    "recoveredFromLive": 20,
-    "carriedForward": 36,
+    "sessionsWithAgenda": 62,
+    "refreshedThisRun": 6,
+    "recoveredFromLive": 6,
+    "carriedForward": 56,
     "recoveredFromArchive": 0,
     "archiveLookupsSkipped": 0,
     "sessionsNotAttempted": 0,
@@ -24,28 +24,38 @@
   "topDepartments": [
     {
       "department": "hacienda",
-      "count": 29,
+      "count": 38,
       "departmentSlug": "hacienda"
     },
     {
       "department": "contratacion",
-      "count": 23,
+      "count": 34,
       "departmentSlug": "contratacion"
     },
     {
       "department": "urbanismo",
-      "count": 21,
+      "count": 25,
       "departmentSlug": "urbanismo"
     },
     {
+      "department": "servicios-generales",
+      "count": 19,
+      "departmentSlug": "servicios-generales"
+    },
+    {
       "department": "comercio",
-      "count": 14,
+      "count": 15,
       "departmentSlug": "comercio"
     },
     {
-      "department": "servicios-generales",
-      "count": 12,
-      "departmentSlug": "servicios-generales"
+      "department": "servicios-sociales",
+      "count": 10,
+      "departmentSlug": "servicios-sociales"
+    },
+    {
+      "department": "cultura",
+      "count": 9,
+      "departmentSlug": "cultura"
     },
     {
       "department": "recursos-humanos",
@@ -53,34 +63,24 @@
       "departmentSlug": "recursos-humanos"
     },
     {
-      "department": "cultura",
-      "count": 8,
-      "departmentSlug": "cultura"
-    },
-    {
       "department": "medio-ambiente",
       "count": 8,
       "departmentSlug": "medio-ambiente"
     },
     {
-      "department": "educacion",
-      "count": 6,
-      "departmentSlug": "educacion"
-    },
-    {
-      "department": "seguridad",
-      "count": 6,
-      "departmentSlug": "seguridad"
+      "department": "igualdad",
+      "count": 7,
+      "departmentSlug": "igualdad"
     },
     {
       "department": "alcaldia",
-      "count": 6,
+      "count": 7,
       "departmentSlug": "alcaldia"
     },
     {
-      "department": "empleo-economia",
-      "count": 5,
-      "departmentSlug": "empleo-economia"
+      "department": "educacion",
+      "count": 6,
+      "departmentSlug": "educacion"
     }
   ],
   "plenos": [
@@ -5278,12 +5278,725 @@
         "urbanismo"
       ],
       "hasRuegos": false
+    },
+    {
+      "id": "67qdq8",
+      "date": "2023-05-08",
+      "title": "Sesión de fecha 08 de mayo de 2023",
+      "kind": "ordinario",
+      "link": "https://regmeet.com/aytoribarroja/participaciones/8e930496927757aac0dbd2438cb3f4f6?idioma=castellano",
+      "agenda": [
+        {
+          "number": 1,
+          "title": "Aprovació Acta anterior de data 3 d'abril de 2023",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 2,
+          "title": "SECRETARIA Expte 3120/2023/GEN Acord relatiu en les Festes Locals, Calendari Laboral 2024",
+          "section": "resolutiva",
+          "department": "Servicios generales",
+          "departmentSlug": "servicios-generales",
+          "expediente": null
+        },
+        {
+          "number": 3,
+          "title": "CONTRACTACIÓ Expte 904/2023/GEN Aprovació de l'estructura de costos del Servei de Recollida i Transport de Residus Urbans per a la fixació d'una fórmula de revisió de preus en els plecs de condicions de la licitació",
+          "section": "resolutiva",
+          "department": "Contratación",
+          "departmentSlug": "contratacion",
+          "expediente": null
+        },
+        {
+          "number": 4,
+          "title": "CONTRACTACIÓ Expte 2856/2023/GEN Ampliació del nombre d'anualitats, exercicis pressupostaris, al fet que poden aplicar-se les despeses referides de contractes diversos inclosos en el Pla de Contractació 2023",
+          "section": "resolutiva",
+          "department": "Contratación",
+          "departmentSlug": "contratacion",
+          "expediente": null
+        },
+        {
+          "number": 5,
+          "title": "IGUALTAT Expte 2899/2023/GEN Acord relatiu a l'aprovació de l'II Pla d'Igualtat municipal de Riba-roja de Túria",
+          "section": "resolutiva",
+          "department": "Igualdad",
+          "departmentSlug": "igualdad",
+          "expediente": null
+        },
+        {
+          "number": 6,
+          "title": "SECRETARIA Expte 1382/2023/GEN Dació compta de la Memòria de Secretaria de 2022 de l'Ajuntament de Riba-roja de Túria alineada amb els Objectius de Desenvolupament Sostenible (ODS)",
+          "section": "resolutiva",
+          "department": "Servicios generales",
+          "departmentSlug": "servicios-generales",
+          "expediente": null
+        },
+        {
+          "number": 7,
+          "title": "IGUALTAT Expte 2999/2023/GEN Impulsar una ordenança municipal per a l'abolició de la prostitució",
+          "section": "resolutiva",
+          "department": "Igualdad",
+          "departmentSlug": "igualdad",
+          "expediente": null
+        },
+        {
+          "number": 8,
+          "title": "SERVEIS SOCIALS Expte 1848/2023/GEN Aprovació del Reglament regulador de la Comissió Tècnica d'Intervenció Social",
+          "section": "resolutiva",
+          "department": "Servicios sociales",
+          "departmentSlug": "servicios-sociales",
+          "expediente": null
+        },
+        {
+          "number": 9,
+          "title": "SERVEIS SOCIALS Expte 1847/2023/GEN Aprovació del Reglament regulador de la Comissió Tècnica de Valoració i Seguiment de Prestacions Econòmiques",
+          "section": "resolutiva",
+          "department": "Servicios sociales",
+          "departmentSlug": "servicios-sociales",
+          "expediente": null
+        },
+        {
+          "number": 10,
+          "title": "SERVEIS SOCIALS Expte 6613/2022/GEN Aprovació del Pla Estratègic Zonal de Serveis Socials Municipal",
+          "section": "resolutiva",
+          "department": "Servicios sociales",
+          "departmentSlug": "servicios-sociales",
+          "expediente": null
+        },
+        {
+          "number": 11,
+          "title": "QUALITAT AMBIENTAL Expte 2129/2023/GEN Aprovació i adhesió conveni entre l'Ajuntament de Riba-roja de Túria i l'Ajuntament de Paterna per al manteniment de les instal·lacions d'ús comú del projecte Guardian",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 12,
+          "title": "Moció del Grup Municipal PSOE relativa a la Reversió de l'àrea de salut del Departament de Manises",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": "14/2023/PGRU"
+        },
+        {
+          "number": 13,
+          "title": "Moció conjunta dels Grups Municipals PSOE, Compromís Riba-roja, L'Esquerra de Riba-roja i Podem Riba-roja Pot relativa en el Dia Internacional contra la LGTBIfobia",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": "15/2023/PGRU"
+        },
+        {
+          "number": 14,
+          "title": "TRESORERIA Expte 727/2023/GEN Dació compta de l'aprovació del Pla de Tresoreria de l'Ajuntament de Riba-roja de Túria exercici econòmic 2023",
+          "section": "resolutiva",
+          "department": "Hacienda",
+          "departmentSlug": "hacienda",
+          "expediente": null
+        },
+        {
+          "number": 15,
+          "title": "CONTRACTACIÓ Expte 6632/2021/GEN Dació compta i memòria anual Pla de Formació Contínua per a la Professionalització de la Contractació Pública",
+          "section": "resolutiva",
+          "department": "Contratación",
+          "departmentSlug": "contratacion",
+          "expediente": null
+        },
+        {
+          "number": 16,
+          "title": "CONTRACTACIÓ Expte 5356/2022/GEN Dació compte al Ple de la Corporació de la inclusió de nous contractes no previstos en el Pla de Contractació Anual, a celebrar en l'exercici 2023 dins del cronograma del primer semestre, després d'acords adoptats per la Junta de Govern Local, modificació sisena a novena",
+          "section": "resolutiva",
+          "department": "Contratación",
+          "departmentSlug": "contratacion",
+          "expediente": null
+        },
+        {
+          "number": 17,
+          "title": "INTERVENCIÓ Expedient 2130/2023/GEN Dació de compte de l'aprovació del Pla Pressupostari a mitjà termini 2023-2026",
+          "section": "resolutiva",
+          "department": "Hacienda",
+          "departmentSlug": "hacienda",
+          "expediente": null
+        },
+        {
+          "number": 18,
+          "title": "Per la Sra. Regidora Gomez Laredo es procedirà a donar compta de la Declaració de la Zona Arqueològica de València la Vella com a Bé d'Interés Cultural (BIC)",
+          "section": "resolutiva",
+          "department": "Cultura",
+          "departmentSlug": "cultura",
+          "expediente": null
+        },
+        {
+          "number": 19,
+          "title": "RR.HH., 3245/2023/GEN, APROVACIÓ DE LA MODIFICACIÓ PUNTUAL Núm. IV/2023 DE LA VIGENT RPT, SOBRE EL BARRAJE D'UNA PLAÇA SINGULAR",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 20,
+          "title": "ASSUMPTES D'URGÈNCIA 20.1. Urbanisme, 2135/2023/GEN, ACORD RELATIU A la RESOLUCIÓ DE LA CONDICIÓ D'AGENT URBANITZADOR DE L'O.E. ELS POUS 6",
+          "section": "resolutiva",
+          "department": "Urbanismo",
+          "departmentSlug": "urbanismo",
+          "expediente": null
+        },
+        {
+          "number": 21,
+          "title": "Donar compte de les Resolucions de la número 1295/2023 a la 1742/2023",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 22,
+          "title": "Precs i Preguntes",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        }
+      ],
+      "agendaCount": 22,
+      "departments": [
+        "servicios-generales",
+        "contratacion",
+        "igualdad",
+        "servicios-sociales",
+        "hacienda",
+        "cultura",
+        "urbanismo"
+      ],
+      "hasRuegos": false
+    },
+    {
+      "id": "buag5g",
+      "date": "2023-05-02",
+      "title": "Sesión de fecha 02 de mayo de 2023",
+      "kind": "extraordinario",
+      "link": "https://regmeet.com/aytoribarroja/participaciones/56c82ccd658e09e829f16bb99457bcbc?idioma=castellano",
+      "agenda": [
+        {
+          "number": 1,
+          "title": "Expedient: 6840/2022/GEN, Acord relatiu al Sorteig de Membres de Mesa per a les Eleccions Municipals i Autonòmiques a celebrar el 28/05/2023",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        }
+      ],
+      "agendaCount": 1,
+      "departments": [],
+      "hasRuegos": false
+    },
+    {
+      "id": "1wum8h8",
+      "date": "2023-04-03",
+      "title": "Sesión de fecha 03 de abril de 2023",
+      "kind": "ordinario",
+      "link": "https://regmeet.com/aytoribarroja/participaciones/9e82757e9a1c12cb710ad680db11f6f1?idioma=castellano",
+      "agenda": [
+        {
+          "number": 1,
+          "title": "Aprovació Acta anterior de data 6 de març de 2023",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 2,
+          "title": "SECRETARIA, Expedient: 7888/2022/GEN Elecció de Jutge/a de Pau Titular de Riba-roja de Túria",
+          "section": "resolutiva",
+          "department": "Servicios generales",
+          "departmentSlug": "servicios-generales",
+          "expediente": null
+        },
+        {
+          "number": 3,
+          "title": "SECRETARIA, Expedient: 2281/2023/GEN, Aprovació del Pla de mesures antifrau de l'Ajuntament de Riba-roja de Túria",
+          "section": "resolutiva",
+          "department": "Servicios generales",
+          "departmentSlug": "servicios-generales",
+          "expediente": null
+        },
+        {
+          "number": 4,
+          "title": "URBANISME, Expedient: 6563/2022/GEN, Acord relatiu a l'alçament de la suspensió del tràmit de Minimització d'Impacte Territorial en sòl No Urbanitzable, Polígon Disseminats, Polígon 18, Parcel·la 103",
+          "section": "resolutiva",
+          "department": "Urbanismo",
+          "departmentSlug": "urbanismo",
+          "expediente": null
+        },
+        {
+          "number": 5,
+          "title": "CONTRACTACIÓ, Expedient: 3007/2022/GEN, Dació compta de la V memòria anual de gestió i resultats de la contractació de l'Ajuntament de Riba-roja de Túria corresponent a l'exercici 2022",
+          "section": "resolutiva",
+          "department": "Contratación",
+          "departmentSlug": "contratacion",
+          "expediente": null
+        },
+        {
+          "number": 6,
+          "title": "Moció conjunta dels Grups Municipals L'Esquerra de Riba-roja i Podem Riba-roja Pot relativa a la Commemoració de la Segona República i els valors Republicans",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": "13/2023/PGRU"
+        },
+        {
+          "number": 7,
+          "title": "Moció del grup municipal Socialista per a la posada en marxa de la campanya “Aprén a respectar: posa't en el meu lloc, no en el meu lloc”",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": "12/2023/PGRU"
+        },
+        {
+          "number": 8,
+          "title": "CONTRACTACIÓ, Expedient: 5356/2022/GEN, Dació compta al Ple de la Corporació de la inclusió de nous contractes no previstos en el Pla de Contractació Anual, a celebrar en l'exercici 2023 dins del cronograma del primer semestre, després d'acords adoptats per la Junta de Govern Local",
+          "section": "resolutiva",
+          "department": "Contratación",
+          "departmentSlug": "contratacion",
+          "expediente": null
+        },
+        {
+          "number": 9,
+          "title": "INTERVENCIÓ Expedient: 315/2023/GEN, Dació compta al Ple de la Corporació de l'aprovació de la liquidació del Pressupost Municipal corresponent a l'exercici 2022",
+          "section": "resolutiva",
+          "department": "Hacienda",
+          "departmentSlug": "hacienda",
+          "expediente": null
+        },
+        {
+          "number": 10,
+          "title": "INTERVENCIÓ Expedient: 2136/2023/GEN, Donar compte informe resum anual de control exercici 2022, informe funció interventora i relació informes segons disposat en l'art 218 del Text Refós llei Reguladora de les Hisendes locals i Reglament control intern en les entitats del Sector Públic Local",
+          "section": "resolutiva",
+          "department": "Hacienda",
+          "departmentSlug": "hacienda",
+          "expediente": null
+        },
+        {
+          "number": 11,
+          "title": "Donar compte de les Resolucions de la número 0861/2023 a la 1294/2023",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 12,
+          "title": "Precs i Preguntes",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        }
+      ],
+      "agendaCount": 12,
+      "departments": [
+        "servicios-generales",
+        "urbanismo",
+        "contratacion",
+        "hacienda"
+      ],
+      "hasRuegos": false
+    },
+    {
+      "id": "1edrlv4",
+      "date": "2023-03-06",
+      "title": "Sesión de fecha 06 de marzo de 2023",
+      "kind": "ordinario",
+      "link": "https://regmeet.com/aytoribarroja/participaciones/7f018eb7b301a66658931cb8a93fd6e8?idioma=castellano",
+      "agenda": [
+        {
+          "number": 1,
+          "title": "Aprovació Actes sessions ordinàries anteriors de dates 23 de gener de 2023 i 13 de febrer de 2023",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 2,
+          "title": "TRANSPARÈNCIA Expedient: 1402/2023/GEN, Aprovació Carta de Serveis 2023",
+          "section": "resolutiva",
+          "department": "Transparencia",
+          "departmentSlug": "transparencia",
+          "expediente": null
+        },
+        {
+          "number": 3,
+          "title": "INTERVENCIÓ Expedient: 1174/2023/GEN, Aprovació fiscalització limitada prèvia i annex requisits a comprovar de caràcter bàsic i presa de raó en comptabilitat en ingressos i drets",
+          "section": "resolutiva",
+          "department": "Hacienda",
+          "departmentSlug": "hacienda",
+          "expediente": null
+        },
+        {
+          "number": 4,
+          "title": "CONTRACTACIÓ, Expedient: 4411/2022/GEN, Ampliació del nombre d'anualitats al fet que poden aplicar-se les despeses referides del contracte d'arrendament bé immoble per a dotar d'aules addicionals per al Conservatori de Música i Dansa, per procediment obert, millor relació qualitat-preu, diversos criteris d'adjudicació. (Ctto. 32/2022)",
+          "section": "resolutiva",
+          "department": "Contratación",
+          "departmentSlug": "contratacion",
+          "expediente": null
+        },
+        {
+          "number": 5,
+          "title": "URBANISME, Expedient: 5062/2022/GEN, Sol·licitud d'adhesió al Pla d'Infraestructures de Serveis Socials 2021-2025 (Pla Convivint), de la Generalitat Valenciana, Conselleria d’Igualtat i Polítiques Inclusives",
+          "section": "resolutiva",
+          "department": "Servicios sociales",
+          "departmentSlug": "servicios-sociales",
+          "expediente": null
+        },
+        {
+          "number": 6,
+          "title": "URBANISME, Expedient: 1438/2023/GEN, Ratificació plenària sol·licitud subvenciones IVACE 2023",
+          "section": "resolutiva",
+          "department": "Urbanismo",
+          "departmentSlug": "urbanismo",
+          "expediente": null
+        },
+        {
+          "number": 7,
+          "title": "Moció del grup municipal Ciutadans per a la modernització de les façanes comercials",
+          "section": "resolutiva",
+          "department": "Comercio",
+          "departmentSlug": "comercio",
+          "expediente": "09/2023/PGRU"
+        },
+        {
+          "number": 8,
+          "title": "Moció del grup municipal Ciutadans per a iniciar el primer certamen de curtmetratges",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": "08/2023/PGRU"
+        },
+        {
+          "number": 9,
+          "title": "Moció conjunta dels Grups Municipals L'Esquerra de Riba-roja i Podem Riba-roja Pot relativa a 8M. Dia Internacional de la Dona",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": "10/2023/PGRU"
+        },
+        {
+          "number": 10,
+          "title": "Moció conjunta dels Grups Municipals PSOE, Compromís Riba-roja, Podem Riba-roja Pot i L’Esquerra de Riba-roja relativa a Dia Internacional de les Dones 2023",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": "11/2023/PGRU"
+        },
+        {
+          "number": 11,
+          "title": "Despatx d'urgència",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 12,
+          "title": "CONTRACTACIÓ, Expedient: 5356/2022/GEN, Dació compta al Ple de la Corporació de la segona inclusió de nous contractes no previstos en el Pla de Contractació Anual, a celebrar en l'exercici 2023, per acord adoptat de la Junta de Govern Local segons sessió celebrada el passat 21 de febrer de 2023",
+          "section": "resolutiva",
+          "department": "Contratación",
+          "departmentSlug": "contratacion",
+          "expediente": null
+        },
+        {
+          "number": 13,
+          "title": "TURISME I PATRIMONI Expedient: 1150/2023/GEN Dació compta al ple plans Àrees de Turisme i Patrimoni",
+          "section": "resolutiva",
+          "department": "Turismo",
+          "departmentSlug": "turismo",
+          "expediente": null
+        },
+        {
+          "number": 14,
+          "title": "Donar compte de les Resolucions de la número 0383/2023 a la 0860/2023",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 15,
+          "title": "Precs i Preguntes",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        }
+      ],
+      "agendaCount": 15,
+      "departments": [
+        "transparencia",
+        "hacienda",
+        "contratacion",
+        "servicios-sociales",
+        "urbanismo",
+        "comercio",
+        "turismo"
+      ],
+      "hasRuegos": false
+    },
+    {
+      "id": "1l7hhu7",
+      "date": "2023-02-13",
+      "title": "Sesión de fecha 13 de febrero de 2023",
+      "kind": "ordinario",
+      "link": "https://regmeet.com/aytoribarroja/participaciones/c61f571dbd2fb949d3fe5ae1608dd48b?idioma=castellano",
+      "agenda": [
+        {
+          "number": 1,
+          "title": "CONTRACTACIÓ Expedient: 913/2023/GEN, Acord relatiu a l'aprovació del conveni normalitzat d'adhesió d'aquest Ajuntament al sistema d'Adquisició Centralitzat de l'Excma. Diputació Provincial de València, que s'uneix com a annex",
+          "section": "resolutiva",
+          "department": "Contratación",
+          "departmentSlug": "contratacion",
+          "expediente": null
+        },
+        {
+          "number": 2,
+          "title": "CONTRACTACIÓ Expedient: 904/2023/GEN, Incoació del contracte de servei de recollida de residus sòlids urbans del municipi i servei d'assistència tècnica i suport per al control i supervisió sobre la prestació d'aquest",
+          "section": "resolutiva",
+          "department": "Contratación",
+          "departmentSlug": "contratacion",
+          "expediente": null
+        },
+        {
+          "number": 3,
+          "title": "GESTIÓ TRIBUTÀRIA/TRESORERIA Expedient: 7208/2022/GEN, Adhesió al conveni de col·laboració subscrit el 20-07-2021 entre la Generalitat i la Federació Valenciana de Municipis i Províncies, en matèria d'embargaments dels recursos de dret públic de les Corporacions Locals. Expte 7208/2022/GEN",
+          "section": "resolutiva",
+          "department": "Hacienda",
+          "departmentSlug": "hacienda",
+          "expediente": null
+        },
+        {
+          "number": 4,
+          "title": "GESTIÓ TRIBUTÀRIA/TRESORERIA Expedient: 87/2023/GEN Modificació de l'Ordenança Fiscal Reguladora de l'Impost sobre l'Increment de Valor dels Terrenys de Naturalesa Urbana (IIVTNU)",
+          "section": "resolutiva",
+          "department": "Hacienda",
+          "departmentSlug": "hacienda",
+          "expediente": null
+        },
+        {
+          "number": 5,
+          "title": "SECRETARIA Expedient: 7440/2022/GEN, Aprovació del Pla Anual Normatiu de l'Ajuntament de Riba-roja de Túria per a l'any 2023 alineat amb els ODS",
+          "section": "resolutiva",
+          "department": "Servicios generales",
+          "departmentSlug": "servicios-generales",
+          "expediente": null
+        },
+        {
+          "number": 6,
+          "title": "Moció conjunta dels Grups Municipals L'Esquerra de Riba-roja i Podem Riba-roja Pot relativa al Preu aliments bàsics",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": "05/2023/PGRU"
+        },
+        {
+          "number": 7,
+          "title": "Moció conjunta dels Grups Municipals Podem Riba-roja Pot i L'Esquerra de Riba-roja per la Transparència en les Borses d'ocupació municipals",
+          "section": "resolutiva",
+          "department": "Transparencia",
+          "departmentSlug": "transparencia",
+          "expediente": "06/2023/PGRU"
+        },
+        {
+          "number": 8,
+          "title": "Declaració Institucional de felicitació a l’alumnat amb expedients acadèmics d’excel·lencia del curs 2021-22",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": "04/2023/PGRU"
+        },
+        {
+          "number": 9,
+          "title": "Despatx d'urgència 9.1. POLÍGONS INDUSTRIALS Expedient: 1147/2023/GEN Ratificació de l'Acord per Resolució de l'Alcaldia núm. 530/2023 de data 8 de febrer de 2.023 sobre la necessitat de modificar la Classificació i categorització de les àrees industrials de Riba-roja de Túria",
+          "section": "resolutiva",
+          "department": "Alcaldía",
+          "departmentSlug": "alcaldia",
+          "expediente": null
+        },
+        {
+          "number": 10,
+          "title": "GESTIÓ TRIBUTÀRIA/TRESORERIA Expedient: 69/2023/GEN, Dació compta dels informes de les diferents àrees del Departament de Tresoreria de l'Exercici 2022",
+          "section": "resolutiva",
+          "department": "Hacienda",
+          "departmentSlug": "hacienda",
+          "expediente": null
+        },
+        {
+          "number": 11,
+          "title": "INTERVENCIÓ Expedient: 543/2023/GEN Dació compta al ple de la corporacion informacion trimestral art 207 RD/2004 ORDRE hap 2105 2012 corresponent al QUART TRIMESTRE de 2022: càlcul del Període Mitjà de pagament a proveïdors; informe trimestral de seguiment de deute comercial; actualització CIR Local; execució trimestral del pressupost municipal",
+          "section": "resolutiva",
+          "department": "Hacienda",
+          "departmentSlug": "hacienda",
+          "expediente": null
+        },
+        {
+          "number": 12,
+          "title": "RECURSOS HUMANS, Dació compta al ple per part del Regidor de Recursos Humans de la Memòria d'activitats, serveis i rutines de rellevància efectuades pel departament de Recursos Humans en el període 2019-2023",
+          "section": "resolutiva",
+          "department": "Urbanismo",
+          "departmentSlug": "urbanismo",
+          "expediente": null
+        },
+        {
+          "number": 13,
+          "title": "Donar compte de les Resolucions de la número 0001/2023 a la 0382/2023",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 14,
+          "title": "Precs i Preguntes",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        }
+      ],
+      "agendaCount": 14,
+      "departments": [
+        "contratacion",
+        "hacienda",
+        "servicios-generales",
+        "transparencia",
+        "alcaldia",
+        "urbanismo"
+      ],
+      "hasRuegos": false
+    },
+    {
+      "id": "1r6yy0",
+      "date": "2023-01-23",
+      "title": "Sesión de fecha 23 de enero de 2023",
+      "kind": "ordinario",
+      "link": "https://regmeet.com/aytoribarroja/participaciones/1397386b7a1507535c59764a15ee0c98?idioma=castellano",
+      "agenda": [
+        {
+          "number": 1,
+          "title": "Aprovació Actes anteriors de dates 12 de desembre de 2022 i 30 de desembre de 2022",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 2,
+          "title": "SECRETARIA, Expedient: 7888/2022/GEN Inici procediment elecció del Jutge de Pau titular i sol·licitud de pròrroga de l'actual mentre es procedeix a l'elecció del nou/a",
+          "section": "resolutiva",
+          "department": "Servicios generales",
+          "departmentSlug": "servicios-generales",
+          "expediente": null
+        },
+        {
+          "number": 3,
+          "title": "SECRETARIA, Expedient: 4603/2021/GEN Dació compta de la Memòria Anual de Secretaria de la gestió Municipal de l'Ajuntament de Riba-roja de Túria de 2021 i de l'inici d'elaboració Memòria Anual de Secretaria de la gestió Municipal de l'Ajuntament de Riba-roja de Túria durant 2022",
+          "section": "resolutiva",
+          "department": "Servicios generales",
+          "departmentSlug": "servicios-generales",
+          "expediente": null
+        },
+        {
+          "number": 4,
+          "title": "FESTES, Expedient: 7298/2022/GEN Aprovació de l'ordenança reguladora de les bases reguladores dels premis atorgats als monuments artístics plantats per les falles municipals",
+          "section": "resolutiva",
+          "department": "Fiestas",
+          "departmentSlug": "fiestas",
+          "expediente": null
+        },
+        {
+          "number": 5,
+          "title": "SERVEIS SOCIALS, Expedient: 2/2023/GEN Aprovació creació Comissió Tècnica Organitzativa i el seu Reglament de funcionament",
+          "section": "resolutiva",
+          "department": "Servicios sociales",
+          "departmentSlug": "servicios-sociales",
+          "expediente": null
+        },
+        {
+          "number": 6,
+          "title": "Moció del Grup Municipal Popular relativa a la creació d'una Comissió d'investigació sobre la presumpta implicació de l'Alcalde Sr. Roberto Raga Gadea i el PSPV de Riba-roja en el “Cas Assut”",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": "03/2023/PGRU"
+        },
+        {
+          "number": 7,
+          "title": "Moció conjunta dels Grups Municipals Podem Riba-roja Pot i L'Esquerra de Riba-roja per a sol·licitar el Punt de Trobada Familiar de Manises",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": "01/2023/PGRU"
+        },
+        {
+          "number": 8,
+          "title": "Moció del Grup Municipal Compromís per a la reversió del Departament de salut de Manises",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": "02/2023/PGRU"
+        },
+        {
+          "number": 9,
+          "title": "Despatx d'urgència. 9.1. Donar Compte",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 10,
+          "title": "CONTRACTACIÓ, Expedient: 3007/2022/GEN Dació compta al Ple dels contractes administratius adjudicats en el quart trimestre de 2022 per l'Ajuntament de Riba-roja de Túria",
+          "section": "resolutiva",
+          "department": "Contratación",
+          "departmentSlug": "contratacion",
+          "expediente": null
+        },
+        {
+          "number": 11,
+          "title": "Donar compte de les Resolucions de la número 3624/2022 a la 4134/2022",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 12,
+          "title": "Precs i Preguntes",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        }
+      ],
+      "agendaCount": 12,
+      "departments": [
+        "servicios-generales",
+        "fiestas",
+        "servicios-sociales",
+        "contratacion"
+      ],
+      "hasRuegos": false
     }
   ],
   "builtFrom": {
-    "officials.json": "04d14ddcba1e",
+    "officials.json": "f651b0e466c2",
     "pleno-votes.json": "24d9e56c356c",
     "promises.json": "d18811c11210",
-    "quejas.json": "b567e9c4ff4d"
+    "quejas.json": "56ab99880269"
   }
 }
