@@ -1,7 +1,7 @@
 import { useReportaje } from '../../hooks/useReportaje'
 import Emblema from '../../components/reportajes/Emblema'
 import { Card, SectionHead } from '../../components/Primitives'
-import { CorrectionNote } from '../../components/reportajes/CorrectionNote'
+import { CorrectionNote, CorrectionNotice } from '../../components/reportajes/CorrectionNote'
 
 const SERIF = "'Fraunces', Georgia, serif"
 const MES = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic']
@@ -468,7 +468,7 @@ export default function ReconstruccionDana() {
 
       <Emblema slug="reconstruccion-dana" data={data} style={{ margin: '0 0 26px' }} />
 
-      <CorrectionNote correcciones={m.correcciones} />
+      <CorrectionNotice correcciones={m.correcciones} />
 
       {/* KPIs */}
       <div
@@ -790,6 +790,8 @@ export default function ReconstruccionDana() {
         </a>
         .
       </p>
+
+      <CorrectionNote correcciones={m.correcciones} />
     </div>
   )
 }
