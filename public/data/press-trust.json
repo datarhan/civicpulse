@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-23T09:43:14.934Z",
+  "generatedAt": "2026-09-24T08:13:56.875Z",
   "windowDays": 30,
   "articles": [
     {
@@ -681,64 +681,13 @@
         "opinionFraction": 0
       },
       "score": 2
-    },
-    {
-      "articleId": "pbm4v6",
-      "articleFingerprint": "1mshzqi",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/programaci%C3%B3n-artes-esc%C3%A9nicas-de-septiembre-a-diciembre-de-2026",
-      "date": "2026-08-25T07:39:21.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
-    },
-    {
-      "articleId": "1ezylig",
-      "articleFingerprint": "13vj4ds",
-      "outlet": "Levante-EMV",
-      "outletHost": "levante-emv.com",
-      "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQSjIzVFJONlJSTzg4ekpmU3dKM3AtenBUeWdqaDIyZ084VXpIRGhyQUg0cFBhWHdkbWRoYVBmcTd2MmstQkdzaGpSSlQ5ZldwTkFBOUFDX3V1bGRjcFdPWHpudEJObDlZLWNnYzR4MlhwcF81SllEMmpMRlkyWHhnaUVpNFY3eFR5T1o5dXJXY1p5RjFKVVlBUU55Nmo1Z3Jwa1gxVG1JOXVrdW0wLWRmaDY3WTlwdHNOd0ZaNkhmV1ZmQ0hGU05IYzBGV1JkMDFrS1NoYS0zbW12dTBn0gHiAUFVX3lxTE4yeHBabkwxVU9QN2NnUXlUVTZNel8tY0Q5UTBYdk9VbS1Wd0NhUUlDZkhqeFgyTVR3R1lhMDBHZ2hzc0ZnUklwZ25CY0JyQ1hlNVlqQmNiRE9WNlRBZFU5c2RpYk00dlBSNS1ueE55NDhGczJaa0J1UDFWMlJDd3I2TS14NGJJb0dScDhEM2I2Nzd1bWdpdTVSRkQySHhFQVp1NXZZMnlvYmpUUERld2NYMkxwNzNZMEhIeVY1QWZld0NWVXhlYW5sVVZES2dvMm9Qbk9FTlkwcy1ZVlJwOWlmR2c?oc=5",
-      "date": "2026-08-25T07:00:00.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": true,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 3
-    },
-    {
-      "articleId": "18imvfs",
-      "articleFingerprint": "sy1fbk",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-destina-una-partida-de-140.000-euros-para-la-rehabilitaci%C3%B3n-de-las-fachadas%2C-la-evaluaci%C3%B3n-de-los-edificios-y-la-accesibilidad-en-el-interior-de-las-viviendas-del-periodo-2026-2027",
-      "date": "2026-08-25T06:55:58.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": true,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 3
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 18,
+      "articleCount": 16,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -746,7 +695,7 @@
         "sin-datos": 39,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.72,
+      "meanTrustScore": 2.75,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -768,7 +717,7 @@
     {
       "outlet": "Levante-EMV",
       "outletHost": "levante-emv.com",
-      "articleCount": 5,
+      "articleCount": 4,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -776,7 +725,7 @@
         "sin-datos": 1,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.8,
+      "meanTrustScore": 2.75,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -872,7 +821,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "f7c39716f7fe",
+    "plenos-agendas.json": "28bbbf316ffc",
     "press-claims-verified.json": "426589fc7d58",
     "press.json": "42dc5ae698de",
     "promises.json": "d18811c11210"

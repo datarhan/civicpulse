@@ -1,6 +1,6 @@
 {
   "plenoId": "19gax3o",
-  "generatedAt": "2026-09-22T08:03:43.500Z",
+  "generatedAt": "2026-09-24T08:00:12.077Z",
   "model": "gemini-3.5-flash",
   "promptVersion": "speaker-map-v2",
   "chunkSeconds": 600,
@@ -2581,8 +2581,8 @@
       },
       {
         "chunk": 3,
-        "why": "covered 69% (floor 85%)",
-        "attempts": 2,
+        "why": "covered 78% (floor 85%)",
+        "attempts": 3,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
           "floor": 0.85,
@@ -2591,8 +2591,8 @@
       },
       {
         "chunk": 4,
-        "why": "covered 80% (floor 85%)",
-        "attempts": 2,
+        "why": "HTTP 503: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "attempts": 3,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
           "floor": 0.85,
@@ -2601,8 +2601,8 @@
       },
       {
         "chunk": 7,
-        "why": "covered 1% (floor 85%)",
-        "attempts": 1,
+        "why": "HTTP 503: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "attempts": 2,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
           "floor": 0.85,
@@ -2611,8 +2611,8 @@
       },
       {
         "chunk": 9,
-        "why": "covered 79% (floor 85%)",
-        "attempts": 1,
+        "why": "HTTP 503: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "attempts": 2,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
           "floor": 0.85,
@@ -2621,11 +2621,23 @@
       },
       {
         "chunk": 11,
-        "why": "never attempted (call budget spent; resumes next run)"
+        "why": "HTTP 503: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "attempts": 1,
+        "givenUpUnder": {
+          "prompt": "speaker-map-v2",
+          "floor": 0.85,
+          "thinking": "low"
+        }
       },
       {
         "chunk": 12,
-        "why": "never attempted (call budget spent; resumes next run)"
+        "why": "uploaded file stuck in ?",
+        "attempts": 1,
+        "givenUpUnder": {
+          "prompt": "speaker-map-v2",
+          "floor": 0.85,
+          "thinking": "low"
+        }
       },
       {
         "chunk": 13,
@@ -2636,7 +2648,7 @@
         "why": "never attempted (call budget spent; resumes next run)"
       }
     ],
-    "labelsSeen": 16,
+    "labelsSeen": 0,
     "rowsAccepted": 6,
     "rowsRejected": 11,
     "rejectedBy": {
@@ -2645,8 +2657,8 @@
       "ambiguous": 2,
       "evidence-speaker-mismatch": 1
     },
-    "attemptedThisRun": 7,
-    "apiCalls": 16,
+    "attemptedThisRun": 6,
+    "apiCalls": 18,
     "coverage": 0.28920713522030284
   }
 }
