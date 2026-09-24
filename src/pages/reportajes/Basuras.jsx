@@ -1,4 +1,5 @@
 import { useReportaje } from '../../hooks/useReportaje'
+import Emblema from '../../components/reportajes/Emblema'
 import { CorrectionNote } from '../../components/reportajes/CorrectionNote'
 
 const SERIF = "'Fraunces', Georgia, serif"
@@ -284,6 +285,8 @@ export default function Basuras() {
       >
         {m.subtitulo}
       </p>
+
+      <Emblema slug="basuras" data={data} style={{ margin: '0 0 26px' }} />
 
       <CorrectionNote correcciones={m.correcciones} />
 

@@ -1,4 +1,5 @@
 import { useReportaje } from '../../hooks/useReportaje'
+import Emblema from '../../components/reportajes/Emblema'
 import { Card } from '../../components/Primitives'
 import { CorrectionNote } from '../../components/reportajes/CorrectionNote'
 
@@ -245,6 +246,8 @@ export default function InteligenciaTuristica() {
       >
         {m.subtitulo}
       </p>
+
+      <Emblema slug="inteligencia-turistica" data={data} style={{ margin: '0 0 26px' }} />
 
       <CorrectionNote correcciones={m.correcciones} />
 

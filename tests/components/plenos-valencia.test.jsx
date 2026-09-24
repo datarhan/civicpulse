@@ -103,14 +103,21 @@ const sinDeclaraciones = (mapa, n) => {
  * Una sesión con declaraciones sin orden del día y varias con votaciones sin
  * declaraciones; un desenlace de cada clase; y retiradas con los plurales que el
  * dato de hoy no tiene.
+ *
+ * La «una» se FABRICA, como las «varias» de abajo: si el dato publicado no trae
+ * ninguna sesión con declaraciones y sin orden del día, se le quita el orden a
+ * una que lo tenga. El 24-09 la tubería de hallazgos transcribió la última que
+ * quedaba, pasó de una a CERO, y el singular del catálogo se quedó sin pintar.
  */
 function unaSinOrdenVariasSinDecl() {
   const mapa = structuredClone(sirve())
-  const { orden } = idsCon(mapa)
+  const { orden, decl } = idsCon(mapa)
+  const suelta = [...decl].find((id) => !orden.has(id)) ?? [...decl].find((id) => orden.has(id))
+  mapa[RUTAS.agendas].plenos = mapa[RUTAS.agendas].plenos.filter((p) => p.id !== suelta)
+  const conOrden = idsCon(mapa).orden
   const manifiesto = mapa[RUTAS.manifiesto]
-  const sueltas = manifiesto.plenos.filter((p) => !orden.has(p.plenoId))
   manifiesto.plenos = manifiesto.plenos.filter(
-    (p) => orden.has(p.plenoId) || p.plenoId === sueltas[0]?.plenoId,
+    (p) => conOrden.has(p.plenoId) || p.plenoId === suelta,
   )
   const votos = mapa[RUTAS.votos]
   for (const id of sinDeclaraciones(mapa, 2)) votos.stats.byPleno[id] = 1

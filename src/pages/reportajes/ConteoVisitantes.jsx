@@ -1,4 +1,5 @@
 import { useReportaje } from '../../hooks/useReportaje'
+import Emblema from '../../components/reportajes/Emblema'
 import { Card, Pill } from '../../components/Primitives'
 import { CorrectionNote } from '../../components/reportajes/CorrectionNote'
 import { fmtDateHuman } from '../../lib/formatters'
@@ -360,6 +361,10 @@ export default function ConteoVisitantes() {
       <div className="mono" style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
         Publicado el {fmtDateHuman(m.publicadoEl)} · cifras congeladas a {m.fechaDatos}
       </div>
+
+      {/* Aquí la entradilla va seguida de la línea «Publicado el…», sin margen
+          propio: el hueco de arriba lo pone la figura. */}
+      <Emblema slug="conteo-visitantes" data={data} style={{ margin: '22px 0 26px' }} />
 
       <CorrectionNote correcciones={m.correcciones} />
 
