@@ -1,5 +1,7 @@
 # CivicPulse on LinkedIn — a 12-post series
 
+Spanish version: [`POSTS.es.md`](POSTS.es.md), images in `images/es/`.
+
 One image per post in `images/post-NN.png` (1080×1350, 4:5 — the tallest
 ratio LinkedIn shows uncropped in the feed). `images/post-00.png` is the style
 sheet, for you, not for posting.
@@ -16,7 +18,7 @@ never has two technical posts in a row:
 | 04  | Civic problem              | Transparency law produces documents. People have questions. |
 | 05  | How local government works | A budget is not what was spent.                             |
 | 06  | How local government works | Some public services never appear in the council's books.   |
-| 07  | Method                     | Our spending map shows 1.8% of the money. It says so.       |
+| 07  | Method                     | Our contracts map shows 1.8% of the money. It says so.      |
 | 08  | Method                     | A missing year is not a zero.                               |
 | 09  | Idea                       | We publish the method, not a ranking.                       |
 | 10  | Idea                       | Machines may retract. Only a human may publish.             |
@@ -237,7 +239,7 @@ can't tell it's there.
 
 Image: `images/post-07.png`
 
-> Our spending map shows 1.8% of the money, and it tells you that on the map.
+> Our contracts map shows 1.8% of the money, and it tells you that on the map.
 
 People love a map of where public money goes. So do I. Here's the honest
 version.
@@ -246,8 +248,8 @@ Out of €124.04M of Riba-roja contracts on the public procurement platform
 (2017–2026), only €2.23M can be put on a map: 47 of 706 contracts. That's how
 many name a specific place in their own title.
 
-The rest is street cleaning, lighting, maintenance and IT. That money is spent
-across the whole town, so there's nowhere to put a pin.
+The rest is street cleaning, lighting, maintenance and IT. Those contracts
+cover the whole town, so there's nowhere to put a pin.
 
 We could have guessed. A geocoder would happily put a pin on every contract,
 and the map would look full and impressive. It would also be fiction.
