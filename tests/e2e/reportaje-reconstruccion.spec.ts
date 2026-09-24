@@ -32,9 +32,10 @@ test.describe('Reportaje · reconstrucción DANA (/reportajes/reconstruccion-dan
   test('las correcciones van plegadas: el hecho a la vista, el detalle se abre', async ({
     page,
   }) => {
-    // El contrato del pliegue (17-08-2026): la corrección sigue llegando al
-    // lector ANTES que las cifras —fecha + primera frase visibles— y lo que se
-    // pliega es el cuerpo. Derivado del fichero real, no de una cadena.
+    // El contrato del pliegue (17-08-2026): fecha + primera frase visibles, y lo
+    // que se pliega es el cuerpo. Desde el 24-09-2026 el registro cierra la pieza
+    // y lo que llega ANTES que las cifras es el aviso de una línea (lo fija la
+    // prueba de abajo). Derivado del fichero real, no de una cadena.
     expect(META.correcciones.length, 'la pieza perdió sus correcciones').toBeGreaterThan(0)
     await page.goto('/reportajes/reconstruccion-dana', { waitUntil: 'domcontentloaded' })
 
@@ -56,5 +57,36 @@ test.describe('Reportaje · reconstrucción DANA (/reportajes/reconstruccion-dan
 
     await page.getByText(`Corrección · ${c.fecha}`).click()
     await expect(page.getByText(cuerpo, { exact: false })).toBeVisible()
+  })
+
+  test('el aviso va sobre las cifras y el registro cierra la pieza', async ({ page }) => {
+    // 24-09-2026: una línea arriba —cuántas y la fecha de la última— y el
+    // registro entero al final. Se mide la POSICIÓN, que es lo que cambió: un
+    // test que sólo buscara los textos seguiría en verde con el registro arriba.
+    const n = META.correcciones.length
+    expect(n, 'la pieza perdió sus correcciones').toBeGreaterThan(0)
+    await page.goto('/reportajes/reconstruccion-dana', { waitUntil: 'domcontentloaded' })
+
+    const aviso = page.getByText(
+      n === 1 ? 'Esta pieza tiene una corrección' : `Esta pieza tiene ${n} correcciones`,
+    )
+    await expect(aviso).toBeVisible({ timeout: 8000 })
+    const registro = page.locator('section#correcciones')
+    await expect(registro.locator('details')).toHaveCount(n)
+
+    const y = async (l) => (await l.boundingBox())?.y ?? NaN
+    // El aviso, antes que la primera cifra de la cabecera; el registro, después
+    // del cuerpo de la pieza.
+    const primeraCifra = page.locator('.mono').filter({ hasText: /M€/ }).first()
+    expect(await y(aviso)).toBeLessThan(await y(primeraCifra))
+    expect(await y(registro)).toBeGreaterThan(await y(page.locator('article').first()))
+    // Y es lo último de la página: nada del cuerpo queda por debajo.
+    const ultimo = await registro.evaluate((el) => el.parentElement?.lastElementChild === el)
+    expect(ultimo, 'el registro no es el último bloque de la pieza').toBe(true)
+
+    // El enlace del aviso lleva al registro.
+    await page.getByRole('link', { name: /al final/ }).click()
+    await expect(page).toHaveURL(/#correcciones$/)
+    await expect(registro.getByRole('heading', { name: 'Correcciones' })).toBeInViewport()
   })
 })

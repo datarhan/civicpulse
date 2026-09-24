@@ -1,6 +1,6 @@
 import { useReportaje } from '../../hooks/useReportaje'
 import Emblema from '../../components/reportajes/Emblema'
-import { CorrectionNote } from '../../components/reportajes/CorrectionNote'
+import { CorrectionNote, CorrectionNotice } from '../../components/reportajes/CorrectionNote'
 import { FichaSociedad } from '../../components/reportajes/FichaSociedad'
 import { useSociedades, indexarSociedades } from '../../hooks/useSociedades'
 import { Card, Pill } from '../../components/Primitives'
@@ -792,7 +792,7 @@ export default function CosteEfectivo() {
 
       <Emblema slug="coste-efectivo" data={data} style={{ margin: '0 0 26px' }} />
 
-      <CorrectionNote correcciones={m.correcciones} />
+      <CorrectionNotice correcciones={m.correcciones} />
 
       {/* Esta pieza se publicó el 16 de agosto y se amplió el 23. Decirlo en la
           propia pieza, y decir que no se ha retirado ni corregido nada, es la
@@ -1297,6 +1297,8 @@ export default function CosteEfectivo() {
         </a>
         .
       </p>
+
+      <CorrectionNote correcciones={m.correcciones} />
     </div>
   )
 }

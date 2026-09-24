@@ -1,7 +1,7 @@
 import { useReportaje } from '../../hooks/useReportaje'
 import Emblema from '../../components/reportajes/Emblema'
 import { Card, Pill } from '../../components/Primitives'
-import { CorrectionNote } from '../../components/reportajes/CorrectionNote'
+import { CorrectionNote, CorrectionNotice } from '../../components/reportajes/CorrectionNote'
 import { fmtDateHuman } from '../../lib/formatters'
 import {
   estadoDeEnvio,
@@ -366,7 +366,10 @@ export default function ConteoVisitantes() {
           propio: el hueco de arriba lo pone la figura. */}
       <Emblema slug="conteo-visitantes" data={data} style={{ margin: '22px 0 26px' }} />
 
-      <CorrectionNote correcciones={m.correcciones} />
+      {/* La línea «Publicado el…» no tiene margen propio y la figura, que pone el
+          hueco en escritorio, se oculta en móvil: el hueco lo pone también el
+          aviso (los márgenes se colapsan, así que en escritorio no se suma). */}
+      <CorrectionNotice correcciones={m.correcciones} style={{ marginTop: 22 }} />
 
       {/* KPIs */}
       <div
@@ -536,6 +539,8 @@ export default function ConteoVisitantes() {
           </li>
         ))}
       </ul>
+
+      <CorrectionNote correcciones={m.correcciones} />
     </div>
   )
 }
