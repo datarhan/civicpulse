@@ -1,7 +1,58 @@
 {
-  "generatedAt": "2026-09-24T08:55:40.440Z",
+  "generatedAt": "2026-09-24T09:42:14.875Z",
   "windowDays": 30,
   "articles": [
+    {
+      "articleId": "b8rw3f",
+      "articleFingerprint": "1jpl94s",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/lista-definitiva-personas-admitidas-programa-municipal-de-personas-mayores-curso-2026-2027",
+      "date": "2026-09-24T07:53:50.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": null,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 2
+    },
+    {
+      "articleId": "3edbnb",
+      "articleFingerprint": "bkuebd",
+      "outlet": "Valencia Plaza",
+      "outletHost": "valenciaplaza.com",
+      "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxNbk0wckVHWFlnRzR0czVNV1ZiSUNXXy1GY1FWdUE0QVVGRGRYT0hZaGo2aEpheHJYMGt3bFJuNnRTRXZtQWJpWUd0M0VtV2lrVmI3RGZSRHlXSkEyTmFfV2RqTzk5U1FxdEJTZGR4LTFpN1RCNjFxdkpoT3JWY2tyYkh4M2p4X1NDcWF2eGpTaVJFMnFYMXMzTC1XWjB2a1JDTHFFQjl0NzFYbDBMbVNGQWFmT0hCWk5RSFdma1ZYOHpYQ1U5cFAzX2tPRmVibTFoQ2oxY2kxSlBUNUk4SUt2OFJRUjZCdGVtM3lfQTVEdV9iUThj?oc=5",
+      "date": "2026-09-24T04:04:56.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": null,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 2
+    },
+    {
+      "articleId": "16vhpy8",
+      "articleFingerprint": "bt0mxi",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/va/noticia/programaci%C3%B3-cinema-de-setembre-a-desembre-de-2026",
+      "date": "2026-09-23T09:53:18.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": null,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 2
+    },
     {
       "articleId": "17wvv8s",
       "articleFingerprint": "npavvo",
@@ -9,6 +60,23 @@
       "outletHost": "infoturia.com",
       "url": "https://www.infoturia.com/riba-roja-de-turia/86368-riba-roja-estalvia-69-milions-en-ladjudicacio-dels-611-contractes-des-de-2019.html",
       "date": "2026-09-22T12:43:01.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": null,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 2
+    },
+    {
+      "articleId": "1s3psp4",
+      "articleFingerprint": "1opjjc",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ahorra-6%E2%80%999-millones-de-euros-en-la-adjudicaci%C3%B3n-de-los-611-contratos-p%C3%BAblicos-tramitados-desde-2019",
+      "date": "2026-09-22T11:53:19.000Z",
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
@@ -292,6 +360,23 @@
       "score": 2
     },
     {
+      "articleId": "s6on58",
+      "articleFingerprint": "p4som4",
+      "outlet": "Levante-EMV",
+      "outletHost": "levante-emv.com",
+      "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQSDlkckNDZTFuUHZVejhDZ29nZmp2amRtM01iUDlwQV9fUVJGRmxUazVCM1ZEY05XdnhrUnYzOWFSWjhqZ2YzeFFpVWsteGFuQmxGRnZabENpaUYwcFV6TUFUZzdmTUZ6WDBEanZORzNxdGtRdTJhTGNFMkpCNktKWi1CcDZWV0lkeTAxenJZekhoU3NFdmJLaFRrMHJmaEFtYm10cXhVT3NfV0x2S3ozcjJYY1lQSUtUUmk0MHNIWVhiUkRpMGY1bTgzUkxubDVXOHVUbDl3VElpTjhpRkHSAeMBQVVfeXFMT294MlJFX3EtU2tSczJWUUZVVW9hMkdJWFJRczNTNWd4WWVseDVTMml3R3FRUTVac3JuaTk4bUItcjNGMm14ZFlYQXpseHVlTExNT1FMSDgwWHRFNEhFMXBsQ3FuRGFINnY1VFpnSk9VeGFIRjhzemFJazNoWGdiR0RaaG9lNnM4Q2V3MXRwTjI5Zy16OHVrYU5SVjF3WlZUX01uOURzZE5fSnczNGFIT05UVmhNdXlKOE9oczNGLS11ZzFrdHd4SFpwS1N4elFhRWJDV1J5MHJfVVF3cmF0RWM5QXM?oc=5",
+      "date": "2026-09-11T07:00:00.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": null,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 2
+    },
+    {
       "articleId": "1p0chgo",
       "articleFingerprint": "zeuxbp",
       "outlet": "Ayuntamiento de Riba-roja de Túria",
@@ -358,6 +443,23 @@
         "opinionFraction": 0
       },
       "score": 4
+    },
+    {
+      "articleId": "1kho40w",
+      "articleFingerprint": "aj28vw",
+      "outlet": "El Periódico de Aquí",
+      "outletHost": "elperiodicodeaqui.com",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxObTAtLU9UWHNrTkNvWW5icy03TGhpWWlHMTlZNmdsemhBZUk0ZjFjbWczNGMzY1dsX0JydnJwS1NrTW5Pa3BQZnNGYXZvMjMwWVUta3dRamxHd3BSUVFvZVMtUjNiNHB4d2UxSlJiY1BpV2hMLVlmZnpTU210Mzdmd0k2OUc1ZVlvMERMZnRpcWV2WXl5YmxXM1lqbWk0eUo1NTFvSG9UdDF1TFQ3QUc2M2g3aHhBekFDTDJEb2F3c1dZaU0?oc=5",
+      "date": "2026-09-09T13:45:53.000Z",
+      "indicators": {
+        "localCoverage": false,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": true,
+        "opinionFraction": 0
+      },
+      "score": 3
     },
     {
       "articleId": "h2cshb",
@@ -428,6 +530,23 @@
       "score": 4
     },
     {
+      "articleId": "1auaoi4",
+      "articleFingerprint": "5ego08",
+      "outlet": "Fotocasa",
+      "outletHost": "fotocasa.es",
+      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE10U2VvdTBaYkFpeElRbG1aRi1vc0dEdmo4a3UzQTdReXE3UjZFZVV3R2dwUWNWVUdQb2tfOVplZS1fRkFDXzQ1QVF3eUZXQkQxcFJMVm9kOVhjYk1pLV9Z?oc=5",
+      "date": "2026-09-03T14:46:50.000Z",
+      "indicators": {
+        "localCoverage": false,
+        "datedArticle": true,
+        "municipalSourceMatch": null,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 1
+    },
+    {
       "articleId": "161q2v1",
       "articleFingerprint": "1slb5ao",
       "outlet": "Ayuntamiento de Riba-roja de Túria",
@@ -460,23 +579,6 @@
         "opinionFraction": 0
       },
       "score": 2
-    },
-    {
-      "articleId": "16zc27c",
-      "articleFingerprint": "1rb28v0",
-      "outlet": "Valenciabonita",
-      "outletHost": "valenciabonita.es",
-      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPRFFiUmJza2FDY1hYQU1CY2tJaFdJMTF5dHVJVjlkZ3Z3cW1FTXg0TGNyVjgzLUd5MGItNDJfYkZqalplSHRpQkNlajhKYzJrWG1LOEpBSjRhenpPRXk5eV9pWURYRFdDTmlpZlBTcHRIWDkyRGUwdm5uenpzUk11Q0NKLXJwQ0NwNDlLaGdGSQ?oc=5",
-      "date": "2026-09-01T07:00:00.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 1
     },
     {
       "articleId": "1bt7s8w",
@@ -545,23 +647,6 @@
         "opinionFraction": 0
       },
       "score": 2
-    },
-    {
-      "articleId": "171dh22",
-      "articleFingerprint": "y0ksbk",
-      "outlet": "Turisme Comunitat Valenciana",
-      "outletHost": "comunitatvalenciana.com",
-      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQaTU5aXFDZGo2RW1sWllKNEszMVNJQ283T2lpUUZEdnh0RFliV2stYlJFNFp1cVFyQlNuN2RuZlhvLUFGOXNLcHFEajl1THkxd2I0SzZjN2NPWnpRWUU5eFFzcUVnQWtPMUpXeGxIUVNQTTNMX0dZOVNFU2xkQ183UFVZRVZ4TVJRMnJJOUJYQmV3alM4LW9mQmg3dW1UYWdaTFBjTnlxc1l4bjF0b1A5UFVXdDhaTzct?oc=5",
-      "date": "2026-08-29T20:57:21.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 1
     },
     {
       "articleId": "qt6rcw",
@@ -687,7 +772,7 @@
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 16,
+      "articleCount": 19,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -695,7 +780,7 @@
         "sin-datos": 39,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.75,
+      "meanTrustScore": 2.63,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -717,7 +802,7 @@
     {
       "outlet": "Levante-EMV",
       "outletHost": "levante-emv.com",
-      "articleCount": 4,
+      "articleCount": 5,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -725,7 +810,7 @@
         "sin-datos": 1,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.75,
+      "meanTrustScore": 2.6,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -742,6 +827,21 @@
       },
       "meanTrustScore": 1,
       "verifiedRatio": null,
+      "contradictedRatio": null
+    },
+    {
+      "outlet": "Valencia Plaza",
+      "outletHost": "valenciaplaza.com",
+      "articleCount": 2,
+      "verdictCounts": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 1,
+        "promesa-repetida": 0
+      },
+      "meanTrustScore": 2.5,
+      "verifiedRatio": 0,
       "contradictedRatio": null
     },
     {
@@ -775,8 +875,8 @@
       "contradictedRatio": null
     },
     {
-      "outlet": "Valencia Plaza",
-      "outletHost": "valenciaplaza.com",
+      "outlet": "El Periódico de Aquí",
+      "outletHost": "elperiodicodeaqui.com",
       "articleCount": 1,
       "verdictCounts": {
         "verificado": 0,
@@ -790,23 +890,8 @@
       "contradictedRatio": null
     },
     {
-      "outlet": "Valenciabonita",
-      "outletHost": "valenciabonita.es",
-      "articleCount": 1,
-      "verdictCounts": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      },
-      "meanTrustScore": 1,
-      "verifiedRatio": null,
-      "contradictedRatio": null
-    },
-    {
-      "outlet": "Turisme Comunitat Valenciana",
-      "outletHost": "comunitatvalenciana.com",
+      "outlet": "Fotocasa",
+      "outletHost": "fotocasa.es",
       "articleCount": 1,
       "verdictCounts": {
         "verificado": 0,
@@ -821,9 +906,9 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "7f77adde54e5",
+    "plenos-agendas.json": "98f5600f1368",
     "press-claims-verified.json": "426589fc7d58",
-    "press.json": "42dc5ae698de",
+    "press.json": "3c52ad1f2594",
     "promises.json": "d18811c11210"
   }
 }

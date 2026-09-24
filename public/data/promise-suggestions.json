@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-23T09:42:56.688Z",
+  "generatedAt": "2026-09-24T09:42:00.222Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -45,6 +45,17 @@
           ]
         },
         {
+          "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ahorra-6%E2%80%999-millones-de-euros-en-la-adjudicaci%C3%B3n-de-los-611-contratos-p%C3%BAblicos-tramitados-desde-2019",
+          "date": "2026-09-22",
+          "quote": "El Ayuntamiento de Riba-roja de Túria ahorra 6’9 millones de euros en la adjudicación de los 611 contratos públicos tramitados desde 2019",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "millon",
+            "euro"
+          ]
+        },
+        {
           "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFB1Vk1NWXRRaHE2NTh5ejRtOHVzaXhBVmtvQ2Y1dFJENUVrQmtraHlVWHgyTUs1dWN0UDRyVnpvTG5EYjYtZ3FBV09DYk9IQ1IxOWJ2b1M3TDlEZFZROV9FZTRQazRjMkUtY212aUMwTU1QSlE2S0F2eVFB?oc=5",
           "date": "2026-09-10",
           "quote": "Riba-roja de Túria aprueba el padrón del impuesto de actividades de 2026",
@@ -67,17 +78,6 @@
           ]
         },
         {
-          "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-adjudica-el-contrato-para-el-servicio-de-suministro-de-agua-potable-por-un-valor-de-55%E2%80%996-millones-de-euros-y-un-periodo-de-17-a%C3%B1os-de-vigencia",
-          "date": "2026-08-10",
-          "quote": "El Ayuntamiento de Riba-roja adjudica el contrato para el servicio de suministro de agua potable por un valor de 55’6 millones de euros y un periodo de 17 años de vigencia",
-          "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "millon",
-            "euro"
-          ]
-        },
-        {
           "url": "https://regmeet.com/aytoribarroja/participaciones/87ae6fb631f7c8a627e8e28785d9992d?idioma=castellano",
           "date": "2026-07-06",
           "quote": "Modificación Bases Ejecución Presupuesto Municipal 2026",
@@ -89,7 +89,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-23T09:42:56.557Z"
+      "generatedAt": "2026-09-24T09:42:00.043Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -119,7 +119,7 @@
           "date": "2026-04-08",
           "quote": "Sanidad avanza en los trámites para la construcción del nuevo centro de salud de Riba-roja de Túria que contará con una inversión de 8,3 millones de euros",
           "kind": "press",
-          "publisher": "comunica.gva.es",
+          "publisher": "Comunica GVA",
           "matchedKeywords": [
             "inversion",
             "millon",
@@ -127,14 +127,14 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPZTFYQjRPUnBtUUJfV0gzclA1eHFieGl4a1Q0UU9lU3Z6YkZLVDFtVFQ3TmVyZE8wRVNDajNyRURPSFUzTm9MUE0yQzRNUVMyM0JfV2p1cDZXaHRUQ2RmMFF5MFV5bEw0SmhqZXNSTFE4QjlvZ0hKTExkazRRNzZlSXdLOGRfcVY4bEhRaW9PWG9QLVVxWjlXTzhiZklyQm9EMHNhUG0yVFRybHNxMmY0TFF1V0fSAboBQVVfeXFMTTlSQ21TbVcxcDFSR2FRaXNfVXJqbGFTeEhjMjd2cUh0ZVE5NFlFM2Mzd0hlRGdUM1JQYVR1ZEs1NVN0b3lrQmpJaS1ESFJabF9mVFdoRGhyT0FvM0sxZ3Y2eTNBSG0yQkh3WVRyT3dtckxtZlB2VkJYd1BFRFVqS1RaaGpIT0JwZWROYTFaVTRETXlPUWhpYm1WZThTWmRnOV9jOTA1NHVKUTRQQkRRbWlERUJZR1h1dzVn?oc=5",
-          "date": "2026-08-19",
-          "quote": "Medio Ambiente arranca la limpieza del polvorín de cañas del Turia en Riba-roja",
+          "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ahorra-6%E2%80%999-millones-de-euros-en-la-adjudicaci%C3%B3n-de-los-611-contratos-p%C3%BAblicos-tramitados-desde-2019",
+          "date": "2026-09-22",
+          "quote": "El Ayuntamiento de Riba-roja de Túria ahorra 6’9 millones de euros en la adjudicación de los 611 contratos públicos tramitados desde 2019",
           "kind": "press",
-          "publisher": "Las Provincias",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
           "matchedKeywords": [
-            "medio",
-            "ambiente"
+            "millon",
+            "euro"
           ]
         },
         {
@@ -149,41 +149,25 @@
           ]
         },
         {
-          "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-renueva-su-participaci%C3%B3n-en-el-programa-platea-2026-2027-con-una-inversi%C3%B3n-de-61.000-euros-en-artes-esc%C3%A9nicas",
-          "date": "2026-07-27",
-          "quote": "El Ayuntamiento de Riba-roja de Túria renueva su participación en el programa PLATEA 2026-2027 con una inversión de 61.000 euros en artes escénicas",
+          "url": "https://news.google.com/rss/articles/CBMixwJBVV95cUxNX0NZVU5CeU5jNzRhR0ZfTkV1ZnZtcFhYbFZCZDA5UFBrUHBpdUh2dGdqWi0teDZKa2c4aEo3ZDNMUl9VUzBmQVZmWlpCUlctbFdjMUROSVd0NVZzMWt5MnYwZ0hnbXhaejBSa1N6UHRxVmduQmdqaUp5b2ktNWZ2TzFxQ2Y4NXlIcnVjQnVpQmdabGlVenpQS1BsRW52SVIxYkROdmJZTDRzMzlwbmFuVm1JVTBnYkFVSm9WdEpiYXNZNHBxZkFYUy1XSVMzYTR4TEU5ZmlWNlZ4N1haWUc3dVoxNVlrTkpuX0h3THBiTmZqU3luVHFINWxhMFdfR0Vuc2p5cEtJdXMzanJnZjBMS0JiVmdhbEZLU2dBTEdXTFl0bkllXzhDejQxb3FnTTQyUGlhcVpBZVkta0RVSXpGeDhod2xIX28?oc=5",
+          "date": "2026-07-03",
+          "quote": "Riba-roja aprueba el Plan Territorial Municipal de Emergencias para proteger a la población frente a las olas de calor, los incendios, las inundaciones o los temporales",
           "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "publisher": "Valencia Plaza",
           "matchedKeywords": [
-            "inversion",
-            "euro"
+            "plan",
+            "aprueba"
           ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-23T09:42:56.557Z"
+      "generatedAt": "2026-09-24T09:42:00.043Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
       "proposedStatus": "documentada",
-      "confidence": 0.4,
+      "confidence": 0.287,
       "reasoning": [
-        {
-          "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxObV9RSjA1QVNRSHZneEtGcXhKaE5EeXdNb1ZxdzNLZlNEZEJJVW5MdV9tNGVBLTJMY2RaX2R5SXEyVHRmajM5N3M4VTlLMWFtamFuNjRiVUloM2tsb09ZQ1JsRUdRUU9rZmRKQks1Zk5KNzRYUGVEcGg4SUVKYWFnOUNJanBSMmxoaHVwNm5IaXBHV3dsN1ZvNVN0VldiQUxFQUZnWkRGX2JGWWx6MGluRDNoSEJuWVN3YWpMdFI5dnpMQ0tKeV8wcThmU1VfS1BqLVpLdVhEaGhpRktW0gHiAUFVX3lxTFA5TU8zTGhDSW5NSzJOUVlZVEdRbEgzSFpPaU43NWtZOW9kdTZuNmZPbHNaVlFpVW9MX3VPV0VUUnNRZ0s4NUtHM0RhSnM0SkJjVXlVb245UXFaSWllWlpGTW9kaWxYV0RQWnlPdmFEYlVMVHNudU5KMkJ5a2RvRF9adHhZRHFqdmpyR1BwR2hyY1ZxMTF1WS11dmV4NFZVcWM2Q2RMa0VpblR4NmN2SWZRcHdVSVVRbmlVNWZiQVZDc25COFlXVWJsLWhXUHlrOThwQ29IV25UbU03Y3l6ZW02V0E?oc=5",
-          "date": "2026-02-10",
-          "quote": "Riba-roja de Túria recibirá 9,5 millones de fondos europeos tras la dana para su reconstrucción",
-          "kind": "press",
-          "publisher": "Levante-EMV",
-          "matchedKeywords": [
-            "reconstruccion",
-            "dana",
-            "millon",
-            "fondo",
-            "europeo",
-            "recibira",
-            "tras"
-          ]
-        },
         {
           "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-ejecuta-a-buen-ritmo-las-inversiones-hidr%C3%A1ulicas-en-el-marco-de-la-reconstrucci%C3%B3n-tras-la-dana",
           "date": "2026-09-04",
@@ -209,13 +193,14 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPRFFiUmJza2FDY1hYQU1CY2tJaFdJMTF5dHVJVjlkZ3Z3cW1FTXg0TGNyVjgzLUd5MGItNDJfYkZqalplSHRpQkNlajhKYzJrWG1LOEpBSjRhenpPRXk5eV9pWURYRFdDTmlpZlBTcHRIWDkyRGUwdm5uenpzUk11Q0NKLXJwQ0NwNDlLaGdGSQ?oc=5",
-          "date": "2026-09-01",
-          "quote": "El Parque Fluvial del Turia recupera cuatro de sus pasarelas tras la dana, infraestructuras que no son «a prueba de riadas»",
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxObjdKRWFscUNmRFN3LV9VRnhMNzJzTzNUZUhfNzZXcS1SR0g2WVJRN0ptWUZtS1hYdlVyM3pDcU1IOVZJWFdtUzlaZEE1bE9wdzlEU0tBd2toU3laTGhFTzMzcmU4TkhzZGZlWktocW42eWs0UFBwMmJHMVFyc2plaGxlRmRkYlEyUVE?oc=5",
+          "date": "2026-05-11",
+          "quote": "Iberdrola invierte 10 millones en Riba-roja para reforzar la red eléctrica tras la dana",
           "kind": "press",
-          "publisher": "Valenciabonita",
+          "publisher": "Valencia News",
           "matchedKeywords": [
             "dana",
+            "millon",
             "tras"
           ]
         },
@@ -229,10 +214,21 @@
             "dana",
             "tras"
           ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQMFIxMi1hRmdyRlFDNWxETmNkX2tldkVZTEpSSC0tZWptTEdwSE81b1k1cFJKaVpYVVVhQ2puN1c5N1VzMXhwXzRtNzA5QVpFVll2ZjBhcF9fbjNHeVBPSndoTVl6UWdwTWxPUGc4OHZaall3aUR3REJMNlozTkpvUjNMVFhZVXM0LWY3Z2ZGeU03WU5JS0ExSG9COEN3RFdfXzB5ZTFBZkc5dWtVZHFXbXMwelVMUHJuWE1r?oc=5",
+          "date": "2026-05-11",
+          "quote": "Iberdrola España invierte más de 10 millones de euros en Riba-roja para la renovación de instalaciones afectadas por la DANA",
+          "kind": "press",
+          "publisher": "iberdrolaespana.com",
+          "matchedKeywords": [
+            "dana",
+            "millon"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-23T09:42:56.557Z"
+      "generatedAt": "2026-09-24T09:42:00.043Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
@@ -263,7 +259,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-23T09:42:56.557Z"
+      "generatedAt": "2026-09-24T09:42:00.043Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -358,7 +354,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-23T09:42:56.557Z"
+      "generatedAt": "2026-09-24T09:42:00.043Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -390,21 +386,10 @@
             "parc",
             "natural"
           ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPZTFYQjRPUnBtUUJfV0gzclA1eHFieGl4a1Q0UU9lU3Z6YkZLVDFtVFQ3TmVyZE8wRVNDajNyRURPSFUzTm9MUE0yQzRNUVMyM0JfV2p1cDZXaHRUQ2RmMFF5MFV5bEw0SmhqZXNSTFE4QjlvZ0hKTExkazRRNzZlSXdLOGRfcVY4bEhRaW9PWG9QLVVxWjlXTzhiZklyQm9EMHNhUG0yVFRybHNxMmY0TFF1V0fSAboBQVVfeXFMTTlSQ21TbVcxcDFSR2FRaXNfVXJqbGFTeEhjMjd2cUh0ZVE5NFlFM2Mzd0hlRGdUM1JQYVR1ZEs1NVN0b3lrQmpJaS1ESFJabF9mVFdoRGhyT0FvM0sxZ3Y2eTNBSG0yQkh3WVRyT3dtckxtZlB2VkJYd1BFRFVqS1RaaGpIT0JwZWROYTFaVTRETXlPUWhpYm1WZThTWmRnOV9jOTA1NHVKUTRQQkRRbWlERUJZR1h1dzVn?oc=5",
-          "date": "2026-08-19",
-          "quote": "Medio Ambiente arranca la limpieza del polvorín de cañas del Turia en Riba-roja",
-          "kind": "press",
-          "publisher": "Las Provincias",
-          "matchedKeywords": [
-            "medio",
-            "ambiente"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-23T09:42:56.557Z"
+      "generatedAt": "2026-09-24T09:42:00.043Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -430,17 +415,6 @@
           ]
         },
         {
-          "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-renueva-su-participaci%C3%B3n-en-el-programa-platea-2026-2027-con-una-inversi%C3%B3n-de-61.000-euros-en-artes-esc%C3%A9nicas",
-          "date": "2026-07-27",
-          "quote": "El Ayuntamiento de Riba-roja de Túria renueva su participación en el programa PLATEA 2026-2027 con una inversión de 61.000 euros en artes escénicas",
-          "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "2026",
-            "participacion"
-          ]
-        },
-        {
           "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOLTg0R21tWmZmVWZDZ1lXbHdFS0ltRERMNm5GbGdnZkdWRkVzcUVrdjQyajBwS2NNS3ViOHZXTzRpZXBuOW16Q3BLa3hFZXQ5MTBXZGhyR1EycmMybk82VGtpbmdfRnlDWG4zaWNFNDFfVnRJWG9jd09ubnVFNW5JR1BFbGVya1JlSnVUT25Wa2ZYS1FlTkw3TDkzUUItdmhhZFJQblRFN2Q4cm1fdjNDc3lBTzE5NkZrY3pRYXUxTmJxZ9IBxwFBVV95cUxQbFMwUVl4el9lVXg4WTZaZF9oWDI2b1VDQUJaWHMtVm5MQ0dWNlk4UG9iYjFzSzlzTEpDMXFKLU9wb3pNc0hlYzRNTWVoVVN6TkVkbXg0TWhlanV3cGJvR3ZjSHZBUmNvb05UZHB1eE5oeW1aWVRleERZb0xvYkNiVmpFenM2dGZZU1lWSkJkdFQ1dzFCYWdwaG5IaUxSOC1Wc3Ryd0pDVE9kWndRRzFWZDFsZ3ZVQWN2cmMtb1YtMDNJZGJnVnZz?oc=5",
           "date": "2026-03-17",
           "quote": "Riba-roja de Túria aprueba su presupuesto municipal de 2026, el más alto de su historia con 46 millones",
@@ -463,7 +437,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-23T09:42:56.557Z"
+      "generatedAt": "2026-09-24T09:42:00.043Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -471,7 +445,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-23T09:42:56.557Z"
+      "generatedAt": "2026-09-24T09:42:00.043Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -479,7 +453,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-23T09:42:56.557Z"
+      "generatedAt": "2026-09-24T09:42:00.043Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -494,6 +468,17 @@
           "publisher": "iberdrolaespana.com",
           "matchedKeywords": [
             "dana",
+            "millon",
+            "euro"
+          ]
+        },
+        {
+          "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ahorra-6%E2%80%999-millones-de-euros-en-la-adjudicaci%C3%B3n-de-los-611-contratos-p%C3%BAblicos-tramitados-desde-2019",
+          "date": "2026-09-22",
+          "quote": "El Ayuntamiento de Riba-roja de Túria ahorra 6’9 millones de euros en la adjudicación de los 611 contratos públicos tramitados desde 2019",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
             "millon",
             "euro"
           ]
@@ -521,30 +506,19 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBKQW1yYUJWS3h0TERMb2ozdTgzeWxVTFhLcVZTQ2JOS3FWWGp3RHFqamdtLWEyWS1TZm9vVkVPdV9pbk55LTdDWHJzNVFJVTNJMlJFYkhIb0pSX1ZfSndYOE5MV0k1XzExcEdqYW5tdw?oc=5",
-          "date": "2026-04-08",
-          "quote": "Sanidad avanza en los trámites para la construcción del nuevo centro de salud de Riba-roja de Túria que contará con una inversión de 8,3 millones de euros",
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxObjdKRWFscUNmRFN3LV9VRnhMNzJzTzNUZUhfNzZXcS1SR0g2WVJRN0ptWUZtS1hYdlVyM3pDcU1IOVZJWFdtUzlaZEE1bE9wdzlEU0tBd2toU3laTGhFTzMzcmU4TkhzZGZlWktocW42eWs0UFBwMmJHMVFyc2plaGxlRmRkYlEyUVE?oc=5",
+          "date": "2026-05-11",
+          "quote": "Iberdrola invierte 10 millones en Riba-roja para reforzar la red eléctrica tras la dana",
           "kind": "press",
-          "publisher": "comunica.gva.es",
+          "publisher": "Valencia News",
           "matchedKeywords": [
-            "millon",
-            "euro"
-          ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxQNnFuX3p5UGhMRHNTRmhfVm5CcG9pbnNjZDZWblA2SnJHNEVkWEZnLWxMVlpvUmZJMWV1V2Q5N084MGF2U2psWFMxTDFWYmRNaGEtUkFRZGNzTnpzS0RhWUVxME9nZmQtR2U5TmxNZndNRnVmRERWa2Q1eWxUVnl1X1Btb255UGNTdU5seW9rWVRGT3BoQmdLek9sZjVyWWJfcXREaEM5VzVaTXFrbDMtdl9CTEFHNTJQNzI2TnNjMDlvYVNXZWZuMGtXeXNaWUNUeXhZVWlrYVk3c1k3SGVJNGlXRXNfc0Z6MlU3WmRUaDJWeFh1UGNn?oc=5",
-          "date": "2026-03-27",
-          "quote": "Riba-roja aprueba inversiones de 5,9 millones de euros, entre las que destaca un Plan de Refugios Climáticos",
-          "kind": "press",
-          "publisher": "Valencia Plaza",
-          "matchedKeywords": [
-            "millon",
-            "euro"
+            "dana",
+            "millon"
           ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-23T09:42:56.557Z"
+      "generatedAt": "2026-09-24T09:42:00.043Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -567,7 +541,7 @@
           "date": "2026-04-08",
           "quote": "Sanidad avanza en los trámites para la construcción del nuevo centro de salud de Riba-roja de Túria que contará con una inversión de 8,3 millones de euros",
           "kind": "press",
-          "publisher": "comunica.gva.es",
+          "publisher": "Comunica GVA",
           "matchedKeywords": [
             "avanza",
             "inversion"
@@ -575,7 +549,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-23T09:42:56.557Z"
+      "generatedAt": "2026-09-24T09:42:00.043Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
@@ -627,7 +601,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-23T09:42:56.557Z"
+      "generatedAt": "2026-09-24T09:42:00.043Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -673,24 +647,13 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-23T09:42:56.557Z"
+      "generatedAt": "2026-09-24T09:42:00.043Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
       "proposedStatus": "documentada",
-      "confidence": 0.175,
+      "confidence": 0,
       "reasoning": [
-        {
-          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPZTFYQjRPUnBtUUJfV0gzclA1eHFieGl4a1Q0UU9lU3Z6YkZLVDFtVFQ3TmVyZE8wRVNDajNyRURPSFUzTm9MUE0yQzRNUVMyM0JfV2p1cDZXaHRUQ2RmMFF5MFV5bEw0SmhqZXNSTFE4QjlvZ0hKTExkazRRNzZlSXdLOGRfcVY4bEhRaW9PWG9QLVVxWjlXTzhiZklyQm9EMHNhUG0yVFRybHNxMmY0TFF1V0fSAboBQVVfeXFMTTlSQ21TbVcxcDFSR2FRaXNfVXJqbGFTeEhjMjd2cUh0ZVE5NFlFM2Mzd0hlRGdUM1JQYVR1ZEs1NVN0b3lrQmpJaS1ESFJabF9mVFdoRGhyT0FvM0sxZ3Y2eTNBSG0yQkh3WVRyT3dtckxtZlB2VkJYd1BFRFVqS1RaaGpIT0JwZWROYTFaVTRETXlPUWhpYm1WZThTWmRnOV9jOTA1NHVKUTRQQkRRbWlERUJZR1h1dzVn?oc=5",
-          "date": "2026-08-19",
-          "quote": "Medio Ambiente arranca la limpieza del polvorín de cañas del Turia en Riba-roja",
-          "kind": "press",
-          "publisher": "Las Provincias",
-          "matchedKeywords": [
-            "medio",
-            "ambiente"
-          ]
-        },
         {
           "url": "https://regmeet.com/aytoribarroja/participaciones/87ae6fb631f7c8a627e8e28785d9992d?idioma=castellano",
           "date": "2026-07-06",
@@ -730,13 +693,24 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-23T09:42:56.557Z"
+      "generatedAt": "2026-09-24T09:42:00.043Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
       "proposedStatus": "en-progreso",
       "confidence": 0.35,
       "reasoning": [
+        {
+          "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ahorra-6%E2%80%999-millones-de-euros-en-la-adjudicaci%C3%B3n-de-los-611-contratos-p%C3%BAblicos-tramitados-desde-2019",
+          "date": "2026-09-22",
+          "quote": "El Ayuntamiento de Riba-roja de Túria ahorra 6’9 millones de euros en la adjudicación de los 611 contratos públicos tramitados desde 2019",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "ahorra",
+            "euro"
+          ]
+        },
         {
           "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPV3hRcloxaVl3cnRzQlVKbU5KeFM5S2Q3dWhrNi11S2FHODcwd0xzZW5ySXBaSEtkdW1SZlNEWVdNVmRtTVA0Z056R1h2a2NRUXdUd20zaTV6bHZGcUU4ZDNsak5QeUxGQnFkbFlSUlF6emFORThhenRhNk1SWTV2dmw4cWtscEFiQUNjMjRmbUZES2tQcDVYel83V0RPWXVOa0dqZWEtZ2FjU09sNC10OElUMHNsN0M3dVlnSmlJOHBpNUJBU1NNWUJTN3NsVU4xdUxB?oc=5",
           "date": "2026-06-26",
@@ -760,7 +734,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-23T09:42:56.557Z"
+      "generatedAt": "2026-09-24T09:42:00.043Z"
     },
     {
       "promiseId": "ac-psoe-1cbkzxt",
@@ -788,39 +762,16 @@
             "euro",
             "economica"
           ]
-        },
-        {
-          "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-renueva-su-participaci%C3%B3n-en-el-programa-platea-2026-2027-con-una-inversi%C3%B3n-de-61.000-euros-en-artes-esc%C3%A9nicas",
-          "date": "2026-07-27",
-          "quote": "El Ayuntamiento de Riba-roja de Túria renueva su participación en el programa PLATEA 2026-2027 con una inversión de 61.000 euros en artes escénicas",
-          "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "euro",
-            "participacion"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-23T09:42:56.557Z"
+      "generatedAt": "2026-09-24T09:42:00.043Z"
     },
     {
       "promiseId": "ac-psoe-1v0679f",
       "proposedStatus": "documentada",
       "confidence": 0.287,
       "reasoning": [
-        {
-          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPZTFYQjRPUnBtUUJfV0gzclA1eHFieGl4a1Q0UU9lU3Z6YkZLVDFtVFQ3TmVyZE8wRVNDajNyRURPSFUzTm9MUE0yQzRNUVMyM0JfV2p1cDZXaHRUQ2RmMFF5MFV5bEw0SmhqZXNSTFE4QjlvZ0hKTExkazRRNzZlSXdLOGRfcVY4bEhRaW9PWG9QLVVxWjlXTzhiZklyQm9EMHNhUG0yVFRybHNxMmY0TFF1V0fSAboBQVVfeXFMTTlSQ21TbVcxcDFSR2FRaXNfVXJqbGFTeEhjMjd2cUh0ZVE5NFlFM2Mzd0hlRGdUM1JQYVR1ZEs1NVN0b3lrQmpJaS1ESFJabF9mVFdoRGhyT0FvM0sxZ3Y2eTNBSG0yQkh3WVRyT3dtckxtZlB2VkJYd1BFRFVqS1RaaGpIT0JwZWROYTFaVTRETXlPUWhpYm1WZThTWmRnOV9jOTA1NHVKUTRQQkRRbWlERUJZR1h1dzVn?oc=5",
-          "date": "2026-08-19",
-          "quote": "Medio Ambiente arranca la limpieza del polvorín de cañas del Turia en Riba-roja",
-          "kind": "press",
-          "publisher": "Las Provincias",
-          "matchedKeywords": [
-            "limpieza",
-            "medio",
-            "ambiente"
-          ]
-        },
         {
           "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNdkwxcWJZOXRjajlDelVISGFiVVZxS0VDckdqNk4zLVhKcTh6X1BSZzc4UGpUTy10UmtpdDRyUVdyMjJNS01WSmF6NS1BbFJSVU42WVhGVTdMS3E3NVFQbVg4ODRTMnFqOERPVk13eGlycng0UGwzSzc5cDdzZl82SVE2U1EwVXR6RUNVVFdyLURCZXNmdFp0OTBLUWd0ckk4dDFibGhnaTJVWDJZeGdtcGtSeDMxOTNrN1Y0WHBXcU85VkYyZkHSAcsBQVVfeXFMUEJDNE1fTnAxTURibnlfS2llY1lZU011TGg4eDNzTDByeWM0RlBYVjN5RXRnYzl1aW5TN2RYM0ViU0V3NzhOMnFIZUJmZlE5ZjRQby12THl4UTR3Q0U1cncydVpETjlhYVEzMmdLS3hQWmZwM0tUbVVwV1RKYi1KV0tiVnpxM0YwVGFTeEFPcklmWHhtQVZGR0ZWdi1IWmtSVHRBSUt1UlliaWNxYjV1N29KcHVGYUNxd2JIeEdvaUpTdWp5TC1jN3d5dE0?oc=5",
           "date": "2026-06-30",
@@ -835,7 +786,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-23T09:42:56.557Z"
+      "generatedAt": "2026-09-24T09:42:00.043Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -843,7 +794,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-23T09:42:56.557Z"
+      "generatedAt": "2026-09-24T09:42:00.043Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -862,7 +813,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-23T09:42:56.557Z"
+      "generatedAt": "2026-09-24T09:42:00.043Z"
     },
     {
       "promiseId": "ac-psoe-pl3lsq",
@@ -870,14 +821,14 @@
       "confidence": 0.35,
       "reasoning": [
         {
-          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPZTFYQjRPUnBtUUJfV0gzclA1eHFieGl4a1Q0UU9lU3Z6YkZLVDFtVFQ3TmVyZE8wRVNDajNyRURPSFUzTm9MUE0yQzRNUVMyM0JfV2p1cDZXaHRUQ2RmMFF5MFV5bEw0SmhqZXNSTFE4QjlvZ0hKTExkazRRNzZlSXdLOGRfcVY4bEhRaW9PWG9QLVVxWjlXTzhiZklyQm9EMHNhUG0yVFRybHNxMmY0TFF1V0fSAboBQVVfeXFMTTlSQ21TbVcxcDFSR2FRaXNfVXJqbGFTeEhjMjd2cUh0ZVE5NFlFM2Mzd0hlRGdUM1JQYVR1ZEs1NVN0b3lrQmpJaS1ESFJabF9mVFdoRGhyT0FvM0sxZ3Y2eTNBSG0yQkh3WVRyT3dtckxtZlB2VkJYd1BFRFVqS1RaaGpIT0JwZWROYTFaVTRETXlPUWhpYm1WZThTWmRnOV9jOTA1NHVKUTRQQkRRbWlERUJZR1h1dzVn?oc=5",
-          "date": "2026-08-19",
-          "quote": "Medio Ambiente arranca la limpieza del polvorín de cañas del Turia en Riba-roja",
+          "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ahorra-6%E2%80%999-millones-de-euros-en-la-adjudicaci%C3%B3n-de-los-611-contratos-p%C3%BAblicos-tramitados-desde-2019",
+          "date": "2026-09-22",
+          "quote": "El Ayuntamiento de Riba-roja de Túria ahorra 6’9 millones de euros en la adjudicación de los 611 contratos públicos tramitados desde 2019",
           "kind": "press",
-          "publisher": "Las Provincias",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
           "matchedKeywords": [
-            "medio",
-            "ambiente"
+            "millon",
+            "euro"
           ]
         },
         {
@@ -915,7 +866,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-23T09:42:56.557Z"
+      "generatedAt": "2026-09-24T09:42:00.043Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -938,7 +889,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-23T09:42:56.557Z"
+      "generatedAt": "2026-09-24T09:42:00.043Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -969,7 +920,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-23T09:42:56.557Z"
+      "generatedAt": "2026-09-24T09:42:00.043Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -1000,7 +951,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-23T09:42:56.557Z"
+      "generatedAt": "2026-09-24T09:42:00.043Z"
     }
   ],
   "llmEvidence": [],
