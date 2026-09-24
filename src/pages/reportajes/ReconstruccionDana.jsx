@@ -736,7 +736,9 @@ export default function ReconstruccionDana() {
           La DANA causó seis víctimas mortales en el término municipal, según el balance del
           Ayuntamiento, y una factura que la administración aún salda a plazos: el Consistorio ha
           cifrado en torno a los 22 millones de euros los daños del municipio. Este análisis no
-          atribuye a nadie una mala gestión: pone sobre la mesa, con datos abiertos y verificables,
+          atribuye a nadie una mala gestión: pone sobre la mesa, con datos abiertos y verificables,{' '}
+          {/* Sin el {' '} de arriba, JSX se come el salto de línea junto al comentario y se
+              publicaba «verificables,qué». */}
           {/* Decía «adónde ha ido el dinero de la reconstrucción», y a dos líneas de los 22 M€ de
               daños eso se lee como el total. Lo que se traza son 2,75 M€ en contratos que dicen
               «DANA» en el título: el suelo, como la propia pieza advierte más arriba. La frase de
