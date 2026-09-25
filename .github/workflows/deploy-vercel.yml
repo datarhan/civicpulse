@@ -89,7 +89,7 @@ jobs:
 
       - uses: actions/setup-node@v5
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'npm'
 
       # Versión fija: este paso corre con VERCEL_TOKEN en el entorno del trabajo, y
