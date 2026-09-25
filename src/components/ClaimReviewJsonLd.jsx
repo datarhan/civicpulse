@@ -161,7 +161,9 @@ function buildPayload(finding) {
 function buildPlenoPayload(finding) {
   if (!hasAdjudication(finding)) return null
 
-  const findingUrl = `${SITE_URL}/hallazgos#${finding.id}`
+  // La ficha tiene su propia página desde el 2026-09-25; el ancla de la lista
+  // sigue funcionando, pero la reseña apunta a la dirección de la ficha.
+  const findingUrl = `${SITE_URL}/hallazgos/${finding.id}`
   // `/plenos` renders no element with an id, so the old `#${plenoId}` fragment
   // resolved nowhere. `/plenos/:id` is the real route for a session.
   const plenoUrl = `${SITE_URL}/plenos/${finding.plenoId}`

@@ -965,6 +965,17 @@ export const CATALOGUE = {
     // Departamentos — per-concejalía accountability dashboard
     // Cargo (per-concejal) detail
     'cargos.detalle.notFound': 'Concejal no encontrado.',
+    'hallazgo.volver': '← Todos los hallazgos',
+    'hallazgo.cabecera.automatica': 'Redacción automática',
+    'hallazgo.cabecera.editorial': 'Verificación editorial',
+    'hallazgo.noEncontrado': 'Hallazgo no encontrado',
+    'hallazgo.noEncontradoTexto':
+      'Este enlace no corresponde a ningún hallazgo publicado ni retirado.',
+    'hallazgo.retirado': 'Hallazgo retirado',
+    'hallazgo.retiradoTexto':
+      'Se publicó y después se retiró. No se reproduce lo que decía: queda la huella de la retirada, con su motivo.',
+    'hallazgo.errorCarga': 'No se han podido cargar los hallazgos',
+    'hallazgo.metodologia': 'Cómo se redactan y se corrigen los hallazgos',
     'hallazgos.area.filtered': 'Filtrado por área',
     'hallazgos.area.clear': 'ver todos',
     'hallazgos.area.note':
@@ -2558,6 +2569,17 @@ export const CATALOGUE = {
     'cambios.title': 'Novetats',
 
     'cargos.detalle.notFound': 'Regidor/a no trobat/da.',
+    'hallazgo.volver': '← Totes les troballes',
+    'hallazgo.cabecera.automatica': 'Redacció automàtica',
+    'hallazgo.cabecera.editorial': 'Verificació editorial',
+    'hallazgo.noEncontrado': 'Troballa no trobada',
+    'hallazgo.noEncontradoTexto':
+      'Aquest enllaç no correspon a cap troballa publicada ni retirada.',
+    'hallazgo.retirado': 'Troballa retirada',
+    'hallazgo.retiradoTexto':
+      'Es va publicar i després es va retirar. No es reprodueix el que deia: en queda l’empremta de la retirada, amb el motiu.',
+    'hallazgo.errorCarga': 'No s’han pogut carregar les troballes',
+    'hallazgo.metodologia': 'Com es redacten i es corregeixen les troballes',
     'hallazgos.area.filtered': 'Filtrat per àrea',
     'hallazgos.area.clear': 'veure tots',
     'hallazgos.area.note':

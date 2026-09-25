@@ -151,5 +151,5 @@ jobs:
           ISSUE_NUMBER: ${{ github.event.issue.number || inputs.issue_number }}
           FINDING_ID: ${{ steps.parse.outputs.finding_id }}
         run: |
-          gh issue comment "$ISSUE_NUMBER" --body ":white_check_mark: Réplica publicada en el hallazgo \`${FINDING_ID}\`. Visible en https://www.civicpulse.es/hallazgos#${FINDING_ID}"
+          gh issue comment "$ISSUE_NUMBER" --body ":white_check_mark: Réplica publicada en el hallazgo \`${FINDING_ID}\`. Visible en https://www.civicpulse.es/hallazgos/${FINDING_ID}"
           gh issue close "$ISSUE_NUMBER" --reason completed
