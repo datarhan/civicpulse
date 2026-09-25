@@ -27,6 +27,11 @@ updates:
     ignore:
       - dependency-name: '*'
         update-types: [version-update:semver-major]
+      # Playwright sube a mano, aunque sea menor: cada versión trae otro
+      # Chromium, y el de la 1.63 puso en rojo cuatro specs del mapa de la
+      # portada (#108) que en main están en verde. Se sube en su propio PR, con
+      # esas specs revisadas, y entonces se quita esta entrada.
+      - dependency-name: '@playwright/test'
 
   - package-ecosystem: npm
     directory: /bot
