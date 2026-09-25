@@ -57,8 +57,9 @@ safe under `private` does not announce itself when that stops being true._
 
 A draft is promoted with `npm run promote-report`, which is what puts the **reviewed** version
 under `public/data/journalist-reports/`. The draft itself never needs to be in git — it lives
-on disk and is read by path. `tests/editorial-fuera-de-git.test.js` reds if anything new turns
-up tracked under `editorial/`.
+on disk and is read by path. The 27 drafts that were public were untracked on 2026-09-25
+(`git rm --cached`; history purge is the operator's call, see `docs/REVIEW_2026-09.md`), so
+`tests/editorial-fuera-de-git.test.js` now reds if **anything** is tracked under `editorial/`.
 
 ## Phase 3 — Forensic curator review (MANDATORY before promote)
 

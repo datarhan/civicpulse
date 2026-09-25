@@ -27,6 +27,8 @@
  *
  * La línea base son los ficheros que YA estaban dentro cuando se tomó la
  * decisión de dejarlos. Sólo puede encoger. Lo demás se deriva de git.
+ * Encogió a cero el 2026-09-25: desde entonces cualquier fichero rastreado
+ * bajo `editorial/` es nuevo y esta puerta lo para.
  */
 import { execFileSync } from 'node:child_process'
 import { readFileSync } from 'node:fs'
