@@ -39,11 +39,7 @@ import { prepararHeno, quoteAppearsInPrepared, type HenoPreparado } from './quot
 export type ProvenanceOutcome = 'vigente' | 'solo-superseded' | 'sin-rastro' | 'sin-transcripcion'
 
 export type AttributionOutcome =
-  | 'coincide'
-  | 'sin-sosten'
-  | 'sin-publicar'
-  | 'partido-distinto'
-  | 'sin-mapa'
+  'coincide' | 'sin-sosten' | 'sin-publicar' | 'partido-distinto' | 'sin-mapa'
 
 /** Los dos únicos desenlaces que paran una publicación. */
 const BLOCKING_PROVENANCE: ReadonlySet<ProvenanceOutcome> = new Set(['sin-rastro'])

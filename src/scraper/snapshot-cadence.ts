@@ -24,12 +24,7 @@
  */
 
 export type FreshnessClass =
-  | 'nightly'
-  | 'ci-blocked'
-  | 'local-llm'
-  | 'curated'
-  | 'derived'
-  | 'manual'
+  'nightly' | 'ci-blocked' | 'local-llm' | 'curated' | 'derived' | 'manual'
 
 export interface DatasetExpectation {
   file: string

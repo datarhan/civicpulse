@@ -650,8 +650,7 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
       const broken: string[] = []
       for (const [cid, entry] of Object.entries(overlay?.entries ?? {})) {
         const publicado = verifiedById.get(cid) as
-          | { verification?: { verdict?: unknown } }
-          | undefined
+          { verification?: { verdict?: unknown } } | undefined
         // Una entrada cuyo claim ya no existe la cuenta `overlay-verified`
         // arriba; aquí sólo se comparan las que tienen fila publicada.
         if (publicado == null) continue
