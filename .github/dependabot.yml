@@ -45,6 +45,12 @@ updates:
       - dependency-name: '*'
         update-types: [version-update:semver-major]
 
+  # Las acciones también: sin versión mayor. Las fijadas a su mayor (`@v5`)
+  # reciben menores y parches solas, porque la etiqueta se mueve; lo único que
+  # Dependabot podía proponerles era el salto mayor, y el primer PR de este
+  # bloque, sin este `ignore`, subió cuatro de golpe en todos los workflows
+  # (#106), incluidos los que ninguna prueba de un PR ejercita: la nocturna, los
+  # despliegues y las ingestas. Queda para la acción de Fly, fijada por SHA.
   - package-ecosystem: github-actions
     directory: /
     schedule:
@@ -57,4 +63,7 @@ updates:
       prefix: 'chore(ci)'
     groups:
       acciones:
-        patterns: ['*']
+        update-types: [minor, patch]
+    ignore:
+      - dependency-name: '*'
+        update-types: [version-update:semver-major]
