@@ -1,19 +1,22 @@
 # CLAUDE.md
 
-Guidance for Claude Code working in this repo. Reference material lives in
-`docs/` — read the one you need rather than carrying all of it:
+Guidance for Claude Code working in this repo. This file holds the **rules**.
+Reference material lives in `docs/` — read the one you need rather than carrying
+all of it — and the incident behind a rule is told in the header of the file
+that enforces it: read that header before changing the mechanism.
 
-| Doc                                                              | When                                           |
-| ---------------------------------------------------------------- | ---------------------------------------------- |
-| [`docs/DATA_INTEGRITY.md`](docs/DATA_INTEGRITY.md)               | **before writing or changing any adapter**     |
-| [`docs/DATA_SOURCES.md`](docs/DATA_SOURCES.md)                   | per-domain source, parser and surfaces         |
-| [`docs/OPERATIONS.md`](docs/OPERATIONS.md)                       | nightly job, workflows, crons, health checks   |
-| [`docs/LLM_BACKENDS.md`](docs/LLM_BACKENDS.md)                   | model/embedding backends, cost, claim pipeline |
-| [`docs/TRANSCRIPTION.md`](docs/TRANSCRIPTION.md)                 | Whisper, diarization, voice ID                 |
-| [`docs/JOURNALIST_AGENT.md`](docs/JOURNALIST_AGENT.md)           | the `/laboratorio/agentes` subsystem           |
-| [`docs/QUEJAS_DESIGN.md`](docs/QUEJAS_DESIGN.md)                 | rationale for the Telegram-first quejas OS     |
-| [`docs/REVIEW_2026-09.md`](docs/REVIEW_2026-09.md)               | priorities to May 2027, what not to build next |
-| [`bot/README.md`](bot/README.md), [`bot/LOCAL.md`](bot/LOCAL.md) | the Telegram bot                               |
+| Doc                                                              | When                                              |
+| ---------------------------------------------------------------- | ------------------------------------------------- |
+| [`docs/DATA_INTEGRITY.md`](docs/DATA_INTEGRITY.md)               | **before writing or changing any adapter**        |
+| [`docs/DATA_SOURCES.md`](docs/DATA_SOURCES.md)                   | per-domain source, parser and surfaces            |
+| [`docs/OPERATIONS.md`](docs/OPERATIONS.md)                       | nightly job, workflows, local jobs, health checks |
+| [`docs/LLM_BACKENDS.md`](docs/LLM_BACKENDS.md)                   | model/embedding backends, cost, claim pipeline    |
+| [`docs/TRANSCRIPTION.md`](docs/TRANSCRIPTION.md)                 | Whisper, diarization, voice ID                    |
+| [`docs/JOURNALIST_AGENT.md`](docs/JOURNALIST_AGENT.md)           | the `/laboratorio/agentes` subsystem              |
+| [`docs/QUEJAS_DESIGN.md`](docs/QUEJAS_DESIGN.md)                 | rationale for the Telegram-first quejas OS        |
+| [`docs/DESCRIPCION.md`](docs/DESCRIPCION.md)                     | **before writing public copy about the project**  |
+| [`docs/REVIEW_2026-09.md`](docs/REVIEW_2026-09.md)               | priorities to May 2027, what not to build next    |
+| [`bot/README.md`](bot/README.md), [`bot/LOCAL.md`](bot/LOCAL.md) | the Telegram bot                                  |
 
 ## What this is
 
@@ -39,100 +42,103 @@ npm test             # Vitest, once
 npm run test:watch
 npm run test:e2e     # Playwright: per-route + chrome + mobile + axe
 npm run typecheck    # tsc --noEmit, must stay clean
-npm run lint         # ESLint owns correctness, Prettier owns formatting
-npm run scrape:all   # every autonomous adapter, ~3 min, idempotent
+npm run lint         # ESLint owns correctness
+npm run format       # Prettier owns formatting (pre-commit runs format:check)
+npm run scrape:all   # the nightly, locally: every autonomous adapter + its gates
 ```
 
 `npm run` lists all of them, including the curator CLIs. Do not re-catalogue
 them here — the hand-kept list drifted from reality every time it was tried.
 
-The e2e suite covers per-route specs, `chrome.spec.ts` (Cmd+K, dark mode,
-i18n, sidebar), a 375px mobile shell, and an axe-core WCAG 2.1 AA strict pass.
-CI sets `VITE_ENABLE_PERIODISTAS=true` and `VITE_ENABLE_EFICIENCIA=true`; both
-are absent locally, so `/cargos`'s Biografía spec always fails on a local full
-run. That is the flag, not a defect. `/eficiencia` is gated the same way but its
-spec **skips** rather than fails when the flag is off — one always-red spec is
-already one too many. The flag is read at BUILD time, and `vite preview` is
-reused between runs, so rebuild before expecting the spec to run.
+**Git hooks** (`.husky/`; each gate's reason is in its comments): pre-commit
+runs `lint`, `format:check`, `check:json`, `check:sparse` and the staged-only
+scans `check:secrets`, `check:privado`, `check:editorial`. Pre-push builds and
+runs `review:surfaces` on the routes the push can have broken; it never blocks,
+so its last line is the whole report — read it. The hooks run only where
+`core.hooksPath` points at them, which is the curator's machine: `husky` is not
+a dependency, so a fresh clone or a cloud session runs none of them. There, run
+`lint`, `format:check` and `typecheck` yourself; CI's `e2e.yml` runs the three
+scans over the whole tree regardless.
 
-**A launch flag belongs in both workflows or neither.** `e2e.yml` sets them for
-parity with `deploy-vercel.yml`, and the pair was hand-kept: turn one on alone
-and the route ships to the public while its whole spec skips itself in CI —
-green by not running, which is the defect this repo keeps paying for.
-`tests/deploy-triggers.test.js` compares the two and reds on a flag that
-deploys without being exercised.
+The e2e suite covers per-route specs, `chrome.spec.ts` (Cmd+K, dark mode, i18n,
+sidebar), a 375px mobile shell, and an axe-core WCAG 2.1 AA strict pass. The
+launch flags in `src/flags.js` (`VITE_ENABLE_PERIODISTAS`,
+`VITE_ENABLE_EFICIENCIA`) are always on in `npm run dev` but read at BUILD time
+by a production build, which is what e2e serves. CI builds with both `true`;
+locally they are absent, so the specs that follow a Biografía link (in
+`cargos.spec.ts` and `chrome.spec.ts`) fail — that is the flag, not a defect —
+and the `/eficiencia` and `/gestion` specs skip. `vite preview` is reused
+between runs, so rebuild before expecting a gated spec to run.
+
+**A launch flag belongs in both `deploy-vercel.yml` and `e2e.yml` or neither.**
+In the first alone, a route ships to the public while its whole spec skips
+itself in CI — green by not running. `tests/deploy-triggers.test.js` reds on it.
 
 ## Architecture
 
 A **front-end-only SPA** (Vite + React 18 + React Router 6) reading static JSON
-from `public/data/`, plus a sibling Node.js Telegram bot (`bot/`) that captures
-citizen complaints into SQLite.
+from `public/data/`. It has no backend of its own: Vercel serves the built
+assets next to the JSON. Two things are not the SPA and are easy to mistake for
+exceptions:
 
-The SPA has no backend of its own — Vercel serves the static assets next to the
-JSON. Two things are not the SPA and are easy to mistake for exceptions:
+- **The Telegram bot (`bot/`) is deployed**, on Fly.io
+  (`munigraph-ribarroja.fly.dev`, webhook mode, SQLite on a persistent volume).
+  It captures citizen complaints, is not part of the SPA build, and the site
+  renders fine without it. `pull-quejas.yml` pulls its `/export/quejas.json`
+  into `public/data/` daily. See `bot/DEPLOY.md`.
+- **`vite-curator-plugin.js`** mounts `/api/curator/*` for the local-only
+  `/curator` dashboard. It, `vite-app-graph-plugin.js` and the dev-only
+  `/despiece` route are kept out of the production build by independent guards
+  in `vite.config.js` and `App.jsx`, so any one can fail without shipping them.
 
-- **The bot is deployed**, on Fly.io (`munigraph-ribarroja.fly.dev`, webhook
-  mode, SQLite on a persistent volume). It is not part of the SPA build and the
-  site renders fine without it. `pull-quejas.yml` pulls its
-  `/export/quejas.json` into `public/data/` daily. See `bot/DEPLOY.md`.
-- **`vite-curator-plugin.js`** mounts `/api/curator/*` for the local curator
-  dashboard and is excluded from the production build in two independent places
-  (`vite.config.js` externals + a React-layer route guard).
+The shell:
 
-- `src/App.jsx` is the root. `/` renders `DirectionD` (section bar + full-bleed
-  map + editorial column + KPI strip) with **no sidebar**; every other route
-  renders inside `InnerShell`.
+- `src/App.jsx` is the root and the one place routes are declared — read it, not
+  a list here (the one that was here had drifted). `/` renders `DirectionD`
+  (section bar + full-bleed map + editorial column + KPI strip) with **no
+  sidebar**; every other route renders inside `InnerShell`; the catch-all
+  redirects to `/`. Legacy `/hud` `/briefing` `/d` `/variants` `/ciudad`
+  `/overview` were removed. Do not reintroduce them.
 - `src/nav.js` owns `NAV` + `NAV_SECONDARY` — the single nav source for both the
-  labelled `Sidebar` and the landing's section bar (`BarraSecciones`: five named
+  labelled `Sidebar` and the landing's section bar (`BarraSecciones`: named
   groups with dropdowns, plus an index), so the two cannot drift. Adding a route
-  means a glyph in `SectionGlyph.jsx`, a `group` and a one-line `descKey` in both
-  locales — `tests/nav-grupos.test.js` reds on the last two.
+  means a glyph in `SectionGlyph.jsx`, a `group` and a one-line `descKey` in
+  both locales — `tests/nav-grupos.test.js` reds on the last two.
 - `tweaks` (dark mode, density) persists to `localStorage['cp:tweaks']` and
   applies `html.dark` + a root font size.
-- Cmd/Ctrl+K opens `components/CmdK.jsx`, indexing `NAV` + officials + recent
-  promises.
+- Cmd/Ctrl+K opens `components/CmdK.jsx`, indexing `NAV`, officials (current and
+  former), promises, quejas and pleno findings.
 
-### Routes
+### Reportajes
 
-Public: `/` `/cargos` `/cargos/:slug` `/presupuesto` `/eficiencia` `/gestion` `/plenos`
-`/plenos/:id`
-`/promesas` `/departamentos` `/departamentos/:slug` `/hallazgos`
-`/declaraciones` `/reportajes` `/datos` `/empleo` `/empleo/:id`
-`/empleo-publico` `/quejas` `/quejas/dashboard` `/quejas/:id` `/cambios`
-`/laboratorio` `/laboratorio/agentes` `/laboratorio/agentes/:assignmentId`
-`/laboratorio/frontera` `/laboratorio/coste-esperado`
-`/nosotros` `/about` `/blog/:slug` `/lab-health` `/metodologia` `/aviso-legal`,
-catch-all → `/`.
+Each pieza is an **explicit route**, not a `:slug` param, with its figures
+frozen in `public/data/reportajes/<slug>.json`. `src/reportajes.js` lists the
+slugs; the index, the landing teaser and «Más reportajes» show a pieza only when
+`meta.estado === 'publicado'`, but its own URL renders before then under a
+«Borrador editorial» banner — unlisted, not private.
 
-Reportajes are **explicit routes**, not a `:slug` param — each pieza is its own
-component with figures frozen in `public/data/reportajes/<slug>.json`. The
-shared registry `src/reportajes.js` renders one only when
-`meta.estado === 'publicado'`. What every pieza shares lives in one place: the
-layout route `pages/reportajes/Armazon.jsx` (reading bar, «Más reportajes» —
-outside the pieza's container, because the corrections log must stay its last
-block) and `components/reportajes/Pieza.jsx` (`SecHead`, the section index read
-from the DOM, the reveal-on-view hook). Figure motion animates marks, never
-text, and the resting state is the complete figure. Body-size text sits on a
-reading measure (`.cp-pieza`, ~70 characters) while boxed elements and
-headline-size type keep the full column, and everything shares the column's left
-edge — never centre the measure, which gives text and boxes two left edges: mark
-a figure's caption `.cp-pie` (reached even inside the figure's wrapper), an
-unboxed text block `.cp-texto`, a paragraph that keeps the full column (boxed, or
-set at headline size) `.cp-ancho`. A header card whose value the figure prints verbatim
-hides where the figure shows (`cifrasDelEmblema`, guarded by a test that reads
-the drawn SVG). In a figure, red (`fallo`) marks only what the piece documents as
-a failure; what it merely looks at is petrol (`foco`).
-
-`/curator` is the local-only admin dashboard (see the plugin note above).
-
-Legacy `/hud` `/briefing` `/d` `/variants` `/ciudad` `/overview` were removed.
-Do not reintroduce them.
+- What every pieza shares lives once: the layout route
+  `pages/reportajes/Armazon.jsx` (reading bar, «Más reportajes» — outside the
+  pieza's container, because the corrections log must stay its last block) and
+  `components/reportajes/Pieza.jsx` (`SecHead`, the section index read from the
+  DOM, the reveal-on-view hook).
+- Figure motion animates marks, never text, and the resting state is the
+  complete figure.
+- Body text sits on a ~70-character reading measure (`.cp-pieza`); boxed
+  elements and headline-size type keep the full column, and everything shares
+  one left edge — never centre the measure. `.cp-pie`, `.cp-texto` and
+  `.cp-ancho` mark the exceptions; `src/index.css` explains each beside
+  `.cp-pieza`.
+- A header card whose value the figure prints verbatim hides where the figure
+  shows (`cifrasDelEmblema`, guarded by a test that reads the drawn SVG).
+- In a figure, red (`fallo`) marks only what the piece documents as a failure;
+  what it merely looks at is petrol (`foco`).
 
 ### Styling
 
 Tokens are CSS variables in `src/index.css` with an `html.dark` override block.
-Tone names (`civic`, `ok`, `warn`, `crit`, `intel`, `neutral`, `ghost`) flow
-through `Pill` and `Delta`; add semantic colours there, not inline. `.mono` is
+Tone names (`TONE_NAMES` in `components/Primitives.jsx`) flow through `Pill`,
+and `Delta` colours by sign; add semantic colours there, not inline. `.mono` is
 DM Mono with tabular numerals, for every numeric value.
 
 Components use **inline styles driven by those variables**, not CSS modules or
@@ -146,19 +152,19 @@ and deliberately does not follow dark mode.
 
 ### Charts & maps
 
-`src/components/Charts.jsx` holds the SVG primitives. Leaflet surfaces:
-`LiveCity/StylizedMap.jsx` (landing — a thin orchestrator over `network/`,
-`popups/`, `layers/`, `controls/`; each layer conditionally mounted so a hidden
-layer's rAF/WMS never runs) and `QuejasHeatmap.jsx` (`/quejas`).
+Figures are per-domain SVG components (`src/components/Charts.jsx` now holds
+only `Sparkline`). The landing's Leaflet map, `LiveCity/StylizedMap.jsx`, is a
+thin orchestrator over `network/`, `popups/`, `layers/`, `controls/`; each
+toggleable layer is conditionally mounted so a hidden layer's rAF/WMS never
+runs. `/quejas`, `/presupuesto` and `/empleo` carry their own Leaflet maps.
 
-Map honesty rules, which are the point of the map:
+Map honesty rules, which are the point of every map:
 
 - **No synthetic geometry and no invented scores.** Every pin traces to a
   contract whose title named that place.
 - The place-resolver (`src/scraper/place-resolver.ts`) deliberately
-  under-matches — an honest miss beats a wrong pin. Its four gates are
-  unit-tested in `tests/parse-place-resolver.test.ts`; read them before
-  loosening anything.
+  under-matches — an honest miss beats a wrong pin. Its gates are unit-tested in
+  `tests/parse-place-resolver.test.ts`; read them before loosening anything.
 - A layer that shows a fraction of its domain must **say so**. The spending
   layer paints a few percent of municipal contracting, because most municipal
   money is town-wide service contracts with no address — `MoneyCoverage.jsx`
@@ -169,7 +175,7 @@ Map honesty rules, which are the point of the map:
 ## Data pipeline
 
 ```
-scripts/scrape-<x>.ts   fetch + CLI (the only place `fetch` lives)
+scripts/scrape-<x>.ts   fetch + CLI (or a src/scraper/*-fetch.ts helper)
   → src/scraper/<x>.ts  pure parser, no network, tested against a fixture
   → public/data/<x>.json
   → src/hooks/use<X>.js  returns { loading, error, data }
@@ -182,11 +188,13 @@ snapshot from other snapshots. Re-running any adapter is idempotent.
 Hooks all ride one delivery layer — `useJsonFetch` → `useSnapshot` → the
 module-level snapshot store (`src/lib/snapshot-store.js`), a session-lifetime
 single-flight cache. Concurrent mounts share one fetch; navigation does not
-refetch. Deliberate bypasses: `useLabHealth` (measures raw bytes) and the
-Open-Meteo hooks. No React Query — the store is ~150 lines.
+refetch. Deliberate bypasses: `useLabHealth` (measures raw bytes), the
+Open-Meteo hooks, and `PlenoDetalle`'s raw transcript `.txt`. No React Query —
+the store is ~150 lines.
 
-Prefer a precomputed scalar over shipping a corpus: `/departamentos` reads a
-~12 KB cross-tab from the claims manifest rather than the 6 MB chunk set.
+Prefer a precomputed scalar over shipping a corpus: `/departamentos` reads the
+`totals.byTopicVerdict` cross-tab from the claims manifest rather than the
+per-pleno chunk set.
 
 ### TDD cadence
 
@@ -201,13 +209,15 @@ Three commits per adapter:
 
 Fixtures are the RED contract; commit them. Shared primitives live in
 `src/scraper/normalize.ts` and `src/scraper/hash.ts` — `fnv32` / `sha256Short`
-are the stable IDs rows key on, so never fork a local copy.
+are the stable IDs rows key on, so never fork a local copy. Nor "correct" them:
+`fnv32` multiplies without `Math.imul`, so it is not textbook FNV-1a, and making
+it so would re-key every row ID.
 
 ### Data integrity
 
 `docs/DATA_INTEGRITY.md` is the output of an audit that found ~30 real defects
 across every pipeline here. Read it before writing an adapter. The four rules
-that would have prevented the most damage:
+that would have prevented the most damage (code comments cite them by number):
 
 1. **Export the enum; never restate it in a test.** Six tests hand-copied a
    shape and stayed green while production matched nothing. The costliest: the
@@ -219,290 +229,194 @@ that would have prevented the most damage:
    skipped-with-reason separately. Folding "never attempted" into "unchanged" is
    what let a pass report `re-judged 1017` having made zero LLM calls.
 3. **A sentinel is never a value.** `Otro` meant both "a party" and "cannot
-   tell"; with one councillor under it, publishing it named him by elimination.
-   Name the thing or return `null`.
+   tell"; with one councillor under it, publishing it named that councillor by
+   elimination. Name the thing or return `null`.
 4. **Nothing automatic rewrites published prose.** Automated verdicts may only
    go down (retract), never up. Corrections go through the corrections CLIs so
    they leave a record.
 
-The same trap applies to front-end gates. Two suites here were green while
-measuring nothing: a mobile responsive test whose pass condition was satisfied
-_by_ the clipping bug it should have caught, and an axe contrast gate reporting
-zero violations from a rule that never ran (Leaflet tiles defeat background
-resolution). **Assert that the check evaluated something**, not just that it
-found nothing.
+**Never write a row count, euro total or test count into a doc.** Every one that
+was here was wrong when audited on 2026-08-03, some by 4×. Read totals from a
+snapshot's `stats` block where it has one; the suites report their own. A dated
+record (like `docs/REVIEW_2026-09.md`) may carry figures if it says so at the
+top.
 
-**A front-end change is not done until it has been looked at in a browser.**
-Build it, serve it, open it, and measure the thing you changed against the thing
-it is supposed to line up with — then check it in dark mode and at 375px. The
-suites cannot see a layout. The band that marks the missing 2020 entrega on
-`/eficiencia` shipped covering exactly half the hole it marks — 90px floating
-inside a 181px gap, blank on both sides — with the whole unit suite, the axe
-pass and the mobile spec green, because every one of them asserts about data and
-text. A `getBoundingClientRect()` on both edges is what caught it, one commit
-too late, and the user saw it before the tests ever could. "Green" and "right"
-are different claims; only one of them is about what a reader sees.
+## Checking what a reader sees
 
-The same split governs the reader-review. `review:surfaces` asks whether a page
-_says_ something true, which no data check can — the four defects fixed on
-2026-08-12 all had their figure right and their sentence wrong. It runs in two
-places, and the division matters: the **pre-push hook** reads the routes that
-push can have broken, derived from the import graph, every time; the
-**twice-weekly sweep** (`scripts/review-sweep.sh`, launchd, Monday and Thursday
-— git hooks do not run in Actions, and Actions has no $0 LLM backend) reads
-every public route, because the nightly commits data and nobody pushes those
-pages. It was daily until 2026-09-23; the cadence and its cost are in
-`docs/OPERATIONS.md`. `check:surfaces` reports
-into the existing `monitor:health` digest when a page goes unread or a flag is
-left standing.
+"Green" and "right" are different claims; only one of them is about what a
+reader sees.
 
-**One class of defect does not need a model, and this site produced it seven
-times in one day**: calling a budget credit «gastado». The municipality has five
-magnitudes the prose collapses into one word — crédito inicial 37,60 M€, plus
-24,52 M€ of modifications, definitive credit 62,12 M€, 41,58 M€ reported to
-CONPREL, and obligaciones reconocidas 18,91 M€, which is the only one actually
-spent. A reader who sums the budget chapters and reads «se gasta» is wrong by
-2,2×, and no data guard can see it: the numbers are right and the word is wrong.
-`src/scraper/magnitudes-fiscales.ts` derives the magnitudes from the snapshots
-and flags an execution word qualifying a figure that is not execution, with no
-LLM call and no chance of hallucinating. It runs inside `review:surfaces` on the
-text already rendered there, and its findings ride the same cache, digest and
-dismissal channel — a second channel would be one more guard nobody reads. It
-deliberately does not judge prose without a figure beside it: a deterministic
-check stretched into style is a false-positive machine, and a false positive here
-spends the attention the real ones need.
-
-«The routes that push can have broken» was a promise the hook did not keep until
-2026-08-23. It derived them with a **two-dot** `git diff origin/main..HEAD`,
-which compares the two TIPS: with the branch even slightly behind, everything
-main had moved counted as changed here. Measured on one push — 45 files and 10
-routes where three dots give 23 and 2. And `--rotate` made it worse than noise:
-it orders by staleness, so the phantom routes sorted AHEAD of the two the push
-had actually rewritten, which had just been read. The better a page was kept,
-the less likely the review reached it. Three dots now, plus a refresh of
-`origin/main` first — with a stale ref the merge-base is computed against an old
-main and the phantoms come back. `tests/prepush-range.test.js` pins both, and
-strips comments before matching, because the comment explaining this quotes the
-wrong form.
-
-Removing the phantoms was only half of it, and the other half took until
-2026-08-26. The inversion was never caused by the phantoms — it is caused by
-the ORDER, and it happens just as well with routes that are all legitimate: on
-the Revisión Eficiencia push, nineteen real routes, and the two the change was
-entirely about came last because they had been read that morning and the other
-seventeen had not. Two things were wrong underneath. **Centrality was computed
-and thrown away** — `routes-for-changes` collected into a `Set`, so a
-translations file touched in passing and the twenty-four files of the actual
-redesign produced flat, indistinguishable lists. And **two whole classes of
-change reached no route at all**: `src/index.css` and everything `App.jsx`
-imports statically — the shell — because the graph only seeded from the page
-modules behind `import()`, and the effect-import `import './index.css'` has no
-`from` for the edge regex to catch. So the hook now asks for the routes ordered
-(direct first — the page's own module changed — then by inverse fan-out) and
-passes `--rotate-desde <n directas>`, which keeps that head in the caller's
-order and rotates only the tail. Rotation was always right for what does not
-fit; it was never right for the head. The budget is unchanged and stays low on
-purpose: the fast gate reads ONE route, and the defect was always **which**.
-
-Do not "fix" the CSS blind spot by adding `.css` to the graph's file filter. It
-is inert — `alcanzaEstatico` adds whatever it resolves, listed or not, and
-`index.css` reaches its thirty routes with the filter in or out, measured both
-ways. The load-bearing change is the effect-import edge.
-
-Never write a row count, euro total or test count into a doc. Every one that was
-here was wrong when audited on 2026-08-03, some by 4×. Snapshots carry a `stats`
-block; the suites report their own totals.
+- **Assert that a check evaluated something**, not just that it found nothing.
+  Two suites here were green while measuring nothing: a mobile test whose pass
+  condition was satisfied _by_ the clipping bug it should have caught, and an
+  axe contrast gate reporting zero violations from a rule that never ran
+  (Leaflet tiles defeat background resolution).
+- **A front-end change is not done until it has been looked at in a browser.**
+  Build it, serve it, open it, and measure what you changed against what it
+  should line up with (`getBoundingClientRect()` on both edges); then check dark
+  mode and 375px. The suites assert about data and text and cannot see a layout
+  — `SerieServicio.jsx` tells of a band that shipped covering half the hole it
+  marks with every suite green.
+- **The reader-review asks whether a page _says_ something true**, which no data
+  check can. `review:surfaces` runs in the pre-push hook and in a twice-weekly
+  sweep of every public route (`scripts/review-sweep.sh`, launchd), because git
+  hooks do not run in Actions, Actions has no $0 LLM backend, and the nightly
+  commits data nobody pushes. `check:surfaces` reports unread pages and standing
+  flags into the `monitor:health` digest; cadence and cost are in
+  `docs/OPERATIONS.md`. The `revisar-superficies` skill is the same reading by
+  hand.
+- **Never call a budget credit «gastado».** Of the budget's five magnitudes —
+  crédito inicial, modificaciones, crédito definitivo, the CONPREL return,
+  obligaciones reconocidas — only the last is spending; prose that collapses
+  them misstates spending by more than 2× with every number right.
+  `src/scraper/magnitudes-fiscales.ts` flags an execution word beside a figure
+  that is not execution, with no LLM call, inside `review:surfaces` and its
+  dismissal channel — a second channel would be one more guard nobody reads. It
+  ignores prose with no figure beside it on purpose: a deterministic check
+  stretched into style is a false-positive machine.
+- **The pre-push review's route selection** (`scripts/routes-for-changes.ts`
+  over `scripts/lib/route-graph.ts`) has been wrong three ways already — a
+  two-dot diff, a flat unordered route set, a graph blind to CSS and the shell.
+  Read both headers and `.husky/pre-push` before touching it. Adding `.css` to
+  the graph's file filter is inert; `tests/prepush-range.test.js` pins the
+  three-dot range.
 
 ## Legally material surfaces
 
-Five surfaces make claims about named elected officials: `/promesas`,
-`/hallazgos`, `/declaraciones`, `/departamentos`, `/laboratorio/agentes`. Treat
-any change to them as legally material. The rules below are encoded in schema
-validators and CLIs — if you find yourself working around one, stop.
+These make claims about named elected officials: `/promesas`, `/hallazgos`,
+`/declaraciones`, `/departamentos`, `/laboratorio/agentes`, and the signed
+area-fit block on `/cargos/:slug`. Treat any change to them as legally material.
+The rules below are encoded in schema validators and CLIs — if you find yourself
+working around one, stop.
 
-`/eficiencia` and its sibling `/gestion` are the sixth legally material surface.
-They used to be the only ones that named **nobody**; since 2026-08-23 they name
-the holder of the delegated competence beside each ficha, and the line moved
-rather than disappeared — see **competence, not blame** below. They are one
-feature split by SOURCE —
-`/eficiencia` is everything from the _coste efectivo_ return, `/gestion` is the
-PMP series, CONPREL, the contractor profile and the execution statement — behind
-one flag, sharing `eficiencia-findings.json`; each ficha renders on the page
-where its indicator lives, and every municipal indicator declares its own
-`panel` so the split cannot drift into a hand-kept list. Their findings describe
-a service's unit cost or a municipal process, so
-`eficiencia-finding.ts` has no field for a person and actively rejects
-`pleno-finding.ts`'s (`individualSpeaker`, `speakerGroup`, `quotes`, `severity`)
-in case a row is ever copied across. A finding's right of reply is
-institutional — ayuntamiento / intervención / concesionario / ministerio. Keep
-it that way: a unit cost hung on a named councillor is a materially different
-claim from one hung on a service, and only the second is what the ministry's
-return supports.
+**`/eficiencia` and its sibling `/gestion` are legally material too.** They are
+one feature behind one flag, split by SOURCE — `/eficiencia` is the _coste
+efectivo_ return; `/gestion` is PMP, CONPREL, the contractor profile and the
+execution statement — sharing `eficiencia-findings.json`. Every municipal
+indicator declares its own `panel`, so the split cannot drift into a hand-kept
+list. A finding describes a service's unit cost or a municipal process, never a
+person: `eficiencia-finding.ts` rejects `pleno-finding.ts`'s person fields
+(`CAMPOS_PROHIBIDOS`) in case a row is ever copied across, and its right of
+reply is institutional (`RESPONDENTES`). A unit cost hung on a named councillor
+is a materially different claim, and not one the ministry's return supports.
 
-**Competence, not blame.** What the pages now name, in `competencias.json`, is
-who holds the delegated competence — republishing what the council itself puts
-on its transparency portal, so a reader knows who to ask. That is not the same
-claim as the finding, and the split is load-bearing: the signed ficha still
-cannot name a person, and the tier caveat renders in the same card as the name,
-so «81.964,66 €/efectivo» never appears beside a councillor without its «es un
-precio y no un rendimiento». The schema has **no field where a judgement fits**,
-and its validator rejects `pleno-finding.ts`'s fields and any valoración-shaped
-key. Three more rules, each with a scar behind it: the map is **curated and
-frozen** because `officials.json` is scraped nightly and a cron must never
-change which living person sits beside a published figure (`check:competencias`
-reds instead, four outcomes); each row declares `literal` or `editorial` and an
-editorial one needs its `razon`, because a jump we made is not a jump the
-council made; and a service no portfolio names gets `sinAsignar` with a motive,
-never a guess — naming by elimination is the `Otro` sentinel again. Named people
-get a personal right of reply, and the LOREG freeze hides the whole layer.
-Naming is **not** regrouping: service cards
-group under functional `AREAS` declared per-service in the registry (never
-concejalías — grouping by cargo would make the page a scoreboard of people,
-which is a stronger claim than «this is who answers»);
-`eficiencia-preguntas.json` is hand-curated (reportaje class, PR-reviewed; its
-validator rejects person-shaped fields and any «pregunta» that is not
-interrogative); and the reportaje's infographic is served frozen from
-`public/infografias/`, figure-synced to the reportaje JSON by
-`tests/infografia-sync.test.js`.
+**Competence, not blame.** Since 2026-08-23 the pages also name, from
+`competencias.json`, who holds each delegated competence — republishing the
+council's own transparency portal, so a reader knows whom to ask. That is not
+the finding's claim, and the split is load-bearing (`competencias.ts`' header
+has the reasoning):
 
-`/laboratorio/frontera` is a different animal and the boundary matters.
-Everything else here transcribes or divides numbers somebody else published; a
-DEA score is **our model's verdict**, and its modelling choices move it — four
-defensible baskets send Riba-roja's score across half the scale. Three rules,
-all enforced by `check:dea` and its e2e spec:
+- The signed ficha still cannot name a person, and the tier caveat («es un
+  precio y no un rendimiento») renders in the same card as the name.
+- The schema has **no field where a judgement fits**; its validator rejects
+  `pleno-finding.ts`'s fields and any valoración-shaped key.
+- The map is **curated and frozen**: a nightly scrape of `officials.json` must
+  never change which living person sits beside a published figure —
+  `check:competencias` reds instead.
+- An `editorial` row (a jump we made, not the council) needs its `razon`; a
+  service no portfolio names gets `sinAsignar` with a motive, never a guess —
+  naming by elimination is the `Otro` sentinel again.
+- Named people get a personal right of reply, and the LOREG freeze hides the
+  whole layer.
+- Naming is **not** regrouping: cards group under functional `AREAS`
+  (`indicador-registry.ts`), never by concejalía — grouping by cargo would make
+  the page a scoreboard of people.
 
-1. **No other municipality is ever named.** `/eficiencia` does name its peers,
-   because there the figure is the ministry's own division and hiding the
-   comparison set would break the show-your-work contract. Here, naming would
-   sign a claim about twenty councils that have no right of reply on this site.
-   The full method ships instead, so anyone can rebuild the table we refuse to
-   publish.
-2. **Specifications that fail are published as failed.** A page showing only the
-   basket that worked is showing the result instead of the method.
-3. **It never generates a finding.** `eficiencia-finding.ts` freezes a
-   measurement from the published panel; a DEA score is not one, and routing it
-   into the signed-findings pipeline would launder a model output into the
+`eficiencia-preguntas.json` is hand-curated (its validator rejects person-shaped
+fields and any «pregunta» that is not interrogative). The reportaje's
+infographic is served frozen from `public/infografias/`, figure-synced to the
+reportaje JSON by `tests/infografia-sync.test.js`.
+
+**`/laboratorio/frontera` publishes our model's verdict**, not a number somebody
+else published: a DEA score moves with its modelling choices, so the choices are
+part of what is published. Three rules — `check:dea` and its e2e spec enforce
+the first two; the third is policy:
+
+1. **No other municipality is ever named.** `/eficiencia` names its peers
+   because there the figure is the ministry's own division; here, naming would
+   sign a claim about councils with no right of reply on this site. The full
+   method ships instead, so anyone can rebuild the table we refuse to publish.
+2. **Specifications that fail are published as failed.** Showing only the basket
+   that worked shows the result instead of the method.
+3. **It never generates a finding.** That would launder a model output into the
    legally material surfaces.
 
-`/laboratorio/coste-esperado` (the OLS expected-cost experiment) inherits the
-same three rules unchanged — its sample is published anonymous and
-population-sorted, failed specifications ship as failed, and its residuals
-never become findings — enforced by `check:coste-esperado`, which is
-`check:dea`'s sibling and reproduces the whole analysis from the published
-sample alone.
+`/laboratorio/coste-esperado` (the OLS expected-cost experiment) inherits all
+three — its sample is published anonymous and population-sorted, failed
+specifications ship as failed, its residuals never become findings.
+`check:coste-esperado` re-fits it from the published sample alone.
 
-The first two families are also **enforced, not just documented**:
-`.claude/hooks/guard-curated-writes.mjs` denies a direct write to a curated file
-(naming the CLI that owns it) and asks before a new draft-shaped file appears
-under `public/`. Both had already been broken in production, which is the bar
-for moving a rule out of this file and into a hook.
+### What may publish
 
-**If a `git add` starts refusing files, the working tree is probably podado.**
-This project never uses `sparse-checkout`, so any pattern here comes from
-outside — and `git sparse-checkout set` marks everything beyond the cone
-`skip-worktree` and DELETES it from disk while `git status` reports nothing
-missing, because to git nothing is. It happened four times between the 18th and
-the 23rd of August 2026 and took `docs/` with it once. `check:sparse` runs in the
-pre-commit and in the nightly, refuses to work on a pruned tree, and says how
-many files are hidden; `npm run check:sparse -- --fix-all` repairs every
-worktree, main checkout included. **Disable before deleting the pattern**: with
-the flag still on and no patterns, cone mode means «nothing matches», and a
-reapply left a test tree holding a single file. The trigger was a plugin's
-`git-subdir` source landing its sparse-checkout on whatever repo the session's
-cwd was in — so the suspect, if this returns, is always a plugin with that kind
-of source.
+**Curated files are never written by automation.** Route algorithmic output
+through the curator CLI that owns the file, so the validator and git history
+stay authoritative. The list, with each file's CLI, is `CURATED` in
+`.claude/hooks/curated-paths.mjs` — the one the guard hook enforces. Do not copy
+it here; the copy that was here had drifted from it.
 
-Two more things about worktrees, both measured the hard way. `core.hooksPath` is
-an absolute path into the main checkout, so **a push from any worktree runs the
-main checkout's hooks** — no `.husky/` change can be tested by pushing from a
-worktree, only by invoking it directly. And a config flag on a worktree lives in
-its own `config.worktree`: a leftover pattern file with the flag still `true` is
-not inert, it is primed.
+**What runs without a human is decided by `decideAutomation`**
+(`src/scraper/automation-policy.ts`), not by each script. Weakening actions —
+retract, downgrade, unpublish — run unattended (tier A). Additive publication
+that names nobody runs unattended only once its class has a measured precision
+over the bar for its severity (tier B). Naming an individual, or anything
+outward-facing, always takes a human (tier C), and an unmeasured class falls to
+C: nothing is unlocked by assertion. New automation goes through it; the press
+and promise auto-curators predate it and do not call it yet
+(`docs/REVIEW_2026-09.md` §25).
 
-**This working tree is never quiet, so a tree-moving git command is a write to
-something else's file.** Five launchd agents run against this checkout on their
-own schedule, write `public/data/`, and end with their own `git commit` + `git
-push origin main`. On 2026-09-05 a `git stash push` on one speaker map — meant
-as a harmless A/B of a curated change — sat for twelve minutes while the
-`hallazgos` agent started the extractor for that same session. The extractor
-resumes from the file on disk, so it read the stashed-away version and restarted
-from 299 segments instead of 655. The worse loss was the measurement itself: the
-"before" and "after" halves fell on opposite sides of a live rewrite, so the
-numbers described the cron's progress rather than the change under test.
-**To compare two versions, copy them aside (`git show HEAD:<path>` and `cp`) —
-never move the tree.** `.claude/hooks/live-tree-paths.mjs` asks before a
-tree-moving command (and before a `git push`, which races the agents' own) and
-is silent when nothing is running, so it costs nothing on a quiet machine. It
-derives the running set from the process table rather than a roster, because a
-hand-kept list inside a control against stale state goes stale itself.
+**A suggestion never substitutes for a published status.** Machine rows awaiting
+a human carry `requiresHumanApproval: true`, and the curated schemas reject that
+field or drop it on re-validation. It is not a publication marker by itself: the
+pleno-claim chunks the pages render keep it as extraction metadata, and their
+editorial gate is `claim-public-gate.ts`.
 
-A second hook clears the same bar for a different failure: **prose goes stale
-when the data moves**. Three sentences on `/eficiencia`, `/metodologia` and the
-municipal panel each kept asserting something that had stopped being true one
-commit earlier — a caveat excusing a figure with the wrong reason, "there is no
-time series" after ten entregas shipped, "only PMP has a comparison" as a second
-one gained peers. No test caught any of them: the data was right and the guards
-check data. `.claude/hooks/remind-stale-copy.mjs` names the routes whose prose
-describes a snapshot at the moment that snapshot is rewritten. It reminds, never
-blocks — a reminder that can fail an edit is one people switch off. The better
-fix, where it applies, is to derive the sentence from the data instead of
-restating it, as `PanelMunicipal` now does with the list of compared indicators.
+**Attribution is bloc-level until a curator promotes it — and a one-seat bloc is
+not bloc-level.** The extractor's `speakerGroup` is one of `SPEAKER_GROUPS`
+(`src/scraper/pleno-votes.ts`) or `null`, whatever voice ID matched; only a
+curator crosses to naming an individual, per finding. But a bloc holding a
+single seat names its councillor by elimination, and in this corporation that is
+most of the opposition. `singleSeatBlocs()` (`src/scraper/corporation-seats.ts`)
+derives them from the seats — never hard-code the list — and tagging one means
+`namesIndividual: true`, which is tier C.
 
-Its snapshot→routes map is **derived, not hand-kept** (`npm run build:prose-map`
-walks hook literals, the import graph and `App.jsx`'s routes). The first version
-was a hand-written table of nine entries; the code had sixty-four. A hand-kept
-table inside a control against staleness goes stale itself, which is the joke
-this repo has already told twice. A test regenerates it with `--check` and fails
-on drift, and the module exports `MAPA_CARGADO` so a map that fails to load is
-distinguishable from a map with nothing to say.
+**Anything under `public/` is published — and so is anything committed.** Vite
+copies `public/` into `dist/` and the deploy uploads `dist/` prebuilt, so a file
+there is fetchable by URL whether or not a page links to it ("not rendered" is
+not "not published"), and `.vercelignore` holds nothing back. The one way to
+keep a file under `public/` off the site is `publication-denylist.js`, applied
+to `dist/` by `vite.config.js`: it strips the files it names plus any JSON
+carrying `requiresHumanApproval: true` rows that no browser module requests, and
+`tests/publication-denylist.test.ts` checks the built artifact. That keeps a
+file off the site, not out of the repository, which has been public since
+2026-09-08. Unreviewed machine prose about a living person goes in `editorial/`
+(gitignored; `check:editorial` refuses it staged, because `.gitignore` does not
+untrack what is already tracked).
 
-**Curated files are never written by automation.** `promises.json`,
-`pleno-votes.json`, `pleno-findings.json`, `journalist-reports.json`,
-`quejas-responses.json`, `sindic.json`, `dedicaciones.json`, `plantilla.json`,
-`place-overrides.json`, `entity-overrides.json`, `eficiencia-findings.json`,
-`eficiencia-preguntas.json`, `pleno-claim-reclassifications.json`,
-`pleno-claim-reanchors.json`,
-`competencias.json`, `sociedades.json`, `solicitudes-acceso.json`,
-`officials-corrections.json`.
-Route algorithmic output through the curator CLI so the validator and git
-history stay authoritative. The full list and its CLIs: `docs/DATA_SOURCES.md`.
+**A verbatim stays put; a number does not.** A quote from a March pleno will
+read the same in ten years, so `check:citations` only has to confirm it is still
+where it says. «62,68 días» can go false with nobody touching the page, because
+the ministry revises an entrega. So each efficiency ficha freezes its
+measurement — value, period, source cell — and `check:eficiencia-findings`
+re-reads the live panel with **four** outcomes: `coincide`; `movido` (the panel
+advanced a period — a notice); `contradice` (the same period now says something
+else); `sin-indicador`. The last two exit 1. Fold "I could not find it" into
+"matches" and the gate prints its own all-clear — the `r?.findings ?? []` defect
+again. Apply the same shape to any future claim type whose subject is a figure
+rather than a sentence.
 
-**A verbatim stays put; a number does not.** That is the one way the efficiency
-findings differ in kind from every other claim here. A quote from a March pleno
-will read the same in ten years, so `check:citations` only has to confirm it is
-still where it says. «62,68 días» can go false with nobody touching the page,
-because the ministry revises an entrega. So each ficha freezes its measurement —
-value, period, source cell — and `check:eficiencia-findings` re-reads the live
-panel with **four** outcomes, not two: `coincide`; `movido` (the panel advanced a
-period — a notice, since the ficha says which period it speaks of);
-`contradice` (the same period now says something else); `sin-indicador`. The last
-two exit 1. Fold "I could not find it" into "matches" and the gate prints its own
-all-clear, which is the `r?.findings ?? []` defect again. Apply the same shape to
-any future claim type whose subject is a figure rather than a sentence.
+Beyond those:
 
-**Anything under `public/` is published.** Vercel serves the whole directory, so
-a file there is fetchable by URL whether or not a page links to it. "Not
-rendered" is not "not published" — that assumption left 24 unreviewed drafts
-about named councillors web-fetchable for weeks. Unreviewed machine prose about
-a living person goes in `editorial/` (gitignored).
-
-**Attribution is bloc-level until a curator promotes it.** The extractor's
-`speakerGroup` enum is PSOE / PP / VOX / Compromís or null, regardless of what
-voice ID matched. Only a curator crosses to naming an individual, per finding.
-
-Beyond those three:
-
-- **Suggestions never substitute for a published status.** Machine-written rows
-  carry `requiresHumanApproval: true`, and the published schema rejects that
-  field — two independent layers.
-- **Evidence gates the strong verdicts.** `promises.ts`'s `V1_STATUSES` keeps
-  `cumplida` / `no-ejecutada` / `inviable` from shipping without a dated,
-  URL-backed citation. A `critical` finding requires ≥1 evidence ref. A `dueBy`
-  on a pleno vote requires a verbatim `dueBySource` clause from the acta.
+- **Evidence gates the strong verdicts.** A promise status outside
+  `promises.ts`'s `V1_STATUSES` (`documentada`, `en-verificacion` — the two that
+  assert nothing yet) needs ≥1 evidence entry. A `critical` finding needs ≥1
+  _contradiction_ ref: a cross-checked document is not a refutation. A `dueBy`
+  on a pleno vote needs a `dueBySource` clause copied verbatim from the acta —
+  the validator checks only its length, so the verbatim part is on you.
   Machine-inferred deadlines reintroduce exactly the risk these block.
 - **A citation has to resolve before it publishes.** `check:citations` blocks a
-  promotion whose claims cite a missing source, whose quote is not verbatim in
-  the excerpt it cites, or whose URL is dead. It classifies URLs
+  journalist-report promotion (`promote-report`) whose claims cite a missing
+  source, whose quote is not verbatim in the excerpt it cites, or whose URL is
+  dead; elsewhere it only reports. It classifies URLs
   `alive`/`dead`/`unverifiable` and only `dead` blocks — a check wrong four
   times in forty-eight is one everybody skips. What it cannot judge — does the
   excerpt _support_ the sentence or merely relate to it — is the
@@ -512,16 +426,80 @@ Beyond those three:
   transcrito" and is never counted overdue. Overdue flags never flip a status.
 - **Opinion is not verifiable.** The verifier's `opinativa` short-circuit to
   `sin-datos` is policy, not a heuristic. Do not loosen it.
-- **LOREG electoral freeze.** `frozenUntil` in `promises.json` puts `/promesas`
-  into read-only mode and halts the suggestion engine, the auto-curators, the
-  journalist agent and the bot's broadcasts. Toggle only via
-  `npm run freeze:set -- YYYY-MM-DD` / `freeze:clear`.
-- **Right of reply is end-to-end** for promises, findings, quejas and journalist
-  reports: a GitHub Issue form → an ingest workflow → a validator-fronted CLI →
-  a commit. Keep new claim types wired the same way.
+- **LOREG electoral freeze.** `frozenUntil` in `promises.json` is the one
+  switch: it puts `/promesas` into read-only mode and halts every automated path
+  that could move a claim about a candidate — suggestion engines, auto-curators,
+  promotions, the journalist agent, relation engines, overdue flags, the
+  competencia and area-fit layers, the bot's broadcasts. Grep `frozenUntil` for
+  the full set; `bot-deploy.yml` redeploys the bot when it changes. Toggle only
+  via `npm run freeze:set -- YYYY-MM-DD` / `freeze:clear`.
+- **Right of reply is end-to-end, and a maintainer publishes it.** Replies
+  arrive by GitHub Issue form or by email (`/aviso-legal#rectificacion`); filing
+  only routes one. An `ingest-*` workflow publishes it when someone with write
+  permission adds `publicar` — a label no template applies — re-checking that
+  permission, then running the validator-fronted CLI and committing. Promise and
+  competencia replies have no workflow: a maintainer runs `npm run reply` /
+  `competencia-reply`. `tests/ingesta-aprobacion.test.js` pins the gate. Keep
+  new claim types wired the same way.
 
 `/metodologia` and `/aviso-legal` are the **published editorial contract**, not
 marketing copy. When any of this behaviour changes, update them in the same PR.
+
+## Working in this checkout
+
+**Claude Code hooks enforce what this file used to only ask**
+(`.claude/settings.json`); a rule moves into a hook once it has been broken in
+production, and each module's header tells how. Every write and Bash command
+passes through `.claude/hooks/guard-curated-writes.mjs`, which chains
+`curated-paths.mjs` (**denies** a Write or Edit to a curated file and names the
+CLI that owns it; asks before a draft-shaped file appears under `public/`),
+`irreplaceable-paths.mjs` (asks before deleting gitignored state that has no
+other copy — voiceprints, run manifests, the LLM and review caches),
+`live-tree-paths.mjs` (below), `measure-media.mjs` (asks before a transcription
+or voice-ID run, showing the media's measured duration) and `curl-hosts.mjs`
+(never asks; **denies** a `curl` that could exfiltrate or hide its destination,
+and logs reads from unknown hosts). Do not work around a deny. After a Write or
+Edit, `remind-stale-copy.mjs` computes the routes whose prose describes the
+snapshot just rewritten — though, as wired today, the model never sees its
+output (below).
+
+**The curator's working tree is never quiet, so there a tree-moving git command
+is a write to something else's file.** The local launchd agents
+(`docs/OPERATIONS.md` §Local scheduled jobs) run against that checkout on their
+own schedule; most write `public/data/` and end with their own `git commit` +
+`git push origin main`, and the extractors resume from the files on disk. **To
+compare two versions, copy them aside (`git show HEAD:<path>` and `cp`) — never
+stash, checkout or reset to do it**, here or anywhere. `live-tree-paths.mjs`
+derives the running set from the process table rather than a roster; its header
+tells the 2026-09-05 incident.
+
+**If a `git add` starts refusing files, the tree has probably been pruned.**
+This project never uses `sparse-checkout`, so a pattern comes from outside —
+last time, a plugin whose `git-subdir` source landed its sparse-checkout on the
+session's cwd. Pruned files vanish from disk as `skip-worktree` while
+`git status` reports nothing missing. `check:sparse` refuses a commit from a
+pruned tree and reds the nightly; `npm run check:sparse -- --fix-all` repairs
+every worktree, main checkout included. **Disable before deleting the pattern**:
+with the flag still on and no patterns, cone mode means «nothing matches».
+History: `scripts/check-sparse.ts`.
+
+**Worktrees.** On the curator's machine `core.hooksPath` is an absolute path
+into the main checkout, so a push from any worktree runs the main checkout's
+hooks — a `.husky/` change can only be tested by invoking it directly. A
+worktree's config flags live in its own `config.worktree`: a leftover pattern
+file with the flag still `true` is not inert, it is primed.
+
+**Prose goes stale when the data moves**, and no data guard notices: the data is
+right and the sentence is wrong. The better fix is to derive the sentence from
+the data, as `PanelMunicipal` does with its list of compared indicators.
+Otherwise, after a snapshot changes, look it up under `snapshots` in
+`.claude/hooks/prosa-map.json` and re-read the routes it lists. The map is
+**derived, not hand-kept** (`npm run build:prose-map`), and
+`tests/stale-copy-paths.test.js` regenerates it with `--check` and fails on
+drift. `remind-stale-copy.mjs` is meant to do that lookup for you, but do not
+count on it: it fires only on a Write or Edit, not when a script regenerates a
+snapshot (the usual path), and it prints to stderr with exit 0, which Claude
+Code keeps out of the model's context.
 
 ## Ethics of collection
 
@@ -530,14 +508,16 @@ datos.gob.es CC-BY, PLACSP/BDNS reuse clauses, OSM ODbL, Wikidata CC0).
 Councillor photos are re-hosted from the council's own publication.
 
 Keep scrapers polite: identify the project in a `User-Agent`, never loop
-tightly, cache raw payloads locally while iterating. Aggregate anything
-personal — citizen complaints especially — to neighbourhood level before it
-lands in `public/data/`.
+tightly, cache raw payloads locally while iterating. Aggregate anything personal
+— citizen complaints especially — to neighbourhood level before it lands in
+`public/data/`.
 
 Queja photos are never published raw. The bot's hourly pass on Fly
-(`bot/src/services/fotos-cron.ts`; by hand, `cd bot && npm run process-photos`) boxes
-faces, plates and ID text with a vision model, hard-mosaics them, strips EXIF/GPS,
-and **fails closed** — if the vision call cannot run, the photo is held, never
-published. It writes to the bot's volume, and `pull-quejas.yml` fetches what the
-export links. `/olvidar` deletes the bot's copy at once and `pull-quejas.yml` prunes
-the published file; that is the right-to-be-forgotten enforcement point.
+(`bot/src/services/fotos-cron.ts`; by hand, `cd bot && npm run process-photos`)
+boxes faces, plates and ID text with a vision model, hard-mosaics them, strips
+EXIF/GPS, and **fails closed** — if the vision call cannot run, the photo is
+held, never published. It writes to the bot's volume, and `pull-quejas.yml`
+fetches what the export links. `/olvidar` deletes the bot's copy at once, and
+`pull-quejas.yml` prunes the published file — within minutes while the bot's
+`GITHUB_DISPATCH_TOKEN` is valid, at the daily run once it expires. That is the
+right-to-be-forgotten enforcement point.
