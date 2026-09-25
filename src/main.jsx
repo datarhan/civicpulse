@@ -4,7 +4,10 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './App'
 import Analitica from './components/Analitica'
 import { LocaleProvider } from './i18n'
+import { recuperarTrasDespliegue } from './lib/preload-recovery'
 import './index.css'
+
+recuperarTrasDespliegue()
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

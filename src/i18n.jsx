@@ -619,6 +619,11 @@ export const CATALOGUE = {
     'common.loading': 'Cargando…',
     'common.noData': 'Sin datos',
     'common.compartirWhatsApp': 'Compartir en WhatsApp',
+    'fallo.titulo': 'Esta página no se ha podido mostrar',
+    'fallo.texto':
+      'Suele pasar justo después de publicar una versión nueva de la web: la pestaña aún tenía la anterior. Recargar lo arregla casi siempre.',
+    'fallo.recargar': 'Recargar la página',
+    'fallo.portada': 'Ir a la portada',
     'dataAsOf.datos': 'Datos',
     'dataAsOf.sinFecha': 'sin fecha de generación',
     'paginacion.aria': 'Paginación del {etiqueta}',
@@ -2224,6 +2229,11 @@ export const CATALOGUE = {
     'common.loading': 'Carregant…',
     'common.noData': 'Sense dades',
     'common.compartirWhatsApp': 'Compartir per WhatsApp',
+    'fallo.titulo': 'Aquesta pàgina no s’ha pogut mostrar',
+    'fallo.texto':
+      'Sol passar just després de publicar una versió nova de la web: la pestanya encara tenia l’anterior. Recarregar ho arregla quasi sempre.',
+    'fallo.recargar': 'Recarregar la pàgina',
+    'fallo.portada': 'Anar a la portada',
     'dataAsOf.datos': 'Dades',
     'dataAsOf.sinFecha': 'sense data de generació',
     'paginacion.aria': 'Paginació del {etiqueta}',
