@@ -619,6 +619,11 @@ export const CATALOGUE = {
     'common.loading': 'Cargando…',
     'common.noData': 'Sin datos',
     'common.compartirWhatsApp': 'Compartir en WhatsApp',
+    'compartir.etiqueta': 'Compartir',
+    'compartir.telegram': 'Compartir en Telegram',
+    'compartir.copiar': 'Copiar enlace',
+    'compartir.copiado': 'Enlace copiado',
+    'compartir.mas': 'Más opciones',
     'fallo.titulo': 'Esta página no se ha podido mostrar',
     'fallo.texto':
       'Suele pasar justo después de publicar una versión nueva de la web: la pestaña aún tenía la anterior. Recargar lo arregla casi siempre.',
@@ -2240,6 +2245,11 @@ export const CATALOGUE = {
     'common.loading': 'Carregant…',
     'common.noData': 'Sense dades',
     'common.compartirWhatsApp': 'Compartir per WhatsApp',
+    'compartir.etiqueta': 'Compartir',
+    'compartir.telegram': 'Compartir per Telegram',
+    'compartir.copiar': 'Copiar l’enllaç',
+    'compartir.copiado': 'Enllaç copiat',
+    'compartir.mas': 'Més opcions',
     'fallo.titulo': 'Aquesta pàgina no s’ha pogut mostrar',
     'fallo.texto':
       'Sol passar just després de publicar una versió nova de la web: la pestanya encara tenia l’anterior. Recarregar ho arregla quasi sempre.',

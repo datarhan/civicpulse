@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Card, Pill, SectionHead, ExtLink } from '../components/Primitives'
+import Compartir from '../components/Compartir'
 import { AgendaRow } from '../components/plenos/AgendaRow'
 import { VoteTallyBar, DirectionLegend } from '../components/plenos/VoteTallyBar'
 import { VoteBreakdownRetracted } from '../components/plenos/VoteBreakdownRetracted'
@@ -390,6 +391,9 @@ export default function PlenoDetalle() {
             {t('plenoDetail.video')} ↗
           </ExtLink>
         )}
+      </div>
+      <div style={{ marginTop: 10 }}>
+        <Compartir titulo={`Pleno · ${pleno.title}`} />
       </div>
 
       {/* Summary strip */}

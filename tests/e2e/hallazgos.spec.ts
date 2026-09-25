@@ -354,6 +354,14 @@ test.describe('Hallazgo (/hallazgos/:id)', () => {
     expect(c!.y, 'la cabecera va ANTES del titular').toBeLessThan(tt!.y)
 
     await expect(page.getByText('Derecho de réplica')).toBeVisible()
+
+    // Compartir manda la dirección pública de ESTA ficha, no la de la lista.
+    const publica = encodeURIComponent(`https://www.civicpulse.es/hallazgos/${primero.id}`)
+    for (const nombre of ['Compartir en WhatsApp', 'Compartir en Telegram']) {
+      const href = await page.getByRole('link', { name: nombre }).getAttribute('href')
+      expect(href, nombre).toContain(publica)
+    }
+
     await expect(page).toHaveTitle(/· CivicPulse$/)
     expect(await page.title()).toContain(primero.title)
     expect(appErrors(errors)).toEqual([])

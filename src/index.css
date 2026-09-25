@@ -1557,6 +1557,13 @@ main:focus:not(:focus-visible) {
 }
 
 /* «Más reportajes», bajo la pieza y fuera de ella. */
+/* Compartir la pieza: en la misma columna que el pie de «Más reportajes», para
+   que empiece en el borde izquierdo del texto y no en otro. */
+.cp-compartir-pieza {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 18px 24px 0;
+}
 .cp-mas-reportajes {
   max-width: 760px;
   margin: 0 auto;

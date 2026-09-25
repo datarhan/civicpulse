@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Card, SectionHead } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
+import Compartir from '../components/Compartir'
 import { FindingDetailCard, RetiradaDatos } from './Hallazgos'
 import { usePlenoFindings } from '../hooks/usePlenoFindings'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
@@ -117,6 +118,9 @@ export default function HallazgoDetalle() {
           : t('hallazgo.cabecera.editorial')}
       </div>
       <FindingDetailCard f={hallazgo} permalink={`/hallazgos/${hallazgo.id}`} />
+      <div style={{ marginTop: 12 }}>
+        <Compartir titulo={hallazgo.title} />
+      </div>
       <div
         style={{
           display: 'flex',
