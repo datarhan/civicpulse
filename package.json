@@ -182,6 +182,7 @@
     "repoint-finding-claims": "npx tsx scripts/repoint-finding-claims.ts",
     "check:transcription-health": "npx tsx scripts/check-transcription-health.ts",
     "monitor:health": "npx tsx scripts/monitor-health.ts",
+    "ops:alarm": "npx tsx scripts/ops-alarm.ts",
     "suggest:area-fit": "npx tsx scripts/suggest-area-fit.ts",
     "triage:finding-support": "npx tsx scripts/triage-finding-support.ts",
     "triage:quote-reanchor": "npx tsx scripts/triage-quote-reanchor.ts",

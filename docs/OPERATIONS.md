@@ -105,6 +105,7 @@ landed first. That is what happened to `94359907` on 2026-09-16.
 | `bot.yml`                         | push / PR touching `bot/**` — typechecks the bot and runs its own suite, both with `working-directory: bot`. Its tests ran in no workflow until 2026-09-09 and its types in none until 2026-09-14: the root `npm test` only globs `tests/**` and `src/**`, and the root `tsc` does not cover `bot/`                                                                                                                                                                                                                                                                                                                                                                          |
 | `bot-deploy.yml`                  | push to `main` touching `bot/**` or a file the bot image reads outside it — the LOREG `frozenUntil` lives in `promises.json`; `tests/bot-despliegue.test.js` derives the list from `bot/src` — `flyctl deploy --remote-only`. Committing is not deploying: on 2026-09-09 the calendar gained a prize closing in 36 days while Fly still served a build from hours earlier, with every check green. Fails loudly if `FLY_API_TOKEN` is missing rather than skipping green                                                                                                                                                                                                                                                                                                                                                                 |
 | `cesel-entrega.yml`               | Mondays 06:00 UTC in **November, December and January only** — the one window in which a new coste-efectivo entrega can appear (see below)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `ops-alarm.yml`                   | daily 13:23 UTC — the rules of `monitor:health`, run from a GitHub runner instead of the laptop: stale snapshots (`check:cadence`), the laptop's daily heartbeat commit, the nightly's red streak or silence, the site and the bot's `/health`. It sends nothing: it goes red, and a red run already reaches a person through the Fly bot's hourly poller and GitHub's email. See «The watcher outside the laptop» below                                                                                                                                                                                                                                                     |
 
 Each ingest workflow parses the structured form, calls the matching curator CLI,
 commits, and closes the issue with a permalink. Git history is the sole audit
@@ -183,6 +184,21 @@ worded to avoid the phrase `git push` would sail past the control while still
 pushing to `main`, which is the failure the control exists to catch. The
 classifier is unit-tested on both shapes so that loosening it cannot quietly
 turn it into a function that returns `false` for everything.
+
+### The watcher outside the laptop — `ops-alarm.yml`
+
+`monitor:health` runs from the laptop's cron, so when the Mac is off, asleep or
+logged out, the watcher goes down with what it watches and nothing turns red:
+the 49-day and 9-day silent outages below had exactly that shape. `ops-alarm.yml`
+runs the same rules (`src/scraper/health-monitor.ts`, gathered by
+`src/scraper/ops-alarm.ts`) from a GitHub runner once a day, looking only at
+what needs no laptop: snapshot freshness, the laptop's daily heartbeat commit
+(`scrape-ci-blocked.sh`, found by its subject), the nightly's red streak and
+whether GitHub launched it at all, the public site and the bot's `/health`
+(degraded counts). Whatever it cannot check — no `gh`, no bot URL — is an alert,
+not a zero. It goes red rather than messaging anyone, because a red run already
+reaches a person twice: the Fly bot's hourly poller DMs «🔴 Workflow FALLIDO»,
+and GitHub emails the failure.
 
 ## Local scheduled jobs (the curator's laptop)
 
