@@ -32,7 +32,59 @@ export interface MetaRuta {
   /** Absoluta y canónica: es la que el rastreador enseña bajo el titular. */
   url: string
   /** De dónde salió. `defecto` es relleno, y hay que poder contarlo. */
-  origen: 'reportaje' | 'nav' | 'defecto'
+  origen: 'reportaje' | 'nav' | 'defecto' | PaginaConParametro['origen']
+}
+
+/**
+ * Una página con parámetro que tiene titular propio en un volcado: un hallazgo,
+ * un cargo, un pleno.
+ *
+ * Son las páginas que más se reenvían y las que peor se previsualizaban: al no
+ * tener fichero en `dist/`, Vercel servía el HTML de reserva y la tarjeta era
+ * la del sitio. La misma regla que arriba: el titular sale del volcado tal
+ * cual, y la descripción también o no hay. Un hallazgo trae `summary`, que es
+ * prosa publicada y firmada; un cargo o un pleno no traen ninguna, y llevan la
+ * del sitio.
+ */
+export interface PaginaConParametro {
+  /** La ruta concreta, ya con su valor: `/hallazgos/f-2026-07-03-cit-1e90e0`. */
+  ruta: string
+  /** El titular, tal cual lo trae el volcado. */
+  titulo: string
+  /** Sólo si el volcado la trae. Aquí no se redacta ninguna. */
+  descripcion?: string
+  origen: 'hallazgo' | 'cargo' | 'pleno'
+}
+
+/**
+ * Lo que un directorio de `dist/` puede servir tal cual: un segmento fijo y un
+ * valor de letras, cifras, punto, guion o guion bajo. Un valor con otra cosa
+ * necesitaría codificarse, y la carpeta y la URL dejarían de coincidir. Y nunca
+ * `.` ni `..`: con `..` de valor, `dist/hallazgos/../index.html` es la portada.
+ */
+const RUTA_SERVIBLE = /^\/[a-z-]+\/(?!\.{1,2}$)[A-Za-z0-9._-]+$/
+
+export function construirMetasConParametro(
+  paginas: PaginaConParametro[],
+  o: Pick<OpcionesMetas, 'base' | 'tituloSitio' | 'descripcionSitio'>,
+): MetaRuta[] {
+  const vistas = new Set<string>()
+  const out: MetaRuta[] = []
+  for (const p of paginas) {
+    const titulo = p.titulo.trim()
+    // Sin titular propio no hay ficha que escribir: el HTML de reserva ya da
+    // la del sitio, y un fichero con ella sólo ocuparía sitio.
+    if (!titulo || vistas.has(p.ruta) || !RUTA_SERVIBLE.test(p.ruta)) continue
+    vistas.add(p.ruta)
+    out.push({
+      ruta: p.ruta,
+      titulo: `${titulo} · ${o.tituloSitio}`,
+      descripcion: p.descripcion?.trim() || o.descripcionSitio,
+      url: `${o.base}${p.ruta}`,
+      origen: p.origen,
+    })
+  }
+  return out
 }
 
 export interface OpcionesMetas {
@@ -175,7 +227,14 @@ export interface ResumenMetas {
 }
 
 export function resumirMetas(metas: MetaRuta[]): ResumenMetas {
-  const porOrigen: Record<MetaRuta['origen'], number> = { reportaje: 0, nav: 0, defecto: 0 }
+  const porOrigen: Record<MetaRuta['origen'], number> = {
+    reportaje: 0,
+    nav: 0,
+    defecto: 0,
+    hallazgo: 0,
+    cargo: 0,
+    pleno: 0,
+  }
   for (const m of metas) porOrigen[m.origen] += 1
   return {
     total: metas.length,
