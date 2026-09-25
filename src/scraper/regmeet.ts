@@ -16,13 +16,7 @@
 
 /** Normalised outcome. `dar-cuenta` / `debate` are NOT votes (informational). */
 export type RegmeetOutcome =
-  | 'aprobada'
-  | 'rechazada'
-  | 'retirada'
-  | 'aplazada'
-  | 'dar-cuenta'
-  | 'debate'
-  | 'otro'
+  'aprobada' | 'rechazada' | 'retirada' | 'aplazada' | 'dar-cuenta' | 'debate' | 'otro'
 
 export interface RegmeetItem {
   number: number

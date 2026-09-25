@@ -63,8 +63,7 @@ function commonsFileUrl(name: string): string {
 export function parseWikidataEntity(json: string): WikidataFacts | null {
   const data = JSON.parse(json)
   const entity = Object.values((data.entities ?? {}) as Record<string, WDEntity>)[0] as
-    | WDEntity
-    | undefined
+    WDEntity | undefined
   if (!entity) return null
   const qid = Object.keys(data.entities)[0]
 

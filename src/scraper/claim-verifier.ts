@@ -1365,8 +1365,7 @@ export async function getShortlist(
   opts: ShortlistDispatcherOptions = {},
 ): Promise<CandidateShortlist[]> {
   const mode = (opts.mode ?? (process.env.VERIFIER_SHORTLIST as ShortlistMode) ?? 'hybrid') as
-    | ShortlistMode
-    | string
+    ShortlistMode | string
   if (mode === 'lexical' || (mode !== 'semantic' && mode !== 'hybrid')) {
     return shortlistCandidates(inputs, topK)
   }
