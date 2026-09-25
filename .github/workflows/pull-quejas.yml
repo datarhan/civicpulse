@@ -46,7 +46,7 @@ jobs:
 
       - uses: actions/setup-node@v5
         with:
-          node-version: '20'
+          node-version: '22'
           cache: npm
       # Hacen falta las dependencias para `npm run refresh` (tsx) del paso de
       # commit: sin ellas este workflow publica la entrada y deja el derivado

@@ -240,7 +240,10 @@ export function FindingDetailCard({ f, permalink }) {
           <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
             Abierto desde {f.publishedAt} · sin respuesta. ¿Eres el grupo afectado? Contacta con la
             redacción para ejercerlo · ver{' '}
-            <a href="/aviso-legal" style={{ color: 'var(--civic)', textDecoration: 'underline' }}>
+            <a
+              href="/aviso-legal#rectificacion"
+              style={{ color: 'var(--civic)', textDecoration: 'underline' }}
+            >
               /aviso-legal
             </a>
           </div>
@@ -767,7 +770,14 @@ export default function Hallazgos() {
         ) : null}
         . El pie de cada ficha dice quién la editó, y un nombre como «auto-curation-v1» significa
         que el texto lo escribió una máquina, no una persona. Los grupos afectados pueden responder
-        con cita literal a través del enlace «Responder como grupo afectado».{' '}
+        con cita literal por la{' '}
+        <a
+          href="/aviso-legal#rectificacion"
+          style={{ color: 'var(--civic)', textDecoration: 'underline' }}
+        >
+          vía de rectificación
+        </a>
+        .{' '}
         <a
           href="/metodologia#verificacion-declaraciones"
           style={{ color: 'var(--civic)', textDecoration: 'underline' }}

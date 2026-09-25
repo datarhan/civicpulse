@@ -480,6 +480,16 @@ if ! npm run check:competencias; then
   failures+=("check:competencias")
 fi
 
+# La hermana de la de arriba para /cargos. El encaje declarado se firma a mano
+# por (concejal × área) y `officials.json` se raspa cada noche: un concejal con
+# delegación y sin fila firmada no pinta NADA en su ficha —ni «pendiente»— y ese
+# silencio se lee como limpio. Llegó con el encaje y no la invocaba nadie:
+# `check:guards` lo decía cada noche en un aviso de sólo informe que nadie leía.
+if ! npm run check:area-fit; then
+  echo "[scrape-all] FAILED: check:area-fit — un área delegada sin firma, o firmada para quien ya no la tiene"
+  failures+=("check:area-fit")
+fi
+
 # `officials-corrections.json` corrige el padrón raspado con lo que el acta ya
 # acordó y la web del ayuntamiento aún no recoge: una renuncia de mayo de 2025
 # seguía sin reflejarse en septiembre de 2026. Dos ejes: ¿se aplicó al fichero

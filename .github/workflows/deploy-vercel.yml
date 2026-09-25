@@ -51,9 +51,19 @@ on:
 permissions:
   contents: read
 
+# Un despliegue a la vez. Con unos diez al día, un push y un `workflow_run`
+# llegan a menudo con minutos de diferencia, y sin grupo corren en paralelo: el
+# que termina ÚLTIMO se queda con producción aunque haya construido un `main`
+# más viejo. Sin cancelar el que está en marcha; GitHub deja uno pendiente y
+# descarta los anteriores, así que tras una ráfaga se despliega lo último.
+concurrency:
+  group: vercel-production
+  cancel-in-progress: false
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     # Skip the deploy when the commit message ends with the sentinel
     # "[no-deploy]" (on its own line at the end of the body) so doc-only or
     # test-only commits can opt out without triggering on messages that
@@ -67,15 +77,25 @@ jobs:
       (github.event_name != 'workflow_run' ||
         github.event.workflow_run.conclusion == 'success')
     steps:
+      # Historia entera, sin blobs. `build-defines.js` fecha /aviso-legal
+      # («Versión vigente») y /metodologia («Última revisión») con
+      # `git log -1 -- <fichero>`, y en el clon superficial por defecto el único
+      # commit visible pasa por haber tocado TODOS los ficheros: cada despliegue
+      # estampaba su propia fecha en el contrato editorial publicado.
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          filter: blob:none
 
       - uses: actions/setup-node@v5
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'npm'
 
+      # Versión fija: este paso corre con VERCEL_TOKEN en el entorno del trabajo, y
+      # `@latest` instalaba lo que el registro sirviera ese día. Se sube a mano.
       - name: Install Vercel CLI
-        run: npm install -g vercel@latest
+        run: npm install -g vercel@60.0.1
 
       - name: Pull Vercel environment
         env:
@@ -118,6 +138,13 @@ jobs:
           # `check:basemap` en el parte nocturno, comparando bytes, porque una
           # clave inválida y ninguna clave dan la MISMA tesela.
           VITE_CARTO_API_KEY: ${{ secrets.CARTO_API_KEY }}
+          # Recuento de visitas sin cookies (Vercel Web Analytics). Tampoco es una
+          # bandera de lanzamiento: no monta ninguna ruta, así que ni va en e2e.yml
+          # ni la compara `tests/deploy-triggers.test.js`. Va SÓLO aquí para que ni
+          # el desarrollo ni las pruebas manden visitas. Contar además exige activar
+          # Web Analytics en el proyecto de Vercel; sin eso el script da 404 y no se
+          # cuenta nada. Lo declara /aviso-legal.
+          VITE_ANALYTICS: 'vercel'
         run: vercel build --prod --token="$VERCEL_TOKEN"
 
       - name: Deploy prebuilt bundle

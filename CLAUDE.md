@@ -12,6 +12,7 @@ Guidance for Claude Code working in this repo. Reference material lives in
 | [`docs/TRANSCRIPTION.md`](docs/TRANSCRIPTION.md)                 | Whisper, diarization, voice ID                 |
 | [`docs/JOURNALIST_AGENT.md`](docs/JOURNALIST_AGENT.md)           | the `/laboratorio/agentes` subsystem           |
 | [`docs/QUEJAS_DESIGN.md`](docs/QUEJAS_DESIGN.md)                 | rationale for the Telegram-first quejas OS     |
+| [`docs/REVIEW_2026-09.md`](docs/REVIEW_2026-09.md)               | priorities to May 2027, what not to build next |
 | [`bot/README.md`](bot/README.md), [`bot/LOCAL.md`](bot/LOCAL.md) | the Telegram bot                               |
 
 ## What this is

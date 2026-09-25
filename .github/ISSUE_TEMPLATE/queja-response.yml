@@ -12,8 +12,10 @@ body:
 
         Este formulario permite a responsables del Ayuntamiento de Riba-roja de Túria
         o a personas nombradas en una queja añadir una respuesta oficial que se publicará
-        **verbatim** junto a la queja original. El equipo editorial aplica la respuesta
-        mediante `npm run queja-reply` — no se edita su texto.
+        **verbatim** junto a la queja original. El equipo editorial comprueba que la
+        respuesta viene de quien la firma y, cuando la aprueba, la aplica mediante
+        `npm run queja-reply` — no se edita su texto. ¿Prefieres no usar GitHub?
+        Escribe a civicpulse_es@proton.me.
 
         **Plazo orientativo:** 7 días naturales. Pasado ese plazo no se eliminan quejas
         publicadas, pero la respuesta sigue siendo aceptada en cualquier momento.

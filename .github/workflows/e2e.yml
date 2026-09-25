@@ -22,7 +22,7 @@ jobs:
 
       - uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 22
           cache: 'npm'
 
       - name: Install npm dependencies
@@ -30,6 +30,19 @@ jobs:
 
       - name: Lint (fails on errors only; warnings allowed)
         run: npm run lint
+
+      # Las tres puertas de publicación del pre-commit, sobre el árbol entero.
+      # El gancho sólo existe donde alguien instaló husky a mano: `husky` no está
+      # declarado en package.json (`"prepare": "husky || true"` falla en
+      # silencio), así que en un clon nuevo y en las sesiones en la nube —de
+      # donde sale la mayoría de los commits— no corría ninguna. Credenciales,
+      # datos propios y borradores sobre personas vivas ya se han colado antes;
+      # aquí la puerta no depende de la máquina de nadie. Cuatro segundos.
+      - name: Publication scans (secrets · private data · editorial drafts)
+        run: |
+          npm run --silent check:secrets
+          npm run --silent check:privado
+          npm run --silent check:editorial
 
       # «tsc --noEmit, must stay clean» decía CLAUDE.md — y no lo ejecutaba
       # NADIE: ni este workflow, ni el build (vite no tipa), ni ningún hook.

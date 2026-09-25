@@ -182,6 +182,7 @@
     "repoint-finding-claims": "npx tsx scripts/repoint-finding-claims.ts",
     "check:transcription-health": "npx tsx scripts/check-transcription-health.ts",
     "monitor:health": "npx tsx scripts/monitor-health.ts",
+    "ops:alarm": "npx tsx scripts/ops-alarm.ts",
     "suggest:area-fit": "npx tsx scripts/suggest-area-fit.ts",
     "triage:finding-support": "npx tsx scripts/triage-finding-support.ts",
     "triage:quote-reanchor": "npx tsx scripts/triage-quote-reanchor.ts",
@@ -256,6 +257,7 @@
     "build:prompt-log": "npx tsx scripts/build-prompt-log.ts"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "leaflet": "^1.9.4",
     "pdf-parse": "^1.1.4",
     "react": "^18.3.1",
@@ -270,7 +272,7 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@vitejs/plugin-react": "^4.3.4",
-    "@vitest/ui": "^4.1.4",
+    "@vitest/ui": "^4.1.11",
     "cheerio": "^1.2.0",
     "csv-parse": "^6.2.1",
     "eslint": "^9.39.4",
@@ -282,7 +284,7 @@
     "tsx": "^4.23.15",
     "typescript-eslint": "^8.59.0",
     "vite": "^6.0.0",
-    "vitest": "^4.1.4",
+    "vitest": "^4.1.11",
     "xlsx": "^0.18.5",
     "zod": "^4.3.6"
   }

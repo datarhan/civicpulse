@@ -28,6 +28,15 @@ on:
     paths:
       - 'bot/**'
       - '.github/workflows/bot-deploy.yml'
+      # Lo que la imagen lee FUERA de bot/: el Dockerfile copia `src` y
+      # `public/data`, y el bot los lee al arrancar. `promises.json` lleva el
+      # `frozenUntil` de la LOREG: sin esta ruta, `npm run freeze:set` no llegaba
+      # al bot hasta que alguien tocara bot/, y seguiría difundiendo en campaña.
+      # `tests/bot-despliegue.test.js` deriva esta lista de bot/src.
+      - 'public/data/promises.json'
+      - 'public/data/officials.json'
+      - 'public/data/geo.json'
+      - 'src/scraper/queja-router.ts'
   workflow_dispatch:
 
 concurrency:

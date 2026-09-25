@@ -1,0 +1,60 @@
+# Actualizaciones de dependencias, semanales y agrupadas.
+#
+# Hasta el 2026-09-25 no había ninguna: `npm audit` acumulaba 20 avisos (10
+# altos), uno de ellos en `react-router-dom`, que va en el código que se sirve a
+# los lectores. Un proyecto de una persona no puede leer un PR por paquete, así
+# que las versiones menores y de parche llegan juntas, un PR por ecosistema y
+# semana, y como mucho tres abiertos. Los saltos de versión mayor se hacen a
+# mano, con su propia revisión: son los que rompen cosas.
+#
+# El bot va aparte porque tiene su propio package.json y su propia imagen.
+
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: '06:00'
+      timezone: Europe/Madrid
+    open-pull-requests-limit: 3
+    commit-message:
+      prefix: 'chore(deps)'
+    groups:
+      menores-y-parches:
+        update-types: [minor, patch]
+    ignore:
+      - dependency-name: '*'
+        update-types: [version-update:semver-major]
+
+  - package-ecosystem: npm
+    directory: /bot
+    schedule:
+      interval: weekly
+      day: monday
+      time: '06:00'
+      timezone: Europe/Madrid
+    open-pull-requests-limit: 3
+    commit-message:
+      prefix: 'chore(deps-bot)'
+    groups:
+      menores-y-parches:
+        update-types: [minor, patch]
+    ignore:
+      - dependency-name: '*'
+        update-types: [version-update:semver-major]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: '06:00'
+      timezone: Europe/Madrid
+    open-pull-requests-limit: 3
+    commit-message:
+      prefix: 'chore(ci)'
+    groups:
+      acciones:
+        patterns: ['*']

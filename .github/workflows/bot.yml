@@ -47,6 +47,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
+      # Se queda en 20 A PROPÓSITO mientras la imagen del bot sea
+      # `node:20-bookworm-slim` (bot/Dockerfile): las pruebas tienen que correr en
+      # el mismo Node que producción. Node 20 está fuera de soporte desde el
+      # 2026-04-30; subir los dos juntos es un despliegue en Fly con su propia
+      # comprobación (better-sqlite3 es nativo). Ver docs/REVIEW_2026-09.md.
       - name: Setup Node
         uses: actions/setup-node@v5
         with:

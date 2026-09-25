@@ -70,6 +70,10 @@ ADAPTERS=(
   # catálogo bueno cuando fallan todas sus fuentes, así que en CI no escribía y
   # nadie más lo corría.
   #
+  # Su salida, `transparency-docs.json`, va en el pathspec del commit de abajo.
+  # Hasta el 2026-09-25 no iba: el cron la raspaba y la dejaba en el árbol, y la
+  # publicaba por accidente el siguiente commit ancho de `hallazgos`.
+  #
   # `scrape:officials` NO entra aquí, y no es un olvido: su única fuente
   # —/es/ayuntamiento/corporacion_municipal— da 403 también desde el portátil y
   # ya no aparece en el menú de esa sección del portal. Correrlo aquí fallaría
@@ -140,7 +144,7 @@ if ! cron_git_stage_and_check \
        public/data/paro.json public/data/plenos-agendas.json public/data/consell-cv.json \
        public/data/procesos-selectivos.json public/data/asociaciones.json \
        public/data/obras.json public/data/sindicatura.json \
-       public/data/sindic-expedientes.json \
+       public/data/sindic-expedientes.json public/data/transparency-docs.json \
        $REDERIVADOS; then
   echo "[ci-blocked] no changes"
   exit ${#failed[@]}

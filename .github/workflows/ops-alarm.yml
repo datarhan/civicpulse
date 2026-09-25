@@ -1,0 +1,61 @@
+name: Ops alarm
+
+# La alarma operativa que corre FUERA del portátil.
+#
+# `monitor:health` vive en el Mac del operador, por cron: cuando el Mac está
+# apagado, dormido o sin sesión, el vigilante cae con lo vigilado y nada se pone
+# rojo en ninguna parte. OPERATIONS.md recoge dos apagones silenciosos así, de
+# 49 y de 9 días. Esto mira desde un runner de GitHub lo que se puede mirar sin
+# el portátil —frescura de los volcados, el latido diario del portátil, la
+# racha de la nocturna, la web y el bot— con las mismas reglas
+# (`src/scraper/health-monitor.ts`).
+#
+# No manda mensajes: sale en ROJO. Un workflow en rojo ya llega a una persona
+# por el sondeo horario del bot en Fly («🔴 Workflow FALLIDO») y por el correo
+# de GitHub, y ninguno de los dos depende del portátil.
+#
+# A las 13:23 UTC porque la nocturna, programada a las 04:30, arranca de hecho
+# hacia las 09:30 (GitHub la retrasa unas cinco horas) y termina hacia las
+# 10:00: así se mira el resultado del día, no el de ayer. El minuto no es en
+# punto porque las horas en punto son las que GitHub más retrasa.
+
+on:
+  schedule:
+    - cron: '23 13 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: ops-alarm
+  cancel-in-progress: false
+
+jobs:
+  alarma:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      # Historia entera (sin blobs, que no hacen falta para `git log`): el latido
+      # del portátil se busca por el asunto de su commit, y con la profundidad
+      # por defecto sólo se vería el último commit.
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          filter: blob:none
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - run: npm ci --no-audit --no-fund
+
+      # Si falta `vars.BOT_EXPORT_URL` no se salta nada: la alarma lo cuenta
+      # como aviso y sale en rojo (`tests/workflows-sin-salto-silencioso.test.js`).
+      - name: Alarma operativa
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BOT_EXPORT_URL: ${{ vars.BOT_EXPORT_URL }}
+        run: npm run --silent ops:alarm

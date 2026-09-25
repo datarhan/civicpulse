@@ -7,6 +7,7 @@ import { CmdK } from './components/CmdK'
 import { AbrirBuscador } from './lib/buscador'
 import { TweaksPanel, TweaksButton } from './components/TweaksPanel'
 import { SkipLink } from './components/SkipLink'
+import ErrorBoundary from './components/ErrorBoundary'
 import { useHashScroll } from './hooks/useHashScroll'
 import { useScrollAlNavegar } from './hooks/useScrollAlNavegar'
 import { useT } from './i18n'
@@ -134,64 +135,66 @@ function InnerShell({ onOpenCmdK }) {
             the topbar here, so landing on it would skip the sidebar only to
             drop the reader back at the breadcrumb and search. */}
         <div id="contenido" tabIndex={-1} style={{ flex: 1, minWidth: 0 }}>
-          <Suspense fallback={<Loading />}>
-            <Routes>
-              <Route path="/cargos" element={<Cargos />} />
-              <Route path="/cargos/:slug" element={<CargoDetalle />} />
-              <Route path="/presupuesto" element={<Presupuesto />} />
-              {Eficiencia && <Route path="/eficiencia" element={<Eficiencia />} />}
-              {ServicioDetalle && <Route path="/eficiencia/:id" element={<ServicioDetalle />} />}
-              {Gestion && <Route path="/gestion" element={<Gestion />} />}
-              <Route path="/plenos" element={<Plenos />} />
-              <Route path="/plenos/:id" element={<PlenoDetalle />} />
-              <Route path="/datos" element={<Datos />} />
-              <Route path="/empleo" element={<Empleo />} />
-              <Route path="/empleo-publico" element={<EmpleoPublico />} />
-              <Route path="/empleo/:id" element={<EmpleoDetalle />} />
-              <Route path="/promesas" element={<Promesas />} />
-              <Route path="/departamentos" element={<Departamentos />} />
-              <Route path="/departamentos/:slug" element={<DepartamentoDetalle />} />
-              <Route path="/hallazgos" element={<Hallazgos />} />
-              <Route path="/declaraciones" element={<Declaraciones />} />
-              <Route path="/quejas" element={<Quejas />} />
-              <Route path="/quejas/dashboard" element={<QuejasDashboard />} />
-              <Route path="/quejas/:id" element={<QuejaDetail />} />
-              <Route path="/laboratorio" element={<Laboratorio />} />
-              <Route path="/laboratorio/frontera" element={<Frontera />} />
-              <Route path="/laboratorio/coste-esperado" element={<CosteEsperado />} />
-              <Route path="/laboratorio/cobertura" element={<Cobertura />} />
-              {Agentes && <Route path="/laboratorio/agentes" element={<Agentes />} />}
-              {AgenteReporte && (
-                <Route path="/laboratorio/agentes/:assignmentId" element={<AgenteReporte />} />
-              )}
-              <Route path="/lab-health" element={<LabHealth />} />
-              <Route path="/cambios" element={<Cambios />} />
-              {Curator && <Route path="/curator" element={<Curator />} />}
-              {Despiece && <Route path="/despiece" element={<Despiece />} />}
-              <Route path="/nosotros" element={<Nosotros />} />
-              <Route path="/about" element={<About />} />
-              {/* Long-form data reportajes — indexed at /reportajes (in NAV); each pieza keeps
+          <ErrorBoundary resetKey={location.pathname}>
+            <Suspense fallback={<Loading />}>
+              <Routes>
+                <Route path="/cargos" element={<Cargos />} />
+                <Route path="/cargos/:slug" element={<CargoDetalle />} />
+                <Route path="/presupuesto" element={<Presupuesto />} />
+                {Eficiencia && <Route path="/eficiencia" element={<Eficiencia />} />}
+                {ServicioDetalle && <Route path="/eficiencia/:id" element={<ServicioDetalle />} />}
+                {Gestion && <Route path="/gestion" element={<Gestion />} />}
+                <Route path="/plenos" element={<Plenos />} />
+                <Route path="/plenos/:id" element={<PlenoDetalle />} />
+                <Route path="/datos" element={<Datos />} />
+                <Route path="/empleo" element={<Empleo />} />
+                <Route path="/empleo-publico" element={<EmpleoPublico />} />
+                <Route path="/empleo/:id" element={<EmpleoDetalle />} />
+                <Route path="/promesas" element={<Promesas />} />
+                <Route path="/departamentos" element={<Departamentos />} />
+                <Route path="/departamentos/:slug" element={<DepartamentoDetalle />} />
+                <Route path="/hallazgos" element={<Hallazgos />} />
+                <Route path="/declaraciones" element={<Declaraciones />} />
+                <Route path="/quejas" element={<Quejas />} />
+                <Route path="/quejas/dashboard" element={<QuejasDashboard />} />
+                <Route path="/quejas/:id" element={<QuejaDetail />} />
+                <Route path="/laboratorio" element={<Laboratorio />} />
+                <Route path="/laboratorio/frontera" element={<Frontera />} />
+                <Route path="/laboratorio/coste-esperado" element={<CosteEsperado />} />
+                <Route path="/laboratorio/cobertura" element={<Cobertura />} />
+                {Agentes && <Route path="/laboratorio/agentes" element={<Agentes />} />}
+                {AgenteReporte && (
+                  <Route path="/laboratorio/agentes/:assignmentId" element={<AgenteReporte />} />
+                )}
+                <Route path="/lab-health" element={<LabHealth />} />
+                <Route path="/cambios" element={<Cambios />} />
+                {Curator && <Route path="/curator" element={<Curator />} />}
+                {Despiece && <Route path="/despiece" element={<Despiece />} />}
+                <Route path="/nosotros" element={<Nosotros />} />
+                <Route path="/about" element={<About />} />
+                {/* Long-form data reportajes — indexed at /reportajes (in NAV); each pieza keeps
                   its figures frozen in its own JSON snapshot. */}
-              <Route path="/reportajes" element={<Reportajes />} />
-              {/* El armazón común —barra de lectura y «más reportajes»— envuelve a
+                <Route path="/reportajes" element={<Reportajes />} />
+                {/* El armazón común —barra de lectura y «más reportajes»— envuelve a
                   las piezas sin convertirlas en un :slug. */}
-              <Route element={<ArmazonReportaje />}>
-                <Route path="/reportajes/coste-efectivo" element={<CosteEfectivoReportaje />} />
-                <Route path="/reportajes/reconstruccion-dana" element={<ReconstruccionDana />} />
-                <Route
-                  path="/reportajes/inteligencia-turistica"
-                  element={<InteligenciaTuristica />}
-                />
-                <Route path="/reportajes/basuras" element={<Basuras />} />
-                <Route path="/reportajes/conteo-visitantes" element={<ConteoVisitantes />} />
-              </Route>
-              {/* English engineering blog post — unlisted (not in NAV), canonical home for HN/civic-tech. */}
-              <Route path="/blog/building-civicpulse-with-ai" element={<BuildingCivicPulse />} />
-              <Route path="/metodologia" element={<Metodologia />} />
-              <Route path="/aviso-legal" element={<AvisoLegal />} />
-              <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
-          </Suspense>
+                <Route element={<ArmazonReportaje />}>
+                  <Route path="/reportajes/coste-efectivo" element={<CosteEfectivoReportaje />} />
+                  <Route path="/reportajes/reconstruccion-dana" element={<ReconstruccionDana />} />
+                  <Route
+                    path="/reportajes/inteligencia-turistica"
+                    element={<InteligenciaTuristica />}
+                  />
+                  <Route path="/reportajes/basuras" element={<Basuras />} />
+                  <Route path="/reportajes/conteo-visitantes" element={<ConteoVisitantes />} />
+                </Route>
+                {/* English engineering blog post — unlisted (not in NAV), canonical home for HN/civic-tech. */}
+                <Route path="/blog/building-civicpulse-with-ai" element={<BuildingCivicPulse />} />
+                <Route path="/metodologia" element={<Metodologia />} />
+                <Route path="/aviso-legal" element={<AvisoLegal />} />
+                <Route path="*" element={<Navigate to="/" replace />} />
+              </Routes>
+            </Suspense>
+          </ErrorBoundary>
         </div>
       </main>
     </div>
@@ -249,9 +252,11 @@ export default function App() {
             el módulo de la portada, y de ahí salen las rutas de la revisión
             lectora. Cerrado no descarga nada: los hooks viven en el panel. */}
         <AbrirBuscador.Provider value={() => setCmdK(true)}>
-          <Suspense fallback={<Loading />}>
-            <DirectionD />
-          </Suspense>
+          <ErrorBoundary resetKey={location.pathname}>
+            <Suspense fallback={<Loading />}>
+              <DirectionD />
+            </Suspense>
+          </ErrorBoundary>
         </AbrirBuscador.Provider>
         <CmdK open={cmdK} onOpen={() => setCmdK(true)} onClose={() => setCmdK(false)} />
       </>

@@ -16,7 +16,14 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from 'node:fs'
 import { resolve, join } from 'node:path'
 import { construirGrafoRutas, rutasPublicas } from './lib/route-graph.ts'
-import { construirMetas, inyectarMeta, resumirMetas } from '../src/scraper/meta-og.ts'
+import {
+  construirMetas,
+  construirRobots,
+  construirSitemap,
+  inyectarMeta,
+  resumirMetas,
+  sinUrlPropia,
+} from '../src/scraper/meta-og.ts'
 
 const DIST = resolve('dist')
 const BASE = 'https://www.civicpulse.es'
@@ -110,9 +117,12 @@ function main(): void {
   for (const m of metas) {
     const html = inyectarMeta(plantilla, m)
     if (m.ruta === '/') {
-      // La portada se reescribe en su sitio: aunque el texto no cambie, gana la
-      // canónica y el `og:url` con el host bueno.
-      writeFileSync(indice, html)
+      // La portada se reescribe en su sitio, pero SIN canónica ni `og:url`:
+      // ese mismo fichero es el que Vercel sirve para toda ruta sin fichero
+      // propio (`/cargos/:slug`, `/plenos/:id`…), y con la URL de la portada
+      // dentro cada una de ellas se declaraba duplicado de la portada ante los
+      // buscadores. Ver `sinUrlPropia`.
+      writeFileSync(indice, sinUrlPropia(html))
     } else {
       const destino = join(DIST, m.ruta.replace(/^\//, ''))
       mkdirSync(destino, { recursive: true })
@@ -134,6 +144,55 @@ function main(): void {
       '[prerender-meta] ninguna ruta obtuvo título propio: los reportajes o nav.js no se han leído\n',
     )
     process.exit(1)
+  }
+
+  // El mapa del sitio: las rutas públicas de arriba MÁS las páginas con
+  // parámetro que un buscador sólo encontraría siguiendo enlaces que pinta
+  // JavaScript. Sólo cargos en ejercicio y plenos: una queja es el texto de un
+  // vecino y no se le empuja a los buscadores, y una oferta de empleo caduca.
+  const conParametro = [
+    ...deSnapshot(grafo.rutas, '/cargos/:slug', 'officials.json', (j) =>
+      (j.officials ?? []).map((o: { slug?: string }) => o.slug),
+    ),
+    ...deSnapshot(grafo.rutas, '/plenos/:id', 'plenos.json', (j) =>
+      (j.items ?? []).map((p: { id?: string }) => p.id),
+    ),
+  ]
+  const urls = [...metas.map((m) => m.url), ...conParametro.map((ruta) => `${BASE}${ruta}`)]
+  writeFileSync(join(DIST, 'sitemap.xml'), construirSitemap(urls))
+  writeFileSync(join(DIST, 'robots.txt'), construirRobots(BASE))
+  process.stdout.write(
+    `[prerender-meta] sitemap.xml · ${metas.length} ruta(s) + ${conParametro.length} página(s) con parámetro\n`,
+  )
+  // Un mapa sin concejales ni plenos no es un sitio sin concejales: es que no se
+  // han leído los volcados. Misma regla 2.
+  if (conParametro.length === 0) {
+    process.stderr.write('[prerender-meta] el sitemap salió sin páginas con parámetro\n')
+    process.exit(1)
+  }
+}
+
+/**
+ * Las rutas concretas de un patrón con parámetro, leídas de su volcado. Nada si
+ * la ruta ya no existe en App.jsx (el grafo la deriva de allí) o el volcado no
+ * se deja leer.
+ */
+function deSnapshot(
+  rutas: string[],
+  patron: string,
+  fichero: string,
+  ids: (j: any) => (string | undefined)[],
+): string[] {
+  if (!rutas.includes(patron)) return []
+  const p = resolve('public/data', fichero)
+  if (!existsSync(p)) return []
+  try {
+    const valores = ids(JSON.parse(readFileSync(p, 'utf8'))).filter(
+      (v): v is string => typeof v === 'string' && v.length > 0,
+    )
+    return valores.map((v) => patron.replace(/:[a-zA-Z]+$/, encodeURIComponent(v)))
+  } catch {
+    return []
   }
 }
 

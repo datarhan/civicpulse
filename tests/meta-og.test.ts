@@ -1,5 +1,12 @@
 import { describe, it, expect } from 'vitest'
-import { construirMetas, inyectarMeta, type MetaRuta } from '../src/scraper/meta-og.ts'
+import {
+  construirMetas,
+  construirRobots,
+  construirSitemap,
+  inyectarMeta,
+  sinUrlPropia,
+  type MetaRuta,
+} from '../src/scraper/meta-og.ts'
 
 /**
  * La tarjeta que sale al compartir un enlace.
@@ -178,5 +185,54 @@ describe('inyectarMeta', () => {
   // Y lo que hace que la página siga siendo la página.
   it('no toca el cuerpo ni el punto de montaje', () => {
     expect(out).toContain('<div id="root"></div>')
+  })
+})
+
+/**
+ * La portada es también el HTML de reserva: Vercel lo sirve para toda ruta sin
+ * fichero propio. Con su canónica dentro, `/cargos/:slug` o `/plenos/:id` le
+ * decían al buscador que eran un duplicado de la portada.
+ */
+describe('sinUrlPropia', () => {
+  const html = [
+    '<head>',
+    '  <meta property="og:title" content="CivicPulse" />',
+    '  <meta property="og:url" content="https://civicpulse.es/" />',
+    '  <link rel="canonical" href="https://www.civicpulse.es/" />',
+    '</head>',
+  ].join('\n')
+
+  it('quita la canónica y el og:url, y nada más', () => {
+    const out = sinUrlPropia(html)
+    expect(out).not.toMatch(/rel="canonical"/)
+    expect(out).not.toMatch(/og:url/)
+    expect(out).toContain('og:title')
+  })
+
+  it('aplicado a la ficha inyectada de la portada, no deja URL de la portada', () => {
+    const [portada] = construirMetas(opciones({ rutas: ['/'] }))
+    const out = sinUrlPropia(inyectarMeta(html, portada))
+    expect(out).not.toContain(`href="${BASE}/"`)
+    expect(out).not.toMatch(/og:url/)
+  })
+})
+
+describe('construirSitemap / construirRobots', () => {
+  it('lista cada URL una vez, ordenada y escapada', () => {
+    const xml = construirSitemap([
+      `${BASE}/plenos/1xmr0do`,
+      `${BASE}/cargos/a&b`,
+      `${BASE}/plenos/1xmr0do`,
+    ])
+    expect(xml).toMatch(/^<\?xml version="1.0"/)
+    expect(xml.match(/<loc>/g)).toHaveLength(2)
+    expect(xml).toContain('<loc>https://www.civicpulse.es/cargos/a&amp;b</loc>')
+    expect(xml.indexOf('/cargos/')).toBeLessThan(xml.indexOf('/plenos/'))
+  })
+
+  it('robots.txt deja leer todo y apunta al mapa', () => {
+    const robots = construirRobots(BASE)
+    expect(robots).toContain('Allow: /')
+    expect(robots).toContain(`Sitemap: ${BASE}/sitemap.xml`)
   })
 })

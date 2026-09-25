@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { execFileSync } from 'node:child_process'
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
 /**
@@ -35,6 +35,12 @@ import { resolve } from 'node:path'
  * La lista se DERIVA de `git ls-files`, nunca se escribe a mano. Lo único
  * escrito es la **línea base**, que es el registro de una decisión —«estos 27 ya
  * eran públicos cuando se decidió dejarlos»— y por eso sólo puede **encoger**.
+ *
+ * El 2026-09-25 encogió a CERO: los 27 salieron del índice con `git rm
+ * --cached` (siguen en el disco de quien los tenga). Con la línea base vacía
+ * esta prueba ya no tolera nada rastreado bajo `editorial/`. El historial
+ * todavía los contiene; purgarlo es una reescritura que decide el operador
+ * (`docs/REVIEW_2026-09.md`).
  */
 
 const LINEA_BASE = resolve('tests/fixtures/editorial-rastreado-linea-base.txt')
@@ -64,7 +70,15 @@ describe('editorial/ rastreado en git · no puede crecer', () => {
   // el defecto de `r?.findings ?? []`.
   it('la comprobación se ha podido ejecutar', () => {
     expect(() => rastreados()).not.toThrow()
-    expect(lineaBase().length).toBeGreaterThan(0)
+    // La línea base puede estar VACÍA —es a donde tenía que llegar—, así que
+    // «miró algo» no puede medirse por su tamaño. Se mide por las dos cosas de
+    // las que depende la respuesta: que el fichero existe (sin él, el conjunto
+    // vacío se leería como «nada permitido» por accidente) y que git contesta
+    // con el repositorio entero. Un `editorial/` vacío sólo significa «nada
+    // rastreado» si esa misma consulta ve el resto del árbol.
+    expect(existsSync(LINEA_BASE)).toBe(true)
+    const todo = execFileSync('git', ['ls-files'], { encoding: 'utf8' }).split('\n').filter(Boolean)
+    expect(todo.length).toBeGreaterThan(100)
   })
 
   it('no aparece NINGÚN fichero nuevo rastreado bajo editorial/', () => {

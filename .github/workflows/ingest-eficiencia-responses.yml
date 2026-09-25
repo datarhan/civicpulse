@@ -3,19 +3,27 @@ name: Ingest eficiencia responses
 # Derecho de réplica sobre una ficha de /eficiencia: issue → CLI con validador
 # delante → commit en el historial público.
 #
-# Comparte la etiqueta `derecho-replica` con la ingesta de hallazgos de pleno,
-# así que las dos se distinguen por `eficiencia`: ésta la exige, aquélla la
-# excluye. Sin eso ambas disparan sobre el mismo issue y la otra comenta un
-# error sobre una réplica válida.
+# Comparte la etiqueta `derecho-replica` con las demás plantillas de réplica,
+# así que cada ingesta se enruta por la etiqueta propia de SU plantilla: ésta
+# por `eficiencia`, la de hallazgos por `hallazgo`. Enrutar por exclusión hacía
+# que una ingesta comentara un error sobre la réplica válida de otra.
 #
 # Todo dato que venga del issue viaja por `env:` y se lee como variable de
 # shell, nunca interpolado en el `run:` — el cuerpo de un issue lo escribe
 # cualquiera, y `${{ github.event.issue.body }}` dentro de un `run:` es
 # ejecución de comandos con otro nombre.
 
+# Publicar exige APROBACIÓN. La plantilla del issue pone la etiqueta que lo
+# enruta; la que publica es `publicar`, que ninguna plantilla pone y que aplica
+# un mantenedor después de comprobar que el texto viene de quien dice venir.
+# Hasta el 2026-09-25 la etiqueta de la propia plantilla bastaba para comitear en
+# main y desplegar, y `edited` volvía a publicar en cada edición: cualquiera con
+# cuenta de GitHub podía publicar un texto bajo el nombre de un grupo.
+# `tests/ingesta-aprobacion.test.js` lo sostiene.
+
 on:
   issues:
-    types: [labeled, edited]
+    types: [labeled]
   workflow_dispatch:
     inputs:
       issue_number:
@@ -31,16 +39,35 @@ jobs:
     runs-on: ubuntu-latest
     if: >
       github.event_name == 'workflow_dispatch' ||
-      (contains(github.event.issue.labels.*.name, 'eficiencia') &&
-        contains(github.event.issue.labels.*.name, 'derecho-replica'))
+      (github.event.label.name == 'publicar' &&
+        contains(github.event.issue.labels.*.name, 'derecho-replica') &&
+        contains(github.event.issue.labels.*.name, 'eficiencia'))
     steps:
+      # Publica sólo quien mantiene el repositorio. La etiqueta `publicar` no la
+      # pone ninguna plantilla y aplicarla exige permiso de triaje o más, pero eso
+      # es configuración de GitHub y no de este fichero: se comprueba aquí, antes
+      # de tocar nada. Si falla, el workflow sale en ROJO —y el bot de Fly avisa
+      # de los workflows fallidos—, porque alguien sin permiso intentó publicar.
+      - name: Sólo publica un mantenedor
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          QUIEN: ${{ github.event.sender.login || github.actor }}
+        run: |
+          set -euo pipefail
+          PERMISO=$(gh api "repos/${REPO}/collaborators/${QUIEN}/permission" --jq .permission 2>/dev/null || echo none)
+          case "$PERMISO" in
+            admin|maintain|write) echo "✓ ${QUIEN} (${PERMISO}) aprueba la publicación" ;;
+            *) echo "::error::${QUIEN} (${PERMISO}) no puede aprobar una publicación"; exit 1 ;;
+          esac
+
       - uses: actions/checkout@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: actions/setup-node@v5
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'npm'
 
       - run: npm ci --no-audit --no-fund
@@ -122,5 +149,5 @@ jobs:
           ISSUE_NUMBER: ${{ github.event.issue.number || inputs.issue_number }}
           FINDING_ID: ${{ steps.parse.outputs.finding_id }}
         run: |
-          gh issue comment "$ISSUE_NUMBER" --body ":white_check_mark: Réplica publicada en la ficha \`${FINDING_ID}\`. Visible en https://civicpulse-virid.vercel.app/eficiencia#hallazgos"
+          gh issue comment "$ISSUE_NUMBER" --body ":white_check_mark: Réplica publicada en la ficha \`${FINDING_ID}\`. Visible en https://www.civicpulse.es/eficiencia#hallazgos"
           gh issue close "$ISSUE_NUMBER" --reason completed

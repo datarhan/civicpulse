@@ -183,3 +183,51 @@ export function resumirMetas(metas: MetaRuta[]): ResumenMetas {
     concluyente: porOrigen.reportaje + porOrigen.nav > 0,
   }
 }
+
+/**
+ * La portada sin URL propia, porque su HTML es también el de reserva.
+ *
+ * `vercel.json` reescribe a `index.html` toda ruta que no tenga fichero en
+ * `dist/`, y las rutas con parámetro —`/cargos/:slug`, `/plenos/:id`,
+ * `/quejas/:id`…— no lo tienen. Con la canónica y el `og:url` de la portada
+ * dentro, cada una de esas páginas le decía al buscador «soy un duplicado de la
+ * portada» y compartía la ficha del sitio: las páginas que más se reenvían (un
+ * concejal, un pleno, una queja) se indexaban y se previsualizaban como la
+ * portada. Sin ninguna de las dos, el buscador y el rastreador usan la URL que
+ * de verdad pidieron. La portada pierde su canónica estática, que para `/` no
+ * dice nada que la URL no diga ya.
+ */
+export function sinUrlPropia(html: string): string {
+  return html
+    .replace(/[ \t]*<link rel="canonical"[^>]*>\n?/g, '')
+    .replace(/[ \t]*<meta[^>]*property="og:url"[^>]*>\n?/g, '')
+}
+
+function xml(s: string): string {
+  return s
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+}
+
+/**
+ * `sitemap.xml`: sin él, las páginas con parámetro sólo se descubren siguiendo
+ * enlaces que pinta JavaScript. Sin `lastmod`: la fecha que tenemos es la del
+ * raspado nocturno, no la de un cambio de contenido, y declararla sería decirle
+ * al buscador que todo cambia cada noche.
+ */
+export function construirSitemap(urls: string[]): string {
+  const unicas = [...new Set(urls)].sort()
+  return (
+    '<?xml version="1.0" encoding="UTF-8"?>\n' +
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+    unicas.map((u) => `  <url><loc>${xml(u)}</loc></url>`).join('\n') +
+    '\n</urlset>\n'
+  )
+}
+
+/** `robots.txt`: todo se puede leer —los datos abiertos también— y aquí está el mapa. */
+export function construirRobots(base: string): string {
+  return `User-agent: *\nAllow: /\n\nSitemap: ${base}/sitemap.xml\n`
+}

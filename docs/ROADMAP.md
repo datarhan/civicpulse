@@ -1,5 +1,9 @@
 # CivicPulse — next-horizon improvements roadmap
 
+> **Superseded for planning by [`REVIEW_2026-09.md`](REVIEW_2026-09.md)** — the September 2026
+> process and architecture review, with the roadmap to the May 2027 elections. This file is
+> kept as the record of the April 2026 plan.
+
 ## Context
 
 The app has everything an MVP dashboard needs: 16 real-data adapters, 696 vitest + 78 Playwright tests (every public route + cross-cutting chrome + 17-route WCAG 2.1 AA strict pass), bilingual UI, the full LLM advisory layer (Phase 0–3 shipped this session), and a working Whisper transcription pipeline. But it has **zero real citizen complaints flowing**, the Telegram bot is in dev mode (BOT_TOKEN set, CHANNEL_ID + ADMIN_USER_IDS missing), only 1 pleno has been transcribed, and the LLM engines have produced 0 public outputs (correctly — the single transcript was noisy and the safety gate fired).

@@ -44,9 +44,20 @@ export default function AvisoLegal() {
           civicpulse.es.
         </p>
         <p>
-          El mantenedor del proyecto asume responsabilidad editorial individual por el contenido
-          publicado. Para correcciones, derecho de réplica o consultas legales, contacte con la
-          redacción a través del canal indicado más abajo.
+          El mantenedor del proyecto, que lo firma con su nombre en{' '}
+          <a href="/nosotros" style={{ color: 'var(--civic)' }}>
+            /nosotros
+          </a>
+          , asume responsabilidad editorial individual por el contenido publicado. Para
+          correcciones, derecho de réplica o consultas legales, contacte con la redacción en{' '}
+          <a href="mailto:civicpulse_es@proton.me" style={{ color: 'var(--civic)' }}>
+            civicpulse_es@proton.me
+          </a>{' '}
+          o por las vías descritas en{' '}
+          <a href="#rectificacion" style={{ color: 'var(--civic)' }}>
+            «Cómo pedir una corrección»
+          </a>
+          .
         </p>
       </Card>
 
@@ -70,12 +81,40 @@ export default function AvisoLegal() {
         </p>
       </Card>
 
-      <Card style={{ marginTop: 14 }}>
+      <Card id="rectificacion" style={{ marginTop: 14 }}>
         <SectionHead eyebrow="Derecho de rectificación" title="Cómo pedir una corrección" />
         <p>
           Si apareces nombrado en el tracker de promesas, en la ficha de Cargos o en cualquier otra
-          sección con información incorrecta, tienes derecho a solicitar rectificación. Contacta con
-          la redacción para abrir el procedimiento.
+          sección con información incorrecta, tienes derecho a solicitar rectificación, y si eres un
+          grupo, un cargo o una institución aludidos, a publicar tu réplica. Para abrir el
+          procedimiento:
+        </p>
+        <ul>
+          <li>
+            Escribe a{' '}
+            <a href="mailto:civicpulse_es@proton.me" style={{ color: 'var(--civic)' }}>
+              civicpulse_es@proton.me
+            </a>{' '}
+            indicando qué página o ficha, qué dice y qué debería decir. No hace falta ninguna
+            cuenta.
+          </li>
+          <li>
+            O, si tienes cuenta de GitHub, usa los{' '}
+            <a
+              href="https://github.com/datarhan/civicpulse/issues/new/choose"
+              target="_blank"
+              rel="noreferrer"
+              style={{ color: 'var(--civic)' }}
+            >
+              formularios de derecho de réplica
+            </a>
+            . Lo que envíes ahí es público desde el primer momento.
+          </li>
+        </ul>
+        <p>
+          Una réplica no se publica al enviarla: antes comprobamos que viene de quien la firma
+          —escribiendo, si hace falta, al correo institucional del grupo, del cargo o de la
+          institución— y la publicamos íntegra y literal junto a lo que responde.
         </p>
         <ul>
           <li>Revisión en 24 h hábiles (L-V).</li>
@@ -234,6 +273,23 @@ export default function AvisoLegal() {
       </Card>
 
       <Card style={{ marginTop: 14 }}>
+        <SectionHead eyebrow="Privacidad · visitas" title="Qué pasa cuando visitas esta web" />
+        <p>
+          No instalamos cookies ni te identificamos. Contamos las visitas de forma agregada con
+          Vercel Web Analytics, el servicio de estadísticas del alojamiento que se nombra arriba:
+          funciona sin cookies y sin guardar nada en tu dispositivo, y sirve para saber qué páginas
+          se leen, no quién las lee.
+        </p>
+        <p>
+          Al cargar la página, tu navegador pide además recursos a otros servicios, que reciben tu
+          dirección IP como en cualquier petición web: las tipografías (Google Fonts), la hoja de
+          estilo del mapa (unpkg), las teselas del mapa (CARTO) y el tiempo en Riba-roja
+          (Open-Meteo). Tus preferencias de idioma y de apariencia se guardan sólo en tu navegador,
+          y puedes borrarlas desde él.
+        </p>
+      </Card>
+
+      <Card style={{ marginTop: 14 }}>
         <SectionHead
           eyebrow="Privacidad / protección de datos"
           title="Datos personales de cargos electos"
@@ -246,8 +302,7 @@ export default function AvisoLegal() {
           papel institucional. Comprenden el nombre, la fotografía pública, el correo institucional,
           la concejalía asignada, la trayectoria política y profesional que consta en esos
           documentos, los cargos societarios inscritos en el Registro Mercantil, el patrimonio y las
-          actividades que el cargo declara por ley y las retribuciones publicadas. No se rastrea a
-          los visitantes del sitio ni se usa analítica invasiva.
+          actividades que el cargo declara por ley y las retribuciones publicadas.
         </p>
         <p>
           <strong>Qué no se trata nunca:</strong> datos de menores, de salud, de orientación sexual
@@ -361,8 +416,16 @@ export default function AvisoLegal() {
           <strong>Base jurídica</strong>: Art. 6.1.e del Reglamento (UE) 2016/679 (RGPD) —
           tratamiento necesario para el cumplimiento de una misión realizada en interés público
           (fiscalización ciudadana del servicio municipal).{' '}
-          <strong>Responsable del tratamiento</strong>: el proyecto CivicPulse, sin fines
-          comerciales.
+          <strong>Responsable del tratamiento</strong>: el mantenedor de CivicPulse, que firma el
+          proyecto en{' '}
+          <a href="/nosotros" style={{ color: 'var(--civic)' }}>
+            /nosotros
+          </a>
+          , sin fines comerciales. Contacto:{' '}
+          <a href="mailto:civicpulse_es@proton.me" style={{ color: 'var(--civic)' }}>
+            civicpulse_es@proton.me
+          </a>
+          .
         </p>
         <p>
           <strong>Plazo de conservación</strong>: 5 años desde la resolución de la queja o su última
@@ -444,16 +507,15 @@ export default function AvisoLegal() {
         </ul>
         <p>
           <strong>Derechos adicionales</strong> (acceso, rectificación, oposición, portabilidad):
-          contacto igual que la vía de rectificación de esta página. Reclamación ante autoridad de
-          control:{' '}
+          contacto igual que la{' '}
+          <a href="#rectificacion" style={{ color: 'var(--civic)' }}>
+            vía de rectificación
+          </a>{' '}
+          de esta página. Reclamación ante la autoridad de control:{' '}
           <a href="https://www.aepd.es" target="_blank" rel="noreferrer">
             Agencia Española de Protección de Datos
           </a>{' '}
-          (AEPD) o{' '}
-          <a href="https://avpd.euskadi.eus" target="_blank" rel="noreferrer">
-            Autoridad Valenciana de Protección de Datos
-          </a>
-          .
+          (AEPD).
         </p>
       </Card>
 

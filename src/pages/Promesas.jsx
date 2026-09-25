@@ -480,7 +480,10 @@ export function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
       >
         <span>
           Réplica o corrección · contacto en{' '}
-          <a href="/aviso-legal" style={{ color: 'var(--civic)', textDecoration: 'underline' }}>
+          <a
+            href="/aviso-legal#rectificacion"
+            style={{ color: 'var(--civic)', textDecoration: 'underline' }}
+          >
             /aviso-legal
           </a>
         </span>
