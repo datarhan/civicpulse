@@ -40,12 +40,12 @@ jobs:
       # Historia entera (sin blobs, que no hacen falta para `git log`): el latido
       # del portátil se busca por el asunto de su commit, y con la profundidad
       # por defecto sólo se vería el último commit.
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
           filter: blob:none
 
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v7
         with:
           node-version: '22'
           cache: 'npm'

@@ -82,12 +82,12 @@ jobs:
       # `git log -1 -- <fichero>`, y en el clon superficial por defecto el único
       # commit visible pasa por haber tocado TODOS los ficheros: cada despliegue
       # estampaba su propia fecha en el contrato editorial publicado.
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
           filter: blob:none
 
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v7
         with:
           node-version: '22'
           cache: 'npm'

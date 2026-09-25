@@ -47,11 +47,11 @@ jobs:
             *) echo "::error::${QUIEN} (${PERMISO}) no puede aprobar una publicación"; exit 1 ;;
           esac
 
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v7
         with:
           node-version: '22'
           cache: 'npm'

@@ -45,7 +45,7 @@ jobs:
     timeout-minutes: 15
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
 
       # Se queda en 20 A PROPÓSITO mientras la imagen del bot sea
       # `node:20-bookworm-slim` (bot/Dockerfile): las pruebas tienen que correr en
@@ -53,7 +53,7 @@ jobs:
       # 2026-04-30; subir los dos juntos es un despliegue en Fly con su propia
       # comprobación (better-sqlite3 es nativo). Ver docs/REVIEW_2026-09.md.
       - name: Setup Node
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v7
         with:
           node-version: '20'
           cache: 'npm'
