@@ -29,7 +29,8 @@ export const anclaSeccion = (/** @type {string} */ num) => `seccion-${num}`
  * Encabezado de sección numerado. `data-seccion` es lo que lee el índice; el
  * `id` es lo que se enlaza, y `scrollMarginTop` deja el título fuera de la
  * barra superior fija al saltar a él (el mismo margen que el registro de
- * correcciones).
+ * correcciones). El título lleva su tinta: heredada, salía negro en dos piezas
+ * y gris en las tres que envuelven el cuerpo en un `<article>` a --ink70.
  *
  * @param {{ num: string, kicker: string, title: import('react').ReactNode }} props
  */
@@ -58,6 +59,7 @@ export function SecHead({ num, kicker, title }) {
           fontWeight: 600,
           letterSpacing: '-.01em',
           lineHeight: 1.15,
+          color: 'var(--ink)',
           margin: 0,
         }}
       >

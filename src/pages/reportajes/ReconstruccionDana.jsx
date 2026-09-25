@@ -129,7 +129,7 @@ function MapaContratos({ boundary, bbox, places, danaPlaces }) {
       ref={ref}
       {...marcas}
       viewBox={`0 0 ${W} ${H}`}
-      style={{ width: '100%', maxWidth: 440, margin: '0 auto', display: 'block' }}
+      style={{ width: '100%', maxWidth: 440, display: 'block' }}
       role="img"
       aria-label="Mapa de Riba-roja de Túria con los contratos geolocalizados: en azul petróleo, los lugares con contratos que referencian la DANA; en gris, el resto"
     >
@@ -207,7 +207,6 @@ function ClaveMapa() {
         display: 'flex',
         flexWrap: 'wrap',
         gap: '6px 18px',
-        justifyContent: 'center',
         fontSize: 'var(--fs-meta)',
         color: 'var(--ink70)',
         marginTop: 10,
@@ -362,7 +361,10 @@ function Funders() {
           </div>
         ))}
       </div>
-      <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', margin: '10px 0 0' }}>
+      <p
+        className="cp-pie"
+        style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', margin: '10px 0 0' }}
+      >
         Cofinancian obras solapadas: <b style={{ color: 'var(--ink50)' }}>no deben sumarse</b> en
         una única cifra de reconstrucción.
       </p>

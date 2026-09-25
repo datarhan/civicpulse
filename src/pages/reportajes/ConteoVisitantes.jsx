@@ -97,6 +97,12 @@ function Tabla({ cols, rows, caption }) {
     borderBottom: '1px solid var(--border)',
     verticalAlign: 'top',
   }
+  // La primera y la última columna van a ras: la tabla arranca en el mismo borde
+  // izquierdo que el texto que la presenta, y acaba en el de su filete.
+  const aRas = (i) => ({
+    ...(i === 0 && { paddingLeft: 0 }),
+    ...(i === cols.length - 1 && { paddingRight: 0 }),
+  })
   return (
     <div style={{ overflowX: 'auto' }}>
       <table style={{ borderCollapse: 'collapse', width: '100%', minWidth: 520 }}>
@@ -116,7 +122,11 @@ function Tabla({ cols, rows, caption }) {
         <thead>
           <tr>
             {cols.map((c, i) => (
-              <th key={i} scope="col" style={{ ...th, ...(c.right && { textAlign: 'right' }) }}>
+              <th
+                key={i}
+                scope="col"
+                style={{ ...th, ...aRas(i), ...(c.right && { textAlign: 'right' }) }}
+              >
                 {c.label}
               </th>
             ))}
@@ -131,6 +141,7 @@ function Tabla({ cols, rows, caption }) {
                   className={cols[j].mono ? 'mono' : undefined}
                   style={{
                     ...td,
+                    ...aRas(j),
                     ...(cols[j].right && { textAlign: 'right', whiteSpace: 'nowrap' }),
                   }}
                 >
@@ -330,7 +341,7 @@ export default function ConteoVisitantes() {
       <p style={{ color: 'var(--ink70)', fontSize: 'var(--fs-head)', margin: '0 0 6px' }}>
         {m.subtitulo}
       </p>
-      <div className="mono cp-texto" style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
+      <div className="mono" style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
         Publicado el {fmtDateHuman(m.publicadoEl)} · cifras congeladas a {m.fechaDatos}
       </div>
 
@@ -381,8 +392,11 @@ export default function ConteoVisitantes() {
       {/* La entradilla iba a --fs-page (26px) también en el móvil: a 375px eran
           diecisiete líneas de serifa, pantalla y media antes del primer
           apartado. Ahora escala con el ancho entre dos pasos de la escala, como
-          los --type-* de index.css: --fs-page donde cabe, --fs-card donde no. */}
+          los --type-* de index.css: --fs-page donde cabe, --fs-card donde no.
+          Va a todo el ancho (`cp-ancho`): a 26px, la columna entera son unos
+          sesenta caracteres, y la medida del cuerpo la dejaba en trece líneas. */}
       <p
+        className="cp-ancho"
         style={{
           fontFamily: SERIF,
           fontSize: 'clamp(var(--fs-card), 2.4vw, var(--fs-page))',

@@ -26,6 +26,12 @@ function Tabla({ cols, rows, caption }) {
     borderBottom: '1px solid var(--border)',
     verticalAlign: 'top',
   }
+  // La primera y la última columna van a ras: la tabla arranca en el mismo borde
+  // izquierdo que el texto que la presenta, y acaba en el de su filete.
+  const aRas = (i) => ({
+    ...(i === 0 && { paddingLeft: 0 }),
+    ...(i === cols.length - 1 && { paddingRight: 0 }),
+  })
   return (
     <div style={{ overflowX: 'auto' }}>
       <table style={{ borderCollapse: 'collapse', width: '100%', minWidth: 560 }}>
@@ -45,7 +51,11 @@ function Tabla({ cols, rows, caption }) {
         <thead>
           <tr>
             {cols.map((c, i) => (
-              <th key={i} scope="col" style={{ ...th, ...(c.right && { textAlign: 'right' }) }}>
+              <th
+                key={i}
+                scope="col"
+                style={{ ...th, ...aRas(i), ...(c.right && { textAlign: 'right' }) }}
+              >
                 {c.label}
               </th>
             ))}
@@ -60,6 +70,7 @@ function Tabla({ cols, rows, caption }) {
                   className={cols[j].mono ? 'mono' : undefined}
                   style={{
                     ...td,
+                    ...aRas(j),
                     ...(cols[j].right && { textAlign: 'right', whiteSpace: 'nowrap' }),
                     ...(cols[j].strong && { color: 'var(--ink)', fontWeight: 500 }),
                   }}

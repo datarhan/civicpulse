@@ -1371,27 +1371,31 @@ main:focus:not(:focus-visible) {
 
 /* La medida de lectura de las piezas. A 712px de columna y 16px, el cuerpo iba a
    unos noventa caracteres por línea; una pieza larga se lee cómoda entre sesenta
-   y setenta y cinco. Así que el TEXTO CORRIDO —titular, entradilla, párrafos,
-   listas, encabezados de sección— va a la medida y centrado, y lo ENMARCADO
-   —figuras, tablas, tarjetas, avisos, citas en caja— sigue a todo el ancho de la
-   columna, sobresaliendo por los dos lados. Los pies de una figura (`.cp-pie`)
-   van con su figura; un bloque de texto que no es párrafo (`.cp-texto`) va con
-   el texto; un párrafo con caja (`.cp-ancho`) va con las cajas.
+   y setenta y cinco. Así que el TEXTO DE CUERPO sin caja —párrafos, listas,
+   ladillos (h3) y pies de figura— va a la medida, y todo lo demás sigue a todo
+   el ancho de la columna: lo ENMARCADO —figuras, tablas, tarjetas, avisos, citas
+   en caja— y lo que va en cuerpo de TITULAR —el titular, los encabezados de
+   sección, una entradilla en serifa grande—, que a 26–34px ya hace sus cuarenta
+   a sesenta caracteres en la columna entera; metido en la medida, el titular de
+   «inteligencia turística» bajaba a cuatro líneas. Un bloque de texto que no es
+   párrafo lleva `.cp-texto`; un párrafo que conserva la columna —con caja, o en
+   cuerpo de titular—, `.cp-ancho`; un pie, `.cp-pie`, y ése se alcanza aunque
+   viva dentro del envoltorio de su figura.
 
-   Los márgenes laterales llevan !important porque las piezas escriben los
-   suyos en línea (`margin: '0 0 26px'`) y el centrado tiene que ganarles; sólo
-   se tocan los laterales. En rem, para que la densidad la mueva. Por debajo de
-   la medida —el móvil— no cambia nada: la columna ya es más estrecha. */
+   Todo arranca en el borde izquierdo de la columna; lo ancho sólo se alarga
+   hacia la derecha. Con la medida centrada, texto y cajas tenían dos bordes
+   izquierdos a 90px el uno del otro, y el ojo saltaba en cada figura. En rem,
+   para que la densidad la mueva. Por debajo de la medida —el móvil— no cambia
+   nada: la columna ya es más estrecha. */
 .cp-pieza {
   /* 38rem = 532px a densidad normal: unos setenta caracteres de Outfit a 16px,
      medidos sobre los párrafos de las piezas, no supuestos. */
   --medida: 38rem;
 }
-.cp-pieza > :is(p, ul, ol, h1, h3, [data-seccion], .cp-texto):not(.cp-pie, .cp-ancho),
-.cp-pieza > article > :is(p, ul, ol, h3, [data-seccion], .cp-texto):not(.cp-pie, .cp-ancho) {
+.cp-pieza > :is(p, ul, ol, h3, .cp-texto):not(.cp-ancho),
+.cp-pieza > article > :is(p, ul, ol, h3, .cp-texto):not(.cp-ancho),
+.cp-pieza .cp-pie {
   max-width: var(--medida);
-  margin-left: auto !important;
-  margin-right: auto !important;
 }
 
 /* «En esta pieza» — índice plegado, leído de los encabezados de la pieza. */
