@@ -138,6 +138,13 @@ jobs:
           # `check:basemap` en el parte nocturno, comparando bytes, porque una
           # clave inválida y ninguna clave dan la MISMA tesela.
           VITE_CARTO_API_KEY: ${{ secrets.CARTO_API_KEY }}
+          # Recuento de visitas sin cookies (Vercel Web Analytics). Tampoco es una
+          # bandera de lanzamiento: no monta ninguna ruta, así que ni va en e2e.yml
+          # ni la compara `tests/deploy-triggers.test.js`. Va SÓLO aquí para que ni
+          # el desarrollo ni las pruebas manden visitas. Contar además exige activar
+          # Web Analytics en el proyecto de Vercel; sin eso el script da 404 y no se
+          # cuenta nada. Lo declara /aviso-legal.
+          VITE_ANALYTICS: 'vercel'
         run: vercel build --prod --token="$VERCEL_TOKEN"
 
       - name: Deploy prebuilt bundle

@@ -257,6 +257,7 @@
     "build:prompt-log": "npx tsx scripts/build-prompt-log.ts"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "leaflet": "^1.9.4",
     "pdf-parse": "^1.1.4",
     "react": "^18.3.1",

@@ -14,6 +14,8 @@ interface ImportMetaEnv {
   readonly VITE_ENABLE_EFICIENCIA?: string
   /** Clave de las teselas de CARTO; ver `src/lib/basemap.js`. */
   readonly VITE_CARTO_API_KEY?: string
+  /** `vercel` monta el recuento de visitas sin cookies; ver `src/components/Analitica.jsx`. */
+  readonly VITE_ANALYTICS?: string
 }
 
 interface ImportMeta {

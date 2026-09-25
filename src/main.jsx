@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App'
+import Analitica from './components/Analitica'
 import { LocaleProvider } from './i18n'
 import './index.css'
 
@@ -11,6 +12,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <LocaleProvider>
         <App />
       </LocaleProvider>
+      <Analitica />
     </BrowserRouter>
   </React.StrictMode>,
 )
