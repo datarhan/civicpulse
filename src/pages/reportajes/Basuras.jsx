@@ -1,39 +1,9 @@
 import { useReportaje } from '../../hooks/useReportaje'
-import Emblema from '../../components/reportajes/Emblema'
+import Emblema, { cifrasDelEmblema } from '../../components/reportajes/Emblema'
 import { CorrectionNote, CorrectionNotice } from '../../components/reportajes/CorrectionNote'
+import { SecHead, IndicePieza } from '../../components/reportajes/Pieza'
 
 const SERIF = "'Fraunces', Georgia, serif"
-
-/* ---- Encabezado de sección numerado (mismo patrón que ReconstruccionDana) ---- */
-function SecHead({ num, kicker, title }) {
-  return (
-    <div style={{ margin: '34px 0 12px' }}>
-      <div
-        className="mono"
-        style={{
-          fontSize: 'var(--fs-micro)',
-          color: 'var(--ink50)',
-          letterSpacing: '.04em',
-          marginBottom: 6,
-        }}
-      >
-        {num} · {kicker}
-      </div>
-      <h2
-        style={{
-          fontFamily: SERIF,
-          fontSize: 'var(--fs-page)',
-          fontWeight: 600,
-          letterSpacing: '-.01em',
-          lineHeight: 1.15,
-          margin: 0,
-        }}
-      >
-        {title}
-      </h2>
-    </div>
-  )
-}
 
 /* ---- Tabla genérica con scroll horizontal propio ---- */
 function Tabla({ cols, rows, caption }) {
@@ -55,6 +25,12 @@ function Tabla({ cols, rows, caption }) {
     borderBottom: '1px solid var(--border)',
     verticalAlign: 'top',
   }
+  // La primera y la última columna van a ras: la tabla arranca en el mismo borde
+  // izquierdo que el texto que la presenta, y acaba en el de su filete.
+  const aRas = (i) => ({
+    ...(i === 0 && { paddingLeft: 0 }),
+    ...(i === cols.length - 1 && { paddingRight: 0 }),
+  })
   return (
     <div style={{ overflowX: 'auto' }}>
       <table style={{ borderCollapse: 'collapse', width: '100%', minWidth: 520 }}>
@@ -74,7 +50,11 @@ function Tabla({ cols, rows, caption }) {
         <thead>
           <tr>
             {cols.map((c, i) => (
-              <th key={i} scope="col" style={{ ...th, ...(c.right && { textAlign: 'right' }) }}>
+              <th
+                key={i}
+                scope="col"
+                style={{ ...th, ...aRas(i), ...(c.right && { textAlign: 'right' }) }}
+              >
                 {c.label}
               </th>
             ))}
@@ -89,6 +69,7 @@ function Tabla({ cols, rows, caption }) {
                   className={cols[j].mono ? 'mono' : undefined}
                   style={{
                     ...td,
+                    ...aRas(j),
                     ...(cols[j].right && { textAlign: 'right', whiteSpace: 'nowrap' }),
                     ...(cols[j].nowrap && { whiteSpace: 'nowrap' }),
                     ...(cols[j].strong && { color: 'var(--ink)', fontWeight: 500 }),
@@ -218,6 +199,8 @@ export default function Basuras() {
     )
 
   const m = data.meta
+  // Las tarjetas que la figura de cabecera ya imprime (ver cifrasDelEmblema).
+  const enFigura = new Set(cifrasDelEmblema('basuras', data))
   const d = data.dinero
   const ce = data.costeEfectivo
   const cal = data.calendario
@@ -225,7 +208,7 @@ export default function Basuras() {
 
   return (
     <div
-      className="cp-page"
+      className="cp-page cp-pieza"
       style={{
         padding: '24px',
         maxWidth: 760,
@@ -253,7 +236,7 @@ export default function Basuras() {
       )}
 
       <div
-        className="mono"
+        className="mono cp-texto"
         style={{
           fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
@@ -304,7 +287,11 @@ export default function Basuras() {
         }}
       >
         {data.kpis.map((s, i) => (
-          <div key={i} style={{ background: 'var(--paper)', padding: '16px 14px' }}>
+          <div
+            key={i}
+            className={enFigura.has(s.n) ? 'cp-kpi-en-figura' : undefined}
+            style={{ background: 'var(--paper)', padding: '16px 14px' }}
+          >
             <div
               className="mono"
               style={{
@@ -331,6 +318,8 @@ export default function Basuras() {
       </div>
 
       <article style={{ color: 'var(--ink70)' }}>
+        <IndicePieza />
+
         {/* 01 */}
         <SecHead num="01" kicker="La contrata" title="La empresa que llevaba casi quince años" />
         <p>
@@ -415,7 +404,7 @@ export default function Basuras() {
               </span>
             </div>
           </div>
-          <p style={cap()}>
+          <p className="cp-pie" style={cap()}>
             Reparto de los 100 puntos del lote 1: en azul el precio, en ámbar los compromisos.
           </p>
         </div>
@@ -424,7 +413,9 @@ export default function Basuras() {
           cols={[{ label: 'Criterio' }, { label: 'Puntos', right: true, mono: true, strong: true }]}
           rows={data.criterios.filas.map((f) => [f.criterio, num(f.puntos, f.puntos % 1 ? 1 : 0)])}
         />
-        <p style={cap()}>{data.criterios.nota}</p>
+        <p className="cp-pie" style={cap()}>
+          {data.criterios.nota}
+        </p>
 
         <p>
           Garbialdi se llevó los 32 puntos del precio —fue la oferta más barata de las cuatro— y
@@ -482,7 +473,7 @@ export default function Basuras() {
             </ul>
           </div>
         </div>
-        <p style={cap()}>
+        <p className="cp-pie" style={cap()}>
           Los incumplimientos proceden de los informes técnicos municipales y de AUDITESA S.L., la
           empresa que el propio Ayuntamiento contrató por {eur(d.supervisionAuditesa)} para
           supervisar este contrato. Es la parte del expediente que funcionó.
@@ -523,7 +514,7 @@ export default function Basuras() {
         <p>{data.parla.balance}</p>
         <p>El rastro de la empresa en otros lugares es más corto, pero existe:</p>
         {data.expedienteGarbialdi.map((e, i) => (
-          <div key={i} style={{ margin: '14px 0' }}>
+          <div key={i} className="cp-texto" style={{ margin: '14px 0' }}>
             <div
               className="mono"
               style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginBottom: 4 }}
@@ -727,7 +718,9 @@ export default function Basuras() {
             </ul>
           </div>
         </div>
-        <p style={cap()}>{cal.urbanizacionesNota}</p>
+        <p className="cp-pie" style={cap()}>
+          {cal.urbanizacionesNota}
+        </p>
         <p>
           Las reglas: {cal.limites.join('. ')}. Y antes de sacar nada hay que llamar al{' '}
           <span className="mono">{cal.telefono}</span>, gratuito, donde Riba-roja Neta indica el día
@@ -823,7 +816,7 @@ export default function Basuras() {
         {data.preguntas.bloques.map((b, bi) => {
           const offset = data.preguntas.bloques.slice(0, bi).reduce((s, x) => s + x.items.length, 0)
           return (
-            <div key={bi} style={{ margin: '22px 0 0' }}>
+            <div key={bi} className="cp-texto" style={{ margin: '22px 0 0' }}>
               <h3 style={boxH()}>
                 {b.titulo} · {b.destinatario}
               </h3>

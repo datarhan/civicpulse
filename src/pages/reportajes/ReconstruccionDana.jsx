@@ -1,7 +1,8 @@
 import { useReportaje } from '../../hooks/useReportaje'
-import Emblema from '../../components/reportajes/Emblema'
+import Emblema, { cifrasDelEmblema } from '../../components/reportajes/Emblema'
 import { Card, SectionHead } from '../../components/Primitives'
 import { CorrectionNote, CorrectionNotice } from '../../components/reportajes/CorrectionNote'
+import { SecHead, IndicePieza, Revela, useRevelado } from '../../components/reportajes/Pieza'
 
 const SERIF = "'Fraunces', Georgia, serif"
 const MES = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic']
@@ -31,8 +32,11 @@ function Timeline({ data }) {
     ih = H - mT - mB
   const max = Math.max(...data.map((d) => d.amount))
   const bw = iw / data.length
+  const { ref, marcas } = useRevelado()
   return (
     <svg
+      ref={ref}
+      {...marcas}
       viewBox={`0 0 ${W} ${H}`}
       style={{ width: '100%', display: 'block' }}
       role="img"
@@ -48,7 +52,16 @@ function Timeline({ data }) {
         return (
           <g key={d.month}>
             {d.amount > 0 && (
-              <rect x={bx} y={mT + ih - bh} width={bwid} height={bh} rx="2" fill="var(--civic)">
+              <rect
+                className="cp-crece-y"
+                style={{ '--i': i, '--paso': '45ms' }}
+                x={bx}
+                y={mT + ih - bh}
+                width={bwid}
+                height={bh}
+                rx="2"
+                fill="var(--civic)"
+              >
                 <title>{`${MES[mo]} ${d.month.slice(0, 4)} · ${eurC(d.amount)} · ${d.count} contrato${d.count > 1 ? 's' : ''}`}</title>
               </rect>
             )}
@@ -63,7 +76,10 @@ function Timeline({ data }) {
                 {eurC(d.amount)}
               </text>
             )}
-            {(i % 2 === 0 || i === data.length - 1) && (
+            {/* Un mes sí y otro no, y siempre el último. Con un número par de
+                meses el penúltimo también es par, y las dos etiquetas finales se
+                montaban («mar 26abr 26»): se salta el penúltimo. */}
+            {((i % 2 === 0 && i !== data.length - 2) || i === data.length - 1) && (
               <text
                 x={x + bw / 2}
                 y={H - 9}
@@ -81,7 +97,13 @@ function Timeline({ data }) {
   )
 }
 
-/* ---- Mapa de contratos geolocalizados ---- */
+/* ---- Mapa de contratos geolocalizados ----
+   Misma clave que la figura de cabecera de esta pieza (Emblema): con referencia
+   DANA en petróleo, el resto en gris. Antes los dos grupos eran el mismo
+   petróleo con distinta opacidad (0,72 frente a 0,4): en claro costaba
+   distinguirlos y en oscuro no se distinguían, y el pie pedía al lector que
+   viera «los puntos más intensos». Y no en rojo: el rojo es el color de lo que
+   una pieza documenta como fallo, y ésta no atribuye irregularidad a nadie. */
 function MapaContratos({ boundary, bbox, places, danaPlaces }) {
   const pad = 20
   const cosLat = Math.cos((((bbox.north + bbox.south) / 2) * Math.PI) / 180)
@@ -101,14 +123,19 @@ function MapaContratos({ boundary, bbox, places, danaPlaces }) {
   const rOf = (a) => 4 + Math.sqrt(a / maxAmt) * 16
   const sorted = [...places].sort((a, b) => b.amount - a.amount)
   const anchors = danaPlaces.slice(0, 2)
+  const { ref, marcas } = useRevelado()
   return (
     <svg
+      ref={ref}
+      {...marcas}
       viewBox={`0 0 ${W} ${H}`}
-      style={{ width: '100%', maxWidth: 440, margin: '0 auto', display: 'block' }}
+      style={{ width: '100%', maxWidth: 440, display: 'block' }}
       role="img"
-      aria-label="Mapa de Riba-roja de Túria con los contratos geolocalizados"
+      aria-label="Mapa de Riba-roja de Túria con los contratos geolocalizados: en azul petróleo, los lugares con contratos que referencian la DANA; en gris, el resto"
     >
       <path
+        className="cp-traza"
+        pathLength={1}
         d={path}
         fill="var(--soft)"
         stroke="var(--ink50)"
@@ -118,13 +145,15 @@ function MapaContratos({ boundary, bbox, places, danaPlaces }) {
       {sorted.map((p, i) => (
         <circle
           key={i}
+          className="cp-brota"
+          style={{ '--i': i, '--d': '500ms', '--paso': '22ms' }}
           cx={px(p.lng).toFixed(1)}
           cy={py(p.lat).toFixed(1)}
           r={rOf(p.amount).toFixed(1)}
-          fill="var(--civic)"
-          fillOpacity={p.danaAmount > 0 ? 0.72 : 0.4}
-          stroke={p.danaAmount > 0 ? 'var(--paper)' : 'var(--civic)'}
-          strokeWidth={p.danaAmount > 0 ? 1.2 : 1}
+          fill={p.danaAmount > 0 ? 'var(--civic)' : 'var(--ink50)'}
+          fillOpacity={p.danaAmount > 0 ? 0.9 : 0.6}
+          stroke="var(--paper)"
+          strokeWidth={1.2}
         >
           <title>{`${p.name} · ${eurFull(p.amount)} · ${p.contractCount} contrato${p.contractCount > 1 ? 's' : ''}${p.danaAmount > 0 ? ` · DANA ${eurC(p.danaAmount)}` : ''}`}</title>
         </circle>
@@ -159,11 +188,47 @@ function MapaContratos({ boundary, bbox, places, danaPlaces }) {
   )
 }
 
+/* ---- La clave del mapa, en HTML y no dentro del SVG: el SVG se escala con el
+        ancho y sus letras bajarían del suelo de 11px en un móvil. ---- */
+function ClaveMapa() {
+  const punto = (color, opacidad) => ({
+    display: 'inline-block',
+    width: 10,
+    height: 10,
+    borderRadius: '50%',
+    background: color,
+    opacity: opacidad,
+    marginRight: 6,
+    verticalAlign: '-1px',
+  })
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: '6px 18px',
+        fontSize: 'var(--fs-meta)',
+        color: 'var(--ink70)',
+        marginTop: 10,
+      }}
+    >
+      <span>
+        <span aria-hidden="true" style={punto('var(--civic)', 0.9)} />
+        con referencia DANA
+      </span>
+      <span>
+        <span aria-hidden="true" style={punto('var(--ink50)', 0.6)} />
+        sin referencia DANA
+      </span>
+    </div>
+  )
+}
+
 /* ---- Barras horizontales (adjudicatarios / zonas) ---- */
 function Barras({ rows }) {
   const max = Math.max(...rows.map((r) => r.value))
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
+    <Revela style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
       {rows.map((r, i) => (
         <div key={i}>
           <div
@@ -208,7 +273,9 @@ function Barras({ rows }) {
             }}
           >
             <div
+              className="cp-crece-x"
               style={{
+                '--i': i,
                 height: '100%',
                 width: Math.max(3, (r.value / max) * 100) + '%',
                 background: 'var(--civic)',
@@ -218,38 +285,7 @@ function Barras({ rows }) {
           </div>
         </div>
       ))}
-    </div>
-  )
-}
-
-/* ---- Encabezado de sección numerado ---- */
-function SecHead({ num, kicker, title }) {
-  return (
-    <div style={{ margin: '34px 0 12px' }}>
-      <div
-        className="mono"
-        style={{
-          fontSize: 'var(--fs-micro)',
-          color: 'var(--ink50)',
-          letterSpacing: '.04em',
-          marginBottom: 6,
-        }}
-      >
-        {num} · {kicker}
-      </div>
-      <h2
-        style={{
-          fontFamily: SERIF,
-          fontSize: 'var(--fs-page)',
-          fontWeight: 600,
-          letterSpacing: '-.01em',
-          lineHeight: 1.15,
-          margin: 0,
-        }}
-      >
-        {title}
-      </h2>
-    </div>
+    </Revela>
   )
 }
 
@@ -325,7 +361,10 @@ function Funders() {
           </div>
         ))}
       </div>
-      <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', margin: '10px 0 0' }}>
+      <p
+        className="cp-pie"
+        style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', margin: '10px 0 0' }}
+      >
         Cofinancian obras solapadas: <b style={{ color: 'var(--ink50)' }}>no deben sumarse</b> en
         una única cifra de reconstrucción.
       </p>
@@ -384,6 +423,34 @@ function Callout() {
 
 const CAP = (s) => (s.length > 34 ? s.slice(0, 33) + '…' : s)
 
+/**
+ * Las cuatro cifras de la cabecera. Función y no literal en el JSX: el test de los
+ * emblemas comprueba que las que la figura ya imprime (y que la pieza esconde
+ * donde la figura se ve) son de verdad tarjetas de aquí.
+ */
+export function kpisReconstruccion(t) {
+  return [
+    { n: '14,5 M€', l: 'solo del Estado (Orden TMD/101/2025)', tone: 'var(--civic)' },
+    // Counts read from the data, not hardcoded. They were literals ('73',
+    // '72') beside amounts that came from `t`, so correcting the totals
+    // would have left the count saying 73 next to the corrected 2,75 M€.
+    { n: String(t.danaContracts), l: `contratos ref. DANA · ${eurC(t.danaAmount)}` },
+    { n: String(t.situatedContracts), l: `geolocalizados · ${eurC(t.situatedAmount)}` },
+    // Decía «0 órganos que fiscalizan los contratos municipales», y es falso: la
+    // Sindicatura de Comptes es el órgano de control externo de las entidades locales,
+    // programa «la fiscalización de la contratación en las entidades locales durante
+    // 2023 y 2024» —2024 es el año de la riada— y revisa los reparos de los
+    // interventores locales. Lo que sí es cero, y es lo que sostiene el reportaje, es
+    // el alcance MUNICIPAL de los informes DANA: los dos especiales están acotados al
+    // sector autonómico por su propio título.
+    {
+      n: '0',
+      l: 'informes DANA de la Sindicatura que alcanzan al tramo municipal',
+      tone: 'var(--warn-ink)',
+    },
+  ]
+}
+
 export default function ReconstruccionDana() {
   const { loading, error, data } = useReportaje('reconstruccion-dana')
 
@@ -402,10 +469,12 @@ export default function ReconstruccionDana() {
 
   const t = data.totals
   const m = data.meta
+  // Las tarjetas que la figura de cabecera ya imprime (ver cifrasDelEmblema).
+  const enFigura = new Set(cifrasDelEmblema('reconstruccion-dana', data))
 
   return (
     <div
-      className="cp-page"
+      className="cp-page cp-pieza"
       style={{
         padding: '24px',
         maxWidth: 760,
@@ -433,7 +502,7 @@ export default function ReconstruccionDana() {
       )}
 
       <div
-        className="mono"
+        className="mono cp-texto"
         style={{
           fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
@@ -474,7 +543,10 @@ export default function ReconstruccionDana() {
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
+          // auto-fit y no cuatro columnas fijas: donde la figura se ve, dos tarjetas
+          // se esconden (cifrasDelEmblema), y cuatro columnas dejaban dos huecos. En
+          // el móvil, además, cuatro columnas de 80px no le cabían a «14,5 M€».
+          gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
           gap: 1,
           background: 'var(--border)',
           border: '1px solid var(--border)',
@@ -483,27 +555,12 @@ export default function ReconstruccionDana() {
           margin: '0 0 30px',
         }}
       >
-        {[
-          { n: '14,5 M€', l: 'solo del Estado (Orden TMD/101/2025)', tone: 'var(--civic)' },
-          // Counts read from the data, not hardcoded. They were literals ('73',
-          // '72') beside amounts that came from `t`, so correcting the totals
-          // would have left the count saying 73 next to the corrected 2,75 M€.
-          { n: String(t.danaContracts), l: `contratos ref. DANA · ${eurC(t.danaAmount)}` },
-          { n: String(t.situatedContracts), l: `geolocalizados · ${eurC(t.situatedAmount)}` },
-          // Decía «0 órganos que fiscalizan los contratos municipales», y es falso: la
-          // Sindicatura de Comptes es el órgano de control externo de las entidades locales,
-          // programa «la fiscalización de la contratación en las entidades locales durante
-          // 2023 y 2024» —2024 es el año de la riada— y revisa los reparos de los
-          // interventores locales. Lo que sí es cero, y es lo que sostiene el reportaje, es
-          // el alcance MUNICIPAL de los informes DANA: los dos especiales están acotados al
-          // sector autonómico por su propio título.
-          {
-            n: '0',
-            l: 'informes DANA de la Sindicatura que alcanzan al tramo municipal',
-            tone: 'var(--warn-ink)',
-          },
-        ].map((s, i) => (
-          <div key={i} style={{ background: 'var(--paper)', padding: '16px 14px' }}>
+        {kpisReconstruccion(t).map((s, i) => (
+          <div
+            key={i}
+            className={enFigura.has(s.n) ? 'cp-kpi-en-figura' : undefined}
+            style={{ background: 'var(--paper)', padding: '16px 14px' }}
+          >
             <div
               className="mono"
               style={{
@@ -558,6 +615,8 @@ export default function ReconstruccionDana() {
           cifró en 63 contratos de emergencia y 2.048.621 euros su respuesta inmediata a la riada.
         </p>
 
+        <IndicePieza />
+
         <SecHead num="01" kicker="Cuándo" title="La ola y la cola" />
         <p>
           El grueso llegó de golpe. La retirada de fango y la limpieza de caminos y viales coparon
@@ -575,7 +634,7 @@ export default function ReconstruccionDana() {
             <Timeline data={data.timelineFull} />
           </div>
         </Card>
-        <p style={cap()}>
+        <p className="cp-pie" style={cap()}>
           Importe adjudicado (sin IVA) por mes. Fuente: PLACSP/Gobierto · contratos cuyo título
           referencia la DANA.
         </p>
@@ -598,11 +657,13 @@ export default function ReconstruccionDana() {
               places={data.places}
               danaPlaces={data.danaPlaces}
             />
+            <ClaveMapa />
           </div>
         </Card>
-        <p style={cap()}>
-          Radio proporcional a √importe; los puntos más intensos concentran gasto DANA. Contorno
-          municipal real (OSM). Fuente: tender-geo · resolutor determinista de topónimos.
+        <p className="cp-pie" style={cap()}>
+          Radio proporcional a √importe; en azul petróleo, los lugares con algún contrato que
+          referencia la DANA, y en gris el resto. Contorno municipal real (OSM). Fuente: tender-geo
+          · resolutor determinista de topónimos.
         </p>
 
         <SecHead num="03" kicker="Quién" title="Los adjudicatarios" />
@@ -696,7 +757,9 @@ export default function ReconstruccionDana() {
           La DANA causó seis víctimas mortales en el término municipal, según el balance del
           Ayuntamiento, y una factura que la administración aún salda a plazos: el Consistorio ha
           cifrado en torno a los 22 millones de euros los daños del municipio. Este análisis no
-          atribuye a nadie una mala gestión: pone sobre la mesa, con datos abiertos y verificables,
+          atribuye a nadie una mala gestión: pone sobre la mesa, con datos abiertos y verificables,{' '}
+          {/* Sin el {' '} de arriba, JSX se come el salto de línea junto al comentario y se
+              publicaba «verificables,qué». */}
           {/* Decía «adónde ha ido el dinero de la reconstrucción», y a dos líneas de los 22 M€ de
               daños eso se lee como el total. Lo que se traza son 2,75 M€ en contratos que dicen
               «DANA» en el título: el suelo, como la propia pieza advierte más arriba. La frase de

@@ -1,40 +1,10 @@
 import { useReportaje } from '../../hooks/useReportaje'
-import Emblema from '../../components/reportajes/Emblema'
+import Emblema, { cifrasDelEmblema } from '../../components/reportajes/Emblema'
 import { Card } from '../../components/Primitives'
 import { CorrectionNote, CorrectionNotice } from '../../components/reportajes/CorrectionNote'
+import { SecHead, IndicePieza } from '../../components/reportajes/Pieza'
 
 const SERIF = "'Fraunces', Georgia, serif"
-
-/* ---- Encabezado de sección numerado (mismo patrón que ReconstruccionDana) ---- */
-function SecHead({ num, kicker, title }) {
-  return (
-    <div style={{ margin: '34px 0 12px' }}>
-      <div
-        className="mono"
-        style={{
-          fontSize: 'var(--fs-micro)',
-          color: 'var(--ink50)',
-          letterSpacing: '.04em',
-          marginBottom: 6,
-        }}
-      >
-        {num} · {kicker}
-      </div>
-      <h2
-        style={{
-          fontFamily: SERIF,
-          fontSize: 'var(--fs-page)',
-          fontWeight: 600,
-          letterSpacing: '-.01em',
-          lineHeight: 1.15,
-          margin: 0,
-        }}
-      >
-        {title}
-      </h2>
-    </div>
-  )
-}
 
 /* ---- Tabla genérica con scroll horizontal propio ---- */
 function Tabla({ cols, rows, caption }) {
@@ -56,6 +26,12 @@ function Tabla({ cols, rows, caption }) {
     borderBottom: '1px solid var(--border)',
     verticalAlign: 'top',
   }
+  // La primera y la última columna van a ras: la tabla arranca en el mismo borde
+  // izquierdo que el texto que la presenta, y acaba en el de su filete.
+  const aRas = (i) => ({
+    ...(i === 0 && { paddingLeft: 0 }),
+    ...(i === cols.length - 1 && { paddingRight: 0 }),
+  })
   return (
     <div style={{ overflowX: 'auto' }}>
       <table style={{ borderCollapse: 'collapse', width: '100%', minWidth: 560 }}>
@@ -75,7 +51,11 @@ function Tabla({ cols, rows, caption }) {
         <thead>
           <tr>
             {cols.map((c, i) => (
-              <th key={i} scope="col" style={{ ...th, ...(c.right && { textAlign: 'right' }) }}>
+              <th
+                key={i}
+                scope="col"
+                style={{ ...th, ...aRas(i), ...(c.right && { textAlign: 'right' }) }}
+              >
                 {c.label}
               </th>
             ))}
@@ -90,6 +70,7 @@ function Tabla({ cols, rows, caption }) {
                   className={cols[j].mono ? 'mono' : undefined}
                   style={{
                     ...td,
+                    ...aRas(j),
                     ...(cols[j].right && { textAlign: 'right', whiteSpace: 'nowrap' }),
                     ...(cols[j].strong && { color: 'var(--ink)', fontWeight: 500 }),
                   }}
@@ -183,10 +164,12 @@ export default function InteligenciaTuristica() {
     )
 
   const m = data.meta
+  // Las tarjetas que la figura de cabecera ya imprime (ver cifrasDelEmblema).
+  const enFigura = new Set(cifrasDelEmblema('inteligencia-turistica', data))
 
   return (
     <div
-      className="cp-page"
+      className="cp-page cp-pieza"
       style={{
         padding: '24px',
         maxWidth: 760,
@@ -214,7 +197,7 @@ export default function InteligenciaTuristica() {
       )}
 
       <div
-        className="mono"
+        className="mono cp-texto"
         style={{
           fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
@@ -265,7 +248,11 @@ export default function InteligenciaTuristica() {
         }}
       >
         {data.kpis.map((s, i) => (
-          <div key={i} style={{ background: 'var(--paper)', padding: '16px 14px' }}>
+          <div
+            key={i}
+            className={enFigura.has(s.n) ? 'cp-kpi-en-figura' : undefined}
+            style={{ background: 'var(--paper)', padding: '16px 14px' }}
+          >
             <div
               className="mono"
               style={{
@@ -292,6 +279,8 @@ export default function InteligenciaTuristica() {
       </div>
 
       <article style={{ color: 'var(--ink70)' }}>
+        <IndicePieza />
+
         <SecHead num="01" kicker="El anuncio" title="«Un proyecto pionero»" />
         <p>
           El 7 de julio de 2026, la web del Ayuntamiento de Riba-roja de Túria publicó una nota sin
@@ -366,7 +355,9 @@ export default function InteligenciaTuristica() {
               ])}
           />
         </Card>
-        <p style={cap()}>{data.clusterNota}</p>
+        <p className="cp-pie" style={cap()}>
+          {data.clusterNota}
+        </p>
         <p>
           Tres nombres se repiten. <b>Sien Planificación Inteligente S.L.</b> dirigió el Plan
           Director de Destino Turístico Inteligente en 2021 (contrato menor, 14.650 €), ganó en 2024
@@ -414,7 +405,7 @@ export default function InteligenciaTuristica() {
             ])}
           />
         </Card>
-        <p style={cap()}>
+        <p className="cp-pie" style={cap()}>
           Excluidas antes de la valoración: {data.panel.excluidas.map((e) => e.empresa).join(' y ')}{' '}
           ({data.panel.excluidas[0].motivo}).
         </p>
@@ -545,7 +536,6 @@ export default function InteligenciaTuristica() {
             fontSize: 'var(--fs-head)',
             fontWeight: 500,
             lineHeight: 1.5,
-            maxWidth: '68ch',
             color: 'var(--ink)',
           }}
         >

@@ -106,7 +106,21 @@ catch-all → `/`.
 Reportajes are **explicit routes**, not a `:slug` param — each pieza is its own
 component with figures frozen in `public/data/reportajes/<slug>.json`. The
 shared registry `src/reportajes.js` renders one only when
-`meta.estado === 'publicado'`.
+`meta.estado === 'publicado'`. What every pieza shares lives in one place: the
+layout route `pages/reportajes/Armazon.jsx` (reading bar, «Más reportajes» —
+outside the pieza's container, because the corrections log must stay its last
+block) and `components/reportajes/Pieza.jsx` (`SecHead`, the section index read
+from the DOM, the reveal-on-view hook). Figure motion animates marks, never
+text, and the resting state is the complete figure. Body-size text sits on a
+reading measure (`.cp-pieza`, ~70 characters) while boxed elements and
+headline-size type keep the full column, and everything shares the column's left
+edge — never centre the measure, which gives text and boxes two left edges: mark
+a figure's caption `.cp-pie` (reached even inside the figure's wrapper), an
+unboxed text block `.cp-texto`, a paragraph that keeps the full column (boxed, or
+set at headline size) `.cp-ancho`. A header card whose value the figure prints verbatim
+hides where the figure shows (`cifrasDelEmblema`, guarded by a test that reads
+the drawn SVG). In a figure, red (`fallo`) marks only what the piece documents as
+a failure; what it merely looks at is petrol (`foco`).
 
 `/curator` is the local-only admin dashboard (see the plugin note above).
 

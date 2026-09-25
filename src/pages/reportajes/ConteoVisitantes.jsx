@@ -1,7 +1,8 @@
 import { useReportaje } from '../../hooks/useReportaje'
-import Emblema from '../../components/reportajes/Emblema'
+import Emblema, { cifrasDelEmblema } from '../../components/reportajes/Emblema'
 import { Card, Pill } from '../../components/Primitives'
 import { CorrectionNote, CorrectionNotice } from '../../components/reportajes/CorrectionNote'
+import { SecHead, IndicePieza } from '../../components/reportajes/Pieza'
 import { fmtDateHuman } from '../../lib/formatters'
 import {
   estadoDeEnvio,
@@ -12,37 +13,6 @@ import {
 } from '../../scraper/solicitud-enviada'
 
 const SERIF = "'Fraunces', Georgia, serif"
-
-/* ---- Encabezado de sección numerado (mismo patrón que los otros reportajes) ---- */
-function SecHead({ num, kicker, title }) {
-  return (
-    <div style={{ margin: '34px 0 12px' }}>
-      <div
-        className="mono"
-        style={{
-          fontSize: 'var(--fs-micro)',
-          color: 'var(--ink50)',
-          letterSpacing: '.04em',
-          marginBottom: 6,
-        }}
-      >
-        {num} · {kicker}
-      </div>
-      <h2
-        style={{
-          fontFamily: SERIF,
-          fontSize: 'var(--fs-page)',
-          fontWeight: 600,
-          letterSpacing: '-.01em',
-          lineHeight: 1.15,
-          margin: 0,
-        }}
-      >
-        {title}
-      </h2>
-    </div>
-  )
-}
 
 /**
  * Cita literal de un documento. Lleva SIEMPRE su procedencia debajo: una cita
@@ -127,6 +97,12 @@ function Tabla({ cols, rows, caption }) {
     borderBottom: '1px solid var(--border)',
     verticalAlign: 'top',
   }
+  // La primera y la última columna van a ras: la tabla arranca en el mismo borde
+  // izquierdo que el texto que la presenta, y acaba en el de su filete.
+  const aRas = (i) => ({
+    ...(i === 0 && { paddingLeft: 0 }),
+    ...(i === cols.length - 1 && { paddingRight: 0 }),
+  })
   return (
     <div style={{ overflowX: 'auto' }}>
       <table style={{ borderCollapse: 'collapse', width: '100%', minWidth: 520 }}>
@@ -146,7 +122,11 @@ function Tabla({ cols, rows, caption }) {
         <thead>
           <tr>
             {cols.map((c, i) => (
-              <th key={i} scope="col" style={{ ...th, ...(c.right && { textAlign: 'right' }) }}>
+              <th
+                key={i}
+                scope="col"
+                style={{ ...th, ...aRas(i), ...(c.right && { textAlign: 'right' }) }}
+              >
                 {c.label}
               </th>
             ))}
@@ -161,6 +141,7 @@ function Tabla({ cols, rows, caption }) {
                   className={cols[j].mono ? 'mono' : undefined}
                   style={{
                     ...td,
+                    ...aRas(j),
                     ...(cols[j].right && { textAlign: 'right', whiteSpace: 'nowrap' }),
                   }}
                 >
@@ -309,10 +290,12 @@ export default function ConteoVisitantes() {
     )
 
   const m = data.meta
+  // Las tarjetas que la figura de cabecera ya imprime (ver cifrasDelEmblema).
+  const enFigura = new Set(cifrasDelEmblema('conteo-visitantes', data))
 
   return (
     <div
-      className="cp-page"
+      className="cp-page cp-pieza"
       style={{
         padding: '24px',
         maxWidth: 760,
@@ -338,7 +321,7 @@ export default function ConteoVisitantes() {
       )}
 
       <div
-        className="mono"
+        className="mono cp-texto"
         style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', letterSpacing: '.06em' }}
       >
         {m.seccion}
@@ -381,7 +364,11 @@ export default function ConteoVisitantes() {
         }}
       >
         {data.kpis.map((k, i) => (
-          <Card key={i} style={{ padding: '12px 14px' }}>
+          <Card
+            key={i}
+            className={enFigura.has(k.n) ? 'cp-kpi-en-figura' : undefined}
+            style={{ padding: '12px 14px' }}
+          >
             <div
               className="mono"
               style={{ fontSize: 'var(--fs-page)', color: 'var(--ink)', fontWeight: 600 }}
@@ -402,10 +389,17 @@ export default function ConteoVisitantes() {
         ))}
       </div>
 
+      {/* La entradilla iba a --fs-page (26px) también en el móvil: a 375px eran
+          diecisiete líneas de serifa, pantalla y media antes del primer
+          apartado. Ahora escala con el ancho entre dos pasos de la escala, como
+          los --type-* de index.css: --fs-page donde cabe, --fs-card donde no.
+          Va a todo el ancho (`cp-ancho`): a 26px, la columna entera son unos
+          sesenta caracteres, y la medida del cuerpo la dejaba en trece líneas. */}
       <p
+        className="cp-ancho"
         style={{
           fontFamily: SERIF,
-          fontSize: 'var(--fs-page)',
+          fontSize: 'clamp(var(--fs-card), 2.4vw, var(--fs-page))',
           lineHeight: 1.5,
           color: 'var(--ink)',
           margin: '22px 0 0',
@@ -413,6 +407,8 @@ export default function ConteoVisitantes() {
       >
         {data.entradilla}
       </p>
+
+      <IndicePieza />
 
       {/* 1 · los dos contratos */}
       <SecHead num="01" kicker="El expediente" title="Los dos contratos" />

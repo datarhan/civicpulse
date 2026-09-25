@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test'
 import { readFileSync } from 'node:fs'
 import { collectErrors, appErrors } from './_console'
+import { isoDeFecha, msDeIso, silencioDeLaFicha } from '../../src/lib/cronologia'
 
 // La pieza se ejercita en los DOS estados y el esperado se lee del snapshot
 // congelado: una spec que asumiera «publicado» se saltaría el borrador entero,
@@ -223,5 +224,54 @@ test.describe('Reportaje · coste efectivo (/reportajes/coste-efectivo)', () => 
     for (const f of snap.rendicionCV.porAnio) {
       expect(cuerpo).toContain(String(f.n))
     }
+  })
+
+  test('la banda de la tira cae donde caen sus dos entradas de la ficha', async ({ page }) => {
+    // La lección de la banda de 2020 en /eficiencia: se mide la POSICIÓN contra lo
+    // que tiene que coincidir, porque una banda que cubre la mitad del hueco pasa
+    // cualquier prueba de datos. Aquí el borde derecho es una entrada que es a la
+    // vez acto y publicación (el mismo punto), y el izquierdo cae tres días
+    // después del acto que la ficha publicó: menos de un píxel a este ancho.
+    const hitos = snap.cronologia.hitos
+    const silencio = silencioDeLaFicha(hitos)
+    expect(silencio, 'la cronología ya no tiene dos entradas de la ficha').not.toBeNull()
+    await page.goto('/reportajes/coste-efectivo', { waitUntil: 'domcontentloaded' })
+    const tira = page.locator('.cp-tira')
+    await tira.scrollIntoViewIfNeeded({ timeout: 8000 })
+    // Sin animaciones: se mide la figura en reposo, no un fotograma.
+    await page.addStyleTag({ content: '*{animation:none !important;transition:none !important}' })
+
+    const medidas = await tira.evaluate((el) => {
+      const r = (n) => n.getBoundingClientRect()
+      const puntos = [...el.querySelectorAll('.cp-tira-punto')].map((p) => {
+        const b = r(p)
+        return { titulo: p.getAttribute('title') ?? '', centro: b.left + b.width / 2 }
+      })
+      const b = r(el.querySelector('.cp-tira-hueco'))
+      return { puntos, izq: b.left, der: b.right }
+    })
+    expect(medidas.puntos).toHaveLength(hitos.length)
+
+    const centroDe = (h) => medidas.puntos.find((p) => p.titulo.startsWith(`${h.f}:`))?.centro
+    const cierre = hitos.find((h) => isoDeFecha(h.f) === silencio.hasta)
+    const apertura = hitos.find((h) => h.ficha === silencio.desde)
+    expect(cierre, 'la entrada que cierra el hueco no es un hito de la lista').toBeDefined()
+    expect(Math.abs(medidas.der - centroDe(cierre))).toBeLessThan(1.5)
+    expect(Math.abs(medidas.izq - centroDe(apertura))).toBeLessThan(2)
+
+    // Y dentro de la banda están exactamente los hitos cuyo acto cae dentro.
+    const dentro = hitos.filter((h) => {
+      const t = msDeIso(isoDeFecha(h.f))
+      return t > msDeIso(silencio.desde) && t < msDeIso(silencio.hasta)
+    })
+    expect(dentro.length, 'nada pasó durante el hueco: la prueba no mediría nada').toBeGreaterThan(
+      0,
+    )
+    // Con holgura de píxel y medio: el punto que cierra el hueco cae JUSTO en
+    // el borde, y el redondeo subpíxel no puede decidir si está dentro.
+    const pintadosDentro = medidas.puntos.filter(
+      (p) => p.centro > medidas.izq + 1.5 && p.centro < medidas.der - 1.5,
+    )
+    expect(pintadosDentro).toHaveLength(dentro.length)
   })
 })

@@ -233,6 +233,12 @@ export const CATALOGUE = {
     'reportajes.intro':
       'Piezas largas a partir del registro público: cifras congeladas en el momento de la publicación y cada afirmación con su fuente.',
     'reportajes.read': 'Leer el reportaje →',
+    // El armazón de cada pieza (components/reportajes/Pieza.jsx): el índice de
+    // apartados, leído de sus encabezados, y el pie con las demás piezas.
+    'reportajes.indice': 'En esta pieza',
+    'reportajes.indice.apartados': '{n} apartados',
+    'reportajes.mas': 'Más reportajes',
+    'reportajes.todos': 'Todos los reportajes →',
 
     // Empleo (ofertas de empleo · Agència de Col·locació)
     'empleo.eyebrow': 'Agència de Col·locació · ADL',
@@ -1876,6 +1882,10 @@ export const CATALOGUE = {
     'reportajes.intro':
       'Peces llargues a partir del registre públic: xifres congelades en el moment de la publicació i cada afirmació amb la seua font.',
     'reportajes.read': 'Llegir el reportatge →',
+    'reportajes.indice': 'En aquesta peça',
+    'reportajes.indice.apartados': '{n} apartats',
+    'reportajes.mas': 'Més reportatges',
+    'reportajes.todos': 'Tots els reportatges →',
 
     // Empleo (ofertes d’ocupació · Agència de Col·locació)
     'empleo.eyebrow': 'Agència de Col·locació · ADL',

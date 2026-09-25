@@ -12,17 +12,44 @@
  *
  * Una pieza sin emblema dibujado devuelve null: mejor ninguna figura que una
  * genérica que no diga nada de la pieza.
+ *
+ * Se dibuja al entrar en pantalla (`useRevelado`): crecen las barras, brotan los
+ * puntos, se traza el contorno. Sólo se animan MARCAS, con las clases
+ * `cp-crece-x`, `cp-crece-y`, `cp-brota`, `cp-aparece` y `cp-traza` de
+ * index.css. Ningún texto cambia de valor, de tamaño ni de sitio —nada cuenta
+ * hacia arriba—: una cifra que pasa por valores intermedios es una cifra que
+ * alguien pudo leer mal. Lo más que ocurre es que una barra que crece descubra
+ * la etiqueta clara que lleva encima («14 a. 9 m.»). Sin IntersectionObserver,
+ * con movimiento reducido o en papel, la figura está completa desde el primer
+ * fotograma.
  */
+import { useRevelado } from './Pieza'
 
 const C = {
   ink: 'var(--ink)',
+  // Lo macizo —la barra de la contrata anterior, la de los sensores— va con su
+  // propia variable: en oscuro, `--ink` es casi blanco, y una plancha blanca era
+  // lo más luminoso de la página, por encima de la cifra que la figura señala.
+  macizo: 'var(--em-macizo, var(--ink))',
   ink50: 'var(--ink50)',
   ink20: 'var(--ink20)',
   paper: 'var(--paper)',
   civic: 'var(--civic)',
-  accent: 'var(--crit-ink)',
+  // Dos énfasis, y no son intercambiables. `fallo` es el rojo de --crit: lo que
+  // la pieza documenta como un fallo —cero cifras en las memorias, la entrega
+  // sin rendir, la contrata que duró un mes—. `foco` es la tinta de petróleo:
+  // lo que la pieza mira sin reprocharlo —el gasto con referencia a la DANA,
+  // los dos contratos de la nota municipal—. Pintar de rojo el dinero de la
+  // reconstrucción era afirmar con el color lo que la pieza dice que no afirma
+  // («sin atribuir irregularidad»).
+  fallo: 'var(--crit-ink)',
+  foco: 'var(--civic-ink)',
 }
 const MONO = "'DM Mono', ui-monospace, monospace"
+
+/** El orden de una marca en su animación (`--i`), para escalonarlas. */
+const orden = (/** @type {number} */ i, extra = {}) =>
+  /** @type {import('react').CSSProperties} */ (/** @type {unknown} */ ({ '--i': i, ...extra }))
 
 // de-DE y no es-ES: es-ES no agrupa los miles de cuatro cifras («4514»), y las
 // piezas escriben «87.050 €» y «4.514». Mismo separador decimal, la coma.
@@ -70,7 +97,7 @@ function Hatch({ id }) {
         patternUnits="userSpaceOnUse"
         patternTransform="rotate(45)"
       >
-        <line x1="0" y1="0" x2="0" y2="10" stroke={C.accent} strokeWidth="3" />
+        <line x1="0" y1="0" x2="0" y2="10" stroke={C.fallo} strokeWidth="3" />
       </pattern>
     </defs>
   )
@@ -87,24 +114,38 @@ function Basuras({ data }) {
   const nueva1 = sav1 + 1 / 12 // «1 mes», según el kpi
   return {
     label: `La contrata anterior duró ${kSav.n}; la nueva, ${kNueva.n} hasta el expediente de penalidades.`,
+    cifras: [kSav.n, kNueva.n],
     body: (
       <>
         <T x={40} y={40} fill={C.ink50}>
           contrata anterior
         </T>
-        <rect x={X(sav0)} y={54} width={X(sav1) - X(sav0)} height={64} fill={C.ink} />
+        <rect
+          className="cp-crece-x"
+          // Curva pareja y no de muelle: son quince años, y tienen que tardar.
+          style={orden(0, { '--dur': '1500ms', '--ease': 'var(--ease-base)' })}
+          x={X(sav0)}
+          y={54}
+          width={X(sav1) - X(sav0)}
+          height={64}
+          fill={C.macizo}
+        />
         <T x={X(sav0) + 20} y={97} size={28} fill={C.paper} mono weight={500}>
           {kSav.n}
         </T>
-        <T x={X(sav1) - 12} y={170} fill={C.accent} anchor="end" weight={600}>
+        <T x={X(sav1) - 12} y={170} fill={C.fallo} anchor="end" weight={600}>
           {`nueva contrata · ${kNueva.n}`}
         </T>
+        {/* La nueva contrata aparece cuando la anterior ha terminado de crecer:
+            quince años, y luego un mes. */}
         <rect
+          className="cp-crece-y"
+          style={orden(0, { '--d': '1450ms', '--dur': '500ms' })}
           x={X(sav1)}
           y={138}
           width={Math.max(7, X(nueva1) - X(sav1))}
           height={64}
-          fill={C.accent}
+          fill={C.fallo}
         />
         <line x1={40} y1={238} x2={680} y2={238} stroke={C.ink50} strokeWidth={2} />
         {[2011, 2015, 2020, 2025].map((y) => (
@@ -133,29 +174,42 @@ function ConteoVisitantes({ data }) {
   const total = sens.importe + promo.importe
   const w1 = (640 * sens.importe) / total
   const cero = data.kpis.find((/** @type {{n:string}} */ k) => k.n === '0')
-  const Doc = ({ x }) => (
-    <g transform={`translate(${x},168)`}>
-      <path d="M0 0h44l16 16v76H0z" fill={C.paper} stroke={C.ink50} strokeWidth={2} />
-      <path d="M44 0v16h16" fill="none" stroke={C.ink50} strokeWidth={2} />
-      {[30, 44, 58, 72].map((y) => (
-        <line key={y} x1={10} y1={y} x2={50} y2={y} stroke={C.ink20} strokeWidth={4} />
-      ))}
+  // El `transform` de posición va en un <g> interior: la animación usa la
+  // propiedad CSS `transform`, que pisaría el atributo del mismo elemento.
+  const Doc = ({ x, i }) => (
+    <g className="cp-aparece" style={orden(i, { '--d': '700ms' })}>
+      <g transform={`translate(${x},168)`}>
+        <path d="M0 0h44l16 16v76H0z" fill={C.paper} stroke={C.ink50} strokeWidth={2} />
+        <path d="M44 0v16h16" fill="none" stroke={C.ink50} strokeWidth={2} />
+        {[30, 44, 58, 72].map((y) => (
+          <line key={y} x1={10} y1={y} x2={50} y2={y} stroke={C.ink20} strokeWidth={4} />
+        ))}
+      </g>
     </g>
   )
   return {
     label: `${eur0(total)} en dos contratos; ${cero ? cero.n : '0'} cifras de visitantes en las memorias que los justificaban.`,
+    cifras: [eur0(total), cero?.n].filter(Boolean),
     body: (
       <>
         <T x={40} y={36} fill={C.ink50} mono>
           {`${eur0(total)} en dos contratos · sin IVA`}
         </T>
-        <rect x={40} y={50} width={w1} height={56} fill={C.ink} />
-        <rect x={40 + w1} y={50} width={640 - w1} height={56} fill={C.civic} />
+        <rect className="cp-crece-x" x={40} y={50} width={w1} height={56} fill={C.macizo} />
+        <rect
+          className="cp-crece-x"
+          style={orden(0, { '--d': '520ms', '--dur': '600ms' })}
+          x={40 + w1}
+          y={50}
+          width={640 - w1}
+          height={56}
+          fill={C.civic}
+        />
         <T x={40} y={136} size={20}>{`sensores · ${eur0(sens.importe)}`}</T>
         <T x={680} y={136} size={20} anchor="end">{`promoción · ${eur0(promo.importe)}`}</T>
-        <Doc x={40} />
-        <Doc x={116} />
-        <T x={214} y={250} size={96} fill={C.accent} weight={600}>
+        <Doc x={40} i={0} />
+        <Doc x={116} i={1} />
+        <T x={214} y={250} size={96} fill={C.fallo} weight={600}>
           {cero ? cero.n : '0'}
         </T>
         <T x={290} y={212} size={24} weight={600}>
@@ -185,6 +239,10 @@ function CosteEfectivo({ data }) {
   const off = years.filter((/** @type {number} */ y) => serie.has(y) && !(serie.get(y) > 0)).length
   return {
     label: `Coste efectivo del agua declarado: cifra en ${on} entregas, cero en ${off} y una sin presentar.`,
+    // Ninguna cifra de la cabecera sale tal cual: la figura escribe «1,90» por
+    // barra y la cabecera «1,9 M€». No se esconde lo que no se repite letra a
+    // letra.
+    cifras: [],
     body: (
       <>
         <Hatch id="emblema-ce-h" />
@@ -199,17 +257,27 @@ function CosteEfectivo({ data }) {
             <g key={y}>
               {falta ? (
                 <rect
+                  className="cp-aparece"
+                  style={orden(i)}
                   x={x}
                   y={52}
                   width={w}
                   height={150}
                   fill="url(#emblema-ce-h)"
-                  stroke={C.accent}
+                  stroke={C.fallo}
                   strokeWidth={2.5}
                 />
               ) : v > 0 ? (
                 <>
-                  <rect x={x} y={52} width={w} height={150} fill={C.civic} />
+                  <rect
+                    className="cp-crece-y"
+                    style={orden(i)}
+                    x={x}
+                    y={52}
+                    width={w}
+                    height={150}
+                    fill={C.civic}
+                  />
                   <T
                     x={x + w / 2}
                     y={186}
@@ -225,6 +293,8 @@ function CosteEfectivo({ data }) {
               ) : (
                 <>
                   <rect
+                    className="cp-aparece"
+                    style={orden(i)}
                     x={x + 1.5}
                     y={53.5}
                     width={w - 3}
@@ -243,7 +313,7 @@ function CosteEfectivo({ data }) {
                 x={x + w / 2}
                 y={230}
                 size={19}
-                fill={falta ? C.accent : C.ink50}
+                fill={falta ? C.fallo : C.ink50}
                 anchor="middle"
                 mono
                 weight={falta ? 500 : 400}
@@ -276,7 +346,7 @@ function CosteEfectivo({ data }) {
           width={16}
           height={16}
           fill="url(#emblema-ce-h)"
-          stroke={C.accent}
+          stroke={C.fallo}
           strokeWidth={2}
         />
         <T x={246} y={273} size={19}>
@@ -296,10 +366,19 @@ function InteligenciaTuristica({ data }) {
   const s = Math.max(8, S * Math.sqrt(small / plan))
   return {
     label: `Plan de ${eurM(plan)}; los dos contratos de inteligencia turística, ${eur0(small)} sin IVA.`,
+    cifras: [eurM(plan), eur0(small)],
     body: (
       <>
         <rect x={40} y={32} width={S} height={S} fill={C.ink20} stroke={C.ink50} strokeWidth={2} />
-        <rect x={40} y={32 + S - s} width={s} height={s} fill={C.accent} />
+        <rect
+          className="cp-brota cp-brota-esquina"
+          style={orden(0, { '--d': '350ms', '--dur': '1100ms' })}
+          x={40}
+          y={32 + S - s}
+          width={s}
+          height={s}
+          fill={C.civic}
+        />
         <T x={310} y={64} size={34} mono weight={500}>
           {eurM(plan)}
         </T>
@@ -307,7 +386,7 @@ function InteligenciaTuristica({ data }) {
           Plan de Sostenibilidad Turística 2022
         </T>
         <line x1={310} y1={128} x2={680} y2={128} stroke={C.ink20} strokeWidth={2} />
-        <T x={310} y={176} size={34} fill={C.accent} mono weight={500}>
+        <T x={310} y={176} size={34} fill={C.foco} mono weight={500}>
           {eur0(small)}
         </T>
         <T x={310} y={206} size={20} fill={C.ink50}>
@@ -352,22 +431,33 @@ function ReconstruccionDana({ data }) {
   const tx = 40 + Wm + 50
   return {
     label: `Mapa de los lugares que nombran los contratos: ${eurM(t.situatedAmount)} situados; ${eurM(t.danaAmount)} con referencia a la DANA.`,
+    cifras: [String(t.situatedContracts), String(t.danaContracts)],
     body: (
       <>
-        <path d={outline} fill={C.ink20} stroke={C.ink50} strokeWidth={2} strokeLinejoin="round" />
+        <path
+          className="cp-traza"
+          pathLength={1}
+          d={outline}
+          fill={C.ink20}
+          stroke={C.ink50}
+          strokeWidth={2}
+          strokeLinejoin="round"
+        />
         {[...data.places]
           .sort((a, b) => b.amount - a.amount)
-          .map((p) => {
+          .map((p, i) => {
             const [x, y] = P(p.lat, p.lng)
             const dana = p.danaAmount > 0
             return (
               <circle
                 key={p.name}
+                className="cp-brota"
+                style={orden(i, { '--d': '700ms', '--paso': '28ms' })}
                 cx={x}
                 cy={y}
                 r={3 + 15 * Math.sqrt(p.amount / max)}
-                fill={dana ? C.accent : C.civic}
-                fillOpacity={dana ? 0.9 : 0.55}
+                fill={dana ? C.civic : C.ink50}
+                fillOpacity={dana ? 0.9 : 0.6}
                 stroke={C.paper}
                 strokeWidth={1.5}
               />
@@ -379,17 +469,17 @@ function ReconstruccionDana({ data }) {
         <T x={tx} y={88} size={19} fill={C.ink50}>
           {`en ${t.situatedContracts} emplazamientos con dirección`}
         </T>
-        <T x={tx} y={150} size={32} fill={C.accent} mono weight={500}>
+        <T x={tx} y={150} size={32} fill={C.foco} mono weight={500}>
           {eurM(t.danaAmount)}
         </T>
         <T x={tx} y={178} size={19} fill={C.ink50}>
           {`en ${t.danaContracts} contratos con referencia a la DANA`}
         </T>
-        <circle cx={tx + 8} cy={222} r={8} fill={C.accent} />
+        <circle cx={tx + 8} cy={222} r={8} fill={C.civic} fillOpacity={0.9} />
         <T x={tx + 24} y={228} size={17}>
           con referencia DANA
         </T>
-        <circle cx={tx + 8} cy={250} r={8} fill={C.civic} fillOpacity={0.55} />
+        <circle cx={tx + 8} cy={250} r={8} fill={C.ink50} fillOpacity={0.6} />
         <T x={tx + 24} y={256} size={17}>
           sin referencia DANA
         </T>
@@ -399,6 +489,27 @@ function ReconstruccionDana({ data }) {
       </>
     ),
   }
+}
+
+/**
+ * Las cifras de la cabecera que la figura imprime TAL CUAL. La pieza esconde
+ * esas tarjetas donde la figura se ve (≥480px): repetidas, el lector leía cada
+ * cifra central dos veces antes de llegar a la primera línea. Por debajo de
+ * 480px la figura se oculta y las tarjetas vuelven, así que ninguna cifra
+ * desaparece de la cabecera en ningún ancho.
+ *
+ * Cada figura declara las suyas con las MISMAS expresiones con que las dibuja,
+ * y un test comprueba que cada una está escrita en el SVG y que es el valor de
+ * una tarjeta: nunca se esconde una cifra que la figura no enseña.
+ *
+ * @param {string} slug
+ * @param {any} data
+ * @returns {string[]}
+ */
+export function cifrasDelEmblema(slug, data) {
+  const Figura = EMBLEMAS[slug]
+  if (!Figura || !data) return []
+  return Figura({ data }).cifras ?? []
 }
 
 /** Slugs con emblema dibujado. Exportado para que un test exija uno por pieza. */
@@ -413,21 +524,36 @@ export const EMBLEMAS = {
 // Media queries no caben en el prop `style`: van en una hoja. Por debajo de
 // 480px las etiquetas del viewBox bajan de ~9px — por debajo del suelo de
 // 11px del sitio —, así que la figura se oculta: la pieza se lee igual sin ella.
+// La regla de las tarjetas repetidas (`cifrasDelEmblema`) usa el mismo corte y
+// vive aquí para que no puedan separarse: donde no hay figura, hay tarjeta.
+//
+// `--em-macizo` es el relleno de lo macizo (ver `C.macizo`): la tinta en claro y
+// la tinta al 62 % en oscuro, donde la plena era una plancha blanca.
 const CSS = `
 .cp-emblema { display: block; }
 .cp-emblema svg { display: block; width: 100%; height: auto; }
+html.dark .cp-emblema { --em-macizo: var(--ink50); }
+@media print { html.dark .cp-emblema { --em-macizo: var(--ink); } }
 @media (max-width: 479px) { .cp-emblema { display: none; } }
+@media (min-width: 480px) { .cp-kpi-en-figura { display: none; } }
 `
 
 /**
  * @param {{ slug: string, data: any, style?: import('react').CSSProperties }} props
  */
 export default function Emblema({ slug, data, style }) {
+  // Antes de cualquier return: los hooks no se saltan.
+  const { ref, marcas } = useRevelado()
   const Figura = EMBLEMAS[slug]
   if (!Figura || !data) return null
   const { label, body } = Figura({ data })
   return (
-    <figure className="cp-emblema" style={{ margin: 0, ...style }}>
+    <figure
+      ref={/** @type {import('react').RefObject<HTMLElement>} */ (ref)}
+      className="cp-emblema"
+      style={{ margin: 0, ...style }}
+      {...marcas}
+    >
       <style>{CSS}</style>
       {/* El dibujo ocupa x 36–684 de un lienzo de 720: el viewBox recorta el
           margen para que el borde de la figura caiga donde el del titular. */}

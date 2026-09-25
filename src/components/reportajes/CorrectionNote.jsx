@@ -46,7 +46,7 @@ export function CorrectionNotice({ correcciones, style }) {
   const fecha = ultima(correcciones)
   return (
     <p
-      className="mono"
+      className="mono cp-ancho"
       style={{
         borderLeft: '3px solid var(--crit)',
         background: 'var(--crit-soft)',
