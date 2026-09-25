@@ -1,45 +1,15 @@
 {
-  "generatedAt": "2026-09-24T09:34:15.283Z",
+  "generatedAt": "2026-09-25T09:51:45.129Z",
   "source": {
     "url": "https://www.ribarroja.es/es/eventos/rss.xml",
     "platform": "Drupal RSS (oficial)"
   },
   "stats": {
     "total": 50,
-    "upcoming": 17,
-    "nextDate": "2026-09-24T17:00:00.000Z"
+    "upcoming": 19,
+    "nextDate": "2026-09-25T17:00:00.000Z"
   },
   "events": [
-    {
-      "id": "1564z1k",
-      "title": "Actes festes Crist 2026 - dissabte 29 d'agost",
-      "link": "https://www.ribarroja.es/va/evento/actes-festes-crist-2026-dissabte-29-d%27agost",
-      "eventDate": "2026-08-29T21:00:00.000Z",
-      "eventDateText": "29 de agosto de 2026 23:00",
-      "publishedDate": "2026-08-28T09:47:30.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_1.png?itok=YIGk1UFD"
-    },
-    {
-      "id": "1e2iv20",
-      "title": "Actes festes Crist 2026 - dilluns 31 d'agost",
-      "link": "https://www.ribarroja.es/va/evento/actes-festes-crist-2026-dilluns-31-d%27agost",
-      "eventDate": "2026-08-31T18:00:00.000Z",
-      "eventDateText": "31 de agosto de 2026 20:00",
-      "publishedDate": "2026-08-28T09:49:01.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_2.png?itok=4Ta_5-j_"
-    },
-    {
-      "id": "1gmgdk",
-      "title": "Actes festes Crist 2026 - dimarts 1 de setembre",
-      "link": "https://www.ribarroja.es/va/evento/actes-festes-crist-2026-dimarts-1-de-setembre",
-      "eventDate": "2026-09-01T16:00:00.000Z",
-      "eventDateText": "01 de septiembre de 2026 18:00",
-      "publishedDate": "2026-08-28T09:50:23.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_3.png?itok=zUFoyc-6"
-    },
     {
       "id": "1a6f640",
       "title": "Actes festes Crist 2026 - dimecres 2 de setembre",
@@ -351,6 +321,16 @@
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/PHOTO-2026-09-21-09-39-21.jpg?itok=t01_0I8D"
     },
     {
+      "id": "rjddq2",
+      "title": "Competiciones deportivas 25 de septiembre de 2026",
+      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-25-de-septiembre-de-2026",
+      "eventDate": "2026-09-25T17:00:00.000Z",
+      "eventDateText": "25 de septiembre de 2026 19:00",
+      "publishedDate": "2026-09-24T11:50:46.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_3_0.png?itok=CaO12-97"
+    },
+    {
       "id": "1xbd8y0",
       "title": "V Edición de \"Nit Violeta\"",
       "link": "https://www.ribarroja.es/es/evento/v-edici%C3%B3n-de-%22nit-violeta%22",
@@ -359,6 +339,26 @@
       "publishedDate": "2026-09-22T12:57:13.000Z",
       "excerpt": null,
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/PHOTO-2026-09-21-10-05-13.jpg?itok=CxBzoMt_"
+    },
+    {
+      "id": "ovjsf8",
+      "title": "Competiciones deportivas 26 de septiembre de 2026",
+      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-26-de-septiembre-de-2026",
+      "eventDate": "2026-09-26T07:00:00.000Z",
+      "eventDateText": "26 de septiembre de 2026 09:00",
+      "publishedDate": "2026-09-24T12:03:44.000Z",
+      "excerpt": null,
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_3_1.png?itok=_3HnO746"
+    },
+    {
+      "id": "1n43icq",
+      "title": "Competiciones deportivas 27 de septiembre de 2026",
+      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-27-de-septiembre-de-2026",
+      "eventDate": "2026-09-27T07:00:00.000Z",
+      "eventDateText": "27 de septiembre de 2026 09:00",
+      "publishedDate": "2026-09-24T12:08:26.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_3_2.png?itok=JG3jxBLI"
     },
     {
       "id": "2tg6p2",

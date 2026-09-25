@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-24T09:36:51.767Z",
+  "generatedAt": "2026-09-25T09:52:37.596Z",
   "source": {
     "platform": "OSM Overpass API",
     "endpoint": "https://overpass-api.de/api/interpreter",
@@ -247,6 +247,14 @@
       "lng": -0.5626679
     },
     {
+      "id": "node-14206811854",
+      "name": "Sanchis",
+      "category": "salud",
+      "kind": "pharmacy",
+      "lat": 39.5450112,
+      "lng": -0.5730381
+    },
+    {
       "id": "way-572095263",
       "name": "Parc de Rosalía de Castro",
       "category": "verde",
@@ -288,13 +296,13 @@
     }
   ],
   "stats": {
-    "total": 35,
+    "total": 36,
     "byCategory": {
       "civico": 5,
       "cultura": 4,
       "deporte": 7,
       "educacion": 11,
-      "salud": 3,
+      "salud": 4,
       "verde": 5
     }
   }

@@ -1,6 +1,53 @@
 {
-  "generatedAt": "2026-09-25T09:16:23.546Z",
+  "generatedAt": "2026-09-25T09:58:05.477Z",
   "clusters": [
+    {
+      "clusterId": "107j3y8",
+      "articleIds": [
+        "153mirg",
+        "1xjj30k"
+      ],
+      "outlets": [
+        "Ayuntamiento de Riba-roja de Túria",
+        "Valencia Plaza"
+      ],
+      "earliestDate": "2026-09-11T07:00:00.000Z",
+      "latestDate": "2026-09-11T08:10:15.000Z",
+      "amountDrift": {
+        "min": 1500000,
+        "max": 1500000,
+        "spread": 0,
+        "spreadPct": 0
+      },
+      "verdictMix": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 13,
+        "promesa-repetida": 0
+      }
+    },
+    {
+      "clusterId": "1b7iklo",
+      "articleIds": [
+        "1b1znc3",
+        "1dkm9y0"
+      ],
+      "outlets": [
+        "El Periódico",
+        "Levante-EMV"
+      ],
+      "earliestDate": "2026-09-24T10:07:07.000Z",
+      "latestDate": "2026-09-24T15:09:16.000Z",
+      "amountDrift": null,
+      "verdictMix": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      }
+    },
     {
       "clusterId": "1hy1xq8",
       "articleIds": [
@@ -13,6 +60,27 @@
       ],
       "earliestDate": "2026-08-31T07:00:00.000Z",
       "latestDate": "2026-08-31T09:04:15.000Z",
+      "amountDrift": null,
+      "verdictMix": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      }
+    },
+    {
+      "clusterId": "1rb28v0",
+      "articleIds": [
+        "16zc27c",
+        "cty6i0"
+      ],
+      "outlets": [
+        "Europa Press",
+        "Valenciabonita"
+      ],
+      "earliestDate": "2026-09-01T07:00:00.000Z",
+      "latestDate": "2026-09-01T11:10:58.000Z",
       "amountDrift": null,
       "verdictMix": {
         "verificado": 0,
@@ -45,13 +113,13 @@
     }
   ],
   "stats": {
-    "totalClusters": 2,
+    "totalClusters": 5,
     "triangulated3Plus": 0
   },
   "builtFrom": {
-    "plenos-agendas.json": "e227e8ea7ab9",
+    "plenos-agendas.json": "3d660ed60921",
     "press-claims-verified.json": "426589fc7d58",
-    "press.json": "3c52ad1f2594",
+    "press.json": "12bd51074891",
     "promises.json": "d18811c11210"
   }
 }
