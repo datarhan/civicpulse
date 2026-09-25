@@ -37,6 +37,36 @@ const workflows = readdirSync(WF)
       .join('\n'),
   }))
 
+const BOT_SRC = join(__dirname, '..', 'bot', 'src')
+
+/** Los .ts de bot/src que se ejecutan (no las pruebas), recorridos a mano. */
+function fuentesDelBot(dir = BOT_SRC) {
+  return readdirSync(dir, { withFileTypes: true }).flatMap((e) =>
+    e.isDirectory()
+      ? fuentesDelBot(join(dir, e.name))
+      : /\.ts$/.test(e.name) && !/\.test\.ts$/.test(e.name)
+        ? [readFileSync(join(dir, e.name), 'utf8')]
+        : [],
+  )
+}
+
+/**
+ * Lo que el bot lee o importa de la raíz del repositorio, como rutas relativas a
+ * ella: `resolve(HERE, '..', '..', '..', 'public', 'data', 'x.json')` y
+ * `from '../../../src/…'`.
+ */
+function leidoFueraDeBot() {
+  const rutas = new Set()
+  for (const texto of fuentesDelBot()) {
+    for (const m of texto.matchAll(
+      /resolve\(HERE,\s*'\.\.',\s*'\.\.',\s*'\.\.',\s*'public',\s*'data',\s*'([^']+)'\)/g,
+    ))
+      rutas.add(`public/data/${m[1]}`)
+    for (const m of texto.matchAll(/from '\.\.\/\.\.\/\.\.\/(src\/[^']+)'/g)) rutas.add(m[1])
+  }
+  return [...rutas].sort()
+}
+
 /** Desplegar el bot es invocar a flyctl, no mencionarlo. */
 const DESPLIEGA = /(?:flyctl|fly)\s+deploy|superfly\/flyctl-actions/
 
@@ -69,6 +99,22 @@ describe('el bot lo despliega alguien', () => {
       porRuta.map((w) => w.nombre),
       'el despliegue del bot no se dispara con los cambios de bot/**',
     ).not.toEqual([])
+  })
+
+  // La imagen del bot copia `src` y `public/data` (bot/Dockerfile) y lee de ahí
+  // al arrancar. La congelación LOREG sale de `public/data/promises.json`: con
+  // el disparador mirando sólo `bot/**`, `npm run freeze:set` cambiaba el sitio
+  // y el bot seguía difundiendo en campaña con la imagen de antes. La lista se
+  // DERIVA de lo que bot/src lee y de lo que importa fuera de bot/.
+  it('se dispara también cuando cambia lo que el bot lee fuera de bot/', () => {
+    const fuera = leidoFueraDeBot()
+    // Si el detector dejara de casar, esto aprobaría sin mirar nada.
+    expect(fuera).toContain('public/data/promises.json')
+    const despliegue = workflows.filter(
+      (w) => DESPLIEGA.test(w.texto) && /^\s*push:/m.test(w.texto),
+    )
+    const faltan = fuera.filter((r) => !despliegue.some((w) => w.texto.includes(`'${r}'`)))
+    expect(faltan, 'cambian el bot en producción y no lo redespliegan').toEqual([])
   })
 
   // Un despliegue que no puede autenticarse tiene que DECIRLO, no pasar en
