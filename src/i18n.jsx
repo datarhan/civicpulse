@@ -619,6 +619,11 @@ export const CATALOGUE = {
     'common.loading': 'Cargando…',
     'common.noData': 'Sin datos',
     'common.compartirWhatsApp': 'Compartir en WhatsApp',
+    'compartir.etiqueta': 'Compartir',
+    'compartir.telegram': 'Compartir en Telegram',
+    'compartir.copiar': 'Copiar enlace',
+    'compartir.copiado': 'Enlace copiado',
+    'compartir.mas': 'Más opciones',
     'fallo.titulo': 'Esta página no se ha podido mostrar',
     'fallo.texto':
       'Suele pasar justo después de publicar una versión nueva de la web: la pestaña aún tenía la anterior. Recargar lo arregla casi siempre.',
@@ -965,6 +970,17 @@ export const CATALOGUE = {
     // Departamentos — per-concejalía accountability dashboard
     // Cargo (per-concejal) detail
     'cargos.detalle.notFound': 'Concejal no encontrado.',
+    'hallazgo.volver': '← Todos los hallazgos',
+    'hallazgo.cabecera.automatica': 'Redacción automática',
+    'hallazgo.cabecera.editorial': 'Verificación editorial',
+    'hallazgo.noEncontrado': 'Hallazgo no encontrado',
+    'hallazgo.noEncontradoTexto':
+      'Este enlace no corresponde a ningún hallazgo publicado ni retirado.',
+    'hallazgo.retirado': 'Hallazgo retirado',
+    'hallazgo.retiradoTexto':
+      'Se publicó y después se retiró. No se reproduce lo que decía: queda la huella de la retirada, con su motivo.',
+    'hallazgo.errorCarga': 'No se han podido cargar los hallazgos',
+    'hallazgo.metodologia': 'Cómo se redactan y se corrigen los hallazgos',
     'hallazgos.area.filtered': 'Filtrado por área',
     'hallazgos.area.clear': 'ver todos',
     'hallazgos.area.note':
@@ -2229,6 +2245,11 @@ export const CATALOGUE = {
     'common.loading': 'Carregant…',
     'common.noData': 'Sense dades',
     'common.compartirWhatsApp': 'Compartir per WhatsApp',
+    'compartir.etiqueta': 'Compartir',
+    'compartir.telegram': 'Compartir per Telegram',
+    'compartir.copiar': 'Copiar l’enllaç',
+    'compartir.copiado': 'Enllaç copiat',
+    'compartir.mas': 'Més opcions',
     'fallo.titulo': 'Aquesta pàgina no s’ha pogut mostrar',
     'fallo.texto':
       'Sol passar just després de publicar una versió nova de la web: la pestanya encara tenia l’anterior. Recarregar ho arregla quasi sempre.',
@@ -2558,6 +2579,17 @@ export const CATALOGUE = {
     'cambios.title': 'Novetats',
 
     'cargos.detalle.notFound': 'Regidor/a no trobat/da.',
+    'hallazgo.volver': '← Totes les troballes',
+    'hallazgo.cabecera.automatica': 'Redacció automàtica',
+    'hallazgo.cabecera.editorial': 'Verificació editorial',
+    'hallazgo.noEncontrado': 'Troballa no trobada',
+    'hallazgo.noEncontradoTexto':
+      'Aquest enllaç no correspon a cap troballa publicada ni retirada.',
+    'hallazgo.retirado': 'Troballa retirada',
+    'hallazgo.retiradoTexto':
+      'Es va publicar i després es va retirar. No es reprodueix el que deia: en queda l’empremta de la retirada, amb el motiu.',
+    'hallazgo.errorCarga': 'No s’han pogut carregar les troballes',
+    'hallazgo.metodologia': 'Com es redacten i es corregeixen les troballes',
     'hallazgos.area.filtered': 'Filtrat per àrea',
     'hallazgos.area.clear': 'veure tots',
     'hallazgos.area.note':

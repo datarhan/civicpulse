@@ -520,7 +520,7 @@ overwrites it. Change the bot's SQLite instead.
 
 - **Pipeline** — **human-curated** · `correct-pleno-finding.ts` CLI · embedded inside `pleno-findings.json`
 - **Source** — Same shape as press corrections. Same IFCN-compliant trail for the editorial findings auto-curated from pleno transcripts.
-- **Surfaces** — `/hallazgos` — collapsible "Bitácora de correcciones" expander on each `FindingDetailCard`.
+- **Surfaces** — `/hallazgos` and `/hallazgos/:id` — collapsible "Bitácora de correcciones" expander on each `FindingDetailCard`.
 
 ### Provenance of every published verbatim (which transcript, and what the gate says)
 
@@ -531,13 +531,13 @@ overwrites it. Change the bot's SQLite instead.
 - **Second axis, same file** — `gate` per quote: what `src/scraper/claim-public-gate.ts` would do with the claim behind the verbatim, in the gate's own `shown`/`toggle`/`hidden` vocabulary. The gate governs `/plenos`; `/hallazgos` never consulted it, and it would hide a large share of what that page quotes — every hidden one an `acusacion_publica` the verifier could not ground. Read from `mergeVerified(pleno-claims-verified-base.json, pleno-claims-overlay.json)` through `scripts/lib/verified-corpus.ts`: **the base alone gives the opposite answer** for most quotes, so the pass counts how many were decided on an overlay verdict and refuses to write when the overlay had entries and reached none of them. Nothing re-derives a verdict; `classifyClaimVisibility` decides and this records.
 - **Re-anchoring** — `npm run triage:quote-reanchor` → `editorial/quote-reanchor-queue.json` (gitignored, never under `public/`), surfaced in `/curator`. It **proposes passages and selects none**; a curator applies the change with `npm run correct-pleno-finding -- <id> --field quote.<i>.text`.
 - **The gate's exception** — `npm run triage:finding-exception` → `editorial/finding-exception-queue.json` (gitignored, never under `public/`), surfaced in `/curator`. One row per finding with no quote the gate would show, asking the gate's own question: does this finding earn the exception the gate reserves for a person? It **presents evidence and selects nothing** (`decision` is always `null`); a curator applies `npm run correct-pleno-finding`. `check:relations` carries `findings-quote-contrast`, which re-derives every quote's gate verdict from the live verifier output and reds when the published mark stops matching.
-- **Surfaces** — `/hallazgos` and `/plenos/:id` (per-quote chips + per-card note, shared `QuoteProvenanceMark`/`QuoteProvenanceNote` in `PlenoFindings.jsx`; a quote can carry one mark from each axis and renders both), and the published editorial contract at `/metodologia#citas-transcripcion` and `/metodologia#citas-contraste`.
+- **Surfaces** — `/hallazgos`, `/hallazgos/:id` and `/plenos/:id` (per-quote chips + per-card note, shared `QuoteProvenanceMark`/`QuoteProvenanceNote` in `PlenoFindings.jsx`; a quote can carry one mark from each axis and renders both), and the published editorial contract at `/metodologia#citas-transcripcion` and `/metodologia#citas-contraste`.
 
 ### Editorial findings as ClaimReview JSON-LD
 
 - **Pipeline** — **published** · `src/components/ClaimReviewJsonLd.jsx`
 - **Source** — Every press + pleno finding card embeds a `<script type="application/ld+json">` payload conforming to schema.org/ClaimReview. Two builders: `_buildPayload` (press — itemReviewed.appearance points at outlets) and `_buildPlenoPayload` (pleno — itemReviewed.appearance points at the council session). Severity maps to a 1-5 reviewRating.
-- **Surfaces** — `/laboratorio` + `/hallazgos`. Lets Google's Rich Results Test recognise us as a fact-check publisher — same standard the Fact Check Tools API indexes (we both consume + publish).
+- **Surfaces** — `/laboratorio`, `/hallazgos` and `/hallazgos/:id` (the review's `url` is the finding's own page). Lets Google's Rich Results Test recognise us as a fact-check publisher — same standard the Fact Check Tools API indexes (we both consume + publish).
 
 ### CTBG resoluciones (state-level, 10,551 rows, 12 yearly sheets)
 

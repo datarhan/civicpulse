@@ -25,9 +25,9 @@ test.describe('Hallazgos (/hallazgos)', () => {
     // Filter chips — severity row always present when findings > 0
     await expect(page.getByRole('button', { name: /Informativo/i }).first()).toBeVisible()
 
-    // Permalink anchors should work — the first finding card has a href
-    // pointing to the current pathname + "#f-…"
-    const firstPermalink = page.locator('a[href^="/hallazgos#f-"]').first()
+    // El enlace permanente de cada ficha lleva a su propia página,
+    // /hallazgos/f-…, no a un ancla de esta lista.
+    const firstPermalink = page.locator('a[href^="/hallazgos/f-"]').first()
     await expect(firstPermalink).toBeVisible()
 
     expect(appErrors(errors)).toEqual([])
@@ -80,7 +80,7 @@ test.describe('Hallazgos (/hallazgos)', () => {
     })
     // The cards mount after the snapshot lands; wait for one so an empty
     // `ldScripts` cannot be the pre-render state instead of the gate.
-    await expect(page.locator('a[href^="/hallazgos#f-"]').first()).toBeVisible({ timeout: 15_000 })
+    await expect(page.locator('a[href^="/hallazgos/f-"]').first()).toBeVisible({ timeout: 15_000 })
 
     const ldScripts = await page.locator('script[type="application/ld+json"]').allTextContents()
     expect(ldScripts.length).toBe(expected)
@@ -324,5 +324,72 @@ test.describe('Citas retenidas (/hallazgos)', () => {
     const conRetencion = FINDINGS.items.find((f) => RETENIDOS.some((r) => r.id === f.id))
     expect(conRetencion).toBeDefined()
     await expect(page.getByText(/Lo que se dijo/i).first()).toBeVisible()
+  })
+})
+
+/**
+ * La página propia de un hallazgo. Se comparte por WhatsApp o Telegram, así que
+ * es la que abre quien no ha visto nunca /hallazgos: tiene que decir quién
+ * redactó la ficha antes del titular, llevar el derecho de réplica y, si la
+ * ficha se retiró o nunca existió, decirlo en vez de mandar a otra parte.
+ */
+test.describe('Hallazgo (/hallazgos/:id)', () => {
+  const snapshot = JSON.parse(readFileSync('public/data/pleno-findings.json', 'utf8'))
+  const primero: { id: string; title: string } = snapshot.items[0]
+  const retirada: { findingId: string; digest: string } | undefined = snapshot.retractions?.[0]
+
+  test('la ficha se abre en su página, con quién la redactó antes del titular', async ({
+    page,
+  }) => {
+    const errors = collectErrors(page)
+    await page.goto(`/hallazgos/${primero.id}`, { waitUntil: 'domcontentloaded' })
+
+    const titular = page.getByText(primero.title, { exact: true })
+    await expect(titular).toBeVisible({ timeout: 15_000 })
+    const cabecera = page.getByText(/^(Redacción automática|Verificación editorial)$/)
+    await expect(cabecera).toBeVisible()
+    const [c, tt] = [await cabecera.boundingBox(), await titular.boundingBox()]
+    expect(c, 'la cabecera tiene que pintarse').not.toBeNull()
+    expect(tt, 'el titular tiene que pintarse').not.toBeNull()
+    expect(c!.y, 'la cabecera va ANTES del titular').toBeLessThan(tt!.y)
+
+    await expect(page.getByText('Derecho de réplica')).toBeVisible()
+
+    // Compartir manda la dirección pública de ESTA ficha, no la de la lista.
+    const publica = encodeURIComponent(`https://www.civicpulse.es/hallazgos/${primero.id}`)
+    for (const nombre of ['Compartir en WhatsApp', 'Compartir en Telegram']) {
+      const href = await page.getByRole('link', { name: nombre }).getAttribute('href')
+      expect(href, nombre).toContain(publica)
+    }
+
+    await expect(page).toHaveTitle(/· CivicPulse$/)
+    expect(await page.title()).toContain(primero.title)
+    expect(appErrors(errors)).toEqual([])
+  })
+
+  test('el enlace permanente de la lista lleva a esa página', async ({ page }) => {
+    await page.goto('/hallazgos', { waitUntil: 'domcontentloaded' })
+    const enlace = page.locator(`a[href="/hallazgos/${primero.id}"]`).first()
+    await expect(enlace).toBeVisible({ timeout: 15_000 })
+    await enlace.click()
+    await expect(page).toHaveURL(new RegExp(`/hallazgos/${primero.id}$`))
+    await expect(page.getByText(primero.title, { exact: true })).toBeVisible({ timeout: 15_000 })
+  })
+
+  test('un hallazgo retirado enseña la huella de la retirada, no su texto', async ({ page }) => {
+    expect(retirada, 'sin retiradas en el snapshot: esta prueba no mediría nada').toBeTruthy()
+    await page.goto(`/hallazgos/${retirada!.findingId}`, { waitUntil: 'domcontentloaded' })
+    await expect(page.getByText('Hallazgo retirado').first()).toBeVisible({ timeout: 15_000 })
+    await expect(page.getByText(retirada!.digest)).toBeVisible()
+    // Ni una banda de la ficha: lo retirado no se republica por esta puerta.
+    await expect(page.getByText('Lo que se dijo')).toHaveCount(0)
+  })
+
+  test('un identificador que no existe lo dice y no redirige', async ({ page }) => {
+    await page.goto('/hallazgos/h-no-existe', { waitUntil: 'domcontentloaded' })
+    await expect(page.getByText('Hallazgo no encontrado').first()).toBeVisible({
+      timeout: 15_000,
+    })
+    await expect(page).toHaveURL(/\/hallazgos\/h-no-existe$/)
   })
 })

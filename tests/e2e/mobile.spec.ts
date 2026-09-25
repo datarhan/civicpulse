@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test'
 import { readFileSync } from 'node:fs'
+import { PRIMER_HALLAZGO } from './_rutas'
 
 // A real pleno id with claims, read from the committed manifest (for /plenos/:id).
 const FIRST_PLENO_ID = JSON.parse(readFileSync('public/data/pleno-claims/index.json', 'utf8'))
@@ -84,6 +85,8 @@ const ROUTES: Route[] = [
   { path: '/departamentos', ready: /De \d+ concejalías con delegación/ },
   { path: '/departamentos/urbanismo', ready: /\d+% contrastadas · \d+ en total/ },
   { path: '/hallazgos', ready: /TOTAL HALLAZGOS \d+/ },
+  // La página propia de una ficha: su titular sale del snapshot, no de una cadena.
+  { path: `/hallazgos/${PRIMER_HALLAZGO.id}`, ready: literal(PRIMER_HALLAZGO.title) },
   { path: '/reportajes', ready: /REPORTAJE · /i },
   { path: '/declaraciones', ready: /TOTAL \d+ CONTRASTADAS \d+/ },
   // Tablas de cinco columnas en un móvil: el sitio exacto donde una fila se

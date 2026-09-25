@@ -96,7 +96,7 @@ JSON. Two things are not the SPA and are easy to mistake for exceptions:
 
 Public: `/` `/cargos` `/cargos/:slug` `/presupuesto` `/eficiencia` `/gestion` `/plenos`
 `/plenos/:id`
-`/promesas` `/departamentos` `/departamentos/:slug` `/hallazgos`
+`/promesas` `/departamentos` `/departamentos/:slug` `/hallazgos` `/hallazgos/:id`
 `/declaraciones` `/reportajes` `/datos` `/empleo` `/empleo/:id`
 `/empleo-publico` `/quejas` `/quejas/dashboard` `/quejas/:id` `/cambios`
 `/laboratorio` `/laboratorio/agentes` `/laboratorio/agentes/:assignmentId`
