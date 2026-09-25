@@ -1,8 +1,16 @@
 name: Ingest queja responses
 
+# Publicar exige APROBACIÓN. La plantilla del issue pone la etiqueta que lo
+# enruta; la que publica es `publicar`, que ninguna plantilla pone y que aplica
+# un mantenedor después de comprobar que el texto viene de quien dice venir.
+# Hasta el 2026-09-25 la etiqueta de la propia plantilla bastaba para comitear en
+# main y desplegar, y `edited` volvía a publicar en cada edición: cualquiera con
+# cuenta de GitHub podía publicar un texto bajo el nombre de un grupo.
+# `tests/ingesta-aprobacion.test.js` lo sostiene.
+
 on:
   issues:
-    types: [labeled, edited]
+    types: [labeled]
   workflow_dispatch:
     inputs:
       issue_number:
@@ -20,9 +28,27 @@ jobs:
     # (set by the issue template).
     if: >
       github.event_name == 'workflow_dispatch' ||
-      (github.event.label.name == 'queja-response') ||
-      (github.event.action == 'edited' && contains(github.event.issue.labels.*.name, 'queja-response'))
+      (github.event.label.name == 'publicar' &&
+        contains(github.event.issue.labels.*.name, 'queja-response'))
     steps:
+      # Publica sólo quien mantiene el repositorio. La etiqueta `publicar` no la
+      # pone ninguna plantilla y aplicarla exige permiso de triaje o más, pero eso
+      # es configuración de GitHub y no de este fichero: se comprueba aquí, antes
+      # de tocar nada. Si falla, el workflow sale en ROJO —y el bot de Fly avisa
+      # de los workflows fallidos—, porque alguien sin permiso intentó publicar.
+      - name: Sólo publica un mantenedor
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          QUIEN: ${{ github.event.sender.login || github.actor }}
+        run: |
+          set -euo pipefail
+          PERMISO=$(gh api "repos/${REPO}/collaborators/${QUIEN}/permission" --jq .permission 2>/dev/null || echo none)
+          case "$PERMISO" in
+            admin|maintain|write) echo "✓ ${QUIEN} (${PERMISO}) aprueba la publicación" ;;
+            *) echo "::error::${QUIEN} (${PERMISO}) no puede aprobar una publicación"; exit 1 ;;
+          esac
+
       - uses: actions/checkout@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -94,5 +120,5 @@ jobs:
           ISSUE_NUMBER: ${{ github.event.issue.number || inputs.issue_number }}
           QID: ${{ steps.parse.outputs.qid }}
         run: |
-          gh issue comment "$ISSUE_NUMBER" --body ":white_check_mark: Respuesta incorporada a \`public/data/quejas-responses.json\`. Visible en https://civicpulse-virid.vercel.app/quejas/${QID,,}"
+          gh issue comment "$ISSUE_NUMBER" --body ":white_check_mark: Respuesta incorporada a \`public/data/quejas-responses.json\`. Visible en https://www.civicpulse.es/quejas/${QID,,}"
           gh issue close "$ISSUE_NUMBER" --reason completed

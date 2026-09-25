@@ -12,6 +12,8 @@ body:
 
         Plazo de revisión: 24 h hábiles. Resolución: 72 h. Historial público en git.
 
+        Antes de publicarla comprobamos que la réplica viene de quien dice venir —el grupo, el cargo o la institución—; si hace falta, escribimos a su correo institucional para confirmarlo. Se publica cuando un mantenedor la aprueba, no al enviar este formulario. ¿Prefieres no usar GitHub? Escribe a civicpulse_es@proton.me y la tramitamos igual.
+
   - type: input
     id: finding-id
     attributes:

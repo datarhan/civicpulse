@@ -339,8 +339,13 @@ export default function Metodologia() {
           </li>
           <li>
             <strong>Derecho de rectificación.</strong> Cualquier persona, colectivo o partido puede
-            proponer correcciones mediante issue pública en GitHub. Plazo de revisión: 24 h hábiles
-            (L-V). Plazo de resolución: 72 h. Son los mismos plazos que fija{' '}
+            proponer correcciones mediante issue pública en GitHub o escribiendo a{' '}
+            <a href="mailto:civicpulse_es@proton.me" style={{ color: 'var(--civic)' }}>
+              civicpulse_es@proton.me
+            </a>
+            . Una réplica no se publica al enviarla: un mantenedor comprueba antes que viene de
+            quien la firma. Plazo de revisión: 24 h hábiles (L-V). Plazo de resolución: 72 h. Son
+            los mismos plazos que fija{' '}
             <a href="/aviso-legal" style={{ color: 'var(--civic)' }}>
               /aviso-legal
             </a>

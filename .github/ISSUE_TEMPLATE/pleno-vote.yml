@@ -9,8 +9,9 @@ body:
         Gracias por colaborar. Este formulario ingresa transcripciones de votos
         registrados en actas oficiales del Pleno de Riba-roja de Túria. El dato
         se valida con el esquema en `src/scraper/pleno-votes.ts` y se publica
-        tras revisión humana. No aceptamos interpretaciones, sólo la cita
-        literal del acta.
+        tras revisión humana: cuando un mantenedor lo coteja con el acta y lo
+        aprueba, no al enviar este formulario. No aceptamos interpretaciones,
+        sólo la cita literal del acta.
 
   - type: input
     id: pleno-id
