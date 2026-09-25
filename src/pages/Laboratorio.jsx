@@ -416,13 +416,14 @@ function LabPressCard({ article, summary, claims, trust, triangulation, linkRot 
             🔗 Wayback ↗
           </ExtLink>
         )}
+        {/* La plantilla `press-finding-response.yml` a la que apuntaba este enlace no ha
+            existido nunca: el enlace llevaba a un formulario vacío de GitHub. La vía que
+            sí existe, con correo y sin cuenta, es la del aviso legal. */}
         <a
-          href="https://github.com/datarhan/civicpulse/issues/new?template=press-finding-response.yml"
-          target="_blank"
-          rel="noreferrer"
+          href="/aviso-legal#rectificacion"
           style={{ color: 'var(--civic)', textDecoration: 'underline' }}
         >
-          Solicitar derecho de réplica ⤳
+          Solicitar derecho de réplica →
         </a>
       </div>
     </Card>
