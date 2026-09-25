@@ -42,6 +42,7 @@ const BOT_INFO: UserFromGetMe = {
   has_main_web_app: false,
   has_topics_enabled: false,
   allows_users_to_create_topics: false,
+  supports_join_request_queries: false,
 }
 const GRUPO = { id: -1001234567890, type: 'supergroup', title: 'Vecinos de Riba-roja' }
 const privado = (id: number) => ({ id, type: 'private', first_name: 'Vecina' })
