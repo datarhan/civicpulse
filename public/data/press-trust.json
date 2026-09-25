@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-24T09:42:14.875Z",
+  "generatedAt": "2026-09-25T04:47:55.836Z",
   "windowDays": 30,
   "articles": [
     {
@@ -749,23 +749,6 @@
         "opinionFraction": 0
       },
       "score": 2
-    },
-    {
-      "articleId": "vxu9zk",
-      "articleFingerprint": "oh3lx0",
-      "outlet": "Periòdic del Camp de Túria",
-      "outletHost": "infoturia.com",
-      "url": "https://www.infoturia.com/riba-roja-de-turia/85756-riba-roja-destina-140-000-euros-a-la-rehabilitacio-de-les-facanes-lavaluacio-dedificis-i-laccessibilitat-dels-habitatges.html",
-      "date": "2026-08-25T09:48:44.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     }
   ],
   "outlets": [
@@ -787,7 +770,7 @@
     {
       "outlet": "Periòdic del Camp de Túria",
       "outletHost": "infoturia.com",
-      "articleCount": 10,
+      "articleCount": 9,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -795,7 +778,7 @@
         "sin-datos": 16,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.6,
+      "meanTrustScore": 2.67,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -906,7 +889,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "98f5600f1368",
+    "plenos-agendas.json": "8c6fd99994a1",
     "press-claims-verified.json": "426589fc7d58",
     "press.json": "3c52ad1f2594",
     "promises.json": "d18811c11210"
