@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-25T09:51:38.380Z",
+  "generatedAt": "2026-09-26T09:35:46.542Z",
   "source": {
     "posts": "https://participa.ribarroja.es/wp-json/wp/v2/posts?per_page=100&_fields=id,date,title,link,excerpt,content,categories,slug,status",
     "categories": "https://participa.ribarroja.es/wp-json/wp/v2/categories?per_page=100",
@@ -9,8 +9,8 @@
   "stats": {
     "total": 7,
     "activities": 2,
-    "surveys": 1,
-    "other": 4,
+    "surveys": 2,
+    "other": 3,
     "latestDate": "2026-04-21T13:19:25"
   },
   "items": [
@@ -31,10 +31,8 @@
       "link": "https://participa.ribarroja.es/ii-jornadas-dinamizacion-consejos-sectoriales-carta-de-servicios-ods/",
       "date": "2025-10-02T14:50:17",
       "excerpt": "El Ayuntamiento de Riba-roja de Túria organiza, durante el mes de octubre de 2025, las II Jornadas de Dinamización de Consejos Sectoriales, un espacio de encuentro y diálogo abierto a toda la ciudadanía, asociaciones y entidades del municipio. Estas jornadas dan continuidad a las celebradas en 2023, consolidando el papel de los Consejos Sectoriales como […]",
-      "categories": [
-        "Actividades participativas"
-      ],
-      "kind": "activity"
+      "categories": [],
+      "kind": "other"
     },
     {
       "id": 3095,
@@ -55,8 +53,10 @@
       "link": "https://participa.ribarroja.es/conoce-siente-y-participa-en-ods-2/",
       "date": "2024-07-03T14:35:25",
       "excerpt": "PARTICIPA Del 3 al 6 de julio del 2023 se celebraron las “Jornadas de dinamización Consejos Sectoriales Responsabilidad Social Agenda 2030”, en las cuales se sensibilizó a la ciudadanía sobre la importancia de los ODS. Se ha elaborado un Reglamento para la creación del Consejo para la implementación de la Agenda 2030 en Riba-roja.La Asamblea […]",
-      "categories": [],
-      "kind": "other"
+      "categories": [
+        "Actividades participativas"
+      ],
+      "kind": "activity"
     },
     {
       "id": 3080,
@@ -65,10 +65,8 @@
       "link": "https://participa.ribarroja.es/conoce-siente-y-participa-en-ods/",
       "date": "2024-07-03T13:43:00",
       "excerpt": "SIENTE Por la implementación de la Agenda 2030 se han recibido diversos reconocimientos. Desde el Ayuntamiento se otorgan los Premios EcoRiba para reconocer las buenas prácticas en las categorías: circular, paisaje, educativo, honorífico y difusión. PREMIOS Finalista en los VIII Premios Buenas Prácticas locales por el Clima (2018), en la categoría de sensibilización y concienciación […]",
-      "categories": [
-        "Actividades participativas"
-      ],
-      "kind": "activity"
+      "categories": [],
+      "kind": "other"
     },
     {
       "id": 3072,
@@ -77,8 +75,10 @@
       "link": "https://participa.ribarroja.es/coneix-sent-i-participa-en-ods-participa-en-la-validacion-de-acciones-agenda-urbana-de-riba-roja-de-turia/",
       "date": "2024-07-03T13:23:59",
       "excerpt": "El Ayuntamiento de Riba-roja está implantando la Agenda Urbana, estrategia que incluirá las principales propuestas para conseguir que el municipio sea próspero, sostenible y cohesionado. Esta consulta se pone en marcha con la finalidad de validar las actuaciones y priorizar su puesta en marcha. Para esto se pide puntuar las acciones de los tres bloques […]",
-      "categories": [],
-      "kind": "other"
+      "categories": [
+        "Encuestas"
+      ],
+      "kind": "survey"
     },
     {
       "id": 3051,
@@ -87,8 +87,10 @@
       "link": "https://participa.ribarroja.es/conoce-la-agenda-2030/",
       "date": "2024-06-25T14:01:48",
       "excerpt": "CONOCE La Agenda 2030 es una hoja de ruta de la ONU con la que se quiere transformar el mundo a través de 17 Objetivos de Desarrollo Sostenible (ODS) y 169 metas.En Riba-roja de Túria se ha focalizado este cometido en la Concejalía de Agenda 2030, trabajando de manera transversal con los distintos departamentos del […]",
-      "categories": [],
-      "kind": "other"
+      "categories": [
+        "Actividades participativas"
+      ],
+      "kind": "activity"
     }
   ]
 }
