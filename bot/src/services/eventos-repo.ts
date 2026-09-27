@@ -26,7 +26,9 @@
  * Un workflow correcto NO avisa. El ruido es lo que enseña a ignorar los avisos,
  * y esa lección ya está pagada en `convocatorias.ts`.
  */
+import { escaparHtml } from '../util/html.ts'
 import { logger } from '../util/log.ts'
+import { trocear } from '../util/telegram.ts'
 
 export type ClaseEvento =
   'pr-abierta' | 'pr-fusionada' | 'derecho-replica' | 'workflow-fallido' | 'workflow-saltado'
@@ -84,8 +86,15 @@ export interface DatosGitHub {
  * que disparan los workflows de ingesta (`ingest-*-responses.yml`), y por eso se
  * escriben aquí una sola vez: si el aviso mirara otra etiqueta distinta de la
  * que ingiere, avisaría de lo que no llega y callaría de lo que sí.
+ *
+ * `tests/replica-etiquetas-bot.test.js` exige que cada formulario
+ * `.github/ISSUE_TEMPLATE/*-response.yml` lleve una de éstas: hasta el
+ * 2026-09-27 la respuesta oficial a una queja no la llevaba y nunca avisó.
  */
-const ETIQUETAS_REPLICA = ['derecho-replica', 'derecho-réplica']
+export const ETIQUETAS_REPLICA = ['derecho-replica', 'derecho-réplica']
+
+/** Lo más largo que se manda en un mensaje (util/telegram.ts, compartido con el aviso de fotos). */
+export { MAX_MENSAJE } from '../util/telegram.ts'
 
 export function eventosDe(d: DatosGitHub): Evento[] {
   const out: Evento[] = []
@@ -155,27 +164,35 @@ export function nuevos(eventos: Evento[], yaVistos: Set<string>): Evento[] {
   return eventos.filter((e) => !yaVistos.has(e.id))
 }
 
+/**
+ * El aviso de un evento, en HTML de Telegram. El título y la URL vienen de
+ * GitHub y van escapados: hasta el 2026-09-27 iban en Markdown a pelo, y una PR
+ * llamada «… (secret_token)» —un `_` sin cerrar— hacía que Telegram rechazara el
+ * mensaje entero.
+ */
 export function formatear(e: Evento): AvisoRepo {
   const urgente = e.clase === 'derecho-replica'
   const cabecera: Record<ClaseEvento, string> = {
-    'derecho-replica': '⚖️ DERECHO DE RÉPLICA — tiene plazo',
+    'derecho-replica': '⚖️ <b>DERECHO DE RÉPLICA</b> — tiene plazo',
     'pr-abierta': '🔵 PR abierta',
     'pr-fusionada': '🟣 PR fusionada',
-    'workflow-fallido': '🔴 Workflow FALLIDO',
-    'workflow-saltado': '🟡 Workflow SALTADO (programado)',
+    'workflow-fallido': '🔴 <b>Workflow FALLIDO</b>',
+    'workflow-saltado': '🟡 <b>Workflow SALTADO</b> (programado)',
   }
   const cola: Partial<Record<ClaseEvento, string>> = {
     'derecho-replica':
       '\nUna persona nombrada ha respondido. Se atiende por la CLI de correcciones, no editando la prosa a mano.',
     'workflow-saltado':
-      '\nUn salto no es un fallo y no se ve en la lista: suele ser una `vars` o un secreto que ya no existe.',
+      '\nUn salto no es un fallo y no se ve en la lista: suele ser una <code>vars</code> o un secreto que ya no existe.',
   }
   return {
     evento: e,
     urgente,
-    texto: `${cabecera[e.clase]}\n${e.titulo}\n${e.url}${cola[e.clase] ?? ''}`,
+    texto: `${cabecera[e.clase]}\n${escaparHtml(e.titulo)}\n${escaparHtml(e.url)}${cola[e.clase] ?? ''}`,
   }
 }
+
+const CABECERA = '📌 <b>Repositorio</b>'
 
 export interface CorridaEventos {
   /** Distinto de «no hay novedades»: es el defecto `r?.findings ?? []`. */
@@ -222,29 +239,42 @@ export async function runEventosOnce(o: OpcionesEventos): Promise<CorridaEventos
   // Lo urgente primero: si el mensaje se lee en diagonal, que lo de arriba sea
   // lo que tiene plazo.
   const avisos = pendientes.map(formatear).sort((a, b) => Number(b.urgente) - Number(a.urgente))
-  const cuerpo = ['📌 *Repositorio*', '', ...avisos.map((a) => a.texto)].join('\n\n')
 
-  let enviados = 0
-  for (const a of o.admins) {
-    try {
-      await o.sendDm(a, cuerpo)
-      enviados += 1
-    } catch (e) {
-      logger.warn?.(`[eventos-repo] no se pudo avisar a ${a}: ${String(e)}`)
-    }
+  // Sin nadie a quien mandarlo se da por visto igual: si no, el día que se
+  // configuren los administradores recibirían de golpe todo lo acumulado. El
+  // cron lo dice en el log con `sinAdministradores`.
+  if (o.admins.length === 0) {
+    for (const p of pendientes) o.recordar(p.id)
+    return { consultado: true, nuevos: pendientes.length, enviados: 0, sinAdministradores: true }
   }
 
-  // Sólo se marca como visto lo que de verdad salió. Si no había a quién
-  // mandarlo, se guarda igual para no acumular un aluvión el día que se
-  // configuren los administradores — pero eso se decide arriba, en el cron,
-  // que es quien sabe si el silencio fue por falta de destinatarios.
-  for (const p of pendientes) o.recordar(p.id)
+  // Sólo se da por visto lo que LLEGÓ a alguien. Hasta el 2026-09-27 se marcaba
+  // todo lo pendiente, saliera o no: un mensaje rechazado por Telegram se perdía
+  // para siempre, derecho de réplica incluido.
+  const alcanzados = new Set<number>()
+  // Partido en mensajes que caben, sin partir ningún aviso (util/telegram.ts);
+  // cada trozo lleva los eventos que contiene, para darlos por vistos sólo si
+  // ese trozo llegó.
+  const bloques = avisos.map((a) => ({ texto: a.texto, id: a.evento.id }))
+  for (const trozo of trocear(CABECERA, bloques)) {
+    let llego = false
+    for (const a of o.admins) {
+      try {
+        await o.sendDm(a, trozo.texto)
+        llego = true
+        alcanzados.add(a)
+      } catch (e) {
+        logger.warn?.(`[eventos-repo] no se pudo avisar a ${a}: ${String(e)}`)
+      }
+    }
+    if (llego) for (const id of trozo.ids) o.recordar(id)
+  }
 
   return {
     consultado: true,
     nuevos: pendientes.length,
-    enviados,
-    sinAdministradores: o.admins.length === 0,
+    enviados: alcanzados.size,
+    sinAdministradores: false,
   }
 }
 

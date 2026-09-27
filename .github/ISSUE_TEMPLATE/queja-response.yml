@@ -3,7 +3,9 @@ description: |
   Para responsables políticos, técnicos o departamentos del Ayuntamiento que quieran
   responder públicamente a una queja ciudadana trackeada en CivicPulse.
 title: '[Respuesta] <Q-XXXXXXX>'
-labels: ['queja-response']
+# `queja-response` la enruta a su ingesta; `derecho-replica` hace que el bot la
+# avise por Telegram, como a las demás réplicas (tests/replica-etiquetas-bot.test.js).
+labels: ['queja-response', 'derecho-replica']
 body:
   - type: markdown
     attributes:
