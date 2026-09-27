@@ -91,9 +91,16 @@ only the original public surface.
   attention, not the benefit of the doubt). Explicit `trust` overrides
   still win.
 - Right-of-reply: `.github/ISSUE_TEMPLATE/journalist-report-response.yml`
-  - `.github/workflows/ingest-journalist-responses.yml` — fires when an
-    issue gains BOTH labels `derecho-replica` AND `periodista`, parses the
-    form, calls `npm run journalist-reply`, commits, closes the issue.
+  - `.github/workflows/ingest-journalist-responses.yml` — the form's own
+    labels (`derecho-replica` + `periodista`) only route the issue. It fires
+    when a maintainer with write permission adds `publicar` (re-checked before
+    anything is written), parses the form, calls `npm run journalist-reply`,
+    commits, closes the issue.
+  - Who signs (`RESPONSE_BLOCS`): a municipal group; `person`, the person the
+    report is about — published under the assignment subject's name, so
+    never use it for anyone else; or `aludido`, an institution or another
+    person the report names, with `--nombre`, which is what «Réplica de …»
+    prints.
 
 Curator CLIs (`scripts/`):
 
@@ -122,8 +129,8 @@ npm run journalist:archive-sources -- <assignmentId> [--dry-run] [--min-gap-ms 1
 
 npm run journalist:sondeo -- --nombre "<nombre completo>" [--slug <slug>] [--anios 2019,2023] [--semantico] [--out <ruta>]
 
-npm run journalist-reply -- <reportId> <PSOE|PP|VOX|Compromís|Ciudadanos|Otro|person> \
-    "<verbatim ≥20 chars>" [sourceUrl] [YYYY-MM-DD]
+npm run journalist-reply -- <reportId> <PSOE|PP|VOX|Compromís|Ciudadanos|EU-Podem|person|aludido> \
+    "<verbatim ≥20 chars>" [sourceUrl] [YYYY-MM-DD] [--nombre "<who signs>"]   # --nombre only with aludido
 ```
 
 **Libel rules — non-negotiable, encoded in code:**
