@@ -1,6 +1,9 @@
 import { describe, it, expect } from 'vitest'
 import { readFileSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
+import { load } from 'js-yaml'
+
+import { VARIABLE_VERSION } from '../bot/src/services/health.ts'
 
 /**
  * ¿Despliega ALGUIEN el bot cuando su código cambia?
@@ -127,5 +130,202 @@ describe('el bot lo despliega alguien', () => {
       comprueban.map((w) => w.nombre),
       'sin comprobar el secreto, un despliegue que no ocurre se ve igual que uno que sí',
     ).not.toEqual([])
+  })
+})
+
+/**
+ * ¿Despliega el bot SÓLO lo que pasó sus pruebas, y comprueba que quedó
+ * desplegado?
+ *
+ * Hasta el 2026-09-27 no: `bot.yml` (tipos y pruebas) y `bot-deploy.yml` se
+ * disparaban con el mismo push y corrían en paralelo, sin `needs` entre ellos,
+ * así que un arranque que no compila o una prueba en rojo llegaban a Fly igual.
+ * Y el despliegue acababa en `flyctl status || true`, que imprime pero no
+ * compara: «en verde» decía que `flyctl deploy` terminó, no qué commit servía
+ * la máquina. Lo siguiente en la cola es una migración de la base de datos, y
+ * contra la única copia de los datos no se despliega a ciegas.
+ *
+ * Se leen con un parser de YAML: lo que corre, no lo que dice un comentario.
+ */
+const leidos = readdirSync(WF)
+  .filter((f) => /\.ya?ml$/.test(f))
+  .map((f) => ({ nombre: f, doc: load(readFileSync(join(WF, f), 'utf8')) }))
+
+const DESPLIEGA_PASO = /(?:flyctl|fly)\s+deploy\b/
+const despliegaPaso = (paso) => typeof paso?.run === 'string' && DESPLIEGA_PASO.test(paso.run)
+
+/** Ejecuta los tipos del paquete o `tsc` a pelo (el criterio de bot-tests-cubiertos). */
+const TIPA = /\bnpm\s+(?:--prefix[= ]\S+\s+)?run\s+typecheck\b|\btsc\b/
+/** Ejecuta la suite: `npm test`, `npm run test` o vitest. */
+const PRUEBA = /\bnpm\s+(?:--prefix[= ]\S+\s+)?(?:run\s+)?test\b|\bvitest\b/
+
+/** ¿Corre DENTRO de bot/? Por su directorio, el del trabajo, o un `cd`/`--prefix`. */
+function enElBot(doc, trabajo, paso) {
+  const dir =
+    paso['working-directory'] ??
+    trabajo?.defaults?.run?.['working-directory'] ??
+    doc?.defaults?.run?.['working-directory'] ??
+    '.'
+  return (
+    /^\.?\/?bot\/?$/.test(String(dir).trim()) ||
+    /\bcd\s+\.?\/?bot\/?\s*&&/.test(paso.run) ||
+    /--prefix[= ]\.?\/?bot\b/.test(paso.run)
+  )
+}
+
+/** Pasos que cuentan: en bot/, y que no se tragan su fallo ni cuelgan de un `if:`. */
+const pasosQueCuentan = (doc, trabajo, pasos) =>
+  pasos.filter(
+    (p) =>
+      typeof p?.run === 'string' &&
+      enElBot(doc, trabajo, p) &&
+      p['continue-on-error'] !== true &&
+      p.if === undefined,
+  )
+
+/** ¿Estos pasos comprueban los tipos Y corren las pruebas del bot? */
+function pruebanElBot(doc, trabajo, pasos) {
+  if (trabajo?.['continue-on-error'] === true || trabajo?.if !== undefined) return false
+  const cuentan = pasosQueCuentan(doc, trabajo, pasos)
+  return cuentan.some((p) => TIPA.test(p.run)) && cuentan.some((p) => PRUEBA.test(p.run))
+}
+
+/** El workflow reutilizable del repositorio al que llama un trabajo, si acepta que lo llamen. */
+function llamado(trabajo) {
+  const uses = trabajo?.uses
+  if (typeof uses !== 'string' || !uses.startsWith('./.github/workflows/')) return null
+  const w = leidos.find((x) => `./.github/workflows/${x.nombre}` === uses)
+  const on = w?.doc?.on
+  const acepta = Array.isArray(on)
+    ? on.includes('workflow_call')
+    : typeof on === 'object' && on !== null
+      ? 'workflow_call' in on
+      : on === 'workflow_call'
+  return acepta ? w.doc : null
+}
+
+const necesita = (trabajo) =>
+  trabajo?.needs == null ? [] : Array.isArray(trabajo.needs) ? trabajo.needs : [trabajo.needs]
+
+/**
+ * ¿El despliegue espera a que pasen los tipos y las pruebas del bot? Vale que
+ * el MISMO trabajo los corra antes del paso de despliegue, o que dependa (por
+ * `needs`, aunque sea de segunda mano) de un trabajo que los corre, o de uno que
+ * llama a un workflow reutilizable que los corre.
+ */
+function esperaALasPruebas(doc, idTrabajo, vistos = new Set()) {
+  const trabajo = doc.jobs?.[idTrabajo]
+  const pasos = trabajo?.steps ?? []
+  const i = pasos.findIndex(despliegaPaso)
+  if (i > 0 && pruebanElBot(doc, trabajo, pasos.slice(0, i))) return true
+  for (const id of necesita(trabajo)) {
+    if (vistos.has(id)) continue
+    vistos.add(id)
+    const previo = doc.jobs?.[id]
+    if (!previo) continue
+    if (pruebanElBot(doc, previo, previo.steps ?? [])) return true
+    const otro = llamado(previo)
+    if (otro && Object.values(otro.jobs ?? {}).some((t) => pruebanElBot(otro, t, t.steps ?? [])))
+      return true
+    if (esperaALasPruebas(doc, id, vistos)) return true
+  }
+  return false
+}
+
+/** Los trabajos que despliegan el bot, en workflows que se disparan con un push. */
+const trabajosDeDespliegue = () =>
+  leidos.flatMap(({ nombre, doc }) =>
+    typeof doc?.on === 'object' && doc?.on !== null && 'push' in doc.on
+      ? Object.entries(doc.jobs ?? {})
+          .filter(([, t]) => (t?.steps ?? []).some(despliegaPaso))
+          .map(([id]) => ({ nombre, doc, id }))
+      : [],
+  )
+
+describe('el despliegue del bot espera a sus pruebas y comprueba lo que quedó', () => {
+  it('hay un trabajo que despliega el bot con un push (si no, lo de abajo no mira nada)', () => {
+    expect(trabajosDeDespliegue().length).toBeGreaterThan(0)
+  })
+
+  it('el detector distingue esperar a las pruebas del bot de no esperar', () => {
+    const tipos = { run: 'npm run typecheck', 'working-directory': 'bot' }
+    const pruebas = { run: 'npm test', 'working-directory': 'bot' }
+    const despliegue = { run: 'flyctl deploy --remote-only' }
+    const ve = (jobs) => esperaALasPruebas({ jobs }, 'deploy')
+    expect(
+      ve({ p: { steps: [tipos, pruebas] }, deploy: { needs: 'p', steps: [despliegue] } }),
+    ).toBe(true)
+    expect(ve({ deploy: { steps: [tipos, pruebas, despliegue] } })).toBe(true)
+    // Sin `needs`, en paralelo: lo que había.
+    expect(ve({ p: { steps: [tipos, pruebas] }, deploy: { steps: [despliegue] } })).toBe(false)
+    // Las pruebas DESPUÉS de desplegar no protegen nada.
+    expect(ve({ deploy: { steps: [despliegue, tipos, pruebas] } })).toBe(false)
+    // Las de la RAÍZ no son las del bot.
+    expect(
+      ve({
+        p: { steps: [{ run: 'npm run typecheck' }, { run: 'npm test' }] },
+        deploy: { needs: 'p', steps: [despliegue] },
+      }),
+    ).toBe(false)
+    // Pruebas sin tipos: el 14-09 un arranque que no compilaba pasó todas las pruebas.
+    expect(ve({ p: { steps: [pruebas] }, deploy: { needs: ['p'], steps: [despliegue] } })).toBe(
+      false,
+    )
+    // Un fallo tragado no espera a nada.
+    expect(
+      ve({
+        p: { steps: [tipos, { ...pruebas, 'continue-on-error': true }] },
+        deploy: { needs: 'p', steps: [despliegue] },
+      }),
+    ).toBe(false)
+  })
+
+  it('no despliega sin haber pasado los tipos y las pruebas del bot', () => {
+    const sinEsperar = trabajosDeDespliegue()
+      .filter(({ doc, id }) => !esperaALasPruebas(doc, id))
+      .map(({ nombre, id }) => `${nombre} · ${id}`)
+    expect(
+      sinEsperar,
+      'estos despliegues corren en paralelo con las pruebas: un bot en rojo llega a Fly igual',
+    ).toEqual([])
+  })
+
+  it('le dice a la máquina qué commit lleva', () => {
+    // El nombre sale de health.ts: si dejara de exportarse, lo de abajo buscaría «undefined=».
+    expect(VARIABLE_VERSION).toMatch(/^[A-Z][A-Z0-9_]+$/)
+    const sinVersion = trabajosDeDespliegue()
+      .filter(({ doc, id }) =>
+        (doc.jobs[id].steps ?? [])
+          .filter(despliegaPaso)
+          .every((p) => !new RegExp(`(?:--env|-e)[= ]${VARIABLE_VERSION}=`).test(p.run)),
+      )
+      .map(({ nombre, id }) => `${nombre} · ${id}`)
+    expect(
+      sinVersion,
+      `el despliegue no pasa ${VARIABLE_VERSION}, así que /health no puede decir qué corre`,
+    ).toEqual([])
+  })
+
+  it('después de desplegar, comprueba que /health dice ESE commit, y falla si no', () => {
+    const sinComprobar = trabajosDeDespliegue()
+      .filter(({ doc, id }) => {
+        const pasos = doc.jobs[id].steps ?? []
+        const i = pasos.findIndex(despliegaPaso)
+        return !pasos.slice(i + 1).some((p) => {
+          const texto = `${p?.run ?? ''}\n${JSON.stringify(p?.env ?? {})}`
+          return (
+            typeof p?.run === 'string' &&
+            p['continue-on-error'] !== true &&
+            /\/health\b/.test(texto) &&
+            /github\.sha|GITHUB_SHA/.test(texto) &&
+            /\bexit 1\b/.test(p.run)
+          )
+        })
+      })
+      .map(({ nombre, id }) => `${nombre} · ${id}`)
+    expect(
+      sinComprobar,
+      '«flyctl deploy» en verde no dice qué commit sirve la máquina: compáralo con el fusionado',
+    ).toEqual([])
   })
 })
