@@ -458,7 +458,7 @@
   },
   "solicitudes": {
     "titulo": "Lo que se ha pedido, a quién y desde cuándo corre el plazo",
-    "nota": "El artículo 17.2 de la Ley 19/2013 admite «cualquier medio que permita tener constancia» de la identidad de quien pide, de la información solicitada y de una dirección de contacto: un correo que lleve las tres cosas es una vía válida. El artículo 20.1, en cambio, cuenta el mes «desde la recepción de la solicitud por el órgano competente para resolver», y de un correo consta el envío, no esa recepción. Por eso las dos que salieron por correo llevan la fecha contada desde el envío y no como vencimiento acreditado. La tercera se presentó por el registro electrónico de la Generalitat y la propia Generalitat ha acusado su entrada: de ésa el plazo se cuenta desde esa fecha y se puede afirmar. Este apartado se actualiza cuando hay movimiento, aunque las cifras de la pieza estén congeladas a su fecha: cada fila lleva la fecha de lo que cuenta. Toda respuesta se publicará íntegra.",
+    "nota": "El artículo 17.2 de la Ley 19/2013 admite «cualquier medio que permita tener constancia» de la identidad de quien pide, de la información solicitada y de una dirección de contacto: un correo que lleve las tres cosas es una vía válida. El artículo 20.1, en cambio, cuenta el mes «desde la recepción de la solicitud por el órgano competente para resolver», y de un correo consta el envío, no esa recepción. Por eso las dos que salieron por correo llevan la fecha contada desde el envío y no como vencimiento acreditado. La tercera se presentó por el registro electrónico de la Generalitat y la propia Generalitat ha acusado su entrada: de ésa el plazo se cuenta desde esa fecha y se puede afirmar. Lo mismo vale para la del Ayuntamiento que se volvió a presentar por su Registro de Entrada, a petición suya: consta el asiento del mismo órgano que la resuelve. Este apartado se actualiza cuando hay movimiento, aunque las cifras de la pieza estén congeladas a su fecha: cada fila lleva la fecha de lo que cuenta. Toda respuesta se publicará íntegra.",
     "items": [
       {
         "organismo": "Ministerio de Hacienda · Subdirección General de Estudios Financieros de Entidades Locales",
@@ -482,9 +482,18 @@
         "incidencias": [
           {
             "fecha": "2026-09-23",
-            "texto": "El 23 de septiembre el Área de Transparencia, Gobierno Abierto y Participación Ciudadana del Ayuntamiento contestó, acerca de ésta y de la que este medio le envió el 9 de septiembre sobre los sistemas de conteo de personas, que «para proceder a su tramitación formal, es necesario que ambas solicitudes sean presentadas a través del Registro de Entrada del Ayuntamiento», cada una por separado y con el mismo contenido, «sin perjuicio de la información ya recibida por este Ayuntamiento mediante correo electrónico». No la resuelve: ni concede ni deniega el acceso, ni dice que no le corresponda."
+            "texto": "El 23 de septiembre el Área de Transparencia, Gobierno Abierto y Participación Ciudadana del Ayuntamiento contestó, acerca de ésta y de la que este medio le envió el 9 de septiembre sobre los sistemas de conteo de personas, que «para proceder a su tramitación formal, es necesario que ambas solicitudes sean presentadas a través del Registro de Entrada del Ayuntamiento», cada una por separado y con el mismo contenido, «sin perjuicio de la información ya recibida por este Ayuntamiento mediante correo electrónico». No la resuelve: ni concede ni deniega el acceso, ni dice que no le corresponda. Se presentó por el Registro de Entrada el 27 de septiembre, con registro 2026014914, sin retirar ésta."
           }
         ]
+      },
+      {
+        "organismo": "Ayuntamiento de Riba-roja de Túria",
+        "enviadaEl": "2026-09-27",
+        "via": "la sede electrónica del Ayuntamiento",
+        "registro": "2026014914",
+        "entradaEl": "2026-09-28",
+        "pide": "La misma carta del 18 de septiembre, presentada por el Registro de Entrada del Ayuntamiento a indicación de su Área de Transparencia, sin retirar la del correo.",
+        "respuesta": null
       },
       {
         "organismo": "Comisión de Precios de la Generalitat",

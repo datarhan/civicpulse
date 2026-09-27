@@ -25,9 +25,10 @@
 # es una pista para una persona, como todo lo que toca un modelo en este repo.
 # Quien lo entrega es `check:surfaces` a través del digest de monitor:health.
 #
-# Instalación (DESDE Terminal.app — escribir el crontab está bloqueado por TCC
-# en shells no interactivos y CUELGA sin decir nada):
-#   bash scripts/cron-install-review-sweep.sh
+# Instalación: es un agente de launchd y no una línea de cron —llama a `claude`,
+# cuya credencial vive en el llavero; ver com.civicpulse.review-sweep.plist—, y
+# lo instala el mismo guion que a hallazgos y press-lab:
+#   bash scripts/launchd-install-llm-pipelines.sh
 #
 # A mano:
 #   bash scripts/review-sweep.sh

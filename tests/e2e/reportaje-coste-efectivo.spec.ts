@@ -104,9 +104,20 @@ test.describe('Reportaje · coste efectivo (/reportajes/coste-efectivo)', () => 
     // fila que no cambia cuando el estado pase de «en plazo» a «sin respuesta»,
     // y el recuento se deriva del snapshot: si mañana entra un cuarto escrito y
     // la página no lo pinta, esto se pone rojo.
+    // Cuenta las del 18-09, no todas: desde el 27-09 hay además la del
+    // Ayuntamiento presentada por su Registro de Entrada.
     expect(await page.getByText(/enviada el 18 de septiembre de 2026/).count()).toBe(
-      snap.solicitudes.items.length,
+      snap.solicitudes.items.filter((e: { enviadaEl: string }) => e.enviadaEl === '2026-09-18')
+        .length,
     )
+    // LA REPRESENTADA POR REGISTRO (27-09-2026, domingo). El recibo da como fecha
+    // de registro el lunes 28, y de ahí sale el mes: la cabeza lo dice. Se ancla
+    // la fila entera —el número sale también en la incidencia del correo—.
+    await expect(
+      page.getByText(
+        /enviada el 27 de septiembre de 2026 por la sede electrónica del Ayuntamiento, con registro 2026014914, que da como fecha de registro el 28 de septiembre de 2026/,
+      ),
+    ).toBeVisible()
     await expect(page.getByText(/Comisión de Precios de la Generalitat · enviada el/)).toBeVisible()
     // La salvedad del art. 20.1, que es la que no puede caerse: de un correo
     // consta el envío, no la recepción por el órgano competente.

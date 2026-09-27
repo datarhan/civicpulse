@@ -219,7 +219,7 @@ async function transcribeOpenAI(opusPath: string, workdir: string): Promise<stri
 function transcribeMlx(opusPath: string, model: string): string {
   const py = `${process.env.HOME}/.local/civicpulse-mlx/venv/bin/python`
   if (!existsSync(py)) {
-    throw new Error(`MLX venv missing at ${py}. Bootstrap per docs/CLAUDE.md`)
+    throw new Error(`MLX venv missing at ${py}. Bootstrap per docs/TRANSCRIPTION.md §1`)
   }
   // Inline Python: load model, transcribe, print JSON.
   const script = `

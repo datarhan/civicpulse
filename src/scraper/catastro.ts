@@ -19,7 +19,7 @@
  *
  * Free, no auth. Polite usage: <60 req/min in batch contexts.
  */
-import { createHash } from 'node:crypto'
+import { sha256Short } from './hash'
 
 const BASE = 'http://ovc.catastro.meh.es/OVCServWeb/OVCWcfCallejero/COVCCallejero.svc/json'
 const UA = 'CivicPulse/0.1 (+https://github.com/datarhan/civicpulse) civic-tech ingestion'
@@ -101,10 +101,6 @@ interface ApiDnprcResponse {
   }
 }
 
-function sha256(text: string): string {
-  return createHash('sha256').update(text).digest('hex').slice(0, 12)
-}
-
 function refCatFromRc(
   rc: { pc1?: string; pc2?: string; car?: string; cc1?: string; cc2?: string } | undefined,
 ): string {
@@ -140,7 +136,7 @@ function projectAddressParcel(p: ApiDirParcel): CatastroParcel | null {
   if (!refCat) return null
   const direccion = buildDireccion(p)
   return {
-    id: sha256(refCat),
+    id: sha256Short(refCat),
     refCatastral: refCat,
     direccion,
     cp: p.dt?.locs?.lous?.lourb?.dp ?? null,
@@ -156,7 +152,7 @@ function projectRefCatParcel(bico: ApiBienInmuebleDir | undefined): CatastroParc
   if (!refCat) return null
   const direccion = bico.bi.dt ? buildDireccion({ dt: bico.bi.dt } as ApiDirParcel) : ''
   return {
-    id: sha256(refCat),
+    id: sha256Short(refCat),
     refCatastral: refCat,
     direccion,
     cp: bico.bi.dt?.locs?.lous?.lourb?.dp ?? null,

@@ -6,8 +6,9 @@
 // two surfaces can never drift (same discipline as src/nav.js).
 //
 // Each slug must have a frozen snapshot at public/data/reportajes/<slug>.json;
-// a pieza only ever renders when its meta.estado === 'publicado' — the
-// honesty gate every consumer of this list must keep.
+// a pieza is only ever LISTED when its meta.estado === 'publicado' — the
+// honesty gate every consumer of this list must keep. Its own route still
+// renders a draft, under a «Borrador editorial» banner: unlisted is not private.
 export const REPORTAJE_SLUGS = [
   'conteo-visitantes',
   'coste-efectivo',
