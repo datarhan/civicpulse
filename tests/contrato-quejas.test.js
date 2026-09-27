@@ -458,3 +458,37 @@ describe('el plazo de conservación se lee de donde se cumple', () => {
     expect(lee('bot/src/commands/registrar.ts')).toMatch(/registerBorrarMisDatos\(/)
   })
 })
+
+/**
+ * La revisión antes de publicar, contada donde se publica el contrato. Desde la
+ * migración 2 una queja nace `pendiente` y no sale hasta que quien modera el
+ * canal la publica: /metodologia y /aviso-legal lo tienen que decir, y lo que
+ * dicen tiene que ser lo que hace el código.
+ */
+describe('la revisión antes de publicar', () => {
+  const MIGRACIONES = lee('bot/src/db/migraciones.ts')
+  const METODOLOGIA = plano('src/pages/Metodologia.jsx')
+  const AVISO = plano('src/pages/AvisoLegal.jsx')
+
+  it('una queja nace pendiente: publicar es una decisión', () => {
+    expect(MIGRACIONES).toMatch(/ADD COLUMN moderacion TEXT NOT NULL DEFAULT 'pendiente'/)
+    expect(METODOLOGIA).toContain('Una persona la revisa antes de publicarla.')
+    expect(METODOLOGIA).toContain('no reescribe su texto')
+    expect(AVISO).toContain('Revisión antes de publicar')
+  })
+
+  it('lo publicado antes de la revisión lo dice la página, y lo marca la migración', () => {
+    expect(MIGRACIONES).toMatch(/'heredada', 'migracion'/)
+    expect(METODOLOGIA).toMatch(/antes del 27 de septiembre de 2026 no pasaron por esta revisión/)
+  })
+
+  it('la dirección para impugnar es la del aviso legal', () => {
+    const m = lee('bot/src/services/contacto.ts').match(/CONTACTO = '([^']+)'/)
+    expect(m, 'no encuentro CONTACTO').not.toBeNull()
+    expect(AVISO).toContain(m[1])
+  })
+
+  it('la tarjeta que no llegó a nadie se reenvía: el bot arma la pasada', () => {
+    expect(sinComentariosTs(lee('bot/src/index.ts'))).toMatch(/startReenvioTarjetas\(/)
+  })
+})

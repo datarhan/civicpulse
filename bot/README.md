@@ -13,8 +13,8 @@ Citizen-facing:
 
 | Command | What it does |
 |---|---|
-| `/start`, `/help` | Onboarding + the 5-step pipeline explanation |
-| `/queja` | Guided flow: categoría (17 opts) → título → detalle → ubicación → foto. Confirms with classified concejalía, named concejal, legal plazo + base, and a `Q-XXXX` id |
+| `/start`, `/help` | Onboarding + the 6-step pipeline explanation (the review before publication is step 2) |
+| `/queja` | Guided flow: categoría (17 opts) → título → detalle → ubicación → foto. Confirms with classified concejalía, named concejal, legal plazo + base, and a `Q-XXXX` id. The queja is **not public** until an admin publishes it (below); its author gets a DM with each decision |
 | `/estado Q-XXXX` | Full state + apoyos + timeline + legal basis |
 | `/apoyar Q-XXXX` | Co-sign a queja (idempotent, 1 per user). At 10 apoyos it enters the next weekly batch and `[APOYADA]` broadcasts to the public channel |
 | `/mis` | The user's own quejas |
@@ -30,6 +30,7 @@ Admin-only (gated by `ADMIN_USER_IDS` env, comma-separated Telegram IDs):
 | `/batch_link` | URL of the auto-generated `current.md` / `current.html` solicitud |
 | `/batch_register <asiento> <CSV>` | After signing at `sede.ribarroja.es`, records the entry nº + CSV on every queja in the batch. Broadcasts `[REGISTRADA]` per queja |
 | `/escalar Q-XXXX` | Transitions a silencio-negativo queja to `escalada_sindic`, broadcasts `[ESCALADA]`, returns the Síndic de Greuges template URL |
+| Review cards (buttons) | Every new queja reaches each admin as a card with **Publicar** / **Descartar**; a published one shows **Retirar**. A decision is compare-and-set (`decidirModeracion`), edits every admin's copy, DMs the author and asks the site to republish. A card that reached no admin is resent hourly (`src/services/avisos-admin.ts`). The public channel announces a queja when it is published, not when it arrives |
 
 Outside a private chat the bot only answers the public commands (`COMANDOS_PUBLICOS`
 in `src/services/solo-en-privado.ts`, which only show what the site already publishes).

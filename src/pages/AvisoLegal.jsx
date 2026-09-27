@@ -395,7 +395,7 @@ export default function AvisoLegal() {
         <ul>
           <li>
             <strong>Texto de la queja</strong>, categoría y barrio aproximado — se publican en el
-            dashboard
+            dashboard cuando los revisa quien modera el canal
           </li>
           <li>
             <strong>Coordenadas exactas</strong> (si las envías) — <strong>nunca</strong> se
@@ -415,6 +415,17 @@ export default function AvisoLegal() {
             publica es una copia anonimizada, como se explica más abajo
           </li>
         </ul>
+        <p>
+          <strong>Revisión antes de publicar</strong>: el texto de cada queja nueva, su categoría y
+          su barrio llegan por Telegram a quien modera el canal —sin tu identidad—, que decide si se
+          publica tal cual o se descarta; una ya publicada también puede retirarse de la
+          publicación. Hasta que se publica no es pública en ninguna parte. El bot te avisa de cada
+          decisión, y puedes impugnarla escribiendo a{' '}
+          <a href="mailto:civicpulse_es@proton.me" style={{ color: 'var(--civic)' }}>
+            civicpulse_es@proton.me
+          </a>
+          .
+        </p>
         <p>
           <strong>Base jurídica</strong>: Art. 6.1.e del Reglamento (UE) 2016/679 (RGPD) —
           tratamiento necesario para el cumplimiento de una misión realizada en interés público

@@ -13,6 +13,7 @@ import { startConvocatoriasCron } from './services/convocatorias.ts'
 import { startEventosRepoCron } from './services/eventos-repo.ts'
 import { startFotosCron } from './services/fotos-cron.ts'
 import { startRetencionCron } from './services/retencion.ts'
+import { envioDesdeApi, startReenvioTarjetas } from './services/avisos-admin.ts'
 import { sirveFotoExportada } from './services/foto-exportada.ts'
 import { webhookTelegram } from './services/webhook-telegram.ts'
 import { parseAdminIds } from './util/admins.ts'
@@ -103,6 +104,11 @@ function makeBot() {
   // No se pausa con el bloqueo LOREG: no publica nada sobre cargos electos.
   // Lo que lleva un día retenido se avisa a los administradores, una vez.
   startFotosCron({ db, token, admins: () => parseAdminIds(), sendDm: dmAdministrador })
+
+  // Las tarjetas de revisión que no llegaron a ningún administrador, otra vez: al
+  // arrancar y cada hora. Una queja que nadie ha visto no se publica nunca sola,
+  // así que sin esto se quedaría esperando (services/avisos-admin.ts).
+  startReenvioTarjetas({ db, admins: () => parseAdminIds(), envio: envioDesdeApi(bot.api) })
 
   // Y el plazo de conservación, cumplido: al arrancar y cada día se destruyen las
   // quejas que lo pasaron, las copias de la base que pasaron el suyo y la copia de

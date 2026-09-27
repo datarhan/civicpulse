@@ -669,6 +669,18 @@ export default function Metodologia() {
             se puede interpretar entero— se retiene en vez de publicarse sin tratar.
           </li>
           <li>
+            <strong>Una persona la revisa antes de publicarla.</strong> Cada queja nueva llega a
+            quien modera el canal, que la publica tal cual o la descarta: no reescribe su texto.
+            Hasta entonces no es pública en ninguna parte —ni en la web, ni en el canal de Telegram,
+            ni en el bot para quien no la escribió—, y una ya publicada también puede retirarse de
+            la publicación. Quien la escribió recibe aviso de cada decisión y puede impugnarla en la
+            dirección de contacto del{' '}
+            <a href="/aviso-legal" style={{ color: 'var(--civic)' }}>
+              aviso legal
+            </a>
+            . Las quejas publicadas antes del 27 de septiembre de 2026 no pasaron por esta revisión.
+          </li>
+          <li>
             <strong>Necesita diez apoyos.</strong> Cualquier otra persona puede apoyarla con{' '}
             <code>/apoyar</code>; quien la escribió no cuenta, y cada cuenta de Telegram apoya una
             sola vez. Es un criterio editorial, no legal: el filtro que decide qué se lleva al

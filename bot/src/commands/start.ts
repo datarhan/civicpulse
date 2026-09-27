@@ -19,15 +19,17 @@ Soy el canal directo entre vecinos y Ayuntamiento. Con este bot puedes:
 *Cómo funciona*
 
 1. Presentas tu queja con /queja
-2. Tus vecinos la apoyan 👍 (a 10 apoyos entra al lote oficial)
-3. Cada semana, una persona que modera el canal presenta el lote en el Registro Electrónico del Ayuntamiento
-4. Desde ese registro, el Ayuntamiento tiene *3 meses* (1 mes si es transparencia) para responder
-5. Si vence sin respuesta, puede prepararse la plantilla para acudir al *Síndic de Greuges de la Comunitat Valenciana*
+2. Una persona que modera el canal la revisa y la publica tal cual, o la descarta
+3. Tus vecinos la apoyan 👍 (a 10 apoyos entra al lote oficial)
+4. Cada semana, una persona que modera el canal presenta el lote en el Registro Electrónico del Ayuntamiento
+5. Desde ese registro, el Ayuntamiento tiene *3 meses* (1 mes si es transparencia) para responder
+6. Si vence sin respuesta, puede prepararse la plantilla para acudir al *Síndic de Greuges de la Comunitat Valenciana*
 
 *Privacidad y datos*
 
 Al presentar una queja aceptas que el texto, categoría y barrio aproximado se ` +
-  `publiquen en nuestro [dashboard](https://civicpulse.es/quejas) ` +
+  `publiquen en nuestro [dashboard](https://civicpulse.es/quejas) cuando la revise una persona ` +
+  `del equipo, que la publica tal cual o la descarta ` +
   `(nunca tu nombre, usuario de Telegram ni coordenadas exactas). Base jurídica: ` +
   `Art. 6.1.e RGPD (misión en interés público). Conservación: ${CONSERVACION_QUEJAS_ANIOS} años. ` +
   `Puedes ejercer tu derecho al olvido en cualquier momento con /olvidar, o borrar todos tus ` +
