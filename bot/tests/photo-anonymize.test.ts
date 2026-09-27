@@ -6,6 +6,8 @@ import {
   extractGeminiText,
   detectSensitiveRegions,
   anonymizeImage,
+  normalizarImagen,
+  ImagenRechazada,
 } from '../src/services/photo-anonymize'
 
 /** A deterministic test image: white with a black square in the middle. */
@@ -145,6 +147,62 @@ describe('detectSensitiveRegions — la clave va en la cabecera', () => {
     expect(error).toBeInstanceOf(Error)
     expect((error as Error).message).toContain('generativelanguage.googleapis.com')
     expect((error as Error).message).not.toContain(CLAVE)
+  })
+})
+
+/**
+ * Un solo encuadre para DETECTAR y para TAPAR.
+ *
+ * Hasta el 27-09-2026 el modelo miraba los bytes crudos y el mosaico se hacía
+ * sobre la imagen ya girada según su EXIF (`.rotate()`): en una foto de móvil
+ * guardada en horizontal con orientación 6, las cajas llegaban en un encuadre y
+ * se pintaban en otro, y la cara quedaba destapada. Y el tipo se declaraba
+ * `image/jpeg` fuera cual fuera. Ahora la imagen se normaliza UNA vez y ese
+ * mismo JPEG va al modelo y al mosaico.
+ */
+describe('normalizarImagen', () => {
+  const liso = (width: number, height: number) =>
+    sharp({ create: { width, height, channels: 3, background: { r: 90, g: 120, b: 150 } } })
+
+  it('un PNG sale como JPEG, con sus dimensiones', async () => {
+    const png = await liso(160, 90).png().toBuffer()
+    const n = await normalizarImagen(png)
+    const meta = await sharp(n.data).metadata()
+    expect(meta.format).toBe('jpeg')
+    expect([meta.width, meta.height]).toEqual([160, 90])
+    expect([n.ancho, n.alto]).toEqual([160, 90])
+  })
+
+  it('una foto con orientación EXIF 6 sale ya girada, y sin EXIF', async () => {
+    // Guardada 200×100 y marcada «gírala 90°»: se ve 100×200.
+    const cruda = await liso(200, 100).jpeg().withMetadata({ orientation: 6 }).toBuffer()
+    expect((await sharp(cruda).metadata()).orientation).toBe(6) // el control
+    const n = await normalizarImagen(cruda)
+    const meta = await sharp(n.data).metadata()
+    expect([meta.width, meta.height]).toEqual([100, 200])
+    expect(meta.orientation ?? 1).toBe(1)
+    expect(meta.exif).toBeUndefined()
+  })
+
+  it('reduce al ancho máximo', async () => {
+    const grande = await liso(3000, 1500).jpeg().toBuffer()
+    const n = await normalizarImagen(grande)
+    expect(n.ancho).toBe(ANON_DEFAULTS.maxWidth)
+  })
+
+  it('lo que no es una imagen se rechaza con su motivo, no se procesa', async () => {
+    await expect(normalizarImagen(Buffer.from('esto no es una foto'))).rejects.toBeInstanceOf(
+      ImagenRechazada,
+    )
+  })
+
+  it('una imagen con demasiados píxeles se rechaza antes de decodificarla', async () => {
+    const png = await liso(100, 100).png().toBuffer()
+    await expect(normalizarImagen(png, { maxPixeles: 5_000 })).rejects.toBeInstanceOf(
+      ImagenRechazada,
+    )
+    // El control: con el límite de verdad, la misma imagen pasa.
+    await expect(normalizarImagen(png)).resolves.toMatchObject({ ancho: 100, alto: 100 })
   })
 })
 

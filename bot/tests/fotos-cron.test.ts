@@ -1,5 +1,11 @@
 import { describe, expect, it, vi } from 'vitest'
 import { openDb } from '../src/db/client'
+import {
+  createQueja,
+  fotosRetenidas,
+  registrarFotoRetenida,
+  type NewQuejaInput,
+} from '../src/db/queries'
 import { pasadaDeFotos, startFotosCron } from '../src/services/fotos-cron'
 import type { ProcessDeps, ProcessResult } from '../src/services/process-photos'
 
@@ -10,7 +16,14 @@ import type { ProcessDeps, ProcessResult } from '../src/services/process-photos'
  * agosto. Aquí se prueba lo que hace cada tic y cuándo se arma.
  */
 
-const NADA: ProcessResult = { published: [], held: [], skipped: 0, pruned: [] }
+const NADA: ProcessResult = {
+  published: [],
+  held: [],
+  rechazadas: [],
+  skipped: 0,
+  pruned: [],
+  paraAvisar: [],
+}
 const TOKEN = '123456:TOKEN-DEL-BOT-DE-PRUEBA'
 
 const procesarQueDevuelve = (r: ProcessResult = NADA) => vi.fn(async (_deps: ProcessDeps) => r)
@@ -27,8 +40,10 @@ describe('una pasada de fotos', () => {
     const hecho: ProcessResult = {
       published: ['Q-UNO00001'],
       held: ['Q-DOS00002', 'Q-TRES0003'],
+      rechazadas: ['Q-CINCO005'],
       skipped: 4,
       pruned: ['q-ida00004.jpg'],
+      paraAvisar: [],
     }
     const procesar = procesarQueDevuelve(hecho)
     const r = await pasadaDeFotos({
@@ -47,6 +62,7 @@ describe('una pasada de fotos', () => {
     const resumen = lineas.join('\n')
     expect(resumen).toMatch(/publicadas=1\b/)
     expect(resumen).toMatch(/retenidas=2\b/)
+    expect(resumen).toMatch(/rechazadas=1\b/)
     expect(resumen).toMatch(/podadas=1\b/)
   })
 
@@ -88,6 +104,92 @@ describe('una pasada de fotos', () => {
     await pasadaDeFotos({ db: openDb(':memory:'), token: TOKEN, photosDir: '/x', procesar, log })
     expect(lineas.length, 'no escribió nada que comprobar').toBeGreaterThanOrEqual(2)
     for (const l of lineas) expect(l).not.toContain(TOKEN)
+  })
+})
+
+/**
+ * Una foto que lleva un día retenida se avisa por Telegram a los administradores,
+ * UNA vez. Hasta el 27-09-2026 se reintentaba cada hora para siempre y no lo sabía
+ * nadie: la queja salía sin foto y quien la mandó no se enteraba.
+ */
+describe('el aviso de las fotos retenidas', () => {
+  const T0 = new Date('2026-09-27T10:00:00Z')
+  const ahora = new Date(T0.getTime() + 25 * 3600_000)
+
+  function conUnaRetenida() {
+    const db = openDb(':memory:')
+    const entrada: NewQuejaInput = {
+      telegram_user_id: 7,
+      telegram_username: null,
+      category: 'limpieza',
+      title: 'Contenedor <roto> & sucio',
+      detail: 'Una queja con una foto que el análisis no consigue leer desde ayer.',
+      lat: null,
+      lng: null,
+      neighborhood: null,
+      photo_file_id: 'file-x',
+      concejalia_area: null,
+      concejal_slug: null,
+    }
+    const q = createQueja(db, entrada)
+    registrarFotoRetenida(db, q.id, 'gemini vision HTTP 503', T0)
+    const [fila] = fotosRetenidas(db)
+    return { db, q, fila }
+  }
+
+  it('manda un DM a cada administrador y la marca avisada', async () => {
+    const { db, q, fila } = conUnaRetenida()
+    const enviados: Array<{ a: number; texto: string }> = []
+    await pasadaDeFotos({
+      db,
+      token: TOKEN,
+      photosDir: '/x',
+      procesar: procesarQueDevuelve({ ...NADA, held: [q.id], paraAvisar: [fila] }),
+      admins: () => [1, 2],
+      sendDm: async (a, texto) => void enviados.push({ a, texto }),
+      ahora: () => ahora,
+      log: () => {},
+    })
+    expect(enviados.map((e) => e.a)).toEqual([1, 2])
+    expect(enviados[0].texto).toContain(q.id)
+    expect(enviados[0].texto).toMatch(/503/)
+    // El título lo escribió un vecino: va escapado, o un «<» o un «&» tumban el mensaje.
+    expect(enviados[0].texto).toContain('Contenedor &lt;roto&gt; &amp; sucio')
+    expect(fotosRetenidas(db)[0].avisada_at).toBe(ahora.toISOString())
+  })
+
+  it('si no le llega a nadie, no la marca: se volverá a intentar', async () => {
+    const { db, q, fila } = conUnaRetenida()
+    await pasadaDeFotos({
+      db,
+      token: TOKEN,
+      photosDir: '/x',
+      procesar: procesarQueDevuelve({ ...NADA, held: [q.id], paraAvisar: [fila] }),
+      admins: () => [1],
+      sendDm: async () => {
+        throw new Error('400: can’t parse entities')
+      },
+      ahora: () => ahora,
+      log: () => {},
+    })
+    expect(fotosRetenidas(db)[0].avisada_at).toBeNull()
+  })
+
+  it('sin administradores lo dice en el log en vez de callar', async () => {
+    const { db, q, fila } = conUnaRetenida()
+    const { lineas, log } = registro()
+    await pasadaDeFotos({
+      db,
+      token: TOKEN,
+      photosDir: '/x',
+      procesar: procesarQueDevuelve({ ...NADA, held: [q.id], paraAvisar: [fila] }),
+      admins: () => [],
+      sendDm: async () => {},
+      ahora: () => ahora,
+      log,
+    })
+    expect(lineas.join('\n')).toMatch(/ADMIN_USER_IDS/)
+    expect(fotosRetenidas(db)[0].avisada_at).toBeNull()
   })
 })
 

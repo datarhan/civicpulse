@@ -106,9 +106,42 @@ describe('parseVisionBoxes', () => {
     expect(parseVisionBoxes('[]')).toEqual([])
   })
 
-  it('drops individual malformed / out-of-range entries but keeps valid ones', () => {
+  // LA FUGA que esta prueba fijaba al revés hasta el 27-09-2026: cada elemento
+  // que no se entendía se TIRABA y el resto seguía. Si el modelo contesta en su
+  // formato nativo (`box_2d`, de 0 a 1000) o en píxeles, TODOS se tiran, sale
+  // `[]` —que es «no hay nada que tapar»— y la foto se publica sin mosaico.
+  // Un elemento que no se sabe leer es una cara que no se sabe dónde está.
+  it('RETIENE la foto si un solo elemento no se puede interpretar', () => {
     const raw = '[{"x":0.1,"y":0.1,"w":0.1,"h":0.1},{"x":2,"y":0,"w":0.1,"h":0.1},{"foo":1}]'
-    expect(parseVisionBoxes(raw)).toEqual([{ x: 0.1, y: 0.1, w: 0.1, h: 0.1, label: undefined }])
+    expect(() => parseVisionBoxes(raw)).toThrow()
+    expect(() => parseVisionBoxes('[{"x":0.1,"y":0.1,"w":0.1,"h":0.1},{"foo":1}]')).toThrow()
+    expect(() => parseVisionBoxes('[{"x":0.1,"y":0.1,"w":0.1,"h":0.1},7]')).toThrow()
+  })
+
+  it('una caja en píxeles (fuera de 0..1) no se toma por una fracción: retiene', () => {
+    expect(() => parseVisionBoxes('[{"x":120,"y":80,"w":40,"h":40}]')).toThrow()
+  })
+
+  it('entiende el formato nativo de Gemini: box_2d = [ymin, xmin, ymax, xmax] en 0..1000', () => {
+    expect(parseVisionBoxes('[{"box_2d":[100,200,300,400],"label":"face"}]')).toEqual([
+      { x: 0.2, y: 0.1, w: 0.2, h: 0.2, label: 'face' },
+    ])
+  })
+
+  it('un box_2d invertido o fuera de 0..1000 retiene', () => {
+    expect(() => parseVisionBoxes('[{"box_2d":[300,400,100,200]}]')).toThrow()
+    expect(() => parseVisionBoxes('[{"box_2d":[0,0,1200,500]}]')).toThrow()
+    expect(() => parseVisionBoxes('[{"box_2d":[0,0,500]}]')).toThrow()
+  })
+
+  // Una caja que se sale un poco por el borde sigue siendo una cara: se recorta,
+  // no se tira.
+  it('una caja que se sale por el borde se recorta, no se descarta', () => {
+    const [b] = parseVisionBoxes('[{"x":0.9,"y":0.8,"w":0.3,"h":0.5}]')
+    expect(b.x).toBeCloseTo(0.9)
+    expect(b.y).toBeCloseTo(0.8)
+    expect(b.w).toBeCloseTo(0.1)
+    expect(b.h).toBeCloseTo(0.2)
   })
 
   it('THROWS on an unparseable response so the caller fails closed (holds the photo)', () => {
