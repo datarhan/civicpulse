@@ -19,6 +19,7 @@ import { resolve } from 'node:path'
 import type { Db } from '../db/client.ts'
 import { getQuejaViva, marcarFotoRetenidaAvisada, type FotoRetenida } from '../db/queries.ts'
 import { escaparHtml } from '../util/html.ts'
+import { cortar, trocear } from '../util/telegram.ts'
 import { logger } from '../util/log.ts'
 import { chooseVisionBackend } from './photo-anonymize.ts'
 import { processPhotos, type ProcessDeps, type ProcessResult } from './process-photos.ts'
@@ -97,42 +98,48 @@ async function avisarRetenidas(
     )
     return
   }
-  const texto = textoRetenidas(o.db, filas)
-  let llego = false
-  for (const a of admins) {
-    try {
-      await o.sendDm(a, texto)
-      llego = true
-    } catch (e) {
-      log(`[fotos] no se pudo avisar a ${a}: ${e instanceof Error ? e.message : String(e)}`)
-    }
-  }
-  if (!llego) return
+  // En trozos que caben en Telegram: el aviso existe para la caída larga, que es
+  // cuando más filas lleva, y un mensaje de más de 4096 caracteres se rechaza
+  // entero y se reintentaba cada hora sin llegar nunca. Cada trozo marca sólo
+  // sus filas, y sólo si le llegó a alguien.
   const ahora = (o.ahora ?? (() => new Date()))()
-  for (const f of filas) marcarFotoRetenidaAvisada(o.db, f.queja_id, ahora)
+  for (const trozo of trocear(CABECERA_RETENIDAS, bloquesRetenidas(o.db, filas))) {
+    let llego = false
+    for (const a of admins) {
+      try {
+        await o.sendDm(a, trozo.texto)
+        llego = true
+      } catch (e) {
+        log(`[fotos] no se pudo avisar a ${a}: ${e instanceof Error ? e.message : String(e)}`)
+      }
+    }
+    if (llego) for (const id of trozo.ids) marcarFotoRetenidaAvisada(o.db, id, ahora)
+  }
 }
 
-/** El aviso, en HTML de Telegram: lo que escribió un vecino y el motivo van escapados. */
-function textoRetenidas(db: Db, filas: FotoRetenida[]): string {
-  const MAX = 20
-  const lineas = filas.slice(0, MAX).map((f) => {
+const CABECERA_RETENIDAS = [
+  '📷 <b>Fotos retenidas desde hace más de un día</b>',
+  'La pasada horaria no ha podido anonimizarlas, así que su queja se publica sin foto. ' +
+    'Se sigue intentando cada hora; este aviso no se repite.',
+].join('\n')
+
+/**
+ * Un bloque por foto, en HTML de Telegram. Lo que escribió un vecino y el motivo
+ * se cortan ANTES de escapar —sin partir un emoji— y luego se escapan.
+ */
+function bloquesRetenidas(db: Db, filas: FotoRetenida[]): Array<{ texto: string; id: string }> {
+  return filas.map((f) => {
     const titulo = getQuejaViva(db, f.queja_id)?.title
     const desde = f.desde.replace('T', ' ').slice(0, 16)
-    return (
-      `• <code>${escaparHtml(f.queja_id)}</code>` +
-      (titulo ? ` · «${escaparHtml(titulo.slice(0, 120))}»` : '') +
-      `\n  retenida desde ${desde} UTC · ${f.intentos} intento(s)` +
-      `\n  motivo: ${escaparHtml(f.motivo.slice(0, 300))}`
-    )
+    return {
+      id: f.queja_id,
+      texto:
+        `• <code>${escaparHtml(f.queja_id)}</code>` +
+        (titulo ? ` · «${escaparHtml(cortar(titulo, 120))}»` : '') +
+        `\n  retenida desde ${desde} UTC · ${f.intentos} intento(s)` +
+        `\n  motivo: ${escaparHtml(cortar(f.motivo, 300))}`,
+    }
   })
-  if (filas.length > MAX) lineas.push(`… y ${filas.length - MAX} más.`)
-  return [
-    '📷 <b>Fotos retenidas desde hace más de un día</b>',
-    'La pasada horaria no ha podido anonimizarlas, así que su queja se publica sin foto. ' +
-      'Se sigue intentando cada hora; este aviso no se repite.',
-    '',
-    ...lineas,
-  ].join('\n')
 }
 
 export interface OpcionesCronFotos extends Omit<OpcionesPasada, 'photosDir'> {

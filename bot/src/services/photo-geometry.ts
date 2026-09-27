@@ -94,24 +94,32 @@ export function expandRect(
  *     dropped, the result was `[]` — "nothing to hide" — and the photo was
  *     published with no mosaic at all. An element we cannot read is a face we
  *     cannot locate.
- *   - Anything with no JSON array at all (a refusal, prose-only, garbled
- *     output) THROWS too.
+ *   - Anything that is not the bare array — a refusal, prose, garbled output —
+ *     THROWS too. Only a ```json fence around it is tolerated. Prose used to be
+ *     tolerated, and with it a refusal ending in `[]` («I can't analyze people
+ *     in this image. []») read as "nothing to hide". The call now asks for JSON
+ *     with a schema (photo-anonymize.ts), so this is the second layer.
  *
- * Two shapes are read: `{x,y,w,h}` as 0..1 fractions (what the prompt asks for)
- * and Gemini's native `{box_2d: [ymin, xmin, ymax, xmax]}` on a 0..1000 scale.
- * A box that runs past the right or bottom edge is trimmed, not dropped: it is
- * still a face.
+ * Two shapes are read: `{x,y,w,h}` as 0..1 fractions (what the prompt and the
+ * schema ask for) and Gemini's native `{box_2d: [ymin, xmin, ymax, xmax]}` on a
+ * 0..1000 scale. A `box_2d` whose values are all ≤ 1 is on the fractional scale,
+ * and read as thousandths it would shrink a face to one pixel in the corner:
+ * held. A box that runs past the right or bottom edge is trimmed, not dropped:
+ * it is still a face.
  */
 export function parseVisionBoxes(raw: string): NormBox[] {
   if (typeof raw !== 'string') throw new Error('vision response is not a string')
-  const start = raw.indexOf('[')
-  const end = raw.lastIndexOf(']')
-  if (start === -1 || end === -1 || end < start) {
-    throw new Error('no JSON array found in vision response')
+  const limpio = raw
+    .trim()
+    .replace(/^```(?:json)?\s*/i, '')
+    .replace(/\s*```$/, '')
+    .trim()
+  if (!limpio.startsWith('[') || !limpio.endsWith(']')) {
+    throw new Error('vision response is not a bare JSON array — holding the photo')
   }
   let arr: unknown
   try {
-    arr = JSON.parse(raw.slice(start, end + 1))
+    arr = JSON.parse(limpio)
   } catch {
     throw new Error('vision response JSON array did not parse')
   }
@@ -140,6 +148,9 @@ function leerCaja(item: unknown): NormBox | null {
     const [ymin, xmin, ymax, xmax] = b as number[]
     if ([ymin, xmin, ymax, xmax].some((n) => n < 0 || n > 1000)) return null
     if (ymax <= ymin || xmax <= xmin) return null
+    // Todo ≤ 1: son fracciones, no milésimas. Leída en 0..1000, una cara que ocupa
+    // media foto se queda en un píxel en la esquina.
+    if (Math.max(ymin, xmin, ymax, xmax) <= 1) return null
     return recortar({
       x: xmin / 1000,
       y: ymin / 1000,
@@ -161,4 +172,31 @@ function leerCaja(item: unknown): NormBox | null {
 /** Trim a box that runs past the right or bottom edge. */
 function recortar(b: NormBox): NormBox {
   return { ...b, w: Math.min(b.w, 1 - b.x), h: Math.min(b.h, 1 - b.y) }
+}
+
+/**
+ * The pixel rect that actually gets mosaicked for one detection: the box with
+ * its margin, grown to at least `minPx` on each side (one mosaic block) around
+ * its centre and kept inside the image. A tiny detection — a distant face, or a
+ * box read on the wrong scale — used to get a one- or two-pixel "mosaic" that
+ * hid nothing. Null when the box falls on no pixel of the image at all; the
+ * caller holds the photo rather than skip the region.
+ */
+export function rectParaTapar(
+  b: NormBox,
+  imgW: number,
+  imgH: number,
+  marginFrac: number,
+  minPx: number,
+): PixelRect | null {
+  const base = normToPixelRect(b, imgW, imgH)
+  if (!base) return null
+  const r = expandRect(base, marginFrac, imgW, imgH) ?? base
+  const width = Math.min(Math.max(r.width, minPx), imgW)
+  const height = Math.min(Math.max(r.height, minPx), imgH)
+  const cx = r.left + r.width / 2
+  const cy = r.top + r.height / 2
+  const left = Math.min(Math.max(0, Math.round(cx - width / 2)), imgW - width)
+  const top = Math.min(Math.max(0, Math.round(cy - height / 2)), imgH - height)
+  return { left, top, width, height }
 }

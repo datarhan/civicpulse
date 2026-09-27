@@ -41,7 +41,14 @@ describe('rectParaTapar', () => {
   })
 
   it('una caja que no cae sobre ningún píxel no da rectángulo', () => {
-    expect(rectParaTapar({ x: 0.9999, y: 0.5, w: 0.00001, h: 0.2 }, 120, 120, 0.12, 16)).toBeNull()
+    expect(rectParaTapar({ x: 1.5, y: 0.5, w: 0.1, h: 0.2 }, 120, 120, 0.12, 16)).toBeNull()
+  })
+
+  // Una detección pegada al borde SÍ cae dentro: se tapa un bloque entero sin salirse.
+  it('una detección de una fracción de píxel pegada al borde se tapa con un bloque', () => {
+    const r = rectParaTapar({ x: 0.9999, y: 0.5, w: 0.00001, h: 0.2 }, 120, 120, 0.12, 16)!
+    expect(r.width).toBe(16)
+    expect(r.left + r.width).toBe(120)
   })
 })
 

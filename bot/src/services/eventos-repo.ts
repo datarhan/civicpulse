@@ -28,6 +28,7 @@
  */
 import { escaparHtml } from '../util/html.ts'
 import { logger } from '../util/log.ts'
+import { trocear } from '../util/telegram.ts'
 
 export type ClaseEvento =
   'pr-abierta' | 'pr-fusionada' | 'derecho-replica' | 'workflow-fallido' | 'workflow-saltado'
@@ -92,11 +93,8 @@ export interface DatosGitHub {
  */
 export const ETIQUETAS_REPLICA = ['derecho-replica', 'derecho-réplica']
 
-/**
- * Lo más largo que se manda en un mensaje. Telegram corta en 4096; se deja
- * margen porque su límite cuenta el texto ya interpretado y aquí se mide el HTML.
- */
-export const MAX_MENSAJE = 4000
+/** Lo más largo que se manda en un mensaje (util/telegram.ts, compartido con el aviso de fotos). */
+export { MAX_MENSAJE } from '../util/telegram.ts'
 
 export function eventosDe(d: DatosGitHub): Evento[] {
   const out: Evento[] = []
@@ -196,33 +194,6 @@ export function formatear(e: Evento): AvisoRepo {
 
 const CABECERA = '📌 <b>Repositorio</b>'
 
-/**
- * Parte los avisos en mensajes que caben en Telegram, sin partir ninguno por la
- * mitad. Cada trozo lleva los eventos que contiene, para darlos por vistos sólo
- * si ese trozo llegó.
- */
-function trocear(avisos: AvisoRepo[]): Array<{ texto: string; ids: string[] }> {
-  const trozos: Array<{ texto: string; ids: string[] }> = []
-  let actual: { texto: string; ids: string[] } | null = null
-  for (const a of avisos) {
-    // Un aviso solo no llega ni a la décima parte (un título de GitHub tiene como
-    // mucho 256 caracteres); si alguna vez pasara, se corta sin dejar una entidad
-    // HTML a medias, que tumbaría el mensaje igual que el Markdown de antes.
-    const texto =
-      a.texto.length > MAX_MENSAJE - 100
-        ? a.texto.slice(0, MAX_MENSAJE - 100).replace(/&[#a-z0-9]*$/i, '')
-        : a.texto
-    if (actual && actual.texto.length + 2 + texto.length <= MAX_MENSAJE) {
-      actual.texto += `\n\n${texto}`
-      actual.ids.push(a.evento.id)
-    } else {
-      actual = { texto: `${CABECERA}\n\n${texto}`, ids: [a.evento.id] }
-      trozos.push(actual)
-    }
-  }
-  return trozos
-}
-
 export interface CorridaEventos {
   /** Distinto de «no hay novedades»: es el defecto `r?.findings ?? []`. */
   consultado: boolean
@@ -281,7 +252,11 @@ export async function runEventosOnce(o: OpcionesEventos): Promise<CorridaEventos
   // todo lo pendiente, saliera o no: un mensaje rechazado por Telegram se perdía
   // para siempre, derecho de réplica incluido.
   const alcanzados = new Set<number>()
-  for (const trozo of trocear(avisos)) {
+  // Partido en mensajes que caben, sin partir ningún aviso (util/telegram.ts);
+  // cada trozo lleva los eventos que contiene, para darlos por vistos sólo si
+  // ese trozo llegó.
+  const bloques = avisos.map((a) => ({ texto: a.texto, id: a.evento.id }))
+  for (const trozo of trocear(CABECERA, bloques)) {
     let llego = false
     for (const a of o.admins) {
       try {

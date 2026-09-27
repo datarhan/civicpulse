@@ -27,6 +27,9 @@ const NADA: ProcessResult = {
 }
 const TOKEN = '123456:TOKEN-DEL-BOT-DE-PRUEBA'
 
+/** Media pareja de un carácter de dos unidades (un emoji partido): alto sin bajo, o bajo sin alto. */
+const SUSTITUTO_SUELTO = /[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?<![\uD800-\uDBFF])[\uDC00-\uDFFF]/
+
 const procesarQueDevuelve = (r: ProcessResult = NADA) => vi.fn(async (_deps: ProcessDeps) => r)
 
 function registro() {
@@ -213,10 +216,13 @@ describe('el aviso de las fotos retenidas', () => {
       log: () => {},
     })
     expect(mensajes.length, 'no hizo falta partir: la prueba no mide nada').toBeGreaterThan(1)
+    // El control del detector: un emoji cortado por la mitad sí lo ve.
+    expect('😡'.slice(0, 1)).toMatch(SUSTITUTO_SUELTO)
+    expect('😡').not.toMatch(SUSTITUTO_SUELTO)
     for (const m of mensajes) {
       expect(m.length).toBeLessThanOrEqual(MAX_MENSAJE)
       // Ni un emoji partido por la mitad: un sustituto suelto puede tumbar el mensaje.
-      expect(m.isWellFormed()).toBe(true)
+      expect(m).not.toMatch(SUSTITUTO_SUELTO)
     }
     expect(fotosRetenidas(db).every((f) => f.avisada_at === ahora.toISOString())).toBe(true)
   })

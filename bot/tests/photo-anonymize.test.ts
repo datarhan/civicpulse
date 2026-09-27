@@ -277,7 +277,7 @@ describe('anonymizeImage', () => {
   it('una caja que no cae sobre ningún píxel RETIENE la foto', async () => {
     const img = await twoToneImage(120)
     await expect(
-      anonymizeImage(img, [{ x: 0.9999, y: 0.5, w: 0.00001, h: 0.2, label: 'face' }]),
-    ).rejects.toThrow()
+      anonymizeImage(img, [{ x: 1.5, y: 0.5, w: 0.1, h: 0.2, label: 'face' }]),
+    ).rejects.toThrow(/se retiene/)
   })
 })

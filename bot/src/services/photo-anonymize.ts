@@ -19,7 +19,7 @@
  */
 
 import sharp, { type OverlayOptions } from 'sharp'
-import { expandRect, normToPixelRect, parseVisionBoxes, type NormBox } from './photo-geometry.ts'
+import { parseVisionBoxes, rectParaTapar, type NormBox } from './photo-geometry.ts'
 
 export const ANON_DEFAULTS = {
   /** Longest edge after downscale. Normalizes huge phone photos. */
@@ -136,6 +136,22 @@ export function buildVisionPrompt(): string {
   ].join(' ')
 }
 
+/** Lo que se le pide al modelo: una lista de cajas en fracciones de la imagen, las cuatro medidas obligatorias. */
+export const ESQUEMA_CAJAS = {
+  type: 'ARRAY',
+  items: {
+    type: 'OBJECT',
+    properties: {
+      x: { type: 'NUMBER' },
+      y: { type: 'NUMBER' },
+      w: { type: 'NUMBER' },
+      h: { type: 'NUMBER' },
+      label: { type: 'STRING' },
+    },
+    required: ['x', 'y', 'w', 'h'],
+  },
+} as const
+
 export interface DetectOptions {
   env?: Record<string, string | undefined>
   fetchImpl?: typeof fetch
@@ -185,7 +201,14 @@ export async function detectSensitiveRegions(
       contents: [
         { parts: [{ text: prompt }, { inline_data: { mime_type: 'image/jpeg', data: b64 } }] },
       ],
-      generationConfig: { temperature: 0 },
+      generationConfig: {
+        temperature: 0,
+        // La respuesta, en JSON y con esquema: el modelo no puede contestar en
+        // `box_2d`, en píxeles ni con prosa alrededor. `parseVisionBoxes` sigue
+        // siendo estricto por detrás, como segunda capa.
+        responseMimeType: 'application/json',
+        responseSchema: ESQUEMA_CAJAS,
+      },
     }),
   })
   if (!res.ok) throw new Error(`gemini vision HTTP ${res.status}: ${await safeText(res)}`)
@@ -218,9 +241,13 @@ export async function anonymizeImage(
 
   const composites: OverlayOptions[] = []
   for (const box of boxes) {
-    const base = normToPixelRect(box, W, H)
-    if (!base) continue
-    const rect = expandRect(base, cfg.marginFrac, W, H) ?? base
+    // Al menos un bloque entero alrededor de cada detección (photo-geometry.ts).
+    // Una caja que no cae sobre la imagen no se salta: hasta el 2026-09-27 se
+    // hacía `continue` y la foto salía como si esa región estuviera tapada.
+    const rect = rectParaTapar(box, W, H, cfg.marginFrac, cfg.blockPx)
+    if (!rect) {
+      throw new Error('una región detectada no cae sobre la imagen: se retiene la foto')
+    }
     const bw = Math.max(1, Math.round(rect.width / cfg.blockPx))
     const bh = Math.max(1, Math.round(rect.height / cfg.blockPx))
     // Downsample the region to a few blocks then scale back up nearest-neighbour
