@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-09-26T09:41:47.381Z",
+  "generatedAt": "2026-09-27T10:23:53.107Z",
   "source": {
-    "tenders": "2026-09-26T09:34:56.130Z",
-    "geo": "2026-09-26T09:36:18.155Z"
+    "tenders": "2026-09-27T10:15:27.284Z",
+    "geo": "2026-09-27T10:16:33.935Z"
   },
   "universe": {
     "totalContracts": 706,
-    "totalAmount": 124039832.53999993,
+    "totalAmount": 124039832.53999995,
     "locatedContracts": 47,
-    "locatedAmount": 2225591.150000001,
+    "locatedAmount": 2225591.1500000004,
     "situatedContracts": 127,
-    "situatedAmount": 6085027.840000001,
+    "situatedAmount": 6085027.840000002,
     "danaContracts": 10,
     "danaAmount": 276297.42000000004,
     "danaAwardedContracts": 81,
@@ -370,8 +370,8 @@
       "danaAmount": 0
     },
     {
-      "slug": "carrer-de-les-eres-altes",
-      "name": "Carrer de les Eres Altes",
+      "slug": "carrer-eres-altes",
+      "name": "Carrer Eres Altes",
       "kind": "street",
       "point": [
         39.5465682,
@@ -614,8 +614,8 @@
       "name": "Carrer de Toledo",
       "kind": "street",
       "point": [
-        39.5408141,
-        -0.5716581
+        39.5409819,
+        -0.5722426
       ],
       "contractCount": 1,
       "amount": 25550.45,
@@ -698,8 +698,8 @@
       "name": "Carrer del Mas de Montes",
       "kind": "street",
       "point": [
-        39.4805062,
-        -0.5875882
+        39.4832932,
+        -0.5874328
       ],
       "contractCount": 1,
       "amount": 20661.16,
@@ -722,8 +722,8 @@
       "name": "Carretera de Vilamarxant",
       "kind": "street",
       "point": [
-        39.5484923,
-        -0.5816335
+        39.5492186,
+        -0.5827079
       ],
       "contractCount": 2,
       "amount": 19537,
@@ -850,8 +850,8 @@
       "danaAmount": 0
     },
     {
-      "slug": "cami-de-les-animes",
-      "name": "Camí de les Ànimes",
+      "slug": "carrer-de-les-animes",
+      "name": "Carrer de les Ànimes",
       "kind": "street",
       "point": [
         39.5487019,
@@ -965,9 +965,9 @@
       ],
       "place": {
         "kind": "street",
-        "name": "Camí de les Ànimes",
-        "matchedText": "Camí de les Ànimes",
-        "sourceId": "cami-de-les-animes"
+        "name": "Carrer de les Ànimes",
+        "matchedText": "Carrer de les Ànimes",
+        "sourceId": "carrer-de-les-animes"
       }
     },
     {
@@ -1097,27 +1097,6 @@
       }
     },
     {
-      "id": "85485",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 92820.91,
-      "amountKind": "final",
-      "date": "2018-03-14",
-      "contractType": "services",
-      "categoryTitle": "environment",
-      "point": [
-        39.5518584,
-        -0.5277984
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Carrer de la Piscina",
-        "matchedText": "Carrer de la Piscina",
-        "sourceId": "carrer-de-la-piscina"
-      }
-    },
-    {
       "id": "2520342",
       "zones": [],
       "matchedAlias": {},
@@ -1227,6 +1206,27 @@
       }
     },
     {
+      "id": "85485",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 92820.91,
+      "amountKind": "final",
+      "date": "2018-03-14",
+      "contractType": "services",
+      "categoryTitle": "environment",
+      "point": [
+        39.5518584,
+        -0.5277984
+      ],
+      "place": {
+        "kind": "street",
+        "name": "Carrer de la Piscina",
+        "matchedText": "Carrer de la Piscina",
+        "sourceId": "carrer-de-la-piscina"
+      }
+    },
+    {
       "id": "1889876",
       "zones": [],
       "matchedAlias": {},
@@ -1237,8 +1237,8 @@
       "contractType": "supplies",
       "categoryTitle": "industry",
       "point": [
-        39.5484923,
-        -0.5816335
+        39.5492186,
+        -0.5827079
       ],
       "place": {
         "kind": "street",
@@ -1294,6 +1294,23 @@
       }
     },
     {
+      "id": "5106922",
+      "zones": [
+        "urbanitzacio-valencia-la-vella"
+      ],
+      "matchedAlias": {
+        "urbanitzacio-valencia-la-vella": "valencia la vella"
+      },
+      "dana": false,
+      "amount": 89980.26,
+      "amountKind": "final",
+      "date": "2026-05-27",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": null,
+      "place": null
+    },
+    {
       "id": "9554",
       "zones": [],
       "matchedAlias": {},
@@ -1312,6 +1329,27 @@
         "name": "Carrer de la Mallà",
         "matchedText": "Carrer de la Mallà",
         "sourceId": "carrer-de-la-malla"
+      }
+    },
+    {
+      "id": "13417",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 11894.21,
+      "amountKind": "final",
+      "date": "2019-06-05",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.52513,
+        -0.5188
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "Urbanización Lliri Groc",
+        "matchedText": "Urbanización Lliri Groc",
+        "sourceId": "urb-lliri-groc"
       }
     },
     {
@@ -1460,9 +1498,9 @@
       ],
       "place": {
         "kind": "street",
-        "name": "Carrer de les Eres Altes",
-        "matchedText": "Carrer de les Eres Altes",
-        "sourceId": "carrer-de-les-eres-altes"
+        "name": "Carrer Eres Altes",
+        "matchedText": "Carrer Eres Altes",
+        "sourceId": "carrer-eres-altes"
       }
     },
     {
@@ -1516,6 +1554,27 @@
       }
     },
     {
+      "id": "745132",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 14400,
+      "amountKind": "final",
+      "date": "2019-07-25",
+      "contractType": "services",
+      "categoryTitle": "other",
+      "point": [
+        39.5473561,
+        -0.5639968
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Col·legi d'Educació Infantil i Primària Eres Altes",
+        "matchedText": "Col·legi d'Educació Infantil i Primària Eres Altes",
+        "sourceId": "way-1178031442"
+      }
+    },
+    {
       "id": "1647133",
       "zones": [],
       "matchedAlias": {},
@@ -1547,8 +1606,8 @@
       "contractType": "construction",
       "categoryTitle": "other",
       "point": [
-        39.5484923,
-        -0.5816335
+        39.5492186,
+        -0.5827079
       ],
       "place": {
         "kind": "street",
@@ -1713,48 +1772,6 @@
       }
     },
     {
-      "id": "745132",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 14400,
-      "amountKind": "final",
-      "date": "2019-07-25",
-      "contractType": "services",
-      "categoryTitle": "other",
-      "point": [
-        39.5473561,
-        -0.5639968
-      ],
-      "place": {
-        "kind": "poi",
-        "name": "Col·legi d'Educació Infantil i Primària Eres Altes",
-        "matchedText": "Col·legi d'Educació Infantil i Primària Eres Altes",
-        "sourceId": "way-1178031442"
-      }
-    },
-    {
-      "id": "13417",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 11894.21,
-      "amountKind": "final",
-      "date": "2019-06-05",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.52513,
-        -0.5188
-      ],
-      "place": {
-        "kind": "urbanizacion",
-        "name": "Urbanización Lliri Groc",
-        "matchedText": "Urbanización Lliri Groc",
-        "sourceId": "urb-lliri-groc"
-      }
-    },
-    {
       "id": "7482558",
       "zones": [
         "urbanitzacio-els-pous"
@@ -1823,27 +1840,6 @@
         "name": "Urbanització València la Vella",
         "matchedText": "València la Vella (zona arqueológica)",
         "sourceId": "urbanitzacio-valencia-la-vella"
-      }
-    },
-    {
-      "id": "5456102",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 38387.18,
-      "amountKind": "final",
-      "date": "2023-12-29",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.54798,
-        -0.56508
-      ],
-      "place": {
-        "kind": "poi",
-        "name": "Castillo de Riba-roja de Túria",
-        "matchedText": "Castillo de Riba-roja de Túria",
-        "sourceId": "castell-de-riba-roja"
       }
     },
     {
@@ -1932,6 +1928,27 @@
         "name": "Barranc dels Moros",
         "matchedText": "Barranc dels Moros",
         "sourceId": "barranc-dels-moros"
+      }
+    },
+    {
+      "id": "5456102",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 38387.18,
+      "amountKind": "final",
+      "date": "2023-12-29",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.54798,
+        -0.56508
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Castillo de Riba-roja de Túria",
+        "matchedText": "Castillo de Riba-roja de Túria",
+        "sourceId": "castell-de-riba-roja"
       }
     },
     {
@@ -2164,8 +2181,8 @@
       "contractType": "construction",
       "categoryTitle": "construction",
       "point": [
-        39.4805062,
-        -0.5875882
+        39.4832932,
+        -0.5874328
       ],
       "place": {
         "kind": "street",
@@ -2313,27 +2330,6 @@
       }
     },
     {
-      "id": "543949",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 37850,
-      "amountKind": "final",
-      "date": "2019-07-13",
-      "contractType": "construction",
-      "categoryTitle": "other",
-      "point": [
-        39.5433427,
-        -0.5731124
-      ],
-      "place": {
-        "kind": "poi",
-        "name": "Col·legi d'Educació Infantil i Primària Cervantes",
-        "matchedText": "Col·legi d'Educació Infantil i Primària Cervantes",
-        "sourceId": "way-1097452806"
-      }
-    },
-    {
       "id": "96520",
       "zones": [
         "urbanitzacio-valencia-la-vella",
@@ -2400,6 +2396,27 @@
         "name": "Plaça de la Torre",
         "matchedText": "Plaça de la Torre",
         "sourceId": "placa-de-la-torre"
+      }
+    },
+    {
+      "id": "543949",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 37850,
+      "amountKind": "final",
+      "date": "2019-07-13",
+      "contractType": "construction",
+      "categoryTitle": "other",
+      "point": [
+        39.5433427,
+        -0.5731124
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Col·legi d'Educació Infantil i Primària Cervantes",
+        "matchedText": "Col·legi d'Educació Infantil i Primària Cervantes",
+        "sourceId": "way-1097452806"
       }
     },
     {
@@ -2858,9 +2875,9 @@
       ],
       "place": {
         "kind": "street",
-        "name": "Carrer de les Eres Altes",
-        "matchedText": "Carrer de les Eres Altes",
-        "sourceId": "carrer-de-les-eres-altes"
+        "name": "Carrer Eres Altes",
+        "matchedText": "Carrer Eres Altes",
+        "sourceId": "carrer-eres-altes"
       }
     },
     {
@@ -2903,6 +2920,31 @@
         "name": "Cementerio de San Jaime",
         "matchedText": "Cementerio de San Jaime",
         "sourceId": "way-740051593"
+      }
+    },
+    {
+      "id": "68394",
+      "zones": [
+        "el-pou-d-escoto"
+      ],
+      "matchedAlias": {
+        "el-pou-d-escoto": "escoto"
+      },
+      "dana": false,
+      "amount": 59570.53,
+      "amountKind": "final",
+      "date": "2018-05-09",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.5483742,
+        -0.5912189
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "el Pou d'Escoto",
+        "matchedText": "el Pou d'Escoto",
+        "sourceId": "el-pou-d-escoto"
       }
     },
     {
@@ -2956,31 +2998,6 @@
       }
     },
     {
-      "id": "68394",
-      "zones": [
-        "el-pou-d-escoto"
-      ],
-      "matchedAlias": {
-        "el-pou-d-escoto": "escoto"
-      },
-      "dana": false,
-      "amount": 59570.53,
-      "amountKind": "final",
-      "date": "2018-05-09",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.5483742,
-        -0.5912189
-      ],
-      "place": {
-        "kind": "urbanizacion",
-        "name": "el Pou d'Escoto",
-        "matchedText": "el Pou d'Escoto",
-        "sourceId": "el-pou-d-escoto"
-      }
-    },
-    {
       "id": "2739773",
       "zones": [
         "urbanitzacio-valencia-la-vella"
@@ -3017,23 +3034,6 @@
         "matchedText": "Parc Municipal Maldonado",
         "sourceId": "way-39589891"
       }
-    },
-    {
-      "id": "5106922",
-      "zones": [
-        "urbanitzacio-valencia-la-vella"
-      ],
-      "matchedAlias": {
-        "urbanitzacio-valencia-la-vella": "valencia la vella"
-      },
-      "dana": false,
-      "amount": 89980.26,
-      "amountKind": "final",
-      "date": "2026-05-27",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": null,
-      "place": null
     },
     {
       "id": "1404560",
@@ -3470,8 +3470,8 @@
       "contractType": "construction",
       "categoryTitle": "construction",
       "point": [
-        39.5408141,
-        -0.5716581
+        39.5409819,
+        -0.5722426
       ],
       "place": {
         "kind": "street",
@@ -3731,9 +3731,9 @@
       ],
       "place": {
         "kind": "street",
-        "name": "Camí de les Ànimes",
-        "matchedText": "Camí de les Ànimes",
-        "sourceId": "cami-de-les-animes"
+        "name": "Carrer de les Ànimes",
+        "matchedText": "Carrer de les Ànimes",
+        "sourceId": "carrer-de-les-animes"
       }
     },
     {
@@ -3813,11 +3813,11 @@
     }
   ],
   "builtFrom": {
-    "civic-poi.json": "90229d5890ad",
+    "civic-poi.json": "e928317fe491",
     "gazetteer-supplement.json": "813c38c1dc80",
-    "geo.json": "a620fafbdf11",
+    "geo.json": "e9ed883602cf",
     "place-overrides.json": "5a4641410141",
-    "streets.json": "42b1dd20c743",
-    "tenders.json": "0d9802b455e5"
+    "streets.json": "4b8e686fbb74",
+    "tenders.json": "140545ca3ad7"
   }
 }

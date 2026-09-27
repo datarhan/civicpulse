@@ -1,53 +1,6 @@
 {
-  "generatedAt": "2026-09-27T09:43:25.495Z",
+  "generatedAt": "2026-09-27T10:23:54.671Z",
   "clusters": [
-    {
-      "clusterId": "107j3y8",
-      "articleIds": [
-        "153mirg",
-        "1xjj30k"
-      ],
-      "outlets": [
-        "Ayuntamiento de Riba-roja de Túria",
-        "Valencia Plaza"
-      ],
-      "earliestDate": "2026-09-11T07:00:00.000Z",
-      "latestDate": "2026-09-11T08:10:15.000Z",
-      "amountDrift": {
-        "min": 1500000,
-        "max": 1500000,
-        "spread": 0,
-        "spreadPct": 0
-      },
-      "verdictMix": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 13,
-        "promesa-repetida": 0
-      }
-    },
-    {
-      "clusterId": "1b7iklo",
-      "articleIds": [
-        "1b1znc3",
-        "1dkm9y0"
-      ],
-      "outlets": [
-        "El Periódico",
-        "Levante-EMV"
-      ],
-      "earliestDate": "2026-09-24T10:07:07.000Z",
-      "latestDate": "2026-09-24T15:09:16.000Z",
-      "amountDrift": null,
-      "verdictMix": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      }
-    },
     {
       "clusterId": "1hy1xq8",
       "articleIds": [
@@ -56,7 +9,7 @@
       ],
       "outlets": [
         "Ayuntamiento de Riba-roja de Túria",
-        "Levante-EMV"
+        "levante-emv.com"
       ],
       "earliestDate": "2026-08-31T07:00:00.000Z",
       "latestDate": "2026-08-31T09:04:15.000Z",
@@ -77,10 +30,10 @@
       ],
       "outlets": [
         "Ayuntamiento de Riba-roja de Túria",
-        "Valencia Plaza"
+        "valenciaplaza.com"
       ],
       "earliestDate": "2026-09-25T09:54:12.000Z",
-      "latestDate": "2026-09-25T10:36:17.000Z",
+      "latestDate": "2026-09-25T10:33:31.000Z",
       "amountDrift": null,
       "verdictMix": {
         "verificado": 0,
@@ -98,7 +51,7 @@
       ],
       "outlets": [
         "Ayuntamiento de Riba-roja de Túria",
-        "Levante-EMV"
+        "levante-emv.com"
       ],
       "earliestDate": "2026-09-10T07:00:00.000Z",
       "latestDate": "2026-09-10T12:00:05.000Z",
@@ -113,13 +66,13 @@
     }
   ],
   "stats": {
-    "totalClusters": 5,
+    "totalClusters": 3,
     "triangulated3Plus": 0
   },
   "builtFrom": {
-    "plenos-agendas.json": "baccfa9a120b",
+    "plenos-agendas.json": "cd81df4d4b23",
     "press-claims-verified.json": "426589fc7d58",
-    "press.json": "567560148d98",
+    "press.json": "01e8baa590ee",
     "promises.json": "d18811c11210"
   }
 }

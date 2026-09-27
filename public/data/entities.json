@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-26T09:41:48.218Z",
+  "generatedAt": "2026-09-27T10:23:53.897Z",
   "source": "derived: tenders.json assignees + officials.json · overrides: entity-overrides.json",
   "stats": {
     "companies": 377,
@@ -11,9 +11,9 @@
     {
       "id": "co-79ldtg",
       "nameKey": "hidraqua gestion integral de aguas de levante sa",
-      "canonicalName": "HIDRAQUA GESTION INTEGRAL DE AGUAS DE LEVANTE S.A.",
+      "canonicalName": "HIDRAQUA GESTIÓN  INTEGRAL DE  AGUAS  DE  LEVANTE,  S.A.",
       "variants": [
-        "HIDRAQUA GESTION INTEGRAL DE AGUAS DE LEVANTE S.A."
+        "HIDRAQUA GESTIÓN  INTEGRAL DE  AGUAS  DE  LEVANTE,  S.A."
       ],
       "contractIds": [
         "46717",
@@ -49,11 +49,11 @@
       "lastAwardDate": "2025-09-10"
     },
     {
-      "id": "co-gstnhv",
-      "nameKey": "s a agricultores de la vega de valencia",
-      "canonicalName": "S.A. AGRICULTORES DE LA VEGA DE VALENCIA",
+      "id": "co-1oon6g0",
+      "nameKey": "sa agricultores de la vega de valencia",
+      "canonicalName": "SA AGRICULTORES DE LA VEGA DE VALENCIA",
       "variants": [
-        "S.A. AGRICULTORES DE LA VEGA DE VALENCIA"
+        "SA AGRICULTORES DE LA VEGA DE VALENCIA"
       ],
       "contractIds": [
         "285368",
@@ -104,9 +104,9 @@
     {
       "id": "co-13ds8t8",
       "nameKey": "iberdrola clientes sa",
-      "canonicalName": "IBERDROLA CLIENTES SAU",
+      "canonicalName": "IBERDROLA CLIENTES, S.A.U.",
       "variants": [
-        "IBERDROLA CLIENTES SAU"
+        "IBERDROLA CLIENTES, S.A.U."
       ],
       "contractIds": [
         "auto-o7nwci",
@@ -128,8 +128,8 @@
       "contractIds": [
         "1574461",
         "280752",
-        "599169",
         "13417",
+        "599169",
         "1550970",
         "1651675",
         "68394",
@@ -208,9 +208,9 @@
     {
       "id": "co-15hxdwb",
       "nameKey": "becsa sa",
-      "canonicalName": "BECSA, S.A.",
+      "canonicalName": "BECSA SAU",
       "variants": [
-        "BECSA, S.A."
+        "BECSA SAU"
       ],
       "contractIds": [
         "62507",
@@ -408,15 +408,15 @@
       "lastAwardDate": "2022-12-21"
     },
     {
-      "id": "co-knwepv",
-      "nameKey": "eiffage energia",
-      "canonicalName": "EIFFAGE ENERGIA",
+      "id": "co-11b4n54",
+      "nameKey": "eiffage energia sl",
+      "canonicalName": "EIFFAGE ENERGIA SLU",
       "variants": [
-        "EIFFAGE ENERGIA"
+        "EIFFAGE ENERGIA SLU"
       ],
       "contractIds": [
-        "1562430",
         "36008",
+        "1562430",
         "1556443"
       ],
       "contractCount": 3,
@@ -425,11 +425,11 @@
       "lastAwardDate": "2021-12-13"
     },
     {
-      "id": "co-wgcgik",
-      "nameKey": "coordinadora de gestio d ingressos cgi",
-      "canonicalName": "Coordinadora de Gestió d'Ingressos (CGI)",
+      "id": "co-9xht1f",
+      "nameKey": "coordinadora de gestion de ingresos sa",
+      "canonicalName": "COORDINADORA DE GESTIÓN DE INGRESOS, SA",
       "variants": [
-        "Coordinadora de Gestió d'Ingressos (CGI)"
+        "COORDINADORA DE GESTIÓN DE INGRESOS, SA"
       ],
       "contractIds": [
         "1543723"
@@ -512,9 +512,9 @@
     {
       "id": "co-1u0pis8",
       "nameKey": "sulo iberica sa",
-      "canonicalName": "SULO IBERICA, S.A.",
+      "canonicalName": "Sulo Ibérica Sociedad Anónima",
       "variants": [
-        "SULO IBERICA, S.A."
+        "Sulo Ibérica Sociedad Anónima"
       ],
       "contractIds": [
         "10559259"
@@ -637,9 +637,9 @@
     {
       "id": "co-196u850",
       "nameKey": "andacar 2000 sa",
-      "canonicalName": "ANDACAR 2000, S.A.",
+      "canonicalName": "ANDACAR 2000 SOCIEDAD ANONIMA",
       "variants": [
-        "ANDACAR 2000, S.A."
+        "ANDACAR 2000 SOCIEDAD ANONIMA"
       ],
       "contractIds": [
         "67336",
@@ -678,11 +678,11 @@
         "SATARA SEGURIDAD, SL"
       ],
       "contractIds": [
+        "5096992",
+        "5096992#1",
         "1216657",
         "1216657#1",
         "1216657#2",
-        "5096992",
-        "5096992#1",
         "5096992#2"
       ],
       "contractCount": 6,
@@ -698,8 +698,8 @@
         "GEOCIVIL, S.A."
       ],
       "contractIds": [
-        "62344#1",
         "5106922",
+        "62344#1",
         "1705844"
       ],
       "contractCount": 3,
@@ -796,9 +796,9 @@
     {
       "id": "co-xsjdzr",
       "nameKey": "vodafone espana sa",
-      "canonicalName": "VODAFONE ESPAÑA S.A",
+      "canonicalName": "VODAFONE ESPANA SA",
       "variants": [
-        "VODAFONE ESPAÑA S.A"
+        "VODAFONE ESPANA SA"
       ],
       "contractIds": [
         "4415701",
@@ -860,9 +860,9 @@
     {
       "id": "co-1iadv0w",
       "nameKey": "vareser 96 sl",
-      "canonicalName": "VARESER 96, S.L.",
+      "canonicalName": "Vareser 96, S.L.",
       "variants": [
-        "VARESER 96, S.L."
+        "Vareser 96, S.L."
       ],
       "contractIds": [
         "1399312"
@@ -891,9 +891,9 @@
     {
       "id": "co-1jn7e00",
       "nameKey": "sociedad espanola de construcciones electricas sa",
-      "canonicalName": "Sociedad Española de Construcciones Eléctricas, SA",
+      "canonicalName": "SOCIEDAD ESPAÑOLA DE CONSTRUCCIONES ELÉCTRICAS SA",
       "variants": [
-        "Sociedad Española de Construcciones Eléctricas, SA"
+        "SOCIEDAD ESPAÑOLA DE CONSTRUCCIONES ELÉCTRICAS SA"
       ],
       "contractIds": [
         "58428"
@@ -961,11 +961,11 @@
       "lastAwardDate": "2026-07-02"
     },
     {
-      "id": "co-t41njo",
-      "nameKey": "castromil sa",
-      "canonicalName": "CASTROMIL, S.A",
+      "id": "co-hpdac0",
+      "nameKey": "ute lote escolar 8",
+      "canonicalName": "UTE LOTE ESCOLAR 8",
       "variants": [
-        "CASTROMIL, S.A"
+        "UTE LOTE ESCOLAR 8"
       ],
       "contractIds": [
         "4802817"
@@ -976,11 +976,11 @@
       "lastAwardDate": "2026-02-10"
     },
     {
-      "id": "co-e5806c",
-      "nameKey": "trans tel sa",
-      "canonicalName": "TRANS TEL S.A.",
+      "id": "co-1ssdab8",
+      "nameKey": "transtel sa",
+      "canonicalName": "TransTel S.A.",
       "variants": [
-        "TRANS TEL S.A."
+        "TransTel S.A."
       ],
       "contractIds": [
         "4493453#2",
@@ -1130,9 +1130,9 @@
     {
       "id": "co-dyflxg",
       "nameKey": "aglomerados los serranos sa",
-      "canonicalName": "AGLOMERADOS LOS SERRANOS, SAU",
+      "canonicalName": "AGLOMERADOS LOS SERRANOS SA",
       "variants": [
-        "AGLOMERADOS LOS SERRANOS, SAU"
+        "AGLOMERADOS LOS SERRANOS SA"
       ],
       "contractIds": [
         "329628",
@@ -1186,7 +1186,7 @@
       "contractIds": [
         "2450660",
         "7709810",
-        "4889055#13"
+        "4889055#14"
       ],
       "contractCount": 3,
       "awardedTotalEur": 158410.8,
@@ -1196,9 +1196,9 @@
     {
       "id": "co-cxnxgo",
       "nameKey": "elecnor sa",
-      "canonicalName": "ELECNOR S.A",
+      "canonicalName": "ELECNOR SA",
       "variants": [
-        "ELECNOR S.A"
+        "ELECNOR SA"
       ],
       "contractIds": [
         "60362",
@@ -1262,9 +1262,9 @@
     {
       "id": "co-3eqrnc",
       "nameKey": "otis mobility sa",
-      "canonicalName": "OTIS MOBILITY S.A.",
+      "canonicalName": "OTIS MOBILITY, S.A.",
       "variants": [
-        "OTIS MOBILITY S.A."
+        "OTIS MOBILITY, S.A."
       ],
       "contractIds": [
         "4570383",
@@ -1278,11 +1278,11 @@
       "lastAwardDate": "2025-05-08"
     },
     {
-      "id": "co-kndnlh",
-      "nameKey": "investigacion y gestion en residuos",
-      "canonicalName": "INVESTIGACION Y GESTION EN RESIDUOS",
+      "id": "co-12j52wk",
+      "nameKey": "investigacion y gestion de residuos sa",
+      "canonicalName": "INVESTIGACION Y GESTION DE RESIDUOS, S.A.",
       "variants": [
-        "INVESTIGACION Y GESTION EN RESIDUOS"
+        "INVESTIGACION Y GESTION DE RESIDUOS, S.A."
       ],
       "contractIds": [
         "4812045"
@@ -1347,9 +1347,9 @@
     {
       "id": "co-ph82i8",
       "nameKey": "urbeadapta sl",
-      "canonicalName": "URBEADAPTA SOCIEDAD LIMITADA",
+      "canonicalName": "URBEADAPTA S. L.",
       "variants": [
-        "URBEADAPTA SOCIEDAD LIMITADA"
+        "URBEADAPTA S. L."
       ],
       "contractIds": [
         "4973577#1",
@@ -1367,16 +1367,16 @@
     {
       "id": "co-1ho3ebw",
       "nameKey": "formacion informatica desarrollo y comunicaciones sl",
-      "canonicalName": "Formacion Informatica Desarrollo y Comunicaciones, S.L.",
+      "canonicalName": "FORMACION INFORMATICA DESARROLLO Y COMUNICACIONES SOCIEDAD LIMITADA",
       "variants": [
-        "Formacion Informatica Desarrollo y Comunicaciones, S.L."
+        "FORMACION INFORMATICA DESARROLLO Y COMUNICACIONES SOCIEDAD LIMITADA"
       ],
       "contractIds": [
+        "1936305",
         "1701582#22",
         "1701582#23",
         "4032354",
         "1936232",
-        "1936305",
         "2678021",
         "1719226#1",
         "9492398",
@@ -1404,11 +1404,11 @@
       "lastAwardDate": "2025-10-30"
     },
     {
-      "id": "co-aqojcg",
-      "nameKey": "sociedad iberica de construcciones electricas sa",
-      "canonicalName": "SOCIEDAD IBÉRICA DE CONSTRUCCIONES ELÉCTRICAS, S.A.",
+      "id": "co-1a0k9fg",
+      "nameKey": "sice tecnologia",
+      "canonicalName": "SICE TECNOLOGIA",
       "variants": [
-        "SOCIEDAD IBÉRICA DE CONSTRUCCIONES ELÉCTRICAS, S.A."
+        "SICE TECNOLOGIA"
       ],
       "contractIds": [
         "132946",
@@ -1558,7 +1558,7 @@
         "1794430#11",
         "1794430#22",
         "2738728",
-        "1794430#32"
+        "1794430#31"
       ],
       "contractCount": 4,
       "awardedTotalEur": 105575.5,
@@ -1583,9 +1583,9 @@
     {
       "id": "co-h2ihrs",
       "nameKey": "ecosiona facility services sl",
-      "canonicalName": "ECOSIONA FACILITY SERVICES SOCIEDAD LIMITADA",
+      "canonicalName": "Ecosiona Facility Services, S.L.",
       "variants": [
-        "ECOSIONA FACILITY SERVICES SOCIEDAD LIMITADA"
+        "Ecosiona Facility Services, S.L."
       ],
       "contractIds": [
         "4333684",
@@ -1700,9 +1700,9 @@
     {
       "id": "co-bvzvr0",
       "nameKey": "recolim sl",
-      "canonicalName": "RECOLIM, S.L.",
+      "canonicalName": "RECOLIM,S.L.",
       "variants": [
-        "RECOLIM, S.L."
+        "RECOLIM,S.L."
       ],
       "contractIds": [
         "85485"
@@ -1751,8 +1751,8 @@
       ],
       "contractIds": [
         "5247428",
+        "1794430#29",
         "1794430#30",
-        "1794430#31",
         "4563568"
       ],
       "contractCount": 4,
@@ -1761,15 +1761,15 @@
       "lastAwardDate": "2024-11-12"
     },
     {
-      "id": "co-wg9zyw",
-      "nameKey": "universitat de valencia",
-      "canonicalName": "UNIVERSITAT DE VALENCIA",
+      "id": "co-8zuykr",
+      "nameKey": "universidad de valencia estudi general",
+      "canonicalName": "UNIVERSIDAD DE VALENCIA ESTUDI GENERAL",
       "variants": [
-        "UNIVERSITAT DE VALENCIA"
+        "UNIVERSIDAD DE VALENCIA ESTUDI GENERAL"
       ],
       "contractIds": [
-        "131615",
-        "1697425"
+        "1697425",
+        "131615"
       ],
       "contractCount": 2,
       "awardedTotalEur": 89145,
@@ -1777,11 +1777,11 @@
       "lastAwardDate": "2022-03-04"
     },
     {
-      "id": "co-1fdfzt8",
-      "nameKey": "zurich vida compania de seguros y reaseguros sa",
-      "canonicalName": "ZURICH VIDA, COMPAÑÍA DE SEGUROS Y REASEGUROS, S.A.U.",
+      "id": "co-2rq9br",
+      "nameKey": "zurich insurance europe ag sucursal en espana",
+      "canonicalName": "ZURICH INSURANCE EUROPE AG SUCURSAL EN ESPAÑA",
       "variants": [
-        "ZURICH VIDA, COMPAÑÍA DE SEGUROS Y REASEGUROS, S.A.U."
+        "ZURICH INSURANCE EUROPE AG SUCURSAL EN ESPAÑA"
       ],
       "contractIds": [
         "54281"
@@ -1900,11 +1900,11 @@
       "lastAwardDate": "2023-07-27"
     },
     {
-      "id": "co-1orchkg",
-      "nameKey": "puntodis accesible solultions in sig writting sl",
-      "canonicalName": "PUNTODIS, ACCESIBLE SOLULTIONS IN SIG-WRITTING, S.L.",
+      "id": "co-rw1ekc",
+      "nameKey": "puntodis accessible solutions in sign wr",
+      "canonicalName": "PUNTODIS ACCESSIBLE SOLUTIONS IN SIGN WR",
       "variants": [
-        "PUNTODIS, ACCESIBLE SOLULTIONS IN SIG-WRITTING, S.L."
+        "PUNTODIS ACCESSIBLE SOLUTIONS IN SIGN WR"
       ],
       "contractIds": [
         "4892093"
@@ -2015,9 +2015,9 @@
     {
       "id": "co-y5i0zc",
       "nameKey": "exercycle sl",
-      "canonicalName": "EXERCYCLE SL",
+      "canonicalName": "EXERCYCLE S.L.",
       "variants": [
-        "EXERCYCLE SL"
+        "EXERCYCLE S.L."
       ],
       "contractIds": [
         "4363449#1"
@@ -2237,8 +2237,8 @@
         "Sotavia Technologies, SL"
       ],
       "contractIds": [
-        "4889055#7",
-        "4889055#10"
+        "4889055#8",
+        "4889055#11"
       ],
       "contractCount": 2,
       "awardedTotalEur": 58000,
@@ -2248,9 +2248,9 @@
     {
       "id": "co-iv79rs",
       "nameKey": "avanta prevencion integral sl",
-      "canonicalName": "Avanta Prevención Integral, SLU",
+      "canonicalName": "AVANTA PREVENCION INTEGRAL S.L.U.",
       "variants": [
-        "Avanta Prevención Integral, SLU"
+        "AVANTA PREVENCION INTEGRAL S.L.U."
       ],
       "contractIds": [
         "61456",
@@ -2262,11 +2262,11 @@
       "lastAwardDate": "2018-01-30"
     },
     {
-      "id": "co-mp9v7h",
-      "nameKey": "compania de tratamientos levante s l c t l sanidad ambiental",
-      "canonicalName": "COMPAÑIA DE TRATAMIENTOS LEVANTE, S.L. (C.T.L. SANIDAD AMBIENTAL)",
+      "id": "co-y18pp8",
+      "nameKey": "ctl compania de tratamientos de levante sl",
+      "canonicalName": "CTL COMPAÑIA DE TRATAMIENTOS DE LEVANTE S.L.",
       "variants": [
-        "COMPAÑIA DE TRATAMIENTOS LEVANTE, S.L. (C.T.L. SANIDAD AMBIENTAL)"
+        "CTL COMPAÑIA DE TRATAMIENTOS DE LEVANTE S.L."
       ],
       "contractIds": [
         "75365",
@@ -2311,14 +2311,14 @@
     {
       "id": "co-1g9z1w",
       "nameKey": "techfriendly sl",
-      "canonicalName": "TECHFRIENDLY SL",
+      "canonicalName": "TECHFRIENDLY, SL.",
       "variants": [
-        "TECHFRIENDLY SL"
+        "TECHFRIENDLY, SL."
       ],
       "contractIds": [
         "4889055#5",
-        "4510222#1",
-        "4889055#16"
+        "4889055#6",
+        "4510222#1"
       ],
       "contractCount": 3,
       "awardedTotalEur": 55000,
@@ -2372,11 +2372,11 @@
       "lastAwardDate": "2025-01-09"
     },
     {
-      "id": "co-kokvrw",
-      "nameKey": "medi xxi gabinet solucions ambientals sl",
-      "canonicalName": "MEDI XXI GABINET SOLUCIONS AMBIENTALS SL",
+      "id": "co-11nnea8",
+      "nameKey": "medi xxi gsa sl",
+      "canonicalName": "MEDI XXI GSA SL",
       "variants": [
-        "MEDI XXI GABINET SOLUCIONS AMBIENTALS SL"
+        "MEDI XXI GSA SL"
       ],
       "contractIds": [
         "1660800",
@@ -2652,9 +2652,9 @@
     {
       "id": "co-jljz5o",
       "nameKey": "mondo iberica sa",
-      "canonicalName": "MONDO IBERICA, S.A.U.",
+      "canonicalName": "MONDO IBÉRICA SAU",
       "variants": [
-        "MONDO IBERICA, S.A.U."
+        "MONDO IBÉRICA SAU"
       ],
       "contractIds": [
         "3925762"
@@ -2734,9 +2734,9 @@
     {
       "id": "co-x68214",
       "nameKey": "neopark clm 2011 sl",
-      "canonicalName": "NEOPARK CLM 2011 S L",
+      "canonicalName": "NEOPARK CLM 2011 SOCIEDAD LIMITADA",
       "variants": [
-        "NEOPARK CLM 2011 S L"
+        "NEOPARK CLM 2011 SOCIEDAD LIMITADA"
       ],
       "contractIds": [
         "1945526#3",
@@ -2803,7 +2803,7 @@
         "1794430#21",
         "1794430#25",
         "auto-mse4o8",
-        "1794430#29"
+        "1794430#28"
       ],
       "contractCount": 4,
       "awardedTotalEur": 36405.28,
@@ -3127,8 +3127,8 @@
         "XÚQUER-ARQING, S.L."
       ],
       "contractIds": [
-        "4889055#9",
-        "5106848#1"
+        "5106848",
+        "4889055#10"
       ],
       "contractCount": 2,
       "awardedTotalEur": 29617.99,
@@ -3138,9 +3138,9 @@
     {
       "id": "co-12m2xoc",
       "nameKey": "colin buchanan consultores sa",
-      "canonicalName": "Colin Buchanan Consultores, S.A.",
+      "canonicalName": "COLIN BUCHANAN CONSULTORES SA",
       "variants": [
-        "Colin Buchanan Consultores, S.A."
+        "COLIN BUCHANAN CONSULTORES SA"
       ],
       "contractIds": [
         "26720"
@@ -3441,11 +3441,11 @@
       "lastAwardDate": "2018-11-05"
     },
     {
-      "id": "co-v83teo",
-      "nameKey": "ravi obras trasnportes y excavaciones sl",
-      "canonicalName": "RAVI OBRAS TRASNPORTES Y EXCAVACIONES, S.L.",
+      "id": "co-p2hq2j",
+      "nameKey": "ravi obras transportes y excavaciones sl",
+      "canonicalName": "RAVI OBRAS, TRANSPORTES Y EXCAVACIONES S.L.",
       "variants": [
-        "RAVI OBRAS TRASNPORTES Y EXCAVACIONES, S.L."
+        "RAVI OBRAS, TRANSPORTES Y EXCAVACIONES S.L."
       ],
       "contractIds": [
         "4574548"
@@ -3456,11 +3456,11 @@
       "lastAwardDate": "2024-11-27"
     },
     {
-      "id": "co-1cxcvgo",
-      "nameKey": "vortal",
-      "canonicalName": "VORTAL",
+      "id": "co-rizt14",
+      "nameKey": "vortal connecting busines sa",
+      "canonicalName": "VORTAL CONNECTING BUSINES S.A",
       "variants": [
-        "VORTAL"
+        "VORTAL CONNECTING BUSINES S.A"
       ],
       "contractIds": [
         "5865"
@@ -3626,11 +3626,11 @@
       "lastAwardDate": "2023-01-25"
     },
     {
-      "id": "co-n3ug3k",
-      "nameKey": "seguros bilbao sa",
-      "canonicalName": "SEGUROS BILBAO, S.A",
+      "id": "co-d8tmas",
+      "nameKey": "bilbao seguros cia anonima de seguros y reaseguros",
+      "canonicalName": "BILBAO SEGUROS CIA ANÓNIMA DE SEGUROS Y REASEGUROS",
       "variants": [
-        "SEGUROS BILBAO, S.A"
+        "BILBAO SEGUROS CIA ANÓNIMA DE SEGUROS Y REASEGUROS"
       ],
       "contractIds": [
         "4163363"
@@ -3657,11 +3657,11 @@
       "lastAwardDate": "2024-12-10"
     },
     {
-      "id": "co-1r7g4qw",
-      "nameKey": "occident gco sociedad anonima de seguros y reaseguros",
-      "canonicalName": "OCCIDENT GCO SOCIEDAD ANONIMA DE SEGUROS Y REASEGUROS",
+      "id": "co-i2j2fw",
+      "nameKey": "occident gco s a u de seguros y reaseguros",
+      "canonicalName": "OCCIDENT GCO S.A.U. DE SEGUROS Y REASEGUROS",
       "variants": [
-        "OCCIDENT GCO SOCIEDAD ANONIMA DE SEGUROS Y REASEGUROS"
+        "OCCIDENT GCO S.A.U. DE SEGUROS Y REASEGUROS"
       ],
       "contractIds": [
         "auto-tkb2py"
@@ -3679,8 +3679,8 @@
         "Juan Antonio Mas Rico"
       ],
       "contractIds": [
-        "4889055#6",
-        "4889055#14"
+        "4889055#7",
+        "4889055#15"
       ],
       "contractCount": 2,
       "awardedTotalEur": 18915.42,
@@ -3737,11 +3737,11 @@
       "lastAwardDate": "2025-11-27"
     },
     {
-      "id": "co-2865ns",
-      "nameKey": "t2i ingenieria integral sl",
-      "canonicalName": "T2i Ingeniería Integral SL",
+      "id": "co-eq0vvo",
+      "nameKey": "t2i ingenieria integral en tecnologia y telecomunicaciones sl",
+      "canonicalName": "T2i Ingeniería Integral en Tecnología y Telecomunicaciones SL",
       "variants": [
-        "T2i Ingeniería Integral SL"
+        "T2i Ingeniería Integral en Tecnología y Telecomunicaciones SL"
       ],
       "contractIds": [
         "1701582#6"
@@ -3803,9 +3803,9 @@
     {
       "id": "co-1kor2p4",
       "nameKey": "espublico servicios para la administracion sa",
-      "canonicalName": "ESPUBLICO SERVICIOS PARA LA ADMINISTRACIÓN S.A",
+      "canonicalName": "ESPUBLICO SERVICIOS PARA LA ADMINISTRACION SA",
       "variants": [
-        "ESPUBLICO SERVICIOS PARA LA ADMINISTRACIÓN S.A"
+        "ESPUBLICO SERVICIOS PARA LA ADMINISTRACION SA"
       ],
       "contractIds": [
         "2989478"
@@ -3818,9 +3818,9 @@
     {
       "id": "co-1y04a80",
       "nameKey": "aranzadi la ley sa",
-      "canonicalName": "Aranzadi la Ley, S.A.U.",
+      "canonicalName": "ARANZADI LA LEY S.A.U.",
       "variants": [
-        "Aranzadi la Ley, S.A.U."
+        "ARANZADI LA LEY S.A.U."
       ],
       "contractIds": [
         "7484485",
@@ -3916,7 +3916,7 @@
         "CONSULTORA VALENCIANA D´ENGINYERIA, S.L."
       ],
       "contractIds": [
-        "5106848",
+        "5106848#1",
         "5106848#2"
       ],
       "contractCount": 2,
@@ -4198,11 +4198,11 @@
       "lastAwardDate": "2026-05-28"
     },
     {
-      "id": "co-1ju798s",
-      "nameKey": "telefonica soluciones de informatica y comunicaciones de espa a sa",
-      "canonicalName": "TELEFONICA SOLUCIONES DE INFORMATICA Y COMUNICACIONES DE ESPA?A, S.A.U",
+      "id": "co-4nd0as",
+      "nameKey": "telefonica soluciones de informatica y comunicaciones de espana sa",
+      "canonicalName": "TELEFONICA SOLUCIONES DE INFORMATICA Y COMUNICACIONES DE ESPAÑA SAU",
       "variants": [
-        "TELEFONICA SOLUCIONES DE INFORMATICA Y COMUNICACIONES DE ESPA?A, S.A.U"
+        "TELEFONICA SOLUCIONES DE INFORMATICA Y COMUNICACIONES DE ESPAÑA SAU"
       ],
       "contractIds": [
         "1701582#21"
@@ -4275,9 +4275,9 @@
     {
       "id": "co-60g590",
       "nameKey": "traka iberia gestion de llaves y recursos sl",
-      "canonicalName": "TRAKA IBERIA GESTION DE LLAVES Y RECURSOS SLU",
+      "canonicalName": "TRAKA IBERIA GESTION DE LLAVES Y RECURSOS, S.L.U.",
       "variants": [
-        "TRAKA IBERIA GESTION DE LLAVES Y RECURSOS SLU"
+        "TRAKA IBERIA GESTION DE LLAVES Y RECURSOS, S.L.U."
       ],
       "contractIds": [
         "5444994"
@@ -4381,9 +4381,9 @@
     {
       "id": "co-1rq04dc",
       "nameKey": "bl espana software sl",
-      "canonicalName": "BL ESPAÑA SOFTWARE S.L.U.",
+      "canonicalName": "BL ESPAÑA SOFTWARE, S.L.U",
       "variants": [
-        "BL ESPAÑA SOFTWARE S.L.U."
+        "BL ESPAÑA SOFTWARE, S.L.U"
       ],
       "contractIds": [
         "9775650"
@@ -4432,7 +4432,7 @@
         "EQUALITY MOMENTUM SL"
       ],
       "contractIds": [
-        "4889055",
+        "4889055#2",
         "4889055#3"
       ],
       "contractCount": 2,
@@ -4473,9 +4473,9 @@
     {
       "id": "co-r0qalb",
       "nameKey": "viatorplusultra sl",
-      "canonicalName": "Viatorplusultra S.L.",
+      "canonicalName": "VIATORPLUSULTRA, S.L.",
       "variants": [
-        "Viatorplusultra S.L."
+        "VIATORPLUSULTRA, S.L."
       ],
       "contractIds": [
         "9049099"
@@ -4594,14 +4594,14 @@
     {
       "id": "co-142eads",
       "nameKey": "even ambiental sl",
-      "canonicalName": "EVEN AMBIENTAL, SLL",
+      "canonicalName": "EVEN AMBIENTAL SOCIEDAD LIMITADA",
       "variants": [
-        "EVEN AMBIENTAL, SLL"
+        "EVEN AMBIENTAL SOCIEDAD LIMITADA"
       ],
       "contractIds": [
         "7484026",
-        "4889055#11",
         "4889055#12",
+        "4889055#13",
         "7884264"
       ],
       "contractCount": 4,
@@ -4642,9 +4642,9 @@
     {
       "id": "co-11p4j74",
       "nameKey": "advanced facility services sl",
-      "canonicalName": "ADVANCED FACILITY SERVICES SOCIEDAD LIMITADA",
+      "canonicalName": "ADVANCED FACILITY SERVICES S.L",
       "variants": [
-        "ADVANCED FACILITY SERVICES SOCIEDAD LIMITADA"
+        "ADVANCED FACILITY SERVICES S.L"
       ],
       "contractIds": [
         "1951719",
@@ -4733,9 +4733,9 @@
     {
       "id": "co-lhpli3",
       "nameKey": "siemens financial services sa",
-      "canonicalName": "SIEMENS FINANCIAL SERVICES SA",
+      "canonicalName": "SIEMENS FINANCIAL SERVICES SAU",
       "variants": [
-        "SIEMENS FINANCIAL SERVICES SA"
+        "SIEMENS FINANCIAL SERVICES SAU"
       ],
       "contractIds": [
         "3370373"
@@ -4914,11 +4914,11 @@
       "lastAwardDate": "2022-08-30"
     },
     {
-      "id": "co-16f79ic",
-      "nameKey": "esport actiu sl",
-      "canonicalName": "Esport Actiu S.L.",
+      "id": "co-170vsso",
+      "nameKey": "esport actiu promocions i serveis esportius sl",
+      "canonicalName": "ESPORT ACTIU PROMOCIONS I SERVEIS ESPORTIUS,SL",
       "variants": [
-        "Esport Actiu S.L."
+        "ESPORT ACTIU PROMOCIONS I SERVEIS ESPORTIUS,SL"
       ],
       "contractIds": [
         "9493047"
@@ -4976,9 +4976,9 @@
     {
       "id": "co-1rdxeaw",
       "nameKey": "it and people sl",
-      "canonicalName": "IT AND PEOPLE S.L.",
+      "canonicalName": "IT AND PEOPLE SL",
       "variants": [
-        "IT AND PEOPLE S.L."
+        "IT AND PEOPLE SL"
       ],
       "contractIds": [
         "10517807"
@@ -5026,7 +5026,7 @@
         "José Luis Moreno Delgado"
       ],
       "contractIds": [
-        "4889055#2",
+        "4889055#1",
         "4930957",
         "4889055#4"
       ],
@@ -5268,7 +5268,7 @@
         "Carlos Tomás Gramage"
       ],
       "contractIds": [
-        "1794430#28"
+        "1794430#32"
       ],
       "contractCount": 1,
       "awardedTotalEur": 6000,
@@ -5306,11 +5306,11 @@
       "lastAwardDate": "2022-08-10"
     },
     {
-      "id": "co-ktowjc",
-      "nameKey": "orange espagne sa",
-      "canonicalName": "ORANGE ESPAGNE, S.A.U.",
+      "id": "co-19sqje0",
+      "nameKey": "orange espana sa",
+      "canonicalName": "ORANGE ESPAÑA, S.A.",
       "variants": [
-        "ORANGE ESPAGNE, S.A.U."
+        "ORANGE ESPAÑA, S.A."
       ],
       "contractIds": [
         "1794430#44"
@@ -5414,9 +5414,9 @@
     {
       "id": "co-1u1z52w",
       "nameKey": "northgate espana renting flexible sa",
-      "canonicalName": "NORTHGATE ESPAÑA RENTING FLEXIBLE SA",
+      "canonicalName": "NORTHGATE ESPAÑA RENTING FLEXIBLE S.A.",
       "variants": [
-        "NORTHGATE ESPAÑA RENTING FLEXIBLE SA"
+        "NORTHGATE ESPAÑA RENTING FLEXIBLE S.A."
       ],
       "contractIds": [
         "9492120"
@@ -5503,11 +5503,11 @@
       "lastAwardDate": "2024-12-12"
     },
     {
-      "id": "co-nmtgxo",
-      "nameKey": "federico domenech sl",
-      "canonicalName": "Federico Domenech SL",
+      "id": "co-p0rhek",
+      "nameKey": "federico domenech sa",
+      "canonicalName": "FEDERICO DOMENECH, S.A.",
       "variants": [
-        "Federico Domenech SL"
+        "FEDERICO DOMENECH, S.A."
       ],
       "contractIds": [
         "401854"
@@ -5518,11 +5518,11 @@
       "lastAwardDate": "2018-08-14"
     },
     {
-      "id": "co-2l5e18",
-      "nameKey": "grupojr 2014 centro multidisciplinar sl",
-      "canonicalName": "GrupoJR 2014 Centro Multidisciplinar, S.L.",
+      "id": "co-13o6dsg",
+      "nameKey": "grupojr2014 centro multidisciplinar sl",
+      "canonicalName": "GRUPOJR2014 CENTRO MULTIDISCIPLINAR SOCIEDAD LIMITADA",
       "variants": [
-        "GrupoJR 2014 Centro Multidisciplinar, S.L."
+        "GRUPOJR2014 CENTRO MULTIDISCIPLINAR SOCIEDAD LIMITADA"
       ],
       "contractIds": [
         "7683279"
@@ -5533,11 +5533,11 @@
       "lastAwardDate": "2025-04-03"
     },
     {
-      "id": "co-zorqsc",
-      "nameKey": "soluciones de cad cam y gis sl",
-      "canonicalName": "SOLUCIONES DE CAD CAM Y GIS, S.L.U.",
+      "id": "co-1finrb0",
+      "nameKey": "aplicaciones de cad cam y gis sl",
+      "canonicalName": "APLICACIONES DE CAD CAM Y GIS SOCIEDAD LIMITADA",
       "variants": [
-        "SOLUCIONES DE CAD CAM Y GIS, S.L.U."
+        "APLICACIONES DE CAD CAM Y GIS SOCIEDAD LIMITADA"
       ],
       "contractIds": [
         "1701582"
@@ -5630,8 +5630,8 @@
         "Angel Holguera Herrera"
       ],
       "contractIds": [
-        "4889055#8",
-        "4889055#15"
+        "4889055#9",
+        "4889055#16"
       ],
       "contractCount": 2,
       "awardedTotalEur": 3493.38,
@@ -5671,9 +5671,9 @@
     {
       "id": "co-2qgwpo",
       "nameKey": "canon espana sa",
-      "canonicalName": "Canon España S.A.U.",
+      "canonicalName": "Canon España, S.A.U.",
       "variants": [
-        "Canon España S.A.U."
+        "Canon España, S.A.U."
       ],
       "contractIds": [
         "1701582#19"
@@ -6129,7 +6129,7 @@
   ],
   "builtFrom": {
     "entity-overrides.json": "a41cc20172e9",
-    "officials.json": "05661988b825",
-    "tenders.json": "0d9802b455e5"
+    "officials.json": "8d7c5f15b6e0",
+    "tenders.json": "140545ca3ad7"
   }
 }
