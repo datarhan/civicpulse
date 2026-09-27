@@ -2,10 +2,8 @@ import { Card } from '../components/Primitives'
 import { DeclaracionCongelada } from '../components/frontera/DeclaracionCongelada'
 import { EspecificacionCard } from '../components/frontera/EspecificacionCard'
 import { SerieFrontera } from '../components/frontera/SerieFrontera'
-import { AvisoCestas } from '../components/frontera/SensibilidadCestas'
 import DataAsOf from '../components/DataAsOf'
 import { useFrontera } from '../hooks/useFrontera'
-import { sensibilidadCestas, tituloCestas } from '../scraper/dea-sensibilidad'
 
 /**
  * /laboratorio/frontera — análisis envolvente de datos sobre el coste efectivo.
@@ -31,12 +29,39 @@ import { sensibilidadCestas, tituloCestas } from '../scraper/dea-sensibilidad'
  * 3. **No se nombra a ningún otro municipio.** Ver el comentario largo de
  *    `src/scraper/dea-especificacion.ts`.
  */
+
+/*
+ * Cuántas cestas dan puntuación se CUENTA del snapshot, no se escribe.
+ *
+ * El aviso de arriba decía que, con dos cestas publicadas, la puntuación «se
+ * mueve entre una y otra punta de la escala», y el encabezado, «cuatro cestas
+ * defendibles, cuatro resultados». En la entrega de 2024 las dos que puntúan
+ * dan 0,53 y 0,43, y las otras dos no llegan a dar ninguna: la primera frase
+ * contaba cestas y afirmaba una distancia, y la segunda llamaba resultado a lo
+ * que no lo es. Lo que no depende de la entrega —que la cesta mueve la cifra—
+ * lo sostiene `tests/dea-especificacion.test.ts`; lo que sí, se cuenta aquí.
+ *
+ * Sin el motivo: una cesta sale `insuficiente` por grados de libertad o porque
+ * Riba-roja no la declara entera, y la tarjeta de cada una dice cuál.
+ */
+const PALABRA = ['ninguna', 'una', 'dos', 'tres', 'cuatro', 'cinco', 'seis', 'siete', 'ocho']
+const palabra = (n) => PALABRA[n] ?? String(n)
+
+function encabezadoCestas(total, conPuntuacion) {
+  const sin = total - conPuntuacion
+  if (total === 1) return `Una cesta defendible, ${conPuntuacion ? 'con' : 'sin'} puntuación`
+  const cestas = `${palabra(total).replace(/^./, (c) => c.toUpperCase())} cestas defendibles`
+  if (sin === 0) return `${cestas}, ${palabra(total)} puntuaciones`
+  // «sin ella» no se parte: a 375 px, «ella» se quedaba sola en la última línea.
+  return `${cestas}: ${palabra(conPuntuacion)} con puntuación y ${palabra(sin)} sin\u00a0ella`
+}
+
 export default function Frontera() {
   const { loading, error, data } = useFrontera()
   const especificaciones = data?.especificaciones ?? []
   const publicadas = especificaciones.filter((e) => e.estado === 'publicada')
   const principal = publicadas[0] ?? null
-  const sensibilidad = sensibilidadCestas(especificaciones)
+  const sinPuntuacion = especificaciones.length - publicadas.length
 
   return (
     <div className="cp-page" style={{ padding: 24, maxWidth: 900, margin: '0 auto' }}>
@@ -71,15 +96,13 @@ export default function Frontera() {
         <p
           style={{ margin: 0, fontSize: 'var(--fs-aux)', color: 'var(--ink70)', maxWidth: '66ch' }}
         >
-          {/* Decía que otra cesta movía la puntuación «entre una y otra punta
-              de la escala», con un ternario que sólo miraba CUÁNTAS cestas
-              puntúan: con dos, 0,43 frente a 0,53, una décima. Lo que sigue
-              sale del dato y no lleva cifras, porque va antes que la medición
-              de la declaración (regla 1). */}
           <strong>Esto no es una nota ni un ranking.</strong> El resto del sitio publica cifras que
           se pueden rehacer desde su fuente. Esta página publica el resultado de un modelo con
-          decisiones nuestras dentro
-          <AvisoCestas s={sensibilidad} />. Está en el laboratorio por eso, y no en{' '}
+          decisiones nuestras dentro: con la misma fuente, la puntuación de Riba-roja depende de qué
+          cesta de servicios igual de defendible se elija
+          {sinPuntuacion > 0 &&
+            `, y con ${palabra(sinPuntuacion)} de las ${palabra(especificaciones.length)} ni siquiera se puede calcular`}
+          . Está en el laboratorio por eso, y no en{' '}
           <a href="/eficiencia" style={{ color: 'var(--civic)', textDecoration: 'underline' }}>
             /eficiencia
           </a>
@@ -111,9 +134,7 @@ export default function Frontera() {
               letterSpacing: '-.01em',
             }}
           >
-            {/* Decía «cuatro resultados» encima de dos tarjetas «sin
-                puntuación». */}
-            {tituloCestas(sensibilidad)}
+            {encabezadoCestas(especificaciones.length, publicadas.length)}
           </h2>
           <p
             style={{

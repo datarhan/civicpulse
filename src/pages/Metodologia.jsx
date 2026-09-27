@@ -4,8 +4,6 @@ import { usePlenoFindings } from '../hooks/usePlenoFindings'
 import { useFindingQuoteProvenance } from '../hooks/useFindingQuoteProvenance'
 import { useIndicadores } from '../hooks/useIndicadores'
 import { useOfficials } from '../hooks/useOfficials'
-import { useSensibilidadCestas } from '../hooks/useFrontera'
-import { MedicionCestas } from '../components/frontera/SensibilidadCestas'
 import { mailboxKinds } from '../lib/mailboxes'
 // El umbral se IMPORTA del motor: escrito a mano aquí, cambiar la constante
 // dejaría esta página afirmando una regla que el código ya no aplica — y esta
@@ -18,15 +16,12 @@ import { TRINQUETE } from '../scraper/trinquete'
 /*
  * prosa-describe: indicadores.json, dea.json
  *
- * Esta página EXPLICA lo que dicen esos dos snapshots: las secciones
- * #eficiencia y #frontera describen sus cifras, sus umbrales y su
- * comportamiento. Nació sin cargarlos, y el mapa de prosa se deriva del grafo
- * de imports, así que sin esta declaración una revisión del ministerio movería
- * las cifras y el recordatorio de prosa vieja no diría nada — precisamente en
- * el documento que es el contrato editorial publicado. Hoy carga los dos (los
- * atípicos y la medición de las cestas salen de ellos), pero la mayor parte de
- * la prosa que los describe sigue escrita a mano, y el marcador sostiene la
- * arista aunque un día deje de cargarlos.
+ * Esta página EXPLICA lo que dicen esos dos snapshots sin cargarlos: las
+ * secciones #eficiencia y #frontera describen sus cifras, sus umbrales y su
+ * comportamiento. El mapa de prosa se deriva del grafo de imports, así que sin
+ * esta declaración una revisión del ministerio movería las cifras y el
+ * recordatorio de prosa vieja no diría nada — precisamente en el documento que
+ * es el contrato editorial publicado.
  */
 
 /**
@@ -267,7 +262,6 @@ export default function Metodologia() {
   const quoteProvenance = useQuoteProvenanceDisclosure()
   const quoteContrast = useQuoteContrastDisclosure()
   const atipicos = useAtipicosDisclosure()
-  const sensibilidad = useSensibilidadCestas()
   return (
     <div
       className="cp-page"
@@ -2383,14 +2377,10 @@ export default function Metodologia() {
           </a>
           . Sale de un modelo con decisiones nuestras dentro —qué servicios entran en la cesta, qué
           rendimientos a escala se suponen, qué se hace con quien declara a medias— y esas
-          decisiones mueven el número.{' '}
-          {/* Decía «con cuatro cestas igual de defendibles, la distancia de
-              Riba-roja a la frontera recorre media escala». Ningún dea.json lo
-              sostuvo nunca: dos de las cuatro no dan puntuación y entre las
-              otras dos θ va de 0,43 a 0,53. La medición sale ahora del
-              snapshot; ver `src/scraper/dea-sensibilidad.ts`. */}
-          <MedicionCestas s={sensibilidad} /> Por eso está en el laboratorio, por eso la página dice
-          qué no es antes de enseñar ninguna cifra, y por eso publica el método entero.
+          decisiones mueven el número: con la misma fuente, la distancia de Riba-roja a la frontera
+          cambia según cuál de varias cestas igual de defendibles se elija, y con las más completas
+          casi nunca se puede medir. Por eso está en el laboratorio, por eso la página dice qué no
+          es antes de enseñar ninguna cifra, y por eso publica el método entero.
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>No se nombra a ningún otro municipio.</strong> En{' '}

@@ -3,13 +3,21 @@ import { usePlenos } from '../hooks/usePlenos'
 import { usePlenoFindings } from '../hooks/usePlenoFindings'
 import { useQuejas } from '../hooks/useQuejas'
 import { useTenders } from '../hooks/useTenders'
-import { useSensibilidadCestas } from '../hooks/useFrontera'
-import { ClasificacionSinNota } from '../components/frontera/SensibilidadCestas'
 import { summarizeImpact } from '../lib/impact-stats'
 
 // Contact: operator's real mailbox. Swap to redaccion@civicpulse.es once the
 // domain mailbox exists (tracked in docs/superpowers/audits/…-opensource-preflight.md §4).
 const CONTACT_EMAIL = 'civicpulse_es@proton.me'
+
+/*
+ * prosa-describe: dea.json
+ *
+ * «Qué es CivicPulse» explica por qué no hay nota con lo que midió
+ * /laboratorio/frontera, sin cargarlo. Decía «cuatro cestas igual de
+ * defendibles mueven la puntuación media escala», y ninguna entrega de 2014 a
+ * 2024 lo sostuvo: nada ataba esta página a dea.json, así que ningún aviso la
+ * nombraba. La declaración la mete en el mapa de prosa.
+ */
 
 export function StatCell({ value, label, loading }) {
   return (
@@ -106,7 +114,6 @@ function OperatorPhoto() {
 }
 
 export default function Nosotros() {
-  const sensibilidad = useSensibilidadCestas()
   return (
     <div
       className="cp-page"
@@ -226,13 +233,13 @@ export default function Nosotros() {
         </p>
         <p>
           <strong>Lo que no vas a encontrar aquí es una nota.</strong> Ni del ayuntamiento, ni de un
-          servicio, ni de un concejal, ni de otro municipio.{' '}
-          {/* Decía que «cuatro cestas de indicadores igual de defendibles
-              mueven la puntuación media escala». Ningún dea.json lo sostuvo:
-              dos de las cuatro no dan puntuación, y entre las otras dos θ va
-              de 0,43 a 0,53. La frase sale ahora del snapshot, y da cuánto se
-              MUEVE Riba-roja, nunca dónde está. */}
-          <ClasificacionSinNota s={sensibilidad} /> Publicamos el método —incluidas las
+          servicio, ni de un concejal, ni de otro municipio. Lo hemos medido en{' '}
+          <a href="/laboratorio/frontera" style={{ color: 'var(--civic)' }}>
+            el laboratorio
+          </a>
+          : la puntuación cambia según cuál de varias cestas de indicadores igual de defendibles
+          elijamos, y con las más completas casi nunca se puede calcular, así que una nota diría más
+          de nuestras decisiones que de tu pueblo. Publicamos el método —incluidas las
           especificaciones que fallaron— y nos negamos a publicar la tabla.
         </p>
         <p>

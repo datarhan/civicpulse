@@ -67,6 +67,6 @@ body:
       value: |
         ---
 
-        **Ingreso**: las etiquetas que pone este formulario (`derecho-replica` + `eficiencia`) sólo enrutan el issue; no publican nada. Un mantenedor revisa la réplica y comprueba su origen, y si la aprueba le pone la etiqueta `publicar`. Sólo entonces un workflow comprueba que quien la puso tiene permiso de escritura en el repositorio, escribe la réplica en `public/data/eficiencia-findings.json` a través del validador de `src/scraper/eficiencia-finding.ts`, comitea al historial público y cierra el issue.
+        **Ingreso**: enviar el formulario no publica nada. Cuando un mantenedor la aprueba añadiendo la etiqueta `publicar` —que este formulario no pone—, un workflow comprueba su permiso, escribe la réplica en `public/data/eficiencia-findings.json` a través del validador de `src/scraper/eficiencia-finding.ts`, comitea al historial público y cierra el issue.
 
         Una réplica posterior sustituye a la anterior en la ficha —muestra tu posición vigente—; todas quedan en el historial de git.

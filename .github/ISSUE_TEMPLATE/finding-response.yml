@@ -69,6 +69,6 @@ body:
       value: |
         ---
 
-        **Ingreso**: las etiquetas que pone este formulario (`derecho-replica` + `hallazgo`) sólo enrutan el issue; no publican nada. Un mantenedor revisa la réplica y comprueba su origen, y si la aprueba le pone la etiqueta `publicar`. Sólo entonces un workflow comprueba que quien la puso tiene permiso de escritura en el repositorio y escribe la réplica en `public/data/pleno-findings.json`, respetando el formato requerido por el validador de `src/scraper/pleno-finding.ts`. El issue se cierra al terminar y el commit queda en el historial público de git.
+        **Ingreso**: enviar el formulario no publica nada. Cuando un mantenedor la aprueba añadiendo la etiqueta `publicar` —que este formulario no pone—, un workflow comprueba su permiso y escribe la réplica en `public/data/pleno-findings.json`, respetando el formato que exige el validador de `src/scraper/pleno-finding.ts`. El issue se cierra al terminar y el commit queda en el historial público de git.
 
         Cualquier corrección posterior (rectificación, aclaración, ampliación) va en una réplica nueva, no en una edición de este issue: editarlo no cambia lo publicado. La nueva pasa por la misma revisión y sustituye a la anterior en la ficha; todas quedan en el historial de git, que es auditable.

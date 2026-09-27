@@ -107,9 +107,10 @@ de que falta algo.
 
 **El motivo, medido y no supuesto.** `/laboratorio/frontera` calcula
 eficiencia con el método que usan los economistas para esto, y publica lo que
-pasó al probarlo: **cuatro cestas de indicadores igual de defendibles mueven
-la puntuación de Riba-roja por media escala.** La nota no salía del municipio;
-salía de qué decidimos meter en la cesta. Publicar una habría sido publicar
+pasó al probarlo: **la puntuación de Riba-roja cambia según cuál de varias
+cestas de indicadores igual de defendibles elijamos, y con las más completas
+casi nunca se puede calcular.** La nota no salía del municipio; salía de qué
+decidimos meter en la cesta. Publicar una habría sido publicar
 nuestra opinión con aspecto de cifra. Así que se publica el método entero —y
 las especificaciones que fallaron— y se rehúsa la tabla.
 
@@ -167,9 +168,9 @@ esta web.
 >
 > **Lo que no vas a encontrar es una nota.** Ni del ayuntamiento ni de nadie:
 > una puntuación sería nuestra opinión con aspecto de cifra, y lo hemos medido
-> —cuatro cestas igual de defendibles la mueven media escala—. Se publican los
-> hechos y el método; el juicio lo haces tú, y lo haces votando en mayo de
-> 2027.
+> —cambia según cuál de varias cestas igual de defendibles elijamos—. Se
+> publican los hechos y el método; el juicio lo haces tú, y lo haces votando en
+> mayo de 2027.
 
 ### Bloque largo ES (~300 palabras)
 
@@ -212,9 +213,10 @@ esta web.
 >
 > **Lo que no da.** Una nota. Ninguna: ni del ayuntamiento, ni de un servicio,
 > ni de un concejal, ni de otro municipio. Está medido en
-> `/laboratorio/frontera` — cuatro cestas de indicadores igual de defendibles
-> mueven la puntuación media escala, así que la nota diría más de nuestras
-> decisiones que del municipio. Se publica el método, incluidas las
+> `/laboratorio/frontera` — la puntuación cambia según cuál de varias cestas de
+> indicadores igual de defendibles elijamos, y con las más completas casi nunca
+> se puede calcular, así que la nota diría más de nuestras decisiones que del
+> municipio. Se publica el método, incluidas las
 > especificaciones que fallaron, y se rehúsa la tabla. El juicio lo hace quien
 > vota.
 >
@@ -249,9 +251,10 @@ esta web.
 > reply — and a published map of where the official data runs out.
 >
 > **What it will not give you is a score** — of the council, a service, or any
-> other municipality. Four equally defensible indicator baskets move the
-> measured efficiency figure across half the scale, so a score would say more
-> about our choices than about the town. We publish the method, failed
+> other municipality. The efficiency score changes with which of several
+> equally defensible indicator baskets we pick, and with the fullest baskets it
+> can rarely be computed at all, so a score would say more about our choices
+> than about the town. We publish the method, failed
 > specifications included, and refuse the table.
 
 ## Registro de afirmaciones
@@ -278,6 +281,8 @@ la frase sale de los textos **antes** de que la copia se envíe a nadie.
 | «las quejas vecinales con su reloj legal»                                                     | `/quejas` — plazos LPACAP + escalado al Síndic.                                                                                                              |
 | «cuatro investigaciones publicadas»                                                           | `/reportajes` — reconstrucción DANA, basuras, coste efectivo, inteligencia turística (todas `estado: publicado`).                                            |
 | «dónde se acaban los datos oficiales»                                                         | `/lab-health` + `MoneyCoverage` + las especificaciones fallidas de `/laboratorio/frontera`.                                                                   |
+| «la puntuación cambia según cuál de varias cestas igual de defendibles elijamos»              | `/laboratorio/frontera` — `dea.json`: `propia.theta` de cada cesta publicada en la misma entrega; ninguna entrega con dos cestas publicadas les dio la misma. Sustituye a «cuatro cestas… mueven la puntuación media escala», que ninguna entrega sostuvo: de 2014 a 2024 nunca hubo cuatro cestas con puntuación a la vez. |
+| «con las más completas casi nunca se puede calcular»                                          | `dea.json` — `serie[].estado` de las cestas de cuatro y cinco servicios: `insuficiente` casi todas las entregas (la de cinco, todas); el motivo, en `motivoEstado`. |
 | «todo abierto — código, datos y método»                                                       | AGPL-3.0 + `/datos` + `/metodologia`.                                                                                                                        |
 | «derecho de réplica»                                                                          | Flujo extremo a extremo: issue → CLI con validador → commit.                                                                                                 |
 | «los ~8.100 municipios por código INE»                                                        | CONPREL, PLACSP, BDNS, INE, SEPE y boletines indexan por municipio a escala estatal. Censo vigente: **8.132** municipios.                                    |
@@ -303,9 +308,10 @@ la frase sale de los textos **antes** de que la copia se envíe a nadie.
   escrita: le pide a la democracia representativa algo que ninguna norma
   española contempla, y convierte un hecho en una opinión discutible.
 - **Nunca una nota, tampoco la nuestra.** No se puntúa al ayuntamiento, ni a un
-  servicio, ni a un cargo. Está medido: cuatro cestas defendibles mueven la
-  puntuación media escala (`/laboratorio/frontera`), así que una nota diría más
-  de nuestras decisiones que del municipio. Se publican los hechos, la
+  servicio, ni a un cargo. Está medido (`/laboratorio/frontera`): la puntuación
+  cambia según cuál de varias cestas igual de defendibles elijamos, y con las
+  más completas casi nunca se puede calcular, así que una nota diría más de
+  nuestras decisiones que del municipio. Se publican los hechos, la
   comparación que publica el ministerio y el método —fallos incluidos—; el
   juicio lo hace quien lee. Y la descripción **lo dice**, en vez de dejar que
   el lector lo descubra y se vaya con la sensación de que falta algo.
