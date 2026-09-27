@@ -41,7 +41,7 @@ const PROJECT_ROOT = join(__dirname, '..')
 // 2026-05-25: ribarroja.es retired the plain-HTTP /ayuntamiento path; it
 // now ECONNRESETs from undici instead of redirecting. Same content lives
 // under HTTPS + /es/ — flagged when scrape:officials silently broke the
-// nightly chain for 8 days (CLAUDE.md §Nightly refresh).
+// nightly chain for 8 days (docs/OPERATIONS.md §Nightly refresh).
 //
 // 2026-09-08: y otra vez, con el portal entero. `/es/ayuntamiento/
 // corporacion_municipal` contesta 403 —ni 301 ni 404: «prohibido», que es la

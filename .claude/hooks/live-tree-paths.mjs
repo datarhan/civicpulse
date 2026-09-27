@@ -3,10 +3,12 @@
  *
  * This repo is not checked out on a quiet machine. Five launchd agents —
  * `scrape-ci-blocked`, `hallazgos`, `press-lab`, `auto-curate-promises`,
- * `review-sweep` — run against THIS working tree on their own schedule, write
- * `public/data/`, and finish with their own `git commit` + `git push origin
- * main`. A tree-moving git command is therefore not a local operation here: it
- * is a write to something another process is holding open.
+ * `review-sweep` — run against THIS working tree on their own schedule. The
+ * first four write `public/data/` and finish with their own `git commit` +
+ * `git push origin main`; `review-sweep` is report-only and commits nothing,
+ * but it builds and reads whatever the tree holds while it runs. A tree-moving
+ * git command is therefore not a local operation here: it is a write to
+ * something another process is holding open.
  *
  * ## The incident this encodes (2026-09-05)
  *
@@ -39,6 +41,13 @@
  * against stale state goes stale itself, which is the joke this repo has
  * already told twice (see `build:prose-map`).
  *
+ * On macOS only. BSD `pgrep -fl` prints each match's full command line, which
+ * is what the script-name regex in `agentesEnMarcha` reads. procps `pgrep` on
+ * Linux prints only the process name under `-l` (`bash`, `node`; the full line
+ * is `-a`, which on macOS means something else), so nothing matches and the
+ * hook never fires there. The agents are launchd jobs, so today that costs
+ * nothing — but on Linux its silence says nothing about the fleet.
+ *
  * And it fires ONLY while an agent is actually up. That is what keeps it from
  * becoming the reminder everybody switches off: on a quiet tree these commands
  * are exactly as safe as they look, and the hook says nothing.
@@ -65,10 +74,11 @@ export const MUEVEN_EL_ARBOL = [
 ]
 
 /**
- * Y la que no mueve el árbol pero compite igual: los cinco agentes terminan en
- * `git push origin main`, así que empujar mientras uno corre es la carrera que
- * deja un non-fast-forward — y un rebase atascado se salta los cinco en
- * silencio sin que ninguna de las guardas del parte lo vea.
+ * Y la que no mueve el árbol pero compite igual: cuatro de los cinco agentes
+ * terminan en `git push origin main` (`review-sweep` no empuja), así que
+ * empujar mientras uno corre es la carrera que deja un non-fast-forward — y un
+ * rebase atascado se salta los cinco en silencio sin que ninguna de las guardas
+ * del parte lo vea.
  */
 export const COMPITE_AL_EMPUJAR = ['push']
 
@@ -147,7 +157,8 @@ export function decideLiveTreeBash(command, listar = agentesEnMarcha) {
     decision: 'ask',
     reason:
       cabecera +
-      'Los agentes terminan en su propio `git push origin main`. Empujar ahora puede dejarles ' +
+      'Los agentes que publican —todos menos `review-sweep`— terminan en su propio ' +
+      '`git push origin main`. Empujar ahora puede dejarles ' +
       'un non-fast-forward, y un rebase atascado se salta los cinco EN SILENCIO sin que las ' +
       'guardas del parte lo vean.\n\n' +
       'Suele bastar con esperar: comitean y empujan lo suyo solos.',

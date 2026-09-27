@@ -22,23 +22,19 @@ import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 
 /**
- * Todos los ficheros de código bajo un directorio, HOJAS DE ESTILO INCLUIDAS.
- *
- * El filtro era sólo `.jsx?/.tsx?`, así que `src/index.css` —donde viven los
- * tokens, el bloque `html.dark`, las media queries del armazón y las rejillas de
- * media docena de páginas— no aparecía en el grafo y no mapeaba a NINGUNA ruta.
- * Un push que reescribiera la hoja global no disparaba ninguna revisión de
- * superficies. Medido el 26-08-2026: se reescribió a fondo y el gancho no leyó
- * una sola página por ese motivo.
- */
-/**
  * Los ficheros cuyo TEXTO se escanea: imports y referencias a `/data/*.json`.
  *
- * Sin `.css` a propósito, y medido. Al arreglar el punto ciego de la hoja
- * global la tentación es meterla aquí; no sirve de nada. `alcanzaEstatico`
- * añade el nodo que RESUELVE, esté o no en este listado, así que `index.css`
- * llega a sus treinta rutas igual —comprobado con el filtro puesto y quitado, y
- * da 30 las dos veces—. Lo que faltaba era la arista de EFECTO (`import
+ * Hubo un punto ciego: `src/index.css` —donde viven los tokens, el bloque
+ * `html.dark`, las media queries del armazón y las rejillas de media docena de
+ * páginas— no mapeaba a NINGUNA ruta, así que un push que reescribiera la hoja
+ * global no disparaba ninguna revisión de superficies. Medido el 26-08-2026: se
+ * reescribió a fondo y el gancho no leyó una sola página por ese motivo.
+ *
+ * Sin `.css` a propósito, y medido. Al arreglar ese punto ciego la tentación es
+ * meter la hoja aquí; no sirve de nada. `alcanzaEstatico` añade el nodo que
+ * RESUELVE, esté o no en este listado, así que `index.css` llega a sus treinta
+ * rutas igual —comprobado con el filtro puesto y quitado, y da 30 las dos
+ * veces—. Lo que faltaba era la arista de EFECTO (`import
  * './index.css'`, sin `from`), y ésa vive en el regex de abajo. Un `.css` aquí
  * sería código inerte con un comentario atribuyéndose el arreglo.
  */

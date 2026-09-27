@@ -17,7 +17,7 @@ import { worstFreshness } from '../lib/data-freshness'
  *
  * Sources: officials, promises, pleno-agendas, pleno-votes, quejas, and
  * the pleno-claims chunk manifest's totals.byTopicVerdict cross-tab
- * (~12 KB) — the same numbers the full chunk corpus would produce,
+ * — the same numbers the full chunk corpus would produce,
  * without downloading it (LLM-second-pass-aware: the chunker runs after
  * the base ⊕ overlay merge).
  *

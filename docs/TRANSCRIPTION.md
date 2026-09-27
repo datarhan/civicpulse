@@ -20,6 +20,17 @@ at a cost in setup, runtime or money.
 `WHISPER_MODEL` chooses the weights (`large-v3` default; `medium`/`small` trade
 WER for speed).
 
+`mlx` needs a one-time bootstrap. Both `transcribe-pleno.sh` and the curator's
+`transcribe-file.ts` look for the venv at exactly this path:
+
+```bash
+python3.10 -m venv ~/.local/civicpulse-mlx/venv
+~/.local/civicpulse-mlx/venv/bin/pip install lightning-whisper-mlx
+```
+
+The first run downloads the weights into `mlx_models/` under the directory it
+runs from — the repo root, where that folder is gitignored.
+
 ### The Gemini quota, measured rather than read
 
 **25 requests/day**, established on 2026-09-03 by exhausting it and reading the
