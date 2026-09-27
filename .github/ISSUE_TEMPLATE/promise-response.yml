@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Si tu partido o grupo municipal ha sido citado en el tracker de promesas de CivicPulse y quieres publicar una respuesta oficial, este es el canal. Todas las respuestas se insertan íntegras y verbatim en el JSON publicado en `/promesas` y se muestran en la ficha correspondiente como *"Respuesta del grupo X"*.
+        Si tu partido o grupo municipal ha sido citado en el tracker de promesas de CivicPulse y quieres publicar una respuesta oficial, este es el canal. Cada respuesta aprobada se inserta íntegra y verbatim en el JSON publicado en `/promesas` y se muestra en la ficha correspondiente como *"Respuesta del grupo X"*.
 
         Plazo de revisión: 24 h hábiles. Resolución: 72 h. Historial público en git.
 

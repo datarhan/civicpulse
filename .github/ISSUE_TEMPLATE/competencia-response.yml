@@ -65,4 +65,4 @@ body:
   - type: markdown
     attributes:
       value: |
-        **Ingreso**: al etiquetar este issue como `derecho-replica`, la réplica se incorpora a `public/data/competencias.json` mediante `npm run competencia-reply`, que revalida el snapshot entero antes de escribir. El commit queda en el historial público de git.
+        **Ingreso**: las etiquetas que pone este formulario (`derecho-replica`, `competencias`) sólo lo hacen llegar a quien revisa; no publican nada, y ningún proceso automático recoge este tipo de réplica. Un mantenedor comprueba que viene de quien la firma y, si la aprueba, la incorpora él mismo a `public/data/competencias.json` con `npm run competencia-reply`, que revalida el snapshot entero antes de escribir. El commit queda en el historial público de git.

@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Si tu grupo municipal ha sido citado en un hallazgo editorial de CivicPulse y quieres publicar una respuesta oficial, este es el canal. Todas las respuestas se insertan íntegras y verbatim en `public/data/pleno-findings.json` y se muestran en la ficha del hallazgo como *"Réplica del grupo X"*.
+        Si tu grupo municipal ha sido citado en un hallazgo editorial de CivicPulse y quieres publicar una respuesta oficial, este es el canal. Cada respuesta aprobada se inserta íntegra y verbatim en `public/data/pleno-findings.json` y se muestra en la ficha del hallazgo como *"Réplica del grupo X"*.
 
         Plazo de revisión: 24 h hábiles. Resolución: 72 h. Historial público en git.
 
@@ -67,6 +67,6 @@ body:
       value: |
         ---
 
-        **Ingreso automatizado**: cuando este issue se etiqueta como `derecho-replica`, un workflow lo procesa y escribe la réplica en `public/data/pleno-findings.json`, respetando el formato requerido por el validador de `src/scraper/pleno-finding.ts`. El issue se cierra automáticamente al terminar y el commit queda en el historial público de git.
+        **Ingreso**: las etiquetas que pone este formulario (`derecho-replica` + `hallazgo`) sólo enrutan el issue; no publican nada. Un mantenedor revisa la réplica y comprueba su origen, y si la aprueba le pone la etiqueta `publicar`. Sólo entonces un workflow comprueba que quien la puso tiene permiso de escritura en el repositorio y escribe la réplica en `public/data/pleno-findings.json`, respetando el formato requerido por el validador de `src/scraper/pleno-finding.ts`. El issue se cierra al terminar y el commit queda en el historial público de git.
 
-        Cualquier corrección posterior (rectificación, aclaración, ampliación) se trata como una nueva respuesta, nunca como una edición de la anterior — todo el historial es auditable.
+        Cualquier corrección posterior (rectificación, aclaración, ampliación) va en una réplica nueva, no en una edición de este issue: editarlo no cambia lo publicado. La nueva pasa por la misma revisión y sustituye a la anterior en la ficha; todas quedan en el historial de git, que es auditable.
