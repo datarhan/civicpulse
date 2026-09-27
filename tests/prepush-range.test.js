@@ -184,3 +184,68 @@ describe('el gancho no puede insinuar que leyó', () => {
     expect(codigo).toMatch(/revisada\(s\) al completo/)
   })
 })
+
+/**
+ * «Completa» sólo si no quedó NINGUNA ruta sin leer, por el motivo que sea.
+ *
+ * El gancho decidía entre PARCIAL y completa buscando dos marcas en el parte del
+ * script —«NO se llegó a» y «PARCIAL»—, y el script tiene cinco maneras de decir
+ * que una ruta no se leyó. Las otras tres pasaban por completas. La que más:
+ * «SIN REVISAR», que es lo que queda cuando el backend no contesta, y el backend
+ * de los agentes es claude-code, que se queda sin cuota. Medido en los partes de
+ * los agentes (scripts/logs/, 27-09-2026): el gancho imprimió «revisión completa»
+ * 32 veces, y las 32 iban sobre un resumen con rutas SIN REVISAR — varias con
+ * «8 SIN REVISAR» de 8 y «texto leído por el modelo: 0 %».
+ *
+ * Por eso las marcas se sacan del propio script y no se copian aquí: una lista
+ * copiada es la que se quedó en dos cuando el script ya decía cinco.
+ */
+describe('el gancho no llama completa a una revisión con rutas sin leer', () => {
+  const SCRIPT = readFileSync(join(__dirname, '..', 'scripts', 'review-surfaces.ts'), 'utf8')
+
+  // Las marcas del resumen: ` · ${partial.length} PARCIAL(ES)`, etc. Cada una es
+  // una clase de ruta que el script NO leyó entera.
+  const marcas = [
+    ...SCRIPT.matchAll(/\(\w+\.length > 0\s*\?\s*` · \$\{\w+\.length\} ([^`]+)`/g),
+  ].map((m) => m[1])
+
+  // El patrón con el que el gancho decide que la revisión NO fue completa.
+  const patron = codigo.match(/if grep -qE '([^']+)' "\$LOG"/)?.[1]
+
+  it('mide algo: el script tiene sus marcas y el gancho su patrón', () => {
+    expect(
+      marcas.length,
+      'no se encontraron las marcas del resumen en review-surfaces.ts',
+    ).toBeGreaterThanOrEqual(4)
+    expect(patron, 'no se encontró el grep que decide «completa»').toBeTruthy()
+  })
+
+  it('cada marca del resumen del script cuenta como revisión NO completa', () => {
+    const re = new RegExp(patron)
+    const sueltas = marcas.filter((m) => !re.test(`[review] 8 de 34 ruta(s) públicas · 3 ${m}`))
+    expect(sueltas, 'marcas que el gancho leería como «completa»').toEqual([])
+  })
+
+  it('el caso medido: backend sin cuota, 4 SIN REVISAR, no es completa', () => {
+    // Línea literal del parte de hallazgos-pipeline, sin el final truncado.
+    const real =
+      '[review] 8 de 34 ruta(s) públicas · 68s de un presupuesto de 180s · 4 sin cambios · ' +
+      '0 revisada(s) al completo · 4 señalamiento(s) para revisión humana (4 heredado(s) de una ' +
+      'revisión anterior) · 38 reintento(s) de backend · 4 SIN REVISAR'
+    expect(new RegExp(patron).test(real)).toBe(true)
+  })
+
+  it('una pasada limpia sigue siendo completa: el patrón no se come el resumen normal', () => {
+    const limpia =
+      '[review] 2 de 34 ruta(s) públicas · 75s de un presupuesto de 180s · 1 sin cambios · ' +
+      '1 revisada(s) al completo · 0 señalamiento(s) para revisión humana'
+    expect(new RegExp(patron).test(limpia)).toBe(false)
+  })
+
+  it('y dice cuántas se saltaron por no haber cambiado, que no es lo mismo que leerlas', () => {
+    // «leídas enteras 0 de 3» y «completa» en la misma frase se contradicen si
+    // no se dice que las tres estaban sin cambios desde su última lectura.
+    expect(codigo).toMatch(/SIN_CAMBIOS=/)
+    expect(codigo).toMatch(/sin cambios desde su última lectura/)
+  })
+})

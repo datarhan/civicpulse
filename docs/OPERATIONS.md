@@ -582,8 +582,13 @@ a partial pass read as full coverage — as of 2026-08-03 that is 11 of 15.
   `[review]` coverage summary prints «la revisión NO llegó a emitir resumen —
   leídas 0 de N ruta(s)». Fault injection found the old hook printing «parcial
   por diseño» over a Playwright crash that had reviewed zero pages. A run that
-  did read ends on «revisión completa» or «revisión PARCIAL», with how many
-  routes it read in full. And a push that touches the map's layers
+  did read ends on «revisión completa» or «revisión INCOMPLETA», with how many
+  routes it read in full and how many were skipped as unchanged. INCOMPLETA
+  whenever the summary names any route left unread — cut off by the budget,
+  unmounted, unreachable, or SIN REVISAR because the backend did not answer.
+  Until 2026-09-27 only the first of those counted, and the agents' logs held 32
+  «revisión completa» lines over reviews with routes SIN REVISAR, some with all
+  eight of eight. And a push that touches the map's layers
   (`src/components/LiveCity/`) is told that their prose only exists with the
   layer switched on, so this pass has not read it; the sweep reads it as
   `/ [capas]`.
