@@ -201,6 +201,9 @@ interface CopiaDeTarjeta {
   message_id: number
 }
 
+/** Cómo acabó mandar una copia: `retirada` es que su autor la retiró antes de que saliera, y no salió. */
+export type ResultadoCopia = 'entregada' | 'fallida' | 'ya-estaba' | 'retirada'
+
 /**
  * Manda una copia de la tarjeta a un administrador y la anota; se llama con el
  * candado de la queja. La fila que trae quien llama puede ser vieja —la pasada
@@ -211,9 +214,6 @@ interface CopiaDeTarjeta {
  * salía y borró el rastro—, la copia recién llegada va derecha a la cola de
  * vaciado, y se vacía.
  */
-/** Cómo acabó mandar una copia: `retirada` es que su autor la retiró antes de que saliera, y no salió. */
-export type ResultadoCopia = 'entregada' | 'fallida' | 'ya-estaba' | 'retirada'
-
 async function mandarCopia(
   db: Db,
   fila: QuejaRow,

@@ -789,4 +789,19 @@ describe('lo que la revisión deja atrás (revisión de la pasada de #137)', () 
       masAntiguaHoras: 0,
     })
   })
+
+  it('/revisar de una queja que su autora retira mientras espera el candado dice que la retiró', async () => {
+    const id = await presentar()
+    const { envio, soltar } = envioConEspera('editar')
+    // Otra operación sobre la misma queja tiene el candado: su primera edición se atasca.
+    const alDia = actualizarTarjetas(db, id, { envio })
+    await unTic()
+    const revisar = h.bot.handleUpdate(texto(ADMIN_A, `/revisar ${id}`))
+    await unTic()
+    await unTic()
+    expect(softDeleteQueja(db, id, autorTelegram(VECINA))).toBe(true)
+    soltar()
+    await Promise.all([alDia, revisar])
+    expect(String(h.a(ADMIN_A).at(-1)?.cuerpo.text)).toMatch(/acaba de retirar/)
+  })
 })
