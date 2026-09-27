@@ -139,10 +139,14 @@ export const ALLOWED_RELATIONSHIP_NODE_KINDS: readonly RelationshipNodeKind[] = 
   'entity',
 ] as const
 
-// Quién puede firmar una réplica a un informe: un grupo municipal o `person`,
-// la persona de la que trata el informe (se publica con su nombre: ver
-// `./replica.ts`). Llevaba también `Otro`, un centinela que se habría publicado
-// como «Réplica de Otro» (regla 3 de DATA_INTEGRITY). Ninguna réplica lo usó.
+// Quién puede firmar una réplica a un informe: un grupo municipal; `person`, la
+// persona de la que trata el informe; o `aludido`, una institución u otra
+// persona que el informe nombra, que firma con `fromName`. Las dos últimas se
+// publican con un nombre, nunca con la clave (ver `./replica.ts`). Llevaba
+// también `Otro`, un centinela que se habría publicado como «Réplica de Otro»
+// (regla 3 de DATA_INTEGRITY); ninguna réplica lo usó. `aludido` cubre lo que
+// `Otro` quería cubrir, y /aviso-legal promete: réplica a «un grupo, un cargo o
+// una institución aludidos».
 export const RESPONSE_BLOCS = [
   'PSOE',
   'PP',
@@ -151,6 +155,7 @@ export const RESPONSE_BLOCS = [
   'Ciudadanos',
   'EU-Podem',
   'person',
+  'aludido',
 ] as const
 
 // Tokens that mark judicial sensitivity. Used by reports the LLM emits to
@@ -448,6 +453,8 @@ export interface JournalistReportCorrection {
 
 export interface JournalistReportResponse {
   from: string
+  /** Con `from: 'aludido'`, y sólo entonces: el nombre con el que firma. */
+  fromName?: string
   quote: string
   respondedAt: string
   sourceUrl?: string

@@ -398,6 +398,53 @@ describe('validateReportsSnapshot', () => {
     )
   })
 
+  // `aludido`: una institución u otra persona que el informe nombra. /aviso-legal
+  // promete réplica a «un grupo, un cargo o una institución aludidos», y hasta el
+  // 27-09-2026 un informe sólo admitía grupos y a su propio sujeto: la única
+  // salida era `Otro`, que se habría publicado como «Réplica de Otro». Un
+  // `aludido` se publica con el nombre con el que firma, y sin él no pasa.
+  const conReplica = (response: Record<string, unknown>) =>
+    JSON.stringify({ ...VALID_REPORTS_SNAPSHOT, items: [{ ...SAMPLE_REPORT, response }] })
+  const QUOTE = 'Reafirmamos lo dicho hace ya varios meses en sede municipal y por escrito.'
+
+  it('accepts an `aludido` reply that says who signs it, trimmed', () => {
+    const snap = validateReportsSnapshot(
+      conReplica({
+        from: 'aludido',
+        fromName: '  Ayuntamiento de Riba-roja de Túria ',
+        quote: QUOTE,
+        respondedAt: '2026-09-27',
+      }),
+    )
+    expect(snap.items[0].response).toMatchObject({
+      from: 'aludido',
+      fromName: 'Ayuntamiento de Riba-roja de Túria',
+    })
+  })
+
+  it('rejects an `aludido` reply without a name to publish', () => {
+    expect(() =>
+      validateReportsSnapshot(
+        conReplica({ from: 'aludido', quote: QUOTE, respondedAt: '2026-09-27' }),
+      ),
+    ).toThrow(/response.fromName/)
+    expect(() =>
+      validateReportsSnapshot(
+        conReplica({ from: 'aludido', fromName: ' ', quote: QUOTE, respondedAt: '2026-09-27' }),
+      ),
+    ).toThrow(/response.fromName/)
+  })
+
+  it('rejects a name on a group or subject reply: it would be dropped in silence', () => {
+    for (const from of ['PSOE', 'person']) {
+      expect(() =>
+        validateReportsSnapshot(
+          conReplica({ from, fromName: 'Alguien', quote: QUOTE, respondedAt: '2026-09-27' }),
+        ),
+      ).toThrow(/response.fromName/)
+    }
+  })
+
   it('rejects duplicate report ids', () => {
     const bad = { ...VALID_REPORTS_SNAPSHOT, items: [SAMPLE_REPORT, SAMPLE_REPORT] }
     expect(() => validateReportsSnapshot(JSON.stringify(bad))).toThrow(/duplicate report id/)
