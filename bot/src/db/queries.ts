@@ -260,16 +260,6 @@ export function decidirModeracion(
   })()
 }
 
-/** Quién escribió una queja, para avisarle; null si la retiró o borró sus datos. */
-export function autorDeQueja(db: Db, id: string): Autor | null {
-  const fila = db
-    .prepare(
-      'SELECT c.canal, c.ref FROM quejas q JOIN ciudadanos c ON c.id = q.ciudadano_id WHERE q.id = ?',
-    )
-    .get(id) as Autor | undefined
-  return fila ?? null
-}
-
 /**
  * Derecho al olvido (RGPD art. 17). La fila se conserva como rastro de auditoría
  * durante el plazo de conservación (`CONSERVACION_QUEJAS_ANIOS`, art. 55

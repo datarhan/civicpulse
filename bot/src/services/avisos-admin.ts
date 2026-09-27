@@ -22,8 +22,8 @@
 import type { Api } from 'grammy'
 import type { Db } from '../db/client.ts'
 import type { Moderacion } from '../db/migraciones.ts'
-import { autorDeQueja, getQuejaViva, type QuejaRow } from '../db/queries.ts'
-import { avisoAlAutor } from './textos-revision.ts'
+import { getQuejaViva, type QuejaRow } from '../db/queries.ts'
+import { avisoAlAutor, DECISIONES_CON_AVISO } from './textos-revision.ts'
 import { escaparHtml } from '../util/html.ts'
 import { logger } from '../util/log.ts'
 import { cortar, MAX_MENSAJE } from '../util/telegram.ts'
@@ -364,60 +364,117 @@ export function listarPendientes(
   }))
 }
 
+/** Lo que Telegram no aceptará por mucho que se repita: la autora bloqueó el bot (403), o su chat no existe (400). */
+const RECHAZO_DEFINITIVO = new Set([400, 403])
+
+/** grammY lanza lo que Telegram rechaza con el código en `error_code`; un error de red no lo trae. */
+function esRechazoDefinitivo(err: unknown): boolean {
+  const codigo = (err as { error_code?: unknown } | null)?.error_code
+  return typeof codigo === 'number' && RECHAZO_DEFINITIVO.has(codigo)
+}
+
+/** Lo que hizo una pasada de avisos a autores, contado por separado. */
+export interface ResultadoAvisos {
+  intentados: number
+  entregados: number
+  /** Rechazados para siempre: se anotan y no se reintentan. */
+  rechazados: number
+  /** Fallidos de paso —la red, un 429—: quedan para la pasada siguiente. */
+  fallidos: number
+}
+
+interface AvisoQueFalta {
+  decision: number
+  queja_id: string
+  hasta: Moderacion
+  ref: string
+}
+
+/**
+ * Los avisos a su autor que faltan: el de la ÚLTIMA decisión de cada queja viva
+ * de un autor de Telegram, si esa decisión lleva aviso y no consta entregado ni
+ * rechazado. Lo que no sale aquí no tiene a quién ni qué decir —su autora la
+ * retiró o borró sus datos, o la decisión no lleva aviso—, así que ninguna
+ * pasada vuelve sobre ello. Un reclamo sin resultado sí sale: si caducó porque
+ * el proceso cayó al mandarlo, `reclamar` lo toma.
+ */
+function avisosQueFaltan(db: Db, quejaId?: string): AvisoQueFalta[] {
+  return db
+    .prepare(
+      `SELECT m.id AS decision, m.queja_id, m.decision AS hasta, c.ref
+         FROM moderaciones m
+         JOIN quejas q ON q.id = m.queja_id
+         JOIN ciudadanos c ON c.id = q.ciudadano_id
+        WHERE q.deleted_at IS NULL AND q.moderacion = m.decision AND c.canal = 'telegram'
+          AND m.decision IN (${DECISIONES_CON_AVISO.map(() => '?').join(', ')})
+          AND m.id = (SELECT MAX(id) FROM moderaciones WHERE queja_id = m.queja_id)
+          AND NOT EXISTS (SELECT 1 FROM avisos a
+                           WHERE a.queja_id = m.queja_id AND a.tipo = 'autor:' || m.id
+                             AND a.resultado IS NOT NULL)
+          ${quejaId ? 'AND m.queja_id = ?' : ''}
+        ORDER BY m.id`,
+    )
+    .all(...DECISIONES_CON_AVISO, ...(quejaId ? [quejaId] : [])) as AvisoQueFalta[]
+}
+
+/**
+ * Manda los avisos a su autor que faltan, de una queja o de todas. Cada uno se
+ * reclama antes de mandarlo, así que dos pasadas a la vez no avisan dos veces.
+ */
+export async function avisarAutores(
+  db: Db,
+  o: { envio: EnvioAdmin; quejaId?: string },
+): Promise<ResultadoAvisos> {
+  const r: ResultadoAvisos = { intentados: 0, entregados: 0, rechazados: 0, fallidos: 0 }
+  for (const f of avisosQueFaltan(db, o.quejaId)) {
+    const texto = avisoAlAutor(f.queja_id, f.hasta)
+    const tipo = `autor:${f.decision}`
+    const destinatario = `telegram:${f.ref}`
+    if (!texto || !reclamar(db, f.queja_id, tipo, destinatario)) continue
+    r.intentados += 1
+    try {
+      const m = await o.envio.mensaje(Number(f.ref), texto)
+      anotar(db, f.queja_id, tipo, destinatario, 'entregado', m?.message_id ?? null)
+      r.entregados += 1
+    } catch (err) {
+      if (esRechazoDefinitivo(err)) {
+        anotar(db, f.queja_id, tipo, destinatario, 'rechazado', null)
+        r.rechazados += 1
+      } else {
+        soltar(db, f.queja_id, tipo, destinatario)
+        r.fallidos += 1
+      }
+      logger.warn('avisos-admin.aviso-autor', { queja: f.queja_id, err: String(err) })
+    }
+  }
+  return r
+}
+
 /**
  * Lo que sigue a una decisión, hecho de forma que se pueda repetir: las
  * tarjetas al día y el aviso de la última decisión a su autor, una sola vez
  * (`autor:<id de la decisión>`). Si contestar al botón falla, o el proceso cae a
- * mitad, un segundo toque o la pasada horaria lo terminan sin repetir nada. Un
- * aviso que Telegram rechaza para siempre —el autor bloqueó el bot— se anota
- * como rechazado y no se reintenta.
+ * mitad, un segundo toque o la pasada horaria lo terminan sin repetir nada.
  */
 export async function completarSeguimiento(
   db: Db,
   id: string,
   o: { envio: EnvioAdmin },
-): Promise<void> {
+): Promise<ResultadoAvisos> {
   await actualizarTarjetas(db, id, { envio: o.envio })
-  const decision = db
-    .prepare(
-      `SELECT id, decision FROM moderaciones
-        WHERE queja_id = ? AND decision != 'heredada' ORDER BY id DESC LIMIT 1`,
-    )
-    .get(id) as { id: number; decision: Moderacion } | undefined
-  const q = getQuejaViva(db, id)
-  // Sin decisión, o decidida otra vez desde entonces, o retirada por su autor.
-  if (!decision || !q || q.moderacion !== decision.decision) return
-  const autor = autorDeQueja(db, id)
-  const texto = avisoAlAutor(id, decision.decision)
-  if (!autor || autor.canal !== 'telegram' || !texto) return
-  const tipo = `autor:${decision.id}`
-  const destinatario = `${autor.canal}:${autor.ref}`
-  if (!reclamar(db, id, tipo, destinatario)) return
-  try {
-    const m = await o.envio.mensaje(Number(autor.ref), texto)
-    anotar(db, id, tipo, destinatario, 'entregado', m?.message_id ?? null)
-  } catch (err) {
-    if (/\b403\b/.test(String(err))) anotar(db, id, tipo, destinatario, 'rechazado', null)
-    else soltar(db, id, tipo, destinatario)
-    logger.warn('avisos-admin.aviso-autor', { queja: id, err: String(err) })
-  }
+  return avisarAutores(db, { envio: o.envio, quejaId: id })
 }
 
-/** Las decisiones cuyo aviso a su autor no consta, para la pasada horaria. */
-export async function completarSeguimientosPendientes(
+/**
+ * La pasada horaria de lo que sigue a las decisiones: sólo los avisos que
+ * faltan. Las tarjetas no se reescriben cada hora: se ponen al día al decidir,
+ * y una que se quedó atrás, al tocar su botón viejo (`ya-decidida`).
+ */
+export function completarSeguimientosPendientes(
   db: Db,
   o: { envio: EnvioAdmin },
-): Promise<number> {
-  const ultimas = db
-    .prepare(
-      `SELECT m.id, m.queja_id FROM moderaciones m
-        WHERE m.decision != 'heredada'
-          AND m.id = (SELECT MAX(id) FROM moderaciones WHERE queja_id = m.queja_id)
-          AND NOT EXISTS (SELECT 1 FROM avisos a WHERE a.queja_id = m.queja_id AND a.tipo = 'autor:' || m.id)`,
-    )
-    .all() as Array<{ id: number; queja_id: string }>
-  for (const u of ultimas) await completarSeguimiento(db, u.queja_id, o)
-  return ultimas.length
+): Promise<ResultadoAvisos> {
+  return avisarAutores(db, { envio: o.envio })
 }
 
 const HORA_MS = 60 * 60 * 1000
@@ -433,7 +490,7 @@ export function startReenvioTarjetas(o: {
       const r = await reenviarTarjetasPendientes(o.db, { admins: o.admins(), envio: o.envio })
       if (r.quejas > 0) logger.info('avisos-admin.reenvio', r)
       const avisos = await completarSeguimientosPendientes(o.db, { envio: o.envio })
-      if (avisos > 0) logger.info('avisos-admin.seguimiento', { decisiones: avisos })
+      if (avisos.intentados > 0) logger.info('avisos-admin.seguimiento', { ...avisos })
     } catch (err) {
       logger.error('avisos-admin.reenvio', { err: String(err) })
     }

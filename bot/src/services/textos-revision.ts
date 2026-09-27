@@ -3,7 +3,7 @@
  * publicarse: en `/estado`, en `/mis` y en el aviso cuando un administrador
  * decide. En un solo sitio, para que las tres cosas digan lo mismo.
  */
-import type { Moderacion } from '../db/migraciones.ts'
+import { MODERACIONES, type Moderacion } from '../db/migraciones.ts'
 import { CONTACTO } from './contacto.ts'
 
 /** Para el Markdown de `/estado`: el `_` de la dirección abriría una cursiva. */
@@ -51,3 +51,12 @@ export function avisoAlAutor(id: string, hasta: Moderacion): string | null {
       return null
   }
 }
+
+/**
+ * Las decisiones que llevan aviso a su autor, leídas de `avisoAlAutor`: la
+ * pasada que busca los avisos que faltan no mira las demás, y no hay una lista
+ * a mano que pueda quedarse atrás.
+ */
+export const DECISIONES_CON_AVISO: readonly Moderacion[] = MODERACIONES.filter(
+  (m) => avisoAlAutor('Q-0', m) !== null,
+)
