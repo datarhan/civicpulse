@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { buildHealth } from '../src/services/health'
+import { buildHealth, VARIABLE_VERSION } from '../src/services/health'
 
 const base = { mode: 'long-polling', uptimeSec: 10, pid: 1 }
 
@@ -66,5 +66,28 @@ describe('buildHealth · webhook authentication', () => {
     const h = buildHealth(wired, base)
     expect('webhookAuthenticated' in h).toBe(false)
     expect(h.status).toBe('ok')
+  })
+})
+
+/**
+ * `flyctl deploy` en verde no dice qué commit sirve la máquina: el 9-09-2026 la
+ * de producción era de las 08:16Z con cuatro commits encima, y nada lo decía.
+ * `/health` cuenta la versión que el despliegue le pasó, y el paso de después
+ * del despliegue (bot-deploy.yml) la compara con el commit fusionado.
+ */
+describe('buildHealth · la versión que corre', () => {
+  it('dice el commit que le pasó el despliegue', () => {
+    const h = buildHealth(
+      { BOT_TOKEN: 't', [VARIABLE_VERSION]: 'abc123' } as NodeJS.ProcessEnv,
+      base,
+    )
+    expect(h.version).toBe('abc123')
+  })
+
+  it('sin él dice null: no se inventa una versión', () => {
+    expect(buildHealth({ BOT_TOKEN: 't' } as NodeJS.ProcessEnv, base).version).toBeNull()
+    expect(
+      buildHealth({ BOT_TOKEN: 't', [VARIABLE_VERSION]: '  ' } as NodeJS.ProcessEnv, base).version,
+    ).toBeNull()
   })
 })

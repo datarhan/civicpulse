@@ -99,13 +99,19 @@ flyctl secrets import --app munigraph-ribarroja < secret.env && rm secret.env
 ### 5. Deploy
 
 From the **repo root** (important — build context must include `src/`
-and `public/data/`):
+and `public/data/`), and from a **clean tree** — `GIT_SHA` labels the
+deploy with the commit, so uncommitted changes would ship under a
+commit that doesn't contain them:
 
 ```bash
 flyctl deploy --config bot/fly.toml \
               --dockerfile bot/Dockerfile \
-              --remote-only .
+              --remote-only \
+              --env GIT_SHA=$(git rev-parse HEAD) .
 ```
+
+Normally you don't: a push to `main` deploys through `bot-deploy.yml`,
+after the bot's tests pass.
 
 First build takes ~2-3 min (native better-sqlite3 compile on Linux).
 Subsequent deploys are ~30s.
@@ -113,7 +119,8 @@ Subsequent deploys are ~30s.
 ### 6. Verify
 
 ```bash
-curl https://munigraph-ribarroja.fly.dev/health       # → JSON, "webhookAuthenticated": true
+curl https://munigraph-ribarroja.fly.dev/health       # → JSON, "webhookAuthenticated": true,
+                                                       #   "version": el commit desplegado
 curl "https://munigraph-ribarroja.fly.dev/export/quejas.json" \
      -H "Authorization: Bearer $EXPORT_TOKEN"          # → JSON payload
 curl -X POST https://munigraph-ribarroja.fly.dev/ -d '{}' -o /dev/null -w '%{http_code}\n'
@@ -133,6 +140,14 @@ haciéndose pasar por otra cuenta, administrador incluido. `/health` lo dice con
 `/start` deja de contestar justo tras un despliegue, lo primero es mirar ese campo y
 `flyctl logs`: un secreto registrado distinto del exigido deja el bot mudo, con cada
 update rechazado con 401.
+
+Desde el 27-09-2026 esto lo comprueba solo `bot-deploy.yml`: despliega únicamente si
+`bot.yml` (tipos y pruebas) sale en verde, pasa el commit a la máquina con
+`--env GIT_SHA=…`, y después pregunta a `/health` hasta que diga ese commit en
+`version` con `webhookAuthenticated: true`, o sale en rojo a los tres minutos. Si
+despliegas a mano, hazlo desde un árbol limpio y pasa tú también
+`--env GIT_SHA=$(git rev-parse HEAD)` (arriba): sin eso, `version` no dice el commit
+que corre.
 
 ### 7. Wire the nightly cron
 
@@ -156,10 +171,13 @@ en Fly, el bot lanza además esta misma ejecución cada vez que alguien confirma
 
 ### Redeploy after code changes
 
+Merging to `main` redeploys (`bot-deploy.yml`). By hand, from a clean tree:
+
 ```bash
 flyctl deploy --config bot/fly.toml \
               --dockerfile bot/Dockerfile \
-              --remote-only .
+              --remote-only \
+              --env GIT_SHA=$(git rev-parse HEAD) .
 ```
 
 ### Logs

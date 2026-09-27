@@ -1,3 +1,4 @@
+import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vitest/config'
 
 /**
@@ -27,5 +28,14 @@ export default defineConfig({
     environment: 'node',
     include: ['tests/**/*.test.{js,ts}', 'src/**/*.test.{js,ts}'],
     globals: false,
+    env: {
+      // El bloqueo LOREG que ven las pruebas: un fixture sin bloqueo, no el
+      // `public/data/promises.json` en vivo. Desde que el despliegue espera a las
+      // pruebas, leer el de verdad convertía un `freeze:set` en un despliegue
+      // bloqueado — con el bot sin congelar en campaña (bot/tests/freeze.test.ts).
+      PROMISES_JSON: fileURLToPath(
+        new URL('./tests/fixtures/promises-sin-bloqueo.json', import.meta.url),
+      ),
+    },
   },
 })

@@ -52,3 +52,35 @@ export const empujonAMain = (args) => {
 
 /** ¿Este workflow empuja commits a la rama por defecto? */
 export const empujaAMain = (texto) => empujones(texto).some(empujonAMain)
+
+/*
+ * ¿Corre un paso los TIPOS o las PRUEBAS del bot?
+ *
+ * Nació en `bot-tests-cubiertos.test.js` y se copió en `bot-despliegue.test.js`
+ * cuando el despliegue pasó a esperar a las pruebas (2026-09-27). Vive aquí por
+ * lo mismo que lo de arriba: dos copias de un detector son dos detectores, y la
+ * primera vez que se afina uno el otro sigue contestando lo viejo.
+ */
+
+/** Ejecuta los tipos: el script del paquete o `tsc` a pelo. */
+export const TIPA = /\bnpm\s+(?:--prefix[= ]\S+\s+)?run\s+typecheck\b|\btsc\b/
+
+/** Ejecuta la suite: `npm test`, `npm run test` o vitest. */
+export const PRUEBA = /\bnpm\s+(?:--prefix[= ]\S+\s+)?(?:run\s+)?test\b|\bvitest\b/
+
+/** Se traga su propio fallo en la línea: `|| true`, `|| :`, `|| exit 0`. */
+export const TRAGA = /\|\|\s*(?:true|:|exit\s+0)(?![\w-])/
+
+/** ¿Corre DENTRO de bot/? Por su directorio, el del trabajo, o un `cd`/`--prefix`. */
+export function enElBot(doc, trabajo, paso) {
+  const dir =
+    paso['working-directory'] ??
+    trabajo?.defaults?.run?.['working-directory'] ??
+    doc?.defaults?.run?.['working-directory'] ??
+    '.'
+  return (
+    /^\.?\/?bot\/?$/.test(String(dir).trim()) ||
+    /\bcd\s+\.?\/?bot\/?\s*&&/.test(paso.run) ||
+    /--prefix[= ]\.?\/?bot\b/.test(paso.run)
+  )
+}

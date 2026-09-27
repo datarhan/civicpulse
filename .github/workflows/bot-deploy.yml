@@ -19,8 +19,12 @@ name: Bot deploy
 # despliegue que corriera con cualquier cambio del sitio reiniciaría el bot
 # varias veces al día sin motivo.
 #
-# `concurrency` cancela un despliegue en curso si entra otro: dos `flyctl
-# deploy` a la vez sobre la misma app se pisan.
+# `concurrency` pone los despliegues EN FILA: dos `flyctl deploy` a la vez sobre
+# la misma app se pisan. Hasta el 2026-09-27 cancelaba el que estaba en curso,
+# y eso tampoco sirve: Fly puede seguir por su lado con el cancelado, la máquina
+# vuelve a arrancar unos minutos después con el siguiente —y lo primero que
+# corre al arrancar es una migración de la base de datos—, y la comprobación del
+# cancelado no llega a decir nada. Así, cada uno termina y se comprueba.
 
 on:
   push:
@@ -41,7 +45,7 @@ on:
 
 concurrency:
   group: bot-deploy
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 # Este workflow no escribe nada en el repositorio: clona, construye en Fly y
 # despliega. Lo único que necesita es leer. El `GITHUB_TOKEN` por defecto viene
@@ -50,12 +54,33 @@ permissions:
   contents: read
 
 jobs:
+  # Lo primero, los tipos y las pruebas del bot: el mismo `bot.yml` que corre en
+  # cada PR, llamado desde aquí. Antes los dos se disparaban con el mismo push y
+  # corrían en paralelo, así que un arranque que no compilaba o una prueba en
+  # rojo llegaban a Fly igual. Lo siguiente que se despliega es una migración de
+  # la base de datos, y la única copia de los datos está en ese volumen.
+  pruebas:
+    uses: ./.github/workflows/bot.yml
+
   deploy:
     name: Deploy bot to Fly
+    needs: pruebas
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v5
+
+      # Sólo main, y lo comprueba un PASO que falla, no un `if:` que se saltaría en
+      # verde. `workflow_dispatch` acepta cualquier rama, y el bot tiene una base
+      # de datos de producción: lanzarlo desde una rama desplegaría código sin
+      # fusionar sobre ella.
+      - name: Sólo desde main
+        run: |
+          if [ "$GITHUB_REF" != "refs/heads/main" ]; then
+            echo "::error::Este workflow despliega en producción y se lanzó desde $GITHUB_REF, no desde refs/heads/main."
+            echo "Fusiona a main: el push despliega solo."
+            exit 1
+          fi
 
       # Un despliegue que no puede autenticarse tiene que DECIRLO.
       #
@@ -91,10 +116,61 @@ jobs:
 
       # `--remote-only` construye en los constructores de Fly: el runner no
       # tiene que montar Docker y el contexto no viaja desde aquí.
+      #
+      # `--env GIT_SHA=…` le dice a la máquina qué commit lleva, y `/health` lo
+      # cuenta como `version` (bot/src/services/health.ts, `VARIABLE_VERSION`).
       - name: Desplegar
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
-        run: flyctl deploy --config bot/fly.toml --dockerfile bot/Dockerfile --remote-only
+          COMMIT: ${{ github.sha }}
+        run: flyctl deploy --config bot/fly.toml --dockerfile bot/Dockerfile --remote-only --env GIT_SHA="$COMMIT"
+
+      # «flyctl deploy» en verde dice que el despliegue terminó, no qué commit
+      # sirve la máquina: el 9-09-2026 la de producción era de las 08:16Z con
+      # cuatro commits encima, y todo estaba en verde. Aquí se pregunta a la
+      # máquina y se compara `version` con el commit fusionado, y además que el
+      # webhook de Telegram quedó registrado con su secreto (sin él, cada update
+      # real es un 401 y el bot está «arriba pero mudo»). Si en tres minutos no lo
+      # dice, el workflow sale en ROJO. Ese rojo lo avisa el propio bot por
+      # Telegram (eventos-repo.ts) si sigue vivo; si lo que tumbó el bot fue este
+      # despliegue, quedan el correo de GitHub y la alarma diaria (ops-alarm.yml).
+      #
+      # La dirección sale de `WEBHOOK_URL` en bot/fly.toml, la misma que usa el
+      # bot: una copia aquí se quedaría atrás el día que cambie.
+      - name: Comprobar que Fly sirve este commit
+        env:
+          ESPERADA: ${{ github.sha }}
+        run: |
+          base=$(sed -n 's/^[[:space:]]*WEBHOOK_URL[[:space:]]*=[[:space:]]*"\([^"]*\)".*/\1/p' bot/fly.toml | head -n 1)
+          if [ -z "$base" ]; then
+            echo "::error::No encuentro WEBHOOK_URL en bot/fly.toml: no sé a qué máquina preguntar."
+            exit 1
+          fi
+          salud="${base%/}/health"
+          cuerpo=''
+          codigo=''
+          final=$((SECONDS + 180))
+          while [ "$SECONDS" -lt "$final" ]; do
+            respuesta=$(curl -sS --max-time 10 -w '\n%{http_code}' "$salud" || true)
+            codigo=$(printf '%s' "$respuesta" | tail -n 1)
+            leido=$(printf '%s' "$respuesta" | sed '$d')
+            if [ -n "$leido" ]; then cuerpo="$leido"; fi
+            version=$(printf '%s' "$leido" | jq -r '.version // ""' 2>/dev/null || true)
+            autenticado=$(printf '%s' "$leido" | jq -r '.webhookAuthenticated // false' 2>/dev/null || true)
+            if [ "$codigo" = "200" ] && [ "$version" = "$ESPERADA" ] && [ "$autenticado" = "true" ]; then
+              echo "Fly sirve $ESPERADA y el webhook de Telegram está autenticado ($salud)."
+              estado=$(printf '%s' "$leido" | jq -r '.status // ""' 2>/dev/null || true)
+              if [ "$estado" != "ok" ]; then
+                echo "::warning::/health dice «$estado»: $(printf '%s' "$leido" | jq -c '.degraded' 2>/dev/null || true)"
+              fi
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "::error::En tres minutos, $salud no dice que corra $ESPERADA con el webhook autenticado."
+          echo "Último código HTTP: ${codigo:-ninguno}"
+          echo "Último cuerpo con contenido: ${cuerpo:-ninguno}"
+          exit 1
 
       # Y que se note que ocurrió: la fecha del despliegue es lo primero que se
       # mira cuando el bot no dice lo que debería.

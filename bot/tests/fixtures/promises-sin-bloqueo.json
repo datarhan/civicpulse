@@ -1,0 +1,4 @@
+{
+  "_nota": "Lo que ven las pruebas del bot como public/data/promises.json (bot/vitest.config.ts, PROMISES_JSON): sin bloqueo LOREG. Las pruebas no pueden depender del bloqueo en vivo — ver bot/tests/freeze.test.ts.",
+  "frozenUntil": null
+}
