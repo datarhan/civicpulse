@@ -192,10 +192,10 @@ describe('la tarjeta llega o se reintenta', () => {
       mensaje: async () => ({ message_id: 1 }),
     }
     const r = await reenviarTarjetasPendientes(db, { admins: [ADMIN_A, ADMIN_B], envio })
-    expect(r).toEqual({ quejas: 1, entregadas: 2, fallidas: 0 })
+    expect(r).toEqual({ quejas: 1, entregadas: 2, fallidas: 0, retiradas: 0 })
     expect(enviados.sort()).toEqual([ADMIN_A, ADMIN_B])
     const otra = await reenviarTarjetasPendientes(db, { admins: [ADMIN_A, ADMIN_B], envio })
-    expect(otra).toEqual({ quejas: 0, entregadas: 0, fallidas: 0 })
+    expect(otra).toEqual({ quejas: 0, entregadas: 0, fallidas: 0, retiradas: 0 })
     expect(moderacion(id)).toBe('pendiente')
   })
 
@@ -269,7 +269,7 @@ describe('lo que la revisión arrastraba roto (revisión de #137)', () => {
       mensaje: async () => ({ message_id: 1 }),
     }
     const r = await reenviarTarjetasPendientes(db, { admins: [9003], envio })
-    expect(r).toEqual({ quejas: 1, entregadas: 1, fallidas: 0 })
+    expect(r).toEqual({ quejas: 1, entregadas: 1, fallidas: 0, retiradas: 0 })
     expect(enviados).toEqual([9003])
     expect(moderacion(id)).toBe('pendiente')
   })
@@ -612,6 +612,8 @@ describe('lo que la revisión deja atrás (revisión de la pasada de #137)', () 
   /** Un envío que lleva el estado de cada mensaje, y cuya primera llamada a `metodo` espera. */
   function envioConEspera(metodo: 'enviar' | 'editar' | 'mensaje') {
     const mensajes = new Map<number, string>()
+    /** Todo lo que salió alguna vez: una tarjeta vaciada después también cuenta. */
+    const enviados: string[] = []
     const avisados: number[] = []
     let siguiente = 500
     let primera = true
@@ -628,6 +630,7 @@ describe('lo que la revisión deja atrás (revisión de la pasada de #137)', () 
         await detener('enviar')
         const id = siguiente++
         mensajes.set(id, html)
+        enviados.push(html)
         return { message_id: id }
       },
       editar: async (_admin, mid, html) => {
@@ -640,7 +643,7 @@ describe('lo que la revisión deja atrás (revisión de la pasada de #137)', () 
         return { message_id: 1 }
       },
     }
-    return { envio, mensajes, avisados, soltar: () => soltar() }
+    return { envio, mensajes, enviados, avisados, soltar: () => soltar() }
   }
   const unTic = () => new Promise((r) => setTimeout(r, 0))
 
@@ -714,7 +717,7 @@ describe('lo que la revisión deja atrás (revisión de la pasada de #137)', () 
   it('la pasada horaria no manda la tarjeta de una queja que se retiró mientras mandaba otras', async () => {
     ruido(VECINO)
     const q2 = farola(VECINA)
-    const { envio, mensajes, soltar } = envioConEspera('enviar')
+    const { envio, enviados, soltar } = envioConEspera('enviar')
     // La pasada lee su lista, y la primera tarjeta se atasca…
     const pasada = pasadaHoraria(db, { admins: [ADMIN_A], envio })
     await unTic()
@@ -722,25 +725,26 @@ describe('lo que la revisión deja atrás (revisión de la pasada de #137)', () 
     expect(softDeleteQueja(db, q2.id, autorTelegram(VECINA))).toBe(true)
     await actualizarTarjetas(db, q2.id, { envio })
     soltar()
-    await pasada
+    expect((await pasada).tarjetas).toEqual({ quejas: 2, entregadas: 1, fallidas: 0, retiradas: 1 })
     await pasadaHoraria(db, { admins: [ADMIN_A], envio })
     // Control: la pasada sí mandó la de la queja viva.
-    expect([...mensajes.values()].some((html) => /ruido/i.test(html))).toBe(true)
-    for (const [mid, html] of mensajes) expect(html, `el mensaje ${mid}`).not.toMatch(/farola/i)
+    expect(enviados.some((html) => /ruido/i.test(html))).toBe(true)
+    // Y la otra no salió nunca: vaciarla después no la quita de una notificación ya leída.
+    expect(enviados.join('\n')).not.toMatch(/farola/i)
   })
 
   it('/revisar con una fila leída antes de la retirada no deja una tarjeta con el texto', async () => {
     const viva = ruido(VECINO)
     const q = farola(VECINA)
-    const { envio, mensajes } = envioConEspera('mensaje')
+    const { envio, enviados } = envioConEspera('mensaje')
     // Control: con una queja viva, la copia sale.
-    expect(await enviarTarjetaA(db, viva, ADMIN_A, envio)).toBe(true)
-    expect(mensajes.size).toBe(1)
+    expect(await enviarTarjetaA(db, viva, ADMIN_A, envio)).toBe('entregada')
+    expect(enviados).toHaveLength(1)
     // La fila se leyó antes de que su autora la retirara.
     expect(softDeleteQueja(db, q.id, autorTelegram(VECINA))).toBe(true)
-    await enviarTarjetaA(db, q, ADMIN_A, envio)
+    expect(await enviarTarjetaA(db, q, ADMIN_A, envio)).toBe('retirada')
     await pasadaHoraria(db, { admins: [ADMIN_A], envio })
-    for (const [mid, html] of mensajes) expect(html, `el mensaje ${mid}`).not.toMatch(/farola/i)
+    expect(enviados.join('\n')).not.toMatch(/farola/i)
   })
 
   it('no avisa a su autora de una decisión sobre la queja que acaba de retirar', async () => {
