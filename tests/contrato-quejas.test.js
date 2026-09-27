@@ -476,7 +476,9 @@ describe('la revisión antes de publicar', () => {
     expect(METODOLOGIA).toContain('no reescribe su texto')
     expect(AVISO).toContain('Revisión antes de publicar')
     // Y /quejas, en la cabecera que se ve con datos y sin ellos.
-    expect(QUEJAS).toContain('Una persona revisa cada queja antes de publicarla aquí.')
+    expect(QUEJAS).toContain(
+      'Desde finales de septiembre de 2026, una persona revisa cada queja antes de publicarla aquí.',
+    )
   })
 
   it('lo publicado antes de la revisión lo dice la página, y lo marca la migración', () => {
@@ -506,13 +508,30 @@ describe('la revisión antes de publicar', () => {
   })
 
   it('/olvidar quita el texto de las tarjetas, y la pasada horaria remata las que fallaron', () => {
-    expect(AVISO).toContain('quita su texto de los mensajes de revisión')
+    expect(AVISO).toContain(
+      'quita su texto de las tarjetas de revisión que recibió quien modera las quejas —de todas las que Telegram le deja editar—',
+    )
     expect(sinComentariosTs(lee('bot/src/commands/olvidar.ts'))).toMatch(/actualizarTarjetas\(/)
     const pasada = sinComentariosTs(lee('bot/src/services/avisos-admin.ts')).match(
       /export async function pasadaHoraria[\s\S]*?\n\}/,
     )
     expect(pasada, 'no encuentro pasadaHoraria').not.toBeNull()
     expect(pasada[0]).toMatch(/vaciarTarjetasEnCola\(/)
+  })
+
+  it('retirar una queja no deja su identidad en lo que el bot mandó de ella', () => {
+    // La página dice que /olvidar borra la identidad de Telegram y que /borrar_mis_datos
+    // la saca del registro. El aviso a su autor se guarda sin ella, y la retirada
+    // borra el rastro de la queja en `avisos` en su misma transacción.
+    expect(AVISO).toContain('borra de su registro interno tu identidad de Telegram')
+    const avisos = sinComentariosTs(lee('bot/src/services/avisos-admin.ts'))
+    expect(avisos).toMatch(/const destinatario = 'autor'/)
+    expect(avisos).not.toMatch(/`telegram:\$\{/)
+    const retirada = sinComentariosTs(lee('bot/src/db/queries.ts')).match(
+      /export function softDeleteQueja[\s\S]*?\n\}/,
+    )
+    expect(retirada, 'no encuentro softDeleteQueja').not.toBeNull()
+    expect(retirada[0]).toMatch(/aVaciar\(db, \[id\], 'retirada'\)/)
   })
 
   it('la dirección para impugnar es la del aviso legal', () => {

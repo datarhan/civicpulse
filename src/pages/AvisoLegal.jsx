@@ -405,8 +405,9 @@ export default function AvisoLegal() {
           <li>
             <strong>Tu identidad de Telegram</strong> (el ID numérico; el nombre de usuario ya no se
             guarda) — <strong>nunca</strong> se publica; sólo sirve para que puedas consultar,
-            apoyar o eliminar tus propias quejas, y sólo se guarda si escribes o apoyas una, o te
-            suscribes a los resúmenes semanales del bot
+            apoyar o eliminar tus propias quejas y para avisarte del resultado de su revisión, y
+            sólo se guarda si escribes o apoyas una, o te suscribes a los resúmenes semanales del
+            bot
           </li>
           <li>
             <strong>Fotografía adjunta</strong> (si la envías) — el bot no guarda la imagen
@@ -421,8 +422,8 @@ export default function AvisoLegal() {
           que no ve—, que decide si se publica tal cual o se descarta. La decisión tiene vuelta
           atrás: una descartada puede publicarse después, y una publicada, retirarse de la
           publicación. Hasta que se publica no es pública en ninguna parte, y su foto sólo se
-          anonimiza y se publica cuando la queja ya lo es. El bot te avisa de cada decisión, y
-          puedes impugnarla escribiendo a{' '}
+          anonimiza y se publica cuando la queja ya lo es. El bot te avisa del resultado de la
+          revisión, y puedes impugnarlo escribiendo a{' '}
           <a href="mailto:civicpulse_es@proton.me" style={{ color: 'var(--civic)' }}>
             civicpulse_es@proton.me
           </a>
@@ -474,15 +475,15 @@ export default function AvisoLegal() {
           <code>/olvidar Q-XXXXXXXX</code> al bot para retirar tu queja. El bot deja de incluirla en
           el acto en el listado que exporta, borra de su registro interno tu identidad de Telegram,
           la ubicación y la referencia a la foto, borra la copia anonimizada de la foto que guarda
-          su servidor, quita su texto de los mensajes de revisión que recibió quien modera las
-          quejas y pide a GitHub que esta web se vuelva a publicar. Esta web la retira del
-          dashboard, del heatmap, del feed público y del snapshot abierto en cuanto termina esa
-          actualización, que suele tardar unos minutos; si la petición falla, en la siguiente
-          actualización diaria. En esa misma actualización borra el fichero de la foto anonimizada
-          si se había publicado. En el registro interno quedan el texto, las fechas y los estados de
-          la queja, sin tu identidad de Telegram, durante el plazo legal de conservación; después se
-          destruyen. Sólo el autor puede ejercer este derecho sobre su propia queja, y una vez
-          ejercido el bot ya no puede saber quién la escribió.
+          su servidor, quita su texto de las tarjetas de revisión que recibió quien modera las
+          quejas —de todas las que Telegram le deja editar— y pide a GitHub que esta web se vuelva a
+          publicar. Esta web la retira del dashboard, del heatmap, del feed público y del snapshot
+          abierto en cuanto termina esa actualización, que suele tardar unos minutos; si la petición
+          falla, en la siguiente actualización diaria. En esa misma actualización borra el fichero
+          de la foto anonimizada si se había publicado. En el registro interno quedan el texto, las
+          fechas y los estados de la queja, sin tu identidad de Telegram, durante el plazo legal de
+          conservación; después se destruyen. Sólo el autor puede ejercer este derecho sobre su
+          propia queja, y una vez ejercido el bot ya no puede saber quién la escribió.
         </p>
         <p>
           <strong>Borrar todos tus datos</strong>: <code>/borrar_mis_datos</code> hace de una vez lo

@@ -238,11 +238,16 @@ lo retirado. Lo mismo vale para revertir el PR en `main`, porque
 anterior a mano (`flyctl deploy --image …`).
 
 **No se vuelve a un código anterior a la migración 2 sobre la base de hoy.** Lo
-que falle después se arregla hacia delante. La única vuelta atrás que no publica
-nada sin revisar es restaurar también la base: la copia `VACUUM INTO` de
-`/data/backups/` tomada al migrar, mientras exista (caduca a los
-`CONSERVACION_COPIAS_DIAS` días), que es de antes de la revisión y en la que todo
-lo guardado ya era público. Se pierde todo lo que entró y se decidió después.
+que falle después se arregla hacia delante.
+
+Restaurar la copia `VACUUM INTO` de `/data/backups/` tomada al migrar tampoco es
+una vuelta atrás limpia. Es de antes de la revisión, así que no publica nada sin
+revisar, pero deshace todo lo que pasó después: además de perder las quejas que
+entraron, devuelve a la vida lo que se retiró desde entonces —con `/olvidar`, con
+`/borrar_mis_datos` o con [Retirar]— con su autor, su ubicación y su foto, y a
+quienes borraron sus datos. Eso es deshacer un derecho que ya se ejerció. Antes
+de arrancar con esa copia habría que reaplicarle cada retirada y cada borrado
+posteriores, y ese procedimiento no está escrito ni ensayado: no es un plan.
 
 ### Recalcular los barrios de las quejas guardadas
 

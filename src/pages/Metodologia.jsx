@@ -676,8 +676,7 @@ export default function Metodologia() {
             después, y una publicada, retirarse de la publicación. La foto no pasa por esta
             revisión: quien modera sabe si la queja trae una, pero no la ve, y la foto se anonimiza
             y se publica, como en el paso anterior, sólo cuando la queja ya es pública. Quien la
-            escribió recibe aviso de cada decisión y puede impugnarla en la dirección de contacto
-            del{' '}
+            escribió recibe aviso del resultado y puede impugnarlo en la dirección de contacto del{' '}
             <a href="/aviso-legal" style={{ color: 'var(--civic)' }}>
               aviso legal
             </a>
@@ -871,7 +870,9 @@ export default function Metodologia() {
               hallazgo de gravedad crítica (que es una acusación), los informes marcados como
               jurídicamente sensibles, y todo lo irreversible o dirigido al exterior — registrar una
               queja en sede, publicar una queja ciudadana. No porque una persona acierte más, sino
-              porque la responsabilidad legal necesita una firma.
+              porque la responsabilidad legal necesita una firma. La excepción son dos avisos
+              automáticos del canal público de Telegram sobre quejas ya publicadas: cuando una
+              alcanza los apoyos necesarios y cuando vence su plazo sin respuesta.
             </li>
           </ul>
           <p style={{ marginBottom: 0 }}>

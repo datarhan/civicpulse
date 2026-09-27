@@ -1333,8 +1333,8 @@ export default function Quejas() {
           >
             @munigraph_bot
           </a>
-          . Una persona revisa cada queja antes de publicarla aquí. Feed agregado y anónimo — base
-          legal LPACAP + Ley 19/2013.{' '}
+          . Desde finales de septiembre de 2026, una persona revisa cada queja antes de publicarla
+          aquí. Feed agregado y anónimo — base legal LPACAP + Ley 19/2013.{' '}
           <Link
             to="/quejas/dashboard"
             style={{ color: 'var(--civic)', textDecoration: 'underline', textUnderlineOffset: 2 }}
