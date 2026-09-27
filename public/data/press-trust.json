@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-27T04:47:49.185Z",
+  "generatedAt": "2026-09-27T09:43:25.490Z",
   "windowDays": 30,
   "articles": [
     {
@@ -817,30 +817,13 @@
         "opinionFraction": 0
       },
       "score": 2
-    },
-    {
-      "articleId": "zkv39w",
-      "articleFingerprint": "1l29f9c",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-vibra-con-la-gran-entrada-mora-i-cristiana-y-marca-el-inicio-de-las-fiestas-del-crist-dels-afligits",
-      "date": "2026-08-28T07:40:38.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 18,
+      "articleCount": 17,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -848,7 +831,7 @@
         "sin-datos": 39,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.78,
+      "meanTrustScore": 2.82,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -1034,7 +1017,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "783c300e6a1f",
+    "plenos-agendas.json": "baccfa9a120b",
     "press-claims-verified.json": "426589fc7d58",
     "press.json": "567560148d98",
     "promises.json": "d18811c11210"
