@@ -6,7 +6,9 @@ import Database from 'better-sqlite3'
 import {
   BASE_V0,
   CANALES,
+  DECISIONES_MODERACION,
   MIGRACIONES,
+  MODERACIONES,
   ensayarMigracion,
   migrar,
   type Migracion,
@@ -345,5 +347,85 @@ describe('el ensayo: la migración sobre una copia, sin tocar la base', () => {
     expect(e.ok).toBe(false)
     expect(e.error).toMatch(/apoyos/)
     expect(readdirSync(dir).filter((f) => !/^bot\.db(-wal|-shm)?$/.test(f))).toEqual([])
+  })
+})
+
+/**
+ * La migración 2: la revisión antes de publicar.
+ *
+ * Una queja nueva nace `pendiente` y no sale hasta que se decide. Las que ya
+ * estaban publicadas lo siguen estando —no se despublica nada al desplegar—, y
+ * queda dicho que entraron sin revisión: una fila `heredada` en `moderaciones`,
+ * el registro de decisiones, y no un evento, que /estado pinta a cualquiera.
+ * Producción está en la v1, así que se prueba también desde ahí.
+ */
+describe('la migración 2: la revisión antes de publicar', () => {
+  const comprobar = (db: Database.Database) => {
+    expect(db.pragma('user_version', { simple: true })).toBe(
+      MIGRACIONES[MIGRACIONES.length - 1].version,
+    )
+    const filas = db
+      .prepare('SELECT moderacion, publicada_at, created_at FROM quejas')
+      .all() as Array<{ moderacion: string; publicada_at: string; created_at: string }>
+    expect(filas).toHaveLength(5)
+    for (const f of filas) {
+      expect(f.moderacion).toBe('publicada')
+      expect(f.publicada_at).toBe(f.created_at)
+    }
+    expect(
+      db
+        .prepare('SELECT decision, por, COUNT(*) AS n FROM moderaciones GROUP BY decision, por')
+        .all(),
+    ).toEqual([{ decision: 'heredada', por: 'migracion', n: 5 }])
+    expect(cuenta(db, 'avisos_admin')).toBe(0)
+    expect(cuenta(db, 'events')).toBe(8) // ni un evento de más
+    expect(db.pragma('foreign_key_check')).toEqual([])
+  }
+
+  it('desde la v0, todo lo que había sigue publicado, y consta cómo', () => {
+    const ruta = baseV0()
+    const db = abrir(ruta)
+    migrar(db, { ruta, log: () => {} })
+    comprobar(db)
+    db.close()
+  })
+
+  it('desde la v1, que es donde está producción', () => {
+    const ruta = baseV0()
+    const db = abrir(ruta)
+    migrar(db, { ruta, migraciones: MIGRACIONES.slice(0, 1), log: () => {} })
+    expect(db.pragma('user_version', { simple: true })).toBe(1)
+    migrar(db, { ruta, log: () => {} })
+    comprobar(db)
+    db.close()
+  })
+
+  it('una queja nueva nace pendiente: publicar es una decisión, no el valor por defecto', () => {
+    const db = new Database(':memory:')
+    migrar(db, { ruta: ':memory:', log: () => {} })
+    db.prepare(
+      "INSERT INTO quejas (id, category, title, detail) VALUES ('Q-00000001', 'otros', 't', 'd')",
+    ).run()
+    expect(db.prepare("SELECT moderacion FROM quejas WHERE id = 'Q-00000001'").get()).toEqual({
+      moderacion: 'pendiente',
+    })
+    db.close()
+  })
+
+  it('los estados de los dos CHECK son los que exporta migraciones.ts', () => {
+    const db = new Database(':memory:')
+    migrar(db, { ruta: ':memory:', log: () => {} })
+    const clausula = (tabla: string, columna: string) => {
+      const sql = (
+        db.prepare('SELECT sql FROM sqlite_schema WHERE name = ?').get(tabla) as { sql: string }
+      ).sql
+      const m = new RegExp(`CHECK \\(${columna} IN \\(([^)]*)\\)\\)`).exec(sql)?.[1] ?? ''
+      return [...m.matchAll(/'([a-z]+)'/g)].map((x) => x[1]).sort()
+    }
+    // El de quejas vive en un ALTER TABLE ADD COLUMN: SQLite lo guarda en la sentencia de la tabla.
+    expect(clausula('quejas', 'moderacion').length).toBeGreaterThan(0)
+    expect(clausula('quejas', 'moderacion')).toEqual([...MODERACIONES].sort())
+    expect(clausula('moderaciones', 'decision')).toEqual([...DECISIONES_MODERACION].sort())
+    db.close()
   })
 })
