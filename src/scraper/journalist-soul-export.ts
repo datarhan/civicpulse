@@ -96,7 +96,7 @@ export function exportSoulMarkdown(report: JournalistReport, opts: SoulExportOpt
   if (report.response) {
     out.push('## Réplica registrada')
     out.push(
-      `**${quienReplica(report.response.from, opts.subjectName)}** (${report.response.respondedAt}):`,
+      `**${quienReplica(report.response, opts.subjectName)}** (${report.response.respondedAt}):`,
     )
     out.push('')
     out.push(`> ${report.response.quote.split('\n').join('\n> ')}`)

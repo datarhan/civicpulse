@@ -172,7 +172,7 @@ function ResponseBlock({ response, reportId, nombreSujeto }) {
   }
   return (
     <Card>
-      <SectionHead title={`Réplica de ${quienReplica(response.from, nombreSujeto)}`} />
+      <SectionHead title={`Réplica de ${quienReplica(response, nombreSujeto)}`} />
       <blockquote
         style={{
           margin: 0,

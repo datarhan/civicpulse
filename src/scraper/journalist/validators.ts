@@ -477,8 +477,21 @@ function validateResponse(r: unknown, idx: number): JournalistReportResponse | n
       `items[${idx}].response.sourceUrl must be URL`,
     )
   }
+  // Un `aludido` se publica con el nombre con el que firma, así que sin él no
+  // pasa; y un nombre en cualquier otra réplica se perdería en silencio —la de
+  // un grupo firma con el grupo, la del sujeto con el nombre del encargo—.
+  const fromName = typeof o.fromName === 'string' ? o.fromName.trim() : undefined
+  if (o.from === 'aludido') {
+    must(
+      fromName !== undefined && fromName.length >= 3 && fromName.length <= 120,
+      `items[${idx}].response.fromName must name who signs an «aludido» reply (3–120 chars)`,
+    )
+  } else {
+    must(o.fromName === undefined, `items[${idx}].response.fromName only goes with from «aludido»`)
+  }
   return {
     from: o.from as string,
+    ...(o.from === 'aludido' ? { fromName } : {}),
     quote: (o.quote as string).trim(),
     respondedAt: o.respondedAt as string,
     ...(o.sourceUrl ? { sourceUrl: o.sourceUrl as string } : {}),

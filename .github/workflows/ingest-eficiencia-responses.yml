@@ -81,9 +81,12 @@ jobs:
           set -euo pipefail
           BODY=$(gh issue view "$ISSUE_NUMBER" --json body -q .body)
 
+          # Un opcional en blanco llega como «_No response_», que es lo que GitHub
+          # escribe en el cuerpo del issue, no lo que escribió quien envía: se descarta.
+          # tests/ingesta-sin-respuesta.test.js ejecuta esta función.
           field() {
             awk -v h="$1" 'BEGIN{cap=0} $0 == "### " h {cap=1; next} /^### /{cap=0} cap' <<< "$BODY" \
-              | sed '/^$/d' | awk '{$1=$1;print}' | head -n 60
+              | sed '/^$/d' | awk '{$1=$1;print}' | sed '/^_No response_$/d' | head -n 60
           }
 
           FINDING_ID=$(field 'ID de la ficha' | head -n1)
