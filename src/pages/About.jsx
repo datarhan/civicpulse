@@ -5,6 +5,16 @@ import { Card, SectionHead } from '../components/Primitives'
 // this copy is funder-facing content, not chrome.
 const CONTACT_EMAIL = 'civicpulse_es@proton.me'
 
+/*
+ * prosa-describe: dea.json
+ *
+ * The identity card explains why there is no score with what
+ * /laboratorio/frontera measured, without loading it. It said «four equally
+ * defensible baskets move the figure across half the scale», which no release
+ * from 2014 to 2024 supported: nothing tied this page to dea.json, so no
+ * reminder named it. The declaration puts it in the prose map.
+ */
+
 const TIER_ROWS = [
   [
     'T1 · Auto',
@@ -91,11 +101,12 @@ export default function About() {
         </p>
         <p style={{ marginBottom: 0 }}>
           <strong>What it will not give you is a score</strong> — of the council, a service, an
-          officeholder, or any other municipality. Four equally defensible indicator baskets move
-          the measured efficiency figure across half the scale, so a score would say more about our
-          choices than about the town. We publish the method, failed specifications included, and
-          refuse the table. The goal: that before Spain&rsquo;s May 2027 municipal elections, voters
-          can decide from facts, not campaign speeches.
+          officeholder, or any other municipality. The efficiency score changes with which of
+          several equally defensible indicator baskets we pick, and with the fullest baskets it can
+          rarely be computed at all, so a score would say more about our choices than about the
+          town. We publish the method, failed specifications included, and refuse the table. The
+          goal: that before Spain&rsquo;s May 2027 municipal elections, voters can decide from
+          facts, not campaign speeches.
         </p>
       </Card>
 

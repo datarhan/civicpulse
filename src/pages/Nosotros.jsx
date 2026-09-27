@@ -9,6 +9,16 @@ import { summarizeImpact } from '../lib/impact-stats'
 // domain mailbox exists (tracked in docs/superpowers/audits/…-opensource-preflight.md §4).
 const CONTACT_EMAIL = 'civicpulse_es@proton.me'
 
+/*
+ * prosa-describe: dea.json
+ *
+ * «Qué es CivicPulse» explica por qué no hay nota con lo que midió
+ * /laboratorio/frontera, sin cargarlo. Decía «cuatro cestas igual de
+ * defendibles mueven la puntuación media escala», y ninguna entrega de 2014 a
+ * 2024 lo sostuvo: nada ataba esta página a dea.json, así que ningún aviso la
+ * nombraba. La declaración la mete en el mapa de prosa.
+ */
+
 export function StatCell({ value, label, loading }) {
   return (
     <div style={{ flex: '1 1 120px', minWidth: 120 }}>
@@ -227,9 +237,10 @@ export default function Nosotros() {
           <a href="/laboratorio/frontera" style={{ color: 'var(--civic)' }}>
             el laboratorio
           </a>
-          : cuatro cestas de indicadores igual de defendibles mueven la puntuación media escala, así
-          que una nota diría más de nuestras decisiones que de tu pueblo. Publicamos el método
-          —incluidas las especificaciones que fallaron— y nos negamos a publicar la tabla.
+          : la puntuación cambia según cuál de varias cestas de indicadores igual de defendibles
+          elijamos, y con las más completas casi nunca se puede calcular, así que una nota diría más
+          de nuestras decisiones que de tu pueblo. Publicamos el método —incluidas las
+          especificaciones que fallaron— y nos negamos a publicar la tabla.
         </p>
         <p>
           Riba-roja de Túria es el primer municipio. Todo lleva su fuente y su derecho de réplica —
