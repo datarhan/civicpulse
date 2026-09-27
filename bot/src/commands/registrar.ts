@@ -49,8 +49,8 @@ export function registrarComandos(
   registerEstado(bot, db)
   registerApoyar(bot, db, channel)
   registerMis(bot, db)
-  registerOlvidar(bot, db)
-  registerBorrarMisDatos(bot, db)
+  registerOlvidar(bot, db, undefined, envio)
+  registerBorrarMisDatos(bot, db, undefined, envio)
   registerSubscribe(bot, db)
   registerBarrio(bot, db)
   registerRanking(bot, db)
@@ -58,7 +58,7 @@ export function registrarComandos(
   registerBatchCommand(bot, db, channel)
   registerEscalar(bot, db, channel)
   registerCurarCommand(bot, db)
-  registerModerar(bot, db, { envio, channel })
+  registerModerar(bot, db, { envio })
 
   // Un botón de categoría que ya no sirve —de una queja caducada, perdida en un
   // despliegue o ya en otro paso— se quedaba con el reloj girando: nadie

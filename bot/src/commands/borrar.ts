@@ -1,6 +1,7 @@
 import { InlineKeyboard, type Bot } from 'grammy'
 import type { Db } from '../db/client.ts'
-import { autorTelegram } from '../db/queries.ts'
+import { autorTelegram, listUserQuejas } from '../db/queries.ts'
+import { actualizarTarjetas, type EnvioAdmin } from '../services/avisos-admin.ts'
 import { olvidarTodo, type ResultadoOlvido } from '../services/ciudadano.ts'
 import { pedirRepublicacion, type PeticionRepublicar } from '../services/republicar.ts'
 import { directorioFotos } from '../services/snapshot.ts'
@@ -18,7 +19,12 @@ import { CONSERVACION_QUEJAS_ANIOS } from '../../../src/scraper/plazos-retencion
 export const BORRAR_SI = 'borrar_mis_datos:si'
 export const BORRAR_NO = 'borrar_mis_datos:no'
 
-export function registerBorrarMisDatos(bot: Bot<MyContext>, db: Db, photosDir = directorioFotos()) {
+export function registerBorrarMisDatos(
+  bot: Bot<MyContext>,
+  db: Db,
+  photosDir = directorioFotos(),
+  envio?: EnvioAdmin,
+) {
   bot.command('borrar_mis_datos', async (ctx) => {
     await ctx.reply(
       'Esto retira todas tus quejas, como /olvidar una a una; borra tus apoyos y tus ' +
@@ -34,7 +40,12 @@ export function registerBorrarMisDatos(bot: Bot<MyContext>, db: Db, photosDir = 
 
   bot.callbackQuery(BORRAR_SI, async (ctx) => {
     await ctx.answerCallbackQuery()
-    const r = olvidarTodo(db, autorTelegram(ctx.from.id), photosDir)
+    const autor = autorTelegram(ctx.from.id)
+    // Las suyas, antes de retirarlas: después ya no constan como suyas.
+    const suyas = listUserQuejas(db, autor, 1000).map((q) => q.id)
+    const r = olvidarTodo(db, autor, photosDir)
+    // Su texto sale también de los chats de quien modera.
+    if (envio) for (const id of suyas) await actualizarTarjetas(db, id, { envio })
     const peticion = r.quejas.retiradas > 0 ? await pedirRepublicacion() : null
     await ctx.reply(mensajeBorrado(r, peticion))
   })

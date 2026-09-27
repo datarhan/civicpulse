@@ -1,33 +1,37 @@
 import type { Bot } from 'grammy'
 import type { Db } from '../db/client.ts'
 import type { Moderacion } from '../db/migraciones.ts'
+import { decidirModeracion, getQuejaViva, type AccionModeracion } from '../db/queries.ts'
 import {
-  autorDeQueja,
-  decidirModeracion,
-  getQuejaPublica,
-  type AccionModeracion,
-} from '../db/queries.ts'
-import { actualizarTarjetas, type EnvioAdmin } from '../services/avisos-admin.ts'
-import type { Channel } from '../services/channel.ts'
+  completarSeguimiento,
+  enviarTarjetaA,
+  listarPendientes,
+  type EnvioAdmin,
+} from '../services/avisos-admin.ts'
+import { ID_QUEJA, idDeQueja } from '../services/queja-id.ts'
 import { pedirRepublicacion } from '../services/republicar.ts'
-import { routeUsingLocalOfficials } from '../services/router.ts'
-import { avisoAlAutor } from '../services/textos-revision.ts'
 import type { MyContext } from '../types.ts'
 import { parseAdminIds } from '../util/admins.ts'
 import { logger } from '../util/log.ts'
 
 /**
- * Los botones de las tarjetas de revisión (services/avisos-admin.ts).
+ * Los botones de las tarjetas de revisión (services/avisos-admin.ts), y las dos
+ * órdenes de quien modera: `/revisar Q-…`, que manda la tarjeta de cualquier
+ * queja viva —también de una publicada antes de la revisión, para poder
+ * retirarla—, y `/pendientes`, la cola con lo que lleva cada una esperando.
  *
- * Sólo decide un administrador (`ADMIN_USER_IDS`), y sólo en su chat privado
- * con el bot. La decisión es compare-and-set (`decidirModeracion`): dos que
- * pulsan a la vez, o una tarjeta vieja, no deciden dos veces, y el segundo oye
- * cómo está de verdad. Tras decidir se ponen al día todas las copias de la
- * tarjeta, se avisa a quien la escribió, y si cambió lo público se pide
- * republicar la web. El canal público anuncia la queja al PUBLICARLA, no al
- * recibirla: antes se anunciaba sin que nadie la hubiera leído.
+ * Sólo un administrador (`ADMIN_USER_IDS`), y sólo en su chat privado. La
+ * decisión es compare-and-set (`decidirModeracion`): dos que pulsan a la vez, o
+ * una tarjeta vieja, no deciden dos veces, y el segundo oye cómo está de
+ * verdad. Lo que sigue a una decisión —las tarjetas al día, el aviso a su autor—
+ * se hace de forma que se pueda repetir (`completarSeguimiento`): contestar al
+ * botón puede fallar —un toque tardío, la red—, y eso no puede llevarse por
+ * delante lo demás. Si cambia lo público, se pide republicar la web.
+ *
+ * El canal público de Telegram no anuncia la queja, ni al recibirla ni al
+ * publicarla: un anuncio no se retiraba con la queja, y el plan lo retira.
  */
-export const PATRON_MODERAR = /^mod:(pub|desc|ret):(Q-[0-9A-HJKMNP-TV-Z]{8})$/
+export const PATRON_MODERAR = new RegExp(`^mod:(pub|desc|ret):(${ID_QUEJA.source.slice(1, -1)})$`)
 
 const ACCION: Record<string, AccionModeracion> = {
   pub: 'publicar',
@@ -43,57 +47,83 @@ const HECHO: Record<Moderacion, string> = {
   retirada: 'Retirada de la publicación.',
 }
 
-export function registerModerar(
-  bot: Bot<MyContext>,
-  db: Db,
-  o: { envio: EnvioAdmin; channel: Channel },
-) {
+const SOLO_ADMIN = 'Sólo un administrador puede decidir sobre una queja.'
+
+const esAdmin = (ctx: MyContext) =>
+  ctx.chat?.type === 'private' && !!ctx.from && parseAdminIds().includes(ctx.from.id)
+
+/** Contestar al botón es sólo la señal en la pantalla de quien pulsa: si falla, se sigue. */
+async function responder(ctx: MyContext, texto: string): Promise<void> {
+  try {
+    await ctx.answerCallbackQuery({ text: texto })
+  } catch (err) {
+    logger.warn('moderar.respuesta', { err: String(err) })
+  }
+}
+
+export function registerModerar(bot: Bot<MyContext>, db: Db, o: { envio: EnvioAdmin }) {
   bot.callbackQuery(PATRON_MODERAR, async (ctx) => {
     const [, clave, id] = ctx.match as RegExpMatchArray
-    if (ctx.chat?.type !== 'private' || !parseAdminIds().includes(ctx.from.id)) {
-      await ctx.answerCallbackQuery({
-        text: 'Sólo un administrador puede decidir sobre una queja.',
-      })
+    if (!esAdmin(ctx)) {
+      await responder(ctx, SOLO_ADMIN)
       return
     }
     const r = decidirModeracion(db, id, ACCION[clave], `admin:${ctx.from.id}`)
     switch (r.resultado) {
-      case 'aplicada': {
-        await ctx.answerCallbackQuery({ text: HECHO[r.hasta] })
-        await actualizarTarjetas(db, id, { envio: o.envio })
-        const autor = autorDeQueja(db, id)
-        const aviso = avisoAlAutor(id, r.hasta)
-        if (autor?.canal === 'telegram' && aviso) {
-          try {
-            await ctx.api.sendMessage(Number(autor.ref), aviso)
-          } catch (err) {
-            // Quien la escribió puede haber bloqueado el bot: la decisión vale igual.
-            logger.warn('moderar.aviso-autor', { queja: id, err: String(err) })
-          }
-        }
-        if (r.hasta === 'publicada' || r.hasta === 'retirada') await pedirRepublicacion()
-        const q = r.hasta === 'publicada' ? getQuejaPublica(db, id) : null
-        if (q) {
-          const routing = routeUsingLocalOfficials({
-            title: q.title,
-            detail: q.detail,
-            category: q.category as never,
-          })
-          await o.channel.postNuevaQueja(q, routing)
-        }
-        return
-      }
+      case 'aplicada':
+        await responder(ctx, HECHO[r.hasta])
+        break
       case 'ya-decidida':
-        await ctx.answerCallbackQuery({ text: `Ya estaba decidida: ${HECHO[r.actual]}` })
-        await actualizarTarjetas(db, id, { envio: o.envio })
-        return
+        await responder(ctx, `Ya estaba decidida: ${HECHO[r.actual]}`)
+        break
       case 'retirada-por-autor':
-        await ctx.answerCallbackQuery({ text: 'Su autor la retiró con /olvidar: no se publica.' })
-        await actualizarTarjetas(db, id, { envio: o.envio })
-        return
+        await responder(ctx, 'Su autor la retiró con /olvidar: no se publica.')
+        break
       case 'no-existe':
-        await ctx.answerCallbackQuery({ text: 'Esa queja ya no existe.' })
+        await responder(ctx, 'Esa queja ya no existe.')
         return
     }
+    await completarSeguimiento(db, id, { envio: o.envio })
+    // Publicar o retirar cambia lo que exporta el bot. Descartar una que no era
+    // pública, no.
+    if (r.resultado === 'aplicada' && (r.hasta === 'publicada' || r.hasta === 'retirada')) {
+      await pedirRepublicacion()
+    }
+  })
+
+  bot.command('revisar', async (ctx) => {
+    if (!esAdmin(ctx)) {
+      await ctx.reply(SOLO_ADMIN)
+      return
+    }
+    const id = idDeQueja(ctx.match as string)
+    const q = id ? getQuejaViva(db, id) : null
+    if (!q) {
+      await ctx.reply(
+        `No encuentro la queja ${id ?? ''} (o su autor la retiró).`.replace('  ', ' '),
+      )
+      return
+    }
+    if (!(await enviarTarjetaA(db, q, ctx.from!.id, o.envio))) {
+      await ctx.reply('No he podido mandarte la tarjeta; prueba otra vez.')
+    }
+  })
+
+  bot.command('pendientes', async (ctx) => {
+    if (!esAdmin(ctx)) {
+      await ctx.reply(SOLO_ADMIN)
+      return
+    }
+    const cola = listarPendientes(db)
+    if (cola.length === 0) {
+      await ctx.reply('No hay ninguna queja esperando revisión.')
+      return
+    }
+    const edad = (h: number) =>
+      h < 1 ? 'menos de 1 h' : h < 48 ? `${h} h` : `${Math.floor(h / 24)} d`
+    const lineas = cola.map((p) => `• ${p.id} · ${edad(p.horas)} · ${p.titulo.slice(0, 60)}`)
+    await ctx.reply(
+      `Esperan revisión ${cola.length}:\n\n${lineas.join('\n')}\n\nLa tarjeta de cada una: /revisar Q-…`,
+    )
   })
 }

@@ -1,3 +1,5 @@
+import type { EstadoModeracion } from './avisos-admin.ts'
+
 /**
  * What this bot can actually DO right now.
  *
@@ -54,11 +56,25 @@ export interface BotHealth {
    * could tell. A boolean, never the secret.
    */
   webhookAuthenticated?: boolean
+  /** La cola de la revisión antes de publicar, cuando quien llama la pasa. */
+  moderacion?: EstadoModeracion
 }
+
+/**
+ * Horas que puede esperar una queja en revisión antes de que la cola cuente
+ * como atascada: dos días, que cubren un fin de semana sin nadie mirando.
+ */
+export const ESPERA_MAXIMA_REVISION_H = 48
 
 export function buildHealth(
   env: NodeJS.ProcessEnv,
-  opts: { mode: string; uptimeSec: number; pid: number; webhookAuthenticated?: boolean },
+  opts: {
+    mode: string
+    uptimeSec: number
+    pid: number
+    webhookAuthenticated?: boolean
+    moderacion?: EstadoModeracion
+  },
 ): BotHealth {
   const capabilities: BotCapabilities = {
     capture: Boolean(env.BOT_TOKEN),
@@ -70,13 +86,34 @@ export function buildHealth(
   if (!capabilities.broadcasts)
     degraded.push('CHANNEL_ID missing — public [SILENCIO] broadcasts disabled')
   if (!capabilities.adminCommands)
-    degraded.push('ADMIN_USER_IDS missing — /batch, /batch_register and /escalar disabled')
+    degraded.push(
+      'ADMIN_USER_IDS missing — nobody can review a queja, so none gets published; /batch, /batch_register and /escalar disabled',
+    )
   // A webhook-mode caller that does not say is read as unauthenticated: silence
   // here would print the all-clear this field exists to withhold.
   const webhookAuthenticated =
     opts.mode === 'webhook' ? opts.webhookAuthenticated === true : undefined
   if (webhookAuthenticated === false)
     degraded.push('webhook not registered with its secret_token — updates are not authenticated')
+  // La revisión antes de publicar falla cerrada: una cola atascada no publica
+  // nada mal, pero tampoco nada, y sin esto no lo decía nadie (revisión de #137).
+  const m = opts.moderacion
+  if (m && m.pendientes > 0) {
+    if (!capabilities.adminCommands) {
+      degraded.push(
+        `moderación: ${m.pendientes} queja(s) en revisión y nadie puede publicarlas (ADMIN_USER_IDS vacío)`,
+      )
+    } else if (m.sinTarjeta > 0) {
+      degraded.push(
+        `moderación: ${m.sinTarjeta} queja(s) en revisión sin tarjeta entregada a ningún administrador actual`,
+      )
+    }
+    if (m.masAntiguaHoras !== null && m.masAntiguaHoras > ESPERA_MAXIMA_REVISION_H) {
+      degraded.push(
+        `moderación: la queja en revisión más antigua lleva ${m.masAntiguaHoras} h esperando`,
+      )
+    }
+  }
   return {
     status: degraded.length === 0 ? 'ok' : 'degraded',
     mode: opts.mode,
@@ -86,5 +123,6 @@ export function buildHealth(
     capabilities,
     degraded,
     ...(webhookAuthenticated === undefined ? {} : { webhookAuthenticated }),
+    ...(opts.moderacion ? { moderacion: opts.moderacion } : {}),
   }
 }

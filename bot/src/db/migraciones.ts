@@ -188,12 +188,16 @@ function identidadPorCiudadano(db: Db): void {
  * nada— y sólo sale cuando está `publicada`. Lo que ya estaba publicado lo
  * sigue estando, con `publicada_at` = su fecha de alta, y consta como
  * `heredada` en `moderaciones`, el registro append-only de decisiones (no como
- * evento: `/estado` pinta los eventos a cualquiera). `avisos_admin` guarda qué
- * tarjeta recibió cada administrador, para cambiarlas todas al decidir y para
- * reenviar la que no llegó a nadie.
+ * evento: `/estado` pinta los eventos a cualquiera). `avisos` guarda lo que el
+ * bot ha mandado de cada queja y a quién: la tarjeta de cada administrador, para
+ * cambiarlas todas al decidir, y el aviso de cada decisión a su autor, para no
+ * repetirlo. Una fila sin `message_id` es un envío en curso: se reclama ANTES de
+ * mandar, para que dos pasadas a la vez no manden dos.
  *
- * Sólo añade: volver a la imagen anterior no rompe nada, y una base v2 con el
- * código v1 se queda como está (`migrar` no toca una base más nueva).
+ * Sólo añade, y aun así NO SE PUEDE VOLVER a la imagen anterior: el código v1
+ * no sabe de `moderacion` y publicaría todo lo pendiente, descartado o retirado
+ * en cuanto exportara. Si algo falla después de esta migración, se arregla hacia
+ * adelante (bot/DEPLOY.md).
  */
 function revisionAntesDePublicar(db: Db): void {
   db.exec(`
@@ -217,13 +221,14 @@ function revisionAntesDePublicar(db: Db): void {
     INSERT INTO moderaciones (queja_id, decision, por)
       SELECT id, 'heredada', 'migracion' FROM quejas ORDER BY rowid;
 
-    CREATE TABLE avisos_admin (
-      queja_id    TEXT NOT NULL,
-      tipo        TEXT NOT NULL,
-      admin_id    INTEGER NOT NULL,
-      message_id  INTEGER NOT NULL,
-      enviado_at  TEXT NOT NULL DEFAULT (datetime('now')),
-      PRIMARY KEY (queja_id, tipo, admin_id),
+    CREATE TABLE avisos (
+      queja_id      TEXT NOT NULL,
+      tipo          TEXT NOT NULL,
+      destinatario  TEXT NOT NULL,
+      message_id    INTEGER,
+      resultado     TEXT CHECK (resultado IN ('entregado', 'rechazado')),
+      creado_at     TEXT NOT NULL DEFAULT (datetime('now')),
+      PRIMARY KEY (queja_id, tipo, destinatario),
       FOREIGN KEY (queja_id) REFERENCES quejas(id) ON DELETE CASCADE
     );
   `)

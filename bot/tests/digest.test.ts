@@ -144,9 +144,11 @@ describe('bot · digest runDigestOnce', () => {
       captured.push({ userId, text })
     }
 
-    // Simulate an old queja by backdating created_at.
+    // Simulate an old queja: captured and published long ago. The window is on
+    // the publication date, so both move.
     const queja = creaPublicada(db, q({ neighborhood: 'casco' }))
-    db.prepare(`UPDATE quejas SET created_at = ? WHERE id = ?`).run(
+    db.prepare(`UPDATE quejas SET created_at = ?, publicada_at = ? WHERE id = ?`).run(
+      '2020-01-01T00:00:00Z',
       '2020-01-01T00:00:00Z',
       queja.id,
     )

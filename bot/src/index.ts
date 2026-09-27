@@ -13,7 +13,7 @@ import { startConvocatoriasCron } from './services/convocatorias.ts'
 import { startEventosRepoCron } from './services/eventos-repo.ts'
 import { startFotosCron } from './services/fotos-cron.ts'
 import { startRetencionCron } from './services/retencion.ts'
-import { envioDesdeApi, startReenvioTarjetas } from './services/avisos-admin.ts'
+import { envioDesdeApi, estadoModeracion, startReenvioTarjetas } from './services/avisos-admin.ts'
 import { sirveFotoExportada } from './services/foto-exportada.ts'
 import { webhookTelegram } from './services/webhook-telegram.ts'
 import { parseAdminIds } from './util/admins.ts'
@@ -117,6 +117,8 @@ function makeBot() {
     db,
     photosDir: directorioFotos(),
     dbPath: process.env.DB_PATH ?? './data/bot.db',
+    // El texto de una queja destruida tampoco se queda en las tarjetas de revisión.
+    envio: envioDesdeApi(bot.api),
   })
 
   bot.catch((err) => {
@@ -221,6 +223,7 @@ async function main() {
               uptimeSec: Math.round(process.uptime()),
               pid: process.pid,
               webhookAuthenticated: webhookAutenticado,
+              moderacion: estadoModeracion(db, parseAdminIds()),
             }),
           ),
         )
@@ -303,6 +306,7 @@ async function main() {
               mode: 'long-polling',
               uptimeSec: Math.round(process.uptime()),
               pid: process.pid,
+              moderacion: estadoModeracion(db, parseAdminIds()),
             }),
           ),
         )

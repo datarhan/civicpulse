@@ -14,7 +14,7 @@
 
 import type { Db } from '../db/client.ts'
 import type { QuejaRow } from '../db/queries.ts'
-import { setState, SQL_PUBLICA } from '../db/queries.ts'
+import { setState } from '../db/queries.ts'
 import { routeUsingLocalOfficials } from './router.ts'
 import { diasDePlazo } from '../../../src/scraper/queja-router.ts'
 import { isLoregFrozen } from './freeze.ts'
@@ -74,17 +74,17 @@ export function checkSilencio(
   }
   const rows = db
     .prepare(
-      // `SQL_PUBLICA` no es una optimización: es el derecho al olvido y la
-      // revisión. `postSilencio` publica en el canal el id y el TÍTULO literal
-      // de la queja, así que una retirada con `/olvidar` que siguiera entrando
-      // aquí volvía a publicarse meses después de que su autor la borrara, y una
-      // sin publicar saldría por aquí sin que nadie la hubiera revisado. La fila se
-      // conserva para auditoría (`CONSERVACION_QUEJAS_ANIOS`, art. 55 LOPD-GDD);
-      // lo que no se conserva es el derecho a seguir publicándola.
+      // El plazo legal corre sobre lo que se PRESENTÓ en la sede, esté publicado
+      // o no: una queja registrada que luego se retira de la publicación sigue su
+      // curso con el ayuntamiento, y su silencio también. Lo que depende de que
+      // sea pública es el ANUNCIO de abajo. Una retirada con `/olvidar` sale
+      // también de aquí (`deleted_at`): su autor pidió que dejara de tramitarse,
+      // y la fila sólo se conserva para auditoría (`CONSERVACION_QUEJAS_ANIOS`,
+      // art. 55 LOPD-GDD).
       `SELECT * FROM quejas
        WHERE state IN ('registrada','notificada_10d')
          AND registered_at IS NOT NULL
-         AND ${SQL_PUBLICA}`,
+         AND deleted_at IS NULL`,
     )
     .all() as QuejaRow[]
 
@@ -122,7 +122,9 @@ export function checkSilencio(
     const updated = setState(db, r.id, 'silencio_negativo')
     if (updated) {
       transitioned.push(updated)
-      avisos.push({ queja: updated, plazoDias: plazoDays })
+      // `postSilencio` publica en el canal el id y el TÍTULO literal: sólo de lo
+      // que es público (`SQL_PUBLICA`).
+      if (updated.moderacion === 'publicada') avisos.push({ queja: updated, plazoDias: plazoDays })
     }
   }
 

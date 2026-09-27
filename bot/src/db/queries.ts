@@ -202,7 +202,9 @@ export const ACCIONES_MODERACION = ['publicar', 'descartar', 'retirar'] as const
 export type AccionModeracion = (typeof ACCIONES_MODERACION)[number]
 
 const TRANSICIONES: Record<AccionModeracion, { desde: Moderacion[]; hasta: Moderacion }> = {
-  publicar: { desde: ['pendiente', 'retenida'], hasta: 'publicada' },
+  // Descartar y retirar tienen vuelta atrás: su autor puede impugnarlo, y quien
+  // modera, publicarla después (revisión de #137).
+  publicar: { desde: ['pendiente', 'retenida', 'descartada', 'retirada'], hasta: 'publicada' },
   descartar: { desde: ['pendiente', 'retenida'], hasta: 'descartada' },
   retirar: { desde: ['publicada'], hasta: 'retirada' },
 }
@@ -368,15 +370,17 @@ export function listRecentQuejas(db: Db, limit = 20): QuejaRow[] {
 }
 
 /**
- * Non-deleted quejas that carry a photo reference (`foto_ref`) — the input set for
- * the anonymize-and-publish job. Soft-deleted rows (right-to-be-forgotten) are
- * excluded so a withdrawn queja's photo is never processed or published.
+ * Las quejas PÚBLICAS con foto: lo que la pasada de fotos anonimiza, y la lista
+ * contra la que poda. Sólo lo publicado: sin su `QUEJAS_PHOTOS_DIR`, la pasada
+ * escribe junto al quejas.json del sitio, y una foto de una queja sin revisar
+ * acabaría en `public/` (revisión de #137). Al publicarse, la foto llega en la
+ * pasada siguiente; al retirarse, se poda.
  */
 export function listQuejasWithPhoto(db: Db, limit = 1000): QuejaRow[] {
   return db
     .prepare(
       `SELECT * FROM quejas
-       WHERE deleted_at IS NULL AND foto_ref IS NOT NULL
+       WHERE ${SQL_PUBLICA} AND foto_ref IS NOT NULL
        ORDER BY created_at DESC, rowid DESC LIMIT ?`,
     )
     .all(limit) as QuejaRow[]
@@ -627,9 +631,12 @@ export function findMatchingQuejas(
         : 'LOWER(category)'
   return db
     .prepare(
+      // La ventana va sobre cuándo se PUBLICÓ: una queja escrita el domingo y
+      // publicada el martes no salía ni en el resumen del lunes —aún no era
+      // pública— ni en el siguiente —ya tenía más de siete días de escrita—.
       `SELECT * FROM quejas
        WHERE ${SQL_PUBLICA}
-         AND created_at >= ?
+         AND COALESCE(publicada_at, created_at) >= ?
          AND ${col} LIKE ?
        ORDER BY created_at DESC
        LIMIT 50`,

@@ -209,12 +209,16 @@ describe('la tarjeta llega o se reintenta', () => {
 
 describe('lo que la revisión arrastraba roto (revisión de #137)', () => {
   it('si contestar al botón falla, lo demás se hace igual, y un segundo toque no lo repite', async () => {
-    h = botFalso(db, { falla: (metodo) => metodo === 'answerCallbackQuery' })
+    // Falla contestar al botón de la tarjeta, no a los de la conversación que la presenta.
+    let rota = false
+    h = botFalso(db, { falla: (metodo) => rota && metodo === 'answerCallbackQuery' })
     const id = await presentar()
+    rota = true
     await h.bot.handleUpdate(boton(ADMIN_A, `mod:pub:${id}`))
     expect(moderacion(id)).toBe('publicada')
     expect(ediciones(id)).toHaveLength(2)
-    const avisos = () => h.a(VECINA).filter((l) => /pública/.test(String(l.cuerpo.text)))
+    // «ya es pública» es el aviso; la bienvenida y el recibo dicen «cuando sea pública».
+    const avisos = () => h.a(VECINA).filter((l) => /ya es pública/.test(String(l.cuerpo.text)))
     expect(avisos()).toHaveLength(1)
     await h.bot.handleUpdate(boton(ADMIN_B, `mod:pub:${id}`))
     expect(avisos(), 'el segundo toque avisó otra vez').toHaveLength(1)

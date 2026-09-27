@@ -61,11 +61,15 @@ export function registerEstado(bot: Bot<MyContext>, db: Db) {
       await ctx.reply('Uso: `/estado Q-XXXX`', { parse_mode: 'Markdown' })
       return
     }
-    // Lo público, para cualquiera; lo que no se ha publicado, sólo para su autor.
+    // Lo público, para cualquiera; lo que no se ha publicado, sólo para su autor
+    // y sólo en privado: /estado contesta también en un grupo, y ahí su autor
+    // pondría a la vista de todos una queja que nadie ha revisado.
     // Para los demás, una sin publicar y una que no existe contestan igual.
     const q =
       getQuejaPublica(db, id) ??
-      (ctx.from && esAutor(db, id, autorTelegram(ctx.from.id)) ? getQuejaViva(db, id) : null)
+      (ctx.chat?.type === 'private' && ctx.from && esAutor(db, id, autorTelegram(ctx.from.id))
+        ? getQuejaViva(db, id)
+        : null)
     if (!q) {
       await ctx.reply(`No encuentro la queja \`${id}\`.`, { parse_mode: 'Markdown' })
       return

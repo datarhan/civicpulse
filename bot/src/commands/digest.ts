@@ -30,7 +30,7 @@ export function computeDigest(db: Db, windowDays = 7): Digest {
   const newCount = (
     db
       .prepare(
-        `SELECT COUNT(*) as n FROM quejas WHERE ${SQL_PUBLICA} AND date(created_at) > date('now', ?)`,
+        `SELECT COUNT(*) as n FROM quejas WHERE ${SQL_PUBLICA} AND date(COALESCE(publicada_at, created_at)) > date('now', ?)`,
       )
       .get(window) as { n: number }
   ).n
@@ -69,7 +69,7 @@ export function computeDigest(db: Db, windowDays = 7): Digest {
   const topCategorias = db
     .prepare(
       `SELECT category, COUNT(*) as n FROM quejas
-       WHERE ${SQL_PUBLICA} AND date(created_at) > date('now', ?)
+       WHERE ${SQL_PUBLICA} AND date(COALESCE(publicada_at, created_at)) > date('now', ?)
        GROUP BY category ORDER BY n DESC LIMIT 5`,
     )
     .all(window) as Array<{ category: string; n: number }>
