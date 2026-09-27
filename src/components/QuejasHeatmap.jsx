@@ -67,14 +67,6 @@ export default function QuejasHeatmap() {
   const { pintadas, publicadas, entero, sinBarrio, desconocidas, restoSinBarrio } =
     coberturaDeBarrios(quejas, perNeighborhood, geo?.neighborhoods)
   const situaUnaParte = publicadas !== null && pintadas < publicadas
-  // El motivo, sólo cuando es exacto: con el listado entero, «no tienen barrio»
-  // si todas las que faltan llegaron sin él; si alguna trae un barrio que el
-  // mapa no conoce, las dos cifras por separado; y truncado, sin motivo.
-  const claveNota = restoSinBarrio
-    ? 'quejas.mapa.cobertura'
-    : entero
-      ? 'quejas.mapa.coberturaDesglose'
-      : 'quejas.mapa.coberturaParcial'
 
   return (
     <div style={{ marginBottom: 14 }}>
@@ -155,12 +147,26 @@ export default function QuejasHeatmap() {
       </div>
       {situaUnaParte && (
         <p style={{ margin: '6px 0 0', fontSize: 'var(--fs-aux)', color: 'var(--ink70)' }}>
-          {rellena(t(claveNota), {
-            nPintadas: pintadas,
-            nPublicadas: publicadas,
-            nSinBarrio: sinBarrio,
-            nDesconocidas: desconocidas,
-          })}
+          {/* El motivo, sólo cuando es exacto: con el listado entero, «no tienen
+              barrio» si todas las que faltan llegaron sin él; si alguna trae un
+              barrio que el mapa no conoce, las dos cifras por separado; y con el
+              listado truncado, sin motivo. Las claves van dentro de la llamada:
+              tests/i18n-catalogue.test.ts comprueba así que se rellenan. */}
+          {rellena(
+            t(
+              restoSinBarrio
+                ? 'quejas.mapa.cobertura'
+                : entero
+                  ? 'quejas.mapa.coberturaDesglose'
+                  : 'quejas.mapa.coberturaParcial',
+            ),
+            {
+              nPintadas: pintadas,
+              nPublicadas: publicadas,
+              nSinBarrio: sinBarrio,
+              nDesconocidas: desconocidas,
+            },
+          )}
         </p>
       )}
     </div>
