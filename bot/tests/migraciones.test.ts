@@ -1,4 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest'
+import { execFileSync } from 'node:child_process'
 import { mkdtempSync, readFileSync, readdirSync, rmSync, existsSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
@@ -6,7 +7,12 @@ import Database from 'better-sqlite3'
 import {
   BASE_V0,
   CANALES,
+  DECISIONES_MODERACION,
   MIGRACIONES,
+  MIGRACIONES_DEL_ENSAYO,
+  MIGRACIONES_EN_ENSAYO,
+  MODERACIONES,
+  MOTIVOS_VACIADO,
   ensayarMigracion,
   migrar,
   type Migracion,
@@ -280,7 +286,8 @@ describe('migrar — de v0 a la última', () => {
 
   it('cada CREATE TABLE del código existe en una base migrada (ninguna tabla fantasma)', () => {
     const db = new Database(':memory:')
-    migrar(db, { ruta: ':memory:', log: () => {} })
+    // Con todas: las activas y las que están en ensayo, que el código ya escribe.
+    migrar(db, { ruta: ':memory:', migraciones: MIGRACIONES_DEL_ENSAYO, log: () => {} })
     const tablas = new Set(
       (
         db.prepare("SELECT name FROM sqlite_schema WHERE type = 'table'").all() as Array<{
@@ -345,5 +352,139 @@ describe('el ensayo: la migración sobre una copia, sin tocar la base', () => {
     expect(e.ok).toBe(false)
     expect(e.error).toMatch(/apoyos/)
     expect(readdirSync(dir).filter((f) => !/^bot\.db(-wal|-shm)?$/.test(f))).toEqual([])
+  })
+})
+
+/**
+ * Una migración que producción aún no tiene se ensaya contra su base antes de
+ * activarse (bot/DEPLOY.md), y el ensayo corre el código de la imagen
+ * desplegada. Así que llega primero inerte, en `MIGRACIONES_EN_ENSAYO`: el bot
+ * no la aplica al arrancar y `migrate.ts --dry-run` sí la ensaya. El cambio
+ * que la usa la pasa después a `MIGRACIONES`. Estas pruebas valen igual con la
+ * lista en ensayo vacía.
+ */
+describe('las migraciones en ensayo', () => {
+  const ultima = (lista: readonly Migracion[]) => lista[lista.length - 1].version
+
+  it('el ensayo son las activas y, detrás, las que están en ensayo', () => {
+    expect(MIGRACIONES_DEL_ENSAYO).toEqual([...MIGRACIONES, ...MIGRACIONES_EN_ENSAYO])
+    const versiones = MIGRACIONES_DEL_ENSAYO.map((m) => m.version)
+    expect(versiones).toEqual(versiones.map((_, i) => i + 1))
+  })
+
+  it('el bot no aplica al arrancar las que están en ensayo', () => {
+    const db = new Database(':memory:')
+    migrar(db, { ruta: ':memory:', log: () => {} })
+    expect(db.pragma('user_version', { simple: true })).toBe(ultima(MIGRACIONES))
+    db.close()
+  })
+
+  it('el ensayo sí las corre, desde la versión de producción, sin perder filas', () => {
+    const ruta = baseV0()
+    const db = abrir(ruta)
+    migrar(db, { ruta, log: () => {} })
+    db.close()
+    const e = ensayarMigracion(ruta, { migraciones: MIGRACIONES_DEL_ENSAYO, log: () => {} })
+    expect(e.ok, e.error).toBe(true)
+    expect(e.desde).toBe(ultima(MIGRACIONES))
+    expect(e.hasta).toBe(ultima(MIGRACIONES_DEL_ENSAYO))
+    for (const t of ['quejas', 'apoyos', 'events']) expect(e.despues?.[t]).toBe(e.antes[t])
+  })
+
+  it('`migrate.ts --dry-run` ensaya también las que están en ensayo', () => {
+    const ruta = baseV0()
+    const db = abrir(ruta)
+    migrar(db, { ruta, log: () => {} })
+    db.close()
+    const bot = join(__dirname, '..')
+    const salida = execFileSync(
+      join(bot, 'node_modules', '.bin', 'tsx'),
+      [join(bot, 'src', 'db', 'migrate.ts'), '--dry-run', '--db', ruta],
+      { encoding: 'utf8' },
+    )
+    expect(salida).toContain(
+      `ENSAYO correcto: de la versión ${ultima(MIGRACIONES)} a la ${ultima(MIGRACIONES_DEL_ENSAYO)}`,
+    )
+  })
+})
+
+/**
+ * La migración 2: la revisión antes de publicar. En ensayo: se prueba con la
+ * lista del ensayo, que es la que correrá el bot cuando se active.
+ *
+ * Una queja nueva nace `pendiente` y no sale hasta que se decide. Las que ya
+ * estaban publicadas lo siguen estando —no se despublica nada al desplegar—, y
+ * queda dicho que entraron sin revisión: una fila `heredada` en `moderaciones`,
+ * el registro de decisiones, y no un evento, que /estado pinta a cualquiera.
+ * Producción está en la v1, así que se prueba desde ahí.
+ */
+describe('la migración 2: la revisión antes de publicar', () => {
+  const comprobar = (db: Database.Database) => {
+    expect(db.pragma('user_version', { simple: true })).toBe(2)
+    const filas = db
+      .prepare('SELECT moderacion, publicada_at, created_at FROM quejas')
+      .all() as Array<{ moderacion: string; publicada_at: string; created_at: string }>
+    expect(filas).toHaveLength(5)
+    for (const f of filas) {
+      expect(f.moderacion).toBe('publicada')
+      expect(f.publicada_at).toBe(f.created_at)
+    }
+    expect(
+      db
+        .prepare('SELECT decision, por, COUNT(*) AS n FROM moderaciones GROUP BY decision, por')
+        .all(),
+    ).toEqual([{ decision: 'heredada', por: 'migracion', n: 5 }])
+    expect(cuenta(db, 'avisos')).toBe(0)
+    expect(cuenta(db, 'tarjetas_por_vaciar')).toBe(0)
+    expect(cuenta(db, 'events')).toBe(8) // ni un evento de más
+    expect(db.pragma('foreign_key_check')).toEqual([])
+  }
+
+  it('desde la v0, todo lo que había sigue publicado, y consta cómo', () => {
+    const ruta = baseV0()
+    const db = abrir(ruta)
+    migrar(db, { ruta, migraciones: MIGRACIONES_DEL_ENSAYO.slice(0, 2), log: () => {} })
+    comprobar(db)
+    db.close()
+  })
+
+  it('desde la v1, que es donde está producción', () => {
+    const ruta = baseV0()
+    const db = abrir(ruta)
+    migrar(db, { ruta, migraciones: MIGRACIONES_DEL_ENSAYO.slice(0, 1), log: () => {} })
+    expect(db.pragma('user_version', { simple: true })).toBe(1)
+    migrar(db, { ruta, migraciones: MIGRACIONES_DEL_ENSAYO.slice(0, 2), log: () => {} })
+    comprobar(db)
+    db.close()
+  })
+
+  it('una queja nueva nace pendiente: publicar es una decisión, no el valor por defecto', () => {
+    const db = new Database(':memory:')
+    migrar(db, { ruta: ':memory:', migraciones: MIGRACIONES_DEL_ENSAYO.slice(0, 2), log: () => {} })
+    db.prepare(
+      "INSERT INTO quejas (id, category, title, detail) VALUES ('Q-00000001', 'otros', 't', 'd')",
+    ).run()
+    expect(db.prepare("SELECT moderacion FROM quejas WHERE id = 'Q-00000001'").get()).toEqual({
+      moderacion: 'pendiente',
+    })
+    db.close()
+  })
+
+  it('los estados de los CHECK son los que exporta migraciones.ts', () => {
+    const db = new Database(':memory:')
+    migrar(db, { ruta: ':memory:', migraciones: MIGRACIONES_DEL_ENSAYO.slice(0, 2), log: () => {} })
+    const clausula = (tabla: string, columna: string) => {
+      const sql = (
+        db.prepare('SELECT sql FROM sqlite_schema WHERE name = ?').get(tabla) as { sql: string }
+      ).sql
+      const m = new RegExp(`CHECK \\(${columna} IN \\(([^)]*)\\)\\)`).exec(sql)?.[1] ?? ''
+      return [...m.matchAll(/'([a-z]+)'/g)].map((x) => x[1]).sort()
+    }
+    // El de quejas vive en un ALTER TABLE ADD COLUMN: SQLite lo guarda en la sentencia de la tabla.
+    expect(clausula('quejas', 'moderacion').length).toBeGreaterThan(0)
+    expect(clausula('quejas', 'moderacion')).toEqual([...MODERACIONES].sort())
+    expect(clausula('moderaciones', 'decision')).toEqual([...DECISIONES_MODERACION].sort())
+    expect(clausula('tarjetas_por_vaciar', 'motivo')).toEqual([...MOTIVOS_VACIADO].sort())
+    db.close()
   })
 })
