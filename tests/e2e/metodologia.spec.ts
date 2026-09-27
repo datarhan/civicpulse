@@ -1,29 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { readFileSync } from 'node:fs'
 import { TRINQUETE } from '../../src/scraper/trinquete'
-import { fmtTheta, sensibilidadCestas } from '../../src/scraper/dea-sensibilidad'
-
-const DEA = JSON.parse(readFileSync('public/data/dea.json', 'utf8'))
-
-/**
- * La tarjeta #frontera decía que cuatro cestas «igual de defendibles» llevaban
- * la distancia a la frontera a recorrer «media escala»; ningún dea.json dio
- * más que 0,43 frente a 0,53. La medición sale ahora del snapshot, y aquí se
- * comprueba que la página pinta la del fichero publicado.
- */
-test('la medición de las cestas en #frontera es la del snapshot', async ({ page }) => {
-  const s = sensibilidadCestas(DEA.especificaciones)
-  expect(s.probadas, 'el snapshot no trae cestas: esto no mediría nada').toBeGreaterThan(0)
-  await page.goto('/metodologia#frontera', { waitUntil: 'domcontentloaded' })
-  const tarjeta = page.locator('#frontera')
-  await expect(tarjeta).toContainText(`probamos`, { timeout: 8000 })
-  await expect(tarjeta).not.toContainText('media escala')
-  if (s.theta?.cambia) {
-    await expect(tarjeta).toContainText(
-      `va de ${fmtTheta(s.theta.min)} a ${fmtTheta(s.theta.max)} según la cesta`,
-    )
-  }
-})
 
 /**
  * El trinquete publicado y el trinquete aplicado son el mismo.

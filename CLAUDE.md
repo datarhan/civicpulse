@@ -329,9 +329,8 @@ reportaje JSON by `tests/infografia-sync.test.js`.
 
 **`/laboratorio/frontera` publishes our model's verdict**, not a number somebody
 else published: a DEA score moves with its modelling choices, so the choices are
-part of what is published. How far they move it is derived from `dea.json`
-(`src/scraper/dea-sensibilidad.ts`), never typed into prose. Three rules —
-`check:dea` and its e2e spec enforce the first two; the third is policy:
+part of what is published. Three rules — `check:dea` and its e2e spec enforce
+the first two; the third is policy:
 
 1. **No other municipality is ever named.** `/eficiencia` names its peers
    because there the figure is the ministry's own division; here, naming would

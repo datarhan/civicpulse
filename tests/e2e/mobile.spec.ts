@@ -54,10 +54,9 @@ const literal = (s: string) => new RegExp(s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&
 //
 // `ready` is data, not chrome: a figure, a name or a count that comes from
 // `public/data`, never a hard-coded heading. The four editorial pages
-// (/nosotros, /about, /metodologia, /aviso-legal) are mostly hand-written
-// prose — the snapshot-derived sentences some of them carry fall back to a
-// figure-free version while loading — so they anchor on their own closing
-// paragraph: the page still cannot pass by rendering nothing.
+// (/nosotros, /about, /metodologia, /aviso-legal) read no snapshot, so they
+// anchor on their own closing paragraph — the page still cannot pass by
+// rendering nothing.
 // ---------------------------------------------------------------------------
 
 // `flag`: the launch flag that mounts the route. Without it App.jsx has no such

@@ -2,7 +2,6 @@ import { test, expect } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 import { readFileSync } from 'node:fs'
 import { collectErrors, appErrors } from './_console'
-import { sensibilidadCestas, tituloCestas } from '../../src/scraper/dea-sensibilidad'
 
 // Se lee el snapshot en vez de reescribir sus cifras: una spec que restituye la
 // forma que debe comprobar es el modo de fallo 1 de docs/DATA_INTEGRITY.md, y
@@ -87,20 +86,6 @@ test.describe('Frontera (/laboratorio/frontera)', () => {
     }
     // Que el bucle haya comprobado algo, y no cincuenta veces nada.
     expect(comprobados).toBeGreaterThan(40)
-  })
-
-  test('cuenta las cestas que puntúan y lo que se mueve, sacado del snapshot', async ({ page }) => {
-    // Titulaba «Cuatro cestas defendibles, cuatro resultados» encima de dos
-    // tarjetas «sin puntuación», y la advertencia decía que otra cesta llevaba
-    // la puntuación «entre una y otra punta de la escala»: 0,43 frente a 0,53.
-    const s = sensibilidadCestas(SNAP.especificaciones)
-    expect(s.probadas, 'el snapshot no trae cestas: esto no mediría nada').toBeGreaterThan(0)
-    await expect(page.getByRole('heading', { name: tituloCestas(s) })).toBeVisible()
-
-    const aviso = page.locator('p', { hasText: /no es una nota ni un ranking/i })
-    await expect(aviso).toBeVisible()
-    await expect(aviso).not.toContainText(/punta de la escala|media escala/)
-    if (s.theta?.cambia) await expect(aviso).toContainText('cambia la puntuación de Riba-roja')
   })
 
   test('cada puntuación llega con su cobertura y su intervalo', async ({ page }) => {

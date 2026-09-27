@@ -27,8 +27,8 @@
  * experimento. Una página que enseñara sólo la cesta que sale bien estaría
  * enseñando el resultado en vez del método. `cinco-servicios` se registra
  * sabiendo que no llegará a grados de libertad y se publica diciéndolo: es la
- * mitad interesante. Cuántas puntúan y cuánto se mueve la cifra entre ellas no
- * se escribe aquí ni en ninguna página: lo cuenta `dea-sensibilidad.ts`.
+ * mitad interesante. Cuántas puntúan no se escribe aquí: /laboratorio/frontera
+ * lo cuenta del snapshot, y ninguna prosa escribe cuánto se mueve la cifra.
  *
  * Puro: sin red, sin reloj. La semilla del bootstrap se deriva del id de la
  * especificación, así que dos pasadas dan el mismo intervalo.
@@ -112,9 +112,9 @@ export const ESPECIFICACIONES: EspecificacionDea[] = [
     // Decía también «Queda justo en el mínimo de grados de libertad», y la
     // tarjeta que lo publica dice dos líneas más abajo «11 unidades para 4
     // salidas, hacen falta 15. No se cumple». Escrito contra una ejecución
-    // anterior a la definitiva, como el «media escala» de las páginas que
-    // cuentan el experimento (ver `dea-sensibilidad.ts`). Si cumple o no lo
-    // dice la tarjeta, que lo calcula; aquí sólo va el porqué de la cesta.
+    // anterior a la definitiva, como el «media escala» que repetían las páginas
+    // que cuentan el experimento (#125). Si cumple o no lo dice la tarjeta, que
+    // lo calcula; aquí sólo va el porqué de la cesta.
     porQue:
       'Añade parques y jardines, que muchos municipios de la banda no declaran completo: la ' +
       'muestra se parte casi por la mitad para ganar una dimensión.',
