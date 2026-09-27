@@ -48,8 +48,11 @@ export function botFalso(
   db: Db,
   o: {
     canal?: Channel
-    /** Las llamadas que Telegram rechaza, como un bot bloqueado por quien las recibe. */
-    falla?: (metodo: string, cuerpo: Record<string, any>) => boolean
+    /**
+     * Las llamadas que Telegram rechaza: `true`, como un bot bloqueado por quien
+     * las recibe (403); un número, con ese código (un 502 es un fallo de paso).
+     */
+    falla?: (metodo: string, cuerpo: Record<string, any>) => boolean | number
   } = {},
 ) {
   const llamadas: Llamada[] = []
@@ -58,14 +61,17 @@ export function botFalso(
     const metodo = String(url).split('/').pop() ?? ''
     const cuerpo = init?.body ? JSON.parse(String(init.body)) : {}
     llamadas.push({ metodo, cuerpo })
-    if (o.falla?.(metodo, cuerpo)) {
+    const fallo = o.falla?.(metodo, cuerpo)
+    if (fallo) {
+      const codigo = fallo === true ? 403 : fallo
       return new Response(
         JSON.stringify({
           ok: false,
-          error_code: 403,
-          description: 'Forbidden: bot was blocked by the user',
+          error_code: codigo,
+          description:
+            codigo === 403 ? 'Forbidden: bot was blocked by the user' : `Error ${codigo}`,
         }),
-        { status: 403, headers: { 'content-type': 'application/json' } },
+        { status: codigo, headers: { 'content-type': 'application/json' } },
       )
     }
     const result =

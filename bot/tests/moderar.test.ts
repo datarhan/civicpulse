@@ -3,7 +3,9 @@ import { openDb, type Db } from '../src/db/client'
 import {
   avisarAdmins,
   completarSeguimientosPendientes,
+  envioDesdeApi,
   estadoModeracion,
+  pasadaHoraria,
   reenviarTarjetasPendientes,
   tarjetaDeQueja,
   type EnvioAdmin,
@@ -302,6 +304,59 @@ describe('lo que la revisión arrastraba roto (revisión de #137)', () => {
       expect(String(e.cuerpo.text)).not.toMatch(/farola/i)
       expect(h.botones(e)).toEqual([])
     }
+  })
+
+  it('si Telegram falla al vaciarlas cuando se retira, la pasada horaria las vacía, y una sola vez', async () => {
+    let rota = false
+    // Un 502: Telegram caído un momento, no un rechazo para siempre.
+    h = botFalso(db, { falla: (metodo) => rota && metodo === 'editMessageText' && 502 })
+    const id = await presentar()
+    rota = true
+    await h.bot.handleUpdate(texto(VECINA, `/olvidar ${id}`))
+    rota = false
+    const envio = envioDesdeApi(h.bot.api)
+    const admins = [ADMIN_A, ADMIN_B]
+    const antes = ediciones(id).length
+    expect((await pasadaHoraria(db, { admins, envio })).vaciadas).toEqual({
+      intentadas: 2,
+      vaciadas: 2,
+      sinAcceso: 0,
+      fallidas: 0,
+    })
+    const nuevas = ediciones(id).slice(antes)
+    expect(nuevas.map((l) => l.cuerpo.chat_id).sort()).toEqual([ADMIN_A, ADMIN_B])
+    for (const e of nuevas) expect(String(e.cuerpo.text)).not.toMatch(/farola/i)
+    expect((await pasadaHoraria(db, { admins, envio })).vaciadas).toMatchObject({ intentadas: 0 })
+  })
+
+  it('una tarjeta que Telegram ya no deja tocar —el administrador bloqueó el bot— no se reintenta', async () => {
+    let codigo: number | false = false
+    h = botFalso(db, { falla: (metodo) => metodo === 'editMessageText' && codigo })
+    const id = await presentar()
+    codigo = 502
+    await h.bot.handleUpdate(texto(VECINA, `/olvidar ${id}`))
+    codigo = 403
+    const envio = envioDesdeApi(h.bot.api)
+    const admins = [ADMIN_A, ADMIN_B]
+    expect((await pasadaHoraria(db, { admins, envio })).vaciadas).toEqual({
+      intentadas: 2,
+      vaciadas: 0,
+      sinAcceso: 2,
+      fallidas: 0,
+    })
+    expect((await pasadaHoraria(db, { admins, envio })).vaciadas).toMatchObject({ intentadas: 0 })
+  })
+
+  it('un 403 ya al retirarla basta: la pasada no lo intenta', async () => {
+    let rota = false
+    h = botFalso(db, { falla: (metodo) => rota && metodo === 'editMessageText' })
+    const id = await presentar()
+    rota = true
+    await h.bot.handleUpdate(texto(VECINA, `/olvidar ${id}`))
+    const envio = envioDesdeApi(h.bot.api)
+    expect((await pasadaHoraria(db, { admins: [ADMIN_A, ADMIN_B], envio })).vaciadas).toMatchObject(
+      { intentadas: 0 },
+    )
   })
 
   it('/borrar_mis_datos también', async () => {
