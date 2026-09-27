@@ -193,6 +193,28 @@ flyctl ssh console --app munigraph-ribarroja
 # Inside: /data/bot.db is the SQLite file. Use sqlite3 if needed.
 ```
 
+### Ensayar una migración antes de desplegarla
+
+La base del volumen es la única copia de los datos, y su esquema cambia por
+migraciones (`src/db/migraciones.ts`; `schema.sql` es la base v0, congelada).
+Antes de fusionar un cambio que añade una migración, se ensaya contra la base
+de verdad:
+
+```bash
+flyctl ssh console --app munigraph-ribarroja -C "node_modules/.bin/tsx src/db/migrate.ts --dry-run"
+```
+
+Copia la base a un fichero temporal en el mismo volumen, lo migra, cuenta las
+filas de cada tabla antes y después, y borra la copia: los datos no salen de la
+máquina y la base no se toca. Lo esperado es `ENSAYO correcto` con las mismas
+cuentas en `quejas`, `apoyos` y `events`; con cualquier otra cosa, no se
+fusiona. Y antes de fusionar, una instantánea del volumen:
+
+```bash
+flyctl volumes list --app munigraph-ribarroja
+flyctl volumes snapshots create <volume-id>
+```
+
 ### Rotate the BOT_TOKEN
 
 ```bash
