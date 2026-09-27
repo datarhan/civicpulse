@@ -76,7 +76,7 @@ itself in CI — green by not running. `tests/deploy-triggers.test.js` reds on i
 
 ## Architecture
 
-A **front-end-only SPA** (Vite + React 18 + React Router 6) reading static JSON
+A **front-end-only SPA** (Vite + React 18 + React Router 7) reading static JSON
 from `public/data/`. It has no backend of its own: Vercel serves the built
 assets next to the JSON. Two things are not the SPA and are easy to mistake for
 exceptions:
