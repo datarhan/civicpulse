@@ -14,7 +14,9 @@
  * de cada administrador (`admin:<id>`), para cambiarlas todas al decidir, y el
  * aviso de cada decisión a su autor, para no repetirlo. Un envío se RECLAMA
  * antes de mandarlo —una fila sin resultado—, así que dos pasadas a la vez no
- * mandan dos; un reclamo que se quedó a medias caduca a los diez minutos.
+ * mandan dos; un reclamo que se quedó a medias caduca a los diez minutos. Las
+ * tarjetas de una queja que su autor retira se vacían, y si Telegram falla en
+ * ese momento, la pasada horaria (`pasadaHoraria`) lo vuelve a intentar.
  *
  * No se pausa con el bloqueo LOREG: decidir es de una persona, y la pausa es
  * para lo automático.
@@ -146,6 +148,18 @@ function soltar(db: Db, quejaId: string, tipo: string, destinatario: string): vo
 }
 
 /**
+ * Lo que Telegram no aceptará por mucho que se repita: quien recibe bloqueó el
+ * bot (403), o el chat o el mensaje no existen (400).
+ */
+const RECHAZO_DEFINITIVO = new Set([400, 403])
+
+/** grammY lanza lo que Telegram rechaza con el código en `error_code`; un error de red no lo trae. */
+function esRechazoDefinitivo(err: unknown): boolean {
+  const codigo = (err as { error_code?: unknown } | null)?.error_code
+  return typeof codigo === 'number' && RECHAZO_DEFINITIVO.has(codigo)
+}
+
+/**
  * Manda la tarjeta de una queja a cada administrador que no la tenga ya, y
  * anota las que llegaron. Una que falla se suelta para la pasada siguiente.
  */
@@ -188,28 +202,106 @@ export async function enviarTarjetaA(
   return (await avisarAdmins(db, q, { admins: [admin], envio })).entregadas === 1
 }
 
+interface CopiaDeTarjeta {
+  destinatario: string
+  message_id: number
+}
+
 /**
  * Pone al día todas las copias de la tarjeta de una queja. Un fallo al editar
- * una copia no deshace nada: se registra y se sigue con las demás.
+ * una copia no deshace nada: se registra y se sigue con las demás. La de una
+ * queja que su autor retiró se VACÍA (`vaciarCopia`), y ésa, si falla de paso,
+ * la reintenta la pasada horaria: su texto no puede quedarse en ningún chat.
  */
 export async function actualizarTarjetas(
   db: Db,
   id: string,
-  o: { envio: EnvioAdmin; nota?: string; motivo?: 'retirada' | 'destruida' },
-): Promise<{ editadas: number; fallidas: number }> {
-  const q = getQuejaViva(db, id)
-  const { html, botones } = q ? tarjetaDeQueja(q, o.nota) : tarjetaSinQueja(id, o.motivo)
+  o: { envio: EnvioAdmin; nota?: string },
+): Promise<void> {
   const copias = db
     .prepare(
       `SELECT destinatario, message_id FROM avisos
         WHERE queja_id = ? AND tipo = ? AND message_id IS NOT NULL`,
     )
-    .all(id, TIPO_TARJETA) as Array<{ destinatario: string; message_id: number }>
-  return editar(copias, html, botones, o.envio, id)
+    .all(id, TIPO_TARJETA) as CopiaDeTarjeta[]
+  const q = getQuejaViva(db, id)
+  if (!q) {
+    for (const c of copias) await vaciarCopia(db, id, c, o.envio)
+    return
+  }
+  const { html, botones } = tarjetaDeQueja(q, o.nota)
+  await editar(copias, html, botones, o.envio, id)
+}
+
+/** Cómo acabó el intento de vaciar una copia de la tarjeta. */
+type Vaciado = 'vaciada' | 'sin-acceso' | 'fallida'
+
+/**
+ * Quita el texto de una copia de la tarjeta de una queja que su autor retiró.
+ * Su fila en `avisos` se borra cuando ya no hay nada que hacer —vaciada, o en
+ * un chat que Telegram ya no deja tocar— y se queda para la pasada horaria si
+ * falló de paso.
+ */
+async function vaciarCopia(
+  db: Db,
+  id: string,
+  c: CopiaDeTarjeta,
+  envio: EnvioAdmin,
+): Promise<Vaciado> {
+  const { html, botones } = tarjetaSinQueja(id, 'retirada')
+  let vaciado: Vaciado = 'vaciada'
+  try {
+    await envio.editar(idDeAdmin(c.destinatario), c.message_id, html, botones)
+  } catch (err) {
+    // «message is not modified»: ya estaba vacía, porque el proceso cayó tras editarla.
+    if (!/message is not modified/i.test(String(err))) {
+      vaciado = esRechazoDefinitivo(err) ? 'sin-acceso' : 'fallida'
+      logger.warn('avisos-admin.vaciar', { queja: id, err: String(err) })
+    }
+  }
+  if (vaciado !== 'fallida') soltar(db, id, TIPO_TARJETA, c.destinatario)
+  return vaciado
+}
+
+/** Lo que hizo una pasada de vaciar tarjetas, contado por separado. */
+export interface ResultadoVaciado {
+  intentadas: number
+  vaciadas: number
+  /** En un chat que Telegram ya no deja tocar: no se reintentan. */
+  sinAcceso: number
+  /** Fallidas de paso: quedan para la pasada siguiente. */
+  fallidas: number
+}
+
+/**
+ * Las tarjetas que aún enseñan el texto de una queja que su autor retiró —con
+ * /olvidar o /borrar_mis_datos—, porque Telegram falló al vaciarlas entonces.
+ */
+export async function vaciarTarjetasDeRetiradas(
+  db: Db,
+  envio: EnvioAdmin,
+): Promise<ResultadoVaciado> {
+  const copias = db
+    .prepare(
+      `SELECT a.queja_id, a.destinatario, a.message_id FROM avisos a
+         JOIN quejas q ON q.id = a.queja_id
+        WHERE a.tipo = ? AND a.message_id IS NOT NULL AND q.deleted_at IS NOT NULL
+        ORDER BY a.queja_id, a.destinatario`,
+    )
+    .all(TIPO_TARJETA) as Array<CopiaDeTarjeta & { queja_id: string }>
+  const r: ResultadoVaciado = { intentadas: 0, vaciadas: 0, sinAcceso: 0, fallidas: 0 }
+  for (const c of copias) {
+    r.intentadas += 1
+    const v = await vaciarCopia(db, c.queja_id, c, envio)
+    if (v === 'vaciada') r.vaciadas += 1
+    else if (v === 'sin-acceso') r.sinAcceso += 1
+    else r.fallidas += 1
+  }
+  return r
 }
 
 async function editar(
-  copias: Array<{ destinatario: string; message_id: number }>,
+  copias: CopiaDeTarjeta[],
   html: string,
   botones: Boton[],
   envio: EnvioAdmin,
@@ -364,15 +456,6 @@ export function listarPendientes(
   }))
 }
 
-/** Lo que Telegram no aceptará por mucho que se repita: la autora bloqueó el bot (403), o su chat no existe (400). */
-const RECHAZO_DEFINITIVO = new Set([400, 403])
-
-/** grammY lanza lo que Telegram rechaza con el código en `error_code`; un error de red no lo trae. */
-function esRechazoDefinitivo(err: unknown): boolean {
-  const codigo = (err as { error_code?: unknown } | null)?.error_code
-  return typeof codigo === 'number' && RECHAZO_DEFINITIVO.has(codigo)
-}
-
 /** Lo que hizo una pasada de avisos a autores, contado por separado. */
 export interface ResultadoAvisos {
   intentados: number
@@ -477,9 +560,21 @@ export function completarSeguimientosPendientes(
   return avisarAutores(db, { envio: o.envio })
 }
 
+/**
+ * La pasada horaria: las tarjetas que ningún administrador actual tiene, las
+ * que aún enseñan el texto de una queja retirada, y los avisos que faltan a
+ * sus autores. Cada parte cuenta lo suyo.
+ */
+export async function pasadaHoraria(db: Db, o: { admins: number[]; envio: EnvioAdmin }) {
+  const tarjetas = await reenviarTarjetasPendientes(db, o)
+  const vaciadas = await vaciarTarjetasDeRetiradas(db, o.envio)
+  const avisos = await completarSeguimientosPendientes(db, { envio: o.envio })
+  return { tarjetas, vaciadas, avisos }
+}
+
 const HORA_MS = 60 * 60 * 1000
 
-/** Al arrancar y cada hora: las tarjetas que ningún administrador actual tiene, y los avisos que faltan. */
+/** Al arrancar y cada hora, `pasadaHoraria`. */
 export function startReenvioTarjetas(o: {
   db: Db
   admins: () => number[]
@@ -487,10 +582,10 @@ export function startReenvioTarjetas(o: {
 }): () => void {
   const tick = async () => {
     try {
-      const r = await reenviarTarjetasPendientes(o.db, { admins: o.admins(), envio: o.envio })
-      if (r.quejas > 0) logger.info('avisos-admin.reenvio', r)
-      const avisos = await completarSeguimientosPendientes(o.db, { envio: o.envio })
-      if (avisos.intentados > 0) logger.info('avisos-admin.seguimiento', { ...avisos })
+      const r = await pasadaHoraria(o.db, { admins: o.admins(), envio: o.envio })
+      if (r.tarjetas.quejas > 0) logger.info('avisos-admin.reenvio', r.tarjetas)
+      if (r.vaciadas.intentadas > 0) logger.info('avisos-admin.vaciado', { ...r.vaciadas })
+      if (r.avisos.intentados > 0) logger.info('avisos-admin.seguimiento', { ...r.avisos })
     } catch (err) {
       logger.error('avisos-admin.reenvio', { err: String(err) })
     }

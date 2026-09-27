@@ -221,6 +221,8 @@ const NO_PUBLICOS: Record<string, string> = {
     'lo pendiente de revisión, para los administradores que la deciden',
   'services/avisos-admin.ts:estadoModeracion': 'la cola de revisión, para /health',
   'services/avisos-admin.ts:listarPendientes': 'la cola de revisión, para /pendientes',
+  'services/avisos-admin.ts:avisosQueFaltan':
+    'el aviso a su autor de lo que se decidió sobre la suya, publicada o no',
   'services/cron.ts:checkSilencio':
     'el plazo legal corre sobre lo presentado en la sede, publicado o no; el anuncio va aparte',
 }
@@ -242,10 +244,12 @@ describe('ningún lector nuevo filtra sólo por deleted_at', () => {
       const lineas = readFileSync(f, 'utf8').split('\n')
       lineas.forEach((l, i) => {
         if (!/deleted_at\s+IS\s+NULL/i.test(l) || /^\s*(\/\/|\*)/.test(l)) return
-        // La función (o constante) que la contiene: la última declaración de arriba.
+        // La función (o constante) que la contiene: la última declaración de arriba,
+        // exportada o no. Mirar sólo las exportadas atribuía la línea de una función
+        // privada a la exportada de encima, y la daba por buena sin mirarla.
         let nombre = '?'
         for (let j = i; j >= 0; j--) {
-          const m = /^export (?:async )?(?:function|const) (\w+)/.exec(lineas[j])
+          const m = /^(?:export )?(?:async )?(?:function|const) (\w+)/.exec(lineas[j])
           if (m) {
             nombre = m[1]
             break
