@@ -108,6 +108,8 @@ const NOT_INJECTABLE: Record<string, string> = {
     'necesita un modelo, y su fallo es una FRASE que dejó de ser cierta: corromper un fichero no lo reproduce',
   'check:sparse':
     'su fallo vive en .git (core.sparseCheckout + info/sparse-checkout), no en un fichero rastreado — y este arnés restaura con git, así que no podría deshacer la poda. Se probó a mano en un repo de usar y tirar: `sparse-checkout set providers/claude/plugin` oculta docs/ y la guarda sale 1',
+  'check:hooks':
+    'su fallo vive en .git/config (core.hooksPath) y en .husky/_, que está en .gitignore: nada rastreado que corromper, y este arnés restaura con git. Lo inyecta tests/scripts/check-hooks.test.ts, en un repositorio de usar y tirar con un worktree: mide si git ejecuta el gancho antes y después',
 }
 
 const ROOT = resolve('.')

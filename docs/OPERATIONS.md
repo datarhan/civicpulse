@@ -446,6 +446,7 @@ All report-only inside `scrape:all`; run any of them directly.
 | `check:dea`                       | a frontier score that no longer reproduces, or names a third party           |
 | `check:competencias`              | a nightly `officials.json` moving the name printed beside a published figure |
 | `check:sparse`                    | a working tree pruned by a foreign `sparse-checkout` (also in pre-commit)    |
+| `check:hooks`                     | a worktree where git silently skips the hooks (pre-commit, `monitor:health`) |
 
 `check:guards` is the one that keeps this table honest, and on 2026-08-12 it
 found three of these — `summary-gate`, `data-graph`, `queues` — defined,
@@ -506,8 +507,9 @@ a partial pass read as full coverage — as of 2026-08-03 that is 11 of 15.
 ## Git hooks
 
 - **pre-commit** — `lint`, `format:check`, `check:json`, `check:secrets --staged`,
-  `check:privado --staged`, `check:editorial --staged`, `check:sparse`. Fails on
-  errors only; lint warnings stay warnings.
+  `check:privado --staged`, `check:editorial --staged`, `check:sparse`,
+  `check:hooks --desde-gancho`. Fails on errors only; lint warnings stay
+  warnings, and `check:hooks` never fails it.
 
   The three `--staged` gates each ask what the other two cannot, and the split
   is the point. `check:secrets` recognises a credential **by its shape** — a
@@ -592,3 +594,29 @@ a partial pass read as full coverage — as of 2026-08-03 that is 11 of 15.
   (`src/components/LiveCity/`) is told that their prose only exists with the
   layer switched on, so this pass has not read it; the sweep reads it as
   `/ [capas]`.
+
+**Where they run.** Every worktree runs the main checkout's hooks, because
+`core.hooksPath` in the shared `.git/config` is the absolute path of the main
+checkout's `.husky/_`. husky writes it relative (`.husky/_`) every time it runs
+— it is not a dependency and nothing here invokes it, so someone runs it by
+hand — and git resolves a relative value against each worktree's own root,
+where the gitignored `.husky/_` does not exist: there git runs no hook and says
+nothing. On 2026-09-27 that was nine worktrees of twelve, found because a push
+printed no `[pre-push]` line. The Claude desktop app hides it: it pins each
+worktree it creates to the absolute path in that worktree's `config.worktree`,
+so `git config core.hooksPath` read inside one of those looks right, while
+worktrees made by `EnterWorktree` or `git worktree add` inherit the relative
+value.
+
+`check:hooks` asks git where each worktree looks for its hooks and checks the
+whole chain — husky's stub, its `h` runner, the `.husky/` script — because two
+links fail silently and one fails open: pointed at `.husky` itself (what the
+desktop app does when `core.hooksPath` is unset), git runs the script without
+husky's `sh -e`, and a failing step lets the commit through. `--fix` restores
+the absolute path. The pre-commit runs it with `--desde-gancho`: repair, report,
+never block, because the launchd agents commit through that same hook.
+`monitor:health` runs it strictly, and that is its only red — a worktree without
+hooks never runs the pre-commit that would notice. It is not in `scrape:all`:
+the nightly runs in Actions, where there are no hooks by design, and it would
+pass there without looking at anything. `prepare` re-applies it right after
+husky, on the machines where husky exists.

@@ -52,13 +52,14 @@ them here — the hand-kept list drifted from reality every time it was tried.
 
 **Git hooks** (`.husky/`; each gate's reason is in its comments): pre-commit
 runs `lint`, `format:check`, `check:json`, `check:sparse` and the staged-only
-scans `check:secrets`, `check:privado`, `check:editorial`. Pre-push builds and
-runs `review:surfaces` on the routes the push can have broken; it never blocks,
-so its last line is the whole report — read it. The hooks run only where
-`core.hooksPath` points at them, which is the curator's machine: `husky` is not
-a dependency, so a fresh clone or a cloud session runs none of them. There, run
-`lint`, `format:check` and `typecheck` yourself; CI's `e2e.yml` runs them too,
-with the three scans, over the whole tree.
+scans `check:secrets`, `check:privado`, `check:editorial`, plus `check:hooks`,
+which repairs and never blocks. Pre-push builds and runs `review:surfaces` on
+the routes the push can have broken; it never blocks, so its last line is the
+whole report — read it. The hooks run only where `core.hooksPath` points at
+them, which is the curator's machine: `husky` is not a dependency, so a fresh
+clone or a cloud session runs none of them. There, run `lint`, `format:check`
+and `typecheck` yourself; CI's `e2e.yml` runs them too, with the three scans,
+over the whole tree.
 
 The e2e suite covers per-route specs, `chrome.spec.ts` (Cmd+K, dark mode, i18n,
 sidebar), a 375px mobile shell, and an axe-core WCAG 2.1 AA strict pass. The
@@ -491,10 +492,19 @@ with the flag still on and no patterns, cone mode means «nothing matches».
 History: `scripts/check-sparse.ts`.
 
 **Worktrees.** On the curator's machine `core.hooksPath` is an absolute path
-into the main checkout, so a push from any worktree runs the main checkout's
-hooks — a `.husky/` change can only be tested by invoking it directly. A
-worktree's config flags live in its own `config.worktree`: a leftover pattern
-file with the flag still `true` is not inert, it is primed.
+into the main checkout, so a commit or push from any worktree runs the main
+checkout's hooks — a `.husky/` change can only be tested by invoking it
+directly. husky rewrites it **relative** (`.husky/_`) whenever it runs, and git
+resolves that against each worktree's own root, where the gitignored `.husky/_`
+does not exist: the worktree then commits and pushes with no hook and no
+warning. `check:hooks` asks git what every worktree resolves; `-- --fix`
+restores the absolute path, the pre-commit repairs it, `monitor:health` goes
+red. Read the shared value with `git config --local`: inside a worktree the
+desktop app created, a plain `git config` returns the app's own pin from that
+worktree's `config.worktree`, which looks right while the shared value is
+relative. History: `scripts/check-hooks.ts`. A worktree's config flags live in
+its own `config.worktree`: a leftover pattern file with the flag still `true`
+is not inert, it is primed.
 
 **Prose goes stale when the data moves**, and no data guard notices: the data is
 right and the sentence is wrong. The better fix is to derive the sentence from
