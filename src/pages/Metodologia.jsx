@@ -12,13 +12,15 @@ import { ATIPICO_FACTOR } from '../scraper/indicadores'
 import { authorshipBreakdown } from '../scraper/finding-authorship'
 import { STATUS_TIER } from '../scraper/promise-auto-curate'
 import { TRINQUETE } from '../scraper/trinquete'
+import { RADIO_MAXIMO_M } from '../scraper/situar-barrio'
 
 /*
- * prosa-describe: indicadores.json, dea.json
+ * prosa-describe: indicadores.json, dea.json, geo.json
  *
- * Esta página EXPLICA lo que dicen esos dos snapshots sin cargarlos: las
- * secciones #eficiencia y #frontera describen sus cifras, sus umbrales y su
- * comportamiento. El mapa de prosa se deriva del grafo de imports, así que sin
+ * Esta página EXPLICA lo que dicen esos snapshots sin cargarlos: las secciones
+ * #eficiencia y #frontera describen sus cifras, sus umbrales y su
+ * comportamiento, y la de las quejas, cómo sale el barrio de los centroides de
+ * geo.json (el casco no tiene; el radio, la mitad de la distancia al vecino). El mapa de prosa se deriva del grafo de imports, así que sin
  * esta declaración una revisión del ministerio movería las cifras y el
  * recordatorio de prosa vieja no diría nada — precisamente en el documento que
  * es el contrato editorial publicado.
@@ -707,6 +709,18 @@ export default function Metodologia() {
             , la ficha de cada cargo y los mapas por barrio publican «—» con el motivo mientras
             ninguna queja de esa área o ese barrio esté registrada. Las quejas en sí no se esconden:
             que existan es un hecho del canal.
+          </li>
+          <li>
+            <strong>El barrio sale de la ubicación, y el casco urbano no tiene.</strong> Los barrios
+            son los lugares que OpenStreetMap nombra dentro del término —urbanizaciones, polígonos,
+            caseríos—, y una queja se atribuye a uno sólo si su ubicación cae dentro del término y
+            cerca de su centro: a menos de la mitad de la distancia que lo separa del barrio más
+            cercano, y nunca a más de {RADIO_MAXIMO_M} metros. El casco no está dividido en barrios
+            en esa fuente, así que una queja del centro se publica sin barrio, y los mapas de quejas
+            dicen cuántas sitúan. Hasta el 27 de septiembre de 2026 se tomaba el barrio más cercano
+            a menos de dos kilómetros, y una queja ante la puerta del ayuntamiento se atribuía a un
+            polígono industrial; las guardadas hasta entonces conservan ese barrio mientras no se
+            recalculen. Una ubicación de fuera del término no se acepta: el bot la vuelve a pedir.
           </li>
           <li>
             <strong>Los apoyos se cuentan por cuenta de Telegram.</strong> El bot no verifica quién

@@ -365,6 +365,10 @@ export const CATALOGUE = {
     'map.quejas.radius': 'radio ∝ nº de quejas',
     'map.quejas.cobertura': 'sobre {q} queja(s) en {b} barrio(s)',
     'map.quejas.escalaParcial': 'los demás niveles de la escala no se dan hoy',
+    // Con quejas fuera del mapa —sin barrio, como las del casco—, la cifra de lo
+    // pintado se da sobre la de las publicadas (QuejasLegend, coberturaDeBarrios).
+    'map.quejas.coberturaDe': 'sobre {q} de {p} quejas, en {b} barrio(s)',
+    'map.quejas.sinBarrio': 'el resto, sin barrio',
     'map.estacion.terminal': 'Terminus',
     'map.estacion.aprox': 'aprox',
     'map.estacion.verEnMetrovalencia': 'ver horario en metrovalencia.es',
@@ -856,6 +860,17 @@ export const CATALOGUE = {
     'quejas.reloj.exportIncompleto.corto': 'listado parcial',
     'quejas.reloj.sinDatos': 'No se han podido leer las quejas publicadas.',
     'quejas.reloj.sinDatos.corto': 'sin datos',
+    // La nota bajo el mapa de /quejas cuando no pinta todas (QuejasHeatmap). La
+    // segunda, con el listado truncado: entonces no se sabe si las que faltan
+    // tienen barrio, y no se afirma.
+    'quejas.mapa.cobertura':
+      'El mapa sitúa {nPintadas} de las {nPublicadas} quejas publicadas. Las demás no tienen barrio en el mapa: llegaron sin ubicación, o con una que no cae en ninguno de sus barrios; el casco urbano, por ejemplo, no tiene.',
+    'quejas.mapa.coberturaParcial':
+      'El mapa sitúa {nPintadas} de las {nPublicadas} quejas publicadas. El listado publicado no coincide con el recuento del bot, así que no se puede saber cuántas de las demás tienen barrio.',
+    // Con el listado entero, pero con alguna queja cuyo barrio no está en el
+    // mapa: no se dice «no tienen barrio», se dan las dos cifras.
+    'quejas.mapa.coberturaDesglose':
+      'El mapa sitúa {nPintadas} de las {nPublicadas} quejas publicadas. De las demás, sin barrio: {nSinBarrio}; con un barrio que el mapa no tiene: {nDesconocidas}.',
     // La ficha de una queja (/quejas/:id). El estado y la categoría son enums del
     // bot: las tablas STATE_LABEL y CATEGORY_LABEL de useQuejas leen su castellano
     // de aquí, para que las páginas que aún no se traducen no puedan discrepar.
@@ -2022,6 +2037,8 @@ export const CATALOGUE = {
     'map.quejas.radius': 'radi ∝ nº de queixes',
     'map.quejas.cobertura': 'sobre {q} queixa(es) en {b} barri(s)',
     'map.quejas.escalaParcial': "la resta de nivells de l'escala no es donen hui",
+    'map.quejas.coberturaDe': 'sobre {q} de {p} queixes, en {b} barri(s)',
+    'map.quejas.sinBarrio': 'les altres, sense barri',
     'map.estacion.terminal': 'Terminal',
     'map.estacion.aprox': 'aprox',
     'map.estacion.verEnMetrovalencia': 'veure l’horari en metrovalencia.es',
@@ -2471,6 +2488,12 @@ export const CATALOGUE = {
     'quejas.reloj.exportIncompleto.corto': 'llistat parcial',
     'quejas.reloj.sinDatos': 'No s’han pogut llegir les queixes publicades.',
     'quejas.reloj.sinDatos.corto': 'sense dades',
+    'quejas.mapa.cobertura':
+      'El mapa situa {nPintadas} de les {nPublicadas} queixes publicades. Les altres no tenen barri al mapa: van arribar sense ubicació, o amb una que no cau en cap dels seus barris; el nucli urbà, per exemple, no en té.',
+    'quejas.mapa.coberturaParcial':
+      'El mapa situa {nPintadas} de les {nPublicadas} queixes publicades. El llistat publicat no coincideix amb el recompte del bot, així que no es pot saber quantes de les altres tenen barri.',
+    'quejas.mapa.coberturaDesglose':
+      'El mapa situa {nPintadas} de les {nPublicadas} queixes publicades. De les altres, sense barri: {nSinBarrio}; amb un barri que el mapa no té: {nDesconocidas}.',
     'quejas.estado.capturada': 'Capturada',
     'quejas.estado.apoyada_verificada': 'Verificada',
     'quejas.estado.registrada': 'Registrada en seu',

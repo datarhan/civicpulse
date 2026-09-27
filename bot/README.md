@@ -144,8 +144,10 @@ Shared with the monorepo root — the bot imports them via relative path
 and needs them at runtime:
 
 - `../src/scraper/queja-router.ts` — classifier + legal routing
+- `../src/scraper/situar-barrio.ts` — where a location falls: a barrio, the
+  town but none, or outside the municipality
 - `../public/data/officials.json` — corporación municipal (for the
   concejalía matcher)
-- `../public/data/geo.json` — OSM neighborhoods (for `matchNeighborhood`
-  via haversine)
+- `../public/data/geo.json` — the municipal boundary and OSM neighbourhood
+  centroids (for `situar`)
 - `../public/data/promises.json` — reads `frozenUntil` for LOREG freeze
