@@ -21,12 +21,14 @@
  * todos los demás**. Es la trampa 1 de la fuente con efecto sobre terceros, y
  * es la razón de que la mitad de la banda se caiga.
  *
- * ## Por qué hay más de una especificación, y una que falla
+ * ## Por qué hay más de una especificación, y alguna que falla
  *
  * Porque la puntuación se mueve al cambiarla, y ése es el resultado del
  * experimento. Una página que enseñara sólo la cesta que sale bien estaría
- * enseñando el resultado en vez del método. `cinco-servicios` no llega a
- * grados de libertad y se publica diciéndolo: es la mitad interesante.
+ * enseñando el resultado en vez del método. `cinco-servicios` se registra
+ * sabiendo que no llegará a grados de libertad y se publica diciéndolo: es la
+ * mitad interesante. Cuántas puntúan no se escribe aquí: /laboratorio/frontera
+ * lo cuenta del snapshot, y ninguna prosa escribe cuánto se mueve la cifra.
  *
  * Puro: sin red, sin reloj. La semilla del bootstrap se deriva del id de la
  * especificación, así que dos pasadas dan el mismo intervalo.
@@ -80,9 +82,20 @@ export const ESPECIFICACIONES: EspecificacionDea[] = [
   {
     id: 'residuos-limpieza-alumbrado',
     titulo: 'Residuos, limpieza viaria y alumbrado',
+    // Decía «Los tres servicios que más municipios de la banda prestan de
+    // forma directa y declaran completos. Es la cesta con más unidades
+    // comparables». Medido sobre la entrega 2024, ninguna lectura lo sostenía:
+    // uno a uno, residuos y limpieza quedan décimo y undécimo de quince
+    // servicios; de tres en tres, residuos + alumbrado + cementerio reúne más
+    // municipios que esta cesta; y entre las cuatro del registro empata con la
+    // de dos servicios. Lo que queda es lo que no depende de ninguna entrega:
+    // la ley, las unidades y que la lectura principal la elegimos nosotros.
     porQue:
-      'Los tres servicios que más municipios de la banda prestan de forma directa y declaran ' +
-      'completos. Es la cesta con más unidades comparables, y por eso la lectura principal.',
+      'Recogida de residuos, limpieza viaria y alumbrado público: tres servicios que la ley ' +
+      'obliga a prestar en todos los municipios (artículo 26.1.a de la Ley de Bases de Régimen ' +
+      'Local), medidos en unidades físicas —toneladas, metros cuadrados, puntos de luz—. Es ' +
+      'la cesta que tomamos como lectura principal; las demás sirven para ver cuánto cambia el ' +
+      'resultado al quitar o añadir servicios, y hasta dónde llega la fuente.',
     programas: ['a1621', 'a163', 'a165'],
   },
   {
@@ -96,10 +109,15 @@ export const ESPECIFICACIONES: EspecificacionDea[] = [
   {
     id: 'cuatro-servicios',
     titulo: 'Residuos, limpieza, parques y alumbrado',
+    // Decía también «Queda justo en el mínimo de grados de libertad», y la
+    // tarjeta que lo publica dice dos líneas más abajo «11 unidades para 4
+    // salidas, hacen falta 15. No se cumple». Escrito contra una ejecución
+    // anterior a la definitiva, como el «media escala» que repetían las páginas
+    // que cuentan el experimento (#125). Si cumple o no lo dice la tarjeta, que
+    // lo calcula; aquí sólo va el porqué de la cesta.
     porQue:
-      'Añade parques y jardines, que muchos municipios de la banda no declaran completo. Queda ' +
-      'justo en el mínimo de grados de libertad: la muestra se parte casi por la mitad para ' +
-      'ganar una dimensión.',
+      'Añade parques y jardines, que muchos municipios de la banda no declaran completo: la ' +
+      'muestra se parte casi por la mitad para ganar una dimensión.',
     programas: ['a1621', 'a163', 'a171/170P', 'a165'],
   },
   {

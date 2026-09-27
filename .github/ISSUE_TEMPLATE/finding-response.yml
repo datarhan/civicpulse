@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Si tu grupo municipal ha sido citado en un hallazgo editorial de CivicPulse y quieres publicar una respuesta oficial, este es el canal. Todas las respuestas se insertan íntegras y verbatim en `public/data/pleno-findings.json` y se muestran en la ficha del hallazgo como *"Réplica del grupo X"*.
+        Si tu grupo municipal ha sido citado en un hallazgo editorial de CivicPulse y quieres publicar una respuesta oficial, este es el canal. Cada respuesta aprobada se inserta íntegra y verbatim en `public/data/pleno-findings.json` y se muestra en la ficha del hallazgo como *"Réplica del grupo X"*.
 
         Plazo de revisión: 24 h hábiles. Resolución: 72 h. Historial público en git.
 
@@ -25,13 +25,15 @@ body:
     id: party
     attributes:
       label: Grupo que responde
+      # Las opciones son SPEAKER_GROUPS (src/scraper/pleno-votes.ts), lo que acepta
+      # `finding-reply`: tests/plantillas-replica-opciones.test.js las compara.
       options:
         - PSOE
         - PP
         - VOX
         - Compromís
         - Ciudadanos
-        - Otro
+        - EU-Podem
     validations:
       required: true
 
@@ -69,4 +71,4 @@ body:
 
         **Ingreso**: enviar el formulario no publica nada. Cuando un mantenedor la aprueba añadiendo la etiqueta `publicar` —que este formulario no pone—, un workflow comprueba su permiso y escribe la réplica en `public/data/pleno-findings.json`, respetando el formato que exige el validador de `src/scraper/pleno-finding.ts`. El issue se cierra al terminar y el commit queda en el historial público de git.
 
-        Cualquier corrección posterior (rectificación, aclaración, ampliación) se trata como una nueva respuesta, nunca como una edición de la anterior — todo el historial es auditable.
+        Cualquier corrección posterior (rectificación, aclaración, ampliación) va en una réplica nueva, no en una edición de este issue: editarlo no cambia lo publicado. La nueva pasa por la misma revisión y sustituye a la anterior en la ficha; todas quedan en el historial de git, que es auditable.

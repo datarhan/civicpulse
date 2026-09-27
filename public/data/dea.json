@@ -159,7 +159,7 @@
     {
       "id": "residuos-limpieza-alumbrado",
       "titulo": "Residuos, limpieza viaria y alumbrado",
-      "porQue": "Los tres servicios que más municipios de la banda prestan de forma directa y declaran completos. Es la cesta con más unidades comparables, y por eso la lectura principal.",
+      "porQue": "Recogida de residuos, limpieza viaria y alumbrado público: tres servicios que la ley obliga a prestar en todos los municipios (artículo 26.1.a de la Ley de Bases de Régimen Local), medidos en unidades físicas —toneladas, metros cuadrados, puntos de luz—. Es la cesta que tomamos como lectura principal; las demás sirven para ver cuánto cambia el resultado al quitar o añadir servicios, y hasta dónde llega la fuente.",
       "anio": 2024,
       "rendimientos": "vrs",
       "programas": [
@@ -601,7 +601,7 @@
     {
       "id": "cuatro-servicios",
       "titulo": "Residuos, limpieza, parques y alumbrado",
-      "porQue": "Añade parques y jardines, que muchos municipios de la banda no declaran completo. Queda justo en el mínimo de grados de libertad: la muestra se parte casi por la mitad para ganar una dimensión.",
+      "porQue": "Añade parques y jardines, que muchos municipios de la banda no declaran completo: la muestra se parte casi por la mitad para ganar una dimensión.",
       "anio": 2024,
       "rendimientos": "vrs",
       "programas": [

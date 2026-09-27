@@ -20,6 +20,7 @@ import { existsSync, readFileSync } from 'node:fs'
 import { rewriteJsonIfPresent, writeSnapshot } from './lib/snapshot-io'
 import { resolve } from 'node:path'
 import {
+  RESPONSE_BLOCS,
   validateReportsSnapshot,
   type JournalistReport,
   type JournalistReportResponse,
@@ -29,7 +30,10 @@ import {
 const REPORTS = resolve('public/data/journalist-reports.json')
 const CHUNK_DIR = resolve('public/data/journalist-reports')
 
-const ALLOWED_FROM = ['PSOE', 'PP', 'VOX', 'Compromís', 'Ciudadanos', 'Otro', 'person']
+// El enum del validador, importado. Aquí había una copia a mano que se quedó
+// sin EU-Podem: el validador del informe publicado lo admitía y este CLI lo
+// rechazaba antes de llegar a él, así que ese grupo no podía replicar.
+const ALLOWED_FROM: readonly string[] = RESPONSE_BLOCS
 
 function usage(): never {
   process.stderr.write(

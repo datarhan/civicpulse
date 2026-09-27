@@ -6,12 +6,39 @@ const num = (v, d = 3) =>
     ? '—'
     : v.toLocaleString('es-ES', { minimumFractionDigits: d, maximumFractionDigits: d })
 
+// [singular, plural]. Con una sola forma la tarjeta publicaba «1 que no
+// declaran la unidad física».
 const MOTIVOS = {
-  'sin-filas': 'no aparecen en la entrega',
-  'no-se-presta': 'declaran que no prestan el servicio',
-  'modo-no-directa': 'lo prestan por concesión u otro modo',
-  'coste-no-declarado': 'no declaran el coste',
-  'unidad-no-declarada': 'no declaran la unidad física',
+  'sin-filas': ['no aparece en la entrega', 'no aparecen en la entrega'],
+  'no-se-presta': ['declara que no presta el servicio', 'declaran que no prestan el servicio'],
+  'modo-no-directa': [
+    'lo presta por concesión u otro modo',
+    'lo prestan por concesión u otro modo',
+  ],
+  'coste-no-declarado': ['no declara el coste', 'no declaran el coste'],
+  'unidad-no-declarada': ['no declara la unidad física', 'no declaran la unidad física'],
+}
+const motivo = (m, n) => MOTIVOS[m]?.[n === 1 ? 0 : 1] ?? m
+
+/**
+ * ¿Lee el lector la cifra cruda fuera de su intervalo? «por encima», «por
+ * debajo» o null.
+ *
+ * La tarjeta pone «Distancia a la frontera 0,528» junto a «Intervalo al 95 %
+ * 0,28 – 0,52», y las dos son ciertas: el intervalo es el de la distancia
+ * CORREGIDA por sesgo, y la cruda sale siempre por arriba porque una frontera
+ * estimada cae por dentro de la verdadera. Se compara con la precisión a la que
+ * se imprimen —θ con tres decimales, el intervalo con dos—, porque lo que hay
+ * que explicar es lo que el lector ve, no lo que guarda el fichero.
+ */
+export function crudaFueraDelIntervalo(propia) {
+  if (!propia?.ic) return null
+  const cruda = Math.round(propia.theta * 1000) / 1000
+  if (cruda > Math.round(propia.ic.superior * 100) / 100) return 'por encima'
+  if (propia.intervaloAcotaPorAbajo && cruda < Math.round(propia.ic.inferior * 100) / 100) {
+    return 'por debajo'
+  }
+  return null
 }
 
 /**
@@ -32,6 +59,8 @@ export function EspecificacionCard({ e, principal }) {
   const fuera = Object.entries(cob.excluidas ?? {})
     .filter(([, n]) => n > 0)
     .sort((a, b) => b[1] - a[1])
+  const caen = fuera.reduce((s, [, n]) => s + n, 0)
+  const crudaFuera = crudaFueraDelIntervalo(e.propia)
 
   return (
     <Card style={{ marginTop: 14 }}>
@@ -86,14 +115,20 @@ export function EspecificacionCard({ e, principal }) {
         <span className="mono" style={{ fontSize: 'var(--fs-head)', fontWeight: 650 }}>
           {cob.incluidas}
         </span>{' '}
-        de {cob.banda} municipios de la banda. Se caen{' '}
-        {fuera.map(([m, n], i) => (
-          <span key={m}>
-            {i > 0 && (i === fuera.length - 1 ? ' y ' : ', ')}
-            <span className="mono">{n}</span> que {MOTIVOS[m] ?? m}
-          </span>
-        ))}
-        .
+        de {cob.banda} municipios de la banda.
+        {caen > 0 && (
+          <>
+            {' '}
+            {caen === 1 ? 'Se cae' : 'Se caen'}{' '}
+            {fuera.map(([m, n], i) => (
+              <span key={m}>
+                {i > 0 && (i === fuera.length - 1 ? ' y ' : ', ')}
+                <span className="mono">{n}</span> que {motivo(m, n)}
+              </span>
+            ))}
+            .
+          </>
+        )}
       </p>
       <p style={{ margin: '6px 0 0', fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
         Regla de grados de libertad: {e.gradosLibertad.n} unidades para {e.gradosLibertad.salidas}{' '}
@@ -133,7 +168,7 @@ export function EspecificacionCard({ e, principal }) {
               }
               nota={
                 e.propia.intervaloAcotaPorAbajo
-                  ? `${e.bootstrap.replicas.toLocaleString('es-ES')} réplicas`
+                  ? `de la distancia corregida · ${e.bootstrap.replicas.toLocaleString('es-ES')} réplicas`
                   : 'el extremo inferior se sale de la escala: esta cesta no acota nada por abajo'
               }
             />
@@ -164,6 +199,14 @@ export function EspecificacionCard({ e, principal }) {
                 producir al menos lo mismo con el {pct(e.propia.theta)} de ese gasto. La corrección
                 por sesgo lo baja al {pct(e.propia.thetaCorregido)}, porque una frontera estimada
                 con {e.distribucion.n} unidades cae siempre por dentro de la verdadera.
+              </>
+            )}
+            {crudaFuera && (
+              <>
+                {' '}
+                El intervalo al {pct(1 - e.propia.ic.alfa)} es el de la distancia corregida por
+                sesgo ({num(e.propia.thetaCorregido)}), así que la cruda, {num(e.propia.theta)},
+                queda {crudaFuera} de él.
               </>
             )}{' '}
             {e.distribucion.autorreferentes > 0 && (

@@ -13,6 +13,7 @@
  */
 
 import type { JournalistReport, ReportSection, SourceCitation } from './journalist'
+import { quienReplica } from './journalist/replica'
 
 export interface SoulExportOptions {
   /** Display name of the subject (usually the assignment's subject.name). */
@@ -94,7 +95,9 @@ export function exportSoulMarkdown(report: JournalistReport, opts: SoulExportOpt
   // ─── Réplica + correcciones + curator notes ────────────────────────────
   if (report.response) {
     out.push('## Réplica registrada')
-    out.push(`**${report.response.from}** (${report.response.respondedAt}):`)
+    out.push(
+      `**${quienReplica(report.response.from, opts.subjectName)}** (${report.response.respondedAt}):`,
+    )
     out.push('')
     out.push(`> ${report.response.quote.split('\n').join('\n> ')}`)
     if (report.response.sourceUrl) {
