@@ -286,7 +286,7 @@
     "typescript-eslint": "^8.70.1",
     "vite": "^6.0.0",
     "vitest": "^4.1.11",
-    "xlsx": "^0.18.5",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz",
     "zod": "^4.6.5"
   }
 }
