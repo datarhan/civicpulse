@@ -40,7 +40,7 @@ export interface EnvioAdmin {
   enviar(adminId: number, html: string, botones: Boton[]): Promise<{ message_id: number }>
   editar(adminId: number, messageId: number, html: string, botones: Boton[]): Promise<void>
   /** Un texto plano a un chat: el aviso a quien escribió la queja. */
-  mensaje(chatId: number, texto: string): Promise<{ message_id: number } | void>
+  mensaje(chatId: number, texto: string): Promise<{ message_id: number }>
 }
 
 /** El `tipo` de la tarjeta de revisión en `avisos`. */
@@ -517,7 +517,7 @@ export async function avisarAutores(
     r.intentados += 1
     try {
       const m = await o.envio.mensaje(Number(f.ref), texto)
-      anotar(db, f.queja_id, tipo, destinatario, 'entregado', m?.message_id ?? null)
+      anotar(db, f.queja_id, tipo, destinatario, 'entregado', m.message_id)
       r.entregados += 1
     } catch (err) {
       if (esRechazoDefinitivo(err)) {

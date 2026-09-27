@@ -186,7 +186,7 @@ describe('la tarjeta llega o se reintenta', () => {
         return { message_id: 500 + enviados.length }
       },
       editar: async () => {},
-      mensaje: async () => {},
+      mensaje: async () => ({ message_id: 1 }),
     }
     const r = await reenviarTarjetasPendientes(db, { admins: [ADMIN_A, ADMIN_B], envio })
     expect(r).toEqual({ quejas: 1, entregadas: 2, fallidas: 0 })
@@ -263,7 +263,7 @@ describe('lo que la revisión arrastraba roto (revisión de #137)', () => {
         return { message_id: 900 }
       },
       editar: async () => {},
-      mensaje: async () => {},
+      mensaje: async () => ({ message_id: 1 }),
     }
     const r = await reenviarTarjetasPendientes(db, { admins: [9003], envio })
     expect(r).toEqual({ quejas: 1, entregadas: 1, fallidas: 0 })
@@ -286,7 +286,7 @@ describe('lo que la revisión arrastraba roto (revisión de #137)', () => {
         return { message_id: 700 + n }
       },
       editar: async () => {},
-      mensaje: async () => {},
+      mensaje: async () => ({ message_id: 1 }),
     }
     await Promise.all([
       avisarAdmins(db, q, { admins: [ADMIN_A], envio }),
