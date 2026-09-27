@@ -38,12 +38,17 @@ describe('guard: curated files', () => {
   // import the doc, so it asserts against it instead: a curated file added to
   // docs/DATA_SOURCES.md without being added here would leave the new file
   // unguarded, and nothing would have failed.
-  it('covers every curated file listed in docs/DATA_SOURCES.md', () => {
+  //
+  // And the other way round. Checked in one direction only, the doc's table fell
+  // four files behind this guard — press-findings, pleno-claims-verified,
+  // pleno-claims-overlay, solicitudes-acceso — and nothing failed either.
+  it('lists the same curated files as docs/DATA_SOURCES.md, both ways', () => {
     const doc = readFileSync(resolve(__dirname, '../docs/DATA_SOURCES.md'), 'utf8')
     const section = doc.split('### Curated')[1].split('###')[0]
     const listed = [...section.matchAll(/`([a-z-]+\.json)`/g)].map((m) => m[1])
     expect(listed.length).toBeGreaterThan(8)
     expect(listed.filter((f) => !CURATED[f])).toEqual([])
+    expect(Object.keys(CURATED).filter((f) => !listed.includes(f))).toEqual([])
   })
 })
 

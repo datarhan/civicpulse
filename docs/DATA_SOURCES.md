@@ -46,6 +46,7 @@ Everything produced by the convention above. Safe to delete and rebuild.
 | `promises.json`                                     | `src/scraper/promises.ts` · `npm run reply`, `freeze:set`                                                                                                                         |
 | `pleno-votes.json`                                  | `src/scraper/pleno-votes.ts` · `npm run pleno-vote`, `promote-vote`, `retract-vote`                                                                                               |
 | `pleno-findings.json`                               | `src/scraper/pleno-finding.ts` · `npm run promote-claim`, `finding-reply`, `correct-pleno-finding`                                                                                |
+| `press-findings.json`                               | `src/scraper/press-finding.ts` · rows arrive only through `npm run auto-curate-press` (`informational` only) · `correct-press-finding`                                            |
 | `journalist-reports.json` (+ `journalist-reports/`) | `src/scraper/journalist.ts` · `npm run promote-report`, `correct-journalist-report`, `journalist-reply`, `repoint-source-url`, `journalist:archive`, `journalist:archive-sources` |
 | `quejas-responses.json`                             | `scripts/apply-queja-response.ts` · `npm run queja-reply`                                                                                                                         |
 | `sindic.json`                                       | `src/scraper/sindic.ts` · `npm run sindic:add`                                                                                                                                    |
@@ -60,8 +61,11 @@ Everything produced by the convention above. Safe to delete and rebuild.
 | `competencias.json`                                 | `src/scraper/competencias.ts` · curated · hand-edit via PR · `npm run competencia-reply` · `check:competencias`                                                                   |
 | `officials-corrections.json`                        | `src/scraper/officials-corrections.ts` · `npm run roster-correction` (`--alta` / `--baja` / `--retirar` / `--reply` / `--apply`) · `check:officials-corrections`                  |
 | `sociedades.json`                                   | `src/scraper/sociedades.ts` · curated · hand-edit via PR · material vía `npm run scrape:borme`                                                                                    |
+| `pleno-claims-verified.json`                        | `src/scraper/verified-merge.ts` · never edited: `scripts/verified-rebuild.ts` recomposes it from the base and the three files below                                               |
+| `pleno-claims-overlay.json`                         | `src/scraper/verified-merge.ts` · `npm run downgrade-verdict`, `apply-gold-downgrades`; the NLI and verdict-engine second passes write here too                                   |
 | `pleno-claim-reclassifications.json`                | `src/scraper/verified-merge.ts` · `npm run reclassify-claim` (sólo ALEJÁNDOSE de `acusacion_publica`)                                                                             |
 | `pleno-claim-reanchors.json`                        | `src/scraper/verified-merge.ts` · `npm run reanchor-claim` (sólo sobre citas SIN procedencia, y el literal ha de constar entero en un acta)                                       |
+| `solicitudes-acceso.json`                           | `src/scraper/solicitud-acceso.ts` · `npm run solicitud -- add` / `responder` / `reclamar` · `check:solicitudes`                                                                   |
 
 Each CLI re-validates the whole snapshot before writing, so an invariant
 (≥20-char verbatim quote, ≥10-char title) cannot silently slip. Route

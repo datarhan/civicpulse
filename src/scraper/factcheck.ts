@@ -19,9 +19,8 @@
  * the nightly chain.
  */
 
-import { createHash } from 'node:crypto'
-
 import type { ClaimVerdict } from './claim-verifier'
+import { sha256Short } from './hash'
 
 export interface FactCheckRow {
   /** Stable id = sha256 of the review URL (first 12 chars). */
@@ -123,10 +122,6 @@ interface ApiResponse {
   nextPageToken?: string
 }
 
-function sha256(text: string): string {
-  return createHash('sha256').update(text).digest('hex').slice(0, 12)
-}
-
 function extractHost(url: string): string | null {
   try {
     return new URL(url).host.replace(/^www\./, '')
@@ -162,7 +157,7 @@ export function parseFactCheckResponse(pages: ApiResponse[]): FactCheckRow[] {
         if (!mentionsRibaRojaDeTuria(haystack)) continue
         const verdict = (r.textualRating ?? '').trim()
         rows.push({
-          id: sha256(url),
+          id: sha256Short(url),
           claim: claimText,
           claimant: (c.claimant ?? '').trim() || null,
           claimDate: c.claimDate ? safeDate(c.claimDate) : null,
@@ -293,7 +288,7 @@ export function parseFactcheckRss(xml: string, opts: ParseFactcheckRssOptions): 
     const categories = pickAllTags(item, 'category')
     const verdict = categoriesToVerdict(categories)
     rows.push({
-      id: sha256(link),
+      id: sha256Short(link),
       claim: title,
       claimant: null,
       claimDate: null,

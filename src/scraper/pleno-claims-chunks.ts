@@ -81,7 +81,7 @@ export interface PlenoClaimsChunkManifest {
     /**
      * topic → verdict → count over the exact item set written into the
      * chunks (post gateItemsForPublic). Lets /departamentos aggregate
-     * per-department declaration counts from the ~12 KB manifest instead
+     * per-department declaration counts from the manifest instead
      * of downloading every chunk; the topic→department mapping stays
      * client-side in src/lib/department-claim-topics.js.
      */
@@ -91,7 +91,7 @@ export interface PlenoClaimsChunkManifest {
      *
      * Va aquí y no en la página porque la regla de la casa es preferir un
      * escalar precomputado a enviar el corpus: `/departamentos` ya lee una
-     * tabla cruzada de ~12 KB en vez de los trozos enteros. Esto son ~1 KB.
+     * tabla cruzada en vez de los trozos enteros.
      *
      * `corpus` cuenta CONSULTAS, no filas: una declaración cotejada contra dos
      * corpus suma en los dos. Es lo que se quiere saber —con qué se cuenta—,
