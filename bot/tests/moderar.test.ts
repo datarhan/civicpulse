@@ -2,12 +2,13 @@ import { describe, it, expect, beforeEach, afterEach } from 'vitest'
 import { openDb, type Db } from '../src/db/client'
 import {
   avisarAdmins,
+  completarSeguimientosPendientes,
   estadoModeracion,
   reenviarTarjetasPendientes,
   tarjetaDeQueja,
   type EnvioAdmin,
 } from '../src/services/avisos-admin'
-import { autorTelegram, createQueja } from '../src/db/queries'
+import { autorTelegram, createQueja, decidirModeracion, softDeleteQueja } from '../src/db/queries'
 import type { Channel } from '../src/services/channel'
 import { botFalso, texto, boton, CANAL_MUDO } from './helpers/bot-falso'
 import { creaPublicada } from './helpers/publicada'
@@ -361,5 +362,105 @@ describe('lo que la revisión arrastraba roto (revisión de #137)', () => {
     await h.bot.handleUpdate(texto(VECINA, `/estado ${id}`, grupo as never))
     const r = h.llamadas.filter((l) => l.metodo === 'sendMessage' && l.cuerpo.chat_id === -700)
     expect(r.map((l) => String(l.cuerpo.text)).join('\n')).not.toMatch(/Farola apagada/)
+  })
+})
+
+describe('el aviso a la autora tras una decisión, en la pasada horaria', () => {
+  /** Un envío que apunta lo que manda, y que falla cuando `falla` devuelve un error. */
+  function envioQue(falla?: () => unknown) {
+    const e = {
+      mensajes: [] as number[],
+      ediciones: 0,
+      enviar: async () => ({ message_id: 1 }),
+      editar: async () => {
+        e.ediciones += 1
+      },
+      mensaje: async (chat: number) => {
+        e.mensajes.push(chat)
+        const err = falla?.()
+        if (err) throw err
+        return { message_id: 2 }
+      },
+    }
+    return e satisfies EnvioAdmin
+  }
+  /** Como lanza grammY lo que Telegram rechaza: el código viaja en `error_code`. */
+  const errorDeTelegram = (codigo: number, descripcion: string) =>
+    Object.assign(new Error(descripcion), { error_code: codigo })
+
+  /** Una queja publicada por un administrador sin que lo que sigue a la decisión llegara a correr. */
+  function decidida(): string {
+    const id = createQueja(db, {
+      autor: autorTelegram(VECINA),
+      category: 'alumbrado',
+      title: 'Farola apagada',
+      detail: 'La farola de la plaza lleva apagada desde el lunes y la calle queda a oscuras.',
+    }).id
+    expect(decidirModeracion(db, id, 'publicar', `admin:${ADMIN_A}`).resultado).toBe('aplicada')
+    return id
+  }
+
+  it('no hace nada por una decisión que no tiene aviso que dar, ni lo cuenta como trabajo', async () => {
+    const id = decidida()
+    // Su autora la retira antes de que salga el aviso: ya no hay nada que decirle.
+    expect(softDeleteQueja(db, id, autorTelegram(VECINA))).toBe(true)
+    const envio = envioQue()
+    const nada = { intentados: 0, entregados: 0, rechazados: 0, fallidos: 0 }
+    expect(await completarSeguimientosPendientes(db, { envio })).toEqual(nada)
+    expect(await completarSeguimientosPendientes(db, { envio })).toEqual(nada)
+    expect(envio.mensajes).toEqual([])
+    // Las tarjetas no se reescriben cada hora: se ponen al día al decidir y al retirarla.
+    expect(envio.ediciones).toBe(0)
+  })
+
+  it('un aviso que se quedó a medias —el proceso cayó al mandarlo— sale en la pasada siguiente', async () => {
+    const id = decidida()
+    const { id: decision } = db
+      .prepare('SELECT id FROM moderaciones WHERE queja_id = ? ORDER BY id DESC LIMIT 1')
+      .get(id) as { id: number }
+    db.prepare(
+      "INSERT INTO avisos (queja_id, tipo, destinatario, creado_at) VALUES (?, ?, ?, datetime('now', '-11 minutes'))",
+    ).run(id, `autor:${decision}`, `telegram:${VECINA}`)
+    const envio = envioQue()
+    expect(await completarSeguimientosPendientes(db, { envio })).toMatchObject({
+      intentados: 1,
+      entregados: 1,
+    })
+    expect(envio.mensajes).toEqual([VECINA])
+  })
+
+  it.each([
+    [403, 'Forbidden: bot was blocked by the user'],
+    [400, 'Bad Request: chat not found'],
+  ])(
+    'uno que Telegram rechaza con un %i se anota y no se repite cada hora',
+    async (codigo, descripcion) => {
+      decidida()
+      const envio = envioQue(() => errorDeTelegram(codigo, descripcion))
+      expect(await completarSeguimientosPendientes(db, { envio })).toMatchObject({
+        intentados: 1,
+        rechazados: 1,
+      })
+      expect(await completarSeguimientosPendientes(db, { envio })).toMatchObject({ intentados: 0 })
+      expect(envio.mensajes).toHaveLength(1)
+    },
+  )
+
+  it('uno que falla de paso —un 429, la red— se repite, y llega una sola vez', async () => {
+    decidida()
+    let veces = 0
+    const envio = envioQue(() =>
+      veces++ === 0 ? errorDeTelegram(429, 'Too Many Requests: retry after 5') : undefined,
+    )
+    expect(await completarSeguimientosPendientes(db, { envio })).toMatchObject({
+      intentados: 1,
+      fallidos: 1,
+    })
+    expect(await completarSeguimientosPendientes(db, { envio })).toMatchObject({
+      intentados: 1,
+      entregados: 1,
+    })
+    expect(await completarSeguimientosPendientes(db, { envio })).toMatchObject({ intentados: 0 })
+    expect(envio.mensajes).toEqual([VECINA, VECINA])
   })
 })
