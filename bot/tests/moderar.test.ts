@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest'
 import { openDb, type Db } from '../src/db/client'
 import {
+  actualizarTarjetas,
   avisarAdmins,
   completarSeguimientosPendientes,
   envioDesdeApi,
@@ -14,6 +15,7 @@ import { autorTelegram, createQueja, decidirModeracion, softDeleteQueja } from '
 import type { Channel } from '../src/services/channel'
 import { botFalso, texto, boton, CANAL_MUDO } from './helpers/bot-falso'
 import { creaPublicada } from './helpers/publicada'
+import { MAX_MENSAJE } from '../src/util/telegram'
 
 /**
  * La revisión antes de publicar, a mano: cada queja nueva llega a los
@@ -517,5 +519,173 @@ describe('el aviso a la autora tras una decisión, en la pasada horaria', () => 
     })
     expect(await completarSeguimientosPendientes(db, { envio })).toMatchObject({ intentados: 0 })
     expect(envio.mensajes).toEqual([VECINA, VECINA])
+  })
+})
+
+describe('lo que la revisión deja atrás (revisión de la pasada de #137)', () => {
+  /** Una identidad de Telegram que no se confunde con nada de la base: ni ids, ni fechas. */
+  const AUTORA = 7340001
+
+  /** Las columnas de la base en las que aparece `ref`, tabla por tabla. */
+  function dondeAparece(ref: string): string[] {
+    const tablas = db
+      .prepare("SELECT name FROM sqlite_schema WHERE type = 'table' AND name NOT LIKE 'sqlite_%'")
+      .all() as Array<{ name: string }>
+    const vistos = new Set<string>()
+    for (const { name } of tablas) {
+      for (const fila of db.prepare(`SELECT * FROM "${name}"`).all() as Record<string, unknown>[]) {
+        for (const [col, v] of Object.entries(fila)) {
+          if (v !== null && String(v).includes(ref)) vistos.add(`${name}.${col}`)
+        }
+      }
+    }
+    return [...vistos].sort()
+  }
+
+  /** Lo último que dice un mensaje: su envío, o la última edición. */
+  const ultimaVersion = (mid: number) =>
+    h.llamadas
+      .filter(
+        (l) =>
+          (l.metodo === 'sendMessage' || l.metodo === 'editMessageText') && l.message_id === mid,
+      )
+      .at(-1)
+
+  it('/borrar_mis_datos no deja su identidad en ninguna tabla, tampoco en los avisos de la revisión', async () => {
+    const publicada = await presentar(AUTORA)
+    await h.bot.handleUpdate(boton(ADMIN_A, `mod:pub:${publicada}`))
+    await presentar(AUTORA)
+    // Control: el barrido la ve mientras está.
+    expect(dondeAparece(String(AUTORA))).toContain('ciudadanos.ref')
+    await h.bot.handleUpdate(texto(AUTORA, '/borrar_mis_datos'))
+    await h.bot.handleUpdate(boton(AUTORA, h.botones(h.a(AUTORA).at(-1))[0]))
+    expect(dondeAparece(String(AUTORA))).toEqual([])
+  })
+
+  it('/olvidar no deja su identidad en nada de esa queja, tampoco en el aviso de la decisión', async () => {
+    const id = await presentar(AUTORA)
+    await h.bot.handleUpdate(boton(ADMIN_A, `mod:pub:${id}`))
+    expect(dondeAparece(String(AUTORA))).toContain('ciudadanos.ref')
+    await h.bot.handleUpdate(texto(AUTORA, `/olvidar ${id}`))
+    // Queda quien es, que puede tener más quejas o apoyos; nada que la ate a ésta.
+    expect(dondeAparece(String(AUTORA))).toEqual(['ciudadanos.ref'])
+  })
+
+  it('la tarjeta que /revisar vuelve a mandar no deja la anterior sin seguir: /olvidar vacía las dos', async () => {
+    const id = await presentar()
+    const primera = h.a(ADMIN_A).at(-1)!.message_id!
+    await h.bot.handleUpdate(texto(ADMIN_A, `/revisar ${id}`))
+    const segunda = h.a(ADMIN_A).at(-1)!.message_id!
+    expect(segunda).not.toBe(primera)
+    await h.bot.handleUpdate(texto(VECINA, `/olvidar ${id}`))
+    for (const mid of [primera, segunda]) {
+      expect(String(ultimaVersion(mid)?.cuerpo.text), `la tarjeta ${mid}`).not.toMatch(/farola/i)
+    }
+  })
+
+  it('/pendientes no copia el texto de las quejas a otro mensaje, y parte la lista que no cabe', async () => {
+    await presentar()
+    await h.bot.handleUpdate(texto(ADMIN_A, '/pendientes'))
+    expect(String(h.a(ADMIN_A).at(-1)?.cuerpo.text)).not.toMatch(/farola/i)
+    for (let i = 0; i < 250; i++) {
+      createQueja(db, {
+        autor: autorTelegram(20_000 + i),
+        category: 'ruido',
+        title: `Ruido nocturno número ${i} en la calle del mercado, todos los fines de semana`,
+        detail: 'Ruido de madrugada todos los fines de semana en la calle del mercado.',
+      })
+    }
+    const antes = h.a(ADMIN_A).length
+    await h.bot.handleUpdate(texto(ADMIN_A, '/pendientes'))
+    const partes = h.a(ADMIN_A).slice(antes)
+    expect(partes.length).toBeGreaterThan(1)
+    for (const p of partes) expect(String(p.cuerpo.text).length).toBeLessThanOrEqual(MAX_MENSAJE)
+    const todo = partes.map((p) => String(p.cuerpo.text)).join('\n')
+    const ids = db.prepare("SELECT id FROM quejas WHERE moderacion = 'pendiente'").all() as Array<{
+      id: string
+    }>
+    for (const { id } of ids) expect(todo).toContain(id)
+  })
+
+  /** Un envío que lleva el estado de cada mensaje, y cuya primera llamada a `metodo` espera. */
+  function envioConEspera(metodo: 'enviar' | 'editar') {
+    const mensajes = new Map<number, string>()
+    let siguiente = 500
+    let primera = true
+    let soltar!: () => void
+    const espera = new Promise<void>((r) => (soltar = r))
+    const detener = async (m: string) => {
+      if (m === metodo && primera) {
+        primera = false
+        await espera
+      }
+    }
+    const envio: EnvioAdmin = {
+      enviar: async (_admin, html) => {
+        await detener('enviar')
+        const id = siguiente++
+        mensajes.set(id, html)
+        return { message_id: id }
+      },
+      editar: async (_admin, mid, html) => {
+        await detener('editar')
+        mensajes.set(mid, html)
+      },
+      mensaje: async () => ({ message_id: 1 }),
+    }
+    return { envio, mensajes, soltar: () => soltar() }
+  }
+  const unTic = () => new Promise((r) => setTimeout(r, 0))
+
+  it('una edición con el texto que salió antes de /olvidar no llega después de vaciar la tarjeta', async () => {
+    const q = creaPublicada(db, {
+      autor: autorTelegram(VECINA),
+      category: 'alumbrado',
+      title: 'Farola apagada',
+      detail: 'La farola de la plaza lleva apagada desde el lunes y la calle queda a oscuras.',
+    })
+    const { envio, mensajes, soltar } = envioConEspera('editar')
+    await avisarAdmins(db, q, { admins: [ADMIN_A, ADMIN_B], envio })
+    // Una decisión pone al día las tarjetas con el texto; la primera edición se atasca…
+    const alDia = actualizarTarjetas(db, q.id, { envio })
+    await unTic()
+    // …y mientras, su autora la retira y el bot vacía las tarjetas.
+    expect(softDeleteQueja(db, q.id, autorTelegram(VECINA))).toBe(true)
+    const vaciado = actualizarTarjetas(db, q.id, { envio })
+    soltar()
+    await Promise.all([alDia, vaciado])
+    await pasadaHoraria(db, { admins: [ADMIN_A, ADMIN_B], envio })
+    expect(mensajes.size).toBe(2)
+    for (const [mid, html] of mensajes) expect(html, `la tarjeta ${mid}`).not.toMatch(/farola/i)
+  })
+
+  it('una tarjeta que sale mientras su autora retira la queja acaba vacía igual', async () => {
+    const q = createQueja(db, {
+      autor: autorTelegram(VECINA),
+      category: 'alumbrado',
+      title: 'Farola apagada',
+      detail: 'La farola de la plaza lleva apagada desde el lunes y la calle queda a oscuras.',
+    })
+    const { envio, mensajes, soltar } = envioConEspera('enviar')
+    const tarjetas = avisarAdmins(db, q, { admins: [ADMIN_A], envio })
+    await unTic()
+    expect(softDeleteQueja(db, q.id, autorTelegram(VECINA))).toBe(true)
+    soltar()
+    await tarjetas
+    await pasadaHoraria(db, { admins: [ADMIN_A], envio })
+    expect(mensajes.size).toBe(1)
+    for (const [mid, html] of mensajes) expect(html, `la tarjeta ${mid}`).not.toMatch(/farola/i)
+  })
+
+  it('si la web no se puede volver a publicar, quien decide lo sabe', async () => {
+    // Sin GITHUB_DISPATCH_TOKEN, como en estas pruebas, la petición no sale.
+    const id = await presentar()
+    const antes = h.a(ADMIN_A).length
+    await h.bot.handleUpdate(boton(ADMIN_A, `mod:pub:${id}`))
+    const nuevos = h
+      .a(ADMIN_A)
+      .slice(antes)
+      .map((l) => String(l.cuerpo.text))
+    expect(nuevos.join('\n')).toMatch(/actualización diaria/)
   })
 })

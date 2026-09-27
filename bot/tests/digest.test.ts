@@ -138,6 +138,22 @@ describe('bot · digest runDigestOnce', () => {
     expect(captured[0].text).toContain('categoria=via_publica')
   })
 
+  it('keeps a queja published on the cutoff day after the cutoff hour', () => {
+    // Published on Monday 21 at 10:00, after that Monday's 09:05 run: only the
+    // next Monday's run can carry it. The window compared a stored
+    // 'YYYY-MM-DD HH:MM:SS' against an ISO 'YYYY-MM-DDTHH:MM:SSZ' as text, and
+    // on the cutoff day ' ' sorts before 'T': the whole day fell out.
+    const queja = creaPublicada(db, q({ neighborhood: 'casco' }))
+    db.prepare('UPDATE quejas SET created_at = ?, publicada_at = ? WHERE id = ?').run(
+      '2026-09-14 10:00:00',
+      '2026-09-21 10:00:00',
+      queja.id,
+    )
+    addSubscription(db, 999, 'barrio', 'casco')
+    const r = runDigestOnce(db, async () => {}, new Date('2026-09-28T09:05:00Z'))
+    expect(r.totalMatches).toBe(1)
+  })
+
   it('ignores quejas older than the 7-day window', () => {
     const captured: Array<{ userId: number; text: string }> = []
     const sendDm = async (userId: number, text: string) => {

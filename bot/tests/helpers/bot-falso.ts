@@ -42,6 +42,8 @@ export const CANAL_MUDO: Channel = {
 export interface Llamada {
   metodo: string
   cuerpo: Record<string, any>
+  /** El mensaje que Telegram creó (`sendMessage`) o cambió (`editMessageText`), si lo hizo. */
+  message_id?: number
 }
 
 export function botFalso(
@@ -60,7 +62,8 @@ export function botFalso(
   const fetchFalso = (async (url: string | URL | Request, init?: RequestInit) => {
     const metodo = String(url).split('/').pop() ?? ''
     const cuerpo = init?.body ? JSON.parse(String(init.body)) : {}
-    llamadas.push({ metodo, cuerpo })
+    const llamada: Llamada = { metodo, cuerpo }
+    llamadas.push(llamada)
     const fallo = o.falla?.(metodo, cuerpo)
     if (fallo) {
       const codigo = fallo === true ? 403 : fallo
@@ -83,6 +86,7 @@ export function botFalso(
             text: cuerpo.text,
           }
         : true
+    if (typeof result === 'object') llamada.message_id = result.message_id
     return new Response(JSON.stringify({ ok: true, result }), {
       headers: { 'content-type': 'application/json' },
     })
