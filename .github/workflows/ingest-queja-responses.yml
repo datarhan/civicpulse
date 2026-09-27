@@ -74,6 +74,9 @@ jobs:
           FIRMANTE=$(awk '/^### Nombre del firmante$/{getline; getline; print; exit}' <<< "$BODY" | tr -d '\r\n' | xargs)
           TEXT=$(awk 'BEGIN{cap=0} /^### Texto de la respuesta \(verbatim\)$/{cap=1; next} /^### /{cap=0} cap' <<< "$BODY" | sed '/^$/d' | sed 's/^```$//g')
           URL=$(awk '/^### URL de fuente primaria \(opcional\)$/{getline; getline; print; exit}' <<< "$BODY" | tr -d '\r\n' | xargs)
+          # En blanco, GitHub escribe «_No response_» bajo el campo, y como URL el
+          # CLI rechazaba la respuesta entera. tests/ingesta-sin-respuesta.test.js.
+          if [ "$URL" = "_No response_" ]; then URL=""; fi
 
           if [ -z "$QID" ] || [ -z "$ROLE" ] || [ -z "$FIRMANTE" ] || [ -z "$TEXT" ]; then
             echo "::error::Missing required fields in issue body (Q-ID / role / firmante / text)."
@@ -92,8 +95,21 @@ jobs:
           ISSUE_NUMBER: ${{ github.event.issue.number || inputs.issue_number }}
         run: |
           set -euo pipefail
-          # Read the nul-separated fields.
-          IFS=$'\0' read -rd '' QID ROLE FIRMANTE TEXT URL < /tmp/fields || true
+          # Los campos van separados por NUL, uno por lectura. Aquí había
+          # `IFS=$'\0' read -rd '' QID ROLE FIRMANTE TEXT URL`, que no separa
+          # nada —bash no puede guardar un NUL en IFS— y leía sólo el primero:
+          # rol, firmante y texto llegaban vacíos y el CLI rechazaba toda
+          # respuesta (medido el 27-09-2026). tests/ingesta-queja-campos.test.js
+          # ejecuta este bloque.
+          # campos:inicio
+          CAMPOS=()
+          while IFS= read -r -d '' campo; do CAMPOS+=("$campo"); done < /tmp/fields
+          QID=${CAMPOS[0]:-}
+          ROLE=${CAMPOS[1]:-}
+          FIRMANTE=${CAMPOS[2]:-}
+          TEXT=${CAMPOS[3]:-}
+          URL=${CAMPOS[4]:-}
+          # campos:fin
           ARGS=("$QID" "$ROLE" "$FIRMANTE" "$TEXT")
           if [ -n "$URL" ]; then ARGS+=("$URL"); fi
           if ! npm run queja-reply -- "${ARGS[@]}"; then
