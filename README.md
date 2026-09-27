@@ -109,12 +109,12 @@ Telegram bot  ──►  SQLite  ──►  /export  ──►  daily workflow  
 ```
 
 - **Scraper shape (TDD):** `scripts/scrape-X.ts` fetches the raw payload → a pure, unit-tested parser in `src/scraper/X.ts` → a typed snapshot in `public/data/X.json`. Every parser is pinned against a committed real-payload fixture. Re-running any scraper is idempotent.
-- **Front end:** Vite + React 18 + React Router 6, Leaflet maps, SVG charts. Design tokens are CSS variables (light/dark); components use token-driven inline styles.
+- **Front end:** Vite + React 18 + React Router 7, Leaflet maps, SVG charts. Design tokens are CSS variables (light/dark); components use token-driven inline styles.
 - **Bot:** a Node.js Telegram bot captures citizen complaints into SQLite and exports an aggregated, non-identifying snapshot. It is the one deployed piece — it runs on Fly.io in webhook mode with SQLite on a persistent volume, and a daily workflow pulls its export into `public/data/`. The site renders fine without it. Photos are never published raw: a vision pass boxes and hard-mosaics faces, plates and ID text, strips EXIF/GPS, and fails closed — if the vision call cannot run, the photo is held.
 
 Because the whole data layer is committed JSON, the git history _is_ the change log: every figure the site has ever shown is recoverable, and every correction is a diff with an author and a date.
 
-**Tech stack:** TypeScript · React 18 · Vite 6 · React Router 6 · Leaflet · Vitest (unit/integration) · Playwright + axe-core (e2e + WCAG 2.1 AA a11y) · ESLint + Prettier.
+**Tech stack:** TypeScript · React 18 · Vite 6 · React Router 7 · Leaflet · Vitest (unit/integration) · Playwright + axe-core (e2e + WCAG 2.1 AA a11y) · ESLint + Prettier.
 
 ## Editorial & libel discipline
 
