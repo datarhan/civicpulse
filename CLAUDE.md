@@ -367,9 +367,11 @@ interrogative); and the reportaje's infographic is served frozen from
 
 `/laboratorio/frontera` is a different animal and the boundary matters.
 Everything else here transcribes or divides numbers somebody else published; a
-DEA score is **our model's verdict**, and its modelling choices move it — four
-defensible baskets send Riba-roja's score across half the scale. Three rules,
-all enforced by `check:dea` and its e2e spec:
+DEA score is **our model's verdict**, and its modelling choices move it. By how
+much is derived from `dea.json` (`src/scraper/dea-sensibilidad.ts`), never typed
+into prose: a hand-written «half the scale» sat on four pages for six weeks and
+no published snapshot ever said so. Three rules, all enforced by `check:dea` and
+its e2e spec:
 
 1. **No other municipality is ever named.** `/eficiencia` does name its peers,
    because there the figure is the ministry's own division and hiding the

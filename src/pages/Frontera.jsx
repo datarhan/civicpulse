@@ -2,8 +2,10 @@ import { Card } from '../components/Primitives'
 import { DeclaracionCongelada } from '../components/frontera/DeclaracionCongelada'
 import { EspecificacionCard } from '../components/frontera/EspecificacionCard'
 import { SerieFrontera } from '../components/frontera/SerieFrontera'
+import { AvisoCestas } from '../components/frontera/SensibilidadCestas'
 import DataAsOf from '../components/DataAsOf'
 import { useFrontera } from '../hooks/useFrontera'
+import { sensibilidadCestas, tituloCestas } from '../scraper/dea-sensibilidad'
 
 /**
  * /laboratorio/frontera — análisis envolvente de datos sobre el coste efectivo.
@@ -34,6 +36,7 @@ export default function Frontera() {
   const especificaciones = data?.especificaciones ?? []
   const publicadas = especificaciones.filter((e) => e.estado === 'publicada')
   const principal = publicadas[0] ?? null
+  const sensibilidad = sensibilidadCestas(especificaciones)
 
   return (
     <div className="cp-page" style={{ padding: 24, maxWidth: 900, margin: '0 auto' }}>
@@ -68,12 +71,15 @@ export default function Frontera() {
         <p
           style={{ margin: 0, fontSize: 'var(--fs-aux)', color: 'var(--ink70)', maxWidth: '66ch' }}
         >
+          {/* Decía que otra cesta movía la puntuación «entre una y otra punta
+              de la escala», con un ternario que sólo miraba CUÁNTAS cestas
+              puntúan: con dos, 0,43 frente a 0,53, una décima. Lo que sigue
+              sale del dato y no lleva cifras, porque va antes que la medición
+              de la declaración (regla 1). */}
           <strong>Esto no es una nota ni un ranking.</strong> El resto del sitio publica cifras que
           se pueden rehacer desde su fuente. Esta página publica el resultado de un modelo con
-          decisiones nuestras dentro, y con la misma fuente y otra cesta de servicios igual de
-          defendible la puntuación de Riba-roja se mueve entre{' '}
-          {publicadas.length > 1 ? 'una y otra punta de la escala' : 'valores muy distintos'}. Está
-          en el laboratorio por eso, y no en{' '}
+          decisiones nuestras dentro
+          <AvisoCestas s={sensibilidad} />. Está en el laboratorio por eso, y no en{' '}
           <a href="/eficiencia" style={{ color: 'var(--civic)', textDecoration: 'underline' }}>
             /eficiencia
           </a>
@@ -105,7 +111,9 @@ export default function Frontera() {
               letterSpacing: '-.01em',
             }}
           >
-            Cuatro cestas defendibles, cuatro resultados
+            {/* Decía «cuatro resultados» encima de dos tarjetas «sin
+                puntuación». */}
+            {tituloCestas(sensibilidad)}
           </h2>
           <p
             style={{
