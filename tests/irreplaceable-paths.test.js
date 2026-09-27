@@ -46,7 +46,7 @@ describe('guard: destroying what git cannot restore', () => {
   })
 
   it('catches truncate, shred and find -delete, not only rm', () => {
-    expect(decideIrreplaceableBash('truncate -s 0 .review-cache.json')?.decision).toBe('ask')
+    expect(decideIrreplaceableBash('truncate -s 0 .run-manifests/x.json')?.decision).toBe('ask')
     expect(decideIrreplaceableBash('shred .voiceprints/a.f32')?.decision).toBe('ask')
     expect(decideIrreplaceableBash('find .llm-cache -name "*.json" -delete')?.decision).toBe('ask')
   })
@@ -113,6 +113,14 @@ describe('guard: end to end through the real hook binary', () => {
     expect(out.hookEventName).toBe('PreToolUse')
   })
 
+  it('hands the model the same facts as additionalContext — an ask reason reaches only the person', () => {
+    const out = run({ tool_name: 'Bash', tool_input: { command: 'rm -rf .voiceprints' } })
+    expect(out.additionalContext).toMatch(/not tracked by git/i)
+    // and a deny, whose reason already reaches the model, carries none
+    const deny = run({ tool_name: 'Write', tool_input: { file_path: 'public/data/promises.json' } })
+    expect(deny.additionalContext).toBeUndefined()
+  })
+
   it('emits nothing for an ordinary command', () => {
     expect(run({ tool_name: 'Bash', tool_input: { command: 'npm test' } })).toBeNull()
   })
@@ -123,5 +131,84 @@ describe('guard: end to end through the real hook binary', () => {
       tool_input: { file_path: 'public/data/promises.json' },
     })
     expect(out.permissionDecision).toBe('deny')
+  })
+})
+
+/**
+ * Lo que la reproducción sobre los transcritos dijo de esta guarda (27-09-2026):
+ * nueve preguntas en todo el historial, cinco por borrar `.review-cache.json` —
+ * cuya propia fila decía «recuperación: automática, falla hacia MÁS revisión» —
+ * y dos por NOMBRAR `delete-voiceprint` dentro de un bucle que sólo lo buscaba
+ * con grep. Y al revés, lo que no veía: desde el 25-09-2026 `editorial/` no
+ * tiene copia en git (`check:editorial` impide comitearlo), y es donde viven los
+ * borradores del agente, los dossiers y las capturas de prensa.
+ */
+describe('guard: la lista de lo irrecuperable es la de hoy', () => {
+  it('no pregunta por lo que se recupera solo', () => {
+    expect(decideIrreplaceableBash('rm -f ./.review-cache.json')).toBeNull()
+    expect(IRREPLACEABLE['.review-cache.json']).toBeUndefined()
+  })
+
+  it('pregunta por editorial/, que desde el 25-09 no tiene copia en git', () => {
+    for (const cmd of [
+      'rm -rf editorial/journalist-drafts',
+      'rm editorial/investigaciones/laura-guzman-bruno/dossier.md',
+      'rm -rf editorial',
+    ]) {
+      expect(decideIrreplaceableBash(cmd)?.decision, cmd).toBe('ask')
+    }
+  })
+
+  it('pregunta por las cachés que cuestan horas o dinero rehacer', () => {
+    expect(decideIrreplaceableBash('rm -rf .cache/borme')?.decision).toBe('ask')
+    expect(decideIrreplaceableBash('rm -rf .cache/cesel/ccaa')?.decision).toBe('ask')
+    expect(decideIrreplaceableBash('rm -rf .embed-cache')?.decision).toBe('ask')
+    // borrar .cache entero se lleva las dos, y las nombra
+    const v = decideIrreplaceableBash('rm -rf .cache')
+    expect(v?.decision).toBe('ask')
+    expect(v.reason).toContain('.cache/borme')
+    expect(v.reason).toContain('.cache/cesel')
+  })
+
+  it('pero no por lo que se vuelve a bajar en segundos, ni por la caché de otro', () => {
+    expect(decideIrreplaceableBash('rm -f ".cache/bop-historico/bop-2011-04-26.json"')).toBeNull()
+    expect(decideIrreplaceableBash('rm -rf .cache/speaker-map-audio')).toBeNull()
+    expect(decideIrreplaceableBash('rm -rf ~/.cache/pip')).toBeNull()
+  })
+
+  it('borrar el directorio que CONTIENE un almacén también cuenta', () => {
+    const v = decideIrreplaceableBash('rm -rf .')
+    expect(v?.decision).toBe('ask')
+  })
+
+  it('la CLI tiene que ejecutarse, no sólo nombrarse', () => {
+    for (const cmd of [
+      'for f in check-cobertura delete-voiceprint enroll-voice; do grep -n "index\\.json" scripts/$f.ts; done',
+      'grep -n delete-voiceprint package.json',
+      'git commit -m "delete-voiceprint conserva el audio de origen"',
+    ]) {
+      expect(decideIrreplaceableBash(cmd), cmd).toBeNull()
+    }
+    expect(decideIrreplaceableBash('npx tsx scripts/delete-voiceprint.ts --slug x')?.decision).toBe(
+      'ask',
+    )
+  })
+
+  it('un rm dentro de un heredoc o de un mensaje es texto', () => {
+    for (const cmd of [
+      "cat > nota.md <<'EOF'\nrm -rf .voiceprints\nEOF",
+      'git commit -m "nunca rm -rf .voiceprints"',
+      'echo "rm -rf .run-manifests"',
+    ]) {
+      expect(decideIrreplaceableBash(cmd), cmd).toBeNull()
+    }
+  })
+
+  it('le dice al MODELO lo que está a punto de borrar, no sólo a quien aprueba', () => {
+    // La razón de un `ask` sólo la ve la persona. El modelo del 03-08-2026 fue
+    // quien concluyó «no se usa»: el dato tiene que llegarle a él también.
+    const v = decideIrreplaceableBash('rm -rf .voiceprints')
+    expect(v.context).toMatch(/not tracked by git/i)
+    expect(v.context).toContain('identify-pleno-speakers')
   })
 })

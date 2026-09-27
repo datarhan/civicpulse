@@ -46,15 +46,50 @@ describe('measure-media: it measures instead of asking you to', () => {
   })
 })
 
+/**
+ * Las interfaces DE VERDAD, no unas inventadas.
+ *
+ * Esta lista traía cinco herramientas con un `--audio` que cuatro no tienen:
+ * `identify-pleno-speakers`, `transcribe-pleno.sh` y `diarize-pleno.sh` reciben
+ * el id de una sesión, y `enroll-voices-batch` un manifiesto (`--file`). La
+ * prueba pasaba con órdenes que nadie puede escribir, y el gancho no podía
+ * dispararse nunca para ellas — reproducido sobre los transcritos, sus dos
+ * únicas preguntas en todo el historial fueron un heredoc y un grep. La única
+ * que recibe un fichero de audio, y donde la duración cambia en silencio la
+ * calidad del resultado, es `enroll-voice --audio`: la del incidente.
+ */
 describe('measure-media: which commands and which arguments', () => {
   it.each([
     'npm run enroll-voice -- --slug x --audio a.opus',
-    'npm run enroll-voices-batch -- --audio a.wav',
-    'npm run identify-pleno-speakers -- 10yl550 --audio a.m4a',
-    'bash scripts/transcribe-pleno.sh 10yl550 --audio a.mp3',
-    'bash scripts/diarize-pleno.sh --audio a.flac',
+    'npx tsx scripts/enroll-voice.ts --slug x --audio a.wav',
+    'set -a; . ./.env; set +a; npm run enroll-voice -- --slug x --audio a.m4a --force',
   ])('fires for: %s', (cmd) => {
     expect(decide(cmd)?.decision).toBe('ask')
+  })
+
+  it.each([
+    'npm run identify-pleno-speakers -- 10yl550 --apply',
+    'bash scripts/transcribe-pleno.sh 10yl550',
+    'bash scripts/diarize-pleno.sh 10yl550',
+    'npm run enroll-voices-batch -- --file enrollments.json',
+  ])('does not pretend to measure a tool that takes no media file: %s', (cmd) => {
+    expect(decide(cmd)).toBeNull()
+  })
+
+  it('el TEXTO que nombra la herramienta y un .wav no es una ejecución', () => {
+    for (const cmd of [
+      "cat > rama.sh <<'EOF'\nnpm run enroll-voice -- --audio x.wav\nEOF",
+      'grep -n "enroll-voice\\|\\.wav" scripts/transcribe-pleno.sh',
+    ]) {
+      expect(decide(cmd), cmd).toBeNull()
+    }
+  })
+
+  it('le da la medida al MODELO, que la razón de un ask sólo la ve quien aprueba', () => {
+    // El 03-08-2026 fue el modelo quien eligió el fichero y aseguró que era exacto.
+    const v = decide(ENROLL, 3.6)
+    expect(v.context).toContain('3.6')
+    expect(v.context).toMatch(/seconds/)
   })
 
   it('picks every media path a command names, not just the first', () => {
@@ -66,12 +101,10 @@ describe('measure-media: which commands and which arguments', () => {
     expect(mediaArgsIn("cmd --audio 'a.wav'")).toEqual(['a.wav'])
   })
 
-  it('does NOT handle a path containing spaces — stated, not pretended', () => {
-    // Splitting on whitespace cannot recover it. Documented rather than faked:
-    // the guard degrades to measuring the tail, which is still a measurement of
-    // A file, so the operator sees a mismatch instead of silent skipping.
-    // Every audio path this repo generates is slug-based and space-free.
-    expect(mediaArgsIn('cmd --audio "with space.opus"')).toEqual(['space.opus'])
+  it('keeps a quoted path with spaces whole', () => {
+    // Splitting on whitespace used to leave «space.opus»; the shared tokenizer
+    // keeps a quoted word as one word.
+    expect(mediaArgsIn('cmd --audio "with space.opus"')).toEqual(['with space.opus'])
   })
 
   it('ignores a media file that is not on disk', () => {

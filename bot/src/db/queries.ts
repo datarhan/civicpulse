@@ -1,7 +1,5 @@
-import { monotonicFactory } from 'ulid'
 import type { Db } from './client.ts'
-
-const ulidMonotonic = monotonicFactory()
+import { nuevoIdDeQueja } from '../services/queja-id.ts'
 
 export type QuejaState =
   | 'capturada'
@@ -76,15 +74,8 @@ export interface AggregateStats {
 // Minimum apoyos to tag a queja as community-verified.
 export const VERIFIED_THRESHOLD = 10
 
-function newId(): string {
-  // Monotonic ULID — guarantees lexicographic ordering matches insertion
-  // order even within the same millisecond. Last 8 chars give us ~40
-  // bits of randomness, safe for a small muni.
-  return 'Q-' + ulidMonotonic().slice(-8)
-}
-
 export function createQueja(db: Db, q: NewQuejaInput): QuejaRow {
-  const id = newId()
+  const id = nuevoIdDeQueja()
   const insert = db.prepare(`
     INSERT INTO quejas (
       id, telegram_user_id, telegram_username, category, title, detail,
@@ -596,4 +587,67 @@ export function podarEventosRepo(db: Db): number {
     .prepare("DELETE FROM repo_eventos_vistos WHERE seen_at < datetime('now', '-30 days')")
     .run()
   return r.changes
+}
+
+/**
+ * Fotos que la pasada horaria no ha podido anonimizar (ver `fotos_retenidas` en
+ * schema.sql). La pasada las anota, las olvida al publicarlas y, al pasar un
+ * día, pide avisar de ellas una vez.
+ */
+export interface FotoRetenida {
+  queja_id: string
+  /** La PRIMERA retención, en ISO. No se mueve con los reintentos. */
+  desde: string
+  motivo: string
+  intentos: number
+  avisada_at: string | null
+}
+
+/** Anota una retención: la primera fija `desde`; las siguientes cuentan intentos y actualizan el motivo. */
+export function registrarFotoRetenida(db: Db, quejaId: string, motivo: string, ahora: Date): void {
+  db.prepare(
+    `INSERT INTO fotos_retenidas (queja_id, desde, motivo) VALUES (?, ?, ?)
+     ON CONFLICT(queja_id) DO UPDATE SET motivo = excluded.motivo, intentos = intentos + 1`,
+  ).run(quejaId, ahora.toISOString(), motivo.slice(0, 500))
+}
+
+export function olvidarFotoRetenida(db: Db, quejaId: string): void {
+  db.prepare('DELETE FROM fotos_retenidas WHERE queja_id = ?').run(quejaId)
+}
+
+export function fotosRetenidas(db: Db): FotoRetenida[] {
+  return db
+    .prepare('SELECT * FROM fotos_retenidas ORDER BY desde, queja_id')
+    .all() as FotoRetenida[]
+}
+
+/** Las retenidas desde `hasta` o antes que aún no se han avisado. */
+export function fotosRetenidasSinAvisar(db: Db, hasta: Date): FotoRetenida[] {
+  return db
+    .prepare(
+      'SELECT * FROM fotos_retenidas WHERE avisada_at IS NULL AND desde <= ? ORDER BY desde, queja_id',
+    )
+    .all(hasta.toISOString()) as FotoRetenida[]
+}
+
+export function marcarFotoRetenidaAvisada(db: Db, quejaId: string, ahora: Date): void {
+  db.prepare('UPDATE fotos_retenidas SET avisada_at = ? WHERE queja_id = ?').run(
+    ahora.toISOString(),
+    quejaId,
+  )
+}
+
+/**
+ * Deja sólo las filas de las fotos que siguen pendientes. Una queja retirada, o
+ * cuya foto ya está publicada, deja de estar retenida, y su fila no debe
+ * producir un aviso.
+ */
+export function podarFotosRetenidas(db: Db, pendientes: string[]): number {
+  const vivas = new Set(pendientes)
+  const borrar = db.prepare('DELETE FROM fotos_retenidas WHERE queja_id = ?')
+  let n = 0
+  for (const f of fotosRetenidas(db)) {
+    if (!vivas.has(f.queja_id)) n += borrar.run(f.queja_id).changes
+  }
+  return n
 }

@@ -130,6 +130,80 @@ describe('guard: bypasses that used to work', () => {
 })
 
 /**
+ * Qué ESCRIBE la orden, no qué menciona.
+ *
+ * La versión anterior preguntaba si una cláusula nombraba un fichero curado y
+ * llevaba un `>` en cualquier parte. Reproducida sobre las 19.210 órdenes Bash
+ * distintas de los transcritos (27-09-2026) preguntó 81 veces, y escribían de
+ * verdad un fichero curado unas cinco: el resto eran lecturas con `2>/dev/null`,
+ * copias de un curado HACIA /tmp, mensajes de commit y cuerpos de heredoc que
+ * lo nombraban. Una pregunta que acierta una de cada dieciséis se aprueba sin
+ * leer, y entonces tampoco protege la vez que acierta.
+ */
+describe('guard: pregunta por lo que se escribe, no por lo que se nombra', () => {
+  it('no pregunta por lecturas con una redirección que va a otra parte', () => {
+    for (const cmd of [
+      'jq . public/data/promises.json 2>/dev/null',
+      'grep -c x public/data/pleno-findings.json 2>&1 | head',
+      'git show HEAD:public/data/pleno-votes.json > /tmp/pv-base.json',
+      'git show HEAD:public/data/officials-corrections.json > tests/fixtures/officials-corrections_2026-09-05.json',
+      // copia DESDE el curado hacia dist/: el destino no es el curado
+      'cp public/data/journalist-reports.json dist/data/journalist-reports.json',
+      // el nombre va en la expresión de sed; lo que se edita es un .yml
+      "sed -i '' 's/public\\/data\\/pleno-findings.json/x/' .github/ISSUE_TEMPLATE/finding-response.yml",
+    ]) {
+      expect(decideBash(cmd), cmd).toBeNull()
+    }
+  })
+
+  it('no pregunta por el TEXTO: un heredoc o un mensaje de commit que lo nombran', () => {
+    for (const cmd of [
+      "git commit -F - <<'EOF'\nfix: promises.json > nada\nEOF",
+      "cat > tests/x.test.ts <<'EOF'\nconst p = 'public/data/promises.json'\nEOF",
+      'git commit -m "no escribas a mano public/data/sindic.json > nunca"',
+    ]) {
+      expect(decideBash(cmd), cmd).toBeNull()
+    }
+  })
+
+  it('pregunta por cada forma de escribir el curado', () => {
+    for (const cmd of [
+      "cat <<'EOF' > public/data/promises.json\n{}\nEOF",
+      "cat > public/data/solicitudes-acceso.json <<'JSON'\n{}\nJSON",
+      'cp /tmp/x/plantilla.json public/data/plantilla.json',
+      'mv /tmp/p.json ./public/data/promises.json',
+      'dd if=/tmp/x of=public/data/promises.json',
+      'truncate -s 0 public/data/promises.json',
+      "perl -pi -e 's/a/b/' public/data/sindic.json",
+      'echo x >| public/data/promises.json',
+      'npm test &> public/data/promises.json',
+      // desde dentro del directorio: el nombre a secas
+      'cd public/data && echo x > promises.json',
+    ]) {
+      expect(decideBash(cmd)?.decision, cmd).toBe('ask')
+    }
+  })
+
+  it('pregunta por un script en línea que escribe el curado', () => {
+    for (const cmd of [
+      "python3 - <<'PY'\nimport json\np='public/data/promises.json'\nd=json.load(open(p))\njson.dump(d, open(p,'w'))\nPY",
+      "node -e \"require('fs').writeFileSync('public/data/sindic.json','{}')\"",
+    ]) {
+      expect(decideBash(cmd)?.decision, cmd).toBe('ask')
+    }
+  })
+
+  it('pero no por un script en línea que sólo lo lee', () => {
+    for (const cmd of [
+      "python3 - <<'PY'\nimport json\nd=json.load(open('public/data/promises.json'))\nprint(len(d['items']))\nPY",
+      'node -e "const d=require(\'./public/data/promises.json\'); console.log(d.items.length)"',
+    ]) {
+      expect(decideBash(cmd), cmd).toBeNull()
+    }
+  })
+})
+
+/**
  * Un fichero que se edita A MANO no tiene CLI que le mueva el sello.
  *
  * `apply-promise-draft`, `sindic:add` y los demás CLIs estampan `generatedAt` al

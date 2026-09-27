@@ -76,7 +76,7 @@ itself in CI — green by not running. `tests/deploy-triggers.test.js` reds on i
 
 ## Architecture
 
-A **front-end-only SPA** (Vite + React 18 + React Router 6) reading static JSON
+A **front-end-only SPA** (Vite + React 18 + React Router 7) reading static JSON
 from `public/data/`. It has no backend of its own: Vercel serves the built
 assets next to the JSON. Two things are not the SPA and are easy to mistake for
 exceptions:
@@ -456,12 +456,16 @@ passes through `.claude/hooks/guard-curated-writes.mjs`, which chains
 `curated-paths.mjs` (**denies** a Write or Edit to a curated file and names the
 CLI that owns it; asks before a draft-shaped file appears under `public/`),
 `irreplaceable-paths.mjs` (asks before deleting gitignored state that has no
-other copy — voiceprints, run manifests, the LLM and review caches),
-`live-tree-paths.mjs` (below), `measure-media.mjs` (asks before a transcription
-or voice-ID run, showing the media's measured duration) and `curl-hosts.mjs`
-(never asks; **denies** a `curl` that could exfiltrate or hide its destination,
-and logs reads from unknown hosts). Do not work around a deny. After a Write, an
-Edit or any Bash command, `remind-stale-copy.mjs` names the routes whose prose
+other copy — voiceprints, run manifests, `editorial/`, the LLM and embedding
+caches, the BORME sweep), `live-tree-paths.mjs` (below), `measure-media.mjs`
+(asks before a voice enrollment, showing the audio's measured duration) and
+`curl-hosts.mjs` (never asks; **denies** a `curl` that could exfiltrate or hide
+its destination, and logs reads from unknown hosts). Do not work around a deny.
+They share one shell tokenizer, `shell-tokens.mjs`, so they judge what a command
+runs and writes — not text it merely contains, like a heredoc or a commit
+message. An `ask` reason is shown only to the person approving, so what the
+model must also know rides along as `additionalContext`. After a Write, an Edit
+or any Bash command, `remind-stale-copy.mjs` names the routes whose prose
 describes a snapshot that changed (below).
 
 **The curator's working tree is never quiet, so there a tree-moving git command
@@ -471,8 +475,10 @@ own schedule; most write `public/data/` and end with their own `git commit` +
 `git push origin main`, and the extractors resume from the files on disk. **To
 compare two versions, copy them aside (`git show HEAD:<path>` and `cp`) — never
 stash, checkout or reset to do it**, here or anywhere. `live-tree-paths.mjs`
-derives the running set from the process table rather than a roster; its header
-tells the 2026-09-05 incident.
+derives the running set from the process table rather than a roster, and judges
+the tree a command moves rather than the session's: from a worktree, moving the
+worktree is not asked about, and `git -C <main checkout> …` is. Its header tells
+the 2026-09-05 incident.
 
 **If a `git add` starts refusing files, the tree has probably been pruned.**
 This project never uses `sparse-checkout`, so a pattern comes from outside —

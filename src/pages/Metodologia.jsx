@@ -665,8 +665,8 @@ export default function Metodologia() {
           <li>
             <strong>Se presenta por Telegram.</strong> Categoría, título, detalle y, si se quiere,
             ubicación y foto. Se publica sin identificar a nadie: el barrio y nunca las coordenadas;
-            la foto, sólo anonimizada, y si la anonimización no puede ejecutarse se retiene en vez
-            de publicarse sin tratar.
+            la foto, sólo anonimizada, y si la anonimización no puede ejecutarse —o su resultado no
+            se puede interpretar entero— se retiene en vez de publicarse sin tratar.
           </li>
           <li>
             <strong>Necesita diez apoyos.</strong> Cualquier otra persona puede apoyarla con{' '}

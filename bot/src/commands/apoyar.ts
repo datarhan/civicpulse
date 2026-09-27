@@ -3,21 +3,11 @@ import type { Db } from '../db/client.ts'
 import { addApoyo, getQuejaViva, VERIFIED_THRESHOLD } from '../db/queries.ts'
 import type { Channel } from '../services/channel.ts'
 import type { MyContext } from '../types.ts'
-
-function parseQuejaId(raw: string | undefined): string | null {
-  if (!raw) return null
-  const trimmed = raw
-    .trim()
-    .toUpperCase()
-    .replace(/^\/APOYAR[_\s]?/, '')
-    .replace(/^Q[-_]?/, '')
-  if (!/^[0-9A-Z]{4,}$/.test(trimmed)) return null
-  return 'Q-' + trimmed
-}
+import { idDeQueja } from '../services/queja-id.ts'
 
 export function registerApoyar(bot: Bot<MyContext>, db: Db, channel: Channel) {
   const handler = async (ctx: MyContext, raw: string | undefined) => {
-    const id = parseQuejaId(raw)
+    const id = idDeQueja(raw)
     if (!id) {
       await ctx.reply('Uso: `/apoyar Q-XXXX`', { parse_mode: 'Markdown' })
       return

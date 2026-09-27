@@ -16,6 +16,7 @@ import type { MyContext } from '../types.ts'
 import { getQuejaViva, setState } from '../db/queries.ts'
 import { routeUsingLocalOfficials } from '../services/router.ts'
 import { buildSindicTemplate, renderSindicMarkdown } from '../services/sindic.ts'
+import { idDeQueja } from '../services/queja-id.ts'
 
 function parseAdmins(): Set<number> {
   const raw = process.env.ADMIN_USER_IDS ?? ''
@@ -32,17 +33,6 @@ function isAdmin(ctx: MyContext, admins: Set<number>): boolean {
   return !!id && admins.has(id)
 }
 
-function parseQuejaId(raw: string | undefined): string | null {
-  if (!raw) return null
-  const trimmed = raw
-    .trim()
-    .toUpperCase()
-    .replace(/^\/ESCALAR[_\s]?/, '')
-    .replace(/^Q[-_]?/, '')
-  if (!/^[0-9A-Z]{4,}$/.test(trimmed)) return null
-  return 'Q-' + trimmed
-}
-
 export function registerEscalar(bot: Bot<MyContext>, db: Db, channel: Channel) {
   const admins = parseAdmins()
   const botHost = process.env.WEBHOOK_URL ?? null
@@ -52,7 +42,7 @@ export function registerEscalar(bot: Bot<MyContext>, db: Db, channel: Channel) {
       await ctx.reply('Comando reservado al moderador.')
       return
     }
-    const id = parseQuejaId(ctx.match as string)
+    const id = idDeQueja(ctx.match as string)
     if (!id) {
       await ctx.reply('Uso: `/escalar Q-XXXX`', { parse_mode: 'Markdown' })
       return

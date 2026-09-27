@@ -442,12 +442,14 @@ export default function AvisoLegal() {
           servicio externo, la API Gemini de Google, que recibe la imagen sólo para eso. Sólo la
           versión anonimizada llega al repositorio público; la original nunca se publica ni se sube
           a git. El proceso es automático y nadie revisa la imagen antes de publicarla: si el
-          análisis no puede ejecutarse, la foto se retiene y no se publica. La pasada se ejecuta
-          cada hora en el servidor del bot, que guarda allí la copia anonimizada; esta web la
-          publica en su siguiente actualización. La detección automática puede fallar; por eso se
-          aplica además un difuminado global. Si la enviaste tú, puedes retirarla con el derecho al
-          olvido; si apareces en ella sin haberla enviado, pide su retirada por la vía de
-          rectificación de esta página.
+          análisis no puede ejecutarse, o si una sola de las regiones que devuelve no se puede
+          interpretar, la foto se retiene y no se publica; lo que no es una imagen legible se
+          rechaza sin enviarse al servicio de análisis. La pasada se ejecuta cada hora en el
+          servidor del bot, que guarda allí la copia anonimizada; esta web la publica en su
+          siguiente actualización. La detección automática puede fallar; por eso se aplica además un
+          difuminado global. Si la enviaste tú, puedes retirarla con el derecho al olvido; si
+          apareces en ella sin haberla enviado, pide su retirada por la vía de rectificación de esta
+          página.
         </p>
         <p>
           <strong>Derecho al olvido (RGPD art. 17)</strong>: en cualquier momento puedes enviar{' '}

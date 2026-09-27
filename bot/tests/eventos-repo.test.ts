@@ -4,6 +4,7 @@ import {
   nuevos,
   formatear,
   runEventosOnce,
+  MAX_MENSAJE,
   type Evento,
 } from '../src/services/eventos-repo.ts'
 
@@ -222,5 +223,130 @@ describe('runEventosOnce', () => {
     expect(r.sinAdministradores).toBe(true)
     expect(r.nuevos).toBe(2)
     expect(r.enviados).toBe(0)
+  })
+})
+
+/**
+ * Hasta el 27-09-2026 se marcaba como visto TODO lo pendiente, saliera o no. Y
+ * salía mal a menudo: el texto iba en Markdown de Telegram con los títulos de
+ * GitHub a pelo, y una PR llamada «… (secret_token)» —un `_` sin cerrar— hacía
+ * que Telegram rechazara el mensaje entero. El aviso se perdía y no volvía: el
+ * comentario del código decía «sólo se marca como visto lo que de verdad salió»
+ * y el código no lo hacía. El derecho de réplica, que tiene plazo, viaja por aquí.
+ */
+describe('runEventosOnce — sólo se da por visto lo que llegó', () => {
+  const traer = async () => ({ prs: [PR_ABIERTA], issues: [ISSUE_REPLICA], runs: [] })
+
+  it('si no le llega a ningún administrador, no lo marca: se reintentará', async () => {
+    const vistos = new Set<string>()
+    const r = await runEventosOnce({
+      admins: [1, 2],
+      traer,
+      sendDm: async () => {
+        throw new Error("400: Bad Request: can't parse entities")
+      },
+      yaVistos: vistos,
+      recordar: (id) => vistos.add(id),
+    })
+    expect(r.nuevos).toBe(2)
+    expect(r.enviados).toBe(0)
+    expect([...vistos]).toEqual([])
+  })
+
+  it('si le llega al menos a uno, sí (el control)', async () => {
+    const vistos = new Set<string>()
+    await runEventosOnce({
+      admins: [1, 2],
+      traer,
+      sendDm: async (a) => {
+        if (a === 1) throw new Error('403: bot was blocked by the user')
+      },
+      yaVistos: vistos,
+      recordar: (id) => vistos.add(id),
+    })
+    expect(vistos.size).toBe(2)
+  })
+
+  // Sin nadie a quien mandarlo se guarda igual: si no, el día que se configuren
+  // los administradores recibirían de golpe todo lo acumulado. El cron lo avisa
+  // en el log con `sinAdministradores`.
+  it('sin administradores se da por visto igual, para no acumular un aluvión', async () => {
+    const vistos = new Set<string>()
+    const r = await runEventosOnce({
+      admins: [],
+      traer,
+      sendDm: async () => {},
+      yaVistos: vistos,
+      recordar: (id) => vistos.add(id),
+    })
+    expect(r.sinAdministradores).toBe(true)
+    expect(vistos.size).toBe(2)
+  })
+})
+
+describe('formato — HTML, con lo que viene de GitHub escapado', () => {
+  it('escapa el título: un «<», un «&» o un «_» no tumban el mensaje', () => {
+    const [e] = datos({
+      prs: [{ ...PR_ABIERTA, title: 'El webhook exige el secret_token & <b>nada</b> más' }],
+    })
+    const t = formatear(e).texto
+    expect(t).toContain('El webhook exige el secret_token &amp; &lt;b&gt;nada&lt;/b&gt; más')
+    expect(t).not.toContain('<b>nada</b>')
+  })
+
+  it('la cabecera va en negrita HTML y el mensaje no usa Markdown', async () => {
+    const mensajes: string[] = []
+    await runEventosOnce({
+      admins: [1],
+      traer: async () => ({ prs: [PR_ABIERTA], issues: [], runs: [] }),
+      sendDm: async (_a, t) => void mensajes.push(t),
+      yaVistos: new Set(),
+      recordar: () => {},
+    })
+    expect(mensajes[0]).toContain('<b>Repositorio</b>')
+    expect(mensajes[0]).not.toContain('*Repositorio*')
+  })
+})
+
+describe('un lote que no cabe en un mensaje se parte', () => {
+  const muchas = Array.from({ length: 60 }, (_, i) => ({
+    ...PR_ABIERTA,
+    number: 100 + i,
+    title: `${'Una PR con un título largo '.repeat(6)}${i}`,
+    html_url: `https://github.com/o/r/pull/${100 + i}`,
+  }))
+  const traer = async () => ({ prs: muchas, issues: [], runs: [] })
+
+  it('ningún mensaje pasa del límite de Telegram, y salen todos los eventos', async () => {
+    const mensajes: string[] = []
+    const vistos = new Set<string>()
+    await runEventosOnce({
+      admins: [1],
+      traer,
+      sendDm: async (_a, t) => void mensajes.push(t),
+      yaVistos: vistos,
+      recordar: (id) => vistos.add(id),
+    })
+    expect(MAX_MENSAJE).toBeLessThanOrEqual(4096)
+    expect(mensajes.length, 'no hizo falta partir: la prueba no mide nada').toBeGreaterThan(1)
+    for (const m of mensajes) expect(m.length).toBeLessThanOrEqual(MAX_MENSAJE)
+    expect(vistos.size).toBe(60)
+  })
+
+  it('un trozo que no sale no marca sus eventos, y los demás sí', async () => {
+    let n = 0
+    const vistos = new Set<string>()
+    await runEventosOnce({
+      admins: [1],
+      traer,
+      sendDm: async () => {
+        n++
+        if (n === 2) throw new Error('500')
+      },
+      yaVistos: vistos,
+      recordar: (id) => vistos.add(id),
+    })
+    expect(vistos.size).toBeGreaterThan(0)
+    expect(vistos.size).toBeLessThan(60)
   })
 })

@@ -193,6 +193,32 @@ flyctl ssh console --app munigraph-ribarroja
 # Inside: /data/bot.db is the SQLite file. Use sqlite3 if needed.
 ```
 
+### Ensayar una migración antes de desplegarla
+
+La base del volumen es la única copia de los datos, y su esquema cambia por
+migraciones (`src/db/migraciones.ts`; `schema.sql` es la base v0, congelada).
+Antes de fusionar un cambio que añade una migración, se ensaya contra la base
+de verdad:
+
+```bash
+flyctl ssh console --app munigraph-ribarroja -C "sh -c 'cd /app/bot && node_modules/.bin/tsx src/db/migrate.ts --dry-run --db /data/bot.db'"
+```
+
+`-C` no arranca en el `WORKDIR` de la imagen, así que las rutas relativas no
+resuelven sin el `cd`; y `--db` va explícito para no depender de que la sesión
+herede el `DB_PATH` de `fly.toml`.
+
+Copia la base a un fichero temporal en el mismo volumen, lo migra, cuenta las
+filas de cada tabla antes y después, y borra la copia: los datos no salen de la
+máquina y la base no se toca. Lo esperado es `ENSAYO correcto` con las mismas
+cuentas en `quejas`, `apoyos` y `events`; con cualquier otra cosa, no se
+fusiona. Y antes de fusionar, una instantánea del volumen:
+
+```bash
+flyctl volumes list --app munigraph-ribarroja
+flyctl volumes snapshots create <volume-id>
+```
+
 ### Recalcular los barrios de las quejas guardadas
 
 Desde el 2026-09-27 una ubicación se sitúa contra el término y con un radio por
@@ -204,8 +230,9 @@ flyctl ssh console --app munigraph-ribarroja -C "sh -c 'cd /app/bot && node_modu
 ```
 
 Lista cada queja que cambiaría, con el antes, el después y por qué. Si es lo
-esperado, `--aplicar` los cambia; cada cambio deja un evento `barrio_corregido`
-que `/estado` enseña, y la web lo recoge en la siguiente exportación.
+esperado, la misma orden con `--aplicar` los cambia; cada cambio deja un evento
+`barrio_corregido`, que `/estado` rotula «📍 Barrio corregido», y la web lo
+recoge en la siguiente exportación.
 
 ### Rotate the BOT_TOKEN
 

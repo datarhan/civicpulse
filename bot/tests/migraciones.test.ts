@@ -1,0 +1,349 @@
+import { describe, it, expect, beforeEach, afterEach } from 'vitest'
+import { mkdtempSync, readFileSync, readdirSync, rmSync, existsSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
+import Database from 'better-sqlite3'
+import {
+  BASE_V0,
+  CANALES,
+  MIGRACIONES,
+  ensayarMigracion,
+  migrar,
+  type Migracion,
+} from '../src/db/migraciones.ts'
+
+/**
+ * La primera migración de verdad de la base del bot, contra la ÚNICA copia de
+ * los datos (un volumen en Fly). Hasta hoy `openDb` ejecuta schema.sql, que sólo
+ * sabe `CREATE … IF NOT EXISTS`: una tabla nueva aparece sola, y un cambio de
+ * columna no se aplica nunca —`npm run migrate` apunta a un fichero que no
+ * existe—. La identidad pasa de `telegram_user_id` (un entero de Telegram, y 0
+ * como centinela de «retirada») a `ciudadanos` (canal + referencia), para que
+ * una queja pueda llegar por WhatsApp.
+ *
+ * Se prueba contra una base en el esquema v0 con filas representativas
+ * (fixtures/esquema-v0.sql + fixtures/bd-v0.sql, sintéticas: el repositorio es
+ * público), en fichero y en WAL, como en producción.
+ */
+const FIX = join(__dirname, 'fixtures')
+const ESQUEMA_V0 = readFileSync(join(FIX, 'esquema-v0.sql'), 'utf8')
+const BD_V0 = readFileSync(join(FIX, 'bd-v0.sql'), 'utf8')
+
+let dir: string
+beforeEach(() => {
+  dir = mkdtempSync(join(tmpdir(), 'cp-migrar-'))
+})
+afterEach(() => rmSync(dir, { recursive: true, force: true }))
+
+/** Una base v0 en fichero, en WAL, con las filas de muestra, cerrada. */
+function baseV0(extra = ''): string {
+  const ruta = join(dir, 'bot.db')
+  const db = new Database(ruta)
+  db.pragma('journal_mode = WAL')
+  db.exec(ESQUEMA_V0)
+  db.exec(BD_V0)
+  if (extra) db.exec(extra)
+  db.close()
+  return ruta
+}
+
+/** Abierta como la abre el bot: WAL y claves ajenas encendidas. */
+function abrir(ruta: string): Database.Database {
+  const db = new Database(ruta)
+  db.pragma('journal_mode = WAL')
+  db.pragma('foreign_keys = ON')
+  return db
+}
+
+const cuenta = (db: Database.Database, tabla: string) =>
+  (db.prepare(`SELECT COUNT(*) AS n FROM ${tabla}`).get() as { n: number }).n
+
+/** El esquema, sin espacios de más: para comparar dos bases. */
+const esquema = (db: Database.Database) =>
+  (
+    db
+      .prepare(
+        "SELECT type, name, tbl_name, sql FROM sqlite_schema WHERE name NOT LIKE 'sqlite_%' ORDER BY type, name",
+      )
+      .all() as Array<{ type: string; name: string; sql: string | null }>
+  ).map((r) => ({ ...r, sql: (r.sql ?? '').replace(/\s+/g, ' ').trim() }))
+
+describe('schema.sql es la base v0, congelada', () => {
+  it('schema.sql es exactamente el fixture v0: los cambios van en migraciones.ts', () => {
+    expect(BASE_V0).toBe(ESQUEMA_V0)
+  })
+})
+
+describe('migrar — de v0 a la última', () => {
+  it('lleva la base de muestra entera a la última versión, sin perder filas', () => {
+    const ruta = baseV0()
+    const db = abrir(ruta)
+    const r = migrar(db, { ruta, log: () => {} })
+    const ultima = MIGRACIONES[MIGRACIONES.length - 1].version
+    expect(r).toMatchObject({ desde: 0, hasta: ultima })
+    expect(r.aplicadas).toHaveLength(MIGRACIONES.length)
+    expect(db.pragma('user_version', { simple: true })).toBe(ultima)
+
+    // Autores y quien sólo apoya tienen ciudadano; quien sólo se suscribe, no:
+    // no hace falta guardar a nadie para nada.
+    const refs = (
+      db
+        .prepare("SELECT ref FROM ciudadanos WHERE canal = 'telegram' ORDER BY ref")
+        .all() as Array<{
+        ref: string
+      }>
+    ).map((c) => c.ref)
+    expect(refs).toEqual([
+      '1001',
+      '1002',
+      '1003',
+      ...Array.from({ length: 10 }, (_, i) => String(2001 + i)),
+    ])
+    expect(refs).not.toContain('3001')
+    expect(refs).not.toContain('0')
+
+    // Las quejas, con su autor por ciudadano; la retirada, sin nadie.
+    const autor = (id: string) =>
+      (
+        db
+          .prepare(
+            'SELECT c.ref FROM quejas q LEFT JOIN ciudadanos c ON c.id = q.ciudadano_id WHERE q.id = ?',
+          )
+          .get(id) as { ref: string | null }
+      ).ref
+    expect(autor('Q-AAAA0001')).toBe('1001')
+    expect(autor('Q-AAAA0002')).toBe('1001')
+    expect(autor('Q-BBBB0001')).toBe('1002')
+    expect(autor('Q-DDDD0001')).toBe('1003')
+    expect(autor('Q-CCCC0001')).toBeNull()
+
+    // La foto, con su canal; la cadena vacía no era una foto.
+    const foto = (id: string) =>
+      (
+        db.prepare('SELECT foto_ref FROM quejas WHERE id = ?').get(id) as {
+          foto_ref: string | null
+        }
+      ).foto_ref
+    expect(foto('Q-AAAA0001')).toBe('tg:FILE-A')
+    expect(foto('Q-DDDD0001')).toBeNull()
+    expect(foto('Q-AAAA0002')).toBeNull()
+
+    // Todas llegaron por Telegram.
+    expect(db.prepare('SELECT DISTINCT canal FROM quejas').all()).toEqual([{ canal: 'telegram' }])
+
+    // Ni rastro de las columnas de Telegram en quejas.
+    const columnas = (db.prepare('PRAGMA table_info(quejas)').all() as Array<{ name: string }>).map(
+      (c) => c.name,
+    )
+    expect(columnas).not.toContain('telegram_user_id')
+    expect(columnas).not.toContain('telegram_username')
+    expect(columnas).not.toContain('photo_file_id')
+    expect(columnas).toEqual(expect.arrayContaining(['ciudadano_id', 'canal', 'foto_ref']))
+
+    // Cuentas por tabla: nada se pierde.
+    expect(cuenta(db, 'quejas')).toBe(5)
+    expect(cuenta(db, 'apoyos')).toBe(11)
+    expect(cuenta(db, 'events')).toBe(8)
+    expect(cuenta(db, 'subscriptions')).toBe(1)
+    expect(cuenta(db, 'curation_decisions')).toBe(1)
+    expect(cuenta(db, 'repo_eventos_vistos')).toBe(1)
+    expect(cuenta(db, 'fotos_retenidas')).toBe(1)
+
+    // Los apoyos, por ciudadano, y el umbral de los diez sigue en su sitio.
+    const apoyosDe = (id: string) =>
+      (db.prepare('SELECT COUNT(*) AS n FROM apoyos WHERE queja_id = ?').get(id) as { n: number }).n
+    expect(apoyosDe('Q-AAAA0002')).toBe(10)
+    expect(apoyosDe('Q-AAAA0001')).toBe(1)
+    const quienApoya = db
+      .prepare(
+        "SELECT c.ref FROM apoyos a JOIN ciudadanos c ON c.id = a.ciudadano_id WHERE a.queja_id = 'Q-AAAA0001'",
+      )
+      .get() as { ref: string }
+    expect(quienApoya.ref).toBe('1002')
+
+    // Integridad: claves ajenas y la base entera.
+    expect(db.pragma('foreign_key_check')).toEqual([])
+    expect(db.pragma('integrity_check', { simple: true })).toBe('ok')
+    // `events` y `fotos_retenidas` siguen apuntando a `quejas`: no se ha reconstruido.
+    const apuntaA = (t: string) =>
+      (db.pragma(`foreign_key_list(${t})`) as Array<{ table: string }>).map((f) => f.table)
+    expect(apuntaA('events')).toEqual(['quejas'])
+    expect(apuntaA('fotos_retenidas')).toEqual(['quejas'])
+    expect(apuntaA('apoyos').sort()).toEqual(['ciudadanos', 'quejas'])
+    expect(db.pragma('foreign_keys', { simple: true })).toBe(1)
+    // Y deja constancia.
+    expect(db.prepare('SELECT version, nombre FROM migraciones_aplicadas').all()).toEqual(
+      MIGRACIONES.map((m) => ({ version: m.version, nombre: m.nombre })),
+    )
+    db.close()
+  })
+
+  it('una segunda pasada no hace nada ni saca otra copia', () => {
+    const ruta = baseV0()
+    const db = abrir(ruta)
+    migrar(db, { ruta, log: () => {} })
+    const copias = readdirSync(join(dir, 'backups'))
+    const r = migrar(db, { ruta, log: () => {} })
+    expect(r.aplicadas).toEqual([])
+    expect(r.copia).toBeNull()
+    expect(readdirSync(join(dir, 'backups'))).toEqual(copias)
+    db.close()
+  })
+
+  it('antes de migrar saca una copia, y la copia se abre y es v0', () => {
+    const ruta = baseV0()
+    const db = abrir(ruta)
+    const r = migrar(db, { ruta, log: () => {} })
+    db.close()
+    expect(r.copia, 'no hay copia de seguridad').toBeTruthy()
+    expect(readdirSync(join(dir, 'backups')).filter((f) => f.endsWith('.tmp'))).toEqual([])
+    const antes = new Database(r.copia!, { readonly: true })
+    expect(antes.pragma('user_version', { simple: true })).toBe(0)
+    expect(cuenta(antes, 'quejas')).toBe(5)
+    const columnas = (
+      antes.prepare('PRAGMA table_info(quejas)').all() as Array<{ name: string }>
+    ).map((c) => c.name)
+    expect(columnas).toContain('telegram_user_id')
+    antes.close()
+  })
+
+  it('una base nueva y una migrada acaban con el mismo esquema', () => {
+    const ruta = baseV0()
+    const migrada = abrir(ruta)
+    migrar(migrada, { ruta, log: () => {} })
+    const nueva = new Database(':memory:')
+    migrar(nueva, { ruta: ':memory:', log: () => {} })
+    expect(esquema(nueva).length).toBeGreaterThan(10) // el control: hay algo que comparar
+    expect(esquema(nueva)).toEqual(esquema(migrada))
+    migrada.close()
+    nueva.close()
+  })
+
+  it('si una migración falla, no deja nada a medias: ni la versión ni las claves ajenas apagadas', () => {
+    const ruta = baseV0()
+    const db = abrir(ruta)
+    const rota: Migracion[] = [
+      {
+        version: 1,
+        nombre: 'rota',
+        aplicar: (d) => {
+          d.exec('CREATE TABLE a_medias (x INTEGER)')
+          throw new Error('fallo a propósito')
+        },
+      },
+    ]
+    expect(() => migrar(db, { ruta, migraciones: rota, log: () => {} })).toThrow(/a propósito/)
+    expect(db.pragma('user_version', { simple: true })).toBe(0)
+    expect(
+      db.prepare("SELECT name FROM sqlite_schema WHERE name = 'a_medias'").get(),
+    ).toBeUndefined()
+    expect(db.pragma('foreign_keys', { simple: true })).toBe(1)
+    db.close()
+  })
+
+  it('un apoyo que no se puede atribuir para la migración entera, en vez de perderse', () => {
+    // Un apoyo con el centinela 0 no lo escribe el código, pero si la base lo
+    // tuviera, la migración lo perdería en silencio y la cifra publicada bajaría.
+    const ruta = baseV0("INSERT INTO apoyos (queja_id, telegram_user_id) VALUES ('Q-BBBB0001', 0);")
+    const db = abrir(ruta)
+    expect(() => migrar(db, { ruta, log: () => {} })).toThrow(/apoyos/)
+    expect(db.pragma('user_version', { simple: true })).toBe(0)
+    expect(cuenta(db, 'apoyos')).toBe(12)
+    db.close()
+  })
+
+  it('una base de un código más nuevo no se toca', () => {
+    const db = new Database(':memory:')
+    db.pragma('user_version = 99')
+    const avisos: string[] = []
+    const r = migrar(db, { ruta: ':memory:', log: (l) => avisos.push(l) })
+    expect(r).toMatchObject({ desde: 99, hasta: 99, aplicadas: [] })
+    expect(avisos.join('\n')).toMatch(/más nuevo/)
+    expect(db.prepare("SELECT name FROM sqlite_schema WHERE name = 'quejas'").get()).toBeUndefined()
+    db.close()
+  })
+
+  it('los canales del CHECK son los que exporta migraciones.ts', () => {
+    const db = new Database(':memory:')
+    migrar(db, { ruta: ':memory:', log: () => {} })
+    const sql = (
+      db.prepare("SELECT sql FROM sqlite_schema WHERE name = 'ciudadanos'").get() as { sql: string }
+    ).sql
+    // Sólo la cláusula del CHECK: el resto de la sentencia tiene otras comillas
+    // (`datetime('now')`).
+    const clausula = /CHECK \(canal IN \(([^)]*)\)\)/.exec(sql)?.[1] ?? ''
+    const enCheck = [...clausula.matchAll(/'([a-z]+)'/g)].map((m) => m[1]).sort()
+    expect(enCheck.length).toBeGreaterThan(0) // el control: el patrón mira algo
+    expect(enCheck).toEqual([...CANALES].sort())
+    db.close()
+  })
+
+  it('cada CREATE TABLE del código existe en una base migrada (ninguna tabla fantasma)', () => {
+    const db = new Database(':memory:')
+    migrar(db, { ruta: ':memory:', log: () => {} })
+    const tablas = new Set(
+      (
+        db.prepare("SELECT name FROM sqlite_schema WHERE type = 'table'").all() as Array<{
+          name: string
+        }>
+      ).map((r) => r.name),
+    )
+    const src = join(__dirname, '..', 'src')
+    const fuentes = (d: string): string[] =>
+      readdirSync(d, { withFileTypes: true }).flatMap((e) =>
+        e.isDirectory()
+          ? fuentes(join(d, e.name))
+          : /\.(ts|sql)$/.test(e.name)
+            ? [readFileSync(join(d, e.name), 'utf8')]
+            : [],
+      )
+    const nombres = new Set(
+      fuentes(src).flatMap((t) =>
+        [...t.matchAll(/CREATE TABLE (?:IF NOT EXISTS )?(\w+)/g)].map((m) => m[1]),
+      ),
+    )
+    expect(nombres.size).toBeGreaterThan(5) // el control
+    // `apoyos_v0` es el nombre de paso de la reconstrucción: no sobrevive.
+    const fantasma = [...nombres].filter((n) => !tablas.has(n) && n !== 'apoyos_v0')
+    expect(fantasma).toEqual([])
+    expect(tablas.has('apoyos_v0')).toBe(false)
+    db.close()
+  })
+
+  it('en memoria no hay copia que sacar', () => {
+    const db = new Database(':memory:')
+    const r = migrar(db, { ruta: ':memory:', dirCopias: join(dir, 'backups'), log: () => {} })
+    expect(r.copia).toBeNull()
+    expect(existsSync(join(dir, 'backups'))).toBe(false)
+    db.close()
+  })
+})
+
+describe('el ensayo: la migración sobre una copia, sin tocar la base', () => {
+  it('cuenta antes y después, comprueba, borra la copia y deja la base como estaba', () => {
+    const ruta = baseV0()
+    const e = ensayarMigracion(ruta, { log: () => {} })
+    expect(e.ok).toBe(true)
+    expect(e.antes).toMatchObject({ quejas: 5, apoyos: 11, events: 8, subscriptions: 1 })
+    expect(e.despues).toMatchObject({ quejas: 5, apoyos: 11, events: 8, ciudadanos: 13 })
+    expect(e.hasta).toBe(MIGRACIONES[MIGRACIONES.length - 1].version)
+    // La base, intacta: sigue en v0 y con sus columnas de Telegram.
+    const db = new Database(ruta, { readonly: true })
+    expect(db.pragma('user_version', { simple: true })).toBe(0)
+    const columnas = (db.prepare('PRAGMA table_info(quejas)').all() as Array<{ name: string }>).map(
+      (c) => c.name,
+    )
+    expect(columnas).toContain('telegram_user_id')
+    db.close()
+    // Y ni la copia ni sus restos —ni una carpeta de copias— se quedan en el volumen.
+    expect(readdirSync(dir).filter((f) => !/^bot\.db(-wal|-shm)?$/.test(f))).toEqual([])
+  })
+
+  it('un ensayo que falla lo dice, y también borra la copia', () => {
+    const ruta = baseV0("INSERT INTO apoyos (queja_id, telegram_user_id) VALUES ('Q-BBBB0001', 0);")
+    const e = ensayarMigracion(ruta, { log: () => {} })
+    expect(e.ok).toBe(false)
+    expect(e.error).toMatch(/apoyos/)
+    expect(readdirSync(dir).filter((f) => !/^bot\.db(-wal|-shm)?$/.test(f))).toEqual([])
+  })
+})

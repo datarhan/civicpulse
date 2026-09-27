@@ -17,6 +17,9 @@
  */
 import { resolve } from 'node:path'
 import type { Db } from '../db/client.ts'
+import { getQuejaViva, marcarFotoRetenidaAvisada, type FotoRetenida } from '../db/queries.ts'
+import { escaparHtml } from '../util/html.ts'
+import { cortar, trocear } from '../util/telegram.ts'
 import { logger } from '../util/log.ts'
 import { chooseVisionBackend } from './photo-anonymize.ts'
 import { processPhotos, type ProcessDeps, type ProcessResult } from './process-photos.ts'
@@ -30,6 +33,12 @@ export interface OpcionesPasada {
   env?: Record<string, string | undefined>
   /** Inyectado en las pruebas; por defecto, la pasada de verdad. */
   procesar?: (deps: ProcessDeps) => Promise<ProcessResult>
+  /** A quién avisar de las fotos que llevan un día retenidas (`ADMIN_USER_IDS`). */
+  admins?: () => number[]
+  /** Un DM en HTML de Telegram. Si falla, lanza. */
+  sendDm?: (userId: number, textoHtml: string) => Promise<void>
+  /** Inyectado en las pruebas; por defecto, el reloj. */
+  ahora?: () => Date
   log?: (linea: string) => void
 }
 
@@ -52,20 +61,85 @@ export async function pasadaDeFotos(o: OpcionesPasada): Promise<ProcessResult | 
       token,
       photosDir: o.photosDir,
       env: o.env ?? process.env,
+      ahora: o.ahora,
       log,
     })
     // Un renglón sólo cuando la pasada hizo algo: «nada» cada hora es ruido.
-    if (r.published.length || r.held.length || r.pruned.length) {
+    if (r.published.length || r.held.length || r.rechazadas.length || r.pruned.length) {
       log(
         `[fotos] pasada · publicadas=${r.published.length} retenidas=${r.held.length} ` +
-          `ya publicadas=${r.skipped} podadas=${r.pruned.length}`,
+          `rechazadas=${r.rechazadas.length} ya publicadas=${r.skipped} podadas=${r.pruned.length}`,
       )
     }
+    if (r.paraAvisar.length > 0) await avisarRetenidas(o, r.paraAvisar, log)
     return r
   } catch (e) {
     log(`[fotos] la pasada falló: ${e instanceof Error ? e.message : String(e)}`)
     return null
   }
+}
+
+/**
+ * Las fotos que llevan un día retenidas, por DM a los administradores y UNA vez:
+ * se marcan avisadas sólo si el mensaje le llegó al menos a uno. Hasta el
+ * 2026-09-27 una foto retenida se reintentaba cada hora para siempre sin que
+ * nadie lo supiera.
+ */
+async function avisarRetenidas(
+  o: OpcionesPasada,
+  filas: FotoRetenida[],
+  log: (linea: string) => void,
+): Promise<void> {
+  const admins = o.admins?.() ?? []
+  if (!o.sendDm || admins.length === 0) {
+    log(
+      `[fotos] ${filas.length} foto(s) llevan más de un día retenidas y ADMIN_USER_IDS ` +
+        'no tiene a quién avisar',
+    )
+    return
+  }
+  // En trozos que caben en Telegram: el aviso existe para la caída larga, que es
+  // cuando más filas lleva, y un mensaje de más de 4096 caracteres se rechaza
+  // entero y se reintentaba cada hora sin llegar nunca. Cada trozo marca sólo
+  // sus filas, y sólo si le llegó a alguien.
+  const ahora = (o.ahora ?? (() => new Date()))()
+  for (const trozo of trocear(CABECERA_RETENIDAS, bloquesRetenidas(o.db, filas))) {
+    let llego = false
+    for (const a of admins) {
+      try {
+        await o.sendDm(a, trozo.texto)
+        llego = true
+      } catch (e) {
+        log(`[fotos] no se pudo avisar a ${a}: ${e instanceof Error ? e.message : String(e)}`)
+      }
+    }
+    if (llego) for (const id of trozo.ids) marcarFotoRetenidaAvisada(o.db, id, ahora)
+  }
+}
+
+const CABECERA_RETENIDAS = [
+  '📷 <b>Fotos retenidas desde hace más de un día</b>',
+  'La pasada horaria no ha podido anonimizarlas, así que su queja se publica sin foto. ' +
+    'Se sigue intentando cada hora; este aviso no se repite.',
+].join('\n')
+
+/**
+ * Un bloque por foto, en HTML de Telegram. Lo que escribió un vecino y el motivo
+ * se cortan ANTES de escapar —sin partir un emoji— y luego se escapan.
+ */
+function bloquesRetenidas(db: Db, filas: FotoRetenida[]): Array<{ texto: string; id: string }> {
+  return filas.map((f) => {
+    const titulo = getQuejaViva(db, f.queja_id)?.title
+    const desde = f.desde.replace('T', ' ').slice(0, 16)
+    return {
+      id: f.queja_id,
+      texto:
+        `• <code>${escaparHtml(f.queja_id)}</code>` +
+        (titulo ? ` · «${escaparHtml(cortar(titulo, 120))}»` : '') +
+        `\n  retenida desde ${desde} UTC · ${f.intentos} intento(s)` +
+        `\n  motivo: ${escaparHtml(cortar(f.motivo, 300))}`,
+    }
+  })
 }
 
 export interface OpcionesCronFotos extends Omit<OpcionesPasada, 'photosDir'> {
