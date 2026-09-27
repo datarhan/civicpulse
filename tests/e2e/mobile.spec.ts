@@ -59,7 +59,11 @@ const literal = (s: string) => new RegExp(s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&
 // rendering nothing.
 // ---------------------------------------------------------------------------
 
-type Route = { path: string; ready: RegExp }
+// `flag`: the launch flag that mounts the route. Without it App.jsx has no such
+// route and sends the visit to `/`, so the entry skips and names the variable,
+// as eficiencia.spec.ts does. Only a flagged route may skip: any other route
+// that lands elsewhere has disappeared, and that fails.
+type Route = { path: string; ready: RegExp; flag?: string }
 
 const ROUTES: Route[] = [
   // Decimal-tolerant: the accumulated total gained a decimal when a €55,7M
@@ -115,13 +119,21 @@ const ROUTES: Route[] = [
   // ocho columnas y 1.080 px de ancho mínimo, o sea LO ÚNICO de esta ruta que
   // puede desbordar 375. Medir sólo la portada de la ruta habría dado verde
   // sobre la parte que no corre riesgo.
-  { path: '/eficiencia', ready: /rendición de cuentas/i },
-  { path: '/eficiencia#sec-servicios', ready: /servicios del panel/i },
-  { path: `/eficiencia/${FICHA.id}`, ready: literal(FICHA.etiqueta) },
+  { path: '/eficiencia', ready: /rendición de cuentas/i, flag: 'VITE_ENABLE_EFICIENCIA' },
+  {
+    path: '/eficiencia#sec-servicios',
+    ready: /servicios del panel/i,
+    flag: 'VITE_ENABLE_EFICIENCIA',
+  },
+  {
+    path: `/eficiencia/${FICHA.id}`,
+    ready: literal(FICHA.etiqueta),
+    flag: 'VITE_ENABLE_EFICIENCIA',
+  },
   // El h1, no un titular de sección: «Plazos, concurrencia y ejecución» era el
   // título de una tarjeta y se movió con el libro de gestión. Un centinela que
   // vive dentro de un componente caduca en cuanto ese componente cambia.
-  { path: '/gestion', ready: /Cómo funciona la casa por dentro/ },
+  { path: '/gestion', ready: /Cómo funciona la casa por dentro/, flag: 'VITE_ENABLE_EFICIENCIA' },
   { path: '/laboratorio/frontera', ready: /series de unidad física/ },
   {
     path: '/laboratorio/coste-esperado',
@@ -149,17 +161,22 @@ const CONTENT_FLOOR = 150
 // ya envuelve, así que todas las rutas se miden contra el mismo listón.
 const KNOWN_OVERFLOW: Record<string, { widthPx: number; reason: string }> = {}
 
+/** The pathname a route asks for, without hash or trailing slash. */
+const pathOf = (p: string) => new URL(p, 'http://x').pathname.replace(/(.)\/$/, '$1')
+
 async function measure(page: import('@playwright/test').Page, route: Route, readyTimeout = 20_000) {
   await page.goto(route.path, { waitUntil: 'domcontentloaded' })
 
-  const rx = { source: route.ready.source, flags: route.ready.flags }
+  const rx = { source: route.ready.source, flags: route.ready.flags, pedida: pathOf(route.path) }
 
-  // Real signal, not a sleep: wait for the route's own data to be on screen.
+  // Real signal, not a sleep: wait for the route's own data to be on screen —
+  // or for the app to have sent us somewhere else, which no wait will undo.
   // On timeout we fall through deliberately — the assertion in the test reads
   // better than a raw waitForFunction timeout, and reports what did render.
   await page
     .waitForFunction(
-      ({ source, flags }) => {
+      ({ source, flags, pedida }) => {
+        if (location.pathname.replace(/(.)\/$/, '$1') !== pedida) return true
         const root = document.querySelector('main') ?? document.body
         const text = (root as HTMLElement).innerText || ''
         return new RegExp(source, flags).test(text.replace(/\s+/g, ' '))
@@ -201,6 +218,7 @@ async function measure(page: import('@playwright/test').Page, route: Route, read
           }> right=${x.right} "${(x.el.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 40)}"`,
       )
     return {
+      landed: location.pathname.replace(/(.)\/$/, '$1'),
       scrollW: doc.scrollWidth,
       clientW: doc.clientWidth,
       innerW: window.innerWidth,
@@ -216,6 +234,15 @@ type Measurement = Awaited<ReturnType<typeof measure>>
 // The whole assertion, in one place, so the fault-injection test below can
 // prove it rejects an empty page instead of merely documenting that it should.
 function assertFitsViewport(m: Measurement, width: number, path: string, ready: RegExp) {
+  // 0. Prove the guard measured the route it asked for. With
+  //    VITE_ENABLE_EFICIENCIA off, /eficiencia falls through App.jsx's
+  //    catch-all to `/`, and the landing's own «RENDICIÓN DE CUENTAS POR
+  //    CONCEJALÍA» satisfied /rendición de cuentas/i: measured on 2026-09-27,
+  //    this spec went green on /eficiencia by measuring the landing page.
+  expect(m.landed, `${path}: the app sent it to ${m.landed} — that is another page`).toBe(
+    pathOf(path),
+  )
+
   // 1. Prove the guard measured a rendered page. Without this the suite can go
   //    green by rendering nothing, which is how it stayed green through a 55%
   //    overrun.
@@ -262,6 +289,10 @@ test.describe('Mobile shell (iPhone 13 mini / 375px)', () => {
       const width = viewport!.width
 
       const m = await measure(page, route)
+      test.skip(
+        !!route.flag && m.landed !== pathOf(route.path),
+        `${route.path} is not mounted — rebuild with ${route.flag}=true`,
+      )
       assertFitsViewport(m, width, route.path, route.ready)
     })
   }
