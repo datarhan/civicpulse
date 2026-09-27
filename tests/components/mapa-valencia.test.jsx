@@ -111,6 +111,12 @@ const QUEJAS_MEDIBLES = instantanea([
   queja({ service_request_id: 'Q-3', registered_at: REGISTRADA, status: 'registrada' }),
 ])
 const QUEJAS_SIN_REGISTRO = instantanea([queja()])
+// Una del casco, que no tiene barrio: la leyenda dice cuántas sitúa la capa.
+const QUEJAS_UNA_SIN_BARRIO = instantanea([
+  queja(),
+  queja({ service_request_id: 'Q-2' }),
+  queja({ service_request_id: 'Q-3', address_string: null }),
+])
 const QUEJAS_DE_OTRO_BARRIO = instantanea([
   queja({ address_string: 'otro-barrio', registered_at: REGISTRADA }),
 ])
@@ -594,6 +600,17 @@ const LEYENDAS = [
     },
     pinta: () => <QuejasLegend />,
     listo: (c) => new RegExp(`\\b${QUEJAS_MEDIBLES.items.length}\\b`).test(c.textContent),
+  },
+  {
+    nombre: 'la leyenda de quejas, cuando la capa no las sitúa todas',
+    cubre: [QuejasLegend],
+    datos: [],
+    fetch: {
+      '/data/geo.json': { neighborhoods: [BARRIO] },
+      '/data/quejas.json': QUEJAS_UNA_SIN_BARRIO,
+    },
+    pinta: () => <QuejasLegend />,
+    listo: (c) => /\b2 de 3\b/.test(c.textContent),
   },
   {
     nombre: 'los chips de capas',
