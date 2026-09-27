@@ -2377,10 +2377,10 @@ export default function Metodologia() {
           </a>
           . Sale de un modelo con decisiones nuestras dentro —qué servicios entran en la cesta, qué
           rendimientos a escala se suponen, qué se hace con quien declara a medias— y esas
-          decisiones mueven el número: con la misma fuente y cuatro cestas igual de defendibles, la
-          distancia de Riba-roja a la frontera recorre media escala. Por eso está en el laboratorio,
-          por eso la página dice qué no es antes de enseñar ninguna cifra, y por eso publica el
-          método entero.
+          decisiones mueven el número: con la misma fuente, la distancia de Riba-roja a la frontera
+          cambia según cuál de varias cestas igual de defendibles se elija, y con las más completas
+          casi nunca se puede medir. Por eso está en el laboratorio, por eso la página dice qué no
+          es antes de enseñar ninguna cifra, y por eso publica el método entero.
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>No se nombra a ningún otro municipio.</strong> En{' '}

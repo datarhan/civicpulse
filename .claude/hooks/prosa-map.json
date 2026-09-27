@@ -74,9 +74,11 @@
       "/quejas"
     ],
     "dea.json": [
+      "/about",
       "/datos",
       "/laboratorio/frontera",
-      "/metodologia"
+      "/metodologia",
+      "/nosotros"
     ],
     "dedicaciones.json": [
       "/cargos",
