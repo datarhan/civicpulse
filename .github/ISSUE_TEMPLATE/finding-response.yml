@@ -67,6 +67,6 @@ body:
       value: |
         ---
 
-        **Ingreso automatizado**: cuando este issue se etiqueta como `derecho-replica`, un workflow lo procesa y escribe la réplica en `public/data/pleno-findings.json`, respetando el formato requerido por el validador de `src/scraper/pleno-finding.ts`. El issue se cierra automáticamente al terminar y el commit queda en el historial público de git.
+        **Ingreso**: enviar el formulario no publica nada. Cuando un mantenedor la aprueba añadiendo la etiqueta `publicar` —que este formulario no pone—, un workflow comprueba su permiso y escribe la réplica en `public/data/pleno-findings.json`, respetando el formato que exige el validador de `src/scraper/pleno-finding.ts`. El issue se cierra al terminar y el commit queda en el historial público de git.
 
         Cualquier corrección posterior (rectificación, aclaración, ampliación) se trata como una nueva respuesta, nunca como una edición de la anterior — todo el historial es auditable.
