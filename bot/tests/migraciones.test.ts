@@ -1,5 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest'
 import { execFileSync } from 'node:child_process'
+import { createHash } from 'node:crypto'
 import { mkdtempSync, readFileSync, readdirSync, rmSync, existsSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
@@ -388,6 +389,8 @@ describe('las migraciones en ensayo', () => {
     expect(e.ok, e.error).toBe(true)
     expect(e.desde).toBe(ultima(MIGRACIONES))
     expect(e.hasta).toBe(ultima(MIGRACIONES_DEL_ENSAYO))
+    // Exactamente las que están en ensayo: con la lista vacía, ninguna.
+    expect(e.aplicadas).toEqual(MIGRACIONES_EN_ENSAYO.map((m) => `${m.version}-${m.nombre}`))
     for (const t of ['quejas', 'apoyos', 'events']) expect(e.despues?.[t]).toBe(e.antes[t])
   })
 
@@ -486,5 +489,57 @@ describe('la migración 2: la revisión antes de publicar', () => {
     expect(clausula('moderaciones', 'decision')).toEqual([...DECISIONES_MODERACION].sort())
     expect(clausula('tarjetas_por_vaciar', 'motivo')).toEqual([...MOTIVOS_VACIADO].sort())
     db.close()
+  })
+})
+
+/**
+ * Una migración ensayada contra producción no se cambia: se escribe otra. Cada
+ * una deja aquí la huella del SQL que ejecuta, tomada al desplegarla en ensayo.
+ * Si su texto cambia después, esta prueba se pone en rojo: lo que arrancaría el
+ * bot ya no es lo que se ensayó (bot/DEPLOY.md). La revisión de #138 lo pidió
+ * porque la 2 cambió dos veces durante la revisión de #137, y nada ataba la que
+ * se activa a la que se ensaya. Una migración nueva añade su huella al entrar en
+ * `MIGRACIONES_EN_ENSAYO`.
+ */
+const HUELLAS: Record<string, string> = {
+  '1': '1abc5ac7b770a7d9', // identidad-por-ciudadano, ensayada y activa desde #135
+  '2': '3d318e573180cd9f', // revision-antes-de-publicar, en ensayo desde #138
+}
+
+/** El SQL que ejecuta una migración, sobre una base en la versión anterior, resumido. */
+function huellaDe(m: Migracion): string {
+  const db = new Database(':memory:')
+  if (m.version === 1) db.exec(BASE_V0)
+  else {
+    migrar(db, {
+      ruta: ':memory:',
+      migraciones: MIGRACIONES_DEL_ENSAYO.slice(0, m.version - 1),
+      log: () => {},
+    })
+  }
+  const sql: string[] = []
+  const exec = db.exec.bind(db)
+  const prepare = db.prepare.bind(db)
+  db.exec = ((s: string) => {
+    sql.push(s)
+    return exec(s)
+  }) as typeof db.exec
+  db.prepare = ((s: string) => {
+    sql.push(s)
+    return prepare(s)
+  }) as typeof db.prepare
+  db.pragma('foreign_keys = OFF')
+  db.transaction(() => m.aplicar(db))()
+  db.close()
+  expect(sql.length, `la migración ${m.version} no ejecutó nada`).toBeGreaterThan(0)
+  return createHash('sha256').update(sql.join('\n')).digest('hex').slice(0, 16)
+}
+
+describe('una migración ensayada no cambia', () => {
+  it('el SQL de cada migración es el de su huella', () => {
+    const vistas = Object.fromEntries(
+      MIGRACIONES_DEL_ENSAYO.map((m) => [String(m.version), huellaDe(m)]),
+    )
+    expect(vistas).toEqual(HUELLAS)
   })
 })
