@@ -6,6 +6,7 @@ import {
   setState,
   softDeleteQueja,
   type NewQuejaInput,
+  autorTelegram,
 } from '../src/db/queries'
 import { buildSindicTemplate, renderSindicMarkdown, renderSindicHtml } from '../src/services/sindic'
 import { checkSilencio } from '../src/services/cron'
@@ -13,7 +14,7 @@ import { routeUsingLocalOfficials } from '../src/services/router'
 
 function seed(db: Db, overrides: Partial<NewQuejaInput> = {}) {
   return createQueja(db, {
-    telegram_user_id: 1,
+    autor: autorTelegram(1),
     category: 'via_publica',
     title: 'Bache profundo',
     detail: 'Bache de 40cm en Av. Primera, peligroso y sin señalizar',
@@ -153,7 +154,7 @@ describe('cron — checkSilencio', () => {
     const row = db.prepare('SELECT registered_at FROM quejas WHERE id = ?').get(q.id) as {
       registered_at: string
     }
-    softDeleteQueja(db, q.id, 1)
+    softDeleteQueja(db, q.id, autorTelegram(1))
     const future = new Date(new Date(row.registered_at).getTime() + 95 * 86_400_000)
     const r = checkSilencio(db, channel as never, future)
     expect(r.transitioned.length, 'ha transicionado una queja retirada').toBe(0)

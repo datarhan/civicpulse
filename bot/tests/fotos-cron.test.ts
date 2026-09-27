@@ -5,6 +5,7 @@ import {
   fotosRetenidas,
   registrarFotoRetenida,
   type NewQuejaInput,
+  autorTelegram,
 } from '../src/db/queries'
 import { pasadaDeFotos, startFotosCron } from '../src/services/fotos-cron'
 import { MAX_MENSAJE } from '../src/util/telegram'
@@ -123,15 +124,14 @@ describe('el aviso de las fotos retenidas', () => {
   function conUnaRetenida() {
     const db = openDb(':memory:')
     const entrada: NewQuejaInput = {
-      telegram_user_id: 7,
-      telegram_username: null,
+      autor: autorTelegram(7),
       category: 'limpieza',
       title: 'Contenedor <roto> & sucio',
       detail: 'Una queja con una foto que el análisis no consigue leer desde ayer.',
       lat: null,
       lng: null,
       neighborhood: null,
-      photo_file_id: 'file-x',
+      foto_ref: 'tg:file-x',
       concejalia_area: null,
       concejal_slug: null,
     }
@@ -186,15 +186,14 @@ describe('el aviso de las fotos retenidas', () => {
   it('con muchas retenidas se parte en mensajes que caben, y las marca todas', async () => {
     const db = openDb(':memory:')
     const entrada: NewQuejaInput = {
-      telegram_user_id: 7,
-      telegram_username: null,
+      autor: autorTelegram(7),
       category: 'limpieza',
       title: '🗑️ Contenedores desbordados en la calle Mayor 😡 '.repeat(4),
       detail: 'Una queja con una foto que el análisis no consigue leer desde ayer.',
       lat: null,
       lng: null,
       neighborhood: null,
-      photo_file_id: 'file-x',
+      foto_ref: 'tg:file-x',
       concejalia_area: null,
       concejal_slug: null,
     }

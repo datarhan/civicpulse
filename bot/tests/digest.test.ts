@@ -7,13 +7,13 @@ import {
   removeSubscription,
   softDeleteQueja,
   type NewQuejaInput,
+  autorTelegram,
 } from '../src/db/queries'
 import { runDigestOnce } from '../src/services/digest'
 
 function q(overrides: Partial<NewQuejaInput> = {}): NewQuejaInput {
   return {
-    telegram_user_id: 42,
-    telegram_username: 'maria',
+    autor: autorTelegram(42),
     category: 'via_publica',
     title: 'Bache profundo',
     detail: 'Bache en Av. Primera',
@@ -69,8 +69,8 @@ describe('bot · digest runDigestOnce', () => {
       captured.push({ userId, text })
     }
 
-    createQueja(db, q({ telegram_user_id: 1, neighborhood: 'casco', category: 'via_publica' }))
-    createQueja(db, q({ telegram_user_id: 2, neighborhood: 'polígono', category: 'limpieza' }))
+    createQueja(db, q({ autor: autorTelegram(1), neighborhood: 'casco', category: 'via_publica' }))
+    createQueja(db, q({ autor: autorTelegram(2), neighborhood: 'polígono', category: 'limpieza' }))
 
     addSubscription(db, 999, 'barrio', 'casco')
     const r = runDigestOnce(db, sendDm, new Date('2026-04-21T09:00:00Z'))
@@ -101,8 +101,8 @@ describe('bot · digest runDigestOnce', () => {
       captured.push({ userId, text })
     }
 
-    const queja = createQueja(db, q({ telegram_user_id: 1, neighborhood: 'casco' }))
-    softDeleteQueja(db, queja.id, 1)
+    const queja = createQueja(db, q({ autor: autorTelegram(1), neighborhood: 'casco' }))
+    softDeleteQueja(db, queja.id, autorTelegram(1))
     addSubscription(db, 999, 'barrio', 'casco')
 
     const r = runDigestOnce(db, sendDm, new Date('2026-04-21T09:00:00Z'))

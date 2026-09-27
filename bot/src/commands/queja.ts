@@ -2,7 +2,7 @@ import type { Bot } from 'grammy'
 import { InlineKeyboard } from 'grammy'
 import { createConversation } from '@grammyjs/conversations'
 import type { Db } from '../db/client.ts'
-import { createQueja, type NewQuejaInput } from '../db/queries.ts'
+import { autorTelegram, createQueja, type NewQuejaInput } from '../db/queries.ts'
 import { routeUsingLocalOfficials } from '../services/router.ts'
 import { matchNeighborhood } from '../services/neighborhoods.ts'
 import type { Channel } from '../services/channel.ts'
@@ -117,15 +117,14 @@ export function quejaConversationBuilder(db: Db, channel: Channel) {
     const routing = routeUsingLocalOfficials({ title, detail, category })
 
     const payload: NewQuejaInput = {
-      telegram_user_id: ctx.from!.id,
-      telegram_username: ctx.from?.username ?? null,
+      autor: autorTelegram(ctx.from!.id),
       category,
       title,
       detail,
       lat,
       lng,
       neighborhood,
-      photo_file_id: photoFileId,
+      foto_ref: photoFileId ? `tg:${photoFileId}` : null,
       concejalia_area: routing.concejalia.area,
       concejal_slug: routing.concejalia.responsible?.slug ?? null,
     }

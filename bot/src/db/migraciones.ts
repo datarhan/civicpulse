@@ -34,10 +34,10 @@
  *
  * Nunca se renombra `quejas`: `apoyos`, `events` y `fotos_retenidas` apuntan a
  * ella, y desde SQLite 3.26 un `ALTER TABLE … RENAME` reescribe esas referencias.
- * Las columnas de `quejas` se cambian con ADD/RENAME/DROP COLUMN (el SQLite que
- * trae better-sqlite3 11.10 es el 3.49). Sólo se reconstruye una tabla HOJA, y
- * renombrándola primero, para que el único `CREATE TABLE` del código sea el del
- * nombre final.
+ * Las columnas de `quejas` se cambian con ADD/RENAME/DROP COLUMN (DROP COLUMN
+ * existe desde SQLite 3.35; el que trae better-sqlite3 12.11 es el 3.53). Sólo se
+ * reconstruye una tabla HOJA, y renombrándola primero, para que el único
+ * `CREATE TABLE` del código sea el del nombre final.
  *
  * Una migración ya aplicada no se cambia nunca: una base nueva la ejecutaría
  * distinta de como la ejecutó producción. Lo que haga falta después, en otra.

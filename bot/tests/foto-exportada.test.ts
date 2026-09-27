@@ -4,10 +4,10 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import type { IncomingMessage, ServerResponse } from 'node:http'
 import { openDb, type Db } from '../src/db/client'
-import { createQueja, softDeleteQueja, type NewQuejaInput } from '../src/db/queries'
+import { createQueja, softDeleteQueja, type NewQuejaInput, autorTelegram } from '../src/db/queries'
 import { sirveFotoExportada } from '../src/services/foto-exportada'
 import { directorioFotos } from '../src/services/snapshot'
-import { retirarQueja } from '../src/commands/olvidar'
+import { retirar } from '../src/services/ciudadano'
 
 /**
  * Las fotos anonimizadas viven ahora en el volumen del bot, y la actualización diaria
@@ -23,15 +23,14 @@ const AUTOR = 7
 
 function sample(overrides: Partial<NewQuejaInput> = {}): NewQuejaInput {
   return {
-    telegram_user_id: AUTOR,
-    telegram_username: 'ana',
+    autor: autorTelegram(AUTOR),
     category: 'urbanismo',
     title: 'Foto adjunta',
     detail: 'Una queja con foto adjunta que ya se ha anonimizado en el servidor del bot.',
     lat: null,
     lng: null,
     neighborhood: 'casco',
-    photo_file_id: 'file-A',
+    foto_ref: 'tg:file-A',
     concejalia_area: 'Urbanismo',
     concejal_slug: 'teresa-pozuelo-martin',
     ...overrides,
@@ -115,7 +114,7 @@ describe('GET /export/quejas-photos/<id>.jpg', () => {
   })
 
   it('la foto de una queja retirada da 404 aunque el fichero siga en el disco', () => {
-    expect(softDeleteQueja(db, id.toUpperCase(), AUTOR)).toBe(true)
+    expect(softDeleteQueja(db, id.toUpperCase(), autorTelegram(AUTOR))).toBe(true)
     expect(existsSync(join(dir, `${id}.jpg`)), 'la prueba necesita el fichero en su sitio').toBe(
       true,
     )
@@ -124,7 +123,7 @@ describe('GET /export/quejas-photos/<id>.jpg', () => {
   })
 
   it('una queja viva sin fichero da 404', () => {
-    const otra = createQueja(db, sample({ photo_file_id: 'file-B' })).id.toLowerCase()
+    const otra = createQueja(db, sample({ foto_ref: 'tg:file-B' })).id.toLowerCase()
     const { res } = sirve(
       peticion(`/export/quejas-photos/${otra}.jpg`, { auth: `Bearer ${TOKEN}` }),
     )
@@ -162,10 +161,10 @@ describe('/olvidar borra en el acto la foto del disco del bot', () => {
     const fichero = join(dir, `${q.id.toLowerCase()}.jpg`)
     writeFileSync(fichero, JPEG)
 
-    expect(retirarQueja(db, q.id, AUTOR + 1, dir)).toBe(false)
+    expect(retirar(db, q.id, autorTelegram(AUTOR + 1), dir)).toBe(false)
     expect(existsSync(fichero), 'borró la foto de una queja que no retiró nadie').toBe(true)
 
-    expect(retirarQueja(db, q.id, AUTOR, dir)).toBe(true)
+    expect(retirar(db, q.id, autorTelegram(AUTOR), dir)).toBe(true)
     expect(existsSync(fichero)).toBe(false)
   })
 })

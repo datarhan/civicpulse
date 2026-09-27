@@ -6,6 +6,7 @@ import {
   setState,
   softDeleteQueja,
   type NewQuejaInput,
+  autorTelegram,
 } from '../src/db/queries'
 import {
   buildBatch,
@@ -17,7 +18,7 @@ import {
 
 function seed(db: Db, overrides: Partial<NewQuejaInput> = {}) {
   return createQueja(db, {
-    telegram_user_id: 1,
+    autor: autorTelegram(1),
     category: 'via_publica',
     title: 'Bache sin reparar',
     detail: 'Bache profundo en Av. Primera, 2 meses',
@@ -36,7 +37,7 @@ function verify(db: Db, id: string) {
   // en `capturada` y el lote —que filtra por estado— no podía coger nada. Con esa
   // línea puesta, estas catorce pruebas tenían siempre su fila y el defecto no se
   // veía por ninguna parte. Si la promoción se rompe, ahora se enteran las catorce.
-  for (let u = 200; u < 210; u++) addApoyo(db, id, u)
+  for (let u = 200; u < 210; u++) addApoyo(db, id, autorTelegram(u))
 }
 
 describe('batch — selectBatch', () => {
@@ -63,7 +64,7 @@ describe('batch — selectBatch', () => {
     const retirada = seed(db, { title: 'retirada-por-su-autor' })
     verify(db, viva.id)
     verify(db, retirada.id)
-    softDeleteQueja(db, retirada.id, 1)
+    softDeleteQueja(db, retirada.id, autorTelegram(1))
     const picked = selectBatch(db)
     expect(picked.map((p) => p.queja.title)).toEqual(['sigue-en-pie'])
   })
@@ -73,7 +74,7 @@ describe('batch — selectBatch', () => {
     verify(db, a.id) // 10 apoyos
     const b = seed(db, { title: 'B-many-apoyos' })
     verify(db, b.id)
-    for (let u = 300; u < 305; u++) addApoyo(db, b.id, u) // B has 15
+    for (let u = 300; u < 305; u++) addApoyo(db, b.id, autorTelegram(u)) // B has 15
     const picked = selectBatch(db)
     expect(picked[0].queja.title).toBe('B-many-apoyos')
     expect(picked[1].queja.title).toBe('A-fewer-apoyos')

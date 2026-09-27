@@ -25,6 +25,7 @@ import {
   setState,
   softDeleteQueja,
   type NewQuejaInput,
+  autorTelegram,
 } from '../src/db/queries'
 import { registerBatch } from '../src/services/batch'
 import { computeRanking } from '../src/commands/ranking'
@@ -32,7 +33,7 @@ import { computeDigest } from '../src/commands/digest'
 
 function seed(db: Db, overrides: Partial<NewQuejaInput> = {}) {
   return createQueja(db, {
-    telegram_user_id: 1,
+    autor: autorTelegram(1),
     category: 'via_publica',
     title: 'Bache sin reparar',
     detail: 'Bache profundo en Av. Primera, 2 meses',
@@ -139,7 +140,7 @@ describe('/digest — las retiradas no suman en ninguna de las seis cuentas', ()
 /** Una queja creada y retirada acto seguido por su autor, como hace `/olvidar`. */
 function seedYRetira(db: Db, overrides: Partial<NewQuejaInput> = {}) {
   const q = seed(db, overrides)
-  softDeleteQueja(db, q.id, 1)
+  softDeleteQueja(db, q.id, autorTelegram(1))
   return q
 }
 
@@ -173,7 +174,7 @@ describe('una retirada no se enseña, no se apoya, no se escala ni entra en un l
     // «insufficient apoyos» y la prueba pasaría por el motivo equivocado.
     const ida = seed(db)
     setState(db, ida.id, 'apoyada_verificada')
-    softDeleteQueja(db, ida.id, 1)
+    softDeleteQueja(db, ida.id, autorTelegram(1))
     const r = registerBatch(db, {
       ids: [ida.id],
       entry_number: 'RE-1',

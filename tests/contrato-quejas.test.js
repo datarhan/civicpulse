@@ -210,7 +210,9 @@ describe('lo que el bot le dice al vecino dice lo mismo que las páginas', () =>
       CONSULTAS.indexOf('export function anonimizaRetiradas'),
     )
     expect(retirada.length, 'no encuentro softDeleteQueja').toBeGreaterThan(100)
-    if (!/telegram_user_id = 0/.test(retirada)) {
+    // La retirada borra la identidad dejando `ciudadano_id` en NULL desde la migración 1;
+    // antes la ponía en el centinela `telegram_user_id = 0`.
+    if (!/ciudadano_id = NULL/.test(retirada)) {
       expect(OLVIDAR, 'promete un registro anónimo que el código no hace').not.toMatch(
         /anonimizada|como anónima/i,
       )

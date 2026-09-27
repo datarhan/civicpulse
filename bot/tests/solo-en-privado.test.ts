@@ -5,7 +5,7 @@ import { join } from 'node:path'
 import { Bot } from 'grammy'
 import type { UserFromGetMe } from 'grammy/types'
 import { openDb, type Db } from '../src/db/client'
-import { createQueja, getQuejaViva, type NewQuejaInput } from '../src/db/queries'
+import { createQueja, getQuejaViva, type NewQuejaInput, autorTelegram } from '../src/db/queries'
 import { registrarComandos } from '../src/commands/registrar'
 import { COMANDOS_PUBLICOS, avisoPrivado } from '../src/services/solo-en-privado'
 import type { Channel } from '../src/services/channel'
@@ -76,15 +76,14 @@ function mensaje(texto: string, chat: object, de: number) {
 
 function queja(db: Db, autor: number): string {
   const input: NewQuejaInput = {
-    telegram_user_id: autor,
-    telegram_username: 'vecina',
+    autor: autorTelegram(autor),
     category: 'urbanismo',
     title: 'Una queja de una vecina',
     detail: 'Detalle de una queja escrita en privado, que nadie más tiene por qué leer.',
     lat: null,
     lng: null,
     neighborhood: 'casco',
-    photo_file_id: null,
+    foto_ref: null,
     concejalia_area: 'Urbanismo',
     concejal_slug: 'teresa-pozuelo-martin',
   }

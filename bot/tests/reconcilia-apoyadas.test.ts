@@ -25,19 +25,19 @@ import {
   softDeleteQueja,
   VERIFIED_THRESHOLD,
   type NewQuejaInput,
+  autorTelegram,
 } from '../src/db/queries'
 
 function sampleQueja(overrides: Partial<NewQuejaInput> = {}): NewQuejaInput {
   return {
-    telegram_user_id: 42,
-    telegram_username: 'maria',
+    autor: autorTelegram(42),
     category: 'via_publica',
     title: 'Bache profundo',
     detail: 'Bache en Av. Primera que lleva 2 meses sin reparar',
     lat: 39.5439,
     lng: -0.5711,
     neighborhood: 'casco',
-    photo_file_id: null,
+    foto_ref: null,
     concejalia_area: 'Obra Pública',
     concejal_slug: 'teresa-pozuelo-martin',
     ...overrides,
@@ -54,7 +54,7 @@ function sampleQueja(overrides: Partial<NewQuejaInput> = {}): NewQuejaInput {
  */
 function comoLaDejabaElBotRoto(db: Db, apoyos: number): string {
   const id = createQueja(db, sampleQueja()).id
-  for (let u = 0; u < apoyos; u++) addApoyo(db, id, 7000 + u)
+  for (let u = 0; u < apoyos; u++) addApoyo(db, id, autorTelegram(7000 + u))
   setState(db, id, 'capturada')
   return id
 }
@@ -110,7 +110,7 @@ describe('reconcileApoyadas — pone al día lo que quedó a medias', () => {
     // `/olvidar` es el punto de cumplimiento del derecho al olvido: una queja
     // borrada no vuelve a la cola del ayuntamiento por tener apoyos.
     const id = comoLaDejabaElBotRoto(db, VERIFIED_THRESHOLD)
-    softDeleteQueja(db, id, 42)
+    softDeleteQueja(db, id, autorTelegram(42))
     expect(reconcileApoyadas(db)).toEqual({ intentadas: 0, promovidas: 0 })
   })
 
@@ -141,7 +141,7 @@ describe('reconcileApoyadas — pone al día lo que quedó a medias', () => {
 
   it('no degrada ni adelanta a las que ya avanzaron', () => {
     const id = createQueja(db, sampleQueja()).id
-    for (let u = 0; u < VERIFIED_THRESHOLD; u++) addApoyo(db, id, 8000 + u)
+    for (let u = 0; u < VERIFIED_THRESHOLD; u++) addApoyo(db, id, autorTelegram(8000 + u))
     setState(db, id, 'registrada', { entry_number: '2026-RE-0847', csv: 'ABC123XYZ' })
     expect(reconcileApoyadas(db)).toEqual({ intentadas: 0, promovidas: 0 })
     expect(getQueja(db, id)?.state).toBe('registrada')

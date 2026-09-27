@@ -1,19 +1,18 @@
 import { describe, it, expect, beforeEach } from 'vitest'
 import { openDb, type Db } from '../src/db/client'
-import { createQueja, type NewQuejaInput } from '../src/db/queries'
+import { createQueja, type NewQuejaInput, autorTelegram } from '../src/db/queries'
 import { buildSnapshot } from '../src/services/snapshot'
 
 function sample(overrides: Partial<NewQuejaInput> = {}): NewQuejaInput {
   return {
-    telegram_user_id: 42,
-    telegram_username: 'maria',
+    autor: autorTelegram(42),
     category: 'urbanismo',
     title: 'Estructura metálica ilegal',
     detail: 'Se ha instalado una estructura metálica ilegal en el campo deportivo.',
     lat: 39.5439,
     lng: -0.5711,
     neighborhood: 'casco',
-    photo_file_id: null,
+    foto_ref: null,
     concejalia_area: 'Urbanismo',
     concejal_slug: 'teresa-pozuelo-martin',
     ...overrides,
@@ -27,7 +26,7 @@ describe('buildSnapshot — anonymized photo wiring', () => {
   })
 
   it('adds a public photo URL when an anonymized image exists for the queja', () => {
-    const q = createQueja(db, sample({ photo_file_id: 'AgACfoo' }))
+    const q = createQueja(db, sample({ foto_ref: 'tg:AgACfoo' }))
     const snap = buildSnapshot(db, 1000, {
       photoUrlFor: (id) => (id === q.id ? `/data/quejas-photos/${id.toLowerCase()}.jpg` : null),
     })
@@ -36,7 +35,7 @@ describe('buildSnapshot — anonymized photo wiring', () => {
   })
 
   it('omits photo when no anonymized image has been published', () => {
-    const q = createQueja(db, sample({ photo_file_id: 'AgACfoo' }))
+    const q = createQueja(db, sample({ foto_ref: 'tg:AgACfoo' }))
     const snap = buildSnapshot(db, 1000, { photoUrlFor: () => null })
     const row = snap.items.find((r) => r.service_request_id === q.id)
     expect(row?.photo).toBeUndefined()
@@ -46,7 +45,7 @@ describe('buildSnapshot — anonymized photo wiring', () => {
     // Defense-in-depth guard: even when a photo IS published, the private
     // Telegram file_id must never appear in the public JSON.
     const secret = 'AgACAgIAAxkBAASECRETfileid'
-    const q = createQueja(db, sample({ photo_file_id: secret }))
+    const q = createQueja(db, sample({ foto_ref: `tg:${secret}` }))
     const snap = buildSnapshot(db, 1000, {
       photoUrlFor: (id) => `/data/quejas-photos/${id.toLowerCase()}.jpg`,
     })

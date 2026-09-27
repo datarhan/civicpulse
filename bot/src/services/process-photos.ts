@@ -1,7 +1,7 @@
 /**
  * Anonymize-and-publish job for queja photos.
  *
- *   listQuejasWithPhoto(db)            (non-deleted rows carrying a file_id)
+ *   listQuejasWithPhoto(db)            (non-deleted rows carrying a foto_ref)
  *     → skip those already published    (anonymized jpg already on disk)
  *     → download raw bytes from Telegram (in memory — raw NEVER hits disk)
  *     → normalizarImagen()               (rotate by EXIF + downscale → ONE JPEG;
@@ -48,12 +48,12 @@ import { directorioFotos } from './snapshot.ts'
 /** Lo que lleva retenido al menos esto se avisa, una vez, a los administradores. */
 export const AVISAR_RETENIDA_TRAS_MS = 24 * 60 * 60 * 1000
 
-/** Rows still needing an anonymized image (has a file_id, not yet published). */
-export function selectQuejasToProcess<T extends { id: string; photo_file_id: string | null }>(
+/** Rows still needing an anonymized image (has a foto_ref, not yet published). */
+export function selectQuejasToProcess<T extends { id: string; foto_ref: string | null }>(
   rows: T[],
   alreadyPublished: (id: string) => boolean,
 ): T[] {
-  return rows.filter((r) => !!r.photo_file_id && !alreadyPublished(r.id))
+  return rows.filter((r) => !!r.foto_ref && !alreadyPublished(r.id))
 }
 
 /** Download a Telegram file to a Buffer via the bot HTTP API (raw stays in memory). */
@@ -151,7 +151,13 @@ export async function processPhotos(deps: ProcessDeps): Promise<ProcessResult> {
 
   for (const row of todo) {
     try {
-      const raw = await fetchBytes(token, row.photo_file_id as string)
+      // `foto_ref` lleva el canal delante. Hoy sólo Telegram tiene descargador: una
+      // foto de otro canal se retiene, con el motivo, en vez de pedírsela a Telegram.
+      const tg = /^tg:(.+)$/.exec(row.foto_ref ?? '')
+      if (!tg) {
+        throw new Error(`foto de un canal sin descargador (${(row.foto_ref ?? '').split(':')[0]})`)
+      }
+      const raw = await fetchBytes(token, tg[1])
       let img: ImagenNormalizada
       try {
         img = await normalizar(raw)

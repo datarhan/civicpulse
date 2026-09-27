@@ -1,13 +1,12 @@
-import { rmSync } from 'node:fs'
-import { join } from 'node:path'
 import type { Bot } from 'grammy'
 import type { Db } from '../db/client.ts'
-import { softDeleteQueja } from '../db/queries.ts'
+import { autorTelegram } from '../db/queries.ts'
+import { retirar } from '../services/ciudadano.ts'
 import { idDeQueja } from '../services/queja-id.ts'
 import { pedirRepublicacion, type PeticionRepublicar } from '../services/republicar.ts'
 import { directorioFotos } from '../services/snapshot.ts'
 import type { MyContext } from '../types.ts'
-import { logger } from '../util/log.ts'
+import { CONSERVACION_QUEJAS_ANIOS } from '../../../src/scraper/plazos-retencion.ts'
 
 /**
  * /olvidar Q-XXXX — derecho al olvido (RGPD art. 17).
@@ -42,7 +41,7 @@ export function registerOlvidar(bot: Bot<MyContext>, db: Db, photosDir = directo
       await ctx.reply(`"${raw}" no parece un ID de queja válido. Formato: Q-XXXXXXXX`)
       return
     }
-    const ok = retirarQueja(db, id, ctx.from!.id, photosDir)
+    const ok = retirar(db, id, autorTelegram(ctx.from!.id), photosDir)
     if (!ok) {
       // Intentionally ambiguous — don't confirm existence across users.
       await ctx.reply(
@@ -56,24 +55,6 @@ export function registerOlvidar(bot: Bot<MyContext>, db: Db, photosDir = directo
     const peticion = await pedirRepublicacion()
     await ctx.reply(mensajeRetirada(id, peticion), { parse_mode: 'Markdown' })
   })
-}
-
-/**
- * Retira la queja y, si la retiró, borra en el acto su foto anonimizada del disco del
- * bot. Nada la enlaza ni la sirve ya —el export y `/export/quejas-photos/` sólo miran
- * quejas vivas—, pero no hay por qué guardarla hasta la poda de la siguiente pasada.
- * Si el borrado falla, la queja queda retirada igual y la pasada horaria la poda.
- */
-export function retirarQueja(db: Db, id: string, userId: number, photosDir: string): boolean {
-  const ok = softDeleteQueja(db, id, userId)
-  if (ok) {
-    try {
-      rmSync(join(photosDir, `${id.toLowerCase()}.jpg`), { force: true })
-    } catch (err) {
-      logger.warn('olvidar.foto', { id, err: String(err) })
-    }
-  }
-  return ok
 }
 
 /**
@@ -96,6 +77,7 @@ export function mensajeRetirada(id: string, peticion: PeticionRepublicar): strin
     `Ya no sale en el listado que exporta el bot, y el registro interno ya no guarda quién la ` +
     `escribió. ${cuando}\n\n` +
     `Quedan el texto y las fechas, sin tu identidad, durante el plazo legal de conservación ` +
-    `(5 años, Art. 55 LOPD-GDD), y después se destruyen. Por eso ya no aparecerá en /mis.`
+    `(${CONSERVACION_QUEJAS_ANIOS} años, Art. 55 LOPD-GDD), y después se destruyen. Por eso ya no ` +
+    `aparecerá en /mis.`
   )
 }
