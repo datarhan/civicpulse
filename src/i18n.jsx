@@ -368,7 +368,7 @@ export const CATALOGUE = {
     // Con quejas fuera del mapa —sin barrio, como las del casco—, la cifra de lo
     // pintado se da sobre la de las publicadas (QuejasLegend, coberturaDeBarrios).
     'map.quejas.coberturaDe': 'sobre {q} de {p} quejas, en {b} barrio(s)',
-    'map.quejas.sinBarrio': 'las demás, sin barrio',
+    'map.quejas.sinBarrio': 'el resto, sin barrio',
     'map.estacion.terminal': 'Terminus',
     'map.estacion.aprox': 'aprox',
     'map.estacion.verEnMetrovalencia': 'ver horario en metrovalencia.es',
@@ -2034,7 +2034,7 @@ export const CATALOGUE = {
     'map.quejas.cobertura': 'sobre {q} queixa(es) en {b} barri(s)',
     'map.quejas.escalaParcial': "la resta de nivells de l'escala no es donen hui",
     'map.quejas.coberturaDe': 'sobre {q} de {p} queixes, en {b} barri(s)',
-    'map.quejas.sinBarrio': 'la resta, sense barri',
+    'map.quejas.sinBarrio': 'les altres, sense barri',
     'map.estacion.terminal': 'Terminal',
     'map.estacion.aprox': 'aprox',
     'map.estacion.verEnMetrovalencia': 'veure l’horari en metrovalencia.es',
