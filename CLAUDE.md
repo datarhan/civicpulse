@@ -443,10 +443,19 @@ commit earlier — a caveat excusing a figure with the wrong reason, "there is n
 time series" after ten entregas shipped, "only PMP has a comparison" as a second
 one gained peers. No test caught any of them: the data was right and the guards
 check data. `.claude/hooks/remind-stale-copy.mjs` names the routes whose prose
-describes a snapshot at the moment that snapshot is rewritten. It reminds, never
-blocks — a reminder that can fail an edit is one people switch off. The better
-fix, where it applies, is to derive the sentence from the data instead of
-restating it, as `PanelMunicipal` now does with the list of compared indicators.
+describes a snapshot when that snapshot changes, as context next to the tool
+result: after a Write or Edit of it, and after any Bash command that leaves it
+different from HEAD — a script is how a snapshot is usually regenerated, and a
+PostToolUse on `Edit|Write` never sees what Bash writes. Each version of the
+data is named once per session, so the `npm test` after a scrape stays quiet.
+It reminds, never blocks — a reminder that can fail an edit is one people switch
+off. From 2026-08-12 to 2026-09-27 it printed to stderr with exit 0, which
+Claude Code sends only to the debug log: it fired and reached nobody, while its
+test stayed green by reading that same stderr. **A hook reaches the model
+through JSON on stdout** (`additionalContext`), never through stderr on exit 0.
+The better fix, where it applies, is to derive the sentence from the data
+instead of restating it, as `PanelMunicipal` now does with the list of compared
+indicators.
 
 Its snapshot→routes map is **derived, not hand-kept** (`npm run build:prose-map`
 walks hook literals, the import graph and `App.jsx`'s routes). The first version
