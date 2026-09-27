@@ -4,17 +4,7 @@ import { countApoyos, getQuejaViva, listEvents } from '../db/queries.ts'
 import { routeUsingLocalOfficials } from '../services/router.ts'
 import { plazoHumano } from '../../../src/scraper/queja-router.ts'
 import type { MyContext } from '../types.ts'
-
-function parseQuejaId(raw: string | undefined): string | null {
-  if (!raw) return null
-  const trimmed = raw
-    .trim()
-    .toUpperCase()
-    .replace(/^\/ESTADO[_\s]?/, '')
-    .replace(/^Q[-_]?/, '')
-  if (!/^[0-9A-Z]{4,}$/.test(trimmed)) return null
-  return 'Q-' + trimmed
-}
+import { idDeQueja } from '../services/queja-id.ts'
 
 function formatDate(iso: string | null | undefined): string {
   if (!iso) return '—'
@@ -49,7 +39,7 @@ function stateLabel(state: string): string {
 
 export function registerEstado(bot: Bot<MyContext>, db: Db) {
   const handler = async (ctx: MyContext, raw: string | undefined) => {
-    const id = parseQuejaId(raw)
+    const id = idDeQueja(raw)
     if (!id) {
       await ctx.reply('Uso: `/estado Q-XXXX`', { parse_mode: 'Markdown' })
       return

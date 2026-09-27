@@ -1,7 +1,5 @@
-import { monotonicFactory } from 'ulid'
 import type { Db } from './client.ts'
-
-const ulidMonotonic = monotonicFactory()
+import { nuevoIdDeQueja } from '../services/queja-id.ts'
 
 export type QuejaState =
   | 'capturada'
@@ -76,15 +74,8 @@ export interface AggregateStats {
 // Minimum apoyos to tag a queja as community-verified.
 export const VERIFIED_THRESHOLD = 10
 
-function newId(): string {
-  // Monotonic ULID — guarantees lexicographic ordering matches insertion
-  // order even within the same millisecond. Last 8 chars give us ~40
-  // bits of randomness, safe for a small muni.
-  return 'Q-' + ulidMonotonic().slice(-8)
-}
-
 export function createQueja(db: Db, q: NewQuejaInput): QuejaRow {
-  const id = newId()
+  const id = nuevoIdDeQueja()
   const insert = db.prepare(`
     INSERT INTO quejas (
       id, telegram_user_id, telegram_username, category, title, detail,
