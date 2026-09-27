@@ -201,8 +201,12 @@ Antes de fusionar un cambio que añade una migración, se ensaya contra la base
 de verdad:
 
 ```bash
-flyctl ssh console --app munigraph-ribarroja -C "node_modules/.bin/tsx src/db/migrate.ts --dry-run"
+flyctl ssh console --app munigraph-ribarroja -C "sh -c 'cd /app/bot && node_modules/.bin/tsx src/db/migrate.ts --dry-run --db /data/bot.db'"
 ```
+
+`-C` no arranca en el `WORKDIR` de la imagen, así que las rutas relativas no
+resuelven sin el `cd`; y `--db` va explícito para no depender de que la sesión
+herede el `DB_PATH` de `fly.toml`.
 
 Copia la base a un fichero temporal en el mismo volumen, lo migra, cuenta las
 filas de cada tabla antes y después, y borra la copia: los datos no salen de la
