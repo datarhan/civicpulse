@@ -66,6 +66,13 @@ export interface BotHealth {
  */
 export const ESPERA_MAXIMA_REVISION_H = 48
 
+/**
+ * Horas que puede esperar una tarjeta a perder el texto de una queja retirada o
+ * destruida: la pasada horaria lo reintenta, así que un día entero es Telegram
+ * fallando día tras día, o un chat que nadie ha visto que ya no se puede editar.
+ */
+export const ESPERA_MAXIMA_VACIADO_H = 24
+
 export function buildHealth(
   env: NodeJS.ProcessEnv,
   opts: {
@@ -113,6 +120,12 @@ export function buildHealth(
         `moderación: la queja en revisión más antigua lleva ${m.masAntiguaHoras} h esperando`,
       )
     }
+  }
+  const cola = m?.porVaciar
+  if (cola && cola.masAntiguaHoras !== null && cola.masAntiguaHoras > ESPERA_MAXIMA_VACIADO_H) {
+    degraded.push(
+      `moderación: ${cola.total} tarjeta(s) esperan desde hace ${cola.masAntiguaHoras} h a perder el texto de una queja retirada o destruida`,
+    )
   }
   return {
     status: degraded.length === 0 ? 'ok' : 'degraded',

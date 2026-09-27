@@ -28,7 +28,13 @@ import { randomUUID } from 'node:crypto'
 import type { Api } from 'grammy'
 import type { Db } from '../db/client.ts'
 import type { Moderacion, MotivoVaciado } from '../db/migraciones.ts'
-import { getQuejaViva, SQL_ES_TARJETA, TIPO_TARJETA, type QuejaRow } from '../db/queries.ts'
+import {
+  aVaciar,
+  getQuejaViva,
+  SQL_ES_TARJETA,
+  TIPO_TARJETA,
+  type QuejaRow,
+} from '../db/queries.ts'
 import { avisoAlAutor, DECISIONES_CON_AVISO } from './textos-revision.ts'
 import { escaparHtml } from '../util/html.ts'
 import { logger } from '../util/log.ts'
@@ -197,17 +203,23 @@ interface CopiaDeTarjeta {
 
 /**
  * Manda una copia de la tarjeta a un administrador y la anota; se llama con el
- * candado de la queja. Si al volver su reclamo ya no está —su autor la retiró
- * mientras salía, y la retirada borró el rastro—, la copia recién llegada va
- * derecha a la cola de vaciado, y se vacía.
+ * candado de la queja. La fila que trae quien llama puede ser vieja —la pasada
+ * horaria lee su lista antes de mandar nada, `/revisar` la lee fuera del
+ * candado—, así que se vuelve a leer aquí, sin un `await` hasta reclamar: si su
+ * autor la retiró mientras tanto, no sale nada (revisión de la ronda 4 de #137).
+ * Si al volver del envío su reclamo ya no está —la retirada llegó mientras
+ * salía y borró el rastro—, la copia recién llegada va derecha a la cola de
+ * vaciado, y se vacía.
  */
 async function mandarCopia(
   db: Db,
-  q: QuejaRow,
+  fila: QuejaRow,
   admin: number,
   tipo: string,
   envio: EnvioAdmin,
-): Promise<'entregada' | 'fallida' | 'ya-estaba'> {
+): Promise<'entregada' | 'fallida' | 'ya-estaba' | 'retirada'> {
+  const q = getQuejaViva(db, fila.id)
+  if (!q) return 'retirada'
   const destinatario = comoAdmin(admin)
   if (!reclamar(db, q.id, tipo, destinatario)) return 'ya-estaba'
   const { html, botones } = tarjetaDeQueja(q)
@@ -377,6 +389,24 @@ async function vaciarColaDe(db: Db, id: string, envio: EnvioAdmin): Promise<Resu
  * vaciarlas entonces; cada queja, con su candado.
  */
 export async function vaciarTarjetasEnCola(db: Db, envio: EnvioAdmin): Promise<ResultadoVaciado> {
+  // Por el camino que sea —una retirada que no pasó por `softDeleteQueja`—, lo
+  // que una queja muerta dejó en `avisos` pasa a la cola antes de vaciarla.
+  const muertas = db
+    .prepare(
+      `SELECT DISTINCT a.queja_id FROM avisos a
+         JOIN quejas q ON q.id = a.queja_id
+        WHERE q.deleted_at IS NOT NULL`,
+    )
+    .all() as Array<{ queja_id: string }>
+  if (muertas.length > 0) {
+    db.transaction(() =>
+      aVaciar(
+        db,
+        muertas.map((m) => m.queja_id),
+        'retirada',
+      ),
+    )()
+  }
   const ids = db
     .prepare('SELECT DISTINCT queja_id FROM tarjetas_por_vaciar ORDER BY queja_id')
     .all() as Array<{ queja_id: string }>
@@ -438,6 +468,12 @@ export interface EstadoModeracion {
   sinTarjeta: number
   /** Horas que lleva esperando la más antigua, o null si no espera ninguna. */
   masAntiguaHoras: number | null
+  /**
+   * Las tarjetas que esperan a perder el texto de una queja retirada o destruida,
+   * y desde hace cuánto la más antigua: la promesa de /aviso-legal depende de que
+   * esa cola se vacíe.
+   */
+  porVaciar?: { total: number; masAntiguaHoras: number | null }
 }
 
 const horasDesde = (sqlite: string, ahora: Date) =>
@@ -451,10 +487,17 @@ export function estadoModeracion(db: Db, admins: number[], ahora = new Date()): 
         ORDER BY created_at`,
     )
     .all() as Array<{ id: string; created_at: string }>
+  const cola = db
+    .prepare('SELECT COUNT(*) AS total, MIN(creada_at) AS desde FROM tarjetas_por_vaciar')
+    .get() as { total: number; desde: string | null }
   return {
     pendientes: enRevision.length,
     sinTarjeta: enRevision.filter((q) => !tieneTarjetaActual(db, q.id, admins)).length,
     masAntiguaHoras: enRevision.length ? horasDesde(enRevision[0].created_at, ahora) : null,
+    porVaciar: {
+      total: cola.total,
+      masAntiguaHoras: cola.desde ? horasDesde(cola.desde, ahora) : null,
+    },
   }
 }
 
@@ -534,7 +577,12 @@ export async function avisarAutores(
   o: { envio: EnvioAdmin; quejaId?: string },
 ): Promise<ResultadoAvisos> {
   const r: ResultadoAvisos = { intentados: 0, entregados: 0, rechazados: 0, fallidos: 0 }
-  for (const f of avisosQueFaltan(db, o.quejaId)) {
+  for (const leido of avisosQueFaltan(db, o.quejaId)) {
+    // La lista se leyó antes de mandar nada: mientras salían los anteriores, su
+    // autor pudo retirar la queja o alguien decidirla otra vez. Se mira de nuevo,
+    // sin un `await` hasta reclamar.
+    const f = avisosQueFaltan(db, leido.queja_id).find((a) => a.decision === leido.decision)
+    if (!f) continue
     const texto = avisoAlAutor(f.queja_id, f.hasta)
     const tipo = `autor:${f.decision}`
     // Sin decir a quién: el destinatario sale de `ciudadanos` al mandarlo, y así
