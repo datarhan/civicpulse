@@ -3,7 +3,8 @@ import { useMemo } from 'react'
 import { useT } from '../../../i18n'
 import { useGeo } from '../../../hooks/useGeo'
 import { useQuejas } from '../../../hooks/useQuejas'
-import { computePerNeighborhood } from '../../../lib/neighborhood-aggregate'
+import { coberturaDeBarrios, computePerNeighborhood } from '../../../lib/neighborhood-aggregate'
+import { rellena } from '../../../lib/formatters'
 
 const cardStyle = {
   background: 'rgba(255,255,255,.94)',
@@ -74,7 +75,11 @@ export function QuejasLegend() {
     const s = new Set(pintados.map((n) => n.health.level))
     return NIVELES_QUEJAS.filter((l) => s.has(l.level))
   }, [pintados])
-  const totalQuejas = pintados.reduce((n, x) => n + x.total, 0)
+  // Las quejas sin barrio —el casco no tiene— no se pintan: con ellas fuera, la
+  // cifra de lo pintado se da sobre la de las publicadas, o se leería como el
+  // total. El motivo, sólo con el listado entero (`coberturaDeBarrios`).
+  const { pintadas: totalQuejas, publicadas, entero } = coberturaDeBarrios(quejas, pintados)
+  const situaUnaParte = publicadas !== null && totalQuejas < publicadas
   // Sin nada pintado la capa devuelve null y esto no llega a verse; aun así, no
   // se inventa una escala sobre cero.
   const niveles = nivelesPintados.length > 0 ? nivelesPintados : NIVELES_QUEJAS
@@ -111,9 +116,15 @@ export function QuejasLegend() {
         }}
       >
         {/* Cuántas quejas sostienen la escala. Derivado, no escrito. */}
-        {t('map.quejas.cobertura')
-          .replace('{q}', String(totalQuejas))
-          .replace('{b}', String(pintados.length))}
+        {situaUnaParte
+          ? rellena(t('map.quejas.coberturaDe'), {
+              q: totalQuejas,
+              p: publicadas,
+              b: pintados.length,
+            }) + (entero ? ` · ${t('map.quejas.sinBarrio')}` : '')
+          : t('map.quejas.cobertura')
+              .replace('{q}', String(totalQuejas))
+              .replace('{b}', String(pintados.length))}
         {/* El radio sólo codifica algo cuando hay más de un círculo que comparar. */}
         {pintados.length > 1 ? ` · ${t('map.quejas.radius')}` : ''}
         {escalaParcial ? ` · ${t('map.quejas.escalaParcial')}` : ''}

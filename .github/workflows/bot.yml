@@ -45,6 +45,7 @@ on:
       - 'public/data/officials.json'
       - 'public/data/geo.json'
       - 'src/scraper/queja-router.ts'
+      - 'src/scraper/situar-barrio.ts'
   workflow_dispatch:
   workflow_call:
 

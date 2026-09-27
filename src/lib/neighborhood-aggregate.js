@@ -164,6 +164,34 @@ export function computePerNeighborhood(instantanea, neighborhoods) {
 }
 
 /**
+ * Cuántas de las quejas publicadas sitúan los mapas de barrios.
+ *
+ * Los mapas pintan las quejas que traen un barrio que geo.json conoce, y desde
+ * el 2026-09-27 el bot deja sin barrio lo que no cae cerca del centroide de
+ * ninguno: el casco urbano entero, donde vive la mayor parte del pueblo
+ * (src/scraper/situar-barrio.ts). Una capa que enseña una parte de su dominio
+ * tiene que decirlo, y esto da la parte.
+ *
+ * `pintadas` sale de las MISMAS filas que se pintan, no de contar
+ * `address_string`: una queja con un barrio que geo.json no tiene tampoco se
+ * pinta. `publicadas` es `stats.total`, o `null` si no se puede leer: un cero
+ * ahí diría «sin quejas» de una instantánea que no se ha leído. Y `entero` dice
+ * si el listado las trae todas —el bot exporta como mucho mil—, porque sólo
+ * entonces las que no se pintan son las que no tienen barrio.
+ *
+ * @param {{stats?: any, items?: any[]} | null | undefined} instantanea
+ * @param {Array<{ total: number }>} filas  lo que devuelve `computePerNeighborhood`
+ * @returns {{ pintadas: number, publicadas: number | null, entero: boolean }}
+ */
+export function coberturaDeBarrios(instantanea, filas) {
+  const pintadas = filas.reduce((n, f) => n + f.total, 0)
+  const total = instantanea?.stats?.total
+  const publicadas = Number.isInteger(total) && total >= 0 ? total : null
+  const items = Array.isArray(instantanea?.items) ? instantanea.items : []
+  return { pintadas, publicadas, entero: publicadas !== null && items.length === publicadas }
+}
+
+/**
  * Town-wide overlap rows for the D4 gap view: one row per barrio that has EITHER
  * quejas OR situated spend, sorted quejas-desc then amount-desc. `gap` flags a
  * barrio with citizen complaints but zero located spend — surfaced as a NEUTRAL

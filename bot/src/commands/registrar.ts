@@ -13,7 +13,7 @@ import type { Channel } from '../services/channel.ts'
 import { soloEnPrivado } from '../services/solo-en-privado.ts'
 import type { MyContext, SessionData } from '../types.ts'
 import { registerStart } from './start.ts'
-import { registerQueja } from './queja.ts'
+import { registerQueja, SIN_QUEJA_EN_CURSO } from './queja.ts'
 import { registerEstado } from './estado.ts'
 import { registerApoyar } from './apoyar.ts'
 import { registerMis } from './mis.ts'
@@ -48,4 +48,8 @@ export function registrarComandos(bot: Bot<MyContext>, db: Db, channel: Channel)
   registerBatchCommand(bot, db, channel)
   registerEscalar(bot, db, channel)
   registerCurarCommand(bot, db)
+
+  // Lo último: un mensaje privado que nadie ha contestado. Es donde acaba quien
+  // sigue una queja caducada o perdida en un despliegue, y antes oía silencio.
+  bot.chatType('private').on('message', (ctx) => ctx.reply(SIN_QUEJA_EN_CURSO))
 }
