@@ -236,6 +236,28 @@ describe('processPhotos — lo que lleva un día retenido se avisa una vez', () 
     expect(r4.published).toEqual([q.id])
     expect(fotosRetenidas(db)).toEqual([])
   })
+
+  // El motivo se guarda y viaja en el aviso a los administradores. Un fallo de red
+  // de Telegram trae la URL entera, con el token del bot dentro: control total del
+  // bot. No puede quedarse en la base ni salir en un mensaje.
+  it('el motivo guardado no lleva el token del bot aunque el error lo traiga', async () => {
+    const TOKEN = '123456:TOKEN-DEL-BOT-DE-PRUEBA'
+    createQueja(db, sample({ photo_file_id: 'file-red' }))
+    await processPhotos({
+      db,
+      token: TOKEN,
+      photosDir: dir,
+      env: { GEMINI_API_KEY: 'g' },
+      fetchBytes: async () => {
+        throw new Error(`fetch failed: https://api.telegram.org/bot${TOKEN}/getFile?file_id=x`)
+      },
+      ahora: () => T0,
+      log: () => {},
+    })
+    const [fila] = fotosRetenidas(db)
+    expect(fila.motivo).toContain('api.telegram.org') // el control: es el error de verdad
+    expect(fila.motivo).not.toContain(TOKEN)
+  })
 })
 
 describe('pruneOrphanPhotos', () => {

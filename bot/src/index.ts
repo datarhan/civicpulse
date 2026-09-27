@@ -80,11 +80,18 @@ function makeBot() {
   //
   // Por sondeo y no desde Actions justamente por eso: el repositorio es público,
   // así que esto no depende de ninguna variable ni secreto que se pueda perder.
+  // En HTML, con lo que viene de GitHub escapado (eventos-repo.ts): en Markdown un
+  // `_` sin cerrar en un título hacía que Telegram rechazara el aviso entero.
+  const dmAdministrador = async (id: number, textoHtml: string) => {
+    await bot.api.sendMessage(id, textoHtml, {
+      parse_mode: 'HTML',
+      link_preview_options: { is_disabled: true },
+    })
+  }
+
   startEventosRepoCron({
     admins: () => parseAdminIds(),
-    sendDm: async (id, texto) => {
-      await bot.api.sendMessage(id, texto, { parse_mode: 'Markdown' })
-    },
+    sendDm: dmAdministrador,
     yaVistos: () => eventosRepoVistos(db),
     recordar: (id) => marcarEventoRepoVisto(db, id),
     podar: () => podarEventosRepo(db),
@@ -95,7 +102,8 @@ function makeBot() {
   // se lanzaba a mano, desde un portátil con una copia vieja de la base, y no la
   // lanzaba nadie. Sin la variable no se arma; sin GEMINI_API_KEY retiene cada foto.
   // No se pausa con el bloqueo LOREG: no publica nada sobre cargos electos.
-  startFotosCron({ db, token })
+  // Lo que lleva un día retenido se avisa a los administradores, una vez.
+  startFotosCron({ db, token, admins: () => parseAdminIds(), sendDm: dmAdministrador })
 
   bot.catch((err) => {
     console.error('[bot] error:', err)

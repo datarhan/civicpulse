@@ -101,3 +101,18 @@ CREATE TABLE IF NOT EXISTS repo_eventos_vistos (
   id       TEXT PRIMARY KEY,
   seen_at  TEXT NOT NULL DEFAULT (datetime('now'))
 );
+
+-- Fotos que la pasada horaria no ha podido anonimizar (services/process-photos.ts).
+-- Hasta el 2026-09-27 una foto retenida se reintentaba cada hora PARA SIEMPRE sin
+-- que nadie lo supiera: la queja salía sin foto y quien la mandó no se enteraba.
+-- `desde` es la PRIMERA retención (no se mueve con los reintentos) y
+-- `avisada_at` dice cuándo se avisó a los administradores, una sola vez. El
+-- motivo va sin el token del bot, que puede venir dentro de una URL de Telegram.
+CREATE TABLE IF NOT EXISTS fotos_retenidas (
+  queja_id    TEXT PRIMARY KEY,
+  desde       TEXT NOT NULL,
+  motivo      TEXT NOT NULL,
+  intentos    INTEGER NOT NULL DEFAULT 1,
+  avisada_at  TEXT,
+  FOREIGN KEY (queja_id) REFERENCES quejas(id) ON DELETE CASCADE
+);

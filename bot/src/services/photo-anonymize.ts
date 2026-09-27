@@ -35,6 +35,75 @@ export const ANON_DEFAULTS = {
 
 export type AnonConfig = typeof ANON_DEFAULTS
 
+/**
+ * Píxeles como mucho, comprobados ANTES de decodificar. Una foto de móvil que
+ * llega por Telegram o WhatsApp ya viene recomprimida y anda por 2–17 MP; el
+ * bot corre en una máquina de 256 MB, y decodificar una imagen enorme —por
+ * error o a propósito— lo tumbaría con todo lo demás dentro.
+ */
+export const MAX_PIXELES = 25_000_000
+
+/** Una imagen que no se puede procesar: no se reintenta como si fuera un fallo del modelo. */
+export class ImagenRechazada extends Error {
+  constructor(motivo: string) {
+    super(motivo)
+    this.name = 'ImagenRechazada'
+  }
+}
+
+/** La imagen como la ven el modelo y el mosaico: la MISMA. */
+export interface ImagenNormalizada {
+  data: Buffer
+  ancho: number
+  alto: number
+}
+
+/** JPEG, PNG o WebP por sus primeros bytes; lo demás no es una foto. */
+export function tipoDeImagen(buf: Buffer): 'jpeg' | 'png' | 'webp' | null {
+  if (buf.length >= 3 && buf[0] === 0xff && buf[1] === 0xd8 && buf[2] === 0xff) return 'jpeg'
+  if (buf.length >= 8 && buf.subarray(0, 8).equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10])))
+    return 'png'
+  if (
+    buf.length >= 12 &&
+    buf.subarray(0, 4).toString('latin1') === 'RIFF' &&
+    buf.subarray(8, 12).toString('latin1') === 'WEBP'
+  )
+    return 'webp'
+  return null
+}
+
+/**
+ * Normaliza la foto UNA vez: la gira según su EXIF, la reduce al ancho máximo y
+ * la vuelve JPEG sin metadatos. Ese mismo JPEG va al modelo y al mosaico.
+ *
+ * Hasta el 2026-09-27 el modelo miraba los bytes crudos y el mosaico se pintaba
+ * sobre la imagen ya girada: en una foto de móvil guardada en horizontal con
+ * orientación 6, las cajas llegaban en un encuadre y se pintaban en otro, y la
+ * cara quedaba al descubierto. Y el tipo se declaraba `image/jpeg` fuera cual
+ * fuera.
+ */
+export async function normalizarImagen(
+  buf: Buffer,
+  opts: { maxWidth?: number; maxPixeles?: number } = {},
+): Promise<ImagenNormalizada> {
+  if (!tipoDeImagen(buf)) throw new ImagenRechazada('no es una imagen JPEG, PNG ni WebP')
+  try {
+    const { data, info } = await sharp(buf, {
+      failOn: 'error',
+      limitInputPixels: opts.maxPixeles ?? MAX_PIXELES,
+    })
+      .rotate()
+      .resize({ width: opts.maxWidth ?? ANON_DEFAULTS.maxWidth, withoutEnlargement: true })
+      .jpeg({ quality: 90 })
+      .toBuffer({ resolveWithObject: true })
+    return { data, ancho: info.width, alto: info.height }
+  } catch (e) {
+    throw new ImagenRechazada(
+      `no se pudo leer la imagen: ${e instanceof Error ? e.message : String(e)}`,
+    )
+  }
+}
+
 export type VisionBackend = 'gemini'
 
 /**
@@ -84,6 +153,9 @@ async function safeText(res: { text?: () => Promise<string> }): Promise<string> 
 /**
  * Ask the configured vision model for regions to anonymize. Throws (fail-closed)
  * when no backend is configured or the call/response fails.
+ *
+ * `buf` is the JPEG from `normalizarImagen`: the boxes come back in ITS frame,
+ * and the mosaic is painted on that same image.
  */
 export async function detectSensitiveRegions(
   buf: Buffer,
@@ -93,6 +165,10 @@ export async function detectSensitiveRegions(
   const fetchImpl = opts.fetchImpl ?? fetch
   if (!chooseVisionBackend(env)) {
     throw new Error('no vision backend configured (set GEMINI_API_KEY) — holding photo')
+  }
+  // Se declara `image/jpeg` abajo: tiene que serlo de verdad.
+  if (tipoDeImagen(buf) !== 'jpeg') {
+    throw new Error('detectSensitiveRegions expects the JPEG from normalizarImagen — holding photo')
   }
   const b64 = buf.toString('base64')
   const prompt = buildVisionPrompt()

@@ -85,12 +85,22 @@ export function expandRect(
  * Parse the vision model's raw text into normalized detection boxes.
  *
  * Contract (deliberate, for fail-closed anonymization):
- *   - A parseable JSON array → the valid boxes inside it (invalid/out-of-range
- *     entries are dropped individually). An empty array is a *successful*
- *     "nothing sensitive found" result and returns [].
+ *   - A parseable JSON array whose EVERY element is a box we can read → those
+ *     boxes. An empty array is a *successful* "nothing sensitive found" result
+ *     and returns [].
+ *   - One element we cannot read THROWS, and the orchestrator holds the photo.
+ *     Until 2026-09-27 such elements were dropped one by one: if the model
+ *     answered in its native `box_2d` format, or in pixels, EVERY box was
+ *     dropped, the result was `[]` — "nothing to hide" — and the photo was
+ *     published with no mosaic at all. An element we cannot read is a face we
+ *     cannot locate.
  *   - Anything with no JSON array at all (a refusal, prose-only, garbled
- *     output) THROWS. The orchestrator turns that throw into "hold the photo",
- *     so a failed detection never publishes an un-anonymized image.
+ *     output) THROWS too.
+ *
+ * Two shapes are read: `{x,y,w,h}` as 0..1 fractions (what the prompt asks for)
+ * and Gemini's native `{box_2d: [ymin, xmin, ymax, xmax]}` on a 0..1000 scale.
+ * A box that runs past the right or bottom edge is trimmed, not dropped: it is
+ * still a face.
  */
 export function parseVisionBoxes(raw: string): NormBox[] {
   if (typeof raw !== 'string') throw new Error('vision response is not a string')
@@ -107,25 +117,48 @@ export function parseVisionBoxes(raw: string): NormBox[] {
   }
   if (!Array.isArray(arr)) throw new Error('vision response is not an array')
 
-  const out: NormBox[] = []
-  for (const item of arr) {
-    if (!item || typeof item !== 'object') continue
-    const rec = item as Record<string, unknown>
-    const { x, y, w, h } = rec
-    if (![x, y, w, h].every((n) => typeof n === 'number' && Number.isFinite(n))) continue
-    const nx = x as number
-    const ny = y as number
-    const nw = w as number
-    const nh = h as number
-    if (nx < 0 || ny < 0 || nx > 1 || ny > 1) continue
-    if (nw <= 0 || nh <= 0 || nw > 1 || nh > 1) continue
-    out.push({
-      x: nx,
-      y: ny,
-      w: nw,
-      h: nh,
-      label: typeof rec.label === 'string' ? (rec.label as string) : undefined,
+  return arr.map((item, i) => {
+    const caja = leerCaja(item)
+    if (!caja) {
+      throw new Error(`vision response element ${i} is not a box we can read — holding the photo`)
+    }
+    return caja
+  })
+}
+
+const esNumero = (n: unknown): n is number => typeof n === 'number' && Number.isFinite(n)
+
+/** One element of the model's answer as a normalized box, or null if it cannot be read. */
+function leerCaja(item: unknown): NormBox | null {
+  if (!item || typeof item !== 'object' || Array.isArray(item)) return null
+  const rec = item as Record<string, unknown>
+  const label = typeof rec.label === 'string' ? rec.label : undefined
+
+  if ('box_2d' in rec) {
+    const b = rec.box_2d
+    if (!Array.isArray(b) || b.length !== 4 || !b.every(esNumero)) return null
+    const [ymin, xmin, ymax, xmax] = b as number[]
+    if ([ymin, xmin, ymax, xmax].some((n) => n < 0 || n > 1000)) return null
+    if (ymax <= ymin || xmax <= xmin) return null
+    return recortar({
+      x: xmin / 1000,
+      y: ymin / 1000,
+      w: (xmax - xmin) / 1000,
+      h: (ymax - ymin) / 1000,
+      label,
     })
   }
-  return out
+
+  const { x, y, w, h } = rec
+  if (!esNumero(x) || !esNumero(y) || !esNumero(w) || !esNumero(h)) return null
+  // Fractions of the image. Anything outside is another scale (pixels?) and a
+  // box read on the wrong scale lands somewhere else in the photo.
+  if (x < 0 || y < 0 || x >= 1 || y >= 1) return null
+  if (w <= 0 || h <= 0 || w > 1 || h > 1) return null
+  return recortar({ x, y, w, h, label })
+}
+
+/** Trim a box that runs past the right or bottom edge. */
+function recortar(b: NormBox): NormBox {
+  return { ...b, w: Math.min(b.w, 1 - b.x), h: Math.min(b.h, 1 - b.y) }
 }
