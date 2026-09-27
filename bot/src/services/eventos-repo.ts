@@ -29,11 +29,7 @@
 import { logger } from '../util/log.ts'
 
 export type ClaseEvento =
-  | 'pr-abierta'
-  | 'pr-fusionada'
-  | 'derecho-replica'
-  | 'workflow-fallido'
-  | 'workflow-saltado'
+  'pr-abierta' | 'pr-fusionada' | 'derecho-replica' | 'workflow-fallido' | 'workflow-saltado'
 
 export interface Evento {
   /** Identidad estable del EVENTO, no del objeto: una PR da dos a lo largo de su vida. */

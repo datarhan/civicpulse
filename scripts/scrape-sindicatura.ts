@@ -96,8 +96,7 @@ async function main() {
   // Fresher than the dedicated audit: the annual "control interno EELL" report
   // carries a per-municipality art. 218 rendition row (En plazo / ACR / OFP / AI).
   let art218:
-    | (Art218Row & { ejercicio: number | null; sourceUrl: string; sourceTitle: string })
-    | null = null
+    (Art218Row & { ejercicio: number | null; sourceUrl: string; sourceTitle: string }) | null = null
   // Pick the NEWEST, not the first the search happens to return. The card
   // labels this box "art. 218 · lo más reciente", and `find` returns whatever
   // order the Sindicatura's result table is in — so the day it lists an older

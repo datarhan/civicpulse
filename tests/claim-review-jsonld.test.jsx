@@ -285,7 +285,7 @@ describe('ClaimReviewJsonLd._buildPlenoPayload', () => {
   it('emits a ClaimReview envelope with the pleno session as the source', () => {
     const payload = _buildPlenoPayload(adjudicatedPlenoFinding)
     expect(payload['@type']).toBe('ClaimReview')
-    expect(payload.url).toContain('/hallazgos#PF-2026-001')
+    expect(payload.url).toContain('/hallazgos/PF-2026-001')
     expect(payload.itemReviewed.appearance).toHaveLength(1)
     // `/plenos/:id`, not `/plenos#id` — the index page renders no anchors, so
     // the fragment form resolved nowhere and this was the payload's only

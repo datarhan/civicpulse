@@ -307,24 +307,39 @@ function RetractionLedger({ retractions }) {
       <ol style={{ margin: 0, paddingLeft: 18, display: 'grid', gap: 8 }}>
         {ordered.map((r) => (
           <li key={r.findingId}>
-            <div
-              className="mono"
-              style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginBottom: 2 }}
-            >
-              {r.findingId} · pleno {r.plenoDate} · retirado {r.retractedAt.slice(0, 10)} ·{' '}
-              {r.editor}
-            </div>
-            <div>
-              {r.quoteCount} cita(s) y {r.crossCheckedCount} documento(s) cotejado(s) ·{' '}
-              <span className="mono" style={{ color: 'var(--ink50)' }}>
-                {r.digest}
-              </span>
-            </div>
-            <div style={{ marginTop: 2, fontSize: 'var(--fs-micro)' }}>Motivo: {r.reason}</div>
+            <RetiradaDatos r={r} />
           </li>
         ))}
       </ol>
     </section>
+  )
+}
+
+/**
+ * Una retirada tal como se publica: identificador, sesión, fecha, firma,
+ * recuentos, huella y motivo. Nunca el texto retirado (ver arriba).
+ *
+ * La usan dos superficies —este registro y la página propia de un hallazgo
+ * retirado, `/hallazgos/:id`— y por eso vive en un sitio: un enlace compartido
+ * antes de la retirada lleva a esta huella, y las dos tienen que decir lo mismo.
+ */
+export function RetiradaDatos({ r }) {
+  return (
+    <>
+      <div
+        className="mono"
+        style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginBottom: 2 }}
+      >
+        {r.findingId} · pleno {r.plenoDate} · retirado {r.retractedAt.slice(0, 10)} · {r.editor}
+      </div>
+      <div>
+        {r.quoteCount} cita(s) y {r.crossCheckedCount} documento(s) cotejado(s) ·{' '}
+        <span className="mono" style={{ color: 'var(--ink50)' }}>
+          {r.digest}
+        </span>
+      </div>
+      <div style={{ marginTop: 2, fontSize: 'var(--fs-micro)' }}>Motivo: {r.reason}</div>
+    </>
   )
 }
 
@@ -737,7 +752,7 @@ export default function Hallazgos() {
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
               {list.map((f) => (
-                <FindingDetailCard key={f.id} f={f} permalink={`${location.pathname}#${f.id}`} />
+                <FindingDetailCard key={f.id} f={f} permalink={`/hallazgos/${f.id}`} />
               ))}
             </div>
           </section>

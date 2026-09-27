@@ -17,14 +17,7 @@ import { analyseScriptIo } from './script-io'
 import { describirHorarios, type Horario } from './launchd-horario'
 
 export type Carril =
-  | 'fuente'
-  | 'script'
-  | 'parser'
-  | 'snapshot'
-  | 'hook'
-  | 'vista'
-  | 'ruta'
-  | 'proceso'
+  'fuente' | 'script' | 'parser' | 'snapshot' | 'hook' | 'vista' | 'ruta' | 'proceso'
 
 /**
  * Toda arista apunta en el SENTIDO EN QUE CORRE EL DATO, no en el de la llamada.

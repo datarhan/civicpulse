@@ -32,13 +32,7 @@ export interface RetrievalInput {
   /** Per-corpus raw documents. Each doc must have url+title+date+some text. */
   corpora: Array<{
     corpus:
-      | 'press'
-      | 'pleno_agenda'
-      | 'pleno_vote'
-      | 'pleno_transcript'
-      | 'tender'
-      | 'bdns'
-      | 'budget'
+      'press' | 'pleno_agenda' | 'pleno_vote' | 'pleno_transcript' | 'tender' | 'bdns' | 'budget'
     documents: Array<{
       url: string
       title: string

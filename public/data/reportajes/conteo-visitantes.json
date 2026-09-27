@@ -203,7 +203,7 @@
   "preguntasNota": "Estas preguntas se han remitido al Ayuntamiento de Riba-roja de Túria junto con una solicitud de acceso a la información amparada en la Ley 19/2013. Su respuesta se publicará íntegra y sin editar junto a este reportaje, y se hará constar qué preguntas quedaron sin responder.",
   "solicitudes": {
     "titulo": "Lo que se ha pedido, a quién y desde cuándo corre el plazo",
-    "nota": "El artículo 17.2 de la Ley 19/2013 admite «cualquier medio que permita tener constancia» de la identidad de quien pide, de la información solicitada y de una dirección de contacto: un correo que lleve las tres cosas es una vía válida de presentación. El artículo 20.1, en cambio, cuenta el mes «desde la recepción de la solicitud por el órgano competente para resolver», y de un correo consta el envío, no esa recepción. Por eso las fechas van contadas desde el envío y no se presentan como vencimientos acreditados. Una de ellas se presentó por el registro electrónico de la Generalitat y de ésa consta el asiento; pero la Generalitat la remitió después a Turisme Comunitat Valenciana por considerarlo el órgano competente, y de la fecha en que éste la recibió —la que cuenta para el artículo 20.1— todavía no hay constancia. Hasta que la haya, su plazo se cuenta desde que se comunicó la remisión y tampoco se presenta como vencimiento acreditado.",
+    "nota": "El artículo 17.2 de la Ley 19/2013 admite «cualquier medio que permita tener constancia» de la identidad de quien pide, de la información solicitada y de una dirección de contacto: un correo que lleve las tres cosas es una vía válida de presentación. El artículo 20.1, en cambio, cuenta el mes «desde la recepción de la solicitud por el órgano competente para resolver», y de un correo consta el envío, no esa recepción. Por eso las fechas van contadas desde el envío y no se presentan como vencimientos acreditados. Una de ellas se presentó por el registro electrónico de la Generalitat y de ésa consta el asiento; pero la Generalitat la remitió después a Turisme Comunitat Valenciana por considerarlo el órgano competente, y de la fecha en que éste la recibió —la que cuenta para el artículo 20.1— todavía no hay constancia. Hasta que la haya, su plazo se cuenta desde que se comunicó la remisión y tampoco se presenta como vencimiento acreditado. La del Ayuntamiento se volvió a presentar por su Registro de Entrada, a petición suya: de ésa consta el asiento del mismo órgano que la resuelve, así que su plazo se cuenta desde la fecha de registro y se puede afirmar.",
     "items": [
       {
         "organismo": "Ayuntamiento de Riba-roja de Túria",
@@ -214,9 +214,18 @@
         "incidencias": [
           {
             "fecha": "2026-09-23",
-            "texto": "El 23 de septiembre el Área de Transparencia, Gobierno Abierto y Participación Ciudadana del Ayuntamiento contestó, acerca de ésta y de la que este medio le envió el 18 de septiembre sobre el coste efectivo de los servicios municipales y la concesión del agua, que «para proceder a su tramitación formal, es necesario que ambas solicitudes sean presentadas a través del Registro de Entrada del Ayuntamiento», cada una por separado y con el mismo contenido, «sin perjuicio de la información ya recibida por este Ayuntamiento mediante correo electrónico». No la resuelve: ni concede ni deniega el acceso, ni dice que no le corresponda."
+            "texto": "El 23 de septiembre el Área de Transparencia, Gobierno Abierto y Participación Ciudadana del Ayuntamiento contestó, acerca de ésta y de la que este medio le envió el 18 de septiembre sobre el coste efectivo de los servicios municipales y la concesión del agua, que «para proceder a su tramitación formal, es necesario que ambas solicitudes sean presentadas a través del Registro de Entrada del Ayuntamiento», cada una por separado y con el mismo contenido, «sin perjuicio de la información ya recibida por este Ayuntamiento mediante correo electrónico». No la resuelve: ni concede ni deniega el acceso, ni dice que no le corresponda. Se presentó por el Registro de Entrada el 27 de septiembre, con registro 2026014913, sin retirar ésta."
           }
         ]
+      },
+      {
+        "organismo": "Ayuntamiento de Riba-roja de Túria",
+        "enviadaEl": "2026-09-27",
+        "via": "la sede electrónica del Ayuntamiento",
+        "registro": "2026014913",
+        "entradaEl": "2026-09-28",
+        "pide": "La misma solicitud del 9 de septiembre —las ocho preguntas y los nueve documentos—, presentada por el Registro de Entrada del Ayuntamiento a indicación de su Área de Transparencia, sin retirar la del correo.",
+        "respuesta": null
       },
       {
         "organismo": "Secretaría de Estado de Turismo",

@@ -116,7 +116,7 @@ function PanelCmdK({ onClose }) {
           (f.quotes?.[0]?.speakerGroup ? ' · ' + f.quotes[0].speakerGroup : '') +
           ' · ' +
           (f.quotes?.[0]?.text?.slice(0, 80) ?? ''),
-        to: `/hallazgos#${f.id}`,
+        to: `/hallazgos/${f.id}`,
         icon: Ic.warn,
       })),
       { kind: 'Datos', label: 'Dashboard de quejas', to: '/quejas/dashboard', icon: Ic.chart },

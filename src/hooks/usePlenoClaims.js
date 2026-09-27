@@ -46,7 +46,7 @@ const EMPTY_CHUNK = { items: [] }
  * `npm run chunk-pleno-claims` (called automatically at the end of
  * `verify:pleno-claims`):
  *
- *   public/data/pleno-claims/index.json    ← manifest (~12 KB)
+ *   public/data/pleno-claims/index.json    ← manifest
  *   public/data/pleno-claims/<plenoId>.json ← per-pleno chunks
  *
  * Strategy: manifest first (small), then all chunks in parallel — every

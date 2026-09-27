@@ -98,6 +98,14 @@ test.describe('Reportaje · conteo de visitantes (/reportajes/conteo-visitantes)
         /es necesario que ambas solicitudes sean presentadas a través del Registro de Entrada del Ayuntamiento/,
       ),
     ).toBeVisible()
+    // Y SE PRESENTÓ (27-09-2026, domingo): fila propia con asiento. El recibo da
+    // como fecha de registro el lunes 28 y el mes corre desde ahí, no desde el
+    // envío. Fila entera, porque el número sale también en la incidencia.
+    await expect(
+      page.getByText(
+        /enviada el 27 de septiembre de 2026 por la sede electrónica del Ayuntamiento, con registro 2026014913, que da como fecha de registro el 28 de septiembre de 2026/,
+      ),
+    ).toBeVisible()
 
     // LA SALVEDAD JURÍDICA, y es la que no puede caerse. Salieron por correo:
     // consta el envío, no la recepción por el órgano competente, que es donde

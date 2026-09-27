@@ -270,11 +270,7 @@ export interface Indicador {
  * cuadran hace lo mismo con más aplomo. El test comprueba la identidad.
  */
 export type SituacionServicio =
-  | 'con-ratio'
-  | 'concesion'
-  | 'no-se-presta'
-  | 'sin-unidad'
-  | 'sin-coste'
+  'con-ratio' | 'concesion' | 'no-se-presta' | 'sin-unidad' | 'sin-coste'
 
 export function situacion(i: Indicador): SituacionServicio {
   if (i.numerador.estado === 'no-se-presta') return 'no-se-presta'

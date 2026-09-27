@@ -57,8 +57,8 @@ runs `review:surfaces` on the routes the push can have broken; it never blocks,
 so its last line is the whole report — read it. The hooks run only where
 `core.hooksPath` points at them, which is the curator's machine: `husky` is not
 a dependency, so a fresh clone or a cloud session runs none of them. There, run
-`lint`, `format:check` and `typecheck` yourself; CI's `e2e.yml` runs the three
-scans over the whole tree regardless.
+`lint`, `format:check` and `typecheck` yourself; CI's `e2e.yml` runs them too,
+with the three scans, over the whole tree.
 
 The e2e suite covers per-route specs, `chrome.spec.ts` (Cmd+K, dark mode, i18n,
 sidebar), a 375px mobile shell, and an axe-core WCAG 2.1 AA strict pass. The
@@ -283,11 +283,11 @@ reader sees.
 
 ## Legally material surfaces
 
-These make claims about named elected officials: `/promesas`, `/hallazgos`,
-`/declaraciones`, `/departamentos`, `/laboratorio/agentes`, and the signed
-area-fit block on `/cargos/:slug`. Treat any change to them as legally material.
-The rules below are encoded in schema validators and CLIs — if you find yourself
-working around one, stop.
+These make claims about named elected officials: `/promesas`, `/hallazgos` (and
+each `/hallazgos/:id`), `/declaraciones`, `/departamentos`,
+`/laboratorio/agentes`, and the signed area-fit block on `/cargos/:slug`. Treat
+any change to them as legally material. The rules below are encoded in schema
+validators and CLIs — if you find yourself working around one, stop.
 
 **`/eficiencia` and its sibling `/gestion` are legally material too.** They are
 one feature behind one flag, split by SOURCE — `/eficiencia` is the _coste
@@ -351,8 +351,10 @@ specifications ship as failed, its residuals never become findings.
 **Curated files are never written by automation.** Route algorithmic output
 through the curator CLI that owns the file, so the validator and git history
 stay authoritative. The list, with each file's CLI, is `CURATED` in
-`.claude/hooks/curated-paths.mjs` — the one the guard hook enforces. Do not copy
-it here; the copy that was here had drifted from it.
+`.claude/hooks/curated-paths.mjs` — the one the guard hook enforces;
+`docs/DATA_SOURCES.md` mirrors it, and `tests/guard-curated-writes.test.js`
+keeps the two in step both ways. Do not copy it here; the copy that was here had
+drifted from both.
 
 **What runs without a human is decided by `decideAutomation`**
 (`src/scraper/automation-policy.ts`), not by each script. Weakening actions —
@@ -458,10 +460,9 @@ other copy — voiceprints, run manifests, the LLM and review caches),
 `live-tree-paths.mjs` (below), `measure-media.mjs` (asks before a transcription
 or voice-ID run, showing the media's measured duration) and `curl-hosts.mjs`
 (never asks; **denies** a `curl` that could exfiltrate or hide its destination,
-and logs reads from unknown hosts). Do not work around a deny. After a Write or
-Edit, `remind-stale-copy.mjs` computes the routes whose prose describes the
-snapshot just rewritten — though, as wired today, the model never sees its
-output (below).
+and logs reads from unknown hosts). Do not work around a deny. After a Write, an
+Edit or any Bash command, `remind-stale-copy.mjs` names the routes whose prose
+describes a snapshot that changed (below).
 
 **The curator's working tree is never quiet, so there a tree-moving git command
 is a write to something else's file.** The local launchd agents
@@ -492,14 +493,19 @@ file with the flag still `true` is not inert, it is primed.
 **Prose goes stale when the data moves**, and no data guard notices: the data is
 right and the sentence is wrong. The better fix is to derive the sentence from
 the data, as `PanelMunicipal` does with its list of compared indicators.
-Otherwise, after a snapshot changes, look it up under `snapshots` in
-`.claude/hooks/prosa-map.json` and re-read the routes it lists. The map is
-**derived, not hand-kept** (`npm run build:prose-map`), and
-`tests/stale-copy-paths.test.js` regenerates it with `--check` and fails on
-drift. `remind-stale-copy.mjs` is meant to do that lookup for you, but do not
-count on it: it fires only on a Write or Edit, not when a script regenerates a
-snapshot (the usual path), and it prints to stderr with exit 0, which Claude
-Code keeps out of the model's context.
+Otherwise `remind-stale-copy.mjs` names the routes whose prose describes a
+snapshot when it changes, as context beside the tool result: after a Write or
+Edit of it, and after any Bash command that leaves it different from HEAD — a
+script is how a snapshot is usually regenerated. Each version of the data is
+named once per session, and it reminds, never blocks. It says a snapshot
+changed, not that you changed it: a merge or an agent's uncommitted write reads
+the same. When it names routes your change touched, re-read them. Its map,
+`.claude/hooks/prosa-map.json`, is **derived, not hand-kept**
+(`npm run build:prose-map`), and `tests/stale-copy-paths.test.js` regenerates it
+with `--check` and fails on drift. **A hook reaches the model through JSON on
+stdout** (`additionalContext`), never through stderr on exit 0 — this one
+printed to stderr for six weeks and reached nobody while its test stayed green;
+its header tells it.
 
 ## Ethics of collection
 

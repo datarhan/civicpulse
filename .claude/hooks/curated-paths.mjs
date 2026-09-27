@@ -32,8 +32,8 @@ import { basename, normalize } from 'node:path'
 
 /**
  * basename → the CLI that owns it. Kept in sync with docs/DATA_SOURCES.md by
- * tests/guard-curated-writes.test.js, which fails if that doc lists a curated
- * file this table does not guard.
+ * tests/guard-curated-writes.test.js, which fails if either one lists a curated
+ * file the other does not.
  */
 export const CURATED = {
   'promises.json': 'npm run reply / freeze:set / freeze:clear',

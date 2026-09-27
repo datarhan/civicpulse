@@ -1,9 +1,11 @@
 import { describe, it, expect } from 'vitest'
 import {
   construirMetas,
+  construirMetasConParametro,
   construirRobots,
   construirSitemap,
   inyectarMeta,
+  resumirMetas,
   sinUrlPropia,
   type MetaRuta,
 } from '../src/scraper/meta-og.ts'
@@ -107,6 +109,99 @@ describe('construirMetas', () => {
   it('descarta las rutas con parámetro', () => {
     const metas = construirMetas(opciones({ rutas: ['/', '/cargos/:slug'] }))
     expect(metas.map((m) => m.ruta)).toEqual(['/'])
+  })
+})
+
+/**
+ * Las páginas con parámetro que más se reenvían: un hallazgo, un cargo, un
+ * pleno. Sin fichero propio en `dist/`, Vercel les servía el HTML de reserva y
+ * la tarjeta era la del sitio. Misma regla que arriba: titular y descripción
+ * salen del volcado tal cual, o la descripción es la del sitio.
+ */
+describe('construirMetasConParametro', () => {
+  const o = { base: BASE, tituloSitio: TITULO_SITIO, descripcionSitio: DESC_SITIO }
+
+  it('un hallazgo usa SU titular y SU resumen, y su propia URL', () => {
+    const [m] = construirMetasConParametro(
+      [
+        {
+          ruta: '/hallazgos/f-2026-07-03-cit-1e90e0',
+          titulo: 'Titular del hallazgo',
+          descripcion: 'Resumen publicado de la ficha.',
+          origen: 'hallazgo',
+        },
+      ],
+      o,
+    )
+    expect(m).toEqual({
+      ruta: '/hallazgos/f-2026-07-03-cit-1e90e0',
+      titulo: `Titular del hallazgo · ${TITULO_SITIO}`,
+      descripcion: 'Resumen publicado de la ficha.',
+      url: `${BASE}/hallazgos/f-2026-07-03-cit-1e90e0`,
+      origen: 'hallazgo',
+    })
+  })
+
+  // Un cargo o un pleno no traen descripción en su volcado: no se redacta una.
+  it('sin descripción real, la del sitio', () => {
+    const metas = construirMetasConParametro(
+      [
+        { ruta: '/cargos/nombre-apellido', titulo: 'Nombre Apellido', origen: 'cargo' },
+        { ruta: '/plenos/1xmr0do', titulo: 'Pleno · Sesión', descripcion: '   ', origen: 'pleno' },
+      ],
+      o,
+    )
+    expect(metas.map((m) => m.descripcion)).toEqual([DESC_SITIO, DESC_SITIO])
+    expect(metas[0].titulo).toBe(`Nombre Apellido · ${TITULO_SITIO}`)
+  })
+
+  it('sin titular propio no escribe ficha: la reserva ya da la del sitio', () => {
+    const metas = construirMetasConParametro(
+      [{ ruta: '/plenos/abc', titulo: '  ', origen: 'pleno' }],
+      o,
+    )
+    expect(metas).toEqual([])
+  })
+
+  // La carpeta de `dist/` y la URL tienen que coincidir sin codificar nada.
+  it('descarta valores que una carpeta no puede servir tal cual', () => {
+    const rutas = [
+      '/hallazgos/a b',
+      '/hallazgos/x/y',
+      '/hallazgos/ñu',
+      '/hallazgos/',
+      '/x/../y',
+      // `dist/hallazgos/../index.html` sería la portada.
+      '/hallazgos/..',
+      '/hallazgos/.',
+    ]
+    const metas = construirMetasConParametro(
+      rutas.map((ruta) => ({ ruta, titulo: 'T', origen: 'hallazgo' as const })),
+      o,
+    )
+    expect(metas).toEqual([])
+  })
+
+  it('una ruta repetida da una sola ficha', () => {
+    const p = { ruta: '/cargos/a', titulo: 'A', origen: 'cargo' as const }
+    expect(construirMetasConParametro([p, { ...p, titulo: 'B' }], o).map((m) => m.titulo)).toEqual([
+      `A · ${TITULO_SITIO}`,
+    ])
+  })
+
+  it('el resumen cuenta cada origen por separado', () => {
+    const metas = construirMetasConParametro(
+      [
+        { ruta: '/hallazgos/f1', titulo: 'H', descripcion: 'R', origen: 'hallazgo' },
+        { ruta: '/cargos/c1', titulo: 'C', origen: 'cargo' },
+        { ruta: '/cargos/c2', titulo: 'C2', origen: 'cargo' },
+        { ruta: '/plenos/p1', titulo: 'P', origen: 'pleno' },
+      ],
+      o,
+    )
+    const r = resumirMetas(metas)
+    expect(r.porOrigen).toMatchObject({ hallazgo: 1, cargo: 2, pleno: 1 })
+    expect(r.total).toBe(4)
   })
 })
 

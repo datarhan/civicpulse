@@ -20,7 +20,9 @@
  * (public/data/promise-suggestions.json) and never touches this one.
  */
 
-export const ALLOWED_PARTIES = ['PSOE', 'PP', 'VOX', 'Compromís', 'EU-Podem', 'Otro'] as const
+// No `Otro`: a sentinel is never a value (CLAUDE.md, data-integrity rule 3),
+// and no promise or reply ever used it.
+export const ALLOWED_PARTIES = ['PSOE', 'PP', 'VOX', 'Compromís', 'EU-Podem'] as const
 export type Party = (typeof ALLOWED_PARTIES)[number]
 
 export const ALLOWED_STATUSES = [

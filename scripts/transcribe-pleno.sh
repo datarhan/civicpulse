@@ -61,7 +61,8 @@
 #   MLX engine:    python3.10 -m venv ~/.local/civicpulse-mlx/venv \
 #                  && ~/.local/civicpulse-mlx/venv/bin/pip install lightning-whisper-mlx
 #                  (Python 3.10-3.12 — tiktoken has no 3.13+ wheels yet.
-#                  First run downloads the model into ~/.cache/huggingface.)
+#                  First run downloads the model into ./mlx_models/ under the
+#                  cwd — gitignored at the repo root.)
 #   OpenAI engine: export OPENAI_API_KEY=sk-…  (add to .env or shell rc)
 set -euo pipefail
 WHISPER_MODEL="${WHISPER_MODEL:-large-v3}"

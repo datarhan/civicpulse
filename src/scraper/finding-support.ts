@@ -98,9 +98,7 @@ export type SupportVerdictId = (typeof SUPPORT_VERDICTS)[number]['id']
 export const SUPPORT_VERDICT_IDS: readonly SupportVerdictId[] = SUPPORT_VERDICTS.map((v) => v.id)
 
 export type ClaimShape =
-  | 'afirmativa-documental'
-  | 'documental-matizada'
-  | 'sin-afirmacion-documental'
+  'afirmativa-documental' | 'documental-matizada' | 'sin-afirmacion-documental'
 
 /**
  * Sustantivos con los que el sitio nombra, en su propia voz, un documento

@@ -24,12 +24,7 @@ export const ALLOWED_ASSIGNMENT_KINDS: readonly AssignmentKind[] = [
  * the audit trail.
  */
 export type AssignmentStatus =
-  | 'pending'
-  | 'running'
-  | 'drafted'
-  | 'promoted'
-  | 'failed'
-  | 'archived'
+  'pending' | 'running' | 'drafted' | 'promoted' | 'failed' | 'archived'
 export const ALLOWED_ASSIGNMENT_STATUSES: readonly AssignmentStatus[] = [
   'pending',
   'running',
@@ -117,12 +112,7 @@ export const FINANCIAL_SOURCE_ALLOW: readonly string[] = [
 ] as const
 
 export type CitationKind =
-  | 'local-snapshot'
-  | 'web'
-  | 'official-doc'
-  | 'wikidata'
-  | 'wikipedia'
-  | 'boe'
+  'local-snapshot' | 'web' | 'official-doc' | 'wikidata' | 'wikipedia' | 'boe'
 export const ALLOWED_CITATION_KINDS: readonly CitationKind[] = [
   'local-snapshot',
   'web',

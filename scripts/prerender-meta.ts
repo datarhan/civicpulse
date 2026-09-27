@@ -18,11 +18,13 @@ import { resolve, join } from 'node:path'
 import { construirGrafoRutas, rutasPublicas } from './lib/route-graph.ts'
 import {
   construirMetas,
+  construirMetasConParametro,
   construirRobots,
   construirSitemap,
   inyectarMeta,
   resumirMetas,
   sinUrlPropia,
+  type PaginaConParametro,
 } from '../src/scraper/meta-og.ts'
 
 const DIST = resolve('dist')
@@ -146,51 +148,99 @@ function main(): void {
     process.exit(1)
   }
 
-  // El mapa del sitio: las rutas públicas de arriba MÁS las páginas con
-  // parámetro que un buscador sólo encontraría siguiendo enlaces que pinta
-  // JavaScript. Sólo cargos en ejercicio y plenos: una queja es el texto de un
-  // vecino y no se le empuja a los buscadores, y una oferta de empleo caduca.
-  const conParametro = [
-    ...deSnapshot(grafo.rutas, '/cargos/:slug', 'officials.json', (j) =>
-      (j.officials ?? []).map((o: { slug?: string }) => o.slug),
+  // Las páginas con parámetro que tienen titular propio en un volcado: cada
+  // hallazgo, cada cargo en ejercicio y cada pleno. Son las que más se
+  // reenvían, y sin fichero propio Vercel les servía el HTML de reserva, con la
+  // ficha del sitio. Una queja no entra: es el texto de un vecino y no se le
+  // empuja a los buscadores; una oferta de empleo tampoco, porque caduca.
+  const paginas: PaginaConParametro[] = [
+    ...desdeVolcado(grafo.rutas, '/hallazgos/:id', 'pleno-findings.json', (j) =>
+      (j.items ?? []).map((f: { id?: string; title?: string; summary?: string }) => ({
+        valor: f.id,
+        titulo: f.title,
+        descripcion: f.summary,
+        origen: 'hallazgo' as const,
+      })),
     ),
-    ...deSnapshot(grafo.rutas, '/plenos/:id', 'plenos.json', (j) =>
-      (j.items ?? []).map((p: { id?: string }) => p.id),
+    ...desdeVolcado(grafo.rutas, '/cargos/:slug', 'officials.json', (j) =>
+      (j.officials ?? []).map((o: { slug?: string; name?: string }) => ({
+        valor: o.slug,
+        titulo: o.name,
+        origen: 'cargo' as const,
+      })),
+    ),
+    ...desdeVolcado(grafo.rutas, '/plenos/:id', 'plenos.json', (j) =>
+      (j.items ?? []).map((pl: { id?: string; title?: string }) => ({
+        valor: pl.id,
+        titulo: pl.title ? `Pleno · ${pl.title}` : undefined,
+        origen: 'pleno' as const,
+      })),
     ),
   ]
-  const urls = [...metas.map((m) => m.url), ...conParametro.map((ruta) => `${BASE}${ruta}`)]
+  const conParametro = construirMetasConParametro(paginas, {
+    base: BASE,
+    tituloSitio,
+    descripcionSitio,
+  })
+  for (const m of conParametro) {
+    const destino = join(DIST, m.ruta.replace(/^\//, ''))
+    mkdirSync(destino, { recursive: true })
+    writeFileSync(join(destino, 'index.html'), inyectarMeta(plantilla, m))
+  }
+  const rp = resumirMetas(conParametro)
+  process.stdout.write(
+    `[prerender-meta] ${conParametro.length} página(s) con parámetro · ` +
+      `${rp.porOrigen.hallazgo} hallazgo(s) · ${rp.porOrigen.cargo} cargo(s) · ` +
+      `${rp.porOrigen.pleno} pleno(s)\n`,
+  )
+
+  // El mapa del sitio: las rutas públicas de arriba MÁS esas páginas, que un
+  // buscador sólo encontraría siguiendo enlaces que pinta JavaScript.
+  const urls = [...metas.map((m) => m.url), ...conParametro.map((m) => m.url)]
   writeFileSync(join(DIST, 'sitemap.xml'), construirSitemap(urls))
   writeFileSync(join(DIST, 'robots.txt'), construirRobots(BASE))
   process.stdout.write(
     `[prerender-meta] sitemap.xml · ${metas.length} ruta(s) + ${conParametro.length} página(s) con parámetro\n`,
   )
-  // Un mapa sin concejales ni plenos no es un sitio sin concejales: es que no se
-  // han leído los volcados. Misma regla 2.
-  if (conParametro.length === 0) {
-    process.stderr.write('[prerender-meta] el sitemap salió sin páginas con parámetro\n')
+  // Sin cargos ni plenos no es un sitio sin concejales: es que no se han leído
+  // los volcados. Misma regla 2. (Hallazgos puede haber cero de verdad: el
+  // volcado sale vacío hasta la primera promoción.)
+  if (rp.porOrigen.cargo === 0 || rp.porOrigen.pleno === 0) {
+    process.stderr.write(
+      '[prerender-meta] sin páginas de cargos o de plenos: no se han leído sus volcados\n',
+    )
     process.exit(1)
   }
 }
 
 /**
- * Las rutas concretas de un patrón con parámetro, leídas de su volcado. Nada si
- * la ruta ya no existe en App.jsx (el grafo la deriva de allí) o el volcado no
- * se deja leer.
+ * Las páginas concretas de un patrón con parámetro, leídas de su volcado. Nada
+ * si la ruta ya no existe en App.jsx (el grafo la deriva de allí) o el volcado
+ * no se deja leer.
  */
-function deSnapshot(
+function desdeVolcado(
   rutas: string[],
   patron: string,
   fichero: string,
-  ids: (j: any) => (string | undefined)[],
-): string[] {
+  filas: (j: any) => {
+    valor?: string
+    titulo?: string
+    descripcion?: string
+    origen: PaginaConParametro['origen']
+  }[],
+): PaginaConParametro[] {
   if (!rutas.includes(patron)) return []
   const p = resolve('public/data', fichero)
   if (!existsSync(p)) return []
   try {
-    const valores = ids(JSON.parse(readFileSync(p, 'utf8'))).filter(
-      (v): v is string => typeof v === 'string' && v.length > 0,
-    )
-    return valores.map((v) => patron.replace(/:[a-zA-Z]+$/, encodeURIComponent(v)))
+    return filas(JSON.parse(readFileSync(p, 'utf8')))
+      .filter((f) => typeof f.valor === 'string' && f.valor.length > 0)
+      .map((f) => ({
+        ruta: patron.replace(/:[a-zA-Z]+$/, f.valor as string),
+        titulo: f.titulo ?? '',
+        descripcion: f.descripcion,
+        origen: f.origen,
+      }))
   } catch {
     return []
   }

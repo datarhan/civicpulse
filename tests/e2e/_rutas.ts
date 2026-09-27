@@ -17,6 +17,15 @@ export const FIRST_PLENO_ID = JSON.parse(
   readFileSync('public/data/pleno-claims/index.json', 'utf8'),
 ).plenos?.[0]?.plenoId
 
+/**
+ * Un hallazgo publicado y uno retirado, para `/hallazgos/:id`. Los tres estados
+ * de esa página —ficha, huella de la retirada y «no existe»— pasan por las
+ * puertas estrictas, no sólo el que tiene datos.
+ */
+const HALLAZGOS = JSON.parse(readFileSync('public/data/pleno-findings.json', 'utf8'))
+export const PRIMER_HALLAZGO: { id: string; title: string } = HALLAZGOS.items?.[0]
+export const PRIMERA_RETIRADA: string | undefined = HALLAZGOS.retractions?.[0]?.findingId
+
 /** Una oferta real, para `/empleo/:id`. */
 export const FIRST_OFERTA_ID = JSON.parse(readFileSync('public/data/empleo.json', 'utf8'))
   .items?.[0]?.id
@@ -37,6 +46,9 @@ export const STRICT_ROUTES = [
   '/departamentos',
   '/departamentos/urbanismo',
   '/hallazgos',
+  `/hallazgos/${PRIMER_HALLAZGO.id}`,
+  ...(PRIMERA_RETIRADA ? [`/hallazgos/${PRIMERA_RETIRADA}`] : []),
+  '/hallazgos/h-no-existe',
   '/declaraciones',
   '/datos',
   '/empleo',

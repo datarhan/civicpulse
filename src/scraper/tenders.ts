@@ -1,5 +1,6 @@
 import { parse } from 'csv-parse/sync'
 import { isScoreArtifactAmount } from '../lib/tenders'
+import { fnv32 } from './hash'
 
 // ---------------------------------------------------------------------------
 // Status normalisation
@@ -188,13 +189,9 @@ function fallbackId(row: Record<string, string>): string {
     str(row.award_date),
     str(row.contractor_id),
   ].join('|')
-  // Short non-cryptographic FNV-1a-ish hash is enough for uniqueness.
-  let h = 0x811c9dc5
-  for (let i = 0; i < seed.length; i++) {
-    h ^= seed.charCodeAt(i)
-    h = (h * 0x01000193) >>> 0
-  }
-  return 'auto-' + h.toString(36)
+  // The shared primitive, never a local copy: these ids are published, and
+  // fnv32's exact arithmetic is part of them (tests/hash-copias-retiradas.test.ts).
+  return 'auto-' + fnv32(seed)
 }
 
 export function parseRibalicitaContracts(csv: string): Contract[] {

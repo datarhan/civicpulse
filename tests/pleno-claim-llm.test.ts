@@ -191,13 +191,9 @@ describe('extractClaimsWithLlm · a window with no answer', () => {
   })
 
   it('reports zero unanswered when every window replies', async () => {
-    const res = await extractClaimsWithLlm(
-      SAMPLE_TRANSCRIPT,
-      opts,
-      async (): Promise<any> => ({
-        claims: [],
-      }),
-    )
+    const res = await extractClaimsWithLlm(SAMPLE_TRANSCRIPT, opts, async (): Promise<any> => ({
+      claims: [],
+    }))
     expect(res.stats.windowsUnanswered).toBe(0)
     expect(res.stats.windowsAnswered).toBe(res.stats.segmentsScanned)
   })

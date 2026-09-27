@@ -20,14 +20,7 @@
  */
 
 export type SocialPlatformId =
-  | 'instagram'
-  | 'x'
-  | 'facebook'
-  | 'linkedin'
-  | 'youtube'
-  | 'tiktok'
-  | 'bluesky'
-  | 'mastodon'
+  'instagram' | 'x' | 'facebook' | 'linkedin' | 'youtube' | 'tiktok' | 'bluesky' | 'mastodon'
 
 interface PlatformSpec {
   id: SocialPlatformId

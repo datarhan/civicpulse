@@ -31,6 +31,15 @@ jobs:
       - name: Lint (fails on errors only; warnings allowed)
         run: npm run lint
 
+      # El formato también, y sobre el árbol entero, como el pre-commit. Sin este
+      # paso, #110 subió Prettier de 3.8 a 3.9 con la CI en verde, y la 3.9
+      # formatea distinto dieciséis ficheros que nadie tocó: el primer `npm ci`
+      # en el Mac habría puesto en rojo el pre-commit de todos, también el de los
+      # commits de datos de los agentes. Aquí, una subida así sale roja en su
+      # propio PR y se reformatea en él.
+      - name: Format (prettier --check)
+        run: npm run format:check
+
       # Las tres puertas de publicación del pre-commit, sobre el árbol entero.
       # El gancho sólo existe donde alguien instaló husky a mano: `husky` no está
       # declarado en package.json (`"prepare": "husky || true"` falla en

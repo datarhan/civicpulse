@@ -13,11 +13,12 @@
     ],
     "PostToolUse": [
       {
-        "matcher": "Write|Edit|MultiEdit",
+        "matcher": "Write|Edit|MultiEdit|Bash",
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/remind-stale-copy.mjs\""
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/remind-stale-copy.mjs\"",
+            "timeout": 10
           }
         ]
       }

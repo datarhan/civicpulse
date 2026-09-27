@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
 import { Card, Pill, SectionHead, ExtLink } from '../components/Primitives'
+import Compartir from '../components/Compartir'
 import { useOfficials, partyColor, findOfficial } from '../hooks/useOfficials'
 import { fmtDateLong, rellena } from '../lib/formatters'
 import { usePromises, STATUS_LABEL, STATUS_TONE } from '../hooks/usePromises'
@@ -840,6 +841,9 @@ export default function CargoDetalle() {
                 </ExtLink>
               )
             )}
+          </div>
+          <div style={{ marginTop: 10 }}>
+            <Compartir titulo={official.name} />
           </div>
         </div>
       </div>

@@ -133,8 +133,7 @@ export function getQueja(db: Db, id: string): QuejaRow | null {
  */
 export function getQuejaViva(db: Db, id: string): QuejaRow | null {
   const row = db.prepare('SELECT * FROM quejas WHERE id = ? AND deleted_at IS NULL').get(id) as
-    | QuejaRow
-    | undefined
+    QuejaRow | undefined
   return row ?? null
 }
 
@@ -158,8 +157,7 @@ export function getQuejaViva(db: Db, id: string): QuejaRow | null {
  */
 export function softDeleteQueja(db: Db, id: string, userId: number): boolean {
   const row = db.prepare('SELECT telegram_user_id, deleted_at FROM quejas WHERE id = ?').get(id) as
-    | { telegram_user_id: number; deleted_at: string | null }
-    | undefined
+    { telegram_user_id: number; deleted_at: string | null } | undefined
   if (!row) return false
   if (row.telegram_user_id !== userId) return false // never confirm existence cross-user
   // Sólo llega aquí una retirada de antes de este cambio que aún conserva su autor
