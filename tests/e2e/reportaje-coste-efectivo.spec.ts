@@ -249,6 +249,14 @@ test.describe('Reportaje · coste efectivo (/reportajes/coste-efectivo)', () => 
     await page.goto('/reportajes/coste-efectivo', { waitUntil: 'domcontentloaded' })
     const tira = page.locator('.cp-tira')
     await tira.scrollIntoViewIfNeeded({ timeout: 8000 })
+    // La figura sólo está en reposo cuando el IntersectionObserver de `Revela`
+    // la marca vista. Hasta entonces el CSS sostiene la banda en `scaleX(0)`
+    // —un estilo, no una animación, así que apagar las animaciones no la
+    // suelta— y su borde derecho cae sobre el izquierdo: fallaba una vez de cada
+    // veinte, con el borde a 437,7 px de su punto, que es el ancho entero de la
+    // banda (medido el 27-09-2026). Se espera la señal, no un tiempo. Con
+    // movimiento reducido el bloque nunca se arma y esto pasa en el acto.
+    await expect(tira).not.toHaveAttribute('data-armado')
     // Sin animaciones: se mide la figura en reposo, no un fotograma.
     await page.addStyleTag({ content: '*{animation:none !important;transition:none !important}' })
 
