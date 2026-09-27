@@ -539,3 +539,50 @@ it('mide algo: alguna instantánea publica una remisión', () => {
   ).filter((e) => e.remitida)
   expect(conRemision.length).toBeGreaterThan(0)
 })
+
+/**
+ * Presentada un día inhábil, el registro da otra fecha de entrada.
+ *
+ * Las dos solicitudes al Ayuntamiento por su Registro de Entrada se presentaron
+ * el domingo 27-09-2026 y los recibos dicen «Fecha de Registro 28/09/2026». El
+ * mes corre desde la ENTRADA: contarlo desde el envío afirmaría un vencimiento
+ * un día antes del real, que es la dirección que acusa de más.
+ */
+describe('con fecha de entrada distinta de la de presentación, el plazo sale de la entrada', () => {
+  const domingo: EnvioSolicitud = {
+    organismo: 'Ayuntamiento de Riba-roja de Túria',
+    enviadaEl: '2026-09-27',
+    via: 'la sede electrónica del Ayuntamiento',
+    registro: '2026014913',
+    entradaEl: '2026-09-28',
+    respuesta: null,
+  }
+
+  it('afirma el vencimiento contado desde la entrada, y dice cuál es', () => {
+    const f = fraseDeEnvio(domingo, '2026-10-01')
+    expect(f).toContain('enviada el 27 de septiembre de 2026')
+    expect(f).toContain('que da como fecha de registro el 28 de septiembre de 2026')
+    expect(f).toContain('vence el 28 de octubre de 2026')
+    expect(f).not.toContain('27 de octubre')
+  })
+
+  it('arranqueDelPlazo y el estado usan la entrada', () => {
+    expect(arranqueDelPlazo(domingo)).toEqual({ desde: '2026-09-28', acreditado: true })
+    expect(estadoDeEnvio(domingo, '2026-10-28')).toBe('en-plazo')
+    expect(estadoDeEnvio(domingo, '2026-10-29')).toBe('vencida-sin-respuesta')
+  })
+})
+
+describe.each(PIEZAS)('fechas de entrada publicadas · %s', (slug) => {
+  const d = JSON.parse(readFileSync(`public/data/reportajes/${slug}.json`, 'utf8')) as {
+    solicitudes: { items: EnvioSolicitud[] }
+  }
+  // Una fecha de entrada sin asiento no la prueba nada, y una anterior al envío
+  // es imposible: las dos serían un reloj inventado.
+  it('sólo con asiento, y nunca antes del envío', () => {
+    for (const e of d.solicitudes.items.filter((x) => x.entradaEl)) {
+      expect(e.registro, `${e.organismo}: fecha de entrada sin asiento`).toBeTruthy()
+      expect(e.entradaEl! >= e.enviadaEl, `${e.organismo}: entrada antes del envío`).toBe(true)
+    }
+  })
+})
