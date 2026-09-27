@@ -139,6 +139,10 @@ export const ALLOWED_RELATIONSHIP_NODE_KINDS: readonly RelationshipNodeKind[] = 
   'entity',
 ] as const
 
+// Quién puede firmar una réplica a un informe: un grupo municipal o `person`,
+// la persona de la que trata el informe (se publica con su nombre: ver
+// `./replica.ts`). Llevaba también `Otro`, un centinela que se habría publicado
+// como «Réplica de Otro» (regla 3 de DATA_INTEGRITY). Ninguna réplica lo usó.
 export const RESPONSE_BLOCS = [
   'PSOE',
   'PP',
@@ -146,7 +150,6 @@ export const RESPONSE_BLOCS = [
   'Compromís',
   'Ciudadanos',
   'EU-Podem',
-  'Otro',
   'person',
 ] as const
 

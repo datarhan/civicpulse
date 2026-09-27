@@ -29,6 +29,7 @@ import {
 } from '../components/journalist'
 import { useJournalistAssignments } from '../hooks/useJournalistAssignments'
 import { useJournalistReportById } from '../hooks/useJournalistReports'
+import { quienReplica } from '../scraper/journalist/replica'
 
 const SECTION_LABEL = {
   identity: 'Identidad',
@@ -140,7 +141,7 @@ export function CorrectionLog({ corrections }) {
   )
 }
 
-function ResponseBlock({ response, reportId }) {
+function ResponseBlock({ response, reportId, nombreSujeto }) {
   const formUrl = `https://github.com/datarhan/civicpulse/issues/new?labels=derecho-replica&template=journalist-report-response.yml&title=${encodeURIComponent('Réplica al informe ' + reportId)}`
   if (!response) {
     return (
@@ -171,7 +172,7 @@ function ResponseBlock({ response, reportId }) {
   }
   return (
     <Card>
-      <SectionHead title={`Réplica de ${response.from}`} />
+      <SectionHead title={`Réplica de ${quienReplica(response.from, nombreSujeto)}`} />
       <blockquote
         style={{
           margin: 0,
@@ -399,7 +400,11 @@ export default function AgenteReporte() {
             </section>
           ))}
 
-          <ResponseBlock response={report.response} reportId={report.id} />
+          <ResponseBlock
+            response={report.response}
+            reportId={report.id}
+            nombreSujeto={assignment?.subject.name}
+          />
           <CorrectionLog corrections={report.corrections} />
 
           {report.curatorNotes && <CuratorNotesBlock notes={report.curatorNotes} />}
