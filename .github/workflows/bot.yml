@@ -27,20 +27,25 @@ name: Bot tests
 # el mismo directorio, porque unas pruebas en verde no dicen que el arranque
 # compile.
 
+# En main lo llama `bot-deploy.yml` (`workflow_call`) y el despliegue espera a
+# que termine en verde; hasta el 2026-09-27 los dos corrían en paralelo con el
+# mismo push y un bot en rojo llegaba a Fly igual. Por eso ya no se dispara
+# también con el push: correría dos veces y un rojo avisaría dos veces.
+#
+# En las PR mira también lo que el bot lee FUERA de bot/ —la misma lista que
+# dispara el despliegue, derivada en tests/bot-despliegue.test.js—: un cambio
+# que va a pasar por estas pruebas antes de desplegar tiene que tener su
+# veredicto en la PR, no descubrirlo en main.
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'bot/**'
-      - '.github/workflows/bot.yml'
   pull_request:
     paths:
       - 'bot/**'
       - '.github/workflows/bot.yml'
+      - 'public/data/promises.json'
+      - 'public/data/officials.json'
+      - 'public/data/geo.json'
+      - 'src/scraper/queja-router.ts'
   workflow_dispatch:
-  # `bot-deploy.yml` lo llama y espera a que termine en verde antes de desplegar.
-  # Hasta el 2026-09-27 los dos corrían en paralelo con el mismo push, y un bot
-  # en rojo llegaba a Fly igual.
   workflow_call:
 
 jobs:
