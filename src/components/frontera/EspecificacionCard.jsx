@@ -21,6 +21,27 @@ const MOTIVOS = {
 const motivo = (m, n) => MOTIVOS[m]?.[n === 1 ? 0 : 1] ?? m
 
 /**
+ * ¿Lee el lector la cifra cruda fuera de su intervalo? «por encima», «por
+ * debajo» o null.
+ *
+ * La tarjeta pone «Distancia a la frontera 0,528» junto a «Intervalo al 95 %
+ * 0,28 – 0,52», y las dos son ciertas: el intervalo es el de la distancia
+ * CORREGIDA por sesgo, y la cruda sale siempre por arriba porque una frontera
+ * estimada cae por dentro de la verdadera. Se compara con la precisión a la que
+ * se imprimen —θ con tres decimales, el intervalo con dos—, porque lo que hay
+ * que explicar es lo que el lector ve, no lo que guarda el fichero.
+ */
+export function crudaFueraDelIntervalo(propia) {
+  if (!propia?.ic) return null
+  const cruda = Math.round(propia.theta * 1000) / 1000
+  if (cruda > Math.round(propia.ic.superior * 100) / 100) return 'por encima'
+  if (propia.intervaloAcotaPorAbajo && cruda < Math.round(propia.ic.inferior * 100) / 100) {
+    return 'por debajo'
+  }
+  return null
+}
+
+/**
  * Una especificación: qué cesta, a quién se pudo comparar, y qué salió.
  *
  * El orden es deliberado y va al revés de lo que apetece: primero la cobertura
@@ -39,6 +60,7 @@ export function EspecificacionCard({ e, principal }) {
     .filter(([, n]) => n > 0)
     .sort((a, b) => b[1] - a[1])
   const caen = fuera.reduce((s, [, n]) => s + n, 0)
+  const crudaFuera = crudaFueraDelIntervalo(e.propia)
 
   return (
     <Card style={{ marginTop: 14 }}>
@@ -146,7 +168,7 @@ export function EspecificacionCard({ e, principal }) {
               }
               nota={
                 e.propia.intervaloAcotaPorAbajo
-                  ? `${e.bootstrap.replicas.toLocaleString('es-ES')} réplicas`
+                  ? `de la distancia corregida · ${e.bootstrap.replicas.toLocaleString('es-ES')} réplicas`
                   : 'el extremo inferior se sale de la escala: esta cesta no acota nada por abajo'
               }
             />
@@ -177,6 +199,14 @@ export function EspecificacionCard({ e, principal }) {
                 producir al menos lo mismo con el {pct(e.propia.theta)} de ese gasto. La corrección
                 por sesgo lo baja al {pct(e.propia.thetaCorregido)}, porque una frontera estimada
                 con {e.distribucion.n} unidades cae siempre por dentro de la verdadera.
+              </>
+            )}
+            {crudaFuera && (
+              <>
+                {' '}
+                El intervalo al {pct(1 - e.propia.ic.alfa)} es el de la distancia corregida por
+                sesgo ({num(e.propia.thetaCorregido)}), así que la cruda, {num(e.propia.theta)},
+                queda {crudaFuera} de él.
               </>
             )}{' '}
             {e.distribucion.autorreferentes > 0 && (
