@@ -4,6 +4,7 @@ import { countApoyos, getQuejaViva, listEvents } from '../db/queries.ts'
 import { routeUsingLocalOfficials } from '../services/router.ts'
 import { plazoHumano } from '../../../src/scraper/queja-router.ts'
 import type { MyContext } from '../types.ts'
+import { EVENTO_BARRIO_CORREGIDO } from '../services/rebarrio.ts'
 import { idDeQueja } from '../services/queja-id.ts'
 
 function formatDate(iso: string | null | undefined): string {
@@ -32,6 +33,9 @@ function stateLabel(state: string): string {
         silencio_negativo: '⚠️ Silencio administrativo',
         escalada_sindic: '⚖️ Escalada al Síndic',
         cerrada_no_registrada: '❌ Cerrada sin registrar',
+        // Una corrección del barrio con la regla de 2026-09-27 (services/rebarrio.ts):
+        // se enseña, porque cambia un dato publicado.
+        [EVENTO_BARRIO_CORREGIDO]: '📍 Barrio corregido',
       } as Record<string, string>
     )[state] ?? state
   )

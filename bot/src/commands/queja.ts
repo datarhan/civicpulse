@@ -4,7 +4,8 @@ import { createConversation } from '@grammyjs/conversations'
 import type { Db } from '../db/client.ts'
 import { autorTelegram, createQueja, type NewQuejaInput } from '../db/queries.ts'
 import { routeUsingLocalOfficials } from '../services/router.ts'
-import { matchNeighborhood } from '../services/neighborhoods.ts'
+import { situar } from '../services/neighborhoods.ts'
+import { comandoDe } from '../services/solo-en-privado.ts'
 import type { Channel } from '../services/channel.ts'
 import type { QuejaCategory, QuejaRouting } from '../../../src/scraper/queja-router.ts'
 import { plazoHumano } from '../../../src/scraper/queja-router.ts'
@@ -47,6 +48,105 @@ function categoryKeyboard(): InlineKeyboard {
   return kb
 }
 
+/**
+ * Lo más que espera cada paso de la queja.
+ *
+ * Sin plazo, quien dejaba la queja en «escribe un título» y días después
+ * mandaba cualquier cosa veía su mensaje convertido en el título de una queja;
+ * dos mensajes más y se publicaba. Pasado el plazo, el plugin termina la
+ * conversación y el mensaje sigue su camino hasta el último manejador, que
+ * contesta `SIN_QUEJA_EN_CURSO` (commands/registrar.ts).
+ */
+export const PLAZO_PASO_MS = 30 * 60 * 1000
+
+/**
+ * Lo que oye quien escribe sin una queja en curso: la suya caducó, o se perdió
+ * en un despliegue —las conversaciones viven en memoria—, o nunca empezó.
+ * Antes, silencio.
+ */
+export const SIN_QUEJA_EN_CURSO =
+  'No tengo ninguna queja tuya en curso. Si estabas escribiendo una, un borrador sin ' +
+  'respuesta durante media hora se descarta. Escribe /queja para empezar una, o /start para ' +
+  'ver qué más puedo hacer.'
+
+/**
+ * Lo que oye quien manda una orden a mitad de una queja: la orden la termina, y
+ * sin este aviso el borrador desaparecía sin que nadie lo dijera.
+ */
+export const QUEJA_A_MEDIAS =
+  'La queja que estabas escribiendo se queda a medias. Cuando quieras, /queja para empezar otra.'
+
+const PIDE_UBICACION =
+  '📍 Para situarla necesito la ubicación compartida (botón 📎 → Ubicación). ' +
+  'Si prefieres no indicarla, escribe `saltar`.'
+
+const esSaltar = (texto: string) => /^saltar[.!]?$/i.test(texto.trim())
+
+/**
+ * El siguiente update de la conversación.
+ *
+ * Una orden la termina y la contesta su propio manejador: quien manda `/mis` a
+ * mitad de una queja quiere ver sus quejas, no titular una nueva, y medido el
+ * 2026-09-27 se tomaba como el título. En el paso de la categoría, que esperaba
+ * un botón, la misma orden se perdía sin respuesta.
+ */
+async function siguiente(conv: MyConversation): Promise<MyContext> {
+  const c = await conv.wait()
+  if (comandoDe(c) !== null) {
+    await c.reply(QUEJA_A_MEDIAS)
+    await conv.halt({ next: true })
+  }
+  return c
+}
+
+/**
+ * El texto con que se contesta un paso. Otro mensaje recibe un recordatorio; lo
+ * que no es un mensaje —un botón de otra ficha, una edición— sigue su camino,
+ * como si la conversación no estuviera.
+ */
+async function textoDelPaso(conv: MyConversation, recordatorio: string): Promise<string> {
+  for (;;) {
+    const c = await siguiente(conv)
+    if (c.message?.text !== undefined) return c.message.text
+    if (!c.message) await conv.skip({ next: true })
+    await c.reply(recordatorio)
+  }
+}
+
+/**
+ * La ubicación, situada en el término, o `null` si el vecino la salta.
+ *
+ * Antes, cualquier texto contaba como «saltar» —también una dirección escrita—
+ * y una ubicación de otro municipio se guardaba y se atribuía a la
+ * urbanización más cercana. Ahora esa se vuelve a pedir. Sin geo.json
+ * (`sin-geo`) no se puede comprobar, y la queja sigue sin barrio: el dato que
+ * falta es nuestro, no del vecino.
+ */
+async function ubicacionDelPaso(
+  conv: MyConversation,
+): Promise<{ lat: number; lng: number; neighborhood: string | null } | null> {
+  for (;;) {
+    const c = await siguiente(conv)
+    if (!c.message) await conv.skip({ next: true })
+    const loc = c.message?.location
+    if (loc) {
+      const s = situar(loc.latitude, loc.longitude)
+      if (s.situacion !== 'fuera-del-termino') {
+        const neighborhood = s.situacion === 'barrio' ? s.slug : null
+        return { lat: loc.latitude, lng: loc.longitude, neighborhood }
+      }
+      await c.reply(
+        '📍 Esa ubicación queda fuera del término de Riba-roja de Túria. ' +
+          'Comparte una de dentro, o escribe `saltar` para seguir sin ella.',
+        { parse_mode: 'Markdown' },
+      )
+      continue
+    }
+    if (c.message?.text !== undefined && esSaltar(c.message.text)) return null
+    await c.reply(PIDE_UBICACION, { parse_mode: 'Markdown' })
+  }
+}
+
 export function quejaConversationBuilder(db: Db, channel: Channel) {
   return async function quejaConversation(conv: MyConversation, ctx: MyContext) {
     await ctx.reply(
@@ -56,9 +156,19 @@ export function quejaConversationBuilder(db: Db, channel: Channel) {
       { parse_mode: 'Markdown', reply_markup: categoryKeyboard() },
     )
 
-    const catCtx = await conv.waitForCallbackQuery(/^cat:/)
-    await catCtx.answerCallbackQuery()
-    const catChoice = catCtx.callbackQuery.data.replace('cat:', '')
+    let catChoice: string | null = null
+    while (catChoice === null) {
+      const c = await siguiente(conv)
+      const data = c.callbackQuery?.data
+      if (data?.startsWith('cat:')) {
+        await c.answerCallbackQuery()
+        catChoice = data.slice('cat:'.length)
+      } else if (c.message) {
+        await c.reply('Elige una categoría con los botones de arriba.')
+      } else {
+        await conv.skip({ next: true })
+      }
+    }
     if (catChoice === 'cancel') {
       await ctx.reply('Cancelado. Cuando quieras, /queja para empezar de nuevo.')
       return
@@ -70,8 +180,9 @@ export function quejaConversationBuilder(db: Db, channel: Channel) {
       `Categoría: *${catLabel}*\n\nAhora, escribe un *título breve* (máx. 140 caracteres). Ejemplo: _Bache profundo en Av. Primera_.`,
       { parse_mode: 'Markdown' },
     )
-    const titleMsg = await conv.waitFor('message:text')
-    const title = titleMsg.message.text.trim().slice(0, 140)
+    const title = (await textoDelPaso(conv, 'Escribe el título con texto, por favor.'))
+      .trim()
+      .slice(0, 140)
     if (title.length < 5) {
       await ctx.reply('El título es muy corto. Cancelo — prueba /queja otra vez.')
       return
@@ -81,8 +192,9 @@ export function quejaConversationBuilder(db: Db, channel: Channel) {
       '✍️ *Describe lo que pasa* con el detalle que puedas (máx. 2000 caracteres). Cuanto más concreto, más fácil de resolver.',
       { parse_mode: 'Markdown' },
     )
-    const detailMsg = await conv.waitFor('message:text')
-    const detail = detailMsg.message.text.trim().slice(0, 2000)
+    const detail = (await textoDelPaso(conv, 'Escribe el detalle con texto, por favor.'))
+      .trim()
+      .slice(0, 2000)
     if (detail.length < 20) {
       await ctx.reply('El detalle es muy corto. Cancelo — prueba /queja otra vez.')
       return
@@ -92,25 +204,27 @@ export function quejaConversationBuilder(db: Db, channel: Channel) {
       '📍 *Ubicación* — comparte la ubicación del incidente (botón 📎 → Ubicación), o escribe `saltar` si prefieres no indicarla.',
       { parse_mode: 'Markdown' },
     )
-    const locMsg = await conv.waitFor(['message:location', 'message:text'])
-    let lat: number | null = null
-    let lng: number | null = null
-    let neighborhood: string | null = null
-    if ('location' in locMsg.message && locMsg.message.location) {
-      lat = locMsg.message.location.latitude
-      lng = locMsg.message.location.longitude
-      neighborhood = matchNeighborhood(lat, lng)
-    }
+    const ubicacion = await ubicacionDelPaso(conv)
+    const lat = ubicacion?.lat ?? null
+    const lng = ubicacion?.lng ?? null
+    const neighborhood = ubicacion?.neighborhood ?? null
 
     await ctx.reply(
       '📸 *Foto* (opcional) — adjunta una foto, o escribe `saltar`. Antes de publicarla se anonimiza automáticamente (se difuminan caras y matrículas) y se eliminan los metadatos de ubicación. Podrás retirarla en cualquier momento con `/olvidar`.',
       { parse_mode: 'Markdown' },
     )
-    const photoMsg = await conv.waitFor(['message:photo', 'message:text'])
     let photoFileId: string | null = null
-    if ('photo' in photoMsg.message && photoMsg.message.photo) {
-      const photos = photoMsg.message.photo
-      photoFileId = photos[photos.length - 1].file_id
+    for (;;) {
+      const c = await siguiente(conv)
+      if (!c.message) await conv.skip({ next: true })
+      const photos = c.message?.photo
+      if (photos?.length) {
+        photoFileId = photos[photos.length - 1].file_id
+        break
+      }
+      // Cualquier texto sigue sin foto, como siempre: «saltar», «no tengo»…
+      if (c.message?.text !== undefined) break
+      await c.reply('Adjunta la foto como imagen, o escribe `saltar`.', { parse_mode: 'Markdown' })
     }
 
     // Route (classify + assign concejalía) using local queja-router.
@@ -151,7 +265,12 @@ export function quejaConversationBuilder(db: Db, channel: Channel) {
 }
 
 export function registerQueja(bot: Bot<MyContext>, db: Db, channel: Channel) {
-  bot.use(createConversation(quejaConversationBuilder(db, channel), 'queja'))
+  bot.use(
+    createConversation(quejaConversationBuilder(db, channel), {
+      id: 'queja',
+      maxMillisecondsToWait: PLAZO_PASO_MS,
+    }),
+  )
   bot.command('queja', async (ctx) => {
     await ctx.conversation.enter('queja')
   })

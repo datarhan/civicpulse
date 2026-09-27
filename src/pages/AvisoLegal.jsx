@@ -399,7 +399,8 @@ export default function AvisoLegal() {
           </li>
           <li>
             <strong>Coordenadas exactas</strong> (si las envías) — <strong>nunca</strong> se
-            publican; se agregan a nivel de barrio
+            publican; de ellas sólo sale el barrio aproximado, y una queja del casco urbano, que no
+            tiene barrio, se publica sin ninguno
           </li>
           <li>
             <strong>Tu identidad de Telegram</strong> (el ID numérico; el nombre de usuario ya no se

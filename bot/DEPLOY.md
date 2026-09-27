@@ -226,6 +226,21 @@ diaria de `src/services/retencion.ts` a los `CONSERVACION_COPIAS_DIAS` de
 `src/scraper/plazos-retencion.ts`. La instantánea del volumen es la copia que no
 depende del propio bot.
 
+### Recalcular los barrios de las quejas guardadas
+
+Desde el 2026-09-27 una ubicación se sitúa contra el término y con un radio por
+barrio (`src/scraper/situar-barrio.ts`); las quejas anteriores conservan el
+barrio de la regla vieja hasta que alguien decida cambiarlo. En seco primero:
+
+```bash
+flyctl ssh console --app munigraph-ribarroja -C "sh -c 'cd /app/bot && node_modules/.bin/tsx scripts/rebarrio.ts --db /data/bot.db'"
+```
+
+Lista cada queja que cambiaría, con el antes, el después y por qué. Si es lo
+esperado, la misma orden con `--aplicar` los cambia; cada cambio deja un evento
+`barrio_corregido`, que `/estado` rotula «📍 Barrio corregido», y la web lo
+recoge en la siguiente exportación.
+
 ### Rotate the BOT_TOKEN
 
 ```bash

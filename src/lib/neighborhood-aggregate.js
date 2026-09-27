@@ -164,6 +164,63 @@ export function computePerNeighborhood(instantanea, neighborhoods) {
 }
 
 /**
+ * Cuántas de las quejas publicadas sitúan los mapas de barrios.
+ *
+ * Los mapas pintan las quejas que traen un barrio que geo.json conoce, y desde
+ * el 2026-09-27 el bot deja sin barrio lo que no cae cerca del centroide de
+ * ninguno: el casco urbano entero, donde vive la mayor parte del pueblo
+ * (src/scraper/situar-barrio.ts). Una capa que enseña una parte de su dominio
+ * tiene que decirlo, y esto da la parte.
+ *
+ * `pintadas` sale de las MISMAS filas que se pintan, no de contar
+ * `address_string`: una queja con un barrio que geo.json no tiene tampoco se
+ * pinta. `publicadas` es `stats.total`, o `null` si no se puede leer: un cero
+ * ahí diría «sin quejas» de una instantánea que no se ha leído. Y `entero` dice
+ * si el listado las trae todas —el bot exporta como mucho mil—.
+ *
+ * El MOTIVO de las que faltan —«no tienen barrio»— sólo se da cuando es exacto:
+ * con el listado entero y cuando lo pintado más las que llegan sin barrio suman
+ * las publicadas (`restoSinBarrio`). Una queja con un barrio que geo.json no
+ * conoce no está «sin barrio»: `desconocidas` las cuenta aparte. Y sin geo.json
+ * leído —cargando o caído— no se sabe qué pinta el mapa, así que no se afirma
+ * nada (`publicadas: null`). Las tres cosas las señaló la revisión de #131: la
+ * leyenda de la portada decía «el resto, sin barrio» mientras geo.json cargaba.
+ *
+ * @param {{stats?: any, items?: any[]} | null | undefined} instantanea
+ * @param {Array<{ total: number }>} filas  lo que devuelve `computePerNeighborhood`
+ * @param {any[] | null | undefined} neighborhoods  los barrios de geo.json, o nada si no se ha leído
+ * @returns {{ pintadas: number, publicadas: number | null, entero: boolean,
+ *   sinBarrio: number, desconocidas: number, restoSinBarrio: boolean }}
+ */
+export function coberturaDeBarrios(instantanea, filas, neighborhoods) {
+  const pintadas = filas.reduce((n, f) => n + f.total, 0)
+  if (!Array.isArray(neighborhoods)) {
+    return {
+      pintadas,
+      publicadas: null,
+      entero: false,
+      sinBarrio: 0,
+      desconocidas: 0,
+      restoSinBarrio: false,
+    }
+  }
+  const total = instantanea?.stats?.total
+  const publicadas = Number.isInteger(total) && total >= 0 ? total : null
+  const items = Array.isArray(instantanea?.items) ? instantanea.items : []
+  const entero = publicadas !== null && items.length === publicadas
+  const sinBarrio = items.filter((q) => !q?.address_string).length
+  const desconocidas = entero ? Math.max(0, publicadas - pintadas - sinBarrio) : 0
+  return {
+    pintadas,
+    publicadas,
+    entero,
+    sinBarrio,
+    desconocidas,
+    restoSinBarrio: entero && pintadas + sinBarrio === publicadas,
+  }
+}
+
+/**
  * Town-wide overlap rows for the D4 gap view: one row per barrio that has EITHER
  * quejas OR situated spend, sorted quejas-desc then amount-desc. `gap` flags a
  * barrio with citizen complaints but zero located spend — surfaced as a NEUTRAL
