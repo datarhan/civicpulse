@@ -506,10 +506,11 @@ a partial pass read as full coverage — as of 2026-08-03 that is 11 of 15.
 ## Git hooks
 
 - **pre-commit** — `lint`, `format:check`, `check:json`, `check:secrets --staged`,
-  `check:privado --staged`, `check:sparse`. Fails on errors only.
+  `check:privado --staged`, `check:editorial --staged`, `check:sparse`. Fails on
+  errors only; lint warnings stay warnings.
 
-  The last two are siblings that answer different questions, and the split is
-  the point. `check:secrets` recognises a credential **by its shape** — a
+  The three `--staged` gates each ask what the other two cannot, and the split
+  is the point. `check:secrets` recognises a credential **by its shape** — a
   Telegram token looks like a Telegram token. `check:privado` catches what has
   no shape: our own submitted-application reference, our own salary target, the
   amount **we** ask for. On 2026-09-09 an NLnet proposal code went into a file
@@ -525,12 +526,31 @@ a partial pass read as full coverage — as of 2026-08-03 that is 11 of 15.
   runs inside `monitor:health` — a gate that only inspects what arrives today
   passes everything from yesterday, and yesterday was where the exposure was.
 
-- **pre-push** — when the push touches `public/data/`, a page component or
-  `i18n.jsx`, builds and reads the affected pages as a visitor would. **Never
-  blocks**: a probabilistic check that can block a push teaches everyone to type
-  `--no-verify`, and then it protects nothing. It is also too slow to hold a
-  push open — see the note under the local jobs above for why the CI-blocked
-  cron invokes it directly instead.
+  `check:editorial` is about **third parties**, which `check:privado` leaves out
+  by design: unreviewed prose about a living person. On 2026-09-10
+  `git ls-files editorial/` returned 27 journalist-agent drafts about named
+  councillors, all on `main`. `editorial/` had been in `.gitignore` since
+  August, but `.gitignore` only stops new files from being added — it does not
+  untrack what is already tracked — and the drafts had gone in with
+  `git add -f` while the repository was still private. Full audit:
+  `npm run check:editorial`.
+
+- **pre-push** — reads, as a visitor would, the pages this push can have
+  broken. **Never blocks**: a probabilistic check that can block a push teaches
+  everyone to type `--no-verify`, and then it protects nothing. It is also too
+  slow to hold a push open — see the note under the local jobs above for why the
+  CI-blocked cron invokes it directly instead.
+
+  Which pages is computed, not listed. The hook diffs `origin/main...HEAD` —
+  three dots, after refreshing `origin/main` with a 10 s cap, because two dots
+  or a stale ref count everything `main` moved as changed here — and hands the
+  files to `scripts/routes-for-changes.ts`, which walks the import graph
+  (`scripts/lib/route-graph.ts`) and returns the routes ordered: those whose own
+  page module changed first, the rest by inverse fan-out. A push that reaches
+  no page (tooling, scrapers, tests) says so and stops, and so does a missing
+  `claude` CLI: the review runs only on `claude-code`, the $0 backend.
+  `PREPUSH_RANGE=HEAD~3..HEAD sh .husky/pre-push` runs the whole hook without
+  pushing.
 
   "Never blocks" is structural, not a promise — the promise was false for eight
   commits. Husky runs the hook as `sh -e`, and under `-e` a command that fails
@@ -540,16 +560,30 @@ a partial pass read as full coverage — as of 2026-08-03 that is 11 of 15.
   every path. All three are needed: a trailing `exit 0` alone still exits 1,
   because the trap runs after it.
 
-  It is also **bounded and partial by design**: `--budget-seconds 60`, which
-  measured 87s end to end where the unbounded pass measured 568s and git killed
-  it at ten minutes. The budget never buys silence — routes the clock did not
-  reach are named, half-read pages report PARCIAL and are not cached, and the
-  full pass is always available with `npm run review:surfaces`. The hook takes
-  its own free port from 4189 up, so a `npm run preview` on 4173 neither kills
-  it nor gets silently reviewed in its place.
+  It is also **bounded and partial by design**: 150 s per route, capped at
+  180 s, so in practice one route fits. The low cap is the decision, not an
+  oversight — the hook gives the measurements behind both numbers. What does
+  not fit is not lost: `--rotate-desde` keeps the direct routes at the head and
+  rotates only the tail, stalest first, so what this push left out enters the
+  next one, and the Monday and Thursday sweep reads every route. The budget
+  never buys silence — routes the clock did not reach are named, half-read
+  pages are not cached, and `npm run review:surfaces -- <route>` is the
+  unhurried pass. The build uses the launch flags the deploy uses
+  (`VITE_ENABLE_PERIODISTAS`, `VITE_ENABLE_EFICIENCIA`): without them
+  `/eficiencia` redirects to `/`, and the review read the landing page believing
+  it was the route it had asked for. The hook takes its own free port from 4189
+  up, so a `npm run preview` on 4173 neither kills it nor gets silently reviewed
+  in its place.
 
   Because it can no longer block, its **last line is the whole report** — nobody
-  reads an exit code that cannot stop anything. So the hook checks that the
-  review actually emitted its `[review]` coverage summary, and prints **«NO SE
-  REVISÓ NADA»** when it did not. Fault injection found it printing «parcial por
-  diseño» over a Playwright crash that had reviewed zero pages.
+  reads an exit code that cannot stop anything. So every path that read nothing
+  says so: a failed build prints «LA BUILD FALLÓ — revisión OMITIDA (omitida ≠
+  limpia)» with the routes left unread, and a review that never emitted its
+  `[review]` coverage summary prints «la revisión NO llegó a emitir resumen —
+  leídas 0 de N ruta(s)». Fault injection found the old hook printing «parcial
+  por diseño» over a Playwright crash that had reviewed zero pages. A run that
+  did read ends on «revisión completa» or «revisión PARCIAL», with how many
+  routes it read in full. And a push that touches the map's layers
+  (`src/components/LiveCity/`) is told that their prose only exists with the
+  layer switched on, so this pass has not read it; the sweep reads it as
+  `/ [capas]`.
