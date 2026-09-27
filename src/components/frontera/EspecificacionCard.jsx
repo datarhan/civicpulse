@@ -6,13 +6,19 @@ const num = (v, d = 3) =>
     ? '—'
     : v.toLocaleString('es-ES', { minimumFractionDigits: d, maximumFractionDigits: d })
 
+// [singular, plural]. Con una sola forma la tarjeta publicaba «1 que no
+// declaran la unidad física».
 const MOTIVOS = {
-  'sin-filas': 'no aparecen en la entrega',
-  'no-se-presta': 'declaran que no prestan el servicio',
-  'modo-no-directa': 'lo prestan por concesión u otro modo',
-  'coste-no-declarado': 'no declaran el coste',
-  'unidad-no-declarada': 'no declaran la unidad física',
+  'sin-filas': ['no aparece en la entrega', 'no aparecen en la entrega'],
+  'no-se-presta': ['declara que no presta el servicio', 'declaran que no prestan el servicio'],
+  'modo-no-directa': [
+    'lo presta por concesión u otro modo',
+    'lo prestan por concesión u otro modo',
+  ],
+  'coste-no-declarado': ['no declara el coste', 'no declaran el coste'],
+  'unidad-no-declarada': ['no declara la unidad física', 'no declaran la unidad física'],
 }
+const motivo = (m, n) => MOTIVOS[m]?.[n === 1 ? 0 : 1] ?? m
 
 /**
  * Una especificación: qué cesta, a quién se pudo comparar, y qué salió.
@@ -32,6 +38,7 @@ export function EspecificacionCard({ e, principal }) {
   const fuera = Object.entries(cob.excluidas ?? {})
     .filter(([, n]) => n > 0)
     .sort((a, b) => b[1] - a[1])
+  const caen = fuera.reduce((s, [, n]) => s + n, 0)
 
   return (
     <Card style={{ marginTop: 14 }}>
@@ -86,14 +93,20 @@ export function EspecificacionCard({ e, principal }) {
         <span className="mono" style={{ fontSize: 'var(--fs-head)', fontWeight: 650 }}>
           {cob.incluidas}
         </span>{' '}
-        de {cob.banda} municipios de la banda. Se caen{' '}
-        {fuera.map(([m, n], i) => (
-          <span key={m}>
-            {i > 0 && (i === fuera.length - 1 ? ' y ' : ', ')}
-            <span className="mono">{n}</span> que {MOTIVOS[m] ?? m}
-          </span>
-        ))}
-        .
+        de {cob.banda} municipios de la banda.
+        {caen > 0 && (
+          <>
+            {' '}
+            {caen === 1 ? 'Se cae' : 'Se caen'}{' '}
+            {fuera.map(([m, n], i) => (
+              <span key={m}>
+                {i > 0 && (i === fuera.length - 1 ? ' y ' : ', ')}
+                <span className="mono">{n}</span> que {motivo(m, n)}
+              </span>
+            ))}
+            .
+          </>
+        )}
       </p>
       <p style={{ margin: '6px 0 0', fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
         Regla de grados de libertad: {e.gradosLibertad.n} unidades para {e.gradosLibertad.salidas}{' '}
