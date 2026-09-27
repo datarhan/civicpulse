@@ -37,7 +37,7 @@ Admin-only (gated by `ADMIN_USER_IDS` env, comma-separated Telegram IDs):
 Outside a private chat the bot only answers the public commands (`COMANDOS_PUBLICOS`
 in `src/services/solo-en-privado.ts`, which only show what the site already publishes).
 Every other command, admin ones included, gets a one-line «escríbeme en privado», and
-anything that is not a command is ignored. The guard is the first middleware
+anything that is not a command is ignored. The guard runs before every handler
 (`src/commands/registrar.ts`), so a new command is private until someone adds it to the
 list. Group joining is also disabled in BotFather.
 
@@ -68,6 +68,12 @@ HTTP (webhook mode only):
 
 Runs in **long-polling** by default (`BOT_TOKEN` only) — no ingress
 required. Set `WEBHOOK_URL` to flip to webhook + HTTP server mode.
+
+In webhook mode Telegram resends an update that took over ten seconds, while the first
+delivery is still running. The first middleware (`src/services/una-vez-y-en-orden.ts`)
+handles each `update_id` once, the updates of one chat one at a time — the session and
+the conversations keep per-chat state in memory and cannot take two at once — and logs
+a failing update instead of rejecting it. It lives in memory: one process.
 
 ## Running locally (macOS, no cloud)
 
