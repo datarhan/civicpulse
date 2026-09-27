@@ -30,7 +30,9 @@ Admin-only (gated by `ADMIN_USER_IDS` env, comma-separated Telegram IDs):
 | `/batch_link` | URL of the auto-generated `current.md` / `current.html` solicitud |
 | `/batch_register <asiento> <CSV>` | After signing at `sede.ribarroja.es`, records the entry nº + CSV on every queja in the batch. Broadcasts `[REGISTRADA]` per queja |
 | `/escalar Q-XXXX` | Transitions a silencio-negativo queja to `escalada_sindic`, broadcasts `[ESCALADA]`, returns the Síndic de Greuges template URL |
-| Review cards (buttons) | Every new queja reaches each admin as a card with **Publicar** / **Descartar**; a published one shows **Retirar**. A decision is compare-and-set (`decidirModeracion`), edits every admin's copy, DMs the author and asks the site to republish. A card that reached no admin is resent hourly (`src/services/avisos-admin.ts`). The public channel announces a queja when it is published, not when it arrives |
+| `/revisar Q-XXXX` | Sends you the review card of any live queja — also one published before the review existed, so it can be withdrawn |
+| `/pendientes` | The review queue, oldest first, with how long each queja has waited |
+| Review cards (buttons) | Every new queja reaches each admin as a card with **Publicar** / **Descartar**; a published one shows **Retirar**, and a discarded or withdrawn one **Publicar** again. The card says whether the queja carries a photo (it does not show it) and which área and cargo the router attributed it to. A decision is compare-and-set (`decidirModeracion`), edits every admin's copy, DMs the author once per decision and asks the site to republish. `/olvidar`, `/borrar_mis_datos` and the retention purge strip the queja's text from every card. An hourly pass (`pasadaHoraria` in `src/services/avisos-admin.ts`) resends the cards no current admin holds, strips the ones Telegram refused to edit, and sends the author notices still missing. The public channel announces nothing about a queja, neither on arrival nor on publication: an announcement could not be withdrawn with the queja |
 
 Outside a private chat the bot only answers the public commands (`COMANDOS_PUBLICOS`
 in `src/services/solo-en-privado.ts`, which only show what the site already publishes).
@@ -56,7 +58,8 @@ Telegram  ──────→  grammy bot  ──────→  SQLite (WAL,
 
 HTTP (webhook mode only):
   POST <path of WEBHOOK_URL>  (Telegram only: X-Telegram-Bot-Api-Secret-Token, else 401)
-  GET /health
+  GET /health                (degraded when the review queue is stuck: no admins,
+                              a queja whose card no current admin holds, or a wait > 48 h)
   GET /export/quejas.json    (bearer-auth via EXPORT_TOKEN)
   GET /batch/current.{md,html}
   GET /sindic/<q-id>.{md,html}

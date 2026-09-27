@@ -475,11 +475,44 @@ describe('la revisión antes de publicar', () => {
     expect(METODOLOGIA).toContain('Una persona la revisa antes de publicarla.')
     expect(METODOLOGIA).toContain('no reescribe su texto')
     expect(AVISO).toContain('Revisión antes de publicar')
+    // Y /quejas, en la cabecera que se ve con datos y sin ellos.
+    expect(QUEJAS).toContain('Una persona revisa cada queja antes de publicarla aquí.')
   })
 
   it('lo publicado antes de la revisión lo dice la página, y lo marca la migración', () => {
     expect(MIGRACIONES).toMatch(/'heredada', 'migracion'/)
-    expect(METODOLOGIA).toMatch(/antes del 27 de septiembre de 2026 no pasaron por esta revisión/)
+    expect(METODOLOGIA).toMatch(
+      /antes de que empezara esta revisión, a finales de septiembre de 2026, no pasaron por ella/,
+    )
+  })
+
+  it('descartar tiene vuelta atrás: la página lo dice y la transición existe', () => {
+    expect(METODOLOGIA).toContain('una descartada puede publicarse después')
+    expect(AVISO).toContain('una descartada puede publicarse después')
+    expect(lee('bot/src/db/queries.ts')).toMatch(/publicar:\s*\{\s*desde:\s*\[[^\]]*'descartada'/)
+  })
+
+  it('quien modera sabe que hay foto pero no la ve, y la foto sale sólo con la queja publicada', () => {
+    const avisos = sinComentariosTs(lee('bot/src/services/avisos-admin.ts'))
+    expect(METODOLOGIA).toContain('sabe si la queja trae una, pero no la ve')
+    expect(AVISO).toContain('sin la foto, que no ve')
+    expect(avisos).toMatch(/Trae foto/)
+    expect(avisos).not.toMatch(/send(Photo|MediaGroup|Document)/)
+    const lista = lee('bot/src/db/queries.ts').match(
+      /export function listQuejasWithPhoto[\s\S]*?\n\}/,
+    )
+    expect(lista, 'no encuentro listQuejasWithPhoto').not.toBeNull()
+    expect(lista[0]).toMatch(/SQL_PUBLICA/)
+  })
+
+  it('/olvidar quita el texto de las tarjetas, y la pasada horaria remata las que fallaron', () => {
+    expect(AVISO).toContain('quita su texto de los mensajes de revisión')
+    expect(sinComentariosTs(lee('bot/src/commands/olvidar.ts'))).toMatch(/actualizarTarjetas\(/)
+    const pasada = sinComentariosTs(lee('bot/src/services/avisos-admin.ts')).match(
+      /export async function pasadaHoraria[\s\S]*?\n\}/,
+    )
+    expect(pasada, 'no encuentro pasadaHoraria').not.toBeNull()
+    expect(pasada[0]).toMatch(/vaciarTarjetasDeRetiradas\(/)
   })
 
   it('la dirección para impugnar es la del aviso legal', () => {

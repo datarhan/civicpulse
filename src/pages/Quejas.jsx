@@ -823,7 +823,7 @@ function EmptyState() {
           <p>
             Esta página publica el feed agregado — categoría, barrio, plazo legal y estado —{' '}
             <strong>nunca identifica al vecino</strong>. Las quejas con 10 apoyos vecinales entran
-            en un lote que una persona que modera el canal presenta en el registro electrónico del
+            en un lote que una persona que modera las quejas presenta en el registro electrónico del
             ayuntamiento. Desde ese registro corre el plazo para responder: tres meses con carácter
             general, un mes si es una petición de transparencia. Si vence sin respuesta, puede
             prepararse la plantilla para acudir al Síndic de Greuges de la Comunitat Valenciana.
@@ -845,6 +845,10 @@ function EmptyState() {
           <li>
             <strong>Presenta</strong> tu queja al bot: <code>/queja</code> — categoría, foto,
             ubicación.
+          </li>
+          <li>
+            <strong>Una persona la revisa</strong> antes de publicarla aquí: hasta entonces no es
+            pública, y el bot te avisa cuando lo sea.
           </li>
           <li>
             <strong>Tus vecinos la apoyan</strong> con <code>/apoyar Q-XXXX</code>. A 10 apoyos
@@ -1329,7 +1333,8 @@ export default function Quejas() {
           >
             @munigraph_bot
           </a>
-          . Feed agregado y anónimo — base legal LPACAP + Ley 19/2013.{' '}
+          . Una persona revisa cada queja antes de publicarla aquí. Feed agregado y anónimo — base
+          legal LPACAP + Ley 19/2013.{' '}
           <Link
             to="/quejas/dashboard"
             style={{ color: 'var(--civic)', textDecoration: 'underline', textUnderlineOffset: 2 }}

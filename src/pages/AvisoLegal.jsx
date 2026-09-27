@@ -395,7 +395,7 @@ export default function AvisoLegal() {
         <ul>
           <li>
             <strong>Texto de la queja</strong>, categoría y barrio aproximado — se publican en el
-            dashboard cuando los revisa quien modera el canal
+            dashboard si, tras revisarlos, quien modera las quejas decide publicarlos
           </li>
           <li>
             <strong>Coordenadas exactas</strong> (si las envías) — <strong>nunca</strong> se
@@ -417,10 +417,12 @@ export default function AvisoLegal() {
         </ul>
         <p>
           <strong>Revisión antes de publicar</strong>: el texto de cada queja nueva, su categoría y
-          su barrio llegan por Telegram a quien modera el canal —sin tu identidad—, que decide si se
-          publica tal cual o se descarta; una ya publicada también puede retirarse de la
-          publicación. Hasta que se publica no es pública en ninguna parte. El bot te avisa de cada
-          decisión, y puedes impugnarla escribiendo a{' '}
+          su barrio llegan por Telegram a quien modera las quejas —sin tu identidad y sin la foto,
+          que no ve—, que decide si se publica tal cual o se descarta. La decisión tiene vuelta
+          atrás: una descartada puede publicarse después, y una publicada, retirarse de la
+          publicación. Hasta que se publica no es pública en ninguna parte, y su foto sólo se
+          anonimiza y se publica cuando la queja ya lo es. El bot te avisa de cada decisión, y
+          puedes impugnarla escribiendo a{' '}
           <a href="mailto:civicpulse_es@proton.me" style={{ color: 'var(--civic)' }}>
             civicpulse_es@proton.me
           </a>
@@ -472,7 +474,8 @@ export default function AvisoLegal() {
           <code>/olvidar Q-XXXXXXXX</code> al bot para retirar tu queja. El bot deja de incluirla en
           el acto en el listado que exporta, borra de su registro interno tu identidad de Telegram,
           la ubicación y la referencia a la foto, borra la copia anonimizada de la foto que guarda
-          su servidor y pide a GitHub que esta web se vuelva a publicar. Esta web la retira del
+          su servidor, quita su texto de los mensajes de revisión que recibió quien modera las
+          quejas y pide a GitHub que esta web se vuelva a publicar. Esta web la retira del
           dashboard, del heatmap, del feed público y del snapshot abierto en cuanto termina esa
           actualización, que suele tardar unos minutos; si la petición falla, en la siguiente
           actualización diaria. En esa misma actualización borra el fichero de la foto anonimizada

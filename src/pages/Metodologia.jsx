@@ -669,16 +669,20 @@ export default function Metodologia() {
             se puede interpretar entero— se retiene en vez de publicarse sin tratar.
           </li>
           <li>
-            <strong>Una persona la revisa antes de publicarla.</strong> Cada queja nueva llega a
-            quien modera el canal, que la publica tal cual o la descarta: no reescribe su texto.
-            Hasta entonces no es pública en ninguna parte —ni en la web, ni en el canal de Telegram,
-            ni en el bot para quien no la escribió—, y una ya publicada también puede retirarse de
-            la publicación. Quien la escribió recibe aviso de cada decisión y puede impugnarla en la
-            dirección de contacto del{' '}
+            <strong>Una persona la revisa antes de publicarla.</strong> Cada queja nueva llega por
+            Telegram a quien modera las quejas, que la publica tal cual o la descarta: no reescribe
+            su texto. Hasta entonces no es pública en ninguna parte —ni en la web ni en el bot para
+            quien no la escribió—. La decisión tiene vuelta atrás: una descartada puede publicarse
+            después, y una publicada, retirarse de la publicación. La foto no pasa por esta
+            revisión: quien modera sabe si la queja trae una, pero no la ve, y la foto se anonimiza
+            y se publica, como en el paso anterior, sólo cuando la queja ya es pública. Quien la
+            escribió recibe aviso de cada decisión y puede impugnarla en la dirección de contacto
+            del{' '}
             <a href="/aviso-legal" style={{ color: 'var(--civic)' }}>
               aviso legal
             </a>
-            . Las quejas publicadas antes del 27 de septiembre de 2026 no pasaron por esta revisión.
+            . Las quejas publicadas antes de que empezara esta revisión, a finales de septiembre de
+            2026, no pasaron por ella.
           </li>
           <li>
             <strong>Necesita diez apoyos.</strong> Cualquier otra persona puede apoyarla con{' '}
@@ -688,10 +692,10 @@ export default function Metodologia() {
           </li>
           <li>
             <strong>Se registra por lotes.</strong> Presentarla en nombre de cada vecino exigiría
-            acreditar su representación, así que una persona que modera el canal presenta en la sede
-            electrónica del ayuntamiento una única solicitud, firmada con su propia identificación,
-            que agrupa hasta diez quejas verificadas, primero las más apoyadas. Un aviso semanal le
-            recuerda cuántas esperan.
+            acreditar su representación, así que una persona que modera las quejas presenta en la
+            sede electrónica del ayuntamiento una única solicitud, firmada con su propia
+            identificación, que agrupa hasta diez quejas verificadas, primero las más apoyadas. Un
+            aviso semanal le recuerda cuántas esperan.
           </li>
           <li>
             <strong>El registro devuelve un número y un CSV.</strong> La sede anota el asiento y
@@ -866,8 +870,8 @@ export default function Metodologia() {
               <strong>Siempre con firma humana.</strong> Nombrar a una persona concreta, cualquier
               hallazgo de gravedad crítica (que es una acusación), los informes marcados como
               jurídicamente sensibles, y todo lo irreversible o dirigido al exterior — registrar una
-              queja en sede, publicar en el canal. No porque una persona acierte más, sino porque la
-              responsabilidad legal necesita una firma.
+              queja en sede, publicar una queja ciudadana. No porque una persona acierte más, sino
+              porque la responsabilidad legal necesita una firma.
             </li>
           </ul>
           <p style={{ marginBottom: 0 }}>

@@ -226,6 +226,24 @@ diaria de `src/services/retencion.ts` a los `CONSERVACION_COPIAS_DIAS` de
 `src/scraper/plazos-retencion.ts`. La instantánea del volumen es la copia que no
 depende del propio bot.
 
+### Volver a una versión anterior: nunca por detrás de la migración 2
+
+Un código viejo arranca sobre la base de hoy: el migrador no toca una base más
+nueva que su código —avisa y sigue—, y el código viejo trabaja sin saber de las
+columnas que no conoce. Tras la migración 2 (`revision-antes-de-publicar`) eso
+es publicar: un código de antes de ella no sabe de `moderacion` y exportaría,
+en la siguiente pasada de `pull-quejas.yml`, todo lo pendiente, lo descartado y
+lo retirado. Lo mismo vale para revertir el PR en `main`, porque
+`bot-deploy.yml` despliega lo que llega a `main`, y para desplegar una imagen
+anterior a mano (`flyctl deploy --image …`).
+
+**No se vuelve a un código anterior a la migración 2 sobre la base de hoy.** Lo
+que falle después se arregla hacia delante. La única vuelta atrás que no publica
+nada sin revisar es restaurar también la base: la copia `VACUUM INTO` de
+`/data/backups/` tomada al migrar, mientras exista (caduca a los
+`CONSERVACION_COPIAS_DIAS` días), que es de antes de la revisión y en la que todo
+lo guardado ya era público. Se pierde todo lo que entró y se decidió después.
+
 ### Recalcular los barrios de las quejas guardadas
 
 Desde el 2026-09-27 una ubicación se sitúa contra el término y con un radio por
