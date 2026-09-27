@@ -29,6 +29,7 @@
  */
 import { existsSync, readFileSync } from 'node:fs'
 import { basename, normalize } from 'node:path'
+import { inicioDeOrden, nombreDe, ordenes } from './shell-tokens.mjs'
 
 /**
  * basename → the CLI that owns it. Kept in sync with docs/DATA_SOURCES.md by
@@ -188,38 +189,122 @@ export const decide = (path, exists = existsSync, leer = readFileSync) => {
 }
 
 /**
- * Shell redirection, in-place edit, or copy onto a curated file. Denying Write
- * while leaving `echo … > promises.json` open would only teach the next session
- * to reach for Bash.
+ * Shell redirection, in-place edit, copy or inline script onto a curated file.
+ * Denying Write while leaving `echo … > promises.json` open would only teach
+ * the next session to reach for Bash.
+ *
+ * It looks at what each command WRITES — a redirection's target, `cp`/`mv`'s
+ * last argument, `tee`'s arguments, `sed -i`'s files, `dd of=` — through the
+ * shared tokenizer, so a heredoc body or a commit message that merely names a
+ * curated file is text, not a write. The first version asked whenever a clause
+ * named the file and carried a `>` anywhere; replayed over the 19,210 distinct
+ * Bash commands in this project's transcripts (2026-09-27) it asked 81 times,
+ * and about five of those wrote a curated file. A prompt that is right one time
+ * in sixteen gets approved unread, including the one time it is right.
  *
  * Reading is fine (`jq . promises.json`, `git diff`, `cat`), and so are the
- * sanctioned CLIs (`npm run reply -- …`) — none carry a write token. This is
- * inference over an unparsed string, so it asks rather than denies.
+ * sanctioned CLIs (`npm run reply -- …`). This is still inference over a
+ * command line — it cannot see what `npx tsx scripts/x.ts` does inside — so
+ * it asks rather than denies.
  */
-const REDIRECT = /(>>?|\b(?:tee|dd)\b|\b(?:sed|perl|ruby)\b[^|;]*\s-i\b|\btruncate\b)/
-/** `cp`/`mv`/`install` write only their LAST argument. */
-const COPYLIKE = /^\s*(?:sudo\s+)?(?:cp|mv|install|rsync)\b/
 
-const writesTo = (clause, name) => {
-  if (COPYLIKE.test(clause)) {
-    // `cp promises.json /tmp/backup.json` is a read. Only the destination —
-    // the final argument — is written.
-    const args = clause
-      .trim()
-      .split(/\s+/)
-      .filter((a) => !a.startsWith('-'))
-    return basename(canonical(args[args.length - 1] || '')) === name
+/** A path a write lands on, if it is a curated file: under public/data/, or bare (run from inside it). */
+const curadoEn = (ruta) => {
+  if (!ruta) return null
+  const p = canonical(ruta)
+  const name = basename(p)
+  if (!CURATED[name]) return null
+  return p.includes('public/data/') || !p.includes('/') ? name : null
+}
+
+/** Targets that copy-like commands write: only the LAST argument. */
+const COPIAN = new Set(['cp', 'mv', 'install', 'rsync', 'ln', 'ditto'])
+/** Editors that write in place only when asked to (`-i`). */
+const EN_SITIO = new Set(['sed', 'gsed', 'perl', 'ruby'])
+/** Interpreters whose inline code (`-c`, `-e`, a heredoc) can write anything. */
+const INTERPRETES = new Set(['python', 'python3', 'node', 'ruby', 'perl', 'deno', 'bun', 'tsx'])
+/** Escapes a string for use inside a RegExp. */
+const re = (t) => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+
+/**
+ * Does inline code WRITE this curated file? Only a write call aimed at it
+ * counts — the path literal inside the call, or a variable bound to that literal
+ * and then written. Mentioning the path is not enough: replayed over the
+ * transcripts, «names a curated path and calls some write» fired ten times, all
+ * on scripts that read a curated file or edited a source file whose text quotes
+ * one, and never on a real write.
+ */
+function codigoEscribe(codigo, archivo) {
+  const ruta = `['"\`][^'"\`\n]*public/data/${re(archivo)}['"\`]`
+  const directo = new RegExp(
+    [
+      `\\b(?:writeFileSync|writeFile|appendFileSync|createWriteStream)\\s*\\(\\s*${ruta}`,
+      `\\b(?:renameSync|copyFileSync)\\s*\\([^,\\n]+,\\s*${ruta}`,
+      `\\bopen\\s*\\(\\s*${ruta}\\s*,\\s*['"](?:w|a|x|r\\+)`,
+      `\\bPath\\s*\\(\\s*${ruta}\\s*\\)\\.write_(?:text|bytes)\\s*\\(`,
+      `\\bshutil\\.(?:copy\\w*|move)\\s*\\([^,\\n]+,\\s*${ruta}`,
+    ].join('|'),
+  )
+  if (directo.test(codigo)) return true
+  // `p = 'public/data/x.json'` (or `resolve(…)`, `Path(…)`, `join(ROOT, …)`), then a write through p.
+  const asignado = new RegExp(
+    `\\b([A-Za-z_]\\w*)\\s*=\\s*(?:[\\w.]+\\((?:[^'"()\\n]*,\\s*)?)?${ruta}`,
+    'g',
+  )
+  for (const [, v] of codigo.matchAll(asignado)) {
+    const w = re(v)
+    const porVariable = new RegExp(
+      [
+        `\\b(?:writeFileSync|writeFile|appendFileSync|createWriteStream)\\s*\\(\\s*${w}\\b`,
+        `\\b(?:renameSync|copyFileSync)\\s*\\([^,\\n]+,\\s*${w}\\b`,
+        `\\bopen\\s*\\(\\s*${w}\\s*,\\s*['"](?:w|a|x|r\\+)`,
+        `\\b${w}\\.write_(?:text|bytes)\\s*\\(`,
+        `\\bPath\\s*\\(\\s*${w}\\s*\\)\\.write_(?:text|bytes)\\s*\\(`,
+        `\\bshutil\\.(?:copy\\w*|move)\\s*\\([^,\\n]+,\\s*${w}\\b`,
+      ].join('|'),
+    )
+    if (porVariable.test(codigo)) return true
   }
-  return REDIRECT.test(clause)
+  return false
+}
+
+/** Curated files one simple command writes, as named in CURATED. */
+function curadosQueEscribe(o) {
+  const destinos = o.redirecciones
+    .filter((r) => r.destino && /^(?:>|>>|>\||&>|&>>|>&)$/.test(r.op))
+    .map((r) => r.destino.texto)
+  const i = inicioDeOrden(o.palabras)
+  if (i >= 0) {
+    const nombre = nombreDe(o.palabras[i])
+    const args = o.palabras.slice(i + 1).map((t) => t.texto)
+    const operandos = args.filter((a) => !a.startsWith('-'))
+    if (nombre === 'tee') destinos.push(...operandos)
+    else if (COPIAN.has(nombre) && operandos.length) destinos.push(operandos.at(-1))
+    else if (nombre === 'dd')
+      destinos.push(...args.filter((a) => a.startsWith('of=')).map((a) => a.slice(3)))
+    else if (nombre === 'truncate') destinos.push(...operandos)
+    else if (
+      EN_SITIO.has(nombre) &&
+      args.some((a) => /^-[a-zA-Z]*i/.test(a) || a.startsWith('--in-place'))
+    ) {
+      destinos.push(...operandos)
+    } else if (INTERPRETES.has(nombre)) {
+      const codigo = [
+        ...o.heredocs,
+        ...args.filter((a, k) => /^-(?:c|e|p|-eval|-print)$/.test(args[k - 1] ?? '')),
+      ].join('\n')
+      const escrito = Object.keys(CURATED).find(
+        (f) => codigo.includes(`public/data/${f}`) && codigoEscribe(codigo, f),
+      )
+      if (escrito) destinos.push(`public/data/${escrito}`)
+    }
+  }
+  return destinos.map(curadoEn).filter(Boolean)
 }
 
 export const decideBash = (command) => {
   if (!command) return null
-  const cmd = String(command)
-  const hit = Object.keys(CURATED).find((name) =>
-    // Only care when the mention sits in a clause that also writes it.
-    cmd.split(/[;&|\n]+/).some((clause) => clause.includes(name) && writesTo(clause, name)),
-  )
+  const hit = ordenes(String(command)).flatMap(curadosQueEscribe)[0]
   if (!hit) return null
 
   return {
@@ -231,5 +316,10 @@ export const decideBash = (command) => {
       `Use instead:  ${CURATED[hit]}\n\n` +
       `If this is a read, a diff, or the sanctioned CLI itself, approve and ` +
       `carry on. See docs/DATA_SOURCES.md.`,
+    // An `ask` reason is shown to the person approving, never to the model.
+    context:
+      `${hit} is a curated file in this repository. It is written through its owning CLI ` +
+      `(${CURATED[hit]}), which re-validates the whole snapshot; a direct shell write skips ` +
+      `that validator and the audit trail.`,
   }
 }

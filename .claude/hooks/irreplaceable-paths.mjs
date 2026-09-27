@@ -33,14 +33,25 @@
  * `ask`, never `deny`: these are all legitimate operations. The point is that
  * the operator sees the stakes before, not after.
  */
-import { basename, resolve } from 'node:path'
+import { existsSync } from 'node:fs'
+import { join, resolve } from 'node:path'
+import { inicioDeOrden, nombreDe, ordenes, subordenGit } from './shell-tokens.mjs'
 
 /**
  * Local stores git does not track, and what is lost with each.
  *
- * Verified against `git check-ignore` on 2026-08-03. Tracked files are
- * deliberately absent — `.automation-measurements.json` and the various
- * baselines are committed, so git already covers them.
+ * Verified against `git check-ignore` on 2026-08-03, and again on 2026-09-27,
+ * when two things had changed. `editorial/` joined: since the drafts were
+ * untracked on 2026-09-25 (`check:editorial` now refuses to commit anything
+ * under it), it holds the only copy of the journalist drafts and investigation
+ * dossiers. And `.review-cache.json` left: its own row said the recovery was
+ * automatic — a lost cache means more review, not less — and replayed over the
+ * transcripts it was five of this hook's nine questions, every one a session
+ * clearing it on purpose to force a re-read. A speed bump on something that
+ * heals itself trains the approver to approve the next one unread.
+ *
+ * Tracked files are deliberately absent — `.automation-measurements.json` and
+ * the various baselines are committed, so git already covers them.
  */
 export const IRREPLACEABLE = {
   '.voiceprints': {
@@ -62,21 +73,45 @@ export const IRREPLACEABLE = {
     recovery: 'volver a pagarlas (o re-gastar cuota) llamada por llamada',
     users: 'todo lo que pasa por src/llm/client.ts',
   },
-  '.review-cache.json': {
-    what: 'qué rutas ya se revisaron sin cambios',
-    recovery: 'automática — falla hacia MÁS revisión, no menos',
-    users: 'npm run review:surfaces',
+  editorial: {
+    what:
+      'borradores del agente periodista, dossiers de investigación (con capturas\n' +
+      '  de prensa que no se pueden volver a bajar), colas de curaduría y borradores\n' +
+      '  de solicitudes de acceso',
+    recovery:
+      'ninguna para lo capturado a mano o ya revisado; un borrador del agente se\n' +
+      '  regenera con otro journalist:run (15–40 min, y no sale igual). No hay copia\n' +
+      '  en git desde el 25-09-2026: check:editorial impide comitearlo.',
+    users:
+      'promote-report y check:citations -- --draft (leen el borrador por ruta),\n' +
+      '  journalist:run --seed, journalist:entorno, npm run solicitud -- borrador,\n' +
+      '  las habilidades revisar-borrador e investigar-cargo',
+  },
+  // Not the whole of `.cache/`: most of it re-downloads in seconds, and its
+  // speaker-map audio re-downloads itself. These two do not.
+  '.cache/borme': {
+    what: 'las secciones del BORME de la provincia, barridas día a día desde 2009',
+    recovery: 'volver a barrer al ritmo de cortesía del BOE: horas',
+    users: 'scrape:borme --persona, journalist:entorno, la habilidad investigar-cargo',
+  },
+  '.cache/cesel': {
+    what: 'las entregas CESEL y CONPREL descargadas, con los ficheros por comunidad autónoma',
+    recovery:
+      'los de .cache/cesel/ccaa, uno a uno con un navegador: el servidor no se los\n' +
+      '  sirve a curl ni a un navegador sin cabeza (scripts/fetch-cesel-ccaa.ts)',
+    users: 'compute/check:coste-esperado, scrape:coste-efectivo, indicador-registry',
+  },
+  '.embed-cache': {
+    what: 'los embeddings del corpus del agente periodista y del verificador',
+    recovery:
+      'reconstruirlos pagando la API de OpenAI (embed:agent-corpus,\n' +
+      '  embed:verifier-corpus); con gemini salen peores',
+    users: 'journalist:run (recuperación semántica), el verificador, check:retrieval',
   },
 }
 
-/** Destructive shapes. `git clean -x` is here because it targets ignored files SPECIFICALLY. */
-const DESTRUCTIVE =
-  /(?:^|[;&|]|\s)(?:sudo\s+)?(?:rm|rmdir|shred|trash)\b|\btruncate\b|\bfind\b[^|;]*-delete\b|\bgit\s+clean\b[^|;]*-[a-zA-Z]*[xX]/
-
-/** CLIs that destroy irreplaceable local data even though they are the sanctioned path. */
-const DESTRUCTIVE_CLI = /\bdelete-voiceprint\b|\bdelete-voiceprint\.ts\b/
-
-const clauses = (cmd) => String(cmd).split(/[;&|\n]+/)
+/** Órdenes que borran o vacían sus operandos. */
+const BORRAN = new Set(['rm', 'rmdir', 'shred', 'trash', 'unlink', 'truncate', 'srm'])
 
 function reasonFor(key, extra) {
   const e = IRREPLACEABLE[key]
@@ -95,51 +130,113 @@ function reasonFor(key, extra) {
   )
 }
 
-/** A path argument that lands inside one of the stores. */
-function storeForPath(p) {
-  if (!p) return null
+/**
+ * The same facts, for the model. An `ask` reason reaches only the person
+ * approving; on 2026-08-03 it was the model that concluded «unused», so the
+ * model has to see what the store is and who uses it too.
+ */
+const contextFor = (key) => {
+  const e = IRREPLACEABLE[key]
+  const plano = (t) => t.replace(/\s*\n\s*/g, ' ')
+  return (
+    `${key} is not tracked by git, so deleting it cannot be undone with git checkout. ` +
+    `It holds ${plano(e.what)}. Used by: ${plano(e.users)}. Recovery: ${plano(e.recovery)}.`
+  )
+}
+
+const ask = (key, extra) => ({
+  decision: 'ask',
+  reason: reasonFor(key, extra),
+  context: contextFor(key),
+})
+
+/** ¿Es este directorio una copia de este repositorio (el principal o un worktree)? */
+const esCheckout = (dir) => existsSync(join(dir, '.claude', 'hooks', 'irreplaceable-paths.mjs'))
+
+/**
+ * The stores a path argument would take with it: the store itself, anything
+ * inside it, or a directory that CONTAINS it (`rm -rf .`). A path outside the
+ * current checkout counts only when it lies in another checkout of this repo,
+ * so `rm -rf ~/.cache` is not mistaken for the project's `.cache/`.
+ */
+function storesForPath(p) {
+  if (!p) return []
   const abs = resolve(String(p).replace(/^['"]|['"]$/g, ''))
   const root = resolve('.')
-  const rel = abs.startsWith(root) ? abs.slice(root.length + 1) : basename(abs)
-  return Object.keys(IRREPLACEABLE).find((k) => rel === k || rel.startsWith(`${k}/`)) ?? null
+  const dentro = abs === root || abs.startsWith(root + '/')
+  const claves = Object.keys(IRREPLACEABLE)
+  if (dentro) {
+    const rel = abs.slice(root.length + 1)
+    return claves.filter(
+      (k) => rel === '' || rel === k || rel.startsWith(`${k}/`) || k.startsWith(`${rel}/`),
+    )
+  }
+  return claves.filter((k) => {
+    const i = abs.indexOf(`/${k}`)
+    if (i < 0) return false
+    const tras = abs.slice(i + 1 + k.length)
+    return (tras === '' || tras.startsWith('/')) && esCheckout(abs.slice(0, i))
+  })
+}
+
+/** `npm run delete-voiceprint`, `tsx scripts/delete-voiceprint.ts`: ejecutarla, no nombrarla. */
+const ejecutaDeleteVoiceprint = (nombre, args) =>
+  (nombre === 'npm' && args[0] === 'run' && args[1] === 'delete-voiceprint') ||
+  (['npx', 'tsx', 'node', 'bun'].includes(nombre) &&
+    args.some((a) => /(?:^|\/)delete-voiceprint\.ts$/.test(a)))
+
+/** Los operandos de `find` son las rutas de antes de la primera expresión. */
+const rutasDeFind = (args) => {
+  const fin = args.findIndex((a) => a.startsWith('-') || a === '(' || a === '!')
+  return fin === -1 ? args : args.slice(0, fin)
 }
 
 export const decideIrreplaceableBash = (command) => {
   if (!command) return null
-  const cmd = String(command)
 
-  for (const clause of clauses(cmd)) {
-    if (DESTRUCTIVE_CLI.test(clause)) {
-      return {
-        decision: 'ask',
-        reason: reasonFor(
-          '.voiceprints',
-          'Es la CLI correcta y deja rastro — pero el dato que borra no lo cubre git.',
-        ),
-      }
+  for (const o of ordenes(String(command))) {
+    const i = inicioDeOrden(o.palabras)
+    if (i < 0) continue
+    const nombre = nombreDe(o.palabras[i])
+    const args = o.palabras.slice(i + 1).map((t) => t.texto)
+
+    if (ejecutaDeleteVoiceprint(nombre, args)) {
+      return ask(
+        '.voiceprints',
+        'Es la CLI correcta y deja rastro — pero el dato que borra no lo cubre git.',
+      )
     }
-    if (!DESTRUCTIVE.test(clause)) continue
+
     // `git clean -x` takes no path and hits every ignored file at once.
-    if (/\bgit\s+clean\b/.test(clause)) {
-      return {
-        decision: 'ask',
-        reason:
-          `\`git clean -x\` borra precisamente los ficheros IGNORADOS, que aquí son\n` +
-          `los únicos que git no puede devolver:\n\n` +
-          Object.entries(IRREPLACEABLE)
-            .map(([k, v]) => `  ${k.padEnd(20)} ${v.what}`)
-            .join('\n') +
-          `\n\nSin -x borra solo lo no rastreado y no ignorado, que suele ser lo que\n` +
-          `quieres. Comprueba la bandera antes de aprobar.`,
+    if (nombre === 'git') {
+      const g = subordenGit(args)
+      if (g?.sub === 'clean' && g.resto.some((a) => /^-[a-zA-Z]*[xX]/.test(a))) {
+        const lista = Object.entries(IRREPLACEABLE)
+          .map(([k, v]) => `  ${k.padEnd(20)} ${v.what.split('\n')[0]}`)
+          .join('\n')
+        return {
+          decision: 'ask',
+          reason:
+            `\`git clean -x\` borra precisamente los ficheros IGNORADOS, que aquí son\n` +
+            `los únicos que git no puede devolver:\n\n` +
+            lista +
+            `\n\nSin -x borra solo lo no rastreado y no ignorado, que suele ser lo que\n` +
+            `quieres. Comprueba la bandera antes de aprobar.`,
+          context:
+            `git clean -x deletes ignored files, and here the ignored files include ` +
+            `${Object.keys(IRREPLACEABLE).join(', ')} — none of which has a copy in git.`,
+        }
       }
+      continue
     }
-    const hit = clause
-      .trim()
-      .split(/\s+/)
-      .filter((a) => !a.startsWith('-'))
-      .map(storeForPath)
-      .find(Boolean)
-    if (hit) return { decision: 'ask', reason: reasonFor(hit) }
+
+    let rutas = []
+    if (BORRAN.has(nombre)) rutas = args.filter((a) => !a.startsWith('-'))
+    else if (nombre === 'find' && args.includes('-delete')) rutas = rutasDeFind(args)
+    for (const r of rutas) {
+      const [hit, ...otros] = storesForPath(r)
+      if (hit) return ask(hit, otros.length ? `Y con él también: ${otros.join(', ')}.` : null)
+    }
   }
   return null
 }

@@ -22,20 +22,44 @@
  *
  * ## What this does
  *
- * Anything that feeds a media file to voice enrollment, speaker identification
- * or transcription gets probed FIRST, and the real numbers go in the prompt.
- * It does not say "you should measure" — it measures, and shows the answer, so
- * a 3.6 s file cannot be mistaken for a 143 s one at the moment it matters.
+ * A voice enrollment (`enroll-voice --audio <file>`) gets its file probed FIRST,
+ * and the real numbers go to both readers: into the prompt for the person
+ * approving, and into the model's context — an `ask` reason reaches only the
+ * person, and it was the model that picked the file and called it exact. It
+ * does not say "you should measure" — it measures, and shows the answer, so a
+ * 3.6 s file cannot be mistaken for a 143 s one at the moment it matters.
+ *
+ * Only enrollment. This used to list five tools, and four of them —
+ * `identify-pleno-speakers`, `transcribe-pleno.sh`, `diarize-pleno.sh`,
+ * `enroll-voices-batch` — take a session id or a manifest, never a media path,
+ * so it could not fire for them; its tests passed on `--audio` flags those
+ * tools do not have. Replayed over the transcripts (2026-09-27), its only two
+ * prompts in the whole history were a heredoc and a grep. Enrollment is also
+ * where a short file fails SILENTLY: a short transcription is visibly short.
  *
  * `ask`, never `deny`. The numbers are the point, not the friction.
  */
 import { spawnSync } from 'node:child_process'
 import { existsSync, statSync } from 'node:fs'
 import { resolve } from 'node:path'
+import { inicioDeOrden, nombreDe, ordenes } from './shell-tokens.mjs'
 
-/** Tools where the LENGTH of the audio changes the quality of the result. */
-const MEDIA_CONSUMERS =
-  /\b(?:enroll-voice|enroll-voices-batch|identify-pleno-speakers|transcribe-pleno|diarize-pleno)\b/
+/**
+ * Does this simple command RUN a voice enrollment? `npm run enroll-voice` or
+ * the script itself through tsx/node — run, not mentioned: a grep or a heredoc
+ * that names it is text.
+ */
+function enrolaVoz(palabras) {
+  const i = inicioDeOrden(palabras)
+  if (i < 0) return false
+  const nombre = nombreDe(palabras[i])
+  const args = palabras.slice(i + 1).map((t) => t.texto)
+  if (nombre === 'npm') return args[0] === 'run' && args[1] === 'enroll-voice'
+  return (
+    ['npx', 'tsx', 'node', 'bun'].includes(nombre) &&
+    args.some((a) => /(?:^|\/)enroll-voice\.ts$/.test(a))
+  )
+}
 
 const MEDIA_EXT = /\.(?:wav|opus|mp3|m4a|ogg|oga|flac|aac|mp4|webm|mkv|mov)$/i
 
@@ -68,20 +92,20 @@ function probe(path) {
 const human = (s) =>
   s == null ? '¿?' : s < 60 ? `${s.toFixed(1)}s` : `${Math.floor(s / 60)}m ${(s % 60).toFixed(0)}s`
 
-/** Media paths a command actually names. */
+/** Media paths a command names as words — a quoted path with spaces stays whole. */
 export function mediaArgsIn(command) {
-  return String(command ?? '')
-    .split(/\s+/)
-    .map((a) => a.replace(/^['"]|['"]$/g, ''))
-    .filter((a) => MEDIA_EXT.test(a))
+  return ordenes(command).flatMap((o) =>
+    o.palabras.filter((t) => !t.opaco && MEDIA_EXT.test(t.texto)).map((t) => t.texto),
+  )
 }
 
 export const decideMeasureMedia = (command, probeFn = probe, exists = existsSync) => {
   if (!command) return null
-  const cmd = String(command)
-  if (!MEDIA_CONSUMERS.test(cmd)) return null
-
-  const paths = mediaArgsIn(cmd).filter((p) => exists(resolve(p)))
+  const paths = ordenes(String(command))
+    .filter((o) => enrolaVoz(o.palabras))
+    .flatMap((o) => o.palabras.filter((t) => !t.opaco && MEDIA_EXT.test(t.texto)))
+    .map((t) => t.texto)
+    .filter((p) => exists(resolve(p)))
   if (paths.length === 0) return null
 
   const rows = paths.map((p) => {
@@ -125,5 +149,16 @@ export const decideMeasureMedia = (command, probeFn = probe, exists = existsSync
       `4,6 MB ÷ 32 KB/s ≈ 143 s, que además cuadraba con el índice. Los dos pasos\n` +
       `estaban mal y coincidían entre sí. Duraba 3,6 s.\n\n` +
       `Si estos números son los que esperabas, adelante.`,
+    context:
+      `ffprobe measured the audio this enrollment reads: ` +
+      rows
+        .map(({ path, m }) =>
+          m
+            ? `${path} is ${m.seconds == null ? 'of unknown length' : `${m.seconds.toFixed(1)} seconds`}, ` +
+              `${m.sampleRate ?? '?'} Hz, ${m.channels ?? '?'} channel(s), ${m.codec ?? '?'}`
+            : `${path} could not be read by ffprobe`,
+        )
+        .join('; ') +
+      `. A voiceprint enrolled from under 10 seconds of audio is much weaker, and nothing fails to say so.`,
   }
 }
