@@ -497,6 +497,8 @@ describe('la revisión antes de publicar', () => {
   it('quien modera sabe que hay foto pero no la ve, y la foto sale sólo con la queja publicada', () => {
     const avisos = sinComentariosTs(lee('bot/src/services/avisos-admin.ts'))
     expect(METODOLOGIA).toContain('sabe si la queja trae una, pero no la ve')
+    // Y en la lista de lo que firma una persona, la foto consta como excepción.
+    expect(METODOLOGIA).toContain('se anonimiza y se publica sin que nadie la vea')
     expect(AVISO).toContain('sin la foto, que no ve')
     expect(avisos).toMatch(/Trae foto/)
     expect(avisos).not.toMatch(/send(Photo|MediaGroup|Document)/)

@@ -59,7 +59,8 @@ Telegram  ──────→  grammy bot  ──────→  SQLite (WAL,
 HTTP (webhook mode only):
   POST <path of WEBHOOK_URL>  (Telegram only: X-Telegram-Bot-Api-Secret-Token, else 401)
   GET /health                (degraded when the review queue is stuck: no admins,
-                              a queja whose card no current admin holds, or a wait > 48 h)
+                              a queja whose card no current admin holds, a wait > 48 h,
+                              or a card waiting > 24 h to lose a withdrawn queja's text)
   GET /export/quejas.json    (bearer-auth via EXPORT_TOKEN)
   GET /batch/current.{md,html}
   GET /sindic/<q-id>.{md,html}
