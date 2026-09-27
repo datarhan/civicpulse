@@ -193,6 +193,20 @@ flyctl ssh console --app munigraph-ribarroja
 # Inside: /data/bot.db is the SQLite file. Use sqlite3 if needed.
 ```
 
+### Recalcular los barrios de las quejas guardadas
+
+Desde el 2026-09-27 una ubicación se sitúa contra el término y con un radio por
+barrio (`src/scraper/situar-barrio.ts`); las quejas anteriores conservan el
+barrio de la regla vieja hasta que alguien decida cambiarlo. En seco primero:
+
+```bash
+flyctl ssh console --app munigraph-ribarroja -C "node_modules/.bin/tsx scripts/rebarrio.ts"
+```
+
+Lista cada queja que cambiaría, con el antes, el después y por qué. Si es lo
+esperado, `--aplicar` los cambia; cada cambio deja un evento `barrio_corregido`
+que `/estado` enseña, y la web lo recoge en la siguiente exportación.
+
 ### Rotate the BOT_TOKEN
 
 ```bash
