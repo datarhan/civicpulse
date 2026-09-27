@@ -406,7 +406,7 @@ export default function AvisoLegal() {
             <strong>Tu identidad de Telegram</strong> (el ID numérico; el nombre de usuario ya no se
             guarda) — <strong>nunca</strong> se publica; sólo sirve para que puedas consultar,
             apoyar o eliminar tus propias quejas, y sólo se guarda si escribes o apoyas una, o te
-            suscribes a sus avisos
+            suscribes a los resúmenes semanales del bot
           </li>
           <li>
             <strong>Fotografía adjunta</strong> (si la envías) — el bot no guarda la imagen
@@ -474,9 +474,9 @@ export default function AvisoLegal() {
           <strong>Borrar todos tus datos</strong>: <code>/borrar_mis_datos</code> hace de una vez lo
           que <code>/olvidar</code> hace queja a queja, y algo más. Retira todas tus quejas igual
           que <code>/olvidar</code>, borra tus apoyos —las quejas que apoyaste dejan de contar el
-          tuyo— y tus suscripciones a avisos, y al final borra tu identidad de Telegram del registro
-          del bot. Antes pregunta, con un botón, porque no se puede deshacer, y al terminar dice
-          cuánto ha borrado de cada cosa.
+          tuyo— y tus suscripciones a los resúmenes semanales, y al final borra tu identidad de
+          Telegram del registro del bot. Antes pregunta, con un botón, porque no se puede deshacer,
+          y al terminar dice cuánto ha borrado de cada cosa.
         </p>
         <p>
           <strong>Historial git e inmutabilidad de la cadena de custodia</strong>: el snapshot
