@@ -4,7 +4,7 @@ import {
   addApoyo,
   autorTelegram,
   esAutor,
-  getQuejaViva,
+  getQuejaPublica,
   VERIFIED_THRESHOLD,
 } from '../db/queries.ts'
 import type { Channel } from '../services/channel.ts'
@@ -18,7 +18,8 @@ export function registerApoyar(bot: Bot<MyContext>, db: Db, channel: Channel) {
       await ctx.reply('Uso: `/apoyar Q-XXXX`', { parse_mode: 'Markdown' })
       return
     }
-    const q = getQuejaViva(db, id)
+    // Sólo se apoya lo público: una queja sin publicar no la conoce nadie más.
+    const q = getQuejaPublica(db, id)
     if (!q) {
       await ctx.reply(`No encuentro la queja \`${id}\`.`, { parse_mode: 'Markdown' })
       return

@@ -14,7 +14,7 @@
 
 import type { Db } from '../db/client.ts'
 import type { QuejaRow } from '../db/queries.ts'
-import { setState } from '../db/queries.ts'
+import { setState, SQL_PUBLICA } from '../db/queries.ts'
 import { routeUsingLocalOfficials } from './router.ts'
 import { diasDePlazo } from '../../../src/scraper/queja-router.ts'
 import { isLoregFrozen } from './freeze.ts'
@@ -74,16 +74,17 @@ export function checkSilencio(
   }
   const rows = db
     .prepare(
-      // `deleted_at IS NULL` no es una optimización: es el derecho al olvido.
-      // `postSilencio` publica en el canal el id y el TÍTULO literal de la
-      // queja, así que una retirada con `/olvidar` que siguiera entrando aquí
-      // volvía a publicarse meses después de que su autor la borrara. La fila se
+      // `SQL_PUBLICA` no es una optimización: es el derecho al olvido y la
+      // revisión. `postSilencio` publica en el canal el id y el TÍTULO literal
+      // de la queja, así que una retirada con `/olvidar` que siguiera entrando
+      // aquí volvía a publicarse meses después de que su autor la borrara, y una
+      // sin publicar saldría por aquí sin que nadie la hubiera revisado. La fila se
       // conserva para auditoría (`CONSERVACION_QUEJAS_ANIOS`, art. 55 LOPD-GDD);
       // lo que no se conserva es el derecho a seguir publicándola.
       `SELECT * FROM quejas
        WHERE state IN ('registrada','notificada_10d')
          AND registered_at IS NOT NULL
-         AND deleted_at IS NULL`,
+         AND ${SQL_PUBLICA}`,
     )
     .all() as QuejaRow[]
 

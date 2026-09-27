@@ -2,7 +2,6 @@ import { describe, expect, it, beforeEach } from 'vitest'
 import { openDb, type Db } from '../src/db/client'
 import {
   addApoyo,
-  createQueja,
   setState,
   softDeleteQueja,
   type NewQuejaInput,
@@ -15,9 +14,10 @@ import {
   renderBatchHtml,
   selectBatch,
 } from '../src/services/batch'
+import { creaPublicada } from './helpers/publicada'
 
 function seed(db: Db, overrides: Partial<NewQuejaInput> = {}) {
-  return createQueja(db, {
+  return creaPublicada(db, {
     autor: autorTelegram(1),
     category: 'via_publica',
     title: 'Bache sin reparar',

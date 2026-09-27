@@ -15,8 +15,9 @@
 import type { Db } from '../db/client.ts'
 import {
   countApoyos,
-  getQuejaViva,
+  getQuejaPublica,
   setState,
+  sqlPublica,
   VERIFIED_THRESHOLD,
   type QuejaRow,
 } from '../db/queries.ts'
@@ -82,7 +83,7 @@ export function selectBatch(db: Db, limit = 10): BatchItem[] {
          SELECT queja_id, COUNT(*) as n FROM apoyos GROUP BY queja_id
        ) a ON a.queja_id = q.id
        WHERE q.state = 'apoyada_verificada'
-         AND q.deleted_at IS NULL
+         AND ${sqlPublica('q')}
        ORDER BY apoyos_count DESC, q.created_at ASC
        LIMIT ?`,
     )
@@ -255,7 +256,7 @@ export function registerBatch(db: Db, input: RegisterBatchInput): RegisterBatchR
 
   const tx = db.transaction(() => {
     for (const id of input.ids) {
-      const q = getQuejaViva(db, id)
+      const q = getQuejaPublica(db, id)
       if (!q) {
         failed.push({ id, reason: 'not found' })
         continue

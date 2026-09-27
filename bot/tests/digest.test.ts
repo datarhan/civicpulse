@@ -2,7 +2,6 @@ import { describe, expect, it, beforeEach } from 'vitest'
 import { openDb, type Db } from '../src/db/client'
 import {
   addSubscription,
-  createQueja,
   listUserSubscriptions,
   removeSubscription,
   softDeleteQueja,
@@ -10,6 +9,7 @@ import {
   autorTelegram,
 } from '../src/db/queries'
 import { runDigestOnce } from '../src/services/digest'
+import { creaPublicada } from './helpers/publicada'
 
 function q(overrides: Partial<NewQuejaInput> = {}): NewQuejaInput {
   return {
@@ -69,8 +69,14 @@ describe('bot · digest runDigestOnce', () => {
       captured.push({ userId, text })
     }
 
-    createQueja(db, q({ autor: autorTelegram(1), neighborhood: 'casco', category: 'via_publica' }))
-    createQueja(db, q({ autor: autorTelegram(2), neighborhood: 'polígono', category: 'limpieza' }))
+    creaPublicada(
+      db,
+      q({ autor: autorTelegram(1), neighborhood: 'casco', category: 'via_publica' }),
+    )
+    creaPublicada(
+      db,
+      q({ autor: autorTelegram(2), neighborhood: 'polígono', category: 'limpieza' }),
+    )
 
     addSubscription(db, 999, 'barrio', 'casco')
     const r = runDigestOnce(db, sendDm, new Date('2026-04-21T09:00:00Z'))
@@ -88,7 +94,7 @@ describe('bot · digest runDigestOnce', () => {
       captured.push({ userId, text })
     }
 
-    createQueja(db, q({ neighborhood: 'casco' }))
+    creaPublicada(db, q({ neighborhood: 'casco' }))
     addSubscription(db, 999, 'barrio', 'polígono')
     const r = runDigestOnce(db, sendDm, new Date('2026-04-21T09:00:00Z'))
     expect(r.usersDigested).toBe(0)
@@ -101,7 +107,7 @@ describe('bot · digest runDigestOnce', () => {
       captured.push({ userId, text })
     }
 
-    const queja = createQueja(db, q({ autor: autorTelegram(1), neighborhood: 'casco' }))
+    const queja = creaPublicada(db, q({ autor: autorTelegram(1), neighborhood: 'casco' }))
     softDeleteQueja(db, queja.id, autorTelegram(1))
     addSubscription(db, 999, 'barrio', 'casco')
 
@@ -116,7 +122,7 @@ describe('bot · digest runDigestOnce', () => {
       captured.push({ userId, text })
     }
 
-    createQueja(db, q({ neighborhood: 'casco', category: 'via_publica' }))
+    creaPublicada(db, q({ neighborhood: 'casco', category: 'via_publica' }))
     addSubscription(db, 999, 'barrio', 'casco')
     addSubscription(db, 999, 'categoria', 'via_publica')
 
@@ -135,7 +141,7 @@ describe('bot · digest runDigestOnce', () => {
     }
 
     // Simulate an old queja by backdating created_at.
-    const queja = createQueja(db, q({ neighborhood: 'casco' }))
+    const queja = creaPublicada(db, q({ neighborhood: 'casco' }))
     db.prepare(`UPDATE quejas SET created_at = ? WHERE id = ?`).run(
       '2020-01-01T00:00:00Z',
       queja.id,

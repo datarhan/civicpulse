@@ -20,7 +20,6 @@ import { readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { openDb, type Db } from '../src/db/client'
 import {
-  createQueja,
   getQuejaViva,
   setState,
   softDeleteQueja,
@@ -30,9 +29,10 @@ import {
 import { registerBatch } from '../src/services/batch'
 import { computeRanking } from '../src/commands/ranking'
 import { computeDigest } from '../src/commands/digest'
+import { creaPublicada } from './helpers/publicada'
 
 function seed(db: Db, overrides: Partial<NewQuejaInput> = {}) {
-  return createQueja(db, {
+  return creaPublicada(db, {
     autor: autorTelegram(1),
     category: 'via_publica',
     title: 'Bache sin reparar',

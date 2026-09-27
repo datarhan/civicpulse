@@ -62,6 +62,26 @@ export const BASE_V0 = readFileSync(resolve(HERE, 'schema.sql'), 'utf8')
 export const CANALES = ['telegram', 'whatsapp'] as const
 export type Canal = (typeof CANALES)[number]
 
+/**
+ * Dónde está una queja en la revisión antes de publicar. Sólo `publicada` sale
+ * al público (`SQL_PUBLICA`, db/queries.ts). Están TODOS los que hará falta
+ * —también `retenida`, que es la de la revisión automática—: el CHECK de la
+ * migración 2 los escribe literales, y SQLite no deja cambiar un CHECK sin
+ * reconstruir `quejas`, que es la tabla que no se reconstruye nunca.
+ */
+export const MODERACIONES = [
+  'pendiente',
+  'retenida',
+  'publicada',
+  'descartada',
+  'retirada',
+] as const
+export type Moderacion = (typeof MODERACIONES)[number]
+
+/** Lo que se anota en `moderaciones`: las decisiones, más `heredada` (lo que ya estaba publicado). */
+export const DECISIONES_MODERACION = ['heredada', ...MODERACIONES] as const
+export type DecisionModeracion = (typeof DECISIONES_MODERACION)[number]
+
 export interface Migracion {
   version: number
   nombre: string
@@ -159,8 +179,70 @@ function identidadPorCiudadano(db: Db): void {
   }
 }
 
+/**
+ * Migración 2 — la revisión antes de publicar.
+ *
+ * Hasta el 2026-09-27 una queja se publicaba en el acto, en la web y en el canal
+ * público de Telegram, sin que nadie la leyera. Ahora nace `pendiente` —es el
+ * valor por defecto: publicar es una decisión, no lo que pasa si nadie hace
+ * nada— y sólo sale cuando está `publicada`. Lo que ya estaba publicado lo
+ * sigue estando, con `publicada_at` = su fecha de alta, y consta como
+ * `heredada` en `moderaciones`, el registro append-only de decisiones (no como
+ * evento: `/estado` pinta los eventos a cualquiera). `avisos_admin` guarda qué
+ * tarjeta recibió cada administrador, para cambiarlas todas al decidir y para
+ * reenviar la que no llegó a nadie.
+ *
+ * Sólo añade: volver a la imagen anterior no rompe nada, y una base v2 con el
+ * código v1 se queda como está (`migrar` no toca una base más nueva).
+ */
+function revisionAntesDePublicar(db: Db): void {
+  db.exec(`
+    ALTER TABLE quejas ADD COLUMN moderacion TEXT NOT NULL DEFAULT 'pendiente'
+      CHECK (moderacion IN ('pendiente', 'retenida', 'publicada', 'descartada', 'retirada'));
+    ALTER TABLE quejas ADD COLUMN publicada_at TEXT;
+    UPDATE quejas SET moderacion = 'publicada', publicada_at = created_at;
+    CREATE INDEX idx_quejas_moderacion ON quejas(moderacion);
+
+    CREATE TABLE moderaciones (
+      id         INTEGER PRIMARY KEY,
+      queja_id   TEXT NOT NULL,
+      decision   TEXT NOT NULL
+        CHECK (decision IN ('heredada', 'pendiente', 'retenida', 'publicada', 'descartada', 'retirada')),
+      por        TEXT NOT NULL,
+      motivo     TEXT,
+      creada_at  TEXT NOT NULL DEFAULT (datetime('now')),
+      FOREIGN KEY (queja_id) REFERENCES quejas(id) ON DELETE CASCADE
+    );
+    CREATE INDEX idx_moderaciones_queja ON moderaciones(queja_id);
+    INSERT INTO moderaciones (queja_id, decision, por)
+      SELECT id, 'heredada', 'migracion' FROM quejas ORDER BY rowid;
+
+    CREATE TABLE avisos_admin (
+      queja_id    TEXT NOT NULL,
+      tipo        TEXT NOT NULL,
+      admin_id    INTEGER NOT NULL,
+      message_id  INTEGER NOT NULL,
+      enviado_at  TEXT NOT NULL DEFAULT (datetime('now')),
+      PRIMARY KEY (queja_id, tipo, admin_id),
+      FOREIGN KEY (queja_id) REFERENCES quejas(id) ON DELETE CASCADE
+    );
+  `)
+  const quejas = cuentaDe(db, 'SELECT COUNT(*) AS n FROM quejas')
+  const publicadas = cuentaDe(db, "SELECT COUNT(*) AS n FROM quejas WHERE moderacion = 'publicada'")
+  const heredadas = cuentaDe(
+    db,
+    "SELECT COUNT(*) AS n FROM moderaciones WHERE decision = 'heredada'",
+  )
+  if (publicadas !== quejas || heredadas !== quejas) {
+    throw new Error(
+      `[migrar] revision-antes-de-publicar: ${quejas} quejas, ${publicadas} publicadas y ${heredadas} heredadas`,
+    )
+  }
+}
+
 export const MIGRACIONES: readonly Migracion[] = [
   { version: 1, nombre: 'identidad-por-ciudadano', aplicar: identidadPorCiudadano },
+  { version: 2, nombre: 'revision-antes-de-publicar', aplicar: revisionAntesDePublicar },
 ]
 
 export interface ResultadoMigracion {

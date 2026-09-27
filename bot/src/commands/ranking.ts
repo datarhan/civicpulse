@@ -1,5 +1,6 @@
 import type { Bot } from 'grammy'
 import type { Db } from '../db/client.ts'
+import { SQL_PUBLICA } from '../db/queries.ts'
 import type { MyContext } from '../types.ts'
 
 function prettyBarrio(slug: string): string {
@@ -41,7 +42,7 @@ export function computeRanking(db: Db): BarrioStats[] {
          SUM(CASE WHEN state IN ('capturada','apoyada_verificada','registrada','notificada_10d','en_tramite') THEN 1 ELSE 0 END) as pendientes
        FROM quejas
        WHERE neighborhood IS NOT NULL
-         AND deleted_at IS NULL
+         AND ${SQL_PUBLICA}
          AND date(created_at) > date('now','-60 days')
        GROUP BY neighborhood`,
     )
@@ -71,7 +72,7 @@ export function quejasSinBarrio60d(db: Db): number {
     .prepare(
       `SELECT COUNT(*) AS n FROM quejas
         WHERE neighborhood IS NULL
-          AND deleted_at IS NULL
+          AND ${SQL_PUBLICA}
           AND date(created_at) > date('now','-60 days')`,
     )
     .get() as { n: number }

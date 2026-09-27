@@ -22,7 +22,6 @@ import { openDb, type Db } from '../src/db/client'
 import {
   addApoyo,
   countApoyos,
-  createQueja,
   getQueja,
   listEvents,
   setState,
@@ -31,6 +30,7 @@ import {
   autorTelegram,
 } from '../src/db/queries'
 import { selectBatch } from '../src/services/batch'
+import { creaPublicada } from './helpers/publicada'
 
 function sampleQueja(overrides: Partial<NewQuejaInput> = {}): NewQuejaInput {
   return {
@@ -58,7 +58,7 @@ describe('addApoyo — promueve al alcanzar el umbral', () => {
   let id: string
   beforeEach(() => {
     db = openDb(':memory:')
-    id = createQueja(db, sampleQueja()).id
+    id = creaPublicada(db, sampleQueja()).id
   })
 
   it('por debajo del umbral no promueve (el control)', () => {
@@ -106,7 +106,7 @@ describe('addApoyo — promueve al alcanzar el umbral', () => {
 
   it('tampoco degrada una en trámite ni una resuelta', () => {
     for (const estado of ['en_tramite', 'resuelta'] as const) {
-      const otra = createQueja(db, sampleQueja()).id
+      const otra = creaPublicada(db, sampleQueja()).id
       setState(db, otra, estado)
       apoyan(db, otra, VERIFIED_THRESHOLD + 1)
       expect(getQueja(db, otra)?.state).toBe(estado)

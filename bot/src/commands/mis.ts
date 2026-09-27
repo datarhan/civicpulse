@@ -1,6 +1,7 @@
 import type { Bot } from 'grammy'
 import type { Db } from '../db/client.ts'
 import { autorTelegram, listUserQuejas } from '../db/queries.ts'
+import { REVISION_CORTA } from '../services/textos-revision.ts'
 import type { MyContext } from '../types.ts'
 
 export function registerMis(bot: Bot<MyContext>, db: Db) {
@@ -15,7 +16,11 @@ export function registerMis(bot: Bot<MyContext>, db: Db) {
         day: 'numeric',
         month: 'short',
       })
-      return `\`${q.id}\` · ${date} · ${q.state}\n  ${q.title.slice(0, 80)}`
+      const revision = REVISION_CORTA[q.moderacion]
+      return (
+        `\`${q.id}\` · ${date} · ${q.state}${revision ? ` · ${revision}` : ''}\n` +
+        `  ${q.title.slice(0, 80)}`
+      )
     })
     await ctx.reply(
       `📋 *Tus quejas:*\n\n${lines.join('\n\n')}\n\n` +

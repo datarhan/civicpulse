@@ -2,7 +2,6 @@ import { describe, expect, it, beforeEach } from 'vitest'
 import { openDb, type Db } from '../src/db/client'
 import {
   addApoyo,
-  createQueja,
   setState,
   softDeleteQueja,
   type NewQuejaInput,
@@ -11,9 +10,10 @@ import {
 import { buildSindicTemplate, renderSindicMarkdown, renderSindicHtml } from '../src/services/sindic'
 import { checkSilencio } from '../src/services/cron'
 import { routeUsingLocalOfficials } from '../src/services/router'
+import { creaPublicada } from './helpers/publicada'
 
 function seed(db: Db, overrides: Partial<NewQuejaInput> = {}) {
-  return createQueja(db, {
+  return creaPublicada(db, {
     autor: autorTelegram(1),
     category: 'via_publica',
     title: 'Bache profundo',

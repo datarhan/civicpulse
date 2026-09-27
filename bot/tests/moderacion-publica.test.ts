@@ -199,6 +199,8 @@ const NO_PUBLICOS: Record<string, string> = {
   'services/rebarrio.ts:planearRebarrio': 'corrige datos internos, publicados o no',
   'services/rebarrio.ts:aplicarRebarrio': 'corrige datos internos, publicados o no',
   'services/ciudadano.ts:olvidarTodo': 'lo suyo, de quien pide borrarlo',
+  'services/avisos-admin.ts:reenviarTarjetasPendientes':
+    'lo pendiente de revisión, para los administradores que la deciden',
 }
 
 describe('ningún lector nuevo filtra sólo por deleted_at', () => {
