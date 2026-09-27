@@ -77,3 +77,19 @@ npm run check:editorial --silent -- --staged
 # Sólo tiñe la poda ACTIVA. Un fichero de patrones apagado se informa y deja
 # pasar. Se devuelve todo con: npm run check:sparse -- --fix
 npm run check:sparse --silent
+
+# Y que estos ganchos corran también en los WORKTREES.
+#
+# husky escribe `core.hooksPath` RELATIVO (`.husky/_`) en el config que comparten
+# todos, git lo resuelve contra la raíz de cada worktree, y `.husky/_` sólo
+# existe donde alguien lo generó. El 27-09-2026 nueve de doce worktrees
+# comiteaban y empujaban sin ningún gancho —ni éste, ni la revisión del
+# pre-push— y git no decía nada.
+#
+# Aquí REPARA el valor compartido si husky ha vuelto a correr, y avisa de lo
+# demás. NO bloquea nunca, ni aunque la guarda reviente: este pre-commit es
+# también el de los agentes de launchd en el checkout principal, y lo roto en
+# OTRO worktree no puede parar sus commits de datos. La puerta con dientes es
+# monitor:health. Historia: scripts/check-hooks.ts
+npm run check:hooks --silent -- --desde-gancho ||
+  echo "[hooks] la guarda de ganchos no pudo correr (salida $?) — el commit sigue; míralo con: npm run check:hooks"

@@ -214,6 +214,12 @@ async function gather(): Promise<Observations> {
     // envejece. Además `assertExpectationsAreReal` prohíbe listar un script sin
     // instrumentar, y `press-lab` y `review-sweep` no instrumentan nada.
     'check:cron',
+    // La misma pregunta, para los ganchos de git: ¿corren? El 27-09-2026 nueve
+    // de doce worktrees comiteaban y empujaban sin ninguno, porque husky deja
+    // `core.hooksPath` relativo y `.husky/_` sólo existe donde se generó. En el
+    // pre-commit la guarda repara y no bloquea —es también el de los agentes—, y
+    // un worktree sin ganchos ni siquiera la ejecuta: su rojo vive aquí.
+    'check:hooks',
     // El despiece es un mapa derivado del código: si el extractor deja de
     // reconocer el repositorio, devuelve un dibujo en blanco sin quejarse. Los
     // suelos por carril son lo que convierte eso en un rojo.
