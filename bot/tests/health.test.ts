@@ -132,4 +132,22 @@ describe('buildHealth · la cola de revisión', () => {
     expect(h.degraded.join(' ')).toMatch(/50 h/)
     expect(buildHealth(wired, cola({ pendientes: 1, masAntiguaHoras: 47 })).status).toBe('ok')
   })
+
+  it('tarjetas que llevan más de un día esperando a perder el texto de una queja retirada', () => {
+    // La promesa de /aviso-legal —el texto sale de las tarjetas— depende de que esa
+    // cola se vacíe; si Telegram falla día tras día, sólo lo decía el registro.
+    const conCola = (masAntiguaHoras: number) => ({
+      ...base,
+      moderacion: {
+        pendientes: 0,
+        sinTarjeta: 0,
+        masAntiguaHoras: null,
+        porVaciar: { total: 2, masAntiguaHoras },
+      },
+    })
+    const h = buildHealth(wired, conCola(30))
+    expect(h.status).toBe('degraded')
+    expect(h.degraded.join(' ')).toMatch(/2 tarjeta\(s\).*30 h/)
+    expect(buildHealth(wired, conCola(3)).status).toBe('ok')
+  })
 })

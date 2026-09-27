@@ -5,6 +5,7 @@ import {
   avisarAdmins,
   completarSeguimientosPendientes,
   envioDesdeApi,
+  enviarTarjetaA,
   estadoModeracion,
   pasadaHoraria,
   reenviarTarjetasPendientes,
@@ -408,6 +409,7 @@ describe('lo que la revisión arrastraba roto (revisión de #137)', () => {
       pendientes: 1,
       sinTarjeta: 0,
       masAntiguaHoras: 0,
+      porVaciar: { total: 0, masAntiguaHoras: null },
     })
     expect(estadoModeracion(db, [9003])).toMatchObject({ pendientes: 1, sinTarjeta: 1 })
     expect(estadoModeracion(db, [])).toMatchObject({ pendientes: 1, sinTarjeta: 1 })
@@ -608,8 +610,9 @@ describe('lo que la revisión deja atrás (revisión de la pasada de #137)', () 
   })
 
   /** Un envío que lleva el estado de cada mensaje, y cuya primera llamada a `metodo` espera. */
-  function envioConEspera(metodo: 'enviar' | 'editar') {
+  function envioConEspera(metodo: 'enviar' | 'editar' | 'mensaje') {
     const mensajes = new Map<number, string>()
+    const avisados: number[] = []
     let siguiente = 500
     let primera = true
     let soltar!: () => void
@@ -631,9 +634,13 @@ describe('lo que la revisión deja atrás (revisión de la pasada de #137)', () 
         await detener('editar')
         mensajes.set(mid, html)
       },
-      mensaje: async () => ({ message_id: 1 }),
+      mensaje: async (chat) => {
+        await detener('mensaje')
+        avisados.push(chat)
+        return { message_id: 1 }
+      },
     }
-    return { envio, mensajes, soltar: () => soltar() }
+    return { envio, mensajes, avisados, soltar: () => soltar() }
   }
   const unTic = () => new Promise((r) => setTimeout(r, 0))
 
@@ -687,5 +694,95 @@ describe('lo que la revisión deja atrás (revisión de la pasada de #137)', () 
       .slice(antes)
       .map((l) => String(l.cuerpo.text))
     expect(nuevos.join('\n')).toMatch(/actualización diaria/)
+  })
+
+  const ruido = (autor: number) =>
+    createQueja(db, {
+      autor: autorTelegram(autor),
+      category: 'ruido',
+      title: 'Ruido nocturno',
+      detail: 'Ruido de madrugada todos los fines de semana en la calle del mercado.',
+    })
+  const farola = (autor: number) =>
+    createQueja(db, {
+      autor: autorTelegram(autor),
+      category: 'alumbrado',
+      title: 'Farola apagada',
+      detail: 'La farola de la plaza lleva apagada desde el lunes y la calle queda a oscuras.',
+    })
+
+  it('la pasada horaria no manda la tarjeta de una queja que se retiró mientras mandaba otras', async () => {
+    ruido(VECINO)
+    const q2 = farola(VECINA)
+    const { envio, mensajes, soltar } = envioConEspera('enviar')
+    // La pasada lee su lista, y la primera tarjeta se atasca…
+    const pasada = pasadaHoraria(db, { admins: [ADMIN_A], envio })
+    await unTic()
+    // …mientras la autora de la segunda la retira.
+    expect(softDeleteQueja(db, q2.id, autorTelegram(VECINA))).toBe(true)
+    await actualizarTarjetas(db, q2.id, { envio })
+    soltar()
+    await pasada
+    await pasadaHoraria(db, { admins: [ADMIN_A], envio })
+    // Control: la pasada sí mandó la de la queja viva.
+    expect([...mensajes.values()].some((html) => /ruido/i.test(html))).toBe(true)
+    for (const [mid, html] of mensajes) expect(html, `el mensaje ${mid}`).not.toMatch(/farola/i)
+  })
+
+  it('/revisar con una fila leída antes de la retirada no deja una tarjeta con el texto', async () => {
+    const viva = ruido(VECINO)
+    const q = farola(VECINA)
+    const { envio, mensajes } = envioConEspera('mensaje')
+    // Control: con una queja viva, la copia sale.
+    expect(await enviarTarjetaA(db, viva, ADMIN_A, envio)).toBe(true)
+    expect(mensajes.size).toBe(1)
+    // La fila se leyó antes de que su autora la retirara.
+    expect(softDeleteQueja(db, q.id, autorTelegram(VECINA))).toBe(true)
+    await enviarTarjetaA(db, q, ADMIN_A, envio)
+    await pasadaHoraria(db, { admins: [ADMIN_A], envio })
+    for (const [mid, html] of mensajes) expect(html, `el mensaje ${mid}`).not.toMatch(/farola/i)
+  })
+
+  it('no avisa a su autora de una decisión sobre la queja que acaba de retirar', async () => {
+    const q1 = ruido(VECINO)
+    const q2 = farola(VECINA)
+    expect(decidirModeracion(db, q1.id, 'publicar', `admin:${ADMIN_A}`).resultado).toBe('aplicada')
+    expect(decidirModeracion(db, q2.id, 'publicar', `admin:${ADMIN_A}`).resultado).toBe('aplicada')
+    const { envio, avisados, soltar } = envioConEspera('mensaje')
+    // El primer aviso se atasca, y mientras, la autora de la segunda la retira.
+    const pasada = completarSeguimientosPendientes(db, { envio })
+    await unTic()
+    expect(softDeleteQueja(db, q2.id, autorTelegram(VECINA))).toBe(true)
+    soltar()
+    await pasada
+    expect(avisados).toEqual([VECINO])
+  })
+
+  it('la pasada horaria vacía la tarjeta de una queja retirada que se quedó en avisos por cualquier camino', async () => {
+    const q = farola(VECINA)
+    const { envio, mensajes } = envioConEspera('mensaje')
+    await avisarAdmins(db, q, { admins: [ADMIN_A], envio })
+    expect([...mensajes.values()].join()).toMatch(/farola/i)
+    // Una retirada que no pasó por softDeleteQueja: su rastro sigue en avisos.
+    db.prepare(
+      "UPDATE quejas SET deleted_at = datetime('now'), ciudadano_id = NULL WHERE id = ?",
+    ).run(q.id)
+    await pasadaHoraria(db, { admins: [ADMIN_A], envio })
+    for (const [mid, html] of mensajes) expect(html, `el mensaje ${mid}`).not.toMatch(/farola/i)
+    expect(db.prepare('SELECT COUNT(*) AS n FROM avisos WHERE queja_id = ?').get(q.id)).toEqual({
+      n: 0,
+    })
+  })
+
+  it('la cola de tarjetas por vaciar, para /health', async () => {
+    let rota = false
+    h = botFalso(db, { falla: (metodo) => rota && metodo === 'editMessageText' && 502 })
+    const id = await presentar()
+    rota = true
+    await h.bot.handleUpdate(texto(VECINA, `/olvidar ${id}`))
+    expect(estadoModeracion(db, [ADMIN_A, ADMIN_B]).porVaciar).toEqual({
+      total: 2,
+      masAntiguaHoras: 0,
+    })
   })
 })
