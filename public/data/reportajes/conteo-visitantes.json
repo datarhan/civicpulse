@@ -243,7 +243,13 @@
         "enviadaEl": "2026-09-17",
         "via": "correo electrónico",
         "respuesta": null,
-        "pide": "Seguimiento de su respuesta del 16 de septiembre. Como su correo confirma que fue esa Secretaría de Estado la que amplió el plazo, se le pide lo que obra en su poder: copia de la resolución por la que lo amplió hasta agosto de 2026, de la solicitud de ampliación que la motivó —con quién la presentó y cuándo— y del documento en que se basa su afirmación de que el plan «ha sido efectivamente ejecutado»."
+        "pide": "Seguimiento de su respuesta del 16 de septiembre. Como su correo confirma que fue esa Secretaría de Estado la que amplió el plazo, se le pide lo que obra en su poder: copia de la resolución por la que lo amplió hasta agosto de 2026, de la solicitud de ampliación que la motivó —con quién la presentó y cuándo— y del documento en que se basa su afirmación de que el plan «ha sido efectivamente ejecutado».",
+        "incidencias": [
+          {
+            "fecha": "2026-09-24",
+            "texto": "El 24 de septiembre el Área de Planes de Sostenibilidad Turística contestó que la aportación del plan de Riba-roja al hito nº 221 del CID «ha quedado recogida en la aplicación de control y seguimiento de los Fondos Europeos del Ministerio de Hacienda (plataforma CoFFEE)», y que se acreditará con la justificación documental que se presente «ante la Comunidad Autónoma correspondiente», en los términos y plazos que ésta fijó al transferir los fondos al Ayuntamiento. Sobre la ampliación del plazo, que esa documentación no puede enviarse por su buzón de consultas y que hay que pedirla por el Portal de la Transparencia de la Administración General del Estado. No la resuelve: no entrega ninguno de los documentos pedidos."
+          }
+        ]
       },
       {
         "organismo": "Turisme Comunitat Valenciana",
