@@ -3,6 +3,8 @@ import { readFileSync, readdirSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { load } from 'js-yaml'
 
+import { TIPA, TRAGA, enElBot } from './setup/workflows.js'
+
 /**
  * ¿Ejecuta ALGUIEN las pruebas del bot?
  *
@@ -119,29 +121,13 @@ const workflowsLeidos = readdirSync(WF)
   .filter((f) => /\.ya?ml$/.test(f))
   .map((f) => ({ nombre: f, doc: load(readFileSync(join(WF, f), 'utf8')) }))
 
-/** Ejecuta los tipos: el script del paquete o `tsc` a pelo. */
-const TIPA = /\bnpm\s+(?:--prefix[= ]\S+\s+)?run\s+typecheck\b|\btsc\b/
-
-/** ¿Corre DENTRO de bot/? Por su directorio, el del trabajo, o un `cd`/`--prefix`. */
-function enElBot(doc, trabajo, paso) {
-  const dir =
-    paso['working-directory'] ??
-    trabajo?.defaults?.run?.['working-directory'] ??
-    doc?.defaults?.run?.['working-directory'] ??
-    '.'
-  return (
-    /^\.?\/?bot\/?$/.test(String(dir).trim()) ||
-    /\bcd\s+\.?\/?bot\/?\s*&&/.test(paso.run) ||
-    /--prefix[= ]\.?\/?bot\b/.test(paso.run)
-  )
-}
-
 /** Los pasos que comprueban los tipos del bot y cuyo fallo tumba el trabajo. */
 function pasosDeTipos({ nombre, doc }) {
   const out = []
   for (const [idTrabajo, trabajo] of Object.entries(doc?.jobs ?? {})) {
     for (const paso of trabajo?.steps ?? []) {
       if (typeof paso?.run !== 'string' || !TIPA.test(paso.run)) continue
+      if (TRAGA.test(paso.run)) continue
       if (!enElBot(doc, trabajo, paso)) continue
       if (paso['continue-on-error'] === true || trabajo?.['continue-on-error'] === true) continue
       if (paso.if !== undefined || trabajo?.if !== undefined) continue
@@ -201,6 +187,9 @@ describe('los tipos del bot los comprueba alguien', () => {
     const enBot = { run: 'npm run typecheck', 'working-directory': 'bot' }
     expect(ve(wf({ ...enBot, 'continue-on-error': true })), 'un fallo tragado').toBe(0)
     expect(ve(wf({ ...enBot, if: "github.event_name == 'push'" }))).toBe(0)
+    // Tragado en la misma línea: pasa en verde con el arranque sin compilar.
+    expect(ve(wf({ ...enBot, run: 'npm run typecheck || true' }))).toBe(0)
+    expect(ve(wf({ ...enBot, run: 'npm run typecheck || exit 0' }))).toBe(0)
   })
 
   it('algún workflow que se dispara solo comprueba los tipos DENTRO de bot/', () => {

@@ -4,6 +4,7 @@ import { join } from 'node:path'
 import { load } from 'js-yaml'
 
 import { VARIABLE_VERSION } from '../bot/src/services/health.ts'
+import { PRUEBA, TIPA, TRAGA, enElBot } from './setup/workflows.js'
 
 /**
  * ¿Despliega ALGUIEN el bot cuando su código cambia?
@@ -123,13 +124,30 @@ describe('el bot lo despliega alguien', () => {
   // Un despliegue que no puede autenticarse tiene que DECIRLO, no pasar en
   // verde sin haber desplegado. Es la regla 2 de DATA_INTEGRITY: una pasada
   // tiene que probar que hizo el trabajo, y «no hice nada» no lo prueba.
+  //
+  // Hasta el 2026-09-27 esto buscaba «FLY_API_TOKEN» y «exit 1» en cualquier
+  // parte del fichero, y en cuanto el despliegue ganó un paso de comprobación
+  // posterior —con su propio `exit 1`— la guarda aprobaba aunque se borrara el
+  // paso del secreto. Ahora lee el YAML: un paso ANTES del despliegue, en el
+  // mismo trabajo, que falla si el secreto está vacío.
   it('si falta el secreto, falla en vez de fingir que desplegó', () => {
-    const cubren = workflows.filter((w) => DESPLIEGA.test(w.texto))
-    const comprueban = cubren.filter((w) => /FLY_API_TOKEN/.test(w.texto) && /exit 1/.test(w.texto))
+    const despliegue = { run: 'flyctl deploy --remote-only' }
+    const secreto = { run: 'if [ -z "$FLY_API_TOKEN" ]; then\n  echo falta\n  exit 1\nfi' }
+    // El detector, con sus controles.
+    expect(compruebaElSecreto({ steps: [secreto, despliegue] })).toBe(true)
+    expect(compruebaElSecreto({ steps: [despliegue, secreto] }), 'después no sirve').toBe(false)
+    expect(compruebaElSecreto({ steps: [{ ...secreto, if: 'false' }, despliegue] })).toBe(false)
+    expect(compruebaElSecreto({ steps: [secreto, { ...despliegue, if: 'false' }] })).toBe(false)
+    expect(compruebaElSecreto({ steps: [{ run: 'exit 1' }, despliegue] })).toBe(false)
+    expect(compruebaElSecreto({ steps: [despliegue] })).toBe(false)
+
+    const sinComprobar = trabajosDeDespliegue()
+      .filter(({ doc, id }) => !compruebaElSecreto(doc.jobs[id]))
+      .map(({ nombre, id }) => `${nombre} · ${id}`)
     expect(
-      comprueban.map((w) => w.nombre),
+      sinComprobar,
       'sin comprobar el secreto, un despliegue que no ocurre se ve igual que uno que sí',
-    ).not.toEqual([])
+    ).toEqual([])
   })
 })
 
@@ -154,24 +172,8 @@ const leidos = readdirSync(WF)
 const DESPLIEGA_PASO = /(?:flyctl|fly)\s+deploy\b/
 const despliegaPaso = (paso) => typeof paso?.run === 'string' && DESPLIEGA_PASO.test(paso.run)
 
-/** Ejecuta los tipos del paquete o `tsc` a pelo (el criterio de bot-tests-cubiertos). */
-const TIPA = /\bnpm\s+(?:--prefix[= ]\S+\s+)?run\s+typecheck\b|\btsc\b/
-/** Ejecuta la suite: `npm test`, `npm run test` o vitest. */
-const PRUEBA = /\bnpm\s+(?:--prefix[= ]\S+\s+)?(?:run\s+)?test\b|\bvitest\b/
-
-/** ¿Corre DENTRO de bot/? Por su directorio, el del trabajo, o un `cd`/`--prefix`. */
-function enElBot(doc, trabajo, paso) {
-  const dir =
-    paso['working-directory'] ??
-    trabajo?.defaults?.run?.['working-directory'] ??
-    doc?.defaults?.run?.['working-directory'] ??
-    '.'
-  return (
-    /^\.?\/?bot\/?$/.test(String(dir).trim()) ||
-    /\bcd\s+\.?\/?bot\/?\s*&&/.test(paso.run) ||
-    /--prefix[= ]\.?\/?bot\b/.test(paso.run)
-  )
-}
+/** Un `if:` que deja correr el trabajo aunque lo anterior haya fallado o se haya cancelado. */
+const IGNORA_FALLOS = /\b(?:always|cancelled|failure)\s*\(/
 
 /** Pasos que cuentan: en bot/, y que no se tragan su fallo ni cuelgan de un `if:`. */
 const pasosQueCuentan = (doc, trabajo, pasos) =>
@@ -179,6 +181,7 @@ const pasosQueCuentan = (doc, trabajo, pasos) =>
     (p) =>
       typeof p?.run === 'string' &&
       enElBot(doc, trabajo, p) &&
+      !TRAGA.test(p.run) &&
       p['continue-on-error'] !== true &&
       p.if === undefined,
   )
@@ -212,17 +215,24 @@ const necesita = (trabajo) =>
  * el MISMO trabajo los corra antes del paso de despliegue, o que dependa (por
  * `needs`, aunque sea de segunda mano) de un trabajo que los corre, o de uno que
  * llama a un workflow reutilizable que los corre.
+ *
+ * No vale si el trabajo corre aunque lo anterior falle (`always()`,
+ * `cancelled()`, `failure()`), ni si el trabajo de pruebas puede saltarse con un
+ * `if:`: saltado, el despliegue se salta con él y el workflow sale en verde sin
+ * haber probado nada.
  */
 function esperaALasPruebas(doc, idTrabajo, vistos = new Set()) {
   const trabajo = doc.jobs?.[idTrabajo]
-  const pasos = trabajo?.steps ?? []
+  if (!trabajo) return false
+  if (typeof trabajo.if === 'string' && IGNORA_FALLOS.test(trabajo.if)) return false
+  const pasos = trabajo.steps ?? []
   const i = pasos.findIndex(despliegaPaso)
   if (i > 0 && pruebanElBot(doc, trabajo, pasos.slice(0, i))) return true
   for (const id of necesita(trabajo)) {
     if (vistos.has(id)) continue
     vistos.add(id)
     const previo = doc.jobs?.[id]
-    if (!previo) continue
+    if (!previo || previo.if !== undefined) continue
     if (pruebanElBot(doc, previo, previo.steps ?? [])) return true
     const otro = llamado(previo)
     if (otro && Object.values(otro.jobs ?? {}).some((t) => pruebanElBot(otro, t, t.steps ?? [])))
@@ -230,6 +240,45 @@ function esperaALasPruebas(doc, idTrabajo, vistos = new Set()) {
     if (esperaALasPruebas(doc, id, vistos)) return true
   }
   return false
+}
+
+/** ¿Un paso ANTES del despliegue, en el mismo trabajo, falla si el secreto de Fly está vacío? */
+function compruebaElSecreto(trabajo) {
+  const pasos = trabajo?.steps ?? []
+  const i = pasos.findIndex(despliegaPaso)
+  if (i < 0 || pasos[i].if !== undefined) return false
+  return pasos
+    .slice(0, i)
+    .some(
+      (p) =>
+        typeof p?.run === 'string' &&
+        /-z\s+"?\$\{?FLY_API_TOKEN\}?"?/.test(p.run) &&
+        /\bexit 1\b/.test(p.run) &&
+        p.if === undefined &&
+        p['continue-on-error'] !== true,
+    )
+}
+
+/**
+ * ¿Un paso DESPUÉS del despliegue pregunta a `/health` y COMPARA su `version` con
+ * el commit, y falla si no coincide? Sin `if:`: un paso que puede saltarse no
+ * comprueba nada. Imprimir el commit al lado de un curl no es compararlo.
+ */
+function compruebaLaVersion(trabajo) {
+  const pasos = trabajo?.steps ?? []
+  const i = pasos.findIndex(despliegaPaso)
+  if (i < 0) return false
+  return pasos.slice(i + 1).some((p) => {
+    if (typeof p?.run !== 'string' || p.if !== undefined || p['continue-on-error'] === true)
+      return false
+    const texto = `${p.run}\n${JSON.stringify(p.env ?? {})}`
+    return (
+      /\/health\b/.test(texto) &&
+      /\.version\b/.test(p.run) &&
+      /github\.sha|GITHUB_SHA/.test(texto) &&
+      /\bexit 1\b/.test(p.run)
+    )
+  })
 }
 
 /** Los trabajos que despliegan el bot, en workflows que se disparan con un push. */
@@ -271,10 +320,47 @@ describe('el despliegue del bot espera a sus pruebas y comprueba lo que quedó',
     expect(ve({ p: { steps: [pruebas] }, deploy: { needs: ['p'], steps: [despliegue] } })).toBe(
       false,
     )
-    // Un fallo tragado no espera a nada.
+    // Un fallo tragado no espera a nada, ni con `continue-on-error` ni en la línea.
     expect(
       ve({
         p: { steps: [tipos, { ...pruebas, 'continue-on-error': true }] },
+        deploy: { needs: 'p', steps: [despliegue] },
+      }),
+    ).toBe(false)
+    expect(
+      ve({
+        p: { steps: [tipos, { ...pruebas, run: 'npm test || true' }] },
+        deploy: { needs: 'p', steps: [despliegue] },
+      }),
+    ).toBe(false)
+    // Un despliegue que corre aunque las pruebas fallen.
+    for (const si of ['always()', '!cancelled()', 'failure() || success()']) {
+      expect(
+        ve({
+          p: { steps: [tipos, pruebas] },
+          deploy: { needs: 'p', if: si, steps: [despliegue] },
+        }),
+        si,
+      ).toBe(false)
+    }
+    // Por el workflow reutilizable DE VERDAD: bot.yml acepta que lo llamen y prueba el bot.
+    expect(
+      ve({
+        p: { uses: './.github/workflows/bot.yml' },
+        deploy: { needs: 'p', steps: [despliegue] },
+      }),
+    ).toBe(true)
+    // …pero si el trabajo que lo llama puede saltarse, el despliegue se salta con él en verde.
+    expect(
+      ve({
+        p: { if: "github.event_name == 'push'", uses: './.github/workflows/bot.yml' },
+        deploy: { needs: 'p', steps: [despliegue] },
+      }),
+    ).toBe(false)
+    // Un workflow que no acepta `workflow_call` no se puede llamar.
+    expect(
+      ve({
+        p: { uses: './.github/workflows/e2e.yml' },
         deploy: { needs: 'p', steps: [despliegue] },
       }),
     ).toBe(false)
@@ -307,25 +393,86 @@ describe('el despliegue del bot espera a sus pruebas y comprueba lo que quedó',
   })
 
   it('después de desplegar, comprueba que /health dice ESE commit, y falla si no', () => {
+    const despliegue = { run: 'flyctl deploy --remote-only' }
+    const compara = {
+      env: { ESPERADA: '${{ github.sha }}' },
+      run: 'v=$(curl -fsS "$B/health" | jq -r .version)\n[ "$v" = "$ESPERADA" ] || exit 1',
+    }
+    // El detector, con sus controles.
+    expect(compruebaLaVersion({ steps: [despliegue, compara] })).toBe(true)
+    expect(compruebaLaVersion({ steps: [compara, despliegue] }), 'antes no sirve').toBe(false)
+    expect(
+      compruebaLaVersion({ steps: [despliegue, { ...compara, if: "github.event_name == 'x'" }] }),
+      'un paso que puede saltarse no comprueba nada',
+    ).toBe(false)
+    expect(
+      compruebaLaVersion({
+        steps: [despliegue, { run: 'curl -f "$B/health" || exit 1\necho ${{ github.sha }}' }],
+      }),
+      'imprimir el commit al lado de un curl no es compararlo',
+    ).toBe(false)
+
     const sinComprobar = trabajosDeDespliegue()
-      .filter(({ doc, id }) => {
-        const pasos = doc.jobs[id].steps ?? []
-        const i = pasos.findIndex(despliegaPaso)
-        return !pasos.slice(i + 1).some((p) => {
-          const texto = `${p?.run ?? ''}\n${JSON.stringify(p?.env ?? {})}`
-          return (
-            typeof p?.run === 'string' &&
-            p['continue-on-error'] !== true &&
-            /\/health\b/.test(texto) &&
-            /github\.sha|GITHUB_SHA/.test(texto) &&
-            /\bexit 1\b/.test(p.run)
-          )
-        })
-      })
+      .filter(({ doc, id }) => !compruebaLaVersion(doc.jobs[id]))
       .map(({ nombre, id }) => `${nombre} · ${id}`)
     expect(
       sinComprobar,
       '«flyctl deploy» en verde no dice qué commit sirve la máquina: compáralo con el fusionado',
     ).toEqual([])
+  })
+
+  // La dirección del bot tiene una sola fuente, `WEBHOOK_URL` en bot/fly.toml. Una
+  // copia a mano en el workflow se quedaría apuntando a otro sitio el día que se
+  // renombre la app o se le ponga un dominio, y cada despliegue saldría en rojo.
+  it('la comprobación lee la dirección del bot de bot/fly.toml, no de una copia', () => {
+    const fly = readFileSync(join(__dirname, '..', 'bot', 'fly.toml'), 'utf8')
+    expect(fly).toMatch(/^\s*WEBHOOK_URL\s*=\s*"https:\/\//m) // el control: la fuente existe
+    for (const { doc, id } of trabajosDeDespliegue()) {
+      const texto = JSON.stringify(doc.jobs[id].steps ?? [])
+      expect(texto).toMatch(/bot\/fly\.toml/)
+      expect(texto).toMatch(/WEBHOOK_URL/)
+      expect(texto, 'una dirección escrita a mano').not.toMatch(/https:\/\/[a-z0-9.-]+\.fly\.dev/)
+    }
+  })
+
+  // `workflow_dispatch` acepta cualquier rama, y el bot tiene una base de datos de
+  // producción: lanzarlo desde una rama desplegaría código sin fusionar sobre ella.
+  it('no despliega desde otra rama que main: lo comprueba un paso y falla', () => {
+    for (const { nombre, doc, id } of trabajosDeDespliegue()) {
+      const pasos = doc.jobs[id].steps ?? []
+      const i = pasos.findIndex(despliegaPaso)
+      const guarda = pasos
+        .slice(0, i)
+        .some(
+          (p) =>
+            typeof p?.run === 'string' &&
+            p.if === undefined &&
+            /GITHUB_REF|github\.ref/.test(`${p.run}${JSON.stringify(p.env ?? {})}`) &&
+            /refs\/heads\/main/.test(`${p.run}${JSON.stringify(p.env ?? {})}`) &&
+            /\bexit 1\b/.test(p.run),
+        )
+      expect(guarda, `${nombre} · ${id} despliega lo que le pidan desde cualquier rama`).toBe(true)
+    }
+  })
+
+  // Un push nuevo no puede cortar un despliegue a medias: la máquina arrancaría
+  // otra vez unos minutos después, y lo siguiente que corre al arrancar es una
+  // migración de la base de datos. Se ponen en fila.
+  it('un despliegue en curso no se cancela: se espera a que termine', () => {
+    for (const { nombre, doc } of trabajosDeDespliegue()) {
+      expect(doc.concurrency?.group, `${nombre} sin grupo de concurrencia`).toBeTruthy()
+      expect(doc.concurrency?.['cancel-in-progress'], nombre).not.toBe(true)
+    }
+  })
+
+  // Un cambio que va a disparar el despliegue —con sus pruebas por delante— tiene
+  // que tener también su veredicto en la PR, no descubrirlo en main.
+  it('las pruebas del bot corren en las PR que tocan lo que el bot lee fuera de bot/', () => {
+    const fuera = leidoFueraDeBot()
+    expect(fuera).toContain('public/data/promises.json') // el control
+    const bot = leidos.find((w) => w.nombre === 'bot.yml')?.doc
+    const rutas = bot?.on?.pull_request?.paths ?? []
+    const faltan = fuera.filter((r) => !rutas.includes(r))
+    expect(faltan, 'una PR que los cambia no pasa por las pruebas del bot').toEqual([])
   })
 })
