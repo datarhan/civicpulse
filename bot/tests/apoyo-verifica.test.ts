@@ -28,20 +28,20 @@ import {
   setState,
   VERIFIED_THRESHOLD,
   type NewQuejaInput,
+  autorTelegram,
 } from '../src/db/queries'
 import { selectBatch } from '../src/services/batch'
 
 function sampleQueja(overrides: Partial<NewQuejaInput> = {}): NewQuejaInput {
   return {
-    telegram_user_id: 42,
-    telegram_username: 'maria',
+    autor: autorTelegram(42),
     category: 'via_publica',
     title: 'Bache profundo',
     detail: 'Bache en Av. Primera que lleva 2 meses sin reparar',
     lat: 39.5439,
     lng: -0.5711,
     neighborhood: 'casco',
-    photo_file_id: null,
+    foto_ref: null,
     concejalia_area: 'Obra Pública',
     concejal_slug: 'teresa-pozuelo-martin',
     ...overrides,
@@ -50,7 +50,7 @@ function sampleQueja(overrides: Partial<NewQuejaInput> = {}): NewQuejaInput {
 
 /** Apoya `cuantos` veces, con un usuario distinto cada vez. */
 function apoyan(db: Db, id: string, cuantos: number) {
-  for (let u = 0; u < cuantos; u++) addApoyo(db, id, 5000 + u)
+  for (let u = 0; u < cuantos; u++) addApoyo(db, id, autorTelegram(5000 + u))
 }
 
 describe('addApoyo — promueve al alcanzar el umbral', () => {
@@ -126,7 +126,7 @@ describe('addApoyo — promueve al alcanzar el umbral', () => {
   })
 
   it('apoyar dos veces el mismo usuario no cuenta ni promueve', () => {
-    for (let i = 0; i < VERIFIED_THRESHOLD + 3; i++) addApoyo(db, id, 999)
+    for (let i = 0; i < VERIFIED_THRESHOLD + 3; i++) addApoyo(db, id, autorTelegram(999))
     expect(countApoyos(db, id)).toBe(1)
     expect(getQueja(db, id)?.state).toBe('capturada')
   })

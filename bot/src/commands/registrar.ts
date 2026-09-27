@@ -18,6 +18,7 @@ import { registerEstado } from './estado.ts'
 import { registerApoyar } from './apoyar.ts'
 import { registerMis } from './mis.ts'
 import { registerOlvidar } from './olvidar.ts'
+import { registerBorrarMisDatos } from './borrar.ts'
 import { registerSubscribe } from './subscribe.ts'
 import { registerBarrio } from './barrio.ts'
 import { registerRanking } from './ranking.ts'
@@ -41,6 +42,7 @@ export function registrarComandos(bot: Bot<MyContext>, db: Db, channel: Channel)
   registerApoyar(bot, db, channel)
   registerMis(bot, db)
   registerOlvidar(bot, db)
+  registerBorrarMisDatos(bot, db)
   registerSubscribe(bot, db)
   registerBarrio(bot, db)
   registerRanking(bot, db)

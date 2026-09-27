@@ -12,6 +12,7 @@ import { startDigestCron } from './services/digest.ts'
 import { startConvocatoriasCron } from './services/convocatorias.ts'
 import { startEventosRepoCron } from './services/eventos-repo.ts'
 import { startFotosCron } from './services/fotos-cron.ts'
+import { startRetencionCron } from './services/retencion.ts'
 import { sirveFotoExportada } from './services/foto-exportada.ts'
 import { webhookTelegram } from './services/webhook-telegram.ts'
 import { parseAdminIds } from './util/admins.ts'
@@ -105,6 +106,15 @@ function makeBot() {
   // Lo que lleva un día retenido se avisa a los administradores, una vez.
   startFotosCron({ db, token, admins: () => parseAdminIds(), sendDm: dmAdministrador })
 
+  // Y el plazo de conservación, cumplido: al arrancar y cada día se destruyen las
+  // quejas que lo pasaron, las copias de la base que pasaron el suyo y la copia de
+  // un ensayo de migración interrumpido (services/retencion.ts).
+  startRetencionCron({
+    db,
+    photosDir: directorioFotos(),
+    dbPath: process.env.DB_PATH ?? './data/bot.db',
+  })
+
   bot.catch((err) => {
     console.error('[bot] error:', err)
   })
@@ -116,6 +126,7 @@ function makeBot() {
       { command: 'apoyar', description: 'Apoyar una queja existente' },
       { command: 'mis', description: 'Mis quejas' },
       { command: 'olvidar', description: 'Eliminar una queja mía (RGPD art. 17)' },
+      { command: 'borrar_mis_datos', description: 'Borrar todo lo que el bot guarda de mí' },
       {
         command: 'subscribe',
         description: 'Suscribirse a resumen semanal (barrio/concejalía/categoría)',

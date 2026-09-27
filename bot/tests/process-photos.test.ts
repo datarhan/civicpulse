@@ -4,7 +4,7 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import sharp from 'sharp'
 import { openDb, type Db } from '../src/db/client'
-import { createQueja, fotosRetenidas, type NewQuejaInput } from '../src/db/queries'
+import { createQueja, fotosRetenidas, type NewQuejaInput, autorTelegram } from '../src/db/queries'
 import { processPhotos, pruneOrphanPhotos } from '../src/services/process-photos'
 
 /**
@@ -16,15 +16,14 @@ const sinNormalizar = async (b: Buffer) => ({ data: b, ancho: 1, alto: 1 })
 
 function sample(overrides: Partial<NewQuejaInput> = {}): NewQuejaInput {
   return {
-    telegram_user_id: 7,
-    telegram_username: 'ana',
+    autor: autorTelegram(7),
     category: 'urbanismo',
     title: 'Foto adjunta',
     detail: 'Una queja con foto adjunta que hay que anonimizar antes de publicar.',
     lat: null,
     lng: null,
     neighborhood: 'casco',
-    photo_file_id: null,
+    foto_ref: null,
     concejalia_area: 'Urbanismo',
     concejal_slug: 'teresa-pozuelo-martin',
     ...overrides,
@@ -41,9 +40,9 @@ describe('processPhotos — end-to-end wiring', () => {
   afterEach(() => rmSync(dir, { recursive: true, force: true }))
 
   it('publishes clean photos, holds ones that fail detection, skips already-published', async () => {
-    const a = createQueja(db, sample({ photo_file_id: 'file-A' }))
-    const b = createQueja(db, sample({ photo_file_id: 'file-B' }))
-    const c = createQueja(db, sample({ photo_file_id: 'file-C' }))
+    const a = createQueja(db, sample({ foto_ref: 'tg:file-A' }))
+    const b = createQueja(db, sample({ foto_ref: 'tg:file-B' }))
+    const c = createQueja(db, sample({ foto_ref: 'tg:file-C' }))
 
     // C is already published → must be skipped, its file left untouched.
     mkdirSync(dir, { recursive: true })
@@ -78,15 +77,15 @@ describe('processPhotos — end-to-end wiring', () => {
   })
 
   it('prunes the photo of a forgotten queja (right-to-be-forgotten honored)', async () => {
-    const keep = createQueja(db, sample({ photo_file_id: 'file-keep' }))
-    const forget = createQueja(db, sample({ photo_file_id: 'file-forget' }))
+    const keep = createQueja(db, sample({ foto_ref: 'tg:file-keep' }))
+    const forget = createQueja(db, sample({ foto_ref: 'tg:file-forget' }))
     mkdirSync(dir, { recursive: true })
     // Both already published on disk...
     writeFileSync(join(dir, `${keep.id.toLowerCase()}.jpg`), 'IMG-keep')
     writeFileSync(join(dir, `${forget.id.toLowerCase()}.jpg`), 'IMG-forget')
     // ...then one is forgotten (soft-deleted → drops out of listQuejasWithPhoto).
     const { softDeleteQueja } = await import('../src/db/queries')
-    softDeleteQueja(db, forget.id, 7)
+    softDeleteQueja(db, forget.id, autorTelegram(7))
 
     const res = await processPhotos({
       db,
@@ -131,7 +130,7 @@ describe('processPhotos — el modelo ve el encuadre que se tapa', () => {
   ])(
     '%s llega al modelo como JPEG y con las dimensiones de la foto publicada',
     async (_n, hacer) => {
-      const q = createQueja(db, sample({ photo_file_id: 'file-real' }))
+      const q = createQueja(db, sample({ foto_ref: 'tg:file-real' }))
       const bytes = await hacer()
       const vistos: Buffer[] = []
       const res = await processPhotos({
@@ -156,7 +155,7 @@ describe('processPhotos — el modelo ve el encuadre que se tapa', () => {
   )
 
   it('lo que no es una imagen se RECHAZA: ni se publica ni cuenta como retenida por el modelo', async () => {
-    const q = createQueja(db, sample({ photo_file_id: 'file-roto' }))
+    const q = createQueja(db, sample({ foto_ref: 'tg:file-roto' }))
     let llamadas = 0
     const res = await processPhotos({
       db,
@@ -213,7 +212,7 @@ describe('processPhotos — lo que lleva un día retenido se avisa una vez', () 
     })
 
   it('anota la primera retención, la pide avisar al pasar un día, y la olvida al publicarse', async () => {
-    const q = createQueja(db, sample({ photo_file_id: 'file-lenta' }))
+    const q = createQueja(db, sample({ foto_ref: 'tg:file-lenta' }))
 
     const r1 = await pasar(T0, true)
     expect(r1.held).toEqual([q.id])
@@ -242,7 +241,7 @@ describe('processPhotos — lo que lleva un día retenido se avisa una vez', () 
   // bot. No puede quedarse en la base ni salir en un mensaje.
   it('el motivo guardado no lleva el token del bot aunque el error lo traiga', async () => {
     const TOKEN = '123456:TOKEN-DEL-BOT-DE-PRUEBA'
-    createQueja(db, sample({ photo_file_id: 'file-red' }))
+    createQueja(db, sample({ foto_ref: 'tg:file-red' }))
     await processPhotos({
       db,
       token: TOKEN,

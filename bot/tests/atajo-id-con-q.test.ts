@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach } from 'vitest'
 import { Bot } from 'grammy'
 import type { UserFromGetMe } from 'grammy/types'
 import { openDb, type Db } from '../src/db/client'
-import { createQueja } from '../src/db/queries'
+import { createQueja, autorTelegram } from '../src/db/queries'
 import { registrarComandos } from '../src/commands/registrar'
 import type { Channel } from '../src/services/channel'
 import type { MyContext } from '../src/types'
@@ -62,7 +62,7 @@ describe('el atajo /estado_q… lleva a su queja', () => {
 
   it('una queja cuyo sufijo empieza por Q', async () => {
     const q = createQueja(db, {
-      telegram_user_id: 1001,
+      autor: autorTelegram(1001),
       category: 'alumbrado',
       title: 'Farola apagada en la plaza',
       detail: 'La farola de la plaza lleva apagada desde el lunes y la calle queda a oscuras.',

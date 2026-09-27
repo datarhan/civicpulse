@@ -126,8 +126,9 @@ TypeScript: `npx tsc --noEmit` must be clean before shipping.
 
 Inherits the editorial guardrails from `../docs/QUEJAS_DESIGN.md`:
 
-- Citizens pseudonymised — `telegram_user_id` + `telegram_username`
-  never cross into public JSON.
+- Citizens pseudonymised — a queja points at `ciudadanos` (channel +
+  Telegram id), which never crosses into public JSON; the Telegram
+  username is not stored.
 - Locations truncated to neighborhood centroid before export; exact
   lat/lng never leave the DB.
 - Only the elected concejal (acting in their public capacity) is named

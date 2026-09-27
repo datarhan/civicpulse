@@ -1,17 +1,16 @@
 import Database from 'better-sqlite3'
-import { readFileSync, mkdirSync } from 'node:fs'
-import { dirname, resolve } from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { mkdirSync } from 'node:fs'
+import { dirname } from 'node:path'
+import { migrar } from './migraciones.ts'
 import { anonimizaRetiradas } from './queries.ts'
-
-const HERE = dirname(fileURLToPath(import.meta.url))
-const SCHEMA_PATH = resolve(HERE, 'schema.sql')
 
 export type Db = Database.Database
 
 /**
- * Open (and initialise) the SQLite file. Pass ':memory:' for tests.
- * Schema is applied idempotently — safe to call at every boot.
+ * Abre la base (':memory:' en las pruebas) y la lleva a la última versión del
+ * esquema (db/migraciones.ts): una base nueva nace de la v0 y se migra como la
+ * de producción, así que las dos acaban iguales. En producción, la primera vez,
+ * `migrar` saca antes una copia de seguridad junto a la base.
  */
 export function openDb(path?: string): Db {
   const target = path ?? process.env.DB_PATH ?? './data/bot.db'
@@ -22,8 +21,8 @@ export function openDb(path?: string): Db {
   db.pragma('journal_mode = WAL')
   db.pragma('foreign_keys = ON')
   db.pragma('synchronous = NORMAL')
-  const schema = readFileSync(SCHEMA_PATH, 'utf8')
-  db.exec(schema)
+  // En memoria (las pruebas) se migra cada vez: sin eco.
+  migrar(db, { ruta: target, log: target === ':memory:' ? () => {} : undefined })
   // Las retiradas de antes de que /olvidar borrara la identidad salen anónimas
   // del primer arranque: ver `anonimizaRetiradas`.
   anonimizaRetiradas(db)

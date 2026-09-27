@@ -1,11 +1,11 @@
 import type { Bot } from 'grammy'
 import type { Db } from '../db/client.ts'
-import { listUserQuejas } from '../db/queries.ts'
+import { autorTelegram, listUserQuejas } from '../db/queries.ts'
 import type { MyContext } from '../types.ts'
 
 export function registerMis(bot: Bot<MyContext>, db: Db) {
   bot.command('mis', async (ctx) => {
-    const quejas = listUserQuejas(db, ctx.from!.id, 20)
+    const quejas = listUserQuejas(db, autorTelegram(ctx.from!.id), 20)
     if (quejas.length === 0) {
       await ctx.reply('No tienes quejas registradas aún. Usa /queja para crear la primera.')
       return

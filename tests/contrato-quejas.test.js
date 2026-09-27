@@ -210,7 +210,9 @@ describe('lo que el bot le dice al vecino dice lo mismo que las páginas', () =>
       CONSULTAS.indexOf('export function anonimizaRetiradas'),
     )
     expect(retirada.length, 'no encuentro softDeleteQueja').toBeGreaterThan(100)
-    if (!/telegram_user_id = 0/.test(retirada)) {
+    // La retirada borra la identidad dejando `ciudadano_id` en NULL desde la migración 1;
+    // antes la ponía en el centinela `telegram_user_id = 0`.
+    if (!/ciudadano_id = NULL/.test(retirada)) {
       expect(OLVIDAR, 'promete un registro anónimo que el código no hace').not.toMatch(
         /anonimizada|como anónima/i,
       )
@@ -363,13 +365,9 @@ describe('el aviso legal dice lo que hace /olvidar, cuándo y con qué foto', ()
       /registro anónimo/i,
     )
     expect(TRAMO).toContain('tu identidad de Telegram')
-    for (const campo of [
-      'telegram_user_id = 0',
-      'telegram_username = NULL',
-      'lat = NULL',
-      'lng = NULL',
-      'photo_file_id = NULL',
-    ]) {
+    // Desde la migración 1 el autor es `ciudadano_id`: la retirada lo deja en NULL,
+    // no en el centinela 0 de antes, y la foto es `foto_ref`.
+    for (const campo of ['ciudadano_id = NULL', 'lat = NULL', 'lng = NULL', 'foto_ref = NULL']) {
       expect(RETIRADA, `la retirada no hace ${campo}`).toContain(campo)
     }
   })
@@ -386,5 +384,77 @@ describe('el aviso legal dice lo que hace /olvidar, cuándo y con qué foto', ()
     // desde el repositorio: este mismo repositorio tuvo que borrarse y recrearse.
     expect(TRAMO).toContain('solicitud de cambio')
     expect(TRAMO).toContain('clonado')
+  })
+})
+
+/**
+ * Esta prueba lee el código del bot como texto, y una prueba así sigue en verde
+ * leyendo un fichero que ya nadie ejecuta. Los que lee se sacan de su propio
+ * código, y cada uno tiene que alcanzarse por imports desde bot/src/index.ts.
+ */
+describe('lo que esta prueba lee del bot es lo que el bot ejecuta', () => {
+  const ESTA = readFileSync(__filename, 'utf8')
+  const LEIDOS = [...new Set([...ESTA.matchAll(/'(bot\/src\/[\w/.-]+\.ts)'/g)].map((m) => m[1]))]
+
+  function alcanzables(desde) {
+    const vistos = new Set()
+    const pendientes = [desde]
+    while (pendientes.length) {
+      const ruta = pendientes.pop()
+      if (vistos.has(ruta)) continue
+      vistos.add(ruta)
+      for (const m of lee(ruta).matchAll(/from '(\.\.?\/[^']+\.ts)'/g)) {
+        const destino = join(ruta, '..', m[1]).replace(/\\/g, '/')
+        if (destino.startsWith('bot/src/')) pendientes.push(destino)
+      }
+    }
+    return vistos
+  }
+
+  it('cada fichero del bot que lee se alcanza desde bot/src/index.ts', () => {
+    const vivos = alcanzables('bot/src/index.ts')
+    expect(LEIDOS.length, 'el patrón no encuentra lo que la prueba lee').toBeGreaterThan(5)
+    expect(vivos.size, 'el recorrido de imports no mira nada').toBeGreaterThan(15)
+    expect(LEIDOS.filter((f) => !vivos.has(f))).toEqual([])
+  })
+})
+
+/**
+ * El plazo de conservación se prometía a mano en tres sitios —el aviso legal,
+ * `/start` y la respuesta a `/olvidar`— y ningún código lo cumplía. Ahora lo
+ * cumple `purgarCaducadas` (bot/src/services/retencion.ts) con la cifra de
+ * src/scraper/plazos-retencion.ts, y quien la cuenta la importa.
+ */
+describe('el plazo de conservación se lee de donde se cumple', () => {
+  // Dentro de cada prueba: leída al recoger, una fuente que falta tumbaba el fichero entero.
+  const anios = () =>
+    numero(
+      'src/scraper/plazos-retencion.ts',
+      /export const CONSERVACION_QUEJAS_ANIOS = (\d+)/,
+      'el plazo de conservación',
+    )
+
+  it('lo cumple el bot, cada día', () => {
+    expect(lee('bot/src/services/retencion.ts')).toMatch(/CONSERVACION_QUEJAS_ANIOS/)
+    expect(sinComentariosTs(lee('bot/src/index.ts'))).toMatch(/startRetencionCron\(/)
+  })
+
+  it.each(['src/pages/AvisoLegal.jsx', 'bot/src/commands/start.ts', 'bot/src/commands/olvidar.ts'])(
+    '%s lo importa en vez de escribirlo',
+    (ruta) => {
+      const texto = lee(ruta)
+      expect(texto).toMatch(/CONSERVACION_QUEJAS_ANIOS/)
+      expect(texto, 'escribe el plazo a mano').not.toMatch(new RegExp(`\\b${anios()} años`))
+    },
+  )
+
+  it('el aviso legal cuenta qué borra /borrar_mis_datos, y el bot lo tiene', () => {
+    const aviso = plano('src/pages/AvisoLegal.jsx')
+    expect(aviso).toContain('/borrar_mis_datos')
+    const borrar = lee('bot/src/services/ciudadano.ts')
+    for (const tabla of ['apoyos', 'subscriptions', 'ciudadanos']) {
+      expect(borrar, `olvidarTodo no borra ${tabla}`).toMatch(new RegExp(`DELETE FROM ${tabla}\\b`))
+    }
+    expect(lee('bot/src/commands/registrar.ts')).toMatch(/registerBorrarMisDatos\(/)
   })
 })

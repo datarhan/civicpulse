@@ -1,6 +1,12 @@
 import type { Bot } from 'grammy'
 import type { Db } from '../db/client.ts'
-import { addApoyo, getQuejaViva, VERIFIED_THRESHOLD } from '../db/queries.ts'
+import {
+  addApoyo,
+  autorTelegram,
+  esAutor,
+  getQuejaViva,
+  VERIFIED_THRESHOLD,
+} from '../db/queries.ts'
 import type { Channel } from '../services/channel.ts'
 import type { MyContext } from '../types.ts'
 import { idDeQueja } from '../services/queja-id.ts'
@@ -17,13 +23,14 @@ export function registerApoyar(bot: Bot<MyContext>, db: Db, channel: Channel) {
       await ctx.reply(`No encuentro la queja \`${id}\`.`, { parse_mode: 'Markdown' })
       return
     }
-    if (q.telegram_user_id === ctx.from!.id) {
+    const autor = autorTelegram(ctx.from!.id)
+    if (esAutor(db, id, autor)) {
       await ctx.reply(
         'No puedes apoyar tu propia queja — cuenta ya como 1 voz. Dile a vecinos que apoyen 🙌',
       )
       return
     }
-    const { added, count } = addApoyo(db, id, ctx.from!.id)
+    const { added, count } = addApoyo(db, id, autor)
     if (!added) {
       await ctx.reply(`Ya apoyabas \`${id}\`. Apoyos totales: *${count}*.`, {
         parse_mode: 'Markdown',

@@ -1,4 +1,5 @@
 import type { Db } from './client.ts'
+import type { Canal } from './migraciones.ts'
 import { nuevoIdDeQueja } from '../services/queja-id.ts'
 
 export type QuejaState =
@@ -14,15 +15,17 @@ export type QuejaState =
 
 export interface QuejaRow {
   id: string
-  telegram_user_id: number
-  telegram_username: string | null
+  /** Quien la escribió, o null si la retiró (`/olvidar`) o borró sus datos. */
+  ciudadano_id: number | null
+  canal: Canal
   category: string
   title: string
   detail: string
   lat: number | null
   lng: number | null
   neighborhood: string | null
-  photo_file_id: string | null
+  /** La foto con su canal delante (`tg:<file_id>`), o null. Nunca se publica. */
+  foto_ref: string | null
   concejalia_area: string | null
   concejal_slug: string | null
   state: QuejaState
@@ -38,16 +41,55 @@ export interface QuejaRow {
   deleted_at: string | null
 }
 
+/**
+ * Quien escribe o apoya: un canal y su referencia en él (el id de Telegram; en
+ * WhatsApp, el que la plataforma da a cada usuario). Nunca un teléfono ni un
+ * nombre. El mismo número en dos canales son dos personas.
+ */
+export interface Autor {
+  canal: Canal
+  ref: string
+}
+
+export const autorTelegram = (id: number): Autor => ({ canal: 'telegram', ref: String(id) })
+
+/**
+ * El ciudadano de un autor. Mirar no crea a nadie: sólo quien escribe o apoya
+ * (`crear: true`) gana fila, y quien pregunta por sus quejas sin tener ninguna
+ * no deja su id en la base.
+ */
+export function idCiudadano(db: Db, autor: Autor, o: { crear?: boolean } = {}): number | null {
+  const fila = db
+    .prepare('SELECT id FROM ciudadanos WHERE canal = ? AND ref = ?')
+    .get(autor.canal, autor.ref) as { id: number } | undefined
+  if (fila) return fila.id
+  if (!o.crear) return null
+  return Number(
+    db.prepare('INSERT INTO ciudadanos (canal, ref) VALUES (?, ?)').run(autor.canal, autor.ref)
+      .lastInsertRowid,
+  )
+}
+
+/** ¿Es `autor` quien escribió la queja? Una retirada ya no es de nadie. */
+export function esAutor(db: Db, quejaId: string, autor: Autor): boolean {
+  const cid = idCiudadano(db, autor)
+  if (cid === null) return false
+  return (
+    db.prepare('SELECT 1 FROM quejas WHERE id = ? AND ciudadano_id = ?').get(quejaId, cid) !==
+    undefined
+  )
+}
+
 export interface NewQuejaInput {
-  telegram_user_id: number
-  telegram_username?: string | null
+  autor: Autor
   category: string
   title: string
   detail: string
   lat?: number | null
   lng?: number | null
   neighborhood?: string | null
-  photo_file_id?: string | null
+  /** La foto con su canal delante: `tg:<file_id>`. */
+  foto_ref?: string | null
   concejalia_area?: string | null
   concejal_slug?: string | null
 }
@@ -78,26 +120,26 @@ export function createQueja(db: Db, q: NewQuejaInput): QuejaRow {
   const id = nuevoIdDeQueja()
   const insert = db.prepare(`
     INSERT INTO quejas (
-      id, telegram_user_id, telegram_username, category, title, detail,
-      lat, lng, neighborhood, photo_file_id, concejalia_area, concejal_slug
+      id, ciudadano_id, canal, category, title, detail,
+      lat, lng, neighborhood, foto_ref, concejalia_area, concejal_slug
     ) VALUES (
-      @id, @telegram_user_id, @telegram_username, @category, @title, @detail,
-      @lat, @lng, @neighborhood, @photo_file_id, @concejalia_area, @concejal_slug
+      @id, @ciudadano_id, @canal, @category, @title, @detail,
+      @lat, @lng, @neighborhood, @foto_ref, @concejalia_area, @concejal_slug
     )
   `)
   const event = db.prepare(`INSERT INTO events (queja_id, kind) VALUES (?, 'capturada')`)
   const tx = db.transaction((row: NewQuejaInput & { id: string }) => {
     insert.run({
       id: row.id,
-      telegram_user_id: row.telegram_user_id,
-      telegram_username: row.telegram_username ?? null,
+      ciudadano_id: idCiudadano(db, row.autor, { crear: true }),
+      canal: row.autor.canal,
       category: row.category,
       title: row.title,
       detail: row.detail,
       lat: row.lat ?? null,
       lng: row.lng ?? null,
       neighborhood: row.neighborhood ?? null,
-      photo_file_id: row.photo_file_id ?? null,
+      foto_ref: row.foto_ref ?? null,
       concejalia_area: row.concejalia_area ?? null,
       concejal_slug: row.concejal_slug ?? null,
     })
@@ -130,11 +172,12 @@ export function getQuejaViva(db: Db, id: string): QuejaRow | null {
 
 /**
  * Derecho al olvido (RGPD art. 17). La fila se conserva como rastro de auditoría
- * durante el plazo de conservación (cinco años, art. 55 LOPD-GDD), pero sin nada
- * que diga quién la escribió ni desde dónde: en la misma transacción que marca
- * `deleted_at` se borran la identidad de Telegram (id y usuario), las coordenadas
- * y la referencia a la foto. Quedan el texto, la categoría, las fechas y los
- * estados, y todo listado y export sigue filtrando por `deleted_at`.
+ * durante el plazo de conservación (`CONSERVACION_QUEJAS_ANIOS`, art. 55
+ * LOPD-GDD), pero sin nada que diga quién la escribió ni desde dónde: en la misma
+ * transacción que marca `deleted_at` se borran el autor (`ciudadano_id`, que queda
+ * en NULL: antes era el centinela 0), las coordenadas y la referencia a la foto.
+ * Quedan el texto, la categoría, las fechas y los estados, y todo listado y export
+ * sigue filtrando por `deleted_at`.
  *
  * El aviso legal y la respuesta del bot prometían un «registro anónimo» y esta
  * función sólo ponía `deleted_at`: lo único anónimo era el nombre del evento. La
@@ -146,11 +189,13 @@ export function getQuejaViva(db: Db, id: string): QuejaRow | null {
  * Devuelve true si la retira y false si el id no existe o no es de quien lo pide:
  * la misma respuesta en los dos casos, para no confirmar ids ajenos.
  */
-export function softDeleteQueja(db: Db, id: string, userId: number): boolean {
-  const row = db.prepare('SELECT telegram_user_id, deleted_at FROM quejas WHERE id = ?').get(id) as
-    { telegram_user_id: number; deleted_at: string | null } | undefined
+export function softDeleteQueja(db: Db, id: string, autor: Autor): boolean {
+  const cid = idCiudadano(db, autor)
+  if (cid === null) return false
+  const row = db.prepare('SELECT ciudadano_id, deleted_at FROM quejas WHERE id = ?').get(id) as
+    { ciudadano_id: number | null; deleted_at: string | null } | undefined
   if (!row) return false
-  if (row.telegram_user_id !== userId) return false // never confirm existence cross-user
+  if (row.ciudadano_id !== cid) return false // never confirm existence cross-user
   // Sólo llega aquí una retirada de antes de este cambio que aún conserva su autor
   // (`anonimizaRetiradas` las limpia al abrir la base): cuenta como hecha.
   if (row.deleted_at) return true
@@ -158,8 +203,7 @@ export function softDeleteQueja(db: Db, id: string, userId: number): boolean {
     db.prepare(
       `UPDATE quejas
           SET deleted_at = datetime('now'), updated_at = datetime('now'),
-              telegram_user_id = 0, telegram_username = NULL,
-              lat = NULL, lng = NULL, photo_file_id = NULL
+              ciudadano_id = NULL, lat = NULL, lng = NULL, foto_ref = NULL
         WHERE id = ?`,
     ).run(id)
     db.prepare(`INSERT INTO events (queja_id, kind, payload) VALUES (?, 'anonymised', ?)`).run(
@@ -181,11 +225,10 @@ export function anonimizaRetiradas(db: Db): number {
   return db
     .prepare(
       `UPDATE quejas
-          SET telegram_user_id = 0, telegram_username = NULL,
-              lat = NULL, lng = NULL, photo_file_id = NULL
+          SET ciudadano_id = NULL, lat = NULL, lng = NULL, foto_ref = NULL
         WHERE deleted_at IS NOT NULL
-          AND (telegram_user_id != 0 OR telegram_username IS NOT NULL
-               OR lat IS NOT NULL OR lng IS NOT NULL OR photo_file_id IS NOT NULL)`,
+          AND (ciudadano_id IS NOT NULL OR lat IS NOT NULL OR lng IS NOT NULL
+               OR foto_ref IS NOT NULL)`,
     )
     .run().changes
 }
@@ -206,14 +249,16 @@ export function anonimizaRetiradas(db: Db): number {
  *
  * `rowid` lo asigna SQLite en orden de inserción y no depende de relojes.
  */
-export function listUserQuejas(db: Db, userId: number, limit = 20): QuejaRow[] {
+export function listUserQuejas(db: Db, autor: Autor, limit = 20): QuejaRow[] {
   // Una queja retirada con /olvidar ya no sale aquí sin necesidad de filtrarla: el
-  // registro deja de saber de quién era (`telegram_user_id = 0`).
+  // registro deja de saber de quién era (`ciudadano_id` en NULL).
+  const cid = idCiudadano(db, autor)
+  if (cid === null) return []
   return db
     .prepare(
-      'SELECT * FROM quejas WHERE telegram_user_id = ? ORDER BY created_at DESC, rowid DESC LIMIT ?',
+      'SELECT * FROM quejas WHERE ciudadano_id = ? ORDER BY created_at DESC, rowid DESC LIMIT ?',
     )
-    .all(userId, limit) as QuejaRow[]
+    .all(cid, limit) as QuejaRow[]
 }
 
 export function listRecentQuejas(db: Db, limit = 20): QuejaRow[] {
@@ -225,7 +270,7 @@ export function listRecentQuejas(db: Db, limit = 20): QuejaRow[] {
 }
 
 /**
- * Non-deleted quejas that carry a Telegram photo_file_id — the input set for
+ * Non-deleted quejas that carry a photo reference (`foto_ref`) — the input set for
  * the anonymize-and-publish job. Soft-deleted rows (right-to-be-forgotten) are
  * excluded so a withdrawn queja's photo is never processed or published.
  */
@@ -233,7 +278,7 @@ export function listQuejasWithPhoto(db: Db, limit = 1000): QuejaRow[] {
   return db
     .prepare(
       `SELECT * FROM quejas
-       WHERE deleted_at IS NULL AND photo_file_id IS NOT NULL AND photo_file_id != ''
+       WHERE deleted_at IS NULL AND foto_ref IS NOT NULL
        ORDER BY created_at DESC, rowid DESC LIMIT ?`,
     )
     .all(limit) as QuejaRow[]
@@ -247,15 +292,14 @@ export function listByNeighborhood(db: Db, neighborhood: string, limit = 50): Qu
     .all(neighborhood, limit) as QuejaRow[]
 }
 
-export function addApoyo(
-  db: Db,
-  quejaId: string,
-  userId: number,
-): { added: boolean; count: number } {
-  const insert = db.prepare(
-    'INSERT OR IGNORE INTO apoyos (queja_id, telegram_user_id) VALUES (?, ?)',
-  )
-  const result = insert.run(quejaId, userId)
+export function addApoyo(db: Db, quejaId: string, autor: Autor): { added: boolean; count: number } {
+  // En una transacción: si la queja no existe, el apoyo falla por su clave ajena
+  // y el ciudadano recién creado no se queda en la base sin nada.
+  const result = db.transaction(() =>
+    db
+      .prepare('INSERT OR IGNORE INTO apoyos (queja_id, ciudadano_id) VALUES (?, ?)')
+      .run(quejaId, idCiudadano(db, autor, { crear: true })),
+  )()
   const count = countApoyos(db, quejaId)
   if (result.changes === 0) return { added: false, count }
 

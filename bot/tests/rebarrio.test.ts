@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest'
 import { openDb, type Db } from '../src/db/client'
-import { createQueja, listEvents, softDeleteQueja } from '../src/db/queries'
+import { autorTelegram, createQueja, listEvents, softDeleteQueja } from '../src/db/queries'
 import { planearRebarrio, aplicarRebarrio, EVENTO_BARRIO_CORREGIDO } from '../src/services/rebarrio'
 import { situar } from '../src/services/neighborhoods'
 
@@ -34,7 +34,7 @@ describe('rebarrio', () => {
       usuario = 1001,
     ) =>
       createQueja(db, {
-        telegram_user_id: usuario,
+        autor: autorTelegram(usuario),
         category: 'alumbrado',
         title: 'Farola apagada',
         detail: 'La farola lleva apagada desde el lunes y la calle queda a oscuras.',
@@ -48,7 +48,7 @@ describe('rebarrio', () => {
       sinUbicacion: nueva({ neighborhood: null }),
       retirada: nueva({ ...AJUNTAMENT, neighborhood: 'poligono-industrial-entrevias' }, 1002),
     }
-    softDeleteQueja(db, ids.retirada, 1002)
+    softDeleteQueja(db, ids.retirada, autorTelegram(1002))
   })
 
   it('en seco dice qué cambiaría, y no toca nada', () => {

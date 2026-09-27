@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest'
 import { openDb, type Db } from '../src/db/client'
-import { createQueja, type NewQuejaInput } from '../src/db/queries'
+import { autorTelegram, createQueja } from '../src/db/queries'
 import { resumenDeBarrios } from '../src/commands/barrio'
 import { computeRanking, quejasSinBarrio60d } from '../src/commands/ranking'
 
@@ -40,14 +40,14 @@ describe('/ranking: cuenta las que no puede clasificar', () => {
   })
   const seed = (neighborhood: string | null) =>
     createQueja(db, {
-      telegram_user_id: 1,
+      autor: autorTelegram(1),
       category: 'via_publica',
       title: 'Bache sin reparar',
       detail: 'Bache profundo en Av. Primera, 2 meses',
       neighborhood,
       concejalia_area: 'Obra Pública',
       concejal_slug: 'teresa-pozuelo-martin',
-    } as NewQuejaInput)
+    })
 
   it('una queja del casco no entra en el ranking, y se cuenta aparte', () => {
     seed('el-molinet')

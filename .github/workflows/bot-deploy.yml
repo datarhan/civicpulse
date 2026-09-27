@@ -42,6 +42,7 @@ on:
       - 'public/data/geo.json'
       - 'src/scraper/queja-router.ts'
       - 'src/scraper/situar-barrio.ts'
+      - 'src/scraper/plazos-retencion.ts'
   workflow_dispatch:
 
 concurrency:
