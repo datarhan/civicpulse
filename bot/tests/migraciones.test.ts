@@ -9,6 +9,7 @@ import {
   DECISIONES_MODERACION,
   MIGRACIONES,
   MODERACIONES,
+  MOTIVOS_VACIADO,
   ensayarMigracion,
   migrar,
   type Migracion,
@@ -378,6 +379,7 @@ describe('la migración 2: la revisión antes de publicar', () => {
         .all(),
     ).toEqual([{ decision: 'heredada', por: 'migracion', n: 5 }])
     expect(cuenta(db, 'avisos')).toBe(0)
+    expect(cuenta(db, 'tarjetas_por_vaciar')).toBe(0)
     expect(cuenta(db, 'events')).toBe(8) // ni un evento de más
     expect(db.pragma('foreign_key_check')).toEqual([])
   }
@@ -412,7 +414,7 @@ describe('la migración 2: la revisión antes de publicar', () => {
     db.close()
   })
 
-  it('los estados de los dos CHECK son los que exporta migraciones.ts', () => {
+  it('los estados de los CHECK son los que exporta migraciones.ts', () => {
     const db = new Database(':memory:')
     migrar(db, { ruta: ':memory:', log: () => {} })
     const clausula = (tabla: string, columna: string) => {
@@ -426,6 +428,7 @@ describe('la migración 2: la revisión antes de publicar', () => {
     expect(clausula('quejas', 'moderacion').length).toBeGreaterThan(0)
     expect(clausula('quejas', 'moderacion')).toEqual([...MODERACIONES].sort())
     expect(clausula('moderaciones', 'decision')).toEqual([...DECISIONES_MODERACION].sort())
+    expect(clausula('tarjetas_por_vaciar', 'motivo')).toEqual([...MOTIVOS_VACIADO].sort())
     db.close()
   })
 })

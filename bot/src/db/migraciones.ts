@@ -82,6 +82,14 @@ export type Moderacion = (typeof MODERACIONES)[number]
 export const DECISIONES_MODERACION = ['heredada', ...MODERACIONES] as const
 export type DecisionModeracion = (typeof DECISIONES_MODERACION)[number]
 
+/**
+ * Por qué una tarjeta de revisión espera en `tarjetas_por_vaciar` a perder el
+ * texto: su autor retiró la queja (`/olvidar`, `/borrar_mis_datos`), o se
+ * destruyó al cumplirse el plazo de conservación.
+ */
+export const MOTIVOS_VACIADO = ['retirada', 'destruida'] as const
+export type MotivoVaciado = (typeof MOTIVOS_VACIADO)[number]
+
 export interface Migracion {
   version: number
   nombre: string
@@ -188,11 +196,21 @@ function identidadPorCiudadano(db: Db): void {
  * nada— y sólo sale cuando está `publicada`. Lo que ya estaba publicado lo
  * sigue estando, con `publicada_at` = su fecha de alta, y consta como
  * `heredada` en `moderaciones`, el registro append-only de decisiones (no como
- * evento: `/estado` pinta los eventos a cualquiera). `avisos` guarda lo que el
- * bot ha mandado de cada queja y a quién: la tarjeta de cada administrador, para
- * cambiarlas todas al decidir, y el aviso de cada decisión a su autor, para no
- * repetirlo. Una fila sin `message_id` es un envío en curso: se reclama ANTES de
- * mandar, para que dos pasadas a la vez no manden dos.
+ * evento: `/estado` pinta los eventos a cualquiera).
+ *
+ * `avisos` guarda lo que el bot ha mandado de cada queja viva: cada copia de su
+ * tarjeta de revisión (`admin:<id>`), para cambiarlas todas al decidir, y el
+ * aviso de cada decisión a su autor, para no repetirlo. El aviso se guarda sin
+ * decir a quién (`autor`): el destinatario sale de `ciudadanos` al mandarlo, y
+ * así `/olvidar` y `/borrar_mis_datos` no dejan aquí su identidad. Una fila sin
+ * `resultado` es un envío en curso: se reclama ANTES de mandar, para que dos
+ * pasadas a la vez no manden dos.
+ *
+ * Cuando una queja deja de estar viva —la retira su autor o la destruye el plazo
+ * de conservación—, sus copias entregadas pasan, en la misma transacción, a
+ * `tarjetas_por_vaciar`, sin clave hacia `quejas` porque la queja puede no
+ * existir ya, y el resto de su rastro en `avisos` se borra. La fila se va cuando
+ * la tarjeta ha perdido el texto, o cuando Telegram ya no deja tocarla.
  *
  * Sólo añade, y aun así NO SE PUEDE VOLVER a la imagen anterior: el código v1
  * no sabe de `moderacion` y publicaría todo lo pendiente, descartado o retirado
@@ -230,6 +248,15 @@ function revisionAntesDePublicar(db: Db): void {
       creado_at     TEXT NOT NULL DEFAULT (datetime('now')),
       PRIMARY KEY (queja_id, tipo, destinatario),
       FOREIGN KEY (queja_id) REFERENCES quejas(id) ON DELETE CASCADE
+    );
+
+    CREATE TABLE tarjetas_por_vaciar (
+      destinatario  TEXT NOT NULL,
+      message_id    INTEGER NOT NULL,
+      queja_id      TEXT NOT NULL,
+      motivo        TEXT NOT NULL CHECK (motivo IN ('retirada', 'destruida')),
+      creada_at     TEXT NOT NULL DEFAULT (datetime('now')),
+      PRIMARY KEY (destinatario, message_id)
     );
   `)
   const quejas = cuentaDe(db, 'SELECT COUNT(*) AS n FROM quejas')

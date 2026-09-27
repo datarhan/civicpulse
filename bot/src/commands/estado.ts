@@ -44,8 +44,9 @@ function stateLabel(state: string): string {
         // Una corrección del barrio con la regla de 2026-09-27 (services/rebarrio.ts):
         // se enseña, porque cambia un dato publicado.
         [EVENTO_BARRIO_CORREGIDO]: '📍 Barrio corregido',
-        // Las decisiones de la revisión antes de publicar (decidirModeracion).
-        // Las dos últimas sólo las ve su autor: lo no publicado no sale en /estado.
+        // Las decisiones de la revisión antes de publicar (decidirModeracion). Las
+        // dos últimas las ve su autor mientras la queja no es pública; si después
+        // se publica, quedan en su historial, que es lo que pasó.
         moderacion_publicada: '🌐 Publicada tras revisarla',
         moderacion_descartada: '🚫 No publicada tras revisarla',
         moderacion_retirada: '↩️ Retirada de la publicación',

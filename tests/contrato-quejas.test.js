@@ -512,7 +512,7 @@ describe('la revisión antes de publicar', () => {
       /export async function pasadaHoraria[\s\S]*?\n\}/,
     )
     expect(pasada, 'no encuentro pasadaHoraria').not.toBeNull()
-    expect(pasada[0]).toMatch(/vaciarTarjetasDeRetiradas\(/)
+    expect(pasada[0]).toMatch(/vaciarTarjetasEnCola\(/)
   })
 
   it('la dirección para impugnar es la del aviso legal', () => {

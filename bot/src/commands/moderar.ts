@@ -9,10 +9,11 @@ import {
   type EnvioAdmin,
 } from '../services/avisos-admin.ts'
 import { ID_QUEJA, idDeQueja } from '../services/queja-id.ts'
-import { pedirRepublicacion } from '../services/republicar.ts'
+import { pedirRepublicacion, type PeticionRepublicar } from '../services/republicar.ts'
 import type { MyContext } from '../types.ts'
 import { parseAdminIds } from '../util/admins.ts'
 import { logger } from '../util/log.ts'
+import { trocear } from '../util/telegram.ts'
 
 /**
  * Los botones de las tarjetas de revisión (services/avisos-admin.ts), y las dos
@@ -48,6 +49,17 @@ const HECHO: Record<Moderacion, string> = {
 }
 
 const SOLO_ADMIN = 'Sólo un administrador puede decidir sobre una queja.'
+
+/** Líneas de `/pendientes` por bloque: `trocear` separa los bloques con una línea en blanco. */
+const LINEAS_POR_BLOQUE = 20
+
+/** Lo que se le dice a quien decide cuando la web no se vuelve a publicar sola. */
+const SIN_REPUBLICAR: Record<Exclude<PeticionRepublicar, 'pedida'>, string> = {
+  'sin-token':
+    '⚠️ La web no se vuelve a publicar sola (falta GITHUB_DISPATCH_TOKEN): el cambio sale en su actualización diaria, o antes si alguien lanza pull-quejas.yml.',
+  fallo:
+    '⚠️ No he podido pedir que la web se vuelva a publicar: el cambio sale en su actualización diaria, o antes si alguien lanza pull-quejas.yml.',
+}
 
 const esAdmin = (ctx: MyContext) =>
   ctx.chat?.type === 'private' && !!ctx.from && parseAdminIds().includes(ctx.from.id)
@@ -85,9 +97,17 @@ export function registerModerar(bot: Bot<MyContext>, db: Db, o: { envio: EnvioAd
     }
     await completarSeguimiento(db, id, { envio: o.envio })
     // Publicar o retirar cambia lo que exporta el bot. Descartar una que no era
-    // pública, no.
+    // pública, no. Si la petición no sale, quien decide lo sabe: una retirada
+    // seguiría en la web hasta su actualización diaria.
     if (r.resultado === 'aplicada' && (r.hasta === 'publicada' || r.hasta === 'retirada')) {
-      await pedirRepublicacion()
+      const peticion = await pedirRepublicacion()
+      if (peticion !== 'pedida') {
+        try {
+          await ctx.reply(SIN_REPUBLICAR[peticion])
+        } catch (err) {
+          logger.warn('moderar.republicar', { err: String(err) })
+        }
+      }
     }
   })
 
@@ -121,9 +141,16 @@ export function registerModerar(bot: Bot<MyContext>, db: Db, o: { envio: EnvioAd
     }
     const edad = (h: number) =>
       h < 1 ? 'menos de 1 h' : h < 48 ? `${h} h` : `${Math.floor(h / 24)} d`
-    const lineas = cola.map((p) => `• ${p.id} · ${edad(p.horas)} · ${p.titulo.slice(0, 60)}`)
-    await ctx.reply(
-      `Esperan revisión ${cola.length}:\n\n${lineas.join('\n')}\n\nLa tarjeta de cada una: /revisar Q-…`,
+    // Sin el título: este mensaje no se vacía si su autor retira la queja. Y en
+    // trozos que caben, que una cola larga es justo cuando más falta hace.
+    const lineas = cola.map(
+      (p) => `• ${p.id} · ${edad(p.horas)}${p.moderacion === 'retenida' ? ' · retenida' : ''}`,
     )
+    const bloques = []
+    for (let i = 0; i < lineas.length; i += LINEAS_POR_BLOQUE) {
+      bloques.push({ texto: lineas.slice(i, i + LINEAS_POR_BLOQUE).join('\n'), id: i })
+    }
+    bloques.push({ texto: 'La tarjeta de cada una: /revisar Q-…', id: -1 })
+    for (const t of trocear(`Esperan revisión ${cola.length}:`, bloques)) await ctx.reply(t.texto)
   })
 }

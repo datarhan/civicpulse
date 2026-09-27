@@ -1,5 +1,5 @@
 import type { Db } from './client.ts'
-import type { Canal, Moderacion } from './migraciones.ts'
+import type { Canal, Moderacion, MotivoVaciado } from './migraciones.ts'
 import { nuevoIdDeQueja } from '../services/queja-id.ts'
 
 export type QuejaState =
@@ -186,6 +186,37 @@ export function getQuejaViva(db: Db, id: string): QuejaRow | null {
  */
 export const SQL_PUBLICA = "deleted_at IS NULL AND moderacion = 'publicada'"
 
+/**
+ * El `tipo` de una tarjeta de revisión en `avisos`: `tarjeta`, la que se manda
+ * sola a cada administrador, y `tarjeta:<n>`, cada copia más que pide `/revisar`.
+ * Todas se ponen al día al decidir y todas pierden el texto al retirarse la queja.
+ */
+export const TIPO_TARJETA = 'tarjeta'
+/** Toda copia de una tarjeta de revisión, en un WHERE sobre `avisos`. */
+export const SQL_ES_TARJETA = `(tipo = '${TIPO_TARJETA}' OR tipo LIKE '${TIPO_TARJETA}:%')`
+
+/**
+ * Unas quejas dejan de estar vivas: las copias entregadas de sus tarjetas pasan a
+ * `tarjetas_por_vaciar`, que la pasada horaria vacía hasta que pierden el texto,
+ * y el resto de su rastro en `avisos` —tarjetas sin entregar, avisos a su autor—
+ * se borra. Va dentro de la transacción que las retira o las destruye: fuera,
+ * una tarjeta podía quedarse con el texto sin nada que recordara dónde (revisión
+ * de la pasada de #137). Devuelve cuántas copias quedan en cola.
+ */
+export function aVaciar(db: Db, ids: string[], motivo: MotivoVaciado): number {
+  if (ids.length === 0) return 0
+  const marcas = ids.map(() => '?').join(', ')
+  const encoladas = db
+    .prepare(
+      `INSERT OR IGNORE INTO tarjetas_por_vaciar (destinatario, message_id, queja_id, motivo)
+       SELECT destinatario, message_id, queja_id, ? FROM avisos
+        WHERE ${SQL_ES_TARJETA} AND message_id IS NOT NULL AND queja_id IN (${marcas})`,
+    )
+    .run(motivo, ...ids).changes
+  db.prepare(`DELETE FROM avisos WHERE queja_id IN (${marcas})`).run(...ids)
+  return encoladas
+}
+
 /** `SQL_PUBLICA` sobre una tabla con alias: `sqlPublica('q')`. */
 export const sqlPublica = (alias: string) =>
   SQL_PUBLICA.replace(/\b(deleted_at|moderacion)\b/g, `${alias}.$1`)
@@ -300,6 +331,8 @@ export function softDeleteQueja(db: Db, id: string, autor: Autor): boolean {
       id,
       JSON.stringify({ reason: 'user_requested_deletion' }),
     )
+    // Y lo que el bot mandó de ella: las tarjetas, a vaciar; el aviso a su autor, fuera.
+    aVaciar(db, [id], 'retirada')
   })
   tx()
   return true
@@ -624,9 +657,12 @@ export function findMatchingQuejas(
       // La ventana va sobre cuándo se PUBLICÓ: una queja escrita el domingo y
       // publicada el martes no salía ni en el resumen del lunes —aún no era
       // pública— ni en el siguiente —ya tenía más de siete días de escrita—.
+      // Y las dos fechas, en un mismo formato: la guardada es 'AAAA-MM-DD
+      // HH:MM:SS' y el corte un ISO con 'T', y comparadas como texto el día del
+      // corte entero quedaba fuera (' ' va antes que 'T').
       `SELECT * FROM quejas
        WHERE ${SQL_PUBLICA}
-         AND COALESCE(publicada_at, created_at) >= ?
+         AND datetime(COALESCE(publicada_at, created_at)) >= datetime(?)
          AND ${col} LIKE ?
        ORDER BY created_at DESC
        LIMIT 50`,

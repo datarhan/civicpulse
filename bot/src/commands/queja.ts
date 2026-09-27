@@ -247,8 +247,8 @@ export function quejaConversationBuilder(db: Db, envio: EnvioAdmin) {
 
     // Nace `pendiente`: no es pública hasta que un administrador la revisa. La
     // tarjeta va a cada uno; la que no llegue a nadie la reenvía la pasada horaria
-    // (services/avisos-admin.ts). El canal público la anuncia al PUBLICARLA
-    // (commands/moderar.ts), no ahora.
+    // (services/avisos-admin.ts). El canal público no la anuncia, ni ahora ni al
+    // publicarla: un anuncio no se retiraba con la queja.
     await avisarAdmins(db, saved, { admins: parseAdminIds(), envio })
 
     const responsible = routing.concejalia.responsible

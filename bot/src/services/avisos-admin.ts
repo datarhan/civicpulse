@@ -10,21 +10,25 @@
  * bloqueado, Telegram caído, un administrador que dejó de serlo—, la queja
  * sigue sin publicar, la pasada horaria la reenvía y `/health` lo dice.
  *
- * `avisos` guarda lo que el bot ha mandado de cada queja y a quién: la tarjeta
- * de cada administrador (`admin:<id>`), para cambiarlas todas al decidir, y el
- * aviso de cada decisión a su autor, para no repetirlo. Un envío se RECLAMA
- * antes de mandarlo —una fila sin resultado—, así que dos pasadas a la vez no
- * mandan dos; un reclamo que se quedó a medias caduca a los diez minutos. Las
- * tarjetas de una queja que su autor retira se vacían, y si Telegram falla en
- * ese momento, la pasada horaria (`pasadaHoraria`) lo vuelve a intentar.
+ * `avisos` guarda lo que el bot ha mandado de cada queja viva: cada copia de su
+ * tarjeta (`admin:<id>`; `/revisar` manda copias de más), para cambiarlas todas
+ * al decidir, y el aviso de cada decisión a su autor, sin decir a quién, para no
+ * repetirlo. Un envío se RECLAMA antes de mandarlo —una fila sin resultado—, así
+ * que dos pasadas a la vez no mandan dos; un reclamo que se quedó a medias caduca
+ * a los diez minutos. Cuando la queja deja de estar viva, sus copias pasan a
+ * `tarjetas_por_vaciar` en la misma transacción que la retira o la destruye
+ * (`aVaciar`, db/queries.ts), y se vacían en el acto; lo que Telegram no deje
+ * vaciar entonces lo reintenta la pasada horaria (`pasadaHoraria`). Todo lo que
+ * toca las tarjetas de una queja va de uno en uno (`enSerie`).
  *
  * No se pausa con el bloqueo LOREG: decidir es de una persona, y la pausa es
  * para lo automático.
  */
+import { randomUUID } from 'node:crypto'
 import type { Api } from 'grammy'
 import type { Db } from '../db/client.ts'
-import type { Moderacion } from '../db/migraciones.ts'
-import { getQuejaViva, type QuejaRow } from '../db/queries.ts'
+import type { Moderacion, MotivoVaciado } from '../db/migraciones.ts'
+import { getQuejaViva, SQL_ES_TARJETA, TIPO_TARJETA, type QuejaRow } from '../db/queries.ts'
 import { avisoAlAutor, DECISIONES_CON_AVISO } from './textos-revision.ts'
 import { escaparHtml } from '../util/html.ts'
 import { logger } from '../util/log.ts'
@@ -42,9 +46,6 @@ export interface EnvioAdmin {
   /** Un texto plano a un chat: el aviso a quien escribió la queja. */
   mensaje(chatId: number, texto: string): Promise<{ message_id: number }>
 }
-
-/** El `tipo` de la tarjeta de revisión en `avisos`. */
-export const TIPO_TARJETA = 'tarjeta'
 
 const comoAdmin = (id: number) => `admin:${id}`
 const idDeAdmin = (destinatario: string) => Number(destinatario.slice('admin:'.length))
@@ -100,7 +101,7 @@ export function tarjetaDeQueja(q: QuejaRow, nota?: string): { html: string; boto
  */
 export function tarjetaSinQueja(
   id: string,
-  motivo: 'retirada' | 'destruida' = 'retirada',
+  motivo: MotivoVaciado = 'retirada',
 ): { html: string; botones: Boton[] } {
   const que =
     motivo === 'destruida'
@@ -109,6 +110,31 @@ export function tarjetaSinQueja(
   return {
     html: `<b>${que}</b> · <code>${id}</code>\n\n<i>Su texto ya no se enseña aquí.</i>`,
     botones: [],
+  }
+}
+
+/**
+ * Lo que toca las tarjetas de una queja, de uno en uno. Sin esto, una edición con
+ * el texto que salió antes de /olvidar podía llegar después de vaciar la tarjeta,
+ * y el texto volvía al chat sin nada que lo recordara (revisión de la pasada de
+ * #137). El bot corre en un solo proceso —una máquina en Fly, con la base en su
+ * volumen—, así que basta un candado en memoria. No se anida: lo que corre dentro
+ * no vuelve a pedirlo.
+ */
+const enCurso = new Map<string, Promise<void>>()
+
+async function enSerie<T>(id: string, fn: () => Promise<T>): Promise<T> {
+  const antes = enCurso.get(id) ?? Promise.resolve()
+  let terminar!: () => void
+  const hecho = new Promise<void>((r) => (terminar = r))
+  const esta = antes.then(() => hecho)
+  enCurso.set(id, esta)
+  await antes
+  try {
+    return await fn()
+  } finally {
+    terminar()
+    if (enCurso.get(id) === esta) enCurso.delete(id)
   }
 }
 
@@ -126,6 +152,7 @@ function reclamar(db: Db, quejaId: string, tipo: string, destinatario: string): 
   )
 }
 
+/** Anota cómo acabó un envío reclamado. False si su reclamo ya no está: la queja dejó de estar viva mientras salía. */
 function anotar(
   db: Db,
   quejaId: string,
@@ -133,10 +160,14 @@ function anotar(
   destinatario: string,
   resultado: 'entregado' | 'rechazado',
   messageId: number | null,
-): void {
-  db.prepare(
-    'UPDATE avisos SET resultado = ?, message_id = ? WHERE queja_id = ? AND tipo = ? AND destinatario = ?',
-  ).run(resultado, messageId, quejaId, tipo, destinatario)
+): boolean {
+  return (
+    db
+      .prepare(
+        'UPDATE avisos SET resultado = ?, message_id = ? WHERE queja_id = ? AND tipo = ? AND destinatario = ?',
+      )
+      .run(resultado, messageId, quejaId, tipo, destinatario).changes > 0
+  )
 }
 
 function soltar(db: Db, quejaId: string, tipo: string, destinatario: string): void {
@@ -159,6 +190,54 @@ function esRechazoDefinitivo(err: unknown): boolean {
   return typeof codigo === 'number' && RECHAZO_DEFINITIVO.has(codigo)
 }
 
+interface CopiaDeTarjeta {
+  destinatario: string
+  message_id: number
+}
+
+/**
+ * Manda una copia de la tarjeta a un administrador y la anota; se llama con el
+ * candado de la queja. Si al volver su reclamo ya no está —su autor la retiró
+ * mientras salía, y la retirada borró el rastro—, la copia recién llegada va
+ * derecha a la cola de vaciado, y se vacía.
+ */
+async function mandarCopia(
+  db: Db,
+  q: QuejaRow,
+  admin: number,
+  tipo: string,
+  envio: EnvioAdmin,
+): Promise<'entregada' | 'fallida' | 'ya-estaba'> {
+  const destinatario = comoAdmin(admin)
+  if (!reclamar(db, q.id, tipo, destinatario)) return 'ya-estaba'
+  const { html, botones } = tarjetaDeQueja(q)
+  let m: { message_id: number }
+  try {
+    m = await envio.enviar(admin, html, botones)
+  } catch (err) {
+    soltar(db, q.id, tipo, destinatario)
+    logger.warn('avisos-admin.tarjeta', { queja: q.id, admin, err: String(err) })
+    return 'fallida'
+  }
+  if (anotar(db, q.id, tipo, destinatario, 'entregado', m.message_id)) return 'entregada'
+  if (getQuejaViva(db, q.id)) {
+    // Viva y sin reclamo: sólo si el envío tardó más que la caducidad del reclamo y
+    // otro lo tomó. Se sigue como una copia más, para no perderla de vista.
+    db.prepare(
+      `INSERT INTO avisos (queja_id, tipo, destinatario, message_id, resultado)
+       VALUES (?, ?, ?, ?, 'entregado')`,
+    ).run(q.id, `${TIPO_TARJETA}:${randomUUID().slice(0, 8)}`, destinatario, m.message_id)
+    return 'entregada'
+  }
+  const existe = db.prepare('SELECT 1 FROM quejas WHERE id = ?').get(q.id) !== undefined
+  db.prepare(
+    `INSERT OR IGNORE INTO tarjetas_por_vaciar (destinatario, message_id, queja_id, motivo)
+     VALUES (?, ?, ?, ?)`,
+  ).run(destinatario, m.message_id, q.id, existe ? 'retirada' : 'destruida')
+  await vaciarColaDe(db, q.id, envio)
+  return 'entregada'
+}
+
 /**
  * Manda la tarjeta de una queja a cada administrador que no la tenga ya, y
  * anota las que llegaron. Una que falla se suelta para la pasada siguiente.
@@ -168,28 +247,21 @@ export async function avisarAdmins(
   q: QuejaRow,
   o: { admins: number[]; envio: EnvioAdmin },
 ): Promise<{ entregadas: number; fallidas: number }> {
-  const { html, botones } = tarjetaDeQueja(q)
-  let entregadas = 0
-  let fallidas = 0
-  for (const admin of o.admins) {
-    const destinatario = comoAdmin(admin)
-    if (!reclamar(db, q.id, TIPO_TARJETA, destinatario)) continue
-    try {
-      const m = await o.envio.enviar(admin, html, botones)
-      anotar(db, q.id, TIPO_TARJETA, destinatario, 'entregado', m.message_id)
-      entregadas += 1
-    } catch (err) {
-      soltar(db, q.id, TIPO_TARJETA, destinatario)
-      fallidas += 1
-      logger.warn('avisos-admin.tarjeta', { queja: q.id, admin, err: String(err) })
+  return enSerie(q.id, async () => {
+    const r = { entregadas: 0, fallidas: 0 }
+    for (const admin of o.admins) {
+      const hecho = await mandarCopia(db, q, admin, TIPO_TARJETA, o.envio)
+      if (hecho === 'entregada') r.entregadas += 1
+      else if (hecho === 'fallida') r.fallidas += 1
     }
-  }
-  return { entregadas, fallidas }
+    return r
+  })
 }
 
 /**
- * La tarjeta de una queja viva a UN administrador, aunque ya la tuviera: la de
- * `/revisar`. La anterior se deja de seguir; sus botones siguen valiendo, porque
+ * Una copia más de la tarjeta de una queja viva a UN administrador: la de
+ * `/revisar`. Las anteriores siguen contadas —se ponen al día al decidir y
+ * pierden el texto si la queja se retira—, y sus botones siguen valiendo, porque
  * decidir es compare-and-set.
  */
 export async function enviarTarjetaA(
@@ -198,69 +270,51 @@ export async function enviarTarjetaA(
   admin: number,
   envio: EnvioAdmin,
 ): Promise<boolean> {
-  soltar(db, q.id, TIPO_TARJETA, comoAdmin(admin))
-  return (await avisarAdmins(db, q, { admins: [admin], envio })).entregadas === 1
-}
-
-interface CopiaDeTarjeta {
-  destinatario: string
-  message_id: number
+  const tipo = `${TIPO_TARJETA}:${randomUUID().slice(0, 8)}`
+  return enSerie(q.id, async () => (await mandarCopia(db, q, admin, tipo, envio)) === 'entregada')
 }
 
 /**
- * Pone al día todas las copias de la tarjeta de una queja. Un fallo al editar
- * una copia no deshace nada: se registra y se sigue con las demás. La de una
- * queja que su autor retiró se VACÍA (`vaciarCopia`), y ésa, si falla de paso,
- * la reintenta la pasada horaria: su texto no puede quedarse en ningún chat.
+ * Pone al día todas las copias de la tarjeta de una queja. Un fallo al editar una
+ * copia no deshace nada: se registra y se sigue con las demás. Si la queja ya no
+ * está viva, vacía las que esperan en su cola.
  */
 export async function actualizarTarjetas(
   db: Db,
   id: string,
   o: { envio: EnvioAdmin; nota?: string },
 ): Promise<void> {
-  const copias = db
-    .prepare(
-      `SELECT destinatario, message_id FROM avisos
-        WHERE queja_id = ? AND tipo = ? AND message_id IS NOT NULL`,
-    )
-    .all(id, TIPO_TARJETA) as CopiaDeTarjeta[]
-  const q = getQuejaViva(db, id)
-  if (!q) {
-    for (const c of copias) await vaciarCopia(db, id, c, o.envio)
-    return
-  }
-  const { html, botones } = tarjetaDeQueja(q, o.nota)
-  await editar(copias, html, botones, o.envio, id)
+  await enSerie(id, async () => {
+    const q = getQuejaViva(db, id)
+    if (!q) {
+      await vaciarColaDe(db, id, o.envio)
+      return
+    }
+    const copias = db
+      .prepare(
+        `SELECT destinatario, message_id FROM avisos
+          WHERE queja_id = ? AND ${SQL_ES_TARJETA} AND message_id IS NOT NULL`,
+      )
+      .all(id) as CopiaDeTarjeta[]
+    const { html, botones } = tarjetaDeQueja(q, o.nota)
+    await editar(copias, html, botones, o.envio, id)
+  })
 }
 
-/** Cómo acabó el intento de vaciar una copia de la tarjeta. */
-type Vaciado = 'vaciada' | 'sin-acceso' | 'fallida'
-
-/**
- * Quita el texto de una copia de la tarjeta de una queja que su autor retiró.
- * Su fila en `avisos` se borra cuando ya no hay nada que hacer —vaciada, o en
- * un chat que Telegram ya no deja tocar— y se queda para la pasada horaria si
- * falló de paso.
- */
-async function vaciarCopia(
-  db: Db,
-  id: string,
-  c: CopiaDeTarjeta,
+async function editar(
+  copias: CopiaDeTarjeta[],
+  html: string,
+  botones: Boton[],
   envio: EnvioAdmin,
-): Promise<Vaciado> {
-  const { html, botones } = tarjetaSinQueja(id, 'retirada')
-  let vaciado: Vaciado = 'vaciada'
-  try {
-    await envio.editar(idDeAdmin(c.destinatario), c.message_id, html, botones)
-  } catch (err) {
-    // «message is not modified»: ya estaba vacía, porque el proceso cayó tras editarla.
-    if (!/message is not modified/i.test(String(err))) {
-      vaciado = esRechazoDefinitivo(err) ? 'sin-acceso' : 'fallida'
-      logger.warn('avisos-admin.vaciar', { queja: id, err: String(err) })
+  id: string,
+): Promise<void> {
+  for (const c of copias) {
+    try {
+      await envio.editar(idDeAdmin(c.destinatario), c.message_id, html, botones)
+    } catch (err) {
+      logger.warn('avisos-admin.editar', { queja: id, err: String(err) })
     }
   }
-  if (vaciado !== 'fallida') soltar(db, id, TIPO_TARJETA, c.destinatario)
-  return vaciado
 }
 
 /** Lo que hizo una pasada de vaciar tarjetas, contado por separado. */
@@ -273,100 +327,68 @@ export interface ResultadoVaciado {
   fallidas: number
 }
 
+const vaciadoVacio = (): ResultadoVaciado => ({
+  intentadas: 0,
+  vaciadas: 0,
+  sinAcceso: 0,
+  fallidas: 0,
+})
+
 /**
- * Las tarjetas que aún enseñan el texto de una queja que su autor retiró —con
- * /olvidar o /borrar_mis_datos—, porque Telegram falló al vaciarlas entonces.
+ * Quita el texto de las copias de la tarjeta de una queja que esperan en la cola;
+ * se llama con su candado. Cada fila se va cuando ya no queda nada que hacer
+ * —vaciada, ya vacía («message is not modified»), o en un chat que Telegram no
+ * deja tocar— y se queda para la pasada horaria si falló de paso.
  */
-export async function vaciarTarjetasDeRetiradas(
-  db: Db,
-  envio: EnvioAdmin,
-): Promise<ResultadoVaciado> {
-  const copias = db
+async function vaciarColaDe(db: Db, id: string, envio: EnvioAdmin): Promise<ResultadoVaciado> {
+  const filas = db
     .prepare(
-      `SELECT a.queja_id, a.destinatario, a.message_id FROM avisos a
-         JOIN quejas q ON q.id = a.queja_id
-        WHERE a.tipo = ? AND a.message_id IS NOT NULL AND q.deleted_at IS NOT NULL
-        ORDER BY a.queja_id, a.destinatario`,
+      `SELECT destinatario, message_id, motivo FROM tarjetas_por_vaciar
+        WHERE queja_id = ? ORDER BY destinatario, message_id`,
     )
-    .all(TIPO_TARJETA) as Array<CopiaDeTarjeta & { queja_id: string }>
-  const r: ResultadoVaciado = { intentadas: 0, vaciadas: 0, sinAcceso: 0, fallidas: 0 }
-  for (const c of copias) {
+    .all(id) as Array<CopiaDeTarjeta & { motivo: MotivoVaciado }>
+  const r = vaciadoVacio()
+  for (const f of filas) {
     r.intentadas += 1
-    const v = await vaciarCopia(db, c.queja_id, c, envio)
-    if (v === 'vaciada') r.vaciadas += 1
-    else if (v === 'sin-acceso') r.sinAcceso += 1
-    else r.fallidas += 1
+    const { html, botones } = tarjetaSinQueja(id, f.motivo)
+    let hecho: 'vaciadas' | 'sinAcceso' | 'fallidas' = 'vaciadas'
+    try {
+      await envio.editar(idDeAdmin(f.destinatario), f.message_id, html, botones)
+    } catch (err) {
+      if (!/message is not modified/i.test(String(err))) {
+        hecho = esRechazoDefinitivo(err) ? 'sinAcceso' : 'fallidas'
+        logger.warn('avisos-admin.vaciar', { queja: id, err: String(err) })
+      }
+    }
+    if (hecho !== 'fallidas') {
+      db.prepare('DELETE FROM tarjetas_por_vaciar WHERE destinatario = ? AND message_id = ?').run(
+        f.destinatario,
+        f.message_id,
+      )
+    }
+    r[hecho] += 1
   }
   return r
 }
 
-async function editar(
-  copias: CopiaDeTarjeta[],
-  html: string,
-  botones: Boton[],
-  envio: EnvioAdmin,
-  id: string,
-): Promise<{ editadas: number; fallidas: number }> {
-  let editadas = 0
-  let fallidas = 0
-  for (const c of copias) {
-    try {
-      await envio.editar(idDeAdmin(c.destinatario), c.message_id, html, botones)
-      editadas += 1
-    } catch (err) {
-      fallidas += 1
-      logger.warn('avisos-admin.editar', { queja: id, err: String(err) })
-    }
+/**
+ * Las tarjetas que esperan en cola a perder el texto —de quejas retiradas por su
+ * autor o destruidas por el plazo de conservación— porque Telegram falló al
+ * vaciarlas entonces; cada queja, con su candado.
+ */
+export async function vaciarTarjetasEnCola(db: Db, envio: EnvioAdmin): Promise<ResultadoVaciado> {
+  const ids = db
+    .prepare('SELECT DISTINCT queja_id FROM tarjetas_por_vaciar ORDER BY queja_id')
+    .all() as Array<{ queja_id: string }>
+  const total = vaciadoVacio()
+  for (const { queja_id } of ids) {
+    const r = await enSerie(queja_id, () => vaciarColaDe(db, queja_id, envio))
+    total.intentadas += r.intentadas
+    total.vaciadas += r.vaciadas
+    total.sinAcceso += r.sinAcceso
+    total.fallidas += r.fallidas
   }
-  return { editadas, fallidas }
-}
-
-/** Una tarjeta en el chat de un administrador, como la devuelve la purga del plazo de conservación. */
-export interface TarjetaEnviada {
-  queja_id: string
-  admin: number
-  message_id: number
-}
-
-/** Las tarjetas entregadas de unas quejas: la purga las recoge ANTES de borrar sus filas. */
-export function tarjetasDe(db: Db, ids: string[]): TarjetaEnviada[] {
-  if (ids.length === 0) return []
-  const filas = db
-    .prepare(
-      `SELECT queja_id, destinatario, message_id FROM avisos
-        WHERE tipo = ? AND message_id IS NOT NULL AND queja_id IN (${ids.map(() => '?').join(', ')})
-        ORDER BY queja_id, destinatario`,
-    )
-    .all(TIPO_TARJETA, ...ids) as Array<{
-    queja_id: string
-    destinatario: string
-    message_id: number
-  }>
-  return filas.map((f) => ({
-    queja_id: f.queja_id,
-    admin: idDeAdmin(f.destinatario),
-    message_id: f.message_id,
-  }))
-}
-
-/** Quita el texto de las tarjetas de unas quejas ya destruidas por el plazo de conservación. */
-export async function vaciarTarjetas(
-  tarjetas: TarjetaEnviada[],
-  envio: EnvioAdmin,
-): Promise<number> {
-  let vaciadas = 0
-  for (const t of tarjetas) {
-    const { html, botones } = tarjetaSinQueja(t.queja_id, 'destruida')
-    const r = await editar(
-      [{ destinatario: comoAdmin(t.admin), message_id: t.message_id }],
-      html,
-      botones,
-      envio,
-      t.queja_id,
-    )
-    vaciadas += r.editadas
-  }
-  return vaciadas
+  return total
 }
 
 function tieneTarjetaActual(db: Db, quejaId: string, admins: number[]): boolean {
@@ -375,10 +397,10 @@ function tieneTarjetaActual(db: Db, quejaId: string, admins: number[]): boolean 
     db
       .prepare(
         `SELECT 1 FROM avisos
-          WHERE queja_id = ? AND tipo = ? AND message_id IS NOT NULL
+          WHERE queja_id = ? AND ${SQL_ES_TARJETA} AND message_id IS NOT NULL
             AND destinatario IN (${admins.map(() => '?').join(', ')})`,
       )
-      .get(quejaId, TIPO_TARJETA, ...admins.map(comoAdmin)) !== undefined
+      .get(quejaId, ...admins.map(comoAdmin)) !== undefined
   )
 }
 
@@ -436,22 +458,25 @@ export function estadoModeracion(db: Db, admins: number[], ahora = new Date()): 
   }
 }
 
-/** La cola de revisión, para `/pendientes`: de la más antigua a la más nueva. */
+/**
+ * La cola de revisión, para `/pendientes`: de la más antigua a la más nueva. Sin
+ * el texto de ninguna: ese mensaje no se vacía cuando su autor retira la queja,
+ * y para leerla está su tarjeta (`/revisar`).
+ */
 export function listarPendientes(
   db: Db,
   ahora = new Date(),
-): Array<{ id: string; moderacion: Moderacion; titulo: string; horas: number }> {
+): Array<{ id: string; moderacion: Moderacion; horas: number }> {
   const filas = db
     .prepare(
-      `SELECT id, moderacion, title, created_at FROM quejas
+      `SELECT id, moderacion, created_at FROM quejas
         WHERE moderacion IN ('pendiente', 'retenida') AND deleted_at IS NULL
         ORDER BY created_at`,
     )
-    .all() as Array<{ id: string; moderacion: Moderacion; title: string; created_at: string }>
+    .all() as Array<{ id: string; moderacion: Moderacion; created_at: string }>
   return filas.map((f) => ({
     id: f.id,
     moderacion: f.moderacion,
-    titulo: f.title,
     horas: horasDesde(f.created_at, ahora),
   }))
 }
@@ -512,7 +537,9 @@ export async function avisarAutores(
   for (const f of avisosQueFaltan(db, o.quejaId)) {
     const texto = avisoAlAutor(f.queja_id, f.hasta)
     const tipo = `autor:${f.decision}`
-    const destinatario = `telegram:${f.ref}`
+    // Sin decir a quién: el destinatario sale de `ciudadanos` al mandarlo, y así
+    // /olvidar y /borrar_mis_datos no dejan aquí su identidad.
+    const destinatario = 'autor'
     if (!texto || !reclamar(db, f.queja_id, tipo, destinatario)) continue
     r.intentados += 1
     try {
@@ -562,12 +589,12 @@ export function completarSeguimientosPendientes(
 
 /**
  * La pasada horaria: las tarjetas que ningún administrador actual tiene, las
- * que aún enseñan el texto de una queja retirada, y los avisos que faltan a
- * sus autores. Cada parte cuenta lo suyo.
+ * que esperan en cola a perder el texto de una queja retirada o destruida, y los
+ * avisos que faltan a sus autores. Cada parte cuenta lo suyo.
  */
 export async function pasadaHoraria(db: Db, o: { admins: number[]; envio: EnvioAdmin }) {
   const tarjetas = await reenviarTarjetasPendientes(db, o)
-  const vaciadas = await vaciarTarjetasDeRetiradas(db, o.envio)
+  const vaciadas = await vaciarTarjetasEnCola(db, o.envio)
   const avisos = await completarSeguimientosPendientes(db, { envio: o.envio })
   return { tarjetas, vaciadas, avisos }
 }
