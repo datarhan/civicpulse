@@ -2,6 +2,8 @@ import { describe, expect, it, beforeEach } from 'vitest'
 import { openDb, type Db } from '../src/db/client'
 import {
   addSubscription,
+  createQueja,
+  findMatchingQuejas,
   listUserSubscriptions,
   removeSubscription,
   softDeleteQueja,
@@ -9,6 +11,8 @@ import {
   autorTelegram,
 } from '../src/db/queries'
 import { runDigestOnce } from '../src/services/digest'
+import { computeDigest } from '../src/commands/digest'
+import { publicar } from './helpers/publicada'
 import { creaPublicada } from './helpers/publicada'
 
 function q(overrides: Partial<NewQuejaInput> = {}): NewQuejaInput {
@@ -150,5 +154,41 @@ describe('bot · digest runDigestOnce', () => {
     addSubscription(db, 999, 'barrio', 'casco')
     const r = runDigestOnce(db, sendDm, new Date('2026-04-21T09:00:00Z'))
     expect(r.totalMatches).toBe(0)
+  })
+})
+
+/**
+ * Los resúmenes cuentan una queja cuando se PUBLICA, no cuando se escribe.
+ *
+ * Con la revisión antes de publicar, una queja escrita el domingo y publicada
+ * el martes caía fuera del resumen del lunes —aún no era pública— y fuera del
+ * siguiente —ya tenía más de siete días de escrita—: no salía en ninguno
+ * (revisión de #137). La ventana va sobre `publicada_at`.
+ */
+describe('la ventana de los resúmenes', () => {
+  let db: Db
+  beforeEach(() => {
+    db = openDb(':memory:')
+  })
+
+  it('una queja escrita hace diez días y publicada ayer entra en los resúmenes de esta semana', () => {
+    const id = createQueja(db, q()).id
+    publicar(db, id)
+    db.prepare(
+      "UPDATE quejas SET created_at = datetime('now', '-10 days'), publicada_at = datetime('now', '-1 day') WHERE id = ?",
+    ).run(id)
+    expect(findMatchingQuejas(db, 'barrio', 'casco', 7).map((r) => r.id)).toEqual([id])
+    expect(computeDigest(db, 7).nuevas).toBe(1)
+    expect(computeDigest(db, 7).topCategorias).toEqual([{ category: 'via_publica', n: 1 }])
+  })
+
+  it('el control: publicada hace diez días, fuera', () => {
+    const id = createQueja(db, q()).id
+    publicar(db, id)
+    db.prepare(
+      "UPDATE quejas SET created_at = datetime('now', '-10 days'), publicada_at = datetime('now', '-10 days') WHERE id = ?",
+    ).run(id)
+    expect(findMatchingQuejas(db, 'barrio', 'casco', 7)).toEqual([])
+    expect(computeDigest(db, 7).nuevas).toBe(0)
   })
 })

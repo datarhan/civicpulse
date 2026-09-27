@@ -91,3 +91,45 @@ describe('buildHealth · la versión que corre', () => {
     ).toBeNull()
   })
 })
+
+/**
+ * Una cola de revisión atascada no se veía: con `ADMIN_USER_IDS` vacío, o con
+ * cada tarjeta fallando, las quejas esperaban para siempre y `/health` sólo
+ * decía que /batch estaba apagado (revisión de #137). Ahora lo dice, y
+ * ops-alarm lo lee de `degraded`.
+ */
+describe('buildHealth · la cola de revisión', () => {
+  const wired = { BOT_TOKEN: 't', CHANNEL_ID: '-100', ADMIN_USER_IDS: '42' } as NodeJS.ProcessEnv
+  const cola = (
+    o: Partial<{ pendientes: number; sinTarjeta: number; masAntiguaHoras: number | null }>,
+  ) => ({
+    ...base,
+    moderacion: { pendientes: 0, sinTarjeta: 0, masAntiguaHoras: null, ...o },
+  })
+
+  it('sin nada esperando, nada que decir (el control)', () => {
+    const h = buildHealth(wired, cola({}))
+    expect(h.status).toBe('ok')
+    expect(h.moderacion).toEqual({ pendientes: 0, sinTarjeta: 0, masAntiguaHoras: null })
+  })
+
+  it('una queja esperando que no tiene tarjeta en ningún administrador actual', () => {
+    const h = buildHealth(wired, cola({ pendientes: 1, sinTarjeta: 1, masAntiguaHoras: 1 }))
+    expect(h.status).toBe('degraded')
+    expect(h.degraded.join(' ')).toMatch(/sin tarjeta/)
+  })
+
+  it('quejas esperando y nadie que pueda publicarlas', () => {
+    const h = buildHealth(
+      { BOT_TOKEN: 't', CHANNEL_ID: '-100' } as NodeJS.ProcessEnv,
+      cola({ pendientes: 2, sinTarjeta: 2, masAntiguaHoras: 3 }),
+    )
+    expect(h.degraded.join(' ')).toMatch(/nadie puede publicar/)
+  })
+
+  it('la más antigua lleva más de dos días', () => {
+    const h = buildHealth(wired, cola({ pendientes: 1, masAntiguaHoras: 50 }))
+    expect(h.degraded.join(' ')).toMatch(/50 h/)
+    expect(buildHealth(wired, cola({ pendientes: 1, masAntiguaHoras: 47 })).status).toBe('ok')
+  })
+})

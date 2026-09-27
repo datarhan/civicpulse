@@ -377,7 +377,7 @@ describe('la migración 2: la revisión antes de publicar', () => {
         .prepare('SELECT decision, por, COUNT(*) AS n FROM moderaciones GROUP BY decision, por')
         .all(),
     ).toEqual([{ decision: 'heredada', por: 'migracion', n: 5 }])
-    expect(cuenta(db, 'avisos_admin')).toBe(0)
+    expect(cuenta(db, 'avisos')).toBe(0)
     expect(cuenta(db, 'events')).toBe(8) // ni un evento de más
     expect(db.pragma('foreign_key_check')).toEqual([])
   }

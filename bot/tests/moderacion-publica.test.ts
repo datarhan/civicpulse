@@ -11,6 +11,7 @@ import {
   decidirModeracion,
   findMatchingQuejas,
   listByNeighborhood,
+  listQuejasWithPhoto,
   listRecentQuejas,
   reconcileApoyadas,
   softDeleteQueja,
@@ -128,12 +129,30 @@ describe('sólo lo publicado sale', () => {
     soloLaPublicada(selectBatch(db, 50).map((b) => b.queja.id))
   })
 
-  it('el silencio administrativo', () => {
+  it('el silencio administrativo: el plazo corre sobre lo presentado; sólo se anuncia lo público', async () => {
     db.prepare(
       "UPDATE quejas SET state = 'registrada', registered_at = '2025-01-01 00:00:00', registro_entry_number = 'RE-1'",
     ).run()
-    const r = checkSilencio(db, CANAL_MUDO, new Date('2026-09-27T12:00:00Z'), 0)
-    soloLaPublicada(r.transitioned.map((q) => q.id))
+    const anunciadas: string[] = []
+    const espia = {
+      ...CANAL_MUDO,
+      postSilencio: async (q: { id: string }) => {
+        anunciadas.push(q.id)
+      },
+    }
+    const r = checkSilencio(db, espia, new Date('2026-09-27T12:00:00Z'), 0)
+    await r.broadcasts
+    // Una queja ya presentada en la sede que se retira de la publicación sigue su
+    // curso legal: el ayuntamiento la tiene. Lo que no se hace es anunciarla.
+    expect(r.transitioned.map((q) => q.id).sort()).toEqual(
+      [ids.publicada, ids.pendiente, ids.descartada, ids.retirada].sort(),
+    )
+    soloLaPublicada(anunciadas)
+  })
+
+  it('la pasada de fotos sólo trabaja las publicadas', () => {
+    db.prepare("UPDATE quejas SET foto_ref = 'tg:FOTO'").run()
+    soloLaPublicada(listQuejasWithPhoto(db).map((q) => q.id))
   })
 
   it('una pendiente con los apoyos no se promueve', () => {
@@ -193,7 +212,6 @@ describe('sólo lo publicado sale', () => {
  */
 const NO_PUBLICOS: Record<string, string> = {
   'db/queries.ts:getQuejaViva': 'el autor y los administradores ven lo que no está publicado',
-  'db/queries.ts:listQuejasWithPhoto': 'la foto se anonimiza antes de publicar; servirla va aparte',
   'db/queries.ts:decidirModeracion': 'detecta la retirada del autor antes de decidir',
   'db/queries.ts:SQL_PUBLICA': 'la definición',
   'services/rebarrio.ts:planearRebarrio': 'corrige datos internos, publicados o no',
@@ -201,6 +219,10 @@ const NO_PUBLICOS: Record<string, string> = {
   'services/ciudadano.ts:olvidarTodo': 'lo suyo, de quien pide borrarlo',
   'services/avisos-admin.ts:reenviarTarjetasPendientes':
     'lo pendiente de revisión, para los administradores que la deciden',
+  'services/avisos-admin.ts:estadoModeracion': 'la cola de revisión, para /health',
+  'services/avisos-admin.ts:listarPendientes': 'la cola de revisión, para /pendientes',
+  'services/cron.ts:checkSilencio':
+    'el plazo legal corre sobre lo presentado en la sede, publicado o no; el anuncio va aparte',
 }
 
 describe('ningún lector nuevo filtra sólo por deleted_at', () => {
@@ -219,7 +241,7 @@ describe('ningún lector nuevo filtra sólo por deleted_at', () => {
       if (f.endsWith('migraciones.ts')) continue
       const lineas = readFileSync(f, 'utf8').split('\n')
       lineas.forEach((l, i) => {
-        if (!/deleted_at IS NULL/.test(l) || /^\s*(\/\/|\*)/.test(l)) return
+        if (!/deleted_at\s+IS\s+NULL/i.test(l) || /^\s*(\/\/|\*)/.test(l)) return
         // La función (o constante) que la contiene: la última declaración de arriba.
         let nombre = '?'
         for (let j = i; j >= 0; j--) {
@@ -234,5 +256,37 @@ describe('ningún lector nuevo filtra sólo por deleted_at', () => {
     }
     expect(vistos.length, 'el barrido no encuentra nada que mirar').toBeGreaterThan(3)
     expect([...new Set(vistos)].filter((v) => !(v in NO_PUBLICOS))).toEqual([])
+  })
+})
+
+/**
+ * `getQuejaViva` devuelve también lo que no se ha publicado. Quien la llame lo
+ * ve TODO, así que sus llamadas están contadas, con su motivo, como las de
+ * arriba: una llamada nueva desde un lector público no pasa.
+ */
+const LLAMAN_A_VIVA: Record<string, string> = {
+  'db/queries.ts': 'la define',
+  'commands/estado.ts': 'su autor, en privado, ve la suya sin publicar',
+  'services/avisos-admin.ts': 'las tarjetas de los administradores',
+  'services/fotos-cron.ts': 'el título de una foto retenida, en el aviso a los administradores',
+  'commands/moderar.ts': '/revisar, para los administradores',
+}
+
+describe('quién puede ver lo no publicado', () => {
+  it('cada llamada a getQuejaViva está en su lista', () => {
+    const src = join(__dirname, '..', 'src')
+    const ficheros = (d: string): string[] =>
+      readdirSync(d, { withFileTypes: true }).flatMap((e) =>
+        e.isDirectory()
+          ? ficheros(join(d, e.name))
+          : e.name.endsWith('.ts')
+            ? [join(d, e.name)]
+            : [],
+      )
+    const llaman = ficheros(src)
+      .filter((f) => /\bgetQuejaViva\(/.test(readFileSync(f, 'utf8')))
+      .map((f) => relative(src, f))
+    expect(llaman.length, 'el barrido no encuentra nada que mirar').toBeGreaterThan(1)
+    expect(llaman.filter((f) => !(f in LLAMAN_A_VIVA))).toEqual([])
   })
 })

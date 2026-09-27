@@ -136,4 +136,16 @@ describe('purgarCaducadas', () => {
     expect(r.quejas).toEqual({ revisadas: 1, borradas: 0 })
     expect(r.copias).toEqual({ revisadas: 0, borradas: 0 })
   })
+
+  it('antes de destruir una queja devuelve sus tarjetas, para quitarles el texto de los chats', () => {
+    const vieja = queja({ updated: haceAnios(CONSERVACION_QUEJAS_ANIOS + 1) })
+    const viva = queja({ updated: AHORA })
+    const tarjeta = db.prepare(
+      "INSERT INTO avisos (queja_id, tipo, destinatario, message_id) VALUES (?, 'tarjeta', ?, ?)",
+    )
+    tarjeta.run(vieja, 'admin:9001', 77)
+    tarjeta.run(viva, 'admin:9001', 78)
+    const r = purgarCaducadas(db, opciones())
+    expect(r.tarjetas).toEqual([{ queja_id: vieja, admin: 9001, message_id: 77 }])
+  })
 })
