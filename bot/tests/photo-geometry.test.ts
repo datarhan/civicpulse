@@ -4,7 +4,46 @@ import {
   normToPixelRect,
   expandRect,
   parseVisionBoxes,
+  rectParaTapar,
 } from '../src/services/photo-geometry'
+
+/**
+ * El rectángulo que se tapa de verdad. Una detección diminuta —una cara lejana, o
+ * una caja leída en la escala equivocada— se tapaba con un mosaico de uno o dos
+ * píxeles, que no tapa nada. Ahora se tapa como mínimo un bloque entero alrededor
+ * de la detección; y si no cae sobre ningún píxel, no hay rectángulo (y la foto se
+ * retiene, en anonymizeImage).
+ */
+describe('rectParaTapar', () => {
+  it('una detección diminuta se tapa con al menos un bloque, centrado en ella', () => {
+    const r = rectParaTapar({ x: 0.5, y: 0.5, w: 0.001, h: 0.001 }, 1000, 1000, 0.12, 16)!
+    expect(r.width).toBeGreaterThanOrEqual(16)
+    expect(r.height).toBeGreaterThanOrEqual(16)
+    // Centrada: el centro de la detección queda dentro.
+    expect(r.left).toBeLessThanOrEqual(500)
+    expect(r.left + r.width).toBeGreaterThanOrEqual(500)
+  })
+
+  it('una detección normal se tapa con su margen, igual que antes (el control)', () => {
+    expect(rectParaTapar({ x: 0.1, y: 0.1, w: 0.1, h: 0.1 }, 1000, 1000, 0.1, 16)).toEqual({
+      left: 90,
+      top: 90,
+      width: 120,
+      height: 120,
+    })
+  })
+
+  it('en una esquina, el bloque mínimo se queda dentro de la imagen', () => {
+    const r = rectParaTapar({ x: 0.999, y: 0.999, w: 0.0005, h: 0.0005 }, 1000, 1000, 0.12, 16)!
+    expect(r.left + r.width).toBeLessThanOrEqual(1000)
+    expect(r.top + r.height).toBeLessThanOrEqual(1000)
+    expect(r.width).toBeGreaterThanOrEqual(16)
+  })
+
+  it('una caja que no cae sobre ningún píxel no da rectángulo', () => {
+    expect(rectParaTapar({ x: 0.9999, y: 0.5, w: 0.00001, h: 0.2 }, 120, 120, 0.12, 16)).toBeNull()
+  })
+})
 
 describe('clampRect', () => {
   it('leaves an in-bounds rect untouched', () => {
@@ -95,9 +134,15 @@ describe('parseVisionBoxes', () => {
     expect(parseVisionBoxes(raw)).toEqual([{ x: 0.1, y: 0.2, w: 0.3, h: 0.1, label: undefined }])
   })
 
-  it('tolerates surrounding prose', () => {
-    const raw = 'Here are the regions:\n[{"x":0.5,"y":0.5,"w":0.2,"h":0.2}]\nDone.'
-    expect(parseVisionBoxes(raw)).toHaveLength(1)
+  // Hasta el 2026-09-27 la prosa alrededor se toleraba, y con ella una negativa
+  // del modelo terminada en `[]` —«no puedo analizar personas en esta imagen. []»—
+  // se leía como «nada que tapar» y la foto salía sin mosaico. Ahora la llamada
+  // pide JSON (responseMimeType) y lo que no sea la lista sola retiene.
+  it('RETIENE si hay prosa alrededor de la lista: una negativa con «[]» no es «nada que tapar»', () => {
+    expect(() => parseVisionBoxes('I cannot analyze people in this image. []')).toThrow()
+    expect(() =>
+      parseVisionBoxes('Here are the regions:\n[{"x":0.5,"y":0.5,"w":0.2,"h":0.2}]\nDone.'),
+    ).toThrow()
   })
 
   it('returns an empty array when the model reports nothing found ("[]")', () => {
@@ -126,6 +171,20 @@ describe('parseVisionBoxes', () => {
     expect(parseVisionBoxes('[{"box_2d":[100,200,300,400],"label":"face"}]')).toEqual([
       { x: 0.2, y: 0.1, w: 0.2, h: 0.2, label: 'face' },
     ])
+  })
+
+  // Un box_2d con todos sus valores ≤ 1 viene en fracciones, no en milésimas:
+  // leído como 0..1000, una cara que ocupa media foto se convierte en un píxel en
+  // la esquina y se publica destapada.
+  it('un box_2d en fracciones (todo ≤ 1) es otra escala: retiene', () => {
+    expect(() => parseVisionBoxes('[{"box_2d":[0.1,0.2,0.5,0.6]}]')).toThrow()
+  })
+
+  // Una caja de área cero o que empieza justo en el borde no tapa nada: retiene,
+  // no se descarta en silencio.
+  it('una caja de área cero, o que empieza en el borde, retiene', () => {
+    expect(() => parseVisionBoxes('[{"x":0.1,"y":0.1,"w":0,"h":0.2}]')).toThrow()
+    expect(() => parseVisionBoxes('[{"x":1,"y":0.1,"w":0.1,"h":0.2}]')).toThrow()
   })
 
   it('un box_2d invertido o fuera de 0..1000 retiene', () => {

@@ -113,6 +113,48 @@ describe('detectSensitiveRegions — la clave va en la cabecera', () => {
     json: async () => ({ candidates: [{ content: { parts: [{ text: '[]' }] } }] }),
   } as unknown as Response
 
+  // La respuesta se pide en JSON y con esquema: así el modelo no puede contestar en
+  // `box_2d`, en píxeles o con prosa alrededor, y el analizador estricto queda
+  // como segunda capa.
+  it('pide JSON con esquema: una lista de cajas {x,y,w,h} obligatorias', async () => {
+    const buf = await twoToneImage()
+    let cuerpo: any = null
+    const fetchImpl = async (_url: string | URL | Request, init?: RequestInit) => {
+      cuerpo = JSON.parse(String(init?.body))
+      return respuestaVacia
+    }
+    await detectSensitiveRegions(buf, {
+      env: { GEMINI_API_KEY: CLAVE },
+      fetchImpl: fetchImpl as typeof fetch,
+    })
+    const cfg = cuerpo?.generationConfig
+    expect(cfg?.responseMimeType).toBe('application/json')
+    expect(cfg?.responseSchema?.type).toBe('ARRAY')
+    expect(cfg?.responseSchema?.items?.required).toEqual(
+      expect.arrayContaining(['x', 'y', 'w', 'h']),
+    )
+  })
+
+  it('no manda al modelo lo que no es el JPEG normalizado', async () => {
+    const png = await sharp({
+      create: { width: 20, height: 20, channels: 3, background: { r: 1, g: 2, b: 3 } },
+    })
+      .png()
+      .toBuffer()
+    let llamadas = 0
+    const fetchImpl = async () => {
+      llamadas++
+      return respuestaVacia
+    }
+    await expect(
+      detectSensitiveRegions(png, {
+        env: { GEMINI_API_KEY: CLAVE },
+        fetchImpl: fetchImpl as typeof fetch,
+      }),
+    ).rejects.toThrow(/normalizarImagen/)
+    expect(llamadas).toBe(0)
+  })
+
   it('manda la clave en x-goog-api-key y deja la URL sin ella', async () => {
     const buf = await twoToneImage()
     const llamadas: Array<{ url: string; init: RequestInit }> = []
@@ -227,5 +269,15 @@ describe('anonymizeImage', () => {
     const withBox = await anonymizeImage(img, [{ x: 0.25, y: 0.25, w: 0.5, h: 0.5, label: 'face' }])
     // The box covers the black square; mosaicing it must change the bytes.
     expect(Buffer.compare(baseline, withBox)).not.toBe(0)
+  })
+
+  // Una caja que no cae sobre ningún píxel no tapa nada: la foto se retiene.
+  // Hasta el 2026-09-27 se saltaba (`continue`) y la foto se publicaba como si esa
+  // región estuviera tapada.
+  it('una caja que no cae sobre ningún píxel RETIENE la foto', async () => {
+    const img = await twoToneImage(120)
+    await expect(
+      anonymizeImage(img, [{ x: 0.9999, y: 0.5, w: 0.00001, h: 0.2, label: 'face' }]),
+    ).rejects.toThrow()
   })
 })

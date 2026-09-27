@@ -7,6 +7,7 @@ import {
   type NewQuejaInput,
 } from '../src/db/queries'
 import { pasadaDeFotos, startFotosCron } from '../src/services/fotos-cron'
+import { MAX_MENSAJE } from '../src/util/telegram'
 import type { ProcessDeps, ProcessResult } from '../src/services/process-photos'
 
 /**
@@ -173,6 +174,51 @@ describe('el aviso de las fotos retenidas', () => {
       log: () => {},
     })
     expect(fotosRetenidas(db)[0].avisada_at).toBeNull()
+  })
+
+  // El aviso existe para la caída larga —Gemini sin cuota, un modelo retirado—, y
+  // es justo cuando más filas lleva. Sin partir, pasaba de 4096 caracteres,
+  // Telegram lo rechazaba, no se marcaba nada y el mismo mensaje, cada vez más
+  // largo, se volvía a intentar cada hora sin llegar nunca.
+  it('con muchas retenidas se parte en mensajes que caben, y las marca todas', async () => {
+    const db = openDb(':memory:')
+    const entrada: NewQuejaInput = {
+      telegram_user_id: 7,
+      telegram_username: null,
+      category: 'limpieza',
+      title: '🗑️ Contenedores desbordados en la calle Mayor 😡 '.repeat(4),
+      detail: 'Una queja con una foto que el análisis no consigue leer desde ayer.',
+      lat: null,
+      lng: null,
+      neighborhood: null,
+      photo_file_id: 'file-x',
+      concejalia_area: null,
+      concejal_slug: null,
+    }
+    const motivo = `gemini vision HTTP 429: ${'{"error":{"code":429,"message":"Quota exceeded"}} '.repeat(8)}`
+    for (let i = 0; i < 20; i++) {
+      const q = createQueja(db, entrada)
+      registrarFotoRetenida(db, q.id, motivo, T0)
+    }
+    const filas = fotosRetenidas(db)
+    const mensajes: string[] = []
+    await pasadaDeFotos({
+      db,
+      token: TOKEN,
+      photosDir: '/x',
+      procesar: procesarQueDevuelve({ ...NADA, paraAvisar: filas }),
+      admins: () => [1],
+      sendDm: async (_a, texto) => void mensajes.push(texto),
+      ahora: () => ahora,
+      log: () => {},
+    })
+    expect(mensajes.length, 'no hizo falta partir: la prueba no mide nada').toBeGreaterThan(1)
+    for (const m of mensajes) {
+      expect(m.length).toBeLessThanOrEqual(MAX_MENSAJE)
+      // Ni un emoji partido por la mitad: un sustituto suelto puede tumbar el mensaje.
+      expect(m.isWellFormed()).toBe(true)
+    }
+    expect(fotosRetenidas(db).every((f) => f.avisada_at === ahora.toISOString())).toBe(true)
   })
 
   it('sin administradores lo dice en el log en vez de callar', async () => {
