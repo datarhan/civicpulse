@@ -3,6 +3,7 @@ import { join } from 'node:path'
 import type { Bot } from 'grammy'
 import type { Db } from '../db/client.ts'
 import { softDeleteQueja } from '../db/queries.ts'
+import { idDeQueja } from '../services/queja-id.ts'
 import { pedirRepublicacion, type PeticionRepublicar } from '../services/republicar.ts'
 import { directorioFotos } from '../services/snapshot.ts'
 import type { MyContext } from '../types.ts'
@@ -36,8 +37,8 @@ export function registerOlvidar(bot: Bot<MyContext>, db: Db, photosDir = directo
       )
       return
     }
-    const id = raw.toUpperCase()
-    if (!/^Q-[A-Z0-9]{6,10}$/.test(id)) {
+    const id = idDeQueja(raw)
+    if (!id) {
       await ctx.reply(`"${raw}" no parece un ID de queja válido. Formato: Q-XXXXXXXX`)
       return
     }
