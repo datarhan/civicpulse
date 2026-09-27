@@ -5,26 +5,34 @@ description: Revisar afirmación por afirmación un borrador que nombra a una pe
 
 # Revisar un borrador antes de publicarlo
 
-De los últimos 300 commits, **27 arreglos** cayeron sobre superficies que
-nombran a un cargo electo. Todos los detectó una persona leyendo el borrador
-contra sus fuentes; ninguno una comprobación. Este procedimiento es esa lectura,
-escrita para que no dependa de acordarse.
+En la auditoría del 03-08-2026, de los 300 commits anteriores, **27 arreglos**
+cayeron sobre superficies que nombran a un cargo electo. Todos los detectó una
+persona leyendo el borrador contra sus fuentes; ninguno una comprobación. Este
+procedimiento es esa lectura, escrita para que no dependa de acordarse.
 
-Lo que busca no es «¿el dato es correcto?» —para eso están las diez
-comprobaciones deterministas— sino **«¿la fuente citada dice lo que la frase
-afirma?»**. Divergen constantemente: el extracto está bien, la cita resuelve, y
+Lo que busca no es «¿el dato es correcto?» —para eso están las comprobaciones
+deterministas— sino **«¿la fuente citada dice lo que la frase afirma?»**. Divergen constantemente: el extracto está bien, la cita resuelve, y
 la frase concluye algo que el extracto no sostiene.
 
 ## Paso 0 — Lo determinista primero, siempre
 
-```bash
-npm run check:citations -- --draft editorial/journalist-drafts/<archivo>.draft.json
-```
+Cada clase de borrador tiene su puerta, y no son intercambiables:
 
-Si sale BLOCKED, **para aquí**. Una cita huérfana, una cita textual que no está
-en su extracto o una URL muerta se arreglan sin gastar un solo token de
-criterio, y revisar el resto de un borrador cuyas citas no resuelven es tiempo
-tirado.
+| Borrador                                                                     | Puerta determinista                                                                                                                                                                                                                  |
+| ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| biografía del agente periodista (`editorial/journalist-drafts/<id>.draft.json`) | `npm run check:citations -- --draft editorial/journalist-drafts/<id>.draft.json`: sale 1 si algo BLOQUEA                                                                                                                         |
+| hallazgo de pleno                                                            | `npm run promote-claim -- <claimId…> --title "…" --summary "…" --edit`: valida el esquema entero (cita literal ≥20, resumen ≥40, un `critical` exige ≥1 referencia de contradicción) y deja el candidato en `/tmp/finding-*.json` sin publicar. No abre ninguna URL: las de sus evidencias, a mano |
+| cambio de estado de una promesa                                              | el validador de `apply-promise-draft`: un estado fuera de `V1_STATUSES` (`documentada`, `en-verificacion`) exige ≥1 evidencia. No tiene modo de prueba: mira la evidencia del borrador antes de aplicarlo                              |
+| reportaje                                                                    | no hay puerta de citas. Si la pieza tiene infografía, `npx vitest run tests/infografia-sync.test.js`; las citas se leen a mano en el paso 1                                                                                           |
+
+`check:citations -- --draft` lee la forma de un informe del agente. Con un
+hallazgo se cae con un `TypeError` y sale 1, y eso **no es un BLOQUEO**: es la
+puerta equivocada, que no ha comprobado nada.
+
+Si la puerta que toca BLOQUEA, **para aquí**. Una cita huérfana, una cita
+textual que no está en su extracto o una URL muerta se arreglan sin gastar un
+solo token de criterio, y revisar el resto de un borrador cuyas citas no
+resuelven es tiempo tirado.
 
 Si un documento se ha movido (el ayuntamiento reestructuró su portal en agosto
 de 2026 y tumbó 68 citas de golpe), no edites el JSON: `npm run
@@ -65,7 +73,11 @@ Regla: la nota describe **el criterio**, nunca el material descartado.
 ## Paso 3 — Informa, no edites
 
 Una tabla por afirmación señalada: qué frase, qué fuente, qué dice el extracto
-literalmente, y cuál de las cuatro clases es. **No corrijas el borrador tú.**
+literalmente, qué clase de [`references/failure-taxonomy.md`](references/failure-taxonomy.md)
+es y, si es D, cuál de las cuatro preguntas del paso 1 falla. En una biografía,
+A–C ya las ha parado `check:citations`; en las demás clases de borrador ninguna
+puerta abre las URL ni busca la cita en su extracto antes de publicar, así que
+esas tres también se miran aquí. **No corrijas el borrador tú.**
 Decide una persona, igual que en `revisar-superficies`.
 
 Si la pieza **ya está publicada**, no la reescribas en silencio: `npm run

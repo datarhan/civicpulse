@@ -11,7 +11,7 @@
 import { readFileSync } from 'node:fs'
 import { decide, decideBash } from './curated-paths.mjs'
 import { decideIrreplaceableBash } from './irreplaceable-paths.mjs'
-import { decideLiveTreeBash } from './live-tree-paths.mjs'
+import { arbolesReales, decideLiveTreeBash } from './live-tree-paths.mjs'
 import { decideMeasureMedia } from './measure-media.mjs'
 import { decideCurlBash } from './curl-hosts.mjs'
 
@@ -35,7 +35,9 @@ const verdict =
   tool === 'Bash'
     ? (decideBash(input.command) ??
       decideIrreplaceableBash(input.command) ??
-      decideLiveTreeBash(input.command) ??
+      decideLiveTreeBash(input.command, undefined, () =>
+        arbolesReales(payload.cwd || process.cwd()),
+      ) ??
       decideMeasureMedia(input.command) ??
       // El último de la cadena: los otros cuatro dicen algo más accionable
       // cuando ambos podrían saltar, y éste sólo habla de a dónde sale.
@@ -46,12 +48,17 @@ const verdict =
 
 if (!verdict) process.exit(0)
 
+// The reason of an `ask` is shown to the person approving and never to the
+// model; a `deny` reason reaches the model. So an `ask` that the model must
+// also know about carries `context`, sent as `additionalContext`, which lands
+// next to the tool result either way.
 process.stdout.write(
   JSON.stringify({
     hookSpecificOutput: {
       hookEventName: 'PreToolUse',
       permissionDecision: verdict.decision,
       permissionDecisionReason: verdict.reason,
+      ...(verdict.context ? { additionalContext: verdict.context } : {}),
     },
   }),
 )

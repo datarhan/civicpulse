@@ -291,11 +291,24 @@ if grep -q '^\[review\]' "$LOG" 2>/dev/null; then
   # ahí en vez de recontarlo aquí: dos recuentos que pueden discrepar son peor
   # que uno, y el del script es el que sabe qué fragmentos se leyeron.
   LEIDAS=$(sed -n 's/.*· \([0-9]*\) revisada(s) al completo.*/\1/p' "$LOG" | head -1)
-  if grep -qE 'NO se llegó a|PARCIAL' "$LOG" 2>/dev/null; then
-    echo "[pre-push] ⚠︎ revisión PARCIAL (${DURACION}s): leídas enteras ${LEIDAS:-0} de $N_RUTAS ruta(s)."
+  # Y cuántas se saltaron por no haber cambiado desde su última lectura, que
+  # cuentan como leídas pero no se han leído AHORA: sin decirlo, «completa» y
+  # «leídas enteras 0 de 3» en la misma frase parecen contradecirse.
+  SIN_CAMBIOS=$(sed -n 's/.*· \([0-9]*\) sin cambios ·.*/\1/p' "$LOG" | head -1)
+  # INCOMPLETA si el parte nombra CUALQUIER ruta sin leer, por el motivo que sea.
+  #
+  # Buscaba sólo «NO se llegó a» y «PARCIAL», y el script tiene cinco maneras de
+  # decir que no leyó una ruta. La que se colaba sobre todo era SIN REVISAR —el
+  # backend no contesta, y el de los agentes es claude-code, que se queda sin
+  # cuota—: medido en scripts/logs/ el 27-09-2026, las 32 «revisión completa»
+  # que había impreso este gancho iban sobre un resumen con rutas SIN REVISAR,
+  # varias con las 8 de 8 y «texto leído por el modelo: 0 %». La lista la pone
+  # tests/prepush-range.test.js leyendo las marcas del propio script.
+  if grep -qE 'NO se llegó a|PARCIAL|SIN REVISAR|NO ALCANZADA|NO MONTADA' "$LOG" 2>/dev/null; then
+    echo "[pre-push] ⚠︎ revisión INCOMPLETA (${DURACION}s): leídas enteras ${LEIDAS:-0} de $N_RUTAS ruta(s), ${SIN_CAMBIOS:-0} sin cambios desde su última lectura."
     echo "[pre-push]   Las que faltan van arriba. Pásalas con: npm run review:surfaces -- <ruta>"
   else
-    echo "[pre-push] revisión completa (${DURACION}s): leídas enteras ${LEIDAS:-0} de $N_RUTAS ruta(s) — informativa, nunca bloquea."
+    echo "[pre-push] revisión completa (${DURACION}s): leídas enteras ${LEIDAS:-0} de $N_RUTAS ruta(s), ${SIN_CAMBIOS:-0} sin cambios desde su última lectura — informativa, nunca bloquea."
   fi
 else
   echo "[pre-push] ⚠︎ la revisión NO llegó a emitir resumen — leídas 0 de $N_RUTAS ruta(s) ($(( $(date +%s) - STARTED ))s)."

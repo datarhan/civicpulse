@@ -1,6 +1,6 @@
 ---
 name: biografia-concejal
-description: Generate, forensically review, and publish a journalist-agent biography for a Riba-roja councillor or official — assign → run (claude-code) → curator review against primary documents → enrichment (elección, declaración de bienes, comprobaciones) → promote → ship. Use when asked to create/update a biography ("biografía de <concejal>", "run the journalist agent for X").
+description: Use when asked to create, update, re-run or publish a journalist-agent biography of a Riba-roja councillor or official — «biografía de <concejal>», «run the journalist agent for X», «promote the draft for X», a v2 after an investigar-cargo dossier — or when a draft under editorial/journalist-drafts/ needs its curator review before promote-report.
 ---
 
 # Biografía de concejal (journalist agent, end to end)
@@ -28,8 +28,11 @@ script, the stale draft purged, and the run relaunched).
 
 ## Phase 1 — Assign
 
+`<assignmentId>` below is the `--id` chosen here: `a-<nombre>-<apellido>-bio`, with
+`-v2` for a second version (`a-alberto-gimeno-bio-v2`).
+
 ```bash
-npm run journalist:assign -- --id a-<slug-short>-bio --kind biography \
+npm run journalist:assign -- --id <assignmentId> --kind biography \
   --subject-slug <slug> --subject-name "<Full Name>" --subject-kind official \
   --brief "Biografía de registro público de <name>, concejal (<party>) de <portfolios> en Riba-roja de Túria: identidad y formación, trayectoria previa, elección y nombramiento, retribución, patrimonio declarado, actividad plenaria y menciones en boletines oficiales."
 ```
@@ -38,11 +41,11 @@ npm run journalist:assign -- --id a-<slug-short>-bio --kind biography \
 
 ```bash
 set -a && source .env && set +a && LLM_BACKEND=claude-code LLM_CONCURRENCY=1 \
-  npm run journalist:run -- a-<id> 2>&1 | tee $CLAUDE_JOB_DIR/tmp/journalist-run-<slug>.log
+  npm run journalist:run -- <assignmentId> 2>&1 | tee "${TMPDIR:-/tmp}/journalist-run-<slug>.log"
 ```
 
 Output: draft in `editorial/journalist-drafts/journalist-reports-suggestions.json` + chunk
-`editorial/journalist-drafts/a-<id>.draft.json` (gitignored dir; NEVER under `public/`, which
+`editorial/journalist-drafts/<assignmentId>.draft.json` (gitignored dir; NEVER under `public/`, which
 is served). Pass `--seed editorial/investigaciones/<slug>/fuentes.json` when the investigative
 pass (skill `investigar-cargo`) has located sources the planner would miss.
 
@@ -128,7 +131,10 @@ are in it — slice the subject's rows:
   Members WITHOUT dedicación: the asistencias tariffs are verbatim in `16ujrlm.txt` ~L1287-1300
   (221,82 €/Pleno · 162,31 €/JGL and comisiones · 119,03 €/Junta de Portavoces).
 
-**B2. Corroboration sources for the recurring lagunas** (status as of 2026-07-31):
+**B2. Corroboration sources for the recurring lagunas.** The maintained source matrix —
+what each source gives, how it is reached today, its limit and how it is cited — is
+`.claude/skills/investigar-cargo/references/fuentes.md`, re-measured since this list was written
+(2026-07-31); when the two disagree, it wins. What stays here is biography-specific:
 
 - **Mandate starts pre-2023 — SOLVED.** The historic actas archive is at
   `https://www.ribarroja.es/es/1_transparencia_activa_e_informacion_sobre_la_corporacion_municipal/plenos`
@@ -141,24 +147,16 @@ are in it — slice the subject's rows:
   **acta 10-03-2010** (Raga + Hernández concejales 2007-2011). The 2019 delegation decree was
   withdrawn from the 25-06-2019 session (redone later) — per-área 2019 delegations need the
   following pleno's acta.
-- **List positions per election — SOLVED for 2015/2019.** BOP full-bulletin download by date:
-  `https://bop.dival.es/bop/downloads?boletinFecha=DD/MM/YYYY` — candidaturas issues:
-  **28/04/2015 (n.º 79)** and **30/04/2019 (n.º 82)**; search «CIRCUNSCRIPCIÓN ELECTORAL
-  RIBA-ROJA» in the parsed text (2015 uses odd casing «RIbA-ROJA DE TúRIA»). 2023's special
-  issue date not yet located (25-04/02-05/03-05 tried; the 2023 group-roster order in 16ujrlm
-  covers it meanwhile). Beware in-town homonyms on OTHER lists (2015 EUPV cabeza was Rafael
-  Gómez MUÑOZ).
-- Administratorships: BORME — **the declared limit was retired on 2026-08-23. There IS a free
-  structured path.** `buscar/borme.php` still 404s and libreborme is still Cloudflare-walled, so
-  there is no free-text SEARCH — but the BOE open-data API serves the daily BORME summary, and
-  from it the plain text of each provincial section:
-  `GET boe.es/datosabiertos/api/borme/sumario/YYYYMMDD` → `data.sumario.diario[].seccion[codigo=A]
-.item[]` (34 provinces) → `item.url_html` → `boe.es/diario_borme/txt.php?id=BORME-A-…`.
-  Wired as `npm run scrape:borme -- --desde … --hasta … --provincia ALICANTE --empresa "…"`
-  (`scripts/scrape-borme.ts`, parser `src/scraper/borme.ts`). It SWEEPS by date and filters
-  locally — measured cost ~2.000 anuncios per province-month — and writes to `.cache/borme/`,
-  never to `public/data/`. Province matters: a company is registered in one Registro Mercantil.
-  Everything it yields is raw material for a curator to sign, never a published claim.
+- **List positions per election — SOLVED for every municipal election 2003–2023.** The BOP
+  issue or anuncio for each year, and why 2003, 2007 and 2023 are not in the daily bulletin
+  (they ran in a supplement), are in `fuentes.md` (its «BOP de València — cómo se busca de verdad» paragraph); old bulletins need
+  `buscar-bop-historico.ts --texto` (shifted glyphs). Beware in-town homonyms on OTHER lists
+  (2015 EUPV cabeza was Rafael Gómez MUÑOZ).
+- **Administratorships: BORME** — no free-text search exists, but `npm run scrape:borme` sweeps
+  the BOE's open-data summaries by date and filters locally (`--persona`, `--empresa`). Sweep
+  the province ONCE per campaign into `.cache/borme/` and query that cache afterwards
+  (`fuentes.md`, BORME row). Everything it yields is raw material for a curator to sign, never
+  a published claim.
 - Títulos: CAATIE Valencia HAS a public directory (`/pub/directorio_colegiados.aspx`, ASPX
   POST with VIEWSTATE) — a Pozuelo search returned no visible rows (inconclusive: may not be
   a current colegiada; absence ≠ no título). Log as attempted.
@@ -185,7 +183,7 @@ into multiple windows and multi-cite; never stitch elided assemblies.
 ## Phase 5 — Promote
 
 ```bash
-npm run promote-report -- a-<id> --curator "Sergei Lutchenko" \
+npm run promote-report -- <assignmentId> --curator "Sergei Lutchenko" \
   --curator-notes "REVISIÓN DE CURADURÍA <date>: <what was verified against which primary docs, which warnings were removed and why, homonym sweep result>"
 ```
 
@@ -208,16 +206,31 @@ npm run promote-report -- a-<id> --curator "Sergei Lutchenko" \
   `npm run correct-journalist-report` (public bitácora); other payloads via a validated one-shot
   script + dated curatorNotes entry (both write snapshot + chunk).
 
-## Phase 6 — Ship & verify
+## Phase 6 — Ship
 
 1. `npx vitest run` + `npm run typecheck` + `npm run lint` — all green before commit.
-2. Commit data files: `journalist-assignments.json`, `journalist-reports-suggestions.json`,
-   `journalist-reports.json`, `journalist-reports/a-<id>.json` + `.draft.json` (draft chunks ARE
-   tracked). Message in Spanish, `data(journalist): …`, ends with the Claude co-author line.
-3. Push; watch CI (e2e + Deploy) for the sha in a background poll.
-4. Verify LIVE by fetching `https://www.civicpulse.es/data/journalist-reports/a-<id>.json` and
-   asserting content (never trust HTTP 200 alone — the SPA catch-all serves HTML shells).
-5. The `/cargos` card's «Biografía →» auto-wires via the assignments×reports join
+2. Commit ONLY what `promote-report` published:
+   `public/data/journalist-assignments.json`, `public/data/journalist-reports.json` and
+   `public/data/journalist-reports/<assignmentId>.json`. **Nothing under `editorial/`** — not
+   the draft chunk, not `journalist-reports-suggestions.json`: the repository is public, the
+   pre-commit `check:editorial` refuses them, and `tests/editorial-fuera-de-git.test.js` reds on
+   anything tracked there (Phase 2). Message in Spanish, `data(journalist): …`, ending with the
+   co-author line.
+3. Read the biography as a reader before you push: the pre-push hook never reaches it. For
+   this push it reviews only `/cargos` and `/laboratorio/agentes` — detail routes are outside
+   its route set, and the report chunk maps to no route — so run
+   `npm run review:surfaces -- /laboratorio/agentes/<assignmentId> /cargos/<slug>` against a
+   build made as the `revisar-superficies` skill says (with the launch flags, or both pages come
+   back NO MONTADA).
+4. Push, and read the hook's last line: it never blocks, so a route it names as unread stays
+   unread until you review it. Then report the pushed range and stop — a successful push is the
+   deliverable, so do not poll CI or the deploy.
+5. Check the live site only when there is a reason to doubt the deploy (a changed build config,
+   a known Vercel gate) or when asked: `npm run check:publicado` compares what the site serves
+   with what main published; for the report itself, fetch
+   `https://www.civicpulse.es/data/journalist-reports/<assignmentId>.json` and assert its
+   content — never trust a 200 alone, the SPA catch-all serves an HTML shell for any path.
+6. The `/cargos` card's «Biografía →» auto-wires via the assignments×reports join
    (`bioReportRoutes`) — no code change needed; confirm the slug appears in the join.
 
 ## Editorial boundaries (non-negotiable)
