@@ -197,8 +197,9 @@ flyctl ssh console --app munigraph-ribarroja
 
 La base del volumen es la única copia de los datos, y su esquema cambia por
 migraciones (`src/db/migraciones.ts`; `schema.sql` es la base v0, congelada).
-Antes de fusionar un cambio que añade una migración, se ensaya contra la base
-de verdad:
+El bot aplica las pendientes al arrancar (`openDb`), así que desplegar una
+migración es ejecutarla sobre la base de verdad. Antes de fusionar un cambio que
+trae una migración que producción aún no tiene, se ensaya contra esa base:
 
 ```bash
 flyctl ssh console --app munigraph-ribarroja -C "sh -c 'cd /app/bot && node_modules/.bin/tsx src/db/migrate.ts --dry-run --db /data/bot.db'"
@@ -218,6 +219,12 @@ fusiona. Y antes de fusionar, una instantánea del volumen:
 flyctl volumes list --app munigraph-ribarroja
 flyctl volumes snapshots create <volume-id>
 ```
+
+Al arrancar, antes de migrar, el bot saca además una copia con `VACUUM INTO` en
+`/data/backups/`. Lleva datos personales, así que caduca: la borra la pasada
+diaria de `src/services/retencion.ts` a los `CONSERVACION_COPIAS_DIAS` de
+`src/scraper/plazos-retencion.ts`. La instantánea del volumen es la copia que no
+depende del propio bot.
 
 ### Rotate the BOT_TOKEN
 

@@ -41,6 +41,7 @@ on:
       - 'public/data/officials.json'
       - 'public/data/geo.json'
       - 'src/scraper/queja-router.ts'
+      - 'src/scraper/plazos-retencion.ts'
   workflow_dispatch:
 
 concurrency:

@@ -1,5 +1,6 @@
 import { Card, SectionHead } from '../components/Primitives'
 import { fmtDateLong } from '../lib/formatters'
+import { CONSERVACION_COPIAS_DIAS, CONSERVACION_QUEJAS_ANIOS } from '../scraper/plazos-retencion'
 
 export default function AvisoLegal() {
   return (
@@ -401,9 +402,10 @@ export default function AvisoLegal() {
             publican; se agregan a nivel de barrio
           </li>
           <li>
-            <strong>Tu identidad de Telegram</strong> (ID numérico + nombre de usuario) —{' '}
-            <strong>nunca</strong> se publica; sólo sirve para que puedas consultar, apoyar o
-            eliminar tus propias quejas
+            <strong>Tu identidad de Telegram</strong> (el ID numérico; el nombre de usuario ya no se
+            guarda) — <strong>nunca</strong> se publica; sólo sirve para que puedas consultar,
+            apoyar o eliminar tus propias quejas, y sólo se guarda si escribes o apoyas una, o te
+            suscribes a sus avisos
           </li>
           <li>
             <strong>Fotografía adjunta</strong> (si la envías) — el bot no guarda la imagen
@@ -428,11 +430,14 @@ export default function AvisoLegal() {
           .
         </p>
         <p>
-          <strong>Plazo de conservación</strong>: 5 años desde la resolución de la queja o su última
-          actualización (Art. 55 de la Ley Orgánica 3/2018, LOPD-GDD, para fines de interés público
-          + garantía del derecho a la tutela judicial efectiva). Al cumplirse el plazo, el registro
-          interno se destruye. Las estadísticas agregadas anonimizadas pueden conservarse
-          indefinidamente.
+          <strong>Plazo de conservación</strong>: {CONSERVACION_QUEJAS_ANIOS} años desde la
+          resolución de la queja o su última actualización (Art. 55 de la Ley Orgánica 3/2018,
+          LOPD-GDD, para fines de interés público + garantía del derecho a la tutela judicial
+          efectiva). Al cumplirse el plazo, el registro interno se destruye: el bot lo comprueba
+          cada día y borra la queja con sus apoyos, su historial y su foto anonimizada. Las copias
+          de seguridad de la base que el bot saca antes de cambiar su estructura llevan los datos
+          personales de ese momento, y se borran a los {CONSERVACION_COPIAS_DIAS} días. Las
+          estadísticas agregadas anonimizadas pueden conservarse indefinidamente.
         </p>
         <p>
           <strong>Fotografías adjuntas</strong>: antes de publicar una foto se procesa
@@ -463,6 +468,14 @@ export default function AvisoLegal() {
           la queja, sin tu identidad de Telegram, durante el plazo legal de conservación; después se
           destruyen. Sólo el autor puede ejercer este derecho sobre su propia queja, y una vez
           ejercido el bot ya no puede saber quién la escribió.
+        </p>
+        <p>
+          <strong>Borrar todos tus datos</strong>: <code>/borrar_mis_datos</code> hace de una vez lo
+          que <code>/olvidar</code> hace queja a queja, y algo más. Retira todas tus quejas igual
+          que <code>/olvidar</code>, borra tus apoyos —las quejas que apoyaste dejan de contar el
+          tuyo— y tus suscripciones a avisos, y al final borra tu identidad de Telegram del registro
+          del bot. Antes pregunta, con un botón, porque no se puede deshacer, y al terminar dice
+          cuánto ha borrado de cada cosa.
         </p>
         <p>
           <strong>Historial git e inmutabilidad de la cadena de custodia</strong>: el snapshot

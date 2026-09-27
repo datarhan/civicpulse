@@ -186,8 +186,8 @@ curl -s -o /dev/null -w '%{http_code}\n' -H "Authorization: Bearer $EXPORT_TOKEN
 # Expected: 404
 
 # 3. The internal record kept no identity (on a copy of the bot's database)
-sqlite3 bot.db "SELECT deleted_at, telegram_user_id, telegram_username, lat, lng, photo_file_id FROM quejas WHERE id = '$TEST_ID';"
-# Expected: a timestamp, then 0 and four empty columns
+sqlite3 bot.db "SELECT deleted_at, ciudadano_id, lat, lng, foto_ref FROM quejas WHERE id = '$TEST_ID';"
+# Expected: a timestamp, then four empty columns
 
 # 4. /mis no longer lists it: the record does not know whose it was.
 ```

@@ -11,21 +11,28 @@
  * feed, heatmap, LPACAP clock and per-concejal SLA all populate exactly as they
  * would from genuine captures.
  *
- * Every seed is tagged with a sentinel telegram_user_id in [SEED_UID_LO,
+ * Every seed's author, and every synthetic supporter, is a Telegram citizen
+ * (`ciudadanos`, canal 'telegram') whose ref falls in [SEED_UID_LO,
  * SEED_UID_HI], so `--wipe` removes every seed (cascading to apoyos + events)
- * without touching a single real capture. The next real bot export overwrites
- * the snapshot regardless.
+ * and those citizens without touching a single real capture. The next real bot
+ * export overwrites the snapshot regardless.
  *
  *   cd bot && npx tsx scripts/seed-demo-quejas.ts          # (re)seed — idempotent
  *   cd bot && npx tsx scripts/seed-demo-quejas.ts --wipe   # remove all seeds
  *   cd bot && npm run export                               # → ../public/data/quejas.json
  */
 import { openDb } from '../src/db/client.ts'
-import { createQueja, setState, addApoyo, type QuejaState } from '../src/db/queries.ts'
+import {
+  createQueja,
+  setState,
+  addApoyo,
+  autorTelegram,
+  type QuejaState,
+} from '../src/db/queries.ts'
 import { routeUsingLocalOfficials } from '../src/services/router.ts'
 import type { QuejaCategory } from '../../src/scraper/queja-router.ts'
 
-// Sentinel telegram_user_id range that marks a row as a demo seed. Real
+// Sentinel Telegram id range that marks a citizen as a demo seed. Real
 // captures use genuine (positive, much smaller) Telegram ids; nothing real
 // lands in this band, so deleting it is always safe.
 const SEED_UID_LO = 900_000_000
@@ -149,10 +156,17 @@ const SEEDS: Seed[] = [
 ]
 
 function wipe(db: ReturnType<typeof openDb>): number {
-  // FK ON DELETE CASCADE removes the matching apoyos + events.
+  const semillas = `SELECT id FROM ciudadanos
+                     WHERE canal = 'telegram' AND CAST(ref AS INTEGER) BETWEEN ? AND ?`
+  // Quejas first: deleting their author first would null `ciudadano_id` and
+  // leave no way to tell a seed from a real capture. FK ON DELETE CASCADE
+  // removes the matching apoyos + events.
   const r = db
-    .prepare('DELETE FROM quejas WHERE telegram_user_id BETWEEN ? AND ?')
+    .prepare(`DELETE FROM quejas WHERE ciudadano_id IN (${semillas})`)
     .run(SEED_UID_LO, SEED_UID_HI)
+  // Then the synthetic citizens, authors and supporters alike; the apoyos they
+  // gave to real quejas, if any, go with them.
+  db.prepare(`DELETE FROM ciudadanos WHERE id IN (${semillas})`).run(SEED_UID_LO, SEED_UID_HI)
   return r.changes
 }
 
@@ -188,8 +202,7 @@ function main(): void {
       category: s.category,
     })
     const queja = createQueja(db, {
-      telegram_user_id: SEED_AUTHOR_BASE + i,
-      telegram_username: null,
+      autor: autorTelegram(SEED_AUTHOR_BASE + i),
       category: s.category,
       title: s.title,
       detail: s.detail,
@@ -200,7 +213,7 @@ function main(): void {
     })
 
     // Community support (distinct synthetic supporter per apoyo).
-    for (let a = 0; a < s.apoyos; a++) addApoyo(db, queja.id, ++apoyoUid)
+    for (let a = 0; a < s.apoyos; a++) addApoyo(db, queja.id, autorTelegram(++apoyoUid))
 
     // Advance the lifecycle. Post-registro states carry a registro stub so the
     // LPACAP clock + per-concejal SLA have a registered_at to reckon from.

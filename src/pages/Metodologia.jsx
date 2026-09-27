@@ -722,7 +722,9 @@ export default function Metodologia() {
             identidad de quien la envió y pide que la web se vuelva a publicar; las páginas y el
             JSON publicado la retiran en cuanto termina esa actualización, que suele tardar unos
             minutos (si la petición falla, en la siguiente actualización diaria), y su foto
-            publicada, en esa misma actualización. El detalle está en el{' '}
+            publicada, en esa misma actualización. Con <code>/borrar_mis_datos</code> cualquiera
+            borra además sus apoyos, así que la cifra de apoyos de una queja publicada puede bajar;
+            una queja que ya pasó el umbral no vuelve atrás. El detalle está en el{' '}
             <a href="/aviso-legal" style={{ color: 'var(--civic)' }}>
               aviso legal
             </a>
