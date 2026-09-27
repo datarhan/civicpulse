@@ -25,13 +25,15 @@ body:
     id: party
     attributes:
       label: Grupo que responde
+      # Las opciones son SPEAKER_GROUPS (src/scraper/pleno-votes.ts), lo que acepta
+      # `finding-reply`: tests/plantillas-replica-opciones.test.js las compara.
       options:
         - PSOE
         - PP
         - VOX
         - Compromís
         - Ciudadanos
-        - Otro
+        - EU-Podem
     validations:
       required: true
 

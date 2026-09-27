@@ -25,12 +25,15 @@ body:
     id: from
     attributes:
       label: Quién responde
+      # Las opciones son RESPONSE_BLOCS (src/scraper/journalist/types.ts), lo que
+      # acepta `journalist-reply`: tests/plantillas-replica-opciones.test.js las compara.
       options:
         - PSOE
         - PP
         - VOX
         - Compromís
         - Ciudadanos
+        - EU-Podem
         - Otro
         - person
     validations:

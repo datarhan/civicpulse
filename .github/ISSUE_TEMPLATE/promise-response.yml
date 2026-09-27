@@ -25,12 +25,14 @@ body:
     id: party
     attributes:
       label: Grupo que responde
+      # Las opciones son ALLOWED_PARTIES (src/scraper/promises.ts), lo que acepta
+      # `npm run reply`: tests/plantillas-replica-opciones.test.js las compara.
       options:
         - PSOE
         - PP
         - VOX
         - Compromís
-        - Otro
+        - EU-Podem
     validations:
       required: true
 
