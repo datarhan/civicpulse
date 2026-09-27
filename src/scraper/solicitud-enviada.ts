@@ -69,6 +69,15 @@ export interface EnvioSolicitud {
    * sigue publicándose con la cautela, que es verdadera aunque se quede corta.
    */
   registro?: string
+  /**
+   * La fecha de registro que da el recibo, cuando no es la de presentación: lo
+   * que se presenta un día inhábil entra el primer hábil siguiente. Lo estrenaron
+   * las dos solicitudes al Ayuntamiento presentadas el domingo 27-09-2026, cuyos
+   * recibos dicen «Fecha de Registro 28/09/2026». El mes corre desde aquí; sin
+   * ella se contaría desde el envío y el vencimiento afirmado saldría un día
+   * antes del real. Sólo tiene sentido con `registro`.
+   */
+  entradaEl?: string
   respuesta: {
     fecha: string
     sentido: SentidoRespuesta
@@ -166,7 +175,8 @@ export function enCastellano(iso: string): string {
  * en vez de decir desde dónde se cuenta—.
  *
  * - Por correo: desde el envío, sin acreditar (consta el envío, no la entrada).
- * - Con asiento: desde el envío, acreditado (el asiento es la entrada).
+ * - Con asiento: desde el envío, acreditado (el asiento es la entrada); o desde
+ *   la fecha de registro del recibo, si es otra (`entradaEl`).
  * - Remitida: desde que la recibió el órgano al que se remitió, si consta; si
  *   no, desde la comunicación de la remisión, sin acreditar. Es la primera
  *   fecha en que consta que se le había remitido — no que la tuviera.
@@ -177,7 +187,8 @@ export function arranqueDelPlazo(e: EnvioSolicitud): { desde: string; acreditado
       ? { desde: e.remitida.recibidaEl, acreditado: true }
       : { desde: e.remitida.fecha, acreditado: false }
   }
-  return { desde: e.enviadaEl, acreditado: Boolean(e.registro) }
+  if (e.registro) return { desde: e.entradaEl ?? e.enviadaEl, acreditado: true }
+  return { desde: e.enviadaEl, acreditado: false }
 }
 
 export function estadoDeEnvio(e: EnvioSolicitud, hoy: string): EstadoEnvio {
@@ -197,7 +208,10 @@ export function estadoDeEnvio(e: EnvioSolicitud, hoy: string): EstadoEnvio {
 export function fraseDeEnvio(e: EnvioSolicitud, hoy: string): string {
   const cabeza =
     `${e.organismo} · enviada el ${enCastellano(e.enviadaEl)} por ${e.via}` +
-    (e.registro ? `, con registro ${e.registro}.` : '.')
+    (e.registro ? `, con registro ${e.registro}` : '') +
+    (e.registro && e.entradaEl && e.entradaEl !== e.enviadaEl
+      ? `, que da como fecha de registro el ${enCastellano(e.entradaEl)}.`
+      : '.')
   const estado = estadoDeEnvio(e, hoy)
   const vence = enCastellano(venceEl(arranqueDelPlazo(e).desde))
   // Cómo acaba la frase de una vencida. Si consta que contestaron algo —una
