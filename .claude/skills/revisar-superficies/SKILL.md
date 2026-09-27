@@ -13,24 +13,46 @@ defectos publicados tenían todos su dato bien y la frase mal.
 cambiar copy, o de modificar un pipeline que alguna página describe. Es
 exactamente cuando la prosa se queda atrás.
 
+**Entrada:** las rutas a revisar (`$ARGUMENTS`); sin ninguna, el set por
+defecto.
+
 ## Procedimiento
 
 1. **Levanta el preview** (el agente lee la página RENDERIZADA, no el JSX — el
-   defecto que se busca solo existe una vez montada la página):
+   defecto que se busca solo existe una vez montada la página), con las
+   banderas de lanzamiento y en un puerto libre de 127.0.0.1:
 
    ```bash
-   npm run build && npx vite preview --host 127.0.0.1 --port 4173 --strictPort &
+   VITE_ENABLE_PERIODISTAS=true VITE_ENABLE_EFICIENCIA=true npm run build
+   PORT=4189
+   while curl -s -o /dev/null --max-time 1 "http://127.0.0.1:$PORT/"; do PORT=$((PORT + 1)); done
+   npx vite preview --host 127.0.0.1 --port "$PORT" --strictPort &
+   PREVIEW=$!   # al acabar: kill "$PREVIEW"
    ```
 
-2. **Ejecuta la revisión** a coste cero:
+   Las tres cosas tienen su porqué. Sin las banderas, `/eficiencia`, `/gestion`
+   y la Biografía de `/cargos` no se montan y la ruta cae en la portada (el
+   script lo marca NO MONTADA, pero no la lee). El 4173 suele tenerlo el
+   `npm run preview` del curador, y con `--strictPort` el tuyo muere al nacer.
+   Y `localhost` resuelve a `::1`, donde un preview viejo sirve páginas viejas
+   sin que nada lo diga: el 05-09-2026 una revisión contestó «de caché · nada que
+   señalar» leyendo lo que servía un preview de hacía cuatro horas.
+
+2. **Ejecuta la revisión** a coste cero, contra ESE preview:
 
    ```bash
-   set -a; . ./.env; set +a
+   set -a; [ -f .env ] && . ./.env; set +a   # un worktree no trae .env
    env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY \
        GEMINI_BIN=/nonexistent-disabled AGY_BIN=/nonexistent-disabled \
        LLM_BACKEND=claude-code LLM_CONCURRENCY=1 \
-       npm run review:surfaces -- /            # o sin ruta, para el set por defecto
+       REVIEW_BASE_URL="http://127.0.0.1:$PORT" \
+       npm run review:surfaces -- /eficiencia   # sin ruta, el set por defecto; --all, todas
    ```
+
+   La prosa de las capas opcionales del mapa sólo existe con la capa encendida:
+   se lee con la clave `'/ [capas]'`. Y lee la última línea, el `[review]`: si
+   nombra rutas PARCIAL, SIN REVISAR, NO MONTADA o NO ALCANZADA, esas no se han
+   leído, digan lo que digan los señalamientos.
 
 3. **Verifica CADA señalamiento antes de tocar nada.** El agente cita literal —si
    parafrasea, el grounding lo descarta— pero puede estar equivocado sobre la
@@ -117,5 +139,5 @@ siempre esta revisión, y por eso el procedimiento vive aquí.
 
 ## Coste
 
-claude-code sobre el plan Max: $0 facturado. Una ruta ≈ 2 llamadas. El set por
-defecto son 6 rutas.
+claude-code sobre el plan Max: coste cero facturado. Una ruta ≈ 2 llamadas. El
+set por defecto son 6 rutas.
