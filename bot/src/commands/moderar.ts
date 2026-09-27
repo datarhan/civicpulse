@@ -124,7 +124,10 @@ export function registerModerar(bot: Bot<MyContext>, db: Db, o: { envio: EnvioAd
       )
       return
     }
-    if (!(await enviarTarjetaA(db, q, ctx.from!.id, o.envio))) {
+    const hecho = await enviarTarjetaA(db, q, ctx.from!.id, o.envio)
+    if (hecho === 'retirada') {
+      await ctx.reply(`Su autor acaba de retirar la queja ${q.id}: no te mando su tarjeta.`)
+    } else if (hecho !== 'entregada') {
       await ctx.reply('No he podido mandarte la tarjeta; prueba otra vez.')
     }
   })

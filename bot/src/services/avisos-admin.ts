@@ -211,13 +211,16 @@ interface CopiaDeTarjeta {
  * salía y borró el rastro—, la copia recién llegada va derecha a la cola de
  * vaciado, y se vacía.
  */
+/** Cómo acabó mandar una copia: `retirada` es que su autor la retiró antes de que saliera, y no salió. */
+export type ResultadoCopia = 'entregada' | 'fallida' | 'ya-estaba' | 'retirada'
+
 async function mandarCopia(
   db: Db,
   fila: QuejaRow,
   admin: number,
   tipo: string,
   envio: EnvioAdmin,
-): Promise<'entregada' | 'fallida' | 'ya-estaba' | 'retirada'> {
+): Promise<ResultadoCopia> {
   const q = getQuejaViva(db, fila.id)
   if (!q) return 'retirada'
   const destinatario = comoAdmin(admin)
@@ -252,17 +255,22 @@ async function mandarCopia(
 
 /**
  * Manda la tarjeta de una queja a cada administrador que no la tenga ya, y
- * anota las que llegaron. Una que falla se suelta para la pasada siguiente.
+ * anota las que llegaron. Una que falla se suelta para la pasada siguiente. Si
+ * su autor la retiró antes de que saliera, no sale ninguna (`retirada`).
  */
 export async function avisarAdmins(
   db: Db,
   q: QuejaRow,
   o: { admins: number[]; envio: EnvioAdmin },
-): Promise<{ entregadas: number; fallidas: number }> {
+): Promise<{ entregadas: number; fallidas: number; retirada: boolean }> {
   return enSerie(q.id, async () => {
-    const r = { entregadas: 0, fallidas: 0 }
+    const r = { entregadas: 0, fallidas: 0, retirada: false }
     for (const admin of o.admins) {
       const hecho = await mandarCopia(db, q, admin, TIPO_TARJETA, o.envio)
+      if (hecho === 'retirada') {
+        r.retirada = true
+        break
+      }
       if (hecho === 'entregada') r.entregadas += 1
       else if (hecho === 'fallida') r.fallidas += 1
     }
@@ -281,9 +289,9 @@ export async function enviarTarjetaA(
   q: QuejaRow,
   admin: number,
   envio: EnvioAdmin,
-): Promise<boolean> {
+): Promise<ResultadoCopia> {
   const tipo = `${TIPO_TARJETA}:${randomUUID().slice(0, 8)}`
-  return enSerie(q.id, async () => (await mandarCopia(db, q, admin, tipo, envio)) === 'entregada')
+  return enSerie(q.id, () => mandarCopia(db, q, admin, tipo, envio))
 }
 
 /**
@@ -442,7 +450,7 @@ function tieneTarjetaActual(db: Db, quejaId: string, admins: number[]): boolean 
 export async function reenviarTarjetasPendientes(
   db: Db,
   o: { admins: number[]; envio: EnvioAdmin },
-): Promise<{ quejas: number; entregadas: number; fallidas: number }> {
+): Promise<{ quejas: number; entregadas: number; fallidas: number; retiradas: number }> {
   const enRevision = db
     .prepare(
       `SELECT * FROM quejas
@@ -451,12 +459,14 @@ export async function reenviarTarjetasPendientes(
     )
     .all() as QuejaRow[]
   const sinTarjeta = enRevision.filter((q) => !tieneTarjetaActual(db, q.id, o.admins))
-  const r = { quejas: sinTarjeta.length, entregadas: 0, fallidas: 0 }
+  // `retiradas`: las que su autor retiró mientras la pasada mandaba las de antes.
+  const r = { quejas: sinTarjeta.length, entregadas: 0, fallidas: 0, retiradas: 0 }
   if (o.admins.length === 0) return r
   for (const q of sinTarjeta) {
     const e = await avisarAdmins(db, q, o)
     r.entregadas += e.entregadas
     r.fallidas += e.fallidas
+    if (e.retirada) r.retiradas += 1
   }
   return r
 }
