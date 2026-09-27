@@ -28,8 +28,9 @@
  * Editando la prosa uno ya está pensando en la prosa. El fallo aparece cuando
  * cambia el dato y la prosa se queda quieta — ahí nadie la está mirando.
  *
- * Módulo puro y sin estado, como curated-paths.mjs: el runner sólo lee la
- * llamada e imprime el veredicto, y así esto se puede probar sin hooks.
+ * Módulo puro y sin estado, como curated-paths.mjs: el runner es quien lee la
+ * llamada, pregunta a git y recuerda lo ya contado; aquí sólo se decide, y así
+ * esto se puede probar sin hooks.
  */
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
@@ -88,28 +89,115 @@ export function rutasAfectadas(ruta) {
   return PROSA_POR_SNAPSHOT[snap] ?? []
 }
 
+// Con más de un puñado de rutas el aviso deja de señalar y pasa a ser ruido,
+// así que se nombran unas pocas y se dice cuántas quedan. Lo mismo con los
+// snapshots, cuando un script reescribe muchos de una vez.
+const MAX_RUTAS = 4
+const MAX_SNAPSHOTS = 3
+
+/** «a», «a y b», «a, b, c y 2 más». */
+function enumerar(nombres, max) {
+  if (nombres.length === 1) return nombres[0]
+  const muestra = nombres.slice(0, max)
+  const resto = nombres.length - muestra.length
+  if (resto > 0) return `${muestra.join(', ')} y ${resto} más`
+  return `${muestra.slice(0, -1).join(', ')} y ${muestra.at(-1)}`
+}
+
 /**
- * El recordatorio, o null si no toca.
+ * El recordatorio para unos snapshots que han cambiado, o null si ninguno lleva
+ * prosa detrás. Uno o varios, es el mismo aviso venga de un Edit o de un Bash.
+ *
+ * @param {string[]} snaps  nombres como `budget.json`
+ */
+export function avisoPara(snaps) {
+  const conProsa = [...new Set(snaps)].filter((s) => PROSA_POR_SNAPSHOT[s]?.length).sort()
+  if (!conProsa.length) return null
+  const rutas = [...new Set(conProsa.flatMap((s) => PROSA_POR_SNAPSHOT[s]))]
+  const muestra = rutas.slice(0, MAX_RUTAS)
+  const resto = rutas.length - muestra.length
+  const uno = conProsa.length === 1
+  return (
+    `[prosa] ${enumerar(conProsa, MAX_SNAPSHOTS)} ${uno ? 'ha' : 'han'} cambiado. ` +
+    `${uno ? 'Lo' : 'Los'} describen con palabras: ${muestra.join(', ')}` +
+    `${resto > 0 ? ` y ${resto} ruta(s) más` : ''}.\n` +
+    `        Ningún test comprueba la prosa —los datos sí—, así que si alguna frase afirmaba algo\n` +
+    `        sobre ${uno ? 'este dato' : 'estos datos'}, vuelve a leerla:  npm run review:surfaces -- ${muestra.join(' ')}`
+  )
+}
+
+/**
+ * El recordatorio tras un Write o un Edit, o null si no toca.
+ *
+ * Un Bash no se decide aquí: su llamada no dice qué escribió, así que el runner
+ * se lo pregunta al árbol (`GIT_STATUS_SNAPSHOTS`) y lo pasa por `novedades`.
  *
  * @param {{tool_name?: string, tool_input?: Record<string, unknown>}} payload
  */
-const MAX_RUTAS = 4
-
 export function decideRecordatorio(payload) {
   const tool = payload?.tool_name
   if (tool !== 'Write' && tool !== 'Edit' && tool !== 'MultiEdit') return null
-  const ruta = payload?.tool_input?.file_path
-  const rutas = rutasAfectadas(typeof ruta === 'string' ? ruta : '')
-  if (!rutas.length) return null
-  const snap = snapshotDe(ruta)
-  // Con más de un puñado de rutas el aviso deja de señalar y pasa a ser ruido,
-  // así que se nombran unas pocas y se dice cuántas quedan.
-  const muestra = rutas.slice(0, MAX_RUTAS)
-  const resto = rutas.length - muestra.length
-  return (
-    `[prosa] ${snap} ha cambiado. Lo describen con palabras: ${muestra.join(', ')}` +
-    `${resto > 0 ? ` y ${resto} ruta(s) más` : ''}.\n` +
-    `        Ningún test comprueba la prosa —los datos sí—, así que si alguna frase afirmaba algo\n` +
-    `        sobre este dato, vuelve a leerla:  npm run review:surfaces -- ${muestra.join(' ')}`
+  const snap = snapshotDe(payload?.tool_input?.file_path)
+  return snap ? avisoPara([snap]) : null
+}
+
+/**
+ * Lo que el runner le pregunta a git tras un Bash: qué snapshots difieren de
+ * HEAD. `:(glob)` para que `*` no cruce carpetas y los troceados queden fuera.
+ * `--no-optional-locks` para no tomar `index.lock`: en el checkout principal
+ * los agentes de launchd hacen sus propios commits, y un `git status` de fondo
+ * con el candado puesto les tumbaría el suyo. `--untracked-files=normal`
+ * explícito para que una configuración global no esconda un snapshot nuevo.
+ */
+export const GIT_STATUS_SNAPSHOTS = [
+  '--no-optional-locks',
+  'status',
+  '--porcelain',
+  '-z',
+  '--untracked-files=normal',
+  '--',
+  ':(glob)public/data/*.json',
+]
+
+/**
+ * `git status --porcelain -z` → rutas, relativas a la raíz, de los snapshots
+ * cambiados, nuevos o renombrados. Los borrados no: ya no queda dato que
+ * describir. Con `-z`, un renombrado o copiado trae su origen en el campo
+ * siguiente, que se salta.
+ */
+export function snapshotsDeEstado(salida) {
+  const campos = String(salida ?? '').split('\0')
+  const rutas = []
+  for (let i = 0; i < campos.length; i++) {
+    const campo = campos[i]
+    if (campo.length < 4) continue
+    const xy = campo.slice(0, 2)
+    if (/[RC]/.test(xy)) i++
+    if (xy.includes('D')) continue
+    const ruta = campo.slice(3)
+    if (snapshotDe(ruta)) rutas.push(ruta)
+  }
+  return rutas
+}
+
+/**
+ * Qué snapshots hay que contar ahora: los cambiados con un contenido que este
+ * contexto todavía no ha oído. Devuelve también la memoria siguiente, que olvida
+ * lo que en este árbol ya no está cambiado —tras un commit, un dato que vuelve a
+ * moverse se vuelve a contar— y no toca lo de otros árboles.
+ *
+ * @param {Record<string, string>} cambiados  ruta absoluta → huella, lo cambiado ahora bajo `raiz`
+ * @param {Record<string, string>} contados   ruta absoluta → huella ya contada
+ * @param {string} raiz
+ */
+export function novedades(cambiados, contados, raiz) {
+  const nuevos = Object.keys(cambiados)
+    .filter((k) => contados[k] !== cambiados[k])
+    .sort()
+  const bajo = raiz.endsWith('/') ? raiz : `${raiz}/`
+  const memoria = Object.fromEntries(
+    Object.entries(contados).filter(([k]) => !k.startsWith(bajo) || Object.hasOwn(cambiados, k)),
   )
+  for (const k of nuevos) memoria[k] = cambiados[k]
+  return { nuevos, memoria }
 }
