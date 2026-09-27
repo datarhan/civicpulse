@@ -46,9 +46,10 @@ function makeBot() {
 
   const channel = makeChannel(bot)
 
-  // Todos los comandos, detrás de un primer middleware que no deja contestar fuera de
-  // un chat privado más que lo público (commands/registrar.ts). Aquí no se registra
-  // ningún manejador más: uno puesto antes que éste se saltaría la guarda.
+  // Todos los comandos, detrás de dos middlewares: el que atiende cada update una vez
+  // y los de un chat de uno en uno, y el que no deja contestar fuera de un chat privado
+  // más que lo público (commands/registrar.ts). Aquí no se registra ningún manejador
+  // más: uno puesto antes que éstos se saltaría las guardas.
   registrarComandos(bot, db, channel)
 
   // Silencio cron — hourly tick that auto-transitions aged registered
