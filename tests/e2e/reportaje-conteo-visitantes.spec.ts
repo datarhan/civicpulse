@@ -50,6 +50,10 @@ test.describe('Reportaje · conteo de visitantes (/reportajes/conteo-visitantes)
     await expect(
       page.getByText(/Secretaría de Estado de Turismo · enviada el 17 de septiembre de 2026/),
     ).toBeVisible()
+    // Lo que contestó al seguimiento (24-09-2026): el hito 221 «recogido» en
+    // CoFFEE y la ampliación, por el Portal de la Transparencia. No entrega nada,
+    // así que la fila sigue en plazo y lo que dijeron tiene que verse debajo.
+    await expect(page.getByText(/plataforma CoFFEE/)).toBeVisible()
     // A Turisme CV se le escribió DOS veces: el 9 de septiembre por correo y el
     // 21 por la sede, después de que contestara que por correo no lo atendía.
     // Dos filas, dos relojes — y un `getByText` suelto resolvería a las dos y
