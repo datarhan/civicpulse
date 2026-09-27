@@ -199,7 +199,14 @@ La base del volumen es la única copia de los datos, y su esquema cambia por
 migraciones (`src/db/migraciones.ts`; `schema.sql` es la base v0, congelada).
 El bot aplica las pendientes al arrancar (`openDb`), así que desplegar una
 migración es ejecutarla sobre la base de verdad. Antes de fusionar un cambio que
-trae una migración que producción aún no tiene, se ensaya contra esa base:
+trae una migración que producción aún no tiene, se ensaya contra esa base.
+
+El ensayo corre el código de la imagen desplegada, así que una migración nueva
+llega primero **en ensayo** (`MIGRACIONES_EN_ENSAYO`): se despliega sin que el
+bot la aplique al arrancar, y la orden de abajo ya la ensaya —lo dice: «en
+ensayo, aún sin aplicar en el bot»—. Con el ensayo correcto y la instantánea
+hecha, el cambio que la usa la pasa a `MIGRACIONES` y se fusiona. Así llegaron
+la 1 (#132 inerte, #135 activa) y la 2. La orden:
 
 ```bash
 flyctl ssh console --app munigraph-ribarroja -C "sh -c 'cd /app/bot && node_modules/.bin/tsx src/db/migrate.ts --dry-run --db /data/bot.db'"
