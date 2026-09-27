@@ -70,21 +70,44 @@ const pintado = (container) => waitFor(() => expect(container.textContent).toCon
 describe('el mapa de quejas por barrio dice cuántas sitúa', () => {
   afterEach(() => localStorage.removeItem('cp:lang'))
 
-  const PARCIAL = {
+  // Las que faltan llegaron todas sin barrio: el motivo es exacto.
+  const SIN_BARRIO = {
     stats: { total: 4 },
     items: [
       queja('Q-A', 'el-molinet'),
       queja('Q-B', 'el-molinet'),
       queja('Q-C', null), // sin barrio: el casco, o sin ubicación
+      queja('Q-E', null),
+    ],
+  }
+
+  // Una de las que faltan trae un barrio que geo.json no tiene: no está «sin
+  // barrio», y decirlo sería falso (revisión de #131).
+  const PARCIAL = {
+    stats: { total: 4 },
+    items: [
+      queja('Q-A', 'el-molinet'),
+      queja('Q-B', 'el-molinet'),
+      queja('Q-C', null),
       queja('Q-D', 'un-barrio-que-geo-no-tiene'), // tampoco se pinta
     ],
   }
 
   it('con quejas sin barrio, lo dice con la cifra de lo pintado', async () => {
-    const { container } = pinta(PARCIAL)
+    const { container } = pinta(SIN_BARRIO)
     await pintado(container)
     expect(container.textContent).toMatch(/2 de las 4 quejas/)
     expect(container.textContent).toMatch(/no tienen barrio/)
+    expect(container.textContent).not.toMatch(/\{\w+\}/)
+  })
+
+  it('con un barrio que el mapa no tiene, no dice «no tienen barrio»: da las dos cifras', async () => {
+    const { container } = pinta(PARCIAL)
+    await pintado(container)
+    expect(container.textContent).toMatch(/2 de las 4 quejas/)
+    expect(container.textContent).not.toMatch(/no tienen barrio/)
+    expect(container.textContent).toMatch(/sin barrio: 1/)
+    expect(container.textContent).toMatch(/que el mapa no tiene: 1/)
     expect(container.textContent).not.toMatch(/\{\w+\}/)
   })
 
@@ -116,10 +139,19 @@ describe('el mapa de quejas por barrio dice cuántas sitúa', () => {
 
   describe('la leyenda de la capa de la portada', () => {
     it('con quejas sin barrio, da la cifra de las publicadas', async () => {
-      const { container } = pinta(PARCIAL, 'es', QuejasLegend)
+      const { container } = pinta(SIN_BARRIO, 'es', QuejasLegend)
       await waitFor(() => expect(container.textContent).toMatch(/2 de 4 quejas/))
       expect(container.textContent).toMatch(/sin barrio/)
     })
+
+    it('con un barrio que el mapa no tiene, la cifra sin el motivo', async () => {
+      const { container } = pinta(PARCIAL, 'es', QuejasLegend)
+      await waitFor(() => expect(container.textContent).toMatch(/2 de 4 quejas/))
+      expect(container.textContent).not.toMatch(/sin barrio/)
+    })
+
+    // Las muestras de color de la escala: un círculo por nivel.
+    const muestras = (container) => container.querySelectorAll('span[style*="border-radius: 50%"]')
 
     it('con el listado truncado, la cifra sin el motivo', async () => {
       const { container } = pinta(
@@ -139,6 +171,42 @@ describe('el mapa de quejas por barrio dice cuántas sitúa', () => {
       )
       await waitFor(() => expect(container.textContent).toMatch(/sobre 2 queja/))
       expect(container.textContent).not.toMatch(/\d+ de \d+ quejas/)
+    })
+
+    it('sin nada pintado no enseña ninguna muestra de la escala', async () => {
+      const { container } = pinta(
+        { stats: { total: 2 }, items: [queja('Q-C', null), queja('Q-E', null)] },
+        'es',
+        QuejasLegend,
+      )
+      await waitFor(() => expect(container.textContent).toMatch(/0 de 2 quejas/))
+      expect(muestras(container)).toHaveLength(0)
+    })
+
+    it('el control de las muestras: con algo pintado, sí las hay', async () => {
+      const { container } = pinta(SIN_BARRIO, 'es', QuejasLegend)
+      await waitFor(() => expect(container.textContent).toMatch(/2 de 4 quejas/))
+      expect(muestras(container).length).toBeGreaterThan(0)
+    })
+
+    // El control de éste es «con quejas sin barrio, da la cifra de las
+    // publicadas»: el mismo fixture, con geo.json, da «2 de 4».
+    it('mientras geo.json no se ha leído, no afirma nada', async () => {
+      localStorage.setItem('cp:lang', 'es')
+      const fetchMock = installFetchMock({ '/data/quejas.json': SIN_BARRIO })
+      const { container } = render(
+        <LocaleProvider>
+          <QuejasLegend />
+        </LocaleProvider>,
+      )
+      await waitFor(() => {
+        const pedidos = fetchMock.mock.calls.map((c) => String(c[0]))
+        expect(pedidos.some((u) => u.includes('/data/geo.json'))).toBe(true)
+        expect(pedidos.some((u) => u.includes('/data/quejas.json'))).toBe(true)
+      })
+      await new Promise((r) => setTimeout(r, 30))
+      expect(container.textContent).not.toMatch(/de 4 quejas/)
+      expect(container.textContent).not.toMatch(/sin barrio/)
     })
   })
 })

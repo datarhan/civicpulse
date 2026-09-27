@@ -77,12 +77,19 @@ export function QuejasLegend() {
   }, [pintados])
   // Las quejas sin barrio —el casco no tiene— no se pintan: con ellas fuera, la
   // cifra de lo pintado se da sobre la de las publicadas, o se leería como el
-  // total. El motivo, sólo con el listado entero (`coberturaDeBarrios`).
-  const { pintadas: totalQuejas, publicadas, entero } = coberturaDeBarrios(quejas, pintados)
+  // total. El motivo sólo cuando es exacto, y nada mientras geo.json no se ha
+  // leído (`coberturaDeBarrios`).
+  const geoLeido = Array.isArray(geo?.neighborhoods)
+  const {
+    pintadas: totalQuejas,
+    publicadas,
+    restoSinBarrio,
+  } = coberturaDeBarrios(quejas, pintados, geo?.neighborhoods)
   const situaUnaParte = publicadas !== null && totalQuejas < publicadas
-  // Sin nada pintado la capa devuelve null y esto no llega a verse; aun así, no
-  // se inventa una escala sobre cero.
-  const niveles = nivelesPintados.length > 0 ? nivelesPintados : NIVELES_QUEJAS
+  // La leyenda se ve aunque la capa no pinte nada —la capa devuelve null; la
+  // leyenda, no—, así que sin nada pintado no se enseña ninguna muestra: una
+  // escala de colores sobre cero círculos sería inventarla.
+  const niveles = totalQuejas > 0 ? nivelesPintados : []
   const escalaParcial = nivelesPintados.length > 0 && nivelesPintados.length < NIVELES_QUEJAS.length
   return (
     <div style={cardStyle}>
@@ -115,16 +122,19 @@ export function QuejasLegend() {
           fontFamily: "'DM Mono', monospace",
         }}
       >
-        {/* Cuántas quejas sostienen la escala. Derivado, no escrito. */}
-        {situaUnaParte
-          ? rellena(t('map.quejas.coberturaDe'), {
-              q: totalQuejas,
-              p: publicadas,
-              b: pintados.length,
-            }) + (entero ? ` · ${t('map.quejas.sinBarrio')}` : '')
-          : t('map.quejas.cobertura')
-              .replace('{q}', String(totalQuejas))
-              .replace('{b}', String(pintados.length))}
+        {/* Cuántas quejas sostienen la escala. Derivado, no escrito; y sin
+            geo.json no se sabe, así que no se dice. */}
+        {!geoLeido
+          ? null
+          : situaUnaParte
+            ? rellena(t('map.quejas.coberturaDe'), {
+                q: totalQuejas,
+                p: publicadas,
+                b: pintados.length,
+              }) + (restoSinBarrio ? ` · ${t('map.quejas.sinBarrio')}` : '')
+            : t('map.quejas.cobertura')
+                .replace('{q}', String(totalQuejas))
+                .replace('{b}', String(pintados.length))}
         {/* El radio sólo codifica algo cuando hay más de un círculo que comparar. */}
         {pintados.length > 1 ? ` · ${t('map.quejas.radius')}` : ''}
         {escalaParcial ? ` · ${t('map.quejas.escalaParcial')}` : ''}

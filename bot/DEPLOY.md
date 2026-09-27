@@ -200,7 +200,7 @@ barrio (`src/scraper/situar-barrio.ts`); las quejas anteriores conservan el
 barrio de la regla vieja hasta que alguien decida cambiarlo. En seco primero:
 
 ```bash
-flyctl ssh console --app munigraph-ribarroja -C "node_modules/.bin/tsx scripts/rebarrio.ts"
+flyctl ssh console --app munigraph-ribarroja -C "sh -c 'cd /app/bot && node_modules/.bin/tsx scripts/rebarrio.ts --db /data/bot.db'"
 ```
 
 Lista cada queja que cambiaría, con el antes, el después y por qué. Si es lo

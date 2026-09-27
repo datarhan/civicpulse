@@ -15,11 +15,12 @@ import { TRINQUETE } from '../scraper/trinquete'
 import { RADIO_MAXIMO_M } from '../scraper/situar-barrio'
 
 /*
- * prosa-describe: indicadores.json, dea.json
+ * prosa-describe: indicadores.json, dea.json, geo.json
  *
- * Esta página EXPLICA lo que dicen esos dos snapshots sin cargarlos: las
- * secciones #eficiencia y #frontera describen sus cifras, sus umbrales y su
- * comportamiento. El mapa de prosa se deriva del grafo de imports, así que sin
+ * Esta página EXPLICA lo que dicen esos snapshots sin cargarlos: las secciones
+ * #eficiencia y #frontera describen sus cifras, sus umbrales y su
+ * comportamiento, y la de las quejas, cómo sale el barrio de los centroides de
+ * geo.json (el casco no tiene; el radio, la mitad de la distancia al vecino). El mapa de prosa se deriva del grafo de imports, así que sin
  * esta declaración una revisión del ministerio movería las cifras y el
  * recordatorio de prosa vieja no diría nada — precisamente en el documento que
  * es el contrato editorial publicado.
@@ -716,9 +717,10 @@ export default function Metodologia() {
             cerca de su centro: a menos de la mitad de la distancia que lo separa del barrio más
             cercano, y nunca a más de {RADIO_MAXIMO_M} metros. El casco no está dividido en barrios
             en esa fuente, así que una queja del centro se publica sin barrio, y los mapas de quejas
-            dicen cuántas sitúan. Hasta septiembre de 2026 se tomaba el barrio más cercano a menos
-            de dos kilómetros, y una queja ante la puerta del ayuntamiento se atribuía a un polígono
-            industrial. Una ubicación de fuera del término no se acepta: el bot la vuelve a pedir.
+            dicen cuántas sitúan. Hasta el 27 de septiembre de 2026 se tomaba el barrio más cercano
+            a menos de dos kilómetros, y una queja ante la puerta del ayuntamiento se atribuía a un
+            polígono industrial; las guardadas hasta entonces conservan ese barrio mientras no se
+            recalculen. Una ubicación de fuera del término no se acepta: el bot la vuelve a pedir.
           </li>
           <li>
             <strong>Los apoyos se cuentan por cuenta de Telegram.</strong> El bot no verifica quién

@@ -176,19 +176,48 @@ export function computePerNeighborhood(instantanea, neighborhoods) {
  * `address_string`: una queja con un barrio que geo.json no tiene tampoco se
  * pinta. `publicadas` es `stats.total`, o `null` si no se puede leer: un cero
  * ahí diría «sin quejas» de una instantánea que no se ha leído. Y `entero` dice
- * si el listado las trae todas —el bot exporta como mucho mil—, porque sólo
- * entonces las que no se pintan son las que no tienen barrio.
+ * si el listado las trae todas —el bot exporta como mucho mil—.
+ *
+ * El MOTIVO de las que faltan —«no tienen barrio»— sólo se da cuando es exacto:
+ * con el listado entero y cuando lo pintado más las que llegan sin barrio suman
+ * las publicadas (`restoSinBarrio`). Una queja con un barrio que geo.json no
+ * conoce no está «sin barrio»: `desconocidas` las cuenta aparte. Y sin geo.json
+ * leído —cargando o caído— no se sabe qué pinta el mapa, así que no se afirma
+ * nada (`publicadas: null`). Las tres cosas las señaló la revisión de #131: la
+ * leyenda de la portada decía «el resto, sin barrio» mientras geo.json cargaba.
  *
  * @param {{stats?: any, items?: any[]} | null | undefined} instantanea
  * @param {Array<{ total: number }>} filas  lo que devuelve `computePerNeighborhood`
- * @returns {{ pintadas: number, publicadas: number | null, entero: boolean }}
+ * @param {any[] | null | undefined} neighborhoods  los barrios de geo.json, o nada si no se ha leído
+ * @returns {{ pintadas: number, publicadas: number | null, entero: boolean,
+ *   sinBarrio: number, desconocidas: number, restoSinBarrio: boolean }}
  */
-export function coberturaDeBarrios(instantanea, filas) {
+export function coberturaDeBarrios(instantanea, filas, neighborhoods) {
   const pintadas = filas.reduce((n, f) => n + f.total, 0)
+  if (!Array.isArray(neighborhoods)) {
+    return {
+      pintadas,
+      publicadas: null,
+      entero: false,
+      sinBarrio: 0,
+      desconocidas: 0,
+      restoSinBarrio: false,
+    }
+  }
   const total = instantanea?.stats?.total
   const publicadas = Number.isInteger(total) && total >= 0 ? total : null
   const items = Array.isArray(instantanea?.items) ? instantanea.items : []
-  return { pintadas, publicadas, entero: publicadas !== null && items.length === publicadas }
+  const entero = publicadas !== null && items.length === publicadas
+  const sinBarrio = items.filter((q) => !q?.address_string).length
+  const desconocidas = entero ? Math.max(0, publicadas - pintadas - sinBarrio) : 0
+  return {
+    pintadas,
+    publicadas,
+    entero,
+    sinBarrio,
+    desconocidas,
+    restoSinBarrio: entero && pintadas + sinBarrio === publicadas,
+  }
 }
 
 /**

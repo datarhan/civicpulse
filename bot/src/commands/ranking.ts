@@ -60,12 +60,33 @@ export function computeRanking(db: Db): BarrioStats[] {
     .sort((a, b) => b.resolucionPct - a.resolucionPct || b.total - a.total)
 }
 
+/**
+ * Las quejas vivas de los últimos 60 días que el ranking no puede contar porque
+ * no tienen barrio — el casco urbano no tiene (src/scraper/situar-barrio.ts).
+ * El ranking las dejaba fuera sin decirlo, y su vacío hablaba de «quejas con
+ * ubicación» cuando lo que faltaba era barrio.
+ */
+export function quejasSinBarrio60d(db: Db): number {
+  const r = db
+    .prepare(
+      `SELECT COUNT(*) AS n FROM quejas
+        WHERE neighborhood IS NULL
+          AND deleted_at IS NULL
+          AND date(created_at) > date('now','-60 days')`,
+    )
+    .get() as { n: number }
+  return r.n
+}
+
 export function registerRanking(bot: Bot<MyContext>, db: Db) {
   bot.command('ranking', async (ctx) => {
     const stats = computeRanking(db)
+    const sinBarrio = quejasSinBarrio60d(db)
     if (stats.length === 0) {
       await ctx.reply(
-        '🏁 Aún no hay datos suficientes (últimos 60 días). Vuelve cuando tengamos más quejas con ubicación y resoluciones registradas.',
+        sinBarrio > 0
+          ? `🏁 Ninguna queja de los últimos 60 días tiene barrio (sin barrio: ${sinBarrio}), así que no hay ranking por barrios. El casco urbano no tiene barrio.`
+          : '🏁 Aún no hay datos suficientes (últimos 60 días). Vuelve cuando tengamos más quejas y resoluciones registradas.',
       )
       return
     }
@@ -74,7 +95,11 @@ export function registerRanking(bot: Bot<MyContext>, db: Db) {
       return `${medal} ${prettyBarrio(s.neighborhood)} — ${s.resolucionPct}% resueltas · ${s.total} totales · ${s.pendientes} pendientes · ${s.silencio} silencios`
     })
     await ctx.reply(
-      `🏁 *Ranking barrios · 60 días*\n\n${lines.join('\n')}\n\n_Las cifras se basan en transiciones de estado, no en valoraciones editoriales._`,
+      `🏁 *Ranking barrios · 60 días*\n\n${lines.join('\n')}` +
+        (sinBarrio > 0
+          ? `\n\nSin barrio, fuera del ranking: ${sinBarrio}. El casco urbano no tiene barrio.`
+          : '') +
+        '\n\n_Las cifras se basan en transiciones de estado, no en valoraciones editoriales._',
       { parse_mode: 'Markdown' },
     )
   })

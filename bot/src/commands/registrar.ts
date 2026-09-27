@@ -49,7 +49,47 @@ export function registrarComandos(bot: Bot<MyContext>, db: Db, channel: Channel)
   registerEscalar(bot, db, channel)
   registerCurarCommand(bot, db)
 
+  // Un botón de categoría que ya no sirve —de una queja caducada, perdida en un
+  // despliegue o ya en otro paso— se quedaba con el reloj girando: nadie
+  // contestaba su callback. Las conversaciones vivas los recogen antes.
+  bot.callbackQuery(/^cat:/, (ctx) =>
+    ctx.answerCallbackQuery({ text: 'Ese botón ya no sirve. Para empezar otra queja, /queja.' }),
+  )
+
   // Lo último: un mensaje privado que nadie ha contestado. Es donde acaba quien
   // sigue una queja caducada o perdida en un despliegue, y antes oía silencio.
-  bot.chatType('private').on('message', (ctx) => ctx.reply(SIN_QUEJA_EN_CURSO))
+  // Un álbum llega como un mensaje por foto, así que se contesta al primero; y
+  // un mensaje de servicio —el temporizador de borrado, un mensaje fijado— no lo
+  // ha escrito nadie y no se contesta.
+  const albumes = new Set<string>()
+  bot.chatType('private').on('message', (ctx) => {
+    const m = ctx.message
+    if (!escritoPorQuienManda(m)) return
+    if (m.media_group_id) {
+      if (albumes.has(m.media_group_id)) return
+      albumes.add(m.media_group_id)
+      if (albumes.size > 200) albumes.delete(albumes.values().next().value as string)
+    }
+    return ctx.reply(SIN_QUEJA_EN_CURSO)
+  })
+}
+
+/** Un mensaje que alguien escribió o envió, no uno de servicio. */
+function escritoPorQuienManda(mensaje: object): boolean {
+  const m = mensaje as Record<string, unknown>
+  return [
+    'text',
+    'caption',
+    'photo',
+    'location',
+    'voice',
+    'video',
+    'video_note',
+    'document',
+    'audio',
+    'sticker',
+    'animation',
+    'contact',
+    'venue',
+  ].some((k) => m[k] !== undefined)
 }

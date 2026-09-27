@@ -77,3 +77,80 @@ describe('situar', () => {
     expect(situarEn({}, ...AJUNTAMENT)).toEqual({ situacion: 'sin-geo' })
   })
 })
+
+/**
+ * El borde de cada barrio: el radio es la mitad de la distancia a su vecino más
+ * cercano, y nunca más de RADIO_MAXIMO_M.
+ *
+ * Ninguna prueba medía el borde, así que quitar el tope o quitar la mitad seguía
+ * en verde (las dos mutaciones sobrevivían, revisión de #131). Aquí r se deriva
+ * de geo.json barrio a barrio y se mira a 0,9 r —dentro— y a 1,1 r —fuera—, y
+ * se exige que haya barrios de las DOS clases: los que limita el tope y los que
+ * limita la mitad. Sin una de las dos, su mutación volvería a pasar.
+ */
+describe('situar: el borde de cada barrio', () => {
+  const R = 6371000
+  const rad = (x: number) => (x * Math.PI) / 180
+  const deg = (x: number) => (x * 180) / Math.PI
+  const distancia = (a: [number, number], b: [number, number]) => {
+    const h =
+      Math.sin(rad(b[0] - a[0]) / 2) ** 2 +
+      Math.cos(rad(a[0])) * Math.cos(rad(b[0])) * Math.sin(rad(b[1] - a[1]) / 2) ** 2
+    return 2 * R * Math.asin(Math.sqrt(h))
+  }
+  const radioDe = (n: { slug: string; centroid: [number, number] }) =>
+    Math.min(
+      Math.min(
+        ...GEO.neighborhoods.filter((m) => m !== n).map((m) => distancia(n.centroid, m.centroid)),
+      ) / 2,
+      RADIO_MAXIMO_M,
+    )
+  /** Un punto a `metros` del centroide, en la primera de cuatro direcciones que siga en el término. */
+  const aDistancia = (c: [number, number], metros: number): [number, number] | null => {
+    const pasos: Array<[number, number]> = [
+      [deg(metros / R), 0],
+      [-deg(metros / R), 0],
+      [0, deg(metros / (R * Math.cos(rad(c[0]))))],
+      [0, -deg(metros / (R * Math.cos(rad(c[0]))))],
+    ]
+    for (const [dLat, dLng] of pasos) {
+      const p: [number, number] = [c[0] + dLat, c[1] + dLng]
+      if (situar(...p).situacion !== 'fuera-del-termino') return p
+    }
+    return null
+  }
+
+  it('a 0,9 r cae en su barrio y a 1,1 r ya no, en todos', () => {
+    let porTope = 0
+    let porMitad = 0
+    let probados = 0
+    for (const n of GEO.neighborhoods) {
+      const r = radioDe(n)
+      const dentro = aDistancia(n.centroid, 0.9 * r)
+      const fuera = aDistancia(n.centroid, 1.1 * r)
+      if (!dentro || !fuera) continue
+      probados += 1
+      if (r === RADIO_MAXIMO_M) porTope += 1
+      else porMitad += 1
+      expect(situar(...dentro), `${n.slug} a 0,9 r`).toMatchObject({
+        situacion: 'barrio',
+        slug: n.slug,
+      })
+      expect(situar(...fuera), `${n.slug} a 1,1 r`).not.toMatchObject({
+        situacion: 'barrio',
+        slug: n.slug,
+      })
+    }
+    expect(probados).toBeGreaterThan(GEO.neighborhoods.length * 0.8)
+    expect(porTope, 'barrios que limita el tope').toBeGreaterThan(0)
+    expect(porMitad, 'barrios que limita la mitad').toBeGreaterThan(0)
+  })
+
+  it('con el término pero sin barrios, lo de fuera sigue fuera', () => {
+    // Antes, sin barrios devolvía `sin-geo` sin mirar el término, y el bot
+    // aceptaba una ubicación de otro municipio.
+    const soloTermino = { boundary: GEO.boundary }
+    expect(situarEn(soloTermino, ...VALENCIA)).toEqual({ situacion: 'fuera-del-termino' })
+    expect(situarEn(soloTermino, ...AJUNTAMENT)).toEqual({ situacion: 'sin-geo' })
+  })
+})

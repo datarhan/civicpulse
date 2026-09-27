@@ -6,7 +6,8 @@
  * y el Ajuntament era Entrevías. El barrio de una queja publicada es un dato
  * publicado: recalcularlo en silencio sería reescribirlo sin registro. Así que
  * primero se enseña el plan (`scripts/rebarrio.ts`, en seco por defecto) y cada
- * cambio aplicado deja un evento con el antes y el después, que /estado enseña.
+ * cambio aplicado deja un evento con el antes y el después, que /estado rotula
+ * «📍 Barrio corregido» (sin repetir los valores: el evento los guarda).
  */
 import type { Db } from '../db/client.ts'
 import { situar, type Situacion, type Situado } from './neighborhoods.ts'
@@ -19,6 +20,10 @@ export interface CambioDeBarrio {
   antes: string | null
   despues: string | null
   situacion: Situacion
+  /** El estado de la queja: quien aplica el plan ve si ya salió hacia el Registro. */
+  state: string
+  /** El asiento en el Registro municipal, si ya lo tiene. */
+  asiento: string | null
 }
 
 export interface PlanDeRebarrio {
@@ -35,13 +40,16 @@ export function planearRebarrio(
 ): PlanDeRebarrio {
   const filas = db
     .prepare(
-      `SELECT id, lat, lng, neighborhood FROM quejas WHERE deleted_at IS NULL ORDER BY rowid`,
+      `SELECT id, lat, lng, neighborhood, state, registro_entry_number
+         FROM quejas WHERE deleted_at IS NULL ORDER BY rowid`,
     )
     .all() as Array<{
     id: string
     lat: number | null
     lng: number | null
     neighborhood: string | null
+    state: string
+    registro_entry_number: string | null
   }>
   const plan: PlanDeRebarrio = { revisadas: 0, sinUbicacion: 0, cambios: [] }
   for (const f of filas) {
@@ -56,7 +64,14 @@ export function planearRebarrio(
     plan.revisadas += 1
     const despues = s.situacion === 'barrio' ? s.slug : null
     if (despues !== f.neighborhood) {
-      plan.cambios.push({ id: f.id, antes: f.neighborhood, despues, situacion: s.situacion })
+      plan.cambios.push({
+        id: f.id,
+        antes: f.neighborhood,
+        despues,
+        situacion: s.situacion,
+        state: f.state,
+        asiento: f.registro_entry_number,
+      })
     }
   }
   return plan

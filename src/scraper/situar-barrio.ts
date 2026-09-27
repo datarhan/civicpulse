@@ -92,8 +92,12 @@ function radiosDe(barrios: Barrio[]): Map<string, number> {
 export function situarEn(geo: GeoBarrios, lat: number, lng: number): Situado {
   const poligono = geo.boundary?.polygon
   const barrios = geo.neighborhoods
-  if (!poligono || poligono.length < 3 || !barrios?.length) return { situacion: 'sin-geo' }
+  if (!poligono || poligono.length < 3) return { situacion: 'sin-geo' }
+  // El término se comprueba aunque falten los barrios: un geo.json sólo con el
+  // polígono sigue sabiendo qué queda fuera, y antes esto devolvía `sin-geo` y
+  // dejaba pasar un punto de otro municipio.
   if (!dentroDe(poligono, lat, lng)) return { situacion: 'fuera-del-termino' }
+  if (!barrios?.length) return { situacion: 'sin-geo' }
   const r = radiosDe(barrios)
   let mejor: { slug: string; metros: number } | null = null
   for (const n of barrios) {

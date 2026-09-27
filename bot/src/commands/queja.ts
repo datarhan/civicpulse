@@ -65,8 +65,16 @@ export const PLAZO_PASO_MS = 30 * 60 * 1000
  * Antes, silencio.
  */
 export const SIN_QUEJA_EN_CURSO =
-  'No hay ninguna queja en curso: un borrador sin respuesta durante media hora se descarta. ' +
-  'Escribe /queja para empezar una, o /start para ver qué más puedo hacer.'
+  'No tengo ninguna queja tuya en curso. Si estabas escribiendo una, un borrador sin ' +
+  'respuesta durante media hora se descarta. Escribe /queja para empezar una, o /start para ' +
+  'ver qué más puedo hacer.'
+
+/**
+ * Lo que oye quien manda una orden a mitad de una queja: la orden la termina, y
+ * sin este aviso el borrador desaparecía sin que nadie lo dijera.
+ */
+export const QUEJA_A_MEDIAS =
+  'La queja que estabas escribiendo se queda a medias. Cuando quieras, /queja para empezar otra.'
 
 const PIDE_UBICACION =
   '📍 Para situarla necesito la ubicación compartida (botón 📎 → Ubicación). ' +
@@ -84,7 +92,10 @@ const esSaltar = (texto: string) => /^saltar[.!]?$/i.test(texto.trim())
  */
 async function siguiente(conv: MyConversation): Promise<MyContext> {
   const c = await conv.wait()
-  if (comandoDe(c) !== null) await conv.halt({ next: true })
+  if (comandoDe(c) !== null) {
+    await c.reply(QUEJA_A_MEDIAS)
+    await conv.halt({ next: true })
+  }
   return c
 }
 

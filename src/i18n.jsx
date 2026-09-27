@@ -867,6 +867,10 @@ export const CATALOGUE = {
       'El mapa sitúa {nPintadas} de las {nPublicadas} quejas publicadas. Las demás no tienen barrio en el mapa: llegaron sin ubicación, o con una que no cae en ninguno de sus barrios; el casco urbano, por ejemplo, no tiene.',
     'quejas.mapa.coberturaParcial':
       'El mapa sitúa {nPintadas} de las {nPublicadas} quejas publicadas. El listado publicado no coincide con el recuento del bot, así que no se puede saber cuántas de las demás tienen barrio.',
+    // Con el listado entero, pero con alguna queja cuyo barrio no está en el
+    // mapa: no se dice «no tienen barrio», se dan las dos cifras.
+    'quejas.mapa.coberturaDesglose':
+      'El mapa sitúa {nPintadas} de las {nPublicadas} quejas publicadas. De las demás, sin barrio: {nSinBarrio}; con un barrio que el mapa no tiene: {nDesconocidas}.',
     // La ficha de una queja (/quejas/:id). El estado y la categoría son enums del
     // bot: las tablas STATE_LABEL y CATEGORY_LABEL de useQuejas leen su castellano
     // de aquí, para que las páginas que aún no se traducen no puedan discrepar.
@@ -2488,6 +2492,8 @@ export const CATALOGUE = {
       'El mapa situa {nPintadas} de les {nPublicadas} queixes publicades. Les altres no tenen barri al mapa: van arribar sense ubicació, o amb una que no cau en cap dels seus barris; el nucli urbà, per exemple, no en té.',
     'quejas.mapa.coberturaParcial':
       'El mapa situa {nPintadas} de les {nPublicadas} queixes publicades. El llistat publicat no coincideix amb el recompte del bot, així que no es pot saber quantes de les altres tenen barri.',
+    'quejas.mapa.coberturaDesglose':
+      'El mapa situa {nPintadas} de les {nPublicadas} queixes publicades. De les altres, sense barri: {nSinBarrio}; amb un barri que el mapa no té: {nDesconocidas}.',
     'quejas.estado.capturada': 'Capturada',
     'quejas.estado.apoyada_verificada': 'Verificada',
     'quejas.estado.registrada': 'Registrada en seu',

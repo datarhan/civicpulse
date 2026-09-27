@@ -92,12 +92,14 @@ describe('la queja por Telegram no se traga lo que viene después', () => {
   let bot: Bot<MyContext>
   let db: Db
   let enviados: string[]
+  let contestados: string[]
 
   beforeEach(() => {
     vi.useFakeTimers({ toFake: ['Date'] })
     vi.setSystemTime(new Date('2026-09-27T10:00:00Z'))
     db = openDb(':memory:')
     enviados = []
+    contestados = []
     // El `fetch` del cliente, y no un transformador de `bot.api`: el plugin de
     // conversaciones construye su propia `Api` con las OPCIONES del bot pero sin
     // sus transformadores, y lo de dentro de la conversación salía a la red.
@@ -105,6 +107,7 @@ describe('la queja por Telegram no se traga lo que viene después', () => {
       const metodo = String(url).split('/').pop()
       const cuerpo = init?.body ? JSON.parse(String(init.body)) : {}
       if (metodo === 'sendMessage') enviados.push(String(cuerpo.text))
+      if (metodo === 'answerCallbackQuery') contestados.push(String(cuerpo.text ?? ''))
       const result =
         metodo === 'sendMessage' ? { message_id: 1, date: 0, chat: CHAT, text: cuerpo.text } : true
       return new Response(JSON.stringify({ ok: true, result }), {
@@ -131,6 +134,59 @@ describe('la queja por Telegram no se traga lo que viene después', () => {
     expect(enviados.join('\n')).toMatch(/No tienes quejas/)
     expect(enviados.join('\n')).not.toMatch(/Describe lo que pasa/)
     expect(quejas()).toBe(0)
+  })
+
+  it('y avisa de que la queja se queda a medias, en vez de perderla en silencio', async () => {
+    await empezar()
+    enviados = []
+    await bot.handleUpdate(texto('/mis') as never)
+    expect(enviados.join('\n')).toMatch(/se queda a medias/)
+  })
+
+  it('un botón de categoría que ya no sirve se contesta, no se queda girando', async () => {
+    await bot.handleUpdate(boton('cat:alumbrado') as never)
+    expect(contestados.join('\n')).toMatch(/ya no sirve/)
+    // el control: dentro de una queja viva, ese mismo botón elige la categoría
+    contestados = []
+    await empezar()
+    expect(contestados.join('\n')).not.toMatch(/ya no sirve/)
+  })
+
+  it('sin queja en curso, un álbum recibe UNA respuesta y un mensaje de servicio ninguna', async () => {
+    const foto = (grupo: string) => {
+      n += 1
+      return {
+        update_id: n,
+        message: {
+          message_id: n,
+          date: Math.floor(Date.now() / 1000),
+          chat: CHAT,
+          from: DE,
+          media_group_id: grupo,
+          photo: [{ file_id: `f${n}`, file_unique_id: `u${n}`, width: 1, height: 1 }],
+        },
+      }
+    }
+    await bot.handleUpdate(foto('album-1') as never)
+    await bot.handleUpdate(foto('album-1') as never)
+    await bot.handleUpdate(foto('album-1') as never)
+    expect(enviados.filter((t) => /ninguna queja tuya en curso/.test(t))).toHaveLength(1)
+    enviados = []
+    n += 1
+    await bot.handleUpdate({
+      update_id: n,
+      message: {
+        message_id: n,
+        date: Math.floor(Date.now() / 1000),
+        chat: CHAT,
+        from: DE,
+        message_auto_delete_timer_changed: { message_auto_delete_time: 86400 },
+      },
+    } as never)
+    expect(enviados).toEqual([])
+    // el control: un texto suelto sí recibe la respuesta
+    await bot.handleUpdate(texto('hola') as never)
+    expect(enviados.join('\n')).toMatch(/ninguna queja tuya en curso/)
   })
 
   it('también en el paso de la categoría, donde se esperaba un botón', async () => {

@@ -61,12 +61,16 @@ describe('rebarrio', () => {
         antes: 'poligono-industrial-entrevias',
         despues: null,
         situacion: 'sin-barrio',
+        state: 'capturada',
+        asiento: null,
       },
       {
         id: ids.fuera,
         antes: 'urbanitzacio-la-reva',
         despues: null,
         situacion: 'fuera-del-termino',
+        state: 'capturada',
+        asiento: null,
       },
     ])
     expect(barrioDe(ids.centro)).toBe('poligono-industrial-entrevias')

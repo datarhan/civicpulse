@@ -64,8 +64,17 @@ export default function QuejasHeatmap() {
 
   // Las quejas sin barrio —el casco no tiene— no se pintan, y el mapa lo dice:
   // sin la nota, las burbujas se leen como el total.
-  const { pintadas, publicadas, entero } = coberturaDeBarrios(quejas, perNeighborhood)
+  const { pintadas, publicadas, entero, sinBarrio, desconocidas, restoSinBarrio } =
+    coberturaDeBarrios(quejas, perNeighborhood, geo?.neighborhoods)
   const situaUnaParte = publicadas !== null && pintadas < publicadas
+  // El motivo, sólo cuando es exacto: con el listado entero, «no tienen barrio»
+  // si todas las que faltan llegaron sin él; si alguna trae un barrio que el
+  // mapa no conoce, las dos cifras por separado; y truncado, sin motivo.
+  const claveNota = restoSinBarrio
+    ? 'quejas.mapa.cobertura'
+    : entero
+      ? 'quejas.mapa.coberturaDesglose'
+      : 'quejas.mapa.coberturaParcial'
 
   return (
     <div style={{ marginBottom: 14 }}>
@@ -146,9 +155,11 @@ export default function QuejasHeatmap() {
       </div>
       {situaUnaParte && (
         <p style={{ margin: '6px 0 0', fontSize: 'var(--fs-aux)', color: 'var(--ink70)' }}>
-          {rellena(t(entero ? 'quejas.mapa.cobertura' : 'quejas.mapa.coberturaParcial'), {
+          {rellena(t(claveNota), {
             nPintadas: pintadas,
             nPublicadas: publicadas,
+            nSinBarrio: sinBarrio,
+            nDesconocidas: desconocidas,
           })}
         </p>
       )}
