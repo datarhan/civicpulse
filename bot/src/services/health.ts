@@ -25,11 +25,25 @@ export interface BotCapabilities {
   adminCommands: boolean
 }
 
+/**
+ * La variable con la que el despliegue le dice a la máquina qué commit lleva
+ * (`flyctl deploy --env GIT_SHA=…` en `.github/workflows/bot-deploy.yml`, que
+ * después compara `/health.version` con el commit fusionado).
+ * `tests/bot-despliegue.test.js` lee este nombre de aquí.
+ */
+export const VARIABLE_VERSION = 'GIT_SHA'
+
 export interface BotHealth {
   status: 'ok' | 'degraded'
   mode: string
   uptimeSec: number
   pid: number
+  /**
+   * El commit que el despliegue dijo que corre, o null si no dijo ninguno. «Flyctl
+   * deploy» en verde no lo prueba: el 9-09-2026 la máquina servía la versión de
+   * las 08:16Z con cuatro commits encima, y nada fuera de ella lo decía.
+   */
+  version: string | null
   capabilities: BotCapabilities
   /** Human-readable list of what is off, empty when fully operational. */
   degraded: string[]
@@ -68,6 +82,7 @@ export function buildHealth(
     mode: opts.mode,
     uptimeSec: opts.uptimeSec,
     pid: opts.pid,
+    version: env[VARIABLE_VERSION]?.trim() || null,
     capabilities,
     degraded,
     ...(webhookAuthenticated === undefined ? {} : { webhookAuthenticated }),

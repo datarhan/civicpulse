@@ -38,6 +38,10 @@ on:
       - 'bot/**'
       - '.github/workflows/bot.yml'
   workflow_dispatch:
+  # `bot-deploy.yml` lo llama y espera a que termine en verde antes de desplegar.
+  # Hasta el 2026-09-27 los dos corrían en paralelo con el mismo push, y un bot
+  # en rojo llegaba a Fly igual.
+  workflow_call:
 
 jobs:
   test:

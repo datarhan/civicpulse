@@ -50,8 +50,17 @@ permissions:
   contents: read
 
 jobs:
+  # Lo primero, los tipos y las pruebas del bot: el mismo `bot.yml` que corre en
+  # cada PR, llamado desde aquí. Antes los dos se disparaban con el mismo push y
+  # corrían en paralelo, así que un arranque que no compilaba o una prueba en
+  # rojo llegaban a Fly igual. Lo siguiente que se despliega es una migración de
+  # la base de datos, y la única copia de los datos está en ese volumen.
+  pruebas:
+    uses: ./.github/workflows/bot.yml
+
   deploy:
     name: Deploy bot to Fly
+    needs: pruebas
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -91,10 +100,43 @@ jobs:
 
       # `--remote-only` construye en los constructores de Fly: el runner no
       # tiene que montar Docker y el contexto no viaja desde aquí.
+      #
+      # `--env GIT_SHA=…` le dice a la máquina qué commit lleva, y `/health` lo
+      # cuenta como `version` (bot/src/services/health.ts, `VARIABLE_VERSION`).
       - name: Desplegar
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
-        run: flyctl deploy --config bot/fly.toml --dockerfile bot/Dockerfile --remote-only
+          COMMIT: ${{ github.sha }}
+        run: flyctl deploy --config bot/fly.toml --dockerfile bot/Dockerfile --remote-only --env GIT_SHA="$COMMIT"
+
+      # «flyctl deploy» en verde dice que el despliegue terminó, no qué commit
+      # sirve la máquina: el 9-09-2026 la de producción era de las 08:16Z con
+      # cuatro commits encima, y todo estaba en verde. Aquí se pregunta a la
+      # máquina y se compara con el commit fusionado, y además que el webhook de
+      # Telegram quedó registrado con su secreto (sin él, cada update real es un
+      # 401 y el bot está «arriba pero mudo»). Si en tres minutos no lo dice, el
+      # workflow sale en ROJO — y el bot avisa por Telegram de los workflows
+      # fallidos (bot/src/services/eventos-repo.ts).
+      - name: Comprobar que Fly sirve este commit
+        env:
+          ESPERADA: ${{ github.sha }}
+          SALUD: https://munigraph-ribarroja.fly.dev/health
+        run: |
+          cuerpo=''
+          for intento in $(seq 1 36); do
+            cuerpo=$(curl -fsS --max-time 10 "$SALUD" || true)
+            version=$(printf '%s' "$cuerpo" | jq -r '.version // ""' 2>/dev/null || true)
+            autenticado=$(printf '%s' "$cuerpo" | jq -r '.webhookAuthenticated // false' 2>/dev/null || true)
+            if [ "$version" = "$ESPERADA" ] && [ "$autenticado" = "true" ]; then
+              echo "Fly sirve $ESPERADA y el webhook de Telegram está autenticado (intento $intento)."
+              printf '%s' "$cuerpo" | jq '{status, degraded}'
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "::error::En tres minutos, /health no dice que corra $ESPERADA con el webhook autenticado."
+          echo "Último /health: $cuerpo"
+          exit 1
 
       # Y que se note que ocurrió: la fecha del despliegue es lo primero que se
       # mira cuando el bot no dice lo que debería.
