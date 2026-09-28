@@ -11,6 +11,7 @@ import { resolve } from 'node:path'
 import { z } from 'zod'
 import {
   callLLM,
+  claudeCodeArgs,
   describeClaudeFailure,
   gatherCacheStats,
   loadConfigFromEnv,
@@ -769,5 +770,50 @@ describe('llm/client — el modelo por defecto de agy, y el respaldo silencioso'
     // saltar. Es exactamente cómo `gemini-3.5-flash-medium` llevaba días roto.
     resetRunStats()
     expect(getRunStats().freeBackendFallbacks).toBe(0)
+  })
+})
+
+/**
+ * Los ganchos de los plugins del usuario corrían dentro de cada `claude -p`.
+ *
+ * `--system-prompt`, `--disable-slash-commands` y `--strict-mcp-config` dejan
+ * fuera el prompt de sistema del CLI, el listado de skills y el MCP, pero no los
+ * ganchos que registran los plugins de ámbito usuario. Medido el 2026-09-28 en
+ * los transcritos de las 4.944 llamadas sin cabeza del 29-ago al 28-sep:
+ *
+ *   · el SessionStart de superpowers metió su `hook_additional_context` —3.321
+ *     o 3.405 caracteres según la versión, «you MUST invoke a skill before ANY
+ *     response»— en todas las que llegaron a la API (4.943), en un prompt que
+ *     sólo puede contestar con JSON;
+ *   · security-guidance arrancaba Python en el UserPromptSubmit y en el Stop,
+ *     recorría git y no revisó nada en ninguna: 4.452 veces `skip_reason 9`
+ *     (nada que revisar) y 13 su guarda de recursión. Dejaba un par
+ *     `security_warnings_state_*.json` + `.lock` por llamada en
+ *     ~/.claude/security, que iba por unos 10.000 ficheros.
+ *
+ * `--bare` los apaga, pero no lee el llavero y la llamada sale «Not logged in».
+ * `disableAllHooks` por `--settings` apaga los de ajustes y de plugins y deja el
+ * login de Max: el mismo día, una llamada con estos argumentos y el entorno
+ * mínimo de un agente de launchd devolvió su `structured_output` con cero
+ * adjuntos `hook_*` en el transcrito y sin fichero de estado.
+ */
+describe('claudeCodeArgs · sin ganchos de plugins', () => {
+  const args = claudeCodeArgs(
+    { userPrompt: 'u', systemPrompt: 's', config: { claudeCodeModel: 'claude-sonnet-5' } },
+    '{}',
+  )
+
+  it('apaga todos los ganchos por --settings', () => {
+    // Uno solo: con dos, cuál gana lo decide el CLI y no este fichero.
+    expect(args.filter((a) => a === '--settings')).toHaveLength(1)
+    const ajustes = JSON.parse(args[args.indexOf('--settings') + 1])
+    expect(ajustes.disableAllHooks).toBe(true)
+  })
+
+  it('no los apaga con --bare, que se lleva el login de Max', () => {
+    // La ayuda del CLI anuncia --bare como «skip hooks», así que es el cambio
+    // tentador; pero con él sólo autentica ANTHROPIC_API_KEY o un
+    // apiKeyHelper —nunca el llavero—, y en Max no hay clave.
+    expect(args).not.toContain('--bare')
   })
 })

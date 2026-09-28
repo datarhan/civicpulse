@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-27T10:18:15.471Z",
+  "generatedAt": "2026-09-28T11:21:44.519Z",
   "source": {
     "platform": "OSM Overpass API",
     "endpoint": "https://overpass-api.de/api/interpreter",
@@ -17,13 +17,13 @@
       ]
     },
     {
-      "id": "way-20022124",
+      "id": "way-20021883",
       "name": "Avinguda d'Azorín",
       "slug": "avinguda-d-azorin",
       "kind": "avenida",
       "point": [
-        39.5424108,
-        -0.5678884
+        39.5420862,
+        -0.5669147
       ]
     },
     {
@@ -212,8 +212,8 @@
       "slug": "avinguda-del-poliesportiu",
       "kind": "avenida",
       "point": [
-        39.5482137,
-        -0.5820194
+        39.5481546,
+        -0.5819859
       ]
     },
     {
@@ -447,6 +447,16 @@
       ]
     },
     {
+      "id": "way-39525563",
+      "name": "Camí de les Ànimes",
+      "slug": "cami-de-les-animes",
+      "kind": "camino",
+      "point": [
+        39.5487019,
+        -0.5619531
+      ]
+    },
+    {
       "id": "way-61045827",
       "name": "Camí de Possa",
       "slug": "cami-de-possa",
@@ -462,8 +472,8 @@
       "slug": "cami-de-sant-roca",
       "kind": "camino",
       "point": [
-        39.551861,
-        -0.5716965
+        39.5521563,
+        -0.5723389
       ]
     },
     {
@@ -892,8 +902,8 @@
       "slug": "carrer-benaguasil",
       "kind": "calle",
       "point": [
-        39.5431274,
-        -0.5652752
+        39.543417,
+        -0.5659568
       ]
     },
     {
@@ -1052,8 +1062,8 @@
       "slug": "carrer-cor-de-jesus",
       "kind": "calle",
       "point": [
-        39.546246,
-        -0.5684624
+        39.5462453,
+        -0.5684481
       ]
     },
     {
@@ -1162,8 +1172,8 @@
       "slug": "carrer-d-ausias-march",
       "kind": "calle",
       "point": [
-        39.5483025,
-        -0.5781625
+        39.5479281,
+        -0.578358
       ]
     },
     {
@@ -1342,8 +1352,8 @@
       "slug": "carrer-de-benissano",
       "kind": "calle",
       "point": [
-        39.5435488,
-        -0.5649555
+        39.5435798,
+        -0.564996
       ]
     },
     {
@@ -1907,13 +1917,13 @@
       ]
     },
     {
-      "id": "way-39525569",
+      "id": "way-152508622",
       "name": "Carrer de la Masia de Plater",
       "slug": "carrer-de-la-masia-de-plater",
       "kind": "calle",
       "point": [
-        39.5476587,
-        -0.5635098
+        39.5473425,
+        -0.562454
       ]
     },
     {
@@ -2082,8 +2092,8 @@
       "slug": "carrer-de-la-sequia-mitjana",
       "kind": "calle",
       "point": [
-        39.5426034,
-        -0.5539021
+        39.5426115,
+        -0.5539289
       ]
     },
     {
@@ -2227,16 +2237,6 @@
       ]
     },
     {
-      "id": "way-39525563",
-      "name": "Carrer de les Ànimes",
-      "slug": "carrer-de-les-animes",
-      "kind": "calle",
-      "point": [
-        39.5487019,
-        -0.5619531
-      ]
-    },
-    {
       "id": "way-696236870",
       "name": "Carrer de les Bodeguetes",
       "slug": "carrer-de-les-bodeguetes",
@@ -2274,6 +2274,16 @@
       "point": [
         39.5115196,
         -0.5326277
+      ]
+    },
+    {
+      "id": "way-39525583",
+      "name": "Carrer de les Eres Altes",
+      "slug": "carrer-de-les-eres-altes",
+      "kind": "calle",
+      "point": [
+        39.5465682,
+        -0.5637041
       ]
     },
     {
@@ -2492,8 +2502,8 @@
       "slug": "carrer-de-pedralba",
       "kind": "calle",
       "point": [
-        39.542819,
-        -0.5655099
+        39.5431184,
+        -0.5661809
       ]
     },
     {
@@ -2632,8 +2642,8 @@
       "slug": "carrer-de-sant-antoni",
       "kind": "calle",
       "point": [
-        39.546246,
-        -0.5684624
+        39.5462453,
+        -0.5684481
       ]
     },
     {
@@ -2672,8 +2682,8 @@
       "slug": "carrer-de-sant-ricard",
       "kind": "calle",
       "point": [
-        39.5443915,
-        -0.5638584
+        39.544352,
+        -0.5638728
       ]
     },
     {
@@ -2782,8 +2792,8 @@
       "slug": "carrer-de-toledo",
       "kind": "calle",
       "point": [
-        39.5409819,
-        -0.5722426
+        39.5408141,
+        -0.5716581
       ]
     },
     {
@@ -3142,8 +3152,8 @@
       "slug": "carrer-del-mas-de-montes",
       "kind": "calle",
       "point": [
-        39.4832932,
-        -0.5874328
+        39.4805062,
+        -0.5875882
       ]
     },
     {
@@ -3278,12 +3288,12 @@
     },
     {
       "id": "way-696236867",
-      "name": "Carrer del Nou d'OCtubre",
+      "name": "Carrer del Nou d'Octubre",
       "slug": "carrer-del-nou-d-octubre",
       "kind": "calle",
       "point": [
-        39.5456425,
-        -0.5694483
+        39.5456305,
+        -0.5694729
       ]
     },
     {
@@ -3432,8 +3442,8 @@
       "slug": "carrer-del-primer-de-maig",
       "kind": "calle",
       "point": [
-        39.5428037,
-        -0.5664634
+        39.5428381,
+        -0.5664388
       ]
     },
     {
@@ -3492,8 +3502,8 @@
       "slug": "carrer-del-trinquet",
       "kind": "calle",
       "point": [
-        39.546625,
-        -0.5661784
+        39.5463466,
+        -0.5662617
       ]
     },
     {
@@ -3882,8 +3892,8 @@
       "slug": "carrer-edeta",
       "kind": "calle",
       "point": [
-        39.5421819,
-        -0.5659926
+        39.542455,
+        -0.5666403
       ]
     },
     {
@@ -3914,16 +3924,6 @@
       "point": [
         39.564306,
         -0.5635362
-      ]
-    },
-    {
-      "id": "way-39525583",
-      "name": "Carrer Eres Altes",
-      "slug": "carrer-eres-altes",
-      "kind": "calle",
-      "point": [
-        39.5465682,
-        -0.5637041
       ]
     },
     {
@@ -4047,13 +4047,13 @@
       ]
     },
     {
-      "id": "way-677953152",
+      "id": "way-148316530",
       "name": "Carrer Guadalajara",
       "slug": "carrer-guadalajara",
       "kind": "calle",
       "point": [
-        39.5401789,
-        -0.5719804
+        39.5399206,
+        -0.5711615
       ]
     },
     {
@@ -4232,8 +4232,8 @@
       "slug": "carrer-joan-de-joanes",
       "kind": "calle",
       "point": [
-        39.5462423,
-        -0.5696348
+        39.5464636,
+        -0.5695645
       ]
     },
     {
@@ -4282,8 +4282,8 @@
       "slug": "carrer-jose-iturbi",
       "kind": "calle",
       "point": [
-        39.5535769,
-        -0.5404596
+        39.5529425,
+        -0.5407852
       ]
     },
     {
@@ -4412,8 +4412,8 @@
       "slug": "carrer-lozoya",
       "kind": "calle",
       "point": [
-        39.5382122,
-        -0.5405755
+        39.5379528,
+        -0.5410775
       ]
     },
     {
@@ -4472,8 +4472,8 @@
       "slug": "carrer-mariano-benlliure",
       "kind": "calle",
       "point": [
-        39.5548706,
-        -0.5438117
+        39.5545414,
+        -0.542861
       ]
     },
     {
@@ -4832,8 +4832,8 @@
       "slug": "carrer-rosalia-de-castro",
       "kind": "calle",
       "point": [
-        39.5447156,
-        -0.5771852
+        39.5445738,
+        -0.5772561
       ]
     },
     {
@@ -5177,6 +5177,16 @@
       ]
     },
     {
+      "id": "way-100968203",
+      "name": "Carretera de Bétera",
+      "slug": "carretera-de-betera",
+      "kind": "carretera",
+      "point": [
+        39.5461367,
+        -0.5627151
+      ]
+    },
+    {
       "id": "way-29109664",
       "name": "Carretera de Cheste a Loriguilla",
       "slug": "carretera-de-cheste-a-loriguilla",
@@ -5188,7 +5198,7 @@
     },
     {
       "id": "way-35599247",
-      "name": "Carretera de L'Eliana",
+      "name": "Carretera de l'Eliana",
       "slug": "carretera-de-l-eliana",
       "kind": "carretera",
       "point": [
@@ -5202,8 +5212,8 @@
       "slug": "carretera-de-riba-roja-a-loriguilla",
       "kind": "carretera",
       "point": [
-        39.5228339,
-        -0.5698393
+        39.522615,
+        -0.5696555
       ]
     },
     {
@@ -5212,8 +5222,8 @@
       "slug": "carretera-de-valencia",
       "kind": "carretera",
       "point": [
-        39.5454206,
-        -0.5666698
+        39.5453504,
+        -0.5667003
       ]
     },
     {
@@ -5222,8 +5232,8 @@
       "slug": "carretera-de-vilamarxant",
       "kind": "carretera",
       "point": [
-        39.5492186,
-        -0.5827079
+        39.5484923,
+        -0.5816335
       ]
     },
     {
@@ -5258,12 +5268,12 @@
     },
     {
       "id": "way-30824595",
-      "name": "Carretera Ribarroja - Villamarchante",
-      "slug": "carretera-ribarroja-villamarchante",
+      "name": "Carretera Riba-roja – Vilamarxant",
+      "slug": "carretera-riba-roja-vilamarxant",
       "kind": "carretera",
       "point": [
-        39.5629132,
-        -0.5987138
+        39.5629989,
+        -0.6005896
       ]
     },
     {
@@ -5398,12 +5408,12 @@
     }
   ],
   "stats": {
-    "total": 539,
+    "total": 540,
     "byKind": {
       "avenida": 37,
-      "calle": 465,
-      "camino": 20,
-      "carretera": 12,
+      "calle": 464,
+      "camino": 21,
+      "carretera": 13,
       "plaza": 5
     }
   }

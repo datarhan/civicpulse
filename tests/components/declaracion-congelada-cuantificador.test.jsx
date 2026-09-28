@@ -44,6 +44,27 @@ describe('DeclaracionCongelada — el cuantificador del titular sale del dato', 
     expect(container.textContent).toMatch(/176.*\(62 %\)/)
   })
 
+  /**
+   * «Eso vuelve inservible cualquier lectura temporal de un coste unitario: …
+   * el cociente sólo puede subir, y sube porque nadie volvió a pesar la
+   * basura.» Falso en el propio dato, y desde el día en que se escribió: con
+   * el denominador congelado el cociente se mueve con el coste, y el coste
+   * baja entre dos entregas en 145 de las 171 series congeladas con dos costes
+   * o más. El ejemplo del texto lo desmiente: la basura de Riba-roja declara
+   * 11.059,41 t de 2019 a 2024 y pasa de 78,22 a 66,94 €/t. Y «cualquier»
+   * alcanzaba también al 38 % de series que sí se actualizan. Revisión lectora
+   * del 28-09-2026; medido ese día contra coste-efectivo.json.
+   */
+  it('no dice que el cociente sólo pueda subir, y acota la salvedad a lo congelado', () => {
+    const { container } = render(
+      <DeclaracionCongelada declaracion={{ ...base, unidadSeries: 282, unidadCongeladas: 176 }} />,
+    )
+    expect(container.textContent).not.toMatch(/sólo puede subir/)
+    expect(container.textContent).not.toMatch(/cualquier lectura temporal/)
+    // Midió algo: la salvedad sigue en la página, acotada.
+    expect(container.textContent).toMatch(/Donde el denominador se repite/)
+  })
+
   it('a 95 % sí dice «casi nadie», y a 30 % «buena parte»', () => {
     expect(cuantificadorCongelacion(95)).toBe('Casi nadie vuelve a medir el denominador')
     expect(cuantificadorCongelacion(90)).toBe('Casi nadie vuelve a medir el denominador')

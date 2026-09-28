@@ -1,23 +1,23 @@
 {
-  "generatedAt": "2026-09-27T10:21:50.088Z",
+  "generatedAt": "2026-09-28T11:25:23.933Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 61,
-    "openTotal": 60,
-    "inRibaRoja": 37,
+    "total": 59,
+    "openTotal": 58,
+    "inRibaRoja": 36,
     "closingSoon": 15,
-    "withDetail": 61,
+    "withDetail": 59,
     "byMonth": {
-      "2026-09": 22,
+      "2026-09": 21,
       "2026-08": 27,
       "2026-07": 4,
       "2026-06": 1,
       "2026-05": 2,
-      "2026-04": 2,
+      "2026-04": 1,
       "2026-02": 2,
       "2025-11": 1
     }
@@ -1051,80 +1051,6 @@
         "jornada": "Completa",
         "horario": "7:00-15:30H",
         "salario": "22859.28 BRUTO ANUAL",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2434",
-      "fo": 2434,
-      "codigo": "2026/00136",
-      "titulo": "Cocinero/a",
-      "publishedAt": "2026-09-08",
-      "deadline": "2026-11-08",
-      "location": "Bétera (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2434",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00136"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Cocinero/a"
-          },
-          {
-            "label": "Observaciones",
-            "value": "40 H/semanales Requisitos: - Título de cocina - Carnet de manipulador de alimentos - Imprescindible carnet de conducir Se valorará experiencia previa en el puesto."
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO DE OBRA O SERVICIO DETERMINADO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "De 1 a 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Municipio: Bétera, Provincia: Valencia"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno mañana, Turno tarde"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "Periodo vacacional"
-          },
-          {
-            "label": "Horario",
-            "value": "Mañanas de 7:00 a 15:00 horas Tardes: de 14:00 a 22:00 horas"
-          },
-          {
-            "label": "Salario",
-            "value": "1294€ (14 pagas) + plus de festivos y domingos según convenio"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO DE OBRA O SERVICIO DETERMINADO",
-        "duracion": "De 1 a 6 meses",
-        "numPuestos": "1",
-        "observaciones": "40 H/semanales Requisitos: - Título de cocina - Carnet de manipulador de alimentos - Imprescindible carnet de conducir Se valorará experiencia previa en el puesto.",
-        "jornada": "Completa Turnos: Turno mañana, Turno tarde",
-        "horario": "Mañanas de 7:00 a 15:00 horas Tardes: de 14:00 a 22:00 horas",
-        "salario": "1294€ (14 pagas) + plus de festivos y domingos según convenio",
         "vehiculo": "Sí",
         "ocupaciones": []
       }
@@ -4633,79 +4559,6 @@
         "funciones": "- Auxiliar de Ayuda a domicilio - Aseo personal - Movilizaciones - Estimulación cognitiva - Paseos - Mantenimiento del hogar",
         "vehiculo": "Sí",
         "ocupaciones": []
-      }
-    },
-    {
-      "id": "2390",
-      "fo": 2390,
-      "codigo": "2026/00091",
-      "titulo": "Empleada/o de hogar",
-      "publishedAt": "2026-04-09",
-      "deadline": "2026-09-27",
-      "location": "Urb. Parque Monte Alcedo Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2390",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00091"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Empleada/o de hogar"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Limpieza de hogar. Imprescindible no fumar y tener referencias comprobables."
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO A TIEMPO PARCIAL"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Indefinido"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Urb. Parque Monte Alcedo, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Turnos: Turno mañana"
-          },
-          {
-            "label": "Horario",
-            "value": "Lunes, miércoles y viernes de 9:00 a 13:00. Negociable."
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          }
-        ],
-        "tipoContrato": "CONTRATO A TIEMPO PARCIAL",
-        "duracion": "Indefinido",
-        "numPuestos": "1",
-        "observaciones": "Limpieza de hogar. Imprescindible no fumar y tener referencias comprobables.",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46190",
-        "jornada": "Turnos: Turno mañana",
-        "horario": "Lunes, miércoles y viernes de 9:00 a 13:00. Negociable.",
-        "salario": "Según convenio",
-        "ocupaciones": [
-          {
-            "nombre": "PERSONAL DE LIMPIEZA O LIMPIADORES EN GENERAL",
-            "experiencia": "2 Años"
-          }
-        ]
       }
     },
     {

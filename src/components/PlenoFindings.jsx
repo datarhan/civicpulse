@@ -338,8 +338,13 @@ export function notaAcusacionSinContrastar(curatorName) {
   // Cuarta pasada, 2026-09-15: la nota no decía de qué literal hablaba, y la revisión
   // lectora la leyó dos veces como si negara la cita impresa de al lado (29-08 y
   // 15-09). Ahora nombra el hueco con el mismo rótulo que lo pinta.
+  // Quinta pasada, 2026-09-28: decía «una acusación pública SOBRE LA GESTIÓN
+  // MUNICIPAL», y la puerta no sabe a quién se acusa —retiene la
+  // `acusacion_publica` sin datos, sea cual sea su blanco—. En 431140 las dos
+  // retenidas hablan de la Generalitat; en el corpus, la mayoría no tratan del
+  // gobierno municipal.
   const base =
-    'es una acusación pública sobre la gestión municipal que el verificador no ha podido ' +
+    'es una acusación pública que el verificador no ha podido ' +
     'contrastar, así que su literal no se publica: ni aquí, donde queda a la vista el hueco ' +
     `«${ROTULO_CITA_RETENIDA}» con su motivo, ni en el registro de declaraciones del pleno`
   const quien = (curatorName ?? '').trim()

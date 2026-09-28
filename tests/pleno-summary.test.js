@@ -143,7 +143,9 @@ describe('resumenPlenos', () => {
   it('el embudo de declaraciones sale del manifiesto entero', () => {
     const { embudo } = resumenPlenos(snapshots)
     expect(embudo).toMatchObject({
-      extraidas: 56,
+      // 56 servidas + 20 retenidas. `totals.items` cuenta sólo lo que la
+      // puerta dejó pasar, y la tarjeta lo rotulaba «Extraídas».
+      extraidas: 76,
       retenidas: 20,
       sinDatos: 52,
       parcial: 3,
@@ -152,6 +154,58 @@ describe('resumenPlenos', () => {
       comprobadoSinHallar: 22,
       sesiones: 2,
     })
+  })
+
+  /**
+   * La tarjeta decía «Extraídas de la transcripción 4.960» —lo SERVIDO— sobre
+   * 7.564 extraídas, y las dos filas de retenidas sumaban 2.605 contra 2.604
+   * retenidas de verdad: `totals.retenidas` cuenta todo lo no servido por los
+   * dos motivos, así que una acusación sin procedencia salía en las dos filas.
+   * Señalado por la revisión lectora del 28-09-2026 («4943 + 15 + 2 = 4960, es
+   * decir, todo lo extraído»).
+   */
+  it('las filas del embudo son una partición de lo extraído', () => {
+    const conAmbas = {
+      ...snapshots,
+      manifest: {
+        ...snapshots.manifest,
+        totals: {
+          ...snapshots.manifest.totals,
+          // 21 no servidas: 20 acusaciones y una cita; dos de ellas sin
+          // procedencia (una acusación y la cita).
+          retenidas: { acusacion_publica: 20, cita_convenio: 1 },
+          retenidasSinProcedencia: 2,
+        },
+      },
+    }
+    const { embudo } = resumenPlenos(conAmbas)
+    expect(embudo.extraidas).toBe(77)
+    expect(embudo.retenidas).toBe(19)
+    expect(embudo.retenidasSinProcedencia).toBe(2)
+    expect(
+      embudo.retenidas +
+        embudo.retenidasSinProcedencia +
+        embudo.sinDatos +
+        embudo.parcial +
+        embudo.verificado,
+    ).toBe(embudo.extraidas)
+  })
+
+  /**
+   * «Son los puntos de las 62 sesiones con orden del día extraído, no de las
+   * 62»: la salvedad se pintaba siempre, y el 24-09 la tubería extrajo el
+   * último orden del día que faltaba. El hueco tiene que salir del dato.
+   */
+  it('dice cuántas sesiones se quedan sin orden del día', () => {
+    expect(resumenPlenos(snapshots).agenda.sinOrden).toBe(1)
+    const todas = {
+      ...snapshots,
+      agendas: {
+        ...snapshots.agendas,
+        plenos: snapshots.plenos.items.map((p) => ({ id: p.id, agendaCount: 3 })),
+      },
+    }
+    expect(resumenPlenos(todas).agenda.sinOrden).toBe(0)
   })
 
   it('las votaciones traen su desenlace y sus retiradas', () => {
