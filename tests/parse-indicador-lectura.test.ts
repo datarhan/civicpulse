@@ -344,8 +344,10 @@ describe('el denominador congelado se marca, no se repite entero', () => {
   })
 
   it('distingue qué mitad se quedó parada', () => {
-    // Decir «el cociente puede subir» cuando lo congelado es el coste sería
-    // falso al revés, y es la distinción que caveatDeclaracion ya hace.
+    // Decir que «el cociente puede moverse sin que el servicio haya cambiado»
+    // cuando lo congelado es el coste sería falso al revés —entonces lo que
+    // mueve el cociente es la cantidad—, y es la distinción que
+    // caveatDeclaracion ya hace.
     const base = indicadores.find((i) => i.valor !== null && i.declaracion)!
     const con = (num: boolean, den: boolean) =>
       chipDeclaracion({

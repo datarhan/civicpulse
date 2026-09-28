@@ -28,8 +28,21 @@ describe('avisoSinVeredicto · qué dice el aviso de /laboratorio', () => {
     expect(aviso.texto).toContain('11 artículos')
   })
 
-  it('«parcial» tampoco resuelve: sigue sin veredicto', () => {
+  it('«parcial» tampoco resuelve: el aviso sigue saliendo', () => {
     expect(avisoSinVeredicto(resumen(varias(3, 'parcial')))).not.toBeNull()
+  })
+
+  // El 28-09-2026: 31 afirmaciones de 12 artículos, 30 `sin-datos` y 1 `parcial`. El aviso
+  // se titulaba «Sin veredictos todavía» y decía «ninguna ha llegado a un veredicto» encima
+  // de una tarjeta con la pastilla «1 Parcial» (revisión lectora del 28-09-2026).
+  it('con alguna parcial no se titula «sin veredictos», y la nombra', () => {
+    const aviso = avisoSinVeredicto(resumen([...varias(30, 'sin-datos'), fila('parcial', 'a11')]))
+    expect(aviso).not.toBeNull()
+    expect(aviso.titulo).not.toMatch(/sin veredictos/i)
+    expect(aviso.texto).not.toMatch(/llegado a un veredicto/i)
+    expect(aviso.texto).toContain('ha marcado 1 como')
+    expect(aviso.texto).toContain('31 afirmaciones')
+    expect(aviso.texto).toContain('12 artículos')
   })
 
   it('con una sola resuelta no hay aviso: las tasas ya tienen divisor', () => {

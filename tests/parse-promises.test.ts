@@ -3,6 +3,8 @@ import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import {
   validatePromisesSnapshot,
+  withLegalNotice,
+  FUENTE_PRIMARIA,
   ALLOWED_PARTIES,
   ALLOWED_STATUSES,
   type PromisesSnapshot,
@@ -353,9 +355,10 @@ describe('promises — a promise may not cite us as its own source', () => {
    * favouritism against a named party, and the schema was satisfied because it
    * only asked for «≥20 chars + URL + publisher». Retracted in c66cf93.
    *
-   * Nothing stopped the next one. This does: a primary source has to be
-   * somebody else's document. Our own snapshots are what a claim is CHECKED
-   * against, never what it RESTS on.
+   * Nothing stopped the next one. This does: a promise's source has to be
+   * somebody else's — the official document or the news item that carries the
+   * quote. Our own snapshots are what a claim is CHECKED against, never what it
+   * RESTS on.
    */
   const base = {
     version: '1.0',
@@ -389,7 +392,7 @@ describe('promises — a promise may not cite us as its own source', () => {
     'https://civicpulse.es/promesas',
     'http://www.civicpulse.es/data/budget.json',
     'https://CIVICPULSE.ES/data/x.json',
-  ])('rejects %s as a primary source', (url) => {
+  ])("rejects %s as a promise's source", (url) => {
     expect(() => validatePromisesSnapshot(JSON.stringify(withSource(url)))).toThrow(
       /no puede citarse a sí mismo|self/i,
     )
@@ -415,5 +418,105 @@ describe('promises — a promise may not cite us as its own source', () => {
     // c66cf93 removed the only offenders; if this ever fails, something
     // re-introduced a self-citation rather than the guard being wrong.
     expect(() => validatePromisesSnapshot(readFileSync(SNAPSHOT, 'utf8'))).not.toThrow()
+  })
+})
+
+describe('promises — the notice may not call its sources «primarias»', () => {
+  /**
+   * The reader review of 2026-09-28 read, at the foot of /promesas,
+   * «compromisos públicos atribuidos a partidos y cargos mediante fuentes
+   * primarias enlazadas» — above cards whose source was Levante-EMV, Las
+   * Provincias or El Periódico de Aquí. To a reader a «fuente primaria» is the
+   * original document (the manifesto, the acta, the council's own notice), not
+   * the news item that reports it, and this schema accepts the news item as
+   * `source.url` («still accepts a real third-party source», above). The notice
+   * promised more than the schema checks. The word came from the validator
+   * itself, whose self-citation message said «fuente primaria» meaning «not
+   * ours».
+   */
+  const withNotice = (legalNotice: string) =>
+    JSON.stringify({
+      version: '1.0',
+      generatedAt: '2026-09-28',
+      frozenUntil: null,
+      legalNotice,
+      contactUrl: 'https://x.test/issues',
+      methodologyUrl: '/metodologia',
+      items: [],
+    })
+
+  it.each([
+    'Las promesas listadas son compromisos públicos atribuidos a partidos y cargos mediante fuentes primarias enlazadas.',
+    'Cada promesa enlaza a su fuente primaria, y cualquiera puede leer la cita en su contexto original.',
+  ])('rejects a notice that calls the sources primary: %s', (notice) => {
+    expect(() => validatePromisesSnapshot(withNotice(notice))).toThrow(/legalNotice.*primaria/)
+  })
+
+  it('accepts a notice that says what the schema checks', () => {
+    const notice =
+      'Las promesas listadas son compromisos públicos atribuidos a partidos y cargos, cada uno ' +
+      'con su fuente enlazada: el documento oficial o la noticia de prensa que recoge la cita.'
+    expect(() => validatePromisesSnapshot(withNotice(notice))).not.toThrow()
+  })
+
+  it('the rule covers both catalogue languages and leaves the honest wording alone', () => {
+    for (const s of ['fuente primaria', 'Fuentes primarias', 'font primària', 'fonts primàries']) {
+      expect(FUENTE_PRIMARIA.test(s), s).toBe(true)
+    }
+    for (const s of ['con su fuente enlazada', 'amb la seua font enllaçada', 'la noticia']) {
+      expect(FUENTE_PRIMARIA.test(s), s).toBe(false)
+    }
+  })
+})
+
+describe('withLegalNotice — the one way to change the notice', () => {
+  /**
+   * `promises.json` is curated and the guard denies a direct edit, but none of
+   * its CLIs touched `legalNotice`, so the notice could only be corrected by
+   * going round the validator. This is the pure half of
+   * `npm run aviso-promesas`: it changes the notice and the stamp, nothing
+   * else, and hands back only what the validator accepts.
+   */
+  const RAW = readFileSync(SNAPSHOT, 'utf8')
+  const NOTICE =
+    'CivicPulse es un proyecto independiente. Las promesas listadas son compromisos públicos ' +
+    'atribuidos a partidos y cargos, cada uno con su fuente enlazada: el documento oficial o la ' +
+    'noticia de prensa que recoge la cita.'
+  const NOW = new Date('2026-09-28T12:00:00.000Z')
+
+  it('changes the notice and the stamp and nothing else, byte for byte', () => {
+    const out = withLegalNotice(RAW, NOTICE, NOW)
+    const before = JSON.parse(RAW)
+    const after = JSON.parse(out)
+    expect(after.legalNotice).toBe(NOTICE)
+    // `check:stamps` reds a content change whose stamp stayed put.
+    expect(after.generatedAt).toBe(NOW.toISOString())
+    expect({ ...after, legalNotice: before.legalNotice, generatedAt: before.generatedAt }).toEqual(
+      before,
+    )
+    // Re-serialised from the file as read, not from the validator's normalised
+    // copy (which adds `response: null` to rows without one): two lines move.
+    const a = RAW.split('\n')
+    const b = out.split('\n')
+    expect(b).toHaveLength(a.length)
+    expect(b.filter((line, i) => line !== a[i])).toHaveLength(2)
+  })
+
+  it('trims the ends, so a stray newline from the shell is not published', () => {
+    expect(JSON.parse(withLegalNotice(RAW, `\n  ${NOTICE}  \n`, NOW)).legalNotice).toBe(NOTICE)
+  })
+
+  it('hands back nothing the validator rejects', () => {
+    expect(() => withLegalNotice(RAW, `${NOTICE} Todas son fuentes primarias.`, NOW)).toThrow(
+      /primaria/,
+    )
+    expect(() => withLegalNotice(RAW, 'Un aviso demasiado corto.', NOW)).toThrow(
+      /legalNotice too short/,
+    )
+  })
+
+  it('refuses a file it cannot validate rather than writing on top of it', () => {
+    const broken = JSON.stringify({ ...JSON.parse(RAW), items: [{ id: 'x' }] }, null, 2)
+    expect(() => withLegalNotice(broken, NOTICE, NOW)).toThrow(/items\[0\]/)
   })
 })

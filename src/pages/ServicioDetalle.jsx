@@ -12,6 +12,7 @@ import { Concesion } from '../components/eficiencia/Concesion'
 import { CompetenciaDelegada } from '../components/eficiencia/CompetenciaDelegada'
 import { GESTION, MOTIVO } from '../components/eficiencia/vocabulario'
 import { leerIndicador, lecturaVisible, chipDeclaracion } from '../scraper/indicador-lectura'
+import { SALVEDAD_DENOMINADOR_CONGELADO } from '../scraper/indicador-lectura'
 import { useIndicadores } from '../hooks/useIndicadores'
 import { useCompetencias, indexarCompetencias, useNombresVisibles } from '../hooks/useCompetencias'
 import { useOfficials } from '../hooks/useOfficials'
@@ -281,8 +282,14 @@ export default function ServicioDetalle() {
                       lineHeight: 1.6,
                     }}
                   >
-                    {chip.texto}. El cociente puede subir sin que el servicio haya cambiado: nadie
-                    ha vuelto a medir el denominador.
+                    {/* La frase del denominador, sólo cuando lo parado es el
+                        denominador. Decía «El cociente puede subir…» tras
+                        cualquier marca: sin dirección que el dato no tiene
+                        (la basura baja de 78,22 a 66,94 €/t con las mismas
+                        toneladas), y falsa con el coste parado, donde sí se
+                        remide la cantidad. Verificación del 28-09-2026. */}
+                    {chip.texto}.
+                    {chip.mitad === 'denominador' && ` ${SALVEDAD_DENOMINADOR_CONGELADO}`}
                   </p>
                 )}
                 {i.declaracion?.paresMedibles > 0 && (

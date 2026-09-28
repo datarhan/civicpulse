@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-28T07:54:39.464Z",
+  "generatedAt": "2026-09-28T18:58:33.258Z",
   "version": "1",
   "plenoId": "1pe3qs8",
   "plenoDate": "2026-01-07",
@@ -59,7 +59,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -150,7 +151,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -208,7 +210,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -237,7 +240,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },

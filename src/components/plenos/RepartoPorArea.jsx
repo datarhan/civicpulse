@@ -25,6 +25,10 @@ export function RepartoPorArea({ departamentos, agenda, sesiones }) {
   // contrastaba «62 con orden del día» con «las 62» (revisión del 28-09).
   const faltanSesiones = agenda.sinOrden > 0
   const faltanAreas = agenda.conDepartamento != null && agenda.conDepartamento < agenda.puntos
+  // Las barras son las primeras áreas, no todas: sin decirlo, sumarlas no
+  // llegaba a los puntos con área de la frase de al lado (verificación del
+  // barrido lector del 28-09). Derivado en `resumenPlenos`; null sin corte.
+  const fuera = agenda.fueraDeLasBarras ?? null
   return (
     <div>
       <div
@@ -103,7 +107,7 @@ export function RepartoPorArea({ departamentos, agenda, sesiones }) {
 
       {/* La misma regla que MoneyCoverage: una capa que enseña una fracción de
           su dominio tiene que decirlo, y con el denominador delante. */}
-      {(faltanSesiones || faltanAreas) && (
+      {(faltanSesiones || faltanAreas || fuera) && (
         <p
           style={{
             margin: '13px 0 0',
@@ -128,6 +132,22 @@ export function RepartoPorArea({ departamentos, agenda, sesiones }) {
               '{con}': agenda.conDepartamento,
               '{puntos}': agenda.puntos,
             })}
+          {(faltanSesiones || faltanAreas) && fuera && ' '}
+          {fuera &&
+            rellena(
+              t(
+                fuera.resto === 1
+                  ? 'plenos.indice.reparto.resto.uno'
+                  : 'plenos.indice.reparto.resto.varios',
+              ),
+              {
+                dibujadas: fuera.dibujadas,
+                areas: fuera.areas,
+                resto: fuera.resto,
+                puntos: fuera.puntos,
+                con: fuera.con,
+              },
+            )}
         </p>
       )}
     </div>

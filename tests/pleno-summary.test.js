@@ -1,6 +1,8 @@
 import { describe, it, expect } from 'vitest'
 import { summarizeSessions, resumenPlenos, rotuloRetiradas } from '../src/lib/pleno-summary'
 import { RETRACTION_SCOPES } from '../src/scraper/pleno-votes'
+import { readFileSync } from 'node:fs'
+import { resolve } from 'node:path'
 
 const input = {
   plenos: [
@@ -227,6 +229,58 @@ describe('resumenPlenos', () => {
   })
 
   /**
+   * Las barras eran las 12 primeras de 24 áreas y sumaban 187 puntos bajo una
+   * nota que dice que 219 llevan área, sin nada que avisara del corte: un
+   * lector sumaba las barras y no llegaba, o daba por cero un área que no
+   * salía. Señalado por la verificación del barrido lector del 28-09-2026. Lo
+   * que queda fuera se DERIVA —del recuento del propio snapshot—, y sin hueco
+   * es null: la frase se calla sola el día que las barras cubran todas.
+   */
+  describe('lo que queda fuera de las barras', () => {
+    const conAreas = (stats, tops) => ({
+      ...snapshots,
+      agendas: { ...snapshots.agendas, stats, topDepartments: tops },
+    })
+    const dos = [
+      { department: 'hacienda', count: 9, departmentSlug: 'hacienda' },
+      { department: 'urbanismo', count: 6, departmentSlug: 'urbanismo' },
+    ]
+
+    it('dice cuántas áreas y cuántos puntos no tienen barra', () => {
+      const { agenda } = resumenPlenos(
+        conAreas({ agendaItemsWithDepartment: 20, uniqueDepartments: 4 }, dos),
+      )
+      expect(agenda.fueraDeLasBarras).toEqual({
+        dibujadas: 2,
+        areas: 4,
+        resto: 2,
+        puntos: 5,
+        con: 20,
+      })
+    })
+
+    it('es null cuando las barras ya cubren todas las áreas', () => {
+      const { agenda } = resumenPlenos(
+        conAreas({ agendaItemsWithDepartment: 15, uniqueDepartments: 2 }, dos),
+      )
+      expect(agenda.fueraDeLasBarras).toBeNull()
+    })
+
+    it('no inventa el hueco si el snapshot no dice cuántas áreas hay', () => {
+      const { agenda } = resumenPlenos(conAreas({ agendaItemsWithDepartment: 20 }, dos))
+      expect(agenda.fueraDeLasBarras).toBeNull()
+    })
+
+    it('no publica un puente que no cuadra: cada área de fuera tiene al menos un punto', () => {
+      // Dos áreas fuera y un solo punto para las dos: el snapshot se contradice.
+      const { agenda } = resumenPlenos(
+        conAreas({ agendaItemsWithDepartment: 16, uniqueDepartments: 4 }, dos),
+      )
+      expect(agenda.fueraDeLasBarras).toBeNull()
+    })
+  })
+
+  /**
    * Cada filtro dice cuántas filas deja: un chip que promete «7» y enseña 4 es
    * peor que no tener filtro.
    */
@@ -311,5 +365,50 @@ describe('excepciones de la escalera', () => {
       votes: { items: [], stats: { byPleno: { b: 2 } } },
     })
     expect(escaleraExcepciones).toEqual({ declSinOrden: 0, votosSinDecl: 0 })
+  })
+})
+
+/**
+ * El reparto PUBLICADO: la premisa medida y el puente exacto.
+ *
+ * La premisa va escrita como aserción a propósito. Si algún día las barras
+ * cubren todas las áreas, la frase del puente se calla sola y esta prueba se
+ * pone roja para que alguien la borre, en vez de seguir verde sin comprobar
+ * nada.
+ */
+describe('el reparto publicado: las barras solas no cuadran con la nota, el puente sí', () => {
+  const agendas = JSON.parse(readFileSync(resolve('public/data/plenos-agendas.json'), 'utf8'))
+  const { departamentos, agenda } = resumenPlenos({ agendas })
+  const dibujado = departamentos.reduce((s, d) => s + d.n, 0)
+
+  it('hoy las barras no suman los puntos con área que dice la nota', () => {
+    expect(departamentos.length, 'el snapshot no trae barras que medir').toBeGreaterThan(0)
+    expect(
+      dibujado,
+      'las barras ya suman todos los puntos con área: el puente sobra, borra esta premisa',
+    ).toBeLessThan(agenda.conDepartamento)
+  })
+
+  it('lo que queda fuera cierra la cuenta, en áreas y en puntos', () => {
+    const fuera = agenda.fueraDeLasBarras
+    expect(fuera).not.toBeNull()
+    expect(fuera.dibujadas).toBe(departamentos.length)
+    expect(fuera.dibujadas + fuera.resto).toBe(fuera.areas)
+    expect(dibujado + fuera.puntos).toBe(agenda.conDepartamento)
+    expect(fuera.con).toBe(agenda.conDepartamento)
+  })
+
+  it('y las dos cifras son las del orden del día, recontadas punto a punto', () => {
+    // Sin residuo en ninguna dirección: todo punto con área está en una barra o
+    // en un área de fuera, y no hay área contada que no salga del orden del día.
+    const cuenta = new Map()
+    for (const p of agendas.plenos ?? []) {
+      for (const a of p.agenda ?? []) {
+        const k = a.departmentSlug || a.department
+        if (k) cuenta.set(k, (cuenta.get(k) ?? 0) + 1)
+      }
+    }
+    expect(cuenta.size).toBe(agenda.fueraDeLasBarras.areas)
+    expect([...cuenta.values()].reduce((s, n) => s + n, 0)).toBe(agenda.conDepartamento)
   })
 })

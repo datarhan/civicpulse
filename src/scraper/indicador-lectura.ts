@@ -105,6 +105,25 @@ export function lecturaVisible(lectura: Lectura, ya: YaEnPantalla): LecturaVisib
   }
 }
 
+/**
+ * Qué le pasa a un cociente cuyo denominador nadie vuelve a medir, en una frase.
+ *
+ * Decía «El cociente puede subir sin que el servicio haya cambiado», y lo
+ * publicaba también sobre la basura de Riba-roja, cuyo €/t BAJA de 78,22 a
+ * 66,94 con las mismas 11.059,41 t: como posibilidad no era falso, pero encima
+ * de una serie que baja deja entender lo contrario de lo que la tarjeta enseña.
+ * Con el denominador copiado el cociente sigue al coste en las dos direcciones
+ * (verificación del barrido lector del 28-09-2026; #148 lo corrigió en
+ * /laboratorio/frontera). Vive aquí, con la marca de `chipDeclaracion`, porque
+ * la dicen dos sitios: la salvedad que genera `caveatDeclaracion` (en
+ * indicadores.json) y la ficha del servicio junto a su marca. Una segunda
+ * redacción envejecería por su cuenta, y este módulo no arrastra `xlsx` al
+ * navegador, que `indicadores.ts` sí.
+ */
+export const SALVEDAD_DENOMINADOR_CONGELADO =
+  'El cociente puede moverse sin que el servicio haya cambiado: sigue al coste, porque ' +
+  'nadie ha vuelto a medir el denominador.'
+
 /** Una marca corta y siempre visible en la cabecera de la tarjeta. */
 export interface ChipDeclaracion {
   texto: string

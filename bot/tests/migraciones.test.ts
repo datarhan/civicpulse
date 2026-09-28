@@ -14,6 +14,7 @@ import {
   MIGRACIONES_EN_ENSAYO,
   MODERACIONES,
   MOTIVOS_VACIADO,
+  RESULTADOS_REVISION,
   ensayarMigracion,
   migrar,
   type Migracion,
@@ -493,6 +494,148 @@ describe('la migración 2: la revisión antes de publicar', () => {
 })
 
 /**
+ * La migración 3: el registro de la revisión automática. Llega en ensayo; la
+ * activa el cambio que la usa. Cada revisión de una queja por un modelo deja una
+ * fila: qué dijo, con qué modelo y qué versión del prompt, por qué la retuvo y
+ * cuántos fragmentos quitó —nunca cuáles—, o por qué falló. Los reintentos se
+ * cuentan en ella, y contra ella se mide cuánto acierta el modelo frente a lo que
+ * decide una persona. Producción está en la v2, así que se prueba desde ahí.
+ */
+describe('la migración 3: el registro de la revisión automática', () => {
+  const hasta = (n: number) => MIGRACIONES_DEL_ENSAYO.slice(0, n)
+  const enLaV3 = () => {
+    const db = new Database(':memory:')
+    db.pragma('foreign_keys = ON')
+    migrar(db, { ruta: ':memory:', migraciones: hasta(3), log: () => {} })
+    db.prepare(
+      "INSERT INTO quejas (id, category, title, detail) VALUES ('Q-00000001', 'otros', 't', 'd')",
+    ).run()
+    return db
+  }
+  const revision = (db: Database.Database, campos: Record<string, unknown>) =>
+    db
+      .prepare(
+        `INSERT INTO revisiones_automaticas
+           (queja_id, resultado, modelo, version_prompt, motivos, retirados, error)
+         VALUES (@queja_id, @resultado, @modelo, @version_prompt, @motivos, @retirados, @error)`,
+      )
+      .run({
+        queja_id: 'Q-00000001',
+        modelo: 'modelo-x',
+        version_prompt: 'v1',
+        motivos: null,
+        retirados: null,
+        error: null,
+        ...campos,
+      })
+
+  it('desde la v2, que es donde está producción: sólo añade, y no toca ninguna queja', () => {
+    const ruta = baseV0()
+    const db = abrir(ruta)
+    migrar(db, { ruta, migraciones: hasta(2), log: () => {} })
+    const antes = db.prepare('SELECT * FROM quejas ORDER BY id').all()
+    migrar(db, { ruta, migraciones: hasta(3), log: () => {} })
+    expect(db.pragma('user_version', { simple: true })).toBe(3)
+    expect(db.prepare('SELECT * FROM quejas ORDER BY id').all()).toEqual(antes)
+    expect(antes).toHaveLength(5) // el control: hay quejas que comparar
+    expect(cuenta(db, 'revisiones_automaticas')).toBe(0)
+    expect(cuenta(db, 'moderaciones')).toBe(5)
+    expect(cuenta(db, 'events')).toBe(8)
+    expect(db.pragma('foreign_key_check')).toEqual([])
+    db.close()
+  })
+
+  it('los resultados del CHECK son los que exporta migraciones.ts', () => {
+    const db = enLaV3()
+    const sql = (
+      db.prepare("SELECT sql FROM sqlite_schema WHERE name = 'revisiones_automaticas'").get() as {
+        sql: string
+      }
+    ).sql
+    const clausula = /CHECK \(resultado IN \(([^)]*)\)\)/.exec(sql)?.[1] ?? ''
+    const enCheck = [...clausula.matchAll(/'([a-z]+)'/g)].map((x) => x[1]).sort()
+    expect(enCheck.length).toBeGreaterThan(0) // el control: el patrón mira algo
+    expect(enCheck).toEqual([...RESULTADOS_REVISION].sort())
+    db.close()
+  })
+
+  it('una revisión válida lleva sus motivos y sus fragmentos, aunque sean ninguno', () => {
+    const db = enLaV3()
+    expect(() => revision(db, { resultado: 'limpia', motivos: '[]', retirados: 0 })).not.toThrow()
+    expect(() =>
+      revision(db, { resultado: 'marcada', motivos: '["acusacion"]', retirados: 2 }),
+    ).not.toThrow()
+    // «No se evaluó» no se escribe como «no encontró nada» (regla 3 de DATA_INTEGRITY).
+    expect(() => revision(db, { resultado: 'limpia', retirados: 0 })).toThrow(/CHECK/)
+    expect(() => revision(db, { resultado: 'limpia', motivos: '[]' })).toThrow(/CHECK/)
+    expect(() =>
+      revision(db, { resultado: 'limpia', motivos: '[]', retirados: 0, error: 'x' }),
+    ).toThrow(/CHECK/)
+    expect(() =>
+      revision(db, { resultado: 'marcada', motivos: '"acusacion"', retirados: 0 }),
+    ).toThrow(/CHECK/)
+    expect(() => revision(db, { resultado: 'limpia', motivos: '[]', retirados: -1 })).toThrow(
+      /CHECK/,
+    )
+    db.close()
+  })
+
+  /**
+   * Lo que se medirá es esto: cuántas `limpia` acierta la revisión frente a lo
+   * que decide una persona. Una `limpia` con motivos, o una `marcada` sin ellos,
+   * contaría como una cosa y la queja habría seguido otra (revisión de #153).
+   */
+  it('marcada es tener motivos, y limpia no tenerlos', () => {
+    const db = enLaV3()
+    expect(() =>
+      revision(db, { resultado: 'limpia', motivos: '["acusacion"]', retirados: 0 }),
+    ).toThrow(/CHECK/)
+    expect(() => revision(db, { resultado: 'marcada', motivos: '[]', retirados: 0 })).toThrow(
+      /CHECK/,
+    )
+    db.close()
+  })
+
+  it('ni textos vacíos por valor, ni fracciones, ni JSON que no lea JSON.parse', () => {
+    const db = enLaV3()
+    const limpia = { resultado: 'limpia', motivos: '[]', retirados: 0 }
+    expect(() => revision(db, { ...limpia, modelo: '' })).toThrow(/CHECK/)
+    expect(() => revision(db, { ...limpia, version_prompt: '' })).toThrow(/CHECK/)
+    expect(() => revision(db, { resultado: 'error', error: '' })).toThrow(/CHECK/)
+    expect(() => revision(db, { ...limpia, retirados: 1.5 })).toThrow(/CHECK/)
+    expect(() => revision(db, { ...limpia, retirados: 'abc' })).toThrow(/CHECK/)
+    // JSON5: SQLite lo acepta en json_type, y JSON.parse no.
+    expect(() => revision(db, { ...limpia, motivos: '[]', retirados: 0 })).not.toThrow() // el control
+    expect(() =>
+      revision(db, { resultado: 'marcada', motivos: '["acusacion",]', retirados: 0 }),
+    ).toThrow(/CHECK|malformed/)
+    db.close()
+  })
+
+  it('una revisión fallida lleva su error y nada más', () => {
+    const db = enLaV3()
+    expect(() => revision(db, { resultado: 'error', error: 'HTTP 503' })).not.toThrow()
+    expect(() => revision(db, { resultado: 'invalida', error: 'fragmento-ausente' })).not.toThrow()
+    expect(() => revision(db, { resultado: 'error' })).toThrow(/CHECK/)
+    expect(() => revision(db, { resultado: 'error', error: 'HTTP 503', motivos: '[]' })).toThrow(
+      /CHECK/,
+    )
+    expect(() => revision(db, { resultado: 'invalida', error: 'x', retirados: 0 })).toThrow(/CHECK/)
+    // Sin error: sólo la lista de resultados la rechaza.
+    expect(() => revision(db, { resultado: 'otra' })).toThrow(/CHECK/)
+    db.close()
+  })
+
+  it('una queja destruida se lleva sus revisiones', () => {
+    const db = enLaV3()
+    revision(db, { resultado: 'error', error: 'HTTP 503' })
+    db.prepare("DELETE FROM quejas WHERE id = 'Q-00000001'").run()
+    expect(cuenta(db, 'revisiones_automaticas')).toBe(0)
+    db.close()
+  })
+})
+
+/**
  * Una migración ensayada contra producción no se cambia: se escribe otra. Cada
  * una deja aquí la huella del SQL que ejecuta, tomada al desplegarla en ensayo.
  * Si su texto cambia después, esta prueba se pone en rojo: lo que arrancaría el
@@ -503,7 +646,8 @@ describe('la migración 2: la revisión antes de publicar', () => {
  */
 const HUELLAS: Record<string, string> = {
   '1': '1abc5ac7b770a7d9', // identidad-por-ciudadano, ensayada y activa desde #135
-  '2': '3d318e573180cd9f', // revision-antes-de-publicar, en ensayo desde #138
+  '2': '3d318e573180cd9f', // revision-antes-de-publicar, en ensayo en #138, activa desde #137
+  '3': '4eae6ccdb9b8acb6', // revision-automatica, en ensayo (#153)
 }
 
 /** El SQL que ejecuta una migración, sobre una base en la versión anterior, resumido. */

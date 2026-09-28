@@ -5,8 +5,11 @@
  * tracker. Three invariants protect both the project and the people
  * named in the data:
  *
- *   1. Every promise carries a verbatim quote + primary-source URL +
- *      publisher + dated `madeAt`. No hearsay.
+ *   1. Every promise carries a verbatim quote + the URL of the source it
+ *      was copied from + publisher + dated `madeAt`. No hearsay. The source
+ *      is a third party's — the official document or the news item that
+ *      carries the quote — never ours (`assertNotSelfCited`), and nothing
+ *      that describes this register calls it «primaria» (`FUENTE_PRIMARIA`).
  *   2. V1 statuses are constrained to { documentada | en-verificacion }.
  *      The full enum (cumplida, parcial, no-ejecutada, inviable,
  *      en-progreso) exists in code but cannot be set without an
@@ -213,12 +216,31 @@ function assertNotSelfCited(url: string, name: string): void {
   }
   if (OWN_HOSTS.test(host)) {
     throw new ValidationError(
-      `${name} no puede citarse a sí mismo (${host}): una promesa necesita una fuente primaria ` +
-        `de un tercero. Nuestros propios datos sirven para CONTRASTAR la afirmación, no para ` +
-        `sostenerla — ver c66cf93.`,
+      `${name} no puede citarse a sí mismo (${host}): una promesa necesita la fuente de un ` +
+        `tercero —el documento oficial o la noticia que recoge la cita—. Nuestros propios ` +
+        `datos sirven para CONTRASTAR la afirmación, no para sostenerla — ver c66cf93.`,
     )
   }
 }
+
+/**
+ * What a text describing this register may not call its sources.
+ *
+ * To a reader a «fuente primaria» is the original document — the manifesto,
+ * the acta, the council's own notice — not the news item that reports it. This
+ * schema accepts any third party's URL as `source.url`, press included:
+ * `assertNotSelfCited` only excludes us. So a text that calls the sources
+ * «primarias» promises more than this schema checks, however the mix of
+ * sources moves.
+ *
+ * The notice on /promesas said «mediante fuentes primarias enlazadas» from the
+ * V1 seed until the reader review of 2026-09-28, with most of the cards under
+ * it citing press. The word came from here: the self-citation message above
+ * said «fuente primaria» meaning «a third party's, not ours».
+ *
+ * Castilian and Valencian, because the promise copy is catalogued in both.
+ */
+export const FUENTE_PRIMARIA = /\bfuentes?\s+primarias?\b|\bfonts?\s+primàri(?:a|es)\b/i
 
 function validateEvidence(e: unknown, idx: number): EvidenceEntry {
   if (!e || typeof e !== 'object') throw new ValidationError(`evidence[${idx}] must be object`)
@@ -328,6 +350,14 @@ export function validatePromisesSnapshot(json: string): PromisesSnapshot {
   assertIsoDate(raw.generatedAt, 'generatedAt')
   if (raw.frozenUntil !== null) assertIsoDate(raw.frozenUntil, 'frozenUntil')
   assertString(raw.legalNotice, 'legalNotice', 80, 2000)
+  if (FUENTE_PRIMARIA.test(raw.legalNotice as string)) {
+    throw new ValidationError(
+      'legalNotice no puede llamar «primarias» a sus fuentes: source.url admite la noticia de ' +
+        'prensa que recoge una cita, y un lector entiende por «primaria» el documento original. ' +
+        'Di lo que el esquema comprueba: «su fuente enlazada: el documento oficial o la noticia ' +
+        'que recoge la cita».',
+    )
+  }
   assertUrl(raw.contactUrl, 'contactUrl')
   // methodologyUrl can be internal ("/metodologia") or absolute; accept both.
   if (typeof raw.methodologyUrl !== 'string' || raw.methodologyUrl.length < 2) {
@@ -350,6 +380,25 @@ export function validatePromisesSnapshot(json: string): PromisesSnapshot {
     methodologyUrl: raw.methodologyUrl as string,
     items,
   }
+}
+
+/**
+ * `raw` with its editorial notice replaced: the pure half of
+ * `npm run aviso-promesas`, the one owner of `legalNotice`.
+ *
+ * Re-serialised from the file as read, not from `validatePromisesSnapshot`'s
+ * normalised copy, which would add `response: null` to every row without one
+ * and bury the change in a diff nobody reads. `generatedAt` moves with it,
+ * because `check:stamps` reds a content change whose stamp stayed put. The
+ * whole result is validated before it is returned, so a notice that breaks a
+ * rule — or a file that was already broken — never reaches disk.
+ */
+export function withLegalNotice(raw: string, notice: string, now: Date = new Date()): string {
+  const snap = JSON.parse(raw) as Record<string, unknown>
+  const next = { ...snap, generatedAt: now.toISOString(), legalNotice: notice.trim() }
+  const json = JSON.stringify(next, null, 2) + '\n'
+  validatePromisesSnapshot(json)
+  return json
 }
 
 export function isFrozen(snap: Pick<PromisesSnapshot, 'frozenUntil'>, now = new Date()): boolean {
