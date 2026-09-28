@@ -74,7 +74,9 @@ export function webhookTelegram<C extends Context>(
   const secreto = secretoDelWebhook(o.token)
   const ruta = new URL(o.url).pathname
   // grammy vuelve a comprobar el secreto: si un día desaparece la comprobación de
-  // `atender`, el webhook sigue cerrado.
+  // `atender`, el webhook sigue cerrado. Su plazo se queda como viene: a los diez
+  // segundos contesta 500 y deja el update corriendo, Telegram lo vuelve a mandar, y
+  // la repetición la descarta el primer middleware (services/una-vez-y-en-orden.ts).
   const manejador = webhookCallback(bot, 'std/http', { secretToken: secreto })
 
   return {
