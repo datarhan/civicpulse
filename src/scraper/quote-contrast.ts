@@ -5,7 +5,8 @@
  * `claim-public-gate.ts` is, in its own words, the «single source of truth for
  * what the machine-extracted verifier output may surface to the public». It
  * fails safe, it is applied by the chunker at build time and again client-side,
- * and `/plenos` obeys it. **`/hallazgos` never consulted it.**
+ * and `/plenos` obeys it. **`/hallazgos` never consulted it** — hasta este
+ * módulo, el 2026-08-10. Las cifras que siguen son de ese día.
  *
  * Measured on the published snapshots, with the overlay applied: of the 177
  * verbatims on `/hallazgos`, the gate would SHOW 16, TOGGLE 86 and HIDE 75 —
@@ -16,6 +17,8 @@
  *
  * ─────────────────────────────────────────────────────────────────────────────
  * WHY THIS IS A DISCLOSURE AND NOT A RETRACTION
+ * (historia: así se decidió el 2026-08-10, y dejó de regir el 27-08 — ver la
+ * sección siguiente)
  *
  * The gate's own header says promotion into a finding is the sanctioned way
  * past it, «precisely because a person is standing in it». That exception is
@@ -28,6 +31,22 @@
  * here removes or rewrites a quote. It states the fact the reader was missing —
  * this accusation is not backed by municipal data, and we are not saying it is
  * false — and `triage:finding-exception` queues the 39 for a person.
+ *
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Y DESDE EL 2026-08-27, /hallazgos TAMBIÉN RETIENE
+ *
+ * Decisión del operador (`citaRetenida`, en PlenoFindings.jsx): una sola
+ * política para el mismo literal en las dos páginas. El argumento de arriba
+ * vale también al revés —imprimir la cita era asimismo un acto editorial, y lo
+ * había tomado el mismo tipo de proceso—, así que /hallazgos ya no usa este eje
+ * sólo para marcar: una cita `hidden` se pinta como el hueco «Literal
+ * retenido», la haya promovido una persona o `auto-curation-v1`. La excepción
+ * que describe la cabecera de la puerta ya no rige en la ficha, y
+ * `CONTRAST_MEANING.hidden`, que se publica, lo dice.
+ *
+ * Lo que sigue siendo cierto: este módulo no quita ni reescribe ninguna cita.
+ * Retener es no imprimir; el texto sigue en pleno-findings.json, cuyo único
+ * escritor es `correct-pleno-finding`.
  *
  * ─────────────────────────────────────────────────────────────────────────────
  * TWO OUTCOMES, KEPT APART
@@ -87,8 +106,15 @@ const CONTRAST_MEANING: Record<ClaimVisibility, { meaning: string; marks: boolea
     marks: true,
   },
   hidden: {
+    // Decía «En /plenos no se publica; en un hallazgo se publica porque alguien
+    // la promovió». Dejó de ser cierto el 27-08-2026 (`citaRetenida`, en
+    // PlenoFindings.jsx): la ficha retiene el literal igual que el registro, la
+    // promueva quien la promueva. Y «alguien» insinuaba una persona donde casi
+    // siempre firma `auto-curation-v1`. Tampoco dice «no se publica» a secas:
+    // el texto sigue en pleno-findings.json, que se sirve, y lo que el sitio
+    // cumple es que no se imprime en la página.
     meaning:
-      'La afirmación que sostiene esta cita es una acusación pública que el verificador no pudo contrastar con ningún dato municipal (o un `contradicho` asignado por máquina). En /plenos no se publica; en un hallazgo se publica porque alguien la promovió.',
+      'La afirmación que sostiene esta cita es una acusación pública que el verificador no pudo contrastar con ningún dato municipal (o un `contradicho` asignado por máquina). Promoverla a hallazgo no la saca de la puerta, la promueva una persona o un proceso automático: su literal no se imprime en la página, ni en /plenos ni en /hallazgos, donde la ficha enseña en su lugar el hueco con su motivo.',
     marks: true,
   },
 }

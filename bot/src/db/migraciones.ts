@@ -287,20 +287,23 @@ function revisionAntesDePublicar(db: Db): void {
  * Migración 3 — el registro de la revisión automática.
  *
  * Desde #137 ninguna queja sale sin que un administrador la decida. Con la
- * revisión automática (services/moderacion.ts), un modelo la lee antes: quita
- * del texto los datos de otras personas que no reconoce services/pii.ts, y dice
- * si hay algo que tiene que ver una persona. Lo que se publica sin nadie lo
- * decide `decideAutomation` (src/scraper/automation-policy.ts), con lo que se
- * haya medido.
+ * revisión automática —services/moderacion.ts, que llega con el cambio que
+ * activa esta migración—, un modelo la lee antes: quita del texto los nombres de
+ * otras personas que no reconoce services/pii.ts, y dice si hay algo que tiene
+ * que ver una persona. Lo que se publica sin nadie lo decide `decideAutomation`
+ * (src/scraper/automation-policy.ts), con lo que se haya medido.
  *
  * `revisiones_automaticas` guarda cada revisión: con qué modelo y qué versión
  * del prompt, qué dijo, por qué motivos la retuvo y cuántos fragmentos quitó
  * —nunca cuáles: lo quitado no se guarda en el bot—, o por qué falló. Es
  * append-only: los reintentos se cuentan en ella, y contra ella se mide cuánto
- * acierta el modelo frente a lo que decide una persona. Los CHECK no dejan
+ * acierta la revisión frente a lo que decide una persona. Los CHECK no dejan
  * escribir «no se evaluó» como «no encontró nada»: una revisión válida lleva sus
  * motivos y sus fragmentos, aunque sean ninguno, y una fallida, su error y nada
- * más (regla 3 de docs/DATA_INTEGRITY.md).
+ * más (regla 3 de docs/DATA_INTEGRITY.md). Y `marcada` es tener motivos: una
+ * `limpia` con motivos contaría en la medición como una cosa habiendo seguido la
+ * queja otra (revisión de #153). Ni textos vacíos por valor, ni fracciones, ni
+ * el JSON5 que SQLite acepta y `JSON.parse` no.
  *
  * Sólo añade una tabla, que el código anterior no lee.
  */
@@ -310,15 +313,16 @@ function revisionAutomatica(db: Db): void {
       id              INTEGER PRIMARY KEY,
       queja_id        TEXT NOT NULL,
       resultado       TEXT NOT NULL CHECK (resultado IN ('limpia', 'marcada', 'invalida', 'error')),
-      modelo          TEXT NOT NULL,
-      version_prompt  TEXT NOT NULL,
-      motivos         TEXT CHECK (motivos IS NULL OR json_type(motivos) = 'array'),
-      retirados       INTEGER CHECK (retirados >= 0),
-      error           TEXT,
+      modelo          TEXT NOT NULL CHECK (length(modelo) > 0),
+      version_prompt  TEXT NOT NULL CHECK (length(version_prompt) > 0),
+      motivos         TEXT CHECK (motivos IS NULL OR (json_valid(motivos) AND json_type(motivos) = 'array')),
+      retirados       INTEGER CHECK (retirados IS NULL OR (typeof(retirados) = 'integer' AND retirados >= 0)),
+      error           TEXT CHECK (error IS NULL OR length(error) > 0),
       creada_at       TEXT NOT NULL DEFAULT (datetime('now')),
       CHECK ((resultado IN ('limpia', 'marcada')) = (motivos IS NOT NULL)),
       CHECK ((resultado IN ('limpia', 'marcada')) = (retirados IS NOT NULL)),
       CHECK ((resultado IN ('invalida', 'error')) = (error IS NOT NULL)),
+      CHECK ((resultado = 'marcada') = (json_array_length(motivos) > 0)),
       FOREIGN KEY (queja_id) REFERENCES quejas(id) ON DELETE CASCADE
     );
     CREATE INDEX idx_revisiones_automaticas_queja ON revisiones_automaticas(queja_id);
