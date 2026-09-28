@@ -30,6 +30,7 @@ import {
   rastrosDeLiterales,
   retenerLiterales,
   versionesDeCitas,
+  type FilaLike,
 } from '../src/scraper/literales-retenidos'
 import { CLAIM_VISIBILITIES } from '../src/scraper/claim-public-gate'
 import { sha256Short } from '../src/scraper/hash'
@@ -60,7 +61,7 @@ function ficha(overrides: Record<string, unknown> = {}) {
     ],
     crossChecked: [],
     contradiction: [],
-    corrections: [] as Array<Record<string, unknown>>,
+    corrections: [] as FilaLike[],
     ...overrides,
   }
 }

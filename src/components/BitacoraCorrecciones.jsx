@@ -22,7 +22,7 @@
  * un sitio donde se olvida.
  */
 
-import { ROTULO_CITA_RETENIDA } from './PlenoFindings'
+import { ROTULO_CITA_RETENIDA } from '../lib/cita-retenida'
 
 export const ROTULO_TEXTO_RETIRADO = 'Texto retirado'
 export const ROTULO_TEXTO_VIGENTE = 'Texto vigente'

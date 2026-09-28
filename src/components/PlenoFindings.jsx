@@ -16,6 +16,7 @@ import {
 } from '../lib/crosschecked-status.js'
 import { fmtDateShort } from '../lib/formatters'
 import { useT } from '../i18n'
+import { ROTULO_CITA_RETENIDA } from '../lib/cita-retenida'
 
 /**
  * The documents a finding was cross-checked against.
@@ -343,20 +344,32 @@ export function notaAcusacionSinContrastar(curatorName) {
   // `acusacion_publica` sin datos, sea cual sea su blanco—. En 431140 las dos
   // retenidas hablan de la Generalitat; en el corpus, la mayoría no tratan del
   // gobierno municipal.
+  // Sexta pasada, 2026-09-29: decía «su literal no se publica: ni aquí … ni en
+  // el registro de declaraciones del pleno», y el 28-09 el literal de las 37
+  // retenidas iba entero en /data/pleno-findings.json y en la bitácora de la
+  // propia ficha. La copia servida ya no lo lleva (src/scraper/
+  // literales-retenidos.ts), pero «no se publica» seguiría prometiendo de más:
+  // el repositorio, que es público, lo conserva, y la transcripción de la sesión
+  // lleva lo que se dijo. Así que dice lo que la ficha cumple y dónde siguen las
+  // palabras.
   const base =
-    'es una acusación pública que el verificador no ha podido ' +
-    'contrastar, así que su literal no se publica: ni aquí, donde queda a la vista el hueco ' +
-    `«${ROTULO_CITA_RETENIDA}» con su motivo, ni en el registro de declaraciones del pleno`
+    'es una acusación pública que el verificador no ha podido contrastar. La misma puerta que ' +
+    'la retiene en el registro de declaraciones del pleno la retiene aquí: la ficha no reproduce ' +
+    `su literal —ni en la cita, donde queda a la vista el hueco «${ROTULO_CITA_RETENIDA}» con su ` +
+    'motivo, ni en su bitácora de correcciones, ni en los datos de la ficha que sirve este sitio—'
+  const cierre =
+    ' Se retiene la cita, no lo que se dijo: la transcripción completa de la sesión sigue ' +
+    'publicada.'
   const quien = (curatorName ?? '').trim()
-  if (!quien) return `${base}; el pie de la ficha dice quién la editó.`
+  if (!quien) return `${base}; el pie de la ficha dice quién la editó.${cierre}`
   return isMachineAuthored(quien)
     ? // Sin la palabra «alguien», ni siquiera negada: la guarda que vigila esta
       // nota la prohíbe en bloque —una expresión regular no lee negaciones— y
       // tiene razón, porque el defecto original era justo insinuar una persona.
       `${base}, y la ficha la editó un proceso automático (${quien}): es lo habitual en esta ` +
         'página —casi todas las fichas las redacta el mismo proceso—, no una excepción decidida ' +
-        'para este caso.'
-    : `${base}, y la ficha la editó ${quien}.`
+        `para este caso.${cierre}`
+    : `${base}, y la ficha la editó ${quien}.${cierre}`
 }
 
 const CONTRAST_MARK = {
@@ -480,7 +493,7 @@ export function citaRetenida(entry, quote) {
  * El rótulo del hueco que deja una cita retenida. Lo pinta `CitaRetenida` y lo nombra
  * la nota de «acusación no contrastada», para que se sepa de qué literal habla la nota.
  */
-export const ROTULO_CITA_RETENIDA = 'Literal retenido'
+export { ROTULO_CITA_RETENIDA }
 
 /**
  * El hueco que deja una cita retenida — autoexplicativo a propósito.
@@ -505,9 +518,14 @@ export function CitaRetenida({ attribution, tone }) {
       <figcaption
         style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink70)', marginTop: 4, lineHeight: 1.5 }}
       >
+        {/* Decía «así que no se publica su literal aquí — tampoco se publica en el
+            registro de declaraciones», y el literal iba en los datos que la
+            página descarga y en su bitácora. Ya no va, pero el repositorio,
+            que es público, lo conserva: lo cierto es que la ficha no lo
+            reproduce (la nota de debajo dice dónde siguen las palabras). */}
         Es una acusación que el verificador no ha podido contrastar con ningún registro municipal,
-        así que no se publica su literal aquí — tampoco se publica en el registro de declaraciones.
-        No decimos que sea falsa: decimos que no consta.{' '}
+        así que la ficha no reproduce su literal, y la misma puerta la retiene en el registro de
+        declaraciones. No decimos que sea falsa: decimos que no consta.{' '}
         {attribution && (
           <>
             La ficha la atribuye a{' '}

@@ -1510,7 +1510,8 @@ export default function Metodologia() {
             etiquetada como sin contraste, o no la publica». Lo retenido no se
             enseña, pero «no la publica» prometía más de lo que el sitio cumple:
             el texto de lo retenido sigue en ficheros de datos del repositorio,
-            que es público (tarea abierta el 28-09-2026). */}
+            que es público (tarea abierta el 28-09-2026; desde el 29-09 la copia
+            servida ya no lo lleva, el repositorio sí). */}
         <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
           Cada afirmación que extraemos de un pleno se coteja automáticamente con la base documental
           del ayuntamiento: contratos, subvenciones, presupuesto y promesas publicadas. Una{' '}
@@ -1582,10 +1583,12 @@ export default function Metodologia() {
             <strong>«Literal retenido»</strong> — ocupa el sitio de una cita que la puerta retiene.
             La página no imprime el literal: enseña el hueco, su motivo y, si la ficha la atribuye,
             el grupo; la nota bajo las citas lo rotula <strong>«acusación no contrastada»</strong>.
-            Se retiene el literal, no la ficha: el hallazgo, su resumen, su atribución, los
-            documentos cotejados y el derecho de réplica siguen a la vista. Lo que el lector debe
-            concluir: ahí se citaba una acusación que el verificador no ha podido contrastar con
-            ningún registro municipal. No decimos que sea falsa; decimos que no consta.
+            Tampoco lo llevan la bitácora de correcciones de la ficha, que en esas filas enseña su
+            huella en lugar del texto, ni la copia de los datos de hallazgos que sirve el sitio. Se
+            retiene el literal, no la ficha: el hallazgo, su resumen, su atribución, los documentos
+            cotejados y el derecho de réplica siguen a la vista. Lo que el lector debe concluir: ahí
+            se citaba una acusación que el verificador no ha podido contrastar con ningún registro
+            municipal. No decimos que sea falsa; decimos que no consta.
           </li>
           <li>
             <strong>«sin contraste en los datos»</strong> — la cita se imprime, con esa pastilla al
@@ -1633,6 +1636,37 @@ export default function Metodologia() {
           una persona por la CLI de correcciones —el único escritor del fichero de hallazgos— y cada
           una deja su fila en la bitácora pública de la ficha.
         </p>
+        {/* Añadido el 29-09-2026. Hasta entonces el sitio servía el literal de
+            cada retenida en /data/pleno-findings.json y la bitácora de la ficha
+            lo imprimía; la copia servida ya no lo lleva
+            (src/scraper/literales-retenidos.ts). Esto es lo que esa retención
+            NO alcanza, medido el 28-09, dicho para no prometer más de lo que se
+            cumple: la transcripción lleva las palabras de casi todas las 37
+            retenidas; 7 comparten tramo con otra declaración del registro, y 3
+            de ésas se enseñan. */}
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>Se retiene la cita, no lo que se dijo.</strong> La puerta decide qué declaraciones
+          se enseñan como declaraciones, no qué palabras de una sesión se publican. Las de una cita
+          retenida siguen en tres sitios, y preferimos decirlo a prometer que no están:
+        </p>
+        <ul style={{ margin: '6px 0 0', paddingLeft: 20, color: 'var(--ink70)' }}>
+          <li>
+            la <strong>transcripción completa</strong> de la sesión, que publicamos en la página de
+            cada pleno como registro de lo que se dijo;
+          </li>
+          <li>
+            <strong>otra declaración</strong> del registro, cuando el extractor clasificó un tramo
+            que se solapa con la cita como una afirmación de otro tipo —una cifra, la mención de una
+            obra—: la puerta la juzga por su cuenta y puede enseñarla;
+          </li>
+          <li>
+            el <strong>repositorio del proyecto</strong>, público desde el 8 de septiembre de 2026:
+            su fichero de hallazgos conserva el literal, porque la CLI de correcciones y las
+            comprobaciones lo necesitan y porque la puerta puede dejar de retenerlo, y su historia
+            guarda las copias que el sitio sirvió hasta finales de septiembre de 2026, cuando dejó
+            de servirlo.
+          </li>
+        </ul>
       </Card>
 
       <Card style={{ marginTop: 14 }}>
