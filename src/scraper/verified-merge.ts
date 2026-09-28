@@ -225,6 +225,34 @@ export function evidenciaSuficiente(v: {
   return (v?.evidence?.length ?? 0) > 0
 }
 
+/**
+ * La verificación que escribe una bajada de curador.
+ *
+ * `downgrade-verdict` y `apply-gold-downgrades` la construían cada una a mano,
+ * con la misma forma recitada dos veces. Vive aquí para que quien la necesite
+ * pase por el camino real en vez de recitarla una tercera: recitar una forma es
+ * lo que tuvo verde la excepción de curador de `claim-public-gate.ts` mientras
+ * no casaba con nada (docs/DATA_INTEGRITY.md regla 1).
+ *
+ * `sin-datos` vacía la evidencia —bajar a «no hay datos» y seguir enseñando
+ * datos se contradice—; cualquier otro destino conserva la que había. El orden
+ * de las claves es el de siempre, para que el overlay no cambie de bytes.
+ */
+export function verificacionDeBajada(
+  claimId: string,
+  actual: Pick<ClaimVerification, 'evidence'>,
+  nuevo: ClaimVerdict,
+  motivo: string,
+): ClaimVerification {
+  return {
+    claimId,
+    verdict: nuevo,
+    summary: motivo,
+    evidence: nuevo === 'sin-datos' ? [] : actual.evidence,
+    checkedAgainst: ['curator-downgrade'],
+  }
+}
+
 export interface ApplyEntry {
   claimId: string
   verification: ClaimVerification

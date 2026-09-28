@@ -11,7 +11,7 @@
  */
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { loadOverlay, rebuildVerified, OVERLAY, VERIFIED } from './verified-rebuild'
-import { applyOverlayEntries } from '../src/scraper/verified-merge'
+import { applyOverlayEntries, verificacionDeBajada } from '../src/scraper/verified-merge'
 import type { ClaimVerdict, ClaimVerification } from '../src/scraper/claim-verifier'
 
 const DOWNGRADE_TARGETS: ClaimVerdict[] = ['verificado', 'parcial', 'sin-datos']
@@ -56,13 +56,7 @@ function main() {
   const current = item.verification.verdict
 
   // New verification reflects the downgrade. sin-datos = no supporting evidence.
-  const verification: ClaimVerification = {
-    claimId,
-    verdict: newVerdict,
-    summary: reason,
-    evidence: newVerdict === 'sin-datos' ? [] : item.verification.evidence,
-    checkedAgainst: ['curator-downgrade'],
-  }
+  const verification = verificacionDeBajada(claimId, item.verification, newVerdict, reason)
 
   let overlay = loadOverlay()
   try {
