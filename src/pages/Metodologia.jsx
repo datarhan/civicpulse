@@ -173,8 +173,9 @@ function useQuoteContrastDisclosure() {
  * Todas las cifras vivas se DERIVAN del padrón. Escribir «tres direcciones» o
  * «18 fichas» a mano en la página que promete no hacerlo es la trampa que este
  * repositorio ya ha pagado: la frase se queda quieta mientras el dato se mueve.
- * Lo único escrito a mano son las fechas y la medición del 5 de septiembre, que
- * es historia y no puede cambiar.
+ * Lo único escrito a mano son las fechas, la medición del 5 de septiembre y las
+ * 67 lecturas de la página vieja de currículos (19-06 a 1-09-2026, siempre los
+ * mismos 17), que son historia y no pueden cambiar.
  */
 function MudanzaDelPortal() {
   const { data } = useOfficials()
@@ -213,15 +214,26 @@ function MudanzaDelPortal() {
         ésa es la que se enseña—, pero durante seis días lo publicado no era lo vigente.
       </p>
       <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
-        <strong>Lo que NO ocurrió, y conviene decirlo:</strong> el ayuntamiento no retiró la
-        información. Los currículos, que vivían en una única página del portal de transparencia,
-        están ahora en un PDF junto a cada concejal, que es una forma mejor de publicarlos. Hoy hay{' '}
+        {/* Decía «el ayuntamiento no retiró la información» —más ancho que su
+            prueba: el párrafo siguiente cuenta direcciones de correo que sí
+            dejaron de publicarse— y que de los escaños sin ficha «no se puede
+            decir si se retiraron o nunca estuvieron». Sí se puede: el registro
+            propio (transparency-docs.json, fuente `cv`) leyó la página vieja 67
+            veces entre el 19-06 y el 1-09-2026, siempre con los mismos 17 PDF, y
+            ninguno de los escaños sin ficha figura en ninguna lectura. Revisión
+            lectora del 28-09-2026. */}
+        <strong>Lo que NO ocurrió, y conviene decirlo:</strong> la mudanza no se llevó ningún
+        currículo. Vivían en una única página del portal de transparencia, que este sitio leyó 67
+        veces entre el 19 de junio y el 1 de septiembre de 2026 y que listó siempre los mismos 17;
+        con la mudanza, esos 17 pasaron a un PDF junto a cada concejal, que es una forma mejor de
+        publicarlos. Hoy hay{' '}
         <strong style={{ color: 'var(--ink)' }}>
           {conFicha} de {total}
         </strong>{' '}
-        escaños con su ficha publicada. De los que faltan no se puede decir si se retiraron o nunca
-        estuvieron: la página anterior no tiene copia en el Internet Archive, y una ausencia sin
-        registro no es una retirada.
+        escaños con su ficha publicada. Los escaños que no la tenían tras la mudanza tampoco
+        figuraban en aquella página en ninguna de esas lecturas; de antes del 19 de junio no hay
+        copia —la página no está en el Internet Archive—, y una ausencia sin registro no es una
+        retirada.
       </p>
       <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
         {/* La fecha es la del ÚLTIMO raspado bueno de la página vieja
@@ -1499,10 +1511,14 @@ export default function Metodologia() {
         </p>
         <ul style={{ margin: '8px 0 0', paddingLeft: 20, color: 'var(--ink70)' }}>
           <li>
+            {/* Decía «una acusación pública sobre la gestión municipal»: la
+                puerta no registra a quién se acusa, y la mayoría de las
+                retenidas hablan de otra administración o de otro grupo.
+                Revisión lectora del 28-09-2026. */}
             <strong>«acusación no contrastada»</strong> — lo que se afirma es una acusación pública
-            sobre la gestión municipal y el cotejo no encontró ningún dato que la respalde{' '}
-            <em>ni que la desmienta</em>. Lo que el lector debe concluir: se dijo, lo publicamos, y
-            no sabemos si es cierto. No estamos diciendo que sea falsa.
+            y el cotejo no encontró ningún dato que la respalde <em>ni que la desmienta</em>. Lo que
+            el lector debe concluir: se dijo, lo publicamos, y no sabemos si es cierto. No estamos
+            diciendo que sea falsa.
           </li>
           <li>
             <strong>«sin contraste en los datos»</strong> — lo mismo, pero la afirmación no es una
@@ -2447,10 +2463,17 @@ export default function Metodologia() {
           entregas del coste efectivo aparece que la mayoría de las series de unidad física repiten
           exactamente el mismo valor entrega tras entrega, mientras que prácticamente ninguna serie
           de coste se queda quieta. Los cinco denominadores de Riba-roja llevan desde 2018 o 2019
-          sin cambiar. Eso invalida cualquier lectura temporal de un coste unitario: si el numerador
-          se actualiza y el denominador es una copia, el cociente sólo puede subir. No es una
-          acusación —la cifra puede ser correcta y estable—, es un dato sobre la calidad de la
-          declaración, y va antes que ninguna puntuación en la página.
+          sin cambiar.{' '}
+          {/* Decía «Eso invalida cualquier lectura temporal de un coste
+              unitario: … el cociente sólo puede subir». Falso: con el
+              denominador congelado el cociente sigue al coste, que también
+              baja. Ver DeclaracionCongelada.jsx; revisión lectora del
+              28-09-2026. */}
+          Donde el denominador se repite, un coste unitario no se puede leer en el tiempo: el
+          cociente sólo sigue al dinero —sube o baja con el coste— y no puede decir si cambió lo que
+          cuesta cada unidad o cuántas unidades hubo. No es una acusación —la cifra puede ser
+          correcta y estable—, es un dato sobre la calidad de la declaración, y va antes que ninguna
+          puntuación en la página.
         </p>
       </Card>
 

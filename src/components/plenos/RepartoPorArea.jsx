@@ -20,6 +20,11 @@ import { DEPARTMENT_LABEL } from '../../scraper/departments'
 export function RepartoPorArea({ departamentos, agenda, sesiones }) {
   const { locale, t } = useLocale()
   if (!departamentos?.length) return null
+  // Cada salvedad, sólo con su hueco. La de las sesiones se pintaba siempre y
+  // el 24-09 se extrajo el último orden del día que faltaba: la página
+  // contrastaba «62 con orden del día» con «las 62» (revisión del 28-09).
+  const faltanSesiones = agenda.sinOrden > 0
+  const faltanAreas = agenda.conDepartamento != null && agenda.conDepartamento < agenda.puntos
   return (
     <div>
       <div
@@ -98,26 +103,33 @@ export function RepartoPorArea({ departamentos, agenda, sesiones }) {
 
       {/* La misma regla que MoneyCoverage: una capa que enseña una fracción de
           su dominio tiene que decirlo, y con el denominador delante. */}
-      <p
-        style={{
-          margin: '13px 0 0',
-          fontSize: 'var(--fs-aux)',
-          lineHeight: 1.55,
-          color: 'var(--ink70)',
-          maxWidth: '96ch',
-        }}
-      >
-        {conHuecos(t('plenos.indice.reparto.nota'), {
-          '{sesionesConOrden}': (
-            <strong>
-              {rellena(t('plenos.indice.reparto.sesionesConOrden'), { n: agenda.sesiones })}
-            </strong>
-          ),
-          '{total}': sesiones,
-          '{con}': agenda.conDepartamento,
-          '{puntos}': agenda.puntos,
-        })}
-      </p>
+      {(faltanSesiones || faltanAreas) && (
+        <p
+          style={{
+            margin: '13px 0 0',
+            fontSize: 'var(--fs-aux)',
+            lineHeight: 1.55,
+            color: 'var(--ink70)',
+            maxWidth: '96ch',
+          }}
+        >
+          {faltanSesiones &&
+            conHuecos(t('plenos.indice.reparto.nota'), {
+              '{sesionesConOrden}': (
+                <strong>
+                  {rellena(t('plenos.indice.reparto.sesionesConOrden'), { n: agenda.sesiones })}
+                </strong>
+              ),
+              '{total}': sesiones,
+            })}
+          {faltanSesiones && faltanAreas && ' '}
+          {faltanAreas &&
+            conHuecos(t('plenos.indice.reparto.notaArea'), {
+              '{con}': agenda.conDepartamento,
+              '{puntos}': agenda.puntos,
+            })}
+        </p>
+      )}
     </div>
   )
 }
