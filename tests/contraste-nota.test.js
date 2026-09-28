@@ -48,6 +48,24 @@ describe('la nota de «acusación no contrastada» no inventa un editor humano',
     }
   })
 
+  /**
+   * Decía «es una acusación pública SOBRE LA GESTIÓN MUNICIPAL que el
+   * verificador no ha podido contrastar», y la puerta no sabe a quién se
+   * acusa: retiene una `acusacion_publica` sin datos que la respalden, sea de
+   * quien sea el blanco. En f-2025-11-03-acu-431140 las dos retenidas hablan
+   * de la Generalitat y de su presidente, y no es un caso raro: leídas a mano
+   * las 37 retenidas del corpus el 28-09-2026, la mayoría tratan de otra
+   * administración o de lo que votó o dijo otro grupo, no del gobierno
+   * municipal. Señalado por la revisión lectora ese día.
+   */
+  it('no dice de quién es la acusación, porque la puerta no lo sabe', () => {
+    for (const quien of ['auto-curation-v1', 'civicpulse-curator', '']) {
+      expect(notaAcusacionSinContrastar(quien), `curador «${quien}»`).not.toMatch(
+        /gesti[oó]n municipal/i,
+      )
+    }
+  })
+
   it('nombra al proceso automático cuando lo editó una máquina', () => {
     const nota = notaAcusacionSinContrastar('auto-curation-v1')
     expect(nota).toContain('auto-curation-v1')
