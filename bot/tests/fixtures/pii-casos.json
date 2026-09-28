@@ -100,6 +100,26 @@
     {
       "texto": "móvil 600-00-00-13, por las mañanas",
       "clase": "telefono"
+    },
+    {
+      "texto": "el coche 1234 MTS lleva meses aparcado",
+      "clase": "matricula"
+    },
+    {
+      "texto": "la furgoneta 5678 KGS sigue en la acera",
+      "clase": "matricula"
+    },
+    {
+      "texto": "matrícula 1234-HRS",
+      "clase": "matricula"
+    },
+    {
+      "texto": "DNI 1.234.567-L",
+      "clase": "dni"
+    },
+    {
+      "texto": "Mi móvil (+34) 600 000 014",
+      "clase": "telefono"
     }
   ],
   "intactos": [
@@ -137,7 +157,8 @@
     "Factura 9/2026/0001 del agua",
     "Los portales 7 9 11 13 15 17 no tienen luz",
     "Portal 9\n1234 5678 sin luz desde el lunes",
-    "GASTARON 1 234 567 L EN FIESTAS"
+    "GASTARON 1 234 567 L EN FIESTAS",
+    "Una antena de 2400 mhz en el tejado"
   ],
   "_asumidos": "Lo que se retira sin ser un dato personal, a sabiendas: el bot no sabe de quién es un número, así que un teléfono público también sale; y cuatro cifras con tres consonantes detrás tienen la forma de una matrícula. Mejor de más aquí que un teléfono publicado.",
   "asumidos": [
@@ -152,6 +173,12 @@
     {
       "texto": "Un 1998 BMW abandonado",
       "clase": "matricula"
+    },
+    {
+      "texto": "El presupuesto fue de 912.345.678 sin IVA",
+      "clase": "telefono"
     }
-  ]
+  ],
+  "_escapan": "Lo que se escapa, a sabiendas: formas de escribir un teléfono raras en España que, para reconocerlas, habría que aceptar también ristras de números que no lo son. Para esto sigue la revisión de una persona.",
+  "escapan": ["móvil 6 00 00 00 16", "llamad al 600/000015", "tlf 600 000 01 7"]
 }

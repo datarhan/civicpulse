@@ -15,6 +15,7 @@ const casos = JSON.parse(readFileSync(join(__dirname, 'fixtures', 'pii-casos.jso
   retirados: Array<{ texto: string; clase: string }>
   intactos: string[]
   asumidos: Array<{ texto: string; clase: string }>
+  escapan: string[]
 }
 
 describe('limpiarDatosPersonales', () => {
@@ -36,6 +37,16 @@ describe('limpiarDatosPersonales', () => {
       expect(limpiarDatosPersonales(texto).retirados).toEqual({ [clase]: 1 })
     },
   )
+
+  it.each(casos.escapan.map((t) => [t]))('se le escapa, a sabiendas, «%s»', (texto) => {
+    expect(limpiarDatosPersonales(texto)).toEqual({ texto, retirados: {} })
+  })
+
+  it('un prefijo entre paréntesis sale entero, sin dejar el paréntesis', () => {
+    expect(limpiarDatosPersonales('Mi móvil (+34) 600 000 014').texto).toBe(
+      `Mi móvil ${MARCA_RETIRADO}`,
+    )
+  })
 
   it.each(casos.intactos.map((t) => [t]))('deja intacto «%s»', (texto) => {
     expect(limpiarDatosPersonales(texto)).toEqual({ texto, retirados: {} })
