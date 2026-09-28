@@ -678,6 +678,8 @@ export function usageFromSse(sse: string): ChunkUsage {
 
 /**
  * Runs — not retries within a run — a chunk gets before it is written off.
+ * Only runs on which the model READ it: a night of 503s, a dead curl or a
+ * spent budget leaves the count where it was (see `foldNight`).
  *
  * ## This is a budget decision, NOT a verdict about the audio
  *
@@ -746,8 +748,18 @@ export const CURRENT_GATE: Gate = {
 export interface FailedChunk {
   chunk: number
   why: string
-  /** Runs that have failed on it. Absent on maps written before this existed. */
+  /**
+   * Noches en que el modelo LEYÓ el trozo y la lectura no pasó la puerta —
+   * nunca las que no llegaron a leerlo (ver `foldNight`). Absent on maps
+   * written before this existed.
+   */
   attempts?: number
+  /**
+   * Por qué la última noche no llegó a leerlo, si no lo leyó: un 503, la
+   * cuota, el techo de llamadas. Va aparte para que `why` siga diciendo lo
+   * último que el modelo contestó, que es lo que la cuenta mide.
+   */
+  sinLectura?: string
   /**
    * The gate in force when it was last attempted. Stamped so a write-off can
    * expire: in August 2026 a third of all chunks were being discarded because
@@ -763,6 +775,7 @@ const sameGate = (a: Gate | undefined, b: Gate): boolean =>
 
 /**
  * Fold this run's failure into what earlier runs recorded about the same chunk.
+ * Only for a run in which the model answered — `foldNight` decides which.
  *
  * A failure under a DIFFERENT gate restarts the count rather than adding to it:
  * evidence that one gate cannot read a window says nothing about another.
@@ -775,6 +788,78 @@ export function recordFailure(
 ): FailedChunk {
   const carried = prior && sameGate(prior.givenUpUnder, gate) ? (prior.attempts ?? 0) : 0
   return { chunk, why, attempts: carried + 1, givenUpUnder: { ...gate } }
+}
+
+/**
+ * Una noche que no leyó el trozo: la cuenta queda exactamente como estaba.
+ *
+ * Vale para todo lo que para antes de que el modelo conteste —un 503, la
+ * cuota, un curl caído, el techo de llamadas de la pasada—. Nada de eso dice
+ * algo del audio, y contarlo retira trozos por una caída del proveedor: el
+ * 28-09-2026 había cuatro retirados así. Tampoco la pone a cero, que era lo
+ * que hacían los huecos de cuota y de presupuesto: un trozo con dos lecturas
+ * volvía a empezar.
+ *
+ * Una cuenta hecha bajo otra puerta no se arrastra, igual que en
+ * `recordFailure`.
+ */
+export function carryFailure(
+  prior: FailedChunk | undefined,
+  chunk: number,
+  why: string,
+  gate: Gate = CURRENT_GATE,
+): FailedChunk {
+  if (prior?.attempts && sameGate(prior.givenUpUnder, gate)) {
+    return {
+      chunk,
+      why: prior.why,
+      attempts: prior.attempts,
+      givenUpUnder: { ...gate },
+      sinLectura: why,
+    }
+  }
+  return { chunk, why }
+}
+
+/**
+ * Qué contestó el modelo en un intento, si contestó: una cobertura que la
+ * puerta pudo medir, o una respuesta vacía con su `finishReason` (el
+ * razonamiento agotando el techo, en agosto). `null`: no contestó.
+ */
+export type Lectura = 'cobertura' | 'respuesta-vacia'
+
+export interface IntentoDeTrozo {
+  lectura: Lectura | null
+  why: string
+}
+
+/** El cubo `skipped` del manifiesto para un trozo que se queda sin mapa esta noche. */
+export type MotivoDeHueco = 'below-coverage-floor' | 'transcribe-failed' | 'no-model-answer'
+
+/**
+ * Cómo se cierra una noche sobre un trozo que no pasó: lo que se escribe en
+ * `failedChunks` y en qué cubo del manifiesto va.
+ *
+ * Cuenta UNA vez si algún intento fue una lectura, con el veredicto de la
+ * última — no el motivo del último intento, que en una noche mixta era un 503
+ * y borraba por qué se había contado. Si ninguno lo fue, `carryFailure`.
+ */
+export function foldNight(
+  prior: FailedChunk | undefined,
+  chunk: number,
+  intentos: readonly IntentoDeTrozo[],
+  gate: Gate = CURRENT_GATE,
+): { entry: FailedChunk; skip: MotivoDeHueco } {
+  const lecturas = intentos.filter((i) => i.lectura !== null)
+  const ultima = lecturas[lecturas.length - 1]
+  if (!ultima) {
+    const why = intentos[intentos.length - 1]?.why ?? 'no attempt recorded'
+    return { entry: carryFailure(prior, chunk, why, gate), skip: 'no-model-answer' }
+  }
+  return {
+    entry: recordFailure(prior, chunk, ultima.why, gate),
+    skip: ultima.lectura === 'cobertura' ? 'below-coverage-floor' : 'transcribe-failed',
+  }
 }
 
 /**
