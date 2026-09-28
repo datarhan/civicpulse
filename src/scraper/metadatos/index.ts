@@ -175,17 +175,28 @@ function camposOle(b: Uint8Array): Campo[] {
       }
     }
     if (e.nombre === 'Workbook' || e.nombre === 'Book') {
-      const w = leerWriteAccess(cfb.contenido(e))
+      const libro = cfb.contenido(e)
+      const w = leerWriteAccess(libro)
       if (!w) continue
-      const blancos = (n: number) =>
-        Uint8Array.from({ length: n }, (_, i) => (w.ancho === 2 && i % 2 ? 0x00 : 0x20))
+      // Pasa a espacio lo que no es ya relleno: Excel rellena con espacios y
+      // SheetJS con NUL, y ninguno de los dos tiene por qué cambiar.
+      const tapar = (desde: number, hasta: number) => {
+        const r = Uint8Array.from(libro.subarray(desde, hasta))
+        for (let i = 0; i + w.ancho <= r.length; i += w.ancho) {
+          const u = w.ancho === 2 ? r[i] | (r[i + 1] << 8) : r[i]
+          if (u === 0x00 || u === 0x20) continue
+          r[i] = 0x20
+          if (w.ancho === 2) r[i + 1] = 0x00
+        }
+        return r
+      }
       const usuario = sinRelleno(w.usuario)
       if (usuario) {
         campos.push({
           campo: `${prefijo}BIFF WRITEACCESS`,
           valor: usuario,
           clase: 'autoria',
-          tramos: cfb.tramos(e, w.desde, w.finUsuario, blancos(w.finUsuario - w.desde)),
+          tramos: cfb.tramos(e, w.desde, w.finUsuario, tapar(w.desde, w.finUsuario)),
         })
       }
       const resto = sinRelleno(w.resto)
@@ -194,7 +205,7 @@ function camposOle(b: Uint8Array): Campo[] {
           campo: `${prefijo}BIFF WRITEACCESS (resto del relleno)`,
           valor: resto,
           clase: 'autoria',
-          tramos: cfb.tramos(e, w.finUsuario, w.hasta, blancos(w.hasta - w.finUsuario)),
+          tramos: cfb.tramos(e, w.finUsuario, w.hasta, tapar(w.finUsuario, w.hasta)),
         })
       }
     }
