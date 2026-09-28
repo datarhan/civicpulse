@@ -27,6 +27,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { existsSync, readFileSync } from 'node:fs'
 import { parseCorporacion } from '../src/scraper/corporacion'
+import { retratoPublicable } from '../src/scraper/metadatos/index.ts'
 import {
   composeOfficialsSnapshot,
   arrastraCesados,
@@ -82,7 +83,18 @@ async function downloadPhoto(url: string, slug: string): Promise<string | null> 
     const contentType = res.headers.get('content-type') || 'image/jpeg'
     const ext = contentType.includes('png') ? 'png' : contentType.includes('webp') ? 'webp' : 'jpg'
     const filename = `${slug}.${ext}`
-    const bytes = Buffer.from(await res.arrayBuffer())
+    // Sin número de serie de la cámara, nombre del fichero original ni GPS; el
+    // crédito del fotógrafo se queda (`src/scraper/metadatos/imagen.ts`). Lo
+    // que no se deja limpiar no se publica: se sirve la copia de ayer, igual
+    // que cuando falla la descarga, y `check:metadatos` no tiene que pararlo.
+    const bytes = retratoPublicable(
+      Buffer.from(await res.arrayBuffer()),
+      `public/data/photos/${filename}`,
+    )
+    if (!bytes) {
+      console.warn(`[photo] ${slug}: metadatos que no se pueden vaciar en su sitio — no se publica`)
+      return null
+    }
     await writeFile(join(OUT_PHOTOS, filename), bytes)
     return `/data/photos/${filename}`
   } catch (err) {
