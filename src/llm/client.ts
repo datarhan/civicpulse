@@ -891,7 +891,7 @@ export function claudeCodeArgs(
  */
 async function callClaudeCode(req: RawCall): Promise<RawResult> {
   const { spawn } = await import('node:child_process')
-  const { mkdtempSync } = await import('node:fs')
+  const { mkdtempSync, rmdirSync } = await import('node:fs')
   const { tmpdir } = await import('node:os')
   const { join } = await import('node:path')
   const schemaJson = JSON.stringify(zodToJsonSchema(req.schema))
@@ -905,75 +905,90 @@ async function callClaudeCode(req: RawCall): Promise<RawResult> {
   // cache write drops to ~24 KB. Probed empirically 2026-04-27.
   const cwd = mkdtempSync(join(tmpdir(), 'cp-claude-cwd-'))
 
-  return await new Promise<RawResult>((resolvePromise, rejectPromise) => {
-    const args = claudeCodeArgs(req, schemaJson)
-    const child = spawn(req.config.claudeCodeBin, args, {
-      stdio: ['ignore', 'pipe', 'pipe'],
-      cwd,
-    })
-    const disarm = armCliWatchdog(child, 'claude-code', rejectPromise)
-    let stdout = ''
-    let stderr = ''
-    child.stdout.on('data', (d) => {
-      stdout += d.toString()
-    })
-    child.stderr.on('data', (d) => {
-      stderr += d.toString()
-    })
-    child.on('error', (err) => {
-      disarm()
-      rejectPromise(err)
-    })
-    child.on('close', (code) => {
-      disarm()
-      if (code !== 0) {
-        return rejectPromise(new Error(describeClaudeFailure(code, stdout, stderr)))
-      }
-      try {
-        const envelope = JSON.parse(stdout) as {
-          is_error?: boolean
-          result?: string
-          structured_output?: unknown
-          total_cost_usd?: number
-          usage?: {
-            input_tokens?: number
-            output_tokens?: number
-            cache_creation_input_tokens?: number
-            cache_read_input_tokens?: number
+  // …y se quita al acabar. No se quitaba nunca: el 2026-09-28 había 4.803 en
+  // el TMPDIR, uno por llamada. En un `finally`, no en el `close` del hijo: el
+  // vigilante rechaza antes de que el hijo muera, y un binario que no existe
+  // emite `error` sin garantizar `close`. `rmdirSync` y no un borrado
+  // recursivo: claude no deja nada en su cwd, y si algún día lo dejara, mejor
+  // un directorio de sobra que un borrado a ciegas. Limpiar nunca tumba la
+  // llamada.
+  try {
+    return await new Promise<RawResult>((resolvePromise, rejectPromise) => {
+      const args = claudeCodeArgs(req, schemaJson)
+      const child = spawn(req.config.claudeCodeBin, args, {
+        stdio: ['ignore', 'pipe', 'pipe'],
+        cwd,
+      })
+      const disarm = armCliWatchdog(child, 'claude-code', rejectPromise)
+      let stdout = ''
+      let stderr = ''
+      child.stdout.on('data', (d) => {
+        stdout += d.toString()
+      })
+      child.stderr.on('data', (d) => {
+        stderr += d.toString()
+      })
+      child.on('error', (err) => {
+        disarm()
+        rejectPromise(err)
+      })
+      child.on('close', (code) => {
+        disarm()
+        if (code !== 0) {
+          return rejectPromise(new Error(describeClaudeFailure(code, stdout, stderr)))
+        }
+        try {
+          const envelope = JSON.parse(stdout) as {
+            is_error?: boolean
+            result?: string
+            structured_output?: unknown
+            total_cost_usd?: number
+            usage?: {
+              input_tokens?: number
+              output_tokens?: number
+              cache_creation_input_tokens?: number
+              cache_read_input_tokens?: number
+            }
           }
+          if (envelope.is_error) {
+            return rejectPromise(
+              new Error(`claude CLI reported error: ${envelope.result || '(no detail)'}`),
+            )
+          }
+          const raw = claudeEnvelopeToRaw(envelope)
+          if (raw === null) {
+            return rejectPromise(
+              new Error(
+                `claude CLI returned no usable JSON (result: ${String(envelope.result).slice(0, 200)})`,
+              ),
+            )
+          }
+          const u = envelope.usage ?? {}
+          // Budget-charged tokens: only count the "real work" tokens
+          // (input + output). Cache reads + creation are quasi-free on the
+          // Max plan — including them would blow the 500K budget after a
+          // handful of calls because the Claude Code CLI's own system prompt
+          // contributes ~130K cached tokens per invocation.
+          const tokenCount = (u.input_tokens ?? 0) + (u.output_tokens ?? 0)
+          resolvePromise({
+            raw,
+            tokenCount,
+            // On Max plan the actual bill is $0. We keep the API-equivalent
+            // number from the envelope for cost-awareness reporting.
+            costUSD: envelope.total_cost_usd ?? 0,
+          })
+        } catch (err) {
+          rejectPromise(new Error(`claude CLI output not JSON: ${String(err).slice(0, 200)}`))
         }
-        if (envelope.is_error) {
-          return rejectPromise(
-            new Error(`claude CLI reported error: ${envelope.result || '(no detail)'}`),
-          )
-        }
-        const raw = claudeEnvelopeToRaw(envelope)
-        if (raw === null) {
-          return rejectPromise(
-            new Error(
-              `claude CLI returned no usable JSON (result: ${String(envelope.result).slice(0, 200)})`,
-            ),
-          )
-        }
-        const u = envelope.usage ?? {}
-        // Budget-charged tokens: only count the "real work" tokens
-        // (input + output). Cache reads + creation are quasi-free on the
-        // Max plan — including them would blow the 500K budget after a
-        // handful of calls because the Claude Code CLI's own system prompt
-        // contributes ~130K cached tokens per invocation.
-        const tokenCount = (u.input_tokens ?? 0) + (u.output_tokens ?? 0)
-        resolvePromise({
-          raw,
-          tokenCount,
-          // On Max plan the actual bill is $0. We keep the API-equivalent
-          // number from the envelope for cost-awareness reporting.
-          costUSD: envelope.total_cost_usd ?? 0,
-        })
-      } catch (err) {
-        rejectPromise(new Error(`claude CLI output not JSON: ${String(err).slice(0, 200)}`))
-      }
+      })
     })
-  })
+  } finally {
+    try {
+      rmdirSync(cwd)
+    } catch {
+      /* no está vacío, o ya no está */
+    }
+  }
 }
 
 /**

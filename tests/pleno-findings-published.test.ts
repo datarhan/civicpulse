@@ -228,7 +228,17 @@ const expectWithdrawn = (id: string): void => {
  * ningún lote: en LOTE_2, LOTE_3 y LOTE_4 cambia sólo lo que su fila mide en la
  * prosa viva, y la frase retirada pasa de `keeps` a `drops`.
  */
-const TOTAL_CORRECTIONS = 150
+/*
+ * 150 → 151 el 2026-09-28: el resumen de `f-2026-05-11-cit-bb5f00` anunciaba en
+ * futuro la Feria de Comercio —«que se celebrará los días 8, 9 y 10 de mayo»— en
+ * un pleno del 11 de mayo de 2026, y la cita no anuncia nada: quien habla enseña el
+ * acta de la reunión del 29 de enero en la que se acordaron esas fechas
+ * (transcripción, 12.693–12.708 s). El «se celebrará» lo escribió el auto-curador
+ * el 3-07 y sobrevivió a las dos correcciones humanas del mismo resumen (1-08 y
+ * 9-08). La cazó la revisión lectora de superficies. Va por `correct-pleno-finding`
+ * y no es de ningún lote: en LOTE_1 cambia sólo lo que su fila mide.
+ */
+const TOTAL_CORRECTIONS = 151
 const TOTAL_REMOVALS = 35
 
 /** One row of a review batch's fixture: enough to locate its own entries. */
@@ -752,7 +762,9 @@ const LOTE_1: Lote1Case[] = [
     // `corroborates` left `EvidenceStance` in 339fc58 because nothing upstream
     // establishes that a document supports a sentence. The word had survived
     // in the prose.
-    drops: ['se corrobora', 'montaje y desmontaje de las carpas'],
+    // «se celebrará» anunciaba una feria cuyas fechas eran ya pasadas el día
+    // del pleno; la cita enseña el acta que las acordó (corrección del 28-09).
+    drops: ['se corrobora', 'montaje y desmontaje de las carpas', 'se celebrará'],
     keeps: ['por mandato expreso de los comercios', 'los días 8, 9 y 10 de mayo'],
     refs: ['pleno-video|Vídeo del pleno 2026-05-11 · YouTube'],
     claims: [

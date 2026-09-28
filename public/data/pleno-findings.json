@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-09-21T10:48:44.673Z",
+  "generatedAt": "2026-09-28T16:04:22.960Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. Los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, salvo los que llevan la firma de una persona, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -365,7 +365,7 @@
       "plenoId": "10yl550",
       "plenoDate": "2026-05-11",
       "title": "Pleno del 11 de mayo de 2026: Debate sobre la Feria de Comercio",
-      "summary": "Durante la sesión del pleno, un grupo no identificado afirma que han decidido reinventar la feria y renovarla. El PSOE señala que la feria no se realizó en 2025 por mandato expreso de los comercios, mientras que un grupo no identificado menciona las fechas de la Feria de Comercio, que se celebrará los días 8, 9 y 10 de mayo.",
+      "summary": "Durante la sesión del pleno, un grupo no identificado afirma que han decidido reinventar la feria y renovarla. El PSOE señala que la feria no se realizó en 2025 por mandato expreso de los comercios, mientras que un grupo no identificado exhibe el acta de una reunión del 29 de enero de 2026 en la que se acordó celebrar la Feria de Comercio los días 8, 9 y 10 de mayo.",
       "severity": "informational",
       "sourceClaimIds": [
         "10yl550-270-cit-bb5f00",
@@ -431,6 +431,14 @@
           "reason": "Se retira del cotejo el expediente que sostenía la frase documental suprimida: consta anulado y con importe final cero, y no acredita ninguno de los extremos que el sumario le atribuía.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T16:58:24.723Z"
+        },
+        {
+          "field": "summary",
+          "original": "Durante la sesión del pleno, un grupo no identificado afirma que han decidido reinventar la feria y renovarla. El PSOE señala que la feria no se realizó en 2025 por mandato expreso de los comercios, mientras que un grupo no identificado menciona las fechas de la Feria de Comercio, que se celebrará los días 8, 9 y 10 de mayo.",
+          "corrected": "Durante la sesión del pleno, un grupo no identificado afirma que han decidido reinventar la feria y renovarla. El PSOE señala que la feria no se realizó en 2025 por mandato expreso de los comercios, mientras que un grupo no identificado exhibe el acta de una reunión del 29 de enero de 2026 en la que se acordó celebrar la Feria de Comercio los días 8, 9 y 10 de mayo.",
+          "reason": "El sumario anunciaba en futuro («que se celebrará») una feria cuyas fechas eran anteriores a la sesión, del lunes 11 de mayo de 2026, y la cita no anuncia nada: quien habla enseña el acta de la reunión del 29 de enero de 2026 en la que se acordaron esas fechas (transcripción, 12.693–12.708 s). El «se celebrará» lo añadía el sumario.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-28T16:04:22.960Z"
         }
       ]
     },

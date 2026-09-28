@@ -219,3 +219,72 @@ describe('buildRelContracts (tender-geo place.sourceId + expediente join, awarde
     expect(out[0].places).toEqual(expect.arrayContaining(['urbanitzacio-la-reva']))
   })
 })
+
+describe('el resultado no depende del huso del equipo que construye el fichero', () => {
+  // Medido el 28-09-2026 (PR #150): reconstruido en el Mac del curador
+  // (Europe/Madrid, UTC+2), queja-contract-relations.json movía sus 30
+  // `monthsAfter` dos horas respecto al que construye la CI en UTC. El bot
+  // exporta `requested_datetime` sin zona («2026-07-02 10:48:16») y `new Date()`
+  // lee esa forma en hora LOCAL; la fecha sola de `awardDate` la lee en UTC.
+  //
+  // Cambiar `process.env.TZ` en caliente vale en el pool `forks` de vitest y no
+  // en `threads`, donde las dos pasadas serían la misma zona e iguales sin haber
+  // probado nada. Por eso cada pasada afirma antes el desfase que midió.
+  const DESFASE_EN_JULIO: Record<string, number> = { UTC: 0, 'Europe/Madrid': -120 }
+
+  function enCadaZona<T>(f: () => T): Record<string, T> {
+    const antes = process.env.TZ
+    const out: Record<string, T> = {}
+    try {
+      for (const [zona, desfase] of Object.entries(DESFASE_EN_JULIO)) {
+        process.env.TZ = zona
+        expect(new Date(2026, 6, 2, 12).getTimezoneOffset(), `no se aplicó ${zona}`).toBe(desfase)
+        out[zona] = f()
+      }
+    } finally {
+      if (antes === undefined) delete process.env.TZ
+      else process.env.TZ = antes
+    }
+    return out
+  }
+
+  it('temporalModifier da lo mismo en UTC que en Madrid, y es lo que ya publica la CI', () => {
+    // Un par real del fichero publicado: el contrato 9895895, el más cercano al
+    // borde de −3 meses. El valor es el que la CI escribió construyendo en UTC.
+    const r = enCadaZona(() =>
+      temporalModifier(q({ createdAt: '2026-07-02 10:48:16' }), c({ awardDate: '2026-04-08' })),
+    )
+    expect(r['Europe/Madrid']).toEqual(r.UTC)
+    expect(r.UTC).toEqual({ monthsAfter: -2.8483395061728394 })
+  })
+
+  it('temporalModifier: en el borde de la ventana, el huso no decide si hay señal', () => {
+    // A la 01:00 UTC (las 03:00 en Madrid), noventa días y una hora después de la
+    // adjudicación: fuera de la ventana de −3 meses. Leída en hora de Madrid la
+    // queja caía dos horas antes, y el mismo par entraba en la ventana.
+    const r = enCadaZona(() =>
+      temporalModifier(q({ createdAt: '2026-07-02 01:00:00' }), c({ awardDate: '2026-04-03' })),
+    )
+    expect(r).toEqual({ UTC: null, 'Europe/Madrid': null })
+  })
+
+  it('normalizeQueja lee requested_datetime en UTC, que es como lo escribe el bot', () => {
+    const r = enCadaZona(
+      () =>
+        normalizeQueja({ service_request_id: 'Q-1', requested_datetime: '2026-07-02 10:48:16' })
+          ?.createdAt,
+    )
+    expect(r).toEqual({
+      UTC: '2026-07-02T10:48:16.000Z',
+      'Europe/Madrid': '2026-07-02T10:48:16.000Z',
+    })
+  })
+
+  it('una marca que no es ISO no se lee en hora local: no es una fecha', () => {
+    // V8 lee «07/02/2026» como 2 de julio y en hora local; quien lo escribió en
+    // Riba-roja quería decir 7 de febrero. Mejor sin señal que con una inventada.
+    const marca = '07/02/2026 10:48:16'
+    expect(temporalModifier(q({ createdAt: marca }), c({ awardDate: '2026-09-01' }))).toBeNull()
+    expect(normalizeQueja({ service_request_id: 'Q-1', requested_datetime: marca })).toBeNull()
+  })
+})
