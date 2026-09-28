@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-28T16:11:45.587Z",
+  "generatedAt": "2026-09-28T19:04:27.093Z",
   "windowDays": 30,
   "articles": [
     {
@@ -966,9 +966,9 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "203c2d373a1e",
+    "plenos-agendas.json": "599733c9f6af",
     "press-claims-verified.json": "5f440b22045d",
     "press.json": "72b49413843a",
-    "promises.json": "9b4197efdc0b"
+    "promises.json": "6d862450efd9"
   }
 }

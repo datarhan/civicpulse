@@ -28,7 +28,9 @@ describe('scraper/promises — validatePromisesSnapshot', () => {
   })
 
   it('every promise has the mandatory invariants (party + title + verbatim quote + source URL + made-at date)', () => {
-    expect(snap.items.length).toBeGreaterThanOrEqual(10)
+    // Un suelo de «mide algo», no un tamaño: el 28-09-2026 el registro menguó
+    // al retirarse las fichas cuya cita no eran palabras del partido.
+    expect(snap.items.length).toBeGreaterThan(0)
     for (const p of snap.items) {
       expect(ALLOWED_PARTIES).toContain(p.party)
       expect(p.title.length).toBeGreaterThan(3)
