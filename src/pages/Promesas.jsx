@@ -216,10 +216,17 @@ export function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
       >
         «{p.quote}»
       </blockquote>
+      {/* La fila PARTE línea. Sin `flexWrap`, a 375 px la insignia «publicada
+          automáticamente · revisión pendiente» se apretaba en cuatro renglones
+          de 133 px y aun así asomaba 27 px fuera de la tarjeta; con las fuentes
+          de reserva de la CI (Linux, antes de que cargue la web) empujaba el
+          documento a 382 px y la e2e móvil se ponía roja. Medido el
+          28-09-2026 con getBoundingClientRect. */}
       <div
         style={{
           display: 'flex',
-          gap: 10,
+          flexWrap: 'wrap',
+          gap: '6px 10px',
           alignItems: 'center',
           marginBottom: 6,
           fontSize: 'var(--fs-micro)',
@@ -264,7 +271,7 @@ export function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
           {STATUS_LABEL[p.status] || p.status}
         </Pill>
         {p.autoPublished?.reviewState === 'pending-review' && (
-          <Pill tone="intel" size="xs">
+          <Pill tone="intel" size="xs" style={{ lineHeight: 1.3 }}>
             publicada automáticamente · revisión pendiente
           </Pill>
         )}
