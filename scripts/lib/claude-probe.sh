@@ -57,7 +57,11 @@ claude_probe() {
   local salida="" rc=0 motivo=""
   CLAUDE_PROBE_MOTIVO=""
 
-  salida="$("$bin" -p "ok" --strict-mcp-config --model "$modelo" 2>&1)" && rc=0 || rc=$?
+  # Los mismos ajustes que `claudeCodeArgs` (src/llm/client.ts), que apaga los
+  # ganchos de los plugins: el sondeo avala esas llamadas, así que corre como
+  # ellas. tests/scripts/claude-probe.test.ts los compara con el cliente.
+  salida="$("$bin" -p "ok" --strict-mcp-config --settings '{"disableAllHooks":true}' \
+    --model "$modelo" 2>&1)" && rc=0 || rc=$?
   [ "$rc" -eq 0 ] && return 0
 
   # Último renglón con contenido, con los espacios colapsados.
