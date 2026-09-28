@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-28T06:31:59.744Z",
+  "generatedAt": "2026-09-28T10:23:35.655Z",
   "windowDays": 30,
   "articles": [
     {
@@ -29,12 +29,12 @@
       "indicators": {
         "localCoverage": false,
         "datedArticle": true,
-        "municipalSourceMatch": null,
+        "municipalSourceMatch": false,
         "corroboratedAcrossOutlets": false,
         "factualClaimsPresent": false,
         "opinionFraction": 0
       },
-      "score": 1
+      "score": 2
     },
     {
       "articleId": "1lk4zls",
@@ -46,12 +46,12 @@
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
-        "municipalSourceMatch": null,
+        "municipalSourceMatch": true,
         "corroboratedAcrossOutlets": true,
-        "factualClaimsPresent": false,
+        "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 3
+      "score": 6
     },
     {
       "articleId": "1b1znc3",
@@ -80,12 +80,12 @@
       "indicators": {
         "localCoverage": false,
         "datedArticle": true,
-        "municipalSourceMatch": null,
+        "municipalSourceMatch": false,
         "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
+        "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 1
+      "score": 3
     },
     {
       "articleId": "1gkikhf",
@@ -97,12 +97,12 @@
       "indicators": {
         "localCoverage": false,
         "datedArticle": true,
-        "municipalSourceMatch": null,
+        "municipalSourceMatch": false,
         "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
+        "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 1
+      "score": 3
     },
     {
       "articleId": "1cibswi",
@@ -114,12 +114,12 @@
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
-        "municipalSourceMatch": null,
+        "municipalSourceMatch": false,
         "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
+        "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 2
+      "score": 4
     },
     {
       "articleId": "b8rw3f",
@@ -148,12 +148,12 @@
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
-        "municipalSourceMatch": null,
+        "municipalSourceMatch": false,
         "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
+        "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 2
+      "score": 4
     },
     {
       "articleId": "16vhpy8",
@@ -182,12 +182,12 @@
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
-        "municipalSourceMatch": null,
+        "municipalSourceMatch": false,
         "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
+        "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 2
+      "score": 4
     },
     {
       "articleId": "1s3psp4",
@@ -199,12 +199,12 @@
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
-        "municipalSourceMatch": null,
+        "municipalSourceMatch": false,
         "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
+        "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 2
+      "score": 4
     },
     {
       "articleId": "ynwc1o",
@@ -422,10 +422,10 @@
         "datedArticle": true,
         "municipalSourceMatch": false,
         "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
+        "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 3
+      "score": 4
     },
     {
       "articleId": "153mirg",
@@ -437,12 +437,12 @@
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
-        "municipalSourceMatch": false,
+        "municipalSourceMatch": null,
         "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": true,
+        "factualClaimsPresent": false,
         "opinionFraction": 0
       },
-      "score": 4
+      "score": 2
     },
     {
       "articleId": "phmzn0",
@@ -488,12 +488,12 @@
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
-        "municipalSourceMatch": false,
+        "municipalSourceMatch": null,
         "corroboratedAcrossOutlets": true,
-        "factualClaimsPresent": true,
+        "factualClaimsPresent": false,
         "opinionFraction": 0
       },
-      "score": 5
+      "score": 3
     },
     {
       "articleId": "tel2rn",
@@ -539,12 +539,12 @@
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
-        "municipalSourceMatch": false,
+        "municipalSourceMatch": null,
         "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": true,
+        "factualClaimsPresent": false,
         "opinionFraction": 0
       },
-      "score": 4
+      "score": 2
     },
     {
       "articleId": "1kho40w",
@@ -556,12 +556,12 @@
       "indicators": {
         "localCoverage": false,
         "datedArticle": true,
-        "municipalSourceMatch": false,
+        "municipalSourceMatch": null,
         "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": true,
+        "factualClaimsPresent": false,
         "opinionFraction": 0
       },
-      "score": 3
+      "score": 1
     },
     {
       "articleId": "h2cshb",
@@ -573,12 +573,12 @@
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
-        "municipalSourceMatch": false,
+        "municipalSourceMatch": null,
         "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": true,
+        "factualClaimsPresent": false,
         "opinionFraction": 0
       },
-      "score": 4
+      "score": 2
     },
     {
       "articleId": "jxh8xl",
@@ -624,12 +624,12 @@
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
-        "municipalSourceMatch": false,
+        "municipalSourceMatch": null,
         "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": true,
+        "factualClaimsPresent": false,
         "opinionFraction": 0
       },
-      "score": 4
+      "score": 2
     },
     {
       "articleId": "4gx8es",
@@ -641,12 +641,12 @@
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
-        "municipalSourceMatch": false,
+        "municipalSourceMatch": null,
         "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": true,
+        "factualClaimsPresent": false,
         "opinionFraction": 0
       },
-      "score": 4
+      "score": 2
     },
     {
       "articleId": "1auaoi4",
@@ -766,23 +766,6 @@
         "opinionFraction": 0
       },
       "score": 3
-    },
-    {
-      "articleId": "qt6rcw",
-      "articleFingerprint": "1b5ktzg",
-      "outlet": "levante-emv.com",
-      "outletHost": "levante-emv.com",
-      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOUnB3UTRaWktudHJjRnJTbHZIYUtQWmw4WjhZb2lWTFN0Sm11TEtGQ2IwUnY5NkZ2Wlp5b20tclZrWVNQVnhXalIwLVdhQUNMVmJMU1hObzh0Q0o1cjdfQ1J4Y2VodVVsVVgzczgtQXl6NEg2Z3BSRW9MS1JqaWJTRjJJSXFHS05uS0Q1bGhENHFlM05yOXBfeDdWZl9QdjViYkRYVXpNQXlwUVVQZDNPRkZBSzNQakw0aG1jdGRhRjJYNGdVelp0V0ZHVjVNOUJxOGY5NC1GTnRqbEtvMHVqRtIB5gFBVV95cUxPWW9pN21DLVNmdnRtQ3Z3WW9HOUtzLXpibWducmRURG5BWTZXdDNGVFlwQ1pLZEdreGk0X3FiM0xhTHhPSVpHbEhRWjdvd1JDa2ZYV1FjZDFrYnZtTk45ZTNIZkNFWnZVSl8wN1lTOXoySGJJZWJBZmE5UHJUNzNzaTJHRHBZVW5VdlVDTDZyczRIWXNfMVRUaDQzdzFWUjJLYUgwTC1QY2tKWEhZS1o5NW1LTGc5dVhPMXF2bzNtWU0zSDRRV0VubjZ2REJXQnY1cUNnQ284aEszQzJXcTNxQ0lGVW1idw?oc=5",
-      "date": "2026-08-29T07:00:00.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     }
   ],
   "outlets": [
@@ -792,12 +775,12 @@
       "articleCount": 17,
       "verdictCounts": {
         "verificado": 0,
-        "parcial": 0,
+        "parcial": 1,
         "contradicho": 0,
-        "sin-datos": 39,
+        "sin-datos": 8,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.76,
+      "meanTrustScore": 2.59,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -809,25 +792,10 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 16,
+        "sin-datos": 15,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.86,
-      "verifiedRatio": 0,
-      "contradictedRatio": null
-    },
-    {
-      "outlet": "levante-emv.com",
-      "outletHost": "levante-emv.com",
-      "articleCount": 5,
-      "verdictCounts": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 1,
-        "promesa-repetida": 0
-      },
-      "meanTrustScore": 2.6,
+      "meanTrustScore": 2.57,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -839,10 +807,25 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
+        "sin-datos": 3,
+        "promesa-repetida": 0
+      },
+      "meanTrustScore": 3.75,
+      "verifiedRatio": 0,
+      "contradictedRatio": null
+    },
+    {
+      "outlet": "levante-emv.com",
+      "outletHost": "levante-emv.com",
+      "articleCount": 4,
+      "verdictCounts": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
         "sin-datos": 1,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.5,
+      "meanTrustScore": 2.75,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -869,11 +852,11 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 0,
+        "sin-datos": 2,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 1,
-      "verifiedRatio": null,
+      "meanTrustScore": 2.5,
+      "verifiedRatio": 0,
       "contradictedRatio": null
     },
     {
@@ -899,11 +882,11 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 0,
+        "sin-datos": 1,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 1,
-      "verifiedRatio": null,
+      "meanTrustScore": 3,
+      "verifiedRatio": 0,
       "contradictedRatio": null
     },
     {
@@ -944,11 +927,11 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 1,
+        "sin-datos": 0,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 3,
-      "verifiedRatio": 0,
+      "meanTrustScore": 1,
+      "verifiedRatio": null,
       "contradictedRatio": null
     },
     {
@@ -998,8 +981,8 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "9a6579e71eae",
-    "press-claims-verified.json": "426589fc7d58",
+    "plenos-agendas.json": "0a68c80beb2e",
+    "press-claims-verified.json": "5f440b22045d",
     "press.json": "01e8baa590ee",
     "promises.json": "4f1d71a2ebcf"
   }

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-28T06:31:59.757Z",
+  "generatedAt": "2026-09-28T10:23:35.658Z",
   "clusters": [
     {
       "clusterId": "1hy1xq8",
@@ -34,12 +34,17 @@
       ],
       "earliestDate": "2026-09-25T09:54:12.000Z",
       "latestDate": "2026-09-25T10:33:31.000Z",
-      "amountDrift": null,
+      "amountDrift": {
+        "min": 135000,
+        "max": 180000,
+        "spread": 45000,
+        "spreadPct": 0.333
+      },
       "verdictMix": {
         "verificado": 0,
-        "parcial": 0,
+        "parcial": 1,
         "contradicho": 0,
-        "sin-datos": 0,
+        "sin-datos": 5,
         "promesa-repetida": 0
       }
     },
@@ -60,7 +65,7 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 10,
+        "sin-datos": 0,
         "promesa-repetida": 0
       }
     }
@@ -70,8 +75,8 @@
     "triangulated3Plus": 0
   },
   "builtFrom": {
-    "plenos-agendas.json": "9a6579e71eae",
-    "press-claims-verified.json": "426589fc7d58",
+    "plenos-agendas.json": "0a68c80beb2e",
+    "press-claims-verified.json": "5f440b22045d",
     "press.json": "01e8baa590ee",
     "promises.json": "4f1d71a2ebcf"
   }
