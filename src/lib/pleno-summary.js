@@ -207,6 +207,31 @@ export function resumenPlenos({ plenos, agendas, manifest, votes, findings } = {
     cuota: maximo ? d.count / maximo : 0,
   }))
 
+  // `topDepartments` son las primeras áreas del recuento, no todas
+  // (`tallyDepartments` corta en 12). El 28-09-2026 dibujaba 12 de 24 y sumaba
+  // 187 puntos bajo una nota que dice que 219 llevan área, sin avisar del
+  // corte: sumando barras no se llegaba, y un área fuera se leía como vacía.
+  // Lo que falta sale del MISMO recorrido que las barras —`uniqueDepartments`
+  // y `agendaItemsWithDepartment` cuentan las claves de `deptCount`—, así que
+  // el puente cierra sin residuo; y sin hueco es null y la frase se calla.
+  const conDepartamento = agendas?.stats?.agendaItemsWithDepartment ?? null
+  const areasContadas = agendas?.stats?.uniqueDepartments
+  const dibujado = departamentos.reduce((s, d) => s + (d.n || 0), 0)
+  const resto = typeof areasContadas === 'number' ? areasContadas - departamentos.length : 0
+  const puntosFuera = conDepartamento != null ? conDepartamento - dibujado : 0
+  // Cada área de fuera tiene al menos un punto: si no cuadra, el snapshot se
+  // contradice y no se publica un puente que no cierra.
+  const fueraDeLasBarras =
+    resto > 0 && puntosFuera >= resto
+      ? {
+          dibujadas: departamentos.length,
+          areas: areasContadas,
+          resto,
+          puntos: puntosFuera,
+          con: conDepartamento,
+        }
+      : null
+
   const porAnio = [...new Set(filas.map((f) => f.anio).filter(Boolean))]
     .sort((a, b) => b - a)
     .map((anio) => ({ anio, n: filas.filter((f) => f.anio === anio).length }))
@@ -229,7 +254,8 @@ export function resumenPlenos({ plenos, agendas, manifest, votes, findings } = {
       // El hueco que la nota del reparto explica; a cero, la nota no se pinta.
       sinOrden: total - conOrden,
       puntos: agendas?.stats?.agendaItemsTotal ?? 0,
-      conDepartamento: agendas?.stats?.agendaItemsWithDepartment ?? null,
+      conDepartamento,
+      fueraDeLasBarras,
     },
     hallazgos: {
       publicados: (findings?.items ?? []).length,

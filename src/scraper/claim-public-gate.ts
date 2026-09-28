@@ -7,14 +7,17 @@
  * Policy (see
  * docs/superpowers/specs/2026-06-21-plenos-claim-ledger-editorial-gate-design.md):
  *   hidden  — any acusacion_publica that is opinativa OR not data-grounded;
- *             any machine-assigned `contradicho` (see below)
+ *             any `contradicho`, whoever signs it (see below)
  *   toggle  — non-accusation claims that are not data-grounded (sin-datos)
- *   shown   — data-grounded claims of any type (incl. data-backed accusations)
+ *   shown   — data-grounded claims of any type (incl. data-backed accusations):
+ *             a verdict in DATA_GROUNDED_VERDICTS that names a real corpus, or
+ *             that a curator signed
  *
  * Fail-safe: anything not explicitly data-grounded is hidden (accusations)
  * or toggled (everything else) — a new type/verdict can never default to shown.
  */
 import type { VerifiedClaimItem } from './pleno-claims-chunks'
+import type { OverlaySource } from './verified-merge'
 import { corpusReales } from './claim-verdicts'
 
 /**
@@ -40,7 +43,7 @@ export const DATA_GROUNDED_VERDICTS: ReadonlySet<string> = new Set([
   'promesa-repetida',
 ])
 
-/**
+/*
  * `contradicho` says "this councillor stated something the municipal record
  * contradicts". It is the most accusatory verdict the machine can assign and
  * the one the deterministic matcher is worst at, because it fires on a strong
@@ -55,20 +58,48 @@ export const DATA_GROUNDED_VERDICTS: ReadonlySet<string> = new Set([
  *
  * So a machine `contradicho` is a lead for a curator, not a publishable
  * verdict. It stays in the snapshot (the CLIs and /curator read it) and is
- * withheld from the public ledger. A curator publishes it by promoting the
- * claim into a finding, which is where the human judgement already lives.
+ * withheld from the public ledger.
  *
- * That last sentence is the whole design, and it has a corollary the
- * auto-curator broke for months: promotion into a finding is the sanctioned way
- * PAST this gate precisely because a person is standing in it. A machine that
- * promotes a gated claim has not satisfied the exception, it has walked around
- * the gate — and lands the withheld verbatim on `/hallazgos`, a page with no
- * toggle and no gate of its own. `selectBundles` in auto-curate.ts therefore
- * bundles `shown` claims only.
+ * Y ninguna firma lo publica aquí. Ningún canal produce un `contradicho`
+ * firmado: la bajada de curador no puede llegar a él (`isDowngrade`) y al motor
+ * de veredictos se le prohíbe. La condición `&& !isCuratorPromoted` que llevaba
+ * era inofensiva mientras la excepción no casaba con nada; desde que el canal
+ * viaja en la verificación (2026-09-28), una entrada de overlay editada a mano
+ * —`validateOverlay` no tiene la base, así que al leer no puede comprobar la
+ * dirección de una bajada— lo habría publicado. Lo que una persona firma como
+ * desmentido va en un hallazgo, con sus referencias de contradicción, y la cita
+ * sigue pasando por esta puerta: desde el 27-08 /hallazgos también la obedece.
+ *
+ * Corolario que el auto-curador rompió durante meses: un proceso que promueve
+ * a hallazgo una declaración retenida no satisface ninguna excepción, rodea la
+ * puerta. `selectBundles` en auto-curate.ts agrupa por eso sólo lo `shown`.
+ */
+
+/**
+ * El canal del overlay por el que firma una persona: `downgrade-verdict`, que
+ * sólo baja, exige motivo y deja el nombre de quien lo aplica. Tipado contra el
+ * enum del overlay para que un renombre deje de compilar en vez de dejar de
+ * casar.
+ */
+const CANAL_DEL_CURADOR: OverlaySource = 'curator-downgrade'
+
+/**
+ * ¿Firmó este veredicto un curador?
+ *
+ * Lee el `source` que `mergeVerified` estampa desde la ENTRADA del overlay —la
+ * validada— y no la marca `curator-downgrade` de `checkedAgainst`: una marca de
+ * pasada no funda (ver `tieneVerificadorAnotado`), y cualquier pasada podría
+ * copiarla.
+ *
+ * Hasta el 2026-09-28 leía un campo que ningún productor escribía, y aceptaba
+ * además `'curator'`, un valor que el overlay no tiene. Tres pruebas construían
+ * esa forma a mano y seguían verdes; en lo servido, cinco «parcial» firmados por
+ * un curador salían plegados como si no hubiera datos detrás. Ahora se mide por
+ * el camino real (tests/claim-public-gate.test.ts) y sobre lo servido
+ * (tests/claim-gate-servido.test.ts).
  */
 function isCuratorPromoted(item: ClaimVisibilityInput): boolean {
-  const src = item?.verification?.source
-  return src === 'curator' || src === 'curator-downgrade'
+  return item?.verification?.source === CANAL_DEL_CURADOR
 }
 
 /**
@@ -166,7 +197,7 @@ export function classifyClaimVisibility(
 ): ClaimVisibility {
   if (opts.sinProcedencia) return 'hidden'
   const verdict = item?.verification?.verdict
-  if (verdict === 'contradicho' && !isCuratorPromoted(item)) return 'hidden'
+  if (verdict === 'contradicho') return 'hidden'
   const grounded =
     typeof verdict === 'string' &&
     DATA_GROUNDED_VERDICTS.has(verdict) &&

@@ -4,6 +4,7 @@ import { usePlenoFindings } from '../hooks/usePlenoFindings'
 import { useFindingQuoteProvenance } from '../hooks/useFindingQuoteProvenance'
 import { useIndicadores } from '../hooks/useIndicadores'
 import { useOfficials } from '../hooks/useOfficials'
+import { useFrontera } from '../hooks/useFrontera'
 import { mailboxKinds } from '../lib/mailboxes'
 // El umbral se IMPORTA del motor: escrito a mano aquí, cambiar la constante
 // dejaría esta página afirmando una regla que el código ya no aplica — y esta
@@ -270,7 +271,31 @@ function MudanzaDelPortal() {
   )
 }
 
+/**
+ * Cuántas observaciones tiene la frontera, leído de dea.json.
+ *
+ * El párrafo de #frontera decía «con veinte observaciones», escrito a mano, y
+ * las dos especificaciones publicadas tienen 24 (`distribucion.n`, Riba-roja
+ * incluida). Un tamaño por especificación: si difieren se da el intervalo, y
+ * sin ninguna publicada no se escribe número.
+ *
+ * @returns {string | null} «24», «entre 24 y 31», o null.
+ */
+function useObservacionesFrontera() {
+  const { data } = useFrontera()
+  const tamanos = [
+    ...new Set(
+      (data?.especificaciones ?? [])
+        .map((e) => e?.distribucion?.n)
+        .filter((n) => Number.isInteger(n) && n > 0),
+    ),
+  ].sort((a, b) => a - b)
+  if (tamanos.length === 0) return null
+  return tamanos.length === 1 ? String(tamanos[0]) : `entre ${tamanos[0]} y ${tamanos.at(-1)}`
+}
+
 export default function Metodologia() {
+  const observacionesFrontera = useObservacionesFrontera()
   const authorship = useAuthorshipDisclosure()
   const adjudication = useAdjudicationDisclosure()
   const quoteProvenance = useQuoteProvenanceDisclosure()
@@ -1123,9 +1148,14 @@ export default function Metodologia() {
                 autonómico o estatal con un contrato municipal que compartía una palabra suelta. Una
                 concejala citando el precio del alquiler de vivienda quedaba «desmentida» por el
                 alquiler de un camión de basura; los 63.000 millones de deuda de la Generalitat, por
-                una ampliación de 32.591 € del <em>parque Generalitat</em>. Hoy un{' '}
-                <em>contradicho</em> de máquina se retiene y sólo aparece si una persona lo
-                promueve.
+                una ampliación de 32.591 € del <em>parque Generalitat</em>.{' '}
+                {/* Decía «Hoy un contradicho de máquina se retiene y sólo aparece si
+                    una persona lo promueve». Ninguna herramienta de curación puede
+                    escribir un contradicho —sólo bajan—, y desde el 27-08-2026 promover
+                    a hallazgo tampoco saca una cita de la puerta. 28-09-2026. */}
+                Hoy un <em>contradicho</em> se retiene siempre: el de máquina es una pista para
+                quien redacta, no un veredicto, y ninguna herramienta de curación puede escribir uno
+                —sólo bajan—.
               </li>
               <li>
                 <strong>sin-datos</strong> — no hay registro en las bases abiertas. Puede ser
@@ -1161,13 +1191,15 @@ export default function Metodologia() {
             <em>contradicho</em>, no la contradice— el veredicto se{' '}
             <strong>marca para revisión de un curador</strong>. Esa revisión{' '}
             <strong>no cambia ningún veredicto</strong>: sólo una persona puede rebajarlo (nunca
-            subirlo) con una herramienta dedicada, dejando el motivo verbatim. Las decisiones de
-            segunda pasada y de curación viven en una capa («overlay») separada del veredicto
-            determinista base, de modo que recalcular la base nunca borra esas decisiones. Desde
-            agosto de 2026 el <em>tipo</em> de una declaración se corrige por la misma vía: cuando
-            el extractor archiva como <code>acusacion_publica</code> algo que no acusa a nadie —el
-            caso que estrenó la herramienta fue una defensa de la constitucionalidad de una ley
-            estatal—, un curador lo reclasifica con motivo verbatim en un registro propio (
+            subirlo) con una herramienta dedicada, dejando el motivo verbatim. Lo que rebaja a{' '}
+            <em>parcial</em> se enseña como contrastado, con la evidencia que conservó y su motivo
+            por resumen: esa firma es suya, no de la máquina. Las decisiones de segunda pasada y de
+            curación viven en una capa («overlay») separada del veredicto determinista base, de modo
+            que recalcular la base nunca borra esas decisiones. Desde agosto de 2026 el{' '}
+            <em>tipo</em> de una declaración se corrige por la misma vía: cuando el extractor
+            archiva como <code>acusacion_publica</code> algo que no acusa a nadie —el caso que
+            estrenó la herramienta fue una defensa de la constitucionalidad de una ley estatal—, un
+            curador lo reclasifica con motivo verbatim en un registro propio (
             <code>pleno-claim-reclassifications.json</code>), y la herramienta sólo acepta
             movimientos que <strong>alejan</strong> de la acusación, nunca hacia ella: convertir una
             declaración en acusación agravaría lo que se afirma de quien habló, que es exactamente
@@ -1956,15 +1988,20 @@ export default function Metodologia() {
           coste se queda quieto. Riba-roja declara las mismas toneladas de residuos, los mismos
           metros cuadrados de limpieza y los mismos puntos de luz desde 2018-2019, con el coste
           actualizado cada año. Un cociente así{' '}
-          <em>puede subir sin que el servicio haya cambiado</em>, y su serie no se puede leer como
-          gestión: mide el precio, no el rendimiento. El libro de servicios lo dice una vez sobre la
-          tabla —cuántas filas dividen entre una cantidad que nadie vuelve a medir— y cada fila
-          lleva el año desde el que su cifra no se mueve; cuántos municipios comparables hacen lo
-          mismo va en la ficha del servicio, porque no es una rareza local. Toda esa salvedad se
-          deriva del dato: si el ayuntamiento vuelve a medir, desaparece sola, y si dos filas se
-          quedaron paradas por motivos distintos la frase baja otra vez a cada una.{' '}
-          <code>check:indicadores</code> falla si el aviso y el dato dejan de ir juntos, en
-          cualquiera de las dos direcciones. La medición completa está en{' '}
+          {/* Decía «puede subir sin que el servicio haya cambiado»: una
+              dirección que el dato no tiene —el €/t de la basura baja de 78,22
+              a 66,94 con las mismas toneladas—. Verificación del barrido lector
+              del 28-09-2026; la frase de cada tarjeta es
+              SALVEDAD_DENOMINADOR_CONGELADO. */}
+          <em>puede moverse sin que el servicio haya cambiado</em> —sigue al coste, sube y baja con
+          él—, y su serie no se puede leer como gestión: mide el precio, no el rendimiento. El libro
+          de servicios lo dice una vez sobre la tabla —cuántas filas dividen entre una cantidad que
+          nadie vuelve a medir— y cada fila lleva el año desde el que su cifra no se mueve; cuántos
+          municipios comparables hacen lo mismo va en la ficha del servicio, porque no es una rareza
+          local. Toda esa salvedad se deriva del dato: si el ayuntamiento vuelve a medir, desaparece
+          sola, y si dos filas se quedaron paradas por motivos distintos la frase baja otra vez a
+          cada una. <code>check:indicadores</code> falla si el aviso y el dato dejan de ir juntos,
+          en cualquiera de las dos direcciones. La medición completa está en{' '}
           <a href="/laboratorio/frontera" style={{ color: 'var(--civic)' }}>
             /laboratorio/frontera
           </a>
@@ -2496,6 +2533,12 @@ export default function Metodologia() {
           casi nunca se puede medir. Por eso está en el laboratorio, por eso la página dice qué no
           es antes de enseñar ninguna cifra, y por eso publica el método entero.
         </p>
+        {/* Decía «veinte ayuntamientos» y, abajo, «con veinte observaciones», a
+            mano; las dos fronteras publicadas tienen 24 (dea.json,
+            `distribucion.n`, Riba-roja incluida). Las observaciones se leen del
+            fichero. A cuántos terceros alcanza el conjunto de fronteras no se
+            publica —es lo que esta página se niega a nombrar—, así que esa
+            cifra se quita. Verificación del barrido lector del 28-09-2026. */}
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>No se nombra a ningún otro municipio.</strong> En{' '}
           <a href="/eficiencia" style={{ color: 'var(--civic)' }}>
@@ -2504,20 +2547,21 @@ export default function Metodologia() {
           los municipios comparados sí van con nombre, porque allí la cifra es una división de dos
           números que publica el ministerio y esconder contra quién se compara rompería el contrato
           de enseñar el trabajo. Aquí la cifra es el veredicto de un modelo de este sitio:
-          publicarla con nombres sería firmar una afirmación sobre veinte ayuntamientos que no
-          tienen aquí derecho de réplica. Se publican la puntuación propia, la distribución sin
-          nombres y el método completo, de modo que cualquiera pueda rehacer la tabla que aquí no
-          aparece. <code>check:dea</code> recalcula el experimento desde su fuente antes de cada
-          despliegue y falla si deja de reproducirse o si un tercero aparece nombrado.
+          publicarla con nombres sería firmar una afirmación sobre otros ayuntamientos que no tienen
+          aquí derecho de réplica. Se publican la puntuación propia, la distribución sin nombres y
+          el método completo, de modo que cualquiera pueda rehacer la tabla que aquí no aparece.{' '}
+          <code>check:dea</code> recalcula el experimento desde su fuente antes de cada despliegue y
+          falla si deja de reproducirse o si un tercero aparece nombrado.
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>Una puntuación de 1 no es «eficiente».</strong> Es «ninguna combinación de los
-          municipios observados lo hizo mejor», que con veinte observaciones es fácil: basta ser el
-          único con una combinación rara. La página marca cuáles están en la frontera sin que nadie
-          se apoye en ellas. Además, la frontera estimada cae siempre por dentro de la verdadera
-          —sólo se ve a quien declara—, así que todas las puntuaciones están sesgadas al alza por
-          construcción; se publica la corrección de sesgo y su intervalo, y cuando el intervalo se
-          sale de la escala se dice, en vez de imprimir el recorte como si fuera el dato.
+          municipios observados lo hizo mejor», que con {observacionesFrontera ?? 'pocas'}{' '}
+          observaciones es fácil: basta ser el único con una combinación rara. La página marca
+          cuáles están en la frontera sin que nadie se apoye en ellas. Además, la frontera estimada
+          cae siempre por dentro de la verdadera —sólo se ve a quien declara—, así que todas las
+          puntuaciones están sesgadas al alza por construcción; se publica la corrección de sesgo y
+          su intervalo, y cuando el intervalo se sale de la escala se dice, en vez de imprimir el
+          recorte como si fuera el dato.
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>Lo más útil del experimento no es una puntuación.</strong> Al recorrer las diez
