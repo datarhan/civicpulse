@@ -46,3 +46,60 @@ describe('RepartoPorArea — cada salvedad sólo con su hueco', () => {
     expect(texto).not.toMatch(/Son los puntos|llevan área asignada/)
   })
 })
+
+/**
+ * Las barras son las primeras áreas, no todas: 12 de 24 el 28-09-2026, y
+ * sumaban 187 de los 219 puntos con área que la nota anuncia. Sin decirlo, un
+ * lector no llegaba a la cifra sumando barras y daba por vacía un área que
+ * sólo se había quedado fuera del corte.
+ */
+describe('RepartoPorArea — lo que queda fuera de las barras', () => {
+  const agenda = { sesiones: 62, sinOrden: 0, puntos: 619, conDepartamento: 219 }
+
+  it('dice cuántas áreas no tienen barra y cuántos puntos reúnen', () => {
+    const texto = pinta(
+      {
+        ...agenda,
+        fueraDeLasBarras: { dibujadas: 12, areas: 24, resto: 12, puntos: 32, con: 219 },
+      },
+      62,
+    )
+    expect(texto).toMatch(
+      /Se dibujan 12 de las 24 áreas con algún punto; las 12 que faltan reúnen 32 de los 219 puntos con área\./,
+    )
+  })
+
+  it('en singular cuando falta una sola', () => {
+    const texto = pinta(
+      {
+        ...agenda,
+        fueraDeLasBarras: { dibujadas: 12, areas: 13, resto: 1, puntos: 1, con: 219 },
+      },
+      62,
+    )
+    expect(texto).toMatch(/la que falta reúne 1 de los 219 puntos con área/)
+    expect(texto).not.toMatch(/las 1 que faltan/)
+  })
+
+  it('sin áreas fuera no dice nada del corte', () => {
+    const texto = pinta({ ...agenda, fueraDeLasBarras: null }, 62)
+    // Midió algo: la nota se pintó por su otra mitad.
+    expect(texto).toMatch(/llevan área asignada/)
+    expect(texto).not.toMatch(/Se dibujan|que faltan/)
+  })
+
+  it('la nota aparece aunque no falte nada más que el corte', () => {
+    const texto = pinta(
+      {
+        sesiones: 62,
+        sinOrden: 0,
+        puntos: 219,
+        conDepartamento: 219,
+        fueraDeLasBarras: { dibujadas: 12, areas: 14, resto: 2, puntos: 3, con: 219 },
+      },
+      62,
+    )
+    expect(texto).toMatch(/Se dibujan 12 de las 14 áreas con algún punto/)
+    expect(texto).not.toMatch(/llevan área asignada/)
+  })
+})
