@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-24T08:00:25.967Z",
+  "generatedAt": "2026-09-28T07:36:42.625Z",
   "source": {
     "description": "Claims extracted automatically from YouTube-derived pleno transcripts. Each record carries requiresHumanApproval:true and is cross-referenced against tenders / BDNS / budget / promises by the verifier pass before any editorial surface.",
     "contract": "Machine-written; never substitutes for the published human-verified record. Speaker attribution at bloc level only — no individual naming."
@@ -133224,11 +133224,11 @@
     }
   ],
   "builtFrom": {
-    "officials.json": "04d14ddcba1e",
+    "officials.json": "8d7c5f15b6e0",
     "pleno-findings.json": "09734558c009",
-    "pleno-speaker-map/": "310b53e51243",
+    "pleno-speaker-map/": "73dc85dc6615",
     "pleno-transcripts/": "8c59df9da87e",
-    "plenos-agendas.json": "2295f51e992d",
-    "plenos.json": "9e3260ed4d2a"
+    "plenos-agendas.json": "0dd03f8ae253",
+    "plenos.json": "685983be469d"
   }
 }

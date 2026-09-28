@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-28T06:31:59.744Z",
+  "generatedAt": "2026-09-28T07:56:19.772Z",
   "windowDays": 30,
   "articles": [
     {
@@ -766,23 +766,6 @@
         "opinionFraction": 0
       },
       "score": 3
-    },
-    {
-      "articleId": "qt6rcw",
-      "articleFingerprint": "1b5ktzg",
-      "outlet": "levante-emv.com",
-      "outletHost": "levante-emv.com",
-      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOUnB3UTRaWktudHJjRnJTbHZIYUtQWmw4WjhZb2lWTFN0Sm11TEtGQ2IwUnY5NkZ2Wlp5b20tclZrWVNQVnhXalIwLVdhQUNMVmJMU1hObzh0Q0o1cjdfQ1J4Y2VodVVsVVgzczgtQXl6NEg2Z3BSRW9MS1JqaWJTRjJJSXFHS05uS0Q1bGhENHFlM05yOXBfeDdWZl9QdjViYkRYVXpNQXlwUVVQZDNPRkZBSzNQakw0aG1jdGRhRjJYNGdVelp0V0ZHVjVNOUJxOGY5NC1GTnRqbEtvMHVqRtIB5gFBVV95cUxPWW9pN21DLVNmdnRtQ3Z3WW9HOUtzLXpibWducmRURG5BWTZXdDNGVFlwQ1pLZEdreGk0X3FiM0xhTHhPSVpHbEhRWjdvd1JDa2ZYV1FjZDFrYnZtTk45ZTNIZkNFWnZVSl8wN1lTOXoySGJJZWJBZmE5UHJUNzNzaTJHRHBZVW5VdlVDTDZyczRIWXNfMVRUaDQzdzFWUjJLYUgwTC1QY2tKWEhZS1o5NW1LTGc5dVhPMXF2bzNtWU0zSDRRV0VubjZ2REJXQnY1cUNnQ284aEszQzJXcTNxQ0lGVW1idw?oc=5",
-      "date": "2026-08-29T07:00:00.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     }
   ],
   "outlets": [
@@ -817,21 +800,6 @@
       "contradictedRatio": null
     },
     {
-      "outlet": "levante-emv.com",
-      "outletHost": "levante-emv.com",
-      "articleCount": 5,
-      "verdictCounts": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 1,
-        "promesa-repetida": 0
-      },
-      "meanTrustScore": 2.6,
-      "verifiedRatio": 0,
-      "contradictedRatio": null
-    },
-    {
       "outlet": "valenciaplaza.com",
       "outletHost": "valenciaplaza.com",
       "articleCount": 4,
@@ -843,6 +811,21 @@
         "promesa-repetida": 0
       },
       "meanTrustScore": 2.5,
+      "verifiedRatio": 0,
+      "contradictedRatio": null
+    },
+    {
+      "outlet": "levante-emv.com",
+      "outletHost": "levante-emv.com",
+      "articleCount": 4,
+      "verdictCounts": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 1,
+        "promesa-repetida": 0
+      },
+      "meanTrustScore": 2.75,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -998,7 +981,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "9a6579e71eae",
+    "plenos-agendas.json": "9f33385d312e",
     "press-claims-verified.json": "426589fc7d58",
     "press.json": "01e8baa590ee",
     "promises.json": "4f1d71a2ebcf"
