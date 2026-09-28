@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-28T07:54:39.464Z",
+  "generatedAt": "2026-09-28T18:58:33.258Z",
   "version": "1",
   "plenoId": "15uvjew",
   "plenoDate": "2026-07-27",
@@ -690,7 +690,8 @@
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
-        ]
+        ],
+        "source": "curator-downgrade"
       },
       "visibility": "toggle"
     },
@@ -4513,7 +4514,8 @@
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
-        ]
+        ],
+        "source": "curator-downgrade"
       },
       "visibility": "toggle"
     },
@@ -4780,7 +4782,8 @@
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
-        ]
+        ],
+        "source": "curator-downgrade"
       },
       "visibility": "toggle"
     },
@@ -4810,7 +4813,8 @@
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
-        ]
+        ],
+        "source": "curator-downgrade"
       },
       "visibility": "toggle"
     },
@@ -4840,7 +4844,8 @@
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
-        ]
+        ],
+        "source": "curator-downgrade"
       },
       "visibility": "toggle"
     },
@@ -4870,7 +4875,8 @@
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
-        ]
+        ],
+        "source": "curator-downgrade"
       },
       "visibility": "toggle"
     },
@@ -4933,7 +4939,8 @@
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
-        ]
+        ],
+        "source": "curator-downgrade"
       },
       "visibility": "toggle"
     },
@@ -4963,7 +4970,8 @@
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
-        ]
+        ],
+        "source": "curator-downgrade"
       },
       "visibility": "toggle"
     },
@@ -4993,7 +5001,8 @@
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
-        ]
+        ],
+        "source": "curator-downgrade"
       },
       "visibility": "toggle"
     },
@@ -5023,7 +5032,8 @@
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
-        ]
+        ],
+        "source": "curator-downgrade"
       },
       "visibility": "toggle"
     },
@@ -5149,7 +5159,8 @@
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
-        ]
+        ],
+        "source": "curator-downgrade"
       },
       "visibility": "toggle"
     },
@@ -5179,7 +5190,8 @@
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
-        ]
+        ],
+        "source": "curator-downgrade"
       },
       "visibility": "toggle"
     },
@@ -5357,7 +5369,8 @@
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
-        ]
+        ],
+        "source": "curator-downgrade"
       },
       "visibility": "toggle"
     },
@@ -5387,7 +5400,8 @@
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
-        ]
+        ],
+        "source": "curator-downgrade"
       },
       "visibility": "toggle"
     },
@@ -6335,9 +6349,10 @@
         ],
         "checkedAgainst": [
           "curator-downgrade"
-        ]
+        ],
+        "source": "curator-downgrade"
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -6372,9 +6387,10 @@
         ],
         "checkedAgainst": [
           "curator-downgrade"
-        ]
+        ],
+        "source": "curator-downgrade"
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {

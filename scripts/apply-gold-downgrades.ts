@@ -13,7 +13,12 @@
 import { readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { loadOverlay, rebuildVerified, OVERLAY } from './verified-rebuild'
-import { applyOverlayEntries, isDowngrade, type ApplyEntry } from '../src/scraper/verified-merge'
+import {
+  applyOverlayEntries,
+  isDowngrade,
+  verificacionDeBajada,
+  type ApplyEntry,
+} from '../src/scraper/verified-merge'
 import type { ClaimVerdict, ClaimVerification } from '../src/scraper/claim-verifier'
 import type { GoldRow } from '../src/scraper/verifier-eval'
 
@@ -43,13 +48,7 @@ for (const g of gold) {
   const reason = `Gold review (ai): ${g.notes ?? 'reviewed verdict downgrade'}`
   entries.push({
     claimId: g.claimId,
-    verification: {
-      claimId: g.claimId,
-      verdict: g.goldVerdict,
-      summary: reason,
-      evidence: g.goldVerdict === 'sin-datos' ? [] : cur.evidence,
-      checkedAgainst: ['curator-downgrade'],
-    },
+    verification: verificacionDeBajada(g.claimId, cur, g.goldVerdict, reason),
     source: 'curator-downgrade',
     reason,
     editor: 'ai-gold-review',

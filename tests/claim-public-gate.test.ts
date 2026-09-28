@@ -1,5 +1,14 @@
 import { describe, it, expect } from 'vitest'
 import { classifyClaimVisibility, gateItemsForPublic } from '../src/scraper/claim-public-gate'
+import {
+  applyOverlayEntries,
+  mergeVerified,
+  validateOverlay,
+  verificacionDeBajada,
+  type Overlay,
+  type VerifiedItem,
+} from '../src/scraper/verified-merge'
+import { corpusReales, type ClaimVerdict } from '../src/scraper/claim-verdicts'
 
 const item = (
   type: string,
@@ -97,16 +106,6 @@ describe('claim-public-gate — machine contradicho', () => {
       'hidden',
     )
   })
-
-  it('shows a contradicho a curator stands behind', () => {
-    const machine = item('afirmacion_numerica', 'contradicho')
-    expect(
-      classifyClaimVisibility({
-        ...machine,
-        verification: { ...machine.verification, source: 'curator' },
-      } as never),
-    ).toBe('shown')
-  })
 })
 
 // ---------------------------------------------------------------------------
@@ -167,18 +166,6 @@ describe('claim-public-gate — un veredicto sin verificador anotado no está fu
       verification: { verdict: 'verificado' },
     }
     expect(classifyClaimVisibility(sinCampo as never)).toBe('hidden')
-  })
-
-  it('un curador sigue pudiendo publicar lo que firma', () => {
-    // La promoción por curador es la vía sancionada para pasar esta puerta, y no
-    // puede depender de que una máquina anotara algo.
-    const c = item('acusacion_publica', 'verificado', 'factual', [])
-    expect(
-      classifyClaimVisibility({
-        ...c,
-        verification: { ...c.verification, source: 'curator' },
-      } as never),
-    ).toBe('shown')
   })
 
   it('pliega una valoración política sin fundar — el destino de la reclasificación curada', () => {
@@ -268,17 +255,6 @@ describe('claim-public-gate — una marca de pasada no funda', () => {
     ).toBe('shown')
   })
 
-  it('el curador sigue pasando, aunque sólo haya una marca', () => {
-    // La vía sancionada no puede depender de que una máquina anotara nada.
-    const c = item('acusacion_publica', 'verificado', 'factual', ['llm-second-pass'])
-    expect(
-      classifyClaimVisibility({
-        ...c,
-        verification: { ...c.verification, source: 'curator' },
-      } as never),
-    ).toBe('shown')
-  })
-
   it('la prueba ha evaluado las dos ramas, no sólo la que oculta', () => {
     // Un «oculta todo» pasaría los casos de arriba. Este control lo impide.
     expect(
@@ -291,5 +267,128 @@ describe('claim-public-gate — una marca de pasada no funda', () => {
         item('acusacion_publica', 'verificado', 'factual', ['verdict-engine']) as never,
       ),
     ).toBe('hidden')
+  })
+})
+
+/**
+ * Lo que firma un curador, por el camino REAL: la verificación que escribe
+ * `downgrade-verdict` → `applyOverlayEntries` → `mergeVerified` → la puerta.
+ *
+ * Aquí había tres pruebas que construían a mano `verification.source:
+ * 'curator'`, una forma que ningún productor escribe. `mergeVerified` guardaba
+ * el canal en la ENTRADA del overlay y no lo llevaba a la verificación, así que
+ * la excepción de curador no casaba con nada en producción mientras la suite
+ * seguía verde (docs/DATA_INTEGRITY.md regla 1). Medido el 28-09-2026 sobre los
+ * trozos servidos: cinco «parcial» firmados por un curador salían `toggle`, y
+ * /hallazgos citaba uno como «sin contraste en los datos» mientras /plenos lo
+ * rotulaba «Parcial». Lo destapó el 27-08: desde que una marca de pasada dejó
+ * de fundar, la de `curator-downgrade` tampoco, y la excepción que debía
+ * recogerla estaba muerta.
+ *
+ * Decisión del operador, 2026-09-28: lo que un curador baja a `parcial` se
+ * publica (`shown`), que es lo que la cabecera de la puerta ya prometía.
+ */
+const MOTIVO = 'la evidencia acredita el contrato, no lo que afirma la cita'
+
+/** Una fila como la deja el verificador determinista: fuerte, con corpus y evidencia. */
+function deLaBase(type: string, accusationSubtype?: string): VerifiedItem {
+  return {
+    claim: {
+      id: 'c1',
+      type,
+      accusationSubtype,
+      plenoId: 'p1',
+      plenoDate: '2026-04-20',
+      verbatim: 'x',
+      segmentIndex: 0,
+    } as unknown as VerifiedItem['claim'],
+    verification: {
+      claimId: 'c1',
+      verdict: 'verificado',
+      summary: 's',
+      evidence: [{ kind: 'tender', ref: 'r', snippet: 'sn' }],
+      checkedAgainst: ['tenders'],
+    },
+  }
+}
+
+/** Lo que publica una bajada de curador, por el mismo camino que la CLI. */
+function bajadaDeCurador(base: VerifiedItem, nuevo: ClaimVerdict): VerifiedItem {
+  const overlay = applyOverlayEntries(
+    { version: 1, generatedAt: '', entries: {} },
+    [
+      {
+        claimId: base.claim.id,
+        verification: verificacionDeBajada(base.claim.id, base.verification, nuevo, MOTIVO),
+        source: 'curator-downgrade',
+        reason: MOTIVO,
+        editor: 'curador',
+      },
+    ],
+    '2026-09-28T00:00:00.000Z',
+    new Map([[base.claim.id, base.verification.verdict]]),
+  )
+  return mergeVerified([base], overlay)[0]
+}
+
+describe('claim-public-gate — lo que firma un curador, por el camino real', () => {
+  it('una bajada a parcial se sigue publicando: responde una persona', () => {
+    const base = deLaBase('cita_obra')
+    expect(classifyClaimVisibility(base), 'control: la base ya se publicaba').toBe('shown')
+    const firmada = bajadaDeCurador(base, 'parcial')
+    // La vía sancionada no puede depender de que una máquina anotara nada, y
+    // aquí no anotó nada: la bajada deja sólo su marca, ningún corpus.
+    expect(corpusReales(firmada.verification.checkedAgainst)).toEqual([])
+    expect(classifyClaimVisibility(firmada)).toBe('shown')
+  })
+
+  it('también la de una acusación contrastable', () => {
+    const firmada = bajadaDeCurador(deLaBase('acusacion_publica', 'factual'), 'parcial')
+    expect(classifyClaimVisibility(firmada)).toBe('shown')
+  })
+
+  it('una acusación opinativa sigue oculta aunque la firme un curador', () => {
+    const firmada = bajadaDeCurador(deLaBase('acusacion_publica', 'opinativa'), 'parcial')
+    expect(classifyClaimVisibility(firmada)).toBe('hidden')
+  })
+
+  it('bajar a sin-datos no funda nada, lo firme quien lo firme', () => {
+    expect(classifyClaimVisibility(bajadaDeCurador(deLaBase('cita_obra'), 'sin-datos'))).toBe(
+      'toggle',
+    )
+    expect(
+      classifyClaimVisibility(
+        bajadaDeCurador(deLaBase('acusacion_publica', 'factual'), 'sin-datos'),
+      ),
+    ).toBe('hidden')
+  })
+
+  it('un contradicho no se publica aunque el overlay diga que lo firmó un curador', () => {
+    // Ningún canal lo produce —`isDowngrade` no admite contradicho como destino
+    // y al motor de veredictos se le prohíbe—, pero `validateOverlay` no puede
+    // comprobar la dirección de una bajada al LEER: no tiene la base. Una entrada
+    // editada a mano llega hasta aquí, y la puerta es la última que la ve.
+    const aMano: Overlay = {
+      version: 1,
+      generatedAt: '',
+      entries: {
+        c1: {
+          verification: {
+            claimId: 'c1',
+            verdict: 'contradicho',
+            summary: MOTIVO,
+            evidence: [{ kind: 'tender', ref: 'r', snippet: 'sn' }],
+            checkedAgainst: ['curator-downgrade'],
+          },
+          source: 'curator-downgrade',
+          reason: MOTIVO,
+          appliedAt: '2026-09-28T00:00:00.000Z',
+        },
+      },
+    }
+    expect(() => validateOverlay(aMano), 'el cargador la acepta').not.toThrow()
+    const fila = mergeVerified([deLaBase('cita_obra')], aMano)[0]
+    expect(fila.verification.verdict).toBe('contradicho')
+    expect(classifyClaimVisibility(fila)).toBe('hidden')
   })
 })

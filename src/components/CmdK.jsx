@@ -107,15 +107,29 @@ function PanelCmdK({ onClose }) {
         to: `/quejas/${qu.service_request_id.toLowerCase()}`,
         icon: Ic.warn,
       })),
+      // Una ficha sale por su título, su severidad y su fecha, sin ninguna cita.
+      //
+      // Se rotulaba con los 80 primeros caracteres de su PRIMERA cita, detrás de
+      // su grupo, sin preguntar nunca a la puerta editorial. Desde el 27-08-2026
+      // /hallazgos retiene el literal de las citas `hidden` (`citaRetenida`, en
+      // PlenoFindings.jsx), y este buscador, montado en todas las rutas, lo
+      // seguía imprimiendo al lado de la ficha que no lo imprime.
+      //
+      // No se salta a la primera cita no retenida: /hallazgos imprime cada una
+      // con las marcas que la matizan («sin contraste en los datos», «no consta
+      // en la transcripción revisada»), y en este renglón no cabe ninguna. Ni se
+      // pone el resumen en su lugar: un resumen puede repetir el literal
+      // retenido, y el 28-09-2026 uno lo repetía casi entero. El grupo se va con
+      // la cita porque era el de quien la dijo; sin ella se leería como el de la
+      // ficha, y muchas citan a más de un grupo.
+      //
+      // El precio: teclear las palabras de una cita ya no encuentra su ficha. Es
+      // también lo que impide al buscador confirmar qué dice un literal retenido
+      // (tests/components/cmdk-cita-retenida.test.jsx).
       ...(findings?.items ?? []).map((f) => ({
         kind: 'Hallazgo',
         label: f.title,
-        sub:
-          (f.severity ? f.severity + ' · ' : '') +
-          f.plenoDate +
-          (f.quotes?.[0]?.speakerGroup ? ' · ' + f.quotes[0].speakerGroup : '') +
-          ' · ' +
-          (f.quotes?.[0]?.text?.slice(0, 80) ?? ''),
+        sub: (f.severity ? f.severity + ' · ' : '') + f.plenoDate,
         to: `/hallazgos/${f.id}`,
         icon: Ic.warn,
       })),

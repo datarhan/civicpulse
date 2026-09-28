@@ -34,7 +34,8 @@ const ANIOS = [2019, 2020, 2021, 2022, 2023]
 
 describe('scraper/declaracion-congelada', () => {
   it('marca congelada la serie que repite el mismo valor todas las entregas', () => {
-    // El coste sube cada año; la unidad no se mueve. Es el patrón de Riba-roja.
+    // El coste cambia cada año —aquí sube; en la basura de Riba-roja baja—, y la
+    // unidad no se mueve. Es la forma de Riba-roja, no su dirección.
     const filas = ANIOS.map((a, i) => fila('46001', a, 100000 + i * 20000, 11059.41))
     const r = medirDeclaracionCongelada(filas, ['a1621'], ANIOS)
     const unidad = r.series.find((s) => s.magnitud === 'unidad')!

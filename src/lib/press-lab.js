@@ -23,12 +23,14 @@ export function pressLabSummary({ press = [], verified = [] } = {}, now = Date.n
   const auditedIds = new Set()
   let verificado = 0
   let contradicho = 0
+  let parcial = 0
   for (const row of verified) {
     const id = row?.claim?.articleId
     if (id) auditedIds.add(id)
     const v = row?.verification?.verdict
     if (v === 'verificado') verificado += 1
     else if (v === 'contradicho') contradicho += 1
+    else if (v === 'parcial') parcial += 1
   }
 
   const totalClaims = verified.length
@@ -58,6 +60,10 @@ export function pressLabSummary({ press = [], verified = [] } = {}, now = Date.n
     // porque es el DENOMINADOR de la discrepancia, y una tasa cuyo divisor no
     // se ve es una tasa que nadie puede desmentir.
     resueltasClaims: verificado + contradicho,
+    // Las parciales no resuelven —no entran en ninguna de las dos tasas—, pero la
+    // tarjeta las pinta con su pastilla. Se cuentan para que la prosa pueda
+    // nombrarlas en vez de negarlas.
+    parcialClaims: parcial,
     // La de DISCREPANCIA no es una cobertura, es un hallazgo, y ahí el 0
     // miente: «0 %» se lee «hemos mirado y no hay discrepancias» cuando lo
     // cierto es «no se ha mirado». Sin una sola fila resuelta, la tasa no vale
@@ -89,6 +95,19 @@ export function pressLabSummary({ press = [], verified = [] } = {}, now = Date.n
 }
 
 /**
+ * La etiqueta de cada veredicto en las pastillas de /laboratorio. Vive aquí y no en la
+ * página porque la prosa de este módulo nombra la pastilla: con una copia a cada lado,
+ * renombrar una deja la frase hablando de una etiqueta que ya no se ve.
+ */
+export const VERDICT_LABEL = {
+  verificado: 'Verificado',
+  parcial: 'Parcial',
+  contradicho: 'Discrepa',
+  'sin-datos': 'Sin registro',
+  'promesa-repetida': 'Promesa repetida',
+}
+
+/**
  * La frase de la entradilla de /laboratorio sobre cuántas afirmaciones llegan a un
  * veredicto, sacada del mismo recuento que las tasas.
  *
@@ -102,6 +121,22 @@ const numero = (n) => new Intl.NumberFormat('es-ES').format(n)
 const plural = (n, uno, varios) => `${numero(n)} ${n === 1 ? uno : varios}`
 
 /**
+ * Las parciales, nombradas y contadas.
+ *
+ * Una `parcial` no resuelve, pero la tarjeta la pinta con su pastilla, y el 28-09-2026
+ * la entradilla y el aviso decían «ninguna ha llegado a un veredicto» —y el aviso se
+ * titulaba «Sin veredictos todavía»— encima de la tarjeta del Ayuntamiento con «1
+ * Parcial». Cierto al pie de la letra, porque una parcial ni confirma ni desmiente; pero
+ * se lee «no hay veredictos», y la página enseña uno (revisión lectora de ese día).
+ *
+ * La marca se atribuye al verificador, con lo que él mismo dice de ella: es una
+ * coincidencia automática —la de ese día emparejaba los 135.000 € de los contenedores
+ * con un contrato de 131.336 € para unas pérgolas—, no algo que esta página afirme.
+ */
+const parcialesMarcadas = (n) =>
+  `el verificador ha marcado ${numero(n)} como «${VERDICT_LABEL.parcial}» (datos relacionados, pero no idénticos)`
+
+/**
  * El aviso de /laboratorio cuando no hay nada resuelto, o null si sí lo hay.
  *
  * Eran dos estados con un solo texto. «Extracción pendiente … no se ha examinado
@@ -111,11 +146,15 @@ const plural = (n, uno, varios) => `${numero(n)} ${n === 1 ? uno : varios}`
  * compararlo»: no resuelve la tasa, pero tampoco es «sin mirar». Las cifras salen
  * del recuento para que la frase no se quede vieja cuando el dato se mueva.
  *
+ * Y un tercero: con alguna `parcial` no se titula «Sin veredictos» (ver
+ * `parcialesMarcadas`).
+ *
  * @param {ReturnType<typeof pressLabSummary>} summary
  * @returns {{titulo: string, texto: string} | null}
  */
 export function avisoSinVeredicto(summary) {
   const total = summary?.totalClaims ?? 0
+  const parciales = summary?.parcialClaims ?? 0
   if ((summary?.resueltasClaims ?? 0) > 0) return null
   if (total === 0) {
     return {
@@ -125,21 +164,47 @@ export function avisoSinVeredicto(summary) {
         'pero todavía no se ha extraído ninguna afirmación de ellos, así que las tasas no tienen nada que medir.',
     }
   }
+  const extraidas =
+    `Se han extraído y contrastado ${plural(total, 'afirmación', 'afirmaciones')} de ` +
+    `${plural(summary?.auditedCount ?? 0, 'artículo', 'artículos')}`
+  const tasas =
+    'Por eso la tasa de discrepancia aparece como «—» —no hay nada resuelto entre lo que ' +
+    'dividir— y la de verificación marca el 0 % que le corresponde.'
+  if (parciales > 0) {
+    return {
+      titulo: 'Nada resuelto todavía.',
+      texto:
+        `${extraidas}, pero ninguna ha quedado confirmada ni desmentida: ` +
+        `${parcialesMarcadas(parciales)}, y una coincidencia parcial no cuenta como resuelta. ${tasas}`,
+    }
+  }
   return {
     titulo: 'Sin veredictos todavía.',
-    texto:
-      `Se han extraído y contrastado ${plural(total, 'afirmación', 'afirmaciones')} de ` +
-      `${plural(summary?.auditedCount ?? 0, 'artículo', 'artículos')}, pero ninguna ha llegado a un ` +
-      'veredicto que la confirme o la desmienta. Por eso la tasa de discrepancia aparece como «—» ' +
-      '—no hay nada resuelto entre lo que dividir— y la de verificación marca el 0 % que le corresponde.',
+    texto: `${extraidas}, pero ninguna ha llegado a un veredicto que la confirme o la desmienta. ${tasas}`,
   }
 }
 
 export function fraseVeredictos(summary) {
   const total = summary?.totalClaims ?? 0
   const resueltas = summary?.resueltasClaims ?? 0
+  const parciales = summary?.parcialClaims ?? 0
   if (total === 0) {
     return 'Todavía no hay afirmaciones analizadas; cuando las haya, las tasas de aquí abajo dirán cuántas llegan a un veredicto.'
+  }
+  // Con parciales, «ninguna ha llegado a un veredicto» niega la pastilla que la tarjeta
+  // pinta, y «la otra mitad / la mayoría vuelve sin nada» mete entre las que no trajeron
+  // nada a unas que volvieron con datos relacionados: con 1 verificada, 5 parciales y 4
+  // sin-datos, «la mayoría» eran 4 de 10. Así que se cuentan las dos.
+  if (parciales > 0) {
+    const cola = 'no cuentan una coincidencia parcial como resuelta.'
+    if (resueltas === 0) {
+      return `Por ahora ninguna ha quedado confirmada ni desmentida: ${parcialesMarcadas(parciales)}, y las tasas de aquí abajo ${cola}`
+    }
+    return (
+      `De ${plural(total, 'afirmación', 'afirmaciones')}, ` +
+      `${plural(resueltas, 'ha quedado confirmada o desmentida', 'han quedado confirmadas o desmentidas')} ` +
+      `y ${parcialesMarcadas(parciales)}; las tasas de aquí abajo dicen en qué sentido, y ${cola}`
+    )
   }
   if (resueltas === 0) {
     return 'Por ahora ninguna ha llegado a un veredicto que la confirme o la desmienta, y así lo dicen las tasas de aquí abajo.'

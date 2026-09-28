@@ -1,8 +1,8 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-09-28T06:30:09.763Z",
+  "generatedAt": "2026-09-28T10:39:35.547Z",
   "frozenUntil": null,
-  "legalNotice": "CivicPulse es un proyecto de civic-tech independiente, sin vinculación con el Ayuntamiento de Riba-roja de Túria ni con ningún partido político. Las promesas listadas son compromisos públicos atribuidos a partidos y cargos mediante fuentes primarias enlazadas. Para correcciones, derecho de rectificación o propuesta de nuevas fuentes: abrir una issue en github.com/datarhan/civicpulse con la etiqueta correccion-promesa. Plazo de revisión: 24 h. Plazo de resolución: 72 h. Durante el periodo electoral oficial (LOREG art. 50), el tracker entra en modo solo-lectura y los estados quedan congelados a la fecha publicada en cada ficha.",
+  "legalNotice": "CivicPulse es un proyecto de civic-tech independiente, sin vinculación con el Ayuntamiento de Riba-roja de Túria ni con ningún partido político. Las promesas listadas son compromisos públicos atribuidos a partidos y cargos, cada uno con su fuente enlazada: el documento oficial o la noticia de prensa que recoge la cita. Para correcciones, derecho de rectificación o propuesta de nuevas fuentes: abrir una issue en github.com/datarhan/civicpulse con la etiqueta correccion-promesa. Plazo de revisión: 24 h. Plazo de resolución: 72 h. Durante el periodo electoral oficial (LOREG art. 50), el tracker entra en modo solo-lectura y los estados quedan congelados a la fecha publicada en cada ficha.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new?labels=correccion-promesa",
   "methodologyUrl": "/metodologia",
   "items": [
