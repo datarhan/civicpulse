@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { render, screen, waitFor, within } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import QuejasDashboard from '../../src/pages/QuejasDashboard'
@@ -211,5 +211,87 @@ describe('SlaPanel: las respuestas del ayuntamiento se cuentan desde el registro
     })
     const p = await panel()
     expect(p.textContent).toMatch(/⚠\s*1/)
+  })
+})
+
+/**
+ * «Acción urgente»: el plazo, en el calendario de la sede.
+ *
+ * La lista pinta «Silencio» cuando da el plazo por vencido, así que su cuenta es
+ * una afirmación pública. Contaba tandas de 24 horas desde la marca leída en hora
+ * local: registrada a las 00:30 del 31 de enero en Madrid (`2026-01-30 23:30:00`,
+ * como la escribe el bot), el plazo de tres meses acaba con el 30 de abril y son
+ * 89 días; la lista decía 90, el 30 de abril quedaba «1d» y el 1 de mayo, ya
+ * vencido, «0d».
+ */
+describe('Acción urgente: el plazo, en el calendario de la sede', () => {
+  const antes = process.env.TZ
+  afterEach(() => {
+    vi.useRealTimers()
+    if (antes === undefined) delete process.env.TZ
+    else process.env.TZ = antes
+  })
+
+  const pinta = () =>
+    mountWith({
+      '/data/quejas.json': {
+        generatedAt: '2026-04-30T04:00:00Z',
+        source: {},
+        stats: {
+          total: 1,
+          byState: { registrada: 1 },
+          byNeighborhood: { 'santa-rosa': 1 },
+          byCategory: { via_publica: 1 },
+          byConcejal: {},
+        },
+        items: [
+          {
+            service_request_id: 'Q-1',
+            status: 'registrada',
+            service_code: 'via_publica',
+            service_name: 'via_publica',
+            description: 'bache',
+            requested_datetime: '2026-01-10 08:30:00',
+            updated_datetime: '2026-01-30 23:30:00',
+            lat: null,
+            long: null,
+            address_string: 'santa-rosa',
+            apoyos: 12,
+            concejalia_area: 'Obra Pública',
+            concejal_slug: null,
+            registro_entry_number: 'RE-1',
+            registered_at: '2026-01-30 23:30:00',
+          },
+        ],
+      },
+      '/data/officials.json': {
+        generatedAt: '2026-04-20T00:00:00Z',
+        source: 'ribarroja.es',
+        count: 0,
+        composition: {},
+        officials: [],
+      },
+    })
+
+  const enMadridA = (instante) => {
+    process.env.TZ = 'Europe/Madrid'
+    expect(new Date(2026, 3, 30, 12).getTimezoneOffset(), 'no se aplicó Europe/Madrid').toBe(-120)
+    vi.useFakeTimers({ shouldAdvanceTime: true })
+    vi.setSystemTime(new Date(instante))
+  }
+
+  it('el último día quedan 0d, sobre un plazo de 89 días', async () => {
+    enMadridA('2026-04-30T21:59:00Z') // 23:59 del 30 de abril en Madrid
+    pinta()
+    expect(await screen.findByText(/plazo 89 días/)).toBeInTheDocument()
+    expect(screen.getByText('0d')).toBeInTheDocument()
+    expect(screen.queryByText('Silencio')).toBeNull()
+  })
+
+  it('a las 00:00 de Madrid del día siguiente, +1d y «Silencio»', async () => {
+    enMadridA('2026-04-30T22:30:00Z') // 00:30 del 1 de mayo en Madrid
+    pinta()
+    expect(await screen.findByText('+1d')).toBeInTheDocument()
+    expect(screen.getByText('Silencio')).toBeInTheDocument()
   })
 })
