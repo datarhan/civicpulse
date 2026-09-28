@@ -698,8 +698,7 @@ export const CATALOGUE = {
     'plenos.indice.escalera.orden': 'Con orden del día extraído',
     'plenos.indice.escalera.declaraciones': 'Con declaraciones extraídas',
     'plenos.indice.escalera.votaciones': 'Con votaciones transcritas',
-    'plenos.indice.escalera.nota':
-      'Los cuatro escalones se cuentan sobre las mismas {n} sesiones, pero no están anidados:',
+    'plenos.indice.escalera.nota': 'Los cuatro escalones se cuentan sobre las mismas {n} sesiones.',
     'plenos.indice.escalera.declSinOrden.uno':
       'una sesión tiene declaraciones extraídas sin su orden del día',
     'plenos.indice.escalera.declSinOrden.varios':
@@ -708,9 +707,9 @@ export const CATALOGUE = {
     'plenos.indice.escalera.votosSinDecl.varios': '{n} tienen votaciones sin declaraciones',
     'plenos.indice.escalera.ambas': '{a}, y {b}',
     'plenos.indice.escalera.sueltas':
-      '{lista}. El orden del día lo publica regmeet y las declaraciones salen de la transcripción, así que una sesión puede tener lo segundo sin lo primero.',
+      'No están anidados: {lista}. El orden del día lo publica regmeet y las declaraciones salen de la transcripción, así que una sesión puede tener lo segundo sin lo primero.',
     'plenos.indice.escalera.anidadas':
-      'hoy cada escalón resulta ser un subconjunto del anterior, pero es una coincidencia de la cobertura, no una garantía: el orden del día lo publica regmeet y las declaraciones salen de la transcripción.',
+      'Hoy cada escalón resulta ser un subconjunto del anterior, pero es una coincidencia de la cobertura, no una garantía: el orden del día lo publica regmeet y las declaraciones salen de la transcripción.',
     'plenos.indice.escalera.sube':
       'La cobertura sube cuando se transcribe una sesión antigua, no cuando el pleno se reúne.',
     'plenos.indice.columna.fecha': 'Fecha',
@@ -773,6 +772,10 @@ export const CATALOGUE = {
       'Son los puntos de las {sesionesConOrden}, no de las {total}: un área con pocos puntos puede tener mucha actividad en sesiones que aún no hemos procesado.',
     'plenos.indice.reparto.notaArea':
       'Sólo {con} de los {puntos} puntos llevan área asignada, así que este reparto describe nuestra cobertura tanto como el trabajo del pleno.',
+    'plenos.indice.reparto.resto.uno':
+      'Se dibujan {dibujadas} de las {areas} áreas con algún punto; la que falta reúne {puntos} de los {con} puntos con área.',
+    'plenos.indice.reparto.resto.varios':
+      'Se dibujan {dibujadas} de las {areas} áreas con algún punto; las {resto} que faltan reúnen {puntos} de los {con} puntos con área.',
     'plenos.indice.reparto.sesionesConOrden': '{n} sesiones con orden del día extraído',
     'plenos.retirada.record.uno': 'registro',
     'plenos.retirada.record.varios': 'registros',
@@ -2334,8 +2337,7 @@ export const CATALOGUE = {
     'plenos.indice.escalera.orden': 'Amb l’ordre del dia extret',
     'plenos.indice.escalera.declaraciones': 'Amb declaracions extretes',
     'plenos.indice.escalera.votaciones': 'Amb votacions transcrites',
-    'plenos.indice.escalera.nota':
-      'Els quatre graons es compten sobre les mateixes {n} sessions, però no estan niats:',
+    'plenos.indice.escalera.nota': 'Els quatre graons es compten sobre les mateixes {n} sessions.',
     'plenos.indice.escalera.declSinOrden.uno':
       'una sessió té declaracions extretes sense el seu ordre del dia',
     'plenos.indice.escalera.declSinOrden.varios':
@@ -2344,9 +2346,9 @@ export const CATALOGUE = {
     'plenos.indice.escalera.votosSinDecl.varios': '{n} tenen votacions sense declaracions',
     'plenos.indice.escalera.ambas': '{a}, i {b}',
     'plenos.indice.escalera.sueltas':
-      '{lista}. L’ordre del dia el publica regmeet i les declaracions ixen de la transcripció, així que una sessió pot tindre el segon sense el primer.',
+      'No estan niats: {lista}. L’ordre del dia el publica regmeet i les declaracions ixen de la transcripció, així que una sessió pot tindre el segon sense el primer.',
     'plenos.indice.escalera.anidadas':
-      'hui cada graó resulta ser un subconjunt de l’anterior, però és una coincidència de la cobertura, no una garantia: l’ordre del dia el publica regmeet i les declaracions ixen de la transcripció.',
+      'Hui cada graó resulta ser un subconjunt de l’anterior, però és una coincidència de la cobertura, no una garantia: l’ordre del dia el publica regmeet i les declaracions ixen de la transcripció.',
     'plenos.indice.escalera.sube':
       'La cobertura puja quan es transcriu una sessió antiga, no quan el ple es reunix.',
     'plenos.indice.columna.fecha': 'Data',
@@ -2412,6 +2414,10 @@ export const CATALOGUE = {
       'Són els punts de les {sesionesConOrden}, no de les {total}: una àrea amb pocs punts pot tindre molta activitat en sessions que encara no hem processat.',
     'plenos.indice.reparto.notaArea':
       'Només {con} dels {puntos} punts porten àrea assignada, així que este repartiment descriu la nostra cobertura tant com el treball del ple.',
+    'plenos.indice.reparto.resto.uno':
+      'Es dibuixen {dibujadas} de les {areas} àrees amb algun punt; la que falta reunix {puntos} dels {con} punts amb àrea.',
+    'plenos.indice.reparto.resto.varios':
+      'Es dibuixen {dibujadas} de les {areas} àrees amb algun punt; les {resto} que falten reunixen {puntos} dels {con} punts amb àrea.',
     'plenos.indice.reparto.sesionesConOrden': '{n} sessions amb l’ordre del dia extret',
     'plenos.retirada.record.uno': 'registre',
     'plenos.retirada.record.varios': 'registres',
