@@ -520,11 +520,11 @@ a partial pass read as full coverage — as of 2026-08-03 that is 11 of 15.
 ## Git hooks
 
 - **pre-commit** — `lint`, `format:check`, `check:json`, `check:secrets --staged`,
-  `check:privado --staged`, `check:editorial --staged`, `check:sparse`,
-  `check:hooks --desde-gancho`. Fails on errors only; lint warnings stay
-  warnings, and `check:hooks` never fails it.
+  `check:privado --staged`, `check:editorial --staged`, `check:metadatos --staged`,
+  `check:sparse`, `check:hooks --desde-gancho`. Fails on errors only; lint
+  warnings stay warnings, and `check:hooks` never fails it.
 
-  The three `--staged` gates each ask what the other two cannot, and the split
+  The four `--staged` gates each ask what the others cannot, and the split
   is the point. `check:secrets` recognises a credential **by its shape** — a
   Telegram token looks like a Telegram token. `check:privado` catches what has
   no shape: our own submitted-application reference, our own salary target, the
@@ -549,6 +549,29 @@ a partial pass read as full coverage — as of 2026-08-03 that is 11 of 15.
   untrack what is already tracked — and the drafts had gone in with
   `git add -f` while the repository was still private. Full audit:
   `npm run check:editorial`.
+
+  `check:metadatos` is the one that opens the file. The other three read text,
+  and a name can live inside a file's binary structure: on 2026-09-28
+  `conprel_CV_2024.xls`, a real Hacienda download committed in April, turned out
+  to carry two ministry employees' names — one in `LastAuthor`, one in the BIFF
+  `WRITEACCESS` record that SheetJS `Props` never shows — plus the tail of a
+  third in that record's padding. It reads OLE property sets and `WRITEACCESS`,
+  OOXML and ODF metadata parts, comment and tracked-change authors, every
+  `/Author` revision and XMP packet in a PDF, and EXIF/XMP/IPTC in images;
+  policy and reasons are in `src/scraper/metadatos/index.ts`. Document
+  authorship always fails unless it is an institution or a program on
+  `AUTORIA_INSTITUCIONAL`; a photographer's credit stays (it is rights
+  information); serial numbers, original file names, disk paths and GPS fail in
+  any image; a queja photo may carry nothing at all. It reads the **staged
+  blob**, not the working copy, **masks** what it finds (the CI log of a public
+  repository is public), and counts an unreadable file as a failure, never as
+  clean. `npm run fixture:sin-autoria -- <file>` blanks the flagged fields in
+  place without re-saving the file, so a fixture stays the real download byte
+  for byte outside those fields. Full audit: `npm run check:metadatos`, which
+  also runs in `monitor:health` because queja photos arrive through
+  `pull-quejas.yml`, where no hook runs; `-- --historia` reads every version of
+  every file in any ref. Removing a file from the tip does not remove it from
+  history.
 
 - **pre-push** — reads, as a visitor would, the pages this push can have
   broken. **Never blocks**: a probabilistic check that can block a push teaches
