@@ -2,7 +2,8 @@ import type { Bot } from 'grammy'
 import { InlineKeyboard } from 'grammy'
 import { createConversation } from '@grammyjs/conversations'
 import type { Db } from '../db/client.ts'
-import { autorTelegram, createQueja, type NewQuejaInput } from '../db/queries.ts'
+import { autorTelegram, createQueja, datosRetiradosDe, type NewQuejaInput } from '../db/queries.ts'
+import { describirRetirados } from '../services/pii.ts'
 import { routeUsingLocalOfficials } from '../services/router.ts'
 import { situar } from '../services/neighborhoods.ts'
 import { comandoDe } from '../services/solo-en-privado.ts'
@@ -252,8 +253,13 @@ export function quejaConversationBuilder(db: Db, envio: EnvioAdmin) {
     await avisarAdmins(db, saved, { admins: parseAdminIds(), envio })
 
     const responsible = routing.concejalia.responsible
+    // Lo que el bot quitó del texto al guardarla (services/pii.ts), dicho a quien lo escribió.
+    const quitados = describirRetirados(datosRetiradosDe(db, saved.id))
     const confirmation =
       `✅ *Queja recibida:* \`${saved.id}\`\n\n` +
+      (quitados
+        ? `🧹 Antes de guardarla he quitado ${quitados}. Lo quitado no se guarda en ninguna parte.\n\n`
+        : '') +
       `🕒 Antes de publicarla la revisa una persona del equipo; te aviso aquí cuando sea pública.\n\n` +
       `*Categoría:* ${catLabel}\n` +
       `*Área responsable:* ${routing.concejalia.area}\n` +

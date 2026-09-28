@@ -3,6 +3,7 @@ import type { Db } from '../db/client.ts'
 import {
   autorTelegram,
   countApoyos,
+  EVENTO_DATOS_RETIRADOS,
   esAutor,
   getQuejaPublica,
   getQuejaViva,
@@ -50,6 +51,8 @@ function stateLabel(state: string): string {
         moderacion_publicada: '🌐 Publicada tras revisarla',
         moderacion_descartada: '🚫 No publicada tras revisarla',
         moderacion_retirada: '↩️ Retirada de la publicación',
+        // Los datos personales que el bot quitó del texto al guardarla (services/pii.ts).
+        [EVENTO_DATOS_RETIRADOS]: '🧹 Datos personales retirados al guardarla',
       } as Record<string, string>
     )[state] ?? state
   )

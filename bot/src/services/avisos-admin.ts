@@ -36,6 +36,7 @@ import {
   type QuejaRow,
 } from '../db/queries.ts'
 import type { EstadoModeracion } from './health.ts'
+import { MARCA_RETIRADO } from './pii.ts'
 import { avisoAlAutor, DECISIONES_CON_AVISO } from './textos-revision.ts'
 import { escaparHtml } from '../util/html.ts'
 import { logger } from '../util/log.ts'
@@ -84,6 +85,21 @@ function botonesDe(q: QuejaRow): Boton[] {
  * es del vecino: pasa por `escaparHtml`, y se corta DESPUÉS de escapar (un `&`
  * escapado mide cinco), para que la tarjeta quepa siempre en un mensaje.
  */
+/**
+ * Cuántos datos personales se retiraron del texto al guardarlo (services/pii.ts):
+ * se cuentan en el propio texto, así que la tarjeta que reenvía la pasada horaria
+ * lo dice igual que la primera.
+ */
+function lineaDeRetirados(q: QuejaRow): string[] {
+  const n = `${q.title}\n${q.detail}`.split(MARCA_RETIRADO).length - 1
+  if (n === 0) return []
+  return [
+    n === 1
+      ? '🧹 1 dato personal retirado al guardarla.'
+      : `🧹 ${n} datos personales retirados al guardarla.`,
+  ]
+}
+
 export function tarjetaDeQueja(q: QuejaRow, nota?: string): { html: string; botones: Boton[] } {
   const cabecera = [
     `<b>${CABECERA[q.moderacion]}</b> · <code>${q.id}</code>`,
@@ -92,6 +108,7 @@ export function tarjetaDeQueja(q: QuejaRow, nota?: string): { html: string; boto
     q.foto_ref
       ? '📷 Trae foto: se publica sólo anonimizada, y no se ve en esta tarjeta.'
       : 'Sin foto.',
+    ...lineaDeRetirados(q),
     '',
     `<b>${cortar(escaparHtml(q.title), 600)}</b>`,
   ].join('\n')
