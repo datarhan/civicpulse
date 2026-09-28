@@ -1350,7 +1350,11 @@ export const CATALOGUE = {
     'cargos.detalle.ficha.enlace': 'Datos biográficos (PDF)',
     'cargos.detalle.ficha.sin.title': 'El Ayuntamiento no publica su ficha.',
     'cargos.detalle.ficha.sin.body':
-      'La página de la Corporación Municipal enlaza un CV en PDF junto a cada concejal; junto a este escaño no hay ninguno. No consta si llegó a publicarse antes: la página que el portal usaba hasta septiembre de 2026 no tiene copia en el Internet Archive, así que no se puede decir si se retiró o nunca estuvo.',
+      'La página de la Corporación Municipal enlaza un CV en PDF junto a cada concejal; junto a este escaño no hay ninguno.',
+    'cargos.detalle.ficha.sin.ausente':
+      'Tampoco figuraba en la página que el portal usaba hasta septiembre de 2026: este sitio la leyó {lecturas} veces entre el {primera} y el {ultima}, y en ninguna enlazaba el de este escaño. De antes no hay copia —esa página no está en el Internet Archive—, y una ausencia sin registro no es una retirada.',
+    'cargos.detalle.ficha.sin.presente':
+      'La página que el portal usaba hasta septiembre de 2026 sí lo enlazaba: figuraba en las {lecturas} lecturas que este sitio hizo de ella entre el {primera} y el {ultima}.',
     'cargos.detalle.mandato.eyebrow': 'Respaldo electoral',
     'cargos.detalle.mandato.title': 'Con cuántos votos llegó su lista',
     'cargos.detalle.mandato.municipales': 'municipales',
@@ -2943,7 +2947,11 @@ export const CATALOGUE = {
     'cargos.detalle.ficha.enlace': 'Dades biogràfiques (PDF)',
     'cargos.detalle.ficha.sin.title': "L'Ajuntament no publica la seua fitxa.",
     'cargos.detalle.ficha.sin.body':
-      "La pàgina de la Corporació Municipal enllaça un CV en PDF al costat de cada regidor; al costat d'aquest escó no n'hi ha cap. No consta si va arribar a publicar-se abans: la pàgina que el portal feia servir fins al setembre de 2026 no té còpia a l'Internet Archive, així que no es pot dir si es va retirar o mai no hi va estar.",
+      "La pàgina de la Corporació Municipal enllaça un CV en PDF al costat de cada regidor; al costat d'aquest escó no n'hi ha cap.",
+    'cargos.detalle.ficha.sin.ausente':
+      "Tampoc no figurava en la pàgina que el portal feia servir fins al setembre de 2026: aquest lloc la va llegir {lecturas} vegades (primera lectura, {primera}; última, {ultima}) i en cap no enllaçava el d'aquest escó. D'abans no n'hi ha còpia —aquella pàgina no és a l'Internet Archive—, i una absència sense registre no és una retirada.",
+    'cargos.detalle.ficha.sin.presente':
+      "La pàgina que el portal feia servir fins al setembre de 2026 sí que l'enllaçava: hi figurava en les {lecturas} lectures que en va fer aquest lloc (primera lectura, {primera}; última, {ultima}).",
     'cargos.detalle.mandato.eyebrow': 'Suport electoral',
     'cargos.detalle.mandato.title': 'Amb quants vots va arribar la seua llista',
     'cargos.detalle.mandato.municipales': 'municipals',
