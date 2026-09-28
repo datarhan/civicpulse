@@ -311,9 +311,13 @@ export default function Metodologia() {
             pleno pueden aparecer. El tracker no rankea partidos por tasa de cumplimiento en V1.
           </li>
           <li>
-            <strong>Fuente primaria obligatoria.</strong> Cada promesa se atribuye mediante una cita
-            verbatim (≥20 caracteres) que enlaza a un documento público primario (programa
-            electoral, nota de prensa, acta de pleno, presupuesto aprobado).
+            <strong>Fuente enlazada obligatoria.</strong> Cada promesa se atribuye mediante una cita
+            textual (≥20 caracteres) copiada de la fuente que enlaza su ficha: un documento oficial
+            —programa electoral, acta de pleno, nota de prensa del Ayuntamiento, presupuesto
+            aprobado— o la noticia de prensa que recoge el compromiso, y la ficha nombra quién la
+            publicó. Cuando la fuente es una noticia, la cita es texto del medio —su titular o la
+            frase con que recoge el compromiso—, no necesariamente palabras del partido. Nuestros
+            propios datos no sirven de fuente: con ellos se contrasta una promesa, no se sostiene.
           </li>
           <li>
             <strong>Conservadurismo en los estados.</strong> El estado por defecto es{' '}

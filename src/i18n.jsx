@@ -1669,7 +1669,7 @@ export const CATALOGUE = {
     'landing.alcalde.role': 'Alcalde',
     'landing.empleo.all': 'Ver todas las ofertas →',
     'landing.promesas.blurb':
-      'Compromisos públicos documentados con cita verbatim y fuente primaria. Sin juicios automáticos de cumplimiento.',
+      'Compromisos públicos documentados, cada uno con su cita y la fuente que la recoge: el documento oficial o la noticia. Sin juicios automáticos de cumplimiento.',
     'landing.promesas.cta': 'Ver tracker completo →',
     'landing.rendicion.blurb':
       'Reúne por concejalía los votos de pleno, las promesas electorales y las quejas del canal, que sólo se cuentan como pendientes de respuesta cuando han llegado al registro del ayuntamiento. Un plazo vencido se marca como aviso editorial — el estado nunca se modifica de forma automática.',
@@ -3182,7 +3182,7 @@ export const CATALOGUE = {
     'landing.alcalde.role': 'Alcalde',
     'landing.empleo.all': 'Veure totes les ofertes →',
     'landing.promesas.blurb':
-      'Compromisos públics documentats amb cita verbatim i font primària. Sense judicis automàtics de compliment.',
+      'Compromisos públics documentats, cadascun amb la seua cita i la font que la recull: el document oficial o la notícia. Sense judicis automàtics de compliment.',
     'landing.promesas.cta': 'Veure el tracker complet →',
     'landing.rendicion.blurb':
       "Reunix per regidoria els vots de ple, les promeses electorals i les queixes del canal, que només es compten com a pendents de resposta quan han arribat al registre de l'ajuntament. Un termini vençut es marca com a avís editorial — l'estat mai es modifica de manera automàtica.",

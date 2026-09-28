@@ -567,11 +567,17 @@ export default function Promesas() {
         <div
           style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 4, maxWidth: 780 }}
         >
+          {/* «Enlazado a su fuente primaria» se leía como «al documento original»
+              encima de fichas que citan prensa (revisión lectora, 28-09-2026). Lo
+              que el esquema comprueba es menos y se dice así; y un estado fuera de
+              V1_STATUSES pide una evidencia enlazada, que puede ser una noticia: no
+              «prueba directa (pleno, presupuesto, resolución)». Ver FUENTE_PRIMARIA
+              en src/scraper/promises.ts. */}
           Compromisos públicos atribuidos a partidos y cargos del Ayuntamiento de Riba-roja de
-          Túria, cada uno enlazado a su fuente primaria y con cadena de evidencia trazable. Los
-          estados se mantienen en <strong>documentada</strong> o <strong>en verificación</strong>{' '}
-          salvo que exista prueba directa (pleno, presupuesto, resolución) que justifique otro
-          estado.
+          Túria, cada uno con su fuente enlazada: el documento oficial o la noticia de prensa que
+          recoge la cita. Los estados se mantienen en <strong>documentada</strong> o{' '}
+          <strong>en verificación</strong> salvo que una evidencia enlazada —una licitación, un acta
+          de pleno, una subvención, el presupuesto o una noticia— justifique otro estado.
         </div>
         <div style={{ marginTop: 10 }}>
           <DataAsOf iso={data?.generatedAt} label="Promesas" />

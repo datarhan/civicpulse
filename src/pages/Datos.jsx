@@ -258,7 +258,7 @@ function DatasetsCatalog() {
       name: 'Promesas políticas',
       rows: promises?.items ? `${promises.items.length} compromisos` : '—',
       updated: formatDate(promises?.generatedAt),
-      source: 'curación editorial · fuente primaria',
+      source: 'curación editorial · documento oficial o noticia',
       path: '/data/promises.json',
       fmt: ['json'],
     },
