@@ -75,18 +75,18 @@ const NIE = /(?<!\w)([XYZ])[ -]?(\d{7})[ -]?([A-Z])(?!\w)/gi
 // es un importe. Un «tlf.612…» sí.
 const TELEFONO =
   /(?<![\w€]|\d[.,])(?:(?:\+|00)34[ \t\u00a0./()-]{0,2})?\(?[6789](?:[ \t\u00a0./()-]{0,2}\d){8}(?!\w|[.,]\d|[ \t\u00a0]*(?:€|euros?\b|eur\b))/gi
-// Una fecha (con barras, guiones o puntos) seguida de una hora u otra fecha
-// también hace nueve cifras: no es un teléfono.
-const FECHA = /\d{1,2}[/.-]\d{1,2}[/.-]\d{2,4}/
-
 /**
  * Lo que la forma de un teléfono no basta para decidir. Se agrupa como se agrupa
  * un número al escribirlo —«612 345 678», «96 123 45 67»—: con separadores, cada
  * grupo tiene al menos dos cifras («portales 7 9 11 13 15» no es un número), y
  * con barras ninguno tiene cuatro («Factura 9/2026/0001» es una referencia).
+ *
+ * Una fecha seguida de una hora u otra fecha hace nueve cifras, y la primera regla
+ * ya la descarta: sólo empieza por 6, 7, 8 o 9 un día de una cifra. Una guarda de
+ * fechas aparte dejaba escapar un teléfono como «600-00-00-13», con la forma de
+ * una fecha en la cola (revisión de #144).
  */
 function pareceTelefono(m: string): boolean {
-  if (FECHA.test(m)) return false
   const grupos = m
     .replace(/^\(?(?:\+|00)34/, '')
     .split(/\D+/)
