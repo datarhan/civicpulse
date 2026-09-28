@@ -110,10 +110,20 @@ flyctl secrets import --app munigraph-ribarroja < secret.env && rm secret.env
 
 Con la revisión encendida, una queja limpia no se publica sola hasta que la clase
 `queja.publicacion-automatica` tenga una precisión medida y registrada por encima del
-listón de lo notable (`npm run check:automation` dice qué falta). La medición se
-registra con `npm run record-measurement`, en un cambio que también cambia la frase de
-`/quejas` que dice que una persona revisa cada queja (`tests/contrato-quejas.test.js`
-lo exige).
+listón de lo notable (`npm run check:automation` dice qué falta). Se mide contra los
+casos de oro con una clave del nivel de pago —el gratuito da unas veinte preguntas al
+día a este modelo, y el medidor para sin grabar nada si se agota—:
+
+```bash
+cd bot && node --env-file=<fichero con GEMINI_API_KEY de pago> --import tsx scripts/medir-revision.ts
+```
+
+Graba `bot/tests/fixtures/moderacion-oro-respuestas.json` y dice cuántas de las que
+publicaría son seguras. Registrarla abre la publicación automática: se hace a mano, con
+`npm run record-measurement` en la raíz (`--against "<modelo>@<versión del prompt>"`,
+que imprime el medidor), en un cambio que lleva también la grabación y cambia la frase
+de `/quejas` que dice que una persona revisa cada queja. `bot/tests/revision-oro.test.ts`
+y `tests/contrato-quejas.test.js` lo exigen.
 
 ### 5. Deploy
 

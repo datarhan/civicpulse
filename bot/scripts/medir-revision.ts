@@ -39,6 +39,11 @@ if (!process.env.GEMINI_API_KEY) {
   process.exit(2)
 }
 
+// Una pausa entre preguntas: el nivel gratuito de Gemini deja unas diez por minuto a
+// este modelo, y sin ella la primera medida perdió un caso de cada cuatro por un 429.
+const p = process.argv.indexOf('--pausa-ms')
+const pausa = p >= 0 ? Number(process.argv[p + 1]) : 6500
+
 const oro = JSON.parse(readFileSync(ORO, 'utf8')) as { cargos: string[]; casos: CasoDeOro[] }
 const espera = (ms: number) => new Promise((r) => setTimeout(r, ms))
 const DE_PASO = /^(HTTP (429|5\d\d)|tiempo|red)$/
@@ -56,8 +61,9 @@ async function preguntar(c: CasoDeOro): Promise<RespuestaGrabada> {
         : { tipo: 'bloqueada', razon: r.razon }
     } catch (err) {
       const codigo = err instanceof FalloDeRevision ? err.codigo : 'fallo'
-      if (intento < 2 && DE_PASO.test(codigo)) {
-        await espera(3000 * (intento + 1))
+      if (intento < 3 && DE_PASO.test(codigo)) {
+        // Un 429 es por minuto: se espera lo bastante para que pase.
+        await espera((codigo === 'HTTP 429' ? 30_000 : 5000) * (intento + 1))
         continue
       }
       return { tipo: 'error', codigo }
@@ -67,9 +73,19 @@ async function preguntar(c: CasoDeOro): Promise<RespuestaGrabada> {
 
 const respuestas: Record<string, RespuestaGrabada> = {}
 for (const c of oro.casos) {
-  respuestas[c.id] = await preguntar(c)
-  process.stderr.write(respuestas[c.id].tipo === 'error' ? 'x' : '.')
-  await espera(250)
+  const r = await preguntar(c)
+  respuestas[c.id] = r
+  process.stderr.write(r.tipo === 'error' ? `\n${c.id}: ${r.codigo}\n` : '.')
+  // Un 429 que sobrevive a los reintentos es la cuota agotada —el nivel gratuito da
+  // unas veinte preguntas al día a este modelo—: seguir sólo grabaría una medida a
+  // medias, que se leería como una medida. Se para sin grabar nada.
+  if (r.tipo === 'error' && r.codigo === 'HTTP 429') {
+    process.stderr.write(
+      '[medir-revision] cuota agotada: no se graba nada. Mide con una clave del nivel de pago.\n',
+    )
+    process.exit(3)
+  }
+  await espera(pausa)
 }
 process.stderr.write('\n')
 
@@ -105,6 +121,14 @@ process.stdout.write(
     `Quitó de más: ${lista(medida.quitadoDeMas)}.`,
     `Inválidas: ${lista(medida.invalidas)}. Errores: ${lista(medida.errores)}.`,
     `Grabado en ${SALIDA}.`,
+    '',
+    'Registrarla ABRE la publicación automática: decídelo una persona. Si se decide, desde la raíz:',
+    `  npm run record-measurement -- --key queja.publicacion-automatica --precision ${
+      medida.precision === null ? '<sin limpias>' : medida.precision.toFixed(4)
+    } --sample ${medida.publicaria} --against "${modelo}@${VERSION_PROMPT}" --method ` +
+      `"casos de oro bot/tests/fixtures/moderacion-oro.json: ${medida.casos} quejas sintéticas, ` +
+      'etiquetadas por Claude Opus 5.5 y revisadas por <quién>; grabación en ' +
+      'bot/tests/fixtures/moderacion-oro-respuestas.json"',
     '',
   ].join('\n'),
 )

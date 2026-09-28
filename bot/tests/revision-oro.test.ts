@@ -1,11 +1,12 @@
 import { describe, it, expect } from 'vitest'
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { VERSION_PROMPT } from '../src/services/moderacion-criterios'
+import { CLAVE_MEDICION, VERSION_PROMPT } from '../src/services/moderacion-criterios'
 import {
   medirRevision,
   textoGuardado,
   type CasoDeOro,
+  type MedidaRevision,
   type RespuestaGrabada,
 } from '../src/services/medida-revision'
 
@@ -66,15 +67,43 @@ describe('los casos de oro', () => {
   })
 })
 
+/**
+ * La grabación hace falta cuando la publicación automática está medida: es lo que
+ * respalda la cifra de `.automation-measurements.json`. Sin medición registrada no
+ * hace falta —hoy, la clave de desarrollo es del nivel gratuito, con unas veinte
+ * preguntas al día, y no llega a los casos—; con ella, sí, y la cifra registrada
+ * tiene que ser la de la grabación. Así no se abre la publicación automática con un
+ * número que no se puede rehacer.
+ */
 describe('la medida grabada', () => {
+  const FICHERO = join(FIX, 'moderacion-oro-respuestas.json')
+  const hayGrabacion = existsSync(FICHERO)
   const leerGrabada = () =>
-    JSON.parse(readFileSync(join(FIX, 'moderacion-oro-respuestas.json'), 'utf8')) as {
+    JSON.parse(readFileSync(FICHERO, 'utf8')) as {
+      modelo: string
       version_prompt: string
       respuestas: Record<string, RespuestaGrabada>
-      medida: unknown
+      medida: MedidaRevision
     }
+  const { measurements } = JSON.parse(
+    readFileSync(join(__dirname, '..', '..', '.automation-measurements.json'), 'utf8'),
+  ) as { measurements: Array<{ key: string; precision: number; sample: number; against?: string }> }
+  const registrada = measurements.find((m) => m.key === CLAVE_MEDICION)
 
-  it('es de este prompt, y cubre cada caso', () => {
+  it('si la publicación automática está medida, hay grabación, y la cifra es la suya', () => {
+    expect(measurements.length).toBeGreaterThan(0) // el control: el fichero se lee
+    if (!registrada) {
+      expect(registrada).toBeUndefined()
+      return
+    }
+    expect(hayGrabacion, 'medida registrada sin grabación que la respalde').toBe(true)
+    const { modelo, version_prompt, medida } = leerGrabada()
+    expect(registrada.sample).toBe(medida.publicaria)
+    expect(registrada.precision).toBeCloseTo(medida.precision ?? -1, 3)
+    expect(registrada.against).toContain(`${modelo}@${version_prompt}`)
+  })
+
+  it.runIf(hayGrabacion)('la grabación es de este prompt, y cubre cada caso', () => {
     const grabada = leerGrabada()
     expect(
       grabada.version_prompt,
@@ -83,7 +112,7 @@ describe('la medida grabada', () => {
     expect(Object.keys(grabada.respuestas).sort()).toEqual(oro.casos.map((c) => c.id).sort())
   })
 
-  it('recalculada con el código de hoy, es la grabada', () => {
+  it.runIf(hayGrabacion)('recalculada con el código de hoy, es la grabada', () => {
     const grabada = leerGrabada()
     expect(
       medirRevision(oro.casos, grabada.respuestas),

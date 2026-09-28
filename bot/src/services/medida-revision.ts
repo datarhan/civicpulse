@@ -99,10 +99,9 @@ export function medirRevision(
     if (!r) throw new Error(`[medida-revision] el caso ${c.id} no tiene respuesta grabada`)
     const texto = textoGuardado(c)
     const v = revisionDelCaso(texto, r)
-    if (v.resultado === 'invalida') m.invalidas.push(c.id)
-    else if (v.resultado === 'error') m.errores.push(c.id)
-    else {
-      if ((c.conservar ?? []).some((f) => contiene(texto, f) && !contiene(v.texto, f))) {
+    if (v.resultado === 'limpia' || v.resultado === 'marcada') {
+      const queda = v.texto
+      if ((c.conservar ?? []).some((f) => contiene(texto, f) && !contiene(queda, f))) {
         m.quitadoDeMas.push(c.id)
       }
       if (v.resultado === 'marcada') {
@@ -110,10 +109,11 @@ export function medirRevision(
         else m.retenidasDeMas.push(c.id)
       } else {
         m.publicaria += 1
-        if (!c.retener && c.quitar.every((f) => !contiene(v.texto, f))) m.seguras += 1
+        if (!c.retener && c.quitar.every((f) => !contiene(queda, f))) m.seguras += 1
         else m.inseguras.push(c.id)
       }
-    }
+    } else if (v.resultado === 'invalida') m.invalidas.push(c.id)
+    else m.errores.push(c.id)
   }
   if (m.publicaria > 0) {
     m.precision = m.seguras / m.publicaria
