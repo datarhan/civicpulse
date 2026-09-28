@@ -561,6 +561,80 @@ export function plazoDeResolucion(
   }
 }
 
+// ============================================================================
+// La hora de la sede
+// ============================================================================
+
+/**
+ * La zona de la sede electrónica de Riba-roja. El registro «se regirá a efectos
+ * de cómputo de los plazos, por la fecha y hora oficial de la sede electrónica de
+ * acceso» (art. 31.2 LPACAP), y ésa es la de Madrid: el día en que entra una queja
+ * es el del calendario de Madrid, no el de UTC ni el del equipo que lo calcula.
+ */
+export const ZONA_DE_LA_SEDE = 'Europe/Madrid'
+
+// Día; y si lleva hora (con «T» o con el espacio de SQLite), su zona opcional.
+const MARCA_ISO =
+  /^(\d{4}-\d{2}-\d{2})(?:[T ](\d{2}:\d{2}(?::\d{2}(?:\.\d+)?)?)(Z|[+-]\d{2}:\d{2})?)?$/
+
+/**
+ * El instante (ms) de una marca de tiempo ISO, leída en UTC cuando no dice su
+ * zona; NaN si no es ISO.
+ *
+ * `new Date()` lee una fecha con hora y sin zona en hora LOCAL, así que el
+ * resultado dependía del equipo que lo calculaba. Medido el 28-09-2026 (PR #150):
+ * reconstruido en el Mac del curador (Europe/Madrid), los 30 `monthsAfter` de las
+ * relaciones quejas↔contratos se movían dos horas respecto a los de la CI, que
+ * construye en UTC, y un par en el borde de la ventana podía entrar o salir.
+ *
+ * UTC cuando la marca no dice nada, porque es lo que escribe el bot: sus marcas
+ * (`created_at`, `registered_at`…) las rellena SQLite con `datetime('now')`, la
+ * hora UTC escrita sin la Z. Y una fecha sin hora JavaScript ya la lee a
+ * medianoche UTC.
+ *
+ * Vive aquí, y no en las relaciones, porque el plazo LPACAP lo necesita y este
+ * módulo no puede importar nada: el bot lo importa, y su despliegue sólo mira las
+ * rutas que bot/src importa directamente (`tests/bot-despliegue.test.js`). Las
+ * relaciones lo reexportan: un solo lector, no dos copias de la regex.
+ *
+ * Fuera de las formas ISO no se adivina: los demás formatos que `Date` acepta
+ * los lee en hora local, que es el mismo defecto por otra puerta.
+ */
+export function instanteUtc(marca: string): number {
+  const m = MARCA_ISO.exec(marca)
+  if (!m) return NaN
+  const [, dia, hora = '00:00', zona = 'Z'] = m
+  return Date.parse(`${dia}T${hora}${zona}`)
+}
+
+/** El calendario de la sede, por partes: el desfase lo pone el calendario de zonas. */
+const CALENDARIO_DE_LA_SEDE = new Intl.DateTimeFormat('en-US', {
+  timeZone: ZONA_DE_LA_SEDE,
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+})
+
+/**
+ * El día civil de la sede («AAAA-MM-DD») en que cae una marca del bot; null si
+ * no hay marca o no es ISO.
+ *
+ * Los recibos de la sede del 27-09-2026, presentados en domingo, dicen «Fecha de
+ * Registro 28/09/2026 0:00:01»: en UTC, `2026-09-27 22:00:01`. Su día de UTC es
+ * el 27, y leída en hora local por un navegador de Madrid, también; el del
+ * recibo, y el que cuenta para el plazo, es el 28. El desfase no se escribe a
+ * mano: es +01:00 en invierno y +02:00 en verano.
+ */
+export function diaDeLaSede(marca: string | null | undefined): string | null {
+  if (typeof marca !== 'string') return null
+  const t = instanteUtc(marca)
+  if (Number.isNaN(t)) return null
+  const partes = Object.fromEntries(
+    CALENDARIO_DE_LA_SEDE.formatToParts(new Date(t)).map((p) => [p.type, p.value]),
+  )
+  return `${partes.year}-${partes.month}-${partes.day}`
+}
+
 /**
  * El día en que vence un plazo fijado en meses — art. 30.4 LPACAP: «el plazo
  * concluirá el mismo día en que se produjo la notificación […] en el mes de
