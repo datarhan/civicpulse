@@ -58,27 +58,52 @@ function ibanValido(iban: string): boolean {
 const CORREO = /[\w.%+-]+@[\w-]+(?:\.[\w-]+)*\.[a-z]{2,}/gi
 // El español: ES, dos dígitos de control y veinte cifras, en grupos de cuatro o
 // seguido. Sólo cifras, para que la palabra de después no pase por un grupo más.
-const IBAN_ES = /\b[Ee][Ss]\d{2}(?:[\s-]{0,2}\d{4}){5}\b/g
+const IBAN_ES = /\b[Ee][Ss]\d{2}(?:[ \u00a0-]{0,2}\d{4}){5}\b/g
 // Los demás: dos letras, dos dígitos y el resto, en mayúscula (así una palabra en
 // minúscula no se cuela como grupo).
 const IBAN = /\b[A-Z]{2}\d{2}(?:[ ]?[A-Z0-9]{4}){2,7}(?:[ ]?[A-Z0-9]{1,3})?\b/g
-// Siete u ocho cifras, con los millares separados por punto, espacio o nada, y
-// la letra. Separada de las cifras, sólo en mayúscula: «12345678 y» es un número
-// y una conjunción.
-const DNI = /(?<![\w.])(\d{1,2}[.\s]?\d{3}[.\s]?\d{3})([ -]?)([A-Za-z])(?!\w)/g
+// Ocho cifras, con los millares separados por punto, espacio o nada, o siete
+// seguidas; y la letra. Separada de las cifras, sólo en mayúscula: «12345678 y»
+// es un número y una conjunción. Siete cifras con millares separados, no: unas
+// cifras sueltas delante de una mayúscula acertarían la letra una vez de cada 23.
+const DNI = /(?<![\w.])(\d{2}[. \u00a0]?\d{3}[. \u00a0]?\d{3}|\d{7})([ -]?)([A-Za-z])(?!\w)/g
 const NIE = /(?<!\w)([XYZ])[ -]?(\d{7})[ -]?([A-Z])(?!\w)/gi
 // Nueve cifras que empiezan por 6, 7, 8 o 9, con prefijo o sin él, separadas por
-// espacios (también el duro, U+00A0, que deja una agenda al copiar), puntos,
-// guiones, barras o paréntesis —«(96) 123 45 67»—. No si van detrás de más cifras
-// («1.612…») o siguen más cifras, decimales o una moneda: eso es un importe. Un
-// «tlf.612…» sí.
+// espacios (también el duro, U+00A0, que deja una agenda al copiar; un salto de
+// línea no), puntos, guiones, barras o paréntesis —«(96) 123 45 67»—. No si van
+// detrás de más cifras («1.612…») o siguen más cifras, decimales o una moneda: eso
+// es un importe. Un «tlf.612…» sí.
 const TELEFONO =
-  /(?<![\w€]|\d[.,])(?:(?:\+|00)34[\s./()-]{0,2})?\(?[6789](?:[\s./()-]{0,2}\d){8}(?!\w|[.,]\d|\s*(?:€|euros?\b|eur\b))/gi
-// Con barras como separador, dos fechas seguidas tienen nueve cifras: no son un teléfono.
-const FECHA = /\d{1,2}\/\d{1,2}\/\d{2,4}/
+  /(?<![\w€]|\d[.,])(?:(?:\+|00)34[ \t\u00a0./()-]{0,2})?\(?[6789](?:[ \t\u00a0./()-]{0,2}\d){8}(?!\w|[.,]\d|[ \t\u00a0]*(?:€|euros?\b|eur\b))/gi
+// Una fecha (con barras, guiones o puntos) seguida de una hora u otra fecha
+// también hace nueve cifras: no es un teléfono.
+const FECHA = /\d{1,2}[/.-]\d{1,2}[/.-]\d{2,4}/
+
+/**
+ * Lo que la forma de un teléfono no basta para decidir. Se agrupa como se agrupa
+ * un número al escribirlo —«612 345 678», «96 123 45 67»—: con separadores, cada
+ * grupo tiene al menos dos cifras («portales 7 9 11 13 15» no es un número), y
+ * con barras ninguno tiene cuatro («Factura 9/2026/0001» es una referencia).
+ */
+function pareceTelefono(m: string): boolean {
+  if (FECHA.test(m)) return false
+  const grupos = m
+    .replace(/^\(?(?:\+|00)34/, '')
+    .split(/\D+/)
+    .filter(Boolean)
+  if (grupos.length > 1 && grupos.some((g) => g.length < 2)) return false
+  if (m.includes('/') && grupos.some((g) => g.length >= 4)) return false
+  return true
+}
 // La actual: cuatro cifras y tres consonantes, en mayúscula o no, y con « - » o
-// sin nada entre medias. Nunca dentro de un id de queja («Q-…»).
-const MATRICULA = /(?<!Q-)\b\d{4}(?:\s?-\s?|\s)?[BCDFGHJKLMNPRSTVWXYZ]{3}\b/gi
+// sin nada entre medias. Nunca dentro de un id de queja («Q-…»), ni si las tres
+// letras son una unidad: «1500 mts», «1200 kwh», «1000 kgs» son una medida.
+const UNIDADES =
+  'mts|kms|cms|mms|kgs|grs|tns|lts|mls|cls|dls|hrs|mns|sgs|kwh|mwh|gwh|rpm|ppm|pts|cts|mph'
+const MATRICULA = new RegExp(
+  `(?<!Q-)\\b\\d{4}(?:[ \\u00a0]?-[ \\u00a0]?|[ \\u00a0])?(?!(?:${UNIDADES})\\b)[BCDFGHJKLMNPRSTVWXYZ]{3}\\b`,
+  'gi',
+)
 // La provincial de antes: el código de la provincia, cuatro cifras y una o dos
 // letras, con guiones o todo junto. Con espacios no: en un texto en mayúsculas,
 // «DE 2020 A 2024 EL…» tiene esa forma (la A es un código de provincia), y una
@@ -109,7 +134,7 @@ export function limpiarDatosPersonales(texto: string): Limpieza {
         ? retirar('nie')
         : m,
     )
-    .replace(TELEFONO, (m) => (FECHA.test(m) ? m : retirar('telefono')))
+    .replace(TELEFONO, (m) => (pareceTelefono(m) ? retirar('telefono') : m))
     .replace(MATRICULA, () => retirar('matricula'))
     .replace(MATRICULA_PROVINCIAL, () => retirar('matricula'))
   return { texto: limpio, retirados }
