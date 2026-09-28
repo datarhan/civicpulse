@@ -14,6 +14,7 @@ import { CLASES_PII, MARCA_RETIRADO, limpiarDatosPersonales } from '../src/servi
 const casos = JSON.parse(readFileSync(join(__dirname, 'fixtures', 'pii-casos.json'), 'utf8')) as {
   retirados: Array<{ texto: string; clase: string }>
   intactos: string[]
+  asumidos: Array<{ texto: string; clase: string }>
 }
 
 describe('limpiarDatosPersonales', () => {
@@ -28,6 +29,13 @@ describe('limpiarDatosPersonales', () => {
     // Lo que queda no conserva ni un trozo reconocible del dato.
     expect(r.texto.replaceAll(MARCA_RETIRADO, '')).not.toMatch(/\d{3,}|@/)
   })
+
+  it.each(casos.asumidos.map((c) => [c.clase, c.texto]))(
+    'retira, a sabiendas, un %s que no es un dato personal: «%s»',
+    (clase, texto) => {
+      expect(limpiarDatosPersonales(texto).retirados).toEqual({ [clase]: 1 })
+    },
+  )
 
   it.each(casos.intactos.map((t) => [t]))('deja intacto «%s»', (texto) => {
     expect(limpiarDatosPersonales(texto)).toEqual({ texto, retirados: {} })

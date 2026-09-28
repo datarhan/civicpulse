@@ -98,5 +98,33 @@ describe('los datos personales del texto no se guardan', () => {
     expect(tarjeta).toMatch(/2 datos personales retirados/)
     const recibo = String(h.a(VECINA).at(-1)?.cuerpo.text)
     expect(recibo).toMatch(/un teléfono y un correo/)
+    // Sin prometer de más: el original sigue en su conversación de Telegram.
+    expect(recibo).toMatch(/no se guarda en el bot/)
+    expect(recibo).not.toMatch(/en ninguna parte/)
+  })
+
+  it('un dato partido por el límite de largo no deja su trozo: primero se limpia, luego se corta', async () => {
+    const h = botFalso(db)
+    // Un título de más de 140 caracteres con un DNI a caballo del corte: cortado
+    // antes de limpiar, la letra se perdía y las ocho cifras se guardaban.
+    // El corte (140) cae justo entre las cifras (132–139) y la letra (140).
+    const titulo = `Farola ${'x'.repeat(124)} 12345678Z`
+    expect(titulo.indexOf('12345678Z')).toBe(132)
+    expect(titulo.length).toBeGreaterThan(140)
+    await h.bot.handleUpdate(texto(VECINA, '/queja'))
+    await h.bot.handleUpdate(boton(VECINA, 'cat:alumbrado'))
+    await h.bot.handleUpdate(texto(VECINA, titulo))
+    await h.bot.handleUpdate(
+      texto(
+        VECINA,
+        'La farola de la plaza lleva apagada desde el lunes y la calle queda a oscuras.',
+      ),
+    )
+    await h.bot.handleUpdate(texto(VECINA, 'saltar'))
+    await h.bot.handleUpdate(texto(VECINA, 'saltar'))
+    const guardada = db.prepare('SELECT title FROM quejas').get() as { title: string } | undefined
+    expect(guardada, 'la queja no se guardó').toBeDefined()
+    expect(guardada!.title.length).toBeLessThanOrEqual(140)
+    expect(dondeAparece('12345678')).toEqual([])
   })
 })

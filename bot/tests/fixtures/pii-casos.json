@@ -1,21 +1,102 @@
 {
   "_nota": "Datos SINTÉTICOS: el repositorio es público. Los teléfonos llevan ceros de relleno; el DNI 12345678Z, el NIE X1234567L y el IBAN ES91 2100 0418 4502 0005 1332 son los ejemplos de manual; los correos, de example.com.",
   "retirados": [
-    { "texto": "Llamadme al 600 000 001 cuando podáis", "clase": "telefono" },
-    { "texto": "Mi móvil: +34 600 000 002.", "clase": "telefono" },
-    { "texto": "teléfono 0034 600-000-003", "clase": "telefono" },
-    { "texto": "El fijo es 961 00 00 04 por las tardes", "clase": "telefono" },
-    { "texto": "o el 96 100 00 05", "clase": "telefono" },
-    { "texto": "600000006", "clase": "telefono" },
-    { "texto": "escribid a vecina.prueba@example.com si hace falta", "clase": "correo" },
-    { "texto": "DNI 12345678Z", "clase": "dni" },
-    { "texto": "con DNI 12.345.678-Z", "clase": "dni" },
-    { "texto": "dni: 12345678z", "clase": "dni" },
-    { "texto": "NIE X1234567L", "clase": "nie" },
-    { "texto": "cuenta ES91 2100 0418 4502 0005 1332 para lo que sea", "clase": "iban" },
-    { "texto": "cuenta ES9121000418450200051332", "clase": "iban" },
-    { "texto": "el coche 1234 BCD lleva meses aparcado", "clase": "matricula" },
-    { "texto": "una furgoneta V-1234-AB abandonada", "clase": "matricula" }
+    {
+      "texto": "Llamadme al 600 000 001 cuando podáis",
+      "clase": "telefono"
+    },
+    {
+      "texto": "Mi móvil: +34 600 000 002.",
+      "clase": "telefono"
+    },
+    {
+      "texto": "teléfono 0034 600-000-003",
+      "clase": "telefono"
+    },
+    {
+      "texto": "El fijo es 961 00 00 04 por las tardes",
+      "clase": "telefono"
+    },
+    {
+      "texto": "o el 96 100 00 05",
+      "clase": "telefono"
+    },
+    {
+      "texto": "600000006",
+      "clase": "telefono"
+    },
+    {
+      "texto": "escribid a vecina.prueba@example.com si hace falta",
+      "clase": "correo"
+    },
+    {
+      "texto": "DNI 12345678Z",
+      "clase": "dni"
+    },
+    {
+      "texto": "con DNI 12.345.678-Z",
+      "clase": "dni"
+    },
+    {
+      "texto": "dni: 12345678z",
+      "clase": "dni"
+    },
+    {
+      "texto": "NIE X1234567L",
+      "clase": "nie"
+    },
+    {
+      "texto": "cuenta ES91 2100 0418 4502 0005 1332 para lo que sea",
+      "clase": "iban"
+    },
+    {
+      "texto": "cuenta ES9121000418450200051332",
+      "clase": "iban"
+    },
+    {
+      "texto": "el coche 1234 BCD lleva meses aparcado",
+      "clase": "matricula"
+    },
+    {
+      "texto": "una furgoneta V-1234-AB abandonada",
+      "clase": "matricula"
+    },
+    {
+      "texto": "Llamadme al 600 000 007, lo copio de la agenda",
+      "clase": "telefono"
+    },
+    {
+      "texto": "El fijo es (96) 100 00 08",
+      "clase": "telefono"
+    },
+    {
+      "texto": "tlf.600000009",
+      "clase": "telefono"
+    },
+    {
+      "texto": "móvil 600/000/010",
+      "clase": "telefono"
+    },
+    {
+      "texto": "la furgoneta 1234 bcd sigue ahí",
+      "clase": "matricula"
+    },
+    {
+      "texto": "matrícula 1234 - BCD",
+      "clase": "matricula"
+    },
+    {
+      "texto": "DNI 1234567L",
+      "clase": "dni"
+    },
+    {
+      "texto": "con DNI 12 345 678 Z",
+      "clase": "dni"
+    },
+    {
+      "texto": "cuenta ES91-2100-0418-4502-0005-1332",
+      "clase": "iban"
+    }
   ],
   "intactos": [
     "La queja Q-7914N3C9 sigue sin respuesta",
@@ -34,6 +115,25 @@
     "entre 12345678 y lo demás",
     "ES00 0000 0000 0000 0000 0000",
     "La CV-374 no tiene arcén",
-    "Llevamos 2026 días esperando"
+    "Llevamos 2026 días esperando",
+    "DEL 2020 A 2024 EL AYUNTAMIENTO NO HA HECHO NADA",
+    "DE 2019 A 2025 LA CALLE SIGUE IGUAL",
+    "DESDE 2023 O 2024 SE QUEJAN LOS VECINOS",
+    "La queja Q-CS1234AB sigue abierta"
+  ],
+  "_asumidos": "Lo que se retira sin ser un dato personal, a sabiendas: el bot no sabe de quién es un número, así que un teléfono público también sale; y cuatro cifras con tres consonantes detrás tienen la forma de una matrícula. Mejor de más aquí que un teléfono publicado.",
+  "asumidos": [
+    {
+      "texto": "El teléfono del ayuntamiento, 900 000 011, no contesta",
+      "clase": "telefono"
+    },
+    {
+      "texto": "Aviso de avería 900000012",
+      "clase": "telefono"
+    },
+    {
+      "texto": "Un 1998 BMW abandonado",
+      "clase": "matricula"
+    }
   ]
 }
