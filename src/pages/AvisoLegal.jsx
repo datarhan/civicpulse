@@ -424,17 +424,25 @@ export default function AvisoLegal() {
           cuántos de cada tipo, y el bot te dice qué te ha quitado. Sigue, como todo lo que le
           escribes, en tu conversación de Telegram. La detección es automática y sólo reconoce lo
           que tiene una forma fija: un nombre, una dirección o un dato de salud no los reconoce, y
-          por eso cada queja la revisa una persona antes de publicarla. Si aun así ves un dato tuyo
-          publicado, pide su retirada por la vía de rectificación de esta página.
+          por eso cada queja pasa además la revisión que se explica a continuación. Si aun así ves
+          un dato tuyo publicado, pide su retirada por la vía de rectificación de esta página.
         </p>
         <p>
           <strong>Revisión antes de publicar</strong>: el texto de cada queja nueva, su categoría y
           su barrio llegan por Telegram a quien modera las quejas —sin tu identidad y sin la foto,
-          que no ve—, que decide si se publica tal cual o se descarta. La decisión tiene vuelta
-          atrás: una descartada puede publicarse después, y una publicada, retirarse de la
-          publicación. Hasta que se publica no es pública en ninguna parte, y su foto sólo se
-          anonimiza y se publica cuando la queja ya lo es. El bot te avisa del resultado de la
-          revisión, y puedes impugnarlo escribiendo a{' '}
+          que no ve—, que decide si se publica tal cual o se descarta. Antes, cuando la revisión
+          automática está activa, el texto lo lee también un modelo de lenguaje, la API Gemini de
+          Google, con sus condiciones de pago —que no usan lo enviado para mejorar sus productos—:
+          recibe sólo el título y el detalle, ya sin los datos que el bot retira al guardarlos, y ni
+          tu identidad ni tu barrio. Lo único que puede hacer es señalar los nombres de otras
+          personas, que se quitan del texto de la queja y quedan como «[dato personal retirado]» —el
+          bot te dice cuántos quitó—, y decir si la queja tiene que verla una persona. Una queja que
+          no retiene sólo se publica sin una persona cuando la precisión de esa revisión está
+          medida, como explica la metodología, y nunca en periodo electoral; sin esa medición, las
+          decide todas quien modera. La decisión tiene vuelta atrás: una descartada puede publicarse
+          después, y una publicada, retirarse de la publicación. Hasta que se publica no es pública
+          en ninguna parte, y su foto sólo se anonimiza y se publica cuando la queja ya lo es. El
+          bot te avisa del resultado de la revisión, y puedes impugnarlo escribiendo a{' '}
           <a href="mailto:civicpulse_es@proton.me" style={{ color: 'var(--civic)' }}>
             civicpulse_es@proton.me
           </a>
