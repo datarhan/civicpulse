@@ -22,10 +22,11 @@ naming of technical staff, no political shaming.
 ## What the research told us (condensed from 3 parallel research agents)
 
 **Spanish legal framework (Ley 39/2015, 7/1985, 19/2013, LO 1/1982, RD 203/2021)**
-- A *queja* is only a binding *solicitud* when it enters the municipal **Registro
+
+- A _queja_ is only a binding _solicitud_ when it enters the municipal **Registro
   Electrónico** — art. 16 LPACAP. That's the only clock the law recognises.
 - Without an **electronic signature** (qualified cert / Cl@ve-Firma / Autofirma)
-  it's a *sugerencia*, not a solicitud — no silencio rights, no 3-month deadline.
+  it's a _sugerencia_, not a solicitud — no silencio rights, no 3-month deadline.
 - We **cannot file on the citizen's behalf** without a **Registro Electrónico de
   Apoderamientos (REA)** poder per citizen — art. 6 LPACAP. Too heavy for V1.
 - **Silencio administrativo on quejas is negative** (art. 24 LPACAP): after 3
@@ -44,6 +45,7 @@ naming of technical staff, no political shaming.
   publishing. AEPD has sanctioned municipal portals for the opposite.
 
 **What existing civic-tech platforms do (FixMyStreet, SeeClickFix, Decidim, Consul, Avisa Madrid, Open311)**
+
 - **None of the Spanish platforms** (Decidim, Consul, Avisa Madrid) publish
   per-individual-official response time. All aggregate at department / area /
   servicio. Spanish labour law + LO 1/1982 make it the only safe line.
@@ -62,6 +64,7 @@ naming of technical staff, no political shaming.
   reporting. Using Proposals for potholes is documented friction.
 
 **Accountability patterns that hold up legally (Civio, TheyWorkForYou, Qué Hacen Los Diputados, STC 216/2013)**
+
 - "Reportaje neutral" doctrine: faithfully reproduce primary sources with
   attribution → constitutional shield even if later inaccurate.
 - Individual-official metrics are publishable **only** when sourced from an
@@ -147,6 +150,13 @@ Public form on `/quejas/nueva`, schema mirrors FixMyStreet:
   when the queue stalls (no admins, a card no current admin holds, a wait over
   48 h). An automatic PII scrub + model check that publishes clean ones is the
   next step.
+  _Status 2026-09-28:_ the model check exists (`bot/src/services/moderacion.ts`,
+  behind `GEMINI_NIVEL=pago`). It may only cut exact fragments naming a private
+  person and give reasons from a closed list, published verbatim on
+  `/metodologia`; an answer that does not hold up is retried, never repaired.
+  Publishing a queja it does not hold without a person is automation class
+  `queja.publicacion-automatica`, so it waits for a measured precision like any
+  other additive publication; until then a person still decides every one.
 - Severity inference (low/med/high) from category + keyword whitelist — shown
   as a hint, never as a verdict.
 
@@ -192,6 +202,7 @@ capturada → registrada → notificada_10d → en_tramite
 ```
 
 State transitions driven by:
+
 - **Registro CSV polling** (if the municipality exposes `sede.ribarroja.es`
   estado-de-expediente — many do under RD 203/2021 art. 28).
 - **Citizen-reported confirmations** (the vecino pastes the notificación PDF
@@ -214,15 +225,15 @@ as **Open311 GeoReport v2** at `public/data/quejas.json` (interop, zero cost).
 **B · `/quejas/dashboard` — department × category × barrio**
 Metrics published (mirrors Avisa Madrid's quarterly CSV pattern):
 
-| Metric | Unit | Visibility |
-|---|---|---|
-| Volume per month | Count | Public |
-| Median acknowledgement time | Hours | Public |
-| Median resolution time | Days | Public |
-| SLA-met % (vs. Carta de Servicios if published) | % | Public |
-| Backlog > 30 days | Count | Public |
-| Silencio negativo count | Count | Public |
-| Escalations to Síndic | Count | Public |
+| Metric                                          | Unit  | Visibility |
+| ----------------------------------------------- | ----- | ---------- |
+| Volume per month                                | Count | Public     |
+| Median acknowledgement time                     | Hours | Public     |
+| Median resolution time                          | Days  | Public     |
+| SLA-met % (vs. Carta de Servicios if published) | %     | Public     |
+| Backlog > 30 days                               | Count | Public     |
+| Silencio negativo count                         | Count | Public     |
+| Escalations to Síndic                           | Count | Public     |
 
 **Aggregation keys (always):** `concejalía × categoría × barrio × trimestre`.
 **Never published:** individual staffer names, exact street+number, citizen
@@ -236,7 +247,7 @@ data from **official registers**:
 - Asset declaration (from BOP)
 - Salary (from plantilla municipal)
 - Contracts awarded under their área (from `tenders.json` / PLACSP)
-- Number of quejas assigned to their *concejalía* (aggregate, not personal)
+- Number of quejas assigned to their _concejalía_ (aggregate, not personal)
 
 **The SLA counters, and the line they must not cross.** `resueltas`,
 `pendientes` and `silencios` DO render beside the titular of the área — on
@@ -315,6 +326,7 @@ portals; we'd add a feed of CTBG resoluciones naming Riba-roja.
 ## Build plan
 
 **Sprint A — Read-only skeleton** (2 days)
+
 - Schema + `public/data/quejas.json` empty seed + Open311 GeoReport v2 emit
 - `/quejas` feed UI showing "aún no hay quejas registradas — sé el primero"
 - Dashboard at `/quejas/dashboard` with empty stats
@@ -322,24 +334,28 @@ portals; we'd add a feed of CTBG resoluciones naming Riba-roja.
   if Riba-roja's Pleno publishes one (`scripts/scrape-comision-sugerencias.ts`)
 
 **Sprint B — Capture form** (3 days, TDD)
+
 - `/quejas/nueva` form with category + geo + photo
 - Server-side: EXIF strip + face/plate blur + PII redact
 - Deduplication + 24h moderation queue
 - Still no registro handoff — capture only produces `capturada` state quejas
 
 **Sprint C — Handoff + tracking** (4 days, TDD)
+
 - Pre-filled PDF/XML solicitud genérica generator
 - Deep-link to `sede.ribarroja.es` with payload hash
 - Recibo capture flow (citizen pastes back entry nº + CSV)
 - Clock automation: 10d acuse, 90d silencio
 
 **Sprint D — Escalation + scorecard** (2 days, TDD)
+
 - Síndic de Greuges template generator
 - CTBG resoluciones scraper for any mentioning Riba-roja
 - `/quejas/dashboard` aggregate metrics (median, SLA-met, backlog, silencio)
 - `/cargos/<id>` integration: queja counts per concejalía (not per concejal)
 
 **Sprint E — Legal + right of reply** (1 day)
+
 - `.github/ISSUE_TEMPLATE/queja-response.yml` (mirrors promise-response.yml)
 - `npm run queja-reply` curator CLI (mirrors `npm run reply`)
 - `/metodologia` + `/aviso-legal` updates
@@ -368,11 +384,11 @@ contract.
 ## What this does NOT do (by design)
 
 - Does not rank individual municipal employees by speed. Illegal under LOPDGDD
-  + Spanish labour law without union agreement.
+  - Spanish labour law without union agreement.
 - Does not "approve" quejas automatically. Silencio is negative — we explain
   the contencioso-administrativo path, we don't simulate approval.
 - Does not replace the Ayuntamiento's sede. We annotate it, adding clock + map
-  + dashboard — the legal act still happens in `sede.ribarroja.es`.
+  - dashboard — the legal act still happens in `sede.ribarroja.es`.
 - Does not call any official "corrupto", "negligente" or "incompetente". Ever.
   Those are judicial findings, not dashboard tags.
 
@@ -381,6 +397,7 @@ contract.
 ## Primary sources (for `/aviso-legal`)
 
 **Legal framework**
+
 - Ley 39/2015 LPACAP — https://www.boe.es/buscar/act.php?id=BOE-A-2015-10565
 - Ley 7/1985 LRBRL — https://www.boe.es/buscar/act.php?id=BOE-A-1985-5392
 - Ley 19/2013 Transparencia — https://www.boe.es/buscar/act.php?id=BOE-A-2013-12887
@@ -390,6 +407,7 @@ contract.
 - Ley 1/2022 CValenciana — https://www.boe.es/buscar/act.php?id=BOE-A-2022-7837
 
 **Architectural precedents**
+
 - FixMyStreet — https://www.fixmystreet.com · github.com/mysociety/fixmystreet
 - Avisa Madrid AVISA dataset — https://datos.madrid.es
 - Decidim — https://decidim.org
