@@ -416,7 +416,8 @@ describe('una revisión que no se puede anotar', () => {
     const g = gemini({ retirar: [], motivos: [] }, { retirar: [], motivos: [] })
     const { d } = deps(g, telegram())
     const r = await pasadaDeRevision(d)
-    expect(r).toMatchObject({ intentadas: 2, internos: 1, publicadas: 1 })
+    // La que no se pudo anotar cuenta como interna, no como limpia (regla 2).
+    expect(r).toMatchObject({ intentadas: 2, internos: 1, limpias: 1, publicadas: 1 })
     expect(getQueja(db, buena.id)).toMatchObject({ moderacion: 'publicada' })
     expect(getQueja(db, mala.id)).toMatchObject({ moderacion: 'pendiente' })
     expect(revisiones(mala.id)).toMatchObject([{ resultado: 'error', error: 'interno' }])
@@ -434,8 +435,42 @@ describe('una revisión que no se puede anotar', () => {
     await pasadaDeRevision(d)
     await pasadaDeRevision({ ...d, ahora: () => new Date(AHORA.getTime() + 30 * 60_000) })
     expect(g.llamadas).toHaveLength(1)
+    // Sin fila no hay fallos que contar ni aviso a quien modera: lo dice /health.
+    const estado = estadoRevision(db, d.env, new Date(AHORA.getTime() + 30 * 60_000))
+    expect(estado).toMatchObject({ enfriadas: 1, atascadas: 0 })
+    const salud = buildHealth(
+      { BOT_TOKEN: 'x', CHANNEL_ID: 'x', ADMIN_USER_IDS: String(ADMIN) },
+      {
+        mode: 'webhook',
+        uptimeSec: 1,
+        pid: 1,
+        webhookAuthenticated: true,
+        moderacion: { pendientes: 1, sinTarjeta: 0, masAntiguaHoras: 0, revision: estado },
+      },
+    )
+    expect(salud.degraded.join('\n')).toMatch(/no puede anotar la revisión de 1 queja/)
     await pasadaDeRevision({ ...d, ahora: () => new Date(AHORA.getTime() + 61 * 60_000) })
     expect(g.llamadas).toHaveLength(2)
+  })
+
+  it('un aviso que falla no para los demás avisos ni la pasada', async () => {
+    const [a, b] = [nuevaQueja(), nuevaQueja('La fuente de la plaza lleva un mes sin agua.')]
+    const tg = telegram()
+    const g = gemini(...Array.from({ length: 6 }, () => ({ status: 500 })))
+    const { d } = deps(g, tg)
+    let t = AHORA.getTime()
+    for (const salto of [0, 6, 16]) {
+      t += salto * 60_000
+      if (salto === 16) {
+        db.exec(`CREATE TRIGGER sin_avisos BEFORE INSERT ON avisos
+                 WHEN NEW.queja_id = '${a.id}'
+                 BEGIN SELECT RAISE(ABORT, 'fallo a propósito'); END`)
+      }
+      await pasadaDeRevision({ ...d, ahora: () => new Date(t) })
+    }
+    const avisos = tg.mensajes.filter((m) => m.chat === ADMIN).map((m) => m.texto)
+    expect(avisos).toHaveLength(1)
+    expect(avisos[0]).toContain(b.id)
   })
 
   it('lo que falla después de anotarla no la anota como fallo', async () => {
