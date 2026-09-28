@@ -1,4 +1,6 @@
 import { describe, it, expect } from 'vitest'
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
 import { buildHealth, VARIABLE_VERSION } from '../src/services/health'
 
 const base = { mode: 'long-polling', uptimeSec: 10, pid: 1 }
@@ -149,5 +151,20 @@ describe('buildHealth · la cola de revisión', () => {
     expect(h.status).toBe('degraded')
     expect(h.degraded.join(' ')).toMatch(/2 tarjeta\(s\).*30 h/)
     expect(buildHealth(wired, conCola(3)).status).toBe('ok')
+  })
+})
+
+/**
+ * health.ts lo importa también la raíz (tests/bot-despliegue.test.js, por
+ * `VARIABLE_VERSION`), y el typecheck de la raíz sigue sus imports. La CI de la
+ * raíz no instala las dependencias del bot: un import de health.ts —aunque sea
+ * sólo de un tipo— que arrastre grammy o better-sqlite3 pone la CI en rojo, y en
+ * el portátil, con las dependencias del bot instaladas, no se ve. Pasó en #137.
+ */
+describe('health.ts se lee desde la raíz', () => {
+  it('no importa nada', () => {
+    const fuente = readFileSync(join(__dirname, '..', 'src', 'services', 'health.ts'), 'utf8')
+    expect(fuente.length).toBeGreaterThan(0)
+    expect(fuente.match(/^\s*(import|export .* from)\b.*$/gm) ?? []).toEqual([])
   })
 })
