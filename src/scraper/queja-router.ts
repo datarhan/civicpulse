@@ -627,33 +627,55 @@ const CALENDARIO_DE_LA_SEDE = new Intl.DateTimeFormat('en-US', {
  */
 export function diaDeLaSede(marca: string | null | undefined): string | null {
   if (typeof marca !== 'string') return null
-  const t = instanteUtc(marca)
-  if (Number.isNaN(t)) return null
+  return diaDelInstante(instanteUtc(marca))
+}
+
+/** El día civil de la sede en que cae un instante (ms); null si no lo es. */
+function diaDelInstante(t: number): string | null {
+  if (!Number.isFinite(t)) return null
   const partes = Object.fromEntries(
     CALENDARIO_DE_LA_SEDE.formatToParts(new Date(t)).map((p) => [p.type, p.value]),
   )
   return `${partes.year}-${partes.month}-${partes.day}`
 }
 
+/** Un día «AAAA-MM-DD» más unos meses, de fecha a fecha y sin desbordar el mes. */
+function sumaMeses(dia: string, meses: number): string {
+  const [anio, mes, d] = dia.split('-').map(Number)
+  // El día 0 de un mes es el último del anterior: el último del de vencimiento.
+  const ultimo = new Date(Date.UTC(anio, mes + meses, 0)).getUTCDate()
+  return new Date(Date.UTC(anio, mes - 1 + meses, Math.min(d, ultimo))).toISOString().slice(0, 10)
+}
+
+/** Días naturales de un día «AAAA-MM-DD» a otro (los dos, a medianoche UTC). */
+function diasEntre(desde: string, hasta: string): number {
+  return Math.round((Date.parse(hasta) - Date.parse(desde)) / 86_400_000)
+}
+
 /**
- * El día en que vence un plazo fijado en meses — art. 30.4 LPACAP: «el plazo
- * concluirá el mismo día en que se produjo la notificación […] en el mes de
+ * El ÚLTIMO día de un plazo fijado en meses («AAAA-MM-DD», en el calendario de la
+ * sede) — art. 30.4 LPACAP: «El plazo concluirá el mismo día en que se produjo la
+ * notificación, publicación o silencio administrativo en el mes o el año de
  * vencimiento. Si en el mes de vencimiento no hubiera día equivalente a aquel en
  * que comienza el cómputo, se entenderá que el plazo expira el último día del
- * mes».
+ * mes». null si la marca de inicio no se puede leer.
  *
  * Ese segundo inciso es el que un `setMonth` a secas se salta: el 31 de enero
- * más un mes da el 3 de marzo, y la norma dice el 28 de febrero. Se cuenta en
- * UTC —las marcas de tiempo del bot llegan en UTC— para que la respuesta no
- * dependa de en qué huso corra la prueba.
+ * más un mes da el 3 de marzo, y la norma dice el 28 de febrero.
+ *
+ * Devuelve un DÍA y no un instante. Hasta el 28-09-2026 devolvía el instante del
+ * registro trasladado N meses, y quien lo leía contaba tandas de 24 horas: el bot
+ * pasaba una queja registrada a las 11:00 a silencio a las 12:00 de su último día,
+ * cuando ese día entero es todavía plazo. Y lo contaba desde el día de UTC, no
+ * desde el de la sede (art. 31.2): el recibo «Fecha de Registro 28/09/2026
+ * 0:00:01», en UTC `2026-09-27 22:00:01`, vencía el 27 de diciembre y no el 28.
+ *
+ * No aplica el art. 30.5 (el último día inhábil se prorroga al primer hábil
+ * siguiente): para eso hace falta el calendario de inhábiles, que no está aquí.
  */
-export function venceEnMeses(desde: Date | string, meses: number): Date {
-  const inicio = desde instanceof Date ? new Date(desde.getTime()) : new Date(desde)
-  const dia = inicio.getUTCDate()
-  const vence = new Date(inicio.getTime())
-  vence.setUTCMonth(vence.getUTCMonth() + meses)
-  if (vence.getUTCDate() !== dia) vence.setUTCDate(0)
-  return vence
+export function venceEnMeses(desde: string | null | undefined, meses: number): string | null {
+  const inicio = diaDeLaSede(desde)
+  return inicio === null ? null : sumaMeses(inicio, meses)
 }
 
 /**
@@ -672,13 +694,47 @@ export function plazoHumano(limite: TimeLimit): string {
 /**
  * Cuántos días dura ESE plazo empezando ESE día. Un plazo en días son sus días;
  * uno en meses depende de cuáles sean: tres meses desde el 1 de diciembre son
- * 90 y desde el 1 de enero de un bisiesto son 91.
+ * 90 y desde el 1 de enero de un bisiesto son 91. Días del calendario de la
+ * sede, del de entrada al último; null si la marca no se puede leer.
  */
-export function diasDePlazo(limite: TimeLimit, desde: Date | string): number {
+export function diasDePlazo(limite: TimeLimit, desde: string | null | undefined): number | null {
   if (limite.unit === 'days') return limite.amount
-  const inicio = desde instanceof Date ? new Date(desde.getTime()) : new Date(desde)
-  const vence = venceEnMeses(inicio, limite.amount)
-  return Math.round((vence.getTime() - inicio.getTime()) / 86_400_000)
+  const inicio = diaDeLaSede(desde)
+  return inicio === null ? null : diasEntre(inicio, sumaMeses(inicio, limite.amount))
+}
+
+/**
+ * Los días naturales que van del día de la sede en que entró la queja al día de
+ * la sede de `ahora`: 0 el mismo día de la entrada. null si no se puede leer.
+ */
+export function diasTranscurridos(
+  desde: string | null | undefined,
+  ahora: Date | number = Date.now(),
+): number | null {
+  const inicio = diaDeLaSede(desde)
+  const hoy = diaDelInstante(typeof ahora === 'number' ? ahora : ahora.getTime())
+  return inicio === null || hoy === null ? null : diasEntre(inicio, hoy)
+}
+
+/**
+ * Los días que le quedan a un plazo en meses el día de la sede en que cae
+ * `ahora`: 0 durante todo su último día y negativo desde las 00:00 del siguiente
+ * en Madrid, que es cuando se produce el silencio. Lo que deciden el bot (el paso
+ * a silencio) y las páginas (el contador, «Silencio»), con una sola cuenta.
+ *
+ * null si la marca no se puede leer, y también para un plazo en días: son días
+ * HÁBILES (art. 30.2), y sin el calendario de inhábiles contarlos naturales
+ * sería inventar la fecha.
+ */
+export function diasQueQuedan(
+  limite: TimeLimit,
+  desde: string | null | undefined,
+  ahora: Date | number = Date.now(),
+): number | null {
+  if (limite.unit !== 'months') return null
+  const vence = venceEnMeses(desde, limite.amount)
+  const hoy = diaDelInstante(typeof ahora === 'number' ? ahora : ahora.getTime())
+  return vence === null || hoy === null ? null : diasEntre(hoy, vence)
 }
 
 // ============================================================================

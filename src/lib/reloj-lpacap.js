@@ -32,6 +32,8 @@
  * «registrada O en un estado terminal de respuesta».
  */
 
+import { diaDeLaSede } from '../scraper/queja-router'
+
 /** Por qué un cargo se queda sin cifras. */
 export const MOTIVOS_SIN_CIFRA = ['sinDatos', 'exportIncompleto', 'sinRegistro']
 
@@ -40,12 +42,16 @@ function esRecuento(n) {
   return Number.isInteger(n) && n >= 0
 }
 
-/** Una fecha de registro utilizable, con el mismo criterio que usa el panel
- *  para contar días («ReadyToEscalate» hace `new Date(...).getTime()`).
- *  Exportada porque el panel de /quejas da sus proporciones sobre las
- *  registradas, y contarlas con otro criterio sería otra copia de la regla. */
+/** Una fecha de registro utilizable: una desde la que el reloj sabe contar, que
+ *  es leerla con `diaDeLaSede` (queja-router), como hacen el contador de la
+ *  ficha, el panel urgente y el bot. Era `Date.parse`, que acepta formas que el
+ *  reloj no cuenta —«09/28/2026», leída en hora local y al estilo de EE. UU.—:
+ *  una queja así contaba como registrada sin que nadie pudiera decir cuándo le
+ *  vence el plazo. Exportada porque el panel de /quejas da sus proporciones
+ *  sobre las registradas, y contarlas con otro criterio sería otra copia de la
+ *  regla. */
 export function registroUtilizable(valor) {
-  return typeof valor === 'string' && Number.isFinite(Date.parse(valor))
+  return diaDeLaSede(valor) !== null
 }
 
 /**

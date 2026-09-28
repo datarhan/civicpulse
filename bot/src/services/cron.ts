@@ -2,9 +2,9 @@
  * Background worker — checks registered quejas for silencio negativo.
  *
  *   For each queja in state='registrada' (or 'notificada_10d'),
- *   compute the legal plazo from queja-router. If
- *   (now - registered_at) > plazo days AND no resolution has landed,
- *   auto-transition to 'silencio_negativo' and emit the channel
+ *   compute the legal plazo from queja-router. Once the sede's calendar
+ *   day (Europe/Madrid) is past the plazo's LAST day and no resolution has
+ *   landed, auto-transition to 'silencio_negativo' and emit the channel
  *   broadcast.
  *
  * Paused while LOREG freeze is active.
@@ -16,7 +16,7 @@ import type { Db } from '../db/client.ts'
 import type { QuejaRow } from '../db/queries.ts'
 import { setState } from '../db/queries.ts'
 import { routeUsingLocalOfficials } from './router.ts'
-import { diasDePlazo } from '../../../src/scraper/queja-router.ts'
+import { diasDePlazo, diasQueQuedan } from '../../../src/scraper/queja-router.ts'
 import { isLoregFrozen } from './freeze.ts'
 import type { Channel } from './channel.ts'
 
@@ -26,6 +26,12 @@ export interface SilencioResult {
   transitioned: QuejaRow[]
   skippedFrozen: boolean
   checked: number
+  /**
+   * Registradas cuya fecha de registro no se puede leer: no se evalúan —ni en
+   * plazo ni vencidas— y se dicen. Callarlas las contaría como «en plazo»; y el
+   * código de antes, con `NaN < plazo` falso, las pasaba a silencio.
+   */
+  sinFechaLegible: string[]
   /**
    * Detached broadcast outcome — the state transitions themselves are
    * synchronous and never blocked on Telegram, but callers (and the cron
@@ -69,6 +75,7 @@ export function checkSilencio(
       transitioned: [],
       skippedFrozen: true,
       checked: 0,
+      sinFechaLegible: [],
       broadcasts: Promise.resolve({ sent: 0, failed: 0 }),
     }
   }
@@ -89,6 +96,7 @@ export function checkSilencio(
     .all() as QuejaRow[]
 
   const transitioned: QuejaRow[] = []
+  const sinFechaLegible: string[] = []
   // El plazo de cada una viaja con ella hasta el aviso: el canal no lo recalcula.
   const avisos: Array<{ queja: QuejaRow; plazoDias: number }> = []
   for (const r of rows) {
@@ -109,15 +117,24 @@ export function checkSilencio(
     // presumed granted by operation of law; we don't flag that as a
     // failure.
     if (routing.silencio !== 'negativo') continue
-    const registered = new Date(r.registered_at!)
     // Los días QUE DURA ESE plazo desde ESA fecha: el art. 21.3 lo fija en
     // meses y el art. 30.4 manda contarlos de fecha a fecha, así que tres meses
     // son 90 o 91 días según cuándo se registrara. Con el 90 fijo, una queja
     // registrada en enero de un año bisiesto pasaba a silencio un día antes de
     // que el plazo hubiera vencido de verdad.
-    const plazoDays = diasDePlazo(limite, registered)
-    const ageDays = (now.getTime() - registered.getTime()) / (1000 * 60 * 60 * 24)
-    if (ageDays < plazoDays) continue
+    //
+    // Y el silencio no llega a la hora del registro del último día: ese día
+    // entero es plazo («concluirá el mismo día», art. 30.4), contado en el
+    // calendario de la sede (art. 31.2). Hasta el 28-09-2026 esto comparaba los
+    // días del plazo con las horas transcurridas desde la marca, y una queja
+    // registrada a las 11:00 pasaba a silencio a las 12:00 de su último día.
+    const plazoDays = diasDePlazo(limite, r.registered_at)
+    const quedan = diasQueQuedan(limite, r.registered_at, now)
+    if (plazoDays === null || quedan === null) {
+      sinFechaLegible.push(r.id)
+      continue
+    }
+    if (quedan >= 0) continue
 
     const updated = setState(db, r.id, 'silencio_negativo')
     if (updated) {
@@ -142,13 +159,18 @@ export function checkSilencio(
     }
     return { sent, failed }
   })
-  return { transitioned, skippedFrozen: false, checked: rows.length, broadcasts }
+  return { transitioned, skippedFrozen: false, checked: rows.length, sinFechaLegible, broadcasts }
 }
 
 export function startSilencioCron(db: Db, channel: Channel): () => void {
   const tick = () => {
     try {
       const r = checkSilencio(db, channel)
+      if (r.sinFechaLegible.length > 0) {
+        console.error(
+          `[cron] ${r.sinFechaLegible.length} registrada(s) sin fecha de registro legible, sin evaluar: ${r.sinFechaLegible.join(', ')}`,
+        )
+      }
       if (r.skippedFrozen) {
         console.log('[cron] silencio check paused — LOREG freeze active')
       } else if (r.transitioned.length > 0) {
