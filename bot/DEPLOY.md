@@ -186,6 +186,12 @@ flyctl deploy --config bot/fly.toml \
 flyctl logs --app munigraph-ribarroja
 ```
 
+`telegram.repetido` es un update que Telegram volvió a mandar porque el primero pasó
+de los diez segundos del webhook (que antes dejó un `[http] error: … timed out`), y
+que no se atendió otra vez; `telegram.update`, uno que falló, con su pila
+(`src/services/una-vez-y-en-orden.ts`). Muchos seguidos dicen que la API de Telegram,
+o el candado de las tarjetas de una queja, va lento.
+
 ### SSH into the machine
 
 ```bash
@@ -283,7 +289,10 @@ flyctl scale count 1    --app munigraph-ribarroja       # stay at 1 (SQLite)
 ```
 
 Do **not** scale count beyond 1 — SQLite doesn't tolerate multiple
-writers. If we outgrow a single machine, migrate to Postgres first.
+writers. If we outgrow a single machine, migrate to Postgres first, and move
+what lives in the process's memory with it: the conversations, the per-chat
+order and seen `update_id`s (`src/services/una-vez-y-en-orden.ts`) and the
+card lock (`src/services/avisos-admin.ts`).
 
 ### Tear down
 

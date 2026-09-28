@@ -55,6 +55,12 @@ export function botFalso(
      * las recibe (403); un número, con ese código (un 502 es un fallo de paso).
      */
     falla?: (metodo: string, cuerpo: Record<string, any>) => boolean | number
+    /**
+     * Las llamadas que Telegram tarda en contestar: la promesa que devuelve, hasta
+     * que la prueba la suelta; nada, para contestar en el acto. Así se ve lo que
+     * llega mientras un update sigue a medias.
+     */
+    retener?: (metodo: string, cuerpo: Record<string, any>) => Promise<void> | undefined
   } = {},
 ) {
   const llamadas: Llamada[] = []
@@ -64,6 +70,7 @@ export function botFalso(
     const cuerpo = init?.body ? JSON.parse(String(init.body)) : {}
     const llamada: Llamada = { metodo, cuerpo }
     llamadas.push(llamada)
+    await o.retener?.(metodo, cuerpo)
     const fallo = o.falla?.(metodo, cuerpo)
     if (fallo) {
       const codigo = fallo === true ? 403 : fallo
