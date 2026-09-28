@@ -17,6 +17,7 @@
  * una persona, que la tiene ya en su tarjeta. En periodo electoral no se publica
  * ninguna sin una persona.
  */
+import { randomBytes } from 'node:crypto'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import type { Db } from '../db/client.ts'
@@ -237,18 +238,26 @@ export async function consultarModelo(
   },
 ): Promise<RespuestaDelModelo> {
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${o.modelo}:generateContent`
+  // Las marcas del bloque de datos llevan un código nuevo en cada llamada: con
+  // unas fijas, una queja que escribiera la de cierre salía del bloque, y lo que
+  // siguiera le llegaba al modelo como si no fuera de ella.
+  const marca = randomBytes(8).toString('hex')
   let res: Response
   try {
     res = await (o.fetchImpl ?? fetch)(url, {
       method: 'POST',
       headers: { 'content-type': 'application/json', 'x-goog-api-key': o.env.GEMINI_API_KEY ?? '' },
       body: JSON.stringify({
-        systemInstruction: { parts: [{ text: promptDeRevision(o.cargos) }] },
+        systemInstruction: { parts: [{ text: promptDeRevision(o.cargos, marca) }] },
         contents: [
           {
             role: 'user',
             parts: [
-              { text: `<<<QUEJA\nTítulo: ${texto.titulo}\n\nDetalle: ${texto.detalle}\nQUEJA>>>` },
+              {
+                text:
+                  `<<<QUEJA-${marca}\nTítulo: ${texto.titulo}\n\n` +
+                  `Detalle: ${texto.detalle}\nQUEJA-${marca}>>>`,
+              },
             ],
           },
         ],
