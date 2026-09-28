@@ -56,19 +56,28 @@ function fuentesDelBot(dir = BOT_SRC) {
 
 /**
  * Lo que el bot lee o importa de la raíz del repositorio, como rutas relativas a
- * ella: `resolve(HERE, '..', '..', '..', 'public', 'data', 'x.json')` y
+ * ella: `resolve(HERE, '..', '..', '..', 'public', 'data', 'x.json')` —o
+ * cualquier otra ruta de la raíz, como `.automation-measurements.json`— y
  * `from '../../../src/…'`.
  */
 function leidoFueraDeBot() {
   const rutas = new Set()
   for (const texto of fuentesDelBot()) {
     for (const m of texto.matchAll(
-      /resolve\(HERE,\s*'\.\.',\s*'\.\.',\s*'\.\.',\s*'public',\s*'data',\s*'([^']+)'\)/g,
+      /resolve\(HERE,\s*'\.\.',\s*'\.\.',\s*'\.\.',\s*((?:'[^']+'\s*,\s*)*'[^']+')\s*\)/g,
     ))
-      rutas.add(`public/data/${m[1]}`)
+      rutas.add([...m[1].matchAll(/'([^']+)'/g)].map((s) => s[1]).join('/'))
     for (const m of texto.matchAll(/from '\.\.\/\.\.\/\.\.\/(src\/[^']+)'/g)) rutas.add(m[1])
   }
   return [...rutas].sort()
+}
+
+/** Lo que copia la imagen del bot desde la raíz: el origen de cada `COPY` de bot/Dockerfile. */
+function copiadoEnLaImagen() {
+  const dockerfile = readFileSync(join(__dirname, '..', 'bot', 'Dockerfile'), 'utf8')
+  return [...dockerfile.matchAll(/^COPY\s+(?!--from)(\S+)\s+\S+\s*$/gm)].map((m) =>
+    m[1].replace(/\/$/, ''),
+  )
 }
 
 /** Desplegar el bot es invocar a flyctl, no mencionarlo. */
@@ -119,6 +128,19 @@ describe('el bot lo despliega alguien', () => {
     )
     const faltan = fuera.filter((r) => !despliegue.some((w) => w.texto.includes(`'${r}'`)))
     expect(faltan, 'cambian el bot en producción y no lo redespliegan').toEqual([])
+  })
+
+  // Y la imagen tiene que llevarlo. `.automation-measurements.json` vive en la
+  // raíz, fuera de `src` y de `public/data`: sin su `COPY`, el bot no encontraría
+  // la medición, la publicación automática se quedaría cerrada para siempre y
+  // nada diría por qué (services/moderacion.ts).
+  it('la imagen del bot copia todo lo que el bot lee fuera de bot/', () => {
+    const fuera = leidoFueraDeBot()
+    expect(fuera).toContain('.automation-measurements.json') // el control: el detector ve la raíz
+    const copiado = copiadoEnLaImagen()
+    expect(copiado).toContain('src') // el control: el detector lee los COPY
+    const faltan = fuera.filter((r) => !copiado.some((c) => r === c || r.startsWith(`${c}/`)))
+    expect(faltan, 'el bot lo lee y la imagen no lo lleva').toEqual([])
   })
 
   // Un despliegue que no puede autenticarse tiene que DECIRLO, no pasar en
