@@ -1447,92 +1447,140 @@ export default function Metodologia() {
       </Card>
 
       <Card id="citas-contraste" style={{ marginTop: 14, scrollMarginTop: 24 }}>
+        {/* Decía «Por qué una acusación puede estar publicada sin contrastar»:
+            la política anterior al 27-08-2026, cuando /hallazgos marcaba el
+            literal de una acusación retenida y lo imprimía igual. Desde entonces
+            las dos páginas obedecen la misma puerta y ese literal no se imprime
+            en ninguna. Sección reescrita el 28-09-2026. */}
         <SectionHead
           eyebrow="Citas y datos municipales"
-          title="Por qué una acusación puede estar publicada sin contrastar"
+          title="Qué enseñamos de una cita que el cotejo no pudo respaldar"
         />
+        {/* Decía que la puerta «publica la afirmación con sus datos, la publica
+            etiquetada como sin contraste, o no la publica». Lo retenido no se
+            enseña, pero «no la publica» prometía más de lo que el sitio cumple:
+            el texto de lo retenido sigue en ficheros de datos del repositorio,
+            que es público (tarea abierta el 28-09-2026). */}
         <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
           Cada afirmación que extraemos de un pleno se coteja automáticamente con la base documental
           del ayuntamiento: contratos, subvenciones, presupuesto y promesas publicadas. Una{' '}
           <strong>puerta editorial</strong> decide después qué puede salir a la vista, y su regla es
           fallar del lado prudente: si el cotejo no encontró datos, la afirmación no se presenta
-          como comprobada. En{' '}
+          como comprobada. La puerta da uno de tres resultados: la afirmación se enseña con sus
+          datos, se enseña como no contrastada, o <strong>se retiene</strong>. Retiene por dos
+          motivos, y no son de la misma clase. Uno es de <strong>contraste</strong>: las acusaciones
+          públicas que el cotejo no pudo respaldar o que son pura opinión, y los desmentidos que
+          asigna una máquina, que son pistas para un redactor y no veredictos. El otro es de{' '}
+          <strong>procedencia</strong>, y es más simple: si el literal de una declaración no aparece
+          en ninguna transcripción que tengamos —ni en la vigente, ni en las que sustituyó una
+          re-transcripción—, no podemos enseñar que se dijera. En{' '}
           <a href="/plenos" style={{ color: 'var(--civic)' }}>
             el registro de declaraciones del pleno
           </a>{' '}
-          esa puerta hace tres cosas distintas — publica la afirmación con sus datos, la publica
-          etiquetada como sin contraste, o <strong>no la publica</strong>. Lo último ocurre por dos
-          motivos, y no son de la misma clase. Uno es de <strong>contraste</strong>: las acusaciones
-          públicas que el cotejo no pudo respaldar, y los desmentidos que asigna una máquina, que
-          son pistas para un redactor y no veredictos. El otro es de <strong>procedencia</strong>, y
-          es más simple: si el literal de una declaración no aparece en ninguna transcripción que
-          tengamos —ni en la vigente, ni en las que sustituyó una re-transcripción—, no podemos
-          enseñar que se dijera, así que no se publica. Cuántas son se dice en{' '}
+          lo retenido no llega a la página, y cuántas son se dice en{' '}
           <a href="/plenos" style={{ color: 'var(--civic)' }}>
             el recuento de declaraciones
           </a>
           , porque una retirada que no se cuenta es indistinguible de una extracción que nunca
           ocurrió.
         </p>
+        {/* Decía «Un hallazgo es la excepción que esa puerta concede, y la
+            concede porque delante hay una persona. […] Por eso una cita puede
+            aparecer en /hallazgos aunque la puerta la retenga en el registro», y
+            después «En estas fichas la excepción la tomó una máquina. […] Lo
+            declaramos en vez de borrar nada […] y hasta que una persona la
+            responda, cada cita afectada lleva su marca». Dejó de ser cierto el
+            27-08-2026, por decisión del operador: una sola política para el mismo
+            literal en las dos páginas (`citaRetenida`, en PlenoFindings.jsx). */}
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
-          <strong>
-            Un hallazgo es la excepción que esa puerta concede, y la concede porque delante hay una
-            persona.
-          </strong>{' '}
-          Promover una declaración a hallazgo es un acto editorial: alguien lee la frase, la sitúa
-          en su contexto documental y firma. Por eso una cita puede aparecer en{' '}
+          <strong>Promover una declaración a hallazgo no la saca de la puerta.</strong> Hasta el 27
+          de agosto de 2026 sí la sacaba: en{' '}
           <a href="/hallazgos" style={{ color: 'var(--civic)' }}>
             /hallazgos
           </a>{' '}
-          aunque la puerta la retenga en el registro.
+          una acusación que el registro retenía se imprimía igual —desde el 10 de agosto, con una
+          marca al lado—, como si cada ficha fuera una excepción concedida por una persona, cuando
+          la mayoría las había promovido un proceso automático. Desde el 27 de agosto la ficha
+          pregunta a la misma puerta por la afirmación que sostiene cada cita, y el mismo literal
+          sigue una sola política en las dos páginas.
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
-          En estas fichas <strong>la excepción la tomó una máquina</strong>. El proceso automático
-          que redacta la mayoría de los hallazgos venía promoviendo declaraciones sin comprobar qué
-          decía la puerta, y esta página no consultaba la puerta al pintarlas. Lo declaramos en vez
-          de borrar nada: retirar citas ya publicadas sería un acto editorial mayor que el que las
-          publicó, tomado por el mismo tipo de proceso. Las fichas afectadas están en una cola de
-          revisión humana con una sola pregunta —<em>¿merece este hallazgo la excepción?</em>— y
-          hasta que una persona la responda, cada cita afectada lleva su marca.
+          <strong>Decide la puerta, no quien promueve.</strong> Es un cálculo sobre lo que consta de
+          cada afirmación —de qué tipo es y qué dice el veredicto vigente del verificador—, y nadie
+          lo ajusta ficha a ficha: ni el proceso automático que redacta la mayoría de los hallazgos,
+          ni una persona al firmar uno. Lo que una persona sí puede hacer es corregir una de esas
+          dos cosas, cada una en un solo sentido y con un motivo escrito que queda registrado: un
+          veredicto sólo se rebaja, nunca se sube; y la etiqueta de acusación sólo se quita —cuando
+          el extractor la puso donde no había ninguna—, nunca se pone. Una afirmación a la que se le
+          quita pasa a tratarse como cualquier otra.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          En la ficha de un hallazgo, una cita con datos sale sin marca, y los otros dos resultados
+          se ven así:
         </p>
         <ul style={{ margin: '8px 0 0', paddingLeft: 20, color: 'var(--ink70)' }}>
           <li>
-            <strong>«acusación no contrastada»</strong> — lo que se afirma es una acusación pública
-            sobre la gestión municipal y el cotejo no encontró ningún dato que la respalde{' '}
-            <em>ni que la desmienta</em>. Lo que el lector debe concluir: se dijo, lo publicamos, y
-            no sabemos si es cierto. No estamos diciendo que sea falsa.
+            {/* Decía «acusación no contrastada — lo que se afirma es una acusación
+                pública sobre la gestión municipal y el cotejo no encontró ningún
+                dato que la respalde ni que la desmienta. Lo que el lector debe
+                concluir: se dijo, lo publicamos, y no sabemos si es cierto. No
+                estamos diciendo que sea falsa». Desde el 27-08-2026 ese literal
+                no se imprime, y el rótulo pasó a la nota bajo las citas. «Sobre la
+                gestión municipal» sobraba además: la puerta no sabe a quién se
+                acusa (revisión lectora del 28-09-2026). */}
+            <strong>«Literal retenido»</strong> — ocupa el sitio de una cita que la puerta retiene.
+            La página no imprime el literal: enseña el hueco, su motivo y, si la ficha la atribuye,
+            el grupo; la nota bajo las citas lo rotula <strong>«acusación no contrastada»</strong>.
+            Se retiene el literal, no la ficha: el hallazgo, su resumen, su atribución, los
+            documentos cotejados y el derecho de réplica siguen a la vista. Lo que el lector debe
+            concluir: ahí se citaba una acusación que el verificador no ha podido contrastar con
+            ningún registro municipal. No decimos que sea falsa; decimos que no consta.
           </li>
           <li>
-            <strong>«sin contraste en los datos»</strong> — lo mismo, pero la afirmación no es una
-            acusación. Se distingue a propósito: que no haya datos sobre una cifra de presupuesto y
-            que no los haya sobre una adjudicación a dedo no significan lo mismo, y la puerta las
-            separa por eso.
+            <strong>«sin contraste en los datos»</strong> — la cita se imprime, con esa pastilla al
+            lado. No es una acusación, y se distingue a propósito: que no haya datos sobre una cifra
+            de presupuesto y que no los haya sobre una adjudicación a dedo no significan lo mismo, y
+            la puerta las separa por eso.
           </li>
         </ul>
         {quoteContrast && (
           <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
-            Hoy, de {quoteContrast.citasConClaim} literales publicados en /hallazgos, el cotejo
+            {/* Decía «de N literales publicados en /hallazgos […] N se publican
+                sin contraste y N son acusaciones que la puerta retiene en el
+                registro de declaraciones. N fichas no tienen ni una sola cita que
+                la puerta publicaría». La puerta retiene también en la ficha, y el
+                recuento de fichas es el de las que no tienen ninguna cita con
+                datos (`shown === 0` en quote-contrast.ts): las citas «sin
+                contraste» también se imprimen. */}
+            Hoy, de las {quoteContrast.citasConClaim} citas de las fichas de /hallazgos, el cotejo
             encontró datos sobre <strong>{quoteContrast.porContraste.shown}</strong>;{' '}
-            <strong>{quoteContrast.porContraste.toggle}</strong> se publican sin contraste y{' '}
-            <strong>{quoteContrast.porContraste.hidden}</strong> son acusaciones que la puerta
-            retiene en el registro de declaraciones.{' '}
-            <strong>{quoteContrast.hallazgosSinCitaMostrable}</strong> fichas no tienen ni una sola
-            cita que la puerta publicaría, y {quoteContrast.hallazgosSoloConCitasOcultas} están
-            hechas por entero de citas que retiene. Las cifras se leen del fichero derivado{' '}
-            <code>finding-quote-provenance.json</code> al mostrar esta página, no están escritas
-            aquí: cambian cada vez que el verificador vuelve a juzgar una declaración.
+            <strong>{quoteContrast.porContraste.toggle}</strong> se imprimen con la pastilla «sin
+            contraste en los datos», y la puerta retiene{' '}
+            <strong>{quoteContrast.porContraste.hidden}</strong>: en su lugar, la ficha enseña el
+            hueco. <strong>{quoteContrast.hallazgosSinCitaMostrable}</strong> fichas no tienen ni
+            una sola cita sobre la que el cotejo encontrara datos, y{' '}
+            {quoteContrast.hallazgosSoloConCitasOcultas} están hechas por entero de citas retenidas.
+            Las cifras se leen del fichero derivado <code>finding-quote-provenance.json</code> al
+            mostrar esta página, no están escritas aquí: cambian cada vez que el verificador vuelve
+            a juzgar una declaración.
           </p>
         )}
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          {/* Decía «…y se pone en rojo si la marca publicada deja de coincidir».
+              En la pasada nocturna corre con --soft: informa y no falla. */}
           La marca es un cálculo, no una opinión: se obtiene preguntando a la misma puerta que
           gobierna el registro, sobre el mismo veredicto vigente del verificador —el determinista
           más las revisiones posteriores, que es lo que se publica—.{' '}
-          <code>npm run check:relations</code> vuelve a preguntárselo en cada pasada nocturna y se
-          pone en rojo si la marca publicada deja de coincidir, para que no pueda quedarse vieja en
-          silencio. <strong>Marcar no retira</strong>: esta pasada no quitó ni reescribió ninguna
-          cita. Las retiradas que sí ha habido las firma una persona por la CLI de correcciones —el
-          único escritor del fichero de hallazgos— y cada una deja su fila en la bitácora pública de
-          la ficha.
+          <code>npm run check:relations</code> vuelve a preguntárselo en cada pasada nocturna y
+          avisa si la marca publicada deja de coincidir, para que no pueda quedarse vieja en
+          silencio.{' '}
+          {/* Decía «Marcar no retira: esta pasada no quitó ni reescribió ninguna
+              cita». Dejó de ser cierto el 27-08-2026, cuando la misma marca pasó
+              a retener el literal en la ficha. */}
+          <strong>Retener no reescribe</strong>: la puerta no cambia el texto de ninguna cita ni
+          borra ninguna ficha; sólo decide qué se enseña. Las retiradas que sí ha habido las firma
+          una persona por la CLI de correcciones —el único escritor del fichero de hallazgos— y cada
+          una deja su fila en la bitácora pública de la ficha.
         </p>
       </Card>
 
