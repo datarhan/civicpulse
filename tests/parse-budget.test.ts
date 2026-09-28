@@ -3,6 +3,18 @@ import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { parseConprelBudget, parseConprelRoster } from '../src/scraper/budget'
 
+/**
+ * La descarga real de CONPREL (BIFF8, CODEPAGE 1200) que entró en a0fdf62f
+ * (sha256 729e3a7f4bba7f0f…0acda514), sin los nombres de personas del
+ * ministerio que traían sus metadatos: el `LastAuthor` de SummaryInformation y
+ * el registro WRITEACCESS del libro, con el resto de un tercero en su relleno
+ * (`Props` de SheetJS no enseña WRITEACCESS; `strings` sí). Borrados en su
+ * sitio, sin volver a guardar: `LastAuthor` conserva su `Size` y sus caracteres
+ * pasan a NUL, como la `Company` vacía de este mismo fichero; WRITEACCESS
+ * conserva `cch` y sus 112 bytes, y nombre y relleno pasan a espacios. El
+ * `Author`, institucional, se queda. Difieren 48 bytes; las 21 hojas, byte a
+ * byte.
+ */
 const FIXTURE = join(__dirname, 'fixtures', 'conprel_CV_2024.xls')
 
 describe('scraper/budget — parseConprelBudget', () => {

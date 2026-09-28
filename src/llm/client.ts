@@ -857,6 +857,17 @@ export function claudeCodeArgs(
     // StructuredOutput (ver arriba).
     '--disallowedTools',
     CLAUDE_CODE_DISALLOWED_TOOLS.join(','),
+    // Y sin ganchos. Lo de arriba deja fuera el MCP y las skills, pero los
+    // ganchos de los plugins de ámbito usuario corrían en cada llamada: el
+    // SessionStart de superpowers metía ~3,4k caracteres de «you MUST invoke a
+    // skill» en un prompt que sólo puede contestar JSON, y security-guidance
+    // arrancaba Python dos veces para no revisar nada (medido el 2026-09-28 en
+    // 4.944 transcritos; el detalle, en tests/llm/client.test.ts).
+    // `disableAllHooks` apaga los de ajustes y de plugins y conserva el login de
+    // Max, que --bare pierde (ver arriba). Probado ese día con el entorno de un
+    // agente de launchd: `structured_output` correcto y cero ganchos.
+    '--settings',
+    JSON.stringify({ disableAllHooks: true }),
   ]
 }
 
@@ -864,7 +875,8 @@ export function claudeCodeArgs(
  * Claude Code CLI backend.
  *
  * Spawns `claude -p <user_prompt>` with `--json-schema`, `--output-format json`,
- * `--system-prompt`, `--strict-mcp-config` (headless MCP isolation), and a
+ * `--system-prompt`, `--strict-mcp-config` (headless MCP isolation),
+ * `--settings '{"disableAllHooks":true}'` (no user or plugin hooks), and a
  * one-tool surface (`--allowedTools StructuredOutput`) so structured extraction
  * runs at the lowest cost floor without hanging.
  *

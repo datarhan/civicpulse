@@ -417,6 +417,17 @@ export default function AvisoLegal() {
           </li>
         </ul>
         <p>
+          <strong>Datos personales en el texto</strong>: antes de guardar una queja, el bot retira
+          del título y del detalle los teléfonos, correos, DNI, NIE, IBAN y matrículas que reconoce,
+          y en su lugar deja «[dato personal retirado]». Lo retirado no se guarda en el bot —ni en
+          su registro, ni en los mensajes a quien modera las quejas, ni en lo que se publica—: sólo
+          cuántos de cada tipo, y el bot te dice qué te ha quitado. Sigue, como todo lo que le
+          escribes, en tu conversación de Telegram. La detección es automática y sólo reconoce lo
+          que tiene una forma fija: un nombre, una dirección o un dato de salud no los reconoce, y
+          por eso cada queja la revisa una persona antes de publicarla. Si aun así ves un dato tuyo
+          publicado, pide su retirada por la vía de rectificación de esta página.
+        </p>
+        <p>
           <strong>Revisión antes de publicar</strong>: el texto de cada queja nueva, su categoría y
           su barrio llegan por Telegram a quien modera las quejas —sin tu identidad y sin la foto,
           que no ve—, que decide si se publica tal cual o se descarta. La decisión tiene vuelta

@@ -6781,13 +6781,14 @@
       },
       {
         "chunk": 13,
-        "why": "Command failed: curl -s -D - -o /dev/null -X POST https://generativelanguage.googleapis.com/upload/v1beta/files?key=REDACTED -H X-Goog-Upload-Protocol: resumable -H X-Goog-Upload-Command: start -H X-Goog-Upload-Header-Content-Length: 5323151 -H X-Goog-Upload-Header-Content-Type: audio/ogg -H Content-Type: application/json -d {\"file\":{\"display_name\":\"chunk.ogg\"}}",
-        "attempts": 3,
+        "why": "covered 82% (floor 85%)",
+        "attempts": 2,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
           "floor": 0.85,
           "thinking": "low"
-        }
+        },
+        "sinLectura": "Command failed: curl -s -D - -o /dev/null -X POST https://generativelanguage.googleapis.com/upload/v1beta/files?key=REDACTED -H X-Goog-Upload-Protocol: resumable -H X-Goog-Upload-Command: start -H X-Goog-Upload-Header-Content-Length: 5323151 -H X-Goog-Upload-Header-Content-Type: audio/ogg -H Content-Type: application/json -d {\"file\":{\"display_name\":\"chunk.ogg\"}}"
       }
     ],
     "labelsSeen": 0,

@@ -148,10 +148,18 @@ export function resumenPlenos({ plenos, agendas, manifest, votes, findings } = {
   }
 
   const t = manifest?.totals ?? {}
+  // `totals.items` cuenta lo SERVIDO; `totals.retenidas`, todo lo que no se
+  // sirve y por los DOS motivos (chunk-pleno-claims.ts), así que las que no
+  // tienen procedencia van dentro y se restan. Leído al pie de la letra, la
+  // tarjeta llamaba «extraídas» a 4.960 de 7.564 y sus dos filas de retenidas
+  // se solapaban en una declaración (revisión lectora del 28-09-2026). Así las
+  // filas son una partición: suman lo extraído.
+  const retenidasTodas = Object.values(t.retenidas ?? {}).reduce((s, v) => s + (v ?? 0), 0)
+  const sinProcedencia = t.retenidasSinProcedencia ?? 0
   const embudo = {
-    extraidas: t.items ?? 0,
+    extraidas: (t.items ?? 0) + retenidasTodas,
     sesiones: manifest?.plenos?.length ?? 0,
-    retenidas: t.retenidas?.acusacion_publica ?? 0,
+    retenidas: retenidasTodas - sinProcedencia,
     // El segundo motivo por el que una declaración no llega a publicarse, y de
     // otra clase que el primero: la puerta editorial retiene lo que no podemos
     // CONTRASTAR, y ésta retiene lo que no podemos demostrar que se DIJERA —su
@@ -159,7 +167,7 @@ export function resumenPlenos({ plenos, agendas, manifest, votes, findings } = {
     // sustituidas. Se cuenta porque, si no, la retirada sería invisible: la
     // comprobación de procedencia audita lo publicado, así que retirarlas la
     // deja en verde. La fila sólo se pinta cuando hay alguna.
-    retenidasSinProcedencia: t.retenidasSinProcedencia ?? 0,
+    retenidasSinProcedencia: sinProcedencia,
     sinDatos: t.byVerdict?.['sin-datos'] ?? 0,
     parcial: t.byVerdict?.parcial ?? 0,
     verificado: t.byVerdict?.verificado ?? 0,
@@ -218,6 +226,8 @@ export function resumenPlenos({ plenos, agendas, manifest, votes, findings } = {
     departamentos,
     agenda: {
       sesiones: conOrden,
+      // El hueco que la nota del reparto explica; a cero, la nota no se pinta.
+      sinOrden: total - conOrden,
       puntos: agendas?.stats?.agendaItemsTotal ?? 0,
       conDepartamento: agendas?.stats?.agendaItemsWithDepartment ?? null,
     },

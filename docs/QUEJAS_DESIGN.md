@@ -133,6 +133,10 @@ Public form on `/quejas/nueva`, schema mirrors FixMyStreet:
   have it).
 - Strip PII before the record is ever shown publicly: no exact address, no names
   of non-elected personnel, no plates, no DNI, no faces.
+  _Status 2026-09-28:_ what has a fixed form — Spanish phones, emails, DNI/NIE,
+  IBAN, plates — is stripped at intake, before anything is stored
+  (`bot/src/services/pii.ts`), and only per-class counts are kept. Names and
+  addresses have no form: the human review stays, and a model check is next.
 - 24h human moderation window before the queja goes public. Default: publish.
   Moderators can only redact PII or categorise — never edit the citizen's
   verbatim text.
