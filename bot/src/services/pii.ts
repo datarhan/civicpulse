@@ -45,7 +45,7 @@ const letraDni = (n: number) => LETRAS_DNI[n % 23]
 
 /** El control de un IBAN: los cuatro primeros al final, las letras en números, módulo 97. */
 function ibanValido(iban: string): boolean {
-  const s = iban.replace(/\s+/g, '').toUpperCase()
+  const s = iban.replace(/[\s-]+/g, '').toUpperCase()
   if (!/^[A-Z]{2}\d{2}[A-Z0-9]{11,30}$/.test(s)) return false
   let resto = 0
   for (const c of s.slice(4) + s.slice(0, 4)) {
@@ -58,24 +58,34 @@ function ibanValido(iban: string): boolean {
 const CORREO = /[\w.%+-]+@[\w-]+(?:\.[\w-]+)*\.[a-z]{2,}/gi
 // El español: ES, dos dígitos de control y veinte cifras, en grupos de cuatro o
 // seguido. Sólo cifras, para que la palabra de después no pase por un grupo más.
-const IBAN_ES = /\b[Ee][Ss]\d{2}(?:[ ]?\d{4}){5}\b/g
+const IBAN_ES = /\b[Ee][Ss]\d{2}(?:[\s-]{0,2}\d{4}){5}\b/g
 // Los demás: dos letras, dos dígitos y el resto, en mayúscula (así una palabra en
 // minúscula no se cuela como grupo).
 const IBAN = /\b[A-Z]{2}\d{2}(?:[ ]?[A-Z0-9]{4}){2,7}(?:[ ]?[A-Z0-9]{1,3})?\b/g
-// Ocho cifras, con o sin puntos de millar, y la letra. Separada de las cifras,
-// sólo en mayúscula: «12345678 y» es un número y una conjunción.
-const DNI = /(?<![\w.])(\d{2}\.?\d{3}\.?\d{3})([ -]?)([A-Za-z])(?!\w)/g
+// Siete u ocho cifras, con los millares separados por punto, espacio o nada, y
+// la letra. Separada de las cifras, sólo en mayúscula: «12345678 y» es un número
+// y una conjunción.
+const DNI = /(?<![\w.])(\d{1,2}[.\s]?\d{3}[.\s]?\d{3})([ -]?)([A-Za-z])(?!\w)/g
 const NIE = /(?<!\w)([XYZ])[ -]?(\d{7})[ -]?([A-Z])(?!\w)/gi
-// Nueve cifras que empiezan por 6, 7, 8 o 9, con prefijo o sin él y separadas
-// como sea; no si siguen más cifras, decimales o una moneda: eso es un importe.
+// Nueve cifras que empiezan por 6, 7, 8 o 9, con prefijo o sin él, separadas por
+// espacios (también el duro, U+00A0, que deja una agenda al copiar), puntos,
+// guiones, barras o paréntesis —«(96) 123 45 67»—. No si van detrás de más cifras
+// («1.612…») o siguen más cifras, decimales o una moneda: eso es un importe. Un
+// «tlf.612…» sí.
 const TELEFONO =
-  /(?<![\w.,€])(?:(?:\+|00)34[ .-]?)?[6789](?:[ .-]?\d){8}(?!\w|[.,]\d|\s*(?:€|euros?\b|eur\b))/gi
-// La actual: cuatro cifras y tres consonantes.
-const MATRICULA = /\b\d{4}[ -]?[BCDFGHJKLMNPRSTVWXYZ]{3}\b/g
-// La provincial de antes: el código de la provincia, cuatro cifras y una o dos letras.
+  /(?<![\w€]|\d[.,])(?:(?:\+|00)34[\s./()-]{0,2})?\(?[6789](?:[\s./()-]{0,2}\d){8}(?!\w|[.,]\d|\s*(?:€|euros?\b|eur\b))/gi
+// Con barras como separador, dos fechas seguidas tienen nueve cifras: no son un teléfono.
+const FECHA = /\d{1,2}\/\d{1,2}\/\d{2,4}/
+// La actual: cuatro cifras y tres consonantes, en mayúscula o no, y con « - » o
+// sin nada entre medias. Nunca dentro de un id de queja («Q-…»).
+const MATRICULA = /(?<!Q-)\b\d{4}(?:\s?-\s?|\s)?[BCDFGHJKLMNPRSTVWXYZ]{3}\b/gi
+// La provincial de antes: el código de la provincia, cuatro cifras y una o dos
+// letras, con guiones o todo junto. Con espacios no: en un texto en mayúsculas,
+// «DE 2020 A 2024 EL…» tiene esa forma (la A es un código de provincia), y una
+// matrícula así tiene ya más de veinticinco años.
 const PROVINCIAS =
   'A|AB|AL|AV|B|BA|BI|BU|C|CA|CC|CE|CO|CR|CS|CU|GC|GE|GI|GR|GU|H|HU|IB|J|L|LE|LO|LU|M|MA|ML|MU|NA|O|OR|OU|P|PM|PO|S|SA|SE|SG|SO|SS|T|TE|TF|TO|V|VA|VI|Z|ZA'
-const MATRICULA_PROVINCIAL = new RegExp(`\\b(?:${PROVINCIAS})[ -]?\\d{4}[ -]?[A-Z]{1,2}\\b`, 'g')
+const MATRICULA_PROVINCIAL = new RegExp(`(?<!Q-)\\b(?:${PROVINCIAS})-?\\d{4}-?[A-Z]{1,2}\\b`, 'g')
 
 export function limpiarDatosPersonales(texto: string): Limpieza {
   const retirados: Retirados = {}
@@ -90,7 +100,7 @@ export function limpiarDatosPersonales(texto: string): Limpieza {
     .replace(IBAN, (m) => (ibanValido(m) ? retirar('iban') : m))
     .replace(DNI, (m, cifras: string, separador: string, letra: string) =>
       (separador && letra !== letra.toUpperCase()) ||
-      letraDni(Number(cifras.replaceAll('.', ''))) !== letra.toUpperCase()
+      letraDni(Number(cifras.replace(/[.\s]/g, ''))) !== letra.toUpperCase()
         ? m
         : retirar('dni'),
     )
@@ -99,10 +109,24 @@ export function limpiarDatosPersonales(texto: string): Limpieza {
         ? retirar('nie')
         : m,
     )
-    .replace(TELEFONO, () => retirar('telefono'))
+    .replace(TELEFONO, (m) => (FECHA.test(m) ? m : retirar('telefono')))
     .replace(MATRICULA, () => retirar('matricula'))
     .replace(MATRICULA_PROVINCIAL, () => retirar('matricula'))
   return { texto: limpio, retirados }
+}
+
+/**
+ * Corta un texto ya limpio a `max` caracteres sin dejar media marca al final. Se
+ * corta DESPUÉS de limpiar: cortado antes, un DNI a caballo del límite perdía la
+ * letra y sus cifras ya no se reconocían (revisión de #144).
+ */
+export function cortarLimpio(texto: string, max: number): string {
+  if (texto.length <= max) return texto
+  const corto = texto.slice(0, max)
+  const abre = corto.lastIndexOf('[')
+  const partida =
+    abre >= 0 && !corto.includes(']', abre) && MARCA_RETIRADO.startsWith(corto.slice(abre))
+  return partida ? corto.slice(0, abre).trimEnd() : corto
 }
 
 /** Suma lo retirado de dos textos: el título y el detalle de una queja. */

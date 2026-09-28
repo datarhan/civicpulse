@@ -79,13 +79,6 @@ function botonesDe(q: QuejaRow): Boton[] {
 }
 
 /**
- * La tarjeta de una queja, en el HTML de Telegram. Dice lo que se publica con
- * ella y no se ve en el texto: si trae foto —que se publica anonimizada y que
- * la tarjeta no enseña— y a qué área y cargo la atribuye el enrutador. El texto
- * es del vecino: pasa por `escaparHtml`, y se corta DESPUÉS de escapar (un `&`
- * escapado mide cinco), para que la tarjeta quepa siempre en un mensaje.
- */
-/**
  * Cuántos datos personales se retiraron del texto al guardarlo (services/pii.ts):
  * se cuentan en el propio texto, así que la tarjeta que reenvía la pasada horaria
  * lo dice igual que la primera.
@@ -100,6 +93,14 @@ function lineaDeRetirados(q: QuejaRow): string[] {
   ]
 }
 
+/**
+ * La tarjeta de una queja, en el HTML de Telegram. Dice lo que se publica con
+ * ella y no se ve en el texto: si trae foto —que se publica anonimizada y que
+ * la tarjeta no enseña—, cuántos datos personales se le quitaron y a qué área y
+ * cargo la atribuye el enrutador. El texto es del vecino: pasa por `escaparHtml`,
+ * y se corta DESPUÉS de escapar (un `&` escapado mide cinco), para que la
+ * tarjeta quepa siempre en un mensaje.
+ */
 export function tarjetaDeQueja(q: QuejaRow, nota?: string): { html: string; botones: Boton[] } {
   const cabecera = [
     `<b>${CABECERA[q.moderacion]}</b> · <code>${q.id}</code>`,

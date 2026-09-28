@@ -1,7 +1,12 @@
 import type { Db } from './client.ts'
 import type { Canal, Moderacion, MotivoVaciado } from './migraciones.ts'
 import { nuevoIdDeQueja } from '../services/queja-id.ts'
-import { limpiarDatosPersonales, sumarRetirados, type Retirados } from '../services/pii.ts'
+import {
+  cortarLimpio,
+  limpiarDatosPersonales,
+  sumarRetirados,
+  type Retirados,
+} from '../services/pii.ts'
 
 export type QuejaState =
   | 'capturada'
@@ -121,6 +126,10 @@ export interface AggregateStats {
 // Minimum apoyos to tag a queja as community-verified.
 export const VERIFIED_THRESHOLD = 10
 
+/** Lo más largo que se guarda de un título y de un detalle. Se aplica después de limpiarlos. */
+export const LIMITE_TITULO = 140
+export const LIMITE_DETALLE = 2000
+
 /** El evento que deja una queja a la que se le retiraron datos personales: cuántos de cada clase, no cuáles. */
 export const EVENTO_DATOS_RETIRADOS = 'datos_retirados'
 
@@ -158,8 +167,8 @@ export function createQueja(db: Db, q: NewQuejaInput): QuejaRow {
       ciudadano_id: idCiudadano(db, row.autor, { crear: true }),
       canal: row.autor.canal,
       category: row.category,
-      title: titulo.texto,
-      detail: detalle.texto,
+      title: cortarLimpio(titulo.texto, LIMITE_TITULO),
+      detail: cortarLimpio(detalle.texto, LIMITE_DETALLE),
       lat: row.lat ?? null,
       lng: row.lng ?? null,
       neighborhood: row.neighborhood ?? null,
