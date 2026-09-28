@@ -4,6 +4,7 @@ import {
   evaluar,
   leerMetadatos,
   limpiar,
+  retratoPublicable,
   type Campo,
   type Lectura,
   type Limpieza,
@@ -203,5 +204,27 @@ describe('PDF', () => {
       estado: 'rechazado',
       motivo: expect.stringMatching(/a mano/),
     })
+  })
+})
+
+describe('los retratos de /cargos, al descargarse', () => {
+  const EXIF = tiff([ascii(0x013b, PERSONA)], [ascii(0xa431, '123456789012')])
+  const RUTA = 'public/data/photos/alguien.jpg'
+
+  it('salen sin número de serie y con su crédito', () => {
+    const b = retratoPublicable(jpeg({ exif: EXIF }), RUTA)
+    expect(b).not.toBeNull()
+    const despues = campos(leerMetadatos(b!, RUTA))
+    expect(despues.filter((c) => c.clase === 'dispositivo')).toEqual([])
+    expect(despues.filter((c) => c.clase === 'credito').map((c) => c.valor)).toEqual([PERSONA])
+  })
+
+  it('uno que no lleva nada que quitar sale tal cual', () => {
+    const b = jpeg({ exif: tiff([ascii(0x013b, PERSONA)]) })
+    expect(retratoPublicable(b, RUTA)).toEqual(b)
+  })
+
+  it('uno que no se deja leer no se publica: el que llama sirve la copia de ayer', () => {
+    expect(retratoPublicable(jpeg({ exif: EXIF }).subarray(0, 40), RUTA)).toBeNull()
   })
 })

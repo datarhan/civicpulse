@@ -526,3 +526,18 @@ export function limpiar(b: Uint8Array, ruta: string): Limpieza {
   if (quedan.length) return rechazo(`quedó sin vaciar: ${quedan.map((h) => h.campo).join(', ')}`)
   return { estado: 'limpio', bytes: fuera, cambios: aTapar.map((c) => c.campo) }
 }
+
+/**
+ * Lo que `scripts/scrape-officials.ts` escribe en `public/data/photos/`: el
+ * retrato sin número de serie, dueño de la cámara, nombre de fichero original
+ * ni GPS, y con el crédito del fotógrafo intacto. `null` si no se deja leer o
+ * no se puede vaciar en su sitio: quien llama sirve entonces la copia de ayer,
+ * como cuando falla la descarga. Así el cron no publica lo que la guarda
+ * señalaría, y la guarda no tiene que pararlo.
+ */
+export function retratoPublicable(b: Uint8Array, ruta: string): Uint8Array | null {
+  const r = limpiar(b, ruta)
+  if (r.estado === 'limpio') return r.bytes
+  if (r.estado === 'nada') return leerMetadatos(b, ruta).estado === 'leido' ? b : null
+  return null
+}
