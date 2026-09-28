@@ -62,14 +62,15 @@ describe('interpretarRevision: lo que dice el modelo, contra el texto', () => {
   })
 
   it('lo quita en el título y en el detalle, todas las veces que aparece', () => {
-    const t = { titulo: 'Lola Pérez tira basura', detalle: 'Lola Pérez la tira cada noche.' }
+    const resto = ' la tira cada noche junto al contenedor, y el camión no pasa hasta el jueves.'
+    const t = { titulo: 'Lola Pérez tira basura', detalle: `Lola Pérez${resto}` }
     const r = interpretarRevision(dice({ retirar: ['Lola Pérez'], motivos: [] }), t)
     expect(r).toMatchObject({
       resultado: 'limpia',
       retirados: 2,
       texto: {
         titulo: `${MARCA_RETIRADO} tira basura`,
-        detalle: `${MARCA_RETIRADO} la tira cada noche.`,
+        detalle: `${MARCA_RETIRADO}${resto}`,
       },
     })
   })
