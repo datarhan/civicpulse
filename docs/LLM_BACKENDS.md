@@ -19,11 +19,13 @@ Auto-selected in this order when unset:
   interactive sessions — one full-pleno extract (~200 calls) can exhaust a
   5-hour window. It needs `--strict-mcp-config` (already in `src/llm/client.ts`,
   commit `5f687f5`); without it, headless runs hang on global MCP init. It also
-  passes `--settings '{"disableAllHooks":true}'`, and so does the preflight in
-  `scripts/lib/claude-probe.sh`: dropping MCP and skills does not drop the
-  user's plugin hooks, which ran inside every call until 2026-09-28. Never trade
-  either for `--bare` — it skips the keychain, so every call is "Not logged in".
-  Keep `LLM_CONCURRENCY=1` — it is burst-rate limited.
+  passes `--settings '{"disableAllHooks":true}'`: dropping MCP and skills does
+  not drop the user's plugin hooks, which ran inside every call until
+  2026-09-28. Never trade either for `--bare` — it skips the keychain, so every
+  call is "Not logged in". The preflight, `scripts/lib/claude-probe.sh`, runs
+  like the calls it vouches for: the same isolation flags, from an empty temp
+  dir rather than the checkout, whose `CLAUDE.md`, memory and `acceptEdits` it
+  used to load. Keep `LLM_CONCURRENCY=1` — it is burst-rate limited.
 - **`agy` auto-falls back to `claude-code`** when its Google quota caps
   (`3d940cc`). Necessary because a capped `agy -p` exits 0 with empty stdout and
   logs the 429 only to `--log-file`, which used to leak unattended runs onto
