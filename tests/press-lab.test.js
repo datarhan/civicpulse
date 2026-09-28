@@ -111,6 +111,23 @@ describe('los escalares de /laboratorio no se contradicen entre sí', () => {
     expect(s.contradichoRatio, 'hallazgo sobre lo examinado').toBe(0)
   })
 
+  it('cuenta las parciales aparte: no resuelven, pero la página las pinta', () => {
+    // El 28-09-2026 había 31 filas: 30 `sin-datos` y 1 `parcial`. La entradilla
+    // decía «ninguna ha llegado a un veredicto» encima de una tarjeta con la
+    // pastilla «1 Parcial». Para nombrarlas hay que contarlas, y sin que entren
+    // en el divisor de la discrepancia.
+    const verified = [
+      claim('a0', 'verificado'),
+      claim('a1', 'parcial'),
+      claim('a2', 'parcial'),
+      claim('a3', 'sin-datos'),
+    ]
+    const s = pressLabSummary({ press: [], verified }, AHORA)
+
+    expect(s.parcialClaims).toBe(2)
+    expect(s.resueltasClaims, 'una parcial no entra en el divisor').toBe(1)
+  })
+
   it('monitorizados y auditados son cuentas distintas', () => {
     // Confundirlas exagera el trabajo hecho, que es lo que dice el docstring
     // del módulo: «a page reading 70 auditados / 0% verificado is

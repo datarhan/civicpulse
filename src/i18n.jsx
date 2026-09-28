@@ -698,8 +698,7 @@ export const CATALOGUE = {
     'plenos.indice.escalera.orden': 'Con orden del día extraído',
     'plenos.indice.escalera.declaraciones': 'Con declaraciones extraídas',
     'plenos.indice.escalera.votaciones': 'Con votaciones transcritas',
-    'plenos.indice.escalera.nota':
-      'Los cuatro escalones se cuentan sobre las mismas {n} sesiones, pero no están anidados:',
+    'plenos.indice.escalera.nota': 'Los cuatro escalones se cuentan sobre las mismas {n} sesiones.',
     'plenos.indice.escalera.declSinOrden.uno':
       'una sesión tiene declaraciones extraídas sin su orden del día',
     'plenos.indice.escalera.declSinOrden.varios':
@@ -708,9 +707,9 @@ export const CATALOGUE = {
     'plenos.indice.escalera.votosSinDecl.varios': '{n} tienen votaciones sin declaraciones',
     'plenos.indice.escalera.ambas': '{a}, y {b}',
     'plenos.indice.escalera.sueltas':
-      '{lista}. El orden del día lo publica regmeet y las declaraciones salen de la transcripción, así que una sesión puede tener lo segundo sin lo primero.',
+      'No están anidados: {lista}. El orden del día lo publica regmeet y las declaraciones salen de la transcripción, así que una sesión puede tener lo segundo sin lo primero.',
     'plenos.indice.escalera.anidadas':
-      'hoy cada escalón resulta ser un subconjunto del anterior, pero es una coincidencia de la cobertura, no una garantía: el orden del día lo publica regmeet y las declaraciones salen de la transcripción.',
+      'Hoy cada escalón resulta ser un subconjunto del anterior, pero es una coincidencia de la cobertura, no una garantía: el orden del día lo publica regmeet y las declaraciones salen de la transcripción.',
     'plenos.indice.escalera.sube':
       'La cobertura sube cuando se transcribe una sesión antigua, no cuando el pleno se reúne.',
     'plenos.indice.columna.fecha': 'Fecha',
@@ -773,6 +772,10 @@ export const CATALOGUE = {
       'Son los puntos de las {sesionesConOrden}, no de las {total}: un área con pocos puntos puede tener mucha actividad en sesiones que aún no hemos procesado.',
     'plenos.indice.reparto.notaArea':
       'Sólo {con} de los {puntos} puntos llevan área asignada, así que este reparto describe nuestra cobertura tanto como el trabajo del pleno.',
+    'plenos.indice.reparto.resto.uno':
+      'Se dibujan {dibujadas} de las {areas} áreas con algún punto; la que falta reúne {puntos} de los {con} puntos con área.',
+    'plenos.indice.reparto.resto.varios':
+      'Se dibujan {dibujadas} de las {areas} áreas con algún punto; las {resto} que faltan reúnen {puntos} de los {con} puntos con área.',
     'plenos.indice.reparto.sesionesConOrden': '{n} sesiones con orden del día extraído',
     'plenos.retirada.record.uno': 'registro',
     'plenos.retirada.record.varios': 'registros',
@@ -1347,7 +1350,11 @@ export const CATALOGUE = {
     'cargos.detalle.ficha.enlace': 'Datos biográficos (PDF)',
     'cargos.detalle.ficha.sin.title': 'El Ayuntamiento no publica su ficha.',
     'cargos.detalle.ficha.sin.body':
-      'La página de la Corporación Municipal enlaza un CV en PDF junto a cada concejal; junto a este escaño no hay ninguno. No consta si llegó a publicarse antes: la página que el portal usaba hasta septiembre de 2026 no tiene copia en el Internet Archive, así que no se puede decir si se retiró o nunca estuvo.',
+      'La página de la Corporación Municipal enlaza un CV en PDF junto a cada concejal; junto a este escaño no hay ninguno.',
+    'cargos.detalle.ficha.sin.ausente':
+      'Tampoco figuraba en la página que el portal usaba hasta septiembre de 2026: este sitio la leyó {lecturas} veces entre el {primera} y el {ultima}, y en ninguna enlazaba el de este escaño. De antes no hay copia —esa página no está en el Internet Archive—, y una ausencia sin registro no es una retirada.',
+    'cargos.detalle.ficha.sin.presente':
+      'La página que el portal usaba hasta septiembre de 2026 sí lo enlazaba: figuraba en las {lecturas} lecturas que este sitio hizo de ella entre el {primera} y el {ultima}.',
     'cargos.detalle.mandato.eyebrow': 'Respaldo electoral',
     'cargos.detalle.mandato.title': 'Con cuántos votos llegó su lista',
     'cargos.detalle.mandato.municipales': 'municipales',
@@ -1671,7 +1678,7 @@ export const CATALOGUE = {
     'landing.alcalde.role': 'Alcalde',
     'landing.empleo.all': 'Ver todas las ofertas →',
     'landing.promesas.blurb':
-      'Compromisos públicos documentados con cita verbatim y fuente primaria. Sin juicios automáticos de cumplimiento.',
+      'Compromisos públicos documentados, cada uno con su cita y la fuente que la recoge: el documento oficial o la noticia. Sin juicios automáticos de cumplimiento.',
     'landing.promesas.cta': 'Ver tracker completo →',
     'landing.rendicion.blurb':
       'Reúne por concejalía los votos de pleno, las promesas electorales y las quejas del canal, que sólo se cuentan como pendientes de respuesta cuando han llegado al registro del ayuntamiento. Un plazo vencido se marca como aviso editorial — el estado nunca se modifica de forma automática.',
@@ -2334,8 +2341,7 @@ export const CATALOGUE = {
     'plenos.indice.escalera.orden': 'Amb l’ordre del dia extret',
     'plenos.indice.escalera.declaraciones': 'Amb declaracions extretes',
     'plenos.indice.escalera.votaciones': 'Amb votacions transcrites',
-    'plenos.indice.escalera.nota':
-      'Els quatre graons es compten sobre les mateixes {n} sessions, però no estan niats:',
+    'plenos.indice.escalera.nota': 'Els quatre graons es compten sobre les mateixes {n} sessions.',
     'plenos.indice.escalera.declSinOrden.uno':
       'una sessió té declaracions extretes sense el seu ordre del dia',
     'plenos.indice.escalera.declSinOrden.varios':
@@ -2344,9 +2350,9 @@ export const CATALOGUE = {
     'plenos.indice.escalera.votosSinDecl.varios': '{n} tenen votacions sense declaracions',
     'plenos.indice.escalera.ambas': '{a}, i {b}',
     'plenos.indice.escalera.sueltas':
-      '{lista}. L’ordre del dia el publica regmeet i les declaracions ixen de la transcripció, així que una sessió pot tindre el segon sense el primer.',
+      'No estan niats: {lista}. L’ordre del dia el publica regmeet i les declaracions ixen de la transcripció, així que una sessió pot tindre el segon sense el primer.',
     'plenos.indice.escalera.anidadas':
-      'hui cada graó resulta ser un subconjunt de l’anterior, però és una coincidència de la cobertura, no una garantia: l’ordre del dia el publica regmeet i les declaracions ixen de la transcripció.',
+      'Hui cada graó resulta ser un subconjunt de l’anterior, però és una coincidència de la cobertura, no una garantia: l’ordre del dia el publica regmeet i les declaracions ixen de la transcripció.',
     'plenos.indice.escalera.sube':
       'La cobertura puja quan es transcriu una sessió antiga, no quan el ple es reunix.',
     'plenos.indice.columna.fecha': 'Data',
@@ -2412,6 +2418,10 @@ export const CATALOGUE = {
       'Són els punts de les {sesionesConOrden}, no de les {total}: una àrea amb pocs punts pot tindre molta activitat en sessions que encara no hem processat.',
     'plenos.indice.reparto.notaArea':
       'Només {con} dels {puntos} punts porten àrea assignada, així que este repartiment descriu la nostra cobertura tant com el treball del ple.',
+    'plenos.indice.reparto.resto.uno':
+      'Es dibuixen {dibujadas} de les {areas} àrees amb algun punt; la que falta reunix {puntos} dels {con} punts amb àrea.',
+    'plenos.indice.reparto.resto.varios':
+      'Es dibuixen {dibujadas} de les {areas} àrees amb algun punt; les {resto} que falten reunixen {puntos} dels {con} punts amb àrea.',
     'plenos.indice.reparto.sesionesConOrden': '{n} sessions amb l’ordre del dia extret',
     'plenos.retirada.record.uno': 'registre',
     'plenos.retirada.record.varios': 'registres',
@@ -2937,7 +2947,11 @@ export const CATALOGUE = {
     'cargos.detalle.ficha.enlace': 'Dades biogràfiques (PDF)',
     'cargos.detalle.ficha.sin.title': "L'Ajuntament no publica la seua fitxa.",
     'cargos.detalle.ficha.sin.body':
-      "La pàgina de la Corporació Municipal enllaça un CV en PDF al costat de cada regidor; al costat d'aquest escó no n'hi ha cap. No consta si va arribar a publicar-se abans: la pàgina que el portal feia servir fins al setembre de 2026 no té còpia a l'Internet Archive, així que no es pot dir si es va retirar o mai no hi va estar.",
+      "La pàgina de la Corporació Municipal enllaça un CV en PDF al costat de cada regidor; al costat d'aquest escó no n'hi ha cap.",
+    'cargos.detalle.ficha.sin.ausente':
+      "Tampoc no figurava en la pàgina que el portal feia servir fins al setembre de 2026: aquest lloc la va llegir {lecturas} vegades (primera lectura, {primera}; última, {ultima}) i en cap no enllaçava el d'aquest escó. D'abans no n'hi ha còpia —aquella pàgina no és a l'Internet Archive—, i una absència sense registre no és una retirada.",
+    'cargos.detalle.ficha.sin.presente':
+      "La pàgina que el portal feia servir fins al setembre de 2026 sí que l'enllaçava: hi figurava en les {lecturas} lectures que en va fer aquest lloc (primera lectura, {primera}; última, {ultima}).",
     'cargos.detalle.mandato.eyebrow': 'Suport electoral',
     'cargos.detalle.mandato.title': 'Amb quants vots va arribar la seua llista',
     'cargos.detalle.mandato.municipales': 'municipals',
@@ -3187,7 +3201,7 @@ export const CATALOGUE = {
     'landing.alcalde.role': 'Alcalde',
     'landing.empleo.all': 'Veure totes les ofertes →',
     'landing.promesas.blurb':
-      'Compromisos públics documentats amb cita verbatim i font primària. Sense judicis automàtics de compliment.',
+      'Compromisos públics documentats, cadascun amb la seua cita i la font que la recull: el document oficial o la notícia. Sense judicis automàtics de compliment.',
     'landing.promesas.cta': 'Veure el tracker complet →',
     'landing.rendicion.blurb':
       "Reunix per regidoria els vots de ple, les promeses electorals i les queixes del canal, que només es compten com a pendents de resposta quan han arribat al registre de l'ajuntament. Un termini vençut es marca com a avís editorial — l'estat mai es modifica de manera automàtica.",

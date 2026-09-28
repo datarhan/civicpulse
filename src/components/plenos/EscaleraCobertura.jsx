@@ -119,6 +119,11 @@ export function EscaleraCobertura({ escalera, excepciones }) {
           color: 'var(--ink50)',
         }}
       >
+        {/* «…pero no están anidados:» iba en esta primera frase y se pintaba
+            siempre, así que sin sesiones sueltas la nota decía «no están
+            anidados: hoy cada escalón resulta ser un subconjunto del anterior».
+            Cada afirmación va ahora sólo con su caso (verificación del barrido
+            lector del 28-09-2026). */}
         {rellena(t('plenos.indice.escalera.nota'), { n: escalera[0]?.de ?? 0 })}{' '}
         {sueltas > 0
           ? rellena(t('plenos.indice.escalera.sueltas'), { lista })

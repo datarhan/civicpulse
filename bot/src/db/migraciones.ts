@@ -90,6 +90,17 @@ export type DecisionModeracion = (typeof DECISIONES_MODERACION)[number]
 export const MOTIVOS_VACIADO = ['retirada', 'destruida'] as const
 export type MotivoVaciado = (typeof MOTIVOS_VACIADO)[number]
 
+/**
+ * Lo que dice una revisión automática de una queja: `limpia`, nada que tenga
+ * que ver una persona —aunque haya quitado fragmentos—; `marcada`, algo que sí;
+ * `invalida`, una respuesta del modelo que no se sostiene —un fragmento que no
+ * está en el texto, un motivo que no existe, un campo que falta—; `error`, que
+ * no hubo respuesta. Las dos últimas se reintentan. El CHECK de la migración 3
+ * los escribe literales.
+ */
+export const RESULTADOS_REVISION = ['limpia', 'marcada', 'invalida', 'error'] as const
+export type ResultadoRevision = (typeof RESULTADOS_REVISION)[number]
+
 export interface Migracion {
   version: number
   nombre: string
@@ -272,6 +283,52 @@ function revisionAntesDePublicar(db: Db): void {
   }
 }
 
+/**
+ * Migración 3 — el registro de la revisión automática.
+ *
+ * Desde #137 ninguna queja sale sin que un administrador la decida. Con la
+ * revisión automática —services/moderacion.ts, que llega con el cambio que
+ * activa esta migración—, un modelo la lee antes: quita del texto los nombres de
+ * otras personas que no reconoce services/pii.ts, y dice si hay algo que tiene
+ * que ver una persona. Lo que se publica sin nadie lo decide `decideAutomation`
+ * (src/scraper/automation-policy.ts), con lo que se haya medido.
+ *
+ * `revisiones_automaticas` guarda cada revisión: con qué modelo y qué versión
+ * del prompt, qué dijo, por qué motivos la retuvo y cuántos fragmentos quitó
+ * —nunca cuáles: lo quitado no se guarda en el bot—, o por qué falló. Es
+ * append-only: los reintentos se cuentan en ella, y contra ella se mide cuánto
+ * acierta la revisión frente a lo que decide una persona. Los CHECK no dejan
+ * escribir «no se evaluó» como «no encontró nada»: una revisión válida lleva sus
+ * motivos y sus fragmentos, aunque sean ninguno, y una fallida, su error y nada
+ * más (regla 3 de docs/DATA_INTEGRITY.md). Y `marcada` es tener motivos: una
+ * `limpia` con motivos contaría en la medición como una cosa habiendo seguido la
+ * queja otra (revisión de #153). Ni textos vacíos por valor, ni fracciones, ni
+ * el JSON5 que SQLite acepta y `JSON.parse` no.
+ *
+ * Sólo añade una tabla, que el código anterior no lee.
+ */
+function revisionAutomatica(db: Db): void {
+  db.exec(`
+    CREATE TABLE revisiones_automaticas (
+      id              INTEGER PRIMARY KEY,
+      queja_id        TEXT NOT NULL,
+      resultado       TEXT NOT NULL CHECK (resultado IN ('limpia', 'marcada', 'invalida', 'error')),
+      modelo          TEXT NOT NULL CHECK (length(modelo) > 0),
+      version_prompt  TEXT NOT NULL CHECK (length(version_prompt) > 0),
+      motivos         TEXT CHECK (motivos IS NULL OR (json_valid(motivos) AND json_type(motivos) = 'array')),
+      retirados       INTEGER CHECK (retirados IS NULL OR (typeof(retirados) = 'integer' AND retirados >= 0)),
+      error           TEXT CHECK (error IS NULL OR length(error) > 0),
+      creada_at       TEXT NOT NULL DEFAULT (datetime('now')),
+      CHECK ((resultado IN ('limpia', 'marcada')) = (motivos IS NOT NULL)),
+      CHECK ((resultado IN ('limpia', 'marcada')) = (retirados IS NOT NULL)),
+      CHECK ((resultado IN ('invalida', 'error')) = (error IS NOT NULL)),
+      CHECK ((resultado = 'marcada') = (json_array_length(motivos) > 0)),
+      FOREIGN KEY (queja_id) REFERENCES quejas(id) ON DELETE CASCADE
+    );
+    CREATE INDEX idx_revisiones_automaticas_queja ON revisiones_automaticas(queja_id);
+  `)
+}
+
 export const MIGRACIONES: readonly Migracion[] = [
   { version: 1, nombre: 'identidad-por-ciudadano', aplicar: identidadPorCiudadano },
   { version: 2, nombre: 'revision-antes-de-publicar', aplicar: revisionAntesDePublicar },
@@ -283,10 +340,12 @@ export const MIGRACIONES: readonly Migracion[] = [
  * (bot/DEPLOY.md), y el ensayo corre el código de la imagen desplegada: por eso
  * llega primero aquí, inerte, y el cambio que la usa la pasa a `MIGRACIONES`
  * cuando el ensayo ha dicho «correcto» y hay instantánea del volumen. Así llegó
- * la 1 (#132 la desplegó inerte, #135 la activó), y así la 2 (#138 la desplegó
- * en ensayo, #137 la activó). Hoy no hay ninguna.
+ * la 1 (#132 la desplegó inerte, #135 la activó), así la 2 (#138 la desplegó en
+ * ensayo, #137 la activó), y así llega la 3, que activará la revisión automática.
  */
-export const MIGRACIONES_EN_ENSAYO: readonly Migracion[] = []
+export const MIGRACIONES_EN_ENSAYO: readonly Migracion[] = [
+  { version: 3, nombre: 'revision-automatica', aplicar: revisionAutomatica },
+]
 
 /** Lo que ensaya `migrate.ts --dry-run`: las activas y, detrás, las que están en ensayo. */
 export const MIGRACIONES_DEL_ENSAYO: readonly Migracion[] = [
