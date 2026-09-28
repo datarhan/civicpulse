@@ -397,6 +397,62 @@ describe('sin GEMINI_NIVEL=pago', () => {
   })
 })
 
+/**
+ * Una queja cuya revisión no se puede anotar —un INSERT rechazado, la base
+ * ocupada— paraba la pasada entera en ella, sin dejar fila de fallo: ninguna de
+ * las de detrás se revisaba, y a ella se le preguntaba al modelo cada minuto
+ * (revisión de #153).
+ */
+describe('una revisión que no se puede anotar', () => {
+  const rompeLaDe = (id: string) =>
+    db.exec(`CREATE TRIGGER rompe BEFORE INSERT ON revisiones_automaticas
+             WHEN NEW.queja_id = '${id}' AND NEW.resultado IN ('limpia', 'marcada')
+             BEGIN SELECT RAISE(ABORT, 'fallo a propósito'); END`)
+
+  it('no para a las demás, queda como fallo, y no se le vuelve a preguntar al modelo cada minuto', async () => {
+    const mala = nuevaQueja()
+    const buena = nuevaQueja('La farola de la calle Valencia lleva apagada desde el lunes.')
+    rompeLaDe(mala.id)
+    const g = gemini({ retirar: [], motivos: [] }, { retirar: [], motivos: [] })
+    const { d } = deps(g, telegram())
+    const r = await pasadaDeRevision(d)
+    expect(r).toMatchObject({ intentadas: 2, internos: 1, publicadas: 1 })
+    expect(getQueja(db, buena.id)).toMatchObject({ moderacion: 'publicada' })
+    expect(getQueja(db, mala.id)).toMatchObject({ moderacion: 'pendiente' })
+    expect(revisiones(mala.id)).toMatchObject([{ resultado: 'error', error: 'interno' }])
+    await pasadaDeRevision({ ...d, ahora: () => new Date(AHORA.getTime() + 60_000) })
+    expect(g.llamadas).toHaveLength(2)
+  })
+
+  it('si ni el fallo se puede anotar, espera una hora antes de volver a preguntar', async () => {
+    const mala = nuevaQueja()
+    db.exec(`CREATE TRIGGER rompe_todo BEFORE INSERT ON revisiones_automaticas
+             WHEN NEW.queja_id = '${mala.id}'
+             BEGIN SELECT RAISE(ABORT, 'fallo a propósito'); END`)
+    const g = gemini({ retirar: [], motivos: [] }, { retirar: [], motivos: [] })
+    const { d } = deps(g, telegram())
+    await pasadaDeRevision(d)
+    await pasadaDeRevision({ ...d, ahora: () => new Date(AHORA.getTime() + 30 * 60_000) })
+    expect(g.llamadas).toHaveLength(1)
+    await pasadaDeRevision({ ...d, ahora: () => new Date(AHORA.getTime() + 61 * 60_000) })
+    expect(g.llamadas).toHaveLength(2)
+  })
+
+  it('lo que falla después de anotarla no la anota como fallo', async () => {
+    const q = nuevaQueja()
+    const g = gemini({ retirar: [], motivos: [] })
+    const { d } = deps(g, telegram(), {
+      republicar: async () => {
+        throw new Error('GitHub caído')
+      },
+    })
+    const r = await pasadaDeRevision(d)
+    expect(r).toMatchObject({ publicadas: 1, internos: 0 })
+    expect(getQueja(db, q.id)).toMatchObject({ moderacion: 'publicada' })
+    expect(revisiones(q.id)).toMatchObject([{ resultado: 'limpia' }])
+  })
+})
+
 describe('lo que viaja a Gemini', () => {
   it('la clave en la cabecera y no en la URL; la queja entre marcas; los cargos en el prompt', async () => {
     const q = nuevaQueja()
