@@ -664,9 +664,11 @@ export default function Metodologia() {
         <ol style={{ margin: '10px 0 0', paddingLeft: 20 }}>
           <li>
             <strong>Se presenta por Telegram.</strong> Categoría, título, detalle y, si se quiere,
-            ubicación y foto. Se publica sin identificar a nadie: el barrio y nunca las coordenadas;
-            la foto, sólo anonimizada, y si la anonimización no puede ejecutarse —o su resultado no
-            se puede interpretar entero— se retiene en vez de publicarse sin tratar.
+            ubicación y foto. Se publica sin identificar a nadie: del texto, el bot retira al
+            guardarlo los teléfonos, correos, DNI, NIE, IBAN y matrículas que reconoce, que quedan
+            como «[dato personal retirado]»; el barrio y nunca las coordenadas; la foto, sólo
+            anonimizada, y si la anonimización no puede ejecutarse —o su resultado no se puede
+            interpretar entero— se retiene en vez de publicarse sin tratar.
           </li>
           <li>
             <strong>Una persona la revisa antes de publicarla.</strong> Cada queja nueva llega por

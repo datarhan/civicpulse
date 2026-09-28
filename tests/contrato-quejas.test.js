@@ -546,3 +546,38 @@ describe('la revisión antes de publicar', () => {
     expect(sinComentariosTs(lee('bot/src/index.ts'))).toMatch(/startReenvioTarjetas\(/)
   })
 })
+
+describe('los datos personales del texto', () => {
+  const PII = lee('bot/src/services/pii.ts')
+  const AVISO = plano('src/pages/AvisoLegal.jsx')
+  const METODOLOGIA = plano('src/pages/Metodologia.jsx')
+
+  it('la página nombra cada clase que se retira, y la marca que queda en su lugar', () => {
+    const clases = [
+      ...(PII.match(/CLASES_PII = \[([^\]]+)\]/)?.[1] ?? '').matchAll(/'(\w+)'/g),
+    ].map((m) => m[1])
+    expect(clases.length, 'no encuentro CLASES_PII en pii.ts').toBeGreaterThan(3)
+    const nombres = Object.fromEntries(
+      [...PII.matchAll(/^\s+(\w+): \['[^']*', '([^']+)'\],?$/gm)].map((m) => [m[1], m[2]]),
+    )
+    for (const clase of clases) {
+      expect(nombres[clase], `${clase} no tiene nombre en NOMBRES_PII`).toBeTruthy()
+      expect(AVISO, `/aviso-legal no nombra «${nombres[clase]}»`).toContain(nombres[clase])
+      expect(METODOLOGIA, `/metodologia no nombra «${nombres[clase]}»`).toContain(nombres[clase])
+    }
+    const marca = PII.match(/MARCA_RETIRADO = '([^']+)'/)?.[1]
+    expect(marca, 'no encuentro MARCA_RETIRADO').toBeTruthy()
+    expect(AVISO).toContain(`«${marca}»`)
+    expect(METODOLOGIA).toContain(`«${marca}»`)
+  })
+
+  it('se retiran al guardar: createQueja limpia el título y el detalle', () => {
+    const crear = sinComentariosTs(lee('bot/src/db/queries.ts')).match(
+      /export function createQueja[\s\S]*?\n\}/,
+    )
+    expect(crear, 'no encuentro createQueja').not.toBeNull()
+    expect(crear[0]).toMatch(/limpiarDatosPersonales\(q\.title\)/)
+    expect(crear[0]).toMatch(/limpiarDatosPersonales\(q\.detail\)/)
+    expect(AVISO).toContain('antes de guardar una queja, el bot retira')
+  })
+})

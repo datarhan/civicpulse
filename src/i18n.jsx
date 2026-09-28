@@ -919,7 +919,7 @@ export const CATALOGUE = {
     'quejas.detalle.apoyos': '{n} apoyos',
     'quejas.detalle.responsable': 'Responsable político',
     'quejas.detalle.texto.eyebrow': 'Texto de la queja',
-    'quejas.detalle.texto.titulo': 'Detalle ciudadano (verbatim)',
+    'quejas.detalle.texto.titulo': 'Detalle ciudadano (literal, salvo datos personales retirados)',
     'quejas.detalle.foto.eyebrow': 'Imagen adjunta',
     'quejas.detalle.foto.titulo': 'Foto ciudadana (anonimizada)',
     'quejas.detalle.foto.alt': 'Imagen de la queja anonimizada automáticamente',
@@ -2539,7 +2539,8 @@ export const CATALOGUE = {
     'quejas.detalle.apoyos': '{n} suports',
     'quejas.detalle.responsable': 'Responsable polític',
     'quejas.detalle.texto.eyebrow': 'Text de la queixa',
-    'quejas.detalle.texto.titulo': 'Detall ciutadà (literal)',
+    'quejas.detalle.texto.titulo':
+      'Detall ciutadà (literal, llevat de les dades personals retirades)',
     'quejas.detalle.foto.eyebrow': 'Imatge adjunta',
     'quejas.detalle.foto.titulo': 'Foto ciutadana (anonimitzada)',
     'quejas.detalle.foto.alt': 'Imatge de la queixa anonimitzada automàticament',

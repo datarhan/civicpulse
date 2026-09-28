@@ -14,7 +14,7 @@ Citizen-facing:
 | Command | What it does |
 |---|---|
 | `/start`, `/help` | Onboarding + the 6-step pipeline explanation (the review before publication is step 2) |
-| `/queja` | Guided flow: categoría (17 opts) → título → detalle → ubicación → foto. Confirms with classified concejalía, named concejal, legal plazo + base, and a `Q-XXXX` id. The queja is **not public** until an admin publishes it (below); its author gets a DM with each decision |
+| `/queja` | Guided flow: categoría (17 opts) → título → detalle → ubicación → foto. Confirms with classified concejalía, named concejal, legal plazo + base, and a `Q-XXXX` id. The queja is **not public** until an admin publishes it (below); its author gets a DM with each decision. Title and detail are stored **without** the personal data the bot recognizes — Spanish phones, emails, DNI/NIE and IBAN (checksums verified), number plates — replaced by «[dato personal retirado]» (`src/services/pii.ts`); only the counts are kept, and the receipt says what was removed |
 | `/estado Q-XXXX` | Full state + apoyos + timeline + legal basis |
 | `/apoyar Q-XXXX` | Co-sign a queja (idempotent, 1 per user). At 10 apoyos it enters the next weekly batch and `[APOYADA]` broadcasts to the public channel |
 | `/mis` | The user's own quejas |
