@@ -149,8 +149,12 @@ export interface Promise {
   corrections?: PromiseCorrection[]
 }
 
-/** What a correction may change. The quote, and the source it was copied from. */
-export const PROMISE_CORRECTION_FIELDS = ['quote', 'source.url'] as const
+/**
+ * What a correction may change: the quote, and the source it was copied from
+ * — its URL and who published it, which change together when the right quote
+ * is on the council's own note rather than on the paper that summarised it.
+ */
+export const PROMISE_CORRECTION_FIELDS = ['quote', 'source.url', 'source.publisher'] as const
 export type PromiseCorrectionField = (typeof PROMISE_CORRECTION_FIELDS)[number]
 
 /** Same floor as every other curator reason in this repo. */

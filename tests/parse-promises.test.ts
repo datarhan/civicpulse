@@ -577,7 +577,7 @@ describe('promises — corrections and retractions leave a public record', () =>
   })
 
   it('exports the fields a correction may touch', () => {
-    expect(PROMISE_CORRECTION_FIELDS).toEqual(['quote', 'source.url'])
+    expect(PROMISE_CORRECTION_FIELDS).toEqual(['quote', 'source.url', 'source.publisher'])
   })
 
   it('accepts a corrections log and carries it through the normalised copy', () => {
