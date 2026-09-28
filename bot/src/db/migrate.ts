@@ -15,7 +15,7 @@
  * la espera.
  */
 import { existsSync } from 'node:fs'
-import { ensayarMigracion } from './migraciones.ts'
+import { ensayarMigracion, MIGRACIONES_DEL_ENSAYO, MIGRACIONES_EN_ENSAYO } from './migraciones.ts'
 
 const args = process.argv.slice(2)
 const i = args.indexOf('--db')
@@ -32,7 +32,13 @@ if (!ruta || !existsSync(ruta)) {
   process.exit(2)
 }
 
-const e = ensayarMigracion(ruta)
+// Con las que están en ensayo: lo que se ensaya es lo que hará el despliegue que las active.
+const e = ensayarMigracion(ruta, { migraciones: MIGRACIONES_DEL_ENSAYO })
+if (MIGRACIONES_EN_ENSAYO.length > 0) {
+  process.stdout.write(
+    `[migrate] en ensayo, aún sin aplicar en el bot: ${MIGRACIONES_EN_ENSAYO.map((m) => `${m.version} ${m.nombre}`).join(', ')}\n`,
+  )
+}
 const tablas = [...new Set([...Object.keys(e.antes), ...Object.keys(e.despues ?? {})])].sort()
 for (const t of tablas) {
   const antes = e.antes[t] ?? '—'

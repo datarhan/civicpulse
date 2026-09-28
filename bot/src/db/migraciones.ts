@@ -277,6 +277,23 @@ export const MIGRACIONES: readonly Migracion[] = [
   { version: 2, nombre: 'revision-antes-de-publicar', aplicar: revisionAntesDePublicar },
 ]
 
+/**
+ * Migraciones escritas y desplegadas que el bot aún NO aplica al arrancar. Una
+ * migración que producción no tiene se ensaya contra su base antes de activarse
+ * (bot/DEPLOY.md), y el ensayo corre el código de la imagen desplegada: por eso
+ * llega primero aquí, inerte, y el cambio que la usa la pasa a `MIGRACIONES`
+ * cuando el ensayo ha dicho «correcto» y hay instantánea del volumen. Así llegó
+ * la 1 (#132 la desplegó inerte, #135 la activó), y así la 2 (#138 la desplegó
+ * en ensayo, #137 la activó). Hoy no hay ninguna.
+ */
+export const MIGRACIONES_EN_ENSAYO: readonly Migracion[] = []
+
+/** Lo que ensaya `migrate.ts --dry-run`: las activas y, detrás, las que están en ensayo. */
+export const MIGRACIONES_DEL_ENSAYO: readonly Migracion[] = [
+  ...MIGRACIONES,
+  ...MIGRACIONES_EN_ENSAYO,
+]
+
 export interface ResultadoMigracion {
   desde: number
   hasta: number
