@@ -567,9 +567,9 @@
     {
       "id": "nombre-hija",
       "titulo": "Cristal en el parque infantil",
-      "detalle": "Mi hija Laura, de ocho años, se cortó con un cristal roto en el parque infantil de la plaza.",
+      "detalle": "Mi hija Noa, de ocho años, se cortó con un cristal roto en el parque infantil de la plaza.",
       "retener": false,
-      "quitar": ["Laura"]
+      "quitar": ["Noa"]
     },
     {
       "id": "nombre-va-veí",
