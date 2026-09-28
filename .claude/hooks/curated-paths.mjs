@@ -37,7 +37,7 @@ import { inicioDeOrden, nombreDe, ordenes } from './shell-tokens.mjs'
  * file the other does not.
  */
 export const CURATED = {
-  'promises.json': 'npm run reply / freeze:set / freeze:clear',
+  'promises.json': 'npm run reply / freeze:set / freeze:clear / aviso-promesas',
   'pleno-votes.json': 'npm run pleno-vote / promote-vote / retract-vote',
   'pleno-findings.json': 'npm run promote-claim / finding-reply / correct-pleno-finding',
   // Los veredictos publicados son base⊕overlay y sus CLIs son la única puerta;
