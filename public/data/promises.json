@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-08-02T12:17:39.000Z",
+  "generatedAt": "2026-09-28T06:30:09.763Z",
   "frozenUntil": null,
   "legalNotice": "CivicPulse es un proyecto de civic-tech independiente, sin vinculación con el Ayuntamiento de Riba-roja de Túria ni con ningún partido político. Las promesas listadas son compromisos públicos atribuidos a partidos y cargos mediante fuentes primarias enlazadas. Para correcciones, derecho de rectificación o propuesta de nuevas fuentes: abrir una issue en github.com/datarhan/civicpulse con la etiqueta correccion-promesa. Plazo de revisión: 24 h. Plazo de resolución: 72 h. Durante el periodo electoral oficial (LOREG art. 50), el tracker entra en modo solo-lectura y los estados quedan congelados a la fecha publicada en cada ficha.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new?labels=correccion-promesa",
@@ -582,6 +582,50 @@
         "confidence": 0.9,
         "reviewState": "reviewed",
         "reviewedAt": "2026-07-04T13:51:58.057Z"
+      }
+    },
+    {
+      "id": "ac-psoe-1ryndd8",
+      "party": "PSOE",
+      "title": "Ayudas de 140.000 euros para rehabilitación de fachadas, evaluación de edificios y accesibilidad en viviendas",
+      "quote": "El consistorio lanzará la convocatoria el próximo mes de septiembre.",
+      "source": {
+        "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-destina-una-partida-de-140.000-euros-para-la-rehabilitaci%C3%B3n-de-las-fachadas%2C-la-evaluaci%C3%B3n-de-los-edificios-y-la-accesibilidad-en-el-interior-de-las-viviendas-del-periodo-2026-2027",
+        "publisher": "Ayuntamiento de Riba-roja"
+      },
+      "madeAt": "2026-08-25",
+      "topic": "urbanismo",
+      "kind": "anuncio-gobierno",
+      "status": "documentada",
+      "evidence": [],
+      "createdAt": "2026-09-28",
+      "autoPublished": {
+        "at": "2026-09-28T06:30:09.763Z",
+        "by": "auto-curation-v1",
+        "confidence": 0.78,
+        "reviewState": "pending-review"
+      }
+    },
+    {
+      "id": "ac-psoe-43brfs",
+      "party": "PSOE",
+      "title": "Bono Vuelve al Cole 2026-2027 con 160.000 euros y formato 100% digital",
+      "quote": "El Ayuntamiento destina 160.000 euros en esta edición, que incorpora un formato 100% digital",
+      "source": {
+        "url": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-escolar-con-3.375-alumnos-apoyando-a-las-familias-un-a%C3%B1o-m%C3%A1s-con-el-bono-vuelve-al-cole",
+        "publisher": "Ayuntamiento de Riba-roja"
+      },
+      "madeAt": "2026-09-09",
+      "topic": "educacion",
+      "kind": "anuncio-gobierno",
+      "status": "documentada",
+      "evidence": [],
+      "createdAt": "2026-09-28",
+      "autoPublished": {
+        "at": "2026-09-28T06:30:09.763Z",
+        "by": "auto-curation-v1",
+        "confidence": 0.7,
+        "reviewState": "pending-review"
       }
     }
   ]
