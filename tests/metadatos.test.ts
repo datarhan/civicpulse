@@ -435,7 +435,7 @@ describe('los ficheros reales del repositorio', () => {
     expect(noLeidos).toEqual([])
   })
 
-  it('el Author institucional de CONPREL se lee entero, con sus tildes y sin nadie al lado', () => {
+  it('el Author institucional de CONPREL se lee entero, sin nadie al lado', () => {
     const ruta = 'tests/fixtures/conprel_CV_2024.xls'
     const l = leido(leerMetadatos(readFileSync(ruta), ruta))
     expect(pares(l.campos, 'autoria')).toContainEqual([
