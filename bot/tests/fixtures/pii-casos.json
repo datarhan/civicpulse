@@ -177,8 +177,17 @@
     {
       "texto": "El presupuesto fue de 912.345.678 sin IVA",
       "clase": "telefono"
+    },
+    {
+      "texto": "Hay 1500 Mts de valla caída",
+      "clase": "matricula"
     }
   ],
   "_escapan": "Lo que se escapa, a sabiendas: formas de escribir un teléfono raras en España que, para reconocerlas, habría que aceptar también ristras de números que no lo son. Para esto sigue la revisión de una persona.",
-  "escapan": ["móvil 6 00 00 00 16", "llamad al 600/000015", "tlf 600 000 01 7"]
+  "escapan": [
+    "móvil 6 00 00 00 16",
+    "llamad al 600/000015",
+    "tlf 600 000 01 7",
+    "EL COCHE 1234 MTS LLEVA MESES APARCADO"
+  ]
 }
