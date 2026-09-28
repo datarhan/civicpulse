@@ -25,10 +25,12 @@
 import { execFileSync } from 'node:child_process'
 import {
   chmodSync,
+  existsSync,
   mkdirSync,
   mkdtempSync,
   readFileSync,
   readdirSync,
+  realpathSync,
   writeFileSync,
 } from 'node:fs'
 import { tmpdir } from 'node:os'
@@ -137,32 +139,113 @@ describe('claude_probe · el sondeo dice por qué falló', () => {
 })
 
 /**
- * El sondeo avala las llamadas de `src/llm/client.ts`, así que corre con sus
- * mismos ajustes. `claudeCodeArgs` apaga los ganchos de los plugins por
- * `--settings` (el porqué, medido, en `tests/llm/client.test.ts`); un sondeo con
- * otros ajustes puede decir «ok» de una configuración que no es la que va a
- * trabajar. Y sin ellos, para contestar «ok» arrancaba el SessionStart de
- * superpowers y los dos Python de security-guidance.
+ * El sondeo avala las llamadas de `src/llm/client.ts`, así que corre como ellas:
+ * en un directorio temporal vacío y con sus mismas banderas de aislamiento.
  *
- * Los ajustes se leen del cliente, no se copian aquí: una copia seguiría en
- * verde el día que el cliente cambie.
+ * Hasta el 28-09-2026 corría en el checkout de los planificadores con la sesión
+ * entera del CLI: su prompt de sistema, el CLAUDE.md del proyecto, el índice de
+ * la memoria automática, el listado de skills y los ganchos de los plugins. En
+ * los 30 días anteriores fueron 71 sondeos de ~51k tokens de contexto cada uno,
+ * y el gasto era lo de menos:
+ *
+ *   · No probaba lo que avala. Con `claudeCodeArgs` compartía sólo
+ *     `--strict-mcp-config` y `--model`: un CLI que rompiera `--system-prompt` o
+ *     `--disallowedTools` dejaba el sondeo en verde y cada llamada en rojo.
+ *   · Era un agente armado en el árbol vivo: el checkout principal pone
+ *     `acceptEdits` y 214 órdenes permitidas en `.claude/settings.local.json`, y
+ *     con `disableAllHooks` ya no le alcanzan los ganchos de guarda del
+ *     proyecto. Ninguno de los 71 usó una herramienta —la pregunta es «ok»—,
+ *     pero un sondeo no tiene por qué poder escribir.
+ *
+ * Las banderas se leen del cliente, no se copian aquí: una copia seguiría en
+ * verde el día que el cliente añada otra.
  */
-describe('claude_probe · los mismos ajustes que el cliente', () => {
-  it('pasa el --settings de claudeCodeArgs, con los ganchos apagados', () => {
-    const fichero = join(mkdtempSync(join(tmpdir(), 'claude-probe-argv-')), 'argv')
-    const r = sondear(claudeFalso(`printf '%s\\0' "$@" > "${fichero}"\necho ok\nexit 0`))
-    expect(r.rc).toBe(0)
+describe('claude_probe · corre como las llamadas que avala', () => {
+  /**
+   * Las banderas del cliente que son de su salida estructurada, no de su
+   * aislamiento: el sondeo contesta en texto, porque su motivo es el último
+   * renglón de lo que imprime claude (ver la cabecera del fichero).
+   */
+  const SOLO_SALIDA_ESTRUCTURADA = ['--json-schema', '--output-format', '--allowedTools']
 
-    const argv = readFileSync(fichero, 'utf8').split('\0').slice(0, -1)
-    const cliente = claudeCodeArgs(
-      { userPrompt: 'u', systemPrompt: 's', config: { claudeCodeModel: 'modelo-de-prueba' } },
-      '{}',
+  const cliente = claudeCodeArgs(
+    { userPrompt: 'u', systemPrompt: 's', config: { claudeCodeModel: 'modelo-de-prueba' } },
+    '{}',
+  )
+  const valor = (a: string[], bandera: string) => a[a.indexOf(bandera) + 1]
+
+  /** Sondea con un `claude` falso que apunta su argv, su cwd y lo que hay en él. */
+  function sondearGrabando(salida = 'echo ok\nexit 0') {
+    const g = mkdtempSync(join(tmpdir(), 'claude-probe-grabacion-'))
+    const r = sondear(
+      claudeFalso(
+        [
+          `printf '%s\\0' "$@" > "${g}/argv"`,
+          `pwd -P > "${g}/cwd"`,
+          `ls -A > "${g}/contenido"`,
+          salida,
+        ].join('\n'),
+      ),
     )
-    const ajustes = (a: string[]) => JSON.parse(a[a.indexOf('--settings') + 1])
+    return {
+      rc: r.rc,
+      argv: readFileSync(join(g, 'argv'), 'utf8').split('\0').slice(0, -1),
+      cwd: readFileSync(join(g, 'cwd'), 'utf8').trim(),
+      contenido: readFileSync(join(g, 'contenido'), 'utf8').trim(),
+    }
+  }
 
-    expect(argv).toContain('--settings')
-    expect(ajustes(argv)).toEqual(ajustes(cliente))
-    expect(ajustes(argv).disableAllHooks).toBe(true)
+  it('pasa todas las banderas de aislamiento del cliente', () => {
+    const { rc, argv } = sondearGrabando()
+    expect(rc).toBe(0)
+    const aislamiento = cliente
+      .filter((a) => a.startsWith('--'))
+      .filter((a) => !SOLO_SALIDA_ESTRUCTURADA.includes(a))
+    // Control: un filtro que lo dejara todo fuera no probaría nada.
+    expect(aislamiento).toEqual(expect.arrayContaining(['--system-prompt', '--disallowedTools']))
+    for (const bandera of aislamiento) expect(argv, bandera).toContain(bandera)
+  })
+
+  it('con los mismos valores donde el valor es el aislamiento', () => {
+    const { argv } = sondearGrabando()
+    const ajustes = JSON.parse(valor(argv, '--settings'))
+    expect(ajustes).toEqual(JSON.parse(valor(cliente, '--settings')))
+    expect(ajustes.disableAllHooks).toBe(true)
+    expect(valor(argv, '--disallowedTools').split(',')).toEqual(
+      valor(cliente, '--disallowedTools').split(','),
+    )
+  })
+
+  it('corre en un directorio vacío, fuera del checkout', () => {
+    // Fuera del checkout no hay CLAUDE.md, ni memoria, ni `acceptEdits`.
+    const { cwd, contenido } = sondearGrabando()
+    expect(cwd.startsWith(realpathSync(REPO))).toBe(false)
+    expect(contenido).toBe('')
+  })
+
+  it('no deja el directorio temporal detrás, tampoco cuando claude falla', () => {
+    for (const salida of ['echo ok\nexit 0', `echo "${MOTIVO_REAL}"\nexit 1`]) {
+      const { cwd } = sondearGrabando(salida)
+      expect(cwd.startsWith(realpathSync(REPO)), salida).toBe(false)
+      expect(existsSync(cwd), salida).toBe(false)
+    }
+  })
+
+  it('no mueve el directorio de quien lo carga', () => {
+    // Los planificadores lo cargan con `.` y siguen trabajando en REPO_DIR: un
+    // `cd` fuera de la subshell se los llevaría al temporal, y luego al vacío.
+    const guion = [
+      'set -euo pipefail',
+      `cd "${REPO}"`,
+      `. "${LIB}"`,
+      'claude_probe claude modelo-de-prueba',
+      'pwd -P',
+    ].join('\n')
+    const out = execFileSync('bash', ['-c', guion], {
+      encoding: 'utf8',
+      env: { ...process.env, PATH: `${claudeFalso('echo ok\nexit 0')}:${process.env.PATH}` },
+    })
+    expect(out.trim()).toBe(realpathSync(REPO))
   })
 })
 

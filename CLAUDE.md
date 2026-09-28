@@ -52,13 +52,13 @@ them here — the hand-kept list drifted from reality every time it was tried.
 
 **Git hooks** (`.husky/`; each gate's reason is in its comments): pre-commit
 runs `lint`, `format:check`, `check:json`, `check:sparse` and the staged-only
-scans `check:secrets`, `check:privado`, `check:editorial`, plus `check:hooks`,
-which repairs and never blocks. Pre-push builds and runs `review:surfaces` on
+scans `check:secrets`, `check:privado`, `check:editorial`, `check:metadatos`,
+plus `check:hooks`, which repairs and never blocks. Pre-push builds and runs `review:surfaces` on
 the routes the push can have broken; it never blocks, so its last line is the
 whole report — read it. The hooks run only where `core.hooksPath` points at
 them, which is the curator's machine: `husky` is not a dependency, so a fresh
 clone or a cloud session runs none of them. There, run `lint`, `format:check`
-and `typecheck` yourself; CI's `e2e.yml` runs them too, with the three scans,
+and `typecheck` yourself; CI's `e2e.yml` runs them too, with the four scans,
 over the whole tree.
 
 The e2e suite covers per-route specs, `chrome.spec.ts` (Cmd+K, dark mode, i18n,
@@ -208,7 +208,12 @@ Three commits per adapter:
 3. `feat(<domain>): wire real <domain>` — CLI, hook, UI, and the generated
    `public/data/*.json` committed alongside the code.
 
-Fixtures are the RED contract; commit them. Shared primitives live in
+Fixtures are the RED contract; commit them — without anyone's name in their
+metadata: a real download carries its author in `LastAuthor`, `meta.xml` or
+a BIFF `WRITEACCESS` record that SheetJS `Props` never shows.
+`check:metadatos` catches it at commit time, and `npm run fixture:sin-autoria`
+blanks it in place, because re-saving the file would stop it being the real
+download. Shared primitives live in
 `src/scraper/normalize.ts` and `src/scraper/hash.ts` — `fnv32` / `sha256Short`
 are the stable IDs rows key on, so never fork a local copy. Nor "correct" them:
 `fnv32` multiplies without `Math.imul`, so it is not textbook FNV-1a, and making

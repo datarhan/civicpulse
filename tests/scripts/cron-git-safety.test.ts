@@ -746,10 +746,13 @@ describe('cron pipelines · the opening pull races the guard as well', () => {
     // and a `claude -p` probe all sit between the guard and the pull. Here the
     // PROBE is the concurrent agent — it switches branch and exits 0, so
     // press-lab walks straight on into `git pull --rebase --autostash origin
-    // main`, which on a feature branch rewrites that branch.
+    // main`, which on a feature branch rewrites that branch. It names the
+    // checkout with `git -C`: since 2026-09-28 the probe runs claude from an
+    // empty temp dir of its own (scripts/lib/claude-probe.sh), and an agent
+    // next door acts on the checkout wherever the probe happens to be.
     const dir = makeSandbox()
     const probe = join(dir, 'switching-claude.sh')
-    writeFileSync(probe, '#!/bin/bash\ngit checkout -q -b fix/pull-race\nexit 0\n')
+    writeFileSync(probe, `#!/bin/bash\ngit -C "${dir}" checkout -q -b fix/pull-race\nexit 0\n`)
     chmodSync(probe, 0o755)
     advanceOrigin(dir)
     const base = tip(dir, 'main')

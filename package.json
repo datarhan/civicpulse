@@ -246,6 +246,8 @@
     "check:secrets": "npx tsx scripts/check-secrets.ts",
     "check:privado": "npx tsx scripts/check-privado.ts",
     "check:editorial": "npx tsx scripts/check-editorial.ts",
+    "check:metadatos": "npx tsx scripts/check-metadatos.ts",
+    "fixture:sin-autoria": "npx tsx scripts/fixture-sin-autoria.ts",
     "prerender:meta": "npx tsx scripts/prerender-meta.ts",
     "check:claim-provenance": "npx tsx scripts/check-claim-provenance.ts",
     "retract-attribution": "npx tsx scripts/retract-claim-attribution.ts",

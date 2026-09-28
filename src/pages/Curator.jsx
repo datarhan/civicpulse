@@ -6,6 +6,7 @@
  */
 import { useState } from 'react'
 import { Card, SectionHead } from '../components/Primitives'
+import { ROTULO_CITA_RETENIDA } from '../components/PlenoFindings'
 import {
   SectionErrorBoundary,
   QUEUE_URL,
@@ -648,14 +649,24 @@ export default function Curator() {
             margin: '4px 0 10px',
           }}
         >
-          La puerta editorial de <code>claim-public-gate.ts</code> retiene de{' '}
-          <strong>/plenos</strong> las acusaciones públicas que el verificador no pudo contrastar.
-          Promover una declaración a hallazgo es la excepción que esa puerta concede,{' '}
-          <strong>y la concede porque delante hay una persona</strong>. Estas fichas no citan ni un
-          literal que la puerta mostraría, y el firmante que aparece en cada una dice quién tomó la
-          excepción. La cola <strong>presenta la evidencia y no elige</strong>: no puntúa, no ordena
-          por gravedad —el orden es cronológico— y ninguna fila llega con decisión. Si tras leerla
-          decides matizar el sumario o retirar un literal, ejecuta{' '}
+          {/* Decía «Promover una declaración a hallazgo es la excepción que esa
+              puerta concede, y la concede porque delante hay una persona. Estas
+              fichas no citan ni un literal que la puerta mostraría, y el
+              firmante que aparece en cada una dice quién tomó la excepción».
+              Dejó de ser cierto el 27-08-2026 (`citaRetenida`, en
+              PlenoFindings.jsx): la ficha obedece la misma puerta que el
+              registro, la promueva quien la promueva. */}
+          La puerta editorial de <code>claim-public-gate.ts</code> retiene las acusaciones públicas
+          que el verificador no pudo contrastar, y desde el 27-08-2026 las retiene también en{' '}
+          <strong>/hallazgos</strong>: promover una declaración a hallazgo no la saca de la puerta,
+          la promueva una persona o <code>auto-curation-v1</code>, y la ficha pinta el hueco{' '}
+          {`«${ROTULO_CITA_RETENIDA}»`} en lugar del literal. Estas fichas no tienen ni una cita
+          sobre la que el cotejo encontrara datos, y el firmante que aparece en cada una dice quién
+          la promovió. <strong>Anotar que una ficha merece la excepción no cambia la página</strong>{' '}
+          (<code>npm run review:finding-exception</code>): el literal retenido sigue retenido, y la
+          fila sólo sale de esta cola. La cola <strong>presenta la evidencia y no elige</strong>: no
+          puntúa, no ordena por gravedad —el orden es cronológico— y ninguna fila llega con
+          decisión. Si tras leerla decides matizar el sumario o retirar un literal, ejecuta{' '}
           <code>npm run correct-pleno-finding</code> tú mismo: queda en la bitácora pública de la
           ficha.
         </p>
