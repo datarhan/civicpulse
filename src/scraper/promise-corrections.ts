@@ -80,6 +80,7 @@ export interface Firma {
 type Fila = Record<string, unknown> & {
   id: string
   party: string
+  title: string
   quote: string
   source: { url: string; publisher: string }
 }
