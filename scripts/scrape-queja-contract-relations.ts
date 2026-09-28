@@ -17,7 +17,7 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
-import { buildRelations } from '../src/scraper/queja-contract-relations'
+import { buildRelations, instanteUtc } from '../src/scraper/queja-contract-relations'
 import type { RelQueja, RelContract } from '../src/scraper/queja-contract-relations'
 import { canonicalizeDepartment } from '../src/scraper/departments'
 import { validatePromisesSnapshot, isFrozen } from '../src/scraper/promises'
@@ -35,22 +35,23 @@ function s(v: unknown): string {
 
 /**
  * Map one raw quejas.json row (Open311-flavoured bot snapshot) → RelQueja, or
- * null when it lacks an id or a timestamp. Reuses the department taxonomy so
- * `concejalia_area` folds onto a canonical slug.
+ * null when it lacks an id or an ISO timestamp. Reuses the department taxonomy
+ * so `concejalia_area` folds onto a canonical slug. `requested_datetime` llega
+ * sin zona y es UTC: lo lee `instanteUtc`, no la hora local de quien corre esto.
  */
 export function normalizeQueja(raw: Record<string, unknown>): RelQueja | null {
   const id = s(raw.service_request_id)
   const createdRaw = s(raw.requested_datetime)
   if (!id || !createdRaw) return null
-  const created = new Date(createdRaw.replace(' ', 'T'))
-  if (Number.isNaN(created.getTime())) return null
+  const created = instanteUtc(createdRaw)
+  if (Number.isNaN(created)) return null
   return {
     id,
     serviceCode: s(raw.service_code),
     department: canonicalizeDepartment(s(raw.concejalia_area) || s(raw.service_name) || null),
     placeSlug: s(raw.address_string) || null,
     description: s(raw.description),
-    createdAt: created.toISOString(),
+    createdAt: new Date(created).toISOString(),
   }
 }
 

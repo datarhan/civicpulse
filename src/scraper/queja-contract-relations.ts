@@ -89,14 +89,46 @@ export function departmentSignal(q: RelQueja, c: RelContract): { slug: string } 
   return null
 }
 
+// Día; y si lleva hora (con «T» o con el espacio de SQLite), su zona opcional.
+const MARCA_ISO =
+  /^(\d{4}-\d{2}-\d{2})(?:[T ](\d{2}:\d{2}(?::\d{2}(?:\.\d+)?)?)(Z|[+-]\d{2}:\d{2})?)?$/
+
+/**
+ * El instante (ms) de una marca de tiempo ISO, leída en UTC cuando no dice su
+ * zona; NaN si no es ISO.
+ *
+ * `new Date()` lee una fecha con hora y sin zona en hora LOCAL, así que el
+ * resultado dependía del equipo que construía el fichero. Medido el 28-09-2026
+ * (PR #150): reconstruido en el Mac del curador (Europe/Madrid), los 30
+ * `monthsAfter` publicados se movían dos horas respecto a los de la CI, que
+ * construye en UTC, y un par en el borde de la ventana podía entrar o salir.
+ *
+ * UTC y no Europe/Madrid, porque es lo que dicen las dos fuentes:
+ * - `requested_datetime` es el `created_at` del bot, que rellena SQLite con
+ *   `datetime('now')`: la hora UTC, escrita sin la Z. Leída como hora de Madrid,
+ *   la queja se correría una o dos horas de cuando se envió.
+ * - `awardDate` es una fecha sin hora, que JavaScript ya lee a medianoche UTC.
+ * En el mismo reloj las dos, y el que la CI ya usaba: no se mueve ningún valor
+ * publicado.
+ *
+ * Fuera de las formas ISO no se adivina: los demás formatos que `Date` acepta
+ * los lee en hora local, que es el mismo defecto por otra puerta.
+ */
+export function instanteUtc(marca: string): number {
+  const m = MARCA_ISO.exec(marca)
+  if (!m) return NaN
+  const [, dia, hora = '00:00', zona = 'Z'] = m
+  return Date.parse(`${dia}T${hora}${zona}`)
+}
+
 /**
  * Temporal modifier — award within [queja − 3mo, queja + 18mo]. NEVER a link on
  * its own (see scoreRelation): it only boosts/annotates an existing signal.
  */
 export function temporalModifier(q: RelQueja, c: RelContract): { monthsAfter: number } | null {
   if (!c.awardDate) return null
-  const t0 = new Date(q.createdAt).getTime()
-  const t1 = new Date(c.awardDate).getTime()
+  const t0 = instanteUtc(q.createdAt)
+  const t1 = instanteUtc(c.awardDate)
   if (Number.isNaN(t0) || Number.isNaN(t1)) return null
   const months = (t1 - t0) / (1000 * 60 * 60 * 24 * 30)
   return months >= -3 && months <= 18 ? { monthsAfter: months } : null
