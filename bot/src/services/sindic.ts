@@ -10,7 +10,10 @@
  * Pure function. Same pattern as services/batch.ts.
  */
 
-import type { QuejaRow } from '../db/queries.ts'
+import type { IncomingMessage, ServerResponse } from 'node:http'
+import type { Db } from '../db/client.ts'
+import { getQuejaPublica, type QuejaRow } from '../db/queries.ts'
+import { routeUsingLocalOfficials } from './router.ts'
 import type { QuejaRouting } from '../../../src/scraper/queja-router.ts'
 import { plazoHumano } from '../../../src/scraper/queja-router.ts'
 
@@ -167,4 +170,52 @@ export function renderSindicHtml(t: SindicTemplate): string {
 ${html}
 </body>
 </html>`
+}
+
+const RUTA_SINDIC = /^\/sindic\/(q-[a-z0-9]+)\.(md|html)$/
+
+/**
+ * GET /sindic/<id>.md | .html — la plantilla para acudir al Síndic con una queja.
+ *
+ * Vivía dentro del servidor de index.ts, donde no había forma de probarla. Sirve
+ * sólo una queja PUBLICADA (`getQuejaPublica`): una sin revisar, una descartada o
+ * una que su autor retiró contestan igual que una que no existe. El token, como
+ * antes: en la cabecera o en `?token=`, y sin `EXPORT_TOKEN` configurado, abierta.
+ *
+ * Devuelve true cuando la ruta era suya y ya está contestada.
+ */
+export function sirveSindic(
+  req: IncomingMessage,
+  res: ServerResponse,
+  deps: { db: Db; exportToken?: string | null },
+): boolean {
+  const url = new URL(req.url ?? '/', `http://${req.headers.host ?? 'localhost'}`)
+  const m = RUTA_SINDIC.exec(url.pathname)
+  if (req.method !== 'GET' || !m) return false
+  const contesta = (status: number, texto: string) => {
+    res.statusCode = status
+    res.end(texto)
+    return true
+  }
+  if (deps.exportToken) {
+    const cabecera = req.headers.authorization ?? ''
+    const enUrl = url.searchParams.get('token') ?? ''
+    if (cabecera !== `Bearer ${deps.exportToken}` && enUrl !== deps.exportToken) {
+      return contesta(401, 'unauthorized')
+    }
+  }
+  const q = getQuejaPublica(deps.db, m[1].toUpperCase())
+  if (!q) return contesta(404, 'not found')
+  const routing = routeUsingLocalOfficials({
+    title: q.title,
+    detail: q.detail,
+    category: q.category as never,
+  })
+  const plantilla = buildSindicTemplate(q, routing)
+  const md = m[2] === 'md'
+  res.statusCode = 200
+  res.setHeader('Content-Type', md ? 'text/markdown; charset=utf-8' : 'text/html; charset=utf-8')
+  res.setHeader('Cache-Control', 'no-store')
+  res.end(md ? renderSindicMarkdown(plantilla) : renderSindicHtml(plantilla))
+  return true
 }

@@ -1,6 +1,14 @@
 import type { Bot } from 'grammy'
 import type { Db } from '../db/client.ts'
-import { countApoyos, getQuejaViva, listEvents } from '../db/queries.ts'
+import {
+  autorTelegram,
+  countApoyos,
+  esAutor,
+  getQuejaPublica,
+  getQuejaViva,
+  listEvents,
+} from '../db/queries.ts'
+import { REVISION_PARA_AUTOR } from '../services/textos-revision.ts'
 import { routeUsingLocalOfficials } from '../services/router.ts'
 import { plazoHumano } from '../../../src/scraper/queja-router.ts'
 import type { MyContext } from '../types.ts'
@@ -36,6 +44,12 @@ function stateLabel(state: string): string {
         // Una corrección del barrio con la regla de 2026-09-27 (services/rebarrio.ts):
         // se enseña, porque cambia un dato publicado.
         [EVENTO_BARRIO_CORREGIDO]: '📍 Barrio corregido',
+        // Las decisiones de la revisión antes de publicar (decidirModeracion). Las
+        // dos últimas las ve su autor mientras la queja no es pública; si después
+        // se publica, quedan en su historial, que es lo que pasó.
+        moderacion_publicada: '🌐 Publicada tras revisarla',
+        moderacion_descartada: '🚫 No publicada tras revisarla',
+        moderacion_retirada: '↩️ Retirada de la publicación',
       } as Record<string, string>
     )[state] ?? state
   )
@@ -48,11 +62,20 @@ export function registerEstado(bot: Bot<MyContext>, db: Db) {
       await ctx.reply('Uso: `/estado Q-XXXX`', { parse_mode: 'Markdown' })
       return
     }
-    const q = getQuejaViva(db, id)
+    // Lo público, para cualquiera; lo que no se ha publicado, sólo para su autor
+    // y sólo en privado: /estado contesta también en un grupo, y ahí su autor
+    // pondría a la vista de todos una queja que nadie ha revisado.
+    // Para los demás, una sin publicar y una que no existe contestan igual.
+    const q =
+      getQuejaPublica(db, id) ??
+      (ctx.chat?.type === 'private' && ctx.from && esAutor(db, id, autorTelegram(ctx.from.id))
+        ? getQuejaViva(db, id)
+        : null)
     if (!q) {
       await ctx.reply(`No encuentro la queja \`${id}\`.`, { parse_mode: 'Markdown' })
       return
     }
+    const revision = REVISION_PARA_AUTOR[q.moderacion]
     const apoyos = countApoyos(db, id)
     const events = listEvents(db, id)
     const routing = routeUsingLocalOfficials({
@@ -71,6 +94,7 @@ export function registerEstado(bot: Bot<MyContext>, db: Db) {
     const body =
       `🗂 *${q.id}* · ${q.category}\n` +
       `*${q.title}*\n\n` +
+      (revision ? `${revision}\n\n` : '') +
       `*Estado:* ${stateLabel(q.state)}\n` +
       `*Apoyos:* ${apoyos} / 10 para verificación\n` +
       `*Área:* ${routing.concejalia.area}\n` +

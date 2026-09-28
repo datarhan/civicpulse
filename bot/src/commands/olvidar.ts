@@ -2,6 +2,7 @@ import type { Bot } from 'grammy'
 import type { Db } from '../db/client.ts'
 import { autorTelegram } from '../db/queries.ts'
 import { retirar } from '../services/ciudadano.ts'
+import { actualizarTarjetas, type EnvioAdmin } from '../services/avisos-admin.ts'
 import { idDeQueja } from '../services/queja-id.ts'
 import { pedirRepublicacion, type PeticionRepublicar } from '../services/republicar.ts'
 import { directorioFotos } from '../services/snapshot.ts'
@@ -24,7 +25,12 @@ import { CONSERVACION_QUEJAS_ANIOS } from '../../../src/scraper/plazos-retencion
  *
  * No confirma ids ajenos: el de otra persona y uno que no existe contestan igual.
  */
-export function registerOlvidar(bot: Bot<MyContext>, db: Db, photosDir = directorioFotos()) {
+export function registerOlvidar(
+  bot: Bot<MyContext>,
+  db: Db,
+  photosDir = directorioFotos(),
+  envio?: EnvioAdmin,
+) {
   bot.command('olvidar', async (ctx) => {
     const raw = (ctx.match as string | undefined)?.trim()
     if (!raw) {
@@ -52,6 +58,9 @@ export function registerOlvidar(bot: Bot<MyContext>, db: Db, photosDir = directo
       )
       return
     }
+    // Su texto sale también de los chats de quien modera: la tarjeta se queda
+    // sin él (services/avisos-admin.ts).
+    if (envio) await actualizarTarjetas(db, id, { envio })
     const peticion = await pedirRepublicacion()
     await ctx.reply(mensajeRetirada(id, peticion), { parse_mode: 'Markdown' })
   })

@@ -82,7 +82,9 @@ function toPublicRow(
     status: q.state,
     service_code: q.category,
     service_name: q.category,
-    description: q.detail.slice(0, 500),
+    // Entero. Se cortaba a 500 caracteres sin decirlo, y la ficha lo titula
+    // «Detalle ciudadano (verbatim)».
+    description: q.detail,
     requested_datetime: q.created_at,
     updated_datetime: q.updated_at,
     lat: null, // aggregated to neighborhood — never expose exact lat/lng

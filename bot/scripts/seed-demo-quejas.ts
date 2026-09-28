@@ -7,7 +7,9 @@
  * INFRASTRUCTURE examples (potholes, streetlights, bins, accessibility) — never
  * accusations against named people — driven through the REAL pipeline:
  * createQueja → routeUsingLocalOfficials (authentic concejalía/concejal
- * attribution) → setState (lifecycle) → addApoyo (community support). So the
+ * attribution) → decidirModeracion (a new queja waits for a human review; the
+ * seed publishes its own, recorded as `semilla-demo` in `moderaciones`) →
+ * setState (lifecycle) → addApoyo (community support). So the
  * feed, heatmap, LPACAP clock and per-concejal SLA all populate exactly as they
  * would from genuine captures.
  *
@@ -24,6 +26,7 @@
 import { openDb } from '../src/db/client.ts'
 import {
   createQueja,
+  decidirModeracion,
   setState,
   addApoyo,
   autorTelegram,
@@ -172,8 +175,9 @@ function wipe(db: ReturnType<typeof openDb>): number {
 
 function backdate(db: ReturnType<typeof openDb>, id: string, daysAgo: number): void {
   db.prepare(
-    `UPDATE quejas SET created_at = datetime('now', ?), updated_at = datetime('now', ?) WHERE id = ?`,
-  ).run(`-${daysAgo} days`, `-${daysAgo} days`, id)
+    `UPDATE quejas SET created_at = datetime('now', ?), updated_at = datetime('now', ?),
+                       publicada_at = datetime('now', ?) WHERE id = ?`,
+  ).run(`-${daysAgo} days`, `-${daysAgo} days`, `-${daysAgo} days`, id)
 }
 
 function setRegisteredAt(db: ReturnType<typeof openDb>, id: string, daysAgo: number): void {
@@ -211,6 +215,13 @@ function main(): void {
       concejalia_area: routing.concejalia.area,
       concejal_slug: routing.concejalia.responsible?.slug ?? null,
     })
+
+    // A new queja is not public until someone reviews it. The seed is its own
+    // reviewer, and says so: the decision row names it.
+    const decision = decidirModeracion(db, queja.id, 'publicar', 'semilla-demo')
+    if (decision.resultado !== 'aplicada') {
+      throw new Error(`[seed-quejas] ${queja.id} could not be published: ${decision.resultado}`)
+    }
 
     // Community support (distinct synthetic supporter per apoyo).
     for (let a = 0; a < s.apoyos; a++) addApoyo(db, queja.id, autorTelegram(++apoyoUid))

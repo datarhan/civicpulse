@@ -4,7 +4,6 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { openDb, type Db } from '../src/db/client'
 import {
-  createQueja,
   getQueja,
   listUserQuejas,
   listRecentQuejas,
@@ -20,6 +19,7 @@ import {
   autorTelegram,
   idCiudadano,
 } from '../src/db/queries'
+import { creaPublicada } from './helpers/publicada'
 
 function sampleQueja(overrides: Partial<NewQuejaInput> = {}): NewQuejaInput {
   return {
@@ -44,12 +44,12 @@ describe('bot db — createQueja + getQueja', () => {
   })
 
   it('assigns a Q- prefixed ID', () => {
-    const q = createQueja(db, sampleQueja())
+    const q = creaPublicada(db, sampleQueja())
     expect(q.id).toMatch(/^Q-[0-9A-Z]+$/)
   })
 
   it('persists all input fields', () => {
-    const q = createQueja(db, sampleQueja())
+    const q = creaPublicada(db, sampleQueja())
     const found = getQueja(db, q.id)
     expect(found).not.toBeNull()
     expect(found!.title).toBe('Bache profundo')
@@ -64,7 +64,7 @@ describe('bot db — createQueja + getQueja', () => {
   })
 
   it('auto-logs a capturada event on creation', () => {
-    const q = createQueja(db, sampleQueja())
+    const q = creaPublicada(db, sampleQueja())
     const events = listEvents(db, q.id)
     expect(events.length).toBe(1)
     expect(events[0].kind).toBe('capturada')
@@ -78,9 +78,9 @@ describe('bot db — listUserQuejas + listRecentQuejas + listByNeighborhood', ()
   })
 
   it('filters by telegram user id, newest first', () => {
-    const q1 = createQueja(db, sampleQueja({ autor: autorTelegram(1), title: 'A' }))
-    createQueja(db, sampleQueja({ autor: autorTelegram(2), title: 'B' }))
-    const q3 = createQueja(db, sampleQueja({ autor: autorTelegram(1), title: 'C' }))
+    const q1 = creaPublicada(db, sampleQueja({ autor: autorTelegram(1), title: 'A' }))
+    creaPublicada(db, sampleQueja({ autor: autorTelegram(2), title: 'B' }))
+    const q3 = creaPublicada(db, sampleQueja({ autor: autorTelegram(1), title: 'C' }))
     const mine = listUserQuejas(db, autorTelegram(1))
     expect(mine.map((q) => q.title)).toEqual(['C', 'A'])
     expect(mine.every((q) => q.ciudadano_id === idCiudadano(db, autorTelegram(1)))).toBe(true)
@@ -102,8 +102,8 @@ describe('bot db — listUserQuejas + listRecentQuejas + listByNeighborhood', ()
   // contrario al de inserción, que es exactamente lo que hace el azar cuando
   // toca, y exige que el listado siga saliendo por orden de inserción.
   it('ordena por inserción aunque los ids salgan al revés', () => {
-    const a = createQueja(db, sampleQueja({ autor: autorTelegram(7), title: 'primera' }))
-    const b = createQueja(db, sampleQueja({ autor: autorTelegram(7), title: 'segunda' }))
+    const a = creaPublicada(db, sampleQueja({ autor: autorTelegram(7), title: 'primera' }))
+    const b = creaPublicada(db, sampleQueja({ autor: autorTelegram(7), title: 'segunda' }))
     // El azar del sufijo, hecho explícito: la primera recibe el id más alto.
     // Las claves ajenas se apagan sólo para reescribir el id — `events` apunta
     // a `quejas(id)` y si no, salta la restricción y la prueba fallaría por un
@@ -121,14 +121,14 @@ describe('bot db — listUserQuejas + listRecentQuejas + listByNeighborhood', ()
   })
 
   it('listRecentQuejas respects limit', () => {
-    for (let i = 0; i < 5; i++) createQueja(db, sampleQueja({ title: 'q' + i }))
+    for (let i = 0; i < 5; i++) creaPublicada(db, sampleQueja({ title: 'q' + i }))
     expect(listRecentQuejas(db, 3).length).toBe(3)
   })
 
   it('listByNeighborhood filters', () => {
-    createQueja(db, sampleQueja({ neighborhood: 'casco' }))
-    createQueja(db, sampleQueja({ neighborhood: 'sector14' }))
-    createQueja(db, sampleQueja({ neighborhood: 'casco' }))
+    creaPublicada(db, sampleQueja({ neighborhood: 'casco' }))
+    creaPublicada(db, sampleQueja({ neighborhood: 'sector14' }))
+    creaPublicada(db, sampleQueja({ neighborhood: 'casco' }))
     expect(listByNeighborhood(db, 'casco').length).toBe(2)
     expect(listByNeighborhood(db, 'sector14').length).toBe(1)
   })
@@ -139,7 +139,7 @@ describe('bot db — apoyos (co-signs)', () => {
   let quejaId: string
   beforeEach(() => {
     db = openDb(':memory:')
-    quejaId = createQueja(db, sampleQueja()).id
+    quejaId = creaPublicada(db, sampleQueja()).id
   })
 
   it('adds a distinct apoyo and returns count', () => {
@@ -185,7 +185,7 @@ describe('bot db — setState transitions', () => {
   let quejaId: string
   beforeEach(() => {
     db = openDb(':memory:')
-    quejaId = createQueja(db, sampleQueja()).id
+    quejaId = creaPublicada(db, sampleQueja()).id
   })
 
   it('updates the state column', () => {
@@ -222,7 +222,7 @@ describe('bot db — softDeleteQueja (RGPD art. 17 right-to-be-forgotten)', () =
   beforeEach(() => {
     db = openDb(':memory:')
     // Con usuario, coordenadas y foto: lo que /olvidar tiene que borrar del registro.
-    quejaId = createQueja(db, sampleQueja({ foto_ref: 'tg:AgACAgQAAxkBAAIBfoto' })).id
+    quejaId = creaPublicada(db, sampleQueja({ foto_ref: 'tg:AgACAgQAAxkBAAIBfoto' })).id
   })
 
   it('soft-deletes the queja (row survives, deleted_at set)', () => {
@@ -274,7 +274,7 @@ describe('bot db — softDeleteQueja (RGPD art. 17 right-to-be-forgotten)', () =
   })
 
   it('hides deleted rows from listRecentQuejas (public feed)', () => {
-    const kept = createQueja(db, sampleQueja({ title: 'Kept' })).id
+    const kept = creaPublicada(db, sampleQueja({ title: 'Kept' })).id
     softDeleteQueja(db, quejaId, autorTelegram(42))
     const ids = listRecentQuejas(db, 10).map((r) => r.id)
     expect(ids).toContain(kept)
@@ -287,7 +287,7 @@ describe('bot db — softDeleteQueja (RGPD art. 17 right-to-be-forgotten)', () =
   })
 
   it('/mis deja de listarla: ya no es de nadie', () => {
-    const otra = createQueja(db, sampleQueja({ title: 'Sigue viva' })).id
+    const otra = creaPublicada(db, sampleQueja({ title: 'Sigue viva' })).id
     softDeleteQueja(db, quejaId, autorTelegram(42))
     const ids = listUserQuejas(db, autorTelegram(42)).map((r) => r.id)
     expect(ids).not.toContain(quejaId)
@@ -295,13 +295,13 @@ describe('bot db — softDeleteQueja (RGPD art. 17 right-to-be-forgotten)', () =
   })
 
   it('excludes deleted rows from aggregateStats.total', () => {
-    createQueja(db, sampleQueja({ title: 'Also kept' }))
+    creaPublicada(db, sampleQueja({ title: 'Also kept' }))
     softDeleteQueja(db, quejaId, autorTelegram(42))
     expect(aggregateStats(db).total).toBe(1)
   })
 
   it('anonimizaRetiradas borra la identidad de las que se retiraron antes de este cambio', () => {
-    const viva = createQueja(db, sampleQueja({ title: 'Viva' })).id
+    const viva = creaPublicada(db, sampleQueja({ title: 'Viva' })).id
     // Retirada «a la antigua»: sólo `deleted_at`, con la fila entera dentro.
     db.prepare(`UPDATE quejas SET deleted_at = datetime('now') WHERE id = ?`).run(quejaId)
     expect(anonimizaRetiradas(db)).toBe(1)
@@ -320,7 +320,7 @@ describe('bot db — softDeleteQueja (RGPD art. 17 right-to-be-forgotten)', () =
     try {
       const ruta = join(dir, 'bot.db')
       const antes = openDb(ruta)
-      const id = createQueja(antes, sampleQueja({ foto_ref: 'tg:AgACfoto' })).id
+      const id = creaPublicada(antes, sampleQueja({ foto_ref: 'tg:AgACfoto' })).id
       antes.prepare(`UPDATE quejas SET deleted_at = datetime('now') WHERE id = ?`).run(id)
       antes.close()
       const despues = openDb(ruta)
@@ -347,8 +347,8 @@ describe('bot db — aggregateStats', () => {
   })
 
   it('groups by state + neighborhood + category + concejal', () => {
-    const a = createQueja(db, sampleQueja({ neighborhood: 'casco', category: 'via_publica' }))
-    const b = createQueja(
+    const a = creaPublicada(db, sampleQueja({ neighborhood: 'casco', category: 'via_publica' }))
+    const b = creaPublicada(
       db,
       sampleQueja({
         neighborhood: 'casco',
@@ -356,7 +356,7 @@ describe('bot db — aggregateStats', () => {
         concejal_slug: 'rafael-gomez-sanchez',
       }),
     )
-    const c = createQueja(db, sampleQueja({ neighborhood: 'sector14', category: 'via_publica' }))
+    const c = creaPublicada(db, sampleQueja({ neighborhood: 'sector14', category: 'via_publica' }))
     setState(db, b.id, 'resuelta')
     const s = aggregateStats(db)
     expect(s.total).toBe(3)

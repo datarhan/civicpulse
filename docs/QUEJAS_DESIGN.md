@@ -136,6 +136,13 @@ Public form on `/quejas/nueva`, schema mirrors FixMyStreet:
 - 24h human moderation window before the queja goes public. Default: publish.
   Moderators can only redact PII or categorise — never edit the citizen's
   verbatim text.
+  _Status 2026-09-27:_ built the other way round — the default is **hold**. A
+  new queja is `pendiente` and public nowhere until an admin publishes it as
+  written or discards it (`bot/src/commands/moderar.ts`); every public reader
+  filters on `SQL_PUBLICA`. A discard can be undone, and `/health` degrades
+  when the queue stalls (no admins, a card no current admin holds, a wait over
+  48 h). An automatic PII scrub + model check that publishes clean ones is the
+  next step.
 - Severity inference (low/med/high) from category + keyword whitelist — shown
   as a hint, never as a verdict.
 

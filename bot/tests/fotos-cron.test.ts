@@ -1,7 +1,6 @@
 import { describe, expect, it, vi } from 'vitest'
 import { openDb } from '../src/db/client'
 import {
-  createQueja,
   fotosRetenidas,
   registrarFotoRetenida,
   type NewQuejaInput,
@@ -10,6 +9,7 @@ import {
 import { pasadaDeFotos, startFotosCron } from '../src/services/fotos-cron'
 import { MAX_MENSAJE } from '../src/util/telegram'
 import type { ProcessDeps, ProcessResult } from '../src/services/process-photos'
+import { creaPublicada } from './helpers/publicada'
 
 /**
  * La pasada que anonimiza las fotos corre en el servidor del bot, cada hora, contra la
@@ -135,7 +135,7 @@ describe('el aviso de las fotos retenidas', () => {
       concejalia_area: null,
       concejal_slug: null,
     }
-    const q = createQueja(db, entrada)
+    const q = creaPublicada(db, entrada)
     registrarFotoRetenida(db, q.id, 'gemini vision HTTP 503', T0)
     const [fila] = fotosRetenidas(db)
     return { db, q, fila }
@@ -199,7 +199,7 @@ describe('el aviso de las fotos retenidas', () => {
     }
     const motivo = `gemini vision HTTP 429: ${'{"error":{"code":429,"message":"Quota exceeded"}} '.repeat(8)}`
     for (let i = 0; i < 20; i++) {
-      const q = createQueja(db, entrada)
+      const q = creaPublicada(db, entrada)
       registrarFotoRetenida(db, q.id, motivo, T0)
     }
     const filas = fotosRetenidas(db)

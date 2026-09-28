@@ -7,15 +7,16 @@
  *   · sin `EXPORT_TOKEN` configurado no sirve nada, en vez de servir abierto;
  *   · el token sólo vale en la cabecera `Authorization`: en la URL acabaría en los
  *     logs de quien la pide y de cualquier intermediario;
- *   · una queja retirada con /olvidar da 404 aunque su fichero siguiera en el disco
- *     (`getQuejaViva`);
+ *   · una queja retirada con /olvidar, o sin publicar todavía, da 404 aunque su
+ *     fichero esté en el disco (`getQuejaPublica`): la foto se anonimiza antes de
+ *     que se revise la queja, pero no sale hasta que la queja se publica;
  *   · el nombre tiene que ser el de una queja, así que nada fuera de la carpeta.
  */
 import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import type { IncomingMessage, ServerResponse } from 'node:http'
 import type { Db } from '../db/client.ts'
-import { getQuejaViva } from '../db/queries.ts'
+import { getQuejaPublica } from '../db/queries.ts'
 
 const PREFIJO = '/export/quejas-photos/'
 const RUTA = /^\/export\/quejas-photos\/(q-[a-z0-9]{6,10})\.jpg$/
@@ -49,7 +50,7 @@ export function sirveFotoExportada(
   const m = RUTA.exec(url.pathname)
   if (!m) return contesta(404, 'not found')
   const id = m[1]
-  if (!getQuejaViva(deps.db, id.toUpperCase())) return contesta(404, 'not found')
+  if (!getQuejaPublica(deps.db, id.toUpperCase())) return contesta(404, 'not found')
   const fichero = join(deps.photosDir, `${id}.jpg`)
   if (!existsSync(fichero)) return contesta(404, 'not found')
 

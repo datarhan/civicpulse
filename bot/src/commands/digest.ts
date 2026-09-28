@@ -1,5 +1,6 @@
 import type { Bot } from 'grammy'
 import type { Db } from '../db/client.ts'
+import { SQL_PUBLICA } from '../db/queries.ts'
 import type { MyContext } from '../types.ts'
 
 interface Digest {
@@ -15,10 +16,10 @@ interface Digest {
 /**
  * El resumen del comando `/digest`.
  *
- * Las SEIS cuentas llevan `deleted_at IS NULL`. No lo llevaban ninguna, así que
- * una queja retirada con `/olvidar` seguía sumando en nuevas, resueltas,
- * silencios, escaladas, pendientes y en el top de categorías — durante años, cada
- * vez que alguien pidiera el resumen.
+ * Las SEIS cuentas miran sólo lo público (`SQL_PUBLICA`: publicada y no
+ * retirada). No filtraban nada, así que una queja retirada con `/olvidar` seguía
+ * sumando en nuevas, resueltas, silencios, escaladas, pendientes y en el top de
+ * categorías — durante años, cada vez que alguien pidiera el resumen.
  *
  * (El resumen SEMANAL que se manda por DM a los suscriptores es otro: vive en
  * `services/digest.ts` y lee por `findMatchingQuejas`, que sí filtra. Conviene no
@@ -29,21 +30,21 @@ export function computeDigest(db: Db, windowDays = 7): Digest {
   const newCount = (
     db
       .prepare(
-        `SELECT COUNT(*) as n FROM quejas WHERE deleted_at IS NULL AND date(created_at) > date('now', ?)`,
+        `SELECT COUNT(*) as n FROM quejas WHERE ${SQL_PUBLICA} AND date(COALESCE(publicada_at, created_at)) > date('now', ?)`,
       )
       .get(window) as { n: number }
   ).n
   const resueltas = (
     db
       .prepare(
-        `SELECT COUNT(*) as n FROM quejas WHERE deleted_at IS NULL AND state = 'resuelta' AND date(resolved_at) > date('now', ?)`,
+        `SELECT COUNT(*) as n FROM quejas WHERE ${SQL_PUBLICA} AND state = 'resuelta' AND date(resolved_at) > date('now', ?)`,
       )
       .get(window) as { n: number }
   ).n
   const silencios = (
     db
       .prepare(
-        `SELECT COUNT(*) as n FROM quejas WHERE deleted_at IS NULL AND state = 'silencio_negativo'`,
+        `SELECT COUNT(*) as n FROM quejas WHERE ${SQL_PUBLICA} AND state = 'silencio_negativo'`,
       )
       .get() as {
       n: number
@@ -52,7 +53,7 @@ export function computeDigest(db: Db, windowDays = 7): Digest {
   const escaladas = (
     db
       .prepare(
-        `SELECT COUNT(*) as n FROM quejas WHERE deleted_at IS NULL AND state = 'escalada_sindic'`,
+        `SELECT COUNT(*) as n FROM quejas WHERE ${SQL_PUBLICA} AND state = 'escalada_sindic'`,
       )
       .get() as {
       n: number
@@ -61,14 +62,14 @@ export function computeDigest(db: Db, windowDays = 7): Digest {
   const pendientes = (
     db
       .prepare(
-        `SELECT COUNT(*) as n FROM quejas WHERE deleted_at IS NULL AND state IN ('capturada','apoyada_verificada','registrada','notificada_10d','en_tramite')`,
+        `SELECT COUNT(*) as n FROM quejas WHERE ${SQL_PUBLICA} AND state IN ('capturada','apoyada_verificada','registrada','notificada_10d','en_tramite')`,
       )
       .get() as { n: number }
   ).n
   const topCategorias = db
     .prepare(
       `SELECT category, COUNT(*) as n FROM quejas
-       WHERE deleted_at IS NULL AND date(created_at) > date('now', ?)
+       WHERE ${SQL_PUBLICA} AND date(COALESCE(publicada_at, created_at)) > date('now', ?)
        GROUP BY category ORDER BY n DESC LIMIT 5`,
     )
     .all(window) as Array<{ category: string; n: number }>

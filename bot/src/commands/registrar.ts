@@ -1,16 +1,20 @@
 /**
  * Todos los comandos del bot, montados en un solo sitio y detrás de `soloEnPrivado`.
  *
- * Vivían sueltos en `makeBot`, sin nada delante. Aquí el primer middleware es el que
- * decide qué puede contestar fuera de un chat privado (services/solo-en-privado.ts), y
- * todo lo que se registre después pasa por él. Las pruebas montan el bot con esta misma
- * función, así que lo que prueban es el orden de producción, no una copia.
+ * Vivían sueltos en `makeBot`, sin nada delante. Aquí, antes que ningún manejador, va
+ * el middleware que atiende cada update una vez y los de un mismo chat de uno en uno
+ * (services/una-vez-y-en-orden.ts), y después el que decide qué puede contestar fuera
+ * de un chat privado (services/solo-en-privado.ts); todo lo que se registre después
+ * pasa por los dos. Las pruebas montan el bot con esta misma función, así que lo que
+ * prueban es el orden de producción, no una copia.
  */
 import { session, type Bot } from 'grammy'
 import { conversations } from '@grammyjs/conversations'
 import type { Db } from '../db/client.ts'
 import type { Channel } from '../services/channel.ts'
+import { envioDesdeApi, type EnvioAdmin } from '../services/avisos-admin.ts'
 import { soloEnPrivado } from '../services/solo-en-privado.ts'
+import { unaVezYEnOrden } from '../services/una-vez-y-en-orden.ts'
 import type { MyContext, SessionData } from '../types.ts'
 import { registerStart } from './start.ts'
 import { registerQueja, SIN_QUEJA_EN_CURSO } from './queja.ts'
@@ -26,23 +30,34 @@ import { registerDigest } from './digest.ts'
 import { registerBatchCommand } from './batch.ts'
 import { registerEscalar } from './escalar.ts'
 import { registerCurarCommand } from './curar.ts'
+import { registerModerar } from './moderar.ts'
 
-export function registrarComandos(bot: Bot<MyContext>, db: Db, channel: Channel) {
-  // Lo primero, antes que la sesión y las conversaciones: un mensaje de grupo que no
-  // es un comando público no llega a ningún manejador.
+export function registrarComandos(
+  bot: Bot<MyContext>,
+  db: Db,
+  channel: Channel,
+  // Las tarjetas de revisión van por la API del propio bot; las pruebas pasan la suya.
+  envio: EnvioAdmin = envioDesdeApi(bot.api),
+) {
+  // Lo primero de todo: un update que Telegram repite no se atiende otra vez, los de
+  // un mismo chat esperan su turno —la sesión y las conversaciones no aguantan dos a
+  // la vez—, y uno que falla queda en el log sin tumbar el proceso.
+  bot.use(unaVezYEnOrden())
+  // Y antes que la sesión y las conversaciones: un mensaje de grupo que no es un
+  // comando público no llega a ningún manejador.
   bot.use(soloEnPrivado())
   bot.use(session({ initial: (): SessionData => ({}) }))
   bot.use(conversations())
 
   // Conversation handler must come before plain command handlers that
   // share trigger names.
-  registerQueja(bot, db, channel)
+  registerQueja(bot, db, envio)
   registerStart(bot)
   registerEstado(bot, db)
   registerApoyar(bot, db, channel)
   registerMis(bot, db)
-  registerOlvidar(bot, db)
-  registerBorrarMisDatos(bot, db)
+  registerOlvidar(bot, db, undefined, envio)
+  registerBorrarMisDatos(bot, db, undefined, envio)
   registerSubscribe(bot, db)
   registerBarrio(bot, db)
   registerRanking(bot, db)
@@ -50,6 +65,7 @@ export function registrarComandos(bot: Bot<MyContext>, db: Db, channel: Channel)
   registerBatchCommand(bot, db, channel)
   registerEscalar(bot, db, channel)
   registerCurarCommand(bot, db)
+  registerModerar(bot, db, { envio })
 
   // Un botón de categoría que ya no sirve —de una queja caducada, perdida en un
   // despliegue o ya en otro paso— se quedaba con el reloj girando: nadie

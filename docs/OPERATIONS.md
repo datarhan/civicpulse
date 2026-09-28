@@ -414,6 +414,19 @@ it was typed, so an admin's `/curar` in a group showed the whole unreviewed draf
 everyone there, and a resident's `/mis` their complaints. Group joining is disabled in
 BotFather as well; the guard keeps that true if the setting is ever switched back on.
 
+grammY answers 500 to an update still running after ten seconds and lets it run on, so
+Telegram resends it — and moves on to that chat's next updates — with the first one
+still in progress. The conversations plugin cannot take two updates of one chat at
+once: on 2026-09-28 a repeated last step of `/queja` created a second queja with its own
+review cards and hung both deliveries, and every later update from that resident did
+the same until a restart. The first middleware (`bot/src/services/una-vez-y-en-orden.ts`)
+drops an `update_id` seen in the last day, runs one update per chat at a time, and logs
+a failing update instead of rejecting it, because a rejection after the timeout crashed
+the process. In `flyctl logs`, `telegram.repetido` is a resent update that was not
+handled again and `telegram.update` one that failed; a run of either means the Telegram
+API, or a queja's card lock, is slow. Both live in memory, which is one more reason the
+bot stays on one machine.
+
 Besides the webhook, the bot runs its own hourly ticks. One anonymizes the queja
 photos on the volume (`QUEJAS_PHOTOS_DIR`) and needs `GEMINI_API_KEY`: without the
 key it holds every photo, and its boot line says so. On a confirmed `/olvidar` the

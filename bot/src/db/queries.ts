@@ -1,5 +1,5 @@
 import type { Db } from './client.ts'
-import type { Canal } from './migraciones.ts'
+import type { Canal, Moderacion, MotivoVaciado } from './migraciones.ts'
 import { nuevoIdDeQueja } from '../services/queja-id.ts'
 
 export type QuejaState =
@@ -39,6 +39,10 @@ export interface QuejaRow {
   // every exporter + public renderer filters it out. See schema.sql for the
   // full retention rationale.
   deleted_at: string | null
+  /** Dónde está en la revisión antes de publicar. Sólo `publicada` es pública (`SQL_PUBLICA`). */
+  moderacion: Moderacion
+  /** Cuándo se publicó, o null si no se ha publicado nunca. */
+  publicada_at: string | null
 }
 
 /**
@@ -171,6 +175,123 @@ export function getQuejaViva(db: Db, id: string): QuejaRow | null {
 }
 
 /**
+ * Lo que ve el público: una queja PUBLICADA —revisada— y no retirada por su
+ * autor. Hasta el 2026-09-27 «público» era `deleted_at IS NULL` a secas, escrito
+ * en diecinueve sitios, y una queja salía en el acto sin que nadie la leyera.
+ * Todo lector que sale fuera —el export y sus cifras, /estado y /apoyar para
+ * quien no la escribió, /barrio, /ranking, /digest, los boletines, el lote del
+ * Registro, el silencio, la foto y el documento del Síndic— filtra con esto y
+ * sólo con esto; `tests/moderacion-publica.test.ts` barre el código y pone en
+ * rojo un filtro por `deleted_at` fuera de su lista de lectores no públicos.
+ */
+export const SQL_PUBLICA = "deleted_at IS NULL AND moderacion = 'publicada'"
+
+/**
+ * El `tipo` de una tarjeta de revisión en `avisos`: `tarjeta`, la que se manda
+ * sola a cada administrador, y `tarjeta:<n>`, cada copia más que pide `/revisar`.
+ * Todas se ponen al día al decidir y todas pierden el texto al retirarse la queja.
+ */
+export const TIPO_TARJETA = 'tarjeta'
+/** Toda copia de una tarjeta de revisión, en un WHERE sobre `avisos`. */
+export const SQL_ES_TARJETA = `(tipo = '${TIPO_TARJETA}' OR tipo LIKE '${TIPO_TARJETA}:%')`
+
+/**
+ * Unas quejas dejan de estar vivas: las copias entregadas de sus tarjetas pasan a
+ * `tarjetas_por_vaciar`, que la pasada horaria vacía hasta que pierden el texto,
+ * y el resto de su rastro en `avisos` —tarjetas sin entregar, avisos a su autor—
+ * se borra. Va dentro de la transacción que las retira o las destruye: fuera,
+ * una tarjeta podía quedarse con el texto sin nada que recordara dónde (revisión
+ * de la pasada de #137). Devuelve cuántas copias quedan en cola.
+ */
+export function aVaciar(db: Db, ids: string[], motivo: MotivoVaciado): number {
+  if (ids.length === 0) return 0
+  const marcas = ids.map(() => '?').join(', ')
+  const encoladas = db
+    .prepare(
+      `INSERT OR IGNORE INTO tarjetas_por_vaciar (destinatario, message_id, queja_id, motivo)
+       SELECT destinatario, message_id, queja_id, ? FROM avisos
+        WHERE ${SQL_ES_TARJETA} AND message_id IS NOT NULL AND queja_id IN (${marcas})`,
+    )
+    .run(motivo, ...ids).changes
+  db.prepare(`DELETE FROM avisos WHERE queja_id IN (${marcas})`).run(...ids)
+  return encoladas
+}
+
+/** `SQL_PUBLICA` sobre una tabla con alias: `sqlPublica('q')`. */
+export const sqlPublica = (alias: string) =>
+  SQL_PUBLICA.replace(/\b(deleted_at|moderacion)\b/g, `${alias}.$1`)
+
+/** La queja que ve el público, o null: para todos ellos, una sin publicar y una que no existe contestan igual. */
+export function getQuejaPublica(db: Db, id: string): QuejaRow | null {
+  const row = db.prepare(`SELECT * FROM quejas WHERE id = ? AND ${SQL_PUBLICA}`).get(id) as
+    QuejaRow | undefined
+  return row ?? null
+}
+
+/** Lo que un administrador puede hacer con una queja desde su tarjeta. */
+export const ACCIONES_MODERACION = ['publicar', 'descartar', 'retirar'] as const
+export type AccionModeracion = (typeof ACCIONES_MODERACION)[number]
+
+const TRANSICIONES: Record<AccionModeracion, { desde: Moderacion[]; hasta: Moderacion }> = {
+  // Descartar y retirar tienen vuelta atrás: su autor puede impugnarlo, y quien
+  // modera, publicarla después (revisión de #137).
+  publicar: { desde: ['pendiente', 'retenida', 'descartada', 'retirada'], hasta: 'publicada' },
+  descartar: { desde: ['pendiente', 'retenida'], hasta: 'descartada' },
+  retirar: { desde: ['publicada'], hasta: 'retirada' },
+}
+
+export type ResultadoDecision =
+  | { resultado: 'aplicada'; hasta: Moderacion }
+  | { resultado: 'ya-decidida'; actual: Moderacion }
+  | { resultado: 'retirada-por-autor' }
+  | { resultado: 'no-existe' }
+
+/**
+ * Decide una queja, con compare-and-set: sólo cambia si sigue en un estado desde
+ * el que la acción tiene sentido. Dos administradores que pulsan a la vez, o uno
+ * que pulsa una tarjeta vieja, no deciden dos veces: el segundo recibe
+ * `ya-decidida` con el estado de verdad. Una queja que su autor retiró con
+ * /olvidar no se publica. Cada decisión deja una fila en `moderaciones` —quién,
+ * qué— y un evento, en la misma transacción.
+ */
+export function decidirModeracion(
+  db: Db,
+  id: string,
+  accion: AccionModeracion,
+  por: string,
+): ResultadoDecision {
+  const t = TRANSICIONES[accion]
+  return db.transaction((): ResultadoDecision => {
+    const fila = db.prepare('SELECT moderacion, deleted_at FROM quejas WHERE id = ?').get(id) as
+      { moderacion: Moderacion; deleted_at: string | null } | undefined
+    if (!fila) return { resultado: 'no-existe' }
+    if (fila.deleted_at) return { resultado: 'retirada-por-autor' }
+    const lugares = t.desde.map(() => '?').join(', ')
+    const cambio = db
+      .prepare(
+        `UPDATE quejas
+            SET moderacion = ?,
+                publicada_at = CASE WHEN ? = 'publicada' THEN datetime('now') ELSE publicada_at END,
+                updated_at = datetime('now')
+          WHERE id = ? AND deleted_at IS NULL AND moderacion IN (${lugares})`,
+      )
+      .run(t.hasta, t.hasta, id, ...t.desde)
+    if (cambio.changes === 0) return { resultado: 'ya-decidida', actual: fila.moderacion }
+    db.prepare('INSERT INTO moderaciones (queja_id, decision, por) VALUES (?, ?, ?)').run(
+      id,
+      t.hasta,
+      por,
+    )
+    db.prepare('INSERT INTO events (queja_id, kind, payload) VALUES (?, ?, ?)').run(
+      id,
+      `moderacion_${t.hasta}`,
+      JSON.stringify({ por }),
+    )
+    return { resultado: 'aplicada', hasta: t.hasta }
+  })()
+}
+
+/**
  * Derecho al olvido (RGPD art. 17). La fila se conserva como rastro de auditoría
  * durante el plazo de conservación (`CONSERVACION_QUEJAS_ANIOS`, art. 55
  * LOPD-GDD), pero sin nada que diga quién la escribió ni desde dónde: en la misma
@@ -210,6 +331,8 @@ export function softDeleteQueja(db: Db, id: string, autor: Autor): boolean {
       id,
       JSON.stringify({ reason: 'user_requested_deletion' }),
     )
+    // Y lo que el bot mandó de ella: las tarjetas, a vaciar; el aviso a su autor, fuera.
+    aVaciar(db, [id], 'retirada')
   })
   tx()
   return true
@@ -264,21 +387,23 @@ export function listUserQuejas(db: Db, autor: Autor, limit = 20): QuejaRow[] {
 export function listRecentQuejas(db: Db, limit = 20): QuejaRow[] {
   return db
     .prepare(
-      'SELECT * FROM quejas WHERE deleted_at IS NULL ORDER BY created_at DESC, rowid DESC LIMIT ?',
+      `SELECT * FROM quejas WHERE ${SQL_PUBLICA} ORDER BY created_at DESC, rowid DESC LIMIT ?`,
     )
     .all(limit) as QuejaRow[]
 }
 
 /**
- * Non-deleted quejas that carry a photo reference (`foto_ref`) — the input set for
- * the anonymize-and-publish job. Soft-deleted rows (right-to-be-forgotten) are
- * excluded so a withdrawn queja's photo is never processed or published.
+ * Las quejas PÚBLICAS con foto: lo que la pasada de fotos anonimiza, y la lista
+ * contra la que poda. Sólo lo publicado: sin su `QUEJAS_PHOTOS_DIR`, la pasada
+ * escribe junto al quejas.json del sitio, y una foto de una queja sin revisar
+ * acabaría en `public/` (revisión de #137). Al publicarse, la foto llega en la
+ * pasada siguiente; al retirarse, se poda.
  */
 export function listQuejasWithPhoto(db: Db, limit = 1000): QuejaRow[] {
   return db
     .prepare(
       `SELECT * FROM quejas
-       WHERE deleted_at IS NULL AND foto_ref IS NOT NULL
+       WHERE ${SQL_PUBLICA} AND foto_ref IS NOT NULL
        ORDER BY created_at DESC, rowid DESC LIMIT ?`,
     )
     .all(limit) as QuejaRow[]
@@ -287,7 +412,7 @@ export function listQuejasWithPhoto(db: Db, limit = 1000): QuejaRow[] {
 export function listByNeighborhood(db: Db, neighborhood: string, limit = 50): QuejaRow[] {
   return db
     .prepare(
-      'SELECT * FROM quejas WHERE deleted_at IS NULL AND neighborhood = ? ORDER BY created_at DESC, rowid DESC LIMIT ?',
+      `SELECT * FROM quejas WHERE ${SQL_PUBLICA} AND neighborhood = ? ORDER BY created_at DESC, rowid DESC LIMIT ?`,
     )
     .all(neighborhood, limit) as QuejaRow[]
 }
@@ -357,7 +482,7 @@ export function reconcileApoyadas(db: Db): { intentadas: number; promovidas: num
     .prepare(
       `SELECT q.id FROM quejas q
        JOIN (SELECT queja_id, COUNT(*) as n FROM apoyos GROUP BY queja_id) a ON a.queja_id = q.id
-       WHERE q.state = 'capturada' AND q.deleted_at IS NULL AND a.n >= ?`,
+       WHERE q.state = 'capturada' AND ${sqlPublica('q')} AND a.n >= ?`,
     )
     .all(VERIFIED_THRESHOLD) as Array<{ id: string }>
 
@@ -529,9 +654,15 @@ export function findMatchingQuejas(
         : 'LOWER(category)'
   return db
     .prepare(
+      // La ventana va sobre cuándo se PUBLICÓ: una queja escrita el domingo y
+      // publicada el martes no salía ni en el resumen del lunes —aún no era
+      // pública— ni en el siguiente —ya tenía más de siete días de escrita—.
+      // Y las dos fechas, en un mismo formato: la guardada es 'AAAA-MM-DD
+      // HH:MM:SS' y el corte un ISO con 'T', y comparadas como texto el día del
+      // corte entero quedaba fuera (' ' va antes que 'T').
       `SELECT * FROM quejas
-       WHERE deleted_at IS NULL
-         AND created_at >= ?
+       WHERE ${SQL_PUBLICA}
+         AND datetime(COALESCE(publicada_at, created_at)) >= datetime(?)
          AND ${col} LIKE ?
        ORDER BY created_at DESC
        LIMIT 50`,
@@ -540,16 +671,16 @@ export function findMatchingQuejas(
 }
 
 export function aggregateStats(db: Db): AggregateStats {
-  // All public-facing aggregates EXCLUDE soft-deleted rows. The audit trail
-  // in `events` keeps the record, but every public surface (UI stats, snapshot
-  // export, dashboard) must look through a deleted_at filter.
+  // Las cifras públicas salen del MISMO conjunto que las quejas del export:
+  // publicadas y no retiradas (`SQL_PUBLICA`). Contadas sobre otro, el total
+  // diría quejas que el listado no enseña.
   const total = (
-    db.prepare('SELECT COUNT(*) as n FROM quejas WHERE deleted_at IS NULL').get() as { n: number }
+    db.prepare(`SELECT COUNT(*) as n FROM quejas WHERE ${SQL_PUBLICA}`).get() as { n: number }
   ).n
   const byState = Object.fromEntries(
     (
       db
-        .prepare('SELECT state, COUNT(*) as n FROM quejas WHERE deleted_at IS NULL GROUP BY state')
+        .prepare(`SELECT state, COUNT(*) as n FROM quejas WHERE ${SQL_PUBLICA} GROUP BY state`)
         .all() as Array<{
         state: string
         n: number
@@ -560,7 +691,7 @@ export function aggregateStats(db: Db): AggregateStats {
     (
       db
         .prepare(
-          `SELECT neighborhood, COUNT(*) as n FROM quejas WHERE deleted_at IS NULL AND neighborhood IS NOT NULL GROUP BY neighborhood`,
+          `SELECT neighborhood, COUNT(*) as n FROM quejas WHERE ${SQL_PUBLICA} AND neighborhood IS NOT NULL GROUP BY neighborhood`,
         )
         .all() as Array<{ neighborhood: string; n: number }>
     ).map((r) => [r.neighborhood, r.n]),
@@ -569,7 +700,7 @@ export function aggregateStats(db: Db): AggregateStats {
     (
       db
         .prepare(
-          'SELECT category, COUNT(*) as n FROM quejas WHERE deleted_at IS NULL GROUP BY category',
+          `SELECT category, COUNT(*) as n FROM quejas WHERE ${SQL_PUBLICA} GROUP BY category`,
         )
         .all() as Array<{
         category: string
@@ -585,7 +716,7 @@ export function aggregateStats(db: Db): AggregateStats {
               SUM(CASE WHEN state = 'silencio_negativo' OR state = 'escalada_sindic' THEN 1 ELSE 0 END) as silencios,
               SUM(CASE WHEN state IN ('capturada','apoyada_verificada','registrada','notificada_10d','en_tramite') THEN 1 ELSE 0 END) as pendientes
        FROM quejas
-       WHERE deleted_at IS NULL AND concejal_slug IS NOT NULL AND concejal_slug != ''
+       WHERE ${SQL_PUBLICA} AND concejal_slug IS NOT NULL AND concejal_slug != ''
        GROUP BY concejal_slug`,
     )
     .all() as Array<{

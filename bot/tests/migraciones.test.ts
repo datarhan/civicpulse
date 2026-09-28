@@ -412,8 +412,8 @@ describe('las migraciones en ensayo', () => {
 })
 
 /**
- * La migración 2: la revisión antes de publicar. En ensayo: se prueba con la
- * lista del ensayo, que es la que correrá el bot cuando se active.
+ * La migración 2: la revisión antes de publicar. Llegó en ensayo (#138) y
+ * #137 la activó; se prueba con la lista del ensayo, que la incluye igual.
  *
  * Una queja nueva nace `pendiente` y no sale hasta que se decide. Las que ya
  * estaban publicadas lo siguen estando —no se despublica nada al desplegar—, y

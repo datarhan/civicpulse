@@ -13,8 +13,8 @@ Citizen-facing:
 
 | Command | What it does |
 |---|---|
-| `/start`, `/help` | Onboarding + the 5-step pipeline explanation |
-| `/queja` | Guided flow: categoría (17 opts) → título → detalle → ubicación → foto. Confirms with classified concejalía, named concejal, legal plazo + base, and a `Q-XXXX` id |
+| `/start`, `/help` | Onboarding + the 6-step pipeline explanation (the review before publication is step 2) |
+| `/queja` | Guided flow: categoría (17 opts) → título → detalle → ubicación → foto. Confirms with classified concejalía, named concejal, legal plazo + base, and a `Q-XXXX` id. The queja is **not public** until an admin publishes it (below); its author gets a DM with each decision |
 | `/estado Q-XXXX` | Full state + apoyos + timeline + legal basis |
 | `/apoyar Q-XXXX` | Co-sign a queja (idempotent, 1 per user). At 10 apoyos it enters the next weekly batch and `[APOYADA]` broadcasts to the public channel |
 | `/mis` | The user's own quejas |
@@ -30,11 +30,14 @@ Admin-only (gated by `ADMIN_USER_IDS` env, comma-separated Telegram IDs):
 | `/batch_link` | URL of the auto-generated `current.md` / `current.html` solicitud |
 | `/batch_register <asiento> <CSV>` | After signing at `sede.ribarroja.es`, records the entry nº + CSV on every queja in the batch. Broadcasts `[REGISTRADA]` per queja |
 | `/escalar Q-XXXX` | Transitions a silencio-negativo queja to `escalada_sindic`, broadcasts `[ESCALADA]`, returns the Síndic de Greuges template URL |
+| `/revisar Q-XXXX` | Sends you one more copy of the review card of any live queja — also one published before the review existed, so it can be withdrawn. Every copy stays tracked |
+| `/pendientes` | The review queue, oldest first: ids and how long each has waited, never the text (that message is not stripped if the queja is withdrawn), split to fit |
+| Review cards (buttons) | Every new queja reaches each admin as a card with **Publicar** / **Descartar**; a published one shows **Retirar**, and a discarded or withdrawn one **Publicar** again. The card says whether the queja carries a photo (it does not show it) and which área and cargo the router attributed it to. A decision is compare-and-set (`decidirModeracion`), edits every copy of the card, tells the author the outcome (the notice row keeps no identity) and asks the site to republish; if that request does not go out, the admin who decided is told. When a queja is withdrawn (`/olvidar`, `/borrar_mis_datos`) or destroyed by the retention purge, the same transaction moves its card copies to `tarjetas_por_vaciar` and erases the rest of its trail in `avisos`; the copies lose their text at once, or at an hourly retry if Telegram fails, except in a chat Telegram no longer lets the bot edit. Everything that touches a queja's cards runs one at a time (an in-memory lock: one process). An hourly pass (`pasadaHoraria` in `src/services/avisos-admin.ts`) resends the cards no current admin holds, drains the strip queue, and sends the author notices still missing. The public channel announces nothing about a queja, neither on arrival nor on publication: an announcement could not be withdrawn with the queja |
 
 Outside a private chat the bot only answers the public commands (`COMANDOS_PUBLICOS`
 in `src/services/solo-en-privado.ts`, which only show what the site already publishes).
 Every other command, admin ones included, gets a one-line «escríbeme en privado», and
-anything that is not a command is ignored. The guard is the first middleware
+anything that is not a command is ignored. The guard runs before every handler
 (`src/commands/registrar.ts`), so a new command is private until someone adds it to the
 list. Group joining is also disabled in BotFather.
 
@@ -55,7 +58,9 @@ Telegram  ──────→  grammy bot  ──────→  SQLite (WAL,
 
 HTTP (webhook mode only):
   POST <path of WEBHOOK_URL>  (Telegram only: X-Telegram-Bot-Api-Secret-Token, else 401)
-  GET /health
+  GET /health                (degraded when the review queue is stuck: no admins,
+                              a queja whose card no current admin holds, a wait > 48 h,
+                              or a card waiting > 24 h to lose a withdrawn queja's text)
   GET /export/quejas.json    (bearer-auth via EXPORT_TOKEN)
   GET /batch/current.{md,html}
   GET /sindic/<q-id>.{md,html}
@@ -63,6 +68,12 @@ HTTP (webhook mode only):
 
 Runs in **long-polling** by default (`BOT_TOKEN` only) — no ingress
 required. Set `WEBHOOK_URL` to flip to webhook + HTTP server mode.
+
+In webhook mode Telegram resends an update that took over ten seconds, while the first
+delivery is still running. The first middleware (`src/services/una-vez-y-en-orden.ts`)
+handles each `update_id` once, the updates of one chat one at a time — the session and
+the conversations keep per-chat state in memory and cannot take two at once — and logs
+a failing update instead of rejecting it. It lives in memory: one process.
 
 ## Running locally (macOS, no cloud)
 

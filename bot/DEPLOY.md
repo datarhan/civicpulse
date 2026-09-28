@@ -186,6 +186,12 @@ flyctl deploy --config bot/fly.toml \
 flyctl logs --app munigraph-ribarroja
 ```
 
+`telegram.repetido` es un update que Telegram volvió a mandar porque el primero pasó
+de los diez segundos del webhook (que antes dejó un `[http] error: … timed out`), y
+que no se atendió otra vez; `telegram.update`, uno que falló, con su pila
+(`src/services/una-vez-y-en-orden.ts`). Muchos seguidos dicen que la API de Telegram,
+o el candado de las tarjetas de una queja, va lento.
+
 ### SSH into the machine
 
 ```bash
@@ -236,6 +242,29 @@ diaria de `src/services/retencion.ts` a los `CONSERVACION_COPIAS_DIAS` de
 `src/scraper/plazos-retencion.ts`. La instantánea del volumen es la copia que no
 depende del propio bot.
 
+### Volver a una versión anterior: nunca por detrás de la migración 2
+
+Un código viejo arranca sobre la base de hoy: el migrador no toca una base más
+nueva que su código —avisa y sigue—, y el código viejo trabaja sin saber de las
+columnas que no conoce. Tras la migración 2 (`revision-antes-de-publicar`) eso
+es publicar: un código de antes de ella no sabe de `moderacion` y exportaría,
+en la siguiente pasada de `pull-quejas.yml`, todo lo pendiente, lo descartado y
+lo retirado. Lo mismo vale para revertir el PR en `main`, porque
+`bot-deploy.yml` despliega lo que llega a `main`, y para desplegar una imagen
+anterior a mano (`flyctl deploy --image …`).
+
+**No se vuelve a un código anterior a la migración 2 sobre la base de hoy.** Lo
+que falle después se arregla hacia delante.
+
+Restaurar la copia `VACUUM INTO` de `/data/backups/` tomada al migrar tampoco es
+una vuelta atrás limpia. Es de antes de la revisión, así que no publica nada sin
+revisar, pero deshace todo lo que pasó después: además de perder las quejas que
+entraron, devuelve a la vida lo que se retiró desde entonces —con `/olvidar`, con
+`/borrar_mis_datos` o con [Retirar]— con su autor, su ubicación y su foto, y a
+quienes borraron sus datos. Eso es deshacer un derecho que ya se ejerció. Antes
+de arrancar con esa copia habría que reaplicarle cada retirada y cada borrado
+posteriores, y ese procedimiento no está escrito ni ensayado: no es un plan.
+
 ### Recalcular los barrios de las quejas guardadas
 
 Desde el 2026-09-27 una ubicación se sitúa contra el término y con un radio por
@@ -270,7 +299,10 @@ flyctl scale count 1    --app munigraph-ribarroja       # stay at 1 (SQLite)
 ```
 
 Do **not** scale count beyond 1 — SQLite doesn't tolerate multiple
-writers. If we outgrow a single machine, migrate to Postgres first.
+writers. If we outgrow a single machine, migrate to Postgres first, and move
+what lives in the process's memory with it: the conversations, the per-chat
+order and seen `update_id`s (`src/services/una-vez-y-en-orden.ts`) and the
+card lock (`src/services/avisos-admin.ts`).
 
 ### Tear down
 

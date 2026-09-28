@@ -3,6 +3,7 @@ import { openDb, type Db } from '../src/db/client'
 import {
   addSubscription,
   createQueja,
+  findMatchingQuejas,
   listUserSubscriptions,
   removeSubscription,
   softDeleteQueja,
@@ -10,6 +11,9 @@ import {
   autorTelegram,
 } from '../src/db/queries'
 import { runDigestOnce } from '../src/services/digest'
+import { computeDigest } from '../src/commands/digest'
+import { publicar } from './helpers/publicada'
+import { creaPublicada } from './helpers/publicada'
 
 function q(overrides: Partial<NewQuejaInput> = {}): NewQuejaInput {
   return {
@@ -69,8 +73,14 @@ describe('bot · digest runDigestOnce', () => {
       captured.push({ userId, text })
     }
 
-    createQueja(db, q({ autor: autorTelegram(1), neighborhood: 'casco', category: 'via_publica' }))
-    createQueja(db, q({ autor: autorTelegram(2), neighborhood: 'polígono', category: 'limpieza' }))
+    creaPublicada(
+      db,
+      q({ autor: autorTelegram(1), neighborhood: 'casco', category: 'via_publica' }),
+    )
+    creaPublicada(
+      db,
+      q({ autor: autorTelegram(2), neighborhood: 'polígono', category: 'limpieza' }),
+    )
 
     addSubscription(db, 999, 'barrio', 'casco')
     const r = runDigestOnce(db, sendDm, new Date('2026-04-21T09:00:00Z'))
@@ -88,7 +98,7 @@ describe('bot · digest runDigestOnce', () => {
       captured.push({ userId, text })
     }
 
-    createQueja(db, q({ neighborhood: 'casco' }))
+    creaPublicada(db, q({ neighborhood: 'casco' }))
     addSubscription(db, 999, 'barrio', 'polígono')
     const r = runDigestOnce(db, sendDm, new Date('2026-04-21T09:00:00Z'))
     expect(r.usersDigested).toBe(0)
@@ -101,7 +111,7 @@ describe('bot · digest runDigestOnce', () => {
       captured.push({ userId, text })
     }
 
-    const queja = createQueja(db, q({ autor: autorTelegram(1), neighborhood: 'casco' }))
+    const queja = creaPublicada(db, q({ autor: autorTelegram(1), neighborhood: 'casco' }))
     softDeleteQueja(db, queja.id, autorTelegram(1))
     addSubscription(db, 999, 'barrio', 'casco')
 
@@ -116,7 +126,7 @@ describe('bot · digest runDigestOnce', () => {
       captured.push({ userId, text })
     }
 
-    createQueja(db, q({ neighborhood: 'casco', category: 'via_publica' }))
+    creaPublicada(db, q({ neighborhood: 'casco', category: 'via_publica' }))
     addSubscription(db, 999, 'barrio', 'casco')
     addSubscription(db, 999, 'categoria', 'via_publica')
 
@@ -128,15 +138,33 @@ describe('bot · digest runDigestOnce', () => {
     expect(captured[0].text).toContain('categoria=via_publica')
   })
 
+  it('keeps a queja published on the cutoff day after the cutoff hour', () => {
+    // Published on Monday 21 at 10:00, after that Monday's 09:05 run: only the
+    // next Monday's run can carry it. The window compared a stored
+    // 'YYYY-MM-DD HH:MM:SS' against an ISO 'YYYY-MM-DDTHH:MM:SSZ' as text, and
+    // on the cutoff day ' ' sorts before 'T': the whole day fell out.
+    const queja = creaPublicada(db, q({ neighborhood: 'casco' }))
+    db.prepare('UPDATE quejas SET created_at = ?, publicada_at = ? WHERE id = ?').run(
+      '2026-09-14 10:00:00',
+      '2026-09-21 10:00:00',
+      queja.id,
+    )
+    addSubscription(db, 999, 'barrio', 'casco')
+    const r = runDigestOnce(db, async () => {}, new Date('2026-09-28T09:05:00Z'))
+    expect(r.totalMatches).toBe(1)
+  })
+
   it('ignores quejas older than the 7-day window', () => {
     const captured: Array<{ userId: number; text: string }> = []
     const sendDm = async (userId: number, text: string) => {
       captured.push({ userId, text })
     }
 
-    // Simulate an old queja by backdating created_at.
-    const queja = createQueja(db, q({ neighborhood: 'casco' }))
-    db.prepare(`UPDATE quejas SET created_at = ? WHERE id = ?`).run(
+    // Simulate an old queja: captured and published long ago. The window is on
+    // the publication date, so both move.
+    const queja = creaPublicada(db, q({ neighborhood: 'casco' }))
+    db.prepare(`UPDATE quejas SET created_at = ?, publicada_at = ? WHERE id = ?`).run(
+      '2020-01-01T00:00:00Z',
       '2020-01-01T00:00:00Z',
       queja.id,
     )
@@ -144,5 +172,41 @@ describe('bot · digest runDigestOnce', () => {
     addSubscription(db, 999, 'barrio', 'casco')
     const r = runDigestOnce(db, sendDm, new Date('2026-04-21T09:00:00Z'))
     expect(r.totalMatches).toBe(0)
+  })
+})
+
+/**
+ * Los resúmenes cuentan una queja cuando se PUBLICA, no cuando se escribe.
+ *
+ * Con la revisión antes de publicar, una queja escrita el domingo y publicada
+ * el martes caía fuera del resumen del lunes —aún no era pública— y fuera del
+ * siguiente —ya tenía más de siete días de escrita—: no salía en ninguno
+ * (revisión de #137). La ventana va sobre `publicada_at`.
+ */
+describe('la ventana de los resúmenes', () => {
+  let db: Db
+  beforeEach(() => {
+    db = openDb(':memory:')
+  })
+
+  it('una queja escrita hace diez días y publicada ayer entra en los resúmenes de esta semana', () => {
+    const id = createQueja(db, q()).id
+    publicar(db, id)
+    db.prepare(
+      "UPDATE quejas SET created_at = datetime('now', '-10 days'), publicada_at = datetime('now', '-1 day') WHERE id = ?",
+    ).run(id)
+    expect(findMatchingQuejas(db, 'barrio', 'casco', 7).map((r) => r.id)).toEqual([id])
+    expect(computeDigest(db, 7).nuevas).toBe(1)
+    expect(computeDigest(db, 7).topCategorias).toEqual([{ category: 'via_publica', n: 1 }])
+  })
+
+  it('el control: publicada hace diez días, fuera', () => {
+    const id = createQueja(db, q()).id
+    publicar(db, id)
+    db.prepare(
+      "UPDATE quejas SET created_at = datetime('now', '-10 days'), publicada_at = datetime('now', '-10 days') WHERE id = ?",
+    ).run(id)
+    expect(findMatchingQuejas(db, 'barrio', 'casco', 7)).toEqual([])
+    expect(computeDigest(db, 7).nuevas).toBe(0)
   })
 })

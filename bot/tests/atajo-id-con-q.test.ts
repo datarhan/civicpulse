@@ -2,10 +2,11 @@ import { describe, it, expect, beforeEach } from 'vitest'
 import { Bot } from 'grammy'
 import type { UserFromGetMe } from 'grammy/types'
 import { openDb, type Db } from '../src/db/client'
-import { createQueja, autorTelegram } from '../src/db/queries'
+import { autorTelegram } from '../src/db/queries'
 import { registrarComandos } from '../src/commands/registrar'
 import type { Channel } from '../src/services/channel'
 import type { MyContext } from '../src/types'
+import { creaPublicada } from './helpers/publicada'
 
 /**
  * El bot imprime `/estado_${id sin «Q-», en minúsculas}`, y el sufijo es base32
@@ -61,7 +62,7 @@ describe('el atajo /estado_q… lleva a su queja', () => {
   })
 
   it('una queja cuyo sufijo empieza por Q', async () => {
-    const q = createQueja(db, {
+    const q = creaPublicada(db, {
       autor: autorTelegram(1001),
       category: 'alumbrado',
       title: 'Farola apagada en la plaza',

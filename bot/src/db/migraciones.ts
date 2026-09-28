@@ -274,6 +274,7 @@ function revisionAntesDePublicar(db: Db): void {
 
 export const MIGRACIONES: readonly Migracion[] = [
   { version: 1, nombre: 'identidad-por-ciudadano', aplicar: identidadPorCiudadano },
+  { version: 2, nombre: 'revision-antes-de-publicar', aplicar: revisionAntesDePublicar },
 ]
 
 /**
@@ -282,11 +283,10 @@ export const MIGRACIONES: readonly Migracion[] = [
  * (bot/DEPLOY.md), y el ensayo corre el código de la imagen desplegada: por eso
  * llega primero aquí, inerte, y el cambio que la usa la pasa a `MIGRACIONES`
  * cuando el ensayo ha dicho «correcto» y hay instantánea del volumen. Así llegó
- * la 1 (#132 la desplegó inerte, #135 la activó).
+ * la 1 (#132 la desplegó inerte, #135 la activó), y así la 2 (#138 la desplegó
+ * en ensayo, #137 la activó). Hoy no hay ninguna.
  */
-export const MIGRACIONES_EN_ENSAYO: readonly Migracion[] = [
-  { version: 2, nombre: 'revision-antes-de-publicar', aplicar: revisionAntesDePublicar },
-]
+export const MIGRACIONES_EN_ENSAYO: readonly Migracion[] = []
 
 /** Lo que ensaya `migrate.ts --dry-run`: las activas y, detrás, las que están en ensayo. */
 export const MIGRACIONES_DEL_ENSAYO: readonly Migracion[] = [

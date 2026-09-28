@@ -458,3 +458,91 @@ describe('el plazo de conservación se lee de donde se cumple', () => {
     expect(lee('bot/src/commands/registrar.ts')).toMatch(/registerBorrarMisDatos\(/)
   })
 })
+
+/**
+ * La revisión antes de publicar, contada donde se publica el contrato. Desde la
+ * migración 2 una queja nace `pendiente` y no sale hasta que quien modera el
+ * canal la publica: /metodologia y /aviso-legal lo tienen que decir, y lo que
+ * dicen tiene que ser lo que hace el código.
+ */
+describe('la revisión antes de publicar', () => {
+  const MIGRACIONES = lee('bot/src/db/migraciones.ts')
+  const METODOLOGIA = plano('src/pages/Metodologia.jsx')
+  const AVISO = plano('src/pages/AvisoLegal.jsx')
+
+  it('una queja nace pendiente: publicar es una decisión', () => {
+    expect(MIGRACIONES).toMatch(/ADD COLUMN moderacion TEXT NOT NULL DEFAULT 'pendiente'/)
+    expect(METODOLOGIA).toContain('Una persona la revisa antes de publicarla.')
+    expect(METODOLOGIA).toContain('no reescribe su texto')
+    expect(AVISO).toContain('Revisión antes de publicar')
+    // Y /quejas, en la cabecera que se ve con datos y sin ellos.
+    expect(QUEJAS).toContain(
+      'Desde finales de septiembre de 2026, una persona revisa cada queja antes de publicarla aquí.',
+    )
+  })
+
+  it('lo publicado antes de la revisión lo dice la página, y lo marca la migración', () => {
+    expect(MIGRACIONES).toMatch(/'heredada', 'migracion'/)
+    expect(METODOLOGIA).toMatch(
+      /antes de que empezara esta revisión, a finales de septiembre de 2026, no pasaron por ella/,
+    )
+  })
+
+  it('descartar tiene vuelta atrás: la página lo dice y la transición existe', () => {
+    expect(METODOLOGIA).toContain('una descartada puede publicarse después')
+    expect(AVISO).toContain('una descartada puede publicarse después')
+    expect(lee('bot/src/db/queries.ts')).toMatch(/publicar:\s*\{\s*desde:\s*\[[^\]]*'descartada'/)
+  })
+
+  it('quien modera sabe que hay foto pero no la ve, y la foto sale sólo con la queja publicada', () => {
+    const avisos = sinComentariosTs(lee('bot/src/services/avisos-admin.ts'))
+    expect(METODOLOGIA).toContain('sabe si la queja trae una, pero no la ve')
+    // Y en la lista de lo que firma una persona, la foto consta como excepción.
+    expect(METODOLOGIA).toContain('se anonimiza y se publica sin que nadie la vea')
+    expect(AVISO).toContain('sin la foto, que no ve')
+    expect(avisos).toMatch(/Trae foto/)
+    expect(avisos).not.toMatch(/send(Photo|MediaGroup|Document)/)
+    const lista = lee('bot/src/db/queries.ts').match(
+      /export function listQuejasWithPhoto[\s\S]*?\n\}/,
+    )
+    expect(lista, 'no encuentro listQuejasWithPhoto').not.toBeNull()
+    expect(lista[0]).toMatch(/SQL_PUBLICA/)
+  })
+
+  it('/olvidar quita el texto de las tarjetas, y la pasada horaria remata las que fallaron', () => {
+    expect(AVISO).toContain(
+      'quita su texto de las tarjetas de revisión que recibió quien modera las quejas —de todas las que Telegram le deja editar—',
+    )
+    expect(sinComentariosTs(lee('bot/src/commands/olvidar.ts'))).toMatch(/actualizarTarjetas\(/)
+    const pasada = sinComentariosTs(lee('bot/src/services/avisos-admin.ts')).match(
+      /export async function pasadaHoraria[\s\S]*?\n\}/,
+    )
+    expect(pasada, 'no encuentro pasadaHoraria').not.toBeNull()
+    expect(pasada[0]).toMatch(/vaciarTarjetasEnCola\(/)
+  })
+
+  it('retirar una queja no deja su identidad en lo que el bot mandó de ella', () => {
+    // La página dice que /olvidar borra la identidad de Telegram y que /borrar_mis_datos
+    // la saca del registro. El aviso a su autor se guarda sin ella, y la retirada
+    // borra el rastro de la queja en `avisos` en su misma transacción.
+    expect(AVISO).toContain('borra de su registro interno tu identidad de Telegram')
+    const avisos = sinComentariosTs(lee('bot/src/services/avisos-admin.ts'))
+    expect(avisos).toMatch(/const destinatario = 'autor'/)
+    expect(avisos).not.toMatch(/`telegram:\$\{/)
+    const retirada = sinComentariosTs(lee('bot/src/db/queries.ts')).match(
+      /export function softDeleteQueja[\s\S]*?\n\}/,
+    )
+    expect(retirada, 'no encuentro softDeleteQueja').not.toBeNull()
+    expect(retirada[0]).toMatch(/aVaciar\(db, \[id\], 'retirada'\)/)
+  })
+
+  it('la dirección para impugnar es la del aviso legal', () => {
+    const m = lee('bot/src/services/contacto.ts').match(/CONTACTO = '([^']+)'/)
+    expect(m, 'no encuentro CONTACTO').not.toBeNull()
+    expect(AVISO).toContain(m[1])
+  })
+
+  it('la tarjeta que no llegó a nadie se reenvía: el bot arma la pasada', () => {
+    expect(sinComentariosTs(lee('bot/src/index.ts'))).toMatch(/startReenvioTarjetas\(/)
+  })
+})
