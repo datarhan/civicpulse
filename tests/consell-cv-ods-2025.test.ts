@@ -22,6 +22,14 @@ import { parseConsellTable, type ConsellEntry } from '../src/scraper/consell-cv'
  * (`scripts/scrape-ci-blocked.sh`), en Madrid. Por eso cada caso se ejecuta en
  * las dos zonas.
  *
+ * Asignar `process.env.TZ` cambia la zona en la que se analiza, no aquella en
+ * la que arrancó el proceso. Al `toISOString()` le basta, porque la 0.20.3
+ * construye el Date al leer: sale rojo arranque la suite donde arranque. La
+ * 0.18.5, en cambio, fijaba su época de 1899 al importarse (`basedate`), y
+ * medido el 28-09-2026 esta prueba sólo la caza si la suite arranca al este de
+ * UTC, como en el portátil; arrancando en UTC pasa entera. Una vuelta a esa
+ * versión la caza en la CI `xlsx-vulnerabilidades.test.ts`.
+ *
  * La fixture es la tabla descargada el 28-09-2026 (sha256 2668e0c0f4aaada8…
  * 4268e39d) sin sus datos personales: los nombres de autora y última editora
  * en `meta.xml`, y la fila 307/2025, la última, que señala a un cargo electo
