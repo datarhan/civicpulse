@@ -24,6 +24,7 @@
 import { readFile, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { DATA_GRAPH } from '../src/scraper/data-graph'
 import { withLegalNotice } from '../src/scraper/promises'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -62,6 +63,21 @@ async function main() {
     '[aviso] Es parte del contrato editorial: si cambia lo que promete, /metodologia y ' +
       '/aviso-legal cambian en el mismo PR.',
   )
+  // Quien deriva de promises.json guarda un hash del fichero ENTERO, así que
+  // hasta un aviso lo deja viejo, y `data-graph-frescura` se pone roja en la CI
+  // (pasó con el primer uso de este CLI, el 28-09-2026). La lista sale del
+  // grafo, no de aquí. En UTC porque es donde reconstruye la CI, y
+  // `queja-contract-relations` depende del huso: en hora de Madrid mueve sus
+  // `monthsAfter` un par de horas sin que haya cambiado nada.
+  const derivan = DATA_GRAPH.filter((n) => n.tier === 'derived')
+    .filter((n) => n.reads.includes('promises.json'))
+    .map((n) => n.id)
+  if (derivan.length) {
+    console.log(
+      `[aviso] ${derivan.join(', ')} derivan de promises.json: ` +
+        '`TZ=UTC npm run refresh` y comitéalos junto a este cambio.',
+    )
+  }
 }
 
 main().catch((err) => {
