@@ -2,10 +2,16 @@
  * Un coste unitario cuyo denominador nadie vuelve a medir.
  *
  * Riba-roja declara 11.059,41 toneladas de residuos en 2019, en 2021, en 2022,
- * en 2023 y en 2024 —el mismo número hasta el céntimo de tonelada— mientras el
- * coste de esos servicios sube un 64 %. El €/t que publica `/eficiencia` es
+ * en 2023 y en 2024 —el mismo número hasta el céntimo de tonelada— mientras
+ * actualiza el coste en cada entrega. El €/t que publica `/eficiencia` es
  * entonces un cociente con el numerador de este año y el denominador de hace
- * seis: sube porque nadie volvió a pesar la basura.
+ * seis: sigue al coste, sube y baja con él, y no puede decir si cambió lo que
+ * cuesta cada tonelada o cuántas hubo.
+ *
+ * (Decía que el coste «sube un 64 %» y que el cociente «sube porque nadie
+ * volvió a pesar la basura». El 64 % era de tres servicios juntos, y el €/t de
+ * la basura BAJA, de 78,22 a 66,94, con las toneladas quietas. Verificación del
+ * barrido lector del 28-09-2026.)
  *
  * Esto no lo caza ninguna guarda de datos: la cifra publicada resuelve
  * perfectamente a la celda que cita, y la celda dice justo eso. Lo que falla es
@@ -13,7 +19,7 @@
  * dato y no de una frase escrita a mano que se quedará atrás.
  */
 import { describe, it, expect } from 'vitest'
-import { construirIndicadores } from '../src/scraper/indicadores'
+import { construirIndicadores, SALVEDAD_DENOMINADOR_CONGELADO } from '../src/scraper/indicadores'
 import { SERVICIOS } from '../src/scraper/indicador-registry'
 import { MIN_ENTREGAS_CONGELADA } from '../src/scraper/declaracion-congelada'
 import { detectarDesviaciones, RECHAZOS } from '../src/scraper/indicador-desviacion'
@@ -36,7 +42,11 @@ function fila(ine: string, anio: number, coste: number, unidad: number): CesteRo
   }
 }
 
-/** El patrón real: coste que sube cada entrega, unidad clavada. */
+/**
+ * La forma de Riba-roja —coste actualizado cada entrega, unidad clavada—, no su
+ * dirección: aquí el coste sube siempre por simplificar, y en la basura de
+ * verdad baja (ver abajo).
+ */
 const propias = ANIOS.map((a, i) => fila('46214', a, 800000 + i * 90000, 11059.41))
 
 /** Pares: la mitad congela su denominador, la otra mitad lo actualiza. */
@@ -95,9 +105,24 @@ describe('scraper/indicadores — declaración congelada', () => {
     const texto = residuos.caveats.join(' ')
     expect(texto).toMatch(/2019/)
     expect(texto).toMatch(/mism[ao]/i)
-    // Lo que un lector necesita concluir: el cociente puede subir sin que el
+    // Lo que un lector necesita concluir: el cociente puede moverse sin que el
     // servicio cambie.
     expect(texto).toMatch(/sin que|aunque no/i)
+  })
+
+  it('no le pone dirección al cociente: con el coste a la baja tampoco dice que sube', () => {
+    // El caso de Riba-roja: 78,22 €/t en 2019 y 66,94 en 2024 con las mismas
+    // 11.059,41 t. «El cociente puede subir» encima de una serie que baja deja
+    // entender lo contrario de lo que la tarjeta enseña.
+    const aLaBaja = ANIOS.map((a, i) => fila('46214', a, 865000 - i * 25000, 11059.41))
+    const i = byId(construir(aLaBaja), 'a1621-coste-unitario')
+    expect(i.declaracion!.denominador.congelada).toBe(true)
+    expect(i.declaracion!.numerador.congelada).toBe(false)
+    const texto = i.caveats.join(' ')
+    // Midió algo: la salvedad del denominador congelado está.
+    expect(texto).toMatch(/misma cifra/)
+    expect(texto).not.toMatch(/puede subir/i)
+    expect(texto).toContain(SALVEDAD_DENOMINADOR_CONGELADO)
   })
 
   it('no inventa la salvedad cuando el denominador SÍ se actualiza', () => {
@@ -118,9 +143,9 @@ describe('scraper/indicadores — declaración congelada', () => {
   })
 
   it('distingue congelar el denominador de congelarlo todo', () => {
-    // Si las dos magnitudes están clavadas, el cociente no puede «subir sin que
-    // cambie el servicio»: sencillamente es viejo. Decir lo primero sería una
-    // acusación que el dato no sostiene.
+    // Si las dos magnitudes están clavadas, el cociente no puede «moverse sin
+    // que cambie el servicio»: no se mueve, sencillamente es viejo. Decir lo
+    // primero sería una acusación que el dato no sostiene.
     const todo = ANIOS.map((a) => fila('46214', a, 800000, 11059.41))
     const i = byId(construir(todo), 'a1621-coste-unitario')
     expect(i.declaracion!.numerador.congelada).toBe(true)
@@ -128,6 +153,7 @@ describe('scraper/indicadores — declaración congelada', () => {
     const texto = i.caveats.join(' ')
     expect(texto).toMatch(/ninguna de las dos|ni el coste|sin actualizar/i)
     expect(texto).not.toMatch(/sólo puede subir/i)
+    expect(texto).not.toContain(SALVEDAD_DENOMINADOR_CONGELADO)
   })
 })
 
