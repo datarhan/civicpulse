@@ -173,8 +173,9 @@ function useQuoteContrastDisclosure() {
  * Todas las cifras vivas se DERIVAN del padrón. Escribir «tres direcciones» o
  * «18 fichas» a mano en la página que promete no hacerlo es la trampa que este
  * repositorio ya ha pagado: la frase se queda quieta mientras el dato se mueve.
- * Lo único escrito a mano son las fechas y la medición del 5 de septiembre, que
- * es historia y no puede cambiar.
+ * Lo único escrito a mano son las fechas, la medición del 5 de septiembre y las
+ * 67 lecturas de la página vieja de currículos (19-06 a 1-09-2026, siempre los
+ * mismos 17), que son historia y no pueden cambiar.
  */
 function MudanzaDelPortal() {
   const { data } = useOfficials()
@@ -213,15 +214,26 @@ function MudanzaDelPortal() {
         ésa es la que se enseña—, pero durante seis días lo publicado no era lo vigente.
       </p>
       <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
-        <strong>Lo que NO ocurrió, y conviene decirlo:</strong> el ayuntamiento no retiró la
-        información. Los currículos, que vivían en una única página del portal de transparencia,
-        están ahora en un PDF junto a cada concejal, que es una forma mejor de publicarlos. Hoy hay{' '}
+        {/* Decía «el ayuntamiento no retiró la información» —más ancho que su
+            prueba: el párrafo siguiente cuenta direcciones de correo que sí
+            dejaron de publicarse— y que de los escaños sin ficha «no se puede
+            decir si se retiraron o nunca estuvieron». Sí se puede: el registro
+            propio (transparency-docs.json, fuente `cv`) leyó la página vieja 67
+            veces entre el 19-06 y el 1-09-2026, siempre con los mismos 17 PDF, y
+            ninguno de los escaños sin ficha figura en ninguna lectura. Revisión
+            lectora del 28-09-2026. */}
+        <strong>Lo que NO ocurrió, y conviene decirlo:</strong> la mudanza no se llevó ningún
+        currículo. Vivían en una única página del portal de transparencia, que este sitio leyó 67
+        veces entre el 19 de junio y el 1 de septiembre de 2026 y que listó siempre los mismos 17;
+        con la mudanza, esos 17 pasaron a un PDF junto a cada concejal, que es una forma mejor de
+        publicarlos. Hoy hay{' '}
         <strong style={{ color: 'var(--ink)' }}>
           {conFicha} de {total}
         </strong>{' '}
-        escaños con su ficha publicada. De los que faltan no se puede decir si se retiraron o nunca
-        estuvieron: la página anterior no tiene copia en el Internet Archive, y una ausencia sin
-        registro no es una retirada.
+        escaños con su ficha publicada. Los escaños que no la tenían tras la mudanza tampoco
+        figuraban en aquella página en ninguna de esas lecturas; de antes del 19 de junio no hay
+        copia —la página no está en el Internet Archive—, y una ausencia sin registro no es una
+        retirada.
       </p>
       <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
         {/* La fecha es la del ÚLTIMO raspado bueno de la página vieja
