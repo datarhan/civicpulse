@@ -134,13 +134,15 @@ export interface PlenoClaimsChunkManifest {
     /**
      * Retenidas porque su literal NO consta en ninguna transcripción nuestra.
      *
-     * Aparte de `retenidas` —que reparte por tipo lo que la puerta editorial se
-     * lleva por no estar fundado— porque el motivo es de otra clase: éstas no
-     * es que no podamos comprobar lo que dicen, es que no podemos enseñar que
-     * se dijeran. Y va contado porque, si no, la retirada sería invisible: la
-     * comprobación de procedencia lee lo PUBLICADO, así que retirarlas la
-     * dejaría en verde sin que nadie supiera cuántas hay. Un número que la
-     * puerta baja y el parte nombra.
+     * Contadas TAMBIÉN dentro de `retenidas`, que reparte por tipo todo lo que
+     * no se sirve, sea cual sea el motivo: quien quiera filas que sumen tiene
+     * que restarlas (`resumenPlenos` lo hace; leerlas como aparte dio en /plenos
+     * dos filas que se solapaban). Se nombran por separado porque el motivo es
+     * de otra clase: éstas no es que no podamos comprobar lo que dicen, es que
+     * no podemos enseñar que se dijeran. Y va contado porque, si no, la
+     * retirada sería invisible: la comprobación de procedencia lee lo
+     * PUBLICADO, así que retirarlas la dejaría en verde sin que nadie supiera
+     * cuántas hay. Un número que la puerta baja y el parte nombra.
      */
     retenidasSinProcedencia: number
   }
