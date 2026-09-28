@@ -96,6 +96,10 @@
     {
       "texto": "cuenta ES91-2100-0418-4502-0005-1332",
       "clase": "iban"
+    },
+    {
+      "texto": "móvil 600-00-00-13, por las mañanas",
+      "clase": "telefono"
     }
   ],
   "intactos": [
