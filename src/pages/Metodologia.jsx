@@ -323,23 +323,30 @@ export default function Metodologia() {
             pleno pueden aparecer. El tracker no rankea partidos por tasa de cumplimiento en V1.
           </li>
           <li>
-            <strong>Fuente enlazada obligatoria.</strong> Cada promesa se atribuye mediante una cita
-            textual (≥20 caracteres) copiada de la fuente que enlaza su ficha: un documento oficial
-            —programa electoral, acta de pleno, nota de prensa del Ayuntamiento, presupuesto
-            aprobado— o la noticia de prensa que recoge el compromiso, y la ficha nombra quién la
-            publicó. Cuando la fuente es una noticia, la cita es texto del medio —su titular o la
-            frase con que recoge el compromiso—, no necesariamente palabras del partido. Nuestros
-            propios datos no sirven de fuente: con ellos se contrasta una promesa, no se sostiene.
+            <strong>Palabras del partido, con su fuente enlazada.</strong> Cada promesa se atribuye
+            mediante una cita literal (≥20 caracteres) que son palabras del partido: lo que la
+            fuente pone entre comillas en boca del partido o de uno de sus cargos, o el texto de una
+            nota del propio Ayuntamiento en su web. Nunca el titular ni la narración del periodista:
+            si una noticia sólo cuenta el compromiso con sus palabras, no hay cita que publicar. La
+            ficha enlaza su fuente —el documento oficial o la noticia que recoge la cita— y nombra
+            quién la publicó. Nuestros propios datos no sirven de fuente: con ellos se contrasta una
+            promesa, no se sostiene. Una cita corregida enseña en su ficha la que había antes, y una
+            ficha retirada queda listada al pie de{' '}
+            <a href="/promesas" style={{ color: 'var(--civic)' }}>
+              /promesas
+            </a>{' '}
+            con su fecha y su motivo, sin repetir su cita.
           </li>
           <li>
             <strong>Conservadurismo en los estados.</strong> El estado por defecto es{' '}
             <em>documentada</em>. Sólo <EstadosPorEscalon tier="auto" /> pueden auto-publicarse, y
             aun así hace falta que la propuesta supere el umbral de confianza (≥0,70) <em>y</em>{' '}
-            quede anclada a su fuente (URL que resuelve + cita textual presente); se marcan en su
-            ficha con «publicada automáticamente · revisión pendiente» hasta que un curador los
-            revisa. <EstadosPorEscalon tier="fast-track" /> quedan listos para publicar con un solo
-            clic humano —incluidos los dos veredictos fuertes, <em>parcial</em> y <em>cumplida</em>,
-            que certifican que algo se hizo—. <EstadosPorEscalon tier="human-only" /> es siempre
+            quede anclada a su fuente (URL que resuelve + cita literal presente, y entre comillas si
+            la fuente es una noticia); se marcan en su ficha con «publicada automáticamente ·
+            revisión pendiente» hasta que un curador los revisa.{' '}
+            <EstadosPorEscalon tier="fast-track" /> quedan listos para publicar con un solo clic
+            humano —incluidos los dos veredictos fuertes, <em>parcial</em> y <em>cumplida</em>, que
+            certifican que algo se hizo—. <EstadosPorEscalon tier="human-only" /> es siempre
             exclusivamente humano, con justificación documental.
           </li>
           <li>
@@ -462,8 +469,9 @@ export default function Metodologia() {
         <ul style={{ margin: '8px 0 0', paddingLeft: 20 }}>
           <li>
             No auto-publica ninguna propuesta que no supere el umbral de confianza (≥0,70){' '}
-            <em>y</em> la verificación determinista de anclaje (URL que resuelve + cita textual
-            presente); lo que no lo supera espera revisión humana en cola.
+            <em>y</em> la verificación determinista de anclaje (URL que resuelve + cita literal
+            presente, y entre comillas si la fuente es una noticia); lo que no lo supera espera
+            revisión humana en cola.
           </li>
           <li>
             No auto-publica ningún veredicto fuerte: <EstadosPorEscalon tier="fast-track" /> quedan
@@ -471,8 +479,10 @@ export default function Metodologia() {
             <EstadosPorEscalon tier="human-only" /> es siempre exclusivamente humano.
           </li>
           <li>
-            No genera titulares ni resúmenes originales. Sólo cita la cabecera literal de las
-            noticias encontradas.
+            No inventa ni resume citas, y ya no cita titulares: sólo palabras que la noticia pone
+            entre comillas en boca del partido, o el texto de una nota del propio Ayuntamiento.
+            Hasta el 28 de septiembre de 2026 citaba la cabecera de las noticias; las fichas que no
+            cumplían esta regla se recitaron o se retiraron.
           </li>
           <li>No puntúa ni rankea partidos por tasa de cumplimiento.</li>
           <li>
@@ -491,9 +501,11 @@ export default function Metodologia() {
           Un proceso semanal, los lunes, propone promesas nuevas y cambios de estado a partir de
           fuentes públicas (prensa, plenos) usando un modelo de lenguaje. Cada propuesta pasa por
           una verificación determinista de anclaje: la URL de la fuente debe resolver y la cita
-          textual debe aparecer literalmente en ella. Sólo se publica automáticamente lo que supera
-          un umbral de confianza (≥0,70) <em>y</em> queda anclado; el resto espera revisión humana
-          en cola.
+          textual debe aparecer literalmente en ella y ser palabras del partido —en una noticia,
+          dentro de las comillas con que el medio las recoge; en la web del Ayuntamiento vale su
+          propio texto—. Un titular o la narración del periodista no se anclan aunque estén en la
+          página. Sólo se publica automáticamente lo que supera un umbral de confianza (≥0,70){' '}
+          <em>y</em> queda anclado; el resto espera revisión humana en cola.
         </p>
         <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
           Los <em>cambios de estado</em> sobre promesas ya publicadas se infieren de licitaciones y
