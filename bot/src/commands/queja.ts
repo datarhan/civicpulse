@@ -2,7 +2,15 @@ import type { Bot } from 'grammy'
 import { InlineKeyboard } from 'grammy'
 import { createConversation } from '@grammyjs/conversations'
 import type { Db } from '../db/client.ts'
-import { autorTelegram, createQueja, type NewQuejaInput } from '../db/queries.ts'
+import {
+  autorTelegram,
+  createQueja,
+  datosRetiradosDe,
+  LIMITE_DETALLE,
+  LIMITE_TITULO,
+  type NewQuejaInput,
+} from '../db/queries.ts'
+import { describirRetirados } from '../services/pii.ts'
 import { routeUsingLocalOfficials } from '../services/router.ts'
 import { situar } from '../services/neighborhoods.ts'
 import { comandoDe } from '../services/solo-en-privado.ts'
@@ -178,24 +186,21 @@ export function quejaConversationBuilder(db: Db, envio: EnvioAdmin) {
     const catLabel = CATEGORIES.find((c) => c.id === category)?.label ?? category
 
     await ctx.reply(
-      `Categoría: *${catLabel}*\n\nAhora, escribe un *título breve* (máx. 140 caracteres). Ejemplo: _Bache profundo en Av. Primera_.`,
+      `Categoría: *${catLabel}*\n\nAhora, escribe un *título breve* (máx. ${LIMITE_TITULO} caracteres). Ejemplo: _Bache profundo en Av. Primera_.`,
       { parse_mode: 'Markdown' },
     )
-    const title = (await textoDelPaso(conv, 'Escribe el título con texto, por favor.'))
-      .trim()
-      .slice(0, 140)
+    // Sin cortar aquí: `createQueja` limpia primero y corta después (LIMITE_TITULO).
+    const title = (await textoDelPaso(conv, 'Escribe el título con texto, por favor.')).trim()
     if (title.length < 5) {
       await ctx.reply('El título es muy corto. Cancelo — prueba /queja otra vez.')
       return
     }
 
     await ctx.reply(
-      '✍️ *Describe lo que pasa* con el detalle que puedas (máx. 2000 caracteres). Cuanto más concreto, más fácil de resolver.',
+      `✍️ *Describe lo que pasa* con el detalle que puedas (máx. ${LIMITE_DETALLE} caracteres). Cuanto más concreto, más fácil de resolver.`,
       { parse_mode: 'Markdown' },
     )
-    const detail = (await textoDelPaso(conv, 'Escribe el detalle con texto, por favor.'))
-      .trim()
-      .slice(0, 2000)
+    const detail = (await textoDelPaso(conv, 'Escribe el detalle con texto, por favor.')).trim()
     if (detail.length < 20) {
       await ctx.reply('El detalle es muy corto. Cancelo — prueba /queja otra vez.')
       return
@@ -252,8 +257,13 @@ export function quejaConversationBuilder(db: Db, envio: EnvioAdmin) {
     await avisarAdmins(db, saved, { admins: parseAdminIds(), envio })
 
     const responsible = routing.concejalia.responsible
+    // Lo que el bot quitó del texto al guardarla (services/pii.ts), dicho a quien lo escribió.
+    const quitados = describirRetirados(datosRetiradosDe(db, saved.id))
     const confirmation =
       `✅ *Queja recibida:* \`${saved.id}\`\n\n` +
+      (quitados
+        ? `🧹 Antes de guardarla he quitado ${quitados}. Lo quitado no se guarda en el bot.\n\n`
+        : '') +
       `🕒 Antes de publicarla la revisa una persona del equipo; te aviso aquí cuando sea pública.\n\n` +
       `*Categoría:* ${catLabel}\n` +
       `*Área responsable:* ${routing.concejalia.area}\n` +

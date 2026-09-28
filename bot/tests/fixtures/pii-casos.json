@@ -1,0 +1,193 @@
+{
+  "_nota": "Datos SINTÉTICOS: el repositorio es público. Los teléfonos llevan ceros de relleno; el DNI 12345678Z, el NIE X1234567L y el IBAN ES91 2100 0418 4502 0005 1332 son los ejemplos de manual; los correos, de example.com.",
+  "retirados": [
+    {
+      "texto": "Llamadme al 600 000 001 cuando podáis",
+      "clase": "telefono"
+    },
+    {
+      "texto": "Mi móvil: +34 600 000 002.",
+      "clase": "telefono"
+    },
+    {
+      "texto": "teléfono 0034 600-000-003",
+      "clase": "telefono"
+    },
+    {
+      "texto": "El fijo es 961 00 00 04 por las tardes",
+      "clase": "telefono"
+    },
+    {
+      "texto": "o el 96 100 00 05",
+      "clase": "telefono"
+    },
+    {
+      "texto": "600000006",
+      "clase": "telefono"
+    },
+    {
+      "texto": "escribid a vecina.prueba@example.com si hace falta",
+      "clase": "correo"
+    },
+    {
+      "texto": "DNI 12345678Z",
+      "clase": "dni"
+    },
+    {
+      "texto": "con DNI 12.345.678-Z",
+      "clase": "dni"
+    },
+    {
+      "texto": "dni: 12345678z",
+      "clase": "dni"
+    },
+    {
+      "texto": "NIE X1234567L",
+      "clase": "nie"
+    },
+    {
+      "texto": "cuenta ES91 2100 0418 4502 0005 1332 para lo que sea",
+      "clase": "iban"
+    },
+    {
+      "texto": "cuenta ES9121000418450200051332",
+      "clase": "iban"
+    },
+    {
+      "texto": "el coche 1234 BCD lleva meses aparcado",
+      "clase": "matricula"
+    },
+    {
+      "texto": "una furgoneta V-1234-AB abandonada",
+      "clase": "matricula"
+    },
+    {
+      "texto": "Llamadme al 600 000 007, lo copio de la agenda",
+      "clase": "telefono"
+    },
+    {
+      "texto": "El fijo es (96) 100 00 08",
+      "clase": "telefono"
+    },
+    {
+      "texto": "tlf.600000009",
+      "clase": "telefono"
+    },
+    {
+      "texto": "móvil 600/000/010",
+      "clase": "telefono"
+    },
+    {
+      "texto": "la furgoneta 1234 bcd sigue ahí",
+      "clase": "matricula"
+    },
+    {
+      "texto": "matrícula 1234 - BCD",
+      "clase": "matricula"
+    },
+    {
+      "texto": "DNI 1234567L",
+      "clase": "dni"
+    },
+    {
+      "texto": "con DNI 12 345 678 Z",
+      "clase": "dni"
+    },
+    {
+      "texto": "cuenta ES91-2100-0418-4502-0005-1332",
+      "clase": "iban"
+    },
+    {
+      "texto": "móvil 600-00-00-13, por las mañanas",
+      "clase": "telefono"
+    },
+    {
+      "texto": "el coche 1234 MTS lleva meses aparcado",
+      "clase": "matricula"
+    },
+    {
+      "texto": "la furgoneta 5678 KGS sigue en la acera",
+      "clase": "matricula"
+    },
+    {
+      "texto": "matrícula 1234-HRS",
+      "clase": "matricula"
+    },
+    {
+      "texto": "DNI 1.234.567-L",
+      "clase": "dni"
+    },
+    {
+      "texto": "Mi móvil (+34) 600 000 014",
+      "clase": "telefono"
+    }
+  ],
+  "intactos": [
+    "La queja Q-7914N3C9 sigue sin respuesta",
+    "Desde el 12/03/2026 no pasa el camión",
+    "Código postal 46190",
+    "El expediente 2026/1234 del registro",
+    "Una obra de 1.234.567 € sin terminar",
+    "Presupuesto de 612.345.678 € en el pleno",
+    "Un contrato de 612.345.678,50 euros",
+    "Son 900.000.000 EUR en total",
+    "A las 10:30 cortan la calle",
+    "Subió un 25 % la tasa",
+    "En la calle Mayor 12, portal 3",
+    "La empresa B12345678 hace la obra",
+    "12345678A no es un DNI válido",
+    "entre 12345678 y lo demás",
+    "ES00 0000 0000 0000 0000 0000",
+    "La CV-374 no tiene arcén",
+    "Llevamos 2026 días esperando",
+    "DEL 2020 A 2024 EL AYUNTAMIENTO NO HA HECHO NADA",
+    "DE 2019 A 2025 LA CALLE SIGUE IGUAL",
+    "DESDE 2023 O 2024 SE QUEJAN LOS VECINOS",
+    "La queja Q-CS1234AB sigue abierta",
+    "Cortes de agua el 7/10/2026 8/10/2026 sin aviso",
+    "A 1500 mts del colegio no hay paso de cebra",
+    "Una parcela de 2000 mts cuadrados abandonada",
+    "A 1500 MTS DEL COLEGIO NO HAY PASO",
+    "El consumo subió a 1200 kwh este mes",
+    "Dejaron 1000 kgs de escombros",
+    "Cortaron el agua a las 1830 hrs",
+    "Un depósito de 5000 lts sin tapar",
+    "El 9-10-2026 15:30 cortaron el agua",
+    "El 7.10.2026 18:00 cortaron la luz",
+    "Factura 9/2026/0001 del agua",
+    "Los portales 7 9 11 13 15 17 no tienen luz",
+    "Portal 9\n1234 5678 sin luz desde el lunes",
+    "GASTARON 1 234 567 L EN FIESTAS",
+    "Una antena de 2400 mhz en el tejado"
+  ],
+  "_asumidos": "Lo que se retira sin ser un dato personal, a sabiendas: el bot no sabe de quién es un número, así que un teléfono público también sale; y cuatro cifras con tres consonantes detrás tienen la forma de una matrícula. Mejor de más aquí que un teléfono publicado.",
+  "asumidos": [
+    {
+      "texto": "El teléfono del ayuntamiento, 900 000 011, no contesta",
+      "clase": "telefono"
+    },
+    {
+      "texto": "Aviso de avería 900000012",
+      "clase": "telefono"
+    },
+    {
+      "texto": "Un 1998 BMW abandonado",
+      "clase": "matricula"
+    },
+    {
+      "texto": "El presupuesto fue de 912.345.678 sin IVA",
+      "clase": "telefono"
+    },
+    {
+      "texto": "Hay 1500 Mts de valla caída",
+      "clase": "matricula"
+    }
+  ],
+  "_escapan": "Lo que se escapa, a sabiendas: formas de escribir un teléfono raras en España que, para reconocerlas, habría que aceptar también ristras de números que no lo son. Para esto sigue la revisión de una persona.",
+  "escapan": [
+    "móvil 6 00 00 00 16",
+    "llamad al 600/000015",
+    "tlf 600 000 01 7",
+    "EL COCHE 1234 MTS LLEVA MESES APARCADO"
+  ]
+}
