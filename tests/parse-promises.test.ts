@@ -5,6 +5,7 @@ import {
   validatePromisesSnapshot,
   withLegalNotice,
   FUENTE_PRIMARIA,
+  PROMISE_CORRECTION_FIELDS,
   ALLOWED_PARTIES,
   ALLOWED_STATUSES,
   type PromisesSnapshot,
@@ -518,5 +519,116 @@ describe('withLegalNotice — the one way to change the notice', () => {
   it('refuses a file it cannot validate rather than writing on top of it', () => {
     const broken = JSON.stringify({ ...JSON.parse(RAW), items: [{ id: 'x' }] }, null, 2)
     expect(() => withLegalNotice(broken, NOTICE, NOW)).toThrow(/items\[0\]/)
+  })
+})
+
+describe('promises — corrections and retractions leave a public record', () => {
+  /**
+   * From 2026-09-28 a quote on /promesas has to be the party's own words, and
+   * most published cards did not meet that: they quoted a headline or the
+   * reporter. Changing or withdrawing a published card must leave a record
+   * (CLAUDE.md: corrections go through a CLI and leave one), so the schema
+   * carries it — and the normalised copy that the auto-curator,
+   * `apply-promise-draft` and `freeze:set` write back must carry it too, or
+   * their next run erases it.
+   */
+  const promise = (over: Record<string, unknown> = {}) => ({
+    id: 'p-1',
+    party: 'PSOE',
+    title: 'Una promesa cualquiera',
+    quote: 'compromiso lo cumpliremos y habrá un descuento a los vecinos',
+    source: { url: 'https://www.lasprovincias.es/x', publisher: 'Las Provincias' },
+    madeAt: '2026-07-02',
+    topic: 'fiscal',
+    kind: 'anuncio-gobierno',
+    status: 'documentada',
+    evidence: [],
+    createdAt: '2026-07-04',
+    ...over,
+  })
+  const snap = (items: unknown[], extra: Record<string, unknown> = {}) =>
+    JSON.stringify({
+      version: '1.0',
+      generatedAt: '2026-09-28',
+      frozenUntil: null,
+      legalNotice: 'x'.repeat(100),
+      contactUrl: 'https://x.test/issues',
+      methodologyUrl: '/metodologia',
+      items,
+      ...extra,
+    })
+  const correction = (over: Record<string, unknown> = {}) => ({
+    field: 'quote',
+    original: 'contestó a las palabras de Gimeno que ese compromiso lo cumpliremos',
+    corrected: 'compromiso lo cumpliremos y habrá un descuento a los vecinos',
+    reason: 'La cita mezclaba la narración del periodista con las palabras del alcalde.',
+    editor: 'Nombre Apellido',
+    correctedAt: '2026-09-28',
+    ...over,
+  })
+  const retraction = (over: Record<string, unknown> = {}) => ({
+    promiseId: 'p-retirada',
+    party: 'PP',
+    digest: 'promesa · sha256:0123456789ab',
+    reason: 'La fuente no pone en boca del partido ninguna frase con este compromiso.',
+    editor: 'Nombre Apellido',
+    retractedAt: '2026-09-28T12:00:00.000Z',
+    ...over,
+  })
+
+  it('exports the fields a correction may touch', () => {
+    expect(PROMISE_CORRECTION_FIELDS).toEqual(['quote', 'source.url'])
+  })
+
+  it('accepts a corrections log and carries it through the normalised copy', () => {
+    const out = validatePromisesSnapshot(snap([promise({ corrections: [correction()] })]))
+    expect(out.items[0].corrections).toHaveLength(1)
+    expect(out.items[0].corrections?.[0].field).toBe('quote')
+    // An uncorrected card reads as it always did: no empty array appears.
+    expect('corrections' in validatePromisesSnapshot(snap([promise()])).items[0]).toBe(false)
+  })
+
+  it.each([
+    [{ field: 'title' }, /field/],
+    [{ reason: 'muy corta' }, /reason too short/],
+    [{ editor: '' }, /editor/],
+    [
+      { corrected: 'contestó a las palabras de Gimeno que ese compromiso lo cumpliremos' },
+      /changes nothing/,
+    ],
+    [{ correctedAt: 'ayer' }, /correctedAt/],
+  ])('rejects a malformed correction %j', (over, re) => {
+    expect(() =>
+      validatePromisesSnapshot(snap([promise({ corrections: [correction(over)] })])),
+    ).toThrow(re)
+  })
+
+  it('accepts retractions and carries them through the normalised copy', () => {
+    const out = validatePromisesSnapshot(snap([promise()], { retractions: [retraction()] }))
+    expect(out.retractions).toHaveLength(1)
+    expect(out.retractions?.[0].promiseId).toBe('p-retirada')
+    expect('retractions' in validatePromisesSnapshot(snap([promise()]))).toBe(false)
+  })
+
+  it('a withdrawn id is never reused, nor withdrawn twice', () => {
+    expect(() =>
+      validatePromisesSnapshot(
+        snap([promise()], { retractions: [retraction({ promiseId: 'p-1' })] }),
+      ),
+    ).toThrow(/still published/)
+    expect(() =>
+      validatePromisesSnapshot(snap([promise()], { retractions: [retraction(), retraction()] })),
+    ).toThrow(/appears twice/)
+  })
+
+  it.each([
+    [{ digest: 'sha256:0123456789ab' }, /digest/],
+    [{ party: 'Otro' }, /party/],
+    [{ reason: 'corta' }, /reason too short/],
+    [{ retractedAt: 'hoy' }, /retractedAt/],
+  ])('rejects a malformed retraction %j', (over, re) => {
+    expect(() =>
+      validatePromisesSnapshot(snap([promise()], { retractions: [retraction(over)] })),
+    ).toThrow(re)
   })
 })
