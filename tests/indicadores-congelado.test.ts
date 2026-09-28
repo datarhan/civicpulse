@@ -19,7 +19,8 @@
  * dato y no de una frase escrita a mano que se quedará atrás.
  */
 import { describe, it, expect } from 'vitest'
-import { construirIndicadores, SALVEDAD_DENOMINADOR_CONGELADO } from '../src/scraper/indicadores'
+import { construirIndicadores } from '../src/scraper/indicadores'
+import { SALVEDAD_DENOMINADOR_CONGELADO } from '../src/scraper/indicador-lectura'
 import { SERVICIOS } from '../src/scraper/indicador-registry'
 import { MIN_ENTREGAS_CONGELADA } from '../src/scraper/declaracion-congelada'
 import { detectarDesviaciones, RECHAZOS } from '../src/scraper/indicador-desviacion'

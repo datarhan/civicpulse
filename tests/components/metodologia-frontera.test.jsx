@@ -53,7 +53,11 @@ describe('/metodologia#frontera — el tamaño de la frontera sale de dea.json',
 
   it('sin el fichero no se inventa un número', async () => {
     const texto = monta(null)
-    await waitFor(() => expect(peekSnapshot('/data/dea.json')?.status).toBe('error'))
+    // Un 404 queda como `missing` en el almacén; cualquier fallo, `error`. Las
+    // dos son «se pidió y no hay dato»: la página ya decidió qué pintar.
+    await waitFor(() =>
+      expect(['missing', 'error']).toContain(peekSnapshot('/data/dea.json')?.status),
+    )
     expect(texto()).toContain('con pocas observaciones')
     expect(texto()).not.toMatch(/con \d+ observaciones/)
   })

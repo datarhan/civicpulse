@@ -6,7 +6,7 @@ import { resolve } from 'node:path'
 
 import ServicioDetalle from '../../src/pages/ServicioDetalle'
 import { CoberturaEficiencia } from '../../src/components/eficiencia/CoberturaEficiencia'
-import { SALVEDAD_DENOMINADOR_CONGELADO } from '../../src/scraper/indicadores'
+import { SALVEDAD_DENOMINADOR_CONGELADO } from '../../src/scraper/indicador-lectura'
 import { installFetchMock } from '../setup/mockFetch'
 
 /**
