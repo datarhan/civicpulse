@@ -1,5 +1,3 @@
-import type { EstadoModeracion } from './avisos-admin.ts'
-
 /**
  * What this bot can actually DO right now.
  *
@@ -34,6 +32,26 @@ export interface BotCapabilities {
  * `tests/bot-despliegue.test.js` lee este nombre de aquí.
  */
 export const VARIABLE_VERSION = 'GIT_SHA'
+
+/**
+ * La cola de la revisión antes de publicar, como la cuenta `estadoModeracion`
+ * (services/avisos-admin.ts). Vive aquí y no allí porque health.ts no importa
+ * nada: la raíz lo lee (tests/bot-despliegue.test.js), y su typecheck, que corre
+ * sin las dependencias del bot, seguiría el import hasta grammy.
+ */
+export interface EstadoModeracion {
+  pendientes: number
+  /** Las que ningún administrador actual tiene en una tarjeta entregada. */
+  sinTarjeta: number
+  /** Horas que lleva esperando la más antigua, o null si no espera ninguna. */
+  masAntiguaHoras: number | null
+  /**
+   * Las tarjetas que esperan a perder el texto de una queja retirada o destruida,
+   * y desde hace cuánto la más antigua: la promesa de /aviso-legal depende de que
+   * esa cola se vacíe.
+   */
+  porVaciar?: { total: number; masAntiguaHoras: number | null }
+}
 
 export interface BotHealth {
   status: 'ok' | 'degraded'

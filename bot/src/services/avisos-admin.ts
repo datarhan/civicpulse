@@ -35,6 +35,7 @@ import {
   TIPO_TARJETA,
   type QuejaRow,
 } from '../db/queries.ts'
+import type { EstadoModeracion } from './health.ts'
 import { avisoAlAutor, DECISIONES_CON_AVISO } from './textos-revision.ts'
 import { escaparHtml } from '../util/html.ts'
 import { logger } from '../util/log.ts'
@@ -469,21 +470,6 @@ export async function reenviarTarjetasPendientes(
     if (e.retirada) r.retiradas += 1
   }
   return r
-}
-
-/** La cola de revisión, para `/health`. */
-export interface EstadoModeracion {
-  pendientes: number
-  /** Las que ningún administrador actual tiene en una tarjeta entregada. */
-  sinTarjeta: number
-  /** Horas que lleva esperando la más antigua, o null si no espera ninguna. */
-  masAntiguaHoras: number | null
-  /**
-   * Las tarjetas que esperan a perder el texto de una queja retirada o destruida,
-   * y desde hace cuánto la más antigua: la promesa de /aviso-legal depende de que
-   * esa cola se vacíe.
-   */
-  porVaciar?: { total: number; masAntiguaHoras: number | null }
 }
 
 const horasDesde = (sqlite: string, ahora: Date) =>
