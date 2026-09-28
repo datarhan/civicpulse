@@ -1497,10 +1497,14 @@ export default function Metodologia() {
         </p>
         <ul style={{ margin: '8px 0 0', paddingLeft: 20, color: 'var(--ink70)' }}>
           <li>
+            {/* Decía «una acusación pública sobre la gestión municipal»: la
+                puerta no registra a quién se acusa, y la mayoría de las
+                retenidas hablan de otra administración o de otro grupo.
+                Revisión lectora del 28-09-2026. */}
             <strong>«acusación no contrastada»</strong> — lo que se afirma es una acusación pública
-            sobre la gestión municipal y el cotejo no encontró ningún dato que la respalde{' '}
-            <em>ni que la desmienta</em>. Lo que el lector debe concluir: se dijo, lo publicamos, y
-            no sabemos si es cierto. No estamos diciendo que sea falsa.
+            y el cotejo no encontró ningún dato que la respalde <em>ni que la desmienta</em>. Lo que
+            el lector debe concluir: se dijo, lo publicamos, y no sabemos si es cierto. No estamos
+            diciendo que sea falsa.
           </li>
           <li>
             <strong>«sin contraste en los datos»</strong> — lo mismo, pero la afirmación no es una
