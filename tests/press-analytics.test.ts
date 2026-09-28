@@ -211,25 +211,7 @@ describe('press-analytics — computeTriangulation', () => {
     expect(r.stats.triangulated3Plus).toBe(1)
   })
 
-  it('reports amountDrift when ≥2 verified claims cite different amounts on the same story', () => {
-    const press = [makePress({ id: 'a-1', source: 'A' }), makePress({ id: 'a-2', source: 'B' })]
-    const verified = [
-      makeVerifiedRow({
-        id: 'a-1-0-num',
-        articleId: 'a-1',
-        entities: { amountEuros: 180000 },
-      }),
-      makeVerifiedRow({
-        id: 'a-2-0-num',
-        articleId: 'a-2',
-        entities: { amountEuros: 200000 },
-      }),
-    ]
-    const r = computeTriangulation({ press, verified, now: NOW })
-    expect(r.clusters[0].amountDrift).toEqual(
-      expect.objectContaining({ min: 180000, max: 200000, spread: 20000 }),
-    )
-  })
+  // Las cifras no se comparan entre medios: tests/triangulacion-cifras.test.ts.
 
   it('skips a story covered by only one outlet', () => {
     const press = [makePress({ id: 'a-1', source: 'Solo' })]
