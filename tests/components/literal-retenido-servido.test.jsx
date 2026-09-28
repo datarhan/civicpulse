@@ -26,7 +26,7 @@ import { render, cleanup, waitFor } from '@testing-library/react'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
-import { FindingCard, ROTULO_CITA_RETENIDA } from '../../src/components/PlenoFindings'
+import { CitaRetenida, FindingCard, ROTULO_CITA_RETENIDA } from '../../src/components/PlenoFindings'
 import { FindingDetailCard } from '../../src/pages/Hallazgos'
 import { BitacoraCorrecciones } from '../../src/components/BitacoraCorrecciones'
 import { invalidateSnapshots, peekSnapshot } from '../../src/lib/snapshot-store'
@@ -167,5 +167,17 @@ describe('sobre los datos servidos: ninguna ficha imprime el literal que retiene
       unmount()
     }
     expect(impresas).toEqual([])
+  })
+})
+
+describe('el pie del hueco no promete más de lo que se cumple', () => {
+  it('dice que la ficha no reproduce el literal, sin «no se publica»', () => {
+    const { container } = render(<CitaRetenida attribution="PP" tone="pp" />)
+    const texto = container.textContent.replace(/\s+/g, ' ')
+    expect(texto).not.toMatch(/no (?:la |lo |las |los |se )?publica/i)
+    expect(texto).toMatch(/no reproduce su literal/i)
+    // Lo que la prueba e2e de /hallazgos exige del hueco, intacto.
+    expect(texto).toMatch(/ningún registro municipal/i)
+    expect(texto).toMatch(/No decimos que sea falsa/)
   })
 })
