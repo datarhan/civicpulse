@@ -24,15 +24,13 @@ import ClaimReviewJsonLd from '../components/ClaimReviewJsonLd'
 import { BitacoraCorrecciones } from '../components/BitacoraCorrecciones'
 import DataAsOf from '../components/DataAsOf'
 import { fmtDateShort } from '../lib/formatters'
-import { pressLabSummary, fraseVeredictos, avisoSinVeredicto } from '../lib/press-lab'
+import {
+  pressLabSummary,
+  fraseVeredictos,
+  avisoSinVeredicto,
+  VERDICT_LABEL,
+} from '../lib/press-lab'
 
-const VERDICT_LABEL = {
-  verificado: 'Verificado',
-  parcial: 'Parcial',
-  contradicho: 'Discrepa',
-  'sin-datos': 'Sin registro',
-  'promesa-repetida': 'Promesa repetida',
-}
 const VERDICT_TONE = {
   verificado: 'ok',
   parcial: 'warn',
