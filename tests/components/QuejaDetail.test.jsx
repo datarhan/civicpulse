@@ -213,6 +213,61 @@ describe('/quejas/:id · el reloj legal', () => {
 })
 
 /**
+ * El contador, en el calendario de la sede y hasta el final del último día.
+ *
+ * La marca llega como la escribe el bot: UTC sin la Z. `2026-01-30 23:30:00` son
+ * las 00:30 del 31 de enero en Madrid, y tres meses desde el 31 de enero vencen
+ * el 30 de abril (art. 30.4). La ficha la lee un navegador de Madrid: contaba en
+ * tandas de 24 horas desde la marca leída en hora local, y el 30 de abril decía
+ * que quedaba un día y el 1 de mayo, con el plazo ya vencido, que quedaban cero.
+ */
+describe('/quejas/:id · el contador, en el calendario de la sede', () => {
+  const antes = process.env.TZ
+  afterEach(() => {
+    vi.useRealTimers()
+    if (antes === undefined) delete process.env.TZ
+    else process.env.TZ = antes
+  })
+
+  const pinta = () =>
+    mountAt('/quejas/q-abc12301', {
+      '/data/quejas.json': {
+        ...BASE_QUEJAS,
+        items: [
+          {
+            ...BASE_QUEJAS.items[0],
+            registered_at: '2026-01-30 23:30:00',
+            updated_datetime: '2026-01-30 23:30:00',
+          },
+        ],
+      },
+      '/data/quejas-responses.json': { generatedAt: '2026-01-31T00:00:00Z', items: [] },
+      '/data/officials.json': BASE_OFFICIALS,
+    })
+
+  /** El número que acompaña a un rótulo del reloj (el rótulo y su cifra son hermanos). */
+  const cifraDe = async (rotulo) => (await screen.findByText(rotulo)).nextElementSibling.textContent
+
+  it('el último día quedan cero, no uno', async () => {
+    process.env.TZ = 'Europe/Madrid'
+    expect(new Date(2026, 3, 30, 12).getTimezoneOffset(), 'no se aplicó Europe/Madrid').toBe(-120)
+    vi.useFakeTimers({ shouldAdvanceTime: true })
+    vi.setSystemTime(new Date('2026-04-30T21:59:00Z')) // 23:59 del 30 de abril en Madrid
+    pinta()
+    expect(await cifraDe(/Días restantes/i)).toBe('0')
+  })
+
+  it('a las 00:00 de Madrid del día siguiente, un día excedido', async () => {
+    process.env.TZ = 'Europe/Madrid'
+    expect(new Date(2026, 3, 30, 12).getTimezoneOffset(), 'no se aplicó Europe/Madrid').toBe(-120)
+    vi.useFakeTimers({ shouldAdvanceTime: true })
+    vi.setSystemTime(new Date('2026-04-30T22:30:00Z')) // 00:30 del 1 de mayo en Madrid
+    pinta()
+    expect(await cifraDe(/Días excedidos/i)).toBe('1')
+  })
+})
+
+/**
  * El hito de los apoyos (#62).
  *
  * Decía «incluida en el lote semanal» a partir de `apoyos >= 10`, y el lote lo
