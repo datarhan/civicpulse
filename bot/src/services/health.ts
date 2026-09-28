@@ -68,6 +68,11 @@ export interface EstadoRevision {
   porRevisar: number
   /** Las que llevan tantos fallos, o tanto tiempo fallando, que ya se avisó a quien modera. */
   atascadas: number
+  /**
+   * Las que ni siquiera dejan anotado su fallo —la base no acepta la escritura— y
+   * esperan una hora sin preguntar al modelo: sin fila no cuentan fallos ni avisan.
+   */
+  enfriadas?: number
 }
 
 export interface BotHealth {
@@ -159,6 +164,11 @@ export function buildHealth(
   if (m?.revision && m.revision.atascadas > 0) {
     degraded.push(
       `moderación: la revisión automática no avanza en ${m.revision.atascadas} queja(s): siguen sin publicar y las decide una persona`,
+    )
+  }
+  if (m?.revision?.enfriadas) {
+    degraded.push(
+      `moderación: el bot no puede anotar la revisión de ${m.revision.enfriadas} queja(s) (la base no acepta la escritura): mira el log`,
     )
   }
   const cola = m?.porVaciar

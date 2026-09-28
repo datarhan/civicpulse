@@ -396,7 +396,6 @@ async function revisarUna(
     revision = { resultado: 'error', error: err instanceof FalloDeRevision ? err.codigo : 'fallo' }
     logger.warn('moderacion.revision', { queja: c.id, err: String(err) })
   }
-  r[CONTADOR[revision.resultado]] += 1
 
   let decision: DecisionRevision | null = null
   if (revision.resultado === 'limpia' || revision.resultado === 'marcada') {
@@ -419,6 +418,9 @@ async function revisarUna(
     cuando: ahora,
   })
   if (!a.anotada) return
+  // Se cuenta lo anotado: una revisión que no se pudo anotar es un fallo interno,
+  // no una limpia (regla 2 de docs/DATA_INTEGRITY.md).
+  r[CONTADOR[revision.resultado]] += 1
   if (decision && a.hasta === null) r.sinAplicar += 1
   if (a.hasta === 'publicada') r.publicadas += 1
   else if (a.hasta === 'retenida') r.retenidas += 1
@@ -530,15 +532,20 @@ export async function pasadaDeRevision(
 
   for (const c of quejasSinRevisar(d.db)) {
     if (!esAtascada(c, ahora)) continue
-    const avisados = await avisarRevisionAtascada(d.db, c.id, {
-      admins: d.admins(),
-      envio: d.envio,
-      fallos: c.fallos,
-      error: c.ultimo_error,
-    })
-    if (avisados > 0) {
-      r.avisadas += 1
-      await actualizarTarjetas(d.db, c.id, { envio: d.envio })
+    // Cada aviso en su try, como cada revisión: uno que falla no para los demás.
+    try {
+      const avisados = await avisarRevisionAtascada(d.db, c.id, {
+        admins: d.admins(),
+        envio: d.envio,
+        fallos: c.fallos,
+        error: c.ultimo_error,
+      })
+      if (avisados > 0) {
+        r.avisadas += 1
+        await actualizarTarjetas(d.db, c.id, { envio: d.envio })
+      }
+    } catch (err) {
+      logger.error('moderacion.aviso-atascada', { queja: c.id, err: String(err) })
     }
   }
   return r
@@ -557,6 +564,8 @@ export function estadoRevision(
     ...(disponible.ok ? {} : { falta: disponible.falta }),
     porRevisar: candidatas.length,
     atascadas: disponible.ok ? candidatas.filter((c) => esAtascada(c, ahora)).length : 0,
+    // Las que no dejan fila —ni la del fallo— no cuentan fallos ni avisan: se ven aquí.
+    enfriadas: [...enfriadas.values()].filter((hasta) => hasta > ahora.getTime()).length,
   }
 }
 
