@@ -27,10 +27,24 @@ import { contentWords } from './quote-reanchor'
 
 export interface VerifiedItem {
   claim: PlenoClaim
-  verification: ClaimVerification
+  verification: VerificacionPublicada
 }
 
 export type OverlaySource = 'nli' | 'llm' | 'curator-downgrade' | 'verdict-engine'
+
+/**
+ * La verificación tal y como se publica: la del verificador y, cuando la puso
+ * el overlay, el CANAL por el que entró — el `source` de su entrada.
+ *
+ * Hasta el 2026-09-28 ese dato se quedaba en la entrada. La puerta editorial lee
+ * aquí la firma del curador (`isCuratorPromoted` en claim-public-gate.ts), así
+ * que su excepción no casaba con nada, y cinco «parcial» que un curador había
+ * firmado se servían plegados como si no hubiera datos detrás. Una fila de la
+ * base no pasó por ningún canal y no lo lleva.
+ */
+export interface VerificacionPublicada extends ClaimVerification {
+  source?: OverlaySource
+}
 
 export interface OverlayEntry {
   verification: ClaimVerification
@@ -73,7 +87,7 @@ export function dedupeEvidence(evidence: ClaimEvidence[]): ClaimEvidence[] {
 /** Same verification when nothing was duplicated (keeps a byte-identical
  *  round-trip for un-affected claims); a fresh object with deduped evidence
  *  otherwise. Preserves key order so JSON output is stable. */
-function withDedupedEvidence(v: ClaimVerification): ClaimVerification {
+function withDedupedEvidence<V extends ClaimVerification>(v: V): V {
   const ev = v.evidence
   if (!Array.isArray(ev) || ev.length < 2) return v
   const deduped = dedupeEvidence(ev)
@@ -116,7 +130,8 @@ function reclassifiedClaim(claim: PlenoClaim, type: ClaimType): PlenoClaim {
 
 /**
  * base items in their original order; for each, the overlay entry (matched by
- * claimId) replaces the verification when present, the reclassification entry
+ * claimId) replaces the verification when present — stamped with the entry's
+ * `source`, see `VerificacionPublicada` —, the reclassification entry
  * replaces the claim's type, and the reanchor entry replaces its verbatim. Both
  * sidecars apply only while the claim still shows the state they recorded in
  * `from` — a base that moved upstream makes the entry stale, not silently
@@ -141,7 +156,11 @@ export function mergeVerified(
   const reanc = reanchors?.entries ?? {}
   return baseItems.map((it) => {
     const e = entries[it.claim.id]
-    const verification = withDedupedEvidence(e ? e.verification : it.verification)
+    // El `source` de la ENTRADA, que es el que valida `validateOverlay`, y no
+    // uno que la verificación trajera dentro: si discrepan, manda el validado.
+    const verification = withDedupedEvidence<VerificacionPublicada>(
+      e ? { ...e.verification, source: e.source } : it.verification,
+    )
     const r = reclas[it.claim.id]
     let claim =
       r != null && it.claim.type === r.from ? reclassifiedClaim(it.claim, r.type) : it.claim

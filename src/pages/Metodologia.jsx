@@ -1107,9 +1107,14 @@ export default function Metodologia() {
                 autonómico o estatal con un contrato municipal que compartía una palabra suelta. Una
                 concejala citando el precio del alquiler de vivienda quedaba «desmentida» por el
                 alquiler de un camión de basura; los 63.000 millones de deuda de la Generalitat, por
-                una ampliación de 32.591 € del <em>parque Generalitat</em>. Hoy un{' '}
-                <em>contradicho</em> de máquina se retiene y sólo aparece si una persona lo
-                promueve.
+                una ampliación de 32.591 € del <em>parque Generalitat</em>.{' '}
+                {/* Decía «Hoy un contradicho de máquina se retiene y sólo aparece si
+                    una persona lo promueve». Ninguna herramienta de curación puede
+                    escribir un contradicho —sólo bajan—, y desde el 27-08-2026 promover
+                    a hallazgo tampoco saca una cita de la puerta. 28-09-2026. */}
+                Hoy un <em>contradicho</em> se retiene siempre: el de máquina es una pista para
+                quien redacta, no un veredicto, y ninguna herramienta de curación puede escribir uno
+                —sólo bajan—.
               </li>
               <li>
                 <strong>sin-datos</strong> — no hay registro en las bases abiertas. Puede ser
@@ -1145,13 +1150,15 @@ export default function Metodologia() {
             <em>contradicho</em>, no la contradice— el veredicto se{' '}
             <strong>marca para revisión de un curador</strong>. Esa revisión{' '}
             <strong>no cambia ningún veredicto</strong>: sólo una persona puede rebajarlo (nunca
-            subirlo) con una herramienta dedicada, dejando el motivo verbatim. Las decisiones de
-            segunda pasada y de curación viven en una capa («overlay») separada del veredicto
-            determinista base, de modo que recalcular la base nunca borra esas decisiones. Desde
-            agosto de 2026 el <em>tipo</em> de una declaración se corrige por la misma vía: cuando
-            el extractor archiva como <code>acusacion_publica</code> algo que no acusa a nadie —el
-            caso que estrenó la herramienta fue una defensa de la constitucionalidad de una ley
-            estatal—, un curador lo reclasifica con motivo verbatim en un registro propio (
+            subirlo) con una herramienta dedicada, dejando el motivo verbatim. Lo que rebaja a{' '}
+            <em>parcial</em> se enseña como contrastado, con la evidencia que conservó y su motivo
+            por resumen: esa firma es suya, no de la máquina. Las decisiones de segunda pasada y de
+            curación viven en una capa («overlay») separada del veredicto determinista base, de modo
+            que recalcular la base nunca borra esas decisiones. Desde agosto de 2026 el{' '}
+            <em>tipo</em> de una declaración se corrige por la misma vía: cuando el extractor
+            archiva como <code>acusacion_publica</code> algo que no acusa a nadie —el caso que
+            estrenó la herramienta fue una defensa de la constitucionalidad de una ley estatal—, un
+            curador lo reclasifica con motivo verbatim en un registro propio (
             <code>pleno-claim-reclassifications.json</code>), y la herramienta sólo acepta
             movimientos que <strong>alejan</strong> de la acusación, nunca hacia ella: convertir una
             declaración en acusación agravaría lo que se afirma de quien habló, que es exactamente

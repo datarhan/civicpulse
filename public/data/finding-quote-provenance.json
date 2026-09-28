@@ -1,7 +1,7 @@
 {
   "_comment": "DERIVADO, no curado. Dos cosas por cada literal publicado en /hallazgos. (1) `quotes[id][i].status`: de qué transcripción procede — de la vigente, sólo de la que se sustituyó al re-transcribir la sesión, o de ninguna de las dos de forma concluyente. (2) `quotes[id][i].gate`: qué haría con la afirmación que sostiene esa cita la puerta editorial de src/scraper/claim-public-gate.ts, que gobierna /plenos y que /hallazgos no consultaba — `shown`, `toggle` o `hidden`, su propio vocabulario. Ninguna de las dos modifica una cita y ninguna es una corrección: el único escritor de public/data/pleno-findings.json sigue siendo `npm run correct-pleno-finding`. Se regenera con `npm run compute:finding-quote-provenance`.",
   "version": "finding-quote-provenance-v2",
-  "generatedAt": "2026-09-28T11:28:03.865Z",
+  "generatedAt": "2026-09-28T18:59:07.889Z",
   "source": {
     "findings": "public/data/pleno-findings.json",
     "findingsGeneratedAt": "2026-09-21T10:48:44.673Z",
@@ -54,7 +54,7 @@
       },
       {
         "id": "hidden",
-        "meaning": "La afirmación que sostiene esta cita es una acusación pública que el verificador no pudo contrastar con ningún dato municipal (o un `contradicho` asignado por máquina). En /plenos no se publica; en un hallazgo se publica porque alguien la promovió.",
+        "meaning": "La afirmación que sostiene esta cita es una acusación pública que el verificador no pudo contrastar con ningún dato municipal (o un `contradicho` asignado por máquina). Promoverla a hallazgo no la saca de la puerta, la promueva una persona o un proceso automático: su literal no se imprime en la página, ni en /plenos ni en /hallazgos, donde la ficha enseña en su lugar el hueco con su motivo.",
         "marks": true
       }
     ],
@@ -62,14 +62,14 @@
       "citasConClaim": 131,
       "citasSinClaim": 0,
       "porContraste": {
-        "shown": 2,
-        "toggle": 92,
+        "shown": 3,
+        "toggle": 91,
         "hidden": 37
       },
       "baseDisponible": true,
       "citasConVeredictoDeOverlay": 19,
-      "citasReclasificadasPorElOverlay": 21,
-      "hallazgosSinCitaMostrable": 38,
+      "citasReclasificadasPorElOverlay": 20,
+      "hallazgosSinCitaMostrable": 37,
       "hallazgosSoloConCitasOcultas": 0,
       "claimsEnCorpus": 7564,
       "entradasDeOverlay": 1365
@@ -492,7 +492,7 @@
       },
       {
         "status": "en-vigente",
-        "gate": "toggle"
+        "gate": "shown"
       },
       {
         "status": "solo-en-sustituida",
@@ -767,7 +767,7 @@
   "unresolved": [],
   "builtFrom": {
     "pleno-findings.json": "09734558c009",
-    "pleno-claims-verified.json": "e81fc203ee52",
+    "pleno-claims-verified.json": "193c0f9659f4",
     "pleno-claims-overlay.json": "f4bf98872ce7",
     "pleno-transcripts/": "8c59df9da87e"
   }
