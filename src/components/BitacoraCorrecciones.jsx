@@ -22,6 +22,8 @@
  * un sitio donde se olvida.
  */
 
+import { ROTULO_CITA_RETENIDA } from './PlenoFindings'
+
 export const ROTULO_TEXTO_RETIRADO = 'Texto retirado'
 export const ROTULO_TEXTO_VIGENTE = 'Texto vigente'
 
@@ -74,18 +76,39 @@ export function BitacoraCorrecciones({ correcciones }) {
             >
               {c.field} · {String(c.correctedAt ?? '').slice(0, 10)} · {c.editor}
             </div>
-            <div style={{ color: 'var(--ink50)' }}>
-              <span className="mono" style={rotulo}>
-                {ROTULO_TEXTO_RETIRADO}:{' '}
-              </span>
-              <del>{c.original}</del>
-            </div>
-            <div style={{ color: 'var(--ink)', marginTop: 1 }}>
-              <span className="mono" style={rotulo}>
-                {ROTULO_TEXTO_VIGENTE}:{' '}
-              </span>
-              {c.corrected}
-            </div>
+            {c.literalRetenido ? (
+              // La copia servida sustituye las dos versiones del literal de una
+              // cita retenida por su huella (src/scraper/literales-retenidos.ts).
+              // Rotularla «texto vigente» diría que la ficha publica un código.
+              <div style={{ color: 'var(--ink70)' }}>
+                <span className="mono" style={rotulo}>
+                  {ROTULO_CITA_RETENIDA}:{' '}
+                </span>
+                esta corrección cambió el texto de una cita que la puerta editorial retiene, así que
+                la bitácora no reproduce ninguna de sus dos versiones; deja su huella, que
+                cualquiera con el texto puede rehacer:{' '}
+                <span className="mono">
+                  {String(c.original).split(' · ')[1] ?? c.original} →{' '}
+                  {String(c.corrected).split(' · ')[1] ?? c.corrected}
+                </span>
+                .
+              </div>
+            ) : (
+              <>
+                <div style={{ color: 'var(--ink50)' }}>
+                  <span className="mono" style={rotulo}>
+                    {ROTULO_TEXTO_RETIRADO}:{' '}
+                  </span>
+                  <del>{c.original}</del>
+                </div>
+                <div style={{ color: 'var(--ink)', marginTop: 1 }}>
+                  <span className="mono" style={rotulo}>
+                    {ROTULO_TEXTO_VIGENTE}:{' '}
+                  </span>
+                  {c.corrected}
+                </div>
+              </>
+            )}
             <div
               style={{
                 marginTop: 2,

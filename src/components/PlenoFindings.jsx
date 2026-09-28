@@ -469,8 +469,11 @@ export function quoteMarks(entry) {
  * atribución y su derecho de réplica siguen enteros. Y se dice que falta, con
  * su motivo, en vez de dejar un hueco mudo.
  */
-export function citaRetenida(entry) {
-  return entry?.gate === 'hidden'
+export function citaRetenida(entry, quote) {
+  // La copia servida de pleno-findings.json ya no trae el literal de una
+  // retenida, y lo dice (`literalRetenido`, src/scraper/literales-retenidos.ts):
+  // sin procedencia, la cita se pintaría como «» vacía atribuida a un grupo.
+  return entry?.gate === 'hidden' || quote?.literalRetenido === true
 }
 
 /**
@@ -673,7 +676,7 @@ export function FindingCard({ f }) {
           {f.quotes
             .slice(0, 3)
             .map((q, i) =>
-              citaRetenida(prov[i]) ? (
+              citaRetenida(prov[i], q) ? (
                 <CitaRetenida
                   key={i}
                   attribution={q.speakerGroup ? blocLabel(q.speakerGroup) : null}
