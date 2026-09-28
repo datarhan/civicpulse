@@ -770,7 +770,9 @@ export const CATALOGUE = {
     'plenos.indice.reparto.titulo': 'Qué áreas llevan el orden del día',
     'plenos.indice.reparto.enlace': 'Ver el panel por departamento →',
     'plenos.indice.reparto.nota':
-      'Son los puntos de las {sesionesConOrden}, no de las {total}. Y sólo {con} de los {puntos} puntos llevan área asignada. Un área con pocos puntos puede tener mucha actividad en sesiones que aún no hemos procesado: este reparto describe nuestra cobertura tanto como el trabajo del pleno.',
+      'Son los puntos de las {sesionesConOrden}, no de las {total}: un área con pocos puntos puede tener mucha actividad en sesiones que aún no hemos procesado.',
+    'plenos.indice.reparto.notaArea':
+      'Sólo {con} de los {puntos} puntos llevan área asignada, así que este reparto describe nuestra cobertura tanto como el trabajo del pleno.',
     'plenos.indice.reparto.sesionesConOrden': '{n} sesiones con orden del día extraído',
     'plenos.retirada.record.uno': 'registro',
     'plenos.retirada.record.varios': 'registros',
@@ -919,7 +921,7 @@ export const CATALOGUE = {
     'quejas.detalle.apoyos': '{n} apoyos',
     'quejas.detalle.responsable': 'Responsable político',
     'quejas.detalle.texto.eyebrow': 'Texto de la queja',
-    'quejas.detalle.texto.titulo': 'Detalle ciudadano (verbatim)',
+    'quejas.detalle.texto.titulo': 'Detalle ciudadano (literal, salvo datos personales retirados)',
     'quejas.detalle.foto.eyebrow': 'Imagen adjunta',
     'quejas.detalle.foto.titulo': 'Foto ciudadana (anonimizada)',
     'quejas.detalle.foto.alt': 'Imagen de la queja anonimizada automáticamente',
@@ -2407,7 +2409,9 @@ export const CATALOGUE = {
     'plenos.indice.reparto.titulo': 'Quines àrees porten l’ordre del dia',
     'plenos.indice.reparto.enlace': 'Veure el panell per departament →',
     'plenos.indice.reparto.nota':
-      'Són els punts de les {sesionesConOrden}, no de les {total}. I només {con} dels {puntos} punts porten àrea assignada. Una àrea amb pocs punts pot tindre molta activitat en sessions que encara no hem processat: este repartiment descriu la nostra cobertura tant com el treball del ple.',
+      'Són els punts de les {sesionesConOrden}, no de les {total}: una àrea amb pocs punts pot tindre molta activitat en sessions que encara no hem processat.',
+    'plenos.indice.reparto.notaArea':
+      'Només {con} dels {puntos} punts porten àrea assignada, així que este repartiment descriu la nostra cobertura tant com el treball del ple.',
     'plenos.indice.reparto.sesionesConOrden': '{n} sessions amb l’ordre del dia extret',
     'plenos.retirada.record.uno': 'registre',
     'plenos.retirada.record.varios': 'registres',
@@ -2539,7 +2543,8 @@ export const CATALOGUE = {
     'quejas.detalle.apoyos': '{n} suports',
     'quejas.detalle.responsable': 'Responsable polític',
     'quejas.detalle.texto.eyebrow': 'Text de la queixa',
-    'quejas.detalle.texto.titulo': 'Detall ciutadà (literal)',
+    'quejas.detalle.texto.titulo':
+      'Detall ciutadà (literal, llevat de les dades personals retirades)',
     'quejas.detalle.foto.eyebrow': 'Imatge adjunta',
     'quejas.detalle.foto.titulo': 'Foto ciutadana (anonimitzada)',
     'quejas.detalle.foto.alt': 'Imatge de la queixa anonimitzada automàticament',

@@ -14260,8 +14260,8 @@
     "failedChunks": [
       {
         "chunk": 3,
-        "why": "HTTP 503: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-        "attempts": 3,
+        "why": "covered 61% (floor 85%)",
+        "attempts": 2,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
           "floor": 0.85,
@@ -14271,7 +14271,7 @@
       {
         "chunk": 4,
         "why": "covered 82% (floor 85%)",
-        "attempts": 3,
+        "attempts": 2,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
           "floor": 0.85,

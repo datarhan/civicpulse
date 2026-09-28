@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-09-27T10:23:38.023Z",
+  "generatedAt": "2026-09-28T11:27:01.330Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
   "counts": {
-    "total": 23,
+    "total": 25,
     "byProposedStatus": {
       "en-progreso": 7,
-      "documentada": 16
+      "documentada": 18
     },
     "llmEvidence": 0
   },
@@ -22,7 +22,7 @@
           "date": "2026-03-17",
           "quote": "Riba-roja de Túria aprueba su presupuesto municipal de 2026, el más alto de su historia con 46 millones",
           "kind": "press",
-          "publisher": "levante-emv.com",
+          "publisher": "Levante-EMV",
           "matchedKeywords": [
             "presupuesto",
             "2026",
@@ -37,11 +37,22 @@
           "date": "2026-03-27",
           "quote": "Riba-roja aprueba inversiones de 5,9 millones de euros, entre las que destaca un Plan de Refugios Climáticos",
           "kind": "press",
-          "publisher": "valenciaplaza.com",
+          "publisher": "Valencia Plaza",
           "matchedKeywords": [
             "millon",
             "euro",
             "aprueba"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPNXEwclZ6RWd6c1NWTVRXR0paZEVpNl92c0dTcWhFbFBfclRhV2NZdk5jcmFUWlY4T3VZWDdGcWNDVlBiS2lGVG13OXhWLWxDRjNpeFl6MHZxRVNxeFBfempidUhqRUdGWC1ucUNQWnFOSUNheUlfN3ROaE5CN0Q1b0ZmdW5zcjNzT2FCWUlFUHExMzhVR1lLVFFfTWtEcnVJODlPQ21iX29UQlNfMGRobWVleGI4UnZVaTR4ZHo3RUdUUWJWZjBJeGplTzNOQdIB0wFBVV95cUxQc2FBcVJUMUM0alE2SnBEZGlMWHRrN1ljeHBPeHlUQjJaNHhfMndKMXhFcUVhbDBzVm15akxLdEJObUZHb3JXZzdfV0NqZWVlUHhyUENEZHEyLUh6ZS1vMGN4MGJtcjg5cjBJU2RMMkR1cEw3M1M5ZTlBUmhHQVV2dzZ0N3o1bDRNd1ZhVW84VmozYkRWclg4MFR2Z2N0NGhpSkJOQWFfNVFWaHhTTlJJMVRHclphVUpBQ3V2YVFWWXo2R1hwNl9UbWxvQWw2MGFCZWxJ?oc=5",
+          "date": "2026-09-27",
+          "quote": "Más de 6,9 millones de euros ahorrados en la adjudicación de 611 contratos públicos",
+          "kind": "press",
+          "publisher": "lasprovincias.es",
+          "matchedKeywords": [
+            "millon",
+            "euro"
           ]
         },
         {
@@ -53,17 +64,6 @@
           "matchedKeywords": [
             "millon",
             "euro"
-          ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFB1Vk1NWXRRaHE2NTh5ejRtOHVzaXhBVmtvQ2Y1dFJENUVrQmtraHlVWHgyTUs1dWN0UDRyVnpvTG5EYjYtZ3FBV09DYk9IQ1IxOWJ2b1M3TDlEZFZROV9FZTRQazRjMkUtY212aUMwTU1QSlE2S0F2eVFB?oc=5",
-          "date": "2026-09-10",
-          "quote": "Riba-roja de Túria aprueba el padrón del impuesto de actividades de 2026",
-          "kind": "press",
-          "publisher": "boletinbien.com",
-          "matchedKeywords": [
-            "2026",
-            "aprueba"
           ]
         },
         {
@@ -89,7 +89,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-27T10:23:37.838Z"
+      "generatedAt": "2026-09-28T11:27:01.150Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -101,7 +101,7 @@
           "date": "2026-03-27",
           "quote": "Riba-roja aprueba inversiones de 5,9 millones de euros, entre las que destaca un Plan de Refugios Climáticos",
           "kind": "press",
-          "publisher": "valenciaplaza.com",
+          "publisher": "Valencia Plaza",
           "matchedKeywords": [
             "plan",
             "refugio",
@@ -127,6 +127,17 @@
           ]
         },
         {
+          "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPNXEwclZ6RWd6c1NWTVRXR0paZEVpNl92c0dTcWhFbFBfclRhV2NZdk5jcmFUWlY4T3VZWDdGcWNDVlBiS2lGVG13OXhWLWxDRjNpeFl6MHZxRVNxeFBfempidUhqRUdGWC1ucUNQWnFOSUNheUlfN3ROaE5CN0Q1b0ZmdW5zcjNzT2FCWUlFUHExMzhVR1lLVFFfTWtEcnVJODlPQ21iX29UQlNfMGRobWVleGI4UnZVaTR4ZHo3RUdUUWJWZjBJeGplTzNOQdIB0wFBVV95cUxQc2FBcVJUMUM0alE2SnBEZGlMWHRrN1ljeHBPeHlUQjJaNHhfMndKMXhFcUVhbDBzVm15akxLdEJObUZHb3JXZzdfV0NqZWVlUHhyUENEZHEyLUh6ZS1vMGN4MGJtcjg5cjBJU2RMMkR1cEw3M1M5ZTlBUmhHQVV2dzZ0N3o1bDRNd1ZhVW84VmozYkRWclg4MFR2Z2N0NGhpSkJOQWFfNVFWaHhTTlJJMVRHclphVUpBQ3V2YVFWWXo2R1hwNl9UbWxvQWw2MGFCZWxJ?oc=5",
+          "date": "2026-09-27",
+          "quote": "Más de 6,9 millones de euros ahorrados en la adjudicación de 611 contratos públicos",
+          "kind": "press",
+          "publisher": "lasprovincias.es",
+          "matchedKeywords": [
+            "millon",
+            "euro"
+          ]
+        },
+        {
           "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ahorra-6%E2%80%999-millones-de-euros-en-la-adjudicaci%C3%B3n-de-los-611-contratos-p%C3%BAblicos-tramitados-desde-2019",
           "date": "2026-09-22",
           "quote": "El Ayuntamiento de Riba-roja de Túria ahorra 6’9 millones de euros en la adjudicación de los 611 contratos públicos tramitados desde 2019",
@@ -147,21 +158,10 @@
             "millon",
             "euro"
           ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMixwJBVV95cUxNX0NZVU5CeU5jNzRhR0ZfTkV1ZnZtcFhYbFZCZDA5UFBrUHBpdUh2dGdqWi0teDZKa2c4aEo3ZDNMUl9VUzBmQVZmWlpCUlctbFdjMUROSVd0NVZzMWt5MnYwZ0hnbXhaejBSa1N6UHRxVmduQmdqaUp5b2ktNWZ2TzFxQ2Y4NXlIcnVjQnVpQmdabGlVenpQS1BsRW52SVIxYkROdmJZTDRzMzlwbmFuVm1JVTBnYkFVSm9WdEpiYXNZNHBxZkFYUy1XSVMzYTR4TEU5ZmlWNlZ4N1haWUc3dVoxNVlrTkpuX0h3THBiTmZqU3luVHFINWxhMFdfR0Vuc2p5cEtJdXMzanJnZjBMS0JiVmdhbEZLU2dBTEdXTFl0bkllXzhDejQxb3FnTTQyUGlhcVpBZVkta0RVSXpGeDhod2xIX28?oc=5",
-          "date": "2026-07-03",
-          "quote": "Riba-roja aprueba el Plan Territorial Municipal de Emergencias para proteger a la población frente a las olas de calor, los incendios, las inundaciones o los temporales",
-          "kind": "press",
-          "publisher": "valenciaplaza.com",
-          "matchedKeywords": [
-            "plan",
-            "aprueba"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-27T10:23:37.838Z"
+      "generatedAt": "2026-09-28T11:27:01.150Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
@@ -185,7 +185,7 @@
           "date": "2026-05-11",
           "quote": "Iberdrola invierte más de 10 millones en Riba-roja de Túria para reforzar su red eléctrica tras la dana",
           "kind": "press",
-          "publisher": "levante-emv.com",
+          "publisher": "Levante-EMV",
           "matchedKeywords": [
             "dana",
             "millon",
@@ -197,7 +197,7 @@
           "date": "2026-07-07",
           "quote": "La Generalitat y Riba-roja impulsan suelo seguro para viviendas e industrias tras la dana",
           "kind": "press",
-          "publisher": "levante-emv.com",
+          "publisher": "Levante-EMV",
           "matchedKeywords": [
             "dana",
             "tras"
@@ -208,7 +208,7 @@
           "date": "2026-06-30",
           "quote": "Riba-roja desmonta el puente militar que conectó a más de 3.500 vecinos tras la dana",
           "kind": "press",
-          "publisher": "levante-emv.com",
+          "publisher": "Levante-EMV",
           "matchedKeywords": [
             "dana",
             "tras"
@@ -227,7 +227,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-27T10:23:37.838Z"
+      "generatedAt": "2026-09-28T11:27:01.150Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
@@ -239,7 +239,7 @@
           "date": "2026-07-07",
           "quote": "Generalitat y Riba-roja colaboran en el desarrollo de suelo para viviendas e industrias en \"zonas seguras\"",
           "kind": "press",
-          "publisher": "valenciaplaza.com",
+          "publisher": "Valencia Plaza",
           "matchedKeywords": [
             "suelo",
             "vivienda"
@@ -250,7 +250,7 @@
           "date": "2026-07-07",
           "quote": "La Generalitat y Riba-roja impulsan suelo seguro para viviendas e industrias tras la dana",
           "kind": "press",
-          "publisher": "levante-emv.com",
+          "publisher": "Levante-EMV",
           "matchedKeywords": [
             "suelo",
             "vivienda"
@@ -261,7 +261,7 @@
           "date": "2026-05-18",
           "quote": "La Generalitat y Riba-roja de Túria acuerdan la construcción de 36 viviendas protegidas en el marco del Plan Vive Dana",
           "kind": "press",
-          "publisher": "valenciaplaza.com",
+          "publisher": "Valencia Plaza",
           "matchedKeywords": [
             "plan",
             "vivienda"
@@ -269,7 +269,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-27T10:23:37.838Z"
+      "generatedAt": "2026-09-28T11:27:01.150Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -289,22 +289,11 @@
           ]
         },
         {
-          "url": "https://www.ribarroja.es/es/noticia/bases-ayudas-econ%C3%B3micas-para-la-mejora-de-la-accesibilidad-en-viviendas-y-edificios-residenciales-en-riba-roja-de-t%C3%BAria%2C-ejercicios-2026-27",
-          "date": "2026-07-28",
-          "quote": "Bases ayudas económicas para la mejora de la accesibilidad en viviendas y edificios residenciales en Riba-roja de Túria, ejercicios 2026-27",
-          "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "vivienda",
-            "2026"
-          ]
-        },
-        {
           "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQUDZUUXF2WnBXR0l3cmpJZE1rUExhMWExNUtGSkFuZWhJaXBzNmVJdGgwN19uWHZacVZ2MTlYTTRqLWQ0Z0JPRmpZbW0xZkpvY3lqVUJ3Q3NNWFI3QjJSNUxwa196YkxEcXhCWk5FdTktMU5PUk1waVBkbHhXVUZtbDFtQjJtWUpRZ18xZFIxdTlqMEh6LTJlVDVoSEx3aDE2UEhlQ1h3bFRZNW96cm5HV2JaSmRMdmFTeVZKcWoya1B6bTdHSlJzSVM2SC1rbjRtckY2eERWWlVKbFNKMFBLdmVuNkt6SXh6d1BCQ0g3aXQ3Smljb3gtWVV5c19hN0Q0ME9GSzJ0Yw?oc=5",
           "date": "2026-05-18",
           "quote": "La Generalitat y Riba-roja de Túria acuerdan la construcción de 36 viviendas protegidas en el marco del Plan Vive Dana",
           "kind": "press",
-          "publisher": "valenciaplaza.com",
+          "publisher": "Valencia Plaza",
           "matchedKeywords": [
             "construccion",
             "vivienda"
@@ -315,7 +304,7 @@
           "date": "2026-05-18",
           "quote": "La Generalitat impulsará 36 viviendas industrializadas de alquiler asequible en Riba-roja de Túria",
           "kind": "press",
-          "publisher": "levante-emv.com",
+          "publisher": "Levante-EMV",
           "matchedKeywords": [
             "vivienda",
             "impulsara"
@@ -353,7 +342,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-27T10:23:37.838Z"
+      "generatedAt": "2026-09-28T11:27:01.150Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -365,7 +354,7 @@
           "date": "2026-04-16",
           "quote": "Riba-roja de Túria finalizará en julio cinco pasarelas en el Parc Natural del Túria",
           "kind": "press",
-          "publisher": "levante-emv.com",
+          "publisher": "Levante-EMV",
           "matchedKeywords": [
             "cinco",
             "pasarela",
@@ -380,7 +369,7 @@
           "date": "2026-09-19",
           "quote": "Riba-roja contará cuántas personas visitan el Parc Natural del Túria con un nuevo sistema inteligente",
           "kind": "press",
-          "publisher": "levante-emv.com",
+          "publisher": "Levante-EMV",
           "matchedKeywords": [
             "parc",
             "natural"
@@ -391,7 +380,7 @@
           "date": "2026-05-14",
           "quote": "Riba-roja instala una malla en ocho hectáreas del Parc Natural del Túria para frenar especies invasoras y minimizar el riesgo de incendios",
           "kind": "press",
-          "publisher": "levante-emv.com",
+          "publisher": "Levante-EMV",
           "matchedKeywords": [
             "parc",
             "natural"
@@ -399,7 +388,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-27T10:23:37.838Z"
+      "generatedAt": "2026-09-28T11:27:01.150Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -411,7 +400,7 @@
           "date": "2026-03-17",
           "quote": "El alcalde de Riba-roja de Túria retoma los encuentros 'Espai Obert' con los vecinos para explicar el presupuesto de 2026",
           "kind": "press",
-          "publisher": "levante-emv.com",
+          "publisher": "Levante-EMV",
           "matchedKeywords": [
             "retoma",
             "encuentro",
@@ -429,7 +418,7 @@
           "date": "2026-09-24",
           "quote": "El alcalde de Riba-roja dice que a las 15 horas del 29-O \"ya\" aconsejaron a empresas el cierre y advirtieron a vecinos",
           "kind": "press",
-          "publisher": "valenciaplaza.com",
+          "publisher": "Valencia Plaza",
           "matchedKeywords": [
             "vecino",
             "alcalde"
@@ -440,7 +429,7 @@
           "date": "2026-03-17",
           "quote": "Riba-roja de Túria aprueba su presupuesto municipal de 2026, el más alto de su historia con 46 millones",
           "kind": "press",
-          "publisher": "levante-emv.com",
+          "publisher": "Levante-EMV",
           "matchedKeywords": [
             "presupuesto",
             "2026"
@@ -458,7 +447,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-27T10:23:37.838Z"
+      "generatedAt": "2026-09-28T11:27:01.150Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -466,7 +455,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-27T10:23:37.838Z"
+      "generatedAt": "2026-09-28T11:27:01.150Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -474,7 +463,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-27T10:23:37.838Z"
+      "generatedAt": "2026-09-28T11:27:01.150Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -489,6 +478,17 @@
           "publisher": "iberdrolaespana.com",
           "matchedKeywords": [
             "dana",
+            "millon",
+            "euro"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPNXEwclZ6RWd6c1NWTVRXR0paZEVpNl92c0dTcWhFbFBfclRhV2NZdk5jcmFUWlY4T3VZWDdGcWNDVlBiS2lGVG13OXhWLWxDRjNpeFl6MHZxRVNxeFBfempidUhqRUdGWC1ucUNQWnFOSUNheUlfN3ROaE5CN0Q1b0ZmdW5zcjNzT2FCWUlFUHExMzhVR1lLVFFfTWtEcnVJODlPQ21iX29UQlNfMGRobWVleGI4UnZVaTR4ZHo3RUdUUWJWZjBJeGplTzNOQdIB0wFBVV95cUxQc2FBcVJUMUM0alE2SnBEZGlMWHRrN1ljeHBPeHlUQjJaNHhfMndKMXhFcUVhbDBzVm15akxLdEJObUZHb3JXZzdfV0NqZWVlUHhyUENEZHEyLUh6ZS1vMGN4MGJtcjg5cjBJU2RMMkR1cEw3M1M5ZTlBUmhHQVV2dzZ0N3o1bDRNd1ZhVW84VmozYkRWclg4MFR2Z2N0NGhpSkJOQWFfNVFWaHhTTlJJMVRHclphVUpBQ3V2YVFWWXo2R1hwNl9UbWxvQWw2MGFCZWxJ?oc=5",
+          "date": "2026-09-27",
+          "quote": "Más de 6,9 millones de euros ahorrados en la adjudicación de 611 contratos públicos",
+          "kind": "press",
+          "publisher": "lasprovincias.es",
+          "matchedKeywords": [
             "millon",
             "euro"
           ]
@@ -520,26 +520,15 @@
           "date": "2026-05-11",
           "quote": "Iberdrola invierte más de 10 millones en Riba-roja de Túria para reforzar su red eléctrica tras la dana",
           "kind": "press",
-          "publisher": "levante-emv.com",
+          "publisher": "Levante-EMV",
           "matchedKeywords": [
             "dana",
             "millon"
           ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBKQW1yYUJWS3h0TERMb2ozdTgzeWxVTFhLcVZTQ2JOS3FWWGp3RHFqamdtLWEyWS1TZm9vVkVPdV9pbk55LTdDWHJzNVFJVTNJMlJFYkhIb0pSX1ZfSndYOE5MV0k1XzExcEdqYW5tdw?oc=5",
-          "date": "2026-04-08",
-          "quote": "Sanidad avanza en los trámites para la construcción del nuevo centro de salud de Riba-roja de Túria que contará con una inversión de 8,3 millones de euros",
-          "kind": "press",
-          "publisher": "Comunica GVA",
-          "matchedKeywords": [
-            "millon",
-            "euro"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-27T10:23:37.838Z"
+      "generatedAt": "2026-09-28T11:27:01.150Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -559,7 +548,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-27T10:23:37.838Z"
+      "generatedAt": "2026-09-28T11:27:01.150Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
@@ -582,7 +571,7 @@
           "date": "2026-03-17",
           "quote": "El alcalde de Riba-roja acerca la atención ciudadana y la gestión municipal a urbanizaciones y barrios del municipio",
           "kind": "press",
-          "publisher": "valenciaplaza.com",
+          "publisher": "Valencia Plaza",
           "matchedKeywords": [
             "gestion",
             "municipio"
@@ -622,7 +611,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-27T10:23:37.838Z"
+      "generatedAt": "2026-09-28T11:27:01.150Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -668,7 +657,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-27T10:23:37.838Z"
+      "generatedAt": "2026-09-28T11:27:01.150Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -714,7 +703,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-27T10:23:37.838Z"
+      "generatedAt": "2026-09-28T11:27:01.150Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -737,7 +726,7 @@
           "date": "2026-06-26",
           "quote": "Riba-roja reduce el número de parados en casi 1.100 personas en los últimos años",
           "kind": "press",
-          "publisher": "valenciaplaza.com",
+          "publisher": "Valencia Plaza",
           "matchedKeywords": [
             "reduce",
             "numero"
@@ -755,7 +744,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-27T10:23:37.838Z"
+      "generatedAt": "2026-09-28T11:27:01.150Z"
     },
     {
       "promiseId": "ac-psoe-1cbkzxt",
@@ -786,7 +775,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-27T10:23:37.838Z"
+      "generatedAt": "2026-09-28T11:27:01.150Z"
     },
     {
       "promiseId": "ac-psoe-1v0679f",
@@ -798,7 +787,7 @@
           "date": "2026-06-30",
           "quote": "Riba-roja desmonta el puente militar que conectó a más de 3.500 vecinos tras la dana",
           "kind": "press",
-          "publisher": "levante-emv.com",
+          "publisher": "Levante-EMV",
           "matchedKeywords": [
             "tras",
             "puente",
@@ -807,7 +796,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-27T10:23:37.838Z"
+      "generatedAt": "2026-09-28T11:27:01.150Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -815,7 +804,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-27T10:23:37.838Z"
+      "generatedAt": "2026-09-28T11:27:01.150Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -834,13 +823,24 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-27T10:23:37.838Z"
+      "generatedAt": "2026-09-28T11:27:01.150Z"
     },
     {
       "promiseId": "ac-psoe-pl3lsq",
       "proposedStatus": "en-progreso",
       "confidence": 0.35,
       "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPNXEwclZ6RWd6c1NWTVRXR0paZEVpNl92c0dTcWhFbFBfclRhV2NZdk5jcmFUWlY4T3VZWDdGcWNDVlBiS2lGVG13OXhWLWxDRjNpeFl6MHZxRVNxeFBfempidUhqRUdGWC1ucUNQWnFOSUNheUlfN3ROaE5CN0Q1b0ZmdW5zcjNzT2FCWUlFUHExMzhVR1lLVFFfTWtEcnVJODlPQ21iX29UQlNfMGRobWVleGI4UnZVaTR4ZHo3RUdUUWJWZjBJeGplTzNOQdIB0wFBVV95cUxQc2FBcVJUMUM0alE2SnBEZGlMWHRrN1ljeHBPeHlUQjJaNHhfMndKMXhFcUVhbDBzVm15akxLdEJObUZHb3JXZzdfV0NqZWVlUHhyUENEZHEyLUh6ZS1vMGN4MGJtcjg5cjBJU2RMMkR1cEw3M1M5ZTlBUmhHQVV2dzZ0N3o1bDRNd1ZhVW84VmozYkRWclg4MFR2Z2N0NGhpSkJOQWFfNVFWaHhTTlJJMVRHclphVUpBQ3V2YVFWWXo2R1hwNl9UbWxvQWw2MGFCZWxJ?oc=5",
+          "date": "2026-09-27",
+          "quote": "Más de 6,9 millones de euros ahorrados en la adjudicación de 611 contratos públicos",
+          "kind": "press",
+          "publisher": "lasprovincias.es",
+          "matchedKeywords": [
+            "millon",
+            "euro"
+          ]
+        },
         {
           "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ahorra-6%E2%80%999-millones-de-euros-en-la-adjudicaci%C3%B3n-de-los-611-contratos-p%C3%BAblicos-tramitados-desde-2019",
           "date": "2026-09-22",
@@ -887,7 +887,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-27T10:23:37.838Z"
+      "generatedAt": "2026-09-28T11:27:01.150Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -899,7 +899,7 @@
           "date": "2026-06-16",
           "quote": "Riba-roja de Túria repartirá más de 2000 helados gratis a los asistentes de Cinema d'Estiu",
           "kind": "press",
-          "publisher": "levante-emv.com",
+          "publisher": "Levante-EMV",
           "matchedKeywords": [
             "helado",
             "cinema",
@@ -910,7 +910,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-27T10:23:37.838Z"
+      "generatedAt": "2026-09-28T11:27:01.150Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -933,7 +933,7 @@
           "date": "2026-06-16",
           "quote": "Riba-roja de Túria repartirá más de 2000 helados gratis a los asistentes de Cinema d'Estiu",
           "kind": "press",
-          "publisher": "levante-emv.com",
+          "publisher": "Levante-EMV",
           "matchedKeywords": [
             "cinema",
             "estiu"
@@ -941,7 +941,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-27T10:23:37.838Z"
+      "generatedAt": "2026-09-28T11:27:01.150Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -972,7 +972,120 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-27T10:23:37.838Z"
+      "generatedAt": "2026-09-28T11:27:01.150Z"
+    },
+    {
+      "promiseId": "ac-psoe-1ryndd8",
+      "proposedStatus": "documentada",
+      "confidence": 0.4,
+      "reasoning": [
+        {
+          "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-destina-una-partida-de-140.000-euros-para-la-rehabilitaci%C3%B3n-de-las-fachadas%2C-la-evaluaci%C3%B3n-de-los-edificios-y-la-accesibilidad-en-el-interior-de-las-viviendas-del-periodo-2026-2027",
+          "date": "2026-08-25",
+          "quote": "El Ayuntamiento de Riba-roja de Túria destina una partida de 140.000 euros para la rehabilitación de las fachadas, la evaluación de los edificios y la accesibilidad en el interior de las viviendas del periodo 2026-2027",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "euro",
+            "rehabilitacion",
+            "fachada",
+            "evaluacion",
+            "edificio",
+            "accesibilidad",
+            "vivienda"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQZ0czb1kyczZ1QVBIaTBwZnZ1TjlXNjA4c1lGaFJ1N3MyeHQ4RERPOFZ6YllUaEczV0RfZXVtRHJ5NHBQeVBObG44dWpPWUpkcmttcFRWMEpZX01vbEdjZFR4ZUpvZVJDOVlvOGRTUzlGU01VZ2l4MGlCbXdnbEdkdzQxN280MkkxMGJvX1Y2TFZEWHBqdFFpa0VicEdHNm93eWtV?oc=5",
+          "date": "2026-09-16",
+          "quote": "Ayudas para el informe de evaluación de edificios en Riba-roja de Túria",
+          "kind": "press",
+          "publisher": "boletinbien.com",
+          "matchedKeywords": [
+            "ayuda",
+            "evaluacion",
+            "edificio"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPSlY0NVZheS1yMDN2Y3JxbWtPd3JXUl9NWVEtVHVHVXhVT2l3UUNPQXpDZG5GaHp0QjlrMmM2d24yVW9wRzFZanZuX1pLZmNmUkFZTEJGbmo2M0J1NTVYYmoyWXZMY1B2ZGVncTNtQk9CSVdSMHhtS0RzaWFQd2VlMlpaUkh1bXJtVmYwQmN5SDViQTlYaUNhbjREU0M?oc=5",
+          "date": "2026-09-16",
+          "quote": "Ayudas para rehabilitar fachadas en Riba-roja de Túria 2026-2027",
+          "kind": "press",
+          "publisher": "boletinbien.com",
+          "matchedKeywords": [
+            "ayuda",
+            "fachada"
+          ]
+        }
+      ],
+      "requiresHumanApproval": true,
+      "generatedAt": "2026-09-28T11:27:01.150Z"
+    },
+    {
+      "promiseId": "ac-psoe-43brfs",
+      "proposedStatus": "documentada",
+      "confidence": 0.287,
+      "reasoning": [
+        {
+          "url": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-escolar-con-3.375-alumnos-apoyando-a-las-familias-un-a%C3%B1o-m%C3%A1s-con-el-bono-vuelve-al-cole",
+          "date": "2026-09-09",
+          "quote": "Riba-roja inicia el curso escolar con 3.375 alumnos apoyando a las familias un año más con el Bono Vuelve al Cole",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "bono",
+            "vuelve",
+            "cole"
+          ]
+        },
+        {
+          "url": "https://www.ribarroja.es/es/noticia/lista-definitiva-personas-admitidas-programa-municipal-de-personas-mayores-curso-2026-2027",
+          "date": "2026-09-24",
+          "quote": "Lista definitiva personas admitidas Programa Municipal de Personas Mayores curso 2026-2027",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "2026",
+            "2027"
+          ]
+        },
+        {
+          "url": "https://www.infoturia.com/riba-roja-de-turia/86207-riba-roja-destina-7-000-euros-per-a-fomentar-lesport-i-millorar-el-rendiment-en-competicions.html",
+          "date": "2026-09-16",
+          "quote": "Riba-roja destina 7.000 euros per a fomentar l’esport i millorar el rendiment en competicions",
+          "kind": "press",
+          "publisher": "Periòdic del Camp de Túria",
+          "matchedKeywords": [
+            "euro",
+            "destina"
+          ]
+        },
+        {
+          "url": "https://www.ribarroja.es/es/noticia/riba-roja-destina-una-partida-de-7.000-euros-en-subvenciones-para-fomentar-la-pr%C3%A1ctica-del-deporte-y-mejorar-el-rendimiento-en-las-competiciones-oficiales",
+          "date": "2026-09-16",
+          "quote": "Riba-roja destina una partida de 7.000 euros en subvenciones para fomentar la práctica del deporte y mejorar el rendimiento en las competiciones oficiales",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "euro",
+            "destina"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPSlY0NVZheS1yMDN2Y3JxbWtPd3JXUl9NWVEtVHVHVXhVT2l3UUNPQXpDZG5GaHp0QjlrMmM2d24yVW9wRzFZanZuX1pLZmNmUkFZTEJGbmo2M0J1NTVYYmoyWXZMY1B2ZGVncTNtQk9CSVdSMHhtS0RzaWFQd2VlMlpaUkh1bXJtVmYwQmN5SDViQTlYaUNhbjREU0M?oc=5",
+          "date": "2026-09-16",
+          "quote": "Ayudas para rehabilitar fachadas en Riba-roja de Túria 2026-2027",
+          "kind": "press",
+          "publisher": "boletinbien.com",
+          "matchedKeywords": [
+            "2026",
+            "2027"
+          ]
+        }
+      ],
+      "requiresHumanApproval": true,
+      "generatedAt": "2026-09-28T11:27:01.150Z"
     }
   ],
   "llmEvidence": [],

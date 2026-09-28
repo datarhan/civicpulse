@@ -1,6 +1,12 @@
 import type { Db } from './client.ts'
 import type { Canal, Moderacion, MotivoVaciado } from './migraciones.ts'
 import { nuevoIdDeQueja } from '../services/queja-id.ts'
+import {
+  cortarLimpio,
+  limpiarDatosPersonales,
+  sumarRetirados,
+  type Retirados,
+} from '../services/pii.ts'
 
 export type QuejaState =
   | 'capturada'
@@ -120,8 +126,28 @@ export interface AggregateStats {
 // Minimum apoyos to tag a queja as community-verified.
 export const VERIFIED_THRESHOLD = 10
 
+/** Lo más largo que se guarda de un título y de un detalle. Se aplica después de limpiarlos. */
+export const LIMITE_TITULO = 140
+export const LIMITE_DETALLE = 2000
+
+/** El evento que deja una queja a la que se le retiraron datos personales: cuántos de cada clase, no cuáles. */
+export const EVENTO_DATOS_RETIRADOS = 'datos_retirados'
+
+/** Cuántos datos personales de cada clase se retiraron del texto de una queja al guardarla. */
+export function datosRetiradosDe(db: Db, id: string): Retirados {
+  const fila = db
+    .prepare('SELECT payload FROM events WHERE queja_id = ? AND kind = ? ORDER BY id LIMIT 1')
+    .get(id, EVENTO_DATOS_RETIRADOS) as { payload: string } | undefined
+  return fila ? (JSON.parse(fila.payload) as Retirados) : {}
+}
+
 export function createQueja(db: Db, q: NewQuejaInput): QuejaRow {
   const id = nuevoIdDeQueja()
+  // Los datos personales del texto no se guardan (services/pii.ts): ni aquí, ni en
+  // la tarjeta de quien modera, ni en nada que se publique. Queda cuántos, no cuáles.
+  const titulo = limpiarDatosPersonales(q.title)
+  const detalle = limpiarDatosPersonales(q.detail)
+  const retirados = sumarRetirados(titulo.retirados, detalle.retirados)
   const insert = db.prepare(`
     INSERT INTO quejas (
       id, ciudadano_id, canal, category, title, detail,
@@ -132,14 +158,17 @@ export function createQueja(db: Db, q: NewQuejaInput): QuejaRow {
     )
   `)
   const event = db.prepare(`INSERT INTO events (queja_id, kind) VALUES (?, 'capturada')`)
+  const limpieza = db.prepare(
+    `INSERT INTO events (queja_id, kind, payload) VALUES (?, '${EVENTO_DATOS_RETIRADOS}', ?)`,
+  )
   const tx = db.transaction((row: NewQuejaInput & { id: string }) => {
     insert.run({
       id: row.id,
       ciudadano_id: idCiudadano(db, row.autor, { crear: true }),
       canal: row.autor.canal,
       category: row.category,
-      title: row.title,
-      detail: row.detail,
+      title: cortarLimpio(titulo.texto, LIMITE_TITULO),
+      detail: cortarLimpio(detalle.texto, LIMITE_DETALLE),
       lat: row.lat ?? null,
       lng: row.lng ?? null,
       neighborhood: row.neighborhood ?? null,
@@ -148,6 +177,7 @@ export function createQueja(db: Db, q: NewQuejaInput): QuejaRow {
       concejal_slug: row.concejal_slug ?? null,
     })
     event.run(row.id)
+    if (Object.keys(retirados).length > 0) limpieza.run(row.id, JSON.stringify(retirados))
   })
   tx({ ...q, id })
   return getQueja(db, id)!

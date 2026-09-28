@@ -36,6 +36,8 @@ import { join, resolve } from 'node:path'
 
 import { describe, expect, it } from 'vitest'
 
+import { claudeCodeArgs } from '../../src/llm/client'
+
 const REPO = resolve(__dirname, '../..')
 const LIB = join(REPO, 'scripts/lib/claude-probe.sh')
 
@@ -131,6 +133,36 @@ describe('claude_probe · el sondeo dice por qué falló', () => {
     const r = sondear(claudeFalso('echo "ok"\nexit 0'))
     expect(r.rc).toBe(0)
     expect(r.motivo).toBe('')
+  })
+})
+
+/**
+ * El sondeo avala las llamadas de `src/llm/client.ts`, así que corre con sus
+ * mismos ajustes. `claudeCodeArgs` apaga los ganchos de los plugins por
+ * `--settings` (el porqué, medido, en `tests/llm/client.test.ts`); un sondeo con
+ * otros ajustes puede decir «ok» de una configuración que no es la que va a
+ * trabajar. Y sin ellos, para contestar «ok» arrancaba el SessionStart de
+ * superpowers y los dos Python de security-guidance.
+ *
+ * Los ajustes se leen del cliente, no se copian aquí: una copia seguiría en
+ * verde el día que el cliente cambie.
+ */
+describe('claude_probe · los mismos ajustes que el cliente', () => {
+  it('pasa el --settings de claudeCodeArgs, con los ganchos apagados', () => {
+    const fichero = join(mkdtempSync(join(tmpdir(), 'claude-probe-argv-')), 'argv')
+    const r = sondear(claudeFalso(`printf '%s\\0' "$@" > "${fichero}"\necho ok\nexit 0`))
+    expect(r.rc).toBe(0)
+
+    const argv = readFileSync(fichero, 'utf8').split('\0').slice(0, -1)
+    const cliente = claudeCodeArgs(
+      { userPrompt: 'u', systemPrompt: 's', config: { claudeCodeModel: 'modelo-de-prueba' } },
+      '{}',
+    )
+    const ajustes = (a: string[]) => JSON.parse(a[a.indexOf('--settings') + 1])
+
+    expect(argv).toContain('--settings')
+    expect(ajustes(argv)).toEqual(ajustes(cliente))
+    expect(ajustes(argv).disableAllHooks).toBe(true)
   })
 })
 
