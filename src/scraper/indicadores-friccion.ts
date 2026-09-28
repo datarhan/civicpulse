@@ -545,8 +545,9 @@ export function construirIndicadoresMunicipales(input: FriccionInput): Indicador
   //  Es fricción de manual —control interno débil, la X-ineficiencia de
   //  Leibenstein— y no una afirmación sobre ningún servicio: mide la
   //  DECLARACIÓN. Un cociente cuyo numerador se actualiza cada entrega y cuyo
-  //  denominador es una copia sólo puede subir, y sube porque nadie volvió a
-  //  contar.
+  //  denominador es una copia sigue al dinero —sube y baja con él— y no dice
+  //  nada de lo que cuesta cada unidad, porque nadie volvió a contarlas. (Decía
+  //  que «sólo puede subir»; es falso, ver declaracion-congelada.ts.)
   //
   //  No lleva `referencia` a propósito. Ninguna norma obliga a remedir, y
   //  fabricar un umbral («debería ser cero») convertiría una elección nuestra en

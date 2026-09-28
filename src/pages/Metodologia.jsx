@@ -2445,10 +2445,17 @@ export default function Metodologia() {
           entregas del coste efectivo aparece que la mayoría de las series de unidad física repiten
           exactamente el mismo valor entrega tras entrega, mientras que prácticamente ninguna serie
           de coste se queda quieta. Los cinco denominadores de Riba-roja llevan desde 2018 o 2019
-          sin cambiar. Eso invalida cualquier lectura temporal de un coste unitario: si el numerador
-          se actualiza y el denominador es una copia, el cociente sólo puede subir. No es una
-          acusación —la cifra puede ser correcta y estable—, es un dato sobre la calidad de la
-          declaración, y va antes que ninguna puntuación en la página.
+          sin cambiar.{' '}
+          {/* Decía «Eso invalida cualquier lectura temporal de un coste
+              unitario: … el cociente sólo puede subir». Falso: con el
+              denominador congelado el cociente sigue al coste, que también
+              baja. Ver DeclaracionCongelada.jsx; revisión lectora del
+              28-09-2026. */}
+          Donde el denominador se repite, un coste unitario no se puede leer en el tiempo: el
+          cociente sólo sigue al dinero —sube o baja con el coste— y no puede decir si cambió lo que
+          cuesta cada unidad o cuántas unidades hubo. No es una acusación —la cifra puede ser
+          correcta y estable—, es un dato sobre la calidad de la declaración, y va antes que ninguna
+          puntuación en la página.
         </p>
       </Card>
 

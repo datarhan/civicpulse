@@ -74,12 +74,20 @@ export function DeclaracionCongelada({ declaracion }) {
         metros cuadrados y los puntos de luz, en <span className="mono">{100 - pctUnidad}</span>.
       </p>
 
+      {/* Decía «Eso vuelve inservible cualquier lectura temporal de un coste
+          unitario: … el cociente sólo puede subir, y sube porque nadie volvió a
+          pesar la basura». Falso en el dato: con el denominador congelado el
+          cociente se mueve con el coste, que baja entre entregas en la mayoría
+          de las series congeladas —la basura de Riba-roja pasa de 78,22 a
+          66,94 €/t—, y «cualquier» alcanzaba a las series que sí se actualizan.
+          Revisión lectora del 28-09-2026. */}
       <p style={{ margin: '0 0 10px', color: 'var(--ink70)', maxWidth: '64ch' }}>
-        Eso vuelve inservible cualquier lectura temporal de un coste unitario: si el numerador se
-        actualiza y el denominador es una copia, el cociente sólo puede subir, y sube porque nadie
-        volvió a pesar la basura. No es una acusación —puede que la cifra sea correcta y estable—,
-        es un dato sobre la calidad de la declaración, que es justo lo que hay que saber antes de
-        dividir por ella.
+        Donde el denominador se repite, un coste unitario no se puede leer en el tiempo: con el
+        numerador actualizado y el denominador copiado, el cociente sólo sigue al dinero —sube
+        cuando sube el coste y baja cuando baja— y no puede decir si cambió lo que cuesta cada
+        unidad o cuántas unidades hubo, porque ésas nadie las volvió a medir. No es una acusación
+        —puede que la cifra sea correcta y estable—, es un dato sobre la calidad de la declaración,
+        que es justo lo que hay que saber antes de dividir por ella.
       </p>
 
       {propias.length > 0 && (
