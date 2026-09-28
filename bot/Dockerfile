@@ -22,10 +22,14 @@ ENV NODE_ENV=production \
 
 # Shared monorepo context: the bot imports ../src/scraper/queja-router.ts
 # and reads ../public/data/{officials,geo,promises}.json at runtime.
+# `.automation-measurements.json` dice si la revisión automática puede publicar
+# sola (services/moderacion.ts); sin él, la publicación automática se queda
+# cerrada. tests/bot-despliegue.test.js comprueba que se copia lo que se lee.
 COPY --from=deps /app/bot/node_modules ./bot/node_modules
 COPY bot         ./bot
 COPY src         ./src
 COPY public/data ./public/data
+COPY .automation-measurements.json ./
 
 # SQLite lives on a persistent volume (see fly.toml).
 VOLUME ["/data"]
