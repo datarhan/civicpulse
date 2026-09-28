@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-28T19:04:06.935Z",
+  "generatedAt": "2026-09-28T19:13:49.447Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -40,7 +40,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-28T19:04:06.845Z"
+      "generatedAt": "2026-09-28T19:13:49.418Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -48,7 +48,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-28T19:04:06.845Z"
+      "generatedAt": "2026-09-28T19:13:49.418Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -67,7 +67,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-28T19:04:06.845Z"
+      "generatedAt": "2026-09-28T19:13:49.418Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -89,7 +89,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-28T19:04:06.845Z"
+      "generatedAt": "2026-09-28T19:13:49.418Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -109,7 +109,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-28T19:04:06.845Z"
+      "generatedAt": "2026-09-28T19:13:49.418Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -117,7 +117,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-28T19:04:06.845Z"
+      "generatedAt": "2026-09-28T19:13:49.418Z"
     },
     {
       "promiseId": "ac-psoe-1ryndd8",
@@ -165,7 +165,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-28T19:04:06.845Z"
+      "generatedAt": "2026-09-28T19:13:49.418Z"
     },
     {
       "promiseId": "ac-psoe-43brfs",
@@ -230,7 +230,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-28T19:04:06.845Z"
+      "generatedAt": "2026-09-28T19:13:49.418Z"
     }
   ],
   "llmEvidence": [],

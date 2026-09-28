@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-09-28T19:03:56.313Z",
+  "generatedAt": "2026-09-28T19:13:44.838Z",
   "frozenUntil": null,
   "legalNotice": "CivicPulse es un proyecto de civic-tech independiente, sin vinculación con el Ayuntamiento de Riba-roja de Túria ni con ningún partido político. Las promesas listadas son compromisos públicos atribuidos a partidos y cargos, cada uno con su fuente enlazada: el documento oficial o la noticia de prensa que recoge la cita. Para correcciones, derecho de rectificación o propuesta de nuevas fuentes: abrir una issue en github.com/datarhan/civicpulse con la etiqueta correccion-promesa. Plazo de revisión: 24 h. Plazo de resolución: 72 h. Durante el periodo electoral oficial (LOREG art. 50), el tracker entra en modo solo-lectura y los estados quedan congelados a la fecha publicada en cada ficha.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new?labels=correccion-promesa",
@@ -308,138 +308,138 @@
     {
       "promiseId": "psoe-presupuesto-2026-46m",
       "party": "PSOE",
-      "digest": "promesa · sha256:2270a3933022",
+      "digest": "promesa · sha256:818ee7ec5620",
       "reason": "La cita era el titular de Levante-EMV, no palabras del PSOE: la noticia no pone entre comillas ninguna frase del partido sobre el presupuesto, y la ficha registraba su aprobación en pleno, un hecho y no un compromiso.",
       "editor": "claude-opus-5.5",
-      "retractedAt": "2026-09-28T19:03:51.204Z"
+      "retractedAt": "2026-09-28T19:13:39.956Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
       "party": "PSOE",
-      "digest": "promesa · sha256:5d7a206396d0",
+      "digest": "promesa · sha256:139830b951ab",
       "reason": "La cita era el titular de Valencia Plaza. La única frase entrecomillada del alcalde habla de ejecutar el conjunto de las inversiones del año, no del plan de refugios que titulaba la ficha.",
       "editor": "claude-opus-5.5",
-      "retractedAt": "2026-09-28T19:03:51.510Z"
+      "retractedAt": "2026-09-28T19:13:40.264Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
       "party": "PSOE",
-      "digest": "promesa · sha256:f478aa68d096",
+      "digest": "promesa · sha256:4f2d4614af23",
       "reason": "La cita era el titular de Levante-EMV. Las únicas palabras entrecomilladas del PSOE son un fragmento sin compromiso, y la noticia cuenta la aprobación de un requisito para optar a los fondos, no su recepción.",
       "editor": "claude-opus-5.5",
-      "retractedAt": "2026-09-28T19:03:51.798Z"
+      "retractedAt": "2026-09-28T19:13:40.581Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
       "party": "PSOE",
-      "digest": "promesa · sha256:0014935ce6a8",
+      "digest": "promesa · sha256:d0db547ebd57",
       "reason": "La cita era el titular de elDiario.es: la noticia no pone entre comillas ninguna frase del PSOE, y la cifra del titular no aparece en el cuerpo.",
       "editor": "claude-opus-5.5",
-      "retractedAt": "2026-09-28T19:03:52.093Z"
+      "retractedAt": "2026-09-28T19:13:40.879Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
       "party": "PSOE",
-      "digest": "promesa · sha256:0e92265c8285",
+      "digest": "promesa · sha256:29b348f5cb84",
       "reason": "La cita era el titular de Valencia Plaza. La única frase entrecomillada del alcalde describe el problema de acceso a la vivienda y no compromete nada; el periodo del título sólo figura en el titular.",
       "editor": "claude-opus-5.5",
-      "retractedAt": "2026-09-28T19:03:52.378Z"
+      "retractedAt": "2026-09-28T19:13:41.198Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
       "party": "PSOE",
-      "digest": "promesa · sha256:6315b399bc61",
+      "digest": "promesa · sha256:3d415886ed1d",
       "reason": "La cita era un titular de Levante-EMV y la fuente enlazada es una página de sección que ya no existe; no hay palabras del partido que sostengan la ficha.",
       "editor": "claude-opus-5.5",
-      "retractedAt": "2026-09-28T19:03:52.660Z"
+      "retractedAt": "2026-09-28T19:13:41.491Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
       "party": "PSOE",
-      "digest": "promesa · sha256:f3220f07d111",
+      "digest": "promesa · sha256:5107ec7deb0b",
       "reason": "La cita era el titular de Levante-EMV; la noticia sólo recoge al alcalde en estilo indirecto, sin ninguna frase suya entre comillas.",
       "editor": "claude-opus-5.5",
-      "retractedAt": "2026-09-28T19:03:52.928Z"
+      "retractedAt": "2026-09-28T19:13:41.772Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
       "party": "PSOE",
-      "digest": "promesa · sha256:dfe635329b5f",
+      "digest": "promesa · sha256:a4f08eb1c2c8",
       "reason": "La cita era un titular sobre el servicio de FGV, no palabras del partido, y la fuente enlazada no existe ni tiene copia archivada; nada sostenía el título de la ficha.",
       "editor": "claude-opus-5.5",
-      "retractedAt": "2026-09-28T19:03:53.229Z"
+      "retractedAt": "2026-09-28T19:13:42.062Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
       "party": "PSOE",
-      "digest": "promesa · sha256:6121c3911b79",
+      "digest": "promesa · sha256:b3e51c86e1fe",
       "reason": "La cita no está en la fuente enlazada —la portada del portal de contratación— ni en ninguna otra: era prosa nuestra, y afirmaba un incumplimiento. Mismo origen que la ficha retirada el 2026-08-02.",
       "editor": "claude-opus-5.5",
-      "retractedAt": "2026-09-28T19:03:53.527Z"
+      "retractedAt": "2026-09-28T19:13:42.474Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
       "party": "PSOE",
-      "digest": "promesa · sha256:a514b3be6d66",
+      "digest": "promesa · sha256:ed49f4f2ad25",
       "reason": "La cita era el titular de Valencia Plaza; las frases entrecomilladas del alcalde no hablan de la reducción ni del ahorro. Era un acuerdo de pleno ya ejecutado, no un compromiso, y la fecha de la ficha no era la de la noticia.",
       "editor": "claude-opus-5.5",
-      "retractedAt": "2026-09-28T19:03:53.830Z"
+      "retractedAt": "2026-09-28T19:13:42.787Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
       "party": "PP",
-      "digest": "promesa · sha256:dc34f916f48b",
+      "digest": "promesa · sha256:8c2b6289c03d",
       "reason": "La cita era un titular y la fuente enlazada es una página de sección; la noticia real reproduce un comunicado del PSOE sobre el PP, sin palabras del PP. Registraba un voto, no un compromiso.",
       "editor": "claude-opus-5.5",
-      "retractedAt": "2026-09-28T19:03:54.153Z"
+      "retractedAt": "2026-09-28T19:13:43.106Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
       "party": "PP",
-      "digest": "promesa · sha256:f1e37ec674b9",
+      "digest": "promesa · sha256:b4f66f0bf590",
       "reason": "La cita parafraseaba al periodista, no era literal, y la noticia reproduce un comunicado del PSOE: las únicas palabras del PP entre comillas son dos, y no consta que sean suyas. Registraba un voto, no un compromiso.",
       "editor": "claude-opus-5.5",
-      "retractedAt": "2026-09-28T19:03:54.509Z"
+      "retractedAt": "2026-09-28T19:13:43.394Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
       "party": "PP",
-      "digest": "promesa · sha256:e893683f42d9",
+      "digest": "promesa · sha256:b9ad559083cf",
       "reason": "Era una crítica en una entrevista de radio, no un compromiso: estaba clasificada como programa electoral y fechada un año antes de la entrevista, y su cita sólo figuraba en el titular.",
       "editor": "claude-opus-5.5",
-      "retractedAt": "2026-09-28T19:03:54.873Z"
+      "retractedAt": "2026-09-28T19:13:43.671Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
       "party": "VOX",
-      "digest": "promesa · sha256:daedf074f134",
+      "digest": "promesa · sha256:864a54e8eefc",
       "reason": "La cita parafraseaba la frase del periodista que cuenta la votación, no era literal, y la noticia no recoge ninguna palabra de VOX. Registraba una abstención, no un compromiso.",
       "editor": "claude-opus-5.5",
-      "retractedAt": "2026-09-28T19:03:55.273Z"
+      "retractedAt": "2026-09-28T19:13:43.952Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
       "party": "Compromís",
-      "digest": "promesa · sha256:daedf074f134",
+      "digest": "promesa · sha256:2c30b35c10d6",
       "reason": "La cita era la misma frase del periodista que la de otra ficha, parafraseada; la noticia no recoge palabras de Compromís, y el avance de estado se apoyaba en una licitación de 2023 de otro proyecto.",
       "editor": "claude-opus-5.5",
-      "retractedAt": "2026-09-28T19:03:55.619Z"
+      "retractedAt": "2026-09-28T19:13:44.235Z"
     },
     {
       "promiseId": "ac-psoe-1v0679f",
       "party": "PSOE",
-      "digest": "promesa · sha256:cfb6e1f5b3d3",
+      "digest": "promesa · sha256:2feac7cc01e7",
       "reason": "La cita era la narración de Las Provincias, sin comillas ni atribución; la noticia no recoge palabras del partido y no dice quién ejecutará la limpieza.",
       "editor": "claude-opus-5.5",
-      "retractedAt": "2026-09-28T19:03:55.958Z"
+      "retractedAt": "2026-09-28T19:13:44.520Z"
     },
     {
       "promiseId": "ac-psoe-pl3lsq",
       "party": "PSOE",
-      "digest": "promesa · sha256:215ac477ed68",
+      "digest": "promesa · sha256:225c8800c505",
       "reason": "La cita era la narración de Las Provincias; las palabras del alcalde que recoge la noticia no hablan de contenedores, y una nota posterior del Ayuntamiento da otra cifra.",
       "editor": "claude-opus-5.5",
-      "retractedAt": "2026-09-28T19:03:56.313Z"
+      "retractedAt": "2026-09-28T19:13:44.838Z"
     }
   ]
 }

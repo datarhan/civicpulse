@@ -40,6 +40,14 @@ describe('promiseDigest', () => {
     expect(promiseDigest({ ...primera, source: { url: 'https://otra.example/x' } })).not.toBe(d)
     expect(d).not.toContain(primera.quote.slice(0, 12))
   })
+
+  it('tells apart two cards that quote the same sentence of the same article', () => {
+    // El caso real: la ficha de VOX y la de Compromís citaban la misma frase
+    // de la misma noticia, y con sólo cita y URL salían con la misma huella.
+    const vox = { ...primera, party: 'VOX', title: 'Abstención' }
+    const compromis = { ...primera, party: 'Compromís', title: 'Apoyo' }
+    expect(promiseDigest(vox)).not.toBe(promiseDigest(compromis))
+  })
 })
 
 describe('reasonEchoes', () => {

@@ -27,12 +27,22 @@ import {
 } from './promises'
 
 /**
- * La huella de una promesa retirada: su cita normalizada y la URL de su
- * fuente. Quien conserve el original puede comprobar que la retirada es de
- * esa tarjeta; con la huella sola no se puede leer lo que decía.
+ * La huella de una promesa retirada: partido, título, cita normalizada y URL
+ * de su fuente. Quien conserve el original puede comprobar que la retirada es
+ * de esa tarjeta; con la huella sola no se puede leer lo que decía.
+ *
+ * Partido y título entran porque la huella identifica la FICHA, no la frase: en
+ * la primera aplicación, con sólo cita y URL, las fichas de VOX y de Compromís
+ * —que citaban la misma frase de la misma noticia— salieron con la misma huella.
  */
-export function promiseDigest(p: { quote: string; source: { url: string } }): string {
-  return `promesa · sha256:${sha256Short(`${normalizeForMatch(p.quote)}\n${p.source.url}`)}`
+export function promiseDigest(p: {
+  party: string
+  title: string
+  quote: string
+  source: { url: string }
+}): string {
+  const huella = [p.party, p.title, normalizeForMatch(p.quote), p.source.url].join('\n')
+  return `promesa · sha256:${sha256Short(huella)}`
 }
 
 /**
