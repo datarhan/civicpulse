@@ -63,10 +63,11 @@ const IBAN_ES = /\b[Ee][Ss]\d{2}(?:[ \u00a0-]{0,2}\d{4}){5}\b/g
 // minúscula no se cuela como grupo).
 const IBAN = /\b[A-Z]{2}\d{2}(?:[ ]?[A-Z0-9]{4}){2,7}(?:[ ]?[A-Z0-9]{1,3})?\b/g
 // Ocho cifras, con los millares separados por punto, espacio o nada, o siete
-// seguidas; y la letra. Separada de las cifras, sólo en mayúscula: «12345678 y»
+// seguidas o con puntos; y la letra. Separada de las cifras, sólo en mayúscula: «12345678 y»
 // es un número y una conjunción. Siete cifras con millares separados, no: unas
 // cifras sueltas delante de una mayúscula acertarían la letra una vez de cada 23.
-const DNI = /(?<![\w.])(\d{2}[. \u00a0]?\d{3}[. \u00a0]?\d{3}|\d{7})([ -]?)([A-Za-z])(?!\w)/g
+const DNI =
+  /(?<![\w.])(\d{2}[. \u00a0]?\d{3}[. \u00a0]?\d{3}|\d\.\d{3}\.\d{3}|\d{7})([ -]?)([A-Za-z])(?!\w)/g
 const NIE = /(?<!\w)([XYZ])[ -]?(\d{7})[ -]?([A-Z])(?!\w)/gi
 // Nueve cifras que empiezan por 6, 7, 8 o 9, con prefijo o sin él, separadas por
 // espacios (también el duro, U+00A0, que deja una agenda al copiar; un salto de
@@ -74,7 +75,7 @@ const NIE = /(?<!\w)([XYZ])[ -]?(\d{7})[ -]?([A-Z])(?!\w)/gi
 // detrás de más cifras («1.612…») o siguen más cifras, decimales o una moneda: eso
 // es un importe. Un «tlf.612…» sí.
 const TELEFONO =
-  /(?<![\w€]|\d[.,])(?:(?:\+|00)34[ \t\u00a0./()-]{0,2})?\(?[6789](?:[ \t\u00a0./()-]{0,2}\d){8}(?!\w|[.,]\d|[ \t\u00a0]*(?:€|euros?\b|eur\b))/gi
+  /(?<![\w€]|\d[.,])(?:\(?(?:\+|00)34\)?[ \t\u00a0./()-]{0,2})?\(?[6789](?:[ \t\u00a0./()-]{0,2}\d){8}(?!\w|[.,]\d|[ \t\u00a0]*(?:€|euros?\b|eur\b))/gi
 /**
  * Lo que la forma de un teléfono no basta para decidir. Se agrupa como se agrupa
  * un número al escribirlo —«612 345 678», «96 123 45 67»—: con separadores, cada
@@ -96,14 +97,27 @@ function pareceTelefono(m: string): boolean {
   return true
 }
 // La actual: cuatro cifras y tres consonantes, en mayúscula o no, y con « - » o
-// sin nada entre medias. Nunca dentro de un id de queja («Q-…»), ni si las tres
-// letras son una unidad: «1500 mts», «1200 kwh», «1000 kgs» son una medida.
-const UNIDADES =
-  'mts|kms|cms|mms|kgs|grs|tns|lts|mls|cls|dls|hrs|mns|sgs|kwh|mwh|gwh|rpm|ppm|pts|cts|mph'
-const MATRICULA = new RegExp(
-  `(?<!Q-)\\b\\d{4}(?:[ \\u00a0]?-[ \\u00a0]?|[ \\u00a0])?(?!(?:${UNIDADES})\\b)[BCDFGHJKLMNPRSTVWXYZ]{3}\\b`,
-  'gi',
+// sin nada entre medias. Nunca dentro de un id de queja («Q-…»).
+const MATRICULA = /(?<!Q-)\b\d{4}([ \u00a0]?-[ \u00a0]?|[ \u00a0])?([BCDFGHJKLMNPRSTVWXYZ]{3})\b/gi
+// Tres letras que, detrás de cuatro cifras, son una medida y no una matrícula.
+const UNIDADES = new Set(
+  'mts kms cms mms kgs grs tns lts mls cls dls hrs mns sgs kwh mwh gwh rpm ppm pts cts mph mhz ghz khz'.split(
+    ' ',
+  ),
 )
+
+/**
+ * «1500 mts» es una medida; «1234 MTS», una matrícula. Las unidades se escriben en
+ * minúscula y las matrículas en mayúscula, así que unas letras de unidad son una
+ * unidad en minúscula, o en un texto escrito todo en mayúsculas («A 1500 MTS DEL
+ * COLEGIO»); nunca tras un guion, que sólo lleva una matrícula. Aplicada sin mirar
+ * la caja, dejaba pasar matrículas de verdad (revisión de #144).
+ */
+function esUnidad(letras: string, separador: string | undefined, todoMayusculas: boolean): boolean {
+  if (separador?.includes('-')) return false
+  if (!UNIDADES.has(letras.toLowerCase())) return false
+  return letras === letras.toLowerCase() || todoMayusculas
+}
 // La provincial de antes: el código de la provincia, cuatro cifras y una o dos
 // letras, con guiones o todo junto. Con espacios no: en un texto en mayúsculas,
 // «DE 2020 A 2024 EL…» tiene esa forma (la A es un código de provincia), y una
@@ -114,6 +128,7 @@ const MATRICULA_PROVINCIAL = new RegExp(`(?<!Q-)\\b(?:${PROVINCIAS})-?\\d{4}-?[A
 
 export function limpiarDatosPersonales(texto: string): Limpieza {
   const retirados: Retirados = {}
+  const todoMayusculas = texto === texto.toUpperCase() && texto !== texto.toLowerCase()
   const retirar = (clase: ClasePii) => {
     retirados[clase] = (retirados[clase] ?? 0) + 1
     return MARCA_RETIRADO
@@ -135,7 +150,9 @@ export function limpiarDatosPersonales(texto: string): Limpieza {
         : m,
     )
     .replace(TELEFONO, (m) => (pareceTelefono(m) ? retirar('telefono') : m))
-    .replace(MATRICULA, () => retirar('matricula'))
+    .replace(MATRICULA, (m, separador: string | undefined, letras: string) =>
+      esUnidad(letras, separador, todoMayusculas) ? m : retirar('matricula'),
+    )
     .replace(MATRICULA_PROVINCIAL, () => retirar('matricula'))
   return { texto: limpio, retirados }
 }
