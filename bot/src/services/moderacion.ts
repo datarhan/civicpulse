@@ -524,3 +524,25 @@ export function startRevisionCron(d: DepsRevision): () => void {
   const handle = setInterval(() => void tick(), MINUTO_MS)
   return () => clearInterval(handle)
 }
+
+/** Cómo se revisa hoy una queja nueva: lo que se le dice a quien la escribe. */
+export type ComoSeRevisa = 'automatica' | 'persona-tras-lectura' | 'persona'
+
+/**
+ * `automatica`: la revisión corre y puede publicar sola lo que no retiene;
+ * `persona-tras-lectura`: corre, pero la publicación automática no está
+ * permitida —sin medición, o en periodo electoral— y decide una persona;
+ * `persona`: no corre.
+ */
+export function comoSeRevisa(
+  d: Pick<DepsRevision, 'env' | 'medidas' | 'congelado' | 'ahora'>,
+): ComoSeRevisa {
+  if (!revisionDisponible(d.env).ok) return 'persona'
+  const congelado = (d.congelado ?? isLoregFrozen)()
+  const permitida = decideAutomation(
+    clasePublicacion(congelado),
+    (d.medidas ?? medidasActuales)(),
+    (d.ahora ?? (() => new Date()))(),
+  ).allow
+  return permitida ? 'automatica' : 'persona-tras-lectura'
+}

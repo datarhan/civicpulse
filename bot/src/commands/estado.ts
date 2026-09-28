@@ -4,6 +4,7 @@ import {
   autorTelegram,
   countApoyos,
   EVENTO_DATOS_RETIRADOS,
+  EVENTO_RECORTE_REVISION,
   esAutor,
   getQuejaPublica,
   getQuejaViva,
@@ -53,6 +54,8 @@ function stateLabel(state: string): string {
         moderacion_retirada: '↩️ Retirada de la publicación',
         // Los datos personales que el bot quitó del texto al guardarla (services/pii.ts).
         [EVENTO_DATOS_RETIRADOS]: '🧹 Datos personales retirados al guardarla',
+        // Los fragmentos que quitó después la revisión automática (services/moderacion.ts).
+        [EVENTO_RECORTE_REVISION]: '✂️ Datos de otras personas retirados en la revisión',
       } as Record<string, string>
     )[state] ?? state
   )

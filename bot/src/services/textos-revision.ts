@@ -29,6 +29,20 @@ export const REVISION_CORTA: Record<Moderacion, string | null> = {
 
 const atajo = (id: string) => id.replace('Q-', '').toLowerCase()
 
+/**
+ * Cómo se revisa una queja antes de publicarse, dicho a quien la escribe: al
+ * empezar y en el acuse. Depende de si corre la revisión automática y de si
+ * puede publicar sola (`comoSeRevisa`, services/moderacion.ts), y tiene que ser
+ * verdad en los tres casos.
+ */
+export const COMO_SE_REVISA: Record<'automatica' | 'persona-tras-lectura' | 'persona', string> = {
+  automatica:
+    'pasa una revisión automática, y si encuentra algo que deba ver una persona, la decide una persona del equipo',
+  'persona-tras-lectura':
+    'la lee una revisión automática, que le quita los nombres de otras personas, y la decide una persona del equipo',
+  persona: 'la revisa una persona del equipo',
+}
+
 /** «1 fragmento», «2 fragmentos». */
 const fragmentos = (n: number) => (n === 1 ? '1 fragmento' : `${n} fragmentos`)
 

@@ -14,6 +14,7 @@ import { startEventosRepoCron } from './services/eventos-repo.ts'
 import { startFotosCron } from './services/fotos-cron.ts'
 import { startRetencionCron } from './services/retencion.ts'
 import { envioDesdeApi, estadoModeracion, startReenvioTarjetas } from './services/avisos-admin.ts'
+import { estadoRevision, startRevisionCron } from './services/moderacion.ts'
 import { sirveFotoExportada } from './services/foto-exportada.ts'
 import { webhookTelegram } from './services/webhook-telegram.ts'
 import { parseAdminIds } from './util/admins.ts'
@@ -110,6 +111,18 @@ function makeBot() {
   // arrancar y cada hora. Una queja que nadie ha visto no se publica nunca sola,
   // así que sin esto se quedaría esperando (services/avisos-admin.ts).
   startReenvioTarjetas({ db, admins: () => parseAdminIds(), envio: envioDesdeApi(bot.api) })
+
+  // Y la revisión automática (services/moderacion.ts), cada minuto: un modelo lee
+  // cada queja pendiente, le quita los nombres de otras personas y dice si tiene
+  // que verla una persona. Publica sola sólo lo que `decideAutomation` permite
+  // con lo medido, y nada en periodo electoral. Sin GEMINI_NIVEL=pago no corre, y
+  // cada queja la decide una persona, como hasta ahora.
+  startRevisionCron({
+    db,
+    env: process.env,
+    envio: envioDesdeApi(bot.api),
+    admins: () => parseAdminIds(),
+  })
 
   // Y el plazo de conservación, cumplido: al arrancar y cada día se destruyen las
   // quejas que lo pasaron, las copias de la base que pasaron el suyo y la copia de
@@ -224,7 +237,10 @@ async function main() {
               uptimeSec: Math.round(process.uptime()),
               pid: process.pid,
               webhookAuthenticated: webhookAutenticado,
-              moderacion: estadoModeracion(db, parseAdminIds()),
+              moderacion: {
+                ...estadoModeracion(db, parseAdminIds()),
+                revision: estadoRevision(db, process.env),
+              },
             }),
           ),
         )
@@ -307,7 +323,10 @@ async function main() {
               mode: 'long-polling',
               uptimeSec: Math.round(process.uptime()),
               pid: process.pid,
-              moderacion: estadoModeracion(db, parseAdminIds()),
+              moderacion: {
+                ...estadoModeracion(db, parseAdminIds()),
+                revision: estadoRevision(db, process.env),
+              },
             }),
           ),
         )
