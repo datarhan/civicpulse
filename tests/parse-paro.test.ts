@@ -3,6 +3,11 @@ import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { parseSepeParoMonth } from '../src/scraper/paro'
 
+/**
+ * La descarga real del SEPE que entró en ba92e28c (sha256 8c1cc7b41ca31ec5…3116b6d),
+ * con unas iniciales vaciadas en su registro WRITEACCESS —quien la guardó con
+ * Excel— por `npm run fixture:sin-autoria`: cuatro bytes, las hojas intactas.
+ */
 const FIXTURE = join(__dirname, 'fixtures', 'sepe_CV_enero_2026.xls')
 
 describe('scraper/paro — parseSepeParoMonth', () => {
