@@ -29,13 +29,28 @@ export const REVISION_CORTA: Record<Moderacion, string | null> = {
 
 const atajo = (id: string) => id.replace('Q-', '').toLowerCase()
 
-/** El aviso a su autor cuando un administrador decide. Texto plano, sin Markdown. */
-export function avisoAlAutor(id: string, hasta: Moderacion): string | null {
+/** «1 fragmento», «2 fragmentos». */
+const fragmentos = (n: number) => (n === 1 ? '1 fragmento' : `${n} fragmentos`)
+
+/**
+ * El aviso a su autor cuando se decide su queja —una persona, o la revisión
+ * automática al publicarla—. Texto plano, sin Markdown. `recortes` son los
+ * fragmentos que la revisión automática le quitó: su texto cambió, y se le dice.
+ */
+export function avisoAlAutor(
+  id: string,
+  hasta: Moderacion,
+  o: { recortes?: number } = {},
+): string | null {
+  const recortes = o.recortes
+    ? `\n\nAntes de publicarla, la revisión automática le quitó ${fragmentos(o.recortes)} con ` +
+      'datos de otras personas; en su lugar pone «[dato personal retirado]».'
+    : ''
   switch (hasta) {
     case 'publicada':
       return (
         `✅ Tu queja ${id} ha pasado la revisión y ya es pública. La web la muestra en su ` +
-        `próxima actualización.\n\nPara que otros vecinos la apoyen, que envíen /apoyar_${atajo(id)}`
+        `próxima actualización.${recortes}\n\nPara que otros vecinos la apoyen, que envíen /apoyar_${atajo(id)}`
       )
     case 'descartada':
       return (

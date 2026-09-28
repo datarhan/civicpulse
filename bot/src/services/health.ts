@@ -51,6 +51,23 @@ export interface EstadoModeracion {
    * esa cola se vacíe.
    */
   porVaciar?: { total: number; masAntiguaHoras: number | null }
+  /** La revisión automática antes de publicar (services/moderacion.ts), como la cuenta `estadoRevision`. */
+  revision?: EstadoRevision
+}
+
+/**
+ * La revisión automática: si puede correr, y cómo va. Apagada no es un fallo
+ * —sin `GEMINI_NIVEL=pago` cada queja la decide una persona, como antes—; una
+ * revisión que falla una y otra vez, sí.
+ */
+export interface EstadoRevision {
+  disponible: boolean
+  /** Lo que falta para que corra, si no puede. */
+  falta?: string
+  /** Las quejas pendientes sin una revisión válida. */
+  porRevisar: number
+  /** Las que llevan tantos fallos, o tanto tiempo fallando, que ya se avisó a quien modera. */
+  atascadas: number
 }
 
 export interface BotHealth {
@@ -138,6 +155,11 @@ export function buildHealth(
         `moderación: la queja en revisión más antigua lleva ${m.masAntiguaHoras} h esperando`,
       )
     }
+  }
+  if (m?.revision && m.revision.atascadas > 0) {
+    degraded.push(
+      `moderación: la revisión automática no avanza en ${m.revision.atascadas} queja(s): siguen sin publicar y las decide una persona`,
+    )
   }
   const cola = m?.porVaciar
   if (cola && cola.masAntiguaHoras !== null && cola.masAntiguaHoras > ESPERA_MAXIMA_VACIADO_H) {

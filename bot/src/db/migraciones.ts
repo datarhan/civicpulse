@@ -328,6 +328,7 @@ function revisionAutomatica(db: Db): void {
 export const MIGRACIONES: readonly Migracion[] = [
   { version: 1, nombre: 'identidad-por-ciudadano', aplicar: identidadPorCiudadano },
   { version: 2, nombre: 'revision-antes-de-publicar', aplicar: revisionAntesDePublicar },
+  { version: 3, nombre: 'revision-automatica', aplicar: revisionAutomatica },
 ]
 
 /**
@@ -337,11 +338,10 @@ export const MIGRACIONES: readonly Migracion[] = [
  * llega primero aquí, inerte, y el cambio que la usa la pasa a `MIGRACIONES`
  * cuando el ensayo ha dicho «correcto» y hay instantánea del volumen. Así llegó
  * la 1 (#132 la desplegó inerte, #135 la activó), así la 2 (#138 la desplegó en
- * ensayo, #137 la activó), y así llega la 3, que activará la revisión automática.
+ * ensayo, #137 la activó), y así la 3 (#153 en ensayo; la activó la revisión
+ * automática). Hoy no hay ninguna.
  */
-export const MIGRACIONES_EN_ENSAYO: readonly Migracion[] = [
-  { version: 3, nombre: 'revision-automatica', aplicar: revisionAutomatica },
-]
+export const MIGRACIONES_EN_ENSAYO: readonly Migracion[] = []
 
 /** Lo que ensaya `migrate.ts --dry-run`: las activas y, detrás, las que están en ensayo. */
 export const MIGRACIONES_DEL_ENSAYO: readonly Migracion[] = [

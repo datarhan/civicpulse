@@ -606,7 +606,7 @@ describe('la migración 3: el registro de la revisión automática', () => {
 const HUELLAS: Record<string, string> = {
   '1': '1abc5ac7b770a7d9', // identidad-por-ciudadano, ensayada y activa desde #135
   '2': '3d318e573180cd9f', // revision-antes-de-publicar, en ensayo desde #138
-  '3': '3e74686c7ce62902', // revision-automatica, en ensayo
+  '3': '3e74686c7ce62902', // revision-automatica, en ensayo desde #153; la activa la revisión automática
 }
 
 /** El SQL que ejecuta una migración, sobre una base en la versión anterior, resumido. */
