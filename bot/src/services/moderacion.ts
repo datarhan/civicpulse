@@ -344,6 +344,8 @@ export interface ResultadoPasada {
   aUnaPersona: number
   /** Revisiones válidas de quejas que una persona o su autor decidieron mientras tanto. */
   sinAplicar: number
+  /** Revisiones que no se pudieron anotar: quedan como un fallo `interno`. */
+  internos: number
   /** Quejas cuya revisión atascada se avisó en esta pasada. */
   avisadas: number
 }
@@ -418,19 +420,57 @@ async function revisarUna(
   })
   if (!a.anotada) return
   if (decision && a.hasta === null) r.sinAplicar += 1
-  if (a.hasta === 'publicada') {
-    r.publicadas += 1
-    await completarSeguimiento(d.db, c.id, { envio: d.envio })
-    await republicar(d, c.id)
-  } else if (a.hasta === 'retenida' || a.hasta === 'pendiente') {
-    if (a.hasta === 'retenida') r.retenidas += 1
-    else r.aUnaPersona += 1
-    await actualizarTarjetas(d.db, c.id, { envio: d.envio })
-  } else if (a.recortada) {
-    // Una persona decidió mientras el modelo leía: su decisión se queda, pero el
-    // nombre sale, y si ya era pública, la web tiene que volver a publicarse.
-    await actualizarTarjetas(d.db, c.id, { envio: d.envio })
-    if (a.moderacion === 'publicada') await republicar(d, c.id)
+  if (a.hasta === 'publicada') r.publicadas += 1
+  else if (a.hasta === 'retenida') r.retenidas += 1
+  else if (a.hasta === 'pendiente') r.aUnaPersona += 1
+  // La revisión ya está anotada: lo que falle de aquí en adelante no la deshace
+  // ni es un fallo suyo. Las tarjetas se ponen al día al decidir o en la pasada
+  // horaria, el aviso a su autor lo remata la pasada horaria, y la web se
+  // publica en su actualización diaria.
+  try {
+    if (a.hasta === 'publicada') {
+      await completarSeguimiento(d.db, c.id, { envio: d.envio })
+      await republicar(d, c.id)
+    } else if (a.hasta === 'retenida' || a.hasta === 'pendiente') {
+      await actualizarTarjetas(d.db, c.id, { envio: d.envio })
+    } else if (a.recortada) {
+      // Una persona decidió mientras el modelo leía: su decisión se queda, pero el
+      // nombre sale, y si ya era pública, la web tiene que volver a publicarse.
+      await actualizarTarjetas(d.db, c.id, { envio: d.envio })
+      if (a.moderacion === 'publicada') await republicar(d, c.id)
+    }
+  } catch (err) {
+    logger.warn('moderacion.seguimiento', { queja: c.id, err: String(err) })
+  }
+}
+
+/**
+ * Las quejas cuya revisión no se pudo anotar ni como fallo, y hasta cuándo no se
+ * les vuelve a preguntar al modelo. En memoria: el bot corre en un solo proceso,
+ * y al arrancar de nuevo se vuelve a intentar, que es lo que se quiere.
+ */
+const enfriadas = new Map<string, number>()
+const ENFRIAMIENTO_MS = 60 * 60_000
+
+/**
+ * Una revisión que no se pudo anotar —un INSERT rechazado, la base ocupada—
+ * queda como un fallo `interno`, que sigue la espera de cualquier otro. Si ni
+ * eso se puede anotar, la queja se enfría una hora: preguntarle al modelo cada
+ * minuto por algo que no se va a poder guardar sólo gasta (revisión de #153).
+ */
+function anotarFalloInterno(d: DepsRevision, c: QuejaSinRevisar, ahora: Date): void {
+  try {
+    anotarRevision(d.db, c.id, {
+      revision: { resultado: 'error', error: 'interno' },
+      enviado: { titulo: c.title, detalle: c.detail },
+      modelo: d.env.GEMINI_MODERACION_MODEL?.trim() || MODELO_POR_DEFECTO,
+      version: VERSION_PROMPT,
+      decision: null,
+      cuando: ahora,
+    })
+  } catch (err) {
+    enfriadas.set(c.id, ahora.getTime() + ENFRIAMIENTO_MS)
+    logger.error('moderacion.fallo-interno', { queja: c.id, err: String(err) })
   }
 }
 
@@ -457,6 +497,7 @@ export async function pasadaDeRevision(
     retenidas: 0,
     aUnaPersona: 0,
     sinAplicar: 0,
+    internos: 0,
     avisadas: 0,
   }
   const candidatas = quejasSinRevisar(d.db)
@@ -466,14 +507,24 @@ export async function pasadaDeRevision(
 
   const max = o.max ?? 5
   for (const c of candidatas) {
+    const enfriada = (enfriadas.get(c.id) ?? 0) > ahora.getTime()
     const toca =
-      c.fallos === 0 ||
-      ahora.getTime() >= msDe(c.ultimo_fallo!) + esperaTrasFallos(c.fallos) * 60_000
+      !enfriada &&
+      (c.fallos === 0 ||
+        ahora.getTime() >= msDe(c.ultimo_fallo!) + esperaTrasFallos(c.fallos) * 60_000)
     if (!toca) r.esperando += 1
     else if (r.intentadas >= max) r.aplazadas += 1
     else {
       r.intentadas += 1
-      await revisarUna(d, c, ahora, r)
+      enfriadas.delete(c.id)
+      try {
+        await revisarUna(d, c, ahora, r)
+      } catch (err) {
+        // Una queja que no se puede anotar no para a las de detrás.
+        r.internos += 1
+        logger.error('moderacion.revision-interna', { queja: c.id, err: String(err) })
+        anotarFalloInterno(d, c, ahora)
+      }
     }
   }
 
