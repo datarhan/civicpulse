@@ -120,7 +120,20 @@
     "DE 2019 A 2025 LA CALLE SIGUE IGUAL",
     "DESDE 2023 O 2024 SE QUEJAN LOS VECINOS",
     "La queja Q-CS1234AB sigue abierta",
-    "Cortes de agua el 7/10/2026 8/10/2026 sin aviso"
+    "Cortes de agua el 7/10/2026 8/10/2026 sin aviso",
+    "A 1500 mts del colegio no hay paso de cebra",
+    "Una parcela de 2000 mts cuadrados abandonada",
+    "A 1500 MTS DEL COLEGIO NO HAY PASO",
+    "El consumo subió a 1200 kwh este mes",
+    "Dejaron 1000 kgs de escombros",
+    "Cortaron el agua a las 1830 hrs",
+    "Un depósito de 5000 lts sin tapar",
+    "El 9-10-2026 15:30 cortaron el agua",
+    "El 7.10.2026 18:00 cortaron la luz",
+    "Factura 9/2026/0001 del agua",
+    "Los portales 7 9 11 13 15 17 no tienen luz",
+    "Portal 9\n1234 5678 sin luz desde el lunes",
+    "GASTARON 1 234 567 L EN FIESTAS"
   ],
   "_asumidos": "Lo que se retira sin ser un dato personal, a sabiendas: el bot no sabe de quién es un número, así que un teléfono público también sale; y cuatro cifras con tres consonantes detrás tienen la forma de una matrícula. Mejor de más aquí que un teléfono publicado.",
   "asumidos": [
