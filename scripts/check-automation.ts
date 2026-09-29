@@ -20,6 +20,7 @@ import {
 } from '../src/scraper/automation-policy'
 import { readFileSync, existsSync } from 'node:fs'
 import { resolve } from 'node:path'
+import { clasePublicacion } from '../bot/src/services/moderacion-criterios'
 
 /** The real action classes in this repo, in the order a reader meets them. */
 const SURFACES: { label: string; ctx: ActionContext }[] = [
@@ -73,6 +74,12 @@ const SURFACES: { label: string; ctx: ActionContext }[] = [
   {
     label: 'Publish a report flagged legalSensitivity=high',
     ctx: { kind: 'publish-report', legalSensitivity: 'high', reversible: true },
+  },
+  {
+    label: 'Publish a citizen queja the automatic review did not hold (bot)',
+    // The bot's own class, read from where the bot reads it: `main` below adds
+    // the freeze, as for every other class.
+    ctx: clasePublicacion(false),
   },
   {
     label: 'Register a queja at the sede / broadcast to the channel',

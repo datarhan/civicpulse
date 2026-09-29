@@ -31,11 +31,20 @@ import type { Moderacion, MotivoVaciado } from '../db/migraciones.ts'
 import {
   aVaciar,
   getQuejaViva,
+  recortesDeRevision,
+  revisionDeQueja,
   SQL_ES_TARJETA,
   TIPO_TARJETA,
   type QuejaRow,
+  type RevisionRow,
 } from '../db/queries.ts'
 import type { EstadoModeracion } from './health.ts'
+import {
+  DESCRIPCION_MOTIVO,
+  revisionDisponible,
+  type Disponibilidad,
+  type MotivoRetencion,
+} from './moderacion-criterios.ts'
 import { MARCA_RETIRADO } from './pii.ts'
 import { avisoAlAutor, DECISIONES_CON_AVISO } from './textos-revision.ts'
 import { escaparHtml } from '../util/html.ts'
@@ -79,18 +88,92 @@ function botonesDe(q: QuejaRow): Boton[] {
 }
 
 /**
- * Cuántos datos personales se retiraron del texto al guardarlo (services/pii.ts):
- * se cuentan en el propio texto, así que la tarjeta que reenvía la pasada horaria
- * lo dice igual que la primera.
+ * Lo que sabe la tarjeta de la revisión automática de una queja
+ * (services/moderacion.ts): la última, cuántas fallaron, cuántos fragmentos
+ * quitó, por qué la retuvo, y si puede correr.
  */
-function lineaDeRetirados(q: QuejaRow): string[] {
-  const n = `${q.title}\n${q.detail}`.split(MARCA_RETIRADO).length - 1
+export interface InfoRevision {
+  ultima: RevisionRow | null
+  fallos: number
+  /** Fragmentos que la revisión automática quitó del texto. */
+  recortes: number
+  /** Los motivos con que la retuvo la revisión automática, si la retuvo. */
+  retenidaPor: MotivoRetencion[]
+  disponible: Disponibilidad
+}
+
+/** Lo que la tarjeta dice de la revisión automática de una queja, leído de la base. */
+export function infoRevision(
+  db: Db,
+  id: string,
+  env: Record<string, string | undefined> = process.env,
+): InfoRevision {
+  const { ultima, fallos, retenidaPor } = revisionDeQueja(db, id)
+  return {
+    ultima,
+    fallos,
+    recortes: recortesDeRevision(db, id),
+    retenidaPor: retenidaPor as MotivoRetencion[],
+    disponible: revisionDisponible(env),
+  }
+}
+
+const fragmentos = (n: number) => (n === 1 ? '1 fragmento' : `${n} fragmentos`)
+
+/**
+ * Cuántos datos personales se retiraron del texto al guardarlo (services/pii.ts):
+ * se cuentan en el propio texto —menos los que quitó después la revisión
+ * automática—, así que la tarjeta que reenvía la pasada horaria lo dice igual que
+ * la primera.
+ */
+function lineaDeRetirados(q: QuejaRow, recortes = 0): string[] {
+  const n = Math.max(0, `${q.title}\n${q.detail}`.split(MARCA_RETIRADO).length - 1 - recortes)
   if (n === 0) return []
   return [
     n === 1
       ? '🧹 1 dato personal retirado al guardarla.'
       : `🧹 ${n} datos personales retirados al guardarla.`,
   ]
+}
+
+const describir = (motivos: readonly string[]) =>
+  motivos.map((m) => DESCRIPCION_MOTIVO[m as MotivoRetencion] ?? m).join('; ')
+
+/** Lo que dice la revisión automática, en la tarjeta: qué vio, qué quitó, o por qué no ha podido. */
+function lineaDeRevision(q: QuejaRow, r: InfoRevision | undefined): string[] {
+  if (!r) return []
+  const u = r.ultima
+  const lineas: string[] = []
+  if (!u) {
+    if (q.moderacion !== 'pendiente') return []
+    lineas.push(
+      r.disponible.ok
+        ? '🤖 Revisión automática: en cola; en unos minutos se sabe.'
+        : `🤖 Revisión automática apagada (falta ${r.disponible.falta === 'GEMINI_NIVEL' ? 'GEMINI_NIVEL=pago' : r.disponible.falta}): la decides tú.`,
+    )
+  } else if (u.resultado === 'invalida' || u.resultado === 'error') {
+    lineas.push(
+      `🤖 Revisión automática: ha fallado ${r.fallos === 1 ? '1 vez' : `${r.fallos} veces`} ` +
+        `(la última, «${u.error}»); se reintenta sola.`,
+    )
+  } else {
+    const motivos: string[] =
+      q.moderacion === 'retenida' && r.retenidaPor.length
+        ? r.retenidaPor
+        : (JSON.parse(u.motivos ?? '[]') as string[])
+    lineas.push(
+      motivos.length
+        ? `🤖 Revisión automática: tiene que verla una persona — ${describir(motivos)}.`
+        : q.moderacion === 'pendiente'
+          ? '🤖 Revisión automática: nada que retener, pero la publicación automática no está ' +
+            'permitida todavía (sin una precisión medida suficiente): la decides tú.'
+          : '🤖 Revisión automática: nada que retener.',
+    )
+  }
+  if (r.recortes > 0) {
+    lineas.push(`✂️ Le quitó ${fragmentos(r.recortes)} con datos de otras personas.`)
+  }
+  return lineas
 }
 
 /**
@@ -101,7 +184,11 @@ function lineaDeRetirados(q: QuejaRow): string[] {
  * y se corta DESPUÉS de escapar (un `&` escapado mide cinco), para que la
  * tarjeta quepa siempre en un mensaje.
  */
-export function tarjetaDeQueja(q: QuejaRow, nota?: string): { html: string; botones: Boton[] } {
+export function tarjetaDeQueja(
+  q: QuejaRow,
+  nota?: string,
+  revision?: InfoRevision,
+): { html: string; botones: Boton[] } {
   const cabecera = [
     `<b>${CABECERA[q.moderacion]}</b> · <code>${q.id}</code>`,
     escaparHtml([q.category, q.neighborhood].filter(Boolean).join(' · ')),
@@ -109,7 +196,8 @@ export function tarjetaDeQueja(q: QuejaRow, nota?: string): { html: string; boto
     q.foto_ref
       ? '📷 Trae foto: se publica sólo anonimizada, y no se ve en esta tarjeta.'
       : 'Sin foto.',
-    ...lineaDeRetirados(q),
+    ...lineaDeRetirados(q, revision?.recortes),
+    ...lineaDeRevision(q, revision).map(escaparHtml),
     '',
     `<b>${cortar(escaparHtml(q.title), 600)}</b>`,
   ].join('\n')
@@ -244,7 +332,7 @@ async function mandarCopia(
   if (!q) return 'retirada'
   const destinatario = comoAdmin(admin)
   if (!reclamar(db, q.id, tipo, destinatario)) return 'ya-estaba'
-  const { html, botones } = tarjetaDeQueja(q)
+  const { html, botones } = tarjetaDeQueja(q, undefined, infoRevision(db, q.id))
   let m: { message_id: number }
   try {
     m = await envio.enviar(admin, html, botones)
@@ -335,7 +423,7 @@ export async function actualizarTarjetas(
           WHERE queja_id = ? AND ${SQL_ES_TARJETA} AND message_id IS NOT NULL`,
       )
       .all(id) as CopiaDeTarjeta[]
-    const { html, botones } = tarjetaDeQueja(q, o.nota)
+    const { html, botones } = tarjetaDeQueja(q, o.nota, infoRevision(db, id))
     await editar(copias, html, botones, o.envio, id)
   })
 }
@@ -597,7 +685,9 @@ export async function avisarAutores(
     // sin un `await` hasta reclamar.
     const f = avisosQueFaltan(db, leido.queja_id).find((a) => a.decision === leido.decision)
     if (!f) continue
-    const texto = avisoAlAutor(f.queja_id, f.hasta)
+    const texto = avisoAlAutor(f.queja_id, f.hasta, {
+      recortes: f.hasta === 'publicada' ? recortesDeRevision(db, f.queja_id) : 0,
+    })
     const tipo = `autor:${f.decision}`
     // Sin decir a quién: el destinatario sale de `ciudadanos` al mandarlo, y así
     // /olvidar y /borrar_mis_datos no dejan aquí su identidad.
@@ -620,6 +710,47 @@ export async function avisarAutores(
     }
   }
   return r
+}
+
+/** El `tipo` en `avisos` del aviso de una revisión automática que no avanza. */
+export const TIPO_REVISION_ATASCADA = 'revision-atascada'
+
+/**
+ * Avisa a cada administrador, una sola vez, de que la revisión automática de una
+ * queja no avanza: la queja sigue sin publicar, y la puede decidir él. Sin su
+ * texto: este mensaje no se vacía si su autor la retira.
+ */
+export async function avisarRevisionAtascada(
+  db: Db,
+  id: string,
+  o: { admins: number[]; envio: EnvioAdmin; fallos: number; error: string | null },
+): Promise<number> {
+  const texto =
+    `⚠️ La revisión automática de la queja ${id} no avanza: ` +
+    `${o.fallos === 1 ? '1 intento fallido' : `${o.fallos} intentos fallidos`}` +
+    `${o.error ? ` (el último, «${o.error}»)` : ''}. Sigue sin publicar: la puedes decidir ` +
+    `con los botones de su tarjeta (/revisar ${id}), o esperar al siguiente intento.`
+  return enSerie(id, async () => {
+    let avisados = 0
+    for (const admin of o.admins) {
+      if (!getQuejaViva(db, id)) break
+      const destinatario = comoAdmin(admin)
+      if (!reclamar(db, id, TIPO_REVISION_ATASCADA, destinatario)) continue
+      try {
+        const m = await o.envio.mensaje(admin, texto)
+        anotar(db, id, TIPO_REVISION_ATASCADA, destinatario, 'entregado', m.message_id)
+        avisados += 1
+      } catch (err) {
+        if (esRechazoDefinitivo(err)) {
+          anotar(db, id, TIPO_REVISION_ATASCADA, destinatario, 'rechazado', null)
+        } else {
+          soltar(db, id, TIPO_REVISION_ATASCADA, destinatario)
+        }
+        logger.warn('avisos-admin.revision-atascada', { queja: id, admin, err: String(err) })
+      }
+    }
+    return avisados
+  })
 }
 
 /**

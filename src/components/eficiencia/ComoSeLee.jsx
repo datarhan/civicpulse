@@ -69,12 +69,13 @@ export function ComoSeLee({ indicadores = [] }) {
           rango y la misma longitud: en columna dejaban el bloque el doble de
           alto y dos tercios del ancho en blanco. `auto-fit` los apila solo
           cuando no caben, sin necesitar una media query que un estilo inline no
-          puede llevar. */}
+          puede llevar. El `min(…, 100%)` es para la columna que queda sola: sin
+          él conservaba sus 260 px en una caja de 230 (320 px de pantalla). */}
       <dl
         style={{
           margin: '12px 0 0',
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(260px, 100%), 1fr))',
           gap: 16,
           alignItems: 'start',
         }}

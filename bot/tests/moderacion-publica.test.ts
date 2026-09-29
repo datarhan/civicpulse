@@ -216,6 +216,8 @@ describe('sólo lo publicado sale', () => {
 const NO_PUBLICOS: Record<string, string> = {
   'db/queries.ts:getQuejaViva': 'el autor y los administradores ven lo que no está publicado',
   'db/queries.ts:decidirModeracion': 'detecta la retirada del autor antes de decidir',
+  'db/queries.ts:quejasSinRevisar':
+    'la cola de la revisión automática: lo que aún no se ha publicado, para revisarlo',
   'db/queries.ts:SQL_PUBLICA': 'la definición',
   'services/rebarrio.ts:planearRebarrio': 'corrige datos internos, publicados o no',
   'services/rebarrio.ts:aplicarRebarrio': 'corrige datos internos, publicados o no',

@@ -3,6 +3,11 @@ import { readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 import { CATALOGUE } from '../src/i18n'
+import {
+  CLAVE_MEDICION,
+  DESCRIPCION_MOTIVO,
+  MOTIVOS_RETENCION,
+} from '../bot/src/services/moderacion-criterios'
 import { plazoDeResolucion, relojDelPlazo } from '../src/scraper/queja-router'
 
 /**
@@ -504,7 +509,7 @@ describe('la revisión antes de publicar', () => {
 
   it('una queja nace pendiente: publicar es una decisión', () => {
     expect(MIGRACIONES).toMatch(/ADD COLUMN moderacion TEXT NOT NULL DEFAULT 'pendiente'/)
-    expect(METODOLOGIA).toContain('Una persona la revisa antes de publicarla.')
+    expect(METODOLOGIA).toContain('Se revisa antes de publicarla.')
     expect(METODOLOGIA).toContain('no reescribe su texto')
     expect(AVISO).toContain('Revisión antes de publicar')
     // Y /quejas, en la cabecera que se ve con datos y sin ellos.
@@ -576,6 +581,61 @@ describe('la revisión antes de publicar', () => {
 
   it('la tarjeta que no llegó a nadie se reenvía: el bot arma la pasada', () => {
     expect(sinComentariosTs(lee('bot/src/index.ts'))).toMatch(/startReenvioTarjetas\(/)
+  })
+})
+
+/**
+ * La revisión automática (bot/src/services/moderacion.ts): un modelo lee cada
+ * queja antes de que la decida una persona, quita los nombres de otras personas
+ * y dice si tiene que verla alguien. Lo que la página promete de ella se lee de
+ * donde lo decide el código.
+ */
+describe('la revisión automática', () => {
+  const METODOLOGIA = plano('src/pages/Metodologia.jsx')
+  const AVISO = plano('src/pages/AvisoLegal.jsx')
+
+  it('la metodología publica, uno a uno y literales, los criterios que recibe el modelo', () => {
+    expect(MOTIVOS_RETENCION.length).toBeGreaterThan(5) // el control
+    for (const m of MOTIVOS_RETENCION) {
+      expect(METODOLOGIA, `/metodologia no publica el motivo «${m}»`).toContain(
+        DESCRIPCION_MOTIVO[m],
+      )
+    }
+  })
+
+  it('el aviso legal nombra a Gemini para el texto, con sus condiciones de pago', () => {
+    expect(AVISO).toContain(
+      'el texto lo lee también un modelo de lenguaje, la API Gemini de Google, con sus condiciones de pago',
+    )
+    expect(AVISO).toContain('no usan lo enviado para mejorar sus productos')
+    // Y así lo exige el código: sin GEMINI_NIVEL=pago no corre.
+    expect(lee('bot/src/services/moderacion-criterios.ts')).toMatch(
+      /GEMINI_NIVEL\?\.trim\(\) !== 'pago'/,
+    )
+  })
+
+  it('publicar sin una persona pasa por la medición: la política lo dice, y el código también', () => {
+    expect(METODOLOGIA).toContain(CLAVE_MEDICION)
+    // Ya no es de las que firma siempre una persona: es de las que se miden.
+    expect(METODOLOGIA).not.toContain('publicar una queja ciudadana. No porque una persona')
+    expect(sinComentariosTs(lee('bot/src/services/moderacion.ts'))).toMatch(
+      /decideAutomation\(\s*clasePublicacion\(congelado\)/,
+    )
+    expect(lee('scripts/check-automation.ts')).toMatch(/clasePublicacion\(/)
+  })
+
+  it('/quejas dice que una persona revisa cada queja mientras no haya medición, y sólo entonces', () => {
+    const { measurements } = JSON.parse(lee('.automation-measurements.json'))
+    const medida = measurements.some((m) => m.key === CLAVE_MEDICION)
+    const frase = 'una persona revisa cada queja antes de publicarla aquí'
+    // La medición es la que abre la publicación automática: el cambio que la
+    // registre tiene que cambiar también esta frase.
+    if (medida) expect(QUEJAS).not.toContain(frase)
+    else expect(QUEJAS).toContain(frase)
+  })
+
+  it('el bot arma la pasada de la revisión', () => {
+    expect(sinComentariosTs(lee('bot/src/index.ts'))).toMatch(/startRevisionCron\(/)
   })
 })
 

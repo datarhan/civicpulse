@@ -156,6 +156,22 @@
       "reason": "El revisor lee la nota del rótulo «acusación no contrastada» como si hablara de la cita impresa de al lado, y habla de otra. En f-2025-12-01-cit-66709b ese rótulo lo lleva la [1], del PSOE y con puerta hidden en finding-quote-provenance.json: su literal no se reproduce y en su lugar queda el hueco «Literal retenido». (La [2] también lo llevaba hasta que se reclasificó como valoración política el 29-09-2026; desde entonces se imprime.) La que cita el revisor es la [3], «Avui duem a ple una proposta d'acord que parteix d'una demanda ciutadana»: puerta toggle, se imprime con su propia pastilla «sin contraste en los datos — no es una acusación», y la nota no habla de ella. Es la lectura cruzada de la ficha aplanada que ya descartaron las entradas del 29-08, el 4-09 y el 20-09. Anclado en la cita [3]: la misma frase señalada en otra ficha sigue viva, porque en las retenidas que no son acusaciones ese señalamiento sería cierto. Comprobado el 29-09-2026.",
       "editor": "claude-opus-5.5",
       "at": "2026-09-29"
+    },
+    {
+      "route": "/hallazgos",
+      "quote": "la ficha no reproduce su literal —ni en la cita, donde queda a la vista el hueco «Literal retenido» con su motivo",
+      "anchor": "una piscina que ha comenzado en 2005",
+      "reason": "Lectura aplanada de f-2026-01-19-cit-3fd230. La nota habla de las citas [1] y [2], retenidas (puerta hidden en finding-quote-provenance.json), cuyo hueco «Literal retenido» queda a la vista; la que cita el revisor es la [0], del PSOE, con puerta toggle, que se imprime con su pastilla «sin contraste en los datos — no es una acusación», y la nota no habla de ella. En texto plano desaparece el recuadro punteado que separa los huecos de la cita impresa, así que el señalamiento nace de la maquetación aplanada, no del dato: es la lectura cruzada que ya descartaron las entradas del 29-08, el 4-09, el 20-09 y el 29-09 en otras fichas. Anclado en la cita [0]: la frase de la nota se repite en todas las fichas con una retenida, y en otra puede ser cierta. Comprobado contra pleno-findings.json y finding-quote-provenance.json el 29-09-2026.",
+      "editor": "claude-opus-5.5",
+      "at": "2026-09-29"
+    },
+    {
+      "route": "/hallazgos",
+      "quote": "la ficha no reproduce su literal —ni en la cita, donde queda a la vista el hueco «Literal retenido» con su motivo",
+      "anchor": "de tèrmics de la malla i del pavelló",
+      "reason": "Lectura aplanada de f-2026-01-19-cit-543cc1. La nota habla de las citas [1] y [3], retenidas (puerta hidden en finding-quote-provenance.json); las que cita el revisor son la [0] y la [2], con puerta toggle, que se imprimen con su pastilla «sin contraste en los datos — no es una acusación». El rótulo «Literal retenido» que el revisor les pega es el de los huecos de las retenidas, que en texto plano quedan contiguos a las citas impresas sin el recuadro que los separa. Misma lectura cruzada que la entrada de f-2026-01-19-cit-3fd230 de este mismo día. Anclado en la cita [0], que es la que no cambia si se firma el reanclaje de la [2] preparado junto a este descarte. Comprobado contra pleno-findings.json y finding-quote-provenance.json el 29-09-2026.",
+      "editor": "claude-opus-5.5",
+      "at": "2026-09-29"
     }
   ]
 }
