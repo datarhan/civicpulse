@@ -148,3 +148,77 @@ describe('los escalares de /laboratorio no se contradicen entre sí', () => {
     expect(jsx).toContain('con ≥1 afirmación analizada')
   })
 })
+
+describe('la ventana de /laboratorio: las tarjetas que la lista pinta', () => {
+  // El contador de la lista decía «46 de 45»: el numerador contaba las tarjetas
+  // FUERA DEL FEED y el total no. Ahora el total ES esa lista, y la página filtra
+  // la misma que se cuenta. Ver tests/laboratorio-contador.test.jsx, con las
+  // filas reales del 28-09-2026.
+  const fila = (articleId, articleDate, verdict = 'sin-datos') => ({
+    claim: {
+      articleId,
+      articleDate,
+      articleSource: 'Medio',
+      articleUrl: `https://medio.test/${articleId}`,
+      verbatim: `cita de ${articleId}`,
+    },
+    verification: { verdict },
+  })
+
+  it('cuenta una vez el artículo fuera del feed, aunque tenga varias afirmaciones', () => {
+    const s = pressLabSummary(
+      {
+        press: [{ id: 'p1', date: hace(1) }],
+        verified: [fila('o1', hace(2)), fila('o1', hace(2), 'parcial')],
+      },
+      AHORA,
+    )
+    expect(s.monitoredCount).toBe(2)
+    expect(s.fueraDelFeedCount).toBe(1)
+    expect(s.articulos.map((a) => a.id).sort()).toEqual(['o1', 'p1'])
+    expect(s.articulos.find((a) => a.id === 'o1')).toMatchObject({
+      orphan: true,
+      source: 'Medio',
+      link: 'https://medio.test/o1',
+    })
+  })
+
+  it('un artículo del feed con afirmaciones no se duplica como «fuera del feed»', () => {
+    const s = pressLabSummary(
+      { press: [{ id: 'p1', date: hace(1) }], verified: [fila('p1', hace(1))] },
+      AHORA,
+    )
+    expect(s.monitoredCount).toBe(1)
+    expect(s.fueraDelFeedCount).toBe(0)
+  })
+
+  it('lo que cae fuera de la ventana no cuenta, venga del feed o de las afirmaciones', () => {
+    const s = pressLabSummary(
+      {
+        press: [{ id: 'p1', date: hace(31) }],
+        verified: [fila('o1', hace(31)), fila('o2', undefined)],
+      },
+      AHORA,
+    )
+    expect(s.articulos).toEqual([])
+    expect(s.monitoredCount).toBe(0)
+    expect(s.fueraDelFeedCount).toBe(0)
+  })
+
+  it('una fecha ilegible no entra ni en la lista ni en el total', () => {
+    // La lista comparaba CADENAS y el total, números: «not-a-date» >= «2026-…» es
+    // cierto como cadena, así que esa tarjeta salía en la lista y no en el total.
+    const s = pressLabSummary(
+      {
+        press: [
+          { id: 'x', date: 'not-a-date' },
+          { id: 'p1', date: hace(1) },
+        ],
+        verified: [],
+      },
+      AHORA,
+    )
+    expect(s.articulos.map((a) => a.id)).toEqual(['p1'])
+    expect(s.monitoredCount).toBe(1)
+  })
+})
