@@ -59,11 +59,13 @@ export function PreguntasRegistradas({ data, panel, sinAncla = false }) {
 
       {/* auto-fit y no tres columnas fijas: la rejilla colapsa sola cuando no
           caben 280px por bloque, sin necesitar una media query que un estilo
-          inline no puede llevar. */}
+          inline no puede llevar. El `min(…, 100%)` es para la columna que queda
+          sola: sin él conservaba sus 280 px en una caja de 272 (320 px de
+          pantalla). */}
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(280px, 100%), 1fr))',
           gap: 14,
           alignItems: 'start',
         }}
