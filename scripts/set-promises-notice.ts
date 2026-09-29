@@ -66,16 +66,14 @@ async function main() {
   // Quien deriva de promises.json guarda un hash del fichero ENTERO, así que
   // hasta un aviso lo deja viejo, y `data-graph-frescura` se pone roja en la CI
   // (pasó con el primer uso de este CLI, el 28-09-2026). La lista sale del
-  // grafo, no de aquí. En UTC porque es donde reconstruye la CI, y
-  // `queja-contract-relations` depende del huso: en hora de Madrid mueve sus
-  // `monthsAfter` un par de horas sin que haya cambiado nada.
+  // grafo, no de aquí.
   const derivan = DATA_GRAPH.filter((n) => n.tier === 'derived')
     .filter((n) => n.reads.includes('promises.json'))
     .map((n) => n.id)
   if (derivan.length) {
     console.log(
       `[aviso] ${derivan.join(', ')} derivan de promises.json: ` +
-        '`TZ=UTC npm run refresh` y comitéalos junto a este cambio.',
+        '`npm run refresh` y comitéalos junto a este cambio.',
     )
   }
 }

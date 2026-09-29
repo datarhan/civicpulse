@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-28T18:58:33.258Z",
+  "generatedAt": "2026-09-29T05:11:47.357Z",
   "version": "1",
   "plenoId": "qz6weg",
   "plenoDate": "2025-12-01",
@@ -7943,6 +7943,37 @@
           "tenders",
           "tenders-ted"
         ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "qz6weg-185-acu-cb9c22",
+        "plenoId": "qz6weg",
+        "plenoDate": "2025-12-01",
+        "segmentIndex": 185,
+        "type": "valoracion_politica",
+        "speakerGroup": "PSOE",
+        "verbatim": "Me sorprende porque ya existe el Consejo Económico, y es donde están las asociaciones tanto de empresarios como de comerciantes.",
+        "context": "Me sorprende porque ya existe el Consejo Económico, y es donde están las asociaciones tanto de empresarios como de comerciantes. Incluso los propios partidos estáis ahí.",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "consejo económico"
+        },
+        "confidence": 0.77,
+        "reasoning": "Atribuye la existencia y composición de un órgano municipal concreto; puede verificarse en actas, reglamentos o composición oficial.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "qz6weg-185-acu-cb9c22",
+        "verdict": "sin-datos",
+        "summary": "La afirmación menciona la existencia del Consejo Económico y la participación de asociaciones de empresarios y comerciantes, pero los documentos presentados no hacen referencia directa a este consejo ni a su funcionamiento. Los contratos y acuerdos listados se centran en ayudas y subvenciones para a",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },

@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-09-28T07:54:32.262Z",
-  "composedAt": "2026-09-28T18:58:31.898Z",
+  "composedAt": "2026-09-29T05:11:46.205Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
@@ -42719,7 +42719,7 @@
         "plenoId": "k4olcs",
         "plenoDate": "2026-04-20",
         "segmentIndex": 19,
-        "type": "acusacion_publica",
+        "type": "afirmacion_numerica",
         "speakerGroup": null,
         "verbatim": "Se ha aprobado por este hecho, a vuestro favor, y 8 abstenciones Grupo Socialista, Partido Popular Vox Escalona y Podem",
         "context": "Bueno, pasemos a la votación de este punto. Se ha aprobado por este hecho, a vuestro favor, y 8 abstenciones Grupo Socialista, Partido Popular Vox Escalona y Podem",
@@ -42729,7 +42729,6 @@
           "countUnit": "abstenciones",
           "referencedEntity": "votación del punto"
         },
-        "accusationSubtype": "factual",
         "confidence": 0.84,
         "reasoning": "Es verificable porque atribuye un resultado de votación y un número de abstenciones; debería contrastarse con el acta o registro de votación del pleno.",
         "requiresHumanApproval": true
@@ -52385,7 +52384,7 @@
         "plenoId": "k4olcs",
         "plenoDate": "2026-04-20",
         "segmentIndex": 146,
-        "type": "acusacion_publica",
+        "type": "valoracion_politica",
         "speakerGroup": null,
         "verbatim": "nosotros podríamos no haber dado cuenta de este informe, el alcalde no está obligado a este informe",
         "context": "Bueno, hay que dar cuenta que yo voy a explicar dijo siempre, es importante nosotros podríamos no haber dado cuenta de este informe, el alcalde no está obligado a este informe, el alcalde os lo ha dado para que tengáis más conocimiento",
@@ -52393,7 +52392,6 @@
         "entities": {
           "referencedEntity": "este informe"
         },
-        "accusationSubtype": "factual",
         "confidence": 0.74,
         "reasoning": "Atribuye como hecho una obligación o no obligación del alcalde respecto a dar cuenta de un informe; es verificable contra la normativa o el expediente.",
         "requiresHumanApproval": true
@@ -96504,7 +96502,7 @@
         "plenoId": "19gax3o",
         "plenoDate": "2026-01-19",
         "segmentIndex": 186,
-        "type": "acusacion_publica",
+        "type": "valoracion_politica",
         "speakerGroup": null,
         "verbatim": "se había hecho una crítica política referente a la modificación de crédito",
         "context": "yo quería hablar en ese momento que no era así porque no había dicho se había hecho una crítica política referente a la modificación de crédito pero no hacía referencia a la movilización de votos",
@@ -96512,7 +96510,6 @@
         "entities": {
           "referencedEntity": "modificación de crédito"
         },
-        "accusationSubtype": "factual",
         "confidence": 0.74,
         "reasoning": "Atribuye a una intervención previa una crítica política sobre una modificación de crédito; puede verificarse revisando el acta o la transcripción completa del debate.",
         "requiresHumanApproval": true
@@ -120126,7 +120123,7 @@
         "plenoId": "qz6weg",
         "plenoDate": "2025-12-01",
         "segmentIndex": 185,
-        "type": "acusacion_publica",
+        "type": "valoracion_politica",
         "speakerGroup": "PSOE",
         "verbatim": "Me sorprende porque ya existe el Consejo Económico, y es donde están las asociaciones tanto de empresarios como de comerciantes.",
         "context": "Me sorprende porque ya existe el Consejo Económico, y es donde están las asociaciones tanto de empresarios como de comerciantes. Incluso los propios partidos estáis ahí.",
@@ -120134,7 +120131,6 @@
         "entities": {
           "referencedEntity": "consejo económico"
         },
-        "accusationSubtype": "factual",
         "confidence": 0.77,
         "reasoning": "Atribuye la existencia y composición de un órgano municipal concreto; puede verificarse en actas, reglamentos o composición oficial.",
         "requiresHumanApproval": true
