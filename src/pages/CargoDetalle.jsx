@@ -641,7 +641,7 @@ export default function CargoDetalle() {
   const { official, former } = findOfficial(officialsSnap.data, slug)
   if (!official) {
     return (
-      <div style={{ padding: '28px 28px 48px', maxWidth: 920, margin: '0 auto' }}>
+      <div data-no-resuelta style={{ padding: '28px 28px 48px', maxWidth: 920, margin: '0 auto' }}>
         <Link
           to="/cargos"
           style={{

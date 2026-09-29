@@ -323,7 +323,11 @@ export default function PlenoDetalle() {
   }
   if (!pleno) {
     return (
-      <div className="cp-page" style={{ padding: '24px', maxWidth: 900, margin: '0 auto' }}>
+      <div
+        className="cp-page"
+        data-no-resuelta
+        style={{ padding: '24px', maxWidth: 900, margin: '0 auto' }}
+      >
         <SectionHead eyebrow="Plenos" title={t('plenoDetail.notFound')} />
         <Link to="/plenos" style={{ color: 'var(--civic)', fontSize: 'var(--fs-aux)' }}>
           {t('plenoDetail.back')}
@@ -353,7 +357,10 @@ export default function PlenoDetalle() {
       label: t('plenoDetail.findings'),
       count: findings.length > 0 ? findings.length : extraida ? 0 : null,
     },
-    { key: 'transcripcion', label: t('plenoDetail.transcript'), count: null },
+    // Sin `data-pestana` (ver el botón): la revisión lectora pulsa las demás
+    // para leerlas, y ésta no. Es el acta hablada, no prosa nuestra, y pesa lo
+    // que la sesión entera.
+    { key: 'transcripcion', label: t('plenoDetail.transcript'), count: null, lectora: false },
   ]
 
   return (
@@ -455,6 +462,10 @@ export default function PlenoDetalle() {
               key={tb.key}
               type="button"
               onClick={() => setTab(tb.key)}
+              // Las pestañas se montan al pulsarlas, así que una carga sólo ve
+              // el resumen. `review:surfaces` las abre por este atributo, que no
+              // cambia con el idioma (estado `pestanas`, reader-review.ts).
+              data-pestana={tb.lectora === false ? undefined : tb.key}
               className="mono"
               style={{
                 appearance: 'none',
