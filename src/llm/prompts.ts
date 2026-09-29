@@ -1429,7 +1429,10 @@ Emit the verification JSON.
 
 // ─── Promise discovery (auto-curator Phase 1) ──────────────────────────────
 // v2 (2026-09-23): cada fuente trae un extracto de su cuerpo; antes, sólo el titular.
-export const PROMISE_DISCOVERY_PROMPT_VERSION = 'promise-discovery-v2'
+// v3 (2026-09-28): la cita son palabras del partido —entrecomilladas en la fuente,
+// o el texto de una nota del propio Ayuntamiento—, nunca el titular ni la frase
+// del periodista. La grounding lo exige además (`quoteIsPartyWords`).
+export const PROMISE_DISCOVERY_PROMPT_VERSION = 'promise-discovery-v3'
 
 export interface PromiseDiscoveryInput {
   existingTitles: string[]
@@ -1450,7 +1453,11 @@ ya seguidas.
 Para cada promesa nueva y clara, emite:
 - party: uno de [${ALLOWED_PARTIES.join(', ')}] (nunca inventes otro)
 - title: título breve y neutral (4-200 chars)
-- quote: cita VERBATIM del compromiso (20-1500 chars, sin resumir ni reescribir)
+- quote: palabras LITERALES del partido que expresan el compromiso (20-1500 chars, sin
+  resumir ni reescribir): una frase que la fuente pone ENTRE COMILLAS en boca del
+  partido o de uno de sus cargos, o el texto de una nota del propio Ayuntamiento
+  (ribarroja.es). NUNCA el titular ni la narración del periodista: si la noticia sólo
+  cuenta el compromiso con sus palabras, no hay cita que emitir.
 - sourceUrl: URL EXACTA de la lista que te doy (NUNCA inventes URLs)
 - publisher: fuente (p.ej. "Levante-EMV", "Ayuntamiento Riba-roja")
 - madeAt: fecha ISO YYYY-MM-DD (la de la fuente; nunca futura)

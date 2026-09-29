@@ -783,6 +783,10 @@ export function PromiseMiniBoard({ payload }) {
   // not a slug (operator review 2026-07-30: raw ids read as "not enough
   // data"). Unresolved ids fall back to the slug — honest, still linked.
   const byId = new Map((promises.data?.items ?? []).map((p) => [p.id, p]))
+  // A withdrawn promise says so, with its date and reason, instead of a slug
+  // linking to a card that is gone. Never its quote: it was withdrawn because
+  // the words were not the party's (see `retractions` in promises.ts).
+  const retirada = new Map((promises.data?.retractions ?? []).map((t) => [t.promiseId, t]))
   return (
     <Card>
       <SectionHead title="Promesas referenciadas" />
@@ -827,6 +831,11 @@ export function PromiseMiniBoard({ payload }) {
                       </span>
                     </span>
                   </>
+                ) : retirada.has(id) ? (
+                  <span style={{ display: 'block', color: 'var(--ink50)', lineHeight: 1.45 }}>
+                    Promesa retirada el {String(retirada.get(id).retractedAt).slice(0, 10)}:{' '}
+                    {retirada.get(id).reason}
+                  </span>
                 ) : (
                   <span style={{ color: 'var(--ink50)' }}>{id} →</span>
                 )}

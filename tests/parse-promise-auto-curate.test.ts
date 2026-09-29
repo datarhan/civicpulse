@@ -5,6 +5,7 @@ import {
   selectPromiseDrafts,
   selectStatusDrafts,
   statusTransitionKey,
+  retractedDraftIds,
   AUTO_PUBLISH_MIN_CONFIDENCE,
 } from '../src/scraper/promise-auto-curate'
 import type { DraftNewPromise, DraftStatusChange, Grounding } from '../src/scraper/promise-draft'
@@ -271,5 +272,31 @@ describe('promise-auto-curate — selectStatusDrafts', () => {
     expect(out.autoPublish).toHaveLength(0)
     expect(out.queue).toHaveLength(0)
     expect(out.skipped[0].reason).toBe('frozen')
+  })
+})
+
+describe('retractedDraftIds — a published retraction is also a tombstone', () => {
+  it('maps each withdrawn auto-published card back to the draft it came from', () => {
+    // `newPromiseFromDraft` turns `dnp-X` into `ac-X`; the tombstone goes back.
+    expect(
+      retractedDraftIds([
+        { promiseId: 'ac-psoe-pl3lsq' },
+        { promiseId: 'psoe-metro-l9-agosto' },
+        { promiseId: 'ac-psoe-1v0679f' },
+      ]),
+    ).toEqual(['dnp-psoe-pl3lsq', 'dnp-psoe-1v0679f'])
+    expect(retractedDraftIds(undefined)).toEqual([])
+  })
+
+  it('selectPromiseDrafts then skips the withdrawn draft as already seen', () => {
+    const seen = new Set(retractedDraftIds([{ promiseId: 'ac-psoe-pl3lsq' }]))
+    const out = selectPromiseDrafts({
+      candidates: [draft('dnp-psoe-pl3lsq')],
+      existingPromises: [],
+      seenDraftIds: seen,
+      frozen: false,
+    })
+    expect(out.autoPublish).toHaveLength(0)
+    expect(out.skipped).toEqual([{ draftId: 'dnp-psoe-pl3lsq', reason: 'duplicate' }])
   })
 })
