@@ -1,9 +1,8 @@
-import { describe, it, expect, beforeAll, beforeEach } from 'vitest'
+import { describe, it, expect, beforeAll } from 'vitest'
 import { readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { render } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
-import { installFetchMock } from './setup/mockFetch'
 import { ClaimLedger } from '../src/components/ClaimLedger'
 import { gateForDisplay, sortSignalFirst } from '../src/lib/claim-ledger'
 import { CORPUS_IDS, corpusReales } from '../src/scraper/claim-verdicts'
@@ -74,18 +73,6 @@ function fuentesNombradas(explicacion) {
 }
 
 /**
- * El hook interno sigue corriendo aunque se pasen `items`: se le sirve un
- * manifiesto vacío para que su fetch resuelva sin ruido.
- */
-function servirManifiestoVacio() {
-  installFetchMock({
-    '/data/pleno-claims/index.json': { plenos: [], totals: { items: 0, byVerdict: {} } },
-  })
-}
-
-beforeEach(servirManifiestoVacio)
-
-/**
  * Una tarjeta, leída por partes. La forma que se da por hecha —cabecera con la
  * cita, explicación, evidencia si la hay, y la línea de fuentes al final— se
  * comprueba en cada tarjeta: si cambiara, la prueba se rompe en vez de leer
@@ -127,7 +114,6 @@ function pintarYLeer(items, limit) {
 let leidas = []
 
 beforeAll(() => {
-  servirManifiestoVacio()
   leidas = trozos.flatMap((trozo) => {
     const filas = sortSignalFirst(gateForDisplay(trozo.items))
     const tarjetas = pintarYLeer(trozo.items, trozo.items.length)

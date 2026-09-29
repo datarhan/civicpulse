@@ -1,9 +1,8 @@
-import { describe, it, expect, beforeEach } from 'vitest'
+import { describe, it, expect } from 'vitest'
 import { readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { render } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
-import { installFetchMock } from './setup/mockFetch'
 import { ClaimLedger } from '../src/components/ClaimLedger'
 import { gateForDisplay } from '../src/lib/claim-ledger'
 import {
@@ -53,14 +52,6 @@ const CHARLA = '10yl550-323-cit-fb13f0'
  * es de lo que trata la cita, no de la tarea del modelo.
  */
 const EXPLICACION = '1tgd1h4-308-cit-f9bd00'
-
-beforeEach(() => {
-  // El hook interno sigue corriendo aunque se pasen `items`: se le sirve un
-  // manifiesto vacío para que su fetch resuelva sin ruido.
-  installFetchMock({
-    '/data/pleno-claims/index.json': { plenos: [], totals: { items: 0, byVerdict: {} } },
-  })
-})
 
 function pintar(it) {
   return render(
