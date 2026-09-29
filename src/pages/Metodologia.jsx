@@ -14,6 +14,7 @@ import { authorshipBreakdown } from '../scraper/finding-authorship'
 import { STATUS_TIER } from '../scraper/promise-auto-curate'
 import { TRINQUETE } from '../scraper/trinquete'
 import { RADIO_MAXIMO_M } from '../scraper/situar-barrio'
+import { AMBITOS_DEL_FESTIVO, FESTIVOS_DE_LA_SEDE } from '../scraper/queja-router'
 
 /*
  * prosa-describe: indicadores.json, dea.json, geo.json
@@ -178,6 +179,65 @@ function useQuoteContrastDisclosure() {
  * 67 lecturas de la página vieja de currículos (19-06 a 1-09-2026, siempre los
  * mismos 17), que son historia y no pueden cambiar.
  */
+const ROTULO_DEL_AMBITO = {
+  nacional: 'nacionales',
+  autonomico: 'de la Comunitat Valenciana',
+  local: 'locales de Riba-roja de Túria',
+}
+
+/** «1 de enero»: un día «AAAA-MM-DD» sin el año, que ya lo dice la línea. */
+function diaYMes(fecha) {
+  const [a, m, d] = fecha.split('-').map(Number)
+  return new Date(a, m - 1, d).toLocaleDateString('es-ES', { day: 'numeric', month: 'long' })
+}
+
+/**
+ * Los días inhábiles con los que se prorroga el último día de un plazo, leídos de
+ * la misma tabla que usa el cálculo (`FESTIVOS_DE_LA_SEDE`, en queja-router).
+ * Escritos a mano aquí, un año añadido allí no aparecería, y uno retirado se
+ * seguiría prometiendo en el contrato editorial. Cada disposición, con su enlace:
+ * es lo que un lector necesita para comprobar un día.
+ */
+function CalendarioDeLaSede() {
+  const anios = Object.keys(FESTIVOS_DE_LA_SEDE)
+    .map(Number)
+    .sort((a, b) => a - b)
+  if (anios.length === 0) return null
+  return (
+    <ul style={{ margin: '6px 0 0', paddingLeft: 20 }}>
+      {anios.map((anio) => {
+        const dias = [...FESTIVOS_DE_LA_SEDE[anio]].sort((a, b) => a.fecha.localeCompare(b.fecha))
+        const fuentes = [...new Map(dias.map((f) => [f.fuente.url, f.fuente])).values()]
+        return (
+          <li key={anio}>
+            <strong>{anio}.</strong>{' '}
+            {AMBITOS_DEL_FESTIVO.map((ambito) => {
+              const delAmbito = dias.filter((f) => f.ambito === ambito)
+              return (
+                <span key={ambito}>
+                  Festivos {ROTULO_DEL_AMBITO[ambito]}:{' '}
+                  {delAmbito.map((f) => `${diaYMes(f.fecha)} (${f.nombre})`).join(', ')}.{' '}
+                </span>
+              )
+            })}
+            Fuentes:{' '}
+            {fuentes.map((f, i) => (
+              <span key={f.url}>
+                {i > 0 ? '; ' : ''}
+                <a href={f.url} style={{ color: 'var(--civic)' }}>
+                  {f.disposicion}
+                </a>{' '}
+                ({f.diario})
+              </span>
+            ))}
+            .
+          </li>
+        )
+      })}
+    </ul>
+  )
+}
+
 function MudanzaDelPortal() {
   const { data } = useOfficials()
   const officials = data?.officials ?? []
@@ -806,14 +866,25 @@ export default function Metodologia() {
             tres meses; una petición de transparencia, un mes (art. 20 de la Ley 19/2013). Los meses
             se cuentan de fecha a fecha en el calendario de la sede, que es la hora de Madrid (arts.
             30.4 y 31.2 de la LPACAP): registrada el 28 de septiembre, vence el 28 de diciembre, y
-            ese último día entero es todavía plazo. Si pasa sin respuesta en un procedimiento de
-            silencio negativo, desde las 00:00 del día siguiente la queja pasa a «silencio
-            administrativo» —un estado legal, no un juicio sobre nadie— y puede prepararse la
-            plantilla para acudir al Síndic de Greuges de la Comunitat Valenciana. Cuando ese último
-            día es inhábil, la ley lo prorroga al primer día hábil siguiente (art. 30.5), y el
-            cálculo automático todavía no aplica esa prórroga, porque no tiene el calendario de días
-            inhábiles: si el plazo acaba en fin de semana o festivo, puede marcar el silencio antes
-            de tiempo.
+            ese último día entero es todavía plazo. Cuando ese último día es inhábil —sábado,
+            domingo o festivo—, el plazo se prorroga al primer día hábil siguiente (art. 30.5), y
+            así lo cuenta el cálculo: registrada el 14 de agosto de 2026, tres meses acaban el
+            sábado 14 de noviembre, y el plazo, el lunes 16. Si pasa sin respuesta en un
+            procedimiento de silencio negativo, desde las 00:00 del día siguiente la queja pasa a
+            «silencio administrativo» —un estado legal, no un juicio sobre nadie— y puede prepararse
+            la plantilla para acudir al Síndic de Greuges de la Comunitat Valenciana.
+          </li>
+          <li>
+            <strong>Los días inhábiles son los de la sede.</strong> Además de los sábados y los
+            domingos, los festivos nacionales y autonómicos que rigen en la Comunitat Valenciana y
+            las dos fiestas locales de Riba-roja de Túria (arts. 30.2 y 30.7 de la LPACAP). Se
+            copian a mano, año a año, de las disposiciones que los declaran, y cada día cita la
+            suya; un año se añade entero o no se añade:
+            <CalendarioDeLaSede />
+            Si un plazo acaba en un año cuyo calendario todavía no está aquí, no se sabe si su
+            último día se prorroga, y el cálculo no lo da por vencido: la ficha de la queja da el
+            último día «o el primer día hábil siguiente», sin contar días, y el bot no la pasa a
+            silencio hasta que ese año se añade.
           </li>
         </ol>
         <ul style={{ margin: '10px 0 0', paddingLeft: 20 }}>
@@ -1281,7 +1352,13 @@ export default function Metodologia() {
             </strong>{' '}
             (nunca sube ni introduce un veredicto nuevo). El resultado es más conservador: retira
             afirmaciones que el trazado de datos abiertos no atestigua, dejando el motivo verbatim
-            en el overlay. Nunca marca <em>contradicho</em>.
+            en el overlay. Nunca marca <em>contradicho</em>. Su razonamiento, recortado, es la
+            explicación que la tarjeta de la declaración enseña bajo la cita. En la corrida del 2 de
+            agosto de 2026 una parte de esas explicaciones no hablaba de la declaración sino del
+            encargo del propio modelo («Task completed: reasoned in Spanish…»): la tarjeta no las
+            imprime y dice «Explicación retirada». Desde finales de septiembre de 2026 el motor no
+            juzga sobre un razonamiento así, ni sobre uno vacío —la declaración conserva su
+            veredicto y se vuelve a intentar—, y el overlay no deja escribirlo.
           </li>
           <li>
             {/* Sin cuantificador de entrada: la cifra exacta viene justo
@@ -1842,14 +1919,27 @@ export default function Metodologia() {
             prensa publica en <code>crossChecked</code> todos los documentos municipales contra los
             que se cruzaron sus citas, los respalden o no: <strong>ningún</strong> paso de este
             verificador comprueba que un expediente sostenga una frase. Los cruces son coincidencias
-            de importe, de cifra contra la última serie publicada o de palabras en un título — la
-            única fila de evidencia del laboratorio a día de hoy empareja un contrato del Plan de
-            Movilidad Urbana Sostenible con una noticia sobre 61.000 € en artes escénicas. Hasta el
-            5 de agosto de 2026 ese campo se llamaba <code>corroboration</code> con exactamente el
+            de importe, de cifra contra la última serie publicada o de palabras en un título — el 5
+            de agosto de 2026, la única fila de evidencia del laboratorio emparejaba un contrato del
+            Plan de Movilidad Urbana Sostenible con una noticia sobre 61.000 € en artes escénicas.
+            Hasta ese mismo día el campo se llamaba <code>corroboration</code> con exactamente el
             mismo contenido, igual que en los hallazgos de pleno. Se renombró sin ninguna fila
             publicada dentro, así que aquí no cambió ninguna afirmación; el cambio es incompatible
             para quien leyera el fichero. El campo <code>contradiction</code> sólo admite documentos
             que el verificador marcó como incompatibles con la cita.
+          </li>
+          <li>
+            <strong>
+              «Coincide con datos municipales» lo enciende un veredicto, no un documento.
+            </strong>{' '}
+            En las tarjetas del laboratorio, ese indicador sólo se enciende (●) cuando alguna
+            afirmación del titular, cotejada contra los datos, ha salido «Verificado». El círculo
+            vacío (○) quiere decir que se cotejó alguna y ninguna salió «Verificado»; «sin
+            comprobar» (–), que no se cotejó ninguna, porque del titular no se extrajo ninguna
+            afirmación o porque para las extraídas no hay datos contra los que cotejarlas. Antes
+            bastaba cualquier documento cotejado, y el 28 de septiembre de 2026 una nota municipal
+            sobre la sensorización de contenedores salía en verde por un contrato de pérgolas de
+            131.336 € que el verificador sólo había marcado «Parcial».
           </li>
           <li>
             <strong>Severity crítico exige una contradicción.</strong> El validador rechaza un

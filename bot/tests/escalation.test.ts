@@ -7,12 +7,16 @@ import {
   type NewQuejaInput,
   autorTelegram,
 } from '../src/db/queries'
-import { buildSindicTemplate, renderSindicMarkdown, renderSindicHtml } from '../src/services/sindic'
+import {
+  buildSindicTemplate,
+  motivoParaNoEscalar,
+  renderSindicMarkdown,
+  renderSindicHtml,
+} from '../src/services/sindic'
 import { checkSilencio } from '../src/services/cron'
 import { routeUsingLocalOfficials } from '../src/services/router'
 import type { AvisosHitos } from '../src/services/avisos-hitos'
 import { creaPublicada } from './helpers/publicada'
-import { marcaDeAhora } from './helpers/marca'
 
 function seed(db: Db, overrides: Partial<NewQuejaInput> = {}) {
   return creaPublicada(db, {
@@ -27,11 +31,23 @@ function seed(db: Db, overrides: Partial<NewQuejaInput> = {}) {
   })
 }
 
+/**
+ * La «Fecha de Registro» de un recibo: las 11:00 del jueves 15-01-2026 en Madrid
+ * (UTC sin la Z, como la guarda el bot). Tres meses acaban el miércoles 15 de
+ * abril y uno el domingo 15 de febrero, que pasa al lunes 16 (art. 30.5).
+ *
+ * Era la hora a la que corría la prueba (`marcaDeAhora`). Desde que un año sin
+ * calendario de días inhábiles no se cuenta, eso caducaba solo: registrada a
+ * partir del 1-10-2026, el plazo acaba en 2027, que todavía no está en la tabla,
+ * y el silencio ya no se decide.
+ */
+const REGISTRO = '2026-01-15 10:00:00'
+
 function register(db: Db, id: string, entryNumber = '2026-RE-0001') {
   setState(db, id, 'registrada', {
     entry_number: entryNumber,
     csv: 'ABC123',
-    registered_at: marcaDeAhora(),
+    registered_at: REGISTRO,
   })
 }
 
@@ -107,6 +123,27 @@ describe('sindic — template renderer', () => {
     const t = buildSindicTemplate(row, routing, now)
     expect(t.diasTranscurridos).toBeGreaterThanOrEqual(94)
     expect(t.diasTranscurridos).toBeLessThanOrEqual(96)
+  })
+
+  it('da el último día del plazo, el prorrogado si caía en inhábil (art. 30.5)', () => {
+    // 12:00 del viernes 14-08-2026 en Madrid: tres meses acaban el sábado 14 de
+    // noviembre, y el plazo, el lunes 16. El escrito no puede fechar el silencio
+    // un día antes que el bot que lo declaró.
+    const q = seed(db)
+    register(db, q.id)
+    db.prepare('UPDATE quejas SET registered_at = ? WHERE id = ?').run('2026-08-14 10:00:00', q.id)
+    const row = db.prepare('SELECT * FROM quejas WHERE id = ?').get(q.id) as typeof q
+    const routing = routeUsingLocalOfficials({
+      title: q.title,
+      detail: q.detail,
+      category: q.category as never,
+    })
+    const md = renderSindicMarkdown(
+      buildSindicTemplate(row, routing, new Date('2026-11-20T10:00:00Z')),
+    )
+    expect(md).toMatch(/concluyó el lunes 16 de noviembre de 2026/)
+    expect(md).toMatch(/el sábado 14 de noviembre de 2026 era inhábil/)
+    expect(md).toMatch(/art\. 30\.5 LPACAP/)
   })
 
   it('renders a valid HTML document', () => {
@@ -294,6 +331,22 @@ describe('cron — el silencio, al acabar el último día en Madrid', () => {
     })
   })
 
+  it('si el último día es inhábil, el silencio espera al primer día hábil (art. 30.5)', () => {
+    enCadaZona((db, hitos) => {
+      // 12:00 del viernes 14-08-2026 en Madrid: tres meses acaban el sábado
+      // 14-11-2026, y el plazo, el lunes 16. Hasta el 29-09-2026 pasaba a
+      // silencio el domingo 15. En noviembre Madrid va a UTC+1.
+      const q = registradaEl(db, '2026-08-14 10:00:00')
+      const domingo = checkSilencio(db, hitos, new Date('2026-11-15T12:00:00Z'))
+      expect(domingo.checked).toBe(1)
+      expect(domingo.transitioned, 'silencio el domingo, con el plazo prorrogado').toEqual([])
+      const lunes = checkSilencio(db, hitos, new Date('2026-11-16T22:59:00Z')) // 23:59 del lunes
+      expect(lunes.transitioned, 'silencio en el último día prorrogado').toEqual([])
+      const martes = checkSilencio(db, hitos, new Date('2026-11-16T23:00:00Z')) // 00:00 del martes
+      expect(martes.transitioned.map((r) => r.id)).toEqual([q.id])
+    })
+  })
+
   it('cuenta desde el día de la sede en que entró, no desde el de UTC', () => {
     enCadaZona((db, hitos) => {
       // 00:30 del 31 de mayo en Madrid: vence el 31 de agosto, no el 30.
@@ -314,6 +367,104 @@ describe('cron — el silencio, al acabar el último día en Madrid', () => {
       expect(r.checked).toBe(1)
       expect(r.transitioned).toEqual([])
       expect(r.sinFechaLegible).toEqual([q.id])
+      expect(r.sinCalendario).toEqual([])
     })
+  })
+})
+
+/**
+ * Sin el calendario del año en que acaba el plazo, el bot no decide el silencio.
+ *
+ * El art. 30.5 prorroga al primer día hábil un último día inhábil, y un año sin
+ * calendario no es un año sin festivos: tomarlo así pasaría a silencio, el día de
+ * Año Nuevo, una queja cuyo plazo sigue abierto, al lado del nombre de un cargo.
+ * La queja no se evalúa y se dice, aparte de las de fecha ilegible: las dos
+ * piden cosas distintas a quien lo lea (corregir un registro, añadir un año).
+ */
+describe('cron — sin el calendario del año, no hay silencio', () => {
+  let db: Db
+  beforeEach(() => {
+    db = openDb(':memory:')
+  })
+  /** Una queja registrada con la marca que guardaría el bot (UTC, sin la Z). */
+  function registradaEl(marca: string) {
+    const q = seed(db)
+    register(db, q.id)
+    db.prepare('UPDATE quejas SET registered_at = ? WHERE id = ?').run(marca, q.id)
+    return q
+  }
+
+  it('pasado el día nominal, no pasa a silencio: no se evalúa, y lo dice', async () => {
+    // Tres meses desde el 15-01-2099 acaban el 15-04-2099 o el primer hábil
+    // siguiente, y 2099 no tiene calendario: el 1 de mayo no se sabe.
+    const q = registradaEl('2099-01-15 10:00:00')
+    const hitos = fakeHitos()
+    const r = checkSilencio(db, hitos, new Date('2099-05-01T10:00:00Z'))
+    expect(r.checked).toBe(1)
+    expect(r.transitioned).toEqual([])
+    expect(r.sinCalendario).toEqual([{ id: q.id, anio: 2099 }])
+    expect(r.sinFechaLegible, 'no es una fecha ilegible: la fecha se lee bien').toEqual([])
+    expect(await r.avisos).toEqual({ avisadas: 0, fallidas: 0 })
+    const fila = db.prepare('SELECT state FROM quejas WHERE id = ?').get(q.id) as { state: string }
+    expect(fila.state).toBe('registrada')
+  })
+
+  it('antes del día nominal está en plazo seguro, y no hay nada que decir todavía', () => {
+    // La prórroga sólo alarga el plazo: el 10 de abril sigue abierto con o sin
+    // calendario, así que ni pasa a silencio ni se cuenta como no evaluada.
+    registradaEl('2099-01-15 10:00:00')
+    const r = checkSilencio(db, fakeHitos(), new Date('2099-04-10T10:00:00Z'))
+    expect(r.checked).toBe(1)
+    expect(r.transitioned).toEqual([])
+    expect(r.sinCalendario).toEqual([])
+  })
+})
+
+/**
+ * /escalar lleva al Síndic un escrito que afirma que «ha operado el silencio».
+ *
+ * Aceptaba una queja `registrada` «con el plazo vencido» sin mirar el plazo: el
+ * mensaje lo pedía y el código no lo comprobaba, así que podía salir hacia el
+ * Síndic un escrito que daba por vencido un plazo abierto. Ahora pregunta a la
+ * misma cuenta que el bot y las páginas (`relojDelPlazo`).
+ */
+describe('/escalar — sólo con el plazo vencido, con la misma cuenta', () => {
+  let db: Db
+  beforeEach(() => {
+    db = openDb(':memory:')
+  })
+  function registradaEl(marca: string) {
+    const q = seed(db)
+    register(db, q.id)
+    db.prepare('UPDATE quejas SET registered_at = ? WHERE id = ?').run(marca, q.id)
+    return db.prepare('SELECT * FROM quejas WHERE id = ?').get(q.id) as typeof q
+  }
+  const rutaDe = (q: { title: string; detail: string; category: string }) =>
+    routeUsingLocalOfficials({ title: q.title, detail: q.detail, category: q.category as never })
+
+  it('una registrada con el plazo abierto no se escala; vencido, sí', () => {
+    // Tres meses desde el viernes 14-08-2026 acaban el sábado 14-11, y el plazo,
+    // el lunes 16: el domingo sigue abierto.
+    const q = registradaEl('2026-08-14 10:00:00')
+    expect(motivoParaNoEscalar(q, rutaDe(q), new Date('2026-11-15T12:00:00Z'))).toMatch(
+      /sigue abierto: el último día es el lunes 16 de noviembre de 2026/,
+    )
+    expect(motivoParaNoEscalar(q, rutaDe(q), new Date('2026-11-16T23:00:00Z'))).toBeNull()
+  })
+
+  it('sin el calendario del año no se puede afirmar que venció', () => {
+    const q = registradaEl('2099-01-15 10:00:00')
+    const motivo = motivoParaNoEscalar(q, rutaDe(q), new Date('2099-05-01T10:00:00Z'))
+    expect(motivo).toMatch(/calendario de días inhábiles de 2099/)
+  })
+
+  it('una en silencio se escala; una sin registrar, no', () => {
+    const q = registradaEl('2099-01-15 10:00:00')
+    const enSilencio = { ...q, state: 'silencio_negativo' as const }
+    expect(motivoParaNoEscalar(enSilencio, rutaDe(q), new Date('2099-05-01T10:00:00Z'))).toBeNull()
+    const capturada = { ...q, state: 'capturada' as const }
+    expect(motivoParaNoEscalar(capturada, rutaDe(q), new Date('2099-05-01T10:00:00Z'))).toMatch(
+      /capturada/,
+    )
   })
 })

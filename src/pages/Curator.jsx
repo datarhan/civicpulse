@@ -654,7 +654,7 @@ export default function Curator() {
               fichas no citan ni un literal que la puerta mostraría, y el
               firmante que aparece en cada una dice quién tomó la excepción».
               Dejó de ser cierto el 27-08-2026 (`citaRetenida`, en
-              PlenoFindings.jsx): la ficha obedece la misma puerta que el
+              src/lib/cita-retenida.js): la ficha obedece la misma puerta que el
               registro, la promueva quien la promueva. */}
           La puerta editorial de <code>claim-public-gate.ts</code> retiene las acusaciones públicas
           que el verificador no pudo contrastar, y desde el 27-08-2026 las retiene también en{' '}

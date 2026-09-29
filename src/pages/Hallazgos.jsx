@@ -14,9 +14,9 @@ import {
   ListaDeCotejos,
   QuoteProvenanceMark,
   QuoteProvenanceNote,
-  citaRetenida,
   CitaRetenida,
 } from '../components/PlenoFindings'
+import { citaRetenida } from '../lib/cita-retenida'
 import { usePlenoFindings, SEVERITY_LABEL, SEVERITY_TONE } from '../hooks/usePlenoFindings'
 import { useFindingQuoteProvenance, provenanceFor } from '../hooks/useFindingQuoteProvenance'
 import { authorshipBreakdown } from '../scraper/finding-authorship'

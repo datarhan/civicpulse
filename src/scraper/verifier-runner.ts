@@ -172,7 +172,10 @@ export function makeEngineVerifier(
         schema: EngineReasoningSchema,
         input: { claimId: claim.id },
       })
-      return r?.reasoning ?? ''
+      // Como la extracción de abajo: una llamada caída no es un razonamiento.
+      // `?? ''` lo convertía en uno vacío, y la extracción juzgaba sobre nada.
+      if (!r) throw new Error('engine reason returned no reasoning')
+      return r.reasoning
     },
     extractFn: async (reasoning, claim, candidates) => {
       const r = await callLLM({

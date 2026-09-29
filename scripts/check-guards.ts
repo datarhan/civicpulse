@@ -48,6 +48,7 @@ import {
   wiringFor,
   type InjectionVerdict,
 } from '../src/scraper/guard-audit'
+import { citaRetenida } from '../src/lib/cita-retenida.js'
 
 interface GuardRow {
   name: string
@@ -489,7 +490,7 @@ const INJECTIONS: Array<{
         readFileSync(resolve(ROOT, 'public/data/finding-quote-provenance.json'), 'utf8'),
       ) as { quotes: Record<string, Array<{ gate?: string }>> }
       for (const [findingId, veredictos] of Object.entries(prov.quotes ?? {})) {
-        const idx = veredictos.findIndex((q) => q.gate === 'hidden')
+        const idx = veredictos.findIndex((q) => citaRetenida(q))
         if (idx < 0) continue
         const f = d.items?.find((x: { id: string }) => x.id === findingId)
         const texto = f?.quotes?.[idx]?.text
