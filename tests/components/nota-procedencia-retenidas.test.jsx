@@ -27,12 +27,8 @@ import { render, cleanup, waitFor } from '@testing-library/react'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
-import {
-  FindingCard,
-  QuoteProvenanceNote,
-  citaRetenida,
-  quoteMarks,
-} from '../../src/components/PlenoFindings'
+import { FindingCard, QuoteProvenanceNote, quoteMarks } from '../../src/components/PlenoFindings'
+import { citaRetenida } from '../../src/lib/cita-retenida'
 import { FindingDetailCard } from '../../src/pages/Hallazgos'
 import { provenanceFor } from '../../src/hooks/useFindingQuoteProvenance'
 import { invalidateSnapshots, peekSnapshot } from '../../src/lib/snapshot-store'
