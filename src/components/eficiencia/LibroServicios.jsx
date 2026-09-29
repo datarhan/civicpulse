@@ -259,24 +259,33 @@ export function LibroServicios({ indicadores = [], formateaCon, entrega }) {
             con todo el hueco de su línea y manda a la siguiente todo lo que
             venga detrás: medido, la fila salía en TRES líneas a 1440 px con el
             contenido sumando 1.076 de 1.160 disponibles. El margen automático
-            alinea a la derecha sin reservar línea. */}
-        <span className="mono cp-libro-filtros-rotulo cp-libro-ordenar">Ordenar</span>
-        {ORDENES.map((o) => (
-          <button
-            key={o.id}
-            type="button"
-            className={`cp-chip${orden.col === o.id ? ' cp-chip-on' : ''}`}
-            aria-pressed={orden.col === o.id}
-            onClick={() => ordenar(o.id)}
-          >
-            {o.rotulo}
-            {orden.col === o.id && (
-              <span aria-hidden="true" style={{ marginLeft: 4 }}>
-                {orden.dir === 'desc' ? '↓' : '↑'}
-              </span>
-            )}
-          </button>
-        ))}
+            alinea a la derecha sin reservar línea.
+
+            Y el rótulo va con sus botones en UN elemento que no se parte.
+            Sueltos en la fila, el salto de línea podía caer entre ellos y dejar
+            «Posición · A-Z» al principio de la línea siguiente, bajo «VER»,
+            donde se leen como dos filtros más: medido el 29-09-2026 a 1280 px
+            en cuanto entró «Sin comparables suficientes», y sin ella ya pasaba
+            a 1100, 1024, 768 y 375. */}
+        <span className="cp-libro-ordenar">
+          <span className="mono cp-libro-filtros-rotulo">Ordenar</span>
+          {ORDENES.map((o) => (
+            <button
+              key={o.id}
+              type="button"
+              className={`cp-chip${orden.col === o.id ? ' cp-chip-on' : ''}`}
+              aria-pressed={orden.col === o.id}
+              onClick={() => ordenar(o.id)}
+            >
+              {o.rotulo}
+              {orden.col === o.id && (
+                <span aria-hidden="true" style={{ marginLeft: 4 }}>
+                  {orden.dir === 'desc' ? '↓' : '↑'}
+                </span>
+              )}
+            </button>
+          ))}
+        </span>
       </div>
 
       <LeyendaPosicion />
