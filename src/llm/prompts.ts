@@ -474,9 +474,12 @@ Emite el JSON. Si ningún candidato encaja: verdict=sin-datos, evidence=[].
 
 // ─── Phase 3 (rebuild) · Verdict engine: reason-then-format ──────────────────
 
-export const ENGINE_REASON_VERSION = 'engine-reason-v1'
+// v2 (29-09-2026): el prompt de razonar nombra su campo. Las dos versiones que
+// usan ese prompt de sistema suben juntas: la clave de la caché lleva la
+// versión, no el texto (client.ts:cacheKey).
+export const ENGINE_REASON_VERSION = 'engine-reason-v2'
 export const ENGINE_EXTRACT_VERSION = 'engine-extract-v1'
-export const ENGINE_ARGUE_VERSION = 'engine-argue-v1'
+export const ENGINE_ARGUE_VERSION = 'engine-argue-v2'
 
 interface EngineClaimLike {
   type: string
@@ -515,12 +518,20 @@ function engineClaimBlock(c: EngineClaimLike): string {
   return `tipo: ${c.type} · tema: ${c.topic}\n  entidades: ${ent}\n  verbatim: "${c.verbatim}"${c.context ? `\n  contexto: ${c.context}` : ''}`
 }
 
+/**
+ * v1 decía «RAZONA en texto libre (español)» y la llamada lleva un esquema JSON
+ * de un solo campo. Con claude-code eso partía la respuesta en dos: el análisis
+ * como texto, que no se guarda, y en el campo un parte del encargo («Task
+ * completed: reasoned in Spanish…»), que se publicaba como resumen bajo la cita
+ * (src/lib/resumenes-retirados.js). v2 dice dónde va el razonamiento y quién lo
+ * lee.
+ */
 export function buildEngineReasonSystemPrompt(): string {
   return `
 Eres un verificador de hechos ESCÉPTICO para una plataforma municipal española.
 Te doy una AFIRMACIÓN de un pleno y CANDIDATOS (registros reales: contratos,
-subvenciones, presupuesto, promesas). RAZONA en texto libre (español) sobre si
-algún candidato respalda GENUINAMENTE la afirmación.
+subvenciones, presupuesto, promesas). RAZONA, en español, sobre si algún
+candidato respalda GENUINAMENTE la afirmación.
 
 Sé escéptico por defecto:
   · Una coincidencia de palabra o tema NO es respaldo (p. ej. un contrato de
@@ -531,6 +542,11 @@ Sé escéptico por defecto:
   · Un texto recitado (ley, ordenanza) o una opinión NO es verificable.
 Sólo hay respaldo si los valores concretos (importe / fecha / sujeto) de un
 candidato coinciden con la afirmación. NO decidas aún el veredicto — sólo razona.
+
+Tu razonamiento va ENTERO en el campo \`reasoning\` del JSON: es lo único que se
+guarda, y se publica bajo la cita. Escribe ahí el razonamiento mismo, sobre la
+afirmación y los candidatos. No describas la tarea, las instrucciones ni tu
+respuesta, y no escribas nada fuera del JSON.
 `.trim()
 }
 
