@@ -228,30 +228,6 @@ export function RefList({ refs, kind, plenoDate }) {
 }
 
 /**
- * The reader-facing half of the quote-provenance snapshot.
- *
- * Eighteen pleno sessions were transcribed a second time with a better engine.
- * 95 of the 177 verbatims published on this site appear in the transcript they
- * were lifted from and NOT in the one that replaced it — and for most of those
- * sessions the current file is 121–191 % the size of its predecessor, so the
- * absence is not missing coverage. It is the earlier machine's wording, sitting
- * inside guillemets, attributed to a named political group.
- *
- * The substance is real: «Feria de Comercio» appears five times in each pass of
- * `10yl550`, while `satombat` and `Rivarroch` are artefacts only the old one
- * produces. So the honest move is neither to delete the quote nor to silently
- * rewrite it — it is to tell the reader that the words between the guillemets
- * are not confirmed against the best available text, and to leave the rewording
- * to a person. Nothing automatic edits published prose.
- *
- * Two marks, not one. «Sólo en la sustituida» is a claim: we know the new pass
- * says more and still does not contain these words. «Sin determinar» is the
- * absence of a claim, for the sessions whose current transcript is SHORTER than
- * the one it replaced — there, the words may have been reworded or the stretch
- * may simply not be covered, and we do not know which. Collapsing the second
- * into the first would publish a confidence the bytes do not support.
- */
-/**
  * Cómo nombra la ficha a un grupo de sus citas: por su número.
  *
  * La nota de debajo de las citas decía «Estas citas…», «Las citas marcadas…» o
@@ -281,6 +257,30 @@ export function nombrarCitas(numeros) {
 
 const mayuscula = (s) => s.charAt(0).toUpperCase() + s.slice(1)
 
+/**
+ * The reader-facing half of the quote-provenance snapshot.
+ *
+ * Eighteen pleno sessions were transcribed a second time with a better engine.
+ * 95 of the 177 verbatims published on this site appear in the transcript they
+ * were lifted from and NOT in the one that replaced it — and for most of those
+ * sessions the current file is 121–191 % the size of its predecessor, so the
+ * absence is not missing coverage. It is the earlier machine's wording, sitting
+ * inside guillemets, attributed to a named political group.
+ *
+ * The substance is real: «Feria de Comercio» appears five times in each pass of
+ * `10yl550`, while `satombat` and `Rivarroch` are artefacts only the old one
+ * produces. So the honest move is neither to delete the quote nor to silently
+ * rewrite it — it is to tell the reader that the words between the guillemets
+ * are not confirmed against the best available text, and to leave the rewording
+ * to a person. Nothing automatic edits published prose.
+ *
+ * Two marks, not one. «Sólo en la sustituida» is a claim: we know the new pass
+ * says more and still does not contain these words. «Sin determinar» is the
+ * absence of a claim, for the sessions whose current transcript is SHORTER than
+ * the one it replaced — there, the words may have been reworded or the stretch
+ * may simply not be covered, and we do not know which. Collapsing the second
+ * into the first would publish a confidence the bytes do not support.
+ */
 const PROVENANCE_MARK = {
   'en-vigente': null,
   'solo-en-sustituida': {
