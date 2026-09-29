@@ -72,7 +72,8 @@ describe('el contador de /laboratorio no cuenta más de lo que tiene', () => {
     await montar()
     const rotulo = screen.getByText('Titulares monitorizados')
     expect(rotulo.nextElementSibling.textContent).toBe('46')
-    expect(rotulo.parentElement.textContent).toContain('1 fuera del feed')
+    // `\s` también casa el espacio que no parte con el que se escribe.
+    expect(rotulo.parentElement.textContent.replace(/\s+/g, ' ')).toContain('1 fuera del feed')
   })
 
   it('con cualquier filtro, el numerador es lo que se pinta y nunca pasa del total', async () => {

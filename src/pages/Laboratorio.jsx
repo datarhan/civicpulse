@@ -778,13 +778,15 @@ export default function Laboratorio() {
 
       <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 18 }}>
         {/* Cuenta las tarjetas de la lista, también las FUERA DEL FEED, y lo dice
-            cuando hay alguna: es el mismo total que el contador de la lista. */}
+            cuando hay alguna: es el mismo total que el contador de la lista. Con
+            espacios que no parten, porque en una caja de 158 px se leía «1 fuera
+            del / feed». */}
         <KPI
           label="Titulares monitorizados"
           value={fmtNumber(summary.monitoredCount)}
           hint={
             summary.fueraDelFeedCount > 0
-              ? `últimos 30 días · ${fmtNumber(summary.fueraDelFeedCount)} fuera del feed`
+              ? `últimos 30 días · ${fmtNumber(summary.fueraDelFeedCount)}\u00a0fuera\u00a0del\u00a0feed`
               : 'últimos 30 días'
           }
         />
