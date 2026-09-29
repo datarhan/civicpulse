@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, beforeEach } from 'vitest'
 import { readFileSync, readdirSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { render, screen } from '@testing-library/react'
@@ -40,6 +40,15 @@ import { gateItemsForPublic } from '../src/scraper/claim-public-gate'
  * a un trozo servido. Una forma recitada es cómo una prueba sigue verde mientras
  * la página hace otra cosa (docs/DATA_INTEGRITY.md, regla 1).
  */
+
+beforeEach(() => {
+  // `ClaimLedger` monta su hook aunque reciba `items`: se le sirve un
+  // manifiesto vacío para que su fetch resuelva sin ruido. La prueba de
+  // /declaraciones instala el suyo encima.
+  installFetchMock({
+    '/data/pleno-claims/index.json': { plenos: [], totals: { items: 0, byVerdict: {} } },
+  })
+})
 
 const STAMP = '2026-09-29T00:00:00.000Z'
 const OVERLAY_VACIO = { version: 1, generatedAt: STAMP, entries: {} }
@@ -85,6 +94,17 @@ const BASE_PARCIAL = {
   checkedAgainst: ['tenders', 'tenders-ted', 'bdns', 'budget'],
 }
 
+/**
+ * La pasada que un verificador vivo escribe en `derivedBy` está declarada en
+ * PASADAS. Si alguien la renombrara en el módulo, la página dejaría de
+ * reconocerla sin que la prueba de la página lo notara: el `source` del
+ * overlay seguiría rotulando bien.
+ */
+function declarada(verification) {
+  expect(verification.derivedBy?.length, 'el verificador no declaró su pasada').toBeGreaterThan(0)
+  for (const p of verification.derivedBy) expect(PASADAS, `«${p}» sin declarar`).toContain(p)
+}
+
 /** base ⊕ overlay → puerta pública: el ítem tal y como va a un trozo. */
 function servir(base, overlay) {
   const servidos = gateItemsForPublic(
@@ -109,6 +129,7 @@ async function subidaNli() {
     )
   const r = await verifyClaimWithNli({ claim: CLAIM, candidates: [CANDIDATO] }, puntua)
   expect(r?.upgraded, 'el anclaje no subió: la prueba no mediría nada').toBe(true)
+  declarada(r.verification)
   const overlay = applyOverlayEntries(
     OVERLAY_VACIO,
     [{ claimId: CLAIM.id, verification: r.verification, source: 'nli' }],
@@ -131,6 +152,7 @@ async function retractacionMotor({ pisada }) {
     },
   )
   expect(r?.verification.verdict).toBe('sin-datos')
+  declarada(r.verification)
   const verification = pisada
     ? { ...r.verification, checkedAgainst: ['verdict-engine'] }
     : r.verification
@@ -262,6 +284,46 @@ describe('ninguna pasada declarada se rotula como cotejo determinista ni como va
     // con el nombre de la próxima pasada.
     pintarLedger(conEvidencia({ checkedAgainst: ['tenders'], derivedBy: ['pasada-nueva'] }))
     expect(veredicto()).not.toBe('verificador determinista')
+  })
+
+  it('un nombre sin declarar junto a un corpus tampoco', () => {
+    // «Determinista» va por lista blanca, como el corpus: sólo corpus
+    // declarados y ninguna pasada. Un nombre que no es ni lo uno ni lo otro
+    // puede ser un corpus nuevo o una pasada nueva, y afirmar lo primero es
+    // afirmar de más. check:cobertura lo reporta para que alguien lo declare.
+    pintarLedger(conEvidencia({ checkedAgainst: ['tenders', 'corpus-nuevo'] }))
+    expect(veredicto()).not.toBe('verificador determinista')
+  })
+})
+
+describe('cuando las anotaciones discrepan, quién se nombra', () => {
+  // Ningún escritor de hoy deja dos pasadas distintas en una fila; esto
+  // decide qué dice la página si una entrada editada a mano lo hiciera.
+  function conEvidencia(verification) {
+    return {
+      claim: CLAIM,
+      verification: {
+        claimId: CLAIM.id,
+        verdict: 'sin-datos',
+        summary: 'Resumen neutro.',
+        evidence: [],
+        ...verification,
+      },
+      visibility: 'toggle',
+    }
+  }
+
+  it('manda el canal validado del overlay, como en mergeVerified', () => {
+    // `mergeVerified` estampa el `source` de la ENTRADA, que es el que valida
+    // `validateOverlay`, por encima de lo que la verificación traiga dentro.
+    // Una marca vieja que discrepe no puede ganarle.
+    pintarLedger(conEvidencia({ checkedAgainst: ['tenders', 'verdict-engine'], source: 'nli' }))
+    expect(veredicto()).toBe('verificador NLI')
+  })
+
+  it('pero una corrección de curador se dice siempre', () => {
+    pintarLedger(conEvidencia({ checkedAgainst: ['curator-downgrade'], source: 'verdict-engine' }))
+    expect(veredicto()).toBe('corregido por un curador')
   })
 })
 

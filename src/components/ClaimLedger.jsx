@@ -159,7 +159,9 @@ function ClaimCard({ item }) {
           veredicto. `checkedAgainst` mezcla las dos, y esta línea lo imprimía
           entero: la marca de la pasada salía como una fuente consultada. El
           verificador se rotula como en /declaraciones, para que las dos páginas
-          digan lo mismo de la misma cita. */}
+          digan lo mismo de la misma cita, y los dos helpers reciben la
+          verificación entera: la pasada también viaja en `derivedBy` y
+          `source`. */}
       <div
         className="mono"
         style={{
@@ -173,8 +175,8 @@ function ClaimCard({ item }) {
           rowGap: 2,
         }}
       >
-        <span>Fuentes comprobadas: {fuentesComprobadas(verification.checkedAgainst)}</span>
-        <span>Veredicto: {etiquetaVerificador(verification.checkedAgainst)}</span>
+        <span>Fuentes comprobadas: {fuentesComprobadas(verification)}</span>
+        <span>Veredicto: {etiquetaVerificador(verification)}</span>
       </div>
     </Card>
   )
