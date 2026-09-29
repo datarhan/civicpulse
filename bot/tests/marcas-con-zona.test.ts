@@ -18,6 +18,8 @@ import { describe, it, expect, beforeEach } from 'vitest'
 import { openDb, type Db } from '../src/db/client'
 import { autorTelegram, setState, type NewQuejaInput } from '../src/db/queries'
 import { buildSnapshot, type PublicQuejaRow } from '../src/services/snapshot'
+import { marcaDeLaSede } from '../src/services/recibo-sede'
+import { marcaDeAhora } from './helpers/marca'
 import { creaPublicada } from './helpers/publicada'
 
 const ISO_CON_Z = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/
@@ -76,9 +78,15 @@ describe('buildSnapshot · las marcas de tiempo salen con su zona', () => {
 
   it('lo que escribe datetime("now") sale con la Z y en su instante', () => {
     // Sin tocar las columnas: el DEFAULT de la tabla y el registro de `setState`.
+    // `registered_at` ya no lo pone `datetime('now')` sino el recibo de la sede
+    // (#169), en la misma forma; aquí, la de ahora.
     const antes = Date.now()
     const q = creaPublicada(db, muestra())
-    setState(db, q.id, 'registrada', { entry_number: 'RE-1', csv: 'CSV-1' })
+    setState(db, q.id, 'registrada', {
+      entry_number: 'RE-1',
+      csv: 'CSV-1',
+      registered_at: marcaDeAhora(),
+    })
     const fila = exportada(db, q.id)
     for (const campo of ['requested_datetime', 'updated_datetime', 'registered_at'] as const) {
       const marca = fila[campo]
@@ -90,7 +98,10 @@ describe('buildSnapshot · las marcas de tiempo salen con su zona', () => {
 
   it('en la base se sigue guardando la forma de SQLite', () => {
     const q = creaPublicada(db, muestra())
-    setState(db, q.id, 'registrada', { entry_number: 'RE-1', csv: 'CSV-1' })
+    // La fecha de registro, por el camino de producción: la del recibo, que
+    // `marcaDeLaSede` convierte a la forma de SQLite, no a la de la Z.
+    const registered_at = marcaDeLaSede('28/09/2026', '0:00:01')!
+    setState(db, q.id, 'registrada', { entry_number: 'RE-1', csv: 'CSV-1', registered_at })
     const guardada = db
       .prepare('SELECT created_at, updated_at, registered_at FROM quejas WHERE id = ?')
       .get(q.id) as Record<string, string>

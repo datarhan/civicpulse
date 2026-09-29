@@ -30,6 +30,7 @@ import { registerBatch } from '../src/services/batch'
 import { computeRanking } from '../src/commands/ranking'
 import { computeDigest } from '../src/commands/digest'
 import { creaPublicada } from './helpers/publicada'
+import { marcaDeAhora } from './helpers/marca'
 
 function seed(db: Db, overrides: Partial<NewQuejaInput> = {}) {
   return creaPublicada(db, {
@@ -179,6 +180,7 @@ describe('una retirada no se enseña, no se apoya, no se escala ni entra en un l
       ids: [ida.id],
       entry_number: 'RE-1',
       csv: 'x',
+      registered_at: marcaDeAhora(),
       moderator_user_id: 9,
     })
     expect(r.registered).toEqual([])
@@ -192,6 +194,7 @@ describe('una retirada no se enseña, no se apoya, no se escala ni entra en un l
       ids: [viva.id],
       entry_number: 'RE-2',
       csv: 'y',
+      registered_at: marcaDeAhora(),
       moderator_user_id: 9,
     })
     expect(r.registered.map((q) => q.id)).toEqual([viva.id])

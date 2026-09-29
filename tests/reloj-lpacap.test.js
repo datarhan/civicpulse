@@ -168,3 +168,27 @@ describe('cada motivo se explica en todos los idiomas', () => {
     })
   }
 })
+
+/**
+ * Una fecha de registro es utilizable si el reloj sabe contar desde ella.
+ *
+ * `registroUtilizable` decide si /cargos, los barrios y /departamentos publican
+ * cifras de respuesta, y decía usar «el mismo criterio que el panel para contar
+ * días»: `Date.parse`. El reloj ya no cuenta así —lee la marca del bot en UTC y
+ * cuenta en el calendario de la sede—, y `Date.parse` acepta formas que el reloj
+ * no puede contar, como «09/28/2026», que lee en hora local y al estilo de EE. UU.
+ * Dos criterios para la misma regla legal: una queja se contaría como registrada
+ * en la ficha de un cargo sin que nadie pudiera decir cuándo le vence el plazo.
+ */
+describe('registroUtilizable: el mismo criterio que el reloj', () => {
+  it('sirven la marca del bot y la ISO con zona', () => {
+    expect(registroUtilizable('2026-09-27 22:00:01')).toBe(true)
+    expect(registroUtilizable('2026-09-27T22:00:01Z')).toBe(true)
+  })
+
+  it('lo que el reloj no sabe leer no cuenta como registro', () => {
+    expect(registroUtilizable('09/28/2026')).toBe(false)
+    expect(registroUtilizable('ayer')).toBe(false)
+    expect(registroUtilizable(null)).toBe(false)
+  })
+})

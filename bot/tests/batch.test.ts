@@ -15,6 +15,7 @@ import {
   selectBatch,
 } from '../src/services/batch'
 import { creaPublicada } from './helpers/publicada'
+import { marcaDeAhora } from './helpers/marca'
 
 function seed(db: Db, overrides: Partial<NewQuejaInput> = {}) {
   return creaPublicada(db, {
@@ -173,6 +174,7 @@ describe('batch — registerBatch', () => {
       ids: [a.id, b.id],
       entry_number: '2026-RE-0999',
       csv: 'XYZ123',
+      registered_at: marcaDeAhora(),
       moderator_user_id: 42,
     })
     expect(r.registered.length).toBe(2)
@@ -193,6 +195,7 @@ describe('batch — registerBatch', () => {
       ids: [fresh.id, verified.id, 'Q-DOES-NOT-EXIST'],
       entry_number: '2026-RE-1000',
       csv: 'ABC',
+      registered_at: marcaDeAhora(),
       moderator_user_id: 42,
     })
     expect(r.registered.map((q) => q.id)).toEqual([verified.id])
