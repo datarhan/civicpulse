@@ -10,7 +10,9 @@ import { RESUMEN_SIN_REGISTRO } from '../src/scraper/claim-verifier'
  * existe y que, mientras su entrada siga como se midió, tiene la forma de una
  * verificación que no pasó por el modelo: la frase del determinista, sin
  * evidencia y sin `derivedBy`. Una id mal copiada, o una que señalara una
- * retractación con razonamiento del modelo, no pasa.
+ * retractación con razonamiento del modelo, no pasa. Una de las que el modelo
+ * juzgó y que guardaron la misma frase SÍ pasaría: eso sólo lo separa la caché,
+ * y por eso la lista cuenta cómo se midió.
  *
  * La lista se queda después de devolverlas: es el registro de qué se devolvió
  * y por qué. `retirar-pasada -- --sin-juicio` se salta lo que ya no está.

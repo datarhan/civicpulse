@@ -100,3 +100,41 @@ export function decidirRederivacion(r: {
   if (r.veredicto === 'sin-datos') return { accion: 'reescribir' }
   return { accion: 'dejar', motivo: 'ya-no-la-retractaria' }
 }
+
+/** Lo que hace `retirar-pasada -- --sin-juicio` con una retractación declarada. */
+export type Devolucion =
+  | { accion: 'devolver' }
+  | { accion: 'dejar'; porque: 'ya-no-esta' | 'otra-entrada' | 'sin-base' | 'la-base-subiria' }
+
+/**
+ * Devolver al determinista una retractación que el motor escribió sin que el
+ * modelo viera la declaración (retractaciones-sin-juicio.ts): se quita la
+ * entrada del overlay y aflora el veredicto de la base.
+ *
+ * Es lo que habría pasado si el motor la hubiera saltado bien: la dejaba como
+ * entrada `llm`, y la pasada LLM está retirada (`TRINQUETE.llm`), así que
+ * `retirar-pasada` la habría quitado igual. No se inventa ningún veredicto.
+ *
+ *   · Sólo la entrada MEDIDA: si su fecha, su editor o su canal cambiaron,
+ *     alguien la escribió después —una re-derivación con `--ids`, un curador—
+ *     y esa decisión es suya.
+ *   · Nunca sube: si la base dice algo más que `sin-datos`, devolverla
+ *     publicaría una subida automática (DATA_INTEGRITY, regla 4). Se queda, y
+ *     la mira una persona.
+ *   · Sin la declaración en la base no se sabe qué afloraría.
+ */
+export function decidirDevolucion(r: {
+  medida: { editor: string; appliedAt: string }
+  entrada: { source: string; editor?: string; appliedAt: string } | undefined
+  veredictoBase: ClaimVerdict | undefined
+}): Devolucion {
+  if (!r.entrada) return { accion: 'dejar', porque: 'ya-no-esta' }
+  const esLaMedida =
+    r.entrada.source === 'verdict-engine' &&
+    r.entrada.editor === r.medida.editor &&
+    r.entrada.appliedAt === r.medida.appliedAt
+  if (!esLaMedida) return { accion: 'dejar', porque: 'otra-entrada' }
+  if (r.veredictoBase === undefined) return { accion: 'dejar', porque: 'sin-base' }
+  if (r.veredictoBase !== 'sin-datos') return { accion: 'dejar', porque: 'la-base-subiria' }
+  return { accion: 'devolver' }
+}

@@ -1219,12 +1219,19 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
   return {
     claimId: claim.id,
     verdict: 'sin-datos',
-    summary:
-      'No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.',
+    summary: RESUMEN_SIN_REGISTRO,
     evidence,
     checkedAgainst: checked,
   }
 }
+
+/**
+ * La frase con la que el determinista dice que no encontró nada. Exportada
+ * porque también es una huella: una retractación del motor que la lleva por
+ * resumen no pasó por el razonamiento del modelo (retractaciones-sin-juicio.ts).
+ */
+export const RESUMEN_SIN_REGISTRO =
+  'No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.'
 
 // ─── LLM second-pass: candidate shortlist ──────────────────────────────────
 //
