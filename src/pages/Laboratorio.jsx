@@ -451,6 +451,9 @@ export function OutletScoreboard({ outlets }) {
   }
   return (
     <table
+      // `.cp-tabla-medios` (index.css) deja partir un nombre de medio en el
+      // móvil: sin relleno lateral en las celdas, a 320 px la tabla no cabía.
+      className="cp-tabla-medios"
       style={{ width: '100%', borderCollapse: 'collapse', fontSize: 'var(--fs-meta)' }}
       aria-label="Cobertura de comprobación por medio"
     >

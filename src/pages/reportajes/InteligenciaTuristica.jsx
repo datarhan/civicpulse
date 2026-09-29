@@ -450,10 +450,12 @@ export default function InteligenciaTuristica() {
           Los describimos por lo que consta en registros y documentos públicos — objeto social,
           producto, otros contratos —, sin atribuir irregularidad alguna.
         </p>
+        {/* El `min(…, 100%)` es para la columna que queda sola: sin él
+            conservaba sus 280 px en una caja de 272 (320 px de pantalla). */}
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(280px, 100%), 1fr))',
             gap: 14,
             margin: '16px 0',
           }}

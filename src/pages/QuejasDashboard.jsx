@@ -150,11 +150,11 @@ function SlaPanel({ quejas, officials }) {
         {entries.map((e) => (
           <div
             key={e.slug}
+            // La rejilla vive en `index.css` (`.cp-sla-fila`): necesita un punto
+            // de ruptura para partirse en el móvil, y una @media no cabe en el
+            // prop `style`.
+            className="cp-sla-fila"
             style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr 80px 80px 80px',
-              alignItems: 'center',
-              gap: 10,
               padding: '8px 0',
               borderBottom: '1px dotted var(--border2)',
             }}
@@ -710,10 +710,12 @@ export default function QuejasDashboard() {
             />
           </div>
 
+          {/* El `min(…, 100%)` es para la columna que queda sola: sin él
+              conservaba sus 320 px en una caja de 272 (320 px de pantalla). */}
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(320px, 100%), 1fr))',
               gap: 14,
             }}
           >

@@ -76,6 +76,13 @@ export function BitacoraCorrecciones({ correcciones }) {
         {enmendadas > 0 &&
           ` · ${enmendadas} ${enmendadas === 1 ? 'motivo enmendado' : 'motivos enmendados'}`}
       </summary>
+      {/* `overflowWrap: 'anywhere'` porque una corrección puede retirar una URL
+          entera, y una URL no tiene dónde partirse: la pista de esta rejilla
+          crece hasta el ancho mínimo de su contenido, y la de una fuente de
+          Google News medía 2.502 px. Con la bitácora abierta, /promesas medía
+          2.578 px de ancho en un teléfono y 3.317 en un escritorio. `anywhere`
+          —y no `break-word`— es el que rebaja ese mínimo; un texto con espacios
+          sigue partiendo por los espacios. */}
       <ol
         style={{
           margin: '6px 0 0',
@@ -83,6 +90,7 @@ export function BitacoraCorrecciones({ correcciones }) {
           display: 'grid',
           gap: 8,
           fontSize: 'var(--fs-aux)',
+          overflowWrap: 'anywhere',
         }}
       >
         {correcciones.map((c, idx) => (

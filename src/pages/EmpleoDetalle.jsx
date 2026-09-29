@@ -49,10 +49,10 @@ function Tile({ label, value, tone }) {
 function FieldRow({ label, value }) {
   return (
     <div
+      // La rejilla vive en `index.css` (`.cp-empleo-campo`): en el móvil la
+      // etiqueta pasa encima del valor, y una @media no cabe en el prop `style`.
+      className="cp-empleo-campo"
       style={{
-        display: 'grid',
-        gridTemplateColumns: '190px 1fr',
-        gap: 12,
         padding: '9px 0',
         borderBottom: '1px solid var(--border2)',
         fontSize: 'var(--fs-aux)',

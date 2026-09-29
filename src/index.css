@@ -859,6 +859,23 @@ body.cp-kiosk .cp-live-container {
   }
 }
 
+/* /laboratorio — la tabla de medios. Sus celdas no llevan relleno lateral, así
+   que su ancho mínimo lo ponen el nombre de medio más largo sin espacios
+   («boletinbien.com», 85 px) y los rótulos de las tres cifras (153 px): 238 px,
+   que con los 42 de la tarjeta no caben en los 272 de la columna a 320 px de
+   pantalla, y la tarjeta se salía 8 px de su rejilla. Por debajo de 720 un
+   nombre así puede partirse por cualquier letra. Es un precio, y sólo se paga
+   por debajo de unos 328 px de pantalla: a 320, medido el 29-09-2026, tres de
+   los diez nombres se partían dentro de la palabra. Las otras salidas eran
+   peores —una barra de desplazamiento que tapaba la columna «Discrepa», o una
+   tarjeta que se sale más cuanto más largo sea el próximo dominio—. Por encima
+   de 720 la tabla reparte su ancho como antes, porque su mínimo no cambia. */
+@media (max-width: 720px) {
+  .cp-tabla-medios td:first-child {
+    overflow-wrap: anywhere;
+  }
+}
+
 /* /eficiencia — las dos rejillas de la página, en una hoja porque el prop
    `style` no admite media queries y la regla de la casa es que lo responsivo
    vive donde puede llevar un breakpoint.
@@ -1248,6 +1265,91 @@ body.cp-kiosk .cp-live-container {
   }
   .cp-contrato-fila > :first-child {
     grid-column: 1 / -1;
+  }
+}
+
+/* Tres filas más que se PARTEN por debajo de 720, como la de contratos y aquí
+   por lo mismo. En un teléfono sus pistas fijas no cedían, y a 320 px de
+   pantalla —el ancho del criterio 1.4.10 de WCAG 2.1— cada una sacaba bloques
+   de la caja de su rejilla (lo mide `tests/e2e/mobile.spec.ts`). En escritorio
+   las tres son la rejilla que antes iba en el `style` del JSX, igual.
+
+   `.cp-sla-fila` (/quejas/dashboard): el responsable político y tres contadores
+   en columnas de 80 px, que se alinean de fila a fila. Las cifras pedían 270 px
+   en una caja de 230 y se salían 40 de la tarjeta; a 375 dejaban al nombre
+   15 px. Partida, el nombre ocupa su línea y los contadores se reparten la
+   siguiente en tercios, que siguen alineados de fila a fila.
+
+   `.cp-queja-fila` (/quejas): código, descripción, apoyos, compartir y estado.
+   Partida, la descripción baja a su línea y el estado a la siguiente, entero:
+   una pastilla puede decir «Silencio administrativo», y junto al código, los
+   apoyos y el botón no cabría a 320. En fila, a 375 la descripción se quedaba
+   en 45 px y a 320 en ninguno, con el estado 9,5 px fuera de la tarjeta.
+
+   `.cp-empleo-campo` (/empleo/:id): etiqueta de 190 px y valor. Partida, la
+   etiqueta va encima: al valor le quedaban 83 px a 375, menos que una palabra
+   como «IMPRESCINDIBLE».
+
+   Las pistas nuevas son `1fr` y no `minmax(0, 1fr)` a propósito: si un
+   contenido no cabe, que la pista crezca y la prueba lo vea, en vez de que se
+   salga de su celda sin que nada lo mida. */
+.cp-sla-fila {
+  display: grid;
+  grid-template-columns: 1fr 80px 80px 80px;
+  align-items: center;
+  gap: 10px;
+}
+.cp-queja-fila {
+  display: grid;
+  grid-template-columns: min-content 1fr min-content min-content min-content;
+  align-items: center;
+  gap: 12px;
+}
+.cp-empleo-campo {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  gap: 12px;
+}
+@media (max-width: 720px) {
+  .cp-sla-fila {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px 10px;
+  }
+  .cp-sla-fila > :first-child {
+    grid-column: 1 / -1;
+  }
+  .cp-queja-fila {
+    grid-template-columns: min-content 1fr min-content;
+    gap: 6px 12px;
+  }
+  .cp-queja-fila > :nth-child(2) {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+  .cp-queja-fila > :nth-child(5) {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    justify-self: start;
+  }
+  .cp-empleo-campo {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+}
+
+/* /quejas — el cruce quejas–contratos: el barrio y dos cifras. Las columnas de
+   cifras se dimensionan a su contenido y la del barrio a su palabra más larga
+   (74 px): con 16 px entre columnas, a 320 px de pantalla eso pedía 233 px en
+   una caja de 230. Por debajo de 720 el hueco entre columnas baja a 10. */
+.cp-cruce {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 7px 16px;
+  align-items: baseline;
+}
+@media (max-width: 720px) {
+  .cp-cruce {
+    column-gap: 10px;
   }
 }
 
