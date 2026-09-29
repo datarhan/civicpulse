@@ -74,8 +74,9 @@ export interface LegalArticle {
  * fecha, así que tres meses duran 90 o 91 días según cuándo empiecen, y el
  * contador de /quejas/:id se desviaba por ahí.
  *
- * `diasDePlazo()` convierte a días cuando hace falta contar, y necesita la
- * fecha de inicio precisamente porque la respuesta depende de ella.
+ * `relojDelPlazo()` lo cuenta en días cuando hace falta, y necesita la fecha de
+ * inicio precisamente porque la respuesta depende de ella —y del calendario de
+ * días inhábiles del año en que acaba—.
  */
 export interface TimeLimit {
   kind: 'acuse' | 'resolucion' | 'reclamacion' | 'recurso'
