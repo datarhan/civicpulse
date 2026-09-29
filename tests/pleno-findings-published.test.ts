@@ -14,9 +14,11 @@ import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
+import { rechazoDeFirma } from '../src/scraper/firma-de-persona'
 import { sha256Short } from '../src/scraper/hash'
 import {
   CORRECTION_REMOVAL_FIELD_RE,
+  REASON_DIGEST_RE,
   REDACTION_DIGEST_RE,
   findAttributionConflicts,
   findRepeatedQuotes,
@@ -380,6 +382,46 @@ describe('published pleno findings — the correction ledger is append-only', ()
       }
     }
     expect(checked).toBeGreaterThan(40)
+  })
+})
+
+/*
+ * Enmiendas del motivo de una fila (`correct-pleno-finding --amend-reason`), que
+ * no son correcciones de la ficha y no cuentan en `TOTAL_CORRECTIONS`: viven
+ * dentro de la fila cuyo motivo sustituyen. Se fijan aparte por lo mismo que
+ * las correcciones —una que se cuele sin quedar anotada aquí pone esto en
+ * rojo— y porque el validador reconstruye cada fila: si un día dejara de
+ * conservar la clave, la siguiente escritura de la CLI borraría la única huella
+ * de los motivos anteriores.
+ *
+ * 0 el 2026-09-29, el día que existe la vía. Las dos primeras que se preparan son
+ * las de `f-2026-05-11-acu-7c65c5` (filas del 2-08 y del 9-08); al firmarlas, esto
+ * pasa a 2 con su fecha.
+ */
+const TOTAL_REASON_AMENDMENTS = 0
+
+describe('published pleno findings — un motivo enmendado no borra el anterior', () => {
+  const enmiendas = allCorrections.flatMap((c) => c.reasonAmendments ?? [])
+
+  it('las enmiendas son las que se firmaron, y el validador no pierde ninguna', () => {
+    expect(enmiendas).toHaveLength(TOTAL_REASON_AMENDMENTS)
+    const parsed = validateFindingsSnapshot(
+      readFileSync(resolve('public/data/pleno-findings.json'), 'utf8'),
+    )
+    const tras = parsed.items
+      .flatMap((f) => f.corrections ?? [])
+      .flatMap((c) => c.reasonAmendments ?? [])
+    expect(tras).toEqual(enmiendas)
+  })
+
+  it('cada una guarda la huella del motivo anterior, no su texto, y la firma una persona', () => {
+    // Vacía hasta que se firme la primera; lo que mide entonces es la fila de
+    // arriba, que no deja pasar una enmienda sin contarla.
+    for (const a of enmiendas) {
+      expect(a.previous).toMatch(REASON_DIGEST_RE)
+      expect(rechazoDeFirma(a.editor), a.editor).toBeNull()
+      expect(a.reason.trim().length).toBeGreaterThanOrEqual(20)
+    }
   })
 })
 
