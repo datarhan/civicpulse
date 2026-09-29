@@ -6,6 +6,7 @@
  *   set -a; source <(grep -E '^[A-Za-z_][A-Za-z0-9_]*=' .env); set +a
  *   LLM_BACKEND=openai OPENAI_MODEL=gpt-5.4-mini VERIFIER_SHORTLIST=lexical \
  *     npm run verify:pleno-claims:engine -- [--max N] [--plenoId ID] [--dry-run]
+ *     npm run verify:pleno-claims:engine -- --ids <fichero> [--dry-run]
  *
  * DOWNGRADE-ONLY, and only to sin-datos: on the 64-row gold the engine's sin-datos
  * precision is ~92% (reliable) while its verificado/parcial precision is weak — so
@@ -15,12 +16,21 @@
  * already re-derived (a verdict-engine overlay entry exists) are skipped.
  * Requires a working metered backend (the engine calls callLLM) — the eval gate
  * lives in docs/superpowers/specs/2026-06-24-factcheck-rebuild-p3-results.md.
+ *
+ * `--ids <fichero>` (un id por línea; `#` comenta) RE-DERIVA retractaciones del
+ * motor ya publicadas, las que el modo normal se salta porque ya tienen su
+ * entrada. Lo trajo la charla de la tarea que el 02-08-2026 se guardó como
+ * resumen (src/lib/resumenes-retirados.js). La decisión es
+ * `decidirRederivacion`: reescribe la explicación sólo si el modelo juzgó y
+ * sigue sin ver respaldo; nunca sube un veredicto; lo que no juzgó no se toca.
  */
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { resolve } from 'node:path'
 import type { PlenoClaim } from '../src/scraper/pleno-claim'
 import type { ClaimVerification, ClaimVerdict } from '../src/scraper/claim-verifier'
 import { makeEngineVerifier, loadVerifierContext } from '../src/scraper/verifier-runner'
+import { RazonamientoConCharla } from '../src/scraper/claim-verifier-engine'
+import { decidirRederivacion } from '../src/scraper/decision-del-motor'
 import { resetBudget, getRunStats } from '../src/llm/client'
 import { startRun, formatManifest } from '../src/scraper/run-manifest'
 import { loadOverlay, rebuildVerified, OVERLAY } from './verified-rebuild'
@@ -38,15 +48,17 @@ interface Args {
   max: number
   dryRun: boolean
   base: boolean
+  ids: string | null
 }
 
 function parseArgs(argv: string[]): Args {
-  const out: Args = { plenoId: null, max: Infinity, dryRun: false, base: false }
+  const out: Args = { plenoId: null, max: Infinity, dryRun: false, base: false, ids: null }
   for (let i = 0; i < argv.length; i++) {
     if (argv[i] === '--plenoId') out.plenoId = argv[++i]
     else if (argv[i] === '--max') out.max = Number(argv[++i])
     else if (argv[i] === '--dry-run') out.dryRun = true
     else if (argv[i] === '--base') out.base = true
+    else if (argv[i] === '--ids') out.ids = argv[++i]
     else {
       process.stderr.write(`[verify-engine] unknown flag ${argv[i]}\n`)
       process.exit(2)
@@ -71,7 +83,7 @@ async function main() {
   // Counts are recorded here but MEASURED in the llm client, so the manifest
   // cannot inherit this script's beliefs about what it did.
   const run = startRun('verify-pleno-claims-engine', {
-    mode: process.argv.includes('--base') ? 'base' : 'llm-overclaims',
+    mode: args.ids ? 'rederivar' : args.base ? 'base' : 'llm-overclaims',
     getStats: getRunStats,
     model: MODEL,
   })
@@ -87,7 +99,24 @@ async function main() {
 
   let overlay = loadOverlay()
   const targets: string[] = []
-  if (args.base) {
+  if (args.ids) {
+    // Sólo retractaciones del motor: re-derivar otra cosa sería juzgar por
+    // primera vez con una vía pensada para corregir una explicación.
+    const pedidos = readFileSync(args.ids, 'utf8')
+      .split('\n')
+      .map((l) => l.trim())
+      .filter((l) => l && !l.startsWith('#'))
+    for (const id of pedidos) {
+      if (overlay.entries[id]?.source !== 'verdict-engine') {
+        process.stderr.write(`[verify-engine] --ids: ${id} no es una retractación del motor\n`)
+        continue
+      }
+      targets.push(id)
+    }
+    process.stderr.write(
+      `[verify-engine] --ids: ${targets.length} de ${pedidos.length} retractaciones del motor a re-derivar (model ${MODEL})\n`,
+    )
+  } else if (args.base) {
     // --base: re-judge the pure deterministic-base verificado/parcial that no
     // overlay entry has ever touched (the LLM ones are handled by the default
     // mode). Same downgrade-to-sin-datos-only policy. Resume: a verdict-engine
@@ -136,7 +165,9 @@ async function main() {
   const skipReason = new Map<string, 'no-candidates' | 'not-attempted'>()
   const engine = makeEngineVerifier({
     consistency: false,
-    always: args.base,
+    // Re-derivar juzga siempre: algunas de estas filas las retractó `--base`,
+    // y el determinista las da por verificadas.
+    always: args.base || Boolean(args.ids),
     onSkip: (id, reason) => {
       skippedIds.add(id)
       skipReason.set(id, reason)
@@ -154,6 +185,14 @@ async function main() {
   // called" print identically, which is exactly what happened: a run reported
   // `re-judged 1017 · kept 1017` having made zero LLM calls.
   let unjudged = 0
+  // Respuestas que hablan de la tarea y no de la declaración: el modelo contestó,
+  // pero no juzgó. Ni «juzgada» ni «error del motor»: se reintentan.
+  let charla = 0
+  // --ids: explicación reescrita; el modelo ya ve respaldo (para un curador);
+  // no la juzgó. Tres cuentas separadas, con sus ids.
+  const rederivadas: string[] = []
+  const yaNoLaRetractaria: string[] = []
+  const sinJuicio: string[] = []
 
   const flush = () => {
     if (args.dryRun || pending.length === 0) return
@@ -177,12 +216,47 @@ async function main() {
     try {
       r = await engine(claim, ctx)
     } catch (err) {
+      if (err instanceof RazonamientoConCharla) {
+        process.stderr.write(`[verify-engine] ${err.message}\n`)
+        charla++
+        run.skip('razonamiento con charla de la tarea')
+        continue
+      }
       process.stderr.write(`[verify-engine] ${id} engine error: ${String(err).slice(0, 120)}\n`)
       skipped++
       run.skip('engine error')
       continue
     }
     const cur = currentVerdict.get(id) ?? 'sin-datos'
+    if (args.ids) {
+      const decision = decidirRederivacion({ juzgada: !skippedIds.has(id), veredicto: r.verdict })
+      if (decision.accion === 'reescribir') {
+        pending.push({
+          claimId: id,
+          verification: { ...r, checkedAgainst: ['verdict-engine'] },
+          source: 'verdict-engine',
+          reason:
+            `verdict-engine (${MODEL}) re-derivó la retractación (sigue sin-datos): ${r.summary}`.slice(
+              0,
+              400,
+            ),
+          editor: `verdict-engine:${MODEL}`,
+        })
+        rederivadas.push(id)
+        run.judge()
+        run.record('rederivada')
+      } else if (decision.motivo === 'ya-no-la-retractaria') {
+        yaNoLaRetractaria.push(id)
+        run.judge()
+        run.record('ya no la retractaría')
+      } else {
+        sinJuicio.push(id)
+        if (skipReason.get(id) === 'not-attempted') run.skip('fuera de la política del LLM')
+        else run.neverAttempt()
+      }
+      if (pending.length >= CHECKPOINT_EVERY) flush()
+      continue
+    }
     // Trust ONLY the engine's high-precision sin-datos verdict, as a retraction.
     if (r.verdict === 'sin-datos' && (cur === 'verificado' || cur === 'parcial')) {
       const reason =
@@ -214,7 +288,7 @@ async function main() {
     if (pending.length >= CHECKPOINT_EVERY) flush()
   }
   flush()
-  if (done > 0 && retracted + kept === 0) {
+  if (done > 0 && retracted + kept + rederivadas.length + yaNoLaRetractaria.length === 0) {
     process.stderr.write(
       `[verify-engine] WARNING: ${done} claim(s) processed and the model was consulted for NONE ` +
         `of them. Check the shortlist (VERIFIER_SHORTLIST=${process.env.VERIFIER_SHORTLIST ?? 'hybrid'}, ` +
@@ -227,9 +301,26 @@ async function main() {
   process.stderr.write(
     `[verify-engine] DONE: seen ${done} · JUDGED ${retracted + kept} ` +
       `(retracted ${retracted} → sin-datos · kept ${kept}) · ` +
-      `never asked ${unjudged} · skipped ${skipped}` +
+      `never asked ${unjudged} · charla de la tarea ${charla} · skipped ${skipped}` +
       `${args.dryRun ? ' (DRY-RUN, nothing written)' : ''}\n`,
   )
+
+  if (args.ids) {
+    process.stderr.write(
+      `[verify-engine] --ids: rederivadas ${rederivadas.length} · ya no la retractaría ` +
+        `${yaNoLaRetractaria.length} · sin juicio ${sinJuicio.length}\n`,
+    )
+    if (yaNoLaRetractaria.length)
+      process.stderr.write(
+        `  el modelo ya ve respaldo; la retractación se queda, para un curador:\n    ${yaNoLaRetractaria.join('\n    ')}\n`,
+      )
+    if (sinJuicio.length)
+      process.stderr.write(`  sin juicio, sin tocar:\n    ${sinJuicio.join('\n    ')}\n`)
+    if (rederivadas.length && !args.dryRun)
+      process.stderr.write(
+        `  su explicación nueva se imprime sola; quita estas entradas de src/lib/resumenes-retirados.js:\n    ${rederivadas.join('\n    ')}\n`,
+      )
+  }
 
   const { manifest, findings } = run.finish({ exitCode: process.exitCode ? 1 : 0 })
   process.stderr.write(`\n${formatManifest(manifest)}\n`)

@@ -2,9 +2,11 @@
  * Background worker — checks registered quejas for silencio negativo.
  *
  *   For each queja in state='registrada' (or 'notificada_10d'),
- *   compute the legal plazo from queja-router. Once the sede's calendar
- *   day (Europe/Madrid) is past the plazo's LAST day and no resolution has
- *   landed, auto-transition to 'silencio_negativo' and tell whoever moderates
+ *   compute the legal plazo from queja-router (`relojDelPlazo`). Once the
+ *   sede's calendar day (Europe/Madrid) is past the plazo's LAST day — moved
+ *   to the first working day when it falls on a día inhábil (art. 30.5
+ *   LPACAP) — and no resolution has landed, auto-transition to
+ *   'silencio_negativo' and tell whoever moderates
  *   (services/avisos-hitos.ts). Until 2026-09-29 it went to the public
  *   Telegram channel instead, with the title.
  *
@@ -17,7 +19,7 @@ import type { Db } from '../db/client.ts'
 import type { QuejaRow } from '../db/queries.ts'
 import { setState } from '../db/queries.ts'
 import { routeUsingLocalOfficials } from './router.ts'
-import { diasDePlazo, diasQueQuedan } from '../../../src/scraper/queja-router.ts'
+import { relojDelPlazo } from '../../../src/scraper/queja-router.ts'
 import { isLoregFrozen } from './freeze.ts'
 import type { AvisosHitos } from './avisos-hitos.ts'
 
@@ -33,6 +35,14 @@ export interface SilencioResult {
    * código de antes, con `NaN < plazo` falso, las pasaba a silencio.
    */
   sinFechaLegible: string[]
+  /**
+   * Registradas cuyo día nominal ya pasó y cuyo plazo acaba en un año sin
+   * calendario de inhábiles (`FESTIVOS_DE_LA_SEDE`): no se sabe si el último día
+   * se prorrogó (art. 30.5), así que no pasan a silencio, y se dice qué año falta.
+   * Un año sin calendario no es un año sin festivos. Antes del día nominal no
+   * salen aquí: la prórroga sólo alarga, y el plazo sigue abierto seguro.
+   */
+  sinCalendario: Array<{ id: string; anio: number }>
   /**
    * El aviso a quien modera, aparte: las transiciones son síncronas y no esperan
    * a Telegram, pero quien llama —y el log— puede esperar esto para saber
@@ -80,6 +90,7 @@ export function checkSilencio(
       skippedFrozen: true,
       checked: 0,
       sinFechaLegible: [],
+      sinCalendario: [],
       avisos: Promise.resolve({ avisadas: 0, fallidas: 0 }),
     }
   }
@@ -101,6 +112,7 @@ export function checkSilencio(
 
   const transitioned: QuejaRow[] = []
   const sinFechaLegible: string[] = []
+  const sinCalendario: Array<{ id: string; anio: number }> = []
   // El plazo de cada una viaja con ella hasta el aviso: el aviso no lo recalcula.
   const avisos: Array<{ queja: QuejaRow; plazoDias: number }> = []
   for (const r of rows) {
@@ -132,20 +144,33 @@ export function checkSilencio(
     // calendario de la sede (art. 31.2). Hasta el 28-09-2026 esto comparaba los
     // días del plazo con las horas transcurridas desde la marca, y una queja
     // registrada a las 11:00 pasaba a silencio a las 12:00 de su último día.
-    const plazoDays = diasDePlazo(limite, r.registered_at)
-    const quedan = diasQueQuedan(limite, r.registered_at, now)
-    if (plazoDays === null || quedan === null) {
+    //
+    // Y si ese último día es inhábil, el plazo sigue hasta el primer hábil
+    // siguiente (art. 30.5): hasta el 29-09-2026 esto no se aplicaba, y un plazo
+    // que acababa en sábado pasaba a silencio el domingo.
+    const reloj = relojDelPlazo(limite, r.registered_at, now)
+    if (reloj.cuenta === 'sin-fecha') {
       sinFechaLegible.push(r.id)
       continue
     }
-    if (quedan >= 0) continue
+    if (reloj.cuenta === 'sin-calendario') {
+      // Hasta el día nominal sigue en plazo seguro; después no se sabe, y no se
+      // decide: se dice qué año de calendario falta.
+      if (reloj.quedanAlNominal < 0) sinCalendario.push({ id: r.id, anio: reloj.anio })
+      continue
+    }
+    if (reloj.cuenta !== 'calculada') {
+      console.error(`[cron] ${r.id}: el plazo de resolución no va en meses; no se evalúa`)
+      continue
+    }
+    if (reloj.quedan >= 0) continue
 
     const updated = setState(db, r.id, 'silencio_negativo')
     if (updated) {
       transitioned.push(updated)
       // A quien modera, de todas: el aviso lleva el id y no el texto, así que no
       // publica nada, y lo presentado en sede vence esté publicado o no.
-      avisos.push({ queja: updated, plazoDias: plazoDays })
+      avisos.push({ queja: updated, plazoDias: reloj.dias })
     }
   }
 
@@ -168,6 +193,7 @@ export function checkSilencio(
     skippedFrozen: false,
     checked: rows.length,
     sinFechaLegible,
+    sinCalendario,
     avisos: avisados,
   }
 }
@@ -179,6 +205,12 @@ export function startSilencioCron(db: Db, hitos: AvisosHitos): () => void {
       if (r.sinFechaLegible.length > 0) {
         console.error(
           `[cron] ${r.sinFechaLegible.length} registrada(s) sin fecha de registro legible, sin evaluar: ${r.sinFechaLegible.join(', ')}`,
+        )
+      }
+      if (r.sinCalendario.length > 0) {
+        const anios = [...new Set(r.sinCalendario.map((s) => s.anio))].join(', ')
+        console.error(
+          `[cron] ${r.sinCalendario.length} registrada(s) con el día nominal pasado y el plazo en un año sin calendario de inhábiles (${anios}), sin evaluar: ${r.sinCalendario.map((s) => s.id).join(', ')} — añade el año a FESTIVOS_DE_LA_SEDE (src/scraper/queja-router.ts)`,
         )
       }
       if (r.skippedFrozen) {

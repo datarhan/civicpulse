@@ -27,7 +27,7 @@ export function useFindingQuoteProvenance() {
  * caller cannot accidentally branch on a loading state as if it were a verdict.
  * @param {any} data
  * @param {string} findingId
- * @returns {Array<{status: string, reason?: string}>}
+ * @returns {Array<{status: string, reason?: string, gate?: string | null}>}
  */
 export function provenanceFor(data, findingId) {
   const rows = data?.quotes?.[findingId]

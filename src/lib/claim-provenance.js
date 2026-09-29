@@ -19,44 +19,82 @@
  * avería que hacía que `Otro` significara a la vez «un partido» y «no se puede
  * saber».
  *
+ * La segunda vuelta del mismo defecto (2026-09-29): la pasada se buscaba sólo
+ * entre las marcas de `checkedAgainst`, contra una lista recitada. Pero desde
+ * la fase 1b el motor y el anclaje NLI escriben ahí el corpus de su evidencia y
+ * su nombre en `derivedBy`, y desde #164 la verificación servida trae el
+ * `source` de su entrada de overlay. La primera subida de NLI con esa forma
+ * habría salido como «verificador determinista», y una retractación del motor
+ * como «sin verificador anotado». Por eso la verificación entra ENTERA: quien
+ * pasara sólo `checkedAgainst` volvería a leer media procedencia sin enterarse.
+ *
  * Vive fuera del JSX para que se pueda medir contra el corpus publicado en vez
  * de sólo contra un render.
  */
-import { corpusReales } from '../scraper/claim-verdicts'
+import { CLASE_DE_PASADA, corpusReales, esCorpus, esMarcaDePasada } from '../scraper/claim-verdicts'
 
 /** Lo que se dice cuando no consta quién comprobó la cita. */
 export const SIN_VERIFICADOR = 'sin verificador anotado'
 
+/** El rótulo de cada clase de verificador de `CLASE_DE_PASADA`. */
+const ROTULO_DE_CLASE = {
+  curador: 'corregido por un curador',
+  llm: 'verificador LLM',
+  nli: 'verificador NLI',
+}
+
+const lista = (x) => (Array.isArray(x) ? x : [])
+
 /**
- * Las anotaciones que dejan los verificadores que NO son deterministas.
+ * Las pasadas declaradas que una verificación dice que la produjeron, en los
+ * tres sitios donde puede decirlo y en este orden: el canal del overlay
+ * (`source`), lo que el verificador declara (`derivedBy`) y las marcas viejas
+ * de `checkedAgainst`, que siguen en las filas servidas.
  *
- * `llm-second-pass` y `verdict-engine` son los dos pasos de modelo: el segundo
- * repasa los veredictos del primero con gpt-5.4-mini y sólo se le hace caso
- * cuando RETRACTA (ver scripts/verify-pleno-claims-engine.ts). Llamar
- * «determinista» a cualquiera de los dos es la misma mentira que este fichero
- * existe para no contar, sólo que con otro nombre.
+ * El orden decide sólo si discrepan, que ningún escritor de hoy hace: manda el
+ * canal porque es el que valida `validateOverlay`, la misma regla con la que
+ * `mergeVerified` lo estampa por encima de lo que la verificación traiga.
  */
-const VERIFICADORES_LLM = ['llm-second-pass', 'verdict-engine']
+function pasadasDe(v) {
+  return [v?.source, ...lista(v?.derivedBy), ...lista(v?.checkedAgainst)].filter(
+    (n) => typeof n === 'string' && esMarcaDePasada(n),
+  )
+}
 
-/** Lo que anota `downgrade-verdict` cuando una persona corrige un veredicto. */
-const CORRECCION_DE_CURADOR = 'curator-downgrade'
+/** Ni canal, ni pasada declarada, ni nada en `checkedAgainst`. */
+function nadaAnotado(v) {
+  return !v?.source && lista(v?.derivedBy).length === 0 && lista(v?.checkedAgainst).length === 0
+}
 
 /**
- * @param {string[] | null | undefined} checkedAgainst  fuentes que el
- *   verificador dejó anotadas al emitir el veredicto.
+ * «Determinista» por lista blanca: sólo corpus declarados en `checkedAgainst`,
+ * y ninguna pasada en ningún sitio, declarada o no. Una pasada que nadie ha
+ * declarado no es un cotejo escrito a mano; si cayera aquí, la próxima pasada
+ * nueva repetiría el defecto con otro nombre.
+ */
+function esCotejoDeterminista(v) {
+  if (v?.source || lista(v?.derivedBy).length > 0) return false
+  const ca = lista(v?.checkedAgainst)
+  return ca.length > 0 && ca.every((c) => typeof c === 'string' && esCorpus(c))
+}
+
+/**
+ * @param {{ checkedAgainst?: unknown[] | null, derivedBy?: unknown[] | null,
+ *   source?: string } | null | undefined} v  la verificación servida, entera.
  * @returns {string} la procedencia, en minúsculas, tal cual va a la página.
  */
-export function etiquetaVerificador(checkedAgainst) {
-  // Primero el caso vacío, y a propósito: es el que estaba mal. Ausente, nulo o
-  // lista vacía son la misma cosa —nadie anotó nada— y ninguno puede heredar la
-  // etiqueta de los que sí.
-  if (!Array.isArray(checkedAgainst) || checkedAgainst.length === 0) return SIN_VERIFICADOR
-  // El curador va ANTES que los demás: si una persona ha corregido el veredicto,
-  // eso es lo que hay que decir, y no en qué se apoyó la máquina a la que
-  // corrigió.
-  if (checkedAgainst.includes(CORRECCION_DE_CURADOR)) return 'corregido por un curador'
-  if (checkedAgainst.some((c) => VERIFICADORES_LLM.includes(c))) return 'verificador LLM'
-  return 'verificador determinista'
+export function etiquetaVerificador(v) {
+  const clases = pasadasDe(v).map((p) => CLASE_DE_PASADA[p])
+  // El curador va primero, esté donde esté: si una persona ha corregido el
+  // veredicto, eso es lo que hay que decir, y no en qué se apoyó la máquina a
+  // la que corrigió.
+  const clase = clases.includes('curador') ? 'curador' : clases[0]
+  // Una clase sin rótulo tampoco hereda el de «determinista».
+  if (clase) return ROTULO_DE_CLASE[clase] ?? SIN_VERIFICADOR
+  if (esCotejoDeterminista(v)) return 'verificador determinista'
+  // Nada anotado, o algo que no se puede nombrar. Ninguno de los dos puede
+  // heredar la etiqueta de los que sí.
+  return SIN_VERIFICADOR
 }
 
 /**
@@ -75,20 +113,22 @@ export function etiquetaVerificador(checkedAgainst) {
  *
  *   · nada anotado → «ninguna»: lo que /declaraciones cuenta como «sin corpus
  *     que consultar»;
- *   · algo anotado que no es un corpus (una marca de pasada, o un nombre sin
- *     declarar) → «no constan». La pasada SUSTITUYÓ la lista
- *     (`verificacionDeBajada` escribe sólo su marca): no sabemos cuáles se
- *     miraron, que no es lo mismo que ninguno. De los 878 resúmenes del motor
- *     servidos, 871 cuentan qué contratos o subvenciones examinó, y las cinco
- *     bajadas a «parcial» enseñan una fila CONTRATO; «ninguna» debajo
- *     contradiría la propia tarjeta. Regla nº3 otra vez: el hueco no es un cero.
+ *   · algo anotado que no es un corpus (una pasada, en `checkedAgainst`, en
+ *     `derivedBy` o como `source`, o un nombre sin declarar) → «no constan».
+ *     La pasada SUSTITUYÓ la lista (`verificacionDeBajada` escribe sólo su
+ *     marca; el motor, sólo el corpus de una evidencia que en una retractación
+ *     no hay): no sabemos cuáles se miraron, que no es lo mismo que ninguno. De
+ *     los 878 resúmenes del motor servidos, 871 cuentan qué contratos o
+ *     subvenciones examinó, y las cinco bajadas a «parcial» enseñan una fila
+ *     CONTRATO; «ninguna» debajo contradiría la propia tarjeta. Regla nº3 otra
+ *     vez: el hueco no es un cero.
  *
- * @param {string[] | null | undefined} checkedAgainst
+ * @param {{ checkedAgainst?: unknown[] | null, derivedBy?: unknown[] | null,
+ *   source?: string } | null | undefined} v  la verificación servida, entera.
  * @returns {string} los corpus separados por « · », o una de las dos frases.
  */
-export function fuentesComprobadas(checkedAgainst) {
-  const corpus = corpusReales(checkedAgainst)
+export function fuentesComprobadas(v) {
+  const corpus = corpusReales(v?.checkedAgainst)
   if (corpus.length > 0) return corpus.join(' · ')
-  if (!Array.isArray(checkedAgainst) || checkedAgainst.length === 0) return 'ninguna'
-  return 'no constan'
+  return nadaAnotado(v) ? 'ninguna' : 'no constan'
 }

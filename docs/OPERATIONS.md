@@ -464,7 +464,7 @@ All report-only inside `scrape:all`; run any of them directly.
 | `check:transcripts`               | degenerate transcripts in the published corpus                               |
 | `check:json`                      | unparseable snapshot or merge-conflict marker (also in pre-commit)           |
 | `check:automation`                | which action classes are gated, and on what measurement                      |
-| `check:summary-gate`              | a published summary reproducing a quote the editorial gate withholds         |
+| `check:summary-gate`              | a summary reproducing any version of a quote the gate withholds (ids only)   |
 | `check:data-graph`                | the hand-written dependency graph drifting from what scripts do              |
 | `check:queues`                    | a curator worklist describing findings that no longer exist                  |
 | `check:surfaces`                  | public pages nobody has read lately, or a reader-review flag left standing   |
@@ -487,6 +487,13 @@ person appears beside a published figure — shipped with the competencias layer
 and was invoked by nothing for eleven days, so `check:guards` had been exiting 1
 on main that whole time. Wiring is not a finishing touch; it is the difference
 between a control and a decoration.
+
+And wired is not read. `check:summary-gate` has run in the nightly since it was
+wired, and from 2026-08-27 it blocked every night on a signed summary that
+printed a withheld quote almost whole — as a `soft_failures` line in
+`scrape-all.sh`, which no screen reads. A reader found it by hand a month later.
+It runs in `monitor:health` now, printing ids and never the literal, since that
+digest travels by Telegram.
 
 **Two traps in `--inject` itself**, both found by using it. It refuses to inject
 into a file with uncommitted changes and says so in a line that is easy to skim
