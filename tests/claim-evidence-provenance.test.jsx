@@ -34,25 +34,29 @@ const VERIFIED = resolve('public/data/pleno-claims-verified.json')
 
 describe('el sello de procedencia tiene tres estados, no dos', () => {
   it('nombra al verificador determinista sólo cuando lo es', () => {
-    expect(etiquetaVerificador(['tenders', 'tenders-ted', 'bdns', 'budget'])).toBe(
-      'verificador determinista',
-    )
+    expect(
+      etiquetaVerificador({ checkedAgainst: ['tenders', 'tenders-ted', 'bdns', 'budget'] }),
+    ).toBe('verificador determinista')
   })
 
   it('no llama determinista a ningún paso de modelo', () => {
     // `verdict-engine` es el repaso con gpt-5.4-mini, tan modelo como
     // `llm-second-pass`. Salía rotulado «determinista» por no estar en la
     // lista, que es el mismo defecto de este fichero con otro nombre.
-    expect(etiquetaVerificador(['llm-second-pass'])).toBe('verificador LLM')
-    expect(etiquetaVerificador(['verdict-engine'])).toBe('verificador LLM')
-    expect(etiquetaVerificador(['tenders', 'llm-second-pass'])).toBe('verificador LLM')
+    expect(etiquetaVerificador({ checkedAgainst: ['llm-second-pass'] })).toBe('verificador LLM')
+    expect(etiquetaVerificador({ checkedAgainst: ['verdict-engine'] })).toBe('verificador LLM')
+    expect(etiquetaVerificador({ checkedAgainst: ['tenders', 'llm-second-pass'] })).toBe(
+      'verificador LLM',
+    )
   })
 
   it('cuando ha corregido una persona, lo dice', () => {
     // Y va por delante de todo lo demás: si un curador ha bajado el veredicto,
     // el lector tiene que ver eso, no en qué se apoyaba la máquina corregida.
-    expect(etiquetaVerificador(['curator-downgrade'])).toBe('corregido por un curador')
-    expect(etiquetaVerificador(['curator-downgrade', 'llm-second-pass'])).toBe(
+    expect(etiquetaVerificador({ checkedAgainst: ['curator-downgrade'] })).toBe(
+      'corregido por un curador',
+    )
+    expect(etiquetaVerificador({ checkedAgainst: ['curator-downgrade', 'llm-second-pass'] })).toBe(
       'corregido por un curador',
     )
   })
@@ -60,7 +64,7 @@ describe('el sello de procedencia tiene tres estados, no dos', () => {
   it('NO llama determinista a lo que no tiene verificador anotado', () => {
     // Las tres formas de «no consta». Ninguna puede salir por el `else`.
     for (const vacio of [[], undefined, null]) {
-      const etiqueta = etiquetaVerificador(vacio)
+      const etiqueta = etiquetaVerificador({ checkedAgainst: vacio })
       expect(etiqueta, `checkedAgainst=${JSON.stringify(vacio)}`).not.toMatch(/determinista/)
       expect(etiqueta, `checkedAgainst=${JSON.stringify(vacio)}`).not.toMatch(/LLM/)
       // Y lo dice, en vez de callarse: una línea en blanco donde iba una
@@ -83,7 +87,7 @@ describe('contra el snapshot publicado', () => {
     const mentirosas = conEvidencia
       .filter((i) => {
         const ca = i.verification?.checkedAgainst
-        return (!ca || ca.length === 0) && /determinista/.test(etiquetaVerificador(ca))
+        return (!ca || ca.length === 0) && /determinista/.test(etiquetaVerificador(i.verification))
       })
       .map((i) => i.claim?.id)
     expect(mentirosas, 'citas con el sello determinista y nada que lo respalde').toEqual([])

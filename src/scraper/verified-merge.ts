@@ -20,6 +20,7 @@
 import { ALLOWED_CLAIM_TYPES, type ClaimType, type PlenoClaim } from './pleno-claim'
 import type { ClaimVerdict, ClaimVerification, ClaimEvidence } from './claim-verifier'
 import { corpusReales } from './claim-verdicts'
+import { charlaDeTarea } from './charla-de-tarea'
 // El mismo descuento de palabras vacías que usa la cola de reanclaje de
 // `/hallazgos`. Importado, no recitado: dos listas de stopwords que midieran
 // distinto harían que el CLI aceptara lo que la cola desaconseja.
@@ -342,6 +343,16 @@ export function applyOverlayEntries(
         `[overlay] ${e.claimId}: ${e.verification.verdict} no llega al suelo de evidencia — ` +
           'no nombra ningún corpus real o no trae evidencia. Un veredicto fuerte afirma que ' +
           'algo lo respalda; si no lo hay, el veredicto es sin-datos.',
+      )
+    }
+    // La charla de la tarea, también en la ESCRITURA y para toda fuente: el
+    // resumen se pinta bajo la cita del concejal. Lo que ya está lo retira la
+    // tarjeta (src/lib/resumenes-retirados.js); lo nuevo no llega a escribirse.
+    const charla = charlaDeTarea(e.verification.summary)
+    if (charla) {
+      throw new Error(
+        `[overlay] ${e.claimId}: el resumen habla de la tarea del modelo (${charla}), no de la ` +
+          'declaración, y se publicaría bajo la cita. Un parte del encargo no es un juicio.',
       )
     }
     if (e.source === 'curator-downgrade') {
