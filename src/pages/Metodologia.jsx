@@ -1287,10 +1287,17 @@ export default function Metodologia() {
                 quien redacta, no un veredicto, y ninguna herramienta de curación puede escribir uno
                 —sólo bajan—.
               </li>
+              {/* Decía «no hay registro en las bases abiertas», y la tarjeta lo
+                  repetía en cada sin-datos con una frase fija que nombraba
+                  contratos, BDNS y presupuesto aunque no se hubiera consultado
+                  ninguno. 29-09-2026. */}
               <li>
-                <strong>sin-datos</strong> — no hay registro en las bases abiertas. Puede ser
-                cierto, pero no atestado (muy frecuente: reconocimientos extrajudiciales,
-                operaciones internas).
+                <strong>sin-datos</strong> — ningún registro de las bases consultadas sostiene la
+                afirmación, o no había ninguna con la que cotejarla. Puede ser cierta, pero no está
+                atestiguada (muy frecuente: reconocimientos extrajudiciales, operaciones internas).
+                La explicación de su tarjeta nombra sólo las bases que constan como consultadas —las
+                mismas que su línea «Fuentes comprobadas»— y, cuando no consta ninguna, no dice que
+                se buscara.
               </li>
               <li>
                 <strong>promesa-repetida</strong> — la promesa coincide con una ya documentada en el
