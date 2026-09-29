@@ -166,7 +166,7 @@ export function FindingDetailCard({ f, permalink }) {
                 />
               ),
             )}
-            <QuoteProvenanceNote entries={prov} curatorName={f.curatorName} />
+            <QuoteProvenanceNote entries={prov} quotes={f.quotes} curatorName={f.curatorName} />
           </>
         ) : (
           <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
