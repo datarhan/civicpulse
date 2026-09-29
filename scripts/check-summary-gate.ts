@@ -101,7 +101,9 @@ interface Leak {
   version: 'vigente' | 'anterior'
 }
 
-interface FindingLike {
+// Un alias y no una interfaz: `versionesDeCitas` pide `FichaLike`, con firma de
+// índice, y sólo un alias la cumple sin declararla.
+type FindingLike = {
   id: string
   summary: string
   quotes?: Array<{ text: string; literalRetenido?: boolean }>
