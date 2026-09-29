@@ -10,6 +10,7 @@ import {
 import { buildSindicTemplate, renderSindicMarkdown, renderSindicHtml } from '../src/services/sindic'
 import { checkSilencio } from '../src/services/cron'
 import { routeUsingLocalOfficials } from '../src/services/router'
+import type { AvisosHitos } from '../src/services/avisos-hitos'
 import { creaPublicada } from './helpers/publicada'
 
 function seed(db: Db, overrides: Partial<NewQuejaInput> = {}) {
@@ -29,21 +30,22 @@ function register(db: Db, id: string, entryNumber = '2026-RE-0001') {
   setState(db, id, 'registrada', { entry_number: entryNumber, csv: 'ABC123' })
 }
 
-function fakeChannel() {
+/** Los avisos de hitos a quien modera, apuntados; `falla` hace fallar los primeros n. */
+function fakeHitos(falla = 0) {
   const emitted: Array<{ kind: string; id: string }> = []
-  return {
+  let fallos = falla
+  const hitos: AvisosHitos & { emitted: typeof emitted } = {
     emitted,
-    postNuevaQueja: async () => undefined,
-    postApoyoMilestone: async () => undefined,
-    postRegistrada: async () => undefined,
-    postResuelta: async () => undefined,
-    postSilencio: async (q: { id: string }) => {
-      emitted.push({ kind: 'silencio', id: q.id })
-    },
-    postEscaladaSindic: async (q: { id: string }) => {
-      emitted.push({ kind: 'escalada', id: q.id })
+    avisar: async (hito, id) => {
+      if (fallos > 0) {
+        fallos -= 1
+        throw new Error('ningún administrador recibió el aviso')
+      }
+      emitted.push({ kind: hito, id })
+      return { entregados: 1, fallidos: 0 }
     },
   }
+  return hitos
 }
 
 describe('sindic — template renderer', () => {
@@ -120,10 +122,10 @@ describe('sindic — template renderer', () => {
 
 describe('cron — checkSilencio', () => {
   let db: Db
-  let channel: ReturnType<typeof fakeChannel>
+  let channel: ReturnType<typeof fakeHitos>
   beforeEach(() => {
     db = openDb(':memory:')
-    channel = fakeChannel()
+    channel = fakeHitos()
   })
 
   it('transitions registered quejas past the 90-day deadline', () => {
@@ -133,14 +135,14 @@ describe('cron — checkSilencio', () => {
       registered_at: string
     }
     const future = new Date(new Date(row.registered_at).getTime() + 95 * 86_400_000)
-    const r = checkSilencio(db, channel as never, future)
+    const r = checkSilencio(db, channel, future)
     expect(r.transitioned.length).toBe(1)
     expect(r.transitioned[0].state).toBe('silencio_negativo')
   })
 
-  it('no transiciona ni difunde una queja OLVIDADA por su autor', () => {
-    // El caso más grave de los cuatro que tiene este defecto. `postSilencio`
-    // publica el id y el TÍTULO literal en el canal público:
+  it('no transiciona ni avisa de una queja OLVIDADA por su autor', () => {
+    // El caso más grave de los cuatro que tuvo este defecto, cuando el aviso
+    // salía al canal público con el id y el TÍTULO literal:
     //
     //   ⚠️ SILENCIO ADMINISTRATIVO · Q-xxxx
     //   *Bache profundo*
@@ -148,7 +150,8 @@ describe('cron — checkSilencio', () => {
     // Una queja retirada con `/olvidar` —que es el punto de cumplimiento del
     // derecho al olvido— seguía entrando aquí si ya estaba registrada, así que
     // meses después su título volvía a publicarse. Borrar y que te republiquen
-    // es peor que no haber borrado: el vecino cree que lo retiró.
+    // es peor que no haber borrado: el vecino cree que lo retiró. Una retirada
+    // tampoco sigue su trámite, así que no hay de qué avisar a quien modera.
     const q = seed(db)
     register(db, q.id)
     const row = db.prepare('SELECT registered_at FROM quejas WHERE id = ?').get(q.id) as {
@@ -156,9 +159,9 @@ describe('cron — checkSilencio', () => {
     }
     softDeleteQueja(db, q.id, autorTelegram(1))
     const future = new Date(new Date(row.registered_at).getTime() + 95 * 86_400_000)
-    const r = checkSilencio(db, channel as never, future)
+    const r = checkSilencio(db, channel, future)
     expect(r.transitioned.length, 'ha transicionado una queja retirada').toBe(0)
-    expect(channel.emitted, 'ha publicado una queja retirada en el canal').toEqual([])
+    expect(channel.emitted, 'ha avisado de una queja retirada').toEqual([])
   })
 
   it('leaves in-time quejas alone', () => {
@@ -168,7 +171,7 @@ describe('cron — checkSilencio', () => {
       registered_at: string
     }
     const soon = new Date(new Date(row.registered_at).getTime() + 30 * 86_400_000)
-    const r = checkSilencio(db, channel as never, soon)
+    const r = checkSilencio(db, channel, soon)
     expect(r.transitioned.length).toBe(0)
   })
 
@@ -184,7 +187,7 @@ describe('cron — checkSilencio', () => {
     }
     // 45 days → past transparencia deadline (30) but not past standard (90).
     const t = new Date(new Date(row.registered_at).getTime() + 45 * 86_400_000)
-    const r = checkSilencio(db, channel as never, t)
+    const r = checkSilencio(db, channel, t)
     expect(r.transitioned.length).toBe(1)
   })
 
@@ -199,20 +202,41 @@ describe('cron — checkSilencio', () => {
       registered_at: string
     }
     const future = new Date(new Date(row.registered_at).getTime() + 120 * 86_400_000)
-    const r = checkSilencio(db, channel as never, future)
+    const r = checkSilencio(db, channel, future)
     expect(r.transitioned.length).toBe(0)
   })
 
-  it('emits a silencio broadcast per transitioned queja', async () => {
+  it('avisa a quien modera de cada queja que pasa a silencio', async () => {
     const q = seed(db)
     register(db, q.id)
     const row = db.prepare('SELECT registered_at FROM quejas WHERE id = ?').get(q.id) as {
       registered_at: string
     }
     const future = new Date(new Date(row.registered_at).getTime() + 95 * 86_400_000)
-    checkSilencio(db, channel as never, future)
-    // broadcasts are fire-and-forget; let microtasks flush.
-    await new Promise((r) => setTimeout(r, 10))
-    expect(channel.emitted.filter((e) => e.kind === 'silencio').length).toBe(1)
+    const r = checkSilencio(db, channel, future)
+    expect(await r.avisos).toEqual({ avisadas: 1, fallidas: 0 })
+    expect(channel.emitted).toEqual([{ kind: 'silencio', id: q.id }])
+  })
+
+  /**
+   * El canal se tragaba sus errores, así que el reintento de aquí no se
+   * ejecutaba nunca, y un aviso perdido no dejaba rastro. El aviso a quien
+   * modera falla cuando no le llega a nadie, y entonces se reintenta.
+   */
+  it('un aviso que no llega a nadie se reintenta, y si vuelve a fallar se cuenta', async () => {
+    const q = seed(db)
+    register(db, q.id)
+    const row = db.prepare('SELECT registered_at FROM quejas WHERE id = ?').get(q.id) as {
+      registered_at: string
+    }
+    const future = new Date(new Date(row.registered_at).getTime() + 95 * 86_400_000)
+    const una = fakeHitos(1)
+    expect(await checkSilencio(db, una, future, 0).avisos).toEqual({ avisadas: 1, fallidas: 0 })
+    expect(una.emitted).toHaveLength(1)
+
+    const q2 = seed(db, { title: 'Otro bache', detail: 'Otro bache de 30 cm en la calle Mayor' })
+    register(db, q2.id)
+    const dos = fakeHitos(2)
+    expect(await checkSilencio(db, dos, future, 0).avisos).toEqual({ avisadas: 0, fallidas: 1 })
   })
 })
