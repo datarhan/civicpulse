@@ -64,11 +64,13 @@ export function useHashScroll() {
     let done = false
     let observer
     let timer
+    let fuentes
 
     const stop = () => {
       done = true
       observer?.disconnect()
       if (timer) clearTimeout(timer)
+      fuentes?.removeEventListener('loadingdone', fuentesCargadas)
       window.removeEventListener('wheel', takeOver)
       window.removeEventListener('touchmove', takeOver)
       window.removeEventListener('keydown', takeOver)
@@ -76,6 +78,12 @@ export function useHashScroll() {
 
     function takeOver() {
       stop()
+    }
+
+    // Una cara recién cargada cambia el alto de todo el texto que la usa, y eso
+    // no es una mutación del DOM: el observador no la ve.
+    function fuentesCargadas() {
+      attempt()
     }
 
     const colocar = () => {
@@ -121,6 +129,31 @@ export function useHashScroll() {
      * a 64. Sólo se veía con la suite entera en paralelo, que es cuando los
      * fetch tardan: un defecto real que en local no aparecía.
      *
+     * ── Las fuentes, también cuando colocó el navegador ───────────────────
+     *
+     * La segunda pasada era una promesa, `document.fonts.ready`, que se cogía
+     * después de colocar. Tenía dos agujeros, y el primero se midió:
+     *
+     *   · Si el destino ya estaba en su sitio no se cogía, y lo está siempre
+     *     que el salto lo da el navegador —un fragmento dentro del mismo
+     *     documento—, porque cada ancla lleva `scrollMarginTop: MARGEN_ANCLA` y
+     *     ese margen dice lo mismo que `headerOffset()`. Medido el 29-09-2026
+     *     en `/eficiencia#sec-declaracion`: el navegador aterrizaba en 64 con
+     *     las fuentes aún cargando, aquí no quedaba nada que hacer, las fuentes
+     *     entraban 40–190 ms después, lo de arriba perdía 16 px sin una sola
+     *     mutación del DOM y el destino se quedaba en 48, debajo de la topbar.
+     *   · `ready` sirve una vez. La que se coge cuando no hay nada cargando ya
+     *     está resuelta, y no se entera de la cara que se pida después.
+     *
+     * Por eso las fuentes se escuchan como las mutaciones: `loadingdone`,
+     * durante toda la espera, y cada aviso pasa por el mismo `attempt()`.
+     *
+     * Era intermitente porque a veces lo tapaba el anclaje de scroll de Chrome,
+     * que corrige solo cuando cambia de alto lo que hay por encima. No se puede
+     * contar con él: la animación de entrada de `.cp-page` lo suspende durante
+     * sus 240 ms, y con ella 7 de 8 aterrizajes se quedaron en y = 47; sin
+     * ella, 8 de 8 en 64.
+     *
      * Recolocar sólo si se ha ido de sitio más de `TOLERANCIA_PX` es lo que
      * permite dejar el observador puesto sin llamar a `scrollTo` en cada
      * mutación de una página viva.
@@ -134,18 +167,15 @@ export function useHashScroll() {
     const attempt = () => {
       if (done) return true
       if (yaColocado()) return true
-      if (!colocar()) return false
-      const fuentes = typeof document !== 'undefined' && document.fonts?.ready
-      if (fuentes) fuentes.then(() => !done && !yaColocado() && colocar())
       // NO se suelta el observador: mientras siga llegando contenido por encima
       // hay que recolocar. Lo suelta `stop`, por límite de tiempo o porque el
       // lector ha tomado el mando.
-      return true
+      return colocar()
     }
 
     // Se registra SIEMPRE el vigilante, aunque el destino ya exista: colocar
     // bien la primera vez no garantiza que siga colocado cuando entren los
-    // datos de más arriba.
+    // datos o las fuentes de más arriba.
     attempt()
 
     window.addEventListener('wheel', takeOver, { passive: true })
@@ -154,6 +184,8 @@ export function useHashScroll() {
 
     observer = new MutationObserver(() => attempt())
     observer.observe(document.body, { childList: true, subtree: true })
+    fuentes = document.fonts
+    fuentes?.addEventListener('loadingdone', fuentesCargadas)
     timer = setTimeout(stop, GIVE_UP_MS)
 
     return stop
