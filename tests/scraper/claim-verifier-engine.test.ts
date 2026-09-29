@@ -148,11 +148,30 @@ describe('un razonamiento que habla de la tarea', () => {
     expect(extraida).toBe(false)
   })
 
+  it('un razonamiento vacío tampoco es un juicio: la llamada que falló no llega a la extracción', async () => {
+    // `reasonFn` devolvía `r?.reasoning ?? ''`: con el modelo caído, la
+    // extracción decidía sobre nada y la fila salía «juzgada», con un resumen
+    // vacío. Medido el 29-09-2026 en una re-derivación de prueba: dos llamadas
+    // de razonar rechazadas y dos filas contadas como re-derivadas.
+    let extraida = false
+    const d: EngineDeps = {
+      reasonFn: async () => '  ',
+      extractFn: async () => {
+        extraida = true
+        return { verdict: 'sin-datos', cites: [] }
+      },
+    }
+    await expect(verifyClaimWithEngine({ claim: claim(), candidates: cands() }, d)).rejects.toThrow(
+      /no devolvió/,
+    )
+    expect(extraida).toBe(false)
+  })
+
   it('el prompt dice dónde va el razonamiento, y no pide texto fuera del JSON', () => {
     // «RAZONA en texto libre» dentro de un esquema de un solo campo es lo que
     // partió la respuesta en dos: el análisis como texto y un parte en el campo.
     const p = buildEngineReasonSystemPrompt()
-    expect(p).toMatch(/campo `reasoning`/)
+    expect(p).toMatch(/campo\s+`reasoning`/)
     expect(p).not.toMatch(/texto libre/i)
   })
 })
