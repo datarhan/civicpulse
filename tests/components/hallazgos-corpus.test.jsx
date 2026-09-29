@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { act, render, waitFor } from '@testing-library/react'
 import { MemoryRouter, Routes, Route } from 'react-router-dom'
@@ -7,6 +7,7 @@ import Hallazgos from '../../src/pages/Hallazgos'
 import { installFetchMock } from '../setup/mockFetch'
 import { peekSnapshot } from '../../src/lib/snapshot-store'
 import { DEPT_TO_CLAIM_TOPICS, deptSlugToClaimTopics } from '../../src/lib/department-claim-topics'
+import { CATALOGUE } from '../../src/i18n'
 
 /**
  * /hallazgos pide el corpus de declaraciones sólo cuando filtra por área.
@@ -80,13 +81,25 @@ async function reposa() {
   })
 }
 
-function monta(ruta) {
-  const fetchFn = installFetchMock({
+/**
+ * Monta la página en `ruta` con los datos publicados. `corpus`, si llega, es una
+ * promesa que retiene toda petición de pleno-claims hasta resolverse; `falta` es un
+ * fichero que se deja sin servir, y responde 404.
+ */
+function monta(ruta, { corpus = null, falta = null } = {}) {
+  const mapa = {
     '/data/pleno-findings.json': HALLAZGOS,
     '/data/finding-quote-provenance.json': PROCEDENCIA,
     [INDICE]: MANIFIESTO,
     ...FRAGMENTOS,
+  }
+  if (falta) delete mapa[falta]
+  const sirve = installFetchMock(mapa)
+  const fetchFn = vi.fn(async (input) => {
+    if (corpus && String(input).includes('/data/pleno-claims/')) await corpus
+    return sirve(input)
   })
+  globalThis.fetch = fetchFn
   render(
     <MemoryRouter initialEntries={[ruta]}>
       <Routes>
@@ -119,7 +132,7 @@ describe('/hallazgos?area=… · EL CONTROL: con área, el corpus se pide y filt
 
   it('pide el manifiesto y cada fragmento una vez, y pinta sólo los hallazgos del área', async () => {
     const fetchFn = monta(`/hallazgos?area=${AREA}`)
-    await waitFor(() => expect(fichas()).toEqual(enOrden(delArea(AREA))), { timeout: 5000 })
+    await waitFor(() => expect(fichas()).toEqual(enOrden(delArea(AREA))), { timeout: 3000 })
     await reposa()
     expect(pedidasDeDeclaraciones(fetchFn).sort()).toEqual(
       [INDICE, ...MANIFIESTO.plenos.map(urlDe)].sort(),
@@ -136,10 +149,51 @@ describe('/hallazgos?area=… · EL CONTROL: con área, el corpus se pide y filt
         expect(MANIFIESTO.plenos.every((p) => peekSnapshot(urlDe(p))?.status === 'ready')).toBe(
           true,
         ),
-      { timeout: 5000 },
+      { timeout: 3000 },
     )
     await reposa()
     expect(document.body.textContent).toContain('Ninguno coincide con los filtros actuales.')
     expect(document.body.textContent).not.toContain('Todavía no hay hallazgos')
+  })
+})
+
+/**
+ * Sin el corpus no se sabe qué hallazgos son del área. La lista decía «Ninguno
+ * coincide con los filtros actuales.» mientras llegaba —y para siempre si no
+ * llegaba—, que es falso: en una página que nombra a grupos políticos, «no lo sé
+ * todavía» se publicaba como «no hay ninguno».
+ */
+describe('/hallazgos?area=… · sin el corpus, la lista no dice que ninguno coincide', () => {
+  const AREA = 'urbanismo'
+  const CARGANDO = CATALOGUE.es['common.loading']
+  const TITULAR = 'Hallazgos sobre declaraciones en pleno'
+  const texto = () => document.body.textContent
+
+  it('mientras el corpus no llega dice que carga, y cuando llega pinta los del área', async () => {
+    let suelta
+    const corpus = new Promise((r) => {
+      suelta = r
+    })
+    monta(`/hallazgos?area=${AREA}`, { corpus })
+    // La página ya ha cargado sus hallazgos —el titular sólo sale entonces—, así que
+    // el aviso de carga es el de la lista, no el de la página.
+    await waitFor(() => expect(texto()).toContain(TITULAR))
+    await reposa()
+    expect(texto()).toContain(CARGANDO)
+    expect(texto()).not.toContain('Ninguno coincide')
+    expect(fichas()).toEqual([])
+
+    suelta()
+    await waitFor(() => expect(fichas()).toEqual(enOrden(delArea(AREA))), { timeout: 3000 })
+    expect(texto()).not.toContain(CARGANDO)
+  })
+
+  it('si falta un fragmento, dice cuál en vez de decir que ninguno coincide', async () => {
+    const FALTA = urlDe(MANIFIESTO.plenos[0])
+    monta(`/hallazgos?area=${AREA}`, { falta: FALTA })
+    await waitFor(() => expect(texto()).toContain(FALTA), { timeout: 3000 })
+    expect(texto()).not.toContain('Ninguno coincide')
+    expect(texto()).not.toContain(CARGANDO)
+    expect(fichas()).toEqual([])
   })
 })
