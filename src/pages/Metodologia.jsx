@@ -711,16 +711,27 @@ export default function Metodologia() {
             aviso semanal le recuerda cuántas esperan.
           </li>
           <li>
-            <strong>El registro devuelve un número y un CSV.</strong> La sede anota el asiento y
-            emite un recibo con número de entrada y código seguro de verificación. Cada queja del
-            lote queda como «registrada» con ese número, y desde ahí corre el plazo.
+            <strong>El registro devuelve un número, una fecha y un CSV.</strong> La sede anota el
+            asiento y emite un recibo con número de entrada, fecha y hora de registro y código
+            seguro de verificación. Cada queja del lote queda como «registrada» con ese número, y el
+            plazo corre desde la fecha de registro del recibo, no desde que se anota aquí. Lo
+            presentado en día inhábil lleva como fecha de registro el primer día hábil siguiente, y
+            el recibo da también la de presentación: se toma la de registro, la más tardía de las
+            dos, para no dar nunca por vencido un plazo antes de tiempo.
           </li>
           <li>
             <strong>El plazo y el silencio.</strong> Depende de la materia: con carácter general,
-            tres meses; una petición de transparencia, un mes (art. 20 de la Ley 19/2013). Si vence
-            sin respuesta en un procedimiento de silencio negativo, la queja pasa a «silencio
+            tres meses; una petición de transparencia, un mes (art. 20 de la Ley 19/2013). Los meses
+            se cuentan de fecha a fecha en el calendario de la sede, que es la hora de Madrid (arts.
+            30.4 y 31.2 de la LPACAP): registrada el 28 de septiembre, vence el 28 de diciembre, y
+            ese último día entero es todavía plazo. Si pasa sin respuesta en un procedimiento de
+            silencio negativo, desde las 00:00 del día siguiente la queja pasa a «silencio
             administrativo» —un estado legal, no un juicio sobre nadie— y puede prepararse la
-            plantilla para acudir al Síndic de Greuges de la Comunitat Valenciana.
+            plantilla para acudir al Síndic de Greuges de la Comunitat Valenciana. Cuando ese último
+            día es inhábil, la ley lo prorroga al primer día hábil siguiente (art. 30.5), y el
+            cálculo automático todavía no aplica esa prórroga, porque no tiene el calendario de días
+            inhábiles: si el plazo acaba en fin de semana o festivo, puede marcar el silencio antes
+            de tiempo.
           </li>
         </ol>
         <ul style={{ margin: '10px 0 0', paddingLeft: 20 }}>
