@@ -2,7 +2,8 @@ import { describe, it, expect } from 'vitest'
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import { PUBLICATION_DENYLIST } from '../publication-denylist.js'
-import { PUERTA_QUE_RETIENE, retenerLiterales } from '../src/scraper/literales-retenidos'
+import { retenerLiterales } from '../src/scraper/literales-retenidos'
+import { citaRetenida } from '../src/lib/cita-retenida.js'
 
 /**
  * Lo que se publica es `dist/`, no `public/`.
@@ -107,7 +108,7 @@ describe.skipIf(SIN_DIST)('pleno-findings.json servido', () => {
     // La procedencia SERVIDA: es la que lee la página para decidir el hueco.
     const prov = leerDist('finding-quote-provenance.json')
     const retenidas = Object.values(prov.quotes ?? {}).flat() as Array<{ gate?: string } | null>
-    expect(retenidas.filter((e) => e?.gate === PUERTA_QUE_RETIENE).length).toBeGreaterThan(0)
+    expect(retenidas.filter((e) => citaRetenida(e)).length).toBeGreaterThan(0)
   })
 
   it('no lleva el texto de ninguna cita que la puerta retiene', () => {
@@ -117,7 +118,7 @@ describe.skipIf(SIN_DIST)('pleno-findings.json servido', () => {
     let juzgadas = 0
     for (const f of servido.items) {
       ;(f.quotes ?? []).forEach((q: { text?: string }, i: number) => {
-        if (prov.quotes?.[f.id]?.[i]?.gate !== PUERTA_QUE_RETIENE) return
+        if (!citaRetenida(prov.quotes?.[f.id]?.[i], q)) return
         juzgadas += 1
         if (q.text != null) conTexto.push(`${f.id}#${i}`)
       })

@@ -12,6 +12,7 @@ import {
 import { gateForDisplay, sortSignalFirst } from '../lib/claim-ledger'
 import { blocLabel } from '../lib/party-label.js'
 import { etiquetaVerificador, fuentesComprobadas } from '../lib/claim-provenance.js'
+import { ROTULO_RESUMEN_RETIRADO, resumenPublicable } from '../lib/resumenes-retirados.js'
 
 function formatEuros(n) {
   if (typeof n !== 'number' || !Number.isFinite(n)) return ''
@@ -69,6 +70,10 @@ function EvidenceRow({ e }) {
 
 function ClaimCard({ item }) {
   const { claim, verification } = item
+  // `null` cuando el resumen guardado habla de la tarea del verificador y no de
+  // esta declaración (src/lib/resumenes-retirados.js): la tarjeta dice que lo
+  // retiró en vez de imprimirlo bajo la cita.
+  const resumen = resumenPublicable(verification)
   return (
     <Card>
       <div
@@ -138,9 +143,15 @@ function ClaimCard({ item }) {
         </Pill>
       </div>
       <div
-        style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 8, lineHeight: 1.5 }}
+        style={{
+          fontSize: 'var(--fs-aux)',
+          color: 'var(--ink50)',
+          marginTop: 8,
+          lineHeight: 1.5,
+          fontStyle: resumen === null ? 'italic' : 'normal',
+        }}
       >
-        {verification.summary}
+        {resumen ?? ROTULO_RESUMEN_RETIRADO}
       </div>
       {verification.evidence.length > 0 && (
         <div
