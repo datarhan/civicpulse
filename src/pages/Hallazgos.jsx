@@ -377,6 +377,80 @@ function Chip({ active, label, count, onClick }) {
   )
 }
 
+/**
+ * Los hallazgos que pasan los filtros, agrupados por pleno del más reciente al
+ * más antiguo. `hayPublicados` separa «ninguno coincide» de «no hay ninguno»:
+ * con la lista filtrada vacía, sólo el total publicado sabe cuál de las dos es.
+ */
+function ListaDeHallazgos({ hallazgos, hayPublicados }) {
+  const groups = useMemo(() => {
+    const g = new Map()
+    for (const f of hallazgos) {
+      if (!g.has(f.plenoDate)) g.set(f.plenoDate, [])
+      g.get(f.plenoDate).push(f)
+    }
+    return [...g.entries()].sort((a, b) => b[0].localeCompare(a[0]))
+  }, [hallazgos])
+
+  if (groups.length === 0) {
+    return (
+      <div
+        style={{
+          padding: 16,
+          background: 'var(--soft)',
+          borderRadius: 'var(--r-input)',
+          fontSize: 'var(--fs-aux)',
+          color: 'var(--ink50)',
+          lineHeight: 1.5,
+        }}
+      >
+        {!hayPublicados
+          ? 'Todavía no hay hallazgos editoriales publicados. El flujo de curación es: extraer declaraciones → verificar contra datos → promover a hallazgo.'
+          : 'Ninguno coincide con los filtros actuales.'}
+      </div>
+    )
+  }
+  return groups.map(([date, list]) => (
+    <section key={date} style={{ marginBottom: 24 }}>
+      <div
+        className="mono"
+        style={{
+          fontSize: 'var(--fs-micro)',
+          color: 'var(--ink50)',
+          letterSpacing: '.1em',
+          textTransform: 'uppercase',
+          fontWeight: 600,
+          marginBottom: 8,
+        }}
+      >
+        Pleno · {date}
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+        {list.map((f) => (
+          <FindingDetailCard key={f.id} f={f} permalink={`/hallazgos/${f.id}`} />
+        ))}
+      </div>
+    </section>
+  ))
+}
+
+/**
+ * La lista con `?area=`. Un hallazgo no lleva área: se la dan los temas de las
+ * declaraciones que cita, así que filtrar por área necesita el corpus entero
+ * (índice y todos sus fragmentos, unos 7 MB medidos el 29-09-2026). El hook
+ * vive aquí porque un hook no se puede saltar: mientras la página lo llamaba,
+ * /hallazgos sin área descargaba el corpus para no leerlo.
+ * tests/components/hallazgos-corpus.test.jsx cuenta lo que pide cada caso.
+ */
+function ListaDelArea({ area, hallazgos, hayPublicados }) {
+  const { data: claims } = usePlenoClaims()
+  const delArea = useMemo(
+    () => hallazgos.filter((f) => findingMatchesArea(f, area, claims)),
+    [hallazgos, area, claims],
+  )
+  return <ListaDeHallazgos hallazgos={delArea} hayPublicados={hayPublicados} />
+}
+
 export default function Hallazgos() {
   const t = useT()
   const location = useLocation()
@@ -389,7 +463,6 @@ export default function Hallazgos() {
   // finding → sourceClaimIds → claim.topic → department, reusing the same
   // mapping /departamentos uses, so both surfaces agree on what an área means.
   const areaFilter = new URLSearchParams(location.search).get('area')
-  const { data: claimsForArea } = usePlenoClaims()
   // Read for the page-level figure only; each card fetches its own rows from
   // the same session-cached snapshot.
   const { data: provenanceSnapshot } = useFindingQuoteProvenance()
@@ -416,29 +489,19 @@ export default function Hallazgos() {
   // seleccionaba HALLAZGOS. Ver la cabecera de ese fichero.
   const counts = useMemo(() => contarHallazgos(items), [items])
 
-  const filtered = useMemo(() => {
-    return items.filter(
-      (f) =>
+  // El de área no va aquí: lo aplica `ListaDelArea`, que es la única que pide
+  // el corpus de declaraciones.
+  const filtered = useMemo(
+    () =>
+      items.filter((f) =>
         pasaFiltros(f, {
           severidad: severityFilter,
           grupo: speakerFilter,
           pleno: plenoFilter,
-        }) &&
-        // El de área se queda fuera del módulo puro: necesita el corpus de
-        // declaraciones, que es E/S.
-        findingMatchesArea(f, areaFilter, claimsForArea),
-    )
-  }, [items, severityFilter, speakerFilter, plenoFilter, areaFilter, claimsForArea])
-
-  // Group by pleno date
-  const groups = useMemo(() => {
-    const g = new Map()
-    for (const f of filtered) {
-      if (!g.has(f.plenoDate)) g.set(f.plenoDate, [])
-      g.get(f.plenoDate).push(f)
-    }
-    return [...g.entries()].sort((a, b) => b[0].localeCompare(a[0]))
-  }, [filtered])
+        }),
+      ),
+    [items, severityFilter, speakerFilter, plenoFilter],
+  )
 
   if (loading) {
     return (
@@ -718,45 +781,10 @@ export default function Hallazgos() {
         </div>
       )}
 
-      {/* Grouped findings */}
-      {groups.length === 0 ? (
-        <div
-          style={{
-            padding: 16,
-            background: 'var(--soft)',
-            borderRadius: 'var(--r-input)',
-            fontSize: 'var(--fs-aux)',
-            color: 'var(--ink50)',
-            lineHeight: 1.5,
-          }}
-        >
-          {items.length === 0
-            ? 'Todavía no hay hallazgos editoriales publicados. El flujo de curación es: extraer declaraciones → verificar contra datos → promover a hallazgo.'
-            : 'Ninguno coincide con los filtros actuales.'}
-        </div>
+      {areaFilter ? (
+        <ListaDelArea area={areaFilter} hallazgos={filtered} hayPublicados={items.length > 0} />
       ) : (
-        groups.map(([date, list]) => (
-          <section key={date} style={{ marginBottom: 24 }}>
-            <div
-              className="mono"
-              style={{
-                fontSize: 'var(--fs-micro)',
-                color: 'var(--ink50)',
-                letterSpacing: '.1em',
-                textTransform: 'uppercase',
-                fontWeight: 600,
-                marginBottom: 8,
-              }}
-            >
-              Pleno · {date}
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-              {list.map((f) => (
-                <FindingDetailCard key={f.id} f={f} permalink={`/hallazgos/${f.id}`} />
-              ))}
-            </div>
-          </section>
-        ))
+        <ListaDeHallazgos hallazgos={filtered} hayPublicados={items.length > 0} />
       )}
 
       <RetractionLedger retractions={data?.retractions ?? []} />
