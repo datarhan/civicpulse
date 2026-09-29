@@ -1,9 +1,11 @@
 import { describe, it, expect } from 'vitest'
 import {
   verifyClaimWithEngine,
+  RazonamientoConCharla,
   type EngineDeps,
   type EngineExtract,
 } from '../../src/scraper/claim-verifier-engine'
+import { buildEngineReasonSystemPrompt } from '../../src/llm/prompts'
 import type { PlenoClaim } from '../../src/scraper/pleno-claim'
 import type { CandidateShortlist } from '../../src/scraper/claim-verifier'
 
@@ -118,5 +120,39 @@ describe('verifyClaimWithEngine', () => {
         deps({ verdict: 'sin-datos', cites: [] }),
       ),
     ).toBeNull()
+  })
+})
+
+/**
+ * El 02-08-2026, con claude-code, el campo `reasoning` recogió muchas veces el
+ * parte del modelo sobre su encargo en vez del razonamiento («Task completed:
+ * reasoned in Spanish…», «Análisis completado en el texto de respuesta.»), y
+ * el paso de extracción decidió el veredicto sobre ese parte. Se publicó como
+ * resumen bajo la cita (src/lib/resumenes-retirados.js). Un parte no es un
+ * juicio: se salta, como una extracción fallida, y se reintenta.
+ */
+describe('un razonamiento que habla de la tarea', () => {
+  it('no es un juicio: no llega a la extracción y la afirmación se salta', async () => {
+    let extraida = false
+    const d: EngineDeps = {
+      reasonFn: async () =>
+        'Task completed: reasoned in Spanish about candidate support for the claim, concluding no genuine support exists.',
+      extractFn: async () => {
+        extraida = true
+        return { verdict: 'sin-datos', cites: [] }
+      },
+    }
+    await expect(
+      verifyClaimWithEngine({ claim: claim(), candidates: cands() }, d),
+    ).rejects.toBeInstanceOf(RazonamientoConCharla)
+    expect(extraida).toBe(false)
+  })
+
+  it('el prompt dice dónde va el razonamiento, y no pide texto fuera del JSON', () => {
+    // «RAZONA en texto libre» dentro de un esquema de un solo campo es lo que
+    // partió la respuesta en dos: el análisis como texto y un parte en el campo.
+    const p = buildEngineReasonSystemPrompt()
+    expect(p).toMatch(/campo `reasoning`/)
+    expect(p).not.toMatch(/texto libre/i)
   })
 })
