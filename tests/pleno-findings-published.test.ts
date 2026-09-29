@@ -670,7 +670,10 @@ const LOTE_1: Lote1Case[] = [
     added: ['summary', 'crossChecked.0'],
     priorCorrections: 1,
     drops: ['según el registro del tender correspondiente', 'Barranco Mandor'],
-    keeps: ['la barrera está funcionando muy bien', 'nadie había solicitado nada'],
+    // 29-09-2026: el otro «keeps» era el cierre de una cita que la puerta
+    // retiene; exigirlo era exigir que el sumario lo siguiera imprimiendo. La
+    // redacción del sumario espera firma («Para firmar»).
+    keeps: ['la barrera está funcionando muy bien'],
     refs: [
       'tender|Contrato de obras para la ejecución del ',
       'pleno-video|Vídeo del pleno 2026-05-11 · YouTube',
