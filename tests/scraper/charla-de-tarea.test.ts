@@ -2,59 +2,64 @@ import { describe, it, expect } from 'vitest'
 import { readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { CLASES_DE_CHARLA, charlaDeTarea } from '../../src/scraper/charla-de-tarea'
-import { RESUMENES_RETIRADOS } from '../../src/lib/resumenes-retirados.js'
 
 /**
  * El detector que guarda el camino de escritura, medido contra la lista que se
  * leyó a mano.
  *
- * `src/lib/resumenes-retirados.js` son los resúmenes servidos que hablan de la
- * tarea del modelo y no de la declaración, leídos uno a uno el 29-09-2026
- * (#180). Son el conjunto de oro: el detector tiene que reconocerlos TODOS y no
- * tocar NINGÚN otro resumen servido. Una expresión regular de palabras clave se
- * dejaba un tercio, y ensanchada a lo bruto se llevaba resúmenes de verdad; por
- * eso esto se mide contra lo servido y no contra frases escritas para la
- * prueba.
+ * El conjunto de oro son los 101 resúmenes servidos que hablan de la tarea del
+ * modelo y no de la declaración, leídos uno a uno el 29-09-2026 (#180) y
+ * congelados en tests/fixtures/charla-de-tarea_2026-09-29.json. El detector
+ * tiene que reconocerlos TODOS y no tocar NINGÚN otro resumen servido hoy. Una
+ * expresión regular de palabras clave se dejaba un tercio, y ensanchada a lo
+ * bruto se llevaba resúmenes de verdad; por eso esto se mide contra textos
+ * reales y no contra frases escritas para la prueba.
+ *
+ * Congelados, y no leídos de src/lib/resumenes-retirados.js: esa lista encoge
+ * cada vez que una fila se corrige, y el conjunto de oro no puede encoger con
+ * ella. Lo servido sí se lee en vivo, y cuenta como negativo todo texto que no
+ * sea uno de los 101: una explicación re-derivada también tiene que pasar.
  */
 
-const TROZOS = join(__dirname, '..', '..', 'public/data/pleno-claims')
+const RAIZ = join(__dirname, '..', '..')
+const TROZOS = join(RAIZ, 'public/data/pleno-claims')
 
+type Fila = { id: string; summary: string }
 type Servida = { claim: { id: string }; verification: { summary?: string } }
+
+const oro: Fila[] = JSON.parse(
+  readFileSync(join(RAIZ, 'tests/fixtures/charla-de-tarea_2026-09-29.json'), 'utf8'),
+).filas
 
 const servidas: Servida[] = readdirSync(TROZOS)
   .filter((f) => f.endsWith('.json') && f !== 'index.json')
   .flatMap((f) => JSON.parse(readFileSync(join(TROZOS, f), 'utf8')).items as Servida[])
 
-const listada = (it: Servida) =>
-  Object.prototype.hasOwnProperty.call(RESUMENES_RETIRADOS, it.claim.id) &&
-  (it.verification.summary ?? '').startsWith(RESUMENES_RETIRADOS[it.claim.id])
-
-const retiradas = servidas.filter(listada)
-const resto = servidas.filter((it) => !listada(it))
-const fila = (it: Servida) => `${it.claim.id} · ${(it.verification.summary ?? '').slice(0, 90)}`
+const textosDeOro = new Set(oro.map((f) => f.summary))
+const resto = servidas.filter((it) => !textosDeOro.has(it.verification.summary ?? ''))
+const fila = (f: Fila) => `${f.id} · ${f.summary.slice(0, 90)}`
 
 describe('medido contra la lista leída a mano', () => {
-  it('reconoce todos los resúmenes retirados', () => {
-    // Lo positivo primero: la lista entera está servida, así que se mide sobre
-    // todas sus filas y no sobre las que quedaran.
-    expect(retiradas.length).toBeGreaterThan(0)
-    expect(retiradas.length).toBe(Object.keys(RESUMENES_RETIRADOS).length)
-    const escapan = retiradas.filter((it) => charlaDeTarea(it.verification.summary) === null)
+  it('reconoce los 101 del conjunto de oro', () => {
+    expect(oro.length).toBe(101)
+    const escapan = oro.filter((f) => charlaDeTarea(f.summary) === null)
     expect(escapan.map(fila)).toEqual([])
   })
 
   it('no toca ningún otro resumen servido', () => {
     expect(resto.length).toBeGreaterThan(0)
     const falsos = resto.filter((it) => charlaDeTarea(it.verification.summary ?? '') !== null)
-    expect(falsos.map((it) => `${charlaDeTarea(it.verification.summary)} · ${fila(it)}`)).toEqual(
-      [],
-    )
+    expect(
+      falsos.map(
+        (it) =>
+          `${charlaDeTarea(it.verification.summary)} · ${fila({ id: it.claim.id, summary: it.verification.summary ?? '' })}`,
+      ),
+    ).toEqual([])
   })
 
-  it('ninguna clase está muerta: cada una reconoce al menos un retirado', () => {
+  it('ninguna clase está muerta: cada una reconoce al menos uno del conjunto de oro', () => {
     for (const { nombre, patron } of CLASES_DE_CHARLA) {
-      const suyas = retiradas.filter((it) => patron.test(it.verification.summary ?? ''))
-      expect(suyas.length, nombre).toBeGreaterThan(0)
+      expect(oro.filter((f) => patron.test(f.summary)).length, nombre).toBeGreaterThan(0)
     }
   })
 })
