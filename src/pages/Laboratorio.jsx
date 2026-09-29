@@ -134,12 +134,18 @@ function TrustIndicators({ indicators }) {
         // así el titular del agua (55,6 M€ / 17 años), del que el extractor no
         // sacó ninguna afirmación, salía marcado como si no coincidiera con
         // unos datos municipales donde ese contrato SÍ está.
+        //
+        // Y `null` cubre dos casos: que no se extrajera ninguna afirmación, o que
+        // ninguna de las extraídas se cotejara contra un corpus
+        // (`coincidenciaMunicipal`, en press-analytics.ts). El título decía sólo
+        // lo primero, y en el segundo caso las afirmaciones están listadas justo
+        // encima; dice lo que es cierto en los dos.
         const raw = indicators[k]
         const sinComprobar = raw === null || raw === undefined
         const on = !!raw
         const glifo = sinComprobar ? '–' : on ? '●' : '○'
         const titulo = sinComprobar
-          ? `Indicador del Trust Project · ${label} · sin comprobar: no se extrajo ninguna afirmación de este titular`
+          ? `Indicador del Trust Project · ${label} · sin comprobar: ninguna afirmación de este titular se ha cotejado con los datos municipales`
           : `Indicador del Trust Project · ${label}`
         return (
           <span

@@ -1842,14 +1842,27 @@ export default function Metodologia() {
             prensa publica en <code>crossChecked</code> todos los documentos municipales contra los
             que se cruzaron sus citas, los respalden o no: <strong>ningún</strong> paso de este
             verificador comprueba que un expediente sostenga una frase. Los cruces son coincidencias
-            de importe, de cifra contra la última serie publicada o de palabras en un título — la
-            única fila de evidencia del laboratorio a día de hoy empareja un contrato del Plan de
-            Movilidad Urbana Sostenible con una noticia sobre 61.000 € en artes escénicas. Hasta el
-            5 de agosto de 2026 ese campo se llamaba <code>corroboration</code> con exactamente el
+            de importe, de cifra contra la última serie publicada o de palabras en un título — el 5
+            de agosto de 2026, la única fila de evidencia del laboratorio emparejaba un contrato del
+            Plan de Movilidad Urbana Sostenible con una noticia sobre 61.000 € en artes escénicas.
+            Hasta ese mismo día el campo se llamaba <code>corroboration</code> con exactamente el
             mismo contenido, igual que en los hallazgos de pleno. Se renombró sin ninguna fila
             publicada dentro, así que aquí no cambió ninguna afirmación; el cambio es incompatible
             para quien leyera el fichero. El campo <code>contradiction</code> sólo admite documentos
             que el verificador marcó como incompatibles con la cita.
+          </li>
+          <li>
+            <strong>
+              «Coincide con datos municipales» lo enciende un veredicto, no un documento.
+            </strong>{' '}
+            En las tarjetas del laboratorio, ese indicador sólo se enciende (●) cuando alguna
+            afirmación del titular, cotejada contra los datos, ha salido «Verificado». El círculo
+            vacío (○) quiere decir que se cotejó alguna y ninguna salió «Verificado»; «sin
+            comprobar» (–), que no se cotejó ninguna, porque del titular no se extrajo ninguna
+            afirmación o porque para las extraídas no hay datos contra los que cotejarlas. Antes
+            bastaba cualquier documento cotejado, y el 28 de septiembre de 2026 una nota municipal
+            sobre la sensorización de contenedores salía en verde por un contrato de pérgolas de
+            131.336 € que el verificador sólo había marcado «Parcial».
           </li>
           <li>
             <strong>Severity crítico exige una contradicción.</strong> El validador rechaza un
