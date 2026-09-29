@@ -1,6 +1,11 @@
 import { describe, it, expect } from 'vitest'
 import { TRINQUETE, etapasVivas } from '../src/scraper/trinquete'
-import { PASADAS_RETIRADAS, esPasadaRetirada } from '../src/scraper/claim-verdicts'
+import {
+  CLAIM_VERDICTS,
+  PASADAS_RETIRADAS,
+  esPasadaRetirada,
+  type ClaimVerdict,
+} from '../src/scraper/claim-verdicts'
 import { applyOverlayEntries, type Overlay } from '../src/scraper/verified-merge'
 
 /**
@@ -40,6 +45,15 @@ const escribir = (source: string, verification: Record<string, unknown>) =>
     new Map([['c', 'verificado']]) as never,
   )
 
+/**
+ * Una verificación que llega al suelo de evidencia: con corpus y evidencia
+ * cuando el veredicto afirma algo. Así, si la escritura cae, no es por el suelo.
+ */
+const conSuelo = (verdict: ClaimVerdict) =>
+  verdict === 'sin-datos'
+    ? { verdict, evidence: [], checkedAgainst: [] }
+    : { verdict, evidence: ev, checkedAgainst: ['tenders'] }
+
 describe('el trinquete declarado coincide con el que se aplica', () => {
   it('toda fuente del overlay declara su etapa', () => {
     // `Record<OverlaySource, Etapa>` ya lo obliga en compilación; esto lo fija
@@ -60,8 +74,61 @@ describe('el trinquete declarado coincide con el que se aplica', () => {
   it('`exigeCorpus` describe lo que el suelo hace de verdad', () => {
     for (const [id, etapa] of Object.entries(TRINQUETE)) {
       const intento = () => escribir(id, { verdict: 'parcial', evidence: ev, checkedAgainst: [] })
-      if (etapa.exigeCorpus) expect(intento, `${id} debería exigir corpus`).toThrow()
+      // Contra el MENSAJE del suelo: una etapa que no puede escribir `parcial`
+      // por otra regla —la firma, la retirada— haría pasar esto sin medirlo.
+      if (etapa.exigeCorpus)
+        expect(intento, `${id} debería exigir corpus`).toThrow(/suelo de evidencia/)
       else expect(intento, `${id} NO debería exigir corpus`).not.toThrow()
+    }
+  })
+
+  it('`exigeFirma` describe lo que el overlay acepta de verdad', () => {
+    // Todo lo demás en regla —corpus, evidencia, razón, base—: lo único que
+    // puede parar la escritura es la firma que le falta.
+    for (const [id, etapa] of Object.entries(TRINQUETE)) {
+      if (etapa.retirada) continue
+      for (const verdict of etapa.puedeEmitir) {
+        const intento = () => escribir(id, conSuelo(verdict))
+        if (etapa.exigeFirma) expect(intento, `${id} · ${verdict}`).toThrow(/firma/)
+        else expect(intento, `${id} · ${verdict}`).not.toThrow()
+      }
+    }
+  })
+
+  it('toda etapa viva que puede reforzar exige la firma de una persona', () => {
+    // La regla 4 de docs/DATA_INTEGRITY.md, como dato: lo automático sólo baja.
+    // Si algún día se retira la última etapa que sube, la primera línea cae y
+    // hay que quitarla; hasta entonces impide que esto pase sin mirar nada.
+    const suben = etapasVivas().filter((k) => TRINQUETE[k].direccion === 'sube')
+    expect(suben.length, 'ninguna etapa viva sube: esto no mediría nada').toBeGreaterThan(0)
+    for (const k of suben) expect(TRINQUETE[k].exigeFirma, k).toBe(true)
+  })
+
+  it('`puedeEmitir` describe lo que el overlay acepta de verdad', () => {
+    for (const [id, etapa] of Object.entries(TRINQUETE)) {
+      if (etapa.retirada || etapa.exigeFirma) continue
+      for (const verdict of CLAIM_VERDICTS) {
+        const intento = () => escribir(id, conSuelo(verdict))
+        if (etapa.puedeEmitir.includes(verdict)) expect(intento, `${id} · ${verdict}`).not.toThrow()
+        else expect(intento, `${id} · ${verdict}`).toThrow()
+      }
+    }
+  })
+
+  it('el motor no escribe un veredicto fuerte aunque traiga corpus y evidencia', () => {
+    // Mientras el runner pisaba `checkedAgainst` con su marca, esto lo paraba el
+    // suelo de rebote: sin corpus real, un `parcial` del motor no pasaba. Con
+    // los corpus de su evidencia sí pasaría, así que lo para lo que la etapa
+    // declara que puede emitir.
+    expect(() => escribir('verdict-engine', conSuelo('parcial'))).toThrow(/puede emitir/)
+  })
+
+  it('una etapa retirada no escribe entradas nuevas', () => {
+    for (const [id, etapa] of Object.entries(TRINQUETE)) {
+      if (!etapa.retirada) continue
+      for (const verdict of etapa.puedeEmitir) {
+        expect(() => escribir(id, conSuelo(verdict)), `${id} · ${verdict}`).toThrow(/retirada/)
+      }
     }
   })
 
