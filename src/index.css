@@ -1385,9 +1385,15 @@ body.cp-kiosk .cp-live-container {
 }
 
 /* /quejas — el cruce quejas–contratos: el barrio y dos cifras. Las columnas de
-   cifras se dimensionan a su contenido y la del barrio a su palabra más larga
-   (74 px): con 16 px entre columnas, a 320 px de pantalla eso pedía 233 px en
-   una caja de 230. Por debajo de 720 el hueco entre columnas baja a 10. */
+   cifras se dimensionan a su contenido y la del barrio a su palabra más larga,
+   así que el mínimo de la tabla son tres palabras que no se parten
+   («Urbanització», «Quejas», «Adjudicado») más los dos huecos. Con 16 px de
+   hueco, a 320 px de pantalla eso pedía 233 px en una caja de 230.
+
+   Por debajo de 720 el hueco baja a 6, y no a 10: 10 cabía en macOS (74 + 47 +
+   80 + 20 = 221 px) y no en la CI, donde Chromium en Linux pinta las mismas
+   tres palabras más anchas (78 + 49 + 84 + 20 = 230,6 px en una caja de 230,
+   medido en la PR #189). Con 6 quedan unos 7 px de margen también allí. */
 .cp-cruce {
   display: grid;
   grid-template-columns: 1fr auto auto;
@@ -1396,7 +1402,7 @@ body.cp-kiosk .cp-live-container {
 }
 @media (max-width: 720px) {
   .cp-cruce {
-    column-gap: 10px;
+    column-gap: 6px;
   }
 }
 
