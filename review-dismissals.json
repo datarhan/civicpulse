@@ -31,13 +31,6 @@
       "at": "2026-08-29"
     },
     {
-      "route": "/hallazgos",
-      "quote": "su literal no se publica: ni aquí, donde queda a la vista el hueco",
-      "reason": "El revisor lee el recuadro de «Literal retenido» como si hablara de la cita impresa que tiene encima, y habla de otra. En f-2026-05-11-cit-a0a379 las retenidas son la [1] (PP) y la [3] (PSOE), las dos con gate hidden; la del origen de la Fira en 2001, que es la que el revisor pone como desmentido, es la [0] y su gate es toggle: se muestra. Son citas distintas. La segunda mitad de la frase también se sostiene — con gate hidden la puerta editorial la suprime igualmente en /plenos. Lo que sí queda es un riesgo de maquetación, no de texto: 37 de 131 citas del corpus están retenidas, así que un recuadro punteado cayendo bajo una cita impresa es frecuente. Eso se arregla con la caja, no callando la frase. Comprobado el 29-08-2026. · RE-ANCLADO el 16-09-2026: la PR #42 reescribió la frase para que nombrara el hueco del que habla, así que el ancla vieja dejó de casar y el señalamiento —descartado ya dos veces— volvió. Se ancla en el texto publicado, que no lleva ninguna cifra viva.",
-      "editor": "claude-opus-5",
-      "at": "2026-08-29"
-    },
-    {
       "route": "/reportajes/basuras",
       "quote": "En esa misma declaración ministerial, Riba-roja consta como «gestión directa por la entidad local» en todos los ejercicios de 2015 a 2024. No puede ser cierto: la concesión de SAV estuvo vigente durante todo ese periodo. Es un error del dato oficial, y conviene saberlo antes de usar esa serie para nada.",
       "reason": "El revisor confunde dos empresas. Dice que la concesión que el párrafo menciona es «un contrato de AGUA», y para eso usa la mayor adjudicación del histórico: 55.685.178,79 € de HIDRAQUA GESTION INTEGRAL DE AGUAS DE LEVANTE, que en efecto es abastecimiento de agua. Pero SAV es S.A. AGRICULTORES DE LA VEGA DE VALENCIA, otra empresa: sus contratos en el registro son limpieza viaria (4.136.714,79 € el mayor), contenedores y parques. Y el párrafo verifica exactamente contra la fuente que cita: en coste-efectivo.json, el programa a1621 (recogida de residuos) trae modoGestion «concesion» en 2014 y «directa» en las diez entregas de 2015 a 2024. El reportaje acierta, el campo del ministerio es el que está mal, y el revisor ha juzgado la frase contra un contrato que no es el suyo — el mismo patrón que los dos descartes de /quejas. Comprobado el 29-08-2026.",
@@ -120,13 +113,6 @@
       "reason": "Comprobado el 19-09-2026 contra public/data/tenders.json: hoy tiene 812 filas (710 con adjudicatario), y en julio de 2026, cuando se hizo el barrido nominal que la frase cuenta, tenía 804. La frase fecha su propio recuento («que constaban … en julio de 2026 —adjudicados o no—»): es una comprobación congelada en su fecha, no una descripción del corpus de hoy, y por eso no se actualiza sola. Es la misma redacción que se publicó en otra biografía el 07-09-2026 tras un señalamiento que SÍ era cierto («804 contratos adjudicados»). La versión siguiente de esta biografía repite el barrido con el recuento del día.",
       "editor": "claude-fable-5-1",
       "at": "2026-09-19"
-    },
-    {
-      "route": "/hallazgos",
-      "quote": "así que no se publica su literal aquí — tampoco se publica en el registro de declaraciones.",
-      "reason": "Cuarta cara del señalamiento descartado el 29-08 y el 4-09 y re-anclado el 16-09-2026: el revisor lee el pie del recuadro «Literal retenido» como si negara la cita impresa que tiene encima, y el recuadro habla de OTRA cita de la misma ficha. Medido el 20-09-2026 en f-2025-12-01-cit-66709b, que es la ficha del convenio (los descartes anteriores la llamaban a0a379, que es la de la Fira): finding-quote-provenance.json da gate toggle a la [0] —«publicar el convenio en el portal de transparencia municipal», sin atribuir, que SE IMPRIME— y gate hidden a la [1] y la [2], las dos de PSOE, que son las que pintan el recuadro. `PlenoFindings.jsx` hace `citaRetenida(prov[i]) ? <CitaRetenida/> : <Quote/>`: para una misma cita sale el literal O el hueco, nunca los dos. El re-anclaje del 16-09 casó la nota de `notaAcusacionSinContrastar`; este es el pie de `CitaRetenida`, que dice lo mismo con otras palabras y no se había anclado nunca. Texto sin cifras vivas. Sigue pendiente lo que ya decían los otros tres descartes: en texto plano —lo que lee la revisión— el borde punteado que separa los bloques desaparece; eso se arregla con la caja, no callando la frase.",
-      "editor": "claude-fable-5.1",
-      "at": "2026-09-20"
     },
     {
       "route": "/hallazgos",
