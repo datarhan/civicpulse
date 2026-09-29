@@ -21,6 +21,7 @@ import { resolve } from 'node:path'
 import type { PlenoClaim } from '../src/scraper/pleno-claim'
 import type { ClaimVerification, ClaimVerdict } from '../src/scraper/claim-verifier'
 import { makeEngineVerifier, loadVerifierContext } from '../src/scraper/verifier-runner'
+import { RazonamientoConCharla } from '../src/scraper/claim-verifier-engine'
 import { resetBudget, getRunStats } from '../src/llm/client'
 import { startRun, formatManifest } from '../src/scraper/run-manifest'
 import { loadOverlay, rebuildVerified, OVERLAY } from './verified-rebuild'
@@ -154,6 +155,9 @@ async function main() {
   // called" print identically, which is exactly what happened: a run reported
   // `re-judged 1017 · kept 1017` having made zero LLM calls.
   let unjudged = 0
+  // Respuestas que hablan de la tarea y no de la declaración: el modelo contestó,
+  // pero no juzgó. Ni «juzgada» ni «error del motor»: se reintentan.
+  let charla = 0
 
   const flush = () => {
     if (args.dryRun || pending.length === 0) return
@@ -177,6 +181,12 @@ async function main() {
     try {
       r = await engine(claim, ctx)
     } catch (err) {
+      if (err instanceof RazonamientoConCharla) {
+        process.stderr.write(`[verify-engine] ${err.message}\n`)
+        charla++
+        run.skip('razonamiento con charla de la tarea')
+        continue
+      }
       process.stderr.write(`[verify-engine] ${id} engine error: ${String(err).slice(0, 120)}\n`)
       skipped++
       run.skip('engine error')
@@ -227,7 +237,7 @@ async function main() {
   process.stderr.write(
     `[verify-engine] DONE: seen ${done} · JUDGED ${retracted + kept} ` +
       `(retracted ${retracted} → sin-datos · kept ${kept}) · ` +
-      `never asked ${unjudged} · skipped ${skipped}` +
+      `never asked ${unjudged} · charla de la tarea ${charla} · skipped ${skipped}` +
       `${args.dryRun ? ' (DRY-RUN, nothing written)' : ''}\n`,
   )
 
