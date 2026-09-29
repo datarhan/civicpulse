@@ -406,6 +406,11 @@ const MARK_AXES = [
     marks: PROVENANCE_MARK,
     key: (e) => e?.status,
     lead: null,
+    // Esta marca califica las palabras entre comillas, y una cita retenida no
+    // enseña ninguna: contarla hacía que la nota explicara «las citas marcadas»
+    // bajo fichas sin una sola cita marcada a la vista (a0a379, relectura del
+    // 29-09-2026).
+    omiteRetenidas: true,
     href: '/metodologia#citas-transcripcion',
     linkText: 'Cómo se comprueba una cita →',
   },
@@ -423,6 +428,9 @@ const MARK_AXES = [
       'publicadas— y no apareció ningún dato que las confirme ni que las desmienta. Eso no las ' +
       'convierte en falsas: quiere decir que no lo sabemos — y sobre hechos anteriores a esa ' +
       'cobertura, que no podíamos saberlo.',
+    // La retenida SÍ cuenta aquí: la nota de «acusación no contrastada» es la
+    // que explica su hueco y lo nombra por su rótulo.
+    omiteRetenidas: false,
     href: '/metodologia#citas-contraste',
     linkText: 'Qué significa que una cita no esté contrastada →',
   },
@@ -536,12 +544,17 @@ export function QuoteProvenanceMark({ entry }) {
  * What the reader should conclude, below the quotes, once per distinct mark. A
  * chip alone says «something is off» without saying what to do with it, and
  * this is prose about named political groups.
+ *
+ * `quotes` va en paralelo a `entries`: con las dos, `citaRetenida` decide aquí
+ * lo mismo que decide la página al pintar el hueco, y un eje que omite las
+ * retenidas no explica la marca de una cita que el lector no ve.
  */
-export function QuoteProvenanceNote({ entries, curatorName }) {
+export function QuoteProvenanceNote({ entries, quotes, curatorName }) {
   const groups = []
   for (const axis of MARK_AXES) {
     const seen = []
-    for (const e of entries ?? []) {
+    for (const [i, e] of (entries ?? []).entries()) {
+      if (axis.omiteRetenidas && citaRetenida(e, quotes?.[i])) continue
       const key = axis.key(e)
       if (key && axis.marks[key] && !seen.includes(key)) seen.push(key)
     }
@@ -686,7 +699,11 @@ export function FindingCard({ f }) {
             )}
           {/* Only the three quotes this card shows are marked, so the note must
               describe those and not the finding's full list. */}
-          <QuoteProvenanceNote entries={prov.slice(0, 3)} curatorName={f.curatorName} />
+          <QuoteProvenanceNote
+            entries={prov.slice(0, 3)}
+            quotes={f.quotes.slice(0, 3)}
+            curatorName={f.curatorName}
+          />
         </div>
       )}
       {/* El vídeo del pleno sale de la lista de cotejos y se declara por lo que
