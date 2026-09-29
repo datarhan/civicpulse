@@ -267,13 +267,17 @@ describe('la nota dice qué concluir, y no lo dice dos veces', () => {
   })
 
   it('los dos ejes se explican por separado cuando coinciden', () => {
+    // Coinciden en una cita IMPRESA. Hasta el 29-09-2026 esto se medía con una
+    // `hidden`, que desde el 27-08 no se imprime: la nota explicaba la marca de
+    // transcripción de un literal que nadie veía
+    // (tests/components/nota-procedencia-retenidas.test.jsx).
     const { container } = render(
-      <QuoteProvenanceNote entries={[{ status: 'solo-en-sustituida', gate: 'hidden' }]} />,
+      <QuoteProvenanceNote entries={[{ status: 'solo-en-sustituida', gate: 'toggle' }]} />,
     )
     expect(container.querySelector('a[href="/metodologia#citas-transcripcion"]')).toBeTruthy()
     expect(container.querySelector('a[href="/metodologia#citas-contraste"]')).toBeTruthy()
     expect(container.textContent).toContain(TRANSCRIPT_CHIP['solo-en-sustituida'])
-    expect(container.textContent).toContain(CONTRAST_CHIP.hidden)
+    expect(container.textContent).toContain(CONTRAST_CHIP.toggle)
   })
 
   it('calla del todo cuando no hay nada que marcar', () => {

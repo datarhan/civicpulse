@@ -10,11 +10,13 @@ import {
   applyFindingCorrection,
   applyFindingRedaction,
   applyFindingRemoval,
+  applyReasonAmendment,
   findAttributionConflicts,
   findingRedactionTarget,
   findingRemovalTarget,
   findRepeatedQuotes,
   reasonEchoesRemoved,
+  REASON_DIGEST_RE,
   REDACTION_DIGEST_RE,
   validateFindingsSnapshot,
   type PlenoFinding,
@@ -696,5 +698,266 @@ describe('findAttributionConflicts — one verbatim is one bloc', () => {
   it('agrees with itself when both findings say the same bloc', () => {
     const snap = twoFindings({ bloc: 'PSOE' }, { bloc: 'PSOE' })
     expect(findAttributionConflicts(snap.items)).toEqual([])
+  })
+})
+
+// ─── Enmienda del motivo ────────────────────────────────────────────────────
+
+/**
+ * El motivo de una corrección también puede ser el defecto. En
+ * `f-2026-05-11-acu-7c65c5`, el del 9-08 citaba el arranque de una intervención
+ * que la puerta editorial retiene y daba por hecho un hablante que el cotejo
+ * del 29-09 desmintió; el del 2-08 descansaba en un futuro que era un error de
+ * transcripción. Hasta aquí la CLI podía corregir los campos de una ficha y
+ * redactar su sumario, pero no tocar el motivo de una fila ya publicada.
+ *
+ * El motivo viejo de este fixture nombra a un particular y afirma un hablante,
+ * para que la prueba pueda comprobar que ninguna de las dos cosas sobrevive.
+ */
+const MOTIVO_VIEJO =
+  'El hablante del grupo Azul reprochaba el voto a otra bancada, según Fulgencio Estévez.'
+const MOTIVO_NUEVO =
+  'El sumario convertía un reproche en segunda persona en una afirmación de quien lo hacía.'
+const POR_QUE =
+  'El motivo daba por hecho quién hablaba, y el cotejo con el vídeo comprobó que era otra bancada.'
+const PERSONA = 'María de la Fuente Llorens'
+
+const ENMENDABLE = {
+  ...BASE,
+  items: [
+    {
+      ...BASE.items[0],
+      corrections: [
+        {
+          field: 'summary',
+          original: 'Un sumario anterior que la corrección sustituyó por el de abajo.',
+          corrected: 'El sumario que dejó la corrección, con las palabras de la intervención.',
+          reason: MOTIVO_VIEJO,
+          editor: 'civicpulse-curator',
+          correctedAt: '2026-08-09T17:47:10.878Z',
+        },
+        {
+          field: 'severity',
+          original: 'notable',
+          corrected: 'informational',
+          reason: 'Segunda revisión: ninguna contradicción documental sostiene esa gravedad.',
+          editor: 'civicpulse-curator',
+          correctedAt: '2026-08-10T09:00:00.000Z',
+        },
+      ],
+    },
+  ],
+}
+
+const ENMIENDA = { reason: POR_QUE, editor: PERSONA, amendedAt: '2026-09-29T10:00:00.000Z' }
+
+describe('applyReasonAmendment — el motivo nuevo sustituye al anterior, que queda en huella', () => {
+  const finding = () => validateFindingsSnapshot(JSON.stringify(ENMENDABLE)).items[0]
+
+  it('publica el motivo nuevo y guarda la huella del anterior, quién, cuándo y por qué', () => {
+    const f = finding()
+    const { previous } = applyReasonAmendment(f, 0, MOTIVO_NUEVO, ENMIENDA)
+    const fila = (f.corrections ?? [])[0]
+    expect(fila.reason).toBe(MOTIVO_NUEVO)
+    expect(previous).toMatch(REASON_DIGEST_RE)
+    expect(fila.reasonAmendments).toEqual([
+      { previous, reason: POR_QUE, editor: PERSONA, amendedAt: ENMIENDA.amendedAt },
+    ])
+  })
+
+  it('la huella es la de la redacción: la misma receta sobre el mismo texto da el mismo hex', () => {
+    const { previous } = applyReasonAmendment(finding(), 0, MOTIVO_NUEVO, ENMIENDA)
+    // Quien tenga la versión anterior del repositorio la rehace así…
+    expect(previous).toBe(`motivo · sha256:${sha256Short(JSON.stringify(MOTIVO_VIEJO))}`)
+    // …y es la receta de `--redact`: redactar un sumario que dijera lo mismo da
+    // el mismo hex con otra etiqueta.
+    const g = finding()
+    g.summary = MOTIVO_VIEJO
+    const redactado = applyFindingRedaction(g, 'summary', CLEAN_SUMMARY).original
+    expect(previous.split(' · ')[0]).toBe('motivo')
+    expect(previous.split(' · ')[1]).toBe(redactado.split(' · ')[1])
+  })
+
+  it('no deja el motivo anterior en ningún sitio de la ficha: sólo su huella', () => {
+    const f = finding()
+    applyReasonAmendment(f, 0, MOTIVO_NUEVO, ENMIENDA)
+    const json = JSON.stringify(f)
+    expect(json).not.toContain('Fulgencio')
+    expect(json).not.toContain('reprochaba el voto a otra bancada')
+  })
+
+  it('no toca nada más: ni los textos, el editor y la fecha de su fila, ni otra fila, ni la ficha', () => {
+    const antes = finding()
+    const f = finding()
+    applyReasonAmendment(f, 0, MOTIVO_NUEVO, ENMIENDA)
+    const [fila, otra] = f.corrections ?? []
+    const [filaAntes, otraAntes] = antes.corrections ?? []
+    // La corrección enmendada sigue siendo la de su editor y su fecha: la
+    // enmienda lleva su firma y su fecha aparte, no las suplanta.
+    expect({ ...fila, reason: '', reasonAmendments: [] }).toEqual({
+      ...filaAntes,
+      reason: '',
+      reasonAmendments: [],
+    })
+    expect(otra).toEqual(otraAntes)
+    expect({ ...f, corrections: [] }).toEqual({ ...antes, corrections: [] })
+  })
+
+  it('una segunda enmienda encadena: su huella es la del motivo que dejó la primera', () => {
+    const f = finding()
+    applyReasonAmendment(f, 0, MOTIVO_NUEVO, ENMIENDA)
+    const otro = `${MOTIVO_NUEVO} Se retiró además una frase sin sentido en castellano.`
+    applyReasonAmendment(f, 0, otro, { ...ENMIENDA, amendedAt: '2026-09-30T08:00:00.000Z' })
+    const enmiendas = (f.corrections ?? [])[0].reasonAmendments ?? []
+    expect(enmiendas).toHaveLength(2)
+    expect(enmiendas[1].previous).toBe(
+      `motivo · sha256:${sha256Short(JSON.stringify(MOTIVO_NUEVO))}`,
+    )
+    expect((f.corrections ?? [])[0].reason).toBe(otro)
+  })
+
+  it('no la firma una cuenta, un proceso ni el marcador de la orden preparada', () => {
+    for (const editor of ['civicpulse-curator', '<nombre y apellidos>', 'claude-opus-5', '']) {
+      const f = finding()
+      expect(
+        () => applyReasonAmendment(f, 0, MOTIVO_NUEVO, { ...ENMIENDA, editor }),
+        editor,
+      ).toThrow(/la firma una persona/)
+      // Se niega ANTES de tocar nada.
+      expect((f.corrections ?? [])[0].reason).toBe(MOTIVO_VIEJO)
+      expect((f.corrections ?? [])[0]).not.toHaveProperty('reasonAmendments')
+    }
+  })
+
+  it('no enmienda una fila que no existe', () => {
+    expect(() => applyReasonAmendment(finding(), 2, MOTIVO_NUEVO, ENMIENDA)).toThrow(
+      /corrections\[2\] no existe/,
+    )
+    expect(() => applyReasonAmendment(finding(), -1, MOTIVO_NUEVO, ENMIENDA)).toThrow(/no existe/)
+    expect(() => applyReasonAmendment(finding(), 0.5, MOTIVO_NUEVO, ENMIENDA)).toThrow(/no existe/)
+  })
+
+  it('no acepta un motivo nuevo corto o igual al vigente, ni una enmienda sin porqué', () => {
+    expect(() => applyReasonAmendment(finding(), 0, 'corto', ENMIENDA)).toThrow(/≥20/)
+    expect(() => applyReasonAmendment(finding(), 0, `  ${MOTIVO_VIEJO} `, ENMIENDA)).toThrow(
+      /ya es ese texto/,
+    )
+    expect(() =>
+      applyReasonAmendment(finding(), 0, MOTIVO_NUEVO, { ...ENMIENDA, reason: 'porque sí' }),
+    ).toThrow(/≥20/)
+  })
+
+  it('no fecha la enmienda antes que la corrección ni antes que la enmienda anterior', () => {
+    expect(() =>
+      applyReasonAmendment(finding(), 0, MOTIVO_NUEVO, {
+        ...ENMIENDA,
+        amendedAt: '2026-08-01T00:00:00.000Z',
+      }),
+    ).toThrow(/anterior a la corrección/)
+    expect(() =>
+      applyReasonAmendment(finding(), 0, MOTIVO_NUEVO, { ...ENMIENDA, amendedAt: 'ayer' }),
+    ).toThrow(/ISO/)
+    const f = finding()
+    applyReasonAmendment(f, 0, MOTIVO_NUEVO, ENMIENDA)
+    expect(() =>
+      applyReasonAmendment(f, 0, `${MOTIVO_NUEVO} Otra vez.`, {
+        ...ENMIENDA,
+        amendedAt: '2026-09-28T00:00:00.000Z',
+      }),
+    ).toThrow(/anterior a la última enmienda/)
+  })
+})
+
+describe('validateFindingsSnapshot — las enmiendas de motivo', () => {
+  /** Un snapshot con una enmienda hecha por la función de verdad, en JSON plano. */
+  const enmendado = () => {
+    const snap = validateFindingsSnapshot(JSON.stringify(ENMENDABLE))
+    applyReasonAmendment(snap.items[0], 0, MOTIVO_NUEVO, ENMIENDA)
+    return JSON.parse(JSON.stringify(snap))
+  }
+
+  it('las conserva: cada CLI reescribe el fichero con lo que devuelve el validador', () => {
+    // Si el validador reconstruyera la fila sin la clave, la siguiente
+    // corrección de CUALQUIER campo borraría la enmienda sin que nadie lo
+    // pidiera, y con ella la única huella del motivo anterior.
+    const snap = enmendado()
+    const vuelta = validateFindingsSnapshot(JSON.stringify(snap))
+    expect(vuelta.items[0].corrections?.[0].reasonAmendments).toEqual(
+      snap.items[0].corrections[0].reasonAmendments,
+    )
+    expect(vuelta.items[0].corrections?.[0].reason).toBe(MOTIVO_NUEVO)
+    // Revalidar lo revalidado no mueve un byte.
+    const otraVuelta = validateFindingsSnapshot(JSON.stringify(vuelta))
+    expect(JSON.stringify(otraVuelta)).toBe(JSON.stringify(vuelta))
+  })
+
+  it('no añade la clave a una fila sin enmienda', () => {
+    // Si la añadiera vacía, la próxima escritura de la CLI tocaría cada fila de
+    // la bitácora de cada ficha publicada.
+    const vuelta = validateFindingsSnapshot(JSON.stringify(enmendado()))
+    expect(vuelta.items[0].corrections?.[1]).not.toHaveProperty('reasonAmendments')
+    const sinNada = validateFindingsSnapshot(JSON.stringify(withCorrections([{}])))
+    expect(sinNada.items[0].corrections?.[0]).not.toHaveProperty('reasonAmendments')
+  })
+
+  const rechaza = (cambio: (snap: ReturnType<typeof enmendado>) => void, error: RegExp) => {
+    const snap = enmendado()
+    cambio(snap)
+    expect(() => validateFindingsSnapshot(JSON.stringify(snap))).toThrow(error)
+  }
+  const primera = (snap: ReturnType<typeof enmendado>) =>
+    snap.items[0].corrections[0].reasonAmendments[0]
+
+  it('rechaza una enmienda que guarda el texto anterior en lugar de su huella', () => {
+    rechaza((s) => {
+      primera(s).previous = MOTIVO_VIEJO
+    }, /nunca su texto/)
+  })
+
+  it('rechaza una enmienda firmada por una cuenta o un proceso', () => {
+    rechaza((s) => {
+      primera(s).editor = 'civicpulse-curator'
+    }, /tiene que nombrar a una persona/)
+  })
+
+  it('rechaza una enmienda sin porqué, sin fecha ISO o anterior a la corrección', () => {
+    rechaza((s) => {
+      primera(s).reason = 'corto'
+    }, /≥20/)
+    rechaza((s) => {
+      primera(s).amendedAt = 'ayer'
+    }, /ISO/)
+    rechaza((s) => {
+      primera(s).amendedAt = '2026-08-01T00:00:00.000Z'
+    }, /anterior a la corrección/)
+  })
+
+  it('rechaza una lista vacía, un orden que no es el de las fechas y una enmienda que no cambió nada', () => {
+    rechaza((s) => {
+      s.items[0].corrections[0].reasonAmendments = []
+    }, /lista no vacía/)
+    rechaza((s) => {
+      const a = primera(s)
+      s.items[0].corrections[0].reasonAmendments = [
+        { ...a, previous: `motivo · sha256:${'0'.repeat(12)}` },
+        { ...a, amendedAt: '2026-09-20T00:00:00.000Z' },
+      ]
+    }, /orden cronológico/)
+    rechaza((s) => {
+      s.items[0].corrections[0].reason = MOTIVO_VIEJO
+    }, /no cambió nada/)
+  })
+})
+
+describe('las otras vías de la CLI no se llevan una enmienda por delante', () => {
+  it('redactar el sumario pasa a huella los textos de la fila y conserva su motivo y su enmienda', () => {
+    const f = validateFindingsSnapshot(JSON.stringify(ENMENDABLE)).items[0]
+    applyReasonAmendment(f, 0, MOTIVO_NUEVO, ENMIENDA)
+    const antes = JSON.parse(JSON.stringify((f.corrections ?? [])[0].reasonAmendments))
+    applyFindingRedaction(f, 'summary', CLEAN_SUMMARY)
+    const fila = (f.corrections ?? [])[0]
+    expect(fila.original).toMatch(REDACTION_DIGEST_RE)
+    expect(fila.reason).toBe(MOTIVO_NUEVO)
+    expect(fila.reasonAmendments).toEqual(antes)
   })
 })

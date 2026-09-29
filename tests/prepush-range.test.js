@@ -242,6 +242,20 @@ describe('el gancho no llama completa a una revisión con rutas sin leer', () =>
     expect(new RegExp(patron).test(limpia)).toBe(false)
   })
 
+  it('las rutas viajan por stdin, una por línea: una ficha con estado lleva un espacio', () => {
+    // `/plenos/<id> [pestanas]` pasada como `$RUTAS` sin comillas llegaba
+    // partida en `/plenos/<id>` y `[pestanas]` —y la segunda, además, es un
+    // patrón de la shell—. Por stdin cada línea es una clave entera.
+    // Las líneas que acaban en `\` son UNA orden.
+    const ordenes = codigo.replace(/\\\n\s*/g, ' ').split('\n')
+    const llamada = ordenes.find((l) => /review:surfaces -- /.test(l)) ?? ''
+    expect(llamada, 'no se encontró la llamada a review:surfaces').not.toBe('')
+    const [antes, despues] = llamada.split(/review:surfaces -- /)
+    expect(despues).toMatch(/--stdin/)
+    expect(despues, 'las rutas vuelven a ir como palabras sueltas').not.toMatch(/\$RUTAS/)
+    expect(antes).toMatch(/printf '%s\\n' "\$RUTAS" \|/)
+  })
+
   it('y dice cuántas se saltaron por no haber cambiado, que no es lo mismo que leerlas', () => {
     // «leídas enteras 0 de 3» y «completa» en la misma frase se contradicen si
     // no se dice que las tres estaban sin cambios desde su última lectura.

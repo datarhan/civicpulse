@@ -12,6 +12,8 @@ import {
   estadoDe,
   RUTAS_CON_ESTADO,
   readCacheEntry,
+  leerPestanas,
+  rutasDeEntrada,
   type SurfaceInput,
 } from '../src/scraper/reader-review'
 import { quoteAppearsIn } from '../src/scraper/quote-match'
@@ -579,5 +581,77 @@ describe('claves de ruta con estado', () => {
       expect(rutaBase(clave).startsWith('/')).toBe(true)
     }
     expect(RUTAS_CON_ESTADO.length).toBeGreaterThan(0)
+  })
+
+  it('una ficha con estado se descompone igual que una ruta', () => {
+    const clave = conEstado('/plenos/1sqj7is', 'pestanas')
+    expect(rutaBase(clave)).toBe('/plenos/1sqj7is')
+    expect(estadoDe(clave)).toBe('pestanas')
+  })
+})
+
+describe('leer las pestañas que la carga de la página no abre', () => {
+  /**
+   * Una página de mentira: pulsar una pestaña cambia lo que hay tras la barra,
+   * salvo las que se le digan rotas, cuyo clic no hace nada.
+   */
+  function pagina(paneles: Record<string, string>, inicial: string, rotas: string[] = []) {
+    let activa = inicial
+    return {
+      claves: async () => Object.keys(paneles),
+      pulsa: async (k: string) => {
+        if (!rotas.includes(k)) activa = k
+      },
+      region: async () => paneles[activa],
+    }
+  }
+
+  it('lee cada pestaña menos la que ya estaba abierta, en el orden de la barra', async () => {
+    const r = await leerPestanas(
+      pagina({ resumen: 'R', agenda: 'A', declaraciones: 'D' }, 'resumen'),
+    )
+    expect(r.leidas).toEqual(['agenda', 'declaraciones'])
+    expect(r.textos).toEqual(['A', 'D'])
+    expect(r.sinCambio).toEqual(['resumen'])
+  })
+
+  it('un clic que no cambia nada se DICE, no se cuenta como pestaña leída', async () => {
+    // Sin esto, «votos» heredaba el texto de la pestaña anterior y salía como
+    // leída: cobertura del 100 % sobre una pestaña que nadie vio.
+    const r = await leerPestanas(
+      pagina({ resumen: 'R', agenda: 'A', votos: 'V' }, 'resumen', ['votos']),
+    )
+    expect(r.leidas).toEqual(['agenda'])
+    expect(r.textos).toEqual(['A'])
+    expect(r.sinCambio).toEqual(['resumen', 'votos'])
+  })
+
+  it('sin pestañas en la página no lee nada, y quien llama lo sabe', async () => {
+    const r = await leerPestanas({
+      claves: async () => [],
+      pulsa: async () => undefined,
+      region: async () => 'R',
+    })
+    expect(r).toEqual({ leidas: [], textos: [], sinCambio: [] })
+  })
+})
+
+describe('las rutas por stdin', () => {
+  // Una clave con estado lleva un espacio —`/plenos/<id> [pestanas]`—, y el
+  // gancho de pre-push las pasaba como palabras sueltas de la shell.
+  it('--stdin es una bandera conocida', () => {
+    const a = parseReviewArgs(['--budget-seconds', '180', '--rotate-desde', '1', '--stdin'])
+    expect(a.desconocidas).toEqual([])
+    expect(a.stdin).toBe(true)
+    expect(a.routes).toEqual([])
+    expect(parseReviewArgs(['/datos']).stdin).toBe(false)
+  })
+
+  it('una ruta por línea, entera, con su estado y sin blancos', () => {
+    expect(rutasDeEntrada('/plenos/x [pestanas]\n\n  /datos  \n')).toEqual([
+      '/plenos/x [pestanas]',
+      '/datos',
+    ])
+    expect(rutasDeEntrada('')).toEqual([])
   })
 })

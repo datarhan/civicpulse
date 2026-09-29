@@ -23,9 +23,16 @@
  *                      renamed `crossChecked` — nothing upstream establishes
  *                      corroboration, so a check could not measure its weakness.
  *
+ * And one observed on 2026-09-29:
+ *   single-seat-bloc · a quote attributed to, or prose naming, a group with one
+ *                      seat — VOX, EU-Podem and Compromís in this corporación —
+ *                      which names its councillor by elimination. 13 quotes and
+ *                      10 summaries had been published that way, unsigned.
+ *
  * Pure module: callers supply the drafts and the datasets.
  */
 
+import { singleSeatAttributions } from './corporation-seats'
 import { findUnbackedOrgNames } from './finding-entities'
 
 export type CheckLevel = 'blocker' | 'warn' | 'ok'
@@ -91,6 +98,12 @@ export interface QueueInputs {
   verdictByClaimId: Map<string, string>
   /** Company names a human already reviewed and accepted. */
   reviewedNames?: string[]
+  /**
+   * Blocs holding one seat, from `oneSeatBlocsOf(officials.json)`. Required on
+   * purpose: an optional list would default to «none», and the check below would
+   * pass every draft without having looked at one.
+   */
+  oneSeatBlocs: readonly string[]
 }
 
 export function checkDraft(draft: DraftFindingLike, inputs: QueueInputs): CurationCheck[] {
@@ -159,6 +172,23 @@ export function checkDraft(draft: DraftFindingLike, inputs: QueueInputs): Curati
       code: 'unattributed-quotes',
       level: 'warn',
       message: `${unattributed} de ${(draft.quotes ?? []).length} cita(s) sin grupo atribuido.`,
+    })
+  }
+
+  // 5 · A group with one seat names its councillor by elimination, so a draft
+  //     that attributes something to one, or names one in its prose, attributes
+  //     it to a person. The reviewer on a phone cannot know which groups hold a
+  //     single seat; the draft tells them. Found on 2026-09-29 in 13 quotes and
+  //     10 summaries `auto-curation-v1` had published with nobody's signature.
+  const oneSeat = singleSeatAttributions(draft, inputs.oneSeatBlocs)
+  if (oneSeat.length > 0) {
+    checks.push({
+      code: 'single-seat-bloc',
+      level: 'blocker',
+      message:
+        `Atribuye a ${oneSeat.map((b) => `«${b}»`).join(', ')} o lo nombra, y es un grupo con un ` +
+        `solo concejal: nombrarlo nombra a esa persona por eliminación. Retira el grupo de la cita ` +
+        `y del texto, o fírmalo con prueba propia.`,
     })
   }
 

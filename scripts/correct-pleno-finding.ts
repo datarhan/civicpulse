@@ -52,15 +52,40 @@
  * would republish what the edit exists to remove; everything else keeps the
  * ordinary correction, where showing the withdrawn sentence is the point. The
  * full reasoning is in the REDACTION block in src/scraper/pleno-finding.ts.
+ *
+ * ── `--amend-reason` ────────────────────────────────────────────────────────
+ *
+ *   npm run correct-pleno-finding -- <id> \
+ *     --amend-reason <i> --new "<motivo nuevo>" \
+ *     --reason "<por qué se enmienda, ≥20>" --editor "<Nombre Apellido>"
+ *
+ * Sustituye el MOTIVO de la fila `corrections[<i>]`, que hasta ahora ninguna vía
+ * podía tocar. No añade fila: la enmienda queda en la fila enmendada, con la
+ * huella del motivo anterior (nunca su texto), el porqué, la firma y la fecha;
+ * la fila conserva el editor y la fecha de su corrección. `--editor` tiene que
+ * nombrar a una persona —ni una cuenta de rol ni un proceso ni el marcador de
+ * una orden preparada—, y lo exige también el validador. Antes de escribir, se
+ * niega si `--new` o `--reason` reproducen un tramo de una cita que la puerta
+ * editorial retiene en esa ficha. El porqué de todo, en el bloque ENMIENDA DEL
+ * MOTIVO de src/scraper/pleno-finding.ts.
+ *
+ * ── `--dry-run` ─────────────────────────────────────────────────────────────
+ *
+ * Cualquier vía: valida el snapshot entero como si fuera a escribir, enseña la
+ * fila que escribiría y no escribe nada. Para leer una orden preparada antes de
+ * firmarla.
  */
 import { readFile, writeFile } from 'node:fs/promises'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
+import { rechazoDeFirma } from '../src/scraper/firma-de-persona'
+import { tramosRetenidosEn, type ProcedenciaLike } from '../src/scraper/literales-retenidos'
 import {
   applyFindingCorrection,
   applyFindingRedaction,
   applyFindingRemoval,
+  applyReasonAmendment,
   findingRedactionTarget,
   findingRemovalTarget,
   reasonEchoesRemoved,
@@ -78,6 +103,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 const PROJECT_ROOT = join(__dirname, '..')
 const FINDINGS_PATH = join(PROJECT_ROOT, 'public/data/pleno-findings.json')
+const PROVENANCE_PATH = join(PROJECT_ROOT, 'public/data/finding-quote-provenance.json')
 
 function getFlag(name: string): string | null {
   const i = process.argv.indexOf(name)
@@ -97,24 +123,39 @@ async function main() {
   const field = getFlag('--field')
   const removePath = getFlag('--remove')
   const redactField = getFlag('--redact')
+  const amendReason = getFlag('--amend-reason')
   const corrected = getFlag('--new')
   const reason = getFlag('--reason')
   const editor = getFlag('--editor')
+  const dryRun = process.argv.includes('--dry-run')
 
   const usage =
     'Usage: correct-pleno-finding <id> ' +
-    '(--field <title|summary|severity|sourceClaimIds|quote.<i>.text|quote.<i>.sourceClaimId> ' +
-    '--new "<text>" | --remove <quote.<i>|crossChecked.<i>> | ' +
-    `--redact <${Object.keys(REDACTION_LABELS).join('|')}> --new "<text>") ` +
-    '--reason "<≥20 chars>" --editor "<name>"'
+    '(--field <title|summary|severity|sourceClaimIds|quote.<i>.text|quote.<i>.sourceClaimId|' +
+    'quote.<i>.speakerGroup> --new "<text>" | --remove <quote.<i>|crossChecked.<i>> | ' +
+    `--redact <${Object.keys(REDACTION_LABELS).join('|')}> --new "<text>" | ` +
+    '--amend-reason <i> --new "<motivo nuevo>") ' +
+    '--reason "<≥20 chars>" --editor "<name>" [--dry-run]'
 
-  const modes = [field, removePath, redactField].filter((x) => x != null)
+  const modes = [field, removePath, redactField, amendReason].filter((x) => x != null)
   if (!id || !reason || !editor) bail(usage)
-  if (modes.length > 1) bail('--field, --remove and --redact are mutually exclusive')
+  if (modes.length > 1) {
+    bail('--field, --remove, --redact and --amend-reason are mutually exclusive')
+  }
   if (modes.length === 0) bail(usage)
-  if ((field || redactField) && corrected == null) bail(usage)
+  if ((field || redactField || amendReason) && corrected == null) bail(usage)
   if (removePath && corrected != null) {
     bail('--remove takes no --new: a removal has no replacement value')
+  }
+  if (amendReason != null && !/^\d+$/.test(amendReason)) {
+    bail('--amend-reason lleva el índice de una fila de la bitácora de la ficha (0, 1, …)')
+  }
+  if (amendReason != null) {
+    // Antes de leer nada: una orden preparada llega con `<nombre y apellidos>`
+    // y es exactamente lo que no puede firmar una enmienda.
+    const rechazo = rechazoDeFirma(editor)
+    if (rechazo)
+      bail(`--editor: una enmienda de motivo la firma una persona, con su nombre: ${rechazo}`)
   }
   if (
     field &&
@@ -149,10 +190,57 @@ async function main() {
   const finding = snap.items.find((f) => f.id === id)
   if (!finding) bail(`no finding with id "${id}"`)
 
-  let entry: PlenoFindingCorrection
+  let entry: PlenoFindingCorrection | null = null
+  let amended: { index: number; previous: string; row: PlenoFindingCorrection } | null = null
   const base = { reason: reason.trim(), editor, correctedAt: new Date().toISOString() }
 
-  if (removePath) {
+  if (amendReason != null) {
+    // El motivo nuevo y el porqué se publican en /hallazgos, y la copia servida
+    // no toca prosa: si traen el literal de una cita que la puerta retiene, lo
+    // devuelven a la página. Es casi siempre la razón de enmendar, así que se
+    // pregunta antes de escribir, con la misma criba que la prueba de los datos.
+    let procedencia: ProcedenciaLike
+    try {
+      procedencia = JSON.parse(await readFile(PROVENANCE_PATH, 'utf8')) as ProcedenciaLike
+    } catch (err) {
+      bail(
+        `no puedo leer ${PROVENANCE_PATH} (${(err as Error).message}): sin las puertas no sé ` +
+          'qué literales están retenidos, y no escribo un motivo sin saberlo',
+      )
+    }
+    let tramos: Array<{ campo: string; cita: number }>
+    try {
+      tramos = tramosRetenidosEn(
+        { '--new': corrected as string, '--reason': base.reason },
+        finding,
+        procedencia,
+      )
+    } catch (err) {
+      bail((err as Error).message)
+    }
+    if (tramos.length > 0) {
+      bail(
+        tramos
+          .map(
+            (t) =>
+              `${t.campo} reproduce un tramo de la cita ${t.cita}, que la puerta editorial retiene`,
+          )
+          .join('; ') +
+          '. El motivo se publica en /hallazgos: describe el criterio, no el material.',
+      )
+    }
+    try {
+      const index = Number(amendReason)
+      const { previous, row } = applyReasonAmendment(finding, index, corrected as string, {
+        reason: base.reason,
+        editor,
+        amendedAt: base.correctedAt,
+      })
+      amended = { index, previous, row }
+    } catch (err) {
+      bail((err as Error).message)
+    }
+  } else if (removePath) {
     // Read the row BEFORE removing it: the reason guard needs the text it is
     // checking the reason against, and after the splice there is nothing left
     // to check. `revisar-borrador` Paso 2 — the note describes the criterion,
@@ -237,7 +325,8 @@ async function main() {
       ...base,
     }
   }
-  finding.corrections = [...(finding.corrections ?? []), entry]
+  // Una enmienda de motivo no añade fila: queda dentro de la que enmienda.
+  if (entry) finding.corrections = [...(finding.corrections ?? []), entry]
 
   const updated: PlenoFindingsSnapshot = {
     ...snap,
@@ -247,11 +336,29 @@ async function main() {
   const serialized = JSON.stringify(updated, null, 2) + '\n'
   validateFindingsSnapshot(serialized)
 
-  const verb = removePath ? 'removed' : redactField ? 'redacted' : 'applied correction to'
+  if (dryRun) {
+    console.log(JSON.stringify(amended ? amended.row : entry, null, 2))
+    console.log(
+      `[correct-pleno-finding] --dry-run: el snapshot entero valida y ${id} quedaría así ` +
+        `(${amended ? `corrections[${amended.index}]` : 'fila nueva'}). No se ha escrito nada.`,
+    )
+    return
+  }
+
   await writeFile(FINDINGS_PATH, serialized)
+  if (amended) {
+    console.log(
+      `[correct-pleno-finding] amended reason of ${id} · corrections[${amended.index}] ` +
+        `(${amended.row.field}, ${amended.row.correctedAt.slice(0, 10)}) · editor=${editor} · ` +
+        `motivo anterior ${amended.previous}`,
+    )
+    return
+  }
+  const row = entry as PlenoFindingCorrection
+  const verb = removePath ? 'removed' : redactField ? 'redacted' : 'applied correction to'
   console.log(
     `[correct-pleno-finding] ${verb} ${id} · ` +
-      `field=${entry.field} · editor=${editor}${removePath || redactField ? ` · ${entry.original}` : ''}`,
+      `field=${row.field} · editor=${editor}${removePath || redactField ? ` · ${row.original}` : ''}`,
   )
 }
 

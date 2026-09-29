@@ -444,7 +444,7 @@ export default function DepartamentoDetalle() {
   const bucket = stats.data?.bySlug?.[slug]
   if (!bucket) {
     return (
-      <div style={{ padding: '28px 28px 48px', maxWidth: 1180, margin: '0 auto' }}>
+      <div data-no-resuelta style={{ padding: '28px 28px 48px', maxWidth: 1180, margin: '0 auto' }}>
         <Link
           to="/departamentos"
           style={{

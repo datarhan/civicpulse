@@ -20,6 +20,8 @@ import { evidenceStance, toPublishedSnippet, type ClaimVerification } from './cl
 import { classifyClaimVisibility } from './claim-public-gate'
 import { recordKnowableAt, type RecordDateGateReport, type RecordDateIndex } from './record-dates'
 import type { PlenoFinding, FindingQuote, FindingRef, FindingSeverity } from './pleno-finding'
+import { decideAutomation, type Decision, type Measurement } from './automation-policy'
+import { singleSeatAttributions, type AttributableLike } from './corporation-seats'
 
 export interface VerifiedItem {
   claim: PlenoClaim
@@ -307,6 +309,75 @@ export function composeFinding(opts: ComposeOpts): PlenoFinding {
     publishedAt: new Date().toISOString().slice(0, 10),
     response: null,
   }
+}
+
+/**
+ * ── ONE-SEAT GROUPS ─────────────────────────────────────────────────────────
+ *
+ * A group holding one seat names its councillor by elimination, so a finding
+ * that attributes something to VOX, EU-Podem or Compromís — this corporación's
+ * one-seat groups, always derived with `oneSeatBlocsOf`, never listed — names a
+ * person, and naming a person is Tier C: a curator signs it (CLAUDE.md, «a
+ * one-seat bloc is not bloc-level»).
+ *
+ * On 2026-09-29, 13 quotes in 11 findings and 10 summaries published by
+ * `auto-curation-v1` did exactly that, with nobody's signature. The CLI asked
+ * `decideAutomation` once per run and never said a draft named anyone, so the
+ * only thing holding those drafts back was that the class had not yet been
+ * measured — and a good measurement would have let every one of them through.
+ *
+ * Two defences, because the label and the prose fail separately:
+ *   · the synthesiser is never shown a one-seat group — `groupForSynthesis`,
+ *     `blocsForSynthesis` — so it cannot write one into a summary from a label;
+ *   · every draft is decided on its own — `publicationDecision` — and one that
+ *     still attributes to or names a one-seat group, because a quote carries
+ *     the label or its verbatim names the group and the prose followed, goes
+ *     to the human queue however well the class is measured.
+ */
+
+/** Recorded via `npm run record-measurement`; see `npm run check:automation`. */
+export const FINDING_MEASUREMENT_KEY = 'finding.informational.bloc'
+
+/**
+ * The group label the synthesiser sees for one quote. A one-seat group becomes
+ * `''` — the empty label the prompt already treats as «attribute it to nobody»,
+ * never a placeholder, which would name the councillor by elimination too.
+ */
+export function groupForSynthesis(
+  group: string | null | undefined,
+  oneSeat: readonly string[],
+): string {
+  return group && !oneSeat.includes(group) ? group : ''
+}
+
+/** The groups the synthesiser is told spoke, without the one-seat ones. */
+export function blocsForSynthesis(blocs: readonly string[], oneSeat: readonly string[]): string[] {
+  return blocs.filter((b) => !oneSeat.includes(b))
+}
+
+/**
+ * May this one draft publish without a human? The class-level question —
+ * is `finding.informational.bloc` measured over the bar — plus the one the CLI
+ * never asked: does THIS draft attribute to, or name, a one-seat group.
+ */
+export function publicationDecision(
+  draft: AttributableLike,
+  oneSeat: readonly string[],
+  measurements: readonly Measurement[],
+  now: Date = new Date(),
+): Decision {
+  return decideAutomation(
+    {
+      kind: 'publish-finding',
+      reversible: true,
+      severity: 'informational',
+      measurementKey: FINDING_MEASUREMENT_KEY,
+      frozen: false,
+      namesIndividual: singleSeatAttributions(draft, oneSeat).length > 0,
+    },
+    measurements,
+    now,
+  )
 }
 
 /** Extract the union of all sourceClaimIds already cited in
