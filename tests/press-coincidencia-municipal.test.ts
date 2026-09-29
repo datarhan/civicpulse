@@ -134,6 +134,25 @@ describe('«Coincide con datos municipales» (press-trust.json)', () => {
     },
   )
 
+  it('una «verificado» sin ningún corpus detrás no enciende el verde', () => {
+    // La forma de las filas de pasadas retiradas de los plenos (claim-verdicts.ts):
+    // un veredicto fuerte cuyo `checkedAgainst` sólo lleva la marca de la pasada.
+    const verified = VERIFICADAS.map((v) =>
+      v.claim.id === PARCIAL_PERGOLAS
+        ? {
+            ...v,
+            verification: {
+              ...v.verification,
+              verdict: 'verificado' as const,
+              checkedAgainst: ['llm-second-pass'],
+            },
+          }
+        : v,
+    )
+    // Las otras afirmaciones de 1lk4zls sí se cotejaron, y ninguna volvió «verificado».
+    expect(fila(informe(verified), '1lk4zls').indicators.municipalSourceMatch).toBe(false)
+  })
+
   it('el punto de fiabilidad sigue al indicador: sólo «verificado» lo gana', () => {
     const real = fila(informe(), '1lk4zls').score
     const verificada = fila(informe(conVeredicto('verificado')), '1lk4zls').score
