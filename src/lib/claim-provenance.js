@@ -22,6 +22,7 @@
  * Vive fuera del JSX para que se pueda medir contra el corpus publicado en vez
  * de sólo contra un render.
  */
+import { corpusReales } from '../scraper/claim-verdicts'
 
 /** Lo que se dice cuando no consta quién comprobó la cita. */
 export const SIN_VERIFICADOR = 'sin verificador anotado'
@@ -56,4 +57,38 @@ export function etiquetaVerificador(checkedAgainst) {
   if (checkedAgainst.includes(CORRECCION_DE_CURADOR)) return 'corregido por un curador'
   if (checkedAgainst.some((c) => VERIFICADORES_LLM.includes(c))) return 'verificador LLM'
   return 'verificador determinista'
+}
+
+/**
+ * Contra qué se cotejó la cita: la otra mitad de lo que `checkedAgainst` mezcla.
+ *
+ * La tarjeta de `ClaimLedger` imprimía el array tal cual bajo «Fuentes
+ * comprobadas», y con él las marcas de pasada. Medido el 2026-09-29 en los
+ * trozos servidos: 920 tarjetas de 4.964 daban `verdict-engine` o
+ * `curator-downgrade` como si fueran una fuente consultada.
+ *
+ * Sólo cuentan los corpus de `corpusReales`, la lista blanca con la que ya
+ * deciden la puerta editorial y el reparto de `sin-datos`; recitarla aquí
+ * haría que esta línea y /declaraciones pudieran separarse.
+ *
+ * Y sin corpus hay dos respuestas, no una:
+ *
+ *   · nada anotado → «ninguna»: lo que /declaraciones cuenta como «sin corpus
+ *     que consultar»;
+ *   · algo anotado que no es un corpus (una marca de pasada, o un nombre sin
+ *     declarar) → «no constan». La pasada SUSTITUYÓ la lista
+ *     (`verificacionDeBajada` escribe sólo su marca): no sabemos cuáles se
+ *     miraron, que no es lo mismo que ninguno. De los 878 resúmenes del motor
+ *     servidos, 871 cuentan qué contratos o subvenciones examinó, y las cinco
+ *     bajadas a «parcial» enseñan una fila CONTRATO; «ninguna» debajo
+ *     contradiría la propia tarjeta. Regla nº3 otra vez: el hueco no es un cero.
+ *
+ * @param {string[] | null | undefined} checkedAgainst
+ * @returns {string} los corpus separados por « · », o una de las dos frases.
+ */
+export function fuentesComprobadas(checkedAgainst) {
+  const corpus = corpusReales(checkedAgainst)
+  if (corpus.length > 0) return corpus.join(' · ')
+  if (!Array.isArray(checkedAgainst) || checkedAgainst.length === 0) return 'ninguna'
+  return 'no constan'
 }
