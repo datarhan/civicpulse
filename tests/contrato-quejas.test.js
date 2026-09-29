@@ -8,6 +8,7 @@ import {
   DESCRIPCION_MOTIVO,
   MOTIVOS_RETENCION,
 } from '../bot/src/services/moderacion-criterios'
+import { plazoDeResolucion, relojDelPlazo } from '../src/scraper/queja-router'
 
 /**
  * Lo que el contrato publicado cuenta del camino de una queja, contra el código
@@ -134,6 +135,34 @@ describe('el contrato de las quejas dice lo que hace el código', () => {
     expect(METODOLOGIA).toContain(`${enLetra(MESES_TRANSPARENCIA)} mes`)
     expect(QUEJAS).toContain(
       `${MESES_GENERAL} meses legales (${MESES_TRANSPARENCIA} mes si es transparencia)`,
+    )
+  })
+
+  // Hasta el 29-09-2026 el enrutador no aplicaba el art. 30.5 y /metodologia lo
+  // confesaba («todavía no aplica esa prórroga»). Desde que lo aplica, la
+  // confesión sería falsa en el sentido contrario; y el calendario con el que
+  // prorroga se pinta desde la tabla que usa el cálculo, no se copia en la prosa.
+  it('la prórroga del art. 30.5: la aplica el enrutador, y /metodologia lo dice', () => {
+    const router = lee('src/scraper/queja-router.ts')
+    expect(router, 'el enrutador ya no prorroga').toMatch(/export function relojDelPlazo/)
+    expect(METODOLOGIA).toContain('art. 30.5')
+    expect(METODOLOGIA, 'confiesa una prórroga que el código sí aplica').not.toMatch(
+      /no aplica esa prórroga/,
+    )
+    expect(lee('src/pages/Metodologia.jsx')).toContain('<CalendarioDeLaSede />')
+  })
+
+  // El ejemplo de la prórroga es una fecha escrita a mano: la frase se quedaría
+  // falsa sin que nadie la tocara si la tabla de festivos cambiara ese lunes.
+  it('el ejemplo de la prórroga en /metodologia es lo que calcula el enrutador', () => {
+    const reloj = relojDelPlazo(
+      plazoDeResolucion('via_publica'),
+      '2026-08-14 10:00:00', // 12:00 del viernes 14 de agosto en Madrid
+      Date.parse('2026-08-15T10:00:00Z'),
+    )
+    expect(reloj).toMatchObject({ nominal: '2026-11-14', ultimoDia: '2026-11-16' })
+    expect(METODOLOGIA).toContain(
+      'registrada el 14 de agosto de 2026, tres meses acaban el sábado 14 de noviembre, y el plazo, el lunes 16',
     )
   })
 

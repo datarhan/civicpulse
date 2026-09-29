@@ -151,9 +151,10 @@ describe('/quejas/:id', () => {
  * contador se desviaba por ahí.
  *
  * El escenario está elegido para que las dos cuentas NO coincidan: registrada el
- * 1 de enero de 2028, que es bisiesto, tres meses vencen el 1 de abril y son 91
- * días. Con el 90 escrito a mano, el día 90 la ficha decía que no quedaba
- * ninguno.
+ * 31 de mayo de 2026, tres meses vencen el lunes 31 de agosto —hábil— y son 92
+ * días. Con el 90 escrito a mano, el día 91 la ficha daba el plazo por excedido.
+ * (Era el 1 de enero de 2028, un bisiesto de 91 días; desde que un año sin
+ * calendario de inhábiles no se cuenta, 2028 no tiene reloj que probar.)
  */
 describe('/quejas/:id · el reloj legal', () => {
   afterEach(() => vi.useRealTimers())
@@ -163,8 +164,8 @@ describe('/quejas/:id · el reloj legal', () => {
     items: [
       {
         ...BASE_QUEJAS.items[0],
-        registered_at: '2028-01-01T10:00:00Z',
-        updated_datetime: '2028-01-01T10:00:00Z',
+        registered_at: '2026-05-31T10:00:00Z',
+        updated_datetime: '2026-05-31T10:00:00Z',
         ...patch,
       },
     ],
@@ -173,13 +174,13 @@ describe('/quejas/:id · el reloj legal', () => {
   const pinta = (data) =>
     mountAt('/quejas/q-abc12301', {
       '/data/quejas.json': data,
-      '/data/quejas-responses.json': { generatedAt: '2028-01-01T00:00:00Z', items: [] },
+      '/data/quejas-responses.json': { generatedAt: '2026-05-31T00:00:00Z', items: [] },
       '/data/officials.json': BASE_OFFICIALS,
     })
 
   it('publica el plazo en la unidad de la norma, no en días', async () => {
     vi.useFakeTimers({ shouldAdvanceTime: true })
-    vi.setSystemTime(new Date('2028-01-15T12:00:00Z'))
+    vi.setSystemTime(new Date('2026-06-15T12:00:00Z'))
     pinta(registrada())
     await waitFor(() => {
       expect(screen.getByText(/Plazo LPACAP en curso/i)).toBeInTheDocument()
@@ -190,20 +191,20 @@ describe('/quejas/:id · el reloj legal', () => {
 
   it('cuenta los días que de verdad tiene ESE plazo', async () => {
     vi.useFakeTimers({ shouldAdvanceTime: true })
-    // Día 90 de los 91 que dura el plazo registrado el 1-1-2028.
-    vi.setSystemTime(new Date('2028-03-31T12:00:00Z'))
+    // Día 91 de los 92 que dura el plazo registrado el 31-05-2026.
+    vi.setSystemTime(new Date('2026-08-30T12:00:00Z'))
     pinta(registrada())
     await waitFor(() => {
       expect(screen.getByText(/Días restantes/i)).toBeInTheDocument()
     })
-    // Con los 90 días escritos a mano aquí salía un 0: plazo agotado un día
+    // Con los 90 días escritos a mano aquí salía un día excedido: plazo agotado
     // antes de que lo esté.
     expect(screen.getByText('1')).toBeInTheDocument()
   })
 
   it('transparencia resuelve en 1 mes, leído de la misma tabla', async () => {
     vi.useFakeTimers({ shouldAdvanceTime: true })
-    vi.setSystemTime(new Date('2028-01-15T12:00:00Z'))
+    vi.setSystemTime(new Date('2026-06-15T12:00:00Z'))
     pinta(registrada({ service_code: 'transparencia' }))
     await waitFor(() => {
       expect(screen.getByText(/Plazo LPACAP en curso/i)).toBeInTheDocument()
@@ -264,6 +265,95 @@ describe('/quejas/:id · el contador, en el calendario de la sede', () => {
     vi.setSystemTime(new Date('2026-04-30T22:30:00Z')) // 00:30 del 1 de mayo en Madrid
     pinta()
     expect(await cifraDe(/Días excedidos/i)).toBe('1')
+  })
+
+  it('dice cuál es el último día del plazo', async () => {
+    vi.useFakeTimers({ shouldAdvanceTime: true })
+    vi.setSystemTime(new Date('2026-03-10T12:00:00Z'))
+    pinta()
+    expect(await cifraDe(/Último día/i)).toMatch(/30 de abril de 2026/)
+  })
+})
+
+/**
+ * El último día inhábil pasa al primer día hábil (art. 30.5), y la ficha lo dice.
+ *
+ * Registrada a las 12:00 del viernes 14-08-2026: tres meses acaban el sábado 14
+ * de noviembre, y el plazo, el lunes 16. El contador cuenta hasta el lunes, y la
+ * ficha da el día prorrogado y por qué, para que se pueda comprobar.
+ */
+describe('/quejas/:id · el último día inhábil pasa al primer día hábil', () => {
+  afterEach(() => vi.useRealTimers())
+
+  it('el sábado nominal quedan dos días, hasta el lunes, y dice por qué', async () => {
+    vi.useFakeTimers({ shouldAdvanceTime: true })
+    vi.setSystemTime(new Date('2026-11-14T11:00:00Z')) // mediodía del sábado en Madrid
+    mountAt('/quejas/q-abc12301', {
+      '/data/quejas.json': {
+        ...BASE_QUEJAS,
+        items: [
+          {
+            ...BASE_QUEJAS.items[0],
+            registered_at: '2026-08-14 10:00:00',
+            updated_datetime: '2026-08-14 10:00:00',
+          },
+        ],
+      },
+      '/data/quejas-responses.json': { generatedAt: '2026-08-14T00:00:00Z', items: [] },
+      '/data/officials.json': BASE_OFFICIALS,
+    })
+    const cifraDe = async (rotulo) =>
+      (await screen.findByText(rotulo)).nextElementSibling.textContent
+    expect(await cifraDe(/Último día/i)).toBe('16 de noviembre de 2026')
+    expect(
+      screen.getByText(/prorrogado: el 14 de noviembre de 2026 es inhábil/),
+    ).toBeInTheDocument()
+    expect(await cifraDe(/Días restantes/i)).toBe('2')
+  })
+})
+
+/**
+ * Sin el calendario del año en que acaba el plazo, el reloj no cuenta.
+ *
+ * El art. 30.5 prorroga al primer día hábil un último día inhábil, y un año sin
+ * calendario de inhábiles no es un año sin festivos. La ficha no da entonces ni
+ * días restantes ni días excedidos —un «excedido» es un silencio publicado al
+ * lado de un cargo—: da el último día nominal «o el primer día hábil
+ * siguiente», y dice qué año de calendario falta.
+ */
+describe('/quejas/:id · sin el calendario del año, el reloj no cuenta', () => {
+  afterEach(() => vi.useRealTimers())
+
+  const pinta = () =>
+    mountAt('/quejas/q-abc12301', {
+      '/data/quejas.json': {
+        ...BASE_QUEJAS,
+        items: [
+          {
+            ...BASE_QUEJAS.items[0],
+            // 11:00 del 15-01-2099 en Madrid: tres meses acaban el 15-04-2099, y
+            // 2099 no tiene calendario (nadie lo va a tener: la prueba no caduca).
+            registered_at: '2099-01-15 10:00:00',
+            updated_datetime: '2099-01-15 10:00:00',
+          },
+        ],
+      },
+      '/data/quejas-responses.json': { generatedAt: '2099-01-15T00:00:00Z', items: [] },
+      '/data/officials.json': BASE_OFFICIALS,
+    })
+
+  it('pasado el día nominal no da el plazo por vencido, y dice qué año falta', async () => {
+    vi.useFakeTimers({ shouldAdvanceTime: true })
+    vi.setSystemTime(new Date('2099-05-01T10:00:00Z'))
+    pinta()
+    expect(
+      await screen.findByText(/Falta el calendario de días inhábiles de 2099/),
+    ).toBeInTheDocument()
+    expect(
+      screen.getByText(/15 de abril de 2099 o el primer día hábil siguiente/),
+    ).toBeInTheDocument()
+    expect(screen.queryByText(/Días excedidos/i)).toBeNull()
+    expect(screen.queryByText(/Días restantes/i)).toBeNull()
   })
 })
 

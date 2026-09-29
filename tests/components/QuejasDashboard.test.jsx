@@ -295,3 +295,87 @@ describe('Acción urgente: el plazo, en el calendario de la sede', () => {
     expect(screen.getByText('Silencio')).toBeInTheDocument()
   })
 })
+
+/** Una sola queja registrada con esa marca (UTC sin la Z, como la escribe el bot). */
+const unaRegistrada = (registeredAt) => ({
+  '/data/quejas.json': {
+    generatedAt: '2026-11-15T04:00:00Z',
+    source: {},
+    stats: {
+      total: 1,
+      byState: { registrada: 1 },
+      byNeighborhood: { 'santa-rosa': 1 },
+      byCategory: { via_publica: 1 },
+      byConcejal: {},
+    },
+    items: [
+      {
+        service_request_id: 'Q-1',
+        status: 'registrada',
+        service_code: 'via_publica',
+        service_name: 'via_publica',
+        description: 'bache',
+        requested_datetime: registeredAt,
+        updated_datetime: registeredAt,
+        lat: null,
+        long: null,
+        address_string: 'santa-rosa',
+        apoyos: 12,
+        concejalia_area: 'Obra Pública',
+        concejal_slug: null,
+        registro_entry_number: 'RE-1',
+        registered_at: registeredAt,
+      },
+    ],
+  },
+  '/data/officials.json': {
+    generatedAt: '2026-01-01T00:00:00Z',
+    source: 'ribarroja.es',
+    count: 0,
+    composition: {},
+    officials: [],
+  },
+})
+
+/**
+ * «Acción urgente»: el último día inhábil pasa al primer día hábil (art. 30.5).
+ *
+ * Registrada a las 12:00 del viernes 14-08-2026: tres meses acaban el sábado 14
+ * de noviembre, y el plazo, el lunes 16. El domingo la lista decía «+1d» y
+ * «Silencio» de un plazo abierto.
+ */
+describe('Acción urgente: el último día inhábil pasa al primer día hábil', () => {
+  afterEach(() => vi.useRealTimers())
+
+  it('el domingo queda un día, sobre un plazo de 94, y no hay «Silencio»', async () => {
+    vi.useFakeTimers({ shouldAdvanceTime: true })
+    vi.setSystemTime(new Date('2026-11-15T12:00:00Z'))
+    mountWith(unaRegistrada('2026-08-14 10:00:00'))
+    expect(await screen.findByText(/plazo 94 días/)).toBeInTheDocument()
+    expect(screen.getByText('1d')).toBeInTheDocument()
+    expect(screen.queryByText('Silencio')).toBeNull()
+  })
+})
+
+/**
+ * «Acción urgente» sin el calendario del año en que acaba el plazo.
+ *
+ * Un año sin calendario de inhábiles no es un año sin festivos: la lista no puede
+ * decir «Silencio» ni «+Nd» de un plazo cuyo último día puede haberse prorrogado
+ * (art. 30.5). Tampoco puede callarla —es justo la que quien modera tiene que
+ * mirar—: sale, con el año que falta.
+ */
+describe('Acción urgente: sin el calendario del año, ni «Silencio» ni silencio', () => {
+  afterEach(() => vi.useRealTimers())
+
+  it('pasado el día nominal, sale con el año que falta y sin «Silencio»', async () => {
+    vi.useFakeTimers({ shouldAdvanceTime: true })
+    vi.setSystemTime(new Date('2099-05-01T10:00:00Z'))
+    // Tres meses acaban el 15-04-2099 o el primer hábil siguiente, y 2099 no
+    // tiene calendario (nadie lo va a tener: la prueba no caduca).
+    mountWith(unaRegistrada('2099-01-15 10:00:00'))
+    expect(await screen.findByText(/sin calendario de días inhábiles de 2099/)).toBeInTheDocument()
+    expect(screen.queryByText('Silencio')).toBeNull()
+    expect(screen.queryByText(/^\+\d+d$/)).toBeNull()
+  })
+})
