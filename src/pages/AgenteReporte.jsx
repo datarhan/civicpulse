@@ -298,7 +298,7 @@ export default function AgenteReporte() {
   }
   if (error) {
     return (
-      <div style={{ padding: '40px 24px' }}>
+      <div data-no-resuelta style={{ padding: '40px 24px' }}>
         <p style={{ color: 'var(--crit, #d92d20)' }}>No se pudo cargar el informe.</p>
         <p>
           <Link to="/laboratorio/agentes">← volver al índice</Link>
@@ -308,7 +308,7 @@ export default function AgenteReporte() {
   }
   if (!report) {
     return (
-      <div style={{ padding: '40px 24px' }}>
+      <div data-no-resuelta style={{ padding: '40px 24px' }}>
         <p style={{ color: 'var(--ink70)' }}>
           No hay informe publicado para esta asignación todavía.
         </p>

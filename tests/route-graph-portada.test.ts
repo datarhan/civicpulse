@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { resolve } from 'node:path'
 import { readFileSync } from 'node:fs'
 import { construirGrafoRutas, rutasPublicas, rutasRevisables } from '../scripts/lib/route-graph'
+import { leerDeDisco } from '../scripts/lib/fichas-representativas'
 import { RUTAS_CON_ESTADO, rutaBase } from '../src/scraper/reader-review'
 
 /**
@@ -78,12 +79,34 @@ describe('rutasRevisables — la lista que leen los DOS consumidores', () => {
    * vive.
    */
   const grafo = construirGrafoRutas(resolve('src'))
+  const publicados = leerDeDisco(resolve('public', 'data'))
 
   it('trae las rutas públicas y además las claves con estado', () => {
-    const revisables = rutasRevisables(grafo)
+    const revisables = rutasRevisables(grafo, publicados)
     for (const r of rutasPublicas(grafo)) expect(revisables).toContain(r)
     for (const c of RUTAS_CON_ESTADO) expect(revisables).toContain(c)
-    expect(revisables.length).toBe(rutasPublicas(grafo).length + RUTAS_CON_ESTADO.length)
+  })
+
+  it('y UNA ficha por cada ruta con parámetro, que antes no leía nadie', () => {
+    // Las ocho rutas con `:` se tiraban enteras: el barrido de «todas las rutas
+    // públicas» no leyó nunca un pleno, un hallazgo ni la ficha de un cargo.
+    const revisables = rutasRevisables(grafo, publicados)
+    const publicas = rutasPublicas(grafo)
+    const patrones = grafo.rutas.filter((r) => r.includes(':'))
+    expect(patrones.length).toBeGreaterThanOrEqual(8)
+    for (const p of patrones) {
+      // Una clave por plantilla: la ficha elegida o, si no hay ninguna, la
+      // plantilla misma, que el lector dirá SIN FICHA en vez de callarla.
+      const prefijo = p.slice(0, p.indexOf(':'))
+      const suyas = revisables.filter(
+        (k) =>
+          !publicas.includes(k) &&
+          !RUTAS_CON_ESTADO.includes(k) &&
+          (k === p || rutaBase(k).startsWith(prefijo)),
+      )
+      expect(suyas, p).toHaveLength(1)
+    }
+    expect(revisables.length).toBe(publicas.length + RUTAS_CON_ESTADO.length + patrones.length)
   })
 
   it('cada clave con estado apunta a una ruta pública que existe', () => {

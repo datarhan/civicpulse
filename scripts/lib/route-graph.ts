@@ -18,6 +18,7 @@
  * Módulo puro salvo por la lectura de src/: no toca red y no escribe nada.
  */
 import { RUTAS_CON_ESTADO } from '../../src/scraper/reader-review'
+import { fichasRepresentativas, type LeerSnapshot } from './fichas-representativas'
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 
@@ -101,6 +102,9 @@ export interface GrafoRutas {
  *
  * · las que llevan `:` necesitan un id real, y elegir CUÁL es una decisión
  *   editorial (¿qué concejal representa a `/cargos/:slug`?). Sus índices entran.
+ *   Esa decisión se toma desde el 29-09-2026 en `fichas-representativas.ts`, y
+ *   la ficha elegida entra por `rutasRevisables`, no por aquí: tirarlas aquí
+ *   dejó ocho plantillas sin que ninguna revisión lectora las leyera nunca.
  * · `/curator` no existe en producción —se excluye en dos sitios
  *   independientes— así que pedirla sólo da un NO MONTADA. El gancho de
  *   pre-push lo estaba haciendo en cada push que tocara algo que la página del
@@ -128,17 +132,27 @@ export function rutasPublicas(grafo: GrafoRutas): string[] {
 }
 
 /**
- * Todo lo que la revisión lectora debe cubrir: las rutas públicas MÁS las
- * claves con estado.
+ * Todo lo que la revisión lectora debe cubrir: las rutas públicas, las claves
+ * con estado y UNA ficha por cada ruta con parámetro.
  *
  * Existe por lo mismo que `rutasPublicas` justo encima: la composición estaba
  * escrita dos veces —en `review-surfaces --all` y en `check-surfaces`— y una
  * clave que el barrido lee pero el parte no conoce nunca se reportaría rancia.
  * La prosa de las capas volvería a envejecer en silencio, que es exactamente
  * el agujero que estas claves vienen a tapar.
+ *
+ * Las fichas entraron el 29-09-2026: hasta entonces las ocho plantillas de
+ * detalle no las leía nadie (ver `fichas-representativas.ts`). `leer` es
+ * obligatorio a propósito: un consumidor que se olvidara de pasarlo volvería a
+ * tirarlas sin que nada lo dijera.
  */
-export function rutasRevisables(grafo: GrafoRutas): string[] {
-  return [...rutasPublicas(grafo), ...RUTAS_CON_ESTADO]
+export function rutasRevisables(grafo: GrafoRutas, leer: LeerSnapshot): string[] {
+  const patrones = grafo.rutas.filter((r) => r.includes(':') && !RUTAS_LOCALES.includes(r))
+  return [
+    ...rutasPublicas(grafo),
+    ...RUTAS_CON_ESTADO,
+    ...fichasRepresentativas(patrones, leer).map((f) => f.clave),
+  ]
 }
 
 /**

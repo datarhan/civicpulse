@@ -7,14 +7,20 @@ import {
   type DraftFindingLike,
   type QueueInputs,
 } from '../src/scraper/curation-queue'
+import { seatsFromOfficials, singleSeatBlocs } from '../src/scraper/corporation-seats'
 
 const codes = (cs: { code: string }[]) => cs.map((c) => c.code).sort()
 
 const HAYSTACK =
   'Servicio de limpieza de caminos GARBIALDI, S.A. · contrato de recogida de residuos'
 
+/** Derived like production, from a composition, never listed by hand. */
+const ONE_SEAT = singleSeatBlocs(
+  seatsFromOfficials({ composition: { PSOE: 11, PP: 7, VOX: 1, 'EU-Podem': 1, Compromís: 1 } }),
+)
+
 function inputs(over: Partial<QueueInputs> = {}): QueueInputs {
-  return { haystack: HAYSTACK, verdictByClaimId: new Map(), ...over }
+  return { haystack: HAYSTACK, verdictByClaimId: new Map(), oneSeatBlocs: ONE_SEAT, ...over }
 }
 
 const CLEAN: DraftFindingLike = {
@@ -99,6 +105,40 @@ describe('checkDraft — the four defect classes actually observed', () => {
   it('warns on quotes with no attribution', () => {
     const d: DraftFindingLike = { ...CLEAN, quotes: [{ text: 'algo dicho', speakerGroup: null }] }
     expect(codes(checkDraft(d, inputs()))).toContain('unattributed-quotes')
+  })
+
+  /**
+   * Un grupo con un solo concejal nombra a esa persona por eliminación, así que
+   * atribuirle una cita es atribución individual (CLAUDE.md, «a one-seat bloc is
+   * not bloc-level»). Es la clase que el 29-09-2026 se encontró en 13 citas y 10
+   * sumarios publicados por `auto-curation-v1`, sin firma de nadie. Quien revisa
+   * en el móvil no puede saber qué grupo tiene un escaño: se lo dice el borrador.
+   */
+  it('blocks a quote attributed to a one-seat group', () => {
+    const d: DraftFindingLike = {
+      ...CLEAN,
+      quotes: [
+        ...CLEAN.quotes!,
+        { text: 'hemos pedido la auditoría del contrato', speakerGroup: 'Compromís' },
+      ],
+    }
+    const hit = checkDraft(d, inputs()).find((c) => c.code === 'single-seat-bloc')
+    expect(hit?.level).toBe('blocker')
+    expect(hit?.message).toContain('Compromís')
+  })
+
+  it('blocks prose that names a one-seat group even when no quote carries its label', () => {
+    const d: DraftFindingLike = {
+      ...CLEAN,
+      summary: 'Vox se compromete a garantizar una enseñanza de calidad en el municipio.',
+    }
+    const hit = checkDraft(d, inputs()).find((c) => c.code === 'single-seat-bloc')
+    expect(hit?.level).toBe('blocker')
+    expect(hit?.message).toContain('VOX')
+  })
+
+  it('does not block the large groups', () => {
+    expect(codes(checkDraft(CLEAN, inputs()))).not.toContain('single-seat-bloc')
   })
 
   it('reports a clean draft explicitly rather than returning nothing', () => {
