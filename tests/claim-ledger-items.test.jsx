@@ -1,16 +1,33 @@
 import { describe, it, expect, beforeEach } from 'vitest'
-import { render, screen, waitFor } from '@testing-library/react'
+import { act, render, screen, waitFor } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { installFetchMock } from './setup/mockFetch'
 import { ClaimLedger } from '../src/components/ClaimLedger'
 
-// items prop is the source; the internal usePlenoClaims still runs, so serve it
-// a clean empty manifest (200) so its fetch resolves without noise in the test.
+// Con `items`, el registro no pide nada a pleno-claims: la página ya trae sus
+// declaraciones (/plenos/:id, su fragmento). Se le sirve un corpus de todas
+// formas —manifiesto y un fragmento ajeno— para que, si vuelve a pedirlo, la
+// petición prospere y quede contada en `fetchFn`.
+let fetchFn
 beforeEach(() => {
-  installFetchMock({
-    '/data/pleno-claims/index.json': { plenos: [], totals: { items: 0, byVerdict: {} } },
+  fetchFn = installFetchMock({
+    '/data/pleno-claims/index.json': {
+      plenos: [{ plenoId: 'otra', chunkPath: 'pleno-claims/otra.json' }],
+      totals: { items: 1, byVerdict: { verificado: 1 } },
+    },
+    '/data/pleno-claims/otra.json': { items: [item('verificado', 'cita de otra sesión')] },
   })
 })
+
+/** Lo pedido a pleno-claims, tras dejar llegar el manifiesto y lo que venga detrás. */
+async function pedidasDeDeclaraciones() {
+  await act(async () => {
+    await new Promise((r) => setTimeout(r, 20))
+  })
+  return fetchFn.mock.calls
+    .map(([input]) => String(input))
+    .filter((ruta) => ruta.includes('/data/pleno-claims/'))
+}
 
 const item = (verdict, verbatim, type = 'afirmacion_numerica') => ({
   visibility: verdict === 'sin-datos' ? 'toggle' : 'shown',
@@ -40,6 +57,7 @@ describe('ClaimLedger items prop', () => {
     )
     await waitFor(() => expect(screen.getByText(/cifra verificada/)).toBeTruthy())
     expect(screen.getByText(/obra parcial/)).toBeTruthy()
+    expect(await pedidasDeDeclaraciones()).toEqual([])
   })
 
   it('drops a hidden item even if passed in', async () => {

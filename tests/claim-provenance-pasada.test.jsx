@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'vitest'
+import { describe, it, expect } from 'vitest'
 import { readFileSync, readdirSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { render, screen } from '@testing-library/react'
@@ -40,15 +40,6 @@ import { gateItemsForPublic } from '../src/scraper/claim-public-gate'
  * a un trozo servido. Una forma recitada es cómo una prueba sigue verde mientras
  * la página hace otra cosa (docs/DATA_INTEGRITY.md, regla 1).
  */
-
-beforeEach(() => {
-  // `ClaimLedger` monta su hook aunque reciba `items`: se le sirve un
-  // manifiesto vacío para que su fetch resuelva sin ruido. La prueba de
-  // /declaraciones instala el suyo encima.
-  installFetchMock({
-    '/data/pleno-claims/index.json': { plenos: [], totals: { items: 0, byVerdict: {} } },
-  })
-})
 
 const STAMP = '2026-09-29T00:00:00.000Z'
 const OVERLAY_VACIO = { version: 1, generatedAt: STAMP, entries: {} }
