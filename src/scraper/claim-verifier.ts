@@ -132,6 +132,7 @@ export {
   type ResumenSinDatos,
 } from './claim-verdicts'
 import type { ClaimVerdict } from './claim-verdicts'
+import { resumenSinRegistro } from './claim-verdicts'
 
 /**
  * What this verifier established about a document RELATIVE to the claim.
@@ -1216,11 +1217,15 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
     }
   }
 
+  // La frase nombra lo que `checked` apunta, y nada más. Era fija —«No se
+  // encontró registro en tenders / BDNS / presupuesto»— se hubiera mirado lo
+  // que se hubiera mirado: una promesa cotejada sólo con el tracker, o una
+  // afirmación con la que no corrió ningún comparador, decían haber buscado en
+  // tres corpus que su propia lista no nombra, y la tarjeta imprime las dos.
   return {
     claimId: claim.id,
     verdict: 'sin-datos',
-    summary:
-      'No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.',
+    summary: resumenSinRegistro(checked),
     evidence,
     checkedAgainst: checked,
   }

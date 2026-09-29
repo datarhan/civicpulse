@@ -11,7 +11,11 @@ import {
 } from '../hooks/usePlenoClaims'
 import { gateForDisplay, sortSignalFirst } from '../lib/claim-ledger'
 import { blocLabel } from '../lib/party-label.js'
-import { etiquetaVerificador, fuentesComprobadas } from '../lib/claim-provenance.js'
+import {
+  etiquetaVerificador,
+  fuentesComprobadas,
+  resumenSegunFuentes,
+} from '../lib/claim-provenance.js'
 import { ROTULO_RESUMEN_RETIRADO, resumenPublicable } from '../lib/resumenes-retirados.js'
 
 function formatEuros(n) {
@@ -72,8 +76,10 @@ function ClaimCard({ item }) {
   const { claim, verification } = item
   // `null` cuando el resumen guardado habla de la tarea del verificador y no de
   // esta declaración (src/lib/resumenes-retirados.js): la tarjeta dice que lo
-  // retiró en vez de imprimirlo bajo la cita.
-  const resumen = resumenPublicable(verification)
+  // retiró en vez de imprimirlo bajo la cita. El «no se encontró registro» se
+  // re-deriva de la misma procedencia que «Fuentes comprobadas», más abajo:
+  // guardado, nombraba fuentes que la línea no lista.
+  const resumen = resumenSegunFuentes(verification, resumenPublicable(verification))
   return (
     <Card>
       <div

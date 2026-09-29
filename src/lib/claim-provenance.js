@@ -31,7 +31,14 @@
  * Vive fuera del JSX para que se pueda medir contra el corpus publicado en vez
  * de sólo contra un render.
  */
-import { CLASE_DE_PASADA, corpusReales, esCorpus, esMarcaDePasada } from '../scraper/claim-verdicts'
+import {
+  CLASE_DE_PASADA,
+  corpusReales,
+  esCorpus,
+  esMarcaDePasada,
+  esResumenSinRegistro,
+  resumenSinRegistro,
+} from '../scraper/claim-verdicts'
 
 /** Lo que se dice cuando no consta quién comprobó la cita. */
 export const SIN_VERIFICADOR = 'sin verificador anotado'
@@ -131,4 +138,34 @@ export function fuentesComprobadas(v) {
   const corpus = corpusReales(v?.checkedAgainst)
   if (corpus.length > 0) return corpus.join(' · ')
   return nadaAnotado(v) ? 'ninguna' : 'no constan'
+}
+
+/**
+ * Lo que la tarjeta dice bajo la cita, cuando es el «no se encontró registro»
+ * del verificador: re-derivado de la procedencia servida, la misma que lee
+ * `fuentesComprobadas`, para que las dos líneas no puedan contradecirse.
+ *
+ * Esa explicación va guardada, y la tarjeta la imprimía tal cual encima de
+ * «Fuentes comprobadas». Era una frase fija —«No se encontró registro en
+ * tenders / BDNS / presupuesto…»— se mirara lo que se mirara: medido el
+ * 2026-09-29 en /plenos/k4olcs, de las 20 primeras tarjetas 8 la ponían sobre
+ * «ninguna», 10 sobre «no constan» y 1 sobre «tenders · tenders-ted». Y aunque
+ * el verificador escriba ya la derivada (`resumenSinRegistro`), guardada puede
+ * seguir mintiendo: la retractación del motor copia la verificación del
+ * determinista y le cambia la procedencia (`{ ...r, checkedAgainst:
+ * ['verdict-engine'] }`), así que la explicación viaja y la lista no.
+ *
+ * Sólo se re-deriva esa familia (`esResumenSinRegistro`) y sólo en un
+ * `sin-datos`, que es el único veredicto que la escribe. Cualquier otra
+ * explicación —la del motor, la de un curador— sale como vino.
+ *
+ * @param {{ verdict?: string, summary?: string, checkedAgainst?: unknown[] | null }
+ *   | null | undefined} v  la verificación servida, entera.
+ * @param {string | null | undefined} [texto]  la explicación a imprimir; por
+ *   defecto, el `summary`. `null` (retirada) pasa tal cual.
+ * @returns {string | null | undefined}
+ */
+export function resumenSegunFuentes(v, texto = v?.summary) {
+  if (v?.verdict !== 'sin-datos' || !esResumenSinRegistro(texto)) return texto
+  return resumenSinRegistro(v?.checkedAgainst)
 }
