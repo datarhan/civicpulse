@@ -32,11 +32,12 @@ import { BitacoraCorrecciones } from '../../src/components/BitacoraCorrecciones'
 import { invalidateSnapshots, peekSnapshot } from '../../src/lib/snapshot-store'
 import {
   HUELLA_RE,
-  PUERTA_QUE_RETIENE,
   retenerLiterales,
   versionesDeCitas,
 } from '../../src/scraper/literales-retenidos'
 import { quoteAppearsIn } from '../../src/scraper/quote-match'
+import { citaRetenida } from '../../src/lib/cita-retenida'
+import { provenanceFor } from '../../src/hooks/useFindingQuoteProvenance'
 
 const ROOT = join(__dirname, '..', '..')
 const FUENTE = JSON.parse(readFileSync(join(ROOT, 'public/data/pleno-findings.json'), 'utf8'))
@@ -69,9 +70,7 @@ afterAll(() => {
 })
 
 const retenidasDe = (f) =>
-  (f.quotes ?? []).flatMap((_q, i) =>
-    PROV.quotes?.[f.id]?.[i]?.gate === PUERTA_QUE_RETIENE ? [i] : [],
-  )
+  (f.quotes ?? []).flatMap((q, i) => (citaRetenida(provenanceFor(PROV, f.id)[i], q) ? [i] : []))
 
 /** La ficha servida con más retenidas y con bitácora de ellas: la del ejemplo del parte. */
 const EJEMPLO = SERVIDA.items.find((f) => f.id === 'f-2025-11-03-acu-431140')

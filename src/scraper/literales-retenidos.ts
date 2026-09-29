@@ -6,7 +6,7 @@
  * DE DÓNDE SALE
  *
  * Desde el 27-08-2026 una cita `hidden` se pinta en la ficha como el hueco
- * «Literal retenido» (`citaRetenida`, en PlenoFindings.jsx), y la nota de
+ * «Literal retenido» (`citaRetenida`, src/lib/cita-retenida.js), y la nota de
  * debajo decía «su literal no se publica: ni aquí … ni en el registro de
  * declaraciones del pleno». Medido el 28-09-2026 sobre el artefacto construido:
  *
@@ -72,10 +72,15 @@
 import type { ClaimVisibility } from './claim-public-gate'
 import { sha256Short } from './hash'
 import { CORRECTION_QUOTE_FIELD_RE } from './pleno-finding'
-import { prepararHeno, quoteAppearsInPrepared } from './quote-match'
+import { normaliseForQuoteMatch, prepararHeno, quoteAppearsInPrepared } from './quote-match'
+import { PUERTA_QUE_RETIENE as PUERTA, citaRetenida } from '../lib/cita-retenida.js'
 
-/** El resultado de la puerta que retiene el literal. Tipado contra su enum. */
-export const PUERTA_QUE_RETIENE: ClaimVisibility = 'hidden'
+/**
+ * El resultado de la puerta que retiene el literal. Se define con el predicado
+ * en src/lib/cita-retenida.js; aquí se tipa contra el enum de la puerta, así
+ * que un valor que no sea uno de sus resultados no compila.
+ */
+export const PUERTA_QUE_RETIENE: ClaimVisibility = PUERTA
 
 const ETIQUETA_HUELLA = 'cita retenida'
 
@@ -132,7 +137,7 @@ export interface ProcedenciaLike {
  */
 export interface FichaConCitas {
   id: string
-  quotes?: ReadonlyArray<{ text?: string } | null | undefined>
+  quotes?: ReadonlyArray<{ text?: string; literalRetenido?: boolean } | null | undefined>
   corrections?: ReadonlyArray<{ field: string; original: string; corrected: string }>
 }
 
@@ -228,7 +233,7 @@ export function retenerLiterales<S extends { items?: FichaLike[] }>(
     const quotes = f.quotes ?? []
     // Las versiones se leen ANTES de quitar ningún texto: la cadena empieza en él.
     const versiones = versionesDeCitas(f)
-    const retenida = quotes.map((_q, i) => filasDePuerta?.[i]?.gate === PUERTA_QUE_RETIENE)
+    const retenida = quotes.map((q, i) => citaRetenida(filasDePuerta?.[i], q))
 
     quotes.forEach((q, i) => {
       if (filasDePuerta?.[i] == null) {
@@ -290,8 +295,14 @@ function puertasDe(procedencia: ProcedenciaLike, quien: string) {
 
 /**
  * Cada cita retenida, con todas las versiones de su literal que el repositorio
- * guarda (`versionesDeCitas`): lo que `rastrosDeLiterales` tiene que buscar. El
- * id es `<ficha>#<índice de hoy>`.
+ * guarda (`versionesDeCitas`): lo que buscan `rastrosDeLiterales` y
+ * `tramosDeLiterales`. El id es `<ficha>#<índice de hoy>`.
+ *
+ * Decide con `citaRetenida`, el predicado de la página, y busca la fila de cada
+ * ficha como `provenanceFor`: lo que sale de aquí es lo que el lector ve como
+ * hueco. `provenanceFor` no se importa porque vive con un gancho de React, y
+ * esto lo carga también la CLI; su búsqueda es la de abajo, y
+ * `tests/literales-retenidos.test.ts` comprueba sobre los datos que coinciden.
  */
 export function literalesRetenidosDe(
   fuente: { items?: ReadonlyArray<FichaConCitas> },
@@ -300,10 +311,10 @@ export function literalesRetenidosDe(
   const puertas = puertasDe(procedencia, 'literalesRetenidosDe')
   const out: Array<{ id: string; versiones: string[] }> = []
   for (const f of fuente.items ?? []) {
+    const filas = Array.isArray(puertas[f.id]) ? puertas[f.id] : []
     const versiones = versionesDeCitas(f)
-    ;(f.quotes ?? []).forEach((_q, i) => {
-      if (puertas[f.id]?.[i]?.gate === PUERTA_QUE_RETIENE)
-        out.push({ id: `${f.id}#${i}`, versiones: [...versiones[i]] })
+    ;(f.quotes ?? []).forEach((q, i) => {
+      if (citaRetenida(filas[i], q)) out.push({ id: `${f.id}#${i}`, versiones: [...versiones[i]] })
     })
   }
   return out
@@ -320,8 +331,14 @@ export function literalesRetenidosDe(
  * arregla eso no puede dejar escribir otra vez lo mismo, y la prueba de los
  * datos publicados sólo lo diría después, sobre un fichero ya escrito.
  *
+ * Pregunta con las DOS cribas que miran la copia servida —ocho palabras seguidas
+ * y `TRAMO_MINIMO_EN_CARACTERES`—, porque la prueba de los datos publicados
+ * mira las dos: con una sola, la CLI dejaría escribir un motivo que esa prueba
+ * pondría en rojo después (el estilo indirecto sólo lo ve la de caracteres).
+ *
  * Los textos van por nombre (`{ nuevo, porque }`) para que la respuesta diga
- * cuál: `[{ campo: 'nuevo', cita: 3 }]`. Falla cerrado sin procedencia.
+ * cuál: `[{ campo: 'nuevo', cita: 3 }]`, una vez aunque lo vean las dos cribas.
+ * Falla cerrado sin procedencia.
  */
 export function tramosRetenidosEn(
   textos: Record<string, string>,
@@ -330,9 +347,17 @@ export function tramosRetenidosEn(
 ): Array<{ campo: string; cita: number }> {
   const literales = literalesRetenidosDe({ items: [ficha] }, procedencia)
   const prefijo = `${ficha.id}:`
-  return rastrosDeLiterales({ items: [{ ...textos, id: ficha.id }] }, literales)
-    .filter((r) => r.ruta.startsWith(prefijo) && r.ruta !== `${prefijo}id`)
-    .map((r) => ({ campo: r.ruta.slice(prefijo.length), cita: Number(r.id.split('#').pop()) }))
+  const servido = { items: [{ ...textos, id: ficha.id }] }
+  const hallados = new Map<string, { campo: string; cita: number }>()
+  for (const r of [
+    ...rastrosDeLiterales(servido, literales),
+    ...tramosDeLiterales(servido, literales),
+  ]) {
+    if (!r.ruta.startsWith(prefijo) || r.ruta === `${prefijo}id`) continue
+    const hallado = { campo: r.ruta.slice(prefijo.length), cita: Number(r.id.split('#').pop()) }
+    hallados.set(`${hallado.campo}#${hallado.cita}`, hallado)
+  }
+  return [...hallados.values()]
 }
 
 /** Por debajo de esto, un literal se diría en cualquier sitio: no se criba. */
@@ -352,9 +377,32 @@ export function rastrosDeLiterales(
   servido: unknown,
   literales: Array<{ id: string; versiones: string[] }>,
 ): Array<{ id: string; ruta: string }> {
-  const hojas: Array<{ ruta: string; heno: ReturnType<typeof prepararHeno> }> = []
+  const hojas = hojasDeTexto(servido).map(({ ruta, texto }) => ({
+    ruta,
+    heno: prepararHeno(texto),
+  }))
+  const out: Array<{ id: string; ruta: string }> = []
+  for (const lit of literales) {
+    const medibles = lit.versiones.filter(
+      (v) => v.trim().split(/\s+/).filter(Boolean).length >= PALABRAS_MINIMAS,
+    )
+    if (medibles.length === 0) continue
+    for (const { ruta, heno } of hojas) {
+      if (medibles.some((v) => quoteAppearsInPrepared(v, heno, 8))) out.push({ id: lit.id, ruta })
+    }
+  }
+  return out
+}
+
+/**
+ * Cada cadena del objeto servido, con su ruta. La recorren las dos cribas, así
+ * que las dos miran exactamente lo mismo: la ruta de una hoja dentro de
+ * `items[k]` se escribe `<id de la ficha>:<campo>`.
+ */
+function hojasDeTexto(servido: unknown): Array<{ ruta: string; texto: string }> {
+  const hojas: Array<{ ruta: string; texto: string }> = []
   const recorrer = (v: unknown, ruta: string) => {
-    if (typeof v === 'string') hojas.push({ ruta, heno: prepararHeno(v) })
+    if (typeof v === 'string') hojas.push({ ruta, texto: v })
     else if (Array.isArray(v)) v.forEach((x, i) => recorrer(x, `${ruta}[${i}]`))
     else if (v && typeof v === 'object')
       for (const [k, x] of Object.entries(v)) recorrer(x, ruta ? `${ruta}.${k}` : k)
@@ -371,15 +419,88 @@ export function rastrosDeLiterales(
   } else {
     recorrer(servido, '')
   }
+  return hojas
+}
 
-  const out: Array<{ id: string; ruta: string }> = []
-  for (const lit of literales) {
-    const medibles = lit.versiones.filter(
-      (v) => v.trim().split(/\s+/).filter(Boolean).length >= PALABRAS_MINIMAS,
-    )
-    if (medibles.length === 0) continue
-    for (const { ruta, heno } of hojas) {
-      if (medibles.some((v) => quoteAppearsInPrepared(v, heno, 8))) out.push({ id: lit.id, ruta })
+/**
+ * Cuántos caracteres seguidos —normalizados con `normaliseForQuoteMatch`— puede
+ * compartir una cadena servida con un literal retenido antes de contar como
+ * copia suya.
+ *
+ * La criba de ocho palabras de `rastrosDeLiterales` no ve dos formas de copiar
+ * que se encontraron publicadas el 29-09-2026: el estilo indirecto, que cambia
+ * la persona del verbo justo donde la ventana necesitaba la octava palabra, y
+ * un sumario que copia la versión ANTERIOR de un literal que luego se reancló.
+ * Medido ese día sobre cinco instantáneas, del 11-08 en adelante: por encima de
+ * cuarenta caracteres sólo había copias de verdad —dos sumarios y un motivo de
+ * corrección—; por debajo, lo más largo que no era copia llegaba a 33 dentro de
+ * la misma ficha y a 30 entre fichas, y eran nombres de instituciones y de
+ * temas. Entre 30 y 39 una cita de verdad y un tema quedaban a un carácter: ahí
+ * no separa ningún umbral, y esa franja es de la pregunta humana, no de esto.
+ */
+export const TRAMO_MINIMO_EN_CARACTERES = 40
+
+/** Longitud de la subcadena común más larga de `a` y `b`. */
+function subcadenaComunMasLarga(a: string, b: string): number {
+  let anterior = new Int32Array(b.length + 1)
+  let actual = new Int32Array(b.length + 1)
+  let mejor = 0
+  for (let i = 1; i <= a.length; i += 1) {
+    const c = a.charCodeAt(i - 1)
+    for (let j = 1; j <= b.length; j += 1) {
+      actual[j] = c === b.charCodeAt(j - 1) ? anterior[j - 1] + 1 : 0
+      if (actual[j] > mejor) mejor = actual[j]
+    }
+    ;[anterior, actual] = [actual, anterior]
+    actual.fill(0)
+  }
+  return mejor
+}
+
+/**
+ * ¿Qué cadena servida comparte al menos `minimo` caracteres seguidos con alguna
+ * versión de un literal retenido? Recorre las mismas hojas que
+ * `rastrosDeLiterales` y compara con TODAS las versiones que el repositorio
+ * guarda de cada literal (`versionesDeCitas`): la que copió un sumario puede ser
+ * la anterior a un reanclaje.
+ *
+ * Una ventana de `minimo` caracteres de un literal que aparece en una hoja es
+ * exactamente una subcadena común de esa longitud, así que se indexan las
+ * ventanas de los literales una vez y cada hoja se recorre una sola vez; la
+ * longitud exacta, para el informe, se calcula sólo donde hubo coincidencia.
+ */
+export function tramosDeLiterales(
+  servido: unknown,
+  literales: Array<{ id: string; versiones: string[] }>,
+  minimo: number = TRAMO_MINIMO_EN_CARACTERES,
+): Array<{ id: string; ruta: string; caracteres: number }> {
+  const normalizadas = literales.map((lit) =>
+    lit.versiones.map((v) => normaliseForQuoteMatch(v)).filter((v) => v.length >= minimo),
+  )
+  const ventanas = new Map<string, Set<number>>()
+  normalizadas.forEach((versiones, k) => {
+    for (const v of versiones) {
+      for (let i = 0; i + minimo <= v.length; i += 1) {
+        const ventana = v.slice(i, i + minimo)
+        const duenos = ventanas.get(ventana) ?? new Set<number>()
+        duenos.add(k)
+        ventanas.set(ventana, duenos)
+      }
+    }
+  })
+
+  const out: Array<{ id: string; ruta: string; caracteres: number }> = []
+  if (ventanas.size === 0) return out
+  for (const { ruta, texto } of hojasDeTexto(servido)) {
+    const hoja = normaliseForQuoteMatch(texto)
+    const tocados = new Set<number>()
+    for (let i = 0; i + minimo <= hoja.length; i += 1) {
+      const duenos = ventanas.get(hoja.slice(i, i + minimo))
+      if (duenos) for (const k of duenos) tocados.add(k)
+    }
+    for (const k of [...tocados].sort((x, y) => x - y)) {
+      const caracteres = Math.max(...normalizadas[k].map((v) => subcadenaComunMasLarga(hoja, v)))
+      out.push({ id: literales[k].id, ruta, caracteres })
     }
   }
   return out

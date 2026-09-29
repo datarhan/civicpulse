@@ -1,4 +1,5 @@
-import { PUERTA_QUE_RETIENE, retenerLiterales } from './src/scraper/literales-retenidos'
+import { retenerLiterales } from './src/scraper/literales-retenidos'
+import { citaRetenida } from './src/lib/cita-retenida.js'
 
 /**
  * Ficheros que viven bajo `public/` y NO deben desplegarse.
@@ -194,7 +195,7 @@ export async function retenerLiteralesEnDist(dirDatos) {
   const conTexto = []
   for (const f of escrito.items ?? []) {
     ;(f.quotes ?? []).forEach((q, i) => {
-      const retenida = procedencia.quotes?.[f.id]?.[i]?.gate === PUERTA_QUE_RETIENE
+      const retenida = citaRetenida(procedencia.quotes?.[f.id]?.[i], q)
       if (retenida && q?.text != null) conTexto.push(`${f.id}#${i}`)
     })
   }

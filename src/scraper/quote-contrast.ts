@@ -35,7 +35,7 @@
  * ─────────────────────────────────────────────────────────────────────────────
  * Y DESDE EL 2026-08-27, /hallazgos TAMBIÉN RETIENE
  *
- * Decisión del operador (`citaRetenida`, en PlenoFindings.jsx): una sola
+ * Decisión del operador (`citaRetenida`, en src/lib/cita-retenida.js): una sola
  * política para el mismo literal en las dos páginas. El argumento de arriba
  * vale también al revés —imprimir la cita era asimismo un acto editorial, y lo
  * había tomado el mismo tipo de proceso—, así que /hallazgos ya no usa este eje
@@ -112,7 +112,7 @@ const CONTRAST_MEANING: Record<ClaimVisibility, { meaning: string; marks: boolea
   hidden: {
     // Decía «En /plenos no se publica; en un hallazgo se publica porque alguien
     // la promovió». Dejó de ser cierto el 27-08-2026 (`citaRetenida`, en
-    // PlenoFindings.jsx): la ficha retiene el literal igual que el registro, la
+    // src/lib/cita-retenida.js): la ficha retiene el literal igual que el registro, la
     // promueva quien la promueva. Y «alguien» insinuaba una persona donde casi
     // siempre firma `auto-curation-v1`. Tampoco dice «no se publica» a secas:
     // desde el 28-09-2026 la copia servida de pleno-findings.json ya no lleva

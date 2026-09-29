@@ -16,7 +16,11 @@ import type { AvisosHitos } from '../services/avisos-hitos.ts'
 import type { MyContext } from '../types.ts'
 import { getQuejaPublica, setState } from '../db/queries.ts'
 import { routeUsingLocalOfficials } from '../services/router.ts'
-import { buildSindicTemplate, renderSindicMarkdown } from '../services/sindic.ts'
+import {
+  buildSindicTemplate,
+  motivoParaNoEscalar,
+  renderSindicMarkdown,
+} from '../services/sindic.ts'
 import { idDeQueja } from '../services/queja-id.ts'
 
 function parseAdmins(): Set<number> {
@@ -53,11 +57,16 @@ export function registerEscalar(bot: Bot<MyContext>, db: Db, hitos: AvisosHitos)
       await ctx.reply(`No encuentro la queja \`${id}\`.`, { parse_mode: 'Markdown' })
       return
     }
-    if (q.state !== 'silencio_negativo' && q.state !== 'registrada') {
-      await ctx.reply(
-        `\`${id}\` está en estado *${q.state}*. Solo puedes escalar quejas en silencio_negativo o registrada (con el plazo vencido).`,
-        { parse_mode: 'Markdown' },
-      )
+    const routing = routeUsingLocalOfficials({
+      title: q.title,
+      detail: q.detail,
+      category: q.category as never,
+    })
+    // El escrito afirma que ha operado el silencio: una registrada sólo se
+    // escala con el plazo vencido, contado como lo cuenta el bot (art. 30.5).
+    const motivo = motivoParaNoEscalar(q, routing)
+    if (motivo) {
+      await ctx.reply(`\`${id}\` no se puede escalar: ${motivo}`, { parse_mode: 'Markdown' })
       return
     }
 
@@ -68,11 +77,6 @@ export function registerEscalar(bot: Bot<MyContext>, db: Db, hitos: AvisosHitos)
         .catch((err) => console.error(`[escalar] el aviso de ${updated.id} no llegó:`, err))
     }
 
-    const routing = routeUsingLocalOfficials({
-      title: q.title,
-      detail: q.detail,
-      category: q.category as never,
-    })
     const template = buildSindicTemplate(q, routing)
     const preview = renderSindicMarkdown(template).split('\n').slice(0, 6).join('\n')
 

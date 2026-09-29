@@ -949,6 +949,11 @@ export const CATALOGUE = {
     'quejas.detalle.reloj.mes': '1 mes',
     'quejas.detalle.reloj.restantes': 'Días restantes',
     'quejas.detalle.reloj.excedidos': 'Días excedidos',
+    'quejas.detalle.reloj.ultimoDia': 'Último día',
+    'quejas.detalle.reloj.prorrogado': 'prorrogado: el {dia} es inhábil (art. 30.5 LPACAP)',
+    'quejas.detalle.reloj.oPrimerHabil': '{dia} o el primer día hábil siguiente',
+    'quejas.detalle.reloj.sinCalendario':
+      'Falta el calendario de días inhábiles de {anio}, y sin él no se sabe si el último día se prorroga (art. 30.5 LPACAP). Hasta que se añada, este reloj no cuenta los días ni da el plazo por vencido.',
     'quejas.detalle.reloj.asiento': 'Asiento sede',
     'quejas.detalle.historial.eyebrow': 'Historial',
     'quejas.detalle.historial.titulo': 'Línea temporal',
@@ -2579,6 +2584,11 @@ export const CATALOGUE = {
     'quejas.detalle.reloj.mes': '1 mes',
     'quejas.detalle.reloj.restantes': 'Dies restants',
     'quejas.detalle.reloj.excedidos': 'Dies excedits',
+    'quejas.detalle.reloj.ultimoDia': 'Últim dia',
+    'quejas.detalle.reloj.prorrogado': 'prorrogat: el {dia} és inhàbil (art. 30.5 LPACAP)',
+    'quejas.detalle.reloj.oPrimerHabil': '{dia} o el primer dia hàbil següent',
+    'quejas.detalle.reloj.sinCalendario':
+      "Falta el calendari de dies inhàbils de {anio}, i sense ell no se sap si l'últim dia es prorroga (art. 30.5 LPACAP). Fins que s'afegisca, este rellotge no compta els dies ni dona el termini per vençut.",
     'quejas.detalle.reloj.asiento': 'Assentament en seu',
     'quejas.detalle.historial.eyebrow': 'Historial',
     'quejas.detalle.historial.titulo': 'Línia temporal',
