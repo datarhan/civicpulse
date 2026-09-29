@@ -2,7 +2,7 @@
  * El buscador rápido no imprime el literal que /hallazgos retiene.
  *
  * Desde el 27-08-2026, por decisión del operador (`citaRetenida`, en
- * PlenoFindings.jsx), una cita a la que la puerta editorial da `hidden` se pinta
+ * src/lib/cita-retenida.js), una cita a la que la puerta editorial da `hidden` se pinta
  * en /hallazgos como el hueco «Literal retenido», y `CONTRAST_MEANING.hidden`
  * —que se sirve en finding-quote-provenance.json— dice que su literal no se
  * imprime en la página, ni en /plenos ni en /hallazgos. Pero CmdK, montado en
@@ -28,7 +28,7 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 
 import { CmdK } from '../../src/components/CmdK'
-import { citaRetenida } from '../../src/components/PlenoFindings'
+import { citaRetenida } from '../../src/lib/cita-retenida'
 import { provenanceFor } from '../../src/hooks/useFindingQuoteProvenance'
 import { installFetchMock } from '../setup/mockFetch'
 

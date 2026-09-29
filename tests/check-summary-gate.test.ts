@@ -173,3 +173,49 @@ describe('findNearMisses', () => {
     expect(findNearMisses([finding(summary, [{ text: quote }])], gates('toggle'))).toEqual([])
   })
 })
+
+/**
+ * Un reanclaje cambia el texto de la cita y deja el sumario como estaba. El
+ * 10-08-2026 se reanclaron a la transcripción vigente citas que se habían
+ * publicado en una traducción al castellano, y desde entonces un sumario que
+ * copiaba esa versión anterior no lo veía nadie: esta comprobación sólo
+ * comparaba con el texto de hoy (f-2025-12-01-cit-bef239, medido el 29-09).
+ */
+describe('las versiones anteriores de un literal', () => {
+  const vigente =
+    'vostés van votar en contra de la piscina coberta i del poliesportiu municipal de la vila'
+  const anterior =
+    'ustedes votaron en contra de la piscina cubierta y del polideportivo municipal de la villa'
+  const reanclada = (summary: string) => ({
+    ...finding(summary, [{ text: vigente }]),
+    corrections: [{ field: 'quote.0.text', original: anterior, corrected: vigente }],
+  })
+
+  it('un sumario que reproduce la versión anterior a un reanclaje es una fuga', () => {
+    expect(findGateLeaks([reanclada(`Se dijo «${anterior}».`)], gates('hidden'))).toEqual([
+      { findingId: 'f-1', quoteIndex: 0, gate: 'hidden', version: 'anterior' },
+    ])
+  })
+
+  it('la coincidencia parcial también mira las versiones anteriores', () => {
+    const f = reanclada('Se afirma que votaron en contra de la piscina, sin más.')
+    expect(findGateLeaks([f], gates('hidden'))).toEqual([])
+    expect(findNearMisses([f], gates('hidden'))).toEqual([
+      { findingId: 'f-1', quoteIndex: 0, gate: 'hidden', version: 'anterior' },
+    ])
+  })
+
+  /**
+   * Esta salida acaba en el log de la nocturna y en el parte de
+   * `monitor:health`, que llega por Telegram: imprimir el literal que la puerta
+   * retiene sería publicarlo por otro camino. Ids y versión, nada más.
+   */
+  it('informa de ids y de la versión, nunca del literal', () => {
+    const [fuga] = findGateLeaks(
+      [finding(`Se dijo «${vigente}».`, [{ text: vigente }])],
+      gates('hidden'),
+    )
+    expect(fuga).toEqual({ findingId: 'f-1', quoteIndex: 0, gate: 'hidden', version: 'vigente' })
+    expect(JSON.stringify(fuga)).not.toContain('piscina')
+  })
+})

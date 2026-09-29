@@ -238,6 +238,13 @@ async function gather(): Promise<Observations> {
     'check:eficiencia-findings',
     'check:dea',
     'check:coste-esperado',
+    // Por el mismo motivo que las cuatro de arriba: la nocturna la ejecutaba y
+    // su veredicto moría en `soft_failures`. Del 27-08 al 29-09-2026 bloqueó
+    // cada noche un sumario FIRMADO que imprimía, casi entero, el literal de una
+    // cita que la puerta editorial retiene (f-2026-01-19-cit-543cc1), y lo
+    // encontró una lectura a mano un mes después. Imprime ids, nunca el
+    // literal: este parte llega por Telegram.
+    'check:summary-gate',
     // `check:stamps` mira lo único que a `check:cadence` se le escapa por
     // construcción: aquél mide la EDAD del sello, y un sello que NO SE MUEVE
     // simplemente envejece dentro de su plazo sin decir nada. `promises.json`

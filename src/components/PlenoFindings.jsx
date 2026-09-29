@@ -16,7 +16,7 @@ import {
 } from '../lib/crosschecked-status.js'
 import { fmtDateShort } from '../lib/formatters'
 import { useT } from '../i18n'
-import { ROTULO_CITA_RETENIDA } from '../lib/cita-retenida'
+import { ROTULO_CITA_RETENIDA, citaRetenida } from '../lib/cita-retenida'
 
 /**
  * The documents a finding was cross-checked against.
@@ -463,32 +463,6 @@ export function quoteMarks(entry) {
   return out
 }
 
-/** The chips beside one quote. Renders nothing for a quote with no marks. */
-/**
- * ¿La puerta editorial retiene el literal de esta cita?
- *
- * `claim-public-gate.ts` se llama a sí mismo «la única fuente de verdad sobre
- * lo que la salida del verificador puede enseñar al público», y falla del lado
- * seguro. `/plenos` y `/declaraciones` la obedecen; aquí se CONSULTABA para
- * marcar, pero el literal se publicaba igual.
- *
- * Decisión del operador, 2026-08-27: una sola política en las dos superficies.
- * El argumento que la había frenado —«borrar citas es un acto editorial mayor
- * hecho por el mismo tipo de proceso»— vale también al revés: publicarlas lo
- * es, y la puerta ya toma exactamente esta decisión una pantalla más allá. Dos
- * políticas para el mismo literal es lo que no se sostiene.
- *
- * Lo que se retiene es EL LITERAL, no la ficha: el hallazgo, su resumen, su
- * atribución y su derecho de réplica siguen enteros. Y se dice que falta, con
- * su motivo, en vez de dejar un hueco mudo.
- */
-export function citaRetenida(entry, quote) {
-  // La copia servida de pleno-findings.json ya no trae el literal de una
-  // retenida, y lo dice (`literalRetenido`, src/scraper/literales-retenidos.ts):
-  // sin procedencia, la cita se pintaría como «» vacía atribuida a un grupo.
-  return entry?.gate === 'hidden' || quote?.literalRetenido === true
-}
-
 /**
  * El rótulo del hueco que deja una cita retenida. Lo pinta `CitaRetenida` y lo nombra
  * la nota de «acusación no contrastada», para que se sepa de qué literal habla la nota.
@@ -540,6 +514,7 @@ export function CitaRetenida({ attribution, tone }) {
   )
 }
 
+/** The chips beside one quote. Renders nothing for a quote with no marks. */
 export function QuoteProvenanceMark({ entry }) {
   const marks = quoteMarks(entry)
   if (marks.length === 0) return null
