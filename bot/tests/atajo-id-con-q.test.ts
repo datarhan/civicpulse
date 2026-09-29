@@ -4,7 +4,7 @@ import type { UserFromGetMe } from 'grammy/types'
 import { openDb, type Db } from '../src/db/client'
 import { autorTelegram } from '../src/db/queries'
 import { registrarComandos } from '../src/commands/registrar'
-import type { Channel } from '../src/services/channel'
+import { HITOS_MUDOS } from '../src/services/avisos-hitos'
 import type { MyContext } from '../src/types'
 import { creaPublicada } from './helpers/publicada'
 
@@ -31,14 +31,6 @@ describe('el atajo /estado_q… lleva a su queja', () => {
     allows_users_to_create_topics: false,
     supports_join_request_queries: false,
   }
-  const CANAL_MUDO: Channel = {
-    postNuevaQueja: async () => {},
-    postApoyoMilestone: async () => {},
-    postRegistrada: async () => {},
-    postResuelta: async () => {},
-    postSilencio: async () => {},
-    postEscaladaSindic: async () => {},
-  }
   let db: Db
   let bot: Bot<MyContext>
   let enviados: string[]
@@ -58,7 +50,7 @@ describe('el atajo /estado_q… lleva a su queja', () => {
       )
     }) as typeof fetch
     bot = new Bot<MyContext>('1:prueba', { botInfo: BOT_INFO, client: { fetch: fetchFalso } })
-    registrarComandos(bot, db, CANAL_MUDO)
+    registrarComandos(bot, db, HITOS_MUDOS)
   })
 
   it('una queja cuyo sufijo empieza por Q', async () => {

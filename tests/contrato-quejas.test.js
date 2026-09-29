@@ -169,19 +169,21 @@ describe('el contrato de las quejas dice lo que hace el código', () => {
 describe('lo que el bot le dice al vecino dice lo mismo que las páginas', () => {
   const INICIO = lee('bot/src/commands/start.ts')
   const QUEJA = lee('bot/src/commands/queja.ts')
-  const CANAL = lee('bot/src/services/channel.ts')
+  // Los hitos de cada queja: hasta el 2026-09-29, en el canal público de Telegram
+  // (services/channel.ts); desde entonces, a quien modera.
+  const HITOS = lee('bot/src/services/avisos-hitos.ts')
   const OLVIDAR = lee('bot/src/commands/olvidar.ts')
   const CONSULTAS = lee('bot/src/db/queries.ts')
 
   it('lee los cuatro mensajes (si no, no mide nada)', () => {
-    for (const texto of [INICIO, QUEJA, CANAL, OLVIDAR]) expect(texto.length).toBeGreaterThan(500)
+    for (const texto of [INICIO, QUEJA, HITOS, OLVIDAR]) expect(texto.length).toBeGreaterThan(500)
   })
 
   it('ninguno promete que el canal escala al Síndic', () => {
     const conEscalamos = Object.entries({
       'commands/start.ts': INICIO,
       'commands/queja.ts': QUEJA,
-      'services/channel.ts': CANAL,
+      'services/avisos-hitos.ts': HITOS,
     })
       .filter(([, texto]) => /escalamos/i.test(texto))
       .map(([fichero]) => fichero)
@@ -199,14 +201,15 @@ describe('lo que el bot le dice al vecino dice lo mismo que las páginas', () =>
   })
 
   it('el aviso de silencio no escribe un plazo fijo: el del enrutador cambia con la queja', () => {
-    // Con parámetro: sin él, la primera coincidencia es el `postSilencio() {}` vacío
-    // del canal mudo, y la prueba medía un método sin texto.
-    const cuerpo = CANAL.slice(
-      CANAL.indexOf('async postSilencio(q'),
-      CANAL.indexOf('async postEscaladaSindic(q'),
-    )
-    expect(cuerpo.length, 'no encuentro postSilencio').toBeGreaterThan(50)
+    const cuerpo = HITOS.slice(HITOS.indexOf("case 'silencio':"), HITOS.indexOf("case 'escalada':"))
+    expect(cuerpo.length, 'no encuentro el aviso de silencio').toBeGreaterThan(50)
     expect(cuerpo, 'escribe los días a mano').not.toMatch(/\b\d+ días/)
+  })
+
+  it('la escalada dice lo que hace el bot: marca y prepara la plantilla, no la remite', () => {
+    const cuerpo = HITOS.slice(HITOS.indexOf("case 'escalada':"))
+    expect(cuerpo.length, 'no encuentro el aviso de escalada').toBeGreaterThan(50)
+    expect(cuerpo).not.toMatch(/remitid|escalamos/i)
   })
 
   it('la respuesta a /olvidar dice lo que pasa: «anónima» sólo si la identidad se borra, y nada de /mis', () => {

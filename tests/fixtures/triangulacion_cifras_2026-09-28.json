@@ -1,0 +1,513 @@
+{
+  "_comentario": "Payload real: filas copiadas tal cual de public/data/press.json y public/data/press-claims-verified.json en el commit que se indica en cada caso; `publicado` es lo que press-triangulation.json publicaba entonces para ese grupo y `now` su generatedAt. Son los tres casos que /laboratorio pintaba como «cifras divergen» sin que dos medios dieran cifras distintas de una misma magnitud: `sensorizacion`, las dos cifras de UNA nota municipal (total de la adjudicación y parte del PSTD); `fachadas`, una cifra por medio, pero 100.000 € es la línea de fachadas de los 140.000 € del programa entero; `auditorio`, dos medios con la misma cifra, publicado como «cifras divergen €0 (0 %)». El reparto de `fachadas` sale del cuerpo de la nota del Ayuntamiento, leído el 28-09-2026 en su URL (la del artículo 18imvfs): «partida global de 140.000 euros en total» y, para las fachadas, «dotada de una partida global de 100.000 euros». El extractor sólo sacó el titular de esa nota, así que en las filas no se ve el reparto.",
+  "sensorizacion": {
+    "origen": "bc8d6a4c (main a 28-09-2026)",
+    "now": "2026-09-28T11:27:16.156Z",
+    "publicado": {
+      "outlets": [
+        "Ayuntamiento de Riba-roja de Túria",
+        "Valencia Plaza"
+      ],
+      "amountDrift": {
+        "min": 135000,
+        "max": 180000,
+        "spread": 45000,
+        "spreadPct": 0.333
+      }
+    },
+    "press": [
+      {
+        "id": "11s7c3b",
+        "title": "Riba-roja de Túria impulsa la sensorización de los contenedores de residuos del municipio",
+        "link": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOVTRzMU1WeWtleS1VNXF0UzhxX05lZlB3bmo0NkxMek9McWRaRkN0N1AxN21NSUUyMXRRYllpa3UxXzRhdFgyRGttOHpfajA0YnZ6TmJmVnh0S2hLQnV0WFFWbXd2N2tkX0g2enlKVEwySDVMWlp2eWhvMm1pWDhLQ19Yb0E0aGR1RDRCLUxWTXFYRDF5djVJa1puUDJHc0oxV3Z0NE5aUV8wMHV6OG9yX2N1YXRwSDNOZUdlWDZIMmF4aC1CbXlmNFdXWDM1b2VnVWRFWnFTM1dXaTVnSkVnMQ?oc=5",
+        "source": "Valencia Plaza",
+        "sourceHost": "valenciaplaza.com",
+        "date": "2026-09-25T10:33:31.000Z",
+        "fingerprint": "hxak26"
+      },
+      {
+        "id": "1lk4zls",
+        "title": "Riba-roja de Túria impulsa la sensorización de sus contenedores de residuos para avanzar hacia una gestión más sostenible del municipio",
+        "link": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
+        "source": "Ayuntamiento de Riba-roja de Túria",
+        "sourceHost": "ribarroja.es",
+        "date": "2026-09-25T09:54:12.000Z",
+        "fingerprint": "vsmbot",
+        "official": true,
+        "section": "Servicios publicos"
+      }
+    ],
+    "verified": [
+      {
+        "claim": {
+          "id": "1lk4zls-0-num",
+          "articleId": "1lk4zls",
+          "articleFingerprint": "vsmbot",
+          "articleSource": "Ayuntamiento de Riba-roja de Túria",
+          "articleSourceHost": "ribarroja.es",
+          "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
+          "articleDate": "2026-09-25T09:54:12.000Z",
+          "segmentIndex": 0,
+          "segmentKind": "body",
+          "type": "afirmacion_numerica",
+          "attributedSource": "municipal",
+          "verbatim": "El importe total de la adjudicación asciende a 180.000 euros",
+          "context": "El Ayuntamiento ha adjudicado a Distromel, S.A. el proyecto de sensorización de contenedores de residuos, incluido en el PSTD 2022 y financiado con fondos Next Generation EU a través del PRTR.",
+          "topic": "fiscal",
+          "entities": {
+            "amountEuros": 180000,
+            "date": "2026-09-25",
+            "referencedEntity": "Distromel, S.A."
+          },
+          "confidence": 0.85,
+          "reasoning": "Importe de adjudicación contrastable con la Plataforma de Contratación del Sector Público y el perfil del contratante municipal.",
+          "requiresHumanApproval": true
+        },
+        "verification": {
+          "claimId": "1lk4zls-0-num",
+          "verdict": "sin-datos",
+          "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+          "evidence": [],
+          "checkedAgainst": [
+            "tenders",
+            "tenders-ted",
+            "bdns",
+            "budget"
+          ],
+          "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
+          "articleSource": "Ayuntamiento de Riba-roja de Túria",
+          "articleSourceHost": "ribarroja.es",
+          "articleFingerprint": "vsmbot"
+        }
+      },
+      {
+        "claim": {
+          "id": "1lk4zls-1-num",
+          "articleId": "1lk4zls",
+          "articleFingerprint": "vsmbot",
+          "articleSource": "Ayuntamiento de Riba-roja de Túria",
+          "articleSourceHost": "ribarroja.es",
+          "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
+          "articleDate": "2026-09-25T09:54:12.000Z",
+          "segmentIndex": 1,
+          "segmentKind": "body",
+          "type": "afirmacion_numerica",
+          "attributedSource": "municipal",
+          "verbatim": "135.000 euros se financian con cargo al PSTD y los 35.000 euros restantes son aportados directamente por el Consistorio",
+          "context": "El importe total se cifra en 180.000 euros, de los cuales 135.000 se financian con cargo al PSTD (fondos Next Generation EU) y 35.000 los aporta el Ayuntamiento.",
+          "topic": "fiscal",
+          "entities": {
+            "amountEuros": 135000,
+            "referencedEntity": "PSTD 2022 / Next Generation EU"
+          },
+          "confidence": 0.7,
+          "reasoning": "Reparto de financiación contrastable con resolución de ayudas y contrato; 135.000 + 35.000 suman 170.000, no los 180.000 declarados, lo que exige verificación.",
+          "requiresHumanApproval": true
+        },
+        "verification": {
+          "claimId": "1lk4zls-1-num",
+          "verdict": "parcial",
+          "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ujgt5qEIoTA2wEhQbcAqug%3D%3D",
+              "snippet": "Contrato administrativo de obras para la ejecución del proyecto de “Obras de Instalación de pérgolas con vegetación autóctona para fomento de la resiliencia frente al cambio climático, en el marco del Plan de Recuperación, Transformación y Resiliencia financiado por la Unión Europea- Next Generation · Ayuntamiento de Riba-roja de Túria · construction · 131.336 €",
+              "similarity": 0.6,
+              "stance": "checked"
+            }
+          ],
+          "checkedAgainst": [
+            "tenders",
+            "tenders-ted",
+            "bdns",
+            "budget"
+          ],
+          "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
+          "articleSource": "Ayuntamiento de Riba-roja de Túria",
+          "articleSourceHost": "ribarroja.es",
+          "articleFingerprint": "vsmbot"
+        }
+      },
+      {
+        "claim": {
+          "id": "1lk4zls-2-dat",
+          "articleId": "1lk4zls",
+          "articleFingerprint": "vsmbot",
+          "articleSource": "Ayuntamiento de Riba-roja de Túria",
+          "articleSourceHost": "ribarroja.es",
+          "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
+          "articleDate": "2026-09-25T09:54:12.000Z",
+          "segmentIndex": 2,
+          "segmentKind": "body",
+          "type": "dato_municipal",
+          "attributedSource": "municipal",
+          "verbatim": "El Ayuntamiento de Riba-roja de Túria ha adjudicado a la empresa Distromel, S.A. el proyecto de sensorización de contenedores de residuos",
+          "context": "Apertura de la nota municipal: la adjudicación se enmarca en el Plan de Sostenibilidad Turística en Destino (PSTD) 2022, financiado con fondos Next Generation EU (PRTR).",
+          "topic": "medio-ambiente",
+          "entities": {
+            "date": "2026-09-25",
+            "referencedEntity": "Distromel, S.A."
+          },
+          "confidence": 0.85,
+          "reasoning": "Adjudicación de contrato a una empresa concreta, verificable en el perfil del contratante y en la Plataforma de Contratación.",
+          "requiresHumanApproval": true
+        },
+        "verification": {
+          "claimId": "1lk4zls-2-dat",
+          "verdict": "sin-datos",
+          "summary": "No se ha encontrado el dato municipal en las series locales.",
+          "evidence": [],
+          "checkedAgainst": [],
+          "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
+          "articleSource": "Ayuntamiento de Riba-roja de Túria",
+          "articleSourceHost": "ribarroja.es",
+          "articleFingerprint": "vsmbot"
+        }
+      },
+      {
+        "claim": {
+          "id": "1lk4zls-3-con",
+          "articleId": "1lk4zls",
+          "articleFingerprint": "vsmbot",
+          "articleSource": "Ayuntamiento de Riba-roja de Túria",
+          "articleSourceHost": "ribarroja.es",
+          "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
+          "articleDate": "2026-09-25T09:54:12.000Z",
+          "segmentIndex": 3,
+          "segmentKind": "body",
+          "type": "cita_convenio",
+          "attributedSource": "municipal",
+          "verbatim": "La actuación se enmarca dentro del Eje Programático 1, Transición Verde y Sostenible, del PSTD de Riba-roja de Túria",
+          "context": "El texto indica que el PSTD está integrado en el Plan Territorial de Sostenibilidad Turística en Destino Comunitat Valenciana-Programa 2022.",
+          "topic": "medio-ambiente",
+          "entities": {
+            "date": "2022",
+            "referencedEntity": "Plan de Sostenibilidad Turística en Destino (PSTD) 2022 - Eje 1"
+          },
+          "confidence": 0.65,
+          "reasoning": "Encuadre en un eje concreto del PSTD, contrastable con el documento del plan y la resolución de concesión.",
+          "requiresHumanApproval": true
+        },
+        "verification": {
+          "claimId": "1lk4zls-3-con",
+          "verdict": "sin-datos",
+          "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+          "evidence": [],
+          "checkedAgainst": [],
+          "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
+          "articleSource": "Ayuntamiento de Riba-roja de Túria",
+          "articleSourceHost": "ribarroja.es",
+          "articleFingerprint": "vsmbot"
+        }
+      },
+      {
+        "claim": {
+          "id": "1lk4zls-4-con",
+          "articleId": "1lk4zls",
+          "articleFingerprint": "vsmbot",
+          "articleSource": "Ayuntamiento de Riba-roja de Túria",
+          "articleSourceHost": "ribarroja.es",
+          "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
+          "articleDate": "2026-09-25T09:54:12.000Z",
+          "segmentIndex": 4,
+          "segmentKind": "body",
+          "type": "cita_convenio",
+          "attributedSource": "municipal",
+          "verbatim": "El proyecto se enmarca en el Componente 14 del Plan de Recuperación, Transformación y Resiliencia",
+          "context": "Se señala que el PRTR está financiado por la Unión Europea a través de los fondos Next Generation EU.",
+          "topic": "fiscal",
+          "entities": {
+            "referencedEntity": "Componente 14 del PRTR"
+          },
+          "confidence": 0.6,
+          "reasoning": "Referencia a un componente concreto del PRTR, verificable en la documentación de la convocatoria y la resolución de fondos.",
+          "requiresHumanApproval": true
+        },
+        "verification": {
+          "claimId": "1lk4zls-4-con",
+          "verdict": "sin-datos",
+          "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+          "evidence": [],
+          "checkedAgainst": [],
+          "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
+          "articleSource": "Ayuntamiento de Riba-roja de Túria",
+          "articleSourceHost": "ribarroja.es",
+          "articleFingerprint": "vsmbot"
+        }
+      },
+      {
+        "claim": {
+          "id": "1lk4zls-5-pro",
+          "articleId": "1lk4zls",
+          "articleFingerprint": "vsmbot",
+          "articleSource": "Ayuntamiento de Riba-roja de Túria",
+          "articleSourceHost": "ribarroja.es",
+          "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
+          "articleDate": "2026-09-25T09:54:12.000Z",
+          "segmentIndex": 5,
+          "segmentKind": "body",
+          "type": "promesa",
+          "attributedSource": "municipal",
+          "verbatim": "permitiendo conocer en tiempo real su nivel de llenado y mejorar así la planificación de las rutas de recogida",
+          "context": "La iniciativa busca modernizar y optimizar la gestión de residuos incorporando sensores en los contenedores para reducir desplazamientos innecesarios y el impacto ambiental.",
+          "topic": "medio-ambiente",
+          "entities": {
+            "referencedEntity": "Sensorización de contenedores de residuos"
+          },
+          "confidence": 0.5,
+          "reasoning": "Objetivo funcional declarado del proyecto, contrastable a futuro con su puesta en marcha efectiva y los pliegos de contratación.",
+          "requiresHumanApproval": true
+        },
+        "verification": {
+          "claimId": "1lk4zls-5-pro",
+          "verdict": "sin-datos",
+          "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+          "evidence": [],
+          "checkedAgainst": [
+            "promises"
+          ],
+          "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
+          "articleSource": "Ayuntamiento de Riba-roja de Túria",
+          "articleSourceHost": "ribarroja.es",
+          "articleFingerprint": "vsmbot"
+        }
+      }
+    ]
+  },
+  "fachadas": {
+    "origen": "2812b1b7 (09-09-2026)",
+    "now": "2026-09-09T07:56:35.482Z",
+    "publicado": {
+      "outlets": [
+        "Ayuntamiento de Riba-roja de Túria",
+        "Levante-EMV"
+      ],
+      "amountDrift": {
+        "min": 100000,
+        "max": 140000,
+        "spread": 40000,
+        "spreadPct": 0.4
+      }
+    },
+    "press": [
+      {
+        "id": "18imvfs",
+        "title": "El Ayuntamiento de Riba-roja de Túria destina una partida de 140.000 euros para la rehabilitación de las fachadas, la evaluación de los edificios y la accesibilidad en el interior de las viviendas del periodo 2026-2027",
+        "link": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-destina-una-partida-de-140.000-euros-para-la-rehabilitaci%C3%B3n-de-las-fachadas%2C-la-evaluaci%C3%B3n-de-los-edificios-y-la-accesibilidad-en-el-interior-de-las-viviendas-del-periodo-2026-2027",
+        "source": "Ayuntamiento de Riba-roja de Túria",
+        "sourceHost": "ribarroja.es",
+        "date": "2026-08-25T06:55:58.000Z",
+        "fingerprint": "sy1fbk",
+        "official": true,
+        "section": "Urbanismo"
+      },
+      {
+        "id": "1ezylig",
+        "title": "Riba-roja de Túria destina una partida de 100.000 euros para la rehabilitación de las fachadas",
+        "link": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQSjIzVFJONlJSTzg4ekpmU3dKM3AtenBUeWdqaDIyZ084VXpIRGhyQUg0cFBhWHdkbWRoYVBmcTd2MmstQkdzaGpSSlQ5ZldwTkFBOUFDX3V1bGRjcFdPWHpudEJObDlZLWNnYzR4MlhwcF81SllEMmpMRlkyWHhnaUVpNFY3eFR5T1o5dXJXY1p5RjFKVVlBUU55Nmo1Z3Jwa1gxVG1JOXVrdW0wLWRmaDY3WTlwdHNOd0ZaNkhmV1ZmQ0hGU05IYzBGV1JkMDFrS1NoYS0zbW12dTBn0gHiAUFVX3lxTE4yeHBabkwxVU9QN2NnUXlUVTZNel8tY0Q5UTBYdk9VbS1Wd0NhUUlDZkhqeFgyTVR3R1lhMDBHZ2hzc0ZnUklwZ25CY0JyQ1hlNVlqQmNiRE9WNlRBZFU5c2RpYk00dlBSNS1ueE55NDhGczJaa0J1UDFWMlJDd3I2TS14NGJJb0dScDhEM2I2Nzd1bWdpdTVSRkQySHhFQVp1NXZZMnlvYmpUUERld2NYMkxwNzNZMEhIeVY1QWZld0NWVXhlYW5sVVZES2dvMm9Qbk9FTlkwcy1ZVlJwOWlmR2c?oc=5",
+        "source": "Levante-EMV",
+        "sourceHost": "levante-emv.com",
+        "date": "2026-08-25T07:00:00.000Z",
+        "fingerprint": "13vj4ds"
+      }
+    ],
+    "verified": [
+      {
+        "claim": {
+          "id": "1ezylig-0-num",
+          "articleId": "1ezylig",
+          "articleFingerprint": "13vj4ds",
+          "articleSource": "Levante-EMV",
+          "articleSourceHost": "levante-emv.com",
+          "articleUrl": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQSjIzVFJONlJSTzg4ekpmU3dKM3AtenBUeWdqaDIyZ084VXpIRGhyQUg0cFBhWHdkbWRoYVBmcTd2MmstQkdzaGpSSlQ5ZldwTkFBOUFDX3V1bGRjcFdPWHpudEJObDlZLWNnYzR4MlhwcF81SllEMmpMRlkyWHhnaUVpNFY3eFR5T1o5dXJXY1p5RjFKVVlBUU55Nmo1Z3Jwa1gxVG1JOXVrdW0wLWRmaDY3WTlwdHNOd0ZaNkhmV1ZmQ0hGU05IYzBGV1JkMDFrS1NoYS0zbW12dTBn0gHiAUFVX3lxTE4yeHBabkwxVU9QN2NnUXlUVTZNel8tY0Q5UTBYdk9VbS1Wd0NhUUlDZkhqeFgyTVR3R1lhMDBHZ2hzc0ZnUklwZ25CY0JyQ1hlNVlqQmNiRE9WNlRBZFU5c2RpYk00dlBSNS1ueE55NDhGczJaa0J1UDFWMlJDd3I2TS14NGJJb0dScDhEM2I2Nzd1bWdpdTVSRkQySHhFQVp1NXZZMnlvYmpUUERld2NYMkxwNzNZMEhIeVY1QWZld0NWVXhlYW5sVVZES2dvMm9Qbk9FTlkwcy1ZVlJwOWlmR2c?oc=5",
+          "articleDate": "2026-08-25T16:39:17.000Z",
+          "segmentIndex": 0,
+          "segmentKind": "title",
+          "type": "afirmacion_numerica",
+          "attributedSource": "outlet",
+          "verbatim": "Riba-roja de Túria destina una partida de 100.000 euros para la rehabilitación de las fachadas",
+          "context": "Titular del artículo publicado por Levante-EMV (25/08/2026) sobre Riba-roja de Túria: 'Riba-roja de Túria destina una partida de 100.000 euros para la rehabilitación de las fachadas'.",
+          "topic": "urbanismo",
+          "entities": {
+            "amountEuros": 100000,
+            "referencedEntity": "Ayuntamiento de Riba-roja de Túria"
+          },
+          "confidence": 0.55,
+          "reasoning": "El titular cita una cifra presupuestaria concreta (100.000 euros) destinada a un fin específico, verificable contra presupuestos o convocatorias municipales, aunque no se dispone del cuerpo del artículo para mayor contexto.",
+          "requiresHumanApproval": true
+        },
+        "verification": {
+          "claimId": "1ezylig-0-num",
+          "verdict": "sin-datos",
+          "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+          "evidence": [],
+          "checkedAgainst": [
+            "tenders",
+            "tenders-ted",
+            "bdns",
+            "budget"
+          ],
+          "articleUrl": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQSjIzVFJONlJSTzg4ekpmU3dKM3AtenBUeWdqaDIyZ084VXpIRGhyQUg0cFBhWHdkbWRoYVBmcTd2MmstQkdzaGpSSlQ5ZldwTkFBOUFDX3V1bGRjcFdPWHpudEJObDlZLWNnYzR4MlhwcF81SllEMmpMRlkyWHhnaUVpNFY3eFR5T1o5dXJXY1p5RjFKVVlBUU55Nmo1Z3Jwa1gxVG1JOXVrdW0wLWRmaDY3WTlwdHNOd0ZaNkhmV1ZmQ0hGU05IYzBGV1JkMDFrS1NoYS0zbW12dTBn0gHiAUFVX3lxTE4yeHBabkwxVU9QN2NnUXlUVTZNel8tY0Q5UTBYdk9VbS1Wd0NhUUlDZkhqeFgyTVR3R1lhMDBHZ2hzc0ZnUklwZ25CY0JyQ1hlNVlqQmNiRE9WNlRBZFU5c2RpYk00dlBSNS1ueE55NDhGczJaa0J1UDFWMlJDd3I2TS14NGJJb0dScDhEM2I2Nzd1bWdpdTVSRkQySHhFQVp1NXZZMnlvYmpUUERld2NYMkxwNzNZMEhIeVY1QWZld0NWVXhlYW5sVVZES2dvMm9Qbk9FTlkwcy1ZVlJwOWlmR2c?oc=5",
+          "articleSource": "Levante-EMV",
+          "articleSourceHost": "levante-emv.com",
+          "articleFingerprint": "13vj4ds"
+        }
+      },
+      {
+        "claim": {
+          "id": "18imvfs-0-dat",
+          "articleId": "18imvfs",
+          "articleFingerprint": "sy1fbk",
+          "articleSource": "Ayuntamiento de Riba-roja de Túria",
+          "articleSourceHost": "ribarroja.es",
+          "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-destina-una-partida-de-140.000-euros-para-la-rehabilitaci%C3%B3n-de-las-fachadas%2C-la-evaluaci%C3%B3n-de-los-edificios-y-la-accesibilidad-en-el-interior-de-las-viviendas-del-periodo-2026-2027",
+          "articleDate": "2026-08-25T06:55:58.000Z",
+          "segmentIndex": 0,
+          "segmentKind": "title",
+          "type": "dato_municipal",
+          "attributedSource": "municipal",
+          "verbatim": "destina una partida de 140.000 euros para la rehabilitación de las fachadas, la evaluación de los edificios y la accesibilidad en el interior de las viviendas del periodo 2026-2027",
+          "context": "El Ayuntamiento de Riba-roja de Túria destina una partida de 140.000 euros para la rehabilitación de las fachadas, la evaluación de los edificios y la accesibilidad en el interior de las viviendas del periodo 2026-2027",
+          "topic": "vivienda",
+          "entities": {
+            "amountEuros": 140000,
+            "date": "2026-2027",
+            "referencedEntity": "Ayuntamiento de Riba-roja de Túria"
+          },
+          "confidence": 0.85,
+          "reasoning": "Cifra presupuestaria concreta (140.000€) y periodo definido (2026-2027) anunciados por el propio Ayuntamiento, verificables contra el presupuesto municipal publicado.",
+          "requiresHumanApproval": true
+        },
+        "verification": {
+          "claimId": "18imvfs-0-dat",
+          "verdict": "sin-datos",
+          "summary": "No se ha encontrado el dato municipal en las series locales.",
+          "evidence": [],
+          "checkedAgainst": [],
+          "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-destina-una-partida-de-140.000-euros-para-la-rehabilitaci%C3%B3n-de-las-fachadas%2C-la-evaluaci%C3%B3n-de-los-edificios-y-la-accesibilidad-en-el-interior-de-las-viviendas-del-periodo-2026-2027",
+          "articleSource": "Ayuntamiento de Riba-roja de Túria",
+          "articleSourceHost": "ribarroja.es",
+          "articleFingerprint": "sy1fbk"
+        }
+      }
+    ]
+  },
+  "auditorio": {
+    "origen": "9825a89e (22-09-2026)",
+    "now": "2026-09-22T04:54:59.374Z",
+    "publicado": {
+      "outlets": [
+        "Ayuntamiento de Riba-roja de Túria",
+        "levante-emv.com"
+      ],
+      "amountDrift": {
+        "min": 40000,
+        "max": 40000,
+        "spread": 0,
+        "spreadPct": 0
+      }
+    },
+    "press": [
+      {
+        "id": "1lnhg7g",
+        "title": "El Auditorio de Riba-roja de Túria invierte 40.000 euros en la modernización de sus instalaciones",
+        "link": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPNWpWeDdjLW1XeThCd2Q3LVlsQUg1VnZyNTA1Z0RCb3FSUk1JanFvZ1U2eGs4M3NWQkdZM045UC1ETGNwNlQ0VlhVSlJKZG9lUTZYZ3pTdUZuNkV3TmNFLWEzQmdyV2dmSUljT09QQlQxakZ6V3c2WjViVVJFRWJwbGFlUUEwdW9ueXdIRlNDOUk5TUFBeWg0Z0VSdFd4M1FIVm43eU05TUE3Qkx6UVVKbXRaXzVrOW4wSVZaY3gzYlJSdThsTjExeGRqVWhWcjkwTE000gHYAUFVX3lxTFB1U3JHcGR6dEZWSmc2WlkzSXVqOE5mVjVBck9JS2tsczFJbkRaT3BPdEFwbWdJYXE1UkV2cXVxc21qN19DaGZOc2hia2Y5MHc4T1gxdTFBX1dZanFDR2lXZ21hUzNJa3o2ZEF6cHhxYURoVmhEMC1GMUJqbDFZTWk4UDVWc0lxbjRsQWlfTTgwdUxRUUIwcGc5c05sTXFReUU3c3BBdmdFcTV1ZjdaVHVBeEhCT2lNMGp1VndaMFZSNmxlR3hadk9NT3NJZVpMbnR2Y0tLejZtag?oc=5",
+        "source": "levante-emv.com",
+        "sourceHost": "levante-emv.com",
+        "date": "2026-08-31T07:00:00.000Z",
+        "fingerprint": "1hy1xq8"
+      },
+      {
+        "id": "1t1ctq4",
+        "title": "El Auditorio Municipal de Riba-roja de Túria invierte 40.000 euros en la modernización de sus instalaciones y equipamientos técnicos",
+        "link": "https://www.ribarroja.es/es/noticia/el-auditorio-municipal-de-riba-roja-de-t%C3%BAria-invierte-40.000-euros-en-la-modernizaci%C3%B3n-de-sus-instalaciones-y-equipamientos-t%C3%A9cnicos",
+        "source": "Ayuntamiento de Riba-roja de Túria",
+        "sourceHost": "ribarroja.es",
+        "date": "2026-08-31T09:04:15.000Z",
+        "fingerprint": "1js11tg",
+        "official": true,
+        "section": "Cultura"
+      }
+    ],
+    "verified": [
+      {
+        "claim": {
+          "id": "1t1ctq4-0-dat",
+          "articleId": "1t1ctq4",
+          "articleFingerprint": "1js11tg",
+          "articleSource": "Ayuntamiento de Riba-roja de Túria",
+          "articleSourceHost": "ribarroja.es",
+          "articleUrl": "https://www.ribarroja.es/es/noticia/el-auditorio-municipal-de-riba-roja-de-t%C3%BAria-invierte-40.000-euros-en-la-modernizaci%C3%B3n-de-sus-instalaciones-y-equipamientos-t%C3%A9cnicos",
+          "articleDate": "2026-08-31T09:04:15.000Z",
+          "segmentIndex": 0,
+          "segmentKind": "title",
+          "type": "dato_municipal",
+          "attributedSource": "municipal",
+          "verbatim": "El Auditorio Municipal de Riba-roja de Túria invierte 40.000 euros en la modernización de sus instalaciones y equipamientos técnicos",
+          "context": "El Auditorio Municipal de Riba-roja de Túria invierte 40.000 euros en la modernización de sus instalaciones y equipamientos técnicos",
+          "topic": "cultura",
+          "entities": {
+            "amountEuros": 40000,
+            "referencedEntity": "Auditorio Municipal de Riba-roja de Túria"
+          },
+          "confidence": 0.75,
+          "reasoning": "El titular aporta una cifra concreta (40.000 €) de inversión municipal en un equipamiento público, contrastable con el presupuesto o las actas municipales.",
+          "requiresHumanApproval": true
+        },
+        "verification": {
+          "claimId": "1t1ctq4-0-dat",
+          "verdict": "sin-datos",
+          "summary": "No se ha encontrado el dato municipal en las series locales.",
+          "evidence": [],
+          "checkedAgainst": [],
+          "articleUrl": "https://www.ribarroja.es/es/noticia/el-auditorio-municipal-de-riba-roja-de-t%C3%BAria-invierte-40.000-euros-en-la-modernizaci%C3%B3n-de-sus-instalaciones-y-equipamientos-t%C3%A9cnicos",
+          "articleSource": "Ayuntamiento de Riba-roja de Túria",
+          "articleSourceHost": "ribarroja.es",
+          "articleFingerprint": "1js11tg"
+        }
+      },
+      {
+        "claim": {
+          "id": "1lnhg7g-0-num",
+          "articleId": "1lnhg7g",
+          "articleFingerprint": "1hy1xq8",
+          "articleSource": "Levante-EMV",
+          "articleSourceHost": "levante-emv.com",
+          "articleUrl": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPNWpWeDdjLW1XeThCd2Q3LVlsQUg1VnZyNTA1Z0RCb3FSUk1JanFvZ1U2eGs4M3NWQkdZM045UC1ETGNwNlQ0VlhVSlJKZG9lUTZYZ3pTdUZuNkV3TmNFLWEzQmdyV2dmSUljT09QQlQxakZ6V3c2WjViVVJFRWJwbGFlUUEwdW9ueXdIRlNDOUk5TUFBeWg0Z0VSdFd4M1FIVm43eU05TUE3Qkx6UVVKbXRaXzVrOW4wSVZaY3gzYlJSdThsTjExeGRqVWhWcjkwTE000gHYAUFVX3lxTFB1U3JHcGR6dEZWSmc2WlkzSXVqOE5mVjVBck9JS2tsczFJbkRaT3BPdEFwbWdJYXE1UkV2cXVxc21qN19DaGZOc2hia2Y5MHc4T1gxdTFBX1dZanFDR2lXZ21hUzNJa3o2ZEF6cHhxYURoVmhEMC1GMUJqbDFZTWk4UDVWc0lxbjRsQWlfTTgwdUxRUUIwcGc5c05sTXFReUU3c3BBdmdFcTV1ZjdaVHVBeEhCT2lNMGp1VndaMFZSNmxlR3hadk9NT3NJZVpMbnR2Y0tLejZtag?oc=5",
+          "articleDate": "2026-08-31T07:00:00.000Z",
+          "segmentIndex": 0,
+          "segmentKind": "title",
+          "type": "afirmacion_numerica",
+          "attributedSource": "outlet",
+          "verbatim": "El Auditorio de Riba-roja de Túria invierte 40.000 euros en la modernización de sus instalaciones",
+          "context": "Titular publicado por Levante-EMV (31-08-2026) referido al Auditorio de Riba-roja de Túria. No se dispone de cuerpo de artículo adicional para contrastar detalles.",
+          "topic": "cultura",
+          "entities": {
+            "amountEuros": 40000,
+            "referencedEntity": "Auditorio de Riba-roja de Túria"
+          },
+          "confidence": 0.55,
+          "reasoning": "Cifra concreta de inversión (40.000 euros) en una instalación municipal, verificable contra presupuestos o contratos públicos.",
+          "requiresHumanApproval": true
+        },
+        "verification": {
+          "claimId": "1lnhg7g-0-num",
+          "verdict": "sin-datos",
+          "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+          "evidence": [],
+          "checkedAgainst": [
+            "tenders",
+            "tenders-ted",
+            "bdns",
+            "budget"
+          ],
+          "articleUrl": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPNWpWeDdjLW1XeThCd2Q3LVlsQUg1VnZyNTA1Z0RCb3FSUk1JanFvZ1U2eGs4M3NWQkdZM045UC1ETGNwNlQ0VlhVSlJKZG9lUTZYZ3pTdUZuNkV3TmNFLWEzQmdyV2dmSUljT09QQlQxakZ6V3c2WjViVVJFRWJwbGFlUUEwdW9ueXdIRlNDOUk5TUFBeWg0Z0VSdFd4M1FIVm43eU05TUE3Qkx6UVVKbXRaXzVrOW4wSVZaY3gzYlJSdThsTjExeGRqVWhWcjkwTE000gHYAUFVX3lxTFB1U3JHcGR6dEZWSmc2WlkzSXVqOE5mVjVBck9JS2tsczFJbkRaT3BPdEFwbWdJYXE1UkV2cXVxc21qN19DaGZOc2hia2Y5MHc4T1gxdTFBX1dZanFDR2lXZ21hUzNJa3o2ZEF6cHhxYURoVmhEMC1GMUJqbDFZTWk4UDVWc0lxbjRsQWlfTTgwdUxRUUIwcGc5c05sTXFReUU3c3BBdmdFcTV1ZjdaVHVBeEhCT2lNMGp1VndaMFZSNmxlR3hadk9NT3NJZVpMbnR2Y0tLejZtag?oc=5",
+          "articleSource": "Levante-EMV",
+          "articleSourceHost": "levante-emv.com",
+          "articleFingerprint": "1hy1xq8"
+        }
+      }
+    ]
+  }
+}

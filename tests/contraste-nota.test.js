@@ -4,6 +4,9 @@ import { join } from 'node:path'
 import { notaAcusacionSinContrastar, ROTULO_CITA_RETENIDA } from '../src/components/PlenoFindings'
 import { isMachineAuthored } from '../src/scraper/finding-authorship'
 
+/** «No se publica», en cualquiera de sus formas — la misma guarda que #155 y #157. */
+const NO_SE_PUBLICA = /no (?:la |lo |las |los |se )?publica/i
+
 const ROOT = join(__dirname, '..')
 const findings = JSON.parse(readFileSync(join(ROOT, 'public/data/pleno-findings.json'), 'utf8'))
 const prov = JSON.parse(
@@ -31,11 +34,30 @@ describe('la nota de «acusación no contrastada» no inventa un editor humano',
     for (const quien of ['auto-curation-v1', 'civicpulse-curator', '']) {
       const nota = notaAcusacionSinContrastar(quien)
       expect(nota, `curador «${quien}»`).not.toMatch(/aparece igualmente|aquí aparece/i)
-      expect(nota, `curador «${quien}»`).toMatch(/no se publica/i)
+      expect(nota, `curador «${quien}»`).toMatch(/no reproduce su literal/i)
     }
   })
 
-  it('dice cuál es el literal que no se publica: el del hueco que la ficha deja a la vista', () => {
+  /**
+   * Decía «su literal no se publica: ni aquí … ni en el registro de
+   * declaraciones del pleno». El 28-09-2026 el literal de las 37 retenidas iba
+   * entero en /data/pleno-findings.json y en la bitácora de la propia ficha.
+   * Desde que la copia servida lo pierde al compilar, lo que la ficha cumple es
+   * NO REPRODUCIRLO —ni en la cita, ni en su bitácora, ni en sus datos—; «no se
+   * publica», no: sigue en el repositorio, que es público, y lo dicho consta en
+   * la transcripción de la sesión.
+   */
+  it('no promete que no se publique: dice qué no reproduce la ficha y dónde siguen las palabras', () => {
+    for (const quien of ['auto-curation-v1', 'civicpulse-curator', '']) {
+      const nota = notaAcusacionSinContrastar(quien)
+      expect(nota, `curador «${quien}»`).not.toMatch(NO_SE_PUBLICA)
+      expect(nota, `curador «${quien}»`).toMatch(/bitácora/i)
+      expect(nota, `curador «${quien}»`).toMatch(/datos de la ficha/i)
+      expect(nota, `curador «${quien}»`).toMatch(/transcripción completa/i)
+    }
+  })
+
+  it('dice cuál es el literal que no reproduce: el del hueco que la ficha deja a la vista', () => {
     // La revisión lectora leyó dos veces «su literal no se publica» como si hablara de
     // la cita impresa de al lado, cuando hablaba de la retenida: el 29-08-2026 sobre
     // f-2026-05-11-cit-a0a379 y el 15-09-2026 sobre f-2026-05-11-cit-7f7619. La nota

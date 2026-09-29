@@ -16,7 +16,7 @@
  */
 import { describe, expect, it } from 'vitest'
 
-import { contadoresDeCargo, MOTIVOS_SIN_CIFRA } from '../src/lib/reloj-lpacap'
+import { contadoresDeCargo, MOTIVOS_SIN_CIFRA, registroUtilizable } from '../src/lib/reloj-lpacap'
 import { CATALOGUE, LOCALES } from '../src/i18n'
 
 const SLUG = 'teresa-pozuelo-martin'
@@ -112,6 +112,16 @@ describe('contadoresDeCargo: cuándo NO hay cifras', () => {
   it('la tabla cubre todos los motivos que el módulo declara', () => {
     // Un motivo nuevo sin su caso aquí es un motivo que nadie ha visto salir.
     expect(new Set(CASOS.map(([, , m]) => m))).toEqual(new Set(MOTIVOS_SIN_CIFRA))
+  })
+})
+
+describe('registroUtilizable: las dos formas en que el bot publica la fecha', () => {
+  // Hasta el 28-09-2026 `registered_at` salía como lo guarda SQLite, en UTC y sin
+  // zona; desde entonces el bot lo exporta con la Z. La instantánea publicada
+  // cambia de una forma a la otra en el primer `pull-quejas` tras el despliegue,
+  // y una queja registrada no puede dejar de contar por eso.
+  it.each(['2026-09-27 22:00:01', '2026-09-27T22:00:01Z'])('«%s» es un registro', (marca) => {
+    expect(registroUtilizable(marca)).toBe(true)
   })
 })
 

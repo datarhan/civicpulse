@@ -3,7 +3,7 @@ import { Bot } from 'grammy'
 import type { UserFromGetMe } from 'grammy/types'
 import { openDb, type Db } from '../src/db/client'
 import { registrarComandos } from '../src/commands/registrar'
-import type { Channel } from '../src/services/channel'
+import { HITOS_MUDOS } from '../src/services/avisos-hitos'
 import type { MyContext } from '../src/types'
 
 /**
@@ -35,15 +35,6 @@ const BOT_INFO: UserFromGetMe = {
 }
 const CHAT = { id: VECINA, type: 'private', first_name: 'Vecina' }
 const DE = { id: VECINA, is_bot: false, first_name: 'Vecina' }
-
-const CANAL_MUDO: Channel = {
-  postNuevaQueja: async () => {},
-  postApoyoMilestone: async () => {},
-  postRegistrada: async () => {},
-  postResuelta: async () => {},
-  postSilencio: async () => {},
-  postEscaladaSindic: async () => {},
-}
 
 let n = 0
 const texto = (t: string) => {
@@ -115,7 +106,7 @@ describe('la queja por Telegram no se traga lo que viene después', () => {
       })
     }) as typeof fetch
     bot = new Bot<MyContext>('1:prueba', { botInfo: BOT_INFO, client: { fetch: fetchFalso } })
-    registrarComandos(bot, db, CANAL_MUDO)
+    registrarComandos(bot, db, HITOS_MUDOS)
   })
 
   afterEach(() => vi.useRealTimers())

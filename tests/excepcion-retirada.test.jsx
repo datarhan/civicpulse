@@ -62,12 +62,18 @@ describe('el significado publicado de `hidden` describe la puerta que rige desde
     expect(hidden).toContain('/hallazgos')
   })
 
-  it('no dice «no se publica» sin matiz: el texto sigue servido en pleno-findings.json', () => {
-    // El literal de una cita retenida no se imprime en la página, pero va entero
-    // en public/data/pleno-findings.json, que el sitio sirve, y en el
-    // repositorio, que es público. El día que deje de servirse, esta prueba
-    // cambia con la frase.
+  it('no dice «no se publica» sin matiz: el texto sigue en el repositorio y en la transcripción', () => {
+    // Desde el 28-09-2026 la copia servida de pleno-findings.json ya no lleva el
+    // literal de una retenida (src/scraper/literales-retenidos.ts). «No se
+    // publica» seguiría prometiendo de más: el fichero del repositorio, que es
+    // público, lo conserva, y lo dicho consta en la transcripción de la sesión.
     expect(hidden).not.toMatch(NO_SE_PUBLICA)
+  })
+
+  it('dice que la copia servida no lo lleva, y que lo dicho sigue en la transcripción', () => {
+    expect(hidden).toMatch(/pleno-findings\.json/)
+    expect(hidden).toMatch(/literalRetenido/)
+    expect(hidden).toMatch(/transcripción completa/i)
   })
 })
 

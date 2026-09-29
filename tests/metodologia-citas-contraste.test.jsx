@@ -74,11 +74,29 @@ describe('/metodologia#citas-contraste describe la puerta que rige hoy', () => {
   })
 
   it('no dice que lo retenido «no se publica»: dice que no se enseña', () => {
-    // El literal de una cita retenida no se imprime en la página, pero sigue en
-    // public/data/pleno-findings.json, que el sitio sirve, y en el repositorio,
-    // que es público. «No se publica», sin matiz, promete lo que no se cumple.
-    // El día que ese texto deje de servirse, esta prueba cambia con la frase.
+    // Desde el 28-09-2026 la copia servida de pleno-findings.json ya no lleva el
+    // literal de una retenida, pero el repositorio, que es público, sí, y lo
+    // dicho consta en la transcripción de la sesión. «No se publica», sin matiz,
+    // seguiría prometiendo lo que no se cumple.
     expect(texto).not.toMatch(/no (?:la |lo |las |los |se )?publica/i)
+  })
+
+  it('dice qué no alcanza la retención, en vez de callarlo', () => {
+    // Medido el 28-09-2026: la transcripción de cada sesión, que se publica
+    // entera, lleva las palabras de casi todas las retenidas; 7 de las 37
+    // comparten tramo con OTRA declaración del registro, y 3 de ésas se enseñan;
+    // y el repositorio conserva el literal en el fichero y en su historia.
+    expect(texto).toMatch(/Se retiene la cita, no lo que se dijo/)
+    expect(texto).toMatch(/transcripción completa/i)
+    expect(texto).toMatch(/otra declaración/i)
+    expect(texto).toMatch(/repositorio/i)
+    expect(texto).toMatch(/público desde el 8 de septiembre de 2026/i)
+  })
+
+  it('dice que ni la bitácora ni los datos que sirve el sitio llevan el literal', () => {
+    expect(texto).toMatch(/bitácora/i)
+    expect(texto).toMatch(/huella/i)
+    expect(texto).toMatch(/copia de los datos/i)
   })
 
   it('nombra los dos resultados con los rótulos que pinta la ficha', () => {

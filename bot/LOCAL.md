@@ -202,8 +202,6 @@ Cases where this setup is no longer enough:
 - You need the bot up while the laptop is closed.
 - Multiple moderators use `/batch_register` and need predictable
   availability.
-- The `CHANNEL_ID` public channel's followers grow past a few hundred
-  and missed broadcasts are a problem.
 
 When that happens, options in order of friction:
 

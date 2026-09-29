@@ -45,8 +45,12 @@
  * `CONTRAST_MEANING.hidden`, que se publica, lo dice.
  *
  * Lo que sigue siendo cierto: este módulo no quita ni reescribe ninguna cita.
- * Retener es no imprimir; el texto sigue en pleno-findings.json, cuyo único
- * escritor es `correct-pleno-finding`.
+ * Retener es no imprimir; el texto sigue en el pleno-findings.json del
+ * repositorio, cuyo único escritor es `correct-pleno-finding`. Desde el
+ * 28-09-2026 la copia que se despliega lo pierde al compilar
+ * (`literales-retenidos.ts`, aplicado por publication-denylist.js): hasta
+ * entonces el sitio servía el literal de cada retenida en los datos que la
+ * página descarga, y la bitácora de la ficha lo imprimía.
  *
  * ─────────────────────────────────────────────────────────────────────────────
  * TWO OUTCOMES, KEPT APART
@@ -111,10 +115,13 @@ const CONTRAST_MEANING: Record<ClaimVisibility, { meaning: string; marks: boolea
     // PlenoFindings.jsx): la ficha retiene el literal igual que el registro, la
     // promueva quien la promueva. Y «alguien» insinuaba una persona donde casi
     // siempre firma `auto-curation-v1`. Tampoco dice «no se publica» a secas:
-    // el texto sigue en pleno-findings.json, que se sirve, y lo que el sitio
-    // cumple es que no se imprime en la página.
+    // desde el 28-09-2026 la copia servida de pleno-findings.json ya no lleva
+    // el literal (`literales-retenidos.ts`), pero el repositorio, que es
+    // público, lo conserva, y la transcripción de la sesión lleva lo que se
+    // dijo. Lo que el sitio cumple es no imprimirlo como cita ni servirlo en
+    // los datos de la ficha.
     meaning:
-      'La afirmación que sostiene esta cita es una acusación pública que el verificador no pudo contrastar con ningún dato municipal (o un `contradicho` asignado por máquina). Promoverla a hallazgo no la saca de la puerta, la promueva una persona o un proceso automático: su literal no se imprime en la página, ni en /plenos ni en /hallazgos, donde la ficha enseña en su lugar el hueco con su motivo.',
+      'La afirmación que sostiene esta cita es una acusación pública que el verificador no pudo contrastar con ningún dato municipal (o un `contradicho` asignado por máquina). Promoverla a hallazgo no la saca de la puerta, la promueva una persona o un proceso automático: su literal no se imprime como cita, ni en /plenos ni en /hallazgos, donde la ficha enseña en su lugar el hueco con su motivo, y la copia de pleno-findings.json que sirve el sitio no lo lleva (`literalRetenido: true` en su lugar). Se retiene la cita, no lo que se dijo: la transcripción completa de la sesión sigue publicada.',
     marks: true,
   },
 }

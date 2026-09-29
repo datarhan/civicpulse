@@ -3,7 +3,7 @@ import { Bot } from 'grammy'
 import { openDb } from './db/client.ts'
 import type { MyContext } from './types.ts'
 import { registrarComandos } from './commands/registrar.ts'
-import { makeChannel } from './services/channel.ts'
+import { avisosHitos } from './services/avisos-hitos.ts'
 import { buildSnapshot, directorioFotos } from './services/snapshot.ts'
 import { buildBatch, renderBatchHtml, renderBatchMarkdown } from './services/batch.ts'
 import { sirveSindic } from './services/sindic.ts'
@@ -45,17 +45,23 @@ function makeBot() {
     `[arranque] apoyos al día: ${reconciliadas.promovidas} promovida(s) de ${reconciliadas.intentadas} con umbral alcanzado`,
   )
 
-  const channel = makeChannel(bot)
+  // Los hitos de cada queja, a quien modera por privado (services/avisos-hitos.ts):
+  // desde el 2026-09-29 el bot no publica en ningún canal.
+  const hitos = avisosHitos({
+    admins: () => parseAdminIds(),
+    mensaje: (chat, texto) => envioDesdeApi(bot.api).mensaje(chat, texto),
+  })
 
   // Todos los comandos, detrás de dos middlewares: el que atiende cada update una vez
   // y los de un chat de uno en uno, y el que no deja contestar fuera de un chat privado
   // más que lo público (commands/registrar.ts). Aquí no se registra ningún manejador
   // más: uno puesto antes que éstos se saltaría las guardas.
-  registrarComandos(bot, db, channel)
+  registrarComandos(bot, db, hitos)
 
   // Silencio cron — hourly tick that auto-transitions aged registered
-  // quejas to silencio_negativo. Paused during LOREG freeze.
-  startSilencioCron(db, channel)
+  // quejas to silencio_negativo and tells whoever moderates. Paused during
+  // LOREG freeze.
+  startSilencioCron(db, hitos)
 
   // Weekly-digest cron — hourly tick that fires exactly once at Monday
   // 09:00 local. DMs each subscribed user with the past-7-days quejas
