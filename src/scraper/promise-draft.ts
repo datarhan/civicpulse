@@ -29,6 +29,13 @@ export interface Grounding {
   grounded: boolean
   urlResolved: boolean
   quoteFound: boolean
+  /**
+   * New promises only: the quote is the party's own words on the page, not a
+   * headline or the reporter's narration (`quoteIsPartyWords`). Absent on
+   * drafts grounded before the rule existed and on status changes, whose
+   * evidence may legitimately be a reporter's sentence.
+   */
+  partyWords?: boolean
   resolvedUrl?: string
   checkedAt: string
 }

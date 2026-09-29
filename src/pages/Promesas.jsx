@@ -14,6 +14,54 @@ import { V1_STATUSES } from '../scraper/promises'
 import { fmtDateLong } from '../lib/formatters'
 import { useT } from '../i18n'
 import { useCitationHealth, citationStatus, citationArchive } from '../hooks/useCitationHealth'
+import { BitacoraCorrecciones } from '../components/BitacoraCorrecciones'
+
+/** Los campos de `PROMISE_CORRECTION_FIELDS`, dichos como los lee la ficha. */
+const ROTULO_CAMPO = { quote: 'cita', 'source.url': 'fuente', 'source.publisher': 'medio' }
+
+/**
+ * Las promesas retiradas, con fecha, partido y motivo. No su texto: se retira
+ * una frase atribuida a un partido que el partido no dijo, y repetirla aquí
+ * sería publicarla otra vez. La huella deja comprobar, a quien conserve la
+ * ficha original, que la retirada es de esa tarjeta.
+ */
+function Retiradas({ retractions }) {
+  if (!retractions?.length) return null
+  return (
+    <details
+      style={{
+        marginTop: 24,
+        padding: '10px 14px',
+        border: '1px solid var(--border2)',
+        borderRadius: 'var(--r-input)',
+        fontSize: 'var(--fs-aux)',
+        color: 'var(--ink70)',
+      }}
+    >
+      <summary style={{ cursor: 'pointer', fontWeight: 600, color: 'var(--ink)' }}>
+        Promesas retiradas · {retractions.length}
+      </summary>
+      <p style={{ margin: '8px 0', lineHeight: 1.5 }}>
+        Tarjetas que se publicaron y ya no están, con el motivo. No se repite su cita: si no era del
+        partido, reproducirla aquí sería volver a atribuírsela. La huella identifica cada ficha para
+        quien conserve el original.
+      </p>
+      <ol style={{ margin: 0, paddingLeft: 18, display: 'grid', gap: 8 }}>
+        {retractions.map((t) => (
+          <li key={t.promiseId}>
+            <div className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
+              {String(t.retractedAt).slice(0, 10)} · {t.party} · {t.promiseId} · {t.editor}
+            </div>
+            <div style={{ color: 'var(--ink)', marginTop: 1 }}>{t.reason}</div>
+            <div className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
+              {t.digest}
+            </div>
+          </li>
+        ))}
+      </ol>
+    </details>
+  )
+}
 
 function FreezeBanner({ snap }) {
   if (!isPromiseFrozen(snap)) return null
@@ -452,6 +500,15 @@ export function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
         </div>
       )}
 
+      {/* Lo que se corrigió después de publicar, con lo que decía antes: una
+          cita atribuida a un partido no cambia sin dejarlo dicho en la ficha. */}
+      <BitacoraCorrecciones
+        correcciones={(p.corrections ?? []).map((c) => ({
+          ...c,
+          field: ROTULO_CAMPO[c.field] ?? c.field,
+        }))}
+      />
+
       {p.response && (
         <div
           style={{
@@ -659,6 +716,8 @@ export default function Promesas() {
           />
         ))}
       </div>
+
+      <Retiradas retractions={data.retractions} />
 
       <LegalFooter snap={data} />
     </div>

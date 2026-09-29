@@ -10,6 +10,9 @@ import {
   extractBatchParams,
   buildBatchRequestBody,
   parseResolvedUrl,
+  quotedSpans,
+  quoteIsPartyWords,
+  isAyuntamientoUrl,
   type FetchLike,
 } from '../src/scraper/promise-grounding'
 import type { DraftNewPromise, DraftStatusChange } from '../src/scraper/promise-draft'
@@ -64,18 +67,48 @@ describe('promise-grounding', () => {
     expect(partyDateOk('PODEMOS', '2026-06-20', NOW)).toBe(false)
   })
 
-  it('groundDraft returns grounded when URL resolves and quote is present', async () => {
+  it('groundDraft returns grounded when URL resolves and the quote is the party speaking', async () => {
     const fetchImpl: FetchLike = async () => ({
       ok: true,
       url: 'https://real-publisher.example/n',
       text: async () =>
-        '<article>Construiremos un carril bici en la Avenida del Camp de Túria antes de 2027, dijo el alcalde.</article>',
+        '<article>«Construiremos un carril bici en la Avenida del Camp de Túria antes de 2027», dijo el alcalde.</article>',
     })
     const g = await groundDraft(draft(), fetchImpl, NOW)
     expect(g.grounded).toBe(true)
     expect(g.urlResolved).toBe(true)
     expect(g.quoteFound).toBe(true)
+    expect(g.partyWords).toBe(true)
     expect(g.resolvedUrl).toBe('https://real-publisher.example/n')
+  })
+
+  it('groundDraft does not ground a quote that is only the reporter narrating', async () => {
+    // Before 2026-09-28 this grounded: the sentence is on the page. It is the
+    // paper's sentence, though, not the party's — the shape of most quotes
+    // that were published on /promesas.
+    const quote =
+      'El Ayuntamiento construirá un carril bici en la Avenida del Camp de Túria antes de 2027'
+    const fetchImpl: FetchLike = async () => ({
+      ok: true,
+      url: 'https://real-publisher.example/n',
+      text: async () => `<h1>Carril bici</h1><p>${quote}, según ha informado el consistorio.</p>`,
+    })
+    const g = await groundDraft(draft({ quote }), fetchImpl, NOW)
+    expect(g.quoteFound).toBe(true)
+    expect(g.partyWords).toBe(false)
+    expect(g.grounded).toBe(false)
+  })
+
+  it("groundDraft grounds the council's own text on its own site, marks or not", async () => {
+    const quote = 'El Ayuntamiento destinará 160.000 euros al Bono Vuelve al Cole en esta edición'
+    const fetchImpl: FetchLike = async () => ({
+      ok: true,
+      url: 'https://www.ribarroja.es/es/noticia/bono',
+      text: async () => `<article><p>${quote}.</p></article>`,
+    })
+    const g = await groundDraft(draft({ quote }), fetchImpl, NOW)
+    expect(g.partyWords).toBe(true)
+    expect(g.grounded).toBe(true)
   })
 
   it('groundDraft fails safe when quote is absent', async () => {
@@ -196,7 +229,7 @@ describe('promise-grounding — Google-News resolution', () => {
         ok: true,
         url,
         text: async () =>
-          '<article>Construiremos un carril bici en la Avenida del Camp de Túria antes de 2027.</article>',
+          '<article>«Construiremos un carril bici en la Avenida del Camp de Túria antes de 2027», dijo.</article>',
       }
     }
     const resolveGn = async () => publisher
@@ -219,7 +252,7 @@ describe('promise-grounding — Google-News resolution', () => {
         ok: true,
         url,
         text: async () =>
-          '<article>Construiremos un carril bici en la Avenida del Camp de Túria antes de 2027.</article>',
+          '<article>«Construiremos un carril bici en la Avenida del Camp de Túria antes de 2027», dijo.</article>',
       }
     }
     const resolveGn = async () => null
@@ -233,6 +266,56 @@ describe('promise-grounding — Google-News resolution', () => {
     expect(fetchedUrl).toBe(original)
     expect(g.grounded).toBe(true)
     expect(g.resolvedUrl).toBe(original)
+  })
+})
+
+describe('promise-grounding — the text a page actually says', () => {
+  it('stripHtml decodes the entities Spanish and Valencian pages use', () => {
+    // Valencia Plaza writes every accent as an entity; until 2026-09-28 only
+    // six were decoded, so «m&aacute;ximo» never matched «máximo».
+    expect(stripHtml('<p>desarrollar al m&aacute;ximo los 5&rsquo;9 millones</p>')).toBe(
+      'desarrollar al máximo los 5’9 millones',
+    )
+    expect(stripHtml('&ldquo;cita&rdquo; &#8220;otra&#8221; &#x00e0; l&#39;Ajuntament')).toBe(
+      "“cita” “otra” à l'Ajuntament",
+    )
+    expect(stripHtml('&laquo;como antes&raquo; &nbsp; &quot;y así&quot;')).toBe(
+      '"como antes" "y así"',
+    )
+  })
+
+  it('stripHtml decodes in one pass: an escaped entity stays an entity', () => {
+    expect(stripHtml('&amp;aacute; no es á')).toBe('&aacute; no es á')
+    expect(stripHtml('&inventada; se queda')).toBe('&inventada; se queda')
+  })
+
+  it('quotedSpans finds «», “” and "" but never pairs apostrophes', () => {
+    expect(quotedSpans('dijo «uno», luego “dos” y "tres"')).toEqual(['uno', 'dos', 'tres'])
+    expect(quotedSpans("l'Ajuntament d'aquest poble diu 'hola'")).toEqual([])
+  })
+
+  it('quoteIsPartyWords: inside a quotation on a paper, anywhere on the council site', () => {
+    const page =
+      'El alcalde contestó que ese «compromiso lo cumpliremos y habrá un descuento a los vecinos».'
+    const url = 'https://www.lasprovincias.es/x'
+    expect(quoteIsPartyWords('compromiso lo cumpliremos y habrá un descuento', page, url)).toBe(
+      true,
+    )
+    // The same words plus the reporter's lead-in are no longer inside the marks.
+    expect(quoteIsPartyWords('contestó que ese compromiso lo cumpliremos y habrá', page, url)).toBe(
+      false,
+    )
+    const nota = 'El Ayuntamiento destinará 17.200 euros a las asociaciones de vecinos.'
+    expect(quoteIsPartyWords('destinará 17.200 euros a las asociaciones', nota, url)).toBe(false)
+    expect(
+      quoteIsPartyWords(
+        'destinará 17.200 euros a las asociaciones',
+        nota,
+        'https://www.ribarroja.es/es/noticia/x',
+      ),
+    ).toBe(true)
+    expect(isAyuntamientoUrl('https://ribalicita.ribarroja.es/')).toBe(true)
+    expect(isAyuntamientoUrl('https://ribarroja.es.example.com/')).toBe(false)
   })
 })
 

@@ -8,25 +8,145 @@
  * NOTE: grounding proves the SOURCE exists, not that an accusatory inference
  * is sound. That is why 'no-ejecutada' verdicts never auto-publish even when
  * grounded (see promise-auto-curate.ts STATUS_TIER).
+ *
+ * A NEW promise must also quote the party's own words (`quoteIsPartyWords`):
+ * a headline or the reporter's narration is present on the page and still
+ * says nothing about what the party said.
  */
 import { stripDiacritics } from './normalize'
 import { ALLOWED_PARTIES } from './promises'
 import type { DraftNewPromise, DraftStatusChange, Grounding } from './promise-draft'
 
+/**
+ * The council's own sites. On them the institution speaks in its own voice,
+ * so their text is the municipal government's words; anywhere else a promise
+ * has to be words the page puts in someone's mouth.
+ */
+const AYUNTAMIENTO_HOST = /(^|\.)ribarroja\.es$/i
+
+export function isAyuntamientoUrl(url: string): boolean {
+  try {
+    return AYUNTAMIENTO_HOST.test(new URL(url).hostname)
+  } catch {
+    return false
+  }
+}
+
+/**
+ * The spans a page puts between quotation marks: «…», “…” and "…". Not the
+ * single marks, because an apostrophe — «l'Ajuntament» — would pair with the
+ * next one and invent a quotation. `stripHtml` has already turned &laquo; and
+ * &raquo; into plain double marks, which pair like any other.
+ */
+export function quotedSpans(text: string): string[] {
+  const spans: string[] = []
+  for (const re of [/«([^«»]+)»/g, /“([^“”]+)”/g, /"([^"]+)"/g]) {
+    for (const m of text.matchAll(re)) spans.push(m[1])
+  }
+  return spans
+}
+
+/**
+ * Is `quote` the party's own words on this page, rather than a headline or the
+ * reporter's narration? Deterministic on purpose: on the council's own site
+ * the institution is the speaker; anywhere else the quote has to sit inside a
+ * quotation the page prints.
+ *
+ * It misses direct speech that a paper prints without marks («Construiremos…,
+ * dijo el alcalde»), and that miss is the cheap side: the draft goes to a
+ * person instead of auto-publishing. Before this rule most published quotes on
+ * /promesas were headlines or the reporter's sentence under a party's name, and
+ * two cards shared one sentence about a vote (review of 2026-09-28).
+ */
+export function quoteIsPartyWords(quote: string, pageText: string, url: string): boolean {
+  if (isAyuntamientoUrl(url)) return quoteFoundInText(quote, pageText)
+  const q = normalizeForMatch(quote)
+  if (q.length < 12) return false
+  return quotedSpans(pageText).some((span) => normalizeForMatch(span).includes(q))
+}
+
 export function normalizeForMatch(s: string): string {
   return stripDiacritics(s.toLowerCase()).replace(/\s+/g, ' ').trim()
 }
 
+/**
+ * The named entities a Spanish or Valencian page actually uses. Valencia Plaza
+ * and elperiodic.com write every accent and every curly quote as an entity, and
+ * until 2026-09-28 only six were decoded here: «m&aacute;ximo» never matched
+ * «máximo», and a quotation written «&ldquo;…&rdquo;» was invisible to
+ * `quoteIsPartyWords`. «&laquo;» and «&raquo;» keep decoding to a plain double
+ * mark, as they always have.
+ */
+const ENTIDADES: Record<string, string> = {
+  nbsp: ' ',
+  amp: '&',
+  quot: '"',
+  apos: "'",
+  lt: '<',
+  gt: '>',
+  laquo: '"',
+  raquo: '"',
+  ldquo: '“',
+  rdquo: '”',
+  bdquo: '„',
+  lsquo: '‘',
+  rsquo: '’',
+  sbquo: '‚',
+  ndash: '–',
+  mdash: '—',
+  hellip: '…',
+  middot: '·',
+  iexcl: '¡',
+  iquest: '¿',
+  ordf: 'ª',
+  ordm: 'º',
+  deg: '°',
+  euro: '€',
+  aacute: 'á',
+  eacute: 'é',
+  iacute: 'í',
+  oacute: 'ó',
+  uacute: 'ú',
+  Aacute: 'Á',
+  Eacute: 'É',
+  Iacute: 'Í',
+  Oacute: 'Ó',
+  Uacute: 'Ú',
+  agrave: 'à',
+  egrave: 'è',
+  ograve: 'ò',
+  Agrave: 'À',
+  Egrave: 'È',
+  Ograve: 'Ò',
+  ntilde: 'ñ',
+  Ntilde: 'Ñ',
+  uuml: 'ü',
+  Uuml: 'Ü',
+  iuml: 'ï',
+  Iuml: 'Ï',
+  ccedil: 'ç',
+  Ccedil: 'Ç',
+}
+
+/** One pass, so «&amp;aacute;» comes out as «&aacute;», not «á». */
+function decodeEntities(s: string): string {
+  return s.replace(/&(#x[0-9a-f]+|#[0-9]+|[a-z]+);/gi, (m, e: string) => {
+    if (e[0] === '#') {
+      const code =
+        e[1] === 'x' || e[1] === 'X' ? parseInt(e.slice(2), 16) : parseInt(e.slice(1), 10)
+      return Number.isFinite(code) && code > 0 && code < 0x110000 ? String.fromCodePoint(code) : m
+    }
+    return ENTIDADES[e] ?? ENTIDADES[e.toLowerCase()] ?? m
+  })
+}
+
 export function stripHtml(html: string): string {
-  return html
-    .replace(/<script[\s\S]*?<\/script>/gi, ' ')
-    .replace(/<style[\s\S]*?<\/style>/gi, ' ')
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/&nbsp;/gi, ' ')
-    .replace(/&amp;/gi, '&')
-    .replace(/&quot;/gi, '"')
-    .replace(/&#39;|&apos;/gi, "'")
-    .replace(/&laquo;|&raquo;/gi, '"')
+  return decodeEntities(
+    html
+      .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+      .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+      .replace(/<[^>]+>/g, ' '),
+  )
     .replace(/\s+/g, ' ')
     .trim()
 }
@@ -203,8 +323,19 @@ export async function groundDraft(
     return { ...fail, urlResolved: true, resolvedUrl: res.url }
   }
   try {
-    const quoteFound = quoteFoundInText(draft.proposed.quote, stripHtml(html))
-    return { grounded: quoteFound, urlResolved: true, quoteFound, resolvedUrl: res.url, checkedAt }
+    const text = stripHtml(html)
+    const quoteFound = quoteFoundInText(draft.proposed.quote, text)
+    // Present is not enough: a headline is present too. The quote has to be
+    // what the page says the party said (see quoteIsPartyWords).
+    const partyWords = quoteFound && quoteIsPartyWords(draft.proposed.quote, text, res.url)
+    return {
+      grounded: partyWords,
+      urlResolved: true,
+      quoteFound,
+      partyWords,
+      resolvedUrl: res.url,
+      checkedAt,
+    }
   } catch {
     return { ...fail, urlResolved: true, resolvedUrl: res.url }
   }
