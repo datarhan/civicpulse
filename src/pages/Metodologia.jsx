@@ -1051,10 +1051,15 @@ export default function Metodologia() {
               hallazgo de gravedad crítica (que es una acusación), los informes marcados como
               jurídicamente sensibles, y todo lo irreversible o dirigido al exterior — registrar una
               queja en sede. No porque una persona acierte más, sino porque la responsabilidad legal
-              necesita una firma. En las quejas ciudadanas hay una excepción: la foto de una queja
-              publicada, que se anonimiza y se publica sin que nadie la vea. Los hitos de cada queja
-              —cuando alcanza los apoyos necesarios, cuando se registra, cuando vence su plazo sin
-              respuesta— no se anuncian en ningún canal público: se avisan a quien modera.
+              necesita una firma. Nombrar a un grupo municipal con un solo concejal es nombrar a ese
+              concejal, así que cuenta igual: un hallazgo redactado por el proceso automático cuya
+              cita se atribuye a uno de esos grupos, o cuyo texto lo nombra, no se publica solo
+              aunque su categoría esté medida, sino que pasa a un curador; y el modelo que redacta
+              los resúmenes ni siquiera recibe esas etiquetas. En las quejas ciudadanas hay una
+              excepción: la foto de una queja publicada, que se anonimiza y se publica sin que nadie
+              la vea. Los hitos de cada queja —cuando alcanza los apoyos necesarios, cuando se
+              registra, cuando vence su plazo sin respuesta— no se anuncian en ningún canal público:
+              se avisan a quien modera.
             </li>
           </ul>
           <p style={{ marginBottom: 0 }}>

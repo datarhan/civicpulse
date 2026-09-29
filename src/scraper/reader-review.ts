@@ -125,6 +125,17 @@ export const MOTIVOS_PARA_HABLAR = [
   'noMontadas',
   /** Rutas que no se pudieron cargar: el servidor no respondía. */
   'inalcanzables',
+  /**
+   * Plantillas con parámetro (`/quejas/:id`) sin ninguna ficha que leer: no
+   * hay página que pedir, y callarlo sería volver a tirarlas.
+   */
+  'sinFicha',
+  /**
+   * Fichas que no resolvieron: la página pintó su «no encontrado» en la misma
+   * URL —el control de NO MONTADA no lo ve—, o la clave pedía pestañas y la
+   * página no tenía ninguna que abrir.
+   */
+  'noResueltas',
 ] as const
 
 export type Recuento = Record<(typeof MOTIVOS_PARA_HABLAR)[number], number>
@@ -276,10 +287,26 @@ export function huellaDeHechos(facts: Record<string, unknown>): string {
  * Las banderas SIN valor que esta pasada entiende. Declaradas, para que una
  * que no esté aquí se pueda nombrar en vez de descartarse.
  */
-const BANDERAS_SUELTAS = ['--json', '--force', '--rotate', '--all', '--capas']
+const BANDERAS_SUELTAS = ['--json', '--force', '--rotate', '--all', '--capas', '--stdin']
 
 /** Las que llevan valor, en cualquiera de las dos formas. */
 const BANDERAS_CON_VALOR = ['--budget-seconds', '--rotate-desde']
+
+/**
+ * Las rutas que llegan por stdin con `--stdin`: una por línea, enteras.
+ *
+ * Existe porque una ficha con estado lleva un espacio dentro —`/plenos/<id>
+ * [pestanas]`— y el gancho de pre-push pasaba las rutas como palabras sueltas
+ * de la shell (`… $RUTAS`): la clave llegaba partida en dos, y la segunda mitad,
+ * `[pestanas]`, es además un patrón que la shell intenta expandir. Por stdin no
+ * hay nada que partir.
+ */
+export function rutasDeEntrada(texto: string): string[] {
+  return texto
+    .split('\n')
+    .map((l) => l.trim())
+    .filter(Boolean)
+}
 
 export function parseReviewArgs(argv: string[], budgetEnv?: string) {
   const routes: string[] = []
@@ -343,6 +370,8 @@ export function parseReviewArgs(argv: string[], budgetEnv?: string) {
     // quien creía estar haciendo «la pasada completa» leía menos de un cuarto
     // del sitio. Lo usa el barrido nocturno.
     all: argv.includes('--all'),
+    /** Rutas también por stdin, una por línea. Ver `rutasDeEntrada`. */
+    stdin: argv.includes('--stdin'),
   }
 }
 
@@ -642,6 +671,79 @@ export function estadoDe(clave: string): string | null {
  * clave que el barrido lee pero el parte no conoce nunca se reportaría rancia.
  */
 export const RUTAS_CON_ESTADO = [conEstado('/', 'capas')]
+
+/**
+ * ## El estado `pestanas`: lo que la carga de la página no abre
+ *
+ * `/plenos/:id` reparte la sesión en pestañas que NO están en el DOM: cada una
+ * se monta con `{tab === 'x' && …}` al pulsarla, así que el truco de
+ * des-ocultar `[role="tabpanel"][hidden]` no llega a ninguna. Una carga lee el
+ * «Resumen» y nada más; la tabla de declaraciones —lo que cambió la #175— va
+ * detrás de «Declaraciones contrastadas».
+ *
+ * Se pulsa, como con las capas, por un atributo que no cambia con el idioma:
+ * `data-pestana`. La página decide cuáles lleva; la transcripción no lo lleva
+ * a propósito (ver PlenoDetalle.jsx).
+ */
+export const ESTADO_PESTANAS = 'pestanas'
+
+/** Lo que el lector necesita de una página para recorrer sus pestañas. */
+export interface OperacionesDePestanas {
+  /** Los `data-pestana` de la barra, en su orden. */
+  claves: () => Promise<string[]>
+  /** Pulsa una y espera a que se pinte. */
+  pulsa: (clave: string) => Promise<void>
+  /** El texto que hay ahora mismo tras la barra. */
+  region: () => Promise<string>
+}
+
+/**
+ * Pulsa cada pestaña y se queda con el texto que enseña de NUEVO.
+ *
+ * Lo que ya estaba a la vista —la pestaña abierta al cargar— lo lee la lectura
+ * normal de la página, así que no se repite. Y un clic que no cambia nada NO
+ * es una pestaña leída: heredaría el texto de la anterior y saldría contada con
+ * cobertura del 100 % sin que nadie la hubiera visto. Va a `sinCambio`, que
+ * quien llama imprime.
+ */
+export async function leerPestanas(
+  ops: OperacionesDePestanas,
+): Promise<{ leidas: string[]; textos: string[]; sinCambio: string[] }> {
+  const claves = await ops.claves()
+  const leidas: string[] = []
+  const textos: string[] = []
+  const sinCambio: string[] = []
+  if (claves.length === 0) return { leidas, textos, sinCambio }
+  const vistos = new Set([await ops.region()])
+  for (const clave of claves) {
+    await ops.pulsa(clave)
+    const texto = await ops.region()
+    if (vistos.has(texto)) {
+      sinCambio.push(clave)
+      continue
+    }
+    vistos.add(texto)
+    leidas.push(clave)
+    textos.push(texto)
+  }
+  return { leidas, textos, sinCambio }
+}
+
+/**
+ * El texto de lo que va detrás de la barra de pestañas: el panel abierto.
+ *
+ * Se pasa tal cual a `page.evaluate`, así que no puede tocar nada de fuera de
+ * su cuerpo —ni imports ni funciones auxiliares—: Playwright serializa el
+ * texto de la función y lo ejecuta en el navegador.
+ */
+export function textoTrasLaBarra(): string {
+  const barra = document.querySelector('[data-pestana]')?.parentElement
+  let texto = ''
+  for (let n = barra?.nextElementSibling ?? null; n; n = n.nextElementSibling) {
+    texto += `${(n as HTMLElement).innerText ?? n.textContent ?? ''}\n`
+  }
+  return texto
+}
 
 /**
  * ¿Se puede acometer este fragmento con el reloj que queda?

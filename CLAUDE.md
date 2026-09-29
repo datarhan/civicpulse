@@ -267,10 +267,15 @@ reader sees.
   check can. `review:surfaces` runs in the pre-push hook and in a twice-weekly
   sweep of every public route (`scripts/review-sweep.sh`, launchd), because git
   hooks do not run in Actions, Actions has no $0 LLM backend, and the nightly
-  commits data nobody pushes. `check:surfaces` reports unread pages and standing
-  flags into the `monitor:health` digest; cadence and cost are in
-  `docs/OPERATIONS.md`. The `revisar-superficies` skill is the same reading by
-  hand.
+  commits data nobody pushes. A `:param` route is read through ONE instance,
+  picked from the data by `scripts/lib/fichas-representativas.ts` — the one
+  that fills most of the template, legally material blocks first. That reads
+  the template, not its other instances, and the report says «1 de N». With no
+  instance to pick it reports SIN FICHA; an id the page cannot find is NO
+  RESUELTA (`data-no-resuelta`), never a clean read. `check:surfaces` reports
+  unread pages and standing flags into the `monitor:health` digest; cadence and
+  cost are in `docs/OPERATIONS.md`. The `revisar-superficies` skill is the same
+  reading by hand.
 - **Never call a budget credit «gastado».** Of the budget's five magnitudes —
   crédito inicial, modificaciones, crédito definitivo, the CONPREL return,
   obligaciones reconocidas — only the last is spending; prose that collapses
@@ -281,11 +286,13 @@ reader sees.
   ignores prose with no figure beside it on purpose: a deterministic check
   stretched into style is a false-positive machine.
 - **The pre-push review's route selection** (`scripts/routes-for-changes.ts`
-  over `scripts/lib/route-graph.ts`) has been wrong three ways already — a
-  two-dot diff, a flat unordered route set, a graph blind to CSS and the shell.
-  Read both headers and `.husky/pre-push` before touching it. Adding `.css` to
-  the graph's file filter is inert; `tests/prepush-range.test.js` pins the
-  three-dot range.
+  over `scripts/lib/route-graph.ts`) has been wrong four ways already — a
+  two-dot diff, a flat unordered route set, a graph blind to CSS and the shell,
+  and every `:param` route dropped (#175's ClaimLedger change read nothing it
+  touched). Read both headers and `.husky/pre-push` before touching it. Adding
+  `.css` to the graph's file filter is inert; `tests/prepush-range.test.js`
+  pins the three-dot range, and routes reach `review:surfaces` on stdin because
+  an instance key can carry a space (`/plenos/<id> [pestanas]`).
 
 ## Legally material surfaces
 

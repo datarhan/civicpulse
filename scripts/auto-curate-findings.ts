@@ -37,6 +37,11 @@
  *     cross-checked against it, in the candidate list or in the published
  *     refs — see src/scraper/record-dates.ts.
  *   · LOREG freeze (frozenUntil > today) → CLI exits without writing.
+ *   · A group holding one seat names its councillor by elimination. The
+ *     synthesiser never sees one (`groupForSynthesis`), and a draft that still
+ *     attributes to or names one goes to the human queue however well the class
+ *     is measured (`publicationDecision`). An unreadable officials.json fails
+ *     closed: which groups those are is unknowable, so nothing publishes.
  *   · Right-of-reply continues to be handled by the existing
  *     finding-response flow; auto-curation is one-way.
  */
@@ -52,16 +57,22 @@ import {
   topQuotes,
   composeFinding,
   citedClaimIds,
+  blocsForSynthesis,
+  groupForSynthesis,
+  publicationDecision,
+  FINDING_MEASUREMENT_KEY,
   type VerifiedSnapshot,
   type FindingsSnapshot,
   type BundleCandidate,
 } from '../src/scraper/auto-curate'
+import { oneSeatBlocsOf, type OfficialsDoc } from '../src/scraper/corporation-seats'
 import { generateTitleAndSummary } from '../src/llm/auto-curate-llm'
 import { resetBudget, loadConfigFromEnv } from '../src/llm/client'
 import {
   decideAutomation,
   explainMissingMeasurement,
   loadMeasurements,
+  type Decision,
 } from '../src/scraper/automation-policy'
 import {
   buildCurationQueue,
@@ -76,12 +87,6 @@ import {
   type RecordDateIndex,
 } from '../src/scraper/record-dates'
 
-/**
- * Measurement key governing unattended publication of auto-curated findings.
- * Recorded via `npm run record-measurement`; see `npm run check:automation`.
- */
-const FINDING_MEASUREMENT_KEY = 'finding.informational.bloc'
-
 /** Set when the automation policy refuses publication; drafts still get written. */
 let policyBlocked: string | null = null
 
@@ -89,7 +94,7 @@ let policyBlocked: string | null = null
  * Datasets the curation checks need: the name haystack, the current verdict of
  * every claim, and the company names a human already accepted.
  */
-function buildQueueInputs(): QueueInputs {
+function buildQueueInputs(oneSeatBlocs: readonly string[]): QueueInputs {
   const read = (p: string): any => {
     const abs = resolve(p)
     return existsSync(abs) ? JSON.parse(readFileSync(abs, 'utf8')) : null
@@ -116,7 +121,7 @@ function buildQueueInputs(): QueueInputs {
   for (const it of verified.items ?? []) {
     verdictByClaimId.set(it.claim.id, it.verification.verdict)
   }
-  return { haystack, verdictByClaimId, reviewedNames: baseline.reviewed ?? [] }
+  return { haystack, verdictByClaimId, reviewedNames: baseline.reviewed ?? [], oneSeatBlocs }
 }
 
 const VERIFIED = resolve('public/data/pleno-claims-verified.json')
@@ -124,6 +129,7 @@ const FINDINGS = resolve('public/data/pleno-findings.json')
 const PLENOS = resolve('public/data/plenos.json')
 const VIDEOS = resolve('public/data/pleno-videos.json')
 const PROMISES = resolve('public/data/promises.json')
+const OFFICIALS = resolve('public/data/officials.json')
 const TENDERS = resolve('public/data/tenders.json')
 const TENDERS_TED = resolve('public/data/tenders-ted.json')
 const QUEUE = resolve('editorial/auto-curation-queue.md')
@@ -255,6 +261,20 @@ async function main() {
     process.exit(0)
   }
 
+  // Fail CLOSED on the other legal gate too. Which groups hold a single seat
+  // decides which drafts name a councillor by elimination; with no roster that
+  // is unknowable, and reading «unknown» as «none» would publish all of them.
+  const oneSeat = oneSeatBlocsOf(loadJson<OfficialsDoc>(OFFICIALS))
+  if (oneSeat === null) {
+    process.stderr.write(
+      `[auto-curate] ${OFFICIALS} missing or empty — cannot tell which groups hold one seat, refusing to publish\n`,
+    )
+    process.exit(1)
+  }
+  process.stdout.write(
+    `[auto-curate] one-seat groups (never shown to the synthesiser, never published unattended): ${oneSeat.join(', ') || 'none'}\n`,
+  )
+
   // Automation policy: this class publishes unattended only on recorded
   // evidence that it is accurate enough to.
   //
@@ -267,6 +287,7 @@ async function main() {
   //
   // Severity is hard-coded `informational` here, so this reads the
   // informational bar, the most permissive one.
+  const measurements = loadMeasurements()
   const decision = decideAutomation(
     {
       kind: 'publish-finding',
@@ -275,7 +296,7 @@ async function main() {
       measurementKey: FINDING_MEASUREMENT_KEY,
       frozen: false,
     },
-    loadMeasurements(),
+    measurements,
   )
   if (!decision.allow) {
     process.stderr.write(
@@ -327,6 +348,10 @@ async function main() {
 
   const accepted: PlenoFinding[] = []
   const rejected: Array<{ bundle: BundleCandidate; reason: string }> = []
+  // Each draft's own answer. The run-level decision above says whether the
+  // class may publish at all; this one says whether THIS draft may, and a draft
+  // that attributes to or names a one-seat group never may.
+  const decisions = new Map<string, Decision>()
 
   // Which records could the council have been discussing? Built once from the
   // procurement snapshots, consulted twice per bundle: here, so a post-dated
@@ -371,9 +396,9 @@ async function main() {
       plenoDate: bundle.plenoDate,
       plenoTitle: plenoTitle(plenos, bundle.plenoId),
       topic: bundle.topic,
-      blocs: bundle.blocs,
+      blocs: blocsForSynthesis(bundle.blocs, oneSeat),
       quotes: quotes.map((q) => ({
-        speakerGroup: q.claim.speakerGroup ?? '',
+        speakerGroup: groupForSynthesis(q.claim.speakerGroup, oneSeat),
         verdict: q.verification.verdict,
         confidence: q.claim.confidence,
         verbatim: q.claim.verbatim,
@@ -398,9 +423,12 @@ async function main() {
     })
 
     accepted.push(finding)
+    const own = publicationDecision(finding, oneSeat, measurements)
+    decisions.set(finding.id, own)
     process.stdout.write(
       `[auto-curate]   ✓ ${bundle.plenoId}/${bundle.topic} · score=${bundle.score.toFixed(2)} · ${finding.id}\n` +
-        `[auto-curate]     title: ${finding.title}\n`,
+        `[auto-curate]     title: ${finding.title}\n` +
+        `[auto-curate]     ${own.allow ? 'may publish' : `→ human queue: ${own.reason}`}\n`,
     )
   }
 
@@ -426,28 +454,39 @@ async function main() {
     methodologyUrl: '/metodologia',
     items: [],
   }
-  const merged: PlenoFinding[] = [...baseSnap.items]
-  for (const f of accepted) {
-    if (merged.some((x) => x.id === f.id)) continue
-    merged.push(f)
-  }
-  merged.sort((a, b) => b.plenoDate.localeCompare(a.plenoDate))
-
-  const next: PlenoFindingsSnapshot = {
-    ...baseSnap,
-    generatedAt: new Date().toISOString(),
-    items: merged,
-  }
-  let serialized: string
-  try {
-    serialized = JSON.stringify(next, null, 2) + '\n'
+  const snapshotWith = (drafts: PlenoFinding[]): string => {
+    const merged: PlenoFinding[] = [...baseSnap.items]
+    for (const f of drafts) {
+      if (merged.some((x) => x.id === f.id)) continue
+      merged.push(f)
+    }
+    merged.sort((a, b) => b.plenoDate.localeCompare(a.plenoDate))
+    const next: PlenoFindingsSnapshot = {
+      ...baseSnap,
+      generatedAt: new Date().toISOString(),
+      items: merged,
+    }
+    const serialized = JSON.stringify(next, null, 2) + '\n'
     validateFindingsSnapshot(serialized) // throws on schema mismatch
+    return serialized
+  }
+  // Every draft is validated, the ones bound for the queue too: a malformed
+  // draft is a defect of this run, not something to hand a curator.
+  try {
+    snapshotWith(accepted)
   } catch (err) {
     process.stderr.write(
       `[auto-curate] FATAL: composed snapshot fails the schema validator: ${err instanceof Error ? err.message : String(err)}\n`,
     )
     process.exit(1)
   }
+
+  // Who publishes: the class has to be allowed (no policy block) AND the draft
+  // has to be allowed on its own — a missing answer is a refusal. The rest goes
+  // to the same human queue a policy block fills, with the reason in its checks.
+  const toPublish = policyBlocked ? [] : accepted.filter((f) => decisions.get(f.id)?.allow === true)
+  const toQueue = accepted.filter((f) => !toPublish.includes(f))
+  const queueInputs = buildQueueInputs(oneSeat)
 
   // A policy block does everything a run normally does EXCEPT publish: the
   // drafts are composed, validated and written where a curator can act on them.
@@ -462,7 +501,7 @@ async function main() {
     // phone can judge prose but cannot check a company name against 1,231
     // contract rows — and that was two of the four real defects found in the
     // published corpus. See src/scraper/curation-queue.ts.
-    const queue = buildCurationQueue(accepted, buildQueueInputs(), {
+    const queue = buildCurationQueue(accepted, queueInputs, {
       reason: policyBlocked ?? 'dry-run',
       now: new Date().toISOString(),
     })
@@ -472,15 +511,32 @@ async function main() {
       policyBlocked
         ? `[auto-curate] NOT PUBLISHED (${policyBlocked}) — ${queue.items.length} draft(s) → ${previewPath}\n` +
             `[auto-curate]   ${blockers} carry a blocker for the curator's attention · review with /curar on the bot\n`
-        : `[auto-curate] DRY RUN — wrote ${queue.items.length} accepted finding(s) to ${previewPath} (no persistence).\n`,
+        : `[auto-curate] DRY RUN — wrote ${queue.items.length} accepted finding(s) to ${previewPath} (no persistence) · ` +
+            `${toQueue.length} would go to the human queue\n`,
     )
     return
   }
 
-  writeFileSync(FINDINGS, serialized, 'utf8')
+  if (toQueue.length > 0) {
+    const queuePath = resolve('editorial/auto-curation-queue-pending-measurement.json')
+    mkdirSync(resolve('editorial'), { recursive: true })
+    const queue = buildCurationQueue(toQueue, queueInputs, {
+      reason:
+        'names an individual — a draft that attributes to or names a group with one seat ' +
+        'names its councillor by elimination, and a curator signs that',
+      now: new Date().toISOString(),
+    })
+    writeFileSync(queuePath, JSON.stringify(queue, null, 2) + '\n')
+    process.stdout.write(
+      `[auto-curate] ${toQueue.length} draft(s) NOT PUBLISHED, to the human queue → ${queuePath} · review with /curar on the bot\n`,
+    )
+  }
+
+  if (toPublish.length > 0) writeFileSync(FINDINGS, snapshotWith(toPublish), 'utf8')
   process.stdout.write(
-    `[auto-curate] ✅ wrote ${accepted.length} new finding(s) to ${FINDINGS} ` +
-      `(${rejected.length} rejected · ${quarantine.length} queued for curator review)\n`,
+    `[auto-curate] ✅ wrote ${toPublish.length} new finding(s) to ${FINDINGS} ` +
+      `(${rejected.length} rejected · ${toQueue.length} to the human queue · ` +
+      `${quarantine.length} contradicho-bearing queued for curator review)\n`,
   )
   if (rejected.length > 0) {
     for (const r of rejected) {
