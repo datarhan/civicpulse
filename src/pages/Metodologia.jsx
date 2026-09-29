@@ -1051,10 +1051,15 @@ export default function Metodologia() {
               hallazgo de gravedad crítica (que es una acusación), los informes marcados como
               jurídicamente sensibles, y todo lo irreversible o dirigido al exterior — registrar una
               queja en sede. No porque una persona acierte más, sino porque la responsabilidad legal
-              necesita una firma. En las quejas ciudadanas hay una excepción: la foto de una queja
-              publicada, que se anonimiza y se publica sin que nadie la vea. Los hitos de cada queja
-              —cuando alcanza los apoyos necesarios, cuando se registra, cuando vence su plazo sin
-              respuesta— no se anuncian en ningún canal público: se avisan a quien modera.
+              necesita una firma. Nombrar a un grupo municipal con un solo concejal es nombrar a ese
+              concejal, así que cuenta igual: un hallazgo redactado por el proceso automático cuya
+              cita se atribuye a uno de esos grupos, o cuyo texto lo nombra, no se publica solo
+              aunque su categoría esté medida, sino que pasa a un curador; y el modelo que redacta
+              los resúmenes ni siquiera recibe esas etiquetas. En las quejas ciudadanas hay una
+              excepción: la foto de una queja publicada, que se anonimiza y se publica sin que nadie
+              la vea. Los hitos de cada queja —cuando alcanza los apoyos necesarios, cuando se
+              registra, cuando vence su plazo sin respuesta— no se anuncian en ningún canal público:
+              se avisan a quien modera.
             </li>
           </ul>
           <p style={{ marginBottom: 0 }}>
@@ -1282,10 +1287,17 @@ export default function Metodologia() {
                 quien redacta, no un veredicto, y ninguna herramienta de curación puede escribir uno
                 —sólo bajan—.
               </li>
+              {/* Decía «no hay registro en las bases abiertas», y la tarjeta lo
+                  repetía en cada sin-datos con una frase fija que nombraba
+                  contratos, BDNS y presupuesto aunque no se hubiera consultado
+                  ninguno. 29-09-2026. */}
               <li>
-                <strong>sin-datos</strong> — no hay registro en las bases abiertas. Puede ser
-                cierto, pero no atestado (muy frecuente: reconocimientos extrajudiciales,
-                operaciones internas).
+                <strong>sin-datos</strong> — ningún registro de las bases consultadas sostiene la
+                afirmación, o no había ninguna con la que cotejarla. Puede ser cierta, pero no está
+                atestiguada (muy frecuente: reconocimientos extrajudiciales, operaciones internas).
+                La explicación de su tarjeta nombra sólo las bases que constan como consultadas —las
+                mismas que su línea «Fuentes comprobadas»— y, cuando no consta ninguna, no dice que
+                se buscara.
               </li>
               <li>
                 <strong>promesa-repetida</strong> — la promesa coincide con una ya documentada en el

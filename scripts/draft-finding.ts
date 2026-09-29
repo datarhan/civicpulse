@@ -17,7 +17,10 @@
  *
  * Libel discipline: same prompt as the auto-curate weekly cron — no
  * naming individuals, modal verbs only, severity stays informational
- * regardless of bundle composition. The dashboard's curator can
+ * regardless of bundle composition. And the same input: a group holding one
+ * seat names its councillor by elimination, so the synthesiser is never shown
+ * one (`groupForSynthesis`) — a curator who has verified such an attribution
+ * writes it into the prose by hand, and signs it. The dashboard's curator can
  * override severity (and edit the prose) before the actual promote
  * call lands a finding in pleno-findings.json.
  */
@@ -28,13 +31,17 @@ import { resetBudget } from '../src/llm/client'
 import {
   selectBundles,
   topQuotes,
+  blocsForSynthesis,
+  groupForSynthesis,
   type FindingsSnapshot,
   type VerifiedSnapshot,
 } from '../src/scraper/auto-curate'
+import { oneSeatBlocsOf, type OfficialsDoc } from '../src/scraper/corporation-seats'
 
 const VERIFIED = resolve('public/data/pleno-claims-verified.json')
 const FINDINGS = resolve('public/data/pleno-findings.json')
 const PLENOS = resolve('public/data/plenos.json')
+const OFFICIALS = resolve('public/data/officials.json')
 
 interface ExtraEvidence {
   kind: string
@@ -171,6 +178,16 @@ async function main() {
 
   const plenoTitle = plenos?.items?.find((p) => p.id === bundle.plenoId)?.title ?? bundle.plenoId
 
+  // Unknown is not «none»: without the roster there is no telling which groups
+  // hold one seat, and a draft written blind could name any of them.
+  const oneSeat = oneSeatBlocsOf(loadJson<OfficialsDoc>(OFFICIALS))
+  if (oneSeat === null) {
+    process.stderr.write(
+      `[draft-finding] ${OFFICIALS} missing or empty — cannot tell which groups hold one seat\n`,
+    )
+    process.exit(1)
+  }
+
   process.stderr.write(
     `[draft-finding] backend=${process.env.LLM_BACKEND} pleno=${bundle.plenoId} topic=${bundle.topic} blocs=${bundle.blocs.join('+')} quotes=${quotes.length} extra-evidence=${opts.extraEvidence.length}\n`,
   )
@@ -180,9 +197,9 @@ async function main() {
     plenoDate: bundle.plenoDate,
     plenoTitle,
     topic: bundle.topic,
-    blocs: bundle.blocs,
+    blocs: blocsForSynthesis(bundle.blocs, oneSeat),
     quotes: quotes.map((q) => ({
-      speakerGroup: q.claim.speakerGroup ?? '',
+      speakerGroup: groupForSynthesis(q.claim.speakerGroup, oneSeat),
       verdict: q.verification.verdict,
       confidence: q.claim.confidence,
       verbatim: q.claim.verbatim,

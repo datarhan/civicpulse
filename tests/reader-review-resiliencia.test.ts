@@ -104,6 +104,50 @@ describe('una pasada con algo que decir sale ≠ 0', () => {
     // decisión de salida no tendría dónde enterarse.
     expect(MOTIVOS_PARA_HABLAR).toContain('inalcanzables')
   })
+
+  it('y para las fichas: una plantilla sin ficha y una ficha que no resolvió', () => {
+    // Una ficha de detalle que no existe se pinta en la MISMA URL —«Departamento
+    // no encontrado.»—, así que el control de NO MONTADA no la ve: se leía una
+    // página de error y salía «nada que señalar».
+    expect(MOTIVOS_PARA_HABLAR).toContain('sinFicha')
+    expect(MOTIVOS_PARA_HABLAR).toContain('noResueltas')
+  })
+})
+
+describe('las fichas llegan enteras y una plantilla sin ficha se dice', () => {
+  // Mismo principio que la inyección de abajo: un servidor que no existe, así
+  // que no se lee ninguna página y no se gasta modelo.
+  it('una clave con espacio viaja entera por stdin, y `/quejas/:id` sale SIN FICHA sin navegar', () => {
+    const r = spawnSync('npx', ['tsx', 'scripts/review-surfaces.ts', '--stdin'], {
+      encoding: 'utf8',
+      timeout: 180_000,
+      input: '/quejas/:id\n/plenos/abc [pestanas]\n',
+      env: {
+        ...process.env,
+        REVIEW_BASE_URL: 'http://127.0.0.1:49998',
+        REVIEW_SERVER_RETRIES: '0',
+        REVIEW_SERVER_RETRY_MS: '0',
+        OPENAI_API_KEY: '',
+        ANTHROPIC_API_KEY: '',
+      },
+    })
+    const salida = `${r.stdout ?? ''}${r.stderr ?? ''}`
+    expect(salida, 'el lector no llegó a arrancar').not.toBe('')
+    expect(/Executable doesn't exist|playwright install/i.test(salida)).toBe(false)
+    expect(salida).not.toMatch(/bandera\(s\) que no existen/)
+
+    // La plantilla no se pide al servidor: no hay página que pedir.
+    expect(salida).toMatch(/SIN FICHA/)
+    expect(salida).toMatch(/\/quejas\/:id/)
+    const noAlcanzadas = salida.match(/NO ALCANZADAS \([^)]*\): ([^\n]*)/)?.[1] ?? ''
+    expect(noAlcanzadas).not.toContain('/quejas/:id')
+
+    // Entera: partida por el espacio habría llegado `[pestanas]` como ruta.
+    expect(noAlcanzadas).toContain('/plenos/abc [pestanas]')
+
+    // Y cuenta para el código de salida: no se ha leído nada.
+    expect(r.status).not.toBe(0)
+  })
 })
 
 describe('se insiste antes de dar por muerto el servidor', () => {

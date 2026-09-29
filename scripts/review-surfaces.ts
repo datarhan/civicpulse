@@ -7,6 +7,10 @@
  *   npm run review:surfaces                 # the default set, unbounded
  *   npm run review:surfaces -- --json
  *   npm run review:surfaces -- --budget-seconds 60
+ *   printf '%s\n' '/plenos/<id> [pestanas]' | npm run review:surfaces -- --stdin
+ *
+ * `--all` reads every public route plus ONE representative instance of each
+ * `:param` route, picked from the data (scripts/lib/fichas-representativas.ts).
  *
  * Requires the preview server (`npm run preview`) and a $0 LLM backend:
  *   LLM_BACKEND=claude-code npm run review:surfaces
@@ -42,7 +46,8 @@ import { committedAwardYearSpan } from '../src/lib/contract-status'
 import { createHash } from 'node:crypto'
 import { resolve } from 'node:path'
 import { chromium } from '@playwright/test'
-import { construirGrafoRutas, rutasRevisables } from './lib/route-graph'
+import { construirGrafoRutas, rutasRevisables, RUTAS_LOCALES } from './lib/route-graph'
+import { fichasRepresentativas, leerDeDisco, type Ficha } from './lib/fichas-representativas'
 import {
   reviewSurfaceDetailed,
   cabeElFragmento,
@@ -60,6 +65,10 @@ import {
   type ReviewCacheEntry,
   rutaBase,
   estadoDe,
+  rutasDeEntrada,
+  leerPestanas,
+  textoTrasLaBarra,
+  ESTADO_PESTANAS,
 } from '../src/scraper/reader-review'
 import {
   sinDescartar,
@@ -385,7 +394,7 @@ const DEFAULT_ROUTES = ['/', '/presupuesto', '/plenos', '/hallazgos', '/promesas
 
 async function main() {
   const {
-    routes: named,
+    routes: posicionales,
     budgetSeconds,
     json: asJson,
     force,
@@ -393,7 +402,11 @@ async function main() {
     rotateDesde,
     all: todas,
     desconocidas,
+    stdin,
   } = parseReviewArgs(process.argv.slice(2), process.env.REVIEW_BUDGET_SECONDS)
+  // Con `--stdin`, además, una por línea: así llegan enteras las claves con
+  // espacio (`/plenos/<id> [pestanas]`), que es como las pasa el pre-push.
+  const named = [...posicionales, ...(stdin ? rutasDeEntrada(readFileSync(0, 'utf8')) : [])]
 
   // Una bandera que no existe se descartaba entera. `--rutas /` no se parseaba
   // nunca: funcionó por casualidad, porque `/` se leyó como ruta posicional.
@@ -437,7 +450,19 @@ async function main() {
   // Las claves con estado entran en la pasada COMPLETA. `check:surfaces` lee
   // la misma constante, así que una clave que el barrido lee y el parte no
   // conoce —invisible, nunca rancia— no puede existir.
-  const publicas = rutasRevisables(construirGrafoRutas(resolve('src')))
+  // …y una ficha por plantilla con `:`, elegida de los datos. `fichas` es para
+  // el parte: decir de qué plantilla es cada una y entre cuántas se eligió.
+  const grafo = construirGrafoRutas(resolve('src'))
+  const leer = leerDeDisco(resolve('public', 'data'))
+  const publicas = rutasRevisables(grafo, leer)
+  const fichas = new Map<string, Ficha>(
+    fichasRepresentativas(
+      grafo.rutas.filter((r) => r.includes(':') && !RUTAS_LOCALES.includes(r)),
+      leer,
+    )
+      .filter((f) => f.id !== null)
+      .map((f) => [f.clave, f]),
+  )
   const base = named.length ? named : todas ? publicas : DEFAULT_ROUTES
   // Con `--rotate-desde N`: la cabeza en el orden de quien llama, la cola
   // rotada. Es lo que permite leer primero lo que el push reescribió sin perder
@@ -453,6 +478,15 @@ async function main() {
       : rotar || !named.length
         ? porAntiguedad(base)
         : base
+  /**
+   * Plantillas SIN FICHA: una clave con `:` es la plantilla misma, que
+   * `fichas-representativas.ts` devuelve cuando no hay ninguna ficha que
+   * elegir. No hay URL que pedir —navegar a `/quejas/:id` pintaría un «no
+   * encontrado»—, así que ni se navega ni gasta presupuesto: se aparta antes
+   * del bucle y se nombra en el parte.
+   */
+  const sinFicha = routes.filter((r) => rutaBase(r).includes(':'))
+  const aLeer = routes.filter((r) => !sinFicha.includes(r))
   /** Wall clock, not a per-call timeout: the caller's patience is the budget. */
   const startedAt = Date.now()
   const deadline = budgetSeconds ? startedAt + budgetSeconds * 1000 : Infinity
@@ -546,6 +580,14 @@ async function main() {
    * día quedó indistinguible de uno bueno.
    */
   const inalcanzables: Array<{ route: string; motivo: string }> = []
+  /**
+   * Fichas que no resolvieron. Una ficha de detalle que no existe NO redirige:
+   * pinta su «no encontrado» en la MISMA URL, así que el control de NO MONTADA
+   * no la ve y se leía la página de error —«nada que señalar»—. Las páginas lo
+   * marcan con `data-no-resuelta`. Y una clave que pide pestañas sobre una
+   * página sin `data-pestana` tampoco se ha leído como se pidió.
+   */
+  const noResueltas: Array<{ route: string; motivo: string }> = []
   /** Live findings from a previous review of byte-identical text. */
   let remembered = 0
   const pct = (n: number) => `${Math.round(n * 100)}%`
@@ -566,7 +608,14 @@ async function main() {
   // son las que no se pueden juzgar.
   const textoPorRuta = new Map<string, string>()
 
-  for (const route of routes) {
+  if (!asJson) {
+    for (const route of sinFicha) {
+      header(route)
+      console.log('   ⓘ SIN FICHA: la plantilla no tiene ninguna ficha publicada que leer.')
+    }
+  }
+
+  for (const route of aLeer) {
     // Checked BEFORE the render, so an exhausted budget costs nothing and the
     // route is reported as unreached rather than as anything else.
     if (noTimeToStart()) {
@@ -643,7 +692,7 @@ async function main() {
         // Las que quedaban se nombran una a una. «26 sin revisar» sin la lista
         // es la truncadura silenciosa que este fichero entero existe para no
         // cometer: quien lee el parte tiene que poder saber QUÉ no se leyó.
-        const pendientes = routes.slice(routes.indexOf(route) + 1)
+        const pendientes = aLeer.slice(aLeer.indexOf(route) + 1)
         for (const r of pendientes)
           inalcanzables.push({ route: r, motivo: 'el servidor dejó de responder antes de llegar' })
         if (!asJson && pendientes.length > 0) {
@@ -679,6 +728,19 @@ async function main() {
           `   NO ESTÁ MONTADA en esta build: la navegación acabó en ${aterrizaje}. ` +
             'No se ha revisado (¿falta una bandera de lanzamiento en el build?).',
         )
+      }
+      continue
+    }
+
+    // ¿Y resolvió? Una ficha que no existe se queda en la URL pedida y pinta
+    // su «no encontrado», así que la comprobación de arriba la da por buena.
+    // Las ocho plantillas de detalle lo marcan con `data-no-resuelta`.
+    if (await page.$('[data-no-resuelta]')) {
+      const motivo = 'la página pintó su «no encontrado» en esa misma URL'
+      noResueltas.push({ route, motivo })
+      if (!asJson) {
+        console.log(`\n── ${route}`)
+        console.log(`   NO RESUELTA: ${motivo}. No se ha revisado.`)
       }
       continue
     }
@@ -738,7 +800,52 @@ async function main() {
     if (abiertos > 0) console.log(`   (${abiertos} apartado(s) en pestaña abiertos para leerlos)`)
 
     // The WHOLE page. No `.slice()` here, ever — see `chunkRenderedText`.
-    const renderedText = await page.locator('body').innerText()
+    let renderedText = await page.locator('body').innerText()
+
+    // Y lo que va tras las pestañas que la carga no abre, DESPUÉS de leer la
+    // página tal como carga: al terminar de pulsar queda abierta la última, y
+    // leer el cuerpo entonces perdería la que estaba abierta al llegar.
+    if (estado === ESTADO_PESTANAS) {
+      const r = await leerPestanas({
+        claves: () =>
+          page.$$eval('[data-pestana]', (botones) => {
+            const claves: string[] = []
+            for (const b of botones) claves.push(b.getAttribute('data-pestana') ?? '')
+            return claves
+          }),
+        pulsa: async (clave) => {
+          await page.click(`[data-pestana="${clave}"]`)
+          // Lo que la pestaña pinta ya está cargado —la página lo pidió al
+          // montarse—; esto es para el render, y para lo que pida al abrirse.
+          await page.waitForTimeout(800)
+        },
+        region: () => page.evaluate(textoTrasLaBarra),
+      })
+      if (r.leidas.length === 0 && r.sinCambio.length === 0) {
+        // Pedía pestañas y no hay ninguna: se leería el resumen como si fuera
+        // la ficha entera. La página ha perdido sus `data-pestana`.
+        const motivo = 'la clave pide pestañas y la página no tiene ninguna [data-pestana]'
+        noResueltas.push({ route, motivo })
+        if (!asJson) {
+          console.log(`\n── ${route}`)
+          console.log(`   NO RESUELTA: ${motivo}. No se ha revisado.`)
+        }
+        continue
+      }
+      renderedText += `\n\n${r.textos.join('\n\n')}`
+      if (!asJson) {
+        if (!cabeceraPuesta) {
+          console.log(`\n── ${route}`)
+          cabeceraPuesta = true
+        }
+        console.log(
+          `   pestañas abiertas para leerlas: ${r.leidas.join(', ') || 'ninguna'}` +
+            (r.sinCambio.length > 0
+              ? ` · sin texto nuevo al pulsar: ${r.sinCambio.join(', ')}`
+              : ''),
+        )
+      }
+    }
     textoPorRuta.set(route, renderedText)
 
     // ── El pase DETERMINISTA, antes de gastar una sola llamada ──────────────
@@ -1113,7 +1220,9 @@ async function main() {
         (noMontadas.length > 0 ? ` · ${noMontadas.length} NO MONTADA(S) EN ESTA BUILD` : '') +
         (inalcanzables.length > 0
           ? ` · ${inalcanzables.length} NO ALCANZADA(S): EL SERVIDOR NO RESPONDÍA`
-          : ''),
+          : '') +
+        (sinFicha.length > 0 ? ` · ${sinFicha.length} SIN FICHA` : '') +
+        (noResueltas.length > 0 ? ` · ${noResueltas.length} NO RESUELTA(S)` : ''),
     )
     // The total is stated even when everything went fine. «revisada» without a
     // figure is what let 66% of /metodologia go unread for three runs.
@@ -1136,6 +1245,33 @@ async function main() {
         '           NO MONTADAS (no se han revisado, y una build sin su bandera es ' +
           'la causa más probable): ' +
           noMontadas.map((n) => `${n.route} → ${n.aterrizaje}`).join(', '),
+      )
+    }
+    if (sinFicha.length > 0) {
+      console.log(
+        `           SIN FICHA (plantillas sin ninguna ficha publicada; no hay página que leer): ` +
+          sinFicha.join(', '),
+      )
+    }
+    if (noResueltas.length > 0) {
+      console.log(
+        '           NO RESUELTAS (no se han revisado): ' +
+          noResueltas.map((n) => `${n.route} — ${n.motivo}`).join('; '),
+      )
+    }
+    // Lo que una ficha cubre, dicho junto a ella: la plantilla, leída con UNA
+    // de sus fichas. Un «nada que señalar» sobre /hallazgos/<id> no dice nada
+    // de los otros hallazgos, y el parte no puede dejar que lo parezca.
+    const deFicha = routes.filter((r) => fichas.has(r))
+    if (deFicha.length > 0) {
+      console.log(
+        '           fichas representativas (se lee la plantilla con UNA ficha, no todas): ' +
+          deFicha
+            .map((r) => {
+              const f = fichas.get(r)!
+              return `${r} ← ${f.patron} (1 de ${f.total})`
+            })
+            .join(', '),
       )
     }
     // The sentence the whole budget mechanism has to be able to say out loud.
@@ -1252,6 +1388,8 @@ async function main() {
       sinTiempo: ranOut.length,
       noMontadas: noMontadas.length,
       inalcanzables: inalcanzables.length,
+      sinFicha: sinFicha.length,
+      noResueltas: noResueltas.length,
     })
   )
     process.exitCode = 1

@@ -76,7 +76,11 @@ export default function ServicioDetalle() {
 
   if (error || !i) {
     return (
-      <div className="cp-page" style={{ padding: 24, maxWidth: 820, margin: '0 auto' }}>
+      <div
+        className="cp-page"
+        data-no-resuelta
+        style={{ padding: 24, maxWidth: 820, margin: '0 auto' }}
+      >
         <Link
           to="/eficiencia"
           className="mono"

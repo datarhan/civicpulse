@@ -95,6 +95,7 @@ export default function EmpleoDetalle() {
     return (
       <div
         className="cp-page"
+        data-no-resuelta
         style={{ padding: '24px 24px 48px', maxWidth: 800, margin: '0 auto' }}
       >
         <Link

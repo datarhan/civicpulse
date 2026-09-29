@@ -323,7 +323,11 @@ export default function PlenoDetalle() {
   }
   if (!pleno) {
     return (
-      <div className="cp-page" style={{ padding: '24px', maxWidth: 900, margin: '0 auto' }}>
+      <div
+        className="cp-page"
+        data-no-resuelta
+        style={{ padding: '24px', maxWidth: 900, margin: '0 auto' }}
+      >
         <SectionHead eyebrow="Plenos" title={t('plenoDetail.notFound')} />
         <Link to="/plenos" style={{ color: 'var(--civic)', fontSize: 'var(--fs-aux)' }}>
           {t('plenoDetail.back')}
@@ -353,7 +357,10 @@ export default function PlenoDetalle() {
       label: t('plenoDetail.findings'),
       count: findings.length > 0 ? findings.length : extraida ? 0 : null,
     },
-    { key: 'transcripcion', label: t('plenoDetail.transcript'), count: null },
+    // Sin `data-pestana` (ver el botón): la revisión lectora pulsa las demás
+    // para leerlas, y ésta no. Es el acta hablada, no prosa nuestra, y pesa lo
+    // que la sesión entera.
+    { key: 'transcripcion', label: t('plenoDetail.transcript'), count: null, lectora: false },
   ]
 
   return (
@@ -396,41 +403,38 @@ export default function PlenoDetalle() {
         <Compartir titulo={`Pleno · ${pleno.title}`} />
       </div>
 
-      {/* Summary strip */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
-          gap: 10,
-          marginTop: 16,
-        }}
-      >
-        <Tile
-          label={t('plenoDetail.agenda')}
-          value={agendaKnown ? agendaItems.length : '—'}
-          sub={agendaKnown ? undefined : t('plenoDetail.agendaPending')}
-        />
-        {/* «—» y no 0 para lo que nadie ha medido. Las votaciones se transcriben a
-            mano desde el acta y una sesión puede no tener ninguna transcrita: «0»
-            afirmaba que un pleno ordinario no votó nada, y seguro que votó. Las
-            declaraciones y los hallazgos, igual: de una sesión sin extraer no hay
-            cero que dar. La ficha del orden del día ya lo distinguía. */}
-        <Tile
-          label={t('plenoDetail.votes')}
-          value={votes.length > 0 ? votes.length : '—'}
-          sub={votes.length ? `${aprobados} aprob.` : t('plenoDetail.votesPending')}
-        />
-        <Tile
-          label={t('plenoDetail.declarations')}
-          value={extraida ? groundedCount : '—'}
-          sub={extraida ? undefined : t('plenoDetail.extractionPending')}
-        />
-        <Tile
-          label={t('plenoDetail.findings')}
-          value={findings.length > 0 || extraida ? findings.length : '—'}
-          sub={findings.length > 0 || extraida ? undefined : t('plenoDetail.extractionPending')}
-          tone={findings.length ? 'crit' : undefined}
-        />
+      {/* Tira de resumen. La rejilla vive en `.cp-pleno-fichas` (src/index.css)
+          porque pasa de cuatro columnas a dos y a una según el ancho de la tira,
+          y un `style` inline no admite esa consulta. */}
+      <div className="cp-pleno-resumen">
+        <div className="cp-pleno-fichas">
+          <Tile
+            label={t('plenoDetail.agenda')}
+            value={agendaKnown ? agendaItems.length : '—'}
+            sub={agendaKnown ? undefined : t('plenoDetail.agendaPending')}
+          />
+          {/* «—» y no 0 para lo que nadie ha medido. Las votaciones se transcriben a
+              mano desde el acta y una sesión puede no tener ninguna transcrita: «0»
+              afirmaba que un pleno ordinario no votó nada, y seguro que votó. Las
+              declaraciones y los hallazgos, igual: de una sesión sin extraer no hay
+              cero que dar. La ficha del orden del día ya lo distinguía. */}
+          <Tile
+            label={t('plenoDetail.votes')}
+            value={votes.length > 0 ? votes.length : '—'}
+            sub={votes.length ? `${aprobados} aprob.` : t('plenoDetail.votesPending')}
+          />
+          <Tile
+            label={t('plenoDetail.declarations')}
+            value={extraida ? groundedCount : '—'}
+            sub={extraida ? undefined : t('plenoDetail.extractionPending')}
+          />
+          <Tile
+            label={t('plenoDetail.findings')}
+            value={findings.length > 0 || extraida ? findings.length : '—'}
+            sub={findings.length > 0 || extraida ? undefined : t('plenoDetail.extractionPending')}
+            tone={findings.length ? 'crit' : undefined}
+          />
+        </div>
       </div>
 
       {/* Sticky tab bar */}
@@ -455,6 +459,10 @@ export default function PlenoDetalle() {
               key={tb.key}
               type="button"
               onClick={() => setTab(tb.key)}
+              // Las pestañas se montan al pulsarlas, así que una carga sólo ve
+              // el resumen. `review:surfaces` las abre por este atributo, que no
+              // cambia con el idioma (estado `pestanas`, reader-review.ts).
+              data-pestana={tb.lectora === false ? undefined : tb.key}
               className="mono"
               style={{
                 appearance: 'none',
