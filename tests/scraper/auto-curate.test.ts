@@ -12,9 +12,15 @@ import {
   topQuotes,
   composeFinding,
   citedClaimIds,
+  blocsForSynthesis,
+  groupForSynthesis,
+  publicationDecision,
+  FINDING_MEASUREMENT_KEY,
   type VerifiedItem,
   type VerifiedSnapshot,
 } from '../../src/scraper/auto-curate'
+import { seatsFromOfficials, singleSeatBlocs } from '../../src/scraper/corporation-seats'
+import type { Measurement } from '../../src/scraper/automation-policy'
 import { classifyClaimVisibility } from '../../src/scraper/claim-public-gate'
 import { buildRecordDateIndex, emptyRecordDateGateReport } from '../../src/scraper/record-dates'
 import { findRepeatedQuotes, validateFindingsSnapshot } from '../../src/scraper/pleno-finding'
@@ -595,5 +601,80 @@ describe('citedClaimIds', () => {
   it('handles null/undefined input cleanly', () => {
     expect(citedClaimIds(null).size).toBe(0)
     expect(citedClaimIds(undefined).size).toBe(0)
+  })
+})
+
+/**
+ * ── UN GRUPO DE UN SOLO ESCAÑO NO ES NIVEL DE GRUPO ─────────────────────────
+ *
+ * El 29-09-2026, 13 citas en 11 hallazgos y 10 sumarios publicados por
+ * `auto-curation-v1` atribuían algo a VOX, EU-Podem o Compromís, que tienen un
+ * concejal cada uno: nombrar el grupo nombra a esa persona. La CLI consultaba
+ * `decideAutomation` una sola vez por pasada y sin `namesIndividual`, así que lo
+ * único que la frenaba era que la clase aún no estaba medida. Estas pruebas fijan
+ * que una medida buena no basta: un borrador que nombra a un grupo de un escaño
+ * va a la cola humana, y el sintetizador ni siquiera ve esos grupos.
+ */
+describe('single-seat groups · the synthesiser never sees them', () => {
+  const ONE = singleSeatBlocs(
+    seatsFromOfficials({ composition: { PSOE: 11, PP: 7, VOX: 1, 'EU-Podem': 1, Compromís: 1 } }),
+  )
+
+  it('hands the summary model no one-seat group, and no placeholder in its place', () => {
+    expect(groupForSynthesis('Compromís', ONE)).toBe('')
+    expect(groupForSynthesis('EU-Podem', ONE)).toBe('')
+    expect(groupForSynthesis(null, ONE)).toBe('')
+    expect(groupForSynthesis('PSOE', ONE)).toBe('PSOE')
+  })
+
+  it('drops the one-seat groups from the list of groups that spoke', () => {
+    expect(blocsForSynthesis(['PSOE', 'VOX', 'PP', 'Compromís'], ONE)).toEqual(['PSOE', 'PP'])
+  })
+})
+
+describe('publicationDecision · per draft, not per run', () => {
+  const ONE = singleSeatBlocs(
+    seatsFromOfficials({ composition: { PSOE: 11, PP: 7, VOX: 1, 'EU-Podem': 1, Compromís: 1 } }),
+  )
+  const NOW = new Date('2026-09-29T12:00:00Z')
+  /** A class measured well over the informational bar — the case the old run-level gate let through. */
+  const MEASURED: Measurement[] = [
+    { key: FINDING_MEASUREMENT_KEY, precision: 0.99, sample: 1000, measuredAt: NOW.toISOString() },
+  ]
+  const LARGE_GROUPS = {
+    title: 'Debate sobre el contrato de residuos en el pleno del 2026-07-03',
+    summary: 'El PSOE defiende la adjudicación y el PP señala retrasos en el servicio.',
+    quotes: [{ speakerGroup: 'PSOE' }, { speakerGroup: 'PP' }],
+  }
+
+  it('publishes a draft that names only large groups once the class is measured', () => {
+    const d = publicationDecision(LARGE_GROUPS, ONE, MEASURED, NOW)
+    expect(d.allow).toBe(true)
+  })
+
+  it('sends a draft with a quote labelled with a one-seat group to a human, however well measured', () => {
+    const d = publicationDecision(
+      { ...LARGE_GROUPS, quotes: [...LARGE_GROUPS.quotes, { speakerGroup: 'Compromís' }] },
+      ONE,
+      MEASURED,
+      NOW,
+    )
+    expect(d.allow).toBe(false)
+    expect(d.tier).toBe('human')
+  })
+
+  it('sends a draft whose prose names a one-seat group to a human, even with no such label', () => {
+    const d = publicationDecision(
+      { ...LARGE_GROUPS, summary: 'Vox se compromete a garantizar una enseñanza de calidad.' },
+      ONE,
+      MEASURED,
+      NOW,
+    )
+    expect(d.allow).toBe(false)
+    expect(d.tier).toBe('human')
+  })
+
+  it('still refuses an unmeasured class — the per-draft check adds a gate, it removes none', () => {
+    expect(publicationDecision(LARGE_GROUPS, ONE, [], NOW).allow).toBe(false)
   })
 })
