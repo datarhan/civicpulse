@@ -63,6 +63,23 @@ export interface SelectOutput {
   skipped: Array<{ draftId: string; reason: string }>
 }
 
+/**
+ * The draft ids a published retraction tombstones. An auto-published promise
+ * takes its id from its draft (`ac-X` ← `dnp-X`, see `newPromiseFromDraft`),
+ * so a withdrawn `ac-` card must not come back from the same article under the
+ * same title. The archive in `editorial/` tombstones only what was retracted
+ * with `apply-promise-draft --retract` on the machine that runs the curator;
+ * a retraction recorded in `promises.json` travels with the published file.
+ */
+export function retractedDraftIds(
+  retractions: ReadonlyArray<{ promiseId: string }> | undefined,
+): string[] {
+  return (retractions ?? [])
+    .map((t) => t.promiseId)
+    .filter((id) => id.startsWith('ac-'))
+    .map((id) => `dnp-${id.slice(3)}`)
+}
+
 export function selectPromiseDrafts(inp: SelectInput): SelectOutput {
   const out: SelectOutput = { autoPublish: [], queue: [], skipped: [] }
   if (inp.frozen) {

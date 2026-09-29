@@ -48,7 +48,11 @@ describe('promise discovery schema + prompt', () => {
   })
 
   it('version + prompts are present', () => {
-    expect(PROMISE_DISCOVERY_PROMPT_VERSION).toBe('promise-discovery-v2')
+    expect(PROMISE_DISCOVERY_PROMPT_VERSION).toBe('promise-discovery-v3')
+    // v3: la cita son palabras del partido, nunca el titular ni la narración.
+    expect(buildPromiseDiscoverySystemPrompt()).toMatch(
+      /NUNCA el titular ni la narración del periodista/,
+    )
     expect(buildPromiseDiscoverySystemPrompt().length).toBeGreaterThan(100)
     const u = buildPromiseDiscoveryUserPrompt({
       existingTitles: ['Ya seguida'],

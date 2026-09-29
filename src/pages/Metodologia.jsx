@@ -348,23 +348,30 @@ export default function Metodologia() {
             pleno pueden aparecer. El tracker no rankea partidos por tasa de cumplimiento en V1.
           </li>
           <li>
-            <strong>Fuente enlazada obligatoria.</strong> Cada promesa se atribuye mediante una cita
-            textual (≥20 caracteres) copiada de la fuente que enlaza su ficha: un documento oficial
-            —programa electoral, acta de pleno, nota de prensa del Ayuntamiento, presupuesto
-            aprobado— o la noticia de prensa que recoge el compromiso, y la ficha nombra quién la
-            publicó. Cuando la fuente es una noticia, la cita es texto del medio —su titular o la
-            frase con que recoge el compromiso—, no necesariamente palabras del partido. Nuestros
-            propios datos no sirven de fuente: con ellos se contrasta una promesa, no se sostiene.
+            <strong>Palabras del partido, con su fuente enlazada.</strong> Cada promesa se atribuye
+            mediante una cita literal (≥20 caracteres) que son palabras del partido: lo que la
+            fuente pone entre comillas en boca del partido o de uno de sus cargos, o el texto de una
+            nota del propio Ayuntamiento en su web. Nunca el titular ni la narración del periodista:
+            si una noticia sólo cuenta el compromiso con sus palabras, no hay cita que publicar. La
+            ficha enlaza su fuente —el documento oficial o la noticia que recoge la cita— y nombra
+            quién la publicó. Nuestros propios datos no sirven de fuente: con ellos se contrasta una
+            promesa, no se sostiene. Una cita corregida enseña en su ficha la que había antes, y una
+            ficha retirada queda listada al pie de{' '}
+            <a href="/promesas" style={{ color: 'var(--civic)' }}>
+              /promesas
+            </a>{' '}
+            con su fecha y su motivo, sin repetir su cita.
           </li>
           <li>
             <strong>Conservadurismo en los estados.</strong> El estado por defecto es{' '}
             <em>documentada</em>. Sólo <EstadosPorEscalon tier="auto" /> pueden auto-publicarse, y
             aun así hace falta que la propuesta supere el umbral de confianza (≥0,70) <em>y</em>{' '}
-            quede anclada a su fuente (URL que resuelve + cita textual presente); se marcan en su
-            ficha con «publicada automáticamente · revisión pendiente» hasta que un curador los
-            revisa. <EstadosPorEscalon tier="fast-track" /> quedan listos para publicar con un solo
-            clic humano —incluidos los dos veredictos fuertes, <em>parcial</em> y <em>cumplida</em>,
-            que certifican que algo se hizo—. <EstadosPorEscalon tier="human-only" /> es siempre
+            quede anclada a su fuente (URL que resuelve + cita literal presente, y entre comillas si
+            la fuente es una noticia); se marcan en su ficha con «publicada automáticamente ·
+            revisión pendiente» hasta que un curador los revisa.{' '}
+            <EstadosPorEscalon tier="fast-track" /> quedan listos para publicar con un solo clic
+            humano —incluidos los dos veredictos fuertes, <em>parcial</em> y <em>cumplida</em>, que
+            certifican que algo se hizo—. <EstadosPorEscalon tier="human-only" /> es siempre
             exclusivamente humano, con justificación documental.
           </li>
           <li>
@@ -487,8 +494,9 @@ export default function Metodologia() {
         <ul style={{ margin: '8px 0 0', paddingLeft: 20 }}>
           <li>
             No auto-publica ninguna propuesta que no supere el umbral de confianza (≥0,70){' '}
-            <em>y</em> la verificación determinista de anclaje (URL que resuelve + cita textual
-            presente); lo que no lo supera espera revisión humana en cola.
+            <em>y</em> la verificación determinista de anclaje (URL que resuelve + cita literal
+            presente, y entre comillas si la fuente es una noticia); lo que no lo supera espera
+            revisión humana en cola.
           </li>
           <li>
             No auto-publica ningún veredicto fuerte: <EstadosPorEscalon tier="fast-track" /> quedan
@@ -496,8 +504,10 @@ export default function Metodologia() {
             <EstadosPorEscalon tier="human-only" /> es siempre exclusivamente humano.
           </li>
           <li>
-            No genera titulares ni resúmenes originales. Sólo cita la cabecera literal de las
-            noticias encontradas.
+            No inventa ni resume citas, y ya no cita titulares: sólo palabras que la noticia pone
+            entre comillas en boca del partido, o el texto de una nota del propio Ayuntamiento.
+            Hasta el 28 de septiembre de 2026 citaba la cabecera de las noticias; las fichas que no
+            cumplían esta regla se recitaron o se retiraron.
           </li>
           <li>No puntúa ni rankea partidos por tasa de cumplimiento.</li>
           <li>
@@ -516,9 +526,11 @@ export default function Metodologia() {
           Un proceso semanal, los lunes, propone promesas nuevas y cambios de estado a partir de
           fuentes públicas (prensa, plenos) usando un modelo de lenguaje. Cada propuesta pasa por
           una verificación determinista de anclaje: la URL de la fuente debe resolver y la cita
-          textual debe aparecer literalmente en ella. Sólo se publica automáticamente lo que supera
-          un umbral de confianza (≥0,70) <em>y</em> queda anclado; el resto espera revisión humana
-          en cola.
+          textual debe aparecer literalmente en ella y ser palabras del partido —en una noticia,
+          dentro de las comillas con que el medio las recoge; en la web del Ayuntamiento vale su
+          propio texto—. Un titular o la narración del periodista no se anclan aunque estén en la
+          página. Sólo se publica automáticamente lo que supera un umbral de confianza (≥0,70){' '}
+          <em>y</em> queda anclado; el resto espera revisión humana en cola.
         </p>
         <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
           Los <em>cambios de estado</em> sobre promesas ya publicadas se infieren de licitaciones y
@@ -781,16 +793,27 @@ export default function Metodologia() {
             aviso semanal le recuerda cuántas esperan.
           </li>
           <li>
-            <strong>El registro devuelve un número y un CSV.</strong> La sede anota el asiento y
-            emite un recibo con número de entrada y código seguro de verificación. Cada queja del
-            lote queda como «registrada» con ese número, y desde ahí corre el plazo.
+            <strong>El registro devuelve un número, una fecha y un CSV.</strong> La sede anota el
+            asiento y emite un recibo con número de entrada, fecha y hora de registro y código
+            seguro de verificación. Cada queja del lote queda como «registrada» con ese número, y el
+            plazo corre desde la fecha de registro del recibo, no desde que se anota aquí. Lo
+            presentado en día inhábil lleva como fecha de registro el primer día hábil siguiente, y
+            el recibo da también la de presentación: se toma la de registro, la más tardía de las
+            dos, para no dar nunca por vencido un plazo antes de tiempo.
           </li>
           <li>
             <strong>El plazo y el silencio.</strong> Depende de la materia: con carácter general,
-            tres meses; una petición de transparencia, un mes (art. 20 de la Ley 19/2013). Si vence
-            sin respuesta en un procedimiento de silencio negativo, la queja pasa a «silencio
+            tres meses; una petición de transparencia, un mes (art. 20 de la Ley 19/2013). Los meses
+            se cuentan de fecha a fecha en el calendario de la sede, que es la hora de Madrid (arts.
+            30.4 y 31.2 de la LPACAP): registrada el 28 de septiembre, vence el 28 de diciembre, y
+            ese último día entero es todavía plazo. Si pasa sin respuesta en un procedimiento de
+            silencio negativo, desde las 00:00 del día siguiente la queja pasa a «silencio
             administrativo» —un estado legal, no un juicio sobre nadie— y puede prepararse la
-            plantilla para acudir al Síndic de Greuges de la Comunitat Valenciana.
+            plantilla para acudir al Síndic de Greuges de la Comunitat Valenciana. Cuando ese último
+            día es inhábil, la ley lo prorroga al primer día hábil siguiente (art. 30.5), y el
+            cálculo automático todavía no aplica esa prórroga, porque no tiene el calendario de días
+            inhábiles: si el plazo acaba en fin de semana o festivo, puede marcar el silencio antes
+            de tiempo.
           </li>
         </ol>
         <ul style={{ margin: '10px 0 0', paddingLeft: 20 }}>

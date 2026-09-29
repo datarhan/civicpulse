@@ -20,6 +20,7 @@ import {
   idCiudadano,
 } from '../src/db/queries'
 import { creaPublicada } from './helpers/publicada'
+import { marcaDeAhora } from './helpers/marca'
 
 function sampleQueja(overrides: Partial<NewQuejaInput> = {}): NewQuejaInput {
   return {
@@ -198,6 +199,7 @@ describe('bot db — setState transitions', () => {
     setState(db, quejaId, 'registrada', {
       entry_number: '2026-RE-0847',
       csv: 'ABC123XYZ',
+      registered_at: marcaDeAhora(),
     })
     const q = getQueja(db, quejaId)
     expect(q?.state).toBe('registrada')

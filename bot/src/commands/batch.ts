@@ -7,10 +7,12 @@
  *   /batch              preview the next batch (top 10 verified quejas)
  *   /batch_link         returns the public URLs (md + html) of the batch
  *                       so the moderator can download and upload to sede
- *   /batch_register <entry_number> <csv> [ids...]
+ *   /batch_register <entry_number> <csv> <dd/mm/aaaa> <h:mm:ss> [ids...]
  *                       after the moderator signed at sede, records the
- *                       asiento. If [ids] is omitted, uses the same batch
- *                       we previewed most recently (top 10 verified).
+ *                       asiento with the receipt's «Fecha de Registro», from
+ *                       which the legal plazo runs. If [ids] is omitted, uses
+ *                       the same batch we previewed most recently (top 10
+ *                       verified).
  */
 
 import type { Bot } from 'grammy'
@@ -18,6 +20,7 @@ import type { Db } from '../db/client.ts'
 import type { MyContext } from '../types.ts'
 import type { AvisosHitos } from '../services/avisos-hitos.ts'
 import { registerBatch, selectBatch } from '../services/batch.ts'
+import { fechaHoraDeLaSede, leerBatchRegister } from '../services/recibo-sede.ts'
 
 function parseAdmins(): Set<number> {
   const raw = process.env.ADMIN_USER_IDS ?? ''
@@ -77,7 +80,8 @@ export function registerBatchCommand(bot: Bot<MyContext>, db: Db, hitos: AvisosH
     await ctx.reply(
       `🗂 *Lote listo · ${items.length} quejas · ${total} apoyos totales*\n\n${body}${extra}\n\n` +
         `Para registrar tras firmar en sede:\n` +
-        `\`/batch_register <nº asiento> <CSV>\``,
+        `\`/batch_register <nº de registro> <CSV> <fecha> <hora>\`\n` +
+        `con la «Fecha de Registro» del recibo, tal cual: \`28/09/2026 0:00:01\`.`,
       { parse_mode: 'Markdown', link_preview_options: { is_disabled: true } },
     )
   })
@@ -100,19 +104,16 @@ export function registerBatchCommand(bot: Bot<MyContext>, db: Db, hitos: AvisosH
       await ctx.reply('Comando reservado al moderador.')
       return
     }
-    const raw = (ctx.match as string | undefined)?.trim() ?? ''
-    const parts = raw.split(/\s+/).filter(Boolean)
-    if (parts.length < 2) {
-      await ctx.reply(
-        'Uso: `/batch_register <nº asiento> <CSV> [Q-XXXX Q-YYYY ...]`\n\n' +
-          'Si omites los IDs, se usa el lote actual (top 10 verificadas).',
-        { parse_mode: 'Markdown' },
-      )
+    // El recibo de la sede, leído por la forma de cada parte y no por su posición
+    // (`recibo-sede.ts`): el CSV lleva espacios, y la fecha de registro es de la
+    // que corre el plazo. Sin ella no se registra nada.
+    const lectura = leerBatchRegister((ctx.match as string | undefined) ?? '')
+    if (!lectura.ok) {
+      await ctx.reply(lectura.motivo, { parse_mode: 'Markdown' })
       return
     }
-    const [entryNumber, csv, ...ids] = parts
-    const selectedIds =
-      ids.length > 0 ? ids.map((s) => s.toUpperCase()) : selectBatch(db).map((it) => it.queja.id)
+    const { entry_number: entryNumber, csv, registered_at, ids } = lectura
+    const selectedIds = ids.length > 0 ? ids : selectBatch(db).map((it) => it.queja.id)
 
     if (selectedIds.length === 0) {
       await ctx.reply('No hay quejas verificadas que registrar.')
@@ -123,6 +124,7 @@ export function registerBatchCommand(bot: Bot<MyContext>, db: Db, hitos: AvisosH
       ids: selectedIds,
       entry_number: entryNumber,
       csv,
+      registered_at,
       moderator_user_id: ctx.from!.id,
     })
 
@@ -139,6 +141,7 @@ export function registerBatchCommand(bot: Bot<MyContext>, db: Db, hitos: AvisosH
 
     const body = [
       `🗃 *Lote registrado · nº ${entryNumber} · CSV ${csv}*`,
+      `Fecha de Registro: ${fechaHoraDeLaSede(registered_at)} (hora de la sede). El plazo corre desde ese día.`,
       '',
       `✅ Registradas: ${okIds.length}`,
       okIds.map((id) => `  • \`${id}\``).join('\n'),

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-28T18:58:33.258Z",
+  "generatedAt": "2026-09-29T05:11:47.357Z",
   "version": "1",
   "plenoId": "19gax3o",
   "plenoDate": "2026-01-19",
@@ -9818,6 +9818,37 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "19gax3o-186-acu-71dffe",
+        "plenoId": "19gax3o",
+        "plenoDate": "2026-01-19",
+        "segmentIndex": 186,
+        "type": "valoracion_politica",
+        "speakerGroup": null,
+        "verbatim": "se había hecho una crítica política referente a la modificación de crédito",
+        "context": "yo quería hablar en ese momento que no era así porque no había dicho se había hecho una crítica política referente a la modificación de crédito pero no hacía referencia a la movilización de votos",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "modificación de crédito"
+        },
+        "confidence": 0.74,
+        "reasoning": "Atribuye a una intervención previa una crítica política sobre una modificación de crédito; puede verificarse revisando el acta o la transcripción completa del debate.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "19gax3o-186-acu-71dffe",
+        "verdict": "sin-datos",
+        "summary": "La afirmación se refiere a una crítica política sobre la modificación de crédito, pero los registros de los candidatos no contienen información específica sobre dicha crítica o sobre la modificación de crédito en sí. Los documentos listados se centran en ayudas económicas y contratos de servicios, s",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },

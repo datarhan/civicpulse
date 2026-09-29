@@ -1,4 +1,4 @@
-import { describe, expect, it, beforeEach } from 'vitest'
+import { afterEach, describe, expect, it, beforeEach } from 'vitest'
 import { openDb, type Db } from '../src/db/client'
 import {
   addApoyo,
@@ -12,6 +12,7 @@ import { checkSilencio } from '../src/services/cron'
 import { routeUsingLocalOfficials } from '../src/services/router'
 import type { AvisosHitos } from '../src/services/avisos-hitos'
 import { creaPublicada } from './helpers/publicada'
+import { marcaDeAhora } from './helpers/marca'
 
 function seed(db: Db, overrides: Partial<NewQuejaInput> = {}) {
   return creaPublicada(db, {
@@ -27,7 +28,11 @@ function seed(db: Db, overrides: Partial<NewQuejaInput> = {}) {
 }
 
 function register(db: Db, id: string, entryNumber = '2026-RE-0001') {
-  setState(db, id, 'registrada', { entry_number: entryNumber, csv: 'ABC123' })
+  setState(db, id, 'registrada', {
+    entry_number: entryNumber,
+    csv: 'ABC123',
+    registered_at: marcaDeAhora(),
+  })
 }
 
 /** Los avisos de hitos a quien modera, apuntados; `falla` hace fallar los primeros n. */
@@ -238,5 +243,77 @@ describe('cron — checkSilencio', () => {
     register(db, q2.id)
     const dos = fakeHitos(2)
     expect(await checkSilencio(db, dos, future, 0).avisos).toEqual({ avisadas: 0, fallidas: 1 })
+  })
+})
+
+/**
+ * El silencio llega al acabar el último día del plazo, en el calendario de la sede.
+ *
+ * Medido el 28-09-2026: el cron comparaba los días del plazo con las horas
+ * transcurridas desde la marca del registro, así que una queja registrada a las
+ * 11:00 de Madrid pasaba a silencio a las 12:00 de su último día —y lo difundía
+ * en el canal, y sumaba un «silencio» junto al nombre de un cargo en /cargos—
+ * cuando el art. 30.4 deja a la Administración ese día entero. Y contaba desde el
+ * día de UTC: una registrada pasada la medianoche de Madrid vencía un día antes.
+ *
+ * El bot corre en Fly en UTC y sus pruebas en un portátil de Madrid: lo que decide
+ * no puede depender de eso, así que cada caso corre en las dos zonas.
+ */
+describe('cron — el silencio, al acabar el último día en Madrid', () => {
+  const antes = process.env.TZ
+  afterEach(() => {
+    if (antes === undefined) delete process.env.TZ
+    else process.env.TZ = antes
+  })
+  const DESFASE_EN_ENERO: Record<string, number> = { UTC: 0, 'Europe/Madrid': -60 }
+  function enCadaZona(prueba: (db: Db, hitos: ReturnType<typeof fakeHitos>) => void) {
+    for (const [zona, desfase] of Object.entries(DESFASE_EN_ENERO)) {
+      process.env.TZ = zona
+      expect(new Date(2026, 0, 15, 12).getTimezoneOffset(), `no se aplicó ${zona}`).toBe(desfase)
+      prueba(openDb(':memory:'), fakeHitos())
+    }
+  }
+  /** Una queja registrada con la marca que guardaría el bot (UTC, sin la Z). */
+  function registradaEl(db: Db, marca: string) {
+    const q = seed(db)
+    register(db, q.id)
+    db.prepare('UPDATE quejas SET registered_at = ? WHERE id = ?').run(marca, q.id)
+    return q
+  }
+
+  it('el último día del plazo no hay silencio: todavía se puede notificar', () => {
+    enCadaZona((db, hitos) => {
+      // 11:00 del 15 de enero en Madrid: el plazo acaba con el 15 de abril.
+      const q = registradaEl(db, '2026-01-15 10:00:00')
+      const ultimoDia = checkSilencio(db, hitos, new Date('2026-04-15T21:59:00Z'))
+      expect(ultimoDia.checked).toBe(1)
+      expect(ultimoDia.transitioned, 'silencio a las 23:59 del último día').toEqual([])
+      // 00:00 del 16 de abril en Madrid.
+      const vencido = checkSilencio(db, hitos, new Date('2026-04-15T22:00:00Z'))
+      expect(vencido.transitioned.map((r) => r.id)).toEqual([q.id])
+    })
+  })
+
+  it('cuenta desde el día de la sede en que entró, no desde el de UTC', () => {
+    enCadaZona((db, hitos) => {
+      // 00:30 del 31 de mayo en Madrid: vence el 31 de agosto, no el 30.
+      const q = registradaEl(db, '2026-05-30 22:30:00')
+      const ultimoDia = checkSilencio(db, hitos, new Date('2026-08-31T12:00:00Z'))
+      expect(ultimoDia.transitioned, 'silencio el 31 de agosto').toEqual([])
+      const vencido = checkSilencio(db, hitos, new Date('2026-08-31T22:00:00Z'))
+      expect(vencido.transitioned.map((r) => r.id)).toEqual([q.id])
+    })
+  })
+
+  it('una fecha de registro que no se puede leer no pasa a silencio, y lo dice', () => {
+    // `new Date('ayer')` es NaN, `NaN < plazo` es falso, y el código de antes
+    // pasaba la queja a silencio en la primera vuelta.
+    enCadaZona((db, hitos) => {
+      const q = registradaEl(db, 'ayer')
+      const r = checkSilencio(db, hitos, new Date('2030-01-01T00:00:00Z'))
+      expect(r.checked).toBe(1)
+      expect(r.transitioned).toEqual([])
+      expect(r.sinFechaLegible).toEqual([q.id])
+    })
   })
 })

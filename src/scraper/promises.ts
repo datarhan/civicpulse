@@ -141,7 +141,55 @@ export interface Promise {
    */
   dueBy?: string
   autoPublished?: AutoPublishedMeta | null
+  /**
+   * Public corrections log: what a curator changed after publication, with
+   * the text that stood before. Written only by `npm run corregir-promesa`.
+   * Omitted when empty, so an uncorrected card reads as it always did.
+   */
+  corrections?: PromiseCorrection[]
 }
+
+/**
+ * What a correction may change: the quote, and the source it was copied from
+ * — its URL and who published it, which change together when the right quote
+ * is on the council's own note rather than on the paper that summarised it.
+ */
+export const PROMISE_CORRECTION_FIELDS = ['quote', 'source.url', 'source.publisher'] as const
+export type PromiseCorrectionField = (typeof PROMISE_CORRECTION_FIELDS)[number]
+
+/** Same floor as every other curator reason in this repo. */
+export const PROMISE_REASON_MIN = 20
+
+export interface PromiseCorrection {
+  field: PromiseCorrectionField
+  original: string
+  corrected: string
+  reason: string
+  /** A person. A script's name here would be a lie about who judged. */
+  editor: string
+  correctedAt: string
+}
+
+/**
+ * A withdrawn promise. It keeps a digest of what stood, not the words: a
+ * retraction removes a sentence attributed to a party that the party did not
+ * say, and a ledger that republished it would keep it fetchable under
+ * `public/` for as long as the site exists. Same trade as
+ * `finding-retraction.ts`. Anyone holding the original can check the digest
+ * (`promiseDigest`).
+ */
+export interface PromiseRetraction {
+  /** The withdrawn promise's id. Never reused. */
+  promiseId: string
+  /** Which party the card was attributed to, so the count by party adds up. */
+  party: Party
+  digest: string
+  reason: string
+  editor: string
+  retractedAt: string
+}
+
+export const PROMISE_DIGEST_RE = /^promesa · sha256:[0-9a-f]{12}$/
 
 export interface PromisesSnapshot {
   version: string
@@ -151,6 +199,8 @@ export interface PromisesSnapshot {
   contactUrl: string
   methodologyUrl: string
   items: Promise[]
+  /** Withdrawn promises, oldest first. Written only by `npm run corregir-promesa`. */
+  retractions?: PromiseRetraction[]
 }
 
 class ValidationError extends Error {
@@ -318,6 +368,14 @@ function validatePromise(p: unknown, idx: number): Promise {
     if (ap.appendedEvidenceUrl !== undefined && ap.appendedEvidenceUrl !== null)
       assertUrl(ap.appendedEvidenceUrl, `items[${idx}].autoPublished.appendedEvidenceUrl`)
   }
+  let corrections: PromiseCorrection[] | undefined
+  if (r.corrections !== undefined) {
+    if (!Array.isArray(r.corrections))
+      throw new ValidationError(`items[${idx}].corrections must be array`)
+    corrections = (r.corrections as unknown[]).map((c, ci) =>
+      validateCorrection(c, `items[${idx}].corrections[${ci}]`),
+    )
+  }
   return {
     id: r.id as string,
     party: r.party as Party,
@@ -341,6 +399,52 @@ function validatePromise(p: unknown, idx: number): Promise {
     ...(typeof r.dueBy === 'string' ? { dueBy: r.dueBy } : {}),
     ...(typeof r.departmentSlug === 'string' ? { departmentSlug: r.departmentSlug } : {}),
     autoPublished: (r.autoPublished as Promise['autoPublished']) ?? null,
+    // Carried through, or every writer that serialises this normalised copy
+    // (the auto-curator, `apply-promise-draft`, `freeze:set`) would erase the
+    // log on its next run.
+    ...(corrections?.length ? { corrections } : {}),
+  }
+}
+
+function validateCorrection(c: unknown, name: string): PromiseCorrection {
+  if (!c || typeof c !== 'object') throw new ValidationError(`${name} must be object`)
+  const r = c as Record<string, unknown>
+  assertEnum(r.field, PROMISE_CORRECTION_FIELDS, `${name}.field`)
+  assertString(r.original, `${name}.original`, 1, 1500)
+  assertString(r.corrected, `${name}.corrected`, 1, 1500)
+  if (r.original === r.corrected)
+    throw new ValidationError(`${name}: a correction that changes nothing is not one`)
+  assertString(r.reason, `${name}.reason`, PROMISE_REASON_MIN, 1000)
+  assertString(r.editor, `${name}.editor`, 2, 80)
+  assertIsoDate(r.correctedAt, `${name}.correctedAt`)
+  return {
+    field: r.field as PromiseCorrectionField,
+    original: r.original as string,
+    corrected: r.corrected as string,
+    reason: r.reason as string,
+    editor: r.editor as string,
+    correctedAt: r.correctedAt as string,
+  }
+}
+
+function validateRetraction(t: unknown, idx: number): PromiseRetraction {
+  const name = `retractions[${idx}]`
+  if (!t || typeof t !== 'object') throw new ValidationError(`${name} must be object`)
+  const r = t as Record<string, unknown>
+  assertString(r.promiseId, `${name}.promiseId`, 3, 80)
+  assertEnum(r.party, ALLOWED_PARTIES, `${name}.party`)
+  if (typeof r.digest !== 'string' || !PROMISE_DIGEST_RE.test(r.digest))
+    throw new ValidationError(`${name}.digest must match «promesa · sha256:<12 hex>»`)
+  assertString(r.reason, `${name}.reason`, PROMISE_REASON_MIN, 1000)
+  assertString(r.editor, `${name}.editor`, 2, 80)
+  assertIsoDate(r.retractedAt, `${name}.retractedAt`)
+  return {
+    promiseId: r.promiseId as string,
+    party: r.party as Party,
+    digest: r.digest as string,
+    reason: r.reason as string,
+    editor: r.editor as string,
+    retractedAt: r.retractedAt as string,
   }
 }
 
@@ -371,6 +475,21 @@ export function validatePromisesSnapshot(json: string): PromisesSnapshot {
     if (ids.has(p.id)) throw new ValidationError(`duplicate id "${p.id}"`)
     ids.add(p.id)
   }
+  let retractions: PromiseRetraction[] | undefined
+  if (raw.retractions !== undefined) {
+    if (!Array.isArray(raw.retractions)) throw new ValidationError('retractions must be array')
+    retractions = (raw.retractions as unknown[]).map((t, i) => validateRetraction(t, i))
+    const retiradas = new Set<string>()
+    for (const t of retractions) {
+      // A withdrawn id is never reused: the way back is a new promise with a
+      // new id and its own source, not a flag flipped back.
+      if (ids.has(t.promiseId))
+        throw new ValidationError(`retracted id "${t.promiseId}" is still published`)
+      if (retiradas.has(t.promiseId))
+        throw new ValidationError(`retracted id "${t.promiseId}" appears twice`)
+      retiradas.add(t.promiseId)
+    }
+  }
   return {
     version: raw.version as string,
     generatedAt: raw.generatedAt as string,
@@ -379,6 +498,7 @@ export function validatePromisesSnapshot(json: string): PromisesSnapshot {
     contactUrl: raw.contactUrl as string,
     methodologyUrl: raw.methodologyUrl as string,
     items,
+    ...(retractions?.length ? { retractions } : {}),
   }
 }
 

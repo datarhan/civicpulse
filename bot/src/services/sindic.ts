@@ -15,14 +15,20 @@ import type { Db } from '../db/client.ts'
 import { getQuejaPublica, type QuejaRow } from '../db/queries.ts'
 import { routeUsingLocalOfficials } from './router.ts'
 import type { QuejaRouting } from '../../../src/scraper/queja-router.ts'
-import { plazoHumano } from '../../../src/scraper/queja-router.ts'
+import {
+  diasTranscurridos,
+  plazoHumano,
+  ZONA_DE_LA_SEDE,
+} from '../../../src/scraper/queja-router.ts'
+import { fechaHoraDeLaSede } from './recibo-sede.ts'
 
 const SINDIC_PORTAL = 'https://www.elsindic.com/es/presenta-una-queja'
 
 export interface SindicTemplate {
   queja: QuejaRow
   routing: QuejaRouting
-  diasTranscurridos: number
+  /** Días naturales del día de registro al de hoy, en el calendario de la sede; null sin fecha legible. */
+  diasTranscurridos: number | null
   generatedAt: string
 }
 
@@ -31,21 +37,27 @@ export function buildSindicTemplate(
   routing: QuejaRouting,
   now: Date = new Date(),
 ): SindicTemplate {
-  const registered = queja.registered_at ? new Date(queja.registered_at) : null
-  const diasTranscurridos = registered
-    ? Math.floor((now.getTime() - registered.getTime()) / (1000 * 60 * 60 * 24))
-    : 0
-  return { queja, routing, diasTranscurridos, generatedAt: now.toISOString() }
+  // En días del calendario de la sede, como el plazo del que habla el escrito.
+  // Eran tandas de 24 horas desde la marca: registrada a las 18:00, a las 10:00
+  // del día 92 decía 91 días, justo lo que dura el plazo entero.
+  return {
+    queja,
+    routing,
+    diasTranscurridos: diasTranscurridos(queja.registered_at, now),
+    generatedAt: now.toISOString(),
+  }
 }
 
 export function renderSindicMarkdown(t: SindicTemplate): string {
-  const { queja: q, routing, diasTranscurridos } = t
+  const { queja: q, routing, diasTranscurridos: dias } = t
   const limite = routing.timeLimits.find((tl) => tl.kind === 'resolucion')
   // El escrito CITA el art. 21.3 en la misma frase, y el artículo dice «tres
   // meses»: traducirlo a «90 días naturales» contradecía la cita en el
   // documento que se presenta ante el Síndic.
   const plazo = limite ? plazoHumano(limite) : '—'
+  // El día de la sede: en UTC, entre las 22:00 y la medianoche es todavía ayer.
   const today = new Date(t.generatedAt).toLocaleDateString('es-ES', {
+    timeZone: ZONA_DE_LA_SEDE,
     day: 'numeric',
     month: 'long',
     year: 'numeric',
@@ -74,7 +86,9 @@ export function renderSindicMarkdown(t: SindicTemplate): string {
   if (q.registro_csv) {
     lines.push(`   - **CSV acreditativo:** \`${q.registro_csv}\``)
   }
-  lines.push(`   - **Fecha de registro:** ${q.registered_at ?? '(sin fecha)'}`)
+  // Como la escribe el recibo, que es lo que el Síndic puede cotejar. La marca
+  // del bot es UTC: `2026-09-27 22:00:01` en crudo diría el día anterior.
+  lines.push(`   - **Fecha de registro:** ${fechaHoraDeLaSede(q.registered_at) ?? '(sin fecha)'}`)
   lines.push(`   - **Materia:** ${q.category}`)
   lines.push(`   - **Área municipal competente:** ${routing.concejalia.area}`)
   if (responsible) {
@@ -86,7 +100,7 @@ export function renderSindicMarkdown(t: SindicTemplate): string {
   lines.push(`   > ${q.detail.replace(/\n+/g, '\n   > ')}`)
   lines.push('')
   lines.push(
-    `3. Conforme al artículo 21.3 de la Ley 39/2015 (LPACAP), el plazo máximo para dictar y notificar resolución expresa era de **${plazo}** desde la entrada en registro. A fecha de hoy (${today}), han transcurrido **${diasTranscurridos} días** sin que la Administración haya dictado resolución expresa ni haya sido notificado el plazo máximo en los términos del art. 21.4 LPACAP.`,
+    `3. Conforme al artículo 21.3 de la Ley 39/2015 (LPACAP), el plazo máximo para dictar y notificar resolución expresa era de **${plazo}** desde la entrada en registro. A fecha de hoy (${today}), han transcurrido **${dias ?? '—'} días** sin que la Administración haya dictado resolución expresa ni haya sido notificado el plazo máximo en los términos del art. 21.4 LPACAP.`,
   )
   lines.push('')
   lines.push(

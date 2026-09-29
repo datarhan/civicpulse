@@ -31,6 +31,7 @@ import {
 } from '../src/db/queries'
 import { selectBatch } from '../src/services/batch'
 import { creaPublicada } from './helpers/publicada'
+import { marcaDeAhora } from './helpers/marca'
 
 function sampleQueja(overrides: Partial<NewQuejaInput> = {}): NewQuejaInput {
   return {
@@ -99,7 +100,11 @@ describe('addApoyo — promueve al alcanzar el umbral', () => {
   it('nunca degrada una queja que ya está registrada', () => {
     // Una queja ya registrada tiene número de entrada y plazo en marcha. Que le
     // lleguen más apoyos no puede devolverla a la cola.
-    setState(db, id, 'registrada', { entry_number: '2026-RE-0847', csv: 'ABC123XYZ' })
+    setState(db, id, 'registrada', {
+      entry_number: '2026-RE-0847',
+      csv: 'ABC123XYZ',
+      registered_at: marcaDeAhora(),
+    })
     apoyan(db, id, VERIFIED_THRESHOLD + 5)
     expect(getQueja(db, id)?.state).toBe('registrada')
   })

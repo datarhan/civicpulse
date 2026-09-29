@@ -234,11 +234,15 @@ export default function AvisoLegal() {
         <SectionHead eyebrow="Auto-curación" title="Publicación automática con revisión" />
         <p>
           Un proceso semanal (los lunes) puede publicar automáticamente promesas no acusatorias
-          extraídas de fuentes públicas cuando superan un umbral de confianza y su cita textual
-          queda anclada a la fuente. Cada registro auto-publicado se marca como «publicada
+          extraídas de fuentes públicas cuando superan un umbral de confianza y su cita queda
+          anclada a la fuente como palabras del partido: entre las comillas con que la noticia las
+          recoge, o en el texto de una nota del propio Ayuntamiento, nunca un titular ni la
+          narración del periodista. Cada registro auto-publicado se marca como «publicada
           automáticamente · revisión pendiente» y es retractable. Los veredictos de incumplimiento y
           el estado «inviable» siguen requiriendo intervención humana, y todo el proceso se detiene
-          durante el periodo electoral (LOREG art. 50).
+          durante el periodo electoral (LOREG art. 50). Una cita corregida conserva en su ficha la
+          versión anterior, y una promesa retirada queda listada en /promesas con su fecha y su
+          motivo, sin su cita.
         </p>
       </Card>
 

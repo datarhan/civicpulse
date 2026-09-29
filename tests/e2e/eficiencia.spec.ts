@@ -451,6 +451,48 @@ test.describe('Eficiencia (/eficiencia)', () => {
     ).toBeVisible()
   })
 
+  test('ORDENAR no se parte: el rótulo y sus botones van en la misma línea', async ({ page }) => {
+    await abrir(page, 'sec-servicios')
+    // La fila de «Ver» envuelve, y el rótulo ORDENAR y sus botones eran
+    // elementos sueltos dentro de ella: un salto de línea podía caer entre
+    // ellos y dejar «Posición · A-Z» al principio de la línea siguiente, bajo
+    // «VER», donde se leen como dos filtros más. Medido el 29-09-2026: a 1280
+    // px —el ancho de este proyecto— en cuanto entró la pastilla «Sin
+    // comparables suficientes», y sin ella ya pasaba a 1100, 1024, 768 y 375.
+    // Es geometría, así que se mide en píxeles a esos anchos: ninguna
+    // aserción de texto lo ve.
+    const fila = page.locator('.cp-libro-filtros')
+    for (const width of [1280, 1100, 1024, 768, 430, 375]) {
+      await page.setViewportSize({ width, height: 900 })
+      await page.evaluate(
+        () => new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r))),
+      )
+      // Los botones de orden, leídos como los hermanos que siguen al rótulo:
+      // así la lista no se reescribe aquí y un orden nuevo entra solo.
+      const piezas = await fila.evaluate((f) => {
+        const rotulo = [...f.querySelectorAll('.cp-libro-filtros-rotulo')].find((e) =>
+          /^ordenar$/i.test(e.textContent?.trim() ?? ''),
+        )
+        if (!rotulo) return []
+        const todas = [rotulo]
+        for (let s = rotulo.nextElementSibling; s; s = s.nextElementSibling) {
+          if (s.tagName === 'BUTTON') todas.push(s)
+        }
+        return todas.map((e) => {
+          const r = e.getBoundingClientRect()
+          return { texto: e.textContent?.trim() ?? '', centro: r.top + r.height / 2 }
+        })
+      })
+      // Midió algo: el rótulo y al menos dos órdenes.
+      expect(piezas.length, `${width} px · no encuentro ORDENAR y sus botones`).toBeGreaterThan(2)
+      const centros = piezas.map((p) => p.centro)
+      expect(
+        Math.max(...centros) - Math.min(...centros),
+        `${width} px · ORDENAR partido: ${piezas.map((p) => `${p.texto}@${Math.round(p.centro)}`).join(' ')}`,
+      ).toBeLessThan(4)
+    }
+  })
+
   test('la década va en la fila, con la mediana de sus pares detrás', async ({ page }) => {
     await abrir(page, 'sec-servicios')
     // El punto (posición hoy) y la serie (la década) responden preguntas

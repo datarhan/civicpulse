@@ -4,7 +4,7 @@ import { useQuejas, useEtiquetasDeQueja, STATE_TONE, prettyNeighborhood } from '
 import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { useT } from '../i18n'
-import { diasDePlazo, plazoDeResolucion } from '../scraper/queja-router'
+import { diasDePlazo, diasQueQuedan, plazoDeResolucion } from '../scraper/queja-router'
 import { contadoresDeCargo } from '../lib/reloj-lpacap'
 
 const TELEGRAM_BOT_URL = 'https://t.me/munigraph_bot'
@@ -337,9 +337,19 @@ function NeighborhoodBreakdown({ byNeighborhood }) {
  * fija en meses (art. 21.3 LPACAP y art. 20 de la Ley 19/2013), que de fecha a
  * fecha son 90 o 91 días según cuándo se registre. Aquí el número decide qué
  * quejas se llaman urgentes, así que la desviación no es sólo un rótulo.
+ *
+ * Y lo que queda, con la cuenta del enrutador: días del calendario de la sede y
+ * el último entero. Aquí se contaban tandas de 24 horas desde la marca leída en
+ * hora local, y la lista pintaba «Silencio» o lo callaba según la hora del
+ * registro: registrada a las 00:30 del 31 de enero en Madrid, el 1 de mayo, con
+ * el plazo vencido, decía «0d» y no «Silencio».
  */
-function plazoForQueja(q) {
-  return diasDePlazo(plazoDeResolucion(q.service_code), q.registered_at)
+function relojDeQueja(q, now) {
+  const limite = plazoDeResolucion(q.service_code)
+  return {
+    plazo: diasDePlazo(limite, q.registered_at),
+    quedan: diasQueQuedan(limite, q.registered_at, now),
+  }
 }
 
 function ReadyToEscalate({ items }) {
@@ -354,13 +364,10 @@ function ReadyToEscalate({ items }) {
           q.status === 'en_tramite' ||
           q.status === 'silencio_negativo'),
     )
-    .map((q) => {
-      const plazo = plazoForQueja(q)
-      const regMs = new Date(q.registered_at).getTime()
-      const ageDays = (now - regMs) / (1000 * 60 * 60 * 24)
-      const pct = plazo > 0 ? ageDays / plazo : 0
-      return { q, plazo, ageDays, pct }
-    })
+    .map((q) => ({ q, ...relojDeQueja(q, now) }))
+    // Sin una fecha de registro que se pueda leer no hay plazo que medir.
+    .filter(({ plazo, quedan }) => plazo != null && quedan != null)
+    .map((r) => ({ ...r, pct: r.plazo > 0 ? (r.plazo - r.quedan) / r.plazo : 0 }))
     .filter(({ pct }) => pct >= 0.8) // ≥80% of legal plazo consumed
     .sort((a, b) => b.pct - a.pct)
     .slice(0, 10)
@@ -381,9 +388,9 @@ function ReadyToEscalate({ items }) {
         template para el Síndic de Greuges CV.
       </div>
       <div style={{ marginTop: 10 }}>
-        {urgent.map(({ q, plazo, ageDays, pct }) => {
-          const remaining = Math.max(0, plazo - Math.floor(ageDays))
-          const overBy = Math.max(0, Math.floor(ageDays) - plazo)
+        {urgent.map(({ q, plazo, quedan, pct }) => {
+          const remaining = Math.max(0, quedan)
+          const overBy = Math.max(0, -quedan)
           const tone = overBy > 0 ? 'crit' : 'warn'
           return (
             <Link

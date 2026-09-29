@@ -14,7 +14,7 @@ import { rotuloDe, useLocale } from '../i18n'
 import { CLAVE_RELACION } from '../scraper/relation-labels'
 import {
   diaDeLaSede,
-  diasDePlazo,
+  diasQueQuedan,
   instanteUtc,
   plazoDeResolucion,
   ZONA_DE_LA_SEDE,
@@ -54,12 +54,6 @@ function fmtDate(iso, idioma) {
   return fmtDateHuman(diaDeLaSede(iso), idioma) || '—'
 }
 
-function daysSince(iso) {
-  if (!iso) return null
-  const ms = Date.now() - new Date(iso).getTime()
-  return Math.floor(ms / (1000 * 60 * 60 * 24))
-}
-
 /**
  * El plazo máximo de resolución, leído del enrutador y no copiado de él.
  *
@@ -72,13 +66,16 @@ function daysSince(iso) {
  * Devuelve las dos cosas porque la ficha necesita las dos: el plazo se PUBLICA
  * en meses, que es lo que dice la ley, y se CUENTA en los días que de verdad
  * tiene esa queja.
+ *
+ * Y se cuenta con la cuenta del enrutador, en días del calendario de la sede
+ * hasta el final del último. Aquí se restaban tandas de 24 horas desde la marca
+ * leída en hora local: registrada a las 00:30 del 31 de enero en Madrid, el 30
+ * de abril —su último día— decía que quedaba uno, y el 1 de mayo, ya vencido,
+ * que quedaban cero. `restantes` es null sin fecha de registro que se pueda leer.
  */
 function plazoFor(category, registeredAt) {
   const limite = plazoDeResolucion(category)
-  return {
-    limite,
-    dias: registeredAt ? diasDePlazo(limite, registeredAt) : null,
-  }
+  return { limite, restantes: diasQueQuedan(limite, registeredAt) }
 }
 
 /** «3 meses» / «1 mes», con el catálogo poniendo las palabras. */
@@ -320,9 +317,7 @@ export default function QuejaDetail() {
   const categoria = rotuloDe(t, `quejas.categoria.${category}`, category)
   const estado = rotuloDe(t, `quejas.estado.${queja.status}`, queja.status)
   const plazo = plazoFor(category, queja.registered_at)
-  const registeredDays = daysSince(queja.registered_at)
-  const diasRestantes =
-    registeredDays != null && plazo.dias != null ? plazo.dias - registeredDays : null
+  const diasRestantes = plazo.restantes
 
   // Synthetic timeline derived from the row's timestamps + state.
   const timeline = []
@@ -571,7 +566,7 @@ export default function QuejaDetail() {
 
       <CorrelationsCard quejaId={id} />
 
-      {queja.registered_at && queja.status !== 'resuelta' && (
+      {diasRestantes != null && queja.status !== 'resuelta' && (
         <Card style={{ marginTop: 14 }}>
           <SectionHead
             eyebrow={t('quejas.detalle.reloj.eyebrow')}

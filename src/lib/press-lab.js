@@ -5,20 +5,63 @@
  *
  * The lab *monitors* far more headlines than it *audits*. Trust indicators
  * (has-date, is-local, cross-outlet) are deterministic and computed for every
- * in-window article, whereas an "audit" requires an LLM-extracted claim that
- * has been verified against municipal data. Conflating the two overstates the
- * work done — a page reading "70 auditados / 0% verificado" is self-
- * contradictory. These fields keep the two counts distinct, and leave the
+ * in-window article of the feed, whereas an "audit" requires an LLM-extracted
+ * claim that has been verified against municipal data. Conflating the two
+ * overstates the work done — a page reading "70 auditados / 0% verificado" is
+ * self-contradictory. These fields keep the two counts distinct, and leave the
  * ratios null (→ rendered "—") when there is nothing to divide.
  */
 const WINDOW_DAYS = 30
 
-export function pressLabSummary({ press = [], verified = [] } = {}, now = Date.now()) {
+/**
+ * Las tarjetas de la ventana: exactamente lo que la lista de /laboratorio pinta con
+ * los filtros en «Todos», y por eso lo único que su contador puede poner de total.
+ *
+ * Son los titulares del feed y, además, los artículos de los que guardamos
+ * afirmaciones y que el feed ya no trae. press.json es una foto de lo que los FEEDS
+ * llevan hoy —el de infoturia guarda sólo 10 entradas, y Google News rota—, mientras
+ * que las afirmaciones se guardan por articleId. Sin esas tarjetas, una afirmación
+ * cuyo artículo salió del feed se descargaba y no se pintaba en ninguna parte: así se
+ * escondía la cifra en euros más alta del laboratorio, «El Consell inverteix 23,6
+ * milions per a ampliar la depuradora a Riba-roja» (Periòdic, 2026-07-10). Cada
+ * afirmación lleva la url, el medio y la fecha de su artículo, así que la tarjeta se
+ * reconstruye desde ella, sin volver a pedir un feed que ya no la lista.
+ *
+ * Y una sola lista para las dos cosas. La página construía la suya —feed MÁS esas
+ * tarjetas, con la fecha comparada como CADENA— y el total salía de aquí, del feed
+ * solo, con la fecha como número y otro reloj. El 28-09-2026 el contador decía «46 de
+ * 45 · ventana 30 días»: 45 del feed y `t335v0`, FUERA DEL FEED (revisión lectora de
+ * ese día). Cada tarjeta que se pinta estaba en el feed cuando se extrajeron sus
+ * afirmaciones, así que también se monitorizó: cuenta en el total.
+ */
+function articulosDeLaVentana(press, verified, now) {
   const cutoffMs = now - WINDOW_DAYS * 24 * 60 * 60 * 1000
-  const inWindow = press.filter((p) => {
-    const t = Date.parse(p?.date)
+  const enVentana = (iso) => {
+    const t = Date.parse(iso)
     return Number.isFinite(t) && t >= cutoffMs
-  })
+  }
+  const delFeed = new Set(press.map((p) => p?.id))
+  const fuera = new Map()
+  for (const row of verified) {
+    const c = row?.claim
+    if (!c?.articleId || delFeed.has(c.articleId) || fuera.has(c.articleId)) continue
+    if (!enVentana(c.articleDate)) continue
+    fuera.set(c.articleId, {
+      id: c.articleId,
+      title: c.articleTitle ?? c.verbatim?.slice(0, 120) ?? null,
+      link: c.articleUrl,
+      source: c.articleSource,
+      sourceHost: c.articleSourceHost ?? null,
+      date: c.articleDate,
+      fingerprint: c.articleFingerprint,
+      orphan: true,
+    })
+  }
+  return [...press.filter((p) => enVentana(p?.date)), ...fuera.values()]
+}
+
+export function pressLabSummary({ press = [], verified = [] } = {}, now = Date.now()) {
+  const articulos = articulosDeLaVentana(press, verified, now)
 
   const auditedIds = new Set()
   let verificado = 0
@@ -39,7 +82,15 @@ export function pressLabSummary({ press = [], verified = [] } = {}, now = Date.n
   const sinResolver = verificado + contradicho === 0
   return {
     windowDays: WINDOW_DAYS,
-    monitoredCount: inWindow.length, // headlines tracked in the rolling window
+    // La lista que la página filtra y pinta. Se devuelve para que la página no
+    // construya otra: su contador cuenta un subconjunto de ésta y lo pone sobre su
+    // longitud, así que no puede volver a decir «46 de 45».
+    articulos,
+    // Titulares de la ventana: los del feed y los que ya no están en él. Es el total
+    // del contador de la lista y el KPI «Titulares monitorizados».
+    monitoredCount: articulos.length,
+    // Cuántos de esos ya no trae el feed. El KPI lo dice en su pie cuando hay alguno.
+    fueraDelFeedCount: articulos.filter((a) => a.orphan).length,
     // Artículos con ≥1 afirmación ANALIZADA, sea cual sea su veredicto. El
     // comentario decía «with ≥1 verified claim» y la etiqueta de /laboratorio
     // repetía lo mismo, pero `auditedIds` mete el articleId de toda fila del

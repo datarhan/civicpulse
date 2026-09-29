@@ -43,7 +43,7 @@ Everything produced by the convention above. Safe to delete and rebuild.
 
 | File                                                | Schema / CLI                                                                                                                                                                      |
 | --------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `promises.json`                                     | `src/scraper/promises.ts` · `npm run reply`, `freeze:set`, `freeze:clear`, `aviso-promesas`                                                                                       |
+| `promises.json`                                     | `src/scraper/promises.ts` · `npm run reply`, `freeze:set`, `freeze:clear`, `aviso-promesas`, `corregir-promesa`                                                                   |
 | `pleno-votes.json`                                  | `src/scraper/pleno-votes.ts` · `npm run pleno-vote`, `promote-vote`, `retract-vote`                                                                                               |
 | `pleno-findings.json`                               | `src/scraper/pleno-finding.ts` · `npm run promote-claim`, `finding-reply`, `correct-pleno-finding`                                                                                |
 | `press-findings.json`                               | `src/scraper/press-finding.ts` · rows arrive only through `npm run auto-curate-press` (`informational` only) · `correct-press-finding`                                            |

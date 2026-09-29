@@ -651,58 +651,28 @@ export default function Laboratorio() {
     return Array.from(set).sort()
   }, [lab.press])
 
-  /**
-   * Articles we hold claims for but that have scrolled out of press.json.
-   *
-   * press.json is a snapshot of what the FEEDS currently carry — the infoturia
-   * feed holds only 10 items — while claims are keyed on articleId and kept.
-   * The page iterates `lab.press`, so a claim whose article has aged out is
-   * fetched, deployed and rendered nowhere. Today that hides the largest euro
-   * figure in the lab: «El Consell inverteix 23,6 milions per a ampliar la
-   * depuradora a Riba-roja» (Periòdic, 2026-07-10).
-   *
-   * Every claim carries the article's url, source and date, so the card can be
-   * rebuilt from the claim itself — no need to re-fetch a feed that no longer
-   * lists it.
-   */
-  const orphanArticles = useMemo(() => {
-    const known = new Set(lab.press.map((p) => p.id))
-    const out = new Map()
-    for (const row of lab.verified ?? []) {
-      const c = row.claim
-      if (!c?.articleId || known.has(c.articleId) || out.has(c.articleId)) continue
-      out.set(c.articleId, {
-        id: c.articleId,
-        title: c.articleTitle ?? c.verbatim.slice(0, 120),
-        link: c.articleUrl,
-        source: c.articleSource,
-        sourceHost: c.articleSourceHost ?? null,
-        date: c.articleDate,
-        fingerprint: c.articleFingerprint,
-        orphan: true,
-      })
-    }
-    return Array.from(out.values())
-  }, [lab.press, lab.verified])
-
-  const visible = useMemo(() => {
-    const cutoff = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString()
-    return [...lab.press, ...orphanArticles]
-      .filter((p) => p.date >= cutoff)
-      .filter((p) => outletFilter === 'all' || p.source === outletFilter)
-      .filter((p) => {
-        if (verdictFilter === 'all') return true
-        const claims = byArticleClaims.get(p.id) || []
-        return claims.some((c) => c.verification.verdict === verdictFilter)
-      })
-      .sort((a, b) => b.date.localeCompare(a.date))
-  }, [lab.press, orphanArticles, outletFilter, verdictFilter, byArticleClaims])
-
   const summary = useMemo(
     () => pressLabSummary({ press: lab.press, verified: lab.verified }),
     [lab.press, lab.verified],
   )
   const aviso = avisoSinVeredicto(summary)
+
+  // Se filtra la MISMA lista que cuenta `summary.monitoredCount` —la del feed más
+  // las tarjetas FUERA DEL FEED, con una sola ventana—, así que el contador de
+  // abajo no puede poner más tarjetas que su total. Con dos listas decía «46 de 45»
+  // (ver `articulosDeLaVentana` en src/lib/press-lab.js).
+  const visible = useMemo(
+    () =>
+      summary.articulos
+        .filter((p) => outletFilter === 'all' || p.source === outletFilter)
+        .filter((p) => {
+          if (verdictFilter === 'all') return true
+          const claims = byArticleClaims.get(p.id) || []
+          return claims.some((c) => c.verification.verdict === verdictFilter)
+        })
+        .sort((a, b) => b.date.localeCompare(a.date)),
+    [summary, outletFilter, verdictFilter, byArticleClaims],
+  )
 
   if (lab.loading) {
     return (
@@ -807,10 +777,18 @@ export default function Laboratorio() {
       </div>
 
       <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 18 }}>
+        {/* Cuenta las tarjetas de la lista, también las FUERA DEL FEED, y lo dice
+            cuando hay alguna: es el mismo total que el contador de la lista. Con
+            espacios que no parten, porque en una caja de 158 px se leía «1 fuera
+            del / feed». */}
         <KPI
           label="Titulares monitorizados"
           value={fmtNumber(summary.monitoredCount)}
-          hint="últimos 30 días"
+          hint={
+            summary.fueraDelFeedCount > 0
+              ? `últimos 30 días · ${fmtNumber(summary.fueraDelFeedCount)}\u00a0fuera\u00a0del\u00a0feed`
+              : 'últimos 30 días'
+          }
         />
         <KPI
           label="Artículos auditados"
