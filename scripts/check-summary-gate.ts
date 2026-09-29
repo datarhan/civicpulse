@@ -39,11 +39,30 @@
  *   findGateLeaks       BLOCKS. Verbatim reproduction, 8-word window.
  *   findHollowFindings  BLOCKS. Every quote withheld — retract, don't rewrite.
  *   findNearMisses      ADVISES. 6-word runs; 1 in 4 was real when measured.
+ *
+ * ## Every version of the literal, and ids instead of it (2026-09-29)
+ *
+ * The leak and near-miss passes compared the summary with each quote's text
+ * AS IT IS TODAY. The 2026-08-10 re-anchoring replaced quotes that had been
+ * published in a Spanish translation with the verbatim of the current
+ * transcript, and left their summaries alone; a summary copying the earlier
+ * version was invisible from then on (f-2025-12-01-cit-bef239). Both passes now
+ * read every version the repository keeps (`versionesDeCitas`, the chain the
+ * served copy digests) and say which one was copied.
+ *
+ * The report names ids and that version, never the literal: this output lands
+ * in the nightly log and in the `monitor:health` digest, which travels by
+ * Telegram, and printing a withheld quote there is publishing it another way.
+ * A curator reads the text in the repository.
+ *
+ * Retained quotes are chosen with `citaRetenida` (src/lib/cita-retenida.js),
+ * the page's own predicate — never a `gate === …` written here.
  */
 import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { quoteAppearsIn, quoteCoverage } from '../src/scraper/quote-match'
 import { citaRetenida } from '../src/lib/cita-retenida.js'
+import { versionesDeCitas, type FilaLike } from '../src/scraper/literales-retenidos'
 
 const FINDINGS = 'public/data/pleno-findings.json'
 /**
@@ -73,25 +92,58 @@ const NEAR_VERBATIM = 0.8
  */
 const NEAR_MISS_WORDS = 6
 
+/** A retained quote whose words the summary carries. Ids only, never the literal. */
 interface Leak {
   findingId: string
   quoteIndex: number
-  gate: string
-  text: string
+  gate: string | null
+  /** The version copied: today's text, or one from before a re-anchoring. */
+  version: 'vigente' | 'anterior'
+}
+
+interface FindingLike {
+  id: string
+  summary: string
+  quotes?: Array<{ text: string; literalRetenido?: boolean }>
+  corrections?: FilaLike[]
+}
+
+/**
+ * Each retained quote, with every version of its literal the repository keeps,
+ * today's text first — the order `versionesDeCitas` builds them in.
+ */
+function retainedWithVersions(
+  f: FindingLike,
+  gateOf: (findingId: string, quoteIndex: number) => string | null,
+): Array<{ quoteIndex: number; gate: string | null; today: string; versions: string[] }> {
+  const versions = versionesDeCitas(f)
+  const out: Array<{ quoteIndex: number; gate: string | null; today: string; versions: string[] }> =
+    []
+  for (const [i, q] of (f.quotes ?? []).entries()) {
+    const gate = gateOf(f.id, i)
+    if (!citaRetenida({ gate }, q)) continue
+    out.push({ quoteIndex: i, gate, today: q.text, versions: [...versions[i]] })
+  }
+  return out
 }
 
 export function findGateLeaks(
-  findings: Array<{ id: string; summary: string; quotes?: Array<{ text: string }> }>,
+  findings: FindingLike[],
   gateOf: (findingId: string, quoteIndex: number) => string | null,
 ): Leak[] {
   const leaks: Leak[] = []
   for (const f of findings) {
-    for (const [i, q] of (f.quotes ?? []).entries()) {
-      const gate = gateOf(f.id, i)
-      if (!citaRetenida({ gate }, q)) continue
-      if (quoteAppearsIn(q.text, f.summary) || quoteCoverage(q.text, f.summary) >= NEAR_VERBATIM) {
-        leaks.push({ findingId: f.id, quoteIndex: i, gate, text: q.text })
-      }
+    for (const { quoteIndex, gate, today, versions } of retainedWithVersions(f, gateOf)) {
+      const copied = versions.find(
+        (v) => quoteAppearsIn(v, f.summary) || quoteCoverage(v, f.summary) >= NEAR_VERBATIM,
+      )
+      if (copied == null) continue
+      leaks.push({
+        findingId: f.id,
+        quoteIndex,
+        gate,
+        version: copied === today ? 'vigente' : 'anterior',
+      })
     }
   }
   return leaks
@@ -104,7 +156,7 @@ export function findGateLeaks(
  * name the same row.
  */
 export function findNearMisses(
-  findings: Array<{ id: string; summary: string; quotes?: Array<{ text: string }> }>,
+  findings: FindingLike[],
   gateOf: (findingId: string, quoteIndex: number) => string | null,
 ): Leak[] {
   const blocking = new Set(
@@ -112,13 +164,16 @@ export function findNearMisses(
   )
   const out: Leak[] = []
   for (const f of findings) {
-    for (const [i, q] of (f.quotes ?? []).entries()) {
-      const gate = gateOf(f.id, i)
-      if (!citaRetenida({ gate }, q)) continue
-      if (blocking.has(`${f.id}#${i}`)) continue
-      if (quoteAppearsIn(q.text, f.summary, NEAR_MISS_WORDS)) {
-        out.push({ findingId: f.id, quoteIndex: i, gate, text: q.text })
-      }
+    for (const { quoteIndex, gate, today, versions } of retainedWithVersions(f, gateOf)) {
+      if (blocking.has(`${f.id}#${quoteIndex}`)) continue
+      const copied = versions.find((v) => quoteAppearsIn(v, f.summary, NEAR_MISS_WORDS))
+      if (copied == null) continue
+      out.push({
+        findingId: f.id,
+        quoteIndex,
+        gate,
+        version: copied === today ? 'vigente' : 'anterior',
+      })
     }
   }
   return out
@@ -162,6 +217,7 @@ function main() {
       id: string
       summary: string
       quotes?: Array<{ text: string; sourceClaimId?: string }>
+      corrections?: FilaLike[]
     }>
   }
 
@@ -193,10 +249,13 @@ function main() {
       JSON.stringify({ evaluated, hidden, leaks, nearMisses, hollow }, null, 2) + '\n',
     )
   } else {
+    // Ids y versión, nunca el literal: esta salida va al log de la nocturna y
+    // al parte de monitor:health. El texto lo lee el curador en el repositorio.
+    const deQueVersion = (l: Leak) => (l.version === 'anterior' ? ' (una versión anterior)' : '')
     for (const l of leaks) {
       process.stdout.write(
-        `  ✗ ${l.findingId} quote.${l.quoteIndex} — el sumario reproduce una cita que la puerta oculta\n` +
-          `      «${l.text.replace(/\s+/g, ' ').slice(0, 120)}»\n`,
+        `  ✗ ${l.findingId} quote.${l.quoteIndex} — el sumario reproduce una cita que la puerta ` +
+          `retiene${deQueVersion(l)}\n`,
       )
     }
     for (const id of hollow) {
@@ -207,7 +266,8 @@ function main() {
     }
     for (const l of nearMisses) {
       process.stdout.write(
-        `  · ${l.findingId} quote.${l.quoteIndex} — coincidencia parcial (${NEAR_MISS_WORDS}+ palabras), a criterio del curador\n`,
+        `  · ${l.findingId} quote.${l.quoteIndex} — coincidencia parcial (${NEAR_MISS_WORDS}+ palabras)` +
+          `${deQueVersion(l)}, a criterio del curador\n`,
       )
     }
     process.stdout.write(
