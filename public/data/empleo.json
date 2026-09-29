@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-09-28T11:25:23.933Z",
+  "generatedAt": "2026-09-29T11:02:34.796Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 59,
-    "openTotal": 58,
-    "inRibaRoja": 36,
+    "total": 60,
+    "openTotal": 59,
+    "inRibaRoja": 37,
     "closingSoon": 15,
-    "withDetail": 59,
+    "withDetail": 60,
     "byMonth": {
-      "2026-09": 21,
+      "2026-09": 23,
       "2026-08": 27,
-      "2026-07": 4,
+      "2026-07": 3,
       "2026-06": 1,
       "2026-05": 2,
       "2026-04": 1,
@@ -23,6 +23,148 @@
     }
   },
   "items": [
+    {
+      "id": "2541",
+      "fo": 2541,
+      "codigo": "2026/00241",
+      "titulo": "Administrativo/a",
+      "publishedAt": "2026-09-29",
+      "deadline": "2026-11-29",
+      "location": "CASCO URBANO Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2541",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00241"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Administrativo/a"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "ACTIVIDADES ADMINISTRATIVAS Y SERVICIOS AUXLIARES"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "AUXILIARES ADMINISTRATIVOS"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "CASCO URBANO, Municipio: Riba-roja de Túria, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Parcial Turnos: Turno mañana"
+          },
+          {
+            "label": "Observaciones jornada",
+            "value": "JORNADA DE MAÑANAS DE LUNES A VIERNES. CON POSIBILIDAD DE AMPLACIÓN HASTA JORNADA COMPLETA"
+          },
+          {
+            "label": "Horario",
+            "value": "9:00 A 14:00"
+          },
+          {
+            "label": "Salario",
+            "value": "SEGÚN CONVENIO"
+          },
+          {
+            "label": "Funciones",
+            "value": "GESTIONES ADMINISTRATIVAS RELACIONADAS CON COMUNIDADES DE PROPIETARIOS Y GESTIÓN DE INCIDENCIAS Y ATENCIÓN AL CLIENTE."
+          },
+          {
+            "label": "Habilidades",
+            "value": "Administrativas"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "numPuestos": "1",
+        "categoria": "AUXILIARES ADMINISTRATIVOS",
+        "jornada": "Parcial Turnos: Turno mañana",
+        "horario": "9:00 A 14:00",
+        "salario": "SEGÚN CONVENIO",
+        "funciones": "GESTIONES ADMINISTRATIVAS RELACIONADAS CON COMUNIDADES DE PROPIETARIOS Y GESTIÓN DE INCIDENCIAS Y ATENCIÓN AL CLIENTE.",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2542",
+      "fo": 2542,
+      "codigo": "2026/00240",
+      "titulo": "PERSONAL DE LIMPIEZA",
+      "publishedAt": "2026-09-29",
+      "deadline": "2026-11-29",
+      "location": "Pobla Vallbona, Líria, Villamarchante, Torrente, Parque Tecnológico Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2542",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00240"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "PERSONAL DE LIMPIEZA"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Personal de limpieza para Comunidades de vecinos y Casas particulares"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO DE OBRA O SERVICIO DETERMINADO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "De 1 a 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "2"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Pobla Vallbona, Líria, Villamarchante, Torrente, Parque Tecnológico, Municipio: Riba-roja de Túria, Provincia: Valencia"
+          },
+          {
+            "label": "Horario",
+            "value": "11,5 horas semanales con posibilidad de media jornada"
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO DE OBRA O SERVICIO DETERMINADO",
+        "duracion": "De 1 a 6 meses",
+        "numPuestos": "2",
+        "observaciones": "Personal de limpieza para Comunidades de vecinos y Casas particulares",
+        "horario": "11,5 horas semanales con posibilidad de media jornada",
+        "salario": "Según convenio",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
     {
       "id": "2540",
       "fo": 2540,
@@ -3907,79 +4049,6 @@
         "horario": "De lunes a viernes de 6 a 14 h o de lunes a viernes de 14 a 22h",
         "salario": "1854€ brutos",
         "funciones": "- Conducción de camión aspirador para la retirada y aspiración de sólidos industriales. - Apoyo en tareas generales de mantenimiento y limpieza técnica. - Preparación y revisión básica del equipo antes de los servicios. - Cumplimiento estricto de las normas de seguridad y PRL. - Trabajo coordinado con el equipo en diferentes centros de trabajo.",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2454",
-      "fo": 2454,
-      "codigo": "2026/00155",
-      "titulo": "Mozo de almacén",
-      "publishedAt": "2026-07-31",
-      "deadline": "2026-10-01",
-      "location": "POLIG. EL OLIVERAL CALLE L NAVE 16 Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2454",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00155"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Mozo de almacén"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Mozo/a de almacén. Se necesita vehículo para acceder al puesto."
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "2"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "POLIG. EL OLIVERAL CALLE L NAVE 16, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Turnos: Turno partido"
-          },
-          {
-            "label": "Horario",
-            "value": "DE 8.30 H A 17,30 H. DE LUNES A VIERNES"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          },
-          {
-            "label": "Funciones",
-            "value": "FORMAR HAMBURGUESAS, EMPAQUETAR, ETC"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "numPuestos": "2",
-        "observaciones": "Mozo/a de almacén. Se necesita vehículo para acceder al puesto.",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46190",
-        "jornada": "Turnos: Turno partido",
-        "horario": "DE 8.30 H A 17,30 H. DE LUNES A VIERNES",
-        "salario": "Según convenio",
-        "funciones": "FORMAR HAMBURGUESAS, EMPAQUETAR, ETC",
         "vehiculo": "Sí",
         "ocupaciones": []
       }
