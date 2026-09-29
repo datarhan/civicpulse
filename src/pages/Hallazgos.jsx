@@ -377,6 +377,16 @@ function Chip({ active, label, count, onClick }) {
   )
 }
 
+/** La caja en la que la lista dice por qué no pinta ninguna ficha. */
+const AVISO_DE_LISTA = {
+  padding: 16,
+  background: 'var(--soft)',
+  borderRadius: 'var(--r-input)',
+  fontSize: 'var(--fs-aux)',
+  color: 'var(--ink50)',
+  lineHeight: 1.5,
+}
+
 /**
  * Los hallazgos que pasan los filtros, agrupados por pleno del más reciente al
  * más antiguo. `hayPublicados` separa «ninguno coincide» de «no hay ninguno»:
@@ -394,16 +404,7 @@ function ListaDeHallazgos({ hallazgos, hayPublicados }) {
 
   if (groups.length === 0) {
     return (
-      <div
-        style={{
-          padding: 16,
-          background: 'var(--soft)',
-          borderRadius: 'var(--r-input)',
-          fontSize: 'var(--fs-aux)',
-          color: 'var(--ink50)',
-          lineHeight: 1.5,
-        }}
-      >
+      <div style={AVISO_DE_LISTA}>
         {!hayPublicados
           ? 'Todavía no hay hallazgos editoriales publicados. El flujo de curación es: extraer declaraciones → verificar contra datos → promover a hallazgo.'
           : 'Ninguno coincide con los filtros actuales.'}
@@ -443,11 +444,19 @@ function ListaDeHallazgos({ hallazgos, hayPublicados }) {
  * tests/components/hallazgos-corpus.test.jsx cuenta lo que pide cada caso.
  */
 function ListaDelArea({ area, hallazgos, hayPublicados }) {
-  const { data: claims } = usePlenoClaims()
+  const t = useT()
+  const { loading, error, data: claims } = usePlenoClaims()
   const delArea = useMemo(
     () => hallazgos.filter((f) => findingMatchesArea(f, area, claims)),
     [hallazgos, area, claims],
   )
+  // Sin el corpus no se sabe qué hallazgos son del área, y la lista vacía diría
+  // «Ninguno coincide con los filtros actuales.», que es falso: mientras llega,
+  // dice que carga; si no llega, qué falló, como hace la página con sus datos.
+  if (loading) return <div style={AVISO_DE_LISTA}>{t('common.loading')}</div>
+  if (error) {
+    return <div style={{ ...AVISO_DE_LISTA, color: 'var(--crit-ink)' }}>{error.message}</div>
+  }
   return <ListaDeHallazgos hallazgos={delArea} hayPublicados={hayPublicados} />
 }
 
