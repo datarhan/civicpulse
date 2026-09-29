@@ -89,8 +89,13 @@ export async function verifyClaimWithEngine(
   if (inputs.candidates.length === 0) return null
 
   const reasoning = await deps.reasonFn(inputs.claim, inputs.candidates)
-  // Antes de extraer: un parte de la tarea no lleva razonamiento del que sacar
-  // un veredicto, y es lo que se guardaría como resumen.
+  // Antes de extraer, dos respuestas que no son un juicio. Vacío: la llamada
+  // cayó, y la extracción decidiría sobre nada. Un parte de la tarea: no lleva
+  // razonamiento del que sacar un veredicto, y es lo que se guardaría como
+  // resumen.
+  if (!reasoning.trim()) {
+    throw new Error(`[engine] ${inputs.claim.id}: el paso de razonar no devolvió nada`)
+  }
   const charla = charlaDeTarea(reasoning)
   if (charla) throw new RazonamientoConCharla(inputs.claim.id, charla)
   const ext = await deps.extractFn(reasoning, inputs.claim, inputs.candidates)
