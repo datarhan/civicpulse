@@ -133,6 +133,32 @@ export type Pasada = (typeof PASADAS)[number]
 export const MARCAS_DE_PASADA = PASADAS
 
 /**
+ * Qué CLASE de verificador es cada pasada: lo que /declaraciones y /plenos le
+ * dicen al lector de quién dio el veredicto.
+ *
+ *   · `llm` — un modelo de lenguaje decidió el veredicto: el motor y las dos
+ *     segundas pasadas LLM, la viva y la retirada.
+ *   · `nli` — un modelo de inferencia puntuó si un extracto implica la
+ *     afirmación. No genera texto, pero tampoco es un cotejo escrito a mano.
+ *   · `curador` — una persona bajó el veredicto con `downgrade-verdict`.
+ *
+ * La página lo deducía de una lista recitada de pasadas «de modelo», y lo que
+ * no estaba en ella salía como «verificador determinista»: `llm`, `nli` y
+ * `nli-grounding` lo eran por omisión. Con `Record<Pasada, …>` una pasada nueva
+ * que no diga qué es no compila, en vez de heredar el rótulo más fuerte.
+ */
+export type ClaseDeVerificador = 'llm' | 'nli' | 'curador'
+
+export const CLASE_DE_PASADA: Record<Pasada, ClaseDeVerificador> = {
+  'verdict-engine': 'llm',
+  'llm-second-pass': 'llm',
+  'nli-grounding': 'nli',
+  nli: 'nli',
+  llm: 'llm',
+  'curator-downgrade': 'curador',
+}
+
+/**
  * Pasadas RETIRADAS: siguen apareciendo en veredictos publicados, pero ya no
  * forman parte de la tubería.
  *
