@@ -43,6 +43,7 @@
 import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { quoteAppearsIn, quoteCoverage } from '../src/scraper/quote-match'
+import { citaRetenida } from '../src/lib/cita-retenida.js'
 
 const FINDINGS = 'public/data/pleno-findings.json'
 /**
@@ -87,7 +88,7 @@ export function findGateLeaks(
   for (const f of findings) {
     for (const [i, q] of (f.quotes ?? []).entries()) {
       const gate = gateOf(f.id, i)
-      if (gate !== 'hidden') continue
+      if (!citaRetenida({ gate }, q)) continue
       if (quoteAppearsIn(q.text, f.summary) || quoteCoverage(q.text, f.summary) >= NEAR_VERBATIM) {
         leaks.push({ findingId: f.id, quoteIndex: i, gate, text: q.text })
       }
@@ -113,7 +114,7 @@ export function findNearMisses(
   for (const f of findings) {
     for (const [i, q] of (f.quotes ?? []).entries()) {
       const gate = gateOf(f.id, i)
-      if (gate !== 'hidden') continue
+      if (!citaRetenida({ gate }, q)) continue
       if (blocking.has(`${f.id}#${i}`)) continue
       if (quoteAppearsIn(q.text, f.summary, NEAR_MISS_WORDS)) {
         out.push({ findingId: f.id, quoteIndex: i, gate, text: q.text })
@@ -179,7 +180,8 @@ function main() {
 
   const evaluated = snap.items.reduce((n, f) => n + (f.quotes ?? []).length, 0)
   const hidden = snap.items.reduce(
-    (n, f) => n + (f.quotes ?? []).filter((_q, i) => gateAt(f.id, i) === 'hidden').length,
+    (n, f) =>
+      n + (f.quotes ?? []).filter((q, i) => citaRetenida({ gate: gateAt(f.id, i) }, q)).length,
     0,
   )
   const leaks = findGateLeaks(snap.items, gateAt)

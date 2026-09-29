@@ -33,6 +33,8 @@ import {
   type FilaLike,
 } from '../src/scraper/literales-retenidos'
 import { CLAIM_VISIBILITIES } from '../src/scraper/claim-public-gate'
+import { citaRetenida, PUERTA_QUE_RETIENE as PUERTA_DE_LA_LIB } from '../src/lib/cita-retenida.js'
+import { provenanceFor } from '../src/hooks/useFindingQuoteProvenance.js'
 import { sha256Short } from '../src/scraper/hash'
 
 const ROOT = join(__dirname, '..')
@@ -97,6 +99,20 @@ const fila = (field: string, original: string, corrected: string) => ({
 describe('la puerta que retiene sale del enum de la puerta', () => {
   it('es uno de sus resultados, no una cadena escrita aquí', () => {
     expect(CLAIM_VISIBILITIES).toContain(PUERTA_QUE_RETIENE)
+    // La constante se define en src/lib/cita-retenida.js, con el predicado;
+    // la de este módulo es la misma, tipada contra el enum.
+    expect(PUERTA_QUE_RETIENE).toBe(PUERTA_DE_LA_LIB)
+  })
+
+  it('el predicado retiene exactamente ese resultado, y lo que la copia servida marca', () => {
+    // Una sola definición para la página, la copia servida y las
+    // comprobaciones: si el enum gana un estado, esto dice qué hace con él.
+    for (const estado of CLAIM_VISIBILITIES) {
+      expect(citaRetenida({ gate: estado }), estado).toBe(estado === PUERTA_QUE_RETIENE)
+    }
+    expect(citaRetenida(undefined, { literalRetenido: true })).toBe(true)
+    expect(citaRetenida({ gate: null }, { text: 'una cita' })).toBe(false)
+    expect(citaRetenida(undefined)).toBe(false)
   })
 })
 
@@ -299,8 +315,9 @@ function retenidasDe(fuente: typeof FUENTE, prov: typeof PROV) {
   const out: Array<{ id: string; versiones: string[] }> = []
   for (const f of fuente.items) {
     const versiones = versionesDeCitas(f)
-    ;(f.quotes ?? []).forEach((_q: unknown, i: number) => {
-      if (prov.quotes?.[f.id]?.[i]?.gate === PUERTA_QUE_RETIENE)
+    // Con el predicado de la página, no con `gate === …` escrito aquí.
+    ;(f.quotes ?? []).forEach((q: { literalRetenido?: boolean }, i: number) => {
+      if (citaRetenida(provenanceFor(prov, f.id)[i], q))
         out.push({ id: `${f.id}#${i}`, versiones: [...versiones[i]] })
     })
   }

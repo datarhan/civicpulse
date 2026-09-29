@@ -5,7 +5,7 @@
  * puerta editorial: /hallazgos imprimía el literal de una acusación que
  * /plenos retenía —desde el 10-08, con una marca al lado—, y la razón escrita
  * era que «delante hay una persona». Ese día, por decisión del operador
- * (`citaRetenida` en PlenoFindings.jsx), las dos páginas pasaron a obedecer la
+ * (`citaRetenida`, hoy en src/lib/cita-retenida.js), las dos páginas pasaron a obedecer la
  * misma puerta: una cita `hidden` se pinta como el hueco «Literal retenido»,
  * la haya promovido quien la haya promovido. /metodologia#citas-contraste se
  * reescribió el 28-09-2026 (#155). Quedaban:

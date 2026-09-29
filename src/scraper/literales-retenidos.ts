@@ -6,7 +6,7 @@
  * DE DÓNDE SALE
  *
  * Desde el 27-08-2026 una cita `hidden` se pinta en la ficha como el hueco
- * «Literal retenido» (`citaRetenida`, en PlenoFindings.jsx), y la nota de
+ * «Literal retenido» (`citaRetenida`, src/lib/cita-retenida.js), y la nota de
  * debajo decía «su literal no se publica: ni aquí … ni en el registro de
  * declaraciones del pleno». Medido el 28-09-2026 sobre el artefacto construido:
  *
@@ -73,9 +73,14 @@ import type { ClaimVisibility } from './claim-public-gate'
 import { sha256Short } from './hash'
 import { CORRECTION_QUOTE_FIELD_RE } from './pleno-finding'
 import { prepararHeno, quoteAppearsInPrepared } from './quote-match'
+import { PUERTA_QUE_RETIENE as PUERTA, citaRetenida } from '../lib/cita-retenida.js'
 
-/** El resultado de la puerta que retiene el literal. Tipado contra su enum. */
-export const PUERTA_QUE_RETIENE: ClaimVisibility = 'hidden'
+/**
+ * El resultado de la puerta que retiene el literal. Se define con el predicado
+ * en src/lib/cita-retenida.js; aquí se tipa contra el enum de la puerta, así
+ * que un valor que no sea uno de sus resultados no compila.
+ */
+export const PUERTA_QUE_RETIENE: ClaimVisibility = PUERTA
 
 const ETIQUETA_HUELLA = 'cita retenida'
 
@@ -217,7 +222,7 @@ export function retenerLiterales<S extends { items?: FichaLike[] }>(
     const quotes = f.quotes ?? []
     // Las versiones se leen ANTES de quitar ningún texto: la cadena empieza en él.
     const versiones = versionesDeCitas(f)
-    const retenida = quotes.map((_q, i) => filasDePuerta?.[i]?.gate === PUERTA_QUE_RETIENE)
+    const retenida = quotes.map((q, i) => citaRetenida(filasDePuerta?.[i], q))
 
     quotes.forEach((q, i) => {
       if (filasDePuerta?.[i] == null) {
