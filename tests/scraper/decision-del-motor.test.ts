@@ -3,6 +3,7 @@ import {
   decidirRederivacion,
   decidirRetractacion,
   anotarEnElParte,
+  decidirDevolucion,
 } from '../../src/scraper/decision-del-motor'
 import { startRun, NO_LLM_STATS } from '../../src/scraper/run-manifest'
 
@@ -125,5 +126,59 @@ describe('anotarEnElParte', () => {
       'el determinista ya decidió': 1,
     })
     expect(findings.map((f) => f.code)).not.toContain('unaccounted-items')
+  })
+})
+
+/**
+ * Devolver al determinista una retractación que el motor escribió sin que el
+ * modelo viera la declaración: se quita la entrada y aflora el veredicto de la
+ * base. Es lo que habría pasado si el motor la hubiera saltado bien —la pasada
+ * LLM que la había subido está retirada—, pero sólo mientras eso no suba nada.
+ */
+describe('decidirDevolucion', () => {
+  const medida = { editor: 'verdict-engine:gpt-5.4-mini', appliedAt: '2026-06-24T10:12:46.414Z' }
+  const comoSeMidio = { source: 'verdict-engine', ...medida }
+
+  it('devuelve la entrada medida cuando la base también dice sin-datos', () => {
+    expect(decidirDevolucion({ medida, entrada: comoSeMidio, veredictoBase: 'sin-datos' })).toEqual(
+      { accion: 'devolver' },
+    )
+  })
+
+  it('nunca sube: si la base dice más que sin-datos, la retractación se queda', () => {
+    for (const veredictoBase of ['verificado', 'parcial', 'contradicho'] as const) {
+      expect(decidirDevolucion({ medida, entrada: comoSeMidio, veredictoBase })).toEqual({
+        accion: 'dejar',
+        porque: 'la-base-subiria',
+      })
+    }
+  })
+
+  it('sin la declaración en la base no se sabe qué afloraría, y no se toca', () => {
+    expect(decidirDevolucion({ medida, entrada: comoSeMidio, veredictoBase: undefined })).toEqual({
+      accion: 'dejar',
+      porque: 'sin-base',
+    })
+  })
+
+  it('no toca una entrada que ya no es la medida: otra pasada o un curador la escribió después', () => {
+    for (const entrada of [
+      { ...comoSeMidio, appliedAt: '2026-10-02T09:00:00.000Z' },
+      { ...comoSeMidio, editor: 'verdict-engine:claude-code' },
+      { ...comoSeMidio, source: 'curator-downgrade' },
+      { ...comoSeMidio, source: 'nli' },
+    ]) {
+      expect(decidirDevolucion({ medida, entrada, veredictoBase: 'sin-datos' })).toEqual({
+        accion: 'dejar',
+        porque: 'otra-entrada',
+      })
+    }
+  })
+
+  it('lo que ya no está en el overlay ya está devuelto', () => {
+    expect(decidirDevolucion({ medida, entrada: undefined, veredictoBase: 'sin-datos' })).toEqual({
+      accion: 'dejar',
+      porque: 'ya-no-esta',
+    })
   })
 })
