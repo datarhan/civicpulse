@@ -126,11 +126,22 @@ export interface ProcedenciaLike {
 }
 
 /**
+ * Lo que leen las funciones que sólo MIRAN una ficha. Más estrecho que
+ * `FichaLike` a propósito: una `PlenoFinding` del validador encaja tal cual, y la
+ * CLI de correcciones no tiene que forzar el tipo para preguntar.
+ */
+export interface FichaConCitas {
+  id: string
+  quotes?: ReadonlyArray<{ text?: string } | null | undefined>
+  corrections?: ReadonlyArray<{ field: string; original: string; corrected: string }>
+}
+
+/**
  * Todas las versiones que el repositorio guarda del texto de cada cita vigente,
  * por su índice de hoy: el texto actual y, hacia atrás, el `original` de cada
  * fila cuyo `corrected` ya es una versión conocida.
  */
-export function versionesDeCitas(f: FichaLike): Array<Set<string>> {
+export function versionesDeCitas(f: FichaConCitas): Array<Set<string>> {
   const versiones = (f.quotes ?? []).map(
     (q) => new Set(typeof q?.text === 'string' ? [q.text] : []),
   )
@@ -263,6 +274,65 @@ export function retenerLiterales<S extends { items?: FichaLike[] }>(
     },
   })
   return { snapshot: snapshotServido, stats, retenidas }
+}
+
+/** La tabla de puertas de la procedencia, o un error: sin ella no se sabe qué está retenido. */
+function puertasDe(procedencia: ProcedenciaLike, quien: string) {
+  const puertas = procedencia?.quotes
+  if (puertas == null || typeof puertas !== 'object') {
+    throw new Error(
+      `${quien}: la procedencia no trae la tabla de citas (\`quotes\`); sin las puertas no se ` +
+        'sabe qué literal está retenido, y responder «ninguno» sería inventarlo',
+    )
+  }
+  return puertas
+}
+
+/**
+ * Cada cita retenida, con todas las versiones de su literal que el repositorio
+ * guarda (`versionesDeCitas`): lo que `rastrosDeLiterales` tiene que buscar. El
+ * id es `<ficha>#<índice de hoy>`.
+ */
+export function literalesRetenidosDe(
+  fuente: { items?: ReadonlyArray<FichaConCitas> },
+  procedencia: ProcedenciaLike,
+): Array<{ id: string; versiones: string[] }> {
+  const puertas = puertasDe(procedencia, 'literalesRetenidosDe')
+  const out: Array<{ id: string; versiones: string[] }> = []
+  for (const f of fuente.items ?? []) {
+    const versiones = versionesDeCitas(f)
+    ;(f.quotes ?? []).forEach((_q, i) => {
+      if (puertas[f.id]?.[i]?.gate === PUERTA_QUE_RETIENE)
+        out.push({ id: `${f.id}#${i}`, versiones: [...versiones[i]] })
+    })
+  }
+  return out
+}
+
+/**
+ * ¿Reproduce alguno de estos textos un tramo de un literal que la puerta
+ * retiene EN ESTA FICHA? Para la CLI de correcciones, ANTES de escribir un texto
+ * que se publica en la bitácora.
+ *
+ * Lo pide la enmienda de motivos (`--amend-reason`), que existe sobre todo para
+ * quitar de un motivo el literal de una retenida: el motivo del 9-08 de
+ * `f-2026-05-11-acu-7c65c5` citaba el arranque de una. Una herramienta que
+ * arregla eso no puede dejar escribir otra vez lo mismo, y la prueba de los
+ * datos publicados sólo lo diría después, sobre un fichero ya escrito.
+ *
+ * Los textos van por nombre (`{ nuevo, porque }`) para que la respuesta diga
+ * cuál: `[{ campo: 'nuevo', cita: 3 }]`. Falla cerrado sin procedencia.
+ */
+export function tramosRetenidosEn(
+  textos: Record<string, string>,
+  ficha: FichaConCitas,
+  procedencia: ProcedenciaLike,
+): Array<{ campo: string; cita: number }> {
+  const literales = literalesRetenidosDe({ items: [ficha] }, procedencia)
+  const prefijo = `${ficha.id}:`
+  return rastrosDeLiterales({ items: [{ ...textos, id: ficha.id }] }, literales)
+    .filter((r) => r.ruta.startsWith(prefijo) && r.ruta !== `${prefijo}id`)
+    .map((r) => ({ campo: r.ruta.slice(prefijo.length), cita: Number(r.id.split('#').pop()) }))
 }
 
 /** Por debajo de esto, un literal se diría en cualquier sitio: no se criba. */

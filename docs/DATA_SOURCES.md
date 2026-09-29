@@ -524,7 +524,8 @@ overwrites it. Change the bot's SQLite instead.
 
 - **Pipeline** — **human-curated** · `correct-pleno-finding.ts` CLI · embedded inside `pleno-findings.json`
 - **Source** — Same shape as press corrections. Same IFCN-compliant trail for the editorial findings auto-curated from pleno transcripts.
-- **Surfaces** — `/hallazgos` and `/hallazgos/:id` — collapsible "Bitácora de correcciones" expander on each `FindingDetailCard`.
+- **Amending a row's reason** — `--amend-reason <i>` replaces `corrections[i].reason` and records the change on that same row as `reasonAmendments[]` (`previous` = `motivo · sha256:…` digest of the replaced reason, never its text · `reason` ≥20 · `editor` must name a person, checked by `src/scraper/firma-de-persona.ts` · `amendedAt`). No row is appended and the row keeps its own `editor`/`correctedAt`. The validator rejects a role account or a process as the signer and preserves the key on every rewrite; the CLI refuses a new text that reproduces a withheld literal (`tramosRetenidosEn`). `--dry-run` validates and prints without writing. Rationale: the ENMIENDA DEL MOTIVO block in `src/scraper/pleno-finding.ts`.
+- **Surfaces** — `/hallazgos` and `/hallazgos/:id` — collapsible "Bitácora de correcciones" expander on each `FindingDetailCard`; an amended reason says so in text ("Motivo (enmendado el …)") with each amendment's date, signer, reason and digest.
 
 ### Provenance of every published verbatim (which transcript, and what the gate says)
 

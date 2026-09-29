@@ -1900,7 +1900,9 @@ export default function Metodologia() {
           </li>
           <li>
             La bitácora de correcciones se renderiza pública dentro de la tarjeta del hallazgo. El
-            historial es <em>append-only</em>.
+            historial es <em>append-only</em>: ninguna fila se borra ni se reordena, y lo que cambia
+            dentro de una fila ya publicada —un texto que deja de reproducirse, o un motivo
+            enmendado— deja su huella en la propia fila.
           </li>
           <li>
             Cuando lo que sale es material que no debe seguir publicándose —una cita retirada, o un
@@ -1915,6 +1917,19 @@ export default function Metodologia() {
             comprobar exactamente qué se fue y que no se fue nada más. Al reescribir así un sumario,
             las filas anteriores de la bitácora sobre ese mismo campo pasan también a huella: son
             copias de la misma prosa, y dejarlas deshace la retirada.
+          </li>
+          <li>
+            El <strong>motivo</strong> de una corrección también puede resultar equivocado, o
+            reproducir algo que no debe seguir publicándose. Entonces se enmienda (
+            <code>correct-pleno-finding --amend-reason</code>): la fila conserva su campo, sus
+            textos, su editor/a y su fecha; el motivo nuevo sustituye al anterior, que{' '}
+            <strong>no se reproduce sino que queda en huella</strong> (
+            <code>motivo · sha256:…</code>
+            ), y la enmienda lleva su propia fecha, su porqué y la firma de una persona con su
+            nombre —no la de una cuenta de rol ni la de un proceso—. En la bitácora, el motivo
+            enmendado lo dice delante, y cada enmienda enseña quién la hizo, cuándo, por qué y la
+            huella del motivo que sustituyó. No es una corrección nueva del hallazgo: no cambia nada
+            de lo que la ficha afirma, sino la explicación de un cambio anterior.
           </li>
           <li>
             <strong>Retirar el hallazgo entero</strong> es una operación distinta de corregirlo, y

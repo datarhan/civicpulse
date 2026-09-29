@@ -20,12 +20,30 @@
  * Vive aquí y no en cada página porque /hallazgos y /laboratorio llevaban el
  * mismo bloque copiado letra por letra: dos sitios donde arreglar un defecto es
  * un sitio donde se olvida.
+ *
+ * Desde el 29-09-2026 el MOTIVO de una fila también puede no ser el que se
+ * publicó con ella (`reasonAmendments`, bloque ENMIENDA DEL MOTIVO en
+ * pleno-finding.ts). La fila conserva la firma y la fecha de la corrección, así
+ * que pintar el motivo nuevo con el rótulo de siempre atribuiría a quien corrigió
+ * una explicación que escribió otra persona semanas después. Por eso el motivo
+ * enmendado lo dice delante, en texto, y cada enmienda lleva su fecha, su firma,
+ * su porqué y la huella del motivo que sustituyó —el texto anterior no se
+ * reproduce: si se enmendó fue porque no debía seguir diciéndose—.
  */
 
 import { ROTULO_CITA_RETENIDA } from '../lib/cita-retenida'
 
 export const ROTULO_TEXTO_RETIRADO = 'Texto retirado'
 export const ROTULO_TEXTO_VIGENTE = 'Texto vigente'
+export const ROTULO_MOTIVO_ENMENDADO = 'Motivo enmendado'
+
+const fecha = (iso) => String(iso ?? '').slice(0, 10)
+/**
+ * `motivo · sha256:1a2b…` → `sha256:1a2b…`: qué es ya lo dice el rótulo, y el
+ * algoritmo se queda, que es lo que necesita quien quiera rehacerla. Igual que
+ * la huella de una fila de cita retenida, más abajo.
+ */
+const huellaSinEtiqueta = (huella) => String(huella).split(' · ')[1] ?? String(huella)
 
 const rotulo = {
   fontSize: 'var(--fs-micro)',
@@ -36,6 +54,7 @@ const rotulo = {
 
 export function BitacoraCorrecciones({ correcciones }) {
   if (!correcciones?.length) return null
+  const enmendadas = correcciones.filter((c) => c.reasonAmendments?.length > 0).length
   return (
     <details
       style={{
@@ -54,6 +73,8 @@ export function BitacoraCorrecciones({ correcciones }) {
         }}
       >
         Bitácora de correcciones · {correcciones.length}
+        {enmendadas > 0 &&
+          ` · ${enmendadas} ${enmendadas === 1 ? 'motivo enmendado' : 'motivos enmendados'}`}
       </summary>
       <ol
         style={{
@@ -115,8 +136,24 @@ export function BitacoraCorrecciones({ correcciones }) {
                 color: 'var(--ink70)',
               }}
             >
-              Motivo: {c.reason}
+              {c.reasonAmendments?.length > 0
+                ? `Motivo (enmendado el ${fecha(c.reasonAmendments.at(-1).amendedAt)}): `
+                : 'Motivo: '}
+              {c.reason}
             </div>
+            {(c.reasonAmendments ?? []).map((a, j) => (
+              <div key={j} style={{ marginTop: 2, color: 'var(--ink50)' }}>
+                <span className="mono" style={rotulo}>
+                  {ROTULO_MOTIVO_ENMENDADO}:{' '}
+                </span>
+                <span className="mono" style={{ fontSize: 'var(--fs-micro)' }}>
+                  {fecha(a.amendedAt)} · {a.editor}
+                </span>
+                . {a.reason} El motivo anterior no se reproduce; queda su huella, que cualquiera con
+                una copia anterior puede rehacer:{' '}
+                <span className="mono">{huellaSinEtiqueta(a.previous)}</span>.
+              </div>
+            ))}
           </li>
         ))}
       </ol>
