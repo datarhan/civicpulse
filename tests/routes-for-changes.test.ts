@@ -2,10 +2,13 @@ import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { construirGrafoRutas } from '../scripts/lib/route-graph'
+import { leerDeDisco } from '../scripts/lib/fichas-representativas'
 import { rutasDeFichero, ordenarPorCentralidad } from '../scripts/routes-for-changes'
+import { estadoDe, rutaBase } from '../src/scraper/reader-review'
 
 const ROOT = join(__dirname, '..')
 const grafo = construirGrafoRutas(join(ROOT, 'src'))
+const publicados = leerDeDisco(join(ROOT, 'public', 'data'))
 const rutas = (f: string) => rutasDeFichero(f, grafo).sort()
 
 describe('qué rutas toca un cambio', () => {
@@ -135,8 +138,42 @@ describe('el armazón y la hoja global alcanzan TODAS las rutas', () => {
   })
 })
 
+describe('una ruta con parámetro se lee por su ficha, no se tira', () => {
+  const orden = (fs: string[]) => ordenarPorCentralidad(fs, grafo, publicados)
+
+  it('el push de la #175: ClaimLedger.jsx lleva a las fichas de /plenos/:id y /departamentos/:slug', () => {
+    // Medido el 29-09-2026: el gancho anunció «1 ruta(s), 0 directa(s):
+    // /declaraciones … nada que señalar», que venía de claim-provenance.js.
+    // ClaimLedger sólo lo pintan las dos plantillas, y se tiraban enteras.
+    const r = orden(['src/components/ClaimLedger.jsx'])
+    expect(r.rutas).toHaveLength(2)
+    const pleno = r.rutas.find((k) => rutaBase(k).startsWith('/plenos/'))
+    const depto = r.rutas.find((k) => rutaBase(k).startsWith('/departamentos/'))
+    expect(pleno, r.rutas.join(', ')).toBeTruthy()
+    expect(depto, r.rutas.join(', ')).toBeTruthy()
+    // En un pleno la tabla va tras «Declaraciones contrastadas», que la carga
+    // de la página no abre: sin el estado, se leería el resumen y nada más.
+    expect(estadoDe(pleno!)).toBe('pestanas')
+    for (const k of r.rutas) expect(rutaBase(k), k).not.toContain(':')
+  })
+
+  it('reescribir la página de una plantilla hace DIRECTA a su ficha', () => {
+    const r = orden(['src/pages/HallazgoDetalle.jsx', 'src/i18n.jsx'])
+    expect(r.directas).toBe(1)
+    expect(rutaBase(r.rutas[0]).startsWith('/hallazgos/')).toBe(true)
+  })
+
+  it('una plantilla sin ficha llega igual, con su nombre, para que el lector diga SIN FICHA', () => {
+    // Sin datos no hay ficha que elegir; tirarla sería volver al silencio.
+    const vacio = () => null
+    const r = ordenarPorCentralidad(['src/pages/QuejaDetail.jsx'], grafo, vacio)
+    expect(r.rutas).toEqual(['/quejas/:id'])
+    expect(r.directas).toBe(1)
+  })
+})
+
 describe('la centralidad ordena por lo que el push reescribió', () => {
-  const orden = (fs: string[]) => ordenarPorCentralidad(fs, grafo)
+  const orden = (fs: string[]) => ordenarPorCentralidad(fs, grafo, publicados)
 
   it('el módulo de una página sale DIRECTA; un import compartido, no', () => {
     const r = orden(['src/pages/Eficiencia.jsx', 'src/i18n.jsx'])
@@ -204,7 +241,7 @@ describe('la centralidad ordena por lo que el push reescribió', () => {
 
     // Ahora se le quita al grafo el mapa que dice de quién es cada ruta.
     const roto = { ...grafo, paginaPorRuta: new Map<string, string>() }
-    const r = ordenarPorCentralidad(entradas, roto as typeof grafo)
+    const r = ordenarPorCentralidad(entradas, roto as typeof grafo, publicados)
     expect(r.directas).toBe(0)
     expect(
       r.rutas[0],
