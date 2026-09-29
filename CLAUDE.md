@@ -394,9 +394,12 @@ not "not published"), and `.vercelignore` holds nothing back. The one way to
 keep a file under `public/` off the site is `publication-denylist.js`, applied
 to `dist/` by `vite.config.js`: it strips the files it names plus any JSON
 carrying `requiresHumanApproval: true` rows that no browser module requests, and
-`tests/publication-denylist.test.ts` checks the built artifact. That keeps a
-file off the site, not out of the repository, which has been public since
-2026-09-08. Unreviewed machine prose about a living person goes in `editorial/`
+`tests/publication-denylist.test.ts` checks the built artifact. It works one
+level down too: the served copy of `pleno-findings.json` loses the literal of
+every quote the editorial gate withholds (`src/scraper/literales-retenidos.ts`),
+while the repository's copy keeps it. That keeps a file off the site, not out
+of the repository, which has been public since 2026-09-08. Unreviewed machine
+prose about a living person goes in `editorial/`
 (gitignored; `check:editorial` refuses it staged, because `.gitignore` does not
 untrack what is already tracked).
 
