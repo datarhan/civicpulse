@@ -71,6 +71,18 @@ const FILTROS = [
     rotulo: (n) => `No se distinguen · ${n.indistintos}`,
     pasa: (i) => posicionServicio(i) === 'indistinguible',
   },
+  // La clase que ninguna pastilla nombraba: con cociente y sin comparables
+  // suficientes para situarlo. Sin ella las cifras no sumaban la de «Los N»
+  // —medido el 29-09-2026, 8 + 6 + 0 junto a «Los 15» y «los 15 con
+  // cociente»— y el lector no encontraba el decimoquinto. Condicional: el día
+  // que ese servicio llegue a quince comparables desaparece sola, en vez de
+  // quedarse diciendo «· 0».
+  {
+    id: 'sin-comparables',
+    rotulo: (n) => `Sin comparables suficientes · ${n.sinSituar}`,
+    pasa: (i) => i.valor !== null && posicionServicio(i) === 'sin-comparacion',
+    visible: (n) => n.sinSituar > 0,
+  },
   {
     id: 'sin-cociente',
     rotulo: (n) => `Sin cociente · ${n.sinCociente}`,
@@ -110,6 +122,7 @@ export function LibroServicios({ indicadores = [], formateaCon, entrega }) {
     total: indicadores.length,
     distinguen: p.abajo + p.arriba,
     indistintos: p.indistinguibles,
+    sinSituar: p.sinSituar,
     sinCociente: indicadores.filter((i) => i.valor === null).length,
   }
 
@@ -217,7 +230,7 @@ export function LibroServicios({ indicadores = [], formateaCon, entrega }) {
 
       <div className="cp-libro-filtros">
         <span className="mono cp-libro-filtros-rotulo">Ver</span>
-        {FILTROS.map((f) => (
+        {FILTROS.filter((f) => !f.visible || f.visible(cuentas)).map((f) => (
           <button
             key={f.id}
             type="button"
