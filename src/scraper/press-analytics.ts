@@ -20,10 +20,11 @@
  *      We deliberately do NOT rank outlets — ranking with <10 articles
  *      is statistical noise; the lab page sorts by raw article count.
  *
- *   2. Triangulation — for every article fingerprint shared by ≥2
- *      outlets, collect the outlets that ran it, the verdict mix on
- *      their bundled claims, and the numeric drift (max/min of any
- *      shared amountEuros). Surfaces "the same story, told three ways".
+ *   2. Triangulation — for every story told by ≥2 outlets (title
+ *      similarity, see clusterArticlesByStory), collect the outlets that
+ *      ran it and the verdict mix on their bundled claims. Surfaces "the
+ *      same story, told three ways". It does not compare their figures:
+ *      see the note on TriangulationCluster.
  *
  *   3. Coverage gaps — pleno agenda items + curated promises with
  *      ZERO press mentions in a 14-day rolling window. Tells the
@@ -267,12 +268,18 @@ export interface TriangulationCluster {
   outlets: string[]
   earliestDate: string
   latestDate: string
-  amountDrift?: {
-    min: number
-    max: number
-    spread: number
-    spreadPct: number
-  } | null
+  // Ninguna cifra. El grupo publicaba `amountDrift` —el máximo menos el mínimo de
+  // TODAS las `amountEuros` de sus artículos— y /laboratorio lo pintaba como
+  // «cifras divergen». Medido el 28-09-2026 sobre su historial, ninguna de las
+  // siete historias a las que puso cifras era una divergencia: dos eran una parte
+  // contra su total (los 180.000 € de una adjudicación contra los 135.000 € que
+  // paga el PSTD, en una misma nota; los 100.000 € de fachadas contra los
+  // 140.000 € del programa, uno en cada medio) y cinco daban la misma cifra en
+  // todos sus medios, publicada como «divergen €0». Ningún campo dice qué
+  // magnitud mide cada cifra, y sin eso compararlas es poner juntas dos cifras
+  // ciertas sin el puente que las cuadra. Una discrepancia real entre medios es
+  // un hallazgo y la firma una persona curadora. La historia entera, con las
+  // filas: tests/triangulacion-cifras.test.ts.
   verdictMix: Record<ClaimVerdict, number>
 }
 
@@ -384,26 +391,8 @@ export function computeTriangulation(opts: {
       'sin-datos': 0,
       'promesa-repetida': 0,
     }
-    const amounts: number[] = []
     for (const a of articles) {
-      const claims = verByArticle.get(a.id) ?? []
-      for (const c of claims) {
-        verdictMix[c.verification.verdict] += 1
-        if (
-          typeof c.claim.entities.amountEuros === 'number' &&
-          Number.isFinite(c.claim.entities.amountEuros)
-        ) {
-          amounts.push(c.claim.entities.amountEuros)
-        }
-      }
-    }
-    let amountDrift: TriangulationCluster['amountDrift'] = null
-    if (amounts.length >= 2) {
-      const min = Math.min(...amounts)
-      const max = Math.max(...amounts)
-      const spread = max - min
-      const spreadPct = min === 0 ? 0 : spread / min
-      amountDrift = { min, max, spread, spreadPct: Math.round(spreadPct * 1000) / 1000 }
+      for (const c of verByArticle.get(a.id) ?? []) verdictMix[c.verification.verdict] += 1
     }
     clusters.push({
       clusterId: articles.map((a) => a.fingerprint).sort()[0],
@@ -411,7 +400,6 @@ export function computeTriangulation(opts: {
       outlets: Array.from(outlets).sort(),
       earliestDate: dates[0],
       latestDate: dates[dates.length - 1],
-      amountDrift,
       verdictMix,
     })
   }

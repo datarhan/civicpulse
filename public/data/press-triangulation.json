@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-28T16:11:45.589Z",
+  "generatedAt": "2026-09-28T23:48:21.737Z",
   "clusters": [
     {
       "clusterId": "1hy1xq8",
@@ -13,7 +13,6 @@
       ],
       "earliestDate": "2026-08-31T07:00:00.000Z",
       "latestDate": "2026-08-31T09:04:15.000Z",
-      "amountDrift": null,
       "verdictMix": {
         "verificado": 0,
         "parcial": 0,
@@ -34,7 +33,6 @@
       ],
       "earliestDate": "2026-09-22T11:53:19.000Z",
       "latestDate": "2026-09-27T20:58:11.000Z",
-      "amountDrift": null,
       "verdictMix": {
         "verificado": 0,
         "parcial": 0,
@@ -55,12 +53,6 @@
       ],
       "earliestDate": "2026-09-25T09:54:12.000Z",
       "latestDate": "2026-09-25T10:33:31.000Z",
-      "amountDrift": {
-        "min": 135000,
-        "max": 180000,
-        "spread": 45000,
-        "spreadPct": 0.333
-      },
       "verdictMix": {
         "verificado": 0,
         "parcial": 1,
@@ -81,7 +73,6 @@
       ],
       "earliestDate": "2026-09-10T07:00:00.000Z",
       "latestDate": "2026-09-10T12:00:05.000Z",
-      "amountDrift": null,
       "verdictMix": {
         "verificado": 0,
         "parcial": 0,
