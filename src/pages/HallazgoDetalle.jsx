@@ -58,8 +58,10 @@ export default function HallazgoDetalle() {
   }
 
   if (!hallazgo) {
+    // La lápida de uno retirado es una página publicada y se lee; un id que no
+    // existe no, y la revisión lectora lo reconoce por `data-no-resuelta`.
     return (
-      <div className="cp-page" style={ENVOLTORIO}>
+      <div className="cp-page" style={ENVOLTORIO} data-no-resuelta={retirada ? undefined : true}>
         <Link to="/hallazgos" style={VOLVER}>
           {t('hallazgo.volver')}
         </Link>

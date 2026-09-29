@@ -27,11 +27,20 @@
  * lo que haya avanzado main entra como si lo hubiera cambiado tu rama: medido,
  * 10 rutas donde eran 2. Este ejemplo tenía dos y el gancho de pre-push lo
  * copió tal cual.
+ *
+ * Y las rutas con `:` salen por su FICHA, no se tiran. Hasta el 29-09-2026 se
+ * tiraban aquí: el push de la #175 cambió ClaimLedger.jsx, que sólo pintan
+ * /plenos/:id y /departamentos/:slug, y el gancho anunció «1 ruta(s), 0
+ * directa(s): /declaraciones» —por otro fichero del mismo push— y dijo «nada
+ * que señalar». La ficha la elige `lib/fichas-representativas.ts` de los datos;
+ * la de un pleno lleva el estado `[pestanas]`, con un espacio dentro, y por eso
+ * el gancho le pasa las rutas a `review:surfaces` por stdin.
  */
 import { readFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { construirGrafoRutas, rutasPublicas } from './lib/route-graph'
+import { construirGrafoRutas, rutasPublicas, RUTAS_LOCALES } from './lib/route-graph'
+import { fichaDe, leerDeDisco, type LeerSnapshot } from './lib/fichas-representativas'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
@@ -79,10 +88,23 @@ export interface Centralidad {
 export function ordenarPorCentralidad(
   entradas: string[],
   grafo: ReturnType<typeof construirGrafoRutas>,
+  leer: LeerSnapshot,
 ): Centralidad {
   // Sólo lo que existe en producción: pedir /curator daba un NO MONTADA en
   // cada push que tocara algo que la página del curador importa.
   const publicas = new Set(rutasPublicas(grafo))
+  // Y las plantillas con `:`, POR SU FICHA. Antes se tiraban aquí mismo: el
+  // push de la #175 cambió ClaimLedger.jsx, que sólo pintan /plenos/:id y
+  // /departamentos/:slug, y el gancho leyó /declaraciones —por otro fichero— y
+  // dijo «nada que señalar». Una plantilla sin ficha llega con su nombre, y el
+  // lector la da por SIN FICHA en vez de callarla.
+  const fichas = new Map<string, string>()
+  const aClave = (r: string): string | null => {
+    if (publicas.has(r)) return r
+    if (!r.includes(':') || RUTAS_LOCALES.includes(r)) return null
+    if (!fichas.has(r)) fichas.set(r, fichaDe(r, leer).clave)
+    return fichas.get(r)!
+  }
   // LA CENTRALIDAD NO SE TIRA.
   //
   // Antes esto era un `Set` y la multiplicidad se perdía en el `add`. Medido
@@ -105,10 +127,13 @@ export function ordenarPorCentralidad(
   const paginas = new Map([...grafo.paginaPorRuta].map(([r, f]) => [f, r]))
   const sinRuta: string[] = []
   for (const e of entradas) {
-    const r = rutasDeFichero(e, grafo).filter((x) => publicas.has(x))
+    const r = rutasDeFichero(e, grafo)
+      .map(aClave)
+      .filter((x): x is string => x !== null)
     if (rutasDeFichero(e, grafo).length === 0) sinRuta.push(e)
     const propia = paginas.get(resolve(ROOT, e.trim().replace(/^\.\//, '')))
-    if (propia && publicas.has(propia)) directa.add(propia)
+    const clavePropia = propia ? aClave(propia) : null
+    if (clavePropia) directa.add(clavePropia)
     for (const x of r) {
       cuenta.set(x, (cuenta.get(x) ?? 0) + 1)
       peso.set(x, (peso.get(x) ?? 0) + 1 / r.length)
@@ -151,7 +176,12 @@ function main() {
     : rutasArg
 
   const grafo = construirGrafoRutas(SRC)
-  const { rutas: ordenadas, detalle, directas, sinRuta } = ordenarPorCentralidad(entradas, grafo)
+  const {
+    rutas: ordenadas,
+    detalle,
+    directas,
+    sinRuta,
+  } = ordenarPorCentralidad(entradas, grafo, leerDeDisco(join(ROOT, 'public', 'data')))
 
   if (json) {
     console.log(

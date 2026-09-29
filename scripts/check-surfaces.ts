@@ -21,6 +21,7 @@
 import { readFileSync, existsSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { construirGrafoRutas, rutasRevisables } from './lib/route-graph'
+import { leerDeDisco } from './lib/fichas-representativas'
 import { medirFrescura, parteFrescura, DIAS_FRESCURA } from '../src/scraper/surface-freshness'
 import {
   validarDescartes,
@@ -37,8 +38,13 @@ function main() {
   // Las claves con estado cuentan como superficie propia. Si el barrido las
   // lee y este parte no las conoce, nunca se reportarían rancias: la prosa de
   // las capas volvería a envejecer sin que nada lo dijera, que es el agujero
-  // que estas claves vienen a tapar.
-  const rutas = rutasRevisables(construirGrafoRutas(resolve('src')))
+  // que estas claves vienen a tapar. Igual las fichas de las plantillas con
+  // `:`: la elegida hoy entra aquí y, si mañana los datos eligen otra, la nueva
+  // sale «sin leer» hasta el barrido siguiente, que es la verdad.
+  const rutas = rutasRevisables(
+    construirGrafoRutas(resolve('src')),
+    leerDeDisco(resolve('public', 'data')),
+  )
   // Un fichero ausente NO es un fichero vacío que da todo por bueno: es cero
   // revisiones, y `medirFrescura` lo cuenta como «ninguna leída».
   const cache: Record<string, string | ReviewCacheEntry> = existsSync(CACHE)

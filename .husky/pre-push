@@ -137,6 +137,9 @@ if [ -z "$RUTAS" ]; then
   exit 0
 fi
 N_RUTAS=$(printf '%s\n' "$RUTAS" | wc -l | tr -d ' ')
+# Para imprimirlas en una línea, SIN expandir `$RUTAS` suelto: una ficha con
+# estado lleva un espacio y un `[…]` que la shell partiría y trataría de glob.
+LISTA_RUTAS=$(printf '%s' "$RUTAS" | tr '\n' ' ')
 N_DIRECTAS=$(printf '%s' "$DETALLE" | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{try{console.log(JSON.parse(s).directas||0)}catch{console.log(0)}})')
 
 # Needs a $0 backend. If claude-code is not usable, say so and move on rather
@@ -147,7 +150,7 @@ if ! command -v claude >/dev/null 2>&1; then
 fi
 
 STARTED=$(date +%s)
-echo "[pre-push] este push toca $N_RUTAS ruta(s), $N_DIRECTAS directa(s): $(printf '%s ' $RUTAS)"
+echo "[pre-push] este push toca $N_RUTAS ruta(s), $N_DIRECTAS directa(s): $LISTA_RUTAS"
 
 # El presupuesto tiene un techo BAJO, y con eso entra UNA ruta.
 #
@@ -205,7 +208,7 @@ BUILD_LOG="${TMPDIR:-/tmp}/prepush-build.$$.log"
 if ! VITE_ENABLE_PERIODISTAS=true VITE_ENABLE_EFICIENCIA=true \
      npm run build >"$BUILD_LOG" 2>&1; then
   echo "[pre-push] ⚠︎ LA BUILD FALLÓ — revisión OMITIDA (omitida ≠ limpia)."
-  echo "[pre-push]   leídas 0 de $N_RUTAS ruta(s): $(printf '%s ' $RUTAS)"
+  echo "[pre-push]   leídas 0 de $N_RUTAS ruta(s): $LISTA_RUTAS"
   echo "[pre-push]   Nadie ha leído estas páginas. El push continúa —este gancho nunca bloquea—,"
   echo "[pre-push]   pero una build rota es lo que hay que arreglar antes de mirar la prosa."
   tail -12 "$BUILD_LOG" | sed 's/^/[pre-push]   │ /'
@@ -260,12 +263,16 @@ fi
 # `npm run review:surfaces` sin presupuesto sigue siendo la pasada completa
 # sobre el conjunto por defecto, a demanda.
 set -a; [ -f .env ] && . ./.env >/dev/null 2>&1; set +a
-env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY \
+# Las rutas van por STDIN, una por línea, y no como palabras sueltas: la ficha
+# de un pleno es `/plenos/<id> [pestanas]`, con un espacio dentro. Como `$RUTAS`
+# sin comillas llegaba partida en dos, y `[pestanas]` es además un patrón que
+# la shell intenta expandir contra los ficheros del directorio.
+printf '%s\n' "$RUTAS" | env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY \
     GEMINI_BIN=/nonexistent-disabled AGY_BIN=/nonexistent-disabled \
     LLM_BACKEND=claude-code LLM_CONCURRENCY=1 \
     REVIEW_BASE_URL="http://127.0.0.1:$PORT" \
     npm run --silent review:surfaces -- --budget-seconds "$PRESUPUESTO" \
-      --rotate-desde "$N_DIRECTAS" $RUTAS 2>&1 | tee "$LOG"
+      --rotate-desde "$N_DIRECTAS" --stdin 2>&1 | tee "$LOG"
 
 # No `|| true` on that: it was there before and it never protected anything —
 # the status leaked around it through the trap. `set +e` is what protects it.
@@ -304,7 +311,7 @@ if grep -q '^\[review\]' "$LOG" 2>/dev/null; then
   # que había impreso este gancho iban sobre un resumen con rutas SIN REVISAR,
   # varias con las 8 de 8 y «texto leído por el modelo: 0 %». La lista la pone
   # tests/prepush-range.test.js leyendo las marcas del propio script.
-  if grep -qE 'NO se llegó a|PARCIAL|SIN REVISAR|NO ALCANZADA|NO MONTADA' "$LOG" 2>/dev/null; then
+  if grep -qE 'NO se llegó a|PARCIAL|SIN REVISAR|NO ALCANZADA|NO MONTADA|SIN FICHA|NO RESUELTA' "$LOG" 2>/dev/null; then
     echo "[pre-push] ⚠︎ revisión INCOMPLETA (${DURACION}s): leídas enteras ${LEIDAS:-0} de $N_RUTAS ruta(s), ${SIN_CAMBIOS:-0} sin cambios desde su última lectura."
     echo "[pre-push]   Las que faltan van arriba. Pásalas con: npm run review:surfaces -- <ruta>"
   else

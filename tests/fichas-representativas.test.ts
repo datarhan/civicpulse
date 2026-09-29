@@ -147,12 +147,16 @@ describe('las reglas de elección, con datos a mano', () => {
     expect(f.clave).toBe('/cargos/con-encaje')
   })
 
-  it('/eficiencia/:id: un servicio con ficha firmada antes que uno sin ella', () => {
+  it('/eficiencia/:id: un servicio cuya competencia tiene titular, antes que uno sin él', () => {
+    // Las dos fichas firmadas de `eficiencia-findings.json` son de indicadores
+    // MUNICIPALES, que no tienen ficha propia: lo legalmente material de
+    // /eficiencia/:id es el nombre de quien tiene delegada la competencia,
+    // pintado en la misma tarjeta que la salvedad del tier.
     const f = fichaDe(
       '/eficiencia/:id',
       datos({
         'indicadores.json': { indicadores: [{ id: 'agua' }, { id: 'basuras' }] },
-        'eficiencia-findings.json': { items: [{ indicadorId: 'basuras' }] },
+        'competencias.json': { asignaciones: [{ clave: 'basuras', oficial: 'alguien' }] },
       }),
     )
     expect(f.id).toBe('basuras')
