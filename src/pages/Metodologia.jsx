@@ -1318,13 +1318,18 @@ export default function Metodologia() {
             <strong>no cambia ningún veredicto</strong>: sólo una persona puede rebajarlo (nunca
             subirlo) con una herramienta dedicada, dejando el motivo verbatim. Lo que rebaja a{' '}
             <em>parcial</em> se enseña como contrastado, con la evidencia que conservó y su motivo
-            por resumen: esa firma es suya, no de la máquina. Las decisiones de segunda pasada y de
-            curación viven en una capa («overlay») separada del veredicto determinista base, de modo
-            que recalcular la base nunca borra esas decisiones. Desde agosto de 2026 el{' '}
-            <em>tipo</em> de una declaración se corrige por la misma vía: cuando el extractor
-            archiva como <code>acusacion_publica</code> algo que no acusa a nadie —el caso que
-            estrenó la herramienta fue una defensa de la constitucionalidad de una ley estatal—, un
-            curador lo reclasifica con motivo verbatim en un registro propio (
+            por resumen: esa firma es suya, no de la máquina. Ese motivo es también la explicación
+            que la tarjeta enseña bajo la cita, y puede enmendarse después —para decir lo mismo en
+            castellano llano, o decirlo mejor— <strong>sin mover el veredicto</strong>: la enmienda
+            la firma una persona con su nombre y queda en la propia entrada, con la fecha, el porqué
+            y una huella del motivo anterior que permite cotejarlo con el historial público del
+            repositorio. Las decisiones de segunda pasada y de curación viven en una capa
+            («overlay») separada del veredicto determinista base, de modo que recalcular la base
+            nunca borra esas decisiones. Desde agosto de 2026 el <em>tipo</em> de una declaración se
+            corrige por la misma vía: cuando el extractor archiva como{' '}
+            <code>acusacion_publica</code> algo que no acusa a nadie —el caso que estrenó la
+            herramienta fue una defensa de la constitucionalidad de una ley estatal—, un curador lo
+            reclasifica con motivo verbatim en un registro propio (
             <code>pleno-claim-reclassifications.json</code>), y la herramienta sólo acepta
             movimientos que <strong>alejan</strong> de la acusación, nunca hacia ella: convertir una
             declaración en acusación agravaría lo que se afirma de quien habló, que es exactamente
