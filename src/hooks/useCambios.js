@@ -7,6 +7,7 @@ import { useTenders, formatDate } from './useTenders'
 import { useBdns } from './useBdns'
 import { useParticipa, KIND_LABEL } from './useParticipa'
 import { isCommittedContract, importeAdjudicado } from '../lib/contract-status.js'
+import { diaDeLaSede } from '../scraper/queja-router'
 
 /**
  * Hook that aggregates "what changed" across every real-data corpus into a
@@ -55,10 +56,14 @@ export function useCambios(days = DEFAULT_WINDOW_DAYS) {
     // Quejas — only non-deleted, recent. Exporter already filters deleted rows
     // (bot/src/db/queries.ts softDelete guard), so snapshot never has them.
     for (const q of quejas?.items || []) {
-      if (!inWindow(q.requested_datetime?.slice(0, 10), cut)) continue
+      // El día de la sede. `slice(0, 10)` daba el de UTC: lo enviado entre la
+      // medianoche y las 02:00 de Riba-roja caía el día anterior, y en el borde,
+      // fuera de la ventana.
+      const dia = diaDeLaSede(q.requested_datetime)
+      if (!inWindow(dia, cut)) continue
       out.push({
         kind: 'queja',
-        date: q.requested_datetime.slice(0, 10),
+        date: dia,
         title: (q.description || '').split('\n')[0].slice(0, 120),
         subtitle: [
           CATEGORY_LABEL[q.service_code] || q.service_code,

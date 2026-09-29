@@ -13,6 +13,7 @@ import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
 import { usePlenoVotes, OUTCOME_LABEL, OUTCOME_TONE } from '../hooks/usePlenoVotes'
 import { useQuejas, STATE_LABEL, STATE_TONE } from '../hooks/useQuejas'
 import { canonicalizeDepartment } from '../scraper/departments'
+import { diaDeLaSede } from '../scraper/queja-router'
 import { ESTADOS_CERRADOS, departamentoDeQueja } from '../lib/department-stats'
 import { porcentajeLegible, rellena } from '../lib/formatters'
 import { ClaimLedger } from '../components/ClaimLedger'
@@ -301,7 +302,9 @@ function QuejasSection({ slug, motivo }) {
                 {q.description || q.service_request_id}
               </div>
               <div className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-                {q.requested_datetime?.slice(0, 10)}
+                {/* El día de la sede: `slice(0, 10)` daba el de UTC, un día antes
+                    para lo enviado entre la medianoche y las 02:00 de Riba-roja. */}
+                {diaDeLaSede(q.requested_datetime)}
               </div>
             </div>
             <Pill tone={STATE_TONE[q.status ?? q.state] || 'neutral'} size="xs">

@@ -2,7 +2,8 @@
  * /escalar Q-XXXX — admin command that escalates a silencio-negativo
  * queja to the Síndic de Greuges de la Comunitat Valenciana:
  *   1. Transitions state to 'escalada_sindic'
- *   2. Broadcasts [ESCALADA] to the public channel
+ *   2. Tells the other admins it is marked as escalated (avisos-hitos.ts);
+ *      until 2026-09-29 it went to the public channel
  *   3. Returns the URLs of the auto-generated template (md + html)
  *      so the reclamante can submit at https://www.elsindic.com
  *
@@ -11,7 +12,7 @@
 
 import type { Bot } from 'grammy'
 import type { Db } from '../db/client.ts'
-import type { Channel } from '../services/channel.ts'
+import type { AvisosHitos } from '../services/avisos-hitos.ts'
 import type { MyContext } from '../types.ts'
 import { getQuejaPublica, setState } from '../db/queries.ts'
 import { routeUsingLocalOfficials } from '../services/router.ts'
@@ -33,7 +34,7 @@ function isAdmin(ctx: MyContext, admins: Set<number>): boolean {
   return !!id && admins.has(id)
 }
 
-export function registerEscalar(bot: Bot<MyContext>, db: Db, channel: Channel) {
+export function registerEscalar(bot: Bot<MyContext>, db: Db, hitos: AvisosHitos) {
   const admins = parseAdmins()
   const botHost = process.env.WEBHOOK_URL ?? null
 
@@ -62,7 +63,9 @@ export function registerEscalar(bot: Bot<MyContext>, db: Db, channel: Channel) {
 
     const updated = setState(db, id, 'escalada_sindic')
     if (updated) {
-      await channel.postEscaladaSindic(updated)
+      await hitos
+        .avisar('escalada', updated.id)
+        .catch((err) => console.error(`[escalar] el aviso de ${updated.id} no llegó:`, err))
     }
 
     const routing = routeUsingLocalOfficials({

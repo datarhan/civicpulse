@@ -8,7 +8,7 @@ import { openDb, type Db } from '../src/db/client'
 import { createQueja, getQuejaViva, type NewQuejaInput, autorTelegram } from '../src/db/queries'
 import { registrarComandos } from '../src/commands/registrar'
 import { COMANDOS_PUBLICOS, avisoPrivado } from '../src/services/solo-en-privado'
-import type { Channel } from '../src/services/channel'
+import { HITOS_MUDOS } from '../src/services/avisos-hitos'
 import type { MyContext } from '../src/types'
 
 /**
@@ -47,15 +47,6 @@ const BOT_INFO: UserFromGetMe = {
 const GRUPO = { id: -1001234567890, type: 'supergroup', title: 'Vecinos de Riba-roja' }
 const privado = (id: number) => ({ id, type: 'private', first_name: 'Vecina' })
 const TITULO_BORRADOR = 'TÍTULO DEL BORRADOR SIN REVISAR'
-
-const CANAL_MUDO: Channel = {
-  postNuevaQueja: async () => {},
-  postApoyoMilestone: async () => {},
-  postRegistrada: async () => {},
-  postResuelta: async () => {},
-  postSilencio: async () => {},
-  postEscaladaSindic: async () => {},
-}
 
 let n = 0
 function mensaje(texto: string, chat: object, de: number) {
@@ -165,7 +156,7 @@ describe('solo en privado', () => {
         result: { message_id: 1, date: 0, chat: { id: 0, type: 'private' } },
       } as never
     })
-    registrarComandos(bot, db, CANAL_MUDO)
+    registrarComandos(bot, db, HITOS_MUDOS)
   })
 
   afterEach(() => {

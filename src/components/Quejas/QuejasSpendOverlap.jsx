@@ -6,6 +6,7 @@ import { useTenderGeo } from '../../hooks/useTenderGeo'
 import { useQuejas } from '../../hooks/useQuejas'
 import { computeOverlapRows } from '../../lib/neighborhood-aggregate'
 import { yearSpan } from '../../lib/year-span'
+import { diaDeLaSede } from '../../scraper/queja-router'
 import { rellena } from '../../lib/formatters'
 import { useT } from '../../i18n'
 
@@ -71,7 +72,9 @@ export default function QuejasSpendOverlap() {
   const spanContratos = yearSpan(
     (tenderGeo?.assignments ?? []).filter((a) => (a.zones?.length ?? 0) > 0).map((a) => a.date),
   )
-  const spanQuejas = yearSpan((quejas?.items ?? []).map((q) => q.requested_datetime))
+  // El año de la sede: una queja de Nochevieja enviada a las 23:30 UTC ya es del
+  // año siguiente en Riba-roja, y con la marca tal cual el periodo empezaba antes.
+  const spanQuejas = yearSpan((quejas?.items ?? []).map((q) => diaDeLaSede(q.requested_datetime)))
 
   return (
     <Card style={{ marginTop: 14 }}>
