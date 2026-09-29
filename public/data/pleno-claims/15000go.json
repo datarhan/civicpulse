@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-28T07:54:39.464Z",
+  "generatedAt": "2026-09-28T18:58:33.258Z",
   "version": "1",
   "plenoId": "15000go",
   "plenoDate": "2023-05-24",
@@ -5020,7 +5020,8 @@
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
-        ]
+        ],
+        "source": "curator-downgrade"
       },
       "visibility": "toggle"
     },

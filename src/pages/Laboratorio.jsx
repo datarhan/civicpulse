@@ -24,15 +24,13 @@ import ClaimReviewJsonLd from '../components/ClaimReviewJsonLd'
 import { BitacoraCorrecciones } from '../components/BitacoraCorrecciones'
 import DataAsOf from '../components/DataAsOf'
 import { fmtDateShort } from '../lib/formatters'
-import { pressLabSummary, fraseVeredictos, avisoSinVeredicto } from '../lib/press-lab'
+import {
+  pressLabSummary,
+  fraseVeredictos,
+  avisoSinVeredicto,
+  VERDICT_LABEL,
+} from '../lib/press-lab'
 
-const VERDICT_LABEL = {
-  verificado: 'Verificado',
-  parcial: 'Parcial',
-  contradicho: 'Discrepa',
-  'sin-datos': 'Sin registro',
-  'promesa-repetida': 'Promesa repetida',
-}
 const VERDICT_TONE = {
   verificado: 'ok',
   parcial: 'warn',
@@ -365,15 +363,11 @@ function LabPressCard({ article, summary, claims, trust, triangulation, linkRot 
             color: 'var(--ink70)',
           }}
         >
+          {/* Decía también «· cifras divergen €45.000 (33 %)», y las dos cifras eran
+              de una sola nota: el total y la parte del PSTD. El agrupado ya no
+              compara cifras (press-analytics.ts, TriangulationCluster). */}
           Cobertura comparada · {triangulation.outlets.length} medios:{' '}
           <strong>{triangulation.outlets.join(' · ')}</strong>
-          {triangulation.amountDrift && (
-            <span>
-              {' '}
-              · cifras divergen €{fmtNumber(triangulation.amountDrift.spread)} (
-              {fmtPct(triangulation.amountDrift.spreadPct)})
-            </span>
-          )}
         </div>
       )}
       <div

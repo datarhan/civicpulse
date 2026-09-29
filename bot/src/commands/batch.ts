@@ -18,7 +18,7 @@
 import type { Bot } from 'grammy'
 import type { Db } from '../db/client.ts'
 import type { MyContext } from '../types.ts'
-import type { Channel } from '../services/channel.ts'
+import type { AvisosHitos } from '../services/avisos-hitos.ts'
 import { registerBatch, selectBatch } from '../services/batch.ts'
 import { fechaHoraDeLaSede, leerBatchRegister } from '../services/recibo-sede.ts'
 
@@ -45,7 +45,7 @@ function botBaseUrl(): string | null {
   return process.env.WEBHOOK_URL ?? null
 }
 
-export function registerBatchCommand(bot: Bot<MyContext>, db: Db, channel: Channel) {
+export function registerBatchCommand(bot: Bot<MyContext>, db: Db, hitos: AvisosHitos) {
   const admins = parseAdmins()
   if (admins.size === 0) {
     console.log('[batch] ADMIN_USER_IDS not set — batch commands disabled')
@@ -131,10 +131,12 @@ export function registerBatchCommand(bot: Bot<MyContext>, db: Db, channel: Chann
     const okIds = result.registered.map((q) => q.id)
     const failIds = result.failed.map((f) => `${f.id} (${f.reason})`)
 
-    // Broadcast each registered queja individually so the public channel
-    // shows the full list of state transitions.
+    // Cada registrada, a los demás administradores: quien la registró lo ve abajo.
+    // El registro ya está hecho: un aviso que no llega queda en el log.
     for (const q of result.registered) {
-      await channel.postRegistrada(q)
+      await hitos
+        .avisar('registrada', q.id, { asiento: q.registro_entry_number, csv: q.registro_csv })
+        .catch((err) => console.error(`[batch] el aviso de ${q.id} no llegó:`, err))
     }
 
     const body = [

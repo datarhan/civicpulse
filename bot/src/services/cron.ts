@@ -4,12 +4,13 @@
  *   For each queja in state='registrada' (or 'notificada_10d'),
  *   compute the legal plazo from queja-router. Once the sede's calendar
  *   day (Europe/Madrid) is past the plazo's LAST day and no resolution has
- *   landed, auto-transition to 'silencio_negativo' and emit the channel
- *   broadcast.
+ *   landed, auto-transition to 'silencio_negativo' and tell whoever moderates
+ *   (services/avisos-hitos.ts). Until 2026-09-29 it went to the public
+ *   Telegram channel instead, with the title.
  *
  * Paused while LOREG freeze is active.
  *
- * Pure-ish: takes (db, channel, now) so it's trivially testable.
+ * Pure-ish: takes (db, hitos, now) so it's trivially testable.
  */
 
 import type { Db } from '../db/client.ts'
@@ -18,7 +19,7 @@ import { setState } from '../db/queries.ts'
 import { routeUsingLocalOfficials } from './router.ts'
 import { diasDePlazo, diasQueQuedan } from '../../../src/scraper/queja-router.ts'
 import { isLoregFrozen } from './freeze.ts'
-import type { Channel } from './channel.ts'
+import type { AvisosHitos } from './avisos-hitos.ts'
 
 const CHECK_INTERVAL_MS = 60 * 60 * 1000 // every hour
 
@@ -33,32 +34,35 @@ export interface SilencioResult {
    */
   sinFechaLegible: string[]
   /**
-   * Detached broadcast outcome — the state transitions themselves are
-   * synchronous and never blocked on Telegram, but callers (and the cron
-   * log) can await this to learn how many [SILENCIO] posts actually
-   * landed. A failed broadcast is otherwise invisible: the transition
-   * succeeds while citizens never see the notification.
+   * El aviso a quien modera, aparte: las transiciones son síncronas y no esperan
+   * a Telegram, pero quien llama —y el log— puede esperar esto para saber
+   * cuántos avisos llegaron. Uno perdido no deja otro rastro: la queja pasa a
+   * silencio y nadie lo sabe.
    */
-  broadcasts: Promise<{ sent: number; failed: number }>
+  avisos: Promise<{ avisadas: number; fallidas: number }>
 }
 
-/** One retry after a short backoff — Telegram 429s clear in seconds. */
-async function postSilencioWithRetry(
-  channel: Channel,
+/**
+ * Un reintento tras una espera corta: un 429 de Telegram se pasa en segundos. El
+ * aviso falla si no le llega a ningún administrador (avisos-hitos.ts); con el
+ * canal, que se tragaba sus errores, este reintento no se ejecutaba nunca.
+ */
+async function avisarSilencioConReintento(
+  hitos: AvisosHitos,
   q: QuejaRow,
   plazoDias: number,
   retryDelayMs: number,
 ): Promise<boolean> {
   try {
-    await channel.postSilencio(q, plazoDias)
+    await hitos.avisar('silencio', q.id, { plazoDias })
     return true
   } catch {
     await new Promise((resolve) => setTimeout(resolve, retryDelayMs))
     try {
-      await channel.postSilencio(q, plazoDias)
+      await hitos.avisar('silencio', q.id, { plazoDias })
       return true
     } catch (err) {
-      console.error(`[cron] broadcast failed twice for ${q.id}:`, err)
+      console.error(`[cron] el aviso de silencio de ${q.id} falló dos veces:`, err)
       return false
     }
   }
@@ -66,7 +70,7 @@ async function postSilencioWithRetry(
 
 export function checkSilencio(
   db: Db,
-  channel: Channel,
+  hitos: AvisosHitos,
   now: Date = new Date(),
   retryDelayMs = 5_000,
 ): SilencioResult {
@@ -76,15 +80,15 @@ export function checkSilencio(
       skippedFrozen: true,
       checked: 0,
       sinFechaLegible: [],
-      broadcasts: Promise.resolve({ sent: 0, failed: 0 }),
+      avisos: Promise.resolve({ avisadas: 0, fallidas: 0 }),
     }
   }
   const rows = db
     .prepare(
       // El plazo legal corre sobre lo que se PRESENTÓ en la sede, esté publicado
       // o no: una queja registrada que luego se retira de la publicación sigue su
-      // curso con el ayuntamiento, y su silencio también. Lo que depende de que
-      // sea pública es el ANUNCIO de abajo. Una retirada con `/olvidar` sale
+      // curso con el ayuntamiento, y su silencio también, y quien modera tiene que
+      // saber que venció. Una retirada con `/olvidar` sale
       // también de aquí (`deleted_at`): su autor pidió que dejara de tramitarse,
       // y la fila sólo se conserva para auditoría (`CONSERVACION_QUEJAS_ANIOS`,
       // art. 55 LOPD-GDD).
@@ -97,7 +101,7 @@ export function checkSilencio(
 
   const transitioned: QuejaRow[] = []
   const sinFechaLegible: string[] = []
-  // El plazo de cada una viaja con ella hasta el aviso: el canal no lo recalcula.
+  // El plazo de cada una viaja con ella hasta el aviso: el aviso no lo recalcula.
   const avisos: Array<{ queja: QuejaRow; plazoDias: number }> = []
   for (const r of rows) {
     const routing = routeUsingLocalOfficials({
@@ -139,33 +143,39 @@ export function checkSilencio(
     const updated = setState(db, r.id, 'silencio_negativo')
     if (updated) {
       transitioned.push(updated)
-      // `postSilencio` publica en el canal el id y el TÍTULO literal: sólo de lo
-      // que es público (`SQL_PUBLICA`).
-      if (updated.moderacion === 'publicada') avisos.push({ queja: updated, plazoDias: plazoDays })
+      // A quien modera, de todas: el aviso lleva el id y no el texto, así que no
+      // publica nada, y lo presentado en sede vence esté publicado o no.
+      avisos.push({ queja: updated, plazoDias: plazoDays })
     }
   }
 
-  // Detached broadcasts (non-blocking for the transition path) with one
-  // retry each + an aggregate count so missed notifications leave a trace.
-  const broadcasts = Promise.all(
+  // Los avisos, aparte (la transición no los espera), con un reintento cada uno y
+  // la cuenta de los que no llegaron, para que un aviso perdido deje rastro.
+  const avisados = Promise.all(
     avisos.map(({ queja, plazoDias }) =>
-      postSilencioWithRetry(channel, queja, plazoDias, retryDelayMs),
+      avisarSilencioConReintento(hitos, queja, plazoDias, retryDelayMs),
     ),
   ).then((oks) => {
-    const sent = oks.filter(Boolean).length
-    const failed = oks.length - sent
-    if (failed > 0) {
-      console.error(`[cron] ${failed}/${oks.length} silencio broadcasts failed permanently`)
+    const avisadas = oks.filter(Boolean).length
+    const fallidas = oks.length - avisadas
+    if (fallidas > 0) {
+      console.error(`[cron] ${fallidas}/${oks.length} avisos de silencio no llegaron a nadie`)
     }
-    return { sent, failed }
+    return { avisadas, fallidas }
   })
-  return { transitioned, skippedFrozen: false, checked: rows.length, sinFechaLegible, broadcasts }
+  return {
+    transitioned,
+    skippedFrozen: false,
+    checked: rows.length,
+    sinFechaLegible,
+    avisos: avisados,
+  }
 }
 
-export function startSilencioCron(db: Db, channel: Channel): () => void {
+export function startSilencioCron(db: Db, hitos: AvisosHitos): () => void {
   const tick = () => {
     try {
-      const r = checkSilencio(db, channel)
+      const r = checkSilencio(db, hitos)
       if (r.sinFechaLegible.length > 0) {
         console.error(
           `[cron] ${r.sinFechaLegible.length} registrada(s) sin fecha de registro legible, sin evaluar: ${r.sinFechaLegible.join(', ')}`,

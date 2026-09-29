@@ -74,8 +74,10 @@ flyctl secrets set --app munigraph-ribarroja \
 
 Optional secrets you can set now or later:
 
-- `CHANNEL_ID=-100…` — enables `[NUEVA]/[APOYADA]/[REGISTRADA]` broadcasts.
-  The bot must be added as an admin of that channel.
+- `CHANNEL_ID` — ya no se usa: desde el 2026-09-29 el bot no publica en ningún
+  canal, y los hitos de cada queja van por privado a los administradores
+  (`src/services/avisos-hitos.ts`). Si sigue puesto, se puede quitar:
+  `flyctl secrets unset --app munigraph-ribarroja CHANNEL_ID`.
 - `ADMIN_USER_IDS=123,456` — Telegram user IDs allowed to run `/batch`,
   `/batch_register`, `/escalar`. Find yours via [@userinfobot](https://t.me/userinfobot).
 - `GEMINI_API_KEY` — la clave del análisis que localiza caras y matrículas en las
@@ -212,8 +214,9 @@ llega primero **en ensayo** (`MIGRACIONES_EN_ENSAYO`): se despliega sin que el
 bot la aplique al arrancar, y la orden de abajo ya la ensaya —lo dice: «en
 ensayo, aún sin aplicar en el bot»—. Con el ensayo correcto y la instantánea
 hecha, el cambio que la usa la pasa a `MIGRACIONES` y se fusiona. Así llegó la 1
-(#132 inerte, #135 activa), y así llega la 2 (#138 en ensayo, #137 la activa). Y
-una migración ensayada no se cambia: `tests/migraciones.test.ts` guarda la huella
+(#132 inerte, #135 activa), así la 2 (#138 en ensayo, #137 la activó), y así
+llega la 3 (`revision-automatica`: en ensayo; la activa la revisión automática).
+Y una migración ensayada no se cambia: `tests/migraciones.test.ts` guarda la huella
 del SQL de cada una, y si su texto cambia después del ensayo, vuelve a entrar en
 ensayo y se ensaya otra vez. La orden:
 

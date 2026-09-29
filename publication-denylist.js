@@ -1,3 +1,5 @@
+import { PUERTA_QUE_RETIENE, retenerLiterales } from './src/scraper/literales-retenidos'
+
 /**
  * Ficheros que viven bajo `public/` y NO deben desplegarse.
  *
@@ -29,6 +31,16 @@
  * La lección que fija esta lista: el único denominador honesto es el
  * artefacto construido. `tests/publication-denylist.test.ts` lo comprueba
  * sobre `dist/`.
+ *
+ * ---
+ *
+ * Y un nivel más abajo, un CAMPO: `pleno-findings.json` no se puede quitar
+ * entero —las páginas de hallazgos lo necesitan—, pero hasta el 28-09-2026
+ * servía el literal de cada cita que la puerta editorial retiene, mientras la
+ * página pintaba en su lugar el hueco «Literal retenido».
+ * `retenerLiteralesEnDist`, abajo, reescribe la copia de `dist/` sin esos
+ * literales; la del repositorio los conserva, y el repositorio es público. La
+ * historia está en `src/scraper/literales-retenidos.ts`.
  *
  * @type {readonly string[]}
  */
@@ -130,6 +142,74 @@ export function repartir({ hojas, referencias }) {
     else denegar.push(rel)
   }
   return { denegar, servidas, limpias, ilegibles }
+}
+
+/**
+ * La copia servida de `pleno-findings.json`, sin el literal de ninguna cita que
+ * la puerta editorial retiene (`retenerLiterales`, en
+ * src/scraper/literales-retenidos.ts, cuenta por qué y qué conserva).
+ *
+ * Tres suertes, y ninguna se dobla con otra:
+ *
+ *  · Sin `pleno-findings.json` en `dist/`, no hay literal que servir: se dice y
+ *    se sigue.
+ *  · Sin procedencia legible, NO se sabe qué retener, y la compilación se cae.
+ *    Seguir sería desplegar el fichero entero, que es la avería que esto cierra.
+ *  · Escrita la copia, se RELEE del disco y se comprueba cita por cita: lo que
+ *    se despliega es el fichero, no el objeto en memoria.
+ *
+ * Lee la procedencia SERVIDA, no la de `public/`: es la que usa la página para
+ * decidir el hueco, así que retener y pintar no pueden discrepar.
+ */
+export async function retenerLiteralesEnDist(dirDatos) {
+  const { readFile, writeFile } = await import('node:fs/promises')
+  const { join } = await import('node:path')
+  const rutaHallazgos = join(dirDatos, 'pleno-findings.json')
+  const rutaProcedencia = join(dirDatos, 'finding-quote-provenance.json')
+
+  let texto
+  try {
+    texto = await readFile(rutaHallazgos, 'utf8')
+  } catch (err) {
+    if (err.code === 'ENOENT') {
+      console.log('[publication-guard] pleno-findings.json no estaba: ningún literal que retener')
+      return null
+    }
+    throw new Error(`[publication-guard] no se pudo leer ${rutaHallazgos}: ${err.message}`)
+  }
+  let procedencia
+  try {
+    procedencia = JSON.parse(await readFile(rutaProcedencia, 'utf8'))
+  } catch (err) {
+    throw new Error(
+      `[publication-guard] sin finding-quote-provenance.json legible no se sabe qué literal ` +
+        `retener (${err.message}), y desplegar pleno-findings.json entero es publicarlos todos`,
+    )
+  }
+
+  const { snapshot, stats } = retenerLiterales(JSON.parse(texto), procedencia)
+  await writeFile(rutaHallazgos, `${JSON.stringify(snapshot, null, 2)}\n`)
+
+  const escrito = JSON.parse(await readFile(rutaHallazgos, 'utf8'))
+  const conTexto = []
+  for (const f of escrito.items ?? []) {
+    ;(f.quotes ?? []).forEach((q, i) => {
+      const retenida = procedencia.quotes?.[f.id]?.[i]?.gate === PUERTA_QUE_RETIENE
+      if (retenida && q?.text != null) conTexto.push(`${f.id}#${i}`)
+    })
+  }
+  console.log(
+    `[publication-guard] pleno-findings.json: ${stats.citasRetenidas} cita(s) sin su literal · ` +
+      `${stats.filasDeBitacora} fila(s) de bitácora en huella · ` +
+      `${stats.citasSinPuerta} cita(s) sin puerta · ${stats.filasHuerfanas} fila(s) huérfana(s)`,
+  )
+  if (conTexto.length) {
+    throw new Error(
+      `[publication-guard] dist/data/pleno-findings.json sigue sirviendo el literal de ` +
+        `${conTexto.length} cita(s) retenida(s): ${conTexto.join(', ')}`,
+    )
+  }
+  return stats
 }
 
 /**
@@ -251,6 +331,9 @@ export function vitePublicationGuard() {
           // lista prohíbe es publicarlo. Se cae aquí.
           throw new Error(`[publication-guard] no se pudo retirar de dist/: ${fallidos.join(', ')}`)
         }
+
+        // Un fichero que sí se sirve, sin el campo que no debe servirse.
+        await retenerLiteralesEnDist(resolve(root, 'dist', 'data'))
       },
     },
   }

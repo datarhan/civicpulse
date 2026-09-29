@@ -12,6 +12,7 @@ import { useDepartmentStats } from '../hooks/useDepartmentStats'
 import { useElections } from '../hooks/useElections'
 import { useTransparencyDocs } from '../hooks/useTransparencyDocs'
 import { cvDocForOfficial } from '../lib/official-cv'
+import { INDICE_CV_RETIRADO, enIndiceRetirado } from '../lib/indice-cv-retirado'
 import { latestVoteShare } from '../lib/party-alias'
 import { canonicalizeDepartments, DEPARTMENT_LABEL } from '../scraper/departments'
 import { EncajeMatrix, QueExigeLaLey } from '../components/EncajeDeclarado'
@@ -337,11 +338,22 @@ function Mandato({ party }) {
  * Y la ausencia se dibuja, en vez de no dibujar nada. Que el Ayuntamiento no
  * publique el CV de un escaño es un hecho sobre lo que publica el Ayuntamiento,
  * y callarlo lo esconde: quien mira esa ficha no distingue «no lo hemos
- * encontrado» de «no existe». Lo que NO se dice es por qué falta: no consta si
- * alguna vez estuvo, porque la página anterior no tiene copia archivada.
+ * encontrado» de «no existe». Lo que NO se dice es por qué falta.
+ *
+ * Lo que sí se dice es lo que el registro propio sabe de la página anterior,
+ * escaño a escaño (`indice-cv-retirado.js`). Decía de todos «no se puede decir
+ * si se retiró o nunca estuvo», y de los tres escaños sin currículo el registro
+ * lo dice: 67 lecturas de la página vieja y en ninguna estaban (verificación
+ * del barrido lector del 28-09-2026; /metodologia ya lo decía). A quien sí
+ * figuraba no se le puede decir lo mismo si pierde el suyo, y a quien el
+ * registro no alcanza no se le dice nada de antes.
  */
 function FichaOficial({ official, roster }) {
-  const t = useT()
+  const { locale, t } = useLocale()
+  const enIndice = enIndiceRetirado(official?.slug)
+  const lecturas = INDICE_CV_RETIRADO.lecturas
+  const primera = fmtDateLong(INDICE_CV_RETIRADO.primera, locale)
+  const ultima = fmtDateLong(INDICE_CV_RETIRADO.ultima, locale)
   const { data } = useTransparencyDocs()
   const doc = cvDocForOfficial(data, official, roster)
   const url = official?.cvUrl || doc?.url || null
@@ -374,6 +386,10 @@ function FichaOficial({ official, roster }) {
           <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink70)' }}>
             <strong style={{ color: 'var(--ink)' }}>{t('cargos.detalle.ficha.sin.title')}</strong>{' '}
             {t('cargos.detalle.ficha.sin.body')}
+            {enIndice === 'ausente' &&
+              ` ${rellena(t('cargos.detalle.ficha.sin.ausente'), { lecturas, primera, ultima })}`}
+            {enIndice === 'presente' &&
+              ` ${rellena(t('cargos.detalle.ficha.sin.presente'), { lecturas, primera, ultima })}`}
           </div>
         )}
         <div

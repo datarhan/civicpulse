@@ -8,32 +8,50 @@ import {
 } from '../hooks/useQuejaContractRelations'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
-import { fmtDateLong, rellena } from '../lib/formatters'
+import { fmtDateHuman, rellena } from '../lib/formatters'
 import { conHuecos } from '../lib/huecos'
 import { rotuloDe, useLocale } from '../i18n'
 import { CLAVE_RELACION } from '../scraper/relation-labels'
-import { diasQueQuedan, plazoDeResolucion } from '../scraper/queja-router'
+import {
+  diaDeLaSede,
+  diasQueQuedan,
+  instanteUtc,
+  plazoDeResolucion,
+  ZONA_DE_LA_SEDE,
+} from '../scraper/queja-router'
 import { DEPARTMENT_LABEL } from '../scraper/departments'
 
 const SINDIC_PORTAL = 'https://www.elsindic.com/es/presenta-una-queja'
 
+/**
+ * Fecha y hora de la sede, no las del reloj de quien lee: una respuesta aplicada
+ * a las 23:45 UTC es de la 00:45 del día siguiente en Riba-roja, y en UTC o en
+ * Nueva York salía con el día anterior.
+ */
 function fmt(iso, idioma) {
-  if (!iso) return '—'
-  try {
-    return new Date(iso).toLocaleString(idioma === 'ca' ? 'ca-ES' : 'es-ES', {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-    })
-  } catch {
-    return iso
-  }
+  const instante = instanteUtc(iso ?? '')
+  if (Number.isNaN(instante)) return '—'
+  return new Date(instante).toLocaleString(idioma === 'ca' ? 'ca-ES' : 'es-ES', {
+    timeZone: ZONA_DE_LA_SEDE,
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  })
 }
 
+/**
+ * El día de la sede en que cae una marca del bot, en letra.
+ *
+ * `fmtDateLong` hacía `new Date(marca)`, que lee la forma de SQLite —hora UTC sin
+ * zona— en hora LOCAL, y pintaba el día del reloj de quien lee: con el reloj en
+ * Madrid, la ficha fechaba el 20 de septiembre una queja enviada a la 00:30 del
+ * 21. El día sale de `diaDeLaSede`, y `fmtDateHuman` lo escribe sin volver a
+ * pasarlo por ningún reloj: una fecha sin hora la lee como medianoche local.
+ */
 function fmtDate(iso, idioma) {
-  return fmtDateLong(iso, idioma) || '—'
+  return fmtDateHuman(diaDeLaSede(iso), idioma) || '—'
 }
 
 /**

@@ -11,7 +11,7 @@ import { Bot } from 'grammy'
 import type { UserFromGetMe } from 'grammy/types'
 import type { Db } from '../../src/db/client'
 import { registrarComandos } from '../../src/commands/registrar'
-import type { Channel } from '../../src/services/channel'
+import { HITOS_MUDOS, type AvisosHitos } from '../../src/services/avisos-hitos'
 import type { MyContext } from '../../src/types'
 
 export const BOT_INFO: UserFromGetMe = {
@@ -30,15 +30,6 @@ export const BOT_INFO: UserFromGetMe = {
   supports_join_request_queries: false,
 }
 
-export const CANAL_MUDO: Channel = {
-  postNuevaQueja: async () => {},
-  postApoyoMilestone: async () => {},
-  postRegistrada: async () => {},
-  postResuelta: async () => {},
-  postSilencio: async () => {},
-  postEscaladaSindic: async () => {},
-}
-
 export interface Llamada {
   metodo: string
   cuerpo: Record<string, any>
@@ -49,7 +40,8 @@ export interface Llamada {
 export function botFalso(
   db: Db,
   o: {
-    canal?: Channel
+    /** Los avisos de hitos a quien modera; por defecto, mudos. */
+    hitos?: AvisosHitos
     /**
      * Las llamadas que Telegram rechaza: `true`, como un bot bloqueado por quien
      * las recibe (403); un número, con ese código (un 502 es un fallo de paso).
@@ -99,7 +91,7 @@ export function botFalso(
     })
   }) as typeof fetch
   const bot = new Bot<MyContext>('1:prueba', { botInfo: BOT_INFO, client: { fetch: fetchFalso } })
-  registrarComandos(bot, db, o.canal ?? CANAL_MUDO)
+  registrarComandos(bot, db, o.hitos ?? HITOS_MUDOS)
   return {
     bot,
     llamadas,

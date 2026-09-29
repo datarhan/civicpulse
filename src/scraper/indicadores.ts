@@ -36,6 +36,7 @@ import { programaCe4CasaCon, type Ce4Row, type CesteRow, type ModoGestion } from
 import { crearPrng, semillaDesde } from './prng'
 import { SERVICIOS, type ServicioDef, type Divisor } from './indicador-registry'
 import { medirDeclaracionCongelada } from './declaracion-congelada'
+import { SALVEDAD_DENOMINADOR_CONGELADO } from './indicador-lectura'
 
 /**
  * El escalón de Hatry, y la razón de que este panel no sea otro cuadro de
@@ -585,9 +586,9 @@ function medirDeclaracion(
  * Tres casos, y decir el equivocado sería una acusación que la fuente no
  * sostiene:
  *
- * - **Sólo el denominador congelado.** El caso grave: el cociente sube sin que
- *   el servicio cambie.
- * - **Las dos magnitudes congeladas.** El cociente no sube; sencillamente es
+ * - **Sólo el denominador congelado.** El caso grave: el cociente se mueve con
+ *   el coste, suba o baje, sin que el servicio tenga por qué haber cambiado.
+ * - **Las dos magnitudes congeladas.** El cociente no se mueve; sencillamente es
  *   viejo. Decir lo primero aquí sería falso.
  * - **Sólo el coste congelado.** Raro, y merece constar: el numerador es el que
  *   se quedó atrás.
@@ -610,8 +611,7 @@ function caveatDeclaracion(d: DeclaracionIndicador, def: ServicioDef): string | 
     return (
       `El ayuntamiento declara la misma cifra de ${def.denominador.toLowerCase()} desde ` +
       `${d.denominador.desde} —${d.denominador.repeticionesFinales} entregas seguidas— mientras ` +
-      `actualizaba el coste en cada una. El cociente puede subir sin que el servicio haya ` +
-      `cambiado: nadie ha vuelto a medir el denominador.${conPares}`
+      `actualizaba el coste en cada una. ${SALVEDAD_DENOMINADOR_CONGELADO}${conPares}`
     )
   }
   if (d.numerador.congelada) {

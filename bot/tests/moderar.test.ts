@@ -13,8 +13,7 @@ import {
   type EnvioAdmin,
 } from '../src/services/avisos-admin'
 import { autorTelegram, createQueja, decidirModeracion, softDeleteQueja } from '../src/db/queries'
-import type { Channel } from '../src/services/channel'
-import { botFalso, texto, boton, CANAL_MUDO } from './helpers/bot-falso'
+import { botFalso, texto, boton } from './helpers/bot-falso'
 import { creaPublicada } from './helpers/publicada'
 import { MAX_MENSAJE } from '../src/util/telegram'
 
@@ -372,19 +371,15 @@ describe('lo que la revisión arrastraba roto (revisión de #137)', () => {
     for (const e of eds) expect(String(e.cuerpo.text)).not.toMatch(/farola/i)
   })
 
-  it('el canal público no anuncia nada: ni al recibirla ni al publicarla', async () => {
-    const anunciadas: string[] = []
-    const espia: Channel = {
-      ...CANAL_MUDO,
-      postNuevaQueja: async (q) => {
-        anunciadas.push(q.id)
-      },
-    }
-    h = botFalso(db, { canal: espia })
+  it('nada sale a un canal: ni al recibirla ni al publicarla, cada mensaje va a su autora o a quien modera', async () => {
     const id = await presentar()
     await h.bot.handleUpdate(boton(ADMIN_A, `mod:pub:${id}`))
     expect(moderacion(id)).toBe('publicada')
-    expect(anunciadas).toEqual([])
+    const destinos = new Set(
+      h.llamadas.filter((l) => l.cuerpo.chat_id !== undefined).map((l) => Number(l.cuerpo.chat_id)),
+    )
+    expect(destinos.size).toBeGreaterThan(1) // el control: hay mensajes que mirar
+    expect([...destinos].filter((d) => ![VECINA, ADMIN_A, ADMIN_B].includes(d))).toEqual([])
   })
 
   it('la tarjeta dice si trae foto y a qué área y cargo la atribuye el enrutador', () => {

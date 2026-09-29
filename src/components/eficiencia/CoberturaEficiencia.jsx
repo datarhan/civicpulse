@@ -190,9 +190,10 @@ export function CoberturaEficiencia({
             )}{' '}
             un denominador que el ayuntamiento no vuelve a medir: declara la misma cantidad
             {desde ? ` desde ${desde}` : ''} entrega tras entrega, mientras actualiza el coste en
-            cada una. Un coste unitario así puede subir sin que el servicio haya cambiado, y su
-            serie no se puede leer como gestión. Cada tarjeta va marcada con el año desde el que no
-            se remide, y lleva dentro cuántos municipios comparables hacen lo mismo.{' '}
+            cada una. Un coste unitario así puede moverse sin que el servicio haya cambiado —sigue
+            al coste, sube y baja con él—, y su serie no se puede leer como gestión. Cada tarjeta va
+            marcada con el año desde el que no se remide, y lleva dentro cuántos municipios
+            comparables hacen lo mismo.{' '}
             <a
               href="/laboratorio/frontera"
               style={{ color: 'var(--civic)', textDecoration: 'underline' }}

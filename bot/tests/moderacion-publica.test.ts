@@ -23,7 +23,8 @@ import { selectBatch } from '../src/services/batch'
 import { checkSilencio } from '../src/services/cron'
 import { sirveFotoExportada } from '../src/services/foto-exportada'
 import { sirveSindic } from '../src/services/sindic'
-import { botFalso, texto, CANAL_MUDO } from './helpers/bot-falso'
+import { botFalso, texto } from './helpers/bot-falso'
+import type { AvisosHitos } from '../src/services/avisos-hitos'
 
 /**
  * Lo que ve el público es lo PUBLICADO, en todos los lectores a la vez.
@@ -129,25 +130,25 @@ describe('sólo lo publicado sale', () => {
     soloLaPublicada(selectBatch(db, 50).map((b) => b.queja.id))
   })
 
-  it('el silencio administrativo: el plazo corre sobre lo presentado; sólo se anuncia lo público', async () => {
+  it('el silencio administrativo: el plazo corre sobre lo presentado, y se avisa a quien modera de todas', async () => {
     db.prepare(
       "UPDATE quejas SET state = 'registrada', registered_at = '2025-01-01 00:00:00', registro_entry_number = 'RE-1'",
     ).run()
-    const anunciadas: string[] = []
-    const espia = {
-      ...CANAL_MUDO,
-      postSilencio: async (q: { id: string }) => {
-        anunciadas.push(q.id)
+    const avisadas: string[] = []
+    const espia: AvisosHitos = {
+      avisar: async (_hito, id) => {
+        avisadas.push(id)
+        return { entregados: 1, fallidos: 0 }
       },
     }
     const r = checkSilencio(db, espia, new Date('2026-09-27T12:00:00Z'), 0)
-    await r.broadcasts
+    await r.avisos
     // Una queja ya presentada en la sede que se retira de la publicación sigue su
-    // curso legal: el ayuntamiento la tiene. Lo que no se hace es anunciarla.
-    expect(r.transitioned.map((q) => q.id).sort()).toEqual(
-      [ids.publicada, ids.pendiente, ids.descartada, ids.retirada].sort(),
-    )
-    soloLaPublicada(anunciadas)
+    // curso legal: el ayuntamiento la tiene, y quien modera tiene que saber que
+    // venció. El aviso va a quien modera y sin su texto: nada se publica.
+    const presentadas = [ids.publicada, ids.pendiente, ids.descartada, ids.retirada].sort()
+    expect(r.transitioned.map((q) => q.id).sort()).toEqual(presentadas)
+    expect(avisadas.sort()).toEqual(presentadas)
   })
 
   it('la pasada de fotos sólo trabaja las publicadas', () => {
@@ -224,7 +225,7 @@ const NO_PUBLICOS: Record<string, string> = {
   'services/avisos-admin.ts:avisosQueFaltan':
     'el aviso a su autor de lo que se decidió sobre la suya, publicada o no',
   'services/cron.ts:checkSilencio':
-    'el plazo legal corre sobre lo presentado en la sede, publicado o no; el anuncio va aparte',
+    'el plazo legal corre sobre lo presentado en la sede, publicado o no; el aviso, a quien modera y sin su texto',
 }
 
 describe('ningún lector nuevo filtra sólo por deleted_at', () => {

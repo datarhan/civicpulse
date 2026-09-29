@@ -4,6 +4,7 @@ import { usePlenoFindings } from '../hooks/usePlenoFindings'
 import { useFindingQuoteProvenance } from '../hooks/useFindingQuoteProvenance'
 import { useIndicadores } from '../hooks/useIndicadores'
 import { useOfficials } from '../hooks/useOfficials'
+import { useFrontera } from '../hooks/useFrontera'
 import { mailboxKinds } from '../lib/mailboxes'
 // El umbral se IMPORTA del motor: escrito a mano aquí, cambiar la constante
 // dejaría esta página afirmando una regla que el código ya no aplica — y esta
@@ -270,7 +271,31 @@ function MudanzaDelPortal() {
   )
 }
 
+/**
+ * Cuántas observaciones tiene la frontera, leído de dea.json.
+ *
+ * El párrafo de #frontera decía «con veinte observaciones», escrito a mano, y
+ * las dos especificaciones publicadas tienen 24 (`distribucion.n`, Riba-roja
+ * incluida). Un tamaño por especificación: si difieren se da el intervalo, y
+ * sin ninguna publicada no se escribe número.
+ *
+ * @returns {string | null} «24», «entre 24 y 31», o null.
+ */
+function useObservacionesFrontera() {
+  const { data } = useFrontera()
+  const tamanos = [
+    ...new Set(
+      (data?.especificaciones ?? [])
+        .map((e) => e?.distribucion?.n)
+        .filter((n) => Number.isInteger(n) && n > 0),
+    ),
+  ].sort((a, b) => a - b)
+  if (tamanos.length === 0) return null
+  return tamanos.length === 1 ? String(tamanos[0]) : `entre ${tamanos[0]} y ${tamanos.at(-1)}`
+}
+
 export default function Metodologia() {
+  const observacionesFrontera = useObservacionesFrontera()
   const authorship = useAuthorshipDisclosure()
   const adjudication = useAdjudicationDisclosure()
   const quoteProvenance = useQuoteProvenanceDisclosure()
@@ -323,9 +348,13 @@ export default function Metodologia() {
             pleno pueden aparecer. El tracker no rankea partidos por tasa de cumplimiento en V1.
           </li>
           <li>
-            <strong>Fuente primaria obligatoria.</strong> Cada promesa se atribuye mediante una cita
-            verbatim (≥20 caracteres) que enlaza a un documento público primario (programa
-            electoral, nota de prensa, acta de pleno, presupuesto aprobado).
+            <strong>Fuente enlazada obligatoria.</strong> Cada promesa se atribuye mediante una cita
+            textual (≥20 caracteres) copiada de la fuente que enlaza su ficha: un documento oficial
+            —programa electoral, acta de pleno, nota de prensa del Ayuntamiento, presupuesto
+            aprobado— o la noticia de prensa que recoge el compromiso, y la ficha nombra quién la
+            publicó. Cuando la fuente es una noticia, la cita es texto del medio —su titular o la
+            frase con que recoge el compromiso—, no necesariamente palabras del partido. Nuestros
+            propios datos no sirven de fuente: con ellos se contrasta una promesa, no se sostiene.
           </li>
           <li>
             <strong>Conservadurismo en los estados.</strong> El estado por defecto es{' '}
@@ -895,11 +924,11 @@ export default function Metodologia() {
               hallazgo de gravedad crítica (que es una acusación), los informes marcados como
               jurídicamente sensibles, y todo lo irreversible o dirigido al exterior — registrar una
               queja en sede, publicar una queja ciudadana. No porque una persona acierte más, sino
-              porque la responsabilidad legal necesita una firma. En las quejas ciudadanas hay tres
-              excepciones: dos avisos automáticos del canal público de Telegram sobre quejas ya
-              publicadas —cuando una alcanza los apoyos necesarios y cuando vence su plazo sin
-              respuesta— y la foto de una queja publicada, que se anonimiza y se publica sin que
-              nadie la vea.
+              porque la responsabilidad legal necesita una firma. En las quejas ciudadanas hay una
+              excepción: la foto de una queja publicada, que se anonimiza y se publica sin que nadie
+              la vea. Los hitos de cada queja —cuando alcanza los apoyos necesarios, cuando se
+              registra, cuando vence su plazo sin respuesta— no se anuncian en ningún canal público:
+              se avisan a quien modera.
             </li>
           </ul>
           <p style={{ marginBottom: 0 }}>
@@ -1118,9 +1147,14 @@ export default function Metodologia() {
                 autonómico o estatal con un contrato municipal que compartía una palabra suelta. Una
                 concejala citando el precio del alquiler de vivienda quedaba «desmentida» por el
                 alquiler de un camión de basura; los 63.000 millones de deuda de la Generalitat, por
-                una ampliación de 32.591 € del <em>parque Generalitat</em>. Hoy un{' '}
-                <em>contradicho</em> de máquina se retiene y sólo aparece si una persona lo
-                promueve.
+                una ampliación de 32.591 € del <em>parque Generalitat</em>.{' '}
+                {/* Decía «Hoy un contradicho de máquina se retiene y sólo aparece si
+                    una persona lo promueve». Ninguna herramienta de curación puede
+                    escribir un contradicho —sólo bajan—, y desde el 27-08-2026 promover
+                    a hallazgo tampoco saca una cita de la puerta. 28-09-2026. */}
+                Hoy un <em>contradicho</em> se retiene siempre: el de máquina es una pista para
+                quien redacta, no un veredicto, y ninguna herramienta de curación puede escribir uno
+                —sólo bajan—.
               </li>
               <li>
                 <strong>sin-datos</strong> — no hay registro en las bases abiertas. Puede ser
@@ -1156,13 +1190,15 @@ export default function Metodologia() {
             <em>contradicho</em>, no la contradice— el veredicto se{' '}
             <strong>marca para revisión de un curador</strong>. Esa revisión{' '}
             <strong>no cambia ningún veredicto</strong>: sólo una persona puede rebajarlo (nunca
-            subirlo) con una herramienta dedicada, dejando el motivo verbatim. Las decisiones de
-            segunda pasada y de curación viven en una capa («overlay») separada del veredicto
-            determinista base, de modo que recalcular la base nunca borra esas decisiones. Desde
-            agosto de 2026 el <em>tipo</em> de una declaración se corrige por la misma vía: cuando
-            el extractor archiva como <code>acusacion_publica</code> algo que no acusa a nadie —el
-            caso que estrenó la herramienta fue una defensa de la constitucionalidad de una ley
-            estatal—, un curador lo reclasifica con motivo verbatim en un registro propio (
+            subirlo) con una herramienta dedicada, dejando el motivo verbatim. Lo que rebaja a{' '}
+            <em>parcial</em> se enseña como contrastado, con la evidencia que conservó y su motivo
+            por resumen: esa firma es suya, no de la máquina. Las decisiones de segunda pasada y de
+            curación viven en una capa («overlay») separada del veredicto determinista base, de modo
+            que recalcular la base nunca borra esas decisiones. Desde agosto de 2026 el{' '}
+            <em>tipo</em> de una declaración se corrige por la misma vía: cuando el extractor
+            archiva como <code>acusacion_publica</code> algo que no acusa a nadie —el caso que
+            estrenó la herramienta fue una defensa de la constitucionalidad de una ley estatal—, un
+            curador lo reclasifica con motivo verbatim en un registro propio (
             <code>pleno-claim-reclassifications.json</code>), y la herramienta sólo acepta
             movimientos que <strong>alejan</strong> de la acusación, nunca hacia ella: convertir una
             declaración en acusación agravaría lo que se afirma de quien habló, que es exactamente
@@ -1485,7 +1521,8 @@ export default function Metodologia() {
             etiquetada como sin contraste, o no la publica». Lo retenido no se
             enseña, pero «no la publica» prometía más de lo que el sitio cumple:
             el texto de lo retenido sigue en ficheros de datos del repositorio,
-            que es público (tarea abierta el 28-09-2026). */}
+            que es público (tarea abierta el 28-09-2026; desde el 29-09 la copia
+            servida ya no lo lleva, el repositorio sí). */}
         <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
           Cada afirmación que extraemos de un pleno se coteja automáticamente con la base documental
           del ayuntamiento: contratos, subvenciones, presupuesto y promesas publicadas. Una{' '}
@@ -1557,10 +1594,12 @@ export default function Metodologia() {
             <strong>«Literal retenido»</strong> — ocupa el sitio de una cita que la puerta retiene.
             La página no imprime el literal: enseña el hueco, su motivo y, si la ficha la atribuye,
             el grupo; la nota bajo las citas lo rotula <strong>«acusación no contrastada»</strong>.
-            Se retiene el literal, no la ficha: el hallazgo, su resumen, su atribución, los
-            documentos cotejados y el derecho de réplica siguen a la vista. Lo que el lector debe
-            concluir: ahí se citaba una acusación que el verificador no ha podido contrastar con
-            ningún registro municipal. No decimos que sea falsa; decimos que no consta.
+            Tampoco lo llevan la bitácora de correcciones de la ficha, que en esas filas enseña su
+            huella en lugar del texto, ni la copia de los datos de hallazgos que sirve el sitio. Se
+            retiene el literal, no la ficha: el hallazgo, su resumen, su atribución, los documentos
+            cotejados y el derecho de réplica siguen a la vista. Lo que el lector debe concluir: ahí
+            se citaba una acusación que el verificador no ha podido contrastar con ningún registro
+            municipal. No decimos que sea falsa; decimos que no consta.
           </li>
           <li>
             <strong>«sin contraste en los datos»</strong> — la cita se imprime, con esa pastilla al
@@ -1608,6 +1647,37 @@ export default function Metodologia() {
           una persona por la CLI de correcciones —el único escritor del fichero de hallazgos— y cada
           una deja su fila en la bitácora pública de la ficha.
         </p>
+        {/* Añadido el 29-09-2026. Hasta entonces el sitio servía el literal de
+            cada retenida en /data/pleno-findings.json y la bitácora de la ficha
+            lo imprimía; la copia servida ya no lo lleva
+            (src/scraper/literales-retenidos.ts). Esto es lo que esa retención
+            NO alcanza, medido el 28-09, dicho para no prometer más de lo que se
+            cumple: la transcripción lleva las palabras de casi todas las 37
+            retenidas; 7 comparten tramo con otra declaración del registro, y 3
+            de ésas se enseñan. */}
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>Se retiene la cita, no lo que se dijo.</strong> La puerta decide qué declaraciones
+          se enseñan como declaraciones, no qué palabras de una sesión se publican. Las de una cita
+          retenida siguen en tres sitios, y preferimos decirlo a prometer que no están:
+        </p>
+        <ul style={{ margin: '6px 0 0', paddingLeft: 20, color: 'var(--ink70)' }}>
+          <li>
+            la <strong>transcripción completa</strong> de la sesión, que publicamos en la página de
+            cada pleno como registro de lo que se dijo;
+          </li>
+          <li>
+            <strong>otra declaración</strong> del registro, cuando el extractor clasificó un tramo
+            que se solapa con la cita como una afirmación de otro tipo —una cifra, la mención de una
+            obra—: la puerta la juzga por su cuenta y puede enseñarla;
+          </li>
+          <li>
+            el <strong>repositorio del proyecto</strong>, público desde el 8 de septiembre de 2026:
+            su fichero de hallazgos conserva el literal, porque la CLI de correcciones y las
+            comprobaciones lo necesitan y porque la puerta puede dejar de retenerlo, y su historia
+            guarda las copias que el sitio sirvió hasta finales de septiembre de 2026, cuando dejó
+            de servirlo.
+          </li>
+        </ul>
       </Card>
 
       <Card style={{ marginTop: 14 }}>
@@ -1951,15 +2021,20 @@ export default function Metodologia() {
           coste se queda quieto. Riba-roja declara las mismas toneladas de residuos, los mismos
           metros cuadrados de limpieza y los mismos puntos de luz desde 2018-2019, con el coste
           actualizado cada año. Un cociente así{' '}
-          <em>puede subir sin que el servicio haya cambiado</em>, y su serie no se puede leer como
-          gestión: mide el precio, no el rendimiento. El libro de servicios lo dice una vez sobre la
-          tabla —cuántas filas dividen entre una cantidad que nadie vuelve a medir— y cada fila
-          lleva el año desde el que su cifra no se mueve; cuántos municipios comparables hacen lo
-          mismo va en la ficha del servicio, porque no es una rareza local. Toda esa salvedad se
-          deriva del dato: si el ayuntamiento vuelve a medir, desaparece sola, y si dos filas se
-          quedaron paradas por motivos distintos la frase baja otra vez a cada una.{' '}
-          <code>check:indicadores</code> falla si el aviso y el dato dejan de ir juntos, en
-          cualquiera de las dos direcciones. La medición completa está en{' '}
+          {/* Decía «puede subir sin que el servicio haya cambiado»: una
+              dirección que el dato no tiene —el €/t de la basura baja de 78,22
+              a 66,94 con las mismas toneladas—. Verificación del barrido lector
+              del 28-09-2026; la frase de cada tarjeta es
+              SALVEDAD_DENOMINADOR_CONGELADO. */}
+          <em>puede moverse sin que el servicio haya cambiado</em> —sigue al coste, sube y baja con
+          él—, y su serie no se puede leer como gestión: mide el precio, no el rendimiento. El libro
+          de servicios lo dice una vez sobre la tabla —cuántas filas dividen entre una cantidad que
+          nadie vuelve a medir— y cada fila lleva el año desde el que su cifra no se mueve; cuántos
+          municipios comparables hacen lo mismo va en la ficha del servicio, porque no es una rareza
+          local. Toda esa salvedad se deriva del dato: si el ayuntamiento vuelve a medir, desaparece
+          sola, y si dos filas se quedaron paradas por motivos distintos la frase baja otra vez a
+          cada una. <code>check:indicadores</code> falla si el aviso y el dato dejan de ir juntos,
+          en cualquiera de las dos direcciones. La medición completa está en{' '}
           <a href="/laboratorio/frontera" style={{ color: 'var(--civic)' }}>
             /laboratorio/frontera
           </a>
@@ -2491,6 +2566,12 @@ export default function Metodologia() {
           casi nunca se puede medir. Por eso está en el laboratorio, por eso la página dice qué no
           es antes de enseñar ninguna cifra, y por eso publica el método entero.
         </p>
+        {/* Decía «veinte ayuntamientos» y, abajo, «con veinte observaciones», a
+            mano; las dos fronteras publicadas tienen 24 (dea.json,
+            `distribucion.n`, Riba-roja incluida). Las observaciones se leen del
+            fichero. A cuántos terceros alcanza el conjunto de fronteras no se
+            publica —es lo que esta página se niega a nombrar—, así que esa
+            cifra se quita. Verificación del barrido lector del 28-09-2026. */}
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>No se nombra a ningún otro municipio.</strong> En{' '}
           <a href="/eficiencia" style={{ color: 'var(--civic)' }}>
@@ -2499,20 +2580,21 @@ export default function Metodologia() {
           los municipios comparados sí van con nombre, porque allí la cifra es una división de dos
           números que publica el ministerio y esconder contra quién se compara rompería el contrato
           de enseñar el trabajo. Aquí la cifra es el veredicto de un modelo de este sitio:
-          publicarla con nombres sería firmar una afirmación sobre veinte ayuntamientos que no
-          tienen aquí derecho de réplica. Se publican la puntuación propia, la distribución sin
-          nombres y el método completo, de modo que cualquiera pueda rehacer la tabla que aquí no
-          aparece. <code>check:dea</code> recalcula el experimento desde su fuente antes de cada
-          despliegue y falla si deja de reproducirse o si un tercero aparece nombrado.
+          publicarla con nombres sería firmar una afirmación sobre otros ayuntamientos que no tienen
+          aquí derecho de réplica. Se publican la puntuación propia, la distribución sin nombres y
+          el método completo, de modo que cualquiera pueda rehacer la tabla que aquí no aparece.{' '}
+          <code>check:dea</code> recalcula el experimento desde su fuente antes de cada despliegue y
+          falla si deja de reproducirse o si un tercero aparece nombrado.
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>Una puntuación de 1 no es «eficiente».</strong> Es «ninguna combinación de los
-          municipios observados lo hizo mejor», que con veinte observaciones es fácil: basta ser el
-          único con una combinación rara. La página marca cuáles están en la frontera sin que nadie
-          se apoye en ellas. Además, la frontera estimada cae siempre por dentro de la verdadera
-          —sólo se ve a quien declara—, así que todas las puntuaciones están sesgadas al alza por
-          construcción; se publica la corrección de sesgo y su intervalo, y cuando el intervalo se
-          sale de la escala se dice, en vez de imprimir el recorte como si fuera el dato.
+          municipios observados lo hizo mejor», que con {observacionesFrontera ?? 'pocas'}{' '}
+          observaciones es fácil: basta ser el único con una combinación rara. La página marca
+          cuáles están en la frontera sin que nadie se apoye en ellas. Además, la frontera estimada
+          cae siempre por dentro de la verdadera —sólo se ve a quien declara—, así que todas las
+          puntuaciones están sesgadas al alza por construcción; se publica la corrección de sesgo y
+          su intervalo, y cuando el intervalo se sale de la escala se dice, en vez de imprimir el
+          recorte como si fuera el dato.
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>Lo más útil del experimento no es una puntuación.</strong> Al recorrer las diez

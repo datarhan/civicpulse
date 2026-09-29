@@ -115,6 +115,16 @@ describe('contadoresDeCargo: cuándo NO hay cifras', () => {
   })
 })
 
+describe('registroUtilizable: las dos formas en que el bot publica la fecha', () => {
+  // Hasta el 28-09-2026 `registered_at` salía como lo guarda SQLite, en UTC y sin
+  // zona; desde entonces el bot lo exporta con la Z. La instantánea publicada
+  // cambia de una forma a la otra en el primer `pull-quejas` tras el despliegue,
+  // y una queja registrada no puede dejar de contar por eso.
+  it.each(['2026-09-27 22:00:01', '2026-09-27T22:00:01Z'])('«%s» es un registro', (marca) => {
+    expect(registroUtilizable(marca)).toBe(true)
+  })
+})
+
 describe('contadoresDeCargo: cuándo SÍ', () => {
   it('con el listado completo y una queja del cargo registrada, las cifras salen tal cual', () => {
     // El control de la tabla de arriba: la misma forma, ahora con registro.
