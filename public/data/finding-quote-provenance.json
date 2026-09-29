@@ -1,10 +1,10 @@
 {
   "_comment": "DERIVADO, no curado. Dos cosas por cada literal publicado en /hallazgos. (1) `quotes[id][i].status`: de qué transcripción procede — de la vigente, sólo de la que se sustituyó al re-transcribir la sesión, o de ninguna de las dos de forma concluyente. (2) `quotes[id][i].gate`: qué haría con la afirmación que sostiene esa cita la puerta editorial de src/scraper/claim-public-gate.ts, que gobierna /plenos y que /hallazgos no consultaba — `shown`, `toggle` o `hidden`, su propio vocabulario. Ninguna de las dos modifica una cita y ninguna es una corrección: el único escritor de public/data/pleno-findings.json sigue siendo `npm run correct-pleno-finding`. Se regenera con `npm run compute:finding-quote-provenance`.",
   "version": "finding-quote-provenance-v2",
-  "generatedAt": "2026-09-28T19:11:17.446Z",
+  "generatedAt": "2026-09-29T05:12:02.883Z",
   "source": {
     "findings": "public/data/pleno-findings.json",
-    "findingsGeneratedAt": "2026-09-28T16:04:22.960Z",
+    "findingsGeneratedAt": "2026-09-29T05:11:41.317Z",
     "transcripts": "public/data/pleno-transcripts",
     "superseded": "public/data/pleno-transcripts/superseded"
   },
@@ -54,7 +54,7 @@
       },
       {
         "id": "hidden",
-        "meaning": "La afirmación que sostiene esta cita es una acusación pública que el verificador no pudo contrastar con ningún dato municipal (o un `contradicho` asignado por máquina). Promoverla a hallazgo no la saca de la puerta, la promueva una persona o un proceso automático: su literal no se imprime en la página, ni en /plenos ni en /hallazgos, donde la ficha enseña en su lugar el hueco con su motivo.",
+        "meaning": "La afirmación que sostiene esta cita es una acusación pública que el verificador no pudo contrastar con ningún dato municipal (o un `contradicho` asignado por máquina). Promoverla a hallazgo no la saca de la puerta, la promueva una persona o un proceso automático: su literal no se imprime como cita, ni en /plenos ni en /hallazgos, donde la ficha enseña en su lugar el hueco con su motivo, y la copia de pleno-findings.json que sirve el sitio no lo lleva (`literalRetenido: true` en su lugar). Se retiene la cita, no lo que se dijo: la transcripción completa de la sesión sigue publicada.",
         "marks": true
       }
     ],
@@ -63,12 +63,12 @@
       "citasSinClaim": 0,
       "porContraste": {
         "shown": 3,
-        "toggle": 91,
-        "hidden": 37
+        "toggle": 95,
+        "hidden": 33
       },
       "baseDisponible": true,
       "citasConVeredictoDeOverlay": 19,
-      "citasReclasificadasPorElOverlay": 20,
+      "citasReclasificadasPorElOverlay": 24,
       "hallazgosSinCitaMostrable": 37,
       "hallazgosSoloConCitasOcultas": 0,
       "claimsEnCorpus": 7564,
@@ -392,7 +392,7 @@
       },
       {
         "status": "solo-en-sustituida",
-        "gate": "hidden"
+        "gate": "toggle"
       },
       {
         "status": "solo-en-sustituida",
@@ -400,7 +400,7 @@
       },
       {
         "status": "en-vigente",
-        "gate": "hidden"
+        "gate": "toggle"
       }
     ],
     "f-2026-03-16-cit-377216": [
@@ -524,7 +524,7 @@
       },
       {
         "status": "en-vigente",
-        "gate": "hidden"
+        "gate": "toggle"
       },
       {
         "status": "en-vigente",
@@ -620,7 +620,7 @@
       },
       {
         "status": "en-vigente",
-        "gate": "hidden"
+        "gate": "toggle"
       },
       {
         "status": "en-vigente",
@@ -766,8 +766,8 @@
   },
   "unresolved": [],
   "builtFrom": {
-    "pleno-findings.json": "9e8c271f59af",
-    "pleno-claims-verified.json": "193c0f9659f4",
+    "pleno-findings.json": "6aa3f4e289e0",
+    "pleno-claims-verified.json": "2caced94e164",
     "pleno-claims-overlay.json": "f4bf98872ce7",
     "pleno-transcripts/": "8c59df9da87e"
   }

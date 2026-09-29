@@ -313,15 +313,10 @@ function retenidasDe(fuente: typeof FUENTE, prov: typeof PROV) {
  * encontrándose, así que el día que se corrija hay que quitarla de aquí.
  */
 const PROSA_QUE_ESPERA_A_UNA_PERSONA = [
-  {
-    // El sumario cita entre comillas la frase entera que la ficha retiene, y la
-    // atribuye al PP. Se arregla como se arregló en f-2026-05-11-acu-7c65c5 el
-    // 11-08: `npm run correct-pleno-finding -- --field summary --redact`, cuyo
-    // barrido convierte en huella también la fila de abajo.
-    id: 'f-2026-01-19-cit-543cc1#3',
-    ruta: 'f-2026-01-19-cit-543cc1:summary',
-  },
-  { id: 'f-2026-01-19-cit-543cc1#3', ruta: 'f-2026-01-19-cit-543cc1:corrections[1].corrected' },
+  // El sumario de f-2026-01-19-cit-543cc1 citaba entero el literal que la ficha
+  // retiene; se firmó su redacción el 29-09-2026 (`--redact summary`, cuyo
+  // barrido pasó a huella también la fila que copiaba el sumario), y sus dos
+  // entradas salieron de esta lista en el mismo commit.
   {
     // El motivo de una corrección de atribución (09-08) cita el arranque del
     // literal para explicar de dónde salía el sumario. La CLI no reescribe
