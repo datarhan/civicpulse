@@ -47,6 +47,9 @@ on:
       - 'src/scraper/queja-router.ts'
       - 'src/scraper/situar-barrio.ts'
       - 'src/scraper/plazos-retencion.ts'
+      - 'src/scraper/automation-policy.ts'
+      - 'src/scraper/hash.ts'
+      - '.automation-measurements.json'
   workflow_dispatch:
   workflow_call:
 
