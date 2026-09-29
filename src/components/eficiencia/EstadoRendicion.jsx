@@ -235,10 +235,14 @@ export function LoQuePermite({ data }) {
   const r = recuentos(data)
   if (r.indicadores.length === 0) return null
   return (
+    // `min(…, 100%)`: con una sola columna, el suelo de 280 px no puede pasar
+    // de la caja. Sin él, a 320 px de pantalla, cada bloque medía 280 en una
+    // caja de 270 y el `overflow: hidden` de abajo se comía 10 px de su relleno
+    // derecho.
     <div
       style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(min(280px, 100%), 1fr))',
         border: '1px solid var(--border)',
         borderRadius: 'var(--r-card)',
         overflow: 'hidden',
