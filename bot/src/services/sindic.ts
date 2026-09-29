@@ -14,10 +14,11 @@ import type { IncomingMessage, ServerResponse } from 'node:http'
 import type { Db } from '../db/client.ts'
 import { getQuejaPublica, type QuejaRow } from '../db/queries.ts'
 import { routeUsingLocalOfficials } from './router.ts'
-import type { QuejaRouting } from '../../../src/scraper/queja-router.ts'
+import type { QuejaRouting, RelojDelPlazo } from '../../../src/scraper/queja-router.ts'
 import {
   diasTranscurridos,
   plazoHumano,
+  relojDelPlazo,
   ZONA_DE_LA_SEDE,
 } from '../../../src/scraper/queja-router.ts'
 import { fechaHoraDeLaSede } from './recibo-sede.ts'
@@ -29,7 +30,26 @@ export interface SindicTemplate {
   routing: QuejaRouting
   /** Días naturales del día de registro al de hoy, en el calendario de la sede; null sin fecha legible. */
   diasTranscurridos: number | null
+  /**
+   * El plazo de resolución el día del escrito, con la cuenta de `relojDelPlazo`:
+   * la misma que decide el silencio en el bot y la que pintan las páginas. null
+   * si la ruta no trae plazo de resolución.
+   */
+  plazo: RelojDelPlazo | null
   generatedAt: string
+}
+
+/** «lunes 16 de noviembre de 2026»: un día «AAAA-MM-DD», sin pasar por ningún reloj. */
+function diaEnLetra(dia: string): string {
+  const mediodia = new Date(`${dia}T12:00:00Z`)
+  const semana = mediodia.toLocaleDateString('es-ES', { timeZone: 'UTC', weekday: 'long' })
+  const fecha = mediodia.toLocaleDateString('es-ES', {
+    timeZone: 'UTC',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  })
+  return `${semana} ${fecha}`
 }
 
 export function buildSindicTemplate(
@@ -40,12 +60,66 @@ export function buildSindicTemplate(
   // En días del calendario de la sede, como el plazo del que habla el escrito.
   // Eran tandas de 24 horas desde la marca: registrada a las 18:00, a las 10:00
   // del día 92 decía 91 días, justo lo que dura el plazo entero.
+  const limite = routing.timeLimits.find((tl) => tl.kind === 'resolucion')
   return {
     queja,
     routing,
     diasTranscurridos: diasTranscurridos(queja.registered_at, now),
+    plazo: limite ? relojDelPlazo(limite, queja.registered_at, now) : null,
     generatedAt: now.toISOString(),
   }
+}
+
+/**
+ * El último día del plazo dicho en el escrito, o nada si no se puede decir. Es
+ * el prorrogado si caía en inhábil (art. 30.5): el escrito no puede fechar el
+ * silencio un día antes que el bot que lo declaró.
+ */
+function fraseDelUltimoDia(plazo: RelojDelPlazo | null): string {
+  if (plazo?.cuenta === 'calculada') {
+    const verbo = plazo.quedan < 0 ? 'concluyó' : 'concluye'
+    const prorroga =
+      plazo.ultimoDia === plazo.nominal
+        ? ''
+        : ` —el ${diaEnLetra(plazo.nominal)} era inhábil, y el plazo se prorrogó al primer día hábil siguiente (art. 30.5 LPACAP)—`
+    return `, y ${verbo} el ${diaEnLetra(plazo.ultimoDia)}${prorroga}`
+  }
+  if (plazo?.cuenta === 'sin-calendario') {
+    return `, y concluye el ${diaEnLetra(plazo.nominal)} o, si ese día es inhábil, el primer día hábil siguiente (art. 30.5 LPACAP)`
+  }
+  return ''
+}
+
+/**
+ * Por qué una queja NO puede escalarse al Síndic todavía; null si puede.
+ *
+ * El escrito afirma que «ha operado el silencio». Una queja en silencio lo tiene
+ * declarado por el bot; una sólo `registrada` puede escalarse con el plazo ya
+ * vencido —el bot lo declara en la vuelta siguiente, o no lo declara mientras
+ * dura la suspensión electoral—, y hasta el 29-09-2026 nadie lo comprobaba,
+ * aunque el mensaje de /escalar lo pedía.
+ */
+export function motivoParaNoEscalar(
+  q: QuejaRow,
+  routing: QuejaRouting,
+  now: Date = new Date(),
+): string | null {
+  if (q.state === 'silencio_negativo') return null
+  if (q.state !== 'registrada') {
+    return `está en estado *${q.state}*: sólo se escalan quejas en silencio_negativo o registradas con el plazo vencido.`
+  }
+  const limite = routing.timeLimits.find((tl) => tl.kind === 'resolucion')
+  const reloj = limite ? relojDelPlazo(limite, q.registered_at, now) : null
+  if (reloj?.cuenta === 'calculada') {
+    return reloj.quedan < 0
+      ? null
+      : `su plazo sigue abierto: el último día es el ${diaEnLetra(reloj.ultimoDia)}.`
+  }
+  if (reloj?.cuenta === 'sin-calendario') {
+    return `falta el calendario de días inhábiles de ${reloj.anio}: su plazo acaba el ${diaEnLetra(reloj.nominal)} o el primer día hábil siguiente, y sin él no se puede afirmar que venció.`
+  }
+  if (reloj?.cuenta === 'sin-fecha') return 'su fecha de registro no se puede leer.'
+  return 'su ruta no trae un plazo de resolución en meses.'
 }
 
 export function renderSindicMarkdown(t: SindicTemplate): string {
@@ -100,7 +174,7 @@ export function renderSindicMarkdown(t: SindicTemplate): string {
   lines.push(`   > ${q.detail.replace(/\n+/g, '\n   > ')}`)
   lines.push('')
   lines.push(
-    `3. Conforme al artículo 21.3 de la Ley 39/2015 (LPACAP), el plazo máximo para dictar y notificar resolución expresa era de **${plazo}** desde la entrada en registro. A fecha de hoy (${today}), han transcurrido **${dias ?? '—'} días** sin que la Administración haya dictado resolución expresa ni haya sido notificado el plazo máximo en los términos del art. 21.4 LPACAP.`,
+    `3. Conforme al artículo 21.3 de la Ley 39/2015 (LPACAP), el plazo máximo para dictar y notificar resolución expresa era de **${plazo}** desde la entrada en registro${fraseDelUltimoDia(t.plazo)}. A fecha de hoy (${today}), han transcurrido **${dias ?? '—'} días** sin que la Administración haya dictado resolución expresa ni haya sido notificado el plazo máximo en los términos del art. 21.4 LPACAP.`,
   )
   lines.push('')
   lines.push(

@@ -14,9 +14,9 @@ import { rotuloDe, useLocale } from '../i18n'
 import { CLAVE_RELACION } from '../scraper/relation-labels'
 import {
   diaDeLaSede,
-  diasQueQuedan,
   instanteUtc,
   plazoDeResolucion,
+  relojDelPlazo,
   ZONA_DE_LA_SEDE,
 } from '../scraper/queja-router'
 import { DEPARTMENT_LABEL } from '../scraper/departments'
@@ -71,11 +71,15 @@ function fmtDate(iso, idioma) {
  * hasta el final del último. Aquí se restaban tandas de 24 horas desde la marca
  * leída en hora local: registrada a las 00:30 del 31 de enero en Madrid, el 30
  * de abril —su último día— decía que quedaba uno, y el 1 de mayo, ya vencido,
- * que quedaban cero. `restantes` es null sin fecha de registro que se pueda leer.
+ * que quedaban cero.
+ *
+ * `reloj` es el de `relojDelPlazo`: el último día ya prorrogado si caía en
+ * inhábil (art. 30.5), o `sin-calendario` si acaba en un año cuyo calendario de
+ * inhábiles no está, y entonces no hay cuenta que pintar.
  */
 function plazoFor(category, registeredAt) {
   const limite = plazoDeResolucion(category)
-  return { limite, restantes: diasQueQuedan(limite, registeredAt) }
+  return { limite, reloj: relojDelPlazo(limite, registeredAt) }
 }
 
 /** «3 meses» / «1 mes», con el catálogo poniendo las palabras. */
@@ -317,7 +321,10 @@ export default function QuejaDetail() {
   const categoria = rotuloDe(t, `quejas.categoria.${category}`, category)
   const estado = rotuloDe(t, `quejas.estado.${queja.status}`, queja.status)
   const plazo = plazoFor(category, queja.registered_at)
-  const diasRestantes = plazo.restantes
+  const { reloj } = plazo
+  // Sin calendario del año no hay cuenta de días: ni restantes ni excedidos.
+  const diasRestantes = reloj.cuenta === 'calculada' ? reloj.quedan : null
+  const hayReloj = reloj.cuenta === 'calculada' || reloj.cuenta === 'sin-calendario'
 
   // Synthetic timeline derived from the row's timestamps + state.
   const timeline = []
@@ -566,7 +573,7 @@ export default function QuejaDetail() {
 
       <CorrelationsCard quejaId={id} />
 
-      {diasRestantes != null && queja.status !== 'resuelta' && (
+      {hayReloj && queja.status !== 'resuelta' && (
         <Card style={{ marginTop: 14 }}>
           <SectionHead
             eyebrow={t('quejas.detalle.reloj.eyebrow')}
@@ -615,26 +622,60 @@ export default function QuejaDetail() {
                   letterSpacing: '.06em',
                 }}
               >
-                {diasRestantes >= 0
-                  ? t('quejas.detalle.reloj.restantes')
-                  : t('quejas.detalle.reloj.excedidos')}
+                {t('quejas.detalle.reloj.ultimoDia')}
               </div>
-              <div
-                style={{
-                  fontSize: 'var(--fs-body)',
-                  fontWeight: 700,
-                  marginTop: 2,
-                  color:
-                    diasRestantes < 0
-                      ? 'var(--crit)'
-                      : diasRestantes < 15
-                        ? 'var(--warn)'
-                        : 'var(--ok)',
-                }}
-              >
-                {diasRestantes >= 0 ? diasRestantes : Math.abs(diasRestantes)}
+              {/* El último día, ya prorrogado si caía en inhábil (art. 30.5). Sin el
+                  calendario de su año no se sabe cuál es: se da el nominal y la regla. */}
+              <div style={{ fontSize: 'var(--fs-body)', fontWeight: 600, marginTop: 2 }}>
+                {reloj.cuenta === 'calculada'
+                  ? fmtDateHuman(reloj.ultimoDia, locale)
+                  : rellena(t('quejas.detalle.reloj.oPrimerHabil'), {
+                      dia: fmtDateHuman(reloj.nominal, locale),
+                    })}
               </div>
+              {reloj.cuenta === 'calculada' && reloj.ultimoDia !== reloj.nominal && (
+                <div
+                  className="mono"
+                  style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}
+                >
+                  {rellena(t('quejas.detalle.reloj.prorrogado'), {
+                    dia: fmtDateHuman(reloj.nominal, locale),
+                  })}
+                </div>
+              )}
             </div>
+            {diasRestantes != null && (
+              <div>
+                <div
+                  className="mono"
+                  style={{
+                    fontSize: 'var(--fs-micro)',
+                    color: 'var(--ink50)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '.06em',
+                  }}
+                >
+                  {diasRestantes >= 0
+                    ? t('quejas.detalle.reloj.restantes')
+                    : t('quejas.detalle.reloj.excedidos')}
+                </div>
+                <div
+                  style={{
+                    fontSize: 'var(--fs-body)',
+                    fontWeight: 700,
+                    marginTop: 2,
+                    color:
+                      diasRestantes < 0
+                        ? 'var(--crit)'
+                        : diasRestantes < 15
+                          ? 'var(--warn)'
+                          : 'var(--ok)',
+                  }}
+                >
+                  {diasRestantes >= 0 ? diasRestantes : Math.abs(diasRestantes)}
+                </div>
+              </div>
+            )}
             {queja.registro_entry_number && (
               <div>
                 <div
@@ -657,6 +698,18 @@ export default function QuejaDetail() {
               </div>
             )}
           </div>
+          {reloj.cuenta === 'sin-calendario' && (
+            <p
+              style={{
+                margin: '10px 0 0',
+                fontSize: 'var(--fs-aux)',
+                color: 'var(--ink70)',
+                lineHeight: 1.5,
+              }}
+            >
+              {rellena(t('quejas.detalle.reloj.sinCalendario'), { anio: reloj.anio })}
+            </p>
+          )}
         </Card>
       )}
 

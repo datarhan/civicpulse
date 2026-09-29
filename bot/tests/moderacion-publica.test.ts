@@ -131,8 +131,10 @@ describe('sólo lo publicado sale', () => {
   })
 
   it('el silencio administrativo: el plazo corre sobre lo presentado, y se avisa a quien modera de todas', async () => {
+    // Registradas en 2026, que tiene calendario de inhábiles: con 2025, que no lo
+    // tiene, el bot no puede decidir el silencio (art. 30.5) y esto no probaría nada.
     db.prepare(
-      "UPDATE quejas SET state = 'registrada', registered_at = '2025-01-01 00:00:00', registro_entry_number = 'RE-1'",
+      "UPDATE quejas SET state = 'registrada', registered_at = '2026-01-15 10:00:00', registro_entry_number = 'RE-1'",
     ).run()
     const avisadas: string[] = []
     const espia: AvisosHitos = {
