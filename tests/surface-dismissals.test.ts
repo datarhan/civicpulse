@@ -1,6 +1,12 @@
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
+import { createElement } from 'react'
+import { render } from '@testing-library/react'
+import { CitaRetenida, QuoteProvenanceNote } from '../src/components/PlenoFindings'
+import { ROTULO_CITA_RETENIDA } from '../src/lib/cita-retenida'
+import { SPEAKER_GROUPS } from '../src/scraper/pleno-votes'
+import { blocLabel } from '../src/lib/party-label.js'
 import {
   estaDescartado,
   sinDescartar,
@@ -579,5 +585,126 @@ describe('una segunda ancla limita el descarte a la ficha que se miró', () => {
         `descarte sin ancla sobre la frase de todas las fichas: «${d.quote}»`,
       ).toBeTruthy()
     }
+  })
+})
+
+/**
+ * Los dos descartes de /hallazgos que aún casaban por la frase sola, reanclados
+ * el 29-09-2026.
+ *
+ * «La ficha la atribuye a PSOE.» (4-09) y «Es una acusación que el verificador
+ * no ha podido contrastar con ningún registro municipal» (20-09) son texto del
+ * hueco «Literal retenido», que sale igual en cada ficha con una cita retenida.
+ * En la relectura del 29-09 (#179) callaban cuatro señalamientos de lectura
+ * aplanada —el revisor lee el pie del hueco como si hablara de la cita impresa
+ * de al lado—: dos de f-2026-05-11-cit-a0a379, uno de f-2026-05-11-cit-73d3cf y
+ * uno de f-2025-12-01-cit-66709b. Pero habrían callado igual uno cierto en
+ * cualquier otra ficha. La nota de acusación ya se había anclado (el bloque de
+ * arriba); faltaba el hueco.
+ */
+describe('los descartes del hueco «Literal retenido» van anclados a su ficha', () => {
+  const real = validarDescartes(JSON.parse(readFileSync(resolve('review-dismissals.json'), 'utf8')))
+  // Los cuatro, tal cual los guardó la caché de aquella relectura. Ninguno
+  // comparte más de 12 caracteres seguidos con el literal de una retenida: el
+  // repositorio es público, y ese literal es lo que la ficha no reproduce.
+  const HUECO =
+    'Es una acusación que el verificador no ha podido contrastar con ningún registro municipal, así que la ficha no reproduce su literal'
+  const PSOE = 'La ficha la atribuye a PSOE.'
+  const LEIDOS: Record<string, ReaderFinding> = {
+    'hueco en 73d3cf': {
+      quote: HUECO,
+      inference:
+        'El lector concluye que lo dicho sobre la vivienda es una acusación y que su literal no aparece en la ficha.',
+      contradictedBy:
+        'La misma ficha muestra la cita entre comillas («De fet, la vivenda que ens construís…»), con la etiqueta «sin contraste en los datos — no es una acusación». Es una afirmación general sobre vivienda, no una acusación, y el literal sí se reproduce.',
+      severity: 'misleading',
+    },
+    'hueco en a0a379': {
+      quote: HUECO,
+      inference:
+        'El lector entiende que las frases retenidas son acusaciones. Pero una es un dato histórico (la Fira nació en 2001) y otra es una valoración positiva de una campaña. Ninguna acusa a nadie.',
+      contradictedBy:
+        'El texto de las citas: «la Fira de Comercio nació en el año 2001, hace ya 25 años» y «la campaña 22 Fira de Comercio 2024 fue recibida muy positivamente…». La propia página dice en otro punto «no es una acusación» para las etiquetas de este tipo.',
+      severity: 'misleading',
+    },
+    'grupo en a0a379': {
+      quote: PSOE,
+      inference:
+        'El lector concluye que la ficha atribuye esta cita al PSOE. Sin embargo, la misma cita lleva la etiqueta «sin atribuir», y el resumen la pone en boca de «un grupo no identificado». Se nombra a un grupo concreto donde el resto de la ficha dice que no hay atribución.',
+      contradictedBy:
+        'La etiqueta «sin atribuir» de la misma cita y el resumen «un grupo no identificado defendió el impacto positivo de la campaña de 2024».',
+      severity: 'misleading',
+    },
+    'grupo en 66709b': {
+      quote: PSOE,
+      inference:
+        'Un lector concluiría que el PSOE pidió publicar el convenio en el portal de transparencia. Esa cita aparece como «sin atribuir», y el resumen habla de «un grupo no identificado».',
+      contradictedBy:
+        'La misma ficha marca la cita como «sin atribuir» y el resumen dice «un grupo no identificado señala la necesidad de publicar el convenio».',
+      severity: 'misleading',
+    },
+  }
+
+  it('calla los cuatro, cada uno con un solo descarte y anclado', () => {
+    for (const [cual, s] of Object.entries(LEIDOS)) {
+      const quienes = real.items.filter((d) =>
+        estaDescartado('/hallazgos', s, { version: 1, items: [d] }),
+      )
+      expect(quienes, `${cual}: descartes que lo callan`).toHaveLength(1)
+      expect(quienes[0].anchor, `${cual}: lo calla un descarte sin ancla`).toBeTruthy()
+    }
+  })
+
+  it('la misma frase, señalada en otra ficha, sigue viva', () => {
+    // El mismo señalamiento con el razonamiento de otra ficha, donde podría ser
+    // cierto: nada de lo que los descartes miraron.
+    const enOtraFicha = (s: ReaderFinding): ReaderFinding => ({
+      ...s,
+      inference:
+        'El lector concluye que la intervención retenida de esta otra ficha acusa a alguien.',
+      contradictedBy: 'Nada de lo que la ficha imprime lo sostiene.',
+    })
+    for (const [cual, s] of Object.entries(LEIDOS)) {
+      expect(estaDescartado('/hallazgos', enOtraFicha(s), real), cual).toBe(false)
+    }
+  })
+
+  it('ningún descarte calla por la frase sola un texto que la página repite en cada ficha', () => {
+    // Se LEE de los componentes, no se recita: el hueco de una retenida con cada
+    // grupo que puede nombrar y sin ninguno, y la nota con sus dos ejes. Es la
+    // guarda del bloque de arriba, extendida a todo lo que se repite.
+    const texto = (el: ReturnType<typeof createElement>) => {
+      const { container, unmount } = render(el)
+      const t = container.textContent ?? ''
+      unmount()
+      return t
+    }
+    const repetidos = [
+      ...[null, ...SPEAKER_GROUPS].map((g) =>
+        texto(createElement(CitaRetenida, { attribution: g ? blocLabel(g) : null })),
+      ),
+      texto(
+        createElement(QuoteProvenanceNote, {
+          entries: [
+            { gate: 'hidden' },
+            { gate: 'toggle', status: 'solo-en-sustituida' },
+            { gate: 'toggle', status: 'sin-determinar' },
+          ],
+          curatorName: 'auto-curation-v1',
+        }),
+      ),
+    ]
+    expect(repetidos.join(' ')).toContain(ROTULO_CITA_RETENIDA)
+    const sobreLoRepetido = real.items.filter(
+      (d) =>
+        d.route === '/hallazgos' &&
+        repetidos.some((t) =>
+          estaDescartado('/hallazgos', f(t), { version: 1, items: [{ ...d, anchor: undefined }] }),
+        ),
+    )
+    // Midió algo: hay descartes sobre el texto repetido.
+    expect(sobreLoRepetido.length, 'ningún descarte sobre texto repetido').toBeGreaterThan(0)
+    const sinAncla = sobreLoRepetido.filter((d) => !d.anchor).map((d) => `«${d.quote}» (${d.at})`)
+    expect(sinAncla, 'descartes sin ancla sobre texto de todas las fichas').toEqual([])
   })
 })
