@@ -1281,7 +1281,13 @@ export default function Metodologia() {
             </strong>{' '}
             (nunca sube ni introduce un veredicto nuevo). El resultado es más conservador: retira
             afirmaciones que el trazado de datos abiertos no atestigua, dejando el motivo verbatim
-            en el overlay. Nunca marca <em>contradicho</em>.
+            en el overlay. Nunca marca <em>contradicho</em>. Su razonamiento, recortado, es la
+            explicación que la tarjeta de la declaración enseña bajo la cita. En la corrida del 2 de
+            agosto de 2026 una parte de esas explicaciones no hablaba de la declaración sino del
+            encargo del propio modelo («Task completed: reasoned in Spanish…»): la tarjeta no las
+            imprime y dice «Explicación retirada». Desde finales de septiembre de 2026 el motor no
+            juzga sobre un razonamiento así, ni sobre uno vacío —la declaración conserva su
+            veredicto y se vuelve a intentar—, y el overlay no deja escribirlo.
           </li>
           <li>
             {/* Sin cuantificador de entrada: la cifra exacta viene justo
