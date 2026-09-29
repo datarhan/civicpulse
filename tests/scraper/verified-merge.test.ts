@@ -270,6 +270,46 @@ describe('applyOverlayEntries', () => {
     ).toThrow()
   })
 
+  it('rechaza escribir un resumen que habla de la tarea del modelo, venga de la pasada que venga', () => {
+    // El caso que lo pide: 101 resúmenes servidos del motor eran el parte del
+    // modelo sobre su encargo (src/lib/resumenes-retirados.js).
+    const charla = 'Task completed: reasoned in Spanish about candidate support for the claim.'
+    for (const source of ['verdict-engine', 'nli', 'llm'] as const) {
+      expect(() =>
+        applyOverlayEntries(
+          empty,
+          [
+            {
+              claimId: 'a',
+              verification: { ...vrf('a', 'sin-datos'), summary: charla },
+              source,
+              reason: `verdict-engine re-judged verificado→sin-datos: ${charla}`,
+            },
+          ],
+          'TS',
+        ),
+      ).toThrow(/tarea/)
+    }
+  })
+
+  it('lo que ya está no estalla: una entrada vieja con charla no impide escribir otra', () => {
+    // Como el suelo de evidencia: la guarda va en la ESCRITURA de lo nuevo. Si
+    // mirara lo que ya está, la tubería entera se pararía por las filas viejas.
+    const previo = applyOverlayEntries(
+      empty,
+      [{ claimId: 'b', verification: vrf('b', 'sin-datos'), source: 'nli' }],
+      'TS',
+    )
+    previo.entries.b.verification.summary = 'Análisis completado en el texto de respuesta.'
+    expect(() =>
+      applyOverlayEntries(
+        previo,
+        [{ claimId: 'a', verification: vrf('a', 'sin-datos'), source: 'nli' }],
+        'TS2',
+      ),
+    ).not.toThrow()
+  })
+
   it('rejects a verdict-engine entry that emits contradicho', () => {
     expect(() =>
       applyOverlayEntries(
