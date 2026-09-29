@@ -133,9 +133,24 @@ test.describe('Reportaje · coste efectivo (/reportajes/coste-efectivo)', () => 
         /enviada el 18 de septiembre de 2026 por el registro electrónico de la Generalitat, con registro GVRTE\/2026\/4267645/,
       ),
     ).toBeVisible()
+    // El mes acaba el domingo 18 de octubre y pasa al lunes 19 (art. 30.5
+    // LPACAP): hasta el 29-09-2026 la fila decía «vence el 18» y la habría dado
+    // por vencida con un día de plazo por delante. Se ancla en la fila entera y
+    // en las dos formas que afirman —«vence el» mientras corre, «El mes del
+    // artículo 20 terminó el» después—, para que la aserción no caduque sola el
+    // día 20; ninguna de las dos es la de un correo, «contado desde el envío».
     await expect(
       page.getByText(
-        /entrada en el registro del órgano competente para resolver: vence el 18 de octubre de 2026/,
+        /con registro GVRTE\/2026\/4267645.*(?:: vence el|\. El mes del artículo 20 terminó el) 19 de octubre de 2026 \(prorrogado: el 18 de octubre, domingo, es inhábil/,
+      ),
+    ).toBeVisible()
+    expect(await page.getByText(/18 de octubre de 2026/).count()).toBe(0)
+    // Con qué calendario se cuenta cada una lo dice una frase bajo la nota,
+    // sacada de las filas: aquí escriben al Ayuntamiento, a la Generalitat y a un
+    // ministerio, y los tres calendarios tienen que estar nombrados.
+    await expect(
+      page.getByText(
+        /el calendario de días inhábiles es el de quien resuelve: el del Ayuntamiento.*el de la Generalitat.* y el de la Administración General del Estado en Madrid/,
       ),
     ).toBeVisible()
     // Quién acusó y qué dijo: el acuse no resuelve nada de lo pedido, así que la
