@@ -26,14 +26,19 @@ import { join } from 'node:path'
 import {
   HUELLA_RE,
   PUERTA_QUE_RETIENE,
+  TRAMO_MINIMO_EN_CARACTERES,
   huellaDeLiteral,
   rastrosDeLiterales,
   retenerLiterales,
+  tramosDeLiterales,
   versionesDeCitas,
   type FilaLike,
 } from '../src/scraper/literales-retenidos'
 import { CLAIM_VISIBILITIES } from '../src/scraper/claim-public-gate'
+import { citaRetenida, PUERTA_QUE_RETIENE as PUERTA_DE_LA_LIB } from '../src/lib/cita-retenida.js'
+import { provenanceFor } from '../src/hooks/useFindingQuoteProvenance.js'
 import { sha256Short } from '../src/scraper/hash'
+import { normaliseForQuoteMatch } from '../src/scraper/quote-match'
 
 const ROOT = join(__dirname, '..')
 const leer = (rel: string) => JSON.parse(readFileSync(join(ROOT, rel), 'utf8'))
@@ -97,6 +102,20 @@ const fila = (field: string, original: string, corrected: string) => ({
 describe('la puerta que retiene sale del enum de la puerta', () => {
   it('es uno de sus resultados, no una cadena escrita aquí', () => {
     expect(CLAIM_VISIBILITIES).toContain(PUERTA_QUE_RETIENE)
+    // La constante se define en src/lib/cita-retenida.js, con el predicado;
+    // la de este módulo es la misma, tipada contra el enum.
+    expect(PUERTA_QUE_RETIENE).toBe(PUERTA_DE_LA_LIB)
+  })
+
+  it('el predicado retiene exactamente ese resultado, y lo que la copia servida marca', () => {
+    // Una sola definición para la página, la copia servida y las
+    // comprobaciones: si el enum gana un estado, esto dice qué hace con él.
+    for (const estado of CLAIM_VISIBILITIES) {
+      expect(citaRetenida({ gate: estado }), estado).toBe(estado === PUERTA_QUE_RETIENE)
+    }
+    expect(citaRetenida(undefined, { literalRetenido: true })).toBe(true)
+    expect(citaRetenida({ gate: null }, { text: 'una cita' })).toBe(false)
+    expect(citaRetenida(undefined)).toBe(false)
   })
 })
 
@@ -289,6 +308,80 @@ describe('rastrosDeLiterales — dónde queda un tramo de un literal', () => {
   })
 })
 
+describe('tramosDeLiterales — cuarenta caracteres de un literal, en cualquier versión', () => {
+  const retenidaServida = (summary: string) =>
+    retenerLiterales(
+      snapshotDe(ficha({ summary })),
+      procedencia({ 'f-prueba': ['shown', PUERTA_QUE_RETIENE, 'toggle'] }),
+    ).snapshot
+
+  it('lo encuentra aunque cambien las mayúsculas, los acentos y la puntuación, y dice cuánto', () => {
+    const servido = retenidaServida(
+      'Dijo: «Ustedes ADJUDICARON el contrato a dedó, a una empresa de un amigo».',
+    )
+    expect(tramosDeLiterales(servido, [{ id: 'f-prueba#1', versiones: [RETENIDA] }])).toEqual([
+      {
+        id: 'f-prueba#1',
+        ruta: 'f-prueba:summary',
+        caracteres: 'ustedes adjudicaron el contrato a dedo a una empresa de un amigo'.length,
+      },
+    ])
+  })
+
+  it('el umbral es el que dice su nombre: treinta y nueve caracteres no, cuarenta sí', () => {
+    const literal = {
+      id: 'f-prueba#1',
+      versiones: ['uno dos tres cuatro cinco seis siete ocho nueve'],
+    }
+    const cuarenta = 'uno dos tres cuatro cinco seis siete och'
+    expect(TRAMO_MINIMO_EN_CARACTERES).toBe(cuarenta.length)
+    expect(tramosDeLiterales(snapshotDe(ficha({ summary: `${cuarenta}X` })), [literal])).toEqual([
+      { id: 'f-prueba#1', ruta: 'f-prueba:summary', caracteres: 40 },
+    ])
+    expect(
+      tramosDeLiterales(snapshotDe(ficha({ summary: `${cuarenta.slice(0, -1)}X` })), [literal]),
+    ).toEqual([])
+  })
+
+  /**
+   * La forma de f-2025-12-01-cit-bef239, con otras palabras: la cita se
+   * reancló a la transcripción vigente, en valenciano, y el sumario seguía
+   * contando en estilo indirecto la versión castellana que se había publicado
+   * como literal. Contra el texto de hoy no comparte nada; contra la versión
+   * anterior, cuarenta y ocho caracteres. Y la ventana de ocho palabras no lo
+   * ve: pasar a estilo indirecto cambia la persona del verbo justo donde hacía
+   * falta la octava.
+   */
+  it('mira todas las versiones que el repositorio guarda, no sólo la vigente', () => {
+    const vigente = "vostés van votar contra l'ampliació del poliesportiu municipal"
+    const anterior = 'ustedes votaron contra la ampliación del polideportivo municipal'
+    const servido = retenidaServida(
+      'El grupo A afirma que el grupo B votó contra la ampliación del polideportivo municipal.',
+    )
+    const soloVigente = [{ id: 'f-prueba#1', versiones: [vigente] }]
+    const conAnterior = [{ id: 'f-prueba#1', versiones: [vigente, anterior] }]
+    expect(tramosDeLiterales(servido, soloVigente)).toEqual([])
+    expect(tramosDeLiterales(servido, conAnterior)).toEqual([
+      {
+        id: 'f-prueba#1',
+        ruta: 'f-prueba:summary',
+        caracteres: ' contra la ampliacion del polideportivo municipal'.length,
+      },
+    ])
+    expect(rastrosDeLiterales(servido, conAnterior)).toEqual([])
+  })
+
+  it('no confunde el literal con la huella que lo sustituye', () => {
+    const { snapshot } = retenerLiterales(
+      snapshotDe(ficha({ corrections: [fila('quote.1.text', RETENIDA_VIEJA, RETENIDA)] })),
+      procedencia({ 'f-prueba': ['shown', PUERTA_QUE_RETIENE, 'toggle'] }),
+    )
+    expect(
+      tramosDeLiterales(snapshot, [{ id: 'f-prueba#1', versiones: [RETENIDA, RETENIDA_VIEJA] }]),
+    ).toEqual([])
+  })
+})
+
 // ── Sobre los datos publicados ───────────────────────────────────────────────
 
 const FUENTE = leer('public/data/pleno-findings.json')
@@ -299,20 +392,24 @@ function retenidasDe(fuente: typeof FUENTE, prov: typeof PROV) {
   const out: Array<{ id: string; versiones: string[] }> = []
   for (const f of fuente.items) {
     const versiones = versionesDeCitas(f)
-    ;(f.quotes ?? []).forEach((_q: unknown, i: number) => {
-      if (prov.quotes?.[f.id]?.[i]?.gate === PUERTA_QUE_RETIENE)
+    // Con el predicado de la página, no con `gate === …` escrito aquí.
+    ;(f.quotes ?? []).forEach((q: { literalRetenido?: boolean }, i: number) => {
+      if (citaRetenida(provenanceFor(prov, f.id)[i], q))
         out.push({ id: `${f.id}#${i}`, versiones: [...versiones[i]] })
     })
   }
   return out
 }
 
+/** Las dos cribas que miran la copia servida: ocho palabras seguidas, o cuarenta caracteres. */
+type Criba = 'palabras' | 'caracteres'
+
 /**
  * Prosa firmada que copia un literal retenido y que sólo puede arreglar una
- * persona. La lista CADUCA sola: la prueba exige que cada entrada siga
- * encontrándose, así que el día que se corrija hay que quitarla de aquí.
+ * persona. La lista CADUCA sola: cada prueba exige que cada entrada de su criba
+ * siga encontrándose, así que el día que se corrija hay que quitarla de aquí.
  */
-const PROSA_QUE_ESPERA_A_UNA_PERSONA = [
+const PROSA_QUE_ESPERA_A_UNA_PERSONA: Array<{ id: string; ruta: string; cribas: Criba[] }> = [
   // El sumario de f-2026-01-19-cit-543cc1 citaba entero el literal que la ficha
   // retiene; se firmó su redacción el 29-09-2026 (`--redact summary`, cuyo
   // barrido pasó a huella también la fila que copiaba el sumario), y sus dos
@@ -323,8 +420,25 @@ const PROSA_QUE_ESPERA_A_UNA_PERSONA = [
     // motivos: decidir qué hacer con éste es de una persona.
     id: 'f-2026-05-11-acu-7c65c5#3',
     ruta: 'f-2026-05-11-acu-7c65c5:corrections[1].reason',
+    cribas: ['palabras', 'caracteres'],
+  },
+  {
+    // El sumario cuenta en estilo indirecto la versión castellana que se
+    // publicó como literal hasta el reanclaje del 10-08-2026: siete palabras
+    // seguidas, así que sólo lo ve la criba de caracteres. Su redacción
+    // (`correct-pleno-finding --redact summary`) espera firma; esta entrada
+    // sale en el mismo commit que la aplique.
+    id: 'f-2025-12-01-cit-bef239#2',
+    ruta: 'f-2025-12-01-cit-bef239:summary',
+    cribas: ['caracteres'],
   },
 ]
+
+const clave = (r: { id: string; ruta: string }) => `${r.id} @ ${r.ruta}`
+const esperadas = (criba: Criba) =>
+  PROSA_QUE_ESPERA_A_UNA_PERSONA.filter((e) => e.cribas.includes(criba))
+    .map(clave)
+    .sort()
 
 describe('sobre los datos publicados', () => {
   const retenidas = retenidasDe(FUENTE, PROV)
@@ -355,7 +469,27 @@ describe('sobre los datos publicados', () => {
 
   it('en la copia servida no queda ningún tramo de un literal retenido, salvo la prosa que espera a una persona', () => {
     const rastros = rastrosDeLiterales(snapshot, retenidas)
-    const clave = (r: { id: string; ruta: string }) => `${r.id} @ ${r.ruta}`
-    expect(rastros.map(clave).sort()).toEqual(PROSA_QUE_ESPERA_A_UNA_PERSONA.map(clave).sort())
+    expect(rastros.map(clave).sort()).toEqual(esperadas('palabras'))
+  })
+
+  it('la criba de caracteres mide algo: sobre el fichero del repositorio encuentra cada literal que la alcanza', () => {
+    // El mismo control que el de ocho palabras: cada literal de al menos
+    // cuarenta caracteres está entero en su propia cita del repositorio.
+    const encontradas = new Set(tramosDeLiterales(FUENTE, retenidas).map((r) => r.id))
+    const medibles = retenidas.filter((r) =>
+      r.versiones.some((v) => normaliseForQuoteMatch(v).length >= TRAMO_MINIMO_EN_CARACTERES),
+    )
+    expect(medibles.length).toBeGreaterThan(0)
+    for (const r of medibles) expect(encontradas.has(r.id), r.id).toBe(true)
+  })
+
+  it('en la copia servida ninguna prosa comparte cuarenta caracteres con un literal retenido, salvo la que espera a una persona', () => {
+    // La ventana de ocho palabras no ve un literal contado en estilo indirecto
+    // ni uno cuya versión anterior es la que copia el sumario. Medido el
+    // 29-09-2026 sobre cinco instantáneas del 11-08 en adelante: por encima de
+    // cuarenta caracteres sólo había copias de verdad; por debajo, nombres de
+    // instituciones y de temas, que ningún umbral separa de una cita.
+    const tramos = tramosDeLiterales(snapshot, retenidas)
+    expect(tramos.map(clave).sort()).toEqual(esperadas('caracteres'))
   })
 })

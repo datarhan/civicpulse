@@ -4,7 +4,7 @@ import { useQuejas, useEtiquetasDeQueja, STATE_TONE, prettyNeighborhood } from '
 import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { useT } from '../i18n'
-import { diasDePlazo, diasQueQuedan, plazoDeResolucion } from '../scraper/queja-router'
+import { diasTranscurridos, plazoDeResolucion, relojDelPlazo } from '../scraper/queja-router'
 import { contadoresDeCargo } from '../lib/reloj-lpacap'
 
 const TELEGRAM_BOT_URL = 'https://t.me/munigraph_bot'
@@ -343,13 +343,28 @@ function NeighborhoodBreakdown({ byNeighborhood }) {
  * hora local, y la lista pintaba «Silencio» o lo callaba según la hora del
  * registro: registrada a las 00:30 del 31 de enero en Madrid, el 1 de mayo, con
  * el plazo vencido, decía «0d» y no «Silencio».
+ *
+ * El último día es el prorrogado si caía en inhábil (art. 30.5). Si el plazo
+ * acaba en un año sin calendario de inhábiles, no hay cuenta (`sinCalendario`
+ * dice qué año falta): la lista no puede pintar «Silencio», y tampoco callarla,
+ * así que su parte consumida se mide contra el día nominal, que es lo que es
+ * seguro que dura como poco.
  */
 function relojDeQueja(q, now) {
-  const limite = plazoDeResolucion(q.service_code)
-  return {
-    plazo: diasDePlazo(limite, q.registered_at),
-    quedan: diasQueQuedan(limite, q.registered_at, now),
+  const reloj = relojDelPlazo(plazoDeResolucion(q.service_code), q.registered_at, now)
+  if (reloj.cuenta === 'calculada') {
+    return { plazo: reloj.dias, quedan: reloj.quedan, sinCalendario: null }
   }
+  if (reloj.cuenta === 'sin-calendario') {
+    const transcurridos = diasTranscurridos(q.registered_at, now)
+    return {
+      plazo: transcurridos + reloj.quedanAlNominal,
+      quedan: reloj.quedanAlNominal,
+      sinCalendario: reloj.anio,
+    }
+  }
+  // Sin una fecha de registro que se pueda leer no hay plazo que medir.
+  return { plazo: null, quedan: null, sinCalendario: null }
 }
 
 function ReadyToEscalate({ items }) {
@@ -388,10 +403,11 @@ function ReadyToEscalate({ items }) {
         template para el Síndic de Greuges CV.
       </div>
       <div style={{ marginTop: 10 }}>
-        {urgent.map(({ q, plazo, quedan, pct }) => {
+        {urgent.map(({ q, plazo, quedan, pct, sinCalendario }) => {
           const remaining = Math.max(0, quedan)
-          const overBy = Math.max(0, -quedan)
-          const tone = overBy > 0 ? 'crit' : 'warn'
+          // Sin calendario del año no se sabe si el plazo venció: nunca «Silencio».
+          const overBy = sinCalendario ? 0 : Math.max(0, -quedan)
+          const tone = sinCalendario ? 'neutral' : overBy > 0 ? 'crit' : 'warn'
           return (
             <Link
               key={q.service_request_id}
@@ -428,7 +444,9 @@ function ReadyToEscalate({ items }) {
                 >
                   {etiqueta.categoria(q.service_code)}
                   {q.concejalia_area ? ' · ' + q.concejalia_area : ''}
-                  {' · plazo ' + plazo + ' días'}
+                  {sinCalendario
+                    ? ` · sin calendario de días inhábiles de ${sinCalendario}`
+                    : ' · plazo ' + plazo + ' días'}
                 </div>
               </div>
               <span
@@ -440,10 +458,14 @@ function ReadyToEscalate({ items }) {
                   textAlign: 'right',
                 }}
               >
-                {overBy > 0 ? `+${overBy}d` : `${remaining}d`}
+                {sinCalendario ? '—' : overBy > 0 ? `+${overBy}d` : `${remaining}d`}
               </span>
               <Pill tone={tone} size="xs">
-                {overBy > 0 ? 'Silencio' : `${Math.round(pct * 100)}%`}
+                {sinCalendario
+                  ? 'Sin calendario'
+                  : overBy > 0
+                    ? 'Silencio'
+                    : `${Math.round(pct * 100)}%`}
               </Pill>
             </Link>
           )

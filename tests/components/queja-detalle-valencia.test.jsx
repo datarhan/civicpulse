@@ -21,7 +21,7 @@
  * de relación— tiene su escenario, y la cobertura se vigila sola: cada cadena
  * `quejas.detalle.*` del catálogo tiene que pintarse en alguno.
  */
-import { afterEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { fireEvent, render } from '@testing-library/react'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { readFileSync } from 'node:fs'
@@ -70,8 +70,24 @@ const CAMPOS_PUBLICOS = (() => {
   return [...bloque.matchAll(/^ {2}(\w+)\??:/gm)].map((m) => m[1]).sort()
 })()
 
+/**
+ * El reloj de la prueba, fijo. El reloj legal cuenta con el calendario de días
+ * inhábiles de cada año (`FESTIVOS_DE_LA_SEDE`), y un escenario contado desde el
+ * día en que corre la prueba acabaría cayendo en un año que la tabla todavía no
+ * tiene: dejaría de pintar la cuenta, y la cobertura de abajo se pondría roja sola.
+ * Fijo en el 29-09-2026, el plazo de «en trámite» acaba el sábado 17 de octubre y
+ * la ficha pinta su prórroga al lunes 19.
+ */
+const AHORA = Date.parse('2026-09-29T10:00:00Z')
 const DIA = 24 * 60 * 60 * 1000
-const haceDias = (n) => new Date(Date.now() - n * DIA).toISOString()
+const haceDias = (n) => new Date(AHORA - n * DIA).toISOString()
+
+// Sólo la fecha: los temporizadores siguen siendo los de verdad para `waitFor`.
+beforeEach(() => {
+  vi.useFakeTimers({ toFake: ['Date'] })
+  vi.setSystemTime(AHORA)
+})
+afterEach(() => vi.useRealTimers())
 
 const OFICIALES = publicado('/data/officials.json')
 /** Un concejal con foto, del padrón publicado: la ficha pinta su nombre y su partido. */
@@ -265,6 +281,22 @@ const ESCENARIOS = [
       },
     }),
     listo: (c) => pintaLa(c, '2026-RE-0102') && pintaLa(c, 'elsindic.com'),
+  },
+  {
+    // Nadie va a tener el calendario de 2099: el escenario no caduca cuando se
+    // añada el año que viene.
+    nombre: 'registrada, con el plazo en un año sin calendario de días inhábiles',
+    ruta: `/quejas/${ID}`,
+    pinta: laFicha,
+    fetch: sirve({
+      queja: {
+        ...QUEJA,
+        status: 'registrada',
+        registro_entry_number: '2026-RE-0999',
+        registered_at: '2099-01-15T10:00:00.000Z',
+      },
+    }),
+    listo: (c) => pintaLa(c, '2026-RE-0999'),
   },
   {
     nombre: 'resuelta: sin reloj',

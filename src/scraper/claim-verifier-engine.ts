@@ -21,6 +21,30 @@ import type {
 import { shouldSkipLlmVerification, parseCite, looselyContains } from './claim-verifier-llm'
 import { stripSimilarityAnnotation } from '../llm/candidate-annotation'
 import { corpusDeEvidencia } from './claim-verdicts'
+import { charlaDeTarea } from './charla-de-tarea'
+
+/**
+ * El razonamiento habla de la tarea del modelo y no de la declaración: no es
+ * un juicio.
+ *
+ * El 02-08-2026, con claude-code, el campo `reasoning` recogió muchas veces un
+ * parte del encargo («Task completed: reasoned in Spanish…», «Análisis
+ * completado en el texto de respuesta.»). El paso de extracción decidía el
+ * veredicto sobre ese parte, y el parte se publicaba como resumen bajo la cita
+ * (src/lib/resumenes-retirados.js). Se lanza como una extracción fallida: el
+ * llamante lo cuenta aparte y la afirmación se reintenta en la siguiente
+ * pasada.
+ */
+export class RazonamientoConCharla extends Error {
+  readonly claimId: string
+  readonly clase: string
+  constructor(claimId: string, clase: string) {
+    super(`[engine] ${claimId}: el razonamiento habla de la tarea (${clase}), no de la declaración`)
+    this.name = 'RazonamientoConCharla'
+    this.claimId = claimId
+    this.clase = clase
+  }
+}
 
 export interface EngineCite {
   candidateIndex: number
@@ -65,6 +89,15 @@ export async function verifyClaimWithEngine(
   if (inputs.candidates.length === 0) return null
 
   const reasoning = await deps.reasonFn(inputs.claim, inputs.candidates)
+  // Antes de extraer, dos respuestas que no son un juicio. Vacío: la llamada
+  // cayó, y la extracción decidiría sobre nada. Un parte de la tarea: no lleva
+  // razonamiento del que sacar un veredicto, y es lo que se guardaría como
+  // resumen.
+  if (!reasoning.trim()) {
+    throw new Error(`[engine] ${inputs.claim.id}: el paso de razonar no devolvió nada`)
+  }
+  const charla = charlaDeTarea(reasoning)
+  if (charla) throw new RazonamientoConCharla(inputs.claim.id, charla)
   const ext = await deps.extractFn(reasoning, inputs.claim, inputs.candidates)
 
   // Cite-grounding (reuse P1): index in range + value literally in the snippet.

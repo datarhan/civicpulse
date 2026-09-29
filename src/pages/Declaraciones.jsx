@@ -176,7 +176,7 @@ function ClaimRow({ item, plenoTitle }) {
             }}
           >
             {v.evidence.length} {v.evidence.length === 1 ? 'evidencia' : 'evidencias'} ·{' '}
-            {etiquetaVerificador(v.checkedAgainst)}
+            {etiquetaVerificador(v)}
           </div>
           {v.evidence.slice(0, 2).map((e, i) => (
             <div key={i} style={{ marginTop: 2 }}>
