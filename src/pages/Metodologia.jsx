@@ -913,11 +913,11 @@ export default function Metodologia() {
               hallazgo de gravedad crítica (que es una acusación), los informes marcados como
               jurídicamente sensibles, y todo lo irreversible o dirigido al exterior — registrar una
               queja en sede, publicar una queja ciudadana. No porque una persona acierte más, sino
-              porque la responsabilidad legal necesita una firma. En las quejas ciudadanas hay tres
-              excepciones: dos avisos automáticos del canal público de Telegram sobre quejas ya
-              publicadas —cuando una alcanza los apoyos necesarios y cuando vence su plazo sin
-              respuesta— y la foto de una queja publicada, que se anonimiza y se publica sin que
-              nadie la vea.
+              porque la responsabilidad legal necesita una firma. En las quejas ciudadanas hay una
+              excepción: la foto de una queja publicada, que se anonimiza y se publica sin que nadie
+              la vea. Los hitos de cada queja —cuando alcanza los apoyos necesarios, cuando se
+              registra, cuando vence su plazo sin respuesta— no se anuncian en ningún canal público:
+              se avisan a quien modera.
             </li>
           </ul>
           <p style={{ marginBottom: 0 }}>

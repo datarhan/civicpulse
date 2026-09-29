@@ -13,19 +13,25 @@ describe('buildHealth', () => {
   it('reports degraded when the escalation credentials are missing', () => {
     const h = buildHealth({ BOT_TOKEN: 't' } as NodeJS.ProcessEnv, base)
     expect(h.status).toBe('degraded')
-    expect(h.capabilities).toEqual({ capture: true, broadcasts: false, adminCommands: false })
-    expect(h.degraded).toHaveLength(2)
-    expect(h.degraded.join(' ')).toMatch(/SILENCIO/)
+    expect(h.capabilities).toEqual({ capture: true, adminCommands: false })
+    expect(h.degraded).toHaveLength(1)
     expect(h.degraded.join(' ')).toMatch(/escalar/)
   })
 
   it('reports ok only when everything is wired', () => {
-    const h = buildHealth(
-      { BOT_TOKEN: 't', CHANNEL_ID: '-100', ADMIN_USER_IDS: '42' } as NodeJS.ProcessEnv,
-      base,
-    )
+    const h = buildHealth({ BOT_TOKEN: 't', ADMIN_USER_IDS: '42' } as NodeJS.ProcessEnv, base)
     expect(h.status).toBe('ok')
     expect(h.degraded).toEqual([])
+  })
+
+  // Desde el 2026-09-29 el bot no publica en ningún canal: los hitos de cada queja
+  // se avisan a quien modera (services/avisos-hitos.ts). Sin `CHANNEL_ID` no falta
+  // nada, y con él tampoco se usa.
+  it('CHANNEL_ID ya no es una capacidad', () => {
+    const sin = buildHealth({ BOT_TOKEN: 't', ADMIN_USER_IDS: '42' } as NodeJS.ProcessEnv, base)
+    expect(sin.status).toBe('ok')
+    expect(Object.keys(sin.capabilities)).not.toContain('broadcasts')
+    expect(JSON.stringify(sin)).not.toMatch(/CHANNEL_ID|SILENCIO/)
   })
 
   it('flags a missing bot token as loss of capture', () => {

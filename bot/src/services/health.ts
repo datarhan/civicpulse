@@ -10,6 +10,10 @@
  * ayuntamiento and escalating silence to the Síndic — was switched off, and
  * nothing outside the container's own startup log said so.
  *
+ * Since 2026-09-29 the bot publishes to no channel: the milestones of each
+ * queja go to whoever moderates (services/avisos-hitos.ts), so `CHANNEL_ID` is
+ * no longer a capability, and its absence is no longer degraded.
+ *
  * A health check that cannot fail is not a health check. This one still returns
  * 200 when the process is alive (that is what a container probe is asking), but
  * says plainly which capabilities are missing so an operator, or a monitor,
@@ -19,8 +23,6 @@
 export interface BotCapabilities {
   /** Citizens can file a queja. Requires only BOT_TOKEN. */
   capture: boolean
-  /** Public `[SILENCIO]` broadcasts to the channel. Requires CHANNEL_ID. */
-  broadcasts: boolean
   /** /batch, /batch_register, /escalar. Requires ADMIN_USER_IDS. */
   adminCommands: boolean
 }
@@ -103,13 +105,10 @@ export function buildHealth(
 ): BotHealth {
   const capabilities: BotCapabilities = {
     capture: Boolean(env.BOT_TOKEN),
-    broadcasts: Boolean(env.CHANNEL_ID),
     adminCommands: Boolean(env.ADMIN_USER_IDS),
   }
   const degraded: string[] = []
   if (!capabilities.capture) degraded.push('BOT_TOKEN missing — cannot receive quejas')
-  if (!capabilities.broadcasts)
-    degraded.push('CHANNEL_ID missing — public [SILENCIO] broadcasts disabled')
   if (!capabilities.adminCommands)
     degraded.push(
       'ADMIN_USER_IDS missing — nobody can review a queja, so none gets published; /batch, /batch_register and /escalar disabled',

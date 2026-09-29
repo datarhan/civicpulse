@@ -11,7 +11,7 @@
 import { session, type Bot } from 'grammy'
 import { conversations } from '@grammyjs/conversations'
 import type { Db } from '../db/client.ts'
-import type { Channel } from '../services/channel.ts'
+import type { AvisosHitos } from '../services/avisos-hitos.ts'
 import { envioDesdeApi, type EnvioAdmin } from '../services/avisos-admin.ts'
 import { soloEnPrivado } from '../services/solo-en-privado.ts'
 import { unaVezYEnOrden } from '../services/una-vez-y-en-orden.ts'
@@ -35,7 +35,7 @@ import { registerModerar } from './moderar.ts'
 export function registrarComandos(
   bot: Bot<MyContext>,
   db: Db,
-  channel: Channel,
+  hitos: AvisosHitos,
   // Las tarjetas de revisión van por la API del propio bot; las pruebas pasan la suya.
   envio: EnvioAdmin = envioDesdeApi(bot.api),
 ) {
@@ -54,7 +54,7 @@ export function registrarComandos(
   registerQueja(bot, db, envio)
   registerStart(bot)
   registerEstado(bot, db)
-  registerApoyar(bot, db, channel)
+  registerApoyar(bot, db, hitos)
   registerMis(bot, db)
   registerOlvidar(bot, db, undefined, envio)
   registerBorrarMisDatos(bot, db, undefined, envio)
@@ -62,8 +62,8 @@ export function registrarComandos(
   registerBarrio(bot, db)
   registerRanking(bot, db)
   registerDigest(bot, db)
-  registerBatchCommand(bot, db, channel)
-  registerEscalar(bot, db, channel)
+  registerBatchCommand(bot, db, hitos)
+  registerEscalar(bot, db, hitos)
   registerCurarCommand(bot, db)
   registerModerar(bot, db, { envio })
 
