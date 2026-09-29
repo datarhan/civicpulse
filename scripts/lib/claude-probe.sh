@@ -46,6 +46,12 @@ CLAUDE_PROBE_MOTIVO=""
 # Cuánto motivo cabe en un renglón de log.
 CLAUDE_PROBE_MAX=300
 
+# Las banderas de aislamiento de `claudeCodeArgs` (src/llm/client.ts), menos las
+# de su salida estructurada: el sondeo contesta en texto. Copiadas porque bash no
+# importa el cliente; tests/scripts/claude-probe.test.ts las compara con él.
+CLAUDE_PROBE_AJUSTES='{"disableAllHooks":true}'
+CLAUDE_PROBE_VETADAS="WebFetch,WebSearch,Bash,Read,Write,Edit,Glob,Grep,Agent,ToolSearch,NotebookEdit"
+
 # claude_probe <binario> <modelo>
 #   0   claude contestó
 #   !=0 el código de claude, con el porqué en $CLAUDE_PROBE_MOTIVO
@@ -54,10 +60,28 @@ CLAUDE_PROBE_MAX=300
 # una lista condicional y no dispara `-e`.
 claude_probe() {
   local bin="$1" modelo="$2"
-  local salida="" rc=0 motivo=""
+  local salida="" rc=0 motivo="" dir="" base="${TMPDIR:-/tmp}"
   CLAUDE_PROBE_MOTIVO=""
 
-  salida="$("$bin" -p "ok" --strict-mcp-config --model "$modelo" 2>&1)" && rc=0 || rc=$?
+  # El sondeo avala las llamadas del cliente, así que corre como ellas: en un
+  # directorio vacío y propio, como su `cp-claude-cwd-*`, y con sus banderas.
+  # En el checkout cargaba el CLAUDE.md, la memoria, las skills y un
+  # `acceptEdits` con 214 órdenes permitidas (medido el 2026-09-28; el detalle,
+  # en el test).
+  dir="$(mktemp -d "${base%/}/cp-claude-probe-XXXXXX")" || {
+    CLAUDE_PROBE_MOTIVO="no se pudo crear el directorio temporal del sondeo"
+    return 1
+  }
+
+  # El `cd` va dentro de la sustitución, que es una subshell: quien carga este
+  # fichero sigue en su directorio.
+  salida="$(cd "$dir" && "$bin" -p "ok" --system-prompt "Contesta: ok" \
+    --disable-slash-commands --strict-mcp-config \
+    --settings "$CLAUDE_PROBE_AJUSTES" --disallowedTools "$CLAUDE_PROBE_VETADAS" \
+    --model "$modelo" 2>&1)" && rc=0 || rc=$?
+  # `rmdir` y no `rm -rf`: claude no deja nada en su cwd, y si algún día lo
+  # dejara, mejor un directorio de sobra que un borrado a ciegas.
+  rmdir "$dir" 2>/dev/null || true
   [ "$rc" -eq 0 ] && return 0
 
   # Último renglón con contenido, con los espacios colapsados.

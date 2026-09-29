@@ -3,6 +3,9 @@ import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import {
   validatePromisesSnapshot,
+  withLegalNotice,
+  FUENTE_PRIMARIA,
+  PROMISE_CORRECTION_FIELDS,
   ALLOWED_PARTIES,
   ALLOWED_STATUSES,
   type PromisesSnapshot,
@@ -25,7 +28,9 @@ describe('scraper/promises — validatePromisesSnapshot', () => {
   })
 
   it('every promise has the mandatory invariants (party + title + verbatim quote + source URL + made-at date)', () => {
-    expect(snap.items.length).toBeGreaterThanOrEqual(10)
+    // Un suelo de «mide algo», no un tamaño: el 28-09-2026 el registro menguó
+    // al retirarse las fichas cuya cita no eran palabras del partido.
+    expect(snap.items.length).toBeGreaterThan(0)
     for (const p of snap.items) {
       expect(ALLOWED_PARTIES).toContain(p.party)
       expect(p.title.length).toBeGreaterThan(3)
@@ -353,9 +358,10 @@ describe('promises — a promise may not cite us as its own source', () => {
    * favouritism against a named party, and the schema was satisfied because it
    * only asked for «≥20 chars + URL + publisher». Retracted in c66cf93.
    *
-   * Nothing stopped the next one. This does: a primary source has to be
-   * somebody else's document. Our own snapshots are what a claim is CHECKED
-   * against, never what it RESTS on.
+   * Nothing stopped the next one. This does: a promise's source has to be
+   * somebody else's — the official document or the news item that carries the
+   * quote. Our own snapshots are what a claim is CHECKED against, never what it
+   * RESTS on.
    */
   const base = {
     version: '1.0',
@@ -389,7 +395,7 @@ describe('promises — a promise may not cite us as its own source', () => {
     'https://civicpulse.es/promesas',
     'http://www.civicpulse.es/data/budget.json',
     'https://CIVICPULSE.ES/data/x.json',
-  ])('rejects %s as a primary source', (url) => {
+  ])("rejects %s as a promise's source", (url) => {
     expect(() => validatePromisesSnapshot(JSON.stringify(withSource(url)))).toThrow(
       /no puede citarse a sí mismo|self/i,
     )
@@ -415,5 +421,216 @@ describe('promises — a promise may not cite us as its own source', () => {
     // c66cf93 removed the only offenders; if this ever fails, something
     // re-introduced a self-citation rather than the guard being wrong.
     expect(() => validatePromisesSnapshot(readFileSync(SNAPSHOT, 'utf8'))).not.toThrow()
+  })
+})
+
+describe('promises — the notice may not call its sources «primarias»', () => {
+  /**
+   * The reader review of 2026-09-28 read, at the foot of /promesas,
+   * «compromisos públicos atribuidos a partidos y cargos mediante fuentes
+   * primarias enlazadas» — above cards whose source was Levante-EMV, Las
+   * Provincias or El Periódico de Aquí. To a reader a «fuente primaria» is the
+   * original document (the manifesto, the acta, the council's own notice), not
+   * the news item that reports it, and this schema accepts the news item as
+   * `source.url` («still accepts a real third-party source», above). The notice
+   * promised more than the schema checks. The word came from the validator
+   * itself, whose self-citation message said «fuente primaria» meaning «not
+   * ours».
+   */
+  const withNotice = (legalNotice: string) =>
+    JSON.stringify({
+      version: '1.0',
+      generatedAt: '2026-09-28',
+      frozenUntil: null,
+      legalNotice,
+      contactUrl: 'https://x.test/issues',
+      methodologyUrl: '/metodologia',
+      items: [],
+    })
+
+  it.each([
+    'Las promesas listadas son compromisos públicos atribuidos a partidos y cargos mediante fuentes primarias enlazadas.',
+    'Cada promesa enlaza a su fuente primaria, y cualquiera puede leer la cita en su contexto original.',
+  ])('rejects a notice that calls the sources primary: %s', (notice) => {
+    expect(() => validatePromisesSnapshot(withNotice(notice))).toThrow(/legalNotice.*primaria/)
+  })
+
+  it('accepts a notice that says what the schema checks', () => {
+    const notice =
+      'Las promesas listadas son compromisos públicos atribuidos a partidos y cargos, cada uno ' +
+      'con su fuente enlazada: el documento oficial o la noticia de prensa que recoge la cita.'
+    expect(() => validatePromisesSnapshot(withNotice(notice))).not.toThrow()
+  })
+
+  it('the rule covers both catalogue languages and leaves the honest wording alone', () => {
+    for (const s of ['fuente primaria', 'Fuentes primarias', 'font primària', 'fonts primàries']) {
+      expect(FUENTE_PRIMARIA.test(s), s).toBe(true)
+    }
+    for (const s of ['con su fuente enlazada', 'amb la seua font enllaçada', 'la noticia']) {
+      expect(FUENTE_PRIMARIA.test(s), s).toBe(false)
+    }
+  })
+})
+
+describe('withLegalNotice — the one way to change the notice', () => {
+  /**
+   * `promises.json` is curated and the guard denies a direct edit, but none of
+   * its CLIs touched `legalNotice`, so the notice could only be corrected by
+   * going round the validator. This is the pure half of
+   * `npm run aviso-promesas`: it changes the notice and the stamp, nothing
+   * else, and hands back only what the validator accepts.
+   */
+  const RAW = readFileSync(SNAPSHOT, 'utf8')
+  const NOTICE =
+    'CivicPulse es un proyecto independiente. Las promesas listadas son compromisos públicos ' +
+    'atribuidos a partidos y cargos, cada uno con su fuente enlazada: el documento oficial o la ' +
+    'noticia de prensa que recoge la cita.'
+  const NOW = new Date('2026-09-28T12:00:00.000Z')
+
+  it('changes the notice and the stamp and nothing else, byte for byte', () => {
+    const out = withLegalNotice(RAW, NOTICE, NOW)
+    const before = JSON.parse(RAW)
+    const after = JSON.parse(out)
+    expect(after.legalNotice).toBe(NOTICE)
+    // `check:stamps` reds a content change whose stamp stayed put.
+    expect(after.generatedAt).toBe(NOW.toISOString())
+    expect({ ...after, legalNotice: before.legalNotice, generatedAt: before.generatedAt }).toEqual(
+      before,
+    )
+    // Re-serialised from the file as read, not from the validator's normalised
+    // copy (which adds `response: null` to rows without one): two lines move.
+    const a = RAW.split('\n')
+    const b = out.split('\n')
+    expect(b).toHaveLength(a.length)
+    expect(b.filter((line, i) => line !== a[i])).toHaveLength(2)
+  })
+
+  it('trims the ends, so a stray newline from the shell is not published', () => {
+    expect(JSON.parse(withLegalNotice(RAW, `\n  ${NOTICE}  \n`, NOW)).legalNotice).toBe(NOTICE)
+  })
+
+  it('hands back nothing the validator rejects', () => {
+    expect(() => withLegalNotice(RAW, `${NOTICE} Todas son fuentes primarias.`, NOW)).toThrow(
+      /primaria/,
+    )
+    expect(() => withLegalNotice(RAW, 'Un aviso demasiado corto.', NOW)).toThrow(
+      /legalNotice too short/,
+    )
+  })
+
+  it('refuses a file it cannot validate rather than writing on top of it', () => {
+    const broken = JSON.stringify({ ...JSON.parse(RAW), items: [{ id: 'x' }] }, null, 2)
+    expect(() => withLegalNotice(broken, NOTICE, NOW)).toThrow(/items\[0\]/)
+  })
+})
+
+describe('promises — corrections and retractions leave a public record', () => {
+  /**
+   * From 2026-09-28 a quote on /promesas has to be the party's own words, and
+   * most published cards did not meet that: they quoted a headline or the
+   * reporter. Changing or withdrawing a published card must leave a record
+   * (CLAUDE.md: corrections go through a CLI and leave one), so the schema
+   * carries it — and the normalised copy that the auto-curator,
+   * `apply-promise-draft` and `freeze:set` write back must carry it too, or
+   * their next run erases it.
+   */
+  const promise = (over: Record<string, unknown> = {}) => ({
+    id: 'p-1',
+    party: 'PSOE',
+    title: 'Una promesa cualquiera',
+    quote: 'compromiso lo cumpliremos y habrá un descuento a los vecinos',
+    source: { url: 'https://www.lasprovincias.es/x', publisher: 'Las Provincias' },
+    madeAt: '2026-07-02',
+    topic: 'fiscal',
+    kind: 'anuncio-gobierno',
+    status: 'documentada',
+    evidence: [],
+    createdAt: '2026-07-04',
+    ...over,
+  })
+  const snap = (items: unknown[], extra: Record<string, unknown> = {}) =>
+    JSON.stringify({
+      version: '1.0',
+      generatedAt: '2026-09-28',
+      frozenUntil: null,
+      legalNotice: 'x'.repeat(100),
+      contactUrl: 'https://x.test/issues',
+      methodologyUrl: '/metodologia',
+      items,
+      ...extra,
+    })
+  const correction = (over: Record<string, unknown> = {}) => ({
+    field: 'quote',
+    original: 'contestó a las palabras de Gimeno que ese compromiso lo cumpliremos',
+    corrected: 'compromiso lo cumpliremos y habrá un descuento a los vecinos',
+    reason: 'La cita mezclaba la narración del periodista con las palabras del alcalde.',
+    editor: 'Nombre Apellido',
+    correctedAt: '2026-09-28',
+    ...over,
+  })
+  const retraction = (over: Record<string, unknown> = {}) => ({
+    promiseId: 'p-retirada',
+    party: 'PP',
+    digest: 'promesa · sha256:0123456789ab',
+    reason: 'La fuente no pone en boca del partido ninguna frase con este compromiso.',
+    editor: 'Nombre Apellido',
+    retractedAt: '2026-09-28T12:00:00.000Z',
+    ...over,
+  })
+
+  it('exports the fields a correction may touch', () => {
+    expect(PROMISE_CORRECTION_FIELDS).toEqual(['quote', 'source.url', 'source.publisher'])
+  })
+
+  it('accepts a corrections log and carries it through the normalised copy', () => {
+    const out = validatePromisesSnapshot(snap([promise({ corrections: [correction()] })]))
+    expect(out.items[0].corrections).toHaveLength(1)
+    expect(out.items[0].corrections?.[0].field).toBe('quote')
+    // An uncorrected card reads as it always did: no empty array appears.
+    expect('corrections' in validatePromisesSnapshot(snap([promise()])).items[0]).toBe(false)
+  })
+
+  it.each([
+    [{ field: 'title' }, /field/],
+    [{ reason: 'muy corta' }, /reason too short/],
+    [{ editor: '' }, /editor/],
+    [
+      { corrected: 'contestó a las palabras de Gimeno que ese compromiso lo cumpliremos' },
+      /changes nothing/,
+    ],
+    [{ correctedAt: 'ayer' }, /correctedAt/],
+  ])('rejects a malformed correction %j', (over, re) => {
+    expect(() =>
+      validatePromisesSnapshot(snap([promise({ corrections: [correction(over)] })])),
+    ).toThrow(re)
+  })
+
+  it('accepts retractions and carries them through the normalised copy', () => {
+    const out = validatePromisesSnapshot(snap([promise()], { retractions: [retraction()] }))
+    expect(out.retractions).toHaveLength(1)
+    expect(out.retractions?.[0].promiseId).toBe('p-retirada')
+    expect('retractions' in validatePromisesSnapshot(snap([promise()]))).toBe(false)
+  })
+
+  it('a withdrawn id is never reused, nor withdrawn twice', () => {
+    expect(() =>
+      validatePromisesSnapshot(
+        snap([promise()], { retractions: [retraction({ promiseId: 'p-1' })] }),
+      ),
+    ).toThrow(/still published/)
+    expect(() =>
+      validatePromisesSnapshot(snap([promise()], { retractions: [retraction(), retraction()] })),
+    ).toThrow(/appears twice/)
+  })
+
+  it.each([
+    [{ digest: 'sha256:0123456789ab' }, /digest/],
+    [{ party: 'Otro' }, /party/],
+    [{ reason: 'corta' }, /reason too short/],
+    [{ retractedAt: 'hoy' }, /retractedAt/],
+  ])('rejects a malformed retraction %j', (over, re) => {
+    expect(() =>
+      validatePromisesSnapshot(snap([promise()], { retractions: [retraction(over)] })),
+    ).toThrow(re)
   })
 })

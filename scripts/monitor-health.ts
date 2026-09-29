@@ -300,6 +300,14 @@ async function gather(): Promise<Observations> {
     //
     // Una puerta que sólo mira lo que entra hoy da por limpio todo lo de ayer.
     'check:privado',
+    // ¿Lleva algún fichero publicado el nombre de alguien en sus METADATOS?
+    //
+    // Aquí por la misma razón que la de arriba, y por otra: las fotos de las
+    // quejas entran con `pull-quejas.yml`, en Actions, donde no corre ningún
+    // gancho, y la e2e no se lanza con un empuje que sólo toca `public/data/`.
+    // Si el bot publicara una foto con EXIF, sólo esta línea lo diría. Y los
+    // retratos de /cargos los reescribe el cron de la nocturna.
+    'check:metadatos',
     // El mapa base, y es la única de esta lista que mira PÍXELES.
     //
     // CARTO empezó a exigir clave en sus teselas ráster y lo que hace sin ella

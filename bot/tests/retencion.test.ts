@@ -13,6 +13,7 @@ import { join } from 'node:path'
 import { openDb, type Db } from '../src/db/client'
 import { addApoyo, autorTelegram, createQueja } from '../src/db/queries'
 import { purgarCaducadas } from '../src/services/retencion'
+import { pasadaHoraria, type EnvioAdmin } from '../src/services/avisos-admin'
 import {
   CONSERVACION_COPIAS_DIAS,
   CONSERVACION_QUEJAS_ANIOS,
@@ -135,5 +136,46 @@ describe('purgarCaducadas', () => {
     const r = purgarCaducadas(db, opciones())
     expect(r.quejas).toEqual({ revisadas: 1, borradas: 0 })
     expect(r.copias).toEqual({ revisadas: 0, borradas: 0 })
+  })
+
+  it('las tarjetas de una queja destruida esperan en cola hasta perder el texto, aunque Telegram falle la primera vez', async () => {
+    const vieja = queja({ updated: haceAnios(CONSERVACION_QUEJAS_ANIOS + 1) })
+    const viva = queja({ updated: AHORA })
+    const tarjeta = db.prepare(
+      "INSERT INTO avisos (queja_id, tipo, destinatario, message_id, resultado) VALUES (?, 'tarjeta', ?, ?, 'entregado')",
+    )
+    tarjeta.run(vieja, 'admin:9001', 77)
+    tarjeta.run(viva, 'admin:9001', 78)
+    const r = purgarCaducadas(db, opciones())
+    expect(r.tarjetas).toBe(1)
+    expect(
+      db
+        .prepare('SELECT destinatario, message_id, queja_id, motivo FROM tarjetas_por_vaciar')
+        .all(),
+    ).toEqual([
+      { destinatario: 'admin:9001', message_id: 77, queja_id: vieja, motivo: 'destruida' },
+    ])
+    const editadas: Array<{ mid: number; html: string }> = []
+    let falla = true
+    const envio: EnvioAdmin = {
+      enviar: async () => ({ message_id: 1 }),
+      editar: async (_admin, mid, html) => {
+        if (falla) throw Object.assign(new Error('Bad Gateway'), { error_code: 502 })
+        editadas.push({ mid, html })
+      },
+      mensaje: async () => ({ message_id: 1 }),
+    }
+    expect((await pasadaHoraria(db, { admins: [9001], envio })).vaciadas).toMatchObject({
+      intentadas: 1,
+      fallidas: 1,
+    })
+    falla = false
+    expect((await pasadaHoraria(db, { admins: [9001], envio })).vaciadas).toMatchObject({
+      intentadas: 1,
+      vaciadas: 1,
+    })
+    expect(editadas.map((e) => e.mid)).toEqual([77])
+    expect(editadas[0].html).toMatch(/plazo de conservación/)
+    expect(db.prepare('SELECT COUNT(*) AS n FROM tarjetas_por_vaciar').get()).toEqual({ n: 0 })
   })
 })

@@ -1,7 +1,8 @@
 import { describe, it, expect, beforeEach } from 'vitest'
 import { openDb, type Db } from '../src/db/client'
-import { createQueja, type NewQuejaInput, autorTelegram } from '../src/db/queries'
+import { type NewQuejaInput, autorTelegram } from '../src/db/queries'
 import { buildSnapshot } from '../src/services/snapshot'
+import { creaPublicada } from './helpers/publicada'
 
 function sample(overrides: Partial<NewQuejaInput> = {}): NewQuejaInput {
   return {
@@ -26,7 +27,7 @@ describe('buildSnapshot — anonymized photo wiring', () => {
   })
 
   it('adds a public photo URL when an anonymized image exists for the queja', () => {
-    const q = createQueja(db, sample({ foto_ref: 'tg:AgACfoo' }))
+    const q = creaPublicada(db, sample({ foto_ref: 'tg:AgACfoo' }))
     const snap = buildSnapshot(db, 1000, {
       photoUrlFor: (id) => (id === q.id ? `/data/quejas-photos/${id.toLowerCase()}.jpg` : null),
     })
@@ -35,7 +36,7 @@ describe('buildSnapshot — anonymized photo wiring', () => {
   })
 
   it('omits photo when no anonymized image has been published', () => {
-    const q = createQueja(db, sample({ foto_ref: 'tg:AgACfoo' }))
+    const q = creaPublicada(db, sample({ foto_ref: 'tg:AgACfoo' }))
     const snap = buildSnapshot(db, 1000, { photoUrlFor: () => null })
     const row = snap.items.find((r) => r.service_request_id === q.id)
     expect(row?.photo).toBeUndefined()
@@ -45,7 +46,7 @@ describe('buildSnapshot — anonymized photo wiring', () => {
     // Defense-in-depth guard: even when a photo IS published, the private
     // Telegram file_id must never appear in the public JSON.
     const secret = 'AgACAgIAAxkBAASECRETfileid'
-    const q = createQueja(db, sample({ foto_ref: `tg:${secret}` }))
+    const q = creaPublicada(db, sample({ foto_ref: `tg:${secret}` }))
     const snap = buildSnapshot(db, 1000, {
       photoUrlFor: (id) => `/data/quejas-photos/${id.toLowerCase()}.jpg`,
     })

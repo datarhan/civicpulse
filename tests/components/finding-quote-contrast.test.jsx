@@ -25,6 +25,7 @@ import {
   QuoteProvenanceMark,
   QuoteProvenanceNote,
   quoteMarks,
+  ROTULO_CITA_RETENIDA,
 } from '../../src/components/PlenoFindings'
 import { FindingDetailCard } from '../../src/pages/Hallazgos'
 import Metodologia from '../../src/pages/Metodologia'
@@ -308,15 +309,23 @@ describe('/metodologia lee las cifras del snapshot, no las trae escritas', () =>
     expect(new Set([c.porContraste.hidden, c.porContraste.toggle]).size).toBe(2)
   })
 
-  it('dice que la puerta gobierna /plenos y que el hallazgo es su excepción', async () => {
+  /**
+   * Decía que la sección tenía que contener «excepción que esa puerta concede»
+   * y «la excepción la tomó una máquina»: fijaba la política anterior al
+   * 27-08-2026, cuando /hallazgos imprimía el literal que la puerta retenía, y
+   * siguió en verde un mes después de que dejara de ser cierta. Ahora fija la
+   * vigente; que la frase vieja no vuelva lo vigila
+   * tests/metodologia-citas-contraste.test.jsx.
+   */
+  it('dice que la puerta gobierna /plenos y /hallazgos, y que promover no la salta', async () => {
     const { container } = render(<Metodologia />)
     await waitFor(() => {
       expect(peekSnapshot('/data/finding-quote-provenance.json')?.status).toBe('ready')
     })
     const text = container.querySelector('#citas-contraste').textContent
     expect(text).toMatch(/registro de declaraciones del pleno/)
-    expect(text).toMatch(/excepción que esa puerta concede/)
-    expect(text).toMatch(/la excepción la tomó una máquina/)
+    expect(text).toMatch(/Promover una declaración a hallazgo no la saca de la puerta/)
+    expect(text).toContain(ROTULO_CITA_RETENIDA)
     // Y los dos rótulos que el lector verá al lado de una cita.
     for (const chip of Object.values(CONTRAST_CHIP)) expect(text).toContain(chip)
   })

@@ -8,38 +8,50 @@ import {
 } from '../hooks/useQuejaContractRelations'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
-import { fmtDateLong, rellena } from '../lib/formatters'
+import { fmtDateHuman, rellena } from '../lib/formatters'
 import { conHuecos } from '../lib/huecos'
 import { rotuloDe, useLocale } from '../i18n'
 import { CLAVE_RELACION } from '../scraper/relation-labels'
-import { diasDePlazo, plazoDeResolucion } from '../scraper/queja-router'
+import {
+  diaDeLaSede,
+  diasQueQuedan,
+  instanteUtc,
+  plazoDeResolucion,
+  ZONA_DE_LA_SEDE,
+} from '../scraper/queja-router'
 import { DEPARTMENT_LABEL } from '../scraper/departments'
 
 const SINDIC_PORTAL = 'https://www.elsindic.com/es/presenta-una-queja'
 
+/**
+ * Fecha y hora de la sede, no las del reloj de quien lee: una respuesta aplicada
+ * a las 23:45 UTC es de la 00:45 del día siguiente en Riba-roja, y en UTC o en
+ * Nueva York salía con el día anterior.
+ */
 function fmt(iso, idioma) {
-  if (!iso) return '—'
-  try {
-    return new Date(iso).toLocaleString(idioma === 'ca' ? 'ca-ES' : 'es-ES', {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-    })
-  } catch {
-    return iso
-  }
+  const instante = instanteUtc(iso ?? '')
+  if (Number.isNaN(instante)) return '—'
+  return new Date(instante).toLocaleString(idioma === 'ca' ? 'ca-ES' : 'es-ES', {
+    timeZone: ZONA_DE_LA_SEDE,
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  })
 }
 
+/**
+ * El día de la sede en que cae una marca del bot, en letra.
+ *
+ * `fmtDateLong` hacía `new Date(marca)`, que lee la forma de SQLite —hora UTC sin
+ * zona— en hora LOCAL, y pintaba el día del reloj de quien lee: con el reloj en
+ * Madrid, la ficha fechaba el 20 de septiembre una queja enviada a la 00:30 del
+ * 21. El día sale de `diaDeLaSede`, y `fmtDateHuman` lo escribe sin volver a
+ * pasarlo por ningún reloj: una fecha sin hora la lee como medianoche local.
+ */
 function fmtDate(iso, idioma) {
-  return fmtDateLong(iso, idioma) || '—'
-}
-
-function daysSince(iso) {
-  if (!iso) return null
-  const ms = Date.now() - new Date(iso).getTime()
-  return Math.floor(ms / (1000 * 60 * 60 * 24))
+  return fmtDateHuman(diaDeLaSede(iso), idioma) || '—'
 }
 
 /**
@@ -54,13 +66,16 @@ function daysSince(iso) {
  * Devuelve las dos cosas porque la ficha necesita las dos: el plazo se PUBLICA
  * en meses, que es lo que dice la ley, y se CUENTA en los días que de verdad
  * tiene esa queja.
+ *
+ * Y se cuenta con la cuenta del enrutador, en días del calendario de la sede
+ * hasta el final del último. Aquí se restaban tandas de 24 horas desde la marca
+ * leída en hora local: registrada a las 00:30 del 31 de enero en Madrid, el 30
+ * de abril —su último día— decía que quedaba uno, y el 1 de mayo, ya vencido,
+ * que quedaban cero. `restantes` es null sin fecha de registro que se pueda leer.
  */
 function plazoFor(category, registeredAt) {
   const limite = plazoDeResolucion(category)
-  return {
-    limite,
-    dias: registeredAt ? diasDePlazo(limite, registeredAt) : null,
-  }
+  return { limite, restantes: diasQueQuedan(limite, registeredAt) }
 }
 
 /** «3 meses» / «1 mes», con el catálogo poniendo las palabras. */
@@ -302,9 +317,7 @@ export default function QuejaDetail() {
   const categoria = rotuloDe(t, `quejas.categoria.${category}`, category)
   const estado = rotuloDe(t, `quejas.estado.${queja.status}`, queja.status)
   const plazo = plazoFor(category, queja.registered_at)
-  const registeredDays = daysSince(queja.registered_at)
-  const diasRestantes =
-    registeredDays != null && plazo.dias != null ? plazo.dias - registeredDays : null
+  const diasRestantes = plazo.restantes
 
   // Synthetic timeline derived from the row's timestamps + state.
   const timeline = []
@@ -553,7 +566,7 @@ export default function QuejaDetail() {
 
       <CorrelationsCard quejaId={id} />
 
-      {queja.registered_at && queja.status !== 'resuelta' && (
+      {diasRestantes != null && queja.status !== 'resuelta' && (
         <Card style={{ marginTop: 14 }}>
           <SectionHead
             eyebrow={t('quejas.detalle.reloj.eyebrow')}

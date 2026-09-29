@@ -9,8 +9,11 @@
  *
  * Una tonelada de basura no sale igual dos años seguidos. Que el numerador se
  * actualice cada entrega y el denominador no es lo que convierte una serie de
- * costes unitarios en una serie de **inflación de costes**: el cociente sólo
- * puede subir, y sube porque nadie volvió a pesar la basura.
+ * costes unitarios en una serie de **costes**: el cociente sigue al dinero,
+ * sube y baja con él, y no puede decir si cambió lo que cuesta cada tonelada o
+ * cuántas hubo. (Aquí decía que «sólo puede subir», y la página lo copió; es
+ * falso —el coste también baja, y la basura de Riba-roja pasa de 78,22 a
+ * 66,94 €/t con las toneladas quietas—. Revisión lectora del 28-09-2026.)
  *
  * ## Por qué esto es una medición y no una sospecha
  *

@@ -1,8 +1,9 @@
 import { describe, it, expect, beforeEach } from 'vitest'
 import { openDb, type Db } from '../src/db/client'
-import { autorTelegram, createQueja } from '../src/db/queries'
+import { autorTelegram } from '../src/db/queries'
 import { resumenDeBarrios } from '../src/commands/barrio'
 import { computeRanking, quejasSinBarrio60d } from '../src/commands/ranking'
+import { creaPublicada } from './helpers/publicada'
 
 /**
  * Una queja sin barrio no desaparece de `/barrio` ni de `/ranking`.
@@ -39,7 +40,7 @@ describe('/ranking: cuenta las que no puede clasificar', () => {
     db = openDb(':memory:')
   })
   const seed = (neighborhood: string | null) =>
-    createQueja(db, {
+    creaPublicada(db, {
       autor: autorTelegram(1),
       category: 'via_publica',
       title: 'Bache sin reparar',

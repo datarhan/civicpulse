@@ -3,6 +3,11 @@ import { readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 import { CATALOGUE } from '../src/i18n'
+import {
+  CLAVE_MEDICION,
+  DESCRIPCION_MOTIVO,
+  MOTIVOS_RETENCION,
+} from '../bot/src/services/moderacion-criterios'
 
 /**
  * Lo que el contrato publicado cuenta del camino de una queja, contra el código
@@ -164,19 +169,21 @@ describe('el contrato de las quejas dice lo que hace el código', () => {
 describe('lo que el bot le dice al vecino dice lo mismo que las páginas', () => {
   const INICIO = lee('bot/src/commands/start.ts')
   const QUEJA = lee('bot/src/commands/queja.ts')
-  const CANAL = lee('bot/src/services/channel.ts')
+  // Los hitos de cada queja: hasta el 2026-09-29, en el canal público de Telegram
+  // (services/channel.ts); desde entonces, a quien modera.
+  const HITOS = lee('bot/src/services/avisos-hitos.ts')
   const OLVIDAR = lee('bot/src/commands/olvidar.ts')
   const CONSULTAS = lee('bot/src/db/queries.ts')
 
   it('lee los cuatro mensajes (si no, no mide nada)', () => {
-    for (const texto of [INICIO, QUEJA, CANAL, OLVIDAR]) expect(texto.length).toBeGreaterThan(500)
+    for (const texto of [INICIO, QUEJA, HITOS, OLVIDAR]) expect(texto.length).toBeGreaterThan(500)
   })
 
   it('ninguno promete que el canal escala al Síndic', () => {
     const conEscalamos = Object.entries({
       'commands/start.ts': INICIO,
       'commands/queja.ts': QUEJA,
-      'services/channel.ts': CANAL,
+      'services/avisos-hitos.ts': HITOS,
     })
       .filter(([, texto]) => /escalamos/i.test(texto))
       .map(([fichero]) => fichero)
@@ -194,14 +201,15 @@ describe('lo que el bot le dice al vecino dice lo mismo que las páginas', () =>
   })
 
   it('el aviso de silencio no escribe un plazo fijo: el del enrutador cambia con la queja', () => {
-    // Con parámetro: sin él, la primera coincidencia es el `postSilencio() {}` vacío
-    // del canal mudo, y la prueba medía un método sin texto.
-    const cuerpo = CANAL.slice(
-      CANAL.indexOf('async postSilencio(q'),
-      CANAL.indexOf('async postEscaladaSindic(q'),
-    )
-    expect(cuerpo.length, 'no encuentro postSilencio').toBeGreaterThan(50)
+    const cuerpo = HITOS.slice(HITOS.indexOf("case 'silencio':"), HITOS.indexOf("case 'escalada':"))
+    expect(cuerpo.length, 'no encuentro el aviso de silencio').toBeGreaterThan(50)
     expect(cuerpo, 'escribe los días a mano').not.toMatch(/\b\d+ días/)
+  })
+
+  it('la escalada dice lo que hace el bot: marca y prepara la plantilla, no la remite', () => {
+    const cuerpo = HITOS.slice(HITOS.indexOf("case 'escalada':"))
+    expect(cuerpo.length, 'no encuentro el aviso de escalada').toBeGreaterThan(50)
+    expect(cuerpo).not.toMatch(/remitid|escalamos/i)
   })
 
   it('la respuesta a /olvidar dice lo que pasa: «anónima» sólo si la identidad se borra, y nada de /mis', () => {
@@ -456,5 +464,183 @@ describe('el plazo de conservación se lee de donde se cumple', () => {
       expect(borrar, `olvidarTodo no borra ${tabla}`).toMatch(new RegExp(`DELETE FROM ${tabla}\\b`))
     }
     expect(lee('bot/src/commands/registrar.ts')).toMatch(/registerBorrarMisDatos\(/)
+  })
+})
+
+/**
+ * La revisión antes de publicar, contada donde se publica el contrato. Desde la
+ * migración 2 una queja nace `pendiente` y no sale hasta que quien modera el
+ * canal la publica: /metodologia y /aviso-legal lo tienen que decir, y lo que
+ * dicen tiene que ser lo que hace el código.
+ */
+describe('la revisión antes de publicar', () => {
+  const MIGRACIONES = lee('bot/src/db/migraciones.ts')
+  const METODOLOGIA = plano('src/pages/Metodologia.jsx')
+  const AVISO = plano('src/pages/AvisoLegal.jsx')
+
+  it('una queja nace pendiente: publicar es una decisión', () => {
+    expect(MIGRACIONES).toMatch(/ADD COLUMN moderacion TEXT NOT NULL DEFAULT 'pendiente'/)
+    expect(METODOLOGIA).toContain('Se revisa antes de publicarla.')
+    expect(METODOLOGIA).toContain('no reescribe su texto')
+    expect(AVISO).toContain('Revisión antes de publicar')
+    // Y /quejas, en la cabecera que se ve con datos y sin ellos.
+    expect(QUEJAS).toContain(
+      'Desde finales de septiembre de 2026, una persona revisa cada queja antes de publicarla aquí.',
+    )
+  })
+
+  it('lo publicado antes de la revisión lo dice la página, y lo marca la migración', () => {
+    expect(MIGRACIONES).toMatch(/'heredada', 'migracion'/)
+    expect(METODOLOGIA).toMatch(
+      /antes de que empezara esta revisión, a finales de septiembre de 2026, no pasaron por ella/,
+    )
+  })
+
+  it('descartar tiene vuelta atrás: la página lo dice y la transición existe', () => {
+    expect(METODOLOGIA).toContain('una descartada puede publicarse después')
+    expect(AVISO).toContain('una descartada puede publicarse después')
+    expect(lee('bot/src/db/queries.ts')).toMatch(/publicar:\s*\{\s*desde:\s*\[[^\]]*'descartada'/)
+  })
+
+  it('quien modera sabe que hay foto pero no la ve, y la foto sale sólo con la queja publicada', () => {
+    const avisos = sinComentariosTs(lee('bot/src/services/avisos-admin.ts'))
+    expect(METODOLOGIA).toContain('sabe si la queja trae una, pero no la ve')
+    // Y en la lista de lo que firma una persona, la foto consta como excepción.
+    expect(METODOLOGIA).toContain('se anonimiza y se publica sin que nadie la vea')
+    expect(AVISO).toContain('sin la foto, que no ve')
+    expect(avisos).toMatch(/Trae foto/)
+    expect(avisos).not.toMatch(/send(Photo|MediaGroup|Document)/)
+    const lista = lee('bot/src/db/queries.ts').match(
+      /export function listQuejasWithPhoto[\s\S]*?\n\}/,
+    )
+    expect(lista, 'no encuentro listQuejasWithPhoto').not.toBeNull()
+    expect(lista[0]).toMatch(/SQL_PUBLICA/)
+  })
+
+  it('/olvidar quita el texto de las tarjetas, y la pasada horaria remata las que fallaron', () => {
+    expect(AVISO).toContain(
+      'quita su texto de las tarjetas de revisión que recibió quien modera las quejas —de todas las que Telegram le deja editar—',
+    )
+    expect(sinComentariosTs(lee('bot/src/commands/olvidar.ts'))).toMatch(/actualizarTarjetas\(/)
+    const pasada = sinComentariosTs(lee('bot/src/services/avisos-admin.ts')).match(
+      /export async function pasadaHoraria[\s\S]*?\n\}/,
+    )
+    expect(pasada, 'no encuentro pasadaHoraria').not.toBeNull()
+    expect(pasada[0]).toMatch(/vaciarTarjetasEnCola\(/)
+  })
+
+  it('retirar una queja no deja su identidad en lo que el bot mandó de ella', () => {
+    // La página dice que /olvidar borra la identidad de Telegram y que /borrar_mis_datos
+    // la saca del registro. El aviso a su autor se guarda sin ella, y la retirada
+    // borra el rastro de la queja en `avisos` en su misma transacción.
+    expect(AVISO).toContain('borra de su registro interno tu identidad de Telegram')
+    const avisos = sinComentariosTs(lee('bot/src/services/avisos-admin.ts'))
+    expect(avisos).toMatch(/const destinatario = 'autor'/)
+    expect(avisos).not.toMatch(/`telegram:\$\{/)
+    const retirada = sinComentariosTs(lee('bot/src/db/queries.ts')).match(
+      /export function softDeleteQueja[\s\S]*?\n\}/,
+    )
+    expect(retirada, 'no encuentro softDeleteQueja').not.toBeNull()
+    expect(retirada[0]).toMatch(/aVaciar\(db, \[id\], 'retirada'\)/)
+  })
+
+  it('la dirección para impugnar es la del aviso legal', () => {
+    const m = lee('bot/src/services/contacto.ts').match(/CONTACTO = '([^']+)'/)
+    expect(m, 'no encuentro CONTACTO').not.toBeNull()
+    expect(AVISO).toContain(m[1])
+  })
+
+  it('la tarjeta que no llegó a nadie se reenvía: el bot arma la pasada', () => {
+    expect(sinComentariosTs(lee('bot/src/index.ts'))).toMatch(/startReenvioTarjetas\(/)
+  })
+})
+
+/**
+ * La revisión automática (bot/src/services/moderacion.ts): un modelo lee cada
+ * queja antes de que la decida una persona, quita los nombres de otras personas
+ * y dice si tiene que verla alguien. Lo que la página promete de ella se lee de
+ * donde lo decide el código.
+ */
+describe('la revisión automática', () => {
+  const METODOLOGIA = plano('src/pages/Metodologia.jsx')
+  const AVISO = plano('src/pages/AvisoLegal.jsx')
+
+  it('la metodología publica, uno a uno y literales, los criterios que recibe el modelo', () => {
+    expect(MOTIVOS_RETENCION.length).toBeGreaterThan(5) // el control
+    for (const m of MOTIVOS_RETENCION) {
+      expect(METODOLOGIA, `/metodologia no publica el motivo «${m}»`).toContain(
+        DESCRIPCION_MOTIVO[m],
+      )
+    }
+  })
+
+  it('el aviso legal nombra a Gemini para el texto, con sus condiciones de pago', () => {
+    expect(AVISO).toContain(
+      'el texto lo lee también un modelo de lenguaje, la API Gemini de Google, con sus condiciones de pago',
+    )
+    expect(AVISO).toContain('no usan lo enviado para mejorar sus productos')
+    // Y así lo exige el código: sin GEMINI_NIVEL=pago no corre.
+    expect(lee('bot/src/services/moderacion-criterios.ts')).toMatch(
+      /GEMINI_NIVEL\?\.trim\(\) !== 'pago'/,
+    )
+  })
+
+  it('publicar sin una persona pasa por la medición: la política lo dice, y el código también', () => {
+    expect(METODOLOGIA).toContain(CLAVE_MEDICION)
+    // Ya no es de las que firma siempre una persona: es de las que se miden.
+    expect(METODOLOGIA).not.toContain('publicar una queja ciudadana. No porque una persona')
+    expect(sinComentariosTs(lee('bot/src/services/moderacion.ts'))).toMatch(
+      /decideAutomation\(\s*clasePublicacion\(congelado\)/,
+    )
+    expect(lee('scripts/check-automation.ts')).toMatch(/clasePublicacion\(/)
+  })
+
+  it('/quejas dice que una persona revisa cada queja mientras no haya medición, y sólo entonces', () => {
+    const { measurements } = JSON.parse(lee('.automation-measurements.json'))
+    const medida = measurements.some((m) => m.key === CLAVE_MEDICION)
+    const frase = 'una persona revisa cada queja antes de publicarla aquí'
+    // La medición es la que abre la publicación automática: el cambio que la
+    // registre tiene que cambiar también esta frase.
+    if (medida) expect(QUEJAS).not.toContain(frase)
+    else expect(QUEJAS).toContain(frase)
+  })
+
+  it('el bot arma la pasada de la revisión', () => {
+    expect(sinComentariosTs(lee('bot/src/index.ts'))).toMatch(/startRevisionCron\(/)
+  })
+})
+
+describe('los datos personales del texto', () => {
+  const PII = lee('bot/src/services/pii.ts')
+  const AVISO = plano('src/pages/AvisoLegal.jsx')
+  const METODOLOGIA = plano('src/pages/Metodologia.jsx')
+
+  it('la página nombra cada clase que se retira, y la marca que queda en su lugar', () => {
+    const clases = [
+      ...(PII.match(/CLASES_PII = \[([^\]]+)\]/)?.[1] ?? '').matchAll(/'(\w+)'/g),
+    ].map((m) => m[1])
+    expect(clases.length, 'no encuentro CLASES_PII en pii.ts').toBeGreaterThan(3)
+    const nombres = Object.fromEntries(
+      [...PII.matchAll(/^\s+(\w+): \['[^']*', '([^']+)'\],?$/gm)].map((m) => [m[1], m[2]]),
+    )
+    for (const clase of clases) {
+      expect(nombres[clase], `${clase} no tiene nombre en NOMBRES_PII`).toBeTruthy()
+      expect(AVISO, `/aviso-legal no nombra «${nombres[clase]}»`).toContain(nombres[clase])
+      expect(METODOLOGIA, `/metodologia no nombra «${nombres[clase]}»`).toContain(nombres[clase])
+    }
+    const marca = PII.match(/MARCA_RETIRADO = '([^']+)'/)?.[1]
+    expect(marca, 'no encuentro MARCA_RETIRADO').toBeTruthy()
+    expect(AVISO).toContain(`«${marca}»`)
+    expect(METODOLOGIA).toContain(`«${marca}»`)
+  })
+
+  it('se retiran al guardar: createQueja limpia el título y el detalle', () => {
+    const crear = sinComentariosTs(lee('bot/src/db/queries.ts')).match(
+      /export function createQueja[\s\S]*?\n\}/,
+    )
+    expect(crear, 'no encuentro createQueja').not.toBeNull()
+    expect(crear[0]).toMatch(/limpiarDatosPersonales\(q\.title\)/)
+    expect(crear[0]).toMatch(/limpiarDatosPersonales\(q\.detail\)/)
+    expect(AVISO).toContain('antes de guardar una queja, el bot retira')
   })
 })

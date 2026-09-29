@@ -22,7 +22,6 @@ import { openDb, type Db } from '../src/db/client'
 import {
   addApoyo,
   countApoyos,
-  createQueja,
   getQueja,
   listEvents,
   setState,
@@ -31,6 +30,8 @@ import {
   autorTelegram,
 } from '../src/db/queries'
 import { selectBatch } from '../src/services/batch'
+import { creaPublicada } from './helpers/publicada'
+import { marcaDeAhora } from './helpers/marca'
 
 function sampleQueja(overrides: Partial<NewQuejaInput> = {}): NewQuejaInput {
   return {
@@ -58,7 +59,7 @@ describe('addApoyo — promueve al alcanzar el umbral', () => {
   let id: string
   beforeEach(() => {
     db = openDb(':memory:')
-    id = createQueja(db, sampleQueja()).id
+    id = creaPublicada(db, sampleQueja()).id
   })
 
   it('por debajo del umbral no promueve (el control)', () => {
@@ -99,14 +100,18 @@ describe('addApoyo — promueve al alcanzar el umbral', () => {
   it('nunca degrada una queja que ya está registrada', () => {
     // Una queja ya registrada tiene número de entrada y plazo en marcha. Que le
     // lleguen más apoyos no puede devolverla a la cola.
-    setState(db, id, 'registrada', { entry_number: '2026-RE-0847', csv: 'ABC123XYZ' })
+    setState(db, id, 'registrada', {
+      entry_number: '2026-RE-0847',
+      csv: 'ABC123XYZ',
+      registered_at: marcaDeAhora(),
+    })
     apoyan(db, id, VERIFIED_THRESHOLD + 5)
     expect(getQueja(db, id)?.state).toBe('registrada')
   })
 
   it('tampoco degrada una en trámite ni una resuelta', () => {
     for (const estado of ['en_tramite', 'resuelta'] as const) {
-      const otra = createQueja(db, sampleQueja()).id
+      const otra = creaPublicada(db, sampleQueja()).id
       setState(db, otra, estado)
       apoyan(db, otra, VERIFIED_THRESHOLD + 1)
       expect(getQueja(db, otra)?.state).toBe(estado)

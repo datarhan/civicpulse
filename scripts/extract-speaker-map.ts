@@ -54,12 +54,15 @@ import {
   audioCachePath,
   isReusableAudio,
   AUDIO_CACHE_DIR,
-  recordFailure,
+  carryFailure,
+  foldNight,
   writtenOffChunks,
   isMapComplete,
   usageFromSse,
   GIVE_UP_AFTER_ATTEMPTS,
   type FailedChunk,
+  type IntentoDeTrozo,
+  type Lectura,
   type ChunkUsage,
   type RawSegment,
   type SpeakerMap,
@@ -313,6 +316,18 @@ class ApiError extends Error {
   }
 }
 
+/**
+ * El flujo terminó sin texto. Con `finishReason` es una LECTURA —el modelo
+ * contestó y, en agosto, agotó el techo pensando—, y cuenta para retirar el
+ * trozo; sin él, el flujo se cortó antes de que contestara, y no cuenta.
+ */
+class RespuestaVacia extends Error {
+  constructor(readonly finishReason: string | null) {
+    super(`empty response (finishReason=${finishReason ?? 'none'})`)
+    this.name = 'RespuestaVacia'
+  }
+}
+
 /** Seconds of audio, measured with ffprobe — never inferred from bytes. */
 function durationOf(path: string): number {
   const out = sh('ffprobe', [
@@ -496,7 +511,7 @@ function transcribeChunk(
   }
 
   // A null result is not "found nothing". Refuse it loudly.
-  if (!text.trim()) throw new Error(`empty response (finishReason=${finish ?? 'none'})`)
+  if (!text.trim()) throw new RespuestaVacia(finish)
   return { text, usage: usageFromSse(sse) }
 }
 
@@ -536,6 +551,11 @@ async function main() {
   let apiCalls = 0
   let apiOk = 0
   let apiFailed = 0
+  // Fallos antes de que el modelo contestara: 429, 503, curl, subida. Es la
+  // firma que `client.ts` llama `zeroTokenFailures` y que `backend-refusing`
+  // lee; sin contarla, 18 de 18 llamadas rechazadas por un Gemini saturado
+  // salían en el parte como un `no-work` sin causa.
+  let apiSinRespuesta = 0
   let apiInputTokens = 0
   let apiOutputTokens = 0
   let apiThinkingTokens = 0
@@ -549,6 +569,7 @@ async function main() {
         calls: s.calls + apiCalls,
         ok: s.ok + apiOk,
         failed: s.failed + apiFailed,
+        zeroTokenFailures: s.zeroTokenFailures + apiSinRespuesta,
         // The audio is the whole bill and it was missing from this number.
         // Thinking is billed as output, so it goes on that side of the sum
         // however it is reported.
@@ -858,10 +879,16 @@ async function main() {
       let parsed: ReturnType<typeof parseSpeakerMapResponse> | null = null
       let coverage = 0
       let lastWhy = ''
+      // Lo que cada intento de esta noche le hizo al trozo. Sólo una LECTURA
+      // cuenta para retirarlo — ver `foldNight`.
+      const intentos: IntentoDeTrozo[] = []
       for (let attempt = 1; attempt <= 3; attempt++) {
+        let lectura: Lectura | null = null
+        let respondio = false
         try {
           apiCalls += 1
           const answer = transcribeChunk(path, apiKey, prompt)
+          respondio = true
           // Counted on EVERY answer, including the ones a low coverage score is
           // about to discard — a retried chunk is billed twice and a budget
           // built on accepted chunks alone would under-count the sweep by the
@@ -886,9 +913,12 @@ async function main() {
             parsed = candidate
             break
           }
+          lectura = 'cobertura'
           lastWhy = `covered ${(coverage * 100).toFixed(0)}% (floor ${SPEAKER_MAP_COVERAGE_FLOOR * 100}%)`
         } catch (err) {
           apiFailed += 1
+          if (err instanceof RespuestaVacia && err.finishReason) lectura = 'respuesta-vacia'
+          else if (!respondio) apiSinRespuesta += 1
           // A daily quota is not a flake. Retrying burns nothing but time and
           // makes the log lie about what happened, so stop the whole run and
           // say plainly that it must resume later.
@@ -898,10 +928,17 @@ async function main() {
           }
           lastWhy = err instanceof Error ? err.message : String(err)
         }
+        intentos.push({ lectura, why: lastWhy })
         if (attempt < 3) process.stdout.write(`retry ${attempt} (${lastWhy})… `)
       }
       if (quotaExhausted) {
-        failedChunks.push({ chunk: i, why: 'quota exhausted, never attempted further' })
+        // Lo que esta noche SÍ leyó antes del 429 cuenta; la cuota, no.
+        failedChunks.push(
+          foldNight(priorFailures.get(i), i, [
+            ...intentos,
+            { lectura: null, why: 'quota exhausted, never attempted further' },
+          ]).entry,
+        )
         runLog.skip('quota-exhausted')
         // The rest of the plan was never reached — a different fact from a
         // chunk the model looked at and failed.
@@ -916,15 +953,21 @@ async function main() {
         // which is the honest outcome, not a wrong one.
         // Folded into what earlier NIGHTS recorded about this same chunk, so a
         // window the model cannot read stops being asked after a few of them.
-        // Only a genuine attempt counts: the quota and budget cases below push
-        // plain entries, because retiring a chunk for being under-budgeted
-        // would be exactly backwards.
-        failedChunks.push(recordFailure(priorFailures.get(i), i, lastWhy))
+        // Only a READING counts — a night on which the model answered. A 503,
+        // a dead curl or a file that never went ACTIVE says nothing about the
+        // audio, and until 2026-09-28 it counted: four chunks were retired by
+        // a provider outage that way. The quota and budget cases below carry
+        // the count unchanged, because retiring a chunk for being
+        // under-budgeted would be exactly backwards.
+        const noche = foldNight(priorFailures.get(i), i, intentos)
+        failedChunks.push(noche.entry)
         // Bucket by KIND, not by the formatted message — «covered 9%» and
         // «covered 2%» are one failure mode, and a reason-per-percentage
         // makes the tally unreadable.
-        runLog.skip(lastWhy.startsWith('covered ') ? 'below-coverage-floor' : 'transcribe-failed')
-        process.stdout.write(`GAP · ${lastWhy}\n`)
+        runLog.skip(noche.skip)
+        process.stdout.write(
+          `GAP · ${lastWhy}${noche.skip === 'no-model-answer' ? ' · no model answer, not counted' : ''}\n`,
+        )
         continue
       }
 
@@ -1008,7 +1051,7 @@ async function main() {
               ? 'call-budget-spent'
               : 'chunk-budget-spent'
         ]
-      for (const i of leftover) failedChunks.push({ chunk: i, why })
+      for (const i of leftover) failedChunks.push(carryFailure(priorFailures.get(i), i, why))
     }
 
     const map: SpeakerMap = {

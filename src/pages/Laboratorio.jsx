@@ -24,15 +24,13 @@ import ClaimReviewJsonLd from '../components/ClaimReviewJsonLd'
 import { BitacoraCorrecciones } from '../components/BitacoraCorrecciones'
 import DataAsOf from '../components/DataAsOf'
 import { fmtDateShort } from '../lib/formatters'
-import { pressLabSummary, fraseVeredictos, avisoSinVeredicto } from '../lib/press-lab'
+import {
+  pressLabSummary,
+  fraseVeredictos,
+  avisoSinVeredicto,
+  VERDICT_LABEL,
+} from '../lib/press-lab'
 
-const VERDICT_LABEL = {
-  verificado: 'Verificado',
-  parcial: 'Parcial',
-  contradicho: 'Discrepa',
-  'sin-datos': 'Sin registro',
-  'promesa-repetida': 'Promesa repetida',
-}
 const VERDICT_TONE = {
   verificado: 'ok',
   parcial: 'warn',
@@ -136,12 +134,18 @@ function TrustIndicators({ indicators }) {
         // así el titular del agua (55,6 M€ / 17 años), del que el extractor no
         // sacó ninguna afirmación, salía marcado como si no coincidiera con
         // unos datos municipales donde ese contrato SÍ está.
+        //
+        // Y `null` cubre dos casos: que no se extrajera ninguna afirmación, o que
+        // ninguna de las extraídas se cotejara contra un corpus
+        // (`coincidenciaMunicipal`, en press-analytics.ts). El título decía sólo
+        // lo primero, y en el segundo caso las afirmaciones están listadas justo
+        // encima; dice lo que es cierto en los dos.
         const raw = indicators[k]
         const sinComprobar = raw === null || raw === undefined
         const on = !!raw
         const glifo = sinComprobar ? '–' : on ? '●' : '○'
         const titulo = sinComprobar
-          ? `Indicador del Trust Project · ${label} · sin comprobar: no se extrajo ninguna afirmación de este titular`
+          ? `Indicador del Trust Project · ${label} · sin comprobar: ninguna afirmación de este titular se ha cotejado con los datos municipales`
           : `Indicador del Trust Project · ${label}`
         return (
           <span
@@ -365,15 +369,11 @@ function LabPressCard({ article, summary, claims, trust, triangulation, linkRot 
             color: 'var(--ink70)',
           }}
         >
+          {/* Decía también «· cifras divergen €45.000 (33 %)», y las dos cifras eran
+              de una sola nota: el total y la parte del PSTD. El agrupado ya no
+              compara cifras (press-analytics.ts, TriangulationCluster). */}
           Cobertura comparada · {triangulation.outlets.length} medios:{' '}
           <strong>{triangulation.outlets.join(' · ')}</strong>
-          {triangulation.amountDrift && (
-            <span>
-              {' '}
-              · cifras divergen €{fmtNumber(triangulation.amountDrift.spread)} (
-              {fmtPct(triangulation.amountDrift.spreadPct)})
-            </span>
-          )}
         </div>
       )}
       <div
@@ -657,58 +657,28 @@ export default function Laboratorio() {
     return Array.from(set).sort()
   }, [lab.press])
 
-  /**
-   * Articles we hold claims for but that have scrolled out of press.json.
-   *
-   * press.json is a snapshot of what the FEEDS currently carry — the infoturia
-   * feed holds only 10 items — while claims are keyed on articleId and kept.
-   * The page iterates `lab.press`, so a claim whose article has aged out is
-   * fetched, deployed and rendered nowhere. Today that hides the largest euro
-   * figure in the lab: «El Consell inverteix 23,6 milions per a ampliar la
-   * depuradora a Riba-roja» (Periòdic, 2026-07-10).
-   *
-   * Every claim carries the article's url, source and date, so the card can be
-   * rebuilt from the claim itself — no need to re-fetch a feed that no longer
-   * lists it.
-   */
-  const orphanArticles = useMemo(() => {
-    const known = new Set(lab.press.map((p) => p.id))
-    const out = new Map()
-    for (const row of lab.verified ?? []) {
-      const c = row.claim
-      if (!c?.articleId || known.has(c.articleId) || out.has(c.articleId)) continue
-      out.set(c.articleId, {
-        id: c.articleId,
-        title: c.articleTitle ?? c.verbatim.slice(0, 120),
-        link: c.articleUrl,
-        source: c.articleSource,
-        sourceHost: c.articleSourceHost ?? null,
-        date: c.articleDate,
-        fingerprint: c.articleFingerprint,
-        orphan: true,
-      })
-    }
-    return Array.from(out.values())
-  }, [lab.press, lab.verified])
-
-  const visible = useMemo(() => {
-    const cutoff = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString()
-    return [...lab.press, ...orphanArticles]
-      .filter((p) => p.date >= cutoff)
-      .filter((p) => outletFilter === 'all' || p.source === outletFilter)
-      .filter((p) => {
-        if (verdictFilter === 'all') return true
-        const claims = byArticleClaims.get(p.id) || []
-        return claims.some((c) => c.verification.verdict === verdictFilter)
-      })
-      .sort((a, b) => b.date.localeCompare(a.date))
-  }, [lab.press, orphanArticles, outletFilter, verdictFilter, byArticleClaims])
-
   const summary = useMemo(
     () => pressLabSummary({ press: lab.press, verified: lab.verified }),
     [lab.press, lab.verified],
   )
   const aviso = avisoSinVeredicto(summary)
+
+  // Se filtra la MISMA lista que cuenta `summary.monitoredCount` —la del feed más
+  // las tarjetas FUERA DEL FEED, con una sola ventana—, así que el contador de
+  // abajo no puede poner más tarjetas que su total. Con dos listas decía «46 de 45»
+  // (ver `articulosDeLaVentana` en src/lib/press-lab.js).
+  const visible = useMemo(
+    () =>
+      summary.articulos
+        .filter((p) => outletFilter === 'all' || p.source === outletFilter)
+        .filter((p) => {
+          if (verdictFilter === 'all') return true
+          const claims = byArticleClaims.get(p.id) || []
+          return claims.some((c) => c.verification.verdict === verdictFilter)
+        })
+        .sort((a, b) => b.date.localeCompare(a.date)),
+    [summary, outletFilter, verdictFilter, byArticleClaims],
+  )
 
   if (lab.loading) {
     return (
@@ -813,10 +783,18 @@ export default function Laboratorio() {
       </div>
 
       <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 18 }}>
+        {/* Cuenta las tarjetas de la lista, también las FUERA DEL FEED, y lo dice
+            cuando hay alguna: es el mismo total que el contador de la lista. Con
+            espacios que no parten, porque en una caja de 158 px se leía «1 fuera
+            del / feed». */}
         <KPI
           label="Titulares monitorizados"
           value={fmtNumber(summary.monitoredCount)}
-          hint="últimos 30 días"
+          hint={
+            summary.fueraDelFeedCount > 0
+              ? `últimos 30 días · ${fmtNumber(summary.fueraDelFeedCount)}\u00a0fuera\u00a0del\u00a0feed`
+              : 'últimos 30 días'
+          }
         />
         <KPI
           label="Artículos auditados"

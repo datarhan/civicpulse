@@ -10,16 +10,25 @@
  * Pure function. Same pattern as services/batch.ts.
  */
 
-import type { QuejaRow } from '../db/queries.ts'
+import type { IncomingMessage, ServerResponse } from 'node:http'
+import type { Db } from '../db/client.ts'
+import { getQuejaPublica, type QuejaRow } from '../db/queries.ts'
+import { routeUsingLocalOfficials } from './router.ts'
 import type { QuejaRouting } from '../../../src/scraper/queja-router.ts'
-import { plazoHumano } from '../../../src/scraper/queja-router.ts'
+import {
+  diasTranscurridos,
+  plazoHumano,
+  ZONA_DE_LA_SEDE,
+} from '../../../src/scraper/queja-router.ts'
+import { fechaHoraDeLaSede } from './recibo-sede.ts'
 
 const SINDIC_PORTAL = 'https://www.elsindic.com/es/presenta-una-queja'
 
 export interface SindicTemplate {
   queja: QuejaRow
   routing: QuejaRouting
-  diasTranscurridos: number
+  /** Días naturales del día de registro al de hoy, en el calendario de la sede; null sin fecha legible. */
+  diasTranscurridos: number | null
   generatedAt: string
 }
 
@@ -28,21 +37,27 @@ export function buildSindicTemplate(
   routing: QuejaRouting,
   now: Date = new Date(),
 ): SindicTemplate {
-  const registered = queja.registered_at ? new Date(queja.registered_at) : null
-  const diasTranscurridos = registered
-    ? Math.floor((now.getTime() - registered.getTime()) / (1000 * 60 * 60 * 24))
-    : 0
-  return { queja, routing, diasTranscurridos, generatedAt: now.toISOString() }
+  // En días del calendario de la sede, como el plazo del que habla el escrito.
+  // Eran tandas de 24 horas desde la marca: registrada a las 18:00, a las 10:00
+  // del día 92 decía 91 días, justo lo que dura el plazo entero.
+  return {
+    queja,
+    routing,
+    diasTranscurridos: diasTranscurridos(queja.registered_at, now),
+    generatedAt: now.toISOString(),
+  }
 }
 
 export function renderSindicMarkdown(t: SindicTemplate): string {
-  const { queja: q, routing, diasTranscurridos } = t
+  const { queja: q, routing, diasTranscurridos: dias } = t
   const limite = routing.timeLimits.find((tl) => tl.kind === 'resolucion')
   // El escrito CITA el art. 21.3 en la misma frase, y el artículo dice «tres
   // meses»: traducirlo a «90 días naturales» contradecía la cita en el
   // documento que se presenta ante el Síndic.
   const plazo = limite ? plazoHumano(limite) : '—'
+  // El día de la sede: en UTC, entre las 22:00 y la medianoche es todavía ayer.
   const today = new Date(t.generatedAt).toLocaleDateString('es-ES', {
+    timeZone: ZONA_DE_LA_SEDE,
     day: 'numeric',
     month: 'long',
     year: 'numeric',
@@ -71,7 +86,9 @@ export function renderSindicMarkdown(t: SindicTemplate): string {
   if (q.registro_csv) {
     lines.push(`   - **CSV acreditativo:** \`${q.registro_csv}\``)
   }
-  lines.push(`   - **Fecha de registro:** ${q.registered_at ?? '(sin fecha)'}`)
+  // Como la escribe el recibo, que es lo que el Síndic puede cotejar. La marca
+  // del bot es UTC: `2026-09-27 22:00:01` en crudo diría el día anterior.
+  lines.push(`   - **Fecha de registro:** ${fechaHoraDeLaSede(q.registered_at) ?? '(sin fecha)'}`)
   lines.push(`   - **Materia:** ${q.category}`)
   lines.push(`   - **Área municipal competente:** ${routing.concejalia.area}`)
   if (responsible) {
@@ -83,7 +100,7 @@ export function renderSindicMarkdown(t: SindicTemplate): string {
   lines.push(`   > ${q.detail.replace(/\n+/g, '\n   > ')}`)
   lines.push('')
   lines.push(
-    `3. Conforme al artículo 21.3 de la Ley 39/2015 (LPACAP), el plazo máximo para dictar y notificar resolución expresa era de **${plazo}** desde la entrada en registro. A fecha de hoy (${today}), han transcurrido **${diasTranscurridos} días** sin que la Administración haya dictado resolución expresa ni haya sido notificado el plazo máximo en los términos del art. 21.4 LPACAP.`,
+    `3. Conforme al artículo 21.3 de la Ley 39/2015 (LPACAP), el plazo máximo para dictar y notificar resolución expresa era de **${plazo}** desde la entrada en registro. A fecha de hoy (${today}), han transcurrido **${dias ?? '—'} días** sin que la Administración haya dictado resolución expresa ni haya sido notificado el plazo máximo en los términos del art. 21.4 LPACAP.`,
   )
   lines.push('')
   lines.push(
@@ -167,4 +184,52 @@ export function renderSindicHtml(t: SindicTemplate): string {
 ${html}
 </body>
 </html>`
+}
+
+const RUTA_SINDIC = /^\/sindic\/(q-[a-z0-9]+)\.(md|html)$/
+
+/**
+ * GET /sindic/<id>.md | .html — la plantilla para acudir al Síndic con una queja.
+ *
+ * Vivía dentro del servidor de index.ts, donde no había forma de probarla. Sirve
+ * sólo una queja PUBLICADA (`getQuejaPublica`): una sin revisar, una descartada o
+ * una que su autor retiró contestan igual que una que no existe. El token, como
+ * antes: en la cabecera o en `?token=`, y sin `EXPORT_TOKEN` configurado, abierta.
+ *
+ * Devuelve true cuando la ruta era suya y ya está contestada.
+ */
+export function sirveSindic(
+  req: IncomingMessage,
+  res: ServerResponse,
+  deps: { db: Db; exportToken?: string | null },
+): boolean {
+  const url = new URL(req.url ?? '/', `http://${req.headers.host ?? 'localhost'}`)
+  const m = RUTA_SINDIC.exec(url.pathname)
+  if (req.method !== 'GET' || !m) return false
+  const contesta = (status: number, texto: string) => {
+    res.statusCode = status
+    res.end(texto)
+    return true
+  }
+  if (deps.exportToken) {
+    const cabecera = req.headers.authorization ?? ''
+    const enUrl = url.searchParams.get('token') ?? ''
+    if (cabecera !== `Bearer ${deps.exportToken}` && enUrl !== deps.exportToken) {
+      return contesta(401, 'unauthorized')
+    }
+  }
+  const q = getQuejaPublica(deps.db, m[1].toUpperCase())
+  if (!q) return contesta(404, 'not found')
+  const routing = routeUsingLocalOfficials({
+    title: q.title,
+    detail: q.detail,
+    category: q.category as never,
+  })
+  const plantilla = buildSindicTemplate(q, routing)
+  const md = m[2] === 'md'
+  res.statusCode = 200
+  res.setHeader('Content-Type', md ? 'text/markdown; charset=utf-8' : 'text/html; charset=utf-8')
+  res.setHeader('Cache-Control', 'no-store')
+  res.end(md ? renderSindicMarkdown(plantilla) : renderSindicHtml(plantilla))
+  return true
 }

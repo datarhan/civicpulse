@@ -43,6 +43,12 @@ on:
       - 'src/scraper/queja-router.ts'
       - 'src/scraper/situar-barrio.ts'
       - 'src/scraper/plazos-retencion.ts'
+      # La revisión automática (bot/src/services/moderacion.ts) publica sola sólo
+      # lo que `decideAutomation` permite con lo medido: una medición nueva o
+      # caducada tiene que llegar al bot.
+      - 'src/scraper/automation-policy.ts'
+      - 'src/scraper/hash.ts'
+      - '.automation-measurements.json'
   workflow_dispatch:
 
 concurrency:

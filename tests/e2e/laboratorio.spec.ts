@@ -82,11 +82,12 @@ test.describe('Laboratorio (/laboratorio)', () => {
       ).trim()
 
     const discrepancia = await valorKpi('Tasa de discrepancia')
-    // Dos títulos para dos estados: sin afirmaciones, «Extracción pendiente»;
+    // Tres títulos para tres estados: sin afirmaciones, «Extracción pendiente»;
     // con afirmaciones contrastadas y ninguna resuelta, «Sin veredictos
-    // todavía». Ver `avisoSinVeredicto` en src/lib/press-lab.js.
+    // todavía»; y si alguna volvió `parcial`, «Nada resuelto todavía», porque la
+    // tarjeta pinta esa pastilla. Ver `avisoSinVeredicto` en src/lib/press-lab.js.
     const bannerVisible = await page
-      .getByText(/Extracción pendiente|Sin veredictos todavía/i)
+      .getByText(/Extracción pendiente|Sin veredictos todavía|Nada resuelto todavía/i)
       .first()
       .isVisible()
 

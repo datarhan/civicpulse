@@ -4,21 +4,22 @@ import {
   addApoyo,
   autorTelegram,
   esAutor,
-  getQuejaViva,
+  getQuejaPublica,
   VERIFIED_THRESHOLD,
 } from '../db/queries.ts'
-import type { Channel } from '../services/channel.ts'
+import type { AvisosHitos } from '../services/avisos-hitos.ts'
 import type { MyContext } from '../types.ts'
 import { idDeQueja } from '../services/queja-id.ts'
 
-export function registerApoyar(bot: Bot<MyContext>, db: Db, channel: Channel) {
+export function registerApoyar(bot: Bot<MyContext>, db: Db, hitos: AvisosHitos) {
   const handler = async (ctx: MyContext, raw: string | undefined) => {
     const id = idDeQueja(raw)
     if (!id) {
       await ctx.reply('Uso: `/apoyar Q-XXXX`', { parse_mode: 'Markdown' })
       return
     }
-    const q = getQuejaViva(db, id)
+    // Sólo se apoya lo público: una queja sin publicar no la conoce nadie más.
+    const q = getQuejaPublica(db, id)
     if (!q) {
       await ctx.reply(`No encuentro la queja \`${id}\`.`, { parse_mode: 'Markdown' })
       return
@@ -46,9 +47,12 @@ export function registerApoyar(bot: Bot<MyContext>, db: Db, channel: Channel) {
         ? '🎯 *Verificada* — entra en el próximo lote semanal al Registro Electrónico.'
         : `Faltan *${remaining}* apoyos para que entre al lote oficial.`)
     await ctx.reply(body, { parse_mode: 'Markdown' })
-    // Broadcast once, exactly when we cross the threshold.
+    // Una vez, justo al cruzar el umbral: a quien modera, que la lleva al lote. El
+    // apoyo ya está hecho y contestado: si el aviso no llega, queda en el log.
     if (count === VERIFIED_THRESHOLD) {
-      await channel.postApoyoMilestone(q, count)
+      await hitos
+        .avisar('apoyada', q.id, { apoyos: count })
+        .catch((err) => console.error(`[apoyar] el aviso de ${q.id} no llegó:`, err))
     }
   }
 

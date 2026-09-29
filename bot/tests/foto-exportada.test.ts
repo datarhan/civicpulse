@@ -4,10 +4,11 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import type { IncomingMessage, ServerResponse } from 'node:http'
 import { openDb, type Db } from '../src/db/client'
-import { createQueja, softDeleteQueja, type NewQuejaInput, autorTelegram } from '../src/db/queries'
+import { softDeleteQueja, type NewQuejaInput, autorTelegram } from '../src/db/queries'
 import { sirveFotoExportada } from '../src/services/foto-exportada'
 import { directorioFotos } from '../src/services/snapshot'
 import { retirar } from '../src/services/ciudadano'
+import { creaPublicada } from './helpers/publicada'
 
 /**
  * Las fotos anonimizadas viven ahora en el volumen del bot, y la actualización diaria
@@ -68,7 +69,7 @@ describe('GET /export/quejas-photos/<id>.jpg', () => {
   beforeEach(() => {
     db = openDb(':memory:')
     dir = mkdtempSync(join(tmpdir(), 'cp-fotos-export-'))
-    id = createQueja(db, sample()).id.toLowerCase()
+    id = creaPublicada(db, sample()).id.toLowerCase()
     writeFileSync(join(dir, `${id}.jpg`), JPEG)
   })
   afterEach(() => rmSync(dir, { recursive: true, force: true }))
@@ -123,7 +124,7 @@ describe('GET /export/quejas-photos/<id>.jpg', () => {
   })
 
   it('una queja viva sin fichero da 404', () => {
-    const otra = createQueja(db, sample({ foto_ref: 'tg:file-B' })).id.toLowerCase()
+    const otra = creaPublicada(db, sample({ foto_ref: 'tg:file-B' })).id.toLowerCase()
     const { res } = sirve(
       peticion(`/export/quejas-photos/${otra}.jpg`, { auth: `Bearer ${TOKEN}` }),
     )
@@ -157,7 +158,7 @@ describe('/olvidar borra en el acto la foto del disco del bot', () => {
 
   it('la retirada de su autor borra el fichero; la petición de otra persona no (el control)', () => {
     const db = openDb(':memory:')
-    const q = createQueja(db, sample())
+    const q = creaPublicada(db, sample())
     const fichero = join(dir, `${q.id.toLowerCase()}.jpg`)
     writeFileSync(fichero, JPEG)
 

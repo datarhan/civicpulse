@@ -470,3 +470,114 @@ describe('rastroDeDescartes — ¿sigue publicada la frase que se descartó?', (
     expect(rastroDeDescartes(null, texto)).toEqual([])
   })
 })
+
+/**
+ * Una segunda ancla limita un descarte a la ficha que una persona miró.
+ *
+ * La nota del hueco «Literal retenido» abre igual en todas las fichas con una
+ * cita retenida —veinte el 29-09-2026—: «es una acusación pública que el
+ * verificador no ha podido contrastar». El 28-09 la revisión la leyó en
+ * f-2025-12-01-cit-66709b como si hablara de la cita impresa de al lado —la
+ * [3], puerta toggle, «no es una acusación»—, cuando habla de las dos
+ * retenidas. Descartarla por la frase sola la callaría en todas, incluidas las
+ * cuatro retenidas que NO son acusaciones, donde el mismo señalamiento sería
+ * cierto. Por eso `anchor`: un literal que tiene que aparecer además en el
+ * razonamiento del señalamiento (`inference` o `contradictedBy`).
+ */
+describe('una segunda ancla limita el descarte a la ficha que se miró', () => {
+  const FRASE = 'es una acusación pública que el verificador no ha podido contrastar'
+  // El señalamiento real de la relectura del 28-09-2026, copiado tal cual.
+  const EN_66709B: ReaderFinding = {
+    quote: FRASE,
+    inference:
+      'El lector concluiría que el PSOE hizo una acusación pública contra alguien que no consta en ningún registro. La cita que se muestra es un anuncio neutro de una propuesta de acuerdo, no acusa a nadie.',
+    contradictedBy:
+      "La cita visible, «Avui duem a ple una proposta d'acord que parteix d'una demanda ciutadana», anuncia una propuesta y no acusa a nadie. La propia página dice justo antes: «sin contraste en los datos — no es una acusación».",
+    severity: 'misleading',
+  }
+  // La misma frase señalada en OTRA ficha, y ahí con razón: la retenida [1] de
+  // f-2026-04-20-cit-947479 es la presidencia leyendo el resultado de una
+  // votación, que no acusa a nadie.
+  const EN_947479: ReaderFinding = {
+    quote: FRASE,
+    inference:
+      'El lector concluiría que la cita retenida acusa a alguien, y es la presidencia leyendo el resultado de una votación.',
+    contradictedBy:
+      'La cita retenida de la ficha, «Se ha aprobado por este hecho, a vuestro favor, y 8 abstenciones», no acusa a nadie.',
+    severity: 'misleading',
+  }
+  const base = {
+    route: '/hallazgos',
+    quote: FRASE,
+    reason: 'el revisor lee la nota del hueco como si hablara de la cita impresa de al lado',
+    editor: 'claude-opus-5.5',
+    at: '2026-09-29',
+  }
+  const sinAncla: RegistroDescartes = { version: 1, items: [base] }
+  const anclado: RegistroDescartes = {
+    version: 1,
+    items: [{ ...base, anchor: "Avui duem a ple una proposta d'acord" }],
+  }
+
+  it('un descarte sin ancla sigue casando como hasta ahora: por la frase, en cualquier ficha', () => {
+    expect(estaDescartado('/hallazgos', EN_66709B, sinAncla)).toBe(true)
+    expect(estaDescartado('/hallazgos', EN_947479, sinAncla)).toBe(true)
+  })
+
+  it('con ancla, calla el señalamiento de 66709b', () => {
+    expect(estaDescartado('/hallazgos', EN_66709B, anclado)).toBe(true)
+  })
+
+  it('con ancla, la misma frase señalada en otra ficha sigue viva', () => {
+    expect(estaDescartado('/hallazgos', EN_947479, anclado)).toBe(false)
+    expect(sinDescartar('/hallazgos', [EN_66709B, EN_947479], anclado)).toEqual([EN_947479])
+  })
+
+  it('el ancla se busca con el mismo plegado que la cita', () => {
+    const tipografica: ReaderFinding = {
+      ...EN_66709B,
+      contradictedBy: EN_66709B.contradictedBy.replace("d'acord", 'd’acord'),
+    }
+    expect(estaDescartado('/hallazgos', tipografica, anclado)).toBe(true)
+  })
+
+  it('un descarte anclado sin señalamiento vivo que lo cumpla sale como huérfano', () => {
+    // El mismo criterio que silencia: si sólo vive el de otra ficha, este
+    // descarte no calla nada y tiene que decirlo.
+    expect(descartesHuerfanos(anclado, new Map([['/hallazgos', [EN_947479]]]))).toHaveLength(1)
+    expect(descartesHuerfanos(anclado, new Map([['/hallazgos', [EN_66709B]]]))).toHaveLength(0)
+  })
+
+  it('valida el ancla: si está, es texto y llega al suelo de solape', () => {
+    expect(() => validarDescartes(anclado)).not.toThrow()
+    const corta = { version: 1, items: [{ ...base, anchor: 'Avui' }] }
+    expect(() => validarDescartes(corta)).toThrow(/ancla/)
+    const vacia = { version: 1, items: [{ ...base, anchor: '   ' }] }
+    expect(() => validarDescartes(vacia)).toThrow(/ancla/)
+    expect('Avui'.length).toBeLessThan(SOLAPE_MINIMO)
+  })
+
+  it('en el registro real, el descarte de la nota de acusación va anclado', () => {
+    const real = validarDescartes(
+      JSON.parse(readFileSync(resolve('review-dismissals.json'), 'utf8')),
+    )
+    // Se eligen por la CITA sola —el ancla se quita para preguntar—: lo que se
+    // vigila es justo que ninguna entrada sobre esta frase vaya sin ancla.
+    const deLaNota = real.items.filter(
+      (d) =>
+        d.route === '/hallazgos' &&
+        estaDescartado('/hallazgos', f(FRASE), {
+          version: 1,
+          items: [{ ...d, anchor: undefined }],
+        }),
+    )
+    // Midió algo: el descarte existe.
+    expect(deLaNota.length, 'no hay descarte de la nota en el registro').toBeGreaterThan(0)
+    for (const d of deLaNota) {
+      expect(
+        d.anchor,
+        `descarte sin ancla sobre la frase de todas las fichas: «${d.quote}»`,
+      ).toBeTruthy()
+    }
+  })
+})

@@ -1,10 +1,12 @@
-import { describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import {
   classifyQueja,
   routeQueja,
   diasDePlazo,
+  diasQueQuedan,
+  diasTranscurridos,
   plazoDeResolucion,
   venceEnMeses,
   LEGAL_CATALOG,
@@ -242,9 +244,10 @@ describe('queja-router — time limits and silencio', () => {
   })
 
   it('`venceEnMeses` cuenta de fecha a fecha (art. 30.4 LPACAP)', () => {
-    const iso = (d: Date) => d.toISOString().slice(0, 10)
-    expect(iso(venceEnMeses('2026-12-01T09:00:00Z', 3))).toBe('2027-03-01')
-    expect(iso(venceEnMeses('2026-01-15T09:00:00Z', 1))).toBe('2026-02-15')
+    // Da el ÚLTIMO día del plazo, un día y no un instante: el plazo «concluirá
+    // el mismo día», así que ese día entero es todavía plazo.
+    expect(venceEnMeses('2026-12-01T09:00:00Z', 3)).toBe('2027-03-01')
+    expect(venceEnMeses('2026-01-15T09:00:00Z', 1)).toBe('2026-02-15')
   })
 
   it('sin día equivalente en el mes de vencimiento, el último día del mes', () => {
@@ -252,10 +255,9 @@ describe('queja-router — time limits and silencio', () => {
     // comienza el cómputo, se entenderá que el plazo expira el último día del
     // mes» — art. 30.4. Sin esto, JavaScript desborda al mes siguiente y el 31
     // de enero más un mes daría el 3 de marzo.
-    const iso = (d: Date) => d.toISOString().slice(0, 10)
-    expect(iso(venceEnMeses('2026-01-31T09:00:00Z', 1))).toBe('2026-02-28')
-    expect(iso(venceEnMeses('2028-01-31T09:00:00Z', 1))).toBe('2028-02-29')
-    expect(iso(venceEnMeses('2026-05-31T09:00:00Z', 1))).toBe('2026-06-30')
+    expect(venceEnMeses('2026-01-31T09:00:00Z', 1)).toBe('2026-02-28')
+    expect(venceEnMeses('2028-01-31T09:00:00Z', 1)).toBe('2028-02-29')
+    expect(venceEnMeses('2026-05-31T09:00:00Z', 1)).toBe('2026-06-30')
   })
 
   it('en días, tres meses NO son siempre noventa', () => {
@@ -282,6 +284,112 @@ describe('queja-router — time limits and silencio', () => {
       officials,
     )
     expect(r.silencio).toBe('positivo')
+  })
+})
+
+/**
+ * El plazo en el calendario de la sede, y hasta el final de su último día.
+ *
+ * Medido el 28-09-2026 contra el código de entonces, que contaba en días de UTC
+ * y en tandas de 24 horas desde la hora del registro:
+ * - una queja registrada a las 11:00 de Madrid pasaba a silencio a las 12:00 de
+ *   su último día, doce horas antes de que el plazo acabara; una registrada
+ *   pasada la medianoche de Madrid, casi un día antes;
+ * - el recibo real de la sede «Fecha de Registro 28/09/2026 0:00:01» (en UTC,
+ *   `2026-09-27 22:00:01`) contaba desde el 27: vencía el 27-12 y no el 28-12.
+ *
+ * El art. 30.4 cuenta de fecha a fecha y el plazo «concluirá el mismo día»: ese
+ * día entero es plazo, y el silencio empieza a las 00:00 del siguiente en Madrid
+ * (art. 31.2, la hora oficial de la sede).
+ */
+describe('queja-router — el plazo en el calendario de la sede', () => {
+  const tresMeses = plazoDeResolucion('via_publica')
+  const antes = process.env.TZ
+  afterEach(() => {
+    if (antes === undefined) delete process.env.TZ
+    else process.env.TZ = antes
+  })
+  // Lo que se cuenta no puede depender de dónde corra: el bot en Fly (UTC), la CI
+  // (UTC), el portátil y los navegadores (Madrid). Se afirma el desfase de cada
+  // zona para que el bucle no pruebe cuatro veces la del equipo.
+  const DESFASE_EN_ENERO: Record<string, number> = {
+    UTC: 0,
+    'Europe/Madrid': -60,
+    'America/New_York': 300,
+    'Pacific/Kiritimati': -840,
+  }
+  function enCadaZona(prueba: () => void) {
+    for (const [zona, desfase] of Object.entries(DESFASE_EN_ENERO)) {
+      process.env.TZ = zona
+      expect(new Date(2026, 0, 15, 12).getTimezoneOffset(), `no se aplicó ${zona}`).toBe(desfase)
+      prueba()
+    }
+  }
+
+  it('empieza el día de la sede en que entra la queja, no el de UTC', () => {
+    enCadaZona(() => {
+      // El recibo del domingo 27-09-2026: «Fecha de Registro 28/09/2026 0:00:01».
+      expect(venceEnMeses('2026-09-27 22:00:01', 3)).toBe('2026-12-28')
+      expect(venceEnMeses('2026-09-27 22:00:01', 1)).toBe('2026-10-28')
+      // Las 00:30 del 31 de mayo en Madrid: el 31 de agosto, no el 30.
+      expect(venceEnMeses('2026-05-30 22:30:00', 3)).toBe('2026-08-31')
+      // Las 00:15 del 1 de diciembre en Madrid: el 1 de marzo, no el 28 de febrero.
+      expect(venceEnMeses('2026-11-30 23:15:00', 3)).toBe('2027-03-01')
+    })
+  })
+
+  it('los días del plazo son días del calendario de la sede', () => {
+    enCadaZona(() => {
+      // Entra el 31 de enero (00:30 en Madrid) y vence el 30 de abril: 89 días.
+      // Contado desde el 30 de enero de UTC salían 90.
+      expect(diasDePlazo(tresMeses, '2026-01-30 23:30:00')).toBe(89)
+      expect(diasDePlazo(tresMeses, '2026-09-27 22:00:01')).toBe(91)
+    })
+  })
+
+  it('el último día es plazo entero: se agota a la medianoche de Madrid', () => {
+    enCadaZona(() => {
+      // 11:00 del 15 de enero en Madrid; vence el 15 de abril.
+      const desde = '2026-01-15 10:00:00'
+      const quedan = (ahora: string) => diasQueQuedan(tresMeses, desde, Date.parse(ahora))
+      expect(quedan('2026-01-15T10:00:00Z')).toBe(90)
+      expect(quedan('2026-04-14T21:59:59Z')).toBe(1) // 23:59:59 del 14 en Madrid
+      expect(quedan('2026-04-14T22:00:00Z')).toBe(0) // 00:00 del 15: el último día
+      // A la hora del registro del último día el contador viejo ya lo daba por
+      // agotado, y el bot pasaba la queja a silencio.
+      expect(quedan('2026-04-15T10:00:00Z')).toBe(0)
+      expect(quedan('2026-04-15T21:59:59Z')).toBe(0) // 23:59:59 del 15
+      expect(quedan('2026-04-15T22:00:00Z')).toBe(-1) // 00:00 del 16: vencido
+    })
+  })
+
+  it('lo transcurrido son días del mismo calendario', () => {
+    enCadaZona(() => {
+      const desde = '2026-01-30 23:30:00' // 31 de enero en Madrid
+      expect(diasTranscurridos(desde, Date.parse('2026-01-31T12:00:00Z'))).toBe(0)
+      expect(diasTranscurridos(desde, Date.parse('2026-04-30T21:59:00Z'))).toBe(89)
+      expect(diasTranscurridos(desde, Date.parse('2026-04-30T22:00:00Z'))).toBe(90)
+    })
+  })
+
+  it('una marca que no se puede leer no da plazo, ni vencido ni en curso', () => {
+    // Con el código de antes, `new Date('ayer')` daba NaN, `NaN < plazo` era
+    // falso, y el bot pasaba a silencio la queja en la primera vuelta.
+    expect(venceEnMeses('09/28/2026', 3)).toBeNull()
+    expect(diasDePlazo(tresMeses, null)).toBeNull()
+    expect(diasQueQuedan(tresMeses, 'ayer', Date.parse('2027-01-01T00:00:00Z'))).toBeNull()
+    expect(diasTranscurridos(undefined, Date.parse('2027-01-01T00:00:00Z'))).toBeNull()
+  })
+
+  it('un plazo en días hábiles no se cuenta sin el calendario de inhábiles', () => {
+    // El acuse del art. 21.4 son diez días HÁBILES (art. 30.2), y aquí no está
+    // el calendario de inhábiles: contar diez naturales sería inventar la fecha.
+    const acuse = routeQueja({ title: 'Bache', detail: 'bache' }, officials).timeLimits.find(
+      (t) => t.kind === 'acuse',
+    )!
+    expect(diasQueQuedan(acuse, '2026-01-15 10:00:00', Date.parse('2026-01-20T10:00:00Z'))).toBe(
+      null,
+    )
   })
 })
 

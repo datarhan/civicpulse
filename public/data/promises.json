@@ -1,358 +1,11 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-08-02T12:17:39.000Z",
+  "generatedAt": "2026-09-28T19:13:44.838Z",
   "frozenUntil": null,
-  "legalNotice": "CivicPulse es un proyecto de civic-tech independiente, sin vinculación con el Ayuntamiento de Riba-roja de Túria ni con ningún partido político. Las promesas listadas son compromisos públicos atribuidos a partidos y cargos mediante fuentes primarias enlazadas. Para correcciones, derecho de rectificación o propuesta de nuevas fuentes: abrir una issue en github.com/datarhan/civicpulse con la etiqueta correccion-promesa. Plazo de revisión: 24 h. Plazo de resolución: 72 h. Durante el periodo electoral oficial (LOREG art. 50), el tracker entra en modo solo-lectura y los estados quedan congelados a la fecha publicada en cada ficha.",
+  "legalNotice": "CivicPulse es un proyecto de civic-tech independiente, sin vinculación con el Ayuntamiento de Riba-roja de Túria ni con ningún partido político. Las promesas listadas son compromisos públicos atribuidos a partidos y cargos, cada uno con su fuente enlazada: el documento oficial o la noticia de prensa que recoge la cita. Para correcciones, derecho de rectificación o propuesta de nuevas fuentes: abrir una issue en github.com/datarhan/civicpulse con la etiqueta correccion-promesa. Plazo de revisión: 24 h. Plazo de resolución: 72 h. Durante el periodo electoral oficial (LOREG art. 50), el tracker entra en modo solo-lectura y los estados quedan congelados a la fecha publicada en cada ficha.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new?labels=correccion-promesa",
   "methodologyUrl": "/metodologia",
   "items": [
-    {
-      "id": "psoe-presupuesto-2026-46m",
-      "party": "PSOE",
-      "title": "Presupuesto municipal 2026 de 46 millones de euros",
-      "quote": "Riba-roja de Túria aprueba su presupuesto municipal de 2026, el más alto de su historia con 46 millones",
-      "source": {
-        "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOLTg0R21tWmZmVWZDZ1lXbHdFS0ltRERMNm5GbGdnZkdWRkVzcUVrdjQyajBwS2NNS3ViOHZXTzRpZXBuOW16Q3BLa3hFZXQ5MTBXZGhyR1EycmMybk82VGtpbmdfRnlDWG4zaWNFNDFfVnRJWG9jd09ubnVFNW5JR1BFbGVya1JlSnVUT25Wa2ZYS1FlTkw3TDkzUUItdmhhZFJQblRFN2Q4cm1fdjNDc3lBTzE5NkZrY3pRYXUxTmJxZ9IBxwFBVV95cUxQbFMwUVl4el9lVXg4WTZaZF9oWDI2b1VDQUJaWHMtVm5MQ0dWNlk4UG9iYjFzSzlzTEpDMXFKLU9wb3pNc0hlYzRNTWVoVVN6TkVkbXg0TWhlanV3cGJvR3ZjSHZBUmNvb05UZHB1eE5oeW1aWVRleERZb0xvYkNiVmpFenM2dGZZU1lWSkJkdFQ1dzFCYWdwaG5IaUxSOC1Wc3Ryd0pDVE9kWndRRzFWZDFsZ3ZVQWN2cmMtb1YtMDNJZGJnVnZz?oc=5",
-        "publisher": "Levante-EMV"
-      },
-      "madeAt": "2026-03-17",
-      "topic": "fiscal",
-      "kind": "anuncio-gobierno",
-      "status": "documentada",
-      "evidence": [],
-      "createdAt": "2026-04-20",
-      "response": null,
-      "autoPublished": null
-    },
-    {
-      "id": "psoe-refugios-climaticos-2026",
-      "party": "PSOE",
-      "title": "Plan Municipal de Refugios Climáticos",
-      "quote": "Riba-roja aprueba inversiones de 5,9 millones de euros, entre las que destaca un Plan de Refugios Climáticos",
-      "source": {
-        "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxQNnFuX3p5UGhMRHNTRmhfVm5CcG9pbnNjZDZWblA2SnJHNEVkWEZnLWxMVlpvUmZJMWV1V2Q5N084MGF2U2psWFMxTDFWYmRNaGEtUkFRZGNzTnpzS0RhWUVxME9nZmQtR2U5TmxNZndNRnVmRERWa2Q1eWxUVnl1X1Btb255UGNTdU5seW9rWVRGT3BoQmdLek9sZjVyWWJfcXREaEM5VzVaTXFrbDMtdl9CTEFHNTJQNzI2TnNjMDlvYVNXZWZuMGtXeXNaWUNUeXhZVWlrYVk3c1k3SGVJNGlXRXNfc0Z6MlU3WmRUaDJWeFh1UGNn?oc=5",
-        "publisher": "Valencia Plaza"
-      },
-      "madeAt": "2026-03-27",
-      "topic": "medio-ambiente",
-      "kind": "anuncio-gobierno",
-      "status": "en-progreso",
-      "evidence": [
-        {
-          "date": "2026-04-20",
-          "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=czdZT44wsgAtm4eBPtV6eQ%3D%3D",
-          "quote": "Contratación servicio dirección obra y dirección ejecución material, coordinación en seguridad y salud para el proyecto obras Instalación de pérgolas con vegetación autóctona como refugio climático en Riba-roja de Túria (Valencia)",
-          "publisher": "PLACSP",
-          "kind": "tender",
-          "addedBy": "auto-curation-v1"
-        }
-      ],
-      "createdAt": "2026-04-20",
-      "updatedAt": "2026-07-03",
-      "response": null,
-      "autoPublished": {
-        "at": "2026-07-03T09:05:36.700Z",
-        "by": "auto-curation-v1",
-        "confidence": 0.95,
-        "reviewState": "reviewed",
-        "priorStatus": "documentada",
-        "appendedEvidenceUrl": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=czdZT44wsgAtm4eBPtV6eQ%3D%3D",
-        "reviewedAt": "2026-07-03T09:20:01.921Z"
-      }
-    },
-    {
-      "id": "psoe-reconstruccion-dana-9-5m",
-      "party": "PSOE",
-      "title": "Reconstrucción post-DANA con 9,5 millones de fondos europeos",
-      "quote": "Riba-roja de Túria recibirá 9,5 millones de fondos europeos tras la dana para su reconstrucción",
-      "source": {
-        "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxObV9RSjA1QVNRSHZneEtGcXhKaE5EeXdNb1ZxdzNLZlNEZEJJVW5MdV9tNGVBLTJMY2RaX2R5SXEyVHRmajM5N3M4VTlLMWFtamFuNjRiVUloM2tsb09ZQ1JsRUdRUU9rZmRKQks1Zk5KNzRYUGVEcGg4SUVKYWFnOUNJanBSMmxoaHVwNm5IaXBHV3dsN1ZvNVN0VldiQUxFQUZnWkRGX2JGWWx6MGluRDNoSEJuWVN3YWpMdFI5dnpMQ0tKeV8wcThmU1VfS1BqLVpLdVhEaGhpRktW0gHiAUFVX3lxTFA5TU8zTGhDSW5NSzJOUVlZVEdRbEgzSFpPaU43NWtZOW9kdTZuNmZPbHNaVlFpVW9MX3VPV0VUUnNRZ0s4NUtHM0RhSnM0SkJjVXlVb245UXFaSWllWlpGTW9kaWxYV0RQWnlPdmFEYlVMVHNudU5KMkJ5a2RvRF9adHhZRHFqdmpyR1BwR2hyY1ZxMTF1WS11dmV4NFZVcWM2Q2RMa0VpblR4NmN2SWZRcHdVSVVRbmlVNWZiQVZDc25COFlXVWJsLWhXUHlrOThwQ29IV25UbU03Y3l6ZW02V0E?oc=5",
-        "publisher": "Levante-EMV"
-      },
-      "madeAt": "2026-02-10",
-      "topic": "urbanismo",
-      "kind": "anuncio-gobierno",
-      "status": "documentada",
-      "evidence": [],
-      "createdAt": "2026-04-20",
-      "response": null,
-      "autoPublished": null
-    },
-    {
-      "id": "psoe-vivienda-900-hogares",
-      "party": "PSOE",
-      "title": "Plan para crear 900 hogares nuevos",
-      "quote": "Riba-roja lucha contra la falta de suelo: así es el ambicioso plan para crear 900 hogares nuevos",
-      "source": {
-        "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOa0o2SnBHakFEMUU2UTlpTEkxMThmLUJkUzlZQVV3SFVPRFc2aXlSTEpZX3JVUkJMQ3pCN0drelBxMVlBVjFlcVhqbmlDanEyU3RlZ08tOExZQno5ZmZ3enBTQXhxSG9odU9SSENVOWlIUGYtRWhyYVc2STJ6dmt6RmZKZW9fcnlSUWNiSVhEd2N5Qk1pQUxrb2xNM3M2dkRyUnU0T0NZRVc2cU9RdmN3U1c5TW1JckxHSk9IMUs2VWx5bFhOVDFmODJZOWNWVVV5N3ZJ0gHYAUFVX3lxTE11V2U3QTZPMlMwN1FyTDFNZ1ZOWnJxNTVjbHlOUjlJYkVTWkJfbDNQaEZpZ1IwVWR0QnVKTzFvb1VMWllhWi1sR2NyWVB0OTN4Ym5URnN3cVNla0ZPbllOWlF1WmtGVkZOUkZuT2xOazVScWIwc2FhamtUNldaa2JHTHJManN0YUh5c2RFTVlCR0lZRFNkYlhtUTNYYjI5aUZpWnhaR0Radl94OFFJS0NsQmVwLXlPbGZwVUhreWNZUjZuUlYyWDI5VTdSeVpkRlVDUm5EZ2xPRQ?oc=5",
-        "publisher": "elDiario.es"
-      },
-      "madeAt": "2026-01-05",
-      "topic": "vivienda",
-      "kind": "anuncio-gobierno",
-      "status": "documentada",
-      "evidence": [],
-      "createdAt": "2026-04-20",
-      "response": null,
-      "autoPublished": null
-    },
-    {
-      "id": "psoe-construccion-vivienda-2026-2029",
-      "party": "PSOE",
-      "title": "Impulso a la construcción de vivienda 2026-2029",
-      "quote": "El Ayuntamiento de Riba-roja impulsará en el periodo 2026-2029 la construcción de vivienda en el municipio",
-      "source": {
-        "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxQTUtCa3phbUUyMnRSMUdsUEZqUzlocHRveDJTNENMemVMdXdqTW9xaFRmbHBYRHppYzNjNUdRMXBOOTdPcklpZE9kdzdkX1F5alBYZk5nNEllMXppSjNuTzUzYkstSkpuOGdXbEpLV3FISmoyd2t2WXg0RXlCLWRQR0VTWG04M1VYRDJvdnJvNE8yLWdKYlRTcnhhTUFjMm5kVW5Yb1NCdUdyeHdSNGYwaVZUSmZGZmJFYm1FRVBuaGNlYmNxX2NUYk5oS3RCWlRQMHlDWFhHakhZYUkxb2NCOXlKdmY5dExlWG5pdkJoSm9WYmw5TE1v?oc=5",
-        "publisher": "Valencia Plaza"
-      },
-      "madeAt": "2026-01-02",
-      "topic": "vivienda",
-      "kind": "anuncio-gobierno",
-      "status": "en-progreso",
-      "evidence": [
-        {
-          "date": "2026-05-18",
-          "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQUDZUUXF2WnBXR0l3cmpJZE1rUExhMWExNUtGSkFuZWhJaXBzNmVJdGgwN19uWHZacVZ2MTlYTTRqLWQ0Z0JPRmpZbW0xZkpvY3lqVUJ3Q3NNWFI3QjJSNUxwa196YkxEcXhCWk5FdTktMU5PUk1waVBkbHhXVUZtbDFtQjJtWUpRZ18xZFIxdTlqMEh6LTJlVDVoSEx3aDE2UEhlQ1h3bFRZNW96cm5HV2JaSmRMdmFTeVZKcWoya1B6bTdHSlJzSVM2SC1rbjRtckY2eERWWlVKbFNKMFBLdmVuNkt6SXh6d1BCQ0g3aXQ3Smljb3gtWVV5c19hN0Q0ME9GSzJ0Yw?oc=5",
-          "quote": "La Generalitat y Riba-roja de Túria acuerdan la construcción de 36 viviendas protegidas en el marco del Plan Vive Dana",
-          "publisher": "Valencia Plaza",
-          "kind": "press",
-          "addedBy": "auto-curation-v1"
-        }
-      ],
-      "createdAt": "2026-04-20",
-      "updatedAt": "2026-07-03",
-      "response": null,
-      "autoPublished": {
-        "at": "2026-07-03T09:05:36.700Z",
-        "by": "auto-curation-v1",
-        "confidence": 0.85,
-        "reviewState": "reviewed",
-        "priorStatus": "documentada",
-        "appendedEvidenceUrl": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQUDZUUXF2WnBXR0l3cmpJZE1rUExhMWExNUtGSkFuZWhJaXBzNmVJdGgwN19uWHZacVZ2MTlYTTRqLWQ0Z0JPRmpZbW0xZkpvY3lqVUJ3Q3NNWFI3QjJSNUxwa196YkxEcXhCWk5FdTktMU5PUk1waVBkbHhXVUZtbDFtQjJtWUpRZ18xZFIxdTlqMEh6LTJlVDVoSEx3aDE2UEhlQ1h3bFRZNW96cm5HV2JaSmRMdmFTeVZKcWoya1B6bTdHSlJzSVM2SC1rbjRtckY2eERWWlVKbFNKMFBLdmVuNkt6SXh6d1BCQ0g3aXQ3Smljb3gtWVV5c19hN0Q0ME9GSzJ0Yw?oc=5",
-        "reviewedAt": "2026-07-03T09:20:02.249Z"
-      }
-    },
-    {
-      "id": "psoe-pasarelas-parc-natural-turia",
-      "party": "PSOE",
-      "title": "Cinco pasarelas nuevas en el Parc Natural del Túria",
-      "quote": "Riba-roja de Túria finalizará en julio cinco pasarelas en el Parc Natural del Túria",
-      "source": {
-        "url": "https://www.levante-emv.com/riba-roja-turia",
-        "publisher": "Levante-EMV"
-      },
-      "madeAt": "2026-03-25",
-      "topic": "medio-ambiente",
-      "kind": "anuncio-gobierno",
-      "status": "en-progreso",
-      "evidence": [
-        {
-          "date": "2026-04-16",
-          "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxOYmdlakk3SUVoazNqeVlJYVhqSURTbHdFSTFmdVl2X3dGSm8yS1lJZXVtOTJIN1pRQ0tmVk80R0tLdmRERlR2NXhDa0Vodlh1V2E4ZWFzd2lGTl9ZY2Jka0FLdHpVU0c2dmhqY050OU44dG0xM3JKc1BsX3Q3Ymx2bUxTLXZ3elF1cGxjQ1o3SHFxUlZIdmxwbHN6RGFfdkozOWo1aHpVcXNlSWNBbUJHNFN3WjhDMWNLT19nNTd0c3Q1Q1hEUVdWQnNCSVA1akNSUXoyS0NkOFV6eVhvNmZySlpRaHLSAeoBQVVfeXFMUEhTVWM3WkFEYkdZYkVOMVI2YjFNd3pwQ1pjWWFQdW1JWURYMlFFU1YwQTJlLXJYajVVNHRGUDYxLWc4U1pIWmt4TGl3b0pXMXBEdEJuRjRpU3MtVFJtMU5wa1RKZEtmSnZpZENKbThvR3ZQNTRBN0hlT3JUSUFtNjlIdjlHcGRmVHdWUy12Q2tVcmd6Wklsb3dVbWVxX3BibnpKM3lMeko3UG5kcnA5QTN4LXV0Sm52VXhPdnVMNl9YVnZ0aXNLcHBzZmo1eS1EUzBOT3ZFa2FmTE9iT2FMVUU1N1M1Tk96RkNB?oc=5",
-          "quote": "Riba-roja de Túria finalizará en julio cinco pasarelas en el Parc Natural del Túria",
-          "publisher": "Levante-EMV",
-          "kind": "press",
-          "addedBy": "auto-curation-v1"
-        }
-      ],
-      "createdAt": "2026-04-20",
-      "updatedAt": "2026-07-03",
-      "response": null,
-      "autoPublished": {
-        "at": "2026-07-03T09:05:36.700Z",
-        "by": "auto-curation-v1",
-        "confidence": 0.95,
-        "reviewState": "reviewed",
-        "priorStatus": "documentada",
-        "appendedEvidenceUrl": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxOYmdlakk3SUVoazNqeVlJYVhqSURTbHdFSTFmdVl2X3dGSm8yS1lJZXVtOTJIN1pRQ0tmVk80R0tLdmRERlR2NXhDa0Vodlh1V2E4ZWFzd2lGTl9ZY2Jka0FLdHpVU0c2dmhqY050OU44dG0xM3JKc1BsX3Q3Ymx2bUxTLXZ3elF1cGxjQ1o3SHFxUlZIdmxwbHN6RGFfdkozOWo1aHpVcXNlSWNBbUJHNFN3WjhDMWNLT19nNTd0c3Q1Q1hEUVdWQnNCSVA1akNSUXoyS0NkOFV6eVhvNmZySlpRaHLSAeoBQVVfeXFMUEhTVWM3WkFEYkdZYkVOMVI2YjFNd3pwQ1pjWWFQdW1JWURYMlFFU1YwQTJlLXJYajVVNHRGUDYxLWc4U1pIWmt4TGl3b0pXMXBEdEJuRjRpU3MtVFJtMU5wa1RKZEtmSnZpZENKbThvR3ZQNTRBN0hlT3JUSUFtNjlIdjlHcGRmVHdWUy12Q2tVcmd6Wklsb3dVbWVxX3BibnpKM3lMeko3UG5kcnA5QTN4LXV0Sm52VXhPdnVMNl9YVnZ0aXNLcHBzZmo1eS1EUzBOT3ZFa2FmTE9iT2FMVUU1N1M1Tk96RkNB?oc=5",
-        "reviewedAt": "2026-07-03T09:20:02.587Z"
-      }
-    },
-    {
-      "id": "psoe-espai-obert-presupuesto",
-      "party": "PSOE",
-      "title": "Retoma los encuentros Espai Obert con los vecinos",
-      "quote": "El alcalde de Riba-roja de Túria retoma los encuentros 'Espai Obert' con los vecinos para explicar el presupuesto de 2026",
-      "source": {
-        "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNakRrZUdQNWp6SmZtbThMSVJRb3ZVOWduczNjN1MxY0F0OHZheTJHWEN6QlJHd0R4TUI2eTc3VUh1WnBXRG5sRktvRVVIaXFvX2FPeEY4dXNTX3U3THl6SFRSSy1HYmJNWWFxQjJFMDBjMFpBYkNSdm9lTzJpVnBLcFc1NUNpOEIyOHlEREFnT3Jkbjc4MXJ6cHVMU28xaGhvQkZ2NjF0WEtLUkRpYTlWMHVLN0NYR0xkQzEtOXNzN0FHY0ZHNGRBMnR0V3dHUG95OElvYThqZ2NRQdIB3wFBVV95cUxPSFJ1TXlrSDhIUzdUeHhQVFpwVmp6Vlp0NXoxLTctMS0tQ3hGb2VzNXZ2bUw3Nnk1Z2l0V1QtM0FLa3BPeXhVcmMyMG44MmpQQVd5ZU00U0pDdy1KeUlKUEl3UEpXME9KUVcxTXhxeWFpZi1GWWhiNDdrWXFmem5EREdDNzFLVC1yN3c0dXV6ODFrWWxLcXdHeE1jS2pQd09uTWhyRXk4SUZ0ZHk2QTloT0FGb0ttRFFoWGxGRDg5NXRyOWJFR0pBWlFpNTJJckRSanFuNlg2bm5sUDlmV1Nn?oc=5",
-        "publisher": "Levante-EMV"
-      },
-      "madeAt": "2026-03-17",
-      "topic": "participacion",
-      "kind": "anuncio-gobierno",
-      "status": "documentada",
-      "evidence": [],
-      "createdAt": "2026-04-20",
-      "response": null,
-      "autoPublished": null
-    },
-    {
-      "id": "psoe-metro-l9-agosto",
-      "party": "PSOE",
-      "title": "Defensa de la frecuencia del Metro L9 en verano",
-      "quote": "Metro L9 reducirá frecuencia en agosto: los barrios del este, afectados",
-      "source": {
-        "url": "https://www.levante-emv.com/metro-l9",
-        "publisher": "Levante-EMV"
-      },
-      "madeAt": "2026-04-15",
-      "topic": "movilidad",
-      "kind": "anuncio-gobierno",
-      "status": "documentada",
-      "evidence": [],
-      "createdAt": "2026-04-20",
-      "response": null,
-      "autoPublished": null
-    },
-    {
-      "id": "psoe-respuesta-quejas-sector-14-48h",
-      "party": "PSOE",
-      "title": "Respuesta a quejas en el Sector 14 en 48 horas",
-      "quote": "El servicio municipal de Limpieza prometió 48 horas. Los datos del propio Ayuntamiento muestran una media de 73 horas en el barrio con mayor crecimiento poblacional.",
-      "source": {
-        "url": "https://ribalicita.ribarroja.es/",
-        "publisher": "Ayuntamiento Riba-roja · Transparencia"
-      },
-      "madeAt": "2026-01-15",
-      "topic": "urbanismo",
-      "kind": "compromiso-investidura",
-      "status": "en-verificacion",
-      "evidence": [],
-      "notes": "Compromiso anunciado públicamente en la primera convocatoria de Espai Obert; actualmente en verificación porque las métricas municipales sugieren incumplimiento pero aún no existe resolución del pleno ni auditoría externa publicada.",
-      "createdAt": "2026-04-20",
-      "response": null,
-      "autoPublished": null
-    },
-    {
-      "id": "pp-voto-contra-fondos-dana",
-      "party": "PP",
-      "title": "Oposición a la aceptación de los 9,5M post-DANA",
-      "quote": "El PP de Riba-roja vota en contra de los 9,5 millones de euros para el municipio",
-      "source": {
-        "url": "https://www.elperiodic.com/ribaroja_turia",
-        "publisher": "elperiodic.com"
-      },
-      "madeAt": "2026-02-12",
-      "topic": "fiscal",
-      "kind": "enmienda-pleno",
-      "status": "documentada",
-      "evidence": [],
-      "notes": "Posición pública del grupo municipal del PP ante la aceptación de fondos europeos de reconstrucción post-DANA. Se cita como posición política atribuida, no como promesa electoral del programa 2023.",
-      "createdAt": "2026-04-20",
-      "response": null,
-      "autoPublished": null
-    },
-    {
-      "id": "pp-gasto-innecesario-pacadar",
-      "party": "PP",
-      "title": "Voto contra Pacadar Avanza por gasto innecesario",
-      "quote": "El portavoz popular, Alberto Gimeno, justificó su voto en contra calificando la inversión de 'gasto innecesario' al tratarse de una zona con riesgo de inundabilidad",
-      "source": {
-        "url": "https://valencia.elperiodicodeaqui.com/epda-noticias/el-pp-de-riba-roja-vota-en-contra-de-optar-a-9-5-millones-de-fondos-europeos-para-el-proyecto-pacadar-avanza/100005216",
-        "publisher": "El Periódico de Aquí"
-      },
-      "madeAt": "2026-02-12",
-      "topic": "fiscal",
-      "kind": "enmienda-pleno",
-      "status": "documentada",
-      "evidence": [],
-      "notes": "Cita directa del portavoz del grupo municipal del PP en el pleno extraordinario. Posición política sostenida, no promesa del programa electoral 2023.",
-      "createdAt": "2026-04-20",
-      "response": null,
-      "autoPublished": null
-    },
-    {
-      "id": "pp-critica-gestion-socialista",
-      "party": "PP",
-      "title": "Crítica a la gestión socialista del Ayuntamiento",
-      "quote": "Han hipotecado el municipio y dejado sin servicios básicos a los vecinos",
-      "source": {
-        "url": "https://esradiovalencia.com/noticias/alberto-gimeno-pp-critica-la-gestion-socialista-en-riba-roja-han-hipotecado-el-municipio-y-dejado-sin-servicios-basicos-a-los-vecinos/",
-        "publisher": "esRadio Valencia"
-      },
-      "madeAt": "2024-11-05",
-      "topic": "fiscal",
-      "kind": "programa-electoral",
-      "status": "documentada",
-      "evidence": [],
-      "notes": "Cita del portavoz del PP Alberto Gimeno en declaraciones públicas a medios. Marca la línea política del grupo municipal, útil como referencia para verificar coherencia futura.",
-      "createdAt": "2026-04-20",
-      "response": null,
-      "autoPublished": null
-    },
-    {
-      "id": "vox-abstencion-pacadar",
-      "party": "VOX",
-      "title": "Abstención sobre el Plan Pacadar Avanza",
-      "quote": "La moción fue votada a favor por el grupo socialista, Compromís, Eu-Podem y la abstención de Vox",
-      "source": {
-        "url": "https://valencia.elperiodicodeaqui.com/epda-noticias/el-pp-de-riba-roja-vota-en-contra-de-optar-a-9-5-millones-de-fondos-europeos-para-el-proyecto-pacadar-avanza/100005216",
-        "publisher": "El Periódico de Aquí"
-      },
-      "madeAt": "2026-02-12",
-      "topic": "fiscal",
-      "kind": "enmienda-pleno",
-      "status": "documentada",
-      "evidence": [],
-      "notes": "VOX mantiene un único concejal en la corporación (José Luis Fernández Santamaría). Posición documentada como abstención en el pleno del Plan de Actuación Integrado 'Pacadar Avanza'. No se dispone aún de programa electoral 2023 de VOX Riba-roja extraído de forma verbatim.",
-      "createdAt": "2026-04-20",
-      "response": null,
-      "autoPublished": null
-    },
-    {
-      "id": "compromis-apoyo-pacadar-coalicion",
-      "party": "Compromís",
-      "title": "Apoyo a Pacadar Avanza como socio de gobierno",
-      "quote": "La moción fue votada a favor por el grupo socialista, Compromís, Eu-Podem y la abstención de Vox",
-      "source": {
-        "url": "https://valencia.elperiodicodeaqui.com/epda-noticias/el-pp-de-riba-roja-vota-en-contra-de-optar-a-9-5-millones-de-fondos-europeos-para-el-proyecto-pacadar-avanza/100005216",
-        "publisher": "El Periódico de Aquí"
-      },
-      "madeAt": "2026-02-12",
-      "topic": "medio-ambiente",
-      "kind": "pacto-coalicion",
-      "status": "en-progreso",
-      "evidence": [
-        {
-          "date": "2023-12-04",
-          "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4w9Nqs7MG9AeC9GJQOEBkQ%3D%3D",
-          "quote": "El objeto es la ejecución de las  obras, para el proyecto “APARCAMIENTO PROVISIONAL EN ZONA PACADAR” de Riba-roja de Túria. (Ctto. 254/2023).",
-          "publisher": "PLACSP",
-          "kind": "tender",
-          "addedBy": "auto-curation-v1"
-        }
-      ],
-      "notes": "Rafael Folgado (Compromís) forma parte de la Junta de Gobierno Local como socio de coalición con el PSPV-PSOE. Voto a favor del Plan Pacadar Avanza refleja el alineamiento del grupo municipal con el ejecutivo.",
-      "createdAt": "2026-04-20",
-      "updatedAt": "2026-07-06",
-      "response": null,
-      "autoPublished": {
-        "at": "2026-07-06T07:00:10.767Z",
-        "by": "auto-curation-v1",
-        "confidence": 0.9,
-        "reviewState": "pending-review",
-        "priorStatus": "documentada",
-        "appendedEvidenceUrl": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4w9Nqs7MG9AeC9GJQOEBkQ%3D%3D"
-      }
-    },
-    {
-      "id": "psoe-reduce-concejales-dedicacion-exclusiva",
-      "party": "PSOE",
-      "title": "Reducción de concejales con dedicación exclusiva (ahorro 42k/año)",
-      "quote": "Riba-roja reduce el número de concejales con dedicación exclusiva y ahorra 42.000 euros anuales",
-      "source": {
-        "url": "https://valenciaplaza.com/riba-roja-reduce-el-numero-de-concejales-con-dedicacion-exclusiva-y-ahorra-42000-euros-anuales",
-        "publisher": "Valencia Plaza"
-      },
-      "madeAt": "2025-08-15",
-      "topic": "transparencia",
-      "kind": "anuncio-gobierno",
-      "status": "documentada",
-      "evidence": [],
-      "createdAt": "2026-04-20",
-      "response": null,
-      "autoPublished": null
-    },
     {
       "id": "ac-psoe-1cbkzxt",
       "party": "PSOE",
@@ -390,31 +43,6 @@
       }
     },
     {
-      "id": "ac-psoe-1v0679f",
-      "party": "PSOE",
-      "title": "Plan de limpieza integral en la zona natural del río Turia tras retirar el puente militar",
-      "quote": "Una vez quede completamente liberado el espacio ocupado por la base del puente, se procederá a ejecutar un plan de limpieza integral para dejar la zona natural del río Turia en su estado original.",
-      "source": {
-        "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPa3hra0tUWGlfMmY5VFdaRXJ2cWpEMVpza3d0d2VaZVpDeHRBbGdGN2t2LXlvaHJMU0JmVEE2MW02U1pRN2R0QXd6N2hKM21faUlpT0xubEI3M094aEJkT05ORV9GdjBIVzdLdENWREx0ODhmRFR2MGFxdk42NkFFYlNUSUxtNUpTOHk1VGszSGdWVDlJMmZPRmdHNlp2WlpwUV9nLWFVc1B5aG9hbnROY0JQd9IBuAFBVV95cUxOMDFtSk13c3lPY2cyMV9iSUJ4Rnd6WnJZR2VWRjNua1VWWUE3NUt3VE4yTHp6dm96SzhGUUNqalZwSklOMHFwdk1rVlNwbWNSNHhPek44X2RMTjB5cmZPSWFFZWQ1aDJGa1J2SWlTSE1rWE8xekhtb1pXT2RuRExocnV5UFFJMVM5emVsNkRnQ1Nsd0VsU2xySXhUYlVmQkx4MFlQbmw3WHU0ZnJGSDJxRklQM3NYLUps?oc=5",
-        "publisher": "Las Provincias"
-      },
-      "madeAt": "2026-06-30",
-      "topic": "medio-ambiente",
-      "kind": "anuncio-gobierno",
-      "status": "documentada",
-      "evidence": [],
-      "createdAt": "2026-07-03",
-      "updatedAt": "2026-07-03",
-      "response": null,
-      "autoPublished": {
-        "at": "2026-07-03T09:05:36.700Z",
-        "by": "auto-curation-v1",
-        "confidence": 0.85,
-        "reviewState": "reviewed",
-        "reviewedAt": "2026-07-03T09:20:03.246Z"
-      }
-    },
-    {
       "id": "ac-psoe-jfg7bc",
       "party": "PSOE",
       "title": "Facilitación de terrenos municipales para la prolongación de la línea 9 de metro",
@@ -443,7 +71,7 @@
       "id": "ac-psoe-1ah9zqk",
       "party": "PSOE",
       "title": "Descuento en la tasa de residuos por anomalías en el servicio",
-      "quote": "contestó a las palabras de Gimeno sobre el cobro de la tasa que ese «compromiso lo cumpliremos y habrá un descuento a los vecinos»",
+      "quote": "compromiso lo cumpliremos y habrá un descuento a los vecinos",
       "source": {
         "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQUW9pVEFMc1NpRjhydG5DUjBSLVJOc05TLU4tM1ZYYmRNOGNIMXpKek50R09oNE8tYlNkVC1zLWV0czAtc3FLTXg0bk5lbW1qLXlCNFlOMjNpdUh5Zm5wQ2tQVm1CbmFFdGVDVGcwWmwzRnRkQS15ejlRRFZrZWhldXR6Q1FSVTZadDFOdW96YW02bTdtNkQ0WlZHSVpwQ3p3bDlQeGxYUHU5bTNTM3VvRmJKMnQ3aVBrd2fSAb8BQVVfeXFMTzNWR0RVSWhhUGgxUUVwSm03NnI0cUNjT0VHSHJpeV9GTXZNWmEyR3V1REV4UXBjcmxnaC12emtfX2NJV0w2OUt0ODZGWVZlVHFZSDZoX1hHTG5hQ2NZSjl3MTR5MnAxQm9Jd2lSaXhkZk5QVVJuT2x2eUZ5NE5USjNUYmp3elZ5SUdBZTM5TFI5a0dSc0RSMlFkajdMdjcxUGFEYmg0NlNvVTJWMDY1TEFsN3VUUHVnUGd4dzU4alk?oc=5",
         "publisher": "Las Provincias"
@@ -454,7 +82,7 @@
       "status": "documentada",
       "evidence": [],
       "createdAt": "2026-07-04",
-      "updatedAt": "2026-07-04",
+      "updatedAt": "2026-09-28",
       "response": null,
       "autoPublished": {
         "at": "2026-07-04T07:00:03.633Z",
@@ -462,41 +90,26 @@
         "confidence": 0.95,
         "reviewState": "reviewed",
         "reviewedAt": "2026-07-04T13:51:50.249Z"
-      }
-    },
-    {
-      "id": "ac-psoe-pl3lsq",
-      "party": "PSOE",
-      "title": "Renovación de 350 contenedores de basura",
-      "quote": "el alcalde Robert Raga contestó a estas críticas anunciando la renovación de 350 contenedores, lo que costará medio millón de euros, cantidad que abonará la nueva contrata.",
-      "source": {
-        "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQUW9pVEFMc1NpRjhydG5DUjBSLVJOc05TLU4tM1ZYYmRNOGNIMXpKek50R09oNE8tYlNkVC1zLWV0czAtc3FLTXg0bk5lbW1qLXlCNFlOMjNpdUh5Zm5wQ2tQVm1CbmFFdGVDVGcwWmwzRnRkQS15ejlRRFZrZWhldXR6Q1FSVTZadDFOdW96YW02bTdtNkQ0WlZHSVpwQ3p3bDlQeGxYUHU5bTNTM3VvRmJKMnQ3aVBrd2fSAb8BQVVfeXFMTzNWR0RVSWhhUGgxUUVwSm03NnI0cUNjT0VHSHJpeV9GTXZNWmEyR3V1REV4UXBjcmxnaC12emtfX2NJV0w2OUt0ODZGWVZlVHFZSDZoX1hHTG5hQ2NZSjl3MTR5MnAxQm9Jd2lSaXhkZk5QVVJuT2x2eUZ5NE5USjNUYmp3elZ5SUdBZTM5TFI5a0dSc0RSMlFkajdMdjcxUGFEYmg0NlNvVTJWMDY1TEFsN3VUUHVnUGd4dzU4alk?oc=5",
-        "publisher": "Las Provincias"
       },
-      "madeAt": "2026-07-02",
-      "topic": "medio-ambiente",
-      "kind": "anuncio-gobierno",
-      "status": "documentada",
-      "evidence": [],
-      "createdAt": "2026-07-04",
-      "updatedAt": "2026-07-04",
-      "response": null,
-      "autoPublished": {
-        "at": "2026-07-04T07:00:03.633Z",
-        "by": "auto-curation-v1",
-        "confidence": 0.9,
-        "reviewState": "reviewed",
-        "reviewedAt": "2026-07-04T13:51:50.606Z"
-      }
+      "corrections": [
+        {
+          "field": "quote",
+          "original": "contestó a las palabras de Gimeno sobre el cobro de la tasa que ese «compromiso lo cumpliremos y habrá un descuento a los vecinos»",
+          "corrected": "compromiso lo cumpliremos y habrá un descuento a los vecinos",
+          "reason": "La cita empezaba con la narración del periodista; se deja sólo lo que la noticia pone entre comillas en boca del alcalde.",
+          "editor": "claude-opus-5.5",
+          "correctedAt": "2026-09-28"
+        }
+      ]
     },
     {
       "id": "ac-psoe-ppa53a",
       "party": "PSOE",
       "title": "Reparto de helados gratuitos en el Cinema d'Estiu",
-      "quote": "el Ayuntamiento repartirá más de 2.000 helados gratuitos entre las personas asistentes a las proyecciones.",
+      "quote": "Como novedad este año se repartirán entre los asistentes más de dos mil helados de forma gratuita.",
       "source": {
-        "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOT3hWdHJ6S1V5cld5eU96cHBKOWF3bHd3MmhSYkRJSV94YTRMRkVKSUM4S0hKc004amFuTFFKbG5fU3hVM2w0NFB6SHp2VnowcUh0bjhVTW1Pejg0bHVNSFZIWE5NbVFUcWxMNndHa0kxNnluSS1WUXRNTHdxNXZ2N2pwbnRuWlk1WG9LaU5YYWZITkxDUkd6TnhYU2RZdXdobHFoZlhidXhvNk9JRzFQV3JabS1ESTIzWmh4U0NyVmtGYVBKQnR3NTE4TEJjQXcyUDJxczRIRQ?oc=5",
-        "publisher": "El Periódico de Aquí"
+        "url": "https://www.ribarroja.es/es/noticia/riba-roja-repartir%C3%A1-de-forma-gratuita-m%C3%A1s-de-2.000-helados-a-las-personas-asistentes-al-cinema-d%27estiu",
+        "publisher": "Ayuntamiento de Riba-roja de Túria"
       },
       "madeAt": "2026-06-16",
       "topic": "cultura",
@@ -513,7 +126,7 @@
         }
       ],
       "createdAt": "2026-07-04",
-      "updatedAt": "2026-07-05",
+      "updatedAt": "2026-09-28",
       "response": null,
       "autoPublished": {
         "at": "2026-07-05T07:00:03.956Z",
@@ -522,16 +135,42 @@
         "reviewState": "pending-review",
         "priorStatus": "documentada",
         "appendedEvidenceUrl": "https://www.ribarroja.es/es/noticia/riba-roja-repartir%C3%A1-de-forma-gratuita-m%C3%A1s-de-2.000-helados-a-las-personas-asistentes-al-cinema-d%27estiu"
-      }
+      },
+      "corrections": [
+        {
+          "field": "quote",
+          "original": "el Ayuntamiento repartirá más de 2.000 helados gratuitos entre las personas asistentes a las proyecciones.",
+          "corrected": "Como novedad este año se repartirán entre los asistentes más de dos mil helados de forma gratuita.",
+          "reason": "La cita era la narración de El Periódico de Aquí, sin palabras del partido; la nota del propio Ayuntamiento anuncia el reparto con su texto.",
+          "editor": "claude-opus-5.5",
+          "correctedAt": "2026-09-28"
+        },
+        {
+          "field": "source.url",
+          "original": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOT3hWdHJ6S1V5cld5eU96cHBKOWF3bHd3MmhSYkRJSV94YTRMRkVKSUM4S0hKc004amFuTFFKbG5fU3hVM2w0NFB6SHp2VnowcUh0bjhVTW1Pejg0bHVNSFZIWE5NbVFUcWxMNndHa0kxNnluSS1WUXRNTHdxNXZ2N2pwbnRuWlk1WG9LaU5YYWZITkxDUkd6TnhYU2RZdXdobHFoZlhidXhvNk9JRzFQV3JabS1ESTIzWmh4U0NyVmtGYVBKQnR3NTE4TEJjQXcyUDJxczRIRQ?oc=5",
+          "corrected": "https://www.ribarroja.es/es/noticia/riba-roja-repartir%C3%A1-de-forma-gratuita-m%C3%A1s-de-2.000-helados-a-las-personas-asistentes-al-cinema-d%27estiu",
+          "reason": "La cita era la narración de El Periódico de Aquí, sin palabras del partido; la nota del propio Ayuntamiento anuncia el reparto con su texto.",
+          "editor": "claude-opus-5.5",
+          "correctedAt": "2026-09-28"
+        },
+        {
+          "field": "source.publisher",
+          "original": "El Periódico de Aquí",
+          "corrected": "Ayuntamiento de Riba-roja de Túria",
+          "reason": "La cita era la narración de El Periódico de Aquí, sin palabras del partido; la nota del propio Ayuntamiento anuncia el reparto con su texto.",
+          "editor": "claude-opus-5.5",
+          "correctedAt": "2026-09-28"
+        }
+      ]
     },
     {
       "id": "ac-psoe-1m04lfw",
       "party": "PSOE",
       "title": "Semana de acceso gratuito al Cinema d'Estiu",
-      "quote": "Otra de las novedades destacadas será la semana de acceso gratuito que se celebrará entre el 29 de julio y el 5 de agosto.",
+      "quote": "Un año más, durante una semana la entrada al cine será gratuita.",
       "source": {
-        "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOT3hWdHJ6S1V5cld5eU96cHBKOWF3bHd3MmhSYkRJSV94YTRMRkVKSUM4S0hKc004amFuTFFKbG5fU3hVM2w0NFB6SHp2VnowcUh0bjhVTW1Pejg0bHVNSFZIWE5NbVFUcWxMNndHa0kxNnluSS1WUXRNTHdxNXZ2N2pwbnRuWlk1WG9LaU5YYWZITkxDUkd6TnhYU2RZdXdobHFoZlhidXhvNk9JRzFQV3JabS1ESTIzWmh4U0NyVmtGYVBKQnR3NTE4TEJjQXcyUDJxczRIRQ?oc=5",
-        "publisher": "El Periódico de Aquí"
+        "url": "https://www.ribarroja.es/es/noticia/riba-roja-repartir%C3%A1-de-forma-gratuita-m%C3%A1s-de-2.000-helados-a-las-personas-asistentes-al-cinema-d%27estiu",
+        "publisher": "Ayuntamiento de Riba-roja de Túria"
       },
       "madeAt": "2026-06-16",
       "topic": "cultura",
@@ -548,7 +187,7 @@
         }
       ],
       "createdAt": "2026-07-04",
-      "updatedAt": "2026-07-05",
+      "updatedAt": "2026-09-28",
       "response": null,
       "autoPublished": {
         "at": "2026-07-05T07:00:03.956Z",
@@ -557,13 +196,39 @@
         "reviewState": "pending-review",
         "priorStatus": "documentada",
         "appendedEvidenceUrl": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOT3hWdHJ6S1V5cld5eU96cHBKOWF3bHd3MmhSYkRJSV94YTRMRkVKSUM4S0hKc004amFuTFFKbG5fU3hVM2w0NFB6SHp2VnowcUh0bjhVTW1Pejg0bHVNSFZIWE5NbVFUcWxMNndHa0kxNnluSS1WUXRNTHdxNXZ2N2pwbnRuWlk1WG9LaU5YYWZITkxDUkd6TnhYU2RZdXdobHFoZlhidXhvNk9JRzFQV3JabS1ESTIzWmh4U0NyVmtGYVBKQnR3NTE4TEJjQXcyUDJxczRIRQ?oc=5"
-      }
+      },
+      "corrections": [
+        {
+          "field": "quote",
+          "original": "Otra de las novedades destacadas será la semana de acceso gratuito que se celebrará entre el 29 de julio y el 5 de agosto.",
+          "corrected": "Un año más, durante una semana la entrada al cine será gratuita.",
+          "reason": "La cita era la narración de El Periódico de Aquí, sin palabras del partido; la nota del propio Ayuntamiento anuncia la semana gratuita con su texto.",
+          "editor": "claude-opus-5.5",
+          "correctedAt": "2026-09-28"
+        },
+        {
+          "field": "source.url",
+          "original": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOT3hWdHJ6S1V5cld5eU96cHBKOWF3bHd3MmhSYkRJSV94YTRMRkVKSUM4S0hKc004amFuTFFKbG5fU3hVM2w0NFB6SHp2VnowcUh0bjhVTW1Pejg0bHVNSFZIWE5NbVFUcWxMNndHa0kxNnluSS1WUXRNTHdxNXZ2N2pwbnRuWlk1WG9LaU5YYWZITkxDUkd6TnhYU2RZdXdobHFoZlhidXhvNk9JRzFQV3JabS1ESTIzWmh4U0NyVmtGYVBKQnR3NTE4TEJjQXcyUDJxczRIRQ?oc=5",
+          "corrected": "https://www.ribarroja.es/es/noticia/riba-roja-repartir%C3%A1-de-forma-gratuita-m%C3%A1s-de-2.000-helados-a-las-personas-asistentes-al-cinema-d%27estiu",
+          "reason": "La cita era la narración de El Periódico de Aquí, sin palabras del partido; la nota del propio Ayuntamiento anuncia la semana gratuita con su texto.",
+          "editor": "claude-opus-5.5",
+          "correctedAt": "2026-09-28"
+        },
+        {
+          "field": "source.publisher",
+          "original": "El Periódico de Aquí",
+          "corrected": "Ayuntamiento de Riba-roja de Túria",
+          "reason": "La cita era la narración de El Periódico de Aquí, sin palabras del partido; la nota del propio Ayuntamiento anuncia la semana gratuita con su texto.",
+          "editor": "claude-opus-5.5",
+          "correctedAt": "2026-09-28"
+        }
+      ]
     },
     {
       "id": "ac-psoe-sysee8",
       "party": "PSOE",
       "title": "Instalación de una pantalla gigante para ver a la selección española de fútbol",
-      "quote": "A partir de los dieciseisavos de final, todos los partidos de La Roja podrán seguirse en pantalla gigante en la plaza del Ayuntamiento, dentro de la programación de Fadrins 2026, con barra, música y ambiente para animar a la selección.",
+      "quote": "la pantalla al mig, cap a la plaça",
       "source": {
         "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPaUVYTmFvWmpPUXJTUEIyMWp4ZGZ3M3BqaHlhNnAxbWhwZmY3a3VBN0hLOG85N05BbTVBZGxCYU50c2R5SDFMNDI4YVc4cm5fR1B0Tk1feXNLYUJtalQxa09hZmJVVGVQSG9nbTU1RUdzUG9QSnNEUWttUWVZMTNIUUd4bWxRcE4yX2hSUGNIYUs0c3d2MG1Uc0I0Nk9RWllhZ29aV0lTSFkzVEtRNjVxZ0F6SGc2LV95WjNXRTh30gHDAUFVX3lxTE1XLV95djhoZU5WUzFpbmZhWDR3bUU3dmM3ODlIZFpMbHJhVE9LMDAwUXphVi1XSWNoZTRNS2pwN2l1MVNweklNbkdTN2ZtSlRab25sdTdzYjJ5SGM4WllfdjVxeGlYS19hcW5mZGhtSC1jMFFEX29HckhYZ3NqU3hieDlCdlZaX2ZpeGkyVll2eDZFaTRLc2dkd19MX3Itc0pCZURIUzNlMUtMdkxmaEUxVDJlLS1Ga1ptRDAyTGkwUkRMTQ?oc=5",
         "publisher": "Levante-EMV"
@@ -574,7 +239,7 @@
       "status": "documentada",
       "evidence": [],
       "createdAt": "2026-07-04",
-      "updatedAt": "2026-07-04",
+      "updatedAt": "2026-09-28",
       "response": null,
       "autoPublished": {
         "at": "2026-07-04T07:00:03.633Z",
@@ -582,7 +247,199 @@
         "confidence": 0.9,
         "reviewState": "reviewed",
         "reviewedAt": "2026-07-04T13:51:58.057Z"
+      },
+      "corrections": [
+        {
+          "field": "quote",
+          "original": "A partir de los dieciseisavos de final, todos los partidos de La Roja podrán seguirse en pantalla gigante en la plaza del Ayuntamiento, dentro de la programación de Fadrins 2026, con barra, música y ambiente para animar a la selección.",
+          "corrected": "la pantalla al mig, cap a la plaça",
+          "reason": "La cita era el párrafo de cierre del periodista; se sustituye por las palabras del alcalde que la noticia recoge entre comillas.",
+          "editor": "claude-opus-5.5",
+          "correctedAt": "2026-09-28"
+        }
+      ]
+    },
+    {
+      "id": "ac-psoe-1ryndd8",
+      "party": "PSOE",
+      "title": "Ayudas de 140.000 euros para rehabilitación de fachadas, evaluación de edificios y accesibilidad en viviendas",
+      "quote": "El consistorio lanzará la convocatoria el próximo mes de septiembre.",
+      "source": {
+        "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-destina-una-partida-de-140.000-euros-para-la-rehabilitaci%C3%B3n-de-las-fachadas%2C-la-evaluaci%C3%B3n-de-los-edificios-y-la-accesibilidad-en-el-interior-de-las-viviendas-del-periodo-2026-2027",
+        "publisher": "Ayuntamiento de Riba-roja"
+      },
+      "madeAt": "2026-08-25",
+      "topic": "urbanismo",
+      "kind": "anuncio-gobierno",
+      "status": "documentada",
+      "evidence": [],
+      "createdAt": "2026-09-28",
+      "autoPublished": {
+        "at": "2026-09-28T06:30:09.763Z",
+        "by": "auto-curation-v1",
+        "confidence": 0.78,
+        "reviewState": "pending-review"
       }
+    },
+    {
+      "id": "ac-psoe-43brfs",
+      "party": "PSOE",
+      "title": "Bono Vuelve al Cole 2026-2027 con 160.000 euros y formato 100% digital",
+      "quote": "El Ayuntamiento destina 160.000 euros en esta edición, que incorpora un formato 100% digital",
+      "source": {
+        "url": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-escolar-con-3.375-alumnos-apoyando-a-las-familias-un-a%C3%B1o-m%C3%A1s-con-el-bono-vuelve-al-cole",
+        "publisher": "Ayuntamiento de Riba-roja"
+      },
+      "madeAt": "2026-09-09",
+      "topic": "educacion",
+      "kind": "anuncio-gobierno",
+      "status": "documentada",
+      "evidence": [],
+      "createdAt": "2026-09-28",
+      "autoPublished": {
+        "at": "2026-09-28T06:30:09.763Z",
+        "by": "auto-curation-v1",
+        "confidence": 0.7,
+        "reviewState": "pending-review"
+      }
+    }
+  ],
+  "retractions": [
+    {
+      "promiseId": "psoe-presupuesto-2026-46m",
+      "party": "PSOE",
+      "digest": "promesa · sha256:818ee7ec5620",
+      "reason": "La cita era el titular de Levante-EMV, no palabras del PSOE: la noticia no pone entre comillas ninguna frase del partido sobre el presupuesto, y la ficha registraba su aprobación en pleno, un hecho y no un compromiso.",
+      "editor": "claude-opus-5.5",
+      "retractedAt": "2026-09-28T19:13:39.956Z"
+    },
+    {
+      "promiseId": "psoe-refugios-climaticos-2026",
+      "party": "PSOE",
+      "digest": "promesa · sha256:139830b951ab",
+      "reason": "La cita era el titular de Valencia Plaza. La única frase entrecomillada del alcalde habla de ejecutar el conjunto de las inversiones del año, no del plan de refugios que titulaba la ficha.",
+      "editor": "claude-opus-5.5",
+      "retractedAt": "2026-09-28T19:13:40.264Z"
+    },
+    {
+      "promiseId": "psoe-reconstruccion-dana-9-5m",
+      "party": "PSOE",
+      "digest": "promesa · sha256:4f2d4614af23",
+      "reason": "La cita era el titular de Levante-EMV. Las únicas palabras entrecomilladas del PSOE son un fragmento sin compromiso, y la noticia cuenta la aprobación de un requisito para optar a los fondos, no su recepción.",
+      "editor": "claude-opus-5.5",
+      "retractedAt": "2026-09-28T19:13:40.581Z"
+    },
+    {
+      "promiseId": "psoe-vivienda-900-hogares",
+      "party": "PSOE",
+      "digest": "promesa · sha256:d0db547ebd57",
+      "reason": "La cita era el titular de elDiario.es: la noticia no pone entre comillas ninguna frase del PSOE, y la cifra del titular no aparece en el cuerpo.",
+      "editor": "claude-opus-5.5",
+      "retractedAt": "2026-09-28T19:13:40.879Z"
+    },
+    {
+      "promiseId": "psoe-construccion-vivienda-2026-2029",
+      "party": "PSOE",
+      "digest": "promesa · sha256:29b348f5cb84",
+      "reason": "La cita era el titular de Valencia Plaza. La única frase entrecomillada del alcalde describe el problema de acceso a la vivienda y no compromete nada; el periodo del título sólo figura en el titular.",
+      "editor": "claude-opus-5.5",
+      "retractedAt": "2026-09-28T19:13:41.198Z"
+    },
+    {
+      "promiseId": "psoe-pasarelas-parc-natural-turia",
+      "party": "PSOE",
+      "digest": "promesa · sha256:3d415886ed1d",
+      "reason": "La cita era un titular de Levante-EMV y la fuente enlazada es una página de sección que ya no existe; no hay palabras del partido que sostengan la ficha.",
+      "editor": "claude-opus-5.5",
+      "retractedAt": "2026-09-28T19:13:41.491Z"
+    },
+    {
+      "promiseId": "psoe-espai-obert-presupuesto",
+      "party": "PSOE",
+      "digest": "promesa · sha256:5107ec7deb0b",
+      "reason": "La cita era el titular de Levante-EMV; la noticia sólo recoge al alcalde en estilo indirecto, sin ninguna frase suya entre comillas.",
+      "editor": "claude-opus-5.5",
+      "retractedAt": "2026-09-28T19:13:41.772Z"
+    },
+    {
+      "promiseId": "psoe-metro-l9-agosto",
+      "party": "PSOE",
+      "digest": "promesa · sha256:a4f08eb1c2c8",
+      "reason": "La cita era un titular sobre el servicio de FGV, no palabras del partido, y la fuente enlazada no existe ni tiene copia archivada; nada sostenía el título de la ficha.",
+      "editor": "claude-opus-5.5",
+      "retractedAt": "2026-09-28T19:13:42.062Z"
+    },
+    {
+      "promiseId": "psoe-respuesta-quejas-sector-14-48h",
+      "party": "PSOE",
+      "digest": "promesa · sha256:b3e51c86e1fe",
+      "reason": "La cita no está en la fuente enlazada —la portada del portal de contratación— ni en ninguna otra: era prosa nuestra, y afirmaba un incumplimiento. Mismo origen que la ficha retirada el 2026-08-02.",
+      "editor": "claude-opus-5.5",
+      "retractedAt": "2026-09-28T19:13:42.474Z"
+    },
+    {
+      "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
+      "party": "PSOE",
+      "digest": "promesa · sha256:ed49f4f2ad25",
+      "reason": "La cita era el titular de Valencia Plaza; las frases entrecomilladas del alcalde no hablan de la reducción ni del ahorro. Era un acuerdo de pleno ya ejecutado, no un compromiso, y la fecha de la ficha no era la de la noticia.",
+      "editor": "claude-opus-5.5",
+      "retractedAt": "2026-09-28T19:13:42.787Z"
+    },
+    {
+      "promiseId": "pp-voto-contra-fondos-dana",
+      "party": "PP",
+      "digest": "promesa · sha256:8c2b6289c03d",
+      "reason": "La cita era un titular y la fuente enlazada es una página de sección; la noticia real reproduce un comunicado del PSOE sobre el PP, sin palabras del PP. Registraba un voto, no un compromiso.",
+      "editor": "claude-opus-5.5",
+      "retractedAt": "2026-09-28T19:13:43.106Z"
+    },
+    {
+      "promiseId": "pp-gasto-innecesario-pacadar",
+      "party": "PP",
+      "digest": "promesa · sha256:b4f66f0bf590",
+      "reason": "La cita parafraseaba al periodista, no era literal, y la noticia reproduce un comunicado del PSOE: las únicas palabras del PP entre comillas son dos, y no consta que sean suyas. Registraba un voto, no un compromiso.",
+      "editor": "claude-opus-5.5",
+      "retractedAt": "2026-09-28T19:13:43.394Z"
+    },
+    {
+      "promiseId": "pp-critica-gestion-socialista",
+      "party": "PP",
+      "digest": "promesa · sha256:b9ad559083cf",
+      "reason": "Era una crítica en una entrevista de radio, no un compromiso: estaba clasificada como programa electoral y fechada un año antes de la entrevista, y su cita sólo figuraba en el titular.",
+      "editor": "claude-opus-5.5",
+      "retractedAt": "2026-09-28T19:13:43.671Z"
+    },
+    {
+      "promiseId": "vox-abstencion-pacadar",
+      "party": "VOX",
+      "digest": "promesa · sha256:864a54e8eefc",
+      "reason": "La cita parafraseaba la frase del periodista que cuenta la votación, no era literal, y la noticia no recoge ninguna palabra de VOX. Registraba una abstención, no un compromiso.",
+      "editor": "claude-opus-5.5",
+      "retractedAt": "2026-09-28T19:13:43.952Z"
+    },
+    {
+      "promiseId": "compromis-apoyo-pacadar-coalicion",
+      "party": "Compromís",
+      "digest": "promesa · sha256:2c30b35c10d6",
+      "reason": "La cita era la misma frase del periodista que la de otra ficha, parafraseada; la noticia no recoge palabras de Compromís, y el avance de estado se apoyaba en una licitación de 2023 de otro proyecto.",
+      "editor": "claude-opus-5.5",
+      "retractedAt": "2026-09-28T19:13:44.235Z"
+    },
+    {
+      "promiseId": "ac-psoe-1v0679f",
+      "party": "PSOE",
+      "digest": "promesa · sha256:2feac7cc01e7",
+      "reason": "La cita era la narración de Las Provincias, sin comillas ni atribución; la noticia no recoge palabras del partido y no dice quién ejecutará la limpieza.",
+      "editor": "claude-opus-5.5",
+      "retractedAt": "2026-09-28T19:13:44.520Z"
+    },
+    {
+      "promiseId": "ac-psoe-pl3lsq",
+      "party": "PSOE",
+      "digest": "promesa · sha256:225c8800c505",
+      "reason": "La cita era la narración de Las Provincias; las palabras del alcalde que recoge la noticia no hablan de contenedores, y una nota posterior del Ayuntamiento da otra cifra.",
+      "editor": "claude-opus-5.5",
+      "retractedAt": "2026-09-28T19:13:44.838Z"
     }
   ]
 }

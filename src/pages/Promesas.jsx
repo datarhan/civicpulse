@@ -14,6 +14,54 @@ import { V1_STATUSES } from '../scraper/promises'
 import { fmtDateLong } from '../lib/formatters'
 import { useT } from '../i18n'
 import { useCitationHealth, citationStatus, citationArchive } from '../hooks/useCitationHealth'
+import { BitacoraCorrecciones } from '../components/BitacoraCorrecciones'
+
+/** Los campos de `PROMISE_CORRECTION_FIELDS`, dichos como los lee la ficha. */
+const ROTULO_CAMPO = { quote: 'cita', 'source.url': 'fuente', 'source.publisher': 'medio' }
+
+/**
+ * Las promesas retiradas, con fecha, partido y motivo. No su texto: se retira
+ * una frase atribuida a un partido que el partido no dijo, y repetirla aquí
+ * sería publicarla otra vez. La huella deja comprobar, a quien conserve la
+ * ficha original, que la retirada es de esa tarjeta.
+ */
+function Retiradas({ retractions }) {
+  if (!retractions?.length) return null
+  return (
+    <details
+      style={{
+        marginTop: 24,
+        padding: '10px 14px',
+        border: '1px solid var(--border2)',
+        borderRadius: 'var(--r-input)',
+        fontSize: 'var(--fs-aux)',
+        color: 'var(--ink70)',
+      }}
+    >
+      <summary style={{ cursor: 'pointer', fontWeight: 600, color: 'var(--ink)' }}>
+        Promesas retiradas · {retractions.length}
+      </summary>
+      <p style={{ margin: '8px 0', lineHeight: 1.5 }}>
+        Tarjetas que se publicaron y ya no están, con el motivo. No se repite su cita: si no era del
+        partido, reproducirla aquí sería volver a atribuírsela. La huella identifica cada ficha para
+        quien conserve el original.
+      </p>
+      <ol style={{ margin: 0, paddingLeft: 18, display: 'grid', gap: 8 }}>
+        {retractions.map((t) => (
+          <li key={t.promiseId}>
+            <div className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
+              {String(t.retractedAt).slice(0, 10)} · {t.party} · {t.promiseId} · {t.editor}
+            </div>
+            <div style={{ color: 'var(--ink)', marginTop: 1 }}>{t.reason}</div>
+            <div className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
+              {t.digest}
+            </div>
+          </li>
+        ))}
+      </ol>
+    </details>
+  )
+}
 
 function FreezeBanner({ snap }) {
   if (!isPromiseFrozen(snap)) return null
@@ -216,10 +264,17 @@ export function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
       >
         «{p.quote}»
       </blockquote>
+      {/* La fila PARTE línea. Sin `flexWrap`, a 375 px la insignia «publicada
+          automáticamente · revisión pendiente» se apretaba en cuatro renglones
+          de 133 px y aun así asomaba 27 px fuera de la tarjeta; con las fuentes
+          de reserva de la CI (Linux, antes de que cargue la web) empujaba el
+          documento a 382 px y la e2e móvil se ponía roja. Medido el
+          28-09-2026 con getBoundingClientRect. */}
       <div
         style={{
           display: 'flex',
-          gap: 10,
+          flexWrap: 'wrap',
+          gap: '6px 10px',
           alignItems: 'center',
           marginBottom: 6,
           fontSize: 'var(--fs-micro)',
@@ -264,7 +319,7 @@ export function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
           {STATUS_LABEL[p.status] || p.status}
         </Pill>
         {p.autoPublished?.reviewState === 'pending-review' && (
-          <Pill tone="intel" size="xs">
+          <Pill tone="intel" size="xs" style={{ lineHeight: 1.3 }}>
             publicada automáticamente · revisión pendiente
           </Pill>
         )}
@@ -445,6 +500,15 @@ export function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
         </div>
       )}
 
+      {/* Lo que se corrigió después de publicar, con lo que decía antes: una
+          cita atribuida a un partido no cambia sin dejarlo dicho en la ficha. */}
+      <BitacoraCorrecciones
+        correcciones={(p.corrections ?? []).map((c) => ({
+          ...c,
+          field: ROTULO_CAMPO[c.field] ?? c.field,
+        }))}
+      />
+
       {p.response && (
         <div
           style={{
@@ -567,11 +631,17 @@ export default function Promesas() {
         <div
           style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 4, maxWidth: 780 }}
         >
+          {/* «Enlazado a su fuente primaria» se leía como «al documento original»
+              encima de fichas que citan prensa (revisión lectora, 28-09-2026). Lo
+              que el esquema comprueba es menos y se dice así; y un estado fuera de
+              V1_STATUSES pide una evidencia enlazada, que puede ser una noticia: no
+              «prueba directa (pleno, presupuesto, resolución)». Ver FUENTE_PRIMARIA
+              en src/scraper/promises.ts. */}
           Compromisos públicos atribuidos a partidos y cargos del Ayuntamiento de Riba-roja de
-          Túria, cada uno enlazado a su fuente primaria y con cadena de evidencia trazable. Los
-          estados se mantienen en <strong>documentada</strong> o <strong>en verificación</strong>{' '}
-          salvo que exista prueba directa (pleno, presupuesto, resolución) que justifique otro
-          estado.
+          Túria, cada uno con su fuente enlazada: el documento oficial o la noticia de prensa que
+          recoge la cita. Los estados se mantienen en <strong>documentada</strong> o{' '}
+          <strong>en verificación</strong> salvo que una evidencia enlazada —una licitación, un acta
+          de pleno, una subvención, el presupuesto o una noticia— justifique otro estado.
         </div>
         <div style={{ marginTop: 10 }}>
           <DataAsOf iso={data?.generatedAt} label="Promesas" />
@@ -646,6 +716,8 @@ export default function Promesas() {
           />
         ))}
       </div>
+
+      <Retiradas retractions={data.retractions} />
 
       <LegalFooter snap={data} />
     </div>

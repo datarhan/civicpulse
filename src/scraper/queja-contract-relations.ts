@@ -18,7 +18,7 @@
 import { slugify } from './normalize'
 import { canonicalizeDepartment } from './departments'
 import { tenderMatchesQuejaCpv } from '../llm/queja-to-cpv'
-import type { QuejaCategory } from './queja-router'
+import { instanteUtc, type QuejaCategory } from './queja-router'
 
 import type { RelationLabel } from './relation-labels'
 
@@ -90,13 +90,25 @@ export function departmentSignal(q: RelQueja, c: RelContract): { slug: string } 
 }
 
 /**
+ * El lector de marcas del bot vive en queja-router, que no puede importar nada
+ * porque lo importa el bot; aquí se reexporta, no se copia. Lo que lee:
+ * - `requested_datetime` es el `created_at` del bot, que rellena SQLite con
+ *   `datetime('now')`: la hora UTC, escrita sin la Z. Leída como hora de Madrid,
+ *   la queja se correría una o dos horas de cuando se envió.
+ * - `awardDate` es una fecha sin hora, que JavaScript ya lee a medianoche UTC.
+ * En el mismo reloj las dos, y el que la CI ya usaba: no se mueve ningún valor
+ * publicado.
+ */
+export { instanteUtc }
+
+/**
  * Temporal modifier — award within [queja − 3mo, queja + 18mo]. NEVER a link on
  * its own (see scoreRelation): it only boosts/annotates an existing signal.
  */
 export function temporalModifier(q: RelQueja, c: RelContract): { monthsAfter: number } | null {
   if (!c.awardDate) return null
-  const t0 = new Date(q.createdAt).getTime()
-  const t1 = new Date(c.awardDate).getTime()
+  const t0 = instanteUtc(q.createdAt)
+  const t1 = instanteUtc(c.awardDate)
   if (Number.isNaN(t0) || Number.isNaN(t1)) return null
   const months = (t1 - t0) / (1000 * 60 * 60 * 24 * 30)
   return months >= -3 && months <= 18 ? { monthsAfter: months } : null

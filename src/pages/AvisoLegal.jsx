@@ -73,8 +73,9 @@ export default function AvisoLegal() {
           Interior (Ley 37/2007; «Origen de los datos: Portal Estadístico de Criminalidad»), y la
           capa 0503_Residuos y la cartografía de incendios forestales del Institut Cartogràfic
           Valencià / Generalitat Valenciana (CC BY 4.0) bajo sus condiciones de reutilización, con
-          la atribución que exigen). Cada dato individual enlaza a su fuente primaria. El listado
-          completo de feeds está en{' '}
+          la atribución que exigen). Cada dato individual enlaza a la fuente de la que sale: un
+          registro o documento oficial o, cuando sale de la prensa —en el tracker de promesas y en
+          el laboratorio de prensa—, la noticia que lo recoge. El listado completo de feeds está en{' '}
           <a href="/datos" style={{ color: 'var(--civic)' }}>
             /datos
           </a>
@@ -233,11 +234,15 @@ export default function AvisoLegal() {
         <SectionHead eyebrow="Auto-curación" title="Publicación automática con revisión" />
         <p>
           Un proceso semanal (los lunes) puede publicar automáticamente promesas no acusatorias
-          extraídas de fuentes públicas cuando superan un umbral de confianza y su cita textual
-          queda anclada a la fuente. Cada registro auto-publicado se marca como «publicada
+          extraídas de fuentes públicas cuando superan un umbral de confianza y su cita queda
+          anclada a la fuente como palabras del partido: entre las comillas con que la noticia las
+          recoge, o en el texto de una nota del propio Ayuntamiento, nunca un titular ni la
+          narración del periodista. Cada registro auto-publicado se marca como «publicada
           automáticamente · revisión pendiente» y es retractable. Los veredictos de incumplimiento y
           el estado «inviable» siguen requiriendo intervención humana, y todo el proceso se detiene
-          durante el periodo electoral (LOREG art. 50).
+          durante el periodo electoral (LOREG art. 50). Una cita corregida conserva en su ficha la
+          versión anterior, y una promesa retirada queda listada en /promesas con su fecha y su
+          motivo, sin su cita.
         </p>
       </Card>
 
@@ -395,7 +400,7 @@ export default function AvisoLegal() {
         <ul>
           <li>
             <strong>Texto de la queja</strong>, categoría y barrio aproximado — se publican en el
-            dashboard
+            dashboard si, tras revisarlos, quien modera las quejas decide publicarlos
           </li>
           <li>
             <strong>Coordenadas exactas</strong> (si las envías) — <strong>nunca</strong> se
@@ -405,8 +410,9 @@ export default function AvisoLegal() {
           <li>
             <strong>Tu identidad de Telegram</strong> (el ID numérico; el nombre de usuario ya no se
             guarda) — <strong>nunca</strong> se publica; sólo sirve para que puedas consultar,
-            apoyar o eliminar tus propias quejas, y sólo se guarda si escribes o apoyas una, o te
-            suscribes a los resúmenes semanales del bot
+            apoyar o eliminar tus propias quejas y para avisarte del resultado de su revisión, y
+            sólo se guarda si escribes o apoyas una, o te suscribes a los resúmenes semanales del
+            bot
           </li>
           <li>
             <strong>Fotografía adjunta</strong> (si la envías) — el bot no guarda la imagen
@@ -415,6 +421,38 @@ export default function AvisoLegal() {
             publica es una copia anonimizada, como se explica más abajo
           </li>
         </ul>
+        <p>
+          <strong>Datos personales en el texto</strong>: antes de guardar una queja, el bot retira
+          del título y del detalle los teléfonos, correos, DNI, NIE, IBAN y matrículas que reconoce,
+          y en su lugar deja «[dato personal retirado]». Lo retirado no se guarda en el bot —ni en
+          su registro, ni en los mensajes a quien modera las quejas, ni en lo que se publica—: sólo
+          cuántos de cada tipo, y el bot te dice qué te ha quitado. Sigue, como todo lo que le
+          escribes, en tu conversación de Telegram. La detección es automática y sólo reconoce lo
+          que tiene una forma fija: un nombre, una dirección o un dato de salud no los reconoce, y
+          por eso cada queja pasa además la revisión que se explica a continuación. Si aun así ves
+          un dato tuyo publicado, pide su retirada por la vía de rectificación de esta página.
+        </p>
+        <p>
+          <strong>Revisión antes de publicar</strong>: el texto de cada queja nueva, su categoría y
+          su barrio llegan por Telegram a quien modera las quejas —sin tu identidad y sin la foto,
+          que no ve—, que decide si se publica tal cual o se descarta. Antes, cuando la revisión
+          automática está activa, el texto lo lee también un modelo de lenguaje, la API Gemini de
+          Google, con sus condiciones de pago —que no usan lo enviado para mejorar sus productos—:
+          recibe sólo el título y el detalle, ya sin los datos que el bot retira al guardarlos, y ni
+          tu identidad ni tu barrio. Lo único que puede hacer es señalar los nombres de otras
+          personas, que se quitan del texto de la queja y quedan como «[dato personal retirado]» —el
+          bot te dice cuántos quitó—, y decir si la queja tiene que verla una persona. Una queja que
+          no retiene sólo se publica sin una persona cuando la precisión de esa revisión está
+          medida, como explica la metodología, y nunca en periodo electoral; sin esa medición, las
+          decide todas quien modera. La decisión tiene vuelta atrás: una descartada puede publicarse
+          después, y una publicada, retirarse de la publicación. Hasta que se publica no es pública
+          en ninguna parte, y su foto sólo se anonimiza y se publica cuando la queja ya lo es. El
+          bot te avisa del resultado de la revisión, y puedes impugnarlo escribiendo a{' '}
+          <a href="mailto:civicpulse_es@proton.me" style={{ color: 'var(--civic)' }}>
+            civicpulse_es@proton.me
+          </a>
+          .
+        </p>
         <p>
           <strong>Base jurídica</strong>: Art. 6.1.e del Reglamento (UE) 2016/679 (RGPD) —
           tratamiento necesario para el cumplimiento de una misión realizada en interés público
@@ -461,14 +499,15 @@ export default function AvisoLegal() {
           <code>/olvidar Q-XXXXXXXX</code> al bot para retirar tu queja. El bot deja de incluirla en
           el acto en el listado que exporta, borra de su registro interno tu identidad de Telegram,
           la ubicación y la referencia a la foto, borra la copia anonimizada de la foto que guarda
-          su servidor y pide a GitHub que esta web se vuelva a publicar. Esta web la retira del
-          dashboard, del heatmap, del feed público y del snapshot abierto en cuanto termina esa
-          actualización, que suele tardar unos minutos; si la petición falla, en la siguiente
-          actualización diaria. En esa misma actualización borra el fichero de la foto anonimizada
-          si se había publicado. En el registro interno quedan el texto, las fechas y los estados de
-          la queja, sin tu identidad de Telegram, durante el plazo legal de conservación; después se
-          destruyen. Sólo el autor puede ejercer este derecho sobre su propia queja, y una vez
-          ejercido el bot ya no puede saber quién la escribió.
+          su servidor, quita su texto de las tarjetas de revisión que recibió quien modera las
+          quejas —de todas las que Telegram le deja editar— y pide a GitHub que esta web se vuelva a
+          publicar. Esta web la retira del dashboard, del heatmap, del feed público y del snapshot
+          abierto en cuanto termina esa actualización, que suele tardar unos minutos; si la petición
+          falla, en la siguiente actualización diaria. En esa misma actualización borra el fichero
+          de la foto anonimizada si se había publicado. En el registro interno quedan el texto, las
+          fechas y los estados de la queja, sin tu identidad de Telegram, durante el plazo legal de
+          conservación; después se destruyen. Sólo el autor puede ejercer este derecho sobre su
+          propia queja, y una vez ejercido el bot ya no puede saber quién la escribió.
         </p>
         <p>
           <strong>Borrar todos tus datos</strong>: <code>/borrar_mis_datos</code> hace de una vez lo

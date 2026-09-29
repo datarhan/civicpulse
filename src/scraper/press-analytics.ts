@@ -9,8 +9,9 @@
  *       - localCoverage: article URL host belongs to a local Camp de
  *         Túria outlet OR the source name matches our known list.
  *       - datedArticle: ISO publish date parses correctly.
- *       - municipalSourceMatch: the verifier matched ≥1 corroborating
- *         municipal data row (tender / BDNS / budget / padron / paro).
+ *       - municipalSourceMatch: alguna afirmación cotejada volvió
+ *         `verificado`; `null` si no se cotejó ninguna. Una fila de
+ *         evidencia no basta: ver `coincidenciaMunicipal`.
  *       - corroboratedAcrossOutlets: ≥2 outlets share the article
  *         fingerprint (FNV title hash).
  *       - factualClaimsPresent: extractor emitted ≥1 claim with
@@ -20,10 +21,11 @@
  *      We deliberately do NOT rank outlets — ranking with <10 articles
  *      is statistical noise; the lab page sorts by raw article count.
  *
- *   2. Triangulation — for every article fingerprint shared by ≥2
- *      outlets, collect the outlets that ran it, the verdict mix on
- *      their bundled claims, and the numeric drift (max/min of any
- *      shared amountEuros). Surfaces "the same story, told three ways".
+ *   2. Triangulation — for every story told by ≥2 outlets (title
+ *      similarity, see clusterArticlesByStory), collect the outlets that
+ *      ran it and the verdict mix on their bundled claims. Surfaces "the
+ *      same story, told three ways". It does not compare their figures:
+ *      see the note on TriangulationCluster.
  *
  *   3. Coverage gaps — pleno agenda items + curated promises with
  *      ZERO press mentions in a 14-day rolling window. Tells the
@@ -34,6 +36,7 @@
  */
 
 import { fingerprintFor } from './press'
+import { corpusReales } from './claim-verdicts'
 import type { ClaimVerdict } from './claim-verifier'
 import type { PressClaim } from './press-claim'
 import type { PressClaimVerification } from './press-verifier'
@@ -64,11 +67,12 @@ export interface ArticleTrustRow {
     localCoverage: boolean
     datedArticle: boolean
     /**
-     * `true` cotejado y encontrado · `false` cotejado y sin encontrar ·
-     * `null` NO COTEJADO, porque del titular no salió ninguna afirmación que
-     * cotejar. Los dos últimos se pintaban igual, y el círculo vacío decía
-     * «no coincide con los datos municipales» sobre titulares que nadie había
-     * comprobado.
+     * `true` alguna afirmación cotejada volvió `verificado` · `false` se cotejó
+     * alguna y ninguna volvió `verificado` · `null` NO COTEJADO: del titular no
+     * salió ninguna afirmación, o ninguna se cotejó contra un corpus. Los dos
+     * últimos se pintaban igual, y el círculo vacío decía «no coincide con los
+     * datos municipales» sobre titulares que nadie había comprobado. Ver
+     * `coincidenciaMunicipal`.
      */
     municipalSourceMatch: boolean | null
     corroboratedAcrossOutlets: boolean
@@ -112,6 +116,39 @@ export interface VerifiedClaimRow {
   verification: PressClaimVerification
 }
 
+/**
+ * «Coincide con datos municipales», en tres estados, y cada uno dice lo que se
+ * hizo con las afirmaciones del titular, no lo que hay en su lista de evidencia.
+ *
+ * `null`, «sin comprobar»: no se cotejó ninguna. Sin claims no hay cotejo, y
+ * `[].some(...)` es `false` — el mismo valor que «se cotejó y no coincide». La
+ * página pintaba el círculo vacío junto a «Coincide con datos municipales» para
+ * el titular del agua potable (55,6 M€ / 17 años), que SÍ está en el snapshot de
+ * contratos: lo que pasó es que el extractor no sacó ninguna afirmación, un hecho
+ * sobre el extractor y no sobre el contrato. Una claim cuyo `checkedAgainst` no
+ * nombra ningún corpus tampoco se cotejó, y el 28-09-2026 cinco titulares salían
+ * «○» así. Es la regla 3: un centinela no es un valor.
+ *
+ * `true`, sólo si alguna cotejada volvió `verificado`. Se encendía con CUALQUIER
+ * fila de evidencia, y una fila de evidencia es un documento cotejado, no uno que
+ * sostenga la frase: el enum de `stance` no tiene `corroborates` (cabecera de
+ * press-verifier.ts). Así la nota municipal de los contenedores (`1lk4zls`,
+ * 25-09-2026) salía en verde, y con 6 puntos de 6, por un contrato de pérgolas de
+ * 131.336 € colgado de su afirmación `parcial` — y «Parcial» es, en la escala que
+ * publica /metodologia, «el detalle no coincide en su totalidad». Por el mismo
+ * camino lo habrían encendido una `contradicho`, una `promesa-repetida` o el
+ * expediente que «no dice eso» de una `sin-datos`. «Verificado» es el único
+ * veredicto que esa escala define como «coincide con el documento municipal».
+ *
+ * El marcador sigue al indicador: `Number(null)` es 0, igual que `Number(false)`,
+ * y el punto sólo lo gana una `verificado`.
+ */
+function coincidenciaMunicipal(claims: VerifiedClaimRow[]): boolean | null {
+  const cotejadas = claims.filter((c) => corpusReales(c.verification.checkedAgainst).length > 0)
+  if (cotejadas.length === 0) return null
+  return cotejadas.some((c) => c.verification.verdict === 'verificado')
+}
+
 export function computeTrustIndicators(opts: {
   press: PressArticleLite[]
   verified: VerifiedClaimRow[]
@@ -146,19 +183,7 @@ export function computeTrustIndicators(opts: {
     ).length
     const opinionFraction = claims.length === 0 ? 0 : opinionCount / claims.length
 
-    // Sin claims no hay cotejo, y `[].some(...)` es `false` — el mismo valor
-    // que «se cotejó y no coincide». La página pintaba el círculo vacío junto a
-    // «Coincide con datos municipales» para el titular del agua potable
-    // (55,6 M€ / 17 años), que SÍ está en el snapshot de contratos: lo que
-    // pasó es que el extractor no sacó ninguna afirmación, un hecho sobre el
-    // extractor y no sobre el contrato. La propia ficha lo dice dos líneas más
-    // abajo, y el indicador la contradecía.
-    //
-    // Es la regla 3: un centinela no es un valor. Sin nada que cotejar, `null`.
-    // El marcador no cambia — `Number(null)` es 0, igual que `Number(false)`—,
-    // así que esto sólo separa lo que se pinta, no lo que se puntúa.
-    const municipalSourceMatch =
-      claims.length === 0 ? null : claims.some((c) => c.verification.evidence.length > 0)
+    const municipalSourceMatch = coincidenciaMunicipal(claims)
 
     const ind = {
       localCoverage:
@@ -267,12 +292,18 @@ export interface TriangulationCluster {
   outlets: string[]
   earliestDate: string
   latestDate: string
-  amountDrift?: {
-    min: number
-    max: number
-    spread: number
-    spreadPct: number
-  } | null
+  // Ninguna cifra. El grupo publicaba `amountDrift` —el máximo menos el mínimo de
+  // TODAS las `amountEuros` de sus artículos— y /laboratorio lo pintaba como
+  // «cifras divergen». Medido el 28-09-2026 sobre su historial, ninguna de las
+  // siete historias a las que puso cifras era una divergencia: dos eran una parte
+  // contra su total (los 180.000 € de una adjudicación contra los 135.000 € que
+  // paga el PSTD, en una misma nota; los 100.000 € de fachadas contra los
+  // 140.000 € del programa, uno en cada medio) y cinco daban la misma cifra en
+  // todos sus medios, publicada como «divergen €0». Ningún campo dice qué
+  // magnitud mide cada cifra, y sin eso compararlas es poner juntas dos cifras
+  // ciertas sin el puente que las cuadra. Una discrepancia real entre medios es
+  // un hallazgo y la firma una persona curadora. La historia entera, con las
+  // filas: tests/triangulacion-cifras.test.ts.
   verdictMix: Record<ClaimVerdict, number>
 }
 
@@ -384,26 +415,8 @@ export function computeTriangulation(opts: {
       'sin-datos': 0,
       'promesa-repetida': 0,
     }
-    const amounts: number[] = []
     for (const a of articles) {
-      const claims = verByArticle.get(a.id) ?? []
-      for (const c of claims) {
-        verdictMix[c.verification.verdict] += 1
-        if (
-          typeof c.claim.entities.amountEuros === 'number' &&
-          Number.isFinite(c.claim.entities.amountEuros)
-        ) {
-          amounts.push(c.claim.entities.amountEuros)
-        }
-      }
-    }
-    let amountDrift: TriangulationCluster['amountDrift'] = null
-    if (amounts.length >= 2) {
-      const min = Math.min(...amounts)
-      const max = Math.max(...amounts)
-      const spread = max - min
-      const spreadPct = min === 0 ? 0 : spread / min
-      amountDrift = { min, max, spread, spreadPct: Math.round(spreadPct * 1000) / 1000 }
+      for (const c of verByArticle.get(a.id) ?? []) verdictMix[c.verification.verdict] += 1
     }
     clusters.push({
       clusterId: articles.map((a) => a.fingerprint).sort()[0],
@@ -411,7 +424,6 @@ export function computeTriangulation(opts: {
       outlets: Array.from(outlets).sort(),
       earliestDate: dates[0],
       latestDate: dates[dates.length - 1],
-      amountDrift,
       verdictMix,
     })
   }

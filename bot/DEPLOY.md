@@ -74,13 +74,26 @@ flyctl secrets set --app munigraph-ribarroja \
 
 Optional secrets you can set now or later:
 
-- `CHANNEL_ID=-100…` — enables `[NUEVA]/[APOYADA]/[REGISTRADA]` broadcasts.
-  The bot must be added as an admin of that channel.
+- `CHANNEL_ID` — ya no se usa: desde el 2026-09-29 el bot no publica en ningún
+  canal, y los hitos de cada queja van por privado a los administradores
+  (`src/services/avisos-hitos.ts`). Si sigue puesto, se puede quitar:
+  `flyctl secrets unset --app munigraph-ribarroja CHANNEL_ID`.
 - `ADMIN_USER_IDS=123,456` — Telegram user IDs allowed to run `/batch`,
   `/batch_register`, `/escalar`. Find yours via [@userinfobot](https://t.me/userinfobot).
 - `GEMINI_API_KEY` — la clave del análisis que localiza caras y matrículas en las
   fotos (`src/services/photo-anonymize.ts`). Sin ella, la pasada horaria retiene cada
   foto y no se publica ninguna; el arranque lo dice en el log (`[fotos] cron armado`).
+- `GEMINI_NIVEL=pago` — enciende la revisión automática del texto de cada queja
+  (`src/services/moderacion.ts`). No es un secreto: es tu declaración de que el
+  proyecto de Google de esa clave está en el nivel de pago, cuyas condiciones no
+  usan lo enviado para mejorar sus productos —y el texto de una queja es de un
+  vecino—. Pásalo a pago en Google AI Studio antes de ponerla. Sin ella la revisión
+  no corre, cada queja la decide una persona como hasta ahora, y `/health` lo dice
+  en `moderacion.revision` (`disponible: false`, `falta: "GEMINI_NIVEL"`).
+- `GEMINI_MODERACION_MODEL` — opcional: el modelo de la revisión, si no es
+  `gemini-2.5-flash`. Cambiarlo cambia lo que se midió: la clase
+  `queja.publicacion-automatica` de `.automation-measurements.json` se midió con un
+  modelo y una versión del prompt, y hay que medir otra vez.
 - `GITHUB_DISPATCH_TOKEN` — un token de acceso personal **de grano fino**, limitado a
   este repositorio (`datarhan/civicpulse`) y con un único permiso, «Actions: Read and
   write». Con él, al confirmar `/olvidar` el bot lanza `pull-quejas.yml` y la web
@@ -88,13 +101,31 @@ Optional secrets you can set now or later:
   actualización diaria. Estos tokens caducan: cuando caduque, el log dirá
   `GitHub contestó 401` y la retirada volverá a esperar a la actualización diaria.
 
-Estos dos no se pasan como argumentos, que acabarían en el historial de la shell: se
-escriben en un fichero, se importan y se borra el fichero.
+Los secretos no se pasan como argumentos, que acabarían en el historial de la shell:
+se escriben en un fichero, se importan y se borra el fichero. `GEMINI_NIVEL` puede ir
+en el mismo.
 
 ```bash
 # secret.env: una línea por secreto, GEMINI_API_KEY=… y GITHUB_DISPATCH_TOKEN=…
 flyctl secrets import --app munigraph-ribarroja < secret.env && rm secret.env
 ```
+
+Con la revisión encendida, una queja limpia no se publica sola hasta que la clase
+`queja.publicacion-automatica` tenga una precisión medida y registrada por encima del
+listón de lo notable (`npm run check:automation` dice qué falta). Se mide contra los
+casos de oro con una clave del nivel de pago —el gratuito da unas veinte preguntas al
+día a este modelo, y el medidor para sin grabar nada si se agota—:
+
+```bash
+cd bot && node --env-file=<fichero con GEMINI_API_KEY de pago> --import tsx scripts/medir-revision.ts
+```
+
+Graba `bot/tests/fixtures/moderacion-oro-respuestas.json` y dice cuántas de las que
+publicaría son seguras. Registrarla abre la publicación automática: se hace a mano, con
+`npm run record-measurement` en la raíz (`--against "<modelo>@<versión del prompt>"`,
+que imprime el medidor), en un cambio que lleva también la grabación y cambia la frase
+de `/quejas` que dice que una persona revisa cada queja. `bot/tests/revision-oro.test.ts`
+y `tests/contrato-quejas.test.js` lo exigen.
 
 ### 5. Deploy
 
@@ -186,6 +217,12 @@ flyctl deploy --config bot/fly.toml \
 flyctl logs --app munigraph-ribarroja
 ```
 
+`telegram.repetido` es un update que Telegram volvió a mandar porque el primero pasó
+de los diez segundos del webhook (que antes dejó un `[http] error: … timed out`), y
+que no se atendió otra vez; `telegram.update`, uno que falló, con su pila
+(`src/services/una-vez-y-en-orden.ts`). Muchos seguidos dicen que la API de Telegram,
+o el candado de las tarjetas de una queja, va lento.
+
 ### SSH into the machine
 
 ```bash
@@ -199,7 +236,18 @@ La base del volumen es la única copia de los datos, y su esquema cambia por
 migraciones (`src/db/migraciones.ts`; `schema.sql` es la base v0, congelada).
 El bot aplica las pendientes al arrancar (`openDb`), así que desplegar una
 migración es ejecutarla sobre la base de verdad. Antes de fusionar un cambio que
-trae una migración que producción aún no tiene, se ensaya contra esa base:
+trae una migración que producción aún no tiene, se ensaya contra esa base.
+
+El ensayo corre el código de la imagen desplegada, así que una migración nueva
+llega primero **en ensayo** (`MIGRACIONES_EN_ENSAYO`): se despliega sin que el
+bot la aplique al arrancar, y la orden de abajo ya la ensaya —lo dice: «en
+ensayo, aún sin aplicar en el bot»—. Con el ensayo correcto y la instantánea
+hecha, el cambio que la usa la pasa a `MIGRACIONES` y se fusiona. Así llegó la 1
+(#132 inerte, #135 activa), así la 2 (#138 en ensayo, #137 la activó), y así
+llega la 3 (`revision-automatica`: en ensayo; la activa la revisión automática).
+Y una migración ensayada no se cambia: `tests/migraciones.test.ts` guarda la huella
+del SQL de cada una, y si su texto cambia después del ensayo, vuelve a entrar en
+ensayo y se ensaya otra vez. La orden:
 
 ```bash
 flyctl ssh console --app munigraph-ribarroja -C "sh -c 'cd /app/bot && node_modules/.bin/tsx src/db/migrate.ts --dry-run --db /data/bot.db'"
@@ -225,6 +273,29 @@ Al arrancar, antes de migrar, el bot saca además una copia con `VACUUM INTO` en
 diaria de `src/services/retencion.ts` a los `CONSERVACION_COPIAS_DIAS` de
 `src/scraper/plazos-retencion.ts`. La instantánea del volumen es la copia que no
 depende del propio bot.
+
+### Volver a una versión anterior: nunca por detrás de la migración 2
+
+Un código viejo arranca sobre la base de hoy: el migrador no toca una base más
+nueva que su código —avisa y sigue—, y el código viejo trabaja sin saber de las
+columnas que no conoce. Tras la migración 2 (`revision-antes-de-publicar`) eso
+es publicar: un código de antes de ella no sabe de `moderacion` y exportaría,
+en la siguiente pasada de `pull-quejas.yml`, todo lo pendiente, lo descartado y
+lo retirado. Lo mismo vale para revertir el PR en `main`, porque
+`bot-deploy.yml` despliega lo que llega a `main`, y para desplegar una imagen
+anterior a mano (`flyctl deploy --image …`).
+
+**No se vuelve a un código anterior a la migración 2 sobre la base de hoy.** Lo
+que falle después se arregla hacia delante.
+
+Restaurar la copia `VACUUM INTO` de `/data/backups/` tomada al migrar tampoco es
+una vuelta atrás limpia. Es de antes de la revisión, así que no publica nada sin
+revisar, pero deshace todo lo que pasó después: además de perder las quejas que
+entraron, devuelve a la vida lo que se retiró desde entonces —con `/olvidar`, con
+`/borrar_mis_datos` o con [Retirar]— con su autor, su ubicación y su foto, y a
+quienes borraron sus datos. Eso es deshacer un derecho que ya se ejerció. Antes
+de arrancar con esa copia habría que reaplicarle cada retirada y cada borrado
+posteriores, y ese procedimiento no está escrito ni ensayado: no es un plan.
 
 ### Recalcular los barrios de las quejas guardadas
 
@@ -260,7 +331,10 @@ flyctl scale count 1    --app munigraph-ribarroja       # stay at 1 (SQLite)
 ```
 
 Do **not** scale count beyond 1 — SQLite doesn't tolerate multiple
-writers. If we outgrow a single machine, migrate to Postgres first.
+writers. If we outgrow a single machine, migrate to Postgres first, and move
+what lives in the process's memory with it: the conversations, the per-chat
+order and seen `update_id`s (`src/services/una-vez-y-en-orden.ts`) and the
+card lock (`src/services/avisos-admin.ts`).
 
 ### Tear down
 

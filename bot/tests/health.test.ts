@@ -1,4 +1,6 @@
 import { describe, it, expect } from 'vitest'
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
 import { buildHealth, VARIABLE_VERSION } from '../src/services/health'
 
 const base = { mode: 'long-polling', uptimeSec: 10, pid: 1 }
@@ -11,19 +13,25 @@ describe('buildHealth', () => {
   it('reports degraded when the escalation credentials are missing', () => {
     const h = buildHealth({ BOT_TOKEN: 't' } as NodeJS.ProcessEnv, base)
     expect(h.status).toBe('degraded')
-    expect(h.capabilities).toEqual({ capture: true, broadcasts: false, adminCommands: false })
-    expect(h.degraded).toHaveLength(2)
-    expect(h.degraded.join(' ')).toMatch(/SILENCIO/)
+    expect(h.capabilities).toEqual({ capture: true, adminCommands: false })
+    expect(h.degraded).toHaveLength(1)
     expect(h.degraded.join(' ')).toMatch(/escalar/)
   })
 
   it('reports ok only when everything is wired', () => {
-    const h = buildHealth(
-      { BOT_TOKEN: 't', CHANNEL_ID: '-100', ADMIN_USER_IDS: '42' } as NodeJS.ProcessEnv,
-      base,
-    )
+    const h = buildHealth({ BOT_TOKEN: 't', ADMIN_USER_IDS: '42' } as NodeJS.ProcessEnv, base)
     expect(h.status).toBe('ok')
     expect(h.degraded).toEqual([])
+  })
+
+  // Desde el 2026-09-29 el bot no publica en ningún canal: los hitos de cada queja
+  // se avisan a quien modera (services/avisos-hitos.ts). Sin `CHANNEL_ID` no falta
+  // nada, y con él tampoco se usa.
+  it('CHANNEL_ID ya no es una capacidad', () => {
+    const sin = buildHealth({ BOT_TOKEN: 't', ADMIN_USER_IDS: '42' } as NodeJS.ProcessEnv, base)
+    expect(sin.status).toBe('ok')
+    expect(Object.keys(sin.capabilities)).not.toContain('broadcasts')
+    expect(JSON.stringify(sin)).not.toMatch(/CHANNEL_ID|SILENCIO/)
   })
 
   it('flags a missing bot token as loss of capture', () => {
@@ -89,5 +97,80 @@ describe('buildHealth · la versión que corre', () => {
     expect(
       buildHealth({ BOT_TOKEN: 't', [VARIABLE_VERSION]: '  ' } as NodeJS.ProcessEnv, base).version,
     ).toBeNull()
+  })
+})
+
+/**
+ * Una cola de revisión atascada no se veía: con `ADMIN_USER_IDS` vacío, o con
+ * cada tarjeta fallando, las quejas esperaban para siempre y `/health` sólo
+ * decía que /batch estaba apagado (revisión de #137). Ahora lo dice, y
+ * ops-alarm lo lee de `degraded`.
+ */
+describe('buildHealth · la cola de revisión', () => {
+  const wired = { BOT_TOKEN: 't', CHANNEL_ID: '-100', ADMIN_USER_IDS: '42' } as NodeJS.ProcessEnv
+  const cola = (
+    o: Partial<{ pendientes: number; sinTarjeta: number; masAntiguaHoras: number | null }>,
+  ) => ({
+    ...base,
+    moderacion: { pendientes: 0, sinTarjeta: 0, masAntiguaHoras: null, ...o },
+  })
+
+  it('sin nada esperando, nada que decir (el control)', () => {
+    const h = buildHealth(wired, cola({}))
+    expect(h.status).toBe('ok')
+    expect(h.moderacion).toEqual({ pendientes: 0, sinTarjeta: 0, masAntiguaHoras: null })
+  })
+
+  it('una queja esperando que no tiene tarjeta en ningún administrador actual', () => {
+    const h = buildHealth(wired, cola({ pendientes: 1, sinTarjeta: 1, masAntiguaHoras: 1 }))
+    expect(h.status).toBe('degraded')
+    expect(h.degraded.join(' ')).toMatch(/sin tarjeta/)
+  })
+
+  it('quejas esperando y nadie que pueda publicarlas', () => {
+    const h = buildHealth(
+      { BOT_TOKEN: 't', CHANNEL_ID: '-100' } as NodeJS.ProcessEnv,
+      cola({ pendientes: 2, sinTarjeta: 2, masAntiguaHoras: 3 }),
+    )
+    expect(h.degraded.join(' ')).toMatch(/nadie puede publicar/)
+  })
+
+  it('la más antigua lleva más de dos días', () => {
+    const h = buildHealth(wired, cola({ pendientes: 1, masAntiguaHoras: 50 }))
+    expect(h.degraded.join(' ')).toMatch(/50 h/)
+    expect(buildHealth(wired, cola({ pendientes: 1, masAntiguaHoras: 47 })).status).toBe('ok')
+  })
+
+  it('tarjetas que llevan más de un día esperando a perder el texto de una queja retirada', () => {
+    // La promesa de /aviso-legal —el texto sale de las tarjetas— depende de que esa
+    // cola se vacíe; si Telegram falla día tras día, sólo lo decía el registro.
+    const conCola = (masAntiguaHoras: number) => ({
+      ...base,
+      moderacion: {
+        pendientes: 0,
+        sinTarjeta: 0,
+        masAntiguaHoras: null,
+        porVaciar: { total: 2, masAntiguaHoras },
+      },
+    })
+    const h = buildHealth(wired, conCola(30))
+    expect(h.status).toBe('degraded')
+    expect(h.degraded.join(' ')).toMatch(/2 tarjeta\(s\).*30 h/)
+    expect(buildHealth(wired, conCola(3)).status).toBe('ok')
+  })
+})
+
+/**
+ * health.ts lo importa también la raíz (tests/bot-despliegue.test.js, por
+ * `VARIABLE_VERSION`), y el typecheck de la raíz sigue sus imports. La CI de la
+ * raíz no instala las dependencias del bot: un import de health.ts —aunque sea
+ * sólo de un tipo— que arrastre grammy o better-sqlite3 pone la CI en rojo, y en
+ * el portátil, con las dependencias del bot instaladas, no se ve. Pasó en #137.
+ */
+describe('health.ts se lee desde la raíz', () => {
+  it('no importa nada', () => {
+    const fuente = readFileSync(join(__dirname, '..', 'src', 'services', 'health.ts'), 'utf8')
+    expect(fuente.length).toBeGreaterThan(0)
+    expect(fuente.match(/^\s*(import|export .* from)\b.*$/gm) ?? []).toEqual([])
   })
 })

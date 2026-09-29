@@ -143,7 +143,20 @@ function variasSinOrdenUnaSinDecl() {
   const votos = mapa[RUTAS.votos]
   for (const id of sinDeclaraciones(mapa, 1)) votos.stats.byPleno[id] = 1
   votos.stats.retracted = { plazo: 1 }
+  unaAreaSinBarra(mapa)
   return mapa
+}
+
+/**
+ * Una sola área fuera de las barras del reparto. El dato publicado deja doce
+ * fuera, así que el singular del puente no se pintaría nunca: se FABRICA
+ * diciendo que hay un área más que barras, con un punto.
+ */
+function unaAreaSinBarra(mapa) {
+  const agendas = mapa[RUTAS.agendas]
+  const dibujado = agendas.topDepartments.reduce((s, d) => s + d.count, 0)
+  agendas.stats.uniqueDepartments = agendas.topDepartments.length + 1
+  agendas.stats.agendaItemsWithDepartment = dibujado + 1
 }
 
 /** Ninguna sesión con fecha: la entradilla y el pie sin ventana temporal. */
@@ -198,7 +211,7 @@ const ESCENARIOS = [
     unaSinOrdenVariasSinDecl(),
   ),
   escenario(
-    'varias con declaraciones sin orden y una con votos sin declaraciones',
+    'varias con declaraciones sin orden, una con votos sin declaraciones y un área sin barra',
     variasSinOrdenUnaSinDecl(),
   ),
   escenario('sin fechas: la entradilla y el pie sin ventana', sinFechas()),
@@ -237,6 +250,23 @@ describe('las mutaciones abren las ramas que dicen', () => {
     expect(
       cuentas.some((n) => n >= 2),
       `ningún escenario tiene VARIAS: ${JSON.stringify(cuentas)}`,
+    ).toBe(true)
+  })
+})
+
+// El puente del reparto por área tiene singular y plural, y el dato publicado
+// sólo trae el plural. Sin esto, perder la mutación de arriba dejaría la clave
+// del singular sin pintar y la cobertura en rojo sin decir por qué.
+describe('las áreas fuera de las barras, en los escenarios', () => {
+  it('salen en singular y en plural en algún escenario', () => {
+    const restos = ESCENARIOS.map((e) => {
+      const a = e.fetch[RUTAS.agendas]
+      return (a.stats?.uniqueDepartments ?? 0) - (a.topDepartments?.length ?? 0)
+    })
+    expect(restos, 'ningún escenario deja UNA fuera').toContain(1)
+    expect(
+      restos.some((n) => n >= 2),
+      `ningún escenario deja VARIAS: ${JSON.stringify(restos)}`,
     ).toBe(true)
   })
 })

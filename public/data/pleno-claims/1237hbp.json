@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-24T08:12:31.834Z",
+  "generatedAt": "2026-09-29T05:11:47.357Z",
   "version": "1",
   "plenoId": "1237hbp",
   "plenoDate": "2026-07-03",
@@ -59,7 +59,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -181,7 +182,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -375,7 +377,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -432,7 +435,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -462,7 +466,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -517,7 +522,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -714,7 +720,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1413,7 +1420,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1525,7 +1533,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1720,7 +1729,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },

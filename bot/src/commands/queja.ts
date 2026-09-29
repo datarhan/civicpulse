@@ -2,11 +2,22 @@ import type { Bot } from 'grammy'
 import { InlineKeyboard } from 'grammy'
 import { createConversation } from '@grammyjs/conversations'
 import type { Db } from '../db/client.ts'
-import { autorTelegram, createQueja, type NewQuejaInput } from '../db/queries.ts'
+import {
+  autorTelegram,
+  createQueja,
+  datosRetiradosDe,
+  LIMITE_DETALLE,
+  LIMITE_TITULO,
+  type NewQuejaInput,
+} from '../db/queries.ts'
+import { describirRetirados } from '../services/pii.ts'
 import { routeUsingLocalOfficials } from '../services/router.ts'
 import { situar } from '../services/neighborhoods.ts'
 import { comandoDe } from '../services/solo-en-privado.ts'
-import type { Channel } from '../services/channel.ts'
+import { avisarAdmins, type EnvioAdmin } from '../services/avisos-admin.ts'
+import { comoSeRevisa } from '../services/moderacion.ts'
+import { COMO_SE_REVISA } from '../services/textos-revision.ts'
+import { parseAdminIds } from '../util/admins.ts'
 import type { QuejaCategory, QuejaRouting } from '../../../src/scraper/queja-router.ts'
 import { plazoHumano } from '../../../src/scraper/queja-router.ts'
 
@@ -147,11 +158,14 @@ async function ubicacionDelPaso(
   }
 }
 
-export function quejaConversationBuilder(db: Db, channel: Channel) {
+export function quejaConversationBuilder(db: Db, envio: EnvioAdmin) {
   return async function quejaConversation(conv: MyConversation, ctx: MyContext) {
+    // Cómo se revisa se mira al empezar y otra vez al guardarla: lo que dice el
+    // acuse es lo que va a pasar con ella.
+    const revision = () => COMO_SE_REVISA[comoSeRevisa({ env: process.env })]
     await ctx.reply(
       '📝 *Nueva queja ciudadana*\n\n' +
-        'Voy a guiarte paso a paso. Tu queja se añadirá al tablón público de Riba-roja de Túria. Cuando alcance 10 apoyos, entrará en el lote semanal al Registro Electrónico del Ayuntamiento.\n\n' +
+        `Voy a guiarte paso a paso. Antes de publicarse en el tablón público de Riba-roja de Túria ${revision()}, y te aviso aquí cuando sea pública. Cuando alcance 10 apoyos, entrará en el lote semanal al Registro Electrónico del Ayuntamiento.\n\n` +
         'Primer paso: *categoría*.',
       { parse_mode: 'Markdown', reply_markup: categoryKeyboard() },
     )
@@ -177,24 +191,21 @@ export function quejaConversationBuilder(db: Db, channel: Channel) {
     const catLabel = CATEGORIES.find((c) => c.id === category)?.label ?? category
 
     await ctx.reply(
-      `Categoría: *${catLabel}*\n\nAhora, escribe un *título breve* (máx. 140 caracteres). Ejemplo: _Bache profundo en Av. Primera_.`,
+      `Categoría: *${catLabel}*\n\nAhora, escribe un *título breve* (máx. ${LIMITE_TITULO} caracteres). Ejemplo: _Bache profundo en Av. Primera_.`,
       { parse_mode: 'Markdown' },
     )
-    const title = (await textoDelPaso(conv, 'Escribe el título con texto, por favor.'))
-      .trim()
-      .slice(0, 140)
+    // Sin cortar aquí: `createQueja` limpia primero y corta después (LIMITE_TITULO).
+    const title = (await textoDelPaso(conv, 'Escribe el título con texto, por favor.')).trim()
     if (title.length < 5) {
       await ctx.reply('El título es muy corto. Cancelo — prueba /queja otra vez.')
       return
     }
 
     await ctx.reply(
-      '✍️ *Describe lo que pasa* con el detalle que puedas (máx. 2000 caracteres). Cuanto más concreto, más fácil de resolver.',
+      `✍️ *Describe lo que pasa* con el detalle que puedas (máx. ${LIMITE_DETALLE} caracteres). Cuanto más concreto, más fácil de resolver.`,
       { parse_mode: 'Markdown' },
     )
-    const detail = (await textoDelPaso(conv, 'Escribe el detalle con texto, por favor.'))
-      .trim()
-      .slice(0, 2000)
+    const detail = (await textoDelPaso(conv, 'Escribe el detalle con texto, por favor.')).trim()
     if (detail.length < 20) {
       await ctx.reply('El detalle es muy corto. Cancelo — prueba /queja otra vez.')
       return
@@ -244,12 +255,21 @@ export function quejaConversationBuilder(db: Db, channel: Channel) {
     }
     const saved = createQueja(db, payload)
 
-    // Broadcast to public channel (no-op when CHANNEL_ID unset).
-    await channel.postNuevaQueja(saved, routing)
+    // Nace `pendiente`: no es pública hasta que un administrador la revisa. La
+    // tarjeta va a cada uno; la que no llegue a nadie la reenvía la pasada horaria
+    // (services/avisos-admin.ts). El canal público no la anuncia, ni ahora ni al
+    // publicarla: un anuncio no se retiraba con la queja.
+    await avisarAdmins(db, saved, { admins: parseAdminIds(), envio })
 
     const responsible = routing.concejalia.responsible
+    // Lo que el bot quitó del texto al guardarla (services/pii.ts), dicho a quien lo escribió.
+    const quitados = describirRetirados(datosRetiradosDe(db, saved.id))
     const confirmation =
       `✅ *Queja recibida:* \`${saved.id}\`\n\n` +
+      (quitados
+        ? `🧹 Antes de guardarla he quitado ${quitados}. Lo quitado no se guarda en el bot.\n\n`
+        : '') +
+      `🕒 Antes de publicarla ${revision()}; te aviso aquí cuando sea pública.\n\n` +
       `*Categoría:* ${catLabel}\n` +
       `*Área responsable:* ${routing.concejalia.area}\n` +
       (responsible ? `*Responsable político:* ${responsible.name} (${responsible.party})\n` : '') +
@@ -257,16 +277,17 @@ export function quejaConversationBuilder(db: Db, channel: Channel) {
       `*Base legal:* ${routing.legalBasis[0]?.law} ${routing.legalBasis[0]?.article}\n\n` +
       `Al llegar a *10 apoyos*, entrará en el lote semanal al Registro Electrónico.\n` +
       `Si vence sin respuesta, puede prepararse la plantilla para acudir al *Síndic de Greuges CV*.\n\n` +
-      `• Estado: /estado\\_${saved.id.replace('Q-', '').toLowerCase()}\n` +
-      `• Apoyar: /apoyar\\_${saved.id.replace('Q-', '').toLowerCase()}`
+      // El atajo para apoyarla llega con el aviso de que es pública: antes, nadie
+      // más que su autor puede verla.
+      `• Estado: /estado\\_${saved.id.replace('Q-', '').toLowerCase()}`
 
     await ctx.reply(confirmation, { parse_mode: 'Markdown' })
   }
 }
 
-export function registerQueja(bot: Bot<MyContext>, db: Db, channel: Channel) {
+export function registerQueja(bot: Bot<MyContext>, db: Db, envio: EnvioAdmin) {
   bot.use(
-    createConversation(quejaConversationBuilder(db, channel), {
+    createConversation(quejaConversationBuilder(db, envio), {
       id: 'queja',
       maxMillisecondsToWait: PLAZO_PASO_MS,
     }),

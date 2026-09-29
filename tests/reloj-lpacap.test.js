@@ -16,7 +16,7 @@
  */
 import { describe, expect, it } from 'vitest'
 
-import { contadoresDeCargo, MOTIVOS_SIN_CIFRA } from '../src/lib/reloj-lpacap'
+import { contadoresDeCargo, MOTIVOS_SIN_CIFRA, registroUtilizable } from '../src/lib/reloj-lpacap'
 import { CATALOGUE, LOCALES } from '../src/i18n'
 
 const SLUG = 'teresa-pozuelo-martin'
@@ -115,6 +115,16 @@ describe('contadoresDeCargo: cuándo NO hay cifras', () => {
   })
 })
 
+describe('registroUtilizable: las dos formas en que el bot publica la fecha', () => {
+  // Hasta el 28-09-2026 `registered_at` salía como lo guarda SQLite, en UTC y sin
+  // zona; desde entonces el bot lo exporta con la Z. La instantánea publicada
+  // cambia de una forma a la otra en el primer `pull-quejas` tras el despliegue,
+  // y una queja registrada no puede dejar de contar por eso.
+  it.each(['2026-09-27 22:00:01', '2026-09-27T22:00:01Z'])('«%s» es un registro', (marca) => {
+    expect(registroUtilizable(marca)).toBe(true)
+  })
+})
+
 describe('contadoresDeCargo: cuándo SÍ', () => {
   it('con el listado completo y una queja del cargo registrada, las cifras salen tal cual', () => {
     // El control de la tabla de arriba: la misma forma, ahora con registro.
@@ -157,4 +167,28 @@ describe('cada motivo se explica en todos los idiomas', () => {
       }
     })
   }
+})
+
+/**
+ * Una fecha de registro es utilizable si el reloj sabe contar desde ella.
+ *
+ * `registroUtilizable` decide si /cargos, los barrios y /departamentos publican
+ * cifras de respuesta, y decía usar «el mismo criterio que el panel para contar
+ * días»: `Date.parse`. El reloj ya no cuenta así —lee la marca del bot en UTC y
+ * cuenta en el calendario de la sede—, y `Date.parse` acepta formas que el reloj
+ * no puede contar, como «09/28/2026», que lee en hora local y al estilo de EE. UU.
+ * Dos criterios para la misma regla legal: una queja se contaría como registrada
+ * en la ficha de un cargo sin que nadie pudiera decir cuándo le vence el plazo.
+ */
+describe('registroUtilizable: el mismo criterio que el reloj', () => {
+  it('sirven la marca del bot y la ISO con zona', () => {
+    expect(registroUtilizable('2026-09-27 22:00:01')).toBe(true)
+    expect(registroUtilizable('2026-09-27T22:00:01Z')).toBe(true)
+  })
+
+  it('lo que el reloj no sabe leer no cuenta como registro', () => {
+    expect(registroUtilizable('09/28/2026')).toBe(false)
+    expect(registroUtilizable('ayer')).toBe(false)
+    expect(registroUtilizable(null)).toBe(false)
+  })
 })

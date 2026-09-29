@@ -147,7 +147,7 @@ export function FindingDetailCard({ f, permalink }) {
               // La puerta editorial manda en las dos superficies: si retiene el
               // literal en /declaraciones, aquí tampoco se publica. Lo que se
               // retiene es la CITA, no la ficha.
-              citaRetenida(prov[i]) ? (
+              citaRetenida(prov[i], q) ? (
                 <CitaRetenida
                   key={i}
                   attribution={q.speakerGroup ? blocLabel(q.speakerGroup) : null}

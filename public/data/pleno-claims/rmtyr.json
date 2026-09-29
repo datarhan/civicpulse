@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-24T08:12:31.834Z",
+  "generatedAt": "2026-09-29T05:11:47.357Z",
   "version": "1",
   "plenoId": "rmtyr",
   "plenoDate": "2025-07-31",
@@ -30,7 +30,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -60,7 +61,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -557,7 +559,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -587,7 +590,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -618,7 +622,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -649,7 +654,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -680,7 +686,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -711,7 +718,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -771,7 +779,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -843,7 +852,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1573,7 +1583,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1603,7 +1614,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1633,7 +1645,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1663,7 +1676,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1694,7 +1708,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1725,7 +1740,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1756,7 +1772,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1787,7 +1804,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -2293,7 +2311,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -2323,7 +2342,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -2382,7 +2402,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -2413,7 +2434,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -2444,7 +2466,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -2474,7 +2497,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -3213,7 +3237,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -3243,7 +3268,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -3340,7 +3366,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -3404,7 +3431,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -3435,7 +3463,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -3532,7 +3561,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -3595,7 +3625,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -3626,7 +3657,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -3848,7 +3880,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -3911,7 +3944,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -4005,7 +4039,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -4068,7 +4103,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -4671,7 +4707,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -4737,7 +4774,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -4801,7 +4839,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -4832,7 +4871,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -4863,7 +4903,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -5427,7 +5468,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -5667,7 +5709,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -6094,7 +6137,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -6124,7 +6168,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -6154,7 +6199,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -6184,7 +6230,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -6395,7 +6442,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -6427,7 +6475,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -6685,7 +6734,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -6743,7 +6793,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -6775,7 +6826,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=W%2Fgt%2FOWQ%2FxbzAq95uGTrDQ%3D%3D",
-            "snippet": "Inicio expediente y adjudicación directa del contrato menor puente de Suministro por plazo de 2 meses mediante arrendamiento de 4 furgonetas de 5 plazas destinadas al el Plan de Empleo DANA a favor de TRANSTEL SA con CIF A46063814. · Ayuntamiento de Riba-roja de Túria · TRANS TEL S.A. · transportation · 5200 €",
+            "snippet": "Inicio expediente y adjudicación directa del contrato menor puente de Suministro por plazo de 2 meses mediante arrendamiento de 4 furgonetas de 5 plazas destinadas al el Plan de Empleo DANA a favor de TRANSTEL SA con CIF A46063814. · Ayuntamiento de Riba-roja de Túria · TransTel S.A. · transportation · 5200 €",
             "similarity": 1,
             "stance": "checked"
           }
@@ -7013,7 +7064,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -7176,7 +7228,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -7207,7 +7260,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -7238,7 +7292,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -7296,7 +7351,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -7596,7 +7652,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -7660,7 +7717,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -7690,7 +7748,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -7777,7 +7836,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -7951,7 +8011,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },

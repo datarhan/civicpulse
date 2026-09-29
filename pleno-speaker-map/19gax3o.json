@@ -1,6 +1,6 @@
 {
   "plenoId": "19gax3o",
-  "generatedAt": "2026-09-24T08:00:12.077Z",
+  "generatedAt": "2026-09-28T07:36:27.228Z",
   "model": "gemini-3.5-flash",
   "promptVersion": "speaker-map-v2",
   "chunkSeconds": 600,
@@ -2591,61 +2591,52 @@
       },
       {
         "chunk": 4,
-        "why": "HTTP 503: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-        "attempts": 3,
+        "why": "covered 80% (floor 85%)",
+        "attempts": 2,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
           "floor": 0.85,
           "thinking": "low"
-        }
+        },
+        "sinLectura": "HTTP 503: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
       },
       {
         "chunk": 7,
-        "why": "HTTP 503: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-        "attempts": 2,
+        "why": "covered 1% (floor 85%)",
+        "attempts": 1,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
           "floor": 0.85,
           "thinking": "low"
-        }
+        },
+        "sinLectura": "HTTP 503: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
       },
       {
         "chunk": 9,
-        "why": "HTTP 503: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "why": "covered 79% (floor 85%)",
         "attempts": 2,
         "givenUpUnder": {
           "prompt": "speaker-map-v2",
           "floor": 0.85,
           "thinking": "low"
-        }
+        },
+        "sinLectura": "HTTP 503: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
       },
       {
         "chunk": 11,
-        "why": "HTTP 503: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
-        "attempts": 1,
-        "givenUpUnder": {
-          "prompt": "speaker-map-v2",
-          "floor": 0.85,
-          "thinking": "low"
-        }
+        "why": "HTTP 503: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
       },
       {
         "chunk": 12,
-        "why": "uploaded file stuck in ?",
-        "attempts": 1,
-        "givenUpUnder": {
-          "prompt": "speaker-map-v2",
-          "floor": 0.85,
-          "thinking": "low"
-        }
+        "why": "HTTP 503: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
       },
       {
         "chunk": 13,
-        "why": "never attempted (call budget spent; resumes next run)"
+        "why": "HTTP 503: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
       },
       {
         "chunk": 14,
-        "why": "never attempted (call budget spent; resumes next run)"
+        "why": "HTTP 503: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
       }
     ],
     "labelsSeen": 0,

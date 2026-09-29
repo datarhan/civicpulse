@@ -17,7 +17,6 @@ import { beforeEach, describe, expect, it } from 'vitest'
 import { openDb, type Db } from '../src/db/client'
 import {
   addApoyo,
-  createQueja,
   getQueja,
   listEvents,
   reconcileApoyadas,
@@ -27,6 +26,8 @@ import {
   type NewQuejaInput,
   autorTelegram,
 } from '../src/db/queries'
+import { creaPublicada } from './helpers/publicada'
+import { marcaDeAhora } from './helpers/marca'
 
 function sampleQueja(overrides: Partial<NewQuejaInput> = {}): NewQuejaInput {
   return {
@@ -53,7 +54,7 @@ function sampleQueja(overrides: Partial<NewQuejaInput> = {}): NewQuejaInput {
  * decir que ya no se puede reproducir el caso que existe en producción.
  */
 function comoLaDejabaElBotRoto(db: Db, apoyos: number): string {
-  const id = createQueja(db, sampleQueja()).id
+  const id = creaPublicada(db, sampleQueja()).id
   for (let u = 0; u < apoyos; u++) addApoyo(db, id, autorTelegram(7000 + u))
   setState(db, id, 'capturada')
   return id
@@ -140,9 +141,13 @@ describe('reconcileApoyadas — pone al día lo que quedó a medias', () => {
   })
 
   it('no degrada ni adelanta a las que ya avanzaron', () => {
-    const id = createQueja(db, sampleQueja()).id
+    const id = creaPublicada(db, sampleQueja()).id
     for (let u = 0; u < VERIFIED_THRESHOLD; u++) addApoyo(db, id, autorTelegram(8000 + u))
-    setState(db, id, 'registrada', { entry_number: '2026-RE-0847', csv: 'ABC123XYZ' })
+    setState(db, id, 'registrada', {
+      entry_number: '2026-RE-0847',
+      csv: 'ABC123XYZ',
+      registered_at: marcaDeAhora(),
+    })
     expect(reconcileApoyadas(db)).toEqual({ intentadas: 0, promovidas: 0 })
     expect(getQueja(db, id)?.state).toBe('registrada')
   })

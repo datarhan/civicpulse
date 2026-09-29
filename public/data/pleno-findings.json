@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-09-21T10:48:44.673Z",
+  "generatedAt": "2026-09-29T05:11:41.317Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. Los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, salvo los que llevan la firma de una persona, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -199,7 +199,7 @@
         },
         {
           "text": "¿Dónde está? Bueno. Él ya sabemos dónde está. Bueno. No se sabe muy bien dónde está. La pasarela sí que sabemos que no está.",
-          "speakerGroup": "PP",
+          "speakerGroup": "PSOE",
           "sourceClaimId": "10yl550-054-acu-a487ce"
         },
         {
@@ -257,6 +257,14 @@
           "reason": "Se retira una de las dos copias de la misma intervención: la más corta está contenida palabra por palabra en la otra, que conserva además el arranque de la frase. Publicarla dos veces multiplicaba una sola declaración.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-10T11:28:03.127Z"
+        },
+        {
+          "field": "quote.1.speakerGroup",
+          "original": "PP",
+          "corrected": "PSOE",
+          "reason": "La intervención no es del PP: responde a su moción tras conceder la presidencia la palabra a un concejal del gobierno, se dirige al PP en segunda persona y su voz coincide con la del resto de ese turno (transcripción y vídeo, 2.400–2.594 s).",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-29T05:11:39.787Z"
         }
       ]
     },
@@ -365,7 +373,7 @@
       "plenoId": "10yl550",
       "plenoDate": "2026-05-11",
       "title": "Pleno del 11 de mayo de 2026: Debate sobre la Feria de Comercio",
-      "summary": "Durante la sesión del pleno, un grupo no identificado afirma que han decidido reinventar la feria y renovarla. El PSOE señala que la feria no se realizó en 2025 por mandato expreso de los comercios, mientras que un grupo no identificado menciona las fechas de la Feria de Comercio, que se celebrará los días 8, 9 y 10 de mayo.",
+      "summary": "Durante la sesión del pleno, un grupo no identificado afirma que han decidido reinventar la feria y renovarla. El PSOE señala que la feria no se realizó en 2025 por mandato expreso de los comercios, mientras que un grupo no identificado exhibe el acta de una reunión del 29 de enero de 2026 en la que se acordó celebrar la Feria de Comercio los días 8, 9 y 10 de mayo.",
       "severity": "informational",
       "sourceClaimIds": [
         "10yl550-270-cit-bb5f00",
@@ -431,6 +439,14 @@
           "reason": "Se retira del cotejo el expediente que sostenía la frase documental suprimida: consta anulado y con importe final cero, y no acredita ninguno de los extremos que el sumario le atribuía.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T16:58:24.723Z"
+        },
+        {
+          "field": "summary",
+          "original": "Durante la sesión del pleno, un grupo no identificado afirma que han decidido reinventar la feria y renovarla. El PSOE señala que la feria no se realizó en 2025 por mandato expreso de los comercios, mientras que un grupo no identificado menciona las fechas de la Feria de Comercio, que se celebrará los días 8, 9 y 10 de mayo.",
+          "corrected": "Durante la sesión del pleno, un grupo no identificado afirma que han decidido reinventar la feria y renovarla. El PSOE señala que la feria no se realizó en 2025 por mandato expreso de los comercios, mientras que un grupo no identificado exhibe el acta de una reunión del 29 de enero de 2026 en la que se acordó celebrar la Feria de Comercio los días 8, 9 y 10 de mayo.",
+          "reason": "El sumario anunciaba en futuro («que se celebrará») una feria cuyas fechas eran anteriores a la sesión, del lunes 11 de mayo de 2026, y la cita no anuncia nada: quien habla enseña el acta de la reunión del 29 de enero de 2026 en la que se acordaron esas fechas (transcripción, 12.693–12.708 s). El «se celebrará» lo añadía el sumario.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-28T16:04:22.960Z"
         }
       ]
     },
@@ -439,7 +455,7 @@
       "plenoId": "10yl550",
       "plenoDate": "2026-05-11",
       "title": "Debate sobre vivienda en el pleno del 2026-05-11 entre los grupos PSOE y un grupo no identificado",
-      "summary": "Durante el pleno, el grupo PSOE señala la figura de las zonas de mercado residencial tensionado y manifiesta que oponerse a la prórroga del alquiler encarecerá los precios para las familias. Por su parte, un grupo no identificado afirma que la vivienda construida en los últimos años en el municipio es para uso particular.",
+      "summary": "Durante el pleno, el grupo PSOE señala la figura de las zonas de mercado residencial tensionado. Por su parte, un grupo no identificado afirma que la vivienda construida en los últimos años en el municipio es para uso particular.",
       "severity": "informational",
       "sourceClaimIds": [
         "10yl550-158-cit-73d3cf",
@@ -460,12 +476,12 @@
         },
         {
           "text": "también quiero hacer referencia al gobierno de España que también tiene competencias en vivienda en su Ministerio de Vivienda que es un ministerio que tiene el Partido Socialista",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "10yl550-174-acu-bc807e"
         },
         {
           "text": "si vosotros votáis en contra de esta prórroga de alquiler estáis haciendo que muchísimas familias puedan pujar el alquiler de una manera desorbitada porque es lo que actualmente pasa",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "10yl550-176-acu-e7dc83"
         }
       ],
@@ -531,6 +547,30 @@
           "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-10T12:54:10.833Z"
+        },
+        {
+          "field": "quote.2.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La cita no es del PSOE: la pronuncia el portavoz de otro grupo, que apoya la moción socialista desde fuera (transcripción y vídeo, 7.236–7.460 s). Ese grupo tiene un solo concejal, así que se retira la atribución en lugar de sustituirla.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-29T05:11:40.552Z"
+        },
+        {
+          "field": "quote.3.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "Misma intervención que la cita anterior: no es del PSOE sino del portavoz de un grupo con un solo concejal, por lo que se retira la atribución en lugar de sustituirla (transcripción y vídeo, 7.360–7.390 s).",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-29T05:11:40.741Z"
+        },
+        {
+          "field": "summary",
+          "original": "Durante el pleno, el grupo PSOE señala la figura de las zonas de mercado residencial tensionado y manifiesta que oponerse a la prórroga del alquiler encarecerá los precios para las familias. Por su parte, un grupo no identificado afirma que la vivienda construida en los últimos años en el municipio es para uso particular.",
+          "corrected": "Durante el pleno, el grupo PSOE señala la figura de las zonas de mercado residencial tensionado. Por su parte, un grupo no identificado afirma que la vivienda construida en los últimos años en el municipio es para uso particular.",
+          "reason": "El sumario atribuía al PSOE una afirmación sobre la prórroga de los alquileres que hizo el portavoz de otro grupo, y que además la puerta editorial retiene (transcripción, 7.360–7.390 s).",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-29T05:11:40.933Z"
         }
       ]
     },
@@ -833,7 +873,7 @@
       "quotes": [
         {
           "text": "Votar en contra de la protección civil del Ayuntamiento de Rivarrocha.",
-          "speakerGroup": "PSOE",
+          "speakerGroup": "PP",
           "sourceClaimId": "10yl550-092-acu-ea9d47"
         },
         {
@@ -911,6 +951,14 @@
           "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-10T12:54:09.721Z"
+        },
+        {
+          "field": "quote.0.speakerGroup",
+          "original": "PSOE",
+          "corrected": "PP",
+          "reason": "La intervención no es del PSOE: la presidencia concede la palabra al portavoz popular, que reprocha al gobierno haber votado contra la enmienda del PP (transcripción y vídeo, 4.014–4.150 s).",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-29T05:11:41.122Z"
         }
       ]
     },
@@ -935,17 +983,17 @@
         },
         {
           "text": "porque volvía a llevar 8.000 euros del Partido Popular, José Luis, del Partido Popular. 8.000 euros de la Policía Local para que modificáramos partida.",
-          "speakerGroup": "PP",
+          "speakerGroup": "PSOE",
           "sourceClaimId": "10yl550-106-acu-dd1a86"
         },
         {
           "text": "seguimiento del Plan Económico y Financiero que aprobaremos en el 2025.",
-          "speakerGroup": "PP",
+          "speakerGroup": "PSOE",
           "sourceClaimId": "10yl550-254-cit-cb6e5f"
         },
         {
           "text": "el día 16 de marzo ustedes votaron en contra un presupuesto donde llevaba 550.000 euros para el comercio local.",
-          "speakerGroup": "PP",
+          "speakerGroup": "PSOE",
           "sourceClaimId": "10yl550-300-acu-ae5a28"
         }
       ],
@@ -1008,6 +1056,30 @@
           "reason": "El sumario reproducía literalmente una intervención que la puerta editorial retiene por ser una acusación que ningún registro respalda.",
           "editor": "Sergei Lutchenko",
           "correctedAt": "2026-08-11T08:25:33.587Z"
+        },
+        {
+          "field": "quote.3.speakerGroup",
+          "original": "PP",
+          "corrected": "PSOE",
+          "reason": "La intervención no es del PP: defiende el presupuesto municipal y reprocha a quienes votaron en contra, tras la llamada al orden al banco popular (transcripción y vídeo, 12.650–12.770 s). Rectifica también la atribución que daba por buena la corrección del 9 de agosto.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-29T05:11:39.982Z"
+        },
+        {
+          "field": "quote.1.speakerGroup",
+          "original": "PP",
+          "corrected": "PSOE",
+          "reason": "La intervención no es del PP: la pronuncia la presidencia, que anuncia el voto en contra de la enmienda del PP (transcripción y vídeo, 4.412–4.612 s).",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-29T05:11:40.172Z"
+        },
+        {
+          "field": "quote.2.speakerGroup",
+          "original": "PP",
+          "corrected": "PSOE",
+          "reason": "La intervención no es del PP: es la dación de cuenta del concejal del gobierno a quien la presidencia da la palabra en ese punto (transcripción y vídeo, 10.840–10.855 s).",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-29T05:11:40.363Z"
         }
       ]
     },
@@ -2189,7 +2261,7 @@
       "plenoId": "19gax3o",
       "plenoDate": "2026-01-19",
       "title": "Pleno de Riba-roja de Túria: 2026-01-19 - Urbanismo y Mantenimiento",
-      "summary": "Un grupo no identificado afirma que no estaban previstas ciertas actuaciones relacionadas con la instalación de térmicas. El PP señala problemas en el complejo deportivo La Malla y advierte de que «hay que ver toda la parte externa de la malla, está cayendo»; la transcripción no permite determinar si se refiere al propio complejo o a un cerramiento.",
+      "summary": "Un grupo no identificado afirma que no estaban previstas ciertas actuaciones relacionadas con la instalación de térmicas. El PP señala problemas en el complejo deportivo La Malla; la transcripción no permite determinar si se refiere al propio complejo o a un cerramiento de malla.",
       "severity": "informational",
       "sourceClaimIds": [
         "19gax3o-119-cit-543cc1",
@@ -2244,16 +2316,16 @@
       "corrections": [
         {
           "field": "summary",
-          "original": "El grupo Otro afirma que no estaban previstas ciertas actuaciones relacionadas con la instalación de térmicas. El PP señala problemas en el complejo deportivo La Malla, mencionando la necesidad de reparar la malla exterior debido a su deterioro. Estos puntos se reflejan en registros como 'Servicio mantenimiento instalaciones térmicas deportes' y 'Contrato menor de obras de reposición de alumbrado público en zona industrial'.",
-          "corrected": "Un grupo no identificado afirma que no estaban previstas ciertas actuaciones relacionadas con la instalación de térmicas. El PP señala problemas en el complejo deportivo La Malla, mencionando la necesidad de reparar la malla exterior debido a su deterioro. Estos puntos se reflejan en registros como 'Servicio mantenimiento instalaciones térmicas deportes' y 'Contrato menor de obras de reposición de alumbrado público en zona industrial'.",
+          "original": "sumario · sha256:b250a7dd3a94",
+          "corrected": "sumario · sha256:df99df32a013",
           "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-01T18:55:16.057Z"
         },
         {
           "field": "summary",
-          "original": "Un grupo no identificado afirma que no estaban previstas ciertas actuaciones relacionadas con la instalación de térmicas. El PP señala problemas en el complejo deportivo La Malla, mencionando la necesidad de reparar la malla exterior debido a su deterioro. Estos puntos se reflejan en registros como 'Servicio mantenimiento instalaciones térmicas deportes' y 'Contrato menor de obras de reposición de alumbrado público en zona industrial'.",
-          "corrected": "Un grupo no identificado afirma que no estaban previstas ciertas actuaciones relacionadas con la instalación de térmicas. El PP señala problemas en el complejo deportivo La Malla y advierte de que «hay que ver toda la parte externa de la malla, está cayendo»; la transcripción no permite determinar si se refiere al propio complejo o a un cerramiento.",
+          "original": "sumario · sha256:df99df32a013",
+          "corrected": "sumario · sha256:a1390c48b012",
           "reason": "La tercera frase presentaba como reflejo de lo debatido un contrato de alumbrado público en el polígono industrial tras la DANA: ni instalaciones térmicas, ni deportes, ni el complejo. Se suprime. La segunda publicaba además las dos lecturas posibles de «la malla» —el complejo y un cerramiento— como si ambas constaran; se devuelve la cita literal y se dice que la transcripción no permite decidir.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T17:47:07.677Z"
@@ -2281,6 +2353,14 @@
           "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-10T12:54:17.306Z"
+        },
+        {
+          "field": "summary",
+          "original": "sumario · sha256:a1390c48b012",
+          "corrected": "Un grupo no identificado afirma que no estaban previstas ciertas actuaciones relacionadas con la instalación de térmicas. El PP señala problemas en el complejo deportivo La Malla; la transcripción no permite determinar si se refiere al propio complejo o a un cerramiento de malla.",
+          "reason": "El sumario reproducía entre comillas el literal de una cita que la puerta editorial retiene por ser una acusación que ningún registro respalda; se describe sin el literal.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-29T05:11:41.316Z"
         }
       ]
     },
@@ -2896,7 +2976,7 @@
       "plenoId": "1du4rf5",
       "plenoDate": "2025-11-03",
       "title": "Pleno ordinario de Riba-roja de Túria, 2025-11-03: Debates sobre responsabilidad política y propuesta de ILP",
-      "summary": "El PP afirma que la responsabilidad en el temporal del 29 de octubre no recae exclusivamente en la Generalitat Valenciana. El PSOE señala su intención de presentar una Iniciativa Legislativa Popular (ILP), que diferencia de mociones presentadas en legislaturas anteriores; la intervención citada no dice sobre qué versa. Compromís reclama formalmente la dimisión del presidente y vicepresidenta de la Generalitat por su gestión en el mencionado temporal.",
+      "summary": "El PP afirma que la responsabilidad en el temporal del 29 de octubre no recae exclusivamente en la Generalitat Valenciana. En el debate de una moción de apoyo a una iniciativa legislativa popular, una intervención la distingue de mociones presentadas en legislaturas anteriores. La moción conjunta debatida en el punto octavo reclama formalmente la dimisión del presidente y la vicepresidenta de la Generalitat por su gestión en el mencionado temporal.",
       "severity": "informational",
       "sourceClaimIds": [
         "1du4rf5-115-acu-431140",
@@ -2911,12 +2991,12 @@
         },
         {
           "text": "lo que pretendemos nosotros en esta ILP que no es una moción que ha estado presentada en otras legislaturas",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "1du4rf5-237-cit-e34df3"
         },
         {
           "text": "És reclamar formalment al president del Partit Popular, Alberto Núñez Feijó, i als organs corresponents la dimissió immediata del president de la Generalitat valenciana, Carlos Mazón, i la vicepresidenta i consellera de Serveis Socials, Susana Camarero, per la seva responsabilitat política en la gestió de la gana del 29 d'octubre del 2024.",
-          "speakerGroup": "Compromís",
+          "speakerGroup": null,
           "sourceClaimId": "1du4rf5-111-acu-4f6c40"
         }
       ],
@@ -2986,6 +3066,30 @@
           "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-10T12:54:22.274Z"
+        },
+        {
+          "field": "quote.2.speakerGroup",
+          "original": "Compromís",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo con un solo concejal identifica a esa persona por eliminación y no llevaba firma de curador. Además, la intervención lee los acuerdos de una moción presentada conjuntamente por dos grupos (transcripción, 4.518–4.705 s).",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-29T05:11:39.210Z"
+        },
+        {
+          "field": "quote.1.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La cita no es del grupo al que se atribuía: la presidencia concede ese turno a otro grupo y quien habla se dirige a la portavoz socialista (transcripción, 8.176–8.229 s). El grupo que corresponde tiene un solo concejal, así que se retira la atribución en lugar de sustituirla.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-29T05:11:39.405Z"
+        },
+        {
+          "field": "summary",
+          "original": "El PP afirma que la responsabilidad en el temporal del 29 de octubre no recae exclusivamente en la Generalitat Valenciana. El PSOE señala su intención de presentar una Iniciativa Legislativa Popular (ILP), que diferencia de mociones presentadas en legislaturas anteriores; la intervención citada no dice sobre qué versa. Compromís reclama formalmente la dimisión del presidente y vicepresidenta de la Generalitat por su gestión en el mencionado temporal.",
+          "corrected": "El PP afirma que la responsabilidad en el temporal del 29 de octubre no recae exclusivamente en la Generalitat Valenciana. En el debate de una moción de apoyo a una iniciativa legislativa popular, una intervención la distingue de mociones presentadas en legislaturas anteriores. La moción conjunta debatida en el punto octavo reclama formalmente la dimisión del presidente y la vicepresidenta de la Generalitat por su gestión en el mencionado temporal.",
+          "reason": "El sumario atribuía una intervención a un grupo que no la pronunció y presentaba como de un solo grupo una moción conjunta; ninguna de las dos atribuciones llevaba firma de curador (transcripción, 4.518–4.705 y 6.672–8.229 s).",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-29T05:11:39.596Z"
         }
       ]
     },

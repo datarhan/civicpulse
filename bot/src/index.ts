@@ -3,27 +3,27 @@ import { Bot } from 'grammy'
 import { openDb } from './db/client.ts'
 import type { MyContext } from './types.ts'
 import { registrarComandos } from './commands/registrar.ts'
-import { makeChannel } from './services/channel.ts'
+import { avisosHitos } from './services/avisos-hitos.ts'
 import { buildSnapshot, directorioFotos } from './services/snapshot.ts'
 import { buildBatch, renderBatchHtml, renderBatchMarkdown } from './services/batch.ts'
-import { buildSindicTemplate, renderSindicHtml, renderSindicMarkdown } from './services/sindic.ts'
+import { sirveSindic } from './services/sindic.ts'
 import { startSilencioCron } from './services/cron.ts'
 import { startDigestCron } from './services/digest.ts'
 import { startConvocatoriasCron } from './services/convocatorias.ts'
 import { startEventosRepoCron } from './services/eventos-repo.ts'
 import { startFotosCron } from './services/fotos-cron.ts'
 import { startRetencionCron } from './services/retencion.ts'
+import { envioDesdeApi, estadoModeracion, startReenvioTarjetas } from './services/avisos-admin.ts'
+import { estadoRevision, startRevisionCron } from './services/moderacion.ts'
 import { sirveFotoExportada } from './services/foto-exportada.ts'
 import { webhookTelegram } from './services/webhook-telegram.ts'
 import { parseAdminIds } from './util/admins.ts'
 import {
-  getQuejaViva,
   eventosRepoVistos,
   marcarEventoRepoVisto,
   podarEventosRepo,
   reconcileApoyadas,
 } from './db/queries.ts'
-import { routeUsingLocalOfficials } from './services/router.ts'
 import { logger } from './util/log.ts'
 import { buildHealth } from './services/health'
 import { handleCurationRequest } from './services/curation-http.ts'
@@ -45,16 +45,23 @@ function makeBot() {
     `[arranque] apoyos al día: ${reconciliadas.promovidas} promovida(s) de ${reconciliadas.intentadas} con umbral alcanzado`,
   )
 
-  const channel = makeChannel(bot)
+  // Los hitos de cada queja, a quien modera por privado (services/avisos-hitos.ts):
+  // desde el 2026-09-29 el bot no publica en ningún canal.
+  const hitos = avisosHitos({
+    admins: () => parseAdminIds(),
+    mensaje: (chat, texto) => envioDesdeApi(bot.api).mensaje(chat, texto),
+  })
 
-  // Todos los comandos, detrás de un primer middleware que no deja contestar fuera de
-  // un chat privado más que lo público (commands/registrar.ts). Aquí no se registra
-  // ningún manejador más: uno puesto antes que éste se saltaría la guarda.
-  registrarComandos(bot, db, channel)
+  // Todos los comandos, detrás de dos middlewares: el que atiende cada update una vez
+  // y los de un chat de uno en uno, y el que no deja contestar fuera de un chat privado
+  // más que lo público (commands/registrar.ts). Aquí no se registra ningún manejador
+  // más: uno puesto antes que éstos se saltaría las guardas.
+  registrarComandos(bot, db, hitos)
 
   // Silencio cron — hourly tick that auto-transitions aged registered
-  // quejas to silencio_negativo. Paused during LOREG freeze.
-  startSilencioCron(db, channel)
+  // quejas to silencio_negativo and tells whoever moderates. Paused during
+  // LOREG freeze.
+  startSilencioCron(db, hitos)
 
   // Weekly-digest cron — hourly tick that fires exactly once at Monday
   // 09:00 local. DMs each subscribed user with the past-7-days quejas
@@ -106,6 +113,23 @@ function makeBot() {
   // Lo que lleva un día retenido se avisa a los administradores, una vez.
   startFotosCron({ db, token, admins: () => parseAdminIds(), sendDm: dmAdministrador })
 
+  // Las tarjetas de revisión que no llegaron a ningún administrador, otra vez: al
+  // arrancar y cada hora. Una queja que nadie ha visto no se publica nunca sola,
+  // así que sin esto se quedaría esperando (services/avisos-admin.ts).
+  startReenvioTarjetas({ db, admins: () => parseAdminIds(), envio: envioDesdeApi(bot.api) })
+
+  // Y la revisión automática (services/moderacion.ts), cada minuto: un modelo lee
+  // cada queja pendiente, le quita los nombres de otras personas y dice si tiene
+  // que verla una persona. Publica sola sólo lo que `decideAutomation` permite
+  // con lo medido, y nada en periodo electoral. Sin GEMINI_NIVEL=pago no corre, y
+  // cada queja la decide una persona, como hasta ahora.
+  startRevisionCron({
+    db,
+    env: process.env,
+    envio: envioDesdeApi(bot.api),
+    admins: () => parseAdminIds(),
+  })
+
   // Y el plazo de conservación, cumplido: al arrancar y cada día se destruyen las
   // quejas que lo pasaron, las copias de la base que pasaron el suyo y la copia de
   // un ensayo de migración interrumpido (services/retencion.ts).
@@ -113,6 +137,8 @@ function makeBot() {
     db,
     photosDir: directorioFotos(),
     dbPath: process.env.DB_PATH ?? './data/bot.db',
+    // El texto de una queja destruida tampoco se queda en las tarjetas de revisión.
+    envio: envioDesdeApi(bot.api),
   })
 
   bot.catch((err) => {
@@ -217,49 +243,19 @@ async function main() {
               uptimeSec: Math.round(process.uptime()),
               pid: process.pid,
               webhookAuthenticated: webhookAutenticado,
+              moderacion: {
+                ...estadoModeracion(db, parseAdminIds()),
+                revision: estadoRevision(db, process.env),
+              },
             }),
           ),
         )
         return
       }
 
-      // Per-queja Síndic de Greuges escalation template (md + html).
-      // Path: /sindic/q-abc12301.md | /sindic/q-abc12301.html
-      const sindicMatch = url.pathname.match(/^\/sindic\/(q-[a-z0-9]+)\.(md|html)$/)
-      if (req.method === 'GET' && sindicMatch) {
-        if (exportToken) {
-          const auth = req.headers.authorization ?? ''
-          const qp = url.searchParams.get('token') ?? ''
-          if (auth !== `Bearer ${exportToken}` && qp !== exportToken) {
-            res.statusCode = 401
-            res.end('unauthorized')
-            return
-          }
-        }
-        const quejaId = sindicMatch[1].toUpperCase()
-        const q = getQuejaViva(db, quejaId)
-        if (!q) {
-          res.statusCode = 404
-          res.end('not found')
-          return
-        }
-        const routing = routeUsingLocalOfficials({
-          title: q.title,
-          detail: q.detail,
-          category: q.category as never,
-        })
-        const template = buildSindicTemplate(q, routing)
-        if (sindicMatch[2] === 'md') {
-          res.setHeader('Content-Type', 'text/markdown; charset=utf-8')
-          res.setHeader('Cache-Control', 'no-store')
-          res.end(renderSindicMarkdown(template))
-        } else {
-          res.setHeader('Content-Type', 'text/html; charset=utf-8')
-          res.setHeader('Cache-Control', 'no-store')
-          res.end(renderSindicHtml(template))
-        }
-        return
-      }
+      // Per-queja Síndic de Greuges escalation template (md + html):
+      // /sindic/q-abc12301.md | /sindic/q-abc12301.html (services/sindic.ts).
+      if (sirveSindic(req, res, { db, exportToken })) return
 
       // Public (read-only) batch document. Renders the current top-10
       // verified quejas as markdown / HTML. Protected by EXPORT_TOKEN if
@@ -333,6 +329,10 @@ async function main() {
               mode: 'long-polling',
               uptimeSec: Math.round(process.uptime()),
               pid: process.pid,
+              moderacion: {
+                ...estadoModeracion(db, parseAdminIds()),
+                revision: estadoRevision(db, process.env),
+              },
             }),
           ),
         )

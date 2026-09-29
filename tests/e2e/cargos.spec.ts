@@ -244,7 +244,14 @@ test.describe('Cargos (/cargos)', () => {
     expect(body, 'la ausencia de CV se dice, no se calla').toMatch(
       /El Ayuntamiento no publica su ficha/,
     )
-    expect(body, 'y se dice que no se sabe si alguna vez estuvo').toMatch(/Internet Archive/)
+    // Y lo que el registro propio sabe de la página anterior: la leyó 67 veces y
+    // este escaño no figuraba en ninguna. Decía «no se puede decir si se retiró
+    // o nunca estuvo», que ese registro desmiente (verificación del barrido
+    // lector del 28-09-2026; `src/lib/indice-cv-retirado.js`).
+    expect(body, 'y se dice lo que el registro sabe de la página anterior').toMatch(
+      /Tampoco figuraba en la página que el portal usaba hasta septiembre de 2026/,
+    )
+    expect(body).not.toMatch(/no se puede decir si se retiró/)
     // El correo que se publica es el que la fuente le da —el del grupo—, nunca
     // uno inventado ni el de alcaldía en su lugar.
     expect(body).toContain('popularesribarroja@gmail.com')

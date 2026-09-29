@@ -7,6 +7,7 @@ import {
   validateReclassifications,
   applyReclassificationEntries,
   reclassificationOutcomes,
+  verificacionDeBajada,
   type VerifiedItem,
   type Overlay,
   type Reclassifications,
@@ -95,6 +96,37 @@ function vrf(id: string, verdict: ClaimVerdict): ClaimVerification {
     checkedAgainst: fuerte ? ['tenders'] : [],
   }
 }
+
+describe('verificacionDeBajada — lo que escriben las dos CLI de bajada', () => {
+  // `downgrade-verdict` y `apply-gold-downgrades` recitaban esta forma cada una
+  // por su cuenta. Vive en un sitio para que quien la necesite —la prueba de la
+  // puerta, la primera— pase por el camino real en vez de recitarla otra vez.
+  const actual: ClaimVerification = {
+    claimId: 'a',
+    verdict: 'verificado',
+    summary: 'lo que dijo la máquina',
+    evidence: [{ kind: 'tender', ref: 'r', snippet: 'sn' }],
+    checkedAgainst: ['tenders'],
+  }
+
+  it('bajar a parcial conserva la evidencia y deja la marca del curador', () => {
+    expect(
+      verificacionDeBajada('a', actual, 'parcial', 'la evidencia sólo acredita el contrato'),
+    ).toEqual({
+      claimId: 'a',
+      verdict: 'parcial',
+      summary: 'la evidencia sólo acredita el contrato',
+      evidence: [{ kind: 'tender', ref: 'r', snippet: 'sn' }],
+      checkedAgainst: ['curator-downgrade'],
+    })
+  })
+
+  it('bajar a sin-datos vacía la evidencia: «no hay datos» no enseña datos', () => {
+    const v = verificacionDeBajada('a', actual, 'sin-datos', 'ningún dato respalda la afirmación')
+    expect(v.verdict).toBe('sin-datos')
+    expect(v.evidence).toEqual([])
+  })
+})
 
 describe('validateOverlay', () => {
   it('accepts a well-formed overlay and rejects malformed entries', () => {

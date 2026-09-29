@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-24T08:12:31.834Z",
+  "generatedAt": "2026-09-29T05:11:47.357Z",
   "version": "1",
   "plenoId": "k4olcs",
   "plenoDate": "2026-04-20",
@@ -29,7 +29,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -112,7 +113,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -168,7 +170,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -224,7 +227,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -253,7 +257,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -309,7 +314,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -340,7 +346,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -399,7 +406,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -429,7 +437,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -514,7 +523,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -706,7 +716,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -735,7 +746,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -844,7 +856,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -874,7 +887,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -975,6 +989,39 @@
           "bdns",
           "budget"
         ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "k4olcs-019-acu-940acd",
+        "plenoId": "k4olcs",
+        "plenoDate": "2026-04-20",
+        "segmentIndex": 19,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "Se ha aprobado por este hecho, a vuestro favor, y 8 abstenciones Grupo Socialista, Partido Popular Vox Escalona y Podem",
+        "context": "Bueno, pasemos a la votación de este punto. Se ha aprobado por este hecho, a vuestro favor, y 8 abstenciones Grupo Socialista, Partido Popular Vox Escalona y Podem",
+        "topic": "transparencia",
+        "entities": {
+          "count": 8,
+          "countUnit": "abstenciones",
+          "referencedEntity": "votación del punto"
+        },
+        "confidence": 0.84,
+        "reasoning": "Es verificable porque atribuye un resultado de votación y un número de abstenciones; debería contrastarse con el acta o registro de votación del pleno.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "k4olcs-019-acu-940acd",
+        "verdict": "sin-datos",
+        "summary": "Task was a direct fact-checking reasoning request (Spanish), not a coding/exploration task, so no skill invocation was needed. Analyzed claim (plenary vote result with 8 abstentions from named political groups, transparency topic) against the single candidate (an asphalt paving public works tender/c",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1141,7 +1188,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1200,7 +1248,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1230,7 +1279,8 @@
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
-        ]
+        ],
+        "source": "curator-downgrade"
       },
       "visibility": "toggle"
     },
@@ -1287,7 +1337,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1346,7 +1397,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1432,7 +1484,8 @@
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
-        ]
+        ],
+        "source": "curator-downgrade"
       },
       "visibility": "toggle"
     },
@@ -1493,7 +1546,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1553,7 +1607,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1700,7 +1755,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1760,7 +1816,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1880,7 +1937,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1965,7 +2023,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1994,7 +2053,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -2294,7 +2354,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -2845,7 +2906,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -3161,7 +3223,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -3192,7 +3255,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -3323,7 +3387,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -3410,7 +3475,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -3497,7 +3563,8 @@
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
-        ]
+        ],
+        "source": "curator-downgrade"
       },
       "visibility": "toggle"
     },
@@ -3924,7 +3991,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=JMTkgha0kaB7h85%2Fpmmsfw%3D%3D",
-            "snippet": "El objeto del contrato es la elaboración y redacción del Plan de Movilidad Urbana Sostenible (PMUS) de Riba-roja de Túria, por procedimiento abierto, simplificado mejor relación calidad-precio, varios criterios de adjudicación y mejoras como criterio de adjudicación y con condición especial de ejecución de carácter perspectiva de genero, de conformidad con lo dispuesto en el Pliego de cláusulas administrativas particulares y en el Pliego de prescripciones técnicas.  \nEsta actuación es susceptible de ser cofinanciada al 50 % por la Unión Europea a través del Programa Operativo del Fondo Europeo de Desarrollo Regional (FEDER) de la Comunidad Valenciana 2014-2020. · Ayuntamiento de Riba-roja de Túria · Colin Buchanan Consultores, S.A. · architecture · 29.500 €",
+            "snippet": "El objeto del contrato es la elaboración y redacción del Plan de Movilidad Urbana Sostenible (PMUS) de Riba-roja de Túria, por procedimiento abierto, simplificado mejor relación calidad-precio, varios criterios de adjudicación y mejoras como criterio de adjudicación y con condición especial de ejecución de carácter perspectiva de genero, de conformidad con lo dispuesto en el Pliego de cláusulas administrativas particulares y en el Pliego de prescripciones técnicas.  \nEsta actuación es susceptible de ser cofinanciada al 50 % por la Unión Europea a través del Programa Operativo del Fondo Europeo de Desarrollo Regional (FEDER) de la Comunidad Valenciana 2014-2020. · Ayuntamiento de Riba-roja de Túria · COLIN BUCHANAN CONSULTORES SA · architecture · 29.500 €",
             "similarity": 1,
             "stance": "checked"
           }
@@ -4017,7 +4084,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -4135,7 +4203,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -4360,7 +4429,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -4448,7 +4518,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -4507,7 +4578,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -4538,7 +4610,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -4597,7 +4670,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -4627,7 +4701,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -4710,7 +4785,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -4768,7 +4844,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -4799,7 +4876,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -4886,7 +4964,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -5169,7 +5248,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -5385,7 +5465,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -5674,7 +5755,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zObCw4gxc5XgL1BHd3qjQA%3D%3D",
-            "snippet": "Contrato para la prestación del servicio de consultoría para solicitud ayudas FEDER para actuaciones de las entidades locales especialmente afectadas por la DANA través de contrato derivado del Sistema Dinámico de Adquisición de servicios de arquitectura e ingeniería, consultoría y asistencia técnica a las diferentes áreas municipales. (Ctto. 146/2025 – ESDA1/2025). · Ayuntamiento de Riba-roja de Túria · TECHFRIENDLY SL · architecture · 8500 €",
+            "snippet": "Contrato para la prestación del servicio de consultoría para solicitud ayudas FEDER para actuaciones de las entidades locales especialmente afectadas por la DANA través de contrato derivado del Sistema Dinámico de Adquisición de servicios de arquitectura e ingeniería, consultoría y asistencia técnica a las diferentes áreas municipales. (Ctto. 146/2025 – ESDA1/2025). · Ayuntamiento de Riba-roja de Túria · TECHFRIENDLY, SL. · architecture · 8500 €",
             "similarity": 1,
             "stance": "checked"
           }
@@ -5715,7 +5796,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zObCw4gxc5XgL1BHd3qjQA%3D%3D",
-            "snippet": "Contrato para la prestación del servicio de consultoría para solicitud ayudas FEDER para actuaciones de las entidades locales especialmente afectadas por la DANA través de contrato derivado del Sistema Dinámico de Adquisición de servicios de arquitectura e ingeniería, consultoría y asistencia técnica a las diferentes áreas municipales. (Ctto. 146/2025 – ESDA1/2025). · Ayuntamiento de Riba-roja de Túria · TECHFRIENDLY SL · architecture · 8500 €",
+            "snippet": "Contrato para la prestación del servicio de consultoría para solicitud ayudas FEDER para actuaciones de las entidades locales especialmente afectadas por la DANA través de contrato derivado del Sistema Dinámico de Adquisición de servicios de arquitectura e ingeniería, consultoría y asistencia técnica a las diferentes áreas municipales. (Ctto. 146/2025 – ESDA1/2025). · Ayuntamiento de Riba-roja de Túria · TECHFRIENDLY, SL. · architecture · 8500 €",
             "similarity": 1,
             "stance": "checked"
           }
@@ -5911,7 +5992,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -6157,7 +6239,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -6188,7 +6271,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -6218,7 +6302,8 @@
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
-        ]
+        ],
+        "source": "curator-downgrade"
       },
       "visibility": "toggle"
     },
@@ -6497,6 +6582,37 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "k4olcs-146-acu-8c6db4",
+        "plenoId": "k4olcs",
+        "plenoDate": "2026-04-20",
+        "segmentIndex": 146,
+        "type": "valoracion_politica",
+        "speakerGroup": null,
+        "verbatim": "nosotros podríamos no haber dado cuenta de este informe, el alcalde no está obligado a este informe",
+        "context": "Bueno, hay que dar cuenta que yo voy a explicar dijo siempre, es importante nosotros podríamos no haber dado cuenta de este informe, el alcalde no está obligado a este informe, el alcalde os lo ha dado para que tengáis más conocimiento",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "este informe"
+        },
+        "confidence": 0.74,
+        "reasoning": "Atribuye como hecho una obligación o no obligación del alcalde respecto a dar cuenta de un informe; es verificable contra la normativa o el expediente.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "k4olcs-146-acu-8c6db4",
+        "verdict": "sin-datos",
+        "summary": "Analicé el único candidato disponible y concluí que no hay respaldo genuino: se trata de un contrato de TI sin relación con la afirmación sobre procedimiento de dación de cuentas en el pleno. La similitud es baja (0.20) y la afirmación es de naturaleza procedimental/opinática, no verificable contra ",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -6801,7 +6917,8 @@
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
-        ]
+        ],
+        "source": "curator-downgrade"
       },
       "visibility": "toggle"
     },
@@ -7111,7 +7228,8 @@
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
-        ]
+        ],
+        "source": "curator-downgrade"
       },
       "visibility": "toggle"
     },
@@ -7142,7 +7260,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -7262,7 +7381,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -7359,7 +7479,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -7472,7 +7593,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -7501,7 +7623,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -7560,7 +7683,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -7737,7 +7861,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -7942,7 +8067,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -8064,7 +8190,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -8094,7 +8221,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -8125,7 +8253,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -8183,7 +8312,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -8213,7 +8343,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -8330,7 +8461,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     }

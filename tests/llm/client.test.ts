@@ -5,12 +5,21 @@
  * or with real cached entries from manual runs.
  */
 import { beforeEach, afterEach, describe, expect, it, vi } from 'vitest'
-import { mkdtempSync, rmSync, readdirSync, readFileSync } from 'node:fs'
+import {
+  chmodSync,
+  mkdtempSync,
+  rmSync,
+  readdirSync,
+  readFileSync,
+  realpathSync,
+  writeFileSync,
+} from 'node:fs'
 import { tmpdir } from 'node:os'
 import { resolve } from 'node:path'
 import { z } from 'zod'
 import {
   callLLM,
+  claudeCodeArgs,
   describeClaudeFailure,
   gatherCacheStats,
   loadConfigFromEnv,
@@ -769,5 +778,142 @@ describe('llm/client — el modelo por defecto de agy, y el respaldo silencioso'
     // saltar. Es exactamente cómo `gemini-3.5-flash-medium` llevaba días roto.
     resetRunStats()
     expect(getRunStats().freeBackendFallbacks).toBe(0)
+  })
+})
+
+/**
+ * Los ganchos de los plugins del usuario corrían dentro de cada `claude -p`.
+ *
+ * `--system-prompt`, `--disable-slash-commands` y `--strict-mcp-config` dejan
+ * fuera el prompt de sistema del CLI, el listado de skills y el MCP, pero no los
+ * ganchos que registran los plugins de ámbito usuario. Medido el 2026-09-28 en
+ * los transcritos de las 4.944 llamadas sin cabeza del 29-ago al 28-sep:
+ *
+ *   · el SessionStart de superpowers metió su `hook_additional_context` —3.321
+ *     o 3.405 caracteres según la versión, «you MUST invoke a skill before ANY
+ *     response»— en todas las que llegaron a la API (4.943), en un prompt que
+ *     sólo puede contestar con JSON;
+ *   · security-guidance arrancaba Python en el UserPromptSubmit y en el Stop,
+ *     recorría git y no revisó nada en ninguna: 4.452 veces `skip_reason 9`
+ *     (nada que revisar) y 13 su guarda de recursión. Dejaba un par
+ *     `security_warnings_state_*.json` + `.lock` por llamada en
+ *     ~/.claude/security, que iba por unos 10.000 ficheros.
+ *
+ * `--bare` los apaga, pero no lee el llavero y la llamada sale «Not logged in».
+ * `disableAllHooks` por `--settings` apaga los de ajustes y de plugins y deja el
+ * login de Max: el mismo día, una llamada con estos argumentos y el entorno
+ * mínimo de un agente de launchd devolvió su `structured_output` con cero
+ * adjuntos `hook_*` en el transcrito y sin fichero de estado.
+ */
+describe('claudeCodeArgs · sin ganchos de plugins', () => {
+  const args = claudeCodeArgs(
+    { userPrompt: 'u', systemPrompt: 's', config: { claudeCodeModel: 'claude-sonnet-5' } },
+    '{}',
+  )
+
+  it('apaga todos los ganchos por --settings', () => {
+    // Uno solo: con dos, cuál gana lo decide el CLI y no este fichero.
+    expect(args.filter((a) => a === '--settings')).toHaveLength(1)
+    const ajustes = JSON.parse(args[args.indexOf('--settings') + 1])
+    expect(ajustes.disableAllHooks).toBe(true)
+  })
+
+  it('no los apaga con --bare, que se lleva el login de Max', () => {
+    // La ayuda del CLI anuncia --bare como «skip hooks», así que es el cambio
+    // tentador; pero con él sólo autentica ANTHROPIC_API_KEY o un
+    // apiKeyHelper —nunca el llavero—, y en Max no hay clave.
+    expect(args).not.toContain('--bare')
+  })
+})
+
+/**
+ * Cada llamada de `claude-code` corre en un directorio temporal propio
+ * (`cp-claude-cwd-*`), para que el CLI no cargue el CLAUDE.md del repo. El
+ * cliente lo creaba y no lo quitaba nunca: el 28-09-2026 había 4.803, vacíos,
+ * en el TMPDIR de la máquina, uno por llamada.
+ *
+ * Se quita al acabar, por cualquier camino. Los cuatro importan: el vigilante
+ * rechaza la promesa antes de que el hijo muera, y un binario que no existe
+ * emite `error` sin garantizar `close`, así que colgar la limpieza de un evento
+ * del hijo se dejaría alguno.
+ */
+describe('callClaudeCode · no deja su directorio temporal', () => {
+  let tmp = ''
+  let aparte = ''
+  const tmpdirOriginal = process.env.TMPDIR
+
+  beforeEach(() => {
+    aparte = mkdtempSync(resolve(tmpdir(), 'cp-claude-falso-'))
+    tmp = mkdtempSync(resolve(tmpdir(), 'cp-tmpdir-'))
+    // `os.tmpdir()` lee TMPDIR en cada llamada: el cliente crea aquí el suyo.
+    process.env.TMPDIR = tmp
+  })
+
+  afterEach(() => {
+    if (tmpdirOriginal === undefined) delete process.env.TMPDIR
+    else process.env.TMPDIR = tmpdirOriginal
+    delete process.env.LLM_CLI_TIMEOUT_MS
+    rmSync(tmp, { recursive: true, force: true })
+    rmSync(aparte, { recursive: true, force: true })
+  })
+
+  /** Un `claude` falso que apunta su cwd y luego hace `cuerpo`. */
+  function claudeFalso(cuerpo: string): string {
+    const p = resolve(aparte, 'claude')
+    writeFileSync(p, `#!/bin/sh\npwd -P > "${aparte}/cwd"\n${cuerpo}\n`)
+    chmodSync(p, 0o755)
+    return p
+  }
+
+  const llamar = (bin: string) =>
+    callLLM({
+      systemPrompt: 's',
+      userPrompt: 'u',
+      promptVersion: 'cwd-temporal',
+      schema: TestSchema,
+      input: { bin },
+      maxRetries: 0,
+      config: {
+        ...loadConfigFromEnv(),
+        backend: 'claude-code',
+        claudeCodeBin: bin,
+        cacheDir,
+        zeroCostOnly: true,
+        openaiApiKey: undefined,
+        anthropicApiKey: undefined,
+      },
+    })
+
+  const quedan = () => readdirSync(tmp).filter((f) => f.startsWith('cp-claude-cwd-'))
+
+  /** Control: el falso corrió dentro de este TMPDIR, así que «no queda nada» mide algo. */
+  const corrioAqui = () =>
+    expect(readFileSync(resolve(aparte, 'cwd'), 'utf8').trim()).toMatch(
+      new RegExp(`^${realpathSync(tmp)}/cp-claude-cwd-`),
+    )
+
+  it('cuando contesta bien', async () => {
+    const r = await llamar(claudeFalso(`echo '{"structured_output":{"reply":"pong"}}'`))
+    expect(r).toEqual({ reply: 'pong' })
+    corrioAqui()
+    expect(quedan()).toEqual([])
+  })
+
+  it('cuando claude sale con error', async () => {
+    expect(await llamar(claudeFalso('echo "boom" >&2\nexit 1'))).toBeNull()
+    corrioAqui()
+    expect(quedan()).toEqual([])
+  })
+
+  it('cuando el vigilante lo mata por tiempo', async () => {
+    process.env.LLM_CLI_TIMEOUT_MS = '300'
+    expect(await llamar(claudeFalso('exec sleep 5'))).toBeNull()
+    corrioAqui()
+    expect(quedan()).toEqual([])
+  })
+
+  it('cuando el binario no existe', async () => {
+    expect(await llamar(resolve(aparte, 'no-existe'))).toBeNull()
+    expect(quedan()).toEqual([])
   })
 })

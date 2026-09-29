@@ -8,6 +8,7 @@ import {
   autorTelegram,
 } from '../src/db/queries'
 import { selectQuejasToProcess } from '../src/services/process-photos'
+import { creaPublicada } from './helpers/publicada'
 
 function sample(overrides: Partial<NewQuejaInput> = {}): NewQuejaInput {
   return {
@@ -31,10 +32,11 @@ describe('listQuejasWithPhoto', () => {
     db = openDb(':memory:')
   })
 
-  it('returns only non-deleted quejas that carry a foto_ref', () => {
-    const withPhoto = createQueja(db, sample({ foto_ref: 'tg:AgAC-1' }))
-    createQueja(db, sample({ foto_ref: null })) // no photo → excluded
-    const deleted = createQueja(db, sample({ foto_ref: 'tg:AgAC-2' }))
+  it('returns only published, non-deleted quejas that carry a foto_ref', () => {
+    const withPhoto = creaPublicada(db, sample({ foto_ref: 'tg:AgAC-1' }))
+    creaPublicada(db, sample({ foto_ref: null })) // no photo → excluded
+    createQueja(db, sample({ foto_ref: 'tg:AgAC-3' })) // still in review → excluded
+    const deleted = creaPublicada(db, sample({ foto_ref: 'tg:AgAC-2' }))
     softDeleteQueja(db, deleted.id, autorTelegram(7)) // right-to-be-forgotten → excluded
 
     const rows = listQuejasWithPhoto(db)

@@ -8,6 +8,7 @@ import { existsSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import type { Db } from '../db/client.ts'
 import { aggregateStats, countApoyos, listRecentQuejas, type QuejaRow } from '../db/queries.ts'
+import { instanteUtc } from '../../../src/scraper/queja-router.ts'
 
 export interface PublicQuejaRow {
   service_request_id: string
@@ -15,6 +16,7 @@ export interface PublicQuejaRow {
   service_code: string
   service_name: string
   description: string
+  /** ISO 8601 en UTC, con la Z: «2026-07-02T23:30:00Z». Igual `updated_datetime` y `registered_at`. */
   requested_datetime: string
   updated_datetime: string
   lat: null
@@ -71,6 +73,30 @@ export interface PublicSnapshot {
   items: PublicQuejaRow[]
 }
 
+/**
+ * Una marca del bot en ISO 8601 y en UTC, con la Z: «2026-07-02T23:30:00Z».
+ *
+ * SQLite rellena las marcas con `datetime('now')`, la hora UTC escrita
+ * «2026-07-02 23:30:00» sin decir que es UTC, y `new Date()` lee esa forma en la
+ * hora LOCAL de quien la lee: medido el 28-09-2026 en Chrome con el reloj en
+ * Madrid, la ficha fechaba el 20 de septiembre una queja enviada a la 00:30 del
+ * 21. Y la instantánea dice ser Open311 GeoReport v2, que pide fecha y hora con
+ * su zona.
+ *
+ * La lee `instanteUtc`, el mismo lector que usan el plazo y las páginas. Se
+ * cambia al exportar y no en la base: `ORDER BY created_at` compara texto, y un
+ * DEFAULT nuevo dejaría filas «…T…Z» junto a las viejas «… …», ordenadas por la
+ * forma. Lo que no es ISO sale como está: no se le adivina la zona.
+ */
+function conZona(marca: string): string
+function conZona(marca: string | null): string | null
+function conZona(marca: string | null): string | null {
+  if (marca === null) return null
+  const instante = instanteUtc(marca)
+  if (Number.isNaN(instante)) return marca
+  return new Date(instante).toISOString().replace('.000Z', 'Z')
+}
+
 function toPublicRow(
   db: Db,
   q: QuejaRow,
@@ -82,9 +108,11 @@ function toPublicRow(
     status: q.state,
     service_code: q.category,
     service_name: q.category,
-    description: q.detail.slice(0, 500),
-    requested_datetime: q.created_at,
-    updated_datetime: q.updated_at,
+    // Entero. Se cortaba a 500 caracteres sin decirlo, y la ficha lo titula
+    // «Detalle ciudadano (verbatim)».
+    description: q.detail,
+    requested_datetime: conZona(q.created_at),
+    updated_datetime: conZona(q.updated_at),
     lat: null, // aggregated to neighborhood — never expose exact lat/lng
     long: null,
     address_string: q.neighborhood ?? null,
@@ -92,7 +120,7 @@ function toPublicRow(
     concejalia_area: q.concejalia_area,
     concejal_slug: q.concejal_slug,
     registro_entry_number: q.registro_entry_number,
-    registered_at: q.registered_at,
+    registered_at: conZona(q.registered_at),
     // Only attach the key when an anonymized image was actually published, so
     // the field's presence is a truthful "there is a public photo" signal.
     ...(photo ? { photo } : {}),

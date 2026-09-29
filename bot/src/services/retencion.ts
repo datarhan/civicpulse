@@ -13,7 +13,9 @@
 import { existsSync, readdirSync, rmSync, statSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import type { Db } from '../db/client.ts'
+import { aVaciar } from '../db/queries.ts'
 import { logger } from '../util/log.ts'
+import { vaciarTarjetasEnCola, type EnvioAdmin } from './avisos-admin.ts'
 import {
   CONSERVACION_COPIAS_DIAS,
   CONSERVACION_QUEJAS_ANIOS,
@@ -43,6 +45,14 @@ export interface ResultadoPurga {
   ciudadanos: number
   copias: { revisadas: number; borradas: number }
   ensayos: number
+  /**
+   * Las copias de las tarjetas de revisión de las quejas destruidas, que quedan en
+   * `tarjetas_por_vaciar` hasta perder el texto en los chats de quien modera. Se
+   * encolan en la misma transacción que las destruye: antes se recogían en
+   * memoria y un fallo de Telegram al vaciarlas las perdía (revisión de la
+   * pasada de #137).
+   */
+  tarjetas: number
 }
 
 const sqlite = (d: Date) => d.toISOString().replace('T', ' ').slice(0, 19)
@@ -62,6 +72,7 @@ export function purgarCaducadas(db: Db, o: OpcionesPurga): ResultadoPurga {
     ciudadanos: 0,
     copias: { revisadas: 0, borradas: 0 },
     ensayos: 0,
+    tarjetas: 0,
   }
 
   const borradas: string[] = []
@@ -72,7 +83,12 @@ export function purgarCaducadas(db: Db, o: OpcionesPurga): ResultadoPurga {
     const caducadas = db
       .prepare('SELECT id FROM quejas WHERE MAX(updated_at, COALESCE(resolved_at, updated_at)) < ?')
       .all(sqlite(limiteQuejas)) as Array<{ id: string }>
-    const borra = db.prepare('DELETE FROM quejas WHERE id = ?') // eventos, apoyos y fotos retenidas, en cascada
+    r.tarjetas = aVaciar(
+      db,
+      caducadas.map((c) => c.id),
+      'destruida',
+    )
+    const borra = db.prepare('DELETE FROM quejas WHERE id = ?') // eventos, apoyos, fotos retenidas y avisos, en cascada
     for (const { id } of caducadas) {
       if (borra.run(id).changes > 0) borradas.push(id)
     }
@@ -121,7 +137,13 @@ export function purgarCaducadas(db: Db, o: OpcionesPurga): ResultadoPurga {
 }
 
 /** Una vez al arrancar y luego cada día, contra la base de `DB_PATH`. */
-export function startRetencionCron(o: { db: Db; photosDir: string; dbPath: string }): () => void {
+export function startRetencionCron(o: {
+  db: Db
+  photosDir: string
+  dbPath: string
+  /** Para quitar el texto de las tarjetas de las quejas destruidas. */
+  envio?: EnvioAdmin
+}): () => void {
   const enMemoria = o.dbPath === ':memory:'
   const base = enMemoria ? null : dirname(resolve(o.dbPath))
   const tick = () => {
@@ -137,7 +159,13 @@ export function startRetencionCron(o: { db: Db; photosDir: string; dbPath: strin
         ciudadanos: r.ciudadanos,
         copias: `${r.copias.borradas} de ${r.copias.revisadas}`,
         ensayos: r.ensayos,
+        tarjetas: r.tarjetas,
       })
+      if (o.envio && r.tarjetas > 0) {
+        void vaciarTarjetasEnCola(o.db, o.envio).catch((err: unknown) =>
+          logger.error('retencion.tarjetas', { err: String(err) }),
+        )
+      }
     } catch (err) {
       logger.error('retencion', { err: String(err) })
     }

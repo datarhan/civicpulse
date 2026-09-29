@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-24T08:12:31.834Z",
+  "generatedAt": "2026-09-29T05:11:47.357Z",
   "version": "1",
   "plenoId": "1sqj7is",
   "plenoDate": "2026-03-09",
@@ -61,7 +61,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -118,7 +119,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -205,7 +207,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -714,7 +717,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -744,7 +748,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -804,7 +809,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -946,7 +952,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1012,7 +1019,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1068,7 +1076,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1124,7 +1133,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1153,7 +1163,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1183,7 +1194,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1261,9 +1273,10 @@
         ],
         "checkedAgainst": [
           "curator-downgrade"
-        ]
+        ],
+        "source": "curator-downgrade"
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -1348,7 +1361,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1404,7 +1418,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1434,7 +1449,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1597,7 +1613,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1657,7 +1674,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1687,7 +1705,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1717,7 +1736,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1748,7 +1768,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1779,7 +1800,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1837,7 +1859,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1867,7 +1890,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1897,7 +1921,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1927,7 +1952,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1958,7 +1984,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1989,7 +2016,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -2106,7 +2134,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -2136,7 +2165,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -2166,7 +2196,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -2195,7 +2226,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -2226,7 +2258,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -2367,7 +2400,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -2510,7 +2544,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },

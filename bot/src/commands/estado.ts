@@ -1,23 +1,38 @@
 import type { Bot } from 'grammy'
 import type { Db } from '../db/client.ts'
-import { countApoyos, getQuejaViva, listEvents } from '../db/queries.ts'
+import {
+  autorTelegram,
+  countApoyos,
+  EVENTO_DATOS_RETIRADOS,
+  EVENTO_RECORTE_REVISION,
+  esAutor,
+  getQuejaPublica,
+  getQuejaViva,
+  listEvents,
+} from '../db/queries.ts'
+import { REVISION_PARA_AUTOR } from '../services/textos-revision.ts'
 import { routeUsingLocalOfficials } from '../services/router.ts'
-import { plazoHumano } from '../../../src/scraper/queja-router.ts'
+import { instanteUtc, plazoHumano, ZONA_DE_LA_SEDE } from '../../../src/scraper/queja-router.ts'
 import type { MyContext } from '../types.ts'
 import { EVENTO_BARRIO_CORREGIDO } from '../services/rebarrio.ts'
 import { idDeQueja } from '../services/queja-id.ts'
 
-function formatDate(iso: string | null | undefined): string {
-  if (!iso) return '—'
-  try {
-    return new Date(iso).toLocaleDateString('es-ES', {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric',
-    })
-  } catch {
-    return iso
-  }
+/**
+ * El día de la sede de una marca del bot. Las marcas son UTC sin la Z, y `new
+ * Date()` las leía en la hora del proceso —UTC en Fly— y escribía su día: la
+ * «Fecha de Registro 28/09/2026 0:00:01» de un recibo, guardada como
+ * `2026-09-27 22:00:01`, salía «27 sept». Una marca que no se puede leer sale tal cual.
+ */
+function formatDate(marca: string | null | undefined): string {
+  if (!marca) return '—'
+  const t = instanteUtc(marca)
+  if (Number.isNaN(t)) return marca
+  return new Date(t).toLocaleDateString('es-ES', {
+    timeZone: ZONA_DE_LA_SEDE,
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  })
 }
 
 function stateLabel(state: string): string {
@@ -36,6 +51,16 @@ function stateLabel(state: string): string {
         // Una corrección del barrio con la regla de 2026-09-27 (services/rebarrio.ts):
         // se enseña, porque cambia un dato publicado.
         [EVENTO_BARRIO_CORREGIDO]: '📍 Barrio corregido',
+        // Las decisiones de la revisión antes de publicar (decidirModeracion). Las
+        // dos últimas las ve su autor mientras la queja no es pública; si después
+        // se publica, quedan en su historial, que es lo que pasó.
+        moderacion_publicada: '🌐 Publicada tras revisarla',
+        moderacion_descartada: '🚫 No publicada tras revisarla',
+        moderacion_retirada: '↩️ Retirada de la publicación',
+        // Los datos personales que el bot quitó del texto al guardarla (services/pii.ts).
+        [EVENTO_DATOS_RETIRADOS]: '🧹 Datos personales retirados al guardarla',
+        // Los fragmentos que quitó después la revisión automática (services/moderacion.ts).
+        [EVENTO_RECORTE_REVISION]: '✂️ Datos de otras personas retirados en la revisión',
       } as Record<string, string>
     )[state] ?? state
   )
@@ -48,11 +73,20 @@ export function registerEstado(bot: Bot<MyContext>, db: Db) {
       await ctx.reply('Uso: `/estado Q-XXXX`', { parse_mode: 'Markdown' })
       return
     }
-    const q = getQuejaViva(db, id)
+    // Lo público, para cualquiera; lo que no se ha publicado, sólo para su autor
+    // y sólo en privado: /estado contesta también en un grupo, y ahí su autor
+    // pondría a la vista de todos una queja que nadie ha revisado.
+    // Para los demás, una sin publicar y una que no existe contestan igual.
+    const q =
+      getQuejaPublica(db, id) ??
+      (ctx.chat?.type === 'private' && ctx.from && esAutor(db, id, autorTelegram(ctx.from.id))
+        ? getQuejaViva(db, id)
+        : null)
     if (!q) {
       await ctx.reply(`No encuentro la queja \`${id}\`.`, { parse_mode: 'Markdown' })
       return
     }
+    const revision = REVISION_PARA_AUTOR[q.moderacion]
     const apoyos = countApoyos(db, id)
     const events = listEvents(db, id)
     const routing = routeUsingLocalOfficials({
@@ -71,6 +105,7 @@ export function registerEstado(bot: Bot<MyContext>, db: Db) {
     const body =
       `🗂 *${q.id}* · ${q.category}\n` +
       `*${q.title}*\n\n` +
+      (revision ? `${revision}\n\n` : '') +
       `*Estado:* ${stateLabel(q.state)}\n` +
       `*Apoyos:* ${apoyos} / 10 para verificación\n` +
       `*Área:* ${routing.concejalia.area}\n` +

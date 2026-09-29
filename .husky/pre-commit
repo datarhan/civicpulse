@@ -65,6 +65,24 @@ npm run check:privado --silent -- --staged
 # Sólo lo ESTAMPADO. Auditoría completa: npm run check:editorial
 npm run check:editorial --silent -- --staged
 
+# Y refúsate a comitear un fichero con el NOMBRE DE ALGUIEN EN SUS METADATOS.
+#
+# Cuarta puerta, y hace falta aparte porque las otras tres leen TEXTO. El
+# 28-09-2026 `conprel_CV_2024.xls`, una fixture real de Hacienda, llevaba en su
+# `LastAuthor` y en el registro WRITEACCESS de su libro los nombres de dos
+# personas del ministerio, públicos desde abril, y las tres puertas la habían
+# visto pasar: el nombre vive dentro de la estructura binaria del fichero. Dos
+# días antes, la tabla del Consell había traído otros dos en su `meta.xml`.
+#
+# Abre lo estampado —OLE, OOXML, ODF, PDF, imágenes— y mira quién lo hizo. Lee
+# el BLOB estampado, no la copia de trabajo, y enmascara lo que encuentra. Se
+# arregla en su sitio, sin volver a guardar el fichero:
+# npm run fixture:sin-autoria -- <fichero>
+#
+# Sólo lo ESTAMPADO. Auditoría completa: npm run check:metadatos · y cada
+# versión de la historia: npm run check:metadatos -- --historia
+npm run check:metadatos --silent -- --staged
+
 # Y refúsate a comitear desde un árbol PODADO.
 #
 # Aquí no se usa `sparse-checkout` en ningún sitio, así que si aparece uno viene

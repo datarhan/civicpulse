@@ -71,6 +71,18 @@ const FILTROS = [
     rotulo: (n) => `No se distinguen · ${n.indistintos}`,
     pasa: (i) => posicionServicio(i) === 'indistinguible',
   },
+  // La clase que ninguna pastilla nombraba: con cociente y sin comparables
+  // suficientes para situarlo. Sin ella las cifras no sumaban la de «Los N»
+  // —medido el 29-09-2026, 8 + 6 + 0 junto a «Los 15» y «los 15 con
+  // cociente»— y el lector no encontraba el decimoquinto. Condicional: el día
+  // que ese servicio llegue a quince comparables desaparece sola, en vez de
+  // quedarse diciendo «· 0».
+  {
+    id: 'sin-comparables',
+    rotulo: (n) => `Sin comparables suficientes · ${n.sinSituar}`,
+    pasa: (i) => i.valor !== null && posicionServicio(i) === 'sin-comparacion',
+    visible: (n) => n.sinSituar > 0,
+  },
   {
     id: 'sin-cociente',
     rotulo: (n) => `Sin cociente · ${n.sinCociente}`,
@@ -110,6 +122,7 @@ export function LibroServicios({ indicadores = [], formateaCon, entrega }) {
     total: indicadores.length,
     distinguen: p.abajo + p.arriba,
     indistintos: p.indistinguibles,
+    sinSituar: p.sinSituar,
     sinCociente: indicadores.filter((i) => i.valor === null).length,
   }
 
@@ -217,7 +230,7 @@ export function LibroServicios({ indicadores = [], formateaCon, entrega }) {
 
       <div className="cp-libro-filtros">
         <span className="mono cp-libro-filtros-rotulo">Ver</span>
-        {FILTROS.map((f) => (
+        {FILTROS.filter((f) => !f.visible || f.visible(cuentas)).map((f) => (
           <button
             key={f.id}
             type="button"
@@ -246,24 +259,33 @@ export function LibroServicios({ indicadores = [], formateaCon, entrega }) {
             con todo el hueco de su línea y manda a la siguiente todo lo que
             venga detrás: medido, la fila salía en TRES líneas a 1440 px con el
             contenido sumando 1.076 de 1.160 disponibles. El margen automático
-            alinea a la derecha sin reservar línea. */}
-        <span className="mono cp-libro-filtros-rotulo cp-libro-ordenar">Ordenar</span>
-        {ORDENES.map((o) => (
-          <button
-            key={o.id}
-            type="button"
-            className={`cp-chip${orden.col === o.id ? ' cp-chip-on' : ''}`}
-            aria-pressed={orden.col === o.id}
-            onClick={() => ordenar(o.id)}
-          >
-            {o.rotulo}
-            {orden.col === o.id && (
-              <span aria-hidden="true" style={{ marginLeft: 4 }}>
-                {orden.dir === 'desc' ? '↓' : '↑'}
-              </span>
-            )}
-          </button>
-        ))}
+            alinea a la derecha sin reservar línea.
+
+            Y el rótulo va con sus botones en UN elemento que no se parte.
+            Sueltos en la fila, el salto de línea podía caer entre ellos y dejar
+            «Posición · A-Z» al principio de la línea siguiente, bajo «VER»,
+            donde se leen como dos filtros más: medido el 29-09-2026 a 1280 px
+            en cuanto entró «Sin comparables suficientes», y sin ella ya pasaba
+            a 1100, 1024, 768 y 375. */}
+        <span className="cp-libro-ordenar">
+          <span className="mono cp-libro-filtros-rotulo">Ordenar</span>
+          {ORDENES.map((o) => (
+            <button
+              key={o.id}
+              type="button"
+              className={`cp-chip${orden.col === o.id ? ' cp-chip-on' : ''}`}
+              aria-pressed={orden.col === o.id}
+              onClick={() => ordenar(o.id)}
+            >
+              {o.rotulo}
+              {orden.col === o.id && (
+                <span aria-hidden="true" style={{ marginLeft: 4 }}>
+                  {orden.dir === 'desc' ? '↓' : '↑'}
+                </span>
+              )}
+            </button>
+          ))}
+        </span>
       </div>
 
       <LeyendaPosicion />

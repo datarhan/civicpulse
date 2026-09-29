@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-18T07:50:34.576Z",
+  "generatedAt": "2026-09-29T05:11:46.132Z",
   "entries": {
     "10yl550-220-acu-0101aa": {
       "type": "valoracion_politica",
@@ -8,6 +8,34 @@
       "reason": "Defensa de la constitucionalidad de la ley estatal de vivienda, no una acusación sobre la gestión municipal: nadie resulta acusado (la entidad referida es la propia ley) y el propio motor de veredictos la describe como «opinión política sobre la constitucionalidad de la ley de vivienda estatal, sin cifras/fechas/sujetos verificables». Señalada por la revisión de superficies del 17-08-2026 en /plenos/10yl550, donde el chip «acusación no contrastada» atribuía al bloque una acusación que no hizo.",
       "editor": "Sergei Lutchenko",
       "appliedAt": "2026-08-18T07:50:34.576Z"
+    },
+    "k4olcs-019-acu-940acd": {
+      "type": "afirmacion_numerica",
+      "from": "acusacion_publica",
+      "reason": "Es la presidencia anunciando el resultado de una votación («Se ha aprobado… y 8 abstenciones»): no acusa a nadie.",
+      "editor": "civicpulse-curator",
+      "appliedAt": "2026-09-29T05:11:41.568Z"
+    },
+    "k4olcs-146-acu-8c6db4": {
+      "type": "valoracion_politica",
+      "from": "acusacion_publica",
+      "reason": "Explica que el informe se entregó sin estar obligado a ello (6.660–6.670 s): una posición sobre un deber de procedimiento, no una acusación.",
+      "editor": "civicpulse-curator",
+      "appliedAt": "2026-09-29T05:11:43.153Z"
+    },
+    "19gax3o-186-acu-71dffe": {
+      "type": "valoracion_politica",
+      "from": "acusacion_publica",
+      "reason": "Quien habla corrige lo que se dijo de su propia abstención (8.546–8.573 s): una aclaración de su posición, no una acusación.",
+      "editor": "civicpulse-curator",
+      "appliedAt": "2026-09-29T05:11:44.640Z"
+    },
+    "qz6weg-185-acu-cb9c22": {
+      "type": "valoracion_politica",
+      "from": "acusacion_publica",
+      "reason": "Argumenta contra una propuesta porque ya existe el Consejo Económico (9.918–9.930 s): una posición política, no una acusación.",
+      "editor": "civicpulse-curator",
+      "appliedAt": "2026-09-29T05:11:46.132Z"
     }
   }
 }

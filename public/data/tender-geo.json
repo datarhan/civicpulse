@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-09-27T10:23:53.107Z",
+  "generatedAt": "2026-09-28T11:27:14.634Z",
   "source": {
-    "tenders": "2026-09-27T10:15:27.284Z",
+    "tenders": "2026-09-28T11:15:23.090Z",
     "geo": "2026-09-27T10:16:33.935Z"
   },
   "universe": {
@@ -370,8 +370,8 @@
       "danaAmount": 0
     },
     {
-      "slug": "carrer-eres-altes",
-      "name": "Carrer Eres Altes",
+      "slug": "carrer-de-les-eres-altes",
+      "name": "Carrer de les Eres Altes",
       "kind": "street",
       "point": [
         39.5465682,
@@ -614,8 +614,8 @@
       "name": "Carrer de Toledo",
       "kind": "street",
       "point": [
-        39.5409819,
-        -0.5722426
+        39.5408141,
+        -0.5716581
       ],
       "contractCount": 1,
       "amount": 25550.45,
@@ -698,8 +698,8 @@
       "name": "Carrer del Mas de Montes",
       "kind": "street",
       "point": [
-        39.4832932,
-        -0.5874328
+        39.4805062,
+        -0.5875882
       ],
       "contractCount": 1,
       "amount": 20661.16,
@@ -722,8 +722,8 @@
       "name": "Carretera de Vilamarxant",
       "kind": "street",
       "point": [
-        39.5492186,
-        -0.5827079
+        39.5484923,
+        -0.5816335
       ],
       "contractCount": 2,
       "amount": 19537,
@@ -850,8 +850,8 @@
       "danaAmount": 0
     },
     {
-      "slug": "carrer-de-les-animes",
-      "name": "Carrer de les Ànimes",
+      "slug": "cami-de-les-animes",
+      "name": "Camí de les Ànimes",
       "kind": "street",
       "point": [
         39.5487019,
@@ -965,9 +965,9 @@
       ],
       "place": {
         "kind": "street",
-        "name": "Carrer de les Ànimes",
-        "matchedText": "Carrer de les Ànimes",
-        "sourceId": "carrer-de-les-animes"
+        "name": "Camí de les Ànimes",
+        "matchedText": "Camí de les Ànimes",
+        "sourceId": "cami-de-les-animes"
       }
     },
     {
@@ -1237,8 +1237,8 @@
       "contractType": "supplies",
       "categoryTitle": "industry",
       "point": [
-        39.5492186,
-        -0.5827079
+        39.5484923,
+        -0.5816335
       ],
       "place": {
         "kind": "street",
@@ -1498,9 +1498,9 @@
       ],
       "place": {
         "kind": "street",
-        "name": "Carrer Eres Altes",
-        "matchedText": "Carrer Eres Altes",
-        "sourceId": "carrer-eres-altes"
+        "name": "Carrer de les Eres Altes",
+        "matchedText": "Carrer de les Eres Altes",
+        "sourceId": "carrer-de-les-eres-altes"
       }
     },
     {
@@ -1606,8 +1606,8 @@
       "contractType": "construction",
       "categoryTitle": "other",
       "point": [
-        39.5492186,
-        -0.5827079
+        39.5484923,
+        -0.5816335
       ],
       "place": {
         "kind": "street",
@@ -2181,8 +2181,8 @@
       "contractType": "construction",
       "categoryTitle": "construction",
       "point": [
-        39.4832932,
-        -0.5874328
+        39.4805062,
+        -0.5875882
       ],
       "place": {
         "kind": "street",
@@ -2875,9 +2875,9 @@
       ],
       "place": {
         "kind": "street",
-        "name": "Carrer Eres Altes",
-        "matchedText": "Carrer Eres Altes",
-        "sourceId": "carrer-eres-altes"
+        "name": "Carrer de les Eres Altes",
+        "matchedText": "Carrer de les Eres Altes",
+        "sourceId": "carrer-de-les-eres-altes"
       }
     },
     {
@@ -3470,8 +3470,8 @@
       "contractType": "construction",
       "categoryTitle": "construction",
       "point": [
-        39.5409819,
-        -0.5722426
+        39.5408141,
+        -0.5716581
       ],
       "place": {
         "kind": "street",
@@ -3731,9 +3731,9 @@
       ],
       "place": {
         "kind": "street",
-        "name": "Carrer de les Ànimes",
-        "matchedText": "Carrer de les Ànimes",
-        "sourceId": "carrer-de-les-animes"
+        "name": "Camí de les Ànimes",
+        "matchedText": "Camí de les Ànimes",
+        "sourceId": "cami-de-les-animes"
       }
     },
     {
@@ -3813,11 +3813,11 @@
     }
   ],
   "builtFrom": {
-    "civic-poi.json": "e928317fe491",
+    "civic-poi.json": "fbed7d0c9b55",
     "gazetteer-supplement.json": "813c38c1dc80",
     "geo.json": "e9ed883602cf",
     "place-overrides.json": "5a4641410141",
-    "streets.json": "4b8e686fbb74",
-    "tenders.json": "140545ca3ad7"
+    "streets.json": "847a2c97d668",
+    "tenders.json": "7a0fd3bf94b1"
   }
 }

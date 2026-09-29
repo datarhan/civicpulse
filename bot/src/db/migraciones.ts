@@ -62,6 +62,45 @@ export const BASE_V0 = readFileSync(resolve(HERE, 'schema.sql'), 'utf8')
 export const CANALES = ['telegram', 'whatsapp'] as const
 export type Canal = (typeof CANALES)[number]
 
+/**
+ * Dónde está una queja en la revisión antes de publicar. Sólo `publicada` sale
+ * al público (`SQL_PUBLICA`, db/queries.ts). Están TODOS los que hará falta
+ * —también `retenida`, que es la de la revisión automática—: el CHECK de la
+ * migración 2 los escribe literales, y SQLite no deja cambiar un CHECK sin
+ * reconstruir `quejas`, que es la tabla que no se reconstruye nunca.
+ */
+export const MODERACIONES = [
+  'pendiente',
+  'retenida',
+  'publicada',
+  'descartada',
+  'retirada',
+] as const
+export type Moderacion = (typeof MODERACIONES)[number]
+
+/** Lo que se anota en `moderaciones`: las decisiones, más `heredada` (lo que ya estaba publicado). */
+export const DECISIONES_MODERACION = ['heredada', ...MODERACIONES] as const
+export type DecisionModeracion = (typeof DECISIONES_MODERACION)[number]
+
+/**
+ * Por qué una tarjeta de revisión espera en `tarjetas_por_vaciar` a perder el
+ * texto: su autor retiró la queja (`/olvidar`, `/borrar_mis_datos`), o se
+ * destruyó al cumplirse el plazo de conservación.
+ */
+export const MOTIVOS_VACIADO = ['retirada', 'destruida'] as const
+export type MotivoVaciado = (typeof MOTIVOS_VACIADO)[number]
+
+/**
+ * Lo que dice una revisión automática de una queja: `limpia`, nada que tenga
+ * que ver una persona —aunque haya quitado fragmentos—; `marcada`, algo que sí;
+ * `invalida`, una respuesta del modelo que no se sostiene —un fragmento que no
+ * está en el texto, un motivo que no existe, un campo que falta—; `error`, que
+ * no hubo respuesta. Las dos últimas se reintentan. El CHECK de la migración 3
+ * los escribe literales.
+ */
+export const RESULTADOS_REVISION = ['limpia', 'marcada', 'invalida', 'error'] as const
+export type ResultadoRevision = (typeof RESULTADOS_REVISION)[number]
+
 export interface Migracion {
   version: number
   nombre: string
@@ -159,8 +198,159 @@ function identidadPorCiudadano(db: Db): void {
   }
 }
 
+/**
+ * Migración 2 — la revisión antes de publicar.
+ *
+ * Hasta el 2026-09-27 una queja se publicaba en el acto, en la web y en el canal
+ * público de Telegram, sin que nadie la leyera. Ahora nace `pendiente` —es el
+ * valor por defecto: publicar es una decisión, no lo que pasa si nadie hace
+ * nada— y sólo sale cuando está `publicada`. Lo que ya estaba publicado lo
+ * sigue estando, con `publicada_at` = su fecha de alta, y consta como
+ * `heredada` en `moderaciones`, el registro append-only de decisiones (no como
+ * evento: `/estado` pinta los eventos a cualquiera).
+ *
+ * `avisos` guarda lo que el bot ha mandado de cada queja viva: cada copia de su
+ * tarjeta de revisión (`admin:<id>`), para cambiarlas todas al decidir, y el
+ * aviso de cada decisión a su autor, para no repetirlo. El aviso se guarda sin
+ * decir a quién (`autor`): el destinatario sale de `ciudadanos` al mandarlo, y
+ * así `/olvidar` y `/borrar_mis_datos` no dejan aquí su identidad. Una fila sin
+ * `resultado` es un envío en curso: se reclama ANTES de mandar, para que dos
+ * pasadas a la vez no manden dos.
+ *
+ * Cuando una queja deja de estar viva —la retira su autor o la destruye el plazo
+ * de conservación—, sus copias entregadas pasan, en la misma transacción, a
+ * `tarjetas_por_vaciar`, sin clave hacia `quejas` porque la queja puede no
+ * existir ya, y el resto de su rastro en `avisos` se borra. La fila se va cuando
+ * la tarjeta ha perdido el texto, o cuando Telegram ya no deja tocarla.
+ *
+ * Sólo añade, y aun así NO SE PUEDE VOLVER a la imagen anterior: el código v1
+ * no sabe de `moderacion` y publicaría todo lo pendiente, descartado o retirado
+ * en cuanto exportara. Si algo falla después de esta migración, se arregla hacia
+ * adelante (bot/DEPLOY.md).
+ */
+function revisionAntesDePublicar(db: Db): void {
+  db.exec(`
+    ALTER TABLE quejas ADD COLUMN moderacion TEXT NOT NULL DEFAULT 'pendiente'
+      CHECK (moderacion IN ('pendiente', 'retenida', 'publicada', 'descartada', 'retirada'));
+    ALTER TABLE quejas ADD COLUMN publicada_at TEXT;
+    UPDATE quejas SET moderacion = 'publicada', publicada_at = created_at;
+    CREATE INDEX idx_quejas_moderacion ON quejas(moderacion);
+
+    CREATE TABLE moderaciones (
+      id         INTEGER PRIMARY KEY,
+      queja_id   TEXT NOT NULL,
+      decision   TEXT NOT NULL
+        CHECK (decision IN ('heredada', 'pendiente', 'retenida', 'publicada', 'descartada', 'retirada')),
+      por        TEXT NOT NULL,
+      motivo     TEXT,
+      creada_at  TEXT NOT NULL DEFAULT (datetime('now')),
+      FOREIGN KEY (queja_id) REFERENCES quejas(id) ON DELETE CASCADE
+    );
+    CREATE INDEX idx_moderaciones_queja ON moderaciones(queja_id);
+    INSERT INTO moderaciones (queja_id, decision, por)
+      SELECT id, 'heredada', 'migracion' FROM quejas ORDER BY rowid;
+
+    CREATE TABLE avisos (
+      queja_id      TEXT NOT NULL,
+      tipo          TEXT NOT NULL,
+      destinatario  TEXT NOT NULL,
+      message_id    INTEGER,
+      resultado     TEXT CHECK (resultado IN ('entregado', 'rechazado')),
+      creado_at     TEXT NOT NULL DEFAULT (datetime('now')),
+      PRIMARY KEY (queja_id, tipo, destinatario),
+      FOREIGN KEY (queja_id) REFERENCES quejas(id) ON DELETE CASCADE
+    );
+
+    CREATE TABLE tarjetas_por_vaciar (
+      destinatario  TEXT NOT NULL,
+      message_id    INTEGER NOT NULL,
+      queja_id      TEXT NOT NULL,
+      motivo        TEXT NOT NULL CHECK (motivo IN ('retirada', 'destruida')),
+      creada_at     TEXT NOT NULL DEFAULT (datetime('now')),
+      PRIMARY KEY (destinatario, message_id)
+    );
+  `)
+  const quejas = cuentaDe(db, 'SELECT COUNT(*) AS n FROM quejas')
+  const publicadas = cuentaDe(db, "SELECT COUNT(*) AS n FROM quejas WHERE moderacion = 'publicada'")
+  const heredadas = cuentaDe(
+    db,
+    "SELECT COUNT(*) AS n FROM moderaciones WHERE decision = 'heredada'",
+  )
+  if (publicadas !== quejas || heredadas !== quejas) {
+    throw new Error(
+      `[migrar] revision-antes-de-publicar: ${quejas} quejas, ${publicadas} publicadas y ${heredadas} heredadas`,
+    )
+  }
+}
+
+/**
+ * Migración 3 — el registro de la revisión automática.
+ *
+ * Desde #137 ninguna queja sale sin que un administrador la decida. Con la
+ * revisión automática —services/moderacion.ts, que llega con el cambio que
+ * activa esta migración—, un modelo la lee antes: quita del texto los nombres de
+ * otras personas que no reconoce services/pii.ts, y dice si hay algo que tiene
+ * que ver una persona. Lo que se publica sin nadie lo decide `decideAutomation`
+ * (src/scraper/automation-policy.ts), con lo que se haya medido.
+ *
+ * `revisiones_automaticas` guarda cada revisión: con qué modelo y qué versión
+ * del prompt, qué dijo, por qué motivos la retuvo y cuántos fragmentos quitó
+ * —nunca cuáles: lo quitado no se guarda en el bot—, o por qué falló. Es
+ * append-only: los reintentos se cuentan en ella, y contra ella se mide cuánto
+ * acierta la revisión frente a lo que decide una persona. Los CHECK no dejan
+ * escribir «no se evaluó» como «no encontró nada»: una revisión válida lleva sus
+ * motivos y sus fragmentos, aunque sean ninguno, y una fallida, su error y nada
+ * más (regla 3 de docs/DATA_INTEGRITY.md). Y `marcada` es tener motivos: una
+ * `limpia` con motivos contaría en la medición como una cosa habiendo seguido la
+ * queja otra (revisión de #153). Ni textos vacíos por valor, ni fracciones, ni
+ * el JSON5 que SQLite acepta y `JSON.parse` no.
+ *
+ * Sólo añade una tabla, que el código anterior no lee.
+ */
+function revisionAutomatica(db: Db): void {
+  db.exec(`
+    CREATE TABLE revisiones_automaticas (
+      id              INTEGER PRIMARY KEY,
+      queja_id        TEXT NOT NULL,
+      resultado       TEXT NOT NULL CHECK (resultado IN ('limpia', 'marcada', 'invalida', 'error')),
+      modelo          TEXT NOT NULL CHECK (length(modelo) > 0),
+      version_prompt  TEXT NOT NULL CHECK (length(version_prompt) > 0),
+      motivos         TEXT CHECK (motivos IS NULL OR (json_valid(motivos) AND json_type(motivos) = 'array')),
+      retirados       INTEGER CHECK (retirados IS NULL OR (typeof(retirados) = 'integer' AND retirados >= 0)),
+      error           TEXT CHECK (error IS NULL OR length(error) > 0),
+      creada_at       TEXT NOT NULL DEFAULT (datetime('now')),
+      CHECK ((resultado IN ('limpia', 'marcada')) = (motivos IS NOT NULL)),
+      CHECK ((resultado IN ('limpia', 'marcada')) = (retirados IS NOT NULL)),
+      CHECK ((resultado IN ('invalida', 'error')) = (error IS NOT NULL)),
+      CHECK ((resultado = 'marcada') = (json_array_length(motivos) > 0)),
+      FOREIGN KEY (queja_id) REFERENCES quejas(id) ON DELETE CASCADE
+    );
+    CREATE INDEX idx_revisiones_automaticas_queja ON revisiones_automaticas(queja_id);
+  `)
+}
+
 export const MIGRACIONES: readonly Migracion[] = [
   { version: 1, nombre: 'identidad-por-ciudadano', aplicar: identidadPorCiudadano },
+  { version: 2, nombre: 'revision-antes-de-publicar', aplicar: revisionAntesDePublicar },
+  { version: 3, nombre: 'revision-automatica', aplicar: revisionAutomatica },
+]
+
+/**
+ * Migraciones escritas y desplegadas que el bot aún NO aplica al arrancar. Una
+ * migración que producción no tiene se ensaya contra su base antes de activarse
+ * (bot/DEPLOY.md), y el ensayo corre el código de la imagen desplegada: por eso
+ * llega primero aquí, inerte, y el cambio que la usa la pasa a `MIGRACIONES`
+ * cuando el ensayo ha dicho «correcto» y hay instantánea del volumen. Así llegó
+ * la 1 (#132 la desplegó inerte, #135 la activó), así la 2 (#138 la desplegó en
+ * ensayo, #137 la activó), y así la 3 (#153 en ensayo; la activó la revisión
+ * automática). Hoy no hay ninguna.
+ */
+export const MIGRACIONES_EN_ENSAYO: readonly Migracion[] = []
+
+/** Lo que ensaya `migrate.ts --dry-run`: las activas y, detrás, las que están en ensayo. */
+export const MIGRACIONES_DEL_ENSAYO: readonly Migracion[] = [
+  ...MIGRACIONES,
+  ...MIGRACIONES_EN_ENSAYO,
 ]
 
 export interface ResultadoMigracion {

@@ -15,13 +15,14 @@
 import type { Db } from '../db/client.ts'
 import {
   countApoyos,
-  getQuejaViva,
+  getQuejaPublica,
   setState,
+  sqlPublica,
   VERIFIED_THRESHOLD,
   type QuejaRow,
 } from '../db/queries.ts'
 import { routeUsingLocalOfficials } from './router.ts'
-import { plazoHumano, type TimeLimit } from '../../../src/scraper/queja-router.ts'
+import { instanteUtc, plazoHumano, type TimeLimit } from '../../../src/scraper/queja-router.ts'
 
 export interface BatchItem {
   queja: QuejaRow
@@ -50,6 +51,8 @@ export interface RegisterBatchInput {
   ids: string[]
   entry_number: string
   csv: string
+  /** La «Fecha de Registro» del recibo, en UTC y en la forma de SQLite (`recibo-sede.ts`). */
+  registered_at: string
   moderator_user_id: number
 }
 
@@ -82,7 +85,7 @@ export function selectBatch(db: Db, limit = 10): BatchItem[] {
          SELECT queja_id, COUNT(*) as n FROM apoyos GROUP BY queja_id
        ) a ON a.queja_id = q.id
        WHERE q.state = 'apoyada_verificada'
-         AND q.deleted_at IS NULL
+         AND ${sqlPublica('q')}
        ORDER BY apoyos_count DESC, q.created_at ASC
        LIMIT ?`,
     )
@@ -248,14 +251,25 @@ ${html}
  * Commit a batch registration — the moderator has signed at sede.ribarroja.es
  * and returns with an entry number + CSV. Every queja in the batch gets the
  * same (entry_number, csv) and transitions to state='registrada'.
+ *
+ * Y la misma fecha de registro, la del recibo: el plazo corre desde ella. Una
+ * fecha anterior a la propia queja es una errata —no se registra en la sede lo
+ * que aún no existía— y adelantaría el silencio, así que esa queja no se registra.
  */
 export function registerBatch(db: Db, input: RegisterBatchInput): RegisterBatchResult {
   const registered: QuejaRow[] = []
   const failed: Array<{ id: string; reason: string }> = []
+  const entrada = instanteUtc(input.registered_at)
+  if (Number.isNaN(entrada)) {
+    return {
+      registered,
+      failed: input.ids.map((id) => ({ id, reason: 'fecha de registro ilegible' })),
+    }
+  }
 
   const tx = db.transaction(() => {
     for (const id of input.ids) {
-      const q = getQuejaViva(db, id)
+      const q = getQuejaPublica(db, id)
       if (!q) {
         failed.push({ id, reason: 'not found' })
         continue
@@ -268,9 +282,14 @@ export function registerBatch(db: Db, input: RegisterBatchInput): RegisterBatchR
         failed.push({ id, reason: 'insufficient apoyos' })
         continue
       }
+      if (entrada < instanteUtc(q.created_at)) {
+        failed.push({ id, reason: 'fecha de registro anterior a la queja' })
+        continue
+      }
       const updated = setState(db, id, 'registrada', {
         entry_number: input.entry_number,
         csv: input.csv,
+        registered_at: input.registered_at,
       })
       if (updated) registered.push(updated)
     }
@@ -285,6 +304,7 @@ export function registerBatch(db: Db, input: RegisterBatchInput): RegisterBatchR
           batch_ids: input.ids,
           entry_number: input.entry_number,
           csv: input.csv,
+          registered_at: input.registered_at,
           moderator_user_id: input.moderator_user_id,
         }),
       )

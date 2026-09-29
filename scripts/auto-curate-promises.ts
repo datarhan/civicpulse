@@ -35,6 +35,7 @@ import {
 } from '../src/scraper/promise-draft'
 import { groundDraft, groundStatusDraft } from '../src/scraper/promise-grounding'
 import {
+  retractedDraftIds,
   selectPromiseDrafts,
   selectStatusDrafts,
   statusTransitionKey,
@@ -284,7 +285,11 @@ async function main() {
 
   const existingQueue = loadQueue(QUEUE)
   const archive = loadQueue(ARCHIVE)
-  const seen = new Set<string>([...existingQueue.drafts, ...archive.drafts].map((d) => d.draftId))
+  const seen = new Set<string>([
+    ...[...existingQueue.drafts, ...archive.drafts].map((d) => d.draftId),
+    // Una retirada publicada es también una lápida: ver retractedDraftIds.
+    ...retractedDraftIds(snap.retractions),
+  ])
 
   const doDiscovery = opts.phase === 'discovery' || opts.phase === 'both'
   const doStatus = opts.phase === 'status' || opts.phase === 'both'

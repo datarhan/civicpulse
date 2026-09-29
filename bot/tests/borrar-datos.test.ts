@@ -14,7 +14,7 @@ import {
 } from '../src/db/queries'
 import { olvidarTodo } from '../src/services/ciudadano'
 import { registrarComandos } from '../src/commands/registrar'
-import type { Channel } from '../src/services/channel'
+import { HITOS_MUDOS } from '../src/services/avisos-hitos'
 import type { MyContext } from '../src/types'
 
 /**
@@ -119,14 +119,6 @@ describe('/borrar_mis_datos', () => {
     allows_users_to_create_topics: false,
     supports_join_request_queries: false,
   }
-  const CANAL_MUDO: Channel = {
-    postNuevaQueja: async () => {},
-    postApoyoMilestone: async () => {},
-    postRegistrada: async () => {},
-    postResuelta: async () => {},
-    postSilencio: async () => {},
-    postEscaladaSindic: async () => {},
-  }
   const CHAT = { id: 1001, type: 'private' as const, first_name: 'Vecina' }
   const DE = { id: 1001, is_bot: false, first_name: 'Vecina' }
   let bot: Bot<MyContext>
@@ -151,7 +143,7 @@ describe('/borrar_mis_datos', () => {
       )
     }) as typeof fetch
     bot = new Bot<MyContext>('1:prueba', { botInfo: BOT_INFO, client: { fetch: fetchFalso } })
-    registrarComandos(bot, db, CANAL_MUDO)
+    registrarComandos(bot, db, HITOS_MUDOS)
   })
 
   it('pide confirmación antes de borrar, y con ella borra y lo cuenta', async () => {

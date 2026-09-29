@@ -228,7 +228,39 @@ const expectWithdrawn = (id: string): void => {
  * ningún lote: en LOTE_2, LOTE_3 y LOTE_4 cambia sólo lo que su fila mide en la
  * prosa viva, y la frase retirada pasa de `keeps` a `drops`.
  */
-const TOTAL_CORRECTIONS = 150
+/*
+ * 150 → 151 el 2026-09-28: el resumen de `f-2026-05-11-cit-bb5f00` anunciaba en
+ * futuro la Feria de Comercio —«que se celebrará los días 8, 9 y 10 de mayo»— en
+ * un pleno del 11 de mayo de 2026, y la cita no anuncia nada: quien habla enseña el
+ * acta de la reunión del 29 de enero en la que se acordaron esas fechas
+ * (transcripción, 12.693–12.708 s). El «se celebrará» lo escribió el auto-curador
+ * el 3-07 y sobrevivió a las dos correcciones humanas del mismo resumen (1-08 y
+ * 9-08). La cazó la revisión lectora de superficies. Va por `correct-pleno-finding`
+ * y no es de ningún lote: en LOTE_1 cambia sólo lo que su fila mide.
+ */
+/*
+ * 151 → 163 el 2026-09-29: doce entradas firmadas de una vez con `correct-pleno-finding`
+ * (editor `civicpulse-curator`), y ninguna es de un lote.
+ *
+ * Nueve cambian o retiran el grupo de una cita tras cotejarla con la transcripción de su
+ * sesión y, en la mayoría, también con el vídeo. En `f-2026-05-11-acu-a870a4`,
+ * `f-2026-05-11-acu-7c65c5` y `f-2026-05-11-acu-ea9d47` la cita era del otro banco —PP
+ * por PSOE o al revés—, y la 3 de `7c65c5` rectifica además la lectura de LOTE_2, que la
+ * daba por del PP. En `f-2026-05-11-cit-73d3cf` y `f-2025-11-03-acu-431140` la
+ * atribución se retira sin sustituirla: quien hablaba era de un grupo con un solo
+ * concejal —o lo era el grupo atribuido, sin firma de curador—, y nombrar ese grupo
+ * nombra a la persona por eliminación. Otras dos reescriben los resúmenes de esas dos
+ * fichas, que repetían las atribuciones retiradas.
+ *
+ * La duodécima redacta (`--redact summary`) el resumen de `f-2026-01-19-cit-543cc1`, que
+ * citaba entero un literal que la puerta editorial retiene. Su barrido pasa a huella las
+ * dos filas anteriores del sumario, pero no añade ninguna. Que el literal no vuelva lo
+ * vigila `literales-retenidos.test.ts`, y por eso este fichero no lo copia. Las cuatro
+ * reclasificaciones de la misma firma van por `reclassify-claim` y no tocan
+ * `pleno-findings.json`. En LOTE_1, LOTE_2 y LOTE_3 cambia sólo lo que su fila mide en
+ * los grupos y en la prosa viva.
+ */
+const TOTAL_CORRECTIONS = 163
 const TOTAL_REMOVALS = 35
 
 /** One row of a review batch's fixture: enough to locate its own entries. */
@@ -646,7 +678,8 @@ const LOTE_1: Lote1Case[] = [
     // Three now: lote 5 took `10yl550-046-acu-5c6faa`, the same intervention
     // as `-045` minus its first four words.
     claims: ['10yl550-045-acu-a870a4', '10yl550-054-acu-a487ce', '10yl550-346-cit-6ee502'],
-    groups: ['PP', 'PP', null],
+    // 2026-09-29: la segunda cita es del PSOE, no del PP (bloque «151 → 163»).
+    groups: ['PP', 'PSOE', null],
   },
   {
     id: 'f-2026-05-11-acu-da7902',
@@ -683,13 +716,15 @@ const LOTE_1: Lote1Case[] = [
       '10yl550-320-cit-a652c5',
       '10yl550-099-cit-423e57',
     ],
-    groups: ['PSOE', 'PSOE', 'PP', null],
+    // 2026-09-29: la primera cita es del PP, no del PSOE (bloque «151 → 163»).
+    groups: ['PP', 'PSOE', 'PP', null],
   },
   {
     id: 'f-2026-05-11-cit-73d3cf',
     added: ['summary', 'crossChecked.1'],
     priorCorrections: 2,
-    drops: ['El consistorio cuenta con', 'vivienda tutelada'],
+    // 2026-09-29: sale la prórroga del alquiler, que no dijo el PSOE (bloque «151 → 163»).
+    drops: ['El consistorio cuenta con', 'vivienda tutelada', 'prórroga del alquiler'],
     keeps: ['zonas de mercado residencial tensionado', 'es para uso particular'],
     refs: [
       'tender|Contrato Menor de Obras de Sustitución d',
@@ -702,7 +737,8 @@ const LOTE_1: Lote1Case[] = [
       '10yl550-174-acu-bc807e',
       '10yl550-176-acu-e7dc83',
     ],
-    groups: ['PSOE', null, 'PSOE', 'PSOE'],
+    // 2026-09-29: la tercera y la cuarta quedan sin grupo (bloque «151 → 163»).
+    groups: ['PSOE', null, null, null],
   },
   {
     id: 'f-2026-05-11-cit-7f7619',
@@ -752,7 +788,9 @@ const LOTE_1: Lote1Case[] = [
     // `corroborates` left `EvidenceStance` in 339fc58 because nothing upstream
     // establishes that a document supports a sentence. The word had survived
     // in the prose.
-    drops: ['se corrobora', 'montaje y desmontaje de las carpas'],
+    // «se celebrará» anunciaba una feria cuyas fechas eran ya pasadas el día
+    // del pleno; la cita enseña el acta que las acordó (corrección del 28-09).
+    drops: ['se corrobora', 'montaje y desmontaje de las carpas', 'se celebrará'],
     keeps: ['por mandato expreso de los comercios', 'los días 8, 9 y 10 de mayo'],
     refs: ['pleno-video|Vídeo del pleno 2026-05-11 · YouTube'],
     claims: [
@@ -1111,7 +1149,8 @@ const LOTE_2: Lote2Case[] = [
       'reparar la malla exterior debido a su deterioro',
     ],
     keeps: [
-      'hay que ver toda la parte externa de la malla, está cayendo',
+      // 2026-09-29: el literal retenido se redactó; se ancla lo que dejó (bloque «151 → 163»).
+      'El PP señala problemas en el complejo deportivo La Malla',
       'no permite determinar si se refiere al propio complejo o a un cerramiento',
     ],
     // The heating cotejo STAYS. The debate's own first quote is «El tema de la
@@ -1312,7 +1351,8 @@ const LOTE_2: Lote2Case[] = [
       '10yl550-254-cit-cb6e5f',
       '10yl550-300-acu-ae5a28',
     ],
-    groups: ['PSOE', 'PP', 'PP', 'PP'],
+    // 2026-09-29: las tres del PP eran del PSOE; la 3 rectifica a este lote (bloque «151 → 163»).
+    groups: ['PSOE', 'PSOE', 'PSOE', 'PSOE'],
   },
   {
     id: 'f-2026-03-16-cit-377216',
@@ -1976,10 +2016,16 @@ const LOTE_3: Lote3Case[] = [
     id: 'f-2025-11-03-acu-431140',
     added: ['summary'],
     priorCorrections: 0,
-    drops: ['una Iniciativa Legislativa Popular (ILP) sobre este tema'],
+    // 2026-09-29: salen las dos atribuciones que el resumen repetía (bloque «151 → 163»).
+    drops: [
+      'una Iniciativa Legislativa Popular (ILP) sobre este tema',
+      'El PSOE señala su intención',
+      'Compromís reclama',
+    ],
+    // 2026-09-29: la frase de la ILP, reescrita sin grupo y aún sin tema; se ancla la vigente.
     keeps: [
-      'que diferencia de mociones presentadas en legislaturas anteriores',
-      'la intervención citada no dice sobre qué versa',
+      'la distingue de mociones presentadas en legislaturas anteriores',
+      'En el debate de una moción de apoyo a una iniciativa legislativa popular',
       'no recae exclusivamente en la Generalitat Valenciana',
     ],
     // The two civil-liability policies stay. Reading «responsabilidad civil»
@@ -1995,7 +2041,8 @@ const LOTE_3: Lote3Case[] = [
       'pleno-video|Vídeo del pleno 2025-11-03 · YouTube',
     ],
     claims: ['1du4rf5-115-acu-431140', '1du4rf5-237-cit-e34df3', '1du4rf5-111-acu-4f6c40'],
-    groups: ['PP', 'PSOE', 'Compromís'],
+    // 2026-09-29: la segunda y la tercera quedan sin grupo (bloque «151 → 163»).
+    groups: ['PP', null, null],
   },
   {
     id: 'f-2025-10-06-cit-6c4d24',

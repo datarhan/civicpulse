@@ -11,6 +11,7 @@ import {
 } from '../hooks/usePlenoClaims'
 import { gateForDisplay, sortSignalFirst } from '../lib/claim-ledger'
 import { blocLabel } from '../lib/party-label.js'
+import { etiquetaVerificador, fuentesComprobadas } from '../lib/claim-provenance.js'
 
 function formatEuros(n) {
   if (typeof n !== 'number' || !Number.isFinite(n)) return ''
@@ -154,6 +155,11 @@ function ClaimCard({ item }) {
           ))}
         </div>
       )}
+      {/* Dos preguntas, dos rótulos: contra qué se cotejó y quién dio el
+          veredicto. `checkedAgainst` mezcla las dos, y esta línea lo imprimía
+          entero: la marca de la pasada salía como una fuente consultada. El
+          verificador se rotula como en /declaraciones, para que las dos páginas
+          digan lo mismo de la misma cita. */}
       <div
         className="mono"
         style={{
@@ -161,9 +167,14 @@ function ClaimCard({ item }) {
           fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           letterSpacing: '.06em',
+          display: 'flex',
+          flexWrap: 'wrap',
+          columnGap: 16,
+          rowGap: 2,
         }}
       >
-        Fuentes comprobadas: {verification.checkedAgainst.join(' · ') || 'ninguna'}
+        <span>Fuentes comprobadas: {fuentesComprobadas(verification.checkedAgainst)}</span>
+        <span>Veredicto: {etiquetaVerificador(verification.checkedAgainst)}</span>
       </div>
     </Card>
   )

@@ -242,8 +242,14 @@ export const estiloLibro = `
 
 /* El grupo de orden, a la derecha de la misma fila. Con margen automático y no
    con un espaciador elástico: en un flex que envuelve, un espaciador se queda
-   con todo el hueco de su línea y manda a la siguiente lo que venga detrás. */
-.cp-libro-ordenar { margin-left: auto; }
+   con todo el hueco de su línea y manda a la siguiente lo que venga detrás.
+   Y es UN elemento con el rótulo y los botones dentro, sin envolver: cuando la
+   fila no cabe, baja entero a la línea siguiente en vez de partirse y dejar
+   dos órdenes sueltos bajo «VER», donde se leen como filtros. */
+.cp-libro-ordenar {
+  margin-left: auto;
+  display: flex; gap: 8px; align-items: center; flex-wrap: nowrap;
+}
 
 /* El ámbar es SIEMPRE un hecho sobre la declaración, nunca sobre el coste. */
 .cp-fila-declara {

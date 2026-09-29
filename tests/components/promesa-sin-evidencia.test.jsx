@@ -42,10 +42,24 @@ const sinFuente = (p) => SIN_FUENTE.has(p.source?.url)
 const sinEv = (p) => (p.evidence ?? []).length === 0
 
 const sinEvidencia = PROMESAS.items.find((p) => sinEv(p) && !sinFuente(p))
-const sinEvidenciaNiFuente = PROMESAS.items.find(
-  (p) => sinEv(p) && sinFuente(p) && V1_STATUSES.has(p.status),
-)
 const conEvidencia = PROMESAS.items.find((p) => (p.evidence ?? []).length > 0)
+
+/**
+ * El caso de la fuente muerta y sin copia. Lo daba el fichero publicado —la
+ * promesa del Metro L9— hasta que el 28-09-2026 se retiraron las fichas cuya
+ * cita no eran palabras del partido, y ésa era una. La rama de la tarjeta sigue
+ * existiendo, así que se ejerce con una fila de auditoría inyectada sobre una
+ * promesa publicada de verdad; si el auditor vuelve a dar por muerta una fuente
+ * publicada, se usa ésa.
+ */
+const URL_MUERTA = 'https://fuente-muerta.invalid/noticia'
+const SERVIDO = {
+  ...LINK_ROT,
+  items: [...LINK_ROT.items, { articleUrl: URL_MUERTA, status: 'dead', archivedUrl: null }],
+}
+const sinEvidenciaNiFuente =
+  PROMESAS.items.find((p) => sinEv(p) && sinFuente(p) && V1_STATUSES.has(p.status)) ??
+  (sinEvidencia && { ...sinEvidencia, source: { ...sinEvidencia.source, url: URL_MUERTA } })
 
 const realFetch = globalThis.fetch
 beforeEach(() => {
@@ -54,7 +68,7 @@ beforeEach(() => {
   // nunca — verde sin medir.
   globalThis.fetch = async (url) =>
     String(url).endsWith('/data/press-link-rot.json')
-      ? new Response(JSON.stringify(LINK_ROT), {
+      ? new Response(JSON.stringify(SERVIDO), {
           status: 200,
           headers: { 'content-type': 'application/json' },
         })
@@ -84,10 +98,10 @@ describe('una promesa sin evidencia curada dice que no la hay', () => {
     expect(sinEvidencia, 'ninguna promesa publicada carece de evidencia').toBeTruthy()
     expect(conEvidencia, 'ninguna promesa publicada trae evidencia').toBeTruthy()
     expect(V1_STATUSES.has(sinEvidencia.status)).toBe(true)
-    expect(
-      sinEvidenciaNiFuente,
-      'ninguna promesa publicada junta estado débil, cero evidencia y fuente muerta sin copia',
-    ).toBeTruthy()
+    // El caso de la fuente muerta sale de una promesa publicada de estado débil
+    // (arriba); que la tarjeta lea de verdad la fila inyectada lo prueba su
+    // propia espera a «enlace roto · sin copia archivada».
+    expect(V1_STATUSES.has(sinEvidenciaNiFuente.status)).toBe(true)
   })
 
   it('lo dice donde iría la evidencia, y explica qué NO afirma «Documentada»', () => {

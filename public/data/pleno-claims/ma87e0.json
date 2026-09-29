@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-24T08:12:31.834Z",
+  "generatedAt": "2026-09-29T05:11:47.357Z",
   "version": "1",
   "plenoId": "ma87e0",
   "plenoDate": "2026-03-16",
@@ -564,7 +564,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -595,7 +596,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -626,7 +628,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -770,7 +773,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -867,7 +871,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -897,7 +902,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -927,7 +933,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -957,7 +964,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1125,7 +1133,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1185,7 +1194,8 @@
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
-        ]
+        ],
+        "source": "curator-downgrade"
       },
       "visibility": "toggle"
     },
@@ -1336,7 +1346,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1462,7 +1473,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1562,7 +1574,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1710,7 +1723,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1739,7 +1753,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1768,7 +1783,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1854,7 +1870,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1883,7 +1900,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -1941,7 +1959,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -2000,7 +2019,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -2057,7 +2077,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -2223,7 +2244,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -2252,7 +2274,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -2513,7 +2536,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -2687,7 +2711,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -2716,7 +2741,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -2940,7 +2966,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -2969,7 +2996,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -2999,7 +3027,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=MjdZ0sfr78Srz3GQd5r6SQ%3D%3D",
-            "snippet": "Contrato de servicio de\nlimpieza viaria del municipio de Riba-roja, por procedimiento abierto, mejor relación calidadprecio,\nvarios criterios de adjudicación y cláusulas sociales y medioambientales como criterio\nde adjudicación y condiciones especiales de ejecución de carácter social y medioambiental. · Ayuntamiento de Riba-roja de Túria · S.A. AGRICULTORES DE LA VEGA DE VALENCIA · environment · 168.652 €",
+            "snippet": "Contrato de servicio de\nlimpieza viaria del municipio de Riba-roja, por procedimiento abierto, mejor relación calidadprecio,\nvarios criterios de adjudicación y cláusulas sociales y medioambientales como criterio\nde adjudicación y condiciones especiales de ejecución de carácter social y medioambiental. · Ayuntamiento de Riba-roja de Túria · SA AGRICULTORES DE LA VEGA DE VALENCIA · environment · 168.652 €",
             "similarity": 1,
             "stance": "checked"
           }
@@ -3093,7 +3121,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -3151,7 +3180,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -3180,7 +3210,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -3330,7 +3361,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -3390,7 +3422,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -3420,7 +3453,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -4516,7 +4550,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -4574,7 +4609,8 @@
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
-        ]
+        ],
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -4634,7 +4670,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },
@@ -4663,7 +4700,8 @@
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
-        ]
+        ],
+        "source": "curator-downgrade"
       },
       "visibility": "toggle"
     },
@@ -4693,7 +4731,8 @@
         "checkedAgainst": [
           "verdict-engine"
         ],
-        "confidence": 0.2
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
       "visibility": "toggle"
     },

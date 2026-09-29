@@ -1,6 +1,8 @@
 import { describe, it, expect } from 'vitest'
 import { summarizeSessions, resumenPlenos, rotuloRetiradas } from '../src/lib/pleno-summary'
 import { RETRACTION_SCOPES } from '../src/scraper/pleno-votes'
+import { readFileSync } from 'node:fs'
+import { resolve } from 'node:path'
 
 const input = {
   plenos: [
@@ -143,7 +145,9 @@ describe('resumenPlenos', () => {
   it('el embudo de declaraciones sale del manifiesto entero', () => {
     const { embudo } = resumenPlenos(snapshots)
     expect(embudo).toMatchObject({
-      extraidas: 56,
+      // 56 servidas + 20 retenidas. `totals.items` cuenta sólo lo que la
+      // puerta dejó pasar, y la tarjeta lo rotulaba «Extraídas».
+      extraidas: 76,
       retenidas: 20,
       sinDatos: 52,
       parcial: 3,
@@ -152,6 +156,58 @@ describe('resumenPlenos', () => {
       comprobadoSinHallar: 22,
       sesiones: 2,
     })
+  })
+
+  /**
+   * La tarjeta decía «Extraídas de la transcripción 4.960» —lo SERVIDO— sobre
+   * 7.564 extraídas, y las dos filas de retenidas sumaban 2.605 contra 2.604
+   * retenidas de verdad: `totals.retenidas` cuenta todo lo no servido por los
+   * dos motivos, así que una acusación sin procedencia salía en las dos filas.
+   * Señalado por la revisión lectora del 28-09-2026 («4943 + 15 + 2 = 4960, es
+   * decir, todo lo extraído»).
+   */
+  it('las filas del embudo son una partición de lo extraído', () => {
+    const conAmbas = {
+      ...snapshots,
+      manifest: {
+        ...snapshots.manifest,
+        totals: {
+          ...snapshots.manifest.totals,
+          // 21 no servidas: 20 acusaciones y una cita; dos de ellas sin
+          // procedencia (una acusación y la cita).
+          retenidas: { acusacion_publica: 20, cita_convenio: 1 },
+          retenidasSinProcedencia: 2,
+        },
+      },
+    }
+    const { embudo } = resumenPlenos(conAmbas)
+    expect(embudo.extraidas).toBe(77)
+    expect(embudo.retenidas).toBe(19)
+    expect(embudo.retenidasSinProcedencia).toBe(2)
+    expect(
+      embudo.retenidas +
+        embudo.retenidasSinProcedencia +
+        embudo.sinDatos +
+        embudo.parcial +
+        embudo.verificado,
+    ).toBe(embudo.extraidas)
+  })
+
+  /**
+   * «Son los puntos de las 62 sesiones con orden del día extraído, no de las
+   * 62»: la salvedad se pintaba siempre, y el 24-09 la tubería extrajo el
+   * último orden del día que faltaba. El hueco tiene que salir del dato.
+   */
+  it('dice cuántas sesiones se quedan sin orden del día', () => {
+    expect(resumenPlenos(snapshots).agenda.sinOrden).toBe(1)
+    const todas = {
+      ...snapshots,
+      agendas: {
+        ...snapshots.agendas,
+        plenos: snapshots.plenos.items.map((p) => ({ id: p.id, agendaCount: 3 })),
+      },
+    }
+    expect(resumenPlenos(todas).agenda.sinOrden).toBe(0)
   })
 
   it('las votaciones traen su desenlace y sus retiradas', () => {
@@ -170,6 +226,58 @@ describe('resumenPlenos', () => {
     expect(departamentos[0]).toMatchObject({ nombre: 'Hacienda', n: 7, cuota: 1 })
     expect(departamentos[1].nombre).toBe('obras raras')
     expect(departamentos[1].cuota).toBeCloseTo(2 / 7)
+  })
+
+  /**
+   * Las barras eran las 12 primeras de 24 áreas y sumaban 187 puntos bajo una
+   * nota que dice que 219 llevan área, sin nada que avisara del corte: un
+   * lector sumaba las barras y no llegaba, o daba por cero un área que no
+   * salía. Señalado por la verificación del barrido lector del 28-09-2026. Lo
+   * que queda fuera se DERIVA —del recuento del propio snapshot—, y sin hueco
+   * es null: la frase se calla sola el día que las barras cubran todas.
+   */
+  describe('lo que queda fuera de las barras', () => {
+    const conAreas = (stats, tops) => ({
+      ...snapshots,
+      agendas: { ...snapshots.agendas, stats, topDepartments: tops },
+    })
+    const dos = [
+      { department: 'hacienda', count: 9, departmentSlug: 'hacienda' },
+      { department: 'urbanismo', count: 6, departmentSlug: 'urbanismo' },
+    ]
+
+    it('dice cuántas áreas y cuántos puntos no tienen barra', () => {
+      const { agenda } = resumenPlenos(
+        conAreas({ agendaItemsWithDepartment: 20, uniqueDepartments: 4 }, dos),
+      )
+      expect(agenda.fueraDeLasBarras).toEqual({
+        dibujadas: 2,
+        areas: 4,
+        resto: 2,
+        puntos: 5,
+        con: 20,
+      })
+    })
+
+    it('es null cuando las barras ya cubren todas las áreas', () => {
+      const { agenda } = resumenPlenos(
+        conAreas({ agendaItemsWithDepartment: 15, uniqueDepartments: 2 }, dos),
+      )
+      expect(agenda.fueraDeLasBarras).toBeNull()
+    })
+
+    it('no inventa el hueco si el snapshot no dice cuántas áreas hay', () => {
+      const { agenda } = resumenPlenos(conAreas({ agendaItemsWithDepartment: 20 }, dos))
+      expect(agenda.fueraDeLasBarras).toBeNull()
+    })
+
+    it('no publica un puente que no cuadra: cada área de fuera tiene al menos un punto', () => {
+      // Dos áreas fuera y un solo punto para las dos: el snapshot se contradice.
+      const { agenda } = resumenPlenos(
+        conAreas({ agendaItemsWithDepartment: 16, uniqueDepartments: 4 }, dos),
+      )
+      expect(agenda.fueraDeLasBarras).toBeNull()
+    })
   })
 
   /**
@@ -257,5 +365,50 @@ describe('excepciones de la escalera', () => {
       votes: { items: [], stats: { byPleno: { b: 2 } } },
     })
     expect(escaleraExcepciones).toEqual({ declSinOrden: 0, votosSinDecl: 0 })
+  })
+})
+
+/**
+ * El reparto PUBLICADO: la premisa medida y el puente exacto.
+ *
+ * La premisa va escrita como aserción a propósito. Si algún día las barras
+ * cubren todas las áreas, la frase del puente se calla sola y esta prueba se
+ * pone roja para que alguien la borre, en vez de seguir verde sin comprobar
+ * nada.
+ */
+describe('el reparto publicado: las barras solas no cuadran con la nota, el puente sí', () => {
+  const agendas = JSON.parse(readFileSync(resolve('public/data/plenos-agendas.json'), 'utf8'))
+  const { departamentos, agenda } = resumenPlenos({ agendas })
+  const dibujado = departamentos.reduce((s, d) => s + d.n, 0)
+
+  it('hoy las barras no suman los puntos con área que dice la nota', () => {
+    expect(departamentos.length, 'el snapshot no trae barras que medir').toBeGreaterThan(0)
+    expect(
+      dibujado,
+      'las barras ya suman todos los puntos con área: el puente sobra, borra esta premisa',
+    ).toBeLessThan(agenda.conDepartamento)
+  })
+
+  it('lo que queda fuera cierra la cuenta, en áreas y en puntos', () => {
+    const fuera = agenda.fueraDeLasBarras
+    expect(fuera).not.toBeNull()
+    expect(fuera.dibujadas).toBe(departamentos.length)
+    expect(fuera.dibujadas + fuera.resto).toBe(fuera.areas)
+    expect(dibujado + fuera.puntos).toBe(agenda.conDepartamento)
+    expect(fuera.con).toBe(agenda.conDepartamento)
+  })
+
+  it('y las dos cifras son las del orden del día, recontadas punto a punto', () => {
+    // Sin residuo en ninguna dirección: todo punto con área está en una barra o
+    // en un área de fuera, y no hay área contada que no salga del orden del día.
+    const cuenta = new Map()
+    for (const p of agendas.plenos ?? []) {
+      for (const a of p.agenda ?? []) {
+        const k = a.departmentSlug || a.department
+        if (k) cuenta.set(k, (cuenta.get(k) ?? 0) + 1)
+      }
+    }
+    expect(cuenta.size).toBe(agenda.fueraDeLasBarras.areas)
+    expect([...cuenta.values()].reduce((s, n) => s + n, 0)).toBe(agenda.conDepartamento)
   })
 })

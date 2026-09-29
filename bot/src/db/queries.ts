@@ -1,6 +1,13 @@
 import type { Db } from './client.ts'
-import type { Canal } from './migraciones.ts'
+import type { Canal, Moderacion, MotivoVaciado, ResultadoRevision } from './migraciones.ts'
+import type { DecisionRevision, Revision, TextoQueja } from '../services/moderacion.ts'
 import { nuevoIdDeQueja } from '../services/queja-id.ts'
+import {
+  cortarLimpio,
+  limpiarDatosPersonales,
+  sumarRetirados,
+  type Retirados,
+} from '../services/pii.ts'
 
 export type QuejaState =
   | 'capturada'
@@ -39,6 +46,10 @@ export interface QuejaRow {
   // every exporter + public renderer filters it out. See schema.sql for the
   // full retention rationale.
   deleted_at: string | null
+  /** Dónde está en la revisión antes de publicar. Sólo `publicada` es pública (`SQL_PUBLICA`). */
+  moderacion: Moderacion
+  /** Cuándo se publicó, o null si no se ha publicado nunca. */
+  publicada_at: string | null
 }
 
 /**
@@ -116,8 +127,28 @@ export interface AggregateStats {
 // Minimum apoyos to tag a queja as community-verified.
 export const VERIFIED_THRESHOLD = 10
 
+/** Lo más largo que se guarda de un título y de un detalle. Se aplica después de limpiarlos. */
+export const LIMITE_TITULO = 140
+export const LIMITE_DETALLE = 2000
+
+/** El evento que deja una queja a la que se le retiraron datos personales: cuántos de cada clase, no cuáles. */
+export const EVENTO_DATOS_RETIRADOS = 'datos_retirados'
+
+/** Cuántos datos personales de cada clase se retiraron del texto de una queja al guardarla. */
+export function datosRetiradosDe(db: Db, id: string): Retirados {
+  const fila = db
+    .prepare('SELECT payload FROM events WHERE queja_id = ? AND kind = ? ORDER BY id LIMIT 1')
+    .get(id, EVENTO_DATOS_RETIRADOS) as { payload: string } | undefined
+  return fila ? (JSON.parse(fila.payload) as Retirados) : {}
+}
+
 export function createQueja(db: Db, q: NewQuejaInput): QuejaRow {
   const id = nuevoIdDeQueja()
+  // Los datos personales del texto no se guardan (services/pii.ts): ni aquí, ni en
+  // la tarjeta de quien modera, ni en nada que se publique. Queda cuántos, no cuáles.
+  const titulo = limpiarDatosPersonales(q.title)
+  const detalle = limpiarDatosPersonales(q.detail)
+  const retirados = sumarRetirados(titulo.retirados, detalle.retirados)
   const insert = db.prepare(`
     INSERT INTO quejas (
       id, ciudadano_id, canal, category, title, detail,
@@ -128,14 +159,17 @@ export function createQueja(db: Db, q: NewQuejaInput): QuejaRow {
     )
   `)
   const event = db.prepare(`INSERT INTO events (queja_id, kind) VALUES (?, 'capturada')`)
+  const limpieza = db.prepare(
+    `INSERT INTO events (queja_id, kind, payload) VALUES (?, '${EVENTO_DATOS_RETIRADOS}', ?)`,
+  )
   const tx = db.transaction((row: NewQuejaInput & { id: string }) => {
     insert.run({
       id: row.id,
       ciudadano_id: idCiudadano(db, row.autor, { crear: true }),
       canal: row.autor.canal,
       category: row.category,
-      title: row.title,
-      detail: row.detail,
+      title: cortarLimpio(titulo.texto, LIMITE_TITULO),
+      detail: cortarLimpio(detalle.texto, LIMITE_DETALLE),
       lat: row.lat ?? null,
       lng: row.lng ?? null,
       neighborhood: row.neighborhood ?? null,
@@ -144,6 +178,7 @@ export function createQueja(db: Db, q: NewQuejaInput): QuejaRow {
       concejal_slug: row.concejal_slug ?? null,
     })
     event.run(row.id)
+    if (Object.keys(retirados).length > 0) limpieza.run(row.id, JSON.stringify(retirados))
   })
   tx({ ...q, id })
   return getQueja(db, id)!
@@ -168,6 +203,344 @@ export function getQuejaViva(db: Db, id: string): QuejaRow | null {
   const row = db.prepare('SELECT * FROM quejas WHERE id = ? AND deleted_at IS NULL').get(id) as
     QuejaRow | undefined
   return row ?? null
+}
+
+/**
+ * Lo que ve el público: una queja PUBLICADA —revisada— y no retirada por su
+ * autor. Hasta el 2026-09-27 «público» era `deleted_at IS NULL` a secas, escrito
+ * en diecinueve sitios, y una queja salía en el acto sin que nadie la leyera.
+ * Todo lector que sale fuera —el export y sus cifras, /estado y /apoyar para
+ * quien no la escribió, /barrio, /ranking, /digest, los boletines, el lote del
+ * Registro, el silencio, la foto y el documento del Síndic— filtra con esto y
+ * sólo con esto; `tests/moderacion-publica.test.ts` barre el código y pone en
+ * rojo un filtro por `deleted_at` fuera de su lista de lectores no públicos.
+ */
+export const SQL_PUBLICA = "deleted_at IS NULL AND moderacion = 'publicada'"
+
+/**
+ * El `tipo` de una tarjeta de revisión en `avisos`: `tarjeta`, la que se manda
+ * sola a cada administrador, y `tarjeta:<n>`, cada copia más que pide `/revisar`.
+ * Todas se ponen al día al decidir y todas pierden el texto al retirarse la queja.
+ */
+export const TIPO_TARJETA = 'tarjeta'
+/** Toda copia de una tarjeta de revisión, en un WHERE sobre `avisos`. */
+export const SQL_ES_TARJETA = `(tipo = '${TIPO_TARJETA}' OR tipo LIKE '${TIPO_TARJETA}:%')`
+
+/**
+ * Unas quejas dejan de estar vivas: las copias entregadas de sus tarjetas pasan a
+ * `tarjetas_por_vaciar`, que la pasada horaria vacía hasta que pierden el texto,
+ * y el resto de su rastro en `avisos` —tarjetas sin entregar, avisos a su autor—
+ * se borra. Va dentro de la transacción que las retira o las destruye: fuera,
+ * una tarjeta podía quedarse con el texto sin nada que recordara dónde (revisión
+ * de la pasada de #137). Devuelve cuántas copias quedan en cola.
+ */
+export function aVaciar(db: Db, ids: string[], motivo: MotivoVaciado): number {
+  if (ids.length === 0) return 0
+  const marcas = ids.map(() => '?').join(', ')
+  const encoladas = db
+    .prepare(
+      `INSERT OR IGNORE INTO tarjetas_por_vaciar (destinatario, message_id, queja_id, motivo)
+       SELECT destinatario, message_id, queja_id, ? FROM avisos
+        WHERE ${SQL_ES_TARJETA} AND message_id IS NOT NULL AND queja_id IN (${marcas})`,
+    )
+    .run(motivo, ...ids).changes
+  db.prepare(`DELETE FROM avisos WHERE queja_id IN (${marcas})`).run(...ids)
+  return encoladas
+}
+
+/** `SQL_PUBLICA` sobre una tabla con alias: `sqlPublica('q')`. */
+export const sqlPublica = (alias: string) =>
+  SQL_PUBLICA.replace(/\b(deleted_at|moderacion)\b/g, `${alias}.$1`)
+
+/** La queja que ve el público, o null: para todos ellos, una sin publicar y una que no existe contestan igual. */
+export function getQuejaPublica(db: Db, id: string): QuejaRow | null {
+  const row = db.prepare(`SELECT * FROM quejas WHERE id = ? AND ${SQL_PUBLICA}`).get(id) as
+    QuejaRow | undefined
+  return row ?? null
+}
+
+/** Lo que un administrador puede hacer con una queja desde su tarjeta. */
+export const ACCIONES_MODERACION = ['publicar', 'descartar', 'retirar'] as const
+export type AccionModeracion = (typeof ACCIONES_MODERACION)[number]
+
+const TRANSICIONES: Record<AccionModeracion, { desde: Moderacion[]; hasta: Moderacion }> = {
+  // Descartar y retirar tienen vuelta atrás: su autor puede impugnarlo, y quien
+  // modera, publicarla después (revisión de #137).
+  publicar: { desde: ['pendiente', 'retenida', 'descartada', 'retirada'], hasta: 'publicada' },
+  descartar: { desde: ['pendiente', 'retenida'], hasta: 'descartada' },
+  retirar: { desde: ['publicada'], hasta: 'retirada' },
+}
+
+export type ResultadoDecision =
+  | { resultado: 'aplicada'; hasta: Moderacion }
+  | { resultado: 'ya-decidida'; actual: Moderacion }
+  | { resultado: 'retirada-por-autor' }
+  | { resultado: 'no-existe' }
+
+/**
+ * Decide una queja, con compare-and-set: sólo cambia si sigue en un estado desde
+ * el que la acción tiene sentido. Dos administradores que pulsan a la vez, o uno
+ * que pulsa una tarjeta vieja, no deciden dos veces: el segundo recibe
+ * `ya-decidida` con el estado de verdad. Una queja que su autor retiró con
+ * /olvidar no se publica. Cada decisión deja una fila en `moderaciones` —quién,
+ * qué— y un evento, en la misma transacción.
+ */
+export function decidirModeracion(
+  db: Db,
+  id: string,
+  accion: AccionModeracion,
+  por: string,
+): ResultadoDecision {
+  const t = TRANSICIONES[accion]
+  return db.transaction((): ResultadoDecision => {
+    const fila = db.prepare('SELECT moderacion, deleted_at FROM quejas WHERE id = ?').get(id) as
+      { moderacion: Moderacion; deleted_at: string | null } | undefined
+    if (!fila) return { resultado: 'no-existe' }
+    if (fila.deleted_at) return { resultado: 'retirada-por-autor' }
+    const lugares = t.desde.map(() => '?').join(', ')
+    const cambio = db
+      .prepare(
+        `UPDATE quejas
+            SET moderacion = ?,
+                publicada_at = CASE WHEN ? = 'publicada' THEN datetime('now') ELSE publicada_at END,
+                updated_at = datetime('now')
+          WHERE id = ? AND deleted_at IS NULL AND moderacion IN (${lugares})`,
+      )
+      .run(t.hasta, t.hasta, id, ...t.desde)
+    if (cambio.changes === 0) return { resultado: 'ya-decidida', actual: fila.moderacion }
+    db.prepare('INSERT INTO moderaciones (queja_id, decision, por) VALUES (?, ?, ?)').run(
+      id,
+      t.hasta,
+      por,
+    )
+    db.prepare('INSERT INTO events (queja_id, kind, payload) VALUES (?, ?, ?)').run(
+      id,
+      `moderacion_${t.hasta}`,
+      JSON.stringify({ por }),
+    )
+    return { resultado: 'aplicada', hasta: t.hasta }
+  })()
+}
+
+/** Quién decide en `moderaciones` cuando decide la revisión automática (services/moderacion.ts). */
+export const REVISOR_AUTOMATICO = 'revision-automatica'
+
+/** El evento que deja la revisión automática al quitar fragmentos: cuántos, no cuáles. */
+export const EVENTO_RECORTE_REVISION = 'datos_retirados_revision'
+
+/** Una fila de `revisiones_automaticas` (migración 3). */
+export interface RevisionRow {
+  id: number
+  queja_id: string
+  resultado: ResultadoRevision
+  modelo: string
+  version_prompt: string
+  /** JSON con la lista de motivos, o null si la revisión falló. */
+  motivos: string | null
+  retirados: number | null
+  error: string | null
+  creada_at: string
+}
+
+/** Una queja que espera la revisión automática, con sus fallos hasta ahora. */
+export interface QuejaSinRevisar {
+  id: string
+  title: string
+  detail: string
+  /** Revisiones fallidas: todas las suyas, porque una válida la saca de aquí. */
+  fallos: number
+  primer_fallo: string | null
+  ultimo_fallo: string | null
+  ultimo_error: string | null
+}
+
+/**
+ * Las quejas que esperan la revisión automática: pendientes, vivas y sin una
+ * revisión válida. Las más antiguas primero.
+ */
+export function quejasSinRevisar(db: Db): QuejaSinRevisar[] {
+  return db
+    .prepare(
+      `SELECT q.id, q.title, q.detail,
+              COUNT(r.id) AS fallos,
+              MIN(r.creada_at) AS primer_fallo,
+              MAX(r.creada_at) AS ultimo_fallo,
+              (SELECT error FROM revisiones_automaticas
+                WHERE queja_id = q.id ORDER BY id DESC LIMIT 1) AS ultimo_error
+         FROM quejas q
+         LEFT JOIN revisiones_automaticas r ON r.queja_id = q.id
+        WHERE q.moderacion = 'pendiente' AND q.deleted_at IS NULL
+          AND NOT EXISTS (SELECT 1 FROM revisiones_automaticas v
+                           WHERE v.queja_id = q.id AND v.resultado IN ('limpia', 'marcada'))
+        GROUP BY q.id
+        ORDER BY q.rowid`,
+    )
+    .all() as QuejaSinRevisar[]
+}
+
+/**
+ * Lo que dice la tarjeta de la revisión automática de una queja: la última,
+ * cuántas fallaron y, si la retuvo, con qué motivos —los del modelo y los que
+ * añadió la política, como el periodo electoral—.
+ */
+export function revisionDeQueja(
+  db: Db,
+  id: string,
+): { ultima: RevisionRow | null; fallos: number; retenidaPor: string[] } {
+  const ultima =
+    (db
+      .prepare('SELECT * FROM revisiones_automaticas WHERE queja_id = ? ORDER BY id DESC LIMIT 1')
+      .get(id) as RevisionRow | undefined) ?? null
+  const { fallos } = db
+    .prepare(
+      `SELECT COUNT(*) AS fallos FROM revisiones_automaticas
+        WHERE queja_id = ? AND resultado IN ('invalida', 'error')`,
+    )
+    .get(id) as { fallos: number }
+  const retenida = db
+    .prepare(
+      `SELECT motivo FROM moderaciones
+        WHERE queja_id = ? AND decision = 'retenida' AND por = ?
+        ORDER BY id DESC LIMIT 1`,
+    )
+    .get(id, REVISOR_AUTOMATICO) as { motivo: string | null } | undefined
+  return { ultima, fallos, retenidaPor: retenida?.motivo ? retenida.motivo.split(',') : [] }
+}
+
+/** Cuántos fragmentos quitó la revisión automática del texto de una queja. */
+export function recortesDeRevision(db: Db, id: string): number {
+  return (
+    db
+      .prepare(
+        'SELECT COALESCE(SUM(retirados), 0) AS n FROM revisiones_automaticas WHERE queja_id = ?',
+      )
+      .get(id) as { n: number }
+  ).n
+}
+
+export type ResultadoAnotarRevision =
+  | { anotada: false; porque: 'no-existe' }
+  | {
+      anotada: true
+      /** Si se quitaron fragmentos del texto guardado. */
+      recortada: boolean
+      /** La decisión aplicada, o null si no se aplicó ninguna, y por qué. */
+      hasta: DecisionRevision['hasta'] | null
+      porque?: 'fallida' | 'ya-decidida' | 'retirada-por-autor' | 'texto-cambiado'
+      /** Cómo quedó la queja. */
+      moderacion: Moderacion
+    }
+
+/**
+ * Anota una revisión automática y aplica lo que dice, en una transacción.
+ *
+ * Siempre queda la fila en `revisiones_automaticas`. Si es válida y el texto
+ * guardado sigue siendo el que leyó el modelo, se le quitan los fragmentos —en
+ * cualquier estado: quitar un nombre sólo resta— con un evento que dice cuántos.
+ * La decisión, en cambio, sólo se aplica a una queja que sigue `pendiente` y
+ * viva: lo que decidió una persona, o lo que retiró su autor, mientras el
+ * modelo leía, se queda como está (compare-and-set, como `decidirModeracion`).
+ */
+export function anotarRevision(
+  db: Db,
+  id: string,
+  o: {
+    revision: Revision
+    /** El texto que leyó el modelo. */
+    enviado: TextoQueja
+    modelo: string
+    version: string
+    /** Lo que decidió la política, para una revisión válida. */
+    decision: DecisionRevision | null
+    /** Cuándo se revisó; por defecto, ahora. Los reintentos se cuentan desde aquí. */
+    cuando?: Date
+  },
+): ResultadoAnotarRevision {
+  return db.transaction((): ResultadoAnotarRevision => {
+    const q = db
+      .prepare('SELECT moderacion, deleted_at, title, detail FROM quejas WHERE id = ?')
+      .get(id) as
+      | { moderacion: Moderacion; deleted_at: string | null; title: string; detail: string }
+      | undefined
+    if (!q) return { anotada: false, porque: 'no-existe' }
+    const r = o.revision
+    const valida = r.resultado === 'limpia' || r.resultado === 'marcada'
+    db.prepare(
+      `INSERT INTO revisiones_automaticas
+         (queja_id, resultado, modelo, version_prompt, motivos, retirados, error, creada_at)
+       VALUES (?, ?, ?, ?, ?, ?, ?, COALESCE(?, datetime('now')))`,
+    ).run(
+      id,
+      r.resultado,
+      o.modelo,
+      o.version,
+      valida ? JSON.stringify(r.motivos) : null,
+      valida ? r.retirados : null,
+      'error' in r ? r.error.slice(0, 200) : null,
+      o.cuando ? o.cuando.toISOString().slice(0, 19).replace('T', ' ') : null,
+    )
+    if (!valida)
+      return {
+        anotada: true,
+        recortada: false,
+        hasta: null,
+        porque: 'fallida',
+        moderacion: q.moderacion,
+      }
+    if (q.title !== o.enviado.titulo || q.detail !== o.enviado.detalle) {
+      return {
+        anotada: true,
+        recortada: false,
+        hasta: null,
+        porque: 'texto-cambiado',
+        moderacion: q.moderacion,
+      }
+    }
+    const recortada = r.retirados > 0
+    if (recortada) {
+      db.prepare(
+        `UPDATE quejas SET title = ?, detail = ?, updated_at = datetime('now') WHERE id = ?`,
+      ).run(r.texto.titulo, r.texto.detalle, id)
+      db.prepare('INSERT INTO events (queja_id, kind, payload) VALUES (?, ?, ?)').run(
+        id,
+        EVENTO_RECORTE_REVISION,
+        JSON.stringify({ retirados: r.retirados }),
+      )
+    }
+    const sinDecidir = (porque: 'ya-decidida' | 'retirada-por-autor') => ({
+      anotada: true as const,
+      recortada,
+      hasta: null,
+      porque,
+      moderacion: q.moderacion,
+    })
+    if (q.deleted_at) return sinDecidir('retirada-por-autor')
+    if (q.moderacion !== 'pendiente') return sinDecidir('ya-decidida')
+    const d = o.decision
+    if (!d || d.hasta === 'pendiente') {
+      return { anotada: true, recortada, hasta: 'pendiente', moderacion: 'pendiente' }
+    }
+    db.prepare(
+      `UPDATE quejas
+          SET moderacion = ?,
+              publicada_at = CASE WHEN ? = 'publicada' THEN datetime('now') ELSE publicada_at END,
+              updated_at = datetime('now')
+        WHERE id = ?`,
+    ).run(d.hasta, d.hasta, id)
+    db.prepare(
+      'INSERT INTO moderaciones (queja_id, decision, por, motivo) VALUES (?, ?, ?, ?)',
+    ).run(id, d.hasta, REVISOR_AUTOMATICO, d.hasta === 'retenida' ? d.motivos.join(',') : null)
+    // Como una decisión de una persona: su autor la ve en /estado. La retención, no:
+    // para su autor sigue «en revisión».
+    if (d.hasta === 'publicada') {
+      db.prepare('INSERT INTO events (queja_id, kind, payload) VALUES (?, ?, ?)').run(
+        id,
+        'moderacion_publicada',
+        JSON.stringify({ por: REVISOR_AUTOMATICO }),
+      )
+    }
+    return { anotada: true, recortada, hasta: d.hasta, moderacion: d.hasta }
+  })()
 }
 
 /**
@@ -210,6 +583,8 @@ export function softDeleteQueja(db: Db, id: string, autor: Autor): boolean {
       id,
       JSON.stringify({ reason: 'user_requested_deletion' }),
     )
+    // Y lo que el bot mandó de ella: las tarjetas, a vaciar; el aviso a su autor, fuera.
+    aVaciar(db, [id], 'retirada')
   })
   tx()
   return true
@@ -264,21 +639,23 @@ export function listUserQuejas(db: Db, autor: Autor, limit = 20): QuejaRow[] {
 export function listRecentQuejas(db: Db, limit = 20): QuejaRow[] {
   return db
     .prepare(
-      'SELECT * FROM quejas WHERE deleted_at IS NULL ORDER BY created_at DESC, rowid DESC LIMIT ?',
+      `SELECT * FROM quejas WHERE ${SQL_PUBLICA} ORDER BY created_at DESC, rowid DESC LIMIT ?`,
     )
     .all(limit) as QuejaRow[]
 }
 
 /**
- * Non-deleted quejas that carry a photo reference (`foto_ref`) — the input set for
- * the anonymize-and-publish job. Soft-deleted rows (right-to-be-forgotten) are
- * excluded so a withdrawn queja's photo is never processed or published.
+ * Las quejas PÚBLICAS con foto: lo que la pasada de fotos anonimiza, y la lista
+ * contra la que poda. Sólo lo publicado: sin su `QUEJAS_PHOTOS_DIR`, la pasada
+ * escribe junto al quejas.json del sitio, y una foto de una queja sin revisar
+ * acabaría en `public/` (revisión de #137). Al publicarse, la foto llega en la
+ * pasada siguiente; al retirarse, se poda.
  */
 export function listQuejasWithPhoto(db: Db, limit = 1000): QuejaRow[] {
   return db
     .prepare(
       `SELECT * FROM quejas
-       WHERE deleted_at IS NULL AND foto_ref IS NOT NULL
+       WHERE ${SQL_PUBLICA} AND foto_ref IS NOT NULL
        ORDER BY created_at DESC, rowid DESC LIMIT ?`,
     )
     .all(limit) as QuejaRow[]
@@ -287,7 +664,7 @@ export function listQuejasWithPhoto(db: Db, limit = 1000): QuejaRow[] {
 export function listByNeighborhood(db: Db, neighborhood: string, limit = 50): QuejaRow[] {
   return db
     .prepare(
-      'SELECT * FROM quejas WHERE deleted_at IS NULL AND neighborhood = ? ORDER BY created_at DESC, rowid DESC LIMIT ?',
+      `SELECT * FROM quejas WHERE ${SQL_PUBLICA} AND neighborhood = ? ORDER BY created_at DESC, rowid DESC LIMIT ?`,
     )
     .all(neighborhood, limit) as QuejaRow[]
 }
@@ -357,7 +734,7 @@ export function reconcileApoyadas(db: Db): { intentadas: number; promovidas: num
     .prepare(
       `SELECT q.id FROM quejas q
        JOIN (SELECT queja_id, COUNT(*) as n FROM apoyos GROUP BY queja_id) a ON a.queja_id = q.id
-       WHERE q.state = 'capturada' AND q.deleted_at IS NULL AND a.n >= ?`,
+       WHERE q.state = 'capturada' AND ${sqlPublica('q')} AND a.n >= ?`,
     )
     .all(VERIFIED_THRESHOLD) as Array<{ id: string }>
 
@@ -411,13 +788,19 @@ export function setState(
   db: Db,
   id: string,
   state: QuejaState,
-  registro?: { entry_number: string; csv: string },
+  /**
+   * El asiento de la sede. `registered_at` es la «Fecha de Registro» del recibo, en
+   * UTC y en la forma de SQLite (`recibo-sede.ts`): el plazo corre desde ella, y
+   * hasta el 28-09-2026 se ponía `datetime('now')`, la hora en que el moderador
+   * escribía la orden. Obligatoria para que nadie vuelva a esa hora sin darse cuenta.
+   */
+  registro?: { entry_number: string; csv: string; registered_at: string },
 ): QuejaRow | null {
   const update = registro
     ? db.prepare(
         `UPDATE quejas
          SET state = ?, registro_entry_number = ?, registro_csv = ?,
-             registered_at = COALESCE(registered_at, datetime('now')),
+             registered_at = COALESCE(registered_at, ?),
              updated_at = datetime('now')
          WHERE id = ?`,
       )
@@ -432,7 +815,7 @@ export function setState(
 
   const tx = db.transaction(() => {
     if (registro) {
-      update.run(state, registro.entry_number, registro.csv, id)
+      update.run(state, registro.entry_number, registro.csv, registro.registered_at, id)
     } else {
       update.run(state, id)
     }
@@ -529,9 +912,15 @@ export function findMatchingQuejas(
         : 'LOWER(category)'
   return db
     .prepare(
+      // La ventana va sobre cuándo se PUBLICÓ: una queja escrita el domingo y
+      // publicada el martes no salía ni en el resumen del lunes —aún no era
+      // pública— ni en el siguiente —ya tenía más de siete días de escrita—.
+      // Y las dos fechas, en un mismo formato: la guardada es 'AAAA-MM-DD
+      // HH:MM:SS' y el corte un ISO con 'T', y comparadas como texto el día del
+      // corte entero quedaba fuera (' ' va antes que 'T').
       `SELECT * FROM quejas
-       WHERE deleted_at IS NULL
-         AND created_at >= ?
+       WHERE ${SQL_PUBLICA}
+         AND datetime(COALESCE(publicada_at, created_at)) >= datetime(?)
          AND ${col} LIKE ?
        ORDER BY created_at DESC
        LIMIT 50`,
@@ -540,16 +929,16 @@ export function findMatchingQuejas(
 }
 
 export function aggregateStats(db: Db): AggregateStats {
-  // All public-facing aggregates EXCLUDE soft-deleted rows. The audit trail
-  // in `events` keeps the record, but every public surface (UI stats, snapshot
-  // export, dashboard) must look through a deleted_at filter.
+  // Las cifras públicas salen del MISMO conjunto que las quejas del export:
+  // publicadas y no retiradas (`SQL_PUBLICA`). Contadas sobre otro, el total
+  // diría quejas que el listado no enseña.
   const total = (
-    db.prepare('SELECT COUNT(*) as n FROM quejas WHERE deleted_at IS NULL').get() as { n: number }
+    db.prepare(`SELECT COUNT(*) as n FROM quejas WHERE ${SQL_PUBLICA}`).get() as { n: number }
   ).n
   const byState = Object.fromEntries(
     (
       db
-        .prepare('SELECT state, COUNT(*) as n FROM quejas WHERE deleted_at IS NULL GROUP BY state')
+        .prepare(`SELECT state, COUNT(*) as n FROM quejas WHERE ${SQL_PUBLICA} GROUP BY state`)
         .all() as Array<{
         state: string
         n: number
@@ -560,7 +949,7 @@ export function aggregateStats(db: Db): AggregateStats {
     (
       db
         .prepare(
-          `SELECT neighborhood, COUNT(*) as n FROM quejas WHERE deleted_at IS NULL AND neighborhood IS NOT NULL GROUP BY neighborhood`,
+          `SELECT neighborhood, COUNT(*) as n FROM quejas WHERE ${SQL_PUBLICA} AND neighborhood IS NOT NULL GROUP BY neighborhood`,
         )
         .all() as Array<{ neighborhood: string; n: number }>
     ).map((r) => [r.neighborhood, r.n]),
@@ -569,7 +958,7 @@ export function aggregateStats(db: Db): AggregateStats {
     (
       db
         .prepare(
-          'SELECT category, COUNT(*) as n FROM quejas WHERE deleted_at IS NULL GROUP BY category',
+          `SELECT category, COUNT(*) as n FROM quejas WHERE ${SQL_PUBLICA} GROUP BY category`,
         )
         .all() as Array<{
         category: string
@@ -585,7 +974,7 @@ export function aggregateStats(db: Db): AggregateStats {
               SUM(CASE WHEN state = 'silencio_negativo' OR state = 'escalada_sindic' THEN 1 ELSE 0 END) as silencios,
               SUM(CASE WHEN state IN ('capturada','apoyada_verificada','registrada','notificada_10d','en_tramite') THEN 1 ELSE 0 END) as pendientes
        FROM quejas
-       WHERE deleted_at IS NULL AND concejal_slug IS NOT NULL AND concejal_slug != ''
+       WHERE ${SQL_PUBLICA} AND concejal_slug IS NOT NULL AND concejal_slug != ''
        GROUP BY concejal_slug`,
     )
     .all() as Array<{

@@ -103,11 +103,15 @@ export function CoberturaEficiencia({
           fila de pastillas y partirla en dos no significaría nada.
       
           `auto-fit` las apila cuando no caben, sin media query — que en el prop
-          `style` no cabe. */}
+          `style` no cabe. Pero sólo decide CUÁNTAS columnas: la última que
+          queda conservaba su suelo de 330 px, y a 375 px de pantalla la caja
+          de la tarjeta mide 285, así que la nota entera se salía 45 px por la
+          derecha. El `min(…, 100%)` baja ese suelo al ancho de la caja cuando
+          no llega a 330, y a partir de ahí no cambia nada. */}
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(330px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(330px, 100%), 1fr))',
           gap: '4px 28px',
           alignItems: 'start',
           marginTop: 8,
@@ -190,9 +194,10 @@ export function CoberturaEficiencia({
             )}{' '}
             un denominador que el ayuntamiento no vuelve a medir: declara la misma cantidad
             {desde ? ` desde ${desde}` : ''} entrega tras entrega, mientras actualiza el coste en
-            cada una. Un coste unitario así puede subir sin que el servicio haya cambiado, y su
-            serie no se puede leer como gestión. Cada tarjeta va marcada con el año desde el que no
-            se remide, y lleva dentro cuántos municipios comparables hacen lo mismo.{' '}
+            cada una. Un coste unitario así puede moverse sin que el servicio haya cambiado —sigue
+            al coste, sube y baja con él—, y su serie no se puede leer como gestión. Cada tarjeta va
+            marcada con el año desde el que no se remide, y lleva dentro cuántos municipios
+            comparables hacen lo mismo.{' '}
             <a
               href="/laboratorio/frontera"
               style={{ color: 'var(--civic)', textDecoration: 'underline' }}

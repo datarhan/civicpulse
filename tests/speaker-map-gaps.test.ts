@@ -6,10 +6,13 @@ import {
   CURRENT_GATE,
   NEVER_ATTEMPTED,
   recordFailure,
+  carryFailure,
+  foldNight,
   writtenOffChunks,
   isMapComplete,
   classifyBacklogState,
   type FailedChunk,
+  type IntentoDeTrozo,
 } from '../src/scraper/speaker-map'
 
 /**
@@ -293,6 +296,140 @@ describe('against the maps on disk', () => {
   it('an entry stamped with the current gate but no count is still not written off', () => {
     const sinCuenta = fail({ givenUpUnder: { ...GATE } })
     expect(writtenOffChunks([sinCuenta], GATE).has(8)).toBe(false)
+  })
+})
+
+/**
+ * Sólo cuenta para retirar un trozo una noche en la que el modelo lo LEYÓ.
+ *
+ * `GIVE_UP_AFTER_ATTEMPTS` es un límite de gasto sobre lecturas que no pasan
+ * la puerta. Hasta el 28-09-2026 contaba cualquier noche que acabara sin
+ * mapa, y un 503 de Gemini («This model is currently experiencing high
+ * demand»), un curl caído o un fichero que no llegó a ACTIVE sumaban igual
+ * que una cobertura del 66 %: el modelo no había visto el audio y la cuenta
+ * subía. Reconstruido del log de la tubería aquel día, intento a intento:
+ *
+ *   · `19gax3o` trozo 4 retirado con DOS lecturas y un 503; los trozos 7 y 9 a
+ *     un 503 de retirarse con una y dos; el 11 y el 12 llevaban dos noches
+ *     «fallidas» sin que el modelo los leyera nunca.
+ *   · `1sqj7is` trozos 3 y 4, y `ma87e0` trozo 13, retirados con dos lecturas y
+ *     una noche de curl caído — y con ellos las dos sesiones salían de la cola
+ *     como terminadas.
+ *
+ * Y el mismo defecto borraba el veredicto: en una noche mixta —79 % y luego
+ * dos 503— el motivo guardado era el 503, así que el fichero ya no decía por
+ * qué se había contado. Tres noches seguidas de caída del proveedor, o de una
+ * clave mal puesta, habrían retirado TODOS los trozos pendientes de la cola.
+ */
+describe('sólo una lectura del modelo cuenta para retirar un trozo', () => {
+  const lectura = (why = 'covered 69% (floor 85%)'): IntentoDeTrozo => ({
+    lectura: 'cobertura',
+    why,
+  })
+  const sinLectura = (
+    why = 'HTTP 503: This model is currently experiencing high demand.',
+  ): IntentoDeTrozo => ({ lectura: null, why })
+  const nocheDe503 = [sinLectura(), sinLectura(), sinLectura()]
+
+  it('una noche entera sin respuesta del modelo no suma ningún intento', () => {
+    const prior = recordFailure(undefined, 7, 'covered 1% (floor 85%)', GATE)
+    const { entry } = foldNight(prior, 7, nocheDe503, GATE)
+    expect(entry.attempts, 'un 503 contó como lectura').toBe(1)
+  })
+
+  it('ni tres noches así retiran un trozo que el modelo no leyó nunca', () => {
+    let f: FailedChunk | undefined
+    for (let n = 0; n < GIVE_UP_AFTER_ATTEMPTS; n++) f = foldNight(f, 11, nocheDe503, GATE).entry
+    expect(writtenOffChunks([f as FailedChunk], GATE).has(11)).toBe(false)
+    expect(f?.attempts ?? 0).toBe(0)
+  })
+
+  it('el hueco sigue declarado, con el motivo de la noche', () => {
+    expect(foldNight(undefined, 11, [sinLectura('HTTP 503: x')], GATE).entry).toEqual({
+      chunk: 11,
+      why: 'HTTP 503: x',
+    })
+  })
+
+  it('una noche con una lectura cuenta una vez aunque acabara en 503', () => {
+    const { entry } = foldNight(
+      undefined,
+      9,
+      [lectura('covered 79% (floor 85%)'), sinLectura(), sinLectura()],
+      GATE,
+    )
+    expect(entry.attempts).toBe(1)
+    expect(entry.why, 'guardó el 503 en vez del veredicto').toBe('covered 79% (floor 85%)')
+  })
+
+  it('una noche sin leer conserva el veredicto, la cuenta y el sello de la última lectura', () => {
+    const prior = recordFailure(
+      recordFailure(undefined, 4, 'covered 69% (floor 85%)', GATE),
+      4,
+      'covered 80% (floor 85%)',
+      GATE,
+    )
+    const { entry } = foldNight(prior, 4, nocheDe503, GATE)
+    expect(entry).toEqual({
+      chunk: 4,
+      why: 'covered 80% (floor 85%)',
+      attempts: 2,
+      givenUpUnder: GATE,
+      sinLectura: 'HTTP 503: This model is currently experiencing high demand.',
+    })
+  })
+
+  it('no arrastra una cuenta hecha bajo otra puerta', () => {
+    const old = fail({ attempts: 2, givenUpUnder: { ...GATE, prompt: `${GATE.prompt}-anterior` } })
+    expect(foldNight(old, 8, nocheDe503, GATE).entry.attempts ?? 0).toBe(0)
+  })
+
+  // El mismo defecto en la otra dirección: el hueco de cuota o de presupuesto
+  // se escribía sin cuenta, y un trozo con dos lecturas volvía a empezar de cero.
+  it('la cuota o el techo de llamadas no devuelven la cuenta a cero', () => {
+    const prior = recordFailure(
+      recordFailure(undefined, 3, 'covered 69% (floor 85%)', GATE),
+      3,
+      'covered 69% (floor 85%)',
+      GATE,
+    )
+    const e = carryFailure(prior, 3, NEVER_ATTEMPTED['call-budget-spent'], GATE)
+    expect(e.attempts).toBe(2)
+    expect(e.why).toBe('covered 69% (floor 85%)')
+    expect(e.sinLectura).toBe(NEVER_ATTEMPTED['call-budget-spent'])
+  })
+})
+
+describe('el manifiesto dice si el modelo contestó', () => {
+  const sinLectura: IntentoDeTrozo = { lectura: null, why: 'HTTP 503: high demand' }
+
+  it('una noche sin respuesta va a su propio cubo, no a «transcribe-failed»', () => {
+    expect(foldNight(undefined, 1, [sinLectura, sinLectura, sinLectura], GATE).skip).toBe(
+      'no-model-answer',
+    )
+  })
+
+  it('una lectura bajo el suelo va a su cubo aunque después llegara un 503', () => {
+    const r = foldNight(
+      undefined,
+      1,
+      [{ lectura: 'cobertura', why: 'covered 79% (floor 85%)' }, sinLectura],
+      GATE,
+    )
+    expect(r.skip).toBe('below-coverage-floor')
+  })
+
+  // `finishReason=MAX_TOKENS` retiró tres trozos de `10yl550` en agosto: el
+  // modelo leyó y agotó el techo pensando. Es una lectura, y cuenta.
+  it('una respuesta vacía con motivo de cierre es una lectura fallida', () => {
+    const r = foldNight(
+      undefined,
+      1,
+      [{ lectura: 'respuesta-vacia', why: 'empty response (finishReason=MAX_TOKENS)' }],
+      GATE,
+    )
+    expect(r.skip).toBe('transcribe-failed')
+    expect(r.entry.attempts).toBe(1)
   })
 })
 
