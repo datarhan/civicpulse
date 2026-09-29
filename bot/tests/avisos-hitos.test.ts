@@ -96,7 +96,9 @@ describe('el bot ya no publica en un canal', () => {
   it('nada en bot/src lee CHANNEL_ID, y channel.ts no existe', () => {
     const todas = fuentes(SRC)
     expect(todas.length).toBeGreaterThan(20) // el control: el barrido mira algo
-    expect(todas.filter((x) => /CHANNEL_ID/.test(x.texto)).map((x) => x.f)).toEqual([])
+    // Leerla, no nombrarla: los comentarios cuentan su historia.
+    const lee = /\benv\.CHANNEL_ID\b|\benv\[\s*['"]CHANNEL_ID['"]\s*\]/
+    expect(todas.filter((x) => lee.test(x.texto)).map((x) => x.f)).toEqual([])
     expect(existsSync(join(SRC, 'services', 'channel.ts'))).toBe(false)
   })
 })
