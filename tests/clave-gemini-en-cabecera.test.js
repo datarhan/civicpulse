@@ -43,6 +43,7 @@ describe('la clave de Gemini viaja en la cabecera', () => {
   it('el barrido encuentra los ficheros que llaman a Gemini (si no, no prueba nada)', () => {
     expect(hablanConGemini.map((x) => x.f).sort()).toEqual(
       expect.arrayContaining([
+        'bot/src/services/moderacion.ts',
         'bot/src/services/photo-anonymize.ts',
         'scripts/extract-speaker-map.ts',
         'scripts/transcribe-pleno.sh',

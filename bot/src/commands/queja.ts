@@ -15,6 +15,8 @@ import { routeUsingLocalOfficials } from '../services/router.ts'
 import { situar } from '../services/neighborhoods.ts'
 import { comandoDe } from '../services/solo-en-privado.ts'
 import { avisarAdmins, type EnvioAdmin } from '../services/avisos-admin.ts'
+import { comoSeRevisa } from '../services/moderacion.ts'
+import { COMO_SE_REVISA } from '../services/textos-revision.ts'
 import { parseAdminIds } from '../util/admins.ts'
 import type { QuejaCategory, QuejaRouting } from '../../../src/scraper/queja-router.ts'
 import { plazoHumano } from '../../../src/scraper/queja-router.ts'
@@ -158,9 +160,12 @@ async function ubicacionDelPaso(
 
 export function quejaConversationBuilder(db: Db, envio: EnvioAdmin) {
   return async function quejaConversation(conv: MyConversation, ctx: MyContext) {
+    // Cómo se revisa se mira al empezar y otra vez al guardarla: lo que dice el
+    // acuse es lo que va a pasar con ella.
+    const revision = () => COMO_SE_REVISA[comoSeRevisa({ env: process.env })]
     await ctx.reply(
       '📝 *Nueva queja ciudadana*\n\n' +
-        'Voy a guiarte paso a paso. Antes de publicarse en el tablón público de Riba-roja de Túria la revisa una persona del equipo, y te aviso aquí cuando sea pública. Cuando alcance 10 apoyos, entrará en el lote semanal al Registro Electrónico del Ayuntamiento.\n\n' +
+        `Voy a guiarte paso a paso. Antes de publicarse en el tablón público de Riba-roja de Túria ${revision()}, y te aviso aquí cuando sea pública. Cuando alcance 10 apoyos, entrará en el lote semanal al Registro Electrónico del Ayuntamiento.\n\n` +
         'Primer paso: *categoría*.',
       { parse_mode: 'Markdown', reply_markup: categoryKeyboard() },
     )
@@ -264,7 +269,7 @@ export function quejaConversationBuilder(db: Db, envio: EnvioAdmin) {
       (quitados
         ? `🧹 Antes de guardarla he quitado ${quitados}. Lo quitado no se guarda en el bot.\n\n`
         : '') +
-      `🕒 Antes de publicarla la revisa una persona del equipo; te aviso aquí cuando sea pública.\n\n` +
+      `🕒 Antes de publicarla ${revision()}; te aviso aquí cuando sea pública.\n\n` +
       `*Categoría:* ${catLabel}\n` +
       `*Área responsable:* ${routing.concejalia.area}\n` +
       (responsible ? `*Responsable político:* ${responsible.name} (${responsible.party})\n` : '') +

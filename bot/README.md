@@ -54,13 +54,15 @@ Telegram  ──────→  grammy bot  ──────→  SQLite (WAL,
                       ├─→ batch.ts          (weekly solicitud generator)
                       ├─→ sindic.ts         (Síndic template generator)
                       ├─→ cron.ts           (hourly silencio-negativo worker)
+                      ├─→ moderacion.ts     (automatic review, every minute; Gemini)
                       └─→ freeze.ts         (reads promises.json frozenUntil)
 
 HTTP (webhook mode only):
   POST <path of WEBHOOK_URL>  (Telegram only: X-Telegram-Bot-Api-Secret-Token, else 401)
   GET /health                (degraded when the review queue is stuck: no admins,
                               a queja whose card no current admin holds, a wait > 48 h,
-                              or a card waiting > 24 h to lose a withdrawn queja's text)
+                              a card waiting > 24 h to lose a withdrawn queja's text,
+                              or an automatic review failing 3 times or for 2 h)
   GET /export/quejas.json    (bearer-auth via EXPORT_TOKEN)
   GET /batch/current.{md,html}
   GET /sindic/<q-id>.{md,html}
@@ -68,6 +70,23 @@ HTTP (webhook mode only):
 
 Runs in **long-polling** by default (`BOT_TOKEN` only) — no ingress
 required. Set `WEBHOOK_URL` to flip to webhook + HTTP server mode.
+
+**The review before publishing.** A new queja is born `pendiente` and reaches
+every admin as a Telegram card. With `GEMINI_API_KEY` and `GEMINI_NIVEL=pago`
+(the operator's statement that the key's project is on Google's paid terms,
+which do not use what is sent to improve their products), a pass every minute
+(`src/services/moderacion.ts`) sends each pending queja's scrubbed title and
+detail to Gemini (`GEMINI_MODERACION_MODEL`, default `gemini-2.5-flash`). The
+model may only name exact fragments that identify a private person — they are
+cut from the stored text — and give reasons, from a closed list
+(`src/services/moderacion-criterios.ts`), why a person must see it. An answer
+that does not hold up, or a failed call, is retried (5, 15, 60, 180, 360 min);
+after 3 failures or 2 h each admin is told once. A queja with no reasons is
+published without a person only when `decideAutomation` allows the class
+`queja.publicacion-automatica` with a measurement in
+`../.automation-measurements.json`; until then, and always during a LOREG
+freeze, a person decides every one. Every review is logged in
+`revisiones_automaticas` (migration 3), never the removed text.
 
 In webhook mode Telegram resends an update that took over ten seconds, while the first
 delivery is still running. The first middleware (`src/services/una-vez-y-en-orden.ts`)
@@ -169,3 +188,5 @@ and needs them at runtime:
 - `../public/data/geo.json` — the municipal boundary and OSM neighbourhood
   centroids (for `situar`)
 - `../public/data/promises.json` — reads `frozenUntil` for LOREG freeze
+- `../src/scraper/automation-policy.ts` + `../.automation-measurements.json` —
+  whether a queja the automatic review did not hold may publish without a person

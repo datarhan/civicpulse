@@ -83,6 +83,17 @@ Optional secrets you can set now or later:
 - `GEMINI_API_KEY` — la clave del análisis que localiza caras y matrículas en las
   fotos (`src/services/photo-anonymize.ts`). Sin ella, la pasada horaria retiene cada
   foto y no se publica ninguna; el arranque lo dice en el log (`[fotos] cron armado`).
+- `GEMINI_NIVEL=pago` — enciende la revisión automática del texto de cada queja
+  (`src/services/moderacion.ts`). No es un secreto: es tu declaración de que el
+  proyecto de Google de esa clave está en el nivel de pago, cuyas condiciones no
+  usan lo enviado para mejorar sus productos —y el texto de una queja es de un
+  vecino—. Pásalo a pago en Google AI Studio antes de ponerla. Sin ella la revisión
+  no corre, cada queja la decide una persona como hasta ahora, y `/health` lo dice
+  en `moderacion.revision` (`disponible: false`, `falta: "GEMINI_NIVEL"`).
+- `GEMINI_MODERACION_MODEL` — opcional: el modelo de la revisión, si no es
+  `gemini-2.5-flash`. Cambiarlo cambia lo que se midió: la clase
+  `queja.publicacion-automatica` de `.automation-measurements.json` se midió con un
+  modelo y una versión del prompt, y hay que medir otra vez.
 - `GITHUB_DISPATCH_TOKEN` — un token de acceso personal **de grano fino**, limitado a
   este repositorio (`datarhan/civicpulse`) y con un único permiso, «Actions: Read and
   write». Con él, al confirmar `/olvidar` el bot lanza `pull-quejas.yml` y la web
@@ -90,13 +101,31 @@ Optional secrets you can set now or later:
   actualización diaria. Estos tokens caducan: cuando caduque, el log dirá
   `GitHub contestó 401` y la retirada volverá a esperar a la actualización diaria.
 
-Estos dos no se pasan como argumentos, que acabarían en el historial de la shell: se
-escriben en un fichero, se importan y se borra el fichero.
+Los secretos no se pasan como argumentos, que acabarían en el historial de la shell:
+se escriben en un fichero, se importan y se borra el fichero. `GEMINI_NIVEL` puede ir
+en el mismo.
 
 ```bash
 # secret.env: una línea por secreto, GEMINI_API_KEY=… y GITHUB_DISPATCH_TOKEN=…
 flyctl secrets import --app munigraph-ribarroja < secret.env && rm secret.env
 ```
+
+Con la revisión encendida, una queja limpia no se publica sola hasta que la clase
+`queja.publicacion-automatica` tenga una precisión medida y registrada por encima del
+listón de lo notable (`npm run check:automation` dice qué falta). Se mide contra los
+casos de oro con una clave del nivel de pago —el gratuito da unas veinte preguntas al
+día a este modelo, y el medidor para sin grabar nada si se agota—:
+
+```bash
+cd bot && node --env-file=<fichero con GEMINI_API_KEY de pago> --import tsx scripts/medir-revision.ts
+```
+
+Graba `bot/tests/fixtures/moderacion-oro-respuestas.json` y dice cuántas de las que
+publicaría son seguras. Registrarla abre la publicación automática: se hace a mano, con
+`npm run record-measurement` en la raíz (`--against "<modelo>@<versión del prompt>"`,
+que imprime el medidor), en un cambio que lleva también la grabación y cambia la frase
+de `/quejas` que dice que una persona revisa cada queja. `bot/tests/revision-oro.test.ts`
+y `tests/contrato-quejas.test.js` lo exigen.
 
 ### 5. Deploy
 

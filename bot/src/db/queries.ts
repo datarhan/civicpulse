@@ -1,5 +1,6 @@
 import type { Db } from './client.ts'
-import type { Canal, Moderacion, MotivoVaciado } from './migraciones.ts'
+import type { Canal, Moderacion, MotivoVaciado, ResultadoRevision } from './migraciones.ts'
+import type { DecisionRevision, Revision, TextoQueja } from '../services/moderacion.ts'
 import { nuevoIdDeQueja } from '../services/queja-id.ts'
 import {
   cortarLimpio,
@@ -318,6 +319,227 @@ export function decidirModeracion(
       JSON.stringify({ por }),
     )
     return { resultado: 'aplicada', hasta: t.hasta }
+  })()
+}
+
+/** Quién decide en `moderaciones` cuando decide la revisión automática (services/moderacion.ts). */
+export const REVISOR_AUTOMATICO = 'revision-automatica'
+
+/** El evento que deja la revisión automática al quitar fragmentos: cuántos, no cuáles. */
+export const EVENTO_RECORTE_REVISION = 'datos_retirados_revision'
+
+/** Una fila de `revisiones_automaticas` (migración 3). */
+export interface RevisionRow {
+  id: number
+  queja_id: string
+  resultado: ResultadoRevision
+  modelo: string
+  version_prompt: string
+  /** JSON con la lista de motivos, o null si la revisión falló. */
+  motivos: string | null
+  retirados: number | null
+  error: string | null
+  creada_at: string
+}
+
+/** Una queja que espera la revisión automática, con sus fallos hasta ahora. */
+export interface QuejaSinRevisar {
+  id: string
+  title: string
+  detail: string
+  /** Revisiones fallidas: todas las suyas, porque una válida la saca de aquí. */
+  fallos: number
+  primer_fallo: string | null
+  ultimo_fallo: string | null
+  ultimo_error: string | null
+}
+
+/**
+ * Las quejas que esperan la revisión automática: pendientes, vivas y sin una
+ * revisión válida. Las más antiguas primero.
+ */
+export function quejasSinRevisar(db: Db): QuejaSinRevisar[] {
+  return db
+    .prepare(
+      `SELECT q.id, q.title, q.detail,
+              COUNT(r.id) AS fallos,
+              MIN(r.creada_at) AS primer_fallo,
+              MAX(r.creada_at) AS ultimo_fallo,
+              (SELECT error FROM revisiones_automaticas
+                WHERE queja_id = q.id ORDER BY id DESC LIMIT 1) AS ultimo_error
+         FROM quejas q
+         LEFT JOIN revisiones_automaticas r ON r.queja_id = q.id
+        WHERE q.moderacion = 'pendiente' AND q.deleted_at IS NULL
+          AND NOT EXISTS (SELECT 1 FROM revisiones_automaticas v
+                           WHERE v.queja_id = q.id AND v.resultado IN ('limpia', 'marcada'))
+        GROUP BY q.id
+        ORDER BY q.rowid`,
+    )
+    .all() as QuejaSinRevisar[]
+}
+
+/**
+ * Lo que dice la tarjeta de la revisión automática de una queja: la última,
+ * cuántas fallaron y, si la retuvo, con qué motivos —los del modelo y los que
+ * añadió la política, como el periodo electoral—.
+ */
+export function revisionDeQueja(
+  db: Db,
+  id: string,
+): { ultima: RevisionRow | null; fallos: number; retenidaPor: string[] } {
+  const ultima =
+    (db
+      .prepare('SELECT * FROM revisiones_automaticas WHERE queja_id = ? ORDER BY id DESC LIMIT 1')
+      .get(id) as RevisionRow | undefined) ?? null
+  const { fallos } = db
+    .prepare(
+      `SELECT COUNT(*) AS fallos FROM revisiones_automaticas
+        WHERE queja_id = ? AND resultado IN ('invalida', 'error')`,
+    )
+    .get(id) as { fallos: number }
+  const retenida = db
+    .prepare(
+      `SELECT motivo FROM moderaciones
+        WHERE queja_id = ? AND decision = 'retenida' AND por = ?
+        ORDER BY id DESC LIMIT 1`,
+    )
+    .get(id, REVISOR_AUTOMATICO) as { motivo: string | null } | undefined
+  return { ultima, fallos, retenidaPor: retenida?.motivo ? retenida.motivo.split(',') : [] }
+}
+
+/** Cuántos fragmentos quitó la revisión automática del texto de una queja. */
+export function recortesDeRevision(db: Db, id: string): number {
+  return (
+    db
+      .prepare(
+        'SELECT COALESCE(SUM(retirados), 0) AS n FROM revisiones_automaticas WHERE queja_id = ?',
+      )
+      .get(id) as { n: number }
+  ).n
+}
+
+export type ResultadoAnotarRevision =
+  | { anotada: false; porque: 'no-existe' }
+  | {
+      anotada: true
+      /** Si se quitaron fragmentos del texto guardado. */
+      recortada: boolean
+      /** La decisión aplicada, o null si no se aplicó ninguna, y por qué. */
+      hasta: DecisionRevision['hasta'] | null
+      porque?: 'fallida' | 'ya-decidida' | 'retirada-por-autor' | 'texto-cambiado'
+      /** Cómo quedó la queja. */
+      moderacion: Moderacion
+    }
+
+/**
+ * Anota una revisión automática y aplica lo que dice, en una transacción.
+ *
+ * Siempre queda la fila en `revisiones_automaticas`. Si es válida y el texto
+ * guardado sigue siendo el que leyó el modelo, se le quitan los fragmentos —en
+ * cualquier estado: quitar un nombre sólo resta— con un evento que dice cuántos.
+ * La decisión, en cambio, sólo se aplica a una queja que sigue `pendiente` y
+ * viva: lo que decidió una persona, o lo que retiró su autor, mientras el
+ * modelo leía, se queda como está (compare-and-set, como `decidirModeracion`).
+ */
+export function anotarRevision(
+  db: Db,
+  id: string,
+  o: {
+    revision: Revision
+    /** El texto que leyó el modelo. */
+    enviado: TextoQueja
+    modelo: string
+    version: string
+    /** Lo que decidió la política, para una revisión válida. */
+    decision: DecisionRevision | null
+    /** Cuándo se revisó; por defecto, ahora. Los reintentos se cuentan desde aquí. */
+    cuando?: Date
+  },
+): ResultadoAnotarRevision {
+  return db.transaction((): ResultadoAnotarRevision => {
+    const q = db
+      .prepare('SELECT moderacion, deleted_at, title, detail FROM quejas WHERE id = ?')
+      .get(id) as
+      | { moderacion: Moderacion; deleted_at: string | null; title: string; detail: string }
+      | undefined
+    if (!q) return { anotada: false, porque: 'no-existe' }
+    const r = o.revision
+    const valida = r.resultado === 'limpia' || r.resultado === 'marcada'
+    db.prepare(
+      `INSERT INTO revisiones_automaticas
+         (queja_id, resultado, modelo, version_prompt, motivos, retirados, error, creada_at)
+       VALUES (?, ?, ?, ?, ?, ?, ?, COALESCE(?, datetime('now')))`,
+    ).run(
+      id,
+      r.resultado,
+      o.modelo,
+      o.version,
+      valida ? JSON.stringify(r.motivos) : null,
+      valida ? r.retirados : null,
+      'error' in r ? r.error.slice(0, 200) : null,
+      o.cuando ? o.cuando.toISOString().slice(0, 19).replace('T', ' ') : null,
+    )
+    if (!valida)
+      return {
+        anotada: true,
+        recortada: false,
+        hasta: null,
+        porque: 'fallida',
+        moderacion: q.moderacion,
+      }
+    if (q.title !== o.enviado.titulo || q.detail !== o.enviado.detalle) {
+      return {
+        anotada: true,
+        recortada: false,
+        hasta: null,
+        porque: 'texto-cambiado',
+        moderacion: q.moderacion,
+      }
+    }
+    const recortada = r.retirados > 0
+    if (recortada) {
+      db.prepare(
+        `UPDATE quejas SET title = ?, detail = ?, updated_at = datetime('now') WHERE id = ?`,
+      ).run(r.texto.titulo, r.texto.detalle, id)
+      db.prepare('INSERT INTO events (queja_id, kind, payload) VALUES (?, ?, ?)').run(
+        id,
+        EVENTO_RECORTE_REVISION,
+        JSON.stringify({ retirados: r.retirados }),
+      )
+    }
+    const sinDecidir = (porque: 'ya-decidida' | 'retirada-por-autor') => ({
+      anotada: true as const,
+      recortada,
+      hasta: null,
+      porque,
+      moderacion: q.moderacion,
+    })
+    if (q.deleted_at) return sinDecidir('retirada-por-autor')
+    if (q.moderacion !== 'pendiente') return sinDecidir('ya-decidida')
+    const d = o.decision
+    if (!d || d.hasta === 'pendiente') {
+      return { anotada: true, recortada, hasta: 'pendiente', moderacion: 'pendiente' }
+    }
+    db.prepare(
+      `UPDATE quejas
+          SET moderacion = ?,
+              publicada_at = CASE WHEN ? = 'publicada' THEN datetime('now') ELSE publicada_at END,
+              updated_at = datetime('now')
+        WHERE id = ?`,
+    ).run(d.hasta, d.hasta, id)
+    db.prepare(
+      'INSERT INTO moderaciones (queja_id, decision, por, motivo) VALUES (?, ?, ?, ?)',
+    ).run(id, d.hasta, REVISOR_AUTOMATICO, d.hasta === 'retenida' ? d.motivos.join(',') : null)
+    // Como una decisión de una persona: su autor la ve en /estado. La retención, no:
+    // para su autor sigue «en revisión».
+    if (d.hasta === 'publicada') {
+      db.prepare('INSERT INTO events (queja_id, kind, payload) VALUES (?, ?, ?)').run(
+        id,
+        'moderacion_publicada',
+        JSON.stringify({ por: REVISOR_AUTOMATICO }),
+      )
+    }
+    return { anotada: true, recortada, hasta: d.hasta, moderacion: d.hasta }
   })()
 }
 
