@@ -563,47 +563,55 @@ describe('una segunda ancla limita el descarte a la ficha que se miró', () => {
     expect('Avui'.length).toBeLessThan(SOLAPE_MINIMO)
   })
 
-  it('en el registro real, el descarte de la nota de acusación va anclado', () => {
+  it('en el registro real, ningún descarte calla sin ancla la frase de la nota de acusación', () => {
     const real = validarDescartes(
       JSON.parse(readFileSync(resolve('review-dismissals.json'), 'utf8')),
     )
-    // Se eligen por la CITA sola —el ancla se quita para preguntar—: lo que se
-    // vigila es justo que ninguna entrada sobre esta frase vaya sin ancla.
-    const deLaNota = real.items.filter(
-      (d) =>
-        d.route === '/hallazgos' &&
-        estaDescartado('/hallazgos', f(FRASE), {
-          version: 1,
-          items: [{ ...d, anchor: undefined }],
-        }),
-    )
-    // Midió algo: el descarte existe.
-    expect(deLaNota.length, 'no hay descarte de la nota en el registro').toBeGreaterThan(0)
-    for (const d of deLaNota) {
-      expect(
-        d.anchor,
-        `descarte sin ancla sobre la frase de todas las fichas: «${d.quote}»`,
-      ).toBeTruthy()
-    }
+    // Decía «el descarte de la nota de acusación va anclado» y exigía que
+    // existiera. El 29-09-2026 se retiró, con los demás de la lectura aplanada
+    // del hueco: la nota dice ya de qué citas habla (`nombrarCitas`). Lo que se
+    // vigila no cambia —que no vuelva uno que la calle en todas las fichas—, y
+    // para que la guarda no pase en vacío se prueba antes contra uno que sí.
+    const sinAnclaSobreLaNota = (reg: RegistroDescartes) =>
+      reg.items.filter(
+        (d) =>
+          d.route === '/hallazgos' &&
+          !d.anchor &&
+          estaDescartado('/hallazgos', f(FRASE), { version: 1, items: [d] }),
+      )
+    expect(sinAnclaSobreLaNota(sinAncla), 'la guarda no ve un descarte sin ancla').toHaveLength(1)
+    expect(
+      sinAnclaSobreLaNota(real).map((d) => `«${d.quote}» (${d.at})`),
+      'descarte sin ancla sobre la frase de todas las fichas',
+    ).toEqual([])
   })
 })
 
 /**
- * Los dos descartes de /hallazgos que aún casaban por la frase sola, reanclados
- * el 29-09-2026.
+ * Los cuatro señalamientos de lectura aplanada del hueco «Literal retenido» que
+ * leyó la relectura del 29-09-2026 (#179): el revisor pegaba el pie del hueco a
+ * la cita impresa de al lado. Dos de f-2026-05-11-cit-a0a379, uno de
+ * f-2026-05-11-cit-73d3cf y uno de f-2025-12-01-cit-66709b.
  *
- * «La ficha la atribuye a PSOE.» (4-09) y «Es una acusación que el verificador
- * no ha podido contrastar con ningún registro municipal» (20-09) son texto del
- * hueco «Literal retenido», que sale igual en cada ficha con una cita retenida.
- * En la relectura del 29-09 (#179) callaban cuatro señalamientos de lectura
- * aplanada —el revisor lee el pie del hueco como si hablara de la cita impresa
- * de al lado—: dos de f-2026-05-11-cit-a0a379, uno de f-2026-05-11-cit-73d3cf y
- * uno de f-2025-12-01-cit-66709b. Pero habrían callado igual uno cierto en
- * cualquier otra ficha. La nota de acusación ya se había anclado (el bloque de
- * arriba); faltaba el hueco.
+ * Se callaron primero con dos descartes que casaban por la frase sola —«La
+ * ficha la atribuye a PSOE.» (4-09) y «Es una acusación que el verificador no
+ * ha podido contrastar con ningún registro municipal» (20-09)—, que habrían
+ * callado igual uno cierto en cualquier otra ficha; luego, el mismo día, con
+ * uno anclado por ficha (#186). Ninguna de las dos cosas lo arreglaba: cada
+ * composición nueva de citas y huecos traía el señalamiento de vuelta con otra
+ * redacción. Desde el 29-09-2026 lo arregla la página —cada cita abre con su
+ * número y el pie del hueco dice de cuál habla (`CitaRetenida`)— y los nueve
+ * descartes de la familia se retiraron. Si el revisor vuelve a levantar uno,
+ * se relee: no lo calla nadie.
  */
-describe('los descartes del hueco «Literal retenido» van anclados a su ficha', () => {
+describe('los señalamientos de lectura aplanada del hueco ya no los calla un descarte', () => {
   const real = validarDescartes(JSON.parse(readFileSync(resolve('review-dismissals.json'), 'utf8')))
+  const texto = (el: ReturnType<typeof createElement>) => {
+    const { container, unmount } = render(el)
+    const t = container.textContent ?? ''
+    unmount()
+    return t
+  }
   // Los cuatro, tal cual los guardó la caché de aquella relectura. Ninguno
   // comparte más de 12 caracteres seguidos con el literal de una retenida: el
   // repositorio es público, y ese literal es lo que la ficha no reproduce.
@@ -645,66 +653,80 @@ describe('los descartes del hueco «Literal retenido» van anclados a su ficha',
     },
   }
 
-  it('calla los cuatro, cada uno con un solo descarte y anclado', () => {
+  it('ninguno de los cuatro lo calla ya el registro', () => {
     for (const [cual, s] of Object.entries(LEIDOS)) {
-      const quienes = real.items.filter((d) =>
-        estaDescartado('/hallazgos', s, { version: 1, items: [d] }),
-      )
-      expect(quienes, `${cual}: descartes que lo callan`).toHaveLength(1)
-      expect(quienes[0].anchor, `${cual}: lo calla un descarte sin ancla`).toBeTruthy()
+      expect(estaDescartado('/hallazgos', s, real), cual).toBe(false)
     }
   })
 
-  it('la misma frase, señalada en otra ficha, sigue viva', () => {
-    // El mismo señalamiento con el razonamiento de otra ficha, donde podría ser
-    // cierto: nada de lo que los descartes miraron.
-    const enOtraFicha = (s: ReaderFinding): ReaderFinding => ({
-      ...s,
-      inference:
-        'El lector concluye que la intervención retenida de esta otra ficha acusa a alguien.',
-      contradictedBy: 'Nada de lo que la ficha imprime lo sostiene.',
-    })
-    for (const [cual, s] of Object.entries(LEIDOS)) {
-      expect(estaDescartado('/hallazgos', enOtraFicha(s), real), cual).toBe(false)
+  it('porque el hueco ya no imprime las frases sueltas que el revisor pegaba a la vecina', () => {
+    // Con cada número que puede llevar una cita en su ficha y cada grupo que
+    // puede nombrar, y sin ninguno. Leído del componente, no recitado.
+    for (const numero of [1, 2, 3, 4]) {
+      for (const g of [null, ...SPEAKER_GROUPS]) {
+        const t = texto(
+          createElement(CitaRetenida, { numero, attribution: g ? blocLabel(g) : null }),
+        )
+        const cual = `cita ${numero}, ${g ?? 'sin grupo'}`
+        // La de 4-09 era «La ficha la atribuye a PSOE.»: sin número de cita.
+        expect(t, cual).not.toContain('La ficha la atribuye')
+        expect(t, cual).toContain(`La cita ${numero} es una acusación que el verificador`)
+        expect(t, cual).not.toMatch(/(?:^|[.:]\s*)Es una acusación/)
+      }
     }
   })
 
   it('ningún descarte calla por la frase sola un texto que la página repite en cada ficha', () => {
     // Se LEE de los componentes, no se recita: el hueco de una retenida con cada
-    // grupo que puede nombrar y sin ninguno, y la nota con sus dos ejes. Es la
-    // guarda del bloque de arriba, extendida a todo lo que se repite.
-    const texto = (el: ReturnType<typeof createElement>) => {
-      const { container, unmount } = render(el)
-      const t = container.textContent ?? ''
-      unmount()
-      return t
-    }
+    // número y cada grupo que puede nombrar, y sin ninguno; y la nota con sus
+    // dos ejes, con una retenida y con dos. Es la guarda del bloque de arriba,
+    // extendida a todo lo que se repite de ficha en ficha.
     const repetidos = [
-      ...[null, ...SPEAKER_GROUPS].map((g) =>
-        texto(createElement(CitaRetenida, { attribution: g ? blocLabel(g) : null })),
+      ...[1, 2, 3, 4].flatMap((numero) =>
+        [null, ...SPEAKER_GROUPS].map((g) =>
+          texto(createElement(CitaRetenida, { numero, attribution: g ? blocLabel(g) : null })),
+        ),
       ),
-      texto(
-        createElement(QuoteProvenanceNote, {
-          entries: [
-            { gate: 'hidden' },
-            { gate: 'toggle', status: 'solo-en-sustituida' },
-            { gate: 'toggle', status: 'sin-determinar' },
-          ],
-          curatorName: 'auto-curation-v1',
-        }),
+      ...[
+        [{ gate: 'hidden' }, { gate: 'toggle', status: 'solo-en-sustituida' }],
+        [
+          { gate: 'hidden' },
+          { gate: 'toggle', status: 'sin-determinar' },
+          { gate: 'hidden' },
+          { gate: 'toggle' },
+        ],
+      ].map((entries) =>
+        texto(createElement(QuoteProvenanceNote, { entries, curatorName: 'auto-curation-v1' })),
       ),
     ]
     expect(repetidos.join(' ')).toContain(ROTULO_CITA_RETENIDA)
-    const sobreLoRepetido = real.items.filter(
-      (d) =>
-        d.route === '/hallazgos' &&
-        repetidos.some((t) =>
-          estaDescartado('/hallazgos', f(t), { version: 1, items: [{ ...d, anchor: undefined }] }),
-        ),
-    )
-    // Midió algo: hay descartes sobre el texto repetido.
-    expect(sobreLoRepetido.length, 'ningún descarte sobre texto repetido').toBeGreaterThan(0)
-    const sinAncla = sobreLoRepetido.filter((d) => !d.anchor).map((d) => `«${d.quote}» (${d.at})`)
-    expect(sinAncla, 'descartes sin ancla sobre texto de todas las fichas').toEqual([])
+    const sinAnclaSobreLoRepetido = (reg: RegistroDescartes) =>
+      reg.items.filter(
+        (d) =>
+          d.route === '/hallazgos' &&
+          !d.anchor &&
+          repetidos.some((t) => estaDescartado('/hallazgos', f(t), { version: 1, items: [d] })),
+      )
+    // Decía «Midió algo: hay descartes sobre el texto repetido», y desde el
+    // 29-09-2026 no queda ninguno. Para que no pase en vacío, la guarda se
+    // prueba antes contra uno sin ancla sobre el pie de un hueco.
+    const control: RegistroDescartes = {
+      version: 1,
+      items: [
+        {
+          route: '/hallazgos',
+          quote:
+            'La cita 2 es una acusación que el verificador no ha podido contrastar con ningún registro municipal',
+          reason: 'control de la prueba',
+          editor: 'prueba',
+          at: '2026-09-29',
+        },
+      ],
+    }
+    expect(sinAnclaSobreLoRepetido(control), 'la guarda no ve el control').toHaveLength(1)
+    expect(
+      sinAnclaSobreLoRepetido(real).map((d) => `«${d.quote}» (${d.at})`),
+      'descartes sin ancla sobre texto de todas las fichas',
+    ).toEqual([])
   })
 })
