@@ -56,6 +56,8 @@ export type ActionKind =
   | 'publish-finding'
   | 'publish-status-change'
   | 'publish-report'
+  // A citizen complaint the bot's automatic review did not hold (bot/src/services/moderacion.ts).
+  | 'publish-complaint'
   // Always Tier C.
   | 'name-individual'
   | 'outward-action'

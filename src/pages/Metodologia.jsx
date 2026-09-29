@@ -724,14 +724,55 @@ export default function Metodologia() {
             interpretar entero— se retiene en vez de publicarse sin tratar.
           </li>
           <li>
-            <strong>Una persona la revisa antes de publicarla.</strong> Cada queja nueva llega por
-            Telegram a quien modera las quejas, que la publica tal cual o la descarta: no reescribe
-            su texto. Hasta entonces no es pública en ninguna parte —ni en la web ni en el bot para
-            quien no la escribió—. La decisión tiene vuelta atrás: una descartada puede publicarse
-            después, y una publicada, retirarse de la publicación. La foto no pasa por esta
-            revisión: quien modera sabe si la queja trae una, pero no la ve, y la foto se anonimiza
-            y se publica, como en el paso anterior, sólo cuando la queja ya es pública. Quien la
-            escribió recibe aviso del resultado y puede impugnarlo en la dirección de contacto del{' '}
+            <strong>Se revisa antes de publicarla.</strong> Cada queja nueva llega por Telegram a
+            quien modera las quejas. Antes la lee una revisión automática, cuando está activa: un
+            modelo de lenguaje recibe el título y el detalle, sin su autor ni su barrio, y no
+            reescribe nada. Sólo puede hacer dos cosas: señalar los fragmentos exactos que nombran a
+            un particular, o a un empleado público que no es cargo electo, que se quitan del texto y
+            quedan como «[dato personal retirado]», y decir si tiene que verla una persona porque la
+            queja:
+            <ul style={{ margin: '6px 0', paddingLeft: 18 }}>
+              <li>
+                acusa a una persona o a una institución de un delito, de corrupción o de mala fe;
+              </li>
+              <li>insulta, ridiculiza o humilla a alguien;</li>
+              <li>amenaza a alguien o llama a la violencia;</li>
+              <li>
+                ataca a un grupo por su origen, su religión, su sexo, su orientación, una
+                discapacidad u otra condición;
+              </li>
+              <li>
+                habla de la salud, la vida sexual, las creencias o el origen de una persona
+                identificable;
+              </li>
+              <li>
+                aun sin los nombres que se quitan, señala a una persona concreta: a un cargo electo,
+                por su nombre o por su cargo («la alcaldesa»), o a cualquiera por una descripción
+                que la identifica («el vecino del 3.º B»);
+              </li>
+              <li>
+                no es una queja sobre un asunto municipal: publicidad, una prueba, texto sin
+                sentido;
+              </li>
+              <li>
+                trae instrucciones dirigidas a quien la revisa, o a una inteligencia artificial.
+              </li>
+            </ul>
+            El código la retiene también cuando quitarle lo que pide el modelo se llevaría más del
+            30 % del texto, cuando el servicio del modelo se negó a leerla por su contenido, y
+            cuando es periodo electoral (LOREG): ninguna queja se publica sin una persona. Una
+            respuesta del modelo que no se sostiene —un fragmento que no está en el texto, un motivo
+            que no existe, un campo que falta— no se arregla: la revisión se repite más tarde, y si
+            sigue fallando se avisa a quien modera. Una queja que la revisión no retiene sólo se
+            publica sin una persona cuando la precisión de esa revisión está medida y registrada,
+            como cuenta la política de automatización más abajo; sin esa medición, las decide todas
+            quien modera, que publica cada una tal cual o la descarta: no reescribe su texto. Hasta
+            entonces no es pública en ninguna parte —ni en la web ni en el bot para quien no la
+            escribió—. La decisión tiene vuelta atrás: una descartada puede publicarse después, y
+            una publicada, retirarse de la publicación. La foto no pasa por esta revisión: quien
+            modera sabe si la queja trae una, pero no la ve, y la foto se anonimiza y se publica,
+            como en el paso anterior, sólo cuando la queja ya es pública. Quien la escribió recibe
+            aviso del resultado y puede impugnarlo en la dirección de contacto del{' '}
             <a href="/aviso-legal" style={{ color: 'var(--civic)' }}>
               aviso legal
             </a>
@@ -929,18 +970,20 @@ export default function Metodologia() {
               compatible con un 81 % real, así que la publicación automática sigue cerrada hasta que
               haya más casos revisados. Esa cifra está congelada a propósito: es lo que se midió en
               esa fecha, no una afirmación sobre hoy, y sólo cambia cuando se registra una medición
-              nueva.
+              nueva. Así se trata también publicar una queja ciudadana que la revisión automática no
+              retiene (la clase <code>queja.publicacion-automatica</code>, con el listón de lo
+              notable, porque una queja dice algo adverso de un servicio): mientras no esté medida,
+              cada queja la publica una persona.
             </li>
             <li>
               <strong>Siempre con firma humana.</strong> Nombrar a una persona concreta, cualquier
               hallazgo de gravedad crítica (que es una acusación), los informes marcados como
               jurídicamente sensibles, y todo lo irreversible o dirigido al exterior — registrar una
-              queja en sede, publicar una queja ciudadana. No porque una persona acierte más, sino
-              porque la responsabilidad legal necesita una firma. En las quejas ciudadanas hay una
-              excepción: la foto de una queja publicada, que se anonimiza y se publica sin que nadie
-              la vea. Los hitos de cada queja —cuando alcanza los apoyos necesarios, cuando se
-              registra, cuando vence su plazo sin respuesta— no se anuncian en ningún canal público:
-              se avisan a quien modera.
+              queja en sede. No porque una persona acierte más, sino porque la responsabilidad legal
+              necesita una firma. En las quejas ciudadanas hay una excepción: la foto de una queja
+              publicada, que se anonimiza y se publica sin que nadie la vea. Los hitos de cada queja
+              —cuando alcanza los apoyos necesarios, cuando se registra, cuando vence su plazo sin
+              respuesta— no se anuncian en ningún canal público: se avisan a quien modera.
             </li>
           </ul>
           <p style={{ marginBottom: 0 }}>
@@ -1799,14 +1842,27 @@ export default function Metodologia() {
             prensa publica en <code>crossChecked</code> todos los documentos municipales contra los
             que se cruzaron sus citas, los respalden o no: <strong>ningún</strong> paso de este
             verificador comprueba que un expediente sostenga una frase. Los cruces son coincidencias
-            de importe, de cifra contra la última serie publicada o de palabras en un título — la
-            única fila de evidencia del laboratorio a día de hoy empareja un contrato del Plan de
-            Movilidad Urbana Sostenible con una noticia sobre 61.000 € en artes escénicas. Hasta el
-            5 de agosto de 2026 ese campo se llamaba <code>corroboration</code> con exactamente el
+            de importe, de cifra contra la última serie publicada o de palabras en un título — el 5
+            de agosto de 2026, la única fila de evidencia del laboratorio emparejaba un contrato del
+            Plan de Movilidad Urbana Sostenible con una noticia sobre 61.000 € en artes escénicas.
+            Hasta ese mismo día el campo se llamaba <code>corroboration</code> con exactamente el
             mismo contenido, igual que en los hallazgos de pleno. Se renombró sin ninguna fila
             publicada dentro, así que aquí no cambió ninguna afirmación; el cambio es incompatible
             para quien leyera el fichero. El campo <code>contradiction</code> sólo admite documentos
             que el verificador marcó como incompatibles con la cita.
+          </li>
+          <li>
+            <strong>
+              «Coincide con datos municipales» lo enciende un veredicto, no un documento.
+            </strong>{' '}
+            En las tarjetas del laboratorio, ese indicador sólo se enciende (●) cuando alguna
+            afirmación del titular, cotejada contra los datos, ha salido «Verificado». El círculo
+            vacío (○) quiere decir que se cotejó alguna y ninguna salió «Verificado»; «sin
+            comprobar» (–), que no se cotejó ninguna, porque del titular no se extrajo ninguna
+            afirmación o porque para las extraídas no hay datos contra los que cotejarlas. Antes
+            bastaba cualquier documento cotejado, y el 28 de septiembre de 2026 una nota municipal
+            sobre la sensorización de contenedores salía en verde por un contrato de pérgolas de
+            131.336 € que el verificador sólo había marcado «Parcial».
           </li>
           <li>
             <strong>Severity crítico exige una contradicción.</strong> El validador rechaza un
