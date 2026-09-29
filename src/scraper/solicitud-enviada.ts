@@ -27,15 +27,45 @@
  * cómputo arranca en una que no. Escribir «vence el 9 de octubre» a secas sería
  * firmar un plazo que no podemos acreditar, en una página cuyo trato con el
  * lector es una cita por afirmación.
+ *
+ * EL ÚLTIMO DÍA INHÁBIL. Desde el 29-09-2026 el mes acaba el primer día hábil
+ * cuando su último día es inhábil (art. 30.5 LPACAP), y el calendario es el de
+ * quien resuelve cada fila (`calendario`, en `calendarios-inhabiles.ts`). Aquel
+ * «9 de octubre» era, además, el Día de la Comunitat Valenciana: el mes del
+ * Ayuntamiento acababa el 13, y la fila habría pasado a «sin respuesta» el 10.
  */
-import { QUE_HICIERON, venceEl, type SentidoRespuesta } from './solicitud-acceso'
+import {
+  CALENDARIOS,
+  CALENDARIO_ETIQUETA,
+  festivosDelCalendario,
+  type Calendario,
+} from './calendarios-inhabiles'
+import {
+  QUE_HICIERON,
+  estadoDelMes,
+  faltaElCalendario,
+  motivoDeInhabil,
+  venceEl,
+  type SentidoRespuesta,
+  type Vencimiento,
+} from './solicitud-acceso'
+import type { FestivosPorAnio } from './queja-router'
 
-export const ESTADOS_ENVIO = ['en-plazo', 'vencida-sin-respuesta', 'respondida'] as const
+// Quien escribe una fila lee de aquí qué calendarios hay.
+export { CALENDARIOS, type Calendario }
+
+export const ESTADOS_ENVIO = [
+  'en-plazo',
+  'sin-calendario',
+  'vencida-sin-respuesta',
+  'respondida',
+] as const
 export type EstadoEnvio = (typeof ESTADOS_ENVIO)[number]
 
 /** Cómo se llama cada estado en la página. */
 export const ESTADO_ENVIO_ETIQUETA: Record<EstadoEnvio, string> = {
   'en-plazo': 'en plazo',
+  'sin-calendario': 'sin calendario',
   'vencida-sin-respuesta': 'sin respuesta',
   respondida: 'respondida',
 }
@@ -49,6 +79,9 @@ export const ESTADO_ENVIO_ETIQUETA: Record<EstadoEnvio, string> = {
  */
 export const ESTADO_ENVIO_TONO: Record<EstadoEnvio, string> = {
   'en-plazo': 'civic',
+  // Lo que falta es un calendario nuestro, no una respuesta suya: neutro, como
+  // en /quejas/dashboard y en /laboratorio/cobertura.
+  'sin-calendario': 'neutral',
   'vencida-sin-respuesta': 'warn',
   respondida: 'ok',
 }
@@ -56,6 +89,14 @@ export const ESTADO_ENVIO_TONO: Record<EstadoEnvio, string> = {
 export interface EnvioSolicitud {
   /** A quién. Se imprime tal cual: aquí no hay organismo por defecto. */
   organismo: string
+  /**
+   * Con qué calendario de días inhábiles se cuenta el último día (art. 30.5
+   * LPACAP): el de la administración que la resuelve, en el territorio de la
+   * sede de su órgano. Se escribe a mano porque se decide leyendo quién resuelve,
+   * no se deduce del nombre; una fila sin él, o con uno que no existe, no hereda
+   * el de la sede: falla cerrado y nunca vence.
+   */
+  calendario: Calendario
   enviadaEl: string
   /** Por dónde salió. Importa para el art. 17.2 y para lo que se puede probar. */
   via: string
@@ -191,9 +232,41 @@ export function arranqueDelPlazo(e: EnvioSolicitud): { desde: string; acreditado
   return { desde: e.enviadaEl, acreditado: false }
 }
 
+/**
+ * El último día del mes de una fila: desde su arranque, con el calendario de
+ * quien la resuelve.
+ */
+function vencimientoDe(e: EnvioSolicitud): { v: Vencimiento; festivos: FestivosPorAnio } {
+  const festivos = festivosDelCalendario(e.calendario)
+  return { v: venceEl(arranqueDelPlazo(e).desde, festivos), festivos }
+}
+
 export function estadoDeEnvio(e: EnvioSolicitud, hoy: string): EstadoEnvio {
   if (e.respuesta) return 'respondida'
-  return hoy > venceEl(arranqueDelPlazo(e).desde) ? 'vencida-sin-respuesta' : 'en-plazo'
+  return estadoDelMes(vencimientoDe(e).v, hoy)
+}
+
+/** «9 de octubre», o con el año si no es el del último día. */
+function diaDelNominal(nominal: string, ultimoDia: string): string {
+  const largo = enCastellano(nominal)
+  return nominal.slice(0, 4) === ultimoDia.slice(0, 4) ? largo.replace(/ de \d{4}$/, '') : largo
+}
+
+/**
+ * El último día, dicho para leer. Si se prorrogó, con el día que era y por qué
+ * es inhábil: quien cuente un mes desde el arranque tiene que poder reconciliar
+ * la fecha. Sin calendario, el día nominal y la regla, sin decidir.
+ */
+function diaDelPlazo(v: Vencimiento, festivos: FestivosPorAnio): string {
+  if (v.cuenta === 'sin-calendario') {
+    return `${enCastellano(v.nominal)} o, si ese día es inhábil, el primer día hábil siguiente`
+  }
+  if (v.ultimoDia === v.nominal) return enCastellano(v.ultimoDia)
+  const motivo = motivoDeInhabil(v.nominal, festivos)
+  return (
+    `${enCastellano(v.ultimoDia)} (prorrogado: el ${diaDelNominal(v.nominal, v.ultimoDia)}` +
+    `${motivo ? `, ${motivo},` : ''} es inhábil; art. 30.5 de la Ley 39/2015)`
+  )
 }
 
 /**
@@ -213,7 +286,11 @@ export function fraseDeEnvio(e: EnvioSolicitud, hoy: string): string {
       ? `, que da como fecha de registro el ${enCastellano(e.entradaEl)}.`
       : '.')
   const estado = estadoDeEnvio(e, hoy)
-  const vence = enCastellano(venceEl(arranqueDelPlazo(e).desde))
+  const { v, festivos } = vencimientoDe(e)
+  const vence = diaDelPlazo(v, festivos)
+  // Sin el calendario del año, se dice qué falta: la frase no da el plazo por
+  // vencido, y el lector tiene que saber por qué no puede.
+  const falta = v.cuenta === 'sin-calendario' ? ` ${faltaElCalendario(v.anio)}` : ''
   // Cómo acaba la frase de una vencida. Si consta que contestaron algo —una
   // incidencia—, «no han contestado» contradiría la línea de debajo: lo que
   // falta es la resolución, que es lo que mide el art. 20, y así se dice.
@@ -247,9 +324,9 @@ export function fraseDeEnvio(e: EnvioSolicitud, hoy: string): string {
       return `${cabeza} ${remision} ${arranque} ${cierre}`
     }
     return r.recibidaEl
-      ? `${cabeza} ${remision} El artículo 20 de la Ley 19/2013 da un mes desde esa recepción: vence el ${vence}.`
+      ? `${cabeza} ${remision} El artículo 20 de la Ley 19/2013 da un mes desde esa recepción: vence el ${vence}.${falta}`
       : `${cabeza} ${remision} El artículo 20 de la Ley 19/2013 da un mes desde que la solicitud llega al ` +
-          `órgano competente para resolver: contado desde esa comunicación, el ${vence}.`
+          `órgano competente para resolver: contado desde esa comunicación, el ${vence}.${falta}`
   }
 
   // Con asiento, el plazo se afirma; sin él, se dice desde dónde se cuenta. La
@@ -265,13 +342,33 @@ export function fraseDeEnvio(e: EnvioSolicitud, hoy: string): string {
   if (e.registro) {
     return (
       `${cabeza} El artículo 20 de la Ley 19/2013 da un mes desde su entrada en el registro del ` +
-      `órgano competente para resolver: vence el ${vence}.`
+      `órgano competente para resolver: vence el ${vence}.${falta}`
     )
   }
 
   return (
     `${cabeza} El artículo 20 de la Ley 19/2013 da un mes desde que la solicitud llega al ` +
-    `órgano competente para resolver: contado desde el envío, el ${vence}.`
+    `órgano competente para resolver: contado desde el envío, el ${vence}.${falta}`
+  )
+}
+
+/**
+ * Con qué calendario se contó el último día de cada fila, dicho una vez debajo
+ * de la lista. Sale de las filas y no de una nota escrita a mano: una que
+ * nombrara a la Generalitat en una pieza que no le escribe diría algo falso, y
+ * una que la callara, algo incompleto. Vacía si no hay filas.
+ */
+export function fraseDeCalendarios(items: EnvioSolicitud[]): string {
+  const usados = CALENDARIOS.filter((c) => items.some((e) => e.calendario === c))
+  if (usados.length === 0) return ''
+  const etiquetas = usados.map((c) => CALENDARIO_ETIQUETA[c])
+  const lista =
+    etiquetas.length === 1
+      ? etiquetas[0]
+      : `${etiquetas.slice(0, -1).join(', ')} y ${etiquetas[etiquetas.length - 1]}`
+  return (
+    'Cuando el mes acaba en un día inhábil, el plazo pasa al primer día hábil siguiente ' +
+    `(art. 30.5 de la Ley 39/2015), y el calendario de días inhábiles es el de quien resuelve: ${lista}.`
   )
 }
 
@@ -283,11 +380,11 @@ export interface ResumenEnvios {
 }
 
 export function resumirEnvios(items: EnvioSolicitud[], hoy: string): ResumenEnvios {
-  const porEstado: Record<EstadoEnvio, number> = {
-    'en-plazo': 0,
-    'vencida-sin-respuesta': 0,
-    respondida: 0,
-  }
+  // Del enum, no a mano: un estado nuevo sin su contador sumaría NaN.
+  const porEstado = Object.fromEntries(ESTADOS_ENVIO.map((s) => [s, 0])) as Record<
+    EstadoEnvio,
+    number
+  >
   for (const e of items) porEstado[estadoDeEnvio(e, hoy)] += 1
   return { total: items.length, porEstado, concluyente: items.length > 0 }
 }
