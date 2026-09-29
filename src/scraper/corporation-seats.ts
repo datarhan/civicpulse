@@ -14,6 +14,7 @@
  * importing it stays green while production drifts — and it is the single
  * most expensive defect class in this repo's history. One import, one source.
  */
+import { findPartiesInText } from '../lib/party-alias'
 
 export interface OfficialLike {
   slug: string
@@ -64,4 +65,52 @@ export function seatsFromOfficials(doc: OfficialsDoc): BlocSeats[] {
  */
 export function singleSeatBlocs(seats: readonly BlocSeats[]): string[] {
   return seats.filter((s) => s.seats === 1).map((s) => s.bloc)
+}
+
+/**
+ * The one-seat blocs of a roster document, or `null` when the document holds
+ * nothing to derive them from.
+ *
+ * The two answers must not collapse. With `officials.json` missing,
+ * `seatsFromOfficials` returns `[]`, `singleSeatBlocs([])` returns `[]`, and a
+ * caller asking "does this name anyone by elimination?" hears "no" — the
+ * `r?.findings ?? []` defect, a gate that prints its own all-clear
+ * (DATA_INTEGRITY rule 2). Unknown is `null`, and a caller deciding what may
+ * publish fails closed on it.
+ */
+export function oneSeatBlocsOf(doc: OfficialsDoc | null | undefined): string[] | null {
+  const seats = seatsFromOfficials(doc ?? {})
+  return seats.length === 0 ? null : singleSeatBlocs(seats)
+}
+
+/** The parts of a finding, or a draft of one, that can attribute or name a group. */
+export interface AttributableLike {
+  quotes?: ReadonlyArray<{ speakerGroup?: string | null }>
+  title?: string
+  summary?: string
+}
+
+/**
+ * Every one-seat bloc a finding attributes something to or names, once each,
+ * in order of appearance: quote labels first, then the title and the summary.
+ *
+ * The prose counts as much as the labels. A synthesiser that never sees the
+ * label can still write «Vox se compromete…» from a verbatim that says «el
+ * compromiso de Vox», and the chair calls the groups by other names —
+ * «Esquerra Unida» is EU-Podem — so the prose is read through
+ * `findPartiesInText`, the same alias table the speaker map is checked with.
+ */
+export function singleSeatAttributions(
+  draft: AttributableLike,
+  oneSeat: readonly string[],
+): string[] {
+  const found: string[] = []
+  const add = (bloc: string | null | undefined) => {
+    if (bloc && oneSeat.includes(bloc) && !found.includes(bloc)) found.push(bloc)
+  }
+  for (const q of draft.quotes ?? []) add(q.speakerGroup)
+  for (const prose of [draft.title, draft.summary]) {
+    for (const party of findPartiesInText(prose ?? '')) add(party)
+  }
+  return found
 }
