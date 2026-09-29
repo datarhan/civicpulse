@@ -29,6 +29,16 @@ export interface Descarte {
   route: string
   /** La cita EXACTA que se descarta, tal y como la emitió la revisión. */
   quote: string
+  /**
+   * Segunda ancla, opcional: un literal que tiene que aparecer ADEMÁS en el
+   * razonamiento del señalamiento (`inference` o `contradictedBy`) para que el
+   * descarte lo calle. Para cuando la cita es una frase que la página repite en
+   * muchas fichas —la nota del hueco «Literal retenido» abre igual en veinte— y
+   * lo que se revisó es su lectura en UNA: se ancla en lo que el revisor dijo de
+   * esa ficha, normalmente la cita de al lado que leyó cruzada. Sin ancla, el
+   * descarte casa por la cita sola, como siempre.
+   */
+  anchor?: string
   /** Por qué no es un defecto. Obligatorio: un descarte sin motivo es un mute. */
   reason: string
   /** Quién lo decidió. Una persona, siempre. */
@@ -108,7 +118,8 @@ export const SOLAPE_MINIMO = 25
  */
 export function estaDescartado(
   route: string,
-  finding: Pick<ReaderFinding, 'quote'>,
+  finding: Pick<ReaderFinding, 'quote'> &
+    Partial<Pick<ReaderFinding, 'inference' | 'contradictedBy'>>,
   registro: RegistroDescartes | null,
 ): boolean {
   if (!registro?.items?.length) return false
@@ -116,6 +127,15 @@ export function estaDescartado(
   if (!q) return false
   return registro.items.some((d) => {
     if (d.route !== route) return false
+    // Con segunda ancla, primero el razonamiento: si el revisor no habla de la
+    // ficha que se miró, la frase repetida se queda viva aunque case. Un
+    // señalamiento sin razonamiento no la cumple — se queda vivo, que es el
+    // lado seguro.
+    if (d.anchor !== undefined) {
+      const ancla = normaliza(d.anchor)
+      const razon = normaliza(`${finding.inference ?? ''}\n${finding.contradictedBy ?? ''}`)
+      if (!ancla || !razon.includes(ancla)) return false
+    }
     const dq = normaliza(d.quote)
     if (dq === q) return true
     // Contención, no igualdad exacta.
@@ -241,6 +261,16 @@ export function validarDescartes(raw: unknown): RegistroDescartes {
     }
     if (d.reason.trim().length < 20) {
       throw new Error(`registro de descartes: motivo demasiado corto en ${d.route}`)
+    }
+    // El ancla sólo estrecha, pero una muy corta estrecharía de mentira: casaría
+    // con casi cualquier razonamiento y el descarte volvería a ser de la frase
+    // sola, pareciendo acotado. El mismo suelo que la cita.
+    if (d.anchor !== undefined) {
+      if (typeof d.anchor !== 'string' || normaliza(d.anchor).length < SOLAPE_MINIMO) {
+        throw new Error(
+          `registro de descartes: ancla vacía o de menos de ${SOLAPE_MINIMO} caracteres en ${d.route}`,
+        )
+      }
     }
   }
   return r

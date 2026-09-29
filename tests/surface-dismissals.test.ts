@@ -561,10 +561,15 @@ describe('una segunda ancla limita el descarte a la ficha que se miró', () => {
     const real = validarDescartes(
       JSON.parse(readFileSync(resolve('review-dismissals.json'), 'utf8')),
     )
+    // Se eligen por la CITA sola —el ancla se quita para preguntar—: lo que se
+    // vigila es justo que ninguna entrada sobre esta frase vaya sin ancla.
     const deLaNota = real.items.filter(
       (d) =>
         d.route === '/hallazgos' &&
-        estaDescartado('/hallazgos', f(FRASE), { version: 1, items: [d] }),
+        estaDescartado('/hallazgos', f(FRASE), {
+          version: 1,
+          items: [{ ...d, anchor: undefined }],
+        }),
     )
     // Midió algo: el descarte existe.
     expect(deLaNota.length, 'no hay descarte de la nota en el registro').toBeGreaterThan(0)
