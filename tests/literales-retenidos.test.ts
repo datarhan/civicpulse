@@ -28,9 +28,11 @@ import {
   PUERTA_QUE_RETIENE,
   TRAMO_MINIMO_EN_CARACTERES,
   huellaDeLiteral,
+  literalesRetenidosDe,
   rastrosDeLiterales,
   retenerLiterales,
   tramosDeLiterales,
+  tramosRetenidosEn,
   versionesDeCitas,
   type FilaLike,
 } from '../src/scraper/literales-retenidos'
@@ -271,6 +273,36 @@ describe('retenerLiterales — la bitácora no reimprime lo que el hueco retiene
     expect(snapshot.items[0].summary).toBe(entrada.summary)
     expect(snapshot.items[0].corrections[0]).toEqual(sumario)
   })
+
+  it('la enmienda del motivo de una fila sale tal cual, también en una fila retenida', () => {
+    // La enmienda no lleva literal ninguno —el motivo anterior va en huella—, y
+    // es lo que le dice al lector que el motivo que lee no es el de la fecha de
+    // la fila. Si la copia servida la perdiera, la página diría lo contrario.
+    const enmiendas = [
+      {
+        previous: 'motivo · sha256:0123456789ab',
+        reason: 'El motivo daba por hecho un hablante que el cotejo con el vídeo desmintió.',
+        editor: 'María de la Fuente Llorens',
+        amendedAt: '2026-09-29T10:00:00.000Z',
+      },
+    ]
+    const deTexto = {
+      ...fila('quote.1.text', RETENIDA_VIEJA, RETENIDA),
+      reasonAmendments: enmiendas,
+    }
+    const deSumario = {
+      ...fila('summary', 'Sumario viejo.', 'Sumario nuevo.'),
+      reasonAmendments: enmiendas,
+    }
+    const { snapshot } = retenerLiterales(
+      snapshotDe(ficha({ corrections: [deTexto, deSumario] })),
+      prov,
+    )
+    const [servidaTexto, servidaSumario] = snapshot.items[0].corrections
+    expect(servidaTexto.literalRetenido).toBe(true)
+    expect(servidaTexto.reasonAmendments).toEqual(enmiendas)
+    expect(servidaSumario).toEqual(deSumario)
+  })
 })
 
 describe('rastrosDeLiterales — dónde queda un tramo de un literal', () => {
@@ -305,6 +337,105 @@ describe('rastrosDeLiterales — dónde queda un tramo de un literal', () => {
     expect(
       rastrosDeLiterales(snapshot, [{ id: 'f-prueba#1', versiones: [RETENIDA, RETENIDA_VIEJA] }]),
     ).toEqual([])
+  })
+})
+
+describe('literalesRetenidosDe — qué buscar: cada retenida con todas sus versiones', () => {
+  const prov = procedencia({ 'f-prueba': ['shown', PUERTA_QUE_RETIENE, 'toggle'] })
+
+  it('lista sólo las retenidas, por ficha e índice, con la cadena de versiones de su texto', () => {
+    const entrada = snapshotDe(
+      ficha({ corrections: [fila('quote.1.text', RETENIDA_VIEJA, RETENIDA)] }),
+    )
+    expect(literalesRetenidosDe(entrada, prov)).toEqual([
+      { id: 'f-prueba#1', versiones: [RETENIDA, RETENIDA_VIEJA] },
+    ])
+  })
+
+  it('sin la tabla de citas de la procedencia, falla en vez de decir «ninguna»', () => {
+    expect(() => literalesRetenidosDe(snapshotDe(ficha()), {} as never)).toThrow(/procedencia/)
+  })
+
+  it('decide con el predicado de la página: también la cita que la copia servida ya marca', () => {
+    // `citaRetenida` (src/lib/cita-retenida.js) retiene por la puerta O por la
+    // marca `literalRetenido`; un `gate === …` escrito aquí sólo vería lo primero.
+    const marcada = { speakerGroup: 'PP', sourceClaimId: 'c1', literalRetenido: true }
+    const entrada = snapshotDe(ficha({ quotes: [ficha().quotes[0], marcada] }))
+    expect(literalesRetenidosDe(entrada, procedencia({}))).toEqual([
+      { id: 'f-prueba#1', versiones: [] },
+    ])
+  })
+})
+
+describe('tramosRetenidosEn — la CLI pregunta antes de escribir un texto que se publica', () => {
+  const prov = procedencia({ 'f-prueba': ['shown', PUERTA_QUE_RETIENE, 'toggle'] })
+
+  it('señala el texto nuevo que reproduce un tramo de una retenida, y cuál', () => {
+    const f = ficha()
+    expect(
+      tramosRetenidosEn(
+        {
+          nuevo: `El motivo decía que «${RETENIDA.slice(0, 60)}», y no era así.`,
+          porque: 'La atribución la desmintió el cotejo con el vídeo de la sesión.',
+        },
+        f,
+        prov,
+      ),
+    ).toEqual([{ campo: 'nuevo', cita: 1 }])
+  })
+
+  it('también una versión anterior del literal, la que guarda la bitácora', () => {
+    // Sin una palabra en común con el texto vigente en ninguna ventana: si se
+    // encuentra, es porque se ha seguido la cadena de la bitácora.
+    const anterior = 'aquella adjudicación la hicieron a dedo para una empresa amiga suya'
+    const texto = { porque: `El motivo citaba «${anterior}».` }
+    const f = ficha({ corrections: [fila('quote.1.text', anterior, RETENIDA)] })
+    expect(tramosRetenidosEn(texto, f, prov)).toEqual([{ campo: 'porque', cita: 1 }])
+    expect(tramosRetenidosEn(texto, ficha(), prov)).toEqual([])
+  })
+
+  it('deja pasar lo que no copia ninguna retenida, aunque copie una cita que sí se enseña', () => {
+    const f = ficha()
+    expect(
+      tramosRetenidosEn(
+        {
+          nuevo: 'El sumario convertía un reproche en segunda persona en una afirmación.',
+          porque: `La cita que sí se publica dice «${MOSTRADA}».`,
+        },
+        f,
+        prov,
+      ),
+    ).toEqual([])
+  })
+
+  it('sin procedencia, falla cerrado: no sabe qué comprobar', () => {
+    expect(() => tramosRetenidosEn({ nuevo: RETENIDA }, ficha(), {} as never)).toThrow(
+      /procedencia/,
+    )
+  })
+
+  it('pregunta con las dos cribas de la copia servida: también cuarenta caracteres en estilo indirecto', () => {
+    // La forma de f-2025-12-01-cit-bef239 (ver `tramosDeLiterales`, abajo): la
+    // ventana de ocho palabras no la ve, la de caracteres sí, y la prueba de los
+    // datos publicados mira las dos. Si la CLI mirara sólo una, dejaría escribir
+    // un motivo que esa prueba pondría en rojo después.
+    const vigente = "vostés van votar contra l'ampliació del poliesportiu municipal"
+    const anterior = 'ustedes votaron contra la ampliación del polideportivo municipal'
+    const [q0, q1, q2] = ficha().quotes
+    const f = ficha({
+      quotes: [q0, { ...q1, text: vigente }, q2],
+      corrections: [fila('quote.1.text', anterior, vigente)],
+    })
+    const texto = {
+      nuevo:
+        'El grupo A afirma que el grupo B votó contra la ampliación del polideportivo municipal.',
+    }
+    expect(
+      rastrosDeLiterales({ items: [{ id: f.id, ...texto }] }, [
+        { id: 'f-prueba#1', versiones: [vigente, anterior] },
+      ]),
+    ).toEqual([])
+    expect(tramosRetenidosEn(texto, f, prov)).toEqual([{ campo: 'nuevo', cita: 1 }])
   })
 })
 
@@ -387,20 +518,6 @@ describe('tramosDeLiterales — cuarenta caracteres de un literal, en cualquier 
 const FUENTE = leer('public/data/pleno-findings.json')
 const PROV = leer('public/data/finding-quote-provenance.json')
 
-/** Las retenidas, con todas las versiones de su literal que el repositorio guarda. */
-function retenidasDe(fuente: typeof FUENTE, prov: typeof PROV) {
-  const out: Array<{ id: string; versiones: string[] }> = []
-  for (const f of fuente.items) {
-    const versiones = versionesDeCitas(f)
-    // Con el predicado de la página, no con `gate === …` escrito aquí.
-    ;(f.quotes ?? []).forEach((q: { literalRetenido?: boolean }, i: number) => {
-      if (citaRetenida(provenanceFor(prov, f.id)[i], q))
-        out.push({ id: `${f.id}#${i}`, versiones: [...versiones[i]] })
-    })
-  }
-  return out
-}
-
 /** Las dos cribas que miran la copia servida: ocho palabras seguidas, o cuarenta caracteres. */
 type Criba = 'palabras' | 'caracteres'
 
@@ -441,7 +558,22 @@ const esperadas = (criba: Criba) =>
     .sort()
 
 describe('sobre los datos publicados', () => {
-  const retenidas = retenidasDe(FUENTE, PROV)
+  const retenidas = literalesRetenidosDe(FUENTE, PROV)
+
+  it('lo que se busca son exactamente las retenidas que la página rotula', () => {
+    // El mismo predicado y la misma búsqueda por ficha que la página
+    // (`citaRetenida` sobre `provenanceFor`): lo que sale de aquí es lo que el
+    // lector ve como hueco, ni una cita más ni una menos.
+    const porLaPagina = FUENTE.items.flatMap((f: { id: string; quotes?: unknown[] }) =>
+      (f.quotes ?? []).flatMap((q, i) =>
+        citaRetenida(provenanceFor(PROV, f.id)[i], q as { literalRetenido?: boolean })
+          ? [`${f.id}#${i}`]
+          : [],
+      ),
+    )
+    expect(porLaPagina.length).toBeGreaterThan(0)
+    expect(retenidas.map((r) => r.id)).toEqual(porLaPagina)
+  })
   const { snapshot, stats } = retenerLiterales(FUENTE, PROV)
 
   it('hay citas retenidas que medir (si no, lo demás pasaría sin mirar nada)', () => {

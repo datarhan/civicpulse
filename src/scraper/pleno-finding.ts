@@ -35,6 +35,7 @@
  *  · response     optional right-of-reply field (same pattern as promises)
  */
 import { stripSimilarityAnnotation } from '../llm/candidate-annotation'
+import { rechazoDeFirma } from './firma-de-persona'
 import { sha256Short } from './hash'
 import { SPEAKER_GROUPS, type SpeakerGroup } from './pleno-votes'
 // Cyclic with `finding-retraction.ts`, and safe: that module reads this one's
@@ -178,11 +179,32 @@ export interface PlenoFindingCorrection {
     | `crossChecked.${number}`
   original: string
   corrected: string
-  /** Curator's plain-language explanation (≥20 chars). */
+  /**
+   * Curator's plain-language explanation (≥20 chars). The one a reader sees
+   * today: if `reasonAmendments` is present, it is NOT the one this row was
+   * published with. See ENMIENDA DEL MOTIVO below.
+   */
   reason: string
   editor: string
   /** ISO date of the correction. */
   correctedAt: string
+  /**
+   * Cada sustitución de `reason`, en orden. Ausente —nunca vacía— en una fila
+   * cuyo motivo es el de su publicación. Ver ENMIENDA DEL MOTIVO.
+   */
+  reasonAmendments?: PlenoFindingReasonAmendment[]
+}
+
+/** Una sustitución del motivo de una fila de la bitácora. Ver ENMIENDA DEL MOTIVO. */
+export interface PlenoFindingReasonAmendment {
+  /** Huella del motivo que esta enmienda sustituyó (`motivo · sha256:<12 hex>`), nunca su texto. */
+  previous: string
+  /** Por qué se enmendó (≥20 caracteres). Se publica en la bitácora. */
+  reason: string
+  /** Quién lo enmendó: una persona, con su nombre (`firma-de-persona.ts`). */
+  editor: string
+  /** Fecha ISO de la enmienda; nunca anterior a la de la fila que enmienda. */
+  amendedAt: string
 }
 
 /** Correction field paths addressing a quote row: quote.<i>.text / quote.<i>.sourceClaimId */
@@ -328,8 +350,71 @@ export type RedactableField = keyof typeof REDACTION_LABELS
 /** What a redacted ledger side looks like, for tests and for the sweep's idempotence. */
 export const REDACTION_DIGEST_RE = /^(?:titular|sumario) · sha256:[0-9a-f]{12}$/
 
+/**
+ * La receta de toda huella de este fichero: `sha256Short` del texto serializado
+ * en JSON, tras una etiqueta que dice qué era. Una sola, para que un auditor
+ * rehaga cualquiera con la misma herramienta.
+ */
+const huella = (etiqueta: string, value: string): string =>
+  `${etiqueta} · sha256:${sha256Short(JSON.stringify(value))}`
+
 const redactionDigest = (field: RedactableField, value: string): string =>
-  `${REDACTION_LABELS[field]} · sha256:${sha256Short(JSON.stringify(value))}`
+  huella(REDACTION_LABELS[field], value)
+
+/**
+ * ── ENMIENDA DEL MOTIVO ─────────────────────────────────────────────────────
+ *
+ * El motivo de una fila (`corrections[i].reason`) se publica en /hallazgos bajo
+ * «Motivo:», y hasta el 29-09-2026 era lo único de la bitácora que ninguna vía
+ * de la CLI podía tocar. `--redact` pasa a huella los TEXTOS de las filas que
+ * copian un sumario y deja su motivo intacto a propósito: es la explicación, no
+ * la prosa retirada. Pero el motivo también puede ser el defecto, y en
+ * `f-2026-05-11-acu-7c65c5` lo es dos veces: el del 9-08 cita el arranque de una
+ * intervención que la puerta editorial retiene y da por hecho un hablante que el
+ * cotejo del 29-09 desmintió; el del 2-08 descansa en un futuro («aprobaremos»)
+ * que la transcripción vigente da en pasado.
+ *
+ * `--amend-reason <i>` sustituye el motivo de la fila `i` y deja en ELLA la
+ * enmienda:
+ *
+ *     reason:           "<el motivo nuevo>"
+ *     reasonAmendments: [{ previous: "motivo · sha256:5f3a1c2e9b01",
+ *                          reason:   "<por qué se enmendó>",
+ *                          editor:   "<Nombre Apellido>",
+ *                          amendedAt:"<ISO>" }]
+ *
+ * Tres decisiones, y por qué:
+ *
+ *   · Vive en la fila, no en una fila nueva al final. La fila conserva su
+ *     `editor` y su `correctedAt`: son de quien hizo la CORRECCIÓN y de cuándo.
+ *     Un motivo nuevo bajo esa firma y esa fecha, sin nada al lado, atribuiría a
+ *     quien corrigió el 9-08 una explicación escrita el 29-09. Con la enmienda
+ *     dentro, cualquier lector de la fila —la página, la copia servida, un
+ *     script— ve las dos firmas y las dos fechas a la vez. Y una enmienda no es
+ *     una corrección de la ficha: no cambia nada de lo que la ficha afirma, así
+ *     que no cuenta como tal.
+ *   · El motivo anterior queda SÓLO en huella, con la receta de la redacción.
+ *     Las dos razones para enmendar son las de arriba: el motivo reproduce algo
+ *     que no debe seguir sirviéndose, o afirma algo falso sobre quién dijo qué.
+ *     En ambos casos, reimprimirlo tachado lo devolvería a la misma página —un
+ *     tachado es un estilo, no una redacción—. La historia no se borra: el
+ *     repositorio es público, y quien tome la fila del commit anterior rehace
+ *     la huella y comprueba qué motivo se fue y que no se fue nada más.
+ *   · La firma una PERSONA, con su nombre (`firma-de-persona.ts`), y el
+ *     validador lo exige además de la CLI. Reescribir sin dejarla legible la
+ *     explicación que la página dio de un cambio sobre un grupo con nombre no
+ *     lo firma una cuenta de rol ni un proceso.
+ *
+ * Las enmiendas se encadenan: la segunda guarda la huella del motivo que dejó
+ * la primera. Ninguna otra vía de la CLI las toca, y el validador las conserva
+ * al reconstruir la fila —cada CLI reescribe el fichero con lo que él devuelve,
+ * así que perderlas ahí sería borrarlas en la siguiente corrección de
+ * cualquier campo—.
+ */
+export const REASON_DIGEST_RE = /^motivo · sha256:[0-9a-f]{12}$/
+
+/** La huella de un motivo: la receta de la redacción con la etiqueta `motivo`. */
+export const reasonDigest = (reason: string): string => huella('motivo', reason)
 
 export interface PlenoFindingsSnapshot {
   version: string
@@ -457,6 +542,75 @@ function validateRef(r: unknown, idx: number, label: string, ri: number): Findin
     ref: o.ref as string,
     snippet,
   }
+}
+
+/**
+ * Las enmiendas del motivo de una fila (ENMIENDA DEL MOTIVO). Se devuelven tal
+ * cual; sólo se recortan el porqué y la firma, como se recorta el motivo.
+ *
+ * Además de la forma de cada una, dos cosas que sólo se ven juntas: que van en
+ * el orden de sus fechas —la cadena de huellas se lee en ese orden— y que la
+ * última cambió algo. Si su huella es la del motivo vigente, alguien devolvió a
+ * mano el texto anterior y dejó la enmienda diciendo que hubo otro.
+ */
+function validateReasonAmendments(
+  raw: unknown,
+  where: string,
+  correctedAt: string,
+  currentReason: string,
+): PlenoFindingReasonAmendment[] {
+  must(
+    Array.isArray(raw) && raw.length > 0,
+    `${where}.reasonAmendments, si está, tiene que ser una lista no vacía`,
+  )
+  const desde = Date.parse(correctedAt)
+  must(
+    !Number.isNaN(desde),
+    `${where}.correctedAt (${correctedAt}) no es una fecha que se pueda comparar, y una ` +
+      'enmienda tiene que poder fecharse después de la corrección que enmienda',
+  )
+  const out = (raw as unknown[]).map((a, ai) => {
+    const at = `${where}.reasonAmendments[${ai}]`
+    must(typeof a === 'object' && a !== null, `${at} tiene que ser un objeto`)
+    const o = a as Record<string, unknown>
+    must(
+      typeof o.previous === 'string' && REASON_DIGEST_RE.test(o.previous),
+      `${at}.previous tiene que ser la huella del motivo anterior (motivo · sha256:<12 hex>), ` +
+        'nunca su texto',
+    )
+    must(
+      typeof o.reason === 'string' && o.reason.trim().length >= 20,
+      `${at}.reason tiene que decir por qué se enmendó, en ≥20 caracteres`,
+    )
+    const rechazo = rechazoDeFirma(o.editor as string)
+    must(rechazo === null, `${at}.editor tiene que nombrar a una persona: ${rechazo}`)
+    const cuando = typeof o.amendedAt === 'string' ? Date.parse(o.amendedAt) : Number.NaN
+    must(
+      typeof o.amendedAt === 'string' && ISO_DATE.test(o.amendedAt) && !Number.isNaN(cuando),
+      `${at}.amendedAt tiene que ser una fecha ISO`,
+    )
+    must(
+      cuando >= desde,
+      `${at}.amendedAt (${o.amendedAt}) es anterior a la corrección que enmienda (${correctedAt})`,
+    )
+    return {
+      previous: o.previous as string,
+      reason: (o.reason as string).trim(),
+      editor: (o.editor as string).trim(),
+      amendedAt: o.amendedAt as string,
+    }
+  })
+  for (let k = 1; k < out.length; k += 1) {
+    must(
+      Date.parse(out[k].amendedAt) >= Date.parse(out[k - 1].amendedAt),
+      `${where}.reasonAmendments no va en orden cronológico (la ${k} es anterior a la ${k - 1})`,
+    )
+  }
+  must(
+    out[out.length - 1].previous !== reasonDigest(currentReason),
+    `${where}: la última enmienda no cambió nada — su huella es la del motivo vigente`,
+  )
+  return out
 }
 
 function validateFinding(f: unknown, idx: number): PlenoFinding {
@@ -602,13 +756,26 @@ function validateFinding(f: unknown, idx: number): PlenoFinding {
       typeof co.correctedAt === 'string' && ISO_DATE.test(co.correctedAt),
       `items[${idx}].corrections[${ci}].correctedAt must be ISO date`,
     )
+    const reason = (co.reason as string).trim()
+    const reasonAmendments =
+      co.reasonAmendments === undefined
+        ? undefined
+        : validateReasonAmendments(
+            co.reasonAmendments,
+            `items[${idx}].corrections[${ci}]`,
+            co.correctedAt as string,
+            reason,
+          )
     return {
       field: co.field as PlenoFindingCorrection['field'],
       original: co.original as string,
       corrected: co.corrected as string,
-      reason: (co.reason as string).trim(),
+      reason,
       editor: co.editor as string,
       correctedAt: co.correctedAt as string,
+      // Sólo si la fila la trae: añadirla vacía a todas haría que la próxima
+      // escritura de la CLI tocara cada fila de cada bitácora publicada.
+      ...(reasonAmendments ? { reasonAmendments } : {}),
     }
   })
 
@@ -1062,4 +1229,93 @@ export function applyFindingRedaction(
     }
   }
   return { original: redactionDigest(key, previous), corrected, swept }
+}
+
+/**
+ * Sustituye el motivo de `corrections[index]` y deja la enmienda en la fila:
+ * la huella del motivo anterior, por qué se enmendó, quién y cuándo. Muta la
+ * ficha; quien llama TIENE que revalidar el snapshot entero antes de escribir,
+ * como con las otras tres vías.
+ *
+ * El porqué de todo esto está en el bloque ENMIENDA DEL MOTIVO. Las vallas, en
+ * el orden en que saltan, y todas antes de tocar nada:
+ *
+ *   1. La fila tiene que existir. La bitácora sólo crece y nunca se renumera,
+ *      pero un índice mal copiado enmendaría la fila de al lado.
+ *   2. La firma tiene que nombrar a una persona.
+ *   3. El motivo nuevo tiene el suelo de cualquier motivo (≥20) y no puede ser
+ *      el vigente: una enmienda que no cambia nada guardaría la huella de lo
+ *      mismo que publica.
+ *   4. El porqué, el mismo suelo: es lo que lee quien quiere saber qué pasó.
+ *   5. La fecha: ISO, y no anterior ni a la corrección ni a la última enmienda
+ *      de esa fila, porque la cadena de huellas se lee en ese orden.
+ *
+ * Devuelve la huella del motivo sustituido, para que la CLI la enseñe.
+ */
+export function applyReasonAmendment(
+  finding: PlenoFinding,
+  index: number,
+  newReason: string,
+  amendment: { reason: string; editor: string; amendedAt: string },
+): { previous: string; row: PlenoFindingCorrection } {
+  const log = finding.corrections ?? []
+  const row = Number.isInteger(index) && index >= 0 ? log[index] : undefined
+  if (!row) {
+    throw new Error(
+      `corrections[${index}] no existe: la bitácora de ${finding.id} tiene ${log.length} ` +
+        `fila${log.length === 1 ? '' : 's'}${log.length > 0 ? ` (0–${log.length - 1})` : ''}`,
+    )
+  }
+  const rechazo = rechazoDeFirma(amendment.editor)
+  if (rechazo) {
+    throw new Error(`una enmienda de motivo la firma una persona, con su nombre: ${rechazo}`)
+  }
+  const nuevo = newReason.trim()
+  if (nuevo.length < 20) {
+    throw new Error('el motivo nuevo tiene que tener ≥20 caracteres, como cualquier motivo')
+  }
+  if (nuevo === row.reason.trim()) {
+    throw new Error(
+      `el motivo de corrections[${index}] ya es ese texto: una enmienda que no cambia nada ` +
+        'no se registra',
+    )
+  }
+  const porque = amendment.reason.trim()
+  if (porque.length < 20) {
+    throw new Error(
+      'el porqué de la enmienda tiene que tener ≥20 caracteres: es lo que lee quien quiere ' +
+        'saber qué pasó con el motivo anterior',
+    )
+  }
+  const cuando = Date.parse(amendment.amendedAt)
+  if (!ISO_DATE.test(amendment.amendedAt) || Number.isNaN(cuando)) {
+    throw new Error(`la fecha de la enmienda tiene que ser ISO («${amendment.amendedAt}»)`)
+  }
+  if (cuando < Date.parse(row.correctedAt)) {
+    throw new Error(
+      `la enmienda (${amendment.amendedAt}) no puede ser anterior a la corrección que ` +
+        `enmienda (${row.correctedAt})`,
+    )
+  }
+  const anteriores = row.reasonAmendments ?? []
+  const ultima = anteriores[anteriores.length - 1]
+  if (ultima && cuando < Date.parse(ultima.amendedAt)) {
+    throw new Error(
+      `la enmienda (${amendment.amendedAt}) no puede ser anterior a la última enmienda de ` +
+        `esa fila (${ultima.amendedAt})`,
+    )
+  }
+
+  const previous = reasonDigest(row.reason)
+  row.reasonAmendments = [
+    ...anteriores,
+    {
+      previous,
+      reason: porque,
+      editor: amendment.editor.normalize('NFC').replace(/\s+/g, ' ').trim(),
+      amendedAt: amendment.amendedAt,
+    },
+  ]
+  row.reason = nuevo
+  return { previous, row }
 }

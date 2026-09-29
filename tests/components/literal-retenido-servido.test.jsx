@@ -139,15 +139,21 @@ describe('la bitácora de una cita retenida dice qué falta, no lo imprime', () 
 })
 
 describe('sobre los datos servidos: ninguna ficha imprime el literal que retiene', () => {
-  /** La prosa firmada que espera a una persona (tests/literales-retenidos.test.ts). */
-  const ESPERA_A_UNA_PERSONA = new Set(['f-2026-01-19-cit-543cc1#3', 'f-2026-05-11-acu-7c65c5#3'])
+  /**
+   * La prosa firmada que espera a una persona (tests/literales-retenidos.test.ts,
+   * PROSA_QUE_ESPERA_A_UNA_PERSONA). Caduca igual que aquélla: la prueba exige que
+   * cada entrada se siga imprimiendo, así que el día que la prosa se arregla hay
+   * que quitarla de aquí. Hasta el 29-09-2026 era un salto que nadie vigilaba, y
+   * 543cc1 siguió saltándose después de que su sumario se redactara esa mañana.
+   */
+  const ESPERA_A_UNA_PERSONA = ['f-2026-05-11-acu-7c65c5#3']
   const conRetenidas = SERVIDA.items.filter((f) => retenidasDe(f).length > 0)
 
   it('hay fichas con retenidas que medir', () => {
     expect(conRetenidas.length).toBeGreaterThan(0)
   })
 
-  it('ni en la cita ni en la bitácora, con la ficha entera montada', async () => {
+  it('ni en la cita ni en la bitácora, con la ficha entera montada, salvo la prosa que espera a una persona', async () => {
     const fuentePorId = new Map(FUENTE.items.map((f) => [f.id, f]))
     const impresas = []
     for (const f of conRetenidas) {
@@ -159,13 +165,12 @@ describe('sobre los datos servidos: ninguna ficha imprime el literal que retiene
       const versiones = versionesDeCitas(fuentePorId.get(f.id))
       for (const i of retenidasDe(f)) {
         const id = `${f.id}#${i}`
-        if (ESPERA_A_UNA_PERSONA.has(id)) continue
         const medibles = [...versiones[i]].filter((v) => v.split(/\s+/).length >= 5)
         if (medibles.some((v) => quoteAppearsIn(v, texto))) impresas.push(id)
       }
       unmount()
     }
-    expect(impresas).toEqual([])
+    expect(impresas.sort()).toEqual([...ESPERA_A_UNA_PERSONA].sort())
   })
 })
 
