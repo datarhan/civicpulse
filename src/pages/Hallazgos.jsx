@@ -10,13 +10,7 @@ import DataAsOf from '../components/DataAsOf'
 // pero la LLAMADA no, así que sacar el vídeo del pleno de los documentos
 // cotejados en FindingCard dejó esta página —la que el lector abre— enseñándolo
 // igual. Ahora se comparte la banda entera, `ListaDeCotejos`.
-import {
-  ListaDeCotejos,
-  QuoteProvenanceMark,
-  QuoteProvenanceNote,
-  CitaRetenida,
-} from '../components/PlenoFindings'
-import { citaRetenida } from '../lib/cita-retenida'
+import { ListaDeCotejos, CitasDeLaFicha } from '../components/PlenoFindings'
 import { usePlenoFindings, SEVERITY_LABEL, SEVERITY_TONE } from '../hooks/usePlenoFindings'
 import { useFindingQuoteProvenance, provenanceFor } from '../hooks/useFindingQuoteProvenance'
 import { authorshipBreakdown } from '../scraper/finding-authorship'
@@ -27,7 +21,6 @@ import { contarHallazgos, pasaFiltros } from '../lib/hallazgos-filtros'
 import { DEPARTMENT_LABEL } from '../scraper/departments'
 import { useT } from '../i18n'
 import { BitacoraCorrecciones } from '../components/BitacoraCorrecciones'
-import { blocLabel } from '../lib/party-label.js'
 import { EFICIENCIA_ENABLED } from '../flags'
 
 function MiniStat({ label, value, tone }) {
@@ -142,32 +135,10 @@ export function FindingDetailCard({ f, permalink }) {
           distinguiera lo que alguien DIJO de lo que está COMPROBADO. */}
       <EvidenceBand n={1} title="Lo que se dijo">
         {f.quotes?.length > 0 ? (
-          <>
-            {f.quotes.map((q, i) =>
-              // La puerta editorial manda en las dos superficies: si retiene el
-              // literal en /declaraciones, aquí tampoco se publica. Lo que se
-              // retiene es la CITA, no la ficha.
-              citaRetenida(prov[i], q) ? (
-                <CitaRetenida
-                  key={i}
-                  attribution={q.speakerGroup ? blocLabel(q.speakerGroup) : null}
-                  tone={PARTY_TONE[q.speakerGroup]}
-                />
-              ) : (
-                // Sin speakerGroup la cita no se queda muda, dice «sin atribuir».
-                // Antes se omitía la línea y una cita sin dueño se leía igual que
-                // una atribuida.
-                <Quote
-                  key={i}
-                  text={q.text}
-                  attribution={q.speakerGroup ? blocLabel(q.speakerGroup) : null}
-                  tone={PARTY_TONE[q.speakerGroup]}
-                  marks={<QuoteProvenanceMark entry={prov[i]} />}
-                />
-              ),
-            )}
-            <QuoteProvenanceNote entries={prov} quotes={f.quotes} curatorName={f.curatorName} />
-          </>
+          // Numeradas, con la nota que dice de qué números habla: el reparto
+          // entre cita impresa y hueco vive en `CitasDeLaFicha`, compartido con
+          // /plenos/:id.
+          <CitasDeLaFicha quotes={f.quotes} prov={prov} curatorName={f.curatorName} colorDeGrupo />
         ) : (
           <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
             Esta ficha no publica ningún literal.
