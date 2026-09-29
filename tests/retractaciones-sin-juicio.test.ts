@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { RETRACTACIONES_SIN_JUICIO } from '../src/scraper/retractaciones-sin-juicio'
-import { RESUMEN_SIN_REGISTRO } from '../src/scraper/claim-verifier'
+import { RESUMEN_SIN_REGISTRO_FIJO } from '../src/scraper/claim-verdicts'
 
 /**
  * La lista de retractaciones que el motor escribió sin que el modelo viera la
@@ -40,7 +40,7 @@ describe('RETRACTACIONES_SIN_JUICIO', () => {
     for (const [id] of pendientes) {
       const v = overlay.entries[id].verification
       expect(v.verdict, id).toBe('sin-datos')
-      expect(v.summary, id).toBe(RESUMEN_SIN_REGISTRO)
+      expect(v.summary, id).toBe(RESUMEN_SIN_REGISTRO_FIJO)
       expect(v.evidence, id).toEqual([])
       expect(v.derivedBy, id).toBeUndefined()
     }

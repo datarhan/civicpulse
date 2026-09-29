@@ -256,3 +256,65 @@ export function corpusDeEvidencia(evidence?: readonly unknown[] | null): CorpusI
   }
   return out
 }
+
+// ─── La explicación de un sin-datos que no encontró nada ───────────────────
+//
+// Hasta el 29-09-2026 el verificador escribía la MISMA frase en todo
+// `sin-datos` sin evidencia —«No se encontró registro en tenders / BDNS /
+// presupuesto…»—, mirara lo que mirara, mientras su `checkedAgainst` sólo
+// apuntaba un corpus cuando su comparador corría de verdad. La tarjeta de
+// /plenos/:id imprime las dos una encima de otra, y se contradecían: sobre los
+// 4.964 trozos servidos, 2.246 tarjetas decían «no se encontró registro en…»
+// encima de «Fuentes comprobadas: ninguna» o «no constan», y de las 4.243 que
+// la llevaban sólo 463 tenían detrás los corpus que nombra.
+//
+// Por eso la frase se DERIVA de la lista, y de la misma manera que la línea:
+// `corpusReales`, que es la lista blanca con la que ya deciden la puerta y el
+// reparto de `sin-datos`. Nombra esos corpus, con sus nombres, y sin ninguno no
+// habla de búsqueda: ni «se buscó», que no consta, ni «no se buscó», que con
+// «no constan» tampoco se sabe.
+
+/**
+ * La frase fija de antes. Sigue en lo publicado —en la base hasta que se vuelva
+ * a verificar, y en las retractaciones del motor que la copiaron, que viven en
+ * el overlay curado—, y por eso hay que poder reconocerla.
+ */
+export const RESUMEN_SIN_REGISTRO_FIJO =
+  'No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.'
+
+/** Lo que vale para todo `sin-datos`, se mirara lo que se mirara. */
+const DESCARGO = 'Un «sin datos» no es un desmentido: la afirmación puede ser cierta.'
+const PREFIJO = 'No se encontró registro en '
+const INFIJO = ' que la sostenga. '
+
+/** `a`, `a y b`, `a, b y c`: los nombres tal cual, sin traducir. */
+function enumerar(nombres: readonly string[]): string {
+  if (nombres.length === 1) return nombres[0]
+  return `${nombres.slice(0, -1).join(', ')} y ${nombres[nombres.length - 1]}`
+}
+
+/**
+ * La explicación de un `sin-datos` que no encontró nada, dicha desde lo que
+ * consta como consultado. Recibe el `checkedAgainst` entero: las marcas de
+ * pasada no son corpus y no se nombran.
+ */
+export function resumenSinRegistro(checkedAgainst?: readonly unknown[] | null): string {
+  const corpus = corpusReales(checkedAgainst)
+  if (corpus.length === 0) return DESCARGO
+  return `${PREFIJO}${enumerar(corpus)}${INFIJO}${DESCARGO}`
+}
+
+/**
+ * ¿Es un texto de esta familia —la frase fija de antes o una de
+ * `resumenSinRegistro`—? Se reconoce rehaciéndolo con los nombres que lleva, no
+ * por parecido: una explicación del motor que empezara igual no es nuestra y no
+ * se toca.
+ */
+export function esResumenSinRegistro(texto: unknown): boolean {
+  if (typeof texto !== 'string') return false
+  if (texto === RESUMEN_SIN_REGISTRO_FIJO || texto === DESCARGO) return true
+  const fin = texto.indexOf(INFIJO)
+  if (!texto.startsWith(PREFIJO) || fin < 0) return false
+  const nombres = texto.slice(PREFIJO.length, fin).split(/, | y /)
+  return resumenSinRegistro(nombres) === texto
+}

@@ -13,10 +13,11 @@
  * ─────────────────────────────────────────────────────────────────────────────
  * CÓMO SE MIDIÓ (29-09-2026)
  *
- * No se puede derivar de lo publicado: las 301 entradas del motor que llevan la
- * frase del determinista por resumen (`RESUMEN_SIN_REGISTRO`) tienen todas la
- * misma forma, juzgadas o no, porque ese modo de la pasada tiraba también el
- * razonamiento de las que el modelo sí juzgó. Lo que las separa está en la
+ * No se puede derivar de lo publicado: las 301 entradas del motor que llevan
+ * por resumen la frase fija del determinista (`RESUMEN_SIN_REGISTRO_FIJO`, en
+ * claim-verdicts.ts) tienen todas la misma forma, juzgadas o no, porque ese
+ * modo de la pasada tiraba también el razonamiento de las que el modelo sí
+ * juzgó. Lo que las separa está en la
  * caché LLM del checkout principal (`.llm-cache/`, fuera del repositorio): para
  * cada id, la llamada `engine-reason-v1` con la clave de `callLLM`, validada con
  * `llmCacheHas`, y la hora de esa llamada contra el `appliedAt` de la entrada.
