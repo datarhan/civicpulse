@@ -28,7 +28,7 @@ Admin-only (gated by `ADMIN_USER_IDS` env, comma-separated Telegram IDs):
 |---|---|
 | `/batch` | Preview the top 10 verified quejas ready to file |
 | `/batch_link` | URL of the auto-generated `current.md` / `current.html` solicitud |
-| `/batch_register <asiento> <CSV>` | After signing at `sede.ribarroja.es`, records the entry nº + CSV on every queja in the batch. Broadcasts `[REGISTRADA]` per queja |
+| `/batch_register <asiento> <CSV> <fecha> <hora>` | After signing at `sede.ribarroja.es`, records the entry nº, the CSV (spaces and all) and the receipt's «Fecha de Registro» (`28/09/2026 0:00:01`, Madrid time) on every queja in the batch; the legal plazo runs from that date. Broadcasts `[REGISTRADA]` per queja |
 | `/escalar Q-XXXX` | Transitions a silencio-negativo queja to `escalada_sindic`, broadcasts `[ESCALADA]`, returns the Síndic de Greuges template URL |
 | `/revisar Q-XXXX` | Sends you one more copy of the review card of any live queja — also one published before the review existed, so it can be withdrawn. Every copy stays tracked |
 | `/pendientes` | The review queue, oldest first: ids and how long each has waited, never the text (that message is not stripped if the queja is withdrawn), split to fit |

@@ -566,13 +566,19 @@ export function setState(
   db: Db,
   id: string,
   state: QuejaState,
-  registro?: { entry_number: string; csv: string },
+  /**
+   * El asiento de la sede. `registered_at` es la «Fecha de Registro» del recibo, en
+   * UTC y en la forma de SQLite (`recibo-sede.ts`): el plazo corre desde ella, y
+   * hasta el 28-09-2026 se ponía `datetime('now')`, la hora en que el moderador
+   * escribía la orden. Obligatoria para que nadie vuelva a esa hora sin darse cuenta.
+   */
+  registro?: { entry_number: string; csv: string; registered_at: string },
 ): QuejaRow | null {
   const update = registro
     ? db.prepare(
         `UPDATE quejas
          SET state = ?, registro_entry_number = ?, registro_csv = ?,
-             registered_at = COALESCE(registered_at, datetime('now')),
+             registered_at = COALESCE(registered_at, ?),
              updated_at = datetime('now')
          WHERE id = ?`,
       )
@@ -587,7 +593,7 @@ export function setState(
 
   const tx = db.transaction(() => {
     if (registro) {
-      update.run(state, registro.entry_number, registro.csv, id)
+      update.run(state, registro.entry_number, registro.csv, registro.registered_at, id)
     } else {
       update.run(state, id)
     }

@@ -11,6 +11,7 @@ import { buildSindicTemplate, renderSindicMarkdown, renderSindicHtml } from '../
 import { checkSilencio } from '../src/services/cron'
 import { routeUsingLocalOfficials } from '../src/services/router'
 import { creaPublicada } from './helpers/publicada'
+import { marcaDeAhora } from './helpers/marca'
 
 function seed(db: Db, overrides: Partial<NewQuejaInput> = {}) {
   return creaPublicada(db, {
@@ -26,7 +27,11 @@ function seed(db: Db, overrides: Partial<NewQuejaInput> = {}) {
 }
 
 function register(db: Db, id: string, entryNumber = '2026-RE-0001') {
-  setState(db, id, 'registrada', { entry_number: entryNumber, csv: 'ABC123' })
+  setState(db, id, 'registrada', {
+    entry_number: entryNumber,
+    csv: 'ABC123',
+    registered_at: marcaDeAhora(),
+  })
 }
 
 function fakeChannel() {

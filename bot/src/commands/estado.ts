@@ -11,22 +11,27 @@ import {
 } from '../db/queries.ts'
 import { REVISION_PARA_AUTOR } from '../services/textos-revision.ts'
 import { routeUsingLocalOfficials } from '../services/router.ts'
-import { plazoHumano } from '../../../src/scraper/queja-router.ts'
+import { instanteUtc, plazoHumano, ZONA_DE_LA_SEDE } from '../../../src/scraper/queja-router.ts'
 import type { MyContext } from '../types.ts'
 import { EVENTO_BARRIO_CORREGIDO } from '../services/rebarrio.ts'
 import { idDeQueja } from '../services/queja-id.ts'
 
-function formatDate(iso: string | null | undefined): string {
-  if (!iso) return '—'
-  try {
-    return new Date(iso).toLocaleDateString('es-ES', {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric',
-    })
-  } catch {
-    return iso
-  }
+/**
+ * El día de la sede de una marca del bot. Las marcas son UTC sin la Z, y `new
+ * Date()` las leía en la hora del proceso —UTC en Fly— y escribía su día: la
+ * «Fecha de Registro 28/09/2026 0:00:01» de un recibo, guardada como
+ * `2026-09-27 22:00:01`, salía «27 sept». Una marca que no se puede leer sale tal cual.
+ */
+function formatDate(marca: string | null | undefined): string {
+  if (!marca) return '—'
+  const t = instanteUtc(marca)
+  if (Number.isNaN(t)) return marca
+  return new Date(t).toLocaleDateString('es-ES', {
+    timeZone: ZONA_DE_LA_SEDE,
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  })
 }
 
 function stateLabel(state: string): string {
