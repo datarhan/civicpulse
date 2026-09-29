@@ -1222,6 +1222,53 @@ body.cp-kiosk .cp-live-container {
   }
 }
 
+/* /plenos/:id — la tira de resumen: orden del día, votaciones, declaraciones
+   contrastadas y hallazgos editoriales.
+
+   Va aquí y no en el `style` del JSX por la razón de siempre en este repo: un
+   estilo inline no admite @media ni @container y además gana a la clase. Era
+   una rejilla de cuatro columnas a cualquier ancho, y un rótulo no se parte
+   dentro de una palabra: «DECLARACIONES», en mayúsculas de DM Mono con su
+   espaciado, pide 94 px, y a 375 px cada ficha dejaba 48. Se pintaba 46 px
+   encima de la ficha de al lado, y `mobile.spec.ts` no lo veía porque la página
+   no ensanchaba: el texto se salía DENTRO.
+
+   Cuatro, dos, una, y lo decide el ancho de la TIRA, no el de la ventana: por
+   eso es una consulta de contenedor. Por encima de 720 px aparece la barra
+   lateral y la tira ENCOGE —a 721 px de ventana mide 441; a 720 medía 672—, así
+   que el defecto salía en dos tramos de ventana, de 280 a 556 px y de 724 a 788,
+   y ningún corte por ancho de ventana describe los dos.
+
+   Los cortes están MEDIDOS (29-09-2026, build de producción). La ficha más
+   exigente pide 120,4 px con la densidad de serie y 127,1 con la amplia, cuya
+   raíz de 15 px sube --fs-micro por encima de su suelo de 11: cuatro fichas
+   piden 4 × 127,1 + 3 × 10 = 538 px de tira, y dos, 2 × 127,1 + 10 = 264. De ahí
+   560 y 270, con margen; con 270, una ventana de 320 px —la de referencia de
+   WCAG 1.4.10— sigue en dos columnas. El valenciano pide menos en las cuatro.
+   Lo recorre píxel a píxel de tira tests/e2e/pleno-resumen-mobile.spec.ts. */
+.cp-pleno-resumen {
+  container-type: inline-size;
+  margin-top: 16px;
+}
+.cp-pleno-fichas {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+.cp-pleno-fichas > * {
+  min-width: 0;
+}
+@container (max-width: 560px) {
+  .cp-pleno-fichas {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@container (max-width: 270px) {
+  .cp-pleno-fichas {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 /* Una fila del listado de contratos. En escritorio, tres columnas: título,
    importe y estado. La de estado se dimensiona a SU CONTENIDO y no a 90 px —un
    ancho fijo lo fija la fuente, y con DM Mono bloqueada «Formalizado» se salía
