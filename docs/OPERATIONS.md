@@ -448,6 +448,21 @@ bot dispatches `pull-quejas.yml` with `GITHUB_DISPATCH_TOKEN` (a fine-grained to
 limited to this repository, «Actions: Read and write»); without it, the withdrawal
 waits for the daily run.
 
+Another tick, hourly, moves a registered queja to `silencio_negativo` once its plazo
+has lapsed, counted in the sede's calendar of días inhábiles (`FESTIVOS_DE_LA_SEDE`
+in `src/scraper/queja-router.ts`). That table is copied by hand, a whole year at a
+time, and a year can only be completed once the DOGV publishes its local holidays,
+in mid-November (18-11-2024 for 2025, 14-11-2025 for 2026). A plazo that ends in a
+year the table lacks is not decided: the queja stays `registrada`, which the cron
+said only in its log. Since 2026-09-30 `/health` goes degraded 30 days before the
+nearest such nominal day (`AVISO_SIN_CALENDARIO_DIAS`), so `ops-alarm.yml` goes red
+from 2 December at the earliest, with the source already out; the line says how
+many quejas, which year, and where to add it. Merging the year redeploys the bot and
+clears it. The access requests the reportajes publish count their plazos with three
+calendars (`src/scraper/calendarios-inhabiles.ts`) that nothing alarms on: add the
+year there too, as each source comes out — Madrid's local holidays come out in
+December (BOCM, 12-12-2025 for 2026).
+
 ## Health checks
 
 All report-only inside `scrape:all`; run any of them directly.
