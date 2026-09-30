@@ -1495,7 +1495,7 @@ export default function Metodologia() {
           , por bien que le parezca el caso. Y ninguna etapa automática refuerza nada: el anclaje
           NLI, la única en uso que empuja hacia arriba, sólo propone, y su propuesta espera a que la
           firme una persona. Ni siquiera puede proponer sin nombrar el corpus contra el que ancló la
-          afirmación.
+          afirmación, ni proponer que vuelva a subir lo que retractaron el motor o un curador.
         </p>
         <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
           La tabla se dibuja desde la misma declaración que el código aplica, y una prueba comprueba
@@ -1578,7 +1578,9 @@ export default function Metodologia() {
             un veredicto que afirme algo tiene que nombrar contra qué se comprobó
           </strong>
           . Si no lo nombra, no se escribe. La única excepción es la retractación de un curador,
-          porque bajar un veredicto nunca refuerza lo que se dice de nadie.
+          porque bajar un veredicto nunca refuerza lo que se dice de nadie. Y lo que una
+          retractación ya bajó no lo vuelve a subir ninguna escritura posterior: la capa de
+          decisiones («overlay») rechaza cualquier entrada que diga más que la que sustituye.
         </p>
       </Card>
 
