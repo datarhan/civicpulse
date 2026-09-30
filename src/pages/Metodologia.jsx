@@ -1485,6 +1485,16 @@ export default function Metodologia() {
           la afirmación.
         </p>
         <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
+          Y se impone también el orden entre etapas, no sólo el sentido de cada una:{' '}
+          <strong style={{ color: 'var(--ink)' }}>
+            lo que ha retirado una etapa que sólo puede retractar no lo vuelve a subir una que puede
+            reforzar
+          </strong>
+          . Una retractación del motor o de un curador se publica como «sin datos», igual que una
+          afirmación que nadie llegó a respaldar; el anclaje NLI no la puntúa, y si lo intentara, su
+          veredicto no se escribiría.
+        </p>
+        <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
           La tabla se dibuja desde la misma declaración que el código aplica, y una prueba comprueba
           que describan lo mismo: si alguien cambiara la política sin cambiar esta página, o al
           revés, la suite se pone roja.

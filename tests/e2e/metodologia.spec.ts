@@ -45,4 +45,17 @@ test.describe('El trinquete publicado (/metodologia)', () => {
     expect(texto).toMatch(/tiene que nombrar contra qué se comprobó/i)
     expect(texto).toMatch(/retractación de un curador|bajar un veredicto nunca refuerza/i)
   })
+
+  test('dice que el orden entre etapas también se impone', async ({ page }) => {
+    // `puedeSustituir` (trinquete.ts) lo aplica al escribir el overlay; si la
+    // página dejara de decirlo, el contrato publicado se quedaría corto.
+    await page.goto('/metodologia', { waitUntil: 'domcontentloaded' })
+    await expect(
+      page.getByRole('heading', { name: /El trinquete: cada etapa empuja/i }),
+    ).toBeVisible({ timeout: 8000 })
+    const texto = await page.locator('body').innerText()
+    expect(texto).toMatch(
+      /lo que ha retirado una etapa que sólo puede retractar no lo vuelve a subir una que puede reforzar/i,
+    )
+  })
 })
