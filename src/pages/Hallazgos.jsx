@@ -627,27 +627,24 @@ export default function Hallazgos() {
         </Card>
       )}
 
-      {/* Summary stats */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
-          gap: 10,
-          marginBottom: 18,
-        }}
-      >
-        <MiniStat label="Total hallazgos" value={items.length} />
-        <MiniStat
-          label="Críticos"
-          value={counts.bySeverity.critical ?? 0}
-          tone={(counts.bySeverity.critical ?? 0) > 0 ? 'crit' : undefined}
-        />
-        <MiniStat
-          label="Relevantes"
-          value={counts.bySeverity.notable ?? 0}
-          tone={(counts.bySeverity.notable ?? 0) > 0 ? 'warn' : undefined}
-        />
-        <MiniStat label="Informativos" value={counts.bySeverity.informational ?? 0} />
+      {/* Summary stats. La rejilla vive en `.cp-hallazgos-cifras` (index.css):
+          elige dos o cuatro columnas por el ancho de la TIRA, y eso es una
+          consulta de contenedor, que el `style` no admite. */}
+      <div className="cp-hallazgos-resumen">
+        <div className="cp-hallazgos-cifras">
+          <MiniStat label="Total hallazgos" value={items.length} />
+          <MiniStat
+            label="Críticos"
+            value={counts.bySeverity.critical ?? 0}
+            tone={(counts.bySeverity.critical ?? 0) > 0 ? 'crit' : undefined}
+          />
+          <MiniStat
+            label="Relevantes"
+            value={counts.bySeverity.notable ?? 0}
+            tone={(counts.bySeverity.notable ?? 0) > 0 ? 'warn' : undefined}
+          />
+          <MiniStat label="Informativos" value={counts.bySeverity.informational ?? 0} />
+        </div>
       </div>
 
       {/* Filters */}
