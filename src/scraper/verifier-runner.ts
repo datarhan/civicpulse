@@ -26,6 +26,7 @@ import {
 import { verifyClaimWithLlm } from './claim-verifier-llm'
 import { verifyClaimWithNli } from './claim-verifier-nli'
 import { verifyClaimWithEngine, type EngineDeps } from './claim-verifier-engine'
+import type { MotivoSinJuicio } from './decision-del-motor'
 import { scoreNliPairs, type NliPair } from './nli-client'
 import type { Corpus } from './semantic-shortlist'
 import { callLLM } from '../llm/client'
@@ -155,12 +156,15 @@ export function makeEngineVerifier(
      */
     always?: boolean
     /**
-     * Called when the engine returns WITHOUT consulting the model — no
-     * retrieval candidates, or the claim is one the LLM path skips by policy.
-     * Callers need this to report coverage honestly; without it a
-     * never-asked claim is indistinguishable from an agreed-with one.
+     * Called when the engine returns WITHOUT consulting the model — the
+     * deterministic pass already decided, no retrieval candidates, or the claim
+     * is one the LLM path skips by policy. What comes back then is the
+     * deterministic verdict, and says nothing about the model. Callers need this
+     * to report coverage honestly, and to never write that verdict as the
+     * model's: on 2026-06-24 a `sin-datos` that came back this way was written
+     * as «verdict-engine re-judged» (decision-del-motor.ts).
      */
-    onSkip?: (claimId: string, reason: 'no-candidates' | 'not-attempted') => void
+    onSkip?: (claimId: string, reason: MotivoSinJuicio) => void
   } = {},
 ): VerifierFn {
   const deps: EngineDeps = {
@@ -246,7 +250,7 @@ export function makeEngineVerifier(
   return async (claim, ctx) => {
     const det = verifyClaim(inputsFor(claim, ctx))
     if (!opts.always && det.verdict !== 'sin-datos') {
-      opts.onSkip?.(claim.id, 'not-attempted')
+      opts.onSkip?.(claim.id, 'decidio-el-determinista')
       return det
     }
     const shortlist = await getShortlist(
@@ -255,23 +259,31 @@ export function makeEngineVerifier(
       ctx.corpus ? { corpus: ctx.corpus } : {},
     )
     if (shortlist.length === 0) {
-      opts.onSkip?.(claim.id, 'no-candidates')
+      opts.onSkip?.(claim.id, 'sin-candidatos')
       return det
     }
     const r = await verifyClaimWithEngine({ claim, candidates: shortlist }, deps)
     if (r === null) {
-      opts.onSkip?.(claim.id, 'not-attempted')
+      opts.onSkip?.(claim.id, 'fuera-de-la-politica')
       return det
     }
-    // `upgraded` means "the engine found support where the deterministic pass
-    // found none" — the engine's original job. It is FALSE for a sin-datos
-    // verdict by definition, so the retraction pass, whose entire purpose is to
-    // act on sin-datos, had its one trusted signal (~92% precision on the gold
-    // set) discarded here before the caller could ever see it. Every claim came
-    // back as the deterministic verdict and was counted "kept": a second run
-    // that judged ~90 claims and retracted 0.
-    if (opts.always) return r.verification
-    return r?.upgraded ? r.verification : det
+    // The model judged: what comes back is ITS verification, in every mode.
+    //
+    // This used to return `r.upgraded ? r.verification : det`. `upgraded` means
+    // "the engine found support where the deterministic pass found none" — the
+    // engine's original job — and is FALSE for a sin-datos verdict by
+    // definition. In `--base` that discarded the retraction pass's one trusted
+    // signal (~92% precision on the gold set): every claim came back as the
+    // deterministic verdict and was counted "kept", a run that judged ~90 claims
+    // and retracted 0. It was fixed for `always` only (2026-08-02). In the
+    // default mode the VERDICT survived — the deterministic one is sin-datos
+    // there too — but the explanation did not: the June and August runs saved
+    // the comparator's stock sentence, «No se encontró registro en tenders /
+    // BDNS / presupuesto…», under «Veredicto: verificador LLM» on retractions
+    // the model had reasoned about. The verdict is the same either way (without
+    // an upgrade the engine's verdict IS sin-datos); the reasoning and
+    // `derivedBy` are what this keeps.
+    return r.verification
   }
 }
 

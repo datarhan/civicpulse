@@ -30,7 +30,12 @@ import type { PlenoClaim } from '../src/scraper/pleno-claim'
 import type { ClaimVerification, ClaimVerdict } from '../src/scraper/claim-verifier'
 import { makeEngineVerifier, loadVerifierContext } from '../src/scraper/verifier-runner'
 import { RazonamientoConCharla } from '../src/scraper/claim-verifier-engine'
-import { decidirRederivacion } from '../src/scraper/decision-del-motor'
+import {
+  anotarEnElParte,
+  decidirRederivacion,
+  decidirRetractacion,
+  type MotivoSinJuicio,
+} from '../src/scraper/decision-del-motor'
 import { resetBudget, getRunStats } from '../src/llm/client'
 import { startRun, formatManifest } from '../src/scraper/run-manifest'
 import { loadOverlay, rebuildVerified, OVERLAY } from './verified-rebuild'
@@ -155,22 +160,21 @@ async function main() {
   const ctx = await loadVerifierContext({ withCorpus: wantsCorpus })
   // `--base` re-judges verdicts the DETERMINISTIC pass asserted, so the engine
   // must not short-circuit on "deterministic already decided".
-  // Keep the two skip reasons APART. `not-attempted` means the deterministic
-  // pass already reached a verdict, which in default mode is the design and
-  // not a gap; `no-candidates` means retrieval returned nothing, which always
-  // is one. Folding them together made the manifest report a healthy default
-  // run as 67% "never reached the model" — the same conflation that let
-  // "never attempted" hide inside "unchanged" elsewhere in this repo.
-  const skippedIds = new Set<string>()
-  const skipReason = new Map<string, 'no-candidates' | 'not-attempted'>()
+  // Every claim the model was not asked about, with WHY. What the verifier
+  // returns for these is the deterministic verdict, so it is never read as a
+  // judgement (decidirRetractacion) and never counted as one (anotarEnElParte).
+  // The reasons stay apart too: «sin candidatos» is a retrieval gap, the other
+  // two are decisions. Folding them together made the manifest report a
+  // healthy default run as 67% "never reached the model" — the same
+  // conflation that let "never attempted" hide inside "unchanged" elsewhere.
+  const saltos = new Map<string, MotivoSinJuicio>()
   const engine = makeEngineVerifier({
     consistency: false,
     // Re-derivar juzga siempre: algunas de estas filas las retractó `--base`,
     // y el determinista las da por verificadas.
     always: args.base || Boolean(args.ids),
-    onSkip: (id, reason) => {
-      skippedIds.add(id)
-      skipReason.set(id, reason)
+    onSkip: (id, motivo) => {
+      saltos.set(id, motivo)
     },
   })
 
@@ -180,10 +184,12 @@ async function main() {
   let kept = 0
   let skipped = 0
   // Claims the model was never actually ASKED about — no retrieval candidates,
-  // or an opinion-accusation the LLM path skips by policy. Folding these into
-  // `kept` made "the model agreed with everything" and "the model was never
-  // called" print identically, which is exactly what happened: a run reported
-  // `re-judged 1017 · kept 1017` having made zero LLM calls.
+  // an opinion-accusation the LLM path skips by policy, or (default mode) one
+  // the deterministic pass already decided. Folding these into `kept` made "the
+  // model agreed with everything" and "the model was never called" print
+  // identically: a run reported `re-judged 1017 · kept 1017` having made zero
+  // LLM calls. Folding them into `retracted` wrote them as the model's verdict:
+  // the June run did that to every claim it had no candidates for.
   let unjudged = 0
   // Respuestas que hablan de la tarea y no de la declaración: el modelo contestó,
   // pero no juzgó. Ni «juzgada» ni «error del motor»: se reintentan.
@@ -228,8 +234,11 @@ async function main() {
       continue
     }
     const cur = currentVerdict.get(id) ?? 'sin-datos'
+    // Primero si hubo juicio; el veredicto, después y sólo entonces.
+    const salto = saltos.get(id)
+    anotarEnElParte(run, salto)
     if (args.ids) {
-      const decision = decidirRederivacion({ juzgada: !skippedIds.has(id), veredicto: r.verdict })
+      const decision = decidirRederivacion({ juzgada: !salto, veredicto: r.verdict })
       if (decision.accion === 'reescribir') {
         pending.push({
           claimId: id,
@@ -243,22 +252,21 @@ async function main() {
           editor: `verdict-engine:${MODEL}`,
         })
         rederivadas.push(id)
-        run.judge()
         run.record('rederivada')
       } else if (decision.motivo === 'ya-no-la-retractaria') {
         yaNoLaRetractaria.push(id)
-        run.judge()
         run.record('ya no la retractaría')
       } else {
         sinJuicio.push(id)
-        if (skipReason.get(id) === 'not-attempted') run.skip('fuera de la política del LLM')
-        else run.neverAttempt()
       }
       if (pending.length >= CHECKPOINT_EVERY) flush()
       continue
     }
-    // Trust ONLY the engine's high-precision sin-datos verdict, as a retraction.
-    if (r.verdict === 'sin-datos' && (cur === 'verificado' || cur === 'parcial')) {
+    // Trust ONLY the engine's high-precision sin-datos verdict, as a retraction
+    // — and only when the engine judged: without a judgement, the sin-datos
+    // that comes back is the deterministic one.
+    const decision = decidirRetractacion({ salto, veredicto: r.verdict, publicado: cur })
+    if (decision.accion === 'retractar') {
       const reason =
         `verdict-engine (${MODEL}) re-judged ${cur}→sin-datos: ${r.summary || 'no candidate genuinely supports the claim'}`.slice(
           0,
@@ -272,16 +280,12 @@ async function main() {
         editor: `verdict-engine:${MODEL}`,
       })
       retracted++
-      run.judge()
       run.record('retracted')
-    } else if (skippedIds.has(id)) {
-      unjudged++
-      if (skipReason.get(id) === 'not-attempted') run.skip('deterministic already decided')
-      else run.neverAttempt()
-    } else {
+    } else if (decision.accion === 'mantener') {
       kept++
-      run.judge()
       run.record('kept')
+    } else {
+      unjudged++
     }
     if (done % 10 === 0)
       process.stderr.write(`[verify-engine] ${done}/${targets.length} · ${retracted} retracted\n`)

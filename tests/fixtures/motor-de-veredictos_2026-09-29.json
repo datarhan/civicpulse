@@ -1,0 +1,170 @@
+{
+  "_procedencia": {
+    "que": "El estado del 24-06-2026 antes de la pasada del motor, recortado a tres objetivos de verdad.",
+    "base": "pleno-claims-verified-base.json del checkout principal (generatedAt 2026-09-28T07:54:32.262Z), filas k4olcs-050-pro-f60a00 y k4olcs-008-afi-843b2a sin tocar.",
+    "overlay": "Las entradas llm de k4olcs-050-pro-f60a00, k4olcs-008-afi-843b2a y rx4hb4-446-cit-317f4b tal cual estaban en pleno-claims-overlay.json en 9db11057^ (la víspera de la pasada). rx4hb4-446-cit-317f4b ya no tiene declaración en la base.",
+    "tenders": "La fila de public/data/tenders.json que la shortlist léxica da como único candidato de k4olcs-008-afi-843b2a.",
+    "transcripciones": "El contexto de cada declaración, que la extracción sacó de la transcripción: basta para que la puerta de procedencia las publique.",
+    "desenlace_real": "k4olcs-050-pro-f60a00 se retractó el 24-06 sin llamada al modelo (sin candidatos). k4olcs-008-afi-843b2a lo juzgó gpt-5.4-mini (sin-datos), y la entrada guardó la frase del determinista."
+  },
+  "base": {
+    "generatedAt": "2026-09-28T07:54:32.262Z",
+    "items": [
+      {
+        "claim": {
+          "id": "k4olcs-050-pro-f60a00",
+          "plenoId": "k4olcs",
+          "plenoDate": "2026-04-20",
+          "segmentIndex": 50,
+          "type": "promesa",
+          "speakerGroup": "VOX",
+          "verbatim": "defendemos una educación concertada y un cheque escolar.",
+          "context": "Además, planteamos currículums comunes en todo el país y como he dicho defendemos una educación concertada y un cheque escolar.",
+          "topic": "educacion",
+          "entities": {
+            "referencedEntity": "cheque escolar"
+          },
+          "confidence": 0.9,
+          "reasoning": "Formula un compromiso/programa político futuro concreto sobre impulsar o defender un cheque escolar y educación concertada.",
+          "requiresHumanApproval": true
+        },
+        "verification": {
+          "claimId": "k4olcs-050-pro-f60a00",
+          "verdict": "sin-datos",
+          "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+          "evidence": [],
+          "checkedAgainst": [
+            "promises"
+          ]
+        }
+      },
+      {
+        "claim": {
+          "id": "k4olcs-008-afi-843b2a",
+          "plenoId": "k4olcs",
+          "plenoDate": "2026-04-20",
+          "segmentIndex": 8,
+          "type": "afirmacion_numerica",
+          "speakerGroup": "PSOE",
+          "verbatim": "Con esos indicadores también la carta de servicios sufre, como he dicho, adaptaciones.",
+          "context": "...Con esos indicadores también la carta de servicios sufre, como he dicho, adaptaciones. Estas adaptaciones son porque en algún caso, incluso algunos programas igual cambian...",
+          "topic": "transparencia",
+          "entities": {
+            "referencedEntity": "carta de servicios"
+          },
+          "confidence": 0.67,
+          "reasoning": "Indica que la carta de servicios incorpora adaptaciones por cambios en indicadores o programas; se puede verificar comparando versiones del documento.",
+          "requiresHumanApproval": true
+        },
+        "verification": {
+          "claimId": "k4olcs-008-afi-843b2a",
+          "verdict": "sin-datos",
+          "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+          "evidence": [],
+          "checkedAgainst": []
+        }
+      }
+    ]
+  },
+  "overlay": {
+    "version": 1,
+    "generatedAt": "2026-06-24T07:40:24.903Z",
+    "entries": {
+      "k4olcs-050-pro-f60a00": {
+        "verification": {
+          "claimId": "k4olcs-050-pro-f60a00",
+          "verdict": "verificado",
+          "summary": "El Ayuntamiento de Riba-roja de Túria ha convocado previamente un programa de 'col·le xec', que es un equivalente directo al 'cheque escolar' que el grupo VOX defiende, validando la existencia de tal política a nivel local.",
+          "evidence": [
+            {
+              "kind": "bdns",
+              "ref": "https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocatoria/404652",
+              "snippet": "bdns[6].descripcion=ayudas escolares col·le xec · El programa 'col·le xec' es el equivalente directo del 'cheque escolar' que se menciona en la declaración.",
+              "similarity": 0.71
+            }
+          ],
+          "checkedAgainst": [
+            "llm-second-pass"
+          ]
+        },
+        "source": "llm",
+        "appliedAt": "2026-04-30T18:37:55.059Z"
+      },
+      "k4olcs-008-afi-843b2a": {
+        "verification": {
+          "claimId": "k4olcs-008-afi-843b2a",
+          "verdict": "verificado",
+          "summary": "La existencia de una licitación para la 'Carta de servicios municipal' corrobora que este documento está siendo objeto de adaptaciones o revisión, en línea con lo afirmado.",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=9LNl%2FM0VyDuiEJrVRqloyA%3D%3D",
+              "snippet": "tender · Carta de servicios municipal · Ayuntamiento de Riba-roja de Túria · awarded",
+              "similarity": 1
+            }
+          ],
+          "checkedAgainst": [
+            "llm-second-pass"
+          ]
+        },
+        "source": "llm",
+        "appliedAt": "2026-04-30T18:37:55.059Z"
+      },
+      "rx4hb4-446-cit-317f4b": {
+        "verification": {
+          "claimId": "rx4hb4-446-cit-317f4b",
+          "verdict": "verificado",
+          "summary": "La afirmación sobre la realización de estudios de inundabilidad y un contrato adjudicado se corrobora con la licitación para la 'Redacción estudio de inundabilidad'.",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ek5miXvwRWCmq21uxhbaVQ%3D%3D",
+              "snippet": "Redacción estudio de inundabilidad para la modificación puntual nº 23 ampliación de suelo industrial · Ayuntamiento de Riba-roja de Túria · awarded",
+              "similarity": 0.22
+            }
+          ],
+          "checkedAgainst": [
+            "llm-second-pass"
+          ]
+        },
+        "source": "llm",
+        "appliedAt": "2026-04-30T18:37:55.059Z"
+      }
+    }
+  },
+  "tenders": {
+    "contracts": [
+      {
+        "id": "554850",
+        "title": "Carta de servicios municipal",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=9LNl%2FM0VyDuiEJrVRqloyA%3D%3D",
+        "status": "awarded",
+        "contractType": "services",
+        "processType": "minor_contract",
+        "minorContract": true,
+        "startDate": "2018-03-23",
+        "endDate": "2019-03-08",
+        "awardDate": "2018-04-11",
+        "formalizedDate": null,
+        "duration": 365,
+        "batchNumber": 0,
+        "assignee": "MASUNO SOLUCIONES S.L.",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractorId": "58096",
+        "contractorType": "Ayuntamiento",
+        "categoryId": "23",
+        "categoryTitle": "other",
+        "cpvs": [],
+        "initialAmount": 11553.08,
+        "initialAmountNoTaxes": 9548,
+        "finalAmount": 11553.08,
+        "finalAmountNoTaxes": 9548,
+        "estimatedValue": 0,
+        "numberOfProposals": 3
+      }
+    ]
+  },
+  "transcripciones": {
+    "k4olcs": "Además, planteamos currículums comunes en todo el país y como he dicho defendemos una educación concertada y un cheque escolar.\n...Con esos indicadores también la carta de servicios sufre, como he dicho, adaptaciones. Estas adaptaciones son porque en algún caso, incluso algunos programas igual cambian..."
+  }
+}
