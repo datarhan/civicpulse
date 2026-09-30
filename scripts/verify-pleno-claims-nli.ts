@@ -25,6 +25,10 @@
  * La cola dice lo que opinó la última corrida de cada fila que juzgó: una fila
  * re-juzgada sin subida sale; una que no se miró se queda con su sello. Qué
  * construye cada fila está en src/scraper/entrada-de-pasada.ts.
+ *
+ * Tampoco propone subir lo que una retractación bajó: las filas cuyo veredicto
+ * publicado entró por el motor o por un curador se apartan antes de puntuar, y
+ * la corrida dice cuántas y de quién (`motivoParaNoProponer`).
  */
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
@@ -40,10 +44,12 @@ import { shouldSkipLlmVerification } from '../src/scraper/claim-verifier-llm'
 import { verifyClaimWithNli, type NliScorer } from '../src/scraper/claim-verifier-nli'
 import { scoreNliPairs, NliUnavailableError, type NliPair } from '../src/scraper/nli-client'
 import { loadVerifierContext, type VerifierContext } from '../src/scraper/verifier-runner'
+import { loadOverlay } from './verified-rebuild'
 import {
   actualizarCola,
   validarCola,
   sugerenciaDelAnclaje,
+  motivoParaNoProponer,
   COLA_SUGERENCIAS_NLI,
   type ColaDeSugerencias,
   type SugerenciaDeVeredicto,
@@ -130,7 +136,7 @@ async function main() {
   const ctx = await loadVerifierContext({ withCorpus: true })
   const corpusOpt = ctx.corpus ? { corpus: ctx.corpus } : {}
 
-  const candidates = snap.items.filter((it) => {
+  const seleccionadas = snap.items.filter((it) => {
     // Con lista explícita manda la lista: son filas que YA tienen veredicto y
     // que se quieren volver a fundamentar. La puerta de `opinativa` sigue,
     // porque ésa es política y no un filtro de barrido.
@@ -144,11 +150,25 @@ async function main() {
     return true
   })
 
+  // Lo que una retractación bajó no se propone subir: el motor o un curador lo
+  // bajaron a propósito, y la cola le pediría a una persona deshacerlo sin
+  // decírselo. Se lee del overlay —la fuente de las retractaciones—, no del
+  // publicado, que puede ir por detrás de él. Se apartan ANTES de puntuar y se
+  // cuentan aparte (regla 2): no son «sin respaldo» ni «sin juicio».
+  const overlay = loadOverlay()
+  const fuenteDe = (id: string) => overlay.entries[id]?.source
+  const retractadas: { id: string; motivo: string }[] = []
+  const candidates = seleccionadas.filter((it) => {
+    const motivo = motivoParaNoProponer(fuenteDe(it.claim.id))
+    if (motivo) retractadas.push({ id: it.claim.id, motivo })
+    return !motivo
+  })
+
   // Una pasada tiene que demostrar que hizo lo que le pidieron: si se piden 76
   // ids y aparecen 3, eso no es «ya está» — es una lista mal escrita o un
   // corpus que se movió. Regla 2 de docs/DATA_INTEGRITY.md.
   if (opts.claimIds) {
-    const encontrados = new Set(candidates.map((c) => c.claim.id))
+    const encontrados = new Set(seleccionadas.map((c) => c.claim.id))
     const ausentes = [...opts.claimIds].filter((id) => !encontrados.has(id))
     process.stdout.write(
       `[verify-nli] lista explícita: ${opts.claimIds.size} pedida(s) · ${encontrados.size} ` +
@@ -168,6 +188,23 @@ async function main() {
   process.stdout.write(
     `[verify-nli] ${queue.length} claim(s) eligible (corpus=${ctx.corpus ? 'preloaded' : 'lexical-only'}, model=${opts.model ?? 'mDeBERTa-xnli'})\n`,
   )
+  if (retractadas.length) {
+    const porMotivo = new Map<string, number>()
+    for (const { motivo } of retractadas) porMotivo.set(motivo, (porMotivo.get(motivo) ?? 0) + 1)
+    process.stdout.write(
+      `[verify-nli] ${retractadas.length} no se proponen: ` +
+        [...porMotivo].map(([m, n]) => `${n} ${m}`).join(' · ') +
+        '\n',
+    )
+    if (opts.claimIds) {
+      process.stdout.write(
+        `[verify-nli]   retractadas: ${retractadas
+          .slice(0, 8)
+          .map((x) => x.id)
+          .join(', ')}${retractadas.length > 8 ? ' …' : ''}\n`,
+      )
+    }
+  }
 
   // Cuatro cuentas por separado (regla 2): «el modelo no vio respaldo» y «el
   // modelo no llegó a juzgarla» no pueden imprimirse igual.
@@ -245,7 +282,11 @@ async function main() {
           stats.contradictionFlags += 1
           flaggedIds.push(it.claim.id)
         }
-        const s = sugerenciaDelAnclaje({ r, desde: it.verification.verdict })
+        const s = sugerenciaDelAnclaje({
+          r,
+          desde: it.verification.verdict,
+          fuente: fuenteDe(it.claim.id),
+        })
         if (s) {
           sugerencias.push(s)
           stats.propuestas += 1
@@ -281,7 +322,8 @@ async function main() {
   process.stdout.write(
     `[verify-nli] done. ${queue.length} elegible(s) · juzgadas ${juzgadasTotal} ` +
       `(propuestas ${stats.propuestas} · sin respaldo ${stats.sinRespaldo}) · ` +
-      `sin juicio ${stats.sinJuicio} · contra-flags ${stats.contradictionFlags}\n` +
+      `sin juicio ${stats.sinJuicio} · contra-flags ${stats.contradictionFlags} · ` +
+      `retractadas, no se proponen ${retractadas.length}\n` +
       (escrita
         ? `[verify-nli]   cola → ${COLA_SUGERENCIAS_NLI} (${Object.keys(cola?.entries ?? {}).length} fila(s) en total)\n`
         : `[verify-nli]   cola sin escribir: ninguna fila se juzgó en esta corrida\n`) +
