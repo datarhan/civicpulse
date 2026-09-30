@@ -196,16 +196,29 @@ export function PartyTag({ children, tone, style = {} }) {
  * Lo defiende tests/components/finding-quote-contrast.test.jsx, que lo cazó
  * cuando este componente lo movió al pie.
  *
+ * `rotulo` va ARRIBA, antes del literal, y es el número de la cita en su ficha
+ * («Cita 2»). Ver `RotuloDeCita`.
+ *
  * @param {object} p
  * @param {string} p.text         el verbatim, sin comillas: las pone el componente
  * @param {string|null} [p.attribution]
  * @param {string} [p.tone]       color del bloc, si lo hay
  * @param {React.ReactNode} [p.marks]  calificaciones DE ESTE literal
  * @param {React.ReactNode} [p.source] procedencia: sesión, minuto
+ * @param {React.ReactNode} [p.rotulo] cuál es, cuando la cita va en una lista numerada
  * @param {'card'|'page'} [p.size]
  * @param {object} [p.style]
  */
-export function Quote({ text, attribution, tone, marks, source, size = 'card', style = {} }) {
+export function Quote({
+  text,
+  attribution,
+  tone,
+  marks,
+  source,
+  rotulo,
+  size = 'card',
+  style = {},
+}) {
   const esHabla = attribution !== undefined
   const etiqueta = attribution ?? 'sin atribuir'
   // Pasos de la escala, no números. Esto decía `17 : 14`: el 17 no era ningún
@@ -223,6 +236,7 @@ export function Quote({ text, attribution, tone, marks, source, size = 'card', s
         ...style,
       }}
     >
+      {rotulo && <RotuloDeCita>{rotulo}</RotuloDeCita>}
       <blockquote
         style={{
           margin: 0,
@@ -255,6 +269,43 @@ export function Quote({ text, attribution, tone, marks, source, size = 'card', s
         </figcaption>
       )}
     </figure>
+  )
+}
+
+/**
+ * El número de una cita dentro de su ficha, en la primera línea de su caja.
+ *
+ * Existe por una lectura cruzada que volvía con cada ficha nueva. Una cita que
+ * la puerta editorial retiene deja en su sitio el hueco «Literal retenido», con
+ * su pie, y en /hallazgos veinte fichas mezclan huecos y citas impresas. Sin la
+ * caja —que es lo que lee quien aplana la página: la revisión lectora, un
+ * lector de pantalla, el copia-pega— el pie de un hueco queda pegado a la cita
+ * de encima, y la revisión se lo atribuyó una y otra vez: «La ficha la atribuye
+ * a PSOE» contra la pastilla «sin atribuir» de la vecina, «Es una acusación…»
+ * contra una efeméride impresa. Nueve descartes entre el 29-08 y el 29-09-2026,
+ * cada uno anclado a una ficha, y cada composición nueva lo traía de vuelta.
+ *
+ * Así que cada cita empieza diciendo cuál es, impresa o retenida, y el pie y la
+ * nota de la ficha dicen de qué número hablan. El rótulo va DENTRO de la caja,
+ * antes del literal: en texto plano es la línea que abre cada cita.
+ *
+ * @param {{ children: React.ReactNode }} p
+ */
+export function RotuloDeCita({ children }) {
+  return (
+    <div
+      className="mono"
+      style={{
+        fontSize: 'var(--fs-micro)',
+        fontWeight: 600,
+        letterSpacing: '.08em',
+        textTransform: 'uppercase',
+        color: 'var(--ink50)',
+        marginBottom: 2,
+      }}
+    >
+      {children}
+    </div>
   )
 }
 

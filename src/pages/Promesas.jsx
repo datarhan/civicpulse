@@ -699,10 +699,13 @@ export default function Promesas() {
         </div>
       </div>
 
+      {/* El `min(…, 100%)` es para la columna que queda sola: sin él conservaba
+          sus 340 px en una caja de 327 (375 px de pantalla) o de 272 (320), y
+          cada tarjeta se salía de la página. */}
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(min(340px, 100%), 1fr))',
           gap: 14,
         }}
       >

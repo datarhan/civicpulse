@@ -5,6 +5,7 @@ import {
   classifyQueja,
   routeQueja,
   diasTranscurridos,
+  finDelPlazoEnMeses,
   plazoDeResolucion,
   problemasDelCalendario,
   relojDelPlazo,
@@ -687,6 +688,25 @@ describe('queja-router — el calendario de inhábiles de la sede', () => {
     ])
   })
 
+  // Las fiestas locales de Madrid sólo las declara el BOCM. Hacen falta para el
+  // calendario de los ministerios a los que escriben los reportajes
+  // (`calendarios-inhabiles.ts`), y el BOCM es un diario oficial como el BOE o el
+  // DOGV: lo que la regla excluye son las webs que copian el calendario.
+  it('acepta el BOCM, el diario oficial que declara las fiestas locales de Madrid', () => {
+    expect(
+      con((a) => [
+        {
+          ...a[0],
+          fuente: {
+            ...F,
+            url: 'https://www.bocm.es/boletin/CM_Orden_BOCM/2025/12/12/BOCM-20251212-34.PDF',
+          },
+        },
+        ...a.slice(1),
+      ]),
+    ).toEqual([])
+  })
+
   it('un año que el validador rechaza no cuenta como calendario al calcular', () => {
     // Si el cálculo aceptara lo que el validador rechaza, el validador sería un
     // aviso y no una puerta.
@@ -702,6 +722,64 @@ describe('queja-router — el calendario de inhábiles de la sede', () => {
         conTresLocales,
       ),
     ).toMatchObject({ cuenta: 'sin-calendario', anio: 2030 })
+  })
+})
+
+/**
+ * El último día de un plazo en meses, sin el «hoy».
+ *
+ * `relojDelPlazo` lo cuenta para una queja y con el calendario de la sede. Las
+ * solicitudes de acceso de los reportajes necesitan la misma cuenta —el art. 20
+ * de la Ley 19/2013 da un mes, y el art. 30.5 LPACAP prorroga un último día
+ * inhábil— con el calendario de OTRA administración: la Generalitat, un
+ * ministerio. Una sola cuenta para las dos, no una copia que se separe.
+ */
+describe('queja-router — el último día de un plazo en meses (finDelPlazoEnMeses)', () => {
+  it('un mes desde el 9-09-2026 acaba el 9-10, Día de la Comunitat Valenciana; el 12 es fiesta nacional: el 13', () => {
+    expect(finDelPlazoEnMeses('2026-09-09', 1)).toEqual({
+      cuenta: 'calculada',
+      nominal: '2026-10-09',
+      ultimoDia: '2026-10-13',
+    })
+  })
+
+  it('un último día hábil se queda como está (el control)', () => {
+    expect(finDelPlazoEnMeses('2026-09-01', 1)).toEqual({
+      cuenta: 'calculada',
+      nominal: '2026-10-01',
+      ultimoDia: '2026-10-01',
+    })
+  })
+
+  it('con otro calendario, otro último día; sin el año, no hay último día', () => {
+    expect(finDelPlazoEnMeses('2026-09-09', 1, {})).toEqual({
+      cuenta: 'sin-calendario',
+      anio: 2026,
+      nominal: '2026-10-09',
+    })
+  })
+
+  it('una fecha que no se puede leer no es un plazo', () => {
+    expect(finDelPlazoEnMeses('ayer', 1)).toEqual({ cuenta: 'sin-fecha' })
+    expect(finDelPlazoEnMeses(null, 1)).toEqual({ cuenta: 'sin-fecha' })
+  })
+
+  it('es la misma cuenta que la del reloj de las quejas', () => {
+    const tresMeses = plazoDeResolucion('via_publica')
+    const ahora = Date.parse('2026-06-01T10:00:00Z')
+    for (const desde of [
+      '2026-01-31',
+      '2026-06-14 10:00:00',
+      '2026-09-27 22:00:01',
+      '2026-08-14',
+    ]) {
+      const reloj = relojDelPlazo(tresMeses, desde, ahora)
+      const fin = finDelPlazoEnMeses(desde, tresMeses.amount)
+      expect(fin, desde).toMatchObject({ cuenta: reloj.cuenta })
+      if (reloj.cuenta === 'calculada' && fin.cuenta === 'calculada') {
+        expect([fin.nominal, fin.ultimoDia], desde).toEqual([reloj.nominal, reloj.ultimoDia])
+      }
+    }
   })
 })
 

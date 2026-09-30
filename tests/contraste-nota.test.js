@@ -1,7 +1,11 @@
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { notaAcusacionSinContrastar, ROTULO_CITA_RETENIDA } from '../src/components/PlenoFindings'
+import {
+  nombrarCitas,
+  notaAcusacionSinContrastar,
+  ROTULO_CITA_RETENIDA,
+} from '../src/components/PlenoFindings'
 import { isMachineAuthored } from '../src/scraper/finding-authorship'
 
 /** «No se publica», en cualquiera de sus formas — la misma guarda que #155 y #157. */
@@ -80,6 +84,34 @@ describe('la nota de «acusación no contrastada» no inventa un editor humano',
    * administración o de lo que votó o dijo otro grupo, no del gobierno
    * municipal. Señalado por la revisión lectora ese día.
    */
+  /**
+   * Desde el 29-09-2026 la nota dice de qué citas habla, por su número, y
+   * concuerda con cuántas son: la revisión lectora leía «es una acusación
+   * pública…» sobre la cita impresa de al lado. Las formas numeradas cumplen lo
+   * mismo que la de siempre.
+   */
+  it('nombrada por número, en singular y en plural, promete lo mismo', () => {
+    for (const citas of [nombrarCitas([2]), nombrarCitas([2, 4])]) {
+      for (const quien of ['auto-curation-v1', 'civicpulse-curator', '']) {
+        const nota = notaAcusacionSinContrastar(quien, citas)
+        const cual = `${citas.rotulo}, curador «${quien}»`
+        expect(nota, cual).toContain(citas.sujeto)
+        expect(nota, cual).toMatch(/no reproduce sus? literal/i)
+        expect(nota, cual).not.toMatch(NO_SE_PUBLICA)
+        expect(nota, cual).toMatch(/bitácora/i)
+        expect(nota, cual).toMatch(/datos de la ficha/i)
+        expect(nota, cual).toMatch(/transcripción completa/i)
+        expect(nota, cual).toContain(`«${ROTULO_CITA_RETENIDA}»`)
+        expect(nota, cual).not.toMatch(/gesti[oó]n municipal/i)
+        expect(nota, cual).not.toMatch(/\balguien\b/i)
+      }
+      // Concuerda: una cita es «una acusación»; dos, «acusaciones».
+      expect(notaAcusacionSinContrastar('auto-curation-v1', citas)).toMatch(
+        citas.plural ? /^son acusaciones públicas/ : /^es una acusación pública/,
+      )
+    }
+  })
+
   it('no dice de quién es la acusación, porque la puerta no lo sabe', () => {
     for (const quien of ['auto-curation-v1', 'civicpulse-curator', '']) {
       expect(notaAcusacionSinContrastar(quien), `curador «${quien}»`).not.toMatch(

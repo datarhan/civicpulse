@@ -1,7 +1,6 @@
-import { describe, it, expect, beforeEach } from 'vitest'
+import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
-import { installFetchMock } from './setup/mockFetch'
 import { ClaimLedger } from '../src/components/ClaimLedger'
 import { CORPUS_IDS, PASADAS } from '../src/scraper/claim-verdicts'
 
@@ -27,14 +26,6 @@ import { CORPUS_IDS, PASADAS } from '../src/scraper/claim-verdicts'
  * `source` que #164 lleva a la verificación): una forma recortada es cómo una
  * prueba sigue verde mientras la página real hace otra cosa.
  */
-
-beforeEach(() => {
-  // El hook interno sigue corriendo aunque se pasen `items`: se le sirve un
-  // manifiesto vacío para que su fetch resuelva sin ruido.
-  installFetchMock({
-    '/data/pleno-claims/index.json': { plenos: [], totals: { items: 0, byVerdict: {} } },
-  })
-})
 
 const ROTULO = 'Fuentes comprobadas:'
 

@@ -758,11 +758,15 @@ const FIESTAS_LOCALES_POR_ANIO = 2
 
 /**
  * Dónde puede estar la fuente de un festivo: los diarios oficiales que los
- * declaran (el BOE, y el DOGV en gva.es) y las webs del propio ayuntamiento.
- * Una web que copia el calendario no lo declara, y el día que se equivoque no
- * habrá a quién citar.
+ * declaran (el BOE, el DOGV en gva.es y el BOCM) y las webs del propio
+ * ayuntamiento. Una web que copia el calendario no lo declara, y el día que se
+ * equivoque no habrá a quién citar.
+ *
+ * El BOCM entró el 29-09-2026 para el calendario de los ministerios con sede en
+ * Madrid (`calendarios-inhabiles.ts`): las fiestas locales de la capital sólo
+ * las declara él. La sede de Riba-roja no tiene ningún día de allí.
  */
-const HOSTS_OFICIALES = ['boe.es', 'gva.es', 'ribarroja.es']
+const HOSTS_OFICIALES = ['boe.es', 'gva.es', 'bocm.es', 'ribarroja.es']
 
 function esFuenteOficial(f: FuenteDelFestivo | undefined): boolean {
   if (!f || typeof f.disposicion !== 'string' || typeof f.diario !== 'string') return false
@@ -798,7 +802,7 @@ function problemasDelAnio(anio: number, dias: readonly FestivoDeLaSede[]): strin
     }
     if (!esFuenteOficial(f?.fuente)) {
       problemas.push(
-        `${donde}: sin fuente oficial (disposición, diario y URL https del BOE, la Generalitat o el ayuntamiento)`,
+        `${donde}: sin fuente oficial (disposición, diario y URL https del BOE, el DOGV, el BOCM o el ayuntamiento)`,
       )
     }
   }
@@ -971,6 +975,49 @@ function primerDiaHabil(
 }
 
 /**
+ * El último día de un plazo en meses, sin el «hoy»: el del art. 30.4 LPACAP
+ * (`nominal`) y, si es inhábil en el calendario de quien resuelve, el primer
+ * hábil siguiente (art. 30.5).
+ *
+ * - `calculada`: `ultimoDia` es el nominal o el primer hábil tras él.
+ * - `sin-calendario`: el plazo acaba en un año que ese calendario no tiene
+ *   entero. No se sabe el último día; sólo que no es anterior al nominal.
+ * - `sin-fecha`: `desde` no se puede leer.
+ *
+ * Es la cuenta de `relojDelPlazo`, que la usa, y la de las solicitudes de
+ * acceso de los reportajes (`venceEl`, en solicitud-acceso.ts), que van a otras
+ * administraciones y se cuentan con SU calendario (`calendarios-inhabiles.ts`).
+ * Una sola cuenta para las dos: la de las solicitudes era otra, sumaba el mes y
+ * no prorrogaba nada.
+ */
+export type FinDelPlazo =
+  | { cuenta: 'calculada'; nominal: string; ultimoDia: string }
+  | { cuenta: 'sin-calendario'; anio: number; nominal: string }
+  | { cuenta: 'sin-fecha' }
+
+export function finDelPlazoEnMeses(
+  desde: string | null | undefined,
+  meses: number,
+  festivos: FestivosPorAnio = FESTIVOS_DE_LA_SEDE,
+): FinDelPlazo {
+  const inicio = diaDeLaSede(desde)
+  return inicio === null ? { cuenta: 'sin-fecha' } : finDesdeElDia(inicio, meses, festivos)
+}
+
+/** `finDelPlazoEnMeses` desde un día de la sede ya leído. */
+function finDesdeElDia(
+  inicio: string,
+  meses: number,
+  festivos: FestivosPorAnio,
+): Exclude<FinDelPlazo, { cuenta: 'sin-fecha' }> {
+  const nominal = sumaMeses(inicio, meses)
+  const habil = primerDiaHabil(nominal, festivos)
+  return 'sinCalendario' in habil
+    ? { cuenta: 'sin-calendario', anio: habil.sinCalendario, nominal }
+    : { cuenta: 'calculada', nominal, ultimoDia: habil.dia }
+}
+
+/**
  * Cómo está el plazo de resolución de una queja el día de la sede en que cae
  * `ahora`. Es la única cuenta: la leen el bot (el paso a silencio), la ficha de
  * /quejas/:id, el panel de /quejas/dashboard y el escrito al Síndic.
@@ -1008,22 +1055,14 @@ export function relojDelPlazo(
   if (hoy === null) throw new TypeError(`relojDelPlazo: «ahora» no es un instante (${ahora})`)
   const inicio = diaDeLaSede(desde)
   if (inicio === null) return { cuenta: 'sin-fecha' }
-  const nominal = sumaMeses(inicio, limite.amount)
-  const habil = primerDiaHabil(nominal, festivos)
-  if ('sinCalendario' in habil) {
-    return {
-      cuenta: 'sin-calendario',
-      anio: habil.sinCalendario,
-      nominal,
-      quedanAlNominal: diasEntre(hoy, nominal),
-    }
+  const fin = finDesdeElDia(inicio, limite.amount, festivos)
+  if (fin.cuenta === 'sin-calendario') {
+    return { ...fin, quedanAlNominal: diasEntre(hoy, fin.nominal) }
   }
   return {
-    cuenta: 'calculada',
-    nominal,
-    ultimoDia: habil.dia,
-    dias: diasEntre(inicio, habil.dia),
-    quedan: diasEntre(hoy, habil.dia),
+    ...fin,
+    dias: diasEntre(inicio, fin.ultimoDia),
+    quedan: diasEntre(hoy, fin.ultimoDia),
   }
 }
 

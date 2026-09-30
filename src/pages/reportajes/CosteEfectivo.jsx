@@ -8,6 +8,7 @@ import { Card, Pill } from '../../components/Primitives'
 import {
   enCastellano,
   estadoDeEnvio,
+  fraseDeCalendarios,
   fraseDeEnvio,
   resumirEnvios,
   ESTADO_ENVIO_ETIQUETA,
@@ -762,6 +763,10 @@ function SolicitudesEnviadas({ bloque }) {
         }}
       >
         {bloque.nota}
+        {/* Con qué calendario se contó el último día de cada fila (art. 30.5
+            LPACAP): sale de las filas, así que no puede nombrar a quien no
+            aparece en ellas. */}
+        {` ${fraseDeCalendarios(items)}`}
       </div>
     </Card>
   )
@@ -1278,11 +1283,13 @@ export default function CosteEfectivo() {
         </ul>
       </div>
 
-      {/* Fuentes y método, el cierre de todas las piezas */}
+      {/* Fuentes y método, el cierre de todas las piezas. El `min(…, 100%)` es
+          para la columna que queda sola: sin él conservaba sus 280 px en una
+          caja de 272 (320 px de pantalla). */}
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(280px, 100%), 1fr))',
           gap: 14,
           alignItems: 'start',
           marginTop: 30,

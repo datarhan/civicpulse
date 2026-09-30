@@ -1,9 +1,11 @@
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import {
+  CALENDARIOS,
   arranqueDelPlazo,
   enCastellano,
   estadoDeEnvio,
+  fraseDeCalendarios,
   fraseDeEnvio,
   resumirEnvios,
   type EnvioSolicitud,
@@ -33,6 +35,7 @@ import { SENTIDOS_RESPUESTA } from '../src/scraper/solicitud-acceso'
 
 const base: EnvioSolicitud = {
   organismo: 'Ayuntamiento de Riba-roja de Túria',
+  calendario: 'ayuntamiento-de-riba-roja',
   enviadaEl: '2026-09-09',
   via: 'correo electrónico',
   respuesta: null,
@@ -41,16 +44,22 @@ const base: EnvioSolicitud = {
 const ministerio: EnvioSolicitud = {
   ...base,
   organismo: 'Secretaría de Estado de Turismo',
+  calendario: 'estado-en-madrid',
 }
 
-describe('estadoDeEnvio · tres desenlaces, y ninguno es «pendiente»', () => {
+describe('estadoDeEnvio · los desenlaces, y ninguno es «pendiente»', () => {
+  // Enviada el 9-09-2026: el mes acaba el 9-10, Día de la Comunitat Valenciana,
+  // y el 12 es la Fiesta Nacional, así que el último día es el martes 13
+  // (art. 30.5 LPACAP). Hasta el 28-09-2026 esta prueba daba la solicitud por
+  // vencida el día 10: con tres días de plazo por delante.
   it('dentro del mes, en-plazo — y el último día todavía cuenta', () => {
     expect(estadoDeEnvio(base, '2026-09-20')).toBe('en-plazo')
     expect(estadoDeEnvio(base, '2026-10-09')).toBe('en-plazo')
+    expect(estadoDeEnvio(base, '2026-10-13')).toBe('en-plazo')
   })
 
   it('pasado el mes sin contestar, vencida-sin-respuesta', () => {
-    expect(estadoDeEnvio(base, '2026-10-10')).toBe('vencida-sin-respuesta')
+    expect(estadoDeEnvio(base, '2026-10-14')).toBe('vencida-sin-respuesta')
   })
 
   it('con respuesta, respondida — aunque llegue tarde', () => {
@@ -81,7 +90,7 @@ describe('fraseDeEnvio · lo que el lector lee', () => {
   it('da la fecha de envío y la del vencimiento, en castellano', () => {
     const f = fraseDeEnvio(base, '2026-09-20')
     expect(f).toContain('9 de septiembre de 2026')
-    expect(f).toContain('9 de octubre de 2026')
+    expect(f).toContain('13 de octubre de 2026')
     expect(f).not.toMatch(/\d{4}-\d{2}-\d{2}/)
   })
 
@@ -164,6 +173,159 @@ describe('etiquetas y tonos · derivados, no a mano', () => {
     expect(ESTADO_ENVIO_TONO['en-plazo']).toBe('civic')
     expect(ESTADO_ENVIO_TONO['vencida-sin-respuesta']).toBe('warn')
     expect(ESTADO_ENVIO_TONO.respondida).toBe('ok')
+    expect(ESTADO_ENVIO_TONO['sin-calendario']).toBe('neutral')
+  })
+})
+
+/**
+ * El último día inhábil pasa al primer día hábil siguiente (art. 30.5 LPACAP).
+ *
+ * `venceEl` sumaba el mes y se paraba: el 29-09-2026 cinco filas publicadas
+ * acababan en inhábil —el 9 de octubre, Día de la Comunitat Valenciana; el
+ * sábado 17 y el domingo 18— y la del Ayuntamiento habría pasado a «sin
+ * respuesta» el día 10, con tres días de plazo por delante. La frase da el día
+ * de verdad y dice por qué no es el que sale de sumar un mes: un lector que
+ * cuente del 9 de septiembre al 9 de octubre tiene que poder reconciliarlo.
+ */
+describe('el último día inhábil pasa al primer día hábil siguiente (art. 30.5)', () => {
+  it('el Ayuntamiento, del Día de la Comunitat Valenciana al martes 13', () => {
+    expect(estadoDeEnvio(base, '2026-10-10')).toBe('en-plazo')
+    expect(fraseDeEnvio(base, '2026-09-30')).toContain(
+      'contado desde el envío, el 13 de octubre de 2026 (prorrogado: el 9 de octubre, Día de la Comunitat Valenciana, es inhábil; art. 30.5 de la Ley 39/2015).',
+    )
+  })
+
+  it('un sábado, igual: la Secretaría de Estado, del 17 de octubre al lunes 19', () => {
+    const seguimiento: EnvioSolicitud = { ...ministerio, enviadaEl: '2026-09-17' }
+    expect(estadoDeEnvio(seguimiento, '2026-10-18')).toBe('en-plazo')
+    expect(estadoDeEnvio(seguimiento, '2026-10-19')).toBe('en-plazo')
+    expect(estadoDeEnvio(seguimiento, '2026-10-20')).toBe('vencida-sin-respuesta')
+    expect(fraseDeEnvio(seguimiento, '2026-09-30')).toContain(
+      'el 19 de octubre de 2026 (prorrogado: el 17 de octubre, sábado, es inhábil; art. 30.5 de la Ley 39/2015)',
+    )
+  })
+
+  it('vencida, la frase sigue diciendo el día prorrogado y por qué', () => {
+    expect(fraseDeEnvio(base, '2026-10-14')).toContain(
+      'Contado desde el envío, el mes del artículo 20 terminó el 13 de octubre de 2026 (prorrogado: el 9 de octubre, Día de la Comunitat Valenciana, es inhábil; art. 30.5 de la Ley 39/2015) y no han contestado.',
+    )
+  })
+
+  it('sin prórroga, la frase no la menciona (el control)', () => {
+    // El 1 de octubre de 2026 es jueves y no es festivo.
+    const f = fraseDeEnvio({ ...base, enviadaEl: '2026-09-01' }, '2026-09-20')
+    expect(f).toContain('contado desde el envío, el 1 de octubre de 2026.')
+    expect(f).not.toMatch(/prorrogad/)
+  })
+})
+
+/**
+ * Cada fila, con el calendario de quien la resuelve (arts. 30.7 y 31.3 LPACAP).
+ *
+ * El mismo día no es inhábil para todos: el 9 de octubre lo es en la Comunitat
+ * Valenciana y no para un ministerio en Madrid; el 2 de noviembre de 2026, al
+ * revés; y las fiestas locales son las del municipio de la sede —Riba-roja para
+ * el Ayuntamiento, València para la Generalitat, Madrid para los ministerios—.
+ */
+describe('cada fila, con el calendario de quien la resuelve', () => {
+  it('el Día de la Comunitat Valenciana no es inhábil para un ministerio en Madrid', () => {
+    expect(estadoDeEnvio(ministerio, '2026-10-10')).toBe('vencida-sin-respuesta')
+    const aLaGeneralitat: EnvioSolicitud = { ...base, calendario: 'generalitat-en-valencia' }
+    expect(estadoDeEnvio(aLaGeneralitat, '2026-10-10')).toBe('en-plazo')
+  })
+
+  it('el 2 de noviembre de 2026 es inhábil en Madrid y no en la Comunitat', () => {
+    const alMinisterio: EnvioSolicitud = { ...ministerio, enviadaEl: '2026-10-02' }
+    expect(estadoDeEnvio(alMinisterio, '2026-11-03')).toBe('en-plazo')
+    expect(estadoDeEnvio(alMinisterio, '2026-11-04')).toBe('vencida-sin-respuesta')
+    const aLaGeneralitat: EnvioSolicitud = {
+      ...alMinisterio,
+      calendario: 'generalitat-en-valencia',
+    }
+    expect(estadoDeEnvio(aLaGeneralitat, '2026-11-03')).toBe('vencida-sin-respuesta')
+  })
+
+  it('las fiestas locales son las de la sede de quien resuelve', () => {
+    // 22-01-2026, San Vicente Mártir: local de València, no de Riba-roja.
+    const aLaGeneralitat: EnvioSolicitud = {
+      ...base,
+      enviadaEl: '2025-12-22',
+      calendario: 'generalitat-en-valencia',
+    }
+    expect(estadoDeEnvio(aLaGeneralitat, '2026-01-23')).toBe('en-plazo')
+    const alAyuntamiento: EnvioSolicitud = {
+      ...aLaGeneralitat,
+      calendario: 'ayuntamiento-de-riba-roja',
+    }
+    expect(estadoDeEnvio(alAyuntamiento, '2026-01-23')).toBe('vencida-sin-respuesta')
+    // 14-09-2026, Festividad del Cristo: local de Riba-roja, no de València.
+    const cristo: EnvioSolicitud = { ...base, enviadaEl: '2026-08-14' }
+    expect(estadoDeEnvio(cristo, '2026-09-15')).toBe('en-plazo')
+    const cristoGeneralitat: EnvioSolicitud = { ...cristo, calendario: 'generalitat-en-valencia' }
+    expect(estadoDeEnvio(cristoGeneralitat, '2026-09-15')).toBe('vencida-sin-respuesta')
+  })
+})
+
+/**
+ * Sin el calendario del año —o de quien resuelve—, no hay último día.
+ *
+ * Hasta el día nominal la solicitud está en plazo seguro: la prórroga sólo
+ * alarga. Después no se sabe, y eso es un estado propio, `sin-calendario`: darla
+ * por vencida sería tomar «no tengo el calendario» por «no hay festivos», y
+ * publicar «no han contestado» junto a una administración que quizá tiene
+ * todavía un día. Es el mismo fallo cerrado que el reloj de las quejas.
+ */
+describe('sin el calendario de un año, falla cerrado', () => {
+  // El mes acaba el jueves 15-01-2099: ese año no está en ninguna tabla.
+  const en2099: EnvioSolicitud = { ...base, enviadaEl: '2098-12-15' }
+
+  it('hasta el día nominal sigue en plazo; después, sin calendario — nunca vencida', () => {
+    expect(estadoDeEnvio(en2099, '2099-01-15')).toBe('en-plazo')
+    expect(estadoDeEnvio(en2099, '2099-01-16')).toBe('sin-calendario')
+    expect(estadoDeEnvio(en2099, '2099-12-31')).toBe('sin-calendario')
+  })
+
+  it('la frase da el día nominal «o el primer día hábil siguiente» y dice qué falta', () => {
+    const f = fraseDeEnvio(en2099, '2099-02-01')
+    expect(f).toContain(
+      'contado desde el envío, el 15 de enero de 2099 o, si ese día es inhábil, el primer día hábil siguiente.',
+    )
+    expect(f).toMatch(/calendario de días inhábiles de 2099/)
+    expect(f).not.toMatch(/terminó|no han contestado/)
+  })
+
+  // Una fila publicada sin calendario, o con uno que no existe, no hereda el de
+  // la sede en silencio: no se sabe cuál es, y falla cerrado igual.
+  it('un calendario que no existe, o que no se dice, es ninguno', () => {
+    for (const calendario of ['inventado', undefined]) {
+      const e = { ...base, calendario } as unknown as EnvioSolicitud
+      expect(estadoDeEnvio(e, '2026-10-20'), String(calendario)).toBe('sin-calendario')
+    }
+  })
+
+  it('y el resumen lo cuenta aparte', () => {
+    const r = resumirEnvios([en2099], '2099-02-01')
+    expect(r.porEstado['sin-calendario']).toBe(1)
+    expect(r.porEstado['vencida-sin-respuesta']).toBe(0)
+  })
+})
+
+/**
+ * Qué calendario se usó, dicho una vez debajo de la lista — y sacado de las
+ * filas, no escrito a mano: una nota que nombrara a la Generalitat en una pieza
+ * que no le escribe diría algo falso, y una que la callara, algo incompleto.
+ */
+describe('fraseDeCalendarios · el calendario de quien resuelve, de las filas', () => {
+  it('nombra los calendarios que usan las filas, y sólo ésos', () => {
+    const f = fraseDeCalendarios([base, ministerio])
+    expect(f).toMatch(/art\. 30\.5 de la Ley 39\/2015/)
+    expect(f).toContain('Ayuntamiento de Riba-roja de Túria')
+    expect(f).toContain('Administración General del Estado')
+    expect(f).not.toContain('Generalitat')
+  })
+
+  it('sin filas, nada que decir', () => {
+    expect(fraseDeCalendarios([])).toBe('')
   })
 })
 
@@ -184,6 +346,7 @@ describe('etiquetas y tonos · derivados, no a mano', () => {
 describe('respuesta · «no les corresponde»', () => {
   const ministerio: EnvioSolicitud = {
     organismo: 'Secretaría de Estado de Turismo',
+    calendario: 'estado-en-madrid',
     enviadaEl: '2026-09-09',
     via: 'correo electrónico',
     respuesta: { fecha: '2026-09-16', sentido: 'no-les-corresponde' as never },
@@ -248,6 +411,7 @@ describe('respuesta · «no les corresponde»', () => {
 describe('una solicitud con registro dice su número y vence de verdad', () => {
   const conRegistro: EnvioSolicitud = {
     organismo: 'Turisme Comunitat Valenciana',
+    calendario: 'generalitat-en-valencia',
     enviadaEl: '2026-09-21',
     via: 'el registro electrónico de la Generalitat',
     registro: 'GVRTE/2026/4309357',
@@ -295,6 +459,7 @@ describe('una solicitud con registro dice su número y vence de verdad', () => {
 describe('una solicitud remitida a otro órgano no vence desde su asiento', () => {
   const remitida: EnvioSolicitud = {
     organismo: 'Turisme Comunitat Valenciana',
+    calendario: 'generalitat-en-valencia',
     enviadaEl: '2026-09-21',
     via: 'el registro electrónico de la Generalitat',
     registro: 'GVRTE/2026/4309357',
@@ -338,13 +503,15 @@ describe('una solicitud remitida a otro órgano no vence desde su asiento', () =
     )
   })
 
+  // Recibida el 24-09, el mes acaba el sábado 24-10 y pasa al lunes 26
+  // (art. 30.5 LPACAP).
   it('cuando consta que la recibió, el vencimiento se afirma desde ahí', () => {
     const f = fraseDeEnvio(recibida, '2026-09-30')
     expect(f).toContain('consta que la recibió el 24 de septiembre de 2026')
-    expect(f).toContain('vence el 24 de octubre de 2026')
+    expect(f).toContain('vence el 26 de octubre de 2026 (prorrogado: el 24 de octubre, sábado,')
     expect(f).not.toMatch(/contado desde/i)
-    expect(estadoDeEnvio(recibida, '2026-10-24')).toBe('en-plazo')
-    expect(estadoDeEnvio(recibida, '2026-10-25')).toBe('vencida-sin-respuesta')
+    expect(estadoDeEnvio(recibida, '2026-10-26')).toBe('en-plazo')
+    expect(estadoDeEnvio(recibida, '2026-10-27')).toBe('vencida-sin-respuesta')
   })
 
   // La tabla entera, porque la nota del pie se guarda contra esta función: si
@@ -375,6 +542,7 @@ describe('una solicitud remitida a otro órgano no vence desde su asiento', () =
 describe('una contestación que no resuelve deja el reloj corriendo', () => {
   const conIncidencia: EnvioSolicitud = {
     organismo: 'Turisme Comunitat Valenciana',
+    calendario: 'generalitat-en-valencia',
     enviadaEl: '2026-09-09',
     via: 'correo electrónico',
     respuesta: null,
@@ -390,8 +558,11 @@ describe('una contestación que no resuelve deja el reloj corriendo', () => {
     expect(estadoDeEnvio(conIncidencia, '2026-09-30')).toBe('en-plazo')
   })
 
+  // El 9-10 y el 12-10 son inhábiles también para la Generalitat: el mes del
+  // escrito del 9-09 acaba el 13-10.
   it('y vence como cualquier otra, sin convertirse en respondida', () => {
-    expect(estadoDeEnvio(conIncidencia, '2026-10-10')).toBe('vencida-sin-respuesta')
+    expect(estadoDeEnvio(conIncidencia, '2026-10-13')).toBe('en-plazo')
+    expect(estadoDeEnvio(conIncidencia, '2026-10-14')).toBe('vencida-sin-respuesta')
   })
 
   // Vencida, la frase NO puede decir «no han contestado»: justo debajo va la
@@ -400,7 +571,7 @@ describe('una contestación que no resuelve deja el reloj corriendo', () => {
   // incidencia —Turisme CV y el Ayuntamiento en las dos piezas— y la primera
   // habría vencido el 9 de octubre diciendo lo contrario de su línea de debajo.
   it('vencida, dice que no la resolvieron — no que no contestaran', () => {
-    const f = fraseDeEnvio(conIncidencia, '2026-10-10')
+    const f = fraseDeEnvio(conIncidencia, '2026-10-14')
     expect(f).toContain('sin que la hayan resuelto')
     expect(f).not.toMatch(/no han contestado|no hubo respuesta/)
   })
@@ -409,7 +580,7 @@ describe('una contestación que no resuelve deja el reloj corriendo', () => {
     // El control: el cambio de arriba no puede alcanzar a una fila de la que no
     // consta contestación alguna.
     const sinNada: EnvioSolicitud = { ...conIncidencia, incidencias: undefined }
-    expect(fraseDeEnvio(sinNada, '2026-10-10')).toMatch(/y no han contestado/)
+    expect(fraseDeEnvio(sinNada, '2026-10-14')).toMatch(/y no han contestado/)
   })
 })
 
@@ -435,6 +606,40 @@ describe.each(PIEZAS)('instantánea publicada · %s', (slug) => {
     for (const e of d.solicitudes.items) {
       expect(e.via, `${e.organismo}: falta la vía`).toBeTruthy()
       expect(e.enviadaEl).toMatch(/^\d{4}-\d{2}-\d{2}$/)
+    }
+  })
+
+  // Sin calendario, la fila falla cerrado y nunca vence: la página no mentiría,
+  // pero se quedaría sin plazo. Un calendario mal escrito, igual.
+  it('cada envío dice con qué calendario se cuenta su último día', () => {
+    for (const e of d.solicitudes.items) {
+      expect(
+        CALENDARIOS as readonly string[],
+        `${e.organismo} · ${e.enviadaEl}: calendario «${e.calendario}»`,
+      ).toContain(e.calendario)
+    }
+  })
+
+  // Qué administración resuelve y dónde tiene su sede se decidió leyendo sus
+  // disposiciones (arts. 30.7 y 31.3 LPACAP; BOE-A-2025-23702 para la AGE), no
+  // se deduce del nombre. Un organismo nuevo tiene que entrar aquí a propósito:
+  // copiar una fila y olvidar cambiarle el calendario le daría los festivos de
+  // otro.
+  it('cada organismo publicado tiene el calendario que le corresponde', () => {
+    const CALENDARIO_DE: Record<string, string> = {
+      'Ayuntamiento de Riba-roja de Túria': 'ayuntamiento-de-riba-roja',
+      'Turisme Comunitat Valenciana': 'generalitat-en-valencia',
+      'Comisión de Precios de la Generalitat': 'generalitat-en-valencia',
+      'Secretaría de Estado de Turismo': 'estado-en-madrid',
+      'Ministerio de Hacienda · Subdirección General de Estudios Financieros de Entidades Locales':
+        'estado-en-madrid',
+    }
+    for (const e of d.solicitudes.items) {
+      expect(
+        CALENDARIO_DE[e.organismo],
+        `${e.organismo}: organismo sin calendario decidido`,
+      ).toBeTruthy()
+      expect(e.calendario, `${e.organismo} · ${e.enviadaEl}`).toBe(CALENDARIO_DE[e.organismo])
     }
   })
 
@@ -551,6 +756,7 @@ it('mide algo: alguna instantánea publica una remisión', () => {
 describe('con fecha de entrada distinta de la de presentación, el plazo sale de la entrada', () => {
   const domingo: EnvioSolicitud = {
     organismo: 'Ayuntamiento de Riba-roja de Túria',
+    calendario: 'ayuntamiento-de-riba-roja',
     enviadaEl: '2026-09-27',
     via: 'la sede electrónica del Ayuntamiento',
     registro: '2026014913',
