@@ -156,10 +156,19 @@ export function resumenPlenos({ plenos, agendas, manifest, votes, findings } = {
   // filas son una partición: suman lo extraído.
   const retenidasTodas = Object.values(t.retenidas ?? {}).reduce((s, v) => s + (v ?? 0), 0)
   const sinProcedencia = t.retenidasSinProcedencia ?? 0
+  // Las que una persona retiró tras escuchar la sesión, por motivo. También van
+  // dentro de `totals.retenidas`, por su tipo, y fuera de las sin procedencia
+  // (`contarRetiradas`): se restan, o la fila de retenidas llamaría «acusación
+  // sin contrastar» a una cita que el motor sustituido oyó mal. Un manifiesto
+  // anterior no trae el campo: ninguna.
+  const retiradas = Object.fromEntries(
+    Object.entries(t.retiradas ?? {}).filter(([, v]) => typeof v === 'number' && v > 0),
+  )
+  const retiradasTodas = Object.values(retiradas).reduce((s, v) => s + v, 0)
   const embudo = {
     extraidas: (t.items ?? 0) + retenidasTodas,
     sesiones: manifest?.plenos?.length ?? 0,
-    retenidas: retenidasTodas - sinProcedencia,
+    retenidas: retenidasTodas - sinProcedencia - retiradasTodas,
     // El segundo motivo por el que una declaración no llega a publicarse, y de
     // otra clase que el primero: la puerta editorial retiene lo que no podemos
     // CONTRASTAR, y ésta retiene lo que no podemos demostrar que se DIJERA —su
@@ -168,6 +177,7 @@ export function resumenPlenos({ plenos, agendas, manifest, votes, findings } = {
     // comprobación de procedencia audita lo publicado, así que retirarlas la
     // deja en verde. La fila sólo se pinta cuando hay alguna.
     retenidasSinProcedencia: sinProcedencia,
+    retiradas,
     sinDatos: t.byVerdict?.['sin-datos'] ?? 0,
     parcial: t.byVerdict?.parcial ?? 0,
     verificado: t.byVerdict?.verificado ?? 0,

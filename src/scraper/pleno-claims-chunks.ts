@@ -21,6 +21,7 @@
  */
 
 import type { PlenoClaim, ClaimType, ClaimTopic } from './pleno-claim'
+import type { MotivoDeRetirada } from './declaracion-retirada'
 import { corpusReales } from './claim-verdicts'
 import { agruparPorClaseDocumental } from './clase-documental'
 
@@ -145,6 +146,18 @@ export interface PlenoClaimsChunkManifest {
      * cuántas hay. Un número que la puerta baja y el parte nombra.
      */
     retenidasSinProcedencia: number
+    /**
+     * Las que retiró una persona tras escuchar la sesión, por motivo
+     * (`declaracion-retirada.ts`): su literal consta en una transcripción, pero
+     * no es lo que se dijo.
+     *
+     * Contadas TAMBIÉN dentro de `retenidas`, como las de arriba, y fuera de
+     * `retenidasSinProcedencia`: una que tampoco consta en ninguna
+     * transcripción se cuenta allí (`contarRetiradas`). Así `resumenPlenos`
+     * resta las dos y las filas de la tarjeta suman lo extraído. Ausente en un
+     * manifiesto anterior al 30-09-2026, que es lo mismo que ninguna.
+     */
+    retiradas: Partial<Record<MotivoDeRetirada, number>>
   }
 }
 
@@ -242,6 +255,7 @@ export function buildManifest(
   generatedAt: string,
   retenidas: Record<string, number> = {},
   retenidasSinProcedencia = 0,
+  retiradas: Partial<Record<MotivoDeRetirada, number>> = {},
 ): {
   manifest: PlenoClaimsChunkManifest
   chunks: Map<string, PlenoClaimsChunk>
@@ -332,6 +346,7 @@ export function buildManifest(
         },
         retenidas,
         retenidasSinProcedencia,
+        retiradas,
         sinDatosPorque,
       },
     },

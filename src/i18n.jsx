@@ -755,6 +755,9 @@ export const CATALOGUE = {
     'plenos.indice.decl.sinProcedencia': 'Retenidas por falta de procedencia',
     'plenos.indice.decl.sinProcedencia.nota':
       'su literal no consta en ninguna transcripción nuestra: no se publican',
+    'plenos.indice.decl.retirada.literal-no-dicho': 'Retiradas tras escuchar la sesión',
+    'plenos.indice.decl.retirada.literal-no-dicho.nota':
+      'una persona escuchó el audio y su literal no es lo que se dijo: no se publican',
     'plenos.indice.decl.sinDatos': 'Publicadas sin datos que las contrasten',
     'plenos.indice.decl.sinDatos.nota': 'ni confirmadas ni desmentidas',
     'plenos.indice.decl.contrastadas': 'Parciales o verificadas',
@@ -2406,6 +2409,9 @@ export const CATALOGUE = {
     'plenos.indice.decl.sinProcedencia': 'Retingudes per falta de procedència',
     'plenos.indice.decl.sinProcedencia.nota':
       'el seu literal no consta en cap transcripció nostra: no es publiquen',
+    'plenos.indice.decl.retirada.literal-no-dicho': 'Retirades després d’escoltar la sessió',
+    'plenos.indice.decl.retirada.literal-no-dicho.nota':
+      'una persona va escoltar l’àudio i el seu literal no és el que es va dir: no es publiquen',
     'plenos.indice.decl.sinDatos': 'Publicades sense dades que les contrasten',
     'plenos.indice.decl.sinDatos.nota': 'ni confirmades ni desmentides',
     'plenos.indice.decl.contrastadas': 'Parcials o verificades',
