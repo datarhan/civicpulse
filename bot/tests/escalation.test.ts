@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it, beforeEach } from 'vitest'
+import { afterEach, describe, expect, it, beforeEach, vi } from 'vitest'
 import { openDb, type Db } from '../src/db/client'
 import {
   addApoyo,
@@ -13,7 +13,7 @@ import {
   renderSindicMarkdown,
   renderSindicHtml,
 } from '../src/services/sindic'
-import { checkSilencio } from '../src/services/cron'
+import { checkSilencio, plazosSinCalendario } from '../src/services/cron'
 import { routeUsingLocalOfficials } from '../src/services/router'
 import type { AvisosHitos } from '../src/services/avisos-hitos'
 import { creaPublicada } from './helpers/publicada'
@@ -417,6 +417,120 @@ describe('cron — sin el calendario del año, no hay silencio', () => {
     expect(r.checked).toBe(1)
     expect(r.transitioned).toEqual([])
     expect(r.sinCalendario).toEqual([])
+  })
+})
+
+/**
+ * Lo que /health cuenta (services/health.ts): las registradas cuyo plazo acaba en
+ * un año sin calendario de días inhábiles, con el día nominal más próximo. Hasta
+ * ahora sólo lo decía el log del cron, y sólo pasado ese día.
+ *
+ * Con la MISMA selección que el cron —si contara otras quejas, avisaría de plazos
+ * que el cron no evalúa o callaría los que sí—, y sin tocar nada: lo lee cada
+ * comprobación de Fly, cada 30 segundos.
+ */
+describe('plazosSinCalendario — lo que el cron no podrá decidir, para /health', () => {
+  let db: Db
+  beforeEach(() => {
+    db = openDb(':memory:')
+  })
+  /** Una queja registrada con la marca que guardaría el bot (UTC, sin la Z). */
+  function registradaEl(marca: string, overrides: Partial<NewQuejaInput> = {}) {
+    const q = seed(db, overrides)
+    register(db, q.id)
+    db.prepare('UPDATE quejas SET registered_at = ? WHERE id = ?').run(marca, q.id)
+    return q
+  }
+
+  it('el año que falta, el día nominal y los días que quedan hasta él', () => {
+    // Tres meses desde el 15-01-2099 acaban el 15-04-2099 o el primer hábil
+    // siguiente, y 2099 no tiene calendario.
+    registradaEl('2099-01-15 10:00:00')
+    expect(plazosSinCalendario(db, new Date('2099-03-16T10:00:00Z'))).toEqual({
+      quejas: 1,
+      anios: [2099],
+      primerNominal: '2099-04-15',
+      quedanAlPrimero: 30,
+    })
+  })
+
+  it('pasado el día nominal, lo que queda es negativo', () => {
+    registradaEl('2099-01-15 10:00:00')
+    expect(plazosSinCalendario(db, new Date('2099-05-01T10:00:00Z'))).toMatchObject({
+      quejas: 1,
+      primerNominal: '2099-04-15',
+      quedanAlPrimero: -16,
+    })
+  })
+
+  it('con el calendario del año, no cuenta (el control)', () => {
+    registradaEl(REGISTRO) // tres meses acaban el 15-04-2026, y 2026 está en la tabla
+    expect(plazosSinCalendario(db, new Date('2026-03-16T10:00:00Z'))).toEqual({
+      quejas: 0,
+      anios: [],
+      primerNominal: null,
+      quedanAlPrimero: null,
+    })
+  })
+
+  it('el día nominal más próximo, y cada año que falta una vez', () => {
+    registradaEl('2098-11-15 10:00:00') // → 15-02-2099
+    registradaEl('2098-12-01 10:00:00', {
+      title: 'Farola apagada',
+      detail: 'La farola de la calle Mayor lleva un mes apagada',
+    }) // → 01-03-2099
+    registradaEl('2097-12-10 10:00:00', {
+      title: 'Contenedor roto',
+      detail: 'El contenedor de la plaza lleva semanas roto y sin tapa',
+    }) // → 10-03-2098
+    expect(plazosSinCalendario(db, new Date('2098-02-20T10:00:00Z'))).toEqual({
+      quejas: 3,
+      anios: [2098, 2099],
+      primerNominal: '2098-03-10',
+      quedanAlPrimero: 18,
+    })
+  })
+
+  it('la misma selección que el cron: ni olvidadas, ni silencio positivo, ni sin registrar', () => {
+    const viva = registradaEl('2099-01-15 10:00:00')
+    const olvidada = registradaEl('2099-01-15 10:00:00', {
+      title: 'Farola apagada',
+      detail: 'La farola de la calle Mayor lleva un mes apagada',
+    })
+    softDeleteQueja(db, olvidada.id, autorTelegram(1))
+    registradaEl('2099-01-15 10:00:00', {
+      category: 'urbanismo',
+      title: 'Licencia de obra menor',
+      detail: 'Solicito licencia para reforma de cocina en vivienda unifamiliar',
+    })
+    seed(db, { title: 'Sin registrar', detail: 'Una queja que nunca llegó a la sede electrónica' })
+    const ahora = new Date('2099-05-01T10:00:00Z')
+    expect(plazosSinCalendario(db, ahora)?.quejas).toBe(1)
+    // Y es la que el cron deja sin evaluar pasado el día nominal.
+    expect(checkSilencio(db, fakeHitos(), ahora).sinCalendario.map((s) => s.id)).toEqual([viva.id])
+  })
+
+  it('no toca nada: una vencida con calendario sigue registrada', () => {
+    const vencida = registradaEl(REGISTRO) // su plazo acabó el 15-04-2026
+    plazosSinCalendario(db, new Date('2026-05-01T10:00:00Z'))
+    const fila = db.prepare('SELECT state FROM quejas WHERE id = ?').get(vencida.id) as {
+      state: string
+    }
+    expect(fila.state).toBe('registrada')
+  })
+
+  it('si no puede contar devuelve null y lo deja en el log: /health no se cae', () => {
+    // Una excepción en /health rechaza el manejador de la petición y tumba el
+    // proceso, y Fly pregunta cada 30 segundos.
+    registradaEl('2099-01-15 10:00:00')
+    db.close()
+    const log = vi.spyOn(console, 'error').mockImplementation(() => undefined)
+    try {
+      expect(plazosSinCalendario(db, new Date('2099-05-01T10:00:00Z'))).toBeNull()
+      expect(log).toHaveBeenCalled()
+    } finally {
+      log.mockRestore()
+    }
   })
 })
 
