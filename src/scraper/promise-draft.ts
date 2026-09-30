@@ -13,6 +13,7 @@ import {
   ALLOWED_TOPICS,
   ALLOWED_KINDS,
   ALLOWED_STATUSES,
+  PROGRESS_STATUSES,
   type Party,
   type Topic,
   type Kind,
@@ -68,19 +69,6 @@ export interface DraftNewPromise {
   reasoning: DraftReasoning[]
   generatedAt: string
 }
-
-/**
- * The three "progress" statuses a status-change draft may propose. This is a
- * deliberate subset of ALLOWED_STATUSES: the miner only ever advances a promise
- * along the fulfilment axis (documentada → en-progreso → parcial → cumplida).
- * It never proposes no-ejecutada / inviable — those are libel-heavy negative
- * judgements reserved for a human curator.
- */
-export const PROGRESS_STATUSES: readonly ['en-progreso', 'parcial', 'cumplida'] = [
-  'en-progreso',
-  'parcial',
-  'cumplida',
-]
 
 export interface DraftStatusChange {
   draftId: string
