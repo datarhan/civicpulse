@@ -1,0 +1,82 @@
+{
+  "_comment": "Filas reales de public/data a 30-09-2026 (main 8997e816), para tests/anclaje-nli-puntuaciones.test.ts: la declaración 1tgd1h4-344-afi-6435f9 tal y como la publica pleno-claims-verified.json —un sin-datos de la base, sin entrada en el overlay— y las dos licitaciones de tenders.json que forman, en este orden, toda su lista corta léxica.",
+  "item": {
+    "claim": {
+      "id": "1tgd1h4-344-afi-6435f9",
+      "plenoId": "1tgd1h4",
+      "plenoDate": "2024-07-29",
+      "segmentIndex": 344,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "declarar la responsabilidad patrimonial contractual por importe equivalente a 25.117.783,68 €",
+      "context": "Subsidiariamente, en el caso de que la anterior petición resulte desestimada, acuerde declarar la responsabilidad patrimonial contractual por importe equivalente a 25.117.783,68 €, incrementados en:",
+      "topic": "urbanismo",
+      "entities": {
+        "amountEuros": 25117783.68,
+        "referencedEntity": "responsabilidad patrimonial contractual"
+      },
+      "confidence": 0.98,
+      "reasoning": "Es una cuantía económica concreta asociada a una petición/pretensión jurídica; puede verificarse en el expediente o en el texto íntegro de la propuesta.",
+      "requiresHumanApproval": true
+    },
+    "verification": {
+      "claimId": "1tgd1h4-344-afi-6435f9",
+      "verdict": "sin-datos",
+      "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+      "evidence": [],
+      "checkedAgainst": [
+        "tenders",
+        "tenders-ted",
+        "bdns",
+        "budget"
+      ]
+    }
+  },
+  "tenders": {
+    "generatedAt": "2026-09-29T10:57:12.921Z",
+    "tenders": [
+      {
+        "id": "76284",
+        "title": "Seguro de responsabilidad civil/patrimonial del ayuntamiento",
+        "documentNumber": "41/2018",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=50AMOi%2FtmLPnSoTX3z%2F7wA%3D%3D",
+        "status": "provisionally_awarded",
+        "contractType": "other",
+        "processType": "open",
+        "minorContract": false,
+        "submissionDate": "2018-06-20",
+        "openProposalsDate": "2018-06-05",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractValue": 54000,
+        "initialAmount": 27000,
+        "initialAmountNoTaxes": 27000,
+        "categoryTitle": "finance",
+        "cpvs": [
+          "66516000"
+        ],
+        "numberOfBatches": 0
+      },
+      {
+        "id": "88408",
+        "title": "Seguro de Responsabilidad Civil/patrimonial del Ayuntamiento de Riba-roja",
+        "documentNumber": "100/2017",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fyqNrUJGe9wQK2TEfXGy%2BA%3D%3D",
+        "status": "provisionally_awarded",
+        "contractType": "other",
+        "processType": "open",
+        "minorContract": false,
+        "submissionDate": "2018-03-16",
+        "openProposalsDate": "2017-12-19",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractValue": 88000,
+        "initialAmount": 44000,
+        "initialAmountNoTaxes": 44000,
+        "categoryTitle": "finance",
+        "cpvs": [
+          "66510000"
+        ],
+        "numberOfBatches": 0
+      }
+    ]
+  }
+}
