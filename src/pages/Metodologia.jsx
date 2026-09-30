@@ -12,6 +12,7 @@ import { mailboxKinds } from '../lib/mailboxes'
 import { ATIPICO_FACTOR } from '../scraper/indicadores'
 import { authorshipBreakdown } from '../scraper/finding-authorship'
 import { STATUS_TIER } from '../scraper/promise-auto-curate'
+import { PROGRESS_STATUSES } from '../scraper/promises'
 import { TRINQUETE } from '../scraper/trinquete'
 import { RADIO_MAXIMO_M } from '../scraper/situar-barrio'
 import { AMBITOS_DEL_FESTIVO, FESTIVOS_DE_LA_SEDE } from '../scraper/queja-router'
@@ -41,16 +42,28 @@ import { AMBITOS_DEL_FESTIVO, FESTIVOS_DE_LA_SEDE } from '../scraper/queja-route
  *
  * Derivarla de `STATUS_TIER` es la regla de CLAUDE.md aplicada donde se puede
  * aplicar: cambiar la política ahora reescribe la página sola.
+ *
+ * Pero el escalón dice qué le pasaría a una propuesta de cada estado, no que el
+ * motor la haga, y `propuestos` lo cruza con lo que sí propone: el minero sólo
+ * avanza una promesa (`PROGRESS_STATUSES`) y la cola rechaza cualquier otro
+ * estado. `no-ejecutada` tiene escalón 'fast-track' —reservado en el diseño de
+ * julio para un detector de incumplimiento que se aplazó— y ningún motor lo
+ * propone. Leída sólo del escalón, esta página lo ponía «a un solo clic humano»
+ * (y dos frases escritas a mano lo repetían) mientras su tabla de estados
+ * decía, con razón, que el algoritmo no puede asignarlo. Lo cazó la revisión de
+ * superficies el 30-09-2026; lo guarda tests/metodologia-estados-propuestos.test.jsx.
  */
-function EstadosPorEscalon({ tier }) {
+function EstadosPorEscalon({ tier, propuestos, ni = false }) {
+  const escalones = [tier].flat()
   const estados = Object.entries(STATUS_TIER)
-    .filter(([, t]) => t === tier)
+    .filter(([, t]) => escalones.includes(t))
     .map(([estado]) => estado)
+    .filter((e) => propuestos === undefined || PROGRESS_STATUSES.includes(e) === propuestos)
   return (
     <>
       {estados.map((e, i) => (
         <span key={e}>
-          {i > 0 && (i === estados.length - 1 ? ' y ' : ', ')}
+          {i > 0 && (i === estados.length - 1 ? (ni ? ' ni ' : ' y ') : ', ')}
           <em>{e}</em>
         </span>
       ))}
@@ -429,10 +442,11 @@ export default function Metodologia() {
             quede anclada a su fuente (URL que resuelve + cita literal presente, y entre comillas si
             la fuente es una noticia); se marcan en su ficha con «publicada automáticamente ·
             revisión pendiente» hasta que un curador los revisa.{' '}
-            <EstadosPorEscalon tier="fast-track" /> quedan listos para publicar con un solo clic
-            humano —incluidos los dos veredictos fuertes, <em>parcial</em> y <em>cumplida</em>, que
-            certifican que algo se hizo—. <EstadosPorEscalon tier="human-only" /> es siempre
-            exclusivamente humano, con justificación documental.
+            <EstadosPorEscalon tier="fast-track" propuestos /> —los dos veredictos fuertes, los que
+            certifican que algo se hizo— quedan listos para publicar con un solo clic humano. El
+            motor no propone nunca{' '}
+            <EstadosPorEscalon tier={['fast-track', 'human-only']} propuestos={false} ni />: los
+            asigna siempre una persona, con justificación documental.
           </li>
           <li>
             <strong>Transparencia del algoritmo.</strong> Un proceso semanal (los lunes) escanea
@@ -559,9 +573,14 @@ export default function Metodologia() {
             revisión humana en cola.
           </li>
           <li>
-            No auto-publica ningún veredicto fuerte: <EstadosPorEscalon tier="fast-track" /> quedan
-            como propuesta lista para publicar con un solo clic humano, e{' '}
-            <EstadosPorEscalon tier="human-only" /> es siempre exclusivamente humano.
+            No auto-publica ningún veredicto fuerte:{' '}
+            <EstadosPorEscalon tier="fast-track" propuestos /> quedan como propuesta lista para
+            publicar con un solo clic humano.
+          </li>
+          <li>
+            No propone nunca{' '}
+            <EstadosPorEscalon tier={['fast-track', 'human-only']} propuestos={false} ni />: los
+            asigna siempre una persona.
           </li>
           <li>
             No inventa ni resume citas, y ya no cita titulares: sólo palabras que la noticia pone
@@ -606,8 +625,8 @@ export default function Metodologia() {
             pendiente» hasta que un curador lo revisa.
           </li>
           <li>
-            Un veredicto de «no ejecutada» (incumplimiento) nunca se auto-publica: queda como
-            propuesta lista para publicar con un solo clic humano.
+            El proceso no propone nunca un veredicto de «no ejecutada» (incumplimiento): lo asigna
+            siempre una persona.
           </li>
           <li>
             El anclaje de un cambio de estado demuestra que la licitación o la noticia existe, no
@@ -723,7 +742,7 @@ export default function Metodologia() {
             <strong>El aviso de plazo vencido no cambia ningún estado.</strong> Es una señalización
             editorial; por sí solo, el estado de la promesa o del voto no pasa a{' '}
             <em>no-ejecutada</em>, que —como todo veredicto de incumplimiento— exige curación humana
-            (un solo clic, nunca automático; ver la sección de auto-curación).
+            (nunca automática: el motor ni siquiera lo propone; ver la sección de auto-curación).
           </li>
           <li>
             <strong>Derecho de réplica intacto.</strong> Cualquier persona o grupo afectado puede
