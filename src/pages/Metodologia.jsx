@@ -1377,7 +1377,17 @@ export default function Metodologia() {
             encargo del propio modelo («Task completed: reasoned in Spanish…»): la tarjeta no las
             imprime y dice «Explicación retirada». Desde finales de septiembre de 2026 el motor no
             juzga sobre un razonamiento así, ni sobre uno vacío —la declaración conserva su
-            veredicto y se vuelve a intentar—, y el overlay no deja escribirlo.
+            veredicto y se vuelve a intentar—, y el overlay no deja escribirlo. Las pasadas de junio
+            y agosto de 2026 anotaban además mal dos cosas. Una declaración sin candidatos que
+            enseñar al modelo volvía con el veredicto del comparador determinista y quedaba
+            registrada como retractación del motor, aunque el modelo no la hubiera visto; y cuando
+            el modelo sí la juzgaba sin respaldo, la explicación que se guardaba era la frase
+            estándar del comparador («No se encontró registro…»), no su razonamiento. Desde finales
+            de septiembre de 2026 lo que el modelo no ve no se escribe como suyo ni cuenta como
+            juzgado, y la retractación guarda lo que el modelo razonó. Las que se anotaron sin que
+            el modelo las viera se devuelven al veredicto del comparador determinista —«sin datos»
+            en todas, así que ninguna cambia de veredicto, sólo de firma—, y las demás se vuelven a
+            derivar para que la explicación sea la del modelo.
           </li>
           <li>
             {/* Sin cuantificador de entrada: la cifra exacta viene justo

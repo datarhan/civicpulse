@@ -1,0 +1,196 @@
+{
+  "_procedencia": {
+    "que": "Cuatro retractaciones del motor tal cual están publicadas, para probar retirar-pasada --sin-juicio en una caja de arena.",
+    "overlay": "Entradas de public/data/pleno-claims-overlay.json (commit 0f01e13a) sin tocar. k4olcs-050-pro-f60a00, k4olcs-016-cit-683445 y k4olcs-076-afi-853250 están declaradas en src/scraper/retractaciones-sin-juicio.ts; k4olcs-008-afi-843b2a no: la juzgó el modelo.",
+    "base": "pleno-claims-verified-base.json del checkout principal (generatedAt 2026-09-28T07:54:32.262Z), las mismas cuatro filas sin tocar. La prueba inyecta dos fallos encima, y lo dice donde lo hace.",
+    "transcripciones": "El contexto de cada declaración: basta para que la puerta de procedencia las publique."
+  },
+  "base": {
+    "generatedAt": "2026-09-28T07:54:32.262Z",
+    "items": [
+      {
+        "claim": {
+          "id": "k4olcs-050-pro-f60a00",
+          "plenoId": "k4olcs",
+          "plenoDate": "2026-04-20",
+          "segmentIndex": 50,
+          "type": "promesa",
+          "speakerGroup": "VOX",
+          "verbatim": "defendemos una educación concertada y un cheque escolar.",
+          "context": "Además, planteamos currículums comunes en todo el país y como he dicho defendemos una educación concertada y un cheque escolar.",
+          "topic": "educacion",
+          "entities": {
+            "referencedEntity": "cheque escolar"
+          },
+          "confidence": 0.9,
+          "reasoning": "Formula un compromiso/programa político futuro concreto sobre impulsar o defender un cheque escolar y educación concertada.",
+          "requiresHumanApproval": true
+        },
+        "verification": {
+          "claimId": "k4olcs-050-pro-f60a00",
+          "verdict": "sin-datos",
+          "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+          "evidence": [],
+          "checkedAgainst": [
+            "promises"
+          ]
+        }
+      },
+      {
+        "claim": {
+          "id": "k4olcs-016-cit-683445",
+          "plenoId": "k4olcs",
+          "plenoDate": "2026-04-20",
+          "segmentIndex": 16,
+          "type": "cita_convenio",
+          "speakerGroup": null,
+          "verbatim": "Publicar la política del sistema interno de información en el tablero dictado y portar de transparencia.",
+          "context": "Cuarto, publicar la política del sistema interno de información en el tablero dictado y portar de transparencia. Quinto, comunicar este acuerdo al responsable y suplente del canal interno, así como al comité antifraude.",
+          "topic": "transparencia",
+          "entities": {
+            "referencedEntity": "portal de transparencia"
+          },
+          "confidence": 0.84,
+          "reasoning": "Es una obligación de publicación/comunicación administrativa concreta, verificable en el acuerdo y en la web/portal municipal si se ejecutó.",
+          "requiresHumanApproval": true
+        },
+        "verification": {
+          "claimId": "k4olcs-016-cit-683445",
+          "verdict": "sin-datos",
+          "summary": "El objeto citado aparece en un expediente municipal, pero ninguna de sus magnitudes coincide con la cifra del claim. No es que no haya registro: es que el que hay no dice eso.",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=mV0QInbOtkfnSoTX3z%2F7wA%3D%3D",
+              "snippet": "ervicio para la desarrollo, implantación y mantenimiento de un Portal de Transparencia, por procedimiento abierto súper simplificado, mejor relación calidad-precio, único criterio de adjudicación, con condición especial de ejecución de carácter social y medioambiental contribuyendo al ODS 9 INDUSTRIA, INNOVACION E INFRAESTRUCTURA en relación a la meta 9.5.c para aumentar significativamente el acceso a la tecnología de la información y las comunicaciones y esforzarse por proporcionar acceso universal y asequible a Internet. · Ayuntamiento de Riba-roja de Túria · TICSMART SL · it · 15.137 €",
+              "similarity": 1,
+              "stance": "checked"
+            }
+          ],
+          "checkedAgainst": []
+        }
+      },
+      {
+        "claim": {
+          "id": "k4olcs-076-afi-853250",
+          "plenoId": "k4olcs",
+          "plenoDate": "2026-04-20",
+          "segmentIndex": 76,
+          "type": "afirmacion_numerica",
+          "speakerGroup": "VOX",
+          "verbatim": "la educación pública merece más recursos, eso es cierto, que se están aportando",
+          "context": "Porque la educación pública merece más recursos, eso es cierto, que se están aportando, como ha comentado muy bien la concejal del Partido Popular, pero también, esto es fundamental, merece más estabilidad",
+          "topic": "educacion",
+          "entities": {
+            "referencedEntity": "recursos aportados a la educación pública"
+          },
+          "confidence": 0.63,
+          "reasoning": "Afirma que se están aportando recursos a la educación pública; es comprobable con presupuestos, partidas o ejecución presupuestaria, aunque no cita cifra concreta.",
+          "requiresHumanApproval": true
+        },
+        "verification": {
+          "claimId": "k4olcs-076-afi-853250",
+          "verdict": "sin-datos",
+          "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+          "evidence": [],
+          "checkedAgainst": []
+        }
+      },
+      {
+        "claim": {
+          "id": "k4olcs-008-afi-843b2a",
+          "plenoId": "k4olcs",
+          "plenoDate": "2026-04-20",
+          "segmentIndex": 8,
+          "type": "afirmacion_numerica",
+          "speakerGroup": "PSOE",
+          "verbatim": "Con esos indicadores también la carta de servicios sufre, como he dicho, adaptaciones.",
+          "context": "...Con esos indicadores también la carta de servicios sufre, como he dicho, adaptaciones. Estas adaptaciones son porque en algún caso, incluso algunos programas igual cambian...",
+          "topic": "transparencia",
+          "entities": {
+            "referencedEntity": "carta de servicios"
+          },
+          "confidence": 0.67,
+          "reasoning": "Indica que la carta de servicios incorpora adaptaciones por cambios en indicadores o programas; se puede verificar comparando versiones del documento.",
+          "requiresHumanApproval": true
+        },
+        "verification": {
+          "claimId": "k4olcs-008-afi-843b2a",
+          "verdict": "sin-datos",
+          "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+          "evidence": [],
+          "checkedAgainst": []
+        }
+      }
+    ]
+  },
+  "overlay": {
+    "version": 1,
+    "generatedAt": "2026-09-21T05:53:59.613Z",
+    "entries": {
+      "k4olcs-050-pro-f60a00": {
+        "verification": {
+          "claimId": "k4olcs-050-pro-f60a00",
+          "verdict": "sin-datos",
+          "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+          "evidence": [],
+          "checkedAgainst": [
+            "verdict-engine"
+          ]
+        },
+        "source": "verdict-engine",
+        "reason": "verdict-engine (gpt-5.4-mini) re-judged verificado→sin-datos: No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "editor": "verdict-engine:gpt-5.4-mini",
+        "appliedAt": "2026-06-24T10:12:46.414Z"
+      },
+      "k4olcs-016-cit-683445": {
+        "verification": {
+          "claimId": "k4olcs-016-cit-683445",
+          "verdict": "sin-datos",
+          "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+          "evidence": [],
+          "checkedAgainst": [
+            "verdict-engine"
+          ]
+        },
+        "source": "verdict-engine",
+        "reason": "verdict-engine (gpt-5.4-mini) re-judged parcial→sin-datos: No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "editor": "verdict-engine:gpt-5.4-mini",
+        "appliedAt": "2026-06-24T10:12:46.414Z"
+      },
+      "k4olcs-076-afi-853250": {
+        "verification": {
+          "claimId": "k4olcs-076-afi-853250",
+          "verdict": "sin-datos",
+          "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+          "evidence": [],
+          "checkedAgainst": [
+            "verdict-engine"
+          ]
+        },
+        "source": "verdict-engine",
+        "reason": "verdict-engine (gpt-5.4-mini) re-judged parcial→sin-datos: No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "editor": "verdict-engine:gpt-5.4-mini",
+        "appliedAt": "2026-06-24T10:12:46.414Z"
+      },
+      "k4olcs-008-afi-843b2a": {
+        "verification": {
+          "claimId": "k4olcs-008-afi-843b2a",
+          "verdict": "sin-datos",
+          "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+          "evidence": [],
+          "checkedAgainst": [
+            "verdict-engine"
+          ]
+        },
+        "source": "verdict-engine",
+        "reason": "verdict-engine (gpt-5.4-mini) re-judged verificado→sin-datos: No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "editor": "verdict-engine:gpt-5.4-mini",
+        "appliedAt": "2026-06-24T10:12:46.414Z"
+      }
+    }
+  },
+  "transcripciones": {
+    "k4olcs": "Además, planteamos currículums comunes en todo el país y como he dicho defendemos una educación concertada y un cheque escolar.\nCuarto, publicar la política del sistema interno de información en el tablero dictado y portar de transparencia. Quinto, comunicar este acuerdo al responsable y suplente del canal interno, así como al comité antifraude.\nPorque la educación pública merece más recursos, eso es cierto, que se están aportando, como ha comentado muy bien la concejal del Partido Popular, pero también, esto es fundamental, merece más estabilidad\n...Con esos indicadores también la carta de servicios sufre, como he dicho, adaptaciones. Estas adaptaciones son porque en algún caso, incluso algunos programas igual cambian..."
+  }
+}
