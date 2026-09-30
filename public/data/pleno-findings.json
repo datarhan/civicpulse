@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-09-30T05:48:09.258Z",
+  "generatedAt": "2026-09-30T05:48:40.144Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. Los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, salvo los que llevan la firma de una persona, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -2081,7 +2081,7 @@
       "plenoId": "19gax3o",
       "plenoDate": "2026-01-19",
       "title": "Debate sobre urbanismo y mantenimiento de infraestructuras en el pleno del 2026-01-19",
-      "summary": "Durante la sesión, un grupo no identificado señala deficiencias y reparaciones en el complejo la malla desde su inicio en 2006. En relación con este debate, el registro municipal incluye el contrato 'Servicio mantenimiento instalaciones en complejo deportivo La Malla'. Por su parte, el grupo VOX pide «un plan de reconstrucción nacional centrado en infraestructuras hidráulicas, protección civil eficaz, ayudas directas».",
+      "summary": "Durante la sesión, en el debate de una modificación de crédito para el pabellón y el complejo deportivo de La Malla, se discutieron las deficiencias de ese complejo. En relación con este debate, el registro municipal incluye el contrato 'Servicio mantenimiento instalaciones en complejo deportivo La Malla'. Por su parte, una intervención sin atribuir pide «un plan de reconstrucción nacional centrado en infraestructuras hidráulicas, protección civil eficaz, ayudas directas».",
       "severity": "informational",
       "sourceClaimIds": [
         "19gax3o-051-cit-c80e68",
@@ -2092,18 +2092,8 @@
       "quotes": [
         {
           "text": "un plan de reconstrucción nacional centrado en infraestructuras hidráulicas, protección civil eficaz, ayudas directas",
-          "speakerGroup": "VOX",
+          "speakerGroup": null,
           "sourceClaimId": "19gax3o-055-cit-a80e52"
-        },
-        {
-          "text": "el complejo la malla se presupuesto en el año 2006 y tuvieron que hacer varias reparaciones dentro de la propia ejecución de la obra",
-          "speakerGroup": null,
-          "sourceClaimId": "19gax3o-132-cit-35c4f5"
-        },
-        {
-          "text": "esa piscina, ese complexo esportivo de la Mallá que ha dicho todas las deficiencias que tenían",
-          "speakerGroup": null,
-          "sourceClaimId": "19gax3o-143-cit-a3a7a1"
         }
       ],
       "crossChecked": [
@@ -2168,6 +2158,38 @@
           "reason": "El resumen atribuía a VOX señalar que faltaba una agenda de reconstrucción local. La frase venía de una transcripción ya retirada, que deformó el pasaje; en la vigente (segundos 3175 a 3405) VOX rechaza la agenda urbana de reconstrucción que se votaba, por ir ligada a la Agenda 2030, y pide un plan nacional. La única cita de VOX que lleva esta ficha es esa petición, y el resumen pasa a decir lo que la cita dice. Lo señaló la revisión lectora el 21-09-2026.",
           "editor": "claude-fable-5.1",
           "correctedAt": "2026-09-21T10:48:44.306Z"
+        },
+        {
+          "field": "quote.2",
+          "original": "cita · sha256:80977b2b0a74",
+          "corrected": "retirada del hallazgo",
+          "reason": "El literal procede del motor que se sustituyó al re-transcribir la sesión, que traducía al castellano lo dicho en valencià: no es lo que se dijo. La transcripción vigente recoge ese pasaje mal oído, así que no hay un texto fiel al que reanclarlo (6.880–6.887 s). El sumario no la utiliza.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:48:39.134Z"
+        },
+        {
+          "field": "quote.1",
+          "original": "cita · sha256:479ec3f69a71",
+          "corrected": "retirada del hallazgo",
+          "reason": "El literal procede del motor que se sustituyó al re-transcribir la sesión y no dice lo que se oye: donde pone un año, en la sesión se oyen importes (transcripción vigente y audio, 6.475–6.486 s). No se reancla al pasaje correcto porque cambiaría lo que la cita afirma, y el contraste con que se publicó se hizo sobre el literal erróneo: una afirmación distinta no se publica por la vía de una corrección. El sumario deja de apoyarse en ella.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:48:39.334Z"
+        },
+        {
+          "field": "quote.0.speakerGroup",
+          "original": "VOX",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo con un solo concejal identifica a esa persona por eliminación, y no llevaba firma de curador. Se retira la atribución en lugar de sustituirla.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:48:39.531Z"
+        },
+        {
+          "field": "summary",
+          "original": "Durante la sesión, un grupo no identificado señala deficiencias y reparaciones en el complejo la malla desde su inicio en 2006. En relación con este debate, el registro municipal incluye el contrato 'Servicio mantenimiento instalaciones en complejo deportivo La Malla'. Por su parte, el grupo VOX pide «un plan de reconstrucción nacional centrado en infraestructuras hidráulicas, protección civil eficaz, ayudas directas».",
+          "corrected": "Durante la sesión, en el debate de una modificación de crédito para el pabellón y el complejo deportivo de La Malla, se discutieron las deficiencias de ese complejo. En relación con este debate, el registro municipal incluye el contrato 'Servicio mantenimiento instalaciones en complejo deportivo La Malla'. Por su parte, una intervención sin atribuir pide «un plan de reconstrucción nacional centrado en infraestructuras hidráulicas, protección civil eficaz, ayudas directas».",
+          "reason": "El sumario atribuía la petición a un grupo con un solo concejal, lo que identifica a esa persona por eliminación, sin firma de curador. Además situaba el inicio del complejo en un año que procedía de una cita mal transcrita, ya retirada, y se apoyaba en otra que es traducción del motor sustituido. Se describe el debate sin apoyarse en ninguna de las dos.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:48:39.730Z"
         }
       ]
     },
@@ -2274,7 +2296,7 @@
       "plenoId": "19gax3o",
       "plenoDate": "2026-01-19",
       "title": "Debate sobre el plan de contratación de 2026 y una modificación de crédito en el pleno de Riba-roja de Túria del 2026-01-19",
-      "summary": "En la sesión del 19 de enero de 2026, un grupo no identificado señala su apoyo al plan de contratación de 2026. En el debate de la modificación de crédito para el pabellón y el complejo deportivo, una intervención sin grupo identificado anuncia que su grupo votará a favor; más tarde, otra aclara que la crítica política que había hecho a esa modificación no se refería a su intención de voto.",
+      "summary": "En la sesión del 19 de enero de 2026, una intervención sin atribuir anuncia el apoyo de su grupo al plan de contratación de 2026. En el debate de la modificación de crédito para el pabellón y el complejo deportivo, otra anuncia que su grupo votará a favor; más tarde, una tercera aclara que la crítica política que había hecho a esa modificación no se refería a su intención de voto.",
       "severity": "informational",
       "sourceClaimIds": [
         "19gax3o-114-afi-5238db",
@@ -2290,7 +2312,7 @@
         },
         {
           "text": "Nosaltres des del grup municipal de compromís anem a recolzar aquest pla de contractació 2026 i l'aplicació és ben senzilla.",
-          "speakerGroup": "Compromís",
+          "speakerGroup": null,
           "sourceClaimId": "19gax3o-010-cit-c48425"
         },
         {
@@ -2443,6 +2465,22 @@
           "reason": "El sumario atribuía al PP un voto a favor que el PP no anunció —anunció su abstención— y decía que esa intervención no constaba en la transcripción vigente, donde sí está, en valencià (5.600–5.762 s). Además fundía en un solo grupo dos intervenciones distintas y distantes (6.692 y 8.546 s), leía como críticas ajenas la aclaración de quien habla sobre la suya, y fechaba entre 2006 y 2012 una auditoría que la cita retenida no fecha. El sumario deja de parafrasear esa cita, y con ella cae la frase sobre el registro de contratación, que sólo servía a aquel periodo. Y deja de nombrar al grupo al que atribuía el apoyo al plan de contratación, que tiene un solo concejal: nombrarlo identifica a esa persona por eliminación, y esa atribución no llevaba firma de curador.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-09-30T05:45:29.210Z"
+        },
+        {
+          "field": "quote.1.speakerGroup",
+          "original": "Compromís",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo con un solo concejal identifica a esa persona por eliminación, y no llevaba firma de curador. Se retira la atribución en lugar de sustituirla.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:48:39.935Z"
+        },
+        {
+          "field": "summary",
+          "original": "En la sesión del 19 de enero de 2026, un grupo no identificado señala su apoyo al plan de contratación de 2026. En el debate de la modificación de crédito para el pabellón y el complejo deportivo, una intervención sin grupo identificado anuncia que su grupo votará a favor; más tarde, otra aclara que la crítica política que había hecho a esa modificación no se refería a su intención de voto.",
+          "corrected": "En la sesión del 19 de enero de 2026, una intervención sin atribuir anuncia el apoyo de su grupo al plan de contratación de 2026. En el debate de la modificación de crédito para el pabellón y el complejo deportivo, otra anuncia que su grupo votará a favor; más tarde, una tercera aclara que la crítica política que había hecho a esa modificación no se refería a su intención de voto.",
+          "reason": "El sumario decía «un grupo no identificado» y «sin grupo identificado», que afirman que no se sabe quién habla. Lo que ocurre es que la atribución no se publica: es un grupo con un solo concejal, y nombrarlo identificaría a esa persona por eliminación; por eso se retira también de la cita. El sumario dice «sin atribuir», como la ficha.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:48:40.143Z"
         }
       ]
     },
