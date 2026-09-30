@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-09-30T05:48:40.144Z",
+  "generatedAt": "2026-09-30T06:28:15.989Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. Los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, salvo los que llevan la firma de una persona, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -619,7 +619,7 @@
       "plenoId": "10yl550",
       "plenoDate": "2026-05-11",
       "title": "Debate de educación en el pleno del 2026-05-11 e infraestructuras de formación en Riba-roja de Túria",
-      "summary": "Durante la sesión, un grupo no identificado señala dificultades con la entrega del conservatorio, y el PSOE se refiere a un centro de formación para 600 alumnos; otra afirmación suya sobre ese centro no se reproduce aquí, porque ningún registro municipal la respalda ni la desmiente. El registro municipal de contratación recoge, de 2018, el arrendamiento de un inmueble para dotar de aulas adicionales al Conservatorio de Música y Danza; ninguna de las citas lo menciona.",
+      "summary": "Según la transcripción anterior de la sesión —cuyos literales no constan en la revisada—, un grupo no identificado señala dificultades con la entrega del conservatorio, y el PSOE se refiere a un centro de formación para 600 alumnos; otra afirmación suya sobre ese centro no se reproduce aquí, porque ningún registro municipal la respalda ni la desmiente. El registro municipal de contratación recoge, de 2018, el arrendamiento de un inmueble para dotar de aulas adicionales al Conservatorio de Música y Danza; ninguna de las citas lo menciona.",
       "severity": "informational",
       "sourceClaimIds": [
         "10yl550-325-cit-0907e6",
@@ -713,6 +713,14 @@
           "reason": "El sumario ponía en boca del PSOE, con otras palabras, lo que dice una cita que la puerta editorial retiene por ser una acusación que ningún registro respalda, y presentaba «en relación con estas cuestiones» un arrendamiento de 2018, con el extracto crudo del registro pegado a su título. Se describe sin reproducir la acusación y se fecha el contrato. Señalamientos de la revisión de superficies del 29-09-2026.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-09-30T05:45:31.172Z"
+        },
+        {
+          "field": "summary",
+          "original": "Durante la sesión, un grupo no identificado señala dificultades con la entrega del conservatorio, y el PSOE se refiere a un centro de formación para 600 alumnos; otra afirmación suya sobre ese centro no se reproduce aquí, porque ningún registro municipal la respalda ni la desmiente. El registro municipal de contratación recoge, de 2018, el arrendamiento de un inmueble para dotar de aulas adicionales al Conservatorio de Música y Danza; ninguna de las citas lo menciona.",
+          "corrected": "Según la transcripción anterior de la sesión —cuyos literales no constan en la revisada—, un grupo no identificado señala dificultades con la entrega del conservatorio, y el PSOE se refiere a un centro de formación para 600 alumnos; otra afirmación suya sobre ese centro no se reproduce aquí, porque ningún registro municipal la respalda ni la desmiente. El registro municipal de contratación recoge, de 2018, el arrendamiento de un inmueble para dotar de aulas adicionales al Conservatorio de Música y Danza; ninguna de las citas lo menciona.",
+          "reason": "El sumario daba por firme lo que sólo sostienen dos citas, que esta misma ficha marca como procedentes de la transcripción anterior de la sesión y rotula «no consta en la transcripción revisada». La salvedad pasa a la frase en vez de vivir sólo en la marca de debajo; lo que se dijo no cambia.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T06:26:03.705Z"
         }
       ]
     },
@@ -818,7 +826,7 @@
       "plenoId": "10yl550",
       "plenoDate": "2026-05-11",
       "title": "Debate sobre la Fira de Comercio en el pleno del 2026-05-11",
-      "summary": "Durante el pleno del 2026-05-11, el grupo PP afirmó que el gobierno afectó la Fira de Comercio, mientras que el PSOE señaló las críticas de la oposición sobre la no realización de la edición de 2025. Por su parte, un grupo no identificado defendió el impacto positivo de la campaña de 2024.",
+      "summary": "Durante el pleno del 2026-05-11, el grupo PP afirmó que el gobierno afectó la Fira de Comercio, mientras que, según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, el PSOE señaló las críticas de la oposición sobre la no realización de la edición de 2025. Por su parte, un grupo no identificado defendió el impacto positivo de la campaña de 2024.",
       "severity": "informational",
       "sourceClaimIds": [
         "10yl550-263-cit-a0a379",
@@ -902,6 +910,14 @@
           "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-10T12:54:11.604Z"
+        },
+        {
+          "field": "summary",
+          "original": "Durante el pleno del 2026-05-11, el grupo PP afirmó que el gobierno afectó la Fira de Comercio, mientras que el PSOE señaló las críticas de la oposición sobre la no realización de la edición de 2025. Por su parte, un grupo no identificado defendió el impacto positivo de la campaña de 2024.",
+          "corrected": "Durante el pleno del 2026-05-11, el grupo PP afirmó que el gobierno afectó la Fira de Comercio, mientras que, según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, el PSOE señaló las críticas de la oposición sobre la no realización de la edición de 2025. Por su parte, un grupo no identificado defendió el impacto positivo de la campaña de 2024.",
+          "reason": "El sumario daba por firme lo que sólo sostiene una cita que la ficha no reproduce y cuyo literal procede de la transcripción anterior de la sesión, sin constar en la revisada. La salvedad pasa a la frase, que es el único sitio donde el lector puede verla; lo que se dijo no cambia.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T06:26:04.183Z"
         }
       ]
     },
@@ -925,7 +941,7 @@
           "sourceClaimId": "10yl550-092-acu-ea9d47"
         },
         {
-          "text": "en cuanto a una moción que ha nombrado. En esta moción lo que hacen es, por lo que entiendo, jugar en una semana en la que al parecer llevaban 8.000 euros de trabajos técnicos a la policía local que realmente estaban destellados a proyectos de emergencia.",
+          "text": "en quant a una moció que ha nombrat, en aquesta moció... El que feien era que el cantenc jugaran una esmena en el que apareixer llevaven 8.000 euros de treballs tècnics a la policia local, que realment anaven destinats a projectes d'emergència.",
           "speakerGroup": "PSOE",
           "sourceClaimId": "10yl550-101-acu-701882"
         },
@@ -1015,6 +1031,14 @@
           "reason": "Desde que la cita [0] pasó al PP, la única cita del PSOE no menciona la protección civil, y el sumario invertía el sentido del movimiento de fondos que esa intervención describe (transcripción vigente, en valencià, 4.378–4.399 s; la presidencia lo precisa en 4.529–4.547 s). Las reservas que ponía entre comillas eran la traducción del motor sustituido, no palabras del hablante. Las dos citas del intercambio las retiene la puerta editorial, así que el sumario dice que hubo reproches sin reproducirlos, como ya hace otra ficha de esta misma sesión.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-09-30T05:45:29.431Z"
+        },
+        {
+          "field": "quote.1.text",
+          "original": "en cuanto a una moción que ha nombrado. En esta moción lo que hacen es, por lo que entiendo, jugar en una semana en la que al parecer llevaban 8.000 euros de trabajos técnicos a la policía local que realmente estaban destellados a proyectos de emergencia.",
+          "corrected": "en quant a una moció que ha nombrat, en aquesta moció... El que feien era que el cantenc jugaran una esmena en el que apareixer llevaven 8.000 euros de treballs tècnics a la policia local, que realment anaven destinats a projectes d'emergència.",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que traducía al castellano una intervención pronunciada en valencià: lo que se guardaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance (transcripción, 4.378–4.399 s). La revisión del 10-08-2026 ya lo había dejado para reanclar y lo aplazó porque el sumario entrecomillaba el literal anterior, cosa que ya no hace. La cita sigue retenida: la ficha no reproduce su literal.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T06:26:04.797Z"
         }
       ]
     },
@@ -1023,7 +1047,7 @@
       "plenoId": "10yl550",
       "plenoDate": "2026-05-11",
       "title": "Pleno de Riba-roja de Túria 2026-05-11: Debate sobre presupuestos y financiamiento",
-      "summary": "En la sesión hubo un cruce de reproches entre grupos sobre el sentido del voto en el presupuesto de marzo. Esas intervenciones no se reproducen aquí: son acusaciones que ningún registro municipal respalda ni desmiente, y la transcripción tampoco registra a quién se dirigían. Sí queda constancia del seguimiento de un Plan Económico y Financiero mencionado en el debate; la contratación municipal publicada no recoge ningún expediente de ese seguimiento.",
+      "summary": "En la sesión hubo un cruce de reproches entre grupos sobre el sentido del voto en el presupuesto de marzo. Esas intervenciones no se reproducen aquí: son acusaciones que ningún registro municipal respalda ni desmiente, y la transcripción tampoco registra a quién se dirigían. Según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, en el debate se dio cuenta del seguimiento de un Plan Económico y Financiero; la contratación municipal publicada no recoge ningún expediente de ese seguimiento.",
       "severity": "informational",
       "sourceClaimIds": [
         "10yl550-330-acu-7c65c5",
@@ -1152,6 +1176,14 @@
           "reason": "La intervención no es del PP: es la dación de cuenta del concejal del gobierno a quien la presidencia da la palabra en ese punto (transcripción y vídeo, 10.840–10.855 s).",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-09-29T05:11:40.363Z"
+        },
+        {
+          "field": "summary",
+          "original": "En la sesión hubo un cruce de reproches entre grupos sobre el sentido del voto en el presupuesto de marzo. Esas intervenciones no se reproducen aquí: son acusaciones que ningún registro municipal respalda ni desmiente, y la transcripción tampoco registra a quién se dirigían. Sí queda constancia del seguimiento de un Plan Económico y Financiero mencionado en el debate; la contratación municipal publicada no recoge ningún expediente de ese seguimiento.",
+          "corrected": "En la sesión hubo un cruce de reproches entre grupos sobre el sentido del voto en el presupuesto de marzo. Esas intervenciones no se reproducen aquí: son acusaciones que ningún registro municipal respalda ni desmiente, y la transcripción tampoco registra a quién se dirigían. Según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, en el debate se dio cuenta del seguimiento de un Plan Económico y Financiero; la contratación municipal publicada no recoge ningún expediente de ese seguimiento.",
+          "reason": "El sumario daba por firme lo que sólo sostiene una cita, que esta misma ficha marca como procedente de la transcripción anterior de la sesión y rotula «no consta en la transcripción revisada». La salvedad pasa a la frase en vez de vivir sólo en la marca de debajo; lo que se dijo no cambia.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T06:26:05.333Z"
         }
       ]
     },
@@ -1160,7 +1192,7 @@
       "plenoId": "k4olcs",
       "plenoDate": "2026-04-20",
       "title": "Pleno ordinario 2026-04-20: Debates sobre transparencia y sistemas de control",
-      "summary": "Un grupo no identificado afirma que se implementará un sistema de debate y grabación de vídeo en el salón de plenos, mientras que PSOE señala que las licitaciones estarán disponibles públicamente en la web. Ambos grupos mencionan la importancia de la transparencia, con PSOE destacando adaptaciones a la Carta de Servicios municipal.",
+      "summary": "Un grupo no identificado afirma que se implementará un sistema de debate y grabación de vídeo en el salón de plenos, mientras que, según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, PSOE señala que las licitaciones estarán disponibles públicamente en la web. Ambos grupos mencionan la importancia de la transparencia, con PSOE destacando adaptaciones a la Carta de Servicios municipal.",
       "severity": "informational",
       "sourceClaimIds": [
         "k4olcs-019-cit-b9b013",
@@ -1225,6 +1257,14 @@
           "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-01T18:55:12.956Z"
+        },
+        {
+          "field": "summary",
+          "original": "Un grupo no identificado afirma que se implementará un sistema de debate y grabación de vídeo en el salón de plenos, mientras que PSOE señala que las licitaciones estarán disponibles públicamente en la web. Ambos grupos mencionan la importancia de la transparencia, con PSOE destacando adaptaciones a la Carta de Servicios municipal.",
+          "corrected": "Un grupo no identificado afirma que se implementará un sistema de debate y grabación de vídeo en el salón de plenos, mientras que, según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, PSOE señala que las licitaciones estarán disponibles públicamente en la web. Ambos grupos mencionan la importancia de la transparencia, con PSOE destacando adaptaciones a la Carta de Servicios municipal.",
+          "reason": "El sumario daba por firme lo que sólo sostiene una cita, que esta misma ficha marca como procedente de la transcripción anterior de la sesión y rotula «no consta en la transcripción revisada». La salvedad pasa a la frase en vez de vivir sólo en la marca de debajo; lo que se dijo no cambia.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T06:26:05.837Z"
         }
       ]
     },
@@ -1233,7 +1273,7 @@
       "plenoId": "k4olcs",
       "plenoDate": "2026-04-20",
       "title": "Pleno ordinario de Riba-roja de Túria 2026-04-20: Debate sobre educación",
-      "summary": "El grupo PSOE afirma que el pla Edificant —el programa autonómico de la Generalitat para infraestructuras educativas, cuya cifra corresponde al conjunto de la Comunitat y no al presupuesto de este ayuntamiento— ha movilizado hasta 1.700 millones de euros para la construcción y mejora de infraestructuras educativas, mientras que otra intervención expresa el compromiso de garantizar una enseñanza de calidad con libertad. El registro municipal incluye contratos relacionados con mejoras en centros educativos y servicios de formación.",
+      "summary": "Una intervención sin grupo identificado afirma —según la transcripción anterior de la sesión, cuyo literal no consta en la revisada— que el pla Edificant —el programa autonómico de la Generalitat para infraestructuras educativas, cuya cifra corresponde al conjunto de la Comunitat y no al presupuesto de este ayuntamiento— ha movilizado hasta 1.700 millones de euros para la construcción y mejora de infraestructuras educativas, mientras que otra intervención expresa el compromiso de garantizar una enseñanza de calidad con libertad. El registro municipal incluye contratos relacionados con mejoras en centros educativos y servicios de formación.",
       "severity": "informational",
       "sourceClaimIds": [
         "k4olcs-063-cit-25e6ea",
@@ -1243,7 +1283,7 @@
       "quotes": [
         {
           "text": "el plan edificante, que había movilizado hasta 1.700 millones de euros para la construcción y mejora de infraestructuras educativas",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "k4olcs-063-cit-25e6ea"
         },
         {
@@ -1311,6 +1351,22 @@
           "reason": "El sumario atribuía una intervención a un grupo municipal con un solo concejal, lo que identifica a esa persona por eliminación; la atribución la puso la curación automática, y las correcciones posteriores del sumario, hechas por otros motivos, la conservaron. Se retira del sumario igual que de la cita; lo que se dijo no cambia.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-09-30T05:48:06.857Z"
+        },
+        {
+          "field": "quote.0.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La intervención no es del grupo al que se atribuía: la presidencia concede ese turno a otro grupo, y la intervención le pertenece hasta el pasaje citado (transcripción, 3.257–3.430 s). El grupo que corresponde tiene un solo concejal, así que se retira la atribución en lugar de sustituirla.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T06:27:14.025Z"
+        },
+        {
+          "field": "summary",
+          "original": "El grupo PSOE afirma que el pla Edificant —el programa autonómico de la Generalitat para infraestructuras educativas, cuya cifra corresponde al conjunto de la Comunitat y no al presupuesto de este ayuntamiento— ha movilizado hasta 1.700 millones de euros para la construcción y mejora de infraestructuras educativas, mientras que otra intervención expresa el compromiso de garantizar una enseñanza de calidad con libertad. El registro municipal incluye contratos relacionados con mejoras en centros educativos y servicios de formación.",
+          "corrected": "Una intervención sin grupo identificado afirma —según la transcripción anterior de la sesión, cuyo literal no consta en la revisada— que el pla Edificant —el programa autonómico de la Generalitat para infraestructuras educativas, cuya cifra corresponde al conjunto de la Comunitat y no al presupuesto de este ayuntamiento— ha movilizado hasta 1.700 millones de euros para la construcción y mejora de infraestructuras educativas, mientras que otra intervención expresa el compromiso de garantizar una enseñanza de calidad con libertad. El registro municipal incluye contratos relacionados con mejoras en centros educativos y servicios de formación.",
+          "reason": "El sumario atribuía la intervención a un grupo que no la pronunció: la presidencia concede ese turno a otro grupo, que tiene un solo concejal, y la cita pasa a no atribuirse (transcripción, 3.257–3.430 s). Además, la única cita que la sostiene esta misma ficha la marca como procedente de la transcripción anterior de la sesión, y la salvedad pasa a la frase; lo que se dijo no cambia.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T06:27:14.627Z"
         }
       ]
     },
@@ -1319,7 +1375,7 @@
       "plenoId": "k4olcs",
       "plenoDate": "2026-04-20",
       "title": "Debate sobre transparencia y el sistema del salón de plenos en Riba-roja de Túria (2026-04-20)",
-      "summary": "La sesión aprobó una actuación de cartelería digital por 35.252,87 euros junto al sistema de debate, captura y grabación de vídeo del salón de plenos. Hubo además una discrepancia sobre el sentido de los informes técnicos de intervención, que no se reproduce aquí porque ningún registro municipal la respalda ni la desmiente, y una intervención sin grupo identificado sostiene que no había obligación de dar cuenta de ese informe.",
+      "summary": "La sesión aprobó una actuación de cartelería digital por 35.252,87 euros junto al sistema de debate, captura y grabación de vídeo del salón de plenos. Hubo además, según la transcripción anterior de la sesión —cuyo literal no aparece en la revisada—, una discrepancia sobre el sentido de los informes técnicos de intervención, que no se reproduce aquí porque ningún registro municipal la respalda ni la desmiente, y una intervención sin grupo identificado sostiene que no había obligación de dar cuenta de ese informe.",
       "severity": "informational",
       "sourceClaimIds": [
         "k4olcs-019-cit-947479",
@@ -1335,7 +1391,7 @@
         },
         {
           "text": "los informes técnicos de la intervención son desfavorables, son negativos",
-          "speakerGroup": "PP",
+          "speakerGroup": null,
           "sourceClaimId": "k4olcs-133-acu-e1bac8"
         },
         {
@@ -1427,6 +1483,22 @@
           "reason": "Cita que la puerta ya no retiene desde la reclasificación del 29-09 y cuyo literal es la traducción del motor sustituido: tal como se lee, cuenta entre las abstenciones a un grupo que la transcripción vigente no cuenta entre ellas (1.700–1.711 s). El sumario no la utiliza.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-09-30T05:45:30.741Z"
+        },
+        {
+          "field": "summary",
+          "original": "La sesión aprobó una actuación de cartelería digital por 35.252,87 euros junto al sistema de debate, captura y grabación de vídeo del salón de plenos. Hubo además una discrepancia sobre el sentido de los informes técnicos de intervención, que no se reproduce aquí porque ningún registro municipal la respalda ni la desmiente, y una intervención sin grupo identificado sostiene que no había obligación de dar cuenta de ese informe.",
+          "corrected": "La sesión aprobó una actuación de cartelería digital por 35.252,87 euros junto al sistema de debate, captura y grabación de vídeo del salón de plenos. Hubo además, según la transcripción anterior de la sesión —cuyo literal no aparece en la revisada—, una discrepancia sobre el sentido de los informes técnicos de intervención, que no se reproduce aquí porque ningún registro municipal la respalda ni la desmiente, y una intervención sin grupo identificado sostiene que no había obligación de dar cuenta de ese informe.",
+          "reason": "El sumario daba por firme lo que sólo sostiene una cita que la ficha no reproduce y cuyo literal procede de la transcripción anterior de la sesión, sin constar en la revisada. La salvedad pasa a la frase, que es el único sitio donde el lector puede verla; lo que se dijo no cambia.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T06:26:06.343Z"
+        },
+        {
+          "field": "quote.1.speakerGroup",
+          "original": "PP",
+          "corrected": "sin identificar",
+          "reason": "La intervención no es del grupo al que se atribuía: quien habla dice que sigue la línea que acaba de plantear ese grupo, y habla desde la oposición (transcripción, 6.118–6.138 s). Los demás grupos de la oposición tienen un solo concejal cada uno, así que se retira la atribución en lugar de sustituirla.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T06:27:15.374Z"
         }
       ]
     },
@@ -1755,7 +1827,7 @@
       "plenoId": "19gax3o",
       "plenoDate": "2026-01-19",
       "title": "Pleno ordinario 2026-01-19: Debate sobre transparencia en contratación",
-      "summary": "Un grupo no identificado afirma que se ha discutido la necesidad de controlar el grado de cumplimiento de lo planificado. El PSOE menciona la aprobación de una guía para sistemas dinámicos de adquisición, mientras que un grupo no identificado señala la ausencia de contratos de mantenimiento con empresas grandes como Ecnor. El registro municipal incluye varios contratos relacionados con seguimiento y control, asesoramiento jurídico en contratación y servicios de mantenimiento.",
+      "summary": "Un grupo no identificado afirma que se ha discutido la necesidad de controlar el grado de cumplimiento de lo planificado. El PSOE menciona la aprobación de una guía para sistemas dinámicos de adquisición. El registro municipal incluye varios contratos relacionados con seguimiento y control, asesoramiento jurídico en contratación y servicios de mantenimiento.",
       "severity": "informational",
       "sourceClaimIds": [
         "19gax3o-025-afi-5b06c8",
@@ -1772,11 +1844,6 @@
           "text": "hem aprovat la guia rivalesita, el treball dels sistemes dinàmics d'adquisició",
           "speakerGroup": "PSOE",
           "sourceClaimId": "19gax3o-017-cit-1a1dad"
-        },
-        {
-          "text": "No hay un contrato de mantenimiento que tenga una empresa grande como es el Ecnor,",
-          "speakerGroup": null,
-          "sourceClaimId": "19gax3o-120-acu-c9acb2"
         }
       ],
       "crossChecked": [
@@ -1840,6 +1907,22 @@
           "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-10T12:54:15.890Z"
+        },
+        {
+          "field": "summary",
+          "original": "Un grupo no identificado afirma que se ha discutido la necesidad de controlar el grado de cumplimiento de lo planificado. El PSOE menciona la aprobación de una guía para sistemas dinámicos de adquisición, mientras que un grupo no identificado señala la ausencia de contratos de mantenimiento con empresas grandes como Ecnor. El registro municipal incluye varios contratos relacionados con seguimiento y control, asesoramiento jurídico en contratación y servicios de mantenimiento.",
+          "corrected": "Un grupo no identificado afirma que se ha discutido la necesidad de controlar el grado de cumplimiento de lo planificado. El PSOE menciona la aprobación de una guía para sistemas dinámicos de adquisición. El registro municipal incluye varios contratos relacionados con seguimiento y control, asesoramiento jurídico en contratación y servicios de mantenimiento.",
+          "reason": "La frase sostenía, sobre un literal del motor sustituido, lo contrario de lo que dice la transcripción vigente en ese pasaje, y el registro municipal de contratación recoge el contrato cuya falta enunciaba, en vigor en la fecha de la sesión (transcripción, 5.957–5.976 s). Se retira la frase.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T06:27:15.966Z"
+        },
+        {
+          "field": "quote.2",
+          "original": "cita · sha256:76e747d41af3",
+          "corrected": "retirada del hallazgo",
+          "reason": "El literal procede del motor sustituido y la transcripción vigente dice lo contrario en ese pasaje; el registro municipal de contratación lo confirma, con un contrato en vigor en la fecha de la sesión (transcripción, 5.957–5.976 s). El sumario deja de apoyarse en él.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T06:27:16.494Z"
         }
       ]
     },
@@ -2514,7 +2597,7 @@
           "sourceClaimId": "19gax3o-139-cit-be1832"
         },
         {
-          "text": "hay que ver toda la parte externa de la malla, está cayendo.",
+          "text": "n'hi ha que vore. Tota la part externa de la malla està caiguent-se.",
           "speakerGroup": "PP",
           "sourceClaimId": "19gax3o-126-acu-d49e67"
         }
@@ -2605,6 +2688,14 @@
           "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que traducía al castellano una intervención pronunciada en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero (6.734–6.741 s).",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-09-30T05:45:32.547Z"
+        },
+        {
+          "field": "quote.3.text",
+          "original": "hay que ver toda la parte externa de la malla, está cayendo.",
+          "corrected": "n'hi ha que vore. Tota la part externa de la malla està caiguent-se.",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que traducía al castellano una intervención pronunciada en valencià: lo que se guardaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance (transcripción, 6.148–6.162 s). La revisión del 10-08-2026 ya lo había dejado para reanclar y lo aplazó porque el sumario entrecomillaba el literal anterior, cosa que ya no hace. La cita sigue retenida: la ficha no reproduce su literal.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T06:26:06.886Z"
         }
       ]
     },
@@ -2613,7 +2704,7 @@
       "plenoId": "1qi8axv",
       "plenoDate": "2025-12-23",
       "title": "Pleno extraordinario y urgente 2025-12-23: Medio ambiente",
-      "summary": "El PSOE afirma que el contrato debatido venía «aprobado por un plan local de residuos» ya existente, que «nos marcaba el camino a seguir», y que incorporaba mejoras directas sobre el tratamiento de la basura y la calidad del servicio. Un grupo no identificado menciona la necesidad de mejorar la recogida diaria de basura hasta el 100%.",
+      "summary": "El PSOE afirma que el contrato debatido venía «aprobado por un plan local de residuos» ya existente, que «nos marcaba el camino a seguir», y que incorporaba mejoras directas sobre el tratamiento de la basura y la calidad del servicio. Según la transcripción anterior de la sesión —cuyos literales no constan en la revisada—, un grupo no identificado menciona la necesidad de mejorar la recogida diaria de basura hasta el 100%.",
       "severity": "informational",
       "sourceClaimIds": [
         "1qi8axv-052-cit-c905c3",
@@ -2692,6 +2783,14 @@
           "reason": "Se retira del cotejo un expediente cuya fecha más temprana conocida es posterior a la de la sesión: un procedimiento que aún no constaba el día del debate no pudo ser lo que el pleno debatía.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T18:47:53.960Z"
+        },
+        {
+          "field": "summary",
+          "original": "El PSOE afirma que el contrato debatido venía «aprobado por un plan local de residuos» ya existente, que «nos marcaba el camino a seguir», y que incorporaba mejoras directas sobre el tratamiento de la basura y la calidad del servicio. Un grupo no identificado menciona la necesidad de mejorar la recogida diaria de basura hasta el 100%.",
+          "corrected": "El PSOE afirma que el contrato debatido venía «aprobado por un plan local de residuos» ya existente, que «nos marcaba el camino a seguir», y que incorporaba mejoras directas sobre el tratamiento de la basura y la calidad del servicio. Según la transcripción anterior de la sesión —cuyos literales no constan en la revisada—, un grupo no identificado menciona la necesidad de mejorar la recogida diaria de basura hasta el 100%.",
+          "reason": "El sumario daba por firme lo que sólo sostienen dos citas, que esta misma ficha marca como procedentes de la transcripción anterior de la sesión y rotula «no consta en la transcripción revisada». La salvedad pasa a la frase en vez de vivir sólo en la marca de debajo; lo que se dijo no cambia.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T06:26:07.588Z"
         }
       ]
     },
@@ -3045,7 +3144,7 @@
       "plenoId": "qz6weg",
       "plenoDate": "2025-12-01",
       "title": "01-12-2025: Pleno debate sobre cultura y conservatorios",
-      "summary": "El PP afirma que han trabajado para dos conservatorios. El PSOE señala la creación de los conservatorios y el auditorio; el resto de esa intervención, una acusación que el verificador no pudo contrastar con ningún dato municipal, no se reproduce aquí. Los registros municipales incluyen contratos relacionados con obras de restauración y conservación del edificio Escuela Municipal de Música y Conservatorio Profesional Municipal de Música.",
+      "summary": "El PSOE afirma —según la transcripción anterior de la sesión, cuyo literal no consta en la revisada— que han trabajado para dos conservatorios, y señala la creación de los conservatorios y el auditorio; el resto de esa intervención, una acusación que el verificador no pudo contrastar con ningún dato municipal, no se reproduce aquí. Los registros municipales incluyen contratos relacionados con obras de restauración y conservación del edificio Escuela Municipal de Música y Conservatorio Profesional Municipal de Música.",
       "severity": "informational",
       "sourceClaimIds": [
         "qz6weg-039-cit-bef239",
@@ -3056,7 +3155,7 @@
       "quotes": [
         {
           "text": "trabajamos no para un conservatorio para dos conservatorios y lo hicimos",
-          "speakerGroup": "PP",
+          "speakerGroup": "PSOE",
           "sourceClaimId": "qz6weg-039-cit-bef239"
         },
         {
@@ -3147,6 +3246,22 @@
           "reason": "La atribución a un grupo municipal con un solo concejal identifica a esa persona por eliminación, y la asignó la curación automática sin firma de ningún curador. Se retira sin sustituirla; no se afirma que fuera errónea.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-09-30T05:48:07.657Z"
+        },
+        {
+          "field": "quote.0.speakerGroup",
+          "original": "PP",
+          "corrected": "PSOE",
+          "reason": "La intervención no es del grupo al que se atribuía: está en el turno en que el grupo de gobierno responde al portavoz de ese grupo, el mismo turno del que proceden las citas [1] y [2] de esta ficha (transcripción, 4.016–4.095 s; la cita, 4.061–4.064 s).",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T06:27:17.147Z"
+        },
+        {
+          "field": "summary",
+          "original": "El PP afirma que han trabajado para dos conservatorios. El PSOE señala la creación de los conservatorios y el auditorio; el resto de esa intervención, una acusación que el verificador no pudo contrastar con ningún dato municipal, no se reproduce aquí. Los registros municipales incluyen contratos relacionados con obras de restauración y conservación del edificio Escuela Municipal de Música y Conservatorio Profesional Municipal de Música.",
+          "corrected": "El PSOE afirma —según la transcripción anterior de la sesión, cuyo literal no consta en la revisada— que han trabajado para dos conservatorios, y señala la creación de los conservatorios y el auditorio; el resto de esa intervención, una acusación que el verificador no pudo contrastar con ningún dato municipal, no se reproduce aquí. Los registros municipales incluyen contratos relacionados con obras de restauración y conservación del edificio Escuela Municipal de Música y Conservatorio Profesional Municipal de Música.",
+          "reason": "El sumario atribuía al portavoz al que se respondía una frase del turno de respuesta del grupo de gobierno, el mismo turno de las otras dos citas de la ficha (transcripción, 4.016–4.095 s). Además, la cita que la sostiene esta misma ficha la marca como procedente de la transcripción anterior de la sesión, y la salvedad pasa a la frase.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T06:27:17.647Z"
         }
       ]
     },
@@ -3155,7 +3270,7 @@
       "plenoId": "qz6weg",
       "plenoDate": "2025-12-01",
       "title": "01-12-2025: Pleno debate sobre pagos a proveedores y ley de contratación",
-      "summary": "El debate incluyó reproches sobre plazos de pago a proveedores y sobre la aplicación del artículo 198 de la ley de contratos, que establece intereses por retrasos en los pagos. Esas intervenciones no se reproducen: son acusaciones sin grupo atribuido en la transcripción y que ningún registro municipal respalda ni desmiente. En la misma sesión se habló también del incremento de cuotas de la Seguridad Social y del bono de comercio; esta última intervención sí se reproduce aquí, marcada como sin contraste en los datos, que es la etiqueta de lo que no es una acusación.",
+      "summary": "El debate incluyó reproches sobre plazos de pago a proveedores y sobre la aplicación del artículo 198 de la ley de contratos, que establece intereses por retrasos en los pagos. Esas intervenciones no se reproducen: son acusaciones sin grupo atribuido en la transcripción y que ningún registro municipal respalda ni desmiente. En la misma sesión se habló también del incremento de cuotas de la Seguridad Social y, según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, del bono de comercio; esta última intervención sí se reproduce aquí, marcada como sin contraste en los datos, que es la etiqueta de lo que no es una acusación.",
       "severity": "informational",
       "sourceClaimIds": [
         "qz6weg-220-acu-34560f",
@@ -3175,7 +3290,7 @@
           "sourceClaimId": "qz6weg-276-cit-5b837f"
         },
         {
-          "text": "no apliquen la ley de contratación, el artículo 198, en el que dice que si ustedes pagan mal, tienen que pagar intereses, pero no están pagándolos.",
+          "text": "no apliquen la llei de contractació, l'article 198, en el que diu Que si vostès paguen mal, tenen que pagar interessos, però no estan pagant-los.",
           "speakerGroup": null,
           "sourceClaimId": "qz6weg-216-acu-c41b8d"
         },
@@ -3268,6 +3383,22 @@
           "reason": "El sumario decía a qué grupo estaba atribuida una de las citas, un grupo municipal con un solo concejal, lo que identifica a esa persona por eliminación; la atribución la puso la curación automática, y las correcciones posteriores del sumario, hechas por otros motivos, la conservaron. Se retira de la cita, así que sale también de la frase; lo que se dijo no cambia.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-09-30T05:48:08.054Z"
+        },
+        {
+          "field": "quote.2.text",
+          "original": "no apliquen la ley de contratación, el artículo 198, en el que dice que si ustedes pagan mal, tienen que pagar intereses, pero no están pagándolos.",
+          "corrected": "no apliquen la llei de contractació, l'article 198, en el que diu Que si vostès paguen mal, tenen que pagar interessos, però no estan pagant-los.",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que traducía al castellano una intervención pronunciada en valencià: lo que se guardaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance (transcripción, 11.106–11.118 s). La revisión del 10-08-2026 ya lo había dejado para reanclar y lo aplazó porque el sumario entrecomillaba el literal anterior, cosa que ya no hace. La cita sigue retenida: la ficha no reproduce su literal.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T06:26:08.181Z"
+        },
+        {
+          "field": "summary",
+          "original": "El debate incluyó reproches sobre plazos de pago a proveedores y sobre la aplicación del artículo 198 de la ley de contratos, que establece intereses por retrasos en los pagos. Esas intervenciones no se reproducen: son acusaciones sin grupo atribuido en la transcripción y que ningún registro municipal respalda ni desmiente. En la misma sesión se habló también del incremento de cuotas de la Seguridad Social y del bono de comercio; esta última intervención sí se reproduce aquí, marcada como sin contraste en los datos, que es la etiqueta de lo que no es una acusación.",
+          "corrected": "El debate incluyó reproches sobre plazos de pago a proveedores y sobre la aplicación del artículo 198 de la ley de contratos, que establece intereses por retrasos en los pagos. Esas intervenciones no se reproducen: son acusaciones sin grupo atribuido en la transcripción y que ningún registro municipal respalda ni desmiente. En la misma sesión se habló también del incremento de cuotas de la Seguridad Social y, según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, del bono de comercio; esta última intervención sí se reproduce aquí, marcada como sin contraste en los datos, que es la etiqueta de lo que no es una acusación.",
+          "reason": "El sumario daba por firme lo que sólo sostiene una cita, que esta misma ficha marca como procedente de la transcripción anterior de la sesión y rotula «no consta en la transcripción revisada». La salvedad pasa a la frase en vez de vivir sólo en la marca de debajo; lo que se dijo no cambia.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T06:26:08.851Z"
         }
       ]
     },
@@ -3615,7 +3746,7 @@
       "plenoId": "otxq2c",
       "plenoDate": "2025-10-06",
       "title": "Debate de seguridad en el pleno 2025-10-06: videovigilancia y sistema COMETA",
-      "summary": "Según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, en una intervención se consideró esencial el sistema COMETA en materia de seguridad. Hubo además intervenciones sobre actuaciones ante la Consejería y sobre el cumplimiento de órdenes de alejamiento que no se reproducen aquí: ningún registro municipal las respalda ni las desmiente. En la contratación municipal publicada consta un «Contrato mixto de suministro y servicio para la instalación del sistema de videovigilancia en el polígono industrial Masía Baló», que se refiere a videovigilancia en suelo industrial y no documenta el sistema COMETA ni las demás cuestiones debatidas.",
+      "summary": "Según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, en una intervención se consideró esencial el sistema COMETA en materia de seguridad. Hubo además intervenciones sobre actuaciones ante la Consejería —de nuevo según la transcripción anterior— y sobre el cumplimiento de órdenes de alejamiento que no se reproducen aquí: ningún registro municipal las respalda ni las desmiente. En la contratación municipal publicada consta un «Contrato mixto de suministro y servicio para la instalación del sistema de videovigilancia en el polígono industrial Masía Baló», que se refiere a videovigilancia en suelo industrial y no documenta el sistema COMETA ni las demás cuestiones debatidas.",
       "severity": "informational",
       "sourceClaimIds": [
         "otxq2c-078-acu-b00839",
@@ -3626,7 +3757,7 @@
       "quotes": [
         {
           "text": "Denunciar públicamente a la Consejería esas ampliaciones que nos han hecho.",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "otxq2c-078-acu-b00839"
         },
         {
@@ -3722,9 +3853,17 @@
           "field": "quote.3.speakerGroup",
           "original": "VOX",
           "corrected": "sin identificar",
-          "reason": "La atribución a un grupo municipal con un solo concejal identifica a esa persona por eliminación, y la asignó la curación automática sin firma de ningún curador. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "reason": "La intervención no es del grupo al que se atribuía: la presidencia concede ese turno a otro grupo en cuanto termina el anterior, y la cita es el arranque de ese turno (transcripción, 2.704–2.716 s). El grupo que corresponde tiene un solo concejal, así que se retira la atribución en lugar de sustituirla.",
           "editor": "civicpulse-curator",
-          "correctedAt": "2026-09-30T05:48:08.252Z"
+          "correctedAt": "2026-09-30T05:48:08.252Z",
+          "reasonAmendments": [
+            {
+              "previous": "motivo · sha256:6bc61cdaf540",
+              "reason": "El motivo decía que no se afirmaba que la atribución fuera errónea, y lo era: la revisión de citas del 10-08-2026 ya la había marcado como contradicha por la transcripción, y la concesión de palabra lo confirma. Se dice en el motivo; la retirada no cambia.",
+              "editor": "Sergei Lutchenko",
+              "amendedAt": "2026-09-30T06:28:15.979Z"
+            }
+          ]
         },
         {
           "field": "summary",
@@ -3733,6 +3872,22 @@
           "reason": "El sumario atribuía una intervención a un grupo municipal con un solo concejal, lo que identifica a esa persona por eliminación; la atribución la puso la curación automática, y las correcciones posteriores del sumario, hechas por otros motivos, la conservaron. Se retira del sumario igual que de la cita; lo que se dijo no cambia.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-09-30T05:48:08.453Z"
+        },
+        {
+          "field": "summary",
+          "original": "Según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, en una intervención se consideró esencial el sistema COMETA en materia de seguridad. Hubo además intervenciones sobre actuaciones ante la Consejería y sobre el cumplimiento de órdenes de alejamiento que no se reproducen aquí: ningún registro municipal las respalda ni las desmiente. En la contratación municipal publicada consta un «Contrato mixto de suministro y servicio para la instalación del sistema de videovigilancia en el polígono industrial Masía Baló», que se refiere a videovigilancia en suelo industrial y no documenta el sistema COMETA ni las demás cuestiones debatidas.",
+          "corrected": "Según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, en una intervención se consideró esencial el sistema COMETA en materia de seguridad. Hubo además intervenciones sobre actuaciones ante la Consejería —de nuevo según la transcripción anterior— y sobre el cumplimiento de órdenes de alejamiento que no se reproducen aquí: ningún registro municipal las respalda ni las desmiente. En la contratación municipal publicada consta un «Contrato mixto de suministro y servicio para la instalación del sistema de videovigilancia en el polígono industrial Masía Baló», que se refiere a videovigilancia en suelo industrial y no documenta el sistema COMETA ni las demás cuestiones debatidas.",
+          "reason": "El sumario daba por firme lo que sólo sostiene una cita que la ficha no reproduce y cuyo literal procede de la transcripción anterior de la sesión, sin constar en la revisada. La salvedad pasa a la frase, que es el único sitio donde el lector puede verla; lo que se dijo no cambia.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T06:26:09.482Z"
+        },
+        {
+          "field": "quote.0.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La intervención no es del grupo al que se atribuía: la presidencia concede ese turno a otro grupo, que presenta en él sus enmiendas a la moción (transcripción, 3.640–3.790 s). El grupo que corresponde tiene un solo concejal, así que se retira la atribución en lugar de sustituirla.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T06:27:18.136Z"
         }
       ]
     },
@@ -3849,7 +4004,7 @@
       "plenoId": "c8kr44",
       "plenoDate": "2025-09-08",
       "title": "Debate sobre la limpieza y el mantenimiento en los colegios de Riba-roja de Túria en el pleno del 2025-09-08",
-      "summary": "El PP señala que el personal docente tuvo que limpiar las aulas debido a la falta de adecuación de las mismas. En otra intervención se destacan las actuaciones de mejora en centros de la localidad como el Camp de Túria, mientras que el PSOE afirma que el mantenimiento se solventó en pocos días.",
+      "summary": "Según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, el PP señala que el personal docente tuvo que limpiar las aulas debido a la falta de adecuación de las mismas. En otra intervención se destacan las actuaciones de mejora en centros de la localidad como el Camp de Túria —también según la transcripción anterior—, mientras que el PSOE afirma que el mantenimiento se solventó en pocos días.",
       "severity": "informational",
       "sourceClaimIds": [
         "c8kr44-231-acu-70a34f",
@@ -3954,6 +4109,14 @@
           "reason": "El sumario atribuía una intervención a un grupo municipal con un solo concejal, lo que identifica a esa persona por eliminación; la atribución la puso la curación automática sin firma de curador. Se retira del sumario igual que de la cita; lo que se dijo no cambia.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-09-30T05:48:09.258Z"
+        },
+        {
+          "field": "summary",
+          "original": "El PP señala que el personal docente tuvo que limpiar las aulas debido a la falta de adecuación de las mismas. En otra intervención se destacan las actuaciones de mejora en centros de la localidad como el Camp de Túria, mientras que el PSOE afirma que el mantenimiento se solventó en pocos días.",
+          "corrected": "Según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, el PP señala que el personal docente tuvo que limpiar las aulas debido a la falta de adecuación de las mismas. En otra intervención se destacan las actuaciones de mejora en centros de la localidad como el Camp de Túria —también según la transcripción anterior—, mientras que el PSOE afirma que el mantenimiento se solventó en pocos días.",
+          "reason": "El sumario daba por firmes dos intervenciones que sólo sostienen citas procedentes de la transcripción anterior de la sesión, sin constar en la revisada: una que la ficha no reproduce y otra que rotula «no consta en la transcripción revisada». La salvedad pasa a las frases; lo que se dijo no cambia.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T06:26:10.076Z"
         }
       ]
     }
