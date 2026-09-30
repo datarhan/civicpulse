@@ -28,7 +28,7 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { resolve } from 'node:path'
 import {
   mergeVerified,
-  isDowngrade,
+  esSubida,
   validateOverlay,
   validateReclassifications,
   validateReanchors,
@@ -91,27 +91,6 @@ export function rebuildEmpobreceAtribucion(antes: number, despues: number): bool
 
 /** Escotilla documentada, para cuando la pérdida sea la intención. */
 export const ANULAR_GUARDA_ATRIBUCION = 'CLAIMS_REBUILD_ALLOW_ATTRIBUTION_LOSS'
-
-/**
- * Subir es «no bajar y no quedarse igual», DERIVADO de `isDowngrade` — la misma
- * función que ya gobierna el CLI del curador y el motor de veredictos.
- *
- * La primera versión escribió su propia escala de fuerza aquí, y la revisión
- * independiente encontró lo de siempre: las dos escalas ya discrepaban.
- * `isDowngrade` se niega a tratar `contradicho` como destino (nunca es una
- * bajada), mientras que la escala local lo empataba con `verificado` — o sea
- * que el CLI rechazaba `verificado → contradicho` y esta guarda lo dejaba
- * pasar, justo la transición que el bloque sólo-título hacía alcanzable sin que
- * interviniera nadie. Reescribir un orden es reescribir un enum: la regla 1 de
- * DATA_INTEGRITY, aplicada a una relación en vez de a una lista.
- *
- * Al derivarla, la guarda se vuelve además más estricta que la escala que
- * sustituye: cualquier movimiento que el curador no podría firmar como bajada
- * cuenta como subida y se para.
- */
-function esSubida(de: ClaimVerdict, a: ClaimVerdict): boolean {
-  return de !== a && !isDowngrade(de, a)
-}
 
 /**
  * ¿Qué ACUSACIONES sube este rebuild respecto a lo ya publicado?

@@ -21,6 +21,9 @@ import { ALLOWED_CLAIM_TYPES, type ClaimType, type PlenoClaim } from './pleno-cl
 import type { ClaimVerdict, ClaimVerification, ClaimEvidence } from './claim-verifier'
 import { corpusReales } from './claim-verdicts'
 import { charlaDeTarea } from './charla-de-tarea'
+// Sólo valor: trinquete.ts importa de aquí únicamente tipos, así que no hay
+// ciclo en ejecución.
+import { TRINQUETE } from './trinquete'
 // El mismo descuento de palabras vacías que usa la cola de reanclaje de
 // `/hallazgos`. Importado, no recitado: dos listas de stopwords que midieran
 // distinto harían que el CLI aceptara lo que la cola desaconseja.
@@ -234,6 +237,29 @@ export function isDowngrade(from: ClaimVerdict, to: ClaimVerdict): boolean {
 }
 
 /**
+ * Subir es «no bajar y no quedarse igual», DERIVADO de `isDowngrade` — la misma
+ * función que ya gobierna el CLI del curador y el motor de veredictos. Vive aquí,
+ * junto a ella, y la usan el overlay (`applyOverlayEntries`) y la guarda del
+ * rebuild (`acusacionesQueSuben`): dos copias de un orden ya discreparon una vez.
+ *
+ * La primera versión escribió su propia escala de fuerza aquí, y la revisión
+ * independiente encontró lo de siempre: las dos escalas ya discrepaban.
+ * `isDowngrade` se niega a tratar `contradicho` como destino (nunca es una
+ * bajada), mientras que la escala local lo empataba con `verificado` — o sea
+ * que el CLI rechazaba `verificado → contradicho` y esta guarda lo dejaba
+ * pasar, justo la transición que el bloque sólo-título hacía alcanzable sin que
+ * interviniera nadie. Reescribir un orden es reescribir un enum: la regla 1 de
+ * DATA_INTEGRITY, aplicada a una relación en vez de a una lista.
+ *
+ * Al derivarla, la guarda se vuelve además más estricta que la escala que
+ * sustituye: cualquier movimiento que el curador no podría firmar como bajada
+ * cuenta como subida y se para.
+ */
+export function esSubida(de: ClaimVerdict, a: ClaimVerdict): boolean {
+  return de !== a && !isDowngrade(de, a)
+}
+
+/**
  * El suelo de evidencia: ¿se sostiene este veredicto sobre algo?
  *
  * Un veredicto por encima de `sin-datos` AFIRMA que algo respalda la
@@ -297,6 +323,20 @@ export interface ApplyEntry {
 
 const VALID_SOURCES: OverlaySource[] = ['nli', 'llm', 'curator-downgrade', 'verdict-engine']
 
+/**
+ * ¿Es esto una fila de una cola humana? `requiresHumanApproval` es la marca de
+ * toda sugerencia de máquina, y un esquema curado la rechaza (CLAUDE.md): aquí
+ * `applyOverlayEntries` la tiraría sin avisar al copiar la entrada y publicaría
+ * lo que esperaba una firma. Se mira en la fila y en su verificación.
+ */
+function esperaFirma(e: unknown): boolean {
+  const fila = e as { requiresHumanApproval?: unknown; verification?: unknown } | null
+  const v = fila?.verification as { requiresHumanApproval?: unknown } | null | undefined
+  return (
+    (fila != null && 'requiresHumanApproval' in fila) || (v != null && 'requiresHumanApproval' in v)
+  )
+}
+
 /** Throws on a malformed overlay (called on every write — defence in depth). */
 export function validateOverlay(o: Overlay): void {
   if (!o || typeof o.version !== 'number' || !o.entries || typeof o.entries !== 'object') {
@@ -309,6 +349,12 @@ export function validateOverlay(o: Overlay): void {
     }
     if (!VALID_SOURCES.includes(e.source))
       throw new Error(`[overlay] ${id}: bad source ${e.source}`)
+    if (esperaFirma(e)) {
+      throw new Error(
+        `[overlay] ${id}: lleva requiresHumanApproval — es una sugerencia que espera la firma de ` +
+          'una persona, no una decisión, y en el overlay se publicaría',
+      )
+    }
     if (typeof e.appliedAt !== 'string') throw new Error(`[overlay] ${id}: missing appliedAt`)
     if (e.source === 'curator-downgrade' && (!e.reason || e.reason.trim().length < 20)) {
       throw new Error(`[overlay] ${id}: curator-downgrade needs a reason of at least 20 chars`)
@@ -406,6 +452,13 @@ export function applyOverlayEntries(
     entries: { ...(overlay?.entries ?? {}) },
   }
   for (const e of entries) {
+    // Una sugerencia de la cola humana no es una decisión: no entra.
+    if (esperaFirma(e)) {
+      throw new Error(
+        `[overlay] ${e.claimId}: lleva requiresHumanApproval — es una sugerencia que espera la ` +
+          'firma de una persona, no una decisión. Lo publicado no se escribe desde la cola.',
+      )
+    }
     // El suelo, antes que nada y para toda fuente automática.
     //
     // Va en la ESCRITURA y no en `validateOverlay`, que corre en cada lectura:
@@ -432,6 +485,46 @@ export function applyOverlayEntries(
       throw new Error(
         `[overlay] ${e.claimId}: el resumen habla de la tarea del modelo (${charla}), no de la ` +
           'declaración, y se publicaría bajo la cita. Un parte del encargo no es un juicio.',
+      )
+    }
+    // El trinquete declarado, aplicado (src/scraper/trinquete.ts). Va después
+    // del suelo y de la charla para que cada prueba mida la regla que nombra.
+    const etapa = TRINQUETE[e.source]
+    if (etapa?.retirada) {
+      throw new Error(
+        `[overlay] ${e.claimId}: «${e.source}» (${etapa.nombre}) está retirada — sus veredictos ` +
+          'publicados se declaran, pero no escribe entradas nuevas.',
+      )
+    }
+    if (etapa?.exigeFirma) {
+      throw new Error(
+        `[overlay] ${e.claimId}: «${e.source}» (${etapa.nombre}) sólo propone — lo que propone ` +
+          'lo firma una persona antes de publicarse, y su sitio es la cola humana. Lo automático ' +
+          'sólo baja (docs/DATA_INTEGRITY.md, regla 4).',
+      )
+    }
+    if (etapa && !etapa.puedeEmitir.includes(e.verification.verdict)) {
+      throw new Error(
+        `[overlay] ${e.claimId}: «${e.source}» (${etapa.nombre}) no puede emitir ` +
+          `${e.verification.verdict}; sólo puede emitir ${etapa.puedeEmitir.join(', ')}.`,
+      )
+    }
+    // Lo que el overlay ya dice de esta declaración no lo sube ninguna
+    // escritura. Una retractación —del motor o de un curador— se hizo a
+    // propósito, y ninguna vía de este fichero la deshace hacia arriba: ni una
+    // pasada ni una «bajada» medida contra la base en vez de contra lo
+    // publicado (las CLIs miden contra lo publicado; aquí no se fía del mapa que
+    // le pasen, porque la entrada que hay la tiene delante). Se mira también lo
+    // escrito antes en esta misma llamada.
+    const previa = next.entries[e.claimId]
+    if (previa && esSubida(previa.verification.verdict, e.verification.verdict)) {
+      const etapaPrevia = TRINQUETE[previa.source]
+      const retractacion = etapaPrevia?.direccion === 'baja' ? ', una retractación' : ''
+      throw new Error(
+        `[overlay] ${e.claimId}: «${e.source}» subiría ${previa.verification.verdict} → ` +
+          `${e.verification.verdict} sobre la entrada de «${previa.source}»${retractacion}. ` +
+          'Una escritura del overlay no sube lo que el overlay ya dice: lo que bajó una ' +
+          'retractación sólo lo vuelve a subir una persona, por una vía que lo firme.',
       )
     }
     if (e.source === 'curator-downgrade') {
