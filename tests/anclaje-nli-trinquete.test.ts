@@ -13,26 +13,26 @@ import { shortlistCandidates } from '../src/scraper/claim-verifier'
  * El anclaje NLI elige sus candidatas entre los `sin-datos` PUBLICADOS. Uno de
  * ésos puede ser el de la base —lo que el anclaje existe para mirar— o una
  * retractación: la del motor de veredictos, o la de un curador que escribió por
- * qué la evidencia no sostenía la afirmación. El guion no distinguía unas de
- * otras. El trinquete (src/scraper/trinquete.ts) dice que el anclaje sólo sube y
- * que el motor y los curadores sólo bajan, pero el ORDEN entre ellos sólo vivía
- * en el orden de ejecución: una pasada del anclaje lanzada después volvía a
- * puntuar lo que un curador o el motor habían bajado.
+ * qué la evidencia no sostenía la afirmación. Hasta el 30-09-2026 el guion no
+ * distinguía unas de otras: una pasada lanzada después volvía a puntuar lo que
+ * un curador o el motor habían bajado. Ahora las aparta antes de puntuar
+ * (`motivoParaNoProponer`), y lo que propone no llega al overlay: espera una
+ * firma en la cola (`exigeFirma`, src/scraper/trinquete.ts).
  *
  * De punta a punta a propósito: lo que se prueba es a quién le pregunta el guion
  * y qué dice su parte, y eso vive en la costura entre el overlay que carga, la
- * selección y lo que imprime. Que el overlay no se deje pisar lo prueban las
- * pruebas de `applyOverlayEntries` (tests/scraper/verified-merge.test.ts).
+ * selección y lo que imprime. Que el overlay no acepte una subida lo prueban
+ * tests/entrada-de-pasada.test.ts («una subida nunca sustituye una
+ * retractación») y tests/trinquete.test.ts (`exigeFirma`).
  *
  * Las filas son de verdad (tests/fixtures/anclaje-nli-trinquete_2026-09-30.json).
  * Lo único falso es el modelo: un `python` en el sitio del venv que puntúa BAJO
- * todo par y apunta qué afirmación le llegó. Aquí no se mide qué se escribe sino
- * a quién se pregunta, y a 30-09-2026 da igual cómo puntúe: el guion no sube
- * nada. Su `lookup` guarda cada puntuación con el id global del par
- * (`<claim>#<i>`) y `verifyClaimWithNli` la busca por el índice (`<i>`), así que
- * no le llega ninguna; y si le llegara, el guion pisa el `checkedAgainst` del
- * verificador con su marca de pasada y el suelo de evidencia rechazaría la
- * subida. Medido con este mismo falso puntuando 0,95: `upgraded=0 kept=3`.
+ * todo par y apunta qué afirmación le llegó. Aquí no se mide qué se propone sino
+ * a quién se pregunta, y a 30-09-2026 da igual cómo puntúe: el `lookup` del
+ * guion guarda cada puntuación con el id global del par (`<claim>#<i>`) y
+ * `verifyClaimWithNli` la busca por el índice (`<i>`), así que no le llega
+ * ninguna. Medido con este mismo falso puntuando 0,95: `propuestas 0 · sin
+ * respaldo 1`, un «sin respaldo» que el modelo no dijo.
  */
 
 const SCRIPT = resolve('scripts/verify-pleno-claims-nli.ts')
@@ -196,10 +196,10 @@ describe('verify:pleno-claims:nli, barrido de los sin-datos publicados', () => {
   })
 
   it('y el parte las cuenta aparte, con la etapa que las retractó', () => {
-    const linea = r.stdout.split('\n').find((l) => /trinquete/.test(l)) ?? ''
-    expect(linea, r.stdout).toMatch(/\b2 retenida/)
-    expect(linea).toMatch(/curator-downgrade 1/)
-    expect(linea).toMatch(/verdict-engine 1/)
+    const linea = r.stdout.split('\n').find((l) => /no se proponen/.test(l)) ?? ''
+    expect(linea, r.stdout).toMatch(/\b2 no se proponen/)
+    expect(linea).toMatch(/\b1 retractada por «[^»]+» \(curator-downgrade\)/)
+    expect(linea).toMatch(/\b1 retractada por «[^»]+» \(verdict-engine\)/)
   })
 })
 
@@ -215,19 +215,19 @@ describe('verify:pleno-claims:nli --claimIds', () => {
     expect(r.preguntadas).not.toContain(literal(PARCIAL_DEL_CURADOR))
   })
 
-  it('la retenida sale como retenida, no como «sin localizar»', () => {
+  it('la retractada sale como retractada, no como «sin localizar»', () => {
     const cuenta = r.stdout.split('\n').find((l) => /lista explícita/.test(l)) ?? ''
-    expect(cuenta, r.stdout).toMatch(/1 retenida/)
+    expect(cuenta, r.stdout).toMatch(/2 encontrada/)
     expect(cuenta).toMatch(/1 sin localizar/)
     const sinLocalizar = r.stdout.split('\n').find((l) => /sin localizar:/.test(l)) ?? ''
     expect(sinLocalizar).toContain('no-existe-000-afi-000000')
     expect(sinLocalizar).not.toContain(PARCIAL_DEL_CURADOR)
-    const retenidas = r.stdout.split('\n').find((l) => /retenida\(s\):/.test(l)) ?? ''
-    expect(retenidas, r.stdout).toContain(PARCIAL_DEL_CURADOR)
+    const retractadas = r.stdout.split('\n').find((l) => /retractadas:/.test(l)) ?? ''
+    expect(retractadas, r.stdout).toContain(PARCIAL_DEL_CURADOR)
   })
 })
 
-describe('verify:pleno-claims:nli --claimIds, todas retenidas', () => {
+describe('verify:pleno-claims:nli --claimIds, todas retractadas', () => {
   let r: Corrida
   beforeAll(() => {
     r = correr(lista([PARCIAL_DEL_CURADOR, DEL_CURADOR]))
@@ -235,7 +235,9 @@ describe('verify:pleno-claims:nli --claimIds, todas retenidas', () => {
 
   it('no le pregunta nada al NLI y sale con error: no ha hecho lo que se le pidió', () => {
     expect(r.preguntadas).toEqual([])
+    // Con la cola vacía, la guarda de «ninguna juzgada» no salta: se pidieron
+    // filas concretas y no se hizo nada con ninguna, que no es un «ya está».
     expect(r.status, r.stdout).toBe(1)
-    expect(r.stderr).toMatch(/trinquete/)
+    expect(r.stderr).toMatch(/retract/)
   })
 })

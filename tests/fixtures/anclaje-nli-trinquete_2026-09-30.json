@@ -2,7 +2,7 @@
   "_procedencia": {
     "que": "Tres declaraciones cuyo veredicto publicado lo dejó una etapa que sólo baja, y una de control que no ha tocado nadie. Las cuatro tienen candidatos en la shortlist léxica, así que si el anclaje NLI no las puntúa no es porque la recuperación no le diera nada.",
     "base": "pleno-claims-verified-base.json del checkout principal (generatedAt 2026-09-28T07:54:32.262Z), las cuatro filas sin tocar.",
-    "overlay": "Las entradas de 15uvjew-137-afi-3bd4bc (curator-downgrade → sin-datos), 1237hbp-091-afi-a7c5f4 (verdict-engine → sin-datos) y 1sqj7is-053-pro-68944b (curator-downgrade → parcial) tal cual están en pleno-claims-overlay.json en 55496084. 1xmr0do-016-afi-ff77f6 no tiene entrada: su sin-datos es el de la base.",
+    "overlay": "Las entradas de 15uvjew-137-afi-3bd4bc (curator-downgrade → sin-datos), 1237hbp-091-afi-a7c5f4 (verdict-engine → sin-datos) y 1sqj7is-053-pro-68944b (curator-downgrade → parcial) tal cual estaban en pleno-claims-overlay.json en 55496084. En 8997e816 las dos primeras siguen idénticas; la tercera conserva fuente y veredicto y lleva además el motivo enmendado (#192), que esta prueba no lee. 1xmr0do-016-afi-ff77f6 no tiene entrada: su sin-datos es el de la base.",
     "tenders": "Para cada declaración, la primera fila de public/data/tenders.json —en el orden en que las lee `readTenders`: contracts, tenders— que por sí sola ya le da un candidato en la shortlist léxica, guardada bajo la misma clave de la que sale.",
     "transcripciones": "El tramo mínimo de líneas de public/data/pleno-transcripts/<pleno>.txt en el que la puerta de procedencia encuentra el literal: basta para que las cuatro se publiquen."
   },
