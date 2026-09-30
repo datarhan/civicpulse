@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-09-30T05:47:31.314Z",
+  "generatedAt": "2026-09-30T05:48:09.258Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. Los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, salvo los que llevan la firma de una persona, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -31,7 +31,7 @@
         },
         {
           "text": "este nuevo contrato de basura ha pasado por esa comisión antes que por los plenos.",
-          "speakerGroup": "Compromís",
+          "speakerGroup": null,
           "sourceClaimId": "1237hbp-029-cit-0d2047"
         },
         {
@@ -102,6 +102,14 @@
           "reason": "Se retira el expediente del que se importaron las palabras que el inciso suprimido atribuía al hablante. Es de casi cuatro años antes de esta sesión, versa sobre caminos y no sobre el servicio del que se hablaba, y coincide sólo en una fórmula meteorológica.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-09T17:47:10.628Z"
+        },
+        {
+          "field": "quote.2.speakerGroup",
+          "original": "Compromís",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo municipal con un solo concejal identifica a esa persona por eliminación, y la asignó la curación automática sin firma de ningún curador. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:48:05.841Z"
         }
       ]
     },
@@ -110,7 +118,7 @@
       "plenoId": "1237hbp",
       "plenoDate": "2026-07-03",
       "title": "Pleno 2026-07-03: debate sobre contenedores y contrato de recogida de RSU",
-      "summary": "Compromís afirma que el Ayuntamiento dispone de herramientas para rescindir el contrato con la empresa licitadora que, según señala, no cumplía, y manifiesta que la compra de contenedores se hará con recursos propios. Un grupo no identificado expresa su satisfacción con la adjudicación y el PP señala que ya en diciembre se advertía del deterioro. El registro municipal incluye el «Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU».",
+      "summary": "En el debate se afirma que el Ayuntamiento dispone de herramientas para rescindir el contrato con la empresa licitadora que, según se señala, no cumplía, y que la compra de contenedores se hará con recursos propios. Un grupo no identificado expresa su satisfacción con la adjudicación y el PP señala que ya en diciembre se advertía del deterioro. El registro municipal incluye el «Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU».",
       "severity": "informational",
       "sourceClaimIds": [
         "1237hbp-004-cit-df8455",
@@ -126,7 +134,7 @@
         },
         {
           "text": "ha servido para que el Ayuntamiento de Rivarrocha tenga herramientas para poder rescindir el contracto en la empresa licitadora que no estaba cumpliendo",
-          "speakerGroup": "Compromís",
+          "speakerGroup": null,
           "sourceClaimId": "1237hbp-030-cit-eea251"
         },
         {
@@ -136,7 +144,7 @@
         },
         {
           "text": "van a hacer la compra de los contenedores en recursos propios",
-          "speakerGroup": "Compromís",
+          "speakerGroup": null,
           "sourceClaimId": "1237hbp-034-cit-2c142d"
         }
       ],
@@ -175,6 +183,30 @@
           "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-01T18:55:09.196Z"
+        },
+        {
+          "field": "quote.1.speakerGroup",
+          "original": "Compromís",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo municipal con un solo concejal identifica a esa persona por eliminación, y la asignó la curación automática sin firma de ningún curador. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:48:06.045Z"
+        },
+        {
+          "field": "quote.3.speakerGroup",
+          "original": "Compromís",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo municipal con un solo concejal identifica a esa persona por eliminación, y la asignó la curación automática sin firma de ningún curador. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:48:06.253Z"
+        },
+        {
+          "field": "summary",
+          "original": "Compromís afirma que el Ayuntamiento dispone de herramientas para rescindir el contrato con la empresa licitadora que, según señala, no cumplía, y manifiesta que la compra de contenedores se hará con recursos propios. Un grupo no identificado expresa su satisfacción con la adjudicación y el PP señala que ya en diciembre se advertía del deterioro. El registro municipal incluye el «Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU».",
+          "corrected": "En el debate se afirma que el Ayuntamiento dispone de herramientas para rescindir el contrato con la empresa licitadora que, según se señala, no cumplía, y que la compra de contenedores se hará con recursos propios. Un grupo no identificado expresa su satisfacción con la adjudicación y el PP señala que ya en diciembre se advertía del deterioro. El registro municipal incluye el «Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU».",
+          "reason": "El sumario atribuía dos intervenciones a un grupo municipal con un solo concejal, lo que identifica a esa persona por eliminación; la atribución la puso la curación automática sin firma de curador. Se retira del sumario igual que de las citas; lo que se dijo no cambia.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:48:06.461Z"
         }
       ]
     },
@@ -1201,7 +1233,7 @@
       "plenoId": "k4olcs",
       "plenoDate": "2026-04-20",
       "title": "Pleno ordinario de Riba-roja de Túria 2026-04-20: Debate sobre educación",
-      "summary": "El grupo PSOE afirma que el pla Edificant —el programa autonómico de la Generalitat para infraestructuras educativas, cuya cifra corresponde al conjunto de la Comunitat y no al presupuesto de este ayuntamiento— ha movilizado hasta 1.700 millones de euros para la construcción y mejora de infraestructuras educativas, mientras que VOX se compromete a garantizar una enseñanza de calidad con libertad. El registro municipal incluye contratos relacionados con mejoras en centros educativos y servicios de formación.",
+      "summary": "El grupo PSOE afirma que el pla Edificant —el programa autonómico de la Generalitat para infraestructuras educativas, cuya cifra corresponde al conjunto de la Comunitat y no al presupuesto de este ayuntamiento— ha movilizado hasta 1.700 millones de euros para la construcción y mejora de infraestructuras educativas, mientras que otra intervención expresa el compromiso de garantizar una enseñanza de calidad con libertad. El registro municipal incluye contratos relacionados con mejoras en centros educativos y servicios de formación.",
       "severity": "informational",
       "sourceClaimIds": [
         "k4olcs-063-cit-25e6ea",
@@ -1221,7 +1253,7 @@
         },
         {
           "text": "El compromiso de Vox es garantizar una enseñanza de calidad, con libertad,",
-          "speakerGroup": "VOX",
+          "speakerGroup": null,
           "sourceClaimId": "k4olcs-077-pro-02ea8a"
         }
       ],
@@ -1263,6 +1295,22 @@
           "reason": "Junto a los datos de contratación y presupuesto municipales, la cifra de 1.700 millones se leía como imputable a Riba-roja, cuyo presupuesto anual es de dos órdenes de magnitud menor; es un programa autonómico. Señalamiento de la revisión de superficies del 18-08-2026.",
           "editor": "Sergei Lutchenko",
           "correctedAt": "2026-08-18T16:28:02.199Z"
+        },
+        {
+          "field": "quote.2.speakerGroup",
+          "original": "VOX",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo municipal con un solo concejal identifica a esa persona por eliminación, y la asignó la curación automática sin firma de ningún curador. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:48:06.658Z"
+        },
+        {
+          "field": "summary",
+          "original": "El grupo PSOE afirma que el pla Edificant —el programa autonómico de la Generalitat para infraestructuras educativas, cuya cifra corresponde al conjunto de la Comunitat y no al presupuesto de este ayuntamiento— ha movilizado hasta 1.700 millones de euros para la construcción y mejora de infraestructuras educativas, mientras que VOX se compromete a garantizar una enseñanza de calidad con libertad. El registro municipal incluye contratos relacionados con mejoras en centros educativos y servicios de formación.",
+          "corrected": "El grupo PSOE afirma que el pla Edificant —el programa autonómico de la Generalitat para infraestructuras educativas, cuya cifra corresponde al conjunto de la Comunitat y no al presupuesto de este ayuntamiento— ha movilizado hasta 1.700 millones de euros para la construcción y mejora de infraestructuras educativas, mientras que otra intervención expresa el compromiso de garantizar una enseñanza de calidad con libertad. El registro municipal incluye contratos relacionados con mejoras en centros educativos y servicios de formación.",
+          "reason": "El sumario atribuía una intervención a un grupo municipal con un solo concejal, lo que identifica a esa persona por eliminación; la atribución la puso la curación automática, y las correcciones posteriores del sumario, hechas por otros motivos, la conservaron. Se retira del sumario igual que de la cita; lo que se dijo no cambia.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:48:06.857Z"
         }
       ]
     },
@@ -2614,7 +2662,7 @@
       "plenoId": "1qi8axv",
       "plenoDate": "2025-12-23",
       "title": "Pleno extraordinario y urgente de Riba-roja de Túria, 2025-12-23: Debates sobre transparencia y accesibilidad a informes",
-      "summary": "VOX afirma que no es necesario desplazarse al ayuntamiento para acceder a los informes. Compromís menciona un contrato para asistencia técnica y supervisión de prestaciones, mientras que un grupo no identificado contrasta el contrato en discusión con el anterior —«no existía en el contrato anterior y en este sí»— sin precisar a qué se refiere.",
+      "summary": "En el debate se afirma que no es necesario desplazarse al ayuntamiento para acceder a los informes y se menciona un contrato para asistencia técnica y supervisión de prestaciones, mientras que un grupo no identificado contrasta el contrato en discusión con el anterior —«no existía en el contrato anterior y en este sí»— sin precisar a qué se refiere.",
       "severity": "informational",
       "sourceClaimIds": [
         "1qi8axv-122-afi-3eebaf",
@@ -2624,12 +2672,12 @@
       "quotes": [
         {
           "text": "ahora no hay ni que desplazarse al ayuntamiento para poder acceder a los informes",
-          "speakerGroup": "VOX",
+          "speakerGroup": null,
           "sourceClaimId": "1qi8axv-122-afi-3eebaf"
         },
         {
           "text": "un contracte per a l'assistència tècnica i el recolzament per al control i supervisió de la prestació d'aquest contracte",
-          "speakerGroup": "Compromís",
+          "speakerGroup": null,
           "sourceClaimId": "1qi8axv-023-cit-3e6224"
         },
         {
@@ -2694,6 +2742,30 @@
           "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-10T12:54:19.791Z"
+        },
+        {
+          "field": "quote.0.speakerGroup",
+          "original": "VOX",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo municipal con un solo concejal identifica a esa persona por eliminación, y la asignó la curación automática sin firma de ningún curador. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:48:07.056Z"
+        },
+        {
+          "field": "quote.1.speakerGroup",
+          "original": "Compromís",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo municipal con un solo concejal identifica a esa persona por eliminación, y la asignó la curación automática sin firma de ningún curador. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:48:07.260Z"
+        },
+        {
+          "field": "summary",
+          "original": "VOX afirma que no es necesario desplazarse al ayuntamiento para acceder a los informes. Compromís menciona un contrato para asistencia técnica y supervisión de prestaciones, mientras que un grupo no identificado contrasta el contrato en discusión con el anterior —«no existía en el contrato anterior y en este sí»— sin precisar a qué se refiere.",
+          "corrected": "En el debate se afirma que no es necesario desplazarse al ayuntamiento para acceder a los informes y se menciona un contrato para asistencia técnica y supervisión de prestaciones, mientras que un grupo no identificado contrasta el contrato en discusión con el anterior —«no existía en el contrato anterior y en este sí»— sin precisar a qué se refiere.",
+          "reason": "El sumario atribuía sus dos primeras intervenciones a dos grupos municipales con un solo concejal cada uno, lo que identifica a cada persona por eliminación; las atribuciones las puso la curación automática sin firma de curador. Se retiran del sumario igual que de las citas; lo que se dijo no cambia.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:48:07.459Z"
         }
       ]
     },
@@ -2961,7 +3033,7 @@
         },
         {
           "text": "Benvinguts als membres de l'Associació de Memòria Democràtica de Ribera Rocha de Turia a aquest ple.",
-          "speakerGroup": "Compromís",
+          "speakerGroup": null,
           "sourceClaimId": "qz6weg-080-cit-008981"
         }
       ],
@@ -3029,6 +3101,14 @@
           "reason": "El sumario reproducía, casi palabra por palabra, la versión castellana que se publicó como literal hasta el 10-08-2026 de una cita que la puerta editorial retiene por ser una acusación que el verificador no pudo contrastar con ningún dato municipal; se describe sin su literal.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-09-30T05:47:13.648Z"
+        },
+        {
+          "field": "quote.3.speakerGroup",
+          "original": "Compromís",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo municipal con un solo concejal identifica a esa persona por eliminación, y la asignó la curación automática sin firma de ningún curador. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:48:07.657Z"
         }
       ]
     },
@@ -3037,7 +3117,7 @@
       "plenoId": "qz6weg",
       "plenoDate": "2025-12-01",
       "title": "01-12-2025: Pleno debate sobre pagos a proveedores y ley de contratación",
-      "summary": "El debate incluyó reproches sobre plazos de pago a proveedores y sobre la aplicación del artículo 198 de la ley de contratos, que establece intereses por retrasos en los pagos. Esas intervenciones no se reproducen: son acusaciones sin grupo atribuido en la transcripción y que ningún registro municipal respalda ni desmiente. En la misma sesión se habló también del incremento de cuotas de la Seguridad Social y del bono de comercio; esta última intervención sí se reproduce aquí, atribuida a Compromís y marcada como sin contraste en los datos, que es la etiqueta de lo que no es una acusación.",
+      "summary": "El debate incluyó reproches sobre plazos de pago a proveedores y sobre la aplicación del artículo 198 de la ley de contratos, que establece intereses por retrasos en los pagos. Esas intervenciones no se reproducen: son acusaciones sin grupo atribuido en la transcripción y que ningún registro municipal respalda ni desmiente. En la misma sesión se habló también del incremento de cuotas de la Seguridad Social y del bono de comercio; esta última intervención sí se reproduce aquí, marcada como sin contraste en los datos, que es la etiqueta de lo que no es una acusación.",
       "severity": "informational",
       "sourceClaimIds": [
         "qz6weg-220-acu-34560f",
@@ -3053,7 +3133,7 @@
         },
         {
           "text": "el tema del bono de comercio",
-          "speakerGroup": "Compromís",
+          "speakerGroup": null,
           "sourceClaimId": "qz6weg-276-cit-5b837f"
         },
         {
@@ -3134,6 +3214,22 @@
           "reason": "La frase sobre acusaciones sin grupo atribuido cubría las cuatro citas de la ficha, incluida la del bono de comercio, que la propia ficha atribuye a un grupo y marca con la etiqueta de lo que no es una acusación. Señalamiento de la revisión de superficies del 18-08-2026.",
           "editor": "Sergei Lutchenko",
           "correctedAt": "2026-08-18T16:28:02.709Z"
+        },
+        {
+          "field": "quote.1.speakerGroup",
+          "original": "Compromís",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo municipal con un solo concejal identifica a esa persona por eliminación, y la asignó la curación automática sin firma de ningún curador. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:48:07.854Z"
+        },
+        {
+          "field": "summary",
+          "original": "El debate incluyó reproches sobre plazos de pago a proveedores y sobre la aplicación del artículo 198 de la ley de contratos, que establece intereses por retrasos en los pagos. Esas intervenciones no se reproducen: son acusaciones sin grupo atribuido en la transcripción y que ningún registro municipal respalda ni desmiente. En la misma sesión se habló también del incremento de cuotas de la Seguridad Social y del bono de comercio; esta última intervención sí se reproduce aquí, atribuida a Compromís y marcada como sin contraste en los datos, que es la etiqueta de lo que no es una acusación.",
+          "corrected": "El debate incluyó reproches sobre plazos de pago a proveedores y sobre la aplicación del artículo 198 de la ley de contratos, que establece intereses por retrasos en los pagos. Esas intervenciones no se reproducen: son acusaciones sin grupo atribuido en la transcripción y que ningún registro municipal respalda ni desmiente. En la misma sesión se habló también del incremento de cuotas de la Seguridad Social y del bono de comercio; esta última intervención sí se reproduce aquí, marcada como sin contraste en los datos, que es la etiqueta de lo que no es una acusación.",
+          "reason": "El sumario decía a qué grupo estaba atribuida una de las citas, un grupo municipal con un solo concejal, lo que identifica a esa persona por eliminación; la atribución la puso la curación automática, y las correcciones posteriores del sumario, hechas por otros motivos, la conservaron. Se retira de la cita, así que sale también de la frase; lo que se dijo no cambia.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:48:08.054Z"
         }
       ]
     },
@@ -3481,7 +3577,7 @@
       "plenoId": "otxq2c",
       "plenoDate": "2025-10-06",
       "title": "Debate de seguridad en el pleno 2025-10-06: videovigilancia y sistema COMETA",
-      "summary": "Según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, VOX manifestó que considera esencial el sistema COMETA en materia de seguridad. Hubo además intervenciones sobre actuaciones ante la Consejería y sobre el cumplimiento de órdenes de alejamiento que no se reproducen aquí: ningún registro municipal las respalda ni las desmiente. En la contratación municipal publicada consta un «Contrato mixto de suministro y servicio para la instalación del sistema de videovigilancia en el polígono industrial Masía Baló», que se refiere a videovigilancia en suelo industrial y no documenta el sistema COMETA ni las demás cuestiones debatidas.",
+      "summary": "Según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, en una intervención se consideró esencial el sistema COMETA en materia de seguridad. Hubo además intervenciones sobre actuaciones ante la Consejería y sobre el cumplimiento de órdenes de alejamiento que no se reproducen aquí: ningún registro municipal las respalda ni las desmiente. En la contratación municipal publicada consta un «Contrato mixto de suministro y servicio para la instalación del sistema de videovigilancia en el polígono industrial Masía Baló», que se refiere a videovigilancia en suelo industrial y no documenta el sistema COMETA ni las demás cuestiones debatidas.",
       "severity": "informational",
       "sourceClaimIds": [
         "otxq2c-078-acu-b00839",
@@ -3507,7 +3603,7 @@
         },
         {
           "text": "Desde nuestro espacio político, consideramos que el sistema COMETA es muy importante, esencialmente importante.",
-          "speakerGroup": "VOX",
+          "speakerGroup": null,
           "sourceClaimId": "otxq2c-048-cit-11d99a"
         }
       ],
@@ -3583,6 +3679,22 @@
           "reason": "El sumario daba por firme una intervención cuya cita esta misma ficha marca como procedente de la transcripción sustituida, y rotula «no consta en la transcripción revisada». Se ajusta la afirmación a lo que el registro sostiene: procede del texto anterior y nadie la ha reanclado al vigente. Lo señaló la revisión lectora de superficies.",
           "editor": "claude-opus-5",
           "correctedAt": "2026-08-29T11:20:48.150Z"
+        },
+        {
+          "field": "quote.3.speakerGroup",
+          "original": "VOX",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo municipal con un solo concejal identifica a esa persona por eliminación, y la asignó la curación automática sin firma de ningún curador. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:48:08.252Z"
+        },
+        {
+          "field": "summary",
+          "original": "Según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, VOX manifestó que considera esencial el sistema COMETA en materia de seguridad. Hubo además intervenciones sobre actuaciones ante la Consejería y sobre el cumplimiento de órdenes de alejamiento que no se reproducen aquí: ningún registro municipal las respalda ni las desmiente. En la contratación municipal publicada consta un «Contrato mixto de suministro y servicio para la instalación del sistema de videovigilancia en el polígono industrial Masía Baló», que se refiere a videovigilancia en suelo industrial y no documenta el sistema COMETA ni las demás cuestiones debatidas.",
+          "corrected": "Según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, en una intervención se consideró esencial el sistema COMETA en materia de seguridad. Hubo además intervenciones sobre actuaciones ante la Consejería y sobre el cumplimiento de órdenes de alejamiento que no se reproducen aquí: ningún registro municipal las respalda ni las desmiente. En la contratación municipal publicada consta un «Contrato mixto de suministro y servicio para la instalación del sistema de videovigilancia en el polígono industrial Masía Baló», que se refiere a videovigilancia en suelo industrial y no documenta el sistema COMETA ni las demás cuestiones debatidas.",
+          "reason": "El sumario atribuía una intervención a un grupo municipal con un solo concejal, lo que identifica a esa persona por eliminación; la atribución la puso la curación automática, y las correcciones posteriores del sumario, hechas por otros motivos, la conservaron. Se retira del sumario igual que de la cita; lo que se dijo no cambia.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:48:08.453Z"
         }
       ]
     },
@@ -3591,7 +3703,7 @@
       "plenoId": "c8kr44",
       "plenoDate": "2025-09-08",
       "title": "Pleno 2025-09-08: Debate sobre el contrato de residuos y el plan de refugios climáticos en Riba-roja de Túria",
-      "summary": "En la sesión del 2025-09-08, el grupo Compromís señala la existencia de un contrato para la recogida de residuos sólidos urbanos. Por su parte, el PSOE manifiesta el inicio de los trabajos en un plan de refugios climáticos.",
+      "summary": "En la sesión del 2025-09-08 se señala la existencia de un contrato para la recogida de residuos sólidos urbanos, y el PSOE manifiesta el inicio de los trabajos en un plan de refugios climáticos.",
       "severity": "informational",
       "sourceClaimIds": [
         "c8kr44-073-cit-d6d194",
@@ -3612,7 +3724,7 @@
         },
         {
           "text": "que per fi ja tenim un contracte per a la recollida de residus sòlids urbans en el municipi.",
-          "speakerGroup": "Compromís",
+          "speakerGroup": null,
           "sourceClaimId": "c8kr44-047-cit-8dec6a"
         },
         {
@@ -3675,6 +3787,22 @@
           "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-10T12:54:24.746Z"
+        },
+        {
+          "field": "quote.2.speakerGroup",
+          "original": "Compromís",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo municipal con un solo concejal identifica a esa persona por eliminación, y la asignó la curación automática sin firma de ningún curador. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:48:08.653Z"
+        },
+        {
+          "field": "summary",
+          "original": "En la sesión del 2025-09-08, el grupo Compromís señala la existencia de un contrato para la recogida de residuos sólidos urbanos. Por su parte, el PSOE manifiesta el inicio de los trabajos en un plan de refugios climáticos.",
+          "corrected": "En la sesión del 2025-09-08 se señala la existencia de un contrato para la recogida de residuos sólidos urbanos, y el PSOE manifiesta el inicio de los trabajos en un plan de refugios climáticos.",
+          "reason": "El sumario atribuía una intervención a un grupo municipal con un solo concejal, lo que identifica a esa persona por eliminación; la atribución la puso la curación automática sin firma de curador. Se retira del sumario igual que de la cita; lo que se dijo no cambia.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:48:08.854Z"
         }
       ]
     },
@@ -3683,7 +3811,7 @@
       "plenoId": "c8kr44",
       "plenoDate": "2025-09-08",
       "title": "Debate sobre la limpieza y el mantenimiento en los colegios de Riba-roja de Túria en el pleno del 2025-09-08",
-      "summary": "El PP señala que el personal docente tuvo que limpiar las aulas debido a la falta de adecuación de las mismas. Por su parte, Compromís destaca las actuaciones de mejora en centros de la localidad como el Camp de Túria, mientras que el PSOE afirma que el mantenimiento se solventó en pocos días.",
+      "summary": "El PP señala que el personal docente tuvo que limpiar las aulas debido a la falta de adecuación de las mismas. En otra intervención se destacan las actuaciones de mejora en centros de la localidad como el Camp de Túria, mientras que el PSOE afirma que el mantenimiento se solventó en pocos días.",
       "severity": "informational",
       "sourceClaimIds": [
         "c8kr44-231-acu-70a34f",
@@ -3699,7 +3827,7 @@
         },
         {
           "text": "todas las actuaciones que se han tenido, tanto en los colegios de esta localidad, en algunos de ellos, como el Camp de Turía, que ha sido, vamos, pensé que ha sido pegarle la volta al calcetín.",
-          "speakerGroup": "Compromís",
+          "speakerGroup": null,
           "sourceClaimId": "c8kr44-119-cit-e9c4b9"
         },
         {
@@ -3772,6 +3900,22 @@
           "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-10T12:54:24.390Z"
+        },
+        {
+          "field": "quote.1.speakerGroup",
+          "original": "Compromís",
+          "corrected": "sin identificar",
+          "reason": "La atribución a un grupo municipal con un solo concejal identifica a esa persona por eliminación, y la asignó la curación automática sin firma de ningún curador. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:48:09.051Z"
+        },
+        {
+          "field": "summary",
+          "original": "El PP señala que el personal docente tuvo que limpiar las aulas debido a la falta de adecuación de las mismas. Por su parte, Compromís destaca las actuaciones de mejora en centros de la localidad como el Camp de Túria, mientras que el PSOE afirma que el mantenimiento se solventó en pocos días.",
+          "corrected": "El PP señala que el personal docente tuvo que limpiar las aulas debido a la falta de adecuación de las mismas. En otra intervención se destacan las actuaciones de mejora en centros de la localidad como el Camp de Túria, mientras que el PSOE afirma que el mantenimiento se solventó en pocos días.",
+          "reason": "El sumario atribuía una intervención a un grupo municipal con un solo concejal, lo que identifica a esa persona por eliminación; la atribución la puso la curación automática sin firma de curador. Se retira del sumario igual que de la cita; lo que se dijo no cambia.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:48:09.258Z"
         }
       ]
     }
