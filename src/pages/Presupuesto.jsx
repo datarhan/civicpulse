@@ -466,7 +466,10 @@ function CascadaCard() {
             : t('presupuesto.cascada.title.sinCuadre')
         }
       />
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 8 }}>
+      <div
+        className="cp-presu-filas"
+        style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 8 }}
+      >
         {filas.map((f) => (
           <div key={f.id} className="cp-presu-cascada" data-cascada={f.id}>
             <div>
@@ -671,7 +674,10 @@ function CapitulosCard() {
           </div>
         }
       />
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 11, marginTop: 8 }}>
+      <div
+        className="cp-presu-filas"
+        style={{ display: 'flex', flexDirection: 'column', gap: 11, marginTop: 8 }}
+      >
         {filas.map((f) => {
           const nota = notaDe(f)
           return (
@@ -1026,7 +1032,10 @@ function ProgramasCard() {
           </div>
         }
       />
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 11, marginTop: 8 }}>
+      <div
+        className="cp-presu-filas"
+        style={{ display: 'flex', flexDirection: 'column', gap: 11, marginTop: 8 }}
+      >
         {programas.map((g) => {
           const pct = s.totalExpense > 0 ? (g.amount / s.totalExpense) * 100 : 0
           const glosa = GLOSA_PROGRAMA[g.label.toLowerCase()]
@@ -1136,7 +1145,7 @@ function DeudaVivaSection() {
   const percentil = data?.ultimo?.percentil
 
   return (
-    <Card>
+    <Card className="cp-presu-deuda-marco">
       <SectionHead
         eyebrow={t('presupuesto.deuda.eyebrow')}
         title={titularDeuda(tendencia, t)}
@@ -1156,7 +1165,10 @@ function DeudaVivaSection() {
       />
       <div className="cp-presu-deuda" style={{ marginTop: 8 }}>
         <div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
+          <div
+            className="cp-presu-filas"
+            style={{ display: 'flex', flexDirection: 'column', gap: 7 }}
+          >
             {puntos.map((p) => (
               <div key={p.ejercicio} className="cp-presu-deuda-fila" data-deuda={p.ejercicio}>
                 <span
