@@ -16,9 +16,8 @@ import { shortlistCandidates } from '../src/scraper/claim-verifier'
  * qué la evidencia no sostenía la afirmación. El guion no distinguía unas de
  * otras. El trinquete (src/scraper/trinquete.ts) dice que el anclaje sólo sube y
  * que el motor y los curadores sólo bajan, pero el ORDEN entre ellos sólo vivía
- * en el orden de ejecución: una pasada del anclaje lanzada después habría vuelto
- * a puntuar lo que un curador bajó, contra la misma shortlist cuyo candidato el
- * curador había descartado.
+ * en el orden de ejecución: una pasada del anclaje lanzada después volvía a
+ * puntuar lo que un curador o el motor habían bajado.
  *
  * De punta a punta a propósito: lo que se prueba es a quién le pregunta el guion
  * y qué dice su parte, y eso vive en la costura entre el overlay que carga, la

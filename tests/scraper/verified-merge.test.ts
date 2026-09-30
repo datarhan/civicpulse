@@ -390,8 +390,9 @@ describe('applyOverlayEntries — el orden del trinquete', () => {
   })
 
   it('ni aunque repita el veredicto del curador: se llevaría su firma', () => {
-    // Un `parcial` firmado pasa la puerta editorial por la firma
-    // (`isCuratorPromoted`); el mismo `parcial` del anclaje, no.
+    // Mismo veredicto, otra entrada: la tarjeta dejaría de imprimir bajo la
+    // cita el motivo que firmó una persona, y el veredicto pasaría a
+    // sostenerse en la máquina y no en su firma (`isCuratorPromoted`).
     expect(() => anclar(retractadaPorCurador('parcial'), 'parcial')).toThrow(/trinquete/)
   })
 

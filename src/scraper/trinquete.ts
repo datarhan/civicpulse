@@ -123,9 +123,9 @@ export function etapasVivas(): OverlaySource[] {
  * sea un trinquete: hace falta además que lo que una etapa bajó no lo vuelva a
  * subir otra. Ese orden vivía, otra vez, sólo en el orden de ejecución. El
  * anclaje elige sus candidatas entre los `sin-datos` PUBLICADOS, y una
- * retractación publicada también dice `sin-datos`, así que una pasada suya
- * lanzada después del motor o de un curador habría vuelto a subir lo que ellos
- * retiraron (encontrado el 29-09-2026, al arreglar el motor).
+ * retractación publicada también dice `sin-datos`, así que nada impedía que una
+ * pasada suya, lanzada después del motor o de un curador, volviera a subir lo
+ * que ellos retiraron (encontrado el 29-09-2026, al arreglar el motor).
  *
  * La regla sale de `direccion`, no de una lista de fuentes: una etapa que sube
  * no sustituye nunca la entrada de una que baja. Lo demás pasa. Bajar sobre lo
