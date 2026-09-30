@@ -205,6 +205,16 @@ async function main() {
       )
     }
   }
+  // Lo mismo que con una lista que no existe: se pidieron filas concretas y
+  // todas las que existen las retractó el motor o un curador. La guarda de
+  // «ninguna juzgada» de abajo no lo ve —sin filas elegibles no hay nada que
+  // juzgar—, y salir 0 sería el «ya está» de la regla 2.
+  if (opts.claimIds && candidates.length === 0 && retractadas.length > 0) {
+    process.stderr.write(
+      '[verify-nli] todas las filas pedidas que existen están retractadas: no hay nada que proponer\n',
+    )
+    process.exit(1)
+  }
 
   // Cuatro cuentas por separado (regla 2): «el modelo no vio respaldo» y «el
   // modelo no llegó a juzgarla» no pueden imprimirse igual.

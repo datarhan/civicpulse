@@ -1,0 +1,330 @@
+{
+  "_procedencia": {
+    "que": "Tres declaraciones cuyo veredicto publicado lo dejó una etapa que sólo baja, y una de control que no ha tocado nadie. Las cuatro tienen candidatos en la shortlist léxica, así que si el anclaje NLI no las puntúa no es porque la recuperación no le diera nada.",
+    "base": "pleno-claims-verified-base.json del checkout principal (generatedAt 2026-09-28T07:54:32.262Z), las cuatro filas sin tocar.",
+    "overlay": "Las entradas de 15uvjew-137-afi-3bd4bc (curator-downgrade → sin-datos), 1237hbp-091-afi-a7c5f4 (verdict-engine → sin-datos) y 1sqj7is-053-pro-68944b (curator-downgrade → parcial) tal cual estaban en pleno-claims-overlay.json en 55496084. En 8997e816 las dos primeras siguen idénticas; la tercera conserva fuente y veredicto y lleva además el motivo enmendado (#192), que esta prueba no lee. 1xmr0do-016-afi-ff77f6 no tiene entrada: su sin-datos es el de la base.",
+    "tenders": "Para cada declaración, la primera fila de public/data/tenders.json —en el orden en que las lee `readTenders`: contracts, tenders— que por sí sola ya le da un candidato en la shortlist léxica, guardada bajo la misma clave de la que sale.",
+    "transcripciones": "El tramo mínimo de líneas de public/data/pleno-transcripts/<pleno>.txt en el que la puerta de procedencia encuentra el literal: basta para que las cuatro se publiquen."
+  },
+  "base": {
+    "generatedAt": "2026-09-28T07:54:32.262Z",
+    "items": [
+      {
+        "claim": {
+          "id": "15uvjew-137-afi-3bd4bc",
+          "plenoId": "15uvjew",
+          "plenoDate": "2026-07-27",
+          "segmentIndex": 137,
+          "type": "afirmacion_numerica",
+          "speakerGroup": "PSOE",
+          "verbatim": "Esta compra equivalen a 505 mil euros de inversión, con lo cual teníamos que hacer sí o sí una modificación dentro del propio presupuesto para financiar el pago de la adquisición de estos contenedores.",
+          "context": "Compra de contenedores que todos sabemos y hemos debatido aquí que es necesario, era necesario y es necesario cambiarlos cuanto antes. Esta compra equivalen a 505 mil euros de inversión, con lo cual teníamos que hacer sí o sí una modificación dentro del propio presupuesto para financiar el pago de la adquisición de estos contenedores.",
+          "topic": "medio-ambiente",
+          "entities": {
+            "amountEuros": 505000,
+            "referencedEntity": "compra de contenedores"
+          },
+          "confidence": 0.85,
+          "reasoning": "Importe concreto atribuido a la compra de contenedores como motivo de la modificación presupuestaria; verificable contra el expediente de contratación o gasto municipal.",
+          "requiresHumanApproval": true
+        },
+        "verification": {
+          "claimId": "15uvjew-137-afi-3bd4bc",
+          "verdict": "sin-datos",
+          "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+          "evidence": [],
+          "checkedAgainst": [
+            "tenders",
+            "tenders-ted",
+            "bdns",
+            "budget"
+          ]
+        }
+      },
+      {
+        "claim": {
+          "id": "1237hbp-091-afi-a7c5f4",
+          "plenoId": "1237hbp",
+          "plenoDate": "2026-07-03",
+          "segmentIndex": 91,
+          "type": "afirmacion_numerica",
+          "speakerGroup": null,
+          "verbatim": "que va a durar unos 4 o 6 mil que va a suponer unos 4 o 6 mil de fondos propios",
+          "context": "...que va a durar unos 4 o 6 mil que va a suponer unos 4 o 6 mil de fondos propios cuando siempre se ha dicho que el contrato de la basura no iba a suponer nada para el ayuntamiento...",
+          "topic": "fiscal",
+          "entities": {
+            "amountEuros": 4000,
+            "count": 1,
+            "countUnit": "mil"
+          },
+          "confidence": 0.7,
+          "reasoning": "Se menciona una cifra de 4 o 6 mil euros que se va a suponer de fondos propios, lo que puede ser verificado en los registros de presupuestos o gastos del ayuntamiento.",
+          "requiresHumanApproval": true
+        },
+        "verification": {
+          "claimId": "1237hbp-091-afi-a7c5f4",
+          "verdict": "sin-datos",
+          "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+          "evidence": [],
+          "checkedAgainst": [
+            "tenders",
+            "tenders-ted",
+            "bdns",
+            "budget"
+          ]
+        }
+      },
+      {
+        "claim": {
+          "id": "1xmr0do-016-afi-ff77f6",
+          "plenoId": "1xmr0do",
+          "plenoDate": "2026-09-07",
+          "segmentIndex": 16,
+          "type": "afirmacion_numerica",
+          "speakerGroup": null,
+          "verbatim": "Por eso el PMP te da 56 días, que es dentro del ratio.",
+          "context": "Se habla de plazos de pago de facturas: unas se abonan a 120 días y otras en 20 días, y se cita el PMP (periodo medio de pago) resultante como dentro del ratio legal.",
+          "topic": "fiscal",
+          "entities": {
+            "count": 56,
+            "countUnit": "días",
+            "referencedEntity": "pmp (periodo medio de pago)"
+          },
+          "confidence": 0.85,
+          "reasoning": "Cifra concreta de periodo medio de pago verificable en los datos de morosidad/PMP publicados por el ayuntamiento y el Ministerio de Hacienda; esperaríamos un PMP en torno a 56 días.",
+          "requiresHumanApproval": true
+        },
+        "verification": {
+          "claimId": "1xmr0do-016-afi-ff77f6",
+          "verdict": "sin-datos",
+          "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+          "evidence": [],
+          "checkedAgainst": []
+        }
+      },
+      {
+        "claim": {
+          "id": "1sqj7is-053-pro-68944b",
+          "plenoId": "1sqj7is",
+          "plenoDate": "2026-03-09",
+          "segmentIndex": 53,
+          "type": "promesa",
+          "speakerGroup": "PSOE",
+          "verbatim": "propuestas como esta que sirven para mejorar la forma de contratar, que sirven para reducir los extrajudiciales",
+          "context": "Intervención del equipo de Gobierno (PSOE) defendiendo la aprobación del Sistema Dinámico de Adquisición ante las críticas de la oposición. El portavoz del gobierno argumenta que la nueva instrucción de racionalización técnica mejorará la contratación municipal y reducirá los reconocimientos extrajudiciales de crédito.",
+          "topic": "fiscal",
+          "entities": {
+            "referencedEntity": "sistema dinámico de adquisición del ayuntamiento de riba-roja de túria"
+          },
+          "confidence": 0.6,
+          "reasoning": "La afirmación de que el Sistema Dinámico de Adquisición reducirá los reconocimientos extrajudiciales es verificable: se puede cruzar con los futuros reconocimientos extrajudiciales aprobados en pleno (como los del punto 2 del mismo orden del día) y con la serie histórica de facturas extrajudiciales en los expedientes municipales.",
+          "requiresHumanApproval": true
+        },
+        "verification": {
+          "claimId": "1sqj7is-053-pro-68944b",
+          "verdict": "sin-datos",
+          "summary": "El objeto citado aparece en un expediente municipal, pero ninguna de sus magnitudes coincide con la cifra del claim. No es que no haya registro: es que el que hay no dice eso.",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eQSvV%2FmKsbQSugstABGr5A%3D%3D",
+              "snippet": "Contrato de suministro para el MOBILIARIO en el CENTRO SOCIAL “LA BOTAIA” (DESPACHO DEL 9 AL 16) derivado del Sistema Dinámico de Adquisición de suministro de materiales y productos de utilización diaria del Ayuntamiento de Riba-Roja de Túria. · Ayuntamiento de Riba-roja de Túria · Basal Mobiliario, S.L. · textile · 6382 €",
+              "similarity": 1,
+              "stance": "checked"
+            }
+          ],
+          "checkedAgainst": [
+            "promises"
+          ]
+        }
+      }
+    ]
+  },
+  "overlay": {
+    "version": 1,
+    "generatedAt": "2026-09-21T05:53:59.613Z",
+    "entries": {
+      "15uvjew-137-afi-3bd4bc": {
+        "verification": {
+          "claimId": "15uvjew-137-afi-3bd4bc",
+          "verdict": "sin-datos",
+          "summary": "La única evidencia adjunta es el renting de siete vehículos (466.200 €), no la compra de contenedores de 505 mil €: el emparejador determinista igualó por similitud de importes (0,85) sin exigir coincidencia de objeto. La evidencia no sostiene el parcial.",
+          "evidence": [],
+          "checkedAgainst": [
+            "curator-downgrade"
+          ]
+        },
+        "source": "curator-downgrade",
+        "reason": "La única evidencia adjunta es el renting de siete vehículos (466.200 €), no la compra de contenedores de 505 mil €: el emparejador determinista igualó por similitud de importes (0,85) sin exigir coincidencia de objeto. La evidencia no sostiene el parcial.",
+        "editor": "Claude (revisión 17-08, aprobada en plan)",
+        "appliedAt": "2026-08-17T07:47:01.719Z"
+      },
+      "1237hbp-091-afi-a7c5f4": {
+        "verification": {
+          "claimId": "1237hbp-091-afi-a7c5f4",
+          "verdict": "sin-datos",
+          "summary": "He analizado la afirmación sobre el contrato de la basura (fondos propios de 4-6 mil euros) frente al único candidato disponible, que es un contrato de servicios para el Portal del Empleado por €25.794. No hay coincidencia de entidad/tema (basura vs portal del empleado), ni de importe, ni de sujeto ",
+          "evidence": [],
+          "checkedAgainst": [
+            "verdict-engine"
+          ],
+          "confidence": 0.2
+        },
+        "source": "verdict-engine",
+        "reason": "verdict-engine (claude-code) re-judged verificado→sin-datos: He analizado la afirmación sobre el contrato de la basura (fondos propios de 4-6 mil euros) frente al único candidato disponible, que es un contrato de servicios para el Portal del Empleado por €25.794. No hay coincidencia de entidad/tema (basura vs portal del empleado), ni de importe, ni de sujeto ",
+        "editor": "verdict-engine:claude-code",
+        "appliedAt": "2026-08-02T04:43:25.145Z"
+      },
+      "1sqj7is-053-pro-68944b": {
+        "verification": {
+          "claimId": "1sqj7is-053-pro-68944b",
+          "verdict": "parcial",
+          "summary": "Gold review (ai): SDA mechanism confirmed via derived contracts; the \"improves contracting\" claim is opinion (was verificado)",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4roXkK9o42irz3GQd5r6SQ%3D%3D",
+              "snippet": "Contrato derivado del sistema dinámico de adquisición de servicios para TALLERES de INFORMÁTICA en la EPA.",
+              "similarity": 0.57
+            },
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HOevTJeejQESugstABGr5A%3D%3D",
+              "snippet": "Contrato para alumbrado público en acceso al Pou d’Escoto, derivado del sistema dinámico de adquisición (SDA) de suministro de material de electricidad.",
+              "similarity": 0.29
+            },
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2FxOcSrQ966OcCF8sV%2BqtYA%3D%3D",
+              "snippet": "Contratación derivada del sistema dinámico de adquisición (SDA) de servicios de diversa índole, para la prestación del servicio de TALLER DE INGLÉS a impartir en la Escuela Pública de Adultos. Ctto. 145/2023b.",
+              "similarity": 0.29
+            }
+          ],
+          "checkedAgainst": [
+            "curator-downgrade"
+          ]
+        },
+        "source": "curator-downgrade",
+        "reason": "Gold review (ai): SDA mechanism confirmed via derived contracts; the \"improves contracting\" claim is opinion (was verificado)",
+        "editor": "ai-gold-review",
+        "appliedAt": "2026-06-24T07:18:12.464Z"
+      }
+    }
+  },
+  "tenders": {
+    "contracts": [
+      {
+        "id": "1689128#3",
+        "title": "Contrato para la adquisición de 40 casetas para utilizar dentro de la celebración de Ferias o eventos organizados por el Ayuntamiento de Riba-roja de Túria.",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=PrLe96U5gIV4zIRvjBVCSw%3D%3D",
+        "status": "awarded",
+        "contractType": "supplies",
+        "processType": "restricted",
+        "minorContract": false,
+        "startDate": "2024-04-19",
+        "endDate": "2024-04-25",
+        "awardDate": "2024-04-19",
+        "formalizedDate": null,
+        "duration": 6,
+        "batchNumber": 0,
+        "assignee": "BRICOLAGE MORENO SL",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractorId": "58096",
+        "contractorType": "Ayuntamiento",
+        "categoryId": "42",
+        "categoryTitle": "textile",
+        "cpvs": [
+          "18100000",
+          "39000000"
+        ],
+        "initialAmount": 15805.5,
+        "initialAmountNoTaxes": 13062.4,
+        "finalAmount": 15730,
+        "finalAmountNoTaxes": 13000,
+        "estimatedValue": 13062.4,
+        "numberOfProposals": 1
+      },
+      {
+        "id": "1689128",
+        "title": "Contrato de suministro para el MOBILIARIO en el CENTRO SOCIAL “LA BOTAIA” (DESPACHO DEL 9 AL 16) derivado del Sistema Dinámico de Adquisición de suministro de materiales y productos de utilización diaria del Ayuntamiento de Riba-Roja de Túria.",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eQSvV%2FmKsbQSugstABGr5A%3D%3D",
+        "status": "awarded",
+        "contractType": "supplies",
+        "processType": "restricted",
+        "minorContract": false,
+        "startDate": null,
+        "endDate": "2022-10-30",
+        "awardDate": "2022-09-05",
+        "formalizedDate": null,
+        "duration": 60,
+        "batchNumber": 0,
+        "assignee": "Basal Mobiliario, S.L.",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractorId": "58096",
+        "contractorType": "Ayuntamiento",
+        "categoryId": "42",
+        "categoryTitle": "textile",
+        "cpvs": [
+          "18100000",
+          "39000000"
+        ],
+        "initialAmount": 9075,
+        "initialAmountNoTaxes": 7500,
+        "finalAmount": 7722.56,
+        "finalAmountNoTaxes": 6382.28,
+        "estimatedValue": 0,
+        "numberOfProposals": 3
+      }
+    ],
+    "tenders": [
+      {
+        "id": "383666",
+        "title": "Servicio para la implantación y mantenimiento del Portal del Empleado en el Ayuntamiento de Riba-roja",
+        "documentNumber": "4/2019",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fSAyhRzwiqWmq21uxhbaVQ%3D%3D",
+        "status": "awarded",
+        "contractType": "services",
+        "processType": "open_simplified",
+        "minorContract": false,
+        "submissionDate": "2019-07-22",
+        "openProposalsDate": "2019-07-08",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractValue": 25794,
+        "initialAmount": 31210.74,
+        "initialAmountNoTaxes": 25794,
+        "categoryTitle": "it",
+        "cpvs": [
+          "72500000"
+        ],
+        "numberOfBatches": 0
+      },
+      {
+        "id": "68465",
+        "title": "Servicio de asesoramiento jurídico y defensa procesal",
+        "documentNumber": "6/2018",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=NcAn5AFpXtoQK2TEfXGy%2BA%3D%3D",
+        "status": "revoked",
+        "contractType": "services",
+        "processType": "open",
+        "minorContract": false,
+        "submissionDate": "2018-04-11",
+        "openProposalsDate": "2018-03-23",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractValue": 13500,
+        "initialAmount": 16335,
+        "initialAmountNoTaxes": 13500,
+        "categoryTitle": "legal",
+        "cpvs": [
+          "79100000"
+        ],
+        "numberOfBatches": 0
+      }
+    ]
+  },
+  "transcripciones": {
+    "15uvjew": "[4002.3 → 4017.7] (SPEAKER_64) Esta compra equivalen a 505 mil euros de inversión, con lo cual teníamos que hacer sí o sí una modificación dentro del propio presupuesto para financiar el pago de la adquisición de estos contenedores.",
+    "1237hbp": "[5040.0 → 5070.0] que va a durar unos 4 o 6 mil que va a suponer unos 4 o 6 mil de fondos propios cuando siempre se ha dicho que el contrato de la basura no iba a suponer nada para el ayuntamiento la compra de contenedores será a través de fondos propios y sobre el nuevo pleno de contratación nosotros aconsejaremos dar datos económicos y técnicos de que es posible un contrato nuevo que no sea a 14 años de que es posible un contrato nuevo a través de renta de vehículos",
+    "1xmr0do": "[1020.0 → 1050.0] Sobre el tema del... también hay facturas, que sí, que son 120 días, pero hay otras facturas que en 20 días también se han liquidado. Por eso el PMP te da 56 días, que es dentro del ratio. Y nosotros seguimos trabajando. Ahora hemos aprobado una oferta de empleo público, un capítulo que algunos no han aprobado así, y que es la herramienta en la que podemos trabajar ahora a través de la oferta de empleo público, ya de acuerdo en la tabla en el sindicato,",
+    "1sqj7is": "[3171.0 → 3190.5] (SPEAKER_42) es el Gobierno y el equipo de Gobierno y son los técnicos los que traen aquí pues propuestas como esta que sirven para mejorar la forma de contratar, que sirven para reducir los extrajudiciales. Pero como a usted le parece todo mal y la cuestión es hacer ruido, pues usted haga ruido, nosotros seguiremos trabajando para mejorar."
+  }
+}
