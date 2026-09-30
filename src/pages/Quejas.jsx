@@ -1067,10 +1067,12 @@ function DashboardView({ data }) {
 
       <QuejasSpendOverlap />
 
+      {/* El `min(…, 100%)` es para la columna que queda sola: sin él conservaba
+          sus 280 px en una caja de 272 (320 px de pantalla). */}
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(280px, 100%), 1fr))',
           gap: 14,
           marginBottom: 18,
         }}
@@ -1175,11 +1177,11 @@ function DashboardView({ data }) {
             <Link
               key={it.service_request_id}
               to={`/quejas/${it.service_request_id.toLowerCase()}`}
+              // La rejilla vive en `index.css` (`.cp-queja-fila`): necesita un
+              // punto de ruptura para partirse en el móvil, y una @media no cabe
+              // en el prop `style`.
+              className="cp-queja-fila"
               style={{
-                display: 'grid',
-                gridTemplateColumns: 'min-content 1fr min-content min-content min-content',
-                alignItems: 'center',
-                gap: 12,
                 padding: '10px 0',
                 borderBottom: '1px dotted var(--border2)',
                 color: 'inherit',

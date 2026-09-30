@@ -11,7 +11,11 @@ import {
 } from '../hooks/usePlenoClaims'
 import { gateForDisplay, sortSignalFirst } from '../lib/claim-ledger'
 import { blocLabel } from '../lib/party-label.js'
-import { etiquetaVerificador, fuentesComprobadas } from '../lib/claim-provenance.js'
+import {
+  etiquetaVerificador,
+  fuentesComprobadas,
+  resumenSegunFuentes,
+} from '../lib/claim-provenance.js'
 import { ROTULO_RESUMEN_RETIRADO, resumenPublicable } from '../lib/resumenes-retirados.js'
 
 function formatEuros(n) {
@@ -72,8 +76,10 @@ function ClaimCard({ item }) {
   const { claim, verification } = item
   // `null` cuando el resumen guardado habla de la tarea del verificador y no de
   // esta declaración (src/lib/resumenes-retirados.js): la tarjeta dice que lo
-  // retiró en vez de imprimirlo bajo la cita.
-  const resumen = resumenPublicable(verification)
+  // retiró en vez de imprimirlo bajo la cita. El «no se encontró registro» se
+  // re-deriva de la misma procedencia que «Fuentes comprobadas», más abajo:
+  // guardado, nombraba fuentes que la línea no lista.
+  const resumen = resumenSegunFuentes(verification, resumenPublicable(verification))
   return (
     <Card>
       <div
@@ -202,20 +208,42 @@ function ClaimCard({ item }) {
  *
  * Honest empty state when no data-grounded declarations exist — the pipeline
  * hasn't surfaced contrastable claims, not that the government is clean.
+ *
+ * Con `items` no se pide nada: la carga del corpus vive en
+ * `ClaimLedgerFromCorpus`, que sólo se monta cuando faltan. Un hook no se puede
+ * saltar, y mientras `usePlenoClaims()` corría aquí, abrir «Declaraciones
+ * contrastadas» en /plenos/:id descargaba el manifiesto y todos los fragmentos
+ * —unos 7 MB, medido el 29-09-2026— para pintar sólo el de su sesión.
+ * tests/components/claim-ledger-corpus.test.jsx cuenta lo que pide cada página.
  */
-export function ClaimLedger({ filter, limit = 20, emptyHint, items, showSummary = false }) {
+export function ClaimLedger({ items, ...props }) {
+  if (items != null) return <ClaimLedgerView items={items} {...props} />
+  return <ClaimLedgerFromCorpus {...props} />
+}
+
+/** Sin `items`: el corpus entero, p. ej. /departamentos/:slug filtrado por tema. */
+function ClaimLedgerFromCorpus(props) {
+  const { loading, data } = usePlenoClaims()
+  if (loading) {
+    return (
+      <div style={{ padding: 12, fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
+        Cargando verificaciones…
+      </div>
+    )
+  }
+  return <ClaimLedgerView items={data?.items ?? []} {...props} />
+}
+
+function ClaimLedgerView({ items, filter, limit = 20, emptyHint, showSummary = false }) {
   const t = useT()
-  const fetched = usePlenoClaims()
-  const loading = items ? false : fetched.loading
   const [shown, setShown] = useState(limit)
 
   // Gate (defense-in-depth) → optional external filter → signal-first sort.
   const base = useMemo(() => {
-    const source = items ?? fetched.data?.items ?? []
-    const gated = gateForDisplay(source)
+    const gated = gateForDisplay(items)
     const scoped = filter ? gated.filter(filter) : gated
     return sortSignalFirst(scoped)
-  }, [items, fetched.data, filter])
+  }, [items, filter])
 
   // Honest proportion: signal-first + a small limit otherwise oversells coverage
   // by hiding the (usually majority) sin-datos behind "load more".
@@ -224,13 +252,6 @@ export function ClaimLedger({ filter, limit = 20, emptyHint, items, showSummary 
     return { conEvidencia: base.length - sinContraste, sinContraste }
   }, [base])
 
-  if (loading) {
-    return (
-      <div style={{ padding: 12, fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
-        Cargando verificaciones…
-      </div>
-    )
-  }
   if (base.length === 0) {
     return (
       <div

@@ -28,6 +28,8 @@ import { TRINQUETE } from './trinquete'
 // `/hallazgos`. Importado, no recitado: dos listas de stopwords que midieran
 // distinto harían que el CLI aceptara lo que la cola desaconseja.
 import { contentWords } from './quote-reanchor'
+import { rechazoDeFirma } from './firma-de-persona'
+import { REASON_DIGEST_RE, reasonDigest, type PlenoFindingReasonAmendment } from './pleno-finding'
 
 export interface VerifiedItem {
   claim: PlenoClaim
@@ -58,7 +60,19 @@ export interface OverlayEntry {
   /** Curator name (curator-downgrade) or model id (verdict-engine). */
   editor?: string
   appliedAt: string
+  /**
+   * Cada sustitución del motivo de una bajada de curador, en orden. Ausente
+   * —nunca vacía— si el motivo es el de la bajada. Ver `enmendarMotivoDeBajada`.
+   */
+  reasonAmendments?: EnmiendaDeMotivo[]
 }
+
+/**
+ * Una sustitución del motivo de una bajada: la forma y la receta de huella de
+ * la enmienda de motivo de /hallazgos (ENMIENDA DEL MOTIVO, pleno-finding.ts),
+ * para que un auditor rehaga las dos con la misma herramienta.
+ */
+export type EnmiendaDeMotivo = PlenoFindingReasonAmendment
 
 export interface Overlay {
   version: number
@@ -330,6 +344,71 @@ export function validateOverlay(o: Overlay): void {
         throw new Error(`[overlay] ${id}: verdict-engine may never emit contradicho`)
       }
     }
+    if (e.reasonAmendments !== undefined) validarEnmiendas(id, e)
+  }
+}
+
+const FECHA_ISO = /^\d{4}-\d{2}-\d{2}/
+
+/**
+ * Las enmiendas de una entrada, escritas a mano o por la CLI: el validador no
+ * se fía de ninguna. Las mismas reglas que las de /hallazgos, más dos que sólo
+ * tiene el overlay: únicamente las lleva una bajada de curador, y la tarjeta
+ * imprime el RESUMEN, así que tiene que ser el motivo enmendado.
+ */
+function validarEnmiendas(id: string, e: OverlayEntry): void {
+  const donde = `[overlay] ${id}`
+  if (e.source !== 'curator-downgrade') {
+    throw new Error(
+      `${donde}: sólo una bajada de curador lleva enmiendas de motivo (esta entrada es de ${e.source})`,
+    )
+  }
+  const lista = e.reasonAmendments
+  if (!Array.isArray(lista) || lista.length === 0) {
+    throw new Error(`${donde}: reasonAmendments, si está, tiene que ser una lista no vacía`)
+  }
+  const desde = Date.parse(e.appliedAt)
+  if (Number.isNaN(desde)) {
+    throw new Error(`${donde}: appliedAt (${e.appliedAt}) no es una fecha con la que comparar`)
+  }
+  let previa = -Infinity
+  lista.forEach((a, i) => {
+    const at = `${donde}.reasonAmendments[${i}]`
+    if (!a || typeof a !== 'object') throw new Error(`${at} tiene que ser un objeto`)
+    if (typeof a.previous !== 'string' || !REASON_DIGEST_RE.test(a.previous)) {
+      throw new Error(
+        `${at}.previous tiene que ser la huella del motivo anterior (motivo · sha256:<12 hex>), nunca su texto`,
+      )
+    }
+    if (typeof a.reason !== 'string' || a.reason.trim().length < 20) {
+      throw new Error(`${at}.reason tiene que decir el porqué de la enmienda en ≥20 caracteres`)
+    }
+    const rechazo = rechazoDeFirma(a.editor)
+    if (rechazo) throw new Error(`${at}.editor tiene que nombrar a una persona: ${rechazo}`)
+    const cuando =
+      typeof a.amendedAt === 'string' && FECHA_ISO.test(a.amendedAt)
+        ? Date.parse(a.amendedAt)
+        : Number.NaN
+    if (Number.isNaN(cuando)) throw new Error(`${at}.amendedAt tiene que ser una fecha ISO`)
+    if (cuando < desde) {
+      throw new Error(
+        `${at}.amendedAt (${a.amendedAt}) es anterior a la bajada que enmienda (${e.appliedAt})`,
+      )
+    }
+    if (cuando < previa) {
+      throw new Error(`${donde}: reasonAmendments no va en orden cronológico (la ${i} es anterior)`)
+    }
+    previa = cuando
+  })
+  if (lista[lista.length - 1].previous === reasonDigest(e.reason ?? '')) {
+    throw new Error(
+      `${donde}: la última enmienda no cambió nada — su huella es la del motivo vigente`,
+    )
+  }
+  if (e.verification.summary !== e.reason) {
+    throw new Error(
+      `${donde}: el resumen publicado no es el motivo enmendado, y la tarjeta imprime el resumen`,
+    )
   }
 }
 
@@ -444,6 +523,132 @@ export function applyOverlayEntries(
   }
   validateOverlay(next)
   return next
+}
+
+/** Lo que pide una orden `downgrade-verdict --amend-reason`. */
+export interface EnmiendaPedida {
+  claimId: string
+  /** El veredicto que la orden espera encontrar. No se mueve. */
+  veredicto: ClaimVerdict
+  /** El motivo nuevo: lo que la tarjeta imprimirá bajo la cita. */
+  motivo: string
+  /** Por qué se enmienda (≥20 caracteres). */
+  porque: string
+  /** Una persona, con su nombre (`firma-de-persona.ts`). */
+  editor: string
+}
+
+/**
+ * ── La enmienda del motivo de una bajada ────────────────────────────────────
+ *
+ * El motivo de una bajada de curador es también el resumen que `ClaimLedger`
+ * imprime bajo la cita. Las 40 bajadas del 24-06-2026 (`ai-gold-review`) lo
+ * guardan en inglés y con jerga, y hasta el 29-09-2026 ninguna vía podía
+ * cambiarlo: `downgrade-verdict` sólo baja, y bajar al mismo veredicto no es
+ * una bajada. Volver a escribir la entrada entera, además, pondría la firma y
+ * la fecha de hoy a una decisión de junio.
+ *
+ * La vía de #183 para /hallazgos, aplicada aquí: la enmienda vive en la entrada
+ * —que conserva veredicto, evidencia, `editor` y `appliedAt` de la bajada—, con
+ * la huella del motivo anterior (`reasonDigest`, nunca su texto: el repositorio
+ * es público y el commit anterior lo guarda), el porqué, la firma de una
+ * persona y la fecha. Una bajada NUEVA sobre la misma declaración reemplaza la
+ * entrada entera, enmiendas incluidas: es otra decisión, con su propio motivo.
+ *
+ * Puro: devuelve un overlay nuevo y la huella del motivo sustituido.
+ */
+export function enmendarMotivoDeBajada(
+  overlay: Overlay,
+  pedida: EnmiendaPedida,
+  stampIso: string,
+): { overlay: Overlay; previous: string } {
+  const { claimId } = pedida
+  const donde = `[overlay] ${claimId}`
+  const e = overlay?.entries?.[claimId]
+  if (!e) throw new Error(`${donde}: no hay ninguna bajada en el overlay, ni motivo que enmendar`)
+  if (e.source !== 'curator-downgrade') {
+    throw new Error(
+      `${donde}: la entrada es de ${e.source}, no una bajada de curador; sólo se enmienda el motivo que firmó un curador`,
+    )
+  }
+  if (e.verification.verdict !== pedida.veredicto) {
+    throw new Error(
+      `${donde}: la bajada publica ${e.verification.verdict}, no ${pedida.veredicto}: la orden se preparó para otro estado`,
+    )
+  }
+  const rechazo = rechazoDeFirma(pedida.editor)
+  if (rechazo) {
+    throw new Error(
+      `${donde}: una enmienda de motivo la firma una persona, con su nombre: ${rechazo}`,
+    )
+  }
+  if (e.verification.summary !== e.reason) {
+    throw new Error(
+      `${donde}: la bajada publica un resumen distinto de su motivo, y no se sabría cuál se enmienda`,
+    )
+  }
+  const motivo = (pedida.motivo ?? '').trim()
+  if (motivo.length < 20) {
+    throw new Error(
+      `${donde}: el motivo nuevo tiene que tener ≥20 caracteres, como cualquier motivo`,
+    )
+  }
+  if (motivo === (e.reason ?? '').trim()) {
+    throw new Error(
+      `${donde}: el motivo ya es ese texto; una enmienda que no cambia nada no se registra`,
+    )
+  }
+  const charla = charlaDeTarea(motivo)
+  if (charla) {
+    throw new Error(
+      `${donde}: el motivo nuevo habla de la tarea del modelo (${charla}), no de la declaración`,
+    )
+  }
+  const porque = (pedida.porque ?? '').trim()
+  if (porque.length < 20) {
+    throw new Error(`${donde}: el porqué de la enmienda tiene que tener ≥20 caracteres`)
+  }
+  const cuando = FECHA_ISO.test(stampIso) ? Date.parse(stampIso) : Number.NaN
+  if (Number.isNaN(cuando)) {
+    throw new Error(`${donde}: la fecha de la enmienda tiene que ser ISO («${stampIso}»)`)
+  }
+  if (cuando < Date.parse(e.appliedAt)) {
+    throw new Error(
+      `${donde}: la enmienda (${stampIso}) no puede ser anterior a la bajada que enmienda (${e.appliedAt})`,
+    )
+  }
+  const anteriores = e.reasonAmendments ?? []
+  const ultima = anteriores[anteriores.length - 1]
+  if (ultima && cuando < Date.parse(ultima.amendedAt)) {
+    throw new Error(
+      `${donde}: la enmienda (${stampIso}) no puede ser anterior a la última enmienda (${ultima.amendedAt})`,
+    )
+  }
+
+  const previous = reasonDigest(e.reason)
+  const entrada: OverlayEntry = {
+    verification: { ...e.verification, summary: motivo },
+    source: e.source,
+    reason: motivo,
+    ...(e.editor ? { editor: e.editor } : {}),
+    appliedAt: e.appliedAt,
+    reasonAmendments: [
+      ...anteriores,
+      {
+        previous,
+        reason: porque,
+        editor: pedida.editor.normalize('NFC').replace(/\s+/g, ' ').trim(),
+        amendedAt: stampIso,
+      },
+    ],
+  }
+  const next: Overlay = {
+    version: overlay.version,
+    generatedAt: stampIso,
+    entries: { ...overlay.entries, [claimId]: entrada },
+  }
+  validateOverlay(next)
+  return { overlay: next, previous }
 }
 
 /**

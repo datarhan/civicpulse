@@ -6,6 +6,7 @@ import { SecHead, IndicePieza } from '../../components/reportajes/Pieza'
 import { fmtDateHuman } from '../../lib/formatters'
 import {
   estadoDeEnvio,
+  fraseDeCalendarios,
   fraseDeEnvio,
   resumirEnvios,
   ESTADO_ENVIO_ETIQUETA,
@@ -268,6 +269,10 @@ function SolicitudesEnviadas({ bloque }) {
         }}
       >
         {bloque.nota}
+        {/* Con qué calendario se contó el último día de cada fila (art. 30.5
+            LPACAP): sale de las filas, así que no puede nombrar a quien no
+            aparece en ellas. */}
+        {` ${fraseDeCalendarios(items)}`}
       </div>
     </Card>
   )
