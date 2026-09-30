@@ -106,6 +106,23 @@ describe('ops:alarm · reglas', () => {
     expect(degradado[0].detail).toContain('CHANNEL_ID')
     expect(codigos(entrada({ bot: null }))).toEqual(['bot-unconfigured'])
   })
+
+  it('el remedio del bot degradado remite a cada línea: no todas son un secreto de Fly', () => {
+    // Desde que /health avisa también de un plazo en un año sin calendario, una
+    // línea puede pedir «añade 2027 a FESTIVOS_DE_LA_SEDE»; un remedio que manda a
+    // `fly secrets list` debajo de ella manda a buscar donde no es.
+    const [aviso] = evaluarAlarma(
+      entrada({
+        bot: {
+          alcanzable: true,
+          estado: 'degraded',
+          degradado: ['plazos: … — añade 2027 a FESTIVOS_DE_LA_SEDE (src/scraper/queja-router.ts)'],
+        },
+      }),
+    )
+    expect(aviso.remedy).toMatch(/cada línea/i)
+    expect(aviso.remedy).not.toMatch(/^Revisa los secretos/)
+  })
 })
 
 describe('ops:alarm · cableado', () => {

@@ -1,7 +1,12 @@
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { buildHealth, VARIABLE_VERSION } from '../src/services/health'
+import {
+  AVISO_SIN_CALENDARIO_DIAS,
+  buildHealth,
+  VARIABLE_VERSION,
+  type PlazosSinCalendario,
+} from '../src/services/health'
 
 const base = { mode: 'long-polling', uptimeSec: 10, pid: 1 }
 
@@ -157,6 +162,125 @@ describe('buildHealth · la cola de revisión', () => {
     expect(h.status).toBe('degraded')
     expect(h.degraded.join(' ')).toMatch(/2 tarjeta\(s\).*30 h/)
     expect(buildHealth(wired, conCola(3)).status).toBe('ok')
+  })
+})
+
+/**
+ * Un plazo que acaba en un año sin calendario de días inhábiles no lo decide
+ * nadie (#182): la ficha da el día nominal «o el primer día hábil siguiente», el
+ * panel dice «Sin calendario» y el cron no pasa la queja a silencio. Pasado ese
+ * día lo decía sólo el log de Fly, que no mira nadie, y las quejas de tres meses
+ * registradas desde el 1-10-2026 acaban en 2027, cuyas fiestas locales publica el
+ * DOGV hacia noviembre. /health lo dice a AVISO_SIN_CALENDARIO_DIAS del día
+ * nominal, y ops-alarm lo pone en rojo.
+ */
+describe('buildHealth · un plazo en un año sin calendario', () => {
+  const wired = { BOT_TOKEN: 't', ADMIN_USER_IDS: '42' } as NodeJS.ProcessEnv
+  const ninguno: PlazosSinCalendario = {
+    quejas: 0,
+    anios: [],
+    primerNominal: null,
+    quedanAlPrimero: null,
+  }
+  const en2027 = (quedanAlPrimero: number): PlazosSinCalendario => ({
+    quejas: 2,
+    anios: [2027],
+    primerNominal: '2027-01-01',
+    quedanAlPrimero,
+  })
+  const salud = (plazosSinCalendario: PlazosSinCalendario | null) =>
+    buildHealth(wired, { ...base, plazosSinCalendario })
+
+  it('sin ninguno, nada que decir (el control)', () => {
+    const h = salud(ninguno)
+    expect(h.status).toBe('ok')
+    expect(h.plazosSinCalendario).toEqual(ninguno)
+  })
+
+  it('lejos del día nominal lo cuenta, pero no avisa: todavía no hay nada que hacer', () => {
+    const h = salud(en2027(AVISO_SIN_CALENDARIO_DIAS + 1))
+    expect(h.status).toBe('ok')
+    expect(h.degraded).toEqual([])
+    expect(h.plazosSinCalendario).toEqual(en2027(AVISO_SIN_CALENDARIO_DIAS + 1))
+  })
+
+  it('a AVISO_SIN_CALENDARIO_DIAS del día nominal, degradado: cuántas, el día y qué hacer', () => {
+    const h = salud(en2027(AVISO_SIN_CALENDARIO_DIAS))
+    expect(h.status).toBe('degraded')
+    expect(h.degraded).toHaveLength(1)
+    const [linea] = h.degraded
+    expect(linea).toMatch(/2 queja\(s\) registrada\(s\)/)
+    expect(linea).toMatch(new RegExp(`2027-01-01, dentro de ${AVISO_SIN_CALENDARIO_DIAS} día`))
+    // El remedio entero: un aviso que no dice qué hacer manda a buscar.
+    expect(linea).toMatch(/añade 2027 a FESTIVOS_DE_LA_SEDE \(src\/scraper\/queja-router\.ts\)/)
+  })
+
+  it('el día nominal es hoy: desde mañana no se decide', () => {
+    expect(salud(en2027(0)).degraded.join(' ')).toMatch(/es hoy, 2027-01-01/)
+  })
+
+  it('pasado el día nominal, degradado: el bot ya no puede decidir el silencio', () => {
+    const h = salud(en2027(-3))
+    expect(h.status).toBe('degraded')
+    expect(h.degraded.join(' ')).toMatch(/fue el 2027-01-01, hace 3 día/)
+    expect(h.degraded.join(' ')).toMatch(/no puede decidir/)
+  })
+
+  it('si no se pudieron contar, lo dice: no saber no es «ninguno»', () => {
+    const h = salud(null)
+    expect(h.status).toBe('degraded')
+    expect(h.plazosSinCalendario).toBeNull()
+    expect(h.degraded.join(' ')).toMatch(/no pudo contar/)
+  })
+
+  it('avisa después de que el DOGV publique las fiestas locales, no antes', () => {
+    // Un año se añade entero, y lo último que sale son sus fiestas locales: las de
+    // 2025, en el DOGV núm. 9986 (18-11-2024); las de 2026, en el núm. 10238
+    // (14-11-2025). El primer plazo de un año acaba el 1 de enero, así que su
+    // primer aviso llega AVISO_SIN_CALENDARIO_DIAS antes. Si llegara antes que la
+    // fuente, ops-alarm saldría en rojo cada día sin nada que hacer.
+    for (const [anio, publicadas] of [
+      [2025, '2024-11-18'],
+      [2026, '2025-11-14'],
+    ] as const) {
+      const primerAviso = Date.UTC(anio, 0, 1) - AVISO_SIN_CALENDARIO_DIAS * 86_400_000
+      expect(primerAviso, `el aviso de ${anio}, antes que su DOGV`).toBeGreaterThan(
+        Date.parse(publicadas),
+      )
+    }
+  })
+})
+
+/**
+ * Lo de arriba no sirve si /health no lo recibe. index.ts monta /health en sus dos
+ * ramas —webhook, la de producción, y long-polling— y cada una compone su
+ * respuesta: las dos tienen que contar los plazos.
+ */
+describe('index.ts cuenta los plazos en cada /health', () => {
+  /** El texto entre los paréntesis de cada llamada a `llamada`. */
+  function argumentosDe(fuente: string, llamada: string): string[] {
+    const args: string[] = []
+    for (let i = fuente.indexOf(llamada); i >= 0; i = fuente.indexOf(llamada, i + 1)) {
+      let profundidad = 0
+      let j = i + llamada.length - 1
+      for (; j < fuente.length; j++) {
+        if (fuente[j] === '(') profundidad++
+        else if (fuente[j] === ')' && --profundidad === 0) break
+      }
+      args.push(fuente.slice(i + llamada.length, j))
+    }
+    return args
+  }
+
+  it('cada llamada a buildHealth lleva plazosSinCalendario(db)', () => {
+    const sinComentarios = (s: string) =>
+      s.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*$/gm, '')
+    const indice = sinComentarios(readFileSync(join(__dirname, '..', 'src', 'index.ts'), 'utf8'))
+    const llamadas = argumentosDe(indice, 'buildHealth(')
+    expect(llamadas, 'las dos ramas de /health').toHaveLength(2)
+    for (const args of llamadas) {
+      expect(args).toMatch(/plazosSinCalendario:\s*plazosSinCalendario\(db\)/)
+    }
   })
 })
 

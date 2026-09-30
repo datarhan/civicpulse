@@ -77,6 +77,24 @@ export interface EstadoRevision {
   enfriadas?: number
 }
 
+/**
+ * Los plazos de resolución que el bot no puede decidir: los de las quejas
+ * registradas que acaban en un año sin calendario de días inhábiles
+ * (`FESTIVOS_DE_LA_SEDE`, src/scraper/queja-router.ts), como los cuenta
+ * `plazosSinCalendario` (services/cron.ts). Pasado su día nominal, el cron no las
+ * pasa a silencio: no sabe si el último día se prorrogó (art. 30.5 LPACAP).
+ */
+export interface PlazosSinCalendario {
+  /** Las registradas con el plazo en un año sin calendario. */
+  quejas: number
+  /** Los años que faltan, de menor a mayor. */
+  anios: number[]
+  /** El día nominal (art. 30.4) más próximo de todas ellas, «AAAA-MM-DD»; null si no hay ninguna. */
+  primerNominal: string | null
+  /** Días del día de hoy en la sede a ese día nominal: negativo si ya pasó; null si no hay ninguna. */
+  quedanAlPrimero: number | null
+}
+
 export interface BotHealth {
   status: 'ok' | 'degraded'
   mode: string
@@ -100,6 +118,11 @@ export interface BotHealth {
   webhookAuthenticated?: boolean
   /** La cola de la revisión antes de publicar, cuando quien llama la pasa. */
   moderacion?: EstadoModeracion
+  /**
+   * Los plazos que acaban en un año sin calendario de días inhábiles, cuando quien
+   * llama los pasa; null si no los pudo contar.
+   */
+  plazosSinCalendario?: PlazosSinCalendario | null
 }
 
 /**
@@ -115,6 +138,40 @@ export const ESPERA_MAXIMA_REVISION_H = 48
  */
 export const ESPERA_MAXIMA_VACIADO_H = 24
 
+/**
+ * Días antes del día nominal de un plazo sin calendario en que /health lo dice.
+ *
+ * Lo arregla añadir el año a `FESTIVOS_DE_LA_SEDE`, y un año va entero, así que
+ * sólo se puede cuando el DOGV publica sus fiestas locales, lo último en salir:
+ * las de 2025 el 18-11-2024 (DOGV núm. 9986), las de 2026 el 14-11-2025 (núm.
+ * 10238). Y el primer plazo que acaba en un año nuevo es el del 1 de enero: tres
+ * meses desde el 1 de octubre, uno desde el 1 de diciembre.
+ *
+ * Con 30 días, el primer aviso de un año sale como pronto el 2 de diciembre, dos
+ * semanas después de esas publicaciones: el día que se pone en rojo ya hay qué
+ * copiar. Con 45 o 60 saldría en noviembre, antes que la fuente, y ops-alarm
+ * estaría en rojo cada día sin nada que hacer: el rojo que se aprende a no mirar,
+ * y que esconde lo que caiga en el mismo aviso. Con una o dos semanas, el arreglo
+ * —catorce días con su disposición, la CI, la fusión y el redespliegue del bot—
+ * competiría con la Navidad. Un mes cabe.
+ */
+export const AVISO_SIN_CALENDARIO_DIAS = 30
+
+/** La línea de `degraded` de unos plazos sin calendario con el primero ya a la vista. */
+function lineaSinCalendario(p: PlazosSinCalendario, primerNominal: string, quedan: number) {
+  const anios = p.anios.join(', ')
+  const cuando =
+    quedan > 0
+      ? `el primer día nominal es el ${primerNominal}, dentro de ${quedan} día(s), y desde el siguiente el bot no podrá decidir su silencio`
+      : quedan === 0
+        ? `el primer día nominal es hoy, ${primerNominal}, y desde mañana el bot no podrá decidir su silencio`
+        : `el primer día nominal fue el ${primerNominal}, hace ${-quedan} día(s), y el bot no puede decidir su silencio`
+  return (
+    `plazos: ${p.quejas} queja(s) registrada(s) acaban su plazo en un año sin calendario de días inhábiles (${anios}); ` +
+    `${cuando} — añade ${anios} a FESTIVOS_DE_LA_SEDE (src/scraper/queja-router.ts): el año entero, del BOE y del DOGV`
+  )
+}
+
 export function buildHealth(
   env: NodeJS.ProcessEnv,
   opts: {
@@ -123,6 +180,7 @@ export function buildHealth(
     pid: number
     webhookAuthenticated?: boolean
     moderacion?: EstadoModeracion
+    plazosSinCalendario?: PlazosSinCalendario | null
   },
 ): BotHealth {
   const capabilities: BotCapabilities = {
@@ -176,6 +234,21 @@ export function buildHealth(
       `moderación: ${cola.total} tarjeta(s) esperan desde hace ${cola.masAntiguaHoras} h a perder el texto de una queja retirada o destruida`,
     )
   }
+  // Un plazo sin calendario, sólo cuando ya hay algo que hacer: lejos del día
+  // nominal se cuenta en `plazosSinCalendario` y no avisa. No haberlo podido
+  // contar sí avisa: callarlo daría por hecho que no hay ninguno.
+  const plazos = opts.plazosSinCalendario
+  if (plazos === null) {
+    degraded.push(
+      'plazos: el bot no pudo contar los plazos de las quejas registradas, así que no sabe si alguno acaba en un año sin calendario de días inhábiles — mira `fly logs`',
+    )
+  } else if (
+    plazos?.primerNominal &&
+    plazos.quedanAlPrimero !== null &&
+    plazos.quedanAlPrimero <= AVISO_SIN_CALENDARIO_DIAS
+  ) {
+    degraded.push(lineaSinCalendario(plazos, plazos.primerNominal, plazos.quedanAlPrimero))
+  }
   return {
     status: degraded.length === 0 ? 'ok' : 'degraded',
     mode: opts.mode,
@@ -186,5 +259,6 @@ export function buildHealth(
     degraded,
     ...(webhookAuthenticated === undefined ? {} : { webhookAuthenticated }),
     ...(opts.moderacion ? { moderacion: opts.moderacion } : {}),
+    ...(plazos === undefined ? {} : { plazosSinCalendario: plazos }),
   }
 }

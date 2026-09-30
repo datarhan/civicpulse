@@ -7,7 +7,7 @@ import { avisosHitos } from './services/avisos-hitos.ts'
 import { buildSnapshot, directorioFotos } from './services/snapshot.ts'
 import { buildBatch, renderBatchHtml, renderBatchMarkdown } from './services/batch.ts'
 import { sirveSindic } from './services/sindic.ts'
-import { startSilencioCron } from './services/cron.ts'
+import { plazosSinCalendario, startSilencioCron } from './services/cron.ts'
 import { startDigestCron } from './services/digest.ts'
 import { startConvocatoriasCron } from './services/convocatorias.ts'
 import { startEventosRepoCron } from './services/eventos-repo.ts'
@@ -247,6 +247,9 @@ async function main() {
                 ...estadoModeracion(db, parseAdminIds()),
                 revision: estadoRevision(db, process.env),
               },
+              // Los plazos que acaban en un año sin calendario de días inhábiles:
+              // el cron no los decide, y sólo lo decía su log (services/cron.ts).
+              plazosSinCalendario: plazosSinCalendario(db),
             }),
           ),
         )
@@ -333,6 +336,7 @@ async function main() {
                 ...estadoModeracion(db, parseAdminIds()),
                 revision: estadoRevision(db, process.env),
               },
+              plazosSinCalendario: plazosSinCalendario(db),
             }),
           ),
         )
