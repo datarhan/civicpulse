@@ -237,6 +237,29 @@ export function isDowngrade(from: ClaimVerdict, to: ClaimVerdict): boolean {
 }
 
 /**
+ * Subir es «no bajar y no quedarse igual», DERIVADO de `isDowngrade` — la misma
+ * función que ya gobierna el CLI del curador y el motor de veredictos. Vive aquí,
+ * junto a ella, y la usan el overlay (`applyOverlayEntries`) y la guarda del
+ * rebuild (`acusacionesQueSuben`): dos copias de un orden ya discreparon una vez.
+ *
+ * La primera versión escribió su propia escala de fuerza aquí, y la revisión
+ * independiente encontró lo de siempre: las dos escalas ya discrepaban.
+ * `isDowngrade` se niega a tratar `contradicho` como destino (nunca es una
+ * bajada), mientras que la escala local lo empataba con `verificado` — o sea
+ * que el CLI rechazaba `verificado → contradicho` y esta guarda lo dejaba
+ * pasar, justo la transición que el bloque sólo-título hacía alcanzable sin que
+ * interviniera nadie. Reescribir un orden es reescribir un enum: la regla 1 de
+ * DATA_INTEGRITY, aplicada a una relación en vez de a una lista.
+ *
+ * Al derivarla, la guarda se vuelve además más estricta que la escala que
+ * sustituye: cualquier movimiento que el curador no podría firmar como bajada
+ * cuenta como subida y se para.
+ */
+export function esSubida(de: ClaimVerdict, a: ClaimVerdict): boolean {
+  return de !== a && !isDowngrade(de, a)
+}
+
+/**
  * El suelo de evidencia: ¿se sostiene este veredicto sobre algo?
  *
  * Un veredicto por encima de `sin-datos` AFIRMA que algo respalda la
@@ -484,6 +507,24 @@ export function applyOverlayEntries(
       throw new Error(
         `[overlay] ${e.claimId}: «${e.source}» (${etapa.nombre}) no puede emitir ` +
           `${e.verification.verdict}; sólo puede emitir ${etapa.puedeEmitir.join(', ')}.`,
+      )
+    }
+    // Lo que el overlay ya dice de esta declaración no lo sube ninguna
+    // escritura. Una retractación —del motor o de un curador— se hizo a
+    // propósito, y ninguna vía de este fichero la deshace hacia arriba: ni una
+    // pasada ni una «bajada» medida contra la base en vez de contra lo
+    // publicado (las CLIs miden contra lo publicado; aquí no se fía del mapa que
+    // le pasen, porque la entrada que hay la tiene delante). Se mira también lo
+    // escrito antes en esta misma llamada.
+    const previa = next.entries[e.claimId]
+    if (previa && esSubida(previa.verification.verdict, e.verification.verdict)) {
+      const etapaPrevia = TRINQUETE[previa.source]
+      const retractacion = etapaPrevia?.direccion === 'baja' ? ', una retractación' : ''
+      throw new Error(
+        `[overlay] ${e.claimId}: «${e.source}» subiría ${previa.verification.verdict} → ` +
+          `${e.verification.verdict} sobre la entrada de «${previa.source}»${retractacion}. ` +
+          'Una escritura del overlay no sube lo que el overlay ya dice: lo que bajó una ' +
+          'retractación sólo lo vuelve a subir una persona, por una vía que lo firme.',
       )
     }
     if (e.source === 'curator-downgrade') {

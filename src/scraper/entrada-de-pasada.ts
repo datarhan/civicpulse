@@ -24,7 +24,7 @@
  */
 import type { ClaimVerdict, ClaimVerification } from './claim-verifier'
 import type { NliVerifierResult } from './claim-verifier-nli'
-import { evidenciaSuficiente, type ApplyEntry } from './verified-merge'
+import { evidenciaSuficiente, type ApplyEntry, type OverlaySource } from './verified-merge'
 import { TRINQUETE } from './trinquete'
 
 // ─── El motor de veredictos ─────────────────────────────────────────────────
@@ -93,17 +93,40 @@ export interface SugerenciaDeVeredicto {
 }
 
 /**
+ * Por qué no se propone subir una fila, o `null` si se puede.
+ *
+ * `fuente` es el canal por el que entró su veredicto publicado —el `source` de
+ * su entrada de overlay—, o nada si es el de la base. Una fila que bajó una
+ * etapa que sólo retracta —el motor, un curador— se bajó a propósito: la cola
+ * le pediría a una persona deshacerlo sin decirle que alguien lo hizo. Se
+ * deriva del trinquete, así que una etapa nueva que retracte entra sola.
+ */
+export function motivoParaNoProponer(fuente: OverlaySource | undefined): string | null {
+  const etapa = fuente ? TRINQUETE[fuente] : undefined
+  if (etapa?.direccion !== 'baja') return null
+  return `retractada por «${etapa.nombre}» (${fuente})`
+}
+
+/**
  * La sugerencia que deja una subida del anclaje, o `null` si no subió.
  *
  * No propone lo que no llega al suelo: pedir a una persona que firme un
  * veredicto fuerte sin corpus es pedirle que firme lo que el overlay rechaza.
+ * Ni a partir de una retractación (`motivoParaNoProponer`): el runner ya las
+ * aparta y las cuenta, y esto lo sostiene si otro llamante no lo hiciera.
  */
 export function sugerenciaDelAnclaje(a: {
   r: NliVerifierResult | null
   desde: ClaimVerdict
+  /** El `source` de la entrada de overlay de la fila publicada, si la tiene. */
+  fuente?: OverlaySource
 }): SugerenciaDeVeredicto | null {
   if (!a.r?.upgraded) return null
   const v = a.r.verification
+  const motivo = motivoParaNoProponer(a.fuente)
+  if (motivo) {
+    throw new Error(`[anclaje] ${v.claimId}: no se propone subir una fila ${motivo}`)
+  }
   if (!(v.derivedBy ?? []).includes('nli-grounding')) {
     throw new Error(`[anclaje] ${v.claimId}: la verificación no la produjo el anclaje NLI`)
   }
