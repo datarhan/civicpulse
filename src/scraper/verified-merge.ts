@@ -27,6 +27,7 @@ import { charlaDeTarea } from './charla-de-tarea'
 import { contentWords } from './quote-reanchor'
 import { rechazoDeFirma } from './firma-de-persona'
 import { REASON_DIGEST_RE, reasonDigest, type PlenoFindingReasonAmendment } from './pleno-finding'
+import { TRINQUETE, puedeSustituir } from './trinquete'
 
 export interface VerifiedItem {
   claim: PlenoClaim
@@ -392,7 +393,10 @@ function validarEnmiendas(id: string, e: OverlayEntry): void {
 /**
  * Add/overwrite overlay entries (pure — returns a new Overlay, input untouched).
  * `curator-downgrade` entries are gated: reason ≥20 chars AND the move must be a
- * real downgrade vs the base verdict (`baseVerdict` lookup required).
+ * real downgrade vs the base verdict (`baseVerdict` lookup required). Y ninguna
+ * entrada de una etapa que sube sustituye la de una que baja (`puedeSustituir`,
+ * trinquete.ts): lo que el motor o un curador retractaron no lo vuelve a subir
+ * el anclaje.
  */
 export function applyOverlayEntries(
   overlay: Overlay,
@@ -406,7 +410,23 @@ export function applyOverlayEntries(
     entries: { ...(overlay?.entries ?? {}) },
   }
   for (const e of entries) {
-    // El suelo, antes que nada y para toda fuente automática.
+    // El orden del trinquete, lo primero: antes de mirar QUÉ dice la entrada,
+    // si esta etapa puede escribir aquí. Contra `next` y no contra `overlay`,
+    // para que cuente también lo escrito antes en este mismo lote.
+    //
+    // Revienta en vez de saltarse la fila: quien escribe tiene que haberla
+    // dejado fuera antes, y decir en su parte que la dejó (el anclaje lo hace).
+    // Saltarla aquí en silencio le dejaría contar como subida algo que no se
+    // escribió — regla 2 de docs/DATA_INTEGRITY.md.
+    const previa = next.entries[e.claimId]
+    if (previa && !puedeSustituir(previa.source, e.source)) {
+      throw new Error(
+        `[overlay] ${e.claimId}: el trinquete no deja que ${e.source} (${TRINQUETE[e.source]?.nombre ?? '¿?'}) ` +
+          `sustituya la entrada de ${previa.source} (${TRINQUETE[previa.source]?.nombre ?? '¿?'}): ` +
+          'lo que retiró una etapa que sólo baja no lo vuelve a subir una que sube.',
+      )
+    }
+    // El suelo, antes que el resto del contenido y para toda fuente automática.
     //
     // Va en la ESCRITURA y no en `validateOverlay`, que corre en cada lectura:
     // hacerlo estallar allí rompería la tubería entera por las 87 filas que ya

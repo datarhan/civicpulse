@@ -114,3 +114,32 @@ export const TRINQUETE: Record<OverlaySource, Etapa> = {
 export function etapasVivas(): OverlaySource[] {
   return (Object.keys(TRINQUETE) as OverlaySource[]).filter((k) => !TRINQUETE[k].retirada)
 }
+
+/**
+ * ¿Puede una entrada de `entrante` sustituir la que dejó `previa` en la misma
+ * declaración?
+ *
+ * Cada etapa empuja en un solo sentido, pero eso no basta para que la tubería
+ * sea un trinquete: hace falta además que lo que una etapa bajó no lo vuelva a
+ * subir otra. Ese orden vivía, otra vez, sólo en el orden de ejecución. El
+ * anclaje elige sus candidatas entre los `sin-datos` PUBLICADOS, y una
+ * retractación publicada también dice `sin-datos`, así que una pasada suya
+ * lanzada después del motor o de un curador habría vuelto a subir lo que ellos
+ * retiraron (encontrado el 29-09-2026, al arreglar el motor).
+ *
+ * La regla sale de `direccion`, no de una lista de fuentes: una etapa que sube
+ * no sustituye nunca la entrada de una que baja. Lo demás pasa. Bajar sobre lo
+ * que otra subió es el sentido del trinquete; una etapa sobre su propia entrada
+ * re-deriva lo suyo; y subir sobre lo que subió una pasada retirada es
+ * re-fundamentarlo. Que el motor no pise a un curador no lo impone esto —los
+ * dos bajan, y bajar nunca refuerza una afirmación—, sino la selección del
+ * motor, que no elige entradas de curador.
+ */
+export function puedeSustituir(previa: OverlaySource, entrante: OverlaySource): boolean {
+  const p = TRINQUETE[previa]
+  const n = TRINQUETE[entrante]
+  // Una fuente sin declarar no pasa. `validateOverlay` ya la rechaza, y aquí se
+  // falla cerrado por si alguien llega sin pasar por él.
+  if (!p || !n) return false
+  return !(p.direccion === 'baja' && n.direccion === 'sube')
+}

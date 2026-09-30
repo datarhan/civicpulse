@@ -6,12 +6,19 @@
  *   npm run verify:pleno-claims:nli -- --plenoId 1tgd1h4
  *   npm run verify:pleno-claims:nli -- --max 200 --model minicheck
  *
- * Runs ONLY on sin-datos claims (skips opinativa + already-nliAttempted), so a
- * re-run resumes. Loads the embedding corpus ONCE (audit B1 fix), builds each
- * claim's shortlist, then scores every (snippet, claim) pair through the local
- * NLI sidecar in chunked batches. Upgrade-only: never downgrades a deterministic
- * verdict and never emits contradicho. Requires the NLI venv —
- * `bash scripts/bootstrap-nli.sh` — and fails loud if it is missing.
+ * Runs ONLY on sin-datos claims (skips opinativa). Loads the embedding corpus
+ * ONCE (audit B1 fix), builds each claim's shortlist, then scores every
+ * (snippet, claim) pair through the local NLI sidecar in chunked batches.
+ * Upgrade-only: never downgrades a deterministic verdict and never emits
+ * contradicho. Requires the NLI venv — `bash scripts/bootstrap-nli.sh` — and
+ * fails loud if it is missing.
+ *
+ * Y no puntúa lo que retiró una etapa que sólo baja. Un `sin-datos` publicado
+ * puede ser el de la base o una retractación del motor o de un curador, y esta
+ * pasada sólo sube: volver a subir lo retractado es exactamente lo que el
+ * trinquete prohíbe (`puedeSustituir`, src/scraper/trinquete.ts). Esas filas se
+ * quedan fuera antes de puntuar y el parte las cuenta aparte, con la etapa que
+ * las retiró.
  */
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { resolve } from 'node:path'
@@ -28,10 +35,17 @@ import { verifyClaimWithNli, type NliScorer } from '../src/scraper/claim-verifie
 import { scoreNliPairs, NliUnavailableError, type NliPair } from '../src/scraper/nli-client'
 import { loadVerifierContext, type VerifierContext } from '../src/scraper/verifier-runner'
 import { loadOverlay, rebuildVerified, OVERLAY } from './verified-rebuild'
-import { applyOverlayEntries, type ApplyEntry } from '../src/scraper/verified-merge'
+import {
+  applyOverlayEntries,
+  type ApplyEntry,
+  type OverlaySource,
+} from '../src/scraper/verified-merge'
+import { puedeSustituir } from '../src/scraper/trinquete'
 
 const VERIFIED = resolve('public/data/pleno-claims-verified.json')
 const CHUNK_CLAIMS = 400 // claims per NLI spawn (model reloads per chunk; checkpoint boundary)
+/** La fuente con la que escribe esta pasada, y con la que el trinquete la juzga. */
+const FUENTE: OverlaySource = 'nli'
 
 interface VerifiedSnapshot {
   generatedAt: string
@@ -99,10 +113,13 @@ async function main() {
   }
 
   const snap = JSON.parse(readFileSync(VERIFIED, 'utf8')) as VerifiedSnapshot
+  // El overlay, ANTES de elegir: sin él no se sabe qué `sin-datos` publicado es
+  // una retractación.
+  let overlay = loadOverlay()
   const ctx = await loadVerifierContext({ withCorpus: true })
   const corpusOpt = ctx.corpus ? { corpus: ctx.corpus } : {}
 
-  const candidates = snap.items.filter((it) => {
+  const elegibles = snap.items.filter((it) => {
     // Con lista explícita manda la lista: son filas que YA tienen veredicto y
     // que se quieren volver a fundamentar. La puerta de `opinativa` sigue,
     // porque ésa es política y no un filtro de barrido.
@@ -116,18 +133,38 @@ async function main() {
     return true
   })
 
+  // El trinquete: lo que retiró una etapa que sólo baja —el motor, un curador—
+  // no lo vuelve a subir ésta, que sólo sube. Fuera ANTES de puntuar, y contado
+  // aparte: `applyOverlayEntries` reventaría al escribirlo, y una fila por la que
+  // no se pregunta no puede acabar entre las `kept`.
+  const retenidas = elegibles.filter((it) => {
+    const previa = overlay.entries[it.claim.id]
+    return previa != null && !puedeSustituir(previa.source, FUENTE)
+  })
+  const idsRetenidos = new Set(retenidas.map((it) => it.claim.id))
+  const candidates = elegibles.filter((it) => !idsRetenidos.has(it.claim.id))
+
   // Una pasada tiene que demostrar que hizo lo que le pidieron: si se piden 76
   // ids y aparecen 3, eso no es «ya está» — es una lista mal escrita o un
   // corpus que se movió. Regla 2 de docs/DATA_INTEGRITY.md.
   if (opts.claimIds) {
-    const encontrados = new Set(candidates.map((c) => c.claim.id))
+    const encontrados = new Set(elegibles.map((c) => c.claim.id))
     const ausentes = [...opts.claimIds].filter((id) => !encontrados.has(id))
     process.stdout.write(
       `[verify-nli] lista explícita: ${opts.claimIds.size} pedida(s) · ${encontrados.size} ` +
-        `encontrada(s) · ${ausentes.length} sin localizar\n`,
+        `encontrada(s) · ${retenidas.length} retenida(s) por el trinquete · ` +
+        `${ausentes.length} sin localizar\n`,
     )
     if (ausentes.length) {
       process.stdout.write(`[verify-nli]   sin localizar: ${ausentes.slice(0, 8).join(', ')}\n`)
+    }
+    if (retenidas.length) {
+      process.stdout.write(
+        `[verify-nli]   retenida(s): ${retenidas
+          .slice(0, 8)
+          .map((it) => it.claim.id)
+          .join(', ')}\n`,
+      )
     }
     if (encontrados.size === 0) {
       process.stderr.write(
@@ -135,6 +172,27 @@ async function main() {
       )
       process.exit(1)
     }
+  }
+  if (retenidas.length) {
+    const porEtapa = new Map<string, number>()
+    for (const it of retenidas) {
+      const etapa = overlay.entries[it.claim.id].source
+      porEtapa.set(etapa, (porEtapa.get(etapa) ?? 0) + 1)
+    }
+    process.stdout.write(
+      `[verify-nli] ${retenidas.length} retenida(s) por el trinquete, sin puntuar: las retiró ` +
+        `una etapa que sólo baja, y ésta sólo sube (${[...porEtapa]
+          .map(([etapa, n]) => `${etapa} ${n}`)
+          .join(' · ')})\n`,
+    )
+  }
+  // Lo mismo que con una lista que no existe: se pidieron filas concretas y no
+  // se puede hacer nada con ninguna. Salir 0 sería el «ya está» de la regla 2.
+  if (opts.claimIds && candidates.length === 0) {
+    process.stderr.write(
+      '[verify-nli] el trinquete retiene todas las filas pedidas: no hay nada que anclar\n',
+    )
+    process.exit(1)
   }
   const queue = candidates.slice(0, Math.min(candidates.length, opts.max))
   process.stdout.write(
@@ -146,7 +204,6 @@ async function main() {
   // Upgrades go to the OVERLAY (so a deterministic re-run can't clobber them);
   // verified.json is rebuilt as base ⊕ overlay at the end. No nliAttempted marker
   // — NLI is local/$0, so a re-run just re-scans (idempotent into the overlay).
-  let overlay = loadOverlay()
   const flushOverlay = () => writeFileSync(OVERLAY, JSON.stringify(overlay, null, 2) + '\n')
 
   let interrupted = false
@@ -212,7 +269,7 @@ async function main() {
           chunkEntries.push({
             claimId: it.claim.id,
             verification: { ...r.verification, checkedAgainst: ['nli-grounding'] },
-            source: 'nli',
+            source: FUENTE,
           })
           stats.upgraded += 1
         } else {
@@ -245,6 +302,7 @@ async function main() {
   const rebuilt = await rebuildVerified()
   process.stdout.write(
     `[verify-nli] done. upgraded=${stats.upgraded} (→ overlay) kept=${stats.kept} contra-flags=${stats.contradictionFlags} · ` +
+      `retenidas por el trinquete=${retenidas.length} · ` +
       Object.entries(rebuilt.byVerdict)
         .filter(([, n]) => n > 0)
         .map(([k, n]) => `${k}:${n}`)
