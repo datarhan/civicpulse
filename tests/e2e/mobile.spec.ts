@@ -43,6 +43,25 @@ const FICHA = (() => {
 /** La etiqueta sale del snapshot, así que hay que escaparla antes de usarla. */
 const literal = (s: string) => new RegExp(s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
 
+// El correo más largo del padrón, en las dos fichas de /cargos/:slug que lo
+// pintan: la de quien está en el cargo y la de quien lo dejó. Un correo no
+// tiene por dónde partirse, y en DM Mono su ancho es su número de caracteres,
+// así que el más largo es el peor caso. Se elige de los datos, como FICHA:
+// «popularesribarroja@gmail.com» es hoy el de los siete concejales del PP y el
+// de quien dejó el cargo, y a 320 px medía 201 en una columna de 158. Una ruta
+// escrita a mano seguiría en verde el día que su correo pasara a ser corto.
+type Cargo = { slug: string; email?: string | null }
+const PADRON = JSON.parse(readFileSync('public/data/officials.json', 'utf8')) as {
+  officials: Cargo[]
+  formerOfficials?: Cargo[]
+}
+const correoMasLargo = (cargos: Cargo[]) =>
+  cargos
+    .filter((c): c is Cargo & { email: string } => !!c.email)
+    .sort((a, b) => b.email.length - a.email.length || a.slug.localeCompare(b.slug))[0]
+const CORREO_EN_EL_CARGO = correoMasLargo(PADRON.officials)
+const CORREO_DE_QUIEN_LO_DEJO = correoMasLargo(PADRON.formerOfficials ?? [])
+
 // ---------------------------------------------------------------------------
 // Why this spec measures the way it does.
 //
@@ -87,6 +106,16 @@ const ROUTES: Route[] = [
   { path: '/', ready: /M€ de [\d.,]+ M€/ }, // situated-spend ticker (tenders snapshot)
   { path: '/cargos', ready: /Robert Raga Gadea/ }, // officials snapshot
   { path: '/cargos/robert-raga-gadea', ready: /@ribarroja\.es/ }, // the official's own record
+  // El peor correo del padrón en cada ficha: la señal es el propio correo.
+  { path: `/cargos/${CORREO_EN_EL_CARGO.slug}`, ready: literal(CORREO_EN_EL_CARGO.email) },
+  ...(CORREO_DE_QUIEN_LO_DEJO
+    ? [
+        {
+          path: `/cargos/${CORREO_DE_QUIEN_LO_DEJO.slug}`,
+          ready: literal(CORREO_DE_QUIEN_LO_DEJO.email),
+        },
+      ]
+    : []),
   // El rediseño «del crédito inicial a lo ejecutado» retiró la tira de cuatro
   // KPI donde vivía `€41,6M`, la forma compacta que esperaba esta señal. La
   // nueva espera la MISMA dependencia —el presupuesto aprobado de CONPREL— en
@@ -182,12 +211,34 @@ const CONTENT_FLOOR = 150
 //
 // Vacío desde 2026-08-05: /declaraciones era la última entrada y su cabecera
 // ya envuelve, así que todas las rutas se miden contra el mismo listón.
-const KNOWN_OVERFLOW: Record<string, { widthPx: number; reason: string }> = {}
+//
+// La deuda va POR ANCHO desde que el documento se mide también a 320 px: una
+// entrada medida a 375 no puede excusar nada a 320, ni al revés, y «ya cabe»
+// sólo significa algo contra el ancho al que se midió. A 320 también está
+// vacío: las cinco rutas que #189 dejó apuntadas se arreglaron en vez de
+// apuntarse aquí.
+const KNOWN_OVERFLOW: Record<number, Record<string, { widthPx: number; reason: string }>> = {
+  375: {},
+  320: {},
+}
+
+// Lo que la medida del documento deja pasar, en px, a cada ancho. A 375, los 6
+// de siempre: redondeo de los controles del mapa. A 320, 1, sólo el del
+// píxel: medido el 30-09-2026, cada ruta de esta lista mide a 320 exactamente
+// 320, y un margen de 6 no habría visto nunca los 4 px que /hallazgos se salía
+// a 360, que en un teléfono son una página que se mueve de lado.
+const MARGEN_PX: Record<number, number> = { 375: 6, 320: 1 }
 
 /** The pathname a route asks for, without hash or trailing slash. */
 const pathOf = (p: string) => new URL(p, 'http://x').pathname.replace(/(.)\/$/, '$1')
 
 async function measure(page: import('@playwright/test').Page, route: Route, readyTimeout = 20_000) {
+  await abrir(page, route, readyTimeout)
+  return leerMedida(page, route)
+}
+
+/** Navega a la ruta y espera a sus datos, a las fuentes y a un fotograma pintado. */
+async function abrir(page: Page, route: Route, readyTimeout: number) {
   await page.goto(route.path, { waitUntil: 'domcontentloaded' })
 
   const rx = { source: route.ready.source, flags: route.ready.flags, pedida: pathOf(route.path) }
@@ -217,39 +268,78 @@ async function measure(page: import('@playwright/test').Page, route: Route, read
         requestAnimationFrame(() => requestAnimationFrame(() => resolve())),
       ),
   )
+}
 
+/**
+ * La medida, en una sola lectura. Aparte de `abrir` para que la inyección de
+ * fallo de la medida a 320 pueda plantar algo entre la carga y la lectura.
+ */
+async function leerMedida(page: Page, route: Route) {
   // One atomic read: the width and the proof that content was on screen when
   // it was taken cannot drift apart, because they come from the same frame.
-  return page.evaluate(({ source, flags }) => {
-    const root = document.querySelector('main') ?? document.body
-    const text = ((root as HTMLElement).innerText || '').replace(/\s+/g, ' ').trim()
-    const doc = document.documentElement
-    const widest = [...document.querySelectorAll('body *')]
-      .map((el) => {
-        const r = el.getBoundingClientRect()
-        return { right: Math.round(r.right), el }
-      })
-      // Above scrollWidth means a clipped ancestor already contains it
-      // (Leaflet's zoom proxy sits at right≈522730) — not a real offender.
-      .filter((x) => x.right > doc.clientWidth + 6 && x.right <= doc.scrollWidth)
-      .sort((a, b) => b.right - a.right)
-      .slice(0, 3)
-      .map(
-        (x) =>
-          `<${x.el.tagName.toLowerCase()}${
-            x.el.className ? ` class="${String(x.el.className).slice(0, 40)}"` : ''
-          }> right=${x.right} "${(x.el.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 40)}"`,
-      )
-    return {
-      landed: location.pathname.replace(/(.)\/$/, '$1'),
-      scrollW: doc.scrollWidth,
-      clientW: doc.clientWidth,
-      innerW: window.innerWidth,
-      chars: text.length,
-      hasData: new RegExp(source, flags).test(text),
-      widest,
-    }
-  }, rx)
+  return page.evaluate(
+    ({ source, flags }) => {
+      const root = document.querySelector('main') ?? document.body
+      const text = ((root as HTMLElement).innerText || '').replace(/\s+/g, ' ').trim()
+      const doc = document.documentElement
+      const etiqueta = (el: Element) =>
+        `<${el.tagName.toLowerCase()}${
+          el.getAttribute('class') ? ` class="${el.getAttribute('class')!.slice(0, 40)}"` : ''
+        }>`
+      const widest = [...document.querySelectorAll('body *')]
+        .map((el) => {
+          const r = el.getBoundingClientRect()
+          return { right: Math.round(r.right), el }
+        })
+        // Above scrollWidth means a clipped ancestor already contains it
+        // (Leaflet's zoom proxy sits at right≈522730) — not a real offender.
+        .filter((x) => x.right > doc.clientWidth && x.right <= doc.scrollWidth)
+        .sort((a, b) => b.right - a.right)
+        .slice(0, 3)
+        .map(
+          (x) =>
+            `${etiqueta(x.el)} right=${x.right} "${(x.el.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 40)}"`,
+        )
+      // Texto que pasa el borde mientras su caja no. Ninguna caja lo delata, y
+      // es el caso de /hallazgos a 320: «INFORMATIVOS» se salía de una cifra
+      // de 62 px y la lista de arriba decía «(none)».
+      const textos: { right: number; linea: string }[] = []
+      if (doc.scrollWidth > doc.clientWidth) {
+        const rango = document.createRange()
+        const nodos = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT)
+        for (let t = nodos.nextNode(); t; t = nodos.nextNode()) {
+          const el = t.parentElement
+          const texto = (t.textContent || '').trim()
+          if (!el || !texto) continue
+          rango.selectNodeContents(t)
+          const right = Math.round(rango.getBoundingClientRect().right)
+          const caja = Math.round(el.getBoundingClientRect().right)
+          if (right > doc.clientWidth && right <= doc.scrollWidth && caja <= doc.clientWidth) {
+            textos.push({
+              right,
+              linea: `texto «${texto.slice(0, 40)}» en ${etiqueta(el)}: acaba en ${right}, su caja en ${caja}`,
+            })
+          }
+        }
+      }
+      return {
+        landed: location.pathname.replace(/(.)\/$/, '$1'),
+        scrollW: doc.scrollWidth,
+        clientW: doc.clientWidth,
+        innerW: window.innerWidth,
+        chars: text.length,
+        hasData: new RegExp(source, flags).test(text),
+        widest: [
+          ...widest,
+          ...textos
+            .sort((a, b) => b.right - a.right)
+            .slice(0, 3)
+            .map((x) => x.linea),
+        ],
+      }
+    },
+    { source: route.ready.source, flags: route.ready.flags },
+  )
 }
 
 type Measurement = Awaited<ReturnType<typeof measure>>
@@ -267,21 +357,23 @@ function assertFitsViewport(m: Measurement, width: number, path: string, ready: 
     `${path}: layout viewport drifted from the emulated ${width}px (window.innerWidth ${m.innerW})`,
   ).toBe(width)
 
-  // 3. Only now, the actual claim. 6px of sub-pixel margin for browser
-  //    rounding of map controls.
-  const debt = KNOWN_OVERFLOW[path]
+  // 3. Only now, the actual claim, with the margin declared for this width
+  //    (MARGEN_PX). A width with none declared fails here, not as a NaN.
+  const margen = MARGEN_PX[width]
+  expect(margen, `${width} px no tiene margen declarado en MARGEN_PX`).toBeDefined()
+  const debt = KNOWN_OVERFLOW[width]?.[path]
   expect(
     m.scrollW,
     `${path}: document is ${m.scrollW}px wide in a ${width}px viewport. Widest: ${m.widest.join(' | ') || '(none)'}`,
-  ).toBeLessThanOrEqual(debt ? debt.widthPx : width + 6)
+  ).toBeLessThanOrEqual(debt ? debt.widthPx : width + margen)
 
   // A debt entry that no longer describes anything is a green light for a
   // page nobody checks. If the route fits now, the entry has to go.
   if (debt) {
     expect(
       m.scrollW,
-      `${path}: ya cabe en ${width}px — borra su entrada de KNOWN_OVERFLOW`,
-    ).toBeGreaterThan(width + 6)
+      `${path}: ya cabe en ${width}px — borra su entrada de KNOWN_OVERFLOW[${width}]`,
+    ).toBeGreaterThan(width + margen)
   }
 }
 
@@ -431,6 +523,75 @@ test.describe('Mobile shell (iPhone 13 mini / 375px)', () => {
 })
 
 // ---------------------------------------------------------------------------
+// El documento a 320 px: WCAG 2.1 AA, criterio 1.4.10 (Reflow).
+//
+// La medida de arriba mira el documento a 375, y la de las rejillas, más abajo,
+// cada bloque contra su caja a 375 y a 320. Entre las dos quedaba un hueco que
+// #189 dejó apuntado: páginas más anchas que la pantalla a 320 sin que ningún
+// bloque se salga de su rejilla. Medido el 30-09-2026 sobre la build de
+// producción con las dos banderas, cada una por una causa distinta:
+//
+// - /cargos/:slug, 335 px: un correo sin puntos de corte, en las dos fichas.
+// - /presupuesto, 327: la leyenda de «Capítulo a capítulo» no encogía y, sola
+//   en su línea, pedía 282 px en una fila de 230.
+// - /hallazgos, 334, y 364 a 360: cuatro cifras en `repeat(4, minmax(0, 1fr))`
+//   dejaban «INFORMATIVOS» en una caja más estrecha que la palabra. El texto se
+//   salía de su caja sin que la caja se saliera de la rejilla, y por eso la
+//   guarda de rejillas no lo veía.
+// - /laboratorio/frontera, 354: una tabla de cuatro columnas en una tarjeta de
+//   228 px.
+//
+// Cada ruta se carga ya a 320, como la abriría ese teléfono, y no redimensionada
+// desde 375: un componente que decide su forma al montarse se mide con la que
+// decidiría allí. Se mide la página tal como carga; lo que el lector abre —los
+// <details>— lo abre la guarda de rejillas, a este mismo ancho.
+// ---------------------------------------------------------------------------
+
+/** El ancho de WCAG 1.4.10. */
+const ANCHO_REFLOW = 320
+
+test.describe('El documento a 320 px (WCAG 1.4.10)', () => {
+  for (const route of ROUTES) {
+    test(`${route.path} cabe en ${ANCHO_REFLOW} px sin desplazamiento horizontal`, async ({
+      page,
+    }) => {
+      await page.setViewportSize({ width: ANCHO_REFLOW, height: 812 })
+      const m = await measure(page, route)
+      test.skip(
+        !!route.flag && m.landed !== pathOf(route.path),
+        `${route.path} no está montada — reconstruye con ${route.flag}=true`,
+      )
+      assertFitsViewport(m, ANCHO_REFLOW, route.path, route.ready)
+    })
+  }
+
+  // Inyección de fallo: que esta medida SABE fallar a 320 y que el mensaje
+  // nombra la causa aunque ninguna caja pase el borde, que era el caso de
+  // /hallazgos. Un correo repetido, sin un solo punto de corte, plantado en una
+  // página de texto que a 320 cabe: el documento se ensancha, la aserción cae y
+  // el mensaje dice qué texto es y dónde acaba.
+  test('un texto plantado sin puntos de corte ensancha el documento y el mensaje lo nombra', async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: ANCHO_REFLOW, height: 812 })
+    const route = ROUTES.find((r) => r.path === '/nosotros')!
+    await abrir(page, route, 20_000)
+    // Antes de plantar, la página cabe: si no, lo de abajo no probaría nada.
+    assertFitsViewport(await leerMedida(page, route), ANCHO_REFLOW, route.path, route.ready)
+
+    await page.evaluate(() => {
+      const p = document.createElement('p')
+      p.textContent = 'popularesribarroja@gmail.com'.repeat(3)
+      document.getElementById('contenido')!.append(p)
+    })
+    const m = await leerMedida(page, route)
+    expect(() => assertFitsViewport(m, ANCHO_REFLOW, route.path, route.ready)).toThrow(
+      /texto «popularesribarroja@gmail\.compopularesrib» en <p>: acaba en \d+, su caja en \d+/,
+    )
+  })
+})
+
+// ---------------------------------------------------------------------------
 // Rejillas: ningún bloque pintado pasa el borde de la caja de su rejilla, a
 // 375 px y a 320 px.
 //
@@ -490,6 +651,9 @@ const SIN_REJILLAS = new Set([
   '/about',
   '/metodologia',
   '/aviso-legal',
+  // La ficha de quien dejó el cargo: la baja con su fuente, la identidad y el
+  // mandato, en bloques apilados. Ninguna rejilla.
+  ...(CORREO_DE_QUIEN_LO_DEJO ? [`/cargos/${CORREO_DE_QUIEN_LO_DEJO.slug}`] : []),
 ])
 
 type Rejilla = {
