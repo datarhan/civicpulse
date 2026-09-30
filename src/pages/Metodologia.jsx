@@ -1500,9 +1500,11 @@ export default function Metodologia() {
             lo que ha retirado una etapa que sólo puede retractar no lo vuelve a subir una que puede
             reforzar
           </strong>
-          . Una retractación del motor o de un curador se publica como «sin datos», igual que una
-          afirmación que nadie llegó a respaldar; el anclaje NLI no la puntúa, y si lo intentara, su
-          veredicto no se escribiría.
+          . Hacía falta porque una retractación hasta «sin datos» —la única que hace el motor, y la
+          más frecuente de un curador— se publica igual que una afirmación que nadie llegó a
+          respaldar, que es justo lo que el anclaje NLI sale a buscar. El anclaje no puntúa nada de
+          lo que retiró el motor o un curador, tampoco un «parcial» que firmó un curador, y si lo
+          intentara, su veredicto no se escribiría.
         </p>
         <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
           La tabla se dibuja desde la misma declaración que el código aplica, y una prueba comprueba
