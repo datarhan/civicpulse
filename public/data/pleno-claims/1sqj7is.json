@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-29T05:11:47.357Z",
+  "generatedAt": "2026-09-30T06:24:33.835Z",
   "version": "1",
   "plenoId": "1sqj7is",
   "plenoDate": "2026-03-09",
@@ -1250,7 +1250,7 @@
       "verification": {
         "claimId": "1sqj7is-053-pro-68944b",
         "verdict": "parcial",
-        "summary": "Gold review (ai): SDA mechanism confirmed via derived contracts; the \"improves contracting\" claim is opinion (was verificado)",
+        "summary": "Baja de «Verificado» a «Parcial»: los contratos derivados del sistema dinámico de adquisición confirman que ese mecanismo se usa, pero que sirva para mejorar la forma de contratar es una opinión.",
         "evidence": [
           {
             "kind": "tender",

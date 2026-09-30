@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-29T05:11:47.357Z",
+  "generatedAt": "2026-09-30T06:24:33.835Z",
   "version": "1",
   "plenoId": "qz6weg",
   "plenoDate": "2025-12-01",
@@ -1217,7 +1217,7 @@
       "verification": {
         "claimId": "qz6weg-027-cit-a55965",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): the evidence reasoning itself states it does NOT match the music/dance convenio (was parcial)",
+        "summary": "Se retiró el «Parcial» anterior: la propia evidencia citada, unas clases de educación ambiental en colegios, reconocía que no se corresponde con el convenio de música y danza del que habla la frase.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
@@ -2751,7 +2751,7 @@
       "verification": {
         "claimId": "qz6weg-052-cit-aa34de",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): false contradicho: Ayto project contracts do not refute that some projects run via the mancomunidad (was contradicho)",
+        "summary": "El «Contradicho» anterior no se sostenía: que el Ayuntamiento contrate la redacción y la dirección de sus propios proyectos no desmiente que algunos se ejecuten a través de la mancomunidad.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
@@ -9078,10 +9078,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -9543,9 +9540,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       },
       "visibility": "toggle"
     },
@@ -9752,9 +9749,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       },
       "visibility": "toggle"
     },
@@ -12196,9 +12193,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       },
       "visibility": "toggle"
     },
@@ -12512,12 +12509,19 @@
       "verification": {
         "claimId": "qz6weg-284-pro-66d2d1",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
+        "summary": "El objeto citado aparece en un expediente municipal, pero ninguna de sus magnitudes coincide con la cifra del claim. No es que no haya registro: es que el que hay no dice eso.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=G%2BmnRyGH352ExvMJXBMHHQ%3D%3D",
+            "snippet": "Contrato adquisición de 320 contendores de carga lateral para el servicio de recogida de residuos en Riba-roja de Túria, así como la retirada y gestión del actual parque existente. · Ayuntamiento de Riba-roja de Túria · Sulo Ibérica Sociedad Anónima · construction · 417.600 €",
+            "similarity": 1,
+            "stance": "checked"
+          }
         ],
-        "source": "verdict-engine"
+        "checkedAgainst": [
+          "promises"
+        ]
       },
       "visibility": "toggle"
     },
@@ -12544,10 +12548,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -12574,12 +12575,17 @@
       "verification": {
         "claimId": "qz6weg-285-afi-6af958",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
+        "summary": "El objeto citado aparece en un expediente municipal, pero ninguna de sus magnitudes coincide con la cifra del claim. No es que no haya registro: es que el que hay no dice eso.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Fyy%2BTlMZfRsadbH3CysQuQ%3D%3D",
+            "snippet": "Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU, poda y voluminosos en el municipio de Riba-roja de Túria, incluido en el marco de ayudas del Plan de Recuperación, Transformación y Resiliencia financiado por la Unión Europea, Next Generation UE (Ctto.138/2025) · Ayuntamiento de Riba-roja de Túria · DISTROMEL, S.A. · it · 148.760 €",
+            "similarity": 1,
+            "stance": "checked"
+          }
         ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -12634,9 +12640,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       },
       "visibility": "toggle"
     },

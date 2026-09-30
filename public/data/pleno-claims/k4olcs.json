@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-29T05:11:47.357Z",
+  "generatedAt": "2026-09-30T06:24:33.835Z",
   "version": "1",
   "plenoId": "k4olcs",
   "plenoDate": "2026-04-20",
@@ -712,12 +712,17 @@
       "verification": {
         "claimId": "k4olcs-016-cit-683445",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
+        "summary": "El objeto citado aparece en un expediente municipal, pero ninguna de sus magnitudes coincide con la cifra del claim. No es que no haya registro: es que el que hay no dice eso.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=mV0QInbOtkfnSoTX3z%2F7wA%3D%3D",
+            "snippet": "ervicio para la desarrollo, implantación y mantenimiento de un Portal de Transparencia, por procedimiento abierto súper simplificado, mejor relación calidad-precio, único criterio de adjudicación, con condición especial de ejecución de carácter social y medioambiental contribuyendo al ODS 9 INDUSTRIA, INNOVACION E INFRAESTRUCTURA en relación a la meta 9.5.c para aumentar significativamente el acceso a la tecnología de la información y las comunicaciones y esforzarse por proporcionar acceso universal y asequible a Internet. · Ayuntamiento de Riba-roja de Túria · TICSMART SL · it · 15.137 €",
+            "similarity": 1,
+            "stance": "checked"
+          }
         ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -744,10 +749,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -1275,7 +1277,7 @@
       "verification": {
         "claimId": "k4olcs-021-afi-b6f856",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): false contradicho: a demolition contract neither confirms nor refutes a 2008 construction date (was contradicho)",
+        "summary": "El «Contradicho» anterior no se sostenía: un contrato de derribo de una vivienda no confirma ni desmiente que la construcción sea de 2008.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
@@ -1480,7 +1482,7 @@
       "verification": {
         "claimId": "k4olcs-024-afi-eb50e3",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): generic municipal supply contracts do not attest a specific dwelling utilities (was verificado)",
+        "summary": "Se retiró el «Verificado» anterior: contratos municipales genéricos de suministro no acreditan el agua ni la electricidad de una vivienda concreta.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
@@ -2905,9 +2907,8 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "promises"
+        ]
       },
       "visibility": "toggle"
     },
@@ -3473,10 +3474,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -3559,7 +3557,7 @@
       "verification": {
         "claimId": "k4olcs-077-pro-02ea8a",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): party value-statement; generic education CPV match (was parcial)",
+        "summary": "Se retiró el «Parcial» anterior: es una declaración de principios de un partido, y el contrato citado sólo coincidía en la categoría genérica de contratación «servicios de enseñanza y formación».",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
@@ -4783,10 +4781,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -6298,7 +6293,7 @@
       "verification": {
         "claimId": "k4olcs-126-pro-a6380b",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): 6M payment claim; Espai Obert press is unrelated, coincidental \"2026\" (was parcial)",
+        "summary": "Se retiró el «Parcial» anterior: la frase habla de un pago de 6 millones, y la noticia citada, sobre los encuentros vecinales «Espai Obert», no tiene relación con él y sólo coincidía en «2026».",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
@@ -6913,7 +6908,7 @@
       "verification": {
         "claimId": "k4olcs-152-afi-9d9dca",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): false contradicho: degenerate repeated fragment; supply-bridge plazo is a different referent (was contradicho)",
+        "summary": "El «Contradicho» anterior no se sostenía: la transcripción repite el mismo fragmento una y otra vez, y el plazo de dos meses de unos contratos puente de suministro se refiere a otra cosa.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
@@ -7224,7 +7219,7 @@
       "verification": {
         "claimId": "k4olcs-159-afi-61a6eb",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): false contradicho: 15-20 day claim vs unrelated 2-month supply contracts (was contradicho)",
+        "summary": "El «Contradicho» anterior no se sostenía: la frase da un plazo de 15 a 20 días, y los contratos de suministro de dos meses que se citaban no tienen relación con él.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
@@ -7258,10 +7253,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -7622,9 +7614,8 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "promises"
+        ]
       },
       "visibility": "toggle"
     },
@@ -7681,10 +7672,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },

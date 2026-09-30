@@ -319,8 +319,32 @@ const expectWithdrawn = (id: string): void => {
  * En LOTE_1 a LOTE_4 cambia sólo lo que su fila mide en los grupos, las citas y la prosa
  * viva, y el suelo de citas atribuidas de «one verbatim is one bloc» baja con ellas.
  */
-const TOTAL_CORRECTIONS = 208
-const TOTAL_REMOVALS = 39
+/*
+ * 208 → 220 (bloque «salvedad A+B, +12»).
+ * La salvedad de la transcripción anterior, en nueve sumarios, y tres reanclajes. Daban por
+ * firme una cláusula que sólo sostienen citas `solo-en-sustituida` —su literal consta en la
+ * transcripción anterior de la sesión y no en la revisada— sin decirlo: la salvedad pasa a la
+ * frase, como en `cc8758`, `3fd230`, `5238db` y `b00839` antes. Esas citas son filas de la tanda
+ * del 2026-08-10, que dejó marcadas a propósito las ambiguas; por eso se dice en la frase y no
+ * se reancla. Tres filas «reanclar» de aquella tanda, aplazadas porque el sumario entrecomillaba
+ * el literal viejo —ya no lo hace—, se reanclan ahora (`ea9d47` [1], `543cc1` [3], `34560f`
+ * [2]), y su cláusula deja de necesitar la salvedad. En LOTE_2 y en la guarda de LOTE_3 cambia
+ * sólo lo que estas filas mueven.
+ */
+/*
+ * 220 → 228 (bloque «salvedad C+D, +8»).
+ * Al cotejar con la transcripción vigente las citas de la salvedad, cuatro atribuciones que la
+ * tanda del 10-08 ya daba por contradichas lo eran con la concesión de palabra delante:
+ * `25e6ea` [0] y `b00839` [0] son de grupos de un solo concejal y se retiran; `947479` [1] no
+ * es del grupo al que se atribuía, y el resto de la oposición tiene un concejal por grupo;
+ * `bef239` [0] es del turno de respuesta del grupo de gobierno. Los sumarios de `25e6ea` y
+ * `bef239`, que nombraban al grupo equivocado, cambian con ellas. Y la cláusula de `5b06c8`
+ * sostenía, sobre un literal del motor sustituido, lo contrario de la transcripción vigente y del
+ * registro de contratación: sale, con su cita (b15 en `RESUELTAS_DESPUES`). En LOTE_1, LOTE_3 y
+ * en el suelo de citas atribuidas cambia sólo lo que estas filas mueven.
+ */
+const TOTAL_CORRECTIONS = 228
+const TOTAL_REMOVALS = 40
 
 /** One row of a review batch's fixture: enough to locate its own entries. */
 interface BatchCase {
@@ -461,7 +485,9 @@ describe('published pleno findings — the correction ledger is append-only', ()
  * del 2-08 descansaba en un futuro que la transcripción vigente da en pasado. Los dos
  * motivos anteriores quedan sólo en huella.
  */
-const TOTAL_REASON_AMENDMENTS = 2
+// +1: el motivo de la retirada de `b00839` [3] decía que no se afirmaba que la atribución
+// fuera errónea, y lo era (bloque «salvedad E, enmienda»).
+const TOTAL_REASON_AMENDMENTS = 3
 
 describe('published pleno findings — un motivo enmendado no borra el anterior', () => {
   const enmiendas = allCorrections.flatMap((c) => c.reasonAmendments ?? [])
@@ -542,7 +568,8 @@ describe('published pleno findings — a removal does not republish what it remo
     expect(removals.length).toBe(TOTAL_REMOVALS)
     // 2026-09-30: dos citas más, la [1] de `947479` y la [2] de `8b29a9` (bloque «163 → 184»),
     // y otras dos el mismo día, la [2] y la [1] de `c80e68` (bloque «184 → 208»).
-    expect(removals.filter((c) => c.field.startsWith('quote.'))).toHaveLength(11)
+    // Y la [2] de `5b06c8` (bloque «salvedad C+D, +8»).
+    expect(removals.filter((c) => c.field.startsWith('quote.'))).toHaveLength(12)
     expect(removals.filter((c) => c.field.startsWith('crossChecked.'))).toHaveLength(28)
   })
 
@@ -953,7 +980,8 @@ const LOTE_1: Lote1Case[] = [
     ],
     claims: ['k4olcs-063-cit-25e6ea', 'k4olcs-032-cit-98a5be', 'k4olcs-077-pro-02ea8a'],
     // 2026-09-30: la tercera queda sin grupo, que tiene un solo concejal (bloque «184 → 208»).
-    groups: ['PSOE', 'PSOE', null],
+    // la primera es de un grupo de un solo concejal y queda sin grupo (bloque «salvedad C+D, +8»).
+    groups: [null, 'PSOE', null],
   },
   {
     id: 'f-2026-03-16-cit-528973',
@@ -1008,7 +1036,11 @@ const LOTE_1: Lote1Case[] = [
     id: 'f-2026-01-19-afi-5b06c8',
     added: ['summary'],
     priorCorrections: 1,
-    drops: ['del plan estratégico participado'],
+    drops: [
+      'del plan estratégico participado',
+      // La cláusula sobre contratos de mantenimiento, invertida (bloque «salvedad C+D, +8»).
+      'la ausencia de contratos de mantenimiento',
+    ],
     keeps: [
       'el grado de cumplimiento de lo planificado',
       'El registro municipal incluye varios contratos relacionados con seguimiento y control',
@@ -1021,8 +1053,10 @@ const LOTE_1: Lote1Case[] = [
       'tender|Mantenimiento de ascensores y elevadores',
       'pleno-video|Vídeo del pleno 2026-01-19 · YouTube',
     ],
-    claims: ['19gax3o-025-afi-5b06c8', '19gax3o-017-cit-1a1dad', '19gax3o-120-acu-c9acb2'],
-    groups: [null, 'PSOE', null],
+    // sale la tercera, que decía lo contrario que la transcripción vigente (bloque «salvedad C+D, +8»).
+    claims: ['19gax3o-025-afi-5b06c8', '19gax3o-017-cit-1a1dad'],
+    // y con ella su grupo (bloque «salvedad C+D, +8»).
+    groups: [null, 'PSOE'],
   },
 ]
 
@@ -1377,7 +1411,9 @@ const LOTE_2: Lote2Case[] = [
     ],
     keeps: [
       '«aprobado por un plan local de residuos» ya existente',
-      'Un grupo no identificado menciona la necesidad de mejorar la recogida',
+      // La salvedad abre ahora la frase (bloque «salvedad A+B, +12»).
+      'Según la transcripción anterior de la sesión',
+      'un grupo no identificado menciona la necesidad de mejorar la recogida',
     ],
     // Two now: lote 4 took the sensorización platform, whose licitación
     // opened seven weeks after this session.
@@ -2020,7 +2056,8 @@ const LOTE_3: Lote3Case[] = [
       'otxq2c-048-cit-11d99a',
     ],
     // 2026-09-30: la cuarta queda sin grupo, que tiene un solo concejal (bloque «184 → 208»).
-    groups: ['PSOE', 'PP', 'PSOE', null],
+    // la primera es de un grupo de un solo concejal y queda sin grupo (bloque «salvedad C+D, +8»).
+    groups: [null, 'PP', 'PSOE', null],
   },
   {
     id: 'f-2026-04-20-cit-947479',
@@ -2047,7 +2084,8 @@ const LOTE_3: Lote3Case[] = [
     ],
     // 2026-09-30: sale la segunda, traducción del motor sustituido (bloque «163 → 184»).
     claims: ['k4olcs-019-cit-947479', 'k4olcs-133-acu-e1bac8', 'k4olcs-146-acu-8c6db4'],
-    groups: [null, 'PP', null],
+    // la segunda no es de ese grupo, y el resto de la oposición tiene un concejal por grupo (bloque «salvedad C+D, +8»).
+    groups: [null, null, null],
   },
   {
     id: 'f-2026-01-19-cit-cc8758',
@@ -2333,8 +2371,17 @@ describe('published pleno findings — lote 3 of the row 36–51 review', () => 
       }
       const f = byId(id)
       const log = f.corrections ?? []
+      // Acotado a la ventana del lote, leída de sus propias filas (bloque «salvedad A+B, +12»). El límite
+      // escrito, '2026-08-09T20:30:00.000Z', caía DESPUÉS del lote —que corrió a las 18:22Z—, así
+      // que medía «nunca más» y no «este lote»: la salvedad de `b9b013` lo ponía en rojo.
+      const ventana = live(LOTE_3)
+        .flatMap(batchWindow)
+        .map((c) => c.correctedAt)
+        .sort()
+      expect(ventana.length).toBeGreaterThan(0)
+      const [abre, cierra] = [ventana[0], ventana[ventana.length - 1]]
       expect(
-        log.filter((c) => c.correctedAt >= '2026-08-09T20:30:00.000Z'),
+        log.filter((c) => c.correctedAt >= abre && c.correctedAt <= cierra),
         `${id} recibió una corrección de este lote`,
       ).toEqual([])
     }
@@ -3427,7 +3474,9 @@ describe('published pleno findings — one verbatim is one bloc', () => {
     // Y el mismo día, trece más, todas de grupos con un solo concejal: las once de la
     // auditoría y, del dosier del 19-01, la [0] de `c80e68` y la [1] de `5238db` (bloque
     // «184 → 208»). De 80 a 67, y el suelo queda justo por debajo.
-    expect(attributed.length).toBeGreaterThan(66)
+    // Y tres más, de grupos de un solo concejal o de otro grupo: `25e6ea` [0], `947479` [1]
+    // y `b00839` [0] (bloque «salvedad C+D, +8»). El suelo baja tres.
+    expect(attributed.length).toBeGreaterThan(63)
     expect(findAttributionConflicts(items)).toEqual([])
   })
 })
@@ -3659,6 +3708,16 @@ const RESUELTAS_DESPUES = new Map<string, { field: string; correctedAt: string; 
     },
   ],
   ['b28', { field: 'quote.2.text', correctedAt: '2026-09-30T05:45:30.082Z' }],
+  // Y otra (bloque «salvedad C+D, +8»): la cita decía lo contrario que la transcripción vigente y que el
+  // registro de contratación, y salió con la cláusula que sostenía.
+  [
+    'b15',
+    {
+      field: 'quote.2',
+      correctedAt: '2026-09-30T06:27:16.494Z',
+      huella: 'cita · sha256:76e747d41af3',
+    },
+  ],
 ])
 
 /**

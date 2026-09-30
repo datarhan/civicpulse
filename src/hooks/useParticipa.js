@@ -14,9 +14,8 @@ export const KIND_ICON = {
 
 /**
  * Los rótulos en castellano, leídos del catálogo para que no haya dos copias. Los
- * usan la tarjeta de participa de /plenos y /cambios, que todavía no pasan el
- * rótulo por el idioma de la interfaz; el mapa de la portada ya lo hace con
- * `participa.tipo.<clase>`.
+ * usa /cambios, que todavía no pasa el rótulo por el idioma de la interfaz; el
+ * mapa de la portada ya lo hace con `participa.tipo.<clase>`.
  */
 export const KIND_LABEL = {
   activity: CATALOGUE.es['participa.tipo.activity'],

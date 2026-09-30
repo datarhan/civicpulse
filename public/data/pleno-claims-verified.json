@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-09-28T07:54:32.262Z",
-  "composedAt": "2026-09-29T05:11:46.205Z",
+  "composedAt": "2026-09-30T06:24:31.707Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
@@ -15,8 +15,8 @@
       "promesa-repetida": 0
     },
     "sinDatosPorque": {
-      "sinCorpus": 4539,
-      "comprobadoSinHallar": 3008
+      "sinCorpus": 4510,
+      "comprobadoSinHallar": 3037
     }
   },
   "items": [
@@ -42200,7 +42200,7 @@
       "verification": {
         "claimId": "k4olcs-159-afi-61a6eb",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): false contradicho: 15-20 day claim vs unrelated 2-month supply contracts (was contradicho)",
+        "summary": "El «Contradicho» anterior no se sostenía: la frase da un plazo de 15 a 20 días, y los contratos de suministro de dos meses que se citaban no tienen relación con él.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
@@ -42308,12 +42308,17 @@
       "verification": {
         "claimId": "k4olcs-016-cit-683445",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
+        "summary": "El objeto citado aparece en un expediente municipal, pero ninguna de sus magnitudes coincide con la cifra del claim. No es que no haya registro: es que el que hay no dice eso.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=mV0QInbOtkfnSoTX3z%2F7wA%3D%3D",
+            "snippet": "ervicio para la desarrollo, implantación y mantenimiento de un Portal de Transparencia, por procedimiento abierto súper simplificado, mejor relación calidad-precio, único criterio de adjudicación, con condición especial de ejecución de carácter social y medioambiental contribuyendo al ODS 9 INDUSTRIA, INNOVACION E INFRAESTRUCTURA en relación a la meta 9.5.c para aumentar significativamente el acceso a la tecnología de la información y las comunicaciones y esforzarse por proporcionar acceso universal y asequible a Internet. · Ayuntamiento de Riba-roja de Túria · TICSMART SL · it · 15.137 €",
+            "similarity": 1,
+            "stance": "checked"
+          }
         ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       }
     },
     {
@@ -42339,10 +42344,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       }
     },
     {
@@ -42897,7 +42899,7 @@
       "verification": {
         "claimId": "k4olcs-021-afi-b6f856",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): false contradicho: a demolition contract neither confirms nor refutes a 2008 construction date (was contradicho)",
+        "summary": "El «Contradicho» anterior no se sostenía: un contrato de derribo de una vivienda no confirma ni desmiente que la construcción sea de 2008.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
@@ -43095,7 +43097,7 @@
       "verification": {
         "claimId": "k4olcs-024-afi-eb50e3",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): generic municipal supply contracts do not attest a specific dwelling utilities (was verificado)",
+        "summary": "Se retiró el «Verificado» anterior: contratos municipales genéricos de suministro no acreditan el agua ni la electricidad de una vivienda concreta.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
@@ -45540,9 +45542,8 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "promises"
+        ]
       }
     },
     {
@@ -47337,7 +47338,7 @@
       "verification": {
         "claimId": "k4olcs-077-pro-02ea8a",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): party value-statement; generic education CPV match (was parcial)",
+        "summary": "Se retiró el «Parcial» anterior: es una declaración de principios de un partido, y el contrato citado sólo coincidía en la categoría genérica de contratación «servicios de enseñanza y formación».",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
@@ -47424,10 +47425,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       }
     },
     {
@@ -49011,10 +49009,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       }
     },
     {
@@ -49472,10 +49467,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       }
     },
     {
@@ -51310,7 +51302,7 @@
       "verification": {
         "claimId": "k4olcs-126-pro-a6380b",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): 6M payment claim; Espai Obert press is unrelated, coincidental \"2026\" (was parcial)",
+        "summary": "Se retiró el «Parcial» anterior: la frase habla de un pago de 6 millones, y la noticia citada, sobre los encuentros vecinales «Espai Obert», no tiene relación con él y sólo coincidía en «2026».",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
@@ -52506,7 +52498,7 @@
       "verification": {
         "claimId": "k4olcs-152-afi-9d9dca",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): false contradicho: degenerate repeated fragment; supply-bridge plazo is a different referent (was contradicho)",
+        "summary": "El «Contradicho» anterior no se sostenía: la transcripción repite el mismo fragmento una y otra vez, y el plazo de dos meses de unos contratos puente de suministro se refiere a otra cosa.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
@@ -53194,9 +53186,8 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "promises"
+        ]
       }
     },
     {
@@ -53530,10 +53521,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       }
     },
     {
@@ -56957,9 +56945,11 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
       }
     },
     {
@@ -60842,7 +60832,7 @@
       "verification": {
         "claimId": "ma87e0-195-cit-1a0535",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): false contradicho: garbled \"el edificante\"; the Metro-extension claim is unrelated to building contracts (was contradicho)",
+        "summary": "El «Contradicho» anterior no se sostenía: «el edificante» está mal transcrito, y lo que la frase dice de la ampliación del metro no tiene relación con los contratos de obras en edificios que se citaban.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
@@ -63546,7 +63536,7 @@
       "verification": {
         "claimId": "1sqj7is-053-pro-68944b",
         "verdict": "parcial",
-        "summary": "Gold review (ai): SDA mechanism confirmed via derived contracts; the \"improves contracting\" claim is opinion (was verificado)",
+        "summary": "Baja de «Verificado» a «Parcial»: los contratos derivados del sistema dinámico de adquisición confirman que ese mecanismo se usa, pero que sirva para mejorar la forma de contratar es una opinión.",
         "evidence": [
           {
             "kind": "tender",
@@ -83590,7 +83580,7 @@
       "verification": {
         "claimId": "19gax3o-019-afi-0a4414",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): false contradicho: garbled conditional; the cited contracts are unrelated to the claim",
+        "summary": "El «Contradicho» anterior no se sostenía: la frase es un condicional mal transcrito, y los contratos que se citaban no tienen relación con lo que afirma.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
@@ -85916,9 +85906,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       }
     },
     {
@@ -92145,7 +92135,7 @@
       "verification": {
         "claimId": "19gax3o-137-cit-78abd7",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): false contradicho: garbled, names an individual, maintenance tender does not refute (was contradicho)",
+        "summary": "El «Contradicho» anterior no se sostenía: la frase está mal transcrita y nombra a una persona, y un contrato de mantenimiento del césped artificial de los campos de fútbol no la desmiente.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
@@ -92206,9 +92196,11 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
       }
     },
     {
@@ -92474,9 +92466,11 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
       }
     },
     {
@@ -93713,9 +93707,11 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
       }
     },
     {
@@ -95378,9 +95374,8 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "promises"
+        ]
       }
     },
     {
@@ -95634,9 +95629,8 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "promises"
+        ]
       }
     },
     {
@@ -102696,10 +102690,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       }
     },
     {
@@ -104323,9 +104314,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       }
     },
     {
@@ -106372,10 +106363,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       }
     },
     {
@@ -106402,10 +106390,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       }
     },
     {
@@ -108328,7 +108313,7 @@
       "verification": {
         "claimId": "qz6weg-027-cit-a55965",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): the evidence reasoning itself states it does NOT match the music/dance convenio (was parcial)",
+        "summary": "Se retiró el «Parcial» anterior: la propia evidencia citada, unas clases de educación ambiental en colegios, reconocía que no se corresponde con el convenio de música y danza del que habla la frase.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
@@ -109405,9 +109390,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       }
     },
     {
@@ -110148,7 +110133,7 @@
       "verification": {
         "claimId": "qz6weg-052-cit-aa34de",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): false contradicho: Ayto project contracts do not refute that some projects run via the mancomunidad (was contradicho)",
+        "summary": "El «Contradicho» anterior no se sostenía: que el Ayuntamiento contrate la redacción y la dirección de sus propios proyectos no desmiente que algunos se ejecuten a través de la mancomunidad.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
@@ -122882,10 +122867,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       }
     },
     {
@@ -123607,9 +123589,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       }
     },
     {
@@ -123897,9 +123879,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       }
     },
     {
@@ -126567,9 +126549,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       }
     },
     {
@@ -126839,12 +126821,19 @@
       "verification": {
         "claimId": "qz6weg-284-pro-66d2d1",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
+        "summary": "El objeto citado aparece en un expediente municipal, pero ninguna de sus magnitudes coincide con la cifra del claim. No es que no haya registro: es que el que hay no dice eso.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=G%2BmnRyGH352ExvMJXBMHHQ%3D%3D",
+            "snippet": "Contrato adquisición de 320 contendores de carga lateral para el servicio de recogida de residuos en Riba-roja de Túria, así como la retirada y gestión del actual parque existente. · Ayuntamiento de Riba-roja de Túria · Sulo Ibérica Sociedad Anónima · construction · 417.600 €",
+            "similarity": 1,
+            "stance": "checked"
+          }
         ],
-        "source": "verdict-engine"
+        "checkedAgainst": [
+          "promises"
+        ]
       }
     },
     {
@@ -126870,10 +126859,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       }
     },
     {
@@ -127102,12 +127088,17 @@
       "verification": {
         "claimId": "qz6weg-285-afi-6af958",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
+        "summary": "El objeto citado aparece en un expediente municipal, pero ninguna de sus magnitudes coincide con la cifra del claim. No es que no haya registro: es que el que hay no dice eso.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Fyy%2BTlMZfRsadbH3CysQuQ%3D%3D",
+            "snippet": "Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU, poda y voluminosos en el municipio de Riba-roja de Túria, incluido en el marco de ayudas del Plan de Recuperación, Transformación y Resiliencia financiado por la Unión Europea, Next Generation UE (Ctto.138/2025) · Ayuntamiento de Riba-roja de Túria · DISTROMEL, S.A. · it · 148.760 €",
+            "similarity": 1,
+            "stance": "checked"
+          }
         ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       }
     },
     {
@@ -127160,9 +127151,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       }
     },
     {
@@ -127792,9 +127783,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       }
     },
     {
@@ -127967,10 +127958,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       }
     },
     {
@@ -128745,10 +128733,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       }
     },
     {
@@ -131042,10 +131027,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       }
     },
     {
@@ -132730,7 +132712,7 @@
       "verification": {
         "claimId": "1du4rf5-083-pro-aa49e3",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): policy recitation re autonomic systems; coincidental \"interoperabilidad\" match (was verificado)",
+        "summary": "Se retiró el «Verificado» anterior: la frase recita una medida sobre los sistemas de información autonómicos, y el contrato citado, de mantenimiento de una aplicación de interoperabilidad, sólo coincidía por casualidad en esa palabra.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
@@ -134678,7 +134660,7 @@
       "verification": {
         "claimId": "1du4rf5-108-cit-d68a7b",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): false contradicho: coincidental \"DANA\" — a lighting contract does not relate to attending a state funeral",
+        "summary": "El «Contradicho» anterior no se sostenía: el contrato citado, unas obras de emergencia de alumbrado por la DANA, sólo compartía la palabra «DANA» y nada tiene que ver con asistir a un funeral de Estado.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
@@ -135211,9 +135193,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       }
     },
     {
@@ -139476,7 +139458,7 @@
       "verification": {
         "claimId": "1du4rf5-188-pro-f1ca3d",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): false contradicho: stated voting intention vs outcome record, speaker group unknown (was contradicho)",
+        "summary": "El «Contradicho» anterior no se sostenía: la frase anuncia una intención de voto, se comparaba con el resultado de una votación recogido en prensa y no consta qué grupo hablaba.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
@@ -143648,9 +143630,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       }
     },
     {
@@ -145081,9 +145063,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       }
     },
     {
@@ -145110,9 +145092,8 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "promises"
+        ]
       }
     },
     {
@@ -146417,7 +146398,7 @@
       "verification": {
         "claimId": "otxq2c-037-cit-6c4d24",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): motion recitation (forward to ministries); inclusion-plan match too loose for the specific support groups (was parcial)",
+        "summary": "Se retiró el «Parcial» anterior: la frase lee los acuerdos de una moción, que se trasladan a ministerios y otras instituciones, y el contrato del plan de inclusión social que se citaba coincide de forma demasiado vaga con esos grupos de apoyo concretos.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
@@ -147388,9 +147369,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       }
     },
     {
@@ -179016,9 +178997,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       }
     },
     {
@@ -179713,9 +179694,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       }
     },
     {
@@ -184085,9 +184066,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       }
     },
     {
@@ -185249,10 +185230,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       }
     },
     {
@@ -185753,9 +185731,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       }
     },
     {
@@ -186687,7 +186665,7 @@
       "verification": {
         "claimId": "1tgd1h4-129-afi-dca7d4",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): fragment \"...proximo ano 2025\", no assertion; year-token match (was verificado)",
+        "summary": "Se retiró el «Verificado» anterior: la frase es un fragmento que sólo nombra el año 2025, sin afirmar nada, y los contratos citados sólo coincidían en ese año.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
@@ -187246,10 +187224,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       }
     },
     {
@@ -188008,9 +187983,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       }
     },
     {
@@ -188417,7 +188392,7 @@
       "verification": {
         "claimId": "1tgd1h4-158-afi-b68cce",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): legal recitation (Ley 2/2023); data-protection tender adjacent only (was parcial)",
+        "summary": "Se retiró el «Parcial» anterior: la frase recita una ley, la 2/2023, y el contrato citado, una consultoría de protección de datos, sólo toca un asunto próximo.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
@@ -188822,7 +188797,7 @@
       "verification": {
         "claimId": "1tgd1h4-166-cit-76085f",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): fragment; water tender matched only on \"Ayuntamiento\" (was parcial)",
+        "summary": "Se retiró el «Parcial» anterior: es un fragmento de frase, y el contrato citado, de mantenimiento de la calidad del agua, sólo coincidía en el nombre del Ayuntamiento.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
@@ -189557,10 +189532,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       }
     },
     {
@@ -191184,7 +191156,7 @@
       "verification": {
         "claimId": "1tgd1h4-197-cit-725463",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): false verificado: whistleblower-law recitation; \"Servicio postal\" coincidental",
+        "summary": "El «Verificado» anterior no se sostenía: la frase recita la ley de protección de los informantes, y el contrato de «Servicio postal» que se citaba coincidía por casualidad.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
@@ -191747,9 +191719,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       }
     },
     {
@@ -191976,9 +191948,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       }
     },
     {

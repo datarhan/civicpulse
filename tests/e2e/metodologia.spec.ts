@@ -31,6 +31,15 @@ test.describe('El trinquete publicado (/metodologia)', () => {
     const hayRetirada = etapas.some(([, e]) => e.retirada)
     expect(hayRetirada).toBe(true)
     expect(texto).toMatch(/retirada/i)
+    // Lo que sólo propone se dice: una subida automática espera una firma.
+    const conFirma = etapas.filter(([, e]) => e.exigeFirma)
+    expect(conFirma.length, 'ninguna etapa exige firma: esto no mediría nada').toBeGreaterThan(0)
+    const filas = await page.locator('#trinquete-veredictos tbody tr').allInnerTexts()
+    for (const [id, e] of conFirma) {
+      const fila = filas.find((f) => f.includes(e.nombre))
+      expect(fila, `falta la fila de ${id}`).toBeTruthy()
+      expect(fila, `la fila de ${id} no dice que exige firma`).toContain('la firma de una persona')
+    }
   })
 
   test('dice el suelo y su única excepción', async ({ page }) => {
@@ -44,18 +53,7 @@ test.describe('El trinquete publicado (/metodologia)', () => {
     const texto = await page.locator('body').innerText()
     expect(texto).toMatch(/tiene que nombrar contra qué se comprobó/i)
     expect(texto).toMatch(/retractación de un curador|bajar un veredicto nunca refuerza/i)
-  })
-
-  test('dice que el orden entre etapas también se impone', async ({ page }) => {
-    // `puedeSustituir` (trinquete.ts) lo aplica al escribir el overlay; si la
-    // página dejara de decirlo, el contrato publicado se quedaría corto.
-    await page.goto('/metodologia', { waitUntil: 'domcontentloaded' })
-    await expect(
-      page.getByRole('heading', { name: /El trinquete: cada etapa empuja/i }),
-    ).toBeVisible({ timeout: 8000 })
-    const texto = await page.locator('body').innerText()
-    expect(texto).toMatch(
-      /lo que ha retirado una etapa que sólo puede retractar no lo vuelve a subir una que puede reforzar/i,
-    )
+    // Y lo que ya bajó una retractación, ninguna escritura posterior lo sube.
+    expect(texto).toMatch(/no lo vuelve a subir ninguna escritura posterior/i)
   })
 })

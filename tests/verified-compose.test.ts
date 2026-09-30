@@ -176,24 +176,30 @@ describe('evidenciaSuficiente · un veredicto fuerte tiene que apoyarse en algo'
     ).toThrow(/suelo de evidencia|no nombra ning/i)
   })
 
-  it('y deja pasar la que sí llega', () => {
-    const o = applyOverlayEntries(
-      { version: 1, generatedAt: 'x', entries: {} },
-      [
-        {
-          claimId: 'c2',
-          source: 'nli',
-          verification: {
+  it('la que sí llega no la para el suelo; si es una subida de NLI, la para la firma', () => {
+    // Hasta el 29-09-2026 esta entrada se escribía: llegar al suelo bastaba.
+    // Hoy el anclaje sólo propone (lo automático sólo baja, regla 4), así que
+    // el overlay la rechaza igual — pero por la firma que le falta, no por el
+    // corpus, y el mensaje tiene que decir cuál de las dos cosas es.
+    const intento = () =>
+      applyOverlayEntries(
+        { version: 1, generatedAt: 'x', entries: {} },
+        [
+          {
             claimId: 'c2',
-            verdict: 'parcial',
-            summary: 's',
-            evidence: ev,
-            checkedAgainst: ['tenders'],
+            source: 'nli',
+            verification: {
+              claimId: 'c2',
+              verdict: 'parcial',
+              summary: 's',
+              evidence: ev,
+              checkedAgainst: ['tenders'],
+            },
           },
-        },
-      ] as never,
-      '2026-08-27T00:00:00.000Z',
-    )
-    expect(Object.keys(o.entries)).toEqual(['c2'])
+        ] as never,
+        '2026-08-27T00:00:00.000Z',
+      )
+    expect(intento).toThrow(/firma/)
+    expect(intento).not.toThrow(/suelo de evidencia/)
   })
 })

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-29T05:11:47.357Z",
+  "generatedAt": "2026-09-30T06:24:33.835Z",
   "version": "1",
   "plenoId": "ma87e0",
   "plenoDate": "2026-03-16",
@@ -2018,9 +2018,11 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
       },
       "visibility": "toggle"
     },
@@ -4696,7 +4698,7 @@
       "verification": {
         "claimId": "ma87e0-195-cit-1a0535",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): false contradicho: garbled \"el edificante\"; the Metro-extension claim is unrelated to building contracts (was contradicho)",
+        "summary": "El «Contradicho» anterior no se sostenía: «el edificante» está mal transcrito, y lo que la frase dice de la ampliación del metro no tiene relación con los contratos de obras en edificios que se citaban.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"

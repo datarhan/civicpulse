@@ -165,13 +165,22 @@ describe('validateOverlay', () => {
 describe('applyOverlayEntries', () => {
   const empty: Overlay = { version: 1, generatedAt: 'x', entries: {} }
 
-  it('adds an nli entry and stamps appliedAt + generatedAt', () => {
+  it('adds an entry and stamps appliedAt + generatedAt', () => {
+    // Con el motor y no con NLI: desde el 29-09-2026 el anclaje sólo propone y
+    // el overlay no le acepta nada (tests/entrada-de-pasada.test.ts).
     const out = applyOverlayEntries(
       empty,
-      [{ claimId: 'a', verification: vrf('a', 'verificado'), source: 'nli' }],
+      [
+        {
+          claimId: 'a',
+          verification: vrf('a', 'sin-datos'),
+          source: 'verdict-engine',
+          reason: 'ningun candidato respalda el importe ni el sujeto de la afirmacion',
+        },
+      ],
       'TS',
     )
-    expect(out.entries.a.source).toBe('nli')
+    expect(out.entries.a.source).toBe('verdict-engine')
     expect(out.entries.a.appliedAt).toBe('TS')
     expect(out.generatedAt).toBe('TS')
     expect(empty.entries.a).toBeUndefined() // input not mutated
@@ -295,19 +304,15 @@ describe('applyOverlayEntries', () => {
   it('lo que ya está no estalla: una entrada vieja con charla no impide escribir otra', () => {
     // Como el suelo de evidencia: la guarda va en la ESCRITURA de lo nuevo. Si
     // mirara lo que ya está, la tubería entera se pararía por las filas viejas.
-    const previo = applyOverlayEntries(
-      empty,
-      [{ claimId: 'b', verification: vrf('b', 'sin-datos'), source: 'nli' }],
-      'TS',
-    )
+    const motor = (id: string) => ({
+      claimId: id,
+      verification: vrf(id, 'sin-datos'),
+      source: 'verdict-engine' as const,
+      reason: 'ningun candidato respalda el importe ni el sujeto de la afirmacion',
+    })
+    const previo = applyOverlayEntries(empty, [motor('b')], 'TS')
     previo.entries.b.verification.summary = 'Análisis completado en el texto de respuesta.'
-    expect(() =>
-      applyOverlayEntries(
-        previo,
-        [{ claimId: 'a', verification: vrf('a', 'sin-datos'), source: 'nli' }],
-        'TS2',
-      ),
-    ).not.toThrow()
+    expect(() => applyOverlayEntries(previo, [motor('a')], 'TS2')).not.toThrow()
   })
 
   it('rejects a verdict-engine entry that emits contradicho', () => {
@@ -325,137 +330,6 @@ describe('applyOverlayEntries', () => {
         'TS',
       ),
     ).toThrow()
-  })
-})
-
-// ---------------------------------------------------------------------------
-// El orden del trinquete.
-//
-// El caso (29-09-2026, al arreglar el motor de veredictos): el anclaje NLI elige
-// sus candidatas entre los `sin-datos` PUBLICADOS, y un `sin-datos` publicado
-// también puede ser una retractación — la del motor, o la de un curador que
-// escribió por qué la evidencia no sostenía la afirmación. `applyOverlayEntries`
-// sustituía la entrada fuera de quien fuera, así que una pasada del anclaje
-// habría vuelto a subir lo que otra etapa bajó. La única red era
-// `acusacionesQueSuben`, que mira sólo acusaciones y corre al recomponer, con el
-// overlay ya escrito.
-describe('applyOverlayEntries — el orden del trinquete', () => {
-  const empty: Overlay = { version: 1, generatedAt: 'x', entries: {} }
-  const MOTIVO = 'la única evidencia es un contrato que no trata de lo que se afirma'
-
-  const retractadaPorCurador = (veredicto: ClaimVerdict = 'sin-datos'): Overlay =>
-    applyOverlayEntries(
-      empty,
-      [
-        {
-          claimId: 'a',
-          verification: verificacionDeBajada('a', vrf('a', 'verificado'), veredicto, MOTIVO),
-          source: 'curator-downgrade',
-          reason: MOTIVO,
-          editor: 'curador de prueba',
-        },
-      ],
-      'T1',
-      new Map([['a', 'verificado']]),
-    )
-
-  const retractadaPorMotor = (): Overlay =>
-    applyOverlayEntries(
-      empty,
-      [
-        {
-          claimId: 'a',
-          verification: vrf('a', 'sin-datos'),
-          source: 'verdict-engine',
-          reason: MOTIVO,
-          editor: 'verdict-engine:modelo-de-prueba',
-        },
-      ],
-      'T1',
-    )
-
-  const anclar = (sobre: Overlay, veredicto: ClaimVerdict = 'verificado'): Overlay =>
-    applyOverlayEntries(
-      sobre,
-      [{ claimId: 'a', verification: vrf('a', veredicto), source: 'nli' }],
-      'T2',
-    )
-
-  it('una subida del anclaje NLI no pisa la retractación de un curador', () => {
-    expect(() => anclar(retractadaPorCurador())).toThrow(/trinquete/)
-  })
-
-  it('ni la del motor de veredictos', () => {
-    expect(() => anclar(retractadaPorMotor())).toThrow(/trinquete/)
-  })
-
-  it('ni aunque repita el veredicto del curador: se llevaría su firma', () => {
-    // Mismo veredicto, otra entrada: la tarjeta dejaría de imprimir bajo la
-    // cita el motivo que firmó una persona, y el veredicto pasaría a
-    // sostenerse en la máquina y no en su firma (`isCuratorPromoted`).
-    expect(() => anclar(retractadaPorCurador('parcial'), 'parcial')).toThrow(/trinquete/)
-  })
-
-  it('el orden cuenta también dentro de un mismo lote', () => {
-    expect(() =>
-      applyOverlayEntries(
-        empty,
-        [
-          {
-            claimId: 'a',
-            verification: vrf('a', 'sin-datos'),
-            source: 'verdict-engine',
-            reason: MOTIVO,
-          },
-          { claimId: 'a', verification: vrf('a', 'verificado'), source: 'nli' },
-        ],
-        'T',
-      ),
-    ).toThrow(/trinquete/)
-  })
-
-  it('lo que no ha retractado nadie sí se ancla', () => {
-    expect(anclar(empty).entries.a.source).toBe('nli')
-  })
-
-  it('y lo que subió la pasada retirada también: re-fundamentarlo es la fase 6', () => {
-    const deLaRetirada = applyOverlayEntries(
-      empty,
-      [{ claimId: 'a', verification: vrf('a', 'parcial'), source: 'llm' }],
-      'T1',
-    )
-    expect(anclar(deLaRetirada).entries.a.source).toBe('nli')
-  })
-
-  it('una retractación sí pisa una subida: es el sentido del trinquete', () => {
-    const subida = anclar(empty)
-    const delMotor = applyOverlayEntries(
-      subida,
-      [
-        {
-          claimId: 'a',
-          verification: vrf('a', 'sin-datos'),
-          source: 'verdict-engine',
-          reason: MOTIVO,
-        },
-      ],
-      'T3',
-    )
-    expect(delMotor.entries.a.source).toBe('verdict-engine')
-    const delCurador = applyOverlayEntries(
-      subida,
-      [
-        {
-          claimId: 'a',
-          verification: verificacionDeBajada('a', vrf('a', 'verificado'), 'sin-datos', MOTIVO),
-          source: 'curator-downgrade',
-          reason: MOTIVO,
-        },
-      ],
-      'T3',
-      new Map([['a', 'verificado']]),
-    )
-    expect(delCurador.entries.a.source).toBe('curator-downgrade')
   })
 })
 

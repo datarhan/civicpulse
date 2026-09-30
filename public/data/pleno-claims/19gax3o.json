@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-29T05:11:47.357Z",
+  "generatedAt": "2026-09-30T06:24:33.835Z",
   "version": "1",
   "plenoId": "19gax3o",
   "plenoDate": "2026-01-19",
@@ -1134,7 +1134,7 @@
       "verification": {
         "claimId": "19gax3o-019-afi-0a4414",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): false contradicho: garbled conditional; the cited contracts are unrelated to the claim",
+        "summary": "El «Contradicho» anterior no se sostenía: la frase es un condicional mal transcrito, y los contratos que se citaban no tienen relación con lo que afirma.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
@@ -2797,9 +2797,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       },
       "visibility": "toggle"
     },
@@ -7069,7 +7069,7 @@
       "verification": {
         "claimId": "19gax3o-137-cit-78abd7",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): false contradicho: garbled, names an individual, maintenance tender does not refute (was contradicho)",
+        "summary": "El «Contradicho» anterior no se sostenía: la frase está mal transcrita y nombra a una persona, y un contrato de mantenimiento del césped artificial de los campos de fútbol no la desmiente.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
@@ -7103,9 +7103,11 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
       },
       "visibility": "toggle"
     },
@@ -7618,9 +7620,11 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
       },
       "visibility": "toggle"
     },
@@ -8209,9 +8213,11 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
       },
       "visibility": "toggle"
     },
@@ -9085,9 +9091,8 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "promises"
+        ]
       },
       "visibility": "toggle"
     },
@@ -9115,9 +9120,8 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "promises"
+        ]
       },
       "visibility": "toggle"
     },
