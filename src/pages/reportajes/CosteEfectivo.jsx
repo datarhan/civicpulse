@@ -1283,11 +1283,13 @@ export default function CosteEfectivo() {
         </ul>
       </div>
 
-      {/* Fuentes y método, el cierre de todas las piezas */}
+      {/* Fuentes y método, el cierre de todas las piezas. El `min(…, 100%)` es
+          para la columna que queda sola: sin él conservaba sus 280 px en una
+          caja de 272 (320 px de pantalla). */}
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(280px, 100%), 1fr))',
           gap: 14,
           alignItems: 'start',
           marginTop: 30,

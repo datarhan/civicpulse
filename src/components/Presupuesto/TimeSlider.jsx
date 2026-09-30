@@ -68,7 +68,15 @@ export default function TimeSlider({ min, max, value, onChange }) {
         // Es el gemelo del deslizador del aterrizaje, que sí lo declaraba: un
         // control de tiempo sobre dinero público quedaba en un azul que no es
         // de la paleta y que nadie eligió.
-        style={{ flex: 1, accentColor: 'var(--civic)' }}
+        //
+        // `width: 0` porque el control aporta su ancho intrínseco, 129 px, al
+        // mínimo de la fila aunque `flex: 1` lo estire: con el botón, la fecha
+        // y los huecos la fila no bajaba de 257,5 px, ese mínimo subía hasta la
+        // pista `1fr` de la rejilla del mapa, y a 320 px de pantalla la columna
+        // se salía 27,5 de su caja. `minWidth: 0` no basta: deja encoger, pero
+        // no quita el control del mínimo. El ancho lo sigue poniendo `flex: 1`,
+        // así que donde la fila tiene sitio mide lo mismo que antes.
+        style={{ flex: 1, width: 0, accentColor: 'var(--civic)' }}
       />
       <span className="mono" style={{ fontSize: 'var(--fs-micro)', width: 92, textAlign: 'right' }}>
         {label}

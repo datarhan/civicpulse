@@ -447,10 +447,12 @@ function DatasetsCatalog() {
   ]
 
   return (
+    // El `min(…, 100%)` es para la columna que queda sola: sin él conservaba
+    // sus 320 px en una caja de 272 (320 px de pantalla).
     <div
       style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(min(320px, 100%), 1fr))',
         gap: 14,
       }}
     >
