@@ -13,6 +13,7 @@ import { gateForDisplay, sortSignalFirst } from '../lib/claim-ledger'
 import { blocLabel } from '../lib/party-label.js'
 import {
   etiquetaVerificador,
+  evidenciaSegunFuentes,
   fuentesComprobadas,
   resumenSegunFuentes,
 } from '../lib/claim-provenance.js'
@@ -78,8 +79,11 @@ function ClaimCard({ item }) {
   // esta declaración (src/lib/resumenes-retirados.js): la tarjeta dice que lo
   // retiró en vez de imprimirlo bajo la cita. El «no se encontró registro» se
   // re-deriva de la misma procedencia que «Fuentes comprobadas», más abajo:
-  // guardado, nombraba fuentes que la línea no lista.
+  // guardado, nombraba fuentes que la línea no lista. Y con la misma regla se
+  // deja de pintar el expediente «que se parece» de una verificación que no
+  // cotejó contratos: salía encima de «Fuentes comprobadas: ninguna».
   const resumen = resumenSegunFuentes(verification, resumenPublicable(verification))
+  const evidencia = evidenciaSegunFuentes(verification)
   return (
     <Card>
       <div
@@ -159,7 +163,7 @@ function ClaimCard({ item }) {
       >
         {resumen ?? ROTULO_RESUMEN_RETIRADO}
       </div>
-      {verification.evidence.length > 0 && (
+      {evidencia.length > 0 && (
         <div
           style={{
             marginTop: 8,
@@ -167,7 +171,7 @@ function ClaimCard({ item }) {
             borderTop: '1px dashed var(--border2)',
           }}
         >
-          {verification.evidence.map((e, i) => (
+          {evidencia.map((e, i) => (
             <EvidenceRow key={i} e={e} />
           ))}
         </div>

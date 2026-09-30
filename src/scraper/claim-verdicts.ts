@@ -318,3 +318,74 @@ export function esResumenSinRegistro(texto: unknown): boolean {
   const nombres = texto.slice(PREFIJO.length, fin).split(/, | y /)
   return resumenSinRegistro(nombres) === texto
 }
+
+// ─── El expediente que se parece y no trae la cifra ─────────────────────────
+//
+// Un `sin-datos` puede enseñar UN contrato: el que más se parece por objeto a
+// lo citado, cuando el camino del importe lo tuvo delante y lo descartó por la
+// cifra (`mejorCasiPorObjeto`, en claim-verifier.ts). Se enseña para no decir
+// «no se encontró registro» de un expediente que sí se leyó.
+//
+// Hasta el 30-09-2026 ese barrido corría también en citas SIN cifra —promesas,
+// afirmaciones sin importe—, sobre las que el camino del importe no se ejecuta
+// y `tenders` no se anota: la tarjeta enseñaba un contrato encima de «Fuentes
+// comprobadas: ninguna». Y su frase era fija: hablaba de «la cifra del claim»
+// que la cita no trae y acababa en «No es que no haya registro: es que el que
+// hay no dice eso.», que se lee como un desmentido. Medido ese día sobre los
+// trozos servidos: 61 tarjetas, 47 de ellas sin cifra, y lo que enseñaban era
+// casi siempre un parecido de dos palabras en un título.
+//
+// Ahora el barrido corre sólo si el camino del importe leyó los contratos
+// (`leyoContratos`), la frase dice lo que se cotejó y no insinúa nada, y la
+// tarjeta aplica la misma regla a lo ya publicado (claim-provenance.js). La
+// regla se lee de la procedencia, no de si la cita trae cifra: es la lista
+// que la tarjeta imprime debajo, y así las dos no pueden contradecirse.
+
+/**
+ * La frase fija de antes. Sigue en lo publicado hasta que se vuelva a
+ * verificar, y por eso hay que poder reconocerla.
+ */
+export const RESUMEN_CASI_FIJO =
+  'El objeto citado aparece en un expediente municipal, pero ninguna de sus magnitudes coincide con la cifra del claim. No es que no haya registro: es que el que hay no dice eso.'
+
+/**
+ * Cómo acaba la fila de evidencia de ese expediente cuando no publica importe.
+ * La escribe el verificador y la lee la tarjeta para elegir la frase: una
+ * cadena, dos sitios.
+ */
+export const COLA_SIN_IMPORTE = ' · importe no publicado'
+
+const CASI_OBJETO =
+  'El título de un expediente municipal coincide en parte con el objeto citado, pero '
+const CASI_CON_IMPORTE =
+  'su importe no coincide con la cifra citada. Se enseña porque se cotejó, no porque la sostenga. '
+const CASI_SIN_IMPORTE =
+  'no publica importe con el que cotejar la cifra citada. Se enseña porque se miró, no porque la sostenga. '
+
+/**
+ * La explicación de un `sin-datos` que enseña el expediente parecido.
+ *
+ * «Coincide en parte» y no «el objeto aparece»: el barrido mide palabras
+ * compartidas con el título, y dos bastan. Y sin «no dice eso»: un importe
+ * distinto no desmiente una cifra —el canon del agua no es el valor de la
+ * concesión—, y el veredicto sigue siendo `sin-datos`, no `contradicho`.
+ *
+ * @param conImporte  si la fila publica un importe, que es lo que se cotejó.
+ */
+export function resumenCasi(conImporte: boolean): string {
+  return CASI_OBJETO + (conImporte ? CASI_CON_IMPORTE : CASI_SIN_IMPORTE) + DESCARGO
+}
+
+/** ¿Es una explicación del expediente parecido, la fija de antes o una de ahora? */
+export function esResumenCasi(texto: unknown): boolean {
+  return texto === RESUMEN_CASI_FIJO || texto === resumenCasi(true) || texto === resumenCasi(false)
+}
+
+/**
+ * ¿Consta que el camino del importe consultó los contratos? Es la condición
+ * para enseñar el expediente parecido: sin ella, no hubo importe que cotejar
+ * con él, y la fila no tiene nada que explicar.
+ */
+export function leyoContratos(checkedAgainst?: readonly unknown[] | null): boolean {
+  return corpusReales(checkedAgainst).some((c) => c === 'tenders' || c === 'tenders-ted')
+}

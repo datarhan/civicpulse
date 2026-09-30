@@ -1309,14 +1309,20 @@ export default function Metodologia() {
               {/* Decía «no hay registro en las bases abiertas», y la tarjeta lo
                   repetía en cada sin-datos con una frase fija que nombraba
                   contratos, BDNS y presupuesto aunque no se hubiera consultado
-                  ninguno. 29-09-2026. */}
+                  ninguno. 29-09-2026. La frase del expediente parecido salía
+                  también en citas sin cifra, con un contrato encima de
+                  «Fuentes comprobadas: ninguna» y un «el que hay no dice eso»
+                  que se leía como desmentido. 30-09-2026. */}
               <li>
                 <strong>sin-datos</strong> — ningún registro de las bases consultadas sostiene la
                 afirmación, o no había ninguna con la que cotejarla. Puede ser cierta, pero no está
                 atestiguada (muy frecuente: reconocimientos extrajudiciales, operaciones internas).
                 La explicación de su tarjeta nombra sólo las bases que constan como consultadas —las
                 mismas que su línea «Fuentes comprobadas»— y, cuando no consta ninguna, no dice que
-                se buscara.
+                se buscara. Cuando la cifra citada se cotejó con los contratos y el título de uno
+                coincide en parte con lo citado, la tarjeta enseña ese expediente y dice que su
+                importe no es la cifra: se miró, y ni la sostiene ni la desmiente. A una cita sin
+                cifra no se le enseña ninguno, porque no hubo importe que cotejar.
               </li>
               <li>
                 <strong>promesa-repetida</strong> — la promesa coincide con una ya documentada en el
