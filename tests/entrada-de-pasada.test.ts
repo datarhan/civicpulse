@@ -12,6 +12,7 @@ import {
   sugerenciaDelAnclaje,
   actualizarCola,
   validarCola,
+  motivoParaNoProponer,
   COLA_SUGERENCIAS_NLI,
 } from '../src/scraper/entrada-de-pasada'
 import type { PlenoClaim } from '../src/scraper/pleno-claim'
@@ -296,5 +297,159 @@ describe('la entrada del motor de veredictos', () => {
         desde: 'parcial',
       }),
     ).toThrow(/motor/)
+  })
+})
+
+describe('una subida nunca sustituye una retractación', () => {
+  // `verify:pleno-claims:nli` toma sus candidatas de las filas `sin-datos`
+  // PUBLICADAS, y entre ellas están las que un curador o el motor retractaron
+  // a propósito. `applyOverlayEntries` sustituye la entrada que hubiera, y la
+  // única guarda del rebuild (`acusacionesQueSuben`) mira sólo acusaciones.
+
+  const MOTIVO = 'la evidencia citada no acredita el importe que se afirma'
+
+  /** El overlay con una retractación ya escrita para CLAIM. */
+  function conRetractacion(source: 'curator-downgrade' | 'verdict-engine'): Overlay {
+    return {
+      ...OVERLAY_VACIO,
+      entries: {
+        [CLAIM.id]: {
+          verification: { ...BASE_SIN_DATOS, summary: MOTIVO, checkedAgainst: [] },
+          source,
+          reason: MOTIVO,
+          editor: source === 'curator-downgrade' ? 'Curadora de prueba' : 'verdict-engine:prueba',
+          appliedAt: STAMP,
+        },
+      },
+    }
+  }
+
+  /** Un `parcial` con corpus y evidencia: llega al suelo de sobra. */
+  const PARCIAL: ClaimVerification = {
+    claimId: CLAIM.id,
+    verdict: 'parcial',
+    summary: 'la evidencia sólo acredita una parte de lo que se afirma',
+    evidence: [{ ...CANDIDATO, stance: 'checked' }],
+    checkedAgainst: ['tenders'],
+  }
+
+  for (const retractada of ['curator-downgrade', 'verdict-engine'] as const) {
+    it(`una subida de NLI no pisa una retractación de «${retractada}»`, async () => {
+      // Ya lo cubre `exigeFirma`: el overlay no acepta nada del anclaje.
+      const r = await subida()
+      const overlay = conRetractacion(retractada)
+      expect(() =>
+        applyOverlayEntries(
+          overlay,
+          [{ claimId: CLAIM.id, verification: r!.verification, source: 'nli' }],
+          STAMP,
+        ),
+      ).toThrow()
+      expect(overlay.entries[CLAIM.id].source).toBe(retractada)
+    })
+
+    it(`ni una «bajada» de curador que, medida contra la base, sube sobre una de «${retractada}»`, () => {
+      // Las CLIs comparan con lo PUBLICADO; el overlay no se fía del mapa que
+      // le pasen. Contra la base (`verificado`), `parcial` pasaría por bajada
+      // y levantaría la retractación de `sin-datos` a `parcial`.
+      expect(() =>
+        applyOverlayEntries(
+          conRetractacion(retractada),
+          [
+            {
+              claimId: CLAIM.id,
+              verification: PARCIAL,
+              source: 'curator-downgrade',
+              reason: MOTIVO,
+            },
+          ],
+          STAMP,
+          new Map([[CLAIM.id, 'verificado' as const]]),
+        ),
+      ).toThrow(/no sube lo que el overlay ya dice/)
+    })
+  }
+
+  it('dentro de una misma escritura, tampoco', () => {
+    const retractacion = {
+      claimId: CLAIM.id,
+      verification: { ...BASE_SIN_DATOS, derivedBy: ['verdict-engine'] },
+      source: 'verdict-engine' as const,
+      reason: MOTIVO,
+    }
+    expect(() =>
+      applyOverlayEntries(
+        OVERLAY_VACIO,
+        [
+          retractacion,
+          { claimId: CLAIM.id, verification: PARCIAL, source: 'curator-downgrade', reason: MOTIVO },
+        ],
+        STAMP,
+        new Map([[CLAIM.id, 'verificado' as const]]),
+      ),
+    ).toThrow(/no sube lo que el overlay ya dice/)
+  })
+
+  it('re-derivar una retractación del motor sigue pudiendo reescribirla', () => {
+    const rederivada = {
+      claimId: CLAIM.id,
+      verification: { ...BASE_SIN_DATOS, derivedBy: ['verdict-engine'] },
+      source: 'verdict-engine' as const,
+      reason: `verdict-engine (prueba) re-derivó la retractación (sigue sin-datos): ${MOTIVO}`,
+    }
+    expect(() =>
+      applyOverlayEntries(conRetractacion('verdict-engine'), [rederivada], STAMP),
+    ).not.toThrow()
+  })
+
+  it('y bajar más una bajada de curador sigue pudiendo hacerse', () => {
+    const conParcial: Overlay = {
+      ...OVERLAY_VACIO,
+      entries: {
+        [CLAIM.id]: {
+          verification: PARCIAL,
+          source: 'curator-downgrade',
+          reason: MOTIVO,
+          appliedAt: STAMP,
+        },
+      },
+    }
+    expect(() =>
+      applyOverlayEntries(
+        conParcial,
+        [
+          {
+            claimId: CLAIM.id,
+            verification: { ...BASE_SIN_DATOS, summary: MOTIVO },
+            source: 'curator-downgrade',
+            reason: MOTIVO,
+          },
+        ],
+        STAMP,
+        new Map([[CLAIM.id, 'parcial' as const]]),
+      ),
+    ).not.toThrow()
+  })
+})
+
+describe('el anclaje no propone volver a subir lo que se retractó', () => {
+  it('dice por qué no se propone una fila retractada, y de quién es la retractación', () => {
+    expect(motivoParaNoProponer('curator-downgrade')).toMatch(/curador/)
+    expect(motivoParaNoProponer('verdict-engine')).toMatch(/motor/)
+  })
+
+  it('lo que no viene de una retractación se puede proponer', () => {
+    expect(motivoParaNoProponer(undefined)).toBeNull()
+    expect(motivoParaNoProponer('nli')).toBeNull()
+  })
+
+  it('la sugerencia se niega a partir de una retractación', async () => {
+    const r = await subida()
+    expect(() => sugerenciaDelAnclaje({ r, desde: 'sin-datos', fuente: 'verdict-engine' })).toThrow(
+      /retractada/,
+    )
+    expect(() =>
+      sugerenciaDelAnclaje({ r, desde: 'parcial', fuente: 'curator-downgrade' }),
+    ).toThrow(/retractada/)
   })
 })
