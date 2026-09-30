@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-29T11:04:21.079Z",
+  "generatedAt": "2026-09-30T10:54:23.222Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -40,7 +40,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-29T11:04:20.996Z"
+      "generatedAt": "2026-09-30T10:54:23.149Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -48,7 +48,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-29T11:04:20.996Z"
+      "generatedAt": "2026-09-30T10:54:23.149Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -67,7 +67,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-29T11:04:20.996Z"
+      "generatedAt": "2026-09-30T10:54:23.149Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -89,7 +89,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-29T11:04:20.996Z"
+      "generatedAt": "2026-09-30T10:54:23.149Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -97,7 +97,7 @@
       "confidence": 0.175,
       "reasoning": [
         {
-          "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9sb1NJQ2tHMmN6UGRUTkNZTl9sMjVXTTY4Q09FeDcxS0NDNjFBUGVvUUlEX1lnNmEwZUlGUjVGNkE4SW9qUjdmUlQ0TnVia2xCM2hMcjYwNnc0Wlg0TlRibkhyN1AzTkJFMU91Wjh1OEZqMTM1ODlWXzVVZw?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMiR0FVX3lxTE5yU2NLT0hJaTJzR24xenF0akRkejdVVWVpbUJDSDhWZFYwbGtsSVFMcU13SjFfUGktdmRVR0FjVkZLcE5DcUZ3?oc=5",
           "date": "2026-09-19",
           "quote": "Riba-Rock 2026: cartel, horario y acceso gratuito",
           "kind": "press",
@@ -120,7 +120,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-29T11:04:20.996Z"
+      "generatedAt": "2026-09-30T10:54:23.149Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -128,7 +128,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-29T11:04:20.996Z"
+      "generatedAt": "2026-09-30T10:54:23.149Z"
     },
     {
       "promiseId": "ac-psoe-1ryndd8",
@@ -176,7 +176,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-29T11:04:20.996Z"
+      "generatedAt": "2026-09-30T10:54:23.149Z"
     },
     {
       "promiseId": "ac-psoe-43brfs",
@@ -241,7 +241,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-29T11:04:20.996Z"
+      "generatedAt": "2026-09-30T10:54:23.149Z"
     }
   ],
   "llmEvidence": [],

@@ -62,7 +62,10 @@ HTTP (webhook mode only):
   GET /health                (degraded when the review queue is stuck: no admins,
                               a queja whose card no current admin holds, a wait > 48 h,
                               a card waiting > 24 h to lose a withdrawn queja's text,
-                              or an automatic review failing 3 times or for 2 h)
+                              or an automatic review failing 3 times or for 2 h; and
+                              when a registered queja's plazo ends in a year with no
+                              calendar of días inhábiles, 30 days before its nominal
+                              day or later)
   GET /export/quejas.json    (bearer-auth via EXPORT_TOKEN)
   GET /batch/current.{md,html}
   GET /sindic/<q-id>.{md,html}

@@ -20,6 +20,11 @@ export const AUTO_PUBLISH_MIN_CONFIDENCE = 0.7
  * machine-published. Discovery only ever emits 'documentada', so the
  * fast-track rows only bite on status-change drafts. Edit this map to
  * retune posture.
+ *
+ * El escalón dice qué le pasaría a una propuesta, no que exista: el minero sólo
+ * propone PROGRESS_STATUSES, así que la fila de 'no-ejecutada' —reservada para
+ * un detector de incumplimiento que el diseño de julio aplazó— hoy no muerde
+ * nunca. Quien describa la política (/metodologia) tiene que cruzar los dos.
  */
 export const STATUS_TIER: Record<Status, 'auto' | 'fast-track' | 'human-only'> = {
   documentada: 'auto',

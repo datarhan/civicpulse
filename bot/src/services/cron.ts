@@ -13,15 +13,20 @@
  * Paused while LOREG freeze is active.
  *
  * Pure-ish: takes (db, hitos, now) so it's trivially testable.
+ *
+ * `plazosSinCalendario` lee la misma selección sin tocar nada, para /health: los
+ * plazos que este cron no podrá decidir porque acaban en un año sin calendario de
+ * días inhábiles.
  */
 
 import type { Db } from '../db/client.ts'
 import type { QuejaRow } from '../db/queries.ts'
 import { setState } from '../db/queries.ts'
 import { routeUsingLocalOfficials } from './router.ts'
-import { relojDelPlazo } from '../../../src/scraper/queja-router.ts'
+import { relojDelPlazo, type RelojDelPlazo } from '../../../src/scraper/queja-router.ts'
 import { isLoregFrozen } from './freeze.ts'
 import type { AvisosHitos } from './avisos-hitos.ts'
+import type { PlazosSinCalendario } from './health.ts'
 
 const CHECK_INTERVAL_MS = 60 * 60 * 1000 // every hour
 
@@ -78,22 +83,22 @@ async function avisarSilencioConReintento(
   }
 }
 
-export function checkSilencio(
+/**
+ * Las registradas cuyo silencio decide el cron, cada una con el reloj de su plazo
+ * de resolución: las de silencio negativo que siguen su trámite. La leen el cron y
+ * /health (`plazosSinCalendario`), y es una sola: si la alarma eligiera otras
+ * quejas, avisaría de plazos que el cron no evalúa, o callaría los que sí.
+ *
+ * `sinPlazo`: las que la ruta deja sin plazo de resolución, que no se evalúan.
+ */
+function relojesDeLasRegistradas(
   db: Db,
-  hitos: AvisosHitos,
-  now: Date = new Date(),
-  retryDelayMs = 5_000,
-): SilencioResult {
-  if (isLoregFrozen(now)) {
-    return {
-      transitioned: [],
-      skippedFrozen: true,
-      checked: 0,
-      sinFechaLegible: [],
-      sinCalendario: [],
-      avisos: Promise.resolve({ avisadas: 0, fallidas: 0 }),
-    }
-  }
+  now: Date,
+): {
+  revisadas: number
+  relojes: Array<{ queja: QuejaRow; reloj: RelojDelPlazo }>
+  sinPlazo: string[]
+} {
   const rows = db
     .prepare(
       // El plazo legal corre sobre lo que se PRESENTÓ en la sede, esté publicado
@@ -110,11 +115,8 @@ export function checkSilencio(
     )
     .all() as QuejaRow[]
 
-  const transitioned: QuejaRow[] = []
-  const sinFechaLegible: string[] = []
-  const sinCalendario: Array<{ id: string; anio: number }> = []
-  // El plazo de cada una viaja con ella hasta el aviso: el aviso no lo recalcula.
-  const avisos: Array<{ queja: QuejaRow; plazoDias: number }> = []
+  const relojes: Array<{ queja: QuejaRow; reloj: RelojDelPlazo }> = []
+  const sinPlazo: string[] = []
   for (const r of rows) {
     const routing = routeUsingLocalOfficials({
       title: r.title,
@@ -126,7 +128,7 @@ export function checkSilencio(
       // No se inventa un plazo. El `?? 90` que había aquí convertía «no sé
       // cuánto» en tres meses y pico, y esto es lo que decide que una queja
       // pase a silencio administrativo: un valor por defecto lo haría callando.
-      console.error(`[cron] ${r.id} sin plazo de resolución en la ruta: no se evalúa`)
+      sinPlazo.push(r.id)
       continue
     }
     // Silencio negativo only — positive silencio means the queja is
@@ -148,7 +150,38 @@ export function checkSilencio(
     // Y si ese último día es inhábil, el plazo sigue hasta el primer hábil
     // siguiente (art. 30.5): hasta el 29-09-2026 esto no se aplicaba, y un plazo
     // que acababa en sábado pasaba a silencio el domingo.
-    const reloj = relojDelPlazo(limite, r.registered_at, now)
+    relojes.push({ queja: r, reloj: relojDelPlazo(limite, r.registered_at, now) })
+  }
+  return { revisadas: rows.length, relojes, sinPlazo }
+}
+
+export function checkSilencio(
+  db: Db,
+  hitos: AvisosHitos,
+  now: Date = new Date(),
+  retryDelayMs = 5_000,
+): SilencioResult {
+  if (isLoregFrozen(now)) {
+    return {
+      transitioned: [],
+      skippedFrozen: true,
+      checked: 0,
+      sinFechaLegible: [],
+      sinCalendario: [],
+      avisos: Promise.resolve({ avisadas: 0, fallidas: 0 }),
+    }
+  }
+  const { revisadas, relojes, sinPlazo } = relojesDeLasRegistradas(db, now)
+  for (const id of sinPlazo) {
+    console.error(`[cron] ${id} sin plazo de resolución en la ruta: no se evalúa`)
+  }
+
+  const transitioned: QuejaRow[] = []
+  const sinFechaLegible: string[] = []
+  const sinCalendario: Array<{ id: string; anio: number }> = []
+  // El plazo de cada una viaja con ella hasta el aviso: el aviso no lo recalcula.
+  const avisos: Array<{ queja: QuejaRow; plazoDias: number }> = []
+  for (const { queja: r, reloj } of relojes) {
     if (reloj.cuenta === 'sin-fecha') {
       sinFechaLegible.push(r.id)
       continue
@@ -191,10 +224,47 @@ export function checkSilencio(
   return {
     transitioned,
     skippedFrozen: false,
-    checked: rows.length,
+    checked: revisadas,
     sinFechaLegible,
     sinCalendario,
     avisos: avisados,
+  }
+}
+
+type RelojSinCalendario = Extract<RelojDelPlazo, { cuenta: 'sin-calendario' }>
+
+/**
+ * Los plazos que el cron no podrá decidir, para /health (services/health.ts): las
+ * registradas cuyo plazo de resolución acaba en un año sin calendario de días
+ * inhábiles, con el día nominal más próximo. El cron sólo lo dice en su log, y
+ * sólo pasado ese día; /health lo dice antes (`AVISO_SIN_CALENDARIO_DIAS`), y
+ * ops-alarm lo pone en rojo.
+ *
+ * No toca nada, y no escribe en el log salvo si falla: lo lee cada petición a
+ * /health, y Fly pregunta cada 30 segundos. Tampoco mira la suspensión electoral:
+ * con ella el cron no evalúa nada, pero el año hará falta igual cuando acabe.
+ *
+ * null si no puede contar. Una excepción aquí rechazaría el manejador de /health
+ * y tumbaría el proceso en cada comprobación de Fly; null lo dice en su lugar.
+ */
+export function plazosSinCalendario(db: Db, now: Date = new Date()): PlazosSinCalendario | null {
+  try {
+    const bloqueados = relojesDeLasRegistradas(db, now).relojes.flatMap(
+      ({ reloj }): RelojSinCalendario[] => (reloj.cuenta === 'sin-calendario' ? [reloj] : []),
+    )
+    const primero = bloqueados.reduce<RelojSinCalendario | null>(
+      (antes, r) => (antes === null || r.nominal < antes.nominal ? r : antes),
+      null,
+    )
+    return {
+      quejas: bloqueados.length,
+      anios: [...new Set(bloqueados.map((r) => r.anio))].sort((a, b) => a - b),
+      primerNominal: primero?.nominal ?? null,
+      quedanAlPrimero: primero?.quedanAlNominal ?? null,
+    }
+  } catch (err) {
+    console.error('[cron] /health no pudo contar los plazos sin calendario:', err)
+    return null
   }
 }
 

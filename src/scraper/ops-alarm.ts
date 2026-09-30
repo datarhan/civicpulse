@@ -140,7 +140,11 @@ export function evaluarAlarma(e: EntradaAlarma): Alert[] {
         e.bot.degradado.length > 0
           ? e.bot.degradado.join(' · ')
           : `\`/health\` dice «${e.bot.estado}» sin decir qué falta.`,
-      remedy: 'Revisa los secretos del bot en Fly (`fly secrets list`) y su `/health`.',
+      // No toda línea es un secreto que falta: las de la cola de revisión o las
+      // de un plazo sin calendario de inhábiles traen su propio remedio, y uno
+      // que mandara siempre a Fly mandaría a buscar donde no es.
+      remedy:
+        'Cada línea dice qué falta; si es un secreto, `fly secrets list` en munigraph-ribarroja.',
     })
   }
 

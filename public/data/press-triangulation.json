@@ -1,18 +1,18 @@
 {
-  "generatedAt": "2026-09-30T04:48:02.210Z",
+  "generatedAt": "2026-09-30T10:54:41.322Z",
   "clusters": [
     {
-      "clusterId": "1hy1xq8",
+      "clusterId": "107j3y8",
       "articleIds": [
-        "1lnhg7g",
-        "1t1ctq4"
+        "153mirg",
+        "1xjj30k"
       ],
       "outlets": [
         "Ayuntamiento de Riba-roja de Túria",
-        "levante-emv.com"
+        "Valencia Plaza"
       ],
-      "earliestDate": "2026-08-31T07:00:00.000Z",
-      "latestDate": "2026-08-31T09:04:15.000Z",
+      "earliestDate": "2026-09-11T07:00:00.000Z",
+      "latestDate": "2026-09-11T08:10:15.000Z",
       "verdictMix": {
         "verificado": 0,
         "parcial": 0,
@@ -67,9 +67,9 @@
     "triangulated3Plus": 0
   },
   "builtFrom": {
-    "plenos-agendas.json": "6acc99819674",
+    "plenos-agendas.json": "ecdd6e338508",
     "press-claims-verified.json": "5f440b22045d",
-    "press.json": "939fd3d22cde",
+    "press.json": "618bce123884",
     "promises.json": "69c1f099a4a5"
   }
 }

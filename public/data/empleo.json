@@ -1,18 +1,18 @@
 {
-  "generatedAt": "2026-09-29T11:02:34.796Z",
+  "generatedAt": "2026-09-30T10:52:34.852Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 60,
-    "openTotal": 59,
-    "inRibaRoja": 37,
-    "closingSoon": 15,
-    "withDetail": 60,
+    "total": 61,
+    "openTotal": 60,
+    "inRibaRoja": 38,
+    "closingSoon": 12,
+    "withDetail": 61,
     "byMonth": {
-      "2026-09": 23,
+      "2026-09": 24,
       "2026-08": 27,
       "2026-07": 3,
       "2026-06": 1,
@@ -23,6 +23,153 @@
     }
   },
   "items": [
+    {
+      "id": "2544",
+      "fo": 2544,
+      "codigo": "2026/00243",
+      "titulo": "MECÁNICO DE AUTOMOCIÓN",
+      "publishedAt": "2026-09-30",
+      "deadline": "2026-11-30",
+      "location": "Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2544",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00243"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "MECÁNICO DE AUTOMOCIÓN"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Se precisa mecánico de automóvil, con grado medio o grado superior de automoción, valorable experiencia. Imprescindible carnet de conducir."
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "De 1 a 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Horario",
+            "value": "De lunes a jueves de 8:30-14:00 y 15:30-18:30 Los viernes de 7:00-15:00"
+          },
+          {
+            "label": "Salario",
+            "value": "SEGUN CONVENIO"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "De 1 a 6 meses",
+        "numPuestos": "1",
+        "observaciones": "Se precisa mecánico de automóvil, con grado medio o grado superior de automoción, valorable experiencia. Imprescindible carnet de conducir.",
+        "jornada": "Completa",
+        "horario": "De lunes a jueves de 8:30-14:00 y 15:30-18:30 Los viernes de 7:00-15:00",
+        "salario": "SEGUN CONVENIO",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2543",
+      "fo": 2543,
+      "codigo": "2026/00242",
+      "titulo": "Cosedor/a (DEKRA Empleo ETT)",
+      "publishedAt": "2026-09-29",
+      "deadline": "2026-11-29",
+      "location": "Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2543",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00242"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Cosedor/a"
+          },
+          {
+            "label": "Empresa",
+            "value": "DEKRA Empleo ETT"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO A TIEMPO PARCIAL"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "De 1 a 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno mañana"
+          },
+          {
+            "label": "Horario",
+            "value": "Lunes a Viernes 06:00h a 14:15h Lunes a Jueves y Viernes 06:00h a 14:00h"
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          },
+          {
+            "label": "Funciones",
+            "value": "- Manejo de máquinas de costura triple arrastre. - Manipulación de piezas grandes de telas duras y pesadas, para ponerlas en las máquina y coserla."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO A TIEMPO PARCIAL",
+        "duracion": "De 1 a 6 meses",
+        "numPuestos": "1",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "jornada": "Completa Turnos: Turno mañana",
+        "horario": "Lunes a Viernes 06:00h a 14:15h Lunes a Jueves y Viernes 06:00h a 14:00h",
+        "salario": "Según convenio",
+        "funciones": "- Manejo de máquinas de costura triple arrastre. - Manipulación de piezas grandes de telas duras y pesadas, para ponerlas en las máquina y coserla.",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
     {
       "id": "2541",
       "fo": 2541,
@@ -104,7 +251,7 @@
       "id": "2542",
       "fo": 2542,
       "codigo": "2026/00240",
-      "titulo": "PERSONAL DE LIMPIEZA",
+      "titulo": "Personal de limpieza",
       "publishedAt": "2026-09-29",
       "deadline": "2026-11-29",
       "location": "Pobla Vallbona, Líria, Villamarchante, Torrente, Parque Tecnológico Riba-roja de Túria",
@@ -120,11 +267,11 @@
           },
           {
             "label": "Nombre de la oferta",
-            "value": "PERSONAL DE LIMPIEZA"
+            "value": "Personal de limpieza"
           },
           {
             "label": "Observaciones",
-            "value": "Personal de limpieza para Comunidades de vecinos y Casas particulares"
+            "value": "Personal de limpieza para Comunidades de vecinos y Casas particulares Requiere vehículo propio"
           },
           {
             "label": "Tipo de contrato",
@@ -158,7 +305,7 @@
         "tipoContrato": "CONTRATO DE OBRA O SERVICIO DETERMINADO",
         "duracion": "De 1 a 6 meses",
         "numPuestos": "2",
-        "observaciones": "Personal de limpieza para Comunidades de vecinos y Casas particulares",
+        "observaciones": "Personal de limpieza para Comunidades de vecinos y Casas particulares Requiere vehículo propio",
         "horario": "11,5 horas semanales con posibilidad de media jornada",
         "salario": "Según convenio",
         "vehiculo": "Sí",
@@ -232,96 +379,6 @@
         "horario": "Lunes: 12:00-16:00h Miércoles: 12:00-16:00h Jueves: 15:30-18:00h Viernes: 12:00-16:00h",
         "salario": "415 € brutos con 14 pagas",
         "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2516",
-      "fo": 2516,
-      "codigo": "2026/00215",
-      "titulo": "Auxiliar de devoluciones y gestión de cascos",
-      "publishedAt": "2026-09-22",
-      "deadline": "2026-11-22",
-      "location": "Poligono Logistico Valencia (Ribarroja de Turia) Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2516",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00215"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Auxiliar de devoluciones y gestión de cascos"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Se trata de un puesto de jornada completa que combina tareas de manipulación y revisión de piezas de recambio de camión con tareas sencillas de gestión informática. Es necesario tener capacidad para manipular piezas que pueden pesar aproximadamente entre 10 y 20 kg, utilizando los medios disponibles para realizar esta tarea de forma segura. No se requiere formación específica ni experiencia previa en el sector, ya que se proporcionará formación sobre los procedimientos de trabajo y la gestión de devoluciones y cascos."
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "COMERCIO AL POR MAYOR Y AL POR MENOR; REPARACIÓN DE VEHÍCULOS DE MOTOR Y MOTOCICLETAS"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "PEONES"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Poligono Logistico Valencia (Ribarroja de Turia), Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno partido"
-          },
-          {
-            "label": "Horario",
-            "value": "De lunes a viernes, de 08:30 a 13:30 y de 14:30 a 17:30"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          },
-          {
-            "label": "Funciones",
-            "value": "Recepción y revisión de piezas usadas (cascos) procedentes de devoluciones de clientes y delegaciones. Comprobación del estado de las piezas y de su embalaje, identificación y etiquetado de los cascos, colocación y organización del material en almacén y registro de la información en el sistema informático. Realización de abonos y otras tareas administrativas sencillas relacionadas con la gestión de devoluciones. Manipulación de piezas de recambio de camión, algunas de ellas de entre 10 y 20 kg."
-          },
-          {
-            "label": "Habilidades",
-            "value": "Persona responsable, ordenada y cuidadosa. Capacidad para realizar trabajos manuales y manipular piezas de recambio de camión. Capacidad para seguir instrucciones y procedimientos establecidos. Se valorará buena disposición para aprender y trabajar en equipo."
-          },
-          {
-            "label": "Informática",
-            "value": "Manejo básico de ordenador. Se valorará experiencia con Excel y facilidad para aprender programas informáticos de gestión."
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "1",
-        "categoria": "PEONES",
-        "observaciones": "Se trata de un puesto de jornada completa que combina tareas de manipulación y revisión de piezas de recambio de camión con tareas sencillas de gestión informática. Es necesario tener capacidad para manipular piezas que pueden pesar aproximadamente entre 10 y 20 kg, utilizando los medios disponibles para realizar esta tarea de forma segura. No se requiere formación específica ni experiencia previa en el sector, ya que se proporcionará formación sobre los procedimientos de trabajo y la gestión de devoluciones y cascos.",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46190",
-        "jornada": "Completa Turnos: Turno partido",
-        "horario": "De lunes a viernes, de 08:30 a 13:30 y de 14:30 a 17:30",
-        "salario": "Según convenio",
-        "funciones": "Recepción y revisión de piezas usadas (cascos) procedentes de devoluciones de clientes y delegaciones. Comprobación del estado de las piezas y de su embalaje, identificación y etiquetado de los cascos, colocación y organización del material en almacén y registro de la información en el sistema informático. Realización de abonos y otras tareas administrativas sencillas relacionadas con la gestión de devoluciones. Manipulación de piezas de recambio de camión, algunas de ellas de entre 10 y 20 kg.",
         "ocupaciones": []
       }
     },

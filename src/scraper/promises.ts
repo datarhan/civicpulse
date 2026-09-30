@@ -41,6 +41,23 @@ export type Status = (typeof ALLOWED_STATUSES)[number]
 
 export const V1_STATUSES = new Set<Status>(['documentada', 'en-verificacion'])
 
+/**
+ * The three "progress" statuses a status-change draft may propose. This is a
+ * deliberate subset of ALLOWED_STATUSES: the miner only ever advances a promise
+ * along the fulfilment axis (documentada → en-progreso → parcial → cumplida).
+ * It never proposes no-ejecutada / inviable — those are libel-heavy negative
+ * judgements reserved for a human curator.
+ *
+ * Vive aquí y no en promise-draft.ts, cuyo validador la aplica, porque
+ * /metodologia la lee para decir qué propone el motor, y promise-draft.ts
+ * arrastra hash.ts —node:crypto—, que no entra en el paquete del navegador.
+ */
+export const PROGRESS_STATUSES: readonly ['en-progreso', 'parcial', 'cumplida'] = [
+  'en-progreso',
+  'parcial',
+  'cumplida',
+]
+
 export const ALLOWED_KINDS = [
   'programa-electoral',
   'compromiso-investidura',

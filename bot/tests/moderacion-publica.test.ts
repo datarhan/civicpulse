@@ -228,8 +228,8 @@ const NO_PUBLICOS: Record<string, string> = {
   'services/avisos-admin.ts:listarPendientes': 'la cola de revisión, para /pendientes',
   'services/avisos-admin.ts:avisosQueFaltan':
     'el aviso a su autor de lo que se decidió sobre la suya, publicada o no',
-  'services/cron.ts:checkSilencio':
-    'el plazo legal corre sobre lo presentado en la sede, publicado o no; el aviso, a quien modera y sin su texto',
+  'services/cron.ts:relojesDeLasRegistradas':
+    'el plazo legal corre sobre lo presentado en la sede, publicado o no; el aviso del cron, a quien modera y sin su texto, y /health sólo cuenta cuántas y el día nominal más próximo',
 }
 
 describe('ningún lector nuevo filtra sólo por deleted_at', () => {
