@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-09-29T05:11:41.317Z",
+  "generatedAt": "2026-09-30T05:45:32.548Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. Los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, salvo los que llevan la firma de una persona, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -579,7 +579,7 @@
       "plenoId": "10yl550",
       "plenoDate": "2026-05-11",
       "title": "Debate de educación en el pleno del 2026-05-11 e infraestructuras de formación en Riba-roja de Túria",
-      "summary": "Durante la sesión, un grupo no identificado señala dificultades con la entrega del conservatorio. Por su parte, el PSOE manifiesta que se deniega al municipio contar con un centro de formación. En relación con estas cuestiones, el registro municipal incluye la licitación del \"Contrato privado de arrendamiento bien inmueble para dotar de aulas adicionales para el Conservatorio de Música y Danza · Ayuntamiento de Riba-roja de Túria · Construcciones Bodí, \".",
+      "summary": "Durante la sesión, un grupo no identificado señala dificultades con la entrega del conservatorio, y el PSOE se refiere a un centro de formación para 600 alumnos; otra afirmación suya sobre ese centro no se reproduce aquí, porque ningún registro municipal la respalda ni la desmiente. El registro municipal de contratación recoge, de 2018, el arrendamiento de un inmueble para dotar de aulas adicionales al Conservatorio de Música y Danza; ninguna de las citas lo menciona.",
       "severity": "informational",
       "sourceClaimIds": [
         "10yl550-325-cit-0907e6",
@@ -665,6 +665,14 @@
           "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-10T12:54:10.485Z"
+        },
+        {
+          "field": "summary",
+          "original": "Durante la sesión, un grupo no identificado señala dificultades con la entrega del conservatorio. Por su parte, el PSOE manifiesta que se deniega al municipio contar con un centro de formación. En relación con estas cuestiones, el registro municipal incluye la licitación del \"Contrato privado de arrendamiento bien inmueble para dotar de aulas adicionales para el Conservatorio de Música y Danza · Ayuntamiento de Riba-roja de Túria · Construcciones Bodí, \".",
+          "corrected": "Durante la sesión, un grupo no identificado señala dificultades con la entrega del conservatorio, y el PSOE se refiere a un centro de formación para 600 alumnos; otra afirmación suya sobre ese centro no se reproduce aquí, porque ningún registro municipal la respalda ni la desmiente. El registro municipal de contratación recoge, de 2018, el arrendamiento de un inmueble para dotar de aulas adicionales al Conservatorio de Música y Danza; ninguna de las citas lo menciona.",
+          "reason": "El sumario ponía en boca del PSOE, con otras palabras, lo que dice una cita que la puerta editorial retiene por ser una acusación que ningún registro respalda, y presentaba «en relación con estas cuestiones» un arrendamiento de 2018, con el extracto crudo del registro pegado a su título. Se describe sin reproducir la acusación y se fecha el contrato. Señalamientos de la revisión de superficies del 29-09-2026.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:45:31.172Z"
         }
       ]
     },
@@ -862,7 +870,7 @@
       "plenoId": "10yl550",
       "plenoDate": "2026-05-11",
       "title": "Debate sobre seguridad en Riba-roja de Túria en el pleno del 2026-05-11",
-      "summary": "Durante la sesión, el PSOE manifiesta discrepancias en torno a los fondos de protección civil y afirma, con sus propias reservas —«por lo que entiendo», «al parecer»—, que una moción habría movido partidas hacia trabajos técnicos policiales. Por su parte, el PP se refiere a la creación de una policía de urbanización en el municipio, y un grupo no identificado menciona infraestructuras en zonas inundables. En el registro municipal de contratación consta la licitación bajo el título \"Un vehículo protección civil.\".",
+      "summary": "Durante la sesión, PP y PSOE se cruzan reproches sobre una enmienda del PP a los fondos de protección civil; esas intervenciones no se reproducen aquí, porque ningún registro municipal las respalda ni las desmiente. Además, el PP se refiere a la creación de una policía de urbanización en el municipio, y un grupo no identificado menciona infraestructuras en zonas inundables. En el registro municipal de contratación consta la licitación bajo el título \"Un vehículo protección civil.\".",
       "severity": "informational",
       "sourceClaimIds": [
         "10yl550-092-acu-ea9d47",
@@ -959,6 +967,14 @@
           "reason": "La intervención no es del PSOE: la presidencia concede la palabra al portavoz popular, que reprocha al gobierno haber votado contra la enmienda del PP (transcripción y vídeo, 4.014–4.150 s).",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-09-29T05:11:41.122Z"
+        },
+        {
+          "field": "summary",
+          "original": "Durante la sesión, el PSOE manifiesta discrepancias en torno a los fondos de protección civil y afirma, con sus propias reservas —«por lo que entiendo», «al parecer»—, que una moción habría movido partidas hacia trabajos técnicos policiales. Por su parte, el PP se refiere a la creación de una policía de urbanización en el municipio, y un grupo no identificado menciona infraestructuras en zonas inundables. En el registro municipal de contratación consta la licitación bajo el título \"Un vehículo protección civil.\".",
+          "corrected": "Durante la sesión, PP y PSOE se cruzan reproches sobre una enmienda del PP a los fondos de protección civil; esas intervenciones no se reproducen aquí, porque ningún registro municipal las respalda ni las desmiente. Además, el PP se refiere a la creación de una policía de urbanización en el municipio, y un grupo no identificado menciona infraestructuras en zonas inundables. En el registro municipal de contratación consta la licitación bajo el título \"Un vehículo protección civil.\".",
+          "reason": "Desde que la cita [0] pasó al PP, la única cita del PSOE no menciona la protección civil, y el sumario invertía el sentido del movimiento de fondos que esa intervención describe (transcripción vigente, en valencià, 4.378–4.399 s; la presidencia lo precisa en 4.529–4.547 s). Las reservas que ponía entre comillas eran la traducción del motor sustituido, no palabras del hablante. Las dos citas del intercambio las retiene la puerta editorial, así que el sumario dice que hubo reproches sin reproducirlos, como ya hace otra ficha de esta misma sesión.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:45:29.431Z"
         }
       ]
     },
@@ -1231,7 +1247,7 @@
       "plenoId": "k4olcs",
       "plenoDate": "2026-04-20",
       "title": "Debate sobre transparencia y el sistema del salón de plenos en Riba-roja de Túria (2026-04-20)",
-      "summary": "La sesión aprobó una actuación de cartelería digital por 35.252,87 euros junto al sistema de debate, captura y grabación de vídeo del salón de plenos. Hubo además una discrepancia sobre el sentido de los informes técnicos de intervención y sobre el deber de dar cuenta de ellos; esas intervenciones no se reproducen aquí porque ningún registro municipal las respalda ni las desmiente.",
+      "summary": "La sesión aprobó una actuación de cartelería digital por 35.252,87 euros junto al sistema de debate, captura y grabación de vídeo del salón de plenos. Hubo además una discrepancia sobre el sentido de los informes técnicos de intervención, que no se reproduce aquí porque ningún registro municipal la respalda ni la desmiente, y una intervención sin grupo identificado sostiene que no había obligación de dar cuenta de ese informe.",
       "severity": "informational",
       "sourceClaimIds": [
         "k4olcs-019-cit-947479",
@@ -1244,11 +1260,6 @@
           "text": "cartelería digital por importe de 35.252,87 y la actuación 2, sistema de debate, captura y grabación de vídeo y control del salón de plenos municipales.",
           "speakerGroup": null,
           "sourceClaimId": "k4olcs-019-cit-947479"
-        },
-        {
-          "text": "Se ha aprobado por este hecho, a vuestro favor, y 8 abstenciones Grupo Socialista, Partido Popular Vox Escalona y Podem",
-          "speakerGroup": null,
-          "sourceClaimId": "k4olcs-019-acu-940acd"
         },
         {
           "text": "los informes técnicos de la intervención son desfavorables, son negativos",
@@ -1328,6 +1339,22 @@
           "reason": "El sumario reproducía una valoración de informes técnicos que la puerta editorial retiene por no estar anclada en ningún registro.",
           "editor": "Sergei Lutchenko",
           "correctedAt": "2026-08-11T08:25:44.388Z"
+        },
+        {
+          "field": "summary",
+          "original": "La sesión aprobó una actuación de cartelería digital por 35.252,87 euros junto al sistema de debate, captura y grabación de vídeo del salón de plenos. Hubo además una discrepancia sobre el sentido de los informes técnicos de intervención y sobre el deber de dar cuenta de ellos; esas intervenciones no se reproducen aquí porque ningún registro municipal las respalda ni las desmiente.",
+          "corrected": "La sesión aprobó una actuación de cartelería digital por 35.252,87 euros junto al sistema de debate, captura y grabación de vídeo del salón de plenos. Hubo además una discrepancia sobre el sentido de los informes técnicos de intervención, que no se reproduce aquí porque ningún registro municipal la respalda ni la desmiente, y una intervención sin grupo identificado sostiene que no había obligación de dar cuenta de ese informe.",
+          "reason": "La reclasificación del 29-09 sacó de la puerta editorial la intervención sobre el deber de dar cuenta del informe, que desde entonces se imprime en la ficha; el sumario seguía diciendo que ninguna de las dos se reproducía. Se describe la que se imprime, y la otra sigue retenida.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:45:30.527Z"
+        },
+        {
+          "field": "quote.1",
+          "original": "cita · sha256:1aa5ef4cea6c",
+          "corrected": "retirada del hallazgo",
+          "reason": "Cita que la puerta ya no retiene desde la reclasificación del 29-09 y cuyo literal es la traducción del motor sustituido: tal como se lee, cuenta entre las abstenciones a un grupo que la transcripción vigente no cuenta entre ellas (1.700–1.711 s). El sumario no la utiliza.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:45:30.741Z"
         }
       ]
     },
@@ -1397,8 +1424,8 @@
       "id": "f-2026-03-16-cit-56214f",
       "plenoId": "ma87e0",
       "plenoDate": "2026-03-16",
-      "title": "Centro de Salud · suministro puntual registrado, no la ampliación mencionada en el discurso",
-      "summary": "En la intervención se afirma que el municipio 'no tiene el Centro de Salud' en el sentido de ampliación o nueva dotación esperada. La base municipal de contratación sí registra un contrato menor para suministro de una carpa de triaje en la zona exterior del Centro de Salud — es una dotación puntual que no equivale a la inversión que el orador echa en falta.",
+      "title": "Centro de Salud · suministro puntual registrado, no el proyecto que reclama el discurso",
+      "summary": "En la intervención, dirigida a quienes gobiernan la Generalitat, se cuenta el centro de salud entre los proyectos aprobados que el municipio sigue sin tener, junto al metro y el plan Edificant. La base municipal de contratación registra un contrato menor para suministro de una carpa de triaje en la zona exterior del Centro de Salud: una dotación puntual, no el proyecto que se reclama.",
       "severity": "informational",
       "sourceClaimIds": [
         "ma87e0-195-cit-56214f"
@@ -1446,6 +1473,22 @@
           "reason": "el documento cotejado es un contrato menor de suministro, no una obra; el título contradecía su propio resumen",
           "editor": "Sergei Lutchenko",
           "correctedAt": "2026-08-12T18:00:50.293Z"
+        },
+        {
+          "field": "summary",
+          "original": "En la intervención se afirma que el municipio 'no tiene el Centro de Salud' en el sentido de ampliación o nueva dotación esperada. La base municipal de contratación sí registra un contrato menor para suministro de una carpa de triaje en la zona exterior del Centro de Salud — es una dotación puntual que no equivale a la inversión que el orador echa en falta.",
+          "corrected": "En la intervención, dirigida a quienes gobiernan la Generalitat, se cuenta el centro de salud entre los proyectos aprobados que el municipio sigue sin tener, junto al metro y el plan Edificant. La base municipal de contratación registra un contrato menor para suministro de una carpa de triaje en la zona exterior del Centro de Salud: una dotación puntual, no el proyecto que se reclama.",
+          "reason": "El sumario hacía decir a la intervención que el municipio no tiene centro de salud «en el sentido de ampliación», entre comillas simples que ya no son el literal publicado. En la transcripción, quien habla reprocha a quienes gobiernan la Generalitat que no haya llegado un centro de salud ya aprobado, en una enumeración con el metro y el plan Edificant (7.422–7.436 s); nadie habla de ampliación. Señalamiento de la revisión de superficies del 29-09-2026.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:45:31.379Z"
+        },
+        {
+          "field": "title",
+          "original": "Centro de Salud · suministro puntual registrado, no la ampliación mencionada en el discurso",
+          "corrected": "Centro de Salud · suministro puntual registrado, no el proyecto que reclama el discurso",
+          "reason": "El titular hablaba de una ampliación que el discurso no menciona: lo que reclama es un centro de salud aprobado que no ha llegado (transcripción, 7.422–7.436 s).",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:45:31.637Z"
         }
       ]
     },
@@ -1733,7 +1776,7 @@
       "plenoId": "19gax3o",
       "plenoDate": "2026-01-19",
       "title": "Debate sobre infraestructuras deportivas en el pleno de Riba-roja de Túria del 2026-01-19",
-      "summary": "El PSOE señala que la construcción de la piscina municipal se inició en 2005 y se inauguró en diciembre de 2012. Por su parte, un grupo no identificado sostiene que otro grupo votó en contra de ese pabellón en su día; la ficha lo recoge como acusación sin contrastar, no como votación documentada.",
+      "summary": "El PSOE señala que la construcción de la piscina municipal se inició en 2005 y se inauguró en diciembre de 2012. Por su parte, un grupo no identificado sostiene que otro grupo votó en su día en contra del pabellón, un edificio distinto de la piscina; la ficha lo recoge como acusación sin contrastar, no como votación documentada.",
       "severity": "informational",
       "sourceClaimIds": [
         "19gax3o-149-cit-3fd230",
@@ -1831,6 +1874,14 @@
           "reason": "El resumen decía «sobre la cual se emitieron votos en contra en años anteriores»: una pasiva impersonal que se lee como hecho de registro. Las dos citas que lo sostienen son acusaciones dirigidas a otro grupo («vostès votaren en contra») y la propia ficha las marca «acusación no contrastada». Se devuelve a estilo indirecto y se nombra la marca que ya aparece debajo. Lo señaló review:surfaces; corrección instruida por el propietario del sitio.",
           "editor": "claude-opus-5",
           "correctedAt": "2026-08-14T08:51:07.027Z"
+        },
+        {
+          "field": "summary",
+          "original": "El PSOE señala que la construcción de la piscina municipal se inició en 2005 y se inauguró en diciembre de 2012. Por su parte, un grupo no identificado sostiene que otro grupo votó en contra de ese pabellón en su día; la ficha lo recoge como acusación sin contrastar, no como votación documentada.",
+          "corrected": "El PSOE señala que la construcción de la piscina municipal se inició en 2005 y se inauguró en diciembre de 2012. Por su parte, un grupo no identificado sostiene que otro grupo votó en su día en contra del pabellón, un edificio distinto de la piscina; la ficha lo recoge como acusación sin contrastar, no como votación documentada.",
+          "reason": "«Ese pabellón» remitía a la piscina de la frase anterior, y las intervenciones que sostienen la acusación hablan de otro edificio: separan el pabellón del complejo inaugurado en 2013 (transcripción, 6.491–6.506 s). Señalamiento de la revisión de superficies del 29-09-2026.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:45:30.969Z"
         }
       ]
     },
@@ -1839,7 +1890,7 @@
       "plenoId": "19gax3o",
       "plenoDate": "2026-01-19",
       "title": "Pleno del 2026-01-19: Debate sobre urbanismo",
-      "summary": "En la sesión del pleno del 19 de enero de 2026, el grupo PSOE afirmó que «la parte de la reconstrucción, aunque los contratos no se hacen así, sino a través de trazas». Por su parte, un grupo no identificado señaló que se basan en fondos europeos para la reconstrucción tras la DANA. Se atribuye al PP la mención de subsanar problemas en el pabellón y el complejo esportivo, con una cita que no consta en la transcripción vigente.",
+      "summary": "En la sesión del pleno del 19 de enero de 2026, el grupo PSOE afirmó que «la parte de la reconstrucción, aunque los contratos no se hacen así, sino a través de trazas». Por su parte, un grupo no identificado señaló que se basan en fondos europeos para la reconstrucción tras la DANA, y otra intervención sin grupo identificado se refiere a subsanar los problemas del pabellón y del complejo deportivo.",
       "severity": "informational",
       "sourceClaimIds": [
         "19gax3o-016-cit-cc8758",
@@ -1859,8 +1910,8 @@
           "sourceClaimId": "19gax3o-067-cit-0c2099"
         },
         {
-          "text": "para subsanar los problemas que tiene el pabellón y el complejo esportivo",
-          "speakerGroup": "PP",
+          "text": "per a subsanar els problemes que tenen el pavelló i el complex esportiu",
+          "speakerGroup": null,
           "sourceClaimId": "19gax3o-114-cit-b7641b"
         }
       ],
@@ -1926,6 +1977,30 @@
           "reason": "Se retira la frase que atribuía a VOX denunciar la falta de una agenda de reconstrucción. Esta ficha no lleva ninguna cita de VOX, y la frase venía de una transcripción ya retirada que deformó el pasaje: en la vigente (segundos 3175 a 3405) VOX rechaza la agenda que se votaba y pide un plan nacional, que es lo contrario de echarla en falta. Lo señaló la revisión lectora el 21-09-2026.",
           "editor": "claude-fable-5.1",
           "correctedAt": "2026-09-21T10:48:44.673Z"
+        },
+        {
+          "field": "quote.2.speakerGroup",
+          "original": "PP",
+          "corrected": "sin identificar",
+          "reason": "Misma intervención que la cita [0] de f-2026-01-19-afi-5238db: la presidencia concede ese turno a otro grupo, y el grupo al que se atribuía había anunciado su abstención en un turno anterior del mismo punto (transcripción, 5.600–5.762 s). El grupo que corresponde tiene un solo concejal, así que se retira la atribución en lugar de sustituirla.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:45:29.870Z"
+        },
+        {
+          "field": "quote.2.text",
+          "original": "para subsanar los problemas que tiene el pabellón y el complejo esportivo",
+          "corrected": "per a subsanar els problemes que tenen el pavelló i el complex esportiu",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que traducía al castellano una intervención pronunciada en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero (5.735–5.762 s).",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:45:30.082Z"
+        },
+        {
+          "field": "summary",
+          "original": "En la sesión del pleno del 19 de enero de 2026, el grupo PSOE afirmó que «la parte de la reconstrucción, aunque los contratos no se hacen así, sino a través de trazas». Por su parte, un grupo no identificado señaló que se basan en fondos europeos para la reconstrucción tras la DANA. Se atribuye al PP la mención de subsanar problemas en el pabellón y el complejo esportivo, con una cita que no consta en la transcripción vigente.",
+          "corrected": "En la sesión del pleno del 19 de enero de 2026, el grupo PSOE afirmó que «la parte de la reconstrucción, aunque los contratos no se hacen así, sino a través de trazas». Por su parte, un grupo no identificado señaló que se basan en fondos europeos para la reconstrucción tras la DANA, y otra intervención sin grupo identificado se refiere a subsanar los problemas del pabellón y del complejo deportivo.",
+          "reason": "El sumario atribuía al PP una intervención que no es suya y decía que su cita no constaba en la transcripción vigente, donde sí está, en valencià (5.735–5.762 s).",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:45:30.304Z"
         }
       ]
     },
@@ -2029,7 +2104,7 @@
       "plenoId": "19gax3o",
       "plenoDate": "2026-01-19",
       "title": "Debate de urbanismo y deportes en el pleno de Riba-roja de Túria del 2026-01-19",
-      "summary": "En la sesión, el PP señala la solicitud sobre el Complejo La Malla y el PSOE afirma que se cambiará el parqué. El grupo VOX manifiesta valoraciones sobre la reconstrucción. El expediente citado inicialmente como respaldo corresponde a la pavimentación del paseo Pacadar, una actuación exterior distinta del cambio de parqué; no consta en la contratación publicada ningún expediente que documente esa obra concreta.",
+      "summary": "En la sesión, el PSOE afirma que se cambiará el parqué, y una intervención sin grupo identificado alega que los municipios afectados por la dana no tuvieron tiempo material para plasmar la convocatoria en un documento. El expediente citado inicialmente como respaldo corresponde a la pavimentación del paseo Pacadar, una actuación exterior distinta del cambio de parqué; no consta en la contratación publicada ningún expediente que documente esa obra concreta.",
       "severity": "informational",
       "sourceClaimIds": [
         "19gax3o-146-cit-8b29a9",
@@ -2047,11 +2122,6 @@
           "text": "los pueblos que estábamos en la DANA no teníamos tiempo material para plasmar en un documento la convocatoria.",
           "speakerGroup": null,
           "sourceClaimId": "19gax3o-067-cit-dcdcf6"
-        },
-        {
-          "text": "era pedir ese complejo de esportes por la malla",
-          "speakerGroup": "PP",
-          "sourceClaimId": "19gax3o-139-cit-989b94"
         }
       ],
       "crossChecked": [
@@ -2108,6 +2178,22 @@
           "reason": "Se retira un literal que no consta en ningún punto de la transcripción vigente y cuya forma, una cláusula repetida sobre sí misma, es firma de alucinación del motor que se sustituyó. El tramo de la sesión está cubierto sin huecos y el fichero vigente pesa más que el que reemplazó, así que la ausencia no es falta de cobertura. No hay en la vigente un pasaje equivalente al que reanclarla.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-10T12:54:18.018Z"
+        },
+        {
+          "field": "quote.2",
+          "original": "cita · sha256:e7b0d6dcd063",
+          "corrected": "retirada del hallazgo",
+          "reason": "El literal procede del motor sustituido y no dice lo que se oye en la transcripción vigente: allí el pasaje pertenece al turno de otro grupo y no expresa ninguna petición (6.628–6.795 s). El sumario deja de apoyarse en él.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:45:31.876Z"
+        },
+        {
+          "field": "summary",
+          "original": "En la sesión, el PP señala la solicitud sobre el Complejo La Malla y el PSOE afirma que se cambiará el parqué. El grupo VOX manifiesta valoraciones sobre la reconstrucción. El expediente citado inicialmente como respaldo corresponde a la pavimentación del paseo Pacadar, una actuación exterior distinta del cambio de parqué; no consta en la contratación publicada ningún expediente que documente esa obra concreta.",
+          "corrected": "En la sesión, el PSOE afirma que se cambiará el parqué, y una intervención sin grupo identificado alega que los municipios afectados por la dana no tuvieron tiempo material para plasmar la convocatoria en un documento. El expediente citado inicialmente como respaldo corresponde a la pavimentación del paseo Pacadar, una actuación exterior distinta del cambio de parqué; no consta en la contratación publicada ningún expediente que documente esa obra concreta.",
+          "reason": "El sumario atribuía al PP una petición sobre el complejo deportivo que sólo sostenía una cita mal transcrita de otro turno, y al grupo VOX unas valoraciones sin ninguna cita suya en la ficha desde que la que tenía se retiró el 10-08. Se describe lo que sostienen las citas que quedan.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:45:32.124Z"
         }
       ]
     },
@@ -2115,8 +2201,8 @@
       "id": "f-2026-01-19-afi-5238db",
       "plenoId": "19gax3o",
       "plenoDate": "2026-01-19",
-      "title": "Debate de los grupos PP, Compromís y un grupo no identificado en el pleno de Riba-roja de Túria del 2026-01-19",
-      "summary": "En la sesión del 19 de enero de 2026, el grupo Compromís señala su apoyo al plan de contratación de 2026. La intervención del PP anunciando voto a favor de la modificación de crédito procede de la transcripción que se sustituyó y no consta en la vigente, así que aquí se recoge con esa salvedad. Por su parte, un grupo no identificado manifiesta que existieron críticas políticas previas y una auditoría realizada entre 2006 y 2012. El registro municipal de contratación del que dispone este medio arranca en 2017, así que no recoge ningún expediente de aquel periodo.",
+      "title": "Debate sobre el plan de contratación de 2026 y una modificación de crédito en el pleno de Riba-roja de Túria del 2026-01-19",
+      "summary": "En la sesión del 19 de enero de 2026, un grupo no identificado señala su apoyo al plan de contratación de 2026. En el debate de la modificación de crédito para el pabellón y el complejo deportivo, una intervención sin grupo identificado anuncia que su grupo votará a favor; más tarde, otra aclara que la crítica política que había hecho a esa modificación no se refería a su intención de voto.",
       "severity": "informational",
       "sourceClaimIds": [
         "19gax3o-114-afi-5238db",
@@ -2126,8 +2212,8 @@
       ],
       "quotes": [
         {
-          "text": "vamos a votar a favor de esta modificación de crédito",
-          "speakerGroup": "PP",
+          "text": "anem a votar a favor d'esta modificació de crèdit",
+          "speakerGroup": null,
           "sourceClaimId": "19gax3o-114-afi-5238db"
         },
         {
@@ -2253,6 +2339,38 @@
           "reason": "El resumen enunciaba el voto anunciado por el PP al mismo nivel que el resto, cuando su cita lleva la marca de no constar en la transcripción vigente: procede del motor que se sustituyó. La salvedad pasa a la frase en vez de vivir sólo en el chip de debajo, como ya se hizo con otras dos fichas de esta misma sesión. Señalamiento de la revisión de superficies del 18-08-2026.",
           "editor": "Sergei Lutchenko",
           "correctedAt": "2026-08-18T17:58:25.774Z"
+        },
+        {
+          "field": "quote.0.speakerGroup",
+          "original": "PP",
+          "corrected": "sin identificar",
+          "reason": "La intervención no es del grupo al que se atribuía: la presidencia concede ese turno a otro grupo, y el grupo al que se atribuía había anunciado su abstención en un turno anterior del mismo punto (transcripción, 5.600–5.762 s). El grupo que corresponde tiene un solo concejal, así que se retira la atribución en lugar de sustituirla.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:45:28.554Z"
+        },
+        {
+          "field": "quote.0.text",
+          "original": "vamos a votar a favor de esta modificación de crédito",
+          "corrected": "anem a votar a favor d'esta modificació de crèdit",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que traducía al castellano una intervención pronunciada en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero (5.735–5.762 s). El reanclaje de esta sesión del 10-08 no la alcanzó, y por eso el sumario llegó a decir que la intervención no constaba en la vigente.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:45:28.763Z"
+        },
+        {
+          "field": "title",
+          "original": "Debate de los grupos PP, Compromís y un grupo no identificado en el pleno de Riba-roja de Túria del 2026-01-19",
+          "corrected": "Debate sobre el plan de contratación de 2026 y una modificación de crédito en el pleno de Riba-roja de Túria del 2026-01-19",
+          "reason": "El titular nombraba al PP entre los grupos del debate por una cita que no es suya; retirada esa atribución, ninguna cita de la ficha se atribuye al PP. Se titula por los asuntos, no por los grupos.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:45:28.980Z"
+        },
+        {
+          "field": "summary",
+          "original": "En la sesión del 19 de enero de 2026, el grupo Compromís señala su apoyo al plan de contratación de 2026. La intervención del PP anunciando voto a favor de la modificación de crédito procede de la transcripción que se sustituyó y no consta en la vigente, así que aquí se recoge con esa salvedad. Por su parte, un grupo no identificado manifiesta que existieron críticas políticas previas y una auditoría realizada entre 2006 y 2012. El registro municipal de contratación del que dispone este medio arranca en 2017, así que no recoge ningún expediente de aquel periodo.",
+          "corrected": "En la sesión del 19 de enero de 2026, un grupo no identificado señala su apoyo al plan de contratación de 2026. En el debate de la modificación de crédito para el pabellón y el complejo deportivo, una intervención sin grupo identificado anuncia que su grupo votará a favor; más tarde, otra aclara que la crítica política que había hecho a esa modificación no se refería a su intención de voto.",
+          "reason": "El sumario atribuía al PP un voto a favor que el PP no anunció —anunció su abstención— y decía que esa intervención no constaba en la transcripción vigente, donde sí está, en valencià (5.600–5.762 s). Además fundía en un solo grupo dos intervenciones distintas y distantes (6.692 y 8.546 s), leía como críticas ajenas la aclaración de quien habla sobre la suya, y fechaba entre 2006 y 2012 una auditoría que la cita retenida no fecha. El sumario deja de parafrasear esa cita, y con ella cae la frase sobre el registro de contratación, que sólo servía a aquel periodo. Y deja de nombrar al grupo al que atribuía el apoyo al plan de contratación, que tiene un solo concejal: nombrarlo identifica a esa persona por eliminación, y esa atribución no llevaba firma de curador.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:45:29.210Z"
         }
       ]
     },
@@ -2281,8 +2399,8 @@
           "sourceClaimId": "19gax3o-114-acu-961675"
         },
         {
-          "text": "un complejo que en la piscina no se puede hacer competiciones",
-          "speakerGroup": "PP",
+          "text": "un complexe que la piscina no se pot fer competicions",
+          "speakerGroup": "PSOE",
           "sourceClaimId": "19gax3o-139-cit-be1832"
         },
         {
@@ -2361,6 +2479,22 @@
           "reason": "El sumario reproducía entre comillas el literal de una cita que la puerta editorial retiene por ser una acusación que ningún registro respalda; se describe sin el literal.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-09-29T05:11:41.316Z"
+        },
+        {
+          "field": "quote.2.speakerGroup",
+          "original": "PP",
+          "corrected": "PSOE",
+          "reason": "La intervención no es del PP: pertenece al turno de la presidencia que cierra el debate del complejo deportivo, en el que se atribuye al gobierno del PP la construcción de la instalación y se la critica (transcripción, 6.628–6.795 s; la cita, 6.734–6.741 s).",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:45:32.333Z"
+        },
+        {
+          "field": "quote.2.text",
+          "original": "un complejo que en la piscina no se puede hacer competiciones",
+          "corrected": "un complexe que la piscina no se pot fer competicions",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que traducía al castellano una intervención pronunciada en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero (6.734–6.741 s).",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:45:32.547Z"
         }
       ]
     },
@@ -2976,7 +3110,7 @@
       "plenoId": "1du4rf5",
       "plenoDate": "2025-11-03",
       "title": "Pleno ordinario de Riba-roja de Túria, 2025-11-03: Debates sobre responsabilidad política y propuesta de ILP",
-      "summary": "El PP afirma que la responsabilidad en el temporal del 29 de octubre no recae exclusivamente en la Generalitat Valenciana. En el debate de una moción de apoyo a una iniciativa legislativa popular, una intervención la distingue de mociones presentadas en legislaturas anteriores. La moción conjunta debatida en el punto octavo reclama formalmente la dimisión del presidente y la vicepresidenta de la Generalitat por su gestión en el mencionado temporal.",
+      "summary": "El PP afirma que la responsabilidad en el temporal del 29 de octubre no recae exclusivamente en la Generalitat Valenciana. La moción conjunta debatida en el punto octavo, con motivo del primer aniversario de aquel temporal, reclama formalmente la dimisión del presidente y la vicepresidenta de la Generalitat por su gestión. El punto noveno fue otra moción conjunta, de apoyo a una iniciativa legislativa popular sobre la tauromaquia; en su debate, una intervención distingue esa iniciativa de mociones presentadas en legislaturas anteriores.",
       "severity": "informational",
       "sourceClaimIds": [
         "1du4rf5-115-acu-431140",
@@ -3090,6 +3224,14 @@
           "reason": "El sumario atribuía una intervención a un grupo que no la pronunció y presentaba como de un solo grupo una moción conjunta; ninguna de las dos atribuciones llevaba firma de curador (transcripción, 4.518–4.705 y 6.672–8.229 s).",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-09-29T05:11:39.596Z"
+        },
+        {
+          "field": "summary",
+          "original": "El PP afirma que la responsabilidad en el temporal del 29 de octubre no recae exclusivamente en la Generalitat Valenciana. En el debate de una moción de apoyo a una iniciativa legislativa popular, una intervención la distingue de mociones presentadas en legislaturas anteriores. La moción conjunta debatida en el punto octavo reclama formalmente la dimisión del presidente y la vicepresidenta de la Generalitat por su gestión en el mencionado temporal.",
+          "corrected": "El PP afirma que la responsabilidad en el temporal del 29 de octubre no recae exclusivamente en la Generalitat Valenciana. La moción conjunta debatida en el punto octavo, con motivo del primer aniversario de aquel temporal, reclama formalmente la dimisión del presidente y la vicepresidenta de la Generalitat por su gestión. El punto noveno fue otra moción conjunta, de apoyo a una iniciativa legislativa popular sobre la tauromaquia; en su debate, una intervención distingue esa iniciativa de mociones presentadas en legislaturas anteriores.",
+          "reason": "La frase sobre la iniciativa legislativa popular había quedado entre dos sobre el temporal y había perdido la salvedad que la separaba de él, así que invitaba a leerla como parte de ese debate. Es otro punto del orden del día: el noveno, una moción de apoyo a la ILP «No és la meua cultura», sobre la tauromaquia (orden del día de la sesión; transcripción, 6.672–6.721 s). Se ordena el sumario por puntos y se dice de qué trata.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T05:45:29.656Z"
         }
       ]
     },
