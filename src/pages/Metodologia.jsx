@@ -448,14 +448,23 @@ export default function Metodologia() {
             <EstadosPorEscalon tier={['fast-track', 'human-only']} propuestos={false} ni />: los
             asigna siempre una persona, con justificación documental.
           </li>
+          {/* Hasta el 30-09-2026 decía que las propuestas por debajo del umbral «se
+              muestran como» la caja de /promesas. No se muestran: esperan en
+              editorial/, que no se publica. La caja es la del motor de palabras
+              clave (src/scraper/promise-inference.ts), y desde ese día sólo sale
+              cuando adelantaría el estado publicado (`advancesStatus`). */}
           <li>
             <strong>Transparencia del algoritmo.</strong> Un proceso semanal (los lunes) escanea
             prensa y plenos con un modelo de lenguaje y emite <em>propuestas</em> con su cadena de
             razonamiento. Cada propuesta pasa una verificación determinista de anclaje; las que
             superan el umbral de confianza (≥0,70) y quedan ancladas a su fuente se auto-publican
-            etiquetadas como «publicada automáticamente · revisión pendiente», y las demás se
-            muestran como "propuesta automática · pendiente de revisión humana" y esperan en cola.
-            Todo lo que no sea <EstadosPorEscalon tier="auto" /> pasa siempre por una persona (ver{' '}
+            etiquetadas como «publicada automáticamente · revisión pendiente», y las demás esperan
+            en cola a que las revise una persona. La caja «propuesta automática · pendiente de
+            revisión humana» que puede llevar una ficha es otra cosa: la propuesta de un motor de
+            palabras clave que cruza a diario cada promesa con titulares de prensa y con el orden
+            del día de los plenos. Sólo aparece cuando adelantaría el estado publicado —nunca para
+            repetirlo ni para rebajarlo—, declara su confianza y no ocupa el lugar del estado. Todo
+            lo que no sea <EstadosPorEscalon tier="auto" /> pasa siempre por una persona (ver{' '}
             <a href="#auto-curacion-promesas" style={{ color: 'var(--civic)' }}>
               auto-curación
             </a>
