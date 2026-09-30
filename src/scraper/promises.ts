@@ -58,6 +58,33 @@ export const PROGRESS_STATUSES: readonly ['en-progreso', 'parcial', 'cumplida'] 
   'cumplida',
 ]
 
+/** Fulfilment ordinal for the forward-only guard: an auto status change may only
+ *  ADVANCE a promise, never regress it. documentada/en-verificacion are the
+ *  baseline (0); en-progreso(1) < parcial(2) < cumplida(3). The accusatory /
+ *  terminal statuses map to 0 so a machine change can never step "down" onto or
+ *  off them (they are curator-only anyway). */
+const PROGRESS_ORDER: Record<Status, number> = {
+  documentada: 0,
+  'en-verificacion': 0,
+  'en-progreso': 1,
+  parcial: 2,
+  cumplida: 3,
+  'no-ejecutada': 0,
+  inviable: 0,
+}
+
+/**
+ * ¿`proposed` adelanta la promesa respecto de `current`? Es la regla con la que
+ * el curador automático descarta un retroceso (`selectStatusDrafts`), y con la
+ * que /promesas decide si enseña la propuesta del motor de palabras clave: ese
+ * motor no lee el estado publicado, y su suelo, `documentada`, quiere decir «no
+ * encontré señal de avance», no «rebájala». Vive aquí, junto al enum, porque la
+ * leen los dos. Un estado que no está en el enum no adelanta nada.
+ */
+export function advancesStatus(current: Status, proposed: Status): boolean {
+  return PROGRESS_ORDER[proposed] > PROGRESS_ORDER[current]
+}
+
 export const ALLOWED_KINDS = [
   'programa-electoral',
   'compromiso-investidura',

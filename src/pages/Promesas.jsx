@@ -10,7 +10,7 @@ import {
   STATUS_TONE,
   TOPIC_LABEL,
 } from '../hooks/usePromises'
-import { V1_STATUSES } from '../scraper/promises'
+import { V1_STATUSES, advancesStatus } from '../scraper/promises'
 import { fmtDateLong } from '../lib/formatters'
 import { useT } from '../i18n'
 import { useCitationHealth, citationStatus, citationArchive } from '../hooks/useCitationHealth'
@@ -206,7 +206,18 @@ export function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
     citationStatus(citations, p.source.url) === 'dead' && !citationArchive(citations, p.source.url)
   const color = PARTY_TONE[p.party] || '#64748B'
   const fmt = fmtDateLong
-  const showSuggestion = suggestion && !frozen && suggestion.reasoning.length > 0
+  // El motor de palabras clave no lee el estado publicado, y su suelo,
+  // «documentada», quiere decir «no encontré señal de avance». Enseñado tal
+  // cual, repetía el estado de la ficha —y la caja decía «No está publicada»
+  // bajo la pastilla que lo publica— o bajaba de «en progreso», que se leía
+  // como una propuesta de rebajarla (revisión lectora, 30-09-2026). Sólo sale
+  // lo que adelantaría la promesa: la regla con la que el curador automático
+  // descarta un retroceso.
+  const showSuggestion =
+    suggestion &&
+    !frozen &&
+    suggestion.reasoning.length > 0 &&
+    advancesStatus(p.status, suggestion.proposedStatus)
   const llmItems = (llmEvidence || []).filter((e) => e.promiseId === p.id)
   const showLlm = !frozen && llmItems.length > 0
   return (
