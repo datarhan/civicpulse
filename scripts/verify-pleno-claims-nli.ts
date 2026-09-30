@@ -26,6 +26,14 @@
  * re-juzgada sin subida sale; una que no se miró se queda con su sello. Qué
  * construye cada fila está en src/scraper/entrada-de-pasada.ts.
  *
+ * Una fila se juzga con TODAS sus puntuaciones o no se juzga. Hasta el
+ * 30-09-2026 no le llegaba ninguna al verificador: el tramo se puntúa con el id
+ * global del par (`idDelPar`), el `lookup` de cada fila las devolvía con ese id
+ * y `verifyClaimWithNli` las pide por el índice. Toda fila salía «sin respaldo»
+ * —un juicio que nadie hizo— y la corrida terminaba bien, desde el primer
+ * commit (325a1c62). Por eso el parte dice cuántas puntuaciones leyó de
+ * cuántas pidió, y un par sin la suya hace salir la corrida con error (regla 2).
+ *
  * Tampoco propone subir lo que una retractación bajó: las filas cuyo veredicto
  * publicado entró por el motor o por un curador se apartan antes de puntuar, y
  * la corrida dice cuántas y de quién (`motivoParaNoProponer`).
@@ -58,6 +66,9 @@ import {
 const VERIFIED = resolve('public/data/pleno-claims-verified.json')
 const COLA = resolve(COLA_SUGERENCIAS_NLI)
 const CHUNK_CLAIMS = 400 // claims per NLI spawn (model reloads per chunk; checkpoint boundary)
+
+/** El id de un par en el lote de un tramo: su declaración y su índice en ella. */
+const idDelPar = (claimId: string, i: number | string) => `${claimId}#${i}`
 
 interface VerifiedSnapshot {
   generatedAt: string
@@ -206,9 +217,19 @@ async function main() {
     }
   }
 
-  // Cuatro cuentas por separado (regla 2): «el modelo no vio respaldo» y «el
-  // modelo no llegó a juzgarla» no pueden imprimirse igual.
-  const stats = { propuestas: 0, sinRespaldo: 0, sinJuicio: 0, contradictionFlags: 0 }
+  // Cuentas por separado (regla 2): «el modelo no vio respaldo», «no tenía
+  // candidatos que puntuar» y «sus puntuaciones no volvieron» no pueden
+  // imprimirse igual. Y los pares: cuántos se mandaron y de cuántos se leyó
+  // la puntuación.
+  const stats = {
+    propuestas: 0,
+    sinRespaldo: 0,
+    sinJuicio: 0,
+    sinPuntuar: 0,
+    contradictionFlags: 0,
+    paresEnviados: 0,
+    paresLeidos: 0,
+  }
   const flaggedIds: string[] = []
   let cola = leerCola()
   let escrita = false
@@ -250,12 +271,13 @@ async function main() {
         const sl = shortlists.get(it.claim.id)!
         sl.forEach((c, i) =>
           pairs.push({
-            id: `${it.claim.id}#${i}`,
+            id: idDelPar(it.claim.id, i),
             premise: c.snippet,
             hypothesis: it.claim.verbatim,
           }),
         )
       }
+      stats.paresEnviados += pairs.length
       const globalScores = await scoreNliPairs(pairs, opts.model ? { model: opts.model } : {})
 
       // 3. Judge each claim; an upgrade becomes a suggestion for the human queue.
@@ -263,18 +285,31 @@ async function main() {
       const sugerencias: SugerenciaDeVeredicto[] = []
       for (const it of chunk) {
         const sl = shortlists.get(it.claim.id)!
-        const lookup: NliScorer = async (ps) =>
-          new Map(
-            ps
-              .map((p) => globalScores.get(`${it.claim.id}#${p.id}`))
-              .filter((s): s is NonNullable<typeof s> => Boolean(s))
-              .map((s) => [s.id, s]),
+        // El verificador pide cada par por su índice: la puntuación se busca
+        // por el id global y se devuelve con el que pidió. Y se cuenta.
+        let leidas = 0
+        const lookup: NliScorer = async (ps) => {
+          const m = new Map(
+            ps.flatMap((p) => {
+              const s = globalScores.get(idDelPar(it.claim.id, p.id))
+              return s ? [[p.id, s] as const] : []
+            }),
           )
+          leidas = m.size
+          return m
+        }
         const r = await verifyClaimWithNli({ claim: it.claim, candidates: sl }, lookup)
         if (!r) {
           // Sin candidatos que puntuar (o fuera de la política): no se juzgó, y
           // su fila de la cola —si la tenía— se queda como estaba.
           stats.sinJuicio += 1
+          continue
+        }
+        stats.paresLeidos += leidas
+        if (leidas < sl.length) {
+          // Le falta alguna puntuación: no se juzgó, y su fila de la cola se
+          // queda como estaba.
+          stats.sinPuntuar += 1
           continue
         }
         juzgadas.push(it.claim.id)
@@ -302,7 +337,8 @@ async function main() {
       process.stdout.write(
         `[verify-nli]   ${Math.min(start + CHUNK_CLAIMS, queue.length)}/${queue.length} · ` +
           `propuestas=${stats.propuestas} sin-respaldo=${stats.sinRespaldo} ` +
-          `sin-juicio=${stats.sinJuicio} contra-flags=${stats.contradictionFlags}\n`,
+          `sin-juicio=${stats.sinJuicio} sin-puntuar=${stats.sinPuntuar} ` +
+          `contra-flags=${stats.contradictionFlags}\n`,
       )
     }
   } catch (err) {
@@ -322,16 +358,28 @@ async function main() {
   process.stdout.write(
     `[verify-nli] done. ${queue.length} elegible(s) · juzgadas ${juzgadasTotal} ` +
       `(propuestas ${stats.propuestas} · sin respaldo ${stats.sinRespaldo}) · ` +
-      `sin juicio ${stats.sinJuicio} · contra-flags ${stats.contradictionFlags} · ` +
+      `sin juicio ${stats.sinJuicio} · sin puntuar ${stats.sinPuntuar} · ` +
+      `contra-flags ${stats.contradictionFlags} · ` +
       `retractadas, no se proponen ${retractadas.length}\n` +
+      `[verify-nli]   puntuaciones leídas ${stats.paresLeidos} de ${stats.paresEnviados} ` +
+      `pares enviados al modelo\n` +
       (escrita
         ? `[verify-nli]   cola → ${COLA_SUGERENCIAS_NLI} (${Object.keys(cola?.entries ?? {}).length} fila(s) en total)\n`
         : `[verify-nli]   cola sin escribir: ninguna fila se juzgó en esta corrida\n`) +
       `[verify-nli]   publicado: nada. Una subida la firma una persona; esta pasada sólo propone.\n`,
   )
-  // Cero juzgadas con filas elegibles no es un día tranquilo: el modelo no
-  // llegó a ver ninguna (sin candidatos, corpus ausente). Regla 2.
-  if (queue.length > 0 && juzgadasTotal === 0) {
+  // Un par cuya puntuación no volvió no es «sin respaldo»: el modelo no contestó
+  // por él, o contestó con otro id. Regla 2.
+  if (stats.paresLeidos < stats.paresEnviados) {
+    process.stderr.write(
+      `[verify-nli] ${stats.paresEnviados - stats.paresLeidos} de ${stats.paresEnviados} par(es) ` +
+        `sin puntuación leída: ${stats.sinPuntuar} fila(s) sin juzgar, con su fila de la cola ` +
+        'como estaba. El modelo no devolvió esas puntuaciones, o las devolvió con otro id.\n',
+    )
+    process.exitCode = 1
+  } else if (queue.length > 0 && juzgadasTotal === 0) {
+    // Cero juzgadas con filas elegibles no es un día tranquilo: el modelo no
+    // llegó a ver ninguna (sin candidatos, corpus ausente). Regla 2.
     process.stderr.write(
       `[verify-nli] ${queue.length} fila(s) elegible(s) y NINGUNA juzgada: no es «nada que ` +
         'proponer», es que el modelo no vio ninguna. Mira la lista corta y el corpus.\n',
