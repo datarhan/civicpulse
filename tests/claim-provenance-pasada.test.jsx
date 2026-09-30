@@ -12,6 +12,7 @@ import { verifyClaimWithNli } from '../src/scraper/claim-verifier-nli'
 import { verifyClaimWithEngine } from '../src/scraper/claim-verifier-engine'
 import { applyOverlayEntries, mergeVerified } from '../src/scraper/verified-merge'
 import { gateItemsForPublic } from '../src/scraper/claim-public-gate'
+import { entradaDelMotor, sugerenciaDelAnclaje } from '../src/scraper/entrada-de-pasada'
 
 /**
  * Quién dio el veredicto se lee de donde la pasada lo deja, no sólo de
@@ -30,10 +31,12 @@ import { gateItemsForPublic } from '../src/scraper/claim-public-gate'
  *     y «Fuentes comprobadas: ninguna», cuando el motor sí buscó.
  *
  * Latente el 2026-09-29: ninguna de las 1.365 entradas de overlay lleva
- * `derivedBy`, y los runners todavía pisan `checkedAgainst` con su marca. Pero
- * el día que el runner de NLI deje de hacerlo —tiene que dejar de hacerlo para
- * poder subir nada: con la marca, el suelo de evidencia rechaza la subida— las
- * dos páginas lo pintarían mal sin que nada se pusiera rojo.
+ * `derivedBy`, porque los runners pisaban `checkedAgainst` con su marca. Desde
+ * que dejaron de hacerlo (src/scraper/entrada-de-pasada.ts), cada retractación
+ * nueva del motor llega con su `derivedBy`, y las páginas tienen que leerlo. Una
+ * subida de NLI ya no llega sola —el anclaje sólo propone y el overlay la
+ * rechaza—, pero si alguna vez se publicara con su forma, tendría que
+ * rotularse bien.
  *
  * Las filas no se escriben a mano: salen de los verificadores reales, del
  * overlay, del merge y de la puerta pública, que es el camino por el que llegan
@@ -118,6 +121,12 @@ function servir(base, overlay) {
  * Una subida del anclaje NLI, con la verificación tal y como la da el módulo.
  * Entailment 0,7: por encima del umbral de `parcial`, por debajo del de
  * `verificado`.
+ *
+ * Desde el 29-09-2026 el overlay no la acepta: el anclaje sólo propone, y su
+ * sugerencia va a la cola humana (tests/entrada-de-pasada.test.ts). Aquí se
+ * comprueba que la rechaza y después se pone en el overlay A MANO —que es como
+ * podría llegar hoy una fila `nli` a lo publicado: `validateOverlay` la acepta
+ * al leer—, para saber que, si llegara, la página diría de dónde viene.
  */
 async function subidaNli() {
   const puntua = async (pares) =>
@@ -129,19 +138,21 @@ async function subidaNli() {
     )
   const r = await verifyClaimWithNli({ claim: CLAIM, candidates: [CANDIDATO] }, puntua)
   expect(r?.upgraded, 'el anclaje no subió: la prueba no mediría nada').toBe(true)
-  declarada(r.verification)
-  const overlay = applyOverlayEntries(
-    OVERLAY_VACIO,
-    [{ claimId: CLAIM.id, verification: r.verification, source: 'nli' }],
-    STAMP,
-  )
+  const s = sugerenciaDelAnclaje({ r, desde: 'sin-datos' })
+  declarada(s.verification)
+  expect(() => applyOverlayEntries(OVERLAY_VACIO, [s], STAMP)).toThrow(/requiresHumanApproval/)
+  const overlay = {
+    ...OVERLAY_VACIO,
+    entries: { [CLAIM.id]: { verification: s.verification, source: 'nli', appliedAt: STAMP } },
+  }
   return servir(BASE_SIN_DATOS, overlay)
 }
 
 /**
- * Una retractación del motor sin evidencia. `pisada` reproduce lo que hace hoy
- * scripts/verify-pleno-claims-engine.ts al escribir la entrada: sustituir
- * `checkedAgainst` por su marca. Sin ella, es la forma que da el módulo.
+ * Una retractación del motor sin evidencia. Sin `pisada`, es la entrada que
+ * construye `entradaDelMotor`, la que escribe hoy el runner; con ella, la forma
+ * de las entradas ya publicadas, escritas cuando el runner sustituía
+ * `checkedAgainst` por su marca.
  */
 async function retractacionMotor({ pisada }) {
   const r = await verifyClaimWithEngine(
@@ -153,22 +164,21 @@ async function retractacionMotor({ pisada }) {
   )
   expect(r?.verification.verdict).toBe('sin-datos')
   declarada(r.verification)
-  const verification = pisada
-    ? { ...r.verification, checkedAgainst: ['verdict-engine'] }
-    : r.verification
-  const overlay = applyOverlayEntries(
-    OVERLAY_VACIO,
-    [
-      {
+  const entrada = pisada
+    ? {
         claimId: CLAIM.id,
-        verification,
+        verification: { ...r.verification, checkedAgainst: ['verdict-engine'] },
         source: 'verdict-engine',
         reason: 'verdict-engine re-judged parcial→sin-datos: ningún candidato la respalda',
         editor: 'verdict-engine:prueba',
-      },
-    ],
-    STAMP,
-  )
+      }
+    : entradaDelMotor({
+        verification: r.verification,
+        modelo: 'prueba',
+        tipo: 'retractacion',
+        desde: 'parcial',
+      })
+  const overlay = applyOverlayEntries(OVERLAY_VACIO, [entrada], STAMP)
   return servir(BASE_PARCIAL, overlay)
 }
 
@@ -208,7 +218,7 @@ describe('/plenos · la tarjeta lee la pasada de derivedBy y source', () => {
     expect(fuentes()).toBe('no constan')
   })
 
-  it('con la marca que hoy escribe el runner, dice lo mismo', async () => {
+  it('con la marca de las entradas ya publicadas, dice lo mismo', async () => {
     pintarLedger(await retractacionMotor({ pisada: true }))
     expect(veredicto()).toBe('verificador LLM')
     expect(fuentes()).toBe('no constan')

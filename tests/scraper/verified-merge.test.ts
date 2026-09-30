@@ -165,13 +165,22 @@ describe('validateOverlay', () => {
 describe('applyOverlayEntries', () => {
   const empty: Overlay = { version: 1, generatedAt: 'x', entries: {} }
 
-  it('adds an nli entry and stamps appliedAt + generatedAt', () => {
+  it('adds an entry and stamps appliedAt + generatedAt', () => {
+    // Con el motor y no con NLI: desde el 29-09-2026 el anclaje sólo propone y
+    // el overlay no le acepta nada (tests/entrada-de-pasada.test.ts).
     const out = applyOverlayEntries(
       empty,
-      [{ claimId: 'a', verification: vrf('a', 'verificado'), source: 'nli' }],
+      [
+        {
+          claimId: 'a',
+          verification: vrf('a', 'sin-datos'),
+          source: 'verdict-engine',
+          reason: 'ningun candidato respalda el importe ni el sujeto de la afirmacion',
+        },
+      ],
       'TS',
     )
-    expect(out.entries.a.source).toBe('nli')
+    expect(out.entries.a.source).toBe('verdict-engine')
     expect(out.entries.a.appliedAt).toBe('TS')
     expect(out.generatedAt).toBe('TS')
     expect(empty.entries.a).toBeUndefined() // input not mutated
@@ -295,19 +304,15 @@ describe('applyOverlayEntries', () => {
   it('lo que ya está no estalla: una entrada vieja con charla no impide escribir otra', () => {
     // Como el suelo de evidencia: la guarda va en la ESCRITURA de lo nuevo. Si
     // mirara lo que ya está, la tubería entera se pararía por las filas viejas.
-    const previo = applyOverlayEntries(
-      empty,
-      [{ claimId: 'b', verification: vrf('b', 'sin-datos'), source: 'nli' }],
-      'TS',
-    )
+    const motor = (id: string) => ({
+      claimId: id,
+      verification: vrf(id, 'sin-datos'),
+      source: 'verdict-engine' as const,
+      reason: 'ningun candidato respalda el importe ni el sujeto de la afirmacion',
+    })
+    const previo = applyOverlayEntries(empty, [motor('b')], 'TS')
     previo.entries.b.verification.summary = 'Análisis completado en el texto de respuesta.'
-    expect(() =>
-      applyOverlayEntries(
-        previo,
-        [{ claimId: 'a', verification: vrf('a', 'sin-datos'), source: 'nli' }],
-        'TS2',
-      ),
-    ).not.toThrow()
+    expect(() => applyOverlayEntries(previo, [motor('a')], 'TS2')).not.toThrow()
   })
 
   it('rejects a verdict-engine entry that emits contradicho', () => {
