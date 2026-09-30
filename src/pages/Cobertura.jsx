@@ -26,6 +26,12 @@ import {
  * que la declaración sea falsa ni que sea cierta: dice que aún no tenemos con
  * qué comprobarla.
  *
+ * Y hay un tercero, que no es ninguno de los dos: las declaraciones cuyo
+ * veredicto rehízo una pasada posterior —el motor, un curador— dejando su marca
+ * en lugar de la lista de lo consultado. La página sacaba «sin corpus» por
+ * resta (`total − conCorpus`) y las metía ahí sin que nadie lo afirmara; ahora
+ * cada casilla se lee del manifiesto, ninguna por diferencia.
+ *
  * Vive en el laboratorio y hereda las tres reglas de la frontera:
  *
  *   1. No nombra a nadie. Ni una persona, ni un grupo, ni una cita literal —
@@ -63,7 +69,7 @@ function Barra({ conCorpus, total }) {
         borderRadius: 'var(--r-pill)',
         background: 'var(--soft)',
         overflow: 'hidden',
-        minWidth: 60,
+        minWidth: 48,
       }}
       role="presentation"
     >
@@ -78,8 +84,18 @@ function Barra({ conCorpus, total }) {
   )
 }
 
+/**
+ * Seis columnas en una tarjeta de 333 px, a 375: con la de «No consta» y los
+ * 8 px de antes, la tabla por tema pasaba 27 px y la barra salía cortada por el
+ * scroll. Con 6 px de relleno y la barra a 48 px, las dos vuelven a caber, como
+ * cabían con cinco (medido el 30-09-2026). A 320 ya se desplazaban, y siguen.
+ */
+const RELLENO = 6
+
 function TablaCobertura({ titulo, filas, etiqueta, columna }) {
   const orden = useMemo(() => [...filas].sort((a, b) => b[1].total - a[1].total), [filas])
+  const th = { padding: `6px ${RELLENO}px`, fontWeight: 500, textAlign: 'right' }
+  const td = { padding: `8px ${RELLENO}px`, textAlign: 'right' }
   return (
     <Card style={{ marginTop: 12 }}>
       <h3 style={{ fontSize: 'var(--fs-card)', margin: '0 0 12px' }}>{titulo}</h3>
@@ -87,38 +103,36 @@ function TablaCobertura({ titulo, filas, etiqueta, columna }) {
         <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 'var(--fs-meta)' }}>
           <thead>
             <tr style={{ textAlign: 'left', color: 'var(--ink70)' }}>
-              <th style={{ padding: '6px 8px 6px 0', fontWeight: 500 }}>{columna}</th>
-              <th style={{ padding: '6px 8px', fontWeight: 500, textAlign: 'right' }}>Total</th>
-              <th style={{ padding: '6px 8px', fontWeight: 500, textAlign: 'right' }}>
-                Con corpus
+              <th style={{ padding: `6px ${RELLENO}px 6px 0`, fontWeight: 500 }}>{columna}</th>
+              <th style={th}>Total</th>
+              <th style={th}>Con corpus</th>
+              <th style={th}>Sin corpus</th>
+              <th style={th}>No consta</th>
+              <th style={{ padding: `6px 0 6px ${RELLENO}px`, fontWeight: 500, minWidth: 64 }}>
+                Cobertura
               </th>
-              <th style={{ padding: '6px 8px', fontWeight: 500, textAlign: 'right' }}>
-                Sin corpus
-              </th>
-              <th style={{ padding: '6px 0 6px 8px', fontWeight: 500, minWidth: 80 }}>Cobertura</th>
             </tr>
           </thead>
           <tbody>
             {orden.map(([clave, v]) => (
               <tr key={clave} style={{ borderTop: '1px solid var(--border)' }}>
-                <td style={{ padding: '8px 8px 8px 0' }}>{etiqueta(clave)}</td>
-                <td className="mono" style={{ padding: '8px', textAlign: 'right' }}>
+                <td style={{ padding: `8px ${RELLENO}px 8px 0` }}>{etiqueta(clave)}</td>
+                <td className="mono" style={td}>
                   {v.total}
                 </td>
-                <td className="mono" style={{ padding: '8px', textAlign: 'right' }}>
+                <td className="mono" style={td}>
                   {v.comprobadoSinHallar}
                 </td>
                 <td
                   className="mono"
-                  style={{
-                    padding: '8px',
-                    textAlign: 'right',
-                    color: v.sinCorpus > 0 ? 'var(--warn-ink)' : 'var(--ink70)',
-                  }}
+                  style={{ ...td, color: v.sinCorpus > 0 ? 'var(--warn-ink)' : 'var(--ink70)' }}
                 >
                   {v.sinCorpus}
                 </td>
-                <td style={{ padding: '8px 0 8px 8px' }}>
+                <td className="mono" style={td}>
+                  {v.noConsta}
+                </td>
+                <td style={{ padding: `8px 0 8px ${RELLENO}px` }}>
                   <Barra conCorpus={v.comprobadoSinHallar} total={v.total} />
                 </td>
               </tr>
@@ -145,12 +159,18 @@ export default function Cobertura() {
     [totals],
   )
 
+  // Cada casilla, del manifiesto. «Sin corpus» salía por resta y se llevaba
+  // las filas de las que no consta qué se consultó.
   const resumen = useMemo(() => {
     if (!cob) return null
     const filas = Object.values(cob.porTipo)
-    const total = filas.reduce((a, v) => a + v.total, 0)
-    const conCorpus = filas.reduce((a, v) => a + v.comprobadoSinHallar, 0)
-    return { total, conCorpus, sinCorpus: total - conCorpus }
+    const suma = (campo) => filas.reduce((a, v) => a + v[campo], 0)
+    return {
+      total: suma('total'),
+      conCorpus: suma('comprobadoSinHallar'),
+      sinCorpus: suma('sinCorpus'),
+      noConsta: suma('noConsta'),
+    }
   }, [cob])
 
   if (manifest.loading) return <p style={{ color: 'var(--ink70)' }}>{t('common.loading')}</p>
@@ -222,6 +242,14 @@ export default function Cobertura() {
               {resumen.sinCorpus}
             </div>
           </div>
+          <div>
+            <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink70)' }}>
+              NO CONSTA QUÉ SE CONSULTÓ
+            </div>
+            <div className="mono" style={{ fontSize: 'var(--fs-head)' }}>
+              {resumen.noConsta}
+            </div>
+          </div>
           <div style={{ flex: '1 1 160px', minWidth: 120 }}>
             <Barra conCorpus={resumen.conCorpus} total={resumen.total} />
             <div
@@ -283,7 +311,10 @@ export default function Cobertura() {
           Pasadas de revisión (no son fuentes)
         </h4>
         <p style={{ color: 'var(--ink70)', fontSize: 'var(--fs-meta)', margin: '0 0 8px' }}>
-          Dicen cómo se llegó al veredicto, no contra qué se comprobó. No suman evidencia.
+          Dicen cómo se llegó al veredicto, no contra qué se comprobó. No suman evidencia. Cuando
+          una de ellas rehízo el veredicto dejando su marca en lugar de la lista de lo consultado,
+          la declaración cuenta en «no consta» y no en «sin corpus»: que no sepamos qué se miró no
+          quiere decir que no hubiera con qué.
         </p>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
           {Object.entries(cob.corpus)
@@ -322,6 +353,14 @@ export default function Cobertura() {
           podrá comprobarla nunca. Eso no es un límite técnico: es un documento que se puede pedir.
           La Ley 19/2013 da un mes para contestar (art. 20) y, si no contestan, reclamación ante el
           Consell de Transparència de la Comunitat Valenciana (art. 24).
+        </p>
+        {/* El puente entre esta columna y la cifra de arriba. Desde el
+            30-09-2026 cuenta sólo las «sin corpus»: las de «no consta» se
+            juzgaron sobre algo, y que dependan del documento no consta. */}
+        <p style={{ color: 'var(--ink70)', fontSize: 'var(--fs-meta)', marginTop: 0 }}>
+          Cada cifra cuenta, de las <span className="mono">{resumen.sinCorpus}</span> declaraciones
+          sin corpus que consultar, las que nombran ese documento. Las de «no consta» no entran: se
+          juzgaron sobre algo, y que dependan del documento no consta.
         </p>
         <div style={{ overflowX: 'auto' }} className="cp-scroll-x">
           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 'var(--fs-meta)' }}>
