@@ -1739,16 +1739,26 @@ export default function Metodologia() {
                 28-09-2026 (#148) quitó «sobre la gestión municipal»: la puerta no
                 registra a quién se acusa, y la mayoría de las retenidas hablan de
                 otra administración o de otro grupo. Y desde el 27-08-2026 ese
-                literal no se imprime: el rótulo pasó a la nota bajo las citas. */}
+                literal no se imprime: el rótulo pasó a la nota bajo las citas.
+                Decía también «enseña el hueco, su motivo y, si la ficha la
+                atribuye, el grupo; la nota bajo las citas lo rotula “acusación no
+                contrastada”». Desde el 29-09-2026 las citas van numeradas y el
+                hueco y la nota dicen de cuál hablan: aplanada la página, su pie
+                se leía sobre la cita impresa de al lado (CitaRetenida, en
+                PlenoFindings.jsx). */}
             <strong>«Literal retenido»</strong> — ocupa el sitio de una cita que la puerta retiene.
-            La página no imprime el literal: enseña el hueco, su motivo y, si la ficha la atribuye,
-            el grupo; la nota bajo las citas lo rotula <strong>«acusación no contrastada»</strong>.
-            Tampoco lo llevan la bitácora de correcciones de la ficha, que en esas filas enseña su
-            huella en lugar del texto, ni la copia de los datos de hallazgos que sirve el sitio. Se
-            retiene el literal, no la ficha: el hallazgo, su resumen, su atribución, los documentos
-            cotejados y el derecho de réplica siguen a la vista. Lo que el lector debe concluir: ahí
-            se citaba una acusación que el verificador no ha podido contrastar con ningún registro
-            municipal. No decimos que sea falsa; decimos que no consta.
+            La página no imprime el literal: enseña el hueco con el número de la cita, su motivo y a
+            qué grupo la atribuye la ficha, o que no la atribuye a ninguno; la nota bajo las citas
+            la rotula <strong>«acusación no contrastada»</strong> con ese mismo número. Las citas de
+            cada ficha van numeradas, las impresas y los huecos, y el pie de cada hueco y cada línea
+            de la nota dicen de qué número hablan, para que ninguna explicación se lea sobre la cita
+            de al lado. El literal tampoco lo llevan la bitácora de correcciones de la ficha, que en
+            esas filas enseña su huella en lugar del texto, ni la copia de los datos de hallazgos
+            que sirve el sitio. Se retiene el literal, no la ficha: el hallazgo, su resumen, su
+            atribución, los documentos cotejados y el derecho de réplica siguen a la vista. Lo que
+            el lector debe concluir: ahí se citaba una acusación que el verificador no ha podido
+            contrastar con ningún registro municipal. No decimos que sea falsa; decimos que no
+            consta.
           </li>
           <li>
             <strong>«sin contraste en los datos»</strong> — la cita se imprime, con esa pastilla al
