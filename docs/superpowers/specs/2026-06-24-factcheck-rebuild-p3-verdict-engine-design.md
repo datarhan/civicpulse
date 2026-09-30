@@ -29,6 +29,16 @@ a win) a runner that re-derives the 426 LLM verdicts into the overlay
 the sin-datos backlog (genuinely unverifiable; not re-processed); the verdict
 taxonomy (keep verificado/parcial/sin-datos; no new labels in v1).
 
+> **Nota del 2026-09-30.** «Genuinely unverifiable» repite, con las mismas
+> palabras, la conclusión del diseño P2
+> (`2026-06-23-factcheck-rebuild-p2-design.md`), cuyo único dato era «0 NLI
+> upgrades over 3,251». Ese cero lo dio un guion que no podía subir nada: el
+> `lookup` de `scripts/verify-pleno-claims-nli.ts` no le entregó ninguna
+> puntuación al verificador desde su primer commit (325a1c62) hasta #206. Dejar
+> el backlog fuera de P3 sigue siendo una decisión de alcance; lo que no se
+> sostiene es el motivo. Nada ha medido que los `sin-datos` sean inverificables:
+> su rendimiento con el anclaje NLI está sin medir.
+
 ## The engine (`src/scraper/claim-verifier-engine.ts`)
 
 `verifyClaimWithEngine({ claim, candidates }, caller, nliScorer)` →
