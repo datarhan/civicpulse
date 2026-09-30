@@ -1,10 +1,10 @@
 {
   "_comment": "DERIVADO, no curado. Dos cosas por cada literal publicado en /hallazgos. (1) `quotes[id][i].status`: de qué transcripción procede — de la vigente, sólo de la que se sustituyó al re-transcribir la sesión, o de ninguna de las dos de forma concluyente. (2) `quotes[id][i].gate`: qué haría con la afirmación que sostiene esa cita la puerta editorial de src/scraper/claim-public-gate.ts, que gobierna /plenos y que /hallazgos no consultaba — `shown`, `toggle` o `hidden`, su propio vocabulario. Ninguna de las dos modifica una cita y ninguna es una corrección: el único escritor de public/data/pleno-findings.json sigue siendo `npm run correct-pleno-finding`. Se regenera con `npm run compute:finding-quote-provenance`.",
   "version": "finding-quote-provenance-v2",
-  "generatedAt": "2026-09-30T05:47:14.689Z",
+  "generatedAt": "2026-09-30T05:47:32.055Z",
   "source": {
     "findings": "public/data/pleno-findings.json",
-    "findingsGeneratedAt": "2026-09-30T05:47:13.848Z",
+    "findingsGeneratedAt": "2026-09-30T05:47:31.314Z",
     "transcripts": "public/data/pleno-transcripts",
     "superseded": "public/data/pleno-transcripts/superseded"
   },
@@ -758,7 +758,7 @@
   },
   "unresolved": [],
   "builtFrom": {
-    "pleno-findings.json": "fabfb5fda460",
+    "pleno-findings.json": "bbcf5f0635df",
     "pleno-claims-verified.json": "2caced94e164",
     "pleno-claims-overlay.json": "f4bf98872ce7",
     "pleno-transcripts/": "8c59df9da87e"

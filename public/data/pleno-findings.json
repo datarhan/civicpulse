@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-09-30T05:47:13.848Z",
+  "generatedAt": "2026-09-30T05:47:31.314Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. Los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, salvo los que llevan la firma de una persona, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -1053,17 +1053,33 @@
           "field": "summary",
           "original": "sumario · sha256:8f74574ca9cf",
           "corrected": "sumario · sha256:2fd52acc9b16",
-          "reason": "El sumario afirmaba que «el registro municipal incluye el seguimiento del Plan Económico y Financiero aprobado en 2025». Ninguno de los expedientes citados es ese seguimiento: son un suministro de módulos de presupuestos y RPT, un plan de acción local de 2022 y unas obras de escollera en Paretotes. Además, la intervención de la que procede dice «que aprobaremos en el 2025», en futuro, de modo que se presentaba como registro existente lo que era una intención declarada en el pleno.",
+          "reason": "El sumario afirmaba que «el registro municipal incluye el seguimiento del Plan Económico y Financiero aprobado en 2025». Ninguno de los expedientes citados es ese seguimiento: son un suministro de módulos de presupuestos y RPT, un plan de acción local de 2022 y unas obras de escollera en Paretotes. El sumario daba así por registrado en la contratación municipal un seguimiento que ningún expediente publicado recoge.",
           "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-02T15:09:37.135Z"
+          "correctedAt": "2026-08-02T15:09:37.135Z",
+          "reasonAmendments": [
+            {
+              "previous": "motivo · sha256:832872939412",
+              "reason": "El motivo con que se publicó esta corrección añadía que la intervención anunciaba el plan en futuro, «que aprobaremos en el 2025». No es así: la transcripción vigente dice «aprobárem», en pasado (10.848–10.855 s), y el futuro era un error del motor de transcripción sustituido. La corrección del sumario se sostiene por la otra razón que daba, la única que conserva el motivo nuevo.",
+              "editor": "Sergei Lutchenko",
+              "amendedAt": "2026-09-30T05:47:31.312Z"
+            }
+          ]
         },
         {
           "field": "summary",
           "original": "sumario · sha256:2fd52acc9b16",
           "corrected": "sumario · sha256:b542f2fb4bf9",
-          "reason": "Corrección de atribución. «El PP señala que votaron en contra» procede de «el día 16 de marzo ustedes votaron en contra»: el hablante del PP reprochaba el voto a otra bancada, y la sintaxis del sumario invertía el reproche sobre quien lo hacía. Un pronombre de segunda persona en una transcripción no identifica a quién se dirigía, así que se conserva el deíctico citando literalmente. Se retira además la frase que hacía votar en contra al PSOE, procedente de un fragmento roto que no significa nada en castellano y que, sumado a lo anterior, dejaba a los dos grupos votando en contra del mismo presupuesto. La corrección previa del Plan Económico y Financiero no se toca.",
+          "reason": "Corrección de atribución. El sumario convertía en afirmación de un grupo un reproche por el voto del presupuesto de marzo que la intervención formula en segunda persona. Se sustituyó por las palabras de la intervención, porque un pronombre de segunda persona en una transcripción no identifica a quién se dirige. Se retiró además la frase que hacía votar en contra al PSOE, procedente de un fragmento roto de la transcripción que no significaba nada en castellano y que, sumado a lo anterior, dejaba a dos grupos votando en contra del mismo presupuesto. La corrección previa, sobre el Plan Económico y Financiero, no se tocó.",
           "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-09T17:47:10.878Z"
+          "correctedAt": "2026-08-09T17:47:10.878Z",
+          "reasonAmendments": [
+            {
+              "previous": "motivo · sha256:447266d144cc",
+              "reason": "El motivo con que se publicó esta corrección reproducía el arranque de una intervención que la puerta editorial retiene y daba por hecho que quien hablaba era del PP. El cotejo con la transcripción y el vídeo (12.650–12.770 s) comprobó que era del PSOE, como recoge la corrección de atribución del 29-09-2026 en esta bitácora. El motivo nuevo explica la misma corrección sin reproducir la intervención ni atribuirla.",
+              "editor": "Sergei Lutchenko",
+              "amendedAt": "2026-09-30T05:47:31.109Z"
+            }
+          ]
         },
         {
           "field": "quote.0.text",
