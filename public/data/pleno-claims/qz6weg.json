@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-29T05:11:47.357Z",
+  "generatedAt": "2026-09-30T05:52:23.833Z",
   "version": "1",
   "plenoId": "qz6weg",
   "plenoDate": "2025-12-01",
@@ -1217,7 +1217,7 @@
       "verification": {
         "claimId": "qz6weg-027-cit-a55965",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): the evidence reasoning itself states it does NOT match the music/dance convenio (was parcial)",
+        "summary": "Se retiró el «Parcial» anterior: la propia evidencia citada, unas clases de educación ambiental en colegios, reconocía que no se corresponde con el convenio de música y danza del que habla la frase.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
@@ -2751,7 +2751,7 @@
       "verification": {
         "claimId": "qz6weg-052-cit-aa34de",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): false contradicho: Ayto project contracts do not refute that some projects run via the mancomunidad (was contradicho)",
+        "summary": "El «Contradicho» anterior no se sostenía: que el Ayuntamiento contrate la redacción y la dirección de sus propios proyectos no desmiente que algunos se ejecuten a través de la mancomunidad.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
