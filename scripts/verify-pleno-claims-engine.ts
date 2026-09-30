@@ -31,6 +31,7 @@ import type { ClaimVerification, ClaimVerdict } from '../src/scraper/claim-verif
 import { makeEngineVerifier, loadVerifierContext } from '../src/scraper/verifier-runner'
 import { RazonamientoConCharla } from '../src/scraper/claim-verifier-engine'
 import { decidirRederivacion } from '../src/scraper/decision-del-motor'
+import { entradaDelMotor } from '../src/scraper/entrada-de-pasada'
 import { resetBudget, getRunStats } from '../src/llm/client'
 import { startRun, formatManifest } from '../src/scraper/run-manifest'
 import { loadOverlay, rebuildVerified, OVERLAY } from './verified-rebuild'
@@ -155,19 +156,24 @@ async function main() {
   const ctx = await loadVerifierContext({ withCorpus: wantsCorpus })
   // `--base` re-judges verdicts the DETERMINISTIC pass asserted, so the engine
   // must not short-circuit on "deterministic already decided".
-  // Keep the two skip reasons APART. `not-attempted` means the deterministic
-  // pass already reached a verdict, which in default mode is the design and
-  // not a gap; `no-candidates` means retrieval returned nothing, which always
-  // is one. Folding them together made the manifest report a healthy default
-  // run as 67% "never reached the model" — the same conflation that let
-  // "never attempted" hide inside "unchanged" elsewhere in this repo.
+  // Keep the two skip reasons APART. With `always` on, `not-attempted` means
+  // the claim is one the LLM path skips by policy (an opinion-accusation) —
+  // the design, not a gap; `no-candidates` means retrieval returned nothing,
+  // which always is one. Folding them together once made the manifest report
+  // a healthy run as 67% "never reached the model" — the same conflation that
+  // let "never attempted" hide inside "unchanged" elsewhere in this repo.
   const skippedIds = new Set<string>()
   const skipReason = new Map<string, 'no-candidates' | 'not-attempted'>()
   const engine = makeEngineVerifier({
     consistency: false,
-    // Re-derivar juzga siempre: algunas de estas filas las retractó `--base`,
-    // y el determinista las da por verificadas.
-    always: args.base || Boolean(args.ids),
+    // Siempre, en los tres modos. Sin esto, `makeEngineVerifier` devuelve el
+    // veredicto DETERMINISTA cuando el motor juzga `sin-datos` (su `upgraded`
+    // es falso), y el modo por defecto lo escribía como retractación del motor:
+    // 301 entradas publicadas llevan de resumen el del cotejo determinista.
+    // `entradaDelMotor` ya no firma como del motor lo que el motor no produjo.
+    // Re-derivar y `--base` lo necesitaban además por otra razón: algunas de
+    // sus filas el determinista las da por verificadas.
+    always: true,
     onSkip: (id, reason) => {
       skippedIds.add(id)
       skipReason.set(id, reason)
@@ -231,17 +237,7 @@ async function main() {
     if (args.ids) {
       const decision = decidirRederivacion({ juzgada: !skippedIds.has(id), veredicto: r.verdict })
       if (decision.accion === 'reescribir') {
-        pending.push({
-          claimId: id,
-          verification: { ...r, checkedAgainst: ['verdict-engine'] },
-          source: 'verdict-engine',
-          reason:
-            `verdict-engine (${MODEL}) re-derivó la retractación (sigue sin-datos): ${r.summary}`.slice(
-              0,
-              400,
-            ),
-          editor: `verdict-engine:${MODEL}`,
-        })
+        pending.push(entradaDelMotor({ verification: r, modelo: MODEL, tipo: 'rederivacion' }))
         rederivadas.push(id)
         run.judge()
         run.record('rederivada')
@@ -257,27 +253,21 @@ async function main() {
       if (pending.length >= CHECKPOINT_EVERY) flush()
       continue
     }
-    // Trust ONLY the engine's high-precision sin-datos verdict, as a retraction.
-    if (r.verdict === 'sin-datos' && (cur === 'verificado' || cur === 'parcial')) {
-      const reason =
-        `verdict-engine (${MODEL}) re-judged ${cur}→sin-datos: ${r.summary || 'no candidate genuinely supports the claim'}`.slice(
-          0,
-          400,
-        )
-      pending.push({
-        claimId: id,
-        verification: { ...r, checkedAgainst: ['verdict-engine'] },
-        source: 'verdict-engine',
-        reason: reason.length >= 20 ? reason : `${reason} (insufficient grounded evidence)`,
-        editor: `verdict-engine:${MODEL}`,
-      })
+    // Lo que el motor no juzgó, primero: entonces `r` es el veredicto
+    // determinista, y escribirlo como retractación del motor contaba un «nunca
+    // preguntado» como juicio (regla 2).
+    if (skippedIds.has(id)) {
+      unjudged++
+      if (skipReason.get(id) === 'not-attempted') run.skip('fuera de la política del LLM')
+      else run.neverAttempt()
+    } else if (r.verdict === 'sin-datos' && (cur === 'verificado' || cur === 'parcial')) {
+      // Trust ONLY the engine's high-precision sin-datos verdict, as a retraction.
+      pending.push(
+        entradaDelMotor({ verification: r, modelo: MODEL, tipo: 'retractacion', desde: cur }),
+      )
       retracted++
       run.judge()
       run.record('retracted')
-    } else if (skippedIds.has(id)) {
-      unjudged++
-      if (skipReason.get(id) === 'not-attempted') run.skip('deterministic already decided')
-      else run.neverAttempt()
     } else {
       kept++
       run.judge()
