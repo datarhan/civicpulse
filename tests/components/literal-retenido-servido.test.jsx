@@ -146,7 +146,9 @@ describe('sobre los datos servidos: ninguna ficha imprime el literal que retiene
    * que quitarla de aquí. Hasta el 29-09-2026 era un salto que nadie vigilaba, y
    * 543cc1 siguió saltándose después de que su sumario se redactara esa mañana.
    */
-  const ESPERA_A_UNA_PERSONA = ['f-2026-05-11-acu-7c65c5#3']
+  // Vacía desde el 30-09-2026: el motivo del 09-08 de 7c65c5 se enmendó con firma
+  // (`--amend-reason 1`) en el mismo commit que la vació.
+  const ESPERA_A_UNA_PERSONA = []
   const conRetenidas = SERVIDA.items.filter((f) => retenidasDe(f).length > 0)
 
   it('hay fichas con retenidas que medir', () => {
