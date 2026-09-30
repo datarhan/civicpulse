@@ -896,23 +896,8 @@ export function FindingCard({ f }) {
               {SEVERITY_LABEL[f.severity] || f.severity}
             </Pill>
             <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-              {f.plenoDate} · editado por {f.curatorName}
+              {f.plenoDate} · ficha {ficha} · editado por {f.curatorName}
             </span>
-            {/* Lleva a la página propia del hallazgo —con todas sus citas: aquí
-                van las tres primeras—, como el enlace permanente de /hallazgos,
-                que imprime el mismo nombre con el mismo estilo. */}
-            <a
-              href={`/hallazgos/${f.id}`}
-              style={{
-                marginLeft: 'auto',
-                fontSize: 'var(--fs-micro)',
-                color: 'var(--civic)',
-                textDecoration: 'none',
-              }}
-              title="Enlace permanente a este hallazgo"
-            >
-              ficha {ficha}
-            </a>
           </div>
           <div style={{ fontSize: 'var(--fs-body)', fontWeight: 600, lineHeight: 1.35 }}>
             {f.title}
