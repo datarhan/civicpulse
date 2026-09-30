@@ -31,6 +31,15 @@ test.describe('El trinquete publicado (/metodologia)', () => {
     const hayRetirada = etapas.some(([, e]) => e.retirada)
     expect(hayRetirada).toBe(true)
     expect(texto).toMatch(/retirada/i)
+    // Lo que sólo propone se dice: una subida automática espera una firma.
+    const conFirma = etapas.filter(([, e]) => e.exigeFirma)
+    expect(conFirma.length, 'ninguna etapa exige firma: esto no mediría nada').toBeGreaterThan(0)
+    const filas = await page.locator('#trinquete-veredictos tbody tr').allInnerTexts()
+    for (const [id, e] of conFirma) {
+      const fila = filas.find((f) => f.includes(e.nombre))
+      expect(fila, `falta la fila de ${id}`).toBeTruthy()
+      expect(fila, `la fila de ${id} no dice que exige firma`).toContain('la firma de una persona')
+    }
   })
 
   test('dice el suelo y su única excepción', async ({ page }) => {
