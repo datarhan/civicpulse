@@ -389,7 +389,10 @@ describe('applyOverlayEntries — las enmiendas sobreviven a otras escrituras', 
             evidence: [],
             checkedAgainst: ['tenders'],
           },
-          source: 'nli',
+          // Una retractación del motor: el anclaje NLI ya no escribe en el
+          // overlay (sólo propone), y lo que importa aquí es que sea OTRA fila.
+          source: 'verdict-engine',
+          reason: 'verdict-engine re-judged parcial→sin-datos: ningún candidato la respalda',
         },
       ],
       '2026-09-30T00:00:00.000Z',
