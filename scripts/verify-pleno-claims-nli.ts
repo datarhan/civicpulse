@@ -1,20 +1,37 @@
 /**
  * NLI grounding second pass (P1) — the local, $0, no-quota replacement for
- * verify:pleno-claims:llm.
+ * verify:pleno-claims:llm. PROPONE; no publica.
  *
  *   npm run verify:pleno-claims:nli                      # all sin-datos
  *   npm run verify:pleno-claims:nli -- --plenoId 1tgd1h4
  *   npm run verify:pleno-claims:nli -- --max 200 --model minicheck
  *
- * Runs ONLY on sin-datos claims (skips opinativa + already-nliAttempted), so a
- * re-run resumes. Loads the embedding corpus ONCE (audit B1 fix), builds each
- * claim's shortlist, then scores every (snippet, claim) pair through the local
- * NLI sidecar in chunked batches. Upgrade-only: never downgrades a deterministic
- * verdict and never emits contradicho. Requires the NLI venv —
+ * Runs ONLY on sin-datos claims (skips opinativa), so a re-run re-scans. Loads
+ * the embedding corpus ONCE (audit B1 fix), builds each claim's shortlist, then
+ * scores every (snippet, claim) pair through the local NLI sidecar in chunked
+ * batches. Never emits contradicho. Requires the NLI venv —
  * `bash scripts/bootstrap-nli.sh` — and fails loud if it is missing.
+ *
+ * Lo que el modelo ve respaldado NO se publica. Lo automático sólo baja
+ * (docs/DATA_INTEGRITY.md, regla 4), así que cada subida se escribe como
+ * sugerencia con `requiresHumanApproval: true` en `COLA_SUGERENCIAS_NLI`
+ * —editorial/, gitignorado, fuera de public/—, y el overlay la rechaza con la
+ * marca y sin ella (`exigeFirma` en src/scraper/trinquete.ts). Este runner no
+ * toca el overlay ni recompone pleno-claims-verified.json. Hasta el 29-09-2026
+ * escribía sus subidas en el overlay con la marca de la pasada en
+ * `checkedAgainst`, y el suelo de evidencia las tiraba todas: ninguna llegó a
+ * publicarse.
+ *
+ * La cola dice lo que opinó la última corrida de cada fila que juzgó: una fila
+ * re-juzgada sin subida sale; una que no se miró se queda con su sello. Qué
+ * construye cada fila está en src/scraper/entrada-de-pasada.ts.
+ *
+ * Tampoco propone subir lo que una retractación bajó: las filas cuyo veredicto
+ * publicado entró por el motor o por un curador se apartan antes de puntuar, y
+ * la corrida dice cuántas y de quién (`motivoParaNoProponer`).
  */
-import { readFileSync, writeFileSync, existsSync } from 'node:fs'
-import { resolve } from 'node:path'
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs'
+import { dirname, resolve } from 'node:path'
 import type { PlenoClaim } from '../src/scraper/pleno-claim'
 import {
   getShortlist,
@@ -27,10 +44,19 @@ import { shouldSkipLlmVerification } from '../src/scraper/claim-verifier-llm'
 import { verifyClaimWithNli, type NliScorer } from '../src/scraper/claim-verifier-nli'
 import { scoreNliPairs, NliUnavailableError, type NliPair } from '../src/scraper/nli-client'
 import { loadVerifierContext, type VerifierContext } from '../src/scraper/verifier-runner'
-import { loadOverlay, rebuildVerified, OVERLAY } from './verified-rebuild'
-import { applyOverlayEntries, type ApplyEntry } from '../src/scraper/verified-merge'
+import { loadOverlay } from './verified-rebuild'
+import {
+  actualizarCola,
+  validarCola,
+  sugerenciaDelAnclaje,
+  motivoParaNoProponer,
+  COLA_SUGERENCIAS_NLI,
+  type ColaDeSugerencias,
+  type SugerenciaDeVeredicto,
+} from '../src/scraper/entrada-de-pasada'
 
 const VERIFIED = resolve('public/data/pleno-claims-verified.json')
+const COLA = resolve(COLA_SUGERENCIAS_NLI)
 const CHUNK_CLAIMS = 400 // claims per NLI spawn (model reloads per chunk; checkpoint boundary)
 
 interface VerifiedSnapshot {
@@ -49,10 +75,10 @@ interface Args {
    * actual.
    *
    * El modo normal corre sólo sobre `sin-datos`, que es lo correcto para una
-   * pasada de barrido. Pero las filas que se apoyan en una pasada retirada
-   * están en `parcial`/`verificado`, así que el barrido no las tocaría nunca y
-   * la única forma de re-fundamentarlas sería retractarlas primero — destruir
-   * para poder reconstruir. Con una lista explícita no hace falta.
+   * pasada de barrido. Pero las filas que se apoyaban en una pasada retirada
+   * están en `parcial`/`verificado`, y el barrido no las tocaría nunca. Con una
+   * lista explícita se juzgan igual; lo que salga es una sugerencia para la
+   * cola, como cualquier otra.
    */
   claimIds: Set<string> | null
 }
@@ -91,6 +117,14 @@ function inputsFor(claim: PlenoClaim, ctx: VerifierContext): VerifierInputs {
   }
 }
 
+/** La cola en disco, validada; `null` si todavía no existe. */
+function leerCola(): ColaDeSugerencias | null {
+  if (!existsSync(COLA)) return null
+  const cola = JSON.parse(readFileSync(COLA, 'utf8')) as ColaDeSugerencias
+  validarCola(cola)
+  return cola
+}
+
 async function main() {
   const opts = parseArgs(process.argv.slice(2))
   if (!existsSync(VERIFIED)) {
@@ -102,7 +136,7 @@ async function main() {
   const ctx = await loadVerifierContext({ withCorpus: true })
   const corpusOpt = ctx.corpus ? { corpus: ctx.corpus } : {}
 
-  const candidates = snap.items.filter((it) => {
+  const seleccionadas = snap.items.filter((it) => {
     // Con lista explícita manda la lista: son filas que YA tienen veredicto y
     // que se quieren volver a fundamentar. La puerta de `opinativa` sigue,
     // porque ésa es política y no un filtro de barrido.
@@ -116,11 +150,25 @@ async function main() {
     return true
   })
 
+  // Lo que una retractación bajó no se propone subir: el motor o un curador lo
+  // bajaron a propósito, y la cola le pediría a una persona deshacerlo sin
+  // decírselo. Se lee del overlay —la fuente de las retractaciones—, no del
+  // publicado, que puede ir por detrás de él. Se apartan ANTES de puntuar y se
+  // cuentan aparte (regla 2): no son «sin respaldo» ni «sin juicio».
+  const overlay = loadOverlay()
+  const fuenteDe = (id: string) => overlay.entries[id]?.source
+  const retractadas: { id: string; motivo: string }[] = []
+  const candidates = seleccionadas.filter((it) => {
+    const motivo = motivoParaNoProponer(fuenteDe(it.claim.id))
+    if (motivo) retractadas.push({ id: it.claim.id, motivo })
+    return !motivo
+  })
+
   // Una pasada tiene que demostrar que hizo lo que le pidieron: si se piden 76
   // ids y aparecen 3, eso no es «ya está» — es una lista mal escrita o un
   // corpus que se movió. Regla 2 de docs/DATA_INTEGRITY.md.
   if (opts.claimIds) {
-    const encontrados = new Set(candidates.map((c) => c.claim.id))
+    const encontrados = new Set(seleccionadas.map((c) => c.claim.id))
     const ausentes = [...opts.claimIds].filter((id) => !encontrados.has(id))
     process.stdout.write(
       `[verify-nli] lista explícita: ${opts.claimIds.size} pedida(s) · ${encontrados.size} ` +
@@ -138,26 +186,48 @@ async function main() {
   }
   const queue = candidates.slice(0, Math.min(candidates.length, opts.max))
   process.stdout.write(
-    `[verify-nli] ${queue.length} sin-datos claims eligible (corpus=${ctx.corpus ? 'preloaded' : 'lexical-only'}, model=${opts.model ?? 'mDeBERTa-xnli'})\n`,
+    `[verify-nli] ${queue.length} claim(s) eligible (corpus=${ctx.corpus ? 'preloaded' : 'lexical-only'}, model=${opts.model ?? 'mDeBERTa-xnli'})\n`,
   )
+  if (retractadas.length) {
+    const porMotivo = new Map<string, number>()
+    for (const { motivo } of retractadas) porMotivo.set(motivo, (porMotivo.get(motivo) ?? 0) + 1)
+    process.stdout.write(
+      `[verify-nli] ${retractadas.length} no se proponen: ` +
+        [...porMotivo].map(([m, n]) => `${n} ${m}`).join(' · ') +
+        '\n',
+    )
+    if (opts.claimIds) {
+      process.stdout.write(
+        `[verify-nli]   retractadas: ${retractadas
+          .slice(0, 8)
+          .map((x) => x.id)
+          .join(', ')}${retractadas.length > 8 ? ' …' : ''}\n`,
+      )
+    }
+  }
 
-  const stats = { upgraded: 0, kept: 0, contradictionFlags: 0 }
+  // Cuatro cuentas por separado (regla 2): «el modelo no vio respaldo» y «el
+  // modelo no llegó a juzgarla» no pueden imprimirse igual.
+  const stats = { propuestas: 0, sinRespaldo: 0, sinJuicio: 0, contradictionFlags: 0 }
   const flaggedIds: string[] = []
-  // Upgrades go to the OVERLAY (so a deterministic re-run can't clobber them);
-  // verified.json is rebuilt as base ⊕ overlay at the end. No nliAttempted marker
-  // — NLI is local/$0, so a re-run just re-scans (idempotent into the overlay).
-  let overlay = loadOverlay()
-  const flushOverlay = () => writeFileSync(OVERLAY, JSON.stringify(overlay, null, 2) + '\n')
+  let cola = leerCola()
+  let escrita = false
+  const flushCola = () => {
+    if (!cola) return
+    mkdirSync(dirname(COLA), { recursive: true })
+    writeFileSync(COLA, JSON.stringify(cola, null, 2) + '\n')
+    escrita = true
+  }
 
   let interrupted = false
   const onSignal = (sig: string) => {
     if (interrupted) return
     interrupted = true
-    process.stderr.write(`\n[verify-nli] ${sig} — saving overlay…\n`)
+    process.stderr.write(`\n[verify-nli] ${sig} — saving the suggestion queue…\n`)
     try {
-      flushOverlay()
+      flushCola()
     } catch (err) {
-      process.stderr.write(`[verify-nli] overlay save FAILED: ${(err as Error).message}\n`)
+      process.stderr.write(`[verify-nli] queue save FAILED: ${(err as Error).message}\n`)
     }
     process.exit(130)
   }
@@ -188,8 +258,9 @@ async function main() {
       }
       const globalScores = await scoreNliPairs(pairs, opts.model ? { model: opts.model } : {})
 
-      // 3. Assign verdicts; collect upgrades as overlay entries (no snap mutation).
-      const chunkEntries: ApplyEntry[] = []
+      // 3. Judge each claim; an upgrade becomes a suggestion for the human queue.
+      const juzgadas: string[] = []
+      const sugerencias: SugerenciaDeVeredicto[] = []
       for (const it of chunk) {
         const sl = shortlists.get(it.claim.id)!
         const lookup: NliScorer = async (ps) =>
@@ -201,31 +272,37 @@ async function main() {
           )
         const r = await verifyClaimWithNli({ claim: it.claim, candidates: sl }, lookup)
         if (!r) {
-          stats.kept += 1
+          // Sin candidatos que puntuar (o fuera de la política): no se juzgó, y
+          // su fila de la cola —si la tenía— se queda como estaba.
+          stats.sinJuicio += 1
           continue
         }
+        juzgadas.push(it.claim.id)
         if (r.nliContradictionFlag) {
           stats.contradictionFlags += 1
           flaggedIds.push(it.claim.id)
         }
-        if (r.upgraded) {
-          chunkEntries.push({
-            claimId: it.claim.id,
-            verification: { ...r.verification, checkedAgainst: ['nli-grounding'] },
-            source: 'nli',
-          })
-          stats.upgraded += 1
+        const s = sugerenciaDelAnclaje({
+          r,
+          desde: it.verification.verdict,
+          fuente: fuenteDe(it.claim.id),
+        })
+        if (s) {
+          sugerencias.push(s)
+          stats.propuestas += 1
         } else {
-          stats.kept += 1
+          stats.sinRespaldo += 1
         }
       }
 
-      if (chunkEntries.length > 0) {
-        overlay = applyOverlayEntries(overlay, chunkEntries, new Date().toISOString())
-        flushOverlay()
+      if (juzgadas.length > 0) {
+        cola = actualizarCola(cola, juzgadas, sugerencias, new Date().toISOString())
+        flushCola()
       }
       process.stdout.write(
-        `[verify-nli]   ${Math.min(start + CHUNK_CLAIMS, queue.length)}/${queue.length} · upgraded=${stats.upgraded} kept=${stats.kept} contra-flags=${stats.contradictionFlags}\n`,
+        `[verify-nli]   ${Math.min(start + CHUNK_CLAIMS, queue.length)}/${queue.length} · ` +
+          `propuestas=${stats.propuestas} sin-respaldo=${stats.sinRespaldo} ` +
+          `sin-juicio=${stats.sinJuicio} contra-flags=${stats.contradictionFlags}\n`,
       )
     }
   } catch (err) {
@@ -236,21 +313,31 @@ async function main() {
     throw err
   }
 
-  flushOverlay()
   if (flaggedIds.length > 0) {
     process.stderr.write(
       `[verify-nli] ${flaggedIds.length} claims flagged with an NLI contradiction (curator review, NOT auto-published): ${flaggedIds.slice(0, 20).join(', ')}${flaggedIds.length > 20 ? ' …' : ''}\n`,
     )
   }
-  const rebuilt = await rebuildVerified()
+  const juzgadasTotal = stats.propuestas + stats.sinRespaldo
   process.stdout.write(
-    `[verify-nli] done. upgraded=${stats.upgraded} (→ overlay) kept=${stats.kept} contra-flags=${stats.contradictionFlags} · ` +
-      Object.entries(rebuilt.byVerdict)
-        .filter(([, n]) => n > 0)
-        .map(([k, n]) => `${k}:${n}`)
-        .join(' · ') +
-      `\n[verify-nli]   merged base ⊕ overlay → verified.json + chunks\n`,
+    `[verify-nli] done. ${queue.length} elegible(s) · juzgadas ${juzgadasTotal} ` +
+      `(propuestas ${stats.propuestas} · sin respaldo ${stats.sinRespaldo}) · ` +
+      `sin juicio ${stats.sinJuicio} · contra-flags ${stats.contradictionFlags} · ` +
+      `retractadas, no se proponen ${retractadas.length}\n` +
+      (escrita
+        ? `[verify-nli]   cola → ${COLA_SUGERENCIAS_NLI} (${Object.keys(cola?.entries ?? {}).length} fila(s) en total)\n`
+        : `[verify-nli]   cola sin escribir: ninguna fila se juzgó en esta corrida\n`) +
+      `[verify-nli]   publicado: nada. Una subida la firma una persona; esta pasada sólo propone.\n`,
   )
+  // Cero juzgadas con filas elegibles no es un día tranquilo: el modelo no
+  // llegó a ver ninguna (sin candidatos, corpus ausente). Regla 2.
+  if (queue.length > 0 && juzgadasTotal === 0) {
+    process.stderr.write(
+      `[verify-nli] ${queue.length} fila(s) elegible(s) y NINGUNA juzgada: no es «nada que ` +
+        'proponer», es que el modelo no vio ninguna. Mira la lista corta y el corpus.\n',
+    )
+    process.exitCode = 1
+  }
 }
 
 main().catch((err) => {

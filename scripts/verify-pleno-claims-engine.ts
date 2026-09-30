@@ -36,6 +36,7 @@ import {
   decidirRetractacion,
   type MotivoSinJuicio,
 } from '../src/scraper/decision-del-motor'
+import { entradaDelMotor } from '../src/scraper/entrada-de-pasada'
 import { resetBudget, getRunStats } from '../src/llm/client'
 import { startRun, formatManifest } from '../src/scraper/run-manifest'
 import { loadOverlay, rebuildVerified, OVERLAY } from './verified-rebuild'
@@ -240,17 +241,7 @@ async function main() {
     if (args.ids) {
       const decision = decidirRederivacion({ juzgada: !salto, veredicto: r.verdict })
       if (decision.accion === 'reescribir') {
-        pending.push({
-          claimId: id,
-          verification: { ...r, checkedAgainst: ['verdict-engine'] },
-          source: 'verdict-engine',
-          reason:
-            `verdict-engine (${MODEL}) re-derivó la retractación (sigue sin-datos): ${r.summary}`.slice(
-              0,
-              400,
-            ),
-          editor: `verdict-engine:${MODEL}`,
-        })
+        pending.push(entradaDelMotor({ verification: r, modelo: MODEL, tipo: 'rederivacion' }))
         rederivadas.push(id)
         run.record('rederivada')
       } else if (decision.motivo === 'ya-no-la-retractaria') {
@@ -267,18 +258,11 @@ async function main() {
     // that comes back is the deterministic one.
     const decision = decidirRetractacion({ salto, veredicto: r.verdict, publicado: cur })
     if (decision.accion === 'retractar') {
-      const reason =
-        `verdict-engine (${MODEL}) re-judged ${cur}→sin-datos: ${r.summary || 'no candidate genuinely supports the claim'}`.slice(
-          0,
-          400,
-        )
-      pending.push({
-        claimId: id,
-        verification: { ...r, checkedAgainst: ['verdict-engine'] },
-        source: 'verdict-engine',
-        reason: reason.length >= 20 ? reason : `${reason} (insufficient grounded evidence)`,
-        editor: `verdict-engine:${MODEL}`,
-      })
+      // Tal cual la dio el motor: los corpus de su evidencia en `checkedAgainst`,
+      // su pasada en `derivedBy`. Antes se pisaba `checkedAgainst` con la marca.
+      pending.push(
+        entradaDelMotor({ verification: r, modelo: MODEL, tipo: 'retractacion', desde: cur }),
+      )
       retracted++
       run.record('retracted')
     } else if (decision.accion === 'mantener') {

@@ -1336,9 +1336,11 @@ export default function Metodologia() {
             decide si algún extracto <em>implica</em> (entailment) la afirmación. El modelo no
             genera texto: puntúa el par (extracto, afirmación), de modo que{' '}
             <strong>no puede inventar evidencia</strong> — la cita es siempre una fila real del
-            corpus. Sólo puede <strong>subir</strong> un veredicto <code>sin-datos</code> a
-            verificado/parcial; <strong>nunca</strong> marca <em>contradicho</em> de forma
-            automática (una contradicción fuerte sólo se <em>señala</em> para revisión humana).
+            corpus. Lo que el modelo ve respaldado <strong>no se publica solo</strong>: queda como
+            propuesta de subir el veredicto a verificado/parcial, en una cola de revisión que no se
+            publica, y sólo una persona puede firmar esa subida. Una pasada automática puede
+            retractar un veredicto, nunca reforzarlo. Tampoco marca <em>contradicho</em> (una
+            contradicción fuerte sólo se <em>señala</em> para revisión humana).
           </li>
           <li>
             <strong>Re-fundamentación de veredictos publicados (sólo señalización).</strong> El
@@ -1509,9 +1511,10 @@ export default function Metodologia() {
           <strong style={{ color: 'var(--ink)' }}>
             una etapa que sólo puede retractar nunca reforzará una acusación
           </strong>
-          , por bien que le parezca el caso. La única etapa en uso que puede reforzar es el anclaje
-          NLI, y el suelo de evidencia le impide hacerlo sin nombrar el corpus contra el que ancló
-          la afirmación.
+          , por bien que le parezca el caso. Y ninguna etapa automática refuerza nada: el anclaje
+          NLI, la única en uso que empuja hacia arriba, sólo propone, y su propuesta espera a que la
+          firme una persona. Ni siquiera puede proponer sin nombrar el corpus contra el que ancló la
+          afirmación, ni proponer que vuelva a subir lo que retractaron el motor o un curador.
         </p>
         <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
           La tabla se dibuja desde la misma declaración que el código aplica, y una prueba comprueba
@@ -1559,6 +1562,7 @@ export default function Metodologia() {
                     {[
                       e.exigeCorpus ? 'nombrar un corpus' : null,
                       e.exigeRazon ? 'un motivo escrito' : null,
+                      e.exigeFirma ? 'la firma de una persona' : null,
                     ]
                       .filter(Boolean)
                       .join(' · ') || '—'}
@@ -1593,7 +1597,9 @@ export default function Metodologia() {
             un veredicto que afirme algo tiene que nombrar contra qué se comprobó
           </strong>
           . Si no lo nombra, no se escribe. La única excepción es la retractación de un curador,
-          porque bajar un veredicto nunca refuerza lo que se dice de nadie.
+          porque bajar un veredicto nunca refuerza lo que se dice de nadie. Y lo que una
+          retractación ya bajó no lo vuelve a subir ninguna escritura posterior: la capa de
+          decisiones («overlay») rechaza cualquier entrada que diga más que la que sustituye.
         </p>
       </Card>
 

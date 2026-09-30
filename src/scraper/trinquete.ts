@@ -4,9 +4,9 @@
  * La tubería de verificación ES un trinquete —cada etapa sólo puede mover el
  * veredicto en un sentido— y está bien pensada:
  *
- *   base establece → NLI sube lo que puede anclar → el motor retracta donde es
- *   fiable (~92 % de precisión en `sin-datos`, floja en el resto) → un curador
- *   retracta a mano.
+ *   base establece → NLI propone subir lo que puede anclar, y lo sube sólo una
+ *   persona → el motor retracta donde es fiable (~92 % de precisión en
+ *   `sin-datos`, floja en el resto) → un curador retracta a mano.
  *
  * El problema no era el diseño: era que sólo vivía en el orden de ejecución y
  * en las cabeceras de tres ficheros. La política real estaba repartida en una
@@ -37,12 +37,23 @@ export interface Etapa {
   nombre: string
   /** Hacia dónde puede mover un veredicto. Ninguna etapa mueve en las dos. */
   direccion: Direccion
-  /** Veredictos que esta etapa puede EMITIR. */
+  /**
+   * Veredictos que esta etapa puede EMITIR. Si `exigeFirma`, los emite como
+   * propuesta para la cola humana; si no, el overlay no le acepta otros.
+   */
   puedeEmitir: readonly ClaimVerdict[]
   /** ¿Tiene que nombrar un corpus para emitir un veredicto fuerte? */
   exigeCorpus: boolean
   /** ¿Exige un motivo escrito de al menos 20 caracteres? */
   exigeRazon: boolean
+  /**
+   * ¿Lo que emite espera la firma de una persona antes de publicarse?
+   *
+   * Lo automático sólo baja (docs/DATA_INTEGRITY.md, regla 4), así que toda
+   * etapa viva que sube lo lleva: no escribe en el overlay, deja sugerencias
+   * con `requiresHumanApproval: true` en una cola que no se publica.
+   */
+  exigeFirma: boolean
   /** Ya no forma parte de la tubería, aunque sus veredictos sigan publicados. */
   retirada: boolean
   /** Qué la ejecuta, o `null` si la ejecuta una persona. */
@@ -55,10 +66,17 @@ export const TRINQUETE: Record<OverlaySource, Etapa> = {
   nli: {
     nombre: 'Anclaje NLI',
     direccion: 'sube',
-    puedeEmitir: ['verificado', 'parcial', 'sin-datos'],
+    // Lo que puede PROPONER. Su `sin-datos` es «no vi respaldo» y deja la fila
+    // como estaba: no se escribe en ningún sitio.
+    puedeEmitir: ['verificado', 'parcial'],
     // Sube: si va a reforzar una afirmación, que diga contra qué.
     exigeCorpus: true,
     exigeRazon: false,
+    // Sube, y una subida automática no se publica: lo que el modelo ve
+    // respaldado espera en la cola a que una persona lo firme. Decisión del
+    // 29-09-2026, cuando el runner dejó de pisar `checkedAgainst` y la pasada
+    // habría podido subir veredictos sin nadie delante por primera vez.
+    exigeFirma: true,
     retirada: false,
     comando: 'npm run verify:pleno-claims:nli',
     medicion: 'docs/superpowers/specs/2026-06-23-factcheck-rebuild-p2-design.md',
@@ -71,6 +89,9 @@ export const TRINQUETE: Record<OverlaySource, Etapa> = {
     puedeEmitir: ['verificado', 'parcial', 'sin-datos'],
     exigeCorpus: true,
     exigeRazon: false,
+    // Publicaba sin nadie delante, que es lo que hoy prohíbe la regla 4. Está
+    // retirada, y una etapa retirada no escribe entradas nuevas.
+    exigeFirma: false,
     // Su propia cabecera se declara «LEGACY / SUPERSEDED … do not use in the
     // pipeline» desde el corte base/overlay. Sus veredictos sobrevivieron a la
     // migración y sostenían 87 filas fuertes sin un corpus detrás.
@@ -87,10 +108,14 @@ export const TRINQUETE: Record<OverlaySource, Etapa> = {
     puedeEmitir: ['sin-datos'],
     // El suelo SÍ le aplica —lo comprobó la prueba, que es para lo que está—
     // aunque en la práctica no le muerda nunca: sólo emite `sin-datos`, que no
-    // tiene nada que sostener. Si algún día emitiera `parcial`, el suelo lo
-    // pararía, y eso es lo correcto: no puede anclar nada.
+    // tiene nada que sostener. Un `parcial` suyo no lo para el suelo —con los
+    // corpus de su evidencia llegaría—: lo para `puedeEmitir`, que el overlay
+    // aplica. Hasta el 29-09-2026 lo paraba el suelo de rebote, porque el
+    // runner pisaba `checkedAgainst` con su marca.
     exigeCorpus: true,
     exigeRazon: true,
+    // Retracta: tier A de `decideAutomation`, corre sin nadie delante.
+    exigeFirma: false,
     retirada: false,
     comando: 'npm run verify:pleno-claims:engine',
     medicion: 'docs/superpowers/specs/2026-06-24-factcheck-rebuild-p3-results.md',
@@ -104,6 +129,8 @@ export const TRINQUETE: Record<OverlaySource, Etapa> = {
     // lo que quiere decir es «esto sólo es parcial» le haría retractar de más.
     exigeCorpus: false,
     exigeRazon: true,
+    // Es la firma: una persona con nombre y su motivo.
+    exigeFirma: false,
     retirada: false,
     comando: 'npm run downgrade-verdict',
     medicion: 'responde una persona con nombre; no se mide, se firma',
