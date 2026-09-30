@@ -262,8 +262,65 @@ const expectWithdrawn = (id: string): void => {
  * `pleno-findings.json`. En LOTE_1, LOTE_2 y LOTE_3 cambia sólo lo que su fila mide en
  * los grupos y en la prosa viva.
  */
-const TOTAL_CORRECTIONS = 163
-const TOTAL_REMOVALS = 35
+/*
+ * 163 → 184 el 2026-09-30: veintiuna entradas más, firmadas con
+ * `correct-pleno-finding` (editor `civicpulse-curator`) en dos tandas, y ninguna es de un
+ * lote.
+ *
+ * Diecinueve salen de la relectura de sumarios y de señalamientos vivos de `/hallazgos`,
+ * cotejados con la transcripción de su sesión y, los de atribución, también con el vídeo.
+ * Una misma intervención de la sesión del 2026-01-19 se atribuía al PP en
+ * `f-2026-01-19-afi-5238db` [0] y en `f-2026-01-19-cit-cc8758` [2], y es de un grupo con un
+ * solo concejal: la atribución se retira sin sustituirla. La [2] de
+ * `f-2026-01-19-cit-543cc1` es del turno de la presidencia y pasa al PSOE. Las tres se
+ * reanclan después al literal de la transcripción vigente, en valencià: lo que el reanclaje
+ * del 2026-08-10 no podía hacer sin resolver antes su atribución (ver `RESUELTAS_DESPUES`).
+ * Salen dos citas del motor sustituido, la [1] de `f-2026-04-20-cit-947479` y la [2] de
+ * `f-2026-01-19-cit-8b29a9`, y con ellas `TOTAL_REMOVALS` pasa de 35 a 37. Las once
+ * restantes reescriben dos títulos, los de `5238db` y `f-2026-03-16-cit-56214f`, y nueve
+ * sumarios: `5238db`, `f-2026-05-11-acu-ea9d47`, `f-2025-11-03-acu-431140`, `cc8758`,
+ * `947479`, `f-2026-01-19-cit-3fd230`, `f-2026-05-11-cit-0907e6`, `56214f` y `8b29a9`.
+ *
+ * Las otras dos redactan (`--redact summary`) los sumarios de `f-2025-12-01-cit-bef239` y
+ * `f-2026-05-11-acu-a870a4`, que repetían una cita que la puerta editorial retiene. El
+ * barrido de `a870a4` pasa a huella sus dos filas anteriores del sumario, pero no añade
+ * ninguna. Que el literal no vuelva lo vigila `literales-retenidos.test.ts`.
+ *
+ * Las dos enmiendas de motivo de `f-2026-05-11-acu-7c65c5`, del mismo día, no cuentan aquí
+ * (ver `TOTAL_REASON_AMENDMENTS`). En LOTE_1, LOTE_2 y LOTE_3 cambia sólo lo que su fila
+ * mide en los grupos, las citas y la prosa viva.
+ */
+/*
+ * 184 → 208 el mismo 2026-09-30: veinticuatro entradas más, firmadas con
+ * `correct-pleno-finding` (editor `civicpulse-curator`) en dos tandas, y ninguna es de un
+ * lote.
+ *
+ * Dieciocho salen de la auditoría de atribuciones a grupos con un solo concejal, los que
+ * `singleSeatBlocs()` deriva de los escaños: nombrar ese grupo nombra a su concejal por
+ * eliminación, y ninguna de esas etiquetas llevaba firma de curador, porque las puso la
+ * curación automática. Once retiran el grupo de una cita sin sustituirlo —el registro dice
+ * «sin identificar»— y no dicen que la atribución fuera errónea: la [2] de
+ * `f-2026-07-03-cit-1e90e0`, la [1] y la [3] de `f-2026-07-03-cit-df8455`, la [2] de
+ * `f-2026-04-20-cit-25e6ea`, la [0] y la [1] de `f-2025-12-23-afi-3eebaf`, la [3] de
+ * `f-2025-12-01-cit-bef239`, la [1] de `f-2025-12-01-acu-34560f`, la [3] de
+ * `f-2025-10-06-acu-b00839`, la [2] de `f-2025-09-08-cit-d6d194` y la [1] de
+ * `f-2025-09-08-acu-70a34f`. Las siete restantes reescriben los sumarios que repetían esos
+ * grupos: `df8455`, `25e6ea`, `3eebaf`, `34560f`, `b00839`, `d6d194` y `70a34f`.
+ *
+ * Las otras seis son las órdenes del dosier de escucha del pleno del 2026-01-19. Salen la
+ * [2] y la [1] de `f-2026-01-19-cit-c80e68`, que quedan en huella —la [2] era la traducción
+ * del motor sustituido, sin pasaje fiel al que reanclarla, y la [1] ponía un año donde en la
+ * sesión se oyen importes—, y con ellas `TOTAL_REMOVALS` pasa de 37 a 39; la [2] era además
+ * una ambigua del reanclaje del 2026-08-10 (ver `RESUELTAS_DESPUES`). La [0] de `c80e68` y
+ * la [1] de `f-2026-01-19-afi-5238db` pierden su grupo por lo mismo que las once de arriba
+ * —la escucha confirma quién habla; la atribución no se publica—, y sus dos sumarios se
+ * reescriben sin él; el de `c80e68`, también sin el año que traía la cita mal transcrita.
+ *
+ * En LOTE_1 a LOTE_4 cambia sólo lo que su fila mide en los grupos, las citas y la prosa
+ * viva, y el suelo de citas atribuidas de «one verbatim is one bloc» baja con ellas.
+ */
+const TOTAL_CORRECTIONS = 208
+const TOTAL_REMOVALS = 39
 
 /** One row of a review batch's fixture: enough to locate its own entries. */
 interface BatchCase {
@@ -397,8 +454,14 @@ describe('published pleno findings — the correction ledger is append-only', ()
  * 0 el 2026-09-29, el día que existe la vía. Las dos primeras que se preparan son
  * las de `f-2026-05-11-acu-7c65c5` (filas del 2-08 y del 9-08); al firmarlas, esto
  * pasa a 2 con su fecha.
+ *
+ * 0 → 2 el 2026-09-30: firmadas las dos, por una persona, como exige la vía. El
+ * motivo del 9-08 reproducía el arranque de una cita que la puerta editorial retiene y
+ * daba por hecho un hablante que el cotejo con la transcripción y el vídeo desmintió; el
+ * del 2-08 descansaba en un futuro que la transcripción vigente da en pasado. Los dos
+ * motivos anteriores quedan sólo en huella.
  */
-const TOTAL_REASON_AMENDMENTS = 0
+const TOTAL_REASON_AMENDMENTS = 2
 
 describe('published pleno findings — un motivo enmendado no borra el anterior', () => {
   const enmiendas = allCorrections.flatMap((c) => c.reasonAmendments ?? [])
@@ -477,7 +540,9 @@ describe('published pleno findings — a removal does not republish what it remo
     // lote-5 five quotes and the re-anchoring batch three more, and a run that
     // skipped rows would still satisfy `> 0` while retracting nothing.
     expect(removals.length).toBe(TOTAL_REMOVALS)
-    expect(removals.filter((c) => c.field.startsWith('quote.'))).toHaveLength(7)
+    // 2026-09-30: dos citas más, la [1] de `947479` y la [2] de `8b29a9` (bloque «163 → 184»),
+    // y otras dos el mismo día, la [2] y la [1] de `c80e68` (bloque «184 → 208»).
+    expect(removals.filter((c) => c.field.startsWith('quote.'))).toHaveLength(11)
     expect(removals.filter((c) => c.field.startsWith('crossChecked.'))).toHaveLength(28)
   })
 
@@ -714,7 +779,7 @@ const LOTE_1: Lote1Case[] = [
     drops: ['según el registro del tender correspondiente', 'Barranco Mandor'],
     // 29-09-2026: el otro «keeps» era el cierre de una cita que la puerta
     // retiene; exigirlo era exigir que el sumario lo siguiera imprimiendo. La
-    // redacción del sumario espera firma («Para firmar»).
+    // redacción del sumario se firmó ese mismo día (bloque «163 → 184»).
     keeps: ['la barrera está funcionando muy bien'],
     refs: [
       'tender|Contrato de obras para la ejecución del ',
@@ -747,8 +812,13 @@ const LOTE_1: Lote1Case[] = [
     priorCorrections: 1,
     // The factive verb is what went; nothing was retracted, so all four refs
     // and all four quotes must survive untouched.
-    drops: ['señala el desvío de partidas'],
-    keeps: ['«por lo que entiendo»', '«al parecer»', 'Un vehículo protección civil.'],
+    // 2026-09-30: las reservas entrecomilladas eran del motor sustituido (bloque «163 → 184»).
+    drops: ['señala el desvío de partidas', '«por lo que entiendo»', '«al parecer»'],
+    // 2026-09-30: el sumario dice ya que hubo reproches, sin reproducirlos; se ancla la vigente.
+    keeps: [
+      'PP y PSOE se cruzan reproches sobre una enmienda del PP a los fondos de protección civil',
+      'Un vehículo protección civil.',
+    ],
     refs: [
       'tender|Un vehículo protección civil. · Ayuntami',
       'tender|Contrato Menor de Suministro de dos perr',
@@ -873,7 +943,8 @@ const LOTE_1: Lote1Case[] = [
     // The one row of this batch whose summary was sound and stays byte for
     // byte: only a cotejo row went, and it was not a contract at all but a CPV
     // classification stub with no object and no award of its own.
-    drops: ['80000000'],
+    // 2026-09-30: el sumario deja de nombrar al grupo de la tercera cita (bloque «184 → 208»).
+    drops: ['80000000', 'VOX se compromete'],
     keeps: ['contratos relacionados con mejoras en centros educativos y servicios de formación'],
     refs: [
       'tender|contrato de obras de mejora de la eficie',
@@ -881,7 +952,8 @@ const LOTE_1: Lote1Case[] = [
       'pleno-video|Vídeo del pleno 2026-04-20 · YouTube',
     ],
     claims: ['k4olcs-063-cit-25e6ea', 'k4olcs-032-cit-98a5be', 'k4olcs-077-pro-02ea8a'],
-    groups: ['PSOE', 'PSOE', 'VOX'],
+    // 2026-09-30: la tercera queda sin grupo, que tiene un solo concejal (bloque «184 → 208»).
+    groups: ['PSOE', 'PSOE', null],
   },
   {
     id: 'f-2026-03-16-cit-528973',
@@ -1165,11 +1237,20 @@ const LOTE_2: Lote2Case[] = [
     priorCorrections: 1,
     // A CLEANING contract for the pool cannot date the works, the opening or a
     // vote from 1989. The shared word was «piscina».
-    drops: ['Este debate coincide con registros oficiales', 'Servicio de limpieza de piscina'],
+    drops: [
+      'Este debate coincide con registros oficiales',
+      'Servicio de limpieza de piscina',
+      // 2026-09-30: «ese pabellón» remitía a la piscina, y es otro edificio (bloque «163 → 184»).
+      'votó en contra de ese pabellón',
+    ],
     // La segunda frase la reescribió la corrección del 2026-08-14: el fragmento
     // que sostiene la ficha sigue siendo la acusación sobre el voto, pero ya no
     // en pasiva impersonal. Se ancla al texto vigente, no al anterior.
-    keeps: ['se inauguró en diciembre de 2012', 'votó en contra de ese pabellón'],
+    // 2026-09-30: y otra vez esa frase, que ya dice de qué edificio habla; se ancla la vigente.
+    keeps: [
+      'se inauguró en diciembre de 2012',
+      'votó en su día en contra del pabellón, un edificio distinto de la piscina',
+    ],
     refs: [
       'tender|Contrato basado en el SDA de obras para ',
       'pleno-video|Vídeo del pleno 2026-01-19 · YouTube',
@@ -1212,7 +1293,8 @@ const LOTE_2: Lote2Case[] = [
       '19gax3o-139-cit-be1832',
       '19gax3o-126-acu-d49e67',
     ],
-    groups: [null, null, 'PP', 'PP'],
+    // 2026-09-30: la tercera es del turno de la presidencia, del PSOE (bloque «163 → 184»).
+    groups: [null, null, 'PSOE', 'PP'],
   },
   {
     id: 'f-2026-01-19-cit-c80e68',
@@ -1222,14 +1304,19 @@ const LOTE_2: Lote2Case[] = [
     // the claim it makes is unchanged — only the pasted sentinel went.
     // La tercera es del 2026-09-21: la frase sobre VOX que este lote dejó en pie
     // resultó ser lo contrario de lo que VOX dijo. Ver el bloque «148 → 150».
+    // 2026-09-30: salen el grupo de la cita, que tiene un solo concejal, y el año que traía
+    // una cita mal transcrita (dosier del 19-01, bloque «184 → 208»).
     drops: [
       'estado: unknown',
       '· Ayuntamiento de Riba-roja de Túria ·',
       'la ausencia de una agenda de reconstrucción local',
+      'el grupo VOX pide',
+      'desde su inicio en 2006',
     ],
+    // 2026-09-30: la petición sigue en el sumario, ahora sin atribuir; se ancla la vigente.
     keeps: [
       "el registro municipal incluye el contrato 'Servicio mantenimiento instalaciones en complejo deportivo La Malla'",
-      'el grupo VOX pide «un plan de reconstrucción nacional',
+      'una intervención sin atribuir pide «un plan de reconstrucción nacional',
     ],
     // Lote 4 took the dirección-de-obra row that used to lead this list.
     // The expediente the summary names by title is a different one — and the
@@ -1242,8 +1329,11 @@ const LOTE_2: Lote2Case[] = [
     // The row that used to lead this list was retracted on 2026-08-10: its
     // text appears nowhere in the current transcript and carried a clause
     // duplicated inside itself, the signature of the superseded engine looping.
-    claims: ['19gax3o-055-cit-a80e52', '19gax3o-132-cit-35c4f5', '19gax3o-143-cit-a3a7a1'],
-    groups: ['VOX', null, null],
+    // 2026-09-30: salen la segunda, que ponía un año donde se oyen importes, y la tercera,
+    // traducción del motor sustituido; la primera queda sin grupo, que tiene un solo concejal
+    // (dosier del 19-01, bloque «184 → 208»).
+    claims: ['19gax3o-055-cit-a80e52'],
+    groups: [null],
   },
   {
     id: 'f-2025-12-23-acu-cd77e9',
@@ -1307,7 +1397,12 @@ const LOTE_2: Lote2Case[] = [
     id: 'f-2025-09-08-acu-70a34f',
     added: ['summary', 'crossChecked.0'],
     priorCorrections: 0,
-    drops: ['La actividad contractual del consistorio incluye', 'limpieza C.D. La Mallá'],
+    // 2026-09-30: el sumario deja de nombrar al grupo de la segunda cita (bloque «184 → 208»).
+    drops: [
+      'La actividad contractual del consistorio incluye',
+      'limpieza C.D. La Mallá',
+      'Compromís destaca',
+    ],
     keeps: ['el personal docente tuvo que limpiar las aulas', 'se solventó en pocos días'],
     refs: [
       'tender|Contrato de patrocinio entre el Ayuntami',
@@ -1321,7 +1416,8 @@ const LOTE_2: Lote2Case[] = [
       'c8kr44-242-cit-671430',
       'c8kr44-243-cit-be89b4',
     ],
-    groups: ['PP', 'Compromís', 'PSOE', 'PSOE'],
+    // 2026-09-30: la segunda queda sin grupo, que tiene un solo concejal (bloque «184 → 208»).
+    groups: ['PP', null, 'PSOE', 'PSOE'],
   },
   {
     id: 'f-2025-07-31-acu-144947',
@@ -1364,7 +1460,8 @@ const LOTE_2: Lote2Case[] = [
       '1237hbp-029-cit-0d2047',
       '1237hbp-103-cit-4bf2c1',
     ],
-    groups: [null, null, 'Compromís', null],
+    // 2026-09-30: la tercera queda sin grupo, que tiene un solo concejal (bloque «184 → 208»).
+    groups: [null, null, null, null],
   },
   {
     id: 'f-2026-05-11-acu-7c65c5',
@@ -1422,10 +1519,17 @@ const LOTE_2: Lote2Case[] = [
     id: 'f-2026-03-16-cit-56214f',
     added: ['summary'],
     priorCorrections: 0,
-    drops: ['corrobora', 'La ausencia de obras mayores'],
+    drops: [
+      'corrobora',
+      'La ausencia de obras mayores',
+      // 2026-09-30: nadie habla de ampliación en la intervención (bloque «163 → 184»).
+      'en el sentido de ampliación',
+      'no la ampliación mencionada en el discurso',
+    ],
     keeps: [
       'carpa de triaje en la zona exterior del Centro de Salud',
-      'no equivale a la inversión que el orador echa en falta',
+      // 2026-09-30: la frase dice ya qué reclama el discurso; se ancla la vigente.
+      'una dotación puntual, no el proyecto que se reclama',
     ],
     refs: ['tender|Contrato menor, suministro para la adqui'],
     claims: ['ma87e0-195-cit-56214f'],
@@ -1807,11 +1911,16 @@ const LOTE_3: Lote3Case[] = [
       'entre los documentos cotejados con esta sesión figura',
       'adjudicado en 2026',
       'mezcladores para duchas',
-    ],
-    keeps: [
-      'arranca en 2017, así que no recoge ningún expediente de aquel periodo',
+      // 2026-09-30: el voto atribuido al PP, su falsa salvedad y la auditoría mal fechada.
+      'Debate de los grupos PP',
+      'La intervención del PP anunciando voto a favor',
+      'no consta en la vigente',
       'una auditoría realizada entre 2006 y 2012',
     ],
+    // 2026-09-30: se ancla el sumario reescrito, sin esas dos frases (bloque «163 → 184»).
+    // 2026-09-30, después: el dosier del 19-01 lo reescribe otra vez y deja sin atribuir las
+    // intervenciones, como la ficha (bloque «184 → 208»); se ancla otra vez la vigente.
+    keeps: ['otra anuncia que su grupo votará a favor', 'no se refería a su intención de voto'],
     refs: [
       'tender|Contrato de servicio alumbrado ornamenta',
       'tender|Contrato de obras de modificación de núc',
@@ -1824,7 +1933,10 @@ const LOTE_3: Lote3Case[] = [
       '19gax3o-186-acu-71dffe',
       '19gax3o-138-acu-9f3da3',
     ],
-    groups: ['PP', 'Compromís', null, null],
+    // 2026-09-30: la primera no es del PP, y su grupo tiene un solo concejal (bloque «163 → 184»).
+    // Y la segunda, también de un grupo con un solo concejal, queda sin él (dosier del 19-01,
+    // bloque «184 → 208»).
+    groups: [null, null, null, null],
   },
   {
     id: 'f-2026-01-19-cit-8b29a9',
@@ -1832,7 +1944,8 @@ const LOTE_3: Lote3Case[] = [
     priorCorrections: 1,
     // Prose untouched: the August correction already made it honest. Only the
     // ref that names a private individual and post-dates the session goes.
-    drops: [],
+    // 2026-09-30: salen la petición atribuida al PP y lo que se atribuía a VOX sin cita suya.
+    drops: ['el PP señala la solicitud sobre el Complejo La Malla', 'El grupo VOX manifiesta'],
     keeps: [
       'corresponde a la pavimentación del paseo Pacadar',
       'no consta en la contratación publicada ningún expediente que documente esa obra concreta',
@@ -1848,8 +1961,9 @@ const LOTE_3: Lote3Case[] = [
     // The VOX row that sat second was retracted on 2026-08-10: the superseded
     // transcript repeated that sentence eight times over and the current one
     // does not contain it at all.
-    claims: ['19gax3o-146-cit-8b29a9', '19gax3o-067-cit-dcdcf6', '19gax3o-139-cit-989b94'],
-    groups: ['PSOE', null, 'PP'],
+    // 2026-09-30: sale la tercera, del motor sustituido y de otro turno (bloque «163 → 184»).
+    claims: ['19gax3o-146-cit-8b29a9', '19gax3o-067-cit-dcdcf6'],
+    groups: ['PSOE', null],
   },
   {
     id: 'f-2025-12-23-acu-a1ba00',
@@ -1879,7 +1993,8 @@ const LOTE_3: Lote3Case[] = [
     id: 'f-2025-10-06-acu-b00839',
     added: ['summary'],
     priorCorrections: 1,
-    drops: ['señala que denuncia ante la Consejería'],
+    // 2026-09-30: el sumario deja de nombrar al grupo de la cuarta cita (bloque «184 → 208»).
+    drops: ['señala que denuncia ante la Consejería', 'VOX manifestó'],
     keeps: [
       // Was the withheld quote verbatim; redacted 2026-08-11.
       'intervenciones sobre actuaciones ante la Consejería',
@@ -1904,7 +2019,8 @@ const LOTE_3: Lote3Case[] = [
       'otxq2c-082-cit-915a1d',
       'otxq2c-048-cit-11d99a',
     ],
-    groups: ['PSOE', 'PP', 'PSOE', 'VOX'],
+    // 2026-09-30: la cuarta queda sin grupo, que tiene un solo concejal (bloque «184 → 208»).
+    groups: ['PSOE', 'PP', 'PSOE', null],
   },
   {
     id: 'f-2026-04-20-cit-947479',
@@ -1914,11 +2030,14 @@ const LOTE_3: Lote3Case[] = [
       'en el debate sobre la cartelería digital',
       'del ayuntam',
       'El debate sobre la adjudicación del sistema concluyó con la abstención',
+      // 2026-09-30: una de las dos ya se imprime, y el sumario lo dice (bloque «163 → 184»).
+      'esas intervenciones no se reproducen aquí',
     ],
     keeps: [
       // Both were the withheld valuation restated; redacted 2026-08-11.
       'una discrepancia sobre el sentido de los informes técnicos de intervención',
-      'el deber de dar cuenta de ellos',
+      // 2026-09-30: la del deber de dar cuenta, descrita ahora como la que se imprime.
+      'una intervención sin grupo identificado sostiene que no había obligación de dar cuenta',
     ],
     refs: [
       'tender|El objeto del contrato es la prestación ',
@@ -1926,19 +2045,20 @@ const LOTE_3: Lote3Case[] = [
       'tender|Mantenimiento control de acceso corporat',
       'pleno-video|Vídeo del pleno 2026-04-20 · YouTube',
     ],
-    claims: [
-      'k4olcs-019-cit-947479',
-      'k4olcs-019-acu-940acd',
-      'k4olcs-133-acu-e1bac8',
-      'k4olcs-146-acu-8c6db4',
-    ],
-    groups: [null, null, 'PP', null],
+    // 2026-09-30: sale la segunda, traducción del motor sustituido (bloque «163 → 184»).
+    claims: ['k4olcs-019-cit-947479', 'k4olcs-133-acu-e1bac8', 'k4olcs-146-acu-8c6db4'],
+    groups: [null, 'PP', null],
   },
   {
     id: 'f-2026-01-19-cit-cc8758',
     added: ['crossChecked.0'],
     priorCorrections: 1,
-    drops: ['VOX, en cambio, denunció la falta de una agenda de reconstrucción'],
+    drops: [
+      'VOX, en cambio, denunció la falta de una agenda de reconstrucción',
+      // 2026-09-30: de `keeps`; la mención no es del PP y su cita consta (bloque «163 → 184»).
+      'Se atribuye al PP la mención de subsanar problemas',
+      'no consta en la transcripción vigente',
+    ],
     // La primera la reescribió la corrección del 2026-08-14: la mención del PP
     // sigue en la ficha —es lo que la sostiene— pero ya no enumerada como asunto
     // asentado, porque su cita lleva «no consta en la transcripción revisada».
@@ -1946,9 +2066,10 @@ const LOTE_3: Lote3Case[] = [
     // La frase sobre VOX que cerraba el resumen se retiró el 2026-09-21: la ficha
     // no lleva ninguna cita de VOX y la frase decía lo contrario de lo que consta.
     // Ver el bloque «148 → 150». La frase pasa a `drops`, arriba.
+    // 2026-09-30: se ancla el sumario vigente, reescrito sin esas dos frases (bloque «163 → 184»).
     keeps: [
-      'Se atribuye al PP la mención de subsanar problemas',
-      'no consta en la transcripción vigente',
+      'otra intervención sin grupo identificado se refiere a subsanar los problemas del pabellón',
+      'se basan en fondos europeos para la reconstrucción tras la DANA',
     ],
     // The Pacadar cotejo STAYS here too, and this is the row where that costs
     // something to say. What a curator retired from its twin `8b29a9` on
@@ -1963,13 +2084,16 @@ const LOTE_3: Lote3Case[] = [
     // The VOX row that closed this list was retracted on 2026-08-10 — the same
     // hallucinated clause its twin `cit-c80e68` published, truncated.
     claims: ['19gax3o-016-cit-cc8758', '19gax3o-067-cit-0c2099', '19gax3o-114-cit-b7641b'],
-    groups: ['PSOE', null, 'PP'],
+    // 2026-09-30: la tercera es la [0] de `5238db` y queda sin grupo (bloque «163 → 184»).
+    groups: ['PSOE', null, null],
   },
   {
     id: 'f-2025-12-23-afi-3eebaf',
     added: ['summary'],
     priorCorrections: 1,
-    drops: ['señala la inclusión de nuevas condiciones'],
+    // 2026-09-30: el sumario deja de nombrar a los grupos de las dos primeras citas, cada uno
+    // con un solo concejal (bloque «184 → 208»).
+    drops: ['señala la inclusión de nuevas condiciones', 'VOX afirma', 'Compromís menciona'],
     keeps: ['«no existía en el contrato anterior y en este sí»', 'sin precisar a qué se refiere'],
     // Two innovation contracts share nothing with the debate but the string
     // «asistencia técnica». No sentence names them, so they stay.
@@ -1981,13 +2105,20 @@ const LOTE_3: Lote3Case[] = [
       'pleno-video|Vídeo del pleno 2025-12-23 · YouTube',
     ],
     claims: ['1qi8axv-122-afi-3eebaf', '1qi8axv-023-cit-3e6224', '1qi8axv-059-afi-3e1e17'],
-    groups: ['VOX', 'Compromís', null],
+    // 2026-09-30: las dos primeras quedan sin grupo, cada uno con un solo concejal (bloque
+    // «184 → 208»).
+    groups: [null, null, null],
   },
   {
     id: 'f-2025-12-01-acu-34560f',
     added: ['summary', 'crossChecked.2'],
     priorCorrections: 1,
-    drops: ['Un grupo no identificado afirma que la Generalitat no está cumpliendo con sus pagos'],
+    // 2026-09-30: el sumario deja de decir a qué grupo, de un solo concejal, se atribuía la
+    // segunda cita (bloque «184 → 208»).
+    drops: [
+      'Un grupo no identificado afirma que la Generalitat no está cumpliendo con sus pagos',
+      'atribuida a Compromís',
+    ],
     keeps: [
       // Was the withheld quote verbatim; redacted 2026-08-11.
       'reproches sobre plazos de pago a proveedores',
@@ -2009,7 +2140,8 @@ const LOTE_3: Lote3Case[] = [
       'qz6weg-216-acu-c41b8d',
       'qz6weg-163-acu-3a8bb0',
     ],
-    groups: [null, 'Compromís', null, null],
+    // 2026-09-30: la segunda queda sin grupo, que tiene un solo concejal (bloque «184 → 208»).
+    groups: [null, null, null, null],
   },
   {
     id: 'f-2025-12-01-cit-66cd62',
@@ -2068,9 +2200,12 @@ const LOTE_3: Lote3Case[] = [
       'Compromís reclama',
     ],
     // 2026-09-29: la frase de la ILP, reescrita sin grupo y aún sin tema; se ancla la vigente.
+    // 2026-09-30, después: la ILP pasa a su punto del orden del día y el sumario dice de qué
+    // trata; se ancla otra vez la vigente. No la nombra: su nombre no está en ninguna cita ni
+    // cotejo de la ficha, y queda en el motivo de la corrección.
     keeps: [
-      'la distingue de mociones presentadas en legislaturas anteriores',
-      'En el debate de una moción de apoyo a una iniciativa legislativa popular',
+      'distingue esa iniciativa de mociones presentadas en legislaturas anteriores',
+      'El punto noveno fue otra moción conjunta, de apoyo a una iniciativa legislativa popular sobre la tauromaquia',
       'no recae exclusivamente en la Generalitat Valenciana',
     ],
     // The two civil-liability policies stay. Reading «responsabilidad civil»
@@ -2603,8 +2738,10 @@ const LOTE_4: Lote4Case[] = [
       },
     ],
     // 2026-09-21: la frase que este lote anclaba se retiró (bloque «148 → 150»).
-    drops: ['señala la ausencia de una agenda de reconstrucción local'],
-    keeps: ['el grupo VOX pide «un plan de reconstrucción nacional'],
+    // 2026-09-30: y la que queda ya no nombra al grupo de su cita, que tiene un solo concejal
+    // (dosier del 19-01, bloque «184 → 208»); se ancla la vigente.
+    drops: ['señala la ausencia de una agenda de reconstrucción local', 'el grupo VOX pide'],
+    keeps: ['una intervención sin atribuir pide «un plan de reconstrucción nacional'],
     namesDoc: 'Servicio mantenimiento instalaciones en complejo deportivo La Malla',
     refs: [
       'tender|Servicio mantenimiento instalaciones en ',
@@ -2614,8 +2751,11 @@ const LOTE_4: Lote4Case[] = [
     // The row that used to lead this list was retracted on 2026-08-10: its
     // text appears nowhere in the current transcript and carried a clause
     // duplicated inside itself, the signature of the superseded engine looping.
-    claims: ['19gax3o-055-cit-a80e52', '19gax3o-132-cit-35c4f5', '19gax3o-143-cit-a3a7a1'],
-    groups: ['VOX', null, null],
+    // 2026-09-30: salen la segunda, que ponía un año donde se oyen importes, y la tercera,
+    // traducción del motor sustituido; la primera queda sin grupo, que tiene un solo concejal
+    // (dosier del 19-01, bloque «184 → 208»).
+    claims: ['19gax3o-055-cit-a80e52'],
+    groups: [null],
   },
   {
     id: 'f-2025-12-01-acu-51aaa3',
@@ -2685,9 +2825,16 @@ const LOTE_4: Lote4Case[] = [
     // The only prose in the batch. «Según el registro municipal, consta la
     // licitación de …» named the row that comes out, and the record it named
     // is attested five months after the session it was published beside.
-    drops: ['Según el registro municipal', 'consta la licitación', 'Mejora del carril bici'],
+    // 2026-09-30: la primera frase deja de nombrar a un grupo con un solo concejal (bloque
+    // «184 → 208»); lo que dice sigue en el sumario, y se ancla la vigente.
+    drops: [
+      'Según el registro municipal',
+      'consta la licitación',
+      'Mejora del carril bici',
+      'el grupo Compromís señala',
+    ],
     keeps: [
-      'el grupo Compromís señala la existencia de un contrato para la recogida de residuos sólidos urbanos',
+      'se señala la existencia de un contrato para la recogida de residuos sólidos urbanos',
       'el PSOE manifiesta el inicio de los trabajos en un plan de refugios climáticos',
     ],
     refs: [
@@ -2701,7 +2848,8 @@ const LOTE_4: Lote4Case[] = [
       'c8kr44-047-cit-8dec6a',
       'c8kr44-146-cit-ccd20c',
     ],
-    groups: ['PSOE', 'PSOE', 'Compromís', 'PSOE'],
+    // 2026-09-30: la tercera queda sin grupo, que tiene un solo concejal (bloque «184 → 208»).
+    groups: ['PSOE', 'PSOE', null, 'PSOE'],
   },
   {
     id: 'f-2025-07-31-acu-144947',
@@ -3274,7 +3422,12 @@ describe('published pleno findings — one verbatim is one bloc', () => {
     // El corpus perdió 11 hallazgos el 2026-08-11 (todos aquellos cuyas citas
     // retiene la puerta editorial al completo). El suelo baja con él: sigue
     // probando que la pasada recorrió algo, que es para lo único que está.
-    expect(attributed.length).toBeGreaterThan(80)
+    // Y el 2026-09-30 se fueron tres atribuciones: dos quedaron sin grupo (`5238db` [0] y
+    // `cc8758` [2]) y una salió con su cita (`8b29a9` [2]). El suelo baja tres.
+    // Y el mismo día, trece más, todas de grupos con un solo concejal: las once de la
+    // auditoría y, del dosier del 19-01, la [0] de `c80e68` y la [1] de `5238db` (bloque
+    // «184 → 208»). De 80 a 67, y el suelo queda justo por debajo.
+    expect(attributed.length).toBeGreaterThan(66)
     expect(findAttributionConflicts(items)).toEqual([])
   })
 })
@@ -3438,12 +3591,110 @@ const appliedLive = () => BATCH.rows.filter((r) => r.applied && liveRow(r))
 const findQuoteByDigest = (findingId: string, digest: string): number =>
   byId(findingId).quotes.findIndex((q) => sha256Short(q.text) === digest)
 
-/** The two reasons this batch signed, byte for byte as the ledger carries them. */
+/** El día de la tanda: todas sus filas llevan esa fecha. */
+const BATCH_DAY = '2026-08-10'
+
+/**
+ * The two reasons this batch signed, byte for byte as the ledger carries them.
+ *
+ * Acotadas a su día desde el 2026-09-30, cuando se firmaron tres reanclajes más con el
+ * mismo arranque de motivo (bloque «163 → 184»). Son de otra tanda, igual que lo es para
+ * un lote lo que `afterBatch` encuentra detrás de su ventana.
+ */
 const batchRows = allCorrections.filter(
   (c) =>
-    c.reason.startsWith('Reanclaje a la transcripción vigente') ||
-    c.reason.startsWith('Se retira un literal que no consta'),
+    c.correctedAt.startsWith(BATCH_DAY) &&
+    (c.reason.startsWith('Reanclaje a la transcripción vigente') ||
+      c.reason.startsWith('Se retira un literal que no consta')),
 )
+/** Cuándo cerró la tanda: la última fila que firmó. */
+const BATCH_CLOSED = batchRows.reduce((max, c) => (c.correctedAt > max ? c.correctedAt : max), '')
+
+/**
+ * Ambiguas de esta tanda que una corrección firmada DESPUÉS resolvió.
+ *
+ * La tanda las dejó intactas, y eso es lo que fijan las dos pruebas de abajo; a las que
+ * tenían la atribución en duda, reanclarlas les habría quitado el chip y dejado mejor
+ * documentado un grupo que la transcripción refuta. El 2026-09-29 la relectura de su
+ * sesión, con la transcripción y el vídeo delante, resolvió cinco (bloque «163 → 184»): en
+ * tres cambió o retiró primero la atribución y después reancló el literal, y en dos retiró
+ * la cita. El mismo día el dosier de escucha del pleno del 2026-01-19 resolvió una sexta,
+ * `b27`, retirando la cita: era la traducción del motor sustituido y no había un pasaje fiel
+ * al que reanclarla (bloque «184 → 208»). Es lo que `batchWindow` resuelve para los lotes:
+ * en una bitácora de sólo añadir, que una tanda posterior haga su trabajo no pone en rojo a
+ * la anterior.
+ *
+ * Pero el salto no se esconde en un recuento. Cada fila nombra aquí la corrección que la
+ * resolvió, y `resueltaDespues` exige que esté en la bitácora, firmada, posterior a la
+ * tanda y sobre esa misma cita. Un reanclaje lo prueba solo, porque su `original` es el
+ * literal que sustituyó. Una retirada guarda la huella de la fila entera y no la de su
+ * texto, así que la suya va escrita aquí, rehecha con `sha256Short(JSON.stringify(fila))`
+ * sobre el fichero anterior a la retirada.
+ */
+const RESUELTAS_DESPUES = new Map<string, { field: string; correctedAt: string; huella?: string }>([
+  [
+    'a24',
+    {
+      field: 'quote.1',
+      correctedAt: '2026-09-30T05:45:30.741Z',
+      huella: 'cita · sha256:1aa5ef4cea6c',
+    },
+  ],
+  ['b11', { field: 'quote.0.text', correctedAt: '2026-09-30T05:45:28.763Z' }],
+  ['b21', { field: 'quote.2.text', correctedAt: '2026-09-30T05:45:32.547Z' }],
+  [
+    'b25',
+    {
+      field: 'quote.2',
+      correctedAt: '2026-09-30T05:45:31.876Z',
+      huella: 'cita · sha256:e7b0d6dcd063',
+    },
+  ],
+  [
+    'b27',
+    {
+      field: 'quote.2',
+      correctedAt: '2026-09-30T05:48:39.134Z',
+      huella: 'cita · sha256:80977b2b0a74',
+    },
+  ],
+  ['b28', { field: 'quote.2.text', correctedAt: '2026-09-30T05:45:30.082Z' }],
+])
+
+/**
+ * La corrección posterior que resolvió una fila de `RESUELTAS_DESPUES`, comprobada contra
+ * la bitácora publicada. Devuelve esa entrada.
+ */
+const resueltaDespues = (r: ReanchorRow): Correction => {
+  const want = RESUELTAS_DESPUES.get(r.tag)!
+  const f = byId(r.findingId)
+  const entry = (f.corrections ?? []).find(
+    (c) => c.field === want.field && c.correctedAt === want.correctedAt,
+  )
+  expect(entry, `${r.tag}: la bitácora no lleva la corrección que la resolvió`).toBeDefined()
+  expect(entry!.correctedAt > BATCH_CLOSED, `${r.tag}: no es posterior a la tanda`).toBe(true)
+  expect(entry!.editor.trim().length).toBeGreaterThan(1)
+  expect(entry!.reason.trim().length).toBeGreaterThanOrEqual(20)
+  // La tabla no exime de nada: la cita que la tanda dejó ya no está.
+  expect(findQuoteByDigest(r.findingId, r.textBefore), `${r.tag}: sigue publicada`).toBe(-1)
+  if (want.huella) {
+    // Una retirada: la bitácora guarda la huella de la fila, nunca su texto.
+    expect(entry!.original).toBe(want.huella)
+    expect(entry!.corrected).toBe('retirada del hallazgo')
+  } else {
+    // Un reanclaje: sustituyó el literal que la tanda dejó, byte a byte…
+    expect(sha256Short(entry!.original), `${r.tag}: se reancló otra cita`).toBe(r.textBefore)
+    // …por uno que se publica y que consta como pasaje en la transcripción vigente.
+    expect(f.quotes.some((q) => q.text === entry!.corrected)).toBe(true)
+    expect(
+      normaliseForQuoteMatch(transcriptOf(f.plenoId)).includes(
+        normaliseForQuoteMatch(entry!.corrected),
+      ),
+      `${r.tag}: el literal nuevo no está en la vigente`,
+    ).toBe(true)
+  }
+  return entry!
+}
 
 describe('published pleno findings — el reanclaje del 2026-08-10', () => {
   it('la tanda hizo trabajo, y exactamente el que dice haber hecho', () => {
@@ -3519,17 +3770,30 @@ describe('published pleno findings — el reanclaje del 2026-08-10', () => {
     const ambiguous = BATCH.rows.filter((r) => r.verdict === 'ambiguo')
     expect(ambiguous).toHaveLength(36)
     let intact = 0
+    let resueltas = 0
     for (const r of ambiguous) {
       expect(r.applied, `${r.tag}: una ambigua no se aplica`).toBe(false)
       if (!r.publishedBefore) continue // 6ad12d2 ya la había retirado
       if (!liveRow(r)) continue // su hallazgo se retiró entero después
+      // 2026-09-30: la resolvió una corrección firmada después (bloques «163 → 184» y
+      // «184 → 208»).
+      if (RESUELTAS_DESPUES.has(r.tag)) {
+        resueltaDespues(r)
+        resueltas += 1
+        continue
+      }
       expect(
         findQuoteByDigest(r.findingId, r.textBefore),
         `${r.tag}: la cita cambió`,
       ).toBeGreaterThan(-1)
       intact += 1
     }
-    expect(intact).toBe(ambiguous.filter((r) => r.publishedBefore && liveRow(r)).length)
+    expect(intact).toBe(
+      ambiguous.filter((r) => r.publishedBefore && liveRow(r) && !RESUELTAS_DESPUES.has(r.tag))
+        .length,
+    )
+    // Toda fila de la tabla es una ambigua publicada y viva que se resolvió: ninguna sobra.
+    expect(resueltas).toBe(RESUELTAS_DESPUES.size)
     expect(ambiguous.filter((r) => !r.publishedBefore)).toHaveLength(1)
   })
 
@@ -3546,13 +3810,32 @@ describe('published pleno findings — el reanclaje del 2026-08-10', () => {
     let checked = 0
     for (const r of doubted) {
       if (!r.publishedBefore || !liveRow(r)) continue
+      // 2026-09-30: la resolvió una corrección firmada después (bloque «163 → 184»). Si la
+      // reancló, antes cambió o retiró el grupo de esa misma cita: reanclar sin eso es
+      // justo lo que esta prueba existe para impedir.
+      if (RESUELTAS_DESPUES.has(r.tag)) {
+        const entry = resueltaDespues(r)
+        if (/^quote\.\d+\.text$/.test(entry.field)) {
+          const grupo = (byId(r.findingId).corrections ?? []).find(
+            (c) =>
+              c.field === entry.field.replace(/\.text$/, '.speakerGroup') &&
+              c.correctedAt > BATCH_CLOSED &&
+              c.correctedAt < entry.correctedAt,
+          )
+          expect(grupo, `${r.tag}: se reancló sin resolver antes su atribución`).toBeDefined()
+        }
+        continue
+      }
       const i = findQuoteByDigest(r.findingId, r.textBefore)
       expect(i, `${r.tag}: la cita ya no está donde estaba`).toBeGreaterThan(-1)
       const status = PROVENANCE.quotes[r.findingId]?.[i]?.status
       expect(MARKED_STATUS_IDS, `${r.tag}: perdió el chip`).toContain(status)
       checked += 1
     }
-    expect(checked).toBe(doubted.filter((r) => r.publishedBefore && liveRow(r)).length)
+    expect(checked).toBe(
+      doubted.filter((r) => r.publishedBefore && liveRow(r) && !RESUELTAS_DESPUES.has(r.tag))
+        .length,
+    )
   })
 
   it('los dos motivos describen el criterio y no el material', () => {
@@ -3598,7 +3881,11 @@ describe('published pleno findings — el reanclaje del 2026-08-10', () => {
     // probando que la pasada recorrió algo, que es para lo único que está.
     // Y el 2026-09-15 la corrección de `66cd62` juntó sus dos entrecomillados en la
     // cita entera, que sale de su propia cita: un tramo menos, y el suelo baja uno.
-    expect(phrases).toBeGreaterThan(9)
+    // Y el 2026-09-30 el sumario de `ea9d47` perdió los dos suyos, que eran la traducción
+    // del motor sustituido: dos tramos menos, y el suelo baja dos. El de `431140` no gana
+    // ninguno: el nombre de la iniciativa legislativa popular que describe no está en
+    // ninguna cita ni cotejo de la ficha, así que se firmó sin él (bloque «163 → 184»).
+    expect(phrases).toBeGreaterThan(7)
     // Los cuatro que ya lo estaban antes de esta tanda, nominalmente, para que
     // uno nuevo no pueda esconderse dentro de un recuento.
     // `bba0e9` salió de la lista al retirarse el hallazgo entero el
