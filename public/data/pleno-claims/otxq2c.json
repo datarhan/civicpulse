@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-29T05:11:47.357Z",
+  "generatedAt": "2026-09-30T05:52:23.833Z",
   "version": "1",
   "plenoId": "otxq2c",
   "plenoDate": "2025-10-06",
@@ -2628,7 +2628,7 @@
       "verification": {
         "claimId": "otxq2c-037-cit-6c4d24",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): motion recitation (forward to ministries); inclusion-plan match too loose for the specific support groups (was parcial)",
+        "summary": "Se retiró el «Parcial» anterior: la frase lee los acuerdos de una moción, que se trasladan a ministerios y otras instituciones, y el contrato del plan de inclusión social que se citaba coincide de forma demasiado vaga con esos grupos de apoyo concretos.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"

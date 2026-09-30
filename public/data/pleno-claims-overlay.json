@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-21T05:53:59.613Z",
+  "generatedAt": "2026-09-30T05:52:22.318Z",
   "entries": {
     "k4olcs-005-acu-7c0edd": {
       "verification": {
@@ -156,16 +156,24 @@
       "verification": {
         "claimId": "k4olcs-159-afi-61a6eb",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): false contradicho: 15-20 day claim vs unrelated 2-month supply contracts (was contradicho)",
+        "summary": "El «Contradicho» anterior no se sostenía: la frase da un plazo de 15 a 20 días, y los contratos de suministro de dos meses que se citaban no tienen relación con él.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
         ]
       },
       "source": "curator-downgrade",
-      "reason": "Gold review (ai): false contradicho: 15-20 day claim vs unrelated 2-month supply contracts (was contradicho)",
+      "reason": "El «Contradicho» anterior no se sostenía: la frase da un plazo de 15 a 20 días, y los contratos de suministro de dos meses que se citaban no tienen relación con él.",
       "editor": "ai-gold-review",
-      "appliedAt": "2026-06-24T07:18:12.464Z"
+      "appliedAt": "2026-06-24T07:18:12.464Z",
+      "reasonAmendments": [
+        {
+          "previous": "motivo · sha256:40803a05b34b",
+          "reason": "El motivo se publicó en inglés y con jerga de revisión; se reescribe en castellano llano sin cambiar lo que afirma ni el veredicto.",
+          "editor": "Sergei Lutchenko",
+          "amendedAt": "2026-09-30T05:52:14.669Z"
+        }
+      ]
     },
     "k4olcs-016-cit-683445": {
       "verification": {
@@ -246,16 +254,24 @@
       "verification": {
         "claimId": "k4olcs-021-afi-b6f856",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): false contradicho: a demolition contract neither confirms nor refutes a 2008 construction date (was contradicho)",
+        "summary": "El «Contradicho» anterior no se sostenía: un contrato de derribo de una vivienda no confirma ni desmiente que la construcción sea de 2008.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
         ]
       },
       "source": "curator-downgrade",
-      "reason": "Gold review (ai): false contradicho: a demolition contract neither confirms nor refutes a 2008 construction date (was contradicho)",
+      "reason": "El «Contradicho» anterior no se sostenía: un contrato de derribo de una vivienda no confirma ni desmiente que la construcción sea de 2008.",
       "editor": "ai-gold-review",
-      "appliedAt": "2026-06-24T07:18:12.464Z"
+      "appliedAt": "2026-06-24T07:18:12.464Z",
+      "reasonAmendments": [
+        {
+          "previous": "motivo · sha256:7528ad50dba2",
+          "reason": "El motivo se publicó en inglés y con jerga de revisión; se reescribe en castellano llano sin cambiar lo que afirma ni el veredicto.",
+          "editor": "Sergei Lutchenko",
+          "amendedAt": "2026-09-30T05:52:05.739Z"
+        }
+      ]
     },
     "k4olcs-023-cit-21bb84": {
       "verification": {
@@ -291,16 +307,24 @@
       "verification": {
         "claimId": "k4olcs-024-afi-eb50e3",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): generic municipal supply contracts do not attest a specific dwelling utilities (was verificado)",
+        "summary": "Se retiró el «Verificado» anterior: contratos municipales genéricos de suministro no acreditan el agua ni la electricidad de una vivienda concreta.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
         ]
       },
       "source": "curator-downgrade",
-      "reason": "Gold review (ai): generic municipal supply contracts do not attest a specific dwelling utilities (was verificado)",
+      "reason": "Se retiró el «Verificado» anterior: contratos municipales genéricos de suministro no acreditan el agua ni la electricidad de una vivienda concreta.",
       "editor": "ai-gold-review",
-      "appliedAt": "2026-06-24T07:18:12.464Z"
+      "appliedAt": "2026-06-24T07:18:12.464Z",
+      "reasonAmendments": [
+        {
+          "previous": "motivo · sha256:e358f837e188",
+          "reason": "El motivo se publicó en inglés y con jerga de revisión; se reescribe en castellano llano sin cambiar lo que afirma ni el veredicto.",
+          "editor": "Sergei Lutchenko",
+          "amendedAt": "2026-09-30T05:52:07.469Z"
+        }
+      ]
     },
     "k4olcs-028-afi-f0c0ed": {
       "verification": {
@@ -396,16 +420,24 @@
       "verification": {
         "claimId": "k4olcs-077-pro-02ea8a",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): party value-statement; generic education CPV match (was parcial)",
+        "summary": "Se retiró el «Parcial» anterior: es una declaración de principios de un partido, y el contrato citado sólo coincidía en la categoría genérica de contratación «servicios de enseñanza y formación».",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
         ]
       },
       "source": "curator-downgrade",
-      "reason": "Gold review (ai): party value-statement; generic education CPV match (was parcial)",
+      "reason": "Se retiró el «Parcial» anterior: es una declaración de principios de un partido, y el contrato citado sólo coincidía en la categoría genérica de contratación «servicios de enseñanza y formación».",
       "editor": "ai-gold-review",
-      "appliedAt": "2026-06-24T07:18:12.464Z"
+      "appliedAt": "2026-06-24T07:18:12.464Z",
+      "reasonAmendments": [
+        {
+          "previous": "motivo · sha256:e13ce6ed7345",
+          "reason": "El motivo se publicó en inglés y con jerga de revisión; se reescribe en castellano llano sin cambiar lo que afirma ni el veredicto.",
+          "editor": "Sergei Lutchenko",
+          "amendedAt": "2026-09-30T05:52:09.171Z"
+        }
+      ]
     },
     "k4olcs-076-afi-853250": {
       "verification": {
@@ -546,31 +578,47 @@
       "verification": {
         "claimId": "k4olcs-126-pro-a6380b",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): 6M payment claim; Espai Obert press is unrelated, coincidental \"2026\" (was parcial)",
+        "summary": "Se retiró el «Parcial» anterior: la frase habla de un pago de 6 millones, y la noticia citada, sobre los encuentros vecinales «Espai Obert», no tiene relación con él y sólo coincidía en «2026».",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
         ]
       },
       "source": "curator-downgrade",
-      "reason": "Gold review (ai): 6M payment claim; Espai Obert press is unrelated, coincidental \"2026\" (was parcial)",
+      "reason": "Se retiró el «Parcial» anterior: la frase habla de un pago de 6 millones, y la noticia citada, sobre los encuentros vecinales «Espai Obert», no tiene relación con él y sólo coincidía en «2026».",
       "editor": "ai-gold-review",
-      "appliedAt": "2026-06-24T07:18:12.464Z"
+      "appliedAt": "2026-06-24T07:18:12.464Z",
+      "reasonAmendments": [
+        {
+          "previous": "motivo · sha256:6fbe199adbeb",
+          "reason": "El motivo se publicó en inglés y con jerga de revisión; se reescribe en castellano llano sin cambiar lo que afirma ni el veredicto.",
+          "editor": "Sergei Lutchenko",
+          "amendedAt": "2026-09-30T05:52:10.885Z"
+        }
+      ]
     },
     "k4olcs-152-afi-9d9dca": {
       "verification": {
         "claimId": "k4olcs-152-afi-9d9dca",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): false contradicho: degenerate repeated fragment; supply-bridge plazo is a different referent (was contradicho)",
+        "summary": "El «Contradicho» anterior no se sostenía: la transcripción repite el mismo fragmento una y otra vez, y el plazo de dos meses de unos contratos puente de suministro se refiere a otra cosa.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
         ]
       },
       "source": "curator-downgrade",
-      "reason": "Gold review (ai): false contradicho: degenerate repeated fragment; supply-bridge plazo is a different referent (was contradicho)",
+      "reason": "El «Contradicho» anterior no se sostenía: la transcripción repite el mismo fragmento una y otra vez, y el plazo de dos meses de unos contratos puente de suministro se refiere a otra cosa.",
       "editor": "ai-gold-review",
-      "appliedAt": "2026-06-24T07:18:12.464Z"
+      "appliedAt": "2026-06-24T07:18:12.464Z",
+      "reasonAmendments": [
+        {
+          "previous": "motivo · sha256:f7f35961c579",
+          "reason": "El motivo se publicó en inglés y con jerga de revisión; se reescribe en castellano llano sin cambiar lo que afirma ni el veredicto.",
+          "editor": "Sergei Lutchenko",
+          "amendedAt": "2026-09-30T05:52:12.671Z"
+        }
+      ]
     },
     "k4olcs-153-acu-4d8e08": {
       "verification": {
@@ -1026,16 +1074,24 @@
       "verification": {
         "claimId": "ma87e0-195-cit-1a0535",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): false contradicho: garbled \"el edificante\"; the Metro-extension claim is unrelated to building contracts (was contradicho)",
+        "summary": "El «Contradicho» anterior no se sostenía: «el edificante» está mal transcrito, y lo que la frase dice de la ampliación del metro no tiene relación con los contratos de obras en edificios que se citaban.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
         ]
       },
       "source": "curator-downgrade",
-      "reason": "Gold review (ai): false contradicho: garbled \"el edificante\"; the Metro-extension claim is unrelated to building contracts (was contradicho)",
+      "reason": "El «Contradicho» anterior no se sostenía: «el edificante» está mal transcrito, y lo que la frase dice de la ampliación del metro no tiene relación con los contratos de obras en edificios que se citaban.",
       "editor": "ai-gold-review",
-      "appliedAt": "2026-06-24T07:18:12.464Z"
+      "appliedAt": "2026-06-24T07:18:12.464Z",
+      "reasonAmendments": [
+        {
+          "previous": "motivo · sha256:2f249c66d4fe",
+          "reason": "El motivo se publicó en inglés y con jerga de revisión; se reescribe en castellano llano sin cambiar lo que afirma ni el veredicto.",
+          "editor": "Sergei Lutchenko",
+          "amendedAt": "2026-09-30T05:52:16.751Z"
+        }
+      ]
     },
     "1sqj7is-008-acu-4a7fa7": {
       "verification": {
@@ -1191,7 +1247,7 @@
       "verification": {
         "claimId": "1sqj7is-053-pro-68944b",
         "verdict": "parcial",
-        "summary": "Gold review (ai): SDA mechanism confirmed via derived contracts; the \"improves contracting\" claim is opinion (was verificado)",
+        "summary": "Baja de «Verificado» a «Parcial»: los contratos derivados del sistema dinámico de adquisición confirman que ese mecanismo se usa, pero que sirva para mejorar la forma de contratar es una opinión.",
         "evidence": [
           {
             "kind": "tender",
@@ -1217,9 +1273,17 @@
         ]
       },
       "source": "curator-downgrade",
-      "reason": "Gold review (ai): SDA mechanism confirmed via derived contracts; the \"improves contracting\" claim is opinion (was verificado)",
+      "reason": "Baja de «Verificado» a «Parcial»: los contratos derivados del sistema dinámico de adquisición confirman que ese mecanismo se usa, pero que sirva para mejorar la forma de contratar es una opinión.",
       "editor": "ai-gold-review",
-      "appliedAt": "2026-06-24T07:18:12.464Z"
+      "appliedAt": "2026-06-24T07:18:12.464Z",
+      "reasonAmendments": [
+        {
+          "previous": "motivo · sha256:9db3a916be78",
+          "reason": "El motivo se publicó en inglés y con jerga de revisión; se reescribe en castellano llano sin cambiar lo que afirma ni el veredicto.",
+          "editor": "Sergei Lutchenko",
+          "amendedAt": "2026-09-30T05:51:57.111Z"
+        }
+      ]
     },
     "1sqj7is-063-pro-eeb37e": {
       "verification": {
@@ -1510,16 +1574,24 @@
       "verification": {
         "claimId": "19gax3o-019-afi-0a4414",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): false contradicho: garbled conditional; the cited contracts are unrelated to the claim",
+        "summary": "El «Contradicho» anterior no se sostenía: la frase es un condicional mal transcrito, y los contratos que se citaban no tienen relación con lo que afirma.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
         ]
       },
       "source": "curator-downgrade",
-      "reason": "Gold review (ai): false contradicho: garbled conditional; the cited contracts are unrelated to the claim",
+      "reason": "El «Contradicho» anterior no se sostenía: la frase es un condicional mal transcrito, y los contratos que se citaban no tienen relación con lo que afirma.",
       "editor": "ai-gold-review",
-      "appliedAt": "2026-06-24T07:40:24.903Z"
+      "appliedAt": "2026-06-24T07:40:24.903Z",
+      "reasonAmendments": [
+        {
+          "previous": "motivo · sha256:fc34a953749a",
+          "reason": "El motivo se publicó en inglés y con jerga de revisión; se reescribe en castellano llano sin cambiar lo que afirma ni el veredicto.",
+          "editor": "Sergei Lutchenko",
+          "amendedAt": "2026-09-30T05:51:48.036Z"
+        }
+      ]
     },
     "19gax3o-015-pro-f31e0c": {
       "verification": {
@@ -1870,16 +1942,24 @@
       "verification": {
         "claimId": "19gax3o-137-cit-78abd7",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): false contradicho: garbled, names an individual, maintenance tender does not refute (was contradicho)",
+        "summary": "El «Contradicho» anterior no se sostenía: la frase está mal transcrita y nombra a una persona, y un contrato de mantenimiento del césped artificial de los campos de fútbol no la desmiente.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
         ]
       },
       "source": "curator-downgrade",
-      "reason": "Gold review (ai): false contradicho: garbled, names an individual, maintenance tender does not refute (was contradicho)",
+      "reason": "El «Contradicho» anterior no se sostenía: la frase está mal transcrita y nombra a una persona, y un contrato de mantenimiento del césped artificial de los campos de fútbol no la desmiente.",
       "editor": "ai-gold-review",
-      "appliedAt": "2026-06-24T07:18:12.464Z"
+      "appliedAt": "2026-06-24T07:18:12.464Z",
+      "reasonAmendments": [
+        {
+          "previous": "motivo · sha256:bdc882f41ad8",
+          "reason": "El motivo se publicó en inglés y con jerga de revisión; se reescribe en castellano llano sin cambiar lo que afirma ni el veredicto.",
+          "editor": "Sergei Lutchenko",
+          "amendedAt": "2026-09-30T05:51:49.929Z"
+        }
+      ]
     },
     "19gax3o-137-afi-2af3a2": {
       "verification": {
@@ -2545,16 +2625,24 @@
       "verification": {
         "claimId": "qz6weg-027-cit-a55965",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): the evidence reasoning itself states it does NOT match the music/dance convenio (was parcial)",
+        "summary": "Se retiró el «Parcial» anterior: la propia evidencia citada, unas clases de educación ambiental en colegios, reconocía que no se corresponde con el convenio de música y danza del que habla la frase.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
         ]
       },
       "source": "curator-downgrade",
-      "reason": "Gold review (ai): the evidence reasoning itself states it does NOT match the music/dance convenio (was parcial)",
+      "reason": "Se retiró el «Parcial» anterior: la propia evidencia citada, unas clases de educación ambiental en colegios, reconocía que no se corresponde con el convenio de música y danza del que habla la frase.",
       "editor": "ai-gold-review",
-      "appliedAt": "2026-06-24T07:18:12.464Z"
+      "appliedAt": "2026-06-24T07:18:12.464Z",
+      "reasonAmendments": [
+        {
+          "previous": "motivo · sha256:5e2c9bc60c83",
+          "reason": "El motivo se publicó en inglés y con jerga de revisión; se reescribe en castellano llano sin cambiar lo que afirma ni el veredicto.",
+          "editor": "Sergei Lutchenko",
+          "amendedAt": "2026-09-30T05:52:20.396Z"
+        }
+      ]
     },
     "qz6weg-035-afi-6e6741": {
       "verification": {
@@ -2650,16 +2738,24 @@
       "verification": {
         "claimId": "qz6weg-052-cit-aa34de",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): false contradicho: Ayto project contracts do not refute that some projects run via the mancomunidad (was contradicho)",
+        "summary": "El «Contradicho» anterior no se sostenía: que el Ayuntamiento contrate la redacción y la dirección de sus propios proyectos no desmiente que algunos se ejecuten a través de la mancomunidad.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
         ]
       },
       "source": "curator-downgrade",
-      "reason": "Gold review (ai): false contradicho: Ayto project contracts do not refute that some projects run via the mancomunidad (was contradicho)",
+      "reason": "El «Contradicho» anterior no se sostenía: que el Ayuntamiento contrate la redacción y la dirección de sus propios proyectos no desmiente que algunos se ejecuten a través de la mancomunidad.",
       "editor": "ai-gold-review",
-      "appliedAt": "2026-06-24T07:18:12.464Z"
+      "appliedAt": "2026-06-24T07:18:12.464Z",
+      "reasonAmendments": [
+        {
+          "previous": "motivo · sha256:51631e0d40ab",
+          "reason": "El motivo se publicó en inglés y con jerga de revisión; se reescribe en castellano llano sin cambiar lo que afirma ni el veredicto.",
+          "editor": "Sergei Lutchenko",
+          "amendedAt": "2026-09-30T05:52:22.318Z"
+        }
+      ]
     },
     "qz6weg-054-cit-d4e5fa": {
       "verification": {
@@ -3235,16 +3331,24 @@
       "verification": {
         "claimId": "1du4rf5-083-pro-aa49e3",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): policy recitation re autonomic systems; coincidental \"interoperabilidad\" match (was verificado)",
+        "summary": "Se retiró el «Verificado» anterior: la frase recita una medida sobre los sistemas de información autonómicos, y el contrato citado, de mantenimiento de una aplicación de interoperabilidad, sólo coincidía por casualidad en esa palabra.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
         ]
       },
       "source": "curator-downgrade",
-      "reason": "Gold review (ai): policy recitation re autonomic systems; coincidental \"interoperabilidad\" match (was verificado)",
+      "reason": "Se retiró el «Verificado» anterior: la frase recita una medida sobre los sistemas de información autonómicos, y el contrato citado, de mantenimiento de una aplicación de interoperabilidad, sólo coincidía por casualidad en esa palabra.",
       "editor": "ai-gold-review",
-      "appliedAt": "2026-06-24T07:18:12.464Z"
+      "appliedAt": "2026-06-24T07:18:12.464Z",
+      "reasonAmendments": [
+        {
+          "previous": "motivo · sha256:7cf7aa036b7d",
+          "reason": "El motivo se publicó en inglés y con jerga de revisión; se reescribe en castellano llano sin cambiar lo que afirma ni el veredicto.",
+          "editor": "Sergei Lutchenko",
+          "amendedAt": "2026-09-30T05:51:51.772Z"
+        }
+      ]
     },
     "1du4rf5-093-acu-0d2b9e": {
       "verification": {
@@ -3310,16 +3414,24 @@
       "verification": {
         "claimId": "1du4rf5-108-cit-d68a7b",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): false contradicho: coincidental \"DANA\" — a lighting contract does not relate to attending a state funeral",
+        "summary": "El «Contradicho» anterior no se sostenía: el contrato citado, unas obras de emergencia de alumbrado por la DANA, sólo compartía la palabra «DANA» y nada tiene que ver con asistir a un funeral de Estado.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
         ]
       },
       "source": "curator-downgrade",
-      "reason": "Gold review (ai): false contradicho: coincidental \"DANA\" — a lighting contract does not relate to attending a state funeral",
+      "reason": "El «Contradicho» anterior no se sostenía: el contrato citado, unas obras de emergencia de alumbrado por la DANA, sólo compartía la palabra «DANA» y nada tiene que ver con asistir a un funeral de Estado.",
       "editor": "ai-gold-review",
-      "appliedAt": "2026-06-24T07:40:24.903Z"
+      "appliedAt": "2026-06-24T07:40:24.903Z",
+      "reasonAmendments": [
+        {
+          "previous": "motivo · sha256:86fa160b7a58",
+          "reason": "El motivo se publicó en inglés y con jerga de revisión; se reescribe en castellano llano sin cambiar lo que afirma ni el veredicto.",
+          "editor": "Sergei Lutchenko",
+          "amendedAt": "2026-09-30T05:51:53.527Z"
+        }
+      ]
     },
     "1du4rf5-113-acu-bc9288": {
       "verification": {
@@ -3400,16 +3512,24 @@
       "verification": {
         "claimId": "1du4rf5-188-pro-f1ca3d",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): false contradicho: stated voting intention vs outcome record, speaker group unknown (was contradicho)",
+        "summary": "El «Contradicho» anterior no se sostenía: la frase anuncia una intención de voto, se comparaba con el resultado de una votación recogido en prensa y no consta qué grupo hablaba.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
         ]
       },
       "source": "curator-downgrade",
-      "reason": "Gold review (ai): false contradicho: stated voting intention vs outcome record, speaker group unknown (was contradicho)",
+      "reason": "El «Contradicho» anterior no se sostenía: la frase anuncia una intención de voto, se comparaba con el resultado de una votación recogido en prensa y no consta qué grupo hablaba.",
       "editor": "ai-gold-review",
-      "appliedAt": "2026-06-24T07:18:12.464Z"
+      "appliedAt": "2026-06-24T07:18:12.464Z",
+      "reasonAmendments": [
+        {
+          "previous": "motivo · sha256:1fa1bfd7cfe2",
+          "reason": "El motivo se publicó en inglés y con jerga de revisión; se reescribe en castellano llano sin cambiar lo que afirma ni el veredicto.",
+          "editor": "Sergei Lutchenko",
+          "amendedAt": "2026-09-30T05:51:55.366Z"
+        }
+      ]
     },
     "1du4rf5-254-cit-04d14f": {
       "verification": {
@@ -3775,16 +3895,24 @@
       "verification": {
         "claimId": "otxq2c-037-cit-6c4d24",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): motion recitation (forward to ministries); inclusion-plan match too loose for the specific support groups (was parcial)",
+        "summary": "Se retiró el «Parcial» anterior: la frase lee los acuerdos de una moción, que se trasladan a ministerios y otras instituciones, y el contrato del plan de inclusión social que se citaba coincide de forma demasiado vaga con esos grupos de apoyo concretos.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
         ]
       },
       "source": "curator-downgrade",
-      "reason": "Gold review (ai): motion recitation (forward to ministries); inclusion-plan match too loose for the specific support groups (was parcial)",
+      "reason": "Se retiró el «Parcial» anterior: la frase lee los acuerdos de una moción, que se trasladan a ministerios y otras instituciones, y el contrato del plan de inclusión social que se citaba coincide de forma demasiado vaga con esos grupos de apoyo concretos.",
       "editor": "ai-gold-review",
-      "appliedAt": "2026-06-24T07:18:12.464Z"
+      "appliedAt": "2026-06-24T07:18:12.464Z",
+      "reasonAmendments": [
+        {
+          "previous": "motivo · sha256:eb0291d6c10f",
+          "reason": "El motivo se publicó en inglés y con jerga de revisión; se reescribe en castellano llano sin cambiar lo que afirma ni el veredicto.",
+          "editor": "Sergei Lutchenko",
+          "amendedAt": "2026-09-30T05:52:18.636Z"
+        }
+      ]
     },
     "otxq2c-036-cit-5362d9": {
       "verification": {
@@ -4210,16 +4338,24 @@
       "verification": {
         "claimId": "1tgd1h4-129-afi-dca7d4",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): fragment \"...proximo ano 2025\", no assertion; year-token match (was verificado)",
+        "summary": "Se retiró el «Verificado» anterior: la frase es un fragmento que sólo nombra el año 2025, sin afirmar nada, y los contratos citados sólo coincidían en ese año.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
         ]
       },
       "source": "curator-downgrade",
-      "reason": "Gold review (ai): fragment \"...proximo ano 2025\", no assertion; year-token match (was verificado)",
+      "reason": "Se retiró el «Verificado» anterior: la frase es un fragmento que sólo nombra el año 2025, sin afirmar nada, y los contratos citados sólo coincidían en ese año.",
       "editor": "ai-gold-review",
-      "appliedAt": "2026-06-24T07:18:12.464Z"
+      "appliedAt": "2026-06-24T07:18:12.464Z",
+      "reasonAmendments": [
+        {
+          "previous": "motivo · sha256:5f90516a4022",
+          "reason": "El motivo se publicó en inglés y con jerga de revisión; se reescribe en castellano llano sin cambiar lo que afirma ni el veredicto.",
+          "editor": "Sergei Lutchenko",
+          "amendedAt": "2026-09-30T05:51:58.967Z"
+        }
+      ]
     },
     "1tgd1h4-135-cit-05d14c": {
       "verification": {
@@ -4360,16 +4496,24 @@
       "verification": {
         "claimId": "1tgd1h4-158-afi-b68cce",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): legal recitation (Ley 2/2023); data-protection tender adjacent only (was parcial)",
+        "summary": "Se retiró el «Parcial» anterior: la frase recita una ley, la 2/2023, y el contrato citado, una consultoría de protección de datos, sólo toca un asunto próximo.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
         ]
       },
       "source": "curator-downgrade",
-      "reason": "Gold review (ai): legal recitation (Ley 2/2023); data-protection tender adjacent only (was parcial)",
+      "reason": "Se retiró el «Parcial» anterior: la frase recita una ley, la 2/2023, y el contrato citado, una consultoría de protección de datos, sólo toca un asunto próximo.",
       "editor": "ai-gold-review",
-      "appliedAt": "2026-06-24T07:18:12.464Z"
+      "appliedAt": "2026-06-24T07:18:12.464Z",
+      "reasonAmendments": [
+        {
+          "previous": "motivo · sha256:f1fc49802964",
+          "reason": "El motivo se publicó en inglés y con jerga de revisión; se reescribe en castellano llano sin cambiar lo que afirma ni el veredicto.",
+          "editor": "Sergei Lutchenko",
+          "amendedAt": "2026-09-30T05:52:00.752Z"
+        }
+      ]
     },
     "1tgd1h4-161-afi-7b7b9e": {
       "verification": {
@@ -4390,16 +4534,24 @@
       "verification": {
         "claimId": "1tgd1h4-166-cit-76085f",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): fragment; water tender matched only on \"Ayuntamiento\" (was parcial)",
+        "summary": "Se retiró el «Parcial» anterior: es un fragmento de frase, y el contrato citado, de mantenimiento de la calidad del agua, sólo coincidía en el nombre del Ayuntamiento.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
         ]
       },
       "source": "curator-downgrade",
-      "reason": "Gold review (ai): fragment; water tender matched only on \"Ayuntamiento\" (was parcial)",
+      "reason": "Se retiró el «Parcial» anterior: es un fragmento de frase, y el contrato citado, de mantenimiento de la calidad del agua, sólo coincidía en el nombre del Ayuntamiento.",
       "editor": "ai-gold-review",
-      "appliedAt": "2026-06-24T07:18:12.464Z"
+      "appliedAt": "2026-06-24T07:18:12.464Z",
+      "reasonAmendments": [
+        {
+          "previous": "motivo · sha256:336b61064ef9",
+          "reason": "El motivo se publicó en inglés y con jerga de revisión; se reescribe en castellano llano sin cambiar lo que afirma ni el veredicto.",
+          "editor": "Sergei Lutchenko",
+          "amendedAt": "2026-09-30T05:52:02.467Z"
+        }
+      ]
     },
     "1tgd1h4-166-cit-3485a2": {
       "verification": {
@@ -4660,16 +4812,24 @@
       "verification": {
         "claimId": "1tgd1h4-197-cit-725463",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): false verificado: whistleblower-law recitation; \"Servicio postal\" coincidental",
+        "summary": "El «Verificado» anterior no se sostenía: la frase recita la ley de protección de los informantes, y el contrato de «Servicio postal» que se citaba coincidía por casualidad.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
         ]
       },
       "source": "curator-downgrade",
-      "reason": "Gold review (ai): false verificado: whistleblower-law recitation; \"Servicio postal\" coincidental",
+      "reason": "El «Verificado» anterior no se sostenía: la frase recita la ley de protección de los informantes, y el contrato de «Servicio postal» que se citaba coincidía por casualidad.",
       "editor": "ai-gold-review",
-      "appliedAt": "2026-06-24T07:18:12.464Z"
+      "appliedAt": "2026-06-24T07:18:12.464Z",
+      "reasonAmendments": [
+        {
+          "previous": "motivo · sha256:487144c4534c",
+          "reason": "El motivo se publicó en inglés y con jerga de revisión; se reescribe en castellano llano sin cambiar lo que afirma ni el veredicto.",
+          "editor": "Sergei Lutchenko",
+          "amendedAt": "2026-09-30T05:52:04.086Z"
+        }
+      ]
     },
     "1tgd1h4-203-acu-baf08d": {
       "verification": {

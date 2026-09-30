@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-29T05:11:47.357Z",
+  "generatedAt": "2026-09-30T05:52:23.833Z",
   "version": "1",
   "plenoId": "1tgd1h4",
   "plenoDate": "2024-07-29",
@@ -9295,7 +9295,7 @@
       "verification": {
         "claimId": "1tgd1h4-129-afi-dca7d4",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): fragment \"...proximo ano 2025\", no assertion; year-token match (was verificado)",
+        "summary": "Se retiró el «Verificado» anterior: la frase es un fragmento que sólo nombra el año 2025, sin afirmar nada, y los contratos citados sólo coincidían en ese año.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
@@ -11060,7 +11060,7 @@
       "verification": {
         "claimId": "1tgd1h4-158-afi-b68cce",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): legal recitation (Ley 2/2023); data-protection tender adjacent only (was parcial)",
+        "summary": "Se retiró el «Parcial» anterior: la frase recita una ley, la 2/2023, y el contrato citado, una consultoría de protección de datos, sólo toca un asunto próximo.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
@@ -11564,7 +11564,7 @@
       "verification": {
         "claimId": "1tgd1h4-166-cit-76085f",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): fragment; water tender matched only on \"Ayuntamiento\" (was parcial)",
+        "summary": "Se retiró el «Parcial» anterior: es un fragmento de frase, y el contrato citado, de mantenimiento de la calidad del agua, sólo coincidía en el nombre del Ayuntamiento.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
@@ -13664,7 +13664,7 @@
       "verification": {
         "claimId": "1tgd1h4-197-cit-725463",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): false verificado: whistleblower-law recitation; \"Servicio postal\" coincidental",
+        "summary": "El «Verificado» anterior no se sostenía: la frase recita la ley de protección de los informantes, y el contrato de «Servicio postal» que se citaba coincidía por casualidad.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
