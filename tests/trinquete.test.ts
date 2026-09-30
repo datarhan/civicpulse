@@ -25,9 +25,9 @@ const RAZON = 'un motivo suficientemente largo para pasar el validador'
  * suelo de evidencia cuando mide otra cosa — el mismo error que esta prueba
  * existe para cazar, cometido dentro de la prueba.
  */
-const escribir = (source: string, verification: Record<string, unknown>) =>
+const escribir = (source: string, verification: Record<string, unknown>, sobre: Overlay = vacio) =>
   applyOverlayEntries(
-    vacio,
+    sobre,
     [
       {
         claimId: 'c',
@@ -90,6 +90,36 @@ describe('el trinquete declarado coincide con el que se aplica', () => {
       if (!etapa.exigeRazon) continue
       expect(() => sinRazon(id), `${id} debería exigir una razón`).toThrow()
     }
+  })
+
+  it('el orden: una etapa que sube no pisa lo que dejó una que baja', () => {
+    // Cada etapa empujaba en un solo sentido, pero el ORDEN entre ellas sólo
+    // vivía en el orden de ejecución: una pasada que sube, lanzada después,
+    // sustituía la entrada de una que había bajado. Se coteja cada par de
+    // etapas contra `direccion`, con entradas que cumplen todo lo demás —si no,
+    // la prueba mediría el suelo o el motivo creyendo medir el orden—.
+    const valida = (source: string) =>
+      TRINQUETE[source as keyof typeof TRINQUETE].direccion === 'sube'
+        ? { verdict: 'verificado', evidence: ev, checkedAgainst: ['tenders'] }
+        : { verdict: 'sin-datos', evidence: [], checkedAgainst: [] }
+    const cruces = { vetados: 0, permitidos: 0 }
+    for (const [previa, p] of Object.entries(TRINQUETE)) {
+      for (const [entrante, n] of Object.entries(TRINQUETE)) {
+        const antes = escribir(previa, valida(previa))
+        const intento = () => escribir(entrante, valida(entrante), antes)
+        if (p.direccion === 'baja' && n.direccion === 'sube') {
+          expect(intento, `${entrante} sobre ${previa}`).toThrow(/trinquete/)
+          cruces.vetados++
+        } else {
+          expect(intento, `${entrante} sobre ${previa}`).not.toThrow()
+          if (p.direccion !== n.direccion) cruces.permitidos++
+        }
+      }
+    }
+    // Que haya juzgado algo en los dos sentidos: con una declaración sin
+    // etapas que bajen, o sin etapas que suban, esto no mediría ningún orden.
+    expect(cruces.vetados).toBeGreaterThan(0)
+    expect(cruces.permitidos).toBeGreaterThan(0)
   })
 
   it('ninguna etapa se mueve en las dos direcciones', () => {
