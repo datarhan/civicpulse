@@ -1780,14 +1780,21 @@ export default function Metodologia() {
                 contrastada”». Desde el 29-09-2026 las citas van numeradas y el
                 hueco y la nota dicen de cuál hablan: aplanada la página, su pie
                 se leía sobre la cita impresa de al lado (CitaRetenida, en
-                PlenoFindings.jsx). */}
+                PlenoFindings.jsx).
+                Decía «…dicen de qué número hablan, para que ninguna explicación
+                se lea sobre la cita de al lado». Desde el 30-09-2026 dicen
+                también de qué ficha: los números son por ficha, y aplanada la
+                página la nota de una se leyó sobre la cita del mismo número de
+                la siguiente (codigoDeFicha, en PlenoFindings.jsx). */}
             <strong>«Literal retenido»</strong> — ocupa el sitio de una cita que la puerta retiene.
             La página no imprime el literal: enseña el hueco con el número de la cita, su motivo y a
             qué grupo la atribuye la ficha, o que no la atribuye a ninguno; la nota bajo las citas
             la rotula <strong>«acusación no contrastada»</strong> con ese mismo número. Las citas de
             cada ficha van numeradas, las impresas y los huecos, y el pie de cada hueco y cada línea
-            de la nota dicen de qué número hablan, para que ninguna explicación se lea sobre la cita
-            de al lado. El literal tampoco lo llevan la bitácora de correcciones de la ficha, que en
+            de la nota dicen de qué número hablan y de qué ficha —con el nombre que imprime su
+            cabecera: «ficha» y el código con que acaba su enlace permanente—, para que ninguna
+            explicación se lea sobre la cita de al lado ni sobre la del mismo número en la ficha
+            contigua. El literal tampoco lo llevan la bitácora de correcciones de la ficha, que en
             esas filas enseña su huella en lugar del texto, ni la copia de los datos de hallazgos
             que sirve el sitio. Se retiene el literal, no la ficha: el hallazgo, su resumen, su
             atribución, los documentos cotejados y el derecho de réplica siguen a la vista. Lo que

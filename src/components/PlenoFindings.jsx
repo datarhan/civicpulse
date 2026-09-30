@@ -153,7 +153,7 @@ function RefStatus({ status, t }) {
   )
 }
 
-export function RefList({ refs, kind, plenoDate }) {
+export function RefList({ refs, kind, plenoDate, ficha }) {
   const t = useT()
   // Tender dates live in tenders.json and nowhere smaller. A precomputed
   // index would be lighter, but it goes stale exactly where mis-dating is most
@@ -169,9 +169,14 @@ export function RefList({ refs, kind, plenoDate }) {
   // ahí salen las citas, así que no coteja nada — y mezclarla con los
   // documentos hacía que una ficha sin ningún cotejo pareciera tener uno.
   const esContradiccion = kind === 'contradiction'
-  const label = t(
+  const rotulo = t(
     `findings.refs.${kind === 'provenance' ? 'provenance' : esContradiccion ? 'contradiction' : 'crossChecked'}`,
   )
+  // Y de qué ficha es la lista (`codigoDeFicha`). La banda cierra la ficha,
+  // justo antes de la cabecera de la siguiente, y aplanada la página la
+  // revisión lectora leyó el vídeo del pleno del 3 de julio de df8455 contra la
+  // ficha siguiente, que es de la sesión del 11 de mayo.
+  const label = ficha ? `${rotulo} · ${t('findings.refs.ficha').replace('{ficha}', ficha)}` : rotulo
   const tone = esContradiccion ? 'var(--crit-ink)' : 'var(--ink50)'
   return (
     <div style={{ marginTop: 6 }}>
@@ -240,19 +245,57 @@ export function RefList({ refs, kind, plenoDate }) {
  *   [1, 3]     → «Citas 1 y 3» · «las citas 1 y 3»
  *   [1, 2, 4]  → «Citas 1, 2 y 4» · «las citas 1, 2 y 4»
  *
+ * Con `ficha`, el rótulo dice además de cuál («Citas 1 y 3 de la ficha
+ * a870a4»), y la devuelve para que la frase que no lleva rótulo la nombre
+ * también: los números son por ficha, y aplanada la página una nota se leyó
+ * sobre la cita del mismo número de la ficha de al lado (`codigoDeFicha`). El
+ * sujeto no la repite: va en la misma línea que el rótulo, y un fragmento de la
+ * revisión lectora nunca parte una línea.
+ *
  * @param {number[]} numeros  1-based, en el orden en que la ficha las pinta
- * @returns {{ plural: boolean, rotulo: string, sujeto: string }}
+ * @param {string} [ficha]    el código de la ficha (`codigoDeFicha`)
+ * @returns {{ plural: boolean, rotulo: string, sujeto: string, ficha?: string }}
  */
-export function nombrarCitas(numeros) {
+export function nombrarCitas(numeros, ficha) {
   const plural = numeros.length > 1
   const lista = plural
     ? `${numeros.slice(0, -1).join(', ')} y ${numeros[numeros.length - 1]}`
     : String(numeros[0])
   return {
     plural,
-    rotulo: `${plural ? 'Citas' : 'Cita'} ${lista}`,
+    rotulo: `${plural ? 'Citas' : 'Cita'} ${lista}${ficha ? ` de la ficha ${ficha}` : ''}`,
     sujeto: `${plural ? 'las citas' : 'la cita'} ${lista}`,
+    ...(ficha ? { ficha } : {}),
   }
+}
+
+/**
+ * Cómo se llama una ficha cuando otra frase tiene que nombrarla: el código con
+ * que acaba su identificador (`f-2026-05-11-acu-a870a4` → `a870a4`), que su
+ * cabecera imprime como «ficha a870a4», igual que imprime «pleno 10yl550».
+ *
+ * Existe por la lectura cruzada que la numeración de las citas no alcanzaba.
+ * `nombrarCitas` dice de qué número habla cada nota, pero los números son por
+ * ficha, y la revisión lectora lee la página aplanada en fragmentos que no
+ * saben dónde acaba una. El 30-09-2026 un fragmento de /hallazgos empezaba en
+ * la nota de df8455 —su cabecera se había quedado en el fragmento anterior— y
+ * seguía por la ficha de a870a4: leyó «Cita 3 · acusación no contrastada — …
+ * ni en la cita 3, donde queda a la vista su hueco» contra la cita 3 impresa
+ * de a870a4, un elogio. Ahora cada línea que nombra una cita por su número
+ * nombra también su ficha, y la banda de cotejos dice de qué ficha es: un
+ * fragmento puede empezar en cualquier línea, pero no puede partir una
+ * (tests/components/fichas-contiguas.test.jsx).
+ *
+ * El código es único entre las fichas publicadas y las retiradas; lo comprueba
+ * esa misma prueba, para que un nombre no pueda señalar dos fichas.
+ *
+ * @param {string} id  el identificador del hallazgo
+ * @returns {string}
+ */
+export function codigoDeFicha(id) {
+  return String(id ?? '')
+    .split('-')
+    .pop()
 }
 
 const mayuscula = (s) => s.charAt(0).toUpperCase() + s.slice(1)
@@ -391,7 +434,13 @@ export function notaAcusacionSinContrastar(curatorName, citas = null) {
   // de CUÁL hablaba. Ahora lo dice por su número (`nombrarCitas`), igual que el
   // rótulo con que abre cada cita, y concuerda con cuántas son. Sin `citas`, la
   // redacción de antes.
+  // Octava pasada, 2026-09-30: los números son por ficha, y un fragmento de la
+  // revisión lectora que empezaba en esta nota —sin la cabecera de su ficha—
+  // leyó «ni en la cita 3, donde queda a la vista su hueco» sobre la cita 3
+  // impresa de la ficha siguiente. Con `citas.ficha`, la frase dice de cuál:
+  // «la ficha df8455 no reproduce su literal —ni en la cita 3…» (`codigoDeFicha`).
   const plural = citas?.plural === true
+  const laFicha = citas?.ficha ? `la ficha ${citas.ficha}` : 'la ficha'
   const huecos = !citas
     ? `ni en la cita, donde queda a la vista el hueco «${ROTULO_CITA_RETENIDA}» con su motivo`
     : plural
@@ -401,11 +450,11 @@ export function notaAcusacionSinContrastar(curatorName, citas = null) {
         'motivo'
   const base = plural
     ? 'son acusaciones públicas que el verificador no ha podido contrastar. La misma puerta que ' +
-      'las retiene en el registro de declaraciones del pleno las retiene aquí: la ficha no ' +
+      `las retiene en el registro de declaraciones del pleno las retiene aquí: ${laFicha} no ` +
       `reproduce sus literales —${huecos}, ni en su bitácora de correcciones, ni en los datos de ` +
       'la ficha que sirve este sitio—'
     : 'es una acusación pública que el verificador no ha podido contrastar. La misma puerta que ' +
-      'la retiene en el registro de declaraciones del pleno la retiene aquí: la ficha no ' +
+      `la retiene en el registro de declaraciones del pleno la retiene aquí: ${laFicha} no ` +
       `reproduce su literal —${huecos}, ni en su bitácora de correcciones, ni en los datos de la ` +
       'ficha que sirve este sitio—'
   const cierre = plural
@@ -480,9 +529,13 @@ const MARK_AXES = [
     // sobre una obra de 2005 o 2012 sonaba a comprobación con peso, cuando la
     // base documental no llega a esos años y el cotejo no podía, por
     // construcción, confirmar ni desmentir (señalamiento del lector, 18-08).
-    // Decía «Estas citas se cotejaron…»: ahora dice cuáles (`nombrarCitas`).
+    // Decía «Estas citas se cotejaron…»: ahora dice cuáles (`nombrarCitas`), y
+    // de qué ficha, porque es la línea sin rótulo con que empieza la nota —y
+    // con la que empezaba el fragmento que la leyó sobre la ficha siguiente
+    // (`codigoDeFicha`)—.
     lead: (citas) =>
-      `${mayuscula(citas.sujeto)} ${citas.plural ? 'se cotejaron' : 'se cotejó'} ` +
+      `${mayuscula(citas.sujeto)}${citas.ficha ? ` de la ficha ${citas.ficha}` : ''} ` +
+      `${citas.plural ? 'se cotejaron' : 'se cotejó'} ` +
       'automáticamente con la base documental municipal —la contratación desde 2017, las ' +
       'subvenciones, el presupuesto vigente y las promesas publicadas— y no apareció ningún dato ' +
       `que ${citas.plural ? 'las confirme ni que las desmienta' : 'la confirme ni que la desmienta'}. ` +
@@ -555,9 +608,15 @@ export { ROTULO_CITA_RETENIDA }
  *
  * `numero` es el de la cita en su ficha (1-based). Sin él, el pie habla de
  * «esta cita».
+ *
+ * Y el número es por ficha: con `ficha` (`codigoDeFicha`), el pie dice
+ * también de cuál —«La cita 3 de la ficha df8455 es una acusación…», «La ficha
+ * df8455 atribuye la cita 3 a PP»—, para que tampoco se pegue a la cita del
+ * mismo número de la ficha de al lado. Sin ella, la redacción de antes.
  */
-export function CitaRetenida({ numero, attribution, tone }) {
+export function CitaRetenida({ numero, attribution, tone, ficha }) {
   const cual = numero ? `la cita ${numero}` : 'esta cita'
+  const laFicha = ficha ? `La ficha ${ficha}` : 'La ficha'
   return (
     <figure
       style={{
@@ -579,22 +638,26 @@ export function CitaRetenida({ numero, attribution, tone }) {
             página descarga y en su bitácora. Ya no va, pero el repositorio,
             que es público, lo conserva: lo cierto es que la ficha no lo
             reproduce (la nota de debajo dice dónde siguen las palabras). */}
-        {mayuscula(cual)} es una acusación que el verificador no ha podido contrastar con ningún
-        registro municipal, así que la ficha no reproduce su literal, y la misma puerta la retiene
-        en el registro de declaraciones. No decimos que sea falsa: decimos que no consta.{' '}
+        {mayuscula(cual)}
+        {ficha ? ` de la ficha ${ficha}` : ''} es una acusación que el verificador no ha podido
+        contrastar con ningún registro municipal, así que la ficha no reproduce su literal, y la
+        misma puerta la retiene en el registro de declaraciones. No decimos que sea falsa: decimos
+        que no consta.{' '}
         {/* Sin grupo también se dice, como «sin atribuir» en la cita impresa:
             callarlo dejaba sin saber si faltaba el grupo o se retenía con el
             literal. */}
         {attribution ? (
           <>
-            La ficha atribuye {cual} a{' '}
+            {laFicha} atribuye {cual} a{' '}
             <Pill tone={tone} size="xs">
               {attribution}
             </Pill>
             .
           </>
         ) : (
-          <>La ficha no atribuye {cual} a ningún grupo.</>
+          <>
+            {laFicha} no atribuye {cual} a ningún grupo.
+          </>
         )}
       </figcaption>
     </figure>
@@ -633,8 +696,12 @@ export function QuoteProvenanceMark({ entry }) {
  * quien la llame le pasa las filas desde la primera cita que pinta. Sin los
  * números, «acusación no contrastada — es una acusación pública…» se leía
  * sobre la cita impresa de al lado (`nombrarCitas`).
+ *
+ * Con `ficha` (`codigoDeFicha`), cada línea dice además de qué ficha son esas
+ * citas: sin ello, la nota de df8455 se leyó sobre la cita 3 de la ficha
+ * siguiente, que es otra cita 3.
  */
-export function QuoteProvenanceNote({ entries, quotes, curatorName }) {
+export function QuoteProvenanceNote({ entries, quotes, curatorName, ficha }) {
   const groups = []
   for (const axis of MARK_AXES) {
     /** marca → los números de las citas que la llevan, en orden de aparición */
@@ -675,9 +742,11 @@ export function QuoteProvenanceNote({ entries, quotes, curatorName }) {
               : { marginTop: 8, paddingTop: 8, borderTop: '1px solid var(--border2)' }
           }
         >
-          {axis.lead && <div style={{ marginBottom: 2 }}>{axis.lead(nombrarCitas(todas))}</div>}
+          {axis.lead && (
+            <div style={{ marginBottom: 2 }}>{axis.lead(nombrarCitas(todas, ficha))}</div>
+          )}
           {[...porMarca].map(([s, numeros]) => {
-            const citas = nombrarCitas(numeros)
+            const citas = nombrarCitas(numeros, ficha)
             return (
               <div key={s} style={{ marginTop: 2 }}>
                 {/* El número, delante del rótulo de la marca y en la misma
@@ -723,15 +792,15 @@ export function QuoteProvenanceNote({ entries, quotes, curatorName }) {
  * tener uno, justo debajo de un texto que promete haber buscado en la
  * contratación, las subvenciones y el presupuesto.
  */
-export function ListaDeCotejos({ crossChecked, contradiction, plenoDate }) {
+export function ListaDeCotejos({ crossChecked, contradiction, plenoDate, ficha }) {
   const cotejos = crossChecked ?? []
   const documentos = cotejos.filter((r) => r?.kind !== 'pleno-video')
   const procedencia = cotejos.filter((r) => r?.kind === 'pleno-video')
   return (
     <>
-      <RefList refs={documentos} kind="crossChecked" plenoDate={plenoDate} />
-      <RefList refs={contradiction} kind="contradiction" plenoDate={plenoDate} />
-      <RefList refs={procedencia} kind="provenance" plenoDate={plenoDate} />
+      <RefList refs={documentos} kind="crossChecked" plenoDate={plenoDate} ficha={ficha} />
+      <RefList refs={contradiction} kind="contradiction" plenoDate={plenoDate} ficha={ficha} />
+      <RefList refs={procedencia} kind="provenance" plenoDate={plenoDate} ficha={ficha} />
     </>
   )
 }
@@ -756,8 +825,11 @@ export function ListaDeCotejos({ crossChecked, contradiction, plenoDate }) {
  * @param {string} [p.curatorName]
  * @param {boolean} [p.colorDeGrupo]  la pastilla del grupo con su color, como la
  *   pinta /hallazgos; /plenos/:id la pinta sin él
+ * @param {string} [p.ficha]  el código de la ficha (`codigoDeFicha`): el pie de
+ *   cada hueco y cada línea de la nota lo nombran, porque los números de cita
+ *   son por ficha y la ficha de al lado tiene los mismos
  */
-export function CitasDeLaFicha({ quotes, prov, curatorName, colorDeGrupo = false }) {
+export function CitasDeLaFicha({ quotes, prov, curatorName, colorDeGrupo = false, ficha }) {
   return (
     <>
       <ol style={{ listStyle: 'none', margin: 0, padding: 0 }}>
@@ -776,6 +848,7 @@ export function CitasDeLaFicha({ quotes, prov, curatorName, colorDeGrupo = false
                   numero={i + 1}
                   attribution={attribution}
                   tone={PARTY_TONE[q.speakerGroup]}
+                  ficha={ficha}
                 />
               ) : (
                 <Quote
@@ -794,6 +867,7 @@ export function CitasDeLaFicha({ quotes, prov, curatorName, colorDeGrupo = false
         entries={prov.slice(0, quotes.length)}
         quotes={quotes}
         curatorName={curatorName}
+        ficha={ficha}
       />
     </>
   )
@@ -802,6 +876,10 @@ export function CitasDeLaFicha({ quotes, prov, curatorName, colorDeGrupo = false
 export function FindingCard({ f }) {
   const { data: provenance } = useFindingQuoteProvenance()
   const prov = provenanceFor(provenance, f.id)
+  // El nombre con que la nota y la banda de cotejos hablan de esta ficha, y el
+  // que su cabecera imprime: en /plenos/:id todas las fichas son de la misma
+  // sesión y numeran sus citas desde 1 (`codigoDeFicha`).
+  const ficha = codigoDeFicha(f.id)
   return (
     <Card>
       <div
@@ -820,6 +898,21 @@ export function FindingCard({ f }) {
             <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
               {f.plenoDate} · editado por {f.curatorName}
             </span>
+            {/* Lleva a la página propia del hallazgo —con todas sus citas: aquí
+                van las tres primeras—, como el enlace permanente de /hallazgos,
+                que imprime el mismo nombre con el mismo estilo. */}
+            <a
+              href={`/hallazgos/${f.id}`}
+              style={{
+                marginLeft: 'auto',
+                fontSize: 'var(--fs-micro)',
+                color: 'var(--civic)',
+                textDecoration: 'none',
+              }}
+              title="Enlace permanente a este hallazgo"
+            >
+              ficha {ficha}
+            </a>
           </div>
           <div style={{ fontSize: 'var(--fs-body)', fontWeight: 600, lineHeight: 1.35 }}>
             {f.title}
@@ -840,7 +933,12 @@ export function FindingCard({ f }) {
         <div style={{ marginTop: 8 }}>
           {/* Only the three quotes this card shows are marked, so the note must
               describe those and not the finding's full list. */}
-          <CitasDeLaFicha quotes={f.quotes.slice(0, 3)} prov={prov} curatorName={f.curatorName} />
+          <CitasDeLaFicha
+            quotes={f.quotes.slice(0, 3)}
+            prov={prov}
+            curatorName={f.curatorName}
+            ficha={ficha}
+          />
         </div>
       )}
       {/* El vídeo del pleno sale de la lista de cotejos y se declara por lo que
@@ -854,6 +952,7 @@ export function FindingCard({ f }) {
         crossChecked={f.crossChecked}
         contradiction={f.contradiction}
         plenoDate={f.plenoDate}
+        ficha={ficha}
       />
       {f.response && (
         <div
