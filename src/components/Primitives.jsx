@@ -561,6 +561,30 @@ export function LinkArrow({ children, ...rest }) {
 }
 
 /**
+ * Un correo que, si no cabe, se parte por la arroba y no por donde caiga.
+ *
+ * Un correo no tiene por dónde cortarse, así que `overflow-wrap: anywhere` lo
+ * parte por la última letra que quepa: «popularesribarroja@gm» / «ail.com»
+ * a 320 px en la ficha de un cargo, y «…@gma» / «il.com» en la tarjeta del
+ * índice de /cargos en escritorio, donde la rejilla de cinco columnas deja la
+ * tarjeta en unos 190 px. El `<wbr>` le da un sitio mejor, antes de la arroba
+ * —«popularesribarroja» / «@gmail.com»—, y `anywhere` queda para cuando ni la
+ * parte de delante cabe. No escribe nada: el texto del enlace y lo que se copia
+ * siguen siendo el correo entero.
+ */
+export function CorreoPartible({ email }) {
+  const arroba = email.lastIndexOf('@')
+  if (arroba <= 0) return email
+  return (
+    <>
+      {email.slice(0, arroba)}
+      <wbr />
+      {email.slice(arroba)}
+    </>
+  )
+}
+
+/**
  * External hyperlink with an XSS-safe href. Renders an
  * `<a target="_blank" rel="noreferrer">` ONLY when the URL is http(s);
  * otherwise falls back to a plain `<span>` with the same children/props — so a

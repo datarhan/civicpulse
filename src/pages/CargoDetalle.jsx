@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
-import { Card, Pill, SectionHead, ExtLink } from '../components/Primitives'
+import { Card, CorreoPartible, Pill, SectionHead, ExtLink } from '../components/Primitives'
 import Compartir from '../components/Compartir'
 import { useOfficials, partyColor, findOfficial } from '../hooks/useOfficials'
 import { fmtDateLong, rellena } from '../lib/formatters'
@@ -18,6 +18,21 @@ import { canonicalizeDepartments, DEPARTMENT_LABEL } from '../scraper/department
 import { EncajeMatrix, QueExigeLaLey } from '../components/EncajeDeclarado'
 import { useT, useLocale } from '../i18n'
 import { contadoresDeCargo } from '../lib/reloj-lpacap'
+
+// El correo se parte antes que ensanchar la ficha. Un correo no tiene por dónde
+// cortarse, y «popularesribarroja@gmail.com» —el de los siete concejales del PP
+// y el de quien dejó el cargo— mide 201 px: a 320 px de pantalla, junto al
+// retrato, su columna tiene 158, y la página entera se desplazaba de lado.
+// `anywhere` y no `break-word`, que parte igual pero no rebaja el mínimo del
+// elemento, y es ese mínimo el que no deja encoger a un hijo de flex. Es la
+// regla que ya llevaba la tarjeta del índice de /cargos, con el mismo correo.
+// Por DÓNDE se parte lo decide `CorreoPartible`: por la arroba.
+const CORREO_ESTILO = {
+  color: 'var(--ink70)',
+  textDecoration: 'underline',
+  overflowWrap: 'anywhere',
+  minWidth: 0,
+}
 
 function flattenAgendas(snap) {
   if (!snap?.plenos) return []
@@ -569,12 +584,8 @@ function FormerDetalle({ official, color, bioRoute, t }) {
             }}
           >
             {official.email ? (
-              <a
-                href={`mailto:${official.email}`}
-                className="mono"
-                style={{ color: 'var(--ink70)', textDecoration: 'underline' }}
-              >
-                {official.email}
+              <a href={`mailto:${official.email}`} className="mono" style={CORREO_ESTILO}>
+                <CorreoPartible email={official.email} />
               </a>
             ) : (
               <span className="mono" style={{ color: 'var(--ink50)' }}>
@@ -827,12 +838,8 @@ export default function CargoDetalle() {
             }}
           >
             {official.email ? (
-              <a
-                href={`mailto:${official.email}`}
-                className="mono"
-                style={{ color: 'var(--ink70)', textDecoration: 'underline' }}
-              >
-                {official.email}
+              <a href={`mailto:${official.email}`} className="mono" style={CORREO_ESTILO}>
+                <CorreoPartible email={official.email} />
               </a>
             ) : (
               <span className="mono" style={{ color: 'var(--ink50)' }}>
