@@ -375,7 +375,13 @@ i {
    Y la raíz de este sitio mide 14 px, no 16 —el control de densidad la mueve
    entre 13,5 y 15—, así que 14rem son 196 px aquí: por eso la prueba lee el
    `flex-basis` calculado en vez de repetir un número que depende de la
-   densidad. Lo mide `tests/e2e/cabecera-seccion-mobile.spec.ts`. */
+   densidad. Lo mide `tests/e2e/cabecera-seccion-mobile.spec.ts`.
+
+   Y una leyenda que no cabe ni sola en su línea tiene que poder encoger y
+   envolver por dentro: la de «Capítulo a capítulo», con `flex-shrink: 0`,
+   pedía a 320 px de pantalla 282 px en una fila de 230, y la página se
+   desplazaba de lado. Junto al título no encoge nunca, porque la fila sólo las
+   junta cuando caben las dos enteras. */
 .cp-sec-head-fila {
   display: flex;
   flex-wrap: wrap;

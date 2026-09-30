@@ -648,15 +648,21 @@ function CapitulosCard() {
         eyebrow={rellena(t('presupuesto.cap.eyebrow'), { year: p.year })}
         title={t('presupuesto.cap.title')}
         right={
+          // Sin `flexShrink: 0`. La fila de SectionHead manda la leyenda a su
+          // propia línea cuando no cabe junto al título, y sólo las junta cuando
+          // caben las dos enteras, así que junto al título nunca encoge. Sola en
+          // su línea, si ni así cabe, tiene que poder encoger para que sus tres
+          // rótulos envuelvan: a 320 px pedía 282 px en una fila de 230 y la
+          // página entera medía 327. Entre líneas, 6 px: los 16 son para
+          // separar un rótulo de otro, no una línea de la siguiente.
           <div
             data-leyenda="capitulos"
             style={{
               display: 'flex',
-              gap: 16,
+              gap: '6px 16px',
               flexWrap: 'wrap',
               fontSize: 'var(--fs-micro)',
               color: 'var(--ink50)',
-              flexShrink: 0,
             }}
           >
             <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
