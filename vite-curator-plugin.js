@@ -1152,20 +1152,21 @@ function handleQuoteReanchorQueueRead(req, res, cwd) {
 }
 
 /**
- * GET /api/curator/finding-exception-queue — los hallazgos publicados que no
- * citan ni un literal que la puerta editorial de /plenos mostraría.
+ * GET /api/curator/finding-exception-queue — los hallazgos publicados con al
+ * menos una cita cuyo literal retiene la puerta editorial, y la pregunta de la
+ * cola: ¿dice el sumario, con otras palabras, lo que esa cita no puede decir?
  *
  * Lee editorial/finding-exception-queue.json, GITIGNORED y jamás servido por
- * Vercel, por la misma razón que las otras dos colas: son acusaciones sin
- * contrastar junto a atribuciones de grupo político. Bajo public/ serían
+ * Vercel, por la misma razón que las otras dos colas: lleva los literales que
+ * la página retiene junto a atribuciones de grupo político. Bajo public/ serían
  * fetchables por URL en cuanto se escribieran.
  *
- * Sólo lectura, y a propósito. Ni `correct-pleno-finding` ni nada que retire
- * una cita está en el allowlist de acciones, y no se añaden aquí: decidir que
- * un hallazgo publicado sobre un grupo con nombre se corrige o se retira es el
- * acto editorial que la puerta reservaba a una persona, y no se hace desde un
- * botón del navegador. La pantalla enseña el comando exacto; lo ejecuta una
- * persona en su terminal.
+ * Sólo lectura, y a propósito. Ni `correct-pleno-finding`, ni
+ * `reclassify-claim`, ni `retract-finding` están en el allowlist de acciones, y
+ * no se añaden aquí: decidir que un sumario publicado sobre un grupo con nombre
+ * se reescribe, o que la ficha se retira, es el acto editorial que la cola deja
+ * a una persona, y no se hace desde un botón del navegador. La pantalla enseña
+ * las órdenes compuestas; las firma una persona en su terminal.
  *
  * El fichero puede no existir (nadie ha corrido `npm run
  * triage:finding-exception`) → cola vacía, no un error.
@@ -1194,9 +1195,13 @@ function handleFindingExceptionQueueRead(req, res, cwd) {
   }
   sendJson(res, 200, {
     generatedAt: typeof queue.generatedAt === 'string' ? queue.generatedAt : null,
+    // La página compara la versión con la suya: una cola vieja preguntaba otra cosa.
     queueVersion: queue.queueVersion ?? null,
+    pregunta: typeof queue.pregunta === 'string' ? queue.pregunta : null,
     sourceSnapshot: queue.sourceSnapshot ?? null,
     stats: queue.stats ?? null,
+    // Las fichas ya mantenidas a su sumario: fuera de `rows`, no del alcance.
+    revisados: typeof queue.revisados === 'number' ? queue.revisados : null,
     rows: Array.isArray(queue.rows) ? queue.rows : [],
   })
 }
