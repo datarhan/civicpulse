@@ -21,19 +21,108 @@
  * Se niega a retirar una pasada que NO esté declarada como retirada en
  * `trinquete.ts`: si sigue viva, quitar sus veredictos sería destruir trabajo
  * bueno, y la declaración es donde eso se decide.
+ *
+ *   npm run retirar-pasada -- --sin-juicio --dry-run
+ *   npm run retirar-pasada -- --sin-juicio
+ *
+ * `--sin-juicio` hace lo mismo con entradas sueltas de una pasada VIVA: las
+ * retractaciones que el motor escribió sin que el modelo viera la declaración,
+ * declaradas una a una en `src/scraper/retractaciones-sin-juicio.ts`, que
+ * cuenta cómo se midieron. Ahí no hay trabajo que destruir, porque no lo hubo;
+ * la declaración vuelve a ser la que lo decide, y `decidirDevolucion` pone las
+ * guardas: sólo la entrada tal como se midió, y nunca si la base diría más que
+ * `sin-datos`. Cada declarada sale en el parte con su desenlace (regla 2).
  */
-import { readFileSync, writeFileSync } from 'node:fs'
+import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { TRINQUETE } from '../src/scraper/trinquete'
-import { OVERLAY, rebuildVerified } from './verified-rebuild'
+import { BASE, OVERLAY, rebuildVerified } from './verified-rebuild'
 import { validateOverlay, type Overlay, type OverlaySource } from '../src/scraper/verified-merge'
+import type { ClaimVerdict } from '../src/scraper/claim-verifier'
+import { decidirDevolucion, type Devolucion } from '../src/scraper/decision-del-motor'
+import { RETRACTACIONES_SIN_JUICIO } from '../src/scraper/retractaciones-sin-juicio'
 
 function arg(name: string): string | null {
   const i = process.argv.indexOf(`--${name}`)
   return i > -1 ? (process.argv[i + 1] ?? null) : null
 }
 
+/** Cómo sale en el parte cada motivo para no devolver. */
+const DESENLACE: Record<Extract<Devolucion, { accion: 'dejar' }>['porque'], string> = {
+  'ya-no-esta': 'ya no está en el overlay',
+  'otra-entrada': 'otra entrada, escrita después de medirla: no se toca',
+  'sin-base': 'sin declaración en la base: no se sabe qué afloraría',
+  'la-base-subiria': 'la base subiría el veredicto: se queda, la mira una persona',
+}
+
+async function devolverSinJuicio(dry: boolean): Promise<void> {
+  if (!existsSync(BASE)) {
+    process.stderr.write(
+      `[retirar] ${BASE} no está: sin la base no se sabe qué afloraría. ` +
+        'Genérala con `npm run verify:pleno-claims`.\n',
+    )
+    process.exit(1)
+  }
+  const overlay = JSON.parse(readFileSync(OVERLAY, 'utf8')) as Overlay
+  const base = JSON.parse(readFileSync(BASE, 'utf8')) as {
+    items: { claim: { id: string }; verification: { verdict: ClaimVerdict } }[]
+  }
+  const veredictoBase = new Map(base.items.map((it) => [it.claim.id, it.verification.verdict]))
+
+  const devueltas: string[] = []
+  const dejadas: [string, Extract<Devolucion, { accion: 'dejar' }>['porque']][] = []
+  const declaradas = Object.entries(RETRACTACIONES_SIN_JUICIO)
+  for (const [id, medida] of declaradas) {
+    const d = decidirDevolucion({
+      medida,
+      entrada: overlay.entries[id],
+      veredictoBase: veredictoBase.get(id),
+    })
+    if (d.accion === 'devolver') devueltas.push(id)
+    else dejadas.push([id, d.porque])
+  }
+
+  const cuenta = (p: string) => dejadas.filter(([, q]) => q === p).length
+  process.stdout.write(
+    `[retirar] --sin-juicio · ${declaradas.length} declarada(s) · devueltas ${devueltas.length} · ` +
+      `ya no están ${cuenta('ya-no-esta')} · otra entrada ${cuenta('otra-entrada')} · ` +
+      `sin base ${cuenta('sin-base')} · la base subiría ${cuenta('la-base-subiria')}\n`,
+  )
+  // Una línea por id con su desenlace, salvo las que ya se devolvieron: ésas ya
+  // están en el registro, y repetirlas en cada pasada sería ruido.
+  for (const id of devueltas) {
+    process.stdout.write(`  · ${id}: ${dry ? 'se devolvería' : 'devuelta'} al determinista\n`)
+  }
+  for (const [id, porque] of dejadas) {
+    if (porque !== 'ya-no-esta') process.stdout.write(`  · ${id}: ${DESENLACE[porque]}\n`)
+  }
+  if (devueltas.length === 0) {
+    process.stdout.write('[retirar] no hay nada que devolver.\n')
+    return
+  }
+
+  const quitar = new Set(devueltas)
+  const siguiente: Overlay = {
+    version: overlay.version,
+    generatedAt: new Date().toISOString(),
+    entries: Object.fromEntries(Object.entries(overlay.entries).filter(([id]) => !quitar.has(id))),
+  }
+  validateOverlay(siguiente)
+  if (dry) {
+    process.stdout.write('[retirar] --dry-run: no se ha escrito nada.\n')
+    return
+  }
+  writeFileSync(OVERLAY, JSON.stringify(siguiente, null, 2) + '\n')
+  const r = await rebuildVerified()
+  process.stdout.write(
+    `[retirar] overlay ${Object.keys(siguiente.entries).length} entrada(s) · recompuesto: ` +
+      `${JSON.stringify(r.byVerdict)}\n` +
+      '[retirar] no se ha inventado ningún veredicto: aflora el de la pasada determinista.\n',
+  )
+}
+
 async function main(): Promise<void> {
   const dry = process.argv.includes('--dry-run')
+  if (process.argv.includes('--sin-juicio')) return devolverSinJuicio(dry)
   const source = arg('source') as OverlaySource | null
   if (!source || !(source in TRINQUETE)) {
     process.stderr.write(
