@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-29T05:11:47.357Z",
+  "generatedAt": "2026-09-30T05:52:23.833Z",
   "version": "1",
   "plenoId": "1du4rf5",
   "plenoDate": "2025-11-03",
@@ -3593,7 +3593,7 @@
       "verification": {
         "claimId": "1du4rf5-083-pro-aa49e3",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): policy recitation re autonomic systems; coincidental \"interoperabilidad\" match (was verificado)",
+        "summary": "Se retiró el «Verificado» anterior: la frase recita una medida sobre los sistemas de información autonómicos, y el contrato citado, de mantenimiento de una aplicación de interoperabilidad, sólo coincidía por casualidad en esa palabra.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
@@ -4664,7 +4664,7 @@
       "verification": {
         "claimId": "1du4rf5-108-cit-d68a7b",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): false contradicho: coincidental \"DANA\" — a lighting contract does not relate to attending a state funeral",
+        "summary": "El «Contradicho» anterior no se sostenía: el contrato citado, unas obras de emergencia de alumbrado por la DANA, sólo compartía la palabra «DANA» y nada tiene que ver con asistir a un funeral de Estado.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
@@ -5811,7 +5811,7 @@
       "verification": {
         "claimId": "1du4rf5-188-pro-f1ca3d",
         "verdict": "sin-datos",
-        "summary": "Gold review (ai): false contradicho: stated voting intention vs outcome record, speaker group unknown (was contradicho)",
+        "summary": "El «Contradicho» anterior no se sostenía: la frase anuncia una intención de voto, se comparaba con el resultado de una votación recogido en prensa y no consta qué grupo hablaba.",
         "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
