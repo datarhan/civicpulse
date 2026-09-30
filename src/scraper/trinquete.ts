@@ -79,7 +79,14 @@ export const TRINQUETE: Record<OverlaySource, Etapa> = {
     exigeFirma: true,
     retirada: false,
     comando: 'npm run verify:pleno-claims:nli',
-    medicion: 'docs/superpowers/specs/2026-06-23-factcheck-rebuild-p2-design.md',
+    // Decía el diseño P2 (2026-06-23-factcheck-rebuild-p2-design.md), cuyo único
+    // dato sobre esta etapa es un rendimiento —«0 NLI upgrades over 3,251»— y
+    // además nulo: lo dio un guion cuyo `lookup` no le entregaba ninguna
+    // puntuación al verificador (325a1c62 → #206). La fiabilidad del verificador
+    // se midió en la evaluación de la fase 1, que lo llama con su propio
+    // puntuador; el rendimiento del guion sobre los `sin-datos` está sin medir.
+    // 30-09-2026.
+    medicion: 'docs/superpowers/specs/2026-06-23-factcheck-rebuild-phase1-results.md',
   },
   llm: {
     // Sin «(retirada)» en el nombre: el estado lo dice la columna de al lado, y
