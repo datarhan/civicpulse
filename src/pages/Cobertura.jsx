@@ -6,7 +6,15 @@ import { esMarcaDePasada } from '../scraper/claim-verdicts'
 import { useT } from '../i18n'
 import { useSolicitudesAcceso } from '../hooks/useSolicitudesAcceso'
 import { CLASES_PEDIBLES, CLASE_ETIQUETA } from '../scraper/clase-documental'
-import { estadoDeSolicitud, frasePublica, tituloSolicitudes } from '../scraper/solicitud-acceso'
+// La etiqueta y el tono de cada estado viven con el enum, tipados: aquí eran
+// literales, y un estado nuevo sin su fila habría pintado «undefined».
+import {
+  ESTADO_SOLICITUD_ETIQUETA as ESTADO_ETIQUETA,
+  ESTADO_SOLICITUD_TONO as ESTADO_TONO,
+  estadoDeSolicitud,
+  frasePublica,
+  tituloSolicitudes,
+} from '../scraper/solicitud-acceso'
 
 /**
  * /laboratorio/cobertura — de lo que se dice en un pleno, ¿contra qué podemos
@@ -120,26 +128,6 @@ function TablaCobertura({ titulo, filas, etiqueta, columna }) {
       </div>
     </Card>
   )
-}
-
-/** Un estado del reloj, dicho en la lengua de la página. */
-const ESTADO_ETIQUETA = {
-  'sin-solicitar': 'sin pedir',
-  'en-plazo': 'en plazo',
-  'vencida-sin-respuesta': 'sin respuesta',
-  respondida: 'respondida',
-  reclamada: 'reclamada',
-}
-
-// `sin-solicitar` va en NEUTRO a propósito: que no lo hayamos pedido todavía no
-// es un fallo del Ayuntamiento, y pintarlo en ámbar le atribuiría una tardanza
-// que no ha tenido.
-const ESTADO_TONO = {
-  'sin-solicitar': 'neutral',
-  'en-plazo': 'civic',
-  'vencida-sin-respuesta': 'warn',
-  respondida: 'ok',
-  reclamada: 'intel',
 }
 
 export default function Cobertura() {

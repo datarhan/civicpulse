@@ -26,6 +26,12 @@ test.describe('Frontera (/laboratorio/frontera)', () => {
     await page.goto('/laboratorio/frontera', { waitUntil: 'domcontentloaded' })
 
     await expect(page.getByText(/no es una nota ni un ranking/i)).toBeVisible({ timeout: 8000 })
+    // El aviso es texto fijo y las tarjetas esperan a dea.json: leer el HTML en
+    // cuanto se ve el aviso era una carrera, y con la CI cargada la perdía
+    // (PR #189: -1, y en verde al reintentar). Se espera a lo que se compara.
+    await expect(page.getByText(/Distancia a la frontera/i).first()).toBeAttached({
+      timeout: 8000,
+    })
 
     // El aviso tiene que estar POR ENCIMA de la primera puntuación en el DOM:
     // una advertencia al pie es una advertencia que nadie lee.

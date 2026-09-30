@@ -1,5 +1,8 @@
 import { test, expect } from '@playwright/test'
+import { readFileSync } from 'node:fs'
 import { collectErrors, appErrors } from './_console'
+
+const snap = JSON.parse(readFileSync('public/data/reportajes/conteo-visitantes.json', 'utf8'))
 
 test.describe('Reportaje · conteo de visitantes (/reportajes/conteo-visitantes)', () => {
   test('renders the article, the frozen figures and the load-bearing finding', async ({ page }) => {
@@ -118,6 +121,30 @@ test.describe('Reportaje · conteo de visitantes (/reportajes/conteo-visitantes)
     // afirmación que este sitio no publica.
     await expect(page.getByText(/órgano competente para resolver/).first()).toBeVisible()
     await expect(page.getByText(/no se presentan como vencimientos acreditados/)).toBeVisible()
+
+    // EL ÚLTIMO DÍA INHÁBIL (art. 30.5 LPACAP). Las filas del 9 de septiembre
+    // que siguen sin resolver —las del Ayuntamiento y Turisme CV, que resuelven
+    // con el calendario de la Comunitat— cumplen el mes el 9 de octubre, Día de
+    // la Comunitat Valenciana, y el 12 es la Fiesta Nacional: su último día es el
+    // 13. La frase lo dice igual en plazo que vencida, así que esto no caduca, y
+    // el recuento sale del snapshot: una fila que se resuelva deja de contar.
+    const delNueve = snap.solicitudes.items.filter(
+      (e: { enviadaEl: string; respuesta: unknown; calendario: string }) =>
+        e.enviadaEl === '2026-09-09' && !e.respuesta && e.calendario !== 'estado-en-madrid',
+    ).length
+    expect(
+      await page
+        .getByText(
+          /13 de octubre de 2026 \(prorrogado: el 9 de octubre, Día de la Comunitat Valenciana, es inhábil; art\. 30\.5 de la Ley 39\/2015\)/,
+        )
+        .count(),
+    ).toBe(delNueve)
+    // Y debajo de la nota, con qué calendario se contó: sale de las filas.
+    await expect(
+      page.getByText(
+        /el calendario de días inhábiles es el de quien resuelve: el del Ayuntamiento/,
+      ),
+    ).toBeVisible()
 
     // Y la fecha se lee en castellano, no en ISO: es prosa, no un volcado.
     expect(await page.getByText(/enviada el \d{4}-\d{2}-\d{2}/).count()).toBe(0)

@@ -108,15 +108,9 @@ export default function QuejasSpendOverlap() {
         </a>
         ).
       </div>
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr auto auto',
-          gap: '7px 16px',
-          fontSize: 'var(--fs-aux)',
-          alignItems: 'baseline',
-        }}
-      >
+      {/* La rejilla vive en `index.css` (`.cp-cruce`): en el móvil estrecha su
+          hueco entre columnas, y una @media no cabe en el prop `style`. */}
+      <div className="cp-cruce" style={{ fontSize: 'var(--fs-aux)' }}>
         <div style={HEAD}>{t('quejas.cruce.col.barrio')}</div>
         <div style={{ ...HEAD, textAlign: 'right' }}>
           {t('quejas.cruce.col.quejas')}

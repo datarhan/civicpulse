@@ -1330,13 +1330,18 @@ export default function Metodologia() {
             <strong>no cambia ningún veredicto</strong>: sólo una persona puede rebajarlo (nunca
             subirlo) con una herramienta dedicada, dejando el motivo verbatim. Lo que rebaja a{' '}
             <em>parcial</em> se enseña como contrastado, con la evidencia que conservó y su motivo
-            por resumen: esa firma es suya, no de la máquina. Las decisiones de segunda pasada y de
-            curación viven en una capa («overlay») separada del veredicto determinista base, de modo
-            que recalcular la base nunca borra esas decisiones. Desde agosto de 2026 el{' '}
-            <em>tipo</em> de una declaración se corrige por la misma vía: cuando el extractor
-            archiva como <code>acusacion_publica</code> algo que no acusa a nadie —el caso que
-            estrenó la herramienta fue una defensa de la constitucionalidad de una ley estatal—, un
-            curador lo reclasifica con motivo verbatim en un registro propio (
+            por resumen: esa firma es suya, no de la máquina. Ese motivo es también la explicación
+            que la tarjeta enseña bajo la cita, y puede enmendarse después —para decir lo mismo en
+            castellano llano, o decirlo mejor— <strong>sin mover el veredicto</strong>: la enmienda
+            la firma una persona con su nombre y queda en la propia entrada, con la fecha, el porqué
+            y una huella del motivo anterior que permite cotejarlo con el historial público del
+            repositorio. Las decisiones de segunda pasada y de curación viven en una capa
+            («overlay») separada del veredicto determinista base, de modo que recalcular la base
+            nunca borra esas decisiones. Desde agosto de 2026 el <em>tipo</em> de una declaración se
+            corrige por la misma vía: cuando el extractor archiva como{' '}
+            <code>acusacion_publica</code> algo que no acusa a nadie —el caso que estrenó la
+            herramienta fue una defensa de la constitucionalidad de una ley estatal—, un curador lo
+            reclasifica con motivo verbatim en un registro propio (
             <code>pleno-claim-reclassifications.json</code>), y la herramienta sólo acepta
             movimientos que <strong>alejan</strong> de la acusación, nunca hacia ella: convertir una
             declaración en acusación agravaría lo que se afirma de quien habló, que es exactamente
@@ -1734,16 +1739,26 @@ export default function Metodologia() {
                 28-09-2026 (#148) quitó «sobre la gestión municipal»: la puerta no
                 registra a quién se acusa, y la mayoría de las retenidas hablan de
                 otra administración o de otro grupo. Y desde el 27-08-2026 ese
-                literal no se imprime: el rótulo pasó a la nota bajo las citas. */}
+                literal no se imprime: el rótulo pasó a la nota bajo las citas.
+                Decía también «enseña el hueco, su motivo y, si la ficha la
+                atribuye, el grupo; la nota bajo las citas lo rotula “acusación no
+                contrastada”». Desde el 29-09-2026 las citas van numeradas y el
+                hueco y la nota dicen de cuál hablan: aplanada la página, su pie
+                se leía sobre la cita impresa de al lado (CitaRetenida, en
+                PlenoFindings.jsx). */}
             <strong>«Literal retenido»</strong> — ocupa el sitio de una cita que la puerta retiene.
-            La página no imprime el literal: enseña el hueco, su motivo y, si la ficha la atribuye,
-            el grupo; la nota bajo las citas lo rotula <strong>«acusación no contrastada»</strong>.
-            Tampoco lo llevan la bitácora de correcciones de la ficha, que en esas filas enseña su
-            huella en lugar del texto, ni la copia de los datos de hallazgos que sirve el sitio. Se
-            retiene el literal, no la ficha: el hallazgo, su resumen, su atribución, los documentos
-            cotejados y el derecho de réplica siguen a la vista. Lo que el lector debe concluir: ahí
-            se citaba una acusación que el verificador no ha podido contrastar con ningún registro
-            municipal. No decimos que sea falsa; decimos que no consta.
+            La página no imprime el literal: enseña el hueco con el número de la cita, su motivo y a
+            qué grupo la atribuye la ficha, o que no la atribuye a ninguno; la nota bajo las citas
+            la rotula <strong>«acusación no contrastada»</strong> con ese mismo número. Las citas de
+            cada ficha van numeradas, las impresas y los huecos, y el pie de cada hueco y cada línea
+            de la nota dicen de qué número hablan, para que ninguna explicación se lea sobre la cita
+            de al lado. El literal tampoco lo llevan la bitácora de correcciones de la ficha, que en
+            esas filas enseña su huella en lugar del texto, ni la copia de los datos de hallazgos
+            que sirve el sitio. Se retiene el literal, no la ficha: el hallazgo, su resumen, su
+            atribución, los documentos cotejados y el derecho de réplica siguen a la vista. Lo que
+            el lector debe concluir: ahí se citaba una acusación que el verificador no ha podido
+            contrastar con ningún registro municipal. No decimos que sea falsa; decimos que no
+            consta.
           </li>
           <li>
             <strong>«sin contraste en los datos»</strong> — la cita se imprime, con esa pastilla al

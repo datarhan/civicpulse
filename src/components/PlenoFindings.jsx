@@ -1,4 +1,4 @@
-import { Card, Pill, SectionHead, ExtLink, Quote } from './Primitives'
+import { Card, Pill, SectionHead, ExtLink, Quote, RotuloDeCita } from './Primitives'
 import { usePlenoFindings, SEVERITY_LABEL, SEVERITY_TONE } from '../hooks/usePlenoFindings'
 import { useTenders } from '../hooks/useTenders'
 import { PARTY_TONE } from '../hooks/usePromises'
@@ -228,6 +228,36 @@ export function RefList({ refs, kind, plenoDate }) {
 }
 
 /**
+ * Cómo nombra la ficha a un grupo de sus citas: por su número.
+ *
+ * La nota de debajo de las citas decía «Estas citas…», «Las citas marcadas…» o
+ * sólo el rótulo de la marca, y en texto plano eso no ata a ninguna: la
+ * revisión lectora leyó la de «acusación no contrastada» sobre la cita impresa
+ * de al lado (ver `RotuloDeCita`, en Primitives.jsx). Cada línea de la nota
+ * dice ahora de qué números habla, y concuerda en número con ellos.
+ *
+ *   [2]        → «Cita 2» · «la cita 2»
+ *   [1, 3]     → «Citas 1 y 3» · «las citas 1 y 3»
+ *   [1, 2, 4]  → «Citas 1, 2 y 4» · «las citas 1, 2 y 4»
+ *
+ * @param {number[]} numeros  1-based, en el orden en que la ficha las pinta
+ * @returns {{ plural: boolean, rotulo: string, sujeto: string }}
+ */
+export function nombrarCitas(numeros) {
+  const plural = numeros.length > 1
+  const lista = plural
+    ? `${numeros.slice(0, -1).join(', ')} y ${numeros[numeros.length - 1]}`
+    : String(numeros[0])
+  return {
+    plural,
+    rotulo: `${plural ? 'Citas' : 'Cita'} ${lista}`,
+    sujeto: `${plural ? 'las citas' : 'la cita'} ${lista}`,
+  }
+}
+
+const mayuscula = (s) => s.charAt(0).toUpperCase() + s.slice(1)
+
+/**
  * The reader-facing half of the quote-provenance snapshot.
  *
  * Eighteen pleno sessions were transcribed a second time with a better engine.
@@ -258,21 +288,23 @@ const PROVENANCE_MARK = {
     chip: 'no consta en la transcripción revisada',
     title:
       'La sesión se transcribió de nuevo con un motor mejor y estas palabras no aparecen en el texto nuevo.',
-    note:
-      'Sesión re-transcrita con un motor mejor. Las citas marcadas constan literalmente en la ' +
-      'transcripción anterior y no en la vigente, que es más extensa: el asunto se debatió, pero ' +
-      'la literalidad entrecomillada es la del primer transcriptor y no está confirmada contra el ' +
-      'mejor texto disponible. Reanclarla es trabajo de una persona; aquí no se reescribe sola.',
+    // Decía «Las citas marcadas constan…»: ahora dice cuáles (`nombrarCitas`).
+    note: (citas) =>
+      `Sesión re-transcrita con un motor mejor. ${mayuscula(citas.sujeto)} ` +
+      `${citas.plural ? 'constan' : 'consta'} literalmente en la transcripción anterior y no en ` +
+      'la vigente, que es más extensa: el asunto se debatió, pero la literalidad entrecomillada ' +
+      'es la del primer transcriptor y no está confirmada contra el mejor texto disponible. ' +
+      'Reanclarla es trabajo de una persona; aquí no se reescribe sola.',
   },
   'sin-determinar': {
     tone: 'ghost',
     chip: 'no hemos podido comprobarlo',
     title:
       'No podemos decir si estas palabras cambiaron al re-transcribir o si el tramo no está cubierto.',
-    note:
+    note: (citas) =>
       'La transcripción vigente de esta sesión es más corta que la que sustituyó, así que la ' +
-      'ausencia de estas palabras puede deberse al cambio de motor o a un tramo que la nueva pasada ' +
-      'no cubre. No afirmamos ninguna de las dos cosas.',
+      `ausencia de las palabras de ${citas.sujeto} puede deberse al cambio de motor o a un tramo ` +
+      'que la nueva pasada no cubre. No afirmamos ninguna de las dos cosas.',
   },
 }
 
@@ -330,7 +362,7 @@ const PROVENANCE_MARK = {
  * tomó, había empezado a insinuar por el otro lado: que las demás sí pasan por
  * una persona. La regla general se dice donde estaba la insinuación.
  */
-export function notaAcusacionSinContrastar(curatorName) {
+export function notaAcusacionSinContrastar(curatorName, citas = null) {
   // Tercera pasada, 2026-08-27: la frase decía «Aquí aparece igualmente», que
   // describía la política vieja —marcar el literal y publicarlo— y dejó de ser
   // cierta el día que las dos superficies pasaron a obedecer la misma puerta.
@@ -352,14 +384,35 @@ export function notaAcusacionSinContrastar(curatorName) {
   // el repositorio, que es público, lo conserva, y la transcripción de la sesión
   // lleva lo que se dijo. Así que dice lo que la ficha cumple y dónde siguen las
   // palabras.
-  const base =
-    'es una acusación pública que el verificador no ha podido contrastar. La misma puerta que ' +
-    'la retiene en el registro de declaraciones del pleno la retiene aquí: la ficha no reproduce ' +
-    `su literal —ni en la cita, donde queda a la vista el hueco «${ROTULO_CITA_RETENIDA}» con su ` +
-    'motivo, ni en su bitácora de correcciones, ni en los datos de la ficha que sirve este sitio—'
-  const cierre =
-    ' Se retiene la cita, no lo que se dijo: la transcripción completa de la sesión sigue ' +
-    'publicada.'
+  // Séptima pasada, 2026-09-29: la cuarta nombró el hueco por su rótulo, y no
+  // bastó. Veinte fichas mezclan huecos y citas impresas, y la revisión lectora
+  // siguió leyendo «es una acusación pública…» sobre la cita impresa de al lado
+  // —«Avui duem a ple una proposta d'acord», en 66709b— porque la nota no decía
+  // de CUÁL hablaba. Ahora lo dice por su número (`nombrarCitas`), igual que el
+  // rótulo con que abre cada cita, y concuerda con cuántas son. Sin `citas`, la
+  // redacción de antes.
+  const plural = citas?.plural === true
+  const huecos = !citas
+    ? `ni en la cita, donde queda a la vista el hueco «${ROTULO_CITA_RETENIDA}» con su motivo`
+    : plural
+      ? `ni en ${citas.sujeto}, donde quedan a la vista sus huecos «${ROTULO_CITA_RETENIDA}» ` +
+        'con su motivo'
+      : `ni en ${citas.sujeto}, donde queda a la vista su hueco «${ROTULO_CITA_RETENIDA}» con su ` +
+        'motivo'
+  const base = plural
+    ? 'son acusaciones públicas que el verificador no ha podido contrastar. La misma puerta que ' +
+      'las retiene en el registro de declaraciones del pleno las retiene aquí: la ficha no ' +
+      `reproduce sus literales —${huecos}, ni en su bitácora de correcciones, ni en los datos de ` +
+      'la ficha que sirve este sitio—'
+    : 'es una acusación pública que el verificador no ha podido contrastar. La misma puerta que ' +
+      'la retiene en el registro de declaraciones del pleno la retiene aquí: la ficha no ' +
+      `reproduce su literal —${huecos}, ni en su bitácora de correcciones, ni en los datos de la ` +
+      'ficha que sirve este sitio—'
+  const cierre = plural
+    ? ' Se retienen las citas, no lo que se dijo: la transcripción completa de la sesión sigue ' +
+      'publicada.'
+    : ' Se retiene la cita, no lo que se dijo: la transcripción completa de la sesión sigue ' +
+      'publicada.'
   const quien = (curatorName ?? '').trim()
   if (!quien) return `${base}; el pie de la ficha dice quién la editó.${cierre}`
   return isMachineAuthored(quien)
@@ -379,14 +432,19 @@ const CONTRAST_MARK = {
     chip: 'sin contraste en los datos',
     title:
       'El verificador no halló ningún dato municipal que confirme ni desmienta lo que se afirma aquí.',
-    note: 'no es una acusación; en el registro de declaraciones del pleno sale publicada con esta misma etiqueta.',
+    note: (citas) =>
+      citas.plural
+        ? 'no son acusaciones; en el registro de declaraciones del pleno salen publicadas con esta ' +
+          'misma etiqueta.'
+        : 'no es una acusación; en el registro de declaraciones del pleno sale publicada con esta ' +
+          'misma etiqueta.',
   },
   hidden: {
     tone: 'warn',
     chip: 'acusación no contrastada',
     title:
       'Es una acusación pública que el verificador no pudo contrastar con ningún dato municipal. No decimos que sea falsa.',
-    note: notaAcusacionSinContrastar,
+    note: (citas, curatorName) => notaAcusacionSinContrastar(curatorName, citas),
   },
 }
 
@@ -418,16 +476,18 @@ const MARK_AXES = [
     id: 'contraste',
     marks: CONTRAST_MARK,
     key: (e) => e?.gate,
-    lead:
-      // La cobertura temporal va DICHA: sin ella, «no apareció ningún dato»
-      // sobre una obra de 2005 o 2012 sonaba a comprobación con peso, cuando la
-      // base documental no llega a esos años y el cotejo no podía, por
-      // construcción, confirmar ni desmentir (señalamiento del lector, 18-08).
-      'Estas citas se cotejaron automáticamente con la base documental municipal —la ' +
-      'contratación desde 2017, las subvenciones, el presupuesto vigente y las promesas ' +
-      'publicadas— y no apareció ningún dato que las confirme ni que las desmienta. Eso no las ' +
-      'convierte en falsas: quiere decir que no lo sabemos — y sobre hechos anteriores a esa ' +
-      'cobertura, que no podíamos saberlo.',
+    // La cobertura temporal va DICHA: sin ella, «no apareció ningún dato»
+    // sobre una obra de 2005 o 2012 sonaba a comprobación con peso, cuando la
+    // base documental no llega a esos años y el cotejo no podía, por
+    // construcción, confirmar ni desmentir (señalamiento del lector, 18-08).
+    // Decía «Estas citas se cotejaron…»: ahora dice cuáles (`nombrarCitas`).
+    lead: (citas) =>
+      `${mayuscula(citas.sujeto)} ${citas.plural ? 'se cotejaron' : 'se cotejó'} ` +
+      'automáticamente con la base documental municipal —la contratación desde 2017, las ' +
+      'subvenciones, el presupuesto vigente y las promesas publicadas— y no apareció ningún dato ' +
+      `que ${citas.plural ? 'las confirme ni que las desmienta' : 'la confirme ni que la desmienta'}. ` +
+      `Eso no ${citas.plural ? 'las convierte en falsas' : 'la convierte en falsa'}: quiere decir ` +
+      'que no lo sabemos — y sobre hechos anteriores a esa cobertura, que no podíamos saberlo.',
     // La retenida SÍ cuenta aquí: la nota de «acusación no contrastada» es la
     // que explica su hueco y lo nombra por su rótulo.
     omiteRetenidas: false,
@@ -483,8 +543,21 @@ export { ROTULO_CITA_RETENIDA }
  * `QuoteProvenanceNote` agrega los motivos bajo el grupo de citas, pero una
  * ficha puede tener TODAS sus citas retenidas (hoy hay una). En ese caso no
  * queda nota que lo explique, así que el hueco tiene que hablar por sí mismo.
+ *
+ * Y tiene que decir DE QUIÉN habla. Decía «Es una acusación que…» y «La ficha
+ * la atribuye a PSOE», y aplanada la página —sin el filete discontinuo que lo
+ * separa de la cita impresa de encima— esas dos frases se leían sobre la
+ * vecina: una efeméride impresa pasaba por «acusación», una cita «sin
+ * atribuir» por del PSOE. Lo hizo la revisión lectora en nueve descartes entre
+ * el 29-08 y el 29-09-2026. Ahora el hueco abre con su número, como cada cita
+ * impresa (`RotuloDeCita`), y cada frase de su pie lo nombra: ninguna se puede
+ * pegar a otra cita sin contradecir el número que lleva.
+ *
+ * `numero` es el de la cita en su ficha (1-based). Sin él, el pie habla de
+ * «esta cita».
  */
-export function CitaRetenida({ attribution, tone }) {
+export function CitaRetenida({ numero, attribution, tone }) {
+  const cual = numero ? `la cita ${numero}` : 'esta cita'
   return (
     <figure
       style={{
@@ -494,6 +567,7 @@ export function CitaRetenida({ attribution, tone }) {
         maxWidth: '68ch',
       }}
     >
+      {numero && <RotuloDeCita>Cita {numero}</RotuloDeCita>}
       <div style={{ fontSize: 'var(--fs-body)', color: 'var(--ink50)', lineHeight: 1.5 }}>
         {ROTULO_CITA_RETENIDA}.
       </div>
@@ -505,17 +579,22 @@ export function CitaRetenida({ attribution, tone }) {
             página descarga y en su bitácora. Ya no va, pero el repositorio,
             que es público, lo conserva: lo cierto es que la ficha no lo
             reproduce (la nota de debajo dice dónde siguen las palabras). */}
-        Es una acusación que el verificador no ha podido contrastar con ningún registro municipal,
-        así que la ficha no reproduce su literal, y la misma puerta la retiene en el registro de
-        declaraciones. No decimos que sea falsa: decimos que no consta.{' '}
-        {attribution && (
+        {mayuscula(cual)} es una acusación que el verificador no ha podido contrastar con ningún
+        registro municipal, así que la ficha no reproduce su literal, y la misma puerta la retiene
+        en el registro de declaraciones. No decimos que sea falsa: decimos que no consta.{' '}
+        {/* Sin grupo también se dice, como «sin atribuir» en la cita impresa:
+            callarlo dejaba sin saber si faltaba el grupo o se retenía con el
+            literal. */}
+        {attribution ? (
           <>
-            La ficha la atribuye a{' '}
+            La ficha atribuye {cual} a{' '}
             <Pill tone={tone} size="xs">
               {attribution}
             </Pill>
             .
           </>
+        ) : (
+          <>La ficha no atribuye {cual} a ningún grupo.</>
         )}
       </figcaption>
     </figure>
@@ -548,17 +627,28 @@ export function QuoteProvenanceMark({ entry }) {
  * `quotes` va en paralelo a `entries`: con las dos, `citaRetenida` decide aquí
  * lo mismo que decide la página al pintar el hueco, y un eje que omite las
  * retenidas no explica la marca de una cita que el lector no ve.
+ *
+ * Y cada línea dice de qué citas habla, por el número con que abre cada una
+ * (`RotuloDeCita`): la posición `i` de `entries` es la cita `i + 1`, así que
+ * quien la llame le pasa las filas desde la primera cita que pinta. Sin los
+ * números, «acusación no contrastada — es una acusación pública…» se leía
+ * sobre la cita impresa de al lado (`nombrarCitas`).
  */
 export function QuoteProvenanceNote({ entries, quotes, curatorName }) {
   const groups = []
   for (const axis of MARK_AXES) {
-    const seen = []
+    /** marca → los números de las citas que la llevan, en orden de aparición */
+    const porMarca = new Map()
+    const todas = []
     for (const [i, e] of (entries ?? []).entries()) {
       if (axis.omiteRetenidas && citaRetenida(e, quotes?.[i])) continue
       const key = axis.key(e)
-      if (key && axis.marks[key] && !seen.includes(key)) seen.push(key)
+      if (!key || !axis.marks[key]) continue
+      if (!porMarca.has(key)) porMarca.set(key, [])
+      porMarca.get(key).push(i + 1)
+      todas.push(i + 1)
     }
-    if (seen.length > 0) groups.push({ axis, seen })
+    if (porMarca.size > 0) groups.push({ axis, porMarca, todas })
   }
   if (groups.length === 0) return null
   return (
@@ -574,7 +664,7 @@ export function QuoteProvenanceNote({ entries, quotes, curatorName }) {
         color: 'var(--ink70)',
       }}
     >
-      {groups.map(({ axis, seen }, gi) => (
+      {groups.map(({ axis, porMarca, todas }, gi) => (
         <div
           key={axis.id}
           // A rule between the axes: run together, the two explanations read as
@@ -585,19 +675,25 @@ export function QuoteProvenanceNote({ entries, quotes, curatorName }) {
               : { marginTop: 8, paddingTop: 8, borderTop: '1px solid var(--border2)' }
           }
         >
-          {axis.lead && <div style={{ marginBottom: 2 }}>{axis.lead}</div>}
-          {seen.map((s) => (
-            <div key={s} style={{ marginTop: 2 }}>
-              <strong style={{ color: 'var(--ink)', fontWeight: 600 }}>{axis.marks[s].chip}</strong>
-              {' — '}
-              {/* Una nota puede ser una frase fija o depender de la propia
-                  ficha. La de «acusación no contrastada» tiene que leer el pie:
-                  afirmar a secas que alguien lo decidió es lo que estaba mal. */}
-              {typeof axis.marks[s].note === 'function'
-                ? axis.marks[s].note(curatorName)
-                : axis.marks[s].note}
-            </div>
-          ))}
+          {axis.lead && <div style={{ marginBottom: 2 }}>{axis.lead(nombrarCitas(todas))}</div>}
+          {[...porMarca].map(([s, numeros]) => {
+            const citas = nombrarCitas(numeros)
+            return (
+              <div key={s} style={{ marginTop: 2 }}>
+                {/* El número, delante del rótulo de la marca y en la misma
+                    negrita: es lo primero que se lee de la línea, también en
+                    texto plano. */}
+                <strong style={{ color: 'var(--ink)', fontWeight: 600 }}>
+                  {citas.rotulo} · {axis.marks[s].chip}
+                </strong>
+                {' — '}
+                {/* La nota concuerda con cuántas citas nombra, y la de
+                    «acusación no contrastada» lee además el pie: afirmar a
+                    secas que alguien lo decidió es lo que estaba mal. */}
+                {axis.marks[s].note(citas, curatorName)}
+              </div>
+            )
+          })}
           <a href={axis.href} style={{ color: 'var(--civic)', textDecoration: 'underline' }}>
             {axis.linkText}
           </a>
@@ -636,6 +732,69 @@ export function ListaDeCotejos({ crossChecked, contradiction, plenoDate }) {
       <RefList refs={documentos} kind="crossChecked" plenoDate={plenoDate} />
       <RefList refs={contradiction} kind="contradiction" plenoDate={plenoDate} />
       <RefList refs={procedencia} kind="provenance" plenoDate={plenoDate} />
+    </>
+  )
+}
+
+/**
+ * Las citas de una ficha, numeradas, y la nota que las explica: juntas.
+ *
+ * Las pintan /hallazgos (`FindingDetailCard`, todas) y /plenos/:id
+ * (`FindingCard`, las tres primeras), y cada una llevaba su copia del reparto
+ * entre cita impresa y hueco. Ahora que la nota nombra las citas por el número
+ * con que abre cada una, los números del rótulo y los de la nota tienen que
+ * salir del mismo índice, así que el reparto y la nota viven aquí, como
+ * `ListaDeCotejos` vive para la banda de documentos (cuya cabecera cuenta por
+ * qué: se había compartido el componente y no la llamada).
+ *
+ * `<ol>`, porque la nota las cita por su número; sin viñetas, porque el número
+ * va escrito en el rótulo, que es lo que se lee también en texto plano.
+ *
+ * @param {object} p
+ * @param {object[]} p.quotes  las citas que se pintan, desde la primera
+ * @param {object[]} p.prov    las filas de procedencia de la ficha (`provenanceFor`)
+ * @param {string} [p.curatorName]
+ * @param {boolean} [p.colorDeGrupo]  la pastilla del grupo con su color, como la
+ *   pinta /hallazgos; /plenos/:id la pinta sin él
+ */
+export function CitasDeLaFicha({ quotes, prov, curatorName, colorDeGrupo = false }) {
+  return (
+    <>
+      <ol style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+        {quotes.map((q, i) => {
+          // Sin speakerGroup la cita no se queda muda, dice «sin atribuir».
+          // Antes se omitía la línea y una cita sin dueño se leía igual que
+          // una atribuida.
+          const attribution = q.speakerGroup ? blocLabel(q.speakerGroup) : null
+          return (
+            <li key={i}>
+              {/* La puerta editorial manda en las dos superficies: si retiene el
+                  literal en /declaraciones, aquí tampoco se imprime. Lo que se
+                  retiene es la CITA, no la ficha. */}
+              {citaRetenida(prov[i], q) ? (
+                <CitaRetenida
+                  numero={i + 1}
+                  attribution={attribution}
+                  tone={PARTY_TONE[q.speakerGroup]}
+                />
+              ) : (
+                <Quote
+                  rotulo={`Cita ${i + 1}`}
+                  text={q.text}
+                  attribution={attribution}
+                  tone={colorDeGrupo ? PARTY_TONE[q.speakerGroup] : undefined}
+                  marks={<QuoteProvenanceMark entry={prov[i]} />}
+                />
+              )}
+            </li>
+          )
+        })}
+      </ol>
+      <QuoteProvenanceNote
+        entries={prov.slice(0, quotes.length)}
+        quotes={quotes}
+        curatorName={curatorName}
+      />
     </>
   )
 }
@@ -679,31 +838,9 @@ export function FindingCard({ f }) {
       </p>
       {f.quotes?.length > 0 && (
         <div style={{ marginTop: 8 }}>
-          {f.quotes
-            .slice(0, 3)
-            .map((q, i) =>
-              citaRetenida(prov[i], q) ? (
-                <CitaRetenida
-                  key={i}
-                  attribution={q.speakerGroup ? blocLabel(q.speakerGroup) : null}
-                  tone={PARTY_TONE[q.speakerGroup]}
-                />
-              ) : (
-                <Quote
-                  key={i}
-                  text={q.text}
-                  attribution={q.speakerGroup ? blocLabel(q.speakerGroup) : null}
-                  marks={<QuoteProvenanceMark entry={prov[i]} />}
-                />
-              ),
-            )}
           {/* Only the three quotes this card shows are marked, so the note must
               describe those and not the finding's full list. */}
-          <QuoteProvenanceNote
-            entries={prov.slice(0, 3)}
-            quotes={f.quotes.slice(0, 3)}
-            curatorName={f.curatorName}
-          />
+          <CitasDeLaFicha quotes={f.quotes.slice(0, 3)} prov={prov} curatorName={f.curatorName} />
         </div>
       )}
       {/* El vídeo del pleno sale de la lista de cotejos y se declara por lo que

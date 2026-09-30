@@ -1,10 +1,24 @@
-import { test, expect } from '@playwright/test'
+import { test, expect, type Page } from '@playwright/test'
 import { readFileSync } from 'node:fs'
 import { PRIMER_HALLAZGO } from './_rutas'
+import { REPORTAJE_SLUGS } from '../../src/reportajes'
 
 // A real pleno id with claims, read from the committed manifest (for /plenos/:id).
 const FIRST_PLENO_ID = JSON.parse(readFileSync('public/data/pleno-claims/index.json', 'utf8'))
   .plenos?.[0]?.plenoId
+
+// Una oferta real, para `/empleo/:id`: su título sale del snapshot.
+const OFERTA = JSON.parse(readFileSync('public/data/empleo.json', 'utf8')).items?.[0] as {
+  id: string
+  titulo: string
+}
+
+// Cada pieza del registro, con el titular congelado en su propio JSON.
+const PIEZAS = REPORTAJE_SLUGS.map((slug) => ({
+  slug,
+  titulo: JSON.parse(readFileSync(`public/data/reportajes/${slug}.json`, 'utf8')).meta
+    .titulo as string,
+}))
 
 // A real service ficha, and specifically the one with the HIGHEST percentile.
 //
@@ -92,6 +106,9 @@ const ROUTES: Route[] = [
   // La página propia de una ficha: su titular sale del snapshot, no de una cadena.
   { path: `/hallazgos/${PRIMER_HALLAZGO.id}`, ready: literal(PRIMER_HALLAZGO.title) },
   { path: '/reportajes', ready: /REPORTAJE · /i },
+  // Las piezas, una por slug del registro. No estaban en esta lista y dos de
+  // ellas repartían sus fuentes en columnas de 280 px que a 320 no cabían.
+  ...PIEZAS.map((p) => ({ path: `/reportajes/${p.slug}`, ready: literal(p.titulo) })),
   { path: '/declaraciones', ready: /TOTAL \d+ CONTRASTADAS \d+/ },
   // Tablas de cinco columnas en un móvil: el sitio exacto donde una fila se
   // sale sin que ninguna prueba de datos lo note. /eficiencia/:id no estaba en
@@ -99,6 +116,8 @@ const ROUTES: Route[] = [
   { path: '/laboratorio/cobertura', ready: /DECLARACIONES PUBLICADAS/i },
   { path: '/datos', ready: /Q23701/ }, // Wikidata identity block
   { path: '/empleo', ready: /OFERTAS ABIERTAS \d+/ },
+  // La ficha de una oferta: filas etiqueta/valor con la etiqueta en 190 px.
+  { path: `/empleo/${OFERTA.id}`, ready: literal(OFERTA.titulo) },
   { path: '/quejas', ready: /TOTAL QUEJAS \d+/ },
   { path: '/quejas/dashboard', ready: /TOTAL QUEJAS \d+/ },
   // Not a data row but a data ANSWER: this sentence only renders once the
@@ -234,26 +253,7 @@ type Measurement = Awaited<ReturnType<typeof measure>>
 // The whole assertion, in one place, so the fault-injection test below can
 // prove it rejects an empty page instead of merely documenting that it should.
 function assertFitsViewport(m: Measurement, width: number, path: string, ready: RegExp) {
-  // 0. Prove the guard measured the route it asked for. With
-  //    VITE_ENABLE_EFICIENCIA off, /eficiencia falls through App.jsx's
-  //    catch-all to `/`, and the landing's own «RENDICIÓN DE CUENTAS POR
-  //    CONCEJALÍA» satisfied /rendición de cuentas/i: measured on 2026-09-27,
-  //    this spec went green on /eficiencia by measuring the landing page.
-  expect(m.landed, `${path}: the app sent it to ${m.landed} — that is another page`).toBe(
-    pathOf(path),
-  )
-
-  // 1. Prove the guard measured a rendered page. Without this the suite can go
-  //    green by rendering nothing, which is how it stayed green through a 55%
-  //    overrun.
-  expect(
-    m.hasData,
-    `${path}: ${ready} never appeared, so the width was about to be measured on an empty page (main had ${m.chars} chars)`,
-  ).toBe(true)
-  expect(
-    m.chars,
-    `${path}: main rendered only ${m.chars} chars — that is a shell, not a page`,
-  ).toBeGreaterThan(CONTENT_FLOOR)
+  assertPaginaPintada(m, path, ready)
 
   // 2. Prove the reference is the viewport and not something the overflow
   //    itself moved. window.innerWidth is reported for the record: when the
@@ -279,6 +279,32 @@ function assertFitsViewport(m: Measurement, width: number, path: string, ready: 
       `${path}: ya cabe en ${width}px — borra su entrada de KNOWN_OVERFLOW`,
     ).toBeGreaterThan(width + 6)
   }
+}
+
+// Las dos precondiciones de toda medida de este fichero, en un sitio: la del
+// ancho del documento y la de las rejillas descansan en la misma prueba de que
+// había una página pintada, y la inyección de fallo de abajo la ejercita.
+function assertPaginaPintada(m: Measurement, path: string, ready: RegExp) {
+  // 0. Prove the guard measured the route it asked for. With
+  //    VITE_ENABLE_EFICIENCIA off, /eficiencia falls through App.jsx's
+  //    catch-all to `/`, and the landing's own «RENDICIÓN DE CUENTAS POR
+  //    CONCEJALÍA» satisfied /rendición de cuentas/i: measured on 2026-09-27,
+  //    this spec went green on /eficiencia by measuring the landing page.
+  expect(m.landed, `${path}: the app sent it to ${m.landed} — that is another page`).toBe(
+    pathOf(path),
+  )
+
+  // 1. Prove the guard measured a rendered page. Without this the suite can go
+  //    green by rendering nothing, which is how it stayed green through a 55%
+  //    overrun.
+  expect(
+    m.hasData,
+    `${path}: ${ready} never appeared, so the width was about to be measured on an empty page (main had ${m.chars} chars)`,
+  ).toBe(true)
+  expect(
+    m.chars,
+    `${path}: main rendered only ${m.chars} chars — that is a shell, not a page`,
+  ).toBeGreaterThan(CONTENT_FLOOR)
 }
 
 test.describe('Mobile shell (iPhone 13 mini / 375px)', () => {
@@ -397,5 +423,198 @@ test.describe('Mobile shell (iPhone 13 mini / 375px)', () => {
 
     await page.keyboard.press('Escape')
     await expect(sidebar).not.toHaveClass(/cp-sidebar-open/)
+  })
+})
+
+// ---------------------------------------------------------------------------
+// Rejillas: ningún bloque pintado pasa el borde de la caja de su rejilla, a
+// 375 px y a 320 px.
+//
+// La prueba de arriba mide el DOCUMENTO, y hay desbordamientos que no lo
+// ensanchan: un bloque que se sale de su rejilla y se queda en el margen de la
+// página, o que acaba justo en el borde de la pantalla —la nota de /eficiencia
+// iba de 45 a 375 y `scrollWidth` seguía en 375 (#176)—. Aquí cada bloque se
+// mide contra la caja de contenido de su propia rejilla.
+//
+// Tres mecanismos, medidos el 29-09-2026 sobre la build de producción con las
+// dos banderas:
+//
+// 1. `repeat(auto-fit|auto-fill, minmax(Npx, 1fr))` decide CUÁNTAS columnas
+//    caben, pero la última que queda conserva su suelo de N px aunque la caja
+//    sea más estrecha: las tarjetas de /promesas (340) se salían 13 px a 375 y
+//    68 a 320; las de /datos y /quejas/dashboard (320), 48 a 320.
+// 2. Pistas fijas, que no ceden: `190px 1fr` dejaba al valor de la ficha de
+//    una oferta 83 px a 375, y «IMPRESCINDIBLE» lo sacaba 19; las tres cifras
+//    de `1fr 80px 80px 80px` pedían 270 px en una caja de 230.
+// 3. Una pista `1fr` —que es `minmax(auto, 1fr)`— crece hasta el mínimo de su
+//    contenido: el ancho intrínseco del `<input type=range>` de /presupuesto,
+//    la tabla de medios de /laboratorio y, en la bitácora de correcciones de
+//    /promesas, una URL sin un solo punto de corte que, con la bitácora
+//    abierta, llevaba la página a 2.578 px en un teléfono y a 3.317 en un
+//    escritorio.
+//
+// Por eso se ABREN los <details> antes de medir: los abre el lector. Y por eso
+// se filtra con `checkVisibility()`: lo de dentro de un <details> cerrado no se
+// pinta, pero Chrome le calcula una caja igual si se le pregunta, con pistas
+// sin sentido (2.502 px con la bitácora cerrada).
+//
+// Se miden BLOQUES y no pistas: con `auto-fit` las columnas sobrantes colapsan
+// a 0 px y sumarlas con sus huecos da excesos que no existen.
+//
+// Y 320 porque `a11y.spec.ts` apunta a WCAG 2.1 AA, que incluye el criterio
+// 1.4.10 (Reflow): contenido usable a 320 px CSS sin desplazarse en
+// horizontal. axe no puede comprobarlo; esta prueba mide la parte que es de
+// rejillas, no el documento entero a 320.
+// ---------------------------------------------------------------------------
+
+/** El ancho del proyecto y el de WCAG 1.4.10. */
+const ANCHOS_REJILLA = [375, 320]
+
+/**
+ * Rutas cuyo contenido no tiene ni una rejilla: páginas de texto. En ellas el
+ * suelo no puede probar que la guarda miró algo —no hay nada que mirar—, y lo
+ * que prueba que sabe fallar es la rejilla plantada de más abajo. La lista se
+ * sostiene en las dos direcciones, como KNOWN_OVERFLOW: si una de estas rutas
+ * gana una rejilla, su entrada tiene que irse para que el suelo la vigile.
+ */
+const SIN_REJILLAS = new Set([
+  '/laboratorio/cobertura',
+  '/quejas/q-no-existe',
+  '/laboratorio/frontera',
+  '/laboratorio/coste-esperado',
+  '/nosotros',
+  '/about',
+  '/metodologia',
+  '/aviso-legal',
+])
+
+type Rejilla = {
+  plantilla: string
+  caja: number
+  bloques: number
+  /** Lo que más pasa un bloque del borde de la caja, en px. */
+  pasa: number
+  /** Dentro de #contenido y no en la barra superior del armazón. */
+  enContenido: boolean
+  texto: string
+}
+
+/**
+ * Abre cada <details> de <main> y mide cada rejilla pintada: cuánto pasa de su
+ * caja de contenido el bloque que más se sale, por la derecha o la izquierda.
+ */
+async function medirRejillas(page: Page): Promise<Rejilla[]> {
+  await page.evaluate(async () => {
+    for (const d of document.querySelectorAll('main details')) {
+      ;(d as HTMLDetailsElement).open = true
+    }
+    await document.fonts.ready
+    await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)))
+  })
+  return page.evaluate(() => {
+    const pintado = (el: Element) => {
+      if (!el.checkVisibility()) return false
+      const r = el.getBoundingClientRect()
+      return r.width > 0 && r.height > 0
+    }
+    // Un hijo con `display: contents` no tiene caja: los bloques son sus hijos.
+    const bloquesDe = (g: Element): Element[] =>
+      [...g.children].flatMap((h) =>
+        getComputedStyle(h).display === 'contents' ? bloquesDe(h) : [h],
+      )
+    const contenido = document.getElementById('contenido')
+    return [...document.querySelectorAll('main *')]
+      .filter((el) => getComputedStyle(el).display.endsWith('grid') && pintado(el))
+      .map((g) => {
+        const cs = getComputedStyle(g)
+        const b = g.getBoundingClientRect()
+        const izq = b.left + parseFloat(cs.borderLeftWidth) + parseFloat(cs.paddingLeft)
+        const der = b.right - parseFloat(cs.borderRightWidth) - parseFloat(cs.paddingRight)
+        const bloques = bloquesDe(g).filter(pintado)
+        const pasa = Math.max(
+          0,
+          ...bloques.map((h) => {
+            const r = h.getBoundingClientRect()
+            return Math.max(r.right - der, izq - r.left)
+          }),
+        )
+        return {
+          plantilla: (g as HTMLElement).style.gridTemplateColumns || cs.gridTemplateColumns,
+          caja: Math.round(der - izq),
+          bloques: bloques.length,
+          pasa: Math.round(pasa * 10) / 10,
+          enContenido: !!contenido?.contains(g),
+          texto: (g.textContent ?? '').trim().replace(/\s+/g, ' ').slice(0, 50),
+        }
+      })
+  })
+}
+
+const fuera = (rejillas: Rejilla[]) =>
+  rejillas
+    .filter((g) => g.pasa > 0.5)
+    .map((g) => `+${g.pasa} px · ${g.plantilla} · caja de ${g.caja} px · «${g.texto}»`)
+
+test.describe('Rejillas a 375 y 320 px: ningún bloque fuera de su caja', () => {
+  for (const route of ROUTES) {
+    test(`${route.path}: cada bloque cabe en la caja de su rejilla`, async ({ page }) => {
+      const m = await measure(page, route)
+      test.skip(
+        !!route.flag && m.landed !== pathOf(route.path),
+        `${route.path} no está montada — reconstruye con ${route.flag}=true`,
+      )
+      assertPaginaPintada(m, route.path, route.ready)
+
+      for (const width of ANCHOS_REJILLA) {
+        await page.setViewportSize({ width, height: 812 })
+        const rejillas = await medirRejillas(page)
+
+        // Que haya medido algo: rejillas con bloques en el contenido de la
+        // página, no sólo el botón del menú de la barra superior.
+        const conBloques = rejillas.filter((g) => g.enContenido && g.bloques > 0).length
+        if (SIN_REJILLAS.has(route.path)) {
+          expect(
+            conBloques,
+            `${width} px · ${route.path} ya tiene ${conBloques} rejillas — bórrala de SIN_REJILLAS`,
+          ).toBe(0)
+        } else {
+          expect(
+            conBloques,
+            `${width} px · ${route.path}: ninguna rejilla con bloques en #contenido (${rejillas.length} en <main>)`,
+          ).toBeGreaterThan(0)
+        }
+
+        expect(
+          fuera(rejillas),
+          `${width} px · ${route.path}: bloques fuera de la caja de su rejilla`,
+        ).toEqual([])
+      }
+    })
+  }
+
+  // Inyección de fallo: lo que prueba que esta guarda SABE fallar. Una rejilla
+  // con un suelo de 400 px, dentro de un <details> cerrado, plantada a 320 px
+  // en una página de texto: si la guarda no abriera los <details> o no midiera
+  // cada bloque contra su caja, la lista saldría vacía, y en verde.
+  test('una rejilla plantada que se sale de su caja sale en la lista, aunque vaya en un <details> cerrado', async ({
+    page,
+  }) => {
+    const route = ROUTES.find((r) => r.path === '/nosotros')!
+    const m = await measure(page, route)
+    assertPaginaPintada(m, route.path, route.ready)
+    await page.setViewportSize({ width: 320, height: 812 })
+
+    await page.evaluate(() => {
+      const d = document.createElement('details')
+      d.innerHTML =
+        '<summary>plantada</summary>' +
+        '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr))">' +
+        '<p>bloque</p></div>'
+      document.getElementById('contenido')!.append(d)
+    })
+
+    expect(fuera(await medirRejillas(page))).toEqual([
+      expect.stringMatching(/^\+\d+(\.\d)? px · repeat\(auto-fit, minmax\(400px, 1fr\)\) · /),
+    ])
   })
 })
