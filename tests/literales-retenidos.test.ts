@@ -531,24 +531,11 @@ const PROSA_QUE_ESPERA_A_UNA_PERSONA: Array<{ id: string; ruta: string; cribas: 
   // retiene; se firmó su redacción el 29-09-2026 (`--redact summary`, cuyo
   // barrido pasó a huella también la fila que copiaba el sumario), y sus dos
   // entradas salieron de esta lista en el mismo commit.
-  {
-    // El motivo de una corrección de atribución (09-08) cita el arranque del
-    // literal para explicar de dónde salía el sumario. La CLI no reescribe
-    // motivos: decidir qué hacer con éste es de una persona.
-    id: 'f-2026-05-11-acu-7c65c5#3',
-    ruta: 'f-2026-05-11-acu-7c65c5:corrections[1].reason',
-    cribas: ['palabras', 'caracteres'],
-  },
-  {
-    // El sumario cuenta en estilo indirecto la versión castellana que se
-    // publicó como literal hasta el reanclaje del 10-08-2026: siete palabras
-    // seguidas, así que sólo lo ve la criba de caracteres. Su redacción
-    // (`correct-pleno-finding --redact summary`) espera firma; esta entrada
-    // sale en el mismo commit que la aplique.
-    id: 'f-2025-12-01-cit-bef239#2',
-    ruta: 'f-2025-12-01-cit-bef239:summary',
-    cribas: ['caracteres'],
-  },
+  // El 30-09-2026 se firmaron también las dos que quedaban: el motivo del 09-08
+  // de f-2026-05-11-acu-7c65c5 (`--amend-reason 1`, firmado por una persona; el
+  // anterior queda en huella) y el sumario de f-2025-12-01-cit-bef239
+  // (`--redact summary`). La lista queda vacía: lo próximo que la criba
+  // encuentre se pone rojo hasta que alguien lo firme o lo apunte aquí.
 ]
 
 const clave = (r: { id: string; ruta: string }) => `${r.id} @ ${r.ruta}`
