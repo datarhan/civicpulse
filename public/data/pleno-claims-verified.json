@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-09-28T07:54:32.262Z",
-  "composedAt": "2026-09-30T05:52:22.422Z",
+  "composedAt": "2026-09-30T06:24:31.707Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
@@ -15,8 +15,8 @@
       "promesa-repetida": 0
     },
     "sinDatosPorque": {
-      "sinCorpus": 4539,
-      "comprobadoSinHallar": 3008
+      "sinCorpus": 4510,
+      "comprobadoSinHallar": 3037
     }
   },
   "items": [
@@ -42308,12 +42308,17 @@
       "verification": {
         "claimId": "k4olcs-016-cit-683445",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
+        "summary": "El objeto citado aparece en un expediente municipal, pero ninguna de sus magnitudes coincide con la cifra del claim. No es que no haya registro: es que el que hay no dice eso.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=mV0QInbOtkfnSoTX3z%2F7wA%3D%3D",
+            "snippet": "ervicio para la desarrollo, implantación y mantenimiento de un Portal de Transparencia, por procedimiento abierto súper simplificado, mejor relación calidad-precio, único criterio de adjudicación, con condición especial de ejecución de carácter social y medioambiental contribuyendo al ODS 9 INDUSTRIA, INNOVACION E INFRAESTRUCTURA en relación a la meta 9.5.c para aumentar significativamente el acceso a la tecnología de la información y las comunicaciones y esforzarse por proporcionar acceso universal y asequible a Internet. · Ayuntamiento de Riba-roja de Túria · TICSMART SL · it · 15.137 €",
+            "similarity": 1,
+            "stance": "checked"
+          }
         ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       }
     },
     {
@@ -42339,10 +42344,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       }
     },
     {
@@ -45540,9 +45542,8 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "promises"
+        ]
       }
     },
     {
@@ -47424,10 +47425,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       }
     },
     {
@@ -49011,10 +49009,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       }
     },
     {
@@ -49472,10 +49467,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       }
     },
     {
@@ -53194,9 +53186,8 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "promises"
+        ]
       }
     },
     {
@@ -53530,10 +53521,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       }
     },
     {
@@ -56957,9 +56945,11 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
       }
     },
     {
@@ -85916,9 +85906,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       }
     },
     {
@@ -92206,9 +92196,11 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
       }
     },
     {
@@ -92474,9 +92466,11 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
       }
     },
     {
@@ -93713,9 +93707,11 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
       }
     },
     {
@@ -95378,9 +95374,8 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "promises"
+        ]
       }
     },
     {
@@ -95634,9 +95629,8 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "promises"
+        ]
       }
     },
     {
@@ -102696,10 +102690,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       }
     },
     {
@@ -104323,9 +104314,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       }
     },
     {
@@ -106372,10 +106363,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       }
     },
     {
@@ -106402,10 +106390,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       }
     },
     {
@@ -109405,9 +109390,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       }
     },
     {
@@ -122882,10 +122867,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       }
     },
     {
@@ -123607,9 +123589,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       }
     },
     {
@@ -123897,9 +123879,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       }
     },
     {
@@ -126567,9 +126549,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       }
     },
     {
@@ -126839,12 +126821,19 @@
       "verification": {
         "claimId": "qz6weg-284-pro-66d2d1",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
+        "summary": "El objeto citado aparece en un expediente municipal, pero ninguna de sus magnitudes coincide con la cifra del claim. No es que no haya registro: es que el que hay no dice eso.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=G%2BmnRyGH352ExvMJXBMHHQ%3D%3D",
+            "snippet": "Contrato adquisición de 320 contendores de carga lateral para el servicio de recogida de residuos en Riba-roja de Túria, así como la retirada y gestión del actual parque existente. · Ayuntamiento de Riba-roja de Túria · Sulo Ibérica Sociedad Anónima · construction · 417.600 €",
+            "similarity": 1,
+            "stance": "checked"
+          }
         ],
-        "source": "verdict-engine"
+        "checkedAgainst": [
+          "promises"
+        ]
       }
     },
     {
@@ -126870,10 +126859,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       }
     },
     {
@@ -127102,12 +127088,17 @@
       "verification": {
         "claimId": "qz6weg-285-afi-6af958",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
+        "summary": "El objeto citado aparece en un expediente municipal, pero ninguna de sus magnitudes coincide con la cifra del claim. No es que no haya registro: es que el que hay no dice eso.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Fyy%2BTlMZfRsadbH3CysQuQ%3D%3D",
+            "snippet": "Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU, poda y voluminosos en el municipio de Riba-roja de Túria, incluido en el marco de ayudas del Plan de Recuperación, Transformación y Resiliencia financiado por la Unión Europea, Next Generation UE (Ctto.138/2025) · Ayuntamiento de Riba-roja de Túria · DISTROMEL, S.A. · it · 148.760 €",
+            "similarity": 1,
+            "stance": "checked"
+          }
         ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       }
     },
     {
@@ -127160,9 +127151,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       }
     },
     {
@@ -127792,9 +127783,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       }
     },
     {
@@ -127967,10 +127958,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       }
     },
     {
@@ -128745,10 +128733,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       }
     },
     {
@@ -131042,10 +131027,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       }
     },
     {
@@ -135211,9 +135193,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       }
     },
     {
@@ -143648,9 +143630,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       }
     },
     {
@@ -145081,9 +145063,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       }
     },
     {
@@ -145110,9 +145092,8 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "promises"
+        ]
       }
     },
     {
@@ -147388,9 +147369,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       }
     },
     {
@@ -179016,9 +178997,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       }
     },
     {
@@ -179713,9 +179694,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       }
     },
     {
@@ -184085,9 +184066,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       }
     },
     {
@@ -185249,10 +185230,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       }
     },
     {
@@ -185753,9 +185731,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       }
     },
     {
@@ -187246,10 +187224,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       }
     },
     {
@@ -188008,9 +187983,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       }
     },
     {
@@ -189557,10 +189532,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       }
     },
     {
@@ -191747,9 +191719,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       }
     },
     {
@@ -191976,9 +191948,9 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+          "tenders",
+          "tenders-ted"
+        ]
       }
     },
     {

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-30T05:52:23.833Z",
+  "generatedAt": "2026-09-30T06:24:33.835Z",
   "version": "1",
   "plenoId": "1du4rf5",
   "plenoDate": "2025-11-03",
@@ -231,10 +231,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -2294,10 +2291,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },

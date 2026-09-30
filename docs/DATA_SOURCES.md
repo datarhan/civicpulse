@@ -401,7 +401,7 @@ overwrites it. Change the bot's SQLite instead.
 
 - **Pipeline** — `participa.ts` → `participa.json`
 - **Source** — WordPress REST API at `participa.ribarroja.es/wp-json/wp/v2/posts` + `/categories`
-- **Surfaces** — `/plenos` "Participación ciudadana" grid; Direction D editorial column (`ParticipaBlockD`)
+- **Surfaces** — Direction D editorial column (`ParticipaBlockD`)
 
 ### Press (multi-source · Google News + infoturia + Ayuntamiento RSS)
 
