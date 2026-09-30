@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-09-30T06:27:18.138Z",
+  "generatedAt": "2026-09-30T06:28:15.989Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. Los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, salvo los que llevan la firma de una persona, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -3853,9 +3853,17 @@
           "field": "quote.3.speakerGroup",
           "original": "VOX",
           "corrected": "sin identificar",
-          "reason": "La atribución a un grupo municipal con un solo concejal identifica a esa persona por eliminación, y la asignó la curación automática sin firma de ningún curador. Se retira sin sustituirla; no se afirma que fuera errónea.",
+          "reason": "La intervención no es del grupo al que se atribuía: la presidencia concede ese turno a otro grupo en cuanto termina el anterior, y la cita es el arranque de ese turno (transcripción, 2.704–2.716 s). El grupo que corresponde tiene un solo concejal, así que se retira la atribución en lugar de sustituirla.",
           "editor": "civicpulse-curator",
-          "correctedAt": "2026-09-30T05:48:08.252Z"
+          "correctedAt": "2026-09-30T05:48:08.252Z",
+          "reasonAmendments": [
+            {
+              "previous": "motivo · sha256:6bc61cdaf540",
+              "reason": "El motivo decía que no se afirmaba que la atribución fuera errónea, y lo era: la revisión de citas del 10-08-2026 ya la había marcado como contradicha por la transcripción, y la concesión de palabra lo confirma. Se dice en el motivo; la retirada no cambia.",
+              "editor": "Sergei Lutchenko",
+              "amendedAt": "2026-09-30T06:28:15.979Z"
+            }
+          ]
         },
         {
           "field": "summary",
