@@ -194,6 +194,48 @@ describe('resumenPlenos', () => {
   })
 
   /**
+   * Una declaración que una persona retiró tras escuchar la sesión tampoco se
+   * sirve, así que `totals.retenidas` la cuenta por su tipo —aquí, una cita—, y
+   * la fila de «retenidas por la puerta editorial» dice «acusaciones públicas
+   * sin contrastar». Sin restarla, la tarjeta llamaría acusación a una cita
+   * cuyo único defecto es que el motor sustituido oyó mal.
+   */
+  it('las retiradas tras escuchar salen de las retenidas y tienen su fila', () => {
+    const conRetirada = {
+      ...snapshots,
+      manifest: {
+        ...snapshots.manifest,
+        totals: {
+          ...snapshots.manifest.totals,
+          // 22 no servidas: 20 acusaciones y dos citas; una cita sin
+          // procedencia y la otra retirada por una persona.
+          retenidas: { acusacion_publica: 20, cita_obra: 1, cita_convenio: 1 },
+          retenidasSinProcedencia: 1,
+          retiradas: { 'literal-no-dicho': 1 },
+        },
+      },
+    }
+    const { embudo } = resumenPlenos(conRetirada)
+    expect(embudo.extraidas).toBe(78)
+    expect(embudo.retenidas).toBe(20)
+    expect(embudo.retenidasSinProcedencia).toBe(1)
+    expect(embudo.retiradas).toEqual({ 'literal-no-dicho': 1 })
+    expect(
+      embudo.retenidas +
+        embudo.retenidasSinProcedencia +
+        embudo.retiradas['literal-no-dicho'] +
+        embudo.sinDatos +
+        embudo.parcial +
+        embudo.verificado,
+    ).toBe(embudo.extraidas)
+  })
+
+  it('un manifiesto de antes de las retiradas no inventa ninguna', () => {
+    const { embudo } = resumenPlenos(snapshots)
+    expect(embudo.retiradas).toEqual({})
+  })
+
+  /**
    * «Son los puntos de las 62 sesiones con orden del día extraído, no de las
    * 62»: la salvedad se pintaba siempre, y el 24-09 la tubería extrajo el
    * último orden del día que faltaba. El hueco tiene que salir del dato.
