@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-09-30T06:26:10.078Z",
+  "generatedAt": "2026-09-30T06:27:18.138Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. Los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, salvo los que llevan la firma de una persona, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -1273,7 +1273,7 @@
       "plenoId": "k4olcs",
       "plenoDate": "2026-04-20",
       "title": "Pleno ordinario de Riba-roja de Túria 2026-04-20: Debate sobre educación",
-      "summary": "El grupo PSOE afirma que el pla Edificant —el programa autonómico de la Generalitat para infraestructuras educativas, cuya cifra corresponde al conjunto de la Comunitat y no al presupuesto de este ayuntamiento— ha movilizado hasta 1.700 millones de euros para la construcción y mejora de infraestructuras educativas, mientras que otra intervención expresa el compromiso de garantizar una enseñanza de calidad con libertad. El registro municipal incluye contratos relacionados con mejoras en centros educativos y servicios de formación.",
+      "summary": "Una intervención sin grupo identificado afirma —según la transcripción anterior de la sesión, cuyo literal no consta en la revisada— que el pla Edificant —el programa autonómico de la Generalitat para infraestructuras educativas, cuya cifra corresponde al conjunto de la Comunitat y no al presupuesto de este ayuntamiento— ha movilizado hasta 1.700 millones de euros para la construcción y mejora de infraestructuras educativas, mientras que otra intervención expresa el compromiso de garantizar una enseñanza de calidad con libertad. El registro municipal incluye contratos relacionados con mejoras en centros educativos y servicios de formación.",
       "severity": "informational",
       "sourceClaimIds": [
         "k4olcs-063-cit-25e6ea",
@@ -1283,7 +1283,7 @@
       "quotes": [
         {
           "text": "el plan edificante, que había movilizado hasta 1.700 millones de euros para la construcción y mejora de infraestructuras educativas",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "k4olcs-063-cit-25e6ea"
         },
         {
@@ -1351,6 +1351,22 @@
           "reason": "El sumario atribuía una intervención a un grupo municipal con un solo concejal, lo que identifica a esa persona por eliminación; la atribución la puso la curación automática, y las correcciones posteriores del sumario, hechas por otros motivos, la conservaron. Se retira del sumario igual que de la cita; lo que se dijo no cambia.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-09-30T05:48:06.857Z"
+        },
+        {
+          "field": "quote.0.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La intervención no es del grupo al que se atribuía: la presidencia concede ese turno a otro grupo, y la intervención le pertenece hasta el pasaje citado (transcripción, 3.257–3.430 s). El grupo que corresponde tiene un solo concejal, así que se retira la atribución en lugar de sustituirla.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T06:27:14.025Z"
+        },
+        {
+          "field": "summary",
+          "original": "El grupo PSOE afirma que el pla Edificant —el programa autonómico de la Generalitat para infraestructuras educativas, cuya cifra corresponde al conjunto de la Comunitat y no al presupuesto de este ayuntamiento— ha movilizado hasta 1.700 millones de euros para la construcción y mejora de infraestructuras educativas, mientras que otra intervención expresa el compromiso de garantizar una enseñanza de calidad con libertad. El registro municipal incluye contratos relacionados con mejoras en centros educativos y servicios de formación.",
+          "corrected": "Una intervención sin grupo identificado afirma —según la transcripción anterior de la sesión, cuyo literal no consta en la revisada— que el pla Edificant —el programa autonómico de la Generalitat para infraestructuras educativas, cuya cifra corresponde al conjunto de la Comunitat y no al presupuesto de este ayuntamiento— ha movilizado hasta 1.700 millones de euros para la construcción y mejora de infraestructuras educativas, mientras que otra intervención expresa el compromiso de garantizar una enseñanza de calidad con libertad. El registro municipal incluye contratos relacionados con mejoras en centros educativos y servicios de formación.",
+          "reason": "El sumario atribuía la intervención a un grupo que no la pronunció: la presidencia concede ese turno a otro grupo, que tiene un solo concejal, y la cita pasa a no atribuirse (transcripción, 3.257–3.430 s). Además, la única cita que la sostiene esta misma ficha la marca como procedente de la transcripción anterior de la sesión, y la salvedad pasa a la frase; lo que se dijo no cambia.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T06:27:14.627Z"
         }
       ]
     },
@@ -1375,7 +1391,7 @@
         },
         {
           "text": "los informes técnicos de la intervención son desfavorables, son negativos",
-          "speakerGroup": "PP",
+          "speakerGroup": null,
           "sourceClaimId": "k4olcs-133-acu-e1bac8"
         },
         {
@@ -1475,6 +1491,14 @@
           "reason": "El sumario daba por firme lo que sólo sostiene una cita que la ficha no reproduce y cuyo literal procede de la transcripción anterior de la sesión, sin constar en la revisada. La salvedad pasa a la frase, que es el único sitio donde el lector puede verla; lo que se dijo no cambia.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-09-30T06:26:06.343Z"
+        },
+        {
+          "field": "quote.1.speakerGroup",
+          "original": "PP",
+          "corrected": "sin identificar",
+          "reason": "La intervención no es del grupo al que se atribuía: quien habla dice que sigue la línea que acaba de plantear ese grupo, y habla desde la oposición (transcripción, 6.118–6.138 s). Los demás grupos de la oposición tienen un solo concejal cada uno, así que se retira la atribución en lugar de sustituirla.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T06:27:15.374Z"
         }
       ]
     },
@@ -1803,7 +1827,7 @@
       "plenoId": "19gax3o",
       "plenoDate": "2026-01-19",
       "title": "Pleno ordinario 2026-01-19: Debate sobre transparencia en contratación",
-      "summary": "Un grupo no identificado afirma que se ha discutido la necesidad de controlar el grado de cumplimiento de lo planificado. El PSOE menciona la aprobación de una guía para sistemas dinámicos de adquisición, mientras que un grupo no identificado señala la ausencia de contratos de mantenimiento con empresas grandes como Ecnor. El registro municipal incluye varios contratos relacionados con seguimiento y control, asesoramiento jurídico en contratación y servicios de mantenimiento.",
+      "summary": "Un grupo no identificado afirma que se ha discutido la necesidad de controlar el grado de cumplimiento de lo planificado. El PSOE menciona la aprobación de una guía para sistemas dinámicos de adquisición. El registro municipal incluye varios contratos relacionados con seguimiento y control, asesoramiento jurídico en contratación y servicios de mantenimiento.",
       "severity": "informational",
       "sourceClaimIds": [
         "19gax3o-025-afi-5b06c8",
@@ -1820,11 +1844,6 @@
           "text": "hem aprovat la guia rivalesita, el treball dels sistemes dinàmics d'adquisició",
           "speakerGroup": "PSOE",
           "sourceClaimId": "19gax3o-017-cit-1a1dad"
-        },
-        {
-          "text": "No hay un contrato de mantenimiento que tenga una empresa grande como es el Ecnor,",
-          "speakerGroup": null,
-          "sourceClaimId": "19gax3o-120-acu-c9acb2"
         }
       ],
       "crossChecked": [
@@ -1888,6 +1907,22 @@
           "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-10T12:54:15.890Z"
+        },
+        {
+          "field": "summary",
+          "original": "Un grupo no identificado afirma que se ha discutido la necesidad de controlar el grado de cumplimiento de lo planificado. El PSOE menciona la aprobación de una guía para sistemas dinámicos de adquisición, mientras que un grupo no identificado señala la ausencia de contratos de mantenimiento con empresas grandes como Ecnor. El registro municipal incluye varios contratos relacionados con seguimiento y control, asesoramiento jurídico en contratación y servicios de mantenimiento.",
+          "corrected": "Un grupo no identificado afirma que se ha discutido la necesidad de controlar el grado de cumplimiento de lo planificado. El PSOE menciona la aprobación de una guía para sistemas dinámicos de adquisición. El registro municipal incluye varios contratos relacionados con seguimiento y control, asesoramiento jurídico en contratación y servicios de mantenimiento.",
+          "reason": "La frase sostenía, sobre un literal del motor sustituido, lo contrario de lo que dice la transcripción vigente en ese pasaje, y el registro municipal de contratación recoge el contrato cuya falta enunciaba, en vigor en la fecha de la sesión (transcripción, 5.957–5.976 s). Se retira la frase.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T06:27:15.966Z"
+        },
+        {
+          "field": "quote.2",
+          "original": "cita · sha256:76e747d41af3",
+          "corrected": "retirada del hallazgo",
+          "reason": "El literal procede del motor sustituido y la transcripción vigente dice lo contrario en ese pasaje; el registro municipal de contratación lo confirma, con un contrato en vigor en la fecha de la sesión (transcripción, 5.957–5.976 s). El sumario deja de apoyarse en él.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T06:27:16.494Z"
         }
       ]
     },
@@ -3109,7 +3144,7 @@
       "plenoId": "qz6weg",
       "plenoDate": "2025-12-01",
       "title": "01-12-2025: Pleno debate sobre cultura y conservatorios",
-      "summary": "El PP afirma que han trabajado para dos conservatorios. El PSOE señala la creación de los conservatorios y el auditorio; el resto de esa intervención, una acusación que el verificador no pudo contrastar con ningún dato municipal, no se reproduce aquí. Los registros municipales incluyen contratos relacionados con obras de restauración y conservación del edificio Escuela Municipal de Música y Conservatorio Profesional Municipal de Música.",
+      "summary": "El PSOE afirma —según la transcripción anterior de la sesión, cuyo literal no consta en la revisada— que han trabajado para dos conservatorios, y señala la creación de los conservatorios y el auditorio; el resto de esa intervención, una acusación que el verificador no pudo contrastar con ningún dato municipal, no se reproduce aquí. Los registros municipales incluyen contratos relacionados con obras de restauración y conservación del edificio Escuela Municipal de Música y Conservatorio Profesional Municipal de Música.",
       "severity": "informational",
       "sourceClaimIds": [
         "qz6weg-039-cit-bef239",
@@ -3120,7 +3155,7 @@
       "quotes": [
         {
           "text": "trabajamos no para un conservatorio para dos conservatorios y lo hicimos",
-          "speakerGroup": "PP",
+          "speakerGroup": "PSOE",
           "sourceClaimId": "qz6weg-039-cit-bef239"
         },
         {
@@ -3211,6 +3246,22 @@
           "reason": "La atribución a un grupo municipal con un solo concejal identifica a esa persona por eliminación, y la asignó la curación automática sin firma de ningún curador. Se retira sin sustituirla; no se afirma que fuera errónea.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-09-30T05:48:07.657Z"
+        },
+        {
+          "field": "quote.0.speakerGroup",
+          "original": "PP",
+          "corrected": "PSOE",
+          "reason": "La intervención no es del grupo al que se atribuía: está en el turno en que el grupo de gobierno responde al portavoz de ese grupo, el mismo turno del que proceden las citas [1] y [2] de esta ficha (transcripción, 4.016–4.095 s; la cita, 4.061–4.064 s).",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T06:27:17.147Z"
+        },
+        {
+          "field": "summary",
+          "original": "El PP afirma que han trabajado para dos conservatorios. El PSOE señala la creación de los conservatorios y el auditorio; el resto de esa intervención, una acusación que el verificador no pudo contrastar con ningún dato municipal, no se reproduce aquí. Los registros municipales incluyen contratos relacionados con obras de restauración y conservación del edificio Escuela Municipal de Música y Conservatorio Profesional Municipal de Música.",
+          "corrected": "El PSOE afirma —según la transcripción anterior de la sesión, cuyo literal no consta en la revisada— que han trabajado para dos conservatorios, y señala la creación de los conservatorios y el auditorio; el resto de esa intervención, una acusación que el verificador no pudo contrastar con ningún dato municipal, no se reproduce aquí. Los registros municipales incluyen contratos relacionados con obras de restauración y conservación del edificio Escuela Municipal de Música y Conservatorio Profesional Municipal de Música.",
+          "reason": "El sumario atribuía al portavoz al que se respondía una frase del turno de respuesta del grupo de gobierno, el mismo turno de las otras dos citas de la ficha (transcripción, 4.016–4.095 s). Además, la cita que la sostiene esta misma ficha la marca como procedente de la transcripción anterior de la sesión, y la salvedad pasa a la frase.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T06:27:17.647Z"
         }
       ]
     },
@@ -3706,7 +3757,7 @@
       "quotes": [
         {
           "text": "Denunciar públicamente a la Consejería esas ampliaciones que nos han hecho.",
-          "speakerGroup": "PSOE",
+          "speakerGroup": null,
           "sourceClaimId": "otxq2c-078-acu-b00839"
         },
         {
@@ -3821,6 +3872,14 @@
           "reason": "El sumario daba por firme lo que sólo sostiene una cita que la ficha no reproduce y cuyo literal procede de la transcripción anterior de la sesión, sin constar en la revisada. La salvedad pasa a la frase, que es el único sitio donde el lector puede verla; lo que se dijo no cambia.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-09-30T06:26:09.482Z"
+        },
+        {
+          "field": "quote.0.speakerGroup",
+          "original": "PSOE",
+          "corrected": "sin identificar",
+          "reason": "La intervención no es del grupo al que se atribuía: la presidencia concede ese turno a otro grupo, que presenta en él sus enmiendas a la moción (transcripción, 3.640–3.790 s). El grupo que corresponde tiene un solo concejal, así que se retira la atribución en lugar de sustituirla.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-09-30T06:27:18.136Z"
         }
       ]
     },

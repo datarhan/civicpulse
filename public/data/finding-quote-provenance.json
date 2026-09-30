@@ -1,10 +1,10 @@
 {
   "_comment": "DERIVADO, no curado. Dos cosas por cada literal publicado en /hallazgos. (1) `quotes[id][i].status`: de qué transcripción procede — de la vigente, sólo de la que se sustituyó al re-transcribir la sesión, o de ninguna de las dos de forma concluyente. (2) `quotes[id][i].gate`: qué haría con la afirmación que sostiene esa cita la puerta editorial de src/scraper/claim-public-gate.ts, que gobierna /plenos y que /hallazgos no consultaba — `shown`, `toggle` o `hidden`, su propio vocabulario. Ninguna de las dos modifica una cita y ninguna es una corrección: el único escritor de public/data/pleno-findings.json sigue siendo `npm run correct-pleno-finding`. Se regenera con `npm run compute:finding-quote-provenance`.",
   "version": "finding-quote-provenance-v2",
-  "generatedAt": "2026-09-30T06:26:11.957Z",
+  "generatedAt": "2026-09-30T06:27:20.118Z",
   "source": {
     "findings": "public/data/pleno-findings.json",
-    "findingsGeneratedAt": "2026-09-30T06:26:10.078Z",
+    "findingsGeneratedAt": "2026-09-30T06:27:18.138Z",
     "transcripts": "public/data/pleno-transcripts",
     "superseded": "public/data/pleno-transcripts/superseded"
   },
@@ -59,12 +59,12 @@
       }
     ],
     "stats": {
-      "citasConClaim": 127,
+      "citasConClaim": 126,
       "citasSinClaim": 0,
       "porContraste": {
         "shown": 2,
         "toggle": 92,
-        "hidden": 33
+        "hidden": 32
       },
       "baseDisponible": true,
       "citasConVeredictoDeOverlay": 19,
@@ -77,13 +77,13 @@
   },
   "stats": {
     "findings": 40,
-    "quotes": 127,
+    "quotes": 126,
     "enVigente": 106,
-    "soloEnSustituida": 21,
+    "soloEnSustituida": 20,
     "sinDeterminar": 0,
     "sinDeterminarPorTranscripcionMasCorta": 0,
     "sinDeterminarPorFaltaDeTranscripcion": 0,
-    "findingsConCitaMarcada": 15,
+    "findingsConCitaMarcada": 14,
     "sesionesConCitas": 11,
     "sesionesRetranscritas": 10,
     "sesionesNoComparables": 1,
@@ -447,10 +447,6 @@
       {
         "status": "en-vigente",
         "gate": "toggle"
-      },
-      {
-        "status": "solo-en-sustituida",
-        "gate": "hidden"
       }
     ],
     "f-2026-01-19-cit-3fd230": [
@@ -750,7 +746,7 @@
   },
   "unresolved": [],
   "builtFrom": {
-    "pleno-findings.json": "566f980ad4eb",
+    "pleno-findings.json": "bd3c0d608e70",
     "pleno-claims-verified.json": "633b8de42be3",
     "pleno-claims-overlay.json": "664562e9071f",
     "pleno-transcripts/": "8c59df9da87e"
