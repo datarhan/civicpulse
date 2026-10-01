@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-30T10:54:41.318Z",
+  "generatedAt": "2026-10-01T04:47:54.720Z",
   "windowDays": 30,
   "articles": [
     {
@@ -664,23 +664,6 @@
         "opinionFraction": 0
       },
       "score": 2
-    },
-    {
-      "articleId": "1bt7s8w",
-      "articleFingerprint": "1s8fa60",
-      "outlet": "Periòdic del Camp de Túria",
-      "outletHost": "infoturia.com",
-      "url": "https://www.infoturia.com/riba-roja-de-turia/85857-el-auditori-municipal-de-riba-roja-invertix-40-000-euros-en-les-installacions-i-equipaments-tecnics.html",
-      "date": "2026-08-31T13:34:56.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     }
   ],
   "outlets": [
@@ -702,7 +685,7 @@
     {
       "outlet": "Periòdic del Camp de Túria",
       "outletHost": "infoturia.com",
-      "articleCount": 8,
+      "articleCount": 7,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -710,7 +693,7 @@
         "sin-datos": 15,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.5,
+      "meanTrustScore": 2.57,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -851,7 +834,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "ecdd6e338508",
+    "plenos-agendas.json": "b5c21c1da957",
     "press-claims-verified.json": "5f440b22045d",
     "press.json": "618bce123884",
     "promises.json": "69c1f099a4a5"
