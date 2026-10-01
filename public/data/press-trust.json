@@ -1,14 +1,65 @@
 {
-  "generatedAt": "2026-10-01T10:38:41.972Z",
+  "generatedAt": "2026-10-01T11:23:59.078Z",
   "windowDays": 30,
   "articles": [
     {
-      "articleId": "azmi1o",
-      "articleFingerprint": "5o2jo0",
-      "outlet": "Las Provincias",
-      "outletHost": "lasprovincias.es",
-      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNV2pjQ0VMTWFMVGlRN1BfaWtkQWp0VnVmOXVobzRfTDU2LWNaanljQ0JyRHVUaUtrenhRQ2JieGw4ZUdPY3ptcUN1c2E4b2dRME1BVjMtOGlRX0RRcWp5Y1MwOUJQVVhaUnMyQmRvLXZDckhjVHlhcGFvWlB4Z0dBUS1ZMnFJYVRCYTNaNGxfTG00aDkzVXpIeDdIb3FDeDlOcWR4NDFEUFJBYkZsMXJzWWJuOFDSAboBQVVfeXFMTXdhdWRfNUs5ZGdMenZSY2hmYm5jc3ItWUxwN3Y2N2NacWhoMm9UWmlHMHpCTE1QUmdxLWVNclhNVDZSenp2MXRmUlEtNGxDZkY4Z0ZVbGREZWVIVXNEaEYwc2pPS19EOUl4SXZDRXJsUkpiSlJRd28wb1d6UlJQVmROREdjUTlEdzhQUm9wVzMwVTgwSFU5NHlkSmZqbFZkdU5VeTFWdXVMRnVfOUhOYlBxRDRPclVacEd3?oc=5",
-      "date": "2026-09-29T10:38:35.000Z",
+      "articleId": "dtyvvs",
+      "articleFingerprint": "1qtvb14",
+      "outlet": "El Confidencial",
+      "outletHost": "elconfidencial.com",
+      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxObVBKRkR3Z0xfc1hFUnVjTk5Mak9rV2MxdlpBZXNvZTdnSGJFYzhiLU9oWU15YWRZcVQ5WWRPeE9hOWVpOVcyVnZLcndwMjdLNDJPckFrZGo2ZnhmcjBZTEZmVXJhblZNRzFIeDY4eEw4bWRDTUVfNHhZaWR5UGQ5RU45aFhLdHZGT0VnS3B6dTVRVHZZOV9uMFN1dnVSbEstanF1eHoyWUpLVGFnZUlhSFlwRnZoOVp2SmFnT3Ruc21YS3d2RVZoZ1RR?oc=5",
+      "date": "2026-09-30T21:39:00.000Z",
+      "indicators": {
+        "localCoverage": false,
+        "datedArticle": true,
+        "municipalSourceMatch": null,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 1
+    },
+    {
+      "articleId": "18jsd8",
+      "articleFingerprint": "1e6j1fc",
+      "outlet": "Interdiario",
+      "outletHost": "interdiario.es",
+      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPX0ZTQ1p6NW1HNmllTGxzMl9fVmU5elN5RElIY0RwZEp5TXg1al9qakI4eDlqYTZUajRPSDhob1hMU09nTGMtQkxuLXVReXRWcXFlcU9wVVkwb2RZcmYzOGZZczVkV1dRdWxUcWs1bndOeU44SDJkdXZ0NVliSnpfaU5TeURJSXdrakhVV1Y4MTMyZDg2eTc3QWVPZXZVRnhBNy1qTlN1NnU3ZEhqZi1HbVVaVE1LUzd4Mkd2MlVXOHQ0bFBUbmc4Q0VKNG5SQQ?oc=5",
+      "date": "2026-09-30T20:38:00.000Z",
+      "indicators": {
+        "localCoverage": false,
+        "datedArticle": true,
+        "municipalSourceMatch": null,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 1
+    },
+    {
+      "articleId": "1kx3868",
+      "articleFingerprint": "17xx53p",
+      "outlet": "Periòdic del Camp de Túria",
+      "outletHost": "infoturia.com",
+      "url": "https://www.infoturia.com/riba-roja-de-turia/86516-riba-roja-suspen-les-classes-en-els-centres-educatius-i-el-conservatori-per-lalerta-taronja.html",
+      "date": "2026-09-30T20:21:35.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": null,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 2
+    },
+    {
+      "articleId": "mqpaug",
+      "articleFingerprint": "8mtl5y",
+      "outlet": "Periòdic del Camp de Túria",
+      "outletHost": "infoturia.com",
+      "url": "https://www.infoturia.com/riba-roja-de-turia/86504-excarceren-al-conductor-dun-cotxe-despres-de-xocar-amb-un-camio-en-riba-roja.html",
+      "date": "2026-09-30T19:43:07.000Z",
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
@@ -243,7 +294,7 @@
     {
       "articleId": "1a5f1pr",
       "articleFingerprint": "15h67us",
-      "outlet": "levante-emv.com",
+      "outlet": "Levante-EMV",
       "outletHost": "levante-emv.com",
       "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNMmxLYkVncFZtSFlseFUxQWpTZ2pKemFoenI3UFhndVdTVDA2Y3RXUW1UODlGR1VnWlZRUXkxRGZreHFIcllPMUQ0N3VaV2t2SnBVOHNFZnBfbWNGM1ZSaVFSUGdJVWFSTmJCbTRiam5nZFhqT3I3TkFiMmlvZzFId0RQZzgxZWFrRE5DTzQxOTlKNFBNYXpKSlpSSW9PLVRCeU1SSmdMZWtWUDl0bjR1bUg4a211MGxVVDJoQTVXQnlIbU9YX0RVQWJ6QVFDRS0tVFdad3FjWjlzUdIB3wFBVV95cUxQQTBqaVJOTDZURHpobVBwemcyTnpWQmJBWTl1Z3Uyd1ZSb1ltaTJiYTVfTjBVdUZwTm1FUkN2My0tNVkxTlJBMklOMFRQcDNqblNNVTZUNFpPQ19aWEJnRERfM0ZmS012UjZBT3JqWFFmRmtLelhpZ3JKY2R5TVQ0VHR6bnVKTjZVQ0JIRS1nUVdNZm5ENl9kMWN5NkJ3bGhvM0VhSlRocElmM1J6YlZNVVEzbzVnb0dzZl81a3UyZmdySHhKUEJJSFF1ZUFWaFhEd0wzOUQ2TkFBZ0FBQjhn?oc=5",
       "date": "2026-09-19T07:00:00.000Z",
@@ -464,7 +515,7 @@
     {
       "articleId": "s6on58",
       "articleFingerprint": "p4som4",
-      "outlet": "levante-emv.com",
+      "outlet": "Levante-EMV",
       "outletHost": "levante-emv.com",
       "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQSDlkckNDZTFuUHZVejhDZ29nZmp2amRtM01iUDlwQV9fUVJGRmxUazVCM1ZEY05XdnhrUnYzOWFSWjhqZ2YzeFFpVWsteGFuQmxGRnZabENpaUYwcFV6TUFUZzdmTUZ6WDBEanZORzNxdGtRdTJhTGNFMkpCNktKWi1CcDZWV0lkeTAxenJZekhoU3NFdmJLaFRrMHJmaEFtYm10cXhVT3NfV0x2S3ozcjJYY1lQSUtUUmk0MHNIWVhiUkRpMGY1bTgzUkxubDVXOHVUbDl3VElpTjhpRkHSAeMBQVVfeXFMT294MlJFX3EtU2tSczJWUUZVVW9hMkdJWFJRczNTNWd4WWVseDVTMml3R3FRUTVac3JuaTk4bUItcjNGMm14ZFlYQXpseHVlTExNT1FMSDgwWHRFNEhFMXBsQ3FuRGFINnY1VFpnSk9VeGFIRjhzemFJazNoWGdiR0RaaG9lNnM4Q2V3MXRwTjI5Zy16OHVrYU5SVjF3WlZUX01uOURzZE5fSnczNGFIT05UVmhNdXlKOE9oczNGLS11ZzFrdHd4SFpwS1N4elFhRWJDV1J5MHJfVVF3cmF0RWM5QXM?oc=5",
       "date": "2026-09-11T07:00:00.000Z",
@@ -498,7 +549,7 @@
     {
       "articleId": "tel2rn",
       "articleFingerprint": "o69qn8",
-      "outlet": "levante-emv.com",
+      "outlet": "Levante-EMV",
       "outletHost": "levante-emv.com",
       "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOVEZTWXVfZ3djTDM1Nm8zQzhQaWpuaWFRX0h0S3U2U01IbEdQRDlQU3N0S2JjR0lNTzMxRDhrVFJnT2NhTnVnTnpCc3A2cDFqV3hKR01rXy0tWDZwcGVBbUt4VzZXSmxFWFpPNWZoQm0yYzFUQUFkYlZ6all5QmlDY0tWU0p5TzlsVlB1RnBlQzRPSnZKZlVhcEFVQ0FmbjF4NFJJMVNONEhJRDVSVHpHcWJNYjRsVXVIUTMxWTJCTDkxbnhjNDBYRWw1YnNkXzZEQ3doMWkxWmE0WFhHYXfSAeMBQVVfeXFMTlN5aW03M1JQeW1rSzAxSTJUUE93NFp0X3pXbkx6Y3hPXzI2S1YxQnQ4ZW1SMFBOeE1ITHpBaXE4WHAzTEdrMU9VY2ZoaHhhcEM4dWJ0RGxxdTcydWw3bTZVUFdreS1mMGpTelFwUFBQTUp2TWxHRDVwQ0JGT29ieEVyVVUtcklSRUxCMWZRX3J1NFFzMTR3MHdmNGtWc0NZc0p1cFhEcHpYOEh5T3g4NHp6X0ZHUE5VRk9UMVp5S2lNQzlkZkNTeUs0OU5PMUdVRGo1N3JMcDE2MWdUSXlSVDhEQzQ?oc=5",
       "date": "2026-09-10T07:00:00.000Z",
@@ -685,7 +736,7 @@
     {
       "outlet": "Periòdic del Camp de Túria",
       "outletHost": "infoturia.com",
-      "articleCount": 7,
+      "articleCount": 9,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -693,7 +744,7 @@
         "sin-datos": 15,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.57,
+      "meanTrustScore": 2.44,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -713,7 +764,7 @@
       "contradictedRatio": null
     },
     {
-      "outlet": "levante-emv.com",
+      "outlet": "Levante-EMV",
       "outletHost": "levante-emv.com",
       "articleCount": 3,
       "verdictCounts": {
@@ -743,8 +794,8 @@
       "contradictedRatio": null
     },
     {
-      "outlet": "Las Provincias",
-      "outletHost": "lasprovincias.es",
+      "outlet": "El Confidencial",
+      "outletHost": "elconfidencial.com",
       "articleCount": 1,
       "verdictCounts": {
         "verificado": 0,
@@ -753,7 +804,22 @@
         "sin-datos": 0,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2,
+      "meanTrustScore": 1,
+      "verifiedRatio": null,
+      "contradictedRatio": null
+    },
+    {
+      "outlet": "Interdiario",
+      "outletHost": "interdiario.es",
+      "articleCount": 1,
+      "verdictCounts": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      },
+      "meanTrustScore": 1,
       "verifiedRatio": null,
       "contradictedRatio": null
     },
@@ -834,9 +900,9 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "cf7c57fea53b",
+    "plenos-agendas.json": "63dafacac848",
     "press-claims-verified.json": "5f440b22045d",
-    "press.json": "618bce123884",
+    "press.json": "4e37f4cd7c83",
     "promises.json": "69c1f099a4a5"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-01T04:47:45.493Z",
+  "generatedAt": "2026-10-01T11:22:32.896Z",
   "note": "Índice de expedientes del Síndic de Greuges CV, transcrito del buscador del propio organismo. Materia, asunto, administración y el título de cada resolución van verbatim: este fichero NO emite ningún juicio. Las fichas firmadas —con resumen verbatim leído del PDF— viven en sindic.json y las escribe una persona con `npm run sindic:add`. «contraAyuntamiento» y «vecinosOtrasAdministraciones» responden a preguntas distintas y NO se suman.",
   "source": {
     "platform": "Síndic de Greuges de la Comunitat Valenciana",
@@ -19,8 +19,8 @@
           "frase": true,
           "anyoActual": 2026
         },
-        "declarado": 48,
-        "recogidas": 48,
+        "declarado": 46,
+        "recogidas": 46,
         "paginas": 5,
         "irreconocibles": 0
       },
@@ -39,7 +39,7 @@
     "puerta": "Campo «Administración» del propio buscador: cuerpo municipal + alias del municipio con su desambiguador. El facet «poblacion» es la población del QUEJOSO, no la administración reclamada, y por sí solo no sirve de filtro."
   },
   "cobertura": {
-    "contraAyuntamientoDesde": 2015,
+    "contraAyuntamientoDesde": 2016,
     "contraAyuntamientoHasta": 2026,
     "vecinosDesde": 2023,
     "vecinosHasta": 2025,
@@ -575,34 +575,6 @@
           "urlPdf": "https://www.elsindic.com/resoluciones/10791295.pdf"
         }
       ]
-    },
-    {
-      "expediente": "201512884",
-      "anio": 2015,
-      "materia": "Servicios públicos y medio ambiente",
-      "asunto": "Construcción de vallado en finca de titularidad pública",
-      "administracion": "Ayuntamiento de Riba-roja de Túria",
-      "resoluciones": [
-        {
-          "tipo": "Petición de informe. Resolución.",
-          "fecha": "2016-03-02",
-          "urlPdf": "https://www.elsindic.com/resoluciones/10767618.pdf"
-        }
-      ]
-    },
-    {
-      "expediente": "201510652",
-      "anio": 2015,
-      "materia": "Servicios públicos y medio ambiente",
-      "asunto": "Molestias generadas por los caballos y perros existentes en la calle San Agustín nº 52",
-      "administracion": "Ayuntamiento de Riba-roja de Túria",
-      "resoluciones": [
-        {
-          "tipo": "Petición de informe. Resolución.",
-          "fecha": "2016-01-21",
-          "urlPdf": "https://www.elsindic.com/resoluciones/10760133.pdf"
-        }
-      ]
     }
   ],
   "vecinosOtrasAdministraciones": [
@@ -806,16 +778,16 @@
     }
   ],
   "stats": {
-    "contraAyuntamiento": 36,
-    "conResolucionPublicada": 35,
+    "contraAyuntamiento": 34,
+    "conResolucionPublicada": 33,
     "vecinosOtrasAdministraciones": 12,
     "porTipoResolucion": {
       "Resolución de consideraciones a la Administración": 13,
       "Resolución de cierre": 19,
-      "Petición de informe. Resolución.": 15
+      "Petición de informe. Resolución.": 13
     },
     "porMateria": {
-      "Servicios públicos y medio ambiente": 19,
+      "Servicios públicos y medio ambiente": 17,
       "Procedimientos administrativos": 4,
       "Hacienda pública": 2,
       "Urbanismo": 1,
@@ -825,7 +797,7 @@
       "Transparencia": 1
     },
     "tiposDesconocidos": 0,
-    "anioMasAntiguo": 2015,
+    "anioMasAntiguo": 2016,
     "anioMasReciente": 2026,
     "mencionesDescartadas": 8,
     "repetidasEntreEjes": 8

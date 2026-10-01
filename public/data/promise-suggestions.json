@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-30T10:54:23.222Z",
+  "generatedAt": "2026-10-01T11:23:43.910Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -40,7 +40,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-30T10:54:23.149Z"
+      "generatedAt": "2026-10-01T11:23:43.838Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -48,7 +48,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-30T10:54:23.149Z"
+      "generatedAt": "2026-10-01T11:23:43.838Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -67,7 +67,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-30T10:54:23.149Z"
+      "generatedAt": "2026-10-01T11:23:43.838Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -79,7 +79,7 @@
           "date": "2026-06-16",
           "quote": "Riba-roja de Túria repartirá más de 2000 helados gratis a los asistentes de Cinema d'Estiu",
           "kind": "press",
-          "publisher": "levante-emv.com",
+          "publisher": "Levante-EMV",
           "matchedKeywords": [
             "helado",
             "cinema",
@@ -89,7 +89,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-30T10:54:23.149Z"
+      "generatedAt": "2026-10-01T11:23:43.838Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -112,7 +112,7 @@
           "date": "2026-06-16",
           "quote": "Riba-roja de Túria repartirá más de 2000 helados gratis a los asistentes de Cinema d'Estiu",
           "kind": "press",
-          "publisher": "levante-emv.com",
+          "publisher": "Levante-EMV",
           "matchedKeywords": [
             "cinema",
             "estiu"
@@ -120,7 +120,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-30T10:54:23.149Z"
+      "generatedAt": "2026-10-01T11:23:43.838Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -128,7 +128,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-30T10:54:23.149Z"
+      "generatedAt": "2026-10-01T11:23:43.838Z"
     },
     {
       "promiseId": "ac-psoe-1ryndd8",
@@ -164,6 +164,18 @@
           ]
         },
         {
+          "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQSjIzVFJONlJSTzg4ekpmU3dKM3AtenBUeWdqaDIyZ084VXpIRGhyQUg0cFBhWHdkbWRoYVBmcTd2MmstQkdzaGpSSlQ5ZldwTkFBOUFDX3V1bGRjcFdPWHpudEJObDlZLWNnYzR4MlhwcF81SllEMmpMRlkyWHhnaUVpNFY3eFR5T1o5dXJXY1p5RjFKVVlBUU55Nmo1Z3Jwa1gxVG1JOXVrdW0wLWRmaDY3WTlwdHNOd0ZaNkhmV1ZmQ0hGU05IYzBGV1JkMDFrS1NoYS0zbW12dTBn0gHiAUFVX3lxTE4yeHBabkwxVU9QN2NnUXlUVTZNel8tY0Q5UTBYdk9VbS1Wd0NhUUlDZkhqeFgyTVR3R1lhMDBHZ2hzc0ZnUklwZ25CY0JyQ1hlNVlqQmNiRE9WNlRBZFU5c2RpYk00dlBSNS1ueE55NDhGczJaa0J1UDFWMlJDd3I2TS14NGJJb0dScDhEM2I2Nzd1bWdpdTVSRkQySHhFQVp1NXZZMnlvYmpUUERld2NYMkxwNzNZMEhIeVY1QWZld0NWVXhlYW5sVVZES2dvMm9Qbk9FTlkwcy1ZVlJwOWlmR2c?oc=5",
+          "date": "2026-08-25",
+          "quote": "Riba-roja de Túria destina una partida de 100.000 euros para la rehabilitación de las fachadas",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "euro",
+            "rehabilitacion",
+            "fachada"
+          ]
+        },
+        {
           "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPSlY0NVZheS1yMDN2Y3JxbWtPd3JXUl9NWVEtVHVHVXhVT2l3UUNPQXpDZG5GaHp0QjlrMmM2d24yVW9wRzFZanZuX1pLZmNmUkFZTEJGbmo2M0J1NTVYYmoyWXZMY1B2ZGVncTNtQk9CSVdSMHhtS0RzaWFQd2VlMlpaUkh1bXJtVmYwQmN5SDViQTlYaUNhbjREU0M?oc=5",
           "date": "2026-09-16",
           "quote": "Ayudas para rehabilitar fachadas en Riba-roja de Túria 2026-2027",
@@ -176,7 +188,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-30T10:54:23.149Z"
+      "generatedAt": "2026-10-01T11:23:43.838Z"
     },
     {
       "promiseId": "ac-psoe-43brfs",
@@ -241,7 +253,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-09-30T10:54:23.149Z"
+      "generatedAt": "2026-10-01T11:23:43.838Z"
     }
   ],
   "llmEvidence": [],

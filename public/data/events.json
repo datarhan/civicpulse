@@ -1,45 +1,15 @@
 {
-  "generatedAt": "2026-09-30T10:47:23.247Z",
+  "generatedAt": "2026-10-01T11:14:23.991Z",
   "source": {
     "url": "https://www.ribarroja.es/es/eventos/rss.xml",
     "platform": "Drupal RSS (oficial)"
   },
   "stats": {
     "total": 50,
-    "upcoming": 15,
-    "nextDate": "2026-10-02T16:00:00.000Z"
+    "upcoming": 18,
+    "nextDate": "2026-10-03T07:00:00.000Z"
   },
   "events": [
-    {
-      "id": "1o6a9qw",
-      "title": "Actes festes Crist 2026 - dijous 3 de setembre",
-      "link": "https://www.ribarroja.es/va/evento/actes-festes-crist-2026-dijous-3-de-setembre",
-      "eventDate": "2026-09-03T20:00:00.000Z",
-      "eventDateText": "03 de septiembre de 2026 22:00",
-      "publishedDate": "2026-08-28T09:53:56.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_5.png?itok=k3x185f2"
-    },
-    {
-      "id": "x0y5jl",
-      "title": "Actes festes Crist 2026 - divendres 4 de setembre",
-      "link": "https://www.ribarroja.es/va/evento/actes-festes-crist-2026-divendres-4-de-setembre",
-      "eventDate": "2026-09-04T20:00:00.000Z",
-      "eventDateText": "04 de septiembre de 2026 22:00",
-      "publishedDate": "2026-08-28T10:03:00.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_6.png?itok=0GUkvgSL"
-    },
-    {
-      "id": "18cjnx4",
-      "title": "Actes festes Crist 2026 - dissabte 5 de setembre",
-      "link": "https://www.ribarroja.es/va/evento/actes-festes-crist-2026-dissabte-5-de-setembre",
-      "eventDate": "2026-09-05T05:00:00.000Z",
-      "eventDateText": "05 de septiembre de 2026 07:00",
-      "publishedDate": "2026-08-28T10:04:56.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_7.png?itok=6fHqqoOm"
-    },
     {
       "id": "a5g6cw",
       "title": "Competiciones deportivas 5 de septiembre de 2026",
@@ -361,14 +331,34 @@
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/eNCONTRES%202026.jpeg?itok=4_d6b7U-"
     },
     {
-      "id": "dds8hk",
-      "title": "Presentación del libro de Nevenka Fernández",
-      "link": "https://www.ribarroja.es/es/evento/presentaci%C3%B3n-del-libro-de-nevenka-fern%C3%A1ndez",
-      "eventDate": "2026-10-02T16:00:00.000Z",
-      "eventDateText": "02 de octubre de 2026 18:00",
-      "publishedDate": "2026-09-29T10:24:01.000Z",
+      "id": "5kh4co",
+      "title": "Competiciones deportivas 3 de octubre de 2026",
+      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-3-de-octubre-de-2026",
+      "eventDate": "2026-10-03T07:00:00.000Z",
+      "eventDateText": "03 de octubre de 2026 09:00",
+      "publishedDate": "2026-10-01T09:54:48.000Z",
       "excerpt": "&nbsp;",
-      "image": null
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_5.png?itok=yQCoSxX2"
+    },
+    {
+      "id": "1mzjkag",
+      "title": "Competiciones deportivas 4 de octubre de 2026",
+      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-4-de-octubre-de-2026",
+      "eventDate": "2026-10-04T09:30:00.000Z",
+      "eventDateText": "04 de octubre de 2026 11:30",
+      "publishedDate": "2026-10-01T10:01:49.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_6.png?itok=CqVUSUFQ"
+    },
+    {
+      "id": "i0qq4o",
+      "title": "Donación sangre 5 de octubre de 2026",
+      "link": "https://www.ribarroja.es/es/evento%2C-aviso/donaci%C3%B3n-sangre-5-de-octubre-de-2026",
+      "eventDate": "2026-10-05T15:00:00.000Z",
+      "eventDateText": "05 de octubre de 2026 17:00",
+      "publishedDate": "2026-09-30T11:43:22.000Z",
+      "excerpt": null,
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260930%2010_Cartel%20Donaci%C3%B3n%205-OCTUBRE%20.jpg?itok=wwR7lqoW"
     },
     {
       "id": "wwknro",
@@ -509,6 +499,16 @@
       "publishedDate": "2026-08-31T06:52:12.000Z",
       "excerpt": "&nbsp;",
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20burundanga.jpg?itok=35yx-aCt"
+    },
+    {
+      "id": "6x69fs",
+      "title": "MECANO FOREVER, Una rosa es una rosa",
+      "link": "https://www.ribarroja.es/es/evento/mecano-forever%2C-una-rosa-es-una-rosa",
+      "eventDate": "2027-02-20T18:00:00.000Z",
+      "eventDateText": "20 de febrero de 2027 19:00",
+      "publishedDate": "2026-09-30T12:09:44.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260924%20Cartel%20A-4%20Mecano%20Riba-roja%20%28val%29.jpg?itok=tn4mteCg"
     }
   ]
 }

@@ -1,23 +1,22 @@
 {
-  "generatedAt": "2026-09-30T10:52:34.852Z",
+  "generatedAt": "2026-10-01T11:21:55.482Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 61,
-    "openTotal": 60,
-    "inRibaRoja": 38,
+    "total": 58,
+    "openTotal": 57,
+    "inRibaRoja": 35,
     "closingSoon": 12,
-    "withDetail": 61,
+    "withDetail": 58,
     "byMonth": {
       "2026-09": 24,
       "2026-08": 27,
-      "2026-07": 3,
+      "2026-07": 1,
       "2026-06": 1,
       "2026-05": 2,
-      "2026-04": 1,
       "2026-02": 2,
       "2025-11": 1
     }
@@ -27,7 +26,7 @@
       "id": "2544",
       "fo": 2544,
       "codigo": "2026/00243",
-      "titulo": "MECÁNICO DE AUTOMOCIÓN",
+      "titulo": "Mecánico de automoción",
       "publishedAt": "2026-09-30",
       "deadline": "2026-11-30",
       "location": "Riba-roja de Túria",
@@ -43,7 +42,7 @@
           },
           {
             "label": "Nombre de la oferta",
-            "value": "MECÁNICO DE AUTOMOCIÓN"
+            "value": "Mecánico de automoción"
           },
           {
             "label": "Observaciones",
@@ -316,7 +315,7 @@
       "id": "2540",
       "fo": 2540,
       "codigo": "2026/00239",
-      "titulo": "PERSONAL DE LIMPIEZA",
+      "titulo": "Personal de limpieza",
       "publishedAt": "2026-09-25",
       "deadline": "2026-11-25",
       "location": "POLÍGONO OLIVERAL DE RIBA-ROJA DE TÚRIA Riba-roja de Túria",
@@ -332,7 +331,7 @@
           },
           {
             "label": "Nombre de la oferta",
-            "value": "PERSONAL DE LIMPIEZA"
+            "value": "Personal de limpieza"
           },
           {
             "label": "Observaciones",
@@ -4111,196 +4110,6 @@
       }
     },
     {
-      "id": "2503",
-      "fo": 2503,
-      "codigo": "2026/00203",
-      "titulo": "Administrativo/a de exportación y nacional con inglés",
-      "publishedAt": "2026-07-30",
-      "deadline": "2026-09-30",
-      "location": "Polígono Industrial Reva Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2503",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00203"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Administrativo/a de exportación y nacional con inglés"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Inglés nivel avanzado"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "INDUSTRIA MANUFACTURERA"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Indefinido"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "OFICIALES ADMINISTRATIVOS"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Polígono Industrial Reva, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46394"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa"
-          },
-          {
-            "label": "Horario",
-            "value": "Horario L a J: 08:00h/09:00h a 17:00h/18:00h V: 08:30h a 15:00h"
-          },
-          {
-            "label": "Salario",
-            "value": "25.000€B- -27.000€/B"
-          },
-          {
-            "label": "Funciones",
-            "value": "- Recibir, introducir y procesar los pedidos de clientes de las zonas asignadas. - Elaborar ofertas para los proyectos de los clientes contando con el Dpto. Técnico y Dpto. de Compras - Seguimiento y resolución de incidencias derivadas de las operativas. - Crear documentaciones, expediciones, etc. - Atención a clientes de exportación. - Correo y archivo"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          },
-          {
-            "label": "Informática",
-            "value": "Excel Sap"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Indefinido",
-        "numPuestos": "1",
-        "categoria": "OFICIALES ADMINISTRATIVOS",
-        "observaciones": "Inglés nivel avanzado",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46394",
-        "jornada": "Completa",
-        "horario": "Horario L a J: 08:00h/09:00h a 17:00h/18:00h V: 08:30h a 15:00h",
-        "salario": "25.000€B- -27.000€/B",
-        "funciones": "- Recibir, introducir y procesar los pedidos de clientes de las zonas asignadas. - Elaborar ofertas para los proyectos de los clientes contando con el Dpto. Técnico y Dpto. de Compras - Seguimiento y resolución de incidencias derivadas de las operativas. - Crear documentaciones, expediciones, etc. - Atención a clientes de exportación. - Correo y archivo",
-        "vehiculo": "Sí",
-        "ocupaciones": [
-          {
-            "nombre": "TÉCNICOS ADMINISTRATIVOS, EN GENERAL",
-            "experiencia": "1 Años"
-          }
-        ]
-      }
-    },
-    {
-      "id": "2504",
-      "fo": 2504,
-      "codigo": "2026/00202",
-      "titulo": "Operario/a producción planta reciclaje",
-      "publishedAt": "2026-07-30",
-      "deadline": "2026-09-30",
-      "location": "PI Ribarroja Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2504",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00202"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Operario/a producción planta reciclaje"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "SUMINISTRO DE AGUA, ACTIVIDADES DE SANEAMIENTO, GESTIÓN DE RESIDUOS Y DESCONTAMINACIÓN"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "2"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "PEONES"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "PI Ribarroja, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno mañana, Turno tarde, Turno noche, Turno partido, Turno rotativo"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "turnos de mañana, tarde, noche o partido"
-          },
-          {
-            "label": "Horario",
-            "value": "turnos rotativos: 6 a 14h, 14 a 22, 22 a 06 o turno central de 8 a 14h y de 15 a 17.30h"
-          },
-          {
-            "label": "Salario",
-            "value": "10.85 €brutos la hora"
-          },
-          {
-            "label": "Funciones",
-            "value": "Tareas de triado, selección y clasificación manual de materiales como plástico, aluminio y madera, para su posterior reciclado"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "2",
-        "categoria": "PEONES",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46190",
-        "jornada": "Completa Turnos: Turno mañana, Turno tarde, Turno noche, Turno partido, Turno rotativo",
-        "horario": "turnos rotativos: 6 a 14h, 14 a 22, 22 a 06 o turno central de 8 a 14h y de 15 a 17.30h",
-        "salario": "10.85 €brutos la hora",
-        "funciones": "Tareas de triado, selección y clasificación manual de materiales como plástico, aluminio y madera, para su posterior reciclado",
-        "vehiculo": "Sí",
-        "ocupaciones": [
-          {
-            "nombre": "Clasificadores de desechos, operarios de punto limpio y recogedores de chatarra"
-          },
-          {
-            "nombre": "Peones agrícolas en huertas, invernaderos, viveros y jardines",
-            "experiencia": "1 Años, 6 Meses"
-          }
-        ]
-      }
-    },
-    {
       "id": "2498",
       "fo": 2498,
       "codigo": "2026/00197",
@@ -4609,80 +4418,6 @@
         "horario": "Lunes a jueves de 08:00 a 18:00 Viernes de: 08:00 a 15:30 1 hora de almuerzo + 1 hora de comida (Excepto viernes)",
         "salario": "Competitivo",
         "funciones": "Oficial para Obra Civil",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2413",
-      "fo": 2413,
-      "codigo": "2026/00115",
-      "titulo": "Auxiliar de ayuda a domicilio-sustitución de vacaciones",
-      "publishedAt": "2026-04-30",
-      "deadline": "2026-09-30",
-      "location": "Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2413",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00115"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Auxiliar de ayuda a domicilio-sustitución de vacaciones"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Requisitos : Experiencia mínima 6 meses Nivel formativo: TCAE-Aux de enfermería; Grado Medio Dependencia; Certificación profesionalidad; Certificaciones formación habilitante: SSCS0108 / SSCS0208 Dependencia. Valorable carnet de conducir y vehículo propio (no imprescindible)"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO DE OBRA O SERVICIO DETERMINADO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "De 1 a 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "10"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "orta Nord, Horta Sur, La Ribera, Poblados del Oeste, Camp del Túria y Valencia"
-          },
-          {
-            "label": "Horario",
-            "value": "Diurno de lunes a viernes"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio dependencia"
-          },
-          {
-            "label": "Funciones",
-            "value": "- Auxiliar de Ayuda a domicilio - Aseo personal - Movilizaciones - Estimulación cognitiva - Paseos - Mantenimiento del hogar"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO DE OBRA O SERVICIO DETERMINADO",
-        "duracion": "De 1 a 6 meses",
-        "numPuestos": "10",
-        "observaciones": "Requisitos : Experiencia mínima 6 meses Nivel formativo: TCAE-Aux de enfermería; Grado Medio Dependencia; Certificación profesionalidad; Certificaciones formación habilitante: SSCS0108 / SSCS0208 Dependencia. Valorable carnet de conducir y vehículo propio (no imprescindible)",
-        "horario": "Diurno de lunes a viernes",
-        "salario": "Según convenio dependencia",
-        "funciones": "- Auxiliar de Ayuda a domicilio - Aseo personal - Movilizaciones - Estimulación cognitiva - Paseos - Mantenimiento del hogar",
         "vehiculo": "Sí",
         "ocupaciones": []
       }

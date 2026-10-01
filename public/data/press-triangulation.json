@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-01T10:38:41.975Z",
+  "generatedAt": "2026-10-01T11:23:59.082Z",
   "clusters": [
     {
       "clusterId": "107j3y8",
@@ -49,7 +49,7 @@
       ],
       "outlets": [
         "Ayuntamiento de Riba-roja de Túria",
-        "levante-emv.com"
+        "Levante-EMV"
       ],
       "earliestDate": "2026-09-10T07:00:00.000Z",
       "latestDate": "2026-09-10T12:00:05.000Z",
@@ -67,9 +67,9 @@
     "triangulated3Plus": 0
   },
   "builtFrom": {
-    "plenos-agendas.json": "cf7c57fea53b",
+    "plenos-agendas.json": "63dafacac848",
     "press-claims-verified.json": "5f440b22045d",
-    "press.json": "618bce123884",
+    "press.json": "4e37f4cd7c83",
     "promises.json": "69c1f099a4a5"
   }
 }

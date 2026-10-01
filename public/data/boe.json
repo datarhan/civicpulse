@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-30T10:46:48.143Z",
+  "generatedAt": "2026-10-01T11:13:49.337Z",
   "source": {
     "url": "https://www.boe.es/datosabiertos/api/boe/sumario/{YYYYMMDD}",
     "matchPattern": "riba-roja | ribarroja | ribaroja (case-insensitive)",
