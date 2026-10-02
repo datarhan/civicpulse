@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-01T11:23:43.910Z",
+  "generatedAt": "2026-10-02T10:53:14.159Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -40,7 +40,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-01T11:23:43.838Z"
+      "generatedAt": "2026-10-02T10:53:14.085Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -48,7 +48,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-01T11:23:43.838Z"
+      "generatedAt": "2026-10-02T10:53:14.085Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -67,7 +67,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-01T11:23:43.838Z"
+      "generatedAt": "2026-10-02T10:53:14.085Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -89,7 +89,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-01T11:23:43.838Z"
+      "generatedAt": "2026-10-02T10:53:14.085Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -120,7 +120,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-01T11:23:43.838Z"
+      "generatedAt": "2026-10-02T10:53:14.085Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -128,7 +128,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-01T11:23:43.838Z"
+      "generatedAt": "2026-10-02T10:53:14.085Z"
     },
     {
       "promiseId": "ac-psoe-1ryndd8",
@@ -188,7 +188,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-01T11:23:43.838Z"
+      "generatedAt": "2026-10-02T10:53:14.085Z"
     },
     {
       "promiseId": "ac-psoe-43brfs",
@@ -208,6 +208,39 @@
           ]
         },
         {
+          "url": "https://www.infoturia.com/riba-roja-de-turia/86553-el-xec-bebe-de-riba-roja-destina-fins-a-500-euros-per-menor.html",
+          "date": "2026-10-02",
+          "quote": "El Xec Bebé de Riba-roja destina fins a 500 euros per menor",
+          "kind": "press",
+          "publisher": "Periòdic del Camp de Túria",
+          "matchedKeywords": [
+            "euro",
+            "destina"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNYWV1M3FmdUZiYWpKNk1tR3Rva3pNcEZVdkZvRlRBa3h6OHVyLW9QM2VsdjM2c28yZTM2bkJQYXRjRGRZWVpjcTJaaC0wNDY4U0JYUWZPcDBCYW1wYm1halVYNHNEUHhVX1NoWlZ0dnVEamlGREZLU3hOVmFCU0YyNlJoWmVLY2lmVWJ1MFc1X1RFZkkwaXdNS21wOVNIcFlBci0wTTd1YnJKbkpubDhTNDRKblVtaGNYeTVBcnNROWpiMTVTQmVBQ2tjVEhWN290X0HSAdcBQVVfeXFMUE5vQjdSdXhta285NUVvUWswZWM2akM0MGJnWElzVUxGUnpSd1hrTlZhMFpoQnVpM2lCS09jNG9xQzFWRThGQkNnaHdmV2dVSDNmcHV1bWJrNXR3dnZkZ092ZmdPNlhYa0l4OE9Nb0hpX2xaVk1NY25rU05sYW9qVDVyOFpOZnJpWlZ1SGREOWpIbVRjX1hMelpGYmdiYzNsWkpNRDlrYjZpcDYtdUpVTjVYc09TN0JiTkhJOTZuQ251T3FWU2NsVEE4djJBVy1yS0RhV2hyNjg?oc=5",
+          "date": "2026-10-01",
+          "quote": "Riba-roja destina más de 100.000 euros al Cheque Bebé y ofrece hasta 500 euros por hijo a las familias",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "euro",
+            "destina"
+          ]
+        },
+        {
+          "url": "https://www.ribarroja.es/es/noticia/riba-roja-destina-104.605-euros-al-cheque-beb%C3%A9-%2B25-para-apoyar-a-las-familias-y-dinamizar-el-comercio-local",
+          "date": "2026-10-01",
+          "quote": "Riba-roja destina 104.605 euros al Cheque Bebé +25 para apoyar a las familias y dinamizar el comercio local",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "euro",
+            "destina"
+          ]
+        },
+        {
           "url": "https://www.ribarroja.es/es/noticia/lista-definitiva-personas-admitidas-programa-municipal-de-personas-mayores-curso-2026-2027",
           "date": "2026-09-24",
           "quote": "Lista definitiva personas admitidas Programa Municipal de Personas Mayores curso 2026-2027",
@@ -217,43 +250,10 @@
             "2026",
             "2027"
           ]
-        },
-        {
-          "url": "https://www.infoturia.com/riba-roja-de-turia/86207-riba-roja-destina-7-000-euros-per-a-fomentar-lesport-i-millorar-el-rendiment-en-competicions.html",
-          "date": "2026-09-16",
-          "quote": "Riba-roja destina 7.000 euros per a fomentar l’esport i millorar el rendiment en competicions",
-          "kind": "press",
-          "publisher": "Periòdic del Camp de Túria",
-          "matchedKeywords": [
-            "euro",
-            "destina"
-          ]
-        },
-        {
-          "url": "https://www.ribarroja.es/es/noticia/riba-roja-destina-una-partida-de-7.000-euros-en-subvenciones-para-fomentar-la-pr%C3%A1ctica-del-deporte-y-mejorar-el-rendimiento-en-las-competiciones-oficiales",
-          "date": "2026-09-16",
-          "quote": "Riba-roja destina una partida de 7.000 euros en subvenciones para fomentar la práctica del deporte y mejorar el rendimiento en las competiciones oficiales",
-          "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "euro",
-            "destina"
-          ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPSlY0NVZheS1yMDN2Y3JxbWtPd3JXUl9NWVEtVHVHVXhVT2l3UUNPQXpDZG5GaHp0QjlrMmM2d24yVW9wRzFZanZuX1pLZmNmUkFZTEJGbmo2M0J1NTVYYmoyWXZMY1B2ZGVncTNtQk9CSVdSMHhtS0RzaWFQd2VlMlpaUkh1bXJtVmYwQmN5SDViQTlYaUNhbjREU0M?oc=5",
-          "date": "2026-09-16",
-          "quote": "Ayudas para rehabilitar fachadas en Riba-roja de Túria 2026-2027",
-          "kind": "press",
-          "publisher": "boletinbien.com",
-          "matchedKeywords": [
-            "2026",
-            "2027"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-01T11:23:43.838Z"
+      "generatedAt": "2026-10-02T10:53:14.085Z"
     }
   ],
   "llmEvidence": [],

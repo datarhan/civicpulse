@@ -1,19 +1,20 @@
 {
-  "generatedAt": "2026-10-01T11:21:55.482Z",
+  "generatedAt": "2026-10-02T10:51:30.292Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 58,
-    "openTotal": 57,
-    "inRibaRoja": 35,
-    "closingSoon": 12,
-    "withDetail": 58,
+    "total": 57,
+    "openTotal": 56,
+    "inRibaRoja": 34,
+    "closingSoon": 13,
+    "withDetail": 57,
     "byMonth": {
-      "2026-09": 24,
-      "2026-08": 27,
+      "2026-10": 1,
+      "2026-09": 23,
+      "2026-08": 26,
       "2026-07": 1,
       "2026-06": 1,
       "2026-05": 2,
@@ -22,6 +23,88 @@
     }
   },
   "items": [
+    {
+      "id": "2517",
+      "fo": 2517,
+      "codigo": "2026/00216",
+      "titulo": "Peón de albañilería menor de 30 años",
+      "publishedAt": "2026-10-01",
+      "deadline": "2026-12-01",
+      "location": "Valencia y pueblos de alrededores Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2517",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00216"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Peón de albañilería menor de 30 años"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Se necesita peón con motivación para Septiembre. Sustitución por baja de paternidad, posibilidad de continuar después. Requisitos exigidos por el estado: DEBE SER MENOR A 30 AÑOS ESTAR INSCRITO COMO DEMANDANTE DE EMPLEO EN EL MOMENTO DE LA CONTRATACIÓN CONTRATACIÓN EN LAS MISMAS CONDICIONES QUE LA PERSONA SUSTITUIDA (CATEGORIA, JORNADA, FUNCIONES, ETC)"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "CONSTRUCCIÓN"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "INDIFERENTE"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "De 1 a 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "PEONES"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Valencia y pueblos de alrededores, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Horario",
+            "value": "De Lunes a viernes de 8:00 a 17:00 horas y una hora de descanso."
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          },
+          {
+            "label": "Funciones",
+            "value": "Peón de albañilería"
+          }
+        ],
+        "tipoContrato": "INDIFERENTE",
+        "duracion": "De 1 a 6 meses",
+        "numPuestos": "1",
+        "categoria": "PEONES",
+        "observaciones": "Se necesita peón con motivación para Septiembre. Sustitución por baja de paternidad, posibilidad de continuar después. Requisitos exigidos por el estado: DEBE SER MENOR A 30 AÑOS ESTAR INSCRITO COMO DEMANDANTE DE EMPLEO EN EL MOMENTO DE LA CONTRATACIÓN CONTRATACIÓN EN LAS MISMAS CONDICIONES QUE LA PERSONA SUSTITUIDA (CATEGORIA, JORNADA, FUNCIONES, ETC)",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "jornada": "Completa",
+        "horario": "De Lunes a viernes de 8:00 a 17:00 horas y una hora de descanso.",
+        "salario": "Según convenio",
+        "funciones": "Peón de albañilería",
+        "ocupaciones": []
+      }
+    },
     {
       "id": "2544",
       "fo": 2544,
@@ -1317,105 +1400,6 @@
         "ocupaciones": [
           {
             "nombre": "CONDUCTORES-OPERADORES DE GRÚA EN CAMIÓN"
-          }
-        ]
-      }
-    },
-    {
-      "id": "2530",
-      "fo": 2530,
-      "codigo": "2026/00229",
-      "titulo": "Auxiliar administrativa/o polivalente",
-      "publishedAt": "2026-09-04",
-      "deadline": "2026-11-04",
-      "location": "POLIGONO INDUSTRIAL ENTREVIES (JUNTO A METRO RIBARROJA Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2530",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00229"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Auxiliar administrativa/o polivalente"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Puesto de auxiliar administrativo/a polivalente en Turia-Regs."
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "AGRICULTURA, GANADERÍA, SILVICULTURA Y PESCA"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "AUXILIARES ADMINISTRATIVOS"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "POLIGONO INDUSTRIAL ENTREVIES (JUNTO A METRO RIBARROJA, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Indiferente Turnos: Turno mañana"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "Trabajo presencial. Posibilidad de jornada completa o parcial. (6-8 horas / día)"
-          },
-          {
-            "label": "Horario",
-            "value": "Horario estable a acordar según disponibilidad y necesidades de la empresa. Por ejemplo, puede plantearse una jornada de 8:00 a 14:00..."
-          },
-          {
-            "label": "Salario",
-            "value": "17.000"
-          },
-          {
-            "label": "Funciones",
-            "value": "Introducción, revisión y organización de albaranes. Preparación y emisión de facturas. Registro en el sistema de materiales recibidos y facturas de proveedores. Apoyo en la compra de material y seguimiento de pedidos a proveedores. Apoyo administrativo al almacén. Apoyo puntual en la atención al cliente y comunicaciones relacionadas con pedidos, material recibido o disponibilidad. Organización de documentación de vehículos, PRL y otra documentación interna. Otras tareas administrativas y de apoyo que vayan surgiendo."
-          },
-          {
-            "label": "Habilidades",
-            "value": "Persona organizada, práctica y resolutiva. Capacidad para trabajar con tareas variadas, cambiar de una tarea a otra según las necesidades, aprender nuevos procedimientos y sacar el trabajo adelante con autonomía. Atención al detalle, iniciativa, sentido común y facilidad para trabajar en equipo."
-          },
-          {
-            "label": "Informática",
-            "value": "Manejo fluido del ordenador y facilidad para trabajar con programas de gestión. Experiencia con software de facturación/ERP, correo electrónico, gestión documental y paquete Office. Se valorará especialmente soltura con Excel y facilidad para aprender nuevas aplicaciones."
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "1",
-        "categoria": "AUXILIARES ADMINISTRATIVOS",
-        "observaciones": "Puesto de auxiliar administrativo/a polivalente en Turia-Regs.",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46190",
-        "jornada": "Indiferente Turnos: Turno mañana",
-        "horario": "Horario estable a acordar según disponibilidad y necesidades de la empresa. Por ejemplo, puede plantearse una jornada de 8:00 a 14:00...",
-        "salario": "17.000",
-        "funciones": "Introducción, revisión y organización de albaranes. Preparación y emisión de facturas. Registro en el sistema de materiales recibidos y facturas de proveedores. Apoyo en la compra de material y seguimiento de pedidos a proveedores. Apoyo administrativo al almacén. Apoyo puntual en la atención al cliente y comunicaciones relacionadas con pedidos, material recibido o disponibilidad. Organización de documentación de vehículos, PRL y otra documentación interna. Otras tareas administrativas y de apoyo que vayan surgiendo.",
-        "ocupaciones": [
-          {
-            "nombre": "Asistentes de dirección y administrativos",
-            "experiencia": "3 Años"
           }
         ]
       }
@@ -3193,88 +3177,6 @@
         "salario": "Según convenio y valía",
         "funciones": "- Manejo de máquinas de costura industriales triple arrastre. - Manipulación de piezas grandes de telas muy duras y pesadas para ponerlas en la máquina y coserlas.",
         "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2517",
-      "fo": 2517,
-      "codigo": "2026/00216",
-      "titulo": "Peón de albañilería menor de 30 años",
-      "publishedAt": "2026-08-17",
-      "deadline": "2026-10-17",
-      "location": "Valencia y pueblos de alrededores Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2517",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00216"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Peón de albañilería menor de 30 años"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Se necesita peón con motivación para Septiembre. Sustitución por baja de paternidad, posibilidad de continuar después. Requisitos exigidos por el estado: DEBE SER MENOR A 30 AÑOS ESTAR INSCRITO COMO DEMANDANTE DE EMPLEO EN EL MOMENTO DE LA CONTRATACIÓN CONTRATACIÓN EN LAS MISMAS CONDICIONES QUE LA PERSONA SUSTITUIDA (CATEGORIA, JORNADA, FUNCIONES, ETC)"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "CONSTRUCCIÓN"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "INDIFERENTE"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "De 1 a 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "PEONES"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Valencia y pueblos de alrededores, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa"
-          },
-          {
-            "label": "Horario",
-            "value": "De Lunes a viernes de 8:00 a 17:00 horas y una hora de descanso."
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          },
-          {
-            "label": "Funciones",
-            "value": "Peón de albañilería"
-          }
-        ],
-        "tipoContrato": "INDIFERENTE",
-        "duracion": "De 1 a 6 meses",
-        "numPuestos": "1",
-        "categoria": "PEONES",
-        "observaciones": "Se necesita peón con motivación para Septiembre. Sustitución por baja de paternidad, posibilidad de continuar después. Requisitos exigidos por el estado: DEBE SER MENOR A 30 AÑOS ESTAR INSCRITO COMO DEMANDANTE DE EMPLEO EN EL MOMENTO DE LA CONTRATACIÓN CONTRATACIÓN EN LAS MISMAS CONDICIONES QUE LA PERSONA SUSTITUIDA (CATEGORIA, JORNADA, FUNCIONES, ETC)",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46190",
-        "jornada": "Completa",
-        "horario": "De Lunes a viernes de 8:00 a 17:00 horas y una hora de descanso.",
-        "salario": "Según convenio",
-        "funciones": "Peón de albañilería",
         "ocupaciones": []
       }
     },
