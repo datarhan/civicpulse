@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-01T11:23:59.078Z",
+  "generatedAt": "2026-10-02T04:47:45.003Z",
   "windowDays": 30,
   "articles": [
     {
@@ -681,47 +681,13 @@
         "opinionFraction": 0
       },
       "score": 1
-    },
-    {
-      "articleId": "161q2v1",
-      "articleFingerprint": "1slb5ao",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/la-confederaci%C3%B3n-hidrogr%C3%A1fica-del-j%C3%BAcar-habilita-tres-pasarelas-sobre-el-t%C3%BAria-a-su-paso-por-riba-roja-para-garantizar-el-paso-ciclo-peatonal",
-      "date": "2026-09-01T12:39:24.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
-    },
-    {
-      "articleId": "1v9gr48",
-      "articleFingerprint": "1mtqgek",
-      "outlet": "Periòdic del Camp de Túria",
-      "outletHost": "infoturia.com",
-      "url": "https://www.infoturia.com/riba-roja-de-turia/85874-el-parc-del-turia-recupera-la-connectivitat-amb-quatre-noves-passarelles.html",
-      "date": "2026-09-01T12:31:35.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 17,
+      "articleCount": 16,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 1,
@@ -729,14 +695,14 @@
         "sin-datos": 8,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.53,
+      "meanTrustScore": 2.56,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
     {
       "outlet": "Periòdic del Camp de Túria",
       "outletHost": "infoturia.com",
-      "articleCount": 9,
+      "articleCount": 8,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -744,7 +710,7 @@
         "sin-datos": 15,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.44,
+      "meanTrustScore": 2.5,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -900,7 +866,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "63dafacac848",
+    "plenos-agendas.json": "d948fe79c5d6",
     "press-claims-verified.json": "5f440b22045d",
     "press.json": "4e37f4cd7c83",
     "promises.json": "69c1f099a4a5"
