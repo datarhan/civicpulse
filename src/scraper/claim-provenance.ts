@@ -33,6 +33,22 @@
  * `locateQuote` (un ayudante de alineación, con umbral de cobertura) el mismo
  * corpus daba 491 «sin rastro» en vez de 24 — veinte veces la alarma real. El
  * instrumento se equivoca antes que el dato.
+ *
+ * ── Lo que esta pregunta NO ve ──────────────────────────────────────────────
+ *
+ * `vigente` quiere decir «alguna ventana de ocho palabras del literal está en
+ * la vigente», no «el literal entero está». Medido el 30-09-2026 sobre lo
+ * publicado: 389 declaraciones son `vigente` con menos del 80 % de su literal
+ * seguido en la vigente y casi todo en la sustituida. Casi siempre es la misma
+ * frase transcrita con otras palabras; una vez no lo era. 19gax3o-132-cit-35c4f5
+ * decía que el complejo de La Malla se presupuestó «en el año 2006»: la cola
+ * («y tuvieron que hacer varias reparaciones…») casa en la vigente, la cabeza
+ * sólo en la sustituida, y lo que se dijo —audio y segunda escucha— son
+ * importes. Aun midiendo el literal entero saldría `solo-superseded`, que no
+ * bloquea: la procedencia existe. Un literal que una transcripción OYÓ MAL
+ * consta en ella, así que ningún cálculo sobre los textos lo separa de uno bien
+ * oído. Eso lo decide quien escucha, y lo retira por su vía
+ * (`declaracion-retirada.ts`).
  */
 import { prepararHeno, quoteAppearsInPrepared, type HenoPreparado } from './quote-match'
 

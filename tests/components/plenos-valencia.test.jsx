@@ -144,7 +144,20 @@ function variasSinOrdenUnaSinDecl() {
   for (const id of sinDeclaraciones(mapa, 1)) votos.stats.byPleno[id] = 1
   votos.stats.retracted = { plazo: 1 }
   unaAreaSinBarra(mapa)
+  unaDeclaracionRetiradaTrasEscuchar(mapa)
   return mapa
+}
+
+/**
+ * Una declaración retirada por una persona tras escuchar la sesión. El dato de
+ * hoy no trae ninguna y su fila sólo se pinta cuando hay alguna, así que se
+ * FABRICA: sin ella, el rótulo nacería sin leer en valencià. Entra también en
+ * `retenidas` por su tipo, como la cuenta el troceador.
+ */
+function unaDeclaracionRetiradaTrasEscuchar(mapa) {
+  const totals = mapa[RUTAS.manifiesto].totals
+  totals.retenidas = { ...totals.retenidas, cita_obra: (totals.retenidas?.cita_obra ?? 0) + 1 }
+  totals.retiradas = { 'literal-no-dicho': 1 }
 }
 
 /**

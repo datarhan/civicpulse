@@ -757,6 +757,9 @@ export const CATALOGUE = {
     'plenos.indice.decl.sinProcedencia': 'Retenidas por falta de procedencia',
     'plenos.indice.decl.sinProcedencia.nota':
       'su literal no consta en ninguna transcripción nuestra: no se publican',
+    'plenos.indice.decl.retirada.literal-no-dicho': 'Retiradas tras escuchar la sesión',
+    'plenos.indice.decl.retirada.literal-no-dicho.nota':
+      'una persona escuchó el audio y su literal no es lo que se dijo: no se publican',
     'plenos.indice.decl.sinDatos': 'Publicadas sin datos que las contrasten',
     'plenos.indice.decl.sinDatos.nota': 'ni confirmadas ni desmentidas',
     'plenos.indice.decl.contrastadas': 'Parciales o verificadas',
@@ -1025,6 +1028,10 @@ export const CATALOGUE = {
     // ahí. Medido: de 40 hallazgos, 2 no tenían más cotejo que el vídeo.
     'findings.refs.provenance': 'Procedencia de las citas',
     'findings.refs.contradiction': 'Documentos que contradicen',
+    // De qué ficha es la lista, con el nombre que imprime su cabecera. La banda
+    // cierra la ficha, y aplanada la página el vídeo del pleno de una ficha se
+    // leyó contra la siguiente, de otra sesión (`codigoDeFicha`).
+    'findings.refs.ficha': 'ficha {ficha}',
     'findings.refs.date.award': 'adjudicación',
     'findings.refs.date.formalized': 'formalización',
     'findings.refs.date.start': 'inicio',
@@ -2410,6 +2417,9 @@ export const CATALOGUE = {
     'plenos.indice.decl.sinProcedencia': 'Retingudes per falta de procedència',
     'plenos.indice.decl.sinProcedencia.nota':
       'el seu literal no consta en cap transcripció nostra: no es publiquen',
+    'plenos.indice.decl.retirada.literal-no-dicho': 'Retirades després d’escoltar la sessió',
+    'plenos.indice.decl.retirada.literal-no-dicho.nota':
+      'una persona va escoltar l’àudio i el seu literal no és el que es va dir: no es publiquen',
     'plenos.indice.decl.sinDatos': 'Publicades sense dades que les contrasten',
     'plenos.indice.decl.sinDatos.nota': 'ni confirmades ni desmentides',
     'plenos.indice.decl.contrastadas': 'Parcials o verificades',
@@ -2649,6 +2659,7 @@ export const CATALOGUE = {
     'findings.refs.crossChecked': 'Documents contrastats',
     'findings.refs.provenance': 'Procedència de les cites',
     'findings.refs.contradiction': 'Documents que contradiuen',
+    'findings.refs.ficha': 'fitxa {ficha}',
     'findings.refs.date.award': 'adjudicació',
     'findings.refs.date.formalized': 'formalització',
     'findings.refs.date.start': 'inici',

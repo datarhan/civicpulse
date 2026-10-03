@@ -10,7 +10,7 @@ import DataAsOf from '../components/DataAsOf'
 // pero la LLAMADA no, así que sacar el vídeo del pleno de los documentos
 // cotejados en FindingCard dejó esta página —la que el lector abre— enseñándolo
 // igual. Ahora se comparte la banda entera, `ListaDeCotejos`.
-import { ListaDeCotejos, CitasDeLaFicha } from '../components/PlenoFindings'
+import { ListaDeCotejos, CitasDeLaFicha, codigoDeFicha } from '../components/PlenoFindings'
 import { usePlenoFindings, SEVERITY_LABEL, SEVERITY_TONE } from '../hooks/usePlenoFindings'
 import { useFindingQuoteProvenance, provenanceFor } from '../hooks/useFindingQuoteProvenance'
 import { authorshipBreakdown } from '../scraper/finding-authorship'
@@ -69,6 +69,11 @@ export function FindingDetailCard({ f, permalink }) {
   // of two copies leaves the other one lying.
   const { data: provenance } = useFindingQuoteProvenance()
   const prov = provenanceFor(provenance, f.id)
+  // El nombre de la ficha: lo imprime el enlace permanente y lo repiten la nota
+  // de las citas, el pie de cada hueco y la banda de cotejos, porque los
+  // números de cita son por ficha y la de al lado tiene los mismos
+  // (`codigoDeFicha`, en PlenoFindings.jsx).
+  const ficha = codigoDeFicha(f.id)
   return (
     <Card id={f.id} style={{ scrollMarginTop: 24 }}>
       <ClaimReviewJsonLd finding={f} />
@@ -89,7 +94,10 @@ export function FindingDetailCard({ f, permalink }) {
           }}
           title="Enlace permanente a este hallazgo"
         >
-          #{f.id.slice(-12)}
+          {/* Decía «#{f.id.slice(-12)}» —«#1-acu-a870a4», con el último dígito
+              del día delante—. Ahora es el nombre con que la nota y la banda de
+              cotejos hablan de esta ficha, junto a «pleno 10yl550». */}
+          ficha {ficha}
         </a>
       </div>
       <div style={{ fontSize: 'var(--fs-head)', fontWeight: 600, lineHeight: 1.35 }}>{f.title}</div>
@@ -138,7 +146,13 @@ export function FindingDetailCard({ f, permalink }) {
           // Numeradas, con la nota que dice de qué números habla: el reparto
           // entre cita impresa y hueco vive en `CitasDeLaFicha`, compartido con
           // /plenos/:id.
-          <CitasDeLaFicha quotes={f.quotes} prov={prov} curatorName={f.curatorName} colorDeGrupo />
+          <CitasDeLaFicha
+            quotes={f.quotes}
+            prov={prov}
+            curatorName={f.curatorName}
+            colorDeGrupo
+            ficha={ficha}
+          />
         ) : (
           <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
             Esta ficha no publica ningún literal.
@@ -153,6 +167,7 @@ export function FindingDetailCard({ f, permalink }) {
               crossChecked={f.crossChecked}
               contradiction={f.contradiction}
               plenoDate={f.plenoDate}
+              ficha={ficha}
             />
           </>
         ) : (
@@ -359,19 +374,31 @@ const AVISO_DE_LISTA = {
 }
 
 /**
+ * Los hallazgos agrupados por pleno, del más reciente al más antiguo, en el
+ * orden en que la lista los pinta. Exportada para que una prueba sepa qué
+ * fichas quedan contiguas en la página sin recitar el orden
+ * (tests/components/fichas-contiguas.test.jsx).
+ *
+ * @template {{ plenoDate: string }} F
+ * @param {F[]} hallazgos
+ * @returns {[string, F[]][]}
+ */
+export function agruparPorPleno(hallazgos) {
+  const g = new Map()
+  for (const f of hallazgos) {
+    if (!g.has(f.plenoDate)) g.set(f.plenoDate, [])
+    g.get(f.plenoDate).push(f)
+  }
+  return [...g.entries()].sort((a, b) => b[0].localeCompare(a[0]))
+}
+
+/**
  * Los hallazgos que pasan los filtros, agrupados por pleno del más reciente al
  * más antiguo. `hayPublicados` separa «ninguno coincide» de «no hay ninguno»:
  * con la lista filtrada vacía, sólo el total publicado sabe cuál de las dos es.
  */
 function ListaDeHallazgos({ hallazgos, hayPublicados }) {
-  const groups = useMemo(() => {
-    const g = new Map()
-    for (const f of hallazgos) {
-      if (!g.has(f.plenoDate)) g.set(f.plenoDate, [])
-      g.get(f.plenoDate).push(f)
-    }
-    return [...g.entries()].sort((a, b) => b[0].localeCompare(a[0]))
-  }, [hallazgos])
+  const groups = useMemo(() => agruparPorPleno(hallazgos), [hallazgos])
 
   if (groups.length === 0) {
     return (

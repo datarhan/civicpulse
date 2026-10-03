@@ -134,10 +134,14 @@ const numerosDe = (s) =>
     .map((n) => Number(n.trim()))
     .filter((n) => Number.isInteger(n) && n > 0)
 
-/** Las líneas de la nota: su rótulo en negrita, «Cita(s) N · marca». */
+/**
+ * Las líneas de la nota: su rótulo en negrita, «Cita(s) N · marca», y desde el
+ * 30-09-2026 «Cita(s) N de la ficha <código> · marca»: los números son por
+ * ficha (tests/components/fichas-contiguas.test.jsx vigila el nombre).
+ */
 function lineasDeLaNota(container) {
   return [...container.querySelectorAll('strong')].flatMap((s) => {
-    const m = s.textContent.match(/^Citas? ([\d, y]+) · (.+)$/)
+    const m = s.textContent.match(/^Citas? ([\d, y]+?)(?: de la ficha \S+)? · (.+)$/)
     return m ? [{ numeros: numerosDe(m[1]), chip: m[2].trim() }] : []
   })
 }
@@ -254,7 +258,9 @@ describe.each(SUPERFICIES)('$ruta', (sup) => {
         .flatMap((l) => l.numeros)
         .sort((a, b) => a - b)
       const entrada = [...container.querySelectorAll('div')]
-        .map((d) => d.textContent.match(/^(?:La cita|Las citas) ([\d, y]+) se cotej/))
+        .map((d) =>
+          d.textContent.match(/^(?:La cita|Las citas) ([\d, y]+?)(?: de la ficha \S+)? se cotej/),
+        )
         .filter(Boolean)
         .at(-1)
       const nombradas = entrada ? numerosDe(entrada[1]) : null

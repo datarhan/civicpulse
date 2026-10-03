@@ -3,6 +3,7 @@ import { readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { render } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
+import { installFetchMock } from './setup/mockFetch'
 import { ClaimLedger } from '../src/components/ClaimLedger'
 import { gateForDisplay, sortSignalFirst } from '../src/lib/claim-ledger'
 import { CORPUS_IDS, corpusReales } from '../src/scraper/claim-verdicts'
@@ -96,6 +97,11 @@ function leerTarjeta(card) {
 
 /** Pinta `items` como la pestaña de /plenos/:id y devuelve cada tarjeta leída. */
 function pintarYLeer(items, limit) {
+  // La tarjeta pide tenders.json para el puente de importes
+  // (src/components/PuenteDeImporte.jsx). Aquí no se mide eso: un 404 lo calla
+  // sin salir a la red. Dentro de cada pintado, porque la guarda de red
+  // (tests/setup/no-network.ts) se reinstala antes de cada prueba.
+  installFetchMock({})
   const { container, unmount } = render(
     <MemoryRouter>
       <ClaimLedger items={items} limit={limit} showSummary />
