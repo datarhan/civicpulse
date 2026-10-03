@@ -257,6 +257,15 @@ export default function Declaraciones() {
     }
   }, [items])
 
+  // La nota dice de estos grupos que sus declaraciones salen sin grupo, y eso
+  // es una afirmación sobre los datos: sólo se nombra a los que de verdad no
+  // llevan ninguna atribuida. Uno que la lleve —hasta que se retire, o si una
+  // persona la firma— tiene su botón arriba y no se le nombra aquí.
+  const unEscanoSinBoton = useMemo(
+    () => (unEscano ?? []).filter((g) => (stats.byBloc[g] ?? 0) === 0),
+    [unEscano, stats],
+  )
+
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase()
     return items.filter((it) => {
@@ -475,16 +484,16 @@ export default function Declaraciones() {
             />
           ))}
         </div>
-        {unEscano && unEscano.length > 0 && (
+        {unEscanoSinBoton.length > 0 && (
           <p style={{ margin: 0, fontSize: 'var(--fs-aux)', color: 'var(--ink70)' }}>
             {t(
-              unEscano.length === 1
+              unEscanoSinBoton.length === 1
                 ? 'declaraciones.filter.unEscano.uno'
                 : 'declaraciones.filter.unEscano.varios',
             ).replace(
               '{gruposUnEscano}',
               new Intl.ListFormat(locale === 'ca' ? 'ca' : 'es', { type: 'conjunction' }).format(
-                unEscano,
+                unEscanoSinBoton,
               ),
             )}{' '}
             <Link to="/metodologia#verificacion-declaraciones" style={{ color: 'var(--civic)' }}>
