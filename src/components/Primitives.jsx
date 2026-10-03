@@ -585,6 +585,27 @@ export function CorreoPartible({ email }) {
 }
 
 /**
+ * Una tabla de datos que no cabe en su caja se desliza DENTRO de ella, y se
+ * nota: una sombra en el borde por el que queda tabla (`.cp-desliza`, en
+ * index.css). No se esconde ninguna columna ni se parte ninguna cifra.
+ *
+ * Es una región con nombre y entra en el orden del teclado porque, si se
+ * desliza, quien no usa ratón tiene que poder recorrerla con las flechas
+ * (WCAG 2.1.1; axe `scrollable-region-focusable`). El nombre es el rótulo que
+ * ya titula la tabla, por `aria-labelledby`: el mismo texto, dicho una vez.
+ *
+ * @param {object} p
+ * @param {string} p.tituloId  `id` del elemento que titula la tabla
+ */
+export function Deslizable({ tituloId, children }) {
+  return (
+    <div className="cp-desliza" role="region" aria-labelledby={tituloId} tabIndex={0}>
+      {children}
+    </div>
+  )
+}
+
+/**
  * External hyperlink with an XSS-safe href. Renders an
  * `<a target="_blank" rel="noreferrer">` ONLY when the URL is http(s);
  * otherwise falls back to a plain `<span>` with the same children/props — so a

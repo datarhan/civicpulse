@@ -761,6 +761,30 @@ body.cp-kiosk .cp-live-container {
   }
 }
 
+/* Una tabla de datos que no cabe en su caja se desliza DENTRO de ella, y se
+   nota (`Deslizable`, en Primitives.jsx). La de «denominadores sin cambiar» de
+   /laboratorio/frontera medía 307 px en una tarjeta de 228 a 320 px de
+   pantalla, y como nada la contenía, la página entera medía 354 y se movía de
+   lado. `.cp-scroll-x`, aquí arriba, la habría contenido, pero sin decir nada:
+   la tabla se corta en el borde y quien la lee no sabe que sigue.
+
+   La señal es una sombra en el borde por el que queda tabla, y sólo en ése.
+   Las dos primeras capas son del color de la tarjeta y se desplazan CON el
+   contenido (`local`): tapan la sombra del extremo al que ya se ha llegado.
+   Las dos últimas se quedan fijas en los bordes de la caja (`scroll`). Sin
+   JavaScript, y si la tabla cabe no se ve ninguna, porque las dos tapas quedan
+   encima de las dos sombras. Los colores salen de los tokens: en oscuro, la
+   tapa es la tarjeta oscura y la sombra, un filo claro. */
+.cp-desliza {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  background:
+    linear-gradient(to right, var(--paper) 30%, transparent) left center / 40px 100% no-repeat local,
+    linear-gradient(to left, var(--paper) 30%, transparent) right center / 40px 100% no-repeat local,
+    linear-gradient(to right, var(--ink30), transparent) left center / 14px 100% no-repeat scroll,
+    linear-gradient(to left, var(--ink30), transparent) right center / 14px 100% no-repeat scroll;
+}
+
 /* OSM neighborhoods — tiny dot + label (urbanizaciones, industrial estates) */
 .cp-osm-neigh {
   background: transparent !important;
