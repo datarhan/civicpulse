@@ -14,21 +14,30 @@ import { MemoryRouter } from 'react-router-dom'
 
 import { CATALOGUE, LOCALES } from '../../src/i18n'
 import { TarjetaDeclaraciones } from '../../src/components/plenos/TarjetaDeclaraciones'
+import { resumenPlenos } from '../../src/lib/pleno-summary'
 import { MOTIVOS_DE_RETIRADA } from '../../src/scraper/declaracion-retirada'
 
-const embudo = (retiradas) => ({
-  extraidas: 78,
-  sesiones: 2,
-  retenidas: 20,
-  retenidasSinProcedencia: 1,
-  retiradas,
-  sinDatos: 52,
-  parcial: 3,
-  verificado: 1,
-  contradicho: 0,
-  sinCorpus: 30,
-  comprobadoSinHallar: 22,
-})
+/**
+ * El embudo, por el camino real: un manifiesto pasado por `resumenPlenos`.
+ *
+ * La primera versión lo escribía a mano, y se quedó atrás en cuanto #209 le
+ * añadió `noConsta`: la tarjeta pintaba `undefined` y la prueba reventaba por
+ * una forma recitada, no por la fila que mide (docs/DATA_INTEGRITY.md, regla 1).
+ */
+const embudo = (retiradas) =>
+  resumenPlenos({
+    manifest: {
+      plenos: [{ plenoId: 'a' }, { plenoId: 'b' }],
+      totals: {
+        items: 56,
+        byVerdict: { 'sin-datos': 52, parcial: 3, verificado: 1 },
+        retenidas: { acusacion_publica: 20, cita_obra: 1, cita_convenio: 1 },
+        retenidasSinProcedencia: 1,
+        retiradas,
+        sinDatosPorque: { sinCorpus: 30, comprobadoSinHallar: 20, noConsta: 2 },
+      },
+    },
+  }).embudo
 
 const monta = (retiradas) =>
   render(
