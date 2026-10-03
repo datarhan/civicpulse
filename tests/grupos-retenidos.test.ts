@@ -167,8 +167,8 @@ describe('retenerGruposDeUnEscano — el sumario y el titular', () => {
 
 describe('retenerGruposDeUnEscano — lo que no toca', () => {
   it('una cita es lo que se dijo, no una atribución nuestra: sus filas de texto se sirven tal cual', () => {
-    // Real: f-2026-01-19-afi-5238db lleva una intervención que dice «des del grup
-    // municipal de compromís», y la ficha la enseña. Y «podem» es también un verbo.
+    // Real: una ficha publicada lleva una intervención en la que quien habla dice
+    // de qué grupo es, y la ficha la enseña. Y «podem» es también un verbo.
     const entradas = [
       fila(
         'quote.1.text',
@@ -326,10 +326,12 @@ function ladosQueNombran(snapshot: {
  * quitarla de aquí.
  *
  * Los tres los midió la sesión del 30-09-2026. Los de c80e68 y cc8758 los firmó
- * un modelo el 21-09 a petición del editor, y además de nombrar a VOX dicen lo
- * que VOX sostiene en la transcripción vigente; el de c80e68 habla todavía de
- * «la única cita de VOX» de la ficha, cuya atribución se retiró el 30-09. Las
- * órdenes preparadas van en la descripción de la PR que añadió esta lista.
+ * un modelo el 21-09 a petición del editor, y además de nombrar al grupo dicen
+ * lo que sostiene en la transcripción vigente; el de c80e68 habla todavía de la
+ * única cita de ese grupo en la ficha, cuya atribución se retiró el 30-09. Las
+ * órdenes preparadas van en la descripción de la PR que añadió esta lista; al
+ * firmarlas, esta lista se vacía y `TOTAL_REASON_AMENDMENTS`
+ * (pleno-findings-published.test.ts) sube en tres.
  */
 const MOTIVOS_QUE_ESPERAN_A_UNA_PERSONA: Array<{ ruta: string; hasta: string }> = [
   { ruta: 'f-2026-01-19-cit-8b29a9[5].reason', hasta: '2026-10-14' },

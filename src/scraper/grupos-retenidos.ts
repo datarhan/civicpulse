@@ -57,9 +57,8 @@
  *     el otro lado, si no lo nombra: una etiqueta retirada sigue diciendo que
  *     ahora es «sin identificar».
  *   · NO toca las filas de texto de una cita. Una cita es lo que se dijo, no una
- *     atribución nuestra, y la ficha enseña la vigente: una intervención puede
- *     decir «des del grup municipal de compromís» (5238db), y «podem» es también
- *     un verbo.
+ *     atribución nuestra, y la ficha enseña la vigente: en una intervención
+ *     publicada quien habla dice de qué grupo es, y «podem» es también un verbo.
  *   · NO toca el motivo. Es prosa, y nada automático la reescribe (CLAUDE.md,
  *     regla 4): un motivo que nombra al grupo lo enmienda una persona con
  *     `correct-pleno-finding --amend-reason`, y `tests/grupos-retenidos.test.ts`

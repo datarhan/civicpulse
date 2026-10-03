@@ -141,14 +141,18 @@ describe('sobre los datos servidos', () => {
   const nombrados = (container) =>
     findPartiesInText(container.textContent).filter((g) => unEscano.includes(g))
 
-  /** Etiquetas de VOX y de Compromís retiradas y sus sumarios reescritos, y ningún motivo que los nombre. */
+  /**
+   * Una ficha con etiquetas retiradas de dos grupos de un escaño y sus sumarios
+   * reescritos, y ningún motivo que los nombre. Cuáles, no se escribe aquí: esta
+   * prueba vive en el repositorio y no tiene por qué emparejarlos con la ficha.
+   */
   const ID = 'f-2025-12-23-afi-3eebaf'
 
   it('la bitácora del repositorio los nombraba (si no, lo de abajo no mide nada)', () => {
     const fuente = FUENTE.items.find((f) => f.id === ID)
     expect(fuente, `${ID} ya no está publicada: elige otra`).toBeTruthy()
     const { container } = render(<BitacoraCorrecciones correcciones={fuente.corrections} />)
-    expect(nombrados(container).sort()).toEqual(['Compromís', 'VOX'])
+    expect(new Set(nombrados(container)).size).toBe(2)
   })
 
   it('la servida, entera, no nombra a ninguno', () => {
