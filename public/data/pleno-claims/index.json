@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-30T13:23:19.488Z",
+  "generatedAt": "2026-10-03T18:12:02.104Z",
   "version": "1",
   "plenos": [
     {
@@ -852,6 +852,7 @@
       "cita_convenio": 1
     },
     "retenidasSinProcedencia": 2,
+    "retiradas": {},
     "sinDatosPorque": {
       "sinCorpus": 2026,
       "comprobadoSinHallar": 2046,
