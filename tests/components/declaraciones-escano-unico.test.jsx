@@ -103,4 +103,34 @@ describe('/declaraciones · el filtro de grupo no pinta un cero de política', (
     expect(await screen.findByRole('button', { name: /^PSOE\b/ })).toBeTruthy()
     expect(screen.queryByText(/escaño/)).toBeNull()
   })
+
+  /**
+   * La nota afirma algo de los datos —«sus declaraciones se publican sin
+   * grupo»—, así que sale de los datos, no sólo de la composición. Señalado por
+   * la revisión lectora del pre-push (03-10-2026) sobre la rama sin firmar: la
+   * nota lo decía de VOX mientras el filtro, dos líneas más arriba, contaba 51
+   * declaraciones de VOX. Un grupo de un escaño que lleva declaraciones
+   * atribuidas —hoy, hasta que se retiren; mañana, si una persona firma una—
+   * tiene su botón y la nota no lo nombra.
+   */
+  it('no nombra a un grupo de un escaño que sí lleva declaraciones atribuidas', async () => {
+    pintar({ items: [...CORPUS, declaracion('p1-005-afi-eeeeee', 'VOX')] })
+    expect(await screen.findByRole('button', { name: /^VOX\b/ })).toBeTruthy()
+    const nota = await screen.findByText(/tienen un escaño cada uno/)
+    expect(nota.textContent).toMatch(/^EU-Podem y Compromís tienen/)
+    expect(nota.textContent).not.toMatch(/VOX/)
+  })
+
+  it('si todos los de un escaño llevan declaraciones atribuidas, no hay nota', async () => {
+    pintar({
+      items: [
+        ...CORPUS,
+        declaracion('p1-005-afi-eeeeee', 'VOX'),
+        declaracion('p1-006-afi-ffffff', 'EU-Podem'),
+        declaracion('p1-007-afi-gggggg', 'Compromís'),
+      ],
+    })
+    expect(await screen.findByRole('button', { name: /^VOX\b/ })).toBeTruthy()
+    expect(screen.queryByText(/escaño/)).toBeNull()
+  })
 })
