@@ -139,13 +139,16 @@ describe('ClaimLedger · sin corpus real, «ninguna» y «no constan» no son lo
 })
 
 describe('ClaimLedger · dice quién dio el veredicto, como /declaraciones', () => {
-  it('la bajada de curador (forma de La Malla): lo dice, y la marca no aparece', () => {
+  it('la bajada de curador (forma de La Malla): dice quién la decidió, y la marca no aparece', () => {
+    // La Malla la bajó la revisión de oro del 24-06, hecha con un modelo: el
+    // sello que `mergeVerified` estampa con el canal lo dice.
     const { container } = pintar(
       item({
         verdict: 'parcial',
         type: 'cita_obra',
         checkedAgainst: ['curator-downgrade'],
         source: 'curator-downgrade',
+        downgradedBy: 'automatica',
         evidence: [
           {
             kind: 'tender',
@@ -156,7 +159,8 @@ describe('ClaimLedger · dice quién dio el veredicto, como /declaraciones', () 
         ],
       }),
     )
-    expect(container.textContent).toContain('corregido por un curador')
+    expect(container.textContent).toContain('rebajado en una revisión automática')
+    expect(container.textContent).not.toContain('corregido por un curador')
     expect(container.textContent).not.toContain('curator-downgrade')
   })
 

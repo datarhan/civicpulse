@@ -27,10 +27,28 @@ describe('cotejarVeredicto · qué sostiene un veredicto ya publicado', () => {
     expect(cotejarVeredicto(it_('verificado', ['tenders'])).estado).toBe('fundado')
   })
 
-  it('curado: lo decidió una persona, y eso pasa', () => {
-    const f = cotejarVeredicto(it_('parcial', ['curator-downgrade']))
-    expect(f.estado).toBe('curado')
-    expect(f.detalle).toMatch(/persona/i)
+  it('curado: entró por la vía del curador, que sólo baja, y eso pasa', () => {
+    expect(cotejarVeredicto(it_('parcial', ['curator-downgrade'])).estado).toBe('curado')
+  })
+
+  it('el detalle dice quién decidió la bajada, según el sello y no según la marca', () => {
+    // 47 de las 69 bajadas de curador no las firma una persona (30-09-2026): la
+    // revisión de oro con un modelo, sesiones de Claude, una firma «sergei».
+    const bajada = (downgradedBy?: string) => ({
+      claim: { id: `c-bajada-${downgradedBy ?? 'sin-sello'}` },
+      verification: {
+        verdict: 'parcial',
+        checkedAgainst: ['curator-downgrade'],
+        evidence: [{ kind: 'tender', ref: 'r', snippet: 's' }],
+        ...(downgradedBy ? { source: 'curator-downgrade', downgradedBy } : {}),
+      },
+    })
+    expect(cotejarVeredicto(bajada('persona')).detalle).toMatch(/^lo bajó una persona/)
+    const automatica = cotejarVeredicto(bajada('automatica')).detalle
+    expect(automatica).toMatch(/^lo bajó una revisión automática/)
+    const sinSello = cotejarVeredicto(bajada()).detalle
+    expect(sinSello).toMatch(/no consta quién/)
+    expect(sinSello).not.toMatch(/persona|automática/)
   })
 
   it('procedencia-retirada: se apoya en una pasada que ya no corre', () => {

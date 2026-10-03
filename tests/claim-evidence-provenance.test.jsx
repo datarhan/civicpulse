@@ -53,11 +53,22 @@ describe('el sello de procedencia tiene tres estados, no dos', () => {
   it('cuando ha corregido una persona, lo dice', () => {
     // Y va por delante de todo lo demás: si un curador ha bajado el veredicto,
     // el lector tiene que ver eso, no en qué se apoyaba la máquina corregida.
-    expect(etiquetaVerificador({ checkedAgainst: ['curator-downgrade'] })).toBe(
+    // Que fue una persona lo dice el sello que `mergeVerified` pone con el
+    // canal (`downgradedBy`), no la marca.
+    const persona = { source: 'curator-downgrade', downgradedBy: 'persona' }
+    expect(etiquetaVerificador({ checkedAgainst: ['curator-downgrade'], ...persona })).toBe(
       'corregido por un curador',
     )
-    expect(etiquetaVerificador({ checkedAgainst: ['curator-downgrade', 'llm-second-pass'] })).toBe(
-      'corregido por un curador',
+    expect(
+      etiquetaVerificador({ checkedAgainst: ['curator-downgrade', 'llm-second-pass'], ...persona }),
+    ).toBe('corregido por un curador')
+  })
+
+  it('la marca de la bajada, sola, no dice que la decidiera una persona', () => {
+    // La forma de las filas anteriores al sello: 25 de las servidas el
+    // 30-09-2026 no las decidió ninguna persona.
+    expect(etiquetaVerificador({ checkedAgainst: ['curator-downgrade'] })).toBe(
+      'rebajado; no consta quién lo decidió',
     )
   })
 

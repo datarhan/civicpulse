@@ -16,7 +16,7 @@
  */
 import { describe, expect, it } from 'vitest'
 
-import { nombraAUnaPersona, rechazoDeFirma } from '../src/scraper/firma-de-persona'
+import { claseDeFirma, nombraAUnaPersona, rechazoDeFirma } from '../src/scraper/firma-de-persona'
 import { HUMAN_CURATORS } from '../src/scraper/finding-authorship'
 
 describe('rechazoDeFirma — firmas que nombran a una persona', () => {
@@ -79,5 +79,50 @@ describe('rechazoDeFirma — firmas que no nombran a nadie', () => {
   it('no acepta lo que no es texto', () => {
     expect(rechazoDeFirma(undefined as unknown as string)).toMatch(/vacía/)
     expect(rechazoDeFirma(42 as unknown as string)).toMatch(/vacía/)
+  })
+})
+
+/**
+ * Quién decidió una bajada, dicho desde su firma: una persona, un proceso o un
+ * modelo, o no consta.
+ *
+ * Las 69 bajadas de curador del overlay (medido el 30-09-2026) llevan cinco
+ * firmas, y la tarjeta las rotulaba todas «corregido por un curador». Cuarenta
+ * y tres las firmó una revisión con un modelo, y cuatro, «sergei», no dicen
+ * quién: `rechazoDeFirma` las rechaza por la forma, sin ninguna palabra de
+ * proceso. Llamarlas «automáticas» sería afirmar lo que no sabemos; llamarlas
+ * «de un curador», también.
+ */
+describe('claseDeFirma — quién decidió, según la firma', () => {
+  it.each([
+    // Las firmas de las bajadas publicadas, tal cual.
+    ['Sergei Lutchenko', 'persona'],
+    ['ai-gold-review', 'automatica'],
+    ['claude-fable-5.1', 'automatica'],
+    ['Claude (revisión 17-08, aprobada en plan)', 'automatica'],
+    ['sergei', 'no-consta'],
+    // Las de otras capas, por si llegan a firmar una bajada.
+    ['María de la Fuente Llorens', 'persona'],
+    ['claude-opus-5', 'automatica'],
+    ['auto-curation-v1', 'automatica'],
+    ['civicpulse-auto', 'automatica'],
+    ['retirada-pasada-llm', 'automatica'],
+    ['verdict-engine:gpt-5.4-mini', 'automatica'],
+    // Lo que firma sin decir quién: el valor por defecto de la CLI, la cuenta
+    // de rol (la misma se siente quien se siente), un alias y un marcador.
+    ['curator', 'no-consta'],
+    ['civicpulse-curator', 'no-consta'],
+    ['datarhan', 'no-consta'],
+    ['<nombre y apellidos>', 'no-consta'],
+    ['Nombre Apellido', 'no-consta'],
+    ['', 'no-consta'],
+  ])('«%s» → %s', (editor, clase) => {
+    expect(claseDeFirma(editor)).toBe(clase)
+  })
+
+  it('una firma que falta no es de nadie', () => {
+    expect(claseDeFirma(undefined)).toBe('no-consta')
+    expect(claseDeFirma(null)).toBe('no-consta')
+    expect(claseDeFirma(42)).toBe('no-consta')
   })
 })

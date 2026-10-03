@@ -13,6 +13,7 @@ import { verifyClaimWithEngine } from '../src/scraper/claim-verifier-engine'
 import { applyOverlayEntries, mergeVerified } from '../src/scraper/verified-merge'
 import { gateItemsForPublic } from '../src/scraper/claim-public-gate'
 import { entradaDelMotor, sugerenciaDelAnclaje } from '../src/scraper/entrada-de-pasada'
+import { rechazoDeFirma } from '../src/scraper/firma-de-persona'
 
 /**
  * Quién dio el veredicto se lee de donde la pasada lo deja, no sólo de
@@ -322,9 +323,12 @@ describe('cuando las anotaciones discrepan, quién se nombra', () => {
     expect(veredicto()).toBe('verificador NLI')
   })
 
-  it('pero una corrección de curador se dice siempre', () => {
+  it('pero una bajada de curador se dice siempre, y sin su canal no se sabe de quién', () => {
+    // Quién decidió la bajada lo estampa `mergeVerified` junto al `source` de
+    // una entrada del curador. Aquí manda otro canal: la marca dice que hubo
+    // una bajada, y nada dice que la decidiera una persona.
     pintarLedger(conEvidencia({ checkedAgainst: ['curator-downgrade'], source: 'verdict-engine' }))
-    expect(veredicto()).toBe('corregido por un curador')
+    expect(veredicto()).toBe('rebajado; no consta quién lo decidió')
   })
 })
 
@@ -339,9 +343,18 @@ describe('las filas servidas hoy siguen diciendo lo que decían', () => {
     .flatMap((f) => JSON.parse(readFileSync(resolve(dir, f), 'utf8')).items ?? [])
 
   const soloCorpus = (ca) => ca?.length > 0 && ca.every((c) => CORPUS_IDS.includes(c))
+  // Una bajada del curador sólo es «corregido por un curador» si la firmó una
+  // persona; las demás las cubre tests/rebaja-quien-decide.test.jsx. La firma
+  // se lee del overlay, que el arreglo no toca.
+  const overlay = JSON.parse(readFileSync(resolve('public/data/pleno-claims-overlay.json'), 'utf8'))
+  const firmadaConNombre = (v) => rechazoDeFirma(overlay.entries[v.claimId]?.editor) === null
   const GRUPOS = [
     ['por el motor', (v) => v.source === 'verdict-engine', 'verificador LLM'],
-    ['por un curador', (v) => v.source === 'curator-downgrade', 'corregido por un curador'],
+    [
+      'por un curador con nombre',
+      (v) => v.source === 'curator-downgrade' && firmadaConNombre(v),
+      'corregido por un curador',
+    ],
     ['por el cotejo', (v) => !v.source && soloCorpus(v.checkedAgainst), 'verificador determinista'],
     ['sin nada anotado', (v) => !v.source && !v.checkedAgainst?.length, 'sin verificador anotado'],
   ]
