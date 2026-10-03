@@ -41,12 +41,38 @@ export type ClaimVerdict = (typeof CLAIM_VERDICTS)[number]
 // DERIVA y no se guarda: ni campo nuevo en la verificación, ni miembro nuevo en
 // el enum de veredictos, que alimenta `isDowngrade`, el validador del overlay y
 // las CLI de curación.
+//
+// Y las preguntas son tres, no dos (2026-09-29). Una pasada que rehace el
+// veredicto SUSTITUYE la lista: `verificacionDeBajada` escribe sólo
+// `['curator-downgrade']`, y el motor escribía su marca —hoy, `derivedBy` y el
+// corpus de una evidencia que en una retractación no hay—. Contadas por
+// `corpusReales` a secas, esas filas salían en «sin corpus que consultar»
+// aunque el motor hubiera repasado una lista corta de contratos candidatos y el
+// curador hubiera leído uno: 875 de 2.901 el 2026-09-30, debajo de una tarjeta
+// que decía «Fuentes comprobadas: no constan». No es que no hubiera con qué: es
+// que no consta con qué. «No consta» afirma menos, y es la dirección segura.
+
+/**
+ * Qué consta de lo que se consultó para llegar a un veredicto:
+ *
+ *   · `con-corpus` — la lista nombra algún corpus declarado en `CORPUS_IDS`;
+ *   · `sin-corpus` — no hay nada anotado en ningún sitio: no había con qué;
+ *   · `no-consta` — se anotó algo que no es un corpus (una pasada, en
+ *     `checkedAgainst`, en `derivedBy` o como `source`, o un nombre sin
+ *     declarar): no sabemos contra qué se cotejó, que no es lo mismo que no
+ *     tener con qué.
+ */
+export const DESENLACES_DE_COTEJO = ['con-corpus', 'sin-corpus', 'no-consta'] as const
+
+export type DesenlaceDeCotejo = (typeof DESENLACES_DE_COTEJO)[number]
 
 export interface ResumenSinDatos {
-  /** `checkedAgainst` vacío: no se consultó ningún corpus. */
+  /** Nada anotado: no había corpus que consultar. */
   sinCorpus: number
   /** Se consultaron corpus y no hubo coincidencia. */
   comprobadoSinHallar: number
+  /** Una pasada sustituyó la lista de lo consultado: no consta qué se consultó. */
+  noConsta: number
 }
 
 /** Lo mínimo que hace falta mirar. Estructural a propósito, para que valga
@@ -54,24 +80,54 @@ export interface ResumenSinDatos {
 export interface VerificacionCotejable {
   verdict?: string
   checkedAgainst?: readonly unknown[]
+  /** La pasada que lo declara, desde la fase 1b. */
+  derivedBy?: readonly unknown[]
+  /** El canal de overlay por el que entró, estampado por `mergeVerified` (#164). */
+  source?: unknown
+}
+
+const anotados = (x: unknown): readonly unknown[] => (Array.isArray(x) ? x : [])
+
+/**
+ * El desenlace de una fila, sea cual sea su veredicto. Es la regla de la línea
+ * «Fuentes comprobadas» de cada tarjeta (`fuentesComprobadas`, que la llama), y
+ * la del recuento de /declaraciones, /plenos y /laboratorio/cobertura: una sola,
+ * para que la tarjeta y el número de encima no puedan decir cosas distintas.
+ */
+export function desenlaceDeCotejo(v: VerificacionCotejable | null | undefined): DesenlaceDeCotejo {
+  if (corpusReales(v?.checkedAgainst).length > 0) return 'con-corpus'
+  const nadaAnotado =
+    !v?.source && anotados(v?.derivedBy).length === 0 && anotados(v?.checkedAgainst).length === 0
+  return nadaAnotado ? 'sin-corpus' : 'no-consta'
 }
 
 /**
- * Reparte las filas `sin-datos` en sus dos motivos. Las dos partes suman
+ * La casilla que cuenta cada desenlace en los recuentos publicados: el
+ * `sinDatosPorque` del manifiesto y las celdas de su tabla de cobertura, que
+ * usan los mismos nombres (en la cobertura, `comprobadoSinHallar` es «con
+ * corpus» y cuenta cualquier veredicto). Un `Record`, para que un desenlace
+ * nuevo sin casilla no compile en vez de caer en la de otro.
+ */
+export const CASILLA_DE_DESENLACE: Record<DesenlaceDeCotejo, keyof ResumenSinDatos> = {
+  'con-corpus': 'comprobadoSinHallar',
+  'sin-corpus': 'sinCorpus',
+  'no-consta': 'noConsta',
+}
+
+/**
+ * Reparte las filas `sin-datos` en sus tres desenlaces. Las tres partes suman
  * exactamente el `sin-datos` del recuento por veredicto; las demás filas no se
  * miran.
  */
 export function resumirSinDatos(
   verifications: ReadonlyArray<VerificacionCotejable | null | undefined>,
 ): ResumenSinDatos {
-  let sinCorpus = 0
-  let comprobadoSinHallar = 0
+  const r: ResumenSinDatos = { sinCorpus: 0, comprobadoSinHallar: 0, noConsta: 0 }
   for (const v of verifications) {
     if (v?.verdict !== 'sin-datos') continue
-    if (corpusReales(v.checkedAgainst).length === 0) sinCorpus++
-    else comprobadoSinHallar++
+    r[CASILLA_DE_DESENLACE[desenlaceDeCotejo(v)]] += 1
   }
-  return { sinCorpus, comprobadoSinHallar }
+  return r
 }
 
 // ─── Procedencia: corpus, pasadas y lo que no sabemos ──────────────────────
