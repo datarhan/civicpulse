@@ -1025,6 +1025,10 @@ export const CATALOGUE = {
     // ahí. Medido: de 40 hallazgos, 2 no tenían más cotejo que el vídeo.
     'findings.refs.provenance': 'Procedencia de las citas',
     'findings.refs.contradiction': 'Documentos que contradicen',
+    // De qué ficha es la lista, con el nombre que imprime su cabecera. La banda
+    // cierra la ficha, y aplanada la página el vídeo del pleno de una ficha se
+    // leyó contra la siguiente, de otra sesión (`codigoDeFicha`).
+    'findings.refs.ficha': 'ficha {ficha}',
     'findings.refs.date.award': 'adjudicación',
     'findings.refs.date.formalized': 'formalización',
     'findings.refs.date.start': 'inicio',
@@ -2649,6 +2653,7 @@ export const CATALOGUE = {
     'findings.refs.crossChecked': 'Documents contrastats',
     'findings.refs.provenance': 'Procedència de les cites',
     'findings.refs.contradiction': 'Documents que contradiuen',
+    'findings.refs.ficha': 'fitxa {ficha}',
     'findings.refs.date.award': 'adjudicació',
     'findings.refs.date.formalized': 'formalització',
     'findings.refs.date.start': 'inici',
