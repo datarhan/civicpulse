@@ -1,9 +1,11 @@
 import { describe, it, expect } from 'vitest'
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
 import { join, resolve } from 'node:path'
-import { PUBLICATION_DENYLIST } from '../publication-denylist.js'
-import { retenerLiterales } from '../src/scraper/literales-retenidos'
+import { PUBLICATION_DENYLIST, copiaServidaDeHallazgos } from '../publication-denylist.js'
 import { citaRetenida } from '../src/lib/cita-retenida.js'
+import { findPartiesInText } from '../src/lib/party-alias.js'
+import { oneSeatBlocsOf } from '../src/scraper/corporation-seats'
+import { REDACTION_LABELS, isSpeakerGroupField } from '../src/scraper/pleno-finding'
 
 /**
  * Lo que se publica es `dist/`, no `public/`.
@@ -135,10 +137,54 @@ describe.skipIf(SIN_DIST)('pleno-findings.json servido', () => {
     ).toEqual([])
   })
 
-  it('es exactamente la copia del repositorio con los literales retenidos, nada más', () => {
-    // Igualdad entera, no un muestreo: prueba que la compilación aplicó ESTA
-    // transformación y que no se tocó ningún otro campo por el camino.
-    const esperado = retenerLiterales(fuente(), leerDist('finding-quote-provenance.json')).snapshot
+  /**
+   * Y la bitácora de correcciones, que imprimía a qué grupo de un solo escaño
+   * se había atribuido algo que una persona retiró después: «Compromís»
+   * tachado junto a «sin identificar». Un grupo con un solo concejal nombra a
+   * esa persona. El oráculo se escribe aquí, aparte de la transformación: el
+   * alcance sale de los campos que exporta el validador, el grupo de la tabla
+   * de alias y de la composición SERVIDA.
+   */
+  it('no nombra en su bitácora a ningún grupo de un solo escaño, ni en lo que retiró ni en lo que puso', () => {
+    const servido = leerDist('pleno-findings.json')
+    const unEscano = oneSeatBlocsOf(leerDist('officials.json'))
+    expect(
+      unEscano,
+      'officials.json servido no da la composición: no se sabe qué buscar',
+    ).not.toBeNull()
+    const nombran: string[] = []
+    let juzgadas = 0
+    for (const f of servido.items) {
+      ;(f.corrections ?? []).forEach((c: Record<string, unknown>, i: number) => {
+        const campo = String(c.field)
+        if (!(isSpeakerGroupField(campo) || campo in REDACTION_LABELS)) return
+        juzgadas += 1
+        for (const lado of ['original', 'corrected']) {
+          const grupos = findPartiesInText(String(c[lado] ?? '')) as string[]
+          if (grupos.some((g) => unEscano?.includes(g))) nombran.push(`${f.id}[${i}].${lado}`)
+        }
+      })
+    }
+    expect(
+      juzgadas,
+      'ninguna fila de titular, sumario o grupo: no se ha juzgado nada',
+    ).toBeGreaterThan(0)
+    expect(
+      nombran,
+      `dist/data/pleno-findings.json nombra a un grupo de un solo escaño en ${nombran.length} ` +
+        `lado(s) de su bitácora.\nSi dist/ es de otra rama o anterior a este cambio, reconstruye ` +
+        `(\`npm run build\`); si persiste, el complemento de vite.config.js no los está reteniendo.`,
+    ).toEqual([])
+  })
+
+  it('es exactamente la copia del repositorio con literales y grupos retenidos, nada más', () => {
+    // Igualdad entera, no un muestreo: prueba que la compilación aplicó ESTAS
+    // transformaciones y que no se tocó ningún otro campo por el camino.
+    const esperado = copiaServidaDeHallazgos(
+      fuente(),
+      leerDist('finding-quote-provenance.json'),
+      leerDist('officials.json'),
+    ).snapshot
     expect(
       leerDist('pleno-findings.json'),
       'dist/ no coincide con el repositorio: si public/data cambió después de compilar, reconstruye',

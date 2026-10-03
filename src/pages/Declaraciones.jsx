@@ -14,7 +14,8 @@ import { PARTY_TONE } from '../hooks/usePromises'
 import { useT } from '../i18n'
 import { CLAIM_VERDICTS, resumirSinDatos, desenlaceDeCotejo } from '../scraper/claim-verdicts'
 import { blocLabel } from '../lib/party-label.js'
-import { etiquetaVerificador } from '../lib/claim-provenance.js'
+import { etiquetaVerificador, evidenciaSegunFuentes } from '../lib/claim-provenance.js'
+import { PuenteDeImporte } from '../components/PuenteDeImporte'
 
 const PAGE_SIZE = 50
 
@@ -112,6 +113,10 @@ function ClaimRow({ item, plenoTitle }) {
   if (c.entities?.count)
     ent.push(c.entities.count + (c.entities.countUnit ? ' ' + c.entities.countUnit : ''))
   if (c.entities?.date) ent.push(c.entities.date)
+  // Las filas que pinta /plenos/:id, con la misma regla: el expediente «que se
+  // parece» de una verificación que no cotejó contratos no se cuenta como
+  // evidencia (src/lib/claim-provenance.js).
+  const evidencia = evidenciaSegunFuentes(v)
   return (
     <Card>
       {/* La envoltura y el encogido viven en index.css (.cp-claim-head): una
@@ -154,7 +159,7 @@ function ClaimRow({ item, plenoTitle }) {
           {ent.join(' · ')}
         </div>
       )}
-      {v.evidence?.length > 0 && (
+      {evidencia.length > 0 && (
         <div
           style={{
             marginTop: 6,
@@ -175,10 +180,10 @@ function ClaimRow({ item, plenoTitle }) {
               marginBottom: 3,
             }}
           >
-            {v.evidence.length} {v.evidence.length === 1 ? 'evidencia' : 'evidencias'} ·{' '}
+            {evidencia.length} {evidencia.length === 1 ? 'evidencia' : 'evidencias'} ·{' '}
             {etiquetaVerificador(v)}
           </div>
-          {v.evidence.slice(0, 2).map((e, i) => (
+          {evidencia.slice(0, 2).map((e, i) => (
             <div key={i} style={{ marginTop: 2 }}>
               <span
                 className="mono"
@@ -187,6 +192,7 @@ function ClaimRow({ item, plenoTitle }) {
                 [{e.kind}]
               </span>
               {e.snippet}
+              <PuenteDeImporte cifra={c.entities?.amountEuros} evidencia={e} />
             </div>
           ))}
         </div>

@@ -7,7 +7,9 @@
  * Policy (see
  * docs/superpowers/specs/2026-06-21-plenos-claim-ledger-editorial-gate-design.md):
  *   hidden  — any acusacion_publica that is opinativa OR not data-grounded;
- *             any `contradicho`, whoever signs it (see below)
+ *             any `contradicho`, whoever signs it (see below); any claim whose
+ *             literal appears in no transcript, or that a person withdrew
+ *             after listening to the session (see `classifyClaimVisibility`)
  *   toggle  — non-accusation claims that are not data-grounded (sin-datos)
  *   shown   — data-grounded claims of any type (incl. data-backed accusations):
  *             a verdict in DATA_GROUNDED_VERDICTS that names a real corpus, or
@@ -19,6 +21,7 @@
 import type { VerifiedClaimItem } from './pleno-claims-chunks'
 import type { OverlaySource } from './verified-merge'
 import { corpusReales } from './claim-verdicts'
+import { motivoDeRetirada } from './declaracion-retirada'
 
 /**
  * The three outcomes, as a value rather than only a type.
@@ -131,7 +134,12 @@ function isCuratorPromoted(item: ClaimVisibilityInput): boolean {
  */
 export interface ClaimVisibilityInput {
   claim?: { type?: unknown; accusationSubtype?: unknown } | null
-  verification?: { verdict?: unknown; source?: unknown; checkedAgainst?: unknown } | null
+  verification?: {
+    verdict?: unknown
+    source?: unknown
+    checkedAgainst?: unknown
+    retirada?: unknown
+  } | null
 }
 
 /**
@@ -201,12 +209,18 @@ function tieneVerificadorAnotado(item: ClaimVisibilityInput): boolean {
  * hemos mirado», no «no lo encontramos», y confundirlos retiraría medio corpus
  * el día que un fichero no se descargue. Quien los separa es
  * `classifyClaimProvenance`, y el llamador sólo manda los `sin-rastro`.
+ *
+ * La misma pregunta tiene una segunda respuesta que ningún texto da: la
+ * transcripción recoge el literal porque lo OYÓ MAL. Eso sólo lo sabe quien
+ * escucha la sesión, y cuando una persona retira la declaración por eso, firma
+ * en el overlay y la marca viaja con la verificación (`declaracion-retirada.ts`).
  */
 export function classifyClaimVisibility(
   item: ClaimVisibilityInput,
   opts: { sinProcedencia?: boolean } = {},
 ): ClaimVisibility {
   if (opts.sinProcedencia) return 'hidden'
+  if (motivoDeRetirada(item) !== null) return 'hidden'
   const verdict = item?.verification?.verdict
   if (verdict === 'contradicho') return 'hidden'
   const grounded =

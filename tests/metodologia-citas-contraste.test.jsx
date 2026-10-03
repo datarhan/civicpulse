@@ -99,6 +99,15 @@ describe('/metodologia#citas-contraste describe la puerta que rige hoy', () => {
     expect(texto).toMatch(/copia de los datos/i)
   })
 
+  it('dice que el hueco y la nota nombran su ficha, no sólo el número de la cita', () => {
+    // Los números de cita son por ficha. Desde el 30-09-2026 el pie de cada
+    // hueco y cada línea de la nota dicen también de qué ficha hablan
+    // (`codigoDeFicha`), porque aplanada la página la nota de una se leyó sobre
+    // la cita del mismo número de la siguiente. El contrato lo tiene que decir.
+    expect(texto).toMatch(/de qué número hablan y de qué ficha/)
+    expect(texto).toMatch(/ficha contigua/)
+  })
+
   it('nombra los dos resultados con los rótulos que pinta la ficha', () => {
     // Leídos del componente, no copiados aquí (docs/DATA_INTEGRITY.md regla 1):
     // si la ficha cambia un rótulo, esta página tiene que cambiar con ella.

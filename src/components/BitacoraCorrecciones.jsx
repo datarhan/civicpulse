@@ -29,9 +29,18 @@
  * enmendado lo dice delante, en texto, y cada enmienda lleva su fecha, su firma,
  * su porqué y la huella del motivo que sustituyó —el texto anterior no se
  * reproduce: si se enmendó fue porque no debía seguir diciéndose—.
+ *
+ * Y desde el 30-09-2026 la copia servida de /hallazgos no trae la versión de una
+ * fila que nombraba a un grupo de un solo escaño (`grupoRetenido`,
+ * src/scraper/grupos-retenidos.ts): la bitácora enseñaba «Compromís» tachado
+ * junto a «sin identificar» después de que una persona firmara que no se sabe
+ * quién habló. La fila dice en texto qué versión falta y por qué; no tacha la
+ * marca como si fuera lo retirado, y no rotula «vigente» una versión que no
+ * enseña, porque eso diría que la ficha nombra hoy a ese grupo.
  */
 
 import { ROTULO_CITA_RETENIDA } from '../lib/cita-retenida'
+import { MARCA_GRUPO_RETENIDO, ROTULO_GRUPO_RETENIDO } from '../lib/grupo-retenido'
 
 export const ROTULO_TEXTO_RETIRADO = 'Texto retirado'
 export const ROTULO_TEXTO_VIGENTE = 'Texto vigente'
@@ -52,9 +61,61 @@ const rotulo = {
   color: 'var(--ink50)',
 }
 
+function TextoRetirado({ texto }) {
+  return (
+    <div style={{ color: 'var(--ink50)' }}>
+      <span className="mono" style={rotulo}>
+        {ROTULO_TEXTO_RETIRADO}:{' '}
+      </span>
+      <del>{texto}</del>
+    </div>
+  )
+}
+
+function TextoVigente({ texto }) {
+  return (
+    <div style={{ color: 'var(--ink)', marginTop: 1 }}>
+      <span className="mono" style={rotulo}>
+        {ROTULO_TEXTO_VIGENTE}:{' '}
+      </span>
+      {texto}
+    </div>
+  )
+}
+
+/**
+ * Una fila con una versión que la copia servida no reproduce porque nombraba a
+ * un grupo de un solo escaño. Enseña, con su rótulo de siempre, el lado que sí
+ * se sirve.
+ */
+function FilaGrupoRetenido({ c }) {
+  const sinOriginal = c.original === MARCA_GRUPO_RETENIDO
+  const sinCorregido = c.corrected === MARCA_GRUPO_RETENIDO
+  const cual =
+    sinOriginal && sinCorregido
+      ? 'ninguna de sus dos versiones'
+      : sinOriginal
+        ? 'la versión que retiró'
+        : 'la versión que puso'
+  return (
+    <>
+      <div style={{ color: 'var(--ink70)' }}>
+        <span className="mono" style={rotulo}>
+          {ROTULO_GRUPO_RETENIDO}:{' '}
+        </span>
+        esta corrección cambió un texto que nombraba a un grupo con un solo concejal, y nombrar ese
+        grupo es nombrar a esa persona, así que la bitácora no reproduce {cual}.
+      </div>
+      {!sinOriginal && <TextoRetirado texto={c.original} />}
+      {!sinCorregido && <TextoVigente texto={c.corrected} />}
+    </>
+  )
+}
+
 export function BitacoraCorrecciones({ correcciones }) {
   if (!correcciones?.length) return null
   const enmendadas = correcciones.filter((c) => c.reasonAmendments?.length > 0).length
+  const conGrupoRetenido = correcciones.some((c) => c.grupoRetenido)
   return (
     <details
       style={{
@@ -122,20 +183,12 @@ export function BitacoraCorrecciones({ correcciones }) {
                 </span>
                 .
               </div>
+            ) : c.grupoRetenido ? (
+              <FilaGrupoRetenido c={c} />
             ) : (
               <>
-                <div style={{ color: 'var(--ink50)' }}>
-                  <span className="mono" style={rotulo}>
-                    {ROTULO_TEXTO_RETIRADO}:{' '}
-                  </span>
-                  <del>{c.original}</del>
-                </div>
-                <div style={{ color: 'var(--ink)', marginTop: 1 }}>
-                  <span className="mono" style={rotulo}>
-                    {ROTULO_TEXTO_VIGENTE}:{' '}
-                  </span>
-                  {c.corrected}
-                </div>
+                <TextoRetirado texto={c.original} />
+                <TextoVigente texto={c.corrected} />
               </>
             )}
             <div
@@ -165,6 +218,16 @@ export function BitacoraCorrecciones({ correcciones }) {
           </li>
         ))}
       </ol>
+      {conGrupoRetenido && (
+        <p style={{ margin: '8px 0 0', fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
+          Las versiones que nombraban a un grupo de un solo escaño siguen en el repositorio público
+          del proyecto: esta página deja de enseñarlas, no las retira.{' '}
+          <a href="/metodologia#bitacora-escano-unico" style={{ color: 'var(--civic)' }}>
+            Por qué, en la metodología
+          </a>
+          .
+        </p>
+      )}
     </details>
   )
 }
