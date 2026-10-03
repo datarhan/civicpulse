@@ -34,6 +34,7 @@
 import {
   CLASE_DE_PASADA,
   corpusReales,
+  desenlaceDeCotejo,
   esCorpus,
   esMarcaDePasada,
   esResumenSinRegistro,
@@ -100,11 +101,6 @@ function pasadasDe(v) {
   )
 }
 
-/** Ni canal, ni pasada declarada, ni nada en `checkedAgainst`. */
-function nadaAnotado(v) {
-  return !v?.source && lista(v?.derivedBy).length === 0 && lista(v?.checkedAgainst).length === 0
-}
-
 /**
  * «Determinista» por lista blanca: sólo corpus declarados en `checkedAgainst`,
  * y ninguna pasada en ningún sitio, declarada o no. Una pasada que nadie ha
@@ -163,14 +159,18 @@ export function etiquetaVerificador(v) {
  *     CONTRATO; «ninguna» debajo contradiría la propia tarjeta. Regla nº3 otra
  *     vez: el hueco no es un cero.
  *
+ * Las tres salen de `desenlaceDeCotejo`, que es también la regla del recuento
+ * de encima: el reparto de /declaraciones contaba esas filas como «sin corpus
+ * que consultar» mientras su tarjeta decía «no constan» (2026-09-29).
+ *
  * @param {{ checkedAgainst?: unknown[] | null, derivedBy?: unknown[] | null,
  *   source?: string } | null | undefined} v  la verificación servida, entera.
  * @returns {string} los corpus separados por « · », o una de las dos frases.
  */
 export function fuentesComprobadas(v) {
-  const corpus = corpusReales(v?.checkedAgainst)
-  if (corpus.length > 0) return corpus.join(' · ')
-  return nadaAnotado(v) ? 'ninguna' : 'no constan'
+  const desenlace = desenlaceDeCotejo(v)
+  if (desenlace === 'con-corpus') return corpusReales(v?.checkedAgainst).join(' · ')
+  return desenlace === 'sin-corpus' ? 'ninguna' : 'no constan'
 }
 
 /**

@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { readFileSync, readdirSync } from 'node:fs'
 import { resolve } from 'node:path'
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { installFetchMock } from './setup/mockFetch'
 import { ClaimLedger } from '../src/components/ClaimLedger'
@@ -10,7 +10,11 @@ import { CORPUS_IDS, PASADAS } from '../src/scraper/claim-verdicts'
 import { TRINQUETE } from '../src/scraper/trinquete'
 import { verifyClaimWithNli } from '../src/scraper/claim-verifier-nli'
 import { verifyClaimWithEngine } from '../src/scraper/claim-verifier-engine'
-import { applyOverlayEntries, mergeVerified } from '../src/scraper/verified-merge'
+import {
+  applyOverlayEntries,
+  mergeVerified,
+  verificacionDeBajada,
+} from '../src/scraper/verified-merge'
 import { gateItemsForPublic } from '../src/scraper/claim-public-gate'
 import { entradaDelMotor, sugerenciaDelAnclaje } from '../src/scraper/entrada-de-pasada'
 import { rechazoDeFirma } from '../src/scraper/firma-de-persona'
@@ -371,4 +375,103 @@ describe('las filas servidas hoy siguen diciendo lo que decían', () => {
       }
     })
   }
+})
+
+/**
+ * El recuento de /declaraciones dice lo mismo que la tarjeta.
+ *
+ * La línea «Fuentes comprobadas» ya distinguía «ninguna» de «no constan», pero
+ * el reparto de «sin datos» de la cabecera partía en dos: una retractación del
+ * motor o una bajada de curador —que sustituyen la lista por su marca— salía
+ * entre las que no tenían «corpus que consultar», justo encima de una tarjeta
+ * que decía «no constan». Las cinco filas llegan por el camino real, y las del
+ * motor en las dos formas: la que escribe hoy (`derivedBy`) y la de las
+ * entradas ya publicadas (marca en `checkedAgainst`).
+ */
+describe('/declaraciones · el reparto de «sin datos» es el de las tarjetas', () => {
+  /** Lo que publica una bajada de curador, por el mismo camino que la CLI. */
+  function bajadaDeCurador() {
+    const motivo = 'El contrato citado no es el de la obra que la cita afirma.'
+    const overlay = applyOverlayEntries(
+      OVERLAY_VACIO,
+      [
+        {
+          claimId: CLAIM.id,
+          verification: verificacionDeBajada(CLAIM.id, BASE_PARCIAL, 'sin-datos', motivo),
+          source: 'curator-downgrade',
+          reason: motivo,
+          editor: 'curador',
+        },
+      ],
+      STAMP,
+      new Map([[CLAIM.id, BASE_PARCIAL.verdict]]),
+    )
+    return servir(BASE_PARCIAL, overlay)
+  }
+
+  /** Cada fila con su propio id, que la página usa de clave. */
+  const conId = (it, n) => ({ ...it, claim: { ...it.claim, id: `${CLAIM.id}-${n}` } })
+
+  async function pintarDeclaraciones() {
+    const items = [
+      servir({ ...BASE_SIN_DATOS, checkedAgainst: [] }, OVERLAY_VACIO),
+      servir(BASE_SIN_DATOS, OVERLAY_VACIO),
+      await retractacionMotor({ pisada: false }),
+      await retractacionMotor({ pisada: true }),
+      bajadaDeCurador(),
+    ].map(conId)
+    // Control: la tarjeta de cada una dice lo que el recuento tiene que repetir.
+    const lineas = items.map((it) => {
+      const { unmount } = pintarLedger(it)
+      const f = fuentes()
+      unmount()
+      return f
+    })
+    expect(lineas).toEqual([
+      'ninguna',
+      'tenders · tenders-ted · bdns · budget',
+      'no constan',
+      'no constan',
+      'no constan',
+    ])
+    installFetchMock({
+      '/data/pleno-claims/index.json': {
+        plenos: [{ plenoId: 'p1', plenoDate: CLAIM.plenoDate, chunkPath: 'pleno-claims/p1.json' }],
+        totals: { items: items.length, byVerdict: { 'sin-datos': items.length } },
+      },
+      '/data/pleno-claims/p1.json': { items },
+      '/data/plenos.json': { items: [] },
+    })
+    render(
+      <MemoryRouter>
+        <Declaraciones />
+      </MemoryRouter>,
+    )
+    return screen.findByText((_, e) => /^Por qué «sin datos»/.test(e?.textContent ?? ''), {
+      selector: 'p',
+    })
+  }
+
+  it('la línea de reparto separa lo que no consta de lo que no tenía corpus', async () => {
+    const reparto = (await pintarDeclaraciones()).textContent.replace(/\s+/g, ' ')
+    expect(reparto).toMatch(/\b1 comprobadas, no aparecen\b/)
+    expect(reparto).toMatch(/\b1 sin corpus que consultar\b/)
+    // Sin `\b` al final: sin la bandera `u`, «ó» no es un carácter de palabra.
+    expect(reparto).toMatch(/\b3 no consta qué se consultó/)
+  })
+
+  it('cada filtro deja exactamente las filas de su casilla', async () => {
+    await pintarDeclaraciones()
+    for (const [rotulo, n] of [
+      [/^No consta qué se consultó/, 3],
+      [/^Sin corpus que consultar/, 1],
+      [/^Comprobada, no aparece/, 1],
+    ]) {
+      fireEvent.click(screen.getByRole('button', { name: rotulo }))
+      expect(
+        await screen.findByText(new RegExp(`^${n} declaraciones coinciden`)),
+        String(rotulo),
+      ).toBeTruthy()
+    }
+  })
 })

@@ -1319,13 +1319,25 @@ export default function Metodologia() {
                   repetía en cada sin-datos con una frase fija que nombraba
                   contratos, BDNS y presupuesto aunque no se hubiera consultado
                   ninguno. 29-09-2026. */}
+              {/* Los recuentos contaban «sin corpus que consultar» las filas
+                  cuya lista había sustituido una pasada, debajo de tarjetas que
+                  decían «no constan». 30-09-2026. */}
               <li>
                 <strong>sin-datos</strong> — ningún registro de las bases consultadas sostiene la
                 afirmación, o no había ninguna con la que cotejarla. Puede ser cierta, pero no está
                 atestiguada (muy frecuente: reconocimientos extrajudiciales, operaciones internas).
                 La explicación de su tarjeta nombra sólo las bases que constan como consultadas —las
                 mismas que su línea «Fuentes comprobadas»— y, cuando no consta ninguna, no dice que
-                se buscara.
+                se buscara. Los recuentos de <code>/declaraciones</code>, <code>/plenos</code> y{' '}
+                <code>/laboratorio/cobertura</code> las reparten en tres, con la misma regla que esa
+                línea: <strong>comprobadas sin hallar nada</strong>, porque consta alguna base
+                consultada; <strong>sin corpus que consultar</strong>, porque no hay nada anotado
+                («ninguna»); y aquellas de las que <strong>no consta qué se consultó</strong> («no
+                constan»), porque una revisión posterior —del motor de veredictos o de un curador—
+                rehízo el veredicto y dejó su marca en lugar de la lista. Éstas no se cuentan como
+                «sin corpus»: el motor juzgó las suyas sobre contratos o subvenciones candidatos, y
+                el curador, sobre la evidencia que corregía; que no conste cuáles no quiere decir
+                que no hubiera con qué.
               </li>
               <li>
                 <strong>promesa-repetida</strong> — la promesa coincide con una ya documentada en el

@@ -1,13 +1,14 @@
 /**
  * Lo responsivo y lo interactivo del índice de plenos, en una hoja de verdad.
  *
- * Regla de la casa: el prop `style` no puede llevar media queries ni
- * pseudo-clases, y aquí hacen falta las dos. La tabla de sesiones tiene siete
- * columnas en escritorio y se convierte en fichas apiladas por debajo de
- * 720px; los chips de filtro necesitan :hover y :focus-visible; y las filas
- * marcan el paso al pasar por encima.
+ * Regla de la casa: el prop `style` no puede llevar media queries, consultas
+ * de contenedor ni pseudo-clases, y aquí hacen falta las tres. La tabla de
+ * sesiones tiene siete columnas cuando mide 900px o más y se convierte en
+ * fichas apiladas por debajo —lo decide el ancho de la tabla, no el de la
+ * ventana: véase su bloque—; los chips de filtro necesitan :hover y
+ * :focus-visible; y las filas marcan el paso al pasar por encima.
  *
- * A 375px la tabla NO puede scrollear la página: mobile.spec.ts mide
+ * Una tabla estrecha NO puede scrollear la página: mobile.spec.ts mide
  * scrollWidth - clientWidth === 0 sobre el DOCUMENTO, así que un overflow-x en
  * el contenedor no bastaría si la rejilla siguiera midiendo 900px por dentro.
  * Por eso las celdas pasan a bloque y cada fila se lee como una ficha, con su
@@ -29,12 +30,40 @@ export const estiloPlenos = `
 
 /* ── La tabla de sesiones ─────────────────────────────────────────────── */
 
+/* La tabla o las fichas las decide el ancho de la TABLA, no el de la ventana.
+   Decidía un @media a 720 px, y por encima de 720 aparece la barra lateral: a
+   721 px de ventana la tabla mide 439 y sus siete columnas piden 844, así que
+   cada fila se salía de su caja —405 px— de 721 a 1100 px de ventana, escondida
+   en el scroll horizontal de la tarjeta (medido el 30-09-2026 sobre la build de
+   producción). Ningún corte de ventana describe a la vez el teléfono y la
+   columna con barra lateral; el ancho de la tabla, sí.
+
+   Y tres columnas se ensanchan, porque sus pastillas no cabían ni en la tabla
+   de escritorio. Medidas con su relleno y su borde, la mayor de todas las
+   filas, con la densidad de serie y con la amplia, en castellano y en
+   valencià:
+
+     tipo        «Extraordinario»    124,8 · 132,8 px   116 → 144
+     votaciones  «sin transcribir»   113   · 120   px   112 → 128
+     hallazgos   «per extraure»       93,2 ·  98,8 px   104 → 108
+
+   «sin transcribir» ya pasaba 1 px de su columna con la densidad de serie, y
+   «Extraordinario» 17 con la amplia. Cada columna deja ahora al menos 8 px
+   sobre su pastilla más ancha: la Linux de la CI pinta el texto más ancho que
+   macOS.
+
+   La tabla pide 128 + 144 + 140 + 116 + 128 + 108 + 20 = 784 px de pistas, más
+   6 huecos de 12 y 18 + 18 de relleno de fila: 892. Por debajo de 900 de
+   tabla, las fichas. Lo recorre, de 721 a 1100 px de ventana, el bloque
+   «Rejillas con la barra lateral» de tests/e2e/mobile.spec.ts. */
+.cp-plenos-marco { container: plenos-tabla / inline-size; }
+
 .cp-plenos-tabla { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 
 .cp-plenos-fila,
 .cp-plenos-cabecera {
   display: grid;
-  grid-template-columns: 128px 116px minmax(140px, 1fr) 116px 112px 104px 20px;
+  grid-template-columns: 128px 144px minmax(140px, 1fr) 116px 128px 108px 20px;
   gap: 12px;
   align-items: center;
 }
@@ -126,6 +155,13 @@ export const estiloPlenos = `
 }
 
 @media (max-width: 720px) {
+  .cp-plenos-area { grid-template-columns: minmax(0, 1fr) 34px; }
+  .cp-plenos-area > .cp-plenos-area-barra { grid-column: 1 / -1; grid-row: 2; }
+}
+
+/* ── Las fichas: la tabla, cuando no cabe (ver arriba) ────────────────── */
+
+@container plenos-tabla (max-width: 899px) {
   /* La cabecera de columnas desaparece: cada celda se rotula sola. */
   .cp-plenos-cabecera { display: none; }
 
@@ -174,8 +210,5 @@ export const estiloPlenos = `
 
   /* La flecha de «entrar» no aporta nada cuando la fila entera es la ficha. */
   .cp-plenos-flecha { display: none; }
-
-  .cp-plenos-area { grid-template-columns: minmax(0, 1fr) 34px; }
-  .cp-plenos-area > .cp-plenos-area-barra { grid-column: 1 / -1; grid-row: 2; }
 }
 `
