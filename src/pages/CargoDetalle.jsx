@@ -871,30 +871,27 @@ export default function CargoDetalle() {
         </div>
       </div>
 
-      {/* Stats strip */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
-          gap: 10,
-          marginBottom: 24,
-        }}
-      >
-        {/* La cifra junto a la cabecera cuenta lo que la cabecera nombra: las áreas
+      {/* Stats strip. La rejilla es la de las cifras de /hallazgos, `.cp-cifras`
+          (index.css): a 320 px, cuatro columnas fijas dejaban «PENDIENTES» en
+          una caja de 32 px, y el rótulo se salía 40. */}
+      <div className="cp-cifras-marco" style={{ marginBottom: 24 }}>
+        <div className="cp-cifras">
+          {/* La cifra junto a la cabecera cuenta lo que la cabecera nombra: las áreas
             delegadas. Contaba las fichas de /departamentos a las que llegan esos
             nombres, que pueden fundirse (dos nombres, una ficha) o partirse, y
             «Concejalías 3» junto a cuatro nombres no se explicaba. */}
-        <MiniStat
-          label={t('cargos.detalle.stat.areasDelegadas')}
-          value={official.portfolios?.length ?? 0}
-        />
-        <MiniStat label={t('cargos.detalle.stat.partyPromises')} value={partyPromises.length} />
-        <MiniStat label={t('cargos.detalle.stat.agendaItems')} value={agendaItems.length} />
-        <MiniStat
-          label={t('cargos.detalle.stat.quejas')}
-          value={quejaStats.medible ? quejaStats.pendientes : '—'}
-          tone={quejaStats.medible && quejaStats.silencios > 0 ? 'crit' : undefined}
-        />
+          <MiniStat
+            label={t('cargos.detalle.stat.areasDelegadas')}
+            value={official.portfolios?.length ?? 0}
+          />
+          <MiniStat label={t('cargos.detalle.stat.partyPromises')} value={partyPromises.length} />
+          <MiniStat label={t('cargos.detalle.stat.agendaItems')} value={agendaItems.length} />
+          <MiniStat
+            label={t('cargos.detalle.stat.quejas')}
+            value={quejaStats.medible ? quejaStats.pendientes : '—'}
+            tone={quejaStats.medible && quejaStats.silencios > 0 ? 'crit' : undefined}
+          />
+        </div>
       </div>
 
       <FichaOficial official={official} roster={officialsList} />

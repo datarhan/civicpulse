@@ -1091,37 +1091,43 @@ body.cp-kiosk .cp-live-container {
   min-width: 0;
 }
 
-/* /hallazgos — las cuatro cifras de cabecera: total, críticos, relevantes e
-   informativos. El mismo defecto que la tira de resumen de /plenos/:id
-   (`.cp-pleno-resumen`, más abajo), y el mismo arreglo. Eran cuatro columnas
-   de `minmax(0, 1fr)` a cualquier ancho, y un rótulo no se parte:
-   «INFORMATIVOS» pide una caja de 113,1 px, y a 375 px de pantalla tenía 72
-   —se pintaba 41 px fuera de ella, sobre la de al lado—.
-   Pasaba de 320 a unos 780 px, barra lateral incluida, y a 320 y 360 ensanchaba
-   la página (334 y 364 px). Ninguna guarda de rejillas lo veía: las cajas no se
-   salían de la rejilla, se salía el texto de las cajas.
+/* Las tiras de cuatro cifras con rótulo en mono: las de cabecera de /hallazgos
+   (total, críticos, relevantes, informativos) y la de la ficha de cada cargo
+   (áreas delegadas, promesas del grupo, puntos en pleno, quejas pendientes).
+   El mismo defecto que la tira de resumen de /plenos/:id (`.cp-pleno-resumen`,
+   más abajo), y el mismo arreglo. Eran cuatro columnas de `minmax(0, 1fr)` a
+   cualquier ancho, y un rótulo no se parte: «INFORMATIVOS» pide una caja de
+   113,1 px y a 375 px de pantalla tenía 72 —se pintaba 41 px fuera de ella,
+   sobre la de al lado—; «PENDIENTES», 98,6 en una de 58,5 a 320. Pasaba de 320
+   a unos 780 px, barra lateral incluida, y a 320 ensanchaba la página: 334 px
+   en /hallazgos, y en las fichas de cargo, 323 en la CI, que pinta el texto
+   más ancho que macOS —aquí acababa 0,9 px antes del borde—. Ninguna guarda de
+   rejillas lo veía: las cajas no se salían de la rejilla, se salía el texto de
+   las cajas.
 
-   Cortes MEDIDOS el 30-09-2026 con la densidad amplia, el peor caso (raíz de
-   15 px: la caja más exigente pide 119,3 px): cuatro piden 4 × 119,3 + 30 =
-   507 px de tira, y dos, 248,6. De ahí 540 y 250, con margen. A 320 px de
-   pantalla la tira mide 264: dos columnas. Pistas `1fr` y no `minmax(0, 1fr)`:
-   si un rótulo no cupiera, que crezca la pista y lo vea la guarda. */
-.cp-hallazgos-resumen {
+   Cortes MEDIDOS (30-09 y 03-10-2026) con la densidad amplia, el peor caso:
+   raíz de 15 px, texto un 7 % más ancho, más que lo que la CI le añade. La caja
+   más exigente es la de «INFORMATIVOS», 119,3 px; la ficha de un cargo pide
+   103,8 en castellano y 96 en valenciano. Cuatro piden 4 × 119,3 + 30 = 507 px
+   de tira, y dos, 248,6: de ahí 540 y 250. A 320 px de pantalla la tira mide
+   264, dos columnas, y a la cifra más exigente le sobran 7,7 px aun en densidad
+   amplia. Pistas `1fr` y no `minmax(0, 1fr)`: si un rótulo no cupiera, que
+   crezca la pista y lo vea la guarda. El margen de debajo lo pone cada página. */
+.cp-cifras-marco {
   container-type: inline-size;
-  margin-bottom: 18px;
 }
-.cp-hallazgos-cifras {
+.cp-cifras {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
 }
 @container (max-width: 540px) {
-  .cp-hallazgos-cifras {
+  .cp-cifras {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 @container (max-width: 250px) {
-  .cp-hallazgos-cifras {
+  .cp-cifras {
     grid-template-columns: 1fr;
   }
 }

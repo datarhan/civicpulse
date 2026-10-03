@@ -654,11 +654,11 @@ export default function Hallazgos() {
         </Card>
       )}
 
-      {/* Summary stats. La rejilla vive en `.cp-hallazgos-cifras` (index.css):
-          elige dos o cuatro columnas por el ancho de la TIRA, y eso es una
-          consulta de contenedor, que el `style` no admite. */}
-      <div className="cp-hallazgos-resumen">
-        <div className="cp-hallazgos-cifras">
+      {/* Summary stats. La rejilla vive en `.cp-cifras` (index.css): elige dos
+          o cuatro columnas por el ancho de la TIRA, y eso es una consulta de
+          contenedor, que el `style` no admite. */}
+      <div className="cp-cifras-marco" style={{ marginBottom: 18 }}>
+        <div className="cp-cifras">
           <MiniStat label="Total hallazgos" value={items.length} />
           <MiniStat
             label="Críticos"
