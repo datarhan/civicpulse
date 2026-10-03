@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-30T10:51:25.866Z",
+  "generatedAt": "2026-10-03T10:15:40.046Z",
   "source": {
     "platform": "SEPE Muniacteco 20-45",
     "pattern": "https://sepe.es/SiteSepe/…/municipios_20_45/<YEAR>/<MES>_<YEAR>/Muniacteco_20-45_COM.VALENCIANA.xls"
@@ -8,14 +8,6 @@
   "latestPeriod": "2026-08",
   "latestTotal": 1171,
   "series": [
-    {
-      "municipio": "Riba-roja de Túria",
-      "period": "2024-10",
-      "total": 1268,
-      "men": 495,
-      "women": 773,
-      "source": "SEPE Muniacteco 20-45"
-    },
     {
       "municipio": "Riba-roja de Túria",
       "period": "2024-11",

@@ -174,6 +174,10 @@ export function resumenPlenos({ plenos, agendas, manifest, votes, findings } = {
     contradicho: t.byVerdict?.contradicho ?? 0,
     sinCorpus: t.sinDatosPorque?.sinCorpus ?? 0,
     comprobadoSinHallar: t.sinDatosPorque?.comprobadoSinHallar ?? 0,
+    // La tercera casilla del manifiesto: una pasada sustituyó la lista y no
+    // consta qué se consultó. Fundida en `sinCorpus`, la tarjeta decía que no
+    // había dónde buscar de filas en las que el motor sí buscó.
+    noConsta: t.sinDatosPorque?.noConsta ?? 0,
   }
 
   const vs = votes?.stats ?? {}

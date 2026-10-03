@@ -245,7 +245,7 @@ export function TablaSesiones({ filas, filtros, porAnio, loading }) {
         </div>
       </div>
 
-      <Card pad={false}>
+      <Card pad={false} className="cp-plenos-marco">
         <div className="cp-plenos-tabla">
           <div
             className="cp-plenos-cabecera"

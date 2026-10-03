@@ -7,7 +7,7 @@
  * (scripts/auto-curate-promises.ts) supplies grounded candidates and
  * persists the result.
  */
-import type { Status } from './promises'
+import { advancesStatus, type Status } from './promises'
 import { stripDiacritics } from './normalize'
 import type { DraftNewPromise, DraftStatusChange, DraftDecision, Grounding } from './promise-draft'
 
@@ -143,21 +143,6 @@ export function statusTransitionKey(promiseId: string, proposedStatus: string): 
   return `${promiseId}::${proposedStatus}`
 }
 
-/** Fulfilment ordinal for the forward-only guard: an auto status change may only
- *  ADVANCE a promise, never regress it. documentada/en-verificacion are the
- *  baseline (0); en-progreso(1) < parcial(2) < cumplida(3). The accusatory /
- *  terminal statuses map to 0 so a machine change can never step "down" onto or
- *  off them (they are curator-only anyway). */
-const PROGRESS_ORDER: Record<Status, number> = {
-  documentada: 0,
-  'en-verificacion': 0,
-  'en-progreso': 1,
-  parcial: 2,
-  cumplida: 3,
-  'no-ejecutada': 0,
-  inviable: 0,
-}
-
 /** Mirror of selectPromiseDrafts for status-change drafts. */
 export function selectStatusDrafts(inp: SelectStatusInput): SelectStatusOutput {
   const out: SelectStatusOutput = { autoPublish: [], queue: [], skipped: [] }
@@ -188,7 +173,7 @@ export function selectStatusDrafts(inp: SelectStatusInput): SelectStatusOutput {
     }
     // Forward-only: never auto-regress a promise (e.g. cumplida → en-progreso).
     // Curator corrections go through the apply CLI directly, not this selector.
-    if (PROGRESS_ORDER[c.proposedStatus] <= PROGRESS_ORDER[c.currentStatus]) {
+    if (!advancesStatus(c.currentStatus, c.proposedStatus)) {
       out.skipped.push({ draftId: c.draftId, reason: 'not-forward' })
       continue
     }

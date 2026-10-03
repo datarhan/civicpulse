@@ -1,6 +1,6 @@
 {
   "plenoId": "1sqj7is",
-  "generatedAt": "2026-09-16T07:49:26.922Z",
+  "generatedAt": "2026-10-01T07:49:22.615Z",
   "model": "gemini-3.5-flash",
   "promptVersion": "speaker-map-v2",
   "chunkSeconds": 600,
@@ -13612,6 +13612,642 @@
       "end": 13659,
       "speaker": "c22/SPEAKER_06",
       "text": "Bé. Bueno, la la la urgència o la urgència de de este de esta proposta és la rescissió definitiva del contracte del servici de recollida de residus sòlids urbans, po i voluminosos, per l'incompliment grave en la prestació de serveis estipulats en el contracte."
+    },
+    {
+      "start": 1800,
+      "end": 1803,
+      "speaker": "c03/SPEAKER_00",
+      "text": "El Partido Socialista no sé lo que tiene que hacer. El Govern trabaja para corregir estas cosas."
+    },
+    {
+      "start": 1803,
+      "end": 1808,
+      "speaker": "c03/SPEAKER_00",
+      "text": "Sabéis que estamos en los sistemas dinámicos de adquisición, de ahí puedo traer una instrucción,"
+    },
+    {
+      "start": 1808,
+      "end": 1812.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "y muchas de ellas son gastos recurrentes que antes la ley iba por en una otra línea y ahora va en otra línea."
+    },
+    {
+      "start": 1812.9,
+      "end": 1818,
+      "speaker": "c03/SPEAKER_00",
+      "text": "Esos sí que se hacen RC en muchos casos, pero no está el contrato, efectivamente."
+    },
+    {
+      "start": 1818,
+      "end": 1822.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "Sí que se tiene la retención y todo, pero falta utilizar el sistema dinámico,"
+    },
+    {
+      "start": 1822.9,
+      "end": 1825.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "dinámicos de adquisición para estos tipos de contratos."
+    },
+    {
+      "start": 1825.9,
+      "end": 1829.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "Y en ello estamos, corrigiéndolos. Estamos hablando de un presupuesto de más de cuarenta millones de euros"
+    },
+    {
+      "start": 1829.9,
+      "end": 1834.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "y estamos hablando de apenas el cero coma cinco por cien en esta situación."
+    },
+    {
+      "start": 1834.9,
+      "end": 1839.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "Creo que hemos corregido bastante en los últimos años."
+    },
+    {
+      "start": 1839.9,
+      "end": 1844.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "Y a ninguno le agrada mirar por el espejo retrovisor, que si contaremos, y eso que no estaba la ley de contratos"
+    },
+    {
+      "start": 1844.9,
+      "end": 1849.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "actual, que es más restrictiva. Pero en la otra, eso no lleva a que efectivamente hay que ir corrigiendo"
+    },
+    {
+      "start": 1849.9,
+      "end": 1854.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "estas cuestiones. Pero estas cuestiones es complicado corregirlas del todo,"
+    },
+    {
+      "start": 1854.9,
+      "end": 1859.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "porque estamos en un pueblo, estamos en un en una gestión viva y siempre vas a tener alguna cuestión."
+    },
+    {
+      "start": 1859.9,
+      "end": 1864.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "Lo importante es que vayan firmadas por el regidor y por el técnico"
+    },
+    {
+      "start": 1864.9,
+      "end": 1869.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "y como sí que está así en el propio en el propio informe, que siguen precios de mercado."
+    },
+    {
+      "start": 1869.9,
+      "end": 1874.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "Ahí ninguno podrá decir nada, todo está establecido en precios de mercado y está firmado, en algunas ocasiones,"
+    },
+    {
+      "start": 1874.9,
+      "end": 1879.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "y por no retrasarlo, está firmado solo por el regidor, pero muchas veces se da el caso de que el técnico está de vacaciones"
+    },
+    {
+      "start": 1879.9,
+      "end": 1884.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "y no está para firmar el el servicio. Y en los otros casos, las facturas allegan en el en el año dos mil veintiséis,"
+    },
+    {
+      "start": 1884.9,
+      "end": 1889.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "podréis ver, sobre todo por el segundo expediente de facturas, son todas del dos mil veintiséis."
+    },
+    {
+      "start": 1889.9,
+      "end": 1894.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "Tenéis que ver también cuándo se firman esas facturas, porque a veces si ha llegado a tiempo antes de,"
+    },
+    {
+      "start": 1894.9,
+      "end": 1899.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "hay una instrucción que todos los años hacemos desde desde intervención para que antes del día diez"
+    },
+    {
+      "start": 1899.9,
+      "end": 1904.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "de diciembre se intente hacer todas las facturas, pero claro, si el gasto es a final del ejercicio,"
+    },
+    {
+      "start": 1904.9,
+      "end": 1909.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "es en Navidad, pues difícilmente se podrá hacer eso. Entonces, que sí,"
+    },
+    {
+      "start": 1909.9,
+      "end": 1914.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "que hay que ir y continuar corrigiendo estas cosas, pero que vamos, que dentro de lo que cabe,"
+    },
+    {
+      "start": 1914.9,
+      "end": 1919.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "se hacen correcciones y siempre fijándose en que el servicio se ha dado correctamente y que vaya firmado por el técnico y por el regidor de la área."
+    },
+    {
+      "start": 1919.9,
+      "end": 1921.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "Gracias."
+    },
+    {
+      "start": 1921.9,
+      "end": 1923.9,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Més paraules. Salva."
+    },
+    {
+      "start": 1923.9,
+      "end": 1925.9,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Sí, gràcies. En el el nostre grup,"
+    },
+    {
+      "start": 1925.9,
+      "end": 1930.9,
+      "speaker": "c03/SPEAKER_02",
+      "text": "en cap moment, eh, fiquem en dubte que el servici no s'haja fet"
+    },
+    {
+      "start": 1930.9,
+      "end": 1935.9,
+      "speaker": "c03/SPEAKER_02",
+      "text": "i, eh, no s'haja, eh, contractat a preu de mercat. És més,"
+    },
+    {
+      "start": 1935.9,
+      "end": 1940.9,
+      "speaker": "c03/SPEAKER_02",
+      "text": "per estos motius, eh, el nostre grup anem a votar a favor de que es paguen estes factures,"
+    },
+    {
+      "start": 1940.9,
+      "end": 1945.9,
+      "speaker": "c03/SPEAKER_02",
+      "text": "vull dir, no no anem a bloquejar el pagament. Ara,"
+    },
+    {
+      "start": 1945.9,
+      "end": 1950.9,
+      "speaker": "c03/SPEAKER_02",
+      "text": "l'argumentari per a mi es queda un poc xustet."
+    },
+    {
+      "start": 1950.9,
+      "end": 1955.9,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Vull dir que vosté em diga, \"és que açò és un poble i és un pressupost viu\","
+    },
+    {
+      "start": 1955.9,
+      "end": 1960.9,
+      "speaker": "c03/SPEAKER_02",
+      "text": "clar, com tots. Que ixen coses extres, com tots."
+    },
+    {
+      "start": 1960.9,
+      "end": 1965.9,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Però el lo extraordinari és que tinguem un ple"
+    },
+    {
+      "start": 1965.9,
+      "end": 1970.9,
+      "speaker": "c03/SPEAKER_02",
+      "text": "sense factures extrajudicials. Vosté m'ha parlat el el percentatge"
+    },
+    {
+      "start": 1970.9,
+      "end": 1975.9,
+      "speaker": "c03/SPEAKER_02",
+      "text": "de estes factures extrajudicials respecte al pressupost, però si juntem totes les extrajudicials,"
+    },
+    {
+      "start": 1975.9,
+      "end": 1980.9,
+      "speaker": "c03/SPEAKER_02",
+      "text": "em sembla que que cada u dels regidors, baix el nostre punt de vista, tindria que fer"
+    },
+    {
+      "start": 1980.9,
+      "end": 1985.9,
+      "speaker": "c03/SPEAKER_02",
+      "text": "una reflexió, vore de quins diners disposa, vore de quines partides i primer tindre clar"
+    },
+    {
+      "start": 1985.9,
+      "end": 1990.9,
+      "speaker": "c03/SPEAKER_02",
+      "text": "d'on se va a pagar i després tindre el gasto, perquè quan els seus regidors del Govern i del Partit Socialista, que coincidixen,"
+    },
+    {
+      "start": 1990.9,
+      "end": 1995.9,
+      "speaker": "c03/SPEAKER_02",
+      "text": "gasten, després passen les factures i arriben als departaments de pago i ací venen els problemes."
+    },
+    {
+      "start": 1995.9,
+      "end": 2000.9,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Per lo tant, em sembla que els seus regidors tindrien que saber lo que poden gastar, lo que no poden gastar"
+    },
+    {
+      "start": 2000.9,
+      "end": 2005.9,
+      "speaker": "c03/SPEAKER_02",
+      "text": "i com deuen de gastar-se-ho. Jo crec que això és de primer de de de regidor de Govern."
+    },
+    {
+      "start": 2005.9,
+      "end": 2010.9,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Dir, \"què me puc gastar i com m'ho puc gastar?\". Perquè ací no neguem que no es facen les activitats o que no es paguen,"
+    },
+    {
+      "start": 2010.9,
+      "end": 2015.9,
+      "speaker": "c03/SPEAKER_02",
+      "text": "però clar, si de manera reiterada un regidor està contractant les coses"
+    },
+    {
+      "start": 2015.9,
+      "end": 2020.9,
+      "speaker": "c03/SPEAKER_02",
+      "text": "de forma incorrecta, ningú li diu, \"mira, eh,"
+    },
+    {
+      "start": 2020.9,
+      "end": 2025.9,
+      "speaker": "c03/SPEAKER_02",
+      "text": "qui siga, per no per no dir noms, no faces això aixina, fes-ho de l'altra manera\"."
+    },
+    {
+      "start": 2025.9,
+      "end": 2030.9,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Vull dir, eixes mesures és lo que José Manuel, el portaveu d'Esquerra Unida,"
+    },
+    {
+      "start": 2030.9,
+      "end": 2035.9,
+      "speaker": "c03/SPEAKER_02",
+      "text": "i també nosaltres sol·licitem i que no hem sentit."
+    },
+    {
+      "start": 2035.9,
+      "end": 2040.9,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Vosté m'ha parlat d'ara del eixe de que ara parlarem."
+    },
+    {
+      "start": 2040.9,
+      "end": 2045.9,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Vull dir, per a mi no és vàlid que un tècnic estiga de vacances per a que no es firme una factura,"
+    },
+    {
+      "start": 2045.9,
+      "end": 2050.9,
+      "speaker": "c03/SPEAKER_02",
+      "text": "perquè n'hi han factures que tarden en pagar-se nou mesos o huitanta i pico dies, segons el període de mig de pago,"
+    },
+    {
+      "start": 2050.9,
+      "end": 2055.9,
+      "speaker": "c03/SPEAKER_02",
+      "text": "i jo crec que el tècnic no està huitanta dies de vacances."
+    },
+    {
+      "start": 2055.9,
+      "end": 2060.9,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Lo normal és dir, \"bueno, què tarda el tècnic? Una setmana? Que vinga i que ho firme\"."
+    },
+    {
+      "start": 2060.9,
+      "end": 2065.9,
+      "speaker": "c03/SPEAKER_02",
+      "text": "I no passar al pago una factura sense que firme un tècnic."
+    },
+    {
+      "start": 2065.9,
+      "end": 2070.9,
+      "speaker": "c03/SPEAKER_02",
+      "text": "Jo crec que és la lògica, per lo menos en el sector privat, no sé si en el sector públic o en este Ajuntament"
+    },
+    {
+      "start": 2070.9,
+      "end": 2075.9,
+      "speaker": "c03/SPEAKER_02",
+      "text": "funciona d'altra manera, però em sembla que que s'esperen una setmana a pagar una factura, molta pressa n'hi hauria per pagar la factura."
+    },
+    {
+      "start": 2075.9,
+      "end": 2080.9,
+      "speaker": "c03/SPEAKER_02",
+      "text": "No sé. Al final, lo que demanem són mesures, no sols paraules. Gràcies."
+    },
+    {
+      "start": 2080.9,
+      "end": 2082.9,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Més paraules. José."
+    },
+    {
+      "start": 2082.9,
+      "end": 2084.9,
+      "speaker": "c03/SPEAKER_03",
+      "text": "Gràcies."
+    },
+    {
+      "start": 2084.9,
+      "end": 2089.9,
+      "speaker": "c03/SPEAKER_03",
+      "text": "Jo simplement volia, eh, comentar que nosaltres al final de lo que estem parlant són de dades objectives"
+    },
+    {
+      "start": 2089.9,
+      "end": 2094.9,
+      "speaker": "c03/SPEAKER_03",
+      "text": "de d'informes tècnics que parlen que se fan accions sense crèdit,"
+    },
+    {
+      "start": 2094.9,
+      "end": 2099.9,
+      "speaker": "c03/SPEAKER_03",
+      "text": "sense partida pressupostària, o que s'ha finalitzat un contracte que continua, o inclús despeses"
+    },
+    {
+      "start": 2099.9,
+      "end": 2104.9,
+      "speaker": "c03/SPEAKER_03",
+      "text": "que no se justifiquen d'una manera correcta. Això és lo que se diu des dels informes. Aleshores,"
+    },
+    {
+      "start": 2104.9,
+      "end": 2109.9,
+      "speaker": "c03/SPEAKER_03",
+      "text": "pot ser un per un percentatge més alt o més baix, però també una de les funcions"
+    },
+    {
+      "start": 2109.9,
+      "end": 2114.9,
+      "speaker": "c03/SPEAKER_03",
+      "text": "de la oposició és fiscalitzar al Govern i en estes qüestions crec que és de responsabilitat"
+    },
+    {
+      "start": 2114.9,
+      "end": 2119.9,
+      "speaker": "c03/SPEAKER_03",
+      "text": "política plantejar estes qüestions perquè no són correctes i no són polítiques, són absolutament tècniques."
+    },
+    {
+      "start": 2119.9,
+      "end": 2124.9,
+      "speaker": "c03/SPEAKER_03",
+      "text": "Per tant, quan hi ha una cosa equivocada o un informe tècnic negatiu,"
+    },
+    {
+      "start": 2124.9,
+      "end": 2129.9,
+      "speaker": "c03/SPEAKER_03",
+      "text": "crec que és important plantejar el perquè i sobretot vore quina seria la solució per a poder"
+    },
+    {
+      "start": 2129.9,
+      "end": 2132.9,
+      "speaker": "c03/SPEAKER_03",
+      "text": "disminuir este problema. Gràcies."
+    },
+    {
+      "start": 2132.9,
+      "end": 2134.9,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Última intervenció, José."
+    },
+    {
+      "start": 2134.9,
+      "end": 2136.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "Sí, en efectivament,"
+    },
+    {
+      "start": 2136.9,
+      "end": 2141.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "en cap moment hem dit que no, que efectivament, açò passa, ho ha dit el regidor del Partit Popular,"
+    },
+    {
+      "start": 2141.9,
+      "end": 2146.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "en la gran majoria d'ajuntaments, si per no dir la en tots els ajuntaments"
+    },
+    {
+      "start": 2146.9,
+      "end": 2151.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "de este país, passa lo de les extrajudicials i és la fórmula que la llei ens marca per a poder liquidar estes factures."
+    },
+    {
+      "start": 2151.9,
+      "end": 2156.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "Que per cert, al Partit Popular li tinc que recordar que això de que no bloquege,"
+    },
+    {
+      "start": 2156.9,
+      "end": 2161.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "en contades ocasiones, eh, voten a favor de pagar a proveïdors, en contades ocasiones. Avui pareix que han despertat i pareix que avui van a van a votar a favor,"
+    },
+    {
+      "start": 2161.9,
+      "end": 2166.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "eh, però en contades ocasiones. I efectivament, i ho he dit,"
+    },
+    {
+      "start": 2166.9,
+      "end": 2171.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "nosaltres estem treballant per a que això se reduïsca i si vegem l'evolució dels últims anys,"
+    },
+    {
+      "start": 2171.9,
+      "end": 2176.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "l'evolució és que ha anat a menos. Sí, perfectes nadies som."
+    },
+    {
+      "start": 2176.9,
+      "end": 2181.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "Eh, i en ello estem, i l'any que ve, pues espere que n'hi hagen menos,"
+    },
+    {
+      "start": 2181.9,
+      "end": 2186.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "però sempre van a haver, sempre van a haver, perquè l'administració és aixina i i al final tens que fer una actuació, tens que fer una qüestió"
+    },
+    {
+      "start": 2186.9,
+      "end": 2191.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "i la tindràs que fer sempre, sempre en el principi de que eixa eixa acció,"
+    },
+    {
+      "start": 2191.9,
+      "end": 2196.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "eixa compra, eixe subministre estiga en preu de mercat i estiga, pues, avalat per el per el tècnic i el i el regidor de de l'àrea."
+    },
+    {
+      "start": 2196.9,
+      "end": 2201.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "Això és fonamental i això no n'hi ha que perdre i fer ruido per alguna part que ja mesclen coses de de eixe tema."
+    },
+    {
+      "start": 2201.9,
+      "end": 2206.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "Sempre tots els servicis que se presten ací estan adequats a preu de mercat i conformats per els tècnics i els els regidors de cada àrea."
+    },
+    {
+      "start": 2206.9,
+      "end": 2211.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "A partir d'ací, efectivament, sí, volem reduir-los, voldríem que no vindre al ple a dur estes les els expedients de de extrajudicial,"
+    },
+    {
+      "start": 2211.9,
+      "end": 2216.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "però ahí estan i tindran que liquidar eixos servicis que els proveïdors han pagat i que han realitzat i quant antes s'aprove açò, pues antes se liquidarà."
+    },
+    {
+      "start": 2216.9,
+      "end": 2218.9,
+      "speaker": "c03/SPEAKER_00",
+      "text": "Moltes gràcies."
+    },
+    {
+      "start": 2218.9,
+      "end": 2223.9,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Bueno, ahí sabeu que s'està debatent, si mirem l'execució pressupostària de dels ministeris on governa"
+    },
+    {
+      "start": 2223.9,
+      "end": 2228.9,
+      "speaker": "c03/SPEAKER_01",
+      "text": "el Partit Socialista de d'Espanya i de Esquerra Unida Podem,"
+    },
+    {
+      "start": 2228.9,
+      "end": 2233.9,
+      "speaker": "c03/SPEAKER_01",
+      "text": "veurem que les execucions són baixes, no? És a dir, que l'execució un pressupost s'aprova per a executar-lo"
+    },
+    {
+      "start": 2233.9,
+      "end": 2238.9,
+      "speaker": "c03/SPEAKER_01",
+      "text": "i s'aprova en ple i efectivament se deu de fer dins de la legalitat, no pot ser d'altra manera, val?"
+    },
+    {
+      "start": 2238.9,
+      "end": 2243.9,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Eh, si mirem l'execució pressupostària de la Generalitat Valenciana o de l'Ajuntament de València, veurem com els pressupostos que aproven,"
+    },
+    {
+      "start": 2243.9,
+      "end": 2248.9,
+      "speaker": "c03/SPEAKER_01",
+      "text": "moltes partides no arriben ni al setze per cien. Bueno, és veritat que nosaltres tenim una execució pressupostària alta,"
+    },
+    {
+      "start": 2248.9,
+      "end": 2253.9,
+      "speaker": "c03/SPEAKER_01",
+      "text": "dels ajuntaments que més alta té, i això significa que els regidors apreten les àrees"
+    },
+    {
+      "start": 2253.9,
+      "end": 2258.9,
+      "speaker": "c03/SPEAKER_01",
+      "text": "perquè efectivament s'execute el pressupost. Què passa? Com bé ha dit el regidor,"
+    },
+    {
+      "start": 2258.9,
+      "end": 2263.9,
+      "speaker": "c03/SPEAKER_01",
+      "text": "que nosaltres sí que hem planificat una reducció i vos podria fer-vos una comparativa que se'n vaigen als anys, eh, en darrere a vore quantes extrajudicials dúiem i quantes en duem enguany."
+    },
+    {
+      "start": 2263.9,
+      "end": 2268.9,
+      "speaker": "c03/SPEAKER_01",
+      "text": "I si se'n van a eixe historial, veuran com efectivament hem reduït les extrajudicials notablement."
+    },
+    {
+      "start": 2268.9,
+      "end": 2273.9,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Jo ho dic per la intervenció del Partit Popular, notablement. Això ningú ho ha dit."
+    },
+    {
+      "start": 2273.9,
+      "end": 2278.9,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Si vos si vostés hagueren fet el càlcul de quantes extrajudicials duia, no sols nosaltres, el Partit Popular també, que arribat a dur dos milions d'euros,"
+    },
+    {
+      "start": 2278.9,
+      "end": 2283.9,
+      "speaker": "c03/SPEAKER_01",
+      "text": "és a dir, estant en la oposició, extrajudicials. I nosaltres les hem aprovat, perquè hi havia que pagar als als proveïdors, es fan en desembre, final d'any."
+    },
+    {
+      "start": 2283.9,
+      "end": 2288.9,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Aleshores, jo crec que sí, eh, és veritat que tenen que millorar, no poden quedar-se contents, però també tenen que discutir,"
+    },
+    {
+      "start": 2288.9,
+      "end": 2293.9,
+      "speaker": "c03/SPEAKER_01",
+      "text": "eh, quan hi ha un debat polític, com ha dit els portaveu del PP, bueno, portaveu econòmic o la part econòmica, que és Salva, i d'Esquerra Unida, traslladar a la ciutadania la realitat."
+    },
+    {
+      "start": 2293.9,
+      "end": 2299,
+      "speaker": "c03/SPEAKER_01",
+      "text": "I la realitat és que en un pressupost de quaranta i pico milions..."
     }
   ],
   "rows": [
@@ -14252,32 +14888,32 @@
       "label": "c22/SPEAKER_06",
       "reason": "ambiguous",
       "detail": "heard \"José\" fits 6: José Luis Ramos March, José Ángel Hernández Carrizosa, José Manuel Vila Oltra, María José Pradas Ramo, José Luis Fernández Santamaría, José Manuel Gallardo Martínez"
+    },
+    {
+      "label": "c03/SPEAKER_00",
+      "reason": "unresolvable",
+      "detail": "heard \"regidor de Hacienda\" but the cited quote does not contain it"
+    },
+    {
+      "label": "c03/SPEAKER_01",
+      "reason": "relation-contradicted",
+      "detail": "turn-grant, but 121.9s is followed by SPEAKER_02"
+    },
+    {
+      "label": "c03/SPEAKER_02",
+      "reason": "relation-contradicted",
+      "detail": "reply, but 121.9s follows SPEAKER_00"
+    },
+    {
+      "label": "c03/SPEAKER_03",
+      "reason": "relation-contradicted",
+      "detail": "reply, but 280.9s follows SPEAKER_02"
     }
   ],
   "stats": {
     "chunksExpected": 29,
-    "chunksTranscribed": 22,
+    "chunksTranscribed": 23,
     "failedChunks": [
-      {
-        "chunk": 3,
-        "why": "covered 61% (floor 85%)",
-        "attempts": 2,
-        "givenUpUnder": {
-          "prompt": "speaker-map-v2",
-          "floor": 0.85,
-          "thinking": "low"
-        }
-      },
-      {
-        "chunk": 4,
-        "why": "covered 82% (floor 85%)",
-        "attempts": 2,
-        "givenUpUnder": {
-          "prompt": "speaker-map-v2",
-          "floor": 0.85,
-          "thinking": "low"
-        }
-      },
       {
         "chunk": 10,
         "why": "covered 79% (floor 85%)",
@@ -14327,19 +14963,29 @@
           "floor": 0.85,
           "thinking": "low"
         }
+      },
+      {
+        "chunk": 4,
+        "why": "covered 82% (floor 85%)",
+        "attempts": 3,
+        "givenUpUnder": {
+          "prompt": "speaker-map-v2",
+          "floor": 0.85,
+          "thinking": "low"
+        }
       }
     ],
-    "labelsSeen": 0,
+    "labelsSeen": 4,
     "rowsAccepted": 21,
-    "rowsRejected": 60,
+    "rowsRejected": 64,
     "rejectedBy": {
-      "unresolvable": 25,
-      "relation-contradicted": 17,
+      "unresolvable": 26,
+      "relation-contradicted": 20,
       "evidence-speaker-mismatch": 13,
       "ambiguous": 5
     },
-    "attemptedThisRun": 1,
-    "apiCalls": 3,
-    "coverage": 0.7611015564846326
+    "attemptedThisRun": 2,
+    "apiCalls": 4,
+    "coverage": 0.7970093619348474
   }
 }

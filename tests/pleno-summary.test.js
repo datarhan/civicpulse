@@ -96,7 +96,7 @@ describe('resumenPlenos', () => {
         items: 56,
         byVerdict: { 'sin-datos': 52, parcial: 3, verificado: 1 },
         retenidas: { acusacion_publica: 20 },
-        sinDatosPorque: { sinCorpus: 30, comprobadoSinHallar: 22 },
+        sinDatosPorque: { sinCorpus: 20, comprobadoSinHallar: 22, noConsta: 10 },
       },
     },
     votes: {
@@ -152,8 +152,11 @@ describe('resumenPlenos', () => {
       sinDatos: 52,
       parcial: 3,
       verificado: 1,
-      sinCorpus: 30,
+      // Las tres del manifiesto, sin fundir la tercera en «sin corpus»: de 10
+      // no consta qué se consultó, que no es que no hubiera dónde buscar.
+      sinCorpus: 20,
       comprobadoSinHallar: 22,
+      noConsta: 10,
       sesiones: 2,
     })
   })

@@ -96,6 +96,11 @@ test.describe('Reclasificaciones en el registro (/declaraciones)', () => {
  * segundo no dice nada sobre la declaración —dice algo sobre nosotros— y
  * publicarlos juntos hace que un hueco se lea como un cero.
  *
+ * Y hay una tercera: una pasada que rehízo el veredicto —el motor, un curador—
+ * sustituyó la lista de lo consultado por su marca. De ésas no consta qué se
+ * consultó, que no es lo mismo que no tener con qué; contarlas como «sin
+ * corpus» contradecía el «no constan» de su propia tarjeta.
+ *
  * Las cifras esperadas salen del manifiesto PUBLICADO, no escritas a mano: una
  * prueba que recita el número que debería salir puede seguir verde mientras la
  * página pinta otro.
@@ -103,34 +108,42 @@ test.describe('Reclasificaciones en el registro (/declaraciones)', () => {
 test.describe('Por qué «sin datos» (/declaraciones)', () => {
   const totals = JSON.parse(readFileSync('public/data/pleno-claims/index.json', 'utf8')).totals as {
     byVerdict: Record<string, number>
-    sinDatosPorque: { sinCorpus: number; comprobadoSinHallar: number }
+    sinDatosPorque: { sinCorpus: number; comprobadoSinHallar: number; noConsta: number }
   }
+  /** Como lo escribe la página: `toLocaleString('es-ES')`, con el punto escapado. */
+  const cifra = (n: number) => n.toLocaleString('es-ES').replace(/\./g, '\\.')
 
   test('el desglose se publica y suma el sin-datos que tiene al lado', async ({ page }) => {
     await page.goto('/declaraciones', { waitUntil: 'domcontentloaded' })
 
-    const { sinCorpus, comprobadoSinHallar } = totals.sinDatosPorque
+    const { sinCorpus, comprobadoSinHallar, noConsta } = totals.sinDatosPorque
     // Que la prueba haya evaluado algo: un desglose degenerado (todo en una
     // casilla) cuadraría la suma y no probaría nada.
     expect(sinCorpus).toBeGreaterThan(0)
     expect(comprobadoSinHallar).toBeGreaterThan(0)
-    expect(sinCorpus + comprobadoSinHallar).toBe(totals.byVerdict['sin-datos'])
+    expect(sinCorpus + comprobadoSinHallar + noConsta).toBe(totals.byVerdict['sin-datos'])
 
-    const parrafo = page.getByText(/Por qué «sin datos»/i).first()
+    // El párrafo entero: `getByText` daría el <strong> del título, que es el
+    // elemento más interno que casa, y dejaría las cifras fuera.
+    const parrafo = page.locator('p', { hasText: /Por qué «sin datos»/i }).first()
     await expect(parrafo).toBeVisible()
-    for (const n of [sinCorpus, comprobadoSinHallar]) {
-      await expect(page.getByText(String(n), { exact: true }).first()).toBeVisible()
-    }
+    const texto = (await parrafo.innerText()).replace(/\s+/g, ' ')
+    expect(texto).toMatch(new RegExp(`${cifra(comprobadoSinHallar)} comprobadas, no aparecen`))
+    expect(texto).toMatch(new RegExp(`${cifra(sinCorpus)} sin corpus que consultar`))
+    expect(texto).toMatch(new RegExp(`${cifra(noConsta)} no consta qué se consultó`))
   })
 
-  test('el filtro «sin corpus» deja exactamente esas declaraciones', async ({ page }) => {
+  test('cada filtro de «sin datos» deja exactamente sus declaraciones', async ({ page }) => {
     await page.goto('/declaraciones', { waitUntil: 'domcontentloaded' })
-    await page
-      .getByRole('button', { name: /Sin corpus que consultar/i })
-      .first()
-      .click()
-    await expect(
-      page.getByText(new RegExp(`${totals.sinDatosPorque.sinCorpus}\\s+declaraciones coinciden`)),
-    ).toBeVisible({ timeout: 5000 })
+    for (const [rotulo, n] of [
+      [/Sin corpus que consultar/i, totals.sinDatosPorque.sinCorpus],
+      [/No consta qué se consultó/i, totals.sinDatosPorque.noConsta],
+      [/Comprobada, no aparece/i, totals.sinDatosPorque.comprobadoSinHallar],
+    ] as const) {
+      await page.getByRole('button', { name: rotulo }).first().click()
+      await expect(
+        page.getByText(new RegExp(`^${cifra(n)}\\s+declaraciones coinciden`)),
+      ).toBeVisible({ timeout: 5000 })
+    }
   })
 })

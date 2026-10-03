@@ -7,9 +7,15 @@
  * registran ante una administración pública. Así que se derivan, y se cotejan
  * con el manifiesto antes de escribir nada.
  */
+import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 
-import { deAmbitoAjeno, ejemplos } from '../scripts/lib/solicitud-borrador'
+import {
+  CLASES_PEDIBLES,
+  deAmbitoAjeno,
+  ejemplos,
+  redactar,
+} from '../scripts/lib/solicitud-borrador'
 
 const f = (verbatim: string, fecha = '2026-01-01') => ({ verbatim, fecha })
 
@@ -90,4 +96,27 @@ describe('ejemplos — lo que se le enseña a una administración', () => {
     expect(ejemplos([f('el informe de 3 de marzo')], 6)).toHaveLength(1)
     expect(ejemplos([], 6)).toHaveLength(0)
   })
+})
+
+/**
+ * La carta cuenta la misma población que /laboratorio/cobertura publica.
+ *
+ * `redactar` ya aborta si su recuento no cuadra con el manifiesto; esto hace
+ * que la comprobación corra sin que nadie tenga que redactar nada. Cuando
+ * «sin corpus» dejó de incluir las filas de las que no consta qué se consultó,
+ * el manifiesto y la carta tenían que moverse juntos, y así es como se sabe.
+ */
+describe('la carta y la página cuentan las mismas declaraciones', () => {
+  const porClase = (
+    JSON.parse(readFileSync('public/data/pleno-claims/index.json', 'utf8')) as {
+      totals: { cobertura: { porClaseDocumental: { porClase: Record<string, number> } } }
+    }
+  ).totals.cobertura.porClaseDocumental.porClase
+
+  for (const clase of CLASES_PEDIBLES) {
+    it(`«${clase}»: tantas filas como la columna «Declaraciones que dependen»`, () => {
+      expect(porClase[clase], 'que haya algo que contar').toBeGreaterThan(0)
+      expect(redactar(clase).n).toBe(porClase[clase])
+    })
+  }
 })

@@ -19,8 +19,11 @@
  *      total de items publicados. Un denominador que no cuadra convierte un
  *      porcentaje en un adorno.
  *   3. **Hay algo que medir.** Un cruce vacío daría un 100 % perfecto y una
- *      guarda verde. Se exige que las dos casillas tengan filas: un desglose
- *      degenerado es una casilla con otro nombre.
+ *      guarda verde. Se exige que «con corpus» y «sin corpus» tengan filas: un
+ *      desglose degenerado es una casilla con otro nombre. La tercera, «no
+ *      consta», puede quedarse a cero con todo en orden —que las pasadas
+ *      dejen anotado contra qué cotejaron es lo deseable—, así que no se exige:
+ *      se imprime.
  *
  * Anti-hueco: imprime cuántas comprobaciones hizo. Un «todo en orden» de un
  * gate que no evaluó nada es la suite verde que no medía nada.
@@ -28,24 +31,30 @@
 import { readFileSync, readdirSync, existsSync } from 'node:fs'
 import { resolve, join } from 'node:path'
 import {
+  CASILLA_DE_DESENLACE,
   resumirSinDatos,
+  desenlaceDeCotejo,
   esMarcaDePasada,
-  corpusReales,
   clasificarProcedencia,
+  type ResumenSinDatos,
 } from '../src/scraper/claim-verdicts'
 
 const DIR = resolve('public/data/pleno-claims')
 const INDEX = join(DIR, 'index.json')
 
-interface Casilla {
-  total: number
-  sinCorpus: number
-  comprobadoSinHallar: number
-}
+type Casilla = { total: number } & ResumenSinDatos
+
+/** Los campos de una casilla, del mismo `Record` que la llena. */
+const CAMPOS = ['total', ...Object.values(CASILLA_DE_DESENLACE)] as const
 
 interface Item {
   claim?: { type?: string; topic?: string }
-  verification?: { verdict?: string; checkedAgainst?: unknown[] }
+  verification?: {
+    verdict?: string
+    checkedAgainst?: unknown[]
+    derivedBy?: unknown[]
+    source?: string
+  }
 }
 
 const problemas: string[] = []
@@ -68,7 +77,7 @@ function main(): void {
         porTema: Record<string, Casilla>
         corpus: Record<string, number>
       }
-      sinDatosPorque?: { sinCorpus: number; comprobadoSinHallar: number }
+      sinDatosPorque?: ResumenSinDatos
     }
   }
   const totals = manifest.totals
@@ -101,14 +110,14 @@ function main(): void {
     corpus: Record<string, number>
   }
   const casilla = (t: Record<string, Casilla>, k: string) =>
-    (t[k] ??= { total: 0, sinCorpus: 0, comprobadoSinHallar: 0 })
+    (t[k] ??= { total: 0, sinCorpus: 0, comprobadoSinHallar: 0, noConsta: 0 })
 
   for (const it of items) {
     const listados = it.verification?.checkedAgainst ?? []
     for (const c of listados) {
       if (typeof c === 'string') rehecho.corpus[c] = (rehecho.corpus[c] ?? 0) + 1
     }
-    const consultados = corpusReales(listados)
+    const campo = CASILLA_DE_DESENLACE[desenlaceDeCotejo(it.verification)]
     for (const [tabla, clave] of [
       [rehecho.porTipo, it.claim?.type],
       [rehecho.porTema, it.claim?.topic],
@@ -116,8 +125,7 @@ function main(): void {
       if (typeof clave !== 'string') continue
       const cel = casilla(tabla, clave)
       cel.total += 1
-      if (consultados.length === 0) cel.sinCorpus += 1
-      else cel.comprobadoSinHallar += 1
+      cel[campo] += 1
     }
   }
 
@@ -134,7 +142,7 @@ function main(): void {
         fail(`${eje}.${k}: está en ${a ? 'el manifiesto' : 'los trozos'} y no en el otro`)
         continue
       }
-      for (const campo of ['total', 'sinCorpus', 'comprobadoSinHallar'] as const) {
+      for (const campo of CAMPOS) {
         if (a[campo] !== b[campo]) {
           fail(`${eje}.${k}.${campo}: manifiesto ${a[campo]} · trozos ${b[campo]}`)
         }
@@ -154,24 +162,31 @@ function main(): void {
   if (totals?.items != null && sumaTipo !== totals.items) {
     fail(`la suma de porTipo (${sumaTipo}) no es el total publicado (${totals.items})`)
   }
+  // Y cada celda reparte su total entero: sin esto, una casilla que faltara
+  // del manifiesto —la de «no consta», en uno escrito por un chunker viejo—
+  // se leería como un cero y el resto seguiría cuadrando contra los trozos.
+  for (const eje of ['porTipo', 'porTema'] as const) {
+    for (const [k, c] of Object.entries(cob[eje])) {
+      comprobaciones += 1
+      const partes = c.sinCorpus + c.comprobadoSinHallar + c.noConsta
+      if (partes !== c.total)
+        fail(`${eje}.${k}: sus tres casillas suman ${partes} y su total es ${c.total}`)
+    }
+  }
   comprobaciones += 1
   const desglose = totals?.sinDatosPorque
   const sinDatos = totals?.byVerdict?.['sin-datos']
-  if (
-    desglose &&
-    sinDatos != null &&
-    desglose.sinCorpus + desglose.comprobadoSinHallar !== sinDatos
-  ) {
-    fail(
-      `sinDatosPorque suma ${desglose.sinCorpus + desglose.comprobadoSinHallar} y sin-datos es ${sinDatos}`,
-    )
+  const sumaDesglose = desglose
+    ? desglose.sinCorpus + desglose.comprobadoSinHallar + desglose.noConsta
+    : null
+  if (desglose && sinDatos != null && sumaDesglose !== sinDatos) {
+    fail(`sinDatosPorque suma ${sumaDesglose} y sin-datos es ${sinDatos}`)
   }
   comprobaciones += 1
   const rehechoDesglose = resumirSinDatos(items.map((i) => i.verification ?? {}))
   if (
     desglose &&
-    (rehechoDesglose.sinCorpus !== desglose.sinCorpus ||
-      rehechoDesglose.comprobadoSinHallar !== desglose.comprobadoSinHallar)
+    Object.values(CASILLA_DE_DESENLACE).some((campo) => rehechoDesglose[campo] !== desglose[campo])
   ) {
     fail(
       `sinDatosPorque no se reproduce: manifiesto ${JSON.stringify(desglose)} · ` +
@@ -215,6 +230,7 @@ function main(): void {
   comprobaciones += 1
   const totalSinCorpus = Object.values(cob.porTipo).reduce((a, v) => a + v.sinCorpus, 0)
   const totalConCorpus = Object.values(cob.porTipo).reduce((a, v) => a + v.comprobadoSinHallar, 0)
+  const totalNoConsta = Object.values(cob.porTipo).reduce((a, v) => a + v.noConsta, 0)
   if (totalSinCorpus === 0 || totalConCorpus === 0) {
     fail(
       'el desglose es degenerado (todo en una casilla): la página pintaría una cobertura ' +
@@ -231,7 +247,8 @@ function main(): void {
 
   process.stdout.write(
     `[check-cobertura] ${comprobaciones} comprobación(es) sobre ${items.length} declaración(es) ` +
-      `servida(s) · ${totalConCorpus} con corpus · ${totalSinCorpus} sin\n`,
+      `servida(s) · ${totalConCorpus} con corpus · ${totalSinCorpus} sin · ` +
+      `${totalNoConsta} sin constancia de lo consultado\n`,
   )
   for (const p of problemas) process.stderr.write(`  ✗ ${p}\n`)
   if (problemas.length) {

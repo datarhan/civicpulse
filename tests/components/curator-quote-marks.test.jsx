@@ -276,8 +276,10 @@ describe('cola de reanclaje — enseñaba el eje de transcripción y no el de co
 
 describe('cola de excepción — ya enseñaba los dos ejes', () => {
   // No tenía el hueco: `triage:finding-exception` pone `gate` y
-  // `transcriptStatus` en las 131 citas y la fila los pinta. Se fija aquí para
-  // que no se pierdan sin que nadie se entere.
+  // `transcriptStatus` en cada cita de la cola y la fila los pinta. Se fija aquí
+  // para que no se pierdan sin que nadie se entere. (La forma de la fila es la
+  // de la v2, desde el 30-09-2026; la fila construida de verdad se prueba en
+  // cola-excepcion-sumario.test.jsx.)
   const row = {
     findingId: 'f-x',
     plenoId: 'p1',
@@ -286,7 +288,8 @@ describe('cola de excepción — ya enseñaba los dos ejes', () => {
     severity: 'informational',
     summary: 'Sumario',
     curatorName: 'auto-curation-v1',
-    citasMostrables: 0,
+    citasRetenidas: 1,
+    todasRetenidas: true,
     quotes: [
       {
         index: 0,
@@ -295,9 +298,12 @@ describe('cola de excepción — ya enseñaba los dos ejes', () => {
         verdict: 'sin-datos',
         claimType: 'acusacion_publica',
         transcriptStatus: 'solo-en-sustituida',
+        retenida: true,
+        reclasificar: null,
       },
     ],
-    commands: [],
+    decision: null,
+    commands: { mantener: '', corregirSumario: '', retirarHallazgo: '' },
   }
 
   // Esta cola NO lee el snapshot por el hook: los dos ejes vienen ya en su
