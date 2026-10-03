@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-03T09:35:35.772Z",
+  "generatedAt": "2026-10-03T10:19:12.960Z",
   "clusters": [
     {
       "clusterId": "107j3y8",
@@ -22,9 +22,29 @@
       }
     },
     {
+      "clusterId": "1208oo5",
+      "articleIds": [
+        "8hij1g",
+        "95mxd4"
+      ],
+      "outlets": [
+        "Ayuntamiento de Riba-roja de Túria",
+        "Valencia Plaza"
+      ],
+      "earliestDate": "2026-10-02T10:03:37.000Z",
+      "latestDate": "2026-10-02T11:50:52.000Z",
+      "verdictMix": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      }
+    },
+    {
       "clusterId": "38xahs",
       "articleIds": [
-        "w4u7tv",
+        "15toavi",
         "xcbiyc"
       ],
       "outlets": [
@@ -83,13 +103,13 @@
     }
   ],
   "stats": {
-    "totalClusters": 4,
+    "totalClusters": 5,
     "triangulated3Plus": 0
   },
   "builtFrom": {
-    "plenos-agendas.json": "2802b7faf122",
+    "plenos-agendas.json": "1d26772e8757",
     "press-claims-verified.json": "5f440b22045d",
-    "press.json": "3e68141854c9",
+    "press.json": "f796f71b705c",
     "promises.json": "69c1f099a4a5"
   }
 }
