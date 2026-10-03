@@ -68,6 +68,16 @@ thresholds + lexical shortlist — the safe conservative mode; the eval's strati
 sample shows NLI *does* rescue true positives where they exist, so yield is low
 but precise.
 
+> **Nota del 2026-09-30.** Este «Upgrades = 0» no midió el modelo. Lo dio
+> `scripts/verify-pleno-claims-nli.ts`, que desde su primer commit (325a1c62)
+> hasta #206 no podía subir nada: su `lookup` guardaba cada puntuación con el id
+> global del par (`<claim>#<i>`) y `verifyClaimWithNli` la busca por el índice
+> (`<i>`), así que no le llegaba ninguna y cada fila se quedaba en `sin-datos`.
+> «Yield is low but precise» queda sin base: el rendimiento real del anclaje NLI
+> sobre los `sin-datos` está sin medir. La tabla de arriba no depende de ese
+> guion: `eval:verifier` le pasa al verificador su propio puntuador, sin ese
+> `lookup`.
+
 ## Decision / next steps (before a production regen)
 
 1. **Curator spot-checks the AI-reviewed gold** `tests/fixtures/verifier-gold.json`

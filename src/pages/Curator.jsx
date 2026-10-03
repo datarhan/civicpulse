@@ -24,6 +24,7 @@ import { FindingSupportRow, FindingSupportStyles } from './curator/finding-suppo
 import { QuoteReanchorRow, QuoteReanchorStyles } from './curator/quote-reanchor-queue'
 import { FindingExceptionRow, FindingExceptionStyles } from './curator/finding-exception-queue'
 import { VoiceEnrollmentSection, VoiceIDAssignmentsSection } from './curator/voice'
+import { EXCEPTION_QUEUE_VERSION, PREGUNTA_DE_LA_COLA } from '../scraper/finding-exception'
 
 export default function Curator() {
   const queue = useJsonResource(QUEUE_URL)
@@ -109,8 +110,14 @@ export default function Curator() {
   const findingSupportStats = findingSupportQueue.data?.stats ?? null
   const quoteReanchorRows = quoteReanchorQueue.data?.rows ?? []
   const quoteReanchorStats = quoteReanchorQueue.data?.stats ?? null
-  const findingExceptionRows = findingExceptionQueue.data?.rows ?? []
-  const findingExceptionStats = findingExceptionQueue.data?.stats ?? null
+  // Una cola de otra versión en disco preguntaba otra cosa y encolaba con otro
+  // filtro: bajo esta pregunta parecería lo que no es. Se dice, y no se pinta.
+  const findingExceptionData = findingExceptionQueue.data
+  const findingExceptionVieja =
+    (findingExceptionData?.rows?.length ?? 0) > 0 &&
+    findingExceptionData?.queueVersion !== EXCEPTION_QUEUE_VERSION
+  const findingExceptionRows = findingExceptionVieja ? [] : (findingExceptionData?.rows ?? [])
+  const findingExceptionStats = findingExceptionVieja ? null : (findingExceptionData?.stats ?? null)
 
   // Promise auto-curator review queue. Fast-track drafts ("listo para
   // publicar") float to the top so the curator sees the ready ones first.
@@ -615,15 +622,15 @@ export default function Curator() {
       <Card style={{ padding: 16, marginBottom: 18 }}>
         <FindingExceptionStyles />
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <SectionHead title="Hallazgos · ¿merece este hallazgo la excepción?" />
+          <SectionHead title={`Hallazgos · ${PREGUNTA_DE_LA_COLA}`} />
           <span
             className="mono"
             style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginLeft: 'auto' }}
           >
             {findingExceptionStats
-              ? `${findingExceptionStats.encolados}/${findingExceptionStats.hallazgosConCitas} en cola · ` +
-                `${findingExceptionStats.sinNingunaCitaContrastada} sin ninguna cita contrastada · ` +
-                `${findingExceptionStats.citasEnCola} literales`
+              ? `${findingExceptionStats.encolados}/${findingExceptionStats.hallazgosConCitas} con cita retenida · ` +
+                `${findingExceptionStats.citasRetenidas} retenidas · ` +
+                `${findingExceptionData?.revisados ?? 0} ya mantenidas`
               : ''}
           </span>
           <button
@@ -655,20 +662,29 @@ export default function Curator() {
               firmante que aparece en cada una dice quién tomó la excepción».
               Dejó de ser cierto el 27-08-2026 (`citaRetenida`, en
               src/lib/cita-retenida.js): la ficha obedece la misma puerta que el
-              registro, la promueva quien la promueva. */}
+              registro, la promueva quien la promueva. Y hasta el 30-09-2026 la
+              sección preguntaba «¿merece este hallazgo la excepción?», cuya
+              respuesta ya no cambiaba nada: sólo sacaba la fila de la cola. */}
           La puerta editorial de <code>claim-public-gate.ts</code> retiene las acusaciones públicas
           que el verificador no pudo contrastar, y desde el 27-08-2026 las retiene también en{' '}
           <strong>/hallazgos</strong>: promover una declaración a hallazgo no la saca de la puerta,
           la promueva una persona o <code>auto-curation-v1</code>, y la ficha pinta el hueco{' '}
-          {`«${ROTULO_CITA_RETENIDA}»`} en lugar del literal. Estas fichas no tienen ni una cita
-          sobre la que el cotejo encontrara datos, y el firmante que aparece en cada una dice quién
-          la promovió. <strong>Anotar que una ficha merece la excepción no cambia la página</strong>{' '}
-          (<code>npm run review:finding-exception</code>): el literal retenido sigue retenido, y la
-          fila sólo sale de esta cola. La cola <strong>presenta la evidencia y no elige</strong>: no
-          puntúa, no ordena por gravedad —el orden es cronológico— y ninguna fila llega con
-          decisión. Si tras leerla decides matizar el sumario o retirar un literal, ejecuta{' '}
-          <code>npm run correct-pleno-finding</code> tú mismo: queda en la bitácora pública de la
-          ficha.
+          {`«${ROTULO_CITA_RETENIDA}»`} en lugar del literal. Lo que la puerta no alcanza es el{' '}
+          <strong>sumario</strong>, prosa del sitio al lado del hueco.{' '}
+          <code>check:summary-gate</code> y la criba de la copia servida cazan la copia —literal, o
+          de 40 caracteres seguidos—; la paráfrasis es de una persona, y es lo que esta cola
+          pregunta de cada ficha con al menos una cita retenida. Aquí se lee el literal retenido,
+          para poder cotejarlo. Cada fila trae las cuatro respuestas{' '}
+          <strong>compuestas y sin ejecutar</strong>: mantener (
+          <code>npm run review:finding-exception</code>, que se ata a este sumario: si cambia, la
+          ficha vuelve), corregir el sumario (<code>npm run correct-pleno-finding</code> con{' '}
+          <code>--redact summary</code>, que no deja legible el sumario viejo en la bitácora
+          pública), reclasificar una cita retenida si no era una acusación (
+          <code>npm run reclassify-claim</code>) o retirar la ficha (
+          <code>npm run retract-finding</code>). La cola{' '}
+          <strong>presenta la evidencia y no elige</strong>: no puntúa, no ordena por gravedad —el
+          orden es cronológico— y ninguna fila llega con decisión. Las órdenes las firmas tú, en tu
+          terminal.
         </p>
         {findingExceptionQueue.loading && <p style={{ fontSize: 'var(--fs-aux)' }}>Loading…</p>}
         {findingExceptionQueue.error && (
@@ -676,11 +692,21 @@ export default function Curator() {
             {String(findingExceptionQueue.error)}
           </p>
         )}
-        {!findingExceptionQueue.loading && findingExceptionRows.length === 0 && (
-          <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
-            Cola vacía. Constrúyela con <code>npm run triage:finding-exception</code>.
+        {findingExceptionVieja && (
+          <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--warn-ink)' }}>
+            La cola en disco es de la versión{' '}
+            <code>{findingExceptionData?.queueVersion ?? 'sin versión'}</code>, que preguntaba otra
+            cosa y encolaba con otro filtro: no se pinta bajo esta pregunta. Reconstrúyela con{' '}
+            <code>npm run triage:finding-exception</code>.
           </p>
         )}
+        {!findingExceptionQueue.loading &&
+          !findingExceptionVieja &&
+          findingExceptionRows.length === 0 && (
+            <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
+              Cola vacía. Constrúyela con <code>npm run triage:finding-exception</code>.
+            </p>
+          )}
         {findingExceptionRows.map((r) => (
           <FindingExceptionRow key={r.findingId} row={r} />
         ))}

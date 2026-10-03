@@ -363,12 +363,17 @@ const PROVENANCE_MARK = {
  * accusations by named political groups that the same site withholds one click
  * away.
  *
- * The gate's own header says promotion into a finding is the sanctioned way
+ * The gate's own header said promotion into a finding is the sanctioned way
  * past it, «precisely because a person is standing in it». For most of these,
  * the person was `auto-curation-v1`. That is a curation problem, queued for a
  * human by `triage:finding-exception`; it is not fixed by deleting quotes,
  * which would be a larger editorial act taken by the same kind of process.
  * What the reader was owed is the missing fact, and this is it.
+ *
+ * (Así se decidió el 2026-08-10. Desde el 27-08 la ficha obedece la puerta
+ * —`citaRetenida`— y la cabecera de la puerta ya no lo dice; desde el 30-09
+ * `triage:finding-exception` pregunta otra cosa: si el sumario dice, con otras
+ * palabras, lo que la cita retenida no puede decir.)
  *
  * TWO marks, not one, because the gate keeps them apart on purpose: an
  * ungrounded ACCUSATION and an ungrounded ordinary claim are different things,
