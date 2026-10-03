@@ -1318,7 +1318,10 @@ export default function Metodologia() {
               {/* Decía «no hay registro en las bases abiertas», y la tarjeta lo
                   repetía en cada sin-datos con una frase fija que nombraba
                   contratos, BDNS y presupuesto aunque no se hubiera consultado
-                  ninguno. 29-09-2026. */}
+                  ninguno. 29-09-2026. La frase del expediente parecido salía
+                  también en citas sin cifra, con un contrato encima de
+                  «Fuentes comprobadas: ninguna» y un «el que hay no dice eso»
+                  que se leía como desmentido. 30-09-2026. */}
               {/* Los recuentos contaban «sin corpus que consultar» las filas
                   cuya lista había sustituido una pasada, debajo de tarjetas que
                   decían «no constan». 30-09-2026. */}
@@ -1328,7 +1331,11 @@ export default function Metodologia() {
                 atestiguada (muy frecuente: reconocimientos extrajudiciales, operaciones internas).
                 La explicación de su tarjeta nombra sólo las bases que constan como consultadas —las
                 mismas que su línea «Fuentes comprobadas»— y, cuando no consta ninguna, no dice que
-                se buscara. Los recuentos de <code>/declaraciones</code>, <code>/plenos</code> y{' '}
+                se buscara. Cuando la cifra citada se cotejó con los contratos y el título de uno
+                coincide en parte con lo citado, la tarjeta enseña ese expediente y dice que su
+                importe no es la cifra: se miró, y ni la sostiene ni la desmiente. A una cita sin
+                cifra no se le enseña ninguno, porque no hubo importe que cotejar. Los recuentos de{' '}
+                <code>/declaraciones</code>, <code>/plenos</code> y{' '}
                 <code>/laboratorio/cobertura</code> las reparten en tres, con la misma regla que esa
                 línea: <strong>comprobadas sin hallar nada</strong>, porque consta alguna base
                 consultada; <strong>sin corpus que consultar</strong>, porque no hay nada anotado
@@ -1344,6 +1351,15 @@ export default function Metodologia() {
                 tracker de años anteriores.
               </li>
             </ul>
+            {/* La fila de contrato imprimía el presupuesto base sin IVA de la
+                licitación bajo una cita que daba la adjudicación con IVA, y el
+                lector no podía cuadrar «81 K €» con «70.158 €». 30-09-2026. */}
+            <p style={{ margin: '8px 0 0' }}>
+              Cada fila de contrato imprime el importe que el verificador comparó, uno por fila, y
+              un mismo expediente trae varios: de licitación y de adjudicación, con IVA y sin él. Si
+              el impreso no es la cifra citada y otro importe del mismo expediente sí lo es, la
+              tarjeta dice debajo qué es cada uno.
+            </p>
           </li>
           <li>
             <strong>
