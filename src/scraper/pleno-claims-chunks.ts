@@ -22,7 +22,7 @@
 
 import type { PlenoClaim, ClaimType, ClaimTopic } from './pleno-claim'
 import type { MotivoDeRetirada } from './declaracion-retirada'
-import { corpusReales } from './claim-verdicts'
+import { CASILLA_DE_DESENLACE, desenlaceDeCotejo, type ResumenSinDatos } from './claim-verdicts'
 import { agruparPorClaseDocumental } from './clase-documental'
 
 // The verifier emits items as { claim, verification } pairs. We keep
@@ -39,6 +39,11 @@ export interface VerifiedClaimItem {
      *  que haber consultado y no encontrar. Estaba cayendo bajo el índice
      *  genérico de abajo, así que no se podía leer sin castear. */
     checkedAgainst?: unknown[]
+    /** La pasada que produjo el veredicto (fase 1b) y el canal de overlay por
+     *  el que entró (#164): con cualquiera de los dos, una lista vacía ya no
+     *  quiere decir «no había con qué» (`desenlaceDeCotejo`). */
+    derivedBy?: unknown[]
+    source?: string
     [k: string]: unknown
   }
   /** Public-ledger visibility, stamped by the build-time gate (claim-public-gate.ts). */
@@ -94,21 +99,30 @@ export interface PlenoClaimsChunkManifest {
      * escalar precomputado a enviar el corpus: `/departamentos` ya lee una
      * tabla cruzada en vez de los trozos enteros.
      *
+     * Cada celda reparte su `total` en los tres desenlaces de
+     * `desenlaceDeCotejo`, con los nombres de `sinDatosPorque`: aquí
+     * `comprobadoSinHallar` es «con corpus» y cuenta cualquier veredicto.
+     *
      * `corpus` cuenta CONSULTAS, no filas: una declaración cotejada contra dos
      * corpus suma en los dos. Es lo que se quiere saber —con qué se cuenta—,
      * no cuántas filas hay.
      */
     cobertura: {
-      porTipo: Record<string, { total: number; sinCorpus: number; comprobadoSinHallar: number }>
-      porTema: Record<string, { total: number; sinCorpus: number; comprobadoSinHallar: number }>
+      porTipo: Record<string, CasillaDeCobertura>
+      porTema: Record<string, CasillaDeCobertura>
       corpus: Record<string, number>
       /**
-       * De las declaraciones SIN corpus, qué documento nombran.
+       * De las declaraciones SIN corpus que consultar, qué documento nombran.
        *
        * Es el material de una solicitud de acceso: «estas N dependen de un
        * informe técnico que no se publica». Léxico, nunca pronóstico — y lo que
        * no nombra ningún documento se cuenta aparte, sin repartirse, porque
        * repartirlo haría que cualquier clase pareciera mayor de lo que es.
+       *
+       * La misma población que la casilla `sinCorpus`, y no la de «no consta»:
+       * una fila que el motor juzgó sobre candidatos, o que un curador bajó
+       * leyendo un contrato, tuvo algo delante, y que dependa de un documento
+       * que no se publica no consta.
        */
       porClaseDocumental: {
         porClase: Record<string, number>
@@ -118,11 +132,13 @@ export interface PlenoClaimsChunkManifest {
     }
     /**
      * Por qué `sin-datos`, sobre lo PUBLICADO (post-puerta editorial).
-     * `sinCorpus` = no se consultó ningún corpus; `comprobadoSinHallar` = se
-     * consultaron y no hubo coincidencia. Las dos suman el `sin-datos` de
-     * `byVerdict`. Ver `resumirSinDatos` en claim-verdicts.
+     * `sinCorpus` = nada anotado, no había corpus que consultar;
+     * `comprobadoSinHallar` = se consultaron y no hubo coincidencia;
+     * `noConsta` = una pasada sustituyó la lista, no consta qué se consultó.
+     * Las tres suman el `sin-datos` de `byVerdict`. Ver `resumirSinDatos` en
+     * claim-verdicts.
      */
-    sinDatosPorque: { sinCorpus: number; comprobadoSinHallar: number }
+    sinDatosPorque: ResumenSinDatos
     /**
      * Lo que la puerta editorial RETIENE, por tipo.
      *
@@ -160,6 +176,9 @@ export interface PlenoClaimsChunkManifest {
     retiradas: Partial<Record<MotivoDeRetirada, number>>
   }
 }
+
+/** Una celda de la tabla de cobertura: su total y sus tres desenlaces. */
+export type CasillaDeCobertura = { total: number } & ResumenSinDatos
 
 export interface PlenoClaimsChunk {
   generatedAt: string
@@ -268,19 +287,15 @@ export function buildManifest(
   // puerta editorial: describe lo que se publica, no el corpus interno. Es la
   // diferencia entre «de lo que enseñamos, esto no pudimos comprobarlo» y una
   // cifra sobre acusaciones que a propósito no se enseñan.
-  const sinDatosPorque = { sinCorpus: 0, comprobadoSinHallar: 0 }
-  const porTipo: Record<string, { total: number; sinCorpus: number; comprobadoSinHallar: number }> =
-    {}
-  const porTema: Record<string, { total: number; sinCorpus: number; comprobadoSinHallar: number }> =
-    {}
+  const sinDatosPorque: ResumenSinDatos = { sinCorpus: 0, comprobadoSinHallar: 0, noConsta: 0 }
+  const porTipo: Record<string, CasillaDeCobertura> = {}
+  const porTema: Record<string, CasillaDeCobertura> = {}
   const corpus: Record<string, number> = {}
-  // Los literales de las filas SIN corpus real, para agruparlos por el
-  // documento que nombran.
+  // Los literales de las filas sin corpus que consultar, para agruparlos por
+  // el documento que nombran.
   const sinCorpusVerbatims: string[] = []
-  const casilla = (
-    tabla: Record<string, { total: number; sinCorpus: number; comprobadoSinHallar: number }>,
-    k: string,
-  ) => (tabla[k] ??= { total: 0, sinCorpus: 0, comprobadoSinHallar: 0 })
+  const casilla = (tabla: Record<string, CasillaDeCobertura>, k: string) =>
+    (tabla[k] ??= { total: 0, sinCorpus: 0, comprobadoSinHallar: 0, noConsta: 0 })
   let totalItems = 0
   for (const [plenoId, items] of itemsByPleno) {
     const { chunk, descriptor } = buildChunkAndDescriptor(plenoId, items, generatedAt)
@@ -298,8 +313,10 @@ export function buildManifest(
         if (typeof c === 'string') corpus[c] = (corpus[c] ?? 0) + 1
       }
       // Los CORPUS, sin las marcas de pasada: una fila revisada por el segundo
-      // paso y por nada más no está cotejada contra ningún dato.
-      const consultados = corpusReales(listados)
+      // paso y por nada más no está cotejada contra ningún dato. Y tampoco es
+      // una fila sin nada que consultar: de ésa no consta contra qué se cotejó.
+      const desenlace = desenlaceDeCotejo(it.verification)
+      const campo = CASILLA_DE_DESENLACE[desenlace]
       // La cobertura mira TODAS las filas, no sólo las `sin-datos`: la pregunta
       // es «¿contra qué se pudo cotejar?», y una fila verificada también
       // contesta a eso.
@@ -310,17 +327,13 @@ export function buildManifest(
         if (typeof clave !== 'string') continue
         const cel = casilla(tabla, clave)
         cel.total += 1
-        if (consultados.length === 0) cel.sinCorpus += 1
-        else cel.comprobadoSinHallar += 1
+        cel[campo] += 1
       }
-      if (consultados.length === 0) {
+      if (desenlace === 'sin-corpus') {
         const lit = it.claim?.verbatim
         if (typeof lit === 'string') sinCorpusVerbatims.push(lit)
       }
-      if (v === 'sin-datos') {
-        if (consultados.length === 0) sinDatosPorque.sinCorpus += 1
-        else sinDatosPorque.comprobadoSinHallar += 1
-      }
+      if (v === 'sin-datos') sinDatosPorque[campo] += 1
       if (typeof t !== 'string' || typeof v !== 'string') continue
       const row = (byTopicVerdict[t] ??= {})
       row[v] = (row[v] ?? 0) + 1

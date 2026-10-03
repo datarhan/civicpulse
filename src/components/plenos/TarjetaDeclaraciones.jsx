@@ -152,9 +152,11 @@ export function TarjetaDeclaraciones({ embudo }) {
         ))}
       </div>
 
-      {/* «Sin datos» eran DOS hechos, y el corpus los separa: no había dónde
-          buscar, o se buscó y no salió nada. Fundirlos es lo que hace que un
-          veredicto vacío se lea como un desmentido. */}
+      {/* «Sin datos» son TRES hechos: no había dónde buscar, se buscó y no
+          salió nada, o una pasada posterior —el motor, un curador— sustituyó
+          la lista de lo buscado y no consta. Fundir los dos primeros hace que
+          un veredicto vacío se lea como un desmentido; meter el tercero en el
+          primero decía «no había dónde» de filas en las que el motor buscó. */}
       <p
         style={{
           margin: '13px 0 0',
@@ -171,6 +173,7 @@ export function TarjetaDeclaraciones({ embudo }) {
             </strong>
           ),
           '{comprobado}': n(embudo.comprobadoSinHallar),
+          '{noConsta}': n(embudo.noConsta),
         })}
       </p>
 
