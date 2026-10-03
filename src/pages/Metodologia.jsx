@@ -1329,6 +1329,15 @@ export default function Metodologia() {
                 tracker de años anteriores.
               </li>
             </ul>
+            {/* La fila de contrato imprimía el presupuesto base sin IVA de la
+                licitación bajo una cita que daba la adjudicación con IVA, y el
+                lector no podía cuadrar «81 K €» con «70.158 €». 30-09-2026. */}
+            <p style={{ margin: '8px 0 0' }}>
+              Cada fila de contrato imprime el importe que el verificador comparó, uno por fila, y
+              un mismo expediente trae varios: de licitación y de adjudicación, con IVA y sin él. Si
+              el impreso no es la cifra citada y otro importe del mismo expediente sí lo es, la
+              tarjeta dice debajo qué es cada uno.
+            </p>
           </li>
           <li>
             <strong>

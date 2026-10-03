@@ -18,6 +18,7 @@ import {
   resumenSegunFuentes,
 } from '../lib/claim-provenance.js'
 import { ROTULO_RESUMEN_RETIRADO, resumenPublicable } from '../lib/resumenes-retirados.js'
+import { PuenteDeImporte } from './PuenteDeImporte'
 
 function formatEuros(n) {
   if (typeof n !== 'number' || !Number.isFinite(n)) return ''
@@ -26,7 +27,11 @@ function formatEuros(n) {
   return n.toFixed(0) + ' €'
 }
 
-function EvidenceRow({ e }) {
+/**
+ * Una fila de evidencia, y debajo —fuera del enlace, que es de la fila— el
+ * puente con la cifra citada cuando son dos importes del mismo expediente.
+ */
+function EvidenceRow({ e, cifra }) {
   const kindLabel =
     {
       tender: 'Contrato',
@@ -60,17 +65,23 @@ function EvidenceRow({ e }) {
       )}
     </>
   )
-  if (e.ref && /^https?:\/\//.test(e.ref)) {
-    return (
+  const fila =
+    e.ref && /^https?:\/\//.test(e.ref) ? (
       <ExtLink
         href={e.ref}
         style={{ display: 'block', padding: '4px 0', textDecoration: 'none', color: 'inherit' }}
       >
         {body}
       </ExtLink>
+    ) : (
+      <div style={{ padding: '4px 0' }}>{body}</div>
     )
-  }
-  return <div style={{ padding: '4px 0' }}>{body}</div>
+  return (
+    <>
+      {fila}
+      <PuenteDeImporte cifra={cifra} evidencia={e} />
+    </>
+  )
 }
 
 function ClaimCard({ item }) {
@@ -172,7 +183,7 @@ function ClaimCard({ item }) {
           }}
         >
           {evidencia.map((e, i) => (
-            <EvidenceRow key={i} e={e} />
+            <EvidenceRow key={i} e={e} cifra={claim.entities.amountEuros} />
           ))}
         </div>
       )}

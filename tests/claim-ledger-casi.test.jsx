@@ -87,6 +87,11 @@ function leerTarjeta(card) {
 }
 
 function pintarYLeer(items, limit) {
+  // La tarjeta pide tenders.json para el puente de importes
+  // (src/components/PuenteDeImporte.jsx). Aquí no se mide eso: un 404 lo calla
+  // sin salir a la red. Dentro de cada pintado, porque la guarda de red
+  // (tests/setup/no-network.ts) se reinstala antes de cada prueba.
+  installFetchMock({})
   const { container, unmount } = render(
     <MemoryRouter>
       <ClaimLedger items={items} limit={limit} showSummary />

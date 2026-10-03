@@ -133,6 +133,7 @@ export {
 } from './claim-verdicts'
 import type { ClaimVerdict } from './claim-verdicts'
 import { COLA_SIN_IMPORTE, leyoContratos, resumenCasi, resumenSinRegistro } from './claim-verdicts'
+import { importeDelEmparejador } from './importe-de-contrato'
 
 /**
  * What this verifier established about a document RELATIVE to the claim.
@@ -607,26 +608,13 @@ function readTenders(data: unknown): TenderRow[] {
  * entire tender cross-reference produced nothing — on the press side that
  * surfaced as a published "0% de verificación" next to named outlets, which
  * reads as a finding about the outlets rather than about our reader.
+ *
+ * El orden de los campos vive en importe-de-contrato.ts, que la página también
+ * carga: el puente de la tarjeta nombra el campo que esta función leyó, y con
+ * dos copias del orden podría nombrar otro.
  */
 function tenderAmount(r: TenderRow): number | null {
-  const r2 = r as TenderRow & {
-    finalAmountNoTaxes?: number
-    initialAmountNoTaxes?: number
-    finalAmount?: number
-    initialAmount?: number
-    totalValueEur?: number
-  }
-  const v =
-    r2.finalAmountNoTaxes ??
-    r2.initialAmountNoTaxes ??
-    r2.finalAmount ??
-    r2.initialAmount ??
-    r2.totalValueEur ??
-    r.award_amount_eur ??
-    r.awarded_amount ??
-    r.amount
-  const n = Number(v)
-  return Number.isFinite(n) && n > 0 ? n : null
+  return importeDelEmparejador(r)?.valor ?? null
 }
 
 function tenderTitle(r: TenderRow): string {

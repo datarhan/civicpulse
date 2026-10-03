@@ -15,6 +15,7 @@ import { useT } from '../i18n'
 import { CLAIM_VERDICTS, resumirSinDatos, corpusReales } from '../scraper/claim-verdicts'
 import { blocLabel } from '../lib/party-label.js'
 import { etiquetaVerificador, evidenciaSegunFuentes } from '../lib/claim-provenance.js'
+import { PuenteDeImporte } from '../components/PuenteDeImporte'
 
 const PAGE_SIZE = 50
 
@@ -191,6 +192,7 @@ function ClaimRow({ item, plenoTitle }) {
                 [{e.kind}]
               </span>
               {e.snippet}
+              <PuenteDeImporte cifra={c.entities?.amountEuros} evidencia={e} />
             </div>
           ))}
         </div>
