@@ -2154,6 +2154,28 @@ export default function Metodologia() {
             huella del motivo que sustituyó. No es una corrección nueva del hallazgo: no cambia nada
             de lo que la ficha afirma, sino la explicación de un cambio anterior.
           </li>
+          <li id="bitacora-escano-unico" style={{ scrollMarginTop: 24 }}>
+            En los hallazgos de pleno, la versión de un titular, de un sumario o del grupo de una
+            cita que <strong>nombraba a un grupo de un solo escaño</strong> no se reproduce en la
+            bitácora. Un grupo con un solo concejal señala a esa persona (lo explica{' '}
+            <a href="#verificacion-declaraciones" style={{ color: 'var(--civic)' }}>
+              cómo se atribuye una cita
+            </a>
+            ), y el 29 y el 30 de septiembre de 2026 se retiraron con firma las atribuciones a uno
+            de esos grupos que nadie había firmado, porque no consta quién habló: imprimir el grupo
+            tachado al lado de «sin identificar» seguiría diciéndolo, y lo mismo vale para la
+            versión de un sumario que lo nombraba. Lo hace la compilación sobre la copia de los
+            hallazgos que sirve el sitio, con la composición de la corporación que publica el
+            ayuntamiento: el lado afectado lleva{' '}
+            <code>grupo de un solo escaño · no se reproduce</code>, la fila conserva su campo, su
+            motivo, su editor/a y su fecha, y la ficha dice qué versión falta y por qué. Es una
+            marca y no una huella porque la huella de un nombre entre cinco se deshace probando los
+            cinco. La atribución retirada a un grupo con varios escaños se sigue enseñando: es de
+            bloque, y no señala a nadie. Y no es una retirada: el repositorio del proyecto es
+            público, y su fichero de hallazgos y su historial conservan la fila entera. El motivo de
+            una fila no lo reescribe ninguna máquina: si nombra a uno de esos grupos, lo enmienda
+            una persona por la vía del punto anterior.
+          </li>
           <li>
             <strong>Retirar el hallazgo entero</strong> es una operación distinta de corregirlo, y
             existe desde el 11 de agosto de 2026 (<code>npm run retract-finding</code>). Se usa
