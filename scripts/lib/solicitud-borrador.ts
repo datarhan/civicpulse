@@ -8,7 +8,7 @@
  * manifiesto dice 71 es una afirmación falsa en un escrito registrado.
  *
  * Así que la carta se DERIVA, y de la misma población que la cuenta: los
- * literales publicados (post-puerta editorial) sin ningún corpus real detrás,
+ * literales publicados (post-puerta editorial) sin corpus que consultar,
  * agrupados por el documento que nombran. Y se COTEJA con el manifiesto antes de
  * escribir nada: si las dos cifras no coinciden, aborta en vez de publicar la
  * suya. Reproducir un cálculo y no compararlo es cómo se publica una cifra que
@@ -21,7 +21,7 @@
 import { readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs'
 import { resolve } from 'node:path'
 
-import { corpusReales } from '../../src/scraper/claim-verdicts'
+import { desenlaceDeCotejo } from '../../src/scraper/claim-verdicts'
 import {
   CLASES_PEDIBLES,
   CLASE_ETIQUETA,
@@ -44,9 +44,13 @@ interface Fila {
 }
 
 /**
- * Las filas de una clase: publicadas, sin corpus real, y que nombran ese
- * documento. Es la MISMA condición que usa el manifiesto para contar; si se
- * separan, la carta enseña ejemplos de una población y una cifra de otra.
+ * Las filas de una clase: publicadas, sin corpus que consultar, y que nombran
+ * ese documento. Es la MISMA condición que usa el manifiesto para contar
+ * (`desenlaceDeCotejo`); si se separan, la carta enseña ejemplos de una
+ * población y una cifra de otra. Una fila de la que no consta qué se consultó
+ * —la juzgó el motor sobre candidatos, o la bajó un curador leyendo un
+ * contrato— tuvo algo delante: que dependa del documento no consta, y la carta
+ * no lo afirma.
  */
 function filasDe(clase: ClasePedible): Fila[] {
   const out: Fila[] = []
@@ -56,11 +60,15 @@ function filasDe(clase: ClasePedible): Fila[] {
       plenoDate?: string
       items?: Array<{
         claim?: { verbatim?: string; plenoDate?: string }
-        verification?: { checkedAgainst?: readonly string[] }
+        verification?: {
+          checkedAgainst?: readonly string[]
+          derivedBy?: readonly string[]
+          source?: string
+        }
       }>
     }
     for (const it of chunk.items ?? []) {
-      if (corpusReales(it.verification?.checkedAgainst ?? []).length > 0) continue
+      if (desenlaceDeCotejo(it.verification) !== 'sin-corpus') continue
       const v = it.claim?.verbatim
       if (typeof v !== 'string' || !v.trim()) continue
       if (!claseDocumentalDe(v).includes(clase)) continue
@@ -303,7 +311,7 @@ export function redactar(clase: ClasePedible): { md: string; txt: string; n: num
     ``,
     `---`,
     ``,
-    `_Población: las ${filas.length} declaraciones publicadas sin ningún corpus detrás que nombran`,
+    `_Población: las ${filas.length} declaraciones publicadas sin corpus que consultar y que nombran`,
     `${etiqueta.toLowerCase()} — la misma cifra que publica el manifiesto y que comprueba`,
     `\`npm run check:solicitudes\`. La carta pide ${pedibles}: se apartan ${ajenas.length} de ámbito ajeno,`,
     `y el escrito lo dice en vez de callarlo._`,

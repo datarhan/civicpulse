@@ -448,14 +448,23 @@ export default function Metodologia() {
             <EstadosPorEscalon tier={['fast-track', 'human-only']} propuestos={false} ni />: los
             asigna siempre una persona, con justificación documental.
           </li>
+          {/* Hasta el 30-09-2026 decía que las propuestas por debajo del umbral «se
+              muestran como» la caja de /promesas. No se muestran: esperan en
+              editorial/, que no se publica. La caja es la del motor de palabras
+              clave (src/scraper/promise-inference.ts), y desde ese día sólo sale
+              cuando adelantaría el estado publicado (`advancesStatus`). */}
           <li>
             <strong>Transparencia del algoritmo.</strong> Un proceso semanal (los lunes) escanea
             prensa y plenos con un modelo de lenguaje y emite <em>propuestas</em> con su cadena de
             razonamiento. Cada propuesta pasa una verificación determinista de anclaje; las que
             superan el umbral de confianza (≥0,70) y quedan ancladas a su fuente se auto-publican
-            etiquetadas como «publicada automáticamente · revisión pendiente», y las demás se
-            muestran como "propuesta automática · pendiente de revisión humana" y esperan en cola.
-            Todo lo que no sea <EstadosPorEscalon tier="auto" /> pasa siempre por una persona (ver{' '}
+            etiquetadas como «publicada automáticamente · revisión pendiente», y las demás esperan
+            en cola a que las revise una persona. La caja «propuesta automática · pendiente de
+            revisión humana» que puede llevar una ficha es otra cosa: la propuesta de un motor de
+            palabras clave que cruza a diario cada promesa con titulares de prensa y con el orden
+            del día de los plenos. Sólo aparece cuando adelantaría el estado publicado —nunca para
+            repetirlo ni para rebajarlo—, declara su confianza y no ocupa el lugar del estado. Todo
+            lo que no sea <EstadosPorEscalon tier="auto" /> pasa siempre por una persona (ver{' '}
             <a href="#auto-curacion-promesas" style={{ color: 'var(--civic)' }}>
               auto-curación
             </a>
@@ -1313,6 +1322,9 @@ export default function Metodologia() {
                   también en citas sin cifra, con un contrato encima de
                   «Fuentes comprobadas: ninguna» y un «el que hay no dice eso»
                   que se leía como desmentido. 30-09-2026. */}
+              {/* Los recuentos contaban «sin corpus que consultar» las filas
+                  cuya lista había sustituido una pasada, debajo de tarjetas que
+                  decían «no constan». 30-09-2026. */}
               <li>
                 <strong>sin-datos</strong> — ningún registro de las bases consultadas sostiene la
                 afirmación, o no había ninguna con la que cotejarla. Puede ser cierta, pero no está
@@ -1322,7 +1334,17 @@ export default function Metodologia() {
                 se buscara. Cuando la cifra citada se cotejó con los contratos y el título de uno
                 coincide en parte con lo citado, la tarjeta enseña ese expediente y dice que su
                 importe no es la cifra: se miró, y ni la sostiene ni la desmiente. A una cita sin
-                cifra no se le enseña ninguno, porque no hubo importe que cotejar.
+                cifra no se le enseña ninguno, porque no hubo importe que cotejar. Los recuentos de{' '}
+                <code>/declaraciones</code>, <code>/plenos</code> y{' '}
+                <code>/laboratorio/cobertura</code> las reparten en tres, con la misma regla que esa
+                línea: <strong>comprobadas sin hallar nada</strong>, porque consta alguna base
+                consultada; <strong>sin corpus que consultar</strong>, porque no hay nada anotado
+                («ninguna»); y aquellas de las que <strong>no consta qué se consultó</strong> («no
+                constan»), porque una revisión posterior —del motor de veredictos o de un curador—
+                rehízo el veredicto y dejó su marca en lugar de la lista. Éstas no se cuentan como
+                «sin corpus»: el motor juzgó las suyas sobre contratos o subvenciones candidatos, y
+                el curador, sobre la evidencia que corregía; que no conste cuáles no quiere decir
+                que no hubiera con qué.
               </li>
               <li>
                 <strong>promesa-repetida</strong> — la promesa coincide con una ya documentada en el

@@ -16,6 +16,17 @@ over-claiming the audit + eval measured lives in the verdicts the LLM second pas
 *already produced* (non-sin-datos), which the upgrade-only NLI runner never
 touches. P2 targets that pool.
 
+> **Nota del 2026-09-30.** Ese «0 NLI upgrades over 3,251» no midió el backlog.
+> 3.251 es justo la cola de `scripts/verify-pleno-claims-nli.ts` sobre el
+> `pleno-claims-verified.json` de ese día (los `sin-datos` menos las acusaciones
+> `opinativa`), y ese guion no podía subir nada: desde su primer commit
+> (325a1c62) hasta #206, su `lookup` guardaba cada puntuación con el id global
+> del par (`<claim>#<i>`) y `verifyClaimWithNli` la busca por el índice (`<i>`).
+> El cero salía fuera cual fuera el backlog. Que los `sin-datos` sean «genuinely
+> unverifiable» está sin medir, y con ello el motivo para no «rescue sin-datos».
+> El objetivo de P2 no depende de este cero: la sobre-afirmación de la segunda
+> pasada LLM la midió aparte la evaluación de la fase 1.
+
 **Architecture:** three pieces — (1) a base/overlay split so re-runs never
 clobber second-pass or curator decisions; (2) a re-grounding gate that NLI-checks
 whether each published `verificado`/`parcial`/`contradicho`'s cited evidence

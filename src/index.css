@@ -843,19 +843,46 @@ body.cp-kiosk .cp-live-container {
   .cp-charts-grid {
     grid-template-columns: minmax(0, 1fr) !important;
   }
-  /* /laboratorio llevaba `minmax(0, 2fr) minmax(280px, 1fr)` en un estilo
-     inline: el suelo de 280 px de la columna derecha no cabe en 375 y la
-     rejilla no podía colapsar, porque una media query no entra en el prop
-     `style`. Se desbordaba 8 px. Lo destapó un refresco nocturno de datos
-     —cadenas más largas—, no un cambio de código: la maqueta llevaba tiempo
-     al borde y ninguna prueba de datos podía verlo. */
-  .cp-lab-grid {
-    grid-template-columns: minmax(0, 1fr) !important;
-  }
   .cp-kpi-grid > *,
-  .cp-charts-grid > *,
-  .cp-lab-grid > * {
+  .cp-charts-grid > * {
     min-width: 0;
+  }
+}
+
+/* /laboratorio — los artículos y, al lado, la columna de medios, lagunas y
+   verificaciones. Dos columnas o una lo decide el ancho de la página
+   (`.cp-lab-marco`, la propia `.cp-page` de la ruta), no el de la ventana.
+
+   Llevaba `minmax(0, 2fr) minmax(280px, 1fr)` en un estilo inline, que no
+   colapsaba nunca: a 375 se desbordaba 8 px, y lo destapó un refresco nocturno
+   de datos —cadenas más largas—, no un cambio de código. Se arregló con un
+   @media a 720 px. Pero por encima de 720 aparece la barra lateral, y a 721 px
+   de ventana a los artículos les quedaban 143 px: cada ficha pide 206 y se salía
+   63,5 de su columna, de 721 a 783 px de ventana (medido el 30-09-2026 sobre la
+   build de producción). Y el suelo de 280 no era un mínimo de verdad: la tabla
+   de medios pide 279,9 px con la densidad de serie y 297 con la amplia, así que
+   con ésta se salía de su columna a cualquier ancho en que la columna estuviera
+   en su suelo.
+
+   Ahora las dos pistas son `2fr 1fr` con su mínimo automático: ninguna baja de
+   lo que su contenido pide, y si algo no cabe la rejilla crece y la guarda lo
+   ve, en vez de salirse dentro de una celda `minmax(0, …)` sin que nada lo mida.
+   Dos columnas piden, con la densidad amplia, 216,8 + 18 + 297 = 531,8 px; con
+   la Linux de la CI, que pinta el texto más ancho que macOS, unos 558. De ahí
+   570. Lo recorre, de 721 a 1100 px de ventana, el bloque «Rejillas con la
+   barra lateral» de tests/e2e/mobile.spec.ts. */
+.cp-lab-marco {
+  container: lab / inline-size;
+}
+.cp-lab-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 18px;
+  align-items: start;
+}
+@container lab (max-width: 569px) {
+  .cp-lab-grid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -1133,11 +1160,12 @@ body.cp-kiosk .cp-live-container {
    son los dos cortes del presupuesto aprobado (en qué / de dónde) y los dos
    avisos bajo la cascada; `.cp-presu-deuda` la serie y su prosa. Las filas
    —cascada, capítulo, programa, deuda— son rejillas de columnas fijas para que
-   las cifras en DM Mono queden alineadas a la derecha, y por debajo de 720 el
-   rótulo sube a su propia línea y la barra se queda con los números: a 375 no
-   caben rótulo, barra y dos cifras en una fila, y truncar «Gastos corrientes en
-   bienes y servicios» es esconder el capítulo. `.cp-presu-contra` son las
-   cuatro tarjetas de contratación: cuatro, dos, una. */
+   las cifras en DM Mono queden alineadas a la derecha; cuando no caben, el
+   rótulo sube a su propia línea y la barra se queda con los números, porque
+   truncar «Gastos corrientes en bienes y servicios» es esconder el capítulo.
+   Cuándo no caben lo decide el ancho de su LISTA, no el de la ventana: véanse
+   las consultas de contenedor de más abajo. `.cp-presu-contra` son las cuatro
+   tarjetas de contratación: cuatro, dos, una. */
 .cp-presu-hero {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 400px;
@@ -1152,7 +1180,7 @@ body.cp-kiosk .cp-live-container {
 }
 .cp-presu-deuda {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 300px;
+  grid-template-columns: 1fr 300px;
   gap: 26px;
   align-items: start;
 }
@@ -1164,31 +1192,30 @@ body.cp-kiosk .cp-live-container {
 }
 .cp-presu-cascada {
   display: grid;
-  grid-template-columns: 208px minmax(0, 1fr) 148px;
+  grid-template-columns: 208px minmax(62px, 1fr) 148px;
   gap: 14px;
   align-items: center;
 }
 .cp-presu-cap {
   display: grid;
-  grid-template-columns: 246px minmax(0, 1fr) 116px 62px;
+  grid-template-columns: 246px minmax(62px, 1fr) 116px 62px;
   gap: 14px;
   align-items: center;
 }
 .cp-presu-prog {
   display: grid;
-  grid-template-columns: 268px minmax(0, 1fr) 116px 54px;
+  grid-template-columns: 268px minmax(62px, 1fr) 116px 54px;
   gap: 14px;
   align-items: center;
 }
 .cp-presu-deuda-fila {
   display: grid;
-  grid-template-columns: 44px minmax(0, 1fr) 108px 92px;
+  grid-template-columns: 44px minmax(62px, 1fr) 108px 92px;
   gap: 12px;
   align-items: center;
 }
 .cp-presu-hero > *,
 .cp-presu-duo > *,
-.cp-presu-deuda > *,
 .cp-presu-contra > *,
 .cp-presu-cascada > *,
 .cp-presu-cap > *,
@@ -1205,31 +1232,81 @@ body.cp-kiosk .cp-live-container {
 
 @media (max-width: 900px) {
   .cp-presu-hero,
-  .cp-presu-duo,
-  .cp-presu-deuda {
+  .cp-presu-duo {
     grid-template-columns: minmax(0, 1fr);
     gap: 22px;
   }
 }
 
-@media (max-width: 720px) {
+/* Las filas y la serie de la deuda deciden por el ancho de su CONTENEDOR, no
+   por el de la ventana.
+
+   Decidían con @media a 720 y a 900 px, y por encima de 720 aparece la barra
+   lateral: a 721 px de ventana la lista de filas mide 399 px y la maqueta ancha
+   de capítulos pide 466 de pistas fijas. Medido el 30-09-2026 sobre la build de
+   producción, de píxel en píxel de ventana: los capítulos se salían de su caja
+   hasta 67 px (de 721 a 787), los programas 81 (de 721 a 801) y las filas de la
+   deuda 27 (de 901 a 927), porque a 901 la serie pasaba a dos columnas y a sus
+   filas les quedaban 253 px. Ningún corte de ventana describe a la vez el
+   teléfono y la columna con barra lateral; el ancho de la lista, sí.
+
+   Cada corte es lo que su fila ancha pide, medido, más al menos 8 px. Sus
+   pistas son fijas —no las mueven el texto ni la densidad—, y la barra no baja
+   de 62 px: es la más corta que la página ya pinta, la de capítulos y programas
+   partidos a 320 px de pantalla (230 − 96 − 52 − 2 × 10). Sin ese suelo la
+   maqueta ancha arrancaría con una barra de 8 px; con él, una lista estrecha no
+   puede comérsela sin que las pistas se salgan y la guarda lo vea.
+
+     cascada    208 + 62 + 148      + 2 × 14 = 446 → ancha desde 460
+     capítulos  246 + 62 + 116 + 62 + 3 × 14 = 528 ┐ ancha desde 560, las dos
+     programas  268 + 62 + 116 + 54 + 3 × 14 = 542 ┘ a la vez: son la misma tabla
+     deuda       44 + 62 + 108 + 92 + 3 × 12 = 342 → ancha desde 360
+
+   La serie de la deuda pone su prosa al lado sólo si sus filas conservan la
+   maqueta ancha: 360 + 26 de hueco + 300 de prosa = 686 → dos columnas desde
+   690 de tarjeta. Sus pistas son `1fr` y no `minmax(0, 1fr)`, y sus hijos ya
+   no llevan `min-width: 0`: si algo no cabe, que la pista crezca y la guarda lo
+   vea en vez de salirse sin que nada lo mida. La barra sí sigue en
+   `minmax(0, 1fr)` en las filas partidas: no lleva texto que esconder.
+
+   Lo recorre, de 721 a 1100 px de ventana, el bloque «Rejillas con la barra
+   lateral» de tests/e2e/mobile.spec.ts. */
+.cp-presu-filas {
+  container: presu-filas / inline-size;
+}
+.cp-presu-deuda-marco {
+  container: presu-deuda / inline-size;
+}
+@container presu-filas (max-width: 459px) {
   .cp-presu-cascada {
     grid-template-columns: minmax(0, 1fr) 120px;
     gap: 6px 12px;
   }
+  .cp-presu-cascada > :first-child {
+    grid-column: 1 / -1;
+  }
+}
+@container presu-filas (max-width: 559px) {
   .cp-presu-cap,
   .cp-presu-prog {
     grid-template-columns: minmax(0, 1fr) 96px 52px;
     gap: 6px 10px;
   }
-  .cp-presu-cascada > :first-child,
   .cp-presu-cap > :first-child,
   .cp-presu-prog > :first-child {
     grid-column: 1 / -1;
   }
+}
+@container presu-filas (max-width: 359px) {
   .cp-presu-deuda-fila {
     grid-template-columns: 40px minmax(0, 1fr) auto auto;
     gap: 8px;
+  }
+}
+@container presu-deuda (max-width: 689px) {
+  .cp-presu-deuda {
+    grid-template-columns: 1fr;
+    gap: 22px;
   }
 }
 

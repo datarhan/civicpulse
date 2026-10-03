@@ -26,16 +26,34 @@ const GROUP_LABEL = {
 const TONE_ORDER = { crit: 0, warn: 1, civic: 2, ok: 3 }
 
 // La rejilla de cada fila vive aquí y no en el `style` de la fila: un estilo en
-// línea no admite media queries, y con cinco columnas fijas (120 + 1fr + 110 +
-// 110 + 80 px) la página desbordaba 138 px a 375 px de ancho.
+// línea no admite media queries ni consultas de contenedor, y con cinco columnas
+// fijas (120 + 1fr + 110 + 110 + 80 px) la página desbordaba 138 px a 375 px de
+// ancho.
+//
+// Cinco columnas o dos líneas lo decide el ancho de la LISTA, no el de la
+// ventana. Decidía un @media a 640 px, y por encima de 720 aparece la barra
+// lateral: a 721 px de ventana la lista mide 399 y sus columnas fijas piden 468,
+// así que cada fila se salía 69 px de su caja de 721 a 789 px de ventana, y de
+// ahí a 864 el nombre se quedaba más estrecho que su palabra más larga y se
+// pintaba encima de la edad (medido el 30-09-2026 sobre la build de producción).
+//
+// El nombre no baja de 92 px: «Transparencia», la palabra más larga de los
+// rótulos, pide 84 con la densidad amplia y 78 con la de serie, y la Linux de la
+// CI pinta el texto más ancho que macOS. La fila ancha pide entonces 120 + 92 +
+// 110 + 110 + 80 + 4 × 12 = 560 px: cinco columnas desde 568 de lista. Lo recorre,
+// de 721 a 1100 px de ventana, el bloque «Rejillas con la barra lateral» de
+// tests/e2e/mobile.spec.ts.
 const estiloLabHealth = `
+.lh-filas {
+  container: lh-filas / inline-size;
+}
 .lh-fila {
   display: grid;
-  grid-template-columns: 120px 1fr 110px 110px 80px;
+  grid-template-columns: 120px minmax(92px, 1fr) 110px 110px 80px;
   gap: 12px;
   align-items: center;
 }
-@media (max-width: 640px) {
+@container lh-filas (max-width: 567px) {
   .lh-fila {
     grid-template-columns: auto 1fr auto;
     grid-template-areas:
@@ -259,7 +277,7 @@ export default function LabHealth() {
                   </Pill>
                 }
               />
-              <div style={{ marginTop: 8 }}>
+              <div className="lh-filas" style={{ marginTop: 8 }}>
                 {list.map((row) => (
                   <HealthRow key={row.path} row={row} />
                 ))}

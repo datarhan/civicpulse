@@ -12,7 +12,7 @@ import {
 import { usePlenos } from '../hooks/usePlenos'
 import { PARTY_TONE } from '../hooks/usePromises'
 import { useT } from '../i18n'
-import { CLAIM_VERDICTS, resumirSinDatos, corpusReales } from '../scraper/claim-verdicts'
+import { CLAIM_VERDICTS, resumirSinDatos, desenlaceDeCotejo } from '../scraper/claim-verdicts'
 import { blocLabel } from '../lib/party-label.js'
 import { etiquetaVerificador, evidenciaSegunFuentes } from '../lib/claim-provenance.js'
 import { PuenteDeImporte } from '../components/PuenteDeImporte'
@@ -210,6 +210,16 @@ const ALL_VERDICTS = [
   ...ORDEN_VERDICTS.filter((v) => CLAIM_VERDICTS.includes(v)),
   ...CLAIM_VERDICTS.filter((v) => !ORDEN_VERDICTS.includes(v)),
 ]
+// Los filtros que afinan «sin-datos», cada uno con el desenlace que deja pasar.
+// Es la regla de la línea «Fuentes comprobadas» de las tarjetas
+// (`desenlaceDeCotejo`), así que el recuento y la tarjeta no pueden separarse:
+// una retractación del motor salía aquí «sin corpus que consultar» mientras su
+// tarjeta decía «no constan» (2026-09-29).
+const FILTROS_SIN_DATOS = {
+  'comprobado-sin-hallar': 'con-corpus',
+  'sin-corpus': 'sin-corpus',
+  'no-consta': 'no-consta',
+}
 // The five groups holding seats in this corporación, plus `null` for claims
 // whose group could not be determined. `Otro` used to sit in this list and was
 // rendered as a chip labelled with the raw code — the one surface where a
@@ -258,10 +268,9 @@ export default function Declaraciones() {
       if (verdictFilter === 'with-evidence') {
         if (!['verificado', 'parcial', 'contradicho'].includes(it.verification.verdict))
           return false
-      } else if (verdictFilter === 'sin-corpus' || verdictFilter === 'comprobado-sin-hallar') {
+      } else if (Object.hasOwn(FILTROS_SIN_DATOS, verdictFilter)) {
         if (it.verification.verdict !== 'sin-datos') return false
-        const consultado = corpusReales(it.verification.checkedAgainst).length > 0
-        if (consultado !== (verdictFilter === 'comprobado-sin-hallar')) return false
+        if (desenlaceDeCotejo(it.verification) !== FILTROS_SIN_DATOS[verdictFilter]) return false
       } else if (verdictFilter !== 'all' && it.verification.verdict !== verdictFilter) {
         return false
       }
@@ -346,11 +355,11 @@ export default function Declaraciones() {
       </div>
 
       {/*
-        «sin-datos» contestaba dos preguntas distintas con el mismo número, y un
+        «sin-datos» contestaba tres preguntas distintas con el mismo número, y un
         hueco leído como un cero es el defecto que este repositorio ya pagó dos
-        veces. El reparto va en prosa y no en dos tarjetas más porque lo que hay
-        que entender no es la cifra: es que la segunda mitad no habla de la
-        declaración, habla de nosotros.
+        veces. El reparto va en prosa y no en tres tarjetas más porque lo que hay
+        que entender no es la cifra: es que sólo la primera habla de la
+        declaración, y las otras dos, de nosotros.
       */}
       {stats.byVerdict['sin-datos'] > 0 && (
         <p
@@ -363,10 +372,14 @@ export default function Declaraciones() {
           }}
         >
           <strong style={{ color: 'var(--ink)' }}>{t('declaraciones.split.titulo')}.</strong>{' '}
-          <span className="mono">{stats.sinDatosPorque.comprobadoSinHallar}</span>{' '}
+          <span className="mono">
+            {stats.sinDatosPorque.comprobadoSinHallar.toLocaleString('es-ES')}
+          </span>{' '}
           {t('declaraciones.split.comprobadoSinHallar')} ·{' '}
-          <span className="mono">{stats.sinDatosPorque.sinCorpus}</span>{' '}
-          {t('declaraciones.split.sinCorpus')}. {t('declaraciones.split.cuerpo')}
+          <span className="mono">{stats.sinDatosPorque.sinCorpus.toLocaleString('es-ES')}</span>{' '}
+          {t('declaraciones.split.sinCorpus')} ·{' '}
+          <span className="mono">{stats.sinDatosPorque.noConsta.toLocaleString('es-ES')}</span>{' '}
+          {t('declaraciones.split.noConsta')}. {t('declaraciones.split.cuerpo')}
         </p>
       )}
 
@@ -430,6 +443,12 @@ export default function Declaraciones() {
             label={t('declaraciones.filter.sinCorpus')}
             count={stats.sinDatosPorque.sinCorpus}
             onClick={() => setVerdictFilter('sin-corpus')}
+          />
+          <FilterChip
+            active={verdictFilter === 'no-consta'}
+            label={t('declaraciones.filter.noConsta')}
+            count={stats.sinDatosPorque.noConsta}
+            onClick={() => setVerdictFilter('no-consta')}
           />
         </div>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, alignItems: 'center' }}>

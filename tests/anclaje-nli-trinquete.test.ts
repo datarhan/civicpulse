@@ -28,11 +28,13 @@ import { shortlistCandidates } from '../src/scraper/claim-verifier'
  * Las filas son de verdad (tests/fixtures/anclaje-nli-trinquete_2026-09-30.json).
  * Lo único falso es el modelo: un `python` en el sitio del venv que puntúa BAJO
  * todo par y apunta qué afirmación le llegó. Aquí no se mide qué se propone sino
- * a quién se pregunta, y a 30-09-2026 da igual cómo puntúe: el `lookup` del
- * guion guarda cada puntuación con el id global del par (`<claim>#<i>`) y
- * `verifyClaimWithNli` la busca por el índice (`<i>`), así que no le llega
+ * a quién se pregunta. Hasta el 30-09-2026 daba igual cómo puntuara: el `lookup`
+ * del guion guardaba cada puntuación con el id global del par (`<claim>#<i>`) y
+ * `verifyClaimWithNli` la busca por el índice (`<i>`), así que no le llegaba
  * ninguna. Medido con este mismo falso puntuando 0,95: `propuestas 0 · sin
- * respaldo 1`, un «sin respaldo» que el modelo no dijo.
+ * respaldo 1`, un «sin respaldo» que el modelo no dijo. Ahora le llegan, y el
+ * parte dice cuántas leyó de cuántas pidió; lo que se propone con ellas lo
+ * prueba tests/anclaje-nli-puntuaciones.test.ts.
  */
 
 const SCRIPT = resolve('scripts/verify-pleno-claims-nli.ts')
