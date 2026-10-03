@@ -1756,7 +1756,11 @@ export default function Metodologia() {
           asigna una máquina, que son pistas para un redactor y no veredictos. El otro es de{' '}
           <strong>procedencia</strong>, y es más simple: si el literal de una declaración no aparece
           en ninguna transcripción que tengamos —ni en la vigente, ni en las que sustituyó una
-          re-transcripción—, no podemos enseñar que se dijera. En{' '}
+          re-transcripción—, no podemos enseñar que se dijera. Hay un caso que ningún cálculo sobre
+          los textos ve: que una transcripción recoja el literal porque lo oyó mal —el motor que se
+          sustituyó llegó a escribir un año donde se dijo un importe—. Ése lo decide quien escucha
+          la sesión: una persona retira la declaración con su nombre y un motivo escrito, y se
+          retiene como si no constara. En{' '}
           <a href="/plenos" style={{ color: 'var(--civic)' }}>
             el registro de declaraciones del pleno
           </a>{' '}
@@ -1795,7 +1799,12 @@ export default function Metodologia() {
           dos cosas, cada una en un solo sentido y con un motivo escrito que queda registrado: un
           veredicto sólo se rebaja, nunca se sube; y la etiqueta de acusación sólo se quita —cuando
           el extractor la puso donde no había ninguna—, nunca se pone. Una afirmación a la que se le
-          quita pasa a tratarse como cualquier otra.
+          quita pasa a tratarse como cualquier otra. Y puede contestar la pregunta que el cálculo no
+          alcanza, si se dijo: una declaración cuyo literal, escuchada la sesión, no es lo que se
+          dijo se retira, también en un solo sentido —ninguna vía la vuelve a publicar— y con su
+          veredicto rebajado a «sin datos», porque el que tenía se contrastó sobre una frase que
+          nadie pronunció. Si un hallazgo la cita, antes se retira esa cita de la ficha, con su
+          motivo en la bitácora.
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           En la ficha de un hallazgo, una cita con datos sale sin marca, y los otros dos resultados
