@@ -119,10 +119,19 @@ const servidas: Declaracion[] = trozos.flatMap((f) =>
   leer(`pleno-claims/${f}`).items.map((it: { claim: Declaracion }) => it.claim),
 )
 
+/**
+ * Cómo se escribe un grupo en un mensaje de fallo. El de un escaño NO se nombra
+ * junto al id: el registro de la CI de un repositorio público es una página
+ * más, y «tal declaración · VOX» es justo la atribución que esta prueba
+ * existe para que no se publique. Se dice el criterio, no el material.
+ */
+const rotulo = (g: string | null) =>
+  g !== null && UN_ESCANO.includes(g) ? 'grupo de un escaño' : String(g)
+
 const conEscanoUnico = (ds: Declaracion[]) =>
   ds
     .filter((d) => d.speakerGroup && UN_ESCANO.includes(d.speakerGroup))
-    .map((d) => `${d.id} · ${d.speakerGroup}`)
+    .map((d) => `${d.id} · ${rotulo(d.speakerGroup ?? null)}`)
 
 describe('ninguna declaración publica sola el grupo de un concejal único', () => {
   it('los grupos de un escaño se derivan de officials.json, y hay alguno', () => {
@@ -189,7 +198,8 @@ describe('lo que /hallazgos corrige con firma llega a la declaración de la cita
         const g = grupos.get(declaracion) ?? null
         if (!admitidos.includes(g)) {
           malas.push(
-            `${declaracion} (${donde}) dice ${g}; ${ficha} ${fila.field} ${fila.original}→${fila.corrected}`,
+            `${declaracion} (${donde}) dice ${rotulo(g)}; ${ficha} ${fila.field} ` +
+              `${rotulo(fila.original)}→${fila.corrected}`,
           )
         }
       }
