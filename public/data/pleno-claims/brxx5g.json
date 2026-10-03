@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-03T18:12:02.104Z",
+  "generatedAt": "2026-10-03T19:05:22.619Z",
   "version": "1",
   "plenoId": "brxx5g",
   "plenoDate": "2026-07-06",
@@ -2701,7 +2701,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "persona"
       },
       "visibility": "shown"
     },

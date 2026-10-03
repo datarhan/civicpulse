@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-03T18:12:02.104Z",
+  "generatedAt": "2026-10-03T19:05:22.619Z",
   "version": "1",
   "plenoId": "ma87e0",
   "plenoDate": "2026-03-16",
@@ -1195,7 +1195,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica"
       },
       "visibility": "toggle"
     },
@@ -4703,7 +4704,9 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica",
+        "reasonSignedBy": "Sergei Lutchenko"
       },
       "visibility": "toggle"
     },

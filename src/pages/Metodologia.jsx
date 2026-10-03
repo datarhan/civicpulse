@@ -1385,15 +1385,29 @@ export default function Metodologia() {
             contradicho): si la evidencia citada no implica la afirmación —o, para un{' '}
             <em>contradicho</em>, no la contradice— el veredicto se{' '}
             <strong>marca para revisión de un curador</strong>. Esa revisión{' '}
-            <strong>no cambia ningún veredicto</strong>: sólo una persona puede rebajarlo (nunca
-            subirlo) con una herramienta dedicada, dejando el motivo verbatim. Lo que rebaja a{' '}
-            <em>parcial</em> se enseña como contrastado, con la evidencia que conservó y su motivo
-            por resumen: esa firma es suya, no de la máquina. Ese motivo es también la explicación
-            que la tarjeta enseña bajo la cita, y puede enmendarse después —para decir lo mismo en
-            castellano llano, o decirlo mejor— <strong>sin mover el veredicto</strong>: la enmienda
-            la firma una persona con su nombre y queda en la propia entrada, con la fecha, el porqué
-            y una huella del motivo anterior que permite cotejarlo con el historial público del
-            repositorio. Las decisiones de segunda pasada y de curación viven en una capa
+            <strong>no cambia ningún veredicto</strong>: lo rebaja (nunca lo sube) una herramienta
+            dedicada, que deja el motivo verbatim y la firma de quien la usa.{' '}
+            {/* Decía «sólo una persona puede rebajarlo» y, de lo que queda en parcial,
+                «esa firma es suya, no de la máquina». Medido el 30-09-2026: de las 69
+                bajadas del overlay, 47 no las firma una persona —40 de la revisión de
+                junio (`ai-gold-review`), 3 de sesiones de Claude, 4 con una firma que no
+                dice quién—, y la tarjeta las rotulaba todas «corregido por un curador». */}
+            <strong>No siempre la usa una persona:</strong> en junio de 2026 la usó una revisión
+            automática hecha con un modelo, y en agosto y septiembre, sesiones de un modelo que
+            corregían lo que había dejado pasar el comparador. La tarjeta de cada declaración dice
+            quién decidió la rebaja: «corregido por un curador» sólo cuando la firma nombra a una
+            persona; «rebajado en una revisión automática» cuando nombra un proceso o un modelo; y
+            «no consta quién lo decidió» cuando no dice ni lo uno ni lo otro. Lo que una rebaja deja
+            en <em>parcial</em> se enseña como contrastado, con la evidencia que tenía el veredicto
+            que rebajó y su motivo por resumen: se enseña porque la herramienta sólo baja, no porque
+            la firme una persona. Ese motivo es también la explicación que la tarjeta enseña bajo la
+            cita, y puede enmendarse después —para decir lo mismo en castellano llano, o decirlo
+            mejor— <strong>sin mover el veredicto</strong>: la enmienda la firma siempre una persona
+            con su nombre, que la tarjeta da («motivo firmado por…»), y queda en la propia entrada,
+            con la fecha, el porqué y una huella del motivo anterior que permite cotejarlo con el
+            historial público del repositorio. Enmendar el motivo reescribe la explicación, no la
+            decisión: una rebaja automática con el motivo firmado por una persona sigue siendo una
+            rebaja automática. Las decisiones de segunda pasada y de curación viven en una capa
             («overlay») separada del veredicto determinista base, de modo que recalcular la base
             nunca borra esas decisiones. Desde agosto de 2026 el <em>tipo</em> de una declaración se
             corrige por la misma vía: cuando el extractor archiva como{' '}

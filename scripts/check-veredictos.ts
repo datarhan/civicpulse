@@ -19,9 +19,11 @@
  * Cuatro desenlaces, y el reparto de códigos de salida es el punto:
  *
  *   fundado               nombra corpus y trae evidencia
- *   curado                lo decidió una persona · sale 0 — es la vía
+ *   curado                lo bajó la vía del curador · sale 0 — es la
  *                         sancionada en todo este repositorio, y bajar un
- *                         veredicto nunca refuerza una afirmación
+ *                         veredicto nunca refuerza una afirmación. El
+ *                         detalle dice quién lo decidió: una persona, una
+ *                         revisión automática, o que no consta
  *   procedencia-retirada  se apoya en una pasada que ya no está en la tubería
  *                         · AVISO, sale 0 — es la cola de la fase 6, no una
  *                           avería, y una guarda siempre roja acaba apagada
@@ -43,6 +45,7 @@ import {
   clasificarProcedencia,
   esPasadaRetirada,
 } from '../src/scraper/claim-verdicts'
+import { CLASES_DE_FIRMA, type ClaseDeFirma } from '../src/scraper/firma-de-persona'
 
 const DIR = resolve('public/data/pleno-claims')
 
@@ -64,7 +67,30 @@ interface Fila {
 
 interface Item {
   claim?: { id?: string; type?: string }
-  verification?: { verdict?: string; checkedAgainst?: unknown[]; evidence?: unknown[] }
+  verification?: {
+    verdict?: string
+    checkedAgainst?: unknown[]
+    evidence?: unknown[]
+    source?: string
+    downgradedBy?: string
+  }
+}
+
+/**
+ * Quién decidió una bajada del curador, para el detalle de `curado`. Del sello
+ * que `mergeVerified` pone con el canal, no de la marca: la vía del curador la
+ * han usado también una revisión con un modelo y sesiones de Claude, y 47 de
+ * las 69 bajadas del overlay no las firma una persona (30-09-2026).
+ */
+const QUIEN_BAJO: Record<ClaseDeFirma, string> = {
+  persona: 'lo bajó una persona',
+  automatica: 'lo bajó una revisión automática',
+  'no-consta': 'lo bajó la vía del curador y no consta quién lo decidió',
+}
+
+function quienBajo(v: NonNullable<Item['verification']>): string {
+  const clase = CLASES_DE_FIRMA.find((c) => c === v.downgradedBy)
+  return QUIEN_BAJO[v.source === 'curator-downgrade' && clase ? clase : 'no-consta']
 }
 
 /** Puro: el desenlace de UN veredicto ya publicado. */
@@ -83,17 +109,19 @@ export function cotejarVeredicto(it: Item): Fila {
   // haría inútil la guarda.
   const { pasadas } = clasificarProcedencia(v.checkedAgainst)
 
-  // Una persona. Es la vía sancionada en todo este repositorio —la misma que
+  // La vía del curador. Es la sancionada en todo este repositorio —la misma que
   // `isCuratorPromoted` deja pasar por la puerta editorial— y el suelo de
-  // evidencia la exime por lo mismo: bajar un veredicto nunca refuerza una
-  // afirmación. Que su `checkedAgainst` se quedara sólo con la marca es el
-  // campo con dos significados otra vez, y lo arregla la fase 1b.
+  // evidencia la exime por lo mismo: sólo baja, y bajar un veredicto nunca
+  // refuerza una afirmación, la decidiera una persona o una revisión
+  // automática. El detalle dice cuál. Que su `checkedAgainst` se quedara sólo
+  // con la marca es el campo con dos significados otra vez, y lo arregla la
+  // fase 1b.
   if (pasadas.includes('curator-downgrade')) {
     return {
       id,
       verdict,
       estado: 'curado',
-      detalle: 'lo bajó una persona; su corpus original lo pisó la marca de la pasada',
+      detalle: `${quienBajo(v)}; su corpus original lo pisó la marca de la pasada`,
     }
   }
 

@@ -28,7 +28,7 @@ import { TRINQUETE } from './trinquete'
 // `/hallazgos`. Importado, no recitado: dos listas de stopwords que midieran
 // distinto harían que el CLI aceptara lo que la cola desaconseja.
 import { contentWords } from './quote-reanchor'
-import { rechazoDeFirma } from './firma-de-persona'
+import { claseDeFirma, rechazoDeFirma, type ClaseDeFirma } from './firma-de-persona'
 import { REASON_DIGEST_RE, reasonDigest, type PlenoFindingReasonAmendment } from './pleno-finding'
 import {
   HUELLA_DE_LITERAL_RETIRADO_RE,
@@ -57,6 +57,22 @@ export type OverlaySource = 'nli' | 'llm' | 'curator-downgrade' | 'verdict-engin
  */
 export interface VerificacionPublicada extends ClaimVerification {
   source?: OverlaySource
+  /**
+   * Sólo en una bajada del curador: quién la DECIDIÓ, según la firma de su
+   * entrada (`claseDeFirma`). Viaja la clase, no la firma cruda.
+   *
+   * Hasta el 2026-09-30 no viajaba nada, y la tarjeta rotulaba «corregido por
+   * un curador» cualquier bajada: 25 servidas no las había decidido ninguna
+   * persona (la revisión de oro con un modelo, sesiones de Claude, una firma
+   * que no dice quién).
+   */
+  downgradedBy?: ClaseDeFirma
+  /**
+   * Quién firmó la última enmienda del motivo, si la hay: siempre una persona
+   * con su nombre (`validarEnmiendas`). Es otra firma que la de la bajada: la
+   * de quien reescribió la explicación, no la de quien decidió el veredicto.
+   */
+  reasonSignedBy?: string
   /**
    * La retirada que firmó una persona, estampada desde la entrada como el
    * canal: la puerta la lee aquí (`motivoDeRetirada`, declaracion-retirada.ts).
@@ -165,14 +181,32 @@ function reclassifiedClaim(claim: PlenoClaim, type: ClaimType): PlenoClaim {
 }
 
 /**
- * La verificación que publica una entrada: la suya, con el canal y la retirada
- * de la ENTRADA, las dos que `validateOverlay` comprueba. Sin retirada en la
- * entrada, las claves salen en el orden de siempre y el monolito no cambia de
- * bytes.
+ * La verificación que publica una entrada: la suya, con lo que estampa la
+ * ENTRADA —el canal, la retirada y, en una bajada del curador, quién la decidió
+ * y quién firmó la última enmienda del motivo—, todo lo que `validateOverlay`
+ * comprueba. Sin retirada ni bajada del curador, las claves salen en el orden de
+ * siempre y el monolito no cambia de bytes. Quién decidió viaja como CLASE
+ * (`claseDeFirma`): la firma cruda se queda en la entrada.
  */
 function publicadaDesde(e: OverlayEntry): VerificacionPublicada {
-  const { retirada: _colada, ...propia } = e.verification as VerificacionPublicada
-  return { ...propia, source: e.source, ...(e.retirada ? { retirada: e.retirada } : {}) }
+  const {
+    retirada: _colada,
+    downgradedBy: _decidio,
+    reasonSignedBy: _firmo,
+    ...propia
+  } = e.verification as VerificacionPublicada
+  const v: VerificacionPublicada = {
+    ...propia,
+    source: e.source,
+    ...(e.retirada ? { retirada: e.retirada } : {}),
+  }
+  if (e.source !== 'curator-downgrade') return v
+  const ultima = e.reasonAmendments?.[e.reasonAmendments.length - 1]
+  return {
+    ...v,
+    downgradedBy: claseDeFirma(e.editor),
+    ...(ultima ? { reasonSignedBy: ultima.editor } : {}),
+  }
 }
 
 /**
@@ -205,7 +239,8 @@ export function mergeVerified(
     const e = entries[it.claim.id]
     // El `source` de la ENTRADA, que es el que valida `validateOverlay`, y no
     // uno que la verificación trajera dentro: si discrepan, manda el validado.
-    // La retirada, igual: una colada dentro de la verificación no se publica.
+    // La retirada y quién decidió una bajada, igual: lo colado dentro de la
+    // verificación no se publica.
     const verification = withDedupedEvidence<VerificacionPublicada>(
       e ? publicadaDesde(e) : it.verification,
     )
