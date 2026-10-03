@@ -83,15 +83,18 @@ export const DATA_GROUNDED_VERDICTS: ReadonlySet<string> = new Set([
  */
 
 /**
- * El canal del overlay por el que firma una persona: `downgrade-verdict`, que
- * sólo baja, exige motivo y deja el nombre de quien lo aplica. Tipado contra el
- * enum del overlay para que un renombre deje de compilar en vez de dejar de
- * casar.
+ * El canal del curador: `downgrade-verdict`, que sólo baja, exige motivo y deja
+ * la firma de quien lo aplica. No siempre una persona: lo usaron también una
+ * revisión con un modelo (`ai-gold-review`, 24-06-2026) y sesiones de Claude, y
+ * 47 de sus 69 bajadas no las firma una persona (30-09-2026). Quién decidió
+ * cada una viaja en `downgradedBy`, y lo dice la tarjeta; esta puerta no lo
+ * mira. Tipado contra el enum del overlay para que un renombre deje de compilar
+ * en vez de dejar de casar.
  */
 const CANAL_DEL_CURADOR: OverlaySource = 'curator-downgrade'
 
 /**
- * ¿Firmó este veredicto un curador?
+ * ¿Entró este veredicto por la vía del curador?
  *
  * Lee el `source` que `mergeVerified` estampa desde la ENTRADA del overlay —la
  * validada— y no la marca `curator-downgrade` de `checkedAgainst`: una marca de
@@ -100,8 +103,9 @@ const CANAL_DEL_CURADOR: OverlaySource = 'curator-downgrade'
  *
  * Hasta el 2026-09-28 leía un campo que ningún productor escribía, y aceptaba
  * además `'curator'`, un valor que el overlay no tiene. Tres pruebas construían
- * esa forma a mano y seguían verdes; en lo servido, cinco «parcial» firmados por
- * un curador salían plegados como si no hubiera datos detrás. Ahora se mide por
+ * esa forma a mano y seguían verdes; en lo servido, cinco «parcial» de la vía
+ * del curador (dos de ellos, de la revisión con un modelo) salían plegados como
+ * si no hubiera datos detrás. Ahora se mide por
  * el camino real (tests/claim-public-gate.test.ts) y sobre lo servido
  * (tests/claim-gate-servido.test.ts).
  */
@@ -208,11 +212,19 @@ export function classifyClaimVisibility(
   const grounded =
     typeof verdict === 'string' &&
     DATA_GROUNDED_VERDICTS.has(verdict) &&
-    // Un veredicto que firmó un curador (`downgrade-verdict`) es la vía
-    // sancionada para pasar esta puerta y no puede depender de que una máquina
-    // anotara nada: ahí quien responde es una persona, que es exactamente el
-    // trato. Promover la declaración a hallazgo, en cambio, no la pasa: desde el
-    // 27-08 la ficha obedece esta misma puerta.
+    // Un veredicto que dejó la vía del curador (`downgrade-verdict`) es la vía
+    // sancionada para pasar esta puerta aunque su `checkedAgainst` sólo lleve
+    // la marca (`verificacionDeBajada` sustituye los corpus por ella). La
+    // excepción se fía del CANAL, no de quién lo usó: la vía sólo baja, y lo
+    // que deja en parcial conserva la evidencia del veredicto que rebajó. La
+    // han usado también una revisión con un modelo y sesiones de Claude, así
+    // que «ahí responde una persona» no es la razón; quién decidió cada bajada
+    // lo dice la tarjeta (`downgradedBy`). Plegar una de ésas tampoco sería la
+    // salida: un `parcial` plegado no tiene rótulo honesto en ninguna
+    // superficie (tests/claim-gate-servido.test.ts); quitarla de lo contrastado
+    // es una bajada a sin-datos que firma una persona. Promover la declaración
+    // a hallazgo, en cambio, no la pasa: desde el 27-08 la ficha obedece esta
+    // misma puerta.
     (tieneVerificadorAnotado(item) || isCuratorPromoted(item))
   if (item?.claim?.type === 'acusacion_publica') {
     const subtype = item.claim.accusationSubtype ?? 'opinativa' // safe default
