@@ -180,3 +180,82 @@ describe('manifest totals.byTopicVerdict', () => {
     expect(manifest.totals.byTopicVerdict).toEqual({})
   })
 })
+
+/**
+ * Por qué `sin-datos`, y la cobertura, en tres casillas y no en dos.
+ *
+ * Una pasada que rehace el veredicto sustituye la lista de lo consultado por su
+ * marca, y la cuenta la metía en «sin corpus que consultar»: 875 de 2.901 el
+ * 2026-09-30, de las que el motor había repasado candidatos y el curador leído
+ * un contrato. Las formas son las de filas servidas ese día, no inventadas.
+ */
+describe('manifest · comprobado, sin corpus o no consta', () => {
+  const fila = (
+    segmentIndex: number,
+    verification: VerifiedClaimItem['verification'],
+    verbatim = 'verbatim',
+  ) => ({
+    claim: { ...baseClaim, id: `A-${segmentIndex}`, plenoId: 'A', segmentIndex, verbatim },
+    verification,
+  })
+  const items: VerifiedClaimItem[] = [
+    // El determinista, sin corpus para este tipo de afirmación.
+    fila(
+      0,
+      { verdict: 'sin-datos', confidence: 0.5, checkedAgainst: [] },
+      'según el informe técnico',
+    ),
+    // El determinista, que consultó y no halló.
+    fila(1, { verdict: 'sin-datos', confidence: 0.5, checkedAgainst: ['tenders', 'tenders-ted'] }),
+    // Retractación del motor: repasó candidatos y dejó sólo su marca.
+    fila(
+      2,
+      {
+        verdict: 'sin-datos',
+        confidence: 0.2,
+        evidence: [],
+        checkedAgainst: ['verdict-engine'],
+        source: 'verdict-engine',
+      },
+      'según el informe técnico',
+    ),
+    // Bajada de curador a sin-datos, y otra a parcial que conserva su contrato.
+    fila(3, {
+      verdict: 'sin-datos',
+      confidence: 0.5,
+      evidence: [],
+      checkedAgainst: ['curator-downgrade'],
+      source: 'curator-downgrade',
+    }),
+    fila(4, {
+      verdict: 'parcial',
+      confidence: 0.5,
+      evidence: [{ kind: 'tender', ref: 'r', snippet: 'contrato' }],
+      checkedAgainst: ['curator-downgrade'],
+      source: 'curator-downgrade',
+    }),
+  ]
+  const { manifest } = buildManifest(groupItemsByPleno(items), '2026-09-30T00:00:00.000Z')
+
+  it('sinDatosPorque: una pasada que sustituyó la lista no es «sin corpus»', () => {
+    expect(manifest.totals.sinDatosPorque).toEqual({
+      sinCorpus: 1,
+      comprobadoSinHallar: 1,
+      noConsta: 2,
+    })
+  })
+
+  it('la cobertura reparte las cinco en tres casillas que suman el total', () => {
+    const celda = { total: 5, sinCorpus: 1, comprobadoSinHallar: 1, noConsta: 3 }
+    expect(manifest.totals.cobertura.porTipo).toEqual({ afirmacion_numerica: celda })
+    expect(manifest.totals.cobertura.porTema).toEqual({ fiscal: celda })
+  })
+
+  it('el documento que nombran se cuenta sólo en las que no tenían con qué', () => {
+    // Las dos nombran un informe técnico, pero la del motor tenía candidatos
+    // delante: que dependa de un documento que no se publica no consta.
+    const clases = manifest.totals.cobertura.porClaseDocumental
+    expect(clases.porClase['informe-tecnico']).toBe(1)
+    expect(clases.total).toBe(1)
+  })
+})

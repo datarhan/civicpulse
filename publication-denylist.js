@@ -1,4 +1,6 @@
 import { retenerLiterales } from './src/scraper/literales-retenidos'
+import { filasQueNombranUnEscano, retenerGruposDeUnEscano } from './src/scraper/grupos-retenidos'
+import { oneSeatBlocsOf } from './src/scraper/corporation-seats'
 import { citaRetenida } from './src/lib/cita-retenida.js'
 
 /**
@@ -38,10 +40,13 @@ import { citaRetenida } from './src/lib/cita-retenida.js'
  * Y un nivel más abajo, un CAMPO: `pleno-findings.json` no se puede quitar
  * entero —las páginas de hallazgos lo necesitan—, pero hasta el 28-09-2026
  * servía el literal de cada cita que la puerta editorial retiene, mientras la
- * página pintaba en su lugar el hueco «Literal retenido».
- * `retenerLiteralesEnDist`, abajo, reescribe la copia de `dist/` sin esos
- * literales; la del repositorio los conserva, y el repositorio es público. La
- * historia está en `src/scraper/literales-retenidos.ts`.
+ * página pintaba en su lugar el hueco «Literal retenido». Y hasta el 30-09-2026
+ * su bitácora de correcciones servía a qué grupo de un solo escaño —a qué
+ * concejal— se había atribuido lo que una persona retiró después.
+ * `servirHallazgosEnDist`, abajo, reescribe la copia de `dist/` sin lo uno ni lo
+ * otro; la del repositorio los conserva, y el repositorio es público. Las
+ * historias están en `src/scraper/literales-retenidos.ts` y
+ * `src/scraper/grupos-retenidos.ts`.
  *
  * @type {readonly string[]}
  */
@@ -146,34 +151,62 @@ export function repartir({ hojas, referencias }) {
 }
 
 /**
- * La copia servida de `pleno-findings.json`, sin el literal de ninguna cita que
- * la puerta editorial retiene (`retenerLiterales`, en
- * src/scraper/literales-retenidos.ts, cuenta por qué y qué conserva).
+ * La copia servida de `pleno-findings.json`, entera: lo que no debe servirse,
+ * retirado en este orden. Pura, para que la compilación y las pruebas
+ * construyan exactamente la misma.
  *
- * Tres suertes, y ninguna se dobla con otra:
+ *  · El literal de cada cita que la puerta editorial retiene
+ *    (`retenerLiterales`, src/scraper/literales-retenidos.ts).
+ *  · La versión de cada fila de bitácora que nombraba a un grupo de un solo
+ *    escaño (`retenerGruposDeUnEscano`, src/scraper/grupos-retenidos.ts), con la
+ *    composición que da `officials.json`.
  *
- *  · Sin `pleno-findings.json` en `dist/`, no hay literal que servir: se dice y
- *    se sigue.
- *  · Sin procedencia legible, NO se sabe qué retener, y la compilación se cae.
- *    Seguir sería desplegar el fichero entero, que es la avería que esto cierra.
- *  · Escrita la copia, se RELEE del disco y se comprueba cita por cita: lo que
- *    se despliega es el fichero, no el objeto en memoria.
- *
- * Lee la procedencia SERVIDA, no la de `public/`: es la que usa la página para
- * decidir el hueco, así que retener y pintar no pueden discrepar.
+ * Las dos fallan cerradas: sin la procedencia no se sabe qué literal retener, y
+ * sin la composición no se sabe qué grupo nombra a una persona.
  */
-export async function retenerLiteralesEnDist(dirDatos) {
+export function copiaServidaDeHallazgos(fuente, procedencia, officials) {
+  const literales = retenerLiterales(fuente, procedencia)
+  const unEscano = oneSeatBlocsOf(officials)
+  const grupos = retenerGruposDeUnEscano(literales.snapshot, unEscano)
+  return {
+    snapshot: grupos.snapshot,
+    stats: { literales: literales.stats, grupos: grupos.stats },
+    unEscano,
+  }
+}
+
+/**
+ * Escribe en `dist/` la copia servida de `pleno-findings.json`
+ * (`copiaServidaDeHallazgos`, arriba, cuenta qué se retira).
+ *
+ * Cuatro suertes, y ninguna se dobla con otra:
+ *
+ *  · Sin `pleno-findings.json` en `dist/`, no hay nada que servir: se dice y se
+ *    sigue.
+ *  · Sin procedencia legible, NO se sabe qué literal retener, y la compilación
+ *    se cae. Seguir sería desplegar el fichero entero, que es la avería que
+ *    esto cierra.
+ *  · Sin `officials.json` legible o sin composición, NO se sabe qué grupo tiene
+ *    un solo escaño, y la compilación se cae por lo mismo.
+ *  · Escrita la copia, se RELEE del disco y se comprueba cita por cita y fila
+ *    por fila: lo que se despliega es el fichero, no el objeto en memoria.
+ *
+ * Lee la procedencia y la composición SERVIDAS, no las de `public/`: son las
+ * que usa la página, así que retener y pintar no pueden discrepar.
+ */
+export async function servirHallazgosEnDist(dirDatos) {
   const { readFile, writeFile } = await import('node:fs/promises')
   const { join } = await import('node:path')
   const rutaHallazgos = join(dirDatos, 'pleno-findings.json')
   const rutaProcedencia = join(dirDatos, 'finding-quote-provenance.json')
+  const rutaOfficials = join(dirDatos, 'officials.json')
 
   let texto
   try {
     texto = await readFile(rutaHallazgos, 'utf8')
   } catch (err) {
     if (err.code === 'ENOENT') {
-      console.log('[publication-guard] pleno-findings.json no estaba: ningún literal que retener')
+      console.log('[publication-guard] pleno-findings.json no estaba: nada que retener')
       return null
     }
     throw new Error(`[publication-guard] no se pudo leer ${rutaHallazgos}: ${err.message}`)
@@ -187,8 +220,21 @@ export async function retenerLiteralesEnDist(dirDatos) {
         `retener (${err.message}), y desplegar pleno-findings.json entero es publicarlos todos`,
     )
   }
+  let officials
+  try {
+    officials = JSON.parse(await readFile(rutaOfficials, 'utf8'))
+  } catch (err) {
+    throw new Error(
+      `[publication-guard] sin officials.json legible no se sabe qué grupo tiene un solo ` +
+        `escaño (${err.message}), y desplegar la bitácora entera es volver a nombrarlos`,
+    )
+  }
 
-  const { snapshot, stats } = retenerLiterales(JSON.parse(texto), procedencia)
+  const { snapshot, stats, unEscano } = copiaServidaDeHallazgos(
+    JSON.parse(texto),
+    procedencia,
+    officials,
+  )
   await writeFile(rutaHallazgos, `${JSON.stringify(snapshot, null, 2)}\n`)
 
   const escrito = JSON.parse(await readFile(rutaHallazgos, 'utf8'))
@@ -199,15 +245,28 @@ export async function retenerLiteralesEnDist(dirDatos) {
       if (retenida && q?.text != null) conTexto.push(`${f.id}#${i}`)
     })
   }
+  const conGrupo = filasQueNombranUnEscano(escrito, unEscano)
+  const { literales, grupos } = stats
   console.log(
-    `[publication-guard] pleno-findings.json: ${stats.citasRetenidas} cita(s) sin su literal · ` +
-      `${stats.filasDeBitacora} fila(s) de bitácora en huella · ` +
-      `${stats.citasSinPuerta} cita(s) sin puerta · ${stats.filasHuerfanas} fila(s) huérfana(s)`,
+    `[publication-guard] pleno-findings.json: ${literales.citasRetenidas} cita(s) sin su literal · ` +
+      `${literales.filasDeBitacora} fila(s) de bitácora en huella · ` +
+      `${literales.citasSinPuerta} cita(s) sin puerta · ${literales.filasHuerfanas} fila(s) huérfana(s)`,
+  )
+  console.log(
+    `[publication-guard] pleno-findings.json: ${grupos.versiones} versión(es) que nombraban a un ` +
+      `grupo de un solo escaño (${unEscano.join(', ') || 'ninguno hoy'}) sin reproducir, en ` +
+      `${grupos.filasDeBitacora} fila(s) de bitácora`,
   )
   if (conTexto.length) {
     throw new Error(
       `[publication-guard] dist/data/pleno-findings.json sigue sirviendo el literal de ` +
         `${conTexto.length} cita(s) retenida(s): ${conTexto.join(', ')}`,
+    )
+  }
+  if (conGrupo.length) {
+    throw new Error(
+      `[publication-guard] dist/data/pleno-findings.json sigue nombrando a un grupo de un solo ` +
+        `escaño en ${conGrupo.length} lado(s) de su bitácora: ${conGrupo.join(', ')}`,
     )
   }
   return stats
@@ -333,8 +392,8 @@ export function vitePublicationGuard() {
           throw new Error(`[publication-guard] no se pudo retirar de dist/: ${fallidos.join(', ')}`)
         }
 
-        // Un fichero que sí se sirve, sin el campo que no debe servirse.
-        await retenerLiteralesEnDist(resolve(root, 'dist', 'data'))
+        // Un fichero que sí se sirve, sin los campos que no deben servirse.
+        await servirHallazgosEnDist(resolve(root, 'dist', 'data'))
       },
     },
   }

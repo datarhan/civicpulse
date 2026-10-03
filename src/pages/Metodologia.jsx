@@ -1323,20 +1323,48 @@ export default function Metodologia() {
               {/* Decía «no hay registro en las bases abiertas», y la tarjeta lo
                   repetía en cada sin-datos con una frase fija que nombraba
                   contratos, BDNS y presupuesto aunque no se hubiera consultado
-                  ninguno. 29-09-2026. */}
+                  ninguno. 29-09-2026. La frase del expediente parecido salía
+                  también en citas sin cifra, con un contrato encima de
+                  «Fuentes comprobadas: ninguna» y un «el que hay no dice eso»
+                  que se leía como desmentido. 30-09-2026. */}
+              {/* Los recuentos contaban «sin corpus que consultar» las filas
+                  cuya lista había sustituido una pasada, debajo de tarjetas que
+                  decían «no constan». 30-09-2026. */}
               <li>
                 <strong>sin-datos</strong> — ningún registro de las bases consultadas sostiene la
                 afirmación, o no había ninguna con la que cotejarla. Puede ser cierta, pero no está
                 atestiguada (muy frecuente: reconocimientos extrajudiciales, operaciones internas).
                 La explicación de su tarjeta nombra sólo las bases que constan como consultadas —las
                 mismas que su línea «Fuentes comprobadas»— y, cuando no consta ninguna, no dice que
-                se buscara.
+                se buscara. Cuando la cifra citada se cotejó con los contratos y el título de uno
+                coincide en parte con lo citado, la tarjeta enseña ese expediente y dice que su
+                importe no es la cifra: se miró, y ni la sostiene ni la desmiente. A una cita sin
+                cifra no se le enseña ninguno, porque no hubo importe que cotejar. Los recuentos de{' '}
+                <code>/declaraciones</code>, <code>/plenos</code> y{' '}
+                <code>/laboratorio/cobertura</code> las reparten en tres, con la misma regla que esa
+                línea: <strong>comprobadas sin hallar nada</strong>, porque consta alguna base
+                consultada; <strong>sin corpus que consultar</strong>, porque no hay nada anotado
+                («ninguna»); y aquellas de las que <strong>no consta qué se consultó</strong> («no
+                constan»), porque una revisión posterior —del motor de veredictos o de un curador—
+                rehízo el veredicto y dejó su marca en lugar de la lista. Éstas no se cuentan como
+                «sin corpus»: el motor juzgó las suyas sobre contratos o subvenciones candidatos, y
+                el curador, sobre la evidencia que corregía; que no conste cuáles no quiere decir
+                que no hubiera con qué.
               </li>
               <li>
                 <strong>promesa-repetida</strong> — la promesa coincide con una ya documentada en el
                 tracker de años anteriores.
               </li>
             </ul>
+            {/* La fila de contrato imprimía el presupuesto base sin IVA de la
+                licitación bajo una cita que daba la adjudicación con IVA, y el
+                lector no podía cuadrar «81 K €» con «70.158 €». 30-09-2026. */}
+            <p style={{ margin: '8px 0 0' }}>
+              Cada fila de contrato imprime el importe que el verificador comparó, uno por fila, y
+              un mismo expediente trae varios: de licitación y de adjudicación, con IVA y sin él. Si
+              el impreso no es la cifra citada y otro importe del mismo expediente sí lo es, la
+              tarjeta dice debajo qué es cada uno.
+            </p>
           </li>
           <li>
             <strong>
@@ -1794,14 +1822,21 @@ export default function Metodologia() {
                 contrastada”». Desde el 29-09-2026 las citas van numeradas y el
                 hueco y la nota dicen de cuál hablan: aplanada la página, su pie
                 se leía sobre la cita impresa de al lado (CitaRetenida, en
-                PlenoFindings.jsx). */}
+                PlenoFindings.jsx).
+                Decía «…dicen de qué número hablan, para que ninguna explicación
+                se lea sobre la cita de al lado». Desde el 30-09-2026 dicen
+                también de qué ficha: los números son por ficha, y aplanada la
+                página la nota de una se leyó sobre la cita del mismo número de
+                la siguiente (codigoDeFicha, en PlenoFindings.jsx). */}
             <strong>«Literal retenido»</strong> — ocupa el sitio de una cita que la puerta retiene.
             La página no imprime el literal: enseña el hueco con el número de la cita, su motivo y a
             qué grupo la atribuye la ficha, o que no la atribuye a ninguno; la nota bajo las citas
             la rotula <strong>«acusación no contrastada»</strong> con ese mismo número. Las citas de
             cada ficha van numeradas, las impresas y los huecos, y el pie de cada hueco y cada línea
-            de la nota dicen de qué número hablan, para que ninguna explicación se lea sobre la cita
-            de al lado. El literal tampoco lo llevan la bitácora de correcciones de la ficha, que en
+            de la nota dicen de qué número hablan y de qué ficha —con el nombre que imprime su
+            cabecera: «ficha» y el código con que acaba su enlace permanente—, para que ninguna
+            explicación se lea sobre la cita de al lado ni sobre la del mismo número en la ficha
+            contigua. El literal tampoco lo llevan la bitácora de correcciones de la ficha, que en
             esas filas enseña su huella en lugar del texto, ni la copia de los datos de hallazgos
             que sirve el sitio. Se retiene el literal, no la ficha: el hallazgo, su resumen, su
             atribución, los documentos cotejados y el derecho de réplica siguen a la vista. Lo que
@@ -2139,6 +2174,28 @@ export default function Metodologia() {
             enmendado lo dice delante, y cada enmienda enseña quién la hizo, cuándo, por qué y la
             huella del motivo que sustituyó. No es una corrección nueva del hallazgo: no cambia nada
             de lo que la ficha afirma, sino la explicación de un cambio anterior.
+          </li>
+          <li id="bitacora-escano-unico" style={{ scrollMarginTop: 24 }}>
+            En los hallazgos de pleno, la versión de un titular, de un sumario o del grupo de una
+            cita que <strong>nombraba a un grupo de un solo escaño</strong> no se reproduce en la
+            bitácora. Un grupo con un solo concejal señala a esa persona (lo explica{' '}
+            <a href="#verificacion-declaraciones" style={{ color: 'var(--civic)' }}>
+              cómo se atribuye una cita
+            </a>
+            ), y el 29 y el 30 de septiembre de 2026 se retiraron con firma las atribuciones a uno
+            de esos grupos que nadie había firmado, porque no consta quién habló: imprimir el grupo
+            tachado al lado de «sin identificar» seguiría diciéndolo, y lo mismo vale para la
+            versión de un sumario que lo nombraba. Lo hace la compilación sobre la copia de los
+            hallazgos que sirve el sitio, con la composición de la corporación que publica el
+            ayuntamiento: el lado afectado lleva{' '}
+            <code>grupo de un solo escaño · no se reproduce</code>, la fila conserva su campo, su
+            motivo, su editor/a y su fecha, y la ficha dice qué versión falta y por qué. Es una
+            marca y no una huella porque la huella de un nombre entre cinco se deshace probando los
+            cinco. La atribución retirada a un grupo con varios escaños se sigue enseñando: es de
+            bloque, y no señala a nadie. Y no es una retirada: el repositorio del proyecto es
+            público, y su fichero de hallazgos y su historial conservan la fila entera. El motivo de
+            una fila no lo reescribe ninguna máquina: si nombra a uno de esos grupos, lo enmienda
+            una persona por la vía del punto anterior.
           </li>
           <li>
             <strong>Retirar el hallazgo entero</strong> es una operación distinta de corregirlo, y

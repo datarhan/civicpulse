@@ -11,11 +11,12 @@ import { collectErrors, appErrors } from './_console'
 // Las cifras salen del manifiesto publicado, no escritas a mano: una spec que
 // restituye el número que debería salir se queda verde mientras la página
 // pinta otro.
+type Casilla = { total: number; sinCorpus: number; comprobadoSinHallar: number; noConsta: number }
 const TOTALS = JSON.parse(readFileSync('public/data/pleno-claims/index.json', 'utf8')).totals as {
   items: number
   cobertura: {
-    porTipo: Record<string, { total: number; sinCorpus: number; comprobadoSinHallar: number }>
-    porTema: Record<string, { total: number; sinCorpus: number; comprobadoSinHallar: number }>
+    porTipo: Record<string, Casilla>
+    porTema: Record<string, Casilla>
     corpus: Record<string, number>
   }
 }
@@ -25,8 +26,9 @@ const SUMA = Object.values(TOTALS.cobertura.porTipo).reduce(
     total: a.total + v.total,
     sinCorpus: a.sinCorpus + v.sinCorpus,
     conCorpus: a.conCorpus + v.comprobadoSinHallar,
+    noConsta: a.noConsta + v.noConsta,
   }),
-  { total: 0, sinCorpus: 0, conCorpus: 0 },
+  { total: 0, sinCorpus: 0, conCorpus: 0, noConsta: 0 },
 )
 
 test.describe('Cobertura de comprobación (/laboratorio/cobertura)', () => {
@@ -34,6 +36,8 @@ test.describe('Cobertura de comprobación (/laboratorio/cobertura)', () => {
     // Antes de mirar la página: que los datos que va a pintar sean coherentes.
     // Y que haya algo que medir — un cruce vacío pintaría un 100 % perfecto.
     expect(SUMA.total).toBe(TOTALS.items)
+    // Tres casillas que suman el total: la tercera no se saca por resta.
+    expect(SUMA.conCorpus + SUMA.sinCorpus + SUMA.noConsta).toBe(SUMA.total)
     expect(SUMA.sinCorpus).toBeGreaterThan(0)
     expect(SUMA.conCorpus).toBeGreaterThan(0)
     expect(Object.keys(TOTALS.cobertura.corpus).length).toBeGreaterThan(0)
@@ -46,10 +50,17 @@ test.describe('Cobertura de comprobación (/laboratorio/cobertura)', () => {
     await expect(page.getByRole('heading', { name: /Qué podemos comprobar/i })).toBeVisible({
       timeout: 8000,
     })
-    // Regla 2 del laboratorio: la ausencia se publica como ausencia. Las dos
-    // cifras tienen que estar, no sólo la que favorece.
-    await expect(page.getByText(String(SUMA.conCorpus), { exact: true }).first()).toBeVisible()
-    await expect(page.getByText(String(SUMA.sinCorpus), { exact: true }).first()).toBeVisible()
+    // Regla 2 del laboratorio: la ausencia se publica como ausencia. Las tres
+    // cifras tienen que estar, no sólo la que favorece — y cada una bajo su
+    // rótulo: «sin corpus» no es lo que falta para el total.
+    for (const [rotulo, n] of [
+      ['COTEJADAS CONTRA ALGÚN CORPUS', SUMA.conCorpus],
+      ['SIN CORPUS QUE CONSULTAR', SUMA.sinCorpus],
+      ['NO CONSTA QUÉ SE CONSULTÓ', SUMA.noConsta],
+    ] as const) {
+      const bloque = page.getByText(rotulo, { exact: true }).locator('..')
+      await expect(bloque, rotulo).toContainText(String(n))
+    }
     expect(appErrors(errors)).toEqual([])
   })
 

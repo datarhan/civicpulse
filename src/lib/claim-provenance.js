@@ -33,10 +33,16 @@
  */
 import {
   CLASE_DE_PASADA,
+  COLA_SIN_IMPORTE,
+  RESUMEN_CASI_FIJO,
   corpusReales,
+  desenlaceDeCotejo,
   esCorpus,
   esMarcaDePasada,
+  esResumenCasi,
   esResumenSinRegistro,
+  leyoContratos,
+  resumenCasi,
   resumenSinRegistro,
 } from '../scraper/claim-verdicts'
 
@@ -66,11 +72,6 @@ function pasadasDe(v) {
   return [v?.source, ...lista(v?.derivedBy), ...lista(v?.checkedAgainst)].filter(
     (n) => typeof n === 'string' && esMarcaDePasada(n),
   )
-}
-
-/** Ni canal, ni pasada declarada, ni nada en `checkedAgainst`. */
-function nadaAnotado(v) {
-  return !v?.source && lista(v?.derivedBy).length === 0 && lista(v?.checkedAgainst).length === 0
 }
 
 /**
@@ -130,14 +131,18 @@ export function etiquetaVerificador(v) {
  *     CONTRATO; «ninguna» debajo contradiría la propia tarjeta. Regla nº3 otra
  *     vez: el hueco no es un cero.
  *
+ * Las tres salen de `desenlaceDeCotejo`, que es también la regla del recuento
+ * de encima: el reparto de /declaraciones contaba esas filas como «sin corpus
+ * que consultar» mientras su tarjeta decía «no constan» (2026-09-29).
+ *
  * @param {{ checkedAgainst?: unknown[] | null, derivedBy?: unknown[] | null,
  *   source?: string } | null | undefined} v  la verificación servida, entera.
  * @returns {string} los corpus separados por « · », o una de las dos frases.
  */
 export function fuentesComprobadas(v) {
-  const corpus = corpusReales(v?.checkedAgainst)
-  if (corpus.length > 0) return corpus.join(' · ')
-  return nadaAnotado(v) ? 'ninguna' : 'no constan'
+  const desenlace = desenlaceDeCotejo(v)
+  if (desenlace === 'con-corpus') return corpusReales(v?.checkedAgainst).join(' · ')
+  return desenlace === 'sin-corpus' ? 'ninguna' : 'no constan'
 }
 
 /**
@@ -159,13 +164,59 @@ export function fuentesComprobadas(v) {
  * `sin-datos`, que es el único veredicto que la escribe. Cualquier otra
  * explicación —la del motor, la de un curador— sale como vino.
  *
- * @param {{ verdict?: string, summary?: string, checkedAgainst?: unknown[] | null }
+ * La otra frase del verificador para un `sin-datos`, la del expediente que se
+ * parece (claim-verdicts.ts, «El expediente que se parece»), se lee con la
+ * regla de `evidenciaSegunFuentes`: sin contratos cotejados, la fila no se
+ * pinta y la explicación es la del «no se encontró registro», derivada igual;
+ * con ellos, la fija de antes —que hablaba de «la cifra del claim» y acababa
+ * en «el que hay no dice eso»— se cambia por la de ahora.
+ *
+ * @param {{ verdict?: string, summary?: string, checkedAgainst?: unknown[] | null,
+ *   evidence?: Array<{ kind?: string, snippet?: string }> | null }
  *   | null | undefined} v  la verificación servida, entera.
  * @param {string | null | undefined} [texto]  la explicación a imprimir; por
  *   defecto, el `summary`. `null` (retirada) pasa tal cual.
  * @returns {string | null | undefined}
  */
 export function resumenSegunFuentes(v, texto = v?.summary) {
-  if (v?.verdict !== 'sin-datos' || !esResumenSinRegistro(texto)) return texto
+  if (v?.verdict !== 'sin-datos') return texto
+  if (esResumenCasi(texto)) {
+    if (!leyoContratos(v?.checkedAgainst)) return resumenSinRegistro(v?.checkedAgainst)
+    if (texto !== RESUMEN_CASI_FIJO) return texto
+    const fila = lista(v?.evidence).find((e) => e?.kind === 'tender')
+    return resumenCasi(!String(fila?.snippet ?? '').endsWith(COLA_SIN_IMPORTE))
+  }
+  if (!esResumenSinRegistro(texto)) return texto
   return resumenSinRegistro(v?.checkedAgainst)
+}
+
+/**
+ * Las filas de evidencia que la tarjeta pinta: todas, salvo el expediente
+ * parecido de una verificación que no consta que cotejara contratos.
+ *
+ * El verificador enseñaba ese expediente también en citas sin cifra, donde el
+ * camino del importe no corre y `tenders` no se anota (claim-verdicts.ts, «El
+ * expediente que se parece»). Medido el 30-09-2026 sobre los trozos servidos:
+ * 47 tarjetas pintaban una fila CONTRATO encima de «Fuentes comprobadas:
+ * ninguna» o «promises», y /declaraciones la contaba como «1 evidencia» dentro
+ * de «Sin corpus que consultar». El verificador ya no las escribe; las
+ * publicadas siguen en su trozo hasta que se vuelva a verificar, que es una
+ * decisión editorial.
+ *
+ * Es una retirada —el nivel A de `decideAutomation`: sólo quita, y quitar una
+ * fila que no funda nada no refuerza ninguna afirmación—, y como la de
+ * `resumenes-retirados.js`, no toca los datos: el trozo servido la conserva.
+ * Se reconoce por la frase que la acompaña (`esResumenCasi`), no por su forma:
+ * una fila CONTRATO bajo otra explicación —las bajadas de curador que salen
+ * sobre «no constan», porque su pasada sustituyó la lista— sale como vino.
+ *
+ * @param {{ verdict?: string, summary?: string, checkedAgainst?: unknown[] | null,
+ *   evidence?: Array<{ kind?: string }> | null } | null | undefined} v
+ * @returns {Array<{ kind?: string }>}
+ */
+export function evidenciaSegunFuentes(v) {
+  const evidencia = lista(v?.evidence)
+  if (v?.verdict !== 'sin-datos' || !esResumenCasi(v?.summary) || leyoContratos(v?.checkedAgainst))
+    return evidencia
+  return evidencia.filter((e) => e?.kind !== 'tender')
 }

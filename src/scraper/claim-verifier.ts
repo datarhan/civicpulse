@@ -132,7 +132,8 @@ export {
   type ResumenSinDatos,
 } from './claim-verdicts'
 import type { ClaimVerdict } from './claim-verdicts'
-import { resumenSinRegistro } from './claim-verdicts'
+import { COLA_SIN_IMPORTE, leyoContratos, resumenCasi, resumenSinRegistro } from './claim-verdicts'
+import { importeDelEmparejador } from './importe-de-contrato'
 
 /**
  * What this verifier established about a document RELATIVE to the claim.
@@ -559,8 +560,15 @@ function tenderCouldRefute(
  *
  * Mide con la regla mutua —la misma que el camino de sólo-objeto usa con su
  * suelo de 0,34—, y NO mira el importe: una fila sin importe publicado también
- * cuenta, porque lo que separa «no hay ninguno» de «hay uno y no dice eso» no
- * es el importe. No funda nada: quien la use la marca como no-fundante.
+ * cuenta, porque lo que separa «no hay ninguno» de «hay uno y su importe no es
+ * la cifra» no es el importe. No funda nada: quien la use la marca como
+ * no-fundante.
+ *
+ * Y sólo tiene sentido donde ese camino corrió: el que la llama lo pide con
+ * `leyoContratos`. Sin cifra que cotejar no hubo fila que se cayera, y lo que
+ * el barrido encontraba entonces era un parecido de dos palabras en un título
+ * —«la Comunidad Valenciana cuenta con … 5 millones de personas» colgada del
+ * Plan de Movilidad—, enseñado sobre «Fuentes comprobadas: ninguna».
  */
 function mejorCasiPorObjeto(
   entity: string | undefined,
@@ -600,26 +608,13 @@ function readTenders(data: unknown): TenderRow[] {
  * entire tender cross-reference produced nothing — on the press side that
  * surfaced as a published "0% de verificación" next to named outlets, which
  * reads as a finding about the outlets rather than about our reader.
+ *
+ * El orden de los campos vive en importe-de-contrato.ts, que la página también
+ * carga: el puente de la tarjeta nombra el campo que esta función leyó, y con
+ * dos copias del orden podría nombrar otro.
  */
 function tenderAmount(r: TenderRow): number | null {
-  const r2 = r as TenderRow & {
-    finalAmountNoTaxes?: number
-    initialAmountNoTaxes?: number
-    finalAmount?: number
-    initialAmount?: number
-    totalValueEur?: number
-  }
-  const v =
-    r2.finalAmountNoTaxes ??
-    r2.initialAmountNoTaxes ??
-    r2.finalAmount ??
-    r2.initialAmount ??
-    r2.totalValueEur ??
-    r.award_amount_eur ??
-    r.awarded_amount ??
-    r.amount
-  const n = Number(v)
-  return Number.isFinite(n) && n > 0 ? n : null
+  return importeDelEmparejador(r)?.valor ?? null
 }
 
 function tenderTitle(r: TenderRow): string {
@@ -1185,33 +1180,37 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
       checkedAgainst: checked,
     }
   }
-  // «No lo encontré» y «lo encontré y no dice eso» no son lo mismo, y hasta el
-  // 16-09-2026 salían con la misma frase. El veredicto NO se mueve —los
-  // automáticos sólo bajan—: lo que cambia es que el expediente que se miró se
-  // enseña, y la frase dice por qué no sostiene la cifra.
-  const casi = evidence.some((e) => e.kind === 'tender')
-    ? null
-    : mejorCasiPorObjeto(claim.entities.referencedEntity, tenderList)
+  // «No lo encontré» y «lo encontré y su importe no es la cifra» no son lo
+  // mismo, y hasta el 16-09-2026 salían con la misma frase. El veredicto NO se
+  // mueve —los automáticos sólo bajan—: lo que cambia es que el expediente que
+  // se miró se enseña, y la frase dice por qué no sostiene la cifra.
+  //
+  // Sólo si el camino del importe leyó los contratos (`leyoContratos`): sin él,
+  // la fila salía sobre una línea de fuentes que no nombra ninguno, y la frase
+  // hablaba de una cifra que la cita no trae (claim-verdicts.ts, «El expediente
+  // que se parece»).
+  const casi =
+    evidence.some((e) => e.kind === 'tender') || !leyoContratos(checked)
+      ? null
+      : mejorCasiPorObjeto(claim.entities.referencedEntity, tenderList)
   if (casi) {
+    const importe = tenderAmount(casi.row)
     evidence.push({
       kind: 'tender',
       ref: casi.row.permalink ?? '',
       snippet: `${tenderTitle(casi.row)}${
-        tenderAmount(casi.row) != null
-          ? ` · ${Math.round(tenderAmount(casi.row)!).toLocaleString('es-ES')} €`
-          : ' · importe no publicado'
+        importe != null ? ` · ${Math.round(importe).toLocaleString('es-ES')} €` : COLA_SIN_IMPORTE
       }`,
       similarity: Math.round(casi.sim * 100) / 100,
-      // Se enseña porque se miró, no porque acredite: el objeto coincide y la
-      // cifra no, que es exactamente lo que el lector necesita saber.
+      // Se enseña porque se miró, no porque acredite: el título coincide en
+      // parte y la cifra no, que es exactamente lo que el lector necesita saber.
       stance: 'checked',
     })
     marcarNoFundante()
     return {
       claimId: claim.id,
       verdict: 'sin-datos',
-      summary:
-        'El objeto citado aparece en un expediente municipal, pero ninguna de sus magnitudes coincide con la cifra del claim. No es que no haya registro: es que el que hay no dice eso.',
+      summary: resumenCasi(importe != null),
       evidence,
       checkedAgainst: checked,
     }

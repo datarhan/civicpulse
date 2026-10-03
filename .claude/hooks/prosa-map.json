@@ -449,6 +449,7 @@
       "/cargos/:slug",
       "/curator",
       "/datos",
+      "/declaraciones",
       "/departamentos",
       "/departamentos/:slug",
       "/hallazgos",

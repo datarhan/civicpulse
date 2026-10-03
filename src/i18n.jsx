@@ -657,6 +657,7 @@ export const CATALOGUE = {
     'declaraciones.filter.atribuidas': 'Atribuidas',
     'declaraciones.filter.sinCorpus': 'Sin corpus que consultar',
     'declaraciones.filter.comprobadoSinHallar': 'Comprobada, no aparece',
+    'declaraciones.filter.noConsta': 'No consta qué se consultó',
     'declaraciones.filter.unEscano.uno':
       '{gruposUnEscano} tiene un escaño: etiquetar una declaración con su grupo señalaría a quien lo ocupa, así que sus declaraciones se publican sin grupo.',
     'declaraciones.filter.unEscano.varios':
@@ -664,9 +665,10 @@ export const CATALOGUE = {
     'declaraciones.filter.unEscano.porQue': 'Por qué',
     'declaraciones.split.titulo': 'Por qué «sin datos»',
     'declaraciones.split.cuerpo':
-      'No es lo mismo haber comprobado y no encontrar nada que no haber tenido con qué comprobar. Lo segundo no dice nada sobre la declaración: dice que aún no tenemos ese corpus.',
+      'No es lo mismo haber comprobado y no encontrar nada que no haber tenido con qué comprobar: lo segundo no dice nada sobre la declaración, dice que aún no tenemos ese corpus. Y de las que no consta, una revisión posterior —de un modelo o de un curador— rehízo el veredicto sin dejar anotado contra qué lo cotejó, que tampoco es lo mismo que no tener con qué.',
     'declaraciones.split.sinCorpus': 'sin corpus que consultar',
     'declaraciones.split.comprobadoSinHallar': 'comprobadas, no aparecen',
+    'declaraciones.split.noConsta': 'no consta qué se consultó',
     'declaraciones.search.placeholder': 'Buscar en el texto literal…',
     'declaraciones.matchCount': 'declaraciones coinciden con los filtros',
     'declaraciones.loadMore': 'Mostrar más',
@@ -767,7 +769,7 @@ export const CATALOGUE = {
     'plenos.indice.decl.eyebrow': 'Declaraciones extraídas · {n} sesiones',
     'plenos.indice.decl.titulo': '{extraidas} declaraciones, {verificado} verificadas',
     'plenos.indice.decl.sinDatosNota':
-      'Un «sin datos» no desmiente nada: dice que no encontramos ningún documento municipal que hable de eso. De los {sinDatos}, {sinCorpus} y {comprobado} se comprobaron sin hallar nada.',
+      'Un «sin datos» no desmiente nada: dice que no encontramos ningún documento municipal que hable de eso. De los {sinDatos}, {sinCorpus}, {comprobado} se comprobaron sin hallar nada y de {noConsta} no consta qué se consultó.',
     'plenos.indice.decl.sinCorpus': '{n} no tenían corpus donde buscar',
     'plenos.indice.decl.enlace': 'Verificación de declaraciones, todas las sesiones →',
     'plenos.indice.reparto.eyebrow': 'Reparto por área · {puntos} puntos de {sesiones} sesiones',
@@ -1028,6 +1030,10 @@ export const CATALOGUE = {
     // ahí. Medido: de 40 hallazgos, 2 no tenían más cotejo que el vídeo.
     'findings.refs.provenance': 'Procedencia de las citas',
     'findings.refs.contradiction': 'Documentos que contradicen',
+    // De qué ficha es la lista, con el nombre que imprime su cabecera. La banda
+    // cierra la ficha, y aplanada la página el vídeo del pleno de una ficha se
+    // leyó contra la siguiente, de otra sesión (`codigoDeFicha`).
+    'findings.refs.ficha': 'ficha {ficha}',
     'findings.refs.date.award': 'adjudicación',
     'findings.refs.date.formalized': 'formalización',
     'findings.refs.date.start': 'inicio',
@@ -2314,6 +2320,7 @@ export const CATALOGUE = {
     'declaraciones.filter.atribuidas': 'Atribuïdes',
     'declaraciones.filter.sinCorpus': 'Sense corpus a consultar',
     'declaraciones.filter.comprobadoSinHallar': 'Comprovada, no apareix',
+    'declaraciones.filter.noConsta': 'No consta què es va consultar',
     'declaraciones.filter.unEscano.uno':
       "{gruposUnEscano} té un escó: etiquetar una declaració amb el seu grup assenyalaria qui l'ocupa, així que les seues declaracions es publiquen sense grup.",
     'declaraciones.filter.unEscano.varios':
@@ -2321,9 +2328,10 @@ export const CATALOGUE = {
     'declaraciones.filter.unEscano.porQue': 'Per què',
     'declaraciones.split.titulo': 'Per què «sense dades»',
     'declaraciones.split.cuerpo':
-      'No és el mateix haver comprovat i no trobar res que no haver tingut amb què comprovar. El segon no diu res sobre la declaració: diu que encara no tenim eixe corpus.',
+      'No és el mateix haver comprovat i no trobar res que no haver tingut amb què comprovar: el segon no diu res sobre la declaració, diu que encara no tenim eixe corpus. I de les que no consta, una revisió posterior —d’un model o d’un curador— va refer el veredicte sense deixar anotat contra què el va acarar, que tampoc és el mateix que no tindre amb què.',
     'declaraciones.split.sinCorpus': 'sense corpus a consultar',
     'declaraciones.split.comprobadoSinHallar': 'comprovades, no apareixen',
+    'declaraciones.split.noConsta': 'no consta què es va consultar',
     'declaraciones.search.placeholder': 'Cerca en el text literal…',
     'declaraciones.matchCount': 'declaracions coincideixen amb els filtres',
     'declaraciones.loadMore': 'Mostrar-ne més',
@@ -2423,7 +2431,7 @@ export const CATALOGUE = {
     'plenos.indice.decl.eyebrow': 'Declaracions extretes · {n} sessions',
     'plenos.indice.decl.titulo': '{extraidas} declaracions, {verificado} verificades',
     'plenos.indice.decl.sinDatosNota':
-      'Un «sense dades» no desmentix res: diu que no hem trobat cap document municipal que en parle. Dels {sinDatos}, {sinCorpus} i {comprobado} es van comprovar sense trobar res.',
+      'Un «sense dades» no desmentix res: diu que no hem trobat cap document municipal que en parle. Dels {sinDatos}, {sinCorpus}, {comprobado} es van comprovar sense trobar res i de {noConsta} no consta què es va consultar.',
     'plenos.indice.decl.sinCorpus': '{n} no tenien corpus on buscar',
     'plenos.indice.decl.enlace': 'Verificació de declaracions, totes les sessions →',
     'plenos.indice.reparto.eyebrow': 'Repartiment per àrea · {puntos} punts de {sesiones} sessions',
@@ -2655,6 +2663,7 @@ export const CATALOGUE = {
     'findings.refs.crossChecked': 'Documents contrastats',
     'findings.refs.provenance': 'Procedència de les cites',
     'findings.refs.contradiction': 'Documents que contradiuen',
+    'findings.refs.ficha': 'fitxa {ficha}',
     'findings.refs.date.award': 'adjudicació',
     'findings.refs.date.formalized': 'formalització',
     'findings.refs.date.start': 'inici',

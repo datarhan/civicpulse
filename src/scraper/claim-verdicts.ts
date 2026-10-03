@@ -41,12 +41,38 @@ export type ClaimVerdict = (typeof CLAIM_VERDICTS)[number]
 // DERIVA y no se guarda: ni campo nuevo en la verificación, ni miembro nuevo en
 // el enum de veredictos, que alimenta `isDowngrade`, el validador del overlay y
 // las CLI de curación.
+//
+// Y las preguntas son tres, no dos (2026-09-29). Una pasada que rehace el
+// veredicto SUSTITUYE la lista: `verificacionDeBajada` escribe sólo
+// `['curator-downgrade']`, y el motor escribía su marca —hoy, `derivedBy` y el
+// corpus de una evidencia que en una retractación no hay—. Contadas por
+// `corpusReales` a secas, esas filas salían en «sin corpus que consultar»
+// aunque el motor hubiera repasado una lista corta de contratos candidatos y el
+// curador hubiera leído uno: 875 de 2.901 el 2026-09-30, debajo de una tarjeta
+// que decía «Fuentes comprobadas: no constan». No es que no hubiera con qué: es
+// que no consta con qué. «No consta» afirma menos, y es la dirección segura.
+
+/**
+ * Qué consta de lo que se consultó para llegar a un veredicto:
+ *
+ *   · `con-corpus` — la lista nombra algún corpus declarado en `CORPUS_IDS`;
+ *   · `sin-corpus` — no hay nada anotado en ningún sitio: no había con qué;
+ *   · `no-consta` — se anotó algo que no es un corpus (una pasada, en
+ *     `checkedAgainst`, en `derivedBy` o como `source`, o un nombre sin
+ *     declarar): no sabemos contra qué se cotejó, que no es lo mismo que no
+ *     tener con qué.
+ */
+export const DESENLACES_DE_COTEJO = ['con-corpus', 'sin-corpus', 'no-consta'] as const
+
+export type DesenlaceDeCotejo = (typeof DESENLACES_DE_COTEJO)[number]
 
 export interface ResumenSinDatos {
-  /** `checkedAgainst` vacío: no se consultó ningún corpus. */
+  /** Nada anotado: no había corpus que consultar. */
   sinCorpus: number
   /** Se consultaron corpus y no hubo coincidencia. */
   comprobadoSinHallar: number
+  /** Una pasada sustituyó la lista de lo consultado: no consta qué se consultó. */
+  noConsta: number
 }
 
 /** Lo mínimo que hace falta mirar. Estructural a propósito, para que valga
@@ -54,24 +80,54 @@ export interface ResumenSinDatos {
 export interface VerificacionCotejable {
   verdict?: string
   checkedAgainst?: readonly unknown[]
+  /** La pasada que lo declara, desde la fase 1b. */
+  derivedBy?: readonly unknown[]
+  /** El canal de overlay por el que entró, estampado por `mergeVerified` (#164). */
+  source?: unknown
+}
+
+const anotados = (x: unknown): readonly unknown[] => (Array.isArray(x) ? x : [])
+
+/**
+ * El desenlace de una fila, sea cual sea su veredicto. Es la regla de la línea
+ * «Fuentes comprobadas» de cada tarjeta (`fuentesComprobadas`, que la llama), y
+ * la del recuento de /declaraciones, /plenos y /laboratorio/cobertura: una sola,
+ * para que la tarjeta y el número de encima no puedan decir cosas distintas.
+ */
+export function desenlaceDeCotejo(v: VerificacionCotejable | null | undefined): DesenlaceDeCotejo {
+  if (corpusReales(v?.checkedAgainst).length > 0) return 'con-corpus'
+  const nadaAnotado =
+    !v?.source && anotados(v?.derivedBy).length === 0 && anotados(v?.checkedAgainst).length === 0
+  return nadaAnotado ? 'sin-corpus' : 'no-consta'
 }
 
 /**
- * Reparte las filas `sin-datos` en sus dos motivos. Las dos partes suman
+ * La casilla que cuenta cada desenlace en los recuentos publicados: el
+ * `sinDatosPorque` del manifiesto y las celdas de su tabla de cobertura, que
+ * usan los mismos nombres (en la cobertura, `comprobadoSinHallar` es «con
+ * corpus» y cuenta cualquier veredicto). Un `Record`, para que un desenlace
+ * nuevo sin casilla no compile en vez de caer en la de otro.
+ */
+export const CASILLA_DE_DESENLACE: Record<DesenlaceDeCotejo, keyof ResumenSinDatos> = {
+  'con-corpus': 'comprobadoSinHallar',
+  'sin-corpus': 'sinCorpus',
+  'no-consta': 'noConsta',
+}
+
+/**
+ * Reparte las filas `sin-datos` en sus tres desenlaces. Las tres partes suman
  * exactamente el `sin-datos` del recuento por veredicto; las demás filas no se
  * miran.
  */
 export function resumirSinDatos(
   verifications: ReadonlyArray<VerificacionCotejable | null | undefined>,
 ): ResumenSinDatos {
-  let sinCorpus = 0
-  let comprobadoSinHallar = 0
+  const r: ResumenSinDatos = { sinCorpus: 0, comprobadoSinHallar: 0, noConsta: 0 }
   for (const v of verifications) {
     if (v?.verdict !== 'sin-datos') continue
-    if (corpusReales(v.checkedAgainst).length === 0) sinCorpus++
-    else comprobadoSinHallar++
+    r[CASILLA_DE_DESENLACE[desenlaceDeCotejo(v)]] += 1
   }
-  return { sinCorpus, comprobadoSinHallar }
+  return r
 }
 
 // ─── Procedencia: corpus, pasadas y lo que no sabemos ──────────────────────
@@ -317,4 +373,75 @@ export function esResumenSinRegistro(texto: unknown): boolean {
   if (!texto.startsWith(PREFIJO) || fin < 0) return false
   const nombres = texto.slice(PREFIJO.length, fin).split(/, | y /)
   return resumenSinRegistro(nombres) === texto
+}
+
+// ─── El expediente que se parece y no trae la cifra ─────────────────────────
+//
+// Un `sin-datos` puede enseñar UN contrato: el que más se parece por objeto a
+// lo citado, cuando el camino del importe lo tuvo delante y lo descartó por la
+// cifra (`mejorCasiPorObjeto`, en claim-verifier.ts). Se enseña para no decir
+// «no se encontró registro» de un expediente que sí se leyó.
+//
+// Hasta el 30-09-2026 ese barrido corría también en citas SIN cifra —promesas,
+// afirmaciones sin importe—, sobre las que el camino del importe no se ejecuta
+// y `tenders` no se anota: la tarjeta enseñaba un contrato encima de «Fuentes
+// comprobadas: ninguna». Y su frase era fija: hablaba de «la cifra del claim»
+// que la cita no trae y acababa en «No es que no haya registro: es que el que
+// hay no dice eso.», que se lee como un desmentido. Medido ese día sobre los
+// trozos servidos: 61 tarjetas, 47 de ellas sin cifra, y lo que enseñaban era
+// casi siempre un parecido de dos palabras en un título.
+//
+// Ahora el barrido corre sólo si el camino del importe leyó los contratos
+// (`leyoContratos`), la frase dice lo que se cotejó y no insinúa nada, y la
+// tarjeta aplica la misma regla a lo ya publicado (claim-provenance.js). La
+// regla se lee de la procedencia, no de si la cita trae cifra: es la lista
+// que la tarjeta imprime debajo, y así las dos no pueden contradecirse.
+
+/**
+ * La frase fija de antes. Sigue en lo publicado hasta que se vuelva a
+ * verificar, y por eso hay que poder reconocerla.
+ */
+export const RESUMEN_CASI_FIJO =
+  'El objeto citado aparece en un expediente municipal, pero ninguna de sus magnitudes coincide con la cifra del claim. No es que no haya registro: es que el que hay no dice eso.'
+
+/**
+ * Cómo acaba la fila de evidencia de ese expediente cuando no publica importe.
+ * La escribe el verificador y la lee la tarjeta para elegir la frase: una
+ * cadena, dos sitios.
+ */
+export const COLA_SIN_IMPORTE = ' · importe no publicado'
+
+const CASI_OBJETO =
+  'El título de un expediente municipal coincide en parte con el objeto citado, pero '
+const CASI_CON_IMPORTE =
+  'su importe no coincide con la cifra citada. Se enseña porque se cotejó, no porque la sostenga. '
+const CASI_SIN_IMPORTE =
+  'no publica importe con el que cotejar la cifra citada. Se enseña porque se miró, no porque la sostenga. '
+
+/**
+ * La explicación de un `sin-datos` que enseña el expediente parecido.
+ *
+ * «Coincide en parte» y no «el objeto aparece»: el barrido mide palabras
+ * compartidas con el título, y dos bastan. Y sin «no dice eso»: un importe
+ * distinto no desmiente una cifra —el canon del agua no es el valor de la
+ * concesión—, y el veredicto sigue siendo `sin-datos`, no `contradicho`.
+ *
+ * @param conImporte  si la fila publica un importe, que es lo que se cotejó.
+ */
+export function resumenCasi(conImporte: boolean): string {
+  return CASI_OBJETO + (conImporte ? CASI_CON_IMPORTE : CASI_SIN_IMPORTE) + DESCARGO
+}
+
+/** ¿Es una explicación del expediente parecido, la fija de antes o una de ahora? */
+export function esResumenCasi(texto: unknown): boolean {
+  return texto === RESUMEN_CASI_FIJO || texto === resumenCasi(true) || texto === resumenCasi(false)
+}
+
+/**
+ * ¿Consta que el camino del importe consultó los contratos? Es la condición
+ * para enseñar el expediente parecido: sin ella, no hubo importe que cotejar
+ * con él, y la fila no tiene nada que explicar.
+ */
+export function leyoContratos(checkedAgainst?: readonly unknown[] | null): boolean {
+  return corpusReales(checkedAgainst).some((c) => c === 'tenders' || c === 'tenders-ted')
 }
