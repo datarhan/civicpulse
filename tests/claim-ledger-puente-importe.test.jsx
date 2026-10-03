@@ -78,8 +78,13 @@ function oraculo(cifra, e) {
   return importesDelExpediente(e.ref).find((x) => Math.abs(x.valor - cifra) < 1) ?? null
 }
 
+/**
+ * Con espacio de no separación ante el «€»: en una línea de 68 caracteres la
+ * cifra se quedaba al final de una y su unidad al principio de la siguiente.
+ */
+const NBSP = '\u00a0'
 const euros2 = (v) =>
-  `${v.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} €`
+  `${v.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}${NBSP}€`
 
 /** Deja que el `tenders.json` servido llegue a los componentes que lo pidieron. */
 async function reposa() {
@@ -133,9 +138,13 @@ describe('/plenos/k4olcs: la tarjeta dice qué es cada cifra', () => {
     const [puente, ...otros] = puentes(card)
     expect(puente, 'la tarjeta no pinta puente').toBeDefined()
     expect(otros).toEqual([])
-    expect(puente?.textContent).toMatch(/70\.158 € es el presupuesto base de licitación, sin IVA/)
+    expect(puente?.textContent).toContain(
+      `70.158${NBSP}€ es el presupuesto base de licitación, sin IVA`,
+    )
     expect(puente?.textContent).toContain(`${euros2(80666.66)} con IVA`)
-    expect(puente?.textContent).toContain('la cifra citada (80.666 €)')
+    expect(puente?.textContent).toContain(`la cifra citada (80.666${NBSP}€)`)
+    // Ninguna cifra del puente se separa de su unidad.
+    expect(puente?.textContent).not.toMatch(/\d €/)
   })
 
   it('condicional: si el expediente deja de traer la cifra, el puente desaparece', async () => {
@@ -237,6 +246,6 @@ describe('/declaraciones: la misma cita, con el mismo puente', () => {
     const [puente] = puentes(card)
     expect(puente, 'la tarjeta de /declaraciones no pinta puente').toBeDefined()
     expect(puente?.textContent).toContain(`${euros2(80666.66)} con IVA`)
-    expect(puente?.textContent).toContain('la cifra citada (80.666 €)')
+    expect(puente?.textContent).toContain(`la cifra citada (80.666${NBSP}€)`)
   })
 })

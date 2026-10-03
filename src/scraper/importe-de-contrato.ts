@@ -183,9 +183,13 @@ export function puenteDeImporte(
   return null
 }
 
-const entero = (v: number) => `${Math.round(v).toLocaleString('es-ES')} €`
+// Espacio de no separación ante el «€»: en la línea de 68 caracteres de la
+// tarjeta, «80.666,66» se quedaba al final de un renglón y su «€» al principio
+// del siguiente.
+const NBSP = ' '
+const entero = (v: number) => `${Math.round(v).toLocaleString('es-ES')}${NBSP}€`
 const conCentimos = (v: number) =>
-  `${v.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} €`
+  `${v.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}${NBSP}€`
 
 /** El puente, dicho para el lector: qué es la cifra de la fila, y dónde está la citada. */
 export function textoDelPuente(p: Puente): string {
