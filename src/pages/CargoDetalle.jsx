@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
-import { Card, Pill, SectionHead, ExtLink } from '../components/Primitives'
+import { Card, CorreoPartible, Pill, SectionHead, ExtLink } from '../components/Primitives'
 import Compartir from '../components/Compartir'
 import { useOfficials, partyColor, findOfficial } from '../hooks/useOfficials'
 import { fmtDateLong, rellena } from '../lib/formatters'
@@ -18,6 +18,21 @@ import { canonicalizeDepartments, DEPARTMENT_LABEL } from '../scraper/department
 import { EncajeMatrix, QueExigeLaLey } from '../components/EncajeDeclarado'
 import { useT, useLocale } from '../i18n'
 import { contadoresDeCargo } from '../lib/reloj-lpacap'
+
+// El correo se parte antes que ensanchar la ficha. Un correo no tiene por dónde
+// cortarse, y «popularesribarroja@gmail.com» —el de los siete concejales del PP
+// y el de quien dejó el cargo— mide 201 px: a 320 px de pantalla, junto al
+// retrato, su columna tiene 158, y la página entera se desplazaba de lado.
+// `anywhere` y no `break-word`, que parte igual pero no rebaja el mínimo del
+// elemento, y es ese mínimo el que no deja encoger a un hijo de flex. Es la
+// regla que ya llevaba la tarjeta del índice de /cargos, con el mismo correo.
+// Por DÓNDE se parte lo decide `CorreoPartible`: por la arroba.
+const CORREO_ESTILO = {
+  color: 'var(--ink70)',
+  textDecoration: 'underline',
+  overflowWrap: 'anywhere',
+  minWidth: 0,
+}
 
 function flattenAgendas(snap) {
   if (!snap?.plenos) return []
@@ -569,12 +584,8 @@ function FormerDetalle({ official, color, bioRoute, t }) {
             }}
           >
             {official.email ? (
-              <a
-                href={`mailto:${official.email}`}
-                className="mono"
-                style={{ color: 'var(--ink70)', textDecoration: 'underline' }}
-              >
-                {official.email}
+              <a href={`mailto:${official.email}`} className="mono" style={CORREO_ESTILO}>
+                <CorreoPartible email={official.email} />
               </a>
             ) : (
               <span className="mono" style={{ color: 'var(--ink50)' }}>
@@ -827,12 +838,8 @@ export default function CargoDetalle() {
             }}
           >
             {official.email ? (
-              <a
-                href={`mailto:${official.email}`}
-                className="mono"
-                style={{ color: 'var(--ink70)', textDecoration: 'underline' }}
-              >
-                {official.email}
+              <a href={`mailto:${official.email}`} className="mono" style={CORREO_ESTILO}>
+                <CorreoPartible email={official.email} />
               </a>
             ) : (
               <span className="mono" style={{ color: 'var(--ink50)' }}>
@@ -864,30 +871,27 @@ export default function CargoDetalle() {
         </div>
       </div>
 
-      {/* Stats strip */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
-          gap: 10,
-          marginBottom: 24,
-        }}
-      >
-        {/* La cifra junto a la cabecera cuenta lo que la cabecera nombra: las áreas
+      {/* Stats strip. La rejilla es la de las cifras de /hallazgos, `.cp-cifras`
+          (index.css): a 320 px, cuatro columnas fijas dejaban «PENDIENTES» en
+          una caja de 32 px, y el rótulo se salía 40. */}
+      <div className="cp-cifras-marco" style={{ marginBottom: 24 }}>
+        <div className="cp-cifras">
+          {/* La cifra junto a la cabecera cuenta lo que la cabecera nombra: las áreas
             delegadas. Contaba las fichas de /departamentos a las que llegan esos
             nombres, que pueden fundirse (dos nombres, una ficha) o partirse, y
             «Concejalías 3» junto a cuatro nombres no se explicaba. */}
-        <MiniStat
-          label={t('cargos.detalle.stat.areasDelegadas')}
-          value={official.portfolios?.length ?? 0}
-        />
-        <MiniStat label={t('cargos.detalle.stat.partyPromises')} value={partyPromises.length} />
-        <MiniStat label={t('cargos.detalle.stat.agendaItems')} value={agendaItems.length} />
-        <MiniStat
-          label={t('cargos.detalle.stat.quejas')}
-          value={quejaStats.medible ? quejaStats.pendientes : '—'}
-          tone={quejaStats.medible && quejaStats.silencios > 0 ? 'crit' : undefined}
-        />
+          <MiniStat
+            label={t('cargos.detalle.stat.areasDelegadas')}
+            value={official.portfolios?.length ?? 0}
+          />
+          <MiniStat label={t('cargos.detalle.stat.partyPromises')} value={partyPromises.length} />
+          <MiniStat label={t('cargos.detalle.stat.agendaItems')} value={agendaItems.length} />
+          <MiniStat
+            label={t('cargos.detalle.stat.quejas')}
+            value={quejaStats.medible ? quejaStats.pendientes : '—'}
+            tone={quejaStats.medible && quejaStats.silencios > 0 ? 'crit' : undefined}
+          />
+        </div>
       </div>
 
       <FichaOficial official={official} roster={officialsList} />

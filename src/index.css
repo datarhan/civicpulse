@@ -375,7 +375,13 @@ i {
    Y la raíz de este sitio mide 14 px, no 16 —el control de densidad la mueve
    entre 13,5 y 15—, así que 14rem son 196 px aquí: por eso la prueba lee el
    `flex-basis` calculado en vez de repetir un número que depende de la
-   densidad. Lo mide `tests/e2e/cabecera-seccion-mobile.spec.ts`. */
+   densidad. Lo mide `tests/e2e/cabecera-seccion-mobile.spec.ts`.
+
+   Y una leyenda que no cabe ni sola en su línea tiene que poder encoger y
+   envolver por dentro: la de «Capítulo a capítulo», con `flex-shrink: 0`,
+   pedía a 320 px de pantalla 282 px en una fila de 230, y la página se
+   desplazaba de lado. Junto al título no encoge nunca, porque la fila sólo las
+   junta cuando caben las dos enteras. */
 .cp-sec-head-fila {
   display: flex;
   flex-wrap: wrap;
@@ -755,6 +761,30 @@ body.cp-kiosk .cp-live-container {
   }
 }
 
+/* Una tabla de datos que no cabe en su caja se desliza DENTRO de ella, y se
+   nota (`Deslizable`, en Primitives.jsx). La de «denominadores sin cambiar» de
+   /laboratorio/frontera medía 307 px en una tarjeta de 228 a 320 px de
+   pantalla, y como nada la contenía, la página entera medía 354 y se movía de
+   lado. `.cp-scroll-x`, aquí arriba, la habría contenido, pero sin decir nada:
+   la tabla se corta en el borde y quien la lee no sabe que sigue.
+
+   La señal es una sombra en el borde por el que queda tabla, y sólo en ése.
+   Las dos primeras capas son del color de la tarjeta y se desplazan CON el
+   contenido (`local`): tapan la sombra del extremo al que ya se ha llegado.
+   Las dos últimas se quedan fijas en los bordes de la caja (`scroll`). Sin
+   JavaScript, y si la tabla cabe no se ve ninguna, porque las dos tapas quedan
+   encima de las dos sombras. Los colores salen de los tokens: en oscuro, la
+   tapa es la tarjeta oscura y la sombra, un filo claro. */
+.cp-desliza {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  background:
+    linear-gradient(to right, var(--paper) 30%, transparent) left center / 40px 100% no-repeat local,
+    linear-gradient(to left, var(--paper) 30%, transparent) right center / 40px 100% no-repeat local,
+    linear-gradient(to right, var(--ink30), transparent) left center / 14px 100% no-repeat scroll,
+    linear-gradient(to left, var(--ink30), transparent) right center / 14px 100% no-repeat scroll;
+}
+
 /* OSM neighborhoods — tiny dot + label (urbanizaciones, industrial estates) */
 .cp-osm-neigh {
   background: transparent !important;
@@ -1059,6 +1089,47 @@ body.cp-kiosk .cp-live-container {
 
 .cp-claim-head > * {
   min-width: 0;
+}
+
+/* Las tiras de cuatro cifras con rótulo en mono: las de cabecera de /hallazgos
+   (total, críticos, relevantes, informativos) y la de la ficha de cada cargo
+   (áreas delegadas, promesas del grupo, puntos en pleno, quejas pendientes).
+   El mismo defecto que la tira de resumen de /plenos/:id (`.cp-pleno-resumen`,
+   más abajo), y el mismo arreglo. Eran cuatro columnas de `minmax(0, 1fr)` a
+   cualquier ancho, y un rótulo no se parte: «INFORMATIVOS» pide una caja de
+   113,1 px y a 375 px de pantalla tenía 72 —se pintaba 41 px fuera de ella,
+   sobre la de al lado—; «PENDIENTES», 98,6 en una de 58,5 a 320. Pasaba de 320
+   a unos 780 px, barra lateral incluida, y a 320 ensanchaba la página: 334 px
+   en /hallazgos, y en las fichas de cargo, 323 en la CI, que pinta el texto
+   más ancho que macOS —aquí acababa 0,9 px antes del borde—. Ninguna guarda de
+   rejillas lo veía: las cajas no se salían de la rejilla, se salía el texto de
+   las cajas.
+
+   Cortes MEDIDOS (30-09 y 03-10-2026) con la densidad amplia, el peor caso:
+   raíz de 15 px, texto un 7 % más ancho, más que lo que la CI le añade. La caja
+   más exigente es la de «INFORMATIVOS», 119,3 px; la ficha de un cargo pide
+   103,8 en castellano y 96 en valenciano. Cuatro piden 4 × 119,3 + 30 = 507 px
+   de tira, y dos, 248,6: de ahí 540 y 250. A 320 px de pantalla la tira mide
+   264, dos columnas, y a la cifra más exigente le sobran 7,7 px aun en densidad
+   amplia. Pistas `1fr` y no `minmax(0, 1fr)`: si un rótulo no cupiera, que
+   crezca la pista y lo vea la guarda. El margen de debajo lo pone cada página. */
+.cp-cifras-marco {
+  container-type: inline-size;
+}
+.cp-cifras {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+@container (max-width: 540px) {
+  .cp-cifras {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@container (max-width: 250px) {
+  .cp-cifras {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* /cargos — las cuatro rejillas de la corporación.

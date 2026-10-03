@@ -1,4 +1,5 @@
-import { Card } from '../Primitives'
+import { useId } from 'react'
+import { Card, Deslizable } from '../Primitives'
 
 const num = (v, d = 2) =>
   v === null || v === undefined
@@ -19,6 +20,7 @@ const num = (v, d = 2) =>
  * la misma regla que corta la línea del sparkline de /eficiencia.
  */
 export function SerieFrontera({ especificacion }) {
+  const idTitulo = useId()
   const e = especificacion
   const serie = e.serie ?? []
   if (serie.length === 0) return null
@@ -28,6 +30,7 @@ export function SerieFrontera({ especificacion }) {
   return (
     <Card style={{ marginTop: 14 }}>
       <div
+        id={idTitulo}
         className="mono"
         style={{
           fontSize: 'var(--fs-micro)',
@@ -59,7 +62,10 @@ export function SerieFrontera({ especificacion }) {
         )}
       </p>
 
-      <div style={{ overflowX: 'auto' }}>
+      {/* Ya se deslizaba, pero sin decirlo: a 320 px la tabla, de 420 px como
+          mínimo, se cortaba en el borde de la tarjeta sin señal ninguna, y el
+          teclado no llegaba a ella. La misma caja que la tabla de arriba. */}
+      <Deslizable tituloId={idTitulo}>
         <table
           style={{
             width: '100%',
@@ -110,7 +116,7 @@ export function SerieFrontera({ especificacion }) {
             })}
           </tbody>
         </table>
-      </div>
+      </Deslizable>
 
       <p
         style={{
