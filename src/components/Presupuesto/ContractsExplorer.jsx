@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { Fragment, useMemo, useState } from 'react'
 import { ExtLink, Pill } from '../Primitives'
 import Paginacion from '../Paginacion'
 import { STATUS_TONE } from '../../hooks/useTenders'
@@ -167,11 +167,20 @@ export default function ContractsExplorer({ contracts, snapshot }) {
                     : rellena(t('presupuesto.gasto.fueraDeCifras.varios'), {
                         n: resumen.rest,
                       })}{' '}
+                  {/* Cada estado con su cifra no se parte; la lista, sí, entre uno y
+                      otro. El separador iba DENTRO del tramo sin cortes, así que
+                      entre tramos no quedaba ningún sitio por donde partir y la
+                      lista entera era una sola pieza: a 320 px, «Anulado 49 · Sin
+                      clasificar 36 · Desistido 9 · Renuncia 7.» se salía 31 px de
+                      su tarjeta y, con el texto un poco más ancho —la CI, la
+                      densidad amplia—, ensanchaba la página. */}
                   {resumen.restByStatus.map((r, i) => (
-                    <span key={r.status} style={{ whiteSpace: 'nowrap' }}>
+                    <Fragment key={r.status}>
                       {i > 0 ? ' · ' : ''}
-                      {estado(r.status)} <span className="mono">{r.count}</span>
-                    </span>
+                      <span style={{ whiteSpace: 'nowrap' }}>
+                        {estado(r.status)} <span className="mono">{r.count}</span>
+                      </span>
+                    </Fragment>
                   ))}
                   .
                 </div>
