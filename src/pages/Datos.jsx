@@ -915,6 +915,13 @@ function AsociacionesCard() {
               color: 'var(--ink70)',
               padding: '3px 0',
               borderBottom: '1px solid var(--border2)',
+              // El nombre sale tal cual del PDF del registro, y alguna fila llega
+              // con las columnas pegadas —«…TúriaG98409055asocultaurina…@gmail.com»,
+              // sin un solo espacio—: a 320 px eso se salía 41 px de su columna y
+              // ensanchaba la página. Se parte por donde haga falta antes que
+              // empujar la página; lo pegado es un defecto del lector del PDF, y
+              // se arregla allí, no escondiéndolo aquí.
+              overflowWrap: 'anywhere',
             }}
           >
             {a.nombre}
