@@ -128,6 +128,16 @@ export default function AvisoLegal() {
             Las ediciones del contenido publicado se registran en la bitácora interna del proyecto.
             Nada se borra en silencio.
           </li>
+          <li>
+            En la bitácora pública de cada hallazgo de pleno no se reproduce la versión que nombraba
+            a un grupo de un solo escaño, porque un grupo con un solo concejal señala a esa persona:
+            la fila dice qué falta y por qué, y el repositorio público del proyecto la conserva
+            entera.{' '}
+            <a href="/metodologia#bitacora-escano-unico" style={{ color: 'var(--civic)' }}>
+              Cómo y por qué
+            </a>
+            .
+          </li>
         </ul>
       </Card>
 
