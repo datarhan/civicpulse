@@ -28,7 +28,7 @@ import { TRINQUETE } from './trinquete'
 // `/hallazgos`. Importado, no recitado: dos listas de stopwords que midieran
 // distinto harían que el CLI aceptara lo que la cola desaconseja.
 import { contentWords } from './quote-reanchor'
-import { rechazoDeFirma } from './firma-de-persona'
+import { claseDeFirma, rechazoDeFirma, type ClaseDeFirma } from './firma-de-persona'
 import { REASON_DIGEST_RE, reasonDigest, type PlenoFindingReasonAmendment } from './pleno-finding'
 
 export interface VerifiedItem {
@@ -50,6 +50,22 @@ export type OverlaySource = 'nli' | 'llm' | 'curator-downgrade' | 'verdict-engin
  */
 export interface VerificacionPublicada extends ClaimVerification {
   source?: OverlaySource
+  /**
+   * Sólo en una bajada del curador: quién la DECIDIÓ, según la firma de su
+   * entrada (`claseDeFirma`). Viaja la clase, no la firma cruda.
+   *
+   * Hasta el 2026-09-30 no viajaba nada, y la tarjeta rotulaba «corregido por
+   * un curador» cualquier bajada: 25 servidas no las había decidido ninguna
+   * persona (la revisión de oro con un modelo, sesiones de Claude, una firma
+   * que no dice quién).
+   */
+  downgradedBy?: ClaseDeFirma
+  /**
+   * Quién firmó la última enmienda del motivo, si la hay: siempre una persona
+   * con su nombre (`validarEnmiendas`). Es otra firma que la de la bajada: la
+   * de quien reescribió la explicación, no la de quien decidió el veredicto.
+   */
+  reasonSignedBy?: string
 }
 
 export interface OverlayEntry {
@@ -174,10 +190,8 @@ export function mergeVerified(
   const reanc = reanchors?.entries ?? {}
   return baseItems.map((it) => {
     const e = entries[it.claim.id]
-    // El `source` de la ENTRADA, que es el que valida `validateOverlay`, y no
-    // uno que la verificación trajera dentro: si discrepan, manda el validado.
     const verification = withDedupedEvidence<VerificacionPublicada>(
-      e ? { ...e.verification, source: e.source } : it.verification,
+      e ? verificacionDeLaEntrada(e) : it.verification,
     )
     const r = reclas[it.claim.id]
     let claim =
@@ -189,6 +203,33 @@ export function mergeVerified(
     if (a != null && it.claim.verbatim === a.from) claim = reanchoredClaim(claim, a.verbatim)
     return verification === it.verification && claim === it.claim ? it : { claim, verification }
   })
+}
+
+/**
+ * La verificación de una entrada del overlay tal y como se publica.
+ *
+ * El `source` es el de la ENTRADA, que es el que valida `validateOverlay`, y no
+ * uno que la verificación trajera dentro: si discrepan, manda el validado. En
+ * una bajada del curador, quién la decidió sale de la firma de la entrada y, si
+ * el motivo se enmendó, quién firmó la última enmienda; la firma cruda se queda
+ * en la entrada.
+ */
+function verificacionDeLaEntrada(e: OverlayEntry): VerificacionPublicada {
+  // Lo que la verificación trajera dentro tampoco se publica: estos campos los
+  // pone el merge desde la entrada validada, en cualquier canal.
+  const {
+    downgradedBy: _decidio,
+    reasonSignedBy: _firmo,
+    ...propia
+  } = e.verification as VerificacionPublicada
+  const v: VerificacionPublicada = { ...propia, source: e.source }
+  if (e.source !== 'curator-downgrade') return v
+  const ultima = e.reasonAmendments?.[e.reasonAmendments.length - 1]
+  return {
+    ...v,
+    downgradedBy: claseDeFirma(e.editor),
+    ...(ultima ? { reasonSignedBy: ultima.editor } : {}),
+  }
 }
 
 /**

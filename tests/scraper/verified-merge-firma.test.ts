@@ -157,6 +157,55 @@ describe('mergeVerified · la verificación publicada dice quién decidió la ba
     expect('reasonSignedBy' in v).toBe(false)
   })
 
+  it('lo que la verificación de una entrada trajera dentro no se publica: manda la entrada', () => {
+    // Como con el `source`: una entrada editada a mano que trajera el sello
+    // dentro no puede decir que la decidió una persona, ni firmar un motivo.
+    const conSello = (o: Overlay): Overlay => {
+      const [id, e] = Object.entries(o.entries)[0]
+      return {
+        ...o,
+        entries: {
+          [id]: {
+            ...e,
+            verification: {
+              ...e.verification,
+              downgradedBy: 'persona',
+              reasonSignedBy: 'Ana Pérez Llorca',
+            } as never,
+          },
+        },
+      }
+    }
+    const curador = servida(conSello(bajadaFirmadaPor('ai-gold-review')))
+    expect(curador.downgradedBy).toBe('automatica')
+    expect('reasonSignedBy' in curador).toBe(false)
+    const motor = servida(
+      conSello(
+        applyOverlayEntries(
+          VACIO,
+          [
+            entradaDelMotor({
+              verification: {
+                claimId: ID,
+                verdict: 'sin-datos',
+                summary: 'Ningún candidato respalda la afirmación: es otro complejo.',
+                evidence: [],
+                checkedAgainst: ['tenders'],
+                derivedBy: ['verdict-engine'],
+              },
+              modelo: 'gpt-5.4-mini',
+              tipo: 'retractacion',
+              desde: 'verificado',
+            }),
+          ],
+          BAJADA_EL,
+        ),
+      ),
+    )
+    expect('downgradedBy' in motor).toBe(false)
+    expect('reasonSignedBy' in motor).toBe(false)
+  })
+
   it('una fila de la base, que no pasó por ningún canal, tampoco', () => {
     const v = servida(VACIO)
     expect('downgradedBy' in v).toBe(false)

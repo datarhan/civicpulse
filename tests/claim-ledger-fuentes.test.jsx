@@ -29,9 +29,17 @@ import { CORPUS_IDS, PASADAS } from '../src/scraper/claim-verdicts'
 
 const ROTULO = 'Fuentes comprobadas:'
 
-function item({ verdict, checkedAgainst, source, evidence = [], type = 'afirmacion_numerica' }) {
+function item({
+  verdict,
+  checkedAgainst,
+  source,
+  downgradedBy,
+  evidence = [],
+  type = 'afirmacion_numerica',
+}) {
   const id = `p1-001-afi-${checkedAgainst.join('-') || 'vacio'}`
-  // `source` va cuando lo lleva el servido (#164): la verificación del overlay.
+  // `source` va cuando lo lleva el servido (#164): la verificación del overlay;
+  // `downgradedBy`, quién decidió una bajada del curador, con él.
   return {
     claim: {
       id,
@@ -55,6 +63,7 @@ function item({ verdict, checkedAgainst, source, evidence = [], type = 'afirmaci
       evidence,
       checkedAgainst,
       ...(source ? { source } : {}),
+      ...(downgradedBy ? { downgradedBy } : {}),
     },
     visibility: verdict === 'sin-datos' ? 'toggle' : 'shown',
   }

@@ -39,15 +39,47 @@ import {
   esResumenSinRegistro,
   resumenSinRegistro,
 } from '../scraper/claim-verdicts'
+import { CLASES_DE_FIRMA, nombraAUnaPersona } from '../scraper/firma-de-persona'
 
 /** Lo que se dice cuando no consta quién comprobó la cita. */
 export const SIN_VERIFICADOR = 'sin verificador anotado'
 
-/** El rótulo de cada clase de verificador de `CLASE_DE_PASADA`. */
+/** El rótulo de cada clase de verificador de `CLASE_DE_PASADA`, salvo el curador. */
 const ROTULO_DE_CLASE = {
-  curador: 'corregido por un curador',
   llm: 'verificador LLM',
   nli: 'verificador NLI',
+}
+
+/**
+ * Una bajada del curador, según quién la decidió (`downgradedBy`, la clase de
+ * `claseDeFirma`). La vía de `downgrade-verdict` la han usado también una
+ * revisión con un modelo y sesiones de Claude: medido el 30-09-2026, 25 de las
+ * bajadas servidas no las decidió ninguna persona y salían todas «corregido por
+ * un curador».
+ *
+ * @type {Record<import('../scraper/firma-de-persona').ClaseDeFirma, string>}
+ */
+const ROTULO_DE_BAJADA = {
+  persona: 'corregido por un curador',
+  automatica: 'rebajado en una revisión automática',
+  'no-consta': 'rebajado; no consta quién lo decidió',
+}
+
+/**
+ * El rótulo de una bajada. Sólo se fía de lo que `mergeVerified` estampa con el
+ * canal validado: sin `source: 'curator-downgrade'` al lado, o con una clase que
+ * no existe, nadie ha dicho quién decidió, y no se lee como una persona. Y sólo
+ * imprime la firma del motivo si nombra a una persona, que es lo único que
+ * `validateOverlay` deja firmar una enmienda.
+ */
+function rotuloDeBajada(v) {
+  const delCanal = v?.source === 'curator-downgrade'
+  const clase = delCanal && CLASES_DE_FIRMA.includes(v?.downgradedBy) ? v.downgradedBy : 'no-consta'
+  const rotulo = ROTULO_DE_BAJADA[clase]
+  const motivo = delCanal ? v?.reasonSignedBy : undefined
+  return typeof motivo === 'string' && nombraAUnaPersona(motivo)
+    ? `${rotulo} · motivo firmado por ${motivo}`
+    : rotulo
 }
 
 const lista = (x) => (Array.isArray(x) ? x : [])
@@ -92,10 +124,11 @@ function esCotejoDeterminista(v) {
  */
 export function etiquetaVerificador(v) {
   const clases = pasadasDe(v).map((p) => CLASE_DE_PASADA[p])
-  // El curador va primero, esté donde esté: si una persona ha corregido el
-  // veredicto, eso es lo que hay que decir, y no en qué se apoyó la máquina a
-  // la que corrigió.
-  const clase = clases.includes('curador') ? 'curador' : clases[0]
+  // La bajada del curador va primero, esté donde esté: si se ha corregido el
+  // veredicto, eso es lo que hay que decir —y quién lo decidió—, y no en qué se
+  // apoyó la máquina a la que corrigió.
+  if (clases.includes('curador')) return rotuloDeBajada(v)
+  const clase = clases[0]
   // Una clase sin rótulo tampoco hereda el de «determinista».
   if (clase) return ROTULO_DE_CLASE[clase] ?? SIN_VERIFICADOR
   if (esCotejoDeterminista(v)) return 'verificador determinista'
