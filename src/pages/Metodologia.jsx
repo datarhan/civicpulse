@@ -1271,7 +1271,12 @@ export default function Metodologia() {
               <code>/declaraciones</code>, <code>/hallazgos</code>) nombra al individuo hasta que un
               curador lo promueve manualmente. Conviene decir además algo que la etiqueta de grupo
               oculta: <strong>VOX, EU-Podem y Compromís tienen un escaño cada uno</strong>, así que
-              en esos tres casos etiquetar el grupo señala necesariamente a esa persona.
+              en esos tres casos etiquetar el grupo señala necesariamente a esa persona.{' '}
+              <strong>Por eso esas tres etiquetas no se publican</strong>: aunque el mapa acredite
+              quién hablaba, la declaración sale sin grupo, porque nombrar a una persona lo firma un
+              curador y el registro de declaraciones todavía no tiene esa firma. Y cuando un
+              hallazgo corrige el grupo de una de sus citas, la declaración de la que sale esa cita
+              deja de decir lo que el hallazgo retiró.
             </p>
             <p style={{ margin: '8px 0 0' }}>
               <strong>Ese texto no siempre es la transcripción del vídeo.</strong> Cuando no hay
