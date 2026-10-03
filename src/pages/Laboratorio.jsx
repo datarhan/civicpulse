@@ -695,7 +695,9 @@ export default function Laboratorio() {
 
   return (
     <div
-      className="cp-page"
+      // `cp-lab-marco`: la página es la caja cuyo ancho decide si la rejilla de
+      // abajo va a dos columnas o a una (src/index.css, `.cp-lab-grid`).
+      className="cp-page cp-lab-marco"
       style={{ padding: '24px 24px 48px', maxWidth: 1400, margin: '0 auto' }}
     >
       <div style={{ marginBottom: 18 }}>
@@ -907,16 +909,10 @@ export default function Laboratorio() {
       </div>
 
       <div
-        // El suelo de 280 px de la segunda columna no cabe en 375, y un estilo
-        // inline no puede llevar una media query: la rejilla no colapsaba nunca.
-        // Misma solución que .cp-kpi-grid, y por el mismo motivo.
+        // La rejilla entera vive en src/index.css y no en un `style`: un estilo
+        // inline no admite consultas de contenedor, y dos columnas o una lo
+        // decide el ancho de la página, no el de la ventana.
         className="cp-lab-grid"
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'minmax(0, 2fr) minmax(280px, 1fr)',
-          gap: 18,
-          alignItems: 'start',
-        }}
       >
         <div style={{ display: 'grid', gap: 12 }}>
           {visible.length === 0 && (

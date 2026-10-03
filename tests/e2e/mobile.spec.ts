@@ -125,6 +125,10 @@ const ROUTES: Route[] = [
   { path: '/quejas/q-no-existe', ready: /no aparece en el snapshot actual/ },
   { path: '/cambios', ready: /Total: \d+ cambios · ventana de \d+ días/ },
   { path: '/laboratorio', ready: /TITULARES MONITORIZADOS \d+/ },
+  // No estaba en esta lista, así que ninguna guarda de ancho la miraba: sus
+  // filas de cinco columnas se salían 69 px con la barra lateral. La señal es
+  // un recuento de filas, que sólo existe cuando un snapshot se ha leído.
+  { path: '/lab-health', ready: /\d[\d.]* filas/ },
   // /eficiencia y /laboratorio/frontera se publicaron sin entrar en esta lista
   // ni en la de axe: dos rutas que iban al público sin que ninguna pasada
   // estricta las hubiera mirado nunca. Es «verde por no ejecutarse», el defecto
@@ -490,6 +494,8 @@ const SIN_REJILLAS = new Set([
 
 type Rejilla = {
   plantilla: string
+  /** Su primera clase, o '' si no lleva: las filas hermanas se agrupan por ella. */
+  clase: string
   caja: number
   bloques: number
   /** Lo que más pasa un bloque del borde de la caja, en px. */
@@ -540,6 +546,7 @@ async function medirRejillas(page: Page): Promise<Rejilla[]> {
         )
         return {
           plantilla: (g as HTMLElement).style.gridTemplateColumns || cs.gridTemplateColumns,
+          clase: g.classList[0] ?? '',
           caja: Math.round(der - izq),
           bloques: bloques.length,
           pasa: Math.round(pasa * 10) / 10,
@@ -615,6 +622,208 @@ test.describe('Rejillas a 375 y 320 px: ningún bloque fuera de su caja', () => 
 
     expect(fuera(await medirRejillas(page))).toEqual([
       expect.stringMatching(/^\+\d+(\.\d)? px · repeat\(auto-fit, minmax\(400px, 1fr\)\) · /),
+    ])
+  })
+})
+
+// ---------------------------------------------------------------------------
+// Rejillas con la barra lateral: la misma medida, de 721 a 1100 px de ventana.
+//
+// Por encima de 720 px aparece la barra lateral (232 px) y la columna de
+// contenido ENCOGE: a 721 px de ventana mide 489, y a 720 medía 720. Una
+// rejilla que decide por @media ve una ventana de escritorio y pone su maqueta
+// ancha en una columna de teléfono grande. #190 lo midió en la tira de
+// /plenos/:id y lo resolvió con una consulta de contenedor; la PR #189 dejó
+// apuntadas cuatro rutas más.
+//
+// Medido el 30-09-2026 sobre la build de producción con las dos banderas, de
+// 700 a 1100 px de ventana, de píxel en píxel, en las 42 rutas públicas y en
+// los dos temas —que dieron lo mismo en las 16.842 medidas de cada uno: el
+// oscuro cambia colores, no cajas—:
+//
+//   /presupuesto   las filas de capítulos (246 + 116 + 62 px de pistas fijas)
+//                  se salían hasta 67 px, de 721 a 787; las de programas, 81,
+//                  de 721 a 801; las de la deuda, 27, de 901 a 927, donde la
+//                  serie pasa a dos columnas y a sus filas les quedan 253 px.
+//   /plenos        la tabla de siete columnas pide 844 px: se salía de su caja
+//                  de 721 a 1100 —405 px a 721—, escondida en su scroll.
+//   /lab-health    las filas de cinco columnas, 69 px, de 721 a 789.
+//   /laboratorio   la columna de artículos bajaba a 143 px y cada ficha pedía
+//                  206: 63,5 px fuera, de 721 a 783.
+//
+// Nada de 700 a 720: sin barra lateral, la columna es la ventana, y eso ya lo
+// mide el bloque de arriba en sus dos anchos.
+//
+// Qué anchos: el primero del tramo, un paso de 4 px hasta el último, y el
+// primer ancho de cada maqueta que un @media de las hojas de la página estrena
+// dentro del tramo —justo por encima de su corte, donde esa maqueta tiene la
+// columna más estrecha—. Los cortes se leen de las hojas y no de este fichero,
+// así que uno nuevo se mide sin que nadie lo apunte. El paso es para lo que
+// decide una consulta de contenedor: corta por el ancho de la columna, que
+// ningún corte de ventana nombra, y cada corte de contenedor de estas páginas
+// deja al menos 8 px de margen sobre lo que su contenido pide.
+// ---------------------------------------------------------------------------
+
+/** El tramo de ventana con barra lateral que se recorre. */
+const TRAMO_BARRA = { desde: 721, hasta: 1100, paso: 4 }
+
+/**
+ * Los anchos de ventana en los que se mide: el paso fijo del tramo, su último
+ * ancho y el primero de cada maqueta que estrena un @media de la página.
+ */
+async function anchosConBarra(page: Page): Promise<number[]> {
+  const cortes = await page.evaluate(() => {
+    const out: number[] = []
+    const recorre = (reglas: CSSRuleList) => {
+      for (const r of reglas) {
+        if (r instanceof CSSMediaRule) {
+          for (const [, lado, px] of r.media.mediaText.matchAll(
+            /\((max|min)-width:\s*([\d.]+)px\)/g,
+          )) {
+            // max-width: N → la maqueta ancha empieza en N + 1; min-width: N, en N.
+            out.push(lado === 'max' ? Math.floor(Number(px)) + 1 : Math.ceil(Number(px)))
+          }
+        }
+        if ('cssRules' in r) recorre((r as CSSGroupingRule).cssRules)
+      }
+    }
+    for (const hoja of document.styleSheets) {
+      try {
+        recorre(hoja.cssRules)
+      } catch {
+        // Una hoja de otro origen (Google Fonts) no deja leer sus reglas.
+      }
+    }
+    return out
+  })
+  const { desde, hasta, paso } = TRAMO_BARRA
+  const fijos = Array.from(
+    { length: Math.floor((hasta - desde) / paso) + 1 },
+    (_, i) => desde + i * paso,
+  )
+  const dentro = cortes.filter((w) => w >= desde && w <= hasta)
+  return [...new Set([...fijos, hasta, ...dentro])].sort((a, b) => a - b)
+}
+
+type Recorrido = { ancho: number; rejillas: Rejilla[] }[]
+
+/**
+ * Lo que se sale en un recorrido, con los anchos seguidos agrupados en tramos
+ * para que un fallo en cien anchos se lea en una línea. Un tramo se corta donde
+ * hay un ancho medido que sí cabe: dos tramos son dos defectos. Una rejilla se
+ * nombra por su clase —las once filas de capítulos son una sola línea— y, sin
+ * clase, por su texto.
+ */
+function tramosFuera(recorrido: Recorrido): string[] {
+  type Tramo = { desde: number; hasta: number; peor: number; caja: number }
+  const porRejilla = new Map<string, { tramos: Tramo[]; textos: Set<string> }>()
+  recorrido.forEach(({ ancho, rejillas }, i) => {
+    const peores = new Map<string, Rejilla>()
+    for (const g of rejillas.filter((g) => g.pasa > 0.5)) {
+      const clave = g.clase ? `.${g.clase}` : `«${g.texto}»`
+      const suya = porRejilla.get(clave) ?? { tramos: [], textos: new Set<string>() }
+      suya.textos.add(g.texto)
+      porRejilla.set(clave, suya)
+      if (g.pasa > (peores.get(clave)?.pasa ?? 0)) peores.set(clave, g)
+    }
+    for (const [clave, g] of peores) {
+      const { tramos } = porRejilla.get(clave)!
+      const ultimo = tramos.at(-1)
+      if (ultimo && recorrido[i - 1]?.ancho === ultimo.hasta) {
+        ultimo.hasta = ancho
+        if (g.pasa > ultimo.peor) Object.assign(ultimo, { peor: g.pasa, caja: g.caja })
+      } else tramos.push({ desde: ancho, hasta: ancho, peor: g.pasa, caja: g.caja })
+    }
+  })
+  return [...porRejilla].flatMap(([clave, { tramos, textos }]) =>
+    tramos.map(
+      (t) =>
+        `ventana de ${t.desde} a ${t.hasta} px · +${t.peor} px · ${clave}` +
+        `${textos.size > 1 ? ` (${textos.size} rejillas)` : ''} · caja de ${t.caja} px en el peor`,
+    ),
+  )
+}
+
+/** Recorre el tramo: en cada ancho, las rejillas y dónde empieza la columna. */
+async function recorrerConBarra(page: Page) {
+  const recorrido: Recorrido = []
+  const sinBarra: number[] = []
+  for (const width of await anchosConBarra(page)) {
+    await page.setViewportSize({ width, height: 900 })
+    const rejillas = await medirRejillas(page)
+    // Que el tramo mida lo que dice: con la barra lateral en su sitio, la
+    // columna empieza detrás de ella y no en el borde de la ventana.
+    const columna = await page.evaluate(
+      () => document.getElementById('contenido')?.getBoundingClientRect().left ?? 0,
+    )
+    if (columna < 200) sinBarra.push(width)
+    recorrido.push({ ancho: width, rejillas })
+  }
+  return { recorrido, sinBarra }
+}
+
+test.describe('Rejillas con la barra lateral, de 721 a 1100 px: ningún bloque fuera de su caja', () => {
+  // La portada no lleva barra lateral: su maqueta es otra (DirectionD).
+  for (const route of ROUTES.filter((r) => r.path !== '/')) {
+    test(`${route.path}: con la barra lateral, cada bloque cabe en la caja de su rejilla`, async ({
+      page,
+    }) => {
+      await page.setViewportSize({ width: TRAMO_BARRA.hasta, height: 900 })
+      const m = await measure(page, route)
+      test.skip(
+        !!route.flag && m.landed !== pathOf(route.path),
+        `${route.path} no está montada — reconstruye con ${route.flag}=true`,
+      )
+      assertPaginaPintada(m, route.path, route.ready)
+
+      const { recorrido, sinBarra } = await recorrerConBarra(page)
+
+      // Que haya recorrido el tramo con la barra puesta, y midiendo rejillas.
+      expect(sinBarra, `${route.path}: sin barra lateral en estos anchos`).toEqual([])
+      expect(recorrido.length, `${route.path}: anchos recorridos`).toBeGreaterThan(90)
+      if (!SIN_REJILLAS.has(route.path)) {
+        const vacios = recorrido
+          .filter((r) => !r.rejillas.some((g) => g.enContenido && g.bloques > 0))
+          .map((r) => r.ancho)
+        expect(
+          vacios,
+          `${route.path}: anchos sin ninguna rejilla con bloques en #contenido`,
+        ).toEqual([])
+      }
+
+      expect(
+        tramosFuera(recorrido),
+        `${route.path}: bloques fuera de la caja de su rejilla con la barra lateral`,
+      ).toEqual([])
+    })
+  }
+
+  // Inyección de fallo, como la de arriba: una rejilla de una sola pista fija
+  // de 600 px, puesta en #contenido, no cabe hasta que la ventana le deja 600 px
+  // (600 + 232 de barra = 832), así que el recorrido tiene que devolverla en UN
+  // tramo que empieza en el primer ancho y acaba justo antes de 832, aunque por
+  // medio se midan los cortes de @media de la página. Si la agrupación partiera
+  // el tramo o se comiera un ancho, esto lo diría.
+  test('una rejilla plantada de 600 px sale en un solo tramo, de 721 hasta justo antes de 832', async ({
+    page,
+  }) => {
+    const route = ROUTES.find((r) => r.path === '/nosotros')!
+    await page.setViewportSize({ width: TRAMO_BARRA.hasta, height: 900 })
+    const m = await measure(page, route)
+    assertPaginaPintada(m, route.path, route.ready)
+    await page.evaluate(() => {
+      const g = document.createElement('div')
+      g.style.cssText = 'display: grid; grid-template-columns: 600px'
+      const p = document.createElement('p')
+      p.textContent = 'plantada'
+      g.append(p)
+      document.getElementById('contenido')!.append(g)
+    })
+
+    const { recorrido, sinBarra } = await recorrerConBarra(page)
+    expect(sinBarra).toEqual([])
+    expect(tramosFuera(recorrido)).toEqual([
+      expect.stringMatching(/^ventana de 721 a 8[23]\d px · \+111 px · «plantada» · /),
     ])
   })
 })
