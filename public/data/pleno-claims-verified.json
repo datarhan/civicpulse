@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-09-28T07:54:32.262Z",
-  "composedAt": "2026-09-30T06:24:31.707Z",
+  "composedAt": "2026-10-03T18:22:03.012Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
@@ -15,8 +15,9 @@
       "promesa-repetida": 0
     },
     "sinDatosPorque": {
-      "sinCorpus": 4510,
-      "comprobadoSinHallar": 3037
+      "sinCorpus": 3332,
+      "comprobadoSinHallar": 3037,
+      "noConsta": 1178
     }
   },
   "items": [
@@ -3250,7 +3251,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica"
       }
     },
     {
@@ -7346,7 +7348,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica"
       }
     },
     {
@@ -7695,7 +7698,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "persona"
       }
     },
     {
@@ -7725,7 +7729,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "persona"
       }
     },
     {
@@ -7755,7 +7760,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "persona"
       }
     },
     {
@@ -7785,7 +7791,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "persona"
       }
     },
     {
@@ -7847,7 +7854,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "persona"
       }
     },
     {
@@ -7877,7 +7885,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "persona"
       }
     },
     {
@@ -7907,7 +7916,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "persona"
       }
     },
     {
@@ -7937,7 +7947,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "persona"
       }
     },
     {
@@ -8060,7 +8071,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "persona"
       }
     },
     {
@@ -8090,7 +8102,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "persona"
       }
     },
     {
@@ -8294,7 +8307,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "persona"
       }
     },
     {
@@ -8325,7 +8339,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "persona"
       }
     },
     {
@@ -8355,7 +8370,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "persona"
       }
     },
     {
@@ -11159,7 +11175,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "persona"
       }
     },
     {
@@ -11229,7 +11246,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "persona"
       }
     },
     {
@@ -16213,7 +16231,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "persona"
       }
     },
     {
@@ -19832,7 +19851,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "persona"
       }
     },
     {
@@ -27644,7 +27664,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "persona"
       }
     },
     {
@@ -31240,7 +31261,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "no-consta"
       }
     },
     {
@@ -41580,7 +41602,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "persona"
       }
     },
     {
@@ -42205,7 +42228,9 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica",
+        "reasonSignedBy": "Sergei Lutchenko"
       }
     },
     {
@@ -42904,7 +42929,9 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica",
+        "reasonSignedBy": "Sergei Lutchenko"
       }
     },
     {
@@ -43102,7 +43129,9 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica",
+        "reasonSignedBy": "Sergei Lutchenko"
       }
     },
     {
@@ -47343,7 +47372,9 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica",
+        "reasonSignedBy": "Sergei Lutchenko"
       }
     },
     {
@@ -51307,7 +51338,9 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica",
+        "reasonSignedBy": "Sergei Lutchenko"
       }
     },
     {
@@ -52503,7 +52536,9 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica",
+        "reasonSignedBy": "Sergei Lutchenko"
       }
     },
     {
@@ -52682,7 +52717,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica"
       }
     },
     {
@@ -53331,7 +53367,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica"
       }
     },
     {
@@ -53607,7 +53644,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica"
       }
     },
     {
@@ -55991,7 +56029,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica"
       }
     },
     {
@@ -60837,7 +60876,9 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica",
+        "reasonSignedBy": "Sergei Lutchenko"
       }
     },
     {
@@ -61718,7 +61759,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica"
       }
     },
     {
@@ -61835,7 +61877,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica"
       }
     },
     {
@@ -63560,7 +63603,9 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica",
+        "reasonSignedBy": "Sergei Lutchenko"
       }
     },
     {
@@ -83585,7 +83630,9 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica",
+        "reasonSignedBy": "Sergei Lutchenko"
       }
     },
     {
@@ -91292,7 +91339,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "persona"
       }
     },
     {
@@ -91547,7 +91595,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica"
       }
     },
     {
@@ -91930,7 +91979,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica"
       }
     },
     {
@@ -92140,7 +92190,9 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica",
+        "reasonSignedBy": "Sergei Lutchenko"
       }
     },
     {
@@ -100531,7 +100583,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica"
       }
     },
     {
@@ -100645,7 +100698,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica"
       }
     },
     {
@@ -100818,7 +100872,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica"
       }
     },
     {
@@ -103352,7 +103407,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica"
       }
     },
     {
@@ -108318,7 +108374,9 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica",
+        "reasonSignedBy": "Sergei Lutchenko"
       }
     },
     {
@@ -110138,7 +110196,9 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica",
+        "reasonSignedBy": "Sergei Lutchenko"
       }
     },
     {
@@ -119025,7 +119085,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "no-consta"
       }
     },
     {
@@ -130517,7 +130578,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica"
       }
     },
     {
@@ -131389,7 +131451,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica"
       }
     },
     {
@@ -132717,7 +132780,9 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica",
+        "reasonSignedBy": "Sergei Lutchenko"
       }
     },
     {
@@ -133627,7 +133692,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica"
       }
     },
     {
@@ -133800,7 +133866,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica"
       }
     },
     {
@@ -134665,7 +134732,9 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica",
+        "reasonSignedBy": "Sergei Lutchenko"
       }
     },
     {
@@ -135049,7 +135118,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "persona"
       }
     },
     {
@@ -136226,7 +136296,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "no-consta"
       }
     },
     {
@@ -137169,7 +137240,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica"
       }
     },
     {
@@ -139463,7 +139535,9 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica",
+        "reasonSignedBy": "Sergei Lutchenko"
       }
     },
     {
@@ -146403,7 +146477,9 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica",
+        "reasonSignedBy": "Sergei Lutchenko"
       }
     },
     {
@@ -184038,7 +184114,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica"
       }
     },
     {
@@ -184159,7 +184236,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica"
       }
     },
     {
@@ -186670,7 +186748,9 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica",
+        "reasonSignedBy": "Sergei Lutchenko"
       }
     },
     {
@@ -188397,7 +188477,9 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica",
+        "reasonSignedBy": "Sergei Lutchenko"
       }
     },
     {
@@ -188802,7 +188884,9 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica",
+        "reasonSignedBy": "Sergei Lutchenko"
       }
     },
     {
@@ -191161,7 +191245,9 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica",
+        "reasonSignedBy": "Sergei Lutchenko"
       }
     },
     {
@@ -213219,7 +213305,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "persona"
       }
     },
     {
