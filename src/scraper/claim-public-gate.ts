@@ -70,9 +70,16 @@ export const DATA_GROUNDED_VERDICTS: ReadonlySet<string> = new Set([
  * desmentido va en un hallazgo, con sus referencias de contradicción, y la cita
  * sigue pasando por esta puerta: desde el 27-08 /hallazgos también la obedece.
  *
- * Corolario que el auto-curador rompió durante meses: un proceso que promueve
- * a hallazgo una declaración retenida no satisface ninguna excepción, rodea la
- * puerta. `selectBundles` en auto-curate.ts agrupa por eso sólo lo `shown`.
+ * Corolario que el auto-curador rompió durante meses, cuando promover a
+ * hallazgo sí sacaba el literal de esta puerta: un proceso que promovía una
+ * declaración retenida no satisfacía ninguna excepción, la rodeaba.
+ * `selectBundles` en auto-curate.ts agrupa por eso sólo lo `shown`.
+ *
+ * Desde el 27-08 promover ya no lleva ningún literal retenido a /hallazgos, lo
+ * promueva quien lo promueva: la ficha pinta el hueco. Lo que esta puerta no
+ * alcanza es el SUMARIO de la ficha, prosa del sitio al lado del hueco, que
+ * puede decir con otras palabras lo que el literal no puede; eso lo pregunta a
+ * una persona `triage:finding-exception` (src/scraper/finding-exception.ts).
  */
 
 /**
@@ -201,9 +208,11 @@ export function classifyClaimVisibility(
   const grounded =
     typeof verdict === 'string' &&
     DATA_GROUNDED_VERDICTS.has(verdict) &&
-    // La promoción por curador es la vía sancionada para pasar esta puerta y no
-    // puede depender de que una máquina anotara nada: ahí quien responde es una
-    // persona, que es exactamente el trato.
+    // Un veredicto que firmó un curador (`downgrade-verdict`) es la vía
+    // sancionada para pasar esta puerta y no puede depender de que una máquina
+    // anotara nada: ahí quien responde es una persona, que es exactamente el
+    // trato. Promover la declaración a hallazgo, en cambio, no la pasa: desde el
+    // 27-08 la ficha obedece esta misma puerta.
     (tieneVerificadorAnotado(item) || isCuratorPromoted(item))
   if (item?.claim?.type === 'acusacion_publica') {
     const subtype = item.claim.accusationSubtype ?? 'opinativa' // safe default
