@@ -81,12 +81,19 @@ describe('extractClaimsWithLlm · speakerSlug validation', () => {
     // slug and the bloc now come from two independent sources, so they CAN
     // disagree — and when they do, the individual attribution is the one that
     // goes, not the evidence-backed bloc.
+    //
+    // PP is in the composition on purpose: a bloc the composition does not
+    // list is withheld (see «grupos de un escaño» below), and this case is
+    // about the slug, not about an unknown bloc.
     const res = await extractClaimsWithLlm(
       SAMPLE_TRANSCRIPT,
       {
         plenoId: 'test',
         plenoDate: '2026-04-29',
-        currentSeats: [{ bloc: 'PSOE', seats: 11 }],
+        currentSeats: [
+          { bloc: 'PSOE', seats: 11 },
+          { bloc: 'PP', seats: 7 },
+        ],
         allowedSpeakers: ENROLLED,
         windowChars: 5000,
         resolveBloc: () => 'PP',
@@ -146,6 +153,95 @@ describe('extractClaimsWithLlm · speakerSlug validation', () => {
     )
     expect(res.items).toHaveLength(1)
     expect(res.items[0].speakerSlug).toBeUndefined()
+  })
+})
+
+/**
+ * Un grupo con un solo escaño nombra a su concejal por eliminación.
+ *
+ * El mapa de voces puede acreditar que habló VOX con la frase exacta con que la
+ * presidencia le dio la palabra, y aun así esa etiqueta no la escribe una pasada
+ * sin persona: `decideAutomation({ kind: 'name-individual', namesIndividual:
+ * true })` la pone en el nivel C. El extractor la retiene y CUENTA las
+ * retenidas, porque una etiqueta que falta por política no es una que el mapa
+ * no dio (DATA_INTEGRITY, regla 2).
+ *
+ * Medido el 30-09-2026: 16 de las 116 declaraciones servidas con VOX, EU-Podem
+ * o Compromís venían de aquí —re-extraídas por hallazgos-pipeline al llegar el
+ * mapa— y ninguna llevaba firma.
+ */
+describe('extractClaimsWithLlm · grupos de un escaño', () => {
+  // La composición del caso, escrita a mano: es la ENTRADA, no el enum de
+  // producción, que se deriva de officials.json.
+  const COMPOSICION = [
+    { bloc: 'PSOE', seats: 11 },
+    { bloc: 'PP', seats: 7 },
+    { bloc: 'VOX', seats: 1 },
+    { bloc: 'EU-Podem', seats: 1 },
+    { bloc: 'Compromís', seats: 1 },
+  ]
+  const conGrupo = (
+    resolveBloc: (() => string | null) | undefined,
+    opts: {
+      slug?: string | null
+      currentSeats?: { bloc: string; seats: number }[]
+      allowedSpeakers?: typeof ENROLLED
+    } = {},
+  ) =>
+    extractClaimsWithLlm(
+      SAMPLE_TRANSCRIPT,
+      {
+        plenoId: 'test',
+        plenoDate: '2026-04-29',
+        currentSeats: opts.currentSeats ?? COMPOSICION,
+        allowedSpeakers: opts.allowedSpeakers ?? ENROLLED,
+        windowChars: 5000,
+        resolveBloc,
+      },
+      callerOnce(opts.slug ?? null),
+    )
+
+  it('no escribe un grupo de un escaño aunque el mapa lo acredite, y cuenta la retenida', async () => {
+    for (const bloc of ['VOX', 'EU-Podem', 'Compromís']) {
+      const res = await conGrupo(() => bloc)
+      expect(res.items, bloc).toHaveLength(1)
+      expect(res.items[0].speakerGroup, bloc).toBeNull()
+      expect(res.stats.blocsRetenidos, bloc).toEqual({ unEscano: 1, fueraDeLaComposicion: 0 })
+    }
+  })
+
+  it('escribe un grupo de varios escaños, y no retiene nada', async () => {
+    const res = await conGrupo(() => 'PP')
+    expect(res.items[0].speakerGroup).toBe('PP')
+    expect(res.stats.blocsRetenidos).toEqual({ unEscano: 0, fueraDeLaComposicion: 0 })
+  })
+
+  it('retiene un grupo que la composición no trae: no saber sus escaños no es saber que son varios', async () => {
+    const res = await conGrupo(() => 'Ciudadanos')
+    expect(res.items[0].speakerGroup).toBeNull()
+    expect(res.stats.blocsRetenidos).toEqual({ unEscano: 0, fueraDeLaComposicion: 1 })
+  })
+
+  it('sin composición no atribuye nada', async () => {
+    const res = await conGrupo(() => 'PSOE', { currentSeats: [] })
+    expect(res.items[0].speakerGroup).toBeNull()
+    expect(res.stats.blocsRetenidos).toEqual({ unEscano: 0, fueraDeLaComposicion: 1 })
+  })
+
+  it('se lleva también al concejal: sin su grupo no queda su speakerSlug', async () => {
+    const conVox = [
+      ...ENROLLED,
+      { slug: 'concejal-de-prueba', name: 'Concejal de Prueba', party: 'VOX' },
+    ]
+    const res = await conGrupo(() => 'VOX', { slug: 'concejal-de-prueba', allowedSpeakers: conVox })
+    expect(res.items[0].speakerGroup).toBeNull()
+    expect(res.items[0].speakerSlug).toBeUndefined()
+  })
+
+  it('sin mapa no hay nada que retener', async () => {
+    const res = await conGrupo(undefined)
+    expect(res.items[0].speakerGroup).toBeNull()
+    expect(res.stats.blocsRetenidos).toEqual({ unEscano: 0, fueraDeLaComposicion: 0 })
   })
 })
 

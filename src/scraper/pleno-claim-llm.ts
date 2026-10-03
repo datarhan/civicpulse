@@ -13,6 +13,8 @@
 
 import { callLLM } from '../llm/client'
 import type { CallLlmOptions } from '../llm/client'
+import { decideAutomation } from './automation-policy'
+import { singleSeatBlocs } from './corporation-seats'
 import { PlenoClaimResponseSchema, type PlenoClaimExtraction } from '../llm/schemas'
 import {
   PLENO_CLAIM_PROMPT_VERSION,
@@ -92,6 +94,16 @@ export interface ClaimExtractionResult {
      * reports a full scan either way.
      */
     windowsUnanswered: number
+    /**
+     * Grupos que el mapa de voces dio y que no se escriben, por qué motivo,
+     * contados sobre las declaraciones que salen. Una etiqueta que falta por
+     * política no es una que el mapa no dio, y sin esta cuenta las dos se leen
+     * igual (DATA_INTEGRITY, regla 2).
+     *
+     *   unEscano              el grupo tiene un concejal: nombrarlo le nombra
+     *   fueraDeLaComposicion  la composición no dice cuántos tiene
+     */
+    blocsRetenidos: { unEscano: number; fueraDeLaComposicion: number }
   }
 }
 
@@ -251,6 +263,24 @@ export async function extractClaimsWithLlm(
     return rawSlug
   }
 
+  // Un grupo con un solo escaño nombra a su concejal por eliminación, así que
+  // escribirlo es nombrar a una persona: nivel C, que ninguna pasada sin
+  // persona cruza por mucho que el mapa de voces lo acredite. Lo mismo con un
+  // grupo que la composición no trae: no saber cuántos escaños tiene no es
+  // saber que son varios. La decisión la toma la política, no este fichero.
+  // CLAUDE.md: «a one-seat bloc is not bloc-level».
+  const unEscano = new Set(singleSeatBlocs(opts.currentSeats))
+  const enLaComposicion = new Set(opts.currentSeats.map((s) => s.bloc))
+  const nombrarAUnaPersona = decideAutomation({ kind: 'name-individual', namesIndividual: true })
+  type MotivoDeRetencion = keyof ClaimExtractionResult['stats']['blocsRetenidos']
+  const retenidas = new Map<string, MotivoDeRetencion>()
+  function motivoDeRetencion(bloc: string | null): MotivoDeRetencion | null {
+    if (bloc === null || nombrarAUnaPersona.allow) return null
+    if (unEscano.has(bloc)) return 'unEscano'
+    if (!enLaComposicion.has(bloc)) return 'fueraDeLaComposicion'
+    return null
+  }
+
   const seen = new Set<string>()
   const items: PlenoClaim[] = []
   let droppedLowConfidence = 0
@@ -291,8 +321,13 @@ export async function extractClaimsWithLlm(
       const shortHash = keyHash(key)
       const id = `${opts.plenoId}-${String(i).padStart(3, '0')}-${typeAbbr}-${shortHash}`
       // Joined from the speaker map, never inferred from the window's content.
-      const speakerGroup = (opts.resolveBloc?.(raw.verbatim) ?? null) as PlenoClaim['speakerGroup']
-      const validatedSlug = validateSlug(raw.speakerSlug, speakerGroup)
+      const delMapa = opts.resolveBloc?.(raw.verbatim) ?? null
+      const motivo = motivoDeRetencion(delMapa)
+      if (motivo) retenidas.set(id, motivo)
+      const speakerGroup = (motivo ? null : delMapa) as PlenoClaim['speakerGroup']
+      // El concejal se va con su grupo: retener el grupo porque nombra a una
+      // persona y dejar su `speakerSlug` sería nombrarla por la otra puerta.
+      const validatedSlug = motivo ? null : validateSlug(raw.speakerSlug, speakerGroup)
       items.push({
         id,
         plenoId: opts.plenoId,
@@ -340,6 +375,13 @@ export async function extractClaimsWithLlm(
   // Second-pass collapse across window boundaries — keep the highest-
   // confidence representative of each (type, topic, rounded-amount) bucket.
   const collapsed = semanticCollapse(items)
+  // Contadas sobre lo que sale, no sobre lo emitido: un duplicado que el
+  // colapso se lleva no es una etiqueta retenida en ninguna declaración.
+  const blocsRetenidos = { unEscano: 0, fueraDeLaComposicion: 0 }
+  for (const it of collapsed) {
+    const motivo = retenidas.get(it.id)
+    if (motivo) blocsRetenidos[motivo] += 1
+  }
   return {
     items: collapsed,
     stats: {
@@ -349,6 +391,7 @@ export async function extractClaimsWithLlm(
       droppedLowConfidence,
       windowsAnswered,
       windowsUnanswered,
+      blocsRetenidos,
     },
   }
 }

@@ -189,6 +189,7 @@
       "/cargos",
       "/cargos/:slug",
       "/datos",
+      "/declaraciones",
       "/departamentos",
       "/departamentos/:slug",
       "/eficiencia/:id",

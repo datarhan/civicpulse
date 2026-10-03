@@ -658,6 +658,11 @@ export const CATALOGUE = {
     'declaraciones.filter.sinCorpus': 'Sin corpus que consultar',
     'declaraciones.filter.comprobadoSinHallar': 'Comprobada, no aparece',
     'declaraciones.filter.noConsta': 'No consta qué se consultó',
+    'declaraciones.filter.unEscano.uno':
+      '{gruposUnEscano} tiene un escaño: etiquetar una declaración con su grupo señalaría a quien lo ocupa, así que sus declaraciones se publican sin grupo.',
+    'declaraciones.filter.unEscano.varios':
+      '{gruposUnEscano} tienen un escaño cada uno: etiquetar una declaración con su grupo señalaría a quien lo ocupa, así que sus declaraciones se publican sin grupo.',
+    'declaraciones.filter.unEscano.porQue': 'Por qué',
     'declaraciones.split.titulo': 'Por qué «sin datos»',
     'declaraciones.split.cuerpo':
       'No es lo mismo haber comprobado y no encontrar nada que no haber tenido con qué comprobar: lo segundo no dice nada sobre la declaración, dice que aún no tenemos ese corpus. Y de las que no consta, una revisión posterior —de un modelo o de un curador— rehízo el veredicto sin dejar anotado contra qué lo cotejó, que tampoco es lo mismo que no tener con qué.',
@@ -2316,6 +2321,11 @@ export const CATALOGUE = {
     'declaraciones.filter.sinCorpus': 'Sense corpus a consultar',
     'declaraciones.filter.comprobadoSinHallar': 'Comprovada, no apareix',
     'declaraciones.filter.noConsta': 'No consta què es va consultar',
+    'declaraciones.filter.unEscano.uno':
+      "{gruposUnEscano} té un escó: etiquetar una declaració amb el seu grup assenyalaria qui l'ocupa, així que les seues declaracions es publiquen sense grup.",
+    'declaraciones.filter.unEscano.varios':
+      "{gruposUnEscano} tenen un escó cadascun: etiquetar una declaració amb el seu grup assenyalaria qui l'ocupa, així que les seues declaracions es publiquen sense grup.",
+    'declaraciones.filter.unEscano.porQue': 'Per què',
     'declaraciones.split.titulo': 'Per què «sense dades»',
     'declaraciones.split.cuerpo':
       'No és el mateix haver comprovat i no trobar res que no haver tingut amb què comprovar: el segon no diu res sobre la declaració, diu que encara no tenim eixe corpus. I de les que no consta, una revisió posterior —d’un model o d’un curador— va refer el veredicte sense deixar anotat contra què el va acarar, que tampoc és el mateix que no tindre amb què.',
