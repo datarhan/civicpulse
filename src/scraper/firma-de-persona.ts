@@ -216,9 +216,9 @@ export const nombraAUnaPersona = (editor: string): boolean => rechazoDeFirma(edi
  * de una orden preparada que nadie rellenó? La cola de excepción compone
  * `--editor "<nombre y apellidos>"`; otras colas, `"<tu nombre>"`; las órdenes
  * de votos e indicadores, `"…"`. Con el motivo relleno y la firma no,
- * `correct-pleno-finding --field/--redact/--remove`, `retract-finding` y
- * `reclassify-claim` escribían el hueco como firmante de una corrección
- * publicada (visto el 30-09-2026).
+ * `correct-pleno-finding --field/--redact/--remove`, `retract-finding`,
+ * `reclassify-claim` y la bajada de siempre de `downgrade-verdict` escribían
+ * el hueco como firmante de una corrección publicada (visto el 30-09-2026).
  *
  * No pide una persona: esas vías las firma el operador con la cuenta de rol
  * (`civicpulse-curator`), y esa convención es suya. Rechaza sólo lo que no
