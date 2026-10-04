@@ -5,20 +5,22 @@
  * traen `--editor "<nombre y apellidos>"`. Con el motivo relleno y la firma no,
  * `correct-pleno-finding --field/--redact/--remove`, `retract-finding` y
  * `reclassify-claim` escribían el hueco como firmante de una corrección
- * publicada (visto el 30-09-2026, en la sesión de la PR #210). `--amend-reason`
- * ya lo rechazaba, porque pide una persona.
+ * publicada (visto el 30-09-2026, en la sesión de la PR #210), y la bajada de
+ * siempre de `downgrade-verdict` también (04-10-2026). `--amend-reason` y las
+ * otras dos vías de `downgrade-verdict` ya lo rechazaban, porque piden una
+ * persona.
  *
- * Estas tres vías no piden una persona: el operador las firma con la cuenta de
- * rol (`civicpulse-curator`, PRs #172, #198 y #203), y esa convención es suya.
+ * Estas vías no piden una persona: el operador las firma con la cuenta de rol
+ * (`civicpulse-curator`, PRs #172, #198 y #203), y esa convención es suya.
  * Rechazan sólo el hueco, con un error que lo dice y antes de leer nada
  * (`rechazoDeMarcador`, src/scraper/firma-de-persona.ts).
  *
  * Se ejercitan por subproceso, como en la terminal: llaman a `process.exit()`.
- * `retract-finding` y `reclassify-claim` leen `public/data/` desde el
- * directorio de trabajo, así que corren sobre una copia en un directorio
- * temporal y escriben de verdad. `correct-pleno-finding` fija su raíz en el
- * repositorio: se ejercita con `--dry-run`, que valida el snapshot entero como
- * si fuera a escribir y no escribe.
+ * `retract-finding`, `reclassify-claim` y `downgrade-verdict` leen
+ * `public/data/` desde el directorio de trabajo, así que corren sobre una copia
+ * en un directorio temporal y escriben de verdad. `correct-pleno-finding` fija
+ * su raíz en el repositorio: se ejercita con `--dry-run`, que valida el
+ * snapshot entero como si fuera a escribir y no escribe.
  */
 import { createHash } from 'node:crypto'
 import { spawnSync } from 'node:child_process'
@@ -206,28 +208,47 @@ describe('retract-finding', () => {
 })
 
 /**
- * El corpus de declaraciones, reducido a una acusación publicada y lo que la
+ * El corpus de declaraciones, reducido a una fila publicada y lo que la
  * recomposición necesita de ella: la base y el publicado (la misma fila), el
- * sidecar vacío y la transcripción de su pleno, donde está su literal tal cual
- * —sin ella, la recomposición la tomaría por un corpus sin procedencia—.
+ * fichero que escribe la CLI, vacío, y la transcripción de su pleno, donde está
+ * su literal tal cual —sin ella, la recomposición la tomaría por un corpus sin
+ * procedencia—.
  */
-describe('reclassify-claim', () => {
-  type Fila = { claim: { id: string; plenoId: string; type: string; verbatim: string } }
-  const corpus = JSON.parse(datosDelRepositorio('pleno-claims-verified.json')) as {
-    generatedAt: string
-    source?: unknown
-    items: Fila[]
+type Fila = {
+  claim: { id: string; plenoId: string; type: string; verbatim: string }
+  verification: { verdict: string }
+}
+const corpus = JSON.parse(datosDelRepositorio('pleno-claims-verified.json')) as {
+  generatedAt: string
+  source?: unknown
+  items: Fila[]
+}
+const transcripcion = (f: Fila): string | null => {
+  try {
+    return datosDelRepositorio(`pleno-transcripts/${f.claim.plenoId}.txt`)
+  } catch {
+    return null
   }
-  const transcripcion = (f: Fila): string | null => {
-    try {
-      return datosDelRepositorio(`pleno-transcripts/${f.claim.plenoId}.txt`)
-    } catch {
-      return null
-    }
-  }
-  const fila = corpus.items.find(
-    (f) => f.claim.type === 'acusacion_publica' && transcripcion(f)?.includes(f.claim.verbatim),
+}
+const filaCon = (cumple: (f: Fila) => boolean) =>
+  corpus.items.find((f) => cumple(f) && transcripcion(f)?.includes(f.claim.verbatim))
+
+function corpusDeUnaFila(prefijo: string, fila: Fila, fichero: string): string {
+  const snap = JSON.stringify(
+    { generatedAt: corpus.generatedAt, source: corpus.source, items: [fila] },
+    null,
+    2,
   )
+  return montar(prefijo, {
+    'pleno-claims-verified-base.json': snap + '\n',
+    'pleno-claims-verified.json': snap + '\n',
+    [fichero]: JSON.stringify({ version: 1, generatedAt: '', entries: {} }, null, 2) + '\n',
+    [`pleno-transcripts/${fila.claim.plenoId}.txt`]: transcripcion(fila)!,
+  })
+}
+
+describe('reclassify-claim', () => {
+  const fila = filaCon((f) => f.claim.type === 'acusacion_publica')
   const MOTIVO = 'Es una valoración política del grupo, no una acusación contra nadie.'
   const orden = (firma: string) => [
     fila!.claim.id,
@@ -237,21 +258,8 @@ describe('reclassify-claim', () => {
     '--editor',
     firma,
   ]
-
-  const conDatos = () => {
-    const snap = JSON.stringify(
-      { generatedAt: corpus.generatedAt, source: corpus.source, items: [fila] },
-      null,
-      2,
-    )
-    return montar('reclas-firma-', {
-      'pleno-claims-verified-base.json': snap + '\n',
-      'pleno-claims-verified.json': snap + '\n',
-      'pleno-claim-reclassifications.json':
-        JSON.stringify({ version: 1, generatedAt: '', entries: {} }, null, 2) + '\n',
-      [`pleno-transcripts/${fila!.claim.plenoId}.txt`]: transcripcion(fila!)!,
-    })
-  }
+  const conDatos = () =>
+    corpusDeUnaFila('reclas-firma-', fila!, 'pleno-claim-reclassifications.json')
 
   it('hay una acusación publicada con su literal en la transcripción', () => {
     expect(fila).toBeTruthy()
@@ -292,6 +300,68 @@ describe('reclassify-claim', () => {
       ).toMatchObject({
         type: 'valoracion_politica',
         from: 'acusacion_publica',
+        editor: firma,
+      })
+    } finally {
+      rmSync(dir, { recursive: true, force: true })
+    }
+  })
+})
+
+/**
+ * La bajada de siempre, sin `--amend-reason` ni `--literal-no-dicho`: esas dos
+ * ya piden una persona; ésta la firma el operador —sin --editor, «curator»— y
+ * escribía el hueco en el overlay, que se sirve.
+ */
+describe('downgrade-verdict · la bajada de siempre', () => {
+  const fila = filaCon((f) => f.verification.verdict === 'parcial')
+  const MOTIVO = 'La evidencia citada no sostiene la afirmación: sólo comparte una palabra.'
+  const orden = (firma: string) => [
+    fila!.claim.id,
+    'sin-datos',
+    '--reason',
+    MOTIVO,
+    '--editor',
+    firma,
+  ]
+  const conDatos = () => corpusDeUnaFila('downgrade-firma-', fila!, 'pleno-claims-overlay.json')
+
+  it('hay una declaración publicada en parcial con su literal en la transcripción', () => {
+    expect(fila).toBeTruthy()
+  })
+
+  it('con el hueco se niega antes de leer nada', () => {
+    const dir = montar('downgrade-firma-', {})
+    try {
+      const r = lanzar('downgrade-verdict.ts', dir, orden(HUECO))
+      expect(r.status, r.stdout + r.stderr).toBe(2)
+      expect(r.stderr).toContain('--editor')
+      expect(r.stderr).toContain(HUECO)
+    } finally {
+      rmSync(dir, { recursive: true, force: true })
+    }
+  })
+
+  it('con el hueco se niega y no toca ni el overlay ni el corpus', () => {
+    const dir = conDatos()
+    try {
+      const antes = huella(dir)
+      const r = lanzar('downgrade-verdict.ts', dir, orden(HUECO))
+      expect(r.status, r.stdout + r.stderr).toBe(2)
+      expect(r.stderr).toContain(HUECO)
+      expect(huella(dir)).toEqual(antes)
+    } finally {
+      rmSync(dir, { recursive: true, force: true })
+    }
+  })
+
+  it.each(FIRMAS)('firmada «%s», baja el veredicto y el overlay lleva esa firma', (firma) => {
+    const dir = conDatos()
+    try {
+      const r = lanzar('downgrade-verdict.ts', dir, orden(firma))
+      expect(r.status, r.stdout + r.stderr).toBe(0)
+      expect(leerJson(dir, 'pleno-claims-overlay.json').entries[fila!.claim.id]).toMatchObject({
+        source: 'curator-downgrade',
         editor: firma,
       })
     } finally {
