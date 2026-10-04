@@ -16,15 +16,27 @@
  * (`rechazoDeMarcador`, src/scraper/firma-de-persona.ts).
  *
  * Se ejercitan por subproceso, como en la terminal: llaman a `process.exit()`.
- * `retract-finding`, `reclassify-claim` y `downgrade-verdict` leen
- * `public/data/` desde el directorio de trabajo, así que corren sobre una copia
- * en un directorio temporal y escriben de verdad. `correct-pleno-finding` fija
- * su raíz en el repositorio: se ejercita con `--dry-run`, que valida el
- * snapshot entero como si fuera a escribir y no escribe.
+ * Todas corren sobre una copia de los datos en un directorio temporal y
+ * escriben de verdad; ninguna toca `public/data/` del repositorio, ni aunque la
+ * guarda fallara. `retract-finding`, `reclassify-claim` y `downgrade-verdict`
+ * leen `public/data/` desde el directorio de trabajo; `correct-pleno-finding`
+ * lo lee desde la carpeta de su script, así que se lanza una copia del script
+ * desde una raíz temporal (`conScript`).
  */
 import { createHash } from 'node:crypto'
 import { spawnSync } from 'node:child_process'
-import { mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs'
+import {
+  copyFileSync,
+  lstatSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  readdirSync,
+  rmSync,
+  symlinkSync,
+  unlinkSync,
+  writeFileSync,
+} from 'node:fs'
 import { tmpdir } from 'node:os'
 import { dirname, join, relative, resolve } from 'node:path'
 import { describe, expect, it } from 'vitest'
@@ -36,9 +48,16 @@ const TSX = join(RAIZ, 'node_modules/tsx/dist/cli.mjs')
 
 /** El hueco de la orden preparada, tal cual lo compone la cola. */
 const HUECO = MARCADORES.firma
+/**
+ * Un hueco por regla de la guarda —el de la cola, que casa con dos; uno que sólo
+ * delatan los `< >`; uno que sólo delata la palabra; uno sin letras—, para que
+ * una CLI que se quedara con una comprobación propia y parcial no pase.
+ */
+const HUECOS = [HUECO, '<editor>', 'Nombre Apellido', '…']
 /** La cuenta de rol con la que firma el operador, y una persona. */
 const FIRMAS = ['civicpulse-curator', 'María de la Fuente Llorens']
 
+/** Lanza un script del repositorio con `cwd` como directorio de trabajo. */
 const lanzar = (script: string, cwd: string, argv: string[]) =>
   spawnSync(process.execPath, [TSX, join(RAIZ, 'scripts', script), ...argv], {
     cwd,
@@ -55,6 +74,30 @@ function montar(prefijo: string, ficheros: Record<string, string>): string {
     writeFileSync(destino, contenido)
   }
   return dir
+}
+
+/**
+ * Hace de `dir` la raíz de una copia del script, para los que leen sus datos
+ * desde la carpeta del script y no desde el directorio de trabajo. Una copia y
+ * no un enlace: Node resuelve el módulo principal por su ruta real. `src/` sí
+ * se enlaza, y `package.json` se copia por su `"type": "module"`.
+ */
+function conScript(dir: string, script: string): string {
+  mkdirSync(join(dir, 'scripts'))
+  copyFileSync(join(RAIZ, 'scripts', script), join(dir, 'scripts', script))
+  symlinkSync(join(RAIZ, 'src'), join(dir, 'src'), 'dir')
+  copyFileSync(join(RAIZ, 'package.json'), join(dir, 'package.json'))
+  return join(dir, 'scripts', script)
+}
+
+/** Borra el directorio temporal; antes, el enlace a `src/`, por si acaso. */
+function limpiar(dir: string): void {
+  try {
+    if (lstatSync(join(dir, 'src')).isSymbolicLink()) unlinkSync(join(dir, 'src'))
+  } catch {
+    // No había enlace.
+  }
+  rmSync(dir, { recursive: true, force: true })
 }
 
 /** Cada fichero bajo `public/data/` del directorio, con la huella de sus bytes. */
@@ -79,82 +122,90 @@ const datosDelRepositorio = (fichero: string) =>
   readFileSync(join(RAIZ, 'public/data', fichero), 'utf8')
 
 describe('correct-pleno-finding · --field, --redact y --remove', () => {
-  const HALLAZGOS = join(RAIZ, 'public/data/pleno-findings.json')
+  const HALLAZGOS = datosDelRepositorio('pleno-findings.json')
+  type Ficha = { id: string; quotes: unknown[]; corrections?: { field: string }[] }
   // Una ficha con dos citas o más: quitarle la última la deja con cita.
-  const ficha = (
-    JSON.parse(readFileSync(HALLAZGOS, 'utf8')).items as { id: string; quotes: unknown[] }[]
-  ).find((f) => f.quotes.length >= 2)
+  const ficha = (JSON.parse(HALLAZGOS).items as Ficha[]).find((f) => f.quotes.length >= 2)
+  const ultima = `quote.${(ficha?.quotes.length ?? 1) - 1}`
   const MOTIVO = 'Corrección de prueba: la ficha decía más de lo que sus fuentes sostienen.'
-  const MODOS: [string, string[]][] = [
-    ['--field', ['--field', 'title', '--new', 'Título corregido de una ficha de prueba']],
+  /** Vía, campo que queda en la bitácora y argumentos. */
+  const MODOS: [string, string, string[]][] = [
+    ['--field', 'title', ['--field', 'title', '--new', 'Título corregido de una ficha de prueba']],
     [
       '--redact',
+      'summary',
       [
         '--redact',
         'summary',
         '--new',
-        'Un sumario reescrito para la prueba, más largo que un muñón, que nunca se escribe.',
+        'Un sumario reescrito para la prueba, más largo que un muñón, que nunca se publica.',
       ],
     ],
-    ['--remove', ['--remove', `quote.${(ficha?.quotes.length ?? 1) - 1}`]],
+    ['--remove', ultima, ['--remove', ultima]],
   ]
+  const SCRIPT = 'correct-pleno-finding.ts'
+  const orden = (modo: string[], firma: string) => [
+    ficha!.id,
+    ...modo,
+    '--reason',
+    MOTIVO,
+    '--editor',
+    firma,
+  ]
+  const lanzarEn = (dir: string, argv: string[]) =>
+    spawnSync(process.execPath, [TSX, conScript(dir, SCRIPT), ...argv], {
+      cwd: dir,
+      encoding: 'utf8',
+    })
 
   it('hay una ficha publicada con dos citas o más', () => {
     // Si esto cae, los bloques de abajo dejan de medir lo que dicen.
     expect(ficha).toBeTruthy()
   })
 
-  it.each(MODOS)('%s firmada con el hueco se niega, y no escribe', (_, modo) => {
-    const antes = readFileSync(HALLAZGOS)
-    const r = lanzar('correct-pleno-finding.ts', RAIZ, [
-      ficha!.id,
-      ...modo,
-      '--reason',
-      MOTIVO,
-      '--editor',
-      HUECO,
-      '--dry-run',
-    ])
-    expect(r.status, r.stdout + r.stderr).toBe(2)
-    expect(r.stderr).toContain('--editor')
-    expect(r.stderr).toContain(HUECO)
-    expect(readFileSync(HALLAZGOS).equals(antes)).toBe(true)
+  it.each(HUECOS)('con «%s» se niega antes de leer nada', (hueco) => {
+    // Una raíz sin datos: si llegara a leer, fallaría por otra cosa.
+    const dir = montar('correct-firma-', {})
+    try {
+      const r = lanzarEn(dir, orden(MODOS[0][2], hueco))
+      expect(r.status, r.stdout + r.stderr).toBe(2)
+      expect(r.stderr).toContain('--editor')
+      expect(r.stderr).toContain(hueco)
+    } finally {
+      limpiar(dir)
+    }
   })
 
-  it('se niega antes de leer nada: ni siquiera busca la ficha', () => {
-    // Sin --dry-run y con un id que no existe: si mirara la firma después de
-    // leer el snapshot, contestaría que no hay tal ficha.
-    const r = lanzar('correct-pleno-finding.ts', RAIZ, [
-      'f-no-existe',
-      '--field',
-      'title',
-      '--new',
-      'Título corregido de una ficha de prueba',
-      '--reason',
-      MOTIVO,
-      '--editor',
-      HUECO,
-    ])
-    expect(r.status, r.stdout + r.stderr).toBe(2)
-    expect(r.stderr).toContain(HUECO)
+  it.each(MODOS)('%s firmada con el hueco se niega y deja los datos byte a byte', (_, __, modo) => {
+    const dir = montar('correct-firma-', { 'pleno-findings.json': HALLAZGOS })
+    try {
+      const antes = huella(dir)
+      const r = lanzarEn(dir, orden(modo, HUECO))
+      expect(r.status, r.stdout + r.stderr).toBe(2)
+      expect(r.stderr).toContain(HUECO)
+      expect(huella(dir)).toEqual(antes)
+    } finally {
+      limpiar(dir)
+    }
   })
 
-  it.each(MODOS.flatMap(([nombre, modo]) => FIRMAS.map((firma) => [nombre, firma, modo] as const)))(
-    '%s firmada «%s» pasa como antes',
-    (_, firma, modo) => {
-      const r = lanzar('correct-pleno-finding.ts', RAIZ, [
-        ficha!.id,
-        ...modo,
-        '--reason',
-        MOTIVO,
-        '--editor',
-        firma,
-        '--dry-run',
-      ])
+  it.each(
+    MODOS.flatMap(([via, campo, modo]) =>
+      FIRMAS.map((firma) => [via, firma, campo, modo] as const),
+    ),
+  )('%s firmada «%s» escribe la corrección con esa firma', (_, firma, campo, modo) => {
+    const dir = montar('correct-firma-', { 'pleno-findings.json': HALLAZGOS })
+    try {
+      const r = lanzarEn(dir, orden(modo, firma))
       expect(r.status, r.stdout + r.stderr).toBe(0)
-      expect(r.stdout).toContain(`"editor": "${firma}"`)
-    },
-  )
+      const escrita = (leerJson(dir, 'pleno-findings.json').items as Ficha[]).find(
+        (f) => f.id === ficha!.id,
+      )
+      expect(escrita?.corrections?.at(-1)).toMatchObject({ field: campo, editor: firma })
+    } finally {
+      limpiar(dir)
+    }
+  })
 })
 
 describe('retract-finding', () => {
@@ -167,16 +218,16 @@ describe('retract-finding', () => {
     expect(ID).toBeTruthy()
   })
 
-  it('con el hueco se niega antes de leer nada', () => {
+  it.each(HUECOS)('con «%s» se niega antes de leer nada', (hueco) => {
     // Un directorio sin datos: si llegara a leer, fallaría por otra cosa.
     const dir = montar('retract-firma-', {})
     try {
-      const r = lanzar('retract-pleno-finding.ts', dir, orden(HUECO))
+      const r = lanzar('retract-pleno-finding.ts', dir, orden(hueco))
       expect(r.status, r.stdout + r.stderr).toBe(2)
       expect(r.stderr).toContain('--editor')
-      expect(r.stderr).toContain(HUECO)
+      expect(r.stderr).toContain(hueco)
     } finally {
-      rmSync(dir, { recursive: true, force: true })
+      limpiar(dir)
     }
   })
 
@@ -189,7 +240,7 @@ describe('retract-finding', () => {
       expect(r.stderr).toContain(HUECO)
       expect(huella(dir)).toEqual(antes)
     } finally {
-      rmSync(dir, { recursive: true, force: true })
+      limpiar(dir)
     }
   })
 
@@ -202,7 +253,7 @@ describe('retract-finding', () => {
       expect(snap.items.some((f: { id: string }) => f.id === ID)).toBe(false)
       expect(snap.retractions.at(-1)).toMatchObject({ findingId: ID, editor: firma })
     } finally {
-      rmSync(dir, { recursive: true, force: true })
+      limpiar(dir)
     }
   })
 })
@@ -265,15 +316,15 @@ describe('reclassify-claim', () => {
     expect(fila).toBeTruthy()
   })
 
-  it('con el hueco se niega antes de leer nada', () => {
+  it.each(HUECOS)('con «%s» se niega antes de leer nada', (hueco) => {
     const dir = montar('reclas-firma-', {})
     try {
-      const r = lanzar('reclassify-claim.ts', dir, orden(HUECO))
+      const r = lanzar('reclassify-claim.ts', dir, orden(hueco))
       expect(r.status, r.stdout + r.stderr).toBe(2)
       expect(r.stderr).toContain('--editor')
-      expect(r.stderr).toContain(HUECO)
+      expect(r.stderr).toContain(hueco)
     } finally {
-      rmSync(dir, { recursive: true, force: true })
+      limpiar(dir)
     }
   })
 
@@ -286,7 +337,7 @@ describe('reclassify-claim', () => {
       expect(r.stderr).toContain(HUECO)
       expect(huella(dir)).toEqual(antes)
     } finally {
-      rmSync(dir, { recursive: true, force: true })
+      limpiar(dir)
     }
   })
 
@@ -303,7 +354,7 @@ describe('reclassify-claim', () => {
         editor: firma,
       })
     } finally {
-      rmSync(dir, { recursive: true, force: true })
+      limpiar(dir)
     }
   })
 })
@@ -330,15 +381,15 @@ describe('downgrade-verdict · la bajada de siempre', () => {
     expect(fila).toBeTruthy()
   })
 
-  it('con el hueco se niega antes de leer nada', () => {
+  it.each(HUECOS)('con «%s» se niega antes de leer nada', (hueco) => {
     const dir = montar('downgrade-firma-', {})
     try {
-      const r = lanzar('downgrade-verdict.ts', dir, orden(HUECO))
+      const r = lanzar('downgrade-verdict.ts', dir, orden(hueco))
       expect(r.status, r.stdout + r.stderr).toBe(2)
       expect(r.stderr).toContain('--editor')
-      expect(r.stderr).toContain(HUECO)
+      expect(r.stderr).toContain(hueco)
     } finally {
-      rmSync(dir, { recursive: true, force: true })
+      limpiar(dir)
     }
   })
 
@@ -351,7 +402,7 @@ describe('downgrade-verdict · la bajada de siempre', () => {
       expect(r.stderr).toContain(HUECO)
       expect(huella(dir)).toEqual(antes)
     } finally {
-      rmSync(dir, { recursive: true, force: true })
+      limpiar(dir)
     }
   })
 
@@ -365,7 +416,7 @@ describe('downgrade-verdict · la bajada de siempre', () => {
         editor: firma,
       })
     } finally {
-      rmSync(dir, { recursive: true, force: true })
+      limpiar(dir)
     }
   })
 })

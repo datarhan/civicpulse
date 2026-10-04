@@ -25,6 +25,7 @@ import {
 } from '../src/scraper/firma-de-persona'
 import { HUMAN_CURATORS } from '../src/scraper/finding-authorship'
 import { MARCADORES } from '../src/scraper/finding-exception'
+import { EDITOR as EDITOR_DE_RECONCILIACION } from '../scripts/reconcile-attribution'
 
 /** Firmas con forma de nombre y apellidos. */
 const NOMBRES = [
@@ -167,14 +168,17 @@ describe('rechazoDeMarcador — el hueco de una orden preparada, sin rellenar', 
     'NOMBRE Y APELLIDOS',
     'tu_nombre',
     'Your Name',
-    // Sin una letra: el «…» de las órdenes de votos e indicadores, o una
-    // variable de la terminal que estaba vacía.
+    // Sin una letra: el «…» que imprimen check:summary-gate y
+    // downgrade-verdict, o una variable de la terminal que estaba vacía.
     '…',
     '...',
     '',
     '   ',
   ])('rechaza «%s»', (hueco) => {
     expect(rechazoDeMarcador(hueco)).not.toBeNull()
+    // Lo que no firma nada tampoco nombra a una persona: las vías que la piden
+    // lo rechazan igual.
+    expect(rechazoDeFirma(hueco)).not.toBeNull()
   })
 
   it.each([
@@ -188,6 +192,9 @@ describe('rechazoDeMarcador — el hueco de una orden preparada, sin rellenar', 
     'retirada-pasada-llm',
     'verdict-engine:gpt-5.4-mini',
     'Claude (revisión 17-08, aprobada en plan)',
+    // La que pone `reconcile:attribution --apply` al llamar a
+    // `correct-pleno-finding`; todavía no la lleva ninguna fila publicada.
+    EDITOR_DE_RECONCILIACION,
   ])('acepta «%s»', (firma) => {
     expect(rechazoDeMarcador(firma)).toBeNull()
   })

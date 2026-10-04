@@ -14,6 +14,8 @@ import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
 
+import { rechazoDeMarcador } from '../src/scraper/firma-de-persona'
+
 // Import dinámico: si la guarda de `main()` fallara, importar el script
 // ejecutaría la CLI dentro del proceso de pruebas, y es mejor que falle este
 // bloque solo que el fichero entero.
@@ -338,6 +340,11 @@ describe('downgrade-verdict · ejecutado · --literal-no-dicho', () => {
       expect(r.stderr).toContain('f-2026-01-19-cit-000000')
       expect(r.stderr).toContain('quote.1')
       expect(r.stderr).toContain('correct-pleno-finding')
+      // La orden que imprime lleva la firma por rellenar, y copiada tal cual
+      // `correct-pleno-finding` la rechaza (`rechazoDeMarcador`).
+      const firma = r.stderr.match(/--editor "([^"]*)"/)?.[1]
+      expect(firma).toBeDefined()
+      expect(rechazoDeMarcador(firma!)).not.toBeNull()
       expect(leer(data, ficheros)).toEqual(antes)
     } finally {
       rmSync(dir, { recursive: true, force: true })
