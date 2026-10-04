@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T07:32:31.089Z",
+  "generatedAt": "2026-10-04T07:35:10.298Z",
   "version": "1",
   "plenos": [
     {
@@ -60,7 +60,7 @@
         "movilidad": 4,
         "salud": 1
       },
-      "bytes": 411154
+      "bytes": 411152
     },
     {
       "plenoId": "brxx5g",
@@ -89,7 +89,7 @@
         "educacion": 74,
         "medio-ambiente": 2
       },
-      "bytes": 226062
+      "bytes": 226042
     },
     {
       "plenoId": "1237hbp",
@@ -112,7 +112,7 @@
         "fiscal": 9,
         "other": 9
       },
-      "bytes": 90762
+      "bytes": 90721
     },
     {
       "plenoId": "11025xk",
@@ -136,7 +136,7 @@
         "cultura": 2,
         "seguridad": 1
       },
-      "bytes": 72954
+      "bytes": 72922
     },
     {
       "plenoId": "10yl550",
@@ -202,7 +202,7 @@
         "empleo": 3,
         "movilidad": 1
       },
-      "bytes": 386004
+      "bytes": 385983
     },
     {
       "plenoId": "ma87e0",
@@ -232,7 +232,7 @@
         "other": 3,
         "salud": 1
       },
-      "bytes": 238376
+      "bytes": 238288
     },
     {
       "plenoId": "1sqj7is",
@@ -292,7 +292,7 @@
         "cultura": 2,
         "vivienda": 2
       },
-      "bytes": 391203
+      "bytes": 391187
     },
     {
       "plenoId": "19gax3o",
@@ -325,7 +325,7 @@
         "social": 4,
         "educacion": 2
       },
-      "bytes": 462184
+      "bytes": 462078
     },
     {
       "plenoId": "1pe3qs8",
@@ -392,7 +392,7 @@
         "salud": 1,
         "cultura": 2
       },
-      "bytes": 203829
+      "bytes": 203809
     },
     {
       "plenoId": "qz6weg",
@@ -425,7 +425,7 @@
         "movilidad": 2,
         "seguridad": 1
       },
-      "bytes": 588701
+      "bytes": 588637
     },
     {
       "plenoId": "1du4rf5",
@@ -455,7 +455,7 @@
         "seguridad": 1,
         "cultura": 7
       },
-      "bytes": 323440
+      "bytes": 323416
     },
     {
       "plenoId": "otxq2c",
@@ -486,7 +486,7 @@
         "fiscal": 18,
         "cultura": 13
       },
-      "bytes": 385210
+      "bytes": 385201
     },
     {
       "plenoId": "c8kr44",
@@ -518,7 +518,7 @@
         "movilidad": 15,
         "cultura": 3
       },
-      "bytes": 333496
+      "bytes": 333488
     },
     {
       "plenoId": "rmtyr",
@@ -550,7 +550,7 @@
         "vivienda": 6,
         "salud": 1
       },
-      "bytes": 360922
+      "bytes": 360880
     },
     {
       "plenoId": "1tgd1h4",

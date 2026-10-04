@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T07:32:31.089Z",
+  "generatedAt": "2026-10-04T07:35:10.298Z",
   "version": "1",
   "plenoId": "c8kr44",
   "plenoDate": "2025-09-08",
@@ -2994,7 +2994,7 @@
         "plenoDate": "2025-09-08",
         "segmentIndex": 118,
         "type": "cita_convenio",
-        "speakerGroup": "Compromís",
+        "speakerGroup": null,
         "verbatim": "desde el Ayuntamiento se están haciendo las cosas que nos requería el plan edificante para continuar",
         "context": "Sí, desde el Grupo Municipal de Compromiso de Anzol, será don Aglí les gracias a la rechidora del urbanismo por las explicaciones en aquel punto y en las demás de urbanismo. Y bueno, pues, decir que desde el Ayuntamiento se están haciendo las cosas que nos requería el plan edificante para continuar",
         "topic": "educacion",
