@@ -21,7 +21,7 @@ import { getQuejaViva, marcarFotoRetenidaAvisada, type FotoRetenida } from '../d
 import { escaparHtml } from '../util/html.ts'
 import { cortar, trocear } from '../util/telegram.ts'
 import { logger } from '../util/log.ts'
-import { chooseVisionBackend } from './photo-anonymize.ts'
+import { analisisDisponible, porQueNoSeAnaliza } from './photo-anonymize.ts'
 import { processPhotos, type ProcessDeps, type ProcessResult } from './process-photos.ts'
 
 const HORA_MS = 60 * 60 * 1000
@@ -160,13 +160,15 @@ export function startFotosCron(o: OpcionesCronFotos): boolean {
     return false
   }
   const photosDir = resolve(carpeta)
-  // Un renglón al arrancar que distinga los dos casos: sin clave cada foto se retiene,
-  // y eso tiene que leerse en el arranque, no deducirse de un silencio.
+  // Un renglón al arrancar que distinga los casos: sin clave, o sin la declaración del
+  // nivel de pago (`GEMINI_NIVEL=pago`), cada foto se retiene, y eso tiene que leerse
+  // en el arranque, no deducirse de un silencio.
+  const disponible = analisisDisponible(env)
   log(
     `[fotos] cron armado · cada hora · ${photosDir} · ` +
-      (chooseVisionBackend(env)
+      (disponible.ok
         ? 'análisis con Gemini'
-        : 'sin GEMINI_API_KEY: cada foto se retiene y no se publica ninguna'),
+        : `${porQueNoSeAnaliza(disponible)}: cada foto se retiene y no se publica ninguna`),
   )
 
   // Una pasada con muchas fotos puede durar más que la hora: la siguiente espera.

@@ -442,8 +442,10 @@ API, or a queja's card lock, is slow. Both live in memory, which is one more rea
 bot stays on one machine.
 
 Besides the webhook, the bot runs its own hourly ticks. One anonymizes the queja
-photos on the volume (`QUEJAS_PHOTOS_DIR`) and needs `GEMINI_API_KEY`: without the
-key it holds every photo, and its boot line says so. On a confirmed `/olvidar` the
+photos on the volume (`QUEJAS_PHOTOS_DIR`) and needs `GEMINI_API_KEY` and
+`GEMINI_NIVEL=pago` — the same statement that turns on the text review, because the
+image may only go to Gemini on Google's paid terms (/aviso-legal says so): without
+either it holds every photo, and its boot line says which one is missing. On a confirmed `/olvidar` the
 bot dispatches `pull-quejas.yml` with `GITHUB_DISPATCH_TOKEN` (a fine-grained token
 limited to this repository, «Actions: Read and write»); without it, the withdrawal
 waits for the daily run.

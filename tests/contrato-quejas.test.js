@@ -614,6 +614,18 @@ describe('la revisión automática', () => {
     )
   })
 
+  it('el aviso legal nombra a Gemini para las fotos, con sus condiciones de pago', () => {
+    expect(AVISO).toContain(
+      'la API Gemini de Google, con sus condiciones de pago —que no usan lo enviado para mejorar sus productos—, que recibe la imagen sólo para eso',
+    )
+    // Y así lo exige el código: la pasada de las fotos pide la misma declaración que la
+    // revisión del texto, con la misma comprobación. Hasta el 04-10-2026 la imagen
+    // salía hacia Gemini con sólo la clave, y la clave local era del nivel gratuito.
+    const codigo = sinComentariosTs(ANALISIS_FOTOS)
+    expect(codigo).toMatch(/return revisionDisponible\(env\)/)
+    expect(codigo).toMatch(/analisisDisponible\(env\)\.ok \? 'gemini' : null/)
+  })
+
   it('publicar sin una persona pasa por la medición: la política lo dice, y el código también', () => {
     expect(METODOLOGIA).toContain(CLAVE_MEDICION)
     // Ya no es de las que firma siempre una persona: es de las que se miden.
