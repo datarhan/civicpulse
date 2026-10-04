@@ -283,15 +283,23 @@ describe('lo servido: cada bajada dice quién la decidió', () => {
 
 describe('lo servido en /declaraciones: la línea de evidencia dice lo mismo', () => {
   it('las bajadas con evidencia que no firmó una persona no dicen «corregido por un curador»', async () => {
-    const conEvidencia = bajadas
+    const reales = bajadas
       .filter(({ it }) => it.verification.evidence.length > 0 && it.visibility === 'shown')
       .map(({ it }) => it)
-    // Hoy, las dos «parcial» de la revisión de oro que se enseñan como
-    // contrastadas (La Malla y el sistema dinámico de adquisición), y las tres
-    // que firmó una persona.
-    const sinPersona = conEvidencia.filter(
-      (it) => rechazoDeFirma(overlay.entries[it.claim.id].editor) !== null,
-    )
+    // Las reales son hoy las tres que firmó una persona. El caso sin firma de
+    // persona lo daba la «parcial» de la revisión de oro sobre el sistema
+    // dinámico de adquisición (1sqj7is-053-pro-68944b), la última que quedaba
+    // contrastada: el 04-10-2026 la bajó a sin-datos una persona con
+    // `downgrade-verdict`, porque publicaba por encima de su base. La rama sigue
+    // probada con una fila hecha por la misma vía —la CLI y la puerta pública,
+    // `servir(bajada(…))`—, y una real sin firma de persona que vuelva a
+    // servirse con evidencia entra en la cuenta sola.
+    const sintetica = servir(bajada('ai-gold-review'))
+    expect(sintetica.visibility, 'la sintética se sirve como las reales').toBe('shown')
+    const conEvidencia = [...reales, sintetica]
+    const firmaDe = (it) =>
+      it === sintetica ? 'ai-gold-review' : overlay.entries[it.claim.id].editor
+    const sinPersona = conEvidencia.filter((it) => rechazoDeFirma(firmaDe(it)) !== null)
     expect(sinPersona.length, 'ninguna bajada con evidencia sin firma de persona').toBeGreaterThan(
       0,
     )
