@@ -1201,6 +1201,52 @@ describe('hallazgos-pipeline.sh · el aviso de yt-dlp no puede tumbar la noche',
   }, 120_000)
 })
 
+/**
+ * Una recomposición que aborta no puede costar la noche, y tiene que decirse.
+ *
+ * `verify:pleno-claims` sale con error cuando la recomposición que lanza aborta
+ * (tests/verificar-recomposicion-abortada.test.ts); hasta el 04-10-2026 salía 0
+ * y esta tubería lo leía como hecho. Con el código de salida diciendo la verdad,
+ * `set -euo pipefail` la tumbaba en seco a mitad de pasada: las transcripciones
+ * y la extracción de la noche —Whisper de pago, la cuota del mapa— se quedaban
+ * sin comitear en el árbol del curador, a merced del `pull --rebase --autostash`
+ * de la siguiente. Seguir no publica nada nuevo: la recomposición se niega
+ * ANTES de tocar lo publicado, y la base que avanzó la señala
+ * `check:verified-compose`. Lo que no puede pasar es que la última línea, la
+ * que acaba en el parte, se lea como una noche limpia.
+ */
+describe('hallazgos-pipeline.sh · una recomposición que aborta no tumba la noche', () => {
+  const BASE = { GEMINI_API_KEY: 'sandbox-key', SPEAKER_MAP_CALL_BUDGET: '4' }
+  const ultima = (log: string) =>
+    log
+      .split('\n')
+      .filter((l) => /done ·/.test(l))
+      .pop() ?? ''
+
+  it('el control: una noche con extracción llega a verificar, y no dice que fallara', () => {
+    const dir = makeSandbox()
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', BASE)
+    // Sin esto, «verify falla y la pasada sigue» se cumpliría con una noche
+    // que nunca llegó a verificar.
+    expect(r.log, 'la noche no llegó a verificar').toContain('[stub] ran verify:pleno-claims')
+    expect(ultima(r.log), r.log).not.toMatch(/verify:pleno-claims/)
+  }, 120_000)
+
+  it('sigue, comitea lo que hizo y la última línea dice que no recompuso', () => {
+    const dir = makeSandbox()
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', {
+      ...BASE,
+      STUB_FAIL: 'verify:pleno-claims',
+    })
+    expect(r.log, 'el fallo inyectado no se dio').toMatch(/verify:pleno-claims FAILING/)
+    expect(r.log, 'la pasada murió en la recomposición').toContain('[stub] ran auto-curate')
+    expect(r.committed, 'el trabajo de la noche se quedó sin comitear').toContain(
+      'pleno-speaker-map/sandboxpleno.json',
+    )
+    expect(ultima(r.log), r.log).toMatch(/verify:pleno-claims FALLÓ/)
+  }, 120_000)
+})
+
 /** Alias local: `git` ya es el ayudante del arnés de arriba. */
 const gitCmd = git
 
