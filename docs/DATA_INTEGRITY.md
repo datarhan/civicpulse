@@ -103,9 +103,14 @@ Comprobaciones que existen y corren en `scrape-all`:
 
 ### Nivel 4 · Evaluación adversarial
 
-- **Conjunto de control con etiquetas humanas**, y un veredicto no se publica sin
-  precisión medida. El determinista acierta 33% en `verificado`; el
-  `sin-datos` del motor, 92%. Por eso el motor **solo retracta**.
+- **Conjunto de control, y quién lo etiquetó.** Una precisión vale lo que las
+  etiquetas contra las que se mide: contra las de un modelo, es coincidencia con
+  ese modelo, no acierto. Cada fila del conjunto de los veredictos dice quién la
+  etiquetó (`reviewer`), `eval:verifier` imprime el reparto antes de la tabla, y
+  las cifras viven, con su muestra real, en `.automation-measurements.json`, no
+  en la prosa. El motor **solo retracta**, y solo a `sin-datos`, porque un
+  `sin-datos` no afirma nada: quitar una afirmación no necesita una cifra que lo
+  autorice.
 - **Solo a la baja.** Un veredicto automático puede quitar una afirmación, nunca
   ponerla. Retirar una acusación mal fundada es seguro; añadirla no.
 - **Cada cita, verificada literalmente contra su extracto.** Si el valor citado

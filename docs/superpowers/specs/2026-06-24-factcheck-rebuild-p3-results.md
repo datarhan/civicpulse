@@ -34,6 +34,23 @@ After OpenAI billing was topped up, `gpt-5.4-mini` ran a claim in ~2.8s.
 The PCC consistency gate was a no-op at τ=0.5 (identical scorecard) → shipped the
 cheaper no-consistency config.
 
+> **Nota del 2026-10-04.** Este «gold» no es un patrón humano. Sus 64 etiquetas las
+> puso un modelo (Claude Opus 4.8, 23 y 24-06-2026; `reviewer: ai-opus-4.8` en cada
+> fila); la fase 1 pedía revisarlas antes de tratarlas como patrón
+> (`2026-06-23-factcheck-rebuild-phase1-results.md`), y no consta que ninguna persona
+> lo haya hecho. Cada cifra de esta tabla es, por tanto, coincidencia con las
+> etiquetas de otro modelo, no acierto, y la «clean independent measure» de la QA de
+> abajo es independiente de las bajadas de la revisión, no del etiquetador. Los
+> denominadores, de las matrices de confusión de aquel día: el ~92 % son 36 de los 39
+> `sin-datos` del motor, y una respuesta fija `sin-datos` coincidiría en 53 de 64
+> (~83 %); del determinista, `verificado` es 1 de 3 y `parcial`, 4 de 18. Se midió
+> con gpt-5.4-mini; las pasadas del 2 de agosto de 2026, que a esta fecha escribieron
+> 1.051 de las 1.249 entradas `verdict-engine` del overlay, corrieron por Claude Code
+> y no se han medido contra esta muestra. /metodologia decía «muestra de control etiquetada a
+> mano … acierta ~92 %»; desde esta fecha dice quién la etiquetó y no da la cifra
+> como acierto. Las tres cifras, con su muestra real, están en
+> `.automation-measurements.json`.
+
 ### Production re-derivation (downgrade-to-sin-datos ONLY)
 
 Because the engine's `sin-datos` precision is ~92% but its verificado/parcial

@@ -7,8 +7,10 @@
  * verdict, writes a curator-downgrade overlay entry (editor: ai-gold-review,
  * reason: the per-claim review note) and rebuilds verified.json. Downgrade-only
  * by construction — it can only retract an over-claim, never raise a verdict, so
- * the libel direction is always safe. Each change is individually reviewed (these
- * are the 50 gold claims), reversible (overlay), and auditable.
+ * the libel direction is always safe. Each change comes from one gold row's label
+ * and note — and those were a model's (ai-opus-4.8, 2026-06-23/24), not a
+ * person's: `editor: ai-gold-review` says so, and since #217 the card reads
+ * «rebajado en una revisión automática». Reversible (overlay) and auditable.
  */
 import { readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'

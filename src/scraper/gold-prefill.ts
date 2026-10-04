@@ -4,7 +4,8 @@
  * Pure functions behind `scripts/eval-gold-prefill.ts`. The CLI draws a
  * stratified sample of real verified claims, prefills the current verdict +
  * evidence as a starting label, and merges into `tests/fixtures/verifier-gold.json`
- * without ever clobbering a row a human has already reviewed.
+ * without ever clobbering a row someone has already reviewed — `reviewed:true`,
+ * set by a person or by a model; `reviewer` says which.
  */
 import type { ClaimVerdict } from './claim-verifier'
 import type { GoldRow } from './verifier-eval'
