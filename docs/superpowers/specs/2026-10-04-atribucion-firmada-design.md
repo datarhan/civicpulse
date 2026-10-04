@@ -129,7 +129,9 @@ obsoleta (con su porqué) y sin declaración.
 - La prueba de corpus lee la firma: un grupo en una sesión sin mapa sólo cabe con
   firma aplicada; el fichero no lleva ningún grupo de un escaño; y una entrada no
   contradice el re-etiquetado firmado de la ficha que cita su declaración.
-- `CURATED` y `docs/DATA_SOURCES.md`, el barrido de firmas, el grafo de datos.
+- `CURATED` y `docs/DATA_SOURCES.md`; la prueba de corpus valida el fichero de firmas
+  contra la composición de hoy. El grafo de datos no cambia: declara el monolito
+  publicado, que es lo que la firma mueve, y no lista los otros estratos.
 - /declaraciones y /plenos/:id escriben «firmado» junto al grupo, con los
   segundos en el título.
 - /metodologia describe la vía (sección de verificación de declaraciones) y deja

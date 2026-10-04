@@ -61,10 +61,11 @@ Everything produced by the convention above. Safe to delete and rebuild.
 | `competencias.json`                                 | `src/scraper/competencias.ts` · curated · hand-edit via PR · `npm run competencia-reply` · `check:competencias`                                                                   |
 | `officials-corrections.json`                        | `src/scraper/officials-corrections.ts` · `npm run roster-correction` (`--alta` / `--baja` / `--retirar` / `--reply` / `--apply`) · `check:officials-corrections`                  |
 | `sociedades.json`                                   | `src/scraper/sociedades.ts` · curated · hand-edit via PR · material vía `npm run scrape:borme`                                                                                    |
-| `pleno-claims-verified.json`                        | `src/scraper/verified-merge.ts` · never edited: `scripts/verified-rebuild.ts` recomposes it from the base and the three files below                                               |
+| `pleno-claims-verified.json`                        | `src/scraper/verified-merge.ts` · never edited: `scripts/verified-rebuild.ts` recomposes it from the base and the four files below                                                |
 | `pleno-claims-overlay.json`                         | `src/scraper/verified-merge.ts` · `npm run downgrade-verdict` (y su `--amend-reason`), `apply-gold-downgrades`, the verdict engine; never NLI (it proposes, in `editorial/`)      |
 | `pleno-claim-reclassifications.json`                | `src/scraper/verified-merge.ts` · `npm run reclassify-claim` (sólo ALEJÁNDOSE de `acusacion_publica`)                                                                             |
 | `pleno-claim-reanchors.json`                        | `src/scraper/verified-merge.ts` · `npm run reanchor-claim` (sólo sobre citas SIN procedencia, y el literal ha de constar entero en un acta)                                       |
+| `pleno-claim-relabels.json`                         | `src/scraper/atribucion-firmada.ts` · `npm run relabel-attribution` (y `--retirar`): el grupo lo firma una persona, sólo grupos con varios escaños, con el tramo escuchado        |
 | `solicitudes-acceso.json`                           | `src/scraper/solicitud-acceso.ts` · `npm run solicitud -- add` / `responder` / `reclamar` · `check:solicitudes`                                                                   |
 
 Each CLI re-validates the whole snapshot before writing, so an invariant

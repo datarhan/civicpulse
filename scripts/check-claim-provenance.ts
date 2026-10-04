@@ -130,6 +130,9 @@ function main() {
         stored,
         fresh,
         hasMap: resolveBloc !== null,
+        // Un grupo que firmó una persona no se juzga contra el mapa: existe
+        // justo donde el mapa no acredita quién hablaba (atribucion-firmada.ts).
+        firmada: claim.atribucionFirmada != null,
       })
       rows.push({ provenance, attribution })
       details.push({
@@ -195,6 +198,7 @@ function main() {
     ['sin-publicar', 'la evidencia sostiene uno que no publicamos (aditivo)'],
     ['partido-distinto', 'publicamos el partido EQUIVOCADO'],
     ['sin-mapa', 'sin mapa: no se juzga'],
+    ['firmada', 'la firmó una persona tras escuchar la sesión: no se juzga contra el mapa'],
   ]
   for (const [k, label] of A) {
     console.log(`    ${String(t.attribution[k] ?? 0).padStart(5)}  ${k.padEnd(18)} ${label}`)

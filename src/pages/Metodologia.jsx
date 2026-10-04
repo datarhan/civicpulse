@@ -1289,6 +1289,17 @@ export default function Metodologia() {
               que aparecer en esa frase: si el mapa no acredita quién hablaba, la cita se publica{' '}
               <strong>sin grupo</strong>, y eso es una respuesta, no un fallo.
             </p>
+            <p id="atribucion-firmada" style={{ margin: '8px 0 0', scrollMarginTop: 24 }}>
+              <strong>Hay una segunda vía, y sólo esa</strong>: una persona escucha la sesión y
+              firma con su nombre el grupo de quien habla, con el tramo de la grabación en segundos
+              y cómo se sabe —la frase con que la presidencia le dio la palabra, o que quien habla
+              es la propia presidencia—. Antes de aceptarla se comprueba que las palabras de la
+              declaración constan en ese tramo de una transcripción de la sesión. La firma no
+              reescribe el registro: se guarda aparte, con lo que la declaración decía al firmarse,
+              y la compilación la aplica encima; si el registro cambia por su cuenta, la firma deja
+              de aplicarse y la declaración no publica un grupo que la contradiga. Sólo escribe
+              grupos con varios concejales. Esas declaraciones llevan la marca «firmado».
+            </p>
             <p style={{ margin: '8px 0 0' }}>
               La identificación individual (concejal concreto) sigue siendo una señal secundaria (
               <code>speakerSlug</code>), y sólo cuando la identificación por voz —entrenada con
@@ -1300,9 +1311,11 @@ export default function Metodologia() {
               en esos tres casos etiquetar el grupo señala necesariamente a esa persona.{' '}
               <strong>Por eso esas tres etiquetas no se publican</strong>: aunque el mapa acredite
               quién hablaba, la declaración sale sin grupo, porque nombrar a una persona lo firma un
-              curador y el registro de declaraciones todavía no tiene esa firma. Y cuando un
-              hallazgo corrige el grupo de una de sus citas, la declaración de la que sale esa cita
-              deja de decir lo que el hallazgo retiró.
+              curador por hallazgo, y la firma del registro de declaraciones nunca escribe uno de
+              esos tres grupos. Y cuando un hallazgo corrige el grupo de una de sus citas, la
+              declaración de la que sale esa cita deja de decir lo que el hallazgo retiró; si el
+              hallazgo la re-etiquetó con prueba, la declaración dice el grupo nuevo sólo cuando una
+              persona lo firma por esa vía.
             </p>
             <p style={{ margin: '8px 0 0' }}>
               <strong>Ese texto no siempre es la transcripción del vídeo.</strong> Cuando no hay
