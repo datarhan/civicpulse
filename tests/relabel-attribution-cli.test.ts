@@ -93,12 +93,18 @@ const MOTIVO =
 const PERSONA = 'María de la Fuente Llorens'
 
 function montar(
-  opciones: { frozenUntil?: string | null; publicadoGeneradoEn?: string } = {},
+  opciones: {
+    frozenUntil?: string | null
+    publicadoGeneradoEn?: string
+    /** Lo publicado, si no es la composición de la base. */
+    publicado?: string
+  } = {},
 ): string {
   const dir = mkdtempSync(join(tmpdir(), 'relabel-'))
   const ficheros: Record<string, string> = {
     'pleno-claims-verified-base.json': corpus(),
-    'pleno-claims-verified.json': corpus(opciones.publicadoGeneradoEn ?? GENERADO),
+    'pleno-claims-verified.json':
+      opciones.publicado ?? corpus(opciones.publicadoGeneradoEn ?? GENERADO),
     'pleno-transcripts/p1.txt': TRANSCRIPCION + '\n',
     'officials.json': JSON.stringify({
       composition: { PSOE: 11, PP: 7, VOX: 1, 'EU-Podem': 1, Compromís: 1 },
@@ -292,6 +298,23 @@ describe('relabel-attribution', { timeout: PLAZO }, () => {
       const r = firmar(dir)
       expect(r.status, r.stdout + r.stderr).toBe(1)
       expect(r.stderr).toMatch(/compos/)
+      expect(huella(dir)).toEqual(antes)
+    } finally {
+      limpiar(dir)
+    }
+  })
+
+  it('si recomponer moviera otra declaración, no firma: republicaría lo que nadie miró', () => {
+    // Mismo sello que la base —el cotejo dice «coincide»—, pero lo publicado
+    // lleva a la vecina con otro grupo: recomponer la devolvería al de la base.
+    const publicado = JSON.parse(corpus())
+    publicado.items[1].claim.speakerGroup = 'PSOE'
+    const dir = montar({ publicado: JSON.stringify(publicado, null, 2) + '\n' })
+    try {
+      const antes = huella(dir)
+      const r = firmar(dir)
+      expect(r.status, r.stdout + r.stderr).toBe(1)
+      expect(r.stderr).toContain(VECINA)
       expect(huella(dir)).toEqual(antes)
     } finally {
       limpiar(dir)

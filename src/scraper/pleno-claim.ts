@@ -145,6 +145,13 @@ export interface PlenoClaim {
    */
   speakerGroup: SpeakerGroup | null
   /**
+   * Sólo cuando `speakerGroup` lo firmó una persona que escuchó la sesión, y no
+   * lo puso el mapa de voces: el tramo escuchado, en segundos. Lo estampa la
+   * composición desde `pleno-claim-relabels.json` (atribucion-firmada.ts); el
+   * extractor nunca lo escribe.
+   */
+  atribucionFirmada?: { desde: number; hasta: number }
+  /**
    * Optional individual attribution — only populated when the
    * transcript line was rewritten with a high-tier voice-id named tag
    * by `identify-pleno-speakers --apply` AND the slug resolves against

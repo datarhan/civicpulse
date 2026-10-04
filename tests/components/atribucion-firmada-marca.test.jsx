@@ -4,13 +4,13 @@ import { MemoryRouter } from 'react-router-dom'
 import { installFetchMock } from '../setup/mockFetch'
 import Declaraciones from '../../src/pages/Declaraciones'
 import { ClaimLedger } from '../../src/components/ClaimLedger'
-import { marcaDeFirma } from '../../src/lib/atribucion-firmada'
+import { tramoDeFirma } from '../../src/lib/atribucion-firmada'
 
 /**
  * Un grupo que firmó una persona se lee distinto de uno que puso el mapa de
  * voces, y la página lo dice: «firmado» junto al grupo, con el tramo escuchado
  * en el título, en los dos sitios que pintan declaraciones —/declaraciones y
- * el registro de /plenos/:id—. Una regla, un ayudante, dos pintores.
+ * el registro de /plenos/:id—. Una regla (`MarcaDeFirma`), dos pintores.
  *
  * Los segundos van como los teclea quien coteja en el reproductor del pleno:
  * 4016 s son 1:06:56 y 4095 s, 1:08:15.
@@ -45,21 +45,22 @@ const sinFirma = (id, verdict = 'verificado') => {
   }
 }
 
-describe('marcaDeFirma', () => {
-  it('sin marca de firma, no hay nada que pintar', () => {
-    expect(marcaDeFirma({ speakerGroup: 'PSOE' })).toBeNull()
-    expect(marcaDeFirma({ speakerGroup: null })).toBeNull()
+describe('tramoDeFirma', () => {
+  it('sin marca de firma, no hay tramo que pintar', () => {
+    expect(tramoDeFirma({ speakerGroup: 'PSOE' })).toBeNull()
+    expect(tramoDeFirma({ speakerGroup: null })).toBeNull()
   })
 
-  it('con marca, «firmado» y el tramo escuchado como en el reproductor', () => {
-    const m = marcaDeFirma({
-      speakerGroup: 'PSOE',
-      atribucionFirmada: { desde: 4016, hasta: 4095 },
-    })
-    expect(m.texto).toBe('firmado')
-    expect(m.titulo).toContain('1:06:56')
-    expect(m.titulo).toContain('1:08:15')
-    expect(m.titulo).toMatch(/persona/)
+  it('una marca sin grupo no se pinta: la firma es de un grupo', () => {
+    expect(
+      tramoDeFirma({ speakerGroup: null, atribucionFirmada: { desde: 4016, hasta: 4095 } }),
+    ).toBeNull()
+  })
+
+  it('con marca, el tramo escuchado como en el reproductor', () => {
+    expect(
+      tramoDeFirma({ speakerGroup: 'PSOE', atribucionFirmada: { desde: 4016, hasta: 4095 } }),
+    ).toBe('1:06:56–1:08:15')
   })
 })
 

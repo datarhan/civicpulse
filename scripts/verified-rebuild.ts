@@ -24,8 +24,20 @@
  * byte no-op — `composedAt` moves every time. That is the honest reading, since
  * the file really was rewritten.
  */
-import { readFileSync, writeFileSync, existsSync } from 'node:fs'
+import { readFileSync, readdirSync, writeFileSync, existsSync } from 'node:fs'
 import { resolve } from 'node:path'
+import {
+  desenlacesDeAtribucionFirmada,
+  escanosDe,
+  fuenteDelTramo,
+  motivoCitaElLiteral,
+  validarAtribucionesFirmadas,
+  type AtribucionesFirmadas,
+  type Escanos,
+} from '../src/scraper/atribucion-firmada'
+import type { PlenoClaim } from '../src/scraper/pleno-claim'
+import { archivosDe } from '../src/scraper/superseded-archive'
+import { SUPERSEDED_DIR, TRANSCRIPTS_DIR } from './lib/transcript-corpus'
 import {
   mergeVerified,
   esSubida,
@@ -48,6 +60,8 @@ export const BASE = resolve(DATA, 'pleno-claims-verified-base.json')
 export const OVERLAY = resolve(DATA, 'pleno-claims-overlay.json')
 export const RECLASSIFICATIONS = resolve(DATA, 'pleno-claim-reclassifications.json')
 export const REANCHORS = resolve(DATA, 'pleno-claim-reanchors.json')
+export const RELABELS = resolve(DATA, 'pleno-claim-relabels.json')
+export const OFFICIALS = resolve(DATA, 'officials.json')
 export const VERIFIED = resolve(DATA, 'pleno-claims-verified.json')
 
 interface Snapshot {
@@ -186,12 +200,140 @@ export function loadReanchors(): Reanchors {
   return r
 }
 
-export async function rebuildVerified(opts: { refreshChunks?: boolean } = {}): Promise<{
+/**
+ * Los grupos de un escaño y los de varios, de officials.json; `null` si no está
+ * o no trae la composición (`escanosDe`), y quien la necesite falla cerrado.
+ */
+export function escanosEnDisco(): Escanos | null {
+  if (!existsSync(OFFICIALS)) return null
+  return escanosDe(JSON.parse(readFileSync(OFFICIALS, 'utf8')))
+}
+
+/**
+ * Las atribuciones firmadas, validadas al leer como sus hermanos: una entrada
+ * editada a mano con un grupo de un escaño o una firma que no es de una persona
+ * revienta aquí cualquier recomposición antes de publicar nada.
+ */
+export function loadAtribucionesFirmadas(): AtribucionesFirmadas {
+  if (!existsSync(RELABELS)) return { version: 1, generatedAt: '', entries: {} }
+  const doc = JSON.parse(readFileSync(RELABELS, 'utf8')) as AtribucionesFirmadas
+  validarAtribucionesFirmadas(doc, Object.keys(doc.entries ?? {}).length ? escanosEnDisco() : null)
+  return doc
+}
+
+/** Las transcripciones de una sesión, la vigente primero, con el nombre que guarda `fuente`. */
+export function textosDeLaSesion(plenoId: string): Array<{ fuente: string; texto: string }> {
+  const out: Array<{ fuente: string; texto: string }> = []
+  const vigente = resolve(TRANSCRIPTS_DIR, `${plenoId}.txt`)
+  if (existsSync(vigente)) out.push({ fuente: 'current', texto: readFileSync(vigente, 'utf8') })
+  const sustituidas = resolve(SUPERSEDED_DIR)
+  if (!existsSync(sustituidas)) return out
+  for (const nombre of archivosDe(readdirSync(sustituidas), plenoId)) {
+    out.push({
+      fuente: `superseded/${nombre}`,
+      texto: readFileSync(resolve(sustituidas, nombre), 'utf8'),
+    })
+  }
+  return out
+}
+
+/**
+ * Lo que la recomposición comprueba de las firmas contra las declaraciones,
+ * porque el validador sólo tiene la huella del literal y no su texto:
+ *
+ *  · un motivo que reimprime el literal —de la base o publicado— revienta, como
+ *    cualquier fichero mal formado: la CLI nunca lo escribe;
+ *  · un tramo que ya no contiene las palabras en ninguna transcripción de la
+ *    sesión —se re-transcribió, se perdió el fichero— NO revienta: es el mundo
+ *    que se movió, y la entrada pasa a obsoleta (`tramoPerdido`).
+ *
+ * `publicadas` son las declaraciones ya corregidas por los otros estratos: un
+ * reanclaje cambia el literal publicado, y ése es el que se escuchó.
+ */
+export function comprobarFirmasAlLeer(
+  firmadas: AtribucionesFirmadas,
+  baseItems: VerifiedItem[],
+  publicadas: ReadonlyMap<string, PlenoClaim>,
+  textosDe: (plenoId: string) => Array<{ fuente: string; texto: string }> = textosDeLaSesion,
+): Set<string> {
+  const base = new Map(baseItems.map((it) => [it.claim.id, it.claim]))
+  const textos = new Map<string, Array<{ fuente: string; texto: string }>>()
+  const tramoPerdido = new Set<string>()
+  for (const [id, e] of Object.entries(firmadas.entries ?? {})) {
+    const publicada = publicadas.get(id)
+    if (!publicada) continue
+    if (motivoCitaElLiteral(e.reason, [base.get(id)?.verbatim ?? '', publicada.verbatim])) {
+      throw new Error(
+        `[relabel] ${id}: el motivo reimprime el literal de la declaración, y el fichero se sirve`,
+      )
+    }
+    if (!textos.has(publicada.plenoId)) textos.set(publicada.plenoId, textosDe(publicada.plenoId))
+    if (fuenteDelTramo(publicada.verbatim, textos.get(publicada.plenoId)!, e.segundos) === null) {
+      tramoPerdido.add(id)
+    }
+  }
+  return tramoPerdido
+}
+
+/** Los cuatro ficheros que se componen encima de la base, validados al leer. */
+export interface Capas {
+  overlay: Overlay
+  reclas: Reclassifications
+  reanclajes: Reanchors
+  firmadas: AtribucionesFirmadas
+}
+
+export function cargarCapas(): Capas {
+  return {
+    overlay: loadOverlay(),
+    reclas: loadReclassifications(),
+    reanclajes: loadReanchors(),
+    firmadas: loadAtribucionesFirmadas(),
+  }
+}
+
+/**
+ * La composición, sin escribir nada: los cinco estratos y lo que se comprueba
+ * de las firmas contra las transcripciones. La usa la CLI de las firmas para
+ * ver el alcance de un cambio antes de hacerlo.
+ */
+export function componer(
+  baseItems: VerifiedItem[],
+  { overlay, reclas, reanclajes, firmadas }: Capas,
+): { items: VerifiedItem[]; tramoPerdido: Set<string> } {
+  // Sin firmas no hay nada que comprobar contra las transcripciones: ni se leen.
+  let tramoPerdido = new Set<string>()
+  if (Object.keys(firmadas.entries ?? {}).length > 0) {
+    const sinFirmas = mergeVerified(baseItems, overlay, reclas, reanclajes)
+    tramoPerdido = comprobarFirmasAlLeer(
+      firmadas,
+      baseItems,
+      new Map(sinFirmas.map((it) => [it.claim.id, it.claim])),
+    )
+  }
+  return {
+    items: mergeVerified(baseItems, overlay, reclas, reanclajes, firmadas, tramoPerdido),
+    tramoPerdido,
+  }
+}
+
+export async function rebuildVerified(
+  opts: {
+    refreshChunks?: boolean
+    /**
+     * Las declaraciones cuya atribución firmada se retira en esta misma
+     * recomposición (`relabel-attribution --retirar`). Su grupo se pierde a
+     * propósito, y la guarda de pérdida de atribución no las cuenta.
+     */
+    firmasRetiradas?: ReadonlySet<string>
+  } = {},
+): Promise<{
   total: number
   byVerdict: Record<ClaimVerdict, number>
   overlayApplied: number
   reclassApplied: number
   reanchorApplied: number
+  firmadasApplied: number
 }> {
   if (!existsSync(BASE)) {
     throw new Error(
@@ -199,10 +341,31 @@ export async function rebuildVerified(opts: { refreshChunks?: boolean } = {}): P
     )
   }
   const base = JSON.parse(readFileSync(BASE, 'utf8')) as Snapshot
-  const overlay = loadOverlay()
-  const reclas = loadReclassifications()
-  const reanclajes = loadReanchors()
-  const items = mergeVerified(base.items, overlay, reclas, reanclajes)
+  const capas = cargarCapas()
+  const { overlay, reclas, reanclajes, firmadas } = capas
+  const { items, tramoPerdido } = componer(base.items, capas)
+
+  // Los tres desenlaces de cada atribución firmada. Una obsoleta publica la
+  // declaración sin el grupo firmado —y sin ninguno que lo contradiga—, así que
+  // tiene que verse: una persona la vuelve a firmar o la retira.
+  const firmOutcomes = desenlacesDeAtribucionFirmada(base.items, firmadas, tramoPerdido)
+  for (const id of firmOutcomes.sinClaim) {
+    process.stderr.write(
+      `[rebuild] atribución firmada de ${id}: la declaración ya no está en la base\n`,
+    )
+  }
+  const POR_QUE: Record<string, string> = {
+    grupo: 'la base ya no dice el grupo registrado en from',
+    literal: 'el literal de la base ya no es el que se firmó',
+    tramo: 'el tramo firmado ya no contiene sus palabras en ninguna transcripción',
+  }
+  for (const { id, porque } of firmOutcomes.obsoletas) {
+    process.stderr.write(
+      `[rebuild] atribución firmada de ${id}: OBSOLETA — ${POR_QUE[porque]}. Sale sin el grupo ` +
+        'firmado y sin ninguno que lo contradiga; la vuelve a firmar o la retira una persona ' +
+        '(`npm run relabel-attribution`)\n',
+    )
+  }
 
   // Los tres desenlaces de cada reclasificación, a la vista en cada rebuild:
   // «no encontrada» u «obsoleta» plegadas en «aplicada» serían el verde hueco
@@ -283,14 +446,24 @@ export async function rebuildVerified(opts: { refreshChunks?: boolean } = {}): P
   // Y antes de escribir nada: ¿esto empobrece lo que ya está publicado?
   if (existsSync(VERIFIED) && !process.env[ANULAR_GUARDA_ATRIBUCION]) {
     const publicado = JSON.parse(readFileSync(VERIFIED, 'utf8')) as Snapshot
-    const antes = atribucionesDeBloc(publicado.items ?? [])
-    const despues = atribucionesDeBloc(items)
+    // Una firma que se retira en esta misma recomposición pierde su grupo a
+    // propósito: no cuenta, ni antes ni después.
+    const fuera = opts.firmasRetiradas ?? new Set<string>()
+    const contadas = (xs: VerifiedItem[]) => xs.filter((it) => !fuera.has(it?.claim?.id))
+    const antes = atribucionesDeBloc(contadas(publicado.items ?? []))
+    const despues = atribucionesDeBloc(contadas(items))
     if (rebuildEmpobreceAtribucion(antes, despues)) {
+      const obsoletas = firmOutcomes.obsoletas.map((o) => o.id)
       throw new Error(
         `[rebuild] ABORTADO: publicar esto dejaría el corpus con ${despues} citas atribuidas a un ` +
           `bloc donde ahora hay ${antes} (${antes - despues} menos).\n` +
           `  La atribución vive en claim.speakerGroup, o sea en la BASE, que el overlay NO protege.\n` +
           `  Base: ${BASE}\n` +
+          (obsoletas.length > 0
+            ? `  ${obsoletas.length} atribución(es) firmada(s) OBSOLETA(S) salen sin grupo: ` +
+              `${obsoletas.join(', ')}. Una persona la(s) vuelve a firmar o la(s) retira ` +
+              '(`npm run relabel-attribution`).\n'
+            : '') +
           `  Si la base se regeneró sin el mapeo de voces, regenérala CON él en vez de publicar esto.\n` +
           `  Si la pérdida es lo que quieres, ${ANULAR_GUARDA_ATRIBUCION}=1 y queda escrito.`,
       )
@@ -333,5 +506,6 @@ export async function rebuildVerified(opts: { refreshChunks?: boolean } = {}): P
     overlayApplied,
     reclassApplied: reclasOutcomes.aplicadas.length,
     reanchorApplied: reancOutcomes.aplicadas.length,
+    firmadasApplied: firmOutcomes.aplicadas.length,
   }
 }

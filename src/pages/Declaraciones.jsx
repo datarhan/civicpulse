@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Card, Pill, SectionHead, PartyTag } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
+import { MarcaDeFirma } from '../components/MarcaDeFirma'
 import {
   usePlenoClaims,
   CLAIM_TYPE_LABEL,
@@ -140,6 +141,10 @@ function ClaimRow({ item, plenoTitle }) {
         >
           {c.speakerGroup ? blocLabel(c.speakerGroup) : 'sin atribuir'}
         </PartyTag>
+        <MarcaDeFirma
+          claim={c}
+          style={{ fontSize: 'var(--fs-micro)', letterSpacing: '.04em', color: 'var(--ink50)' }}
+        />
         <span style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>· {c.topic}</span>
         <span style={{ flex: 1 }} />
         <Link

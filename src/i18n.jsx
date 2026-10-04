@@ -833,6 +833,9 @@ export const CATALOGUE = {
 
     // Claim ledger (declaraciones contrastadas)
     'ledger.loadMore': 'Cargar más',
+    // Un grupo que firmó una persona tras escuchar la sesión (atribucion-firmada.ts).
+    'ledger.firmado': 'firmado',
+    'ledger.firmadoTitulo': 'Grupo firmado por una persona que escuchó la sesión: {tramo}',
 
     // Pleno detail (/plenos/:id)
     'plenoDetail.notFound': 'Sesión no encontrada',
@@ -2492,6 +2495,9 @@ export const CATALOGUE = {
 
     // Claim ledger (declaracions contrastades)
     'ledger.loadMore': 'Carrega més',
+    // Un grup que va signar una persona després d'escoltar la sessió (atribucion-firmada.ts).
+    'ledger.firmado': 'signat',
+    'ledger.firmadoTitulo': 'Grup signat per una persona que va escoltar la sessió: {tramo}',
 
     // Pleno detail (/plenos/:id)
     'plenoDetail.notFound': 'Sessió no trobada',

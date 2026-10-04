@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Card, Pill, SectionHead, ExtLink } from './Primitives'
+import { MarcaDeFirma } from './MarcaDeFirma'
 import { useT } from '../i18n'
 import {
   usePlenoClaims,
@@ -124,6 +125,14 @@ function ClaimCard({ item }) {
                 {blocLabel(claim.speakerGroup)}
               </span>
             )}
+            <MarcaDeFirma
+              claim={claim}
+              style={{
+                fontSize: 'var(--fs-micro)',
+                letterSpacing: '.04em',
+                color: 'var(--ink50)',
+              }}
+            />
             <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
               {claim.plenoDate}
             </span>

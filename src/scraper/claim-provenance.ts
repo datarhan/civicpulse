@@ -58,7 +58,7 @@ import { parseDiarizedTranscript } from './voice-id'
 export type ProvenanceOutcome = 'vigente' | 'solo-superseded' | 'sin-rastro' | 'sin-transcripcion'
 
 export type AttributionOutcome =
-  'coincide' | 'sin-sosten' | 'sin-publicar' | 'partido-distinto' | 'sin-mapa'
+  'coincide' | 'sin-sosten' | 'sin-publicar' | 'partido-distinto' | 'sin-mapa' | 'firmada'
 
 /** Los dos únicos desenlaces que paran una publicación. */
 const BLOCKING_PROVENANCE: ReadonlySet<ProvenanceOutcome> = new Set(['sin-rastro'])
@@ -149,8 +149,17 @@ export function classifyAttribution(input: {
   fresh: string | null
   /** Si no hay mapa, no hay con qué cotejar — y eso no es un acuerdo. */
   hasMap: boolean
+  /**
+   * Si el grupo publicado lo firmó una persona (`atribucionFirmada`). Una firma
+   * existe justo donde el mapa no acredita quién hablaba, así que contra el mapa
+   * saldría `sin-sosten` o `sin-mapa`, que dicen otra cosa; y si el mapa diera
+   * otro grupo, `retract-attribution --from-check` desharía a máquina lo que
+   * firmó una persona. Su propio desenlace, que no bloquea.
+   */
+  firmada?: boolean
 }): AttributionOutcome {
   const { stored, fresh, hasMap } = input
+  if (input.firmada) return 'firmada'
   if (!hasMap) return 'sin-mapa'
   if (stored === fresh) return 'coincide'
   if (stored !== null && fresh === null) return 'sin-sosten'
