@@ -2,18 +2,22 @@ import { describe, it, expect } from 'vitest'
 import {
   mergeVerified,
   isDowngrade,
+  esSubida,
   validateOverlay,
   applyOverlayEntries,
   validateReclassifications,
   applyReclassificationEntries,
   reclassificationOutcomes,
+  overlayOutcomes,
   verificacionDeBajada,
   type VerifiedItem,
   type Overlay,
+  type OverlaySource,
   type Reclassifications,
 } from '../../src/scraper/verified-merge'
 import { ALLOWED_CLAIM_TYPES, type ClaimType } from '../../src/scraper/pleno-claim'
 import type { ClaimVerdict, ClaimVerification } from '../../src/scraper/claim-verifier'
+import { CLAIM_VERDICTS } from '../../src/scraper/claim-verdicts'
 
 function item(id: string, verdict: ClaimVerification['verdict']): VerifiedItem {
   return {
@@ -544,5 +548,147 @@ describe('reclassificationOutcomes', () => {
     expect(out.aplicadas).toEqual(['a'])
     expect(out.obsoletas).toEqual(['b'])
     expect(out.sinClaim).toEqual(['ghost'])
+  })
+})
+
+/**
+ * Lo que el overlay publica, contra la base de HOY.
+ *
+ * Una entrada se juzga al escribirla contra la base de ese día (`isDowngrade`
+ * en `applyOverlayEntries`), y `mergeVerified` la vuelve a aplicar sobre cada
+ * base posterior sin mirar. Si la base se mueve por debajo, lo publicado queda
+ * por encima de lo que encuentra el verificador y nada lo decía: el 04-10-2026,
+ * 1sqj7is-053-pro-68944b publicaba `parcial` —una bajada de junio desde el
+ * `verificado` de la pasada LLM retirada— sobre una base que dice `sin-datos`.
+ */
+describe('overlayOutcomes — lo que el overlay publica, contra la base de hoy', () => {
+  const MOTIVO = 'el contrato muestra que el mecanismo se usa, no lo que se afirma de él'
+
+  function overlayDe(entradas: Record<string, [ClaimVerdict, OverlaySource]>): Overlay {
+    return {
+      version: 1,
+      generatedAt: '2026-10-04T00:00:00.000Z',
+      entries: Object.fromEntries(
+        Object.entries(entradas).map(([id, [verdict, source]]) => [
+          id,
+          { verification: vrf(id, verdict), source, reason: MOTIVO, appliedAt: 'TS' },
+        ]),
+      ),
+    }
+  }
+
+  it('el caso que lo trajo: una bajada a parcial juzgada contra un verificado, sobre una base que hoy dice sin-datos', () => {
+    // Junio: la base dice `verificado` y la bajada a `parcial` pasa la puerta.
+    const junio = applyOverlayEntries(
+      { version: 1, generatedAt: 'x', entries: {} },
+      [
+        {
+          claimId: 'x',
+          verification: verificacionDeBajada('x', vrf('x', 'verificado'), 'parcial', MOTIVO),
+          source: 'curator-downgrade',
+          reason: MOTIVO,
+          editor: 'ai-gold-review',
+        },
+      ],
+      '2026-06-24T07:18:12.464Z',
+      new Map<string, ClaimVerdict>([['x', 'verificado']]),
+    )
+    // Hoy la base dice `sin-datos`, y la composición sigue publicando `parcial`.
+    const hoy = [item('x', 'sin-datos')]
+    expect(mergeVerified(hoy, junio)[0].verification.verdict).toBe('parcial')
+    expect(overlayOutcomes(hoy, junio).porEncima).toEqual([
+      { id: 'x', base: 'sin-datos', publica: 'parcial', source: 'curator-downgrade' },
+    ])
+  })
+
+  it('cuatro desenlaces contados aparte: bajan, iguales, por encima y sin claim en la base', () => {
+    const base = [
+      item('baja', 'verificado'),
+      item('igual', 'sin-datos'),
+      item('encima', 'sin-datos'),
+      item('fuera-del-overlay', 'parcial'),
+    ]
+    const out = overlayOutcomes(
+      base,
+      overlayDe({
+        baja: ['parcial', 'curator-downgrade'],
+        igual: ['sin-datos', 'verdict-engine'],
+        encima: ['parcial', 'curator-downgrade'],
+        fantasma: ['sin-datos', 'verdict-engine'],
+      }),
+    )
+    expect(out.bajan).toEqual(['baja'])
+    expect(out.iguales).toEqual(['igual'])
+    expect(out.porEncima.map((p) => p.id)).toEqual(['encima'])
+    // Sin claim en la base: ni se aplica ni se publica. No es «igual» ni «baja».
+    expect(out.sinClaim).toEqual(['fantasma'])
+  })
+
+  it('la bajada firmada a sin-datos la saca de «por encima» sin tocar nada más', () => {
+    const hoy = [item('x', 'sin-datos'), item('y', 'verificado')]
+    const antes = overlayDe({
+      x: ['parcial', 'curator-downgrade'],
+      y: ['sin-datos', 'verdict-engine'],
+    })
+    // La vía del curador mide contra lo PUBLICADO, que es `parcial`.
+    const firmada = applyOverlayEntries(
+      antes,
+      [
+        {
+          claimId: 'x',
+          verification: verificacionDeBajada('x', vrf('x', 'parcial'), 'sin-datos', MOTIVO),
+          source: 'curator-downgrade',
+          reason: MOTIVO,
+          editor: 'Nombre Apellido',
+        },
+      ],
+      '2026-10-05T00:00:00.000Z',
+      new Map<string, ClaimVerdict>([['x', 'parcial']]),
+    )
+    expect(overlayOutcomes(hoy, antes).porEncima.map((p) => p.id)).toEqual(['x'])
+    const despues = overlayOutcomes(hoy, firmada)
+    expect(despues.porEncima).toEqual([])
+    expect(despues.iguales).toEqual(['x'])
+    expect(despues.bajan).toEqual(['y'])
+  })
+
+  it('anclas a mano: contradicho → sin-datos baja; promesa-repetida → sin-datos y sin-datos → contradicho quedan por encima', () => {
+    // La derivación es estricta a propósito (`esSubida`): lo que el curador no
+    // podría firmar como bajada cuenta como subida.
+    const caso = (de: ClaimVerdict, a: ClaimVerdict) => {
+      const out = overlayOutcomes([item('x', de)], overlayDe({ x: [a, 'verdict-engine'] }))
+      if (out.porEncima.length) return 'por-encima'
+      if (out.iguales.length) return 'igual'
+      if (out.bajan.length) return 'baja'
+      return 'ninguno'
+    }
+    expect(caso('contradicho', 'sin-datos')).toBe('baja')
+    expect(caso('verificado', 'parcial')).toBe('baja')
+    expect(caso('parcial', 'parcial')).toBe('igual')
+    expect(caso('sin-datos', 'parcial')).toBe('por-encima')
+    expect(caso('promesa-repetida', 'sin-datos')).toBe('por-encima')
+    expect(caso('sin-datos', 'contradicho')).toBe('por-encima')
+  })
+
+  it('la relación es la de esSubida e isDowngrade, no una escala recitada: para cada par del enum', () => {
+    for (const de of CLAIM_VERDICTS) {
+      for (const a of CLAIM_VERDICTS) {
+        const out = overlayOutcomes([item('x', de)], overlayDe({ x: [a, 'verdict-engine'] }))
+        const visto = {
+          de,
+          a,
+          porEncima: out.porEncima.length === 1,
+          igual: out.iguales.length === 1,
+          baja: out.bajan.length === 1,
+        }
+        expect(visto).toEqual({
+          de,
+          a,
+          porEncima: esSubida(de, a),
+          igual: de === a,
+          baja: isDowngrade(de, a),
+        })
+      }
+    }
   })
 })
