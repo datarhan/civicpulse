@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-30T06:24:31.520Z",
+  "generatedAt": "2026-10-04T06:39:13.501Z",
   "entries": {
     "k4olcs-005-acu-7c0edd": {
       "verification": {
@@ -4579,24 +4579,21 @@
     "19gax3o-132-cit-35c4f5": {
       "verification": {
         "claimId": "19gax3o-132-cit-35c4f5",
-        "verdict": "parcial",
-        "summary": "Gold review (ai): La Malla complex confirmed via maintenance tender; 2006 budget + reparations not verified (was verificado)",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HiIEfDk2s9mTylGzYmBF9Q%3D%3D",
-            "snippet": "Servicio mantenimiento instalaciones en complejo deportivo La Malla. · Ayuntamiento de Riba-roja de Túria · estado: unknown",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "El literal procede del motor que se sustituyó al re-transcribir la sesión y no dice lo que se oye: donde pone un año, en la sesión se oyen importes (transcripción vigente y audio, 6.475–6.486 s). No se reancla al pasaje correcto porque cambiaría lo que la declaración afirma, y su veredicto se contrastó sobre el literal erróneo. La misma cita se retiró de f-2026-01-19-cit-c80e68 el 30-09-2026.",
+        "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
         ]
       },
       "source": "curator-downgrade",
-      "reason": "Gold review (ai): La Malla complex confirmed via maintenance tender; 2006 budget + reparations not verified (was verificado)",
-      "editor": "ai-gold-review",
-      "appliedAt": "2026-06-24T07:18:12.464Z"
+      "reason": "El literal procede del motor que se sustituyó al re-transcribir la sesión y no dice lo que se oye: donde pone un año, en la sesión se oyen importes (transcripción vigente y audio, 6.475–6.486 s). No se reancla al pasaje correcto porque cambiaría lo que la declaración afirma, y su veredicto se contrastó sobre el literal erróneo. La misma cita se retiró de f-2026-01-19-cit-c80e68 el 30-09-2026.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-04T06:39:11.784Z",
+      "retirada": {
+        "motivo": "literal-no-dicho",
+        "literal": "literal retirado · sha256:ffde214e0468"
+      }
     },
     "19gax3o-092-cit-cbd431": {
       "verification": {
@@ -20984,6 +20981,25 @@
       "reason": "Afirmación numérica («70.000 euros») dada por verificada contra un convenio BDNS cuyo importe consta como «no publicado» y con ref vacía: coincidencia de texto, ninguna cifra que cotejar. El verificador determinista la subió de sin-datos en 4c92cf31 (20-09-2026).",
       "editor": "claude-fable-5.1",
       "appliedAt": "2026-09-21T05:53:59.613Z"
+    },
+    "19gax3o-133-afi-1a6fe3": {
+      "verification": {
+        "claimId": "19gax3o-133-afi-1a6fe3",
+        "verdict": "sin-datos",
+        "summary": "El literal procede del motor que se sustituyó al re-transcribir la sesión y no dice lo que se oye: donde pone un año, en la sesión se oyen importes (transcripción vigente y audio, 6.475–6.486 s). Es el mismo pasaje que 19gax3o-132-cit-35c4f5, que se retira por lo mismo. No se reancla al pasaje correcto porque cambiaría lo que la declaración afirma.",
+        "evidence": [],
+        "checkedAgainst": [
+          "curator-downgrade"
+        ]
+      },
+      "source": "curator-downgrade",
+      "reason": "El literal procede del motor que se sustituyó al re-transcribir la sesión y no dice lo que se oye: donde pone un año, en la sesión se oyen importes (transcripción vigente y audio, 6.475–6.486 s). Es el mismo pasaje que 19gax3o-132-cit-35c4f5, que se retira por lo mismo. No se reancla al pasaje correcto porque cambiaría lo que la declaración afirma.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-04T06:39:13.501Z",
+      "retirada": {
+        "motivo": "literal-no-dicho",
+        "literal": "literal retirado · sha256:742f12f69621"
+      }
     }
   }
 }
