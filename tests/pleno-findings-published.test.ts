@@ -487,7 +487,9 @@ describe('published pleno findings — the correction ledger is append-only', ()
  */
 // +1: el motivo de la retirada de `b00839` [3] decía que no se afirmaba que la atribución
 // fuera errónea, y lo era (bloque «salvedad E, enmienda»).
-const TOTAL_REASON_AMENDMENTS = 3
+// +3 el 04-10-2026: los motivos de 8b29a9 [5], c80e68 [4] y cc8758 [4] nombraban a un
+// grupo de un solo escaño (#214); los enmendó una persona sin el nombre.
+const TOTAL_REASON_AMENDMENTS = 6
 
 describe('published pleno findings — un motivo enmendado no borra el anterior', () => {
   const enmiendas = allCorrections.flatMap((c) => c.reasonAmendments ?? [])
