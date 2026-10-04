@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { scoreVerifier, type GoldRow } from '../../src/scraper/verifier-eval'
+import { scoreVerifier, formatLabelProvenance, type GoldRow } from '../../src/scraper/verifier-eval'
 import type { ClaimVerdict, ClaimVerification } from '../../src/scraper/claim-verifier'
 
 function pred(claimId: string, verdict: ClaimVerdict, refs: string[] = []): ClaimVerification {
@@ -61,5 +61,56 @@ describe('scoreVerifier', () => {
     expect(s.perVerdict.verificado.recall).toBeCloseTo(1)
     expect(s.perVerdict.verificado.support).toBe(1)
     expect(s.confusion.verificado.verificado).toBe(1)
+  })
+})
+
+// Who labelled the gold. `reviewed:true` only says a row is scored: the 64 rows
+// of verifier-gold.json carry it and every one was labelled by a model
+// (ai-opus-4.8), while /metodologia called the set «etiquetada a mano». The
+// scorecard has to say whose labels it is agreeing with.
+describe('labelledBy', () => {
+  it('counts the scored rows by who signed them, and leaves unreviewed rows out', () => {
+    const gold: GoldRow[] = [
+      { claimId: 'a', goldVerdict: 'sin-datos', reviewed: true, reviewer: 'ai-opus-4.8' },
+      { claimId: 'b', goldVerdict: 'parcial', reviewed: true, reviewer: 'ai-opus-4.8' },
+      { claimId: 'c', goldVerdict: 'verificado', reviewed: true, reviewer: 'Sergei Lutchenko' },
+      { claimId: 'd', goldVerdict: 'sin-datos', reviewed: true }, // no signature
+      { claimId: 'e', goldVerdict: 'sin-datos', reviewed: false, reviewer: 'Ana Pérez García' },
+    ]
+    const s = scoreVerifier(new Map(), gold)
+    expect(s.labelledBy).toEqual({
+      byClass: { persona: 1, automatica: 2, 'no-consta': 1 },
+      byReviewer: { 'ai-opus-4.8': 2, 'Sergei Lutchenko': 1, '(none)': 1 },
+    })
+  })
+})
+
+describe('formatLabelProvenance', () => {
+  it('warns that every figure is agreement when no scored row was labelled by a person', () => {
+    const out = formatLabelProvenance({
+      byClass: { persona: 0, automatica: 64, 'no-consta': 0 },
+      byReviewer: { 'ai-opus-4.8': 64 },
+    }).join('\n')
+    expect(out).toContain('a person 0 · a model or process 64 · not stated 0')
+    expect(out).toContain('ai-opus-4.8 ×64')
+    expect(out).toContain('no scored row was labelled by a person')
+    expect(out).toContain('agreement with those labels, not accuracy')
+  })
+
+  it('says how many rows a person did not label when the labels are mixed', () => {
+    const out = formatLabelProvenance({
+      byClass: { persona: 3, automatica: 60, 'no-consta': 1 },
+      byReviewer: { 'Sergei Lutchenko': 3, 'ai-opus-4.8': 60, '(none)': 1 },
+    }).join('\n')
+    expect(out).toContain('61 of 64 scored rows were not labelled by a person')
+  })
+
+  it('has no warning when a person labelled every scored row', () => {
+    const out = formatLabelProvenance({
+      byClass: { persona: 5, automatica: 0, 'no-consta': 0 },
+      byReviewer: { 'Sergei Lutchenko': 5 },
+    }).join('\n')
+    expect(out).toContain('a person 5')
+    expect(out).not.toContain('⚠')
   })
 })
