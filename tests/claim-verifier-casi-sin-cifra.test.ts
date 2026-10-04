@@ -3,7 +3,12 @@ import { readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 import { verifyClaim } from '../src/scraper/claim-verifier'
-import { corpusReales, resumenSinRegistro } from '../src/scraper/claim-verdicts'
+import {
+  RESUMEN_CASI_FIJO,
+  corpusReales,
+  resumenCasi,
+  resumenSinRegistro,
+} from '../src/scraper/claim-verdicts'
 
 /**
  * El expediente «que se parece» sólo se enseña si el camino del importe miró
@@ -39,6 +44,14 @@ import { corpusReales, resumenSinRegistro } from '../src/scraper/claim-verdicts'
  *
  * Las filas no se escriben aquí: salen de los trozos servidos y se vuelven a
  * pasar por el verificador con los datos publicados.
+ *
+ * 04-10-2026: la re-verificación del paso 0 de #218 (`verify:pleno-claims`)
+ * quitó del dato las 47 filas del defecto y reescribió con `resumenCasi` las 14
+ * del caso de control. La premisa «el caso existe» pasa a ser la guarda que es
+ * —lo servido no vuelve a llevar ninguna—, el control se busca por la frase
+ * nueva, y las 47 de antes viven congeladas en
+ * tests/fixtures/casi-antes-de-reverificar_2026-10-04.json para seguir pasando
+ * por el verificador.
  */
 
 const ROOT = join(__dirname, '..')
@@ -88,47 +101,63 @@ const sinCotejo = servidos.filter(
     !leyoContratos(it.verification),
 )
 
-/** Las que sí tenían cifra y un camino del importe que leyó los contratos. */
+/**
+ * Las que sí tenían cifra y un camino del importe que leyó los contratos,
+ * reconocidas por la frase que les escribe el verificador de hoy.
+ */
 const conCifra = servidos.filter(
   (it) =>
     it.verification.verdict === 'sin-datos' &&
     conContrato(it.verification) &&
     leyoContratos(it.verification) &&
     it.claim.entities.amountEuros != null &&
-    /ninguna de sus magnitudes/.test(it.verification.summary ?? ''),
+    it.verification.summary === resumenCasi(true),
 )
 
-describe('lo servido: el caso existe (la premisa, medida)', () => {
-  it('hay filas CONTRATO sobre verificaciones que no anotan contratos, y ninguna trae cifra', () => {
-    // Sin ellas, lo de abajo pasaría sin haber mirado nada.
-    expect(sinCotejo.length).toBeGreaterThan(0)
-    expect(sinCotejo.map((it) => it.claim.entities.amountEuros ?? null)).toEqual(
-      sinCotejo.map(() => null),
+/** Las filas tal como se servían hasta la re-verificación del 04-10-2026. */
+const ANTES: { sinCotejo: Item[]; conCifra: Item[] } = JSON.parse(
+  readFileSync(join(ROOT, 'tests/fixtures/casi-antes-de-reverificar_2026-10-04.json'), 'utf8'),
+)
+
+describe('lo servido: ninguna fila CONTRATO sin contratos cotejados (la premisa, hoy guarda)', () => {
+  it('ninguna verificación servida enseña un contrato sin haber cotejado contratos', () => {
+    // Medido sobre algo: sin «sin datos» servidos, el cero no diría nada.
+    expect(servidos.filter((it) => it.verification.verdict === 'sin-datos').length).toBeGreaterThan(
+      0,
     )
-    // Las dos líneas que medimos: «ninguna» y «promises».
-    expect(sinCotejo.some((it) => corpusReales(it.verification.checkedAgainst).length === 0)).toBe(
-      true,
-    )
-    expect(
-      sinCotejo.some(
-        (it) => corpusReales(it.verification.checkedAgainst).join(' · ') === 'promises',
-      ),
-    ).toBe(true)
-    // Y su frase habla de una cifra que la cita no trae.
-    expect(sinCotejo.every((it) => /cifra del claim/.test(it.verification.summary ?? ''))).toBe(
-      true,
-    )
+    expect(sinCotejo.map((it) => it.claim.id)).toEqual([])
   })
 
-  it('y hay el caso para el que nació el barrido: con cifra y con los contratos leídos', () => {
+  it('y el caso para el que nació el barrido se sirve, con la frase nueva', () => {
     expect(conCifra.length).toBeGreaterThan(0)
     expect(conCifra.some((it) => it.claim.id === '15uvjew-015-cit-c4edb0')).toBe(true)
   })
 })
 
+describe('el fixture: las filas del defecto, como se servían', () => {
+  it('sin cifra y sin contratos, sobre «ninguna» y «promises», con la frase fija', () => {
+    // Sin ellas, lo de abajo pasaría sin haber mirado nada.
+    expect(ANTES.sinCotejo.length).toBeGreaterThan(0)
+    for (const it of ANTES.sinCotejo) {
+      expect(it.verification.verdict, it.claim.id).toBe('sin-datos')
+      expect(conContrato(it.verification), it.claim.id).toBe(true)
+      expect(leyoContratos(it.verification), it.claim.id).toBe(false)
+      expect(it.claim.entities.amountEuros ?? null, it.claim.id).toBeNull()
+      // Y su frase habla de una cifra que la cita no trae.
+      expect(it.verification.summary, it.claim.id).toBe(RESUMEN_CASI_FIJO)
+    }
+    // Las dos líneas que medimos: «ninguna» y «promises».
+    const lineas = ANTES.sinCotejo.map((it) =>
+      corpusReales(it.verification.checkedAgainst).join(' · '),
+    )
+    expect(lineas).toContain('')
+    expect(lineas).toContain('promises')
+  })
+})
+
 describe('sin cifra: el verificador no enseña el expediente que se parece', () => {
   it('re-verificadas, ninguna enseña un contrato, y su procedencia no cambia', () => {
-    const malas = sinCotejo
+    const malas = ANTES.sinCotejo
       .map((it) => ({ it, r: verifyClaim({ claim: it.claim, ...DATOS }) }))
       .filter(
         ({ it, r }) =>
@@ -140,7 +169,7 @@ describe('sin cifra: el verificador no enseña el expediente que se parece', () 
   })
 
   it('y su explicación es la derivada de lo que consta como consultado', () => {
-    const malas = sinCotejo
+    const malas = ANTES.sinCotejo
       .map((it) => ({ it, r: verifyClaim({ claim: it.claim, ...DATOS }) }))
       .filter(
         ({ r }) => r.verdict !== 'sin-datos' || r.summary !== resumenSinRegistro(r.checkedAgainst),
