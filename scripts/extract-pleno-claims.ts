@@ -236,6 +236,15 @@ async function runOne(
       `${res.stats.windowsUnanswered ? `, ${res.stats.windowsUnanswered} NO ANSWER` : ''}) · ` +
       `${res.stats.claimsEmitted} kept · ${res.stats.droppedLowConfidence} dropped\n`,
   )
+  if (resolveBloc) {
+    // Con mapa, siempre: «0 retenidas» y «no se miró» no pueden leerse igual.
+    const r = res.stats.blocsRetenidos
+    process.stdout.write(
+      `[extract·claims]   ${plenoId} · grupos del mapa que NO se escriben: ${r.unEscano} de un ` +
+        `escaño (nombrarlo nombra a su concejal: lo firma una persona) · ` +
+        `${r.fueraDeLaComposicion} fuera de la composición\n`,
+    )
+  }
   windowTally.answered += res.stats.windowsAnswered
   windowTally.unanswered += res.stats.windowsUnanswered
   return res.items

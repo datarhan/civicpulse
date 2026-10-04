@@ -10,9 +10,11 @@ import {
   VERDICT_TONE,
 } from '../hooks/usePlenoClaims'
 import { usePlenos } from '../hooks/usePlenos'
+import { useOfficials } from '../hooks/useOfficials'
 import { PARTY_TONE } from '../hooks/usePromises'
-import { useT } from '../i18n'
+import { useLocale, useT } from '../i18n'
 import { CLAIM_VERDICTS, resumirSinDatos, desenlaceDeCotejo } from '../scraper/claim-verdicts'
+import { oneSeatBlocsOf } from '../scraper/corporation-seats'
 import { blocLabel } from '../lib/party-label.js'
 import { etiquetaVerificador, evidenciaSegunFuentes } from '../lib/claim-provenance.js'
 import { PuenteDeImporte } from '../components/PuenteDeImporte'
@@ -229,8 +231,17 @@ const ALL_BLOCS = ['PSOE', 'PP', 'VOX', 'Compromís', 'EU-Podem', null]
 
 export default function Declaraciones() {
   const t = useT()
+  const { locale } = useLocale()
   const claims = usePlenoClaims()
   const plenos = usePlenos()
+  const officials = useOfficials()
+  // Los grupos de un escaño, de la composición publicada. Mientras no se ha
+  // leído —o si no trae composición— es null y la página no dice nada, en vez
+  // de decir una lista que nadie ha leído.
+  const unEscano = useMemo(
+    () => (officials.data ? oneSeatBlocsOf(officials.data) : null),
+    [officials.data],
+  )
   const [verdictFilter, setVerdictFilter] = useState('with-evidence') // 'all' | 'with-evidence' | one-of-ALL_VERDICTS
   const [blocFilter, setBlocFilter] = useState('all') // 'all' | one-of-ALL_BLOCS | 'attributed' | 'null'
   const [topicFilter, setTopicFilter] = useState('all')
@@ -261,6 +272,15 @@ export default function Declaraciones() {
       topics: [...topics].sort(),
     }
   }, [items])
+
+  // La nota dice de estos grupos que sus declaraciones salen sin grupo, y eso
+  // es una afirmación sobre los datos: sólo se nombra a los que de verdad no
+  // llevan ninguna atribuida. Uno que la lleve —hasta que se retire, o si una
+  // persona la firma— tiene su botón arriba y no se le nombra aquí.
+  const unEscanoSinBoton = useMemo(
+    () => (unEscano ?? []).filter((g) => (stats.byBloc[g] ?? 0) === 0),
+    [unEscano, stats],
+  )
 
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase()
@@ -476,7 +496,10 @@ export default function Declaraciones() {
             count={stats.total - (stats.byBloc.null ?? 0)}
             onClick={() => setBlocFilter('attributed')}
           />
-          {ALL_BLOCS.filter((b) => b !== null).map((b) => (
+          {/* Un botón por grupo que de verdad lleva declaraciones. Un grupo sin
+              ninguna no tiene nada que filtrar, y su «0» se leería como que no
+              habló: el de un grupo de un escaño es una política, no un dato. */}
+          {ALL_BLOCS.filter((b) => b !== null && (stats.byBloc[b] ?? 0) > 0).map((b) => (
             <FilterChip
               key={b}
               active={blocFilter === b}
@@ -486,6 +509,23 @@ export default function Declaraciones() {
             />
           ))}
         </div>
+        {unEscanoSinBoton.length > 0 && (
+          <p style={{ margin: 0, fontSize: 'var(--fs-aux)', color: 'var(--ink70)' }}>
+            {t(
+              unEscanoSinBoton.length === 1
+                ? 'declaraciones.filter.unEscano.uno'
+                : 'declaraciones.filter.unEscano.varios',
+            ).replace(
+              '{gruposUnEscano}',
+              new Intl.ListFormat(locale === 'ca' ? 'ca' : 'es', { type: 'conjunction' }).format(
+                unEscanoSinBoton,
+              ),
+            )}{' '}
+            <Link to="/metodologia#verificacion-declaraciones" style={{ color: 'var(--civic)' }}>
+              {t('declaraciones.filter.unEscano.porQue')}
+            </Link>
+          </p>
+        )}
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, alignItems: 'center' }}>
           <span
             className="mono"

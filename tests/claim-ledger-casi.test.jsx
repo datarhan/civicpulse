@@ -7,7 +7,12 @@ import { installFetchMock } from './setup/mockFetch'
 import { ClaimLedger } from '../src/components/ClaimLedger'
 import Declaraciones from '../src/pages/Declaraciones'
 import { gateForDisplay, sortSignalFirst } from '../src/lib/claim-ledger'
-import { corpusReales, resumenSinRegistro } from '../src/scraper/claim-verdicts'
+import {
+  RESUMEN_CASI_FIJO,
+  corpusReales,
+  resumenCasi,
+  resumenSinRegistro,
+} from '../src/scraper/claim-verdicts'
 import { CATALOGUE } from '../src/i18n'
 
 /**
@@ -42,12 +47,26 @@ import { CATALOGUE } from '../src/i18n'
  *
  * Se pinta cada trozo servido con el componente de verdad, como lo pinta la
  * pestaña de /plenos/:id: los ítems son los servidos, no una forma recortada.
+ *
+ * 04-10-2026: la re-verificación del paso 0 de #218 (`verify:pleno-claims`)
+ * hizo lo que arriba se dejaba para «cuando se vuelva a verificar»: quitó del
+ * dato las 47 filas del defecto y reescribió con `resumenCasi` las 14 del
+ * control. «El caso existe» pasa a ser la guarda que es —lo servido no vuelve
+ * a llevar ninguna—; el control se busca por la frase nueva; y la lectura de lo
+ * publicado antes (`evidenciaSegunFuentes`, `resumenSegunFuentes`) se sigue
+ * pintando sobre esas mismas filas, congeladas en
+ * tests/fixtures/casi-antes-de-reverificar_2026-10-04.json.
  */
 
 const TROZOS = join(__dirname, '..', 'public/data/pleno-claims')
 const trozos = readdirSync(TROZOS)
   .filter((f) => f.endsWith('.json') && f !== 'index.json')
   .map((f) => JSON.parse(readFileSync(join(TROZOS, f), 'utf8')))
+
+/** Las filas tal como se servían hasta la re-verificación del 04-10-2026. */
+const ANTES = JSON.parse(
+  readFileSync(join(__dirname, 'fixtures', 'casi-antes-de-reverificar_2026-10-04.json'), 'utf8'),
+)
 
 const ROTULO = 'Fuentes comprobadas:'
 /** Procedencia desconocida: una pasada sustituyó la lista. No dice que no se mirara nada. */
@@ -102,18 +121,21 @@ function pintarYLeer(items, limit) {
   return tarjetas
 }
 
+/** Pinta unos ítems como la pestaña de /plenos/:id y empareja cada tarjeta con su fila. */
+function leerFilas(items) {
+  const filas = sortSignalFirst(gateForDisplay(items))
+  const tarjetas = pintarYLeer(items, items.length)
+  expect(tarjetas).toHaveLength(filas.length)
+  return tarjetas.map((t, i) => {
+    expect(t.cita).toBe(`«${filas[i].claim.verbatim}»`)
+    return { ...t, fila: filas[i] }
+  })
+}
+
 let leidas = []
 
 beforeAll(() => {
-  leidas = trozos.flatMap((trozo) => {
-    const filas = sortSignalFirst(gateForDisplay(trozo.items))
-    const tarjetas = pintarYLeer(trozo.items, trozo.items.length)
-    expect(tarjetas).toHaveLength(filas.length)
-    return tarjetas.map((t, i) => {
-      expect(t.cita).toBe(`«${filas[i].claim.verbatim}»`)
-      return { ...t, fila: filas[i] }
-    })
-  })
+  leidas = trozos.flatMap((trozo) => leerFilas(trozo.items))
 }, 120_000)
 
 const describir = (t) => `${t.fila.claim.id} [${t.fuentes}] ${t.explicacion.slice(0, 80)}`
@@ -124,21 +146,28 @@ const esSinCotejo = (fila) =>
   fila.verification.evidence.some((e) => e.kind === 'tender') &&
   !leyoContratos(fila.verification)
 
-/** Las del caso para el que nació el barrido: con cifra y con los contratos leídos. */
+/**
+ * Las del caso para el que nació el barrido: con cifra y con los contratos
+ * leídos, reconocidas por la frase que les escribe el verificador de hoy.
+ */
 const esConCifra = (fila) =>
   fila.verification.verdict === 'sin-datos' &&
   fila.verification.evidence.some((e) => e.kind === 'tender') &&
   leyoContratos(fila.verification) &&
   fila.claim.entities.amountEuros != null &&
-  /ninguna de sus magnitudes/.test(fila.verification.summary ?? '')
+  fila.verification.summary === resumenCasi(true)
 
-describe('lo servido: el caso existe, y se lee', () => {
-  it('se pintaron tarjetas de las dos familias', () => {
-    expect(leidas.filter((t) => esSinCotejo(t.fila)).length).toBeGreaterThan(0)
+describe('lo servido: ninguna tarjeta del defecto, y el control se pinta', () => {
+  it('ninguna tarjeta pintada es una fila CONTRATO sin contratos cotejados', () => {
+    // Medido sobre algo: sin tarjetas «sin datos» pintadas, el cero no diría nada.
+    expect(
+      leidas.filter((t) => t.fila.verification.verdict === 'sin-datos').length,
+    ).toBeGreaterThan(0)
+    expect(leidas.filter((t) => esSinCotejo(t.fila)).map(describir)).toEqual([])
+  })
+
+  it('y se pintan tarjetas del caso de control, con la frase nueva', () => {
     expect(leidas.filter((t) => esConCifra(t.fila)).length).toBeGreaterThan(0)
-    // Las líneas que el defecto dejaba sin contratos: las dos, medidas.
-    expect(leidas.some((t) => esSinCotejo(t.fila) && t.fuentes === 'ninguna')).toBe(true)
-    expect(leidas.some((t) => esSinCotejo(t.fila) && t.fuentes === 'promises')).toBe(true)
   })
 })
 
@@ -151,12 +180,32 @@ describe('/plenos/:id: una fila CONTRATO va con los contratos anotados', () => {
     expect(malas.slice(0, 5), `${malas.length} tarjetas`).toEqual([])
   })
 
-  it('las que no cotejaron contratos dicen lo que dice su procedencia', () => {
-    for (const t of leidas.filter((x) => esSinCotejo(x.fila))) {
+  it('lo publicado antes de re-verificar: sin contratos cotejados, ni fila CONTRATO ni frase de cifra', () => {
+    // Las 47 filas tal como se servían, con su fila CONTRATO y la frase fija:
+    // la tarjeta aplica la regla nueva a lo publicado (evidenciaSegunFuentes,
+    // resumenSegunFuentes).
+    const viejas = leerFilas(ANTES.sinCotejo)
+    expect(viejas.length).toBeGreaterThan(0)
+    for (const t of viejas) {
+      expect(t.fila.verification.summary, t.fila.claim.id).toBe(RESUMEN_CASI_FIJO)
+      expect(esSinCotejo(t.fila), t.fila.claim.id).toBe(true)
       expect(t.kinds, t.fila.claim.id).not.toContain(CONTRATO)
       expect(t.explicacion, t.fila.claim.id).toBe(
         resumenSinRegistro(t.fila.verification.checkedAgainst),
       )
+    }
+    // Las líneas que el defecto dejaba sin contratos: las dos, medidas.
+    expect(viejas.some((t) => t.fuentes === 'ninguna')).toBe(true)
+    expect(viejas.some((t) => t.fuentes === 'promises')).toBe(true)
+  })
+
+  it('y el control publicado antes, con contratos cotejados, se pinta con la frase nueva', () => {
+    const viejas = leerFilas(ANTES.conCifra)
+    expect(viejas.length).toBeGreaterThan(0)
+    for (const t of viejas) {
+      expect(t.fila.verification.summary, t.fila.claim.id).toBe(RESUMEN_CASI_FIJO)
+      expect(t.kinds, t.fila.claim.id).toContain(CONTRATO)
+      expect(t.explicacion, t.fila.claim.id).toBe(resumenCasi(true))
     }
   })
 
@@ -223,8 +272,11 @@ describe('/declaraciones: la misma cita, sin la fila', () => {
   }
 
   it('una cita sin contratos cotejados no enseña «1 evidencia» ni la fila [tender]', async () => {
-    const trozo = trozos.find((t) => t.items.some(esSinCotejo))
-    const fila = trozo.items.find(esSinCotejo)
+    // Lo servido ya no trae ninguna (04-10-2026): la fila sale del fixture,
+    // tal como se publicaba, dentro de un trozo de un solo ítem.
+    const fila = ANTES.sinCotejo[0]
+    expect(esSinCotejo(fila)).toBe(true)
+    const trozo = { plenoId: fila.claim.plenoId, plenoDate: fila.claim.plenoDate, items: [fila] }
     monta(trozo)
     const card = await tarjetaDe(fila)
     expect(card).not.toBeNull()

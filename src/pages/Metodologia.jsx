@@ -1253,7 +1253,11 @@ export default function Metodologia() {
               limitan a <em>nombrar</em> un partido, que en un debate suele ser aquel al que se
               ataca. Preguntado igualmente, el modelo tiraba del nombre que aparecía en el texto. El
               resultado eran citas archivadas bajo el grupo al que critican. Las 1.415 atribuciones
-              que ese método había producido se han retirado a «sin identificar».
+              que ese método había producido se retiraron a «sin identificar» el 10 de agosto. Una
+              recuperación del 15 de agosto las devolvió al registro de declaraciones, copiándolas
+              de un fichero publicado que aquella retirada no había limpiado, y en octubre de 2026
+              se volvieron a retirar: sólo conservan su grupo las pocas que el mapa de hablantes,
+              construido después, acredita igual.
             </p>
             <p style={{ margin: '8px 0 0' }}>
               La atribución se une ahora <strong>después</strong> de extraer, desde un mapa de
@@ -1271,7 +1275,12 @@ export default function Metodologia() {
               <code>/declaraciones</code>, <code>/hallazgos</code>) nombra al individuo hasta que un
               curador lo promueve manualmente. Conviene decir además algo que la etiqueta de grupo
               oculta: <strong>VOX, EU-Podem y Compromís tienen un escaño cada uno</strong>, así que
-              en esos tres casos etiquetar el grupo señala necesariamente a esa persona.
+              en esos tres casos etiquetar el grupo señala necesariamente a esa persona.{' '}
+              <strong>Por eso esas tres etiquetas no se publican</strong>: aunque el mapa acredite
+              quién hablaba, la declaración sale sin grupo, porque nombrar a una persona lo firma un
+              curador y el registro de declaraciones todavía no tiene esa firma. Y cuando un
+              hallazgo corrige el grupo de una de sus citas, la declaración de la que sale esa cita
+              deja de decir lo que el hallazgo retiró.
             </p>
             <p style={{ margin: '8px 0 0' }}>
               <strong>Ese texto no siempre es la transcripción del vídeo.</strong> Cuando no hay

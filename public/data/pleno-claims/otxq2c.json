@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T06:39:14.761Z",
+  "generatedAt": "2026-10-04T07:37:33.528Z",
   "version": "1",
   "plenoId": "otxq2c",
   "plenoDate": "2025-10-06",
@@ -145,7 +145,7 @@
       "verification": {
         "claimId": "otxq2c-004-cit-5f8041",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -176,7 +176,7 @@
       "verification": {
         "claimId": "otxq2c-004-pro-aeab61",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -236,7 +236,7 @@
       "verification": {
         "claimId": "otxq2c-005-pro-1c1423",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -372,7 +372,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 6,
         "type": "cita_convenio",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "solicitar la adhesión del Ayuntamiento a la red española de ciudades inteligentes.",
         "context": "pensamos que el municipio de Rivarrocha está más que preparado para integrarse a esta red española de ciudades inteligentes. Por eso, llevamos al pleno el siguiente acuerdo, que es, primero, solicitar la adhesión del Ayuntamiento a la red española de ciudades inteligentes.",
         "topic": "transparencia",
@@ -386,7 +386,7 @@
       "verification": {
         "claimId": "otxq2c-006-cit-320ef3",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -443,7 +443,7 @@
       "verification": {
         "claimId": "otxq2c-009-cit-11043a",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -470,7 +470,7 @@
       "verification": {
         "claimId": "otxq2c-009-cit-414306",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -497,7 +497,7 @@
       "verification": {
         "claimId": "otxq2c-009-cit-8375cb",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -510,7 +510,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 10,
         "type": "cita_convenio",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "esta red que se llama Impulso, que lo pongo ahí se la dirigiremos también nosotros como ayuntamiento",
         "context": "...esta red que se llama Impulso, que lo pongo ahí se la dirigiremos también nosotros como ayuntamiento y la calificación de destacarte como ciudad innovadora...",
         "topic": "transparencia",
@@ -524,7 +524,7 @@
       "verification": {
         "claimId": "otxq2c-010-cit-390f2c",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -537,7 +537,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 10,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "la calificación de destacarte como ciudad innovadora no la hace ningún político son técnicos de la administración que en base a unos objetivos evalúan",
         "context": "...la calificación de destacarte como ciudad innovadora no la hace ningún político son técnicos de la administración que en base a unos objetivos evalúan y te dicen si eres charcha o no...",
         "topic": "transparencia",
@@ -551,7 +551,7 @@
       "verification": {
         "claimId": "otxq2c-010-afi-55a9bf",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -579,7 +579,7 @@
       "verification": {
         "claimId": "otxq2c-011-cit-b50a3f",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders, tenders-ted, bdns y budget que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -612,7 +612,7 @@
       "verification": {
         "claimId": "otxq2c-011-afi-840ff4",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -669,7 +669,7 @@
       "verification": {
         "claimId": "otxq2c-012-cit-0fe8a0",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -699,7 +699,7 @@
       "verification": {
         "claimId": "otxq2c-012-cit-04d003",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -726,7 +726,7 @@
       "verification": {
         "claimId": "otxq2c-013-cit-fc012c",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -753,7 +753,7 @@
       "verification": {
         "claimId": "otxq2c-013-cit-80139f",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -782,7 +782,7 @@
       "verification": {
         "claimId": "otxq2c-014-afi-550dd3",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -809,7 +809,7 @@
       "verification": {
         "claimId": "otxq2c-014-cit-f65907",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -870,7 +870,7 @@
       "verification": {
         "claimId": "otxq2c-014-afi-689da8",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -897,7 +897,7 @@
       "verification": {
         "claimId": "otxq2c-014-cit-b47fe4",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -990,7 +990,7 @@
       "verification": {
         "claimId": "otxq2c-015-afi-a1cf3c",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -1017,7 +1017,7 @@
       "verification": {
         "claimId": "otxq2c-015-cit-ba44c7",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -1047,7 +1047,7 @@
       "verification": {
         "claimId": "otxq2c-016-cit-a36fec",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -1137,7 +1137,7 @@
       "verification": {
         "claimId": "otxq2c-017-afi-22b786",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -1166,7 +1166,7 @@
       "verification": {
         "claimId": "otxq2c-018-afi-5ce01b",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -1193,7 +1193,7 @@
       "verification": {
         "claimId": "otxq2c-019-cit-d28800",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -1223,7 +1223,7 @@
       "verification": {
         "claimId": "otxq2c-019-cit-ef251a",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -1254,7 +1254,7 @@
       "verification": {
         "claimId": "otxq2c-019-afi-aebee6",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -1311,7 +1311,7 @@
       "verification": {
         "claimId": "otxq2c-020-cit-a66b99",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -1341,7 +1341,7 @@
       "verification": {
         "claimId": "otxq2c-021-cit-72692f",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -1371,7 +1371,7 @@
       "verification": {
         "claimId": "otxq2c-021-afi-523e3a",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -1398,7 +1398,7 @@
       "verification": {
         "claimId": "otxq2c-021-cit-021dee",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -1428,7 +1428,7 @@
       "verification": {
         "claimId": "otxq2c-022-cit-03cbb5",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -1455,7 +1455,7 @@
       "verification": {
         "claimId": "otxq2c-022-afi-89653e",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -1543,7 +1543,7 @@
       "verification": {
         "claimId": "otxq2c-023-cit-7cf074",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -1573,7 +1573,7 @@
       "verification": {
         "claimId": "otxq2c-023-cit-05e0d9",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -1589,7 +1589,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 24,
         "type": "cita_obra",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "dota al Ayuntamiento de Riva Roja de una herramienta sólida, moderna y garantista, que nos permitirá seguir atendiendo con rigor, empatía y eficacia a las personas y familias que atraviesan dificultades.",
         "context": "dota al Ayuntamiento de Riva Roja de una herramienta sólida, moderna y garantista, que nos permitirá seguir atendiendo con rigor, empatía y eficacia a las personas y familias que atraviesan dificultades. Es por ello que nuestro objetivo",
         "topic": "social",
@@ -1603,7 +1603,7 @@
       "verification": {
         "claimId": "otxq2c-024-cit-f56122",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -1619,7 +1619,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 24,
         "type": "promesa",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "No solamente ofrecer ayuda económica, sino restaurar la autonomía, la dignidad y las oportunidades de quienes más lo necesitan.",
         "context": "No solamente ofrecer ayuda económica, sino restaurar la autonomía, la dignidad y las oportunidades de quienes más lo necesitan. Muchas gracias. Palabras al respecto en este punto.",
         "topic": "social",
@@ -1633,7 +1633,7 @@
       "verification": {
         "claimId": "otxq2c-024-pro-683f46",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -1648,7 +1648,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 24,
         "type": "cita_obra",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "En términos de la resolución técnica de servicios sociales, creemos que es una herramienta muy importante y muy útil.",
         "context": "En términos de la resolución técnica de servicios sociales, creemos que es una herramienta muy importante y muy útil. Sí que es verdad que me gustaría hablar de los términos de resolución.",
         "topic": "social",
@@ -1662,7 +1662,7 @@
       "verification": {
         "claimId": "otxq2c-024-cit-7562fc",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -1678,7 +1678,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 24,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "cuando termine el ejercicio y de la AIN, en la parte de la memoria me consta que sí que está la mitad del tiempo",
         "context": "pero simplemente quería comentar que creo que cuando termine el ejercicio y de la AIN, en la parte de la memoria me consta que sí que está la mitad del tiempo",
         "topic": "transparencia",
@@ -1692,7 +1692,7 @@
       "verification": {
         "claimId": "otxq2c-024-afi-47cc75",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -1719,7 +1719,7 @@
       "verification": {
         "claimId": "otxq2c-025-afi-7f168e",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -1746,7 +1746,7 @@
       "verification": {
         "claimId": "otxq2c-026-cit-9d1969",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -1776,7 +1776,7 @@
       "verification": {
         "claimId": "otxq2c-027-cit-80bf51",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -1806,7 +1806,7 @@
       "verification": {
         "claimId": "otxq2c-027-cit-1958cc",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -1836,7 +1836,7 @@
       "verification": {
         "claimId": "otxq2c-027-cit-936b59",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -1866,7 +1866,7 @@
       "verification": {
         "claimId": "otxq2c-027-cit-e5bb45",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -1896,7 +1896,7 @@
       "verification": {
         "claimId": "otxq2c-028-cit-95b148",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -1956,7 +1956,7 @@
       "verification": {
         "claimId": "otxq2c-028-pro-4ae39b",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -1985,7 +1985,7 @@
       "verification": {
         "claimId": "otxq2c-029-cit-f22f02",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -2045,7 +2045,7 @@
       "verification": {
         "claimId": "otxq2c-029-cit-6e0f8e",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -2075,7 +2075,7 @@
       "verification": {
         "claimId": "otxq2c-029-cit-6c3231",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -2105,7 +2105,7 @@
       "verification": {
         "claimId": "otxq2c-029-pro-75603e",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -2196,7 +2196,7 @@
       "verification": {
         "claimId": "otxq2c-029-cit-4960d3",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -2226,7 +2226,7 @@
       "verification": {
         "claimId": "otxq2c-030-cit-08aba2",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -2256,7 +2256,7 @@
       "verification": {
         "claimId": "otxq2c-030-pro-d1939b",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -2316,7 +2316,7 @@
       "verification": {
         "claimId": "otxq2c-030-pro-e4da44",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -2331,7 +2331,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 31,
         "type": "promesa",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "solicitamos el apoyo del Pleno para la puesta en marcha de este plan.",
         "context": "No se trata de actuar sólo cuando aparece el problema, sino de crear entornos seguros, inclusivos y positivos donde nuestros jóvenes puedan desarrollarse plenamente. Por ello, solicitamos el apoyo del Pleno para la puesta en marcha de este plan.",
         "topic": "social",
@@ -2345,7 +2345,7 @@
       "verification": {
         "claimId": "otxq2c-031-pro-1aca36",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -2360,7 +2360,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 31,
         "type": "cita_obra",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "Esta comisión representa una apuesta firme por la protección de la infancia y la adolescencia",
         "context": "Esta comisión representa una apuesta firme por la protección de la infancia y la adolescencia y por un municipio comprometido con la convivencia y la salud emocional de las personas jóvenes de nuestro municipio.",
         "topic": "social",
@@ -2390,7 +2390,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 33,
         "type": "cita_obra",
-        "speakerGroup": "PP",
+        "speakerGroup": null,
         "verbatim": "el sistema de pulseras telemáticas de control de todos los agresores, el sistema COMETA, sistema del Centro de Control de Medidas Telemáticas de Añuñamiento.",
         "context": "Entre las medidas más relevantes se encuentra el sistema de pulseras telemáticas de control de todos los agresores, el sistema COMETA, sistema del Centro de Control de Medidas Telemáticas de Añuñamiento.",
         "topic": "seguridad",
@@ -2435,7 +2435,7 @@
       "verification": {
         "claimId": "otxq2c-035-cit-66a694",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -2462,7 +2462,7 @@
       "verification": {
         "claimId": "otxq2c-035-cit-008624",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -2489,7 +2489,7 @@
       "verification": {
         "claimId": "otxq2c-035-afi-baf250",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -2546,7 +2546,7 @@
       "verification": {
         "claimId": "otxq2c-036-afi-8435eb",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -2573,7 +2573,7 @@
       "verification": {
         "claimId": "otxq2c-036-afi-f84500",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -2600,7 +2600,7 @@
       "verification": {
         "claimId": "otxq2c-036-cit-bc5792",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -2613,7 +2613,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 37,
         "type": "cita_convenio",
-        "speakerGroup": "PP",
+        "speakerGroup": null,
         "verbatim": "de los grupos de apoyo psicológico, social, jurídico y en otros ámbitos. Y trasladar todos estos puntos de acuerdo al Ministerio de Igualdad, a la Delegación de Gobierno, a la Generalitat Valenciana, Federación Valenciana de Municipios y Provincias, al Consejo de Igualdad de Río Roja y a todas las asociaciones de nuestro municipio que trabajan por y para las mujeres.",
         "context": "de los grupos de apoyo psicológico, social, jurídico y en otros ámbitos. Y trasladar todos estos puntos de acuerdo al Ministerio de Igualdad, a la Delegación de Gobierno, a la Generalitat Valenciana, Federación Valenciana de Municipios y Provincias, al Consejo de Igualdad de Río Roja y a todas las asociaciones de nuestro municipio que trabajan por y para las mujeres.\n[2340.0 → 2370.0] que se han utilizado para proteger a las mujeres víctimas de violencia de género.",
         "topic": "social",
@@ -2645,7 +2645,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 37,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PP",
+        "speakerGroup": null,
         "verbatim": "que se han utilizado para proteger a las mujeres víctimas de violencia de género. El IPREM es una lacra y una de las más graves vulneraciones de las mujeres víctimas de violencia de género.",
         "context": "que se han utilizado para proteger a las mujeres víctimas de violencia de género. El IPREM es una lacra y una de las más graves vulneraciones de las mujeres víctimas de violencia de género. Entre las medidas más relevantes se encuentra el sistema de pulseras telemática",
         "topic": "seguridad",
@@ -2659,7 +2659,7 @@
       "verification": {
         "claimId": "otxq2c-037-afi-966940",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -2686,7 +2686,7 @@
       "verification": {
         "claimId": "otxq2c-041-afi-26db98",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -2699,7 +2699,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 42,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "El sistema COMETA funciona con normalidad.",
         "context": "y lo ha hecho muy claro. El sistema COMETA funciona con normalidad. El 87% de las víctimas se sienten más seguras.",
         "topic": "seguridad",
@@ -2713,7 +2713,7 @@
       "verification": {
         "claimId": "otxq2c-042-afi-3ae93b",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -2726,7 +2726,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 42,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "El 87% de las víctimas se sienten más seguras.",
         "context": "El sistema COMETA funciona con normalidad. El 87% de las víctimas se sienten más seguras. Y el 90% recomendaría el dispositivo.",
         "topic": "seguridad",
@@ -2742,7 +2742,7 @@
       "verification": {
         "claimId": "otxq2c-042-afi-3f13be",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -2755,7 +2755,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 42,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "Ninguna mujer ha sido asesinada con el sistema COMETA.",
         "context": "Y el 90% recomendaría el dispositivo. Ninguna mujer ha sido asesinada con el sistema COMETA. No ha habido recortes ni ocultaciones que quieren decir, ni mujeres desprotegidas.",
         "topic": "seguridad",
@@ -2769,7 +2769,7 @@
       "verification": {
         "claimId": "otxq2c-042-afi-f12d39",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -2782,7 +2782,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 48,
         "type": "cita_obra",
-        "speakerGroup": "VOX",
+        "speakerGroup": null,
         "verbatim": "Desde nuestro espacio político, consideramos que el sistema COMETA es muy importante, esencialmente importante.",
         "context": "Muchas gracias. Tenemos más palabras. Gracias. Desde nuestro espacio político, consideramos que el sistema COMETA es muy importante, esencialmente importante. Y es verdad que ha habido diversas incidencias, eso es cierto.",
         "topic": "seguridad",
@@ -2813,7 +2813,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 48,
         "type": "afirmacion_numerica",
-        "speakerGroup": "VOX",
+        "speakerGroup": null,
         "verbatim": "Y es verdad que ha habido diversas incidencias, eso es cierto.",
         "context": "Desde nuestro espacio político, consideramos que el sistema COMETA es muy importante, esencialmente importante. Y es verdad que ha habido diversas incidencias, eso es cierto. Es verdad que es un sistema en el que",
         "topic": "seguridad",
@@ -2827,7 +2827,7 @@
       "verification": {
         "claimId": "otxq2c-048-afi-371213",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -2854,7 +2854,7 @@
       "verification": {
         "claimId": "otxq2c-051-afi-aff53a",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -2882,7 +2882,7 @@
       "verification": {
         "claimId": "otxq2c-051-afi-9fc586",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -2910,7 +2910,7 @@
       "verification": {
         "claimId": "otxq2c-052-afi-661e66",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -2938,7 +2938,7 @@
       "verification": {
         "claimId": "otxq2c-052-cit-8eb5c6",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -2965,7 +2965,7 @@
       "verification": {
         "claimId": "otxq2c-052-cit-f3cf12",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -2995,7 +2995,7 @@
       "verification": {
         "claimId": "otxq2c-052-cit-384de0",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -3026,7 +3026,7 @@
       "verification": {
         "claimId": "otxq2c-053-afi-3fa104",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -3053,7 +3053,7 @@
       "verification": {
         "claimId": "otxq2c-053-cit-be0381",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -3080,7 +3080,7 @@
       "verification": {
         "claimId": "otxq2c-054-cit-257f06",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -3112,7 +3112,7 @@
       "verification": {
         "claimId": "otxq2c-054-pro-c1b241",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -3141,7 +3141,7 @@
       "verification": {
         "claimId": "otxq2c-055-cit-1a12b7",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -3199,7 +3199,7 @@
       "verification": {
         "claimId": "otxq2c-056-cit-82b50b",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -3229,7 +3229,7 @@
       "verification": {
         "claimId": "otxq2c-056-afi-922906",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -3256,7 +3256,7 @@
       "verification": {
         "claimId": "otxq2c-056-cit-c5f930",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -3286,7 +3286,7 @@
       "verification": {
         "claimId": "otxq2c-057-cit-f6a741",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -3313,7 +3313,7 @@
       "verification": {
         "claimId": "otxq2c-058-cit-b78839",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -3340,7 +3340,7 @@
       "verification": {
         "claimId": "otxq2c-059-cit-fb27c3",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -3371,7 +3371,7 @@
       "verification": {
         "claimId": "otxq2c-059-afi-131c29",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -3398,7 +3398,7 @@
       "verification": {
         "claimId": "otxq2c-059-cit-d0f39f",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -3428,7 +3428,7 @@
       "verification": {
         "claimId": "otxq2c-060-cit-82e588",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -3458,7 +3458,7 @@
       "verification": {
         "claimId": "otxq2c-061-afi-8df4c4",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -3485,7 +3485,7 @@
       "verification": {
         "claimId": "otxq2c-062-cit-db81ab",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -3512,7 +3512,7 @@
       "verification": {
         "claimId": "otxq2c-062-afi-e7fabd",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -3570,7 +3570,7 @@
       "verification": {
         "claimId": "otxq2c-064-pro-02e70f",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -3599,7 +3599,7 @@
       "verification": {
         "claimId": "otxq2c-066-cit-67ef3b",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -3615,7 +3615,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 68,
         "type": "promesa",
-        "speakerGroup": "PP",
+        "speakerGroup": null,
         "verbatim": "le pediré yo un informe local de lo que afecta a las mujeres locales, a las chicas locales, de lo que pasa en Gaza.",
         "context": "Ahora, en la siguiente moción que habla de Gaza, le pediré yo un informe local de lo que afecta a las mujeres locales, a las chicas locales, de lo que pasa en Gaza. Por favor. Así tratemos temas que sobrepasen el ámbito local.",
         "topic": "seguridad",
@@ -3629,7 +3629,7 @@
       "verification": {
         "claimId": "otxq2c-068-pro-ddcb7a",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -3644,7 +3644,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 72,
         "type": "cita_obra",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "a una unidad de policía local que acompaña a todas las mujeres que lo necesitan.",
         "context": "...desde este equipo de gobierno... sí que trabajamos cada día... [3510.0 → 3540.0] a una unidad de policía local que acompaña a todas las mujeres que lo necesitan. Contamos con el SPAI de la Dona...",
         "topic": "seguridad",
@@ -3675,7 +3675,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 72,
         "type": "cita_convenio",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "Colaboramos con Generalitat, colaboramos con Diputación y participamos en todos los programas de campañas de prevención, atención, reparación",
         "context": "...garantizamos una atención... Y ya pedimos... [3540.0 → 3570.0] de gobierno, colaboramos con Generalitat, colaboramos con Diputación y participamos en todos los programas de campañas de prevención, atención, reparación...",
         "topic": "social",
@@ -3705,7 +3705,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 72,
         "type": "cita_obra",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "Contamos con el SPAI de la Dona, que ya lo conocen, ahí está Verónica Blanco, que es nuestra profesional, y garantizamos una atención que la pide el Partido Popular en la moción",
         "context": "...a una unidad de policía local... Contamos con el SPAI de la Dona, que ya lo conocen, ahí está Verónica Blanco, que es nuestra profesional, y garantizamos una atención que la pide el Partido Popular...",
         "topic": "social",
@@ -3736,7 +3736,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 73,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "el doble de ingreso aquí a Rivarrocha",
         "context": "el Pacto de Estado, que por cierto este año nos ha venido el doble de ingreso aquí a Rivarrocha, y los planes de protección y prevención",
         "topic": "fiscal",
@@ -3750,7 +3750,7 @@
       "verification": {
         "claimId": "otxq2c-073-afi-319a57",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -3763,7 +3763,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 73,
         "type": "cita_obra",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "hemos presentado el Plan Abolicionista y también la Ordenanza Abolicionista, premiada",
         "context": "como aquí que hemos presentado el Plan Abolicionista y también la Ordenanza Abolicionista, premiada, y nos dieron el premio en Madrid",
         "topic": "social",
@@ -3777,7 +3777,7 @@
       "verification": {
         "claimId": "otxq2c-073-cit-c61f5c",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -3793,7 +3793,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 73,
         "type": "cita_convenio",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "nos dieron el premio en Madrid en la Federación Estatal de Municipios y Provincias",
         "context": "Ordenanza Abolicionista, premiada, y nos dieron el premio en Madrid en la Federación Estatal de Municipios y Provincias.",
         "topic": "social",
@@ -3807,7 +3807,7 @@
       "verification": {
         "claimId": "otxq2c-073-cit-14a29e",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -3820,7 +3820,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 74,
         "type": "cita_convenio",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "la Ley Integral contra la Violencia de Género, el Pacto de Estado",
         "context": "...Ahí está la Ley Integral contra la Violencia de Género, el Pacto de Estado, que por cierto este año nos ha venido el doble de ingreso...",
         "topic": "seguridad",
@@ -3834,7 +3834,7 @@
       "verification": {
         "claimId": "otxq2c-074-cit-0d361a",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -3847,7 +3847,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 74,
         "type": "cita_obra",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "hemos presentado el Plan Abolicionista y también la Ordenanza Abolicionista, premiada",
         "context": "...como aquí que hemos presentado el Plan Abolicionista y también la Ordenanza Abolicionista, premiada, y nos dieron el premio en Madrid...",
         "topic": "seguridad",
@@ -3861,7 +3861,7 @@
       "verification": {
         "claimId": "otxq2c-074-cit-86c5c7",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -3877,7 +3877,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 74,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "nos dieron el premio en Madrid en la Federación Estatal de Municipios y Provincias",
         "context": "...y nos dieron el premio en Madrid en la Federación Estatal de Municipios y Provincias.",
         "topic": "transparencia",
@@ -3891,7 +3891,7 @@
       "verification": {
         "claimId": "otxq2c-074-afi-92f548",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -3904,7 +3904,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 74,
         "type": "cita_obra",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "aquí tenéis a la policía local, aquí tenéis a nuestras psicólogas, a nuestras jurídicas, a nuestras trabajadoras sociales",
         "context": "...Aquí tenéis a la policía local, aquí tenéis a nuestras psicólogas, a nuestras jurídicas, a nuestras trabajadoras sociales, de servicios sociales...",
         "topic": "social",
@@ -3935,7 +3935,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 75,
         "type": "cita_obra",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "Aquí tenéis a la policía local, aquí tenéis a nuestras psicólogas, a nuestras jurídicas, a nuestras trabajadoras sociales, de servicios sociales, a la técnica",
         "context": "Aquí tenéis a la policía local, aquí tenéis a nuestras psicólogas, a nuestras jurídicas, a nuestras trabajadoras sociales, de servicios sociales, a la técnica [3630.0 → 3660.0] Y eso siempre va a estar de vuestro lado.",
         "topic": "seguridad",
@@ -3949,7 +3949,7 @@
       "verification": {
         "claimId": "otxq2c-075-cit-c869c8",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -4010,7 +4010,7 @@
       "verification": {
         "claimId": "otxq2c-079-afi-320a21",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -4037,7 +4037,7 @@
       "verification": {
         "claimId": "otxq2c-079-cit-35f69c",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -4067,7 +4067,7 @@
       "verification": {
         "claimId": "otxq2c-080-afi-0ec921",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -4094,7 +4094,7 @@
       "verification": {
         "claimId": "otxq2c-080-pro-8f748c",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -4109,7 +4109,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 80,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "El PSOE en realidad lleva más de 20 años luchando por la igualdad",
         "context": "SEÑOR PRESIDENTE. Gracias. SEÑOR PRESIDENTE. Gracias. SEÑOR PRESIDENTE. Gracias. SEÑOR PRESIDENTE. Gracias. SEÑOR PRESIDENTE. Gracias. SEÑOR PRESIDENTE. Gracias. SEÑOR PRESIDENTE. Gracias. SEÑOR PRESIDENTE. Gracias. El PSOE en realidad lleva más de 20 años luchando por la igualdad. Y eso sí que es un compromiso real, porque este gob",
         "topic": "social",
@@ -4125,7 +4125,7 @@
       "verification": {
         "claimId": "otxq2c-080-afi-a63ac1",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -4138,7 +4138,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 81,
         "type": "cita_convenio",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "Y eso sí que es un premio en Madrid en la Federación Estatal de Municipios y Provincias.",
         "context": "Y eso sí que es un premio en Madrid en la Federación Estatal de Municipios y Provincias. Y eso sí que es un premio en Madrid en la Federación Estatal de Municipios y Provincias.",
         "topic": "social",
@@ -4152,7 +4152,7 @@
       "verification": {
         "claimId": "otxq2c-081-cit-4e2965",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -4165,7 +4165,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 82,
         "type": "cita_convenio",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "Y eso sí que es un premio en Madrid en la Federación Estatal de Municipios y Provincias.",
         "context": "...Y eso sí que es un premio en Madrid en la Federación Estatal de Municipios y Provincias. Y eso sí que es un premio en Madrid en la Federación Estatal de Municipios y Provincias...",
         "topic": "seguridad",
@@ -4210,7 +4210,7 @@
       "verification": {
         "claimId": "otxq2c-085-afi-7b1c59",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders, tenders-ted, bdns y budget que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -4228,7 +4228,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 88,
         "type": "promesa",
-        "speakerGroup": "PP",
+        "speakerGroup": null,
         "verbatim": "Vamos a ser consecuentes y tengamos a las mujeres como referente",
         "context": "Vamos a ser consecuentes y tengamos a las mujeres como referente, que tanto para la gente de Vox como la del PP, como supone que para",
         "topic": "social",
@@ -4242,7 +4242,7 @@
       "verification": {
         "claimId": "otxq2c-088-pro-9cdc43",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -4257,7 +4257,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 89,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PP",
+        "speakerGroup": null,
         "verbatim": "de mujeres podían haber muerto, es poco para usted la vida de una mujer, de una y de 50 es poco, por favor.",
         "context": "La última intervención es de un minuto, vale, has estado, la última intervención es de un minuto pactada y regulada, has estado tres minutos",
         "topic": "seguridad",
@@ -4272,7 +4272,7 @@
       "verification": {
         "claimId": "otxq2c-089-afi-25d626",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -4301,7 +4301,7 @@
       "verification": {
         "claimId": "otxq2c-095-afi-5a8a0b",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -4328,7 +4328,7 @@
       "verification": {
         "claimId": "otxq2c-096-cit-4a2028",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -4360,7 +4360,7 @@
       "verification": {
         "claimId": "otxq2c-099-cit-2e2a70",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -4393,7 +4393,7 @@
       "verification": {
         "claimId": "otxq2c-099-afi-8b88c4",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -4422,7 +4422,7 @@
       "verification": {
         "claimId": "otxq2c-100-afi-f55574",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -4449,7 +4449,7 @@
       "verification": {
         "claimId": "otxq2c-100-cit-ec0190",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -4480,7 +4480,7 @@
       "verification": {
         "claimId": "otxq2c-100-cit-c65667",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -4511,7 +4511,7 @@
       "verification": {
         "claimId": "otxq2c-100-afi-0fabcb",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -4539,7 +4539,7 @@
       "verification": {
         "claimId": "otxq2c-101-afi-076505",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -4567,7 +4567,7 @@
       "verification": {
         "claimId": "otxq2c-102-afi-f23340",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -4595,7 +4595,7 @@
       "verification": {
         "claimId": "otxq2c-102-afi-224a0e",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -4622,7 +4622,7 @@
       "verification": {
         "claimId": "otxq2c-104-pro-79e7fa",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -4637,7 +4637,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 106,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PP",
+        "speakerGroup": null,
         "verbatim": "tenemos 12 puntos de acuerdo que habréis visto en la propuesta",
         "context": "Diciendo todo esto, tenemos 12 puntos de acuerdo que habréis visto en la propuesta y paso a mis compañeros.",
         "topic": "other",
@@ -4652,7 +4652,7 @@
       "verification": {
         "claimId": "otxq2c-106-afi-396496",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -4681,7 +4681,7 @@
       "verification": {
         "claimId": "otxq2c-109-afi-63a3df",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -4694,7 +4694,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 110,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "Casi 1.400 personas faltaron, siguieron asesinadas por jamás.",
         "context": "Pero el mayor genocidio que se ha conocido desde la Segunda Guerra Mundial va a ser, de más de dos años, el que va a perpetrar jamás en Israel. Casi 1.400 personas faltaron, siguieron asesinadas por jamás.",
         "topic": "other",
@@ -4710,7 +4710,7 @@
       "verification": {
         "claimId": "otxq2c-110-afi-82bb67",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -4723,7 +4723,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 110,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "el 7 de octubre del 2023, durante dos días, este grupo terrorista mató a más de 1.195 personas,",
         "context": "Esta guerra desde luego no ha provocado el grupo terrorista jamás y como ha comentado Alberto, el 7 de octubre del 2023, durante dos días, este grupo terrorista mató a más de 1.195 personas,",
         "topic": "other",
@@ -4740,7 +4740,7 @@
       "verification": {
         "claimId": "otxq2c-110-afi-f6ff18",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -4753,7 +4753,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 112,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PP",
+        "speakerGroup": null,
         "verbatim": "766 civiles, 36 menores y 373 militares.",
         "context": "766 civiles, 36 menores y 373 militares. [5010.0 → 5040.0] ojalá se acabe pronto esta guerra y no muera ni una sola persona más.",
         "topic": "other",
@@ -4768,7 +4768,7 @@
       "verification": {
         "claimId": "otxq2c-112-afi-fa134c",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -4797,7 +4797,7 @@
       "verification": {
         "claimId": "otxq2c-122-afi-5d95f2",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -4824,7 +4824,7 @@
       "verification": {
         "claimId": "otxq2c-123-afi-f15323",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -4853,7 +4853,7 @@
       "verification": {
         "claimId": "otxq2c-123-afi-99bc7e",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -4866,7 +4866,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 124,
         "type": "afirmacion_numerica",
-        "speakerGroup": "Compromís",
+        "speakerGroup": null,
         "verbatim": "desde el 2023, desde hace muchísimos años.",
         "context": "tenemos que condenar también todo lo que está haciendo Israel en Palestina desde el 2023, desde hace muchísimos años. Por eso, si vosotros se hace una foto en el genocidio, lo que estáis haciendo es justificar un genocidio, tanto el Partido Popular como vosotros.",
         "topic": "other",
@@ -4881,7 +4881,7 @@
       "verification": {
         "claimId": "otxq2c-124-afi-5164b9",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -4911,7 +4911,7 @@
       "verification": {
         "claimId": "otxq2c-126-afi-80ba48",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -4941,7 +4941,7 @@
       "verification": {
         "claimId": "otxq2c-126-afi-d6c9a2",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -4970,7 +4970,7 @@
       "verification": {
         "claimId": "otxq2c-126-afi-86fa19",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -4999,7 +4999,7 @@
       "verification": {
         "claimId": "otxq2c-126-afi-1a12e2",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -5028,7 +5028,7 @@
       "verification": {
         "claimId": "otxq2c-126-afi-396199",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -5058,7 +5058,7 @@
       "verification": {
         "claimId": "otxq2c-127-afi-6b16e1",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -5085,7 +5085,7 @@
       "verification": {
         "claimId": "otxq2c-129-cit-e1decc",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -5101,7 +5101,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 141,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PP",
+        "speakerGroup": null,
         "verbatim": "500.000 muertos en Siria, silencio absoluto.",
         "context": "Pero ahora, la izquierda tiene un doble rasero que a mí me llama la atención. 500.000 muertos en Siria, silencio absoluto. 377.000 en Yemen, nadie se inmuta.",
         "topic": "other",
@@ -5117,7 +5117,7 @@
       "verification": {
         "claimId": "otxq2c-141-afi-d9a0c7",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -5130,7 +5130,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 141,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PP",
+        "speakerGroup": null,
         "verbatim": "377.000 en Yemen, nadie se inmuta.",
         "context": "silencio absoluto. 377.000 en Yemen, nadie se inmuta. 5.400.000 euros de muertos en el Congo, ni un hashtag.",
         "topic": "other",
@@ -5146,7 +5146,7 @@
       "verification": {
         "claimId": "otxq2c-141-afi-098e77",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -5159,7 +5159,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 141,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PP",
+        "speakerGroup": null,
         "verbatim": "5.400.000 euros de muertos en el Congo, ni un hashtag.",
         "context": "377.000 en Yemen, nadie se inmuta. 5.400.000 euros de muertos en el Congo, ni un hashtag.",
         "topic": "other",
@@ -5174,7 +5174,7 @@
       "verification": {
         "claimId": "otxq2c-141-afi-6e7907",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders, tenders-ted, bdns y budget que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -5208,7 +5208,7 @@
       "verification": {
         "claimId": "otxq2c-143-afi-46b125",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -5237,7 +5237,7 @@
       "verification": {
         "claimId": "otxq2c-143-afi-37aa7b",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -5266,7 +5266,7 @@
       "verification": {
         "claimId": "otxq2c-143-afi-262007",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -5296,7 +5296,7 @@
       "verification": {
         "claimId": "otxq2c-152-afi-c45637",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -5326,7 +5326,7 @@
       "verification": {
         "claimId": "otxq2c-152-afi-969e0f",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -5355,7 +5355,7 @@
       "verification": {
         "claimId": "otxq2c-152-afi-fbe102",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -5382,7 +5382,7 @@
       "verification": {
         "claimId": "otxq2c-153-afi-41e778",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -5411,7 +5411,7 @@
       "verification": {
         "claimId": "otxq2c-163-afi-723087",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -5440,7 +5440,7 @@
       "verification": {
         "claimId": "otxq2c-165-afi-61da48",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -5468,7 +5468,7 @@
       "verification": {
         "claimId": "otxq2c-166-afi-87c6f5",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -5481,7 +5481,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 171,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PP",
+        "speakerGroup": null,
         "verbatim": "el 78% de las armas que compra",
         "context": "Mira, pero en la opción le voy a decir posición errática la del seu gobierno del PSOE el 78% de las armas que compra europea van a España, señor.",
         "topic": "seguridad",
@@ -5497,7 +5497,7 @@
       "verification": {
         "claimId": "otxq2c-171-afi-535cb8",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -5617,7 +5617,7 @@
       "verification": {
         "claimId": "otxq2c-182-afi-3858af",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -5675,7 +5675,7 @@
       "verification": {
         "claimId": "otxq2c-183-afi-a0fa94",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -5702,7 +5702,7 @@
       "verification": {
         "claimId": "otxq2c-183-afi-0e53a4",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -5729,7 +5729,7 @@
       "verification": {
         "claimId": "otxq2c-183-afi-2ad1ff",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -5756,7 +5756,7 @@
       "verification": {
         "claimId": "otxq2c-183-afi-9ab0ab",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -5784,7 +5784,7 @@
       "verification": {
         "claimId": "otxq2c-183-pro-15d9f7",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -5814,7 +5814,7 @@
       "verification": {
         "claimId": "otxq2c-184-afi-e1de15",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -5842,7 +5842,7 @@
       "verification": {
         "claimId": "otxq2c-184-cit-e06cdc",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -5872,7 +5872,7 @@
       "verification": {
         "claimId": "otxq2c-184-afi-a5d0a1",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -5899,7 +5899,7 @@
       "verification": {
         "claimId": "otxq2c-184-cit-058576",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -5960,7 +5960,7 @@
       "verification": {
         "claimId": "otxq2c-185-cit-fc0cdd",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -5990,7 +5990,7 @@
       "verification": {
         "claimId": "otxq2c-185-cit-df1905",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -6022,7 +6022,7 @@
       "verification": {
         "claimId": "otxq2c-185-afi-ea21d3",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -6049,7 +6049,7 @@
       "verification": {
         "claimId": "otxq2c-186-afi-809b6b",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -6076,7 +6076,7 @@
       "verification": {
         "claimId": "otxq2c-188-afi-ee383a",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -6103,7 +6103,7 @@
       "verification": {
         "claimId": "otxq2c-188-afi-14c5da",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -6130,7 +6130,7 @@
       "verification": {
         "claimId": "otxq2c-188-afi-ac1cee",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -6157,7 +6157,7 @@
       "verification": {
         "claimId": "otxq2c-188-afi-9e8127",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -6184,7 +6184,7 @@
       "verification": {
         "claimId": "otxq2c-189-afi-62687f",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -6213,7 +6213,7 @@
       "verification": {
         "claimId": "otxq2c-189-cit-f57cd1",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -6242,7 +6242,7 @@
       "verification": {
         "claimId": "otxq2c-189-afi-1bf522",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -6255,7 +6255,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 190,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "del segundo trimestre, en este caso del segundo trimestre, de la área de Hicienda.",
         "context": "Sí, doné un conto con cada trimestre de la información sobre el trimestre de la Constitución de la República de España. Sí, doné un conto con cada trimestre de la información sobre el trimestre de la Constitución de la República de España. Sí, doné un conto con cada trimestre de la información sobre el trimestre de la Constitución de la República de España. del segundo trimestre, en este caso del segundo trimestre, de la área de Hicienda.",
         "topic": "fiscal",
@@ -6271,7 +6271,7 @@
       "verification": {
         "claimId": "otxq2c-190-afi-66c676",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -6284,7 +6284,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 190,
         "type": "cita_obra",
-        "speakerGroup": "PP",
+        "speakerGroup": null,
         "verbatim": "Aprobaremos hace poco el contrato de rescate.",
         "context": "El Bloc, Partido Popular. Yo es una única pregunta. Aprobaremos hace poco el contrato de rescate. de los residuos, cuándo entra en vigor la gestión efectiva de la nueva empresa, porque sabemos que es algo temporal, pero, por ejemplo, en mi",
         "topic": "medio-ambiente",
@@ -6298,7 +6298,7 @@
       "verification": {
         "claimId": "otxq2c-190-cit-37cd5b",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -6314,7 +6314,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 190,
         "type": "promesa",
-        "speakerGroup": "PP",
+        "speakerGroup": null,
         "verbatim": "cuándo entra en vigor la gestión efectiva de la nueva empresa",
         "context": "Aprobaremos hace poco el contrato de rescate. de los residuos, cuándo entra en vigor la gestión efectiva de la nueva empresa, porque sabemos que es algo temporal, pero, por ejemplo, en mi",
         "topic": "medio-ambiente",
@@ -6344,7 +6344,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 191,
         "type": "cita_convenio",
-        "speakerGroup": "PP",
+        "speakerGroup": null,
         "verbatim": "Aprobaremos hace poco el contrato de rescate. de los residuos, cuándo entra en vigor la gestión efectiva de la nueva empresa",
         "context": "Aprobaremos hace poco el contrato de rescate. de los residuos, cuándo entra en vigor la gestión efectiva de la nueva empresa, porque sabemos que es algo temporal",
         "topic": "medio-ambiente",
@@ -6374,7 +6374,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 191,
         "type": "cita_obra",
-        "speakerGroup": "PP",
+        "speakerGroup": null,
         "verbatim": "la gestión efectiva de la nueva empresa en el servicio público.",
         "context": "saber cuándo se hace efectiva la gestión efectiva de la nueva empresa en el servicio público. Me pregunta el Partido Popular.",
         "topic": "medio-ambiente",
@@ -6419,7 +6419,7 @@
       "verification": {
         "claimId": "otxq2c-191-afi-9a45ff",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -6447,7 +6447,7 @@
       "verification": {
         "claimId": "otxq2c-191-cit-2ab22b",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -6460,7 +6460,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 192,
         "type": "promesa",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "mañana ya tenemos una reunión con la empresa adjudicataria precisamente para que nos diga la programación de plazos",
         "context": "Ha terminado justo ahora el período de alegaciones, porque podía haber alguna alejación a esa adjudicación definitiva. Y de hecho, mañana ya tenemos una reunión con la empresa adjudicataria precisamente para que nos diga la programación de plazos de varias, ya no solamente de los contenedores y los servicios que tenemos, sino también de los contenedores y los servicios que tenemos.",
         "topic": "transparencia",
@@ -6474,7 +6474,7 @@
       "verification": {
         "claimId": "otxq2c-192-pro-b702ca",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -6504,7 +6504,7 @@
       "verification": {
         "claimId": "otxq2c-193-pro-ffc75e",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -6534,7 +6534,7 @@
       "verification": {
         "claimId": "otxq2c-193-pro-53e0cd",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -6563,7 +6563,7 @@
       "verification": {
         "claimId": "otxq2c-193-cit-bb1553",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -6590,7 +6590,7 @@
       "verification": {
         "claimId": "otxq2c-194-cit-f8e69e",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -6617,7 +6617,7 @@
       "verification": {
         "claimId": "otxq2c-194-afi-b1630a",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -6644,7 +6644,7 @@
       "verification": {
         "claimId": "otxq2c-194-afi-7efdf7",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -6671,7 +6671,7 @@
       "verification": {
         "claimId": "otxq2c-194-pro-e0296f",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -6700,7 +6700,7 @@
       "verification": {
         "claimId": "otxq2c-194-afi-bfbd2b",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -6727,7 +6727,7 @@
       "verification": {
         "claimId": "otxq2c-194-pro-bbadfb",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -6756,7 +6756,7 @@
       "verification": {
         "claimId": "otxq2c-194-afi-d3444f",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -6783,7 +6783,7 @@
       "verification": {
         "claimId": "otxq2c-195-pro-6f719b",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -6812,7 +6812,7 @@
       "verification": {
         "claimId": "otxq2c-195-afi-924c63",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -6839,7 +6839,7 @@
       "verification": {
         "claimId": "otxq2c-195-cit-df4449",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -6870,7 +6870,7 @@
       "verification": {
         "claimId": "otxq2c-196-pro-8a062c",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -6900,7 +6900,7 @@
       "verification": {
         "claimId": "otxq2c-196-pro-13efc6",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -6929,7 +6929,7 @@
       "verification": {
         "claimId": "otxq2c-196-afi-39ec27",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -6957,7 +6957,7 @@
       "verification": {
         "claimId": "otxq2c-197-pro-df120d",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -6988,7 +6988,7 @@
       "verification": {
         "claimId": "otxq2c-197-afi-036b2b",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -7018,7 +7018,7 @@
       "verification": {
         "claimId": "otxq2c-197-afi-eee2e4",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -7046,7 +7046,7 @@
       "verification": {
         "claimId": "otxq2c-198-afi-e7e64c",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -7073,7 +7073,7 @@
       "verification": {
         "claimId": "otxq2c-198-afi-190a1a",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -7100,7 +7100,7 @@
       "verification": {
         "claimId": "otxq2c-198-cit-1ec501",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -7130,7 +7130,7 @@
       "verification": {
         "claimId": "otxq2c-198-afi-974121",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -7157,7 +7157,7 @@
       "verification": {
         "claimId": "otxq2c-199-cit-d1f00a",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -7187,7 +7187,7 @@
       "verification": {
         "claimId": "otxq2c-200-cit-f41b1f",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -7214,7 +7214,7 @@
       "verification": {
         "claimId": "otxq2c-200-pro-da8ff0",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -7243,7 +7243,7 @@
       "verification": {
         "claimId": "otxq2c-201-afi-7a89da",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -7270,7 +7270,7 @@
       "verification": {
         "claimId": "otxq2c-201-afi-8a3184",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -7298,7 +7298,7 @@
       "verification": {
         "claimId": "otxq2c-202-afi-b7c7e3",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders, tenders-ted, bdns y budget que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -7330,7 +7330,7 @@
       "verification": {
         "claimId": "otxq2c-202-pro-71023d",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -7359,7 +7359,7 @@
       "verification": {
         "claimId": "otxq2c-203-afi-fa6737",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders, tenders-ted, bdns y budget que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -7389,7 +7389,7 @@
       "verification": {
         "claimId": "otxq2c-203-pro-16fb0c",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -7416,7 +7416,7 @@
       "verification": {
         "claimId": "otxq2c-203-afi-f09bae",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -7441,7 +7441,7 @@
       "verification": {
         "claimId": "otxq2c-204-afi-b40444",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -7468,7 +7468,7 @@
       "verification": {
         "claimId": "otxq2c-204-afi-f82bb7",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -7495,7 +7495,7 @@
       "verification": {
         "claimId": "otxq2c-206-pro-676d77",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -7525,7 +7525,7 @@
       "verification": {
         "claimId": "otxq2c-206-pro-906355",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -7555,7 +7555,7 @@
       "verification": {
         "claimId": "otxq2c-206-pro-a7ec3c",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -7586,7 +7586,7 @@
       "verification": {
         "claimId": "otxq2c-207-afi-671061",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -7613,7 +7613,7 @@
       "verification": {
         "claimId": "otxq2c-207-cit-ad0c05",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -7643,7 +7643,7 @@
       "verification": {
         "claimId": "otxq2c-207-afi-de59fc",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -7670,7 +7670,7 @@
       "verification": {
         "claimId": "otxq2c-208-cit-0c9ec5",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -7701,7 +7701,7 @@
       "verification": {
         "claimId": "otxq2c-209-cit-eb5b26",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -7761,7 +7761,7 @@
       "verification": {
         "claimId": "otxq2c-209-afi-a25d0b",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -7789,7 +7789,7 @@
       "verification": {
         "claimId": "otxq2c-210-cit-40c228",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -7818,7 +7818,7 @@
       "verification": {
         "claimId": "otxq2c-210-afi-9309e9",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -7845,7 +7845,7 @@
       "verification": {
         "claimId": "otxq2c-211-cit-283231",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -7870,7 +7870,7 @@
       "verification": {
         "claimId": "otxq2c-211-pro-995469",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -7994,7 +7994,7 @@
       "verification": {
         "claimId": "otxq2c-214-afi-709ba2",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -8021,7 +8021,7 @@
       "verification": {
         "claimId": "otxq2c-214-cit-2cdc32",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -8054,7 +8054,7 @@
       "verification": {
         "claimId": "otxq2c-215-afi-9a0c0e",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders, tenders-ted, bdns y budget que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -8086,7 +8086,7 @@
       "verification": {
         "claimId": "otxq2c-215-cit-6d2e45",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -8113,7 +8113,7 @@
       "verification": {
         "claimId": "otxq2c-216-cit-109deb",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -8143,7 +8143,7 @@
       "verification": {
         "claimId": "otxq2c-217-cit-fd6346",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -8173,7 +8173,7 @@
       "verification": {
         "claimId": "otxq2c-217-afi-20a7e5",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -8231,7 +8231,7 @@
       "verification": {
         "claimId": "otxq2c-218-cit-edb0dc",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -8261,7 +8261,7 @@
       "verification": {
         "claimId": "otxq2c-218-cit-4baa0c",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -8321,7 +8321,7 @@
       "verification": {
         "claimId": "otxq2c-219-cit-54b81b",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -8348,7 +8348,7 @@
       "verification": {
         "claimId": "otxq2c-220-cit-b0318b",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -8380,7 +8380,7 @@
       "verification": {
         "claimId": "otxq2c-220-afi-46a143",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -8407,7 +8407,7 @@
       "verification": {
         "claimId": "otxq2c-221-afi-38eca0",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },

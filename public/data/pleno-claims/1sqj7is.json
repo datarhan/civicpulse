@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T06:39:14.761Z",
+  "generatedAt": "2026-10-04T07:37:33.528Z",
   "version": "1",
   "plenoId": "1sqj7is",
   "plenoDate": "2026-03-09",
@@ -11,7 +11,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 0,
         "type": "promesa",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "realizar el pago a la mayor brevedad posible",
         "context": "Tras proponer la convalidación del expediente de reconocimiento extrajudicial por 242.255 euros, el ponente añade que el objetivo es aprobar, disponer y reconocer las obligaciones económicas y, por cierto, realizar el pago a la mayor brevedad posible.",
         "topic": "fiscal",
@@ -26,7 +26,7 @@
       "verification": {
         "claimId": "1sqj7is-000-pro-2ced1b",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -41,7 +41,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 1,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "proponemos al pleno convalidar y aprobar el expediente de reconocimiento extrajudicial de créditos por importe de 242.255 euros",
         "context": "El concejal presenta el punto del orden del día y propone al pleno la convalidación del reconocimiento extrajudicial de créditos nº 5/2026 por importe de 242.255 euros, correspondientes a gastos realizados a finales del pasado año.",
         "topic": "fiscal",
@@ -73,7 +73,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 1,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PP",
+        "speakerGroup": null,
         "verbatim": "prácticamente está todos los gastos de la campaña de Navidad",
         "context": "Saúl, revisando el expediente del reconocimiento extrajudicial de 242.000 €, señala que al analizar las facturas incluidas, prácticamente la totalidad corresponde a gastos de la campaña de Navidad del ejercicio anterior.",
         "topic": "fiscal",
@@ -87,7 +87,7 @@
       "verification": {
         "claimId": "1sqj7is-001-afi-7392bc",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -146,7 +146,7 @@
       "verification": {
         "claimId": "1sqj7is-003-afi-a3f445",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -174,7 +174,7 @@
       "verification": {
         "claimId": "1sqj7is-004-afi-9c9eba",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -219,7 +219,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 10,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "todo está establecido en precios de mercado y está asignado en el propio informe",
         "context": "Respuesta del equipo de gobierno ante preguntas sobre irregularidades procedimentales en el reconocimiento extrajudicial nº 5/2026 (facturas 12025000151 y 12026000008). El portavoz del gobierno defiende que las asignaciones cumplen precios de mercado y están respaldadas por informe.",
         "topic": "fiscal",
@@ -233,7 +233,7 @@
       "verification": {
         "claimId": "1sqj7is-010-afi-0115d3",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -246,7 +246,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 10,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "En algunas ocasiones, y para no retrasarlo, está asignado solo por el regidor",
         "context": "El portavoz del equipo de gobierno admite que en determinados casos las asignaciones de gasto del reconocimiento extrajudicial se han tramitado únicamente con la firma del regidor, sin la validación del técnico, justificándolo porque 'muchas veces se da el caso de que el técnico está de vacaciones'.",
         "topic": "transparencia",
@@ -260,7 +260,7 @@
       "verification": {
         "claimId": "1sqj7is-010-afi-6d4bce",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -273,7 +273,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 11,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "por el segundo expediente de facturas, son todas del 2026",
         "context": "En los otros casos, las facturas se aplican en el año 2026. Podréis ver, sobre todo, por el segundo expediente de facturas, son todas del 2026. Tenéis que ver también cuáles se asignan esas facturas.",
         "topic": "fiscal",
@@ -287,7 +287,7 @@
       "verification": {
         "claimId": "1sqj7is-011-afi-04f078",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -300,7 +300,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 11,
         "type": "cita_convenio",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "Hay una intervención para que antes del día 10 de diciembre se intenten hacer todas las facturas",
         "context": "Hay una instrucción que todos estos años hacemos desde... Hay una intervención para que antes del día 10 de diciembre se intenten hacer todas las facturas, pero claro, si la despesa es a final del exercici.",
         "topic": "fiscal",
@@ -315,7 +315,7 @@
       "verification": {
         "claimId": "1sqj7is-011-cit-498720",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -342,7 +342,7 @@
       "verification": {
         "claimId": "1sqj7is-012-afi-7ebf44",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -355,7 +355,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 14,
         "type": "promesa",
-        "speakerGroup": "PP",
+        "speakerGroup": null,
         "verbatim": "en nuestro grupo vamos a votar a favor de que se paguen estas facturas. No vamos a bloquear el pagamiento.",
         "context": "El portavoz (presumiblemente PP, en oposición al gobierno PSOE) anuncia su posición ante el Reconocimiento Extrajudicial nº 5/2026 con las facturas 12025000151 y 12026000008, punto 2 del orden del día.",
         "topic": "fiscal",
@@ -369,7 +369,7 @@
       "verification": {
         "claimId": "1sqj7is-014-pro-9966ca",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -400,7 +400,7 @@
       "verification": {
         "claimId": "1sqj7is-017-afi-0c84c1",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -413,7 +413,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 21,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "Si os enseño la evolución en los últimos años, la evolución es que ha caído a menos.",
         "context": "El orador afirma que la serie histórica de reconocimientos extrajudiciales muestra una tendencia descendente, invocando datos de varios ejercicios como evidencia de mejora en la gestión de pagos.",
         "topic": "fiscal",
@@ -427,7 +427,7 @@
       "verification": {
         "claimId": "1sqj7is-021-afi-9a0b94",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -440,7 +440,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 22,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "Siempre todos los servicios que se presten así están adecuados a precio de mercado y conformados por el técnico y el regidor de cada área.",
         "context": "El portavoz sostiene que el 100 % de los servicios contratados por el Ayuntamiento se ajustan a precio de mercado y cuentan con el visto bueno del técnico y el concejal responsable del área, como garantía de la gestión municipal de compras.",
         "topic": "fiscal",
@@ -454,7 +454,7 @@
       "verification": {
         "claimId": "1sqj7is-022-afi-ffeb77",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -481,7 +481,7 @@
       "verification": {
         "claimId": "1sqj7is-024-afi-552d43",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -494,7 +494,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 25,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "los presupuestos que aprueban en muchas partidas no llegan ni al 16%",
         "context": "El orador contrasta la ejecución presupuestaria del Ayuntamiento con la de la 'Unidad Valenciana o de la Junta de Valencia' (probable transcripción de Whisper de 'Generalitat Valenciana'), afirmando que en muchas partidas no llegan al 16% de ejecución.",
         "topic": "fiscal",
@@ -508,7 +508,7 @@
       "verification": {
         "claimId": "1sqj7is-025-afi-3ecc72",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -521,7 +521,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 28,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "en un presupuesto de cuarenta y pico millones",
         "context": "a realidad que en un presupuesto de cuarenta y pico millones, que dura más de doscientos y cuarenta mil, no sé si ya hemos estado alguna vez, que es posible que venga alguna vez",
         "topic": "fiscal",
@@ -536,7 +536,7 @@
       "verification": {
         "claimId": "1sqj7is-028-afi-4ee50f",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders, tenders-ted, bdns y budget que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -554,7 +554,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 28,
         "type": "promesa",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "Tendremos una ejecución presupuestaria de 85-90%, y creo que eso va por las leyes",
         "context": "Yo creo que en ese sentido, estamos... Tendremos una ejecución presupuestaria de 85-90%, y creo que eso va por las leyes",
         "topic": "fiscal",
@@ -568,7 +568,7 @@
       "verification": {
         "claimId": "1sqj7is-028-pro-a54495",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -583,7 +583,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 29,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "Tendremos una ejecución presupuestaria de 85-90%, y creo que eso va por las leyes, ¿vale?",
         "context": "El portavoz del grupo gobernante defiende la gestión presupuestaria: «Tendremos una ejecución presupuestaria de 85-90%, y creo que eso va por las leyes, ¿vale?» Inmediatamente antes menciona la necesidad de ajustarse a precio de mercado en contratos y de avanzar en el programa político del ayuntamiento.",
         "topic": "fiscal",
@@ -597,7 +597,7 @@
       "verification": {
         "claimId": "1sqj7is-029-afi-dbf4be",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -610,7 +610,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 29,
         "type": "promesa",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "intentaremos que el año que viene, pues, haya más contratos, que efectivamente sea más rápido",
         "context": "Tras defender la ejecución presupuestaria, el interviniente añade: «intentaremos que el año que viene, pues, haya más contratos, que efectivamente sea más rápido, si puede ser que no, que venga la mínima estatus judicial, pero lo hemos reducido muchísimo.» Contexto de valoración general de la contratación municipal.",
         "topic": "fiscal",
@@ -624,7 +624,7 @@
       "verification": {
         "claimId": "1sqj7is-029-pro-b1b5f3",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -639,7 +639,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 31,
         "type": "cita_obra",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "es la aprobación del plan normativo anual del Ayuntamiento, en ese repliegue, en ese plan normativo, en ese replegue, en ordenanzas e instrucciones",
         "context": "José Ángel toma la palabra para presentar el punto 3 del orden del día: la aprobación del Plan Normativo anual del Ayuntamiento de Riba-roja de Túria para 2026, indicando que articula una serie de ordenanzas e instrucciones solicitadas por distintas áreas.",
         "topic": "transparencia",
@@ -653,7 +653,7 @@
       "verification": {
         "claimId": "1sqj7is-031-cit-ecdee8",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -669,7 +669,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 31,
         "type": "cita_obra",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "tenemos una semana que se hace también en la incorporación de una propuesta que viene desde el Departamento de Recaudación para incorporar dentro del expediente",
         "context": "José Ángel señala que, además de las áreas que ya pidieron variaciones de ordenanzas, el expediente del Plan Normativo 2026 incorpora una propuesta específica proveniente del Departamento de Recaudación.",
         "topic": "fiscal",
@@ -683,7 +683,7 @@
       "verification": {
         "claimId": "1sqj7is-031-cit-5ea70b",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -699,7 +699,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 31,
         "type": "cita_convenio",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "de gestión tributaria es el plan normativo alineado con los ODS para la incorporación",
         "context": "Al describir la propuesta del Departamento de Gestión Tributaria que se integra en el Plan Normativo, José Ángel indica que dicho plan está alineado con los Objetivos de Desarrollo Sostenible (ODS).",
         "topic": "other",
@@ -774,7 +774,7 @@
       "verification": {
         "claimId": "1sqj7is-032-cit-a5a4df",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -835,7 +835,7 @@
       "verification": {
         "claimId": "1sqj7is-033-afi-ec8e25",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -862,7 +862,7 @@
       "verification": {
         "claimId": "1sqj7is-033-pro-c2108f",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -892,7 +892,7 @@
       "verification": {
         "claimId": "1sqj7is-035-afi-285f21",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -919,7 +919,7 @@
       "verification": {
         "claimId": "1sqj7is-036-pro-ee1ead",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -978,16 +978,8 @@
       "verification": {
         "claimId": "1sqj7is-037-pro-e3b07c",
         "verdict": "sin-datos",
-        "summary": "El objeto citado aparece en un expediente municipal, pero ninguna de sus magnitudes coincide con la cifra del claim. No es que no haya registro: es que el que hay no dice eso.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eQSvV%2FmKsbQSugstABGr5A%3D%3D",
-            "snippet": "Contrato de suministro para el MOBILIARIO en el CENTRO SOCIAL “LA BOTAIA” (DESPACHO DEL 9 AL 16) derivado del Sistema Dinámico de Adquisición de suministro de materiales y productos de utilización diaria del Ayuntamiento de Riba-Roja de Túria. · Ayuntamiento de Riba-roja de Túria · Basal Mobiliario, S.L. · textile · 6382 €",
-            "similarity": 1,
-            "stance": "checked"
-          }
-        ],
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
         "checkedAgainst": [
           "promises"
         ]
@@ -1045,7 +1037,7 @@
       "verification": {
         "claimId": "1sqj7is-039-cit-b75a39",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -1102,7 +1094,7 @@
       "verification": {
         "claimId": "1sqj7is-040-cit-7a6dc8",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -1115,7 +1107,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 42,
         "type": "promesa",
-        "speakerGroup": "PP",
+        "speakerGroup": null,
         "verbatim": "así lo haremos también desde la Comisión de Contratación, es un control extra de la gestión de estos... de este sistema",
         "context": "Cierre de la intervención del PP sobre el SDA: tras señalar el riesgo de falta de supervisión, el portavoz anuncia que impulsarán un control adicional del sistema desde la Comisión de Contratación municipal.",
         "topic": "transparencia",
@@ -1145,7 +1137,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 43,
         "type": "promesa",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "y así lo haremos también desde la Comisión de Contratación, es un control extra de la gestión de estos... de este sistema. Que no sea un saco que todo entra en esa partida.",
         "context": "Un portavoz cierra su turno sobre el punto 4 (Sistema Dinámico de Adquisición) comprometiéndose a que la Comisión de Contratación ejercerá supervisión adicional sobre el sistema, evitando que actúe como partida sin control.",
         "topic": "transparencia",
@@ -1206,7 +1198,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 46,
         "type": "cita_obra",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "el trabajo del servicio de Rivalicita, la atención que están presentando a los licitadores, sobre todo a comercios y a las pequeñas empresas",
         "context": "El interviniente agradece al área de contratación el trabajo del servicio Rivalicita (plataforma de licitación municipal en ribalicita.ribarroja.es) y menciona expresamente la atención prestada a licitadores, comercios y pequeñas empresas como argumento a favor del sistema.",
         "topic": "fiscal",
@@ -1220,7 +1212,7 @@
       "verification": {
         "claimId": "1sqj7is-046-cit-ec729f",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -1236,7 +1228,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 53,
         "type": "promesa",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "propuestas como esta que sirven para mejorar la forma de contratar, que sirven para reducir los extrajudiciales",
         "context": "Intervención del equipo de Gobierno (PSOE) defendiendo la aprobación del Sistema Dinámico de Adquisición ante las críticas de la oposición. El portavoz del gobierno argumenta que la nueva instrucción de racionalización técnica mejorará la contratación municipal y reducirá los reconocimientos extrajudiciales de crédito.",
         "topic": "fiscal",
@@ -1287,7 +1279,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 54,
         "type": "cita_obra",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "que sirven para reducir los extrajudiciales",
         "context": "El ponente defiende los nuevos instrumentos de contratación (Sistema Dinámico de Adquisición, punto 4 del orden del día), afirmando que estas fórmulas sirven para reducir los reconocimientos extrajudiciales, vinculándolo directamente con el expediente nº 5/2026 de reconocimiento extrajudicial (punto 2 del orden del día).",
         "topic": "fiscal",
@@ -1301,7 +1293,7 @@
       "verification": {
         "claimId": "1sqj7is-054-cit-3dc74c",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -1317,7 +1309,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 57,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "hemos sido pioneros en toda España, reconocido no por nosotros, por los técnicos y los ministerios correspondient",
         "context": "El portavoz defiende la iniciativa aprobada en el punto del orden del día (previsiblemente el Sistema Dinámico de Adquisición o el ENS) frente a críticas de la oposición sobre falta de control y seguridad jurídica, afirmando que el municipio fue el primero en España en adoptarla, con reconocimiento externo de técnicos y ministerios.",
         "topic": "transparencia",
@@ -1331,7 +1323,7 @@
       "verification": {
         "claimId": "1sqj7is-057-afi-e25969",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -1344,7 +1336,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 58,
         "type": "cita_obra",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "hemos sido pioneros en toda España, reconocido no por nosotros, por los técnicos y los ministerios correspondientes",
         "context": "El portavoz defiende una herramienta innovadora de contratación pública implantada por el Ayuntamiento, afirmando que han sido pioneros en España según reconocimiento de técnicos y ministerios, no por autoproclamación.",
         "topic": "transparencia",
@@ -1375,7 +1367,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 61,
         "type": "cita_convenio",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "por eso hemos firmado acuerdos entre ALIANA y ENGIRIA.",
         "context": "El orador defiende la política de alianzas del ayuntamiento con autónomos y pymes, mencionando que se han firmado acuerdos con las entidades ALIANA y ENGIRIA (nombres posiblemente distorsionados por Whisper) para que los autónomos y pymes del municipio puedan acceder a estas organizaciones.",
         "topic": "empleo",
@@ -1389,7 +1381,7 @@
       "verification": {
         "claimId": "1sqj7is-061-cit-eb2ba2",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -1402,7 +1394,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 63,
         "type": "promesa",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "lo vamos a conseguir, poco a poco, es reducir al máximo para que los controles y la fiscalización de los contratos sean los más, donde más podamos llegar",
         "context": "El orador defiende el uso de reconocimientos extrajudiciales afirmando que ya han intentado reducirlos y que todavía no lo han conseguido del todo, pero promete lograrlo progresivamente para maximizar el control y la fiscalización de los contratos.",
         "topic": "transparencia",
@@ -1432,7 +1424,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 65,
         "type": "cita_obra",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "lo que es un SDA que repite, que es un sistema pionero, que nos ha funcionado muy bien, que debe haber, sobre todo por nuestros presupuestos y por los vecinos y vecinas, porque nos traen más dinero",
         "context": "El interviniente —que defiende el punto 4 del orden del día, aprobación del SDA— insta a la oposición a acudir al área de contratación para que les expliquen técnicamente el Sistema Dinámico de Adquisición, calificándolo de sistema pionero que ha aportado beneficio económico al presupuesto municipal y a los vecinos.",
         "topic": "fiscal",
@@ -1463,7 +1455,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 66,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "es un sistema pionero, que nos ha funcionado muy bien, que debe haber, sobre todo por nuestros presupuestos y por los vecinos y vecinas, porque nos traen más dinero",
         "context": "El portavoz defiende el Sistema Dinámico de Adquisición (SDA) en el debate del punto 4 del orden del día, afirmando que es pionero y que ha generado ahorro o ingresos adicionales para el presupuesto municipal.",
         "topic": "fiscal",
@@ -1477,16 +1469,8 @@
       "verification": {
         "claimId": "1sqj7is-066-afi-26fa49",
         "verdict": "sin-datos",
-        "summary": "El objeto citado aparece en un expediente municipal, pero ninguna de sus magnitudes coincide con la cifra del claim. No es que no haya registro: es que el que hay no dice eso.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eQSvV%2FmKsbQSugstABGr5A%3D%3D",
-            "snippet": "Contrato de suministro para el MOBILIARIO en el CENTRO SOCIAL “LA BOTAIA” (DESPACHO DEL 9 AL 16) derivado del Sistema Dinámico de Adquisición de suministro de materiales y productos de utilización diaria del Ayuntamiento de Riba-Roja de Túria. · Ayuntamiento de Riba-roja de Túria · Basal Mobiliario, S.L. · textile · 6382 €",
-            "similarity": 1,
-            "stance": "checked"
-          }
-        ],
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
         "checkedAgainst": []
       },
       "visibility": "toggle"
@@ -1498,7 +1482,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 66,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "que no lo tenía ningún ayuntamiento, ahora llevan ayuntamientos alerándose con nosotros",
         "context": "En la misma defensa del SDA, el portavoz sostiene que ningún otro ayuntamiento disponía de este sistema cuando lo implantaron y que ahora otros consistorios se están adhiriendo o replicando el modelo. 'Alerándose' es probable transcripción de Whisper por 'alineándose'.",
         "topic": "fiscal",
@@ -1512,16 +1496,8 @@
       "verification": {
         "claimId": "1sqj7is-066-afi-dadf77",
         "verdict": "sin-datos",
-        "summary": "El objeto citado aparece en un expediente municipal, pero ninguna de sus magnitudes coincide con la cifra del claim. No es que no haya registro: es que el que hay no dice eso.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eQSvV%2FmKsbQSugstABGr5A%3D%3D",
-            "snippet": "Contrato de suministro para el MOBILIARIO en el CENTRO SOCIAL “LA BOTAIA” (DESPACHO DEL 9 AL 16) derivado del Sistema Dinámico de Adquisición de suministro de materiales y productos de utilización diaria del Ayuntamiento de Riba-Roja de Túria. · Ayuntamiento de Riba-roja de Túria · Basal Mobiliario, S.L. · textile · 6382 €",
-            "similarity": 1,
-            "stance": "checked"
-          }
-        ],
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
         "checkedAgainst": []
       },
       "visibility": "toggle"
@@ -1533,7 +1509,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 66,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "es un contrato casi personalizado en empresas y que no lo tenía ningún ayuntamiento",
         "context": "El orador describe la naturaleza del SDA como un instrumento de contratación 'casi personalizado' orientado a empresas locales (autónomos y pymes de Riba-roja), diferenciándolo de la contratación pública ordinaria.",
         "topic": "fiscal",
@@ -1547,7 +1523,7 @@
       "verification": {
         "claimId": "1sqj7is-066-afi-4adade",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -1560,7 +1536,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 67,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "que es un contrato casi personalizado en empresas y que no lo tenía ningún ayuntamiento",
         "context": "Hablando del Sistema Dinámico de Adquisición (agenda ítem 4), el portavoz afirma que el contrato era único en su especie y que ningún otro ayuntamiento contaba con él antes que Riba-roja de Túria.",
         "topic": "fiscal",
@@ -1576,16 +1552,8 @@
       "verification": {
         "claimId": "1sqj7is-067-afi-2bdb26",
         "verdict": "sin-datos",
-        "summary": "El objeto citado aparece en un expediente municipal, pero ninguna de sus magnitudes coincide con la cifra del claim. No es que no haya registro: es que el que hay no dice eso.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eQSvV%2FmKsbQSugstABGr5A%3D%3D",
-            "snippet": "Contrato de suministro para el MOBILIARIO en el CENTRO SOCIAL “LA BOTAIA” (DESPACHO DEL 9 AL 16) derivado del Sistema Dinámico de Adquisición de suministro de materiales y productos de utilización diaria del Ayuntamiento de Riba-Roja de Túria. · Ayuntamiento de Riba-roja de Túria · Basal Mobiliario, S.L. · textile · 6382 €",
-            "similarity": 1,
-            "stance": "checked"
-          }
-        ],
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
         "checkedAgainst": []
       },
       "visibility": "toggle"
@@ -1597,7 +1565,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 68,
         "type": "promesa",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "vamos a hacer más y vamos a seguir trabajando para que la contratación pública sea innovadora, sea transparente y que dé buenos resultados",
         "context": "Tras defender la intervención de la secretaria general como responsable máxima de contrato y reconocer lo logrado, el portavoz anuncia que continuarán mejorando la contratación pública, justo antes de pasar a la votación del punto (Sistema Dinámico de Adquisición, punto 4 del orden del día).",
         "topic": "transparencia",
@@ -1644,7 +1612,7 @@
       "verification": {
         "claimId": "1sqj7is-069-afi-a279b5",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -1830,7 +1798,7 @@
       "verification": {
         "claimId": "1sqj7is-073-afi-70bdb9",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -2045,7 +2013,7 @@
       "verification": {
         "claimId": "1sqj7is-078-cit-adc13b",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -2072,7 +2040,7 @@
       "verification": {
         "claimId": "1sqj7is-078-pro-eeaed5",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -2101,7 +2069,7 @@
       "verification": {
         "claimId": "1sqj7is-078-pro-96e94b",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -2272,7 +2240,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 87,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "estamos hablando de 2006 2007 2008 2010",
         "context": "El portavoz cita un rango de años (2006, 2007, 2008, 2010) para enmarcar temporalmente el boom inmobiliario y la crisis bancaria que, según él, generaron la situación actual del parque de vivienda en el municipio.",
         "topic": "vivienda",
@@ -2287,7 +2255,7 @@
       "verification": {
         "claimId": "1sqj7is-087-afi-dbd8ac",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -2300,7 +2268,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 87,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "un banco público privado 60% de los bancos 40% del Estado",
         "context": "Al describir la evolución de la propiedad de la entidad que gestiona el parque residencial heredado de la crisis (previsiblemente el SAREB, mencionado poco después), el portavoz indica que en origen el 60% pertenecía a la banca privada y el 40% al Estado.",
         "topic": "fiscal",
@@ -2314,7 +2282,7 @@
       "verification": {
         "claimId": "1sqj7is-087-afi-81320d",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -2327,7 +2295,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 87,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "después ha pasado a ser todo el Estado",
         "context": "Tras describir la estructura mixta 60%/40%, el portavoz afirma que la entidad (presuntamente el SAREB) pasó a ser íntegramente pública, con el Estado como único propietario.",
         "topic": "fiscal",
@@ -2341,7 +2309,7 @@
       "verification": {
         "claimId": "1sqj7is-087-afi-d7de29",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -2354,7 +2322,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 87,
         "type": "cita_convenio",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "las viviendas que ya teníamos que está el Sareb y están todas en march",
         "context": "El portavoz enumera tres tipos de actuación en materia de vivienda del municipio, identificando el SAREB como uno de los agentes que gestiona parte del parque residencial local; 'en march' es probable error Whisper de 'en marcha' u otro término.",
         "topic": "vivienda",
@@ -2368,7 +2336,7 @@
       "verification": {
         "claimId": "1sqj7is-087-cit-fd265c",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -2428,7 +2396,7 @@
       "verification": {
         "claimId": "1sqj7is-088-afi-b2697a",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -2441,7 +2409,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 89,
         "type": "promesa",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "son los solares del Sareb que van a ser en su momento unidades de actuación como también Teresa para hacer viviendas y que también estamos impulsando",
         "context": "Por otra parte son los solares del Sareb que van a ser en su momento unidades de actuación... para hacer viviendas y que también estamos impulsando y es importantísimo porque es el Sareb insiste que ahora es todo el público",
         "topic": "vivienda",
@@ -2455,7 +2423,7 @@
       "verification": {
         "claimId": "1sqj7is-089-pro-4cde02",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -2470,7 +2438,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 89,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "el Sareb insiste que ahora es todo el público",
         "context": "Es importantísimo porque es el Sareb insiste que ahora es todo el público y ahí se pueden hacer viviendas para dir",
         "topic": "vivienda",
@@ -2484,7 +2452,7 @@
       "verification": {
         "claimId": "1sqj7is-089-afi-a51b9a",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -2497,7 +2465,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 90,
         "type": "cita_obra",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "los solares del Sareb que van a ser en su momento unidades de actuación... para hacer viviendas y que también estamos impulsando",
         "context": "El interviniente defiende la política de vivienda local citando los solares del Sareb como futura área de desarrollo habitacional, señalando que el ayuntamiento lo está impulsando.",
         "topic": "vivienda",
@@ -2511,7 +2479,7 @@
       "verification": {
         "claimId": "1sqj7is-090-cit-0eed40",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -2527,7 +2495,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 91,
         "type": "cita_obra",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "hemos ofrecido solares del ayuntamiento para construir vivienda",
         "context": "El portavoz critica que PP y VOX gobiernan la Generalitat y señala que el ayuntamiento ya ha puesto solares municipales a disposición para construir vivienda: 'hemos ofrecido solares del ayuntamiento para construir vivienda y yo la parte que os corresponda pues ahí tenéis'.",
         "topic": "vivienda",
@@ -2558,7 +2526,7 @@
         "plenoDate": "2026-03-09",
         "segmentIndex": 91,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "desde el año 2021-2023 solares del pueblo seguidos para hacer viviendas",
         "context": "El orador precisa el periodo en que los solares municipales han estado disponibles: 'desde el año 2021-2023 solares del pueblo seguidos para hacer viviendas', implicando que llevan años a disposición de la Generalitat sin respuesta.",
         "topic": "vivienda",
@@ -2573,7 +2541,7 @@
       "verification": {
         "claimId": "1sqj7is-091-afi-bbec4c",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -2600,7 +2568,7 @@
       "verification": {
         "claimId": "1sqj7is-092-cit-a9ed32",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": []
       },
@@ -2627,7 +2595,7 @@
       "verification": {
         "claimId": "1sqj7is-093-pro-aa2457",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
@@ -2658,7 +2626,7 @@
       "verification": {
         "claimId": "1sqj7is-094-pro-c54cfb",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
