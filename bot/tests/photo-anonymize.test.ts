@@ -26,8 +26,19 @@ async function twoToneImage(size = 120): Promise<Buffer> {
 }
 
 describe('chooseVisionBackend', () => {
-  it('prefers gemini (free tier) when both keys are present', () => {
-    expect(chooseVisionBackend({ GEMINI_API_KEY: 'g', OPENAI_API_KEY: 'o' })).toBe('gemini')
+  it('con la clave de Gemini y GEMINI_NIVEL=pago, Gemini (aunque haya otras claves)', () => {
+    expect(
+      chooseVisionBackend({ GEMINI_API_KEY: 'g', GEMINI_NIVEL: 'pago', OPENAI_API_KEY: 'o' }),
+    ).toBe('gemini')
+  })
+  it('con la clave y sin GEMINI_NIVEL=pago no hay análisis: la foto se retiene', () => {
+    // El aviso legal dice que la API Gemini «recibe la imagen sólo para eso», y las
+    // condiciones de Google que no usan lo enviado para mejorar sus productos son
+    // las del nivel de pago. Quien opera el bot lo declara con la variable, como
+    // para la revisión automática del texto; sin ella, la imagen no sale.
+    expect(chooseVisionBackend({ GEMINI_API_KEY: 'g' })).toBeNull()
+    expect(chooseVisionBackend({ GEMINI_API_KEY: 'g', GEMINI_NIVEL: 'gratis' })).toBeNull()
+    expect(chooseVisionBackend({ GEMINI_API_KEY: 'g', GEMINI_NIVEL: ' pago ' })).toBe('gemini')
   })
   it('sin clave de Gemini no hay análisis: la foto se retiene, nunca va a OpenAI', () => {
     // El aviso legal nombra un solo servicio que recibe la imagen, la API Gemini
@@ -68,6 +79,19 @@ describe('detectSensitiveRegions — fail closed', () => {
     expect(llamadas, 'la imagen no puede salir hacia ningún servicio').toBe(0)
   })
 
+  it('con la clave de Gemini y sin GEMINI_NIVEL=pago se retiene, sin llamar a nadie', async () => {
+    const buf = await twoToneImage()
+    let llamadas = 0
+    const fetchImpl = async () => {
+      llamadas++
+      return { ok: true, status: 200, json: async () => ({}) } as unknown as Response
+    }
+    await expect(
+      detectSensitiveRegions(buf, { env: { GEMINI_API_KEY: 'g' }, fetchImpl }),
+    ).rejects.toThrow(/GEMINI_NIVEL=pago/)
+    expect(llamadas, 'sin la declaración del nivel de pago la imagen no sale').toBe(0)
+  })
+
   it('returns parsed boxes from a stubbed gemini call', async () => {
     const buf = await twoToneImage()
     const fetchImpl = async () =>
@@ -82,7 +106,10 @@ describe('detectSensitiveRegions — fail closed', () => {
           ],
         }),
       }) as unknown as Response
-    const boxes = await detectSensitiveRegions(buf, { env: { GEMINI_API_KEY: 'g' }, fetchImpl })
+    const boxes = await detectSensitiveRegions(buf, {
+      env: { GEMINI_API_KEY: 'g', GEMINI_NIVEL: 'pago' },
+      fetchImpl,
+    })
     expect(boxes).toEqual([{ x: 0.3, y: 0.3, w: 0.2, h: 0.2, label: 'face' }])
   })
 
@@ -91,7 +118,10 @@ describe('detectSensitiveRegions — fail closed', () => {
     const fetchImpl = async () =>
       ({ ok: false, status: 429, text: async () => 'rate limited' }) as unknown as Response
     await expect(
-      detectSensitiveRegions(buf, { env: { GEMINI_API_KEY: 'g' }, fetchImpl }),
+      detectSensitiveRegions(buf, {
+        env: { GEMINI_API_KEY: 'g', GEMINI_NIVEL: 'pago' },
+        fetchImpl,
+      }),
     ).rejects.toThrow()
   })
 })
@@ -124,7 +154,7 @@ describe('detectSensitiveRegions — la clave va en la cabecera', () => {
       return respuestaVacia
     }
     await detectSensitiveRegions(buf, {
-      env: { GEMINI_API_KEY: CLAVE },
+      env: { GEMINI_API_KEY: CLAVE, GEMINI_NIVEL: 'pago' },
       fetchImpl: fetchImpl as typeof fetch,
     })
     const cfg = cuerpo?.generationConfig
@@ -148,7 +178,7 @@ describe('detectSensitiveRegions — la clave va en la cabecera', () => {
     }
     await expect(
       detectSensitiveRegions(png, {
-        env: { GEMINI_API_KEY: CLAVE },
+        env: { GEMINI_API_KEY: CLAVE, GEMINI_NIVEL: 'pago' },
         fetchImpl: fetchImpl as typeof fetch,
       }),
     ).rejects.toThrow(/normalizarImagen/)
@@ -163,7 +193,7 @@ describe('detectSensitiveRegions — la clave va en la cabecera', () => {
       return respuestaVacia
     }
     await detectSensitiveRegions(buf, {
-      env: { GEMINI_API_KEY: CLAVE },
+      env: { GEMINI_API_KEY: CLAVE, GEMINI_NIVEL: 'pago' },
       fetchImpl: fetchImpl as typeof fetch,
     })
     expect(llamadas).toHaveLength(1)
@@ -182,7 +212,7 @@ describe('detectSensitiveRegions — la clave va en la cabecera', () => {
       throw new Error(`fetch failed: ${String(url)}`)
     }
     const error = await detectSensitiveRegions(buf, {
-      env: { GEMINI_API_KEY: CLAVE },
+      env: { GEMINI_API_KEY: CLAVE, GEMINI_NIVEL: 'pago' },
       fetchImpl: fetchImpl as typeof fetch,
     }).catch((e: unknown) => e)
     // El control: falló, y por la llamada (el mensaje trae la URL).

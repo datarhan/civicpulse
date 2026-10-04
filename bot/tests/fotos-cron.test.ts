@@ -271,7 +271,29 @@ describe('el cron de las fotos', () => {
     expect(lineas.join('\n')).toMatch(/sin GEMINI_API_KEY/)
   })
 
-  it('con la clave de Gemini el arranque lo dice, y los dos casos se distinguen', () => {
+  it('con la clave de Gemini y GEMINI_NIVEL=pago el arranque lo dice, y los casos se distinguen', () => {
+    const { lineas, log } = registro()
+    const env = {
+      QUEJAS_PHOTOS_DIR: '/data/quejas-photos',
+      GEMINI_API_KEY: 'k',
+      GEMINI_NIVEL: 'pago',
+    }
+    startFotosCron({
+      db: openDb(':memory:'),
+      token: TOKEN,
+      env,
+      procesar: procesarQueDevuelve(),
+      log,
+      programar: vi.fn(),
+    })
+    expect(lineas.join('\n')).toMatch(/análisis con Gemini/)
+    expect(lineas.join('\n')).not.toMatch(/sin GEMINI_API_KEY|sin GEMINI_NIVEL/)
+  })
+
+  it('con la clave y sin GEMINI_NIVEL=pago el arranque dice que cada foto se retiene, y por qué', () => {
+    // Sin la declaración del nivel de pago la imagen no sale hacia Gemini: el aviso
+    // legal dice que la API «recibe la imagen sólo para eso». Tiene que leerse en el
+    // arranque, no deducirse de un silencio, y distinguirse de «no hay clave».
     const { lineas, log } = registro()
     const env = { QUEJAS_PHOTOS_DIR: '/data/quejas-photos', GEMINI_API_KEY: 'k' }
     startFotosCron({
@@ -282,8 +304,10 @@ describe('el cron de las fotos', () => {
       log,
       programar: vi.fn(),
     })
-    expect(lineas.join('\n')).toMatch(/Gemini/)
-    expect(lineas.join('\n')).not.toMatch(/sin GEMINI_API_KEY/)
+    const texto = lineas.join('\n')
+    expect(texto).toMatch(/sin GEMINI_NIVEL=pago/)
+    expect(texto).toMatch(/se retiene/)
+    expect(texto).not.toMatch(/análisis con Gemini/)
   })
 
   it('un tic no se solapa con el anterior mientras éste sigue en marcha', async () => {
