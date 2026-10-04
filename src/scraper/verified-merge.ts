@@ -28,8 +28,15 @@ import { TRINQUETE } from './trinquete'
 // `/hallazgos`. Importado, no recitado: dos listas de stopwords que midieran
 // distinto harían que el CLI aceptara lo que la cola desaconseja.
 import { contentWords } from './quote-reanchor'
-import { rechazoDeFirma } from './firma-de-persona'
+import { claseDeFirma, rechazoDeFirma, type ClaseDeFirma } from './firma-de-persona'
 import { REASON_DIGEST_RE, reasonDigest, type PlenoFindingReasonAmendment } from './pleno-finding'
+import {
+  HUELLA_DE_LITERAL_RETIRADO_RE,
+  MOTIVOS_DE_RETIRADA,
+  type RetiradaDeDeclaracion,
+} from './declaracion-retirada'
+import { sha256Short } from './hash'
+import { quoteAppearsIn } from './quote-match'
 
 export interface VerifiedItem {
   claim: PlenoClaim
@@ -50,6 +57,27 @@ export type OverlaySource = 'nli' | 'llm' | 'curator-downgrade' | 'verdict-engin
  */
 export interface VerificacionPublicada extends ClaimVerification {
   source?: OverlaySource
+  /**
+   * Sólo en una bajada del curador: quién la DECIDIÓ, según la firma de su
+   * entrada (`claseDeFirma`). Viaja la clase, no la firma cruda.
+   *
+   * Hasta el 2026-09-30 no viajaba nada, y la tarjeta rotulaba «corregido por
+   * un curador» cualquier bajada: 25 servidas no las había decidido ninguna
+   * persona (la revisión de oro con un modelo, sesiones de Claude, una firma
+   * que no dice quién).
+   */
+  downgradedBy?: ClaseDeFirma
+  /**
+   * Quién firmó la última enmienda del motivo, si la hay: siempre una persona
+   * con su nombre (`validarEnmiendas`). Es otra firma que la de la bajada: la
+   * de quien reescribió la explicación, no la de quien decidió el veredicto.
+   */
+  reasonSignedBy?: string
+  /**
+   * La retirada que firmó una persona, estampada desde la entrada como el
+   * canal: la puerta la lee aquí (`motivoDeRetirada`, declaracion-retirada.ts).
+   */
+  retirada?: RetiradaDeDeclaracion
 }
 
 export interface OverlayEntry {
@@ -65,6 +93,12 @@ export interface OverlayEntry {
    * —nunca vacía— si el motivo es el de la bajada. Ver `enmendarMotivoDeBajada`.
    */
   reasonAmendments?: EnmiendaDeMotivo[]
+  /**
+   * La declaración, retirada por una persona: su literal, escuchada la sesión,
+   * no es lo que se dijo. Sólo en una bajada de curador a `sin-datos` firmada
+   * con un nombre. Ver `retirarDeclaracion`.
+   */
+  retirada?: RetiradaDeDeclaracion
 }
 
 /**
@@ -147,6 +181,35 @@ function reclassifiedClaim(claim: PlenoClaim, type: ClaimType): PlenoClaim {
 }
 
 /**
+ * La verificación que publica una entrada: la suya, con lo que estampa la
+ * ENTRADA —el canal, la retirada y, en una bajada del curador, quién la decidió
+ * y quién firmó la última enmienda del motivo—, todo lo que `validateOverlay`
+ * comprueba. Sin retirada ni bajada del curador, las claves salen en el orden de
+ * siempre y el monolito no cambia de bytes. Quién decidió viaja como CLASE
+ * (`claseDeFirma`): la firma cruda se queda en la entrada.
+ */
+function publicadaDesde(e: OverlayEntry): VerificacionPublicada {
+  const {
+    retirada: _colada,
+    downgradedBy: _decidio,
+    reasonSignedBy: _firmo,
+    ...propia
+  } = e.verification as VerificacionPublicada
+  const v: VerificacionPublicada = {
+    ...propia,
+    source: e.source,
+    ...(e.retirada ? { retirada: e.retirada } : {}),
+  }
+  if (e.source !== 'curator-downgrade') return v
+  const ultima = e.reasonAmendments?.[e.reasonAmendments.length - 1]
+  return {
+    ...v,
+    downgradedBy: claseDeFirma(e.editor),
+    ...(ultima ? { reasonSignedBy: ultima.editor } : {}),
+  }
+}
+
+/**
  * base items in their original order; for each, the overlay entry (matched by
  * claimId) replaces the verification when present — stamped with the entry's
  * `source`, see `VerificacionPublicada` —, the reclassification entry
@@ -176,8 +239,10 @@ export function mergeVerified(
     const e = entries[it.claim.id]
     // El `source` de la ENTRADA, que es el que valida `validateOverlay`, y no
     // uno que la verificación trajera dentro: si discrepan, manda el validado.
+    // La retirada y quién decidió una bajada, igual: lo colado dentro de la
+    // verificación no se publica.
     const verification = withDedupedEvidence<VerificacionPublicada>(
-      e ? { ...e.verification, source: e.source } : it.verification,
+      e ? publicadaDesde(e) : it.verification,
     )
     const r = reclas[it.claim.id]
     let claim =
@@ -368,6 +433,42 @@ export function validateOverlay(o: Overlay): void {
       }
     }
     if (e.reasonAmendments !== undefined) validarEnmiendas(id, e)
+    if (e.retirada !== undefined) validarRetirada(id, e)
+  }
+}
+
+/**
+ * Una retirada, escrita por la CLI o a mano: el validador no se fía de ninguna.
+ * La puerta oculta lo que la lleva, así que el molde es estricto — sólo baja,
+ * sólo la firma una persona y no vuelve a publicar el literal que retira.
+ */
+function validarRetirada(id: string, e: OverlayEntry): void {
+  const donde = `[overlay] ${id}`
+  if (e.source !== 'curator-downgrade') {
+    throw new Error(
+      `${donde}: sólo una bajada de curador retira una declaración (esta entrada es de ${e.source})`,
+    )
+  }
+  if (e.verification.verdict !== 'sin-datos') {
+    throw new Error(
+      `${donde}: una declaración retirada queda en sin-datos, no en ${e.verification.verdict}: ` +
+        'su veredicto se contrastó sobre una frase que no se dijo',
+    )
+  }
+  const rechazo = rechazoDeFirma(e.editor ?? '')
+  if (rechazo) throw new Error(`${donde}: una retirada la firma una persona: ${rechazo}`)
+  const r = e.retirada as Partial<RetiradaDeDeclaracion> | null
+  if (!r || !(MOTIVOS_DE_RETIRADA as readonly unknown[]).includes(r.motivo)) {
+    throw new Error(
+      `${donde}: motivo de retirada desconocido (${String(r?.motivo)}); los que hay: ` +
+        MOTIVOS_DE_RETIRADA.join(', '),
+    )
+  }
+  if (typeof r.literal !== 'string' || !HUELLA_DE_LITERAL_RETIRADO_RE.test(r.literal)) {
+    throw new Error(
+      `${donde}: la retirada guarda la huella del literal (literal retirado · sha256:<12 hex>), ` +
+        'nunca su texto: el overlay se sirve',
+    )
   }
 }
 
@@ -517,6 +618,17 @@ export function applyOverlayEntries(
     // le pasen, porque la entrada que hay la tiene delante). Se mira también lo
     // escrito antes en esta misma llamada.
     const previa = next.entries[e.claimId]
+    // Una retirada tampoco la pisa nadie, ni con el mismo `sin-datos`: la
+    // entrada nueva la sustituiría entera, se llevaría la marca y la
+    // declaración volvería a publicarse. Eso es subir la visibilidad, y lo
+    // haría quien no escuchó nada.
+    if (previa?.retirada) {
+      throw new Error(
+        `[overlay] ${e.claimId}: la declaración está retirada (${previa.retirada.motivo}, ` +
+          `firma ${previa.editor ?? '—'}); «${e.source}» la sustituiría y la volvería a publicar. ` +
+          'Una retirada no la deshace ninguna escritura del overlay.',
+      )
+    }
     if (previa && esSubida(previa.verification.verdict, e.verification.verdict)) {
       const etapaPrevia = TRINQUETE[previa.source]
       const retractacion = etapaPrevia?.direccion === 'baja' ? ', una retractación' : ''
@@ -673,6 +785,9 @@ export function enmendarMotivoDeBajada(
     reason: motivo,
     ...(e.editor ? { editor: e.editor } : {}),
     appliedAt: e.appliedAt,
+    // Enmendar el motivo no deshace la retirada: sin esto, reescribir la
+    // explicación volvería a publicar la declaración.
+    ...(e.retirada ? { retirada: e.retirada } : {}),
     reasonAmendments: [
       ...anteriores,
       {
@@ -690,6 +805,105 @@ export function enmendarMotivoDeBajada(
   }
   validateOverlay(next)
   return { overlay: next, previous }
+}
+
+/** Lo que pide una orden `downgrade-verdict --literal-no-dicho`. */
+export interface RetiradaPedida {
+  claimId: string
+  /** El literal publicado, el que escuchó quien firma. Se guarda su huella. */
+  literal: string
+  /** Qué se oye y dónde (≥20 caracteres). Es el resumen de la entrada. */
+  motivo: string
+  /** Una persona, con su nombre (`firma-de-persona.ts`). */
+  editor: string
+}
+
+/**
+ * La huella de un literal retirado: la receta de las huellas de
+ * pleno-finding.ts —`sha256Short` del texto serializado en JSON, tras una
+ * etiqueta que dice qué era—, para que un auditor rehaga todas con la misma
+ * herramienta.
+ */
+export function huellaDeLiteralRetirado(texto: string): string {
+  return `literal retirado · sha256:${sha256Short(JSON.stringify(texto))}`
+}
+
+/**
+ * ── La retirada de una declaración ──────────────────────────────────────────
+ *
+ * Cuando una persona escucha la sesión y el literal no es lo que se dijo —el
+ * motor sustituido llegó a oír un año donde se dijo un importe—, la declaración
+ * deja de publicarse. La entrada es una bajada de curador a `sin-datos` con la
+ * marca `retirada`, que la puerta lee (declaracion-retirada.ts, donde está el
+ * caso que lo trajo):
+ *
+ *   · `sin-datos` y sin evidencia, venga de donde venga: el veredicto que tenía
+ *     se contrastó sobre una frase que nadie pronunció;
+ *   · no pasa por `isDowngrade`, porque no baja un veredicto sino la
+ *     visibilidad: una declaración ya en `sin-datos` también se retira;
+ *   · la firma una persona, con su nombre; y
+ *   · no vuelve a publicar lo que retira: guarda la huella del literal y se
+ *     niega a un motivo que lo cite (una ventana de seis palabras, la medida
+ *     con la que el dosier del 29-09 comprobó sus sumarios).
+ *
+ * Sustituye la entrada que hubiera —su motivo y su firma quedan en el
+ * historial del repositorio—, y ninguna escritura posterior la pisa
+ * (`applyOverlayEntries`). Puro: devuelve un overlay nuevo.
+ */
+export function retirarDeclaracion(
+  overlay: Overlay,
+  pedida: RetiradaPedida,
+  stampIso: string,
+): Overlay {
+  const { claimId } = pedida
+  const donde = `[overlay] ${claimId}`
+  const rechazo = rechazoDeFirma(pedida.editor)
+  if (rechazo) {
+    throw new Error(`${donde}: una retirada la firma una persona, con su nombre: ${rechazo}`)
+  }
+  const literal = (pedida.literal ?? '').trim()
+  if (!literal) throw new Error(`${donde}: no hay literal que retirar`)
+  const motivo = (pedida.motivo ?? '').trim()
+  if (motivo.length < 20) {
+    throw new Error(`${donde}: el motivo de una retirada tiene que tener ≥20 caracteres`)
+  }
+  const charla = charlaDeTarea(motivo)
+  if (charla) {
+    throw new Error(
+      `${donde}: el motivo habla de la tarea del modelo (${charla}), no de la declaración`,
+    )
+  }
+  if (quoteAppearsIn(literal, motivo, 6)) {
+    throw new Error(
+      `${donde}: el motivo vuelve a imprimir el literal que se retira, y el overlay se sirve: ` +
+        'di qué se oye y dónde sin citarlo',
+    )
+  }
+  const previa = overlay?.entries?.[claimId]
+  if (previa?.retirada) {
+    throw new Error(
+      `${donde}: ya está retirada (firma ${previa.editor ?? '—'}, ${previa.appliedAt})`,
+    )
+  }
+  if (!FECHA_ISO.test(stampIso) || Number.isNaN(Date.parse(stampIso))) {
+    throw new Error(`${donde}: la fecha de la retirada tiene que ser ISO («${stampIso}»)`)
+  }
+
+  const entrada: OverlayEntry = {
+    verification: verificacionDeBajada(claimId, { evidence: [] }, 'sin-datos', motivo),
+    source: 'curator-downgrade',
+    reason: motivo,
+    editor: pedida.editor.normalize('NFC').replace(/\s+/g, ' ').trim(),
+    appliedAt: stampIso,
+    retirada: { motivo: 'literal-no-dicho', literal: huellaDeLiteralRetirado(literal) },
+  }
+  const next: Overlay = {
+    version: overlay?.version ?? 1,
+    generatedAt: stampIso,
+    entries: { ...(overlay?.entries ?? {}), [claimId]: entrada },
+  }
+  validateOverlay(next)
+  return next
 }
 
 /**

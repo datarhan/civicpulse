@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-30T13:23:19.488Z",
+  "generatedAt": "2026-10-04T06:39:14.761Z",
   "version": "1",
   "plenoId": "19gax3o",
   "plenoDate": "2026-01-19",
@@ -1139,7 +1139,9 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica",
+        "reasonSignedBy": "Sergei Lutchenko"
       },
       "visibility": "toggle"
     },
@@ -6735,7 +6737,8 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "persona"
       },
       "visibility": "toggle"
     },
@@ -6864,44 +6867,6 @@
     },
     {
       "claim": {
-        "id": "19gax3o-132-cit-35c4f5",
-        "plenoId": "19gax3o",
-        "plenoDate": "2026-01-19",
-        "segmentIndex": 132,
-        "type": "cita_obra",
-        "speakerGroup": null,
-        "verbatim": "el complejo la malla se presupuesto en el año 2006 y tuvieron que hacer varias reparaciones dentro de la propia ejecución de la obra",
-        "context": "Sí, empiezo José Luis por los socios que te has buscado ese complejo la malla se presupuesto en el año 2006 y tuvieron que hacer varias reparaciones dentro de la propia ejecución de la obra imagínate",
-        "topic": "urbanismo",
-        "entities": {
-          "date": "2006-01-01",
-          "referencedEntity": "complejo la malla"
-        },
-        "confidence": 0.84,
-        "reasoning": "Afirma un proyecto/obra concreta y una fecha de presupuestación; puede contrastarse con expedientes de obra o actas municipales.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "19gax3o-132-cit-35c4f5",
-        "verdict": "parcial",
-        "summary": "Gold review (ai): La Malla complex confirmed via maintenance tender; 2006 budget + reparations not verified (was verificado)",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HiIEfDk2s9mTylGzYmBF9Q%3D%3D",
-            "snippet": "Servicio mantenimiento instalaciones en complejo deportivo La Malla. · Ayuntamiento de Riba-roja de Túria · estado: unknown",
-            "similarity": 1
-          }
-        ],
-        "checkedAgainst": [
-          "curator-downgrade"
-        ],
-        "source": "curator-downgrade"
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
         "id": "19gax3o-132-cit-3f400f",
         "plenoId": "19gax3o",
         "plenoDate": "2026-01-19",
@@ -6928,34 +6893,6 @@
           "tenders",
           "tenders-ted"
         ]
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "19gax3o-133-afi-1a6fe3",
-        "plenoId": "19gax3o",
-        "plenoDate": "2026-01-19",
-        "segmentIndex": 133,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "el año 2006 y tuvieron que hacer varias reparaciones dentro de la propia ejecución de la obra",
-        "context": "buscado ese complejo la malla se presupuesto en el año 2006 y tuvieron que hacer varias reparaciones dentro de la propia ejecución de la obra imagínate",
-        "topic": "urbanismo",
-        "entities": {
-          "date": "2006-01-01",
-          "referencedEntity": "obra/complejo mencionado"
-        },
-        "confidence": 0.72,
-        "reasoning": "Menciona un año concreto y una circunstancia de ejecución de obra que puede contrastarse con expedientes o memoria de la obra.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "19gax3o-133-afi-1a6fe3",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -7074,7 +7011,9 @@
         "checkedAgainst": [
           "curator-downgrade"
         ],
-        "source": "curator-downgrade"
+        "source": "curator-downgrade",
+        "downgradedBy": "automatica",
+        "reasonSignedBy": "Sergei Lutchenko"
       },
       "visibility": "toggle"
     },

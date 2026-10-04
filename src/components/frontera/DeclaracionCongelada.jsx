@@ -1,4 +1,5 @@
-import { Card, Pill } from '../Primitives'
+import { useId } from 'react'
+import { Card, Deslizable, Pill } from '../Primitives'
 
 /**
  * El resultado más útil del experimento, y no es una puntuación.
@@ -30,6 +31,7 @@ export function cuantificadorCongelacion(pct) {
 }
 
 export function DeclaracionCongelada({ declaracion }) {
+  const idTitulo = useId()
   if (!declaracion || !declaracion.unidadSeries) return null
 
   const { unidadSeries, unidadCongeladas, costeSeries, costeCongeladas, minEntregas, entregas } =
@@ -93,6 +95,7 @@ export function DeclaracionCongelada({ declaracion }) {
       {propias.length > 0 && (
         <div style={{ marginTop: 12 }}>
           <div
+            id={idTitulo}
             className="mono"
             style={{
               fontSize: 'var(--fs-micro)',
@@ -105,36 +108,42 @@ export function DeclaracionCongelada({ declaracion }) {
             Riba-roja de Túria · {propiasCongeladas.length} de {propias.length} denominadores sin
             cambiar
           </div>
-          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 'var(--fs-aux)' }}>
-            <thead>
-              <tr style={{ textAlign: 'left', color: 'var(--ink50)' }}>
-                <th style={{ padding: '4px 8px 4px 0', fontWeight: 500 }}>Servicio</th>
-                <th style={{ padding: '4px 8px', fontWeight: 500, textAlign: 'right' }}>Valor</th>
-                <th style={{ padding: '4px 8px', fontWeight: 500, textAlign: 'right' }}>
-                  Sin cambiar desde
-                </th>
-                <th style={{ padding: '4px 0', fontWeight: 500 }}>Estado</th>
-              </tr>
-            </thead>
-            <tbody>
-              {propias.map((p) => (
-                <tr key={p.programa} style={{ borderTop: '1px solid var(--border2)' }}>
-                  <td style={{ padding: '6px 8px 6px 0' }}>{p.label ?? p.programa}</td>
-                  <td className="mono" style={{ padding: '6px 8px', textAlign: 'right' }}>
-                    {p.valor === null ? '—' : p.valor.toLocaleString('es-ES')}
-                  </td>
-                  <td className="mono" style={{ padding: '6px 8px', textAlign: 'right' }}>
-                    {p.congeladaDesde ?? '—'}
-                  </td>
-                  <td style={{ padding: '6px 0' }}>
-                    <Pill tone={p.congelada ? 'warn' : 'ok'}>
-                      {p.congelada ? `${p.repeticionesFinales} entregas iguales` : 'se actualiza'}
-                    </Pill>
-                  </td>
+          {/* Cuatro columnas que en un teléfono no caben: a 320 px la tabla medía
+              307 en una tarjeta de 228, y la página entera, 354. Se desliza
+              dentro de la tarjeta, con la señal en el borde; no se esconde
+              ninguna columna. */}
+          <Deslizable tituloId={idTitulo}>
+            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 'var(--fs-aux)' }}>
+              <thead>
+                <tr style={{ textAlign: 'left', color: 'var(--ink50)' }}>
+                  <th style={{ padding: '4px 8px 4px 0', fontWeight: 500 }}>Servicio</th>
+                  <th style={{ padding: '4px 8px', fontWeight: 500, textAlign: 'right' }}>Valor</th>
+                  <th style={{ padding: '4px 8px', fontWeight: 500, textAlign: 'right' }}>
+                    Sin cambiar desde
+                  </th>
+                  <th style={{ padding: '4px 0', fontWeight: 500 }}>Estado</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {propias.map((p) => (
+                  <tr key={p.programa} style={{ borderTop: '1px solid var(--border2)' }}>
+                    <td style={{ padding: '6px 8px 6px 0' }}>{p.label ?? p.programa}</td>
+                    <td className="mono" style={{ padding: '6px 8px', textAlign: 'right' }}>
+                      {p.valor === null ? '—' : p.valor.toLocaleString('es-ES')}
+                    </td>
+                    <td className="mono" style={{ padding: '6px 8px', textAlign: 'right' }}>
+                      {p.congeladaDesde ?? '—'}
+                    </td>
+                    <td style={{ padding: '6px 0' }}>
+                      <Pill tone={p.congelada ? 'warn' : 'ok'}>
+                        {p.congelada ? `${p.repeticionesFinales} entregas iguales` : 'se actualiza'}
+                      </Pill>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </Deslizable>
           <p
             style={{
               fontSize: 'var(--fs-aux)',

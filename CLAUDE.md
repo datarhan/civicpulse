@@ -153,8 +153,8 @@ and deliberately does not follow dark mode.
 
 ### Charts & maps
 
-Figures are per-domain SVG components (`src/components/Charts.jsx` now holds
-only `Sparkline`). The landing's Leaflet map, `LiveCity/StylizedMap.jsx`, is a
+Figures are per-domain SVG components (`src/components/Charts.jsx` holds only
+`Sparkline`). The landing's Leaflet map, `LiveCity/StylizedMap.jsx`, is a
 thin orchestrator over `network/`, `popups/`, `layers/`, `controls/`; each
 toggleable layer is conditionally mounted so a hidden layer's rAF/WMS never
 runs. `/quejas`, `/presupuesto` and `/empleo` carry their own Leaflet maps.
@@ -286,10 +286,10 @@ reader sees.
   ignores prose with no figure beside it on purpose: a deterministic check
   stretched into style is a false-positive machine.
 - **The pre-push review's route selection** (`scripts/routes-for-changes.ts`
-  over `scripts/lib/route-graph.ts`) has been wrong four ways already — a
-  two-dot diff, a flat unordered route set, a graph blind to CSS and the shell,
-  and every `:param` route dropped (#175's ClaimLedger change read nothing it
-  touched). Read both headers and `.husky/pre-push` before touching it. Adding
+  over `scripts/lib/route-graph.ts`) has to diff three-dot, keep its routes
+  ordered, see CSS and shell changes, and keep `:param` routes; each of those
+  has broken before, and both headers tell how. Read them and `.husky/pre-push`
+  before touching it. Adding
   `.css` to the graph's file filter is inert; `tests/prepush-range.test.js`
   pins the three-dot range, and routes reach `review:surfaces` on stdin because
   an instance key can carry a space (`/plenos/<id> [pestanas]`).
@@ -313,7 +313,7 @@ person: `eficiencia-finding.ts` rejects `pleno-finding.ts`'s person fields
 reply is institutional (`RESPONDENTES`). A unit cost hung on a named councillor
 is a materially different claim, and not one the ministry's return supports.
 
-**Competence, not blame.** Since 2026-08-23 the pages also name, from
+**Competence, not blame.** The pages also name, from
 `competencias.json`, who holds each delegated competence — republishing the
 council's own transparency portal, so a reader knows whom to ask. That is not
 the finding's claim, and the split is load-bearing (`competencias.ts`' header
@@ -534,9 +534,9 @@ the same. When it names routes your change touched, re-read them. Its map,
 `.claude/hooks/prosa-map.json`, is **derived, not hand-kept**
 (`npm run build:prose-map`), and `tests/stale-copy-paths.test.js` regenerates it
 with `--check` and fails on drift. **A hook reaches the model through JSON on
-stdout** (`additionalContext`), never through stderr on exit 0 — this one
-printed to stderr for six weeks and reached nobody while its test stayed green;
-its header tells it.
+stdout** (`additionalContext`), never through stderr on exit 0: stderr is
+dropped silently, so a test that checks only the exit code stays green while
+nothing arrives. Its header tells the incident.
 
 ## Ethics of collection
 

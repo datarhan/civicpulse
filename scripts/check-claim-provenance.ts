@@ -68,6 +68,22 @@ function manifestRetenidasSinProcedencia(): number {
   }
 }
 
+/**
+ * Cuántas retiró una persona tras escuchar la sesión, del mismo manifiesto y
+ * por lo mismo: esta comprobación no las ve —su literal SÍ consta en una
+ * transcripción, la que lo oyó mal— y la puerta ya no las publica.
+ */
+function manifestRetiradas(): number {
+  const raw = read(join(CLAIMS, 'index.json'))
+  if (raw === null) return 0
+  try {
+    const m = JSON.parse(raw) as { totals?: { retiradas?: Record<string, number> } }
+    return Object.values(m.totals?.retiradas ?? {}).reduce((s, n) => s + (n ?? 0), 0)
+  } catch {
+    return 0
+  }
+}
+
 function main() {
   const onlyPleno = arg('--pleno')
   const listWanted = arg('--list')
@@ -170,6 +186,15 @@ function main() {
         `         arriba porque esto audita lo publicado.\n` +
         `         Cuáles son y qué dice el acta en su lugar:\n` +
         `           npm run triage:claim-reanchor`,
+    )
+  }
+  const retiradas = manifestRetiradas()
+  if (retiradas > 0) {
+    console.log(
+      `\n  ${String(retiradas).padStart(5)}  retiradas          una persona escuchó la sesión y su ` +
+        `literal no es lo que se\n` +
+        `         dijo (downgrade-verdict --literal-no-dicho). Esta comprobación no las\n` +
+        `         ve: su literal SÍ consta en una transcripción, la que lo oyó mal.`,
     )
   }
 

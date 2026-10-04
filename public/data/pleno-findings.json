@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-09-30T06:28:15.989Z",
+  "generatedAt": "2026-10-04T06:40:04.479Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. Los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, salvo los que llevan la firma de una persona, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -2129,9 +2129,17 @@
           "field": "summary",
           "original": "En la sesión del pleno del 19 de enero de 2026, el grupo PSOE afirmó que «la parte de la reconstrucción, aunque los contratos no se hacen así, sino a través de trazas». Por su parte, un grupo no identificado señaló que se basan en fondos europeos para la reconstrucción tras la DANA. Se atribuye al PP la mención de subsanar problemas en el pabellón y el complejo esportivo, con una cita que no consta en la transcripción vigente. VOX, en cambio, denunció la falta de una agenda de reconstrucción en Riba Roja.",
           "corrected": "En la sesión del pleno del 19 de enero de 2026, el grupo PSOE afirmó que «la parte de la reconstrucción, aunque los contratos no se hacen así, sino a través de trazas». Por su parte, un grupo no identificado señaló que se basan en fondos europeos para la reconstrucción tras la DANA. Se atribuye al PP la mención de subsanar problemas en el pabellón y el complejo esportivo, con una cita que no consta en la transcripción vigente.",
-          "reason": "Se retira la frase que atribuía a VOX denunciar la falta de una agenda de reconstrucción. Esta ficha no lleva ninguna cita de VOX, y la frase venía de una transcripción ya retirada que deformó el pasaje: en la vigente (segundos 3175 a 3405) VOX rechaza la agenda que se votaba y pide un plan nacional, que es lo contrario de echarla en falta. Lo señaló la revisión lectora el 21-09-2026.",
+          "reason": "Se retira la frase que atribuía a un grupo denunciar la falta de una agenda de reconstrucción. Esta ficha no lleva ninguna cita de ese grupo, y la frase venía de una transcripción ya retirada que deformó el pasaje: en la vigente (segundos 3175 a 3405) la intervención dice lo contrario de echarla en falta. Lo señaló la revisión lectora el 21-09-2026.",
           "editor": "claude-fable-5.1",
-          "correctedAt": "2026-09-21T10:48:44.673Z"
+          "correctedAt": "2026-09-21T10:48:44.673Z",
+          "reasonAmendments": [
+            {
+              "previous": "motivo · sha256:7aa5ed36ca18",
+              "reason": "El motivo nombraba al grupo de un solo escaño al que atribuía la intervención, y nombrarlo señala a su único concejal; se describe el criterio sin el nombre.",
+              "editor": "Sergei Lutchenko",
+              "amendedAt": "2026-10-04T06:40:04.478Z"
+            }
+          ]
         },
         {
           "field": "quote.2.speakerGroup",
@@ -2238,9 +2246,17 @@
           "field": "summary",
           "original": "Durante la sesión, un grupo no identificado señala deficiencias y reparaciones en el complejo la malla desde su inicio en 2006. En relación con este debate, el registro municipal incluye el contrato 'Servicio mantenimiento instalaciones en complejo deportivo La Malla'. Por su parte, el grupo VOX señala la ausencia de una agenda de reconstrucción local en el municipio.",
           "corrected": "Durante la sesión, un grupo no identificado señala deficiencias y reparaciones en el complejo la malla desde su inicio en 2006. En relación con este debate, el registro municipal incluye el contrato 'Servicio mantenimiento instalaciones en complejo deportivo La Malla'. Por su parte, el grupo VOX pide «un plan de reconstrucción nacional centrado en infraestructuras hidráulicas, protección civil eficaz, ayudas directas».",
-          "reason": "El resumen atribuía a VOX señalar que faltaba una agenda de reconstrucción local. La frase venía de una transcripción ya retirada, que deformó el pasaje; en la vigente (segundos 3175 a 3405) VOX rechaza la agenda urbana de reconstrucción que se votaba, por ir ligada a la Agenda 2030, y pide un plan nacional. La única cita de VOX que lleva esta ficha es esa petición, y el resumen pasa a decir lo que la cita dice. Lo señaló la revisión lectora el 21-09-2026.",
+          "reason": "El resumen atribuía a un grupo señalar que faltaba una agenda de reconstrucción local. La frase venía de una transcripción ya retirada, que deformó el pasaje; en la vigente (segundos 3175 a 3405) la intervención dice lo contrario, y el resumen pasa a decir lo que dice la cita de la ficha. Lo señaló la revisión lectora el 21-09-2026.",
           "editor": "claude-fable-5.1",
-          "correctedAt": "2026-09-21T10:48:44.306Z"
+          "correctedAt": "2026-09-21T10:48:44.306Z",
+          "reasonAmendments": [
+            {
+              "previous": "motivo · sha256:995681710d05",
+              "reason": "El motivo nombraba al grupo de un solo escaño al que atribuía la intervención, y nombrarlo señala a su único concejal; además hablaba de una cita de ese grupo cuya atribución se retiró el 30-09-2026.",
+              "editor": "Sergei Lutchenko",
+              "amendedAt": "2026-10-04T06:40:04.162Z"
+            }
+          ]
         },
         {
           "field": "quote.2",
@@ -2368,9 +2384,17 @@
           "field": "summary",
           "original": "En la sesión, el PP señala la solicitud sobre el Complejo La Malla y el PSOE afirma que se cambiará el parqué. El grupo VOX manifiesta valoraciones sobre la reconstrucción. El expediente citado inicialmente como respaldo corresponde a la pavimentación del paseo Pacadar, una actuación exterior distinta del cambio de parqué; no consta en la contratación publicada ningún expediente que documente esa obra concreta.",
           "corrected": "En la sesión, el PSOE afirma que se cambiará el parqué, y una intervención sin grupo identificado alega que los municipios afectados por la dana no tuvieron tiempo material para plasmar la convocatoria en un documento. El expediente citado inicialmente como respaldo corresponde a la pavimentación del paseo Pacadar, una actuación exterior distinta del cambio de parqué; no consta en la contratación publicada ningún expediente que documente esa obra concreta.",
-          "reason": "El sumario atribuía al PP una petición sobre el complejo deportivo que sólo sostenía una cita mal transcrita de otro turno, y al grupo VOX unas valoraciones sin ninguna cita suya en la ficha desde que la que tenía se retiró el 10-08. Se describe lo que sostienen las citas que quedan.",
+          "reason": "El sumario atribuía al PP una petición sobre el complejo deportivo que sólo sostenía una cita mal transcrita de otro turno, y a otro grupo unas valoraciones sin ninguna cita suya en la ficha desde que la que tenía se retiró el 10-08. Se describe lo que sostienen las citas que quedan.",
           "editor": "civicpulse-curator",
-          "correctedAt": "2026-09-30T05:45:32.124Z"
+          "correctedAt": "2026-09-30T05:45:32.124Z",
+          "reasonAmendments": [
+            {
+              "previous": "motivo · sha256:e776920c4deb",
+              "reason": "El motivo nombraba al grupo de un solo escaño al que el sumario atribuía unas valoraciones, y nombrarlo señala a su único concejal; se describe el criterio sin el nombre.",
+              "editor": "Sergei Lutchenko",
+              "amendedAt": "2026-10-04T06:40:03.870Z"
+            }
+          ]
         }
       ]
     },

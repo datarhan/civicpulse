@@ -49,14 +49,10 @@ Output: draft in `editorial/journalist-drafts/journalist-reports-suggestions.jso
 is served). Pass `--seed editorial/investigaciones/<slug>/fuentes.json` when the investigative
 pass (skill `investigar-cargo`) has located sources the planner would miss.
 
-**Never `git add -f` a draft.** This skill used to say "force-added", and while the repo was
-private that was reasonable: it versioned the draft and kept it off the served site, which was
-the August hole (`62ce8962 fix(journalist): stop serving unreviewed drafts from the public
-site`). **The repo went public on 2026-09-08**, and at that moment every force-added draft
-became world-readable — unreviewed machine prose about named living councillors, carrying
-`legalSensitivity: high`. Nobody committed anything after the opening; the visibility flip
-relabelled what was already there, which is the failure mode to remember: _a practice that is
-safe under `private` does not announce itself when that stops being true._
+**Never `git add -f` a draft.** The repository is public, so anything tracked under `editorial/`
+is world-readable — unreviewed machine prose about named living councillors, carrying
+`legalSensitivity: high` — even though nothing under `public/` serves it. A practice that is
+safe in a private repo does not announce itself when visibility changes.
 
 A draft is promoted with `npm run promote-report`, which is what puts the **reviewed** version
 under `public/data/journalist-reports/`. The draft itself never needs to be in git — it lives
@@ -193,15 +189,13 @@ npm run promote-report -- <assignmentId> --curator "Sergei Lutchenko" \
 - **`curatorNotes` RENDER PUBLICLY** in the `/laboratorio/agentes` CuratorNotesBlock expander
   (any note opening with `REVISIÓN DE CURADURÍA` / `CORRECCIÓN` / `AMPLIACIÓN` / `VIGILANCIA` …).
   So describe what you DID, but **NEVER quote back the content you EXCLUDED** — not homonym
-  search noise (`Australian Open`, `ninite`, `hijas de Zapatero`), not removed ASR floor-quotes
-  (`Pacto del Botánico`, `recogida de residuos`), not accusatory exchanges you dropped
-  (`25-N / NIT Violeta`). Write «se retiraron citas de floor ASR no verificables» / «ruido web de
-  baja confianza por homonimia» / «un intercambio de tono acusatorio», NOT the strings themselves.
-  This recurred THREE times on 2026-07-31 (Guzmán, Navarro, Fernández) — each landed the excluded
-  text on the live page via the note and had to be scrubbed with a follow-up commit. Naming a
+  search noise, not removed ASR floor-quotes, not accusatory exchanges you dropped. Write «se
+  retiraron citas de floor ASR no verificables» / «ruido web de baja confianza por homonimia» /
+  «un intercambio de tono acusatorio», NOT the strings themselves: a note that names the
+  excluded material publishes exactly what the exclusion protected. Naming a
   genuine disambiguation subject that STAYS in the profile (e.g. «Salomé Pradas, persona distinta»)
-  is fine; echoing anything you removed is not. Sanity check before promote:
-  `grep -iE 'australian|ninite|zapatero|botánico|nit violeta' the note`.
+  is fine; echoing anything you removed is not. Before promote, grep the note for every
+  string you removed in THIS review (quotes, homonym hits, source titles): none may appear.
 - Post-promotion edits to a PUBLISHED report: narrative/quote-attribution via
   `npm run correct-journalist-report` (public bitácora); other payloads via a validated one-shot
   script + dated curatorNotes entry (both write snapshot + chunk).
@@ -216,9 +210,9 @@ npm run promote-report -- <assignmentId> --curator "Sergei Lutchenko" \
    pre-commit `check:editorial` refuses them, and `tests/editorial-fuera-de-git.test.js` reds on
    anything tracked there (Phase 2). Message in Spanish, `data(journalist): …`, ending with the
    co-author line.
-3. Read the biography as a reader before you push: the pre-push hook never reaches it. For
-   this push it reviews only `/cargos` and `/laboratorio/agentes` — detail routes are outside
-   its route set, and the report chunk maps to no route — so run
+3. Read the biography as a reader before you push: the pre-push hook reads `/cargos/:slug` and
+   `/laboratorio/agentes/:assignmentId` through ONE representative instance picked from the
+   data, which is rarely this subject's — so run
    `npm run review:surfaces -- /laboratorio/agentes/<assignmentId> /cargos/<slug>` against a
    build made as the `revisar-superficies` skill says (with the launch flags, or both pages come
    back NO MONTADA).

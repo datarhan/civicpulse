@@ -333,11 +333,9 @@ function ladosQueNombran(snapshot: {
  * firmarlas, esta lista se vacía y `TOTAL_REASON_AMENDMENTS`
  * (pleno-findings-published.test.ts) sube en tres.
  */
-const MOTIVOS_QUE_ESPERAN_A_UNA_PERSONA: Array<{ ruta: string; hasta: string }> = [
-  { ruta: 'f-2026-01-19-cit-8b29a9[5].reason', hasta: '2026-10-14' },
-  { ruta: 'f-2026-01-19-cit-c80e68[4].reason', hasta: '2026-10-14' },
-  { ruta: 'f-2026-01-19-cit-cc8758[4].reason', hasta: '2026-10-14' },
-]
+// Vacía desde el 04-10-2026: los tres motivos los enmendó con su firma Sergei
+// Lutchenko (`correct-pleno-finding --amend-reason`), y los anteriores quedan en huella.
+const MOTIVOS_QUE_ESPERAN_A_UNA_PERSONA: Array<{ ruta: string; hasta: string }> = []
 
 describe('sobre los datos publicados', () => {
   it('la corporación de hoy tiene grupos de un escaño que buscar', () => {

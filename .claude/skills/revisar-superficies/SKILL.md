@@ -51,8 +51,8 @@ defecto.
 
    La prosa de las capas opcionales del mapa sólo existe con la capa encendida:
    se lee con la clave `'/ [capas]'`. Y lee la última línea, el `[review]`: si
-   nombra rutas PARCIAL, SIN REVISAR, NO MONTADA o NO ALCANZADA, esas no se han
-   leído, digan lo que digan los señalamientos.
+   nombra rutas PARCIAL, SIN REVISAR, NO MONTADA, NO ALCANZADA, SIN FICHA o NO
+   RESUELTA, esas no se han leído, digan lo que digan los señalamientos.
 
 3. **Verifica CADA señalamiento antes de tocar nada.** El agente cita literal —si
    parafrasea, el grounding lo descarta— pero puede estar equivocado sobre la
@@ -125,7 +125,8 @@ siempre esta revisión, y por eso el procedimiento vive aquí.
 
 ## Qué NO hace
 
-- No edita nada. Nunca. Señala; decide una persona.
+- La revisión (`review:surfaces`) no edita nada: señala, y decide una persona —
+  la que sigue los pasos 4 y 5.
 - No juzga estilo, diseño ni accesibilidad — para eso está la suite axe.
 - No inventa el contexto que no tiene: no sabe qué contratos existen en el mundo,
   solo si la página contradice los datos que se le pasan.

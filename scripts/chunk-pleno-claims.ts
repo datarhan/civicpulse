@@ -28,6 +28,7 @@ import {
 } from '../src/scraper/pleno-claims-chunks'
 import { gateItemsForPublic } from '../src/scraper/claim-public-gate'
 import { classifyClaimProvenancePreparado } from '../src/scraper/claim-provenance'
+import { motivoDeRetirada, type MotivoDeRetirada } from '../src/scraper/declaracion-retirada'
 import { prepararHeno, type HenoPreparado } from '../src/scraper/quote-match'
 import { loadSupersededTexts, TRANSCRIPTS_DIR } from './lib/transcript-corpus'
 
@@ -116,6 +117,29 @@ export function idsSinProcedencia(
   return out
 }
 
+/**
+ * Las que retiró una persona tras escuchar la sesión, por motivo.
+ *
+ * Las mismas que la puerta oculta por `motivoDeRetirada`, contadas con esa
+ * misma función: dos decisores sobre la misma pregunta es como empiezan a
+ * discrepar la puerta y el parte. Una que además no conste en ninguna
+ * transcripción se cuenta allí y no aquí, para que las filas de la tarjeta de
+ * /plenos sigan siendo una partición de lo extraído.
+ */
+export function contarRetiradas(
+  items: readonly { claim?: { id?: string }; verification?: unknown }[],
+  sinProcedencia: ReadonlySet<string>,
+): Partial<Record<MotivoDeRetirada, number>> {
+  const out: Partial<Record<MotivoDeRetirada, number>> = {}
+  for (const it of items) {
+    const id = it?.claim?.id
+    if (!id || sinProcedencia.has(id)) continue
+    const motivo = motivoDeRetirada(it as Parameters<typeof motivoDeRetirada>[0])
+    if (motivo !== null) out[motivo] = (out[motivo] ?? 0) + 1
+  }
+  return out
+}
+
 interface Args {
   dryRun: boolean
 }
@@ -170,6 +194,14 @@ export function rewriteChunksFromMonolith(opts: { dryRun?: boolean } = {}): {
         `en ninguna transcripción que tengamos. No se publican.`,
     )
   }
+  const retiradas = contarRetiradas(crudos, sinProcedencia)
+  const nRetiradas = Object.values(retiradas).reduce((s, n) => s + (n ?? 0), 0)
+  if (nRetiradas > 0) {
+    console.warn(
+      `[chunk-claims] ${nRetiradas} declaración(es) retirada(s) por una persona tras escuchar ` +
+        `la sesión: su literal no es lo que se dijo. No se publican.`,
+    )
+  }
   const items = gateItemsForPublic(crudos, { sinProcedencia })
   // Lo que la puerta se lleva, contado por tipo antes de perderlo de vista. Un
   // tipo retenido entero desaparecería de la tabla de cobertura y el lector
@@ -183,7 +215,13 @@ export function rewriteChunksFromMonolith(opts: { dryRun?: boolean } = {}): {
   }
   const grouped = groupItemsByPleno(items)
   const generatedAt = new Date().toISOString()
-  const { manifest, chunks } = buildManifest(grouped, generatedAt, retenidas, sinProcedencia.size)
+  const { manifest, chunks } = buildManifest(
+    grouped,
+    generatedAt,
+    retenidas,
+    sinProcedencia.size,
+    retiradas,
+  )
 
   // Track the chunks we're about to write so we can prune stale ones.
   const expected = new Set<string>()
