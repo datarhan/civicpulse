@@ -127,6 +127,14 @@
       "reason": "El revisor atribuye a «la propia página» la frase «Sus cifras NO se actualizan», que no está en la página: la inyecta el propio revisor, en el AVISO que añade a todo reportaje (scripts/review-surfaces.ts). La página dice «Cifras a 2026-09-17» —lo congelado son las cifras— y la nota del apartado de solicitudes dice que «se actualiza cuando hay movimiento» y que «cada fila lleva la fecha de lo que cuenta». La fila de Hacienda es la primera del apartado y cae en otro fragmento que esa nota, así que el modelo no la lee. El mismo señalamiento sobre la fila de la Comisión de Precios se resolvió el 22-09 escribiendo esa nota; aquí la página no dice nada falso.",
       "editor": "claude-opus-5.5",
       "at": "2026-09-23"
+    },
+    {
+      "route": "/hallazgos/f-2026-03-16-cit-436a7e",
+      "quote": "no apareció ningún dato que la confirme ni que la desmienta",
+      "anchor": "contrato de construcción Fase I",
+      "reason": "La nota de contraste habla de la CITA («no teniu pavelló d'escoto»): el cotejo automático no encontró nada que confirme ni desmienta que el municipio no tenga el pabellón. El contrato que lista «Contra qué se cotejó» es el de la Fase I (movimiento de tierras y muro de contención), y el sumario de la ficha ya dice que documenta la preparación del terreno y no el pabellón, cuyo estado de ejecución queda por documentar. La nota y la ficha dicen lo mismo. Releído y descartado por encargo del operador (04-10-2026).",
+      "editor": "claude-opus-5.5",
+      "at": "2026-10-04"
     }
   ]
 }
