@@ -214,11 +214,13 @@ export const nombraAUnaPersona = (editor: string): boolean => rechazoDeFirma(edi
  *
  * La pregunta pequeña, la de toda vía que publica una firma: ¿es esto el hueco
  * de una orden preparada que nadie rellenó? La cola de excepción compone
- * `--editor "<nombre y apellidos>"`; otras colas, `"<tu nombre>"`; las órdenes
- * de votos e indicadores, `"…"`. Con el motivo relleno y la firma no,
- * `correct-pleno-finding --field/--redact/--remove`, `retract-finding`,
- * `reclassify-claim` y la bajada de siempre de `downgrade-verdict` escribían
- * el hueco como firmante de una corrección publicada (visto el 30-09-2026).
+ * `--editor "<nombre y apellidos>"`; las de apoyo y anclaje de citas,
+ * `"<tu nombre>"`; `check:summary-gate` y `downgrade-verdict --literal-no-dicho`
+ * imprimen `"…"`. Con el motivo relleno y la firma no,
+ * `correct-pleno-finding --field/--redact/--remove`, `retract-finding` y
+ * `reclassify-claim` escribían el hueco como firmante de una corrección
+ * publicada (visto el 30-09-2026), y la bajada de siempre de
+ * `downgrade-verdict` también (04-10-2026).
  *
  * No pide una persona: esas vías las firma el operador con la cuenta de rol
  * (`civicpulse-curator`), y esa convención es suya. Rechaza sólo lo que no
@@ -238,7 +240,8 @@ export function rechazoDeMarcador(editor: string): string | null {
       : 'la firma está vacía: escribe quién firma'
   }
   if (SINTAXIS_DE_HUECO.test(firma)) {
-    return `«${firma}» es el hueco de una orden preparada, sin rellenar: escribe quién firma`
+    // También con el nombre ya escrito dentro: `<Ana Pérez>` se publicaría tal cual.
+    return `«${firma}» lleva los < > del hueco de una orden preparada: escribe quién firma, sin ellos`
   }
   const marcador = llana(firma)
     .split(/[^\p{L}]+/u)
