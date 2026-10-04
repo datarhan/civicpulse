@@ -19,6 +19,9 @@
  *
  * Tres ficheros, porque los tres se publican: los trozos los sirve el sitio;
  * el monolito y las sugerencias, el repositorio, que es público desde el 8-09.
+ *
+ * Y una tercera regla, la que /metodologia publica: sin mapa de voces no hay
+ * grupo (bloque del final).
  */
 import { describe, expect, it } from 'vitest'
 import { readFileSync, readdirSync } from 'node:fs'
@@ -35,6 +38,7 @@ const leer = (p: string) => JSON.parse(readFileSync(join(DATA, p), 'utf8'))
 
 interface Declaracion {
   id: string
+  plenoId?: string
   speakerGroup?: string | null
 }
 interface Fila {
@@ -205,5 +209,53 @@ describe('lo que /hallazgos corrige con firma llega a la declaración de la cita
       }
     }
     expect(malas).toEqual([])
+  })
+})
+
+/**
+ * Sin mapa de voces no hay grupo.
+ *
+ * /metodologia lo publica así: la atribución se une DESPUÉS de extraer, desde
+ * un mapa de hablantes en el que cada grupo se sostiene sobre la frase con que
+ * la presidencia le dio la palabra, y «si el mapa no acredita quién hablaba, la
+ * cita se publica sin grupo». En un pleno sin mapa, por tanto, ninguna.
+ *
+ * Medido el 03-10-2026: en los plenos sin mapa seguían 424 etiquetas en el
+ * monolito, la adivinanza del extractor retirado el 10-08 (3f37f5c8) que
+ * carry:attribution devolvió el 15-08 (472064bd) copiándola del fichero
+ * publicado. La tanda C de la PR las retira; esto impide que vuelvan por
+ * cualquier puerta. No juzga los plenos CON mapa —un mapa que se rehace puede
+ * dejar sin sostén una etiqueta hasta la re-extracción, y eso lo cuenta
+ * `check:claim-provenance` sin parar la nocturna—: aquí sólo cabe el cero.
+ */
+describe('sin mapa de voces no hay grupo', () => {
+  const conMapa = new Set(
+    readdirSync('pleno-speaker-map')
+      .filter((f) => f.endsWith('.json'))
+      .map((f) => f.replace(/\.json$/, '')),
+  )
+  const plenoDe = (d: Declaracion) => d.plenoId ?? d.id.split('-')[0]
+  const enPlenoSinMapa = (ds: Declaracion[]) =>
+    ds
+      .filter((d) => d.speakerGroup && !conMapa.has(plenoDe(d)))
+      .map((d) => `${d.id} · ${rotulo(d.speakerGroup ?? null)}`)
+
+  it('hay mapas de voces que mirar, y declaraciones fuera de ellos', () => {
+    // Sin mapas, «ningún pleno tiene mapa» y la cuenta mide otra cosa; sin
+    // declaraciones fuera de los mapas, no mide nada.
+    expect(conMapa.size).toBeGreaterThan(0)
+    expect(monolito.filter((d) => !conMapa.has(plenoDe(d))).length).toBeGreaterThan(0)
+  })
+
+  it('en los trozos que sirve el sitio', () => {
+    expect(enPlenoSinMapa(servidas)).toEqual([])
+  })
+
+  it('en el monolito (pleno-claims-verified.json)', () => {
+    expect(enPlenoSinMapa(monolito)).toEqual([])
+  })
+
+  it('en las sugerencias (pleno-claims-suggestions.json)', () => {
+    expect(enPlenoSinMapa(sugerencias)).toEqual([])
   })
 })
