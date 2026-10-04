@@ -22,14 +22,13 @@ import { fileURLToPath } from 'node:url'
 import {
   classifyAttribution,
   classifyClaimProvenance,
+  resolverDeGrupo,
   tallyProvenance,
   type AttributionOutcome,
   type ProvenanceOutcome,
   type ProvenanceRow,
 } from '../src/scraper/claim-provenance'
-import { alignSpeakerMap, blocResolverFor } from '../src/scraper/speaker-map-align'
 import { loadSupersededTexts } from './lib/transcript-corpus'
-import { parseDiarizedTranscript } from '../src/scraper/voice-id'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const CLAIMS = join(ROOT, 'public/data/pleno-claims')
@@ -110,18 +109,9 @@ function main() {
 
     // El mapa de voces es opcional y su ausencia NO es un desacuerdo: sin él
     // no hay con qué cotejar la atribución, y decir «coincide» sería inventar
-    // un acuerdo con nadie.
-    const mapRaw = read(join(MAPS, `${plenoId}.json`))
-    let resolveBloc: ((v: string) => string | null) | null = null
-    if (mapRaw !== null && current !== null) {
-      try {
-        const published = parseDiarizedTranscript(current)
-        const map = JSON.parse(mapRaw)
-        resolveBloc = blocResolverFor(published, alignSpeakerMap({ published, map } as never))
-      } catch {
-        resolveBloc = null
-      }
-    }
+    // un acuerdo con nadie. El resolvedor es el mismo que usa
+    // `carry:attribution` para no devolver lo que esto no sostiene.
+    const resolveBloc = resolverDeGrupo(current, read(join(MAPS, `${plenoId}.json`)))
     if (resolveBloc === null) plenosWithoutMap += 1
 
     const chunk = JSON.parse(readFileSync(join(CLAIMS, f), 'utf8'))
