@@ -1032,8 +1032,6 @@ export const CATALOGUE = {
     // cierra la ficha, y aplanada la página el vídeo del pleno de una ficha se
     // leyó contra la siguiente, de otra sesión (`codigoDeFicha`).
     'findings.refs.ficha': 'ficha {ficha}',
-    'findings.card.moreQuotes.one': 'y 1 cita más en la ficha {ficha} →',
-    'findings.card.moreQuotes.other': 'y {n} citas más en la ficha {ficha} →',
     'findings.refs.date.award': 'adjudicación',
     'findings.refs.date.formalized': 'formalización',
     'findings.refs.date.start': 'inicio',
@@ -2662,8 +2660,6 @@ export const CATALOGUE = {
     'findings.refs.provenance': 'Procedència de les cites',
     'findings.refs.contradiction': 'Documents que contradiuen',
     'findings.refs.ficha': 'fitxa {ficha}',
-    'findings.card.moreQuotes.one': 'i 1 cita més a la fitxa {ficha} →',
-    'findings.card.moreQuotes.other': 'i {n} cites més a la fitxa {ficha} →',
     'findings.refs.date.award': 'adjudicació',
     'findings.refs.date.formalized': 'formalització',
     'findings.refs.date.start': 'inici',

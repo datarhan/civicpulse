@@ -24,7 +24,7 @@
  *      digan lo mismo.
  *
  * En las dos superficies (/hallazgos: `FindingDetailCard`, todas las citas;
- * /plenos/:id: `FindingCard`, las tres primeras) y con la copia servida, que no
+ * /plenos/:id: `FindingCard`, también todas) y con la copia servida, que no
  * trae el literal de las retenidas. Los mensajes nombran fichas y números, nunca
  * el texto de una cita: el repositorio es público.
  */
@@ -88,7 +88,7 @@ const SUPERFICIES = [
     pinta: (f) => <FindingDetailCard f={f} permalink={`#${f.id}`} />,
     tramo: (n) => n,
   },
-  { ruta: '/plenos/:id', pinta: (f) => <FindingCard f={f} />, tramo: (n) => Math.min(n, 3) },
+  { ruta: '/plenos/:id', pinta: (f) => <FindingCard f={f} />, tramo: (n) => n },
 ]
 
 /**
