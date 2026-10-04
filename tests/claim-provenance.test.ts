@@ -1,10 +1,14 @@
 import { describe, it, expect } from 'vitest'
+import { readFileSync } from 'node:fs'
 import {
   classifyClaimProvenance,
   classifyAttribution,
+  resolverDeGrupo,
   tallyProvenance,
   type ProvenanceOutcome,
 } from '../src/scraper/claim-provenance'
+import { alignSpeakerMap, blocResolverFor } from '../src/scraper/speaker-map-align'
+import { parseDiarizedTranscript } from '../src/scraper/voice-id'
 
 /**
  * Nadie comprobaba las DECLARACIONES contra su transcripción.
@@ -124,6 +128,52 @@ describe('scraper/claim-provenance — classifyAttribution', () => {
     expect(classifyAttribution({ stored: 'PSOE', fresh: 'PP', hasMap: true })).toBe(
       'partido-distinto',
     )
+  })
+})
+
+/**
+ * El `fresh` de `classifyAttribution`: el grupo que da HOY el mapa de voces a
+ * cada literal de una sesión.
+ *
+ * Vivía dentro de `check:claim-provenance`, y #218 definió con sus desenlaces
+ * las 1.007 etiquetas que retiró (sin-mapa 424, sin-sosten 574,
+ * partido-distinto 9). `carry:attribution` tiene que cotejar con el MISMO
+ * resolvedor para no devolver ninguna de ellas: una segunda copia de la
+ * alineación es cómo empezarían a discrepar la comprobación y el arrastre.
+ */
+describe('scraper/claim-provenance — resolverDeGrupo', () => {
+  it('sin mapa no hay con qué cotejar: null, no un resolvedor que siempre diga null', () => {
+    // Un resolvedor que contestara null a todo se leería como «el mapa no lo
+    // sostiene» (sin-sosten) donde la verdad es «no hay mapa» (sin-mapa).
+    expect(resolverDeGrupo(CUR, null)).toBeNull()
+  })
+
+  it('sin transcripción tampoco: el mapa se alinea contra ella', () => {
+    expect(resolverDeGrupo(null, '{"segments":[],"rows":[]}')).toBeNull()
+  })
+
+  it('un mapa ilegible es un mapa con el que no se puede cotejar, no un desacuerdo', () => {
+    expect(resolverDeGrupo(CUR, '{no es json')).toBeNull()
+    expect(resolverDeGrupo(CUR, '{}')).toBeNull()
+  })
+
+  it('con un mapa y una transcripción de verdad, da lo mismo que alinear a mano', () => {
+    const transcripcion = readFileSync('public/data/pleno-transcripts/11025xk.txt', 'utf8')
+    const mapa = readFileSync('pleno-speaker-map/11025xk.json', 'utf8')
+    const literales: string[] = JSON.parse(
+      readFileSync('public/data/pleno-claims/11025xk.json', 'utf8'),
+    ).items.map((it: { claim: { verbatim: string } }) => it.claim.verbatim)
+
+    const resolver = resolverDeGrupo(transcripcion, mapa)
+    expect(resolver).not.toBeNull()
+    const published = parseDiarizedTranscript(transcripcion)
+    const aMano = blocResolverFor(published, alignSpeakerMap({ published, map: JSON.parse(mapa) }))
+
+    const dados = literales.map((v) => resolver!(v))
+    expect(dados).toEqual(literales.map(aMano))
+    // El control: si el mapa no acreditara ninguna, la igualdad de arriba
+    // compararía nulls con nulls.
+    expect(dados.filter(Boolean).length).toBeGreaterThan(0)
   })
 })
 
