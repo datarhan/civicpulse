@@ -69,6 +69,15 @@
  * editorial retiene en esa ficha. El porqué de todo, en el bloque ENMIENDA DEL
  * MOTIVO de src/scraper/pleno-finding.ts.
  *
+ * ── `--editor` ──────────────────────────────────────────────────────────────
+ *
+ * Cualquier vía rechaza, antes de leer nada, el hueco de una orden preparada
+ * sin rellenar (`<nombre y apellidos>`, `<tu nombre>`, `…`): con el motivo
+ * relleno, lo publicaría como firmante. Sólo el hueco, porque `--field`,
+ * `--redact` y `--remove` las firma el operador con la cuenta de rol;
+ * `--amend-reason`, además, pide una persona. `rechazoDeMarcador`, en
+ * src/scraper/firma-de-persona.ts.
+ *
  * ── `--dry-run` ─────────────────────────────────────────────────────────────
  *
  * Cualquier vía: valida el snapshot entero como si fuera a escribir, enseña la
@@ -79,7 +88,7 @@ import { readFile, writeFile } from 'node:fs/promises'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { rechazoDeFirma } from '../src/scraper/firma-de-persona'
+import { rechazoDeFirma, rechazoDeMarcador } from '../src/scraper/firma-de-persona'
 import { tramosRetenidosEn, type ProcedenciaLike } from '../src/scraper/literales-retenidos'
 import {
   applyFindingCorrection,
@@ -150,9 +159,14 @@ async function main() {
   if (amendReason != null && !/^\d+$/.test(amendReason)) {
     bail('--amend-reason lleva el índice de una fila de la bitácora de la ficha (0, 1, …)')
   }
+  // Antes de leer nada, en cualquier vía: una orden preparada llega con
+  // `--editor "<nombre y apellidos>"`, y con el motivo relleno el hueco firmaría
+  // una corrección publicada. Sólo el hueco: estas vías las firma el operador
+  // con la cuenta de rol, y esa convención es suya.
+  const hueco = rechazoDeMarcador(editor)
+  if (hueco) bail(`--editor: ${hueco}`)
   if (amendReason != null) {
-    // Antes de leer nada: una orden preparada llega con `<nombre y apellidos>`
-    // y es exactamente lo que no puede firmar una enmienda.
+    // Una enmienda de motivo, además, la firma una persona con su nombre.
     const rechazo = rechazoDeFirma(editor)
     if (rechazo)
       bail(`--editor: una enmienda de motivo la firma una persona, con su nombre: ${rechazo}`)

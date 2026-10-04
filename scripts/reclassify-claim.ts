@@ -13,6 +13,9 @@
  *
  * Validates: the claim exists, its PUBLISHED type is acusacion_publica, the
  * target is a real non-accusation ClaimType, and the reason is ≥20 chars.
+ * `--editor` acepta la cuenta de rol y rechaza, antes de leer nada, el hueco de
+ * una orden preparada sin rellenar (`rechazoDeMarcador`,
+ * src/scraper/firma-de-persona.ts).
  * The rebuild re-applies the sidecar after every future base regeneration, so
  * the correction survives nightly verify runs the same way overlay verdicts do.
  */
@@ -23,6 +26,7 @@ import {
   RECLASSIFICATIONS,
   VERIFIED,
 } from './verified-rebuild'
+import { rechazoDeMarcador } from '../src/scraper/firma-de-persona'
 import { applyReclassificationEntries } from '../src/scraper/verified-merge'
 import type { ClaimType } from '../src/scraper/pleno-claim'
 
@@ -44,6 +48,14 @@ function main() {
     process.stderr.write(
       'usage: npm run reclassify-claim -- <claimId> <tipo> --reason "<≥20 chars>" [--editor name]\n',
     )
+    process.exit(2)
+  }
+  // Antes de leer nada: el hueco de una orden preparada no firma una
+  // reclasificación. Sólo el hueco; la cuenta de rol y el `curator` por defecto,
+  // sí (`rechazoDeMarcador`).
+  const hueco = rechazoDeMarcador(editor)
+  if (hueco) {
+    process.stderr.write(`[reclas] --editor: ${hueco}\n`)
     process.exit(2)
   }
   if (!existsSync(VERIFIED)) {

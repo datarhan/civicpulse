@@ -20,11 +20,16 @@
  * ledger can afford verbatim tombstones and this one cannot. Republishing means
  * publishing a new finding, with a new id and its own evidence.
  *
+ * `--editor` acepta la cuenta de rol con la que firma el operador y rechaza,
+ * antes de leer nada, el hueco de una orden preparada sin rellenar
+ * (`rechazoDeMarcador`, src/scraper/firma-de-persona.ts).
+ *
  * read → validateSnapshot → pure retract → re-validate WHOLE snapshot → write.
  */
 import { readFile, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 
+import { rechazoDeMarcador } from '../src/scraper/firma-de-persona'
 import { validateFindingsSnapshot, type PlenoFindingsSnapshot } from '../src/scraper/pleno-finding'
 import {
   RETRACTION_REASON_MIN,
@@ -57,6 +62,10 @@ async function main() {
   if (reason.trim().length < RETRACTION_REASON_MIN) {
     bail(`--reason must be ≥${RETRACTION_REASON_MIN} chars — it is published beside the tombstone`)
   }
+  // Antes de leer nada: el hueco de una orden preparada no firma una retirada.
+  // Sólo el hueco; la cuenta de rol, sí (`rechazoDeMarcador`).
+  const hueco = rechazoDeMarcador(editor)
+  if (hueco) bail(`--editor: ${hueco}`)
 
   const raw = await readFile(FINDINGS_PATH, 'utf8')
   let snap: PlenoFindingsSnapshot

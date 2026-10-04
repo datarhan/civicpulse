@@ -210,6 +210,47 @@ export const nombraAUnaPersona = (editor: string): boolean => rechazoDeFirma(edi
 
 /**
  * ─────────────────────────────────────────────────────────────────────────────
+ * EL HUECO SIN RELLENAR
+ *
+ * La pregunta pequeña, la de toda vía que publica una firma: ¿es esto el hueco
+ * de una orden preparada que nadie rellenó? La cola de excepción compone
+ * `--editor "<nombre y apellidos>"`; otras colas, `"<tu nombre>"`; las órdenes
+ * de votos e indicadores, `"…"`. Con el motivo relleno y la firma no,
+ * `correct-pleno-finding --field/--redact/--remove`, `retract-finding` y
+ * `reclassify-claim` escribían el hueco como firmante de una corrección
+ * publicada (visto el 30-09-2026).
+ *
+ * No pide una persona: esas vías las firma el operador con la cuenta de rol
+ * (`civicpulse-curator`), y esa convención es suya. Rechaza sólo lo que no
+ * firma nada —una firma sin una sola letra, la sintaxis de un hueco (`<…>`) o
+ * una palabra de PALABRAS_DE_MARCADOR—, así que todo lo que rechaza lo rechaza
+ * también `rechazoDeFirma`.
+ */
+const SINTAXIS_DE_HUECO = /[<>]/
+
+/** Por qué esta firma es el hueco de una orden sin rellenar, o `null` si firma algo. */
+export function rechazoDeMarcador(editor: string): string | null {
+  const firma =
+    typeof editor === 'string' ? editor.normalize('NFC').replace(/\s+/g, ' ').trim() : ''
+  if (!/\p{L}/u.test(firma)) {
+    return firma
+      ? `«${firma}» no tiene ni una letra, es el hueco de una orden preparada: escribe quién firma`
+      : 'la firma está vacía: escribe quién firma'
+  }
+  if (SINTAXIS_DE_HUECO.test(firma)) {
+    return `«${firma}» es el hueco de una orden preparada, sin rellenar: escribe quién firma`
+  }
+  const marcador = llana(firma)
+    .split(/[^\p{L}]+/u)
+    .find((p) => PALABRAS_DE_MARCADOR.has(p))
+  if (marcador) {
+    return `«${firma}» es el marcador de una orden sin rellenar («${marcador}»), no una firma: escribe quién firma`
+  }
+  return null
+}
+
+/**
+ * ─────────────────────────────────────────────────────────────────────────────
  * QUIÉN DECIDIÓ, SEGÚN LA FIRMA
  *
  * La otra pregunta que se le hace a una firma, la de las bajadas de veredicto:
