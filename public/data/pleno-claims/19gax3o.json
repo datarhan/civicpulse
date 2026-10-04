@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T13:04:54.569Z",
+  "generatedAt": "2026-10-04T15:15:31.195Z",
   "version": "1",
   "plenoId": "19gax3o",
   "plenoDate": "2026-01-19",
@@ -7102,7 +7102,7 @@
         "plenoDate": "2026-01-19",
         "segmentIndex": 139,
         "type": "cita_obra",
-        "speakerGroup": null,
+        "speakerGroup": "PSOE",
         "verbatim": "un complejo que en la piscina no se puede hacer competiciones",
         "context": "...ni decir la verdad un complejo que en la piscina no se puede hacer competiciones porque se ve mal teniendo un club de adaptación de primer orden que teníamos y no se puede...",
         "topic": "urbanismo",
@@ -7111,7 +7111,11 @@
         },
         "confidence": 0.69,
         "reasoning": "Afirmación sobre las características/uso de una instalación concreta; puede contrastarse con el proyecto, licencias o normativa de la piscina.",
-        "requiresHumanApproval": true
+        "requiresHumanApproval": true,
+        "atribucionFirmada": {
+          "desde": 6628,
+          "hasta": 6795
+        }
       },
       "verification": {
         "claimId": "19gax3o-139-cit-be1832",

@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-10-04T07:37:32.197Z",
-  "composedAt": "2026-10-04T13:04:53.377Z",
+  "composedAt": "2026-10-04T15:15:29.893Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
@@ -31185,7 +31185,7 @@
         "plenoDate": "2026-05-11",
         "segmentIndex": 54,
         "type": "acusacion_publica",
-        "speakerGroup": null,
+        "speakerGroup": "PSOE",
         "verbatim": "¿Dónde está? Bueno. Él ya sabemos dónde está. Bueno. No se sabe muy bien dónde está. La pasarela sí que sabemos que no está.",
         "context": "Creo que el presidente. Bueno. El expresidente Carlos Mazón. Vino a este municipio. A decir que haría la pasarela. ¿Dónde está? Bueno. Él ya sabemos dónde está. Bueno. No se sabe muy bien dónde está. La pasarela sí que sabemos que no está.",
         "topic": "movilidad",
@@ -31195,7 +31195,11 @@
         "accusationSubtype": "factual",
         "confidence": 0.9,
         "reasoning": "Se menciona un compromiso del expresidente Carlos Mazón sobre la construcción de una pasarela, que se puede verificar si efectivamente se realizó o no.",
-        "requiresHumanApproval": true
+        "requiresHumanApproval": true,
+        "atribucionFirmada": {
+          "desde": 2400,
+          "hasta": 2594
+        }
       },
       "verification": {
         "claimId": "10yl550-054-acu-a487ce",
@@ -32724,7 +32728,7 @@
         "plenoDate": "2026-05-11",
         "segmentIndex": 92,
         "type": "acusacion_publica",
-        "speakerGroup": null,
+        "speakerGroup": "PP",
         "verbatim": "Votar en contra de la protección civil del Ayuntamiento de Rivarrocha.",
         "context": "Esmena presentado el 17 de marzo por el Partido Popular para dotar en más dinero a la protección civil del Ayuntamiento de Rivarrocha. ¿Sabe lo que hace usted? Votar en contra de la protección civil del Ayuntamiento de Rivarrocha.",
         "topic": "seguridad",
@@ -32735,7 +32739,11 @@
         "accusationSubtype": "factual",
         "confidence": 0.8,
         "reasoning": "Se menciona una acción específica del Partido Popular en relación a la protección civil, que puede ser verificada a través de actas de votación.",
-        "requiresHumanApproval": true
+        "requiresHumanApproval": true,
+        "atribucionFirmada": {
+          "desde": 4014,
+          "hasta": 4150
+        }
       },
       "verification": {
         "claimId": "10yl550-092-acu-ea9d47",
@@ -33233,7 +33241,7 @@
         "plenoDate": "2026-05-11",
         "segmentIndex": 106,
         "type": "acusacion_publica",
-        "speakerGroup": null,
+        "speakerGroup": "PSOE",
         "verbatim": "porque volvía a llevar 8.000 euros del Partido Popular, José Luis, del Partido Popular. 8.000 euros de la Policía Local para que modificáramos partida.",
         "context": "Dos cosas que son importantes. Bueno, está la moción de presentar al Partido Popular y así on demanda que enmienda 2, al que votaremos en contra, porque volvía a llevar 8.000 euros del Partido Popular, José Luis, del Partido Popular. 8.000 euros de la Policía Local para que modificáramos partida.",
         "topic": "fiscal",
@@ -33246,7 +33254,11 @@
         "accusationSubtype": "factual",
         "confidence": 0.9,
         "reasoning": "Se menciona una cifra específica de 8.000 euros relacionada con la Policía Local y una modificación de partida, lo que permite verificar la existencia de esta partida en el presupuesto.",
-        "requiresHumanApproval": true
+        "requiresHumanApproval": true,
+        "atribucionFirmada": {
+          "desde": 4412,
+          "hasta": 4612
+        }
       },
       "verification": {
         "claimId": "10yl550-106-acu-dd1a86",
@@ -37662,7 +37674,7 @@
         "plenoDate": "2026-05-11",
         "segmentIndex": 254,
         "type": "cita_obra",
-        "speakerGroup": null,
+        "speakerGroup": "PSOE",
         "verbatim": "seguimiento del Plan Económico y Financiero que aprobaremos en el 2025.",
         "context": "Sí, en este caso lo que damos cuenta es el seguimiento del Plan Económico y Financiero que aprobaremos en el 2025.",
         "topic": "fiscal",
@@ -37672,7 +37684,11 @@
         },
         "confidence": 0.9,
         "reasoning": "Se menciona un plan específico que se aprobará en el futuro, lo que permite verificar su existencia y seguimiento.",
-        "requiresHumanApproval": true
+        "requiresHumanApproval": true,
+        "atribucionFirmada": {
+          "desde": 10840,
+          "hasta": 10855
+        }
       },
       "verification": {
         "claimId": "10yl550-254-cit-cb6e5f",
@@ -40054,7 +40070,7 @@
         "plenoDate": "2026-05-11",
         "segmentIndex": 300,
         "type": "acusacion_publica",
-        "speakerGroup": null,
+        "speakerGroup": "PSOE",
         "verbatim": "el día 16 de marzo ustedes votaron en contra un presupuesto donde llevaba 550.000 euros para el comercio local.",
         "context": "Pero es que voy a más al colmo. Es que el día 16 de marzo ustedes votaron en contra un presupuesto donde llevaba 550.000 euros para el comercio local.",
         "topic": "fiscal",
@@ -40068,7 +40084,11 @@
         "accusationSubtype": "factual",
         "confidence": 0.9,
         "reasoning": "Se menciona una votación en contra de un presupuesto específico con una cifra concreta, lo que puede ser verificado en los registros de votación del pleno.",
-        "requiresHumanApproval": true
+        "requiresHumanApproval": true,
+        "atribucionFirmada": {
+          "desde": 12650,
+          "hasta": 12770
+        }
       },
       "verification": {
         "claimId": "10yl550-300-acu-ae5a28",
@@ -92096,7 +92116,7 @@
         "plenoDate": "2026-01-19",
         "segmentIndex": 139,
         "type": "cita_obra",
-        "speakerGroup": null,
+        "speakerGroup": "PSOE",
         "verbatim": "un complejo que en la piscina no se puede hacer competiciones",
         "context": "...ni decir la verdad un complejo que en la piscina no se puede hacer competiciones porque se ve mal teniendo un club de adaptación de primer orden que teníamos y no se puede...",
         "topic": "urbanismo",
@@ -92105,7 +92125,11 @@
         },
         "confidence": 0.69,
         "reasoning": "Afirmación sobre las características/uso de una instalación concreta; puede contrastarse con el proyecto, licencias o normativa de la piscina.",
-        "requiresHumanApproval": true
+        "requiresHumanApproval": true,
+        "atribucionFirmada": {
+          "desde": 6628,
+          "hasta": 6795
+        }
       },
       "verification": {
         "claimId": "19gax3o-139-cit-be1832",
@@ -108474,7 +108498,7 @@
         "plenoDate": "2025-12-01",
         "segmentIndex": 39,
         "type": "cita_obra",
-        "speakerGroup": null,
+        "speakerGroup": "PSOE",
         "verbatim": "trabajamos no para un conservatorio para dos conservatorios y lo hicimos",
         "context": "...y en Juanjo que es el director del conservatorio de música trabajamos no para un conservatorio para dos conservatorios y lo hicimos porque hay que recordar que cuando gober",
         "topic": "cultura",
@@ -108485,7 +108509,11 @@
         },
         "confidence": 0.8,
         "reasoning": "Describe un proyecto relativo a dos conservatorios; puede verificarse en expedientes, acuerdos o planificación municipal sobre equipamientos culturales.",
-        "requiresHumanApproval": true
+        "requiresHumanApproval": true,
+        "atribucionFirmada": {
+          "desde": 4016,
+          "hasta": 4095
+        }
       },
       "verification": {
         "claimId": "qz6weg-039-cit-bef239",

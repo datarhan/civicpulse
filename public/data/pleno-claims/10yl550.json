@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T13:04:54.569Z",
+  "generatedAt": "2026-10-04T15:15:31.195Z",
   "version": "1",
   "plenoId": "10yl550",
   "plenoDate": "2026-05-11",
@@ -5177,7 +5177,7 @@
         "plenoDate": "2026-05-11",
         "segmentIndex": 254,
         "type": "cita_obra",
-        "speakerGroup": null,
+        "speakerGroup": "PSOE",
         "verbatim": "seguimiento del Plan Económico y Financiero que aprobaremos en el 2025.",
         "context": "Sí, en este caso lo que damos cuenta es el seguimiento del Plan Económico y Financiero que aprobaremos en el 2025.",
         "topic": "fiscal",
@@ -5187,7 +5187,11 @@
         },
         "confidence": 0.9,
         "reasoning": "Se menciona un plan específico que se aprobará en el futuro, lo que permite verificar su existencia y seguimiento.",
-        "requiresHumanApproval": true
+        "requiresHumanApproval": true,
+        "atribucionFirmada": {
+          "desde": 10840,
+          "hasta": 10855
+        }
       },
       "verification": {
         "claimId": "10yl550-254-cit-cb6e5f",
