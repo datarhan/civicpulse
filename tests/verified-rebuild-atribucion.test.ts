@@ -5,6 +5,8 @@ import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import {
   atribucionesDeBloc,
+  cargarCapas,
+  componer,
   rebuildEmpobreceAtribucion,
   ANULAR_GUARDA_ATRIBUCION,
   ANULAR_GUARDA_ACUSACIONES,
@@ -101,15 +103,22 @@ describe.skipIf(SIN_BASE)(
       const publicado = JSON.parse(readFileSync(VERIFIED, 'utf8'))
       const base = JSON.parse(readFileSync(BASE, 'utf8'))
       const antes = atribucionesDeBloc(publicado.items ?? [])
-      const enBase = atribucionesDeBloc(base.items ?? [])
+      // Lo que publicaría la recomposición —la base con sus capas encima—, que es
+      // contra lo que compara la guarda. Desde #229 una de esas capas, las
+      // atribuciones firmadas, pone grupos que la base no trae: con siete firmas
+      // (04-10-2026), contar sólo la base daba «más pobre que lo publicado» y
+      // esto corría el rebuild real esperando un aborto que no tenía por qué
+      // llegar; el rebuild, sin abortar, reescribía lo publicado.
+      const recompuesto = atribucionesDeBloc(componer(base.items ?? [], cargarCapas()).items)
 
-      // Prueba de trabajo: si la base dejara de ser más pobre que lo publicado
-      // —porque alguien la regenerara bien, que es el arreglo de fondo— este test
-      // estaría comprobando el caso feliz creyendo comprobar la guarda. Entonces
-      // se salta diciéndolo, en vez de pasar en verde sin medir nada.
-      if (enBase >= antes) {
+      // Prueba de trabajo: si la recomposición dejara de ser más pobre que lo
+      // publicado —porque alguien regenerara bien la base, que es el arreglo de
+      // fondo— este test estaría comprobando el caso feliz creyendo comprobar la
+      // guarda. Entonces se salta diciéndolo, en vez de pasar en verde sin medir
+      // nada.
+      if (recompuesto >= antes) {
         expect(
-          enBase,
+          recompuesto,
           'la base ya no empobrece: este caso no puede reproducirse y no se ha probado la guarda',
         ).toBeGreaterThanOrEqual(antes)
         return
