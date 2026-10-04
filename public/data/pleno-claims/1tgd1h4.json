@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T07:35:10.298Z",
+  "generatedAt": "2026-10-04T07:37:33.528Z",
   "version": "1",
   "plenoId": "1tgd1h4",
   "plenoDate": "2024-07-29",
@@ -24097,7 +24097,7 @@
         "plenoDate": "2024-07-29",
         "segmentIndex": 315,
         "type": "afirmacion_numerica",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "Portem en el que va d'any 21 dones assassinades i 1.265 des de 1 de gener de 2003.",
         "context": "Desafortunadament, any rere any, assistim a un augment de la violència masclista durant l'estiu i, sembla, que 2024 no serà diferent. Portem en el que va d'any 21 dones assassinades i 1.265 des de 1 de gener de 2003.",
         "topic": "social",
