@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T07:37:33.528Z",
+  "generatedAt": "2026-10-04T13:04:54.569Z",
   "version": "1",
   "plenos": [
     {
@@ -239,10 +239,9 @@
       "plenoDate": "2026-03-09",
       "chunkPath": "pleno-claims/1sqj7is.json",
       "itemCount": 89,
-      "toggleCount": 88,
+      "toggleCount": 89,
       "byVerdict": {
-        "sin-datos": 88,
-        "parcial": 1
+        "sin-datos": 89
       },
       "byType": {
         "promesa": 21,
@@ -259,7 +258,7 @@
         "medio-ambiente": 2,
         "vivienda": 12
       },
-      "bytes": 137682
+      "bytes": 136592
     },
     {
       "plenoId": "rx4hb4",
@@ -658,14 +657,14 @@
     "items": 4962,
     "plenos": 23,
     "byVerdict": {
-      "sin-datos": 4946,
-      "parcial": 14,
+      "sin-datos": 4947,
+      "parcial": 13,
       "verificado": 2
     },
     "byTopicVerdict": {
       "fiscal": {
-        "sin-datos": 849,
-        "parcial": 2
+        "sin-datos": 850,
+        "parcial": 1
       },
       "empleo": {
         "sin-datos": 215
@@ -860,7 +859,7 @@
     "sinDatosPorque": {
       "sinCorpus": 2025,
       "comprobadoSinHallar": 2046,
-      "noConsta": 875
+      "noConsta": 876
     }
   }
 }

@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-10-04T07:37:32.197Z",
-  "composedAt": "2026-10-04T07:37:32.316Z",
+  "composedAt": "2026-10-04T13:04:53.377Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
@@ -9,15 +9,15 @@
     "total": 7564,
     "byVerdict": {
       "verificado": 2,
-      "parcial": 14,
+      "parcial": 13,
       "contradicho": 0,
-      "sin-datos": 7548,
+      "sin-datos": 7549,
       "promesa-repetida": 0
     },
     "sinDatosPorque": {
       "sinCorpus": 3331,
       "comprobadoSinHallar": 3037,
-      "noConsta": 1180
+      "noConsta": 1181
     }
   },
   "items": [
@@ -63418,34 +63418,14 @@
       },
       "verification": {
         "claimId": "1sqj7is-053-pro-68944b",
-        "verdict": "parcial",
-        "summary": "Baja de «Verificado» a «Parcial»: los contratos derivados del sistema dinámico de adquisición confirman que ese mecanismo se usa, pero que sirva para mejorar la forma de contratar es una opinión.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4roXkK9o42irz3GQd5r6SQ%3D%3D",
-            "snippet": "Contrato derivado del sistema dinámico de adquisición de servicios para TALLERES de INFORMÁTICA en la EPA.",
-            "similarity": 0.57
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HOevTJeejQESugstABGr5A%3D%3D",
-            "snippet": "Contrato para alumbrado público en acceso al Pou d’Escoto, derivado del sistema dinámico de adquisición (SDA) de suministro de material de electricidad.",
-            "similarity": 0.29
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2FxOcSrQ966OcCF8sV%2BqtYA%3D%3D",
-            "snippet": "Contratación derivada del sistema dinámico de adquisición (SDA) de servicios de diversa índole, para la prestación del servicio de TALLER DE INGLÉS a impartir en la Escuela Pública de Adultos. Ctto. 145/2023b.",
-            "similarity": 0.29
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Baja de «Parcial» a «Sin datos»: el «Parcial» rebajaba un «Verificado» de una pasada automática ya retirada, apoyado en tres contratos derivados del sistema dinámico de adquisición. Esos contratos muestran que el mecanismo se usa, no que reduzca los reconocimientos extrajudiciales, y en los datos con los que hoy cotejamos la afirmación no consta nada que la sostenga.",
+        "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
         ],
         "source": "curator-downgrade",
-        "downgradedBy": "automatica",
-        "reasonSignedBy": "Sergei Lutchenko"
+        "downgradedBy": "persona"
       }
     },
     {
