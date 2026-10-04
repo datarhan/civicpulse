@@ -853,6 +853,10 @@ export const CATALOGUE = {
     'plenoDetail.empty.votes':
       'Todavía no hemos transcrito las votaciones del acta de esta sesión. No significa que no las hubiera.',
     'plenoDetail.votesPending': 'sin transcribir',
+    // La nota de la ficha de votaciones cuando hay alguna: el número a secas se leía
+    // como las votaciones de la sesión, y son las que hemos transcrito.
+    'plenoDetail.votesTranscribed.uno': 'transcrita',
+    'plenoDetail.votesTranscribed.varios': 'transcritas',
     'plenoDetail.extractionPending': 'sin extraer',
     'plenoDetail.empty.findings': 'Sin hallazgos editoriales para esta sesión.',
     // "Todavía no lo hemos recogido" ≠ "no hubo puntos". La sesión se celebró;
@@ -865,6 +869,20 @@ export const CATALOGUE = {
       'Sesión registrada. Aún no hay votaciones transcritas, declaraciones contrastables ni hallazgos para esta sesión.',
     'plenoDetail.empty.summaryNoAgenda':
       'Sesión registrada. Todavía no hemos recogido su orden del día, y aún no hay votaciones transcritas, declaraciones contrastables ni hallazgos.',
+    // La línea del resumen, pieza a pieza, en singular y en plural. «Transcritas»,
+    // como el índice de /plenos: son las votaciones que hemos transcrito, no las
+    // que hubo, y detrás va el aviso del índice (`plenos.indice.lede.aviso`).
+    'plenoDetail.line.agenda.uno': '{n} punto en el orden del día',
+    'plenoDetail.line.agenda.varios': '{n} puntos en el orden del día',
+    'plenoDetail.line.votes.uno': '{n} votación transcrita ({aprobadas})',
+    'plenoDetail.line.votes.varios': '{n} votaciones transcritas ({aprobadas})',
+    'plenoDetail.line.approved.uno': '{n} aprobada',
+    'plenoDetail.line.approved.varios': '{n} aprobadas',
+    'plenoDetail.line.declarations.uno': '{n} declaración contrastada',
+    'plenoDetail.line.declarations.varios': '{n} declaraciones contrastadas',
+    'plenoDetail.line.declarationsPending': 'declaraciones sin extraer',
+    'plenoDetail.line.findings.uno': '{n} hallazgo editorial',
+    'plenoDetail.line.findings.varios': '{n} hallazgos editoriales',
 
     // Quejas empty state
     'quejas.empty.title': 'El canal de quejas ciudadanas ya está abierto — no hay datos todavía',
@@ -2515,6 +2533,8 @@ export const CATALOGUE = {
     'plenoDetail.empty.votes':
       "Encara no hem transcrit les votacions de l'acta d'aquesta sessió. No vol dir que no n'hi haguera.",
     'plenoDetail.votesPending': 'sense transcriure',
+    'plenoDetail.votesTranscribed.uno': 'transcrita',
+    'plenoDetail.votesTranscribed.varios': 'transcrites',
     'plenoDetail.extractionPending': 'sense extraure',
     'plenoDetail.empty.findings': 'Sense troballes editorials per a aquesta sessió.',
     'plenoDetail.agendaPending': 'sense recollir',
@@ -2525,6 +2545,17 @@ export const CATALOGUE = {
       'Sessió registrada. Encara no hi ha votacions transcrites, declaracions contrastables ni troballes per a aquesta sessió.',
     'plenoDetail.empty.summaryNoAgenda':
       'Sessió registrada. Encara no hem recollit el seu ordre del dia, i encara no hi ha votacions transcrites, declaracions contrastables ni troballes.',
+    'plenoDetail.line.agenda.uno': '{n} punt en l’ordre del dia',
+    'plenoDetail.line.agenda.varios': '{n} punts en l’ordre del dia',
+    'plenoDetail.line.votes.uno': '{n} votació transcrita ({aprobadas})',
+    'plenoDetail.line.votes.varios': '{n} votacions transcrites ({aprobadas})',
+    'plenoDetail.line.approved.uno': '{n} aprovada',
+    'plenoDetail.line.approved.varios': '{n} aprovades',
+    'plenoDetail.line.declarations.uno': '{n} declaració contrastada',
+    'plenoDetail.line.declarations.varios': '{n} declaracions contrastades',
+    'plenoDetail.line.declarationsPending': 'declaracions sense extraure',
+    'plenoDetail.line.findings.uno': '{n} troballa editorial',
+    'plenoDetail.line.findings.varios': '{n} troballes editorials',
 
     'quejas.empty.title': 'El canal de queixes ciutadanes ja està obert — encara no hi ha dades',
     // Per què un càrrec no porta xifres de resposta. El termini de la LPACAP
