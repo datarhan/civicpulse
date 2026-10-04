@@ -834,7 +834,14 @@ export function ListaDeCotejos({ crossChecked, contradiction, plenoDate, ficha }
  *   cada hueco y cada línea de la nota lo nombran, porque los números de cita
  *   son por ficha y la ficha de al lado tiene los mismos
  */
-export function CitasDeLaFicha({ quotes, prov, curatorName, colorDeGrupo = false, ficha }) {
+export function CitasDeLaFicha({
+  quotes,
+  prov,
+  curatorName,
+  colorDeGrupo = false,
+  ficha,
+  pie = null,
+}) {
   return (
     <>
       <ol style={{ listStyle: 'none', margin: 0, padding: 0 }}>
@@ -868,6 +875,7 @@ export function CitasDeLaFicha({ quotes, prov, curatorName, colorDeGrupo = false
           )
         })}
       </ol>
+      {pie}
       <QuoteProvenanceNote
         entries={prov.slice(0, quotes.length)}
         quotes={quotes}
@@ -875,6 +883,28 @@ export function CitasDeLaFicha({ quotes, prov, curatorName, colorDeGrupo = false
         ficha={ficha}
       />
     </>
+  )
+}
+
+/** «y N citas más en la ficha →», enlazado a la ficha permanente. */
+export function CitasDeMas({ f, ficha }) {
+  const t = useT()
+  const n = f.quotes.length - 3
+  const texto = t(n === 1 ? 'findings.card.moreQuotes.one' : 'findings.card.moreQuotes.other')
+    .replace('{n}', String(n))
+    .replace('{ficha}', ficha)
+  return (
+    <a
+      href={`/hallazgos/${f.id}`}
+      style={{
+        display: 'inline-block',
+        marginTop: 6,
+        fontSize: 'var(--fs-aux)',
+        color: 'var(--civic)',
+      }}
+    >
+      {texto}
+    </a>
   )
 }
 
@@ -928,7 +958,14 @@ export function FindingCard({ f }) {
             prov={prov}
             curatorName={f.curatorName}
             ficha={ficha}
+            pie={f.quotes.length > 3 ? <CitasDeMas f={f} ficha={ficha} /> : null}
           />
+          {/* El sumario se escribe con TODAS las citas y la tarjeta enseña tres:
+              una frase que se apoya en la cuarta quedaba sin respaldo a la
+              vista, junto a una cita «sin atribuir» del mismo asunto. La
+              revisión lectora lo señaló en /plenos/k4olcs (f-2026-04-20-cit-
+              b9b013). La ficha permanente las imprime todas; aquí se dice
+              cuántas faltan y dónde están, justo debajo de las que enseña. */}
         </div>
       )}
       {/* El vídeo del pleno sale de la lista de cotejos y se declara por lo que
