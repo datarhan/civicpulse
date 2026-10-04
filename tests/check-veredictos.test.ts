@@ -1,5 +1,6 @@
-import { describe, it, expect } from 'vitest'
-import { cotejarVeredicto, ESTADOS_VEREDICTO } from '../scripts/check-veredictos'
+import { describe, it, expect, vi } from 'vitest'
+import { cotejarVeredicto, cotejarConBase, ESTADOS_VEREDICTO } from '../scripts/check-veredictos'
+import type { Overlay, VerifiedItem } from '../src/scraper/verified-merge'
 
 /**
  * Cinco desenlaces, y el reparto es lo que hace la guarda usable.
@@ -78,5 +79,121 @@ describe('cotejarVeredicto · qué sostiene un veredicto ya publicado', () => {
     expect([...ESTADOS_VEREDICTO].sort()).toEqual(
       ['curado', 'fundado', 'procedencia-retirada', 'sin-corpus', 'sin-publicar'].sort(),
     )
+  })
+})
+
+/**
+ * El segundo cotejo: lo que el overlay publica, contra la base de hoy.
+ *
+ * `curado` sale 0 porque «bajar un veredicto nunca refuerza una afirmación». Eso
+ * vale mientras la entrada baje respecto de la base; si la base se movió por
+ * debajo, la entrada ya no baja nada y lo publicado queda por encima de lo que
+ * encuentra el verificador. El 04-10-2026 le pasaba a 1sqj7is-053-pro-68944b.
+ */
+describe('cotejarConBase · lo que el overlay publica, contra la base de hoy', () => {
+  const SELLO = '2026-10-04T07:37:32.197Z'
+  const MOTIVO = 'el contrato muestra que el mecanismo se usa, no lo que se afirma de él'
+  const fila = (id: string, verdict: string): VerifiedItem =>
+    ({
+      claim: { id },
+      verification: { claimId: id, verdict, summary: 's', evidence: [], checkedAgainst: [] },
+    }) as unknown as VerifiedItem
+  const entrada = (id: string, verdict: string, source: string) => ({
+    verification: { claimId: id, verdict, summary: MOTIVO, evidence: [], checkedAgainst: [] },
+    source,
+    reason: MOTIVO,
+    appliedAt: '2026-06-24T07:18:12.464Z',
+  })
+  const overlay = {
+    version: 1,
+    generatedAt: SELLO,
+    entries: {
+      'encima-servida': entrada('encima-servida', 'parcial', 'curator-downgrade'),
+      'encima-oculta': entrada('encima-oculta', 'parcial', 'curator-downgrade'),
+      baja: entrada('baja', 'parcial', 'curator-downgrade'),
+      igual: entrada('igual', 'sin-datos', 'verdict-engine'),
+      fantasma: entrada('fantasma', 'sin-datos', 'verdict-engine'),
+    },
+  } as unknown as Overlay
+  const base = {
+    generatedAt: SELLO,
+    items: [
+      fila('encima-servida', 'sin-datos'),
+      fila('encima-oculta', 'sin-datos'),
+      fila('baja', 'verificado'),
+      fila('igual', 'sin-datos'),
+    ],
+  }
+
+  it('nombra cada entrada por encima de su base y cómo se sirve, también la que no se sirve', () => {
+    const c = cotejarConBase({
+      base,
+      overlay,
+      servidas: new Map([['encima-servida', 'shown']]),
+      publicadoGeneratedAt: SELLO,
+    })
+    expect(c.estado).toBe('cotejado')
+    expect(c.porEncima).toEqual([
+      {
+        id: 'encima-servida',
+        base: 'sin-datos',
+        publica: 'parcial',
+        source: 'curator-downgrade',
+        servida: 'shown',
+      },
+      {
+        id: 'encima-oculta',
+        base: 'sin-datos',
+        publica: 'parcial',
+        source: 'curator-downgrade',
+        servida: 'no-servida',
+      },
+    ])
+  })
+
+  it('cuenta lo que cotejó, y la que no tiene claim en la base va aparte y nombrada', () => {
+    const c = cotejarConBase({ base, overlay, servidas: new Map(), publicadoGeneratedAt: SELLO })
+    expect(c.sinClaim).toEqual(['fantasma'])
+    expect({ entradas: c.entradas, bajan: c.bajan, iguales: c.iguales }).toEqual({
+      entradas: 5,
+      bajan: 1,
+      iguales: 1,
+    })
+    expect({ base: c.baseGeneratedAt, publicado: c.publicadoGeneratedAt }).toEqual({
+      base: SELLO,
+      publicado: SELLO,
+    })
+  })
+
+  it('sin base en disco no coteja nada y lo dice: SALTADO, nunca «0 por encima»', () => {
+    const c = cotejarConBase({
+      base: null,
+      overlay,
+      servidas: new Map([['encima-servida', 'shown']]),
+      publicadoGeneratedAt: SELLO,
+    })
+    expect(c.estado).toBe('sin-base')
+    expect(c.entradas).toBe(0)
+    expect(c.porEncima).toEqual([])
+    expect(c.motivo).toMatch(/base/)
+  })
+})
+
+describe('el módulo se importa sin comprobar nada', () => {
+  // Las pruebas importan `cotejarVeredicto`. Si `main()` corriera al importar,
+  // leería los trozos reales y, con una entrada por encima de su base en disco,
+  // su `process.exit(1)` tumbaría al trabajador de vitest.
+  it('importarlo no escribe el parte de la comprobación', async () => {
+    vi.resetModules()
+    const escrito = vi.spyOn(process.stdout, 'write')
+    try {
+      await import('../scripts/check-veredictos')
+      const parte = escrito.mock.calls
+        .map(([t]) => String(t))
+        .filter((t) => t.startsWith('[check-veredictos]'))
+      expect(parte).toEqual([])
+    } finally {
+      escrito.mockRestore()
+    }
   })
 })
