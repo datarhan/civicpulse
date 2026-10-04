@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T15:15:31.195Z",
+  "generatedAt": "2026-10-04T17:23:05.282Z",
   "version": "1",
   "plenoId": "1237hbp",
   "plenoDate": "2026-07-03",
@@ -54,9 +54,10 @@
       "verification": {
         "claimId": "1237hbp-004-cit-df8455",
         "verdict": "sin-datos",
-        "summary": "Task was a Spanish fact-checking reasoning exercise (not a coding task), so no development skill applied. I provided skeptical reasoning in Spanish (no verdict) comparing the vague claim about a company award at a Sept 8 plenary session against three PAVASAL road-improvement tender records that lack",
+        "summary": "La afirmación es una cita vaga: el orador recuerda que en un pleno del 8 de septiembre se adjudicó a una empresa de la que estaban contentos por ser una mejora respecto a lo anterior.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -707,9 +708,10 @@
       "verification": {
         "claimId": "1237hbp-046-cit-df61b1",
         "verdict": "sin-datos",
-        "summary": "Se proporcionó el razonamiento en español en el cuerpo de la respuesta, evaluando escépticamente los 6 candidatos frente a la afirmación sobre un contrato con FCC del 12/03/2026 que sustituía a Garbialdi. Ningún candidato menciona a FCC ni coincide en fecha; todos muestran a Garbialdi como adjudicat",
+        "summary": "Ningún candidato respalda genuinamente la afirmación. La afirmación habla de un contrato de emergencia del 12 de marzo de 2026 con FCC que sustituía a Garbialdi (servicio de residuos/limpieza).",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -1520,9 +1522,10 @@
       "verification": {
         "claimId": "1237hbp-093-afi-8e84d6",
         "verdict": "sin-datos",
-        "summary": "Se proporcionó el razonamiento en español evaluando los 8 candidatos frente a la afirmación sobre los 4000 euros. Conclusión del razonamiento (sin veredicto final, según instrucciones): ningún candidato coincide simultáneamente en importe exacto y en sujeto/tema. El candidato [2] coincide en cifra e",
+        "summary": "La afirmación es una opinión política sobre un pleno que \"el pueblo se podría haber salvado\" porque cuesta 4000 euros (probablemente el coste de celebrar el pleno o de un gasto asociado a residuos).",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,

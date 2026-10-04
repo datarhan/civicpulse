@@ -45,8 +45,14 @@ const porId = new Map(servidas.map((it) => [it.claim.id, it]))
 const MARCAS_DE_CHARLA =
   /superpowers|\bskills?\b|Task (completed|was)|\breasoned in Spanish\b|Provided the requested|texto de respuesta|respuesta de texto|cuerpo de la respuesta|respuesta al usuario|Se (solicitó|pidió) razona|no emitir veredicto|sin emitir (un )?veredicto|razonamiento (escéptico )?solicitado|Tarea de (fact-checking|verificación|razonamiento)/i
 
-/** Una fila de charla que la lista retira: la que habla de «superpowers». */
-const CHARLA = '10yl550-323-cit-fb13f0'
+/**
+ * Una fila de charla que la lista retira: «Task completed: provided skeptical
+ * fact-check reasoning…». Era la que hablaba de «superpowers»
+ * (10yl550-323-cit-fb13f0), hasta que la vía `--ids` de #185 la re-derivó el
+ * 04-10-2026 y salió de la lista con su explicación nueva. Ésta es de las 20 que
+ * se quedan: re-derivada, el modelo ve ahora respaldo, y la decide un curador.
+ */
+const CHARLA = '19gax3o-143-cit-a3a7a1'
 /**
  * Un resumen del motor que se queda: dice «la respuesta del Ayuntamiento», que
  * es de lo que trata la cita, no de la tarea del modelo.

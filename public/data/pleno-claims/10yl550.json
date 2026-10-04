@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T15:15:31.195Z",
+  "generatedAt": "2026-10-04T17:23:05.282Z",
   "version": "1",
   "plenoId": "10yl550",
   "plenoDate": "2026-05-11",
@@ -433,9 +433,10 @@
       "verification": {
         "claimId": "10yl550-019-afi-d5abfe",
         "verdict": "sin-datos",
-        "summary": "Task was a Spanish fact-checking reasoning request about a municipal claim regarding land expropriation. Reviewed all 8 tender candidates: none are expropriation records — they are service/supply/works contracts (maintenance, lighting, fuel, fair stalls, lake waterproofing). No amount matches €277.1",
+        "summary": "La afirmación habla de expropiaciones de parcelas (Mas de Escoto y carrera Lleabader) para zonas verdes urbanas por 277.160 euros.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -648,9 +649,10 @@
       "verification": {
         "claimId": "10yl550-023-cit-7e3daa",
         "verdict": "sin-datos",
-        "summary": "Task completed: reasoned in Spanish about candidate support for the claim, concluding no genuine support exists. No coding/skill workflow applicable since this is a pure analytical fact-checking reasoning task, not a software engineering task.",
+        "summary": "La afirmación es una cita sobre un hecho histórico-político: que en el anterior gobierno autonómico de Ximo Puig estaba previsto un centro integral de formación para la ocupación (FP y certificado de profesionalidad).",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -1256,9 +1258,10 @@
       "verification": {
         "claimId": "10yl550-037-cit-b6051b",
         "verdict": "sin-datos",
-        "summary": "Analicé el único candidato disponible (contrato de \"Atención inteligente municipal\") frente a la afirmación sobre la ampliación de una pasarela de un puente. No hay coincidencia temática, de entidad ni de valores concretos (importe/fecha/sujeto). Concluí que no hay respaldo genuino, solo he razonado",
+        "summary": "La afirmación es una opinión/reivindicación política: que la solución viable es ampliar la pasarela del puente principal, \"que llevamos exigiendo desde hace años\". No contiene importe, fecha ni sujeto concreto verificable en registros de contratación.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -2934,9 +2937,10 @@
       "verification": {
         "claimId": "10yl550-158-cit-73d3cf",
         "verdict": "sin-datos",
-        "summary": "Task completed: reasoned in Spanish about whether the candidate supports the claim, concluding no genuine support due to entity mismatch (mercado municipal físico vs mercado residencial/vivienda legal concept) - only lexical coincidence on \"mercado\". No skill or tool use was needed for this direct f",
+        "summary": "La afirmación es una cita de una ley estatal (Ley de Vivienda) que crea la figura de las \"zonas de mercado residencial tensionado\" y permite a las comunidades autónomas intervenir.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -3244,9 +3248,10 @@
       "verification": {
         "claimId": "10yl550-165-cit-3bf9ea",
         "verdict": "sin-datos",
-        "summary": "Reasoned in Spanish about lack of support; no tool calls needed beyond analysis.",
+        "summary": "La afirmación es una caracterización general del tipo de vivienda que se construye en Riba-roja (de uso particular, para vender, a diferencia de los pueblos vecinos).",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -4435,9 +4440,10 @@
       "verification": {
         "claimId": "10yl550-220-acu-0101aa",
         "verdict": "sin-datos",
-        "summary": "Se solicitó razonar (no emitir veredicto) sobre si los candidatos respaldan la afirmación. Análisis: la afirmación es una opinión política sobre la constitucionalidad de la ley de vivienda estatal, sin cifras/fechas/sujetos verificables. Los candidatos son contratos municipales no relacionados (soft",
+        "summary": "La afirmación es una valoración política/jurídica sobre la constitucionalidad de la ley estatal de vivienda (que no habría recurso y que es constitucional).",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -5290,9 +5296,10 @@
       "verification": {
         "claimId": "10yl550-259-afi-8a2a47",
         "verdict": "sin-datos",
-        "summary": "Task completed: provided skeptical fact-check reasoning in Spanish directly in the response text, concluding no candidate genuinely supports the claim about PIE (participación en ingresos del Estado) rising from 4M to 8.4M euros, since all candidates relate to unrelated subvenciones/contratos with m",
+        "summary": "La afirmación habla de una evolución de la participación en los ingresos del Estado (PIE/PTE) de unos 4 millones a casi 8,4 millones de euros a lo largo de distintos gobiernos.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -5415,9 +5422,10 @@
       "verification": {
         "claimId": "10yl550-261-cit-8b0e74",
         "verdict": "sin-datos",
-        "summary": "Task completed: reasoned in Spanish about lack of support from candidates for the fiscal liquidation claim, as requested. No coding/skill workflow applicable since this is a fact-checking reasoning task, not a software engineering task.",
+        "summary": "La afirmación sostiene que la liquidación del ejercicio 2025 cumple los objetivos del plan económico financiero 2025-2026 (art. 22.2 del RD 1463/2007). Para verificarla haría falta un dato de liquidación presupuestaria (estabilidad, regla de gasto, remanente) o el propio PEF.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -5888,9 +5896,10 @@
       "verification": {
         "claimId": "10yl550-270-cit-bb5f00",
         "verdict": "sin-datos",
-        "summary": "Task completed: provided skeptical reasoning in Spanish (2-4 sentences) evaluating whether any candidate genuinely backs the claim about \"reinventar/renovar la feria\". Concluded no genuine backing exists since the claim is an unverifiable opinion/intent statement and candidates are merely routine op",
+        "summary": "La afirmación es una declaración de intención política (\"hemos decidido reinventar la feria. Renovarla.\"), sin cifras, fechas ni sujeto concreto que se puedan contrastar con registros.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -6002,9 +6011,10 @@
       "verification": {
         "claimId": "10yl550-271-cit-156c87",
         "verdict": "sin-datos",
-        "summary": "Task completed: provided skeptical reasoning in Spanish (4 sentences) analyzing why none of the 8 candidates (tenders and BDNS subsidy records) genuinely support the claim about the municipality announcing fair dates via its own communication channels. The claim describes a communication/publicity a",
+        "summary": "La afirmación dice que los días 12 y 13 de marzo se anunció la feria en los canales de comunicación del propio ayuntamiento. Es un hecho sobre difusión comunicativa (publicaciones en redes/web), no sobre contratación, subvenciones o presupuesto.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -6534,9 +6544,10 @@
       "verification": {
         "claimId": "10yl550-283-cit-abcc1c",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación y los dos candidatos proporcionados, concluyendo que no hay respaldo genuino entre ellos y las razones ya fueron expuestas en la respuesta.",
+        "summary": "La afirmación es una cita indirecta, sin cifras, fechas ni sujeto concreto: alguien comenta que \"se va a hacer el nuevo trámite\". No dice qué trámite es ni qué entidad lo hace, así que no hay ningún valor (importe, fecha o sujeto) con el que contrastar los candidatos.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -7101,9 +7112,10 @@
       "verification": {
         "claimId": "10yl550-320-cit-a652c5",
         "verdict": "sin-datos",
-        "summary": "Task completed: reasoned in Spanish about candidate support for the claim per the fact-checking instructions, without invoking verdict.",
+        "summary": "La afirmación dice que en un espacio abierto organizado por el ayuntamiento se hablará de una \"unidad de policía de urbanización\" (probablemente \"policía de urbanización\", una unidad policial para urbanizaciones).",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -7217,9 +7229,10 @@
       "verification": {
         "claimId": "10yl550-323-cit-fb13f0",
         "verdict": "sin-datos",
-        "summary": "Se trata de una tarea de verificación de hechos/razonamiento, no de una tarea de desarrollo de software, por lo que no aplica ningún skill de \"superpowers\" (esos skills son para tareas de codificación/ingeniería). He respondido directamente con el razonamiento solicitado en español, evaluando si los",
+        "summary": "La afirmación es una cita sobre un acto (\"en la botella\") en el que, según el orador, la comisión dijo que se iba a hacer algo, en el contexto del centro de formación profesional. No contiene importe, fecha ni sujeto concreto verificables: es una alusión vaga a un compromiso verbal.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -7391,9 +7404,10 @@
       "verification": {
         "claimId": "10yl550-334-cit-3efbd3",
         "verdict": "sin-datos",
-        "summary": "Task completed: reasoned in Spanish about candidate support for the claim, concluding none of the tender candidates (occupational risk prevention/health surveillance contracts) genuinely support the claim about crime prevention services by a specialized security unit. This was a direct analytical ta",
+        "summary": "La afirmación describe la actividad operativa de una Unidad Especializada (policial) en prevención de delitos de robo y hurto; es una declaración sobre qué hace esa unidad, sin importe, fecha ni sujeto contractual concreto.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -7484,9 +7498,10 @@
       "verification": {
         "claimId": "10yl550-340-afi-0d1d28",
         "verdict": "sin-datos",
-        "summary": "Task completed: provided skeptical reasoning in Spanish (2-4 sentences) evaluating whether candidates [0] (cemetery management tender, no amount) or [1] (postal service contract, €9,917.36) support the claim of a €4.5M expropriation payment to a family for a 'rancho' under PP management. Neither can",
+        "summary": "Ningún candidato respalda la afirmación. La afirmación habla de unos 4,5 millones de euros que costaría una expropiación de un \"rancho\" a una familia (gestión del PP, zona del Quint).",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,

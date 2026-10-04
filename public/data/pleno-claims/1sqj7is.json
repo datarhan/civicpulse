@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T15:15:31.195Z",
+  "generatedAt": "2026-10-04T17:23:05.282Z",
   "version": "1",
   "plenoId": "1sqj7is",
   "plenoDate": "2026-03-09",
@@ -713,11 +713,13 @@
       "verification": {
         "claimId": "1sqj7is-031-cit-05029c",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una cita sobre el contenido de una propuesta del Departamento de Gestión Tributaria dentro del Plan Normativo y su alineación con los ODS; no contiene importes, fechas ni sujetos cuantificables.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -744,11 +746,13 @@
       "verification": {
         "claimId": "1sqj7is-032-cit-a86a2a",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación trata de un hecho procedimental: una ficha remitida el 5 de marzo de 2026 por el Departamento de Gestión Tributaria para incorporarla al Plan Normativo anual alineado con los ODS.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -805,11 +809,13 @@
       "verification": {
         "claimId": "1sqj7is-033-cit-3e2633",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación describe una ficha del Plan Normativo 2026 remitida el 5 de marzo de 2026 por el Departamento de Gestión Tributaria para adecuar las tarifas del servicio público de gestión integral del agua. Es una cita de un trámite interno (iniciativa normativa), no una cifra ni un contrato.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -948,11 +954,13 @@
       "verification": {
         "claimId": "1sqj7is-037-pro-525397",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una promesa de transparencia: que el expediente del sistema dinámico de adquisición (SDA) \"estará publicado en el perfil del contratante y en la plataforma de contratación\".",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -1007,11 +1015,13 @@
       "verification": {
         "claimId": "1sqj7is-039-pro-55766c",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una promesa/opinión cualitativa: que el Sistema Dinámico de Adquisición (SDA) será más ágil y permitirá al gobierno reducir plazos. No contiene importes, fechas ni sujetos concretos que se puedan contrastar con registros.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -1064,11 +1074,13 @@
       "verification": {
         "claimId": "1sqj7is-040-cit-e48c35",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una valoración cualitativa y prospectiva: el SDA \"será más ágil\" y permitirá \"reducir plazos\". No contiene un importe, una fecha ni un sujeto concreto verificable, y es una opinión sobre el efecto futuro del sistema, no un hecho registrable.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -1121,11 +1133,13 @@
       "verification": {
         "claimId": "1sqj7is-042-pro-b06cf6",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una promesa política (impulsar un control adicional del SDA desde la Comisión de Contratación), sin importes, fechas ni sujetos numéricos concretos.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -1151,11 +1165,13 @@
       "verification": {
         "claimId": "1sqj7is-043-pro-068679",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una promesa de futuro: la Comisión de Contratación ejercerá un control adicional sobre el Sistema Dinámico de Adquisición. Ningún candidato muestra que esa comisión supervise el sistema ni que se haya cumplido el compromiso. Los candidatos solo comparten el tema (SDA, contratación).",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -1181,9 +1197,10 @@
       "verification": {
         "claimId": "1sqj7is-044-cit-c2b056",
         "verdict": "sin-datos",
-        "summary": "Task completed: provided skeptical Spanish-language reasoning (2-4 sentences) about whether any candidate genuinely supports the claim, without issuing a verdict, per instructions.",
+        "summary": "La afirmación es una cita valorativa: el concejal sostiene que el SDA facilita el acceso de las pequeñas empresas a la licitación y lo hace más accesible, transparente e íntegro. Es una opinión o argumento político sin cifras, fechas ni sujetos concretos que se puedan contrastar con un registro.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -1388,11 +1405,13 @@
       "verification": {
         "claimId": "1sqj7is-063-pro-eeb37e",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una promesa genérica de reducir progresivamente los reconocimientos extrajudiciales de crédito para reforzar el control y la fiscalización de los contratos. Ninguno de los candidatos la respalda.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -1805,11 +1824,13 @@
       "verification": {
         "claimId": "1sqj7is-075-cit-1a987a",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación trata de un informe ambiental y territorial estratégico favorable (evaluación ambiental estratégica simplificada) emitido en el marco de un PRI (Programa de Reparcelación/Reforma Interior) \"UE Casco 1\".",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -1835,9 +1856,10 @@
       "verification": {
         "claimId": "1sqj7is-076-cit-64f1e9",
         "verdict": "sin-datos",
-        "summary": "Se trata de una tarea de verificación de hechos (fact-checking), no de programación ni de un flujo de trabajo que requiera exploración de código o skills de desarrollo. Respondí directamente con el razonamiento solicitado en español, evaluando de forma escéptica si algún candidato (todos ellos licit",
+        "summary": "La afirmación es un hecho procedimental: que dentro de la tramitación del PRI de la UE Casco 1 se han solicitado informes al departamento de calidad ambiental. Ningún candidato lo respalda.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -1866,9 +1888,10 @@
       "verification": {
         "claimId": "1sqj7is-076-cit-78e78d",
         "verdict": "sin-datos",
-        "summary": "Se solicitó razonar (no emitir veredicto) en español sobre si algún candidato respalda la afirmación. Ya proporcioné el análisis textual completo en la respuesta al usuario, concluyendo que ningún candidato (todos son tenders/contratos, no informes ambientales estratégicos) coincide en sujeto (UE Ca",
+        "summary": "La afirmación describe un hecho procedimental concreto: la emisión de un informe ambiental y territorial estratégico favorable (procedimiento simplificado) en el trámite del PRI de la UE Casco 1, y la redacción de la propuesta de plan por la oficina técnica municipal. Ningún candidato lo respalda.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -1962,11 +1985,13 @@
       "verification": {
         "claimId": "1sqj7is-078-pro-2803bd",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una promesa/propuesta de acuerdo plenario: someter el PRI de la UE Casco 1 a información pública durante 45 días. Ningún candidato respalda esto.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -2141,9 +2166,10 @@
       "verification": {
         "claimId": "1sqj7is-081-cit-17253a",
         "verdict": "sin-datos",
-        "summary": "Se solicitó razonar (no verificar con veredicto) sobre si algún candidato respalda la afirmación \"en este pleno hemos traído casco 1\". Determiné que ninguno lo hace genuinamente: [0] UE casco 5 comparte tema (unidad de ejecución en Casco) pero es un sujeto numéricamente distinto (5≠1); [1] es un con",
+        "summary": "La afirmación es que en este pleno se ha traído la unidad de ejecución \"Casco 1\" (un acto de tramitación urbanística, sin cifras ni fechas concretas). Ningún candidato menciona \"Casco 1\" ni el casco urbano como unidad de ejecución.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -2204,11 +2230,13 @@
       "verification": {
         "claimId": "1sqj7is-083-afi-8f67b5",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Ningún candidato respalda la afirmación. La afirmación es una cifra concreta (22 unidades de ejecución afectadas e implicadas en el PRI de la UE Casco 1).",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"

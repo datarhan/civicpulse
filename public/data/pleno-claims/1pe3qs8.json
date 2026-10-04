@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T15:15:31.195Z",
+  "generatedAt": "2026-10-04T17:23:05.282Z",
   "version": "1",
   "plenoId": "1pe3qs8",
   "plenoDate": "2026-01-07",
@@ -55,11 +55,13 @@
       "verification": {
         "claimId": "1pe3qs8-004-afi-409d52",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Ningún candidato respalda la afirmación. La afirmación trata de la apertura, en el pleno extraordinario del 23/12/2025, de un expediente de penalidades de 143.000 € contra el contratista del servicio de recogida de residuos.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -139,11 +141,13 @@
       "verification": {
         "claimId": "1pe3qs8-004-afi-098488",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación sostiene que los informes de la auditora Auditesa constataron incumplimientos del contratista y le requirieron subcontratar servicios para corregirlos. Ninguno de los candidatos menciona a Auditesa, ni informes de auditoría del servicio, ni requerimientos de subcontratación.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -228,11 +232,13 @@
       "verification": {
         "claimId": "1pe3qs8-006-cit-b453d1",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Ningún candidato respalda la afirmación. La afirmación es una propuesta de notificación a un contratista concreto (Garbialdi S.A.) y a un avalista (Banco Santander S.A.) en el contrato de recogida de RSU.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"

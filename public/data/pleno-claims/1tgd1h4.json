@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T15:15:31.195Z",
+  "generatedAt": "2026-10-04T17:23:05.282Z",
   "version": "1",
   "plenoId": "1tgd1h4",
   "plenoDate": "2024-07-29",
@@ -606,11 +606,13 @@
       "verification": {
         "claimId": "1tgd1h4-009-cit-ae7964",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una propuesta de redacción de un artículo (5.5) de una ordenanza sobre ocupación y señalización: texto normativo recitado, no un hecho con importe, fecha o sujeto verificable. Ningún candidato lo respalda.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -1091,11 +1093,13 @@
       "verification": {
         "claimId": "1tgd1h4-015-cit-3f93e3",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación describe un proceso interno de elaboración de un texto (probablemente una ordenanza o reglamento) en el que participaron la Policía Local y los servicios jurídicos y técnicos municipales.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -2909,11 +2913,13 @@
       "verification": {
         "claimId": "1tgd1h4-037-cit-9bf3b2",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación cita un requisito de un convenio/ordenanza: que el solicitante aporte justificante de haber suscrito un seguro de responsabilidad civil para la ocupación de la vía pública.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -5103,11 +5109,13 @@
       "verification": {
         "claimId": "1tgd1h4-068-cit-efe7fa",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es un texto normativo recitado, probablemente de una ordenanza de terrazas: exige balizas homologadas TB-8/TB-9 para reforzar la delimitación de terrazas en calzada.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -5191,11 +5199,13 @@
       "verification": {
         "claimId": "1tgd1h4-069-cit-182719",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una cita textual de una ordenanza o norma sobre terrazas: exige balizas homologadas TB-8/TB-9 en los extremos cuando la terraza ocupa la calzada, y costeadas por el titular de la autorización.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -5283,11 +5293,13 @@
       "verification": {
         "claimId": "1tgd1h4-070-afi-622770",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una especificación técnica normativa (probablemente de una ordenanza de terrazas): las líneas amarillas de delimitación deben tener 10 cm de anchura. Es texto recitado de una norma, no un hecho cuantitativo sobre gasto, contratos o presupuesto.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -5370,11 +5382,13 @@
       "verification": {
         "claimId": "1tgd1h4-072-afi-dd8412",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es un texto normativo recitado (apartado 8.4 de una ordenanza sobre ocupación de vía pública, probablemente terrazas): establece una condición para conceder autorizaciones, sin importes, fechas ni sujetos concretos verificables. Ningún candidato la respalda.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -5849,11 +5863,13 @@
       "verification": {
         "claimId": "1tgd1h4-078-cit-29ca50",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es el texto de un artículo de una ordenanza municipal (9.6) que remite al Plan General de Ordenación Urbana para los toldos cuyos soportes no apoyan en dominio público.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -6887,11 +6903,13 @@
       "verification": {
         "claimId": "1tgd1h4-096-cit-be0e1c",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una cita textual del artículo 13.1 de una ordenanza: establece que los titulares de autorizaciones son responsables de los daños a personas o cosas derivados de los aprovechamientos autorizados.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -6979,11 +6997,13 @@
       "verification": {
         "claimId": "1tgd1h4-097-cit-4d0e51",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es un texto normativo recitado: parte de un listado de infracciones de una ordenanza sobre instalaciones de terrazas (mesas, sillas, sombrillas, toldos) en dominio público que originan riesgo grave para la seguridad vial.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -7577,11 +7597,13 @@
       "verification": {
         "claimId": "1tgd1h4-104-cit-1ccaf0",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es un texto normativo recitado de una ordenanza municipal (causas por las que los Servicios Técnicos o la Policía Local pueden retirar elementos u ocupaciones que supongan peligro para la seguridad, la salud o el medio ambiente).",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -8691,11 +8713,13 @@
       "verification": {
         "claimId": "1tgd1h4-120-afi-68d6ed",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una descripción genérica del objetivo de los programas mixtos de empleo y formación (mejorar la empleabilidad combinando formación y empleo); no contiene cifras, fechas ni sujeto concreto verificable, es un texto definitorio/recitado de la normativa del programa.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -8986,11 +9010,13 @@
       "verification": {
         "claimId": "1tgd1h4-123-cit-94b497",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es un acuerdo plenario: aprobar inicialmente un proyecto de reglamento interno de funcionamiento de programas mixtos de empleo y formación. Es un acto administrativo/normativo, sin importe, fecha ni sujeto numérico que contrastar.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -9824,11 +9850,13 @@
       "verification": {
         "claimId": "1tgd1h4-135-cit-05d14c",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es que el Pleno aprobó el Plan de Medidas Antifraude el 3 de abril de 2023, es decir, un acuerdo plenario con una fecha concreta. Ningún candidato lo respalda.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -10243,11 +10271,13 @@
       "verification": {
         "claimId": "1tgd1h4-143-cit-740474",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una cita textual de un objetivo genérico de un plan o código de integridad: \"fortalecer la cultura de la información o comunicación en el organismo\". No contiene cifras, fechas ni sujetos concretos verificables, es un texto recitado/declarativo de carácter programático.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -10388,11 +10418,13 @@
       "verification": {
         "claimId": "1tgd1h4-145-cit-2dff35",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es un texto normativo/recitado sobre el canal interno de información (Ley 2/2023 de protección del informante), que \"permitirá incluso la presentación y posterior tramitación de comunicaciones anónimas\".",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -10418,11 +10450,13 @@
       "verification": {
         "claimId": "1tgd1h4-145-cit-f6d344",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una cita textual de un convenio o protocolo (probablemente sobre canal de denuncias o protección del informante): enumera garantías como la protección frente a represalias, la presunción de inocencia y la imparcialidad.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -10785,11 +10819,13 @@
       "verification": {
         "claimId": "1tgd1h4-151-pro-0c7883",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una promesa/compromiso normativo genérico: garantizar la confidencialidad de la identidad del informante en el canal de denuncias (texto típico de la Ley 2/2023 o de una política interna). No contiene importes, fechas ni sujetos concretos que se puedan contrastar con registros.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -10815,11 +10851,13 @@
       "verification": {
         "claimId": "1tgd1h4-152-cit-8027e4",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una cita de convenio que recita una obligación normativa (garantizar la confidencialidad de la identidad del informante, típica de la Ley 2/2023 sobre canales de denuncia).",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -10956,11 +10994,13 @@
       "verification": {
         "claimId": "1tgd1h4-157-cit-f75876",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una cláusula normativa recitada (respeto a la presunción de inocencia, al honor y a la protección de datos personales), típica de un convenio o protocolo; no contiene importe, fecha ni sujeto concreto verificable.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -11239,11 +11279,13 @@
       "verification": {
         "claimId": "1tgd1h4-161-afi-7b7b9e",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es un fragmento de texto normativo o procedimental (\"se impida el acceso a ellas por parte de personal no autorizado\") sobre la protección de documentos o registros. No contiene ninguna cifra, fecha, importe ni sujeto concreto, así que no hay valor que comparar.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -11462,11 +11504,13 @@
       "verification": {
         "claimId": "1tgd1h4-165-cit-5ff25c",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Ningún candidato respalda la afirmación. La frase es un texto normativo recitado: enumera los sujetos incluidos en el ámbito de la norma, que parece ser la de protección de los informantes. No es un hecho verificable con importes, fechas o sujetos concretos en registros municipales.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -11578,11 +11622,13 @@
       "verification": {
         "claimId": "1tgd1h4-166-cit-3485a2",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una cita textual de un convenio o norma sobre el canal de denuncias, que permite comunicaciones anónimas. Es un texto recitado de carácter normativo, sin importes, fechas ni sujetos concretos que se puedan contrastar con registros. Ningún candidato lo respalda.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -11802,11 +11848,13 @@
       "verification": {
         "claimId": "1tgd1h4-170-cit-5c9666",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una cita textual de un convenio o protocolo: se cumplirá la normativa aplicable en materia de protección de denunciantes y de datos personales. Es un texto normativo recitado, sin importe, fecha ni sujeto concreto, así que no es verificable con registros de contratos.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -11832,11 +11880,13 @@
       "verification": {
         "claimId": "1tgd1h4-171-cit-c59513",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una cláusula normativa genérica: \"se cumplirá la normativa aplicable en materia de protección de denunciantes y de protección de datos\". Es un texto recitado, un compromiso legal, sin importe, fecha ni sujeto concretos, así que no es verificable con registros de contratos.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -12085,11 +12135,13 @@
       "verification": {
         "claimId": "1tgd1h4-173-cit-1438ff",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una cita textual de un convenio o protocolo que indica cómo presentar comunicaciones: \"preferentemente por escrito, a través del Canal Interno de Información disponible en la Intranet y el portal web del Ayuntamiento\".",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -12197,11 +12249,13 @@
       "verification": {
         "claimId": "1tgd1h4-175-cit-61894d",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una cita textual de las instrucciones del canal interno de información (una URL del buzón y una dirección postal), es decir, texto informativo o recitado que no contiene importes, fechas ni sujetos verificables.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -12227,11 +12281,13 @@
       "verification": {
         "claimId": "1tgd1h4-175-cit-22299a",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es un texto informativo/procedimental: indica la dirección postal del Canal Interno de Información (Vicesecretaría, Plaza del Ayuntamiento, 9, 46190).",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -12860,11 +12916,13 @@
       "verification": {
         "claimId": "1tgd1h4-186-cit-a358dd",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una cita textual de un convenio sobre medidas de protección del Título VII de la Ley (protección del informante, Ley 2/2023) aplicables a los representantes legales de las personas trabajadoras.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -12946,11 +13004,13 @@
       "verification": {
         "claimId": "1tgd1h4-189-cit-ab7cd2",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una cita literal de una cláusula de convenio (obligación de confidencialidad/seguridad de datos personales), es decir, un texto jurídico recitado y no un hecho verificable con cifras, fechas o sujetos concretos.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -13005,11 +13065,13 @@
       "verification": {
         "claimId": "1tgd1h4-191-cit-d4aab2",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una cita normativa recitada: la base de legitimación del tratamiento de datos (interés público) conforme a la LOPDGDD (LO 3/2018, de 5 de diciembre). Es texto legal, no un hecho concreto con importe, fecha o sujeto verificable contra registros municipales.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -13528,11 +13590,13 @@
       "verification": {
         "claimId": "1tgd1h4-196-cit-02183a",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una cita de un acuerdo/convenio (probablemente sobre el canal de denuncias y la protección del informante, Ley 2/2023) que ordena publicar en la web corporativa, en sección separada y accesible, las condiciones para acogerse a la protección.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -13558,11 +13622,13 @@
       "verification": {
         "claimId": "1tgd1h4-196-cit-84e39f",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es un texto normativo recitado (contenido exigible a una política/estrategia del sistema interno de información, según la ley de protección del informante): enumera qué datos de contacto deben constar en los canales externos, sin importes, fechas ni sujeto concreto.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -13588,11 +13654,13 @@
       "verification": {
         "claimId": "1tgd1h4-196-cit-e27421",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es un texto recitado de un convenio o norma (\"los procedimientos de gestión, incluida la manera en que la autoridad competente puede...\"), un fragmento jurídico genérico sin importe, fecha ni sujeto concreto.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -13759,11 +13827,13 @@
       "verification": {
         "claimId": "1tgd1h4-198-cit-d1fe20",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una cita textual de un convenio o cláusula (apartado d) sobre el régimen de confidencialidad de las comunicaciones y la información sobre tratamiento de datos personales conforme al Reglamento).",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -13875,11 +13945,13 @@
       "verification": {
         "claimId": "1tgd1h4-199-cit-683445",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es un acuerdo de procedimiento: ordena publicar la política del sistema interno de información en el tablón edictal y el portal de transparencia. No contiene importe, fecha ni sujeto numérico que pueda contrastarse con registros.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -15045,11 +15117,13 @@
       "verification": {
         "claimId": "1tgd1h4-213-afi-58a963",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación trata de la inscripción de un espacio en el Inventario del Patrimonio Municipal con los números 349-I (ficha 297) y 500-I (ficha 432), como viales de la zona de la calle Dos de Mayo y de la Plaza Estación.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -15167,11 +15241,13 @@
       "verification": {
         "claimId": "1tgd1h4-215-afi-3b1b6b",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación describe la numeración de inmuebles en el Inventario del Patrimonio Municipal: el nº 349-I (ficha 297, viales calle Dos de Mayo) y el nº 500-I (ficha 432, viales Plaza Estación). El \"349\" es un número de inventario, no un importe, una fecha ni una cantidad económica.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -16616,11 +16692,13 @@
       "verification": {
         "claimId": "1tgd1h4-231-pro-ccf9c5",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una promesa genérica: el ayuntamiento asegurará condiciones higiénico-sanitarias y de seguridad \"tanto para las personas como para los animales\" en unas instalaciones no especificadas (probablemente espacios para animales o ferias/eventos).",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -16646,11 +16724,13 @@
       "verification": {
         "claimId": "1tgd1h4-231-pro-edc8f3",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una promesa genérica de \"velar\" por que no haya uso indebido de espacios públicos en zonas no permitidas (espacios naturales, playas, parques). No contiene importe, fecha ni sujeto concreto que pueda contrastarse.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -17023,11 +17103,13 @@
       "verification": {
         "claimId": "1tgd1h4-235-cit-06000e",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una cita textual de un texto normativo o reglamentario (probablemente una ordenanza o reglamento sobre protección animal): \"Elaborar protocolos de actuación y planes de evacuación y emergencia ante catástrofes naturales, pandemias o similares de animales de compañía...\".",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -18035,11 +18117,13 @@
       "verification": {
         "claimId": "1tgd1h4-251-cit-3975d1",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una cita normativa: la ORDEN 3/2016, de 4 de marzo de 2016, de la Consellería de Agricultura (sobre animales). Es un texto legal recitado, y no una afirmación sobre importes, fechas de ejecución o sujetos municipales verificables en registros.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -19096,11 +19180,13 @@
       "verification": {
         "claimId": "1tgd1h4-260-afi-93168f",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación \"a) Número de colonia.\" es el fragmento de una lista de datos que debe recoger un registro (probablemente de colonias felinas), no una afirmación numérica verificable: no contiene ninguna cifra, fecha ni sujeto concreto.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -19239,11 +19325,13 @@
       "verification": {
         "claimId": "1tgd1h4-264-afi-5e83cc",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una disposición normativa o de reglamento (probablemente sobre colonias felinas): \"con carácter general las colonias se ubicarán en vías y espacios públicos, parques y zonas ajardinadas municipales\".",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -19421,11 +19509,13 @@
       "verification": {
         "claimId": "1tgd1h4-265-cit-1038c2",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es un texto normativo recitado (probablemente de una ordenanza o plan de gestión de colonias felinas) que indica dónde se ubicarán las colonias: vías y espacios públicos, y parques y zonas ajardinadas municipales. No contiene importes, fechas ni sujetos concretos verificables.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -19568,11 +19658,13 @@
       "verification": {
         "claimId": "1tgd1h4-266-cit-3c941c",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una cita textual de un pliego o norma sobre condiciones de alimentación de animales (bebederos, comederos, tolvas; no dejar la comida en el suelo). Es un texto normativo o prescriptivo recitado, sin cifras, fechas ni sujeto verificable.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -19989,11 +20081,13 @@
       "verification": {
         "claimId": "1tgd1h4-270-cit-c5a4fa",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una cita textual de una obra (probablemente un protocolo CER —captura, esterilización y retorno— de colonias felinas) que establece excepciones sobre gatos enfermos, cachorros o suministro de medicación, y exige comida húmeda.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -20197,11 +20291,13 @@
       "verification": {
         "claimId": "1tgd1h4-272-cit-a4871e",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una cita textual de un documento de plan (apartado 7.1.7, probablemente un plan sanitario o de gestión de residuos) que dice que la limpieza y desinfección es \"uno de los puntos más importantes del plan\".",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -20288,11 +20384,13 @@
       "verification": {
         "claimId": "1tgd1h4-272-cit-d19233",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una explicación cualitativa sobre un plan de gestión de colonias felinas: los restos de comida y la suciedad alrededor de una colonia generan conflicto y quejas vecinales. Es una opinión o descripción general, sin importe, fecha ni sujeto concreto que se pueda cotejar con registros.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -20375,11 +20473,13 @@
       "verification": {
         "claimId": "1tgd1h4-274-cit-ea32aa",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una cita de un texto (probablemente protocolo del plan de gestión de colonias felinas) que da instrucciones sobre lavar y desinfectar bebederos y comederos. Es un texto recitado/normativo, sin importes, fechas ni sujetos concretos, por lo que no es verificable contra registros.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -21486,11 +21586,13 @@
       "verification": {
         "claimId": "1tgd1h4-286-cit-62b1c6",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una cláusula normativa o de reglamento (\"podrán ser difundidos a través de redes sociales... por el Ayuntamiento\"): es texto recitado, sin cifras, fechas ni sujetos concretos verificables. Ningún candidato respalda genuinamente esa cláusula.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -22465,11 +22567,13 @@
       "verification": {
         "claimId": "1tgd1h4-298-cit-c1b693",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una cita de una obra o texto (tipo cita_obra) que expresa una valoración general: que las actividades de cooperación son una estrategia importante de educación y sensibilización ambiental.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -22495,11 +22599,13 @@
       "verification": {
         "claimId": "1tgd1h4-298-cit-885265",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una cita textual truncada (\"La base de este Plan es el control sanitario de los...\") sin cifras, fechas ni sujeto concreto: es un texto recitado de un plan, no un hecho verificable con registros. Ningún candidato respalda genuinamente la cita.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -22760,11 +22866,13 @@
       "verification": {
         "claimId": "1tgd1h4-301-cit-c94a8e",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una promesa o descripción de una obra/actuación: los voluntarios del Plan Colonial Felino recibirán formación específica y acreditación. Ningún candidato menciona colonias felinas, voluntariado ni el Plan Colonial Felino.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -24081,11 +24189,13 @@
       "verification": {
         "claimId": "1tgd1h4-314-cit-8a6daf",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es un texto recitado de un documento de planificación (\"este plan tendrá una duración indefinida... será posible realizar una revisión del Plan\"), sin cifras, fechas ni sujeto concreto verificable.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -24600,11 +24710,13 @@
       "verification": {
         "claimId": "1tgd1h4-328-cit-fead56",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una cita textual de un considerando de un convenio que recita el artículo 3 de la Ley 40/2015 (texto legal sobre principios de actuación administrativa). Es un texto normativo recitado, no un hecho verificable con importes, fechas o sujetos concretos del municipio.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -26623,11 +26735,13 @@
       "verification": {
         "claimId": "1tgd1h4-353-cit-c7fb54",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación cita un convenio o acuerdo entre el Ayuntamiento y otra parte (probablemente una junta de compensación o la Generalitat) que estableció las bases para el desarrollo del sector Masía de Porxinos. Es una cita de una obra o documento, sin cifras, fecha ni importe concretos.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"

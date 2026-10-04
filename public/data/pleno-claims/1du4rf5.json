@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T15:15:31.195Z",
+  "generatedAt": "2026-10-04T17:23:05.282Z",
   "version": "1",
   "plenoId": "1du4rf5",
   "plenoDate": "2025-11-03",
@@ -171,11 +171,13 @@
       "verification": {
         "claimId": "1du4rf5-010-cit-8d9ca2",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es genérica: en un pleno se dice que se han realizado obras de reforma en la edificación existente, y que éstas se permiten con la normativa urbanística (probablemente una licencia o un expediente concreto, sin identificar). No hay ubicación, importe, fecha ni sujeto concreto.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -1482,11 +1484,13 @@
       "verification": {
         "claimId": "1du4rf5-038-cit-3c95d4",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es un trámite procedimental: remitir una copia digital del estudio de detalle a la Consellería de Territorio y Urbanismo para su inscripción en el registro autonómico. Es un acuerdo plenario (una acción que se propone), no un hecho con importe, fecha o sujeto cuantificable.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -2038,11 +2042,13 @@
       "verification": {
         "claimId": "1du4rf5-050-afi-30564b",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación dice que ciertos gastos (considerados inversión) se realizaron en 2025 con el presupuesto prorrogado de 2024. No indica importe, sujeto ni gasto concreto, así que no hay valores que cotejar.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -2504,9 +2510,10 @@
       "verification": {
         "claimId": "1du4rf5-068-afi-c508ad",
         "verdict": "sin-datos",
-        "summary": "Task completed: reasoned in Spanish about candidate support for the claim, concluding no genuine support exists since none of the tender candidates involve \"bancos\" or the €4,640 figure.",
+        "summary": "La afirmación habla de \"los de 4.640\" que serán \"tres, cuatro bancos\" y de una factura: se refiere, según el contexto, a un importe de 4.640 € asociado a bancos (posiblemente bancos de un parque o mobiliario urbano o entidades bancarias) y a una factura concreta.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -3813,9 +3820,10 @@
       "verification": {
         "claimId": "1du4rf5-088-pro-3d76d6",
         "verdict": "sin-datos",
-        "summary": "Se solicitó únicamente razonamiento en español sobre si los candidatos respaldan la afirmación, sin emitir veredicto final. Ya se proporcionó dicho razonamiento en el mensaje de texto anterior, evaluando la falta de anclaje concreto (fecha, sujeto, cifra) entre el verbatim condicional y los registro",
+        "summary": "La afirmación es una declaración de intención de voto (\"votaremos a favor\") condicionada (\"si es así\") sobre una moción cuyo contenido concreto no se especifica en el texto. Es una promesa genérica sin importe, fecha ni sujeto verificable contra registros de contratos, subvenciones o presupuesto.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -6326,11 +6334,13 @@
       "verification": {
         "claimId": "1du4rf5-254-cit-04d14f",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una valoración cualitativa sobre el programa autonómico valenciano de prevención y detección temprana del cáncer de mama, calificado como \"ejemplo de sanidad pública muy gestionada\".",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -6765,11 +6775,13 @@
       "verification": {
         "claimId": "1du4rf5-272-cit-b203de",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación describe una medida organizativa sanitaria: integrar las unidades de prevención del cáncer de mama en la estructura de asistencia hospitalaria para mejorar el cribado. Es una medida de gestión sanitaria, probablemente autonómica u hospitalaria, sin importe, fecha ni sujeto concreto.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
