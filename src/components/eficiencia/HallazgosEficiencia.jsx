@@ -1,6 +1,6 @@
 import { Card, ExtLink, Pill, SectionHead } from '../Primitives'
 import { MARGEN_ANCLA } from './anclas'
-import { ROTULO_TEXTO_RETIRADO, ROTULO_TEXTO_VIGENTE } from '../BitacoraCorrecciones'
+import { ROTULO_TEXTO_RETIRADO, rotuloTextoPuesto, sustitutas } from '../BitacoraCorrecciones'
 
 /**
  * Las fichas firmadas sobre desviaciones del panel.
@@ -69,6 +69,9 @@ function Medicion({ medicion }) {
 }
 
 function FichaEficiencia({ ficha }) {
+  // Qué fila volvió a cambiar el campo de cada corrección: la regla de la
+  // bitácora de /hallazgos, la misma pieza y no una copia.
+  const despues = sustitutas(ficha.corrections ?? [])
   return (
     <Card style={{ padding: 16 }}>
       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
@@ -167,11 +170,15 @@ function FichaEficiencia({ ficha }) {
                 </strong>{' '}
                 · ver qué cambió
               </summary>
-              {ficha.corrections.map((c) => (
-                <p key={`${c.field}-${c.correctedAt}`} style={{ margin: '4px 0 0' }}>
+              {/* La clave lleva la posición: tres filas del mismo campo el mismo
+                  día compartían `campo-fecha`, y React avisa de que con claves
+                  repetidas puede duplicar u omitir filas. La bitácora sólo
+                  crece por el final, así que la posición no cambia. */}
+              {ficha.corrections.map((c, i) => (
+                <p key={`${c.field}-${i}`} style={{ margin: '4px 0 0' }}>
                   <strong>Corregido el {c.correctedAt}</strong> ({c.field}): {ROTULO_TEXTO_RETIRADO}
-                  : <del>{c.original}</del> · {ROTULO_TEXTO_VIGENTE}: {c.corrected}. Motivo:{' '}
-                  {c.reason}
+                  : <del>{c.original}</del> · {rotuloTextoPuesto(despues[i])}: {c.corrected}.
+                  Motivo: {c.reason}
                 </p>
               ))}
             </details>

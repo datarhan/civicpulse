@@ -2173,7 +2173,10 @@ export default function Metodologia() {
             La bitácora de correcciones se renderiza pública dentro de la tarjeta del hallazgo. El
             historial es <em>append-only</em>: ninguna fila se borra ni se reordena, y lo que cambia
             dentro de una fila ya publicada —un texto que deja de reproducirse, o un motivo
-            enmendado— deja su huella en la propia fila.
+            enmendado— deja su huella en la propia fila. Cada fila dice con palabras, no sólo con el
+            tachado, qué texto retiró y cuál puso, y sólo la última fila de un campo llama{' '}
+            <em>vigente</em> al suyo: el que puso una corrección que otra posterior volvió a cambiar
+            se rotula «sustituido», con la fecha de la que lo sustituyó.
           </li>
           <li>
             Cuando lo que sale es material que no debe seguir publicándose —una cita retirada, o un

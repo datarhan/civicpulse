@@ -37,6 +37,18 @@
  * quién habló. La fila dice en texto qué versión falta y por qué; no tacha la
  * marca como si fuera lo retirado, y no rotula «vigente» una versión que no
  * enseña, porque eso diría que la ficha nombra hoy a ese grupo.
+ *
+ * Hasta el 04-10-2026, además, CADA fila rotulaba «vigente» lo que puso, también
+ * cuando otra posterior había vuelto a cambiar el mismo campo: una ficha con
+ * siete filas de `summary` imprimía siete «Texto vigente» con siete sumarios
+ * distintos, huellas «sumario · sha256:…» incluidas, y sólo el último es el que
+ * la ficha publica. Era la contradicción del 16-09-2026 con el rótulo afirmándola: medido
+ * ese día sobre la copia servida, 50 filas en 26 fichas de /hallazgos, 9 en
+ * /eficiencia y 1 en /laboratorio/agentes. Ahora la fila que otra sustituyó lo
+ * dice delante, con el día de la que la sustituyó (`sustitutas`, abajo); la
+ * última de cada campo sigue siendo la vigente. /eficiencia y la bitácora del
+ * informe del agente pintan su propio marcado, pero con estas mismas piezas: la
+ * regla vive aquí una vez.
  */
 
 import { ROTULO_CITA_RETENIDA } from '../lib/cita-retenida'
@@ -44,9 +56,59 @@ import { MARCA_GRUPO_RETENIDO, ROTULO_GRUPO_RETENIDO } from '../lib/grupo-reteni
 
 export const ROTULO_TEXTO_RETIRADO = 'Texto retirado'
 export const ROTULO_TEXTO_VIGENTE = 'Texto vigente'
+/**
+ * Lo que puso una fila cuando una posterior volvió a cambiar el mismo campo: ni
+ * lo retiró ella ni es lo que la ficha publica hoy.
+ */
+export const ROTULO_TEXTO_SUSTITUIDO = 'Texto que puso esta corrección'
 export const ROTULO_MOTIVO_ENMENDADO = 'Motivo enmendado'
 
 const fecha = (iso) => String(iso ?? '').slice(0, 10)
+
+/**
+ * ¿Nombra el campo un elemento por su POSICIÓN en una lista? `quote.1.text`,
+ * `crossChecked.0`, `warnings[1]`, `portrait.portfolios[6]`.
+ */
+const conPosicion = (campo) =>
+  String(campo)
+    .split(/[.[\]]/)
+    .some((s) => /^\d+$/.test(s))
+
+/**
+ * Para cada fila, la fila POSTERIOR que volvió a cambiar su mismo campo, o
+ * `null` si ninguna lo hizo y lo que puso es lo que la ficha publica.
+ *
+ * Sólo para los campos que tienen nombre fijo —`title`, `summary`, `titulo`,
+ * `cuerpo`, `medicion`, la cita de una promesa, el cuerpo de una sección del
+ * informe—. Los que nombran por su posición quedan FUERA: `quote.1.text` no dice
+ * qué cita es, porque retirar la cita 0 renumera las siguientes, y dos filas con
+ * el mismo nombre pueden hablar de citas distintas. Esas filas siguen rotulando
+ * «vigente» lo que pusieron, y es verdad mientras ninguna vuelva a cambiarse
+ * —una cita re-anclada dos veces, una atribución cambiada otra vez— ni su cita
+ * se retire después.
+ * `tests/components/bitacora-version-sustituida.test.jsx` reproduce las
+ * retiradas como las escribe la CLI (bloque REMOVAL de
+ * src/scraper/pleno-finding.ts) sobre la copia servida, y se pone roja el día
+ * que eso deje de cumplirse: ese día esta regla tiene que aprender a seguirlas.
+ */
+export function sustitutas(correcciones) {
+  return correcciones.map((c, i) =>
+    conPosicion(c.field)
+      ? null
+      : (correcciones.slice(i + 1).find((d) => d.field === c.field) ?? null),
+  )
+}
+
+/**
+ * El rótulo de lo que puso una fila: «Texto vigente», o, si `posterior` lo
+ * volvió a cambiar, «Texto que puso esta corrección, sustituido el 2026-09-30»
+ * con el día de esa fila, que es la que el lector tiene que ir a buscar.
+ */
+export const rotuloTextoPuesto = (posterior) =>
+  posterior
+    ? `${ROTULO_TEXTO_SUSTITUIDO}, sustituido el ${fecha(posterior.correctedAt)}`
+    : ROTULO_TEXTO_VIGENTE
+
 /**
  * `motivo · sha256:1a2b…` → `sha256:1a2b…`: qué es ya lo dice el rótulo, y el
  * algoritmo se queda, que es lo que necesita quien quiera rehacerla. Igual que
@@ -72,11 +134,16 @@ function TextoRetirado({ texto }) {
   )
 }
 
-function TextoVigente({ texto }) {
+/**
+ * Lo que puso la fila. Si otra posterior lo volvió a cambiar, el rótulo lo dice
+ * y el texto baja al tono del motivo, para que no se lea como el de hoy; el
+ * rótulo es lo que cuenta, el tono sólo acompaña.
+ */
+function TextoPuesto({ texto, posterior }) {
   return (
-    <div style={{ color: 'var(--ink)', marginTop: 1 }}>
+    <div style={{ color: posterior ? 'var(--ink70)' : 'var(--ink)', marginTop: 1 }}>
       <span className="mono" style={rotulo}>
-        {ROTULO_TEXTO_VIGENTE}:{' '}
+        {rotuloTextoPuesto(posterior)}:{' '}
       </span>
       {texto}
     </div>
@@ -88,7 +155,7 @@ function TextoVigente({ texto }) {
  * un grupo de un solo escaño. Enseña, con su rótulo de siempre, el lado que sí
  * se sirve.
  */
-function FilaGrupoRetenido({ c }) {
+function FilaGrupoRetenido({ c, posterior }) {
   const sinOriginal = c.original === MARCA_GRUPO_RETENIDO
   const sinCorregido = c.corrected === MARCA_GRUPO_RETENIDO
   const cual =
@@ -107,13 +174,14 @@ function FilaGrupoRetenido({ c }) {
         grupo es nombrar a esa persona, así que la bitácora no reproduce {cual}.
       </div>
       {!sinOriginal && <TextoRetirado texto={c.original} />}
-      {!sinCorregido && <TextoVigente texto={c.corrected} />}
+      {!sinCorregido && <TextoPuesto texto={c.corrected} posterior={posterior} />}
     </>
   )
 }
 
 export function BitacoraCorrecciones({ correcciones }) {
   if (!correcciones?.length) return null
+  const despues = sustitutas(correcciones)
   const enmendadas = correcciones.filter((c) => c.reasonAmendments?.length > 0).length
   const conGrupoRetenido = correcciones.some((c) => c.grupoRetenido)
   return (
@@ -184,11 +252,11 @@ export function BitacoraCorrecciones({ correcciones }) {
                 .
               </div>
             ) : c.grupoRetenido ? (
-              <FilaGrupoRetenido c={c} />
+              <FilaGrupoRetenido c={c} posterior={despues[idx]} />
             ) : (
               <>
                 <TextoRetirado texto={c.original} />
-                <TextoVigente texto={c.corrected} />
+                <TextoPuesto texto={c.corrected} posterior={despues[idx]} />
               </>
             )}
             <div
