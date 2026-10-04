@@ -54,9 +54,10 @@ fuente que cita y responde en voz alta:
 3. **¿Falta algo que cambia la conclusión?** No basta con que lo escrito sea
    cierto. La pieza de la DANA omitía al mayor adjudicatario de la
    reconstrucción: cada cifra correcta, la conclusión falsa.
-4. **¿Nombra a una persona con prueba de bloque?** `speakerGroup` es
-   PSOE/PP/VOX/Compromís o `null`. Cruzar a un individuo lo hace un curador, por
-   hallazgo, con prueba propia.
+4. **¿Nombra a una persona con prueba de bloque?** `speakerGroup` es uno de
+   `SPEAKER_GROUPS` (`src/scraper/pleno-votes.ts`) o `null`. Cruzar a un individuo
+   lo hace un curador, por hallazgo, con prueba propia — y un bloque de un solo
+   escaño (`singleSeatBlocs()`) ya nombra a su concejal por eliminación.
 
 ## Paso 2 — Las notas del curador son públicas
 

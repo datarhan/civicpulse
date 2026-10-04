@@ -4,8 +4,9 @@ Commits `fix` sobre superficies que nombran a un cargo electo, de los últimos
 300 commits (auditado 2026-08-03). No son categorías teóricas: cada fila es un
 arreglo real, con su hash.
 
-Se agrupan en cinco clases. **Las tres primeras las coge `check:citations`
-gratis**; las dos últimas necesitan criterio, y son las que este skill lee.
+Se agrupan en cinco clases. **En una biografía, las tres primeras las coge
+`check:citations` gratis**; en los demás borradores ninguna puerta las mira y se
+leen a mano (SKILL.md, paso 3). Las dos últimas necesitan criterio siempre.
 
 ---
 

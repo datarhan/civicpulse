@@ -51,8 +51,8 @@ defecto.
 
    La prosa de las capas opcionales del mapa sólo existe con la capa encendida:
    se lee con la clave `'/ [capas]'`. Y lee la última línea, el `[review]`: si
-   nombra rutas PARCIAL, SIN REVISAR, NO MONTADA o NO ALCANZADA, esas no se han
-   leído, digan lo que digan los señalamientos.
+   nombra rutas PARCIAL, SIN REVISAR, NO MONTADA, NO ALCANZADA, SIN FICHA o NO
+   RESUELTA, esas no se han leído, digan lo que digan los señalamientos.
 
 3. **Verifica CADA señalamiento antes de tocar nada.** El agente cita literal —si
    parafrasea, el grounding lo descarta— pero puede estar equivocado sobre la
