@@ -60,6 +60,18 @@ function argOne(flag: string): string | undefined {
   return i === -1 ? undefined : process.argv[i + 1]
 }
 
+/**
+ * Los de `ids` que tienen una entrada en pleno-claim-relabels.json. Se lee el
+ * fichero tal cual: para saber si hay firma no hace falta validarla, y un
+ * fichero ilegible no puede leerse como «ninguna firma» (revienta).
+ */
+function idsConAtribucionFirmada(ids: readonly string[]): string[] {
+  const ruta = join(ROOT, 'public/data/pleno-claim-relabels.json')
+  if (!existsSync(ruta)) return []
+  const doc = JSON.parse(readFileSync(ruta, 'utf8')) as { entries?: Record<string, unknown> }
+  return ids.filter((id) => Object.prototype.hasOwnProperty.call(doc.entries ?? {}, id))
+}
+
 /** Los ids que `check:claim-provenance` marca `partido-distinto`, sin copiarlos a mano. */
 function idsFromCheck(): string[] {
   // El check SALE 1 a propósito cuando encuentra algo, que es exactamente
@@ -117,6 +129,26 @@ function main() {
     // seis meses. En seco no hace falta, porque no deja rastro.
     console.error('[retract-attribution] --motivo es obligatorio para escribir')
     process.exit(2)
+  }
+
+  // Una declaración con atribución firmada no se retira desde aquí. Su grupo
+  // vive en pleno-claim-relabels.json, y esa entrada se juzga contra la base:
+  // poner null en la base no la retira —la siguiente recomposición la vuelve a
+  // aplicar—, así que esto sería una retirada que no retira nada. Se niega antes
+  // de tocar un solo fichero, también en seco.
+  const firmadas = idsConAtribucionFirmada(ids)
+  if (firmadas.length > 0) {
+    console.error(
+      `[retract-attribution] ${firmadas.length} declaración(es) llevan atribución firmada ` +
+        '(pleno-claim-relabels.json): poner null en la base no la retira, la siguiente ' +
+        'recomposición la vuelve a aplicar. Retírala por su vía:',
+    )
+    for (const id of firmadas) {
+      console.error(
+        `  npm run relabel-attribution -- --retirar ${id} --motivo "…" --editor "<nombre y apellidos>"`,
+      )
+    }
+    process.exit(1)
   }
 
   const idSet = new Set(ids)

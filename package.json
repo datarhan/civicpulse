@@ -252,6 +252,7 @@
     "prerender:meta": "npx tsx scripts/prerender-meta.ts",
     "check:claim-provenance": "npx tsx scripts/check-claim-provenance.ts",
     "retract-attribution": "npx tsx scripts/retract-claim-attribution.ts",
+    "relabel-attribution": "npx tsx scripts/relabel-attribution.ts",
     "check:basemap": "npx tsx scripts/check-basemap.ts",
     "check:wms": "npx tsx scripts/check-wms.ts",
     "despiece": "npx tsx scripts/build-app-graph.ts",

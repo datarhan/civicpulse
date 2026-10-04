@@ -12,10 +12,13 @@
  * bloc-level»; la etiqueta nombra a ese concejal por eliminación, y eso es
  * nivel C (`decideAutomation({ namesIndividual: true })`).
  *
- * El registro de declaraciones no tiene vía para FIRMAR una atribución: la
- * única CLI que toca el campo, `retract-attribution`, sólo sabe retirarla. Por
- * eso aquí no cabe excepción y la cuenta es cero. El día que exista la firma,
- * esta prueba tendrá que leerla en vez de ensancharse a mano.
+ * El registro de declaraciones no tenía vía para FIRMAR una atribución: la
+ * única CLI que tocaba el campo, `retract-attribution`, sólo sabe retirarla.
+ * Desde el 04-10-2026 la tiene —`relabel-attribution`, que escribe
+ * pleno-claim-relabels.json (src/scraper/atribucion-firmada.ts)—, y nunca
+ * escribe un grupo de un escaño, así que aquí la cuenta sigue siendo cero. Lo
+ * que sí lee esta prueba es la firma: un grupo en una sesión sin mapa sólo cabe
+ * si una persona lo firmó, y una marca de firma tiene que tener su entrada.
  *
  * Tres ficheros, porque los tres se publican: los trozos los sirve el sitio;
  * el monolito y las sugerencias, el repositorio, que es público desde el 8-09.
@@ -28,8 +31,14 @@
  * mismos para no devolver lo que esta prueba retira.
  */
 import { describe, expect, it } from 'vitest'
-import { readFileSync, readdirSync } from 'node:fs'
+import { existsSync, readFileSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
+import {
+  escanosDe,
+  tieneAtribucionFirmada,
+  validarAtribucionesFirmadas,
+  type AtribucionesFirmadas,
+} from '../src/scraper/atribucion-firmada'
 import { oneSeatBlocsOf } from '../src/scraper/corporation-seats'
 import {
   etiquetaDeUnEscano,
@@ -50,6 +59,7 @@ interface Declaracion {
   id: string
   plenoId?: string
   speakerGroup?: string | null
+  atribucionFirmada?: { desde: number; hasta: number }
 }
 interface Fila {
   field: string
@@ -126,6 +136,14 @@ const monolito: Declaracion[] = leer('pleno-claims-verified.json').items.map(
   (it: { claim: Declaracion }) => it.claim,
 )
 const sugerencias: Declaracion[] = leer('pleno-claims-suggestions.json').items
+/** Las atribuciones firmadas. El fichero no existe hasta la primera firma. */
+const RUTA_FIRMAS = join(DATA, 'pleno-claim-relabels.json')
+const firmadas: AtribucionesFirmadas = existsSync(RUTA_FIRMAS)
+  ? JSON.parse(readFileSync(RUTA_FIRMAS, 'utf8'))
+  : { version: 1, generatedAt: '', entries: {} }
+/** ¿Lleva esta declaración el grupo que firmó una persona, y es el de su entrada? */
+const firmaAplicada = (d: Declaracion) =>
+  tieneAtribucionFirmada(d) && firmadas.entries[d.id]?.speakerGroup === d.speakerGroup
 const trozos = readdirSync(join(DATA, 'pleno-claims')).filter(
   (f) => f.endsWith('.json') && f !== 'index.json',
 )
@@ -167,6 +185,15 @@ describe('ninguna declaración publica sola el grupo de un concejal único', () 
   it('en las sugerencias (pleno-claims-suggestions.json)', () => {
     expect(sugerencias.length).toBeGreaterThan(0)
     expect(conEscanoUnico(sugerencias)).toEqual([])
+  })
+
+  it('en el fichero de firmas, que también se sirve: valida contra la composición de hoy', () => {
+    // El validador es el de la recomposición: firma de persona, sólo grupos con
+    // varios escaños, ni un `from` de un escaño. Una composición que cambió
+    // después de firmar lo pone en rojo aquí, no en la nocturna.
+    expect(() =>
+      validarAtribucionesFirmadas(firmadas, escanosDe(leer('officials.json'))),
+    ).not.toThrow()
   })
 })
 
@@ -240,9 +267,12 @@ describe('lo que /hallazgos corrige con firma llega a la declaración de la cita
  */
 describe('sin mapa de voces no hay grupo', () => {
   const conMapa = plenosConMapa(readdirSync('pleno-speaker-map'))
+  // La única excepción la firma una persona, y se lee de su fichero: una
+  // declaración con la marca y con el grupo de su entrada. Las sugerencias no
+  // la llevan nunca (`carry:attribution` no copia un grupo firmado).
   const enPlenoSinMapa = (ds: Declaracion[]) =>
     ds
-      .filter((d) => etiquetaSinMapa(d, conMapa))
+      .filter((d) => etiquetaSinMapa(d, conMapa) && !firmaAplicada(d))
       .map((d) => `${d.id} · ${rotulo(d.speakerGroup ?? null)}`)
 
   it('hay mapas de voces que mirar, y declaraciones fuera de ellos', () => {
@@ -262,5 +292,23 @@ describe('sin mapa de voces no hay grupo', () => {
 
   it('en las sugerencias (pleno-claims-suggestions.json)', () => {
     expect(enPlenoSinMapa(sugerencias)).toEqual([])
+  })
+
+  it('toda marca de firma publicada tiene su entrada firmada, con el mismo grupo y tramo', () => {
+    const sinEntrada = [...monolito, ...servidas]
+      .filter((d) => tieneAtribucionFirmada(d))
+      .filter((d) => {
+        const e = firmadas.entries[d.id]
+        return (
+          !e ||
+          e.speakerGroup !== d.speakerGroup ||
+          e.segundos.desde !== d.atribucionFirmada?.desde ||
+          e.segundos.hasta !== d.atribucionFirmada?.hasta
+        )
+      })
+      .map((d) => d.id)
+    expect(sinEntrada).toEqual([])
+    // Y ninguna en lo que alimenta la base.
+    expect(sugerencias.filter((d) => tieneAtribucionFirmada(d)).map((d) => d.id)).toEqual([])
   })
 })

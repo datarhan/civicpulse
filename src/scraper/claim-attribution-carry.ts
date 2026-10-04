@@ -43,7 +43,14 @@
  *     `classifyAttribution` dice `coincide` con el resolvedor de
  *     `check:claim-provenance`, con cuyos desenlaces #218 definió lo que
  *     retiraba
+ *
+ * Y antes que todas, una que no es de arrastre: el grupo de una declaración
+ * con atribución firmada no se copia nunca. Vive en `pleno-claim-relabels.json`
+ * (atribucion-firmada.ts), que guarda en `from` lo que decía la base al
+ * firmarse; copiarlo a la base dejaría la entrada obsoleta y el grupo publicado
+ * sin firma, la confusión de 472064bd con una firma en vez de una adivinanza.
  */
+import { tieneAtribucionFirmada } from './atribucion-firmada'
 import { classifyAttribution } from './claim-provenance'
 import { etiquetaDeUnEscano, etiquetaSinMapa, plenoDeDeclaracion } from './etiqueta-de-grupo'
 import { SPEAKER_GROUPS } from './pleno-votes'
@@ -59,6 +66,7 @@ import { SPEAKER_GROUPS } from './pleno-votes'
  * partido-distinto 9).
  */
 export const MOTIVOS_DE_DESCARTE = [
+  'firmada',
   'verbatim-distinto',
   'destino-ya-atribuido',
   'bloc-fuera-del-enum',
@@ -72,6 +80,7 @@ export type MotivoDeDescarte = (typeof MOTIVOS_DE_DESCARTE)[number]
 
 /** Lo que el parte dice de cada motivo, para quien lo lea sin abrir esto. */
 export const POR_QUE_SE_DESCARTA: Record<MotivoDeDescarte, string> = {
+  firmada: 'la firmó una persona: su grupo vive en pleno-claim-relabels.json, no en la base',
   'verbatim-distinto': 'el literal se movió bajo el mismo id',
   'destino-ya-atribuido': 'la cita ya lleva un grupo, y no se pisa',
   'bloc-fuera-del-enum': 'no es un grupo de SPEAKER_GROUPS',
@@ -103,6 +112,7 @@ interface CitaPublicada {
     plenoId?: string | null
     speakerGroup?: string | null
     verbatim?: string
+    atribucionFirmada?: unknown
   } | null
 }
 
@@ -153,6 +163,10 @@ export function arrastrarAtribucion<T extends CitaSugerida>(
     const bloc = p?.claim?.speakerGroup
     if (!bloc) continue
     intentadas += 1
+    if (tieneAtribucionFirmada(p.claim ?? null)) {
+      descartes.firmada += 1
+      continue
+    }
     if (!esBlocLegal(bloc)) {
       descartes['bloc-fuera-del-enum'] += 1
       continue

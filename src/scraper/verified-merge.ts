@@ -12,7 +12,9 @@
  * `pleno-claim-reclassifications.json` for a claim whose TYPE the extractor got
  * wrong, and `pleno-claim-reanchors.json` for one whose VERBATIM it mis-quoted.
  * Same merge discipline in all cases: the base stays machine-reproducible, the
- * sidecar is committed and precious, and any rebuild re-applies it.
+ * sidecar is committed and precious, and any rebuild re-applies it. A fifth,
+ * `pleno-claim-relabels.json`, holds the GROUP of a speaker as a person signed
+ * it after listening; its rules live in atribucion-firmada.ts.
  *
  * Pure module — no fs, no Date (callers pass timestamps). See
  * docs/superpowers/specs/2026-06-23-factcheck-rebuild-p2-design.md.
@@ -37,6 +39,8 @@ import {
 } from './declaracion-retirada'
 import { sha256Short } from './hash'
 import { quoteAppearsIn } from './quote-match'
+// atribucion-firmada.ts importa de aquí sólo tipos: no hay ciclo en ejecución.
+import { conAtribucionFirmada, type AtribucionesFirmadas } from './atribucion-firmada'
 
 export interface VerifiedItem {
   claim: PlenoClaim
@@ -221,20 +225,29 @@ function publicadaDesde(e: OverlayEntry): VerificacionPublicada {
  * deduped on the way out (base- AND overlay-origin), so the published monolith
  * + chunks never carry a citation twice.
  *
- * Los dos sidecars tocan campos distintos del mismo objeto y se COMPONEN: un
- * claim reclasificado y reanclado sale con las dos correcciones. Escribirlos
- * como un `else if` —que es como salió la primera versión— habría hecho que
- * aplicar el segundo deshiciera el primero en silencio.
+ * Los sidecars tocan campos distintos del mismo objeto y se COMPONEN: un claim
+ * reclasificado, reanclado y con atribución firmada sale con las tres
+ * correcciones. Escribirlos como un `else if` —que es como salió la primera
+ * versión— habría hecho que aplicar el segundo deshiciera el primero en
+ * silencio.
+ *
+ * La atribución firmada (`firmadas`) también se juzga contra la base; las
+ * entradas de `tramoPerdido` —su tramo ya no contiene las palabras, lo mide
+ * quien lee las transcripciones— cuentan como obsoletas. Una obsoleta nunca
+ * publica un grupo que contradiga la firma (`conAtribucionFirmada`).
  */
 export function mergeVerified(
   baseItems: VerifiedItem[],
   overlay: Overlay,
   reclassifications?: Reclassifications,
   reanchors?: Reanchors,
+  firmadas?: AtribucionesFirmadas,
+  tramoPerdido?: ReadonlySet<string>,
 ): VerifiedItem[] {
   const entries = overlay?.entries ?? {}
   const reclas = reclassifications?.entries ?? {}
   const reanc = reanchors?.entries ?? {}
+  const firm = firmadas?.entries ?? {}
   return baseItems.map((it) => {
     const e = entries[it.claim.id]
     // El `source` de la ENTRADA, que es el que valida `validateOverlay`, y no
@@ -252,6 +265,12 @@ export function mergeVerified(
     // no toca el literal, y comparar contra el intermedio ataría dos estratos
     // que son independientes a propósito.
     if (a != null && it.claim.verbatim === a.from) claim = reanchoredClaim(claim, a.verbatim)
+    claim = conAtribucionFirmada(
+      it.claim,
+      claim,
+      firm[it.claim.id],
+      tramoPerdido?.has(it.claim.id) ?? false,
+    )
     return verification === it.verification && claim === it.claim ? it : { claim, verification }
   })
 }
