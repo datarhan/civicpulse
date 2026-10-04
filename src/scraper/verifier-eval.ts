@@ -1,12 +1,20 @@
 /**
  * Verifier evaluation scorer (P0).
  *
- * Pure function: given a verifier's predictions + a human-labeled gold set,
+ * Pure function: given a verifier's predictions + a labelled gold set,
  * produce a Scorecard so any `VerifierFn` (deterministic / current-LLM / NLI)
  * can be compared apples-to-apples. No fetch, no LLM.
  *
+ * A precision is only as good as the labels it is measured against. This
+ * header used to call the gold «human-labeled»; every row of
+ * tests/fixtures/verifier-gold.json was labelled by a model (ai-opus-4.8,
+ * 2026-06-23/24), and /metodologia published its figures as «etiquetada a
+ * mano». So the scorecard says whose labels it scored (`labelledBy`, by
+ * `claseDeFirma`): against a model's labels every figure is agreement with
+ * that model, not accuracy. 2026-10-04.
+ *
  * Scoring rules (see docs/superpowers/specs/2026-06-23-factcheck-rebuild-phase1-design.md):
- *   · only rows flagged `reviewed:true` count;
+ *   · only rows flagged `reviewed:true` count — whoever set the flag;
  *   · a gold row with no matching prediction is scored as predicted `sin-datos`
  *     with empty evidence (a verifier that skips a claim emits "no verdict");
  *   · citation precision/recall are micro-averaged over rows that carry
@@ -15,6 +23,7 @@
  *     gold refs are a subset of the predicted refs).
  */
 import type { ClaimVerdict, ClaimVerification } from './claim-verifier'
+import { CLASES_DE_FIRMA, claseDeFirma, type ClaseDeFirma } from './firma-de-persona'
 
 export interface GoldRow {
   claimId: string
@@ -22,10 +31,23 @@ export interface GoldRow {
   goldVerdict: ClaimVerdict
   /** Refs the verifier SHOULD cite (optional; enables citation scoring). */
   goldEvidenceRefs?: string[]
-  /** Only `reviewed:true` rows are scored. */
+  /**
+   * Only `reviewed:true` rows are scored. It says the label was set, not by
+   * whom: a model can set it as well as a person, and `reviewer` says which.
+   */
   reviewed: boolean
+  /** Who set the label: a person's name, or a model or process id (`ai-opus-4.8`). */
+  reviewer?: string
   verbatim?: string
   notes?: string
+}
+
+/** Who labelled the scored rows. */
+export interface LabelProvenance {
+  /** Scored rows by `claseDeFirma(reviewer)`: persona / automatica / no-consta. */
+  byClass: Record<ClaseDeFirma, number>
+  /** Scored rows by `reviewer` as written; `(none)` when the row has none. */
+  byReviewer: Record<string, number>
 }
 
 export interface VerdictMetrics {
@@ -37,6 +59,8 @@ export interface VerdictMetrics {
 
 export interface Scorecard {
   n: number
+  /** Whose labels the figures below agree with. */
+  labelledBy: LabelProvenance
   labelAccuracy: number
   perVerdict: Record<ClaimVerdict, VerdictMetrics>
   /** confusion[goldVerdict][predVerdict] = count. */
@@ -67,6 +91,16 @@ export function scoreVerifier(
 ): Scorecard {
   const rows = gold.filter((g) => g.reviewed)
   const n = rows.length
+
+  const labelledBy: LabelProvenance = {
+    byClass: Object.fromEntries(CLASES_DE_FIRMA.map((c) => [c, 0])) as Record<ClaseDeFirma, number>,
+    byReviewer: {},
+  }
+  for (const r of rows) {
+    labelledBy.byClass[claseDeFirma(r.reviewer)] += 1
+    const who = r.reviewer ?? '(none)'
+    labelledBy.byReviewer[who] = (labelledBy.byReviewer[who] ?? 0) + 1
+  }
 
   const predVerdictOf = (id: string): ClaimVerdict => predictions.get(id)?.verdict ?? 'sin-datos'
   const predRefsOf = (id: string): string[] =>
@@ -137,6 +171,7 @@ export function scoreVerifier(
 
   return {
     n,
+    labelledBy,
     labelAccuracy: n > 0 ? correct / n : 0,
     perVerdict,
     confusion,
@@ -145,4 +180,34 @@ export function scoreVerifier(
     citation: { precision: cprec, recall: crec, f1: f1Of(cprec, crec), rowsWithGoldRefs },
     feverScore: n > 0 ? passes / n : 0,
   }
+}
+
+/**
+ * The scorecard's provenance lines, for `eval:verifier`. The warning is the
+ * point: the June engine's «sin-datos 92.3%» reached /metodologia as
+ * «acierta ~92 %» of a hand-labelled sample, and nothing in the scorecard
+ * said the labels were a model's.
+ */
+export function formatLabelProvenance(p: LabelProvenance): string[] {
+  const { persona, automatica } = p.byClass
+  const total = persona + automatica + p.byClass['no-consta']
+  const who = Object.entries(p.byReviewer)
+    .map(([reviewer, n]) => `${reviewer} ×${n}`)
+    .join(', ')
+  const lines = [
+    `labelled by: a person ${persona} · a model or process ${automatica} · ` +
+      `not stated ${p.byClass['no-consta']}  (${who})`,
+  ]
+  if (persona === 0) {
+    lines.push(
+      '⚠ no scored row was labelled by a person — every figure below is ' +
+        'agreement with those labels, not accuracy',
+    )
+  } else if (persona < total) {
+    lines.push(
+      `⚠ ${total - persona} of ${total} scored rows were not labelled by a person — ` +
+        'the figures below mix accuracy with agreement',
+    )
+  }
+  return lines
 }
