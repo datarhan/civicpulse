@@ -286,6 +286,8 @@ describe('/eficiencia: el título, el cuerpo y la medición de la ficha', () => 
     (m.pares ? ` · mediana de ${m.pares.n}: ${m.pares.mediana}` : '')
   const vigenteDe = (ficha, campo) =>
     campo === 'medicion' ? lineaDeMedicion(ficha.medicion) : ficha[campo]
+  /** Un texto tal y como lo pinta la bitácora: sin asteriscos de negrita. */
+  const comoSeLee = (texto) => norm(String(texto).replace(/\*\*/g, ''))
 
   const conBitacora = EF.items.filter((f) => f.corrections?.length)
   /** Los párrafos de la bitácora de una ficha, uno por corrección. */
@@ -316,7 +318,7 @@ describe('/eficiencia: el título, el cuerpo y la medición de la ficha', () => 
       f.corrections.forEach((c, i) => {
         const t = plano(ps[i])
         if (c.corrected === vigenteDe(f, c.field)) {
-          expect(t).toContain(`${ROTULO_TEXTO_VIGENTE}: ${norm(c.corrected)}`)
+          expect(t).toContain(`${ROTULO_TEXTO_VIGENTE}: ${comoSeLee(c.corrected)}`)
           return
         }
         medidas += 1
@@ -327,7 +329,7 @@ describe('/eficiencia: el título, el cuerpo y la medición de la ficha', () => 
           t
             .slice(rotulo.index + rotulo[0].length)
             .trim()
-            .startsWith(norm(c.corrected)),
+            .startsWith(comoSeLee(c.corrected)),
         ).toBe(true)
         // Sustituida después de ponerla, no antes.
         expect(rotulo[0].slice(-11, -1) >= dia(c.correctedAt)).toBe(true)
