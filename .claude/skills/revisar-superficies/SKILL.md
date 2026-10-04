@@ -125,7 +125,8 @@ siempre esta revisión, y por eso el procedimiento vive aquí.
 
 ## Qué NO hace
 
-- No edita nada. Nunca. Señala; decide una persona.
+- La revisión (`review:surfaces`) no edita nada: señala, y decide una persona —
+  la que sigue los pasos 4 y 5.
 - No juzga estilo, diseño ni accesibilidad — para eso está la suite axe.
 - No inventa el contexto que no tiene: no sabe qué contratos existen en el mundo,
   solo si la página contradice los datos que se le pasan.

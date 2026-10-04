@@ -69,7 +69,7 @@ exactamente aquello que la exclusión protegía.
 Regla: la nota describe **el criterio**, nunca el material descartado.
 
 - ✅ «Se han descartado fuentes que no acreditan identidad con el sujeto.»
-- ❌ «Se ha descartado una detención de 2006 que resultó ser de otro Rafael Gómez.»
+- ❌ «Se ha descartado una noticia de <año> sobre <hecho> que resultó ser de un homónimo.»
 
 ## Paso 3 — Informa, no edites
 
