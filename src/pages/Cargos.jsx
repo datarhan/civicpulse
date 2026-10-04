@@ -1,5 +1,12 @@
 import { Link } from 'react-router-dom'
-import { Card, ExtLink, LegendDot, PartyTag, SectionHead } from '../components/Primitives'
+import {
+  Card,
+  CorreoPartible,
+  ExtLink,
+  LegendDot,
+  PartyTag,
+  SectionHead,
+} from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { barItems } from '../lib/party-order'
@@ -1006,7 +1013,7 @@ function Correo({ o, kinds }) {
           minWidth: 0,
         }}
       >
-        {info.email}
+        <CorreoPartible email={info.email} />
       </a>
       {info.compartido && (
         <span style={{ color: 'var(--ink50)', fontSize: 'var(--fs-micro)' }}>
