@@ -22,11 +22,21 @@
  *
  * Y una tercera regla, la que /metodologia publica: sin mapa de voces no hay
  * grupo (bloque del final).
+ *
+ * Los predicados de la primera y la tercera viven en
+ * src/scraper/etiqueta-de-grupo.ts y no aquí: `carry:attribution` usa los
+ * mismos para no devolver lo que esta prueba retira.
  */
 import { describe, expect, it } from 'vitest'
 import { readFileSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
-import { seatsFromOfficials, singleSeatBlocs } from '../src/scraper/corporation-seats'
+import { oneSeatBlocsOf } from '../src/scraper/corporation-seats'
+import {
+  etiquetaDeUnEscano,
+  etiquetaSinMapa,
+  plenoDeDeclaracion,
+  plenosConMapa,
+} from '../src/scraper/etiqueta-de-grupo'
 import {
   ATTRIBUTION_RETRACTED_LABEL,
   CORRECTION_REMOVAL_FIELD_RE,
@@ -110,7 +120,7 @@ describe('indiceDeHoy — la cita de una fila, después de las retiradas', () =>
   })
 })
 
-const UN_ESCANO = singleSeatBlocs(seatsFromOfficials(leer('officials.json')))
+const UN_ESCANO = oneSeatBlocsOf(leer('officials.json')) ?? []
 
 const monolito: Declaracion[] = leer('pleno-claims-verified.json').items.map(
   (it: { claim: Declaracion }) => it.claim,
@@ -134,7 +144,7 @@ const rotulo = (g: string | null) =>
 
 const conEscanoUnico = (ds: Declaracion[]) =>
   ds
-    .filter((d) => d.speakerGroup && UN_ESCANO.includes(d.speakerGroup))
+    .filter((d) => etiquetaDeUnEscano(d, UN_ESCANO))
     .map((d) => `${d.id} · ${rotulo(d.speakerGroup ?? null)}`)
 
 describe('ninguna declaración publica sola el grupo de un concejal único', () => {
@@ -229,22 +239,17 @@ describe('lo que /hallazgos corrige con firma llega a la declaración de la cita
  * `check:claim-provenance` sin parar la nocturna—: aquí sólo cabe el cero.
  */
 describe('sin mapa de voces no hay grupo', () => {
-  const conMapa = new Set(
-    readdirSync('pleno-speaker-map')
-      .filter((f) => f.endsWith('.json'))
-      .map((f) => f.replace(/\.json$/, '')),
-  )
-  const plenoDe = (d: Declaracion) => d.plenoId ?? d.id.split('-')[0]
+  const conMapa = plenosConMapa(readdirSync('pleno-speaker-map'))
   const enPlenoSinMapa = (ds: Declaracion[]) =>
     ds
-      .filter((d) => d.speakerGroup && !conMapa.has(plenoDe(d)))
+      .filter((d) => etiquetaSinMapa(d, conMapa))
       .map((d) => `${d.id} · ${rotulo(d.speakerGroup ?? null)}`)
 
   it('hay mapas de voces que mirar, y declaraciones fuera de ellos', () => {
     // Sin mapas, «ningún pleno tiene mapa» y la cuenta mide otra cosa; sin
     // declaraciones fuera de los mapas, no mide nada.
     expect(conMapa.size).toBeGreaterThan(0)
-    expect(monolito.filter((d) => !conMapa.has(plenoDe(d))).length).toBeGreaterThan(0)
+    expect(monolito.filter((d) => !conMapa.has(plenoDeDeclaracion(d))).length).toBeGreaterThan(0)
   })
 
   it('en los trozos que sirve el sitio', () => {

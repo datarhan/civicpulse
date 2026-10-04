@@ -51,6 +51,9 @@
  * (`declaracion-retirada.ts`).
  */
 import { prepararHeno, quoteAppearsInPrepared, type HenoPreparado } from './quote-match'
+import type { SpeakerMap } from './speaker-map'
+import { alignSpeakerMap, blocResolverFor } from './speaker-map-align'
+import { parseDiarizedTranscript } from './voice-id'
 
 export type ProvenanceOutcome = 'vigente' | 'solo-superseded' | 'sin-rastro' | 'sin-transcripcion'
 
@@ -112,6 +115,31 @@ export function classifyClaimProvenancePreparado(input: {
   if (quoteAppearsInPrepared(verbatim, current)) return 'vigente'
   if (superseded.some((t) => quoteAppearsInPrepared(verbatim, t))) return 'solo-superseded'
   return 'sin-rastro'
+}
+
+/**
+ * El `fresh` de `classifyAttribution`: el grupo que da HOY el mapa de voces a
+ * cada literal de una sesión, alineado sobre su transcripción vigente. `null`
+ * si no hay con qué cotejar —sin mapa, sin transcripción, o un mapa que no se
+ * deja leer—, y eso es `sin-mapa`, no un desacuerdo: un resolvedor que
+ * contestara null a todo se leería como «el mapa no lo sostiene».
+ *
+ * Una sola copia porque la usan dos que tienen que coincidir:
+ * `check:claim-provenance`, con cuyos desenlaces #218 definió las 1.007
+ * etiquetas que retiró, y `carry:attribution`, que no puede devolver ninguna.
+ */
+export function resolverDeGrupo(
+  transcripcion: string | null,
+  mapa: string | null,
+): ((verbatim: string) => string | null) | null {
+  if (mapa === null || transcripcion === null) return null
+  try {
+    const published = parseDiarizedTranscript(transcripcion)
+    const map = JSON.parse(mapa) as SpeakerMap
+    return blocResolverFor(published, alignSpeakerMap({ published, map }))
+  } catch {
+    return null
+  }
 }
 
 export function classifyAttribution(input: {

@@ -1,0 +1,130 @@
+{
+  "_procedencia": {
+    "que": "Una acusación que el emparejador determinista da por «verificado» sobre un contrato que no acredita lo que denuncia, y que lo publicado mantiene en «sin-datos» sólo porque el motor de veredictos la retractó en el overlay el 02-08-2026. Sin esa entrada, recomponer subiría una acusación ya publicada, y la guarda de verified-rebuild.ts aborta.",
+    "sugerencias": "La declaración 10yl550-106-acu-dd1a86 de public/data/pleno-claims-suggestions.json en main aa52a047, sin tocar.",
+    "publicado": "Su fila de public/data/pleno-claims-verified.json en main aa52a047 (generatedAt 2026-10-04T07:37:32.197Z), sin tocar.",
+    "overlay": "Su entrada verdict-engine de public/data/pleno-claims-overlay.json en main aa52a047, sin tocar.",
+    "tenders": "La fila de public/data/tenders.json que el emparejador le casa (similitud 0,86 en la base del checkout principal, generatedAt 2026-10-04T07:37:32.197Z)."
+  },
+  "sugerencias": {
+    "items": [
+      {
+        "id": "10yl550-106-acu-dd1a86",
+        "plenoId": "10yl550",
+        "plenoDate": "2026-05-11",
+        "segmentIndex": 106,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "porque volvía a llevar 8.000 euros del Partido Popular, José Luis, del Partido Popular. 8.000 euros de la Policía Local para que modificáramos partida.",
+        "context": "Dos cosas que son importantes. Bueno, está la moción de presentar al Partido Popular y así on demanda que enmienda 2, al que votaremos en contra, porque volvía a llevar 8.000 euros del Partido Popular, José Luis, del Partido Popular. 8.000 euros de la Policía Local para que modificáramos partida.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 8000,
+          "count": 1,
+          "countUnit": "modificación de partida",
+          "referencedEntity": "policía local"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.9,
+        "reasoning": "Se menciona una cifra específica de 8.000 euros relacionada con la Policía Local y una modificación de partida, lo que permite verificar la existencia de esta partida en el presupuesto.",
+        "requiresHumanApproval": true
+      }
+    ]
+  },
+  "publicado": {
+    "generatedAt": "2026-10-04T07:37:32.197Z",
+    "items": [
+      {
+        "claim": {
+          "id": "10yl550-106-acu-dd1a86",
+          "plenoId": "10yl550",
+          "plenoDate": "2026-05-11",
+          "segmentIndex": 106,
+          "type": "acusacion_publica",
+          "speakerGroup": null,
+          "verbatim": "porque volvía a llevar 8.000 euros del Partido Popular, José Luis, del Partido Popular. 8.000 euros de la Policía Local para que modificáramos partida.",
+          "context": "Dos cosas que son importantes. Bueno, está la moción de presentar al Partido Popular y así on demanda que enmienda 2, al que votaremos en contra, porque volvía a llevar 8.000 euros del Partido Popular, José Luis, del Partido Popular. 8.000 euros de la Policía Local para que modificáramos partida.",
+          "topic": "fiscal",
+          "entities": {
+            "amountEuros": 8000,
+            "count": 1,
+            "countUnit": "modificación de partida",
+            "referencedEntity": "policía local"
+          },
+          "accusationSubtype": "factual",
+          "confidence": 0.9,
+          "reasoning": "Se menciona una cifra específica de 8.000 euros relacionada con la Policía Local y una modificación de partida, lo que permite verificar la existencia de esta partida en el presupuesto.",
+          "requiresHumanApproval": true
+        },
+        "verification": {
+          "claimId": "10yl550-106-acu-dd1a86",
+          "verdict": "sin-datos",
+          "summary": "Analicé la afirmación (acusación de que una enmienda del PP incluía 8.000€ para la Policía Local, vinculada a \"José Luis\" del PP) contra los 8 candidatos de contratos/tenders del Ayuntamiento de Riba-roja de Túria. Ningún candidato es un registro presupuestario/de enmienda que coincida con el import",
+          "evidence": [],
+          "checkedAgainst": [
+            "verdict-engine"
+          ],
+          "confidence": 0.2,
+          "source": "verdict-engine"
+        }
+      }
+    ]
+  },
+  "overlay": {
+    "version": 1,
+    "generatedAt": "2026-10-04T06:39:13.501Z",
+    "entries": {
+      "10yl550-106-acu-dd1a86": {
+        "verification": {
+          "claimId": "10yl550-106-acu-dd1a86",
+          "verdict": "sin-datos",
+          "summary": "Analicé la afirmación (acusación de que una enmienda del PP incluía 8.000€ para la Policía Local, vinculada a \"José Luis\" del PP) contra los 8 candidatos de contratos/tenders del Ayuntamiento de Riba-roja de Túria. Ningún candidato es un registro presupuestario/de enmienda que coincida con el import",
+          "evidence": [],
+          "checkedAgainst": [
+            "verdict-engine"
+          ],
+          "confidence": 0.2
+        },
+        "source": "verdict-engine",
+        "reason": "verdict-engine (claude-code) re-judged verificado→sin-datos: Analicé la afirmación (acusación de que una enmienda del PP incluía 8.000€ para la Policía Local, vinculada a \"José Luis\" del PP) contra los 8 candidatos de contratos/tenders del Ayuntamiento de Riba-roja de Túria. Ningún candidato es un registro presupuestario/de enmienda que coincida con el import",
+        "editor": "verdict-engine:claude-code",
+        "appliedAt": "2026-08-02T04:51:00.320Z"
+      }
+    }
+  },
+  "tenders": {
+    "contracts": [
+      {
+        "id": "1879271",
+        "title": "suministro de 5 armas de fuego cortas, 5 fundas y 2 kits de pistola eléctrica para la Policía Local del Ayuntamiento de Riba-Roja de Túria,",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BuYsrv5HU8MBPRBxZ4nJ%2Fg%3D%3D",
+        "status": "awarded",
+        "contractType": "supplies",
+        "processType": "minor_contract",
+        "minorContract": true,
+        "startDate": "2020-07-23",
+        "endDate": "2020-10-06",
+        "awardDate": "2021-01-23",
+        "formalizedDate": null,
+        "duration": 15,
+        "batchNumber": 0,
+        "assignee": "Armeria Gabilondo, S.A.",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractorId": "58096",
+        "contractorType": "Ayuntamiento",
+        "categoryId": "44",
+        "categoryTitle": "security",
+        "cpvs": [
+          "35320000",
+          "35300000"
+        ],
+        "initialAmount": 8651.5,
+        "initialAmountNoTaxes": 7150,
+        "finalAmount": 8440.96,
+        "finalAmountNoTaxes": 6976,
+        "estimatedValue": 0,
+        "numberOfProposals": 1
+      }
+    ]
+  }
+}
