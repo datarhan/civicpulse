@@ -81,10 +81,13 @@ Optional secrets you can set now or later:
 - `ADMIN_USER_IDS=123,456` — Telegram user IDs allowed to run `/batch`,
   `/batch_register`, `/escalar`. Find yours via [@userinfobot](https://t.me/userinfobot).
 - `GEMINI_API_KEY` — la clave del análisis que localiza caras y matrículas en las
-  fotos (`src/services/photo-anonymize.ts`). Sin ella, la pasada horaria retiene cada
-  foto y no se publica ninguna; el arranque lo dice en el log (`[fotos] cron armado`).
+  fotos (`src/services/photo-anonymize.ts`). Sin ella —o sin `GEMINI_NIVEL=pago`,
+  abajo—, la pasada horaria retiene cada foto y no se publica ninguna; el arranque
+  dice cuál falta en el log (`[fotos] cron armado`).
 - `GEMINI_NIVEL=pago` — enciende la revisión automática del texto de cada queja
-  (`src/services/moderacion.ts`). No es un secreto: es tu declaración de que el
+  (`src/services/moderacion.ts`) y el análisis de las fotos: sin ella, la imagen no
+  sale hacia Gemini y cada foto se retiene (desde el 04-10-2026; el aviso legal dice
+  que la API «recibe la imagen sólo para eso»). No es un secreto: es tu declaración de que el
   proyecto de Google de esa clave está en el nivel de pago, cuyas condiciones no
   usan lo enviado para mejorar sus productos —y el texto de una queja es de un
   vecino—. Pásalo a pago en Google AI Studio antes de ponerla. Sin ella la revisión
