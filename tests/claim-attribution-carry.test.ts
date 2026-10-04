@@ -312,5 +312,8 @@ describe('contra los ficheros reales', () => {
       (g): g is string => !!g && !(SPEAKER_GROUPS as readonly string[]).includes(g),
     )
     expect(fuera, 'apareció un bloc que no está en el enum').toEqual([])
-  })
+    // Hoy no coteja nada: las 168 publicadas con grupo ya están en las
+    // sugerencias. El día que haya qué arrastrar alinea hasta diez sesiones de
+    // verdad, y una sola tarda 6,6 s en el runner de la CI.
+  }, 120_000)
 })

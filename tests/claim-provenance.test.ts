@@ -174,7 +174,9 @@ describe('scraper/claim-provenance — resolverDeGrupo', () => {
     // El control: si el mapa no acreditara ninguna, la igualdad de arriba
     // compararía nulls con nulls.
     expect(dados.filter(Boolean).length).toBeGreaterThan(0)
-  })
+    // Alinea una sesión entera dos veces: 6,6 s en el runner de la CI (ejecución
+    // 37203573416), por encima del plazo por defecto de una prueba.
+  }, 60_000)
 })
 
 describe('scraper/claim-provenance — tallyProvenance', () => {

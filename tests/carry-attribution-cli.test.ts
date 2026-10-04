@@ -28,8 +28,10 @@ const SCRIPT = resolve('scripts/carry-attribution.ts')
 const TSX = resolve('node_modules/.bin/tsx')
 const PLENO = '11025xk'
 
-// Arranca el guion de verdad (~3 s con tsx); el tope de 5 s de vitest no da.
-vi.setConfig({ testTimeout: 60_000 })
+// Arranca el guion de verdad (~3 s con tsx; más del doble en el runner de la CI)
+// dentro de `beforeAll`, dos veces, y un gancho tiene su propio tope de 10 s que
+// `testTimeout` no cubre.
+vi.setConfig({ testTimeout: 60_000, hookTimeout: 120_000 })
 
 interface Declaracion {
   id: string

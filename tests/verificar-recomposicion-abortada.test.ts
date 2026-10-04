@@ -38,8 +38,10 @@ const FIXTURE = JSON.parse(
 const ID = '10yl550-106-acu-dd1a86'
 const ENTRADA = FIXTURE.overlay.entries[ID]
 
-// Arranca el guion de verdad (~3 s con tsx); el tope de 5 s de vitest no da.
-vi.setConfig({ testTimeout: 60_000 })
+// Arranca el guion de verdad (~3 s con tsx; más del doble en el runner de la CI)
+// dentro de `beforeAll`, una vez por bloque, y un gancho tiene su propio tope de 10 s que
+// `testTimeout` no cubre.
+vi.setConfig({ testTimeout: 60_000, hookTimeout: 120_000 })
 
 const cajas: string[] = []
 afterAll(() => {
