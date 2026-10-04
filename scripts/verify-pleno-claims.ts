@@ -18,7 +18,7 @@ import {
   type ClaimVerdict,
 } from '../src/scraper/claim-verifier'
 import { resumirSinDatos } from '../src/scraper/claim-verdicts'
-import { BASE, rebuildVerified } from './verified-rebuild'
+import { BASE, VERIFIED, rebuildVerified } from './verified-rebuild'
 
 const CLAIMS = resolve('public/data/pleno-claims-suggestions.json')
 const DATA = resolve('public/data')
@@ -125,15 +125,38 @@ async function main() {
   }
 
   // Merge base ⊕ overlay → verified.json + chunks (the SPA reads the chunks).
+  //
+  // Un aborto aquí es un fallo de la pasada, no un aviso. Las guardas de la
+  // recomposición fallan CERRADO —una acusación publicada que subiría, un
+  // overlay que el validador rechaza, la atribución que se perdería, el techo de
+  // retirada de los trozos— y quien llama lee el código de salida:
+  // `retract-attribution`, `extract-and-verify`, la tubería de /hallazgos. Hasta
+  // el 04-10-2026 esto imprimía «rebuild FAILED» y salía 0, así que todos leían
+  // «recompuesto» donde no se había recompuesto nada (DATA_INTEGRITY, regla 2).
+  //
+  // Y se dice qué quedó hecho, porque no siempre es lo mismo: las guardas
+  // abortan antes de escribir, pero los trozos se escriben DESPUÉS del monolito
+  // y pueden abortar con él ya reescrito. Se mira el fichero, no se supone.
+  const publicadoAntes = existsSync(VERIFIED) ? readFileSync(VERIFIED, 'utf8') : null
   try {
     const r = await rebuildVerified()
     process.stdout.write(
       `[verify]   merged base ⊕ overlay (${r.overlayApplied} overlay entries) → verified.json + chunks\n`,
     )
   } catch (err) {
+    const monolitoReescrito =
+      (existsSync(VERIFIED) ? readFileSync(VERIFIED, 'utf8') : null) !== publicadoAntes
     process.stderr.write(
-      `[verify]   rebuild FAILED: ${err instanceof Error ? err.message : String(err)}\n`,
+      `[verify]   recomposición ABORTADA: ${err instanceof Error ? err.message : String(err)}\n` +
+        (monolitoReescrito
+          ? '[verify]   hecho: la base determinista y pleno-claims-verified.json · sin hacer: los ' +
+            'trozos — lo que sirve el sitio ya no sigue al monolito\n'
+          : '[verify]   hecho: la base determinista · sin tocar: pleno-claims-verified.json y ' +
+            'los trozos — lo publicado sigue como estaba\n'),
     )
+    // `exitCode` y no `exit()`: en macOS stderr por tubería es asíncrono, y
+    // salir en seco puede cortar justo las dos líneas que dicen por qué.
+    process.exitCode = 1
   }
 }
 

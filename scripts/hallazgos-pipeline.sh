@@ -360,9 +360,21 @@ else
 fi
 
 # ---- re-verify only if new claims landed (overlay-safe) ---------------
+VERIFY_FALLO=""
 if [ "$NEW" -gt 0 ]; then
   log "re-verifying claims ($NEW new pleno(s)) — overlay-safe…"
-  npm run verify:pleno-claims
+  # Un verify que falla NO tumba la noche. Sale con error cuando su
+  # recomposición aborta, y sus guardas abortan ANTES de tocar lo publicado
+  # (salvo los trozos, que lo dice él mismo). Hasta el 04-10-2026 salía 0 en
+  # ese caso; con `set -e` y el código diciendo la verdad, la pasada moría aquí
+  # y dejaba sin comitear las transcripciones y la extracción de la noche.
+  # Seguir no publica nada nuevo: lo que no puede pasar es que la última línea
+  # se lea como una noche limpia.
+  if ! npm run verify:pleno-claims; then
+    VERIFY_FALLO=1
+    log "FALLO: verify:pleno-claims — lo publicado NO se recompuso (el motivo, arriba)." \
+      "Lo extraído se comitea igual; recomponer lo decide una persona"
+  fi
   # EL SELLO, y aquí porque `NEW` cuenta las extracciones que terminaron bien
   # vengan de donde vengan.
   #
@@ -575,6 +587,8 @@ if RUN_REPORT=$(npm run --silent check:runs -- --since 6 --soft 2>&1); then
   fi
 fi
 [ "${PARTIAL_MAPS:-0}" -gt 0 ] && RUN_VERDICT="${RUN_VERDICT} · ${PARTIAL_MAPS} mapa(s) parcial(es)"
+[ -n "${VERIFY_FALLO:-}" ] &&
+  RUN_VERDICT="${RUN_VERDICT} · verify:pleno-claims FALLÓ: lo publicado no se recompuso (el motivo, en el log)"
 # Una pasada que corrió media tubería no puede firmar la línea de una completa.
 [ "$TEXT_BACKEND" != ok ] &&
   RUN_VERDICT="${RUN_VERDICT} · DEGRADADA: sin backend de texto (extracción y auto-curación en espera) — claude: ${TEXT_BACKEND_MOTIVO}"
