@@ -346,8 +346,9 @@ overwrites it. Change the bot's SQLite instead.
 ### Association register
 
 - **Pipeline** — `asociaciones.ts` → `asociaciones.json`
-- **Source** — Registro Municipal de Asociaciones PDF
+- **Source** — Registro Municipal de Asociaciones PDF (since the 2026-07-09 register, with a CIF column between domicilio and correo; parsed, not published — neither is the correo)
 - **Surfaces** — `/datos` entidades directory
+- **Gate** — the CLI refuses to write when `motivosParaNoPublicar` finds a correo or a CIF inside a nombre/domicilio, more rows without tipo than `TECHO_SIN_TIPO`, or no rows; best-effort keeps the prior snapshot and `check:cadence` flags it if it ages
 
 ### Obras municipales (fichas 2019–2024)
 

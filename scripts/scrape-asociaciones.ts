@@ -5,7 +5,7 @@
 import { mkdir, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { parseAsociacionesPdf } from '../src/scraper/asociaciones'
+import { motivosParaNoPublicar, parseAsociacionesPdf } from '../src/scraper/asociaciones'
 
 const UA = 'Mozilla/5.0 (compatible; CivicPulse/0.1; +https://github.com/datarhan/civicpulse)'
 const LISTING =
@@ -42,6 +42,14 @@ async function main() {
   const text = await fetchPdfText(target.href)
   if (!text) throw new Error('asociaciones: register PDF fetch failed')
   const doc = parseAsociacionesPdf(text)
+  // Un PDF con otra forma no rompe el parser: lo degrada. Con el de julio de
+  // 2026 se publicaron casi tres meses columnas pegadas y correos dentro del
+  // nombre, que /datos pinta. Si lo leído no se sostiene, se falla aquí: el
+  // adaptador es best-effort en la nocturna, así que el resto sigue, el
+  // snapshot anterior se queda en pie y check:cadence avisa si envejece.
+  const motivos = motivosParaNoPublicar(doc)
+  if (motivos.length > 0)
+    throw new Error(`asociaciones: no se publica ${target.href} — ${motivos.join('; ')}`)
   // Honesty: the `email` field can carry a wrong-but-valid value when the PDF
   // glues an unseen town/venue into the address→correo seam (see
   // asociaciones.ts header — the EMAIL_ONLY_RE gate guarantees well-formedness,
@@ -49,7 +57,9 @@ async function main() {
   // published snapshot until the Wave 3.1 town-gazetteer hardening lands — an
   // absent field beats a wrong one in publicly-downloadable open data. The
   // parser still returns it for that future work + the regression tests.
-  const publicAsociaciones = doc.asociaciones.map(({ email: _email, ...rest }) => rest)
+  // El `cif` tampoco sale todavía: ninguna superficie lo lee, y añadir una
+  // columna al dato abierto es una decisión distinta de arreglar las que había.
+  const publicAsociaciones = doc.asociaciones.map(({ email: _email, cif: _cif, ...rest }) => rest)
   await mkdir(dirname(OUT), { recursive: true })
   await writeFile(
     OUT,
@@ -64,7 +74,11 @@ async function main() {
       2,
     ),
   )
-  console.log(`wrote ${doc.asociaciones.length} asociaciones · registro ${doc.fechaRegistro}`)
+  const conCif = doc.asociaciones.filter((a) => a.cif !== null).length
+  const sinTipo = doc.asociaciones.filter((a) => a.tipo === null).length
+  console.log(
+    `wrote ${doc.asociaciones.length} asociaciones · registro ${doc.fechaRegistro} · ${conCif} con CIF · ${sinTipo} sin tipo`,
+  )
 }
 
 main().catch((e) => {
