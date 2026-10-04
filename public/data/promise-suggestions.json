@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-03T10:18:56.820Z",
+  "generatedAt": "2026-10-04T10:56:00.145Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -40,7 +40,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-03T10:18:56.740Z"
+      "generatedAt": "2026-10-04T10:56:00.083Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -48,7 +48,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-03T10:18:56.740Z"
+      "generatedAt": "2026-10-04T10:56:00.083Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -67,7 +67,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-03T10:18:56.740Z"
+      "generatedAt": "2026-10-04T10:56:00.083Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -79,7 +79,7 @@
           "date": "2026-06-16",
           "quote": "Riba-roja de Túria repartirá más de 2000 helados gratis a los asistentes de Cinema d'Estiu",
           "kind": "press",
-          "publisher": "Levante-EMV",
+          "publisher": "levante-emv.com",
           "matchedKeywords": [
             "helado",
             "cinema",
@@ -89,7 +89,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-03T10:18:56.740Z"
+      "generatedAt": "2026-10-04T10:56:00.083Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -112,7 +112,7 @@
           "date": "2026-06-16",
           "quote": "Riba-roja de Túria repartirá más de 2000 helados gratis a los asistentes de Cinema d'Estiu",
           "kind": "press",
-          "publisher": "Levante-EMV",
+          "publisher": "levante-emv.com",
           "matchedKeywords": [
             "cinema",
             "estiu"
@@ -120,7 +120,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-03T10:18:56.740Z"
+      "generatedAt": "2026-10-04T10:56:00.083Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -128,7 +128,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-03T10:18:56.740Z"
+      "generatedAt": "2026-10-04T10:56:00.083Z"
     },
     {
       "promiseId": "ac-psoe-1ryndd8",
@@ -152,23 +152,11 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQZ0czb1kyczZ1QVBIaTBwZnZ1TjlXNjA4c1lGaFJ1N3MyeHQ4RERPOFZ6YllUaEczV0RfZXVtRHJ5NHBQeVBObG44dWpPWUpkcmttcFRWMEpZX01vbEdjZFR4ZUpvZVJDOVlvOGRTUzlGU01VZ2l4MGlCbXdnbEdkdzQxN280MkkxMGJvX1Y2TFZEWHBqdFFpa0VicEdHNm93eWtV?oc=5",
-          "date": "2026-09-16",
-          "quote": "Ayudas para el informe de evaluación de edificios en Riba-roja de Túria",
-          "kind": "press",
-          "publisher": "boletinbien.com",
-          "matchedKeywords": [
-            "ayuda",
-            "evaluacion",
-            "edificio"
-          ]
-        },
-        {
           "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQSjIzVFJONlJSTzg4ekpmU3dKM3AtenBUeWdqaDIyZ084VXpIRGhyQUg0cFBhWHdkbWRoYVBmcTd2MmstQkdzaGpSSlQ5ZldwTkFBOUFDX3V1bGRjcFdPWHpudEJObDlZLWNnYzR4MlhwcF81SllEMmpMRlkyWHhnaUVpNFY3eFR5T1o5dXJXY1p5RjFKVVlBUU55Nmo1Z3Jwa1gxVG1JOXVrdW0wLWRmaDY3WTlwdHNOd0ZaNkhmV1ZmQ0hGU05IYzBGV1JkMDFrS1NoYS0zbW12dTBn0gHiAUFVX3lxTE4yeHBabkwxVU9QN2NnUXlUVTZNel8tY0Q5UTBYdk9VbS1Wd0NhUUlDZkhqeFgyTVR3R1lhMDBHZ2hzc0ZnUklwZ25CY0JyQ1hlNVlqQmNiRE9WNlRBZFU5c2RpYk00dlBSNS1ueE55NDhGczJaa0J1UDFWMlJDd3I2TS14NGJJb0dScDhEM2I2Nzd1bWdpdTVSRkQySHhFQVp1NXZZMnlvYmpUUERld2NYMkxwNzNZMEhIeVY1QWZld0NWVXhlYW5sVVZES2dvMm9Qbk9FTlkwcy1ZVlJwOWlmR2c?oc=5",
           "date": "2026-08-25",
           "quote": "Riba-roja de Túria destina una partida de 100.000 euros para la rehabilitación de las fachadas",
           "kind": "press",
-          "publisher": "Levante-EMV",
+          "publisher": "levante-emv.com",
           "matchedKeywords": [
             "euro",
             "rehabilitacion",
@@ -177,7 +165,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-03T10:18:56.740Z"
+      "generatedAt": "2026-10-04T10:56:00.083Z"
     },
     {
       "promiseId": "ac-psoe-43brfs",
@@ -208,11 +196,11 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxQTm9CN1J1eG1rbzk1RW9RazBlYzZqQzQwYmdYSXNVTEZSelJ3WGtOVmEwWmhCdWkzaUJLT2M0b3FDMVZFOEZCQ2dod2ZXZ1VIM2ZwdXVtYms1dHd2dmRnT3ZmZ082WFhrSXg4T01vSGlfbFpWTU1jbmtTTmxhb2pUNXI4Wk5mcmlaVnVIZEQ5akhtVGNfWEx6WkZiZ2JjM2xaSk1EOWtiNmlwNi11SlVONVhzT1M3QmJOSEk5Nm5DbnVPcVZTY2xUQTh2MkFXLXJLRGFXaHI2ONIB1wFBVV95cUxQTm9CN1J1eG1rbzk1RW9RazBlYzZqQzQwYmdYSXNVTEZSelJ3WGtOVmEwWmhCdWkzaUJLT2M0b3FDMVZFOEZCQ2dod2ZXZ1VIM2ZwdXVtYms1dHd2dmRnT3ZmZ082WFhrSXg4T01vSGlfbFpWTU1jbmtTTmxhb2pUNXI4Wk5mcmlaVnVIZEQ5akhtVGNfWEx6WkZiZ2JjM2xaSk1EOWtiNmlwNi11SlVONVhzT1M3QmJOSEk5Nm5DbnVPcVZTY2xUQTh2MkFXLXJLRGFXaHI2OA?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNYWV1M3FmdUZiYWpKNk1tR3Rva3pNcEZVdkZvRlRBa3h6OHVyLW9QM2VsdjM2c28yZTM2bkJQYXRjRGRZWVpjcTJaaC0wNDY4U0JYUWZPcDBCYW1wYm1halVYNHNEUHhVX1NoWlZ0dnVEamlGREZLU3hOVmFCU0YyNlJoWmVLY2lmVWJ1MFc1X1RFZkkwaXdNS21wOVNIcFlBci0wTTd1YnJKbkpubDhTNDRKblVtaGNYeTVBcnNROWpiMTVTQmVBQ2tjVEhWN290X0HSAdcBQVVfeXFMUE5vQjdSdXhta285NUVvUWswZWM2akM0MGJnWElzVUxGUnpSd1hrTlZhMFpoQnVpM2lCS09jNG9xQzFWRThGQkNnaHdmV2dVSDNmcHV1bWJrNXR3dnZkZ092ZmdPNlhYa0l4OE9Nb0hpX2xaVk1NY25rU05sYW9qVDVyOFpOZnJpWlZ1SGREOWpIbVRjX1hMelpGYmdiYzNsWkpNRDlrYjZpcDYtdUpVTjVYc09TN0JiTkhJOTZuQ251T3FWU2NsVEE4djJBVy1yS0RhV2hyNjg?oc=5",
           "date": "2026-10-01",
           "quote": "Riba-roja destina más de 100.000 euros al Cheque Bebé y ofrece hasta 500 euros por hijo a las familias",
           "kind": "press",
-          "publisher": "Levante-EMV",
+          "publisher": "levante-emv.com",
           "matchedKeywords": [
             "euro",
             "destina"
@@ -242,7 +230,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-03T10:18:56.740Z"
+      "generatedAt": "2026-10-04T10:56:00.083Z"
     }
   ],
   "llmEvidence": [],
