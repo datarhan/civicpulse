@@ -108,7 +108,8 @@ function makeBot() {
   // Y las fotos de las quejas, anonimizadas AQUÍ cada hora, contra la base de
   // producción y sobre el volumen (`QUEJAS_PHOTOS_DIR`). Hasta ahora la pasada sólo
   // se lanzaba a mano, desde un portátil con una copia vieja de la base, y no la
-  // lanzaba nadie. Sin la variable no se arma; sin GEMINI_API_KEY retiene cada foto.
+  // lanzaba nadie. Sin la variable no se arma; sin GEMINI_API_KEY, o sin
+  // GEMINI_NIVEL=pago, retiene cada foto.
   // No se pausa con el bloqueo LOREG: no publica nada sobre cargos electos.
   // Lo que lleva un día retenido se avisa a los administradores, una vez.
   startFotosCron({ db, token, admins: () => parseAdminIds(), sendDm: dmAdministrador })

@@ -8,7 +8,7 @@
  *   3. apply a light global degrade (so small *missed* detail is softened),
  *   4. hard-mosaic every region a vision model flags as a face / plate / id-text.
  *
- * Fail-closed: if the vision call cannot run (no key) or errors (quota, network,
+ * Fail-closed: if the vision call cannot run (no key, or no `GEMINI_NIVEL=pago`) or errors (quota, network,
  * garbled output) `detectSensitiveRegions` THROWS, and the orchestrator holds
  * the photo rather than publishing it un-anonymized.
  *
@@ -19,6 +19,7 @@
  */
 
 import sharp, { type OverlayOptions } from 'sharp'
+import { revisionDisponible, type Disponibilidad } from './moderacion-criterios.ts'
 import { parseVisionBoxes, rectParaTapar, type NormBox } from './photo-geometry.ts'
 
 export const ANON_DEFAULTS = {
@@ -112,9 +113,29 @@ export type VisionBackend = 'gemini'
  * regla del proyecto es no mandar nada a OpenAI, y un segundo destino que depende
  * de qué claves haya en el entorno dejaba el aviso incompleto. Sin clave de Gemini
  * no hay análisis, y la foto se retiene.
+ *
+ * Y sólo con `GEMINI_NIVEL=pago`. El aviso legal dice que la API «recibe la imagen
+ * sólo para eso», y las condiciones de Google que no usan lo enviado para mejorar
+ * sus productos son las del nivel de pago. Es la misma declaración de quien opera
+ * el bot que enciende la revisión automática del texto, y la misma comprobación
+ * (`revisionDisponible`, moderacion-criterios.ts): una variable, una regla, que no
+ * pueden separarse. Hasta el 04-10-2026 la imagen salía con sólo la clave, y la
+ * clave del `.env` local era del nivel gratuito.
  */
+export function analisisDisponible(env: Record<string, string | undefined>): Disponibilidad {
+  return revisionDisponible(env)
+}
+
 export function chooseVisionBackend(env: Record<string, string | undefined>): VisionBackend | null {
-  return env.GEMINI_API_KEY ? 'gemini' : null
+  return analisisDisponible(env).ok ? 'gemini' : null
+}
+
+/** Por qué no se analiza la foto, para el registro; `null` si se analiza. */
+export function porQueNoSeAnaliza(d: Disponibilidad): string | null {
+  if (d.ok) return null
+  return d.falta === 'GEMINI_NIVEL'
+    ? 'sin GEMINI_NIVEL=pago (la imagen sólo sale hacia Gemini con las condiciones del nivel de pago)'
+    : 'sin GEMINI_API_KEY'
 }
 
 export function extractGeminiText(json: unknown): string {
@@ -179,8 +200,9 @@ export async function detectSensitiveRegions(
 ): Promise<NormBox[]> {
   const env = opts.env ?? process.env
   const fetchImpl = opts.fetchImpl ?? fetch
-  if (!chooseVisionBackend(env)) {
-    throw new Error('no vision backend configured (set GEMINI_API_KEY) — holding photo')
+  const disponible = analisisDisponible(env)
+  if (!disponible.ok) {
+    throw new Error(`no vision backend: ${porQueNoSeAnaliza(disponible)} — holding photo`)
   }
   // Se declara `image/jpeg` abajo: tiene que serlo de verdad.
   if (tipoDeImagen(buf) !== 'jpeg') {
