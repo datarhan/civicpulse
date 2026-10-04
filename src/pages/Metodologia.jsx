@@ -282,10 +282,18 @@ function MudanzaDelPortal() {
         es falso: la página está publicada y enlazada desde el menú del propio sitio.
       </p>
       <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
-        <strong>Aquí costó seis días de padrón congelado.</strong> El raspado nocturno falló desde
-        el 2 de septiembre, y hasta el 8 esta web publicó la corporación tal como estaba antes de la
-        mudanza. No se inventó nada en ese hueco —el fichero conserva la fecha en que se generó y
-        ésa es la que se enseña—, pero durante seis días lo publicado no era lo vigente.
+        {/* Decía «El raspado nocturno falló desde el 2 de septiembre», y esa
+            noche no falló: la nocturna del 2 terminó con `Scrape rc: 0`
+            (b38676c0) y leyó la página vieja —es el `generatedAt` del párrafo
+            del correo—. La lista real de tests/health-monitor.test.ts acaba
+            en ese verde: sus cinco rojas son de después, y officials.json no
+            cambió de `generatedAt` hasta #114 (8-09). Revisión lectora del
+            30-09-2026. */}
+        <strong>Aquí costó seis días de padrón congelado.</strong> El raspado nocturno leyó la
+        página vieja por última vez el 2 de septiembre, falló desde la noche siguiente, y hasta el 8
+        esta web publicó la corporación tal como estaba antes de la mudanza. No se inventó nada en
+        ese hueco —el fichero conserva la fecha en que se generó y ésa es la que se enseña—, pero
+        durante seis días lo publicado no era lo vigente.
       </p>
       <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
         {/* Decía «el ayuntamiento no retiró la información» —más ancho que su
@@ -295,12 +303,22 @@ function MudanzaDelPortal() {
             propio (transparency-docs.json, fuente `cv`) leyó la página vieja 67
             veces entre el 19-06 y el 1-09-2026, siempre con los mismos 17 PDF, y
             ninguno de los escaños sin ficha figura en ninguna lectura. Revisión
-            lectora del 28-09-2026. */}
+            lectora del 28-09-2026.
+
+            Decía después «Vivían en una única página del portal de
+            transparencia», sin decir que era OTRA que la del padrón, y un
+            lector juntó sus lecturas, que acaban el 1-09, con «la última
+            lectura de la página anterior» del 2-09 del párrafo del correo. Dos
+            páginas, dos registros, y las dos fechas ciertas: la lectura del 2
+            de ésta falló (`ok: false` en b38676c0) en la misma pasada en que la
+            del padrón contestó. Revisión lectora del 30-09-2026. */}
         <strong>Lo que NO ocurrió, y conviene decirlo:</strong> la mudanza no se llevó ningún
-        currículo. Vivían en una única página del portal de transparencia, que este sitio leyó 67
-        veces entre el 19 de junio y el 1 de septiembre de 2026 y que listó siempre los mismos 17;
-        con la mudanza, esos 17 pasaron a un PDF junto a cada concejal, que es una forma mejor de
-        publicarlos. Hoy hay{' '}
+        currículo. No vivían en la página del padrón sino en otra del portal de transparencia,
+        «Datos biográficos del alcalde/sa y concejales», que este sitio leyó 67 veces entre el 19 de
+        junio y el 1 de septiembre de 2026 y que listó siempre los mismos 17. Esa página ya falló en
+        la lectura del 2 de septiembre, la misma pasada en la que la del padrón todavía contestó;
+        por eso las 67 acaban el día 1. Con la mudanza, esos 17 pasaron a un PDF junto a cada
+        concejal, que es una forma mejor de publicarlos. Hoy hay{' '}
         <strong style={{ color: 'var(--ink)' }}>
           {conFicha} de {total}
         </strong>{' '}
@@ -310,13 +328,17 @@ function MudanzaDelPortal() {
         retirada.
       </p>
       <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
-        {/* La fecha es la del ÚLTIMO raspado bueno de la página vieja
-            —`generatedAt` 2026-09-02—, no la de cuando se miró. De lo que la
-            página dijera después no hay copia, así que decir «el 5» sería
-            firmar una observación que nadie hizo. */}
+        {/* La fecha es la del ÚLTIMO raspado bueno de la página vieja del
+            padrón —`generatedAt` 2026-09-02 en officials.json—, no la de cuando
+            se miró. De lo que la página dijera después no hay copia, así que
+            decir «el 5» sería firmar una observación que nadie hizo.
+
+            Decía «en la última lectura de la página anterior»: con la de los
+            currículos recién nombrada, «anterior» podía ser cualquiera de las
+            dos. Revisión lectora del 30-09-2026. */}
         <strong>Lo que sí se estrechó son las formas de contactar.</strong> El 2 de septiembre de
-        2026, en la última lectura de la página anterior, tres concejales publicaban una dirección
-        de correo propia del ayuntamiento. En la página nueva{' '}
+        2026, en la última lectura de la página vieja del padrón, tres concejales publicaban una
+        dirección de correo propia del ayuntamiento. En la página nueva{' '}
         {propias === 0 ? (
           <strong style={{ color: 'var(--ink)' }}>no hay ninguna</strong>
         ) : (
