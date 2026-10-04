@@ -813,8 +813,8 @@ export function ListaDeCotejos({ crossChecked, contradiction, plenoDate, ficha }
 /**
  * Las citas de una ficha, numeradas, y la nota que las explica: juntas.
  *
- * Las pintan /hallazgos (`FindingDetailCard`, todas) y /plenos/:id
- * (`FindingCard`, las tres primeras), y cada una llevaba su copia del reparto
+ * Las pintan /hallazgos (`FindingDetailCard`) y /plenos/:id
+ * (`FindingCard`), las dos con todas, y cada una llevaba su copia del reparto
  * entre cita impresa y hueco. Ahora que la nota nombra las citas por el número
  * con que abre cada una, los números del rótulo y los de la nota tienen que
  * salir del mismo índice, así que el reparto y la nota viven aquí, como
@@ -921,14 +921,13 @@ export function FindingCard({ f }) {
       </p>
       {f.quotes?.length > 0 && (
         <div style={{ marginTop: 8 }}>
-          {/* Only the three quotes this card shows are marked, so the note must
-              describe those and not the finding's full list. */}
-          <CitasDeLaFicha
-            quotes={f.quotes.slice(0, 3)}
-            prov={prov}
-            curatorName={f.curatorName}
-            ficha={ficha}
-          />
+          {/* Todas las citas, como en /hallazgos: el sumario se escribe con
+              todas, y con tres a la vista una frase que se apoyaba en la cuarta
+              quedaba sin respaldo, junto a una cita «sin atribuir» del mismo
+              asunto. La revisión lectora lo señaló en /plenos/k4olcs
+              (f-2026-04-20-cit-b9b013). Un enlace «y 1 cita más» no bastó: la
+              relectura siguió sin ver la cita que sostiene la frase. */}
+          <CitasDeLaFicha quotes={f.quotes} prov={prov} curatorName={f.curatorName} ficha={ficha} />
         </div>
       )}
       {/* El vídeo del pleno sale de la lista de cotejos y se declara por lo que

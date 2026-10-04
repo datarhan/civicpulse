@@ -17,8 +17,8 @@
  *
  * Contra los snapshots reales y en la copia que sirve el sitio (sin el literal
  * de las retenidas), en las dos superficies que pintan la nota: /hallazgos
- * (`FindingDetailCard`, todas las citas) y /plenos/:id (`FindingCard`, las tres
- * primeras). Los mensajes de fallo nombran fichas, nunca el texto de una cita:
+ * (`FindingDetailCard`) y /plenos/:id (`FindingCard`), las dos con todas las
+ * citas. Los mensajes de fallo nombran fichas, nunca el texto de una cita:
  * el repositorio y los registros de la CI son públicos, y el literal de una
  * retenida es justo lo que la ficha no reproduce.
  */
@@ -72,8 +72,9 @@ const chipDeTranscripcion = (entry) =>
   MARKED_STATUS_IDS.includes(entry?.status) ? quoteMarks({ status: entry.status })[0]?.chip : null
 
 /**
- * Las dos superficies y el tramo de citas que pinta cada una: /plenos/:id corta
- * en tres (`FindingCard`), /hallazgos las pinta todas.
+ * Las dos superficies y el tramo de citas que pinta cada una: las dos las
+ * pintan todas (`FindingCard` cortaba en tres hasta que una frase del sumario
+ * se quedó sin su cita a la vista).
  */
 const SUPERFICIES = [
   {
@@ -81,7 +82,7 @@ const SUPERFICIES = [
     pinta: (f) => <FindingDetailCard f={f} permalink={`#${f.id}`} />,
     tramo: (n) => n,
   },
-  { ruta: '/plenos/:id', pinta: (f) => <FindingCard f={f} />, tramo: (n) => Math.min(n, 3) },
+  { ruta: '/plenos/:id', pinta: (f) => <FindingCard f={f} />, tramo: (n) => n },
 ]
 
 /**
