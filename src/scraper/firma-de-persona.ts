@@ -61,12 +61,10 @@ const PARTICULAS: ReadonlySet<string> = new Set([
 ])
 
 /**
- * Palabras que en una firma dicen una cuenta, un rol, un proceso o un modelo.
- * Se comparan sin tildes y en minúsculas, cada parte de una palabra compuesta
- * por separado (`civicpulse-curator` → `civicpulse`, `curator`).
+ * Cuentas y rótulos del proyecto: detrás puede haber una persona, pero la
+ * firma no dice cuál.
  */
-const PALABRAS_DE_ROL: ReadonlySet<string> = new Set([
-  // Cuentas y rótulos del proyecto.
+const PALABRAS_DE_CUENTA: ReadonlySet<string> = new Set([
   'civicpulse',
   'munigraph',
   'curator',
@@ -88,6 +86,10 @@ const PALABRAS_DE_ROL: ReadonlySet<string> = new Set([
   'operadora',
   'proyecto',
   'project',
+])
+
+/** Procesos, modelos y asistentes: lo que firma una decisión que no tomó una persona. */
+const PALABRAS_DE_PROCESO: ReadonlySet<string> = new Set([
   // Procesos.
   'auto',
   'automatico',
@@ -122,6 +124,16 @@ const PALABRAS_DE_ROL: ReadonlySet<string> = new Set([
   'model',
   'copilot',
   'codex',
+])
+
+/**
+ * Palabras que en una firma dicen una cuenta, un rol, un proceso o un modelo.
+ * Se comparan sin tildes y en minúsculas, cada parte de una palabra compuesta
+ * por separado (`civicpulse-curator` → `civicpulse`, `curator`).
+ */
+const PALABRAS_DE_ROL: ReadonlySet<string> = new Set([
+  ...PALABRAS_DE_CUENTA,
+  ...PALABRAS_DE_PROCESO,
 ])
 
 /** Lo que queda en una orden preparada cuando nadie la ha rellenado. */
@@ -195,3 +207,34 @@ export function rechazoDeFirma(editor: string): string | null {
 }
 
 export const nombraAUnaPersona = (editor: string): boolean => rechazoDeFirma(editor) === null
+
+/**
+ * ─────────────────────────────────────────────────────────────────────────────
+ * QUIÉN DECIDIÓ, SEGÚN LA FIRMA
+ *
+ * La otra pregunta que se le hace a una firma, la de las bajadas de veredicto:
+ * `downgrade-verdict` es la vía del curador, pero la han usado también una
+ * revisión con un modelo (`ai-gold-review`, 24-06-2026) y sesiones de Claude,
+ * cada una con su firma. Medido el 30-09-2026: de las 69 bajadas del overlay,
+ * 47 no las firma una persona, y la tarjeta las rotulaba todas «corregido por
+ * un curador».
+ *
+ * Tres respuestas, no dos. Lo que no nombra a una persona no es por eso de una
+ * máquina: «sergei», el `curator` que la CLI pone por defecto o la cuenta de
+ * rol no dicen quién decidió, y llamarlas automáticas sería afirmar lo que no
+ * sabemos (docs/DATA_INTEGRITY.md, regla 3). Sólo es `automatica` la firma que
+ * nombra un proceso o un modelo.
+ */
+export const CLASES_DE_FIRMA = ['persona', 'automatica', 'no-consta'] as const
+
+export type ClaseDeFirma = (typeof CLASES_DE_FIRMA)[number]
+
+export function claseDeFirma(editor: unknown): ClaseDeFirma {
+  if (typeof editor !== 'string') return 'no-consta'
+  if (rechazoDeFirma(editor) === null) return 'persona'
+  // Partida por todo lo que no es letra: «claude-fable-5.1» y «Claude
+  // (revisión 17-08…)» nombran el modelo aunque `rechazoDeFirma` los pare antes
+  // por las cifras.
+  const partes = llana(editor).split(/[^\p{L}]+/u)
+  return partes.some((p) => PALABRAS_DE_PROCESO.has(p)) ? 'automatica' : 'no-consta'
+}

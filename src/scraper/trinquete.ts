@@ -136,11 +136,19 @@ export const TRINQUETE: Record<OverlaySource, Etapa> = {
     // lo que quiere decir es «esto sólo es parcial» le haría retractar de más.
     exigeCorpus: false,
     exigeRazon: true,
-    // Es la firma: una persona con nombre y su motivo.
+    // No espera la firma de nadie: la vía lleva la de quien la usa, con su
+    // motivo. Decía «Es la firma: una persona con nombre y su motivo», y no
+    // siempre lo es: la han usado también una revisión con un modelo
+    // (`ai-gold-review`, 24-06-2026) y sesiones de Claude, y 47 de sus 69
+    // bajadas no las firma una persona (30-09-2026). Bajar es el nivel A de
+    // `decideAutomation` —no hace falta una persona delante—, y por eso pudo
+    // usarla una revisión automática; quién decidió cada bajada viaja en
+    // `downgradedBy` y lo dice la tarjeta.
     exigeFirma: false,
     retirada: false,
     comando: 'npm run downgrade-verdict',
-    medicion: 'responde una persona con nombre; no se mide, se firma',
+    medicion:
+      'no se mide: sólo baja; la firma de cada bajada dice quién la decidió —una persona, una revisión automática o no consta— y la tarjeta lo publica',
   },
 }
 
