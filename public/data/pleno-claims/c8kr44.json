@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T15:15:31.195Z",
+  "generatedAt": "2026-10-04T17:23:05.282Z",
   "version": "1",
   "plenoId": "c8kr44",
   "plenoDate": "2025-09-08",
@@ -1338,9 +1338,10 @@
       "verification": {
         "claimId": "c8kr44-065-cit-85dc84",
         "verdict": "sin-datos",
-        "summary": "Task completed: reasoned in Spanish about whether candidates support the claim, concluding none do since they concern employee/employment portals, not a citizen incident-reporting portal.",
+        "summary": "La afirmación dice que existe un portal de incidencias donde la ciudadanía registra sus avisos. Es una afirmación cualitativa sobre la existencia de un servicio, sin importe, fecha ni sujeto concreto que contrastar. Ninguno de los candidatos la respalda.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -2020,9 +2021,10 @@
       "verification": {
         "claimId": "c8kr44-089-cit-528f7b",
         "verdict": "sin-datos",
-        "summary": "Task completed: reasoned in Spanish about candidate support for the claim, as requested. No coding/skill workflow applicable — this was a direct analytical fact-checking request matching the system prompt's role instructions.",
+        "summary": "La afirmación dice que un estudio fue redactado por el adjudicatario \"Planifica Ingenieros y Arquitectos Cooperativa Valenciana\" en materia de urbanismo.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -3185,9 +3187,10 @@
       "verification": {
         "claimId": "c8kr44-122-cit-86e6a8",
         "verdict": "sin-datos",
-        "summary": "Task completed: provided skeptical reasoning in Spanish (2-4 sentences) about whether candidates support the claim about Colegio Cervantes needing investment. Concluded no genuine support - entity match exists for candidates 3/4 (CEIP Cervantes) but topic mismatch (cleaning service ≠ building invest",
+        "summary": "Ningún candidato respalda la afirmación. La afirmación es una valoración subjetiva: el Colegio Cervantes sería \"un emblema\" y estaría en condiciones \"preocupantes… de inversión\", aunque cumple la normativa de seguridad. No contiene importe, fecha ni cifra concreta que se pueda contrastar.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -3684,9 +3687,10 @@
       "verification": {
         "claimId": "c8kr44-140-cit-bbc2ce",
         "verdict": "sin-datos",
-        "summary": "Se solicitó razonar (no emitir veredicto) sobre si los candidatos respaldan la afirmación. Respondí en español, 2 párrafos (dentro del rango 2-4 frases solicitado por candidato), señalando que los dos candidatos son licitaciones de urbanización de aceras en una entrada del municipio, sin relación te",
+        "summary": "La afirmación dice que una zona de sombra instalada el año pasado dispone ahora de un servicio de vaporización (nebulización) de agua. Ninguno de los candidatos menciona vaporización, nebulizadores, zonas de sombra ni mobiliario de refrigeración urbana.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -3907,9 +3911,10 @@
       "verification": {
         "claimId": "c8kr44-144-cit-eb3ce3",
         "verdict": "sin-datos",
-        "summary": "Task completed: provided skeptical Spanish-language reasoning (not a verdict) on whether candidates genuinely support the claim, per the user's explicit instructions. The generic 'using-superpowers' skill reminder does not apply here since this is a direct fact-checking analysis task, not a coding/s",
+        "summary": "La afirmación es una cita confusa y vaga sobre el carril bici: dice que lo tienen \"ahora\" para que un gestor que fiscaliza lo maquetice como quiera Europa, y que \"lo tienen ellos para que se haga\".",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -4026,9 +4031,10 @@
       "verification": {
         "claimId": "c8kr44-146-cit-f185ae",
         "verdict": "sin-datos",
-        "summary": "Analicé el único candidato disponible y determiné que no guarda relación temática ni de sujeto con la afirmación sobre peatonalización de plazas vinculada a planes urbanísticos (PEMUS, PACE, PUAM). Expliqué en español, en formato de razonamiento libre, por qué no hay respaldo genuino, sin emitir ver",
+        "summary": "La afirmación es una cita sobre que las actuaciones de peatonalización de plazas se han hecho con el marco de los planes (plan estratégico, PEMUS, PACE, PUAM).",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,

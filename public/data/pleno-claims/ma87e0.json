@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T15:15:31.195Z",
+  "generatedAt": "2026-10-04T17:23:05.282Z",
   "version": "1",
   "plenoId": "ma87e0",
   "plenoDate": "2026-03-16",
@@ -769,11 +769,13 @@
       "verification": {
         "claimId": "ma87e0-103-pro-077932",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una mención vaga: el portavoz cita el \"edificio polivalente\" de un barrio transcrito como \"Chemmachor\" (probable error fonético) entre los proyectos financiados con el préstamo.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -890,11 +892,13 @@
       "verification": {
         "claimId": "ma87e0-104-afi-b55596",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Ningún candidato respalda la afirmación. La afirmación habla de una aportación municipal de 62.000 € a Cruz Roja para planes de formación. El candidato [0] es un contrato de 17.545 € sobre formación en plan de integridad y antifraude: importe distinto y objeto distinto.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -921,11 +925,13 @@
       "verification": {
         "claimId": "ma87e0-104-pro-797d2b",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una promesa: con los 62.000 € de la partida de Cruz Roja se crearán planes de formación (frase cortada). Ningún candidato contiene el importe de 62.000 € ni menciona a Cruz Roja.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -952,11 +958,13 @@
       "verification": {
         "claimId": "ma87e0-105-pro-67d01e",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Ningún candidato respalda genuinamente la afirmación. La promesa trata del destino de 62.000 € a Cruz Roja en el presupuesto 2026 para planes de formación de personas en exclusión social o con dificultades de acceso al empleo.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -1335,11 +1343,13 @@
       "verification": {
         "claimId": "ma87e0-113-pro-f9dd62",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una promesa de futuro: elaborar anteproyectos y proyectos para cuantificar las necesidades de las bibliotecas municipales y del parque Maldonado.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -1461,9 +1471,10 @@
       "verification": {
         "claimId": "ma87e0-115-afi-25ea23",
         "verdict": "sin-datos",
-        "summary": "Task completed: reasoned in Spanish about lack of genuine support from any candidate for the fiscal claim about the 3.4M remanente/liquidación 2025. All candidates are unrelated specific contracts/subsidies, not budget liquidation figures.",
+        "summary": "La afirmación es una cifra de la liquidación presupuestaria de 2025: remanente de tesorería positivo de 3,4 millones de euros. Ninguno de los candidatos contiene datos de liquidación, remanente de tesorería ni resultado presupuestario.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -1712,11 +1723,13 @@
       "verification": {
         "claimId": "ma87e0-122-afi-4fed79",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación sostiene que se ha aumentado una partida presupuestaria (protección civil, para espacios degradados) y que la oposición también la aumentó.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -1742,11 +1755,13 @@
       "verification": {
         "claimId": "ma87e0-123-afi-ae351a",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación dice que se ha aumentado una partida presupuestaria (a partir de protección civil, para espacios degradados), es decir, una comparación de partidas entre ejercicios. Ninguno de los candidatos es una partida presupuestaria ni muestra una variación interanual.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -1772,11 +1787,13 @@
       "verification": {
         "claimId": "ma87e0-123-afi-2cd46a",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación dice que \"ustedes también han aumentado la partida\" (presupuestaria) para espacios degradados / protección civil / limpieza. Para respaldarla haría falta un registro presupuestario con una partida concreta y su variación interanual (importes de dos ejercicios comparados).",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -1859,11 +1876,13 @@
       "verification": {
         "claimId": "ma87e0-124-afi-350662",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Ningún candidato respalda genuinamente la afirmación. La afirmación dice que el \"plan de formación Riva Dona\" tiene una aplicación presupuestaria, es decir, que existe una partida en el presupuesto.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -1889,11 +1908,13 @@
       "verification": {
         "claimId": "ma87e0-124-pro-379d2c",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una promesa/petición política: que se dote presupuestariamente el plan de formación \"Riva Dona\" (aplicación presupuestaria existente), sin importe, fecha ni sujeto numérico verificable.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -1948,11 +1969,13 @@
       "verification": {
         "claimId": "ma87e0-124-pro-c61668",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una promesa de intenciones genéricas (\"queremos mejorar los teatros infantiles, el mercado municipal, la franquicia...\") sin cifras, fechas ni sujeto concreto verificable.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -2235,11 +2258,13 @@
       "verification": {
         "claimId": "ma87e0-133-pro-a5978a",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una promesa de voto: el portavoz anuncia que votará en contra del presupuesto municipal 2026, con críticas generales a transferencias, gastos y gestión. Ninguno de los candidatos respalda esto.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -2265,11 +2290,13 @@
       "verification": {
         "claimId": "ma87e0-136-pro-e5ff1b",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una promesa de futuro: elaborar un plan de ahorro municipal que cubra energía, telefonía, comunicaciones, renting, flota y mantenimiento. No contiene cifras, fechas ni importes que puedan cotejarse.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -2701,9 +2728,10 @@
       "verification": {
         "claimId": "ma87e0-151-cit-75b31f",
         "verdict": "sin-datos",
-        "summary": "Task was a direct Spanish-language fact-checking reasoning exercise with explicit instructions already provided in the prompt (act as skeptical fact-checker, reason in free text, don't decide verdict). No coding or file/tool work was needed; I analyzed the three candidates against the claim's specif",
+        "summary": "La afirmación es una cita de programas (el \"Rivadona\" y el \"Plan de Empleo Ciudad Jardín\") que dependerían de la partida de Cruz Roja; no contiene importe, fecha ni sujeto numérico verificable.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -3163,11 +3191,13 @@
       "verification": {
         "claimId": "ma87e0-161-pro-7efb98",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una promesa genérica del presupuesto 2026: abrir líneas presupuestarias para acondicionar edificios municipales adquiridos. No contiene importes, fechas ni sujetos concretos que contrastar.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -3193,11 +3223,13 @@
       "verification": {
         "claimId": "ma87e0-161-cit-352bbc",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación dice que el presupuesto incluye mejoras e inversiones para usar edificios como La Granota, Garel y Pastor, el edificio polivalente Chemachor y La Severa. Ninguno de los candidatos menciona La Granota, Garel y Pastor, Chemachor ni La Severa.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -3404,9 +3436,10 @@
       "verification": {
         "claimId": "ma87e0-162-cit-092d3e",
         "verdict": "sin-datos",
-        "summary": "Se solicitó razonar (no emitir veredicto) sobre si los candidatos respaldan la afirmación de que el proyecto y construcción del edificio polivalente \"Chemachor\" está incluido en el presupuesto 2026. Análisis: ningún candidato menciona \"Chemachor\". El candidato [1] comparte el término genérico \"Edifi",
+        "summary": "La afirmación cita el \"proyecto y construcción del edificio polivalente Chemachor\" como inversión del presupuesto 2026. Ningún candidato menciona \"Chemachor\".",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -4533,11 +4566,13 @@
       "verification": {
         "claimId": "ma87e0-192-pro-97e8c3",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una promesa de intención futura: destinar el superávit a asfalto, aceras y bordillos. No contiene importe, fecha ni sujeto concreto que se pueda contrastar.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -4592,11 +4627,13 @@
       "verification": {
         "claimId": "ma87e0-194-cit-60c58e",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una valoración cualitativa del orador: que los acuerdos con la Diputación estaban pactados de antemano y que aun así se están cumpliendo, sin cifras, fechas ni sujeto concreto verificable. Ningún candidato respalda genuinamente esto.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -4652,9 +4689,10 @@
       "verification": {
         "claimId": "ma87e0-195-cit-56214f",
         "verdict": "sin-datos",
-        "summary": "Se solicitó razonar (no veredicto) sobre si los candidatos respaldan la afirmación de que el municipio no tiene Centro de Salud. Concluí que ninguno guarda relación genuina: los candidatos [0] y [1] son seguros de responsabilidad civil del Ayuntamiento (finance), sin relación temática; el candidato ",
+        "summary": "La afirmación dice que el municipio \"no tiene el Centro de Salud\" (infraestructura de competencia autonómica). Ningún candidato respalda esto.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,

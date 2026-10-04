@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T15:15:31.195Z",
+  "generatedAt": "2026-10-04T17:23:05.282Z",
   "version": "1",
   "plenoId": "qz6weg",
   "plenoDate": "2025-12-01",
@@ -25,9 +25,10 @@
       "verification": {
         "claimId": "qz6weg-000-cit-ce337c",
         "verdict": "sin-datos",
-        "summary": "Se solicitó razonar (no emitir veredicto) sobre si los candidatos respaldan la afirmación de cita \"La Lucha por la Vida\". Concluí que ninguno respalda genuinamente: los candidatos son contratos administrativos (seguros de vida, servicio deportivo) sin relación temática real con la obra literaria/tea",
+        "summary": "La afirmación es una cita de una obra (\"La Lucha por la Vida\", probablemente la trilogía de Pío Baroja o una referencia cultural), sin cifras, fechas ni sujeto contractual verificable.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -265,11 +266,13 @@
       "verification": {
         "claimId": "qz6weg-011-pro-272366",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una promesa condicional de urbanismo: proponer que el Ayuntamiento asuma la gestión directa para finalizar unas obras (probablemente de urbanización), siempre que los propietarios no propongan su propia gestión.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -448,11 +451,13 @@
       "verification": {
         "claimId": "qz6weg-015-pro-f951ef",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una promesa futura y vaga: \"en dos o tres meses habrá buenas noticias\" para quienes necesitan vivienda de VPO y otros tipos. No contiene importes, fechas concretas ni sujeto cuantificable, así que ningún registro puede confirmarla ni desmentirla con valores coincidentes.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -619,9 +624,10 @@
       "verification": {
         "claimId": "qz6weg-019-cit-c7d444",
         "verdict": "sin-datos",
-        "summary": "Task was a direct fact-checking reasoning request (Spanish municipal fact-checker), not a coding/software task, so no Superpowers skill applies. Analyzed the claim (vague, fragmented quote about housing/social protection) against three candidates (social catering tender x2, civil protection vehicle ",
+        "summary": "La afirmación es una cita sobre una actuación en vivienda (\"la de protección social y la de la granit [probablemente 'granja' u otra promoción] será más amplia\") sin importes, fechas ni sujeto concreto verificable.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -1304,11 +1310,13 @@
       "verification": {
         "claimId": "qz6weg-035-afi-6e6741",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es cualitativa y de opinión: el conservatorio es \"uno de los únicos\" donde conviven música y danza.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -2191,11 +2199,13 @@
       "verification": {
         "claimId": "qz6weg-044-cit-70b437",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una cita oral e imprecisa: una obra del Plan Confianza (2007-2008) que quedó abandonada, \"como la botella\", con un edificio que se caía, y que ahora se ha aprobado/recuperado. No contiene cifras, fechas de contrato ni sujeto verificable con precisión.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -2222,11 +2232,13 @@
       "verification": {
         "claimId": "qz6weg-045-cit-f2e393",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación habla de un edificio esqueleto (PLER) iniciado en 2007-2008 con el Plan Confianza, que quedó abandonado y que el gobierno actual ha recuperado. Ningún candidato coincide en sujeto, fecha o importe con esa obra.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -2339,11 +2351,13 @@
       "verification": {
         "claimId": "qz6weg-046-pro-651dec",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una promesa condicional/futura (incorporar el Conservatorio de Danza al edificio que se construya), sin cifras ni fechas concretas.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -2889,11 +2903,13 @@
       "verification": {
         "claimId": "qz6weg-054-cit-d4e5fa",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación describe obligaciones genéricas de un convenio con una mancomunidad (aprobar por resolución de alcaldía un informe técnico, facilitar acceso a instalaciones y asegurar suministros básicos).",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -2919,11 +2935,13 @@
       "verification": {
         "claimId": "qz6weg-054-cit-4491fc",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es un procedimiento: \"dar el visto bueno por decreto de alcaldía previo informe\", sobre asegurar suministros básicos (electricidad, agua, baños) para algo y la mancomunidad.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -2978,11 +2996,13 @@
       "verification": {
         "claimId": "qz6weg-055-cit-903f43",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una cláusula procedimental genérica: el Ayuntamiento debe facilitar acceso a instalaciones y asegurar suministros básicos (electricidad, agua, baños) al personal de la mancomunidad, y dar el visto bueno por decreto de alcaldía.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -3156,11 +3176,13 @@
       "verification": {
         "claimId": "qz6weg-056-cit-f75152",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación habla de una obra concreta: la reposición y mejora de la señalética del entorno del Parque Natural del Turia, sin importes ni fechas que contrastar. Ningún candidato la respalda de forma genuina.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -3186,11 +3208,13 @@
       "verification": {
         "claimId": "qz6weg-056-cit-517ef9",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación habla de la \"recuperación de materiales en fachadas patrimoniales en el marco del decreto ya comentado\", dentro de una enumeración de actuaciones (señalética del Parque Natural del Turia, centro histórico). Es una cita de obra genérica, sin importe, fecha ni sujeto concreto.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -3357,11 +3381,13 @@
       "verification": {
         "claimId": "qz6weg-058-cit-66709b",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una propuesta o petición de un punto de acuerdo (\"cuarto, publicar el convenio en el portal de transparencia municipal\"). Es una intención o moción, no un hecho con importe, fecha o sujeto concreto que pueda contrastarse con registros.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -3965,9 +3991,10 @@
       "verification": {
         "claimId": "qz6weg-066-cit-82f4d6",
         "verdict": "sin-datos",
-        "summary": "Task completed: provided the requested skeptical reasoning in Spanish (2-4 sentences equivalent) about whether the candidate backs the claim, without issuing a final verdict, per instructions.",
+        "summary": "La afirmación es una cita/opinión histórica y política sobre las víctimas de la dictadura franquista y la revocación de honores u horarios (probablemente nomenclátor/memoria histórica). No contiene importes, fechas ni sujetos concretos verificables contra registros de contratación o subvenciones.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -3996,11 +4023,13 @@
       "verification": {
         "claimId": "qz6weg-066-pro-10b69a",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una promesa vaga (\"están por fases, poco a poco, en trámite\") sin sujeto claro ni importe, fecha o entidad concretos; el contexto tampoco aclara a qué se refiere (algo que \"no pudo ser\" en muchos municipios).",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -5700,11 +5729,13 @@
       "verification": {
         "claimId": "qz6weg-138-afi-f22b1e",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación alude a un número de página (427) de un documento, en la que el orador dice que \"creo que ha sido al azar\" encontró un punto sobre objetivos de desarrollo sostenible.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -6807,9 +6838,10 @@
       "verification": {
         "claimId": "qz6weg-162-afi-41adc7",
         "verdict": "sin-datos",
-        "summary": "Task completed: provided skeptical reasoning in Spanish (2-4 sentences) explaining why neither candidate supports the claim, without issuing a verdict, as requested. No coding/file tasks involved, so the superpowers skill system is not applicable here.",
+        "summary": "La afirmación habla de una cifra macro (más de 16.600 millones de euros destinados a Valencia, con 3.064 millones transferidos a la Generalitat), de ámbito estatal o autonómico.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -7717,11 +7749,13 @@
       "verification": {
         "claimId": "qz6weg-184-afi-c58641",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una partida presupuestaria: \"Fomento o apoyo al asociacionismo del comercio\" con más de 50.000 €. Ningún candidato aporta un importe.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -7748,9 +7782,10 @@
       "verification": {
         "claimId": "qz6weg-184-afi-285e06",
         "verdict": "sin-datos",
-        "summary": "Tarea de fact-checking directa: analicé los dos candidatos frente a la afirmación sobre 320.000€ en fomento del comercio. Ningún candidato aporta cifra alguna, y sus objetos contractuales (redacción de proyecto técnico de licencia ambiental/emergencias; servicios deportivos no acuáticos) no coincide",
+        "summary": "La afirmación habla de un gasto de \"más de 320.000 euros\" en fomento del comercio (actividades, jornadas, ferias). Ningún candidato aporta un importe: todos son títulos de convocatorias de la BDNS sin cifra visible.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -7844,11 +7879,13 @@
       "verification": {
         "claimId": "qz6weg-185-afi-eeb37d",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Ningún candidato respalda de verdad la afirmación. La afirmación habla de un plan de más de 900.000 euros con una \"bolsa\" (bolsa de autónomos, sistemas dinámicos de adquisición, cesión a otros ayuntamientos) para autónomos y pequeñas empresas de Riva Roja.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -8379,11 +8416,13 @@
       "verification": {
         "claimId": "qz6weg-190-pro-a75380",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una promesa genérica (\"incremento de la protección social\") en el contexto de equiparar la protección social de autónomos a la de asalariados (bajas, incapacidad, viudedad, orfandad). Es una reivindicación de política de Seguridad Social, sin importe, fecha ni sujeto concreto.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -8438,9 +8477,10 @@
       "verification": {
         "claimId": "qz6weg-191-cit-37590e",
         "verdict": "sin-datos",
-        "summary": "Fact-checking task completed via direct reasoning in Spanish as requested; no coding/skill workflow applicable. Concluded no candidate supports the claim.",
+        "summary": "La afirmación es una cita textual (\"Reducción de la burocracia, que usted lo ha dicho\") sobre una propuesta de protección social para autónomos (bajas, viudedad, luto), sin cifras, fechas ni sujeto concreto verificable en registros municipales.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -8469,9 +8509,10 @@
       "verification": {
         "claimId": "qz6weg-191-cit-7c0aea",
         "verdict": "sin-datos",
-        "summary": "Se solicitó razonamiento en español sobre respaldo de candidatos a la afirmación. Ningún candidato (comedor, catering, vehículo) guarda relación temática ni de valores concretos con protección social/bajas médicas de asalariados. La afirmación es una cita de propuesta reivindicativa no verificable m",
+        "summary": "La afirmación es una propuesta o reivindicación de política general (equiparar la protección social de autónomos/trabajadores a la de los asalariados: bajas, incapacidad, viudedad, orfandad, luto). No contiene importe, fecha ni sujeto concreto verificable en registros municipales.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -8667,11 +8708,13 @@
       "verification": {
         "claimId": "qz6weg-209-pro-6672ba",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una promesa/opinión de carácter general sobre que ciertos trabajadores (probablemente un colectivo concreto frente a la \"rama general\") deberían estar más beneficiados e identificados.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -9474,9 +9517,10 @@
       "verification": {
         "claimId": "qz6weg-235-afi-4a748f",
         "verdict": "sin-datos",
-        "summary": "Task completed: reasoned in Spanish about candidate support for the claim, concluding no genuine support due to entity mismatch (internal HR portal vs. autonomo aid) and amount mismatch (€25,794 vs €2,000,000).",
+        "summary": "Ningún candidato respalda de verdad la afirmación de \"más de dos millones de euros para el bolsillo autónomo\". Los candidatos [4], [5] y [6] son convocatorias de ayudas a autónomos y emprendedores de Riba-roja (RIBACTIVA EMPRÈN II y III, ayudas COVID a autónomos y microempresas).",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -10135,11 +10179,13 @@
       "verification": {
         "claimId": "qz6weg-246-cit-9b9328",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Ningún candidato respalda genuinamente la afirmación. La cita es una justificación cualitativa de una obra urbanística (vertebrar recorridos por el pueblo y dejar riqueza económica en comercios, restaurantes y bares del puerto); no contiene importes, fechas ni sujetos concretos que se puedan…",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -10165,9 +10211,10 @@
       "verification": {
         "claimId": "qz6weg-247-cit-98a38d",
         "verdict": "sin-datos",
-        "summary": "Se completó el razonamiento solicitado en español evaluando ambos candidatos frente a la afirmación sobre limpieza de un talud/barranco por riesgo de incendio cerca de un centro de salud, sin emitir veredicto final, tal como se pidió.",
+        "summary": "La afirmación es una cita de obra sobre la limpieza de un talud junto al centro de salud (barranco de moros): retirada de escombros, motocicletas y apertura de una \"gran ventana\". Ningún candidato lo respalda.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -10227,9 +10274,10 @@
       "verification": {
         "claimId": "qz6weg-247-cit-a60c47",
         "verdict": "sin-datos",
-        "summary": "Tarea de fact-checking en español: evalué los dos candidatos frente a la afirmación sobre un \"centro de salud en La Maya\". Candidato [0] es una obra de adecuación de un barranco (objeto distinto, sin mención de La Maya ni de centro de salud). Candidato [1] es un contrato de vigilancia de la salud la",
+        "summary": "La afirmación es una declaración de intención política: que habrá un centro de salud en la zona de La Maya. Ningún candidato respalda esto. El candidato [0] es una carpa de 11 € para triaje en el Centro de Salud existente, que no tiene relación con un nuevo centro en La Maya.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -10258,9 +10306,10 @@
       "verification": {
         "claimId": "qz6weg-248-cit-ef3da9",
         "verdict": "sin-datos",
-        "summary": "Task completed: provided skeptical Spanish-language reasoning (2 paragraphs, within 2-4 sentence guidance) comparing the claim about cleaning a \"barranco de moros\" embankment near a health center against two tender candidates. Candidate [0] shares topic/type (barranco adecuación, construction, same ",
+        "summary": "Ningún candidato respalda genuinamente la afirmación. La afirmación describe la transformación de un talud lleno de escombros y hierbas junto al centro de salud en una \"gran ventana\" que pone en valor el Barranco de Moros, una obra urbanística de regeneración paisajística.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -10319,9 +10368,10 @@
       "verification": {
         "claimId": "qz6weg-249-cit-cef2af",
         "verdict": "sin-datos",
-        "summary": "Realicé el análisis de razonamiento solicitado directamente en la respuesta de texto, en español, evaluando si los candidatos respaldan la afirmación sobre la conexión con el parque natural. Concluí que ninguno de los dos candidatos (carpa de triaje y vigilancia de salud laboral) guarda relación tem",
+        "summary": "La afirmación es una promesa/cita de obra genérica: ciertas zonas \"se van a transformar en una conexión directa con el parque natural\". No contiene importe, fecha ni sujeto concreto que se pueda cotejar, y no se identifica qué zona ni qué parque natural.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -10351,9 +10401,10 @@
       "verification": {
         "claimId": "qz6weg-249-cit-3e02ef",
         "verdict": "sin-datos",
-        "summary": "Provided the requested Spanish-language reasoning (2-4 sentences, extended slightly for clarity) evaluating whether any candidate tender genuinely backs the claim about revisiting the consellería regarding a health center project in January 2026. Concluded no candidate provides genuine support: cand",
+        "summary": "La afirmación es una promesa/intención futura: volver a la consellería en enero para ver el estado del proyecto del centro de salud. Ninguno de los candidatos trata de un centro de salud ni de gestiones con la consellería.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -10383,9 +10434,10 @@
       "verification": {
         "claimId": "qz6weg-250-cit-6a8694",
         "verdict": "sin-datos",
-        "summary": "Se solicitó razonar (no verificar) sobre si algún candidato respalda la afirmación. Analicé los 8 candidatos: todos son tenders del Ayuntamiento de Riba-roja de Túria sin relación con la consellería autonómica ni con la adjudicación de un nuevo centro de salud mencionada en la cita. El único con coi",
+        "summary": "La afirmación es una declaración de intención: volver a la consellería en enero para informarse sobre el proyecto de un nuevo centro de salud, que según el coordinador del centro estaba en fase de adjudicación.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -10908,11 +10960,13 @@
       "verification": {
         "claimId": "qz6weg-260-cit-a24592",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es un fragmento truncado de una intervención oral: describe un tramo urbano («...ino de las Ánimas hasta la Casa de la Cultura casi. Todo el barrac de esmorzo») y dice que «ahora estamos ejecutando una parte». No contiene importe, fecha ni sujeto concreto que se pueda contrastar.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -11022,11 +11076,13 @@
       "verification": {
         "claimId": "qz6weg-264-afi-0d9a3b",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es vaga: dice que hay \"cosas del año 2024 y 2025\" que afectan a gente que no ha cobrado. No contiene importe, sujeto concreto ni hecho cuantificable, solo una referencia temporal genérica.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -11340,11 +11396,13 @@
       "verification": {
         "claimId": "qz6weg-269-pro-559d84",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una promesa vaga: repensar un asunto no identificado y sacarlo a concurso \"para el próximo ejercicio\", con inscripción de gente. No hay importe, fecha ni sujeto concreto que contrastar, y el tema ni siquiera está nombrado en el fragmento.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -11370,11 +11428,13 @@
       "verification": {
         "claimId": "qz6weg-269-pro-a3ed03",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una promesa de futuro (estudiar de nuevo el asunto y hacerlo mediante un concurso con inscripción de participantes el próximo ejercicio). El tema es vago (\"other\") y no hay importes, fechas ni sujetos concretos que comparar.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -12010,9 +12070,10 @@
       "verification": {
         "claimId": "qz6weg-276-cit-5b837f",
         "verdict": "sin-datos",
-        "summary": "Analicé el único candidato disponible (contrato de aplicativo de policía local) frente a la afirmación sobre \"el bono de comercio\". No hay coincidencia de sujeto, importe ni tema; la similitud es baja (0.25) y no constituye respaldo genuino. Respondí en español con el razonamiento solicitado, sin em",
+        "summary": "La afirmación es una mención de un tema (\"el tema del bono de comercio\") en la que un grupo político (Compromís) dice haber contactado con el regidor del área; no contiene importe, fecha ni sujeto verificable contra registros.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -12128,11 +12189,13 @@
       "verification": {
         "claimId": "qz6weg-278-cit-1e696b",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una opinión valorativa (\"me parece estupendo\") sobre una iniciativa no identificada que se extendería a más municipios, descrita como campaña para el comercio local y autónomos.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"

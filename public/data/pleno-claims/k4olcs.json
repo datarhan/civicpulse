@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T15:15:31.195Z",
+  "generatedAt": "2026-10-04T17:23:05.282Z",
   "version": "1",
   "plenoId": "k4olcs",
   "plenoDate": "2026-04-20",
@@ -25,11 +25,13 @@
       "verification": {
         "claimId": "k4olcs-006-afi-462d5e",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es cualitativa y vaga: dice que un informe de auditoría menciona \"diferentes cuestiones por el tema de la DANA\" y que incluye consejos u observaciones al respecto. No contiene importe, fecha ni sujeto concreto que se pueda contrastar.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -109,11 +111,13 @@
       "verification": {
         "claimId": "k4olcs-008-afi-843b2a",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una declaración general y cualitativa del orador: la carta de servicios sufre \"adaptaciones\" porque indicadores y programas cambian. No contiene ningún importe, fecha ni sujeto concreto que se pueda contrastar.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -166,11 +170,13 @@
       "verification": {
         "claimId": "k4olcs-009-cit-311cfe",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una explicación cualitativa del ponente: la carta de servicios se adapta porque cambian programas y redacciones, y por eso varían los números. No contiene importe, fecha ni sujeto concreto que se pueda contrastar.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -223,11 +229,13 @@
       "verification": {
         "claimId": "k4olcs-010-afi-d79ef3",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación enumera los departamentos del Ayuntamiento (estructura organizativa), una lista descriptiva sin cifras, importes ni fechas verificables.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -253,11 +261,13 @@
       "verification": {
         "claimId": "k4olcs-010-afi-6c6525",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es un agradecimiento genérico al personal de varias áreas municipales (atención ciudadana, padrón, secretaría, cultura, formación de adultos, escuelas infantiles Bioturia, salud).",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -310,11 +320,13 @@
       "verification": {
         "claimId": "k4olcs-011-afi-06c7b2",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es cualitativa: cada nueva edición de la Carta de Servicios incorpora nuevos departamentos (promoción de la salud, registro). No contiene cifras, fechas ni importes verificables.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -342,11 +354,13 @@
       "verification": {
         "claimId": "k4olcs-012-afi-d0b348",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es numérica sobre el número de departamentos incluidos en la Carta de Servicios (de 20 iniciales a 27 actuales).",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -402,11 +416,13 @@
       "verification": {
         "claimId": "k4olcs-013-cit-3334d5",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una valoración retórica (\"esta carta es una rendición de cuentas y un acto de transparencia completo\"), una opinión autodescriptiva sobre una carta, sin importe, fecha ni sujeto concreto que se pueda contrastar.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -846,11 +862,13 @@
       "verification": {
         "claimId": "k4olcs-018-cit-e5dc0f",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una cita de una propuesta al Pleno: incorporar al inventario municipal dispositivos adquiridos mediante la subvención del Plan de Recuperación, Transformación y Resiliencia.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -1009,9 +1027,10 @@
       "verification": {
         "claimId": "k4olcs-019-acu-940acd",
         "verdict": "sin-datos",
-        "summary": "Task was a direct fact-checking reasoning request (Spanish), not a coding/exploration task, so no skill invocation was needed. Analyzed claim (plenary vote result with 8 abstentions from named political groups, transparency topic) against the single candidate (an asphalt paving public works tender/c",
+        "summary": "La afirmación describe el resultado de una votación plenaria (a favor y 8 abstenciones de PSOE, PP, Vox, Escalona y Podem). Es un hecho procedimental del acta del pleno, no un dato verificable contra contratos, subvenciones o presupuesto.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -1329,11 +1348,13 @@
       "verification": {
         "claimId": "k4olcs-023-cit-21bb84",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación describe un procedimiento administrativo: tras la declaración plenaria de situación individualizada, el interesado debe solicitar la licencia de minimización y de ocupación, aportando estudio de integración paisajística, análisis de riesgos y plazo de cuatro años.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -1389,11 +1410,13 @@
       "verification": {
         "claimId": "k4olcs-023-cit-8416ea",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es un texto técnico de un expediente de licencia/autorización de vivienda en suelo rústico: describe que, según la solicitud, la vivienda ya tiene agua potable y suministro eléctrico y que el acceso es un camino en buen estado.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -1539,9 +1562,10 @@
       "verification": {
         "claimId": "k4olcs-024-cit-d01bdc",
         "verdict": "sin-datos",
-        "summary": "Task completed: provided skeptical fact-checking reasoning in Spanish (2-4 sentences) analyzing whether any of the 8 tender candidates genuinely support the plenary claim about urban planning legalization/non-removal decision. Conclusion: no candidate supports it, as all are unrelated procurement co",
+        "summary": "La afirmación es una cita literal de un acuerdo del pleno sobre instalaciones sin autorización que son legalizables, de modo que no procede su retirada. Se apoya en informes del arquitecto municipal y del vicesecretario de los días 2 y 8 de abril.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -1748,9 +1772,10 @@
       "verification": {
         "claimId": "k4olcs-027-cit-7e70d5",
         "verdict": "sin-datos",
-        "summary": "Task completed: reasoned in Spanish about candidate support for the claim, concluding no genuine support exists. No coding/skill workflow applicable since this is a pure analytical fact-checking reasoning task explicitly scoped by the user's instructions (reason only, no verdict).",
+        "summary": "La afirmación es una cita de un debate sobre la legalización de placas solares dentro de un trámite urbanístico/de minimización (desmontaje si no se legalizan). No contiene importes, fechas ni sujetos concretos verificables; es una opinión o descripción de un procedimiento administrativo concreto.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -1810,11 +1835,13 @@
       "verification": {
         "claimId": "k4olcs-028-afi-f0c0ed",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación trata de una cifra (1.000 viviendas o parcelas en suelo de diseminados/no urbanizable que se pueden legalizar) frente a otros municipios (hasta 7.000, como Villamarchante).",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -2017,11 +2044,13 @@
       "verification": {
         "claimId": "k4olcs-031-cit-233095",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es un simple anuncio procedimental del orden del día: una moción del Grupo Socialista en defensa de la educación pública.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -2047,11 +2076,13 @@
       "verification": {
         "claimId": "k4olcs-032-cit-98a5be",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una frase procedimental del presidente del pleno que anuncia el siguiente punto del orden del día: una moción del Grupo Municipal Socialista en defensa de la educación pública.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -3380,11 +3411,13 @@
       "verification": {
         "claimId": "k4olcs-065-cit-b44107",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una consecuencia hipotética y valorativa (\"eso significa centros que no se construyan, reformas que no lleguen y condiciones que no mejoran\") dentro de un discurso político sobre el modelo educativo.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -4067,9 +4100,10 @@
       "verification": {
         "claimId": "k4olcs-092-cit-d06c54",
         "verdict": "sin-datos",
-        "summary": "Task completed: provided skeptical reasoning in Spanish (2-4 sentences) evaluating whether any candidate genuinely backs the claim about the pavilion lacking gymnastics space for 20 years, without issuing a final verdict as instructed.",
+        "summary": "La afirmación es una queja retórica: un pabellón (probablemente de un colegio) \"no tiene lugar para practicar gimnasia durante 20 años\". La cifra \"20\" es una duración (años) y no un importe ni un recuento de contratos. Ningún candidato coincide en ese valor.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -4413,11 +4447,13 @@
       "verification": {
         "claimId": "k4olcs-097-afi-3dceb1",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación describe un hecho procedimental concreto: en una sesión o mesa, se declaró la \"anualidad\" (probablemente anomalía/anulación) de un único criterio de adjudicación, el 12.2, el 23 de febrero. Ningún candidato contiene esa fecha, ese apartado 12.2 ni una declaración de este tipo.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -4501,9 +4537,10 @@
       "verification": {
         "claimId": "k4olcs-099-cit-cc3281",
         "verdict": "sin-datos",
-        "summary": "Se solicitó razonamiento en español sobre si algún candidato respalda la afirmación; ya se proporcionó el análisis en la respuesta al usuario. No se requiere ninguna acción de código ni herramienta adicional, es una tarea de verificación de hechos pura.",
+        "summary": "La afirmación describe un hecho procedimental concreto: se desestima un recurso de una mercantil, se aprueba la cláusula 12.1.3 de unos pliegos, se da plena vigencia al resto de cláusulas según las sentencias y se pide un nuevo informe de valoración a la mesa de contratación.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -4684,9 +4721,10 @@
       "verification": {
         "claimId": "k4olcs-102-cit-607cff",
         "verdict": "sin-datos",
-        "summary": "Task was a direct factual-reasoning request (fact-checking analysis in Spanish), not a coding/build/debug task, so no superpowers skill applies. I analyzed the claim (a contract tangled in litigation, requiring return to plenary, described as the municipality's most important contract) against the t",
+        "summary": "La afirmación es una declaración política sobre un contrato no identificado (\"el más importante de este ayuntamiento\", \"los cuatro\", un enredo judicial que exige volver a pleno para rectificar). No contiene importe, fecha ni adjudicatario concretos.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -4825,11 +4863,13 @@
       "verification": {
         "claimId": "k4olcs-104-pro-9d77be",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una promesa genérica y vaga (\"si nadie recurre, se adjudica ya\"), sin importe, fecha ni objeto identificable: no se sabe qué contrato o procedimiento se va a adjudicar.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -4857,11 +4897,13 @@
       "verification": {
         "claimId": "k4olcs-105-afi-c7142e",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es un dato de una encuesta de satisfacción vecinal (93%) sobre el servicio de agua potable y alcantarillado. Ningún candidato contiene un resultado de encuesta ni un porcentaje de satisfacción: son todos contratos de licitación.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -4945,11 +4987,13 @@
       "verification": {
         "claimId": "k4olcs-106-cit-6ef2c4",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una cita de obra: el concejal dice que en el expediente hay una memoria de contratación de 2025, con análisis comparativos y fichas de cada contrato, y que se colgará en la web.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -5429,9 +5473,10 @@
       "verification": {
         "claimId": "k4olcs-110-afi-c046e0",
         "verdict": "sin-datos",
-        "summary": "Reasoned in Spanish as requested in the user turn about whether any tender candidate supports the numeric claim of €14,500,000 government aid; concluded none do due to mismatched amounts, entity type (municipal service contracts vs. government subsidy), and subject matter.",
+        "summary": "La afirmación habla de 14.500.000 € de \"la ayuda del Gob(ierno)\", es decir, una transferencia estatal de gran cuantía.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -7349,11 +7394,13 @@
       "verification": {
         "claimId": "k4olcs-164-afi-4aed19",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Ningún candidato respalda la afirmación. La afirmación es vaga: dice que el 16 de marzo (Fallas) es el comienzo de una \"nueva empresa\", probablemente el nuevo contrato de residuos o basura.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -8208,9 +8255,10 @@
       "verification": {
         "claimId": "k4olcs-176-cit-470064",
         "verdict": "sin-datos",
-        "summary": "Tarea de verificación de hechos completada mediante razonamiento directo en español, sin necesidad de herramientas de código ni skills de desarrollo. Conclusión: ningún candidato respalda genuinamente la afirmación porque ninguno coincide simultáneamente en sujeto (Fira de Comercio vinculada a la Ge",
+        "summary": "La afirmación habla de que la Generalitat gastará 3 millones de euros en un lugar con una finalidad concreta, en relación con la Fira de Comercio.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -8268,11 +8316,13 @@
       "verification": {
         "claimId": "k4olcs-178-afi-532dea",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación dice que se reservan 3 millones de euros para un conservatorio que la Generalitat no integrará en su red (una inversión/reserva presupuestaria de gran envergadura).",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"

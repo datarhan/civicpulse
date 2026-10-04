@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T15:15:31.195Z",
+  "generatedAt": "2026-10-04T17:23:05.282Z",
   "version": "1",
   "plenoId": "otxq2c",
   "plenoDate": "2025-10-06",
@@ -25,11 +25,13 @@
       "verification": {
         "claimId": "otxq2c-003-cit-9fac1b",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una cita de un convenio/charla que describe un requisito genérico para que entidades locales adquieran algo (probablemente una plataforma o herramienta): tener planes estratégicos o sectoriales de innovación y ciudades inteligentes aprobados o en redacción.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -55,11 +57,13 @@
       "verification": {
         "claimId": "otxq2c-003-cit-805ba2",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una declaración programática general (cita de convenio/normativa): \"hay que promover mediante un plan estratégico planes sectoriales... innovación, nuevas tecnologías, ciudades inteligentes\".",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -85,11 +89,13 @@
       "verification": {
         "claimId": "otxq2c-003-cit-3a6035",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una cita de convenio, de carácter normativo/programático (\"todos estos planes deben estar aprobados o en redacción\"), sin cifras, fechas ni sujeto concreto verificable. Es una exigencia o recomendación genérica, no un hecho comprobable con un registro.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -115,11 +121,13 @@
       "verification": {
         "claimId": "otxq2c-004-cit-c67f7e",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una cita de las normas de una convocatoria o convenio (probablemente una \"charla\" que es en realidad una \"carta\" o programa de ciudades inteligentes) que exige a las entidades locales tener planes estratégicos y sectoriales aprobados o en redacción.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -326,11 +334,13 @@
       "verification": {
         "claimId": "otxq2c-005-pro-be5f92",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una promesa/acuerdo plenario: solicitar la adhesión del Ayuntamiento a la Red Española de Ciudades Inteligentes (RECI). Ningún candidato lo respalda.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -356,11 +366,13 @@
       "verification": {
         "claimId": "otxq2c-005-pro-9bf6f5",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una promesa/acuerdo procedimental: habilitar al alcalde para realizar los trámites de adhesión a la Red Española de Ciudades Inteligentes.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -413,11 +425,13 @@
       "verification": {
         "claimId": "otxq2c-008-cit-8ae62b",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una opinión/observación personal y vaga (\"he estado mirando... ahí están todas las ciudades más importantes\") sobre un tipo de redes de innovación no especificado, sin cifras, fechas ni sujeto concreto verificable en registros municipales.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -639,11 +653,13 @@
       "verification": {
         "claimId": "otxq2c-012-cit-9a82c5",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación habla de una subvención de 40.000 € que financia a una trabajadora en el campo de \"innovación financiada\" y red, relacionada con el Ministerio. Ningún candidato respalda esto de forma genuina.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -927,11 +943,13 @@
       "verification": {
         "claimId": "otxq2c-014-cit-6169b2",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una mención genérica de que \"también tenemos el Sandbox\" (un entorno de pruebas de innovación) dentro de un discurso sobre la nueva Regidora de Innovación; no contiene importe, fecha ni sujeto numérico verificable.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -1077,11 +1095,13 @@
       "verification": {
         "claimId": "otxq2c-016-cit-f4de4f",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una cita sobre que Riba-roja es \"ejemplo de ese piloto\" para otros ayuntamientos o empresas de prestigio: es una opinión o valoración cualitativa, sin cifra, fecha ni sujeto concreto verificable.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -1107,11 +1127,13 @@
       "verification": {
         "claimId": "otxq2c-016-cit-3f671c",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una cita de una intervención: empresas de prestigio que quieren probar sus productos o innovación en Riba-roja de Túria. Es una declaración cualitativa, sin importe, fecha ni sujeto concreto verificable.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -1281,11 +1303,13 @@
       "verification": {
         "claimId": "otxq2c-019-cit-2a2ae2",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una declaración cualitativa sobre una decisión política (convertir algo en ordenanza para evitar una dependencia), sin importes, fechas ni sujetos concretos verificables.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -1513,11 +1537,13 @@
       "verification": {
         "claimId": "otxq2c-023-cit-6b6d73",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación describe de forma genérica la ampliación de un ámbito de cobertura de un programa social (soledad no deseada, pérdida repentina de ingresos, acompañamiento a menores en riesgo) y una tramitación más ágil. No contiene cifras, fechas ni sujetos concretos que se puedan contrastar.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -1926,11 +1952,13 @@
       "verification": {
         "claimId": "otxq2c-028-pro-1e2129",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una promesa genérica sobre una futura comisión o equipo que diseñará protocolos de detección temprana, prevención y formación sobre la adolescencia en el municipio. No incluye importes, fechas ni sujetos concretos que se puedan contrastar. Ningún candidato lo respalda.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -2015,11 +2043,13 @@
       "verification": {
         "claimId": "otxq2c-029-cit-39d415",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una propuesta/promesa (campañas de sensibilización en centros educativos sobre convivencia, respeto y uso responsable de la tecnología), sin cifras, fechas ni entidades concretas. Ningún candidato la respalda genuinamente.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -2374,11 +2404,13 @@
       "verification": {
         "claimId": "otxq2c-031-cit-8ffc2f",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una declaración política y valorativa (\"apuesta firme por la protección de la infancia y la adolescencia\", \"municipio comprometido con la convivencia y la salud emocional\") sobre la creación de una comisión; no contiene cifras, fechas ni sujetos verificables contra registros.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -2404,9 +2436,10 @@
       "verification": {
         "claimId": "otxq2c-033-cit-bfa19f",
         "verdict": "sin-datos",
-        "summary": "Tarea de verificación de hechos completada mediante razonamiento directo en español, sin necesidad de herramientas de código: ningún candidato (todos contratos TI municipales de Riba-roja de Túria sobre licitaciones, WiFi de bandos, control de acceso corporativo, formación) coincide en sujeto, entid",
+        "summary": "Ningún candidato respalda la afirmación. La afirmación describe el sistema COMETA, un sistema de pulseras telemáticas para el control de agresores en casos de violencia de género. Ese sistema es de ámbito estatal y lo gestiona el Centro de Control de Medidas Telemáticas, no el municipio.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -2516,11 +2549,13 @@
       "verification": {
         "claimId": "otxq2c-036-cit-5362d9",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una cita de una moción que pide reclamar al Gobierno de España dotación económica, técnica y humana para implementar un sistema (probablemente de seguridad). Es una demanda/petición política, no un hecho con importe, fecha o sujeto verificable.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -3539,9 +3574,10 @@
       "verification": {
         "claimId": "otxq2c-063-cit-d210ea",
         "verdict": "sin-datos",
-        "summary": "Se trata de una tarea de verificación de hechos (razonamiento en español sobre respaldo de una afirmación política mediante candidatos de contratos municipales), no una tarea de codificación ni un caso de uso cubierto por las skills de \"superpowers\" (brainstorming, debugging sistemático, etc.), que ",
+        "summary": "La afirmación es una petición/moción para que las autoridades competentes \"fortalezcan el sistema de protección para las víctimas de violencia de género\". Es una cita de obra (una propuesta o instancia política), no un hecho con importe, fecha o sujeto verificable.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -3689,11 +3725,13 @@
       "verification": {
         "claimId": "otxq2c-072-cit-d5c436",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una declaración genérica de colaboración institucional con la Generalitat y la Diputación y de participación en programas de prevención, atención y reparación (probablemente violencia de género o similar). No contiene importes, fechas ni sujetos concretos verificables.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -3918,9 +3956,10 @@
       "verification": {
         "claimId": "otxq2c-074-cit-07c35d",
         "verdict": "sin-datos",
-        "summary": "Task completed: provided skeptical Spanish-language reasoning (no verdict) about whether any candidate genuinely backs the claim, per the fact-checking instructions. No coding/skill workflow applicable to this analytical fact-check task.",
+        "summary": "La afirmación es una cita de una obra o un discurso retórico: enumera servicios de atención (policía local, psicólogas, juristas, trabajadoras sociales) sin cifras, fechas ni importes concretos. Ningún candidato la respalda de verdad.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -4179,11 +4218,13 @@
       "verification": {
         "claimId": "otxq2c-082-cit-915a1d",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación dice que se ha recibido un premio en Madrid otorgado por la FEMP (Federación Española de Municipios y Provincias), en el ámbito de seguridad. Ningún candidato respalda esto.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -5524,11 +5565,13 @@
       "verification": {
         "claimId": "otxq2c-180-cit-c1b1ca",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación describe un procedimiento administrativo autonómico: tras conceder unos premios, se elevan desde (probablemente) la CUBA/otro órgano, y la Consejería de Educación, Universidades y Ocupación (Generalitat Valenciana) publica la resolución.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -5644,9 +5687,10 @@
       "verification": {
         "claimId": "otxq2c-182-cit-24c2e1",
         "verdict": "sin-datos",
-        "summary": "Reasoned in Spanish about whether candidates support the claim about students awarded for academic excellence; concluded no genuine support since all candidates are procurement/tender records for school infrastructure/services, not student award records — only superficial entity (school name) overla",
+        "summary": "La afirmación es una felicitación del pleno a alumnado premiado por excelencia académica en el curso 24-25: nombres de alumnas y sus colegios (CEIP Camp de Turia, Cervantes, Eres Altes). Ningún candidato respalda eso.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -6328,11 +6372,13 @@
       "verification": {
         "claimId": "otxq2c-190-pro-4d4456",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una pregunta/promesa sobre cuándo entrará en vigor la gestión efectiva de la nueva empresa del servicio de residuos tras un contrato de rescate. No contiene cifras, fechas ni importes concretos que contrastar.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -6358,11 +6404,13 @@
       "verification": {
         "claimId": "otxq2c-191-cit-757115",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una pregunta/cita de un pleno sobre cuándo entra en vigor la gestión efectiva de la nueva empresa de residuos tras aprobar un \"contrato de rescate\" temporal. No contiene importes, fechas ni sujetos concretos verificables.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -6388,9 +6436,10 @@
       "verification": {
         "claimId": "otxq2c-191-cit-39383e",
         "verdict": "sin-datos",
-        "summary": "Se completó el razonamiento escéptico solicitado en español sobre los dos candidatos frente a la afirmación, sin emitir veredicto final, tal como pedían las instrucciones.",
+        "summary": "La afirmación es una pregunta de control del Partido Popular sobre cuándo se hará efectiva la gestión de una \"nueva empresa\" en un servicio público (tema medio ambiente), sin importe, fecha ni sujeto concretos.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -7899,9 +7948,10 @@
       "verification": {
         "claimId": "otxq2c-212-cit-182551",
         "verdict": "sin-datos",
-        "summary": "Task was a Spanish-language fact-verification reasoning exercise (skeptical fact-checker for a municipal platform). This is not a coding/agentic task where the superpowers skill system applies (no file edits, no debugging, no building). I directly analyzed whether any of the 5 tender/subvención cand",
+        "summary": "La afirmación dice que el Ayuntamiento cedió un terreno/espacio a la Consejería de Sanidad para construir el centro de salud, y que por eso decidió no reparar algo (una instalación). Ningún candidato respalda esto.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -8291,11 +8341,13 @@
       "verification": {
         "claimId": "otxq2c-219-pro-61cd4a",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una promesa vaga y condicional (\"se puede plasmar en el próximo presupuesto\" algo relativo a la edad de las familias), sin importe, fecha ni sujeto concretos.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"

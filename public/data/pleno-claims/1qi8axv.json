@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T15:15:31.195Z",
+  "generatedAt": "2026-10-04T17:23:05.282Z",
   "version": "1",
   "plenoId": "1qi8axv",
   "plenoDate": "2025-12-23",
@@ -733,9 +733,10 @@
       "verification": {
         "claimId": "1qi8axv-015-cit-1eea04",
         "verdict": "sin-datos",
-        "summary": "Se solicitó razonar (no emitir veredicto) sobre si algún candidato respalda la afirmación. Analicé los tres candidatos: ninguno coincide temáticamente con la afirmación sobre subcontratación de servicios por un contratista debido a falta de medios propios. Los candidatos tratan de un proyecto arquit",
+        "summary": "La afirmación es una cita de obra, sin cifras, fecha ni sujeto concretos. Habla de forma genérica de que el contratista subcontrata a otra empresa para cubrir servicios que no puede prestar con sus medios actuales, y de hacer un plan estratégico con el personal existente.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -764,9 +765,10 @@
       "verification": {
         "claimId": "1qi8axv-015-cit-4c14b8",
         "verdict": "sin-datos",
-        "summary": "Task completed: provided skeptical reasoning in Spanish (2-4 sentences plus brief analysis) evaluating whether any candidate genuinely supports the claim. Conclusion: none do, since \"vehículo\" in the claim is metaphorical (a mechanism for internal company communication/coordination) while candidates",
+        "summary": "La afirmación es una cita textual de una obra o documento sobre mejora de coordinación dentro de una empresa y poner en funcionamiento \"el vehículo establecido en el\" (fragmento truncado, sin importe, fecha ni sujeto concreto).",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -797,11 +799,13 @@
       "verification": {
         "claimId": "1qi8axv-016-afi-2057d7",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación habla de una cifra de 143.539 euros y de un plazo de siete días para justificar un plan de medidas correctoras, probablemente un acuerdo de requerimiento por un incumplimiento (p. ej. regla de gasto o estabilidad presupuestaria).",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -1389,11 +1393,13 @@
       "verification": {
         "claimId": "1qi8axv-039-afi-7b98cf",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es vaga y coloquial: \"algún contrato por ahí que todavía están pegando la vuelta\" (probablemente \"dando la vuelta\", es decir, contratos de recogida de basura aún en circulación/prórroga). No contiene cifra, fecha ni sujeto concreto que pueda contrastarse.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -1778,11 +1784,13 @@
       "verification": {
         "claimId": "1qi8axv-051-cit-a7b553",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación trata de la limpieza de las \"islas\" (entorno de los contenedores) y de que antes apenas se limpiaban, y que ahora el contrato prevé una limpieza mensual.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -1808,9 +1816,10 @@
       "verification": {
         "claimId": "1qi8axv-052-cit-977367",
         "verdict": "sin-datos",
-        "summary": "Task completed: reasoned in Spanish (as required) about whether any candidate supports the claim about waste/garbage service improvements tied to Agenda 2030. Conclusion: no genuine support — candidates are about water quality maintenance, building project drafting, and employee portal, none relate ",
+        "summary": "La afirmación es una opinión/valoración sobre un pliego de recogida de basura (que mejoraba el tratamiento de residuos y la calidad del servicio respecto a la Agenda 2030). No contiene importe, fecha ni sujeto concreto verificable.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -1957,11 +1966,13 @@
       "verification": {
         "claimId": "1qi8axv-057-afi-c1ba98",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es un compromiso/plan de shock del alcalde: pasar de retirar el 50-60% de los contenedores al día al 100%. Es una meta de gestión sin cifra contratada verificable.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -1987,11 +1998,13 @@
       "verification": {
         "claimId": "1qi8axv-057-cit-fb178a",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una cita del alcalde sobre un \"plan de shock\" para retirar residuos de contenedores (pasar del 50-60% que se retira al día). No contiene cifras de importe, fecha ni sujeto verificables contra registros: es una declaración de intenciones o promesa.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -2019,11 +2032,13 @@
       "verification": {
         "claimId": "1qi8axv-057-afi-e76c4d",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación habla de un porcentaje operativo (50-60%) de contenedores que se retiran al día, con un plan de choque para llegar al 100%. Ningún candidato contiene ese dato ni uno equivalente.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -2076,11 +2091,13 @@
       "verification": {
         "claimId": "1qi8axv-058-afi-fe267e",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación habla de un plan de shock para pasar del 50-60% al 100% de retirada diaria de contenedores (presumiblemente de residuos). Es un objetivo/porcentaje operativo, sin importe, fecha ni sujeto concreto en los registros.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -2165,11 +2182,13 @@
       "verification": {
         "claimId": "1qi8axv-059-afi-3e1e17",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación compara dos contratos de asistencia técnica (el anterior y el actual) y dice que un elemento (probablemente la redacción de informes o un servicio concreto) no existía en el anterior y sí en este.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -2526,11 +2545,13 @@
       "verification": {
         "claimId": "1qi8axv-074-afi-11666f",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es una declaración de la oposición sobre cuándo se aprobarán los presupuestos municipales (que serían \"en el ejercicio 2025\", no para el año en curso).",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -4398,11 +4419,13 @@
       "verification": {
         "claimId": "1qi8axv-122-afi-3eebaf",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es cualitativa: dice que todos los expedientes están en la plataforma y que ya no hace falta desplazarse al ayuntamiento para acceder a los informes. No contiene ningún importe, fecha ni sujeto concreto que se pueda contrastar.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"
@@ -4428,11 +4451,13 @@
       "verification": {
         "claimId": "1qi8axv-123-afi-780865",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "La afirmación es cualitativa: que desde que existe la plataforma (SIGA) todos los expedientes están en ella y ya no hay que ir al ayuntamiento para consultar los informes. No contiene cifras, importes ni fechas concretas que un registro pueda confirmar o desmentir.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
+        "confidence": 0.2,
         "source": "verdict-engine"
       },
       "visibility": "toggle"

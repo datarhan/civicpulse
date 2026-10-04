@@ -5,7 +5,7 @@
  * DE DÓNDE SALE
  *
  * El motor de veredictos guarda como resumen el razonamiento del modelo
- * (`reasoning.slice(0, 300)`, claim-verifier-engine.ts), y la tarjeta de
+ * (`recortarResumen(reasoning)`, claim-verifier-engine.ts; hasta el 04-10-2026, `reasoning.slice(0, 300)`), y la tarjeta de
  * declaraciones lo pinta bajo la cita del concejal. En la corrida del
  * 02-08-2026 con claude-code, el campo `reasoning` recogió muchas veces el
  * parte del modelo sobre su encargo: «Task completed: reasoned in Spanish
