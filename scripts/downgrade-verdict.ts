@@ -8,6 +8,9 @@
  *
  * Validates: the claim exists, the move is a real downgrade vs the CURRENT
  * published verdict, and the reason is ≥20 chars. Never raises a verdict.
+ * `--editor` acepta la cuenta de rol y rechaza, antes de leer nada, el hueco de
+ * una orden preparada sin rellenar (`rechazoDeMarcador`,
+ * src/scraper/firma-de-persona.ts); las dos vías de abajo piden una persona.
  *
  * ── `--amend-reason` ────────────────────────────────────────────────────────
  *
@@ -54,7 +57,7 @@ import {
   verificacionDeBajada,
   type Overlay,
 } from '../src/scraper/verified-merge'
-import { rechazoDeFirma } from '../src/scraper/firma-de-persona'
+import { rechazoDeFirma, rechazoDeMarcador } from '../src/scraper/firma-de-persona'
 import type { ClaimVerdict, ClaimVerification } from '../src/scraper/claim-verifier'
 
 const DOWNGRADE_TARGETS: ClaimVerdict[] = ['verificado', 'parcial', 'sin-datos']
@@ -147,14 +150,12 @@ export function leerOrden(argv: string[]): Orden {
         '--new sólo va con --amend-reason: sin él, --reason sería el motivo de otra bajada y --new se perdería',
       )
     }
-    return {
-      modo: 'bajar',
-      claimId,
-      veredicto,
-      motivo: reason,
-      editor: editor ?? 'curator',
-      dryRun,
-    }
+    // La bajada de siempre la firma el operador —sin --editor, «curator»—, y
+    // sólo se rechaza el hueco de una orden preparada sin rellenar.
+    const firma = editor ?? 'curator'
+    const hueco = rechazoDeMarcador(firma)
+    if (hueco) throw new Error(`--editor: ${hueco}`)
+    return { modo: 'bajar', claimId, veredicto, motivo: reason, editor: firma, dryRun }
   }
   if (nuevo == null) throw new Error('--amend-reason lleva el motivo nuevo en --new')
   if (!reason) throw new Error('--amend-reason lleva en --reason por qué se enmienda')

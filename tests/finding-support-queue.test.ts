@@ -23,6 +23,7 @@ import {
   type CarriedReview,
 } from '../src/scraper/finding-support'
 import { validateFindingsSnapshot } from '../src/scraper/pleno-finding'
+import { rechazoDeMarcador } from '../src/scraper/firma-de-persona'
 
 const SNAPSHOT_PATH = join(__dirname, '..', 'public', 'data', 'pleno-findings.json')
 const RAW = readFileSync(SNAPSHOT_PATH, 'utf8')
@@ -678,6 +679,11 @@ describe('la cola no puede escribir en el snapshot publicado', () => {
       expect(row.correctionCommand).toContain('npm run correct-pleno-finding')
       expect(row.correctionCommand).toContain(row.id)
       expect(row.correctionCommand).toContain('--reason')
+      // La firma es un hueco que `correct-pleno-finding` rechaza si se copia sin
+      // rellenar (`rechazoDeMarcador`).
+      const firma = row.correctionCommand.match(/--editor "([^"]*)"/)?.[1]
+      expect(firma).toBeDefined()
+      expect(rechazoDeMarcador(firma!)).not.toBeNull()
     }
     expect(queue.rows.length).toBe(SNAPSHOT.items.length)
   })

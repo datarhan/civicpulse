@@ -26,6 +26,7 @@ import {
 } from '../src/scraper/quote-reanchor'
 import { MARKED_STATUS_IDS, type QuoteProvenanceSnapshot } from '../src/scraper/quote-provenance'
 import { validateFindingsSnapshot } from '../src/scraper/pleno-finding'
+import { rechazoDeMarcador } from '../src/scraper/firma-de-persona'
 import { loadSessionTexts } from '../scripts/lib/transcript-corpus'
 
 const ROOT = join(__dirname, '..')
@@ -110,6 +111,11 @@ describe('la cola PROPONE y no elige', () => {
       // El texto nuevo es un hueco a rellenar por una persona, nunca un
       // candidato ya metido en el comando.
       expect(r.correctionCommand).toMatch(/--new "<[^"]*>"/)
+      // Y la firma también: copiada sin rellenar, `correct-pleno-finding` la
+      // rechaza antes de leer nada (`rechazoDeMarcador`).
+      const firma = r.correctionCommand.match(/--editor "([^"]*)"/)?.[1]
+      expect(firma).toBeDefined()
+      expect(rechazoDeMarcador(firma!)).not.toBeNull()
     }
   })
 })
