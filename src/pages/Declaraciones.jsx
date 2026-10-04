@@ -135,16 +135,23 @@ function ClaimRow({ item, plenoTitle }) {
         <Pill tone={CLAIM_TYPE_TONE[c.type] ?? 'neutral'} size="xs">
           {CLAIM_TYPE_LABEL[c.type] ?? c.type}
         </Pill>
-        <PartyTag
-          tone={speakerColor}
-          style={{ fontSize: 'var(--fs-micro)', letterSpacing: '.04em' }}
+        {/* El grupo y su «firmado» no se separan al envolver la fila: a 375 px la
+            marca caía sola al principio de la línea siguiente y se leía como
+            una propiedad de toda la fila. */}
+        <span
+          style={{ display: 'inline-flex', alignItems: 'center', gap: 6, whiteSpace: 'nowrap' }}
         >
-          {c.speakerGroup ? blocLabel(c.speakerGroup) : 'sin atribuir'}
-        </PartyTag>
-        <MarcaDeFirma
-          claim={c}
-          style={{ fontSize: 'var(--fs-micro)', letterSpacing: '.04em', color: 'var(--ink50)' }}
-        />
+          <PartyTag
+            tone={speakerColor}
+            style={{ fontSize: 'var(--fs-micro)', letterSpacing: '.04em' }}
+          >
+            {c.speakerGroup ? blocLabel(c.speakerGroup) : 'sin atribuir'}
+          </PartyTag>
+          <MarcaDeFirma
+            claim={c}
+            style={{ fontSize: 'var(--fs-micro)', letterSpacing: '.04em', color: 'var(--ink50)' }}
+          />
+        </span>
         <span style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>· {c.topic}</span>
         <span style={{ flex: 1 }} />
         <Link
