@@ -915,12 +915,14 @@ function AsociacionesCard() {
               color: 'var(--ink70)',
               padding: '3px 0',
               borderBottom: '1px solid var(--border2)',
-              // El nombre sale tal cual del PDF del registro, y alguna fila llega
-              // con las columnas pegadas —«…TúriaG98409055asocultaurina…@gmail.com»,
-              // sin un solo espacio—: a 320 px eso se salía 41 px de su columna y
-              // ensanchaba la página. Se parte por donde haga falta antes que
-              // empujar la página; lo pegado es un defecto del lector del PDF, y
-              // se arregla allí, no escondiéndolo aquí.
+              // El nombre sale tal cual del PDF del registro, y con el de julio de
+              // 2026 alguna fila llegó con las columnas pegadas
+              // —«…TúriaG98409055asocultaurina…@gmail.com», sin un solo espacio—:
+              // a 320 px eso se salía 41 px de su columna y ensanchaba la página.
+              // Lo pegado se arregló donde nace, en el lector del PDF (la columna
+              // CIF, src/scraper/asociaciones.ts); esto se queda para la próxima
+              // palabra larga sin espacios: se parte por donde haga falta antes
+              // que empujar la página.
               overflowWrap: 'anywhere',
             }}
           >
