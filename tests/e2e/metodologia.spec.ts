@@ -53,7 +53,9 @@ test.describe('El trinquete publicado (/metodologia)', () => {
     const texto = await page.locator('body').innerText()
     expect(texto).toMatch(/tiene que nombrar contra qué se comprobó/i)
     expect(texto).toMatch(/retractación de un curador|bajar un veredicto nunca refuerza/i)
-    // Y lo que ya bajó una retractación, ninguna escritura posterior lo sube.
-    expect(texto).toMatch(/no lo vuelve a subir ninguna escritura posterior/i)
+    // Y lo que ya bajó una retractación, ninguna escritura automática lo sube:
+    // sólo una persona, con su nombre, por la subida firmada.
+    expect(texto).toMatch(/no lo vuelve a subir ninguna escritura automática/i)
+    expect(texto).toMatch(/sólo una persona, con su nombre/i)
   })
 })
