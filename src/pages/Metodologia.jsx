@@ -1456,17 +1456,38 @@ export default function Metodologia() {
             con la regla de <em>no-evidencia por defecto</em> y la misma comprobación de que el
             valor citado aparezca literalmente en el extracto— vuelve a juzgar los veredictos
             marcados verificado/parcial, tanto los de la pasada LLM como —desde el 2 de agosto de
-            2026— los que había afirmado el comparador determinista. Esa primera pasada sobre la
-            base retractó <strong>229 de 264 veredictos juzgados</strong>, coherente con el conjunto
-            de control: el determinista acierta un 33&nbsp;% en <em>verificado</em> y un 22&nbsp;%
-            en <em>parcial</em>. Una parte de las declaraciones el modelo no llega a verlas, porque
-            sin cifra en euros la recuperación léxica no encuentra candidatos; conservan su
-            veredicto determinista hasta que la vía semántica las alcance. (Aquí no damos el número
-            exacto a propósito: cambia con cada pleno transcrito, y una cifra escrita en esta página
-            se quedaría falsa sin que nadie lo notara. El recuento vigente está en el bloque{' '}
-            <code>totals</code> del manifiesto publicado <code>/data/pleno-claims/index.json</code>
-            .) En una muestra de control etiquetada a mano, su veredicto <code>sin-datos</code>{' '}
-            acierta ~92&nbsp;%, así que{' '}
+            2026— los que había afirmado el comparador determinista.{' '}
+            {/* Decía «Esa primera pasada sobre la base retractó 229 de 264 veredictos
+                juzgados, coherente con el conjunto de control: el determinista acierta un
+                33 % en verificado y un 22 % en parcial», y más abajo «En una muestra de
+                control etiquetada a mano, su veredicto sin-datos acierta ~92 %, así que…».
+                La muestra (tests/fixtures/verifier-gold.json) la etiquetó Claude Opus 4.8 el
+                23 y 24-06-2026, su cabecera pedía revisarla antes de tratarla como patrón, y
+                no consta que ninguna persona lo hiciera. Las tres cifras eran coincidencia
+                con esas etiquetas —36 de 39, 1 de 3 y 4 de 18—, medida con gpt-5.4-mini, y
+                las pasadas de agosto corrieron por Claude Code. El recuento de la pasada sobre la
+                base iba escrito en la prosa y no lo sostenía ningún dato servido. 04-10-2026. */}
+            Esa primera pasada sobre la base{' '}
+            <strong>retractó la gran mayoría de los veredictos que juzgó</strong>, en la misma
+            dirección que la muestra de control con la que se midió el motor en junio de 2026: en
+            ella, lo que el comparador determinista daba por <em>verificado</em> o <em>parcial</em>{' '}
+            no coincidía, en su mayoría, con la etiqueta de la muestra, aunque son pocos casos. Una
+            parte de las declaraciones el modelo no llega a verlas, porque sin cifra en euros la
+            recuperación léxica no encuentra candidatos; conservan su veredicto determinista hasta
+            que la vía semántica las alcance. (Aquí no damos el número exacto a propósito: cambia
+            con cada pleno transcrito, y una cifra escrita en esta página se quedaría falsa sin que
+            nadie lo notara. El recuento vigente está en el bloque <code>totals</code> del
+            manifiesto publicado <code>/data/pleno-claims/index.json</code>
+            .) <strong>Esa muestra de control la etiquetó un modelo</strong> (Claude Opus 4.8), y no
+            consta que ninguna persona haya revisado sus etiquetas: lo que se midió contra ella es
+            cuánto coincide el motor con otro modelo, no cuánto acierta. Se midió una vez, en junio
+            de 2026, con el modelo que el motor usaba entonces (gpt-5.4-mini); las pasadas de agosto
+            corrieron con otro —a través de Claude Code—, y ése no se ha medido contra la muestra.
+            Las cifras, con su método y su muestra, están en el registro público de mediciones (
+            <code>.automation-measurements.json</code>); aquí no las damos como acierto. La regla se
+            tomó en junio a la vista de esa medición, y hoy la sostiene una razón que no depende de
+            ninguna: un <code>sin-datos</code> no afirma nada, así que retractar a{' '}
+            <code>sin-datos</code> sólo puede quitar una afirmación, nunca añadirla. Por eso{' '}
             <strong>
               sólo aplicamos sus retractaciones a <code>sin-datos</code>
             </strong>{' '}

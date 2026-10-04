@@ -151,8 +151,9 @@ export function makeEngineVerifier(
      * where deterministic said verificado/parcial, so every one returned early
      * and the run reported "re-judged 1017 · kept 1017" having made ZERO LLM
      * calls. Deterministic assertions are the least trustworthy thing we
-     * publish — 33% precision on verificado, 22% on parcial against the gold
-     * set — so they are exactly what needs re-judging.
+     * publish — on the June gold, which a model labelled, 1 of its 3
+     * verificado and 4 of its 18 parcial agreed with the label — so they are
+     * exactly what needs re-judging.
      */
     always?: boolean
     /**
@@ -273,9 +274,11 @@ export function makeEngineVerifier(
     // "the engine found support where the deterministic pass found none" — the
     // engine's original job — and is FALSE for a sin-datos verdict by
     // definition. In `--base` that discarded the retraction pass's one trusted
-    // signal (~92% precision on the gold set): every claim came back as the
-    // deterministic verdict and was counted "kept", a run that judged ~90 claims
-    // and retracted 0. It was fixed for `always` only (2026-08-02). In the
+    // signal — its sin-datos, the one output that cannot add a claim (it
+    // agreed with the model-labelled gold ~92% of the time in June): every
+    // claim came back as the deterministic verdict and was counted "kept", a
+    // run that judged ~90 claims and retracted 0. It was fixed for `always`
+    // only (2026-08-02). In the
     // default mode the VERDICT survived — the deterministic one is sin-datos
     // there too — but the explanation did not: the June and August runs saved
     // the comparator's stock sentence, «No se encontró registro en tenders /

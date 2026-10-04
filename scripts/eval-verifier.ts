@@ -8,12 +8,22 @@
  * scorecard (label accuracy, per-verdict P/R/F1, libel-critical false-contradicho
  * rate, false-sin-datos rate, citation P/R, FEVER score). Writes the raw JSON to
  * eval/scorecards/ (gitignored). `nli*` requires the local NLI venv (P1).
+ *
+ * The scorecard opens with who labelled the rows it scored (`reviewer`, by
+ * `claseDeFirma`), because `reviewed:true` does not say a person did, and
+ * against a model's labels every figure is agreement with that model, not
+ * accuracy.
  */
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs'
 import { resolve } from 'node:path'
 import type { PlenoClaim } from '../src/scraper/pleno-claim'
 import type { ClaimVerification } from '../src/scraper/claim-verifier'
-import { scoreVerifier, type GoldRow, type Scorecard } from '../src/scraper/verifier-eval'
+import {
+  scoreVerifier,
+  formatLabelProvenance,
+  type GoldRow,
+  type Scorecard,
+} from '../src/scraper/verifier-eval'
 import {
   loadVerifierContext,
   deterministicVerifier,
@@ -76,6 +86,8 @@ function formatScorecard(s: Scorecard, label: string): string {
   const lines: string[] = []
   lines.push(`## Scorecard: ${label}  (n=${s.n})`)
   lines.push('')
+  lines.push(...formatLabelProvenance(s.labelledBy))
+  lines.push('')
   lines.push(
     `label-accuracy **${pct(s.labelAccuracy)}** · fever **${pct(s.feverScore)}** · ` +
       `false-contradicho **${pct(s.falseContradichoRate)}** · false-sin-datos **${pct(s.falseSinDatosRate)}**`,
@@ -106,7 +118,7 @@ async function main() {
   const reviewed = gold.filter((g) => g.reviewed)
   if (reviewed.length === 0) {
     process.stderr.write(
-      '[eval] no reviewed gold rows — open the gold file, correct labels, set reviewed:true\n',
+      '[eval] no reviewed gold rows — open the gold file, correct labels, set reviewed:true and your name in reviewer\n',
     )
     process.exit(1)
   }

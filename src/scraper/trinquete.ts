@@ -5,8 +5,8 @@
  * veredicto en un sentido— y está bien pensada:
  *
  *   base establece → NLI propone subir lo que puede anclar, y lo sube sólo una
- *   persona → el motor retracta donde es fiable (~92 % de precisión en
- *   `sin-datos`, floja en el resto) → un curador retracta a mano.
+ *   persona → el motor retracta, y sólo a `sin-datos`, que no afirma nada → la
+ *   retractación de curador baja con la firma de quien la usa.
  *
  * El problema no era el diseño: era que sólo vivía en el orden de ejecución y
  * en las cabeceras de tres ficheros. La política real estaba repartida en una
@@ -109,9 +109,15 @@ export const TRINQUETE: Record<OverlaySource, Etapa> = {
   'verdict-engine': {
     nombre: 'Re-derivación del motor',
     direccion: 'baja',
-    // Sólo retracta, y sólo a sin-datos: en el patrón de 64 filas su precisión
-    // en `sin-datos` es ~92 % y la de verificado/parcial es floja, así que se
-    // le cree únicamente cuando dice que no hay nada.
+    // Sólo retracta, y sólo a sin-datos: un `sin-datos` no afirma nada, así que
+    // retractar a él sólo puede quitar. Decía «en el patrón de 64 filas su
+    // precisión en `sin-datos` es ~92 %»: ese patrón es
+    // tests/fixtures/verifier-gold.json, lo etiquetó un modelo (ai-opus-4.8) y
+    // a 04-10-2026 no consta revisión humana; el ~92 % —36 de 39— es
+    // coincidencia con esas etiquetas, medida con gpt-5.4-mini en junio de
+    // 2026, y las pasadas de agosto corrieron por Claude Code sin medirse. La regla
+    // se tomó a la vista de esa cifra y hoy no depende de ella. `medicion`
+    // apunta al informe que la midió, con su nota del 04-10-2026.
     puedeEmitir: ['sin-datos'],
     // El suelo SÍ le aplica —lo comprobó la prueba, que es para lo que está—
     // aunque en la práctica no le muerda nunca: sólo emite `sin-datos`, que no

@@ -8,9 +8,17 @@
  *     npm run verify:pleno-claims:engine -- [--max N] [--plenoId ID] [--dry-run]
  *     npm run verify:pleno-claims:engine -- --ids <fichero> [--dry-run]
  *
- * DOWNGRADE-ONLY, and only to sin-datos: on the 64-row gold the engine's sin-datos
- * precision is ~92% (reliable) while its verificado/parcial precision is weak — so
- * we trust ONLY its sin-datos calls, as retractions of LLM verificado/parcial.
+ * DOWNGRADE-ONLY, and only to sin-datos: a sin-datos asserts nothing, so a
+ * retraction to it can only remove a claim — which is why it runs unattended
+ * (tier A) and why we trust ONLY its sin-datos calls, as retractions of LLM
+ * verificado/parcial. The rule was taken in June 2026 on the gold eval: the
+ * engine's sin-datos agreed with the gold's label ~92% of the time (36 of 39)
+ * and its verificado/parcial much less. That was agreement with a MODEL's
+ * labels — in June every row of tests/fixtures/verifier-gold.json had been
+ * labelled by ai-opus-4.8, with no human review recorded — measured with
+ * gpt-5.4-mini; the August 2026 runs went through claude-code and were never
+ * scored. The figures, with their real samples, are in
+ * .automation-measurements.json.
  * Writes `source:'verdict-engine'` overlay entries (replacing the `llm` entry);
  * curator-downgrade entries are untouched (different source). Resumable: claims
  * already re-derived (a verdict-engine overlay entry exists) are skipped.
@@ -253,9 +261,9 @@ async function main() {
       if (pending.length >= CHECKPOINT_EVERY) flush()
       continue
     }
-    // Trust ONLY the engine's high-precision sin-datos verdict, as a retraction
-    // — and only when the engine judged: without a judgement, the sin-datos
-    // that comes back is the deterministic one.
+    // Trust ONLY the engine's sin-datos verdict, as a retraction — the one
+    // output of its that cannot add a claim — and only when the engine judged:
+    // without a judgement, the sin-datos that comes back is the deterministic one.
     const decision = decidirRetractacion({ salto, veredicto: r.verdict, publicado: cur })
     if (decision.accion === 'retractar') {
       // Tal cual la dio el motor: los corpus de su evidencia en `checkedAgainst`,

@@ -6,7 +6,9 @@
  * Draws a stratified sample of verified claims, prefills each with its CURRENT
  * verdict + evidence (a starting label the curator corrects), and merges into
  * the gold file WITHOUT touching any row already flagged `reviewed:true`.
- * Only `reviewed:true` rows are scored by `npm run eval:verifier`.
+ * Only `reviewed:true` rows are scored by `npm run eval:verifier` — whoever set
+ * the flag: a model can as well as a person, so a corrected row carries its
+ * reviewer's name in `reviewer`, and the scorecard prints who labelled it.
  */
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs'
 import { resolve, dirname } from 'node:path'
