@@ -37,15 +37,49 @@
  *
  * Anti-hueco: imprime cuántos veredictos evaluó. Uno que no miró nada y uno
  * que no encontró nada no pueden imprimir el mismo «✓».
+ *
+ * ── El segundo cotejo: lo que el overlay publica, contra la base de hoy ──────
+ *
+ * `curado` sale 0 porque bajar un veredicto nunca refuerza una afirmación. Eso
+ * vale mientras la entrada baje respecto de la BASE, y la base se mueve: una
+ * entrada se juzga al escribirla contra la de ese día y se reaplica sobre cada
+ * una posterior sin mirar (`overlayOutcomes`, verified-merge.ts). El 04-10-2026,
+ * 1sqj7is-053-pro-68944b publicaba `parcial` —una bajada de junio desde el
+ * `verificado` de la pasada LLM retirada, con la evidencia de esa pasada— sobre
+ * una base que dice `sin-datos`, y esto la contaba como `curado`.
+ *
+ *   por-encima  la entrada publica por encima de lo que dice hoy su base
+ *               · sale 1, y nombra cómo se sirve su fila. Hoy ninguna
+ *                 escritura del overlay sube un veredicto —el curador y el
+ *                 motor bajan, y el anclaje NLI sólo propone—, así que eso
+ *                 sólo lo deja una base que se movió por debajo; lo decide una
+ *                 persona. Si un día una vía firmada sube veredictos al
+ *                 overlay, esta guarda tendrá que distinguir esa firma
+ *   sin-claim   su declaración ya no está en la base: ni se aplica ni se
+ *               publica · se lista, sale 0
+ *   sin-base    no hay base en disco (gitignorada; clon nuevo) · SALTADO,
+ *               jamás «0 por encima»
+ *
+ * Se compara con la base que HAY: lo que encuentra hoy el verificador. Si lo
+ * publicado sale de ella lo dice `check:verified-compose`; aquí se imprimen los
+ * dos sellos y cuántas entradas se cotejaron.
  */
 import { readFileSync, readdirSync, existsSync } from 'node:fs'
 import { resolve, join } from 'node:path'
+import { pathToFileURL } from 'node:url'
 import {
   corpusReales,
   clasificarProcedencia,
   esPasadaRetirada,
 } from '../src/scraper/claim-verdicts'
 import { CLASES_DE_FIRMA, type ClaseDeFirma } from '../src/scraper/firma-de-persona'
+import {
+  overlayOutcomes,
+  type EntradaPorEncima,
+  type Overlay,
+  type VerifiedItem,
+} from '../src/scraper/verified-merge'
+import { BASE, VERIFIED, loadOverlay } from './verified-rebuild'
 
 const DIR = resolve('public/data/pleno-claims')
 
@@ -74,6 +108,8 @@ interface Item {
     source?: string
     downgradedBy?: string
   }
+  /** La que estampó la puerta al trocear: `shown` o `toggle`. */
+  visibility?: string
 }
 
 /**
@@ -142,6 +178,117 @@ export function cotejarVeredicto(it: Item): Fila {
   }
 }
 
+/** Una entrada por encima de su base, y cómo se sirve su fila. */
+export interface FilaPorEncima extends EntradaPorEncima {
+  /** La visibilidad de su fila en los trozos, o `no-servida` si no está en ninguno. */
+  servida: string
+}
+
+export interface CotejoConBase {
+  estado: 'cotejado' | 'sin-base'
+  baseGeneratedAt: string | null
+  publicadoGeneratedAt: string | null
+  /** Las entradas del overlay que se cotejaron. Sin base, cero: no se miró ninguna. */
+  entradas: number
+  bajan: number
+  iguales: number
+  porEncima: FilaPorEncima[]
+  sinClaim: string[]
+  /** Por qué no se cotejó; `null` si se cotejó. */
+  motivo: string | null
+}
+
+/**
+ * Puro: cada entrada del overlay contra la base que hay en disco, y cómo se
+ * sirve la fila de las que quedan por encima. Sin base no se coteja nada, y
+ * sale `sin-base` con cero entradas: un «0 por encima» sin haber mirado sería
+ * el visto bueno hueco que esta guarda existe para no dar.
+ */
+export function cotejarConBase(input: {
+  base: { generatedAt?: unknown; items: VerifiedItem[] } | null
+  overlay: Overlay
+  servidas: ReadonlyMap<string, string>
+  publicadoGeneratedAt: string | null
+}): CotejoConBase {
+  const { base, overlay, servidas, publicadoGeneratedAt } = input
+  if (base == null) {
+    return {
+      estado: 'sin-base',
+      baseGeneratedAt: null,
+      publicadoGeneratedAt,
+      entradas: 0,
+      bajan: 0,
+      iguales: 0,
+      porEncima: [],
+      sinClaim: [],
+      motivo:
+        'no hay base que leer en disco (está gitignorada); se regenera con ' +
+        '`npm run verify:pleno-claims -- --base-only`',
+    }
+  }
+  const d = overlayOutcomes(base.items, overlay)
+  return {
+    estado: 'cotejado',
+    baseGeneratedAt: typeof base.generatedAt === 'string' ? base.generatedAt : null,
+    publicadoGeneratedAt,
+    entradas: d.bajan.length + d.iguales.length + d.porEncima.length + d.sinClaim.length,
+    bajan: d.bajan.length,
+    iguales: d.iguales.length,
+    porEncima: d.porEncima.map((p) => ({ ...p, servida: servidas.get(p.id) ?? 'no-servida' })),
+    sinClaim: d.sinClaim,
+    motivo: null,
+  }
+}
+
+/** Un volcado JSON, o `null` si no está o no se deja leer. */
+function leerJson(path: string): unknown {
+  if (!existsSync(path)) return null
+  try {
+    return JSON.parse(readFileSync(path, 'utf8'))
+  } catch {
+    return null
+  }
+}
+
+/** Imprime el segundo cotejo. Devuelve si hay alguna entrada por encima de su base. */
+function informarDelCotejoConBase(c: CotejoConBase): boolean {
+  if (c.estado === 'sin-base') {
+    process.stdout.write(
+      `[check-veredictos] cotejo con la base: SALTADO — ${c.motivo}. No se ha cotejado ninguna ` +
+        'entrada del overlay, que no es lo mismo que no haya ninguna por encima.\n',
+    )
+    return false
+  }
+  process.stdout.write(
+    `[check-veredictos] cotejo con la base: ${c.entradas} entrada(s) del overlay · ${c.bajan} ` +
+      `bajan · ${c.iguales} iguales · ${c.porEncima.length} por encima · ${c.sinClaim.length} sin ` +
+      `claim en la base (base ${c.baseGeneratedAt ?? '—'} · publicado ${c.publicadoGeneratedAt ?? '—'})\n`,
+  )
+  if (c.sinClaim.length > 0) {
+    const vistas = c.sinClaim.slice(0, 10).join(', ')
+    const resto = c.sinClaim.length - 10
+    process.stdout.write(
+      `  · ${c.sinClaim.length} entrada(s) sin claim en la base: ni se aplican ni se publican ` +
+        `(${vistas}${resto > 0 ? ` y ${resto} más; --json las lista todas` : ''})\n`,
+    )
+  }
+  for (const p of c.porEncima) {
+    process.stderr.write(
+      `  ✗ [por-encima] ${p.id}: publica ${p.publica} y la base dice ${p.base} · ${p.source} · ` +
+        `se sirve: ${p.servida}\n`,
+    )
+  }
+  if (c.porEncima.length === 0) return false
+  process.stderr.write(
+    `[check-veredictos] ${c.porEncima.length} entrada(s) del overlay publican por encima de lo que ` +
+      'encuentra hoy el verificador. Ninguna escritura del overlay sube un veredicto: la base se ' +
+      'movió por debajo de una entrada juzgada contra otra. Lo decide una persona —una bajada firmada con ' +
+      '`npm run downgrade-verdict`, o arreglar la base si la que se equivoca es ella—, y nada ' +
+      'automático la toca.\n',
+  )
+  return true
+}
+
 function main(): void {
   const asJson = process.argv.includes('--json')
 
@@ -170,15 +317,41 @@ function main(): void {
   const curados = filas.filter((f) => f.estado === 'curado')
   const rotos = filas.filter((f) => f.estado === 'sin-corpus')
 
+  const servidas = new Map<string, string>()
+  for (const it of items) {
+    if (it.claim?.id) servidas.set(it.claim.id, String(it.visibility ?? 'sin-visibilidad'))
+  }
+  const base = leerJson(BASE) as { generatedAt?: unknown; items?: unknown } | null
+  const publicado = leerJson(VERIFIED) as { generatedAt?: unknown } | null
+  const conBase = cotejarConBase({
+    base:
+      base && Array.isArray(base.items)
+        ? { generatedAt: base.generatedAt, items: base.items as VerifiedItem[] }
+        : null,
+    overlay: loadOverlay(),
+    servidas,
+    publicadoGeneratedAt: typeof publicado?.generatedAt === 'string' ? publicado.generatedAt : null,
+  })
+
+  // `exitCode` y no `exit()`: con la salida por tubería —el parte de la salud
+  // la lee así— salir en seco puede cortar justo los renglones que dicen qué.
   if (asJson) {
     process.stdout.write(
       JSON.stringify(
-        { evaluados: filas.length, fuertes: fuertes.length, curados, retiradas, rotos },
+        {
+          evaluados: filas.length,
+          fuertes: fuertes.length,
+          curados,
+          retiradas,
+          rotos,
+          base: conBase,
+        },
         null,
         2,
       ) + '\n',
     )
-    process.exit(rotos.length ? 1 : 0)
+    process.exitCode = rotos.length || conBase.porEncima.length ? 1 : 0
+    return
   }
 
   process.stdout.write(
@@ -186,6 +359,21 @@ function main(): void {
       `${curados.length} curado(s) · ${retiradas.length} de procedencia retirada · ` +
       `${rotos.length} sin corpus\n`,
   )
+
+  if (retiradas.length > 0) {
+    process.stdout.write(
+      `  · ${retiradas.length} veredicto(s) fuertes se apoyan en una pasada retirada. Es la cola ` +
+        'de la fase 6: re-fundamentar con `npm run verify:pleno-claims:nli` lo que se pueda y ' +
+        'bajar el resto a sin-datos.\n',
+    )
+  }
+  // Con su código entre corchetes, como `[por-encima]`: la huella del parte de
+  // la salud (`alertFingerprint`) sale de ellos, y una rota sin código no la
+  // movería mientras el aviso por encima siga dado — se descartaría por repetida.
+  for (const r of rotos.slice(0, 10)) {
+    process.stderr.write(`  ✗ [sin-corpus] ${r.id}: ${r.verdict} — ${r.detalle}\n`)
+  }
+  const sobreLaBase = informarDelCotejoConBase(conBase)
 
   // Que la comprobación haya mirado algo de verdad: si NINGÚN veredicto fuera
   // fuerte, todo saldría `fundado` por la puerta de arriba y esto imprimiría
@@ -195,18 +383,8 @@ function main(): void {
       '[check-veredictos] ningún veredicto fuerte en lo publicado: no estoy juzgando nada, que ' +
         'no es lo mismo que estar todo bien\n',
     )
-    process.exit(1)
-  }
-
-  if (retiradas.length > 0) {
-    process.stdout.write(
-      `  · ${retiradas.length} veredicto(s) fuertes se apoyan en una pasada retirada. Es la cola ` +
-        'de la fase 6: re-fundamentar con `npm run verify:pleno-claims:nli` lo que se pueda y ' +
-        'bajar el resto a sin-datos.\n',
-    )
-  }
-  for (const r of rotos.slice(0, 10)) {
-    process.stderr.write(`  ✗ ${r.id}: ${r.verdict} — ${r.detalle}\n`)
+    process.exitCode = 1
+    return
   }
   if (rotos.length) {
     process.stderr.write(
@@ -214,8 +392,12 @@ function main(): void {
         'vienen de una pasada retirada: esto es de hoy. El suelo de evidencia impide escribirlos ' +
         'por el overlay, así que mira quién los ha metido por otra vía.\n',
     )
-    process.exit(1)
+    process.exitCode = 1
+    return
   }
+  if (sobreLaBase) process.exitCode = 1
 }
 
-main()
+// Las pruebas importan `cotejarVeredicto` y `cotejarConBase`: al importar no
+// se comprueba nada.
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) main()

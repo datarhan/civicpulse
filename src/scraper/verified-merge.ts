@@ -324,6 +324,64 @@ export function esSubida(de: ClaimVerdict, a: ClaimVerdict): boolean {
   return de !== a && !isDowngrade(de, a)
 }
 
+/** Una entrada del overlay que publica por encima de lo que dice hoy su base. */
+export interface EntradaPorEncima {
+  id: string
+  /** Lo que dice hoy la pasada determinista. */
+  base: ClaimVerdict
+  /** Lo que publica la entrada. */
+  publica: ClaimVerdict
+  source: OverlaySource
+}
+
+/**
+ * ── Lo que el overlay publica, contra la base de HOY ─────────────────────────
+ *
+ * Una entrada se juzga al ESCRIBIRLA, contra la base de ese día
+ * (`applyOverlayEntries`, con `isDowngrade`), y `mergeVerified` la vuelve a
+ * aplicar sobre cada base posterior sin compararla con nada. Las entradas no
+ * guardan `from`, como sí lo hacen las reclasificaciones y los reanclajes, así
+ * que una base que se movió no las vuelve obsoletas: siguen publicándose.
+ *
+ * Mientras la base se mueva hacia arriba, eso es justo lo que se quiere —la
+ * retractación sigue mandando—. Si se mueve por DEBAJO, lo publicado queda por
+ * encima de lo que el verificador encuentra, y nada lo decía. Medido el
+ * 04-10-2026, una de 1.319: 1sqj7is-053-pro-68944b publicaba `parcial`, una
+ * bajada de junio desde el `verificado` de la pasada LLM ya retirada, que
+ * conservaba la evidencia de esa pasada, sobre una base que dice `sin-datos`.
+ *
+ * Esto sólo lo CUENTA. Bajar el veredicto o reescribir su motivo es cosa de una
+ * persona con la CLI que lo firma; ninguna escritura automática toca lo
+ * publicado (docs/DATA_INTEGRITY.md, regla 4). «Por encima» es `esSubida`, la
+ * misma relación que gobierna el CLI del curador y la guarda del rebuild, y no
+ * una escala recitada aquí. Cuatro desenlaces contados aparte (regla 2): una
+ * entrada cuya declaración ya no está en la base ni se aplica ni se publica, y
+ * no es «igual» ni «baja».
+ */
+export function overlayOutcomes(
+  baseItems: VerifiedItem[],
+  overlay: Overlay,
+): { bajan: string[]; iguales: string[]; porEncima: EntradaPorEncima[]; sinClaim: string[] } {
+  const byId = new Map(baseItems.map((it) => [it.claim.id, it]))
+  const bajan: string[] = []
+  const iguales: string[] = []
+  const porEncima: EntradaPorEncima[] = []
+  const sinClaim: string[] = []
+  for (const [id, e] of Object.entries(overlay?.entries ?? {})) {
+    const item = byId.get(id)
+    if (item == null) {
+      sinClaim.push(id)
+      continue
+    }
+    const base = item.verification.verdict
+    const publica = e.verification.verdict
+    if (base === publica) iguales.push(id)
+    else if (esSubida(base, publica)) porEncima.push({ id, base, publica, source: e.source })
+    else bajan.push(id)
+  }
+  return { bajan, iguales, porEncima, sinClaim }
+}
+
 /**
  * El suelo de evidencia: ¿se sostiene este veredicto sobre algo?
  *

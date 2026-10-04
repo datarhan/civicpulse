@@ -34,6 +34,7 @@ import {
   validateReanchors,
   reclassificationOutcomes,
   reanchorOutcomes,
+  overlayOutcomes,
   type Overlay,
   type Reclassifications,
   type Reanchors,
@@ -226,6 +227,19 @@ export async function rebuildVerified(opts: { refreshChunks?: boolean } = {}): P
   for (const id of reancOutcomes.obsoletas) {
     process.stderr.write(
       `[rebuild] reanclaje de ${id}: OBSOLETO — la base ya no dice el literal registrado en from\n`,
+    )
+  }
+
+  // Y lo que el overlay publica por encima de la base que se compone ahora:
+  // una entrada juzgada contra otra base, que ésta dejó por encima. Contra
+  // `base.items` y no contra lo fusionado, donde la entrada ya pisó a la base.
+  // Avisa y no se niega: es un estado que ya estaba, no algo que haga este
+  // rebuild, y negarse retendría cualquier otra bajada hasta que una persona
+  // decida ésta. Lo detalla `check:veredictos`; nada automático lo toca.
+  for (const p of overlayOutcomes(base.items, overlay).porEncima) {
+    process.stderr.write(
+      `[rebuild] overlay de ${p.id}: POR ENCIMA de su base — publica ${p.publica} y la base dice ` +
+        `${p.base} (${p.source}). Lo decide una persona; lo detalla \`npm run check:veredictos\`\n`,
     )
   }
 
