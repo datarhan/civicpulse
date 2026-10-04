@@ -46,6 +46,68 @@ export class RazonamientoConCharla extends Error {
   }
 }
 
+/** Lo más largo que se guarda de la explicación del motor (la pinta la tarjeta). */
+export const RESUMEN_MAX = 300
+
+/** Palabras que acaban en punto sin acabar la frase. */
+const ABREVIATURAS = new Set([
+  'sr',
+  'sra',
+  'srs',
+  'sres',
+  'dña',
+  'art',
+  'arts',
+  'núm',
+  'núms',
+  'pág',
+  'págs',
+  'etc',
+  'ej',
+  'aprox',
+  'apdo',
+  'ctra',
+  'avda',
+  'excmo',
+  'excma',
+  'ilmo',
+  'ilma',
+])
+
+/**
+ * La explicación del motor, recortada al tope sin partir una palabra.
+ *
+ * Se guardaba `reasoning.slice(0, 300)`, y la tarjeta la pinta tal cual: el
+ * 04-10-2026, de las 293 explicaciones re-derivadas para #185 y #196, 289
+ * acababan a media palabra («…de servicios cuyo», «…(Ecnor). No»), y una frase
+ * cortada puede decir lo contrario de la entera. Ahora: la última frase entera
+ * que cabe; un punto tras una abreviatura («Sr.», «art.») o una inicial no acaba
+ * frase, y el de una cifra (11.553,08) no va seguido de espacio. Si no cabe
+ * ninguna frase —o la única que cabe es muy corta—, se corta tras una palabra
+ * entera y se dice con «…».
+ */
+export function recortarResumen(texto: string, max = RESUMEN_MAX): string {
+  const t = texto.replace(/\s+/g, ' ').trim()
+  if (t.length <= max) return t
+  let fin = -1
+  const finDeFrase = /[.!?]["»”)]*(?= )/g
+  for (let m = finDeFrase.exec(t); m && m.index + m[0].length <= max; m = finDeFrase.exec(t)) {
+    if (m[0][0] === '.') {
+      const antes = t
+        .slice(0, m.index)
+        .match(/[\p{L}ºª]+$/u)?.[0]
+        ?.toLowerCase()
+      if (antes && (antes.length === 1 || ABREVIATURAS.has(antes))) continue
+    }
+    fin = m.index + m[0].length
+  }
+  if (fin >= max / 3) return t.slice(0, fin)
+  const corte = t.slice(0, max - 1)
+  const espacio = corte.lastIndexOf(' ')
+  const entero = espacio > 0 ? corte.slice(0, espacio) : corte
+  return entero.replace(/[\s,;:(«"“-]+$/u, '') + '…'
+}
+
 export interface EngineCite {
   candidateIndex: number
   /** structured cite: `<dataset>[i].<field>=<value> · …` (P1 grounding contract). */
@@ -143,7 +205,7 @@ export async function verifyClaimWithEngine(
     verification: {
       claimId: inputs.claim.id,
       verdict,
-      summary: reasoning.slice(0, 300),
+      summary: recortarResumen(reasoning),
       evidence,
       checkedAgainst: corpusDeEvidencia(evidence),
       derivedBy: ['verdict-engine'],

@@ -17,7 +17,7 @@ import {
  *
  * `ClaimLedger` pinta `verification.summary` bajo la cita de cada concejal en
  * /plenos/:id y /departamentos/:slug. Para las retractaciones del motor de
- * veredictos ese resumen es `reasoning.slice(0, 300)`
+ * veredictos ese resumen es `recortarResumen(reasoning)` —hasta el 04-10-2026, `reasoning.slice(0, 300)`—
  * (claim-verifier-engine.ts), y en la corrida del 02-08-2026 con claude-code el
  * campo `reasoning` recogió muchas veces el parte del modelo sobre su encargo
  * y no el razonamiento: «Task completed: reasoned in Spanish about candidate
