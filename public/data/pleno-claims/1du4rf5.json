@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T07:29:22.897Z",
+  "generatedAt": "2026-10-04T07:32:31.089Z",
   "version": "1",
   "plenoId": "1du4rf5",
   "plenoDate": "2025-11-03",
@@ -6166,7 +6166,7 @@
         "plenoDate": "2025-11-03",
         "segmentIndex": 237,
         "type": "cita_obra",
-        "speakerGroup": "PSOE",
+        "speakerGroup": null,
         "verbatim": "lo que pretendemos nosotros en esta ILP que no es una moción que ha estado presentada en otras legislaturas",
         "context": "entonces lo que pretendemos nosotros en esta ILP que no es una moción que ha estado presentada en otras legislaturas en otras legislaturas cuando estaba Rafa Gómez",
         "topic": "other",

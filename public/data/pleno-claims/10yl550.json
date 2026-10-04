@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T07:29:22.897Z",
+  "generatedAt": "2026-10-04T07:32:31.089Z",
   "version": "1",
   "plenoId": "10yl550",
   "plenoDate": "2026-05-11",
@@ -5177,7 +5177,7 @@
         "plenoDate": "2026-05-11",
         "segmentIndex": 254,
         "type": "cita_obra",
-        "speakerGroup": "PP",
+        "speakerGroup": null,
         "verbatim": "seguimiento del Plan Económico y Financiero que aprobaremos en el 2025.",
         "context": "Sí, en este caso lo que damos cuenta es el seguimiento del Plan Económico y Financiero que aprobaremos en el 2025.",
         "topic": "fiscal",

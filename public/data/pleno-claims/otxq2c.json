@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T07:29:22.897Z",
+  "generatedAt": "2026-10-04T07:32:31.089Z",
   "version": "1",
   "plenoId": "otxq2c",
   "plenoDate": "2025-10-06",
@@ -2782,7 +2782,7 @@
         "plenoDate": "2025-10-06",
         "segmentIndex": 48,
         "type": "cita_obra",
-        "speakerGroup": "VOX",
+        "speakerGroup": null,
         "verbatim": "Desde nuestro espacio político, consideramos que el sistema COMETA es muy importante, esencialmente importante.",
         "context": "Muchas gracias. Tenemos más palabras. Gracias. Desde nuestro espacio político, consideramos que el sistema COMETA es muy importante, esencialmente importante. Y es verdad que ha habido diversas incidencias, eso es cierto.",
         "topic": "seguridad",
