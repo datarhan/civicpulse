@@ -28,6 +28,7 @@ import { join } from 'node:path'
 import {
   BitacoraCorrecciones,
   ROTULO_TEXTO_RETIRADO,
+  ROTULO_TEXTO_SUSTITUIDO,
   ROTULO_TEXTO_VIGENTE,
 } from '../../src/components/BitacoraCorrecciones'
 import { FindingDetailCard } from '../../src/pages/Hallazgos'
@@ -125,7 +126,12 @@ describe('la bitácora dice en TEXTO cuál es el texto retirado y cuál el vigen
     const texto = plano(container)
     const cuenta = (aguja) => texto.split(aguja).length - 1
     expect(cuenta(ROTULO_TEXTO_RETIRADO)).toBe(varias.corrections.length)
-    expect(cuenta(ROTULO_TEXTO_VIGENTE)).toBe(varias.corrections.length)
+    // Lo que puso cada fila es «vigente» o, si otra posterior volvió a cambiar
+    // el campo, «sustituido»; cuál de los dos lo mide
+    // bitacora-version-sustituida.test.jsx contra lo que la ficha publica.
+    expect(cuenta(ROTULO_TEXTO_VIGENTE) + cuenta(ROTULO_TEXTO_SUSTITUIDO)).toBe(
+      varias.corrections.length,
+    )
   })
 
   it('la ficha de /hallazgos la monta de verdad, no sólo el componente suelto', async () => {

@@ -14,7 +14,11 @@
 import { useMemo, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { Card, ExtLink, SectionHead } from '../components/Primitives'
-import { ROTULO_TEXTO_RETIRADO, ROTULO_TEXTO_VIGENTE } from '../components/BitacoraCorrecciones'
+import {
+  ROTULO_TEXTO_RETIRADO,
+  rotuloTextoPuesto,
+  sustitutas,
+} from '../components/BitacoraCorrecciones'
 import { trozos } from '../lib/texto-negrita.js'
 import { heroCvUrl } from '../lib/journalist-facts.js'
 import { useOfficials } from '../hooks/useOfficials'
@@ -102,6 +106,9 @@ function Recorte({ texto }) {
 
 export function CorrectionLog({ corrections }) {
   if (!corrections || corrections.length === 0) return null
+  // Un cuerpo que otra fila volvió a corregir ya no es el del informe: la regla
+  // y el rótulo son los de BitacoraCorrecciones.jsx.
+  const despues = sustitutas(corrections)
   return (
     <Card>
       <SectionHead title="Bitácora de correcciones" />
@@ -127,7 +134,7 @@ export function CorrectionLog({ corrections }) {
                 <Recorte texto={c.original} />
               </del>{' '}
               <span className="mono" style={{ fontSize: 'var(--fs-micro)' }}>
-                {ROTULO_TEXTO_VIGENTE}:{' '}
+                {rotuloTextoPuesto(despues[i])}:{' '}
               </span>
               <span style={{ color: 'var(--ink70)' }}>
                 <Recorte texto={c.corrected} />
