@@ -14,7 +14,8 @@ import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
 import { usePlenoVotes, OUTCOME_LABEL, OUTCOME_TONE } from '../hooks/usePlenoVotes'
 import { usePlenoVideos, indexVideosByPleno } from '../hooks/usePlenoVideos'
 import { usePlenoFindings } from '../hooks/usePlenoFindings'
-import { fmtDateLong, fmtDateShort } from '../lib/formatters'
+import { fmtDateLong, fmtDateShort, rellena } from '../lib/formatters'
+import { conHuecos } from '../lib/huecos'
 import { useT } from '../i18n'
 import { transcriptKind } from '../lib/transcript-kind.js'
 
@@ -195,6 +196,19 @@ function VoteOutcomeBar({ votes }) {
       </div>
     </div>
   )
+}
+
+/**
+ * Una pieza de la línea del resumen: la clave del catálogo en singular o en plural
+ * según `n`, con la cifra en negrita. Las dos claves se escriben enteras en cada uso,
+ * que es como `tests/i18n-catalogue.test.ts` encuentra quién rellena sus huecos.
+ */
+function PiezaResumen({ n, uno, varios, huecos = {}, color = 'var(--ink)' }) {
+  const t = useT()
+  return conHuecos(t(n === 1 ? uno : varios), {
+    '{n}': <strong style={{ color }}>{n}</strong>,
+    ...huecos,
+  })
 }
 
 /** Uppercase mono section label used inside the Resumen tab. */
@@ -417,11 +431,21 @@ export default function PlenoDetalle() {
               mano desde el acta y una sesión puede no tener ninguna transcrita: «0»
               afirmaba que un pleno ordinario no votó nada, y seguro que votó. Las
               declaraciones y los hallazgos, igual: de una sesión sin extraer no hay
-              cero que dar. La ficha del orden del día ya lo distinguía. */}
+              cero que dar. La ficha del orden del día ya lo distinguía.
+              Con alguna transcrita, la nota dice «transcritas» y no las aprobadas:
+              «1» con «1 aprob.» es el mismo número que la revisión lectora del
+              04-10-2026 leyó en la línea del resumen como las votaciones de la sesión,
+              y se lee igual. Las aprobadas van en esa línea. */}
           <Tile
             label={t('plenoDetail.votes')}
             value={votes.length > 0 ? votes.length : '—'}
-            sub={votes.length ? `${aprobados} aprob.` : t('plenoDetail.votesPending')}
+            sub={t(
+              votes.length === 0
+                ? 'plenoDetail.votesPending'
+                : votes.length === 1
+                  ? 'plenoDetail.votesTranscribed.uno'
+                  : 'plenoDetail.votesTranscribed.varios',
+            )}
           />
           <Tile
             label={t('plenoDetail.declarations')}
@@ -503,33 +527,73 @@ export default function PlenoDetalle() {
       {/* Tab content */}
       {tab === 'resumen' && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
-          <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink70)', lineHeight: 1.55 }}>
+          {/* Cada cifra dice qué cuenta, con las palabras del índice de /plenos. «15
+              puntos en el orden del día · 1 votaciones» se leía como que la sesión votó
+              una sola cosa (revisión lectora del 04-10-2026, en 10yl550): son las que
+              hemos transcrito, y ningún dato registra que estén todas, así que el aviso
+              del índice va siempre detrás. Sin declaraciones extraídas no hay cero que
+              dar: «sin extraer», como su ficha. */}
+          <p
+            style={{
+              margin: 0,
+              fontSize: 'var(--fs-aux)',
+              color: 'var(--ink70)',
+              lineHeight: 1.55,
+            }}
+          >
             {agendaKnown ? (
-              <>
-                <strong style={{ color: 'var(--ink)' }}>{agendaItems.length}</strong> puntos en el
-                orden del día
-              </>
+              <PiezaResumen
+                n={agendaItems.length}
+                uno="plenoDetail.line.agenda.uno"
+                varios="plenoDetail.line.agenda.varios"
+              />
             ) : (
               <span>{t('plenoDetail.agendaPendingLong')}</span>
             )}
             {votes.length > 0 && (
               <>
                 {' · '}
-                <strong style={{ color: 'var(--ink)' }}>{votes.length}</strong> votaciones (
-                {aprobados} aprobadas)
+                <PiezaResumen
+                  n={votes.length}
+                  uno="plenoDetail.line.votes.uno"
+                  varios="plenoDetail.line.votes.varios"
+                  huecos={{
+                    '{aprobadas}': rellena(
+                      t(
+                        aprobados === 1
+                          ? 'plenoDetail.line.approved.uno'
+                          : 'plenoDetail.line.approved.varios',
+                      ),
+                      { n: aprobados },
+                    ),
+                  }}
+                />
               </>
             )}
             {' · '}
-            <strong style={{ color: 'var(--ink)' }}>{groundedCount}</strong> declaraciones
-            contrastadas
+            {extraida ? (
+              <PiezaResumen
+                n={groundedCount}
+                uno="plenoDetail.line.declarations.uno"
+                varios="plenoDetail.line.declarations.varios"
+              />
+            ) : (
+              t('plenoDetail.line.declarationsPending')
+            )}
             {findings.length > 0 && (
               <>
                 {' · '}
-                <strong style={{ color: 'var(--crit-ink)' }}>{findings.length}</strong> hallazgos
-                editoriales
+                <PiezaResumen
+                  n={findings.length}
+                  uno="plenoDetail.line.findings.uno"
+                  varios="plenoDetail.line.findings.varios"
+                  color="var(--crit-ink)"
+                />
               </>
             )}
-          </div>
+            {'. '}
+            {t('plenos.indice.lede.aviso')}
+          </p>
 
           {votes.length > 0 && (
             <div>
