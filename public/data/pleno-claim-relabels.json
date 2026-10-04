@@ -1,0 +1,97 @@
+{
+  "version": 1,
+  "generatedAt": "2026-10-04T15:12:11.051Z",
+  "entries": {
+    "10yl550-054-acu-a487ce": {
+      "speakerGroup": "PSOE",
+      "from": null,
+      "literal": "literal firmado · sha256:ce8c7921c329",
+      "segundos": {
+        "desde": 2400,
+        "hasta": 2594
+      },
+      "fuente": "current",
+      "reason": "La intervención no es del PP: responde a su moción tras conceder la presidencia la palabra a un concejal del gobierno, se dirige al PP en segunda persona y su voz coincide con la del resto de ese turno (transcripción y vídeo, 2.400–2.594 s). Mismo cambio que firma la ficha f-2026-05-11-acu-a870a4, cita [1] (bitácora, 29-09-2026).",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-04T15:12:01.034Z"
+    },
+    "10yl550-092-acu-ea9d47": {
+      "speakerGroup": "PP",
+      "from": null,
+      "literal": "literal firmado · sha256:a14c588116d0",
+      "segundos": {
+        "desde": 4014,
+        "hasta": 4150
+      },
+      "fuente": "superseded/10yl550.txt",
+      "reason": "La intervención no es del PSOE: la presidencia concede la palabra al portavoz popular, que reprocha al gobierno haber votado contra la enmienda del PP (transcripción y vídeo, 4.014–4.150 s). Mismo cambio que firma la ficha f-2026-05-11-acu-ea9d47, cita [0] (bitácora, 29-09-2026).",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-04T15:12:02.791Z"
+    },
+    "10yl550-300-acu-ae5a28": {
+      "speakerGroup": "PSOE",
+      "from": null,
+      "literal": "literal firmado · sha256:e93ec2bd1004",
+      "segundos": {
+        "desde": 12650,
+        "hasta": 12770
+      },
+      "fuente": "current",
+      "reason": "La intervención no es del PP: defiende el presupuesto municipal y reprocha a quienes votaron en contra, tras la llamada al orden al banco popular (transcripción y vídeo, 12.650–12.770 s). Mismo cambio que firma la ficha f-2026-05-11-acu-7c65c5, cita [3] (bitácora, 29-09-2026).",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-04T15:12:04.459Z"
+    },
+    "10yl550-106-acu-dd1a86": {
+      "speakerGroup": "PSOE",
+      "from": null,
+      "literal": "literal firmado · sha256:173b690681ba",
+      "segundos": {
+        "desde": 4412,
+        "hasta": 4612
+      },
+      "fuente": "superseded/10yl550.txt",
+      "reason": "La intervención no es del PP: la pronuncia la presidencia, que anuncia el voto en contra de la enmienda del PP (transcripción y vídeo, 4.412–4.612 s). Mismo cambio que firma la ficha f-2026-05-11-acu-7c65c5, cita [1] (bitácora, 29-09-2026).",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-04T15:12:06.105Z"
+    },
+    "10yl550-254-cit-cb6e5f": {
+      "speakerGroup": "PSOE",
+      "from": null,
+      "literal": "literal firmado · sha256:f0582bc00241",
+      "segundos": {
+        "desde": 10840,
+        "hasta": 10855
+      },
+      "fuente": "superseded/10yl550.txt",
+      "reason": "La intervención no es del PP: es la dación de cuenta del concejal del gobierno a quien la presidencia da la palabra en ese punto (transcripción y vídeo, 10.840–10.855 s). Mismo cambio que firma la ficha f-2026-05-11-acu-7c65c5, cita [2] (bitácora, 29-09-2026).",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-04T15:12:07.753Z"
+    },
+    "19gax3o-139-cit-be1832": {
+      "speakerGroup": "PSOE",
+      "from": null,
+      "literal": "literal firmado · sha256:b22add135891",
+      "segundos": {
+        "desde": 6628,
+        "hasta": 6795
+      },
+      "fuente": "superseded/19gax3o.txt",
+      "reason": "La intervención no es del PP: pertenece al turno de la presidencia que cierra el debate del complejo deportivo, en el que se atribuye al gobierno del PP la construcción de la instalación y se la critica (transcripción, 6.628–6.795 s; la cita, 6.734–6.741 s). Mismo cambio que firma la ficha f-2026-01-19-cit-543cc1, cita [2] (bitácora, 30-09-2026).",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-04T15:12:09.395Z"
+    },
+    "qz6weg-039-cit-bef239": {
+      "speakerGroup": "PSOE",
+      "from": null,
+      "literal": "literal firmado · sha256:c86b49745253",
+      "segundos": {
+        "desde": 4016,
+        "hasta": 4095
+      },
+      "fuente": "superseded/qz6weg.txt",
+      "reason": "La intervención no es del PP: está en el turno en que el grupo de gobierno responde al portavoz popular, el mismo turno del que proceden las citas [1] y [2] de la ficha f-2025-12-01-cit-bef239 (transcripción, 4.016–4.095 s; la cita, 4.061–4.064 s). Mismo cambio que firma esa ficha, cita [0] (bitácora, 30-09-2026).",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-04T15:12:11.051Z"
+    }
+  }
+}

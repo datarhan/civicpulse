@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T13:04:54.569Z",
+  "generatedAt": "2026-10-04T15:15:31.195Z",
   "version": "1",
   "plenos": [
     {
@@ -169,7 +169,7 @@
         "vivienda": 65,
         "cultura": 41
       },
-      "bytes": 349126
+      "bytes": 349221
     },
     {
       "plenoId": "k4olcs",
@@ -324,7 +324,7 @@
         "social": 4,
         "educacion": 2
       },
-      "bytes": 461988
+      "bytes": 462081
     },
     {
       "plenoId": "1pe3qs8",
@@ -424,7 +424,7 @@
         "movilidad": 2,
         "seguridad": 1
       },
-      "bytes": 588541
+      "bytes": 588634
     },
     {
       "plenoId": "1du4rf5",
