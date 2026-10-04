@@ -343,7 +343,29 @@ const expectWithdrawn = (id: string): void => {
  * registro de contratación: sale, con su cita (b15 en `RESUELTAS_DESPUES`). En LOTE_1, LOTE_3 y
  * en el suelo de citas atribuidas cambia sólo lo que estas filas mueven.
  */
-const TOTAL_CORRECTIONS = 228
+/*
+ * 228 → 231 (bloque «grupos contados, +3»).
+ * Tres frases contaban como un grupo más a quien la ficha no atribuye ninguno, o daban por
+ * intercambio entre grupos lo que la ficha atribuye a uno solo: el sumario de
+ * `f-2026-04-20-cit-b9b013` («ambos grupos», con citas de un solo grupo y dos sin atribuir; además
+ * anunciaba en futuro lo que su cita sólo nombra), el titular de `f-2026-05-11-cit-73d3cf` (el
+ * relleno que sustituyó el 1-08 al centinela, contado como un segundo grupo) y el sumario de
+ * `f-2026-05-11-acu-7c65c5` («un cruce de reproches entre grupos», cuando desde el 29-09 sus
+ * cuatro citas son del mismo grupo). Tres entradas firmadas con `correct-pleno-finding` (editor
+ * `civicpulse-curator`), ninguna de un lote; ninguna atribución cambia. En LOTE_1 y LOTE_2 cambia
+ * sólo lo que su fila mide en la prosa viva.
+ */
+/*
+ * 231 → 233 (bloque «grupos contados, 1e90e0, +2»).
+ * Lo contrario en `f-2026-07-03-cit-1e90e0`: el sumario y el titular contaban como un solo grupo,
+ * en una sola intervención, dos citas sin atribuir que en la sesión pronuncian dos personas en
+ * turnos distintos. Y las dos frases situaban el contrato de emergencia tras un episodio de
+ * lluvias que la sesión no menciona: palabras del título del expediente de 2022 que se retiró del
+ * cotejo el 2026-08-09, el mismo del que salían las que retiró entonces LOTE_2. Dos entradas más
+ * de la misma firma. En LOTE_2 y en su prueba del vocabulario de 2022 cambia sólo lo que miden en
+ * la prosa viva.
+ */
+const TOTAL_CORRECTIONS = 233
 const TOTAL_REMOVALS = 40
 
 /** One row of a review batch's fixture: enough to locate its own entries. */
@@ -868,7 +890,14 @@ const LOTE_1: Lote1Case[] = [
     added: ['summary', 'crossChecked.1'],
     priorCorrections: 2,
     // 2026-09-29: sale la prórroga del alquiler, que no dijo el PSOE (bloque «151 → 163»).
-    drops: ['El consistorio cuenta con', 'vivienda tutelada', 'prórroga del alquiler'],
+    // Y el titular deja de contar como segundo grupo una cita sin atribuir (bloque «grupos
+    // contados, +3»).
+    drops: [
+      'El consistorio cuenta con',
+      'vivienda tutelada',
+      'prórroga del alquiler',
+      'entre los grupos PSOE y un grupo no identificado',
+    ],
     keeps: ['zonas de mercado residencial tensionado', 'es para uso particular'],
     refs: [
       'tender|Contrato Menor de Obras de Sustitución d',
@@ -1481,7 +1510,15 @@ const LOTE_2: Lote2Case[] = [
     id: 'f-2026-07-03-cit-1e90e0',
     added: ['summary', 'crossChecked.0'],
     priorCorrections: 3,
-    drops: ['derrumbes y muro de contención', 'en servicios relacionados con'],
+    drops: [
+      'derrumbes y muro de contención',
+      'en servicios relacionados con',
+      // Del mismo expediente de 2022 salían también las lluvias, y dos citas sin atribuir de
+      // dos turnos distintos se leían como una sola intervención (bloque «grupos contados,
+      // 1e90e0, +2»).
+      'lluvias',
+      'Ambas afirmaciones proceden de la intervención',
+    ],
     keeps: [
       'suplantaba a Garbialdi.',
       'no recoge ningún contrato adjudicado a FCC',
@@ -1509,13 +1546,20 @@ const LOTE_2: Lote2Case[] = [
     // de los presupuestos» came from a broken fragment that means nothing in
     // Castilian and still left the PSOE voting against. With the first
     // sentence it published BOTH groups voting against the same budget.
-    drops: ['El PP señala que votaron en contra', 'el PSOE afirma no recoger al votar'],
+    drops: [
+      'El PP señala que votaron en contra',
+      'el PSOE afirma no recoger al votar',
+      // El cruce entre grupos dejó de tener sostén cuando sus citas pasaron todas al mismo
+      // grupo el 2026-09-29; la frase dice ahora quién formula los reproches (bloque «grupos
+      // contados, +3»).
+      'un cruce de reproches entre grupos',
+    ],
     keeps: [
       // Both originals were the reproduced accusation itself, redacted on
       // 2026-08-11 because the gate withholds that quote. Replaced with prose
       // the redaction kept, so this half still measures that the summary was
       // rewritten rather than gutted.
-      'un cruce de reproches entre grupos sobre el sentido del voto',
+      'reproches sobre el sentido del voto en el presupuesto de marzo',
       'la transcripción tampoco registra a quién se dirigían',
       'no recoge ningún expediente de ese seguimiento',
     ],
@@ -1796,7 +1840,15 @@ describe('published pleno findings — lote 2 of the row 18–35 review', () => 
     const f = byId('f-2026-07-03-cit-1e90e0')
     const prose = `${f.title}\n${f.summary}`
     // Every distinctive term of that 2022 title is absent from the prose…
-    for (const term of ['derrumbe', 'muro de contención', 'mallazo', 'caminos', '2022']) {
+    // «lluvias» desde el bloque «grupos contados, 1e90e0, +2»: también venía de ese título.
+    for (const term of [
+      'derrumbe',
+      'muro de contención',
+      'mallazo',
+      'caminos',
+      '2022',
+      'lluvias',
+    ]) {
       expect(doc!.title.toLowerCase(), `«${term}» ya no está en el documento`).toContain(
         term.toLowerCase(),
       )

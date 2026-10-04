@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-10-04T06:40:04.479Z",
+  "generatedAt": "2026-10-04T13:10:58.760Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. Los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, salvo los que llevan la firma de una persona, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -9,8 +9,8 @@
       "id": "f-2026-07-03-cit-1e90e0",
       "plenoId": "1237hbp",
       "plenoDate": "2026-07-03",
-      "title": "03-07-2026: un grupo no identificado señala uso de contrato emergencia con FCC tras lluvias",
-      "summary": "Un grupo no identificado afirma que tres días después del episodio de lluvias torrenciales la empresa FCC comenzó a operar bajo un contrato de emergencia y que dicho contrato suplantaba a Garbialdi. Ambas afirmaciones proceden de la intervención en el pleno: el registro municipal de contratación publicado no recoge ningún contrato adjudicado a FCC, de modo que la declaración queda documentada como tal, sin corroboración documental.",
+      "title": "03-07-2026: intervenciones sobre un contrato de emergencia con FCC",
+      "summary": "Una intervención sin atribuir afirma que el 12 de marzo «ya está otra empresa con contrato de emergencia funcionando que es FCC», y otra, también sin atribuir, dice que ese contrato de emergencia suplantaba a Garbialdi. El registro municipal de contratación publicado no recoge ningún contrato adjudicado a FCC, de modo que las dos declaraciones quedan documentadas como tales, sin corroboración documental.",
       "severity": "informational",
       "sourceClaimIds": [
         "1237hbp-006-cit-1e90e0",
@@ -110,6 +110,22 @@
           "reason": "La atribución a un grupo municipal con un solo concejal identifica a esa persona por eliminación, y la asignó la curación automática sin firma de ningún curador. Se retira sin sustituirla; no se afirma que fuera errónea.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-09-30T05:48:05.841Z"
+        },
+        {
+          "field": "summary",
+          "original": "Un grupo no identificado afirma que tres días después del episodio de lluvias torrenciales la empresa FCC comenzó a operar bajo un contrato de emergencia y que dicho contrato suplantaba a Garbialdi. Ambas afirmaciones proceden de la intervención en el pleno: el registro municipal de contratación publicado no recoge ningún contrato adjudicado a FCC, de modo que la declaración queda documentada como tal, sin corroboración documental.",
+          "corrected": "Una intervención sin atribuir afirma que el 12 de marzo «ya está otra empresa con contrato de emergencia funcionando que es FCC», y otra, también sin atribuir, dice que ese contrato de emergencia suplantaba a Garbialdi. El registro municipal de contratación publicado no recoge ningún contrato adjudicado a FCC, de modo que las dos declaraciones quedan documentadas como tales, sin corroboración documental.",
+          "reason": "El sumario atribuía a un mismo grupo, y a una sola intervención, dos citas sin atribuir que en la sesión pronuncian dos personas distintas en turnos distintos (transcripción, 1.320–1.350 y 3.210–3.240 s). Además situaba la primera tras un episodio de lluvias que la sesión no menciona: esas palabras venían del expediente de 2022 que se retiró del cotejo el 9-08, como las que ya se quitaron entonces. En la sesión, los tres días se cuentan desde que se resolvió el contrato anterior, y los dos turnos fechan el contrato de emergencia el 12 de marzo. Se dice lo que sostiene cada cita, sin atribuirlas.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-10-04T13:10:58.498Z"
+        },
+        {
+          "field": "title",
+          "original": "03-07-2026: un grupo no identificado señala uso de contrato emergencia con FCC tras lluvias",
+          "corrected": "03-07-2026: intervenciones sobre un contrato de emergencia con FCC",
+          "reason": "El titular atribuía a un solo grupo lo que dicen dos intervenciones sin atribuir, y situaba el contrato de emergencia tras unas lluvias que la sesión no menciona: esas palabras venían del expediente de 2022 retirado del cotejo el 9-08. Se titula por el asunto.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-10-04T13:10:58.759Z"
         }
       ]
     },
@@ -494,7 +510,7 @@
       "id": "f-2026-05-11-cit-73d3cf",
       "plenoId": "10yl550",
       "plenoDate": "2026-05-11",
-      "title": "Debate sobre vivienda en el pleno del 2026-05-11 entre los grupos PSOE y un grupo no identificado",
+      "title": "Debate sobre vivienda y zonas de mercado residencial tensionado en el pleno del 2026-05-11",
       "summary": "Durante el pleno, el grupo PSOE señala la figura de las zonas de mercado residencial tensionado. Por su parte, un grupo no identificado afirma que la vivienda construida en los últimos años en el municipio es para uso particular.",
       "severity": "informational",
       "sourceClaimIds": [
@@ -611,6 +627,14 @@
           "reason": "El sumario atribuía al PSOE una afirmación sobre la prórroga de los alquileres que hizo el portavoz de otro grupo, y que además la puerta editorial retiene (transcripción, 7.360–7.390 s).",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-09-29T05:11:40.933Z"
+        },
+        {
+          "field": "title",
+          "original": "Debate sobre vivienda en el pleno del 2026-05-11 entre los grupos PSOE y un grupo no identificado",
+          "corrected": "Debate sobre vivienda y zonas de mercado residencial tensionado en el pleno del 2026-05-11",
+          "reason": "El titular contaba como un segundo grupo, distinto del PSOE, a quien pronuncia una cita que la ficha no atribuye a ningún grupo; ninguna cita de la ficha lleva otro grupo. La fórmula sustituyó el 1-08 al valor de relleno que usaba el extractor, pero seguía contándolo como un grupo. Se titula por el asunto, no por los grupos.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-10-04T13:10:57.979Z"
         }
       ]
     },
@@ -1047,7 +1071,7 @@
       "plenoId": "10yl550",
       "plenoDate": "2026-05-11",
       "title": "Pleno de Riba-roja de Túria 2026-05-11: Debate sobre presupuestos y financiamiento",
-      "summary": "En la sesión hubo un cruce de reproches entre grupos sobre el sentido del voto en el presupuesto de marzo. Esas intervenciones no se reproducen aquí: son acusaciones que ningún registro municipal respalda ni desmiente, y la transcripción tampoco registra a quién se dirigían. Según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, en el debate se dio cuenta del seguimiento de un Plan Económico y Financiero; la contratación municipal publicada no recoge ningún expediente de ese seguimiento.",
+      "summary": "En la sesión, el PSOE formuló reproches sobre el sentido del voto en el presupuesto de marzo. Esas intervenciones no se reproducen aquí: son acusaciones que ningún registro municipal respalda ni desmiente, y la transcripción tampoco registra a quién se dirigían. Según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, en el debate se dio cuenta del seguimiento de un Plan Económico y Financiero; la contratación municipal publicada no recoge ningún expediente de ese seguimiento.",
       "severity": "informational",
       "sourceClaimIds": [
         "10yl550-330-acu-7c65c5",
@@ -1184,6 +1208,14 @@
           "reason": "El sumario daba por firme lo que sólo sostiene una cita, que esta misma ficha marca como procedente de la transcripción anterior de la sesión y rotula «no consta en la transcripción revisada». La salvedad pasa a la frase en vez de vivir sólo en la marca de debajo; lo que se dijo no cambia.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-09-30T06:26:05.333Z"
+        },
+        {
+          "field": "summary",
+          "original": "En la sesión hubo un cruce de reproches entre grupos sobre el sentido del voto en el presupuesto de marzo. Esas intervenciones no se reproducen aquí: son acusaciones que ningún registro municipal respalda ni desmiente, y la transcripción tampoco registra a quién se dirigían. Según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, en el debate se dio cuenta del seguimiento de un Plan Económico y Financiero; la contratación municipal publicada no recoge ningún expediente de ese seguimiento.",
+          "corrected": "En la sesión, el PSOE formuló reproches sobre el sentido del voto en el presupuesto de marzo. Esas intervenciones no se reproducen aquí: son acusaciones que ningún registro municipal respalda ni desmiente, y la transcripción tampoco registra a quién se dirigían. Según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, en el debate se dio cuenta del seguimiento de un Plan Económico y Financiero; la contratación municipal publicada no recoge ningún expediente de ese seguimiento.",
+          "reason": "El sumario presentaba como un cruce de reproches entre grupos unas intervenciones que la ficha atribuye todas a un mismo grupo desde que el 29-09 se rectificó la atribución de tres de sus citas; ninguna cita de otro grupo sostiene el cruce. La frase dice quién formula los reproches, como la ficha, sin reproducirlos ni decir a quién se dirigían.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-10-04T13:10:58.237Z"
         }
       ]
     },
@@ -1192,7 +1224,7 @@
       "plenoId": "k4olcs",
       "plenoDate": "2026-04-20",
       "title": "Pleno ordinario 2026-04-20: Debates sobre transparencia y sistemas de control",
-      "summary": "Un grupo no identificado afirma que se implementará un sistema de debate y grabación de vídeo en el salón de plenos, mientras que, según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, PSOE señala que las licitaciones estarán disponibles públicamente en la web. Ambos grupos mencionan la importancia de la transparencia, con PSOE destacando adaptaciones a la Carta de Servicios municipal.",
+      "summary": "Una intervención sin atribuir menciona el sistema de debate, captura y grabación de vídeo y control del salón de plenos, mientras que, según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, PSOE señala que las licitaciones estarán disponibles públicamente en la web. Las intervenciones citadas giran en torno a la transparencia, y PSOE destaca adaptaciones a la Carta de Servicios municipal.",
       "severity": "informational",
       "sourceClaimIds": [
         "k4olcs-019-cit-b9b013",
@@ -1265,6 +1297,14 @@
           "reason": "El sumario daba por firme lo que sólo sostiene una cita, que esta misma ficha marca como procedente de la transcripción anterior de la sesión y rotula «no consta en la transcripción revisada». La salvedad pasa a la frase en vez de vivir sólo en la marca de debajo; lo que se dijo no cambia.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-09-30T06:26:05.837Z"
+        },
+        {
+          "field": "summary",
+          "original": "Un grupo no identificado afirma que se implementará un sistema de debate y grabación de vídeo en el salón de plenos, mientras que, según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, PSOE señala que las licitaciones estarán disponibles públicamente en la web. Ambos grupos mencionan la importancia de la transparencia, con PSOE destacando adaptaciones a la Carta de Servicios municipal.",
+          "corrected": "Una intervención sin atribuir menciona el sistema de debate, captura y grabación de vídeo y control del salón de plenos, mientras que, según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, PSOE señala que las licitaciones estarán disponibles públicamente en la web. Las intervenciones citadas giran en torno a la transparencia, y PSOE destaca adaptaciones a la Carta de Servicios municipal.",
+          "reason": "«Ambos grupos» contaba como dos grupos distintos a PSOE y a un grupo que el propio sumario daba por no identificado, y que puede ser el mismo PSOE. Además, el sumario anunciaba en futuro lo que la cita sólo nombra: en la sesión es un bien ya adquirido que se incorpora al inventario municipal (transcripción, 1.606–1.653 s), y su contrato consta formalizado en 2024 en el registro de contratación. El sumario describe ahora las intervenciones sin contar grupos y llama «sin atribuir», como la ficha, a la que no lleva grupo; lo que se dijo no cambia.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-10-04T13:10:57.716Z"
         }
       ]
     },
