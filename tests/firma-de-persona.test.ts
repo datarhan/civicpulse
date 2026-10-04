@@ -14,21 +14,31 @@
  * común —firmar con la cuenta de rol, con el identificador de un modelo o con
  * el marcador que traía la orden preparada—.
  */
+import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 
-import { claseDeFirma, nombraAUnaPersona, rechazoDeFirma } from '../src/scraper/firma-de-persona'
+import {
+  claseDeFirma,
+  nombraAUnaPersona,
+  rechazoDeFirma,
+  rechazoDeMarcador,
+} from '../src/scraper/firma-de-persona'
 import { HUMAN_CURATORS } from '../src/scraper/finding-authorship'
+import { MARCADORES } from '../src/scraper/finding-exception'
+
+/** Firmas con forma de nombre y apellidos. */
+const NOMBRES = [
+  'María de la Fuente Llorens',
+  'Josep Vicent Martí i Pons',
+  'Ana Pérez-Llorca',
+  'Núria d’Alòs Moner',
+  'Ángel Ruiz',
+  '  Àngels   Ferrer  ',
+  'María J. Fuente',
+]
 
 describe('rechazoDeFirma — firmas que nombran a una persona', () => {
-  it.each([
-    'María de la Fuente Llorens',
-    'Josep Vicent Martí i Pons',
-    'Ana Pérez-Llorca',
-    'Núria d’Alòs Moner',
-    'Ángel Ruiz',
-    '  Àngels   Ferrer  ',
-    'María J. Fuente',
-  ])('acepta «%s»', (nombre) => {
+  it.each(NOMBRES)('acepta «%s»', (nombre) => {
     expect(rechazoDeFirma(nombre)).toBeNull()
     expect(nombraAUnaPersona(nombre)).toBe(true)
   })
@@ -124,5 +134,94 @@ describe('claseDeFirma — quién decidió, según la firma', () => {
     expect(claseDeFirma(undefined)).toBe('no-consta')
     expect(claseDeFirma(null)).toBe('no-consta')
     expect(claseDeFirma(42)).toBe('no-consta')
+  })
+})
+
+/**
+ * La pregunta pequeña, la de toda vía que publica una firma: ¿es el hueco de
+ * una orden preparada que nadie rellenó?
+ *
+ * Las órdenes que compone la cola de excepción traen `--editor "<nombre y
+ * apellidos>"`; las de otras colas, `"<tu nombre>"` o `"…"`. Con el motivo
+ * relleno y la firma no, `correct-pleno-finding --field/--redact/--remove`,
+ * `retract-finding` y `reclassify-claim` escribían el hueco como firmante de una
+ * corrección publicada (30-09-2026, sesión de la PR #210). Esas vías las firma
+ * el operador con la cuenta de rol, así que la guarda no pide una persona: sólo
+ * rechaza lo que no firma nada. Las CLIs, ejecutadas, en
+ * tests/firma-sin-rellenar-cli.test.ts.
+ */
+describe('rechazoDeMarcador — el hueco de una orden preparada, sin rellenar', () => {
+  it.each([
+    // El que compone la cola de excepción, tal cual.
+    MARCADORES.firma,
+    // Los de otras órdenes compuestas y de las cabeceras de las CLIs.
+    '<tu nombre>',
+    '<Nombre Apellido>',
+    '<your name>',
+    // La sintaxis del hueco basta, aunque dentro no haya palabra de marcador.
+    '<editor>',
+    '<curador>',
+    // La palabra del marcador basta, sin corchetes.
+    'Nombre Apellido',
+    'Tu Nombre',
+    'NOMBRE Y APELLIDOS',
+    'tu_nombre',
+    'Your Name',
+    // Sin una letra: el «…» de las órdenes de votos e indicadores, o una
+    // variable de la terminal que estaba vacía.
+    '…',
+    '...',
+    '',
+    '   ',
+  ])('rechaza «%s»', (hueco) => {
+    expect(rechazoDeMarcador(hueco)).not.toBeNull()
+  })
+
+  it.each([
+    // La cuenta de rol con la que firma el operador (#172, #198, #203), y la
+    // que `reclassify-claim` y `downgrade-verdict` ponen si no hay --editor.
+    'civicpulse-curator',
+    'curator',
+    // Procesos y modelos que ya firman filas publicadas: si deben firmar o no
+    // lo decide el operador, no esta guarda.
+    'claude-fable-5.1',
+    'retirada-pasada-llm',
+    'verdict-engine:gpt-5.4-mini',
+    'Claude (revisión 17-08, aprobada en plan)',
+  ])('acepta «%s»', (firma) => {
+    expect(rechazoDeMarcador(firma)).toBeNull()
+  })
+
+  it.each(NOMBRES)('acepta a una persona: «%s»', (nombre) => {
+    expect(rechazoDeMarcador(nombre)).toBeNull()
+  })
+
+  it('acepta todas las firmas que ya llevan las bitácoras que escriben estas CLIs', () => {
+    const firmas = new Set<string>()
+    const recoger = (v: unknown): void => {
+      if (Array.isArray(v)) v.forEach(recoger)
+      else if (v && typeof v === 'object') {
+        for (const [k, x] of Object.entries(v)) {
+          if (k === 'editor' && typeof x === 'string') firmas.add(x)
+          else recoger(x)
+        }
+      }
+    }
+    for (const fichero of [
+      'public/data/pleno-findings.json',
+      'public/data/pleno-claim-reclassifications.json',
+      'public/data/pleno-claims-overlay.json',
+    ]) {
+      recoger(JSON.parse(readFileSync(fichero, 'utf8')))
+    }
+    // Que haya mirado algo: un conjunto vacío también saldría limpio.
+    expect(firmas.size).toBeGreaterThan(0)
+    expect([...firmas].filter((f) => rechazoDeMarcador(f) !== null)).toEqual([])
+  })
+
+  it('no acepta lo que no es texto', () => {
+    expect(rechazoDeMarcador(undefined as unknown as string)).not.toBeNull()
+    expect(rechazoDeMarcador(null as unknown as string)).not.toBeNull()
+    expect(rechazoDeMarcador(42 as unknown as string)).not.toBeNull()
   })
 })
