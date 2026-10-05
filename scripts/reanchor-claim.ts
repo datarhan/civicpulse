@@ -28,10 +28,16 @@
  * consta en ninguna parte. Sobre una cita que ya tiene procedencia no se puede
  * usar — para ésas no hay nada que recuperar y sí una cita publicada que
  * cambiaría de palabras.
+ *
+ * `--editor` acepta la cuenta de rol y el `curator` por defecto, y rechaza,
+ * antes de leer nada, el hueco de una orden preparada sin rellenar: la cola
+ * compone `--editor "<tu nombre>"` (`rechazoDeMarcador`,
+ * src/scraper/firma-de-persona.ts).
  */
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
+import { rechazoDeMarcador } from '../src/scraper/firma-de-persona'
 import {
   applyReanchorEntries,
   retencionLexica,
@@ -92,6 +98,14 @@ function main() {
         '         --reason "<≥20 caracteres>" [--editor nombre] [--dry-run]\n\n' +
         '  Los candidatos los propone `npm run triage:claim-reanchor`.\n',
     )
+    process.exit(2)
+  }
+  // Antes de leer nada: con el literal y el motivo rellenos, el hueco de la
+  // orden que compone la cola firmaría el reanclaje. Sólo el hueco; la cuenta
+  // de rol y el `curator` por defecto, sí (`rechazoDeMarcador`).
+  const hueco = rechazoDeMarcador(editor)
+  if (hueco) {
+    process.stderr.write(`[reanchor] --editor: ${hueco}\n`)
     process.exit(2)
   }
   if (!existsSync(VERIFIED)) {

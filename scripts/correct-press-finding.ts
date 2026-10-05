@@ -25,11 +25,16 @@
  *     --field severity --new notable \
  *     --reason "auto-curate misclassified; data trail showed partial match" \
  *     --editor "Curador A"
+ *
+ * `--editor` acepta la cuenta de rol y rechaza, antes de leer nada, el hueco de
+ * una orden copiada sin rellenar —`<your name>`, el de arriba— (`rechazoDeMarcador`,
+ * src/scraper/firma-de-persona.ts).
  */
 import { readFile, writeFile } from 'node:fs/promises'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
+import { rechazoDeMarcador } from '../src/scraper/firma-de-persona'
 import {
   validatePressFindingsSnapshot,
   type PressFindingCorrection,
@@ -74,6 +79,10 @@ async function main() {
   if (reason.trim().length < 20) {
     bail('--reason must be ≥20 chars (IFCN corrections trail)')
   }
+  // Antes de leer nada: el hueco no firma una corrección publicada. Sólo el
+  // hueco; la cuenta de rol, sí (`rechazoDeMarcador`).
+  const hueco = rechazoDeMarcador(editor)
+  if (hueco) bail(`--editor: ${hueco}`)
 
   const raw = await readFile(FINDINGS_PATH, 'utf8')
   let snap: PressFindingsSnapshot

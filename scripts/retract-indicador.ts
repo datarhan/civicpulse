@@ -15,9 +15,14 @@
  * Retirar sólo puede quitar o debilitar lo publicado, así que por la escalera
  * de automatización es Tier A y no necesita más evidencia que el motivo. Aun
  * así lo corre una persona: quien firmó es quien retira.
+ *
+ * `--editor` acepta la cuenta de rol y rechaza, antes de leer nada, el hueco de
+ * una orden copiada sin rellenar —el `<nombre>` de arriba— (`rechazoDeMarcador`,
+ * src/scraper/firma-de-persona.ts).
  */
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { resolve } from 'node:path'
+import { rechazoDeMarcador } from '../src/scraper/firma-de-persona'
 import {
   validateEficienciaFindingsSnapshot,
   digestFinding,
@@ -56,6 +61,10 @@ function main(): void {
     fail('usage: retract-indicador <findingId> --editor "<nombre>" --reason "<motivo ≥20>"', 2)
   }
   if (reason.length < 20) fail('--reason debe explicar la retirada (≥20 caracteres)', 2)
+  // Antes de leer nada: el hueco no firma una retirada publicada. Sólo el
+  // hueco; la cuenta de rol, sí (`rechazoDeMarcador`).
+  const hueco = rechazoDeMarcador(editor)
+  if (hueco) fail(`--editor: ${hueco}`, 2)
   if (!existsSync(PUBLICADOS)) fail(`falta ${PUBLICADOS}`)
 
   const snap = validateEficienciaFindingsSnapshot(readFileSync(PUBLICADOS, 'utf8'))

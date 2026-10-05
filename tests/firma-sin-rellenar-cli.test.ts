@@ -15,7 +15,7 @@
  * Rechazan sólo el hueco, con un error que lo dice y antes de leer nada
  * (`rechazoDeMarcador`, src/scraper/firma-de-persona.ts).
  *
- * Desde el 05-10-2026, la misma guarda en el resto de vías que escriben una
+ * Desde el 05-10-2026, la misma guarda en nueve vías más que escriben una
  * firma. Tres reciben el hueco de quien les compone la orden: `reanchor-claim`,
  * el `<tu nombre>` de su cola (src/scraper/claim-reanchor.ts); `retract-vote`,
  * el `"…"` con que el validador de pleno-votes.ts pide devolver un voto
