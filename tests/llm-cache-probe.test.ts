@@ -3,7 +3,14 @@ import { mkdtempSync, rmSync, writeFileSync, chmodSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { z } from 'zod'
-import { callLLM, llmCacheHas, loadConfigFromEnv } from '../src/llm/client'
+import {
+  callLLM,
+  getRunStats,
+  llmCacheGet,
+  llmCacheHas,
+  loadConfigFromEnv,
+  resetRunStats,
+} from '../src/llm/client'
 import { cabeElFragmento } from '../src/scraper/reader-review'
 
 /**
@@ -77,6 +84,61 @@ describe('llmCacheHas', () => {
     expect(sonda({ ...input, facts: 'f2' })).toBe(false)
     // Y otra versión del prompt tampoco.
     expect(llmCacheHas({ schema, promptVersion: 'probe-v2', input, config })).toBe(false)
+  }, 30_000)
+})
+
+/**
+ * `llmCacheGet` LEE lo que la caché contestaría, y nunca pregunta a nadie.
+ *
+ * La necesita quien tiene que reutilizar una respuesta ya pagada con la promesa
+ * de no hacer ninguna llamada: `verify:pleno-claims:engine -- --recortar`
+ * recorta explicaciones publicadas desde el razonamiento que las produjo. Con
+ * `callLLM`, un fallo de caché llama al backend, y la promesa dependería de que
+ * el entorno lo frenara.
+ */
+describe('llmCacheGet', () => {
+  const lee = (input: unknown) =>
+    llmCacheGet({ schema, promptVersion: 'probe-v1', input, config }) as { ok: boolean } | null
+
+  it('sin la entrada devuelve null, y no la crea preguntando al backend', () => {
+    resetRunStats()
+    const input = { k: `get-${Date.now()}` }
+    expect(lee(input)).toBeNull()
+    // El backend falso contesta al instante: si la lectura hubiera llamado, la
+    // respuesta estaría ya en la caché y la sonda diría que sí.
+    expect(sonda(input)).toBe(false)
+    expect(getRunStats().calls).toBe(0)
+  })
+
+  it('con la entrada devuelve lo que callLLM guardó, y cuenta el acierto como callLLM', async () => {
+    const input = { k: `get-sembrada-${Date.now()}` }
+    await callLLM({
+      systemPrompt: 's',
+      userPrompt: 'u',
+      schema,
+      promptVersion: 'probe-v1',
+      input,
+      config,
+    })
+    resetRunStats()
+    expect(lee(input)).toEqual({ ok: true })
+    // El parte de una pasada que juzga desde la caché tiene que decir de dónde
+    // salió lo que juzgó: sin el acierto, `judged-without-calls` la daría por falsa.
+    expect(getRunStats()).toMatchObject({ cacheHits: 1, calls: 0 })
+  }, 30_000)
+
+  it('la clave es la de callLLM: otra versión del prompt no lee la misma entrada', async () => {
+    const input = { k: `get-version-${Date.now()}` }
+    await callLLM({
+      systemPrompt: 's',
+      userPrompt: 'u',
+      schema,
+      promptVersion: 'probe-v1',
+      input,
+      config,
+    })
+    expect(lee(input)).toEqual({ ok: true })
+    expect(llmCacheGet({ schema, promptVersion: 'probe-v2', input, config })).toBeNull()
   }, 30_000)
 })
 
