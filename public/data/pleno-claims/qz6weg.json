@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-05T06:15:41.737Z",
+  "generatedAt": "2026-10-04T17:23:05.282Z",
   "version": "1",
   "plenoId": "qz6weg",
   "plenoDate": "2025-12-01",
@@ -205,7 +205,7 @@
       "verification": {
         "claimId": "qz6weg-010-cit-21e7b7",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (acuerdo de pleno para iniciar expediente de agente urbanizador, sector 2 de Gabina, propuesta de Gustave Yadona) frente a los 4 candidatos de tender, ninguno de los cuales guarda relación temática, de entidad o de sujeto con la afirmación (son contratos de cementerios…",
+        "summary": "Analicé la afirmación (acuerdo de pleno para iniciar expediente de agente urbanizador, sector 2 de Gabina, propuesta de Gustave Yadona) frente a los 4 candidatos de tender, ninguno de los cuales guarda relación temática, de entidad o de sujeto con la afirmación (son contratos de cementerios, correos",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -330,7 +330,7 @@
       "verification": {
         "claimId": "qz6weg-013-afi-e1d0d3",
         "verdict": "sin-datos",
-        "summary": "Analicé los dos candidatos (licitaciones de mantenimiento de base de datos corporativa, tema IT) frente a la afirmación numérica sobre un importe de 27.482,32€ en contexto de urbanismo/previsión de estudio. No hay coincidencia de tema (IT vs urbanismo), ni de importe, ni de sujeto.",
+        "summary": "Analicé los dos candidatos (licitaciones de mantenimiento de base de datos corporativa, tema IT) frente a la afirmación numérica sobre un importe de 27.482,32€ en contexto de urbanismo/previsión de estudio. No hay coincidencia de tema (IT vs urbanismo), ni de importe, ni de sujeto. Las similitudes s",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -391,7 +391,7 @@
       "verification": {
         "claimId": "qz6weg-014-cit-cc5e65",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (una cita textual de un pleno sobre invitar empresas a gestión directa de obras vía Comisión Territorial de Urbanismo) frente a los dos candidatos disponibles (lote de gestión de cementerios y servicio postal).",
+        "summary": "Analicé la afirmación (una cita textual de un pleno sobre invitar empresas a gestión directa de obras vía Comisión Territorial de Urbanismo) frente a los dos candidatos disponibles (lote de gestión de cementerios y servicio postal). Ninguno coincide en sujeto, importe o naturaleza del contrato con l",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -768,7 +768,7 @@
       "verification": {
         "claimId": "qz6weg-020-cit-73b274",
         "verdict": "sin-datos",
-        "summary": "La afirmación corresponde a un punto del orden del día de naturaleza procedimental: la ratificación de un acuerdo de la Junta de Gobierno sobre la \"conveniencia\" de una cultura polivalente (probablemente un centro cultural), sin cifras, fechas concretas ni sujetos verificables asociados —es un…",
+        "summary": "La afirmación corresponde a un punto del orden del día de naturaleza procedimental: la ratificación de un acuerdo de la Junta de Gobierno sobre la \"conveniencia\" de una cultura polivalente (probablemente un centro cultural), sin cifras, fechas concretas ni sujetos verificables asociados —es un títul",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -861,7 +861,7 @@
       "verification": {
         "claimId": "qz6weg-022-afi-7eb6d2",
         "verdict": "sin-datos",
-        "summary": "Analicé los 4 candidatos frente a la afirmación de que las obras del edificio polivalente/futuro conservatorio de danza costaron ~€5.366.000.",
+        "summary": "Analicé los 4 candidatos frente a la afirmación de que las obras del edificio polivalente/futuro conservatorio de danza costaron ~€5.366.000. Ninguno coincide en monto: [0] y [2] son licitaciones sobre el Conservatorio de Música (tema relacionado pero entidad distinta - música vs danza) por €53.651,",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -893,7 +893,7 @@
       "verification": {
         "claimId": "qz6weg-022-cit-6b4d40",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre la aportación de casi 3 millones de euros por parte de la GVA y el resto por el Ayuntamiento para un proyecto cultural.",
+        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre la aportación de casi 3 millones de euros por parte de la GVA y el resto por el Ayuntamiento para un proyecto cultural. Los contratos listados se refieren a obras de accesibilidad, reurbanización y colocación de centros ",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -925,7 +925,7 @@
       "verification": {
         "claimId": "qz6weg-022-afi-eb7b9f",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta información que respalde la afirmación de una aportación de casi tres millones de euros. Los contratos y acuerdos mencionados se refieren a servicios y subvenciones de menor cuantía y no están relacionados con la cifra específica de 3.000.000 euros.",
+        "summary": "Ninguno de los candidatos presenta información que respalde la afirmación de una aportación de casi tres millones de euros. Los contratos y acuerdos mencionados se refieren a servicios y subvenciones de menor cuantía y no están relacionados con la cifra específica de 3.000.000 euros. Además, no hay ",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -957,7 +957,7 @@
       "verification": {
         "claimId": "qz6weg-023-cit-03e631",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre la aportación de casi tres millones de euros.",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre la aportación de casi tres millones de euros. Los contratos listados se refieren a suministros y obras menores para el Conservatorio de Música y Danza, pero no hay evidencia de un compromiso específico de Presidencia por es",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1060,7 +1060,7 @@
       "verification": {
         "claimId": "qz6weg-023-afi-8dda60",
         "verdict": "sin-datos",
-        "summary": "Analicé el único candidato disponible (tender de climatización en el Conservatorio de Danza) frente a la afirmación sobre una aportación de casi tres millones de euros condicionada a la asunción de personal del Conservatorio.",
+        "summary": "Analicé el único candidato disponible (tender de climatización en el Conservatorio de Danza) frente a la afirmación sobre una aportación de casi tres millones de euros condicionada a la asunción de personal del Conservatorio. Concluí que no hay respaldo genuino: la entidad y naturaleza del gasto son",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1522,7 +1522,7 @@
       "verification": {
         "claimId": "qz6weg-037-cit-7bf10c",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona un retraso relacionado con el conservatorio, pero no proporciona detalles específicos sobre el tipo de retraso ni su impacto.",
+        "summary": "La afirmación menciona un retraso relacionado con el conservatorio, pero no proporciona detalles específicos sobre el tipo de retraso ni su impacto. Los contratos presentados por los candidatos se centran en suministros y obras para el conservatorio, pero no hay evidencia directa que vincule estos c",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1669,7 +1669,7 @@
       "verification": {
         "claimId": "qz6weg-039-afi-3ec651",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los tres candidatos respalda la afirmación. La cifra de 1.200.000 € corresponde a un coste hipotético/contrafáctico del profesorado que, según el orador, se habría \"liberado\" si otra administración hubiera asumido su pago este curso — es una declaración política sobre una partida global…",
+        "summary": "Ninguno de los tres candidatos respalda la afirmación. La cifra de 1.200.000 € corresponde a un coste hipotético/contrafáctico del profesorado que, según el orador, se habría \"liberado\" si otra administración hubiera asumido su pago este curso — es una declaración política sobre una partida global d",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1700,7 +1700,7 @@
       "verification": {
         "claimId": "qz6weg-039-cit-e049de",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona un trabajo que comenzó en 2016-2017 relacionado con Rivarrocha, pero los candidatos listados se refieren exclusivamente a contratos de emergencia para el acondicionamiento de caminos y limpieza de un auditorio, todos relacionados con un episodio de lluvias torrenciales en…",
+        "summary": "La afirmación menciona un trabajo que comenzó en 2016-2017 relacionado con Rivarrocha, pero los candidatos listados se refieren exclusivamente a contratos de emergencia para el acondicionamiento de caminos y limpieza de un auditorio, todos relacionados con un episodio de lluvias torrenciales en novi",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1795,7 +1795,7 @@
       "verification": {
         "claimId": "qz6weg-041-cit-29853c",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona la creación de conservatorios y un auditorio, pero los contratos presentados se refieren a obras y suministros relacionados con conservatorios ya existentes, sin mencionar la creación de nuevos conservatorios o un auditorio.",
+        "summary": "La afirmación menciona la creación de conservatorios y un auditorio, pero los contratos presentados se refieren a obras y suministros relacionados con conservatorios ya existentes, sin mencionar la creación de nuevos conservatorios o un auditorio. Por lo tanto, aunque hay actividad relacionada con l",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1968,7 +1968,7 @@
       "verification": {
         "claimId": "qz6weg-042-cit-5cbadf",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la creación de un espacio para la música y la danza, mencionando específicamente la entrada de los alumnos de danza y la exclusión de los de música. Sin embargo, los contratos presentados no respaldan esta afirmación de manera concreta.",
+        "summary": "La afirmación se refiere a la creación de un espacio para la música y la danza, mencionando específicamente la entrada de los alumnos de danza y la exclusión de los de música. Sin embargo, los contratos presentados no respaldan esta afirmación de manera concreta. Por un lado, el contrato para el con",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -2383,7 +2383,7 @@
       "verification": {
         "claimId": "qz6weg-046-cit-cef5fc",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (opinión subjetiva sobre \"los mejores edificios de Conservatorio de Danza de toda Valencia\") frente a los 7 candidatos de contratos del Ayuntamiento de Riba-roja de Túria.",
+        "summary": "Analicé la afirmación (opinión subjetiva sobre \"los mejores edificios de Conservatorio de Danza de toda Valencia\") frente a los 7 candidatos de contratos del Ayuntamiento de Riba-roja de Túria. Concluí que ningún candidato respalda genuinamente la afirmación: es un juicio de valor no verificable, y ",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -2414,7 +2414,7 @@
       "verification": {
         "claimId": "qz6weg-047-cit-cb270a",
         "verdict": "sin-datos",
-        "summary": "Análisis completado: la afirmación es una opinión subjetiva no verificable documentalmente. Los candidatos relacionados con el Conservatorio (0-3) solo tratan de un contrato de arrendamiento de aulas adicionales, no de la calidad del edificio comparada con otros de Valencia.",
+        "summary": "Análisis completado: la afirmación es una opinión subjetiva no verificable documentalmente. Los candidatos relacionados con el Conservatorio (0-3) solo tratan de un contrato de arrendamiento de aulas adicionales, no de la calidad del edificio comparada con otros de Valencia. Los demás candidatos (4-",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -2502,7 +2502,7 @@
       "verification": {
         "claimId": "qz6weg-048-cit-3e3829",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona específicamente la rectificación del CIF de dos asociaciones de Rivarrocha en el contexto del presupuesto.",
+        "summary": "La afirmación menciona específicamente la rectificación del CIF de dos asociaciones de Rivarrocha en el contexto del presupuesto. Sin embargo, los candidatos listados se refieren a bases y convocatorias de subvenciones para asociaciones de vecinos y comisiones festivas, pero no proporcionan informac",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -2646,7 +2646,7 @@
       "verification": {
         "claimId": "qz6weg-051-afi-eaa70a",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre la asignación de 36.000 euros a Arelliria, Betera, Casinos y Benaguasí.",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre la asignación de 36.000 euros a Arelliria, Betera, Casinos y Benaguasí. Los contratos y resoluciones mencionados se refieren a importes significativamente menores, como 2.265,73 euros y 9.045,96 euros, y no están relacionad",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -2705,7 +2705,7 @@
       "verification": {
         "claimId": "qz6weg-052-afi-f2daec",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre la distribución de 36.000 euros a Arelliria, Betera, Casinos y Benaguasí.",
+        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre la distribución de 36.000 euros a Arelliria, Betera, Casinos y Benaguasí. Los registros se refieren a subvenciones y ayudas del Ayuntamiento de Riba-roja de Túria, pero no hay evidencia de que estos fondos estén relacion",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -3057,7 +3057,7 @@
       "verification": {
         "claimId": "qz6weg-055-cit-87da97",
         "verdict": "sin-datos",
-        "summary": "La afirmación se centra en la conservación correcta de una actuación durante un periodo mínimo de cuatro años, en el contexto de mantener el uso turístico de proyectos en terrenos del Ayuntamiento de Riva Roja.",
+        "summary": "La afirmación se centra en la conservación correcta de una actuación durante un periodo mínimo de cuatro años, en el contexto de mantener el uso turístico de proyectos en terrenos del Ayuntamiento de Riva Roja. Sin embargo, los contratos presentados no hacen referencia directa a la conservación de a",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -3088,7 +3088,7 @@
       "verification": {
         "claimId": "qz6weg-055-cit-492759",
         "verdict": "sin-datos",
-        "summary": "El candidato [0] es un contrato de asesoramiento jurídico y defensa procesal (servicios legales genéricos), sin relación con terrenos, proyectos urbanísticos o titularidad de suelo.",
+        "summary": "El candidato [0] es un contrato de asesoramiento jurídico y defensa procesal (servicios legales genéricos), sin relación con terrenos, proyectos urbanísticos o titularidad de suelo. La afirmación es una declaración de titularidad de terrenos para el desarrollo de proyectos, de naturaleza completamen",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -3665,7 +3665,7 @@
       "verification": {
         "claimId": "qz6weg-061-cit-2a0511",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona una propuesta de acuerdo que surge de una demanda ciudadana, pero los contratos presentados por los candidatos no hacen referencia a ninguna propuesta específica ni a la participación ciudadana en su elaboración.",
+        "summary": "La afirmación menciona una propuesta de acuerdo que surge de una demanda ciudadana, pero los contratos presentados por los candidatos no hacen referencia a ninguna propuesta específica ni a la participación ciudadana en su elaboración. Los contratos se centran en servicios y concesiones, pero no hay",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -4395,7 +4395,7 @@
       "verification": {
         "claimId": "qz6weg-080-cit-008981",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre la \"Memoria Democrática de Riva Rocha de Turía\".",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre la \"Memoria Democrática de Riva Rocha de Turía\". Los contratos y proyectos mencionados se refieren a obras y servicios que no están relacionados directamente con la memoria democrática, como la recuperación de la torre árab",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -4966,7 +4966,7 @@
       "verification": {
         "claimId": "qz6weg-106-afi-9ebc70",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona un monto específico de 12.000 euros al mes, pero ninguno de los candidatos presenta un contrato o subvención que coincida exactamente con esta cifra o con el concepto de un pago mensual.",
+        "summary": "La afirmación menciona un monto específico de 12.000 euros al mes, pero ninguno de los candidatos presenta un contrato o subvención que coincida exactamente con esta cifra o con el concepto de un pago mensual. El contrato menor mencionado en el candidato [4] tiene un importe de 11.603 euros, que aun",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -5696,7 +5696,7 @@
       "verification": {
         "claimId": "qz6weg-137-cit-21b685",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los tres candidatos respalda la afirmación. La cita hace referencia a \"la página 427\" de un documento (aparentemente un presupuesto) donde figura un punto etiquetado como \"objetivo de desarrollo sostenible\" (ODS) \"sostenido por el área\", es decir, alude a una partida presupuestaria…",
+        "summary": "Ninguno de los tres candidatos respalda la afirmación. La cita hace referencia a \"la página 427\" de un documento (aparentemente un presupuesto) donde figura un punto etiquetado como \"objetivo de desarrollo sostenible\" (ODS) \"sostenido por el área\", es decir, alude a una partida presupuestaria concre",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6871,7 +6871,7 @@
       "verification": {
         "claimId": "qz6weg-162-afi-55a6fc",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona un monto específico de 3.064 millones de euros transferidos a la Generalitat, de los cuales 2.364 millones corresponden a una de las transferencias.",
+        "summary": "La afirmación menciona un monto específico de 3.064 millones de euros transferidos a la Generalitat, de los cuales 2.364 millones corresponden a una de las transferencias. Sin embargo, los candidatos listados no presentan información que coincida con estos montos ni con la naturaleza de la transfere",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -7911,7 +7911,7 @@
       "verification": {
         "claimId": "qz6weg-185-cit-66cd62",
         "verdict": "sin-datos",
-        "summary": "Análisis completado: los candidatos 0, 2 y 4 respaldan parcialmente (con fuerza moderada) la mención de los \"sistemas dinámicos de adquisición\" aprobados/implementados por el Ayuntamiento de Riba-roja, pero ningún candidato menciona la \"bolsa de autónomos\" ni su cesión a otros ayuntamientos, por…",
+        "summary": "Análisis completado: los candidatos 0, 2 y 4 respaldan parcialmente (con fuerza moderada) la mención de los \"sistemas dinámicos de adquisición\" aprobados/implementados por el Ayuntamiento de Riba-roja, pero ningún candidato menciona la \"bolsa de autónomos\" ni su cesión a otros ayuntamientos, por lo ",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -7972,7 +7972,7 @@
       "verification": {
         "claimId": "qz6weg-185-acu-cb9c22",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona la existencia del Consejo Económico y la participación de asociaciones de empresarios y comerciantes, pero los documentos presentados no hacen referencia directa a este consejo ni a su funcionamiento.",
+        "summary": "La afirmación menciona la existencia del Consejo Económico y la participación de asociaciones de empresarios y comerciantes, pero los documentos presentados no hacen referencia directa a este consejo ni a su funcionamiento. Los contratos y acuerdos listados se centran en ayudas y subvenciones para a",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -8297,7 +8297,7 @@
       "verification": {
         "claimId": "qz6weg-189-cit-f6d00d",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación sobre la reforma del cese de actividad (paro autónomo) frente al único candidato disponible, un contrato de mantenimiento de control de acceso corporativo sin relación temática, de entidad ni de contenido.",
+        "summary": "Analicé la afirmación sobre la reforma del cese de actividad (paro autónomo) frente al único candidato disponible, un contrato de mantenimiento de control de acceso corporativo sin relación temática, de entidad ni de contenido. Concluí que no hay respaldo genuino, dada la baja similitud y la falta d",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -9665,7 +9665,7 @@
       "verification": {
         "claimId": "qz6weg-237-cit-7bff59",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (pregunta sobre el plazo de finalización de una obra en curso en un \"Centro de Salud\") frente a los dos candidatos.",
+        "summary": "Analicé la afirmación (pregunta sobre el plazo de finalización de una obra en curso en un \"Centro de Salud\") frente a los dos candidatos. Candidato [0] trata de un contrato de redacción de proyecto para un \"Centro de Día para personas con diversidad funcional\", una entidad y tipo de equipamiento dis",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -9727,7 +9727,7 @@
       "verification": {
         "claimId": "qz6weg-239-cit-d89862",
         "verdict": "sin-datos",
-        "summary": "Ningún candidato respalda de forma sólida la afirmación. La cita es una pregunta aclaratoria dentro del pleno (\"¿te refieres a las obras de fuera?\"), sin cifras ni fechas concretas que permitan verificar nada específico, ya que el propio esquema indica \"sin entidades numéricas\".",
+        "summary": "Ningún candidato respalda de forma sólida la afirmación. La cita es una pregunta aclaratoria dentro del pleno (\"¿te refieres a las obras de fuera?\"), sin cifras ni fechas concretas que permitan verificar nada específico, ya que el propio esquema indica \"sin entidades numéricas\". El candidato [0] (ca",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -9906,7 +9906,7 @@
       "verification": {
         "claimId": "qz6weg-243-cit-82d8d8",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la mejora y valorización de los barrancos, mencionando que han dejado de ser estercoleros.",
+        "summary": "La afirmación se refiere a la mejora y valorización de los barrancos, mencionando que han dejado de ser estercoleros. De los candidatos presentados, el tender sobre la \"Obra de adecuación barranco de la Monjas\" por un importe de €70.678,52 es el que más se alinea con la afirmación, ya que implica un",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -9968,7 +9968,7 @@
       "verification": {
         "claimId": "qz6weg-244-cit-dc8205",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona específicamente una actuación relacionada con el \"carril lícito\" y \"refugios climáticos\".",
+        "summary": "La afirmación menciona específicamente una actuación relacionada con el \"carril lícito\" y \"refugios climáticos\". El candidato [0] presenta un proyecto titulado \"Mejora del carril bici y la ejecución o mejora de refugios climáticos\", lo que sugiere que está trabajando en una iniciativa que incluye am",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -10000,7 +10000,7 @@
       "verification": {
         "claimId": "qz6weg-245-cit-4ee8d4",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (cita verbal sobre una \"fase\" de obra que terminaría en junio) contra los 4 candidatos proporcionados. Ninguno aporta una fecha de finalización concreta que coincida con junio 2025.",
+        "summary": "Analicé la afirmación (cita verbal sobre una \"fase\" de obra que terminaría en junio) contra los 4 candidatos proporcionados. Ninguno aporta una fecha de finalización concreta que coincida con junio 2025. Los candidatos [0]/[3] (Alumbrado Público Fase I) comparten solo la palabra \"fase\" pero sin dato",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -10243,7 +10243,7 @@
       "verification": {
         "claimId": "qz6weg-247-cit-e3c4c2",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (apertura de una \"ventana\" urbanística sobre el \"barranco de moros\", vinculada a un futuro centro de salud en La Maya) contra los dos candidatos.",
+        "summary": "Analicé la afirmación (apertura de una \"ventana\" urbanística sobre el \"barranco de moros\", vinculada a un futuro centro de salud en La Maya) contra los dos candidatos. El candidato [0] trata de un barranco distinto (\"de la Monjas\" vs \"de moros\"), por lo que pese a ser también una obra de adecuación ",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -10466,7 +10466,7 @@
       "verification": {
         "claimId": "qz6weg-250-cit-b06c3c",
         "verdict": "sin-datos",
-        "summary": "Analicé los tres candidatos frente a la afirmación sobre un nuevo centro de salud en fase de adjudicación.",
+        "summary": "Analicé los tres candidatos frente a la afirmación sobre un nuevo centro de salud en fase de adjudicación. Ninguno coincide en sujeto: [0] es reparación de instalación eléctrica de un edificio cultural (mismo campo \"construction\" pero objeto distinto), [1] es un servicio de TI sin relación alguna, y",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -10800,7 +10800,7 @@
       "verification": {
         "claimId": "qz6weg-258-cit-3cd751",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (declaración política sobre un futuro proceso de votación popular relacionado con el centro de salud, sin cifras ni fechas concretas) frente al único candidato disponible (un contrato de vigilancia de la salud laboral por €45.574,20).",
+        "summary": "Analicé la afirmación (declaración política sobre un futuro proceso de votación popular relacionado con el centro de salud, sin cifras ni fechas concretas) frente al único candidato disponible (un contrato de vigilancia de la salud laboral por €45.574,20). Concluí que no hay respaldo genuino: distin",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -10831,7 +10831,7 @@
       "verification": {
         "claimId": "qz6weg-258-cit-6f20de",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona específicamente a la ingeniería \"Veches Tú\" y su relación con un proyecto que fue votado por el pueblo. Sin embargo, los contratos presentados por los candidatos no mencionan a \"Veches Tú\" ni hacen referencia a un proyecto específico que haya sido votado por la comunidad.",
+        "summary": "La afirmación menciona específicamente a la ingeniería \"Veches Tú\" y su relación con un proyecto que fue votado por el pueblo. Sin embargo, los contratos presentados por los candidatos no mencionan a \"Veches Tú\" ni hacen referencia a un proyecto específico que haya sido votado por la comunidad. Los ",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -11632,7 +11632,7 @@
       "verification": {
         "claimId": "qz6weg-271-cit-f9d0fb",
         "verdict": "sin-datos",
-        "summary": "La afirmación se centra en el bono de comercio como una herramienta para fomentar el comercio, pero no proporciona detalles específicos sobre su implementación o resultados.",
+        "summary": "La afirmación se centra en el bono de comercio como una herramienta para fomentar el comercio, pero no proporciona detalles específicos sobre su implementación o resultados. Los candidatos listados se refieren a ayudas y subvenciones para actividades emprendedoras y dinamización comercial, pero no h",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"

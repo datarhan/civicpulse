@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-05T06:15:41.737Z",
+  "generatedAt": "2026-10-04T17:23:05.282Z",
   "version": "1",
   "plenoId": "1237hbp",
   "plenoDate": "2026-07-03",
@@ -170,7 +170,7 @@
       "verification": {
         "claimId": "1237hbp-006-cit-1e90e0",
         "verdict": "sin-datos",
-        "summary": "Analicé el candidato [0] frente a la afirmación. El candidato es un contrato de TI (Portal del Empleado) sin relación temática, de entidad adjudicataria, fecha o importe con la afirmación sobre un contrato de emergencia medioambiental con FCC el 12 de marzo tras resolución con Garbiardi el día 9.",
+        "summary": "Analicé el candidato [0] frente a la afirmación. El candidato es un contrato de TI (Portal del Empleado) sin relación temática, de entidad adjudicataria, fecha o importe con la afirmación sobre un contrato de emergencia medioambiental con FCC el 12 de marzo tras resolución con Garbiardi el día 9. No",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -365,7 +365,7 @@
       "verification": {
         "claimId": "1237hbp-023-cit-a6246f",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (una opinión no verificable sobre que la situación de recogida de voluminosos \"no se puede evitar\") frente a los tres candidatos (contratos administrativos de Riba-roja de Túria sobre RSU/poda/voluminosos).",
+        "summary": "Analicé la afirmación (una opinión no verificable sobre que la situación de recogida de voluminosos \"no se puede evitar\") frente a los tres candidatos (contratos administrativos de Riba-roja de Túria sobre RSU/poda/voluminosos). Concluí que ningún candidato respalda genuinamente la afirmación: son c",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -423,7 +423,7 @@
       "verification": {
         "claimId": "1237hbp-029-cit-0d2047",
         "verdict": "sin-datos",
-        "summary": "La afirmación es de naturaleza procedimental (orden de trámite: comisión de contratación antes que el pleno), no una cifra, fecha o hecho verificable a partir de un registro de contrato/subvención/presupuesto.",
+        "summary": "La afirmación es de naturaleza procedimental (orden de trámite: comisión de contratación antes que el pleno), no una cifra, fecha o hecho verificable a partir de un registro de contrato/subvención/presupuesto. Los candidatos [0] y [2] coinciden temáticamente con \"contrato de basura\" (recogida de res",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -454,7 +454,7 @@
       "verification": {
         "claimId": "1237hbp-030-cit-eea251",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los cuatro candidatos guarda relación real con la afirmación. Todos pertenecen al Ayuntamiento de Riba-roja de Túria y versan sobre asuntos distintos (módulos prefabricados, visor de transparencia, asfaltados urbanos, portal del empleado), sin ninguna conexión con recogida de basura ni…",
+        "summary": "Ninguno de los cuatro candidatos guarda relación real con la afirmación. Todos pertenecen al Ayuntamiento de Riba-roja de Túria y versan sobre asuntos distintos (módulos prefabricados, visor de transparencia, asfaltados urbanos, portal del empleado), sin ninguna conexión con recogida de basura ni co",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -510,7 +510,7 @@
       "verification": {
         "claimId": "1237hbp-034-cit-2c142d",
         "verdict": "sin-datos",
-        "summary": "Se analizó la afirmación (declaración prospectiva sobre financiar la compra de contenedores \"en recursos propios\") frente a los 8 candidatos.",
+        "summary": "Se analizó la afirmación (declaración prospectiva sobre financiar la compra de contenedores \"en recursos propios\") frente a los 8 candidatos. Ninguno respalda genuinamente la afirmación: el candidato [0] es temáticamente el más cercano (compra de 320 contenedores de carga lateral, €505.296) pero es ",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1409,7 +1409,7 @@
       "verification": {
         "claimId": "1237hbp-091-afi-a7c5f4",
         "verdict": "sin-datos",
-        "summary": "He analizado la afirmación sobre el contrato de la basura (fondos propios de 4-6 mil euros) frente al único candidato disponible, que es un contrato de servicios para el Portal del Empleado por €25.794.",
+        "summary": "He analizado la afirmación sobre el contrato de la basura (fondos propios de 4-6 mil euros) frente al único candidato disponible, que es un contrato de servicios para el Portal del Empleado por €25.794. No hay coincidencia de entidad/tema (basura vs portal del empleado), ni de importe, ni de sujeto ",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1719,7 +1719,7 @@
       "verification": {
         "claimId": "1237hbp-103-cit-4bf2c1",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (ampliación de una declaración de emergencia medioambiental, buscando fórmulas legales) frente al candidato (contrato de redacción de proyecto de expropiación para un camino de conexión de emergencia entre polígonos industriales).",
+        "summary": "Analicé la afirmación (ampliación de una declaración de emergencia medioambiental, buscando fórmulas legales) frente al candidato (contrato de redacción de proyecto de expropiación para un camino de conexión de emergencia entre polígonos industriales). Concluí que es una coincidencia léxica de la pa",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"

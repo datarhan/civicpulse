@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-05T06:15:41.737Z",
+  "generatedAt": "2026-10-04T17:23:05.282Z",
   "version": "1",
   "plenoId": "k4olcs",
   "plenoDate": "2026-04-20",
@@ -1196,7 +1196,7 @@
       "verification": {
         "claimId": "k4olcs-020-cit-c5e35c",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (solicitud de declaración individualizada de minimización de impacto territorial para vivienda en polígono 46, parcela 39, suelo no urbanizable, 5-feb-2026) contra los 6 candidatos.",
+        "summary": "Analicé la afirmación (solicitud de declaración individualizada de minimización de impacto territorial para vivienda en polígono 46, parcela 39, suelo no urbanizable, 5-feb-2026) contra los 6 candidatos. Ninguno coincide en los valores concretos: [1] menciona polígono/parcela pero son distintos (58/",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1256,7 +1256,7 @@
       "verification": {
         "claimId": "k4olcs-021-cit-a1b89a",
         "verdict": "sin-datos",
-        "summary": "La afirmación describe el estado físico de una parcela (vivienda unifamiliar aislada + trastero, construcción de 2008), propia de un informe o cédula urbanística municipal, sin cifras ni referencias de contrato.",
+        "summary": "La afirmación describe el estado físico de una parcela (vivienda unifamiliar aislada + trastero, construcción de 2008), propia de un informe o cédula urbanística municipal, sin cifras ni referencias de contrato. El candidato [0] es un contrato menor de DERRIBO de una vivienda unifamiliar aislada adj",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1624,7 +1624,7 @@
       "verification": {
         "claimId": "k4olcs-025-cit-d96ef4",
         "verdict": "sin-datos",
-        "summary": "El único candidato disponible ([0]) es un contrato de servicios informáticos (implantación del Portal del Empleado) del propio Ayuntamiento, con una similitud muy baja (0.20).",
+        "summary": "El único candidato disponible ([0]) es un contrato de servicios informáticos (implantación del Portal del Empleado) del propio Ayuntamiento, con una similitud muy baja (0.20). No guarda relación temática, de sujeto, ni de tipo de trámite con la afirmación, que versa sobre un requerimiento individual",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1957,7 +1957,7 @@
       "verification": {
         "claimId": "k4olcs-030-cit-eb5652",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (opinión sobre viviendas existentes convertidas en primeras viviendas) frente a los dos candidatos disponibles: un contrato de casetas para ferias y un servicio de Portal del Empleado. Ninguno tiene relación temática, de sujeto, importe o fecha con la afirmación.",
+        "summary": "Analicé la afirmación (opinión sobre viviendas existentes convertidas en primeras viviendas) frente a los dos candidatos disponibles: un contrato de casetas para ferias y un servicio de Portal del Empleado. Ninguno tiene relación temática, de sujeto, importe o fecha con la afirmación. La baja simili",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -3246,7 +3246,7 @@
       "verification": {
         "claimId": "k4olcs-059-cit-c33dc7",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (opinión retórica sin datos verificables) frente a los 8 candidatos (contratos administrativos específicos de servicios educativos puntuales).",
+        "summary": "Analicé la afirmación (opinión retórica sin datos verificables) frente a los 8 candidatos (contratos administrativos específicos de servicios educativos puntuales). Concluí que no hay respaldo genuino porque la afirmación no contiene cifras/fechas/sujetos concretos que contrastar, y los candidatos s",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -4220,7 +4220,7 @@
       "verification": {
         "claimId": "k4olcs-094-cit-fd89e8",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (cita procedimental sin datos verificables) frente a los 8 candidatos (todos el mismo tender de emergencia DANA).",
+        "summary": "Analicé la afirmación (cita procedimental sin datos verificables) frente a los 8 candidatos (todos el mismo tender de emergencia DANA). Concluí que no hay respaldo genuino: la cita es un anuncio de orden del día sin importe/fecha/sujeto verificable, y la coincidencia con los candidatos es solo temát",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -4598,7 +4598,7 @@
       "verification": {
         "claimId": "k4olcs-100-cit-2c9750",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (adjudicación del servicio de gestión integral de aguas a la empresa \"Hidracua, gestión integral de aguas de Levante S.A.\") contra los tres candidatos.",
+        "summary": "Analicé la afirmación (adjudicación del servicio de gestión integral de aguas a la empresa \"Hidracua, gestión integral de aguas de Levante S.A.\") contra los tres candidatos. Ninguno coincide en entidad adjudicataria ni en objeto contractual: [0] es gestión de cementerios, [1] es servicio postal adju",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -4690,7 +4690,7 @@
       "verification": {
         "claimId": "k4olcs-101-cit-ec24fe",
         "verdict": "sin-datos",
-        "summary": "El candidato [0] (contrato de 25.794 € para el Portal del Empleado en Riba-roja) no respalda la afirmación.",
+        "summary": "El candidato [0] (contrato de 25.794 € para el Portal del Empleado en Riba-roja) no respalda la afirmación. La afirmación habla de un contrato \"enredado en el juzgado\" y calificado como \"el más importante de este ayuntamiento\", mientras que el candidato es un servicio de TI de importe muy reducido, ",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6001,7 +6001,7 @@
       "verification": {
         "claimId": "k4olcs-116-afi-ed86bf",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los dos candidatos guarda relación real con la afirmación sobre un remanente de 3.000.000 €.",
+        "summary": "Ninguno de los dos candidatos guarda relación real con la afirmación sobre un remanente de 3.000.000 €. Se trata de un dato fiscal/presupuestario (remanente de tesorería), mientras que los candidatos son contratos de servicios municipales (gestión de cementerios y servicio postal) sin importe compar",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6248,7 +6248,7 @@
       "verification": {
         "claimId": "k4olcs-124-afi-fd997d",
         "verdict": "sin-datos",
-        "summary": "El único candidato es un contrato de servicios (\"Portal del Empleado\" en Riba-roja de Túria, €25.794, adjudicado) que no tiene relación temática ni numérica con la afirmación sobre la liquidación presupuestaria (capacidad de financiación de 4,5 millones € y remanente de 3,3 millones €).",
+        "summary": "El único candidato es un contrato de servicios (\"Portal del Empleado\" en Riba-roja de Túria, €25.794, adjudicado) que no tiene relación temática ni numérica con la afirmación sobre la liquidación presupuestaria (capacidad de financiación de 4,5 millones € y remanente de 3,3 millones €). No coincide ",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6280,7 +6280,7 @@
       "verification": {
         "claimId": "k4olcs-126-afi-9db5ca",
         "verdict": "sin-datos",
-        "summary": "Analicé los 8 candidatos frente a la afirmación sobre deuda viva de la Generalitat (63.000 millones de euros).",
+        "summary": "Analicé los 8 candidatos frente a la afirmación sobre deuda viva de la Generalitat (63.000 millones de euros). Ningún candidato trata sobre deuda pública: son licitaciones de servicios comerciales/culturales (órdenes de miles de euros) y subvenciones BDNS a una falla y un ayuntamiento por promoción ",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6622,7 +6622,7 @@
       "verification": {
         "claimId": "k4olcs-146-acu-8c6db4",
         "verdict": "sin-datos",
-        "summary": "Analicé el único candidato disponible y concluí que no hay respaldo genuino: se trata de un contrato de TI sin relación con la afirmación sobre procedimiento de dación de cuentas en el pleno.",
+        "summary": "Analicé el único candidato disponible y concluí que no hay respaldo genuino: se trata de un contrato de TI sin relación con la afirmación sobre procedimiento de dación de cuentas en el pleno. La similitud es baja (0.20) y la afirmación es de naturaleza procedimental/opinática, no verificable contra ",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -7485,7 +7485,7 @@
       "verification": {
         "claimId": "k4olcs-166-cit-7ccffe",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (cita de pleno, sin entidades numéricas concretas: sin importe, fecha ni nombre de empresa) frente a los 8 candidatos de tender. Ninguno coincide en sujeto (empresa concreta) ni en el servicio específico al que se refiere el orador.",
+        "summary": "Analicé la afirmación (cita de pleno, sin entidades numéricas concretas: sin importe, fecha ni nombre de empresa) frente a los 8 candidatos de tender. Ninguno coincide en sujeto (empresa concreta) ni en el servicio específico al que se refiere el orador. Las similitudes son bajas y uniformes (~0.40-",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -7599,7 +7599,7 @@
       "verification": {
         "claimId": "k4olcs-167-cit-d35cc9",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (estado de contenedores de residuos, mantenimiento/reparación) contra los dos candidatos ofrecidos.",
+        "summary": "Analicé la afirmación (estado de contenedores de residuos, mantenimiento/reparación) contra los dos candidatos ofrecidos. Ninguno trata sobre contenedores, recogida de residuos o mobiliario urbano: el candidato [0] es un contrato de redacción de proyecto arquitectónico para habilitar un edificio par",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -8069,7 +8069,7 @@
       "verification": {
         "claimId": "k4olcs-174-cit-25a10a",
         "verdict": "sin-datos",
-        "summary": "Analicé los dos candidatos frente a la afirmación sobre un compromiso de la Generalitat Valenciana de construir/hacer el Centro de Salud.",
+        "summary": "Analicé los dos candidatos frente a la afirmación sobre un compromiso de la Generalitat Valenciana de construir/hacer el Centro de Salud. El candidato [0] es un contrato menor del Ayuntamiento para una carpa de triaje exterior en un Centro de Salud ya existente - no es una obra de construcción ni pr",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -8192,7 +8192,7 @@
       "verification": {
         "claimId": "k4olcs-176-cit-58b61a",
         "verdict": "sin-datos",
-        "summary": "Analicé los 5 candidatos frente a la afirmación sobre una ampliación del Centro de Salud de 6 a 8 millones de euros.",
+        "summary": "Analicé los 5 candidatos frente a la afirmación sobre una ampliación del Centro de Salud de 6 a 8 millones de euros. Ninguno coincide: son contratos de mobiliario para otro centro (social, no de salud), una carpa de triaje de contrato menor sin relación con obra de ampliación, redacción de proyecto ",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -8348,7 +8348,7 @@
       "verification": {
         "claimId": "k4olcs-178-cit-802bbb",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (gasto de 3 millones de euros en un conservatorio no integrado en la red de la Generalitat) frente a los 4 candidatos.",
+        "summary": "Analicé la afirmación (gasto de 3 millones de euros en un conservatorio no integrado en la red de la Generalitat) frente a los 4 candidatos. Ninguno coincide en importe (7.500€, sin importe visible para pianos, 25.794€ para un contrato no relacionado) ni en el hecho concreto verificable (la no integ",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -8466,7 +8466,7 @@
       "verification": {
         "claimId": "k4olcs-179-cit-a5e93c",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (tradición sobre la fecha de celebración de la Fira de Comercio) frente a los 8 candidatos (contratos y subvenciones relacionados con la Feria del Comercio de Riba-roja).",
+        "summary": "Analicé la afirmación (tradición sobre la fecha de celebración de la Fira de Comercio) frente a los 8 candidatos (contratos y subvenciones relacionados con la Feria del Comercio de Riba-roja). Ninguno declara ni verifica la tradición de celebrarse el \"Día de la Mare\"; son registros de contratación/s",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
