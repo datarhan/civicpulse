@@ -9,9 +9,10 @@
  * puso un modelo (Claude Opus 4.8, 23 y 24-06-2026), su propia cabecera pedía
  * revisarlas antes de tratarlas como patrón, y no consta que ninguna persona lo
  * haya hecho. Las tres cifras eran coincidencia con esas etiquetas —36 de 39,
- * 1 de 3 y 4 de 18—, medida con gpt-5.4-mini, y las pasadas de agosto de 2026
- * corrieron por Claude Code. Ningún dato podía verlo: el dato estaba bien y la
- * frase, mal.
+ * 1 de 3 y 4 de 18—, medida con gpt-5.4-mini, y la pasada de agosto de 2026 se
+ * configuró con Claude Code (y en parte la contestó gpt-4o-mini, por el
+ * respaldo: tests/llm/procedencia-del-respaldo.test.ts). Ningún dato podía
+ * verlo: el dato estaba bien y la frase, mal.
  *
  * Por eso lo que esta prueba exige no está escrito aquí: sale de la firma de
  * cada fila de la muestra (`claseDeFirma`, la misma que rotula las bajadas), y

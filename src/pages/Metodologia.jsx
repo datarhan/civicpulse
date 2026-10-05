@@ -1487,7 +1487,8 @@ export default function Metodologia() {
                 23 y 24-06-2026, su cabecera pedía revisarla antes de tratarla como patrón, y
                 no consta que ninguna persona lo hiciera. Las tres cifras eran coincidencia
                 con esas etiquetas —36 de 39, 1 de 3 y 4 de 18—, medida con gpt-5.4-mini, y
-                las pasadas de agosto corrieron por Claude Code. El recuento de la pasada sobre la
+                la pasada de agosto se configuró con Claude Code (y en parte la contestó
+                gpt-4o-mini: ver la nota del 05-10-2026, abajo). El recuento de la pasada sobre la
                 base iba escrito en la prosa y no lo sostenía ningún dato servido. 04-10-2026. */}
             Esa primera pasada sobre la base{' '}
             <strong>retractó la gran mayoría de los veredictos que juzgó</strong>, en la misma
@@ -1503,9 +1504,27 @@ export default function Metodologia() {
             .) <strong>Esa muestra de control la etiquetó un modelo</strong> (Claude Opus 4.8), y no
             consta que ninguna persona haya revisado sus etiquetas: lo que se midió contra ella es
             cuánto coincide el motor con otro modelo, no cuánto acierta. Se midió una vez, en junio
-            de 2026, con el modelo que el motor usaba entonces (gpt-5.4-mini); las pasadas de agosto
-            corrieron con otro —a través de Claude Code—, y ése no se ha medido contra la muestra.
-            Las cifras, con su método y su muestra, están en el registro público de mediciones (
+            de 2026, con el modelo que el motor usaba entonces (gpt-5.4-mini).{' '}
+            {/* 05-10-2026. Decía «las pasadas de agosto corrieron con otro —a través de
+                Claude Code—». Medido contra una copia de .llm-cache, sin llamadas: de las 920
+                retractaciones de la pasada del 02-08-2026 que siguen en el overlay con su
+                explicación, 457 las contestó openai/gpt-4o-mini —456 entera, 1 sólo el
+                veredicto—, el respaldo de pago que la cadena ponía detrás de claude-code con la
+                clave de OpenAI cargada; de las 533 que se sirven, 321. Todas rotuladas
+                `verdict-engine:claude-code` (tests/llm/procedencia-del-respaldo.test.ts). */}
+            La pasada de agosto se configuró con otro, a través de Claude Code, pero cuando Claude
+            Code fallaba la herramienta recurría sin decirlo a un modelo de pago de OpenAI
+            (gpt-4o-mini) y guardaba su respuesta como si fuera de Claude:{' '}
+            <strong>
+              más de la mitad de las retractaciones de esa pasada que hoy se publican con su
+              explicación las escribió gpt-4o-mini
+            </strong>
+            , y el registro de decisiones (el overlay) todavía las atribuye a Claude Code. Ninguno
+            de los dos modelos se ha medido contra la muestra. Desde octubre de 2026 el motor corre
+            sin respaldo de pago y sólo escribe a nombre del modelo que contestó; la atribución de
+            esas retractaciones se corregirá en el overlay con una corrección registrada, que guarda
+            el rótulo anterior y el porqué, sin tocar el veredicto ni la explicación. Las cifras,
+            con su método y su muestra, están en el registro público de mediciones (
             <code>.automation-measurements.json</code>); aquí no las damos como acierto. La regla se
             tomó en junio a la vista de esa medición, y hoy la sostiene una razón que no depende de
             ninguna: un <code>sin-datos</code> no afirma nada, así que retractar a{' '}
