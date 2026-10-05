@@ -33,6 +33,19 @@
  * Mode 3 is not mechanically checkable from here; each guard has to report its
  * own coverage. This script checks 1 and 2, and lists which guards report
  * coverage at all.
+ *
+ * ## Lo que una inyección prueba, y lo que no
+ *
+ * Que una guarda salga roja con la inyección puesta sólo prueba algo si sin
+ * ella sale en verde, y si sale roja POR lo inyectado. El 04-10-2026 fallaban
+ * las dos cosas: la inyección de check:veredictos corrompía un fichero que la
+ * guarda no abre (salía 0, muda), y entre #226 y #228 esa misma guarda ya
+ * salía 1 sin inyectarle nada, así que cualquier inyección se habría leído
+ * FIRES. Desde el 05-10-2026 cada guarda corre una vez sobre el árbol intacto
+ * antes de su primera inyección, y la que ya sale roja queda SIN PRUEBA —se
+ * informa, no falla—; y una inyección puede decir qué marca espera ver en lo
+ * que imprime su guarda (`espera`). La lógica, pura y con pruebas, es
+ * `juzgarInyeccion` en src/scraper/guard-audit.ts.
  */
 import { execFileSync, spawnSync } from 'node:child_process'
 import { readFileSync, writeFileSync, readdirSync, existsSync, statSync } from 'node:fs'
@@ -42,14 +55,19 @@ import {
   auditFails,
   classifyInjection,
   classifyWiring,
+  juntarInyecciones,
+  juzgarInyeccion,
   summarise,
   scriptTargets,
   sinComentarios,
   testsForScript,
   wiringFor,
+  type CorridaDeGuarda,
   type InjectionVerdict,
+  type RegistroDeInyeccion,
 } from '../src/scraper/guard-audit'
 import { citaRetenida } from '../src/lib/cita-retenida.js'
+import { BASE } from './verified-rebuild'
 
 interface GuardRow {
   name: string
@@ -58,6 +76,13 @@ interface GuardRow {
   testedBy: string[]
   /** null = not exercised this run. Falso si CUALQUIERA de sus inyecciones no disparó. */
   firesOnFault: boolean | null
+  /**
+   * Cómo salió sobre el árbol intacto, antes de su primera inyección: 0 en
+   * verde, `null` si no terminó. Ausente si no llegó a correr.
+   */
+  codigoSinInyeccion?: number | null
+  /** Por qué su rojo no prueba nada, si es el caso (`juzgarInyeccion`). */
+  unproven?: string
   injection?: string
   /**
    * Una fila por inyección escrita para esta guarda.
@@ -68,7 +93,7 @@ interface GuardRow {
    * su veredicto se tiraba. Una inyección que se ejecuta y cuyo resultado nadie
    * lee es el patrón que este script existe para cazar, cometido por el script.
    */
-  injections?: { describe: string; fired: boolean | null; note?: string }[]
+  injections?: RegistroDeInyeccion[]
   note?: string
   verdict?: InjectionVerdict
 }
@@ -204,6 +229,12 @@ export const INJECTIONS: Array<{
   file: string
   describe: string
   corrupt: (s: string) => string
+  /**
+   * La marca con la que la guarda nombra ESTE fallo en lo que imprime, si la
+   * tiene. Con ella, roja sin la marca no cuenta como disparo: es roja por otra
+   * cosa (`juzgarInyeccion`). Opcional: sin ella decide el código de salida.
+   */
+  espera?: RegExp
 }> = [
   {
     // El despiece se DERIVA del código: si el extractor deja de reconocer una
@@ -232,11 +263,87 @@ export const INJECTIONS: Array<{
     describe: 'una casilla del cruce que ya no sale de los trozos',
     corrupt: (s) => s.replace(/"sinCorpus": (\d+)/, (_m, n) => `"sinCorpus": ${Number(n) + 7}`),
   },
+  // check:veredictos no lee el manifiesto: filtra `index.json` y no lo abre.
+  // Hasta el 05-10-2026 su inyección corrompía justo ése —con el texto de la de
+  // check:cobertura— y la guarda salía 0 con ella puesta: una inyección muda,
+  // que es lo que este script existe para cazar. La guarda lee dos cosas, y
+  // cada una tiene aquí la suya: los trozos, y el overlay contra su base.
   {
     guard: 'check:veredictos',
-    file: 'public/data/pleno-claims/index.json',
-    describe: 'un manifiesto sin el bloque de cobertura del que vive la guarda',
-    corrupt: (s) => s.replace(/"cobertura"/, '"coberturaRota"'),
+    file: 'public/data/pleno-claims/15uvjew.json',
+    describe: 'un veredicto fuerte servido que ya no nombra el corpus que lo sostiene',
+    // Un `verificado` de la pasada determinista —sin canal del overlay ni
+    // derivación— que hoy nombra corpus y trae evidencia, sin su corpus: lo que
+    // el suelo de evidencia impide escribir y la guarda vigila en lo ya
+    // escrito. Sin `verificado` en el trozo, un `parcial`: la guarda trata igual
+    // los dos.
+    espera: /\[sin-corpus\]/,
+    corrupt: (s) => {
+      const d = JSON.parse(s) as { items: Array<{ verification?: Record<string, unknown> }> }
+      const conCorpus = d.items.filter(({ verification: v }) => {
+        const fuerte = v?.verdict === 'verificado' || v?.verdict === 'parcial'
+        return (
+          fuerte &&
+          v.source === undefined &&
+          v.derivedBy === undefined &&
+          Array.isArray(v.checkedAgainst) &&
+          v.checkedAgainst.length > 0 &&
+          Array.isArray(v.evidence) &&
+          v.evidence.length > 0
+        )
+      })
+      const fila = conCorpus.find((it) => it.verification!.verdict === 'verificado') ?? conCorpus[0]
+      if (!fila) {
+        throw new Error('el trozo no sirve ningún veredicto fuerte con corpus — elige otro trozo')
+      }
+      fila.verification!.checkedAgainst = []
+      return JSON.stringify(d, null, 2) + '\n'
+    },
+  },
+  {
+    guard: 'check:veredictos',
+    file: 'public/data/pleno-claims-overlay.json',
+    describe: 'una entrada del overlay que publica por encima de lo que hoy dice su base',
+    // La forma de #226: una entrada juzgada contra una base anterior que hoy
+    // queda por encima de la suya. Una sola, como entonces: una del motor en
+    // `sin-datos` sobre una base en `sin-datos`, subida a `verificado`. El
+    // validador la deja pasar, así que la guarda no revienta al cargar el
+    // overlay: su rojo tiene que ser el cotejo, y la `espera` lo comprueba.
+    //
+    // La base se lee aquí a pelo, y no con `overlayOutcomes`: si esa función se
+    // rompiera, la inyección tiene que dar la guarda por MUDA, no quedarse sin
+    // nada que corromper. Sin base en disco no se inyecta: la guarda se saltaría
+    // el cotejo y saldría 0, y eso se leería muda sin serlo.
+    espera: /\[por-encima\]/,
+    corrupt: (s) => {
+      if (!existsSync(BASE)) {
+        throw new Error(
+          'no hay base en disco (pleno-claims-verified-base.json está gitignorada; en CI nunca ' +
+            'existe) — cópiala del checkout principal o genérala con ' +
+            '`npm run verify:pleno-claims -- --base-only` para ejercitar esta inyección',
+        )
+      }
+      const base = JSON.parse(readFileSync(BASE, 'utf8')) as {
+        items: Array<{ claim: { id: string }; verification: { verdict: string } }>
+      }
+      const enLaBase = new Map(base.items.map((it) => [it.claim.id, it.verification.verdict]))
+      const o = JSON.parse(s) as {
+        entries: Record<string, { source: string; verification: { verdict: string } }>
+      }
+      const id = Object.keys(o.entries).find(
+        (k) =>
+          o.entries[k].source === 'verdict-engine' &&
+          o.entries[k].verification.verdict === 'sin-datos' &&
+          enLaBase.get(k) === 'sin-datos',
+      )
+      if (!id) {
+        throw new Error(
+          'el overlay no trae ninguna entrada del motor en sin-datos sobre una base en sin-datos',
+        )
+      }
+      o.entries[id].verification.verdict = 'verificado'
+      return JSON.stringify(o, null, 2) + '\n'
+    },
   },
   {
     guard: 'check:solicitudes',
@@ -622,14 +729,25 @@ function gitRestore(file: string): void {
   execFileSync('git', ['checkout', '--', file], { cwd: ROOT })
 }
 
-/** Run a guard and report only whether it exited non-zero. */
-function guardFails(script: string): boolean {
+/**
+ * Corre una guarda y apunta cómo salió y qué imprimió: la `espera` de una
+ * inyección se busca en lo impreso.
+ *
+ * El búfer, holgado a propósito: con el de serie (1 MiB) una guarda que
+ * imprime mucho muere desbordada con `status: null`, y eso se leía rojo —
+ * FIRES con la inyección puesta— sin que la guarda hubiera dicho nada.
+ */
+function correrGuarda(script: string): CorridaDeGuarda {
   const r = spawnSync('npm', ['run', '--silent', script.replace(/^npm run /, '')], {
     cwd: ROOT,
     encoding: 'utf8',
     stdio: 'pipe',
+    maxBuffer: 64 * 1024 * 1024,
   })
-  return r.status !== 0
+  return {
+    status: r.status,
+    salida: [r.stdout, r.stderr, r.error?.message].filter(Boolean).join('\n'),
+  }
 }
 
 function main(): void {
@@ -649,14 +767,16 @@ function main(): void {
   })
 
   if (inject) {
+    // Cada guarda inyectada corre UNA vez sobre el árbol intacto antes de su
+    // primera inyección, y esa corrida vale para todas las suyas (check:dea y
+    // check:veredictos tienen dos): entre una inyección y la siguiente el árbol
+    // vuelve a estar intacto, y abajo se comprueba.
+    const sinInyeccion = new Map<string, CorridaDeGuarda>()
     for (const inj of INJECTIONS) {
       const row = rows.find((r) => r.name === inj.guard)
       if (!row) continue
       row.injections = row.injections ?? []
-      const registro: { describe: string; fired: boolean | null; note?: string } = {
-        describe: inj.describe,
-        fired: null,
-      }
+      const registro: RegistroDeInyeccion = { describe: inj.describe, fired: null }
       row.injections.push(registro)
       const path = resolve(ROOT, inj.file)
       if (!existsSync(path)) {
@@ -667,10 +787,26 @@ function main(): void {
         registro.note = `${inj.file} has uncommitted changes — refusing to inject`
         continue
       }
+      let base = sinInyeccion.get(inj.guard)
+      if (!base) {
+        base = correrGuarda(inj.guard)
+        sinInyeccion.set(inj.guard, base)
+        row.codigoSinInyeccion = base.status
+      }
+      if (base.status !== 0) {
+        // Ya roja sin inyección: no se corrompe nada, porque nada de lo que
+        // saliera después lo habría puesto la inyección.
+        Object.assign(registro, juzgarInyeccion({ sinInyeccion: base, conInyeccion: null }))
+        continue
+      }
       const original = readFileSync(path, 'utf8')
       try {
         writeFileSync(path, inj.corrupt(original), 'utf8')
-        registro.fired = guardFails(inj.guard)
+        const con = correrGuarda(inj.guard)
+        Object.assign(
+          registro,
+          juzgarInyeccion({ sinInyeccion: base, conInyeccion: con, espera: inj.espera }),
+        )
       } catch (e) {
         registro.note = `injection failed: ${(e as Error).message}`
       } finally {
@@ -694,19 +830,20 @@ function main(): void {
   const defined = new Set(INJECTIONS.map((i) => i.guard))
   for (const r of rows) {
     // Una guarda con dos responsabilidades sólo está probada si las dos
-    // inyecciones disparan. Quedarse con la última daría por probada una
-    // guarda que caza la mitad de lo que promete.
+    // inyecciones disparan, y una muda no se esconde detrás de ninguna otra:
+    // `juntarInyecciones`.
     if (r.injections?.length) {
       r.injection = r.injections.map((i) => i.describe).join(' · ')
-      r.note = r.injections.find((i) => i.note)?.note
-      r.firesOnFault = r.injections.some((i) => i.fired === null)
-        ? null
-        : r.injections.every((i) => i.fired === true)
+      const juntas = juntarInyecciones(r.injections)
+      r.firesOnFault = juntas.fired
+      r.note = juntas.note
+      r.unproven = juntas.unproven
     }
     r.verdict = classifyInjection({
       hasInjection: defined.has(r.name),
       fired: r.firesOnFault,
       note: r.note ?? (inject ? undefined : 'definida; ejecuta con --inject para probarla'),
+      unproven: r.unproven,
       notInjectableReason: NOT_INJECTABLE[r.name],
     })
   }
@@ -751,15 +888,18 @@ function main(): void {
         ? 'FIRES'
         : v.state === 'silent'
           ? '⚠ SILENT'
-          : v.state === 'not-run'
-            ? `— ${v.detail}`
-            : v.state === 'not-injectable'
-              ? 'sin inyección, a propósito'
-              : '⚠ sin inyección'
+          : v.state === 'unproven'
+            ? '— SIN PRUEBA: su rojo no lo pone la inyección'
+            : v.state === 'not-run'
+              ? `— ${v.detail}`
+              : v.state === 'not-injectable'
+                ? 'sin inyección, a propósito'
+                : '⚠ sin inyección'
     out(`  ${r.name.padEnd(w)}  ${label}`)
     for (const i of r.injections ?? []) {
       const marca = i.fired === true ? '✓' : i.fired === false ? '✗' : '—'
-      out(`  ${' '.repeat(w)}  ${marca} inyectado: ${i.describe}${i.note ? ` (${i.note})` : ''}`)
+      const porque = i.unproven ?? i.note
+      out(`  ${' '.repeat(w)}  ${marca} inyectado: ${i.describe}${porque ? ` (${porque})` : ''}`)
     }
     if (!r.injections?.length && r.injection) out(`  ${' '.repeat(w)}  inyectado: ${r.injection}`)
     else if (v.state === 'not-injectable') out(`  ${' '.repeat(w)}  ${v.detail}`)
@@ -773,12 +913,35 @@ function main(): void {
   out(
     `${stats.total} guarda(s) · ${stats.notInvoked} sin invocar · ${stats.manual} manual(es) ` +
       `con motivo · ${stats.untested} sin test · ` +
-      `${inject ? `${stats.proven} probada(s)` : 'dientes sin probar'} · ` +
+      `${inject ? `${stats.proven} probada(s) · ${stats.unproven} sin prueba` : 'dientes sin probar'} · ` +
       `${stats.undefinedInjection} sin inyección · ${stats.notInjectable} no inyectable(s) con motivo`,
   )
 
   if (untested.length) {
     out(`SIN TEST (se informa, no falla): ${untested.map((r) => r.name).join(', ')}`)
+  }
+  // Las dos formas de no probar nada, cada una con su nombre: la guarda ya
+  // salía roja, o salió roja con la inyección pero no por lo inyectado.
+  const sinPrueba = rows.filter((r) => r.verdict!.state === 'unproven')
+  const rojasDeAntes = sinPrueba.filter(
+    (r) => r.codigoSinInyeccion !== undefined && r.codigoSinInyeccion !== 0,
+  )
+  if (rojasDeAntes.length) {
+    const nombradas = rojasDeAntes.map(
+      (r) =>
+        `${r.name} (${r.codigoSinInyeccion === null ? 'no terminó' : `sale ${r.codigoSinInyeccion}`})`,
+    )
+    out(
+      `ROJA SIN INYECCIÓN (se informa, no falla): ${nombradas.join(', ')}\n` +
+        '  Su rojo no lo pone la inyección: ninguna de las suyas prueba nada hasta que vuelva a verde.',
+    )
+  }
+  const porOtraCosa = sinPrueba.filter((r) => !rojasDeAntes.includes(r))
+  if (porOtraCosa.length) {
+    out(
+      `ROJA POR OTRA COSA (se informa, no falla): ${porOtraCosa.map((r) => `${r.name} — ${r.unproven}`).join('; ')}\n` +
+        '  Salió roja con la inyección, pero sin la marca que la inyección espera: mira cuál de las dos cambió.',
+    )
   }
   const toWrite = rows.filter((r) => r.verdict!.state === 'undefined').map((r) => r.name)
   if (toWrite.length) {

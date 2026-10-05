@@ -165,10 +165,10 @@ describe('check:veredictos — cada inyección, contra la guarda de verdad', () 
  * porque el arnés se niega a inyectar en un fichero sin comitear y restaura con
  * `git checkout`.
  */
-function repo(ajustar?: (f: Fixture) => void): string {
+function repo(ajustar?: (f: Fixture) => void, guarda = `"${TSX}" "${GUARDA}"`): string {
   const raiz = caja('check-guards-arnes-', ajustar)
   mkdirSync(join(raiz, 'scripts')) // callSites() lo lee
-  const scripts = { 'check:veredictos': `"${TSX}" "${GUARDA}"` }
+  const scripts = { 'check:veredictos': guarda }
   writeFileSync(
     join(raiz, 'package.json'),
     JSON.stringify({ name: 'caja', private: true, scripts }, null, 2) + '\n',
@@ -185,6 +185,7 @@ function repo(ajustar?: (f: Fixture) => void): string {
 interface FilaDelArnes {
   name: string
   verdict: { state: string }
+  codigoSinInyeccion?: number | null
   injections?: Array<{ describe: string; fired: boolean | null }>
 }
 function arnes(raiz: string) {
@@ -222,7 +223,36 @@ describe('check:guards --inject — el arnés de verdad, en un repositorio de us
     )
     expect(r.guarda.injections?.some((i) => i.fired === true)).toBe(false)
     expect(r.guarda.verdict.state).toBe('unproven')
+    expect(r.guarda.codigoSinInyeccion).toBe(1)
     expect(r.stats.unproven).toBe(1)
     expect(r.limpio).toBe(true)
+  })
+
+  it('roja con la inyección pero sin la marca que espera: tampoco se da por probada', () => {
+    // Una «guarda» que sale 0 con el árbol intacto y 1 en cuanto cambia
+    // cualquier fichero, sin nombrar nada: la forma de una guarda que revienta
+    // al cargar lo corrompido. Por el código de salida, las dos inyecciones
+    // dispararían; por lo que imprime, no han probado nada.
+    const r = arnes(repo(undefined, 'git diff --quiet'))
+    expect(r.guarda.codigoSinInyeccion).toBe(0)
+    expect(r.guarda.injections?.some((i) => i.fired === true)).toBe(false)
+    expect(r.guarda.verdict.state).toBe('unproven')
+    expect(r.limpio).toBe(true)
+  })
+
+  it('a una guarda ya roja no le inyecta nada: la corre una vez, para todas sus inyecciones', () => {
+    // Que el veredicto salga bien no basta: `juzgarInyeccion` mira la corrida
+    // sin inyección, así que corromper igualmente daría el mismo «sin prueba».
+    // Lo que no daría es lo mismo en el árbol: ficheros reescritos y la guarda
+    // corrida de nuevo para nada. Esta «guarda» apunta cada corrida fuera del
+    // repositorio y sale 1 siempre.
+    const fuera = mkdtempSync(join(tmpdir(), 'check-guards-corridas-'))
+    cajas.push(fuera)
+    const corridas = join(fuera, 'corridas.log')
+    const r = arnes(repo(undefined, `echo corrida >> "${corridas}"; exit 1`))
+    expect(r.guarda.injections?.length).toBeGreaterThan(1)
+    expect(readFileSync(corridas, 'utf8').trim().split('\n')).toHaveLength(1)
+    expect(r.guarda.codigoSinInyeccion).toBe(1)
+    expect(r.guarda.verdict.state).toBe('unproven')
   })
 })

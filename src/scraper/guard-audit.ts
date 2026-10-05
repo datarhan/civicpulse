@@ -145,8 +145,9 @@ export function testsForScript(
  * as a guard nobody got round to.
  */
 export type InjectionState =
-  | 'proven' // injected; the guard exited non-zero
+  | 'proven' // green without the injection, red with it
   | 'silent' // injected; the guard did NOT notice — a real defect
+  | 'unproven' // its red proves nothing: red before any injection, or red for something else
   | 'not-run' // an injection exists but this run could not use it
   | 'undefined' // none written, no reason given
   | 'not-injectable' // deliberately none, with a stated reason
@@ -160,17 +161,110 @@ export function classifyInjection(input: {
   hasInjection: boolean
   fired: boolean | null
   note?: string
+  /** Por qué su rojo no prueba nada (`juzgarInyeccion`), si es el caso. */
+  unproven?: string
   notInjectableReason?: string
 }): InjectionVerdict {
   if (input.hasInjection) {
     if (input.fired === true) return { state: 'proven', detail: 'FIRES' }
     if (input.fired === false) return { state: 'silent', detail: '⚠ SILENT on its own fault' }
+    if (input.unproven) return { state: 'unproven', detail: input.unproven }
     return { state: 'not-run', detail: input.note ?? 'not exercised this run' }
   }
   if (input.notInjectableReason) {
     return { state: 'not-injectable', detail: input.notInjectableReason }
   }
   return { state: 'undefined', detail: 'ninguna definida' }
+}
+
+/** Una corrida de una guarda: cómo salió y qué imprimió. */
+export interface CorridaDeGuarda {
+  /**
+   * El código de salida, o `null` si no salió por sí misma: la mató una señal,
+   * desbordó el búfer o no llegó a arrancar.
+   */
+  status: number | null
+  /** stdout y stderr juntos: donde se busca la `espera` de una inyección. */
+  salida: string
+}
+
+const comoSalio = (c: CorridaDeGuarda): string =>
+  c.status === null ? 'no terminó' : `sale ${c.status}`
+
+/**
+ * Lo que prueba UNA inyección, de dos corridas de su guarda: sobre el árbol
+ * intacto y con la inyección puesta.
+ *
+ * Hasta el 05-10-2026 contaba sólo la segunda, y una guarda que ya salía roja
+ * daba FIRES con cualquier inyección: entre #226 —que dejó check:veredictos
+ * saliendo 1 por una entrada del overlay por encima de su base— y #228, donde
+ * una persona la firmó a la baja, cualquiera se habría leído probada. Ese rojo
+ * no lo pone la inyección, así que no prueba nada: `unproven`, y ni se inyecta.
+ *
+ * Una inyección puede además decir qué espera ver (`espera`): la marca con la
+ * que su guarda nombra el fallo inyectado. Roja sin ella es roja por otra cosa
+ * —la guarda reventó al cargar lo corrompido, o saltó por un fallo que no es el
+ * inyectado—, y eso tampoco prueba nada. Sin `espera` decide el código de
+ * salida, como siempre.
+ */
+export function juzgarInyeccion(input: {
+  sinInyeccion: CorridaDeGuarda
+  /** `null` si no se llegó a inyectar. */
+  conInyeccion: CorridaDeGuarda | null
+  espera?: RegExp
+}): { fired: boolean | null; unproven?: string } {
+  const { sinInyeccion, conInyeccion, espera } = input
+  if (sinInyeccion.status !== 0) {
+    return {
+      fired: null,
+      unproven:
+        `la guarda ya sale roja sin inyección (${comoSalio(sinInyeccion)}): ` +
+        'la inyección no prueba nada',
+    }
+  }
+  if (conInyeccion == null) return { fired: null }
+  if (conInyeccion.status === 0) return { fired: false }
+  if (espera && !espera.test(conInyeccion.salida)) {
+    return {
+      fired: null,
+      unproven:
+        `sale roja con la inyección (${comoSalio(conInyeccion)}), pero no por lo ` +
+        `inyectado: su salida no casa con ${espera}`,
+    }
+  }
+  return { fired: true }
+}
+
+/** Una inyección ya juzgada, como la apunta el arnés. */
+export interface RegistroDeInyeccion {
+  describe: string
+  fired: boolean | null
+  /** Por qué no se pudo ejercitar. */
+  note?: string
+  /** Por qué su rojo no prueba nada. */
+  unproven?: string
+}
+
+/**
+ * Lo que dicen de una guarda todas sus inyecciones juntas.
+ *
+ * Una guarda con dos responsabilidades sólo está probada si disparan las dos,
+ * y una muda la deja muda pase lo que pase con las demás. Hasta el 05-10-2026
+ * se miraba antes si alguna no se había ejercitado: una muda junto a otra sin
+ * fichero salía «no ejercitada», y la auditoría daba 0 con una guarda muda
+ * delante. Entre las que no prueban nada, «sin prueba» pesa más que «no
+ * ejercitada»: que la guarda ya sale roja es un hecho que hay que decir.
+ */
+export function juntarInyecciones(registros: RegistroDeInyeccion[]): {
+  fired: boolean | null
+  note?: string
+  unproven?: string
+} {
+  const note = registros.find((r) => r.note)?.note
+  if (registros.length === 0) return { fired: null, note }
+  if (registros.some((r) => r.fired === false)) return { fired: false, note }
+  if (registros.every((r) => r.fired === true)) return { fired: true, note }
+  return { fired: null, note, unproven: registros.find((r) => r.unproven)?.unproven }
 }
 
 export interface GuardSummary {
@@ -181,6 +275,8 @@ export interface GuardSummary {
   untested: number
   proven: number
   silent: number
+  /** Su rojo no prueba nada: ya roja sin inyección, o roja por otra cosa. */
+  unproven: number
   notRun: number
   undefinedInjection: number
   notInjectable: number
@@ -204,6 +300,7 @@ export function summarise(
     untested: rows.filter((r) => r.testedBy.length === 0).length,
     proven: count('proven'),
     silent: count('silent'),
+    unproven: count('unproven'),
     notRun: count('not-run'),
     undefinedInjection: count('undefined'),
     notInjectable: count('not-injectable'),
@@ -215,6 +312,11 @@ export function summarise(
  * fault, is a failure. A missing test or a missing injection is REPORTED —
  * making either fatal would be a policy change, and a guard audit that blocks
  * the pipeline on its own to-do list is one people delete.
+ *
+ * Una guarda sin prueba (`unproven`) también se informa y no tumba: que ya
+ * salga roja es un hecho suyo, que ella misma informa donde corre, y hay
+ * guardas rojas a propósito — tumbar aquí por eso dejaría la auditoría roja
+ * para siempre.
  */
 export function auditFails(s: GuardSummary): boolean {
   return s.notInvoked > 0 || s.silent > 0
