@@ -1363,7 +1363,7 @@ export const CATALOGUE = {
     'presupuesto.contra.eyebrow': 'Contratación y subvenciones',
     'presupuesto.contra.title': 'Lo que se ha adjudicado, cada cifra con su periodo',
     'presupuesto.contra.intro':
-      'El presupuesto se aprueba y se ejecuta cada año; la contratación se acumula a lo largo de varios ejercicios. Así que **estos cuatro recuentos no son el reparto del presupuesto de arriba**: cada uno lleva el periodo que abarca. Van **medidos sobre los contratos adjudicados y sin IVA**, con los mismos predicados que las fichas de abajo, y cada uno abre la suya.',
+      'El presupuesto se aprueba y se ejecuta cada año; la contratación se acumula a lo largo de varios ejercicios. Así que **estos cuatro recuentos no son el reparto del presupuesto de arriba**: cada uno lleva el periodo que abarca. Cada tarjeta cuenta desde su propia fuente y abre la suya: sólo la de contratos menores se mide **sobre los contratos adjudicados y sin IVA**, con los mismos predicados que las fichas de abajo.',
     'presupuesto.contra.menores': 'Contratos menores',
     'presupuesto.contra.menores.nota':
       'de {adj} adjudicados{span} · {importe} sin IVA: el {pctN} % de los expedientes y el {pctImporte} % del importe',
@@ -2995,7 +2995,7 @@ export const CATALOGUE = {
     'presupuesto.contra.eyebrow': 'Contractació i subvencions',
     'presupuesto.contra.title': "El que s'ha adjudicat, cada xifra amb el seu període",
     'presupuesto.contra.intro':
-      "El pressupost s'aprova i s'executa cada any; la contractació s'acumula al llarg de diversos exercicis. Així que **estos quatre recomptes no són el repartiment del pressupost de dalt**: cadascun porta el període que abasta. Van **mesurats sobre els contractes adjudicats i sense IVA**, amb els mateixos predicats que les fitxes de baix, i cadascun obri la seua.",
+      "El pressupost s'aprova i s'executa cada any; la contractació s'acumula al llarg de diversos exercicis. Així que **estos quatre recomptes no són el repartiment del pressupost de dalt**: cadascun porta el període que abasta. Cada targeta compta des de la seua pròpia font i obri la seua: només la de contractes menors es mesura **sobre els contractes adjudicats i sense IVA**, amb els mateixos predicats que les fitxes de baix.",
     'presupuesto.contra.menores': 'Contractes menors',
     'presupuesto.contra.menores.nota':
       "de {adj} adjudicats{span} · {importe} sense IVA: el {pctN} % dels expedients i el {pctImporte} % de l'import",
