@@ -10,21 +10,33 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
  * registros distintos, y la extracción traía índices `[i]` que ahora señalan a
  * otro candidato (aparte 3 de #196).
  *
- * Lo único falso aquí es el modelo: `callLLM` apunta qué entrada de caché pide
- * cada llamada. El shortlist lo arma `getShortlist` de verdad, en modo léxico.
+ * Lo único falso aquí es el modelo: cada entrada del cliente apunta qué entrada
+ * de caché pide cada llamada. El shortlist lo arma `getShortlist` de verdad, en
+ * modo léxico.
+ *
+ * Las dos entradas, `callLLM` y `callLLMConProcedencia`: cuando #248 cambió el
+ * motor a la segunda, una versión de esta prueba que sólo falsificaba la primera
+ * llegó a `agy` y a `claude` de verdad en el portátil (05-10-2026, cuatro
+ * llamadas). Y por si mañana hay una tercera, el entorno de cada prueba no deja
+ * llegar a ningún backend: una llamada que se escape falla, no contesta.
  */
 const pedidas: { promptVersion: string; input: unknown }[] = []
 
 vi.mock('../src/llm/client', async (original) => {
   const real = await original<typeof import('../src/llm/client')>()
+  const contestar = (opts: { promptVersion: string; input: unknown }) => {
+    pedidas.push({ promptVersion: opts.promptVersion, input: opts.input })
+    return opts.promptVersion.startsWith('engine-reason')
+      ? { reasoning: 'El contrato [0] trata de las obras de la calle Mayor citadas.' }
+      : { verdict: 'sin-datos', cites: [] }
+  }
   return {
     ...real,
-    callLLM: async (opts: { promptVersion: string; input: unknown }) => {
-      pedidas.push({ promptVersion: opts.promptVersion, input: opts.input })
-      return opts.promptVersion.startsWith('engine-reason')
-        ? { reasoning: 'El contrato [0] trata de las obras de la calle Mayor citadas.' }
-        : { verdict: 'sin-datos', cites: [] }
-    },
+    callLLM: async (opts: { promptVersion: string; input: unknown }) => contestar(opts),
+    callLLMConProcedencia: async (opts: { promptVersion: string; input: unknown }) => ({
+      result: contestar(opts),
+      procedencia: { backend: 'claude-code', model: 'claude-code:sonnet', deCache: false },
+    }),
   }
 })
 
@@ -72,6 +84,11 @@ async function claves(tenders: unknown[]) {
 
 beforeEach(() => {
   vi.stubEnv('VERIFIER_SHORTLIST', 'lexical')
+  // Ningún backend alcanzable si algo se escapa de las falsificaciones de arriba.
+  vi.stubEnv('LLM_BACKEND', 'claude-code')
+  vi.stubEnv('CLAUDE_CODE_BIN', '/nonexistent/claude-en-una-prueba')
+  vi.stubEnv('AGY_BIN', '/nonexistent/agy-en-una-prueba')
+  vi.stubEnv('LLM_ZERO_COST_ONLY', '1')
 })
 afterEach(() => {
   vi.unstubAllEnvs()
