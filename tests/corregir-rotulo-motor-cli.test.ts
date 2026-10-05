@@ -4,8 +4,8 @@ import { mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSyn
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
-import { callLLM, loadConfigFromEnv, type ClientConfig } from '../src/llm/client'
-import { EngineExtractSchema, EngineReasoningSchema } from '../src/llm/schemas'
+import { callLLM, llmCacheEntrada, loadConfigFromEnv, type ClientConfig } from '../src/llm/client'
+import { CLAVES_DE_LAS_PASADAS } from '../src/scraper/correccion-de-rotulo'
 import { validateOverlay, type Overlay } from '../src/scraper/verified-merge'
 
 /**
@@ -140,6 +140,7 @@ beforeAll(async () => {
     { mode: 0o755 },
   )
   writeFileSync(join(caja, 'ids.txt'), `# las cuatro\n${GPT}\n${MIXTA}\n${CLAUDE}\n${SIN_CACHE}\n`)
+  writeFileSync(join(caja, 'ids-sin-prueba.txt'), `${SIN_CACHE}\n`)
 
   // Como en agosto: todo bajo la clave de claude-code (sonnet).
   const config: ClientConfig = {
@@ -159,7 +160,7 @@ beforeAll(async () => {
       config,
       {
         promptVersion: p.razonar.version,
-        schema: EngineReasoningSchema as never,
+        schema: CLAVES_DE_LAS_PASADAS.razonar.schema as never,
         input: { claimId: id },
       },
       { reasoning },
@@ -169,7 +170,7 @@ beforeAll(async () => {
       config,
       {
         promptVersion: 'engine-extract-v1',
-        schema: EngineExtractSchema as never,
+        schema: CLAVES_DE_LAS_PASADAS.extraer.schema as never,
         input: { claimId: id, reasoning },
       },
       { verdict: 'sin-datos', cites: [] },
@@ -180,6 +181,15 @@ beforeAll(async () => {
   const firma = ['--ids', 'ids.txt', '--reason', MOTIVO]
   antes = readFileSync(overlayPath)
   res.dryRun = correr([...firma, '--editor', 'civicpulse-curator', '--dry-run'])
+  res.nadaProbado = correr([
+    '--ids',
+    'ids-sin-prueba.txt',
+    '--reason',
+    MOTIVO,
+    '--editor',
+    'civicpulse-curator',
+    '--dry-run',
+  ])
   trasDryRun = readFileSync(overlayPath)
   res.hueco = correr([...firma, '--editor', '<tu nombre>'])
   trasHueco = readFileSync(overlayPath)
@@ -255,5 +265,67 @@ describe('de verdad, en la caja', () => {
     expect(res.deVerdad.status, String(res.deVerdad.stderr)).toBe(0)
     expect(lineas(join(caja, 'trampa.log'))).toEqual([])
     expect(lineas(join(caja, 'red.log'))).toEqual([])
+  })
+})
+
+/**
+ * La PR #249 mete la huella de los candidatos en la entrada de cada clave del
+ * motor. Las entradas que hay que corregir se guardaron antes, con la forma de
+ * entonces: si la CLI construyera la clave como el motor de hoy, no encontraría
+ * ninguna y las daría todas por «sin procedencia».
+ */
+describe('las claves de entonces, no las del motor de hoy', () => {
+  const config = () => ({
+    ...loadConfigFromEnv(),
+    backend: 'claude-code' as const,
+    claudeCodeModel: 'sonnet',
+    cacheDir: join(caja, '.llm-cache'),
+  })
+  const razonar = CLAVES_DE_LAS_PASADAS.razonar
+  const extraer = CLAVES_DE_LAS_PASADAS.extraer
+  const resumen = () => FIXTURE.entries[GPT].verification.summary as string
+
+  it('con la forma de #249 —la huella de los candidatos dentro— no encuentra la entrada de agosto', () => {
+    const huella = { candidatos: 'huella-de-los-candidatos' }
+    expect(
+      llmCacheEntrada({
+        promptVersion: 'engine-reason-v1',
+        schema: razonar.schema,
+        input: { claimId: GPT, ...huella },
+        config: config(),
+      }),
+    ).toBeNull()
+    expect(
+      llmCacheEntrada({
+        promptVersion: extraer.version,
+        schema: extraer.schema,
+        input: { claimId: GPT, reasoning: resumen(), ...huella },
+        config: config(),
+      }),
+    ).toBeNull()
+  })
+
+  it('con la clave de entonces, sí, y dice quién la escribió', () => {
+    expect(
+      llmCacheEntrada({
+        promptVersion: 'engine-reason-v1',
+        schema: razonar.schema,
+        input: razonar.entrada(GPT),
+        config: config(),
+      }),
+    ).toMatchObject({ backend: 'openai', model: 'gpt-4o-mini' })
+    expect(
+      llmCacheEntrada({
+        promptVersion: extraer.version,
+        schema: extraer.schema,
+        input: extraer.entrada(GPT, resumen()),
+        config: config(),
+      }),
+    ).toMatchObject({ backend: 'openai', model: 'gpt-4o-mini' })
+  })
+
+  it('una lista en la que la caché no prueba ninguna fila no sale limpia: lo dice y sale con 1', () => {
+    expect(res.nadaProbado.status).toBe(1)
+    expect(String(res.nadaProbado.stderr)).toMatch(/ninguna/)
   })
 })

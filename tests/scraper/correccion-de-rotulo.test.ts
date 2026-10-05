@@ -15,7 +15,9 @@
 import { describe, expect, it } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
+import { zodToJsonSchema } from '../../src/llm/schemas'
 import {
+  CLAVES_DE_LAS_PASADAS,
   corregirRotulos,
   decidirCorreccionDeRotulo,
   type DecisionDeRotulo,
@@ -275,5 +277,39 @@ describe('validateOverlay · labelCorrections', () => {
       /anterior/,
     )
     expect(con((e) => (e.labelCorrections![0].previous = 'claude-code'))).toThrow(/previous/)
+  })
+})
+
+/**
+ * Las claves con que se guardaron las pasadas que hay que corregir, FIJADAS.
+ *
+ * La medición del 05-10-2026 encontró 1.248 de las 1.249 entradas del motor
+ * con estas claves exactas: estas versiones, esta forma de la entrada y estos
+ * esquemas. El motor las cambia —la PR #249 mete la huella de los candidatos en
+ * la entrada—, y una CLI que las derivara del motor de hoy daría todas las filas
+ * por «sin procedencia». Lo que se fija aquí es un hecho de entonces, no una
+ * copia de lo de ahora: no cambia nunca.
+ */
+describe('CLAVES_DE_LAS_PASADAS · las claves de entonces, fijadas', () => {
+  it('versiones y forma de la entrada de cada paso', () => {
+    expect(CLAVES_DE_LAS_PASADAS.razonar.versiones).toEqual([
+      'engine-reason-v2',
+      'engine-reason-v1',
+    ])
+    expect(CLAVES_DE_LAS_PASADAS.razonar.entrada('x-1')).toEqual({ claimId: 'x-1' })
+    expect(CLAVES_DE_LAS_PASADAS.extraer.version).toBe('engine-extract-v1')
+    expect(CLAVES_DE_LAS_PASADAS.extraer.entrada('x-1', 'r')).toEqual({
+      claimId: 'x-1',
+      reasoning: 'r',
+    })
+  })
+
+  it('el esquema de cada paso, tal como entró en la clave', () => {
+    expect(JSON.stringify(zodToJsonSchema(CLAVES_DE_LAS_PASADAS.razonar.schema))).toBe(
+      '{"type":"object","properties":{"reasoning":{"type":"string","minLength":1,"maxLength":2000}},"required":["reasoning"],"additionalProperties":false}',
+    )
+    expect(JSON.stringify(zodToJsonSchema(CLAVES_DE_LAS_PASADAS.extraer.schema))).toBe(
+      '{"type":"object","properties":{"verdict":{"type":"string","enum":["verificado","parcial","sin-datos"]},"cites":{"maxItems":5,"type":"array","items":{"type":"object","properties":{"candidateIndex":{"type":"integer","minimum":-9007199254740991,"maximum":9007199254740991},"snippet":{"type":"string"}},"required":["candidateIndex","snippet"],"additionalProperties":false}}},"required":["verdict","cites"],"additionalProperties":false}',
+    )
   })
 })
