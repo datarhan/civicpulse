@@ -1,6 +1,8 @@
+import { Fragment } from 'react'
 import { Card, ExtLink, Pill, SectionHead } from '../Primitives'
 import { MARGEN_ANCLA } from './anclas'
 import { ROTULO_TEXTO_RETIRADO, rotuloTextoPuesto, sustitutas } from '../BitacoraCorrecciones'
+import { trozos } from '../../lib/texto-negrita.js'
 
 /**
  * Las fichas firmadas sobre desviaciones del panel.
@@ -30,6 +32,35 @@ const MOTIVO_ETIQUETA = {
 }
 
 const num = (v, max = 2) => v.toLocaleString('es-ES', { maximumFractionDigits: max })
+
+/**
+ * Un párrafo de `trozos`: la negrita en <strong>, el resto como texto.
+ *
+ * El cuerpo de una ficha se escribe en un .md (`promote-indicador
+ * --cuerpo-file`) y trae `**negrita**` y párrafos. Pintado crudo, la ficha de
+ * los denominadores enseñó sus asteriscos —en el cuerpo y en las cuatro filas
+ * de la bitácora que lo corrigieron— y sus seis párrafos pegados en uno, hasta
+ * el 04-10-2026. El trozeador es el de los relatos del agente.
+ */
+function ConNegrita({ parrafo }) {
+  return parrafo.map((t, j) =>
+    t.negrita !== undefined ? <strong key={j}>{t.negrita}</strong> : <span key={j}>{t.texto}</span>,
+  )
+}
+
+/**
+ * Una versión de la bitácora va dentro de una frase —«Texto retirado: … ·
+ * Texto vigente: …»—, así que sus párrafos se leen seguidos, con un espacio
+ * entre uno y otro, como los dejaba el navegador cuando el texto iba crudo.
+ */
+function EnLinea({ texto }) {
+  return trozos(texto).map((parrafo, i) => (
+    <Fragment key={i}>
+      {i > 0 && ' '}
+      <ConNegrita parrafo={parrafo} />
+    </Fragment>
+  ))
+}
 
 function Medicion({ medicion }) {
   return (
@@ -107,7 +138,7 @@ function FichaEficiencia({ ficha }) {
           motivo: lo que califica una cifra se lee al lado de ella, no debajo de
           dos pantallas de argumento. */}
       <div className="cp-firmada-cols">
-        <p
+        <div
           style={{
             fontSize: 'var(--fs-aux)',
             color: 'var(--ink)',
@@ -115,8 +146,12 @@ function FichaEficiencia({ ficha }) {
             lineHeight: 1.55,
           }}
         >
-          {ficha.cuerpo}
-        </p>
+          {trozos(ficha.cuerpo).map((parrafo, i) => (
+            <p key={i} style={{ margin: i === 0 ? 0 : '10px 0 0' }}>
+              <ConNegrita parrafo={parrafo} />
+            </p>
+          ))}
+        </div>
         <aside style={{ marginTop: 10 }}>
           {ficha.caveats?.length > 0 && (
             <ul
@@ -177,8 +212,12 @@ function FichaEficiencia({ ficha }) {
               {ficha.corrections.map((c, i) => (
                 <p key={`${c.field}-${i}`} style={{ margin: '4px 0 0' }}>
                   <strong>Corregido el {c.correctedAt}</strong> ({c.field}): {ROTULO_TEXTO_RETIRADO}
-                  : <del>{c.original}</del> · {rotuloTextoPuesto(despues[i])}: {c.corrected}.
-                  Motivo: {c.reason}
+                  :{' '}
+                  <del>
+                    <EnLinea texto={c.original} />
+                  </del>{' '}
+                  · {rotuloTextoPuesto(despues[i])}: <EnLinea texto={c.corrected} />. Motivo:{' '}
+                  {c.reason}
                 </p>
               ))}
             </details>

@@ -6,7 +6,12 @@
  * 02-08-2026 llevó meses publicada enseñando sus propios asteriscos. El
  * 06-09-2026 el mismo defecto apareció en los relatos de las 21 biografías del
  * agente periodista («**puesto n.º 6**» a la vista), así que el trozeador vive
- * aquí y lo comparten los dos.
+ * aquí y lo comparte cada sitio que pinta ese texto: el 04-10-2026 volvió en la
+ * ficha firmada de /eficiencia y en su bitácora.
+ *
+ * Quien enseñe sólo una ventana del texto, que corte DESPUÉS de trocear: cortado
+ * antes, una negrita partida pierde su cierre y deja su `**` a la vista
+ * (`Recorte`, en AgenteReporte.jsx).
  *
  * NO es un intérprete de Markdown y no debe convertirse en uno: React escapa
  * cada trozo, así que aquí no entra HTML por mucho que lo traiga el JSON. Un
