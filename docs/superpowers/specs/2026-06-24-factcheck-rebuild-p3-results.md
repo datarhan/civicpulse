@@ -45,8 +45,12 @@ cheaper no-consistency config.
 > `sin-datos` del motor, y una respuesta fija `sin-datos` coincidiría en 53 de 64
 > (~83 %); del determinista, `verificado` es 1 de 3 y `parcial`, 4 de 18. Se midió
 > con gpt-5.4-mini; las pasadas del 2 de agosto de 2026, que a esta fecha escribieron
-> 1.051 de las 1.249 entradas `verdict-engine` del overlay, corrieron por Claude Code
-> y no se han medido contra esta muestra. /metodologia decía «muestra de control etiquetada a
+> 1.051 de las 1.249 entradas `verdict-engine` del overlay, se configuraron con Claude
+> Code y no se han medido contra esta muestra. (Corregido el 05-10-2026: no corrieron
+> sólo por Claude Code. Con la clave de OpenAI cargada, cada fallo de `claude -p` lo
+> contestó gpt-4o-mini, y el rótulo decía claude-code: de las 920 retractaciones de esa
+> pasada que siguen con su explicación, 457 son de gpt-4o-mini, medido contra una copia
+> de `.llm-cache` sin llamadas. Tampoco ese modelo se ha medido contra esta muestra.) /metodologia decía «muestra de control etiquetada a
 > mano … acierta ~92 %»; desde esta fecha dice quién la etiquetó y no da la cifra
 > como acierto. Las tres cifras, con su muestra real, están en
 > `.automation-measurements.json`.

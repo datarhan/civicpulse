@@ -24,11 +24,14 @@
  * asserted rather than trusted.
  *
  * The public entrypoint `callLLM<T>` does:
- *   1. Compute a content-addressed cache key (model + promptVersion + schema + input)
- *   2. Check `.llm-cache/<hash>.json` — hit? return it. Miss? call the backend.
+ *   1. Compute a content-addressed cache key (backend + model + promptVersion + schema + input)
+ *   2. Check `.llm-cache/<hash>.json` — hit written by that same backend? return it.
+ *      Miss, or an entry another backend wrote under that key? call the backend.
  *   3. Enforce per-run token budget (fails closed when breached)
  *   4. Retry up to 2× on schema-invalid output (temp=0, seed=42 on OpenAI)
  *   5. Record telemetry ({tokenCount, latencyMs, retryCount, cost}) alongside the cached output
+ *   6. Store the answer under the key of the backend that ANSWERED, never the
+ *      primary's when a fallback did. `callLLMConProcedencia` also says which.
  *
  * Any failure returns `null`; callers must treat that as "no suggestion for
  * this input" and continue. We never throw on LLM errors — the batch should
@@ -406,7 +409,13 @@ export function buildBackendChain(config: ClientConfig): Backend[] {
   return chain
 }
 
-function backendModel(config: ClientConfig): string {
+/**
+ * El modelo del backend de `config`, como lo nombran la clave y la entrada de
+ * la caché (`claude-code:sonnet`, `gpt-4o-mini`, `agy:<modelo>`…). Exportado
+ * para que quien rotule una respuesta la nombre como la caché, y no con otra
+ * derivación que acabe discrepando.
+ */
+export function backendModel(config: ClientConfig): string {
   if (config.backend === 'ollama') return config.ollamaModel
   if (config.backend === 'openai') return config.openaiModel
   if (config.backend === 'claude-code') return `claude-code:${config.claudeCodeModel}`
@@ -485,6 +494,14 @@ export interface RunStats {
   /** callLLM invocations that reached at least one backend. */
   calls: number
   cacheHits: number
+  /**
+   * Entradas que la caché guardaba bajo la clave del primario y había escrito
+   * OTRO backend: no se sirven, y la llamada se hace. Son las que dejó el
+   * cliente antes del 05-10-2026, cuando guardaba la respuesta de un respaldo a
+   * nombre del primario (ver `leerPropia`). Contadas para que una pasada que
+   * vuelve a pagar lo que creía tener en caché diga por qué.
+   */
+  cacheDeOtroBackend: number
   ok: number
   failed: number
   zeroTokenFailures: number
@@ -508,6 +525,7 @@ function freshStats(): RunStats {
   return {
     calls: 0,
     cacheHits: 0,
+    cacheDeOtroBackend: 0,
     ok: 0,
     failed: 0,
     zeroTokenFailures: 0,
@@ -582,6 +600,52 @@ function readCache<T>(cacheDir: string, key: string): CacheEntry<T> | null {
 function writeCache<T>(cacheDir: string, key: string, entry: CacheEntry<T>): void {
   mkdirSync(cacheDir, { recursive: true })
   writeFileSync(resolve(cacheDir, `${key}.json`), JSON.stringify(entry, null, 2))
+}
+
+/** Lo que identifica una pregunta en la caché, aparte del backend que la contesta. */
+interface Pregunta {
+  promptVersion: string
+  schema: ZodTypeAny
+  input: unknown
+}
+
+/** La clave de `pregunta` para el backend de `config`. Una sola derivación: `cacheKey`. */
+function claveDe(config: ClientConfig, pregunta: Pregunta): string {
+  return cacheKey({
+    backend: config.backend,
+    model: backendModel(config),
+    promptVersion: pregunta.promptVersion,
+    schema: pregunta.schema,
+    input: pregunta.input,
+  })
+}
+
+/**
+ * Lo que la caché guarda para `pregunta` bajo la clave del backend de `config`,
+ * SÓLO si lo contestó ese backend con ese modelo; `'ajena'` si lo escribió otro,
+ * y `null` si no hay nada.
+ *
+ * Hasta el 05-10-2026 `callLLM` guardaba la respuesta de un respaldo bajo la
+ * clave del primario, y sólo los campos `backend`/`model` de la entrada decían
+ * quién había contestado. Leerla por la clave la servía como del primario: así
+ * pasaron por respuestas de Claude 457 retractaciones del motor de veredictos
+ * que había escrito gpt-4o-mini. Esas entradas siguen en `.llm-cache` —no se
+ * borra nada—, pero ya no responden por nadie.
+ */
+function leerPropia<T>(config: ClientConfig, pregunta: Pregunta): CacheEntry<T> | 'ajena' | null {
+  const e = readCache<T>(config.cacheDir, claveDe(config, pregunta))
+  if (!e) return null
+  return e.backend === config.backend && e.model === backendModel(config) ? e : 'ajena'
+}
+
+/**
+ * Quién contestó una llamada: el backend y el modelo, como los nombra la caché,
+ * y si la respuesta salió de `.llm-cache` o de una llamada en esta pasada.
+ */
+export interface Procedencia {
+  backend: Backend
+  model: string
+  deCache: boolean
 }
 
 export function gatherCacheStats(cacheDir: string): CacheStats {
@@ -1431,6 +1495,8 @@ export interface CallLlmOptions<TSchema extends ZodTypeAny> {
  * clave): dos derivaciones que acaban discrepando, y ésta fallando hacia el lado
  * malo — diría «está en caché» de algo que no está, el fragmento se saltaría el
  * presupuesto, la llamada se haría igual y el reloj se iría por donde nadie mira.
+ * Por lo mismo lee con `leerPropia`: una entrada que escribió otro backend bajo
+ * esta clave `callLLM` no la sirve, y aquí tampoco cuenta.
  */
 export function llmCacheHas(opts: {
   promptVersion: string
@@ -1439,14 +1505,8 @@ export function llmCacheHas(opts: {
   config?: ClientConfig
 }): boolean {
   const config = opts.config ?? loadConfigFromEnv()
-  const key = cacheKey({
-    backend: config.backend,
-    model: backendModel(config),
-    promptVersion: opts.promptVersion,
-    schema: opts.schema,
-    input: opts.input,
-  })
-  return readCache(config.cacheDir, key) != null
+  const e = leerPropia(config, opts)
+  return e !== null && e !== 'ajena'
 }
 
 /**
@@ -1458,7 +1518,10 @@ export function llmCacheHas(opts: {
  * —el recorte de las explicaciones del motor, `verify:pleno-claims:engine --
  * --recortar`— no puede fiarla a que el entorno frene la cadena de backends:
  * tiene que cumplirla por construcción. La clave sale de `cacheKey`, por lo
- * mismo que en `llmCacheHas`.
+ * mismo que en `llmCacheHas`, y como allí sólo vale lo que contestó el backend
+ * de esa clave (`leerPropia`): el 05-10-2026 el recorte leyó así, como de
+ * Claude, el razonamiento que gpt-4o-mini había dejado bajo la clave de
+ * claude-code.
  *
  * Cuenta el acierto en las estadísticas de la pasada, como `callLLM`: el parte
  * de una pasada que juzga desde la caché tiene que poder decir de dónde salió
@@ -1471,15 +1534,8 @@ export function llmCacheGet<TSchema extends ZodTypeAny>(opts: {
   config?: ClientConfig
 }): z.infer<TSchema> | null {
   const config = opts.config ?? loadConfigFromEnv()
-  const key = cacheKey({
-    backend: config.backend,
-    model: backendModel(config),
-    promptVersion: opts.promptVersion,
-    schema: opts.schema,
-    input: opts.input,
-  })
-  const cached = readCache<z.infer<TSchema>>(config.cacheDir, key)
-  if (!cached) return null
+  const cached = leerPropia<z.infer<TSchema>>(config, opts)
+  if (cached === null || cached === 'ajena') return null
   currentStats.cacheHits += 1
   return cached.result
 }
@@ -1487,21 +1543,46 @@ export function llmCacheGet<TSchema extends ZodTypeAny>(opts: {
 export async function callLLM<TSchema extends ZodTypeAny>(
   opts: CallLlmOptions<TSchema>,
 ): Promise<z.infer<TSchema> | null> {
+  return (await callLLMConProcedencia(opts)).result
+}
+
+/** Lo que devuelve `callLLMConProcedencia`: la respuesta y quién la dio, o dos `null`. */
+export interface RespuestaConProcedencia<T> {
+  result: T | null
+  procedencia: Procedencia | null
+}
+
+/**
+ * `callLLM`, diciendo además QUIÉN contestó: el backend y el modelo, y si salió
+ * de la caché.
+ *
+ * Lo necesita quien firma la respuesta con un nombre. El motor de veredictos
+ * rotulaba con lo configurado, y el 02-08-2026 lo configurado era claude-code
+ * mientras, en cada fallo de `claude -p`, contestaba gpt-4o-mini desde la cadena
+ * de respaldo: 457 retractaciones publicadas a nombre de quien no las escribió.
+ *
+ * Cada respuesta se guarda bajo la clave de QUIEN la dio, y sólo se sirve por la
+ * clave de ese mismo backend (`leerPropia`). El primario se pregunta siempre
+ * primero; si falla, cada respaldo responde con lo que ÉL ya contestó, de su
+ * caché, antes de pagarse otra vez —sin eso, un agy agotado volvería a gastar la
+ * cuota de Max en cada pasada por las mismas preguntas.
+ */
+export async function callLLMConProcedencia<TSchema extends ZodTypeAny>(
+  opts: CallLlmOptions<TSchema>,
+): Promise<RespuestaConProcedencia<z.infer<TSchema>>> {
   const config = opts.config ?? loadConfigFromEnv()
   const maxRetries = opts.maxRetries ?? 2
+  const sinRespuesta = { result: null, procedencia: null }
 
-  const key = cacheKey({
-    backend: config.backend,
-    model: backendModel(config),
-    promptVersion: opts.promptVersion,
-    schema: opts.schema,
-    input: opts.input,
-  })
-
-  const cached = readCache<z.infer<TSchema>>(config.cacheDir, key)
-  if (cached) {
+  const cached = leerPropia<z.infer<TSchema>>(config, opts)
+  if (cached === 'ajena') {
+    currentStats.cacheDeOtroBackend += 1
+  } else if (cached) {
     currentStats.cacheHits += 1
-    return cached.result
+    return {
+      result: cached.result,
+      procedencia: { backend: config.backend, model: backendModel(config), deCache: true },
+    }
   }
 
   // Circuit breaker short-circuit — once tripped, stop making API calls and
@@ -1509,7 +1590,7 @@ export async function callLLM<TSchema extends ZodTypeAny>(
   // silent skip for the rest of the run.
   if (currentCircuit?.tripped) {
     currentStats.shortCircuited += 1
-    return null
+    return sinRespuesta
   }
 
   // Budget check before making the call — estimate by prompt length.
@@ -1518,7 +1599,7 @@ export async function callLLM<TSchema extends ZodTypeAny>(
     process.stderr.write(
       `[llm] run token budget exceeded (${currentBudget?.tokensUsed}/${currentBudget?.limit}); skipping call\n`,
     )
-    return null
+    return sinRespuesta
   }
 
   const attemptedBackends = buildBackendChain(config)
@@ -1530,11 +1611,25 @@ export async function callLLM<TSchema extends ZodTypeAny>(
   let attempt = 0
   let lastErr = ''
   let usedBackend = config.backend
+  // La respuesta salió de la caché de un respaldo, no de una llamada.
+  let deCache = false
 
   outer: for (let bi = 0; bi < attemptedBackends.length; bi++) {
     const backend = attemptedBackends[bi]
     const backendConfig: ClientConfig = { ...config, backend }
     usedBackend = backend
+    // Un respaldo, antes de pagarse otra vez: lo que ÉL ya contestó, bajo SU
+    // clave. Sólo después de que el primario haya fallado en vivo: si ya
+    // contesta, su respuesta manda.
+    if (bi > 0) {
+      const suya = leerPropia<z.infer<TSchema>>(backendConfig, opts)
+      if (suya && suya !== 'ajena') {
+        result = suya.result
+        deCache = true
+        currentStats.cacheHits += 1
+        break outer
+      }
+    }
     let perBackendAttempt = 0
     while (perBackendAttempt <= maxRetries) {
       try {
@@ -1645,27 +1740,35 @@ export async function callLLM<TSchema extends ZodTypeAny>(
 
   if (result !== null) {
     const usedConfig: ClientConfig = { ...config, backend: usedBackend }
-    const entry: CacheEntry<z.infer<TSchema>> = {
-      result,
-      backend: usedBackend,
-      model: backendModel(usedConfig),
-      promptVersion: opts.promptVersion,
-      tokenCount,
-      latencyMs: Date.now() - t0,
-      retryCount: attempt,
-      costUSD,
-      createdAt: new Date().toISOString(),
+    // Bajo la clave de QUIEN contestó, nunca la del primario: la clave es lo que
+    // una lectura cree, y `backend`/`model` de la entrada no los mira nadie que
+    // lea por la clave (ver `leerPropia`).
+    if (!deCache) {
+      const entry: CacheEntry<z.infer<TSchema>> = {
+        result,
+        backend: usedBackend,
+        model: backendModel(usedConfig),
+        promptVersion: opts.promptVersion,
+        tokenCount,
+        latencyMs: Date.now() - t0,
+        retryCount: attempt,
+        costUSD,
+        createdAt: new Date().toISOString(),
+      }
+      writeCache(config.cacheDir, claveDe(usedConfig, opts), entry)
     }
-    writeCache(config.cacheDir, key, entry)
     notifyResult(true)
-  } else {
-    notifyResult(false)
-    const trippedNow = currentCircuit?.tripped === true
-    process.stderr.write(
-      `[llm] all backends exhausted (${attemptedBackends.join('→')}) after ${attempt} total attempts: ${lastErr}${trippedNow ? ' · CIRCUIT TRIPPED, subsequent calls will short-circuit to null' : ''}\n`,
-    )
+    return {
+      result,
+      procedencia: { backend: usedBackend, model: backendModel(usedConfig), deCache },
+    }
   }
-  return result
+  notifyResult(false)
+  const trippedNow = currentCircuit?.tripped === true
+  process.stderr.write(
+    `[llm] all backends exhausted (${attemptedBackends.join('→')}) after ${attempt} total attempts: ${lastErr}${trippedNow ? ' · CIRCUIT TRIPPED, subsequent calls will short-circuit to null' : ''}\n`,
+  )
+  return sinRespuesta
 }
 
 // Ensure we create the cache dir only at use-time (tests may override the path).

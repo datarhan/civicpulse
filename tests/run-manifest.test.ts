@@ -20,6 +20,7 @@ import type { RunStats } from '../src/llm/client'
 const NO_TRAFFIC: RunStats = {
   calls: 0,
   cacheHits: 0,
+  cacheDeOtroBackend: 0,
   ok: 0,
   failed: 0,
   zeroTokenFailures: 0,
