@@ -65,6 +65,22 @@ describe('recortarResumen', () => {
     )
   })
 
+  it('«vs.» tampoco acaba la frase: dejaba el corte dentro de un paréntesis abierto', () => {
+    // La forma de seis de las 858 explicaciones recortadas el 05-10-2026:
+    // «…distinto objeto (arquitectura vs.», con el paréntesis sin cerrar.
+    const t =
+      'El único candidato es un contrato de redacción de un proyecto de arquitectura, sin relación ' +
+      'temática ni numérica con la afirmación. Concluí que no hay respaldo genuino: distinto objeto ' +
+      '(arquitectura vs. expropiación de una parcela), distinto importe y distinto año, así que nada ' +
+      'de lo que se lista respalda lo afirmado sobre la parcela del carrer.'
+    expect(t.length).toBeGreaterThan(RESUMEN_MAX)
+    expect(t.indexOf('vs. ')).toBeLessThan(RESUMEN_MAX)
+    expect(recortarResumen(t)).toBe(
+      'El único candidato es un contrato de redacción de un proyecto de arquitectura, sin relación ' +
+        'temática ni numérica con la afirmación.',
+    )
+  })
+
   it('una primera frase muy corta no se queda sola: mejor cortar en una palabra', () => {
     const t = 'No. ' + 'El candidato coincide en el tema pero no en lo afirmado y '.repeat(8)
     const r = recortarResumen(t)
