@@ -106,10 +106,12 @@ export const CLASES_SIN_RESPALDO: readonly ClaseSinRespaldo[] = [
     ),
   },
   {
-    // «Respaldo como mucho débil y sólo contextual por [0]».
+    // «Respaldo como mucho débil y sólo contextual por [0]», «el respaldo es como
+    // mucho débil y circunstancial», «Respaldo, como mucho, contextual y débil».
+    // No «respaldo como mucho débil/parcial en [1]»: ése ve algo (otxq2c-209).
     nombre: 'como mucho contexto',
     patron: patron(
-      '<respaldo (es )?como mucho (muy )?débil,? y (sól?o|meramente|puramente) (contextual|temático)>',
+      '<respaldo,?(?: es,?)? como mucho,? (?:muy )?(?:débil,? y (?:(?:sól?o|meramente|puramente) )?(?:contextual|temático|circunstancial|tangencial)|contextual,? y (?:muy )?débil)>',
     ),
   },
 ]
