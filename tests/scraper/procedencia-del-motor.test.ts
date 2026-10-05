@@ -12,6 +12,7 @@ import { describe, expect, it } from 'vitest'
 import { buildBackendChain, loadConfigFromEnv, type ClientConfig } from '../../src/llm/client'
 import {
   configDelMotor,
+  pasosPreguntados,
   primarioDelMotor,
   rotuloDelMotor,
 } from '../../src/scraper/procedencia-del-motor'
@@ -95,6 +96,43 @@ describe('rotuloDelMotor · se escribe a nombre de quien contestó, o no se escr
       ],
     })
     expect(r).toEqual({ accion: 'dejar', porque: 'otro-backend', quien: 'extraer: gpt-4o-mini' })
+  })
+
+  it('si el razonamiento concluye «sin respaldo», la extracción no se pide: basta la suya', () => {
+    // claim-verifier-engine.ts: un razonamiento que concluye que ningún
+    // candidato respalda la declaración es el veredicto, y la extracción no se
+    // pide. Exigir su procedencia dejaba sin escribir justo las retractaciones
+    // que el modelo sostiene.
+    expect(
+      rotuloDelMotor({
+        primario,
+        preguntados: pasosPreguntados('razonamiento'),
+        pasos: [{ paso: 'razonar', ...claude, deCache: true }],
+      }),
+    ).toEqual({ accion: 'escribir', rotulo: 'claude-code' })
+  })
+
+  it('y si ese razonamiento lo contestó otro backend, tampoco se escribe', () => {
+    expect(
+      rotuloDelMotor({
+        primario,
+        preguntados: pasosPreguntados('razonamiento'),
+        pasos: [{ paso: 'razonar', ...gpt, deCache: false }],
+      }),
+    ).toEqual({ accion: 'dejar', porque: 'otro-backend', quien: 'razonar: gpt-4o-mini' })
+  })
+
+  it('con cualquier otra salida del motor se preguntaron los dos pasos, y hacen falta los dos', () => {
+    for (const porque of [undefined, 'extraccion', 'solo-el-titulo', 'cita-sin-anclar'] as const) {
+      expect(
+        rotuloDelMotor({
+          primario,
+          preguntados: pasosPreguntados(porque),
+          pasos: [{ paso: 'razonar', ...claude, deCache: false }],
+        }),
+        String(porque),
+      ).toEqual({ accion: 'dejar', porque: 'sin-procedencia' })
+    }
   })
 
   it('sin la procedencia de los dos pasos, no se escribe', () => {

@@ -8,6 +8,8 @@ import { mergeVerified, type Overlay } from '../src/scraper/verified-merge'
 import { AGY_MODEL_DEFAULT, llmCacheHas, loadConfigFromEnv } from '../src/llm/client'
 import { EngineReasoningSchema } from '../src/llm/schemas'
 import { ENGINE_REASON_VERSION } from '../src/llm/prompts'
+import { shortlistCandidates } from '../src/scraper/claim-verifier'
+import { huellaDeCandidatos } from '../src/scraper/verifier-runner'
 
 /**
  * A nombre de quién escribe `verify:pleno-claims:engine`, de punta a punta.
@@ -40,16 +42,26 @@ const RAZONAMIENTO =
   'municipal»; no dice nada de que la carta se adapte por cambios en sus indicadores, así que ' +
   'no respalda la afirmación.'
 
+/**
+ * Un razonamiento que concluye con todas las letras que nada la respalda: el
+ * motor lo da por veredicto y no pide la extracción (conclusion-sin-respaldo.ts).
+ */
+const RAZONAMIENTO_SIN_RESPALDO =
+  'El único candidato es un contrato menor de 2018 para redactar la «Carta de servicios ' +
+  'municipal»; no dice nada de que la carta se adapte por cambios en sus indicadores. ' +
+  'Ningún candidato respalda genuinamente la afirmación.'
+
 /** `claude -p … --json-schema <esquema>`: la extracción es la que pide `verdict`. */
-const CLAUDE_FALSO = `#!/usr/bin/env node
+const claudeFalso = (razonamiento: string) => `#!/usr/bin/env node
 const { appendFileSync } = require('node:fs')
 const args = process.argv.slice(2)
 const esquema = args[args.indexOf('--json-schema') + 1] || ''
 const extraccion = esquema.includes('"verdict"')
 appendFileSync(process.env.CALL_LOG, 'claude\\t' + (extraccion ? 'extract' : 'reason') + '\\n')
-const salida = extraccion ? { verdict: 'sin-datos', cites: [] } : { reasoning: ${JSON.stringify(RAZONAMIENTO)} }
+const salida = extraccion ? { verdict: 'sin-datos', cites: [] } : { reasoning: ${JSON.stringify(razonamiento)} }
 process.stdout.write(JSON.stringify({ is_error: false, structured_output: salida, total_cost_usd: 0, usage: { input_tokens: 100, output_tokens: 30 } }))
 `
+const CLAUDE_FALSO = claudeFalso(RAZONAMIENTO)
 const CAIDO = (quien: string) =>
   `#!/bin/sh\nprintf '${quien}\\tcaído\\n' >> "$CALL_LOG"\necho "${quien} falso caído" >&2\nexit 1\n`
 const SIN_RED = `import { appendFileSync } from 'node:fs'
@@ -191,10 +203,27 @@ describe('3 · un respaldo gratuito contesta: agy cae y claude responde', () => 
     c = correr({ LLM_BACKEND: 'agy' }, { agy: CAIDO('agy'), claude: CLAUDE_FALSO })
   }, 120_000)
 
+  // La clave lleva la huella del shortlist que vio el modelo (verifier-runner.ts):
+  // el guion corre en léxico sobre `tenders.json` y nada más.
+  const claim = FIXTURE.base.items.find(
+    (it: { claim: { id: string } }) => it.claim.id === JUZGADA,
+  ).claim
+  const candidatos = shortlistCandidates(
+    {
+      claim,
+      tenders: FIXTURE.tenders,
+      tendersTed: null,
+      bdns: null,
+      budget: null,
+      promises: null,
+      priorClaims: [],
+    } as never,
+    8,
+  )
   const pregunta = {
     promptVersion: ENGINE_REASON_VERSION,
     schema: EngineReasoningSchema,
-    input: { claimId: JUZGADA },
+    input: { claimId: JUZGADA, candidatos: huellaDeCandidatos(candidatos) },
   }
   const config = (backend: 'agy' | 'claude-code') => ({
     ...loadConfigFromEnv(),
@@ -224,8 +253,40 @@ describe('3 · un respaldo gratuito contesta: agy cae y claude responde', () => 
     expect(motivos).toEqual([[expect.any(String), 1]])
   })
 
+  it('el control de la clave: el shortlist del guion no está vacío', () => {
+    expect(candidatos.length).toBeGreaterThan(0)
+  })
+
   it('su razonamiento queda en la caché a nombre de claude, no bajo la clave de agy', () => {
     expect(llmCacheHas({ ...pregunta, config: config('agy') })).toBe(false)
     expect(llmCacheHas({ ...pregunta, config: config('claude-code') })).toBe(true)
+  })
+})
+
+describe('4 · el razonamiento concluye «sin respaldo»: una sola llamada, y se escribe', () => {
+  let c: Corrida
+  beforeAll(() => {
+    c = correr({ LLM_BACKEND: 'claude-code' }, { claude: claudeFalso(RAZONAMIENTO_SIN_RESPALDO) })
+  }, 120_000)
+
+  it('el control: claude razonó, y la extracción no se pidió', () => {
+    expect(c.status, c.stderr).toBe(0)
+    expect(c.llamadas).toEqual(['claude\treason'])
+  })
+
+  it('la retractación se escribe a nombre de claude-code, con su razonamiento', () => {
+    // Antes de componer las dos cosas, `rotuloDelMotor` pedía la procedencia
+    // de una extracción que el motor ya no pide, y la dejaba sin escribir.
+    const e = c.overlay.entries[JUZGADA]
+    expect(e.source, c.stderr).toBe('verdict-engine')
+    expect(e.editor).toBe('verdict-engine:claude-code')
+    expect(e.verification.verdict).toBe('sin-datos')
+    expect(e.verification.summary).toBe(RAZONAMIENTO_SIN_RESPALDO)
+  })
+
+  it('y cuenta como juzgada y retractada, no como saltada', () => {
+    expect(c.parte.judged).toBe(1)
+    expect(c.parte.outcome).toEqual({ retracted: 1 })
+    expect(c.red).toEqual([])
   })
 })
