@@ -200,6 +200,17 @@ describe('cola de apoyo → correct-pleno-finding --field summary', () => {
     expect(despues).toEqual(antes)
   })
 
+  it('con el motivo y la firma rellenos y el sumario como llegó, se niega y no toca los datos', () => {
+    // El validador pide 40 caracteres a un sumario: el hueco tiene que quedarse corto.
+    const { r, antes, despues } = corregir(
+      script,
+      rellenar(argv, { '--reason': MOTIVO, '--editor': FIRMA }),
+    )
+    expect(r.status, r.stdout + r.stderr).not.toBe(0)
+    expect(r.stderr).toContain('.summary')
+    expect(despues).toEqual(antes)
+  })
+
   it('rellena entera, escribe la corrección con ese motivo', () => {
     const { r, ficha } = corregir(
       script,
@@ -369,6 +380,17 @@ describe('cola de reanclaje de declaraciones → reanchor-claim', () => {
     )
     expect(r.status, r.stdout + r.stderr).not.toBe(0)
     expect(r.stderr).toContain('--reason')
+    expect(despues).toEqual(antes)
+  })
+
+  it('con el motivo y la firma rellenos y el literal como llegó, se niega y no toca los datos', () => {
+    // A este hueco no lo para la longitud sino el acta: `reanchor-claim` sólo
+    // ancla en un pasaje que conste seguido en una transcripción de la sesión.
+    const { r, antes, despues } = reanclar(
+      rellenar(argv, { '--reason': MOTIVO, '--editor': FIRMA }),
+    )
+    expect(r.status, r.stdout + r.stderr).not.toBe(0)
+    expect(r.stderr).toMatch(/no consta seguido/i)
     expect(despues).toEqual(antes)
   })
 
