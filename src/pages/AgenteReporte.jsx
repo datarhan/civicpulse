@@ -91,17 +91,30 @@ function sectionAnchorId(section, alreadySeen) {
 // the first corrections with bold (06-09-2026) showed their asterisks on the
 // page — the same defect PR #104 removed from the narratives one component up.
 // Inline, paragraphs joined by a space: the ledger shows a clipped window, not
-// the prose. Exported so the render is testable without mounting the page.
+// the prose. The window is cut AFTER `trozos`, on the text the reader sees: cut
+// before, a bold run crossing character 200 lost its closing `**` and showed the
+// opening one («devuelve **0 c», a-alberto-gimeno-bio-v2, 05-10-2026), and the
+// paragraphs came out glued. Exported so the render is testable without
+// mounting the page.
+const VENTANA = 200
 function Recorte({ texto }) {
-  return trozos(texto.slice(0, 200))
-    .flat()
-    .map((t, j) =>
-      t.negrita !== undefined ? (
-        <strong key={j}>{t.negrita}</strong>
-      ) : (
-        <span key={j}>{t.texto}</span>
-      ),
-    )
+  const piezas = []
+  let resto = VENTANA
+  for (const [i, parrafo] of trozos(texto).entries()) {
+    if (i > 0 && resto > 0) {
+      piezas.push({ texto: ' ' })
+      resto -= 1
+    }
+    for (const t of parrafo) {
+      if (resto <= 0) break
+      const s = (t.negrita ?? t.texto).slice(0, resto)
+      resto -= s.length
+      piezas.push(t.negrita !== undefined ? { negrita: s } : { texto: s })
+    }
+  }
+  return piezas.map((t, j) =>
+    t.negrita !== undefined ? <strong key={j}>{t.negrita}</strong> : <span key={j}>{t.texto}</span>,
+  )
 }
 
 export function CorrectionLog({ corrections }) {
