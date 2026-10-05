@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T17:23:05.282Z",
+  "generatedAt": "2026-10-05T06:15:41.737Z",
   "version": "1",
   "plenoId": "1du4rf5",
   "plenoDate": "2025-11-03",
@@ -582,7 +582,7 @@
       "verification": {
         "claimId": "1du4rf5-021-cit-be85e8",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (una negación genérica sobre que un expediente no es erróneo, sin cifras, fechas ni identificadores concretos) frente al único candidato disponible (un contrato de servicio del Portal del Empleado en Riba-roja). No hay coincidencia de sujeto, tema ni valores concretos; la simil",
+        "summary": "Analicé la afirmación (una negación genérica sobre que un expediente no es erróneo, sin cifras, fechas ni identificadores concretos) frente al único candidato disponible (un contrato de servicio del Portal del Empleado en Riba-roja).",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -752,7 +752,7 @@
       "verification": {
         "claimId": "1du4rf5-026-cit-94e83c",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la entrega de un expediente antes de una convocatoria, mencionando específicamente un día (jueves) y la disponibilidad del mismo para los miembros antes de la reunión. Sin embargo, los candidatos listados no presentan información que confirme la entrega de un expediente en",
+        "summary": "La afirmación se refiere a la entrega de un expediente antes de una convocatoria, mencionando específicamente un día (jueves) y la disponibilidad del mismo para los miembros antes de la reunión.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -963,7 +963,7 @@
       "verification": {
         "claimId": "1du4rf5-030-cit-512a64",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona un \"expediente\" que se tiene en archivos, pero no proporciona detalles específicos sobre el contenido o la naturaleza de dicho expediente. Ninguno de los candidatos presenta información que se relacione directamente con un expediente específico que respalde la afirmación. Los ",
+        "summary": "La afirmación menciona un \"expediente\" que se tiene en archivos, pero no proporciona detalles específicos sobre el contenido o la naturaleza de dicho expediente. Ninguno de los candidatos presenta información que se relacione directamente con un expediente específico que respalde la afirmación.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -994,7 +994,7 @@
       "verification": {
         "claimId": "1du4rf5-031-cit-187b75",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la \"ampliación de una trapasada\" en el contexto de un acta sanitaria, pero ninguno de los candidatos presenta información que coincida específicamente con esta descripción. Los contratos mencionados se centran en obras de ampliación de espacios públicos, adecuación de pasa",
+        "summary": "La afirmación se refiere a la \"ampliación de una trapasada\" en el contexto de un acta sanitaria, pero ninguno de los candidatos presenta información que coincida específicamente con esta descripción.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1683,7 +1683,7 @@
       "verification": {
         "claimId": "1du4rf5-042-afi-068511",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre la liquidación del ejercicio de 2022 por 86.532 euros. Los documentos listados se refieren a ayudas escolares, subvenciones para deportistas y otros acuerdos que no tienen relación directa con la liquidación fiscal menci",
+        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre la liquidación del ejercicio de 2022 por 86.532 euros.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1715,7 +1715,7 @@
       "verification": {
         "claimId": "1du4rf5-042-afi-accfd2",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presentados respalda de manera genuina la afirmación sobre las entregas a cuenta de 101.000 euros en 2023. Los documentos mencionados se refieren a ayudas escolares, contratos de suministros y servicios, pero no hay evidencia concreta que relacione estos registros con el mo",
+        "summary": "Ninguno de los candidatos presentados respalda de manera genuina la afirmación sobre las entregas a cuenta de 101.000 euros en 2023.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1747,7 +1747,7 @@
       "verification": {
         "claimId": "1du4rf5-042-afi-acd3ac",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación de que \"se pagaron en total 187.620 euros\". Los contratos listados no mencionan ni el monto específico de 187.620 euros ni están relacionados con el contexto de las entregas a cuenta de 2023. Además, no hay evidencia de que al",
+        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación de que \"se pagaron en total 187.620 euros\". Los contratos listados no mencionan ni el monto específico de 187.620 euros ni están relacionados con el contexto de las entregas a cuenta de 2023.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1952,7 +1952,7 @@
       "verification": {
         "claimId": "1du4rf5-047-afi-29e9e2",
         "verdict": "sin-datos",
-        "summary": "El candidato [0] es un contrato de suministro de módulos para elaboración de presupuestos y RPT en el Ayuntamiento de Riba-roja de Túria, marcado como \"void\" (anulado), con similitud muy baja (0.25). No guarda relación con la cifra concreta de 86.000€ que la afirmación atribuye a diferencias del eje",
+        "summary": "El candidato [0] es un contrato de suministro de módulos para elaboración de presupuestos y RPT en el Ayuntamiento de Riba-roja de Túria, marcado como \"void\" (anulado), con similitud muy baja (0.25).",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1983,7 +1983,7 @@
       "verification": {
         "claimId": "1du4rf5-049-afi-563aa1",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre el pago de varias facturas de inversión por importe de 14.442,55 euros. Todos los registros de los candidatos se refieren a contratos o expedientes de montos significativamente diferentes, como 84.000 euros o no especifi",
+        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre el pago de varias facturas de inversión por importe de 14.442,55 euros.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -2266,7 +2266,7 @@
       "verification": {
         "claimId": "1du4rf5-059-afi-ea2eee",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona un presupuesto aprobado en septiembre que establece que no era necesario hacer un ERC (Expediente de Regulación de Contratación) para montos hasta 3.000 euros. Sin embargo, los candidatos listados no presentan información específica que confirme esta afirmación. Las bases regu",
+        "summary": "La afirmación menciona un presupuesto aprobado en septiembre que establece que no era necesario hacer un ERC (Expediente de Regulación de Contratación) para montos hasta 3.000 euros. Sin embargo, los candidatos listados no presentan información específica que confirme esta afirmación.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -2389,7 +2389,7 @@
       "verification": {
         "claimId": "1du4rf5-062-afi-5c4396",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos respalda genuinamente la afirmación de que \"son cerca de 1.500 euros\". Todos los contratos presentados tienen montos significativamente superiores a 1.500 euros, siendo el más bajo de €4.023,61. La afirmación se refiere a un importe específico que no coincide con los valore",
+        "summary": "Ninguno de los candidatos respalda genuinamente la afirmación de que \"son cerca de 1.500 euros\". Todos los contratos presentados tienen montos significativamente superiores a 1.500 euros, siendo el más bajo de €4.023,61.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -2420,7 +2420,7 @@
       "verification": {
         "claimId": "1du4rf5-063-afi-203882",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un contrato que respalde la afirmación de que el importe es \"cerca de 1.500 euros\". Todos los contratos listados tienen montos significativamente mayores, desde €2.807,2 hasta €37.679,4. La afirmación se refiere a un monto específico que no coincide con ninguna de ",
+        "summary": "Ninguno de los candidatos presenta un contrato que respalde la afirmación de que el importe es \"cerca de 1.500 euros\". Todos los contratos listados tienen montos significativamente mayores, desde €2.807,2 hasta €37.679,4.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -2660,7 +2660,7 @@
       "verification": {
         "claimId": "1du4rf5-069-afi-dc0be4",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona específicamente la compra de cuatro bancos por un total de 474,90 euros, desglosando 384,90 euros más 90 euros de desplazamiento. Sin embargo, ninguno de los candidatos presentados se refiere a la compra de bancos ni a un monto que coincida con 474,90 euros. Los contratos list",
+        "summary": "La afirmación menciona específicamente la compra de cuatro bancos por un total de 474,90 euros, desglosando 384,90 euros más 90 euros de desplazamiento. Sin embargo, ninguno de los candidatos presentados se refiere a la compra de bancos ni a un monto que coincida con 474,90 euros.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -2693,7 +2693,7 @@
       "verification": {
         "claimId": "1du4rf5-070-afi-dc0be8",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos respalda genuinamente la afirmación. La afirmación menciona específicamente un monto total de €474.90 por cuatro bancos, desglosado en €384.90 más €90 de desplazamiento. Sin embargo, los candidatos listados se refieren a contratos de suministros y servicios que no tienen re",
+        "summary": "Ninguno de los candidatos respalda genuinamente la afirmación. La afirmación menciona específicamente un monto total de €474.90 por cuatro bancos, desglosado en €384.90 más €90 de desplazamiento.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -3286,7 +3286,7 @@
       "verification": {
         "claimId": "1du4rf5-080-cit-655539",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los cuatro candidatos respalda genuinamente la afirmación. La afirmación se refiere a la creación normativa de un nuevo grado de dependencia (\"grado 3+\") para personas que requieren cuidados permanentes 24 horas, es decir, una medida legislativa/administrativa sobre clasificación de depen",
+        "summary": "Ninguno de los cuatro candidatos respalda genuinamente la afirmación. La afirmación se refiere a la creación normativa de un nuevo grado de dependencia (\"grado 3+\") para personas que requieren cuidados permanentes 24 horas, es decir, una medida legislativa/administrativa sobre clasificación de…",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -3318,7 +3318,7 @@
       "verification": {
         "claimId": "1du4rf5-081-afi-2b9ef4",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre la cuantía mínima estatal garantizada de 4.930 euros al mes. Los documentos mencionados se refieren a ayudas y servicios de asistencia a domicilio, pero no hay evidencia de que se establezca una cuantía mínima estatal ga",
+        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre la cuantía mínima estatal garantizada de 4.930 euros al mes.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -3350,7 +3350,7 @@
       "verification": {
         "claimId": "1du4rf5-081-afi-2bcd4d",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre la cuantía máxima de 9.859 euros al mes en prestaciones vinculadas al servicio de asistencia personal. Aunque hay menciones a servicios de ayuda a domicilio, no se especifican montos que coincidan con ",
+        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre la cuantía máxima de 9.859 euros al mes en prestaciones vinculadas al servicio de asistencia personal.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -3882,7 +3882,7 @@
       "verification": {
         "claimId": "1du4rf5-090-cit-6083f0",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona la \"aprobación del Real Decreto\" en un contexto relacionado con la salud, pero ninguno de los candidatos presentados hace referencia a un Real Decreto específico ni a acontecimientos relacionados con la salud. Los documentos listados se centran en ayudas económicas y programas",
+        "summary": "La afirmación menciona la \"aprobación del Real Decreto\" en un contexto relacionado con la salud, pero ninguno de los candidatos presentados hace referencia a un Real Decreto específico ni a acontecimientos relacionados con la salud.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -3940,7 +3940,7 @@
       "verification": {
         "claimId": "1du4rf5-091-cit-8f1071",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona la \"aprobación del Real Decreto\", pero ninguno de los candidatos presenta información que se relacione directamente con un Real Decreto específico. Los documentos listados se refieren a contratos y acuerdos administrativos del Ayuntamiento de Riba-roja de Túria, pero no hay ev",
+        "summary": "La afirmación menciona la \"aprobación del Real Decreto\", pero ninguno de los candidatos presenta información que se relacione directamente con un Real Decreto específico.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -4392,7 +4392,7 @@
       "verification": {
         "claimId": "1du4rf5-103-cit-6189d5",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los dos candidatos respalda la afirmación. Ambos son licitaciones (tenders) del Ayuntamiento de Riba-roja de Túria sobre asuntos completamente ajenos —redacción de un proyecto arquitectónico y un portal del empleado— sin relación alguna con Vox, comisiones informativas, ni mociones conjun",
+        "summary": "Ninguno de los dos candidatos respalda la afirmación. Ambos son licitaciones (tenders) del Ayuntamiento de Riba-roja de Túria sobre asuntos completamente ajenos —redacción de un proyecto arquitectónico y un portal del empleado— sin relación alguna con Vox, comisiones informativas, ni mociones…",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -5057,7 +5057,7 @@
       "verification": {
         "claimId": "1du4rf5-132-cit-4df091",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la importancia de los autos de la juez en la determinación de responsabilidades y competencias, pero ninguno de los candidatos presenta información que se relacione directamente con este tema. Los contratos listados se centran en servicios y suministros relacionados con ve",
+        "summary": "La afirmación se refiere a la importancia de los autos de la juez en la determinación de responsabilidades y competencias, pero ninguno de los candidatos presenta información que se relacione directamente con este tema.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -5146,7 +5146,7 @@
       "verification": {
         "claimId": "1du4rf5-143-cit-92abec",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona una \"Comisión de Investigación\" y sugiere que se realizarían preguntas sobre ciertas cuestiones en ella. Sin embargo, los candidatos listados no presentan información relacionada con una Comisión de Investigación, ya que todos se refieren a contratos y ayudas específicas para ",
+        "summary": "La afirmación menciona una \"Comisión de Investigación\" y sugiere que se realizarían preguntas sobre ciertas cuestiones en ella.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -5178,7 +5178,7 @@
       "verification": {
         "claimId": "1du4rf5-152-afi-130662",
         "verdict": "sin-datos",
-        "summary": "El candidato no guarda relación temática, de entidad ni de magnitud con la afirmación. Se trata de un contrato municipal de Riba-roja de Túria por 25.794€ para un portal del empleado, mientras la afirmación habla de 2.364 millones de euros del Consell (Mazón/Vox) para la DANA. No hay coincidencia de",
+        "summary": "El candidato no guarda relación temática, de entidad ni de magnitud con la afirmación. Se trata de un contrato municipal de Riba-roja de Túria por 25.794€ para un portal del empleado, mientras la afirmación habla de 2.364 millones de euros del Consell (Mazón/Vox) para la DANA.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -5266,7 +5266,7 @@
       "verification": {
         "claimId": "1du4rf5-153-cit-1bdf60",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona la reconstrucción en el contexto del gobierno de España y sugiere que hay dificultades en su ejecución. Sin embargo, los candidatos presentados se centran en contratos específicos de obras y ayudas económicas a nivel local, sin hacer referencia directa a la situación general d",
+        "summary": "La afirmación menciona la reconstrucción en el contexto del gobierno de España y sugiere que hay dificultades en su ejecución.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -5750,7 +5750,7 @@
       "verification": {
         "claimId": "1du4rf5-184-cit-eaf42f",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación sobre \"ley de defensa de los animales\" frente al único candidato disponible: un contrato de asesoramiento jurídico y defensa procesal general del Ayuntamiento de Riba-roja de Túria. No hay relación temática real (defensa procesal ≠ defensa animal), el contrato está revocado, y ",
+        "summary": "Analicé la afirmación sobre \"ley de defensa de los animales\" frente al único candidato disponible: un contrato de asesoramiento jurídico y defensa procesal general del Ayuntamiento de Riba-roja de Túria.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -5842,7 +5842,7 @@
       "verification": {
         "claimId": "1du4rf5-197-cit-a77022",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la capacidad de las comunidades autónomas y ayuntamientos para decidir sobre el reconocimiento de la tauromaquia como patrimonio, en el contexto de la ley 18-2013. Sin embargo, los documentos presentados son acuerdos y resoluciones del Ayuntamiento de Riba-roja de Túria re",
+        "summary": "La afirmación se refiere a la capacidad de las comunidades autónomas y ayuntamientos para decidir sobre el reconocimiento de la tauromaquia como patrimonio, en el contexto de la ley 18-2013.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6188,7 +6188,7 @@
       "verification": {
         "claimId": "1du4rf5-237-cit-e34df3",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a una Iniciativa Legislativa Popular (ILP) y menciona que no es una moción presentada en legislaturas anteriores. Sin embargo, los candidatos listados se centran en contratos relacionados con la ejecución de obras, adquisición de bienes inmuebles, defensa judicial y gestión ",
+        "summary": "La afirmación se refiere a una Iniciativa Legislativa Popular (ILP) y menciona que no es una moción presentada en legislaturas anteriores.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6481,7 +6481,7 @@
       "verification": {
         "claimId": "1du4rf5-265-cit-eb3d58",
         "verdict": "sin-datos",
-        "summary": "Analizada la afirmación (propuesta de transparencia sobre externalizaciones del programa de prevención de cáncer de mama, competencia de la Generalitat/Departamento de Salud) frente a los candidatos (tenders municipales de Riba-roja de Túria sobre vigilancia de salud laboral, portal de empleo, base ",
+        "summary": "Analizada la afirmación (propuesta de transparencia sobre externalizaciones del programa de prevención de cáncer de mama, competencia de la Generalitat/Departamento de Salud) frente a los candidatos (tenders municipales de Riba-roja de Túria sobre vigilancia de salud laboral, portal de empleo…",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6865,7 +6865,7 @@
       "verification": {
         "claimId": "1du4rf5-275-cit-e81dd6",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (solicitud de auditoría a la Consejería de Sanidad de la Generalitat Valenciana y a nivel nacional) contra los tres candidatos, que son licitaciones/contratos municipales de Riba-roja de Túria sin relación temática, de entidad ni de sujeto con lo afirmado. Ningún candidato resp",
+        "summary": "Analicé la afirmación (solicitud de auditoría a la Consejería de Sanidad de la Generalitat Valenciana y a nivel nacional) contra los tres candidatos, que son licitaciones/contratos municipales de Riba-roja de Túria sin relación temática, de entidad ni de sujeto con lo afirmado.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"

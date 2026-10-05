@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T17:23:05.282Z",
+  "generatedAt": "2026-10-05T06:15:41.737Z",
   "version": "1",
   "plenoId": "ma87e0",
   "plenoDate": "2026-03-16",
@@ -591,7 +591,7 @@
       "verification": {
         "claimId": "ma87e0-102-afi-7c43d5",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (cifra de ~100.000€ de margen presupuestario 2026) contra los 8 candidatos. Ninguno trata del presupuesto municipal 2026 ni de un margen ingresos-gastos; son subvenciones BDNS de ayudas escolares/sociales de años pasados y contratos menores de suministros sin relación de import",
+        "summary": "Analicé la afirmación (cifra de ~100.000€ de margen presupuestario 2026) contra los 8 candidatos. Ninguno trata del presupuesto municipal 2026 ni de un margen ingresos-gastos; son subvenciones BDNS de ayudas escolares/sociales de años pasados y contratos menores de suministros sin relación de…",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -623,7 +623,7 @@
       "verification": {
         "claimId": "ma87e0-102-afi-f7650b",
         "verdict": "sin-datos",
-        "summary": "El candidato [0] es un contrato de suministro de módulos informáticos para elaboración de presupuestos y RPT del Ayuntamiento de Riba-roja de Túria. No contiene ninguna cifra de diferencia entre ingresos y gastos, ni datos de legislaturas anteriores, ni información sobre cumplimiento normativo de su",
+        "summary": "El candidato [0] es un contrato de suministro de módulos informáticos para elaboración de presupuestos y RPT del Ayuntamiento de Riba-roja de Túria.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1128,7 +1128,7 @@
       "verification": {
         "claimId": "ma87e0-110-afi-7e273c",
         "verdict": "sin-datos",
-        "summary": "Ningún candidato respalda la afirmación. Los candidatos [0] y [1] mencionan el mismo espacio (ECA), pero son contratos menores operativos (diseño de materiales gráficos por €12.813,9 y comisariado por €15.730 para exposiciones), no una aportación fundacional de 30.000 € para constituir la \"Fundación",
+        "summary": "Ningún candidato respalda la afirmación. Los candidatos [0] y [1] mencionan el mismo espacio (ECA), pero son contratos menores operativos (diseño de materiales gráficos por €12.813,9 y comisariado por €15.730 para exposiciones), no una aportación fundacional de 30.000 € para constituir la…",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1573,7 +1573,7 @@
       "verification": {
         "claimId": "ma87e0-116-afi-437ccd",
         "verdict": "sin-datos",
-        "summary": "Analicé los 8 candidatos frente a la afirmación sobre un \"derecho\" fiscal de casi 4 millones de euros. Todos los candidatos son contratos de servicios municipales (biblioteca, socorrismo, bases de datos jurídicas, asesoría legal, seguros, atención a empresas) con importes de órdenes de magnitud muy ",
+        "summary": "Analicé los 8 candidatos frente a la afirmación sobre un \"derecho\" fiscal de casi 4 millones de euros.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -2553,7 +2553,7 @@
       "verification": {
         "claimId": "ma87e0-143-cit-adb382",
         "verdict": "sin-datos",
-        "summary": "Analicé los 8 candidatos frente a la afirmación sobre el \"Plan Conviviente\" 2022 que preveía residencia+centro de día para mayores dependientes y residencia+centro de día para diversidad funcional en Riba-roja de Túria. Ningún candidato es un plan aprobado en 2022 ni menciona residencias; son contra",
+        "summary": "Analicé los 8 candidatos frente a la afirmación sobre el \"Plan Conviviente\" 2022 que preveía residencia+centro de día para mayores dependientes y residencia+centro de día para diversidad funcional en Riba-roja de Túria.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -3375,7 +3375,7 @@
       "verification": {
         "claimId": "ma87e0-162-cit-4e23e7",
         "verdict": "sin-datos",
-        "summary": "Ningún candidato respalda genuinamente la afirmación. La afirmación cita específicamente el edificio \"La Granota\" como beneficiario de mejoras e inversiones en el presupuesto 2026. Los cuatro candidatos son contratos (tenders) sobre entidades distintas: [0] Antiguo Hogar del Jubilado para EPA, [1] c",
+        "summary": "Ningún candidato respalda genuinamente la afirmación. La afirmación cita específicamente el edificio \"La Granota\" como beneficiario de mejoras e inversiones en el presupuesto 2026.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -3468,7 +3468,7 @@
       "verification": {
         "claimId": "ma87e0-162-cit-3acc3b",
         "verdict": "sin-datos",
-        "summary": "Analicé el único candidato disponible: un contrato de mantenimiento de servidores HP en CPD's municipales de Riba-roja de Túria, categoría \"it\". La afirmación trata sobre mejoras al equipamiento cultural \"La Severa\" en el presupuesto 2026. No hay coincidencia de entidad/sujeto (servidores informátic",
+        "summary": "Analicé el único candidato disponible: un contrato de mantenimiento de servidores HP en CPD's municipales de Riba-roja de Túria, categoría \"it\". La afirmación trata sobre mejoras al equipamiento cultural \"La Severa\" en el presupuesto 2026.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"

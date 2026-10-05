@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T17:23:05.282Z",
+  "generatedAt": "2026-10-05T06:15:41.737Z",
   "version": "1",
   "plenoId": "10yl550",
   "plenoDate": "2026-05-11",
@@ -86,7 +86,7 @@
       "verification": {
         "claimId": "10yl550-001-afi-9b7243",
         "verdict": "sin-datos",
-        "summary": "Analicé cada candidato: son contratos (tenders) adjudicados por procedimientos formales y una subvención nominativa, no reconocimientos extrajudiciales de crédito. La afirmación exige evidencia de pagos extrajudiciales agregados >50.000€, algo que ningún candidato documenta. No hay coincidencia de s",
+        "summary": "Analicé cada candidato: son contratos (tenders) adjudicados por procedimientos formales y una subvención nominativa, no reconocimientos extrajudiciales de crédito. La afirmación exige evidencia de pagos extrajudiciales agregados >50.000€, algo que ningún candidato documenta.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -237,7 +237,7 @@
       "verification": {
         "claimId": "10yl550-009-afi-826b4f",
         "verdict": "sin-datos",
-        "summary": "Analicé los 8 candidatos frente a la afirmación de que se pagó \"un millón de euros en extrajudiciales\". Ningún candidato coincide en magnitud (máximo 60.000€ vs 1.000.000€ afirmado, un factor de ~17x de diferencia) ni en naturaleza (los candidatos son contratos de servicios jurídicos/tenders, no par",
+        "summary": "Analicé los 8 candidatos frente a la afirmación de que se pagó \"un millón de euros en extrajudiciales\".",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -304,7 +304,7 @@
       "verification": {
         "claimId": "10yl550-017-afi-6f4aab",
         "verdict": "sin-datos",
-        "summary": "Analicé cada candidato comparando entidad (parcela 74, calle Cerámica/Riva Rocha), tipo de operación (expropiación) e importe (26.000€). Ninguno coincide: los importes difieren en magnitud, las ubicaciones/sujetos son distintos, y el candidato más cercano temáticamente ([1]) es solo la redacción de ",
+        "summary": "Analicé cada candidato comparando entidad (parcela 74, calle Cerámica/Riva Rocha), tipo de operación (expropiación) e importe (26.000€).",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -336,7 +336,7 @@
       "verification": {
         "claimId": "10yl550-018-afi-7a2f65",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos respalda genuinamente la afirmación. El candidato [0] (redacción de proyecto para el Antiguo Hogar del Jubilado, €42.595,3) no tiene relación temática ni numérica con una expropiación de parcela: distinto objeto (arquitectura vs. expropiación urbanística), distinta cifra, s",
+        "summary": "Ninguno de los candidatos respalda genuinamente la afirmación. El candidato [0] (redacción de proyecto para el Antiguo Hogar del Jubilado, €42.595,3) no tiene relación temática ni numérica con una expropiación de parcela: distinto objeto (arquitectura vs. expropiación urbanística), distinta cifra…",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -401,7 +401,7 @@
       "verification": {
         "claimId": "10yl550-019-afi-637c0f",
         "verdict": "sin-datos",
-        "summary": "Analicé el único candidato disponible: un contrato de servicios TI (Portal del Empleado) por €25.794, sin relación temática ni de sujeto con la expropiación urbanística de €32.000 mencionada en la afirmación. No hay coincidencia de importe exacto, sujeto ni naturaleza del gasto. Concluyo que no hay ",
+        "summary": "Analicé el único candidato disponible: un contrato de servicios TI (Portal del Empleado) por €25.794, sin relación temática ni de sujeto con la expropiación urbanística de €32.000 mencionada en la afirmación. No hay coincidencia de importe exacto, sujeto ni naturaleza del gasto.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -466,7 +466,7 @@
       "verification": {
         "claimId": "10yl550-019-afi-20d35d",
         "verdict": "sin-datos",
-        "summary": "Analicé los candidatos frente a la afirmación sobre el \"Camí de Emergencia\" en el área industrial Casanova por 109.000€. Ningún candidato coincide en sujeto+importe simultáneamente. El más cercano temáticamente [7] (expropiación para camino de conexión de emergencia El Oliveral-Casanova) es solo un ",
+        "summary": "Analicé los candidatos frente a la afirmación sobre el \"Camí de Emergencia\" en el área industrial Casanova por 109.000€. Ningún candidato coincide en sujeto+importe simultáneamente.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -618,7 +618,7 @@
       "verification": {
         "claimId": "10yl550-023-afi-dcdfae",
         "verdict": "sin-datos",
-        "summary": "Analicé los 7 candidatos contra la afirmación de que existe una partida de €600.000 llamada \"formación para el empleo\". Ningún candidato tiene un importe cercano a €600.000 (los importes van de €2.520 a €25.794, órdenes de magnitud distintos). Los candidatos [0] y [3] son licitaciones de formación p",
+        "summary": "Analicé los 7 candidatos contra la afirmación de que existe una partida de €600.000 llamada \"formación para el empleo\". Ningún candidato tiene un importe cercano a €600.000 (los importes van de €2.520 a €25.794, órdenes de magnitud distintos).",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -681,7 +681,7 @@
       "verification": {
         "claimId": "10yl550-024-cit-8bd906",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos respalda la afirmación. Todos son licitaciones/contratos del Ayuntamiento de Riba-roja de Túria relacionados de forma amplia con \"empleo\" o \"formación\" (servicios de formación genéricos, mantenimiento de portal de empleo, taller de empleo con adquisición de vestuario/EPIs, ",
+        "summary": "Ninguno de los candidatos respalda la afirmación. Todos son licitaciones/contratos del Ayuntamiento de Riba-roja de Túria relacionados de forma amplia con \"empleo\" o \"formación\" (servicios de formación genéricos, mantenimiento de portal de empleo, taller de empleo con adquisición de…",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -828,7 +828,7 @@
       "verification": {
         "claimId": "10yl550-028-cit-21892b",
         "verdict": "sin-datos",
-        "summary": "Analicé los 8 candidatos frente a la afirmación \"el centro era para 600 alumnos\" (contexto: centro de formación profesional). Ningún candidato menciona la cifra 600 ni capacidad de alumnado. Los candidatos [0] y [4] son servicios de formación genéricos (códigos CPV 80500000/80510000) pero están en e",
+        "summary": "Analicé los 8 candidatos frente a la afirmación \"el centro era para 600 alumnos\" (contexto: centro de formación profesional). Ningún candidato menciona la cifra 600 ni capacidad de alumnado.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1032,7 +1032,7 @@
       "verification": {
         "claimId": "10yl550-032-cit-7f7619",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (cita textual de un pleno sobre falta de acceso peatonal y acera) contra los 8 candidatos, todos licitaciones (tenders). Ninguno coincide en sujeto/lugar/fecha concretos con la afirmación: son contratos de malla para lago, jardineras en Vilamarxant, pasarelas en Barranco Mandor",
+        "summary": "Analicé la afirmación (cita textual de un pleno sobre falta de acceso peatonal y acera) contra los 8 candidatos, todos licitaciones (tenders).",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1144,7 +1144,7 @@
       "verification": {
         "claimId": "10yl550-035-cit-d99202",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación sobre construcción de aceras en la \"calle de la Beto\" contra los 8 candidatos proporcionados. Solo el candidato [1] trata sobre aceras, pero es en la C/ Bodeguetes, una calle distinta sin relación con \"calle de la Beto\" ni con el \"área de servicio\" mencionada en el contexto. Lo",
+        "summary": "Analicé la afirmación sobre construcción de aceras en la \"calle de la Beto\" contra los 8 candidatos proporcionados. Solo el candidato [1] trata sobre aceras, pero es en la C/ Bodeguetes, una calle distinta sin relación con \"calle de la Beto\" ni con el \"área de servicio\" mencionada en el contexto.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1200,7 +1200,7 @@
       "verification": {
         "claimId": "10yl550-036-cit-b6d77f",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación sobre creación de un itinerario ciclo-peatonal a incluir en próximos presupuestos, y comparé con los candidatos. Los más cercanos temáticamente (Barranc dels Moros) son proyectos de itinerario turístico/peatonal no motorizado ya en ejecución/contratados, sin componente ciclista",
+        "summary": "Analicé la afirmación sobre creación de un itinerario ciclo-peatonal a incluir en próximos presupuestos, y comparé con los candidatos.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1449,7 +1449,7 @@
       "verification": {
         "claimId": "10yl550-064-afi-d21e6d",
         "verdict": "sin-datos",
-        "summary": "Ningún candidato respalda genuinamente la cifra de \"más de un millón de euros\". Los importes de los contratos de obra listados (candidatos 0, 2, 3, 5) oscilan entre €2.265,73 y €10.192,06 — tres órdenes de magnitud por debajo de la cifra citada, y además corresponden a contratos de emergencia por ll",
+        "summary": "Ningún candidato respalda genuinamente la cifra de \"más de un millón de euros\". Los importes de los contratos de obra listados (candidatos 0, 2, 3, 5) oscilan entre €2.265,73 y €10.192,06 — tres órdenes de magnitud por debajo de la cifra citada, y además corresponden a contratos de emergencia por…",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -2017,7 +2017,7 @@
       "verification": {
         "claimId": "10yl550-076-cit-1f4723",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos respalda genuinamente la afirmación. La afirmación es muy específica: integración de protección civil/formación en riesgos y emergencias dentro del ámbito universitario (educación superior). Los candidatos disponibles son: [0] compra de un vehículo de protección civil (enti",
+        "summary": "Ninguno de los candidatos respalda genuinamente la afirmación. La afirmación es muy específica: integración de protección civil/formación en riesgos y emergencias dentro del ámbito universitario (educación superior).",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -2078,7 +2078,7 @@
       "verification": {
         "claimId": "10yl550-076-cit-8f22d7",
         "verdict": "sin-datos",
-        "summary": "Análisis completado: ningún candidato respalda genuinamente la afirmación sobre campañas itinerantes de formación práctica. Los candidatos [0] y [1] son licitaciones de servicios de formación en salud pero están anuladas (\"void\"), sin fechas ni detalles de campañas itinerantes - solo coincidencia te",
+        "summary": "Análisis completado: ningún candidato respalda genuinamente la afirmación sobre campañas itinerantes de formación práctica.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -2252,7 +2252,7 @@
       "verification": {
         "claimId": "10yl550-099-cit-423e57",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación sobre \"vallones inundables\" para bomberos de cara al verano frente a los 8 candidatos, todos relacionados con contratos de emergencia por lluvias de noviembre 2022, socorrismo en piscinas, o evacuación por DANA. Ningún candidato coincide en objeto, sujeto ni fecha con la afirma",
+        "summary": "Analicé la afirmación sobre \"vallones inundables\" para bomberos de cara al verano frente a los 8 candidatos, todos relacionados con contratos de emergencia por lluvias de noviembre 2022, socorrismo en piscinas, o evacuación por DANA.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -2285,7 +2285,7 @@
       "verification": {
         "claimId": "10yl550-100-cit-b7d66f",
         "verdict": "sin-datos",
-        "summary": "Ningún candidato respalda genuinamente la afirmación. Los candidatos [0]-[3], [5] y [7] corresponden a contratos de emergencia de noviembre de 2022 para acondicionamiento de caminos rurales (retroexcavadora, muros de contención, mallazo por derrumbes), es decir, reparaciones viarias tras lluvias tor",
+        "summary": "Ningún candidato respalda genuinamente la afirmación. Los candidatos [0]-[3], [5] y [7] corresponden a contratos de emergencia de noviembre de 2022 para acondicionamiento de caminos rurales (retroexcavadora, muros de contención, mallazo por derrumbes), es decir, reparaciones viarias tras lluvias…",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -2405,7 +2405,7 @@
       "verification": {
         "claimId": "10yl550-105-afi-937362",
         "verdict": "sin-datos",
-        "summary": "Analicé los 8 candidatos comparando entidad (Partido Popular) y monto (€8.000) con la afirmación. Ninguno menciona al PP como sujeto; los montos presentes (€905,27) son de otro orden; el resto son subvenciones a fallas, contratos de servicios y becas sin relación de cifra ni entidad. Conclusión: sin",
+        "summary": "Analicé los 8 candidatos comparando entidad (Partido Popular) y monto (€8.000) con la afirmación. Ninguno menciona al PP como sujeto; los montos presentes (€905,27) son de otro orden; el resto son subvenciones a fallas, contratos de servicios y becas sin relación de cifra ni entidad.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -2875,7 +2875,7 @@
       "verification": {
         "claimId": "10yl550-158-afi-c125b8",
         "verdict": "sin-datos",
-        "summary": "Analicé los 4 candidatos: todos son licitaciones (tenders) sobre PMUS y obras de impermeabilización, sin relación con precios de vivienda. No hay coincidencia de sujeto (vivienda/alquiler vs contratos públicos de obra), ni de cifras (862€/1.100€ vs importes de licitación), ni de fecha. Ninguno respa",
+        "summary": "Analicé los 4 candidatos: todos son licitaciones (tenders) sobre PMUS y obras de impermeabilización, sin relación con precios de vivienda. No hay coincidencia de sujeto (vivienda/alquiler vs contratos públicos de obra), ni de cifras (862€/1.100€ vs importes de licitación), ni de fecha.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -3552,7 +3552,7 @@
       "verification": {
         "claimId": "10yl550-185-cit-1e1c16",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación sobre ausencia de problema de vivienda turística en Riba-roja de Túria contra los 8 candidatos proporcionados. Ninguno trata el tema de vivienda turística/alquiler vacacional; todos son sobre ayudas sociales de vivienda, accesibilidad, rehabilitación de fachadas, un espacio de ",
+        "summary": "Analicé la afirmación sobre ausencia de problema de vivienda turística en Riba-roja de Túria contra los 8 candidatos proporcionados.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -3921,7 +3921,7 @@
       "verification": {
         "claimId": "10yl550-191-cit-9aa672",
         "verdict": "sin-datos",
-        "summary": "La afirmación trata sobre la declaración de \"mercado residencial tensionado\" (figura legal de vivienda) para Riba-roja de Túria, remitiendo a una justificación técnica citada en una moción. Ninguno de los candidatos (todos ellos contratos de obras/servicios/suministros: señalización de áreas empresa",
+        "summary": "La afirmación trata sobre la declaración de \"mercado residencial tensionado\" (figura legal de vivienda) para Riba-roja de Túria, remitiendo a una justificación técnica citada en una moción.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -4999,7 +4999,7 @@
       "verification": {
         "claimId": "10yl550-242-afi-abd57c",
         "verdict": "sin-datos",
-        "summary": "Analicé los 5 candidatos: todos son tenders de pequeña escala (€25k-€38k) para cambio de juegos infantiles/suelos en parques específicos, formalizados, sin relación con un proyecto de \"gran parque\" de €9.5M a futuro (5-10 años). La discrepancia de orden de magnitud (miles vs millones) y la diferenci",
+        "summary": "Analicé los 5 candidatos: todos son tenders de pequeña escala (€25k-€38k) para cambio de juegos infantiles/suelos en parques específicos, formalizados, sin relación con un proyecto de \"gran parque\" de €9.5M a futuro (5-10 años).",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -5202,7 +5202,7 @@
       "verification": {
         "claimId": "10yl550-254-cit-cb6e5f",
         "verdict": "sin-datos",
-        "summary": "Analicé los dos candidatos frente a la afirmación sobre el Plan Económico y Financiero (PEF) de disciplina fiscal 2025. Los candidatos son contratos de seguimiento del \"Plan Riba/PlanRiba-plus\", un plan estratégico participado 2017-2025, entidad completamente distinta al PEF fiscal mencionado en la ",
+        "summary": "Analicé los dos candidatos frente a la afirmación sobre el Plan Económico y Financiero (PEF) de disciplina fiscal 2025.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -5263,7 +5263,7 @@
       "verification": {
         "claimId": "10yl550-258-afi-3f58a9",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a una magnitud presupuestaria agregada (tipo \"pies\"/ingresos o presupuesto municipal total) que evoluciona de ~4 a ~8 millones de euros a lo largo de años de gestión PP vs PSOE en Riba-roja de Túria. Ninguno de los 8 candidatos respalda esto genuinamente:\n\n- Candidatos [0]-[",
+        "summary": "La afirmación se refiere a una magnitud presupuestaria agregada (tipo \"pies\"/ingresos o presupuesto municipal total) que evoluciona de ~4 a ~8 millones de euros a lo largo de años de gestión PP vs PSOE en Riba-roja de Túria.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -5328,7 +5328,7 @@
       "verification": {
         "claimId": "10yl550-260-afi-4aaf07",
         "verdict": "sin-datos",
-        "summary": "Analicé los 8 candidatos frente a la afirmación numérica sobre capacidad de financiación (+17.160.000€) por efectos DANA. Ningún candidato coincide: son contratos menores (furgonetas, carretilla, tractor, carburante, consultoría FEDER) con importes de miles/decenas de miles de euros, o subvenciones ",
+        "summary": "Analicé los 8 candidatos frente a la afirmación numérica sobre capacidad de financiación (+17.160.000€) por efectos DANA.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -5359,7 +5359,7 @@
       "verification": {
         "claimId": "10yl550-260-afi-511565",
         "verdict": "sin-datos",
-        "summary": "Analicé el único candidato disponible (un contrato de consultoría FEDER/DANA) frente a la afirmación numérica sobre la capacidad de financiación municipal afectada por ayudas DANA (13.699.000 €). El candidato es un contrato de servicios de consultoría, no una fuente de datos presupuestarios/contable",
+        "summary": "Analicé el único candidato disponible (un contrato de consultoría FEDER/DANA) frente a la afirmación numérica sobre la capacidad de financiación municipal afectada por ayudas DANA (13.699.000 €).",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -5390,7 +5390,7 @@
       "verification": {
         "claimId": "10yl550-260-afi-02c43b",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (cifra macro-fiscal de capacidad de financiación de 3.5M€) contra los 8 candidatos, todos ellos contratos menores o convocatorias/bases de subvenciones de órdenes de magnitud e índole totalmente distintos (miles de euros vs millones, temas de suministro/ayudas DANA/COVID vs liq",
+        "summary": "Analicé la afirmación (cifra macro-fiscal de capacidad de financiación de 3.5M€) contra los 8 candidatos, todos ellos contratos menores o convocatorias/bases de subvenciones de órdenes de magnitud e índole totalmente distintos (miles de euros vs millones, temas de suministro/ayudas DANA/COVID vs…",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -5484,7 +5484,7 @@
       "verification": {
         "claimId": "10yl550-263-cit-a0a379",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los tres candidatos respalda genuinamente la afirmación. La afirmación es una cita histórica/declarativa sobre el origen de la Fira de Comercio (fundada en 2001, \"hace ya 25 años\"). Los candidatos son contratos operativos de servicios auxiliares para ediciones concretas de la feria: [0] a",
+        "summary": "Ninguno de los tres candidatos respalda genuinamente la afirmación. La afirmación es una cita histórica/declarativa sobre el origen de la Fira de Comercio (fundada en 2001, \"hace ya 25 años\").",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -5681,7 +5681,7 @@
       "verification": {
         "claimId": "10yl550-267-afi-22d7e4",
         "verdict": "sin-datos",
-        "summary": "Analicé los candidatos: son convocatorias de subvenciones puntuales de distintos años y conceptos (fallas, emprendimiento comercial, dinamización, prestaciones individuales), ninguno muestra un importe de 443.000€ ni corresponde claramente al \"año pasado\" liquidado como inversión directa al comercio",
+        "summary": "Analicé los candidatos: son convocatorias de subvenciones puntuales de distintos años y conceptos (fallas, emprendimiento comercial, dinamización, prestaciones individuales), ninguno muestra un importe de 443.000€ ni corresponde claramente al \"año pasado\" liquidado como inversión directa al…",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -5713,7 +5713,7 @@
       "verification": {
         "claimId": "10yl550-267-afi-200b50",
         "verdict": "sin-datos",
-        "summary": "Analicé los 8 candidatos frente a la afirmación numérica sobre 550.000€ de inversión al sector comercial en 2026. Ninguno coincide en importe, sujeto o naturaleza (todos son contratos de obras/servicios puntuales, no una partida de inversión al comercio). Concluí que no hay respaldo genuino, con men",
+        "summary": "Analicé los 8 candidatos frente a la afirmación numérica sobre 550.000€ de inversión al sector comercial en 2026. Ninguno coincide en importe, sujeto o naturaleza (todos son contratos de obras/servicios puntuales, no una partida de inversión al comercio).",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -5770,7 +5770,7 @@
       "verification": {
         "claimId": "10yl550-268-cit-7f1b26",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (que la feria de comercio no se celebró en 2025 por mandato expreso de los comercios, y que se acordó hacerla bienal) frente a los 8 candidatos, todos ellos contratos/subvenciones relacionados tangencialmente con \"Feria del Comercio\" u otros eventos municipales. Ninguno constit",
+        "summary": "Analicé la afirmación (que la feria de comercio no se celebró en 2025 por mandato expreso de los comercios, y que se acordó hacerla bienal) frente a los 8 candidatos, todos ellos contratos/subvenciones relacionados tangencialmente con \"Feria del Comercio\" u otros eventos municipales.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -5833,7 +5833,7 @@
       "verification": {
         "claimId": "10yl550-269-afi-54d3fa",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación numérica sobre inversión en comercio 2026 (>550.000€) frente a 8 candidatos tender, ninguno de los cuales reporta una cifra agregada de inversión en comercio ni coincide en monto/fecha/sujeto con la afirmación. Todos son contratos puntuales de objetos dispares sin relación con ",
+        "summary": "Analicé la afirmación numérica sobre inversión en comercio 2026 (>550.000€) frente a 8 candidatos tender, ninguno de los cuales reporta una cifra agregada de inversión en comercio ni coincide en monto/fecha/sujeto con la afirmación.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -5865,7 +5865,7 @@
       "verification": {
         "claimId": "10yl550-269-afi-438f1c",
         "verdict": "sin-datos",
-        "summary": "Ningún candidato respalda genuinamente la afirmación. La afirmación es una cifra agregada (443.000 €) de inversión directa en comercio durante todo 2025, mientras que los ocho candidatos son contratos/licitaciones puntuales e individuales (alumbrado navideño, fiesta del Dux x2, licencia ambiental de",
+        "summary": "Ningún candidato respalda genuinamente la afirmación. La afirmación es una cifra agregada (443.000 €) de inversión directa en comercio durante todo 2025, mientras que los ocho candidatos son contratos/licitaciones puntuales e individuales (alumbrado navideño, fiesta del Dux x2, licencia ambiental…",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6185,7 +6185,7 @@
       "verification": {
         "claimId": "10yl550-275-afi-1b3fcf",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos respalda la afirmación de que \"Abrupa recibe una subvención de 18.000 euros del Ayuntamiento\". Todos los candidatos son licitaciones (tenders) del Ayuntamiento de Riba-roja de Túria para contratación de servicios (escola d'estiu, redacción de proyectos IVACE, campañas de pr",
+        "summary": "Ninguno de los candidatos respalda la afirmación de que \"Abrupa recibe una subvención de 18.000 euros del Ayuntamiento\".",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6217,7 +6217,7 @@
       "verification": {
         "claimId": "10yl550-275-cit-6dbe50",
         "verdict": "sin-datos",
-        "summary": "Analicé los candidatos frente a la afirmación sobre una subvención de 18.000€ a \"Abrupa\". Ningún candidato es una subvención directa a esa entidad: son contratos públicos (tenders) por licitación de servicios diversos (escuela de verano, proyectos IVACE, campañas turísticas, portal del empleado). No",
+        "summary": "Analicé los candidatos frente a la afirmación sobre una subvención de 18.000€ a \"Abrupa\". Ningún candidato es una subvención directa a esa entidad: son contratos públicos (tenders) por licitación de servicios diversos (escuela de verano, proyectos IVACE, campañas turísticas, portal del empleado).",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6365,7 +6365,7 @@
       "verification": {
         "claimId": "10yl550-280-cit-ab3a68",
         "verdict": "sin-datos",
-        "summary": "Analicé el único candidato disponible (tender de restauración de restos cerámicos en Riba-roja de Túria) frente a la afirmación sobre la \"22 Fira de Comercio 2024\". No hay coincidencia de sujeto (feria comercial vs. obra de restauración arqueológica), ni de importe, ni de naturaleza del evento. La a",
+        "summary": "Analicé el único candidato disponible (tender de restauración de restos cerámicos en Riba-roja de Túria) frente a la afirmación sobre la \"22 Fira de Comercio 2024\". No hay coincidencia de sujeto (feria comercial vs. obra de restauración arqueológica), ni de importe, ni de naturaleza del evento.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6423,7 +6423,7 @@
       "verification": {
         "claimId": "10yl550-282-afi-d5f8b5",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (comparación retórica entre gastar 30.000€ en una orquesta y repartir 30.000€ entre comercios) frente a los 8 candidatos. Ninguno coincide en sujeto e importe simultáneamente: el candidato [0] (actuación musical feria del comercio 2019, €13.310) es el más temáticamente cercano ",
+        "summary": "Analicé la afirmación (comparación retórica entre gastar 30.000€ en una orquesta y repartir 30.000€ entre comercios) frente a los 8 candidatos.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6483,7 +6483,7 @@
       "verification": {
         "claimId": "10yl550-283-afi-199c43",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación y los 5 candidatos proporcionados. Todos los candidatos son contratos (tenders) de transporte municipal y control de acceso en biblioteca BOTAIA, sin relación temática con orquestas, comercios o la cifra de 30.000 euros mencionada. Además la afirmación es una comparación hipoté",
+        "summary": "Analicé la afirmación y los 5 candidatos proporcionados. Todos los candidatos son contratos (tenders) de transporte municipal y control de acceso en biblioteca BOTAIA, sin relación temática con orquestas, comercios o la cifra de 30.000 euros mencionada.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6607,7 +6607,7 @@
       "verification": {
         "claimId": "10yl550-284-cit-de73ef",
         "verdict": "sin-datos",
-        "summary": "La afirmación es una opinión reportada de terceros (\"nos dijeron que... ha sido un éxito\") sobre una feria de comercio en 2024, lo cual no es un hecho verificable objetivamente mediante registros de contratación (el \"éxito\" es subjetivo). Ningún candidato coincide en fecha: el único que menciona exp",
+        "summary": "La afirmación es una opinión reportada de terceros (\"nos dijeron que... ha sido un éxito\") sobre una feria de comercio en 2024, lo cual no es un hecho verificable objetivamente mediante registros de contratación (el \"éxito\" es subjetivo).",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6638,7 +6638,7 @@
       "verification": {
         "claimId": "10yl550-288-afi-4017bd",
         "verdict": "sin-datos",
-        "summary": "Ningún candidato coincide con la cifra exacta de 30.000 € mencionada en la afirmación: los importes disponibles son €13.307,58 (portátiles ADL), €6.093,2 y €10.739,15 (equipos EPA), y €95.565,8 (aparcamiento PACADAR) — todos de un orden de magnitud distinto — y las entradas BDNS no muestran un impor",
+        "summary": "Ningún candidato coincide con la cifra exacta de 30.000 € mencionada en la afirmación: los importes disponibles son €13.307,58 (portátiles ADL), €6.093,2 y €10.739,15 (equipos EPA), y €95.565,8 (aparcamiento PACADAR) — todos de un orden de magnitud distinto — y las entradas BDNS no muestran un…",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6785,7 +6785,7 @@
       "verification": {
         "claimId": "10yl550-298-cit-400cf0",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (encuesta a comercios de la Feria 2024, tema cultura) contra los dos candidatos, que son licitaciones de mantenimiento de base de datos corporativa (TI) del Ayuntamiento de Riba-roja de Túria. No hay relación temática, de entidad, fecha ni sujeto entre la afirmación y los candi",
+        "summary": "Analicé la afirmación (encuesta a comercios de la Feria 2024, tema cultura) contra los dos candidatos, que son licitaciones de mantenimiento de base de datos corporativa (TI) del Ayuntamiento de Riba-roja de Túria.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6879,7 +6879,7 @@
       "verification": {
         "claimId": "10yl550-299-cit-ca1541",
         "verdict": "sin-datos",
-        "summary": "Ningún candidato respalda genuinamente la afirmación. La afirmación exige verificar que la Feria de Comercio se celebró (o acordó celebrarse) los días 8, 9 y 10 de mayo de 2026. Candidato [1] es de \"feria del comercio 2019\", año distinto (2019 vs 2026), por lo que solo hay coincidencia temática/léxi",
+        "summary": "Ningún candidato respalda genuinamente la afirmación. La afirmación exige verificar que la Feria de Comercio se celebró (o acordó celebrarse) los días 8, 9 y 10 de mayo de 2026.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -7171,7 +7171,7 @@
       "verification": {
         "claimId": "10yl550-321-afi-ca48b5",
         "verdict": "sin-datos",
-        "summary": "Analicé los 8 candidatos frente a la afirmación sobre una dotación de €2.000 en empleo repetida dos años. Ninguno coincide en importe, sujeto o tema: los tenders son de informática (EPA, ADL) y armamento policial, y las subvenciones son de turismo y protección animal. Ninguno es de empleo ni mencion",
+        "summary": "Analicé los 8 candidatos frente a la afirmación sobre una dotación de €2.000 en empleo repetida dos años. Ninguno coincide en importe, sujeto o tema: los tenders son de informática (EPA, ADL) y armamento policial, y las subvenciones son de turismo y protección animal.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -7291,7 +7291,7 @@
       "verification": {
         "claimId": "10yl550-325-cit-0907e6",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (acusación de incumplimiento de entrega del conservatorio) contra los 8 candidatos. Ninguno documenta un plazo de entrega prometido ni su incumplimiento: son contratos puntuales (software, pianos, aire acondicionado, alquiler de aulas, escuela de verano, subvención). El más cer",
+        "summary": "Analicé la afirmación (acusación de incumplimiento de entrega del conservatorio) contra los 8 candidatos. Ninguno documenta un plazo de entrega prometido ni su incumplimiento: son contratos puntuales (software, pianos, aire acondicionado, alquiler de aulas, escuela de verano, subvención).",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -7610,7 +7610,7 @@
       "verification": {
         "claimId": "10yl550-346-cit-6ee502",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación sobre una barrera de control de acceso que funciona bien y sufrió un golpe. Comparé con los 8 candidatos de contratos de obras. El más cercano temáticamente es [3] (barreras de control de acceso en Urbanización la Reva), pero no hay coincidencia de sujeto/ubicación específica q",
+        "summary": "Analicé la afirmación sobre una barrera de control de acceso que funciona bien y sufrió un golpe. Comparé con los 8 candidatos de contratos de obras.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -7734,7 +7734,7 @@
       "verification": {
         "claimId": "10yl550-353-afi-10d3cb",
         "verdict": "sin-datos",
-        "summary": "El único candidato es un contrato de implantación de un \"Portal del Empleado\" en el Ayuntamiento de Riba-roja, por €25.794, para un servicio informático interno (RRHH/gestión de personal). No guarda relación temática con la DANA, el medio ambiente ni el polígono industrial mencionado en la afirmació",
+        "summary": "El único candidato es un contrato de implantación de un \"Portal del Empleado\" en el Ayuntamiento de Riba-roja, por €25.794, para un servicio informático interno (RRHH/gestión de personal).",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T17:23:05.282Z",
+  "generatedAt": "2026-10-05T06:15:41.737Z",
   "version": "1",
   "plenoId": "otxq2c",
   "plenoDate": "2025-10-06",
@@ -855,7 +855,7 @@
       "verification": {
         "claimId": "otxq2c-014-cit-f9f590",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona la aprobación de algo en el contexto de la \"charcha de Ciudad Inteligencia\", pero no proporciona detalles específicos sobre un contrato o proyecto relacionado con esta cita. Los candidatos listados presentan contratos que, aunque están relacionados con la inteligencia artifici",
+        "summary": "La afirmación menciona la aprobación de algo en el contexto de la \"charcha de Ciudad Inteligencia\", pero no proporciona detalles específicos sobre un contrato o proyecto relacionado con esta cita.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -975,7 +975,7 @@
       "verification": {
         "claimId": "otxq2c-015-cit-550e87",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (cita textual sobre la existencia de un \"Sandbox\" de innovación) frente al único candidato disponible (licitación \"Premios RIV - Riba Innovación Viva\"). Concluí que no hay respaldo genuino: son iniciativas distintas (sandbox vs. premios), solo comparten el tema genérico \"innova",
+        "summary": "Analicé la afirmación (cita textual sobre la existencia de un \"Sandbox\" de innovación) frente al único candidato disponible (licitación \"Premios RIV - Riba Innovación Viva\").",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1506,7 +1506,7 @@
       "verification": {
         "claimId": "otxq2c-022-cit-a94e5e",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (cambio de política/procedimiento en una ordenanza sobre urgencia social) frente a los 4 candidatos (contratos de catering social y de intervención familiar con menores). Ninguno coincide en sujeto, cifra o naturaleza del hecho: son contratos de prestación de servicios, no evid",
+        "summary": "Analicé la afirmación (cambio de política/procedimiento en una ordenanza sobre urgencia social) frente a los 4 candidatos (contratos de catering social y de intervención familiar con menores).",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -2164,7 +2164,7 @@
       "verification": {
         "claimId": "otxq2c-029-cit-35e47b",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona un \"plan de evaluación\" que será \"dinámico y evaluador\", pero ninguno de los contratos presentados por los candidatos se refiere específicamente a un plan de evaluación o a la medición del impacto de acciones. Los contratos listados se centran en la redacción de planes estraté",
+        "summary": "La afirmación menciona un \"plan de evaluación\" que será \"dinámico y evaluador\", pero ninguno de los contratos presentados por los candidatos se refiere específicamente a un plan de evaluación o a la medición del impacto de acciones.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -2195,7 +2195,7 @@
       "verification": {
         "claimId": "otxq2c-029-cit-88155f",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos respalda genuinamente la afirmación. Los tenders listados son contratos concretos (catering social, ayuda a domicilio, reurbanización de zonas verdes) con importes, adjudicatarios y objetos específicos que no guardan relación con un sistema de \"medición del impacto de las a",
+        "summary": "Ninguno de los candidatos respalda genuinamente la afirmación. Los tenders listados son contratos concretos (catering social, ayuda a domicilio, reurbanización de zonas verdes) con importes, adjudicatarios y objetos específicos que no guardan relación con un sistema de \"medición del impacto de las…",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -2315,7 +2315,7 @@
       "verification": {
         "claimId": "otxq2c-030-cit-c4391d",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (declaración programática sin cifras/fechas/sujetos verificables, tipo opinión/promesa sobre alineación con el Plan Municipal de Juventud y políticas de bienestar social) frente a los 4 candidatos (tenders de catering social y ayuda a domicilio). Ningún candidato menciona el Pl",
+        "summary": "Analicé la afirmación (declaración programática sin cifras/fechas/sujetos verificables, tipo opinión/promesa sobre alineación con el Plan Municipal de Juventud y políticas de bienestar social) frente a los 4 candidatos (tenders de catering social y ayuda a domicilio).",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -2831,7 +2831,7 @@
       "verification": {
         "claimId": "otxq2c-048-cit-11d99a",
         "verdict": "sin-datos",
-        "summary": "La afirmación es una valoración de opinión política (\"consideramos que... es muy importante\") sobre el \"sistema COMETA\", sin cifras, fechas ni importes verificables que puedan cotejarse contra un registro objetivo. El único candidato disponible es un contrato de mantenimiento del \"sistema bando WiFi",
+        "summary": "La afirmación es una valoración de opinión política (\"consideramos que... es muy importante\") sobre el \"sistema COMETA\", sin cifras, fechas ni importes verificables que puedan cotejarse contra un registro objetivo.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -3203,7 +3203,7 @@
       "verification": {
         "claimId": "otxq2c-056-cit-74ed25",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a reforzar la propuesta de la Unidad Forense, lo que implica un enfoque específico en el ámbito de la salud y la justicia. Sin embargo, los candidatos presentados se centran en suministros y servicios relacionados con la policía local, como armas, vehículos y sistemas de com",
+        "summary": "La afirmación se refiere a reforzar la propuesta de la Unidad Forense, lo que implica un enfoque específico en el ámbito de la salud y la justicia.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -3694,7 +3694,7 @@
       "verification": {
         "claimId": "otxq2c-072-cit-591d40",
         "verdict": "sin-datos",
-        "summary": "Analicé los tres candidatos frente a la afirmación sobre una unidad de policía local que acompaña a mujeres. Ninguno coincide en sujeto/servicio concreto: son un aplicativo informático, compra de perros y compra de un vehículo furgón, todos para la Unidad Canina o gestión informática, no para un ser",
+        "summary": "Analicé los tres candidatos frente a la afirmación sobre una unidad de policía local que acompaña a mujeres.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -3757,7 +3757,7 @@
       "verification": {
         "claimId": "otxq2c-072-cit-426ad6",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos respalda la afirmación. La cita hace referencia al \"SPAI de la Dona\" (servicio de atención a la mujer) y a una profesional concreta, Verónica Blanco, en el marco de una respuesta a una moción del PP sobre atención social. Los candidatos disponibles son todos contratos vincu",
+        "summary": "Ninguno de los candidatos respalda la afirmación. La cita hace referencia al \"SPAI de la Dona\" (servicio de atención a la mujer) y a una profesional concreta, Verónica Blanco, en el marco de una respuesta a una moción del PP sobre atención social.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -4018,7 +4018,7 @@
       "verification": {
         "claimId": "otxq2c-076-cit-9ae137",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la capacidad de la ley para permitir la realización de actividades de justicia, mencionando específicamente los órganos periféricos de la justicia. Sin embargo, los contratos presentados por los candidatos se centran en servicios de asesoría jurídica y defensa procesal del",
+        "summary": "La afirmación se refiere a la capacidad de la ley para permitir la realización de actividades de justicia, mencionando específicamente los órganos periféricos de la justicia.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -5597,7 +5597,7 @@
       "verification": {
         "claimId": "otxq2c-181-afi-d44519",
         "verdict": "sin-datos",
-        "summary": "El único candidato disponible es un contrato (tender) sobre sustitución de juegos infantiles y suelos de protección en una plaza de Riba-roja de Túria. Su tema (mobiliario urbano/infraestructura) no coincide con \"educación\", que es el tema de la afirmación. No se menciona ningún importe de 9.000 € e",
+        "summary": "El único candidato disponible es un contrato (tender) sobre sustitución de juegos infantiles y suelos de protección en una plaza de Riba-roja de Túria. Su tema (mobiliario urbano/infraestructura) no coincide con \"educación\", que es el tema de la afirmación.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -5629,7 +5629,7 @@
       "verification": {
         "claimId": "otxq2c-182-afi-ba9b9e",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación de que se destinaron 9.000 euros. Aunque hay varias subvenciones y contratos mencionados, ninguno de ellos especifica un monto de 9.000 euros. Por ejemplo, el contrato menor para el suministro de equipos informáticos tiene un imp",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación de que se destinaron 9.000 euros. Aunque hay varias subvenciones y contratos mencionados, ninguno de ellos especifica un monto de 9.000 euros.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -5973,7 +5973,7 @@
       "verification": {
         "claimId": "otxq2c-185-cit-88b89a",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a una felicitación a los estudiantes que han alcanzado la excelencia académica, pero los documentos presentados son resoluciones y acuerdos relacionados con ayudas y becas escolares, sin mencionar ninguna felicitación o reconocimiento específico a los estudiantes. No hay coi",
+        "summary": "La afirmación se refiere a una felicitación a los estudiantes que han alcanzado la excelencia académica, pero los documentos presentados son resoluciones y acuerdos relacionados con ayudas y becas escolares, sin mencionar ninguna felicitación o reconocimiento específico a los estudiantes.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -7981,7 +7981,7 @@
       "verification": {
         "claimId": "otxq2c-213-afi-d0abc6",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona un costo específico de 50.000 euros para un servicio de transporte en Ribarroja. Sin embargo, ninguno de los contratos presentados por los candidatos menciona esta cifra exacta ni se refiere a un servicio que coincida con el descrito en la afirmación. Los contratos listados se",
+        "summary": "La afirmación menciona un costo específico de 50.000 euros para un servicio de transporte en Ribarroja. Sin embargo, ninguno de los contratos presentados por los candidatos menciona esta cifra exacta ni se refiere a un servicio que coincida con el descrito en la afirmación.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -8012,7 +8012,7 @@
       "verification": {
         "claimId": "otxq2c-214-afi-2a4166",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo directo a la afirmación de que \"El poble de Ribarrotxa paga 50.000 euros\". Aunque hay menciones a subvenciones y contratos relacionados con el municipio de Riba-roja de Túria, no se encuentra un documento que confirme específicamente el pago de 50.000 e",
+        "summary": "Ninguno de los candidatos presenta un respaldo directo a la afirmación de que \"El poble de Ribarrotxa paga 50.000 euros\".",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -8250,7 +8250,7 @@
       "verification": {
         "claimId": "otxq2c-217-cit-3d80a6",
         "verdict": "sin-datos",
-        "summary": "Analicé el único candidato disponible (tender de aplicativo de policía local) frente a la afirmación sobre incentivar la compra en el comercio local. No hay relación de sujeto, tema ni cifras/fechas coincidentes; el candidato pertenece a un ámbito distinto (TI para policía local, además anulado) y n",
+        "summary": "Analicé el único candidato disponible (tender de aplicativo de policía local) frente a la afirmación sobre incentivar la compra en el comercio local.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
