@@ -158,6 +158,10 @@ const STEP_OUTPUTS: Record<string, string> = {
   // Report-only, writes to gitignored `editorial/` — so it must NOT appear in
   // any commit this suite inspects. Stubbed so the pipeline can reach it.
   'reconcile:attribution': '',
+  // El parte que hallazgos-pipeline.sh lee DESPUÉS del push para su última
+  // línea. Sin hallazgos por defecto; STUB_CHECK_RUNS le da los renglones (ver
+  // el stub).
+  'check:runs': '',
 }
 
 const sandboxes: string[] = []
@@ -249,6 +253,13 @@ case " \${STUB_FAIL:-} " in *" $name "*) echo "[stub] $name FAILING" >&2; exit 1
 # The speaker-map arm reads this list as its work queue, so it has to name a
 # session or the whole branch is unreachable and its tests pass on nothing.
 if [ "$name" = "speaker-map:backlog" ]; then echo "sandboxpleno"; exit 0; fi
+# La tubería captura este parte en una variable, así que lo que imprima sólo
+# llega al log si el resumen final lo copia. STUB_CHECK_RUNS lleva los renglones
+# con el formato de scripts/check-runs.ts; sin él, un parte sin hallazgos.
+if [ "$name" = "check:runs" ]; then
+  if [ -n "\${STUB_CHECK_RUNS:-}" ]; then printf '%s\\n' "\${STUB_CHECK_RUNS}"; fi
+  exit 0
+fi
 # The map is written ABOVE the STUB_NOOP gate on purpose. The scenario that
 # matters is a night whose ONLY output is a map — every other step quiet — and
 # a stub that went quiet with them could not produce it.
@@ -1238,12 +1249,82 @@ describe('hallazgos-pipeline.sh · una recomposición que aborta no tumba la noc
       ...BASE,
       STUB_FAIL: 'verify:pleno-claims',
     })
-    expect(r.log, 'el fallo inyectado no se dio').toMatch(/verify:pleno-claims FAILING/)
+    // La marca del stub va por stderr, y el arenero sólo conserva stderr cuando
+    // la pasada sale ≠0 —y salía 1 por la avería del resumen final, no por esto—.
+    // Se ancla en la línea que el guion escribe él mismo al ver el fallo.
+    expect(r.log, 'el fallo inyectado no se dio').toContain('FALLO: verify:pleno-claims')
     expect(r.log, 'la pasada murió en la recomposición').toContain('[stub] ran auto-curate')
     expect(r.committed, 'el trabajo de la noche se quedó sin comitear').toContain(
       'pleno-speaker-map/sandboxpleno.json',
     )
     expect(ultima(r.log), r.log).toMatch(/verify:pleno-claims FALLÓ/)
+  }, 120_000)
+})
+
+/**
+ * La última línea es un parte, no una puerta: no puede tumbar la noche.
+ *
+ * El resumen corre DESPUÉS del push, bajo `set -euo pipefail`, y cuando la
+ * pasada no fue limpia copia debajo los hallazgos de `check:runs` con un `grep`.
+ * Pero el veredicto no sale sólo del manifiesto: un mapa parcial, el backend de
+ * texto caído o un `verify:pleno-claims` que falla (#227) lo ponen igual, con un
+ * parte que puede no traer un solo hallazgo. Ese `grep` no encuentra nada, sale
+ * 1, y la tubería entera salía 1 en su último renglón con los datos ya
+ * publicados — lo que el `--soft` de ese bloque promete que no pasa. Medido el
+ * 04-10-2026.
+ */
+describe('hallazgos-pipeline.sh · el resumen final no puede tumbar la noche', () => {
+  // El stub del mapa escribe 1 de 3 trozos: un mapa PARCIAL, que pone el
+  // veredicto sin que el manifiesto diga nada.
+  const BASE = { GEMINI_API_KEY: 'sandbox-key', SPEAKER_MAP_CALL_BUDGET: '4' }
+  const ultima = (log: string) =>
+    log
+      .split('\n')
+      .filter((l) => /done ·/.test(l))
+      .pop() ?? ''
+
+  it('una pasada degradada cuyo parte no trae hallazgos sale 0 y dice por qué no fue limpia', () => {
+    const dir = makeSandbox()
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', BASE)
+
+    // El reproductor se dio: los datos llegaron a origin, el veredicto lo puso
+    // el mapa y no el manifiesto, y la pasada entró en el bloque que copia el
+    // parte. Sin esto, un 0 se cumpliría con una noche que nunca llegó ahí.
+    expect(r.committed, 'la pasada no llegó a comitear').not.toEqual([])
+    expect(r.originHead, 'la pasada no llegó a publicar').toBe(r.head)
+    expect(ultima(r.log), r.log).toMatch(/mapa\(s\) parcial/)
+    expect(
+      ultima(r.log),
+      'el parte trajo hallazgos: el grep encuentra y no hay avería',
+    ).not.toMatch(/en el manifiesto/)
+    expect(r.log, 'no entró en el bloque del parte').toContain('la pasada NO fue limpia')
+
+    expect(r.status, r.log).toBe(0)
+  }, 120_000)
+
+  it('y cuando el parte sí trae hallazgos, los sigue copiando debajo', () => {
+    // Que el arreglo no se lleve lo que el bloque existe para decir: callar el
+    // grep también sale 0.
+    const dir = makeSandbox()
+    const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', {
+      ...BASE,
+      STUB_CHECK_RUNS: [
+        '    WARN [low-coverage] extract-speaker-map: 1 de 3 trozo(s)',
+        '',
+        '[check-runs] 1 run(s) · 0 error(s) · 1 warning(s) · 5 pasada(s) programada(s), 0 vencida(s)',
+      ].join('\n'),
+    })
+
+    expect(ultima(r.log), r.log).toMatch(/0 error\(es\), 1 aviso\(s\) en el manifiesto/)
+    const iCabecera = r.log.indexOf('la pasada NO fue limpia')
+    expect(iCabecera, 'no entró en el bloque del parte').toBeGreaterThan(-1)
+    // El parte va a una variable: el hallazgo sólo llega al log si el resumen
+    // lo copia.
+    expect(
+      r.log.indexOf('WARN [low-coverage]', iCabecera),
+      'el resumen dejó de copiar los hallazgos del parte',
+    ).toBeGreaterThan(iCabecera)
+    expect(r.status, r.log).toBe(0)
   }, 120_000)
 })
 

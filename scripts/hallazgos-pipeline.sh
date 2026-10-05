@@ -596,5 +596,9 @@ fi
 log "done · ${NEW} transcribed · ${NEW_FINDINGS} new finding(s) pushed${RUN_VERDICT}"
 if [ -n "$RUN_VERDICT" ]; then
   log "   la pasada NO fue limpia — \`npm run check:runs\` lo detalla:"
-  printf '%s\n' "$RUN_REPORT" | grep -E '^\s+(ERROR|WARN) \[' | sed 's/^/   /'
+  # `|| true` no es decorativo. El veredicto también lo ponen un mapa parcial, el
+  # backend de texto caído o un verify fallido, con un parte que puede no traer
+  # ni un hallazgo: el grep no encuentra nada, sale 1, y con `pipefail` y `-e`
+  # esta línea sacaba la pasada entera con 1, ya publicada. Medido el 04-10-2026.
+  printf '%s\n' "$RUN_REPORT" | grep -E '^\s+(ERROR|WARN) \[' | sed 's/^/   /' || true
 fi
