@@ -512,13 +512,22 @@ printed a withheld quote almost whole — as a `soft_failures` line in
 It runs in `monitor:health` now, printing ids and never the literal, since that
 digest travels by Telegram.
 
-**Two traps in `--inject` itself**, both found by using it. It refuses to inject
+**Three traps in `--inject` itself**, all found by using it. It refuses to inject
 into a file with uncommitted changes and says so in a line that is easy to skim
 past — with nightly churn in the tree it will skip a guard and still finish
-cheerfully, which is «green by not running» one level up. And a guard can be
+cheerfully, which is «green by not running» one level up. A guard can be
 wired, tested and still toothless: `check:drift` reported `✗` for a year because
 the one figure its injection targets carried a `scope` note that exempted it from
-the threshold. Read the per-guard line, not the exit code.
+the threshold. And a red exit proves nothing on its own: on 2026-10-04 the
+`check:veredictos` injection corrupted `pleno-claims/index.json`, a file that
+guard never opens (silent, and copied from `check:cobertura`'s), while between
+#226 and #228 the same guard already exited 1 with nothing injected, so any
+injection would have read FIRES. Since 2026-10-05 each injected guard runs once
+on the untouched tree first; one that is already red is reported **SIN PRUEBA**
+with its exit code (reported, not fatal: some guards are red by design), and an
+injection may name the mark its guard prints for that fault (`espera`), so a red
+run without it counts as unproven too. Read the per-guard line, not the exit
+code.
 
 Baselines (`.vocabulary-census.json`, `.transcript-check-baseline.json`) are
 **committed on purpose**. Gitignored, CI would write a fresh one each night and
@@ -553,7 +562,11 @@ npm run check:guards -- --inject   # break what each one watches, confirm it fir
 `--inject` mutates real snapshots, restores them from git, and **verifies the
 restoration** (exit 2 if it cannot). It refuses to touch a file with uncommitted
 changes. It also names every guard it has no injection for, rather than letting
-a partial pass read as full coverage — as of 2026-08-03 that is 11 of 15.
+a partial pass read as full coverage — as of 2026-08-03 that is 11 of 15. Before
+a guard's first injection it runs that guard on the untouched tree: an injection
+only proves something against a guard that was green without it. The overlay
+injection of `check:veredictos` needs the gitignored base on disk; without it, it
+reports «not exercised» rather than a silence it did not measure.
 
 ## Git hooks
 
