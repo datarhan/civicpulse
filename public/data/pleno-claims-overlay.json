@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-05T06:44:38.758Z",
+  "generatedAt": "2026-10-05T12:48:21.959Z",
   "entries": {
     "k4olcs-005-acu-7c0edd": {
       "verification": {
@@ -226,17 +226,34 @@
     "k4olcs-018-afi-1077bc": {
       "verification": {
         "claimId": "k4olcs-018-afi-1077bc",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "verificado",
+        "summary": "La actuación 1 coincide al céntimo: el contrato de cartelería digital en sedes municipales se adjudicó por 35.252,87 € (29-05-2024). La actuación 2 es el sistema de debate, voto y grabación del salón de plenos, adjudicado por 80.666,66 €.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xkXNO23MYwoZDGvgaZEVxQ%3D%3D",
+            "snippet": "Contrato mixto suministro y servicio de implantación de cartelería digital en diversas sedes municipales del ayuntamiento de Riba-roja de Túria, p… · expediente 33/2024 · adjudicado a VODAFONE ESPANA SA por 35.252,87 € con IVA el 29-05-2024",
+            "stance": "checked"
+          },
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qDjb9WdwTN3jHF5qKI4aaw%3D%3D",
+            "snippet": "Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de v… · expediente 32/2024 · adjudicado a AMARA MEGAFONIA CCTV VOZ-DATOS, SL por 80.666,66 € con IVA el 19-04-2024",
+            "stance": "checked"
+          }
+        ],
         "checkedAgainst": [
-          "verdict-engine"
+          "tenders"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
         ]
       },
-      "source": "verdict-engine",
-      "reason": "verdict-engine (gpt-5.4-mini) re-judged parcial→sin-datos: No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-      "editor": "verdict-engine:gpt-5.4-mini",
-      "appliedAt": "2026-06-24T10:12:46.414Z"
+      "source": "curator-upgrade",
+      "reason": "La actuación 1 coincide al céntimo: el contrato de cartelería digital en sedes municipales se adjudicó por 35.252,87 € (29-05-2024). La actuación 2 es el sistema de debate, voto y grabación del salón de plenos, adjudicado por 80.666,66 €.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-05T12:48:09.189Z",
+      "desde": "sin-datos"
     },
     "k4olcs-021-afi-b6f856": {
       "verification": {
@@ -463,17 +480,28 @@
     "k4olcs-101-cit-ddd6c4": {
       "verification": {
         "claimId": "k4olcs-101-cit-ddd6c4",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "parcial",
+        "summary": "La concesión del agua (abastecimiento, alcantarillado y depuración, por procedimiento abierto) se adjudicó a Hidraqua, Gestión Integral de Aguas de Levante, S.A., el 6-08-2026. El acuerdo de pleno del 20-04-2026 no consta en el registro.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D",
+            "snippet": "contrato de concesión del servicio público de abastecimiento de agua potable, servicio de gestión de alcantar… · expediente 27/2018 · adjudicado a HIDRAQUA GESTIÓN INTEGRAL DE AGUAS DE LEVANTE, S.A. por 55.685.178,79 € con IVA el 06-08-2026",
+            "stance": "checked"
+          }
+        ],
         "checkedAgainst": [
-          "verdict-engine"
+          "tenders"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
         ]
       },
-      "source": "verdict-engine",
-      "reason": "verdict-engine (gpt-5.4-mini) re-judged verificado→sin-datos: No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-      "editor": "verdict-engine:gpt-5.4-mini",
-      "appliedAt": "2026-06-24T10:12:46.414Z"
+      "source": "curator-upgrade",
+      "reason": "La concesión del agua (abastecimiento, alcantarillado y depuración, por procedimiento abierto) se adjudicó a Hidraqua, Gestión Integral de Aguas de Levante, S.A., el 6-08-2026. El acuerdo de pleno del 20-04-2026 no consta en el registro.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-05T12:48:16.370Z",
+      "desde": "sin-datos"
     },
     "k4olcs-105-afi-c7142e": {
       "verification": {
@@ -888,17 +916,28 @@
     "ma87e0-152-cit-786d7e": {
       "verification": {
         "claimId": "ma87e0-152-cit-786d7e",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "parcial",
+        "summary": "Ribactiva es un programa municipal de apoyo al emprendimiento: el Ayuntamiento convocó las ayudas Ribactiva Emprèn IV en abril de 2024. El «foro logístico» no consta en los registros.",
+        "evidence": [
+          {
+            "kind": "bdns",
+            "ref": "https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocatoria/752816",
+            "snippet": "CONVOCATORIA DE LAS AYUDAS RIBACTIVA EMPREN IV PARA APOYAR ECONOMICAMENTE A NUEVAS ACTIVIDADES EMPRENDEDORAS EN EL AMBITO DEL COMERCIO MINORISTA Y PEQUEÑOS NEGOCIOS QUE PRESTAN SERVICIOS AL CONSUMI… · convocatoria BDNS 752816 del 04-04-2024",
+            "stance": "checked"
+          }
+        ],
         "checkedAgainst": [
-          "verdict-engine"
+          "bdns"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
         ]
       },
-      "source": "verdict-engine",
-      "reason": "verdict-engine (gpt-5.4-mini) re-judged parcial→sin-datos: No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-      "editor": "verdict-engine:gpt-5.4-mini",
-      "appliedAt": "2026-06-24T10:14:20.744Z"
+      "source": "curator-upgrade",
+      "reason": "Ribactiva es un programa municipal de apoyo al emprendimiento: el Ayuntamiento convocó las ayudas Ribactiva Emprèn IV en abril de 2024. El «foro logístico» no consta en los registros.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-05T12:48:18.102Z",
+      "desde": "sin-datos"
     },
     "ma87e0-157-pro-e86511": {
       "verification": {
@@ -918,17 +957,28 @@
     "ma87e0-157-pro-7ce20e": {
       "verification": {
         "claimId": "ma87e0-157-pro-7ce20e",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "parcial",
+        "summary": "El parque de Valencia la Vella se puso en marcha: las obras del área de esparcimiento de su zona verde se adjudicaron el 27-05-2026 por 108.876,11 € (contrato 39/2026). Que pasara por pleno, y los demás parques, no constan.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=sOt%2BY8QGKwx6nTs9LZ9RhQ%3D%3D",
+            "snippet": "Contrato administrativo obras para la ejecución del proyecto Área de esparcimiento en zona verde de Valencia la Vella en el T. M. de Riba-roja de Túr… · expediente 39/2026 · adjudicado a GEOCIVIL, S.A. por 108.876,11 € con IVA el 27-05-2026",
+            "stance": "checked"
+          }
+        ],
         "checkedAgainst": [
-          "verdict-engine"
+          "tenders"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
         ]
       },
-      "source": "verdict-engine",
-      "reason": "verdict-engine (gpt-5.4-mini) re-judged parcial→sin-datos: No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-      "editor": "verdict-engine:gpt-5.4-mini",
-      "appliedAt": "2026-06-24T10:14:20.744Z"
+      "source": "curator-upgrade",
+      "reason": "El parque de Valencia la Vella se puso en marcha: las obras del área de esparcimiento de su zona verde se adjudicaron el 27-05-2026 por 108.876,11 € (contrato 39/2026). Que pasara por pleno, y los demás parques, no constan.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-05T12:48:19.883Z",
+      "desde": "sin-datos"
     },
     "ma87e0-159-pro-e9e8d0": {
       "verification": {
@@ -2933,17 +2983,34 @@
     "qz6weg-273-cit-69aded": {
       "verification": {
         "claimId": "qz6weg-273-cit-69aded",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "parcial",
+        "summary": "Los servicios sociales tienen ayudas económicas: el Ayuntamiento convocó ayudas de emergencia social para 2021 y para 2024 (BDNS). Los criterios de renta que se mencionan no constan.",
+        "evidence": [
+          {
+            "kind": "bdns",
+            "ref": "https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocatoria/734397",
+            "snippet": "Resolución de Alcaldía núm. 4891/2023, de 20 de diciembre de 2023 del Ayuntamiento de Riba-roja de Túria, por la que se convocan ayudas de emergencia social para el año 2024 · convocatoria BDNS 734397 del 20-12-2023",
+            "stance": "checked"
+          },
+          {
+            "kind": "bdns",
+            "ref": "https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocatoria/548829",
+            "snippet": "Resolución número 140, de fecha 21 de enero de 2021, de la Alcaldía del Ayuntamiento de Riba-roja de Turia, por la que se convocan las ayudas económicas de emergencia social para el ejercicio 2021 · convocatoria BDNS 548829 del 11-02-2021",
+            "stance": "checked"
+          }
+        ],
         "checkedAgainst": [
-          "verdict-engine"
+          "bdns"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
         ]
       },
-      "source": "verdict-engine",
-      "reason": "verdict-engine (gpt-5.4-mini) re-judged parcial→sin-datos: No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-      "editor": "verdict-engine:gpt-5.4-mini",
-      "appliedAt": "2026-06-24T10:19:53.948Z"
+      "source": "curator-upgrade",
+      "reason": "Los servicios sociales tienen ayudas económicas: el Ayuntamiento convocó ayudas de emergencia social para 2021 y para 2024 (BDNS). Los criterios de renta que se mencionan no constan.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-05T12:48:21.959Z",
+      "desde": "sin-datos"
     },
     "qz6weg-278-cit-1e696b": {
       "verification": {
@@ -10878,18 +10945,28 @@
     "c8kr44-142-cit-b8c30e": {
       "verification": {
         "claimId": "c8kr44-142-cit-b8c30e",
-        "verdict": "sin-datos",
-        "summary": "Task completed: reasoned in Spanish about whether candidates back the claim about €330,000 for a bike lane project. Determined no genuine support exists since none of the tender candidates match the specific amount or describe the same type of construction action; matches are only topical (carril bi",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
+        "verdict": "parcial",
+        "summary": "La actuación existe: obras de mejora del carril bici y de refugios climáticos, licitadas por 325.662,55 € (IVA incluido) y adjudicadas en mayo de 2026 por 296.195,90 €. El importe del registro queda algo por debajo de los «algo más de 330.000 €» que se dijeron.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=E%2BOr0JaUVkecCF8sV%2BqtYA%3D%3D",
+            "snippet": "Obras ejecución del proyecto: “Mejora del carril bici y la ejecución o mejora de refugios climáticos”, por procedimiento ab… · expediente 52/2025 · adjudicado a OBRA CIVIL Y EDIFICACION ESCRIMAR S.L.L. por 296.195,90 € con IVA el 29-05-2026",
+            "stance": "checked"
+          }
         ],
-        "confidence": 0.2
+        "checkedAgainst": [
+          "tenders"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ]
       },
-      "source": "verdict-engine",
-      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Task completed: reasoned in Spanish about whether candidates back the claim about €330,000 for a bike lane project. Determined no genuine support exists since none of the tender candidates match the specific amount or describe the same type of construction action; matches are only topical (carril bi",
-      "editor": "verdict-engine:claude-code",
-      "appliedAt": "2026-08-02T06:36:48.480Z"
+      "source": "curator-upgrade",
+      "reason": "La actuación existe: obras de mejora del carril bici y de refugios climáticos, licitadas por 325.662,55 € (IVA incluido) y adjudicadas en mayo de 2026 por 296.195,90 €. El importe del registro queda algo por debajo de los «algo más de 330.000 €» que se dijeron.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-05T12:48:14.622Z",
+      "desde": "sin-datos"
     },
     "c8kr44-143-cit-9576bc": {
       "verification": {
@@ -13260,18 +13337,28 @@
     "19gax3o-034-cit-8ae8be": {
       "verification": {
         "claimId": "19gax3o-034-cit-8ae8be",
-        "verdict": "sin-datos",
-        "summary": "Se proporcionó el razonamiento de verificación en español como respuesta de texto libre, tal como solicitó el usuario (2-4 frases razonando sobre el respaldo de los candidatos a la afirmación, sin emitir veredicto final).",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
+        "verdict": "parcial",
+        "summary": "La renovación de los juegos del parque de la Asunción de Nuestra Señora se contrató: suministro e instalación adjudicados el 8-09-2026 por 40.727,10 €. Los 314.000 € del contexto no constan en este registro.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Dsw60vrWRmm5HQrHoP3G5A%3D%3D",
+            "snippet": "Suministro con instalación de juegos infantiles en Parque Asunción de Nuestra Señora · expediente 36/2026 · adjudicado a URBEADAPTA S. L. por 40.727,10 € con IVA el 08-09-2026",
+            "stance": "checked"
+          }
         ],
-        "confidence": 0.2
+        "checkedAgainst": [
+          "tenders"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ]
       },
-      "source": "verdict-engine",
-      "reason": "verdict-engine (claude-code) re-judged verificado→sin-datos: Se proporcionó el razonamiento de verificación en español como respuesta de texto libre, tal como solicitó el usuario (2-4 frases razonando sobre el respaldo de los candidatos a la afirmación, sin emitir veredicto final).",
-      "editor": "verdict-engine:claude-code",
-      "appliedAt": "2026-08-02T13:21:54.279Z"
+      "source": "curator-upgrade",
+      "reason": "La renovación de los juegos del parque de la Asunción de Nuestra Señora se contrató: suministro e instalación adjudicados el 8-09-2026 por 40.727,10 €. Los 314.000 € del contexto no constan en este registro.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-05T12:48:11.033Z",
+      "desde": "sin-datos"
     },
     "19gax3o-043-cit-e74e06": {
       "verification": {
@@ -16161,18 +16248,28 @@
     "c8kr44-081-cit-74fc55": {
       "verification": {
         "claimId": "c8kr44-081-cit-74fc55",
-        "verdict": "sin-datos",
-        "summary": "Task completed: provided skeptical fact-check reasoning in Spanish (2-4 sentences region) analyzing whether candidates genuinely support the claim about a company created for waste collection plus a technical assistance service for oversight/fiscalización. Identified candidates [0] (GARBIALDI S.A. f",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
+        "verdict": "parcial",
+        "summary": "La asistencia técnica que fiscaliza la recogida de residuos existe: es el lote 2 del contrato 136/2025, adjudicado a Auditesa el 10-09-2025 por 194.810 €. Que «se creó una empresa» no consta en el registro.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
+            "snippet": "Servicio de asistencia técnica y apoyo para el control y supervisión sobre la prestación del contrato de recogida de RSU, poda y voluminosos… · lote 2 del expediente 136/2025 · adjudicado a AUDITESA SL por 194.810,00 € con IVA el 10-09-2025",
+            "stance": "checked"
+          }
         ],
-        "confidence": 0.2
+        "checkedAgainst": [
+          "tenders"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ]
       },
-      "source": "verdict-engine",
-      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Task completed: provided skeptical fact-check reasoning in Spanish (2-4 sentences region) analyzing whether candidates genuinely support the claim about a company created for waste collection plus a technical assistance service for oversight/fiscalización. Identified candidates [0] (GARBIALDI S.A. f",
-      "editor": "verdict-engine:claude-code",
-      "appliedAt": "2026-08-02T13:40:16.830Z"
+      "source": "curator-upgrade",
+      "reason": "La asistencia técnica que fiscaliza la recogida de residuos existe: es el lote 2 del contrato 136/2025, adjudicado a Auditesa el 10-09-2025 por 194.810 €. Que «se creó una empresa» no consta en el registro.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-05T12:48:12.805Z",
+      "desde": "sin-datos"
     },
     "c8kr44-088-cit-d469ff": {
       "verification": {

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-05T06:45:20.453Z",
+  "generatedAt": "2026-10-05T12:48:23.373Z",
   "version": "1",
   "plenoId": "ma87e0",
   "plenoDate": "2026-03-16",
@@ -2759,15 +2759,26 @@
       },
       "verification": {
         "claimId": "ma87e0-152-cit-786d7e",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
+        "verdict": "parcial",
+        "summary": "Ribactiva es un programa municipal de apoyo al emprendimiento: el Ayuntamiento convocó las ayudas Ribactiva Emprèn IV en abril de 2024. El «foro logístico» no consta en los registros.",
+        "evidence": [
+          {
+            "kind": "bdns",
+            "ref": "https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocatoria/752816",
+            "snippet": "CONVOCATORIA DE LAS AYUDAS RIBACTIVA EMPREN IV PARA APOYAR ECONOMICAMENTE A NUEVAS ACTIVIDADES EMPRENDEDORAS EN EL AMBITO DEL COMERCIO MINORISTA Y PEQUEÑOS NEGOCIOS QUE PRESTAN SERVICIOS AL CONSUMI… · convocatoria BDNS 752816 del 04-04-2024",
+            "stance": "checked"
+          }
         ],
-        "source": "verdict-engine"
+        "checkedAgainst": [
+          "bdns"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ],
+        "source": "curator-upgrade",
+        "raisedBy": "Sergei Lutchenko"
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -3014,15 +3025,26 @@
       },
       "verification": {
         "claimId": "ma87e0-157-pro-7ce20e",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
+        "verdict": "parcial",
+        "summary": "El parque de Valencia la Vella se puso en marcha: las obras del área de esparcimiento de su zona verde se adjudicaron el 27-05-2026 por 108.876,11 € (contrato 39/2026). Que pasara por pleno, y los demás parques, no constan.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=sOt%2BY8QGKwx6nTs9LZ9RhQ%3D%3D",
+            "snippet": "Contrato administrativo obras para la ejecución del proyecto Área de esparcimiento en zona verde de Valencia la Vella en el T. M. de Riba-roja de Túr… · expediente 39/2026 · adjudicado a GEOCIVIL, S.A. por 108.876,11 € con IVA el 27-05-2026",
+            "stance": "checked"
+          }
         ],
-        "source": "verdict-engine"
+        "checkedAgainst": [
+          "tenders"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ],
+        "source": "curator-upgrade",
+        "raisedBy": "Sergei Lutchenko"
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {

@@ -54,22 +54,16 @@ export const ROTULO_RESUMEN_RETIRADO =
  * @type {Readonly<Record<string, string>>}
  */
 export const RESUMENES_RETIRADOS = Object.freeze({
-  // La nota va después: «…solo he razonado…».
-  // La nota va después: «…las razones ya fueron expuestas en la respuesta».
-  '19gax3o-034-cit-8ae8be': 'Se proporcionó el razonamiento de verifi',
   '19gax3o-143-cit-a3a7a1': 'Task completed: provided skeptical fact-',
   '19gax3o-186-cit-7e4d6f': 'Se trata de una tarea de verificación de',
   '1qi8axv-023-cit-3e6224': 'Task completed: provided skeptical fact-',
   '1sqj7is-081-cit-50c5bb': 'Task completed: provided the requested 2',
-  'c8kr44-081-cit-74fc55': 'Task completed: provided skeptical fact-',
   'c8kr44-088-cit-d63a7d': 'Tarea de razonamiento (fact-checking en ',
   'c8kr44-089-cit-712906': 'Tarea de fact-checking en español sobre ',
   'c8kr44-114-cit-054e8e': 'Se ha razonado en español sobre la afirm',
   'c8kr44-117-cit-d6cf5b': 'Task completed: provided skeptical fact-',
   'c8kr44-121-cit-3e50b3': 'Task was a fact-verification reasoning r',
-  'c8kr44-142-cit-b8c30e': 'Task completed: reasoned in Spanish abou',
   'c8kr44-146-cit-ccd20c': 'Task completed: provided skeptical reaso',
-  // La nota va después: «…Expliqué en español, en formato de razonamiento libre…».
   'k4olcs-176-cit-225080': 'Task completed: provided the requested 2',
   'ma87e0-104-cit-528973': 'Task completed: provided skeptical reaso',
   'ma87e0-195-cit-436a7e': 'Task completed: provided skeptical reaso',
@@ -77,7 +71,6 @@ export const RESUMENES_RETIRADOS = Object.freeze({
   'qz6weg-184-cit-8629f9': 'Task was a Spanish-language fact-checkin',
   'qz6weg-246-cit-98306f': 'Task completed: provided skeptical Spani',
   'qz6weg-271-cit-f67afa': 'Task completed: reasoned in Spanish abou',
-  // La nota va después: «…Respondí en español con el razonamiento solicitado…».
 })
 
 /**

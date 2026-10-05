@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-05T06:45:20.453Z",
+  "generatedAt": "2026-10-05T12:48:23.373Z",
   "version": "1",
   "plenoId": "c8kr44",
   "plenoDate": "2025-09-08",
@@ -1778,16 +1778,26 @@
       },
       "verification": {
         "claimId": "c8kr44-081-cit-74fc55",
-        "verdict": "sin-datos",
-        "summary": "Task completed: provided skeptical fact-check reasoning in Spanish (2-4 sentences region) analyzing whether candidates genuinely support the claim about a company created for waste collection plus a technical assistance service for oversight/fiscalización. Identified candidates [0] (GARBIALDI S.A. f",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
+        "verdict": "parcial",
+        "summary": "La asistencia técnica que fiscaliza la recogida de residuos existe: es el lote 2 del contrato 136/2025, adjudicado a Auditesa el 10-09-2025 por 194.810 €. Que «se creó una empresa» no consta en el registro.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
+            "snippet": "Servicio de asistencia técnica y apoyo para el control y supervisión sobre la prestación del contrato de recogida de RSU, poda y voluminosos… · lote 2 del expediente 136/2025 · adjudicado a AUDITESA SL por 194.810,00 € con IVA el 10-09-2025",
+            "stance": "checked"
+          }
         ],
-        "confidence": 0.2,
-        "source": "verdict-engine"
+        "checkedAgainst": [
+          "tenders"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ],
+        "source": "curator-upgrade",
+        "raisedBy": "Sergei Lutchenko"
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -3785,16 +3795,26 @@
       },
       "verification": {
         "claimId": "c8kr44-142-cit-b8c30e",
-        "verdict": "sin-datos",
-        "summary": "Task completed: reasoned in Spanish about whether candidates back the claim about €330,000 for a bike lane project. Determined no genuine support exists since none of the tender candidates match the specific amount or describe the same type of construction action; matches are only topical (carril bi",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
+        "verdict": "parcial",
+        "summary": "La actuación existe: obras de mejora del carril bici y de refugios climáticos, licitadas por 325.662,55 € (IVA incluido) y adjudicadas en mayo de 2026 por 296.195,90 €. El importe del registro queda algo por debajo de los «algo más de 330.000 €» que se dijeron.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=E%2BOr0JaUVkecCF8sV%2BqtYA%3D%3D",
+            "snippet": "Obras ejecución del proyecto: “Mejora del carril bici y la ejecución o mejora de refugios climáticos”, por procedimiento ab… · expediente 52/2025 · adjudicado a OBRA CIVIL Y EDIFICACION ESCRIMAR S.L.L. por 296.195,90 € con IVA el 29-05-2026",
+            "stance": "checked"
+          }
         ],
-        "confidence": 0.2,
-        "source": "verdict-engine"
+        "checkedAgainst": [
+          "tenders"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ],
+        "source": "curator-upgrade",
+        "raisedBy": "Sergei Lutchenko"
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
