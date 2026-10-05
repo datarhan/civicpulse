@@ -27,14 +27,8 @@
  *
  * Puro: la caché llega como función (`LectorDeCache`), sin fs ni red.
  */
-import type { ZodTypeAny } from 'zod'
+import { z, type ZodTypeAny } from 'zod'
 import type { Backend } from '../llm/client'
-import { EngineExtractSchema, EngineReasoningSchema } from '../llm/schemas'
-import {
-  ENGINE_EXTRACT_VERSION,
-  ENGINE_REASON_VERSION,
-  ENGINE_REASON_VERSIONES_ANTERIORES,
-} from '../llm/prompts'
 import { recortarResumen, RESUMEN_MAX } from './claim-verifier-engine'
 import { rechazoDeMarcador } from './firma-de-persona'
 import { rotuloDeModelo } from './procedencia-del-motor'
@@ -46,6 +40,36 @@ import {
 } from './verified-merge'
 
 const PREFIJO = 'verdict-engine:'
+
+/**
+ * Las claves con que guardaron cada paso las pasadas que escribieron las
+ * retractaciones que hay en el overlay —junio, agosto y el 04-10-2026—, FIJADAS.
+ *
+ * La clave del motor cambia con el motor: versión del prompt, esquema y forma de
+ * la entrada. La PR #249 metió la huella de los candidatos en la entrada
+ * (`{ claimId, candidatos }`), y una CLI que derivara la clave del motor de hoy
+ * no encontraría ninguna de estas entradas: las daría todas por «sin
+ * procedencia», sin avisar. Lo que se fija aquí es un hecho de entonces, no una
+ * copia de lo de ahora, y no cambia: la medición del 05-10-2026 encontró con
+ * estas claves 1.248 de las 1.249 entradas del motor
+ * (tests/scraper/correccion-de-rotulo.test.ts guarda el JSON de cada esquema).
+ */
+export const CLAVES_DE_LAS_PASADAS = Object.freeze({
+  razonar: Object.freeze({
+    /** De la más nueva a la más vieja: v2 (re-derivación del 04-10), v1 (junio y agosto). */
+    versiones: Object.freeze(['engine-reason-v2', 'engine-reason-v1'] as const),
+    schema: z.object({ reasoning: z.string().min(1).max(2000) }),
+    entrada: (claimId: string) => ({ claimId }),
+  }),
+  extraer: Object.freeze({
+    version: 'engine-extract-v1',
+    schema: z.object({
+      verdict: z.enum(['verificado', 'parcial', 'sin-datos']),
+      cites: z.array(z.object({ candidateIndex: z.number().int(), snippet: z.string() })).max(5),
+    }),
+    entrada: (claimId: string, reasoning: string) => ({ claimId, reasoning }),
+  }),
+})
 
 /** El primario de una pasada: bajo su clave guardó lo que contestó cada paso. */
 export interface PrimarioDelRotulo {
@@ -143,11 +167,12 @@ export function decidirCorreccionDeRotulo(a: {
   if (!primario || !e.editor) return { accion: 'dejar', porque: 'rotulo-desconocido' }
   const publicado = e.verification.summary
   if (!publicado) return { accion: 'dejar', porque: 'sin-procedencia' }
-  for (const version of [ENGINE_REASON_VERSION, ...ENGINE_REASON_VERSIONES_ANTERIORES]) {
+  const { razonar: paso1, extraer: paso2 } = CLAVES_DE_LAS_PASADAS
+  for (const version of paso1.versiones) {
     const r = a.leer(primario, {
       promptVersion: version,
-      schema: EngineReasoningSchema,
-      input: { claimId: a.claimId },
+      schema: paso1.schema,
+      input: paso1.entrada(a.claimId),
     })
     const reasoning = (r?.result as { reasoning?: unknown } | null | undefined)?.reasoning
     if (!r || typeof reasoning !== 'string') continue
@@ -155,13 +180,13 @@ export function decidirCorreccionDeRotulo(a: {
       reasoning.slice(0, RESUMEN_MAX) === publicado || recortarResumen(reasoning) === publicado
     if (!loProdujo) continue
     const x = a.leer(primario, {
-      promptVersion: ENGINE_EXTRACT_VERSION,
-      schema: EngineExtractSchema,
-      input: { claimId: a.claimId, reasoning },
+      promptVersion: paso2.version,
+      schema: paso2.schema,
+      input: paso2.entrada(a.claimId, reasoning),
     })
     if (!x) return { accion: 'dejar', porque: 'sin-procedencia' }
     const razonar = { backend: r.backend, model: r.model, version }
-    const extraer = { backend: x.backend, model: x.model, version: ENGINE_EXTRACT_VERSION }
+    const extraer = { backend: x.backend, model: x.model, version: paso2.version }
     const rotulo = rotuloDeLosPasos(razonar, extraer)
     if (rotulo === e.editor) return { accion: 'dejar', porque: 'ya-es-ese' }
     return { accion: 'corregir', claimId: a.claimId, antes: e.editor, rotulo, razonar, extraer }

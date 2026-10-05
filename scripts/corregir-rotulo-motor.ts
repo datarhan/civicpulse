@@ -128,6 +128,22 @@ function main() {
     writeFileSync(OVERLAY, JSON.stringify(nuevo, null, 2) + '\n')
     process.stdout.write(`[corregir-rotulo] overlay escrito: ${OVERLAY}\n`)
   }
+
+  // Que la caché no pruebe ni una fila no es «todo estaba bien»: o esta caché
+  // no es la de la máquina que corrió las pasadas, o cambió cómo se guardan las
+  // claves (CLAVES_DE_LAS_PASADAS). Sale con 1 para que nadie lo lea como limpio.
+  if (
+    pedidos.length > 0 &&
+    filas.length === 0 &&
+    dejadas.every((d) => d.porque === 'sin-procedencia')
+  ) {
+    process.stderr.write(
+      `[corregir-rotulo] la caché no prueba ninguna de las ${pedidos.length} filas pedidas: ` +
+        '¿es la .llm-cache de la máquina que corrió las pasadas, o cambiaron sus claves ' +
+        '(CLAVES_DE_LAS_PASADAS en src/scraper/correccion-de-rotulo.ts)?\n',
+    )
+    process.exitCode = 1
+  }
 }
 
 main()
