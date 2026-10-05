@@ -243,8 +243,10 @@ describe('/hallazgos: el título y el sumario, sobre la copia servida', () => {
   })
 
   it('f-2026-04-20-cit-947479, leída a mano: las huellas y el sumario de hoy', () => {
-    // Cinco filas de `summary`; las dos primeras son huellas de un sumario
-    // reescrito con --redact, que la bitácora llamaba «Texto vigente».
+    // Seis filas de `summary`; las dos primeras son huellas de un sumario
+    // reescrito con --redact, que la bitácora llamaba «Texto vigente». La sexta,
+    // la [9], dice «sin atribuir» donde decía «sin grupo identificado» (bloque
+    // «sin atribuir, opcional, +3» de pleno-findings-published.test.ts).
     const f = SERVIDA.items.find((x) => x.id === 'f-2026-04-20-cit-947479')
     expect(f, 'la ficha ya no está publicada: elige otra').toBeTruthy()
     const lis = filas(render(<BitacoraCorrecciones correcciones={f.corrections} />).container)
@@ -254,7 +256,7 @@ describe('/hallazgos: el título y el sumario, sobre la copia servida', () => {
     expect(plano(lis[1])).toContain(
       'Texto que puso esta corrección, sustituido el 2026-08-11: sumario · sha256:28b511117b82',
     )
-    expect(plano(lis[7])).toContain(`Texto vigente: ${norm(f.summary)}`)
+    expect(plano(lis[9])).toContain(`Texto vigente: ${norm(f.summary)}`)
   })
 
   it('la ficha de /hallazgos la monta igual, no sólo el componente suelto', async () => {
