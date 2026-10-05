@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Card, Pill, SectionHead, ExtLink } from './Primitives'
 import { MarcaDeFirma } from './MarcaDeFirma'
 import { useT } from '../i18n'
+import { conHuecos } from '../lib/huecos'
 import {
   usePlenoClaims,
   CLAIM_TYPE_LABEL,
@@ -305,10 +306,18 @@ function ClaimLedgerView({ items, filter, limit = 20, emptyHint, showSummary = f
             paddingBottom: 2,
           }}
         >
-          <strong style={{ color: 'var(--ink)' }}>{mix.conEvidencia}</strong> contrastadas
+          {conHuecos(
+            t(
+              mix.conEvidencia === 1
+                ? 'ledger.recuento.contrastadas.uno'
+                : 'ledger.recuento.contrastadas.varios',
+            ),
+            { '{n}': <strong style={{ color: 'var(--ink)' }}>{mix.conEvidencia}</strong> },
+          )}
           {' · '}
-          <strong style={{ color: 'var(--ink)' }}>{mix.sinContraste}</strong> sin contraste en los
-          datos
+          {conHuecos(t('ledger.recuento.sinContraste'), {
+            '{n}': <strong style={{ color: 'var(--ink)' }}>{mix.sinContraste}</strong>,
+          })}
         </div>
       )}
       {base.slice(0, shown).map((it) => (
