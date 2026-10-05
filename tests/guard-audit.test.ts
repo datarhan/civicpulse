@@ -9,6 +9,8 @@ import {
   classifyWiring,
   importedModules,
   invokesGuard,
+  juntarInyecciones,
+  juzgarInyeccion,
   scriptTargets,
   sinComentarios,
   summarise,
@@ -252,6 +254,120 @@ describe('guard-audit — three injection states, not two', () => {
   })
 })
 
+describe('guard-audit — una inyección sólo prueba algo contra una guarda en verde', () => {
+  // EL DEFECTO (04-10-2026): el arnés juzgaba una inyección sólo por el código
+  // de salida de la guarda CON la inyección puesta. Entre #226 —que dejó
+  // `check:veredictos` saliendo 1 por una entrada del overlay por encima de su
+  // base— y #228, donde una persona la firmó a la baja, cualquier inyección en
+  // esa guarda se habría leído FIRES: ya salía roja sin que nadie le inyectara
+  // nada. Y hay guardas rojas a propósito (`check:claim-provenance`).
+  const verde = { status: 0, salida: '[check-x] 12 evaluado(s) · 0 rotos\n' }
+  const roja = {
+    status: 1,
+    salida: '  ✗ [por-encima] c-1: publica verificado y la base dice sin-datos\n',
+  }
+
+  it('LA TRAMPA: ya roja sin inyección, su rojo con ella no la da por probada', () => {
+    const j = juzgarInyeccion({ sinInyeccion: roja, conInyeccion: roja })
+    expect(j.fired).not.toBe(true)
+    expect(j.unproven).toBeTruthy()
+  })
+
+  it('ni hace falta inyectarla: su rojo de antes ya dice que no probará nada', () => {
+    const j = juzgarInyeccion({ sinInyeccion: roja, conInyeccion: null })
+    expect(j.fired).toBeNull()
+    expect(j.unproven).toBeTruthy()
+  })
+
+  it('una guarda que no llega a terminar sin inyección tampoco es una base verde', () => {
+    // `spawnSync` da `status: null` si la mata una señal, desborda el búfer o
+    // no arranca; `status !== 0` lo leía como rojo, y con inyección, FIRES.
+    const sinTerminar = { status: null, salida: '' }
+    expect(juzgarInyeccion({ sinInyeccion: sinTerminar, conInyeccion: roja }).fired).not.toBe(true)
+  })
+
+  it('verde sin inyección y roja con ella: probada', () => {
+    expect(juzgarInyeccion({ sinInyeccion: verde, conInyeccion: roja })).toEqual({ fired: true })
+  })
+
+  it('verde con y sin inyección: muda — el defecto que la auditoría existe para cazar', () => {
+    expect(juzgarInyeccion({ sinInyeccion: verde, conInyeccion: verde })).toEqual({ fired: false })
+  })
+
+  it('roja con la inyección pero sin lo que espera ver: tampoco prueba nada', () => {
+    // Si `validateOverlay` dejara de aceptar lo que inyecta la del overlay, la
+    // guarda reventaría al cargarlo y saldría 1: FIRES, pero por otra cosa.
+    const reventada = {
+      status: 1,
+      salida: 'Error: [overlay] k4olcs-006-afi-462d5e: bad source llm\n    at validateOverlay',
+    }
+    const j = juzgarInyeccion({
+      sinInyeccion: verde,
+      conInyeccion: reventada,
+      espera: /\[por-encima\]/,
+    })
+    expect(j.fired).toBeNull()
+    expect(classifyInjection({ hasInjection: true, ...j }).state).toBe('unproven')
+  })
+
+  it('roja con la inyección y con lo que espera ver: probada', () => {
+    const j = juzgarInyeccion({ sinInyeccion: verde, conInyeccion: roja, espera: /\[por-encima\]/ })
+    expect(j).toEqual({ fired: true })
+  })
+
+  it('una inyección sin prueba no es probada ni muda, y el informe dice por qué', () => {
+    const v = classifyInjection({
+      hasInjection: true,
+      fired: null,
+      unproven: 'la guarda ya sale roja sin inyección (sale 1): la inyección no prueba nada',
+    })
+    expect(v.state).toBe('unproven')
+    expect(v.detail).toContain('roja sin inyección')
+  })
+})
+
+describe('guard-audit — una guarda con varias inyecciones', () => {
+  it('una muda hace muda a la guarda, aunque otra no se haya podido correr', () => {
+    // `some(null)` se miraba primero: una muda junto a otra sin fichero salía
+    // «no ejercitada» y la auditoría daba 0 — al revés de lo que promete el
+    // propio campo, «Falso si CUALQUIERA de sus inyecciones no disparó».
+    const j = juntarInyecciones([
+      { describe: 'a', fired: false },
+      { describe: 'b', fired: null, note: 'x.json missing — not exercised' },
+    ])
+    expect(classifyInjection({ hasInjection: true, ...j }).state).toBe('silent')
+  })
+
+  it('y aunque la otra no pruebe nada: una muda no se esconde detrás de nada', () => {
+    const j = juntarInyecciones([
+      { describe: 'a', fired: false },
+      { describe: 'b', fired: null, unproven: 'sale roja, pero no por lo inyectado' },
+    ])
+    expect(classifyInjection({ hasInjection: true, ...j }).state).toBe('silent')
+  })
+
+  it('sin prueba pesa más que no ejercitada: que la guarda ya está roja se dice', () => {
+    const j = juntarInyecciones([
+      { describe: 'a', fired: null, note: 'x.json missing — not exercised' },
+      { describe: 'b', fired: null, unproven: 'la guarda ya sale roja sin inyección' },
+    ])
+    expect(classifyInjection({ hasInjection: true, ...j }).state).toBe('unproven')
+  })
+
+  it('probada sólo si disparan todas', () => {
+    const una = juntarInyecciones([
+      { describe: 'a', fired: true },
+      { describe: 'b', fired: null, note: 'x.json missing — not exercised' },
+    ])
+    expect(classifyInjection({ hasInjection: true, ...una }).state).toBe('not-run')
+    const todas = juntarInyecciones([
+      { describe: 'a', fired: true },
+      { describe: 'b', fired: true },
+    ])
+    expect(classifyInjection({ hasInjection: true, ...todas }).state).toBe('proven')
+  })
+})
+
 describe('guard-audit — what makes the audit itself fail', () => {
   const row = (wired: number, tested: number, state: InjectionVerdict['state']) => ({
     wiredIn: Array(wired).fill('x'),
@@ -275,6 +391,13 @@ describe('guard-audit — what makes the audit itself fail', () => {
     expect(auditFails(summarise([row(1, 1, 'undefined')]))).toBe(false)
   })
 
+  it('una guarda sin prueba se informa y no tumba la auditoría', () => {
+    // Roja ya sin inyección es un hecho de la guarda, que ella misma informa
+    // donde corre; tumbar aquí por eso dejaría la auditoría roja para siempre
+    // con una guarda roja a propósito, y una auditoría siempre roja se apaga.
+    expect(auditFails(summarise([row(1, 1, 'unproven')]))).toBe(false)
+  })
+
   it('counts each state separately so no number can hide inside another', () => {
     const s = summarise([
       row(1, 1, 'proven'),
@@ -282,14 +405,16 @@ describe('guard-audit — what makes the audit itself fail', () => {
       row(0, 1, 'not-injectable'),
       row(1, 1, 'not-run'),
       row(1, 1, 'silent'),
+      row(1, 1, 'unproven'),
     ])
     expect(s).toEqual({
-      total: 5,
+      total: 6,
       notInvoked: 1,
       manual: 0,
       untested: 1,
       proven: 1,
       silent: 1,
+      unproven: 1,
       notRun: 1,
       undefinedInjection: 1,
       notInjectable: 1,

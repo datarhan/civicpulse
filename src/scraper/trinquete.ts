@@ -139,7 +139,9 @@ export const TRINQUETE: Record<OverlaySource, Etapa> = {
     // tests/fixtures/verifier-gold.json, lo etiquetó un modelo (ai-opus-4.8) y
     // a 04-10-2026 no consta revisión humana; el ~92 % —36 de 39— es
     // coincidencia con esas etiquetas, medida con gpt-5.4-mini en junio de
-    // 2026, y las pasadas de agosto corrieron por Claude Code sin medirse. La regla
+    // 2026; la pasada de agosto se configuró con Claude Code, la contestó en
+    // parte gpt-4o-mini (457 retractaciones, medido el 05-10-2026) y no se midió
+    // ninguno de los dos. La regla
     // se tomó a la vista de esa cifra y hoy no depende de ella. `medicion`
     // apunta al informe que la midió, con su nota del 04-10-2026.
     puedeEmitir: ['sin-datos'],

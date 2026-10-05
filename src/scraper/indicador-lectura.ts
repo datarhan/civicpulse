@@ -124,6 +124,34 @@ export const SALVEDAD_DENOMINADOR_CONGELADO =
   'El cociente puede moverse sin que el servicio haya cambiado: sigue al coste, porque ' +
   'nadie ha vuelto a medir el denominador.'
 
+/**
+ * El «X de Y» de la declaración congelada, con su grupo dicho en palabras.
+ *
+ * Decía «38 de 57 comparables medibles» en una ficha que arriba rotula
+ * «comparable (n=43)», y la revisión lectora del 05-10-2026 lo señaló: dos
+ * universos con el mismo nombre. No lo son. Los 43 son los que prestan el
+ * servicio del mismo modo y declaran las dos cifras el año que titula; los 57,
+ * los del mismo tramo de población con serie suficiente de la unidad física,
+ * con cualquier modo de gestión. Las dos cifras se quedan —son ciertas—, y
+ * esta frase dice de qué grupo es la suya. La dicen la salvedad de
+ * `caveatDeclaracion` y la ficha, así que vive una vez.
+ */
+export function paresDeclaracionCongelada(
+  d: { paresCongelados: number; paresMedibles: number; minEntregas?: number },
+  nComparables?: number | null,
+): string {
+  const serie = d.minEntregas ? ` en al menos ${d.minEntregas} entregas` : ''
+  const distinto =
+    typeof nComparables === 'number' && nComparables !== d.paresMedibles
+      ? `, con cualquier modo de gestión (no son los ${nComparables} comparables de la ` +
+        'comparación de coste),'
+      : ''
+  return (
+    `${d.paresCongelados} de los ${d.paresMedibles} municipios valencianos de tamaño parecido ` +
+    `que declaran esta cifra${serie}${distinto} hacen lo mismo con ella`
+  )
+}
+
 /** Una marca corta y siempre visible en la cabecera de la tarjeta. */
 export interface ChipDeclaracion {
   texto: string

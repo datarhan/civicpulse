@@ -138,6 +138,13 @@ export const DEFAULT_EXPECTATIONS: DatasetExpectation[] = [
     'plantilla.json',
     'eficiencia-findings.json',
   ].map((file) => ({ file, cls: 'curated' as const, maxAgeDays: 120 })),
+  // Las réplicas oficiales a quejas sólo cambian cuando llega una y alguien la
+  // publica con `npm run queja-reply`: su edad cuenta réplicas, no una máquina
+  // parada. Sin plazo propio, /lab-health la medía con los umbrales planos y
+  // la pintaba «sin refresco» al lado de su vecina «fresco» (revisión lectora
+  // del 05-10-2026). Un año es lo que tarda en merecer que alguien pregunte
+  // si de verdad nadie ha contestado.
+  { file: 'quejas-responses.json', cls: 'curated' as const, maxAgeDays: 365 },
   // Clase `manual`: fuentes cuyo ritmo lo marca el ministerio y cuyo refresco
   // no lo corre nadie más que una persona. Estuvieron DELIBERADAMENTE FUERA con
   // el argumento de que un plazo corto las dejaría rojas de forma permanente —

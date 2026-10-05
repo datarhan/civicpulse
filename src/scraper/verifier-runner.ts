@@ -33,9 +33,11 @@ import {
 } from './claim-verifier-engine'
 import type { MotivoSinJuicio } from './decision-del-motor'
 import { sha256Short } from './hash'
+import type { PasoDelMotor } from './procedencia-del-motor'
 import { scoreNliPairs, type NliPair } from './nli-client'
 import type { Corpus } from './semantic-shortlist'
-import { callLLM } from '../llm/client'
+import type { ZodTypeAny, z } from 'zod'
+import { callLLMConProcedencia, type CallLlmOptions, type ClientConfig } from '../llm/client'
 import { EngineReasoningSchema, EngineExtractSchema } from '../llm/schemas'
 import {
   buildEngineReasonSystemPrompt,
@@ -197,11 +199,35 @@ export function makeEngineVerifier(
      * with the model's reasoning needs to know which (decision-del-motor.ts).
      */
     onSinDatos?: (claimId: string, porque: SinDatosPorque) => void
+    /**
+     * La configuración del cliente para cada llamada del motor
+     * (`configDelMotor`: sin respaldo de pago). Sin ella, la del entorno.
+     */
+    config?: ClientConfig
+    /**
+     * Quién contestó cada paso que el motor preguntó al modelo. Quien escribe la
+     * retractación la firma con esto, no con lo configurado: el 02-08-2026 lo
+     * configurado era claude-code y 457 las contestó gpt-4o-mini
+     * (procedencia-del-motor.ts).
+     */
+    onProcedencia?: (claimId: string, paso: PasoDelMotor) => void
   } = {},
 ): VerifierFn {
+  const preguntar = async <S extends ZodTypeAny>(
+    claimId: string,
+    paso: PasoDelMotor['paso'],
+    pregunta: Omit<CallLlmOptions<S>, 'config'>,
+  ): Promise<z.infer<S> | null> => {
+    const { result, procedencia } = await callLLMConProcedencia<S>({
+      ...pregunta,
+      ...(opts.config ? { config: opts.config } : {}),
+    })
+    if (result !== null && procedencia) opts.onProcedencia?.(claimId, { paso, ...procedencia })
+    return result
+  }
   const deps: EngineDeps = {
     reasonFn: async (claim, candidates) => {
-      const r = await callLLM({
+      const r = await preguntar(claim.id, 'razonar', {
         systemPrompt: buildEngineReasonSystemPrompt(),
         userPrompt: buildEngineReasonUserPrompt(claim, candidates),
         promptVersion: ENGINE_REASON_VERSION,
@@ -214,7 +240,7 @@ export function makeEngineVerifier(
       return r.reasoning
     },
     extractFn: async (reasoning, claim, candidates) => {
-      const r = await callLLM({
+      const r = await preguntar(claim.id, 'extraer', {
         systemPrompt: buildEngineExtractSystemPrompt(),
         userPrompt: buildEngineExtractUserPrompt(reasoning, claim, candidates),
         promptVersion: ENGINE_EXTRACT_VERSION,
@@ -255,7 +281,7 @@ export function makeEngineVerifier(
             // PCC: argue-for vs argue-against; high NLI contradiction = ambiguous
             // = low confidence → force sin-datos.
             const [forR, againstR] = await Promise.all([
-              callLLM({
+              preguntar(claim.id, 'contrastar', {
                 systemPrompt: buildEngineReasonSystemPrompt(),
                 userPrompt: buildEngineReasonUserPrompt(claim, candidates),
                 promptVersion: ENGINE_REASON_VERSION,
@@ -266,7 +292,7 @@ export function makeEngineVerifier(
                   candidatos: huellaDeCandidatos(candidates),
                 },
               }),
-              callLLM({
+              preguntar(claim.id, 'contrastar', {
                 systemPrompt: buildEngineReasonSystemPrompt(),
                 userPrompt: buildEngineArgueAgainstPrompt(claim, candidates),
                 promptVersion: ENGINE_ARGUE_VERSION,

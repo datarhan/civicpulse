@@ -51,6 +51,7 @@ export const MANIFEST_DIR = process.env.RUN_MANIFEST_DIR || '.run-manifests'
 export const NO_LLM_STATS: RunStats = Object.freeze({
   calls: 0,
   cacheHits: 0,
+  cacheDeOtroBackend: 0,
   ok: 0,
   failed: 0,
   zeroTokenFailures: 0,

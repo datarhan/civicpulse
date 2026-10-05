@@ -19,13 +19,31 @@
  * and its verificado/parcial much less. That was agreement with a MODEL's
  * labels — in June every row of tests/fixtures/verifier-gold.json had been
  * labelled by ai-opus-4.8, with no human review recorded — measured with
- * gpt-5.4-mini; the August 2026 runs went through claude-code and were never
- * scored. The figures, with their real samples, are in
- * .automation-measurements.json.
+ * gpt-5.4-mini. Neither model of the August 2026 run (below) was ever scored.
+ * The figures, with their real samples, are in .automation-measurements.json.
+ *
+ * La pasada del 02-08-2026 NO corrió sólo por claude-code, aunque se configuró
+ * así y así la rotuló este guion. Con el `.env` cargado, la cadena del cliente
+ * ponía openai detrás de claude-code (sin OPENAI_MODEL, gpt-4o-mini), y cada vez
+ * que `claude -p` fallaba contestaba gpt-4o-mini. El cliente guardaba esa
+ * respuesta bajo la clave de claude-code, y aquí se rotulaba con lo configurado
+ * (`OPENAI_MODEL || LLM_BACKEND`). Medido el 05-10-2026 contra una copia de la
+ * caché, sin llamadas: de las 920 retractaciones de esa pasada que siguen en el
+ * overlay con su explicación, 457 las contestó gpt-4o-mini (321 servidas), todas
+ * rotuladas `verdict-engine:claude-code`.
+ *
+ * Desde entonces no puede volver a pasar. El motor corre sin respaldo de pago
+ * diga lo que diga el entorno (`configDelMotor`), escribe a nombre del backend
+ * que CONTESTÓ (`rotuloDelMotor`, con la procedencia que da
+ * `callLLMConProcedencia`) y, si contestó otro que el primario, no escribe: la
+ * cuenta y se reintenta en la siguiente pasada. El rótulo sale del backend
+ * configurado, nunca de OPENAI_MODEL: esa variable en el `.env` habría firmado
+ * lo que escribe Claude como de un modelo de OpenAI.
+ *
  * Writes `source:'verdict-engine'` overlay entries (replacing the `llm` entry);
  * curator-downgrade entries are untouched (different source). Resumable: claims
  * already re-derived (a verdict-engine overlay entry exists) are skipped.
- * Requires a working metered backend (the engine calls callLLM) — the eval gate
+ * Requires a backend that answers (the engine calls callLLM) — the eval gate
  * lives in docs/superpowers/specs/2026-06-24-factcheck-rebuild-p3-results.md.
  *
  * `--ids <fichero>` (un id por línea; `#` comenta) RE-DERIVA retractaciones del
@@ -64,7 +82,19 @@ import {
   type MotivoSinRecorte,
 } from '../src/scraper/decision-del-motor'
 import { entradaDelMotor } from '../src/scraper/entrada-de-pasada'
-import { resetBudget, getRunStats, llmCacheGet } from '../src/llm/client'
+import {
+  configDelMotor,
+  primarioDelMotor,
+  rotuloDelMotor,
+  type PasoDelMotor,
+} from '../src/scraper/procedencia-del-motor'
+import {
+  resetBudget,
+  getRunStats,
+  llmCacheGet,
+  loadConfigFromEnv,
+  buildBackendChain,
+} from '../src/llm/client'
 import { EngineReasoningSchema } from '../src/llm/schemas'
 import { ENGINE_REASON_VERSION, ENGINE_REASON_VERSIONES_ANTERIORES } from '../src/llm/prompts'
 import { startRun, formatManifest } from '../src/scraper/run-manifest'
@@ -74,7 +104,11 @@ import { applyOverlayEntries, type ApplyEntry, type Overlay } from '../src/scrap
 const VERIFIED = resolve('public/data/pleno-claims-verified.json')
 /** Cómo se llama en el parte una declaración que se aparta (`decidirRederivacion`). */
 const APARTADA = 'apartada: sólo cita el título, el razonamiento ve respaldo → curador'
-const MODEL = process.env.OPENAI_MODEL || process.env.LLM_BACKEND || 'engine'
+// Sin respaldo de pago, diga lo que diga el entorno, y el rótulo del backend
+// configurado, no de OPENAI_MODEL (ver la cabecera y procedencia-del-motor.ts).
+const CONFIG = configDelMotor(loadConfigFromEnv())
+const PRIMARIO = primarioDelMotor(CONFIG)
+const MODEL = PRIMARIO.rotulo
 const CHECKPOINT_EVERY = 25
 
 interface VerifiedSnapshot {
@@ -227,6 +261,12 @@ async function main() {
   const saltos = new Map<string, MotivoSinJuicio>()
   // De qué salida del motor viene cada `sin-datos`: sólo dos son del modelo.
   const porqueSinDatos = new Map<string, SinDatosPorque>()
+  // Quién contestó cada paso de cada declaración: la retractación se firma con
+  // esto, no con lo configurado.
+  const procedencias = new Map<string, PasoDelMotor[]>()
+  process.stderr.write(
+    `[verify-engine] backends: ${buildBackendChain(CONFIG).join(' → ')} (sin respaldo de pago)\n`,
+  )
   const engine = makeEngineVerifier({
     consistency: false,
     // Re-derivar juzga siempre: algunas de estas filas las retractó `--base`,
@@ -237,6 +277,10 @@ async function main() {
     },
     onSinDatos: (id, porque) => {
       porqueSinDatos.set(id, porque)
+    },
+    config: CONFIG,
+    onProcedencia: (id, paso) => {
+      procedencias.set(id, [...(procedencias.get(id) ?? []), paso])
     },
   })
 
@@ -256,6 +300,10 @@ async function main() {
   // Respuestas que hablan de la tarea y no de la declaración: el modelo contestó,
   // pero no juzgó. Ni «juzgada» ni «error del motor»: se reintentan.
   let charla = 0
+  // Juicios que contestó otro backend que el primario (un respaldo gratuito: el
+  // de pago ya no está en la cadena). No se escriben a nombre de nadie: se
+  // reintentan cuando el primario conteste.
+  const deOtroBackend: string[] = []
   // --ids: explicación reescrita; el modelo ya ve respaldo (para un curador);
   // no la juzgó. Tres cuentas separadas, con sus ids.
   const rederivadas: string[] = []
@@ -300,6 +348,29 @@ async function main() {
     const cur = currentVerdict.get(id) ?? 'sin-datos'
     // Primero si hubo juicio; el veredicto, después y sólo entonces.
     const salto = saltos.get(id)
+    // Y a nombre de quién: de quien CONTESTÓ cada paso, no de lo configurado.
+    // Si no fue el primario, no se escribe ni cuenta como juzgada: se reintenta.
+    let rotulo = MODEL
+    if (!salto) {
+      const firma = rotuloDelMotor({ primario: PRIMARIO, pasos: procedencias.get(id) ?? [] })
+      if (firma.accion === 'dejar' && firma.porque === 'otro-backend') {
+        process.stderr.write(
+          `[verify-engine] ${id}: no se escribe — lo contestó ${firma.quien}, no ${PRIMARIO.rotulo}\n`,
+        )
+        deOtroBackend.push(id)
+        run.skip('contestó otro backend')
+        continue
+      }
+      if (firma.accion === 'dejar') {
+        process.stderr.write(
+          `[verify-engine] ${id}: no se escribe — sin la procedencia de su respuesta\n`,
+        )
+        skipped++
+        run.skip('sin procedencia de la respuesta')
+        continue
+      }
+      rotulo = firma.rotulo
+    }
     anotarEnElParte(run, salto)
     if (args.ids) {
       const decision = decidirRederivacion({
@@ -308,7 +379,7 @@ async function main() {
         sinDatosPorque: porqueSinDatos.get(id),
       })
       if (decision.accion === 'reescribir') {
-        pending.push(entradaDelMotor({ verification: r, modelo: MODEL, tipo: 'rederivacion' }))
+        pending.push(entradaDelMotor({ verification: r, modelo: rotulo, tipo: 'rederivacion' }))
         rederivadas.push(id)
         run.record('rederivada')
       } else if (decision.accion === 'apartar') {
@@ -336,7 +407,7 @@ async function main() {
       // Tal cual la dio el motor: los corpus de su evidencia en `checkedAgainst`,
       // su pasada en `derivedBy`. Antes se pisaba `checkedAgainst` con la marca.
       pending.push(
-        entradaDelMotor({ verification: r, modelo: MODEL, tipo: 'retractacion', desde: cur }),
+        entradaDelMotor({ verification: r, modelo: rotulo, tipo: 'retractacion', desde: cur }),
       )
       retracted++
       run.record('retracted')
@@ -354,9 +425,25 @@ async function main() {
     if (pending.length >= CHECKPOINT_EVERY) flush()
   }
   flush()
+  if (deOtroBackend.length > 0) {
+    // Una pasada que no escribe lo que le contestó un respaldo no sale limpia:
+    // el primario está fallando y hay que saberlo antes de la siguiente.
+    process.stderr.write(
+      `[verify-engine] ${deOtroBackend.length} juicio(s) los contestó otro backend que ` +
+        `${PRIMARIO.rotulo} y no se han escrito; se reintentan en la siguiente pasada:\n` +
+        `    ${deOtroBackend.join('\n    ')}\n`,
+    )
+    process.exitCode = 1
+  }
   if (
     done > 0 &&
-    retracted + kept + rederivadas.length + yaNoLaRetractaria.length + apartadas.length === 0
+    retracted +
+      kept +
+      rederivadas.length +
+      yaNoLaRetractaria.length +
+      apartadas.length +
+      deOtroBackend.length ===
+      0
   ) {
     process.stderr.write(
       `[verify-engine] WARNING: ${done} claim(s) processed and the model was consulted for NONE ` +
@@ -373,7 +460,8 @@ async function main() {
     `[verify-engine] DONE: seen ${done} · JUDGED ${retracted + kept + apartadasAqui} ` +
       `(retracted ${retracted} → sin-datos · kept ${kept}` +
       `${apartadasAqui ? ` · apartadas ${apartadasAqui}` : ''}) · ` +
-      `never asked ${unjudged} · charla de la tarea ${charla} · skipped ${skipped}` +
+      `never asked ${unjudged} · charla de la tarea ${charla} · ` +
+      `de otro backend ${deOtroBackend.length} · skipped ${skipped}` +
       `${args.dryRun ? ' (DRY-RUN, nothing written)' : ''}\n`,
   )
   if (apartadasAqui) process.stderr.write(`  ${APARTADA}:\n    ${apartadas.join('\n    ')}\n`)
