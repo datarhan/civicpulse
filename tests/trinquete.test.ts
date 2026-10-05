@@ -59,7 +59,7 @@ describe('el trinquete declarado coincide con el que se aplica', () => {
     // `Record<OverlaySource, Etapa>` ya lo obliga en compilación; esto lo fija
     // también en ejecución, para que un `as never` no se lo salte.
     expect(Object.keys(TRINQUETE).sort()).toEqual(
-      ['curator-downgrade', 'llm', 'nli', 'verdict-engine'].sort(),
+      ['curator-downgrade', 'curator-upgrade', 'llm', 'nli', 'verdict-engine'].sort(),
     )
   })
 
@@ -92,6 +92,59 @@ describe('el trinquete declarado coincide con el que se aplica', () => {
         if (etapa.exigeFirma) expect(intento, `${id} · ${verdict}`).toThrow(/firma/)
         else expect(intento, `${id} · ${verdict}`).not.toThrow()
       }
+    }
+  })
+
+  it('`firmaEnLaEntrada` describe lo que el overlay acepta de verdad', () => {
+    // Firmada por una persona y todo lo demás en regla —corpus de lo citado,
+    // motivo que es el resumen, `desde` publicado—: la etapa que lleva la firma
+    // en la entrada escribe; la que sólo propone sigue sin escribir, ni firmada.
+    const PERSONA = 'María de la Fuente Llorens'
+    const conFirma = (source: string, verdict: ClaimVerdict) =>
+      applyOverlayEntries(
+        vacio,
+        [
+          {
+            claimId: 'c',
+            source,
+            reason: RAZON,
+            editor: PERSONA,
+            desde: 'sin-datos',
+            verification: {
+              claimId: 'c',
+              verdict,
+              summary: RAZON,
+              evidence: [
+                { kind: 'tender', ref: 'https://contrataciondelestado.es/x', snippet: 's' },
+              ],
+              checkedAgainst: ['tenders'],
+              derivedBy: [source],
+            },
+          },
+        ] as never,
+        'TS',
+        new Map([['c', 'sin-datos']]) as never,
+      )
+    const firmadas = etapasVivas().filter((k) => TRINQUETE[k].exigeFirma)
+    expect(
+      firmadas.some((k) => TRINQUETE[k].firmaEnLaEntrada),
+      'ninguna escribe firmada',
+    ).toBe(true)
+    expect(
+      firmadas.some((k) => !TRINQUETE[k].firmaEnLaEntrada),
+      'ninguna sólo propone',
+    ).toBe(true)
+    for (const id of firmadas) {
+      for (const verdict of TRINQUETE[id].puedeEmitir) {
+        const intento = () => conFirma(id, verdict)
+        if (TRINQUETE[id].firmaEnLaEntrada) expect(intento, `${id} · ${verdict}`).not.toThrow()
+        else expect(intento, `${id} · ${verdict}`).toThrow(/propone/)
+      }
+    }
+    // Y sólo la lleva una etapa que exige la firma: llevarla sin exigirla no
+    // significaría nada.
+    for (const [id, etapa] of Object.entries(TRINQUETE)) {
+      if (etapa.firmaEnLaEntrada) expect(etapa.exigeFirma, id).toBe(true)
     }
   })
 

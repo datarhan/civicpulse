@@ -215,6 +215,47 @@ export default function AvisoLegal() {
         </p>
       </Card>
 
+      {/* La subida firmada (src/scraper/subida-firmada.ts), desde el 05-10-2026:
+          la única vía que refuerza un veredicto publicado. La describe también
+          /metodologia#subida-firmada. */}
+      <Card id="subida-firmada" style={{ marginTop: 14, scrollMarginTop: 24 }}>
+        <SectionHead
+          eyebrow="Declaraciones de pleno"
+          title="Qué afirmamos cuando una persona sube un veredicto"
+        />
+        <p>
+          En <code>/plenos</code> y <code>/declaraciones</code> cada declaración lleva un veredicto
+          contrastado con datos públicos. Lo pone un comparador automático, y las revisiones
+          automáticas posteriores sólo pueden bajarlo —retirar lo que no se sostiene—, nunca
+          subirlo. <strong>Subir un veredicto lo hace sólo una persona</strong>, con su nombre y
+          apellidos, que la tarjeta de la declaración da («subido por una persona · firmado por…»),
+          y responde de ello.
+        </p>
+        <p>
+          <strong>Con qué evidencia.</strong> Quien sube cita el registro público que lo sostiene
+          —un contrato adjudicado de la Plataforma de Contratación del Sector Público o una
+          convocatoria de la Base de Datos Nacional de Subvenciones—, enlazado en la tarjeta. La
+          descripción de ese registro la escribe la herramienta desde el propio registro, no la
+          persona; la explicación bajo la cita la escribe la persona, y nunca se publica tal cual la
+          de una máquina.
+        </p>
+        <p>
+          <strong>Qué afirma, y qué no.</strong> Un veredicto subido afirma que el registro citado
+          sostiene lo que dice su explicación; en un «parcial», la explicación dice también lo que
+          el registro no establece. No afirma que todo lo dicho en la intervención sea cierto, ni
+          califica a quien lo dijo.{' '}
+          <strong>Nunca se sube por esta vía una acusación pública</strong>: lo que se afirma de
+          alguien con datos va en un hallazgo, con sus documentos y el derecho de réplica de quien
+          aparece aludido.
+        </p>
+        <p>
+          Durante el periodo electoral (LOREG art. 50) no se sube ningún veredicto. Una subida se
+          puede retirar en cualquier momento, también con firma y motivo, y retirarla devuelve el
+          veredicto que había antes. Cualquier grupo o cargo aludido puede pedir la rectificación
+          por las vías descritas más arriba, con los mismos plazos.
+        </p>
+      </Card>
+
       <Card style={{ marginTop: 14 }}>
         <SectionHead eyebrow="Periodo electoral" title="Modo congelado LOREG" />
         <p>
@@ -229,6 +270,10 @@ export default function AvisoLegal() {
             suspendido.
           </li>
           <li>Los estados publicados quedan congelados a la fecha de inicio del periodo.</li>
+          <li>
+            No se sube ningún veredicto de una declaración de pleno; retirar una subida ya firmada
+            sigue siendo posible.
+          </li>
           <li>
             El pleno principal del sitio, incluidas las páginas <code>/presupuesto</code>,{' '}
             <code>/cargos</code> y <code>/datos</code>, sigue operativo con datos objetivos de

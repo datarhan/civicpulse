@@ -2,7 +2,9 @@
  * Base/overlay merge for pleno-claims-verified.json (P2, fixes audit R4/B5).
  *
  * The deterministic pass writes `pleno-claims-verified-base.json`; second-pass
- * runners (NLI/LLM) and curator downgrades write `pleno-claims-overlay.json`.
+ * runners (NLI/LLM), curator downgrades and, since 2026-10-04, the raise a
+ * person signs (`subir-veredicto`, src/scraper/subida-firmada.ts) write
+ * `pleno-claims-overlay.json`.
  * The published `pleno-claims-verified.json` is the pure merge of the two, so a
  * deterministic re-run rebuilds the base and re-applies the overlay — it can no
  * longer clobber second-pass or curator decisions.
@@ -21,7 +23,7 @@
  */
 import { ALLOWED_CLAIM_TYPES, type ClaimType, type PlenoClaim } from './pleno-claim'
 import type { ClaimVerdict, ClaimVerification, ClaimEvidence } from './claim-verifier'
-import { corpusReales } from './claim-verdicts'
+import { corpusDeEvidencia, corpusReales } from './claim-verdicts'
 import { charlaDeTarea } from './charla-de-tarea'
 // Sólo valor: trinquete.ts importa de aquí únicamente tipos, así que no hay
 // ciclo en ejecución.
@@ -30,7 +32,12 @@ import { TRINQUETE } from './trinquete'
 // `/hallazgos`. Importado, no recitado: dos listas de stopwords que midieran
 // distinto harían que el CLI aceptara lo que la cola desaconseja.
 import { contentWords } from './quote-reanchor'
-import { claseDeFirma, rechazoDeFirma, type ClaseDeFirma } from './firma-de-persona'
+import {
+  claseDeFirma,
+  nombraAUnaPersona,
+  rechazoDeFirma,
+  type ClaseDeFirma,
+} from './firma-de-persona'
 import { REASON_DIGEST_RE, reasonDigest, type PlenoFindingReasonAmendment } from './pleno-finding'
 import {
   HUELLA_DE_LITERAL_RETIRADO_RE,
@@ -47,7 +54,8 @@ export interface VerifiedItem {
   verification: VerificacionPublicada
 }
 
-export type OverlaySource = 'nli' | 'llm' | 'curator-downgrade' | 'verdict-engine'
+export type OverlaySource =
+  'nli' | 'llm' | 'curator-downgrade' | 'verdict-engine' | 'curator-upgrade'
 
 /**
  * La verificación tal y como se publica: la del verificador y, cuando la puso
@@ -78,6 +86,13 @@ export interface VerificacionPublicada extends ClaimVerification {
    */
   reasonSignedBy?: string
   /**
+   * Sólo en una subida firmada: quién la firmó, la firma de su entrada. Siempre
+   * una persona con su nombre —`validarSubida` no acepta otra cosa—, y por eso
+   * viaja el nombre y no una clase: la tarjeta lo imprime («firmado por…»),
+   * como la firma de una enmienda de motivo.
+   */
+  raisedBy?: string
+  /**
    * La retirada que firmó una persona, estampada desde la entrada como el
    * canal: la puerta la lee aquí (`motivoDeRetirada`, declaracion-retirada.ts).
    */
@@ -87,11 +102,23 @@ export interface VerificacionPublicada extends ClaimVerification {
 export interface OverlayEntry {
   verification: ClaimVerification
   source: OverlaySource
-  /** Required (≥20 chars) for curator-downgrade AND verdict-engine entries. */
+  /**
+   * Required (≥20 chars) for curator-downgrade, verdict-engine and
+   * curator-upgrade entries; in a curator-upgrade it IS the published summary.
+   */
   reason?: string
-  /** Curator name (curator-downgrade) or model id (verdict-engine). */
+  /**
+   * Curator name (curator-downgrade), model id (verdict-engine), or the person
+   * who signed a raise (curator-upgrade, always a person).
+   */
   editor?: string
   appliedAt: string
+  /**
+   * Sólo en una subida firmada: el veredicto publicado cuando se firmó. La
+   * subida corrige ESE estado, y volver a él es una bajada
+   * (`isDowngrade(veredicto, desde)`). Ver `validarSubida`.
+   */
+  desde?: ClaimVerdict
   /**
    * Cada sustitución del motivo de una bajada de curador, en orden. Ausente
    * —nunca vacía— si el motivo es el de la bajada. Ver `enmendarMotivoDeBajada`.
@@ -197,12 +224,19 @@ function publicadaDesde(e: OverlayEntry): VerificacionPublicada {
     retirada: _colada,
     downgradedBy: _decidio,
     reasonSignedBy: _firmo,
+    raisedBy: _subio,
     ...propia
   } = e.verification as VerificacionPublicada
   const v: VerificacionPublicada = {
     ...propia,
     source: e.source,
     ...(e.retirada ? { retirada: e.retirada } : {}),
+  }
+  // La firma de una subida viaja tal cual: el validador sólo la deja escribir
+  // con el nombre de una persona, y quien la lee —la tarjeta, check:veredictos—
+  // vuelve a mirar que lo sea.
+  if (e.source === 'curator-upgrade') {
+    return typeof e.editor === 'string' ? { ...v, raisedBy: e.editor } : v
   }
   if (e.source !== 'curator-downgrade') return v
   const ultima = e.reasonAmendments?.[e.reasonAmendments.length - 1]
@@ -343,6 +377,21 @@ export function esSubida(de: ClaimVerdict, a: ClaimVerdict): boolean {
   return de !== a && !isDowngrade(de, a)
 }
 
+/**
+ * ¿Es esta entrada una subida firmada? El canal de la etapa que lleva la firma
+ * en la entrada (`firmaEnLaEntrada`) y una firma que nombra a una persona. El
+ * canal solo no basta: quien llama aquí puede tener delante un overlay que no
+ * pasó por `validateOverlay`.
+ */
+export function esSubidaFirmada(
+  e: Pick<OverlayEntry, 'source' | 'editor'> | null | undefined,
+): boolean {
+  return (
+    TRINQUETE[e?.source as OverlaySource]?.firmaEnLaEntrada === true &&
+    nombraAUnaPersona(e?.editor as string)
+  )
+}
+
 /** Una entrada del overlay que publica por encima de lo que dice hoy su base. */
 export interface EntradaPorEncima {
   id: string
@@ -376,15 +425,29 @@ export interface EntradaPorEncima {
  * una escala recitada aquí. Cuatro desenlaces contados aparte (regla 2): una
  * entrada cuya declaración ya no está en la base ni se aplica ni se publica, y
  * no es «igual» ni «baja».
+ *
+ * Y un quinto desde el 04-10-2026: la SUBIDA FIRMADA (src/scraper/
+ * subida-firmada.ts). Publica por encima de su base a propósito —una persona
+ * leyó el registro que la base no casó y lo firmó con su nombre—, así que no es
+ * «por encima» sin que nadie lo decidiera, que es lo que ese desenlace afirma.
+ * Va aparte, y sólo con la firma de una persona (`esSubidaFirmada`): una entrada
+ * de ese canal sin ella sigue contando como «por encima».
  */
 export function overlayOutcomes(
   baseItems: VerifiedItem[],
   overlay: Overlay,
-): { bajan: string[]; iguales: string[]; porEncima: EntradaPorEncima[]; sinClaim: string[] } {
+): {
+  bajan: string[]
+  iguales: string[]
+  porEncima: EntradaPorEncima[]
+  subidasFirmadas: EntradaPorEncima[]
+  sinClaim: string[]
+} {
   const byId = new Map(baseItems.map((it) => [it.claim.id, it]))
   const bajan: string[] = []
   const iguales: string[] = []
   const porEncima: EntradaPorEncima[] = []
+  const subidasFirmadas: EntradaPorEncima[] = []
   const sinClaim: string[] = []
   for (const [id, e] of Object.entries(overlay?.entries ?? {})) {
     const item = byId.get(id)
@@ -395,10 +458,13 @@ export function overlayOutcomes(
     const base = item.verification.verdict
     const publica = e.verification.verdict
     if (base === publica) iguales.push(id)
-    else if (esSubida(base, publica)) porEncima.push({ id, base, publica, source: e.source })
-    else bajan.push(id)
+    else if (esSubida(base, publica)) {
+      const fila = { id, base, publica, source: e.source }
+      if (esSubidaFirmada(e)) subidasFirmadas.push(fila)
+      else porEncima.push(fila)
+    } else bajan.push(id)
   }
-  return { bajan, iguales, porEncima, sinClaim }
+  return { bajan, iguales, porEncima, subidasFirmadas, sinClaim }
 }
 
 /**
@@ -461,9 +527,17 @@ export interface ApplyEntry {
   source: OverlaySource
   reason?: string
   editor?: string
+  /** Sólo en una subida firmada: el veredicto publicado que sube (ver `OverlayEntry`). */
+  desde?: ClaimVerdict
 }
 
-const VALID_SOURCES: OverlaySource[] = ['nli', 'llm', 'curator-downgrade', 'verdict-engine']
+const VALID_SOURCES: OverlaySource[] = [
+  'nli',
+  'llm',
+  'curator-downgrade',
+  'verdict-engine',
+  'curator-upgrade',
+]
 
 /**
  * ¿Es esto una fila de una cola humana? `requiresHumanApproval` es la marca de
@@ -511,6 +585,90 @@ export function validateOverlay(o: Overlay): void {
     }
     if (e.reasonAmendments !== undefined) validarEnmiendas(id, e)
     if (e.retirada !== undefined) validarRetirada(id, e)
+    if (e.desde !== undefined && e.source !== 'curator-upgrade') {
+      throw new Error(
+        `[overlay] ${id}: desde sólo lo lleva una subida firmada (esta entrada es de ${e.source})`,
+      )
+    }
+    if (e.source === 'curator-upgrade') validarSubida(id, e)
+  }
+}
+
+/** Las clases de evidencia que una subida firmada puede citar: las de esta vía. */
+const KINDS_DE_LA_SUBIDA: readonly string[] = ['tender', 'bdns']
+
+/**
+ * Una subida firmada, escrita por la CLI o a mano: el validador no se fía de
+ * ninguna. Es la única entrada del overlay que refuerza lo que se publica de
+ * una declaración, así que el molde es estricto; el porqué de cada regla está
+ * en src/scraper/subida-firmada.ts.
+ */
+function validarSubida(id: string, e: OverlayEntry): void {
+  const donde = `[overlay] ${id}`
+  const rechazo = rechazoDeFirma(e.editor ?? '')
+  if (rechazo) {
+    throw new Error(`${donde}: una subida firmada la firma una persona, con su nombre: ${rechazo}`)
+  }
+  const v = e.verification
+  const puede = TRINQUETE['curator-upgrade'].puedeEmitir
+  if (!puede.includes(v.verdict)) {
+    throw new Error(`${donde}: una subida firmada emite ${puede.join(' o ')}, no ${v.verdict}`)
+  }
+  if (!e.desde || !isDowngrade(v.verdict, e.desde)) {
+    throw new Error(
+      `${donde}: desde (${String(e.desde)}) tiene que ser el veredicto del que subió, y volver ` +
+        `a él desde ${v.verdict} tiene que ser una bajada`,
+    )
+  }
+  if (!e.reason || e.reason.trim().length < 20) {
+    throw new Error(`${donde}: una subida firmada lleva su resumen, de al menos 20 caracteres`)
+  }
+  if (v.summary !== e.reason) {
+    throw new Error(
+      `${donde}: el resumen publicado no es el motivo firmado, y la tarjeta imprime el resumen`,
+    )
+  }
+  const charla = charlaDeTarea(v.summary)
+  if (charla) {
+    throw new Error(`${donde}: el resumen habla de la tarea de un modelo (${charla})`)
+  }
+  if (!evidenciaSuficiente(v)) {
+    throw new Error(`${donde}: ${v.verdict} no llega al suelo de evidencia`)
+  }
+  for (const [i, ev] of (v.evidence ?? []).entries()) {
+    const at = `${donde}.evidence[${i}]`
+    if (!KINDS_DE_LA_SUBIDA.includes(ev?.kind)) {
+      throw new Error(
+        `${at}: una subida firmada cita un contrato o una convocatoria de la BDNS, no ${String(ev?.kind)}`,
+      )
+    }
+    if (typeof ev.ref !== 'string' || !/^https?:\/\//.test(ev.ref)) {
+      throw new Error(`${at}: el registro citado se nombra por su enlace público`)
+    }
+    if (typeof ev.snippet !== 'string' || ev.snippet.trim() === '') {
+      throw new Error(`${at}: la fila describe el registro que cita`)
+    }
+    if ('similarity' in ev) {
+      throw new Error(
+        `${at}: lleva una puntuación de parecido, y un registro que elige una persona no la tiene: ` +
+          'la tarjeta la imprimiría como si la hubiera',
+      )
+    }
+  }
+  const delRegistro = corpusDeEvidencia(v.evidence)
+  const anotados = Array.isArray(v.checkedAgainst) ? v.checkedAgainst : []
+  if (anotados.length !== delRegistro.length || anotados.some((c, i) => c !== delRegistro[i])) {
+    throw new Error(
+      `${donde}: checkedAgainst (${anotados.join(', ') || '—'}) tiene que ser el corpus de los ` +
+        `registros citados (${delRegistro.join(', ')}), ni uno más`,
+    )
+  }
+  if (
+    !Array.isArray(v.derivedBy) ||
+    v.derivedBy.length !== 1 ||
+    v.derivedBy[0] !== 'curator-upgrade'
+  ) {
+    throw new Error(`${donde}: derivedBy de una subida firmada es ['curator-upgrade']`)
   }
 }
 
@@ -617,6 +775,9 @@ function validarEnmiendas(id: string, e: OverlayEntry): void {
  * Add/overwrite overlay entries (pure — returns a new Overlay, input untouched).
  * `curator-downgrade` entries are gated: reason ≥20 chars AND the move must be a
  * real downgrade vs the base verdict (`baseVerdict` lookup required).
+ * `curator-upgrade` entries —the raise a person signs— need a person's
+ * signature, a `desde` equal to the published verdict (`baseVerdict`), and a
+ * move that would be a downgrade back (src/scraper/subida-firmada.ts).
  */
 export function applyOverlayEntries(
   overlay: Overlay,
@@ -674,12 +835,24 @@ export function applyOverlayEntries(
           'publicados se declaran, pero no escribe entradas nuevas.',
       )
     }
-    if (etapa?.exigeFirma) {
+    if (etapa?.exigeFirma && !etapa.firmaEnLaEntrada) {
       throw new Error(
         `[overlay] ${e.claimId}: «${e.source}» (${etapa.nombre}) sólo propone — lo que propone ` +
           'lo firma una persona antes de publicarse, y su sitio es la cola humana. Lo automático ' +
           'sólo baja (docs/DATA_INTEGRITY.md, regla 4).',
       )
+    }
+    // La etapa de la persona: su firma viaja en la entrada, y sin ella no hay
+    // entrada. Antes que nada de lo que sigue, para que la negativa diga lo que
+    // falta de verdad.
+    if (etapa?.exigeFirma && etapa.firmaEnLaEntrada) {
+      const rechazo = rechazoDeFirma(e.editor ?? '')
+      if (rechazo) {
+        throw new Error(
+          `[overlay] ${e.claimId}: «${e.source}» (${etapa.nombre}) la firma una persona, con su ` +
+            `nombre: ${rechazo}`,
+        )
+      }
     }
     if (etapa && !etapa.puedeEmitir.includes(e.verification.verdict)) {
       throw new Error(
@@ -706,14 +879,35 @@ export function applyOverlayEntries(
           'Una retirada no la deshace ninguna escritura del overlay.',
       )
     }
-    if (previa && esSubida(previa.verification.verdict, e.verification.verdict)) {
+    // Lo que firmó una persona no lo pisa una pasada: una subida firmada sólo la
+    // sustituye otra persona, bajándola por la vía del curador o subiéndola otra
+    // vez con su firma. El motor ya no la elegiría —ver la cabecera de
+    // verify-pleno-claims-engine.ts—; esto lo sostiene si otro llamante lo hiciera.
+    if (
+      previa &&
+      TRINQUETE[previa.source]?.firmaEnLaEntrada &&
+      e.source !== 'curator-downgrade' &&
+      !etapa?.firmaEnLaEntrada
+    ) {
+      throw new Error(
+        `[overlay] ${e.claimId}: «${e.source}» sustituiría la subida que firmó ` +
+          `${previa.editor ?? '—'}. Lo que firmó una persona sólo lo deshace una persona: ` +
+          '`npm run subir-veredicto -- --retirar` o `npm run downgrade-verdict`.',
+      )
+    }
+    if (
+      previa &&
+      esSubida(previa.verification.verdict, e.verification.verdict) &&
+      !etapa?.firmaEnLaEntrada
+    ) {
       const etapaPrevia = TRINQUETE[previa.source]
       const retractacion = etapaPrevia?.direccion === 'baja' ? ', una retractación' : ''
       throw new Error(
         `[overlay] ${e.claimId}: «${e.source}» subiría ${previa.verification.verdict} → ` +
           `${e.verification.verdict} sobre la entrada de «${previa.source}»${retractacion}. ` +
           'Una escritura del overlay no sube lo que el overlay ya dice: lo que bajó una ' +
-          'retractación sólo lo vuelve a subir una persona, por una vía que lo firme.',
+          'retractación sólo lo vuelve a subir una persona, con su nombre: ' +
+          '`npm run subir-veredicto`.',
       )
     }
     if (e.source === 'curator-downgrade') {
@@ -743,12 +937,43 @@ export function applyOverlayEntries(
         throw new Error(`[overlay] ${e.claimId}: verdict-engine may never emit contradicho`)
       }
     }
+    if (etapa?.firmaEnLaEntrada) {
+      // La subida firmada, contra lo que se publica hoy: la CLI pasa el
+      // veredicto publicado, y la entrada que sustituye lo tiene delante. Las
+      // reglas que no necesitan ni lo uno ni lo otro las vuelve a mirar
+      // `validateOverlay` al final.
+      const publicado = baseVerdict?.get(e.claimId)
+      if (!publicado) {
+        throw new Error(
+          `[overlay] ${e.claimId}: no se sabe qué publica la declaración, y sin eso no se sabe qué sube`,
+        )
+      }
+      if (e.desde !== publicado) {
+        throw new Error(
+          `[overlay] ${e.claimId}: desde (${String(e.desde)}) no es lo publicado (${publicado}): ` +
+            'la subida se preparó para otro estado',
+        )
+      }
+      if (previa && previa.verification.verdict !== e.desde) {
+        throw new Error(
+          `[overlay] ${e.claimId}: la entrada que sustituye publica ${previa.verification.verdict}, ` +
+            `no ${e.desde}`,
+        )
+      }
+      if (!isDowngrade(e.verification.verdict, e.desde)) {
+        throw new Error(
+          `[overlay] ${e.claimId}: ${e.desde} → ${e.verification.verdict} no es una subida: ` +
+            'volver al veredicto de antes tendría que ser una bajada',
+        )
+      }
+    }
     next.entries[e.claimId] = {
       verification: e.verification,
       source: e.source,
       ...(e.reason ? { reason: e.reason } : {}),
       ...(e.editor ? { editor: e.editor } : {}),
       appliedAt: stampIso,
+      ...(etapa?.firmaEnLaEntrada && e.desde ? { desde: e.desde } : {}),
     }
   }
   validateOverlay(next)

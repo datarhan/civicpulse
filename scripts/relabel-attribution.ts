@@ -49,6 +49,7 @@ import {
   VERIFIED,
   cargarCapas,
   componer,
+  declaracionesCambiadas,
   escanosEnDisco,
   rebuildVerified,
   textosDeLaSesion,
@@ -108,17 +109,6 @@ function congeladoHasta(): string | null {
   } catch {
     return null
   }
-}
-
-/** Los ids cuya fila compuesta difiere de la publicada, en cualquier byte. */
-function cambiadas(publicadas: VerifiedItem[], compuestas: VerifiedItem[]): string[] {
-  const antes = new Map(publicadas.map((it) => [it.claim.id, JSON.stringify(it)]))
-  const out: string[] = []
-  for (const it of compuestas)
-    if (antes.get(it.claim.id) !== JSON.stringify(it)) out.push(it.claim.id)
-  const ahora = new Set(compuestas.map((it) => it.claim.id))
-  for (const id of antes.keys()) if (!ahora.has(id)) out.push(id)
-  return out
 }
 
 const grupoDe = (it: VerifiedItem | undefined) => it?.claim.speakerGroup ?? 'sin grupo'
@@ -250,7 +240,7 @@ async function main() {
   // El alcance: recomponer con el fichero nuevo sólo puede cambiar esta
   // declaración. Cualquier otra fila que se moviera la republicaría esta firma.
   const { items: compuestas } = componer(base.items, { ...capas, firmadas })
-  const ajenas = cambiadas(publicado.items, compuestas).filter((id) => id !== claimId)
+  const ajenas = declaracionesCambiadas(publicado.items, compuestas).filter((id) => id !== claimId)
   if (ajenas.length > 0) {
     salir(
       1,

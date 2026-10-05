@@ -43,8 +43,11 @@ export const CURATED = {
   // Los veredictos publicados son base⊕overlay y sus CLIs son la única puerta;
   // faltaban de esta lista (hueco señalado en la revisión del 17-08): una
   // edición directa saltaría el rango isDowngrade y el registro del overlay.
-  'pleno-claims-verified.json': 'npm run downgrade-verdict / verify:pleno-claims',
-  'pleno-claims-overlay.json': 'npm run downgrade-verdict / apply-gold-downgrades',
+  // `subir-veredicto` (04-10-2026): la única que SUBE un veredicto, y sólo con
+  // la firma de una persona; el overlay la valida al escribir y al leer.
+  'pleno-claims-verified.json': 'npm run downgrade-verdict / subir-veredicto / verify:pleno-claims',
+  'pleno-claims-overlay.json':
+    'npm run downgrade-verdict / subir-veredicto / apply-gold-downgrades',
   'pleno-claim-reclassifications.json': 'npm run reclassify-claim',
   'pleno-claim-reanchors.json': 'npm run reanchor-claim',
   'pleno-claim-relabels.json': 'npm run relabel-attribution',

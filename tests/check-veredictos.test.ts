@@ -77,8 +77,58 @@ describe('cotejarVeredicto · qué sostiene un veredicto ya publicado', () => {
 
   it('el enum se exporta, no se recita', () => {
     expect([...ESTADOS_VEREDICTO].sort()).toEqual(
-      ['curado', 'fundado', 'procedencia-retirada', 'sin-corpus', 'sin-publicar'].sort(),
+      [
+        'curado',
+        'fundado',
+        'procedencia-retirada',
+        'sin-corpus',
+        'sin-firma',
+        'sin-publicar',
+        'subido',
+      ].sort(),
     )
+  })
+})
+
+/**
+ * La subida firmada (docs/superpowers/specs/2026-10-04-subida-firmada-design.md):
+ * una persona sube un veredicto con su nombre, el registro que lo sostiene y un
+ * resumen que escribe ella. La guarda tiene que reconocer esa firma —su cabecera
+ * lo pedía desde #226— y no confundir una subida sin ella con una fundada.
+ */
+describe('cotejarVeredicto · la subida firmada', () => {
+  const PERSONA = 'María de la Fuente Llorens'
+  const subida = (extra: Record<string, unknown> = {}) => ({
+    claim: { id: 'c-subida' },
+    verification: {
+      verdict: 'parcial',
+      checkedAgainst: ['tenders'],
+      evidence: [{ kind: 'tender', ref: 'https://contrataciondelestado.es/x', snippet: 's' }],
+      derivedBy: ['curator-upgrade'],
+      source: 'curator-upgrade',
+      raisedBy: PERSONA,
+      ...extra,
+    },
+  })
+
+  it('subido: la subió una persona, nombra corpus y trae evidencia — y no imprime su nombre en el parte', () => {
+    const f = cotejarVeredicto(subida())
+    expect(f.estado).toBe('subido')
+    expect(f.detalle).toMatch(/persona/)
+    expect(f.detalle).not.toContain(PERSONA)
+  })
+
+  it('sin-firma: dice ser una subida, por su canal o por su pasada, y no la firma una persona', () => {
+    expect(cotejarVeredicto(subida({ raisedBy: undefined })).estado).toBe('sin-firma')
+    expect(cotejarVeredicto(subida({ raisedBy: 'civicpulse-curator' })).estado).toBe('sin-firma')
+    expect(cotejarVeredicto(subida({ source: undefined, raisedBy: undefined })).estado).toBe(
+      'sin-firma',
+    )
+  })
+
+  it('una subida sin corpus o sin evidencia no se sostiene, la firme quien la firme', () => {
+    expect(cotejarVeredicto(subida({ checkedAgainst: [] })).estado).toBe('sin-corpus')
+    expect(cotejarVeredicto(subida({ evidence: [] })).estado).toBe('sin-corpus')
   })
 })
 
@@ -163,6 +213,39 @@ describe('cotejarConBase · lo que el overlay publica, contra la base de hoy', (
       base: SELLO,
       publicado: SELLO,
     })
+  })
+
+  it('una subida firmada por encima de su base se lista aparte: la decidió una persona', () => {
+    const PERSONA = 'María de la Fuente Llorens'
+    const conSubida = {
+      ...overlay,
+      entries: {
+        ...overlay.entries,
+        subida: {
+          ...entrada('subida', 'parcial', 'curator-upgrade'),
+          editor: PERSONA,
+          desde: 'sin-datos',
+        },
+      },
+    } as unknown as Overlay
+    const c = cotejarConBase({
+      base: { ...base, items: [...base.items, fila('subida', 'sin-datos')] },
+      overlay: conSubida,
+      servidas: new Map([['subida', 'shown']]),
+      publicadoGeneratedAt: SELLO,
+    })
+    expect(c.porEncima.map((p) => p.id)).not.toContain('subida')
+    expect(c.subidasFirmadas).toEqual([
+      {
+        id: 'subida',
+        base: 'sin-datos',
+        publica: 'parcial',
+        source: 'curator-upgrade',
+        servida: 'shown',
+      },
+    ])
+    // Y entra en la cuenta de lo cotejado: no es «no la miré».
+    expect(c.entradas).toBe(6)
   })
 
   it('sin base en disco no coteja nada y lo dice: SALTADO, nunca «0 por encima»', () => {

@@ -1355,9 +1355,13 @@ export default function Metodologia() {
                     una persona lo promueve». Ninguna herramienta de curación puede
                     escribir un contradicho —sólo bajan—, y desde el 27-08-2026 promover
                     a hallazgo tampoco saca una cita de la puerta. 28-09-2026. */}
+                {/* Decía «ninguna herramienta de curación puede escribir uno —sólo
+                    bajan—». Desde el 05-10-2026 hay una que sube, la subida firmada,
+                    y tampoco lo emite. */}
                 Hoy un <em>contradicho</em> se retiene siempre: el de máquina es una pista para
-                quien redacta, no un veredicto, y ninguna herramienta de curación puede escribir uno
-                —sólo bajan—.
+                quien redacta, no un veredicto, y ninguna herramienta de curación puede escribir
+                uno: las que bajan no llegan a él, y la que sube —la subida firmada, más abajo— no
+                lo emite.
               </li>
               {/* Decía «no hay registro en las bases abiertas», y la tarjeta lo
                   repetía en cada sin-datos con una frase fija que nombraba
@@ -1419,7 +1423,12 @@ export default function Metodologia() {
             <strong>no puede inventar evidencia</strong> — la cita es siempre una fila real del
             corpus. Lo que el modelo ve respaldado <strong>no se publica solo</strong>: queda como
             propuesta de subir el veredicto a verificado/parcial, en una cola de revisión que no se
-            publica, y sólo una persona puede firmar esa subida. Una pasada automática puede
+            publica. Esa propuesta tampoco se firma tal cual: quien esté de acuerdo con ella la sube
+            por la{' '}
+            <a href="#subida-firmada" style={{ color: 'var(--civic)' }}>
+              subida firmada
+            </a>
+            , con el registro que elija y una explicación que escriba. Una pasada automática puede
             retractar un veredicto, nunca reforzarlo. Tampoco marca <em>contradicho</em> (una
             contradicción fuerte sólo se <em>señala</em> para revisión humana).
           </li>
@@ -1523,6 +1532,55 @@ export default function Metodologia() {
             el modelo las viera se devuelven al veredicto del comparador determinista —«sin datos»
             en todas, así que ninguna cambia de veredicto, sólo de firma—, y las demás se vuelven a
             derivar para que la explicación sea la del modelo.
+          </li>
+          {/* La vía nació el 05-10-2026, de una lectura del día anterior: ocho
+              declaraciones que el motor había retractado tenían un registro que
+              sí las sostenía, y ninguna vía podía volver a subirlas
+              (src/scraper/subida-firmada.ts). */}
+          <li id="subida-firmada" style={{ scrollMarginTop: 24 }}>
+            <strong>Subida firmada (sólo una persona, con su nombre).</strong> Lo automático sólo
+            baja, y hasta octubre de 2026 eso valía para todo: un veredicto que una revisión había
+            bajado no lo podía volver a subir nadie. Ahora hay una vía, y sólo una, por la que una
+            persona sube el veredicto de una declaración —de <em>sin datos</em> a <em>parcial</em> o{' '}
+            <em>verificado</em>, o de <em>parcial</em> a <em>verificado</em>— cuando ha leído el
+            registro público que la sostiene.
+            <ul style={{ marginTop: 6 }}>
+              <li>
+                <strong>La evidencia la elige ella</strong>: nombra el registro por su enlace —un
+                contrato adjudicado o formalizado de la Plataforma de Contratación del Sector
+                Público, o una convocatoria de la Base de Datos Nacional de Subvenciones— y la
+                herramienta comprueba que está en los datos que publicamos; si el enlace lleva a un
+                expediente de varios lotes, tiene que decir cuál. La fila de evidencia la escribe la
+                herramienta desde el propio registro —título, adjudicataria, importe y fecha—, no
+                quien firma.
+              </li>
+              <li>
+                <strong>La explicación también la escribe ella</strong>, desde ese registro, y dice
+                lo que el registro no establece. La herramienta rechaza la de una máquina tal cual:
+                en la lectura que trajo esta vía, las notas del motor contradecían al registro en
+                dos de los ocho casos.
+              </li>
+              <li>
+                <strong>La firma con su nombre y apellidos</strong>, que la tarjeta da: «subido por
+                una persona · firmado por…». No la acepta con una cuenta del proyecto, el nombre de
+                un modelo o una orden preparada sin rellenar.
+              </li>
+              <li>
+                <strong>Nunca sube una acusación pública</strong>: subirla haría pública una
+                acusación que el filtro retiene, y eso sigue las reglas de los hallazgos. Tampoco
+                escribe un <em>contradicho</em>.
+              </li>
+              <li>
+                No sube nada durante el periodo electoral. Una subida se puede retirar —con firma y
+                motivo, también durante ese periodo—, y retirarla devuelve el veredicto que había
+                antes de subirla. Lo que firmó una persona no lo deshace después una pasada
+                automática.
+              </li>
+            </ul>
+            Lo que afirma un veredicto subido es que el registro citado sostiene lo que dice su
+            explicación, y nada más. El contraste determinista sigue sin encontrarlo —por eso hizo
+            falta una persona—, así que la comprobación de veredictos cuenta esas subidas aparte,
+            como decididas por quien las firmó, y no como un fallo.
           </li>
           <li>
             {/* Sin cuantificador de entrada: la cifra exacta viene justo
@@ -1628,9 +1686,14 @@ export default function Metodologia() {
             una etapa que sólo puede retractar nunca reforzará una acusación
           </strong>
           , por bien que le parezca el caso. Y ninguna etapa automática refuerza nada: el anclaje
-          NLI, la única en uso que empuja hacia arriba, sólo propone, y su propuesta espera a que la
-          firme una persona. Ni siquiera puede proponer sin nombrar el corpus contra el que ancló la
-          afirmación, ni proponer que vuelva a subir lo que retractaron el motor o un curador.
+          NLI, la única automática que empuja hacia arriba, sólo propone, y ni siquiera puede
+          proponer sin nombrar el corpus contra el que ancló la afirmación, ni proponer que vuelva a
+          subir lo que retractaron el motor o un curador. Lo que sí sube un veredicto es una
+          persona: la{' '}
+          <a href="#subida-firmada" style={{ color: 'var(--civic)' }}>
+            subida firmada
+          </a>
+          , con su nombre, el registro que la sostiene y la explicación que escribe ella.
         </p>
         <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
           La tabla se dibuja desde la misma declaración que el código aplica, y una prueba comprueba
@@ -1714,8 +1777,10 @@ export default function Metodologia() {
           </strong>
           . Si no lo nombra, no se escribe. La única excepción es la retractación de un curador,
           porque bajar un veredicto nunca refuerza lo que se dice de nadie. Y lo que una
-          retractación ya bajó no lo vuelve a subir ninguna escritura posterior: la capa de
-          decisiones («overlay») rechaza cualquier entrada que diga más que la que sustituye.
+          retractación ya bajó no lo vuelve a subir ninguna escritura automática: la capa de
+          decisiones («overlay») rechaza cualquier entrada que diga más que la que sustituye, salvo
+          la subida firmada, y ésa la sube sólo una persona, con su nombre. Lo que ella firma no lo
+          pisa después ninguna pasada: lo deshace otra persona, bajándolo con su firma.
         </p>
       </Card>
 
@@ -1875,9 +1940,13 @@ export default function Metodologia() {
           cada afirmación —de qué tipo es y qué dice el veredicto vigente del verificador—, y nadie
           lo ajusta ficha a ficha: ni el proceso automático que redacta la mayoría de los hallazgos,
           ni una persona al firmar uno. Lo que una persona sí puede hacer es corregir una de esas
-          dos cosas, cada una en un solo sentido y con un motivo escrito que queda registrado: un
-          veredicto sólo se rebaja, nunca se sube; y la etiqueta de acusación sólo se quita —cuando
-          el extractor la puso donde no había ninguna—, nunca se pone. Una afirmación a la que se le
+          dos cosas, con un motivo escrito que queda registrado: rebajar un veredicto o, si no es
+          una acusación, subirlo con su nombre y el registro que lo sostiene (
+          <a href="#subida-firmada" style={{ color: 'var(--civic)' }}>
+            la subida firmada
+          </a>
+          ); y quitar la etiqueta de acusación —cuando el extractor la puso donde no había ninguna—,
+          nunca ponerla. El veredicto de una acusación sólo se rebaja. Una afirmación a la que se le
           quita pasa a tratarse como cualquier otra. Y puede contestar la pregunta que el cálculo no
           alcanza, si se dijo: una declaración cuyo literal, escuchada la sesión, no es lo que se
           dijo se retira, también en un solo sentido —ninguna vía la vuelve a publicar— y con su

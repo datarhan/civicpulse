@@ -18,7 +18,10 @@
  *   · el anclaje NLI SUBE, y lo automático sólo baja (docs/DATA_INTEGRITY.md,
  *     regla 4): su subida es una SUGERENCIA con `requiresHumanApproval: true`
  *     en una cola de `editorial/`, que no se publica. El overlay la rechaza con
- *     la marca y sin ella (`exigeFirma` en trinquete.ts).
+ *     la marca y sin ella (`exigeFirma` sin `firmaEnLaEntrada`, trinquete.ts).
+ *     Quien esté de acuerdo con una propuesta la sube con `subir-veredicto`,
+ *     eligiendo el registro y escribiendo el resumen: la fila de la cola no se
+ *     publica tal cual (src/scraper/subida-firmada.ts).
  *
  * Puro: sin fs, sin red, sin Date (el llamante pasa el sello).
  */
@@ -168,8 +171,9 @@ const COMENTARIO =
   'COLA DE SUGERENCIAS DE VEREDICTO — no publicada, y no debe publicarse. Vive en editorial/ ' +
   '(gitignored) porque todo lo que hay bajo public/ es fetchable por URL. El anclaje NLI PROPONE ' +
   'subir un veredicto; no lo sube: lo automático sólo baja (docs/DATA_INTEGRITY.md, regla 4), y el ' +
-  'overlay rechaza estas filas con su marca y sin ella. Publicar una subida pide una vía firmada ' +
-  'por una persona, que hoy no existe: downgrade-verdict sólo baja.'
+  'overlay rechaza estas filas con su marca y sin ella. Una subida la publica sólo una persona, ' +
+  'con su nombre, por `npm run subir-veredicto`: elige ella el registro que la sostiene y escribe ' +
+  'el resumen. Una fila de esta cola no se publica tal cual.'
 
 /**
  * La cola tras una corrida. Pura: devuelve una nueva.

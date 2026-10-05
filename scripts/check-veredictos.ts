@@ -16,9 +16,13 @@
  * afirmación. Desde el suelo de evidencia (fase 2) eso ya no se puede
  * ESCRIBIR sin corpus; esto mira lo que YA está escrito, que es otra pregunta.
  *
- * Cuatro desenlaces, y el reparto de códigos de salida es el punto:
+ * Siete desenlaces, y el reparto de códigos de salida es el punto:
  *
  *   fundado               nombra corpus y trae evidencia
+ *   subido                lo subió una persona con su firma —la subida
+ *                         firmada, src/scraper/subida-firmada.ts—, nombra
+ *                         corpus y trae evidencia · sale 0. El parte no
+ *                         imprime su nombre: lo da la tarjeta
  *   curado                lo bajó la vía del curador · sale 0 — es la
  *                         sancionada en todo este repositorio, y bajar un
  *                         veredicto nunca refuerza una afirmación. El
@@ -29,6 +33,8 @@
  *                           avería, y una guarda siempre roja acaba apagada
  *   sin-corpus            veredicto fuerte sin corpus, de una pasada VIVA
  *                         · sale 1 — eso lo ha roto alguien hoy
+ *   sin-firma             dice ser una subida firmada —por su canal o por su
+ *                         pasada— y no la firma una persona · sale 1
  *   sin-publicar          no hay trozos que leer · SALTADO, jamás «ok»
  *
  * La distinción entre los dos del medio es lo que hace la guarda usable: con
@@ -49,12 +55,16 @@
  * una base que dice `sin-datos`, y esto la contaba como `curado`.
  *
  *   por-encima  la entrada publica por encima de lo que dice hoy su base
- *               · sale 1, y nombra cómo se sirve su fila. Hoy ninguna
- *                 escritura del overlay sube un veredicto —el curador y el
+ *               · sale 1, y nombra cómo se sirve su fila. Ninguna escritura
+ *                 automática del overlay sube un veredicto —el curador y el
  *                 motor bajan, y el anclaje NLI sólo propone—, así que eso
  *                 sólo lo deja una base que se movió por debajo; lo decide una
- *                 persona. Si un día una vía firmada sube veredictos al
- *                 overlay, esta guarda tendrá que distinguir esa firma
+ *                 persona
+ *   subidas firmadas  por encima de su base A PROPÓSITO: las subió una persona
+ *                 con `subir-veredicto` y su firma (`esSubidaFirmada`, desde el
+ *                 04-10-2026, que es la firma que esta cabecera pedía
+ *                 distinguir). Se listan y salen 0; una entrada de ese canal
+ *                 sin la firma de una persona sigue siendo `por-encima`
  *   sin-claim   su declaración ya no está en la base: ni se aplica ni se
  *               publica · se lista, sale 0
  *   sin-base    no hay base en disco (gitignorada; clon nuevo) · SALTADO,
@@ -72,7 +82,11 @@ import {
   clasificarProcedencia,
   esPasadaRetirada,
 } from '../src/scraper/claim-verdicts'
-import { CLASES_DE_FIRMA, type ClaseDeFirma } from '../src/scraper/firma-de-persona'
+import {
+  CLASES_DE_FIRMA,
+  nombraAUnaPersona,
+  type ClaseDeFirma,
+} from '../src/scraper/firma-de-persona'
 import {
   overlayOutcomes,
   type EntradaPorEncima,
@@ -85,9 +99,11 @@ const DIR = resolve('public/data/pleno-claims')
 
 export const ESTADOS_VEREDICTO = [
   'fundado',
+  'subido',
   'curado',
   'procedencia-retirada',
   'sin-corpus',
+  'sin-firma',
   'sin-publicar',
 ] as const
 export type EstadoVeredicto = (typeof ESTADOS_VEREDICTO)[number]
@@ -107,6 +123,8 @@ interface Item {
     evidence?: unknown[]
     source?: string
     downgradedBy?: string
+    derivedBy?: unknown[]
+    raisedBy?: string
   }
   /** La que estampó la puerta al trocear: `shown` o `toggle`. */
   visibility?: string
@@ -139,6 +157,43 @@ export function cotejarVeredicto(it: Item): Fila {
 
   const corpus = corpusReales(v.checkedAgainst)
   const conEvidencia = (v.evidence?.length ?? 0) > 0
+
+  // La subida firmada (src/scraper/subida-firmada.ts), antes que «fundado»: es
+  // la única escritura que refuerza un veredicto, y una sin la firma de una
+  // persona —por su canal o por su pasada— la ha roto alguien hoy. El parte no
+  // imprime el nombre: lo da la tarjeta.
+  const diceSerSubida =
+    v.source === 'curator-upgrade' ||
+    (Array.isArray(v.derivedBy) && v.derivedBy.includes('curator-upgrade'))
+  if (diceSerSubida) {
+    const firmada =
+      v.source === 'curator-upgrade' &&
+      typeof v.raisedBy === 'string' &&
+      nombraAUnaPersona(v.raisedBy)
+    if (!firmada) {
+      return {
+        id,
+        verdict,
+        estado: 'sin-firma',
+        detalle: 'dice ser una subida firmada y no la firma una persona',
+      }
+    }
+    if (corpus.length === 0 || !conEvidencia) {
+      return {
+        id,
+        verdict,
+        estado: 'sin-corpus',
+        detalle: 'una subida firmada sin corpus o sin evidencia',
+      }
+    }
+    return {
+      id,
+      verdict,
+      estado: 'subido',
+      detalle: 'lo subió una persona, con su firma y el registro que lo sostiene',
+    }
+  }
+
   if (corpus.length > 0 && conEvidencia) return { id, verdict, estado: 'fundado', detalle: '' }
 
   // ¿De dónde viene? Tres respuestas distintas, y meterlas en el mismo saco
@@ -193,6 +248,8 @@ export interface CotejoConBase {
   bajan: number
   iguales: number
   porEncima: FilaPorEncima[]
+  /** Por encima de su base a propósito: las firmó una persona (`subir-veredicto`). */
+  subidasFirmadas: FilaPorEncima[]
   sinClaim: string[]
   /** Por qué no se cotejó; `null` si se cotejó. */
   motivo: string | null
@@ -220,6 +277,7 @@ export function cotejarConBase(input: {
       bajan: 0,
       iguales: 0,
       porEncima: [],
+      subidasFirmadas: [],
       sinClaim: [],
       motivo:
         'no hay base que leer en disco (está gitignorada); se regenera con ' +
@@ -231,10 +289,19 @@ export function cotejarConBase(input: {
     estado: 'cotejado',
     baseGeneratedAt: typeof base.generatedAt === 'string' ? base.generatedAt : null,
     publicadoGeneratedAt,
-    entradas: d.bajan.length + d.iguales.length + d.porEncima.length + d.sinClaim.length,
+    entradas:
+      d.bajan.length +
+      d.iguales.length +
+      d.porEncima.length +
+      d.subidasFirmadas.length +
+      d.sinClaim.length,
     bajan: d.bajan.length,
     iguales: d.iguales.length,
     porEncima: d.porEncima.map((p) => ({ ...p, servida: servidas.get(p.id) ?? 'no-servida' })),
+    subidasFirmadas: d.subidasFirmadas.map((p) => ({
+      ...p,
+      servida: servidas.get(p.id) ?? 'no-servida',
+    })),
     sinClaim: d.sinClaim,
     motivo: null,
   }
@@ -264,6 +331,13 @@ function informarDelCotejoConBase(c: CotejoConBase): boolean {
       `bajan · ${c.iguales} iguales · ${c.porEncima.length} por encima · ${c.sinClaim.length} sin ` +
       `claim en la base (base ${c.baseGeneratedAt ?? '—'} · publicado ${c.publicadoGeneratedAt ?? '—'})\n`,
   )
+  if (c.subidasFirmadas.length > 0) {
+    process.stdout.write(
+      `  · ${c.subidasFirmadas.length} subida(s) firmada(s) por encima de su base: las firmó una ` +
+        'persona con `npm run subir-veredicto`, y no son un fallo ' +
+        `(${c.subidasFirmadas.map((p) => `${p.id} ${p.base}→${p.publica}`).join(', ')})\n`,
+    )
+  }
   if (c.sinClaim.length > 0) {
     const vistas = c.sinClaim.slice(0, 10).join(', ')
     const resto = c.sinClaim.length - 10
@@ -281,8 +355,9 @@ function informarDelCotejoConBase(c: CotejoConBase): boolean {
   if (c.porEncima.length === 0) return false
   process.stderr.write(
     `[check-veredictos] ${c.porEncima.length} entrada(s) del overlay publican por encima de lo que ` +
-      'encuentra hoy el verificador. Ninguna escritura del overlay sube un veredicto: la base se ' +
-      'movió por debajo de una entrada juzgada contra otra. Lo decide una persona —una bajada firmada con ' +
+      'encuentra hoy el verificador. Ninguna escritura automática del overlay sube un veredicto, y ' +
+      'las subidas firmadas se cuentan aparte: la base se movió por debajo de una entrada juzgada ' +
+      'contra otra. Lo decide una persona —una bajada firmada con ' +
       '`npm run downgrade-verdict`, o arreglar la base si la que se equivoca es ella—, y nada ' +
       'automático la toca.\n',
   )
@@ -315,7 +390,12 @@ function main(): void {
   const fuertes = filas.filter((f) => f.verdict === 'verificado' || f.verdict === 'parcial')
   const retiradas = filas.filter((f) => f.estado === 'procedencia-retirada')
   const curados = filas.filter((f) => f.estado === 'curado')
-  const rotos = filas.filter((f) => f.estado === 'sin-corpus')
+  const subidos = filas.filter((f) => f.estado === 'subido')
+  const sinCorpus = filas.filter((f) => f.estado === 'sin-corpus')
+  const sinFirma = filas.filter((f) => f.estado === 'sin-firma')
+  // Las dos roturas salen 1, cada una con su nombre: contarlas juntas diría
+  // «sin corpus» de una subida a la que lo que le falta es la firma.
+  const rotos = [...sinCorpus, ...sinFirma]
 
   const servidas = new Map<string, string>()
   for (const it of items) {
@@ -341,6 +421,7 @@ function main(): void {
         {
           evaluados: filas.length,
           fuertes: fuertes.length,
+          subidos,
           curados,
           retiradas,
           rotos,
@@ -356,8 +437,9 @@ function main(): void {
 
   process.stdout.write(
     `[check-veredictos] ${filas.length} veredicto(s) evaluado(s) · ${fuertes.length} fuerte(s) · ` +
-      `${curados.length} curado(s) · ${retiradas.length} de procedencia retirada · ` +
-      `${rotos.length} sin corpus\n`,
+      `${subidos.length} subido(s) por una persona · ${curados.length} curado(s) · ` +
+      `${retiradas.length} de procedencia retirada · ${sinCorpus.length} sin corpus · ` +
+      `${sinFirma.length} sin firma\n`,
   )
 
   if (retiradas.length > 0) {
@@ -371,7 +453,7 @@ function main(): void {
   // la salud (`alertFingerprint`) sale de ellos, y una rota sin código no la
   // movería mientras el aviso por encima siga dado — se descartaría por repetida.
   for (const r of rotos.slice(0, 10)) {
-    process.stderr.write(`  ✗ [sin-corpus] ${r.id}: ${r.verdict} — ${r.detalle}\n`)
+    process.stderr.write(`  ✗ [${r.estado}] ${r.id}: ${r.verdict} — ${r.detalle}\n`)
   }
   const sobreLaBase = informarDelCotejoConBase(conBase)
 
@@ -386,15 +468,23 @@ function main(): void {
     process.exitCode = 1
     return
   }
-  if (rotos.length) {
+  if (sinFirma.length) {
     process.stderr.write(
-      `[check-veredictos] ${rotos.length} veredicto(s) fuertes sin nada que los sostenga, y NO ` +
+      `[check-veredictos] ${sinFirma.length} veredicto(s) que dicen ser una subida firmada sin la ` +
+        'firma de una persona: el overlay no las deja escribir así, así que mira quién las ha ' +
+        'metido por otra vía.\n',
+    )
+    process.exitCode = 1
+  }
+  if (sinCorpus.length) {
+    process.stderr.write(
+      `[check-veredictos] ${sinCorpus.length} veredicto(s) fuertes sin nada que los sostenga, y NO ` +
         'vienen de una pasada retirada: esto es de hoy. El suelo de evidencia impide escribirlos ' +
         'por el overlay, así que mira quién los ha metido por otra vía.\n',
     )
     process.exitCode = 1
-    return
   }
+  if (rotos.length) return
   if (sobreLaBase) process.exitCode = 1
 }
 
