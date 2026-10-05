@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-10-04T07:37:32.197Z",
-  "composedAt": "2026-10-05T12:48:22.134Z",
+  "composedAt": "2026-10-05T22:54:38.130Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
@@ -55611,9 +55611,10 @@
       "verification": {
         "claimId": "ma87e0-104-cit-528973",
         "verdict": "sin-datos",
-        "summary": "Task completed: provided skeptical reasoning in Spanish (2-4 sentences plus brief elaboration) evaluating whether any candidate genuinely supports the claim, without issuing a verdict. Concluded none of the tender candidates (all routine maintenance contracts) substantively match the vague, unquanti",
+        "summary": "La afirmación es una declaración de intención: una fórmula de financiación (presupuesto 2026) servirá en parte para mejorar instalaciones deportivas municipales, sin importe, fecha ni sujeto concreto. Ningún candidato coincide con valores verificables.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -96569,9 +96570,10 @@
       "verification": {
         "claimId": "19gax3o-186-cit-7e4d6f",
         "verdict": "sin-datos",
-        "summary": "Se trata de una tarea de verificación de hechos (razonamiento en español sobre respaldo de una afirmación por candidatos), no una tarea de ingeniería de software, por lo que no aplica ninguna skill de Superpowers. Respondí directamente con el razonamiento solicitado en 2-4 frases, concluyendo que ni",
+        "summary": "La afirmación es una opinión cualitativa del orador: dice que, en términos de gestión interna, una DANA o una pandemia han sido eventos muy duros y un tema importante. No incluye ningún importe, fecha ni sujeto concreto que se pueda contrastar con registros.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -126169,9 +126171,10 @@
       "verification": {
         "claimId": "qz6weg-271-cit-f67afa",
         "verdict": "sin-datos",
-        "summary": "Task completed: reasoned in Spanish about whether candidates support the claim, concluding no genuine support exists since the claim is a policy/opinion statement about advertising placement, and no candidate concerns advertising - they only share generic thematic keywords (casco urbano, urbanizació",
+        "summary": "La afirmación es una declaración de intenciones/política (\"intentamos que se quede en la publicidad en las áreas del casco urbano y urbanización\"), sin cifras, fechas ni sujeto cuantificable. Es una opinión o posicionamiento político, no un hecho verificable con un registro.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -163019,9 +163022,10 @@
       "verification": {
         "claimId": "c8kr44-121-cit-3e50b3",
         "verdict": "sin-datos",
-        "summary": "Task was a fact-verification reasoning request in Spanish about municipal plenary claims vs tender/contract candidates. No coding or file exploration was needed; I provided skeptical reasoning in Spanish per the instructions, concluding that no candidate genuinely and strongly supports the claim, wi",
+        "summary": "La afirmación es una cita descriptiva: el pleno dice que están en el colegio Cervantes (infantil) y que el mantenimiento cuesta mucho dinero. No contiene un importe, fecha ni sujeto concreto verificable.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -163784,9 +163788,10 @@
       "verification": {
         "claimId": "c8kr44-146-cit-ccd20c",
         "verdict": "sin-datos",
-        "summary": "Task completed: provided skeptical reasoning in Spanish (2-4 sentences equivalent) evaluating whether candidates back the claim about all tenders being for electric vehicles. Concluded no genuine support exists; fuel-supply contracts contradict the claim, hybrid SUV tender is not electric and only c",
+        "summary": "La afirmación es general y programática: que \"todas\" las licitaciones del Ayuntamiento optan por vehículos eléctricos, incluso los no propios. Ningún candidato respalda esa universalidad.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
