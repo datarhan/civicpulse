@@ -14,6 +14,7 @@ import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
+import { findPartiesInText } from '../src/lib/party-alias.js'
 import { rechazoDeFirma } from '../src/scraper/firma-de-persona'
 import { sha256Short } from '../src/scraper/hash'
 import {
@@ -365,7 +366,27 @@ const expectWithdrawn = (id: string): void => {
  * de la misma firma. En LOTE_2 y en su prueba del vocabulario de 2022 cambia sólo lo que miden en
  * la prosa viva.
  */
-const TOTAL_CORRECTIONS = 233
+/*
+ * 233 → 249 (bloque «sin atribuir, +16»).
+ * Dieciséis sumarios llamaban «un grupo no identificado» a quien pronuncia una cita que la ficha
+ * no atribuye a ningún grupo: el relleno que sustituyó el 1-08 al centinela «Otro». El motivo
+ * firmado el 30-09-2026 en `f-2026-01-19-afi-5238db` ya decía que esa fórmula afirma que no se
+ * sabe quién habla y que lo exacto es «sin atribuir», el rótulo de la cita; y junto a un grupo
+ * nombrado, con «Por su parte» o «mientras que» delante, se leía como otro grupo. Cada sumario
+ * dice ahora «una intervención sin atribuir», o lo dice en impersonal, sin contar intervenciones,
+ * y pierde el conector que la oponía a un grupo nombrado. Dieciséis entradas firmadas con
+ * `correct-pleno-finding` (editor `civicpulse-curator`), ninguna de un lote; ninguna atribución
+ * cambia. Que no vuelva lo vigila «una frase que cuenta grupos los lleva en sus citas», y en
+ * LOTE_2 y LOTE_3 cambia sólo lo que su fila mide en la prosa viva.
+ */
+/*
+ * 249 → 252 (bloque «sin atribuir, opcional, +3»).
+ * La otra fórmula que nombra el motivo firmado de `5238db`, «sin grupo identificado», en los
+ * sumarios de `f-2026-04-20-cit-25e6ea`, `f-2026-04-20-cit-947479` y `f-2026-01-19-cit-8b29a9`:
+ * pasa a «sin atribuir», como la ficha. Tres entradas más de la misma firma; en LOTE_3 cambia sólo
+ * lo que su fila mide en la prosa viva, y la guarda del relleno vigila también esta fórmula.
+ */
+const TOTAL_CORRECTIONS = 252
 const TOTAL_REMOVALS = 40
 
 /** One row of a review batch's fixture: enough to locate its own entries. */
@@ -1444,7 +1465,9 @@ const LOTE_2: Lote2Case[] = [
       '«aprobado por un plan local de residuos» ya existente',
       // La salvedad abre ahora la frase (bloque «salvedad A+B, +12»).
       'Según la transcripción anterior de la sesión',
-      'un grupo no identificado menciona la necesidad de mejorar la recogida',
+      // «sin atribuir», el rótulo de la cita, y no «un grupo no identificado» (bloque «sin
+      // atribuir, +16»); se ancla la vigente.
+      'una intervención sin atribuir menciona la necesidad de mejorar la recogida',
     ],
     // Two now: lote 4 took the sensorización platform, whose licitación
     // opened seven weeks after this session.
@@ -2128,7 +2151,8 @@ const LOTE_3: Lote3Case[] = [
       // Both were the withheld valuation restated; redacted 2026-08-11.
       'una discrepancia sobre el sentido de los informes técnicos de intervención',
       // 2026-09-30: la del deber de dar cuenta, descrita ahora como la que se imprime.
-      'una intervención sin grupo identificado sostiene que no había obligación de dar cuenta',
+      // Y «sin atribuir», como la ficha (bloque «sin atribuir, opcional, +3»).
+      'una intervención sin atribuir sostiene que no había obligación de dar cuenta',
     ],
     refs: [
       'tender|El objeto del contrato es la prestación ',
@@ -2159,8 +2183,9 @@ const LOTE_3: Lote3Case[] = [
     // no lleva ninguna cita de VOX y la frase decía lo contrario de lo que consta.
     // Ver el bloque «148 → 150». La frase pasa a `drops`, arriba.
     // 2026-09-30: se ancla el sumario vigente, reescrito sin esas dos frases (bloque «163 → 184»).
+    // Y las dos citas sin grupo se dicen «sin atribuir» (bloque «sin atribuir, +16»).
     keeps: [
-      'otra intervención sin grupo identificado se refiere a subsanar los problemas del pabellón',
+      'otra, también sin atribuir, se refiere a subsanar los problemas del pabellón',
       'se basan en fondos europeos para la reconstrucción tras la DANA',
     ],
     // The Pacadar cotejo STAYS here too, and this is the row where that costs
@@ -2253,7 +2278,8 @@ const LOTE_3: Lote3Case[] = [
     keeps: [
       '«El plan rehabilita más de 900.000 euros con una bolsa en el ayuntamiento para los autónomos y pequeñas empresas de Riva Roja»',
       'no dice de qué plan se trata',
-      'Un grupo no identificado señala que esta iniciativa se extiende',
+      // «sin atribuir», el rótulo de la cita (bloque «sin atribuir, +16»).
+      'Una intervención sin atribuir señala que esta iniciativa se extiende',
     ],
     // A 2019 music performance matched on the word «comercio». Weak, unnamed,
     // pre-dates the session: it stays.
@@ -3532,6 +3558,150 @@ describe('published pleno findings — one verbatim is one bloc', () => {
     // y `b00839` [0] (bloque «salvedad C+D, +8»). El suelo baja tres.
     expect(attributed.length).toBeGreaterThan(63)
     expect(findAttributionConflicts(items)).toEqual([])
+  })
+})
+
+// ─── Una frase que cuenta grupos los lleva en sus citas ──────────────────────
+
+/**
+ * Ningún titular ni sumario cuenta o contrapone más grupos de los que llevan sus citas.
+ *
+ * El defecto llegó al lector con cuatro redacciones de recuento —«Ambos grupos» sobre citas de
+ * un solo grupo (`b9b013`), «entre los grupos PSOE y un grupo no identificado» (titular de
+ * `73d3cf`), «un cruce de reproches entre grupos» con las cuatro citas del mismo (`7c65c5`),
+ * «los grupos PSOE y un grupo no identificado manifiestan» sobre una sola voz (`51aaa3`)— y con
+ * otra sin palabra de recuento: «un grupo no identificado» junto a «el PSOE…», con «Por su
+ * parte» o «mientras que» delante, se lee como OTRO grupo aunque la ficha no atribuya la cita a
+ * ninguno. Era el relleno que sustituyó el 1-08 al centinela «Otro», y el motivo firmado el
+ * 30-09-2026 en `f-2026-01-19-afi-5238db` ya dice que afirma que no se sabe quién habla y que
+ * lo exacto es «sin atribuir», el rótulo de la cita (bloque «sin atribuir, +16»).
+ *
+ * Una frase —se lee frase a frase, cortando en «.» y «;»— cuenta o contrapone grupos si:
+ *   · lleva una de las formas de `RECUENTO_DE_GRUPOS`;
+ *   · menciona dos grupos o más: cada uno que nombra (`findPartiesInText`) y cada «un grupo»,
+ *     «otro grupo», «el otro grupo» o «el mismo grupo» («un grupo de vecinos» no es uno);
+ *   · o abre con un conector que la opone o la suma a la anterior —«Por su parte», «En cambio»,
+ *     «Por el contrario», «Asimismo», «A su vez»—, menciona un grupo y la anterior otro.
+ * Y entonces necesita citas de al menos dos grupos distintos en su ficha. «Una intervención sin
+ * atribuir» no es una mención de grupo, a propósito: no dice de qué grupo es nadie.
+ *
+ * Los detectores se miden antes contra casos plantados, y contra `ea9d47` como control
+ * positivo: «PP y PSOE se cruzan reproches» cuenta grupos, y sus citas llevan los dos. Sin eso,
+ * «ninguna sin sostén» es también lo que devuelve un detector que no ve nada.
+ */
+const RECUENTO_DE_GRUPOS =
+  /\b(?:ambos|ambas|los dos|las dos)\s+(?:grupos|formaciones|partidos)\b|\bentre\s+(?:los\s+)?grupos\b|\bvarios grupos\b|\bcruce de reproches\b|\bse cruzan reproches\b/i
+const GRUPO_SIN_NOMBRE = /\b(?:un|otro|el otro|el mismo)\s+grupo\b(?!\s+de\b)/gi
+const CONECTOR_ENTRE_FRASES = /^(?:por su parte|en cambio|por el contrario|asimismo|a su vez)\b/i
+/**
+ * El relleno que sustituyó el 1-08 al centinela «Otro», y la otra fórmula que nombra el motivo de
+ * `5238db` (bloque «sin atribuir, opcional, +3»): nunca en un titular ni en un sumario.
+ */
+const RELLENO_DE_GRUPO = [/\bgrupos? no identificados?\b/i, /\bsin grupo identificado\b/i]
+
+const mencionesDeGrupo = (frase: string): number =>
+  new Set(findPartiesInText(frase)).size + (frase.match(GRUPO_SIN_NOMBRE) ?? []).length
+
+/** Las frases de un titular o de un sumario que cuentan o contraponen grupos. */
+const frasesQueCuentanGrupos = (texto: string): string[] => {
+  const frases = texto
+    .split(/(?<=[.;])\s+/)
+    .map((s) => s.trim())
+    .filter(Boolean)
+  return frases.filter((frase, i) => {
+    if (RECUENTO_DE_GRUPOS.test(frase)) return true
+    const aqui = mencionesDeGrupo(frase)
+    if (aqui >= 2) return true
+    return (
+      aqui >= 1 &&
+      i > 0 &&
+      CONECTOR_ENTRE_FRASES.test(frase) &&
+      mencionesDeGrupo(frases[i - 1]) >= 1
+    )
+  })
+}
+
+const gruposDeLasCitas = (f: PlenoFinding): Set<string> =>
+  new Set(f.quotes.flatMap((q) => (q.speakerGroup ? [q.speakerGroup] : [])))
+
+/** Cada frase de la ficha que cuenta grupos sin citas de dos grupos distintos. */
+const recuentosSinSosten = (f: PlenoFinding): string[] =>
+  gruposDeLasCitas(f).size >= 2
+    ? []
+    : [f.title, f.summary]
+        .flatMap((t) => frasesQueCuentanGrupos(t))
+        .map((frase) => `${f.id}: «${frase}»`)
+
+describe('published pleno findings — una frase que cuenta grupos los lleva en sus citas', () => {
+  /** Una ficha de verdad con las citas de los grupos dados y el sumario dado. */
+  const plantada = (
+    grupos: PlenoFinding['quotes'][number]['speakerGroup'][],
+    summary: string,
+  ): PlenoFinding => {
+    const f = JSON.parse(JSON.stringify(items[0])) as PlenoFinding
+    const molde = f.quotes[0]
+    f.quotes = grupos.map((g) => ({ ...molde, speakerGroup: g }))
+    f.title = 'Pleno de prueba'
+    f.summary = summary
+    return f
+  }
+
+  it('ve una frase que cuenta o contrapone grupos cuando la hay, y sólo entonces', () => {
+    // Las tres formas, plantadas sobre una ficha cuyas citas llevan un solo grupo…
+    for (const summary of [
+      'Ambos grupos coinciden en algo.',
+      'El PSOE pide algo, y otro grupo lo rechaza.',
+      'El PSOE pide algo. Por su parte, un grupo lo rechaza.',
+    ]) {
+      expect(recuentosSinSosten(plantada(['PSOE', null], summary)), summary).toHaveLength(1)
+    }
+    // …que con citas de dos grupos dejan de ser un defecto…
+    expect(recuentosSinSosten(plantada(['PSOE', 'PP'], 'Ambos grupos coinciden en algo.'))).toEqual(
+      [],
+    )
+    // …y lo que no es un grupo no se cuenta como tal: la cita sin grupo, ni un grupo de vecinos.
+    for (const summary of [
+      'El PSOE pide algo. Una intervención sin atribuir lo rechaza.',
+      'El PSOE pide algo, y un grupo de vecinos lo apoya.',
+    ]) {
+      expect(recuentosSinSosten(plantada(['PSOE', null], summary)), summary).toEqual([])
+    }
+  })
+
+  it('el control positivo es ea9d47: cuenta dos grupos, y sus citas llevan los dos', () => {
+    const f = byId('f-2026-05-11-acu-ea9d47')
+    expect(frasesQueCuentanGrupos(f.summary).length).toBeGreaterThan(0)
+    expect([...gruposDeLasCitas(f)].sort()).toEqual(['PP', 'PSOE'])
+    expect(recuentosSinSosten(f)).toEqual([])
+  })
+
+  it('en el fichero publicado, toda frase que cuenta grupos tiene citas de dos', () => {
+    const cuentan = items.flatMap((f) =>
+      [f.title, f.summary].flatMap((t) => frasesQueCuentanGrupos(t)),
+    )
+    // La mitad que mide: sin frases que cuenten grupos, «ninguna sin sostén» no dice nada.
+    expect(cuentan.length).toBeGreaterThanOrEqual(3)
+    expect(items.flatMap(recuentosSinSosten)).toEqual([])
+  })
+
+  it('ningún titular ni sumario dice «un grupo no identificado» ni «sin grupo identificado»', () => {
+    // Las dos fórmulas, plantadas, se ven…
+    for (const summary of [
+      'Un grupo no identificado afirma algo.',
+      'Una intervención sin grupo identificado afirma algo.',
+    ]) {
+      const plantado = plantada([null], summary).summary
+      expect(
+        RELLENO_DE_GRUPO.some((re) => re.test(plantado)),
+        summary,
+      ).toBe(true)
+    }
+    // …y en el fichero no queda ninguno: se mira cada titular y cada sumario.
+    const textos = items.flatMap((f) => [f.title, f.summary].map((t) => ({ id: f.id, t })))
+    expect(textos).toHaveLength(items.length * 2)
+    expect(
+      textos.filter(({ t }) => RELLENO_DE_GRUPO.some((re) => re.test(t))).map(({ id }) => id),
+    ).toEqual([])
   })
 })
 
