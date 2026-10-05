@@ -52,6 +52,25 @@ describe('conclusionSinRespaldo, contra las 52 leídas a mano', () => {
     }
   })
 
+  it('y fuera de la muestra: los 13 razonamientos nuevos de la re-derivación del 05-10-2026', () => {
+    // Escritos por el modelo después de construir las clases, con la clave nueva.
+    // Dos de las nueve negativas decían «Respaldo, como mucho, muy débil y
+    // circunstancial» y «Respaldo, como mucho, contextual y débil», y se quedaban
+    // fuera: la pasada las apartó para un curador cuando su razonamiento ya
+    // sostenía la retractación.
+    const frescas = F.frescas as Fila[]
+    expect(frescas).toHaveLength(13)
+    const negativas = frescas.filter((f) => f.concluyeSinRespaldo)
+    expect(negativas).toHaveLength(9)
+    expect(
+      negativas.filter((f) => !conclusionSinRespaldo(f.razonamiento)).map((f) => f.id),
+    ).toEqual([])
+    const control = frescas.filter((f) => !f.concluyeSinRespaldo)
+    expect(control.filter((f) => conclusionSinRespaldo(f.razonamiento)).map((f) => f.id)).toEqual(
+      [],
+    )
+  })
+
   it('una valoración acotada no es una conclusión negativa', () => {
     // 19gax3o-124-cit-452536 (02-08-2026): «…ofrece un respaldo débil-moderado…
     // por lo que no hay respaldo genuino fuerte», dicho de los demás candidatos.

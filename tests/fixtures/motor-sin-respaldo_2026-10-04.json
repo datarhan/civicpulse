@@ -6,7 +6,8 @@
     "candidatos": "El shortlist que reconstruyó editorial/rederivacion-0410-52/replay-52.ts el 04-10-2026 (corpus semántico de ese día + lista léxica): 61 de las 62 citas se anclan en él y los índices `[i]` de cada razonamiento nombran los mismos registros. El corpus se reconstruyó el 05-10-2026 a las 09:44, así que hoy el shortlist puede ser otro: por eso se guarda aquí.",
     "claims": "La declaración tal cual está en public/data/pleno-claims-verified.json en 80a56a18.",
     "lectura": "La lectura editorial de INFORME.md §2 (editorial/rederivacion-0410-52, gitignorado): «respaldo real», «dudoso» o «sólo el tema»; `concluyeSinRespaldo` es su lista de las 36 cuyo razonamiento entero concluye que no hay respaldo genuino. `atascadas` son las 13 de §4.d: resumen de charla retirado (src/lib/resumenes-retirados.js) y lectura «sólo el tema», que `--ids` no reescribía mientras la extracción dijera `parcial`.",
-    "llamadas": "Ninguna: se leyó con llmCacheGet, que no llama nunca (getRunStats().calls === 0)."
+    "llamadas": "Ninguna: se leyó con llmCacheGet, que no llama nunca (getRunStats().calls === 0).",
+    "frescas": "Los 13 razonamientos que escribió el modelo (claude-code:sonnet) el 05-10-2026 en la re-derivación `--ids` de las 13 atascadas, con la clave nueva (lleva la huella del shortlist), en el orden de la pasada; cada re-derivada se comprobó contra su resumen en el overlay. `concluyeSinRespaldo` es la lectura de esta sesión, razonamiento por razonamiento; `nota`, el porqué de las que no."
   },
   "atascadas": [
     "19gax3o-143-cit-a3a7a1",
@@ -4436,6 +4437,90 @@
           }
         ]
       }
+    }
+  ],
+  "frescas": [
+    {
+      "id": "19gax3o-143-cit-a3a7a1",
+      "razonadoPor": "claude-code:sonnet · 2026-10-05T19:11:11.913Z",
+      "concluyeSinRespaldo": false,
+      "nota": "dudosa: «ningún candidato respalda de forma concluyente», pero ve «un respaldo débil y circunstancial» en 2/3",
+      "razonamiento": "La afirmación dice que el complejo deportivo de La Mallá tenía deficiencias y que, al menos en el exterior, ha recibido una inversión de este gobierno. Los candidatos 0, 1, 5 y 7 son contratos de servicios (calidad del agua, actividades no acuáticas, limpieza). Son gasto corriente de mantenimiento, no inversión en obra exterior ni corrección de deficiencias, así que sólo comparten el tema y no respaldan nada. El candidato 6 es una subvención del CSD para el pabellón polideportivo de Riba-roja: es otra instalación, no el complejo La Mallá, y no consta importe ni fecha coincidentes. Los candidatos 2 y 3 son los únicos con cierta relevancia: una obra de pavimentación del paseo Pacadar que conecta el Complejo La Malla con el pabellón, es decir, una intervención en el exterior del entorno del complejo, lo que encaja con \"el exterior ha tenido una inversión\". Sin embargo, la afirmación no trae cifras ni fechas, y no se ve que esa obra sea del actual gobierno ni que sea la inversión a la que se refiere; además, es un paseo de conexión, no necesariamente el exterior del complejo. El candidato 4 (reforma y ampliación parcial del edificio La Mallà) también es relevante pero apunta al interior o al edificio, no al exterior, y no hay fecha ni importe para atribuirlo a este gobierno. Conclusión: ningún candidato respalda de forma concluyente; los 2/3 (y en menor medida el 4) ofrecen un respaldo débil y circunstancial de que hubo obra en torno a La Mallá, pero sin valores concretos que confirmen la afirmación ni la atribución a este gobierno. La parte de que \"ha dicho todas las deficiencias\" es una opinión no verificable con estos registros."
+    },
+    {
+      "id": "19gax3o-186-cit-7e4d6f",
+      "razonadoPor": "claude-code:sonnet · 2026-10-05T19:11:24.167Z",
+      "concluyeSinRespaldo": true,
+      "razonamiento": "La afirmación es una opinión cualitativa del orador: dice que, en términos de gestión interna, una DANA o una pandemia han sido eventos muy duros y un tema importante. No incluye ningún importe, fecha ni sujeto concreto que se pueda contrastar con registros. Los candidatos [1]-[7] tratan de la DANA de octubre-noviembre 2024 en Riba-roja (convenio, contratos de emergencia, obras de reconstrucción, suministros), así que comparten tema. Eso solo prueba que la DANA existió y generó actividad administrativa, no que fuera \"muy dura\" en términos de gestión interna, que es una valoración subjetiva. El candidato [0] (cementerios) no tiene relación. Ningún candidato respalda genuinamente la afirmación porque no hay valores concretos que coincidan. Es una opinión no verificable, y la coincidencia de tema con la DANA no cuenta como respaldo."
+    },
+    {
+      "id": "1sqj7is-081-cit-50c5bb",
+      "razonadoPor": "claude-code:sonnet · 2026-10-05T19:11:29.575Z",
+      "concluyeSinRespaldo": false,
+      "nota": "«un respaldo parcial/débil-moderado»",
+      "razonamiento": "La afirmación dice que en el pleno anterior se trajo (se tramitó) Santa Rosa 2, una unidad de ejecución urbanística. El candidato [0] es un contrato de servicio de redacción de trabajos técnicos preparatorios para el inicio de la gestión directa de la unidad de ejecución Santa Rosa II (€45.796,08, formalizado). Coincide el sujeto concreto (la unidad de ejecución Santa Rosa II) y el tema urbanístico, por lo que es relevante y compatible con que el asunto se haya tramitado. Sin embargo, el registro no tiene fecha del pleno ni prueba que Santa Rosa 2 se llevara al pleno anterior; la afirmación no contiene cifras ni fechas que contrastar. Es un respaldo parcial/débil-moderado: confirma que Santa Rosa II existe como unidad de ejecución con actuación municipal, no el momento concreto del pleno. Los candidatos [1]-[7] (Pacadar, SDA, Carasols, etc.) son obras no relacionadas, coincidencia solo temática de obras/urbanismo, sin respaldo."
+    },
+    {
+      "id": "c8kr44-088-cit-d63a7d",
+      "razonadoPor": "claude-code:sonnet · 2026-10-05T19:11:40.862Z",
+      "concluyeSinRespaldo": true,
+      "razonamiento": "La afirmación dice que los criterios de aplicación de licencias tipo 1 en suelos inundables fueron aprobados mediante resolución el 8 de agosto de 2025. El candidato [0] es un contrato de estudio de criterios para la concesión de licencias en suelos inundables (€14.386,9, adjudicado), temáticamente muy cercano, pero no aporta ninguna fecha de resolución de aprobación (8 de agosto) ni confirma la aprobación de los criterios: sólo indica que se contrató un estudio. Un contrato de estudio no prueba que los criterios se aprobaran por resolución en esa fecha, por lo que el respaldo es como mucho tangencial/débil (mismo tema, sin coincidencia de fecha ni de acto). Los demás candidatos (obras de canalización, accesibilidad, estudio de inundabilidad para modificación puntual, emergencias DANA, estudio de medidas correctoras) son de otro objeto y no respaldan la afirmación; coinciden sólo en el tema de inundación. Conclusión: ningún candidato respalda genuinamente la afirmación; [0] es a lo sumo contexto relacionado, no verificación."
+    },
+    {
+      "id": "c8kr44-089-cit-712906",
+      "razonadoPor": "claude-code:sonnet · 2026-10-05T19:11:46.557Z",
+      "concluyeSinRespaldo": true,
+      "razonamiento": "La afirmación dice que los criterios de aplicación de las licencias tipo 1 en suelos inundables fueron aprobados por resolución el 8 de agosto (2025). El candidato [0] es el contrato de \"estudio de criterios a adoptar en la concesión de licencias en suelos inundables conforme a la cartografía sectorial\" (14.386,9 €, adjudicado): coincide en el tema y en el objeto (criterios de licencias en suelos inundables), por lo que es contexto relevante y plausible, pero es un contrato de estudio, no la resolución de aprobación de los criterios, y el registro no muestra ninguna fecha del 8 de agosto ni aprobación alguna. Por tanto no confirma el valor concreto (fecha 8 de agosto / resolución); respaldo débil, solo temático. Los demás candidatos ([1]–[7]) tratan de DANA, obras de emergencia o estudios de inundabilidad de otra modificación puntual, y no respaldan nada: coincidencia de tema o palabra únicamente. En conjunto, ningún candidato respalda genuinamente la fecha de aprobación; el [0] solo da relación temática, sin fuerza probatoria sobre el hecho afirmado."
+    },
+    {
+      "id": "c8kr44-114-cit-054e8e",
+      "razonadoPor": "claude-code:sonnet · 2026-10-05T19:11:51.944Z",
+      "concluyeSinRespaldo": true,
+      "razonamiento": "La afirmación dice que el expediente obtuvo el informe ambiental y territorial estratégico favorable, fase previa ya llevada a pleno. El candidato [0] es un contrato de 9.680 € para la redacción del proyecto de evaluación ambiental y territorial estratégica para reclasificar La Sargueta y Pozalet como suelo urbanizable. Es el único relacionado con el mismo tema (evaluación ambiental y territorial estratégica en urbanismo) y es plausiblemente el trabajo que da origen a ese informe. Pero solo prueba que se contrató la redacción del documento; NO prueba que el informe se emitiera ni que fuera favorable, ni que se trajera a pleno. No hay cifra ni fecha en la afirmación con la que contrastar. El resto de candidatos ([1]-[7]) son planes estratégicos, proyectos de obra o ayudas sin relación con el informe ambiental concreto, y no respaldan nada. Respaldo, como mucho, contextual y débil (tema coincidente, hecho central no verificable con estos registros)."
+    },
+    {
+      "id": "c8kr44-117-cit-d6cf5b",
+      "razonadoPor": "claude-code:sonnet · 2026-10-05T19:12:01.627Z",
+      "concluyeSinRespaldo": true,
+      "razonamiento": "La afirmación es cualitativa: dice que hay \"en trámite\" una regularización de zonas verdes y la zona de PACADER, sin cifras, fechas ni sujeto numérico. Los candidatos [1] y [6] (aparcamiento provisional / acondicionamiento de la parcela de PACADAR) y [0], [4] (reurbanización y mejora de zonas verdes en polígonos industriales) coinciden en el tema, pero son contratos ya adjudicados o formalizados, es decir, no están \"en trámite\". Además, la \"regularización de zonas verdes\" (probablemente urbanística/de recepción de suelo) no es lo mismo que obras de reurbanización o mantenimiento, y no hay valores concretos que casar. Los candidatos [2], [3], [5], [7] sólo comparten palabras sueltas (\"zonas verdes\", zonas). Como mucho hay un respaldo débil y contextual de que existen actuaciones en PACADAR y zonas verdes, pero ningún candidato confirma genuinamente que la regularización esté en trámite; el respaldo es muy débil/insuficiente."
+    },
+    {
+      "id": "c8kr44-121-cit-3e50b3",
+      "razonadoPor": "claude-code:sonnet · 2026-10-05T19:12:07.109Z",
+      "concluyeSinRespaldo": true,
+      "razonamiento": "La afirmación es una cita descriptiva: el pleno dice que están en el colegio Cervantes (infantil) y que el mantenimiento cuesta mucho dinero. No contiene un importe, fecha ni sujeto concreto verificable. El candidato [2] (mantenimiento de instalaciones térmicas de colegios, 23.886,71 €) comparte el tema de mantenimiento escolar, pero no menciona el colegio Cervantes ni respalda \"cuesta mucho dinero\" con un valor comparable; es una coincidencia temática, no respaldo. [0] es mantenimiento de software (Deepfreeze), entidad distinta. Los demás (clases de inglés, conciliación, arrendamiento del Conservatorio) son sólo coincidencias de tema educativo. Ningún candidato respalda genuinamente la afirmación; como mucho [2] es un contexto débil y tangencial, sin fuerza probatoria. La afirmación es además en gran parte una referencia contextual/opinión no verificable."
+    },
+    {
+      "id": "c8kr44-146-cit-ccd20c",
+      "razonadoPor": "claude-code:sonnet · 2026-10-05T19:12:12.876Z",
+      "concluyeSinRespaldo": true,
+      "razonamiento": "La afirmación es general y programática: que \"todas\" las licitaciones del Ayuntamiento optan por vehículos eléctricos, incluso los no propios. Ningún candidato respalda esa universalidad. [1] (estación de carga para vehículos eléctricos) y [7] (motocicleta eléctrica municipal, 6.498 €) muestran sólo actuaciones aisladas de movilidad eléctrica propia, no que todas las licitaciones lo exijan ni que se aplique a vehículos ajenos. [3] (renting de vehículos policiales con cláusulas medioambientales) y [2] (renting de vehículo tractor) son temáticamente cercanos pero no indican que sean eléctricos ni que el criterio sea general; [0], [4], [5] y [6] son coincidencias de tema (energía, medio ambiente, bicicletas eléctricas) sin valores concretos coincidentes. En conclusión: respaldo muy débil o nulo; a lo sumo contexto tangencial, y la afirmación es una declaración política genérica difícilmente verificable con estos registros."
+    },
+    {
+      "id": "ma87e0-104-cit-528973",
+      "razonadoPor": "claude-code:sonnet · 2026-10-05T19:12:18.320Z",
+      "concluyeSinRespaldo": true,
+      "razonamiento": "La afirmación es una declaración de intención: una fórmula de financiación (presupuesto 2026) servirá en parte para mejorar instalaciones deportivas municipales, sin importe, fecha ni sujeto concreto. Ningún candidato coincide con valores verificables. [0] y [4] son contratos de gestión de actividades deportivas (servicios, no instalaciones ni financiación). [1], [3] y [6] son subvenciones a clubes y entidades deportivas, no mejoras de instalaciones. [2] es de Riba-Roja d'Ebre, otro municipio (entidad distinta). [5] (street workout en el polideportivo) y [7] (pavimento del polideportivo tras la DANA, 138.195,42 €) son obras en instalaciones deportivas municipales, pero no se vinculan a la fórmula de financiación citada y [7] responde a daños de la DANA 2024, de modo que solo comparten el tema. Respaldo: ninguno genuino; como mucho coincidencia temática débil con [5] y [7]. La afirmación es además una promesa/intención futura, no verificable con estos registros."
+    },
+    {
+      "id": "ma87e0-195-cit-436a7e",
+      "razonadoPor": "claude-code:sonnet · 2026-10-05T19:12:24.270Z",
+      "concluyeSinRespaldo": false,
+      "nota": "«respaldo contextual débil/parcial (solo confirma que la obra existe)»",
+      "razonamiento": "La afirmación dice que la Generalitat \"no tiene\" (no ha ejecutado) el pabellón de Escoto, una obra de competencia autonómica pendiente. Los candidatos [0] y [1] son contratos reales del pabellón deportivo cubierto en el CEIP Mas d'Escoto (redacción de proyecto y obras Fase I), así que confirman que la obra existe y que se tramita, pero son contratos licitados por el Ayuntamiento, no por la Generalitat; no dicen nada sobre quién tiene la competencia ni sobre si la Generalitat ha incumplido. Es más, la existencia de un contrato de obras Fase I (movimiento de tierras) matiza parcialmente que \"no se ha ejecutado\", pero no prueba ni refuta la atribución a la Generalitat. Los demás candidatos (pabellón Pacadar, polideportivo municipal, Riba-roja d'Ebre, convenio Generalitat para un centro polivalente) son de otro objeto, otra localidad o tema distinto: coincidencia de palabra, sin respaldo. Conclusión: respaldo contextual débil/parcial (solo confirma que la obra existe), sin respaldo directo de la afirmación concreta de incumplimiento autonómico."
+    },
+    {
+      "id": "qz6weg-184-cit-8629f9",
+      "razonadoPor": "claude-code:sonnet · 2026-10-05T19:12:35.285Z",
+      "concluyeSinRespaldo": false,
+      "nota": "«Respaldo parcial y débil: existe el SDA»",
+      "razonamiento": "La afirmación tiene dos partes: (a) que los sistemas dinámicos de adquisición (SDA) se aprobaron hace poco en el Ayuntamiento, y (b) que se cedió la bolsa de autónomos de Riba-roja a otros ayuntamientos para proyectos. Los candidatos [0], [1], [6] y [7] demuestran que Riba-roja de Túria tiene SDA (obras de viales/parques y jardines con condición social, SDA1/2022 de suministros, SDA 2 de obras) y un asesoramiento jurídico para ponerlos en marcha, lo que respalda débilmente la existencia de los SDA y su aprobación en torno a 2022-2023. Sin embargo, no hay fechas de aprobación que permitan verificar \"hace poco\" (y hoy es 2026, así que 2022 difícilmente es \"poco\"), y ningún candidato menciona la cesión de una bolsa de autónomos a otros ayuntamientos, que es la parte central y distintiva de la afirmación. Los contratos derivados ([2]-[5]) sólo muestran uso de los SDA, no su aprobación ni la cesión. Respaldo parcial y débil: existe el SDA, pero la afirmación sobre la bolsa de autónomos y el carácter reciente no tiene respaldo; además es una cita retórica de pleno, de difícil verificación."
+    },
+    {
+      "id": "qz6weg-271-cit-f67afa",
+      "razonadoPor": "claude-code:sonnet · 2026-10-05T19:12:45.347Z",
+      "concluyeSinRespaldo": true,
+      "razonamiento": "La afirmación es una declaración de intenciones/política (\"intentamos que se quede en la publicidad en las áreas del casco urbano y urbanización\"), sin cifras, fechas ni sujeto cuantificable. Es una opinión o posicionamiento político, no un hecho verificable con un registro. El candidato [2] (buzoneo de flyers en casco urbano y urbanizaciones de Riba-roja para campañas de comercio local) guarda una afinidad temática y geográfica clara, y el [0] (publicidad institucional) también, pero ninguno demuestra que la política sea \"mantener la publicidad en casco urbano y urbanizaciones\"; como mucho ilustran una actividad compatible. El resto (señales viales, asfaltado, jardinería, áreas industriales) sólo coinciden en palabras como \"casco urbano\" y no respaldan nada. Respaldo, como mucho, muy débil y circunstancial (candidato [2]); no hay coincidencia de importe, fecha o sujeto que verifique la afirmación."
     }
   ]
 }
