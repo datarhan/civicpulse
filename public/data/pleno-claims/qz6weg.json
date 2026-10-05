@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-05T06:45:20.453Z",
+  "generatedAt": "2026-10-05T12:48:23.373Z",
   "version": "1",
   "plenoId": "qz6weg",
   "plenoDate": "2025-12-01",
@@ -11786,15 +11786,32 @@
       },
       "verification": {
         "claimId": "qz6weg-273-cit-69aded",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
+        "verdict": "parcial",
+        "summary": "Los servicios sociales tienen ayudas económicas: el Ayuntamiento convocó ayudas de emergencia social para 2021 y para 2024 (BDNS). Los criterios de renta que se mencionan no constan.",
+        "evidence": [
+          {
+            "kind": "bdns",
+            "ref": "https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocatoria/734397",
+            "snippet": "Resolución de Alcaldía núm. 4891/2023, de 20 de diciembre de 2023 del Ayuntamiento de Riba-roja de Túria, por la que se convocan ayudas de emergencia social para el año 2024 · convocatoria BDNS 734397 del 20-12-2023",
+            "stance": "checked"
+          },
+          {
+            "kind": "bdns",
+            "ref": "https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocatoria/548829",
+            "snippet": "Resolución número 140, de fecha 21 de enero de 2021, de la Alcaldía del Ayuntamiento de Riba-roja de Turia, por la que se convocan las ayudas económicas de emergencia social para el ejercicio 2021 · convocatoria BDNS 548829 del 11-02-2021",
+            "stance": "checked"
+          }
         ],
-        "source": "verdict-engine"
+        "checkedAgainst": [
+          "bdns"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ],
+        "source": "curator-upgrade",
+        "raisedBy": "Sergei Lutchenko"
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {

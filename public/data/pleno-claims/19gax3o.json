@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-05T06:45:20.453Z",
+  "generatedAt": "2026-10-05T12:48:23.373Z",
   "version": "1",
   "plenoId": "19gax3o",
   "plenoDate": "2026-01-19",
@@ -1742,16 +1742,26 @@
       },
       "verification": {
         "claimId": "19gax3o-034-cit-8ae8be",
-        "verdict": "sin-datos",
-        "summary": "Se proporcionó el razonamiento de verificación en español como respuesta de texto libre, tal como solicitó el usuario (2-4 frases razonando sobre el respaldo de los candidatos a la afirmación, sin emitir veredicto final).",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
+        "verdict": "parcial",
+        "summary": "La renovación de los juegos del parque de la Asunción de Nuestra Señora se contrató: suministro e instalación adjudicados el 8-09-2026 por 40.727,10 €. Los 314.000 € del contexto no constan en este registro.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Dsw60vrWRmm5HQrHoP3G5A%3D%3D",
+            "snippet": "Suministro con instalación de juegos infantiles en Parque Asunción de Nuestra Señora · expediente 36/2026 · adjudicado a URBEADAPTA S. L. por 40.727,10 € con IVA el 08-09-2026",
+            "stance": "checked"
+          }
         ],
-        "confidence": 0.2,
-        "source": "verdict-engine"
+        "checkedAgainst": [
+          "tenders"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ],
+        "source": "curator-upgrade",
+        "raisedBy": "Sergei Lutchenko"
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
