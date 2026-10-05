@@ -237,4 +237,30 @@ describe('callLLM · una entrada vieja del respaldo bajo la clave del primario n
     expect(llmCacheHas({ ...PREGUNTA, config })).toBe(true)
     expect(getRunStats()).toMatchObject({ cacheHits: 1, cacheDeOtroBackend: 0 })
   })
+
+  /**
+   * Para auditar, no para servir: `corregir-rotulo-motor` tiene que leer QUIÉN
+   * escribió lo que hay bajo la clave de claude-code —las entradas que nadie
+   * sirve ya— para corregir el rótulo de lo que se publicó desde ellas.
+   */
+  it('llmCacheEntrada dice quién escribió lo que hay bajo la clave, sin servirlo', async () => {
+    const config = primarioClaude(claudeFalso('de claude'))
+    await envenenada(config)
+    resetRunStats()
+
+    expect(cliente.llmCacheEntrada({ ...PREGUNTA, config })).toEqual({
+      backend: 'openai',
+      model: 'gpt-4o-mini',
+      result: { reply: 'de gpt-4o-mini' },
+    })
+    expect(getRunStats()).toMatchObject({ calls: 0, cacheHits: 0 })
+    expect(llmCacheGet({ ...PREGUNTA, config }), 'leerla no la vuelve servible').toBeNull()
+    expect(llamadasAClaude(), 'leer no llama').toBe(1)
+  })
+
+  it('llmCacheEntrada sin nada bajo la clave devuelve null', () => {
+    expect(
+      cliente.llmCacheEntrada({ ...PREGUNTA, config: primarioClaude(claudeFalso()) }),
+    ).toBeNull()
+  })
 })
