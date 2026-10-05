@@ -22,14 +22,14 @@
     "dotenv": "^16.4.7",
     "esbuild": "^0.28.2",
     "grammy": "^1.46.0",
-    "sharp": "^0.35.4",
+    "sharp": "^0.35.5",
     "tsx": "^4.23.15",
     "ulid": "^2.3.0"
   },
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.12",
-    "@types/node": "^22.20.4",
+    "@types/node": "^22.20.5",
     "typescript": "^5.7.0",
-    "vitest": "^5.0.2"
+    "vitest": "^5.0.3"
   }
 }
