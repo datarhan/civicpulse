@@ -1476,9 +1476,10 @@ export default function Metodologia() {
             <strong>Motor de veredictos (re-derivación, sólo a la baja).</strong> Una segunda pasada
             de fundamentación —«razonar y luego formatear» sobre los mismos candidatos del corpus,
             con la regla de <em>no-evidencia por defecto</em> y la misma comprobación de que el
-            valor citado aparezca literalmente en el extracto— vuelve a juzgar los veredictos
-            marcados verificado/parcial, tanto los de la pasada LLM como —desde el 2 de agosto de
-            2026— los que había afirmado el comparador determinista.{' '}
+            valor citado aparezca literalmente en el extracto, en un dato del registro (importe,
+            estado, órgano o fecha) y no sólo en su título— vuelve a juzgar los veredictos marcados
+            verificado/parcial, tanto los de la pasada LLM como —desde el 2 de agosto de 2026— los
+            que había afirmado el comparador determinista.{' '}
             {/* Decía «Esa primera pasada sobre la base retractó 229 de 264 veredictos
                 juzgados, coherente con el conjunto de control: el determinista acierta un
                 33 % en verificado y un 22 % en parcial», y más abajo «En una muestra de
@@ -1516,22 +1517,32 @@ export default function Metodologia() {
             (nunca sube ni introduce un veredicto nuevo). El resultado es más conservador: retira
             afirmaciones que el trazado de datos abiertos no atestigua, dejando el motivo verbatim
             en el overlay. Nunca marca <em>contradicho</em>. Su razonamiento, recortado, es la
-            explicación que la tarjeta de la declaración enseña bajo la cita. En la corrida del 2 de
-            agosto de 2026 una parte de esas explicaciones no hablaba de la declaración sino del
-            encargo del propio modelo («Task completed: reasoned in Spanish…»): la tarjeta no las
-            imprime y dice «Explicación retirada». Desde finales de septiembre de 2026 el motor no
-            juzga sobre un razonamiento así, ni sobre uno vacío —la declaración conserva su
-            veredicto y se vuelve a intentar—, y el overlay no deja escribirlo. Las pasadas de junio
-            y agosto de 2026 anotaban además mal dos cosas. Una declaración sin candidatos que
-            enseñar al modelo volvía con el veredicto del comparador determinista y quedaba
-            registrada como retractación del motor, aunque el modelo no la hubiera visto; y cuando
-            el modelo sí la juzgaba sin respaldo, la explicación que se guardaba era la frase
-            estándar del comparador («No se encontró registro…»), no su razonamiento. Desde finales
-            de septiembre de 2026 lo que el modelo no ve no se escribe como suyo ni cuenta como
-            juzgado, y la retractación guarda lo que el modelo razonó. Las que se anotaron sin que
-            el modelo las viera se devuelven al veredicto del comparador determinista —«sin datos»
-            en todas, así que ninguna cambia de veredicto, sólo de firma—, y las demás se vuelven a
-            derivar para que la explicación sea la del modelo.
+            explicación que la tarjeta de la declaración enseña bajo la cita.{' '}
+            {/* 05-10-2026: en 36 de las 52 retractaciones que la re-derivación de #233
+                dejó como «ya no la retractaría», el razonamiento concluía que nada las
+                respaldaba y el paso de formatear devolvía «parcial»; y casi todas sus citas
+                eran el título del registro (src/scraper/conclusion-sin-respaldo.ts). */}
+            Desde el 5 de octubre de 2026, cuando ese razonamiento concluye que ningún candidato
+            respalda la declaración, ése es el veredicto: antes, el paso que lo formatea podía
+            convertir «sólo hay una coincidencia de tema» en <em>parcial</em>. Y cuando lo único que
+            el modelo cita es el título de un registro, el motor no lo da por respaldo, pero tampoco
+            retracta ni reescribe la explicación con un razonamiento que defiende lo contrario: la
+            declaración queda apartada para que la mire una persona. En la corrida del 2 de agosto
+            de 2026 una parte de esas explicaciones no hablaba de la declaración sino del encargo
+            del propio modelo («Task completed: reasoned in Spanish…»): la tarjeta no las imprime y
+            dice «Explicación retirada». Desde finales de septiembre de 2026 el motor no juzga sobre
+            un razonamiento así, ni sobre uno vacío —la declaración conserva su veredicto y se
+            vuelve a intentar—, y el overlay no deja escribirlo. Las pasadas de junio y agosto de
+            2026 anotaban además mal dos cosas. Una declaración sin candidatos que enseñar al modelo
+            volvía con el veredicto del comparador determinista y quedaba registrada como
+            retractación del motor, aunque el modelo no la hubiera visto; y cuando el modelo sí la
+            juzgaba sin respaldo, la explicación que se guardaba era la frase estándar del
+            comparador («No se encontró registro…»), no su razonamiento. Desde finales de septiembre
+            de 2026 lo que el modelo no ve no se escribe como suyo ni cuenta como juzgado, y la
+            retractación guarda lo que el modelo razonó. Las que se anotaron sin que el modelo las
+            viera se devuelven al veredicto del comparador determinista —«sin datos» en todas, así
+            que ninguna cambia de veredicto, sólo de firma—, y las demás se vuelven a derivar para
+            que la explicación sea la del modelo.
           </li>
           {/* La vía nació el 05-10-2026, de una lectura del día anterior: ocho
               declaraciones que el motor había retractado tenían un registro que
