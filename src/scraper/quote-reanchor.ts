@@ -34,6 +34,7 @@
  *
  * Módulo puro: no lee disco ni red. El corpus se lo pasa el CLI.
  */
+import { HUECOS } from './orden-preparada'
 import { normaliseForQuoteMatch, quoteAppearsIn } from './quote-match'
 import { MARKED_STATUS_IDS, type QuoteProvenanceEntry } from './quote-provenance'
 
@@ -525,8 +526,8 @@ export function buildReanchorQueue(
         seleccion: null,
         correctionCommand:
           `${REANCHOR_CLI} -- ${f.id} --field quote.${i}.text ` +
-          '--new "<el literal del texto nuevo, copiado tal cual>" ' +
-          '--reason "<por qué, ≥20 caracteres>" --editor "<tu nombre>"',
+          `--new "${HUECOS.literal}" ` +
+          `--reason "${HUECOS.motivo}" --editor "<tu nombre>"`,
       })
     })
   }
