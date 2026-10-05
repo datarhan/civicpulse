@@ -6,7 +6,9 @@
  *
  *   base establece → NLI propone subir lo que puede anclar, y lo sube sólo una
  *   persona → el motor retracta, y sólo a `sin-datos`, que no afirma nada → la
- *   retractación de curador baja con la firma de quien la usa.
+ *   retractación de curador baja con la firma de quien la usa → y una persona,
+ *   con su nombre, sube lo que el registro que ella cita sostiene (desde el
+ *   04-10-2026, la subida firmada: src/scraper/subida-firmada.ts).
  *
  * El problema no era el diseño: era que sólo vivía en el orden de ejecución y
  * en las cabeceras de tres ficheros. La política real estaba repartida en una
@@ -50,10 +52,27 @@ export interface Etapa {
    * ¿Lo que emite espera la firma de una persona antes de publicarse?
    *
    * Lo automático sólo baja (docs/DATA_INTEGRITY.md, regla 4), así que toda
-   * etapa viva que sube lo lleva: no escribe en el overlay, deja sugerencias
-   * con `requiresHumanApproval: true` en una cola que no se publica.
+   * etapa viva que sube lo lleva. Cómo llega esa firma lo dice
+   * `firmaEnLaEntrada`.
    */
   exigeFirma: boolean
+  /**
+   * ¿La firma viaja en la propia entrada?
+   *
+   * Hasta el 04-10-2026 sólo una etapa exigía firma, el anclaje NLI, y
+   * `exigeFirma` decía también que no escribía en el overlay. Con dos etapas
+   * que suben se separan:
+   *
+   *   · `false` — la etapa sólo PROPONE: deja sugerencias con
+   *     `requiresHumanApproval: true` en una cola que no se publica, y el overlay
+   *     la rechaza con firma y sin ella. Su resumen y su evidencia son de la
+   *     máquina, y firmarlos tal cual sería publicar lo que nadie escribió.
+   *   · `true` — la etapa ES la de la persona: el overlay la acepta sólo si su
+   *     `editor` nombra a una persona (`rechazoDeFirma`), y la rechaza sin ella.
+   *
+   * Sólo tiene sentido con `exigeFirma`.
+   */
+  firmaEnLaEntrada: boolean
   /** Ya no forma parte de la tubería, aunque sus veredictos sigan publicados. */
   retirada: boolean
   /** Qué la ejecuta, o `null` si la ejecuta una persona. */
@@ -77,6 +96,10 @@ export const TRINQUETE: Record<OverlaySource, Etapa> = {
     // 29-09-2026, cuando el runner dejó de pisar `checkedAgainst` y la pasada
     // habría podido subir veredictos sin nadie delante por primera vez.
     exigeFirma: true,
+    // Sólo propone: lo que ve respaldado no se firma tal cual. Quien esté de
+    // acuerdo con una propuesta la sube por la subida firmada, con el registro
+    // que elija y un resumen que escriba ella.
+    firmaEnLaEntrada: false,
     retirada: false,
     comando: 'npm run verify:pleno-claims:nli',
     // Decía el diseño P2 (2026-06-23-factcheck-rebuild-p2-design.md), cuyo único
@@ -99,6 +122,7 @@ export const TRINQUETE: Record<OverlaySource, Etapa> = {
     // Publicaba sin nadie delante, que es lo que hoy prohíbe la regla 4. Está
     // retirada, y una etapa retirada no escribe entradas nuevas.
     exigeFirma: false,
+    firmaEnLaEntrada: false,
     // Su propia cabecera se declara «LEGACY / SUPERSEDED … do not use in the
     // pipeline» desde el corte base/overlay. Sus veredictos sobrevivieron a la
     // migración y sostenían 87 filas fuertes sin un corpus detrás.
@@ -129,6 +153,7 @@ export const TRINQUETE: Record<OverlaySource, Etapa> = {
     exigeRazon: true,
     // Retracta: tier A de `decideAutomation`, corre sin nadie delante.
     exigeFirma: false,
+    firmaEnLaEntrada: false,
     retirada: false,
     comando: 'npm run verify:pleno-claims:engine',
     medicion: 'docs/superpowers/specs/2026-06-24-factcheck-rebuild-p3-results.md',
@@ -151,10 +176,34 @@ export const TRINQUETE: Record<OverlaySource, Etapa> = {
     // usarla una revisión automática; quién decidió cada bajada viaja en
     // `downgradedBy` y lo dice la tarjeta.
     exigeFirma: false,
+    firmaEnLaEntrada: false,
     retirada: false,
     comando: 'npm run downgrade-verdict',
     medicion:
       'no se mide: sólo baja; la firma de cada bajada dice quién la decidió —una persona, una revisión automática o no consta— y la tarjeta lo publica',
+  },
+  'curator-upgrade': {
+    nombre: 'Subida firmada',
+    direccion: 'sube',
+    // La escala de siempre leída al revés: sube a lo que, al volver, sería una
+    // bajada (`isDowngrade(nuevo, desde)`). Nunca `contradicho`: un desmentido
+    // que firma una persona va en un hallazgo, con sus referencias.
+    puedeEmitir: ['verificado', 'parcial'],
+    // Refuerza una afirmación: nombra el corpus de los registros que cita.
+    exigeCorpus: true,
+    // El motivo es el resumen que la tarjeta imprime bajo la cita, y lo
+    // escribe la persona desde el registro.
+    exigeRazon: true,
+    // La única escritura del overlay que sube un veredicto, y por eso la de
+    // una persona con su nombre: ni la cuenta de rol, ni un modelo, ni el
+    // hueco de una orden sin rellenar. Decisión del operador, 04-10-2026.
+    exigeFirma: true,
+    firmaEnLaEntrada: true,
+    retirada: false,
+    // La ejecuta una persona; no la llama ningún runner, cron ni nocturna.
+    comando: 'npm run subir-veredicto',
+    medicion:
+      'no se mide: la decide una persona con su nombre, que cita el registro que la sostiene y escribe el resumen; la tarjeta publica quién la firmó',
   },
 }
 

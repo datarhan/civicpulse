@@ -50,7 +50,10 @@ import { CLASES_DE_FIRMA, nombraAUnaPersona } from '../scraper/firma-de-persona'
 /** Lo que se dice cuando no consta quién comprobó la cita. */
 export const SIN_VERIFICADOR = 'sin verificador anotado'
 
-/** El rótulo de cada clase de verificador de `CLASE_DE_PASADA`, salvo el curador. */
+/**
+ * El rótulo de cada clase de verificador de `CLASE_DE_PASADA`, salvo el curador
+ * y la persona que sube, que dicen además quién.
+ */
 const ROTULO_DE_CLASE = {
   llm: 'verificador LLM',
   nli: 'verificador NLI',
@@ -86,6 +89,21 @@ function rotuloDeBajada(v) {
   return typeof motivo === 'string' && nombraAUnaPersona(motivo)
     ? `${rotulo} · motivo firmado por ${motivo}`
     : rotulo
+}
+
+/**
+ * Una subida firmada (src/scraper/subida-firmada.ts): la única escritura del
+ * overlay que refuerza lo que se publica de una declaración, y por eso la firma
+ * una persona con su nombre, que la tarjeta da. Sólo se fía de lo que
+ * `mergeVerified` estampa desde la entrada validada —el canal y `raisedBy`—, y
+ * vuelve a mirar que la firma nombre a una persona: sin los dos, nadie ha dicho
+ * quién la subió, y no se imprime un nombre.
+ */
+function rotuloDeSubida(v) {
+  const firma = v?.source === 'curator-upgrade' ? v?.raisedBy : undefined
+  return typeof firma === 'string' && nombraAUnaPersona(firma)
+    ? `subido por una persona · firmado por ${firma}`
+    : 'subido; no consta quién lo firmó'
 }
 
 const lista = (x) => (Array.isArray(x) ? x : [])
@@ -129,6 +147,9 @@ export function etiquetaVerificador(v) {
   // veredicto, eso es lo que hay que decir —y quién lo decidió—, y no en qué se
   // apoyó la máquina a la que corrigió.
   if (clases.includes('curador')) return rotuloDeBajada(v)
+  // Una subida firmada, por su canal o por su pasada: dice quién la firmó, o
+  // que no consta. Nunca hereda el rótulo de un cotejo.
+  if (clases.includes('persona')) return rotuloDeSubida(v)
   const clase = clases[0]
   // Una clase sin rótulo tampoco hereda el de «determinista».
   if (clase) return ROTULO_DE_CLASE[clase] ?? SIN_VERIFICADOR

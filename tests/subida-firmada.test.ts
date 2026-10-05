@@ -57,7 +57,7 @@ const ENLACE = {
   ribactiva: 'https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocatoria/752816',
 }
 
-const NBSP = ' '
+const NBSP = '\u00a0'
 const PERSONA = 'María de la Fuente Llorens'
 const STAMP = '2026-10-04T12:00:00.000Z'
 const ID = 'p1-034-cit-aaaaaa'

@@ -36,6 +36,7 @@ import {
   type Escanos,
 } from '../src/scraper/atribucion-firmada'
 import type { PlenoClaim } from '../src/scraper/pleno-claim'
+import { subidasSobreAcusaciones } from '../src/scraper/subida-firmada'
 import { archivosDe } from '../src/scraper/superseded-archive'
 import { SUPERSEDED_DIR, TRANSCRIPTS_DIR } from './lib/transcript-corpus'
 import {
@@ -294,8 +295,14 @@ export function cargarCapas(): Capas {
 
 /**
  * La composición, sin escribir nada: los cinco estratos y lo que se comprueba
- * de las firmas contra las transcripciones. La usa la CLI de las firmas para
- * ver el alcance de un cambio antes de hacerlo.
+ * de las firmas contra las transcripciones. La usan las CLIs de las firmas
+ * (`relabel-attribution`, `subir-veredicto`) para ver el alcance de un cambio
+ * antes de hacerlo.
+ *
+ * Se niega si una subida firmada cae sobre una acusación pública: la CLI nunca
+ * la escribe —mira el tipo publicado—, así que es un overlay editado a mano o un
+ * tipo que cambió debajo, y subir una acusación sigue las reglas de /hallazgos
+ * (src/scraper/subida-firmada.ts).
  */
 export function componer(
   baseItems: VerifiedItem[],
@@ -311,10 +318,35 @@ export function componer(
       new Map(sinFirmas.map((it) => [it.claim.id, it.claim])),
     )
   }
-  return {
-    items: mergeVerified(baseItems, overlay, reclas, reanclajes, firmadas, tramoPerdido),
-    tramoPerdido,
+  const items = mergeVerified(baseItems, overlay, reclas, reanclajes, firmadas, tramoPerdido)
+  const sobreAcusaciones = subidasSobreAcusaciones(overlay, items)
+  if (sobreAcusaciones.length > 0) {
+    throw new Error(
+      `[rebuild] ${sobreAcusaciones.length} subida(s) firmada(s) sobre una acusación pública ` +
+        `(${sobreAcusaciones.join(', ')}): subir una acusación sigue las reglas de /hallazgos, ` +
+        'no las de `subir-veredicto`. Retírala (`npm run subir-veredicto -- --retirar`) antes ' +
+        'de recomponer.',
+    )
   }
+  return { items, tramoPerdido }
+}
+
+/**
+ * Los ids cuya fila compuesta difiere de la publicada, en cualquier byte. Es el
+ * alcance que comprueban las CLIs de las firmas antes de escribir: firmar una
+ * declaración no puede republicar otra que nadie ha mirado.
+ */
+export function declaracionesCambiadas(
+  publicadas: VerifiedItem[],
+  compuestas: VerifiedItem[],
+): string[] {
+  const antes = new Map(publicadas.map((it) => [it.claim.id, JSON.stringify(it)]))
+  const out: string[] = []
+  for (const it of compuestas)
+    if (antes.get(it.claim.id) !== JSON.stringify(it)) out.push(it.claim.id)
+  const ahora = new Set(compuestas.map((it) => it.claim.id))
+  for (const id of antes.keys()) if (!ahora.has(id)) out.push(id)
+  return out
 }
 
 export async function rebuildVerified(

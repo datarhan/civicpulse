@@ -181,6 +181,7 @@ export const PASADAS = [
   'nli',
   'llm',
   'curator-downgrade',
+  'curator-upgrade',
 ] as const
 
 export type Pasada = (typeof PASADAS)[number]
@@ -197,13 +198,17 @@ export const MARCAS_DE_PASADA = PASADAS
  *   · `nli` — un modelo de inferencia puntuó si un extracto implica la
  *     afirmación. No genera texto, pero tampoco es un cotejo escrito a mano.
  *   · `curador` — una persona bajó el veredicto con `downgrade-verdict`.
+ *   · `persona` — una persona SUBIÓ el veredicto con `subir-veredicto`, con su
+ *     nombre, el registro que lo sostiene y un resumen que escribe ella. El
+ *     overlay no acepta esa entrada sin la firma de una persona
+ *     (src/scraper/subida-firmada.ts).
  *
  * La página lo deducía de una lista recitada de pasadas «de modelo», y lo que
  * no estaba en ella salía como «verificador determinista»: `llm`, `nli` y
  * `nli-grounding` lo eran por omisión. Con `Record<Pasada, …>` una pasada nueva
  * que no diga qué es no compila, en vez de heredar el rótulo más fuerte.
  */
-export type ClaseDeVerificador = 'llm' | 'nli' | 'curador'
+export type ClaseDeVerificador = 'llm' | 'nli' | 'curador' | 'persona'
 
 export const CLASE_DE_PASADA: Record<Pasada, ClaseDeVerificador> = {
   'verdict-engine': 'llm',
@@ -212,6 +217,7 @@ export const CLASE_DE_PASADA: Record<Pasada, ClaseDeVerificador> = {
   nli: 'nli',
   llm: 'llm',
   'curator-downgrade': 'curador',
+  'curator-upgrade': 'persona',
 }
 
 /**
