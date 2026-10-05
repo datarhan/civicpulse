@@ -29,12 +29,8 @@
  *     imprimir el texto y dice que lo retiró. No escribe otra explicación en su
  *     lugar: la de verdad se quedó en la respuesta del modelo, que no se guardó.
  *     El 04-10-2026 la vía `--ids` de #185 re-derivó las 101: 81 salieron de la
- *     lista con su explicación nueva; quedaron las 20 en las que el modelo veía
- *     respaldo. El 05-10-2026 tres salieron por la subida firmada (#241), y
- *     nueve con su explicación nueva cuando el motor dejó de leer «ningún
- *     candidato la respalda» como `parcial` (conclusion-sin-respaldo.ts).
- *     Quedan las que el modelo sigue viendo respaldadas, aunque sólo por el
- *     título del registro, y decide un curador.
+ *     lista con su explicación nueva; quedan las 20 en las que el modelo ve ahora
+ *     respaldo, que siguen retractadas y decide un curador.
  *   · Cada entrada fija el COMIENZO del texto retirado, no sólo la fila. Cuando
  *     el overlay se corrija con `downgrade-verdict`, el texto nuevo se imprime
  *     solo, y tests/claim-ledger-resumen.test.jsx pide quitar la entrada.
@@ -59,13 +55,22 @@ export const ROTULO_RESUMEN_RETIRADO =
  */
 export const RESUMENES_RETIRADOS = Object.freeze({
   '19gax3o-143-cit-a3a7a1': 'Task completed: provided skeptical fact-',
+  '19gax3o-186-cit-7e4d6f': 'Se trata de una tarea de verificación de',
   '1qi8axv-023-cit-3e6224': 'Task completed: provided skeptical fact-',
   '1sqj7is-081-cit-50c5bb': 'Task completed: provided the requested 2',
+  'c8kr44-088-cit-d63a7d': 'Tarea de razonamiento (fact-checking en ',
+  'c8kr44-089-cit-712906': 'Tarea de fact-checking en español sobre ',
+  'c8kr44-114-cit-054e8e': 'Se ha razonado en español sobre la afirm',
+  'c8kr44-117-cit-d6cf5b': 'Task completed: provided skeptical fact-',
+  'c8kr44-121-cit-3e50b3': 'Task was a fact-verification reasoning r',
+  'c8kr44-146-cit-ccd20c': 'Task completed: provided skeptical reaso',
   'k4olcs-176-cit-225080': 'Task completed: provided the requested 2',
+  'ma87e0-104-cit-528973': 'Task completed: provided skeptical reaso',
   'ma87e0-195-cit-436a7e': 'Task completed: provided skeptical reaso',
   'otxq2c-209-cit-7741cf': 'Task was a direct fact-checking reasonin',
   'qz6weg-184-cit-8629f9': 'Task was a Spanish-language fact-checkin',
   'qz6weg-246-cit-98306f': 'Task completed: provided skeptical Spani',
+  'qz6weg-271-cit-f67afa': 'Task completed: reasoned in Spanish abou',
 })
 
 /**

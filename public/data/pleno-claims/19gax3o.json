@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-05T19:16:23.195Z",
+  "generatedAt": "2026-10-05T12:48:23.373Z",
   "version": "1",
   "plenoId": "19gax3o",
   "plenoDate": "2026-01-19",
@@ -9772,10 +9772,9 @@
       "verification": {
         "claimId": "19gax3o-186-cit-7e4d6f",
         "verdict": "sin-datos",
-        "summary": "La afirmación es una opinión cualitativa del orador: dice que, en términos de gestión interna, una DANA o una pandemia han sido eventos muy duros y un tema importante. No incluye ningún importe, fecha ni sujeto concreto que se pueda contrastar con registros.",
+        "summary": "Se trata de una tarea de verificación de hechos (razonamiento en español sobre respaldo de una afirmación por candidatos), no una tarea de ingeniería de software, por lo que no aplica ninguna skill de Superpowers. Respondí directamente con el razonamiento solicitado en 2-4 frases, concluyendo que ni",
         "evidence": [],
-        "checkedAgainst": [],
-        "derivedBy": [
+        "checkedAgainst": [
           "verdict-engine"
         ],
         "confidence": 0.2,
