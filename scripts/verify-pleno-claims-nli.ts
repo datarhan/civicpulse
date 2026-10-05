@@ -16,8 +16,11 @@
  * (docs/DATA_INTEGRITY.md, regla 4), así que cada subida se escribe como
  * sugerencia con `requiresHumanApproval: true` en `COLA_SUGERENCIAS_NLI`
  * —editorial/, gitignorado, fuera de public/—, y el overlay la rechaza con la
- * marca y sin ella (`exigeFirma` en src/scraper/trinquete.ts). Este runner no
- * toca el overlay ni recompone pleno-claims-verified.json. Hasta el 29-09-2026
+ * marca y sin ella (`exigeFirma` sin `firmaEnLaEntrada`, src/scraper/trinquete.ts).
+ * Quien esté de acuerdo con una propuesta la sube con `npm run subir-veredicto`,
+ * con el registro que elija y un resumen que escriba: la fila de la cola no se
+ * publica tal cual. Este runner no toca el overlay ni recompone
+ * pleno-claims-verified.json. Hasta el 29-09-2026
  * escribía sus subidas en el overlay con la marca de la pasada en
  * `checkedAgainst`, y el suelo de evidencia las tiraba todas: ninguna llegó a
  * publicarse.

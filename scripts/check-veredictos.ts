@@ -16,9 +16,13 @@
  * afirmación. Desde el suelo de evidencia (fase 2) eso ya no se puede
  * ESCRIBIR sin corpus; esto mira lo que YA está escrito, que es otra pregunta.
  *
- * Cuatro desenlaces, y el reparto de códigos de salida es el punto:
+ * Siete desenlaces, y el reparto de códigos de salida es el punto:
  *
  *   fundado               nombra corpus y trae evidencia
+ *   subido                lo subió una persona con su firma —la subida
+ *                         firmada, src/scraper/subida-firmada.ts—, nombra
+ *                         corpus y trae evidencia · sale 0. El parte no
+ *                         imprime su nombre: lo da la tarjeta
  *   curado                lo bajó la vía del curador · sale 0 — es la
  *                         sancionada en todo este repositorio, y bajar un
  *                         veredicto nunca refuerza una afirmación. El
@@ -29,6 +33,8 @@
  *                           avería, y una guarda siempre roja acaba apagada
  *   sin-corpus            veredicto fuerte sin corpus, de una pasada VIVA
  *                         · sale 1 — eso lo ha roto alguien hoy
+ *   sin-firma             dice ser una subida firmada —por su canal o por su
+ *                         pasada— y no la firma una persona · sale 1
  *   sin-publicar          no hay trozos que leer · SALTADO, jamás «ok»
  *
  * La distinción entre los dos del medio es lo que hace la guarda usable: con
@@ -49,12 +55,16 @@
  * una base que dice `sin-datos`, y esto la contaba como `curado`.
  *
  *   por-encima  la entrada publica por encima de lo que dice hoy su base
- *               · sale 1, y nombra cómo se sirve su fila. Hoy ninguna
- *                 escritura del overlay sube un veredicto —el curador y el
+ *               · sale 1, y nombra cómo se sirve su fila. Ninguna escritura
+ *                 automática del overlay sube un veredicto —el curador y el
  *                 motor bajan, y el anclaje NLI sólo propone—, así que eso
  *                 sólo lo deja una base que se movió por debajo; lo decide una
- *                 persona. Si un día una vía firmada sube veredictos al
- *                 overlay, esta guarda tendrá que distinguir esa firma
+ *                 persona
+ *   subidas firmadas  por encima de su base A PROPÓSITO: las subió una persona
+ *                 con `subir-veredicto` y su firma (`esSubidaFirmada`, desde el
+ *                 04-10-2026, que es la firma que esta cabecera pedía
+ *                 distinguir). Se listan y salen 0; una entrada de ese canal
+ *                 sin la firma de una persona sigue siendo `por-encima`
  *   sin-claim   su declaración ya no está en la base: ni se aplica ni se
  *               publica · se lista, sale 0
  *   sin-base    no hay base en disco (gitignorada; clon nuevo) · SALTADO,
@@ -345,8 +355,9 @@ function informarDelCotejoConBase(c: CotejoConBase): boolean {
   if (c.porEncima.length === 0) return false
   process.stderr.write(
     `[check-veredictos] ${c.porEncima.length} entrada(s) del overlay publican por encima de lo que ` +
-      'encuentra hoy el verificador. Ninguna escritura del overlay sube un veredicto: la base se ' +
-      'movió por debajo de una entrada juzgada contra otra. Lo decide una persona —una bajada firmada con ' +
+      'encuentra hoy el verificador. Ninguna escritura automática del overlay sube un veredicto, y ' +
+      'las subidas firmadas se cuentan aparte: la base se movió por debajo de una entrada juzgada ' +
+      'contra otra. Lo decide una persona —una bajada firmada con ' +
       '`npm run downgrade-verdict`, o arreglar la base si la que se equivoca es ella—, y nada ' +
       'automático la toca.\n',
   )

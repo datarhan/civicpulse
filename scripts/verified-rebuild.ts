@@ -430,7 +430,9 @@ export async function rebuildVerified(
   // `base.items` y no contra lo fusionado, donde la entrada ya pisó a la base.
   // Avisa y no se niega: es un estado que ya estaba, no algo que haga este
   // rebuild, y negarse retendría cualquier otra bajada hasta que una persona
-  // decida ésta. Lo detalla `check:veredictos`; nada automático lo toca.
+  // decida ésta. Lo detalla `check:veredictos`; nada automático lo toca. Las
+  // subidas firmadas no salen aquí: están por encima a propósito y las decidió
+  // una persona (`subidasFirmadas`, verified-merge.ts).
   for (const p of overlayOutcomes(base.items, overlay).porEncima) {
     process.stderr.write(
       `[rebuild] overlay de ${p.id}: POR ENCIMA de su base — publica ${p.publica} y la base dice ` +
