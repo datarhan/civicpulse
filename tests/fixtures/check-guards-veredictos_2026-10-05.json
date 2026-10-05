@@ -1,0 +1,479 @@
+{
+  "trozos": {
+    "15uvjew.json": {
+      "generatedAt": "2026-10-05T06:45:20.453Z",
+      "version": "1",
+      "plenoId": "15uvjew",
+      "plenoDate": "2026-07-27",
+      "items": [
+        {
+          "claim": {
+            "id": "15uvjew-148-afi-755647",
+            "plenoId": "15uvjew",
+            "plenoDate": "2026-07-27",
+            "segmentIndex": 148,
+            "type": "afirmacion_numerica",
+            "speakerGroup": "PP",
+            "verbatim": "Caminos rurales, desaparece setenta y cinco mil euros, asfaltado",
+            "context": "cincuenta mil euros desaparece. Caminos rurales, desaparece setenta y cinco mil euros, asfaltado. En servicios sociales, una de las partidas",
+            "topic": "movilidad",
+            "entities": {
+              "amountEuros": 75000,
+              "referencedEntity": "caminos rurales - asfaltado"
+            },
+            "confidence": 0.7,
+            "reasoning": "Cifra concreta (75.000 euros) sobre partida de asfaltado de caminos rurales que se dice eliminada; verificable en el presupuesto municipal.",
+            "requiresHumanApproval": true
+          },
+          "verification": {
+            "claimId": "15uvjew-148-afi-755647",
+            "verdict": "verificado",
+            "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+            "evidence": [
+              {
+                "kind": "tender",
+                "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=h4tiCELtfEdxseVhcqrkhw%3D%3D",
+                "snippet": "Contrato administrativo de obras para el proyecto de “Asfaltado y reasfaltado de viales urbanos y caminos rurales de Riba-roja de Túria” Plan RENOVE , dividido en 6 lotes. · Ayuntamiento de Riba-roja de Túria · BECSA SAU · construction · 76.082 €",
+                "similarity": 0.98,
+                "stance": "checked"
+              }
+            ],
+            "checkedAgainst": [
+              "tenders",
+              "tenders-ted",
+              "bdns",
+              "budget"
+            ]
+          },
+          "visibility": "shown"
+        },
+        {
+          "claim": {
+            "id": "15uvjew-012-afi-83a0e3",
+            "plenoId": "15uvjew",
+            "plenoDate": "2026-07-27",
+            "segmentIndex": 12,
+            "type": "afirmacion_numerica",
+            "speakerGroup": null,
+            "verbatim": "el valor estimado del contrato es de 55.685.000 euros más IVA, duración 17 años,",
+            "context": "Con las características de la oferta que dio como resultado ser la mejor oferta, el valor estimado del contrato es de 55.685.000 euros más IVA, duración 17 años,",
+            "topic": "fiscal",
+            "entities": {
+              "amountEuros": 55685000,
+              "count": 17,
+              "countUnit": "años",
+              "referencedEntity": "contrato de concesión del servicio de agua - hidracua"
+            },
+            "confidence": 0.85,
+            "reasoning": "Cifra concreta de valor de contrato y duración verificable contra el expediente de licitación, BDNS o perfil del contratante.",
+            "requiresHumanApproval": true
+          },
+          "verification": {
+            "claimId": "15uvjew-012-afi-83a0e3",
+            "verdict": "parcial",
+            "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+            "evidence": [
+              {
+                "kind": "tender",
+                "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D",
+                "snippet": "contrato de concesión del servicio público de abastecimiento de agua potable, servicio de gestión de alcantarillado , control de vertidos y depuración del municipio Riba-roja de Túria, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación y con cláusulas medioambientales y con condición especial de ejecución de carácter medioambiental y social. · Ayuntamiento de Riba-roja de Túria · public_services · 55.685.179 €",
+                "similarity": 0.63,
+                "stance": "checked"
+              }
+            ],
+            "checkedAgainst": [
+              "tenders",
+              "tenders-ted",
+              "bdns",
+              "budget"
+            ]
+          },
+          "visibility": "shown"
+        },
+        {
+          "claim": {
+            "id": "15uvjew-000-pro-64ad34",
+            "plenoId": "15uvjew",
+            "plenoDate": "2026-07-27",
+            "segmentIndex": 0,
+            "type": "promesa",
+            "speakerGroup": null,
+            "verbatim": "es tracta de provar les dues festivitats laborals locals per al 2027, que com sabem són les de sempre, són el 5 d'abril, Sant Vicent i el 14 de setembre, Santíssim o Cristo de los Aprecidos.",
+            "context": "Punt de l'ordre del dia sobre foment econòmic i acord de ple relatiu a les festivitats laborals de caràcter local per l'any 2027. S'exposa que seran el 5 d'abril (Sant Vicent) i el 14 de setembre (Santíssim/Crist dels Apareguts).",
+            "topic": "cultura",
+            "entities": {
+              "count": 2,
+              "countUnit": "festivitats laborals locals",
+              "referencedEntity": "festivitats laborals locals per al 2027 (5 d'abril i 14 de setembre)"
+            },
+            "confidence": 0.55,
+            "reasoning": "Es una decisión de pleno que fija fechas concretas de fiestas laborales locales para 2027, verificable contra el decreto/acuerdo municipal publicado; Whisper probablemente distorsionó el nombre de la segunda festividad ('Cristo de los Aprecidos').",
+            "requiresHumanApproval": true
+          },
+          "verification": {
+            "claimId": "15uvjew-000-pro-64ad34",
+            "verdict": "sin-datos",
+            "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+            "evidence": [],
+            "checkedAgainst": [
+              "promises"
+            ]
+          },
+          "visibility": "toggle"
+        }
+      ]
+    },
+    "k4olcs.json": {
+      "generatedAt": "2026-10-05T06:45:20.453Z",
+      "version": "1",
+      "plenoId": "k4olcs",
+      "plenoDate": "2026-04-20",
+      "items": [
+        {
+          "claim": {
+            "id": "k4olcs-006-afi-462d5e",
+            "plenoId": "k4olcs",
+            "plenoDate": "2026-04-20",
+            "segmentIndex": 6,
+            "type": "afirmacion_numerica",
+            "speakerGroup": null,
+            "verbatim": "han habido diferentes cuestiones que han sido por el tema de la DANA",
+            "context": "en esta memoria también se habla de, bueno, en este informe de auditoría de que han habido diferentes cuestiones que han sido por el tema de la DANA y en estos informes también se dan como unos consejos o unas observaciones en esta materia por la DANA ¿de acuerdo?",
+            "topic": "other",
+            "entities": {
+              "referencedEntity": "informe de auditoría / dana"
+            },
+            "confidence": 0.78,
+            "reasoning": "Afirma que varias cuestiones del informe de auditoría se deben a la DANA; es verificable contrastando el informe y sus observaciones.",
+            "requiresHumanApproval": true
+          },
+          "verification": {
+            "claimId": "k4olcs-006-afi-462d5e",
+            "verdict": "sin-datos",
+            "summary": "La afirmación es cualitativa y vaga: dice que un informe de auditoría menciona \"diferentes cuestiones por el tema de la DANA\" y que incluye consejos u observaciones al respecto. No contiene importe, fecha ni sujeto concreto que se pueda contrastar.",
+            "evidence": [],
+            "checkedAgainst": [],
+            "derivedBy": [
+              "verdict-engine"
+            ],
+            "confidence": 0.2,
+            "source": "verdict-engine"
+          },
+          "visibility": "toggle"
+        }
+      ]
+    }
+  },
+  "indice": {
+    "generatedAt": "2026-10-05T06:45:20.453Z",
+    "version": "1",
+    "totals": {
+      "cobertura": {
+        "porTipo": {
+          "afirmacion_numerica": {
+            "total": 2167,
+            "sinCorpus": 1525,
+            "comprobadoSinHallar": 419,
+            "noConsta": 223
+          },
+          "cita_convenio": {
+            "total": 620,
+            "sinCorpus": 494,
+            "comprobadoSinHallar": 53,
+            "noConsta": 73
+          },
+          "promesa": {
+            "total": 544,
+            "sinCorpus": 0,
+            "comprobadoSinHallar": 493,
+            "noConsta": 51
+          },
+          "cita_obra": {
+            "total": 1627,
+            "sinCorpus": 6,
+            "comprobadoSinHallar": 1093,
+            "noConsta": 528
+          },
+          "valoracion_politica": {
+            "total": 4,
+            "sinCorpus": 0,
+            "comprobadoSinHallar": 0,
+            "noConsta": 4
+          }
+        },
+        "porTema": {
+          "fiscal": {
+            "total": 851,
+            "sinCorpus": 389,
+            "comprobadoSinHallar": 334,
+            "noConsta": 128
+          },
+          "empleo": {
+            "total": 215,
+            "sinCorpus": 129,
+            "comprobadoSinHallar": 57,
+            "noConsta": 29
+          },
+          "social": {
+            "total": 322,
+            "sinCorpus": 139,
+            "comprobadoSinHallar": 137,
+            "noConsta": 46
+          },
+          "urbanismo": {
+            "total": 913,
+            "sinCorpus": 234,
+            "comprobadoSinHallar": 470,
+            "noConsta": 209
+          },
+          "other": {
+            "total": 409,
+            "sinCorpus": 217,
+            "comprobadoSinHallar": 144,
+            "noConsta": 48
+          },
+          "movilidad": {
+            "total": 170,
+            "sinCorpus": 29,
+            "comprobadoSinHallar": 106,
+            "noConsta": 35
+          },
+          "medio-ambiente": {
+            "total": 571,
+            "sinCorpus": 165,
+            "comprobadoSinHallar": 300,
+            "noConsta": 106
+          },
+          "cultura": {
+            "total": 208,
+            "sinCorpus": 61,
+            "comprobadoSinHallar": 104,
+            "noConsta": 43
+          },
+          "transparencia": {
+            "total": 627,
+            "sinCorpus": 393,
+            "comprobadoSinHallar": 115,
+            "noConsta": 119
+          },
+          "educacion": {
+            "total": 236,
+            "sinCorpus": 85,
+            "comprobadoSinHallar": 119,
+            "noConsta": 32
+          },
+          "vivienda": {
+            "total": 150,
+            "sinCorpus": 69,
+            "comprobadoSinHallar": 67,
+            "noConsta": 14
+          },
+          "seguridad": {
+            "total": 135,
+            "sinCorpus": 65,
+            "comprobadoSinHallar": 29,
+            "noConsta": 41
+          },
+          "salud": {
+            "total": 155,
+            "sinCorpus": 50,
+            "comprobadoSinHallar": 76,
+            "noConsta": 29
+          }
+        },
+        "corpus": {
+          "tenders": 1565,
+          "tenders-ted": 1565,
+          "bdns": 485,
+          "budget": 485,
+          "promises": 493,
+          "curator-downgrade": 41,
+          "verdict-engine": 559
+        },
+        "porClaseDocumental": {
+          "porClase": {
+            "contrato": 80,
+            "acta": 16,
+            "informe-tecnico": 51,
+            "presupuesto": 78,
+            "convenio": 30,
+            "plan-interno": 19,
+            "expediente": 25,
+            "ordenanza": 11
+          },
+          "sinDocumento": 1733,
+          "total": 2025
+        }
+      }
+    }
+  },
+  "base": {
+    "generatedAt": "2026-10-04T07:37:32.197Z",
+    "items": [
+      {
+        "claim": {
+          "id": "15uvjew-148-afi-755647",
+          "plenoId": "15uvjew",
+          "plenoDate": "2026-07-27",
+          "segmentIndex": 148,
+          "type": "afirmacion_numerica",
+          "speakerGroup": "PP",
+          "verbatim": "Caminos rurales, desaparece setenta y cinco mil euros, asfaltado",
+          "context": "cincuenta mil euros desaparece. Caminos rurales, desaparece setenta y cinco mil euros, asfaltado. En servicios sociales, una de las partidas",
+          "topic": "movilidad",
+          "entities": {
+            "amountEuros": 75000,
+            "referencedEntity": "caminos rurales - asfaltado"
+          },
+          "confidence": 0.7,
+          "reasoning": "Cifra concreta (75.000 euros) sobre partida de asfaltado de caminos rurales que se dice eliminada; verificable en el presupuesto municipal.",
+          "requiresHumanApproval": true
+        },
+        "verification": {
+          "claimId": "15uvjew-148-afi-755647",
+          "verdict": "verificado",
+          "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=h4tiCELtfEdxseVhcqrkhw%3D%3D",
+              "snippet": "Contrato administrativo de obras para el proyecto de “Asfaltado y reasfaltado de viales urbanos y caminos rurales de Riba-roja de Túria” Plan RENOVE , dividido en 6 lotes. · Ayuntamiento de Riba-roja de Túria · BECSA SAU · construction · 76.082 €",
+              "similarity": 0.98,
+              "stance": "checked"
+            }
+          ],
+          "checkedAgainst": [
+            "tenders",
+            "tenders-ted",
+            "bdns",
+            "budget"
+          ]
+        }
+      },
+      {
+        "claim": {
+          "id": "15uvjew-012-afi-83a0e3",
+          "plenoId": "15uvjew",
+          "plenoDate": "2026-07-27",
+          "segmentIndex": 12,
+          "type": "afirmacion_numerica",
+          "speakerGroup": null,
+          "verbatim": "el valor estimado del contrato es de 55.685.000 euros más IVA, duración 17 años,",
+          "context": "Con las características de la oferta que dio como resultado ser la mejor oferta, el valor estimado del contrato es de 55.685.000 euros más IVA, duración 17 años,",
+          "topic": "fiscal",
+          "entities": {
+            "amountEuros": 55685000,
+            "count": 17,
+            "countUnit": "años",
+            "referencedEntity": "contrato de concesión del servicio de agua - hidracua"
+          },
+          "confidence": 0.85,
+          "reasoning": "Cifra concreta de valor de contrato y duración verificable contra el expediente de licitación, BDNS o perfil del contratante.",
+          "requiresHumanApproval": true
+        },
+        "verification": {
+          "claimId": "15uvjew-012-afi-83a0e3",
+          "verdict": "parcial",
+          "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D",
+              "snippet": "contrato de concesión del servicio público de abastecimiento de agua potable, servicio de gestión de alcantarillado , control de vertidos y depuración del municipio Riba-roja de Túria, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación y con cláusulas medioambientales y con condición especial de ejecución de carácter medioambiental y social. · Ayuntamiento de Riba-roja de Túria · public_services · 55.685.179 €",
+              "similarity": 0.63,
+              "stance": "checked"
+            }
+          ],
+          "checkedAgainst": [
+            "tenders",
+            "tenders-ted",
+            "bdns",
+            "budget"
+          ]
+        }
+      },
+      {
+        "claim": {
+          "id": "15uvjew-000-pro-64ad34",
+          "plenoId": "15uvjew",
+          "plenoDate": "2026-07-27",
+          "segmentIndex": 0,
+          "type": "promesa",
+          "speakerGroup": null,
+          "verbatim": "es tracta de provar les dues festivitats laborals locals per al 2027, que com sabem són les de sempre, són el 5 d'abril, Sant Vicent i el 14 de setembre, Santíssim o Cristo de los Aprecidos.",
+          "context": "Punt de l'ordre del dia sobre foment econòmic i acord de ple relatiu a les festivitats laborals de caràcter local per l'any 2027. S'exposa que seran el 5 d'abril (Sant Vicent) i el 14 de setembre (Santíssim/Crist dels Apareguts).",
+          "topic": "cultura",
+          "entities": {
+            "count": 2,
+            "countUnit": "festivitats laborals locals",
+            "referencedEntity": "festivitats laborals locals per al 2027 (5 d'abril i 14 de setembre)"
+          },
+          "confidence": 0.55,
+          "reasoning": "Es una decisión de pleno que fija fechas concretas de fiestas laborales locales para 2027, verificable contra el decreto/acuerdo municipal publicado; Whisper probablemente distorsionó el nombre de la segunda festividad ('Cristo de los Aprecidos').",
+          "requiresHumanApproval": true
+        },
+        "verification": {
+          "claimId": "15uvjew-000-pro-64ad34",
+          "verdict": "sin-datos",
+          "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+          "evidence": [],
+          "checkedAgainst": [
+            "promises"
+          ]
+        }
+      },
+      {
+        "claim": {
+          "id": "k4olcs-006-afi-462d5e",
+          "plenoId": "k4olcs",
+          "plenoDate": "2026-04-20",
+          "segmentIndex": 6,
+          "type": "afirmacion_numerica",
+          "speakerGroup": null,
+          "verbatim": "han habido diferentes cuestiones que han sido por el tema de la DANA",
+          "context": "en esta memoria también se habla de, bueno, en este informe de auditoría de que han habido diferentes cuestiones que han sido por el tema de la DANA y en estos informes también se dan como unos consejos o unas observaciones en esta materia por la DANA ¿de acuerdo?",
+          "topic": "other",
+          "entities": {
+            "referencedEntity": "informe de auditoría / dana"
+          },
+          "confidence": 0.78,
+          "reasoning": "Afirma que varias cuestiones del informe de auditoría se deben a la DANA; es verificable contrastando el informe y sus observaciones.",
+          "requiresHumanApproval": true
+        },
+        "verification": {
+          "claimId": "k4olcs-006-afi-462d5e",
+          "verdict": "sin-datos",
+          "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+          "evidence": [],
+          "checkedAgainst": []
+        }
+      }
+    ]
+  },
+  "overlay": {
+    "version": 1,
+    "generatedAt": "2026-10-05T06:44:38.758Z",
+    "entries": {
+      "k4olcs-006-afi-462d5e": {
+        "verification": {
+          "claimId": "k4olcs-006-afi-462d5e",
+          "verdict": "sin-datos",
+          "summary": "La afirmación es cualitativa y vaga: dice que un informe de auditoría menciona \"diferentes cuestiones por el tema de la DANA\" y que incluye consejos u observaciones al respecto. No contiene importe, fecha ni sujeto concreto que se pueda contrastar.",
+          "evidence": [],
+          "checkedAgainst": [],
+          "derivedBy": [
+            "verdict-engine"
+          ],
+          "confidence": 0.2
+        },
+        "source": "verdict-engine",
+        "reason": "verdict-engine (claude-code) re-derivó la retractación (sigue sin-datos): La afirmación es cualitativa y vaga: dice que un informe de auditoría menciona \"diferentes cuestiones por el tema de la DANA\" y que incluye consejos u observaciones al respecto. No contiene importe, fecha ni sujeto concreto que se pueda contrastar.",
+        "editor": "verdict-engine:claude-code",
+        "appliedAt": "2026-10-04T17:21:01.133Z"
+      }
+    }
+  },
+  "publicado": {
+    "generatedAt": "2026-10-04T07:37:32.197Z"
+  }
+}
