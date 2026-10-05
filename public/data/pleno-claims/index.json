@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-05T12:48:23.373Z",
+  "generatedAt": "2026-10-05T19:16:23.195Z",
   "version": "1",
   "plenos": [
     {
@@ -234,7 +234,7 @@
         "other": 3,
         "salud": 1
       },
-      "bytes": 240616
+      "bytes": 240600
     },
     {
       "plenoId": "1sqj7is",
@@ -326,7 +326,7 @@
         "social": 4,
         "educacion": 2
       },
-      "bytes": 462957
+      "bytes": 462940
     },
     {
       "plenoId": "1pe3qs8",
@@ -427,7 +427,7 @@
         "movilidad": 2,
         "seguridad": 1
       },
-      "bytes": 589437
+      "bytes": 589445
     },
     {
       "plenoId": "1du4rf5",
@@ -520,7 +520,7 @@
         "movilidad": 15,
         "cultura": 3
       },
-      "bytes": 329324
+      "bytes": 328649
     },
     {
       "plenoId": "rmtyr",
@@ -835,7 +835,7 @@
         "budget": 485,
         "promises": 493,
         "curator-downgrade": 41,
-        "verdict-engine": 551
+        "verdict-engine": 542
       },
       "porClaseDocumental": {
         "porClase": {

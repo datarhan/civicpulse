@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-05T12:48:23.373Z",
+  "generatedAt": "2026-10-05T19:16:23.195Z",
   "version": "1",
   "plenoId": "qz6weg",
   "plenoDate": "2025-12-01",
@@ -11690,9 +11690,10 @@
       "verification": {
         "claimId": "qz6weg-271-cit-f67afa",
         "verdict": "sin-datos",
-        "summary": "Task completed: reasoned in Spanish about whether candidates support the claim, concluding no genuine support exists since the claim is a policy/opinion statement about advertising placement, and no candidate concerns advertising - they only share generic thematic keywords (casco urbano, urbanizació",
+        "summary": "La afirmación es una declaración de intenciones/política (\"intentamos que se quede en la publicidad en las áreas del casco urbano y urbanización\"), sin cifras, fechas ni sujeto cuantificable. Es una opinión o posicionamiento político, no un hecho verificable con un registro.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,

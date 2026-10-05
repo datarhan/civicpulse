@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-05T12:48:23.373Z",
+  "generatedAt": "2026-10-05T19:16:23.195Z",
   "version": "1",
   "plenoId": "ma87e0",
   "plenoDate": "2026-03-16",
@@ -860,9 +860,10 @@
       "verification": {
         "claimId": "ma87e0-104-cit-528973",
         "verdict": "sin-datos",
-        "summary": "Task completed: provided skeptical reasoning in Spanish (2-4 sentences plus brief elaboration) evaluating whether any candidate genuinely supports the claim, without issuing a verdict. Concluded none of the tender candidates (all routine maintenance contracts) substantively match the vague, unquanti",
+        "summary": "La afirmación es una declaración de intención: una fórmula de financiación (presupuesto 2026) servirá en parte para mejorar instalaciones deportivas municipales, sin importe, fecha ni sujeto concreto. Ningún candidato coincide con valores verificables.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
