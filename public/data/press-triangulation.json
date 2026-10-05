@@ -1,18 +1,20 @@
 {
-  "generatedAt": "2026-10-05T11:04:53.853Z",
+  "generatedAt": "2026-10-05T12:03:55.152Z",
   "clusters": [
     {
-      "clusterId": "107j3y8",
+      "clusterId": "16m2afw",
       "articleIds": [
-        "153mirg",
-        "1xjj30k"
+        "lsmo9c",
+        "w4u7tv",
+        "xcbiyc"
       ],
       "outlets": [
         "Ayuntamiento de Riba-roja de Túria",
-        "Valencia Plaza"
+        "Las Provincias",
+        "Levante-EMV"
       ],
-      "earliestDate": "2026-09-11T07:00:00.000Z",
-      "latestDate": "2026-09-11T08:10:15.000Z",
+      "earliestDate": "2026-10-01T12:20:24.000Z",
+      "latestDate": "2026-10-04T21:01:46.000Z",
       "verdictMix": {
         "verificado": 0,
         "parcial": 0,
@@ -33,26 +35,6 @@
       ],
       "earliestDate": "2026-10-02T10:03:37.000Z",
       "latestDate": "2026-10-02T11:50:52.000Z",
-      "verdictMix": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      }
-    },
-    {
-      "clusterId": "38xahs",
-      "articleIds": [
-        "w4u7tv",
-        "xcbiyc"
-      ],
-      "outlets": [
-        "Ayuntamiento de Riba-roja de Túria",
-        "levante-emv.com"
-      ],
-      "earliestDate": "2026-10-01T12:20:24.000Z",
-      "latestDate": "2026-10-01T15:05:33.000Z",
       "verdictMix": {
         "verificado": 0,
         "parcial": 0,
@@ -89,7 +71,7 @@
       ],
       "outlets": [
         "Ayuntamiento de Riba-roja de Túria",
-        "levante-emv.com"
+        "Levante-EMV"
       ],
       "earliestDate": "2026-09-10T07:00:00.000Z",
       "latestDate": "2026-09-10T12:00:05.000Z",
@@ -103,13 +85,13 @@
     }
   ],
   "stats": {
-    "totalClusters": 5,
-    "triangulated3Plus": 0
+    "totalClusters": 4,
+    "triangulated3Plus": 1
   },
   "builtFrom": {
-    "plenos-agendas.json": "0c35abbb263c",
+    "plenos-agendas.json": "3c96a5ccb48d",
     "press-claims-verified.json": "5f440b22045d",
-    "press.json": "a905d8f90425",
+    "press.json": "9cec4cbcc10d",
     "promises.json": "b5dbe1ebae83"
   }
 }

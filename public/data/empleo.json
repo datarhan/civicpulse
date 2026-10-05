@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-10-04T10:53:52.938Z",
+  "generatedAt": "2026-10-05T12:01:46.169Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 54,
-    "openTotal": 53,
-    "inRibaRoja": 33,
-    "closingSoon": 11,
-    "withDetail": 54,
+    "total": 52,
+    "openTotal": 51,
+    "inRibaRoja": 31,
+    "closingSoon": 10,
+    "withDetail": 52,
     "byMonth": {
       "2026-10": 1,
       "2026-09": 23,
-      "2026-08": 25,
+      "2026-08": 23,
       "2026-07": 1,
       "2026-06": 1,
       "2026-05": 2,
@@ -372,7 +372,7 @@
           },
           {
             "label": "Horario",
-            "value": "11,5 horas semanales con posibilidad de media jornada"
+            "value": "15 horas semanales con posibilidad de media jornada"
           },
           {
             "label": "Salario",
@@ -387,7 +387,7 @@
         "duracion": "De 1 a 6 meses",
         "numPuestos": "2",
         "observaciones": "Personal de limpieza para Comunidades de vecinos y Casas particulares Requiere vehículo propio",
-        "horario": "11,5 horas semanales con posibilidad de media jornada",
+        "horario": "15 horas semanales con posibilidad de media jornada",
         "salario": "Según convenio",
         "vehiculo": "Sí",
         "ocupaciones": []
@@ -3742,184 +3742,6 @@
         "funciones": "-Limpieza de oficinas. -Limpieza de zonas comunes, vestuarios. -Gestión de residuos. -Manejo de productos y equipos de limpieza. -Reposición de suministros necesarios para la limpieza",
         "vehiculo": "Sí",
         "ocupaciones": []
-      }
-    },
-    {
-      "id": "2510",
-      "fo": 2510,
-      "codigo": "2026/00209",
-      "titulo": "Peón almacén",
-      "publishedAt": "2026-08-04",
-      "deadline": "2026-10-04",
-      "location": "POLIGONO INDUSTRIAL MAS DE BALO SECTOR 12 Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2510",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00209"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Peón almacén"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Empresa estable, en crecimiento y con un ambiente de trabajo cercano, donde valoramos la actitud, las ganas y el compromiso por encima de todo. Requisitos : Uso de algún tipo de maquinaria Disponer de medio de transporte para desplazamiento hasta el centro de trabajo Disponibilidad horaria completa para trabajar algún mes de lunes a viernes en turnos rotativos (7:30 a 18:00 y 13:00 a 22:00)"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "INDUSTRIA MANUFACTURERA"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "2"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "PEONES"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "POLIGONO INDUSTRIAL MAS DE BALO SECTOR 12, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46394"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Parcial Turnos: Turno partido"
-          },
-          {
-            "label": "Horario",
-            "value": "7:30 - 13:00 y de 15:00 - 18:00"
-          },
-          {
-            "label": "Salario",
-            "value": "+18.000"
-          },
-          {
-            "label": "Funciones",
-            "value": "- Estar en línea de producción haciendo \"picking\" y separando metales. - Manejo y control de las máquinas con las que se trabaja habitualmente - Mantenimiento básico y orden del puesto de trabajo - Apoyar en las tareas generales del almacén. - Apoyo en tareas generales del proceso productivo"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "numPuestos": "2",
-        "categoria": "PEONES",
-        "observaciones": "Empresa estable, en crecimiento y con un ambiente de trabajo cercano, donde valoramos la actitud, las ganas y el compromiso por encima de todo. Requisitos : Uso de algún tipo de maquinaria Disponer de medio de transporte para desplazamiento hasta el centro de trabajo Disponibilidad horaria completa para trabajar algún mes de lunes a viernes en turnos rotativos (7:30 a 18:00 y 13:00 a 22:00)",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46394",
-        "jornada": "Parcial Turnos: Turno partido",
-        "horario": "7:30 - 13:00 y de 15:00 - 18:00",
-        "salario": "+18.000",
-        "funciones": "- Estar en línea de producción haciendo \"picking\" y separando metales. - Manejo y control de las máquinas con las que se trabaja habitualmente - Mantenimiento básico y orden del puesto de trabajo - Apoyar en las tareas generales del almacén. - Apoyo en tareas generales del proceso productivo",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2507",
-      "fo": 2507,
-      "codigo": "2026/00207",
-      "titulo": "Operario/a de lavadero de cisternas",
-      "publishedAt": "2026-08-04",
-      "deadline": "2026-10-04",
-      "location": "POLÍGONO INDUSTRIAL RIBA-ROJA Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2507",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00207"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Operario/a de lavadero de cisternas"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Se ofrece estabilidad laboral y formación continua en seguridad química y medioambiental. Requisitos : No es necesario experiencia previa Conocimientos básicos para interpretación de fichas de seguridad (FDS) y compatibilidades químicas Experiencia deseable en puestos similares (lavaderos industriales, plantas químicas o gestión de residuos) Residencia en la zona Riba-roja (Valencia) Valorable positivamente: Carnet de carretillero, formación en seguridad químicas y conocimientos en el funcionamiento de calderas industriales INCORPORACIÓN INMEDIATA"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "OTROS SERVICIOS"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO EVENTUAL POR CIRCUNSTANCIAS DE LA PRODUCCION"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "2"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "PEONES"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "POLÍGONO INDUSTRIAL RIBA-ROJA, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno mañana, Turno tarde, Turno rotativo"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "Turnos de mañana y tarde rotativos"
-          },
-          {
-            "label": "Horario",
-            "value": "06:00 A 14:00 - 12:00 a 20:00h"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          },
-          {
-            "label": "Funciones",
-            "value": "- Realizar la limpieza interior y exterior de cisternas químicas, contenedores y unidades de transporte, siguiendo los procedimientos técnicos establecidos - Ejecutar procesos de vaporizado y secado de unidades - Inspección de cisternas y contenedores post-lavado: verificación de estanqueidad, revisión de válvulas, juntas y puntos críticos para evitar contaminación cruzada - Gestión y etiquetado de residuos derivados de la limpieza, cumpliendo con la normativa medioambiental - Cumplimiento de protocolos de seguridad y calidad, especialmente en trabajos en altura y espacios confinados."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO EVENTUAL POR CIRCUNSTANCIAS DE LA PRODUCCION",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "2",
-        "categoria": "PEONES",
-        "observaciones": "Se ofrece estabilidad laboral y formación continua en seguridad química y medioambiental. Requisitos : No es necesario experiencia previa Conocimientos básicos para interpretación de fichas de seguridad (FDS) y compatibilidades químicas Experiencia deseable en puestos similares (lavaderos industriales, plantas químicas o gestión de residuos) Residencia en la zona Riba-roja (Valencia) Valorable positivamente: Carnet de carretillero, formación en seguridad químicas y conocimientos en el funcionamiento de calderas industriales INCORPORACIÓN INMEDIATA",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46190",
-        "jornada": "Completa Turnos: Turno mañana, Turno tarde, Turno rotativo",
-        "horario": "06:00 A 14:00 - 12:00 a 20:00h",
-        "salario": "Según convenio",
-        "funciones": "- Realizar la limpieza interior y exterior de cisternas químicas, contenedores y unidades de transporte, siguiendo los procedimientos técnicos establecidos - Ejecutar procesos de vaporizado y secado de unidades - Inspección de cisternas y contenedores post-lavado: verificación de estanqueidad, revisión de válvulas, juntas y puntos críticos para evitar contaminación cruzada - Gestión y etiquetado de residuos derivados de la limpieza, cumpliendo con la normativa medioambiental - Cumplimiento de protocolos de seguridad y calidad, especialmente en trabajos en altura y espacios confinados.",
-        "vehiculo": "Sí",
-        "ocupaciones": [
-          {
-            "nombre": "Oficiales, operarios y artesanos de otros oficios no clasificados bajo otros epígrafes",
-            "experiencia": "6 Meses"
-          }
-        ]
       }
     },
     {

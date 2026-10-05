@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-04T10:56:00.145Z",
+  "generatedAt": "2026-10-05T12:03:37.448Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
   "counts": {
-    "total": 8,
+    "total": 11,
     "byProposedStatus": {
-      "documentada": 8
+      "documentada": 11
     },
     "llmEvidence": 0
   },
@@ -40,7 +40,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-04T10:56:00.083Z"
+      "generatedAt": "2026-10-05T12:03:37.330Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -48,7 +48,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-04T10:56:00.083Z"
+      "generatedAt": "2026-10-05T12:03:37.330Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -67,7 +67,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-04T10:56:00.083Z"
+      "generatedAt": "2026-10-05T12:03:37.330Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -79,7 +79,7 @@
           "date": "2026-06-16",
           "quote": "Riba-roja de Túria repartirá más de 2000 helados gratis a los asistentes de Cinema d'Estiu",
           "kind": "press",
-          "publisher": "levante-emv.com",
+          "publisher": "Levante-EMV",
           "matchedKeywords": [
             "helado",
             "cinema",
@@ -89,7 +89,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-04T10:56:00.083Z"
+      "generatedAt": "2026-10-05T12:03:37.330Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -112,7 +112,7 @@
           "date": "2026-06-16",
           "quote": "Riba-roja de Túria repartirá más de 2000 helados gratis a los asistentes de Cinema d'Estiu",
           "kind": "press",
-          "publisher": "levante-emv.com",
+          "publisher": "Levante-EMV",
           "matchedKeywords": [
             "cinema",
             "estiu"
@@ -120,7 +120,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-04T10:56:00.083Z"
+      "generatedAt": "2026-10-05T12:03:37.330Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -128,7 +128,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-04T10:56:00.083Z"
+      "generatedAt": "2026-10-05T12:03:37.330Z"
     },
     {
       "promiseId": "ac-psoe-1ryndd8",
@@ -152,11 +152,23 @@
           ]
         },
         {
+          "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQZ0czb1kyczZ1QVBIaTBwZnZ1TjlXNjA4c1lGaFJ1N3MyeHQ4RERPOFZ6YllUaEczV0RfZXVtRHJ5NHBQeVBObG44dWpPWUpkcmttcFRWMEpZX01vbEdjZFR4ZUpvZVJDOVlvOGRTUzlGU01VZ2l4MGlCbXdnbEdkdzQxN280MkkxMGJvX1Y2TFZEWHBqdFFpa0VicEdHNm93eWtV?oc=5",
+          "date": "2026-09-16",
+          "quote": "Ayudas para el informe de evaluación de edificios en Riba-roja de Túria",
+          "kind": "press",
+          "publisher": "boletinbien.com",
+          "matchedKeywords": [
+            "ayuda",
+            "evaluacion",
+            "edificio"
+          ]
+        },
+        {
           "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQSjIzVFJONlJSTzg4ekpmU3dKM3AtenBUeWdqaDIyZ084VXpIRGhyQUg0cFBhWHdkbWRoYVBmcTd2MmstQkdzaGpSSlQ5ZldwTkFBOUFDX3V1bGRjcFdPWHpudEJObDlZLWNnYzR4MlhwcF81SllEMmpMRlkyWHhnaUVpNFY3eFR5T1o5dXJXY1p5RjFKVVlBUU55Nmo1Z3Jwa1gxVG1JOXVrdW0wLWRmaDY3WTlwdHNOd0ZaNkhmV1ZmQ0hGU05IYzBGV1JkMDFrS1NoYS0zbW12dTBn0gHiAUFVX3lxTE4yeHBabkwxVU9QN2NnUXlUVTZNel8tY0Q5UTBYdk9VbS1Wd0NhUUlDZkhqeFgyTVR3R1lhMDBHZ2hzc0ZnUklwZ25CY0JyQ1hlNVlqQmNiRE9WNlRBZFU5c2RpYk00dlBSNS1ueE55NDhGczJaa0J1UDFWMlJDd3I2TS14NGJJb0dScDhEM2I2Nzd1bWdpdTVSRkQySHhFQVp1NXZZMnlvYmpUUERld2NYMkxwNzNZMEhIeVY1QWZld0NWVXhlYW5sVVZES2dvMm9Qbk9FTlkwcy1ZVlJwOWlmR2c?oc=5",
           "date": "2026-08-25",
           "quote": "Riba-roja de Túria destina una partida de 100.000 euros para la rehabilitación de las fachadas",
           "kind": "press",
-          "publisher": "levante-emv.com",
+          "publisher": "Levante-EMV",
           "matchedKeywords": [
             "euro",
             "rehabilitacion",
@@ -165,7 +177,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-04T10:56:00.083Z"
+      "generatedAt": "2026-10-05T12:03:37.330Z"
     },
     {
       "promiseId": "ac-psoe-43brfs",
@@ -200,7 +212,7 @@
           "date": "2026-10-01",
           "quote": "Riba-roja destina más de 100.000 euros al Cheque Bebé y ofrece hasta 500 euros por hijo a las familias",
           "kind": "press",
-          "publisher": "levante-emv.com",
+          "publisher": "Levante-EMV",
           "matchedKeywords": [
             "euro",
             "destina"
@@ -230,7 +242,165 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-04T10:56:00.083Z"
+      "generatedAt": "2026-10-05T12:03:37.330Z"
+    },
+    {
+      "promiseId": "ac-psoe-17y448o",
+      "proposedStatus": "documentada",
+      "confidence": 0.4,
+      "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOdy1BVlRnOXAxak1EWWFVcndBWlBWSzByUWZ0LVBkclF6c013SFgtR20yUFpqMVhvVTZQUXo1RGRxUExUMVRmWUgwS2JRSHo4SXF5bXNhdDhDOEUwbjFnSnlrU25BRVg0MkF0Yy1xUURSemtmWTJ3ZHZfRk5BbWtaakNoMGxRN0FIcXo5WFllTWxfTC1LcnE4MzZKMS0yOFNmbHBlck5iNVFpLTF0VGltatIBtgFBVV95cUxNX1p5Mi0zdE1SQ2p4Znp3RGY3MkUyRzZuZ2ZHSThkalI4TkFPTnlLMk54QkJSX290cFZsNllyU2ljY1R1bzBtaHRtdG5FU3Y3dUpEXzNVWFVlZFdhcC04MWR4UTV2eDI4TzFtY1N2TzZKLVJzSGo1ZlYtN1p2RlZEYnVFbGlGcmFnaEV0ZERGSERKZzR6MWhWbVZlM0JOUUhLYkRRZ3lUbk5kajBvenk4dDdEd2s3QQ?oc=5",
+          "date": "2026-10-04",
+          "quote": "El Cheque Bebé +25 apoya a las familias y dinamiza el comercio local",
+          "kind": "press",
+          "publisher": "Las Provincias",
+          "matchedKeywords": [
+            "cheque",
+            "bebe",
+            "familia",
+            "comercio",
+            "local"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNYWV1M3FmdUZiYWpKNk1tR3Rva3pNcEZVdkZvRlRBa3h6OHVyLW9QM2VsdjM2c28yZTM2bkJQYXRjRGRZWVpjcTJaaC0wNDY4U0JYUWZPcDBCYW1wYm1halVYNHNEUHhVX1NoWlZ0dnVEamlGREZLU3hOVmFCU0YyNlJoWmVLY2lmVWJ1MFc1X1RFZkkwaXdNS21wOVNIcFlBci0wTTd1YnJKbkpubDhTNDRKblVtaGNYeTVBcnNROWpiMTVTQmVBQ2tjVEhWN290X0HSAdcBQVVfeXFMUE5vQjdSdXhta285NUVvUWswZWM2akM0MGJnWElzVUxGUnpSd1hrTlZhMFpoQnVpM2lCS09jNG9xQzFWRThGQkNnaHdmV2dVSDNmcHV1bWJrNXR3dnZkZ092ZmdPNlhYa0l4OE9Nb0hpX2xaVk1NY25rU05sYW9qVDVyOFpOZnJpWlZ1SGREOWpIbVRjX1hMelpGYmdiYzNsWkpNRDlrYjZpcDYtdUpVTjVYc09TN0JiTkhJOTZuQ251T3FWU2NsVEE4djJBVy1yS0RhV2hyNjg?oc=5",
+          "date": "2026-10-01",
+          "quote": "Riba-roja destina más de 100.000 euros al Cheque Bebé y ofrece hasta 500 euros por hijo a las familias",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "cheque",
+            "bebe",
+            "hasta",
+            "euro",
+            "destina",
+            "familia"
+          ]
+        },
+        {
+          "url": "https://www.ribarroja.es/es/noticia/riba-roja-destina-104.605-euros-al-cheque-beb%C3%A9-%2B25-para-apoyar-a-las-familias-y-dinamizar-el-comercio-local",
+          "date": "2026-10-01",
+          "quote": "Riba-roja destina 104.605 euros al Cheque Bebé +25 para apoyar a las familias y dinamizar el comercio local",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "cheque",
+            "bebe",
+            "euro",
+            "destina",
+            "familia",
+            "dinamizar",
+            "comercio",
+            "local"
+          ]
+        },
+        {
+          "url": "https://www.infoturia.com/riba-roja-de-turia/86553-el-xec-bebe-de-riba-roja-destina-fins-a-500-euros-per-menor.html",
+          "date": "2026-10-02",
+          "quote": "El Xec Bebé de Riba-roja destina fins a 500 euros per menor",
+          "kind": "press",
+          "publisher": "Periòdic del Camp de Túria",
+          "matchedKeywords": [
+            "bebe",
+            "euro",
+            "menor",
+            "destina"
+          ]
+        }
+      ],
+      "requiresHumanApproval": true,
+      "generatedAt": "2026-10-05T12:03:37.330Z"
+    },
+    {
+      "promiseId": "ac-psoe-1bkbwjs",
+      "proposedStatus": "documentada",
+      "confidence": 0.287,
+      "reasoning": [
+        {
+          "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
+          "date": "2026-09-25",
+          "quote": "Riba-roja de Túria impulsa la sensorización de sus contenedores de residuos para avanzar hacia una gestión más sostenible del municipio",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "sensorizacion",
+            "contenedor",
+            "residuo"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOVTRzMU1WeWtleS1VNXF0UzhxX05lZlB3bmo0NkxMek9McWRaRkN0N1AxN21NSUUyMXRRYllpa3UxXzRhdFgyRGttOHpfajA0YnZ6TmJmVnh0S2hLQnV0WFFWbXd2N2tkX0g2enlKVEwySDVMWlp2eWhvMm1pWDhLQ19Yb0E0aGR1RDRCLUxWTXFYRDF5djVJa1puUDJHc0oxV3Z0NE5aUV8wMHV6OG9yX2N1YXRwSDNOZUdlWDZIMmF4aC1CbXlmNFdXWDM1b2VnVWRFWnFTM1dXaTVnSkVnMQ?oc=5",
+          "date": "2026-09-25",
+          "quote": "Riba-roja de Túria impulsa la sensorización de los contenedores de residuos del municipio",
+          "kind": "press",
+          "publisher": "Valencia Plaza",
+          "matchedKeywords": [
+            "sensorizacion",
+            "contenedor",
+            "residuo"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxQZnBEa3hfeFZ3U2pWWnVPQllvdG9SVnR3R3phM2l0LUpSdEU2dGhDcmhXZk1DVmNYbUVNdzlnTG9HVi1NaldjaVc2YmQ3U0RuU3lya3ZqVDFiMHcyRmxBWkhyaUJaeWg5cVJZcDFuZnFSR3V2T3AzMW1ESkRvSmM2UVFnYUI0aVFSdUxhenpOX2trUWpzTWZGTEIzckpCQW5nMzBYazV1V1VNdm41STVJNU1DcTdoUVRNNGNGd25pUVdrdFVJSVFIX3Bya2hxVkswVU9TVkhlMG92SzJETVVFNlpLM2c4eUsybGhyWG9hQdIB7wFBVV95cUxQZnBEa3hfeFZ3U2pWWnVPQllvdG9SVnR3R3phM2l0LUpSdEU2dGhDcmhXZk1DVmNYbUVNdzlnTG9HVi1NaldjaVc2YmQ3U0RuU3lya3ZqVDFiMHcyRmxBWkhyaUJaeWg5cVJZcDFuZnFSR3V2T3AzMW1ESkRvSmM2UVFnYUI0aVFSdUxhenpOX2trUWpzTWZGTEIzckpCQW5nMzBYazV1V1VNdm41STVJNU1DcTdoUVRNNGNGd25pUVdrdFVJSVFIX3Bya2hxVkswVU9TVkhlMG92SzJETVVFNlpLM2c4eUsybGhyWG9hQQ?oc=5",
+          "date": "2026-10-03",
+          "quote": "Riba-roja mejora su gestión turística y supera la mitad de los requisitos para convertirse en un destino inteligente",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "turistica",
+            "destino"
+          ]
+        }
+      ],
+      "requiresHumanApproval": true,
+      "generatedAt": "2026-10-05T12:03:37.330Z"
+    },
+    {
+      "promiseId": "ac-psoe-1xeq50",
+      "proposedStatus": "documentada",
+      "confidence": 0.4,
+      "reasoning": [
+        {
+          "url": "https://www.ribarroja.es/es/noticia/riba-roja-destina-una-partida-de-7.000-euros-en-subvenciones-para-fomentar-la-pr%C3%A1ctica-del-deporte-y-mejorar-el-rendimiento-en-las-competiciones-oficiales",
+          "date": "2026-09-16",
+          "quote": "Riba-roja destina una partida de 7.000 euros en subvenciones para fomentar la práctica del deporte y mejorar el rendimiento en las competiciones oficiales",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "subvencion",
+            "euro",
+            "partida",
+            "competicion",
+            "oficial",
+            "deporte"
+          ]
+        },
+        {
+          "url": "https://www.ribarroja.es/es/noticia/riba-roja-destina-104.605-euros-al-cheque-beb%C3%A9-%2B25-para-apoyar-a-las-familias-y-dinamizar-el-comercio-local",
+          "date": "2026-10-01",
+          "quote": "Riba-roja destina 104.605 euros al Cheque Bebé +25 para apoyar a las familias y dinamizar el comercio local",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "euro",
+            "local"
+          ]
+        },
+        {
+          "url": "https://www.infoturia.com/riba-roja-de-turia/86207-riba-roja-destina-7-000-euros-per-a-fomentar-lesport-i-millorar-el-rendiment-en-competicions.html",
+          "date": "2026-09-16",
+          "quote": "Riba-roja destina 7.000 euros per a fomentar l’esport i millorar el rendiment en competicions",
+          "kind": "press",
+          "publisher": "Periòdic del Camp de Túria",
+          "matchedKeywords": [
+            "euro",
+            "competicion"
+          ]
+        }
+      ],
+      "requiresHumanApproval": true,
+      "generatedAt": "2026-10-05T12:03:37.330Z"
     }
   ],
   "llmEvidence": [],
