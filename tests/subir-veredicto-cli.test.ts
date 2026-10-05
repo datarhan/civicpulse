@@ -288,6 +288,8 @@ describe('subir-veredicto', { timeout: PLAZO }, () => {
       const r = lanzar('check-veredictos.ts', dir, [])
       expect(r.status, r.stdout + r.stderr).toBe(0)
       expect(r.stdout).toMatch(/1 subida\(s\) firmada\(s\)/)
+      // Y el primer cotejo la cuenta como lo que es, en la línea del parte.
+      expect(r.stdout).toMatch(/1 subido\(s\) por una persona/)
       expect(r.stdout + r.stderr).not.toMatch(/\[por-encima\]/)
     } finally {
       limpiar(dir)

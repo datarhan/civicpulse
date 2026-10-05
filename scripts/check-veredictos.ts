@@ -390,7 +390,12 @@ function main(): void {
   const fuertes = filas.filter((f) => f.verdict === 'verificado' || f.verdict === 'parcial')
   const retiradas = filas.filter((f) => f.estado === 'procedencia-retirada')
   const curados = filas.filter((f) => f.estado === 'curado')
-  const rotos = filas.filter((f) => f.estado === 'sin-corpus' || f.estado === 'sin-firma')
+  const subidos = filas.filter((f) => f.estado === 'subido')
+  const sinCorpus = filas.filter((f) => f.estado === 'sin-corpus')
+  const sinFirma = filas.filter((f) => f.estado === 'sin-firma')
+  // Las dos roturas salen 1, cada una con su nombre: contarlas juntas diría
+  // «sin corpus» de una subida a la que lo que le falta es la firma.
+  const rotos = [...sinCorpus, ...sinFirma]
 
   const servidas = new Map<string, string>()
   for (const it of items) {
@@ -416,6 +421,7 @@ function main(): void {
         {
           evaluados: filas.length,
           fuertes: fuertes.length,
+          subidos,
           curados,
           retiradas,
           rotos,
@@ -431,8 +437,9 @@ function main(): void {
 
   process.stdout.write(
     `[check-veredictos] ${filas.length} veredicto(s) evaluado(s) · ${fuertes.length} fuerte(s) · ` +
-      `${curados.length} curado(s) · ${retiradas.length} de procedencia retirada · ` +
-      `${rotos.length} sin corpus\n`,
+      `${subidos.length} subido(s) por una persona · ${curados.length} curado(s) · ` +
+      `${retiradas.length} de procedencia retirada · ${sinCorpus.length} sin corpus · ` +
+      `${sinFirma.length} sin firma\n`,
   )
 
   if (retiradas.length > 0) {
@@ -461,15 +468,23 @@ function main(): void {
     process.exitCode = 1
     return
   }
-  if (rotos.length) {
+  if (sinFirma.length) {
     process.stderr.write(
-      `[check-veredictos] ${rotos.length} veredicto(s) fuertes sin nada que los sostenga, y NO ` +
+      `[check-veredictos] ${sinFirma.length} veredicto(s) que dicen ser una subida firmada sin la ` +
+        'firma de una persona: el overlay no las deja escribir así, así que mira quién las ha ' +
+        'metido por otra vía.\n',
+    )
+    process.exitCode = 1
+  }
+  if (sinCorpus.length) {
+    process.stderr.write(
+      `[check-veredictos] ${sinCorpus.length} veredicto(s) fuertes sin nada que los sostenga, y NO ` +
         'vienen de una pasada retirada: esto es de hoy. El suelo de evidencia impide escribirlos ' +
         'por el overlay, así que mira quién los ha metido por otra vía.\n',
     )
     process.exitCode = 1
-    return
   }
+  if (rotos.length) return
   if (sobreLaBase) process.exitCode = 1
 }
 
