@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-09-28T19:13:44.838Z",
+  "generatedAt": "2026-10-05T06:30:09.767Z",
   "frozenUntil": null,
   "legalNotice": "CivicPulse es un proyecto de civic-tech independiente, sin vinculación con el Ayuntamiento de Riba-roja de Túria ni con ningún partido político. Las promesas listadas son compromisos públicos atribuidos a partidos y cargos, cada uno con su fuente enlazada: el documento oficial o la noticia de prensa que recoge la cita. Para correcciones, derecho de rectificación o propuesta de nuevas fuentes: abrir una issue en github.com/datarhan/civicpulse con la etiqueta correccion-promesa. Plazo de revisión: 24 h. Plazo de resolución: 72 h. Durante el periodo electoral oficial (LOREG art. 50), el tracker entra en modo solo-lectura y los estados quedan congelados a la fecha publicada en cada ficha.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new?labels=correccion-promesa",
@@ -271,14 +271,27 @@
       "madeAt": "2026-08-25",
       "topic": "urbanismo",
       "kind": "anuncio-gobierno",
-      "status": "documentada",
-      "evidence": [],
+      "status": "en-progreso",
+      "evidence": [
+        {
+          "date": "2026-08-25",
+          "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-destina-una-partida-de-140.000-euros-para-la-rehabilitaci%C3%B3n-de-las-fachadas%2C-la-evaluaci%C3%B3n-de-los-edificios-y-la-accesibilidad-en-el-interior-de-las-viviendas-del-periodo-2026-2027",
+          "quote": "El Ayuntamiento de Riba-roja de Túria destina una partida de 140.000 euros para la rehabilitación de las fachadas, la evaluación de los edificios y la accesibilidad en el interior de las viviendas del periodo 2026-2027",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "kind": "press",
+          "addedBy": "auto-curation-v1"
+        }
+      ],
       "createdAt": "2026-09-28",
+      "updatedAt": "2026-10-05",
+      "response": null,
       "autoPublished": {
-        "at": "2026-09-28T06:30:09.763Z",
+        "at": "2026-10-05T06:30:09.767Z",
         "by": "auto-curation-v1",
-        "confidence": 0.78,
-        "reviewState": "pending-review"
+        "confidence": 0.85,
+        "reviewState": "pending-review",
+        "priorStatus": "documentada",
+        "appendedEvidenceUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-destina-una-partida-de-140.000-euros-para-la-rehabilitaci%C3%B3n-de-las-fachadas%2C-la-evaluaci%C3%B3n-de-los-edificios-y-la-accesibilidad-en-el-interior-de-las-viviendas-del-periodo-2026-2027"
       }
     },
     {
@@ -293,13 +306,92 @@
       "madeAt": "2026-09-09",
       "topic": "educacion",
       "kind": "anuncio-gobierno",
+      "status": "en-progreso",
+      "evidence": [
+        {
+          "date": "2026-09-09",
+          "url": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-escolar-con-3.375-alumnos-apoyando-a-las-familias-un-a%C3%B1o-m%C3%A1s-con-el-bono-vuelve-al-cole",
+          "quote": "Riba-roja inicia el curso escolar con 3.375 alumnos apoyando a las familias un año más con el Bono Vuelve al Cole",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "kind": "press",
+          "addedBy": "auto-curation-v1"
+        }
+      ],
+      "createdAt": "2026-09-28",
+      "updatedAt": "2026-10-05",
+      "response": null,
+      "autoPublished": {
+        "at": "2026-10-05T06:30:09.767Z",
+        "by": "auto-curation-v1",
+        "confidence": 0.72,
+        "reviewState": "pending-review",
+        "priorStatus": "documentada",
+        "appendedEvidenceUrl": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-escolar-con-3.375-alumnos-apoyando-a-las-familias-un-a%C3%B1o-m%C3%A1s-con-el-bono-vuelve-al-cole"
+      }
+    },
+    {
+      "id": "ac-psoe-17y448o",
+      "party": "PSOE",
+      "title": "Cheque Bebé +25: ayuda de hasta 500 euros por menor",
+      "quote": "El Ayuntamiento de Riba-roja de Túria destina 104.605,36 euros de presupuesto municipal a la convocatoria del Cheque Bebé +25, una ayuda en especie dirigida a las familias con el objetivo de contribuir a los gastos derivados del nacimiento, adopción, acogimiento o tutela de un nuevo miembro y, al mismo tiempo, fomentar el consumo y dinamizar el comercio local de proximidad.",
+      "source": {
+        "url": "https://www.ribarroja.es/es/noticia/riba-roja-destina-104.605-euros-al-cheque-beb%C3%A9-%2B25-para-apoyar-a-las-familias-y-dinamizar-el-comercio-local",
+        "publisher": "Ayuntamiento Riba-roja de Túria"
+      },
+      "madeAt": "2026-10-01",
+      "topic": "social",
+      "kind": "anuncio-gobierno",
       "status": "documentada",
       "evidence": [],
-      "createdAt": "2026-09-28",
+      "createdAt": "2026-10-05",
       "autoPublished": {
-        "at": "2026-09-28T06:30:09.763Z",
+        "at": "2026-10-05T06:30:09.767Z",
+        "by": "auto-curation-v1",
+        "confidence": 0.75,
+        "reviewState": "pending-review"
+      }
+    },
+    {
+      "id": "ac-psoe-1bkbwjs",
+      "party": "PSOE",
+      "title": "Sensorización de contenedores de residuos para control en tiempo real del llenado",
+      "quote": "El Ayuntamiento de Riba-roja de Túria ha adjudicado a la empresa Distromel, S.A. el proyecto de sensorización de contenedores de residuos, una actuación incluida en su Plan de Sostenibilidad Turística en Destino (PSTD) 2022, financiado con fondos europeos Next Generation EU a través del Plan de Recuperación, Transformación y Resiliencia (PRTR).",
+      "source": {
+        "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
+        "publisher": "Ayuntamiento Riba-roja de Túria"
+      },
+      "madeAt": "2026-09-25",
+      "topic": "medio-ambiente",
+      "kind": "anuncio-gobierno",
+      "status": "documentada",
+      "evidence": [],
+      "createdAt": "2026-10-05",
+      "autoPublished": {
+        "at": "2026-10-05T06:30:09.767Z",
         "by": "auto-curation-v1",
         "confidence": 0.7,
+        "reviewState": "pending-review"
+      }
+    },
+    {
+      "id": "ac-psoe-1xeq50",
+      "party": "PSOE",
+      "title": "Subvención de 7.000 euros para deportistas locales que compitieron en 2025",
+      "quote": "El Ayuntamiento de Riba-roja de Túria ha destinado una partida económica de 7.000 euros en total que se distribuirá entre las personas deportistas de la localidad que hayan participado en competiciones oficiales a lo largo del año 2025.",
+      "source": {
+        "url": "https://www.ribarroja.es/es/noticia/riba-roja-destina-una-partida-de-7.000-euros-en-subvenciones-para-fomentar-la-pr%C3%A1ctica-del-deporte-y-mejorar-el-rendimiento-en-las-competiciones-oficiales",
+        "publisher": "Ayuntamiento Riba-roja de Túria"
+      },
+      "madeAt": "2026-09-16",
+      "topic": "deporte",
+      "kind": "anuncio-gobierno",
+      "status": "documentada",
+      "evidence": [],
+      "createdAt": "2026-10-05",
+      "autoPublished": {
+        "at": "2026-10-05T06:30:09.767Z",
+        "by": "auto-curation-v1",
+        "confidence": 0.72,
         "reviewState": "pending-review"
       }
     }
