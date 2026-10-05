@@ -254,6 +254,7 @@
     "retract-attribution": "npx tsx scripts/retract-claim-attribution.ts",
     "relabel-attribution": "npx tsx scripts/relabel-attribution.ts",
     "subir-veredicto": "npx tsx scripts/subir-veredicto.ts",
+    "corregir-rotulo-motor": "npx tsx scripts/corregir-rotulo-motor.ts",
     "check:basemap": "npx tsx scripts/check-basemap.ts",
     "check:wms": "npx tsx scripts/check-wms.ts",
     "despiece": "npx tsx scripts/build-app-graph.ts",

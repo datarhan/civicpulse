@@ -122,7 +122,11 @@ describe('decidirCorreccionDeRotulo · el rótulo que prueba la caché', () => {
     const { leer } = cacheDeAgosto([GPT])
     const curador = { ...entrada(GPT), source: 'curator-downgrade' as const }
     expect(decidir(GPT, leer, curador)).toEqual({ accion: 'dejar', porque: 'no-es-del-motor' })
-    expect(decidir(GPT, leer, undefined)).toEqual({ accion: 'dejar', porque: 'no-es-del-motor' })
+    // Directa: con `decidir`, un `undefined` explícito toma el valor por defecto.
+    expect(decidirCorreccionDeRotulo({ claimId: GPT, entrada: undefined, leer })).toEqual({
+      accion: 'dejar',
+      porque: 'no-es-del-motor',
+    })
     const rara = { ...entrada(GPT), editor: 'verdict-engine' }
     expect(decidir(GPT, leer, rara)).toEqual({ accion: 'dejar', porque: 'rotulo-desconocido' })
   })
