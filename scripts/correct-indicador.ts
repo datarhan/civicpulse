@@ -22,9 +22,14 @@
  * Lo que NO hace `--refrescar`: tocar el texto. Si la cifra cambió lo bastante
  * como para que el titular deje de ser cierto, eso es una corrección de
  * `titulo` —o una retirada—, y decidirlo es de quien firma.
+ *
+ * `--editor` acepta la cuenta de rol y rechaza, antes de leer nada, el hueco de
+ * una orden copiada sin rellenar —`<nombre>` o `…`, los de arriba—
+ * (`rechazoDeMarcador`, src/scraper/firma-de-persona.ts).
  */
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { resolve } from 'node:path'
+import { rechazoDeMarcador } from '../src/scraper/firma-de-persona'
 import {
   validateEficienciaFindingsSnapshot,
   cotejarMedicion,
@@ -74,6 +79,10 @@ function main(): void {
     fail(`--field debe ser titulo, cuerpo o medicion (recibido «${field}»)`, 2)
   }
   if (reason.length < 20) fail('--reason debe explicar la corrección (≥20 caracteres)', 2)
+  // Antes de leer nada: el hueco no firma una corrección publicada. Sólo el
+  // hueco; la cuenta de rol, sí (`rechazoDeMarcador`).
+  const hueco = rechazoDeMarcador(editor)
+  if (hueco) fail(`--editor: ${hueco}`, 2)
   if (field === 'medicion' && !refrescar) {
     fail(
       '--field medicion sólo se corrige con --refrescar: la medición se copia del panel, ' +

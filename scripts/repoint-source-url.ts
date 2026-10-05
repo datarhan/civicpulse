@@ -23,9 +23,15 @@
  * evidence under a published claim about a named councillor". With it, the
  * failure mode is impossible rather than merely discouraged — Level 0 of the
  * ladder in docs/DATA_INTEGRITY.md.
+ *
+ * `--editor` no se guarda en ningún sitio: sólo se imprime. Aun así rechaza,
+ * antes de leer nada y de ir a la red, el hueco de una orden copiada sin
+ * rellenar —el `<name>` de arriba—: quien la lanza así no la ha terminado de
+ * escribir (`rechazoDeMarcador`, src/scraper/firma-de-persona.ts).
  */
 import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
+import { rechazoDeMarcador } from '../src/scraper/firma-de-persona'
 import { rewriteJsonIfPresent, writeSnapshot } from './lib/snapshot-io'
 import { classifyUrl, fetchDocumentText } from './lib/doc-fetch'
 import { quoteAppearsIn, quoteCoverage } from '../src/scraper/quote-match'
@@ -90,6 +96,13 @@ function parseArgs(argv: string[]): Opts {
   }
   if (o.reason.trim().length < 20) {
     process.stderr.write('[repoint-source-url] --reason must be at least 20 characters\n')
+    process.exit(2)
+  }
+  // Antes de leer nada: una orden con la firma sin rellenar no se ha terminado
+  // de escribir. Sólo el hueco; la cuenta de rol, sí (`rechazoDeMarcador`).
+  const hueco = rechazoDeMarcador(o.editor)
+  if (hueco) {
+    process.stderr.write(`[repoint-source-url] --editor: ${hueco}\n`)
     process.exit(2)
   }
   return o

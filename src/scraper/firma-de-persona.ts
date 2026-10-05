@@ -220,7 +220,12 @@ export const nombraAUnaPersona = (editor: string): boolean => rechazoDeFirma(edi
  * `correct-pleno-finding --field/--redact/--remove`, `retract-finding` y
  * `reclassify-claim` escribían el hueco como firmante de una corrección
  * publicada (visto el 30-09-2026), y la bajada de siempre de
- * `downgrade-verdict` también (04-10-2026).
+ * `downgrade-verdict` también (04-10-2026). Otras nueve vías que escriben una
+ * firma la aceptaban igual hasta el 05-10-2026: `reanchor-claim`, a la que su
+ * cola también compone `"<tu nombre>"`; `retract-vote`, con el `--editor "…"`
+ * con que el validador de pleno-votes.ts pide devolver un voto retirado; el
+ * `--reviewer` de `review:finding-exception`, y seis que sólo traen el hueco
+ * en su línea de uso. tests/firma-sin-rellenar-cli.test.ts las lanza una a una.
  *
  * No pide una persona: esas vías las firma el operador con la cuenta de rol
  * (`civicpulse-curator`), y esa convención es suya. Rechaza sólo lo que no

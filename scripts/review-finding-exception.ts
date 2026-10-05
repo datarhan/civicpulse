@@ -5,7 +5,7 @@
  * cita retenida no puede decir: la ficha se mantiene y la cola encoge.
  *
  *   npm run review:finding-exception -- <findingId> \
- *     --reviewer "<nombre y apellidos>" --note "<por qué, ≥20 caracteres>"
+ *     --reviewer "<nombre y apellidos>" --note "<por qué>"    (la nota, ≥20 caracteres)
  *   npm run review:finding-exception -- --list      # lo anotado, y lo que no cuenta
  *   npm run review:finding-exception -- --stale     # revisiones cuyo sumario cambió
  *   npm run review:finding-exception -- --migrar    # reescribe el registro a la versión vigente
@@ -25,9 +25,18 @@
  * v1 —que respondían a «¿merece este hallazgo la excepción?»— se guardan en
  * `anteriores` y no cuentan. La primera anotación migra el registro;
  * `--migrar` lo hace sin anotar nada.
+ *
+ * `--reviewer` rechaza, antes de leer nada, el hueco de una orden preparada sin
+ * rellenar (`rechazoDeMarcador`, src/scraper/firma-de-persona.ts): la cola lo
+ * compone `--reviewer "<nombre y apellidos>"`, y una «keep» firmada con él
+ * sacaría la ficha de la cola como si alguien la hubiera leído. Los huecos de
+ * la línea de uso son los de la cola (`MARCADORES`), cortos a propósito: la
+ * nota copiada sin rellenar no llega al suelo de `NOTA_MINIMA`.
  */
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
+import { MARCADORES } from '../src/scraper/finding-exception'
+import { rechazoDeMarcador } from '../src/scraper/firma-de-persona'
 import {
   isReviewed,
   migrarRegistro,
@@ -73,6 +82,11 @@ function main() {
     const i = argv.indexOf(n)
     return i >= 0 ? (argv[i + 1] ?? null) : null
   }
+  // Antes de leer nada: con la nota rellena, el hueco de la orden que compone
+  // la cola firmaría la «keep». Sólo el hueco (`rechazoDeMarcador`).
+  const reviewer = flag('--reviewer')
+  const hueco = reviewer === null ? null : rechazoDeMarcador(reviewer)
+  if (hueco) bail(`--reviewer: ${hueco}`)
   const ahora = new Date().toISOString()
   const log = loadLog()
   const byId = summaries()
@@ -134,12 +148,11 @@ function main() {
   }
 
   const findingId = argv.find((a) => !a.startsWith('--') && a.startsWith('f-'))
-  const reviewer = flag('--reviewer')
   const note = flag('--note')
   if (!findingId || !reviewer || !note) {
     bail(
-      'uso: review:finding-exception <findingId> --reviewer "<nombre y apellidos>" ' +
-        '--note "<por qué, ≥20 caracteres>"\n' +
+      `uso: review:finding-exception <findingId> --reviewer "${MARCADORES.firma}" ` +
+        `--note "${MARCADORES.nota}"    (la nota, ≥${NOTA_MINIMA} caracteres)\n` +
         '     review:finding-exception --list | --stale | --migrar',
     )
   }

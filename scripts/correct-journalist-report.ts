@@ -60,10 +60,15 @@
  * This is NOT a way to add or drop an área. Renaming is a correction — the same
  * claim, spelled right. Changing which competences a named councillor holds is a
  * different claim, and it belongs in a re-run reviewed by a curator.
+ *
+ * `--editor` acepta la cuenta de rol, que es la de por defecto, y rechaza, antes
+ * de leer nada, el hueco de una orden copiada sin rellenar —el `<name>` de
+ * arriba— (`rechazoDeMarcador`, src/scraper/firma-de-persona.ts).
  */
 import { existsSync, readFileSync } from 'node:fs'
 import { rewriteJsonIfPresent, writeSnapshot } from './lib/snapshot-io'
 import { resolve } from 'node:path'
+import { rechazoDeMarcador } from '../src/scraper/firma-de-persona'
 import {
   validateReportsSnapshot,
   type JournalistReport,
@@ -123,6 +128,13 @@ function parseArgs(argv: string[]): Opts {
   if (!o.reportId || !o.field || !o.newValue || !o.reason) usage()
   if (o.reason.trim().length < 20) {
     process.stderr.write('[correct-journalist-report] --reason must be ≥20 chars\n')
+    process.exit(2)
+  }
+  // Antes de leer nada: el hueco no firma una corrección publicada. Sólo el
+  // hueco; la cuenta de rol, sí (`rechazoDeMarcador`).
+  const hueco = rechazoDeMarcador(o.editor)
+  if (hueco) {
+    process.stderr.write(`[correct-journalist-report] --editor: ${hueco}\n`)
     process.exit(2)
   }
   return o

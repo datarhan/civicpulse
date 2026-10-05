@@ -30,12 +30,17 @@
  *
  *   --dry-run   print the effect, write nothing.
  *
+ * `--editor` acepta la cuenta de rol y rechaza, antes de leer nada, el hueco de
+ * una orden preparada sin rellenar —el validador pide devolver un voto retirado
+ * con `--editor "…"`— (`rechazoDeMarcador`, src/scraper/firma-de-persona.ts).
+ *
  * read → validateSnapshot → pure mutate → re-validate WHOLE snapshot → write.
  * Nothing is deleted without a record; the retraction ledger IS the record.
  */
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { resolve } from 'node:path'
 
+import { rechazoDeMarcador } from '../src/scraper/firma-de-persona'
 import {
   validateSnapshot,
   retractVoteRecord,
@@ -114,6 +119,11 @@ function main() {
         `This is a public correction about how named political groups voted.`,
     )
   }
+  // Antes de leer nada: con el motivo relleno, el hueco de la orden que compone
+  // el validador firmaría la revocación. Sólo el hueco; la cuenta de rol, sí
+  // (`rechazoDeMarcador`).
+  const hueco = rechazoDeMarcador(editor)
+  if (hueco) bail(`--editor: ${hueco}`)
 
   if (!existsSync(DATA_PATH)) bail(`${DATA_PATH} not found`)
 

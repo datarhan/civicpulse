@@ -18,11 +18,16 @@
  *
  * Las dos reescriben el fichero tal y como se leyó, mueven el sello y validan
  * el fichero entero antes de escribir (ver src/scraper/promise-corrections.ts).
+ *
+ * `--editor` acepta la cuenta de rol y rechaza, antes de leer nada y de bajar
+ * ninguna fuente, el hueco de una orden copiada sin rellenar —el `<…>` de
+ * arriba— (`rechazoDeMarcador`, src/scraper/firma-de-persona.ts).
  */
 import { readFile, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { DATA_GRAPH } from '../src/scraper/data-graph'
+import { rechazoDeMarcador } from '../src/scraper/firma-de-persona'
 import { withQuoteCorrection, withRetraction } from '../src/scraper/promise-corrections'
 import {
   defaultGroundingFetch,
@@ -67,6 +72,13 @@ async function main() {
   const motivo = opcion(resto, '--motivo')
   const editor = opcion(resto, '--editor')
   if (!motivo || !editor) uso()
+  // Antes de leer nada: el hueco no firma una corrección ni una retirada. Sólo
+  // el hueco; la cuenta de rol, sí (`rechazoDeMarcador`).
+  const hueco = rechazoDeMarcador(editor)
+  if (hueco) {
+    console.error(`[corregir-promesa] --editor: ${hueco}`)
+    process.exit(2)
+  }
   const raw = await readFile(PROMISES, 'utf8')
   const ahora = new Date()
 

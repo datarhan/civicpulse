@@ -98,10 +98,10 @@ const TIPOS_DESTINO = ALLOWED_CLAIM_TYPES.filter((t) => t !== TIPO_ACUSACION)
  * recibe —un motivo o una nota de menos de 20 caracteres, un sumario de menos
  * de 40, que `applyFindingRedaction` rechaza como muñón, un tipo fuera del
  * enum—, así que una orden copiada tal cual se rechaza antes de escribir nada.
- * La firma la rechazan también `retract-finding`, `reclassify-claim` y
- * `--redact`, antes de leer nada (`rechazoDeMarcador`, firma-de-persona.ts),
- * pero sólo como hueco: no piden una persona, porque el operador las firma con
- * la cuenta de rol; y `review:finding-exception` no mira su `--reviewer`.
+ * La firma la rechazan también `retract-finding`, `reclassify-claim`, `--redact`
+ * y el `--reviewer` de `review:finding-exception`, antes de leer nada
+ * (`rechazoDeMarcador`, firma-de-persona.ts), pero sólo como hueco: no piden
+ * una persona, y el operador firma las tres primeras con la cuenta de rol.
  * Retirar una ficha no tiene vuelta atrás: los demás huecos siguen cortos.
  */
 export const MARCADORES = {
