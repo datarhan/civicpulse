@@ -7,6 +7,9 @@
  */
 import type { ClaimVerdict } from './claim-verifier'
 import type { RunRecorder } from './run-manifest'
+import type { ApplyEntry, OverlayEntry } from './verified-merge'
+import { recortarResumen, RESUMEN_MAX } from './claim-verifier-engine'
+import { charlaDeTarea } from './charla-de-tarea'
 
 /**
  * Por qué el verificador del motor devolvió una declaración SIN consultar al
@@ -137,4 +140,115 @@ export function decidirDevolucion(r: {
   if (r.veredictoBase === undefined) return { accion: 'dejar', porque: 'sin-base' }
   if (r.veredictoBase !== 'sin-datos') return { accion: 'dejar', porque: 'la-base-subiria' }
   return { accion: 'devolver' }
+}
+
+// ─── El recorte (`--ids <fichero> --recortar`) ──────────────────────────────
+
+/** Por qué `--recortar` deja una explicación del motor como está. */
+export type MotivoSinRecorte =
+  /** No hay entrada, o no es una retractación del motor. */
+  | 'no-es-del-motor'
+  /** La caché no guarda ningún razonamiento de la declaración. */
+  | 'sin-razonamiento'
+  /** Guarda alguno, pero ninguno es el que produjo lo publicado. */
+  | 'no-coincide'
+  /** El razonamiento cupo entero: lo publicado no está cortado. */
+  | 'nada-que-recortar'
+  /** Lo recortado no es un prefijo estricto de lo publicado: sería escribir prosa. */
+  | 'no-es-un-recorte'
+  /** El motivo no acaba en el resumen publicado, y no se sabe qué cambiar en él. */
+  | 'motivo-sin-el-resumen'
+  /** Lo recortado sigue hablando de la tarea del modelo. */
+  | 'charla'
+
+export type Recorte =
+  | { accion: 'recortar'; entrada: ApplyEntry; resumen: string }
+  | { accion: 'dejar'; porque: MotivoSinRecorte }
+
+/**
+ * Cómo se llama en el parte cada explicación que se deja. Un cubo por motivo, y
+ * ninguno es «hecha»: la charla, sobre todo, se cuenta aparte (regla 2).
+ */
+export const MOTIVO_SIN_RECORTE_EN_EL_PARTE: Readonly<Record<MotivoSinRecorte, string>> = {
+  'no-es-del-motor': 'no es una retractación del motor',
+  'sin-razonamiento': 'sin razonamiento en la caché',
+  'no-coincide': 'lo publicado no es el corte de ningún razonamiento en caché',
+  'nada-que-recortar': 'nada que recortar',
+  'no-es-un-recorte': 'el recorte no es un prefijo de lo publicado',
+  'motivo-sin-el-resumen': 'el motivo no acaba en el resumen',
+  charla: 'charla, no se recorta',
+}
+
+const normalizarEspacios = (t: string) => t.replace(/\s+/g, ' ').trim()
+
+/**
+ * ¿Es `nuevo` el texto `viejo` con algo quitado del final, y nada más?
+ *
+ * La guarda de la regla 4 para el recorte: una escritura automática de prosa
+ * publicada sólo puede QUITAR. Compara con los espacios de `viejo` normalizados,
+ * como los normaliza `recortarResumen`, y la marca «…» del final no cuenta como
+ * texto: dice que se cortó, no afirma nada. Estricto: lo igual no es un recorte.
+ */
+export function esRecorteDe(nuevo: string, viejo: string): boolean {
+  const cuerpo = nuevo.endsWith('…') ? nuevo.slice(0, -1) : nuevo
+  const antes = normalizarEspacios(viejo)
+  return cuerpo.length > 0 && cuerpo.length < antes.length && antes.startsWith(cuerpo)
+}
+
+/**
+ * Recortar una explicación del motor publicada a media frase, desde el
+ * razonamiento que la produjo.
+ *
+ * Hasta el 04-10-2026 el motor guardaba `reasoning.slice(0, 300)`, y la tarjeta
+ * lo pinta tal cual: 858 retractaciones quedaron publicadas a media frase. Su
+ * razonamiento entero sigue en `.llm-cache`, bajo la clave del prompt de
+ * entonces (ENGINE_REASON_VERSIONES_ANTERIORES en src/llm/prompts.ts), y aquí se
+ * corta como corta hoy el motor, con `recortarResumen`, sin preguntar a nadie.
+ *
+ *   · El razonamiento tiene que PROBAR que es el que se publicó: sus
+ *     `RESUMEN_MAX` primeros caracteres son lo publicado, letra a letra. No basta
+ *     con que sea de la misma declaración: de una explicación que re-derivó #233
+ *     la caché guarda también el razonamiento de agosto, y volver a él sería
+ *     deshacer la re-derivación.
+ *   · Lo nuevo es un prefijo estricto de lo publicado (`esRecorteDe`): sólo QUITA
+ *     el trozo colgante. Es una escritura automática de prosa publicada
+ *     (DATA_INTEGRITY, regla 4), y sólo así se admite.
+ *   · Cambian el resumen y la cola del motivo, que lo lleva copiado
+ *     (`entradaDelMotor`); el veredicto, la evidencia, los corpus, la pasada, la
+ *     confianza y el rótulo se quedan como estaban.
+ *   · La charla de la tarea no se recorta: el overlay no la deja escribir
+ *     (`applyOverlayEntries`), y donde se sirve la tarjeta ya la retira
+ *     (src/lib/resumenes-retirados.js).
+ */
+export function decidirRecorte(a: {
+  claimId: string
+  entrada: OverlayEntry | undefined
+  /** Lo que la caché guarda de su razonamiento, en cualquier versión del prompt. */
+  razonamientos: readonly string[]
+}): Recorte {
+  const e = a.entrada
+  if (!e || e.source !== 'verdict-engine') return { accion: 'dejar', porque: 'no-es-del-motor' }
+  if (a.razonamientos.length === 0) return { accion: 'dejar', porque: 'sin-razonamiento' }
+  const publicado = e.verification.summary
+  const razonamiento = a.razonamientos.find((r) => r.slice(0, RESUMEN_MAX) === publicado)
+  if (razonamiento === undefined) return { accion: 'dejar', porque: 'no-coincide' }
+  const resumen = recortarResumen(razonamiento)
+  if (resumen === normalizarEspacios(publicado)) {
+    return { accion: 'dejar', porque: 'nada-que-recortar' }
+  }
+  if (!esRecorteDe(resumen, publicado)) return { accion: 'dejar', porque: 'no-es-un-recorte' }
+  const motivo = e.reason ?? ''
+  if (!motivo.endsWith(publicado)) return { accion: 'dejar', porque: 'motivo-sin-el-resumen' }
+  if (charlaDeTarea(resumen)) return { accion: 'dejar', porque: 'charla' }
+  return {
+    accion: 'recortar',
+    resumen,
+    entrada: {
+      claimId: a.claimId,
+      verification: { ...e.verification, summary: resumen },
+      source: e.source,
+      reason: motivo.slice(0, motivo.length - publicado.length) + resumen,
+      ...(e.editor ? { editor: e.editor } : {}),
+    },
+  }
 }

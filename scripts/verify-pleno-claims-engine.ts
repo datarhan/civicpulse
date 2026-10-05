@@ -8,6 +8,9 @@
  *     npm run verify:pleno-claims:engine -- [--max N] [--plenoId ID] [--dry-run]
  *     npm run verify:pleno-claims:engine -- --ids <fichero> [--dry-run]
  *
+ *   LLM_BACKEND=claude-code LLM_ZERO_COST_ONLY=1 CLAUDE_CODE_BIN=/nonexistent-disabled \
+ *     npm run verify:pleno-claims:engine -- --ids <fichero> --recortar [--dry-run]
+ *
  * DOWNGRADE-ONLY, and only to sin-datos: a sin-datos asserts nothing, so a
  * retraction to it can only remove a claim — which is why it runs unattended
  * (tier A) and why we trust ONLY its sin-datos calls, as retractions of LLM
@@ -31,6 +34,14 @@
  * resumen (src/lib/resumenes-retirados.js). La decisión es
  * `decidirRederivacion`: reescribe la explicación sólo si el modelo juzgó y
  * sigue sin ver respaldo; nunca sube un veredicto; lo que no juzgó no se toca.
+ *
+ * `--ids <fichero> --recortar` no juzga nada: corta en la última frase entera,
+ * desde el razonamiento que las produjo, las explicaciones que el motor guardó
+ * como `reasoning.slice(0, 300)` (858 a media frase el 04-10-2026). Ese
+ * razonamiento está en `.llm-cache` bajo la clave del prompt de entonces, que la
+ * vía `--ids` no lee: para ella serían fallos de caché, y re-juzgarlas ~1.480
+ * llamadas. Lee la caché con `llmCacheGet`, que no llama nunca, y sólo escribe lo
+ * que `decidirRecorte` prueba que es un recorte de lo publicado.
  */
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { resolve } from 'node:path'
@@ -40,12 +51,17 @@ import { makeEngineVerifier, loadVerifierContext } from '../src/scraper/verifier
 import { RazonamientoConCharla } from '../src/scraper/claim-verifier-engine'
 import {
   anotarEnElParte,
+  decidirRecorte,
   decidirRederivacion,
   decidirRetractacion,
+  MOTIVO_SIN_RECORTE_EN_EL_PARTE,
   type MotivoSinJuicio,
+  type MotivoSinRecorte,
 } from '../src/scraper/decision-del-motor'
 import { entradaDelMotor } from '../src/scraper/entrada-de-pasada'
-import { resetBudget, getRunStats } from '../src/llm/client'
+import { resetBudget, getRunStats, llmCacheGet } from '../src/llm/client'
+import { EngineReasoningSchema } from '../src/llm/schemas'
+import { ENGINE_REASON_VERSION, ENGINE_REASON_VERSIONES_ANTERIORES } from '../src/llm/prompts'
 import { startRun, formatManifest } from '../src/scraper/run-manifest'
 import { loadOverlay, rebuildVerified, OVERLAY } from './verified-rebuild'
 import { applyOverlayEntries, type ApplyEntry, type Overlay } from '../src/scraper/verified-merge'
@@ -63,16 +79,25 @@ interface Args {
   dryRun: boolean
   base: boolean
   ids: string | null
+  recortar: boolean
 }
 
 function parseArgs(argv: string[]): Args {
-  const out: Args = { plenoId: null, max: Infinity, dryRun: false, base: false, ids: null }
+  const out: Args = {
+    plenoId: null,
+    max: Infinity,
+    dryRun: false,
+    base: false,
+    ids: null,
+    recortar: false,
+  }
   for (let i = 0; i < argv.length; i++) {
     if (argv[i] === '--plenoId') out.plenoId = argv[++i]
     else if (argv[i] === '--max') out.max = Number(argv[++i])
     else if (argv[i] === '--dry-run') out.dryRun = true
     else if (argv[i] === '--base') out.base = true
     else if (argv[i] === '--ids') out.ids = argv[++i]
+    else if (argv[i] === '--recortar') out.recortar = true
     else {
       process.stderr.write(`[verify-engine] unknown flag ${argv[i]}\n`)
       process.exit(2)
@@ -81,8 +106,33 @@ function parseArgs(argv: string[]): Args {
   return out
 }
 
+/**
+ * Los ids de `fichero` (uno por línea; `#` comenta) que son retractaciones del
+ * motor. Re-derivar o recortar otra cosa sería tocar con una vía pensada para
+ * corregir una explicación del motor lo que escribió otra etapa.
+ */
+function retractacionesDelMotor(
+  fichero: string,
+  overlay: Overlay,
+): { pedidos: number; targets: string[] } {
+  const pedidos = readFileSync(fichero, 'utf8')
+    .split('\n')
+    .map((l) => l.trim())
+    .filter((l) => l && !l.startsWith('#'))
+  const targets: string[] = []
+  for (const id of pedidos) {
+    if (overlay.entries[id]?.source !== 'verdict-engine') {
+      process.stderr.write(`[verify-engine] --ids: ${id} no es una retractación del motor\n`)
+      continue
+    }
+    targets.push(id)
+  }
+  return { pedidos: pedidos.length, targets }
+}
+
 async function main() {
   const args = parseArgs(process.argv.slice(2))
+  if (args.recortar) return recortar(args)
   // Arms the circuit breaker (and the token budget). Without this call
   // `currentCircuit` stays null and `notifyResult` returns early, so the
   // breaker is INERT — which is how a run once made 190 consecutive calls to a
@@ -116,19 +166,10 @@ async function main() {
   if (args.ids) {
     // Sólo retractaciones del motor: re-derivar otra cosa sería juzgar por
     // primera vez con una vía pensada para corregir una explicación.
-    const pedidos = readFileSync(args.ids, 'utf8')
-      .split('\n')
-      .map((l) => l.trim())
-      .filter((l) => l && !l.startsWith('#'))
-    for (const id of pedidos) {
-      if (overlay.entries[id]?.source !== 'verdict-engine') {
-        process.stderr.write(`[verify-engine] --ids: ${id} no es una retractación del motor\n`)
-        continue
-      }
-      targets.push(id)
-    }
+    const pedidas = retractacionesDelMotor(args.ids, overlay)
+    targets.push(...pedidas.targets)
     process.stderr.write(
-      `[verify-engine] --ids: ${targets.length} de ${pedidos.length} retractaciones del motor a re-derivar (model ${MODEL})\n`,
+      `[verify-engine] --ids: ${targets.length} de ${pedidas.pedidos} retractaciones del motor a re-derivar (model ${MODEL})\n`,
     )
   } else if (args.base) {
     // --base: re-judge the pure deterministic-base verificado/parcial that no
@@ -316,6 +357,98 @@ async function main() {
       process.stderr.write(
         `  su explicación nueva se imprime sola; quita estas entradas de src/lib/resumenes-retirados.js:\n    ${rederivadas.join('\n    ')}\n`,
       )
+  }
+
+  const { manifest, findings } = run.finish({ exitCode: process.exitCode ? 1 : 0 })
+  process.stderr.write(`\n${formatManifest(manifest)}\n`)
+  for (const f of findings) {
+    process.stderr.write(`  ${f.level.toUpperCase()} [${f.code}] ${f.message}\n`)
+  }
+  if (findings.some((f) => f.level === 'error')) process.exitCode = 1
+}
+
+/**
+ * `--ids <fichero> --recortar`: recorta, sin llamar a ningún modelo, las
+ * explicaciones del motor publicadas a media frase (`decidirRecorte`).
+ *
+ * No carga el corpus ni el contexto del verificador: no juzga, lee lo que el
+ * modelo ya razonó. Lo lee con `llmCacheGet`, que no llama nunca, así que la
+ * promesa de cero llamadas no depende de cómo esté el entorno. Escribe una sola
+ * vez y ESPERA al rebuild, para que lo publicado sea esto al salir.
+ */
+async function recortar(args: Args): Promise<void> {
+  if (!args.ids) {
+    process.stderr.write(
+      '[verify-engine] --recortar va con --ids <fichero>: recorta una lista medida, no el overlay entero\n',
+    )
+    process.exit(2)
+  }
+  resetBudget()
+  const run = startRun('verify-pleno-claims-engine', {
+    mode: 'recortar',
+    getStats: getRunStats,
+    model: MODEL,
+  })
+  let overlay = loadOverlay()
+  const { pedidos, targets } = retractacionesDelMotor(args.ids, overlay)
+  process.stderr.write(
+    `[verify-engine] --recortar: ${targets.length} de ${pedidos} retractaciones del motor, sin llamadas\n`,
+  )
+
+  // La versión de hoy primero; `decidirRecorte` elige por el contenido.
+  const versiones = [ENGINE_REASON_VERSION, ...ENGINE_REASON_VERSIONES_ANTERIORES]
+  const pending: ApplyEntry[] = []
+  const recortadas: string[] = []
+  const dejadas = new Map<MotivoSinRecorte, string[]>()
+  for (const id of targets) {
+    run.attempt()
+    const razonamientos: string[] = []
+    for (const promptVersion of versiones) {
+      const r = llmCacheGet({
+        promptVersion,
+        schema: EngineReasoningSchema,
+        input: { claimId: id },
+      })
+      if (typeof r?.reasoning === 'string') razonamientos.push(r.reasoning)
+    }
+    const d = decidirRecorte({ claimId: id, entrada: overlay.entries[id], razonamientos })
+    if (d.accion === 'recortar') {
+      pending.push(d.entrada)
+      recortadas.push(id)
+      run.judge()
+      run.record('recortada')
+    } else {
+      dejadas.set(d.porque, [...(dejadas.get(d.porque) ?? []), id])
+      run.skip(MOTIVO_SIN_RECORTE_EN_EL_PARTE[d.porque])
+    }
+  }
+
+  // Cero llamadas por construcción. Si el cliente contó alguna, algo cambió por
+  // debajo de esta función, y no se escribe nada de lo recortado.
+  const llamadas = getRunStats().calls
+  if (llamadas > 0) {
+    process.stderr.write(
+      `[verify-engine] --recortar: el cliente contó ${llamadas} llamada(s) — no se escribe nada\n`,
+    )
+    process.exitCode = 1
+  } else if (!args.dryRun && pending.length > 0) {
+    overlay = applyOverlayEntries(overlay, pending, new Date().toISOString())
+    writeOverlay(overlay)
+    await rebuildVerified({ refreshChunks: true })
+  }
+
+  const nDejadas = targets.length - recortadas.length
+  const porMotivo = [...dejadas]
+    .map(([motivo, ids]) => `${MOTIVO_SIN_RECORTE_EN_EL_PARTE[motivo]} ${ids.length}`)
+    .join(' · ')
+  process.stderr.write(
+    `[verify-engine] --recortar: recortadas ${recortadas.length} · dejadas ${nDejadas}` +
+      `${porMotivo ? ` (${porMotivo})` : ''}${args.dryRun ? ' (DRY-RUN, nothing written)' : ''}\n`,
+  )
+  for (const [motivo, ids] of dejadas) {
+    process.stderr.write(
+      `  ${MOTIVO_SIN_RECORTE_EN_EL_PARTE[motivo]}:\n    ${ids.join('\n    ')}\n`,
+    )
   }
 
   const { manifest, findings } = run.finish({ exitCode: process.exitCode ? 1 : 0 })

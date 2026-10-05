@@ -126,10 +126,11 @@ describe('decidirRecorte, sobre filas reales', () => {
   })
 
   it('sólo recorta retractaciones del motor', () => {
-    expect(decidir('frase', enCache('frase'), undefined as unknown as OverlayEntry)).toEqual({
-      accion: 'dejar',
-      porque: 'no-es-del-motor',
-    })
+    // Directo y no con `decidir`: su parámetro por defecto tomaría `undefined`
+    // por «la entrada de verdad».
+    expect(
+      decidirRecorte({ claimId: ID.frase, entrada: undefined, razonamientos: enCache('frase') }),
+    ).toEqual({ accion: 'dejar', porque: 'no-es-del-motor' })
     const deCurador = { ...entrada('frase'), source: 'curator-downgrade' } as OverlayEntry
     expect(decidir('frase', enCache('frase'), deCurador)).toEqual({
       accion: 'dejar',

@@ -480,6 +480,13 @@ Emite el JSON. Si ningún candidato encaja: verdict=sin-datos, evidence=[].
 export const ENGINE_REASON_VERSION = 'engine-reason-v2'
 export const ENGINE_EXTRACT_VERSION = 'engine-extract-v1'
 export const ENGINE_ARGUE_VERSION = 'engine-argue-v2'
+// Las versiones anteriores del prompt de razonar, de la más nueva a la más
+// vieja. Sus respuestas siguen en `.llm-cache` bajo su clave, y algunas son las
+// que produjeron una explicación publicada: las de la pasada del 02-08-2026, de
+// v1. Sólo las LEE el recorte (`verify:pleno-claims:engine -- --recortar`), que
+// prueba por el contenido cuál produjo cada explicación; ninguna pasada vuelve a
+// llamar con ellas.
+export const ENGINE_REASON_VERSIONES_ANTERIORES = ['engine-reason-v1'] as const
 
 interface EngineClaimLike {
   type: string
