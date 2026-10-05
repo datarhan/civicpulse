@@ -135,6 +135,13 @@
       "reason": "La nota de contraste habla de la CITA («no teniu pavelló d'escoto»): el cotejo automático no encontró nada que confirme ni desmienta que el municipio no tenga el pabellón. El contrato que lista «Contra qué se cotejó» es el de la Fase I (movimiento de tierras y muro de contención), y el sumario de la ficha ya dice que documenta la preparación del terreno y no el pabellón, cuyo estado de ejecución queda por documentar. La nota y la ficha dicen lo mismo. Releído y descartado por encargo del operador (04-10-2026).",
       "editor": "claude-opus-5.5",
       "at": "2026-10-04"
+    },
+    {
+      "route": "/lab-health",
+      "quote": "20 abr 2026\n0 filas\n175 B\nfresco",
+      "reason": "Lectura aplanada de dos filas. «20 abr 2026 · 0 filas · 175 B» es la fila de quejas-responses.json, cuya pastilla —primera celda de SU fila— decía «sin refresco»; el «fresco» que sigue es la pastilla de la fila siguiente, quejas.json (refrescado el 04-10-2026). Calculado con freshnessTone + expectationFor sobre los ficheros publicados el 05-10-2026: crit y ok. La página no se contradecía. Lo que sí era real se arregla en el mismo cambio: quejas-responses.json sólo cambia cuando se publica una réplica y no tenía plazo propio, así que contaba en «sin refresco»; ahora es curated a 365 días en snapshot-cadence.ts. Descartado por encargo del coordinador de sesiones (05-10-2026).",
+      "editor": "claude-opus-5.5",
+      "at": "2026-10-05"
     }
   ]
 }

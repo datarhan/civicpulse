@@ -12,7 +12,10 @@ import { Concesion } from '../components/eficiencia/Concesion'
 import { CompetenciaDelegada } from '../components/eficiencia/CompetenciaDelegada'
 import { GESTION, MOTIVO } from '../components/eficiencia/vocabulario'
 import { leerIndicador, lecturaVisible, chipDeclaracion } from '../scraper/indicador-lectura'
-import { SALVEDAD_DENOMINADOR_CONGELADO } from '../scraper/indicador-lectura'
+import {
+  SALVEDAD_DENOMINADOR_CONGELADO,
+  paresDeclaracionCongelada,
+} from '../scraper/indicador-lectura'
 import { useIndicadores } from '../hooks/useIndicadores'
 import { useCompetencias, indexarCompetencias, useNombresVisibles } from '../hooks/useCompetencias'
 import { useOfficials } from '../hooks/useOfficials'
@@ -307,11 +310,11 @@ export default function ServicioDetalle() {
                       lineHeight: 1.55,
                     }}
                   >
+                    {/* El grupo lo nombra la misma frase que la salvedad:
+                        «38 de 57 comparables» junto a un «n=43» eran dos
+                        universos con un nombre (revisión del 05-10-2026). */}
                     No es una rareza local:{' '}
-                    <strong className="mono">
-                      {i.declaracion.paresCongelados} de {i.declaracion.paresMedibles}
-                    </strong>{' '}
-                    comparables medibles hacen lo mismo con esta misma cifra.
+                    {paresDeclaracionCongelada(i.declaracion, i.pares?.n ?? null)}.
                   </p>
                 )}
               </div>
