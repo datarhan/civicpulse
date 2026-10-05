@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T10:56:16.105Z",
+  "generatedAt": "2026-10-05T04:48:01.175Z",
   "windowDays": 30,
   "articles": [
     {
@@ -732,47 +732,13 @@
         "opinionFraction": 0
       },
       "score": 1
-    },
-    {
-      "articleId": "17rvqvc",
-      "articleFingerprint": "v97ua0",
-      "outlet": "Periòdic del Camp de Túria",
-      "outletHost": "infoturia.com",
-      "url": "https://www.infoturia.com/riba-roja-de-turia/85963-riba-roja-executa-a-bon-ritme-les-inversions-hidrauliques-en-el-marc-de-la-reconstruccio-de-la-dana.html",
-      "date": "2026-09-04T14:48:02.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
-    },
-    {
-      "articleId": "4gx8es",
-      "articleFingerprint": "1n28ylo",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-ejecuta-a-buen-ritmo-las-inversiones-hidr%C3%A1ulicas-en-el-marco-de-la-reconstrucci%C3%B3n-tras-la-dana",
-      "date": "2026-09-04T10:56:54.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 18,
+      "articleCount": 17,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 1,
@@ -780,14 +746,14 @@
         "sin-datos": 8,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.61,
+      "meanTrustScore": 2.65,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
     {
       "outlet": "Periòdic del Camp de Túria",
       "outletHost": "infoturia.com",
-      "articleCount": 9,
+      "articleCount": 8,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -795,7 +761,7 @@
         "sin-datos": 15,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.44,
+      "meanTrustScore": 2.5,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -921,7 +887,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "52812b341541",
+    "plenos-agendas.json": "ec0084f0a517",
     "press-claims-verified.json": "5f440b22045d",
     "press.json": "a905d8f90425",
     "promises.json": "69c1f099a4a5"
