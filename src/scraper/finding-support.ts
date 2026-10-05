@@ -430,7 +430,7 @@ export function buildSupportQueue(
       verdictInvalidatedBy,
       correctionCommand:
         `${CORRECTION_CLI} -- ${f.id} --field summary ` +
-        `--new "<sumario corregido>" --reason "${HUECOS.motivo}" --editor "<tu nombre>"`,
+        `--new "${HUECOS.sumario}" --reason "${HUECOS.motivo}" --editor "<tu nombre>"`,
     }
   })
 
