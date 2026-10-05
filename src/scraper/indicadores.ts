@@ -35,8 +35,9 @@
 import { programaCe4CasaCon, type Ce4Row, type CesteRow, type ModoGestion } from './coste-efectivo'
 import { crearPrng, semillaDesde } from './prng'
 import { SERVICIOS, type ServicioDef, type Divisor } from './indicador-registry'
-import { medirDeclaracionCongelada } from './declaracion-congelada'
-import { SALVEDAD_DENOMINADOR_CONGELADO } from './indicador-lectura'
+import { medirDeclaracionCongelada, MIN_ENTREGAS_CONGELADA } from './declaracion-congelada'
+import { SALVEDAD_DENOMINADOR_CONGELADO, paresDeclaracionCongelada } from './indicador-lectura'
+import { cruzaMediana } from './indicador-areas'
 
 /**
  * El escalón de Hatry, y la razón de que este panel no sea otro cuadro de
@@ -223,6 +224,12 @@ export interface DeclaracionIndicador {
   paresCongelados: number
   /** Comparables con serie suficiente para poder decirlo. */
   paresMedibles: number
+  /**
+   * Entregas que hacen falta para contar como «serie suficiente». Viaja con el
+   * dato para que la ficha diga el umbral sin importar `declaracion-congelada`,
+   * que arrastra `xlsx` al navegador.
+   */
+  minEntregas: number
 }
 
 export interface Indicador {
@@ -577,6 +584,7 @@ function medirDeclaracion(
     denominador: traducir(den),
     paresCongelados: deLosPares.filter((s) => s.congelada).length,
     paresMedibles: deLosPares.length,
+    minEntregas: MIN_ENTREGAS_CONGELADA,
   }
 }
 
@@ -593,11 +601,14 @@ function medirDeclaracion(
  * - **Sólo el coste congelado.** Raro, y merece constar: el numerador es el que
  *   se quedó atrás.
  */
-function caveatDeclaracion(d: DeclaracionIndicador, def: ServicioDef): string | null {
+function caveatDeclaracion(
+  d: DeclaracionIndicador,
+  def: ServicioDef,
+  nComparables: number | null,
+): string | null {
   const conPares =
     d.paresMedibles > 0
-      ? ` No es una rareza local: ${d.paresCongelados} de ${d.paresMedibles} municipios comparables ` +
-        'hacen lo mismo con esta misma cifra (regla 8).'
+      ? ` No es una rareza local: ${paresDeclaracionCongelada(d, nComparables)} (regla 8).`
       : ' (regla 8).'
 
   if (d.denominador.congelada && d.numerador.congelada) {
@@ -894,7 +905,15 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
     }
     if (resumen && valor !== null && resumen.mediana > 0) {
       const razon = valor / resumen.mediana
-      if (razon > DIVERGENCIA_EXTREMA || razon < 1 / DIVERGENCIA_EXTREMA) {
+      // Sólo la PROSA mira la banda; `DIVERGENCIA_EXTREMA` sigue bajando la
+      // confianza en `indicador-desviacion.ts` igual que antes. Con una
+      // dispersión ancha, la mitad de la mediana puede caer en mitad del grupo:
+      // en pavimentación (×0,5) el percentil es 44 y su banda, 30–58. Decir
+      // «muy por debajo» al lado de «no se distingue del grupo» era la ficha
+      // desmintiéndose (revisión lectora del 05-10-2026). Sin banda (`null`)
+      // la frase se queda: una salvedad que sobra debilita, una que falta no.
+      const divergeEnLaPosicion = cruzaMediana(resumen) !== true
+      if (divergeEnLaPosicion && (razon > DIVERGENCIA_EXTREMA || razon < 1 / DIVERGENCIA_EXTREMA)) {
         caveats.push(
           `Esta cifra queda ${razon > 1 ? 'muy por encima' : 'muy por debajo'} de la mediana de sus pares ` +
             // `toFixed` escribe el punto decimal inglés, y esta frase se publica
@@ -931,7 +950,7 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
     // ── ¿Vuelve alguien a medir esto? ────────────────────────────────────────
     const declaracion = medirDeclaracion(municipio.filas, pares.filas, programa)
     if (declaracion) {
-      const frase = caveatDeclaracion(declaracion, def)
+      const frase = caveatDeclaracion(declaracion, def, resumen?.n ?? null)
       if (frase) caveats.push(frase)
     }
 

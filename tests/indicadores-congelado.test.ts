@@ -19,8 +19,12 @@
  * dato y no de una frase escrita a mano que se quedará atrás.
  */
 import { describe, it, expect } from 'vitest'
-import { construirIndicadores } from '../src/scraper/indicadores'
-import { SALVEDAD_DENOMINADOR_CONGELADO } from '../src/scraper/indicador-lectura'
+import { construirIndicadores, DIVERGENCIA_EXTREMA } from '../src/scraper/indicadores'
+import {
+  SALVEDAD_DENOMINADOR_CONGELADO,
+  paresDeclaracionCongelada,
+} from '../src/scraper/indicador-lectura'
+import { cruzaMediana } from '../src/scraper/indicador-areas'
 import { SERVICIOS } from '../src/scraper/indicador-registry'
 import { MIN_ENTREGAS_CONGELADA } from '../src/scraper/declaracion-congelada'
 import { detectarDesviaciones, RECHAZOS } from '../src/scraper/indicador-desviacion'
@@ -254,5 +258,74 @@ describe('scraper/indicador-desviacion — el movimiento necesita un denominador
     // indistinguible de una que no corrió.
     expect(RECHAZOS).toContain('denominador-congelado')
     expect(det.rechazos['denominador-congelado']).toBeGreaterThan(0)
+  })
+})
+
+describe('scraper/indicadores — el grupo de cada cifra, y la salvedad del ×2', () => {
+  it('la salvedad de la regla 8 dice de qué grupo es su «X de Y»', () => {
+    // «38 de 57 comparables» al lado de un «n=43» eran dos universos con el
+    // mismo nombre (revisión lectora del 05-10-2026). La frase dice el suyo.
+    const residuos = byId(construir(propias), 'a1621-coste-unitario')
+    const d = residuos.declaracion!
+    expect(d.paresMedibles).toBeGreaterThan(0)
+    expect(d.minEntregas).toBe(MIN_ENTREGAS_CONGELADA)
+    const texto = residuos.caveats.join(' ')
+    expect(texto).toContain(paresDeclaracionCongelada(d, residuos.pares?.n ?? null))
+    expect(texto).toContain(`${d.paresCongelados} de los ${d.paresMedibles} municipios`)
+    expect(texto).toContain(`en al menos ${MIN_ENTREGAS_CONGELADA} entregas`)
+  })
+
+  it('nombra la diferencia con los comparables de coste sólo cuando la hay', () => {
+    const d = { paresCongelados: 38, paresMedibles: 57, minEntregas: 4 }
+    expect(paresDeclaracionCongelada(d, 43)).toMatch(/cualquier modo de gestión.*43 comparables/)
+    expect(paresDeclaracionCongelada(d, 57)).not.toMatch(/cualquier modo/)
+    expect(paresDeclaracionCongelada(d, null)).not.toMatch(/cualquier modo/)
+  })
+
+  /** Pares con un cociente dado el último año; la unidad, fija en 1.000. */
+  function conPares(valores: number[], propio: number) {
+    const filas = valores.flatMap((v, k) =>
+      ANIOS.map((a) => fila(`46${String(500 + k)}`, a, v * 1000, 1000)),
+    )
+    const s = construirIndicadores({
+      municipio: {
+        ine: '46214',
+        nombre: 'Riba-roja de Túria',
+        filas: ANIOS.map((a) => fila('46214', a, propio * 1000, 1000)),
+      },
+      pares: {
+        conjunto: 'cv-15k-40k',
+        miembros: [...new Set(filas.map((f) => f.ine))].map((ine) => ({
+          ine,
+          nombre: `Municipio ${ine}`,
+          poblacion: 20000,
+        })),
+        filas,
+      },
+      citaUrl: 'https://www.hacienda.gob.es/',
+    })
+    return byId(s, 'a1621-coste-unitario')
+  }
+
+  it('calla «muy por debajo» cuando la banda del percentil cruza la mediana', () => {
+    // Dispersión ancha: la mitad de la mediana cae en mitad del grupo, como en
+    // pavimentación (×0,5, percentil 44, banda 30–58).
+    const anchos = Array.from({ length: 20 }, (_, k) => 0.05 * 1.35 ** k)
+    const orden = [...anchos].sort((a, b) => a - b)
+    const mediana = (orden[9] + orden[10]) / 2
+    const i = conPares(anchos, mediana * 0.45)
+    // Midió algo: hay pares, el cociente está bajo la mitad y la banda cruza.
+    expect(i.pares).toBeTruthy()
+    expect(i.valor! / i.pares!.mediana).toBeLessThan(1 / DIVERGENCIA_EXTREMA)
+    expect(cruzaMediana(i.pares)).toBe(true)
+    expect(i.caveats.some((c) => /mediana de sus pares/.test(c))).toBe(false)
+  })
+
+  it('la mantiene cuando la posición sí se aparta del grupo', () => {
+    const juntos = Array.from({ length: 20 }, (_, k) => 1 + k * 0.01)
+    const i = conPares(juntos, 0.3)
+    expect(i.valor! / i.pares!.mediana).toBeLessThan(1 / DIVERGENCIA_EXTREMA)
+    expect(cruzaMediana(i.pares)).toBe(false)
+    expect(i.caveats.some((c) => /muy por debajo de la mediana de sus pares/.test(c))).toBe(true)
   })
 })

@@ -2702,7 +2702,15 @@ export default function Metodologia() {
               Una entrega a más del doble o menos de la mitad de la mediana de sus pares ese año se
               publica, en escala y en la línea, con una salvedad de comparabilidad: una diferencia
               así suele venir de cómo declara cada ayuntamiento el denominador, no de gestionar
-              mejor o peor.
+              mejor o peor.{' '}
+              {/* Revisión lectora del 05-10-2026: pavimentación decía «muy por
+                  debajo (×0,5)» con el percentil 44 y la banda 30–58 en la
+                  misma tarjeta. Sólo cambia la frase; la confianza de una
+                  desviación sigue mirando el cociente. */}
+              La frase no aparece cuando la banda plausible del percentil cruza la mediana: con
+              pares muy dispersos, la mitad de la mediana puede quedar en mitad del grupo, y decir
+              «muy por debajo» o «muy por encima» contradiría a la propia tarjeta. La confianza con
+              la que una cifra así puede proponerse como desviación sigue bajando igual.
             </li>
             <li>
               Un cociente a más de veinte veces —o menos de una veinteava parte— de la mediana de
@@ -2711,7 +2719,10 @@ export default function Metodologia() {
             </li>
             <li>
               Un denominador cuenta como congelado cuando sus últimas cuatro entregas o más traen el
-              mismo valor hasta el cuarto decimal; repetir dos años es normal y no cuenta.
+              mismo valor hasta el cuarto decimal; repetir dos años es normal y no cuenta. Cuántos
+              pares hacen lo mismo se cuenta sobre los municipios valencianos de tamaño parecido que
+              declaran esa cifra en al menos cuatro entregas, con cualquier modo de gestión, y la
+              tarjeta lo dice: no es el grupo con el que se compara el coste.
             </li>
             <li>
               Las series propias se deflactan con la media anual del IPC general (INE) al año de la
@@ -2821,10 +2832,11 @@ export default function Metodologia() {
           <strong>Límites conocidos.</strong> Las magnitudes las rellena cada ayuntamiento, y no
           todos entienden lo mismo por «superficie urbanizada» o «superficie con servicio de
           limpieza»: Riba-roja declara 58,01 km² urbanizados, prácticamente todo su término. Cuando
-          una cifra se aleja más del doble de la mediana de sus pares, la tarjeta lo advierte,
-          porque una diferencia así suele venir de cómo se declara y no de cómo se gestiona. Toda
-          cifra publicada lleva la celda exacta de la que sale, y <code>check:indicadores</code>{' '}
-          comprueba que resuelve antes de cada despliegue.
+          una cifra se aleja más del doble de la mediana de sus pares —y su puesto en el grupo se
+          distingue de la mitad—, la tarjeta lo advierte, porque una diferencia así suele venir de
+          cómo se declara y no de cómo se gestiona. Toda cifra publicada lleva la celda exacta de la
+          que sale, y <code>check:indicadores</code> comprueba que resuelve antes de cada
+          despliegue.
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>De una cifra que se sale a un hallazgo firmado.</strong> Un proceso automático
