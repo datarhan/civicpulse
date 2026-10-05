@@ -9,6 +9,22 @@
  * cite-grounding (parseCite + looselyContains): a cited value must literally
  * appear in the candidate snippet, so evidence can't be fabricated.
  *
+ * Dos reglas más desde el 05-10-2026, medidas en las 52 retractaciones que #233
+ * dejó como «ya no la retractaría» (tests/fixtures/motor-sin-respaldo_2026-10-04.json):
+ *
+ *   · Si el razonamiento concluye que ningún candidato respalda la declaración
+ *     (`conclusionSinRespaldo`), el veredicto es `sin-datos` y la extracción no
+ *     se pide. Su prompt llama `parcial` a lo «relacionado temáticamente», y en
+ *     36 de las 52 convertía esa conclusión en un `parcial`.
+ *   · Un respaldo se ancla en un VALOR del registro —importe, estado, órgano,
+ *     fecha—, no en su título (`dondeAncla`). El título está siempre, literal,
+ *     en el snippet: 61 de las 62 citas de las 52 lo copiaban seguido de la nota
+ *     del modelo («relacionado temáticamente, pero no acredita…»), y el anclaje
+ *     pasaba sin probar nada más que el índice.
+ *
+ * `sinDatosPorque` dice cuál de las salidas dio el `sin-datos`, porque sólo dos
+ * las concluye el modelo (decision-del-motor.ts).
+ *
  * See docs/superpowers/specs/2026-06-24-factcheck-rebuild-p3-verdict-engine-design.md.
  */
 import type { PlenoClaim } from './pleno-claim'
@@ -18,10 +34,12 @@ import type {
   ClaimVerdict,
   ClaimVerification,
 } from './claim-verifier'
+import { NOTAS_DEL_IMPORTE } from './claim-verifier'
 import { shouldSkipLlmVerification, parseCite, looselyContains } from './claim-verifier-llm'
 import { stripSimilarityAnnotation } from '../llm/candidate-annotation'
 import { corpusDeEvidencia } from './claim-verdicts'
 import { charlaDeTarea } from './charla-de-tarea'
+import { conclusionSinRespaldo } from './conclusion-sin-respaldo'
 
 /**
  * El razonamiento habla de la tarea del modelo y no de la declaración: no es
@@ -158,12 +176,79 @@ export interface EngineDeps {
   ) => Promise<boolean>
 }
 
+/**
+ * Por qué el motor devolvió `sin-datos`. Las dos primeras las concluye el
+ * modelo; las demás las pone una regla de aquí sobre algo que el modelo dio por
+ * respaldado, y su razonamiento —que va de resumen— defiende ese respaldo.
+ *
+ *   · `razonamiento` — el razonamiento concluye que ningún candidato la
+ *     respalda (`conclusionSinRespaldo`); la extracción no se pide.
+ *   · `extraccion` — lo dice la extracción.
+ *   · `solo-el-titulo` — la extracción ve respaldo y sus citas existen, pero
+ *     sólo en el título del registro: ningún valor suyo lo sostiene.
+ *   · `cita-sin-anclar` — la extracción ve respaldo y ninguna cita está en el
+ *     registro que nombra: índice fuera, sin forma de cita, un valor que no
+ *     está, o sólo una nota nuestra.
+ *   · `consistencia` — la puerta PCC lo tumbó.
+ */
+export type SinDatosPorque =
+  'razonamiento' | 'extraccion' | 'solo-el-titulo' | 'cita-sin-anclar' | 'consistencia'
+
 export interface EngineResult {
   verification: ClaimVerification
   upgraded: boolean
+  /** Sólo con `sin-datos`: de qué salida viene. */
+  sinDatosPorque?: SinDatosPorque
 }
 
 const CONF = { verificado: 0.9, parcial: 0.6, 'sin-datos': 0.2 } as const
+
+/** Cómo junta la lista corta las partes de un snippet: `título · €importe · estado`. */
+const SEPARADOR = ' · '
+
+const sinNotas = (t: string) =>
+  NOTAS_DEL_IMPORTE.reduce((acc, nota) => acc.split(nota).join(' '), t)
+
+/**
+ * Dónde está, en el snippet de un candidato, el valor que cita el modelo: en un
+ * VALOR del registro, sólo en su TÍTULO, o en ninguna parte.
+ *
+ * La lista corta compone el snippet como `título · €importe · estado` (o
+ * `título · €importe · órgano`, o `partido «cita» · fecha · status=…`) y lo
+ * corta a 230 caracteres: lo primero es siempre lo que nombra el registro, y lo
+ * que sigue, sus valores. Las notas que la lista corta pega al importe
+ * (`NOTAS_DEL_IMPORTE`) son nuestras, no del registro: no cuentan ni en lo
+ * citado ni en el snippet.
+ */
+export function dondeAncla(snippet: string, valor: string): 'valor' | 'titulo' | null {
+  const citado = sinNotas(valor)
+  const [titulo, ...valores] = snippet.split(SEPARADOR)
+  if (valores.some((v) => looselyContains(sinNotas(v), citado))) return 'valor'
+  if (looselyContains(titulo, citado)) return 'titulo'
+  return null
+}
+
+/** Un `sin-datos` del motor, con su explicación y su porqué. */
+function sinDatos(
+  claimId: string,
+  reasoning: string,
+  evidence: ClaimEvidence[],
+  sinDatosPorque: SinDatosPorque,
+): EngineResult {
+  return {
+    verification: {
+      claimId,
+      verdict: 'sin-datos',
+      summary: recortarResumen(reasoning),
+      evidence,
+      checkedAgainst: corpusDeEvidencia(evidence),
+      derivedBy: ['verdict-engine'],
+      confidence: CONF['sin-datos'],
+    },
+    upgraded: false,
+    sinDatosPorque,
+  }
+}
 
 export async function verifyClaimWithEngine(
   inputs: { claim: PlenoClaim; candidates: CandidateShortlist[] },
@@ -182,16 +267,31 @@ export async function verifyClaimWithEngine(
   }
   const charla = charlaDeTarea(reasoning)
   if (charla) throw new RazonamientoConCharla(inputs.claim.id, charla)
+  // Si el razonamiento concluye que nada la respalda, ése es el juicio: la
+  // extracción no puede deshacerlo, así que ni se le pide.
+  if (conclusionSinRespaldo(reasoning)) {
+    return sinDatos(inputs.claim.id, reasoning, [], 'razonamiento')
+  }
   const ext = await deps.extractFn(reasoning, inputs.claim, inputs.candidates)
+  // Lo que afirma la extracción, si afirma algo. Nunca `contradicho`.
+  const afirma = ext.verdict === 'verificado' || ext.verdict === 'parcial' ? ext.verdict : null
 
   // Cite-grounding (reuse P1): index in range + value literally in the snippet.
-  let evidence: ClaimEvidence[] = []
+  const evidence: ClaimEvidence[] = []
+  let soloElTitulo = false
   for (const c of ext.cites) {
     if (c.candidateIndex < 0 || c.candidateIndex >= inputs.candidates.length) continue
     const cand = inputs.candidates[c.candidateIndex]
     const cite = parseCite(c.snippet)
     if (!cite) continue
-    if (!looselyContains(cand.snippet, cite.value)) continue
+    const donde = dondeAncla(cand.snippet, cite.value)
+    if (!donde) continue
+    // El título dice qué registro es: basta para nombrar lo que se cotejó (una
+    // extracción `sin-datos`), no para sostener lo que se afirma.
+    if (afirma && donde === 'titulo') {
+      soloElTitulo = true
+      continue
+    }
     evidence.push({
       kind: cand.kind,
       ref: cand.ref,
@@ -208,19 +308,21 @@ export async function verifyClaimWithEngine(
   }
 
   // NEI-by-default + never contradicho.
-  let verdict: ClaimVerdict =
-    ext.verdict === 'verificado' || ext.verdict === 'parcial' || ext.verdict === 'sin-datos'
-      ? ext.verdict
-      : 'sin-datos'
-  if (evidence.length === 0) verdict = 'sin-datos'
+  if (!afirma) return sinDatos(inputs.claim.id, reasoning, evidence, 'extraccion')
+  if (evidence.length === 0) {
+    return sinDatos(
+      inputs.claim.id,
+      reasoning,
+      [],
+      soloElTitulo ? 'solo-el-titulo' : 'cita-sin-anclar',
+    )
+  }
+  const verdict = afirma
 
   // PCC consistency gate — only for would-be upgrades.
-  if ((verdict === 'verificado' || verdict === 'parcial') && deps.consistencyFn) {
+  if (deps.consistencyFn) {
     const ok = await deps.consistencyFn(inputs.claim, inputs.candidates, verdict)
-    if (!ok) {
-      verdict = 'sin-datos'
-      evidence = []
-    }
+    if (!ok) return sinDatos(inputs.claim.id, reasoning, [], 'consistencia')
   }
 
   return {
@@ -233,6 +335,6 @@ export async function verifyClaimWithEngine(
       derivedBy: ['verdict-engine'],
       confidence: CONF[verdict],
     },
-    upgraded: verdict !== 'sin-datos' && evidence.length > 0,
+    upgraded: true,
   }
 }
