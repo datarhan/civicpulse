@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T17:23:05.282Z",
+  "generatedAt": "2026-10-05T06:45:20.453Z",
   "version": "1",
   "plenoId": "1tgd1h4",
   "plenoDate": "2024-07-29",
@@ -453,7 +453,7 @@
       "verification": {
         "claimId": "1tgd1h4-007-cit-53c389",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a un procedimiento sancionador que debe ajustarse a la Ley 39/2015, de 1 de octubre, pero ninguno de los candidatos presentados menciona esta ley ni se relaciona directamente con el procedimiento sancionador en cuestión. Los contratos listados se centran en servicios de mant",
+        "summary": "La afirmación se refiere a un procedimiento sancionador que debe ajustarse a la Ley 39/2015, de 1 de octubre, pero ninguno de los candidatos presentados menciona esta ley ni se relaciona directamente con el procedimiento sancionador en cuestión.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -515,7 +515,7 @@
       "verification": {
         "claimId": "1tgd1h4-008-cit-a0e525",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a un artículo específico sobre el procedimiento sancionador, que menciona la Ley 39/2015, de 1 de octubre. Sin embargo, los candidatos presentados se centran en contratos de servicios diversos, como mantenimiento de señalización, gestión de actividades deportivas o socorrism",
+        "summary": "La afirmación se refiere a un artículo específico sobre el procedimiento sancionador, que menciona la Ley 39/2015, de 1 de octubre.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -975,7 +975,7 @@
       "verification": {
         "claimId": "1tgd1h4-014-cit-18380b",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la concentración de terrazas en zonas peatonales y de juegos infantiles, sugiriendo que esto podría alterar el destino natural de dichas áreas. Sin embargo, los contratos presentados por los candidatos se centran exclusivamente en la instalación o renovación de juegos infa",
+        "summary": "La afirmación se refiere a la concentración de terrazas en zonas peatonales y de juegos infantiles, sugiriendo que esto podría alterar el destino natural de dichas áreas.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1773,7 +1773,7 @@
       "verification": {
         "claimId": "1tgd1h4-022-cit-c1aad8",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona un intento de dar mayor valor al informe policial, pero no proporciona datos específicos sobre contratos o acciones que respalden esta intención. Los candidatos listados se refieren a contratos de servicios y suministros relacionados con la policía, como la adquisición de un v",
+        "summary": "La afirmación menciona un intento de dar mayor valor al informe policial, pero no proporciona datos específicos sobre contratos o acciones que respalden esta intención.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1804,7 +1804,7 @@
       "verification": {
         "claimId": "1tgd1h4-023-cit-81e3e1",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a un cambio en el articulado que otorga mayor valor al informe policial en el contexto de la autorización de terrazas. Sin embargo, los candidatos presentados no hacen referencia a informes policiales ni a la autorización de terrazas, sino que se centran en contratos de obra",
+        "summary": "La afirmación se refiere a un cambio en el articulado que otorga mayor valor al informe policial en el contexto de la autorización de terrazas.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -2433,7 +2433,7 @@
       "verification": {
         "claimId": "1tgd1h4-030-cit-bafd67",
         "verdict": "sin-datos",
-        "summary": "La afirmación se centra en el derecho de utilización de la vía pública en armonía, pero los contratos presentados por los candidatos no abordan directamente este concepto. Aunque hay contratos relacionados con la movilidad y la accesibilidad, como el de mejora de accesibilidad en la Avenida de la Pa",
+        "summary": "La afirmación se centra en el derecho de utilización de la vía pública en armonía, pero los contratos presentados por los candidatos no abordan directamente este concepto.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -2465,7 +2465,7 @@
       "verification": {
         "claimId": "1tgd1h4-030-cit-094f64",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la adecuación de una norma a los principios de buena regulación según la Ley 39/2015, de 1 de octubre. Sin embargo, los candidatos presentados no contienen referencias directas a esta ley ni a la fecha específica de 2015. Los documentos mencionados se centran en contratos ",
+        "summary": "La afirmación se refiere a la adecuación de una norma a los principios de buena regulación según la Ley 39/2015, de 1 de octubre. Sin embargo, los candidatos presentados no contienen referencias directas a esta ley ni a la fecha específica de 2015.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -2646,7 +2646,7 @@
       "verification": {
         "claimId": "1tgd1h4-033-cit-4d85c6",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a un servicio de establecimientos de hostelería y restauración con el objetivo de ampliar la actividad en espacios públicos. Los candidatos presentados se centran en concesiones administrativas para la explotación de bares municipales en diferentes ubicaciones, lo que podría",
+        "summary": "La afirmación se refiere a un servicio de establecimientos de hostelería y restauración con el objetivo de ampliar la actividad en espacios públicos.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -3822,7 +3822,7 @@
       "verification": {
         "claimId": "1tgd1h4-051-cit-21f185",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la ubicación de un cenador o, en su defecto, a la colocación de algo frente a la fachada de un local. Sin embargo, los contratos presentados por los candidatos no mencionan específicamente la instalación de un cenador ni su ubicación en relación a una fachada. Los contrato",
+        "summary": "La afirmación se refiere a la ubicación de un cenador o, en su defecto, a la colocación de algo frente a la fachada de un local. Sin embargo, los contratos presentados por los candidatos no mencionan específicamente la instalación de un cenador ni su ubicación en relación a una fachada.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -4084,7 +4084,7 @@
       "verification": {
         "claimId": "1tgd1h4-055-cit-2a340f",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona específicamente el derecho del Ayuntamiento a revocar la autorización para la instalación de una terraza, lo cual implica un contexto de regulación y control sobre las concesiones de uso del espacio público. Sin embargo, los candidatos presentados se centran en concesiones adm",
+        "summary": "La afirmación menciona específicamente el derecho del Ayuntamiento a revocar la autorización para la instalación de una terraza, lo cual implica un contexto de regulación y control sobre las concesiones de uso del espacio público.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -4203,7 +4203,7 @@
       "verification": {
         "claimId": "1tgd1h4-055-cit-8aa46e",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la falta de un seguro de responsabilidad civil que cubra daños derivados de la ocupación de la vía pública. Sin embargo, los candidatos presentados se refieren a contratos de seguros de responsabilidad civil del Ayuntamiento de Riba-roja de Túria, pero no hay evidencia de ",
+        "summary": "La afirmación se refiere a la falta de un seguro de responsabilidad civil que cubra daños derivados de la ocupación de la vía pública.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -4264,7 +4264,7 @@
       "verification": {
         "claimId": "1tgd1h4-056-cit-f2c5a7",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la falta de un seguro de responsabilidad civil que cubra daños o perjuicios relacionados con la ocupación de la vía pública. Sin embargo, los candidatos presentados se refieren a contratos de seguros de responsabilidad civil del Ayuntamiento de Riba-roja de Túria, pero no ",
+        "summary": "La afirmación se refiere a la falta de un seguro de responsabilidad civil que cubra daños o perjuicios relacionados con la ocupación de la vía pública.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -4295,7 +4295,7 @@
       "verification": {
         "claimId": "1tgd1h4-056-cit-5ad844",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la desocupación de la vía pública en caso de que la autorización de una terraza coincida con un acto de interés general o tradicional. Sin embargo, los candidatos presentados se centran en concesiones para la explotación de bares y servicios de limpieza o mantenimiento de ",
+        "summary": "La afirmación se refiere a la desocupación de la vía pública en caso de que la autorización de una terraza coincida con un acto de interés general o tradicional.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -5231,7 +5231,7 @@
       "verification": {
         "claimId": "1tgd1h4-069-cit-4caef8",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere específicamente a la forma en que se debe realizar la señalización horizontal, mencionando una línea amarilla longitudinal que delimita el espacio de las terrazas. Sin embargo, los contratos presentados no especifican la ejecución de esta señalización de acuerdo a la descrip",
+        "summary": "La afirmación se refiere específicamente a la forma en que se debe realizar la señalización horizontal, mencionando una línea amarilla longitudinal que delimita el espacio de las terrazas.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -5441,7 +5441,7 @@
       "verification": {
         "claimId": "1tgd1h4-073-cit-78cf61",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a que \"la terraza no podrá afectar los accesos a locales o edificios contiguos\", lo que implica una regulación específica sobre la instalación de terrazas y su impacto en la accesibilidad. Sin embargo, los contratos presentados por los candidatos se centran en obras de mejor",
+        "summary": "La afirmación se refiere a que \"la terraza no podrá afectar los accesos a locales o edificios contiguos\", lo que implica una regulación específica sobre la instalación de terrazas y su impacto en la accesibilidad.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -5472,7 +5472,7 @@
       "verification": {
         "claimId": "1tgd1h4-073-cit-c42d74",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los contratos presentados por los candidatos respalda de manera genuina la afirmación sobre la instalación de terrazas frente a pasos de peatones o vados de vehículos. Aunque hay contratos relacionados con la movilidad y la accesibilidad, como la mejora de vados de peatones o la construcc",
+        "summary": "Ninguno de los contratos presentados por los candidatos respalda de manera genuina la afirmación sobre la instalación de terrazas frente a pasos de peatones o vados de vehículos.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -5590,7 +5590,7 @@
       "verification": {
         "claimId": "1tgd1h4-075-cit-6e3687",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la instalación de cenadores y su estudio en función de las características específicas de cada espacio. Sin embargo, los contratos presentados por los candidatos se centran en otros tipos de obras y servicios, como la instalación de salva escaleras, explotación de bares, c",
+        "summary": "La afirmación se refiere a la instalación de cenadores y su estudio en función de las características específicas de cada espacio.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -5651,7 +5651,7 @@
       "verification": {
         "claimId": "1tgd1h4-076-cit-624d4d",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la instalación de cenadores y su estudio en función de las características específicas de cada espacio. Sin embargo, los contratos presentados por los candidatos se centran en obras y suministros relacionados con parquímetros, carriles ciclopeatonales, señales viales y otr",
+        "summary": "La afirmación se refiere a la instalación de cenadores y su estudio en función de las características específicas de cada espacio.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -5742,7 +5742,7 @@
       "verification": {
         "claimId": "1tgd1h4-077-cit-8d6b61",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la prohibición de autorizar cenadores en zonas donde su instalación pueda representar un peligro para peatones o tráfico, basándose en el juicio de los Servicios Técnicos Municipales o la Policía Local. Sin embargo, los candidatos presentados se centran en concesiones admi",
+        "summary": "La afirmación se refiere a la prohibición de autorizar cenadores en zonas donde su instalación pueda representar un peligro para peatones o tráfico, basándose en el juicio de los Servicios Técnicos Municipales o la Policía Local.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6036,7 +6036,7 @@
       "verification": {
         "claimId": "1tgd1h4-082-cit-443868",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona la obligación de dejar libre el acceso a la entrada de edificios, garajes y locales comerciales colindantes, pero ninguno de los contratos presentados por los candidatos se refiere específicamente a esta obligación. Los contratos mencionan servicios de control de acceso, limpi",
+        "summary": "La afirmación menciona la obligación de dejar libre el acceso a la entrada de edificios, garajes y locales comerciales colindantes, pero ninguno de los contratos presentados por los candidatos se refiere específicamente a esta obligación.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6097,7 +6097,7 @@
       "verification": {
         "claimId": "1tgd1h4-082-cit-e6ba52",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la necesidad de ceñirse a una zona autorizada y a la colocación de permisos en un lugar visible. Sin embargo, los contratos presentados por los candidatos no hacen referencia a ninguna obra o actividad que implique la delimitación de zonas autorizadas o la colocación de pe",
+        "summary": "La afirmación se refiere a la necesidad de ceñirse a una zona autorizada y a la colocación de permisos en un lugar visible.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6811,7 +6811,7 @@
       "verification": {
         "claimId": "1tgd1h4-095-cit-41804a",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre la \"obstaculización o negativa a retirar el mobiliario y los elementos asociados con la autorización de la ocupación de la vía pública\". Los contratos mencionados se centran en la retirada de vehículos",
+        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre la \"obstaculización o negativa a retirar el mobiliario y los elementos asociados con la autorización de la ocupación de la vía pública\".",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6872,7 +6872,7 @@
       "verification": {
         "claimId": "1tgd1h4-096-cit-58f78b",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la regulación de instalaciones en zonas de dominio público no autorizable, específicamente en relación con la seguridad vial. Sin embargo, los contratos presentados por los candidatos se centran en servicios de limpieza vial, suministro de señales viales y alquiler de vall",
+        "summary": "La afirmación se refiere a la regulación de instalaciones en zonas de dominio público no autorizable, específicamente en relación con la seguridad vial.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6935,7 +6935,7 @@
       "verification": {
         "claimId": "1tgd1h4-097-cit-465e11",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la obligación del beneficiario de una autorización de reintegrar los gastos de reconstrucción y reparación. Sin embargo, los contratos presentados por los candidatos se centran en servicios de limpieza y depuración de aguas tras daños ocasionados por la DANA, sin mencionar",
+        "summary": "La afirmación se refiere a la obligación del beneficiario de una autorización de reintegrar los gastos de reconstrucción y reparación.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6966,7 +6966,7 @@
       "verification": {
         "claimId": "1tgd1h4-097-cit-5b377f",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la responsabilidad de los titulares de autorizaciones sobre los desperfectos en el pavimento o instalaciones de la vía pública. Sin embargo, los contratos presentados por los candidatos se centran en servicios de limpieza y recogida de escombros tras un evento específico (",
+        "summary": "La afirmación se refiere a la responsabilidad de los titulares de autorizaciones sobre los desperfectos en el pavimento o instalaciones de la vía pública.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -7227,7 +7227,7 @@
       "verification": {
         "claimId": "1tgd1h4-099-cit-71f466",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la revocación de una autorización en el término municipal de Riba-roja, pero ninguno de los candidatos presenta información que respalde directamente esta afirmación. Los contratos y subvenciones mencionados se centran en obras y servicios específicos, como la instalación ",
+        "summary": "La afirmación se refiere a la revocación de una autorización en el término municipal de Riba-roja, pero ninguno de los candidatos presenta información que respalde directamente esta afirmación.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -7322,7 +7322,7 @@
       "verification": {
         "claimId": "1tgd1h4-101-cit-13653f",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a un artículo específico sobre \"Órdenes de ejecución\" en el contexto de daños en espacios públicos, lo que implica una acción administrativa relacionada con la urbanización y la gestión de infraestructuras. Sin embargo, los candidatos presentados se centran en contratos de l",
+        "summary": "La afirmación se refiere a un artículo específico sobre \"Órdenes de ejecución\" en el contexto de daños en espacios públicos, lo que implica una acción administrativa relacionada con la urbanización y la gestión de infraestructuras.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -7442,7 +7442,7 @@
       "verification": {
         "claimId": "1tgd1h4-103-cit-cc00fc",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre las órdenes de desmontaje o retirada de elementos. Aunque hay contratos relacionados con la retirada de vehículos y limpieza de escombros, estos no se refieren específicamente a las órdenes de desmontaje mencionadas en la a",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre las órdenes de desmontaje o retirada de elementos.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -7473,7 +7473,7 @@
       "verification": {
         "claimId": "1tgd1h4-103-cit-94672d",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación. La cita se refiere a la posibilidad de retirar elementos instalados sin previo aviso, lo cual no se encuentra respaldado por los contratos presentados. Los contratos mencionan servicios de retirada de vehículos o de instalación ",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación. La cita se refiere a la posibilidad de retirar elementos instalados sin previo aviso, lo cual no se encuentra respaldado por los contratos presentados.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -7504,7 +7504,7 @@
       "verification": {
         "claimId": "1tgd1h4-103-cit-9e6630",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a una cita específica sobre la instalación de un elemento que resulte anónimo, pero no se proporciona información suficiente en los contratos listados para establecer un respaldo genuino. Ninguno de los contratos menciona explícitamente la instalación de elementos anónimos n",
+        "summary": "La afirmación se refiere a una cita específica sobre la instalación de un elemento que resulte anónimo, pero no se proporciona información suficiente en los contratos listados para establecer un respaldo genuino.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -7535,7 +7535,7 @@
       "verification": {
         "claimId": "1tgd1h4-104-cit-426155",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la retirada inmediata de vehículos sin previo aviso y a la responsabilidad de los gastos por parte del titular. Sin embargo, los candidatos presentados no contienen información específica sobre la retirada de vehículos ni sobre la responsabilidad de los gastos asociados. L",
+        "summary": "La afirmación se refiere a la retirada inmediata de vehículos sin previo aviso y a la responsabilidad de los gastos por parte del titular. Sin embargo, los candidatos presentados no contienen información específica sobre la retirada de vehículos ni sobre la responsabilidad de los gastos asociados.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -7566,7 +7566,7 @@
       "verification": {
         "claimId": "1tgd1h4-104-cit-ae0470",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a una circunstancia específica en la que la instalación de un elemento resulta anónima, lo cual es un concepto que no se encuentra respaldado por los contratos presentados. Los contratos mencionados se centran en la instalación de antenas de transmisión de datos y servicios ",
+        "summary": "La afirmación se refiere a una circunstancia específica en la que la instalación de un elemento resulta anónima, lo cual es un concepto que no se encuentra respaldado por los contratos presentados.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -7660,7 +7660,7 @@
       "verification": {
         "claimId": "1tgd1h4-104-cit-4992d9",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a un procedimiento sancionador regulado por la Ley 40/2015 y la Ley 7/1985, pero los candidatos presentados no contienen información que se relacione directamente con la imposición de sanciones o el cumplimiento de estas leyes. Los documentos listados son sobre ayudas económ",
+        "summary": "La afirmación se refiere a un procedimiento sancionador regulado por la Ley 40/2015 y la Ley 7/1985, pero los candidatos presentados no contienen información que se relacione directamente con la imposición de sanciones o el cumplimiento de estas leyes.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -7865,7 +7865,7 @@
       "verification": {
         "claimId": "1tgd1h4-108-cit-8cddb5",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a una situación sanitaria provocada por la Covid-19, pero los candidatos listados no presentan información que se relacione directamente con esta situación. Por ejemplo, las ayudas económicas de emergencia social del Ayuntamiento de Riba-roja de Túria podrían estar relaciona",
+        "summary": "La afirmación se refiere a una situación sanitaria provocada por la Covid-19, pero los candidatos listados no presentan información que se relacione directamente con esta situación.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -8043,7 +8043,7 @@
       "verification": {
         "claimId": "1tgd1h4-110-cit-92efb3",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre las características técnicas del modelo de cenador a instalar en Riba-roja de Túria. Los contratos mencionados se refieren a servicios de asistencia técnica, instalación de riego y drenaje, acondicionamiento de salas, monta",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre las características técnicas del modelo de cenador a instalar en Riba-roja de Túria.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -8652,7 +8652,7 @@
       "verification": {
         "claimId": "1tgd1h4-119-cit-65cdfd",
         "verdict": "sin-datos",
-        "summary": "La afirmación se centra en el objetivo de programas que buscan mejorar la empleabilidad de los participantes a través de la adquisición de cualificaciones. Sin embargo, los contratos presentados no mencionan explícitamente programas que se alineen directamente con este objetivo. Por ejemplo, el cont",
+        "summary": "La afirmación se centra en el objetivo de programas que buscan mejorar la empleabilidad de los participantes a través de la adquisición de cualificaciones. Sin embargo, los contratos presentados no mencionan explícitamente programas que se alineen directamente con este objetivo.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -8775,7 +8775,7 @@
       "verification": {
         "claimId": "1tgd1h4-120-cit-649691",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona la elaboración de un reglamento de funcionamiento interno para programas relacionados con el empleo, pero los candidatos presentados no hacen referencia directa a dicha elaboración ni a programas específicos de empleo. Los documentos listados se centran en ayudas económicas pa",
+        "summary": "La afirmación menciona la elaboración de un reglamento de funcionamiento interno para programas relacionados con el empleo, pero los candidatos presentados no hacen referencia directa a dicha elaboración ni a programas específicos de empleo.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -8807,7 +8807,7 @@
       "verification": {
         "claimId": "1tgd1h4-121-cit-5f4461",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre la propuesta de una iniciativa reglamentaria para ser elevada al Plan Anual Normativo en el contexto de la Ley 39/2015. Los contratos mencionados se refieren a servicios específicos, como la divulgación, capacitación, o ges",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre la propuesta de una iniciativa reglamentaria para ser elevada al Plan Anual Normativo en el contexto de la Ley 39/2015.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -9737,7 +9737,7 @@
       "verification": {
         "claimId": "1tgd1h4-133-cit-142c1e",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre la obligación de disponer de un Canal de Denuncias. Los contratos mencionados se centran en servicios de transparencia, atención al empresariado, socorrismo y limpieza, pero no hay evidencia concreta de que alguno de ell",
+        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre la obligación de disponer de un Canal de Denuncias.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -10240,7 +10240,7 @@
       "verification": {
         "claimId": "1tgd1h4-143-cit-34a99b",
         "verdict": "sin-datos",
-        "summary": "La afirmación se centra en la protección de informantes en un contexto laboral y profesional, lo que implica un enfoque en la transparencia y la lucha contra la corrupción. Sin embargo, los contratos presentados por los candidatos no hacen referencia directa a la protección de informantes ni a la lu",
+        "summary": "La afirmación se centra en la protección de informantes en un contexto laboral y profesional, lo que implica un enfoque en la transparencia y la lucha contra la corrupción.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -10333,7 +10333,7 @@
       "verification": {
         "claimId": "1tgd1h4-143-cit-09ef24",
         "verdict": "sin-datos",
-        "summary": "La afirmación se centra en la necesidad de un sistema que permita la comunicación de información de manera accesible, ya sea por escrito o verbalmente. Sin embargo, los candidatos presentados no ofrecen evidencia concreta que respalde esta afirmación. Por ejemplo, aunque hay menciones a la accesibil",
+        "summary": "La afirmación se centra en la necesidad de un sistema que permita la comunicación de información de manera accesible, ya sea por escrito o verbalmente. Sin embargo, los candidatos presentados no ofrecen evidencia concreta que respalde esta afirmación.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -11139,7 +11139,7 @@
       "verification": {
         "claimId": "1tgd1h4-159-cit-ea1aa0",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere específicamente al Sistema Interno de Información del Ayuntamiento de Riba-roja de Túria (SIIRT) y su accesibilidad para los empleados públicos. Sin embargo, los candidatos listados se centran en diferentes servicios, como la gestión tributaria, el mantenimiento de aplicacio",
+        "summary": "La afirmación se refiere específicamente al Sistema Interno de Información del Ayuntamiento de Riba-roja de Túria (SIIRT) y su accesibilidad para los empleados públicos.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -11681,7 +11681,7 @@
       "verification": {
         "claimId": "1tgd1h4-167-cit-b4d3bf",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre la responsabilidad del Vicesecretario en la gestión de denuncias y comunicaciones en el Ayuntamiento de Riba-roja de Túria. Los contratos mencionados se refieren a servicios de asistencia legal, gestión tributaria, aseso",
+        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre la responsabilidad del Vicesecretario en la gestión de denuncias y comunicaciones en el Ayuntamiento de Riba-roja de Túria.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -12076,7 +12076,7 @@
       "verification": {
         "claimId": "1tgd1h4-173-cit-c62687",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a un proceso de análisis de datos para determinar si hay indicios suficientes para iniciar un procedimiento investigador, en un contexto de transparencia y anonimato para el denunciante. Sin embargo, los candidatos presentados no contienen información que respalde directamen",
+        "summary": "La afirmación se refiere a un proceso de análisis de datos para determinar si hay indicios suficientes para iniciar un procedimiento investigador, en un contexto de transparencia y anonimato para el denunciante.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -12512,7 +12512,7 @@
       "verification": {
         "claimId": "1tgd1h4-180-cit-21d881",
         "verdict": "sin-datos",
-        "summary": "La afirmación se centra en la necesidad de llevar a cabo actuaciones para facilitar la buena marcha de una investigación, lo que implica un compromiso con la transparencia y la protección de los derechos de los denunciantes. Sin embargo, los candidatos presentados no ofrecen evidencia concreta que r",
+        "summary": "La afirmación se centra en la necesidad de llevar a cabo actuaciones para facilitar la buena marcha de una investigación, lo que implica un compromiso con la transparencia y la protección de los derechos de los denunciantes.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -12741,7 +12741,7 @@
       "verification": {
         "claimId": "1tgd1h4-182-cit-b865d5",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre la comunicación a la Alcaldía de las actuaciones realizadas y las limitaciones de alcance en la investigación. Los contratos listados se refieren a servicios diversos como publicidad, mantenimiento de ",
+        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre la comunicación a la Alcaldía de las actuaciones realizadas y las limitaciones de alcance en la investigación.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -12802,7 +12802,7 @@
       "verification": {
         "claimId": "1tgd1h4-182-cit-656103",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre el \"Informe preceptivo del Comité Antifraude\". Aunque hay menciones a contratos relacionados con la gestión y medidas antifraude, como el contrato de servicios para la formación y apoyo en el plan de integridad (candidato 1",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre el \"Informe preceptivo del Comité Antifraude\".",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -13125,7 +13125,7 @@
       "verification": {
         "claimId": "1tgd1h4-191-cit-27eb79",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la obligación de incluir cláusulas específicas en formularios de recogida de datos, lo que implica un enfoque en la protección de datos y la transparencia. Sin embargo, los contratos presentados por los candidatos no mencionan explícitamente la creación o implementación de",
+        "summary": "La afirmación se refiere a la obligación de incluir cláusulas específicas en formularios de recogida de datos, lo que implica un enfoque en la protección de datos y la transparencia.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -13501,7 +13501,7 @@
       "verification": {
         "claimId": "1tgd1h4-195-cit-04f82c",
         "verdict": "sin-datos",
-        "summary": "La afirmación se centra en la necesidad de publicar información de manera clara y accesible en la web corporativa. Sin embargo, los candidatos presentados se refieren a diferentes servicios, como el mantenimiento de portales específicos o la publicidad institucional, pero no hay evidencia directa de",
+        "summary": "La afirmación se centra en la necesidad de publicar información de manera clara y accesible en la web corporativa.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -13532,7 +13532,7 @@
       "verification": {
         "claimId": "1tgd1h4-195-cit-7bfa2c",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la publicación de información en la web corporativa en una sección separada, lo que implica un compromiso específico con la transparencia y la accesibilidad de la información. Sin embargo, los candidatos presentados no ofrecen evidencia concreta que respalde esta afirmació",
+        "summary": "La afirmación se refiere a la publicación de información en la web corporativa en una sección separada, lo que implica un compromiso específico con la transparencia y la accesibilidad de la información.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -13914,7 +13914,7 @@
       "verification": {
         "claimId": "1tgd1h4-198-cit-6db96a",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la publicación de una política específica sobre el sistema interno de información, pero ninguno de los candidatos presenta un contrato o documento que mencione explícitamente esta política o su publicación. Los contratos listados se centran en servicios de mantenimiento, a",
+        "summary": "La afirmación se refiere a la publicación de una política específica sobre el sistema interno de información, pero ninguno de los candidatos presenta un contrato o documento que mencione explícitamente esta política o su publicación.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -13977,7 +13977,7 @@
       "verification": {
         "claimId": "1tgd1h4-199-cit-8c13dc",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la \"Aprobación y remisión para homologación del Plan Territorial de emergencias y planes asociados\", lo cual implica un proceso administrativo específico relacionado con la planificación de emergencias. Ninguno de los candidatos presenta un respaldo directo a esta afirmaci",
+        "summary": "La afirmación se refiere a la \"Aprobación y remisión para homologación del Plan Territorial de emergencias y planes asociados\", lo cual implica un proceso administrativo específico relacionado con la planificación de emergencias.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -14008,7 +14008,7 @@
       "verification": {
         "claimId": "1tgd1h4-200-cit-f9326a",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre la finalización de la elaboración del Plan Territorial de Emergencias. Aunque hay un contrato relacionado con la redacción de un plan territorial frente a emergencias (CANDIDATO 0), no se menciona específicamente que se tra",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre la finalización de la elaboración del Plan Territorial de Emergencias.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -14039,7 +14039,7 @@
       "verification": {
         "claimId": "1tgd1h4-200-cit-cb7637",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre la redacción del Plan Territorial de Emergencias por MEDI XXI GSA. Aunque el candidato [0] menciona un servicio de redacción de un plan territorial municipal, no se especifica que sea el mismo plan mencionado en la afirmaci",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre la redacción del Plan Territorial de Emergencias por MEDI XXI GSA.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -14070,7 +14070,7 @@
       "verification": {
         "claimId": "1tgd1h4-200-cit-e66c91",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre la aprobación del Plan Territorial de Emergencias. Aunque hay un candidato que menciona la redacción de un plan territorial municipal frente a emergencias, no se proporciona información sobre la aprobación por el pleno muni",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre la aprobación del Plan Territorial de Emergencias.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -14133,7 +14133,7 @@
       "verification": {
         "claimId": "1tgd1h4-201-cit-444160",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre los Planes de Autoprotección de Masia de Traver, Valencia la Vella y Els Pous. Aunque hay contratos relacionados con la seguridad y la protección, como el contrato para la realización del Plan especial de protección para Va",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre los Planes de Autoprotección de Masia de Traver, Valencia la Vella y Els Pous.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -14191,7 +14191,7 @@
       "verification": {
         "claimId": "1tgd1h4-202-cit-971801",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona específicamente la \"Autoprotección de Masia de Traver, Valencia la Vella y Els Pous\", pero los candidatos listados no presentan contratos que se refieran directamente a la redacción de documentos de autoprotección o seguridad para estas áreas. Aunque hay un contrato menor rela",
+        "summary": "La afirmación menciona específicamente la \"Autoprotección de Masia de Traver, Valencia la Vella y Els Pous\", pero los candidatos listados no presentan contratos que se refieran directamente a la redacción de documentos de autoprotección o seguridad para estas áreas.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -14222,7 +14222,7 @@
       "verification": {
         "claimId": "1tgd1h4-202-cit-a3c3d6",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona que todos los documentos fueron redactados por MEDI XXI GSA, pero ninguno de los contratos presentados menciona a esta entidad como parte del proceso de redacción. Los contratos listados se refieren a diferentes servicios y proyectos, pero no hay evidencia concreta que vincule",
+        "summary": "La afirmación menciona que todos los documentos fueron redactados por MEDI XXI GSA, pero ninguno de los contratos presentados menciona a esta entidad como parte del proceso de redacción.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -14310,7 +14310,7 @@
       "verification": {
         "claimId": "1tgd1h4-203-cit-d4ec68",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre el Real Decreto 407/1992, ya que no hay coincidencias en los valores concretos (importe, fecha, sujeto) que se relacionen directamente con la norma mencionada. Los contratos y servicios listados se centran en aspectos de se",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre el Real Decreto 407/1992, ya que no hay coincidencias en los valores concretos (importe, fecha, sujeto) que se relacionen directamente con la norma mencionada.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -14341,7 +14341,7 @@
       "verification": {
         "claimId": "1tgd1h4-203-cit-ba6bf3",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la elaboración de Planes Territoriales para hacer frente a emergencias, específicamente mencionando un artículo que establece esta necesidad. El candidato [0] menciona un servicio de redacción de un plan territorial municipal frente a emergencias, lo que parece alinearse c",
+        "summary": "La afirmación se refiere a la elaboración de Planes Territoriales para hacer frente a emergencias, específicamente mencionando un artículo que establece esta necesidad.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -14373,7 +14373,7 @@
       "verification": {
         "claimId": "1tgd1h4-204-cit-501f80",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere específicamente al \"Decreto 407/1992, de 24 de Abril, por el que se aprueba la Norma Básica de Protección\", un documento legal que establece normas de seguridad. Sin embargo, los candidatos presentados se relacionan con contratos de consultoría y servicios que no mencionan n",
+        "summary": "La afirmación se refiere específicamente al \"Decreto 407/1992, de 24 de Abril, por el que se aprueba la Norma Básica de Protección\", un documento legal que establece normas de seguridad.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -14404,7 +14404,7 @@
       "verification": {
         "claimId": "1tgd1h4-204-cit-13a5d9",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a una \"Norma Básica\" que establece un marco para la integración de los Planes de Protección Civil. Sin embargo, los candidatos presentados no mencionan explícitamente esta norma ni su relación con los planes de protección civil. Aunque hay un contrato relacionado con la reda",
+        "summary": "La afirmación se refiere a una \"Norma Básica\" que establece un marco para la integración de los Planes de Protección Civil. Sin embargo, los candidatos presentados no mencionan explícitamente esta norma ni su relación con los planes de protección civil.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -14465,7 +14465,7 @@
       "verification": {
         "claimId": "1tgd1h4-204-cit-e6fbc7",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la competencia de dirección y coordinación de acciones en planes de seguridad, pero los contratos presentados por los candidatos no mencionan explícitamente esta competencia ni se relacionan directamente con la dirección y coordinación de acciones de seguridad. Aunque hay ",
+        "summary": "La afirmación se refiere a la competencia de dirección y coordinación de acciones en planes de seguridad, pero los contratos presentados por los candidatos no mencionan explícitamente esta competencia ni se relacionan directamente con la dirección y coordinación de acciones de seguridad.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -14496,7 +14496,7 @@
       "verification": {
         "claimId": "1tgd1h4-205-cit-6571e6",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre la elaboración y aprobación del Plan Territorial Municipal frente a emergencias. Aunque el candidato [0] menciona un servicio de redacción del plan territorial municipal frente a emergencias, no se proporciona información s",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre la elaboración y aprobación del Plan Territorial Municipal frente a emergencias.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -14788,7 +14788,7 @@
       "verification": {
         "claimId": "1tgd1h4-208-cit-10922b",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo directo a la afirmación sobre la aprobación del \"PLAN TERRITORIAL DE EMERGENCIAS DEL MUNICIPIO DE RIBAROJA\". Aunque hay referencias a contratos relacionados con emergencias y acondicionamiento de caminos, estos no son equivalentes a la aprobación del pl",
+        "summary": "Ninguno de los candidatos presenta un respaldo directo a la afirmación sobre la aprobación del \"PLAN TERRITORIAL DE EMERGENCIAS DEL MUNICIPIO DE RIBAROJA\".",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -14819,7 +14819,7 @@
       "verification": {
         "claimId": "1tgd1h4-209-cit-bf926b",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo directo a la afirmación sobre la aprobación del PLAN TERRITORIAL DE EMERGENCIAS DEL MUNICIPIO DE RIBAROJA DE TÚRIA (PTM) y el PLAN DE ACTUACIÓN MUNICIPAL DE INCENDIOS FORESTALES (PAMIF). Aunque el candidato [0] menciona un servicio de redacción del plan",
+        "summary": "Ninguno de los candidatos presenta un respaldo directo a la afirmación sobre la aprobación del PLAN TERRITORIAL DE EMERGENCIAS DEL MUNICIPIO DE RIBAROJA DE TÚRIA (PTM) y el PLAN DE ACTUACIÓN MUNICIPAL DE INCENDIOS FORESTALES (PAMIF).",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -15837,7 +15837,7 @@
       "verification": {
         "claimId": "1tgd1h4-221-cit-6b894f",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la gestión de los gatos comunitarios por parte de las entidades locales, mencionando específicamente la necesidad de desarrollar Programas de Gestión de Colonias Felinas. Sin embargo, los candidatos presentados solo incluyen acuerdos y contratos relacionados con ayudas en ",
+        "summary": "La afirmación se refiere a la gestión de los gatos comunitarios por parte de las entidades locales, mencionando específicamente la necesidad de desarrollar Programas de Gestión de Colonias Felinas.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -15868,7 +15868,7 @@
       "verification": {
         "claimId": "1tgd1h4-221-cit-2be771",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta evidencia concreta que respalde la afirmación sobre el desarrollo de Programas de Gestión de Colonias Felinas. Aunque hay contratos relacionados con la protección animal, como los acuerdos de ayudas en materia de protección animal, no se menciona específicamente la",
+        "summary": "Ninguno de los candidatos presenta evidencia concreta que respalde la afirmación sobre el desarrollo de Programas de Gestión de Colonias Felinas.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -15956,7 +15956,7 @@
       "verification": {
         "claimId": "1tgd1h4-222-cit-c59335",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona la colaboración de la administración local con entidades de gestión de colonias felinas, pero los documentos presentados por los candidatos se centran en convocatorias de ayudas en materia de protección animal y contratos de servicios relacionados con la recogida de animales e",
+        "summary": "La afirmación menciona la colaboración de la administración local con entidades de gestión de colonias felinas, pero los documentos presentados por los candidatos se centran en convocatorias de ayudas en materia de protección animal y contratos de servicios relacionados con la recogida de animales…",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -16450,7 +16450,7 @@
       "verification": {
         "claimId": "1tgd1h4-227-cit-0bcb1d",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a un artículo específico de la Ley 2/2023 sobre protección animal, que es un documento legislativo reciente. Sin embargo, los candidatos listados son acuerdos y resoluciones de años anteriores (2016, 2017, 2018, 2019 y 2020) que se centran en convocatorias de ayudas en mater",
+        "summary": "La afirmación se refiere a un artículo específico de la Ley 2/2023 sobre protección animal, que es un documento legislativo reciente.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -16511,7 +16511,7 @@
       "verification": {
         "claimId": "1tgd1h4-228-cit-1ab84b",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a las competencias que corresponden a los ayuntamientos según la Ley 2/2023 de la Comunidad Valenciana sobre protección animal. Los candidatos listados presentan acuerdos y contratos relacionados con ayudas y servicios en materia de protección animal, pero no hay evidencia d",
+        "summary": "La afirmación se refiere a las competencias que corresponden a los ayuntamientos según la Ley 2/2023 de la Comunidad Valenciana sobre protección animal.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -16900,7 +16900,7 @@
       "verification": {
         "claimId": "1tgd1h4-232-cit-f7a440",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la obligación de comunicar a la Conselleria competente sobre la gestión de animales abandonados en el municipio. El único candidato que menciona algo relacionado con la protección animal es el Acuerdo de la Junta de Gobierno Local del Ayuntamiento de Riba-roja de Turia, qu",
+        "summary": "La afirmación se refiere a la obligación de comunicar a la Conselleria competente sobre la gestión de animales abandonados en el municipio.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -16958,7 +16958,7 @@
       "verification": {
         "claimId": "1tgd1h4-232-cit-52c522",
         "verdict": "sin-datos",
-        "summary": "La afirmación se centra en fomentar entidades de protección y defensa animal, así como en la formación y divulgación en esta materia. Los candidatos presentados incluyen varios acuerdos de la Junta de Gobierno Local del Ayuntamiento de Riba-roja de Túria que convocan ayudas en materia de protección ",
+        "summary": "La afirmación se centra en fomentar entidades de protección y defensa animal, así como en la formación y divulgación en esta materia.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -17225,7 +17225,7 @@
       "verification": {
         "claimId": "1tgd1h4-236-cit-12e611",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la creación de un mapa del municipio que incluya la localización de instalaciones donde se mantengan animales domésticos y los datos del responsable legal. Sin embargo, los candidatos presentados no contienen información específica que respalde esta afirmación. Los contrat",
+        "summary": "La afirmación se refiere a la creación de un mapa del municipio que incluya la localización de instalaciones donde se mantengan animales domésticos y los datos del responsable legal. Sin embargo, los candidatos presentados no contienen información específica que respalde esta afirmación.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -17790,7 +17790,7 @@
       "verification": {
         "claimId": "1tgd1h4-248-cit-8fe43a",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre la esterilización de animales. Todos los contratos mencionan servicios relacionados con la desratización, desinsectación y desinfección, que son actividades distintas y no están relacionadas con la esterilización de anim",
+        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre la esterilización de animales.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -17821,7 +17821,7 @@
       "verification": {
         "claimId": "1tgd1h4-248-cit-3f072d",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la definición de fauna urbana, que implica animales vertebrados sin propietario que cohabitan con humanos. Ninguno de los candidatos presenta información que respalde directamente esta definición. Aunque hay contratos relacionados con la atención de animales errantes y la ",
+        "summary": "La afirmación se refiere a la definición de fauna urbana, que implica animales vertebrados sin propietario que cohabitan con humanos. Ninguno de los candidatos presenta información que respalde directamente esta definición.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -18029,7 +18029,7 @@
       "verification": {
         "claimId": "1tgd1h4-251-cit-6fd8b5",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a un control poblacional específico relacionado con el CER (Captura, Esterilización y Retorno) y la llegada de nuevos individuos, lo cual está directamente relacionado con la gestión de colonias de animales. Sin embargo, ninguno de los candidatos presentados menciona explíci",
+        "summary": "La afirmación se refiere a un control poblacional específico relacionado con el CER (Captura, Esterilización y Retorno) y la llegada de nuevos individuos, lo cual está directamente relacionado con la gestión de colonias de animales.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -18233,7 +18233,7 @@
       "verification": {
         "claimId": "1tgd1h4-253-cit-eefd38",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre la creación de la red de vigilancia epizootiológica en la Comunitat Valenciana. Los contratos y acuerdos mencionados se centran en servicios de recogida de animales, limpieza para prevenir COVID-19, desinfección y ayudas en",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre la creación de la red de vigilancia epizootiológica en la Comunitat Valenciana.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -18354,7 +18354,7 @@
       "verification": {
         "claimId": "1tgd1h4-254-cit-521913",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un contrato o documento que respalde de manera concreta la afirmación sobre la protección y gestión de colonias felinas mediante el programa CER. Los contratos listados se refieren a servicios de recogida de animales errantes, mantenimiento de instalaciones o servi",
+        "summary": "Ninguno de los candidatos presenta un contrato o documento que respalde de manera concreta la afirmación sobre la protección y gestión de colonias felinas mediante el programa CER.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -19090,7 +19090,7 @@
       "verification": {
         "claimId": "1tgd1h4-260-cit-2adc51",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la creación de una \"nueva colonia felina\", lo que implica un proyecto específico relacionado con la gestión de colonias de gatos. Sin embargo, los candidatos listados se centran en contratos y acuerdos relacionados con la recogida de animales errantes, ayudas en materia de",
+        "summary": "La afirmación se refiere a la creación de una \"nueva colonia felina\", lo que implica un proyecto específico relacionado con la gestión de colonias de gatos.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -19357,7 +19357,7 @@
       "verification": {
         "claimId": "1tgd1h4-264-cit-367c04",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona específicamente la ubicación de colonias en \"vías y espacios públicos\". El candidato [1] se refiere al \"mantenimiento de zonas ajardinadas, viales públicos y espacios públicos de titularidad municipal\", lo que incluye directamente las vías y espacios públicos mencionados en la",
+        "summary": "La afirmación menciona específicamente la ubicación de colonias en \"vías y espacios públicos\". El candidato [1] se refiere al \"mantenimiento de zonas ajardinadas, viales públicos y espacios públicos de titularidad municipal\", lo que incluye directamente las vías y espacios públicos mencionados en…",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -19448,7 +19448,7 @@
       "verification": {
         "claimId": "1tgd1h4-264-cit-eaaa9f",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la posibilidad de realizar actividades en cualquier localización de dominio público o privado, específicamente en solares y descampados de titularidad municipal. Sin embargo, los candidatos presentados no contienen información que respalde directamente esta afirmación. Por",
+        "summary": "La afirmación se refiere a la posibilidad de realizar actividades en cualquier localización de dominio público o privado, específicamente en solares y descampados de titularidad municipal. Sin embargo, los candidatos presentados no contienen información que respalde directamente esta afirmación.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -19750,7 +19750,7 @@
       "verification": {
         "claimId": "1tgd1h4-267-cit-7f5799",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre el traslado de puntos de alimentación en relación con el medio ambiente. Aunque hay varios contratos relacionados con obras y servicios, como la instalación de alimentación eléctrica o la adecuación paisajística, no hay evi",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre el traslado de puntos de alimentación en relación con el medio ambiente.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -20260,7 +20260,7 @@
       "verification": {
         "claimId": "1tgd1h4-271-cit-fd6699",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la captura de animales enfermos y su atención, lo que implica un servicio específico relacionado con la sanidad y protección animal. El candidato [0] menciona un contrato de servicio de recogida y atención de animales errantes y/o abandonados, que se alinea con la temática",
+        "summary": "La afirmación se refiere a la captura de animales enfermos y su atención, lo que implica un servicio específico relacionado con la sanidad y protección animal.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -20353,7 +20353,7 @@
       "verification": {
         "claimId": "1tgd1h4-272-cit-a2ba12",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la captura de animales enfermos y su traslado para recibir atención veterinaria. Sin embargo, los contratos presentados no mencionan explícitamente la captura de animales enfermos ni su atención veterinaria. El contrato de servicio de recogida y atención de animales errant",
+        "summary": "La afirmación se refiere a la captura de animales enfermos y su traslado para recibir atención veterinaria. Sin embargo, los contratos presentados no mencionan explícitamente la captura de animales enfermos ni su atención veterinaria.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -21525,7 +21525,7 @@
       "verification": {
         "claimId": "1tgd1h4-286-cit-3d7380",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la posibilidad de llevar gatitos a una casa de acogida para su socialización, lo que implica un enfoque en la protección y bienestar animal. Sin embargo, los candidatos presentados se centran en contratos y acuerdos relacionados con la recogida de animales errantes, ayudas",
+        "summary": "La afirmación se refiere a la posibilidad de llevar gatitos a una casa de acogida para su socialización, lo que implica un enfoque en la protección y bienestar animal.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -21826,7 +21826,7 @@
       "verification": {
         "claimId": "1tgd1h4-288-cit-f0b096",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre la gestión ética de las colonias felinas. Los contratos mencionados se centran en servicios de desratización, desinfección y recogida de animales errantes, pero no hay evidencia de que incluyan programas específicos de c",
+        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre la gestión ética de las colonias felinas.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -21857,7 +21857,7 @@
       "verification": {
         "claimId": "1tgd1h4-289-cit-993365",
         "verdict": "sin-datos",
-        "summary": "La afirmación se centra en la importancia de los programas CER para el control de la población de colonias urbanas felinas. Sin embargo, los candidatos presentados no hacen referencia a ningún programa específico relacionado con la captura, esterilización o retorno de felinos. Los contratos menciona",
+        "summary": "La afirmación se centra en la importancia de los programas CER para el control de la población de colonias urbanas felinas. Sin embargo, los candidatos presentados no hacen referencia a ningún programa específico relacionado con la captura, esterilización o retorno de felinos.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -22778,7 +22778,7 @@
       "verification": {
         "claimId": "1tgd1h4-300-cit-5ba7e9",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre la colaboración en la gestión de colonias felinas. Los contratos listados se centran en servicios relacionados con la gestión tributaria, programas para personas mayores, recogida de residuos y actividades deportivas, qu",
+        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre la colaboración en la gestión de colonias felinas.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -23016,7 +23016,7 @@
       "verification": {
         "claimId": "1tgd1h4-304-cit-02aacc",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a un procedimiento para inscribir a voluntarios que deseen realizar la función de casa de acogida, pero ninguno de los candidatos presenta información que respalde directamente esta afirmación. Los contratos y acuerdos mencionados se centran en servicios de ayuda a domicilio",
+        "summary": "La afirmación se refiere a un procedimiento para inscribir a voluntarios que deseen realizar la función de casa de acogida, pero ninguno de los candidatos presenta información que respalde directamente esta afirmación.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -23549,7 +23549,7 @@
       "verification": {
         "claimId": "1tgd1h4-307-cit-b7c57d",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la necesidad de suministrar o conveniar material para la captura y contención, lo que implica un enfoque específico en el medio ambiente. Sin embargo, los contratos presentados por los candidatos no están relacionados con la captura y contención de materiales medioambienta",
+        "summary": "La afirmación se refiere a la necesidad de suministrar o conveniar material para la captura y contención, lo que implica un enfoque específico en el medio ambiente.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -23730,7 +23730,7 @@
       "verification": {
         "claimId": "1tgd1h4-308-cit-f9bd00",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre la gestión de quejas en el Ayuntamiento. La afirmación se refiere a un procedimiento específico sobre la presentación de quejas por escrito y la respuesta del Ayuntamiento, mientras que los contratos p",
+        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre la gestión de quejas en el Ayuntamiento.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -24828,7 +24828,7 @@
       "verification": {
         "claimId": "1tgd1h4-331-cit-7f6864",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presentados respalda de manera genuina la afirmación sobre la construcción de la Ciudad Deportiva del Club en Riba-roja de Túria. Aunque hay referencias a actividades deportivas y subvenciones para clubes, no se menciona específicamente la construcción de la Ciudad Deportiv",
+        "summary": "Ninguno de los candidatos presentados respalda de manera genuina la afirmación sobre la construcción de la Ciudad Deportiva del Club en Riba-roja de Túria.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -24944,7 +24944,7 @@
       "verification": {
         "claimId": "1tgd1h4-333-cit-2e9c42",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre la homologación y el plan parcial del 30 de junio de 2006. Los contratos mencionados se refieren a proyectos de urbanismo y obras, pero no hay coincidencia en la fecha, el tipo de documento o el contex",
+        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre la homologación y el plan parcial del 30 de junio de 2006.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -25007,7 +25007,7 @@
       "verification": {
         "claimId": "1tgd1h4-333-cit-b8cf5c",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre Litoral del Este, S.L.U. y el Proyecto de Urbanización del sector \"Masía de Porxinos\". Los contratos listados se refieren a obras y proyectos en diferentes localizaciones y contextos, como el Polígono Industrial Masía Ba",
+        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre Litoral del Este, S.L.U. y el Proyecto de Urbanización del sector \"Masía de Porxinos\".",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -25039,7 +25039,7 @@
       "verification": {
         "claimId": "1tgd1h4-333-cit-bcb7f0",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre la aprobación del proyecto de reparcelación del 25 de marzo de 2011. Los registros de los candidatos se refieren a diferentes proyectos y contratos que no están relacionados con la reparcelación mencio",
+        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre la aprobación del proyecto de reparcelación del 25 de marzo de 2011.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -25134,7 +25134,7 @@
       "verification": {
         "claimId": "1tgd1h4-334-cit-c7c926",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta información que respalde genuinamente la afirmación sobre \"las obras del nuevo estadio\". Todos los contratos mencionados se refieren a obras en instalaciones deportivas distintas, como la pista de atletismo, el pabellón polideportivo y otros proyectos de pavimentac",
+        "summary": "Ninguno de los candidatos presenta información que respalde genuinamente la afirmación sobre \"las obras del nuevo estadio\".",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -25280,7 +25280,7 @@
       "verification": {
         "claimId": "1tgd1h4-334-cit-25a4b0",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre la \"aprobación definitiva del Proyecto de Urbanización del sector 'Masía de Porxinos'\". Los contratos mencionados se refieren a obras en diferentes sectores, como la Masía de Baló y la Masía de Traver, pero no hay eviden",
+        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre la \"aprobación definitiva del Proyecto de Urbanización del sector 'Masía de Porxinos'\".",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -25371,7 +25371,7 @@
       "verification": {
         "claimId": "1tgd1h4-336-cit-db9c0f",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un contrato que respalde de manera concreta la afirmación sobre la finalización de la obra del nuevo estadio. Los contratos mencionados se refieren a obras de adecuación y mejora en instalaciones deportivas o culturales, pero no hay evidencia de que estén relaciona",
+        "summary": "Ninguno de los candidatos presenta un contrato que respalde de manera concreta la afirmación sobre la finalización de la obra del nuevo estadio.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -25402,7 +25402,7 @@
       "verification": {
         "claimId": "1tgd1h4-336-cit-61a9a9",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre la transmisión y entrega de la nueva ciudad deportiva en Náquera. Los contratos mencionados se centran en la gestión de actividades deportivas y obras de pavimentación, pero no hay evidencia de que est",
+        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre la transmisión y entrega de la nueva ciudad deportiva en Náquera.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -25460,7 +25460,7 @@
       "verification": {
         "claimId": "1tgd1h4-337-cit-d94325",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre \"la nueva ciudad deportiva en Náquera\". Los contratos mencionados se centran en actividades deportivas, pavimentación de paseos y mantenimiento de instalaciones, pero no hay referencia directa a la con",
+        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre \"la nueva ciudad deportiva en Náquera\".",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -25491,7 +25491,7 @@
       "verification": {
         "claimId": "1tgd1h4-337-cit-e2b435",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la ubicación de una nueva ciudad deportiva, pero ninguno de los candidatos presenta información que coincida directamente con este tema. Los contratos mencionados se centran en obras de pavimentación, gestión de actividades deportivas y otros proyectos que no están relacio",
+        "summary": "La afirmación se refiere a la ubicación de una nueva ciudad deportiva, pero ninguno de los candidatos presenta información que coincida directamente con este tema.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -25580,7 +25580,7 @@
       "verification": {
         "claimId": "1tgd1h4-338-cit-c31eea",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre la sentencia de 30 de abril de 2013 que declaró nulos y sin efecto la Homologación y el Plan Parcial. Los contratos mencionados se refieren a diferentes procedimientos judiciales y obras que no están d",
+        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre la sentencia de 30 de abril de 2013 que declaró nulos y sin efecto la Homologación y el Plan Parcial.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -25854,7 +25854,7 @@
       "verification": {
         "claimId": "1tgd1h4-340-cit-ab343f",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona la anulación del PAI y el proyecto de reparcelación, pero los candidatos presentados no ofrecen evidencia directa que respalde esta afirmación. El candidato [1] menciona la defensa en juicio relacionada con la anulación del PAI, lo que sugiere que hay un proceso judicial en cu",
+        "summary": "La afirmación menciona la anulación del PAI y el proyecto de reparcelación, pero los candidatos presentados no ofrecen evidencia directa que respalde esta afirmación.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -25945,7 +25945,7 @@
       "verification": {
         "claimId": "1tgd1h4-341-cit-bdee61",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre la presentación de la documentación para el programa \"Ciudad Deportiva Riba-roja de Túria\" por parte de la mercantil \"LITORAL DEL ESTE, S.L.U.\" en la fecha específica del 15 de marzo de 2016. Los contratos mencionados se",
+        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre la presentación de la documentación para el programa \"Ciudad Deportiva Riba-roja de Túria\" por parte de la mercantil \"LITORAL DEL ESTE, S.L.U.\" en la fecha específica del 15 de marzo de 2016.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -25976,7 +25976,7 @@
       "verification": {
         "claimId": "1tgd1h4-342-cit-3bfe57",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre el \"nuevo programa de actuación integrada que pasó a denominarse 'Ciudad Deportiva Riba-roja'\". Los contratos mencionados se centran en la gestión de actividades deportivas y en la pavimentación de pas",
+        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre el \"nuevo programa de actuación integrada que pasó a denominarse 'Ciudad Deportiva Riba-roja'\".",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -26035,7 +26035,7 @@
       "verification": {
         "claimId": "1tgd1h4-342-cit-2b8214",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere al derecho de resarcimiento de Litoral del Este debido a la nulidad del PAI Mas de Porxinos. El único candidato que menciona algo relacionado es el [0], que se refiere a la defensa en juicio en procedimientos judiciales contra el Ayuntamiento relacionados con la anulación de",
+        "summary": "La afirmación se refiere al derecho de resarcimiento de Litoral del Este debido a la nulidad del PAI Mas de Porxinos.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -26066,7 +26066,7 @@
       "verification": {
         "claimId": "1tgd1h4-342-cit-46bee9",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la tramitación y aprobación del nuevo PAI Mas de Porxinos, pero los candidatos presentados no contienen información que respalde directamente esta afirmación. El único candidato que menciona el PAI Porxinos es el primero, que se refiere a la defensa en juicio de procedimie",
+        "summary": "La afirmación se refiere a la tramitación y aprobación del nuevo PAI Mas de Porxinos, pero los candidatos presentados no contienen información que respalde directamente esta afirmación.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -26097,7 +26097,7 @@
       "verification": {
         "claimId": "1tgd1h4-343-cit-c67346",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a un acuerdo plenario que reconozca el derecho de resarcimiento de Litoral del Este debido a la nulidad del PAI Mas de Porxinos. Sin embargo, los candidatos presentados no contienen información que respalde directamente esta afirmación. El candidato [0] menciona la defensa e",
+        "summary": "La afirmación se refiere a un acuerdo plenario que reconozca el derecho de resarcimiento de Litoral del Este debido a la nulidad del PAI Mas de Porxinos. Sin embargo, los candidatos presentados no contienen información que respalde directamente esta afirmación.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -26128,7 +26128,7 @@
       "verification": {
         "claimId": "1tgd1h4-343-cit-d0e636",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre el PAI Ciudad Deportiva y su relación con el PAI Mas de Porxinos. Los contratos mencionados se refieren a obras específicas, como la pavimentación de paseos o la construcción de un pabellón deportivo, ",
+        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre el PAI Ciudad Deportiva y su relación con el PAI Mas de Porxinos.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -26375,7 +26375,7 @@
       "verification": {
         "claimId": "1tgd1h4-346-cit-398c93",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona la anulación de un PAI (Plan de Actuación Integrada) por los tribunales, pero los candidatos presentados no ofrecen información que respalde directamente esta afirmación. El primer candidato menciona un servicio de defensa en juicio relacionado con la anulación del PAI Porxino",
+        "summary": "La afirmación menciona la anulación de un PAI (Plan de Actuación Integrada) por los tribunales, pero los candidatos presentados no ofrecen información que respalde directamente esta afirmación.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -26554,7 +26554,7 @@
       "verification": {
         "claimId": "1tgd1h4-350-cit-7e0bfb",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presentados respalda la afirmación sobre la solicitud de desistimiento de la mercantil 'Litoral del Este, S.L.U.' al Juzgado con fecha 7 de diciembre de 2017. Los contratos mencionados se refieren a situaciones y fechas completamente diferentes, como daños por el temporal d",
+        "summary": "Ninguno de los candidatos presentados respalda la afirmación sobre la solicitud de desistimiento de la mercantil 'Litoral del Este, S.L.U.' al Juzgado con fecha 7 de diciembre de 2017.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -26615,7 +26615,7 @@
       "verification": {
         "claimId": "1tgd1h4-351-cit-c94def",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona un recurso iniciado por un agente urbanizador en relación con el PAI Mas de Porxinos, que fue declarado nulo judicialmente. Sin embargo, los candidatos presentados no hacen referencia directa a este PAI ni a la anulación judicial mencionada. El candidato [0] menciona la defens",
+        "summary": "La afirmación menciona un recurso iniciado por un agente urbanizador en relación con el PAI Mas de Porxinos, que fue declarado nulo judicialmente. Sin embargo, los candidatos presentados no hacen referencia directa a este PAI ni a la anulación judicial mencionada.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -26704,7 +26704,7 @@
       "verification": {
         "claimId": "1tgd1h4-352-cit-b331f9",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a un desistimiento en un recurso relacionado con la mercantil \"Litoral del Este, S.L.U.\" en el contexto del Ayuntamiento de Riba-roja de Túria. Sin embargo, los candidatos presentados no contienen información específica que mencione este desistimiento o la mercantil en cuest",
+        "summary": "La afirmación se refiere a un desistimiento en un recurso relacionado con la mercantil \"Litoral del Este, S.L.U.\" en el contexto del Ayuntamiento de Riba-roja de Túria.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -26866,7 +26866,7 @@
       "verification": {
         "claimId": "1tgd1h4-354-cit-9e2d2b",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la nulidad de pleno derecho de la homologación y el Plan Parcial del Sector 'Mas de Porxinos', así como a una reclamación de daños por un importe específico. De los candidatos presentados, el único que menciona directamente el PAI Porxinos es el candidato [1], que se refie",
+        "summary": "La afirmación se refiere a la nulidad de pleno derecho de la homologación y el Plan Parcial del Sector 'Mas de Porxinos', así como a una reclamación de daños por un importe específico.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -26897,7 +26897,7 @@
       "verification": {
         "claimId": "1tgd1h4-354-cit-9b092a",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la cesión de suelo no urbanizable a la Generalitat para el PAI \"Mas de Porxinos\". Sin embargo, los candidatos presentados no contienen información específica sobre la cesión de suelo, ni mencionan el PAI \"Mas de Porxinos\". Los contratos listados se centran en otros proyect",
+        "summary": "La afirmación se refiere a la cesión de suelo no urbanizable a la Generalitat para el PAI \"Mas de Porxinos\". Sin embargo, los candidatos presentados no contienen información específica sobre la cesión de suelo, ni mencionan el PAI \"Mas de Porxinos\".",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -26986,7 +26986,7 @@
       "verification": {
         "claimId": "1tgd1h4-355-cit-196fdd",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la desestimación de una reclamación de responsabilidad patrimonial, lo que implica un contexto legal específico. Sin embargo, los candidatos presentados se relacionan con seguros de responsabilidad civil/patrimonial y defensa en juicio, pero no hay evidencia directa de que",
+        "summary": "La afirmación se refiere a la desestimación de una reclamación de responsabilidad patrimonial, lo que implica un contexto legal específico.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -27458,7 +27458,7 @@
       "verification": {
         "claimId": "1tgd1h4-362-cit-cb96d5",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo directo a la afirmación sobre la anulación del PAI más de Porxinos y sus instrumentos de planeamiento. Aunque hay un candidato que menciona la defensa en juicio relacionada con la anulación del PAI Porxinos, no se proporciona información específica que ",
+        "summary": "Ninguno de los candidatos presenta un respaldo directo a la afirmación sobre la anulación del PAI más de Porxinos y sus instrumentos de planeamiento.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -27489,7 +27489,7 @@
       "verification": {
         "claimId": "1tgd1h4-363-afi-e9f175",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona un monto específico de 4.260.754,91 €, pero ninguno de los candidatos presenta un registro que coincida con esta cifra exacta. Los contratos y ayudas listados no hacen referencia a este monto ni a gastos que sumen esa cantidad. Por lo tanto, no hay respaldo genuino a la afirma",
+        "summary": "La afirmación menciona un monto específico de 4.260.754,91 €, pero ninguno de los candidatos presenta un registro que coincida con esta cifra exacta. Los contratos y ayudas listados no hacen referencia a este monto ni a gastos que sumen esa cantidad.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -27521,7 +27521,7 @@
       "verification": {
         "claimId": "1tgd1h4-363-cit-6cf382",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre las resoluciones judiciales que declararon la nulidad del PP y la homologación del Sector Mas de Porxinos. Aunque el primer candidato menciona la defensa en juicio relacionada con la anulación del PAI ",
+        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre las resoluciones judiciales que declararon la nulidad del PP y la homologación del Sector Mas de Porxinos.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -27610,7 +27610,7 @@
       "verification": {
         "claimId": "1tgd1h4-364-cit-ade3ab",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta información que respalde de manera genuina la afirmación sobre el recurso PO 516/2018 interpuesto por Litoral del Este, S.L.U. ante el Juzgado de lo contencioso-administrativo nº 2 de Valencia. Los contratos mencionados se refieren a diferentes procedimientos judic",
+        "summary": "Ninguno de los candidatos presenta información que respalde de manera genuina la afirmación sobre el recurso PO 516/2018 interpuesto por Litoral del Este, S.L.U. ante el Juzgado de lo contencioso-administrativo nº 2 de Valencia.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -27703,7 +27703,7 @@
       "verification": {
         "claimId": "1tgd1h4-365-cit-650e49",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere específicamente a un recurso interpuesto por Luís Ignacio Serra Mallol sobre la contratación, identificado como PO 222/2018-A. Sin embargo, ninguno de los candidatos presenta información que coincida con este recurso específico, ya que todos los contratos listados se refiere",
+        "summary": "La afirmación se refiere específicamente a un recurso interpuesto por Luís Ignacio Serra Mallol sobre la contratación, identificado como PO 222/2018-A. Sin embargo, ninguno de los candidatos presenta información que coincida con este recurso específico, ya que todos los contratos listados se…",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -27762,7 +27762,7 @@
       "verification": {
         "claimId": "1tgd1h4-367-cit-a195a4",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la nulidad del PAI Mas de Porxinos y a una sentencia favorable al Ayuntamiento en relación con un recurso de casación. El único candidato que menciona la defensa en juicio relacionada con la anulación del PAI Porxinos es el candidato [0], que tiene un contrato de €60.000 p",
+        "summary": "La afirmación se refiere a la nulidad del PAI Mas de Porxinos y a una sentencia favorable al Ayuntamiento en relación con un recurso de casación.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -27880,7 +27880,7 @@
       "verification": {
         "claimId": "1tgd1h4-368-cit-5d3b23",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre la nulidad del PAI Mas de Porxinos y la reclamación de 25.117.783,68€. Aunque hay un contrato relacionado con la defensa en juicio contra el Ayuntamiento por la anulación del PAI Porxinos, el importe de 60.000€ no coincide ",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre la nulidad del PAI Mas de Porxinos y la reclamación de 25.117.783,68€.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -28000,7 +28000,7 @@
       "verification": {
         "claimId": "1tgd1h4-369-cit-ab4a0c",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere específicamente al sobreseimiento del PA 1045/2017 en un contexto judicial relacionado con Roberto Raga y otros, mientras que los candidatos presentados se centran en contratos de servicios jurídicos y defensa procesal, pero no hay evidencia directa que vincule a ninguno de ",
+        "summary": "La afirmación se refiere específicamente al sobreseimiento del PA 1045/2017 en un contexto judicial relacionado con Roberto Raga y otros, mientras que los candidatos presentados se centran en contratos de servicios jurídicos y defensa procesal, pero no hay evidencia directa que vincule a ninguno…",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -28033,7 +28033,7 @@
       "verification": {
         "claimId": "1tgd1h4-370-cit-e0ec21",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere específicamente al sobreseimiento del PA 1045/2017 por parte del Juzgado de Primera Instancia e Instrucción nº4 de Llíria, lo cual es un hecho judicial concreto. Sin embargo, los candidatos listados se relacionan con diferentes contratos y servicios jurídicos que no menciona",
+        "summary": "La afirmación se refiere específicamente al sobreseimiento del PA 1045/2017 por parte del Juzgado de Primera Instancia e Instrucción nº4 de Llíria, lo cual es un hecho judicial concreto.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -28244,7 +28244,7 @@
       "verification": {
         "claimId": "1tgd1h4-373-cit-00e796",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a dar cuenta al Pleno de las últimas actuaciones en el PA 1045/2017 y su archivo definitivo. Sin embargo, los candidatos listados no presentan información que se relacione directamente con el PA 1045/2017 ni con la obligación de rendir cuentas al Pleno sobre este asunto espe",
+        "summary": "La afirmación se refiere a dar cuenta al Pleno de las últimas actuaciones en el PA 1045/2017 y su archivo definitivo.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -28363,7 +28363,7 @@
       "verification": {
         "claimId": "1tgd1h4-376-cit-c68c42",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona específicamente la campaña \"XXII Feria del Comercio de Riba-roja\" y su cantidad de 22, pero ninguno de los candidatos presenta un respaldo directo a esta afirmación. Los contratos mencionados se refieren a servicios relacionados con la feria, como el alquiler de vallas y grupo",
+        "summary": "La afirmación menciona específicamente la campaña \"XXII Feria del Comercio de Riba-roja\" y su cantidad de 22, pero ninguno de los candidatos presenta un respaldo directo a esta afirmación.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -28394,7 +28394,7 @@
       "verification": {
         "claimId": "1tgd1h4-376-cit-602ce3",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona la elaboración de unas bases para regular, específicamente en el contexto del departamento de comercio. Sin embargo, los candidatos presentados no contienen información que respalde directamente esta afirmación. Las bases reguladoras de ayudas mencionadas en los registros (com",
+        "summary": "La afirmación menciona la elaboración de unas bases para regular, específicamente en el contexto del departamento de comercio. Sin embargo, los candidatos presentados no contienen información que respalde directamente esta afirmación.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -28425,7 +28425,7 @@
       "verification": {
         "claimId": "1tgd1h4-377-cit-bc827e",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona la celebración de la campaña \"XXII Feria del Comercio de Riba-roja\" y sus objetivos. Entre los candidatos, el contrato de servicio de alquiler de vallas de seguridad (candidato [0]) y el contrato de alquiler de grupo electrógeno (candidato [3]) están directamente relacionados ",
+        "summary": "La afirmación menciona la celebración de la campaña \"XXII Feria del Comercio de Riba-roja\" y sus objetivos.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -28965,7 +28965,7 @@
       "verification": {
         "claimId": "1tgd1h4-386-cit-5db761",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a un expediente específico (4799/2023/GEN) relacionado con la bitácora de la BOOTCAMP del Hub de Innovación RIBA_LAB. Sin embargo, los candidatos presentados no hacen referencia a este expediente ni a la BOOTCAMP en particular. Aunque hay menciones a asistencia técnica y sub",
+        "summary": "La afirmación se refiere a un expediente específico (4799/2023/GEN) relacionado con la bitácora de la BOOTCAMP del Hub de Innovación RIBA_LAB. Sin embargo, los candidatos presentados no hacen referencia a este expediente ni a la BOOTCAMP en particular.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -29025,7 +29025,7 @@
       "verification": {
         "claimId": "1tgd1h4-387-cit-986230",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre el \"BOOTCAMP del Hub de Innovación RIBA_LAB\" en el Ayuntamiento de Riba-roja de Túria. Aunque hay menciones a contratos y ayudas relacionadas con la innovación y la colaboración, no hay coincidencias e",
+        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre el \"BOOTCAMP del Hub de Innovación RIBA_LAB\" en el Ayuntamiento de Riba-roja de Túria.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -29084,7 +29084,7 @@
       "verification": {
         "claimId": "1tgd1h4-389-cit-d3619b",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre la creación del Hub de Innovación Riba_Lab en la fecha específica del 24 de julio de 2023. Los registros mencionados se refieren a acuerdos y ayudas de años anteriores y no están relacionados directame",
+        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre la creación del Hub de Innovación Riba_Lab en la fecha específica del 24 de julio de 2023.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -29116,7 +29116,7 @@
       "verification": {
         "claimId": "1tgd1h4-390-cit-2768e2",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre la creación del Hub de Innovación Riba_Lab en la fecha específica del 24 de julio de 2023. Los contratos y acuerdos mencionados se refieren a otros proyectos y fechas, como la asistencia técnica para l",
+        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre la creación del Hub de Innovación Riba_Lab en la fecha específica del 24 de julio de 2023.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -29176,7 +29176,7 @@
       "verification": {
         "claimId": "1tgd1h4-391-cit-ccb6ea",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona medidas a implantar en el contexto de la cohesión social y la participación ciudadana, específicamente un \"colector de ideas\". De los candidatos presentados, el contrato menor para la elaboración del Plan de Inclusión y Cohesión Social Municipal (candidato 2) parece ser el más",
+        "summary": "La afirmación menciona medidas a implantar en el contexto de la cohesión social y la participación ciudadana, específicamente un \"colector de ideas\".",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -29209,7 +29209,7 @@
       "verification": {
         "claimId": "1tgd1h4-391-cit-aceaf5",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona específicamente un 'Colector de ideas', pero ninguno de los candidatos presenta un contrato o subvención que se relacione directamente con este concepto. Los contratos listados se refieren a servicios de asesoramiento, análisis, o suministros, pero no hay evidencia de que algu",
+        "summary": "La afirmación menciona específicamente un 'Colector de ideas', pero ninguno de los candidatos presenta un contrato o subvención que se relacione directamente con este concepto.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -29420,7 +29420,7 @@
       "verification": {
         "claimId": "1tgd1h4-392-cit-23dd08",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona la elaboración de un \"plan de acción\", pero no proporciona detalles específicos sobre el tipo de plan o su contexto. Entre los candidatos, el único que menciona explícitamente un \"Plan de Acción Local\" es el candidato [6], que se refiere a un plan para la incorporación del mun",
+        "summary": "La afirmación menciona la elaboración de un \"plan de acción\", pero no proporciona detalles específicos sobre el tipo de plan o su contexto.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -29509,7 +29509,7 @@
       "verification": {
         "claimId": "1tgd1h4-393-cit-f4df62",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre la Bootcamp programada para los días 19 y 20 de junio de 2024. Aunque hay menciones a servicios relacionados con la formación y el empleo, como el 'Servicio de asistencia técnica para el impulso y la gestión de la compra pú",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre la Bootcamp programada para los días 19 y 20 de junio de 2024.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -29601,7 +29601,7 @@
       "verification": {
         "claimId": "1tgd1h4-394-cit-f30ef4",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presentados respalda la afirmación de que \"el proyecto RibaLab ha sido seleccionado para ser expuesto en el Congreso de Innovación Pública NovaGob2024\". Los documentos mencionados se refieren a premios EcoRiba y otros acuerdos del Ayuntamiento de Riba-roja de Túria, pero no",
+        "summary": "Ninguno de los candidatos presentados respalda la afirmación de que \"el proyecto RibaLab ha sido seleccionado para ser expuesto en el Congreso de Innovación Pública NovaGob2024\".",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"

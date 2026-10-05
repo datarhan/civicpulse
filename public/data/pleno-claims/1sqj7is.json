@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T17:23:05.282Z",
+  "generatedAt": "2026-10-05T06:45:20.453Z",
   "version": "1",
   "plenoId": "1sqj7is",
   "plenoDate": "2026-03-09",
@@ -114,7 +114,7 @@
       "verification": {
         "claimId": "1sqj7is-002-cit-559af1",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación y los 8 candidatos proporcionados. La afirmación cita textualmente lo que dijo un concejal sobre el expediente de reconocimiento extrajudicial nº 5/2026, indicando que casi todos los gastos ahí incluidos son de la campaña de Navidad. Ningún candidato es el expediente de reconoc",
+        "summary": "Analicé la afirmación y los 8 candidatos proporcionados. La afirmación cita textualmente lo que dijo un concejal sobre el expediente de reconocimiento extrajudicial nº 5/2026, indicando que casi todos los gastos ahí incluidos son de la campaña de Navidad.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -202,7 +202,7 @@
       "verification": {
         "claimId": "1sqj7is-006-afi-99b7f0",
         "verdict": "sin-datos",
-        "summary": "Analicé los 8 candidatos frente a la afirmación sobre 240.000€ en reconocimientos extrajudiciales repetitivos. Ningún candidato coincide en cifra (los más cercanos son 18.137,9€ y 60.000€, órdenes de magnitud distintos), ni en tipo de gasto (son contratos de defensa jurídica, suministro de sistema d",
+        "summary": "Analicé los 8 candidatos frente a la afirmación sobre 240.000€ en reconocimientos extrajudiciales repetitivos.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1347,7 +1347,7 @@
       "verification": {
         "claimId": "1sqj7is-058-cit-091d2f",
         "verdict": "sin-datos",
-        "summary": "Los dos candidatos son contratos reales de herramientas de control/transparencia de licitaciones del Ayuntamiento de Riba-roja de Túria (visor de transparencia de contratación, lote de herramienta de control y planificación), lo que da cierto contexto factual de que existe una herramienta de este ti",
+        "summary": "Los dos candidatos son contratos reales de herramientas de control/transparencia de licitaciones del Ayuntamiento de Riba-roja de Túria (visor de transparencia de contratación, lote de herramienta de control y planificación), lo que da cierto contexto factual de que existe una herramienta de este…",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1638,7 +1638,7 @@
       "verification": {
         "claimId": "1sqj7is-071-cit-3986be",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (acuerdo de pleno sobre sometimiento a información pública del plan de reforma interior de la UE Casco 1) frente al único candidato disponible (tender/contrato de arquitectura para UE Casco 5). Concluí que no hay respaldo genuino: distinta unidad de ejecución (Casco 1 vs Casco ",
+        "summary": "Analicé la afirmación (acuerdo de pleno sobre sometimiento a información pública del plan de reforma interior de la UE Casco 1) frente al único candidato disponible (tender/contrato de arquitectura para UE Casco 5).",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1700,7 +1700,7 @@
       "verification": {
         "claimId": "1sqj7is-071-cit-308d69",
         "verdict": "sin-datos",
-        "summary": "El único candidato disponible es un contrato (tender) para \"UE casco 5\" en Riba-roja de Túria, categoría arquitectura, sin fecha ni importe relevantes. La afirmación se refiere específicamente al Plan de Reforma Interior de la UE Casco 1 y a que el ayuntamiento, actuando como órgano ambiental y terr",
+        "summary": "El único candidato disponible es un contrato (tender) para \"UE casco 5\" en Riba-roja de Túria, categoría arquitectura, sin fecha ni importe relevantes.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1732,7 +1732,7 @@
       "verification": {
         "claimId": "1sqj7is-072-cit-7b7dbb",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación y el único candidato disponible. La afirmación se refiere a un trámite realizado en agosto de 2022 para la UE Casco 1. El candidato es una licitación (tender) para la UE Casco 5, una unidad de ejecución distinta a la mencionada. No coincide el sujeto (Casco 1 vs Casco 5), y tam",
+        "summary": "Analicé la afirmación y el único candidato disponible. La afirmación se refiere a un trámite realizado en agosto de 2022 para la UE Casco 1. El candidato es una licitación (tender) para la UE Casco 5, una unidad de ejecución distinta a la mencionada.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1764,7 +1764,7 @@
       "verification": {
         "claimId": "1sqj7is-073-cit-0f5509",
         "verdict": "sin-datos",
-        "summary": "Analicé el único candidato disponible: es un contrato (tender) para la unidad de ejecución \"UE casco 5\", mientras que la afirmación se refiere específicamente a la unidad \"Casco 1\" y a un trámite realizado en agosto de 2022. No hay coincidencia de sujeto (unidad urbanística distinta: 5 vs 1), no hay",
+        "summary": "Analicé el único candidato disponible: es un contrato (tender) para la unidad de ejecución \"UE casco 5\", mientras que la afirmación se refiere específicamente a la unidad \"Casco 1\" y a un trámite realizado en agosto de 2022.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1920,7 +1920,7 @@
       "verification": {
         "claimId": "1sqj7is-077-cit-bac1da",
         "verdict": "sin-datos",
-        "summary": "Analicé los 5 candidatos frente a la afirmación sobre la redacción interna de un plan de reforma interior por la oficina técnica municipal y su inclusión en el trámite de evaluación ambiental y estratégica. El candidato [0] comparte tema (evaluación ambiental/estratégica, urbanismo) pero difiere en ",
+        "summary": "Analicé los 5 candidatos frente a la afirmación sobre la redacción interna de un plan de reforma interior por la oficina técnica municipal y su inclusión en el trámite de evaluación ambiental y estratégica.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1952,7 +1952,7 @@
       "verification": {
         "claimId": "1sqj7is-077-cit-39a7e5",
         "verdict": "sin-datos",
-        "summary": "Analicé los 8 candidatos frente a la afirmación sobre un informe conjunto de Secretaría municipal de fecha 24/02/2026 relativo a un Plan de Reforma Interior. Ninguno coincide en fecha, naturaleza documental (informe de Secretaría vs. contratos/bases de subvención) ni sujeto exacto. El más cercano te",
+        "summary": "Analicé los 8 candidatos frente a la afirmación sobre un informe conjunto de Secretaría municipal de fecha 24/02/2026 relativo a un Plan de Reforma Interior. Ninguno coincide en fecha, naturaleza documental (informe de Secretaría vs. contratos/bases de subvención) ni sujeto exacto.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -2373,7 +2373,7 @@
       "verification": {
         "claimId": "1sqj7is-088-cit-642044",
         "verdict": "sin-datos",
-        "summary": "Analicé el único candidato disponible: es un contrato (tender) sobre sustitución de juegos infantiles y suelos de protección en la Plaza Vicente Andrés Estellés (Riba-roja de Túria). La afirmación habla de 22 viviendas públicas en la Plaza de Germanías. No coinciden ni la plaza (nombre/ubicación dis",
+        "summary": "Analicé el único candidato disponible: es un contrato (tender) sobre sustitución de juegos infantiles y suelos de protección en la Plaza Vicente Andrés Estellés (Riba-roja de Túria). La afirmación habla de 22 viviendas públicas en la Plaza de Germanías.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -2517,7 +2517,7 @@
       "verification": {
         "claimId": "1sqj7is-091-cit-76dc31",
         "verdict": "sin-datos",
-        "summary": "Analicé los 5 candidatos: todos son contratos de obras/servicios (mantenimiento IT, habilitación de locales para asociaciones, proyecto arquitectónico para EPA, portal del empleado) del Ayuntamiento de Riba-roja de Túria. Ninguno menciona solares municipales cedidos para construcción de vivienda. La",
+        "summary": "Analicé los 5 candidatos: todos son contratos de obras/servicios (mantenimiento IT, habilitación de locales para asociaciones, proyecto arquitectónico para EPA, portal del empleado) del Ayuntamiento de Riba-roja de Túria. Ninguno menciona solares municipales cedidos para construcción de vivienda.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"

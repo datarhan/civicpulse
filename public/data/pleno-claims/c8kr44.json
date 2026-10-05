@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T17:23:05.282Z",
+  "generatedAt": "2026-10-05T06:45:20.453Z",
   "version": "1",
   "plenoId": "c8kr44",
   "plenoDate": "2025-09-08",
@@ -262,7 +262,7 @@
       "verification": {
         "claimId": "c8kr44-014-afi-69d9bd",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos respalda la afirmación. La afirmación versa sobre un incremento de 14.500 € en la cantidad global máxima anual destinada a \"productividades\" (complemento retributivo de personal municipal) más 4.350 € de Seguridad Social, con un importe global resultante de 269.500 €. Los c",
+        "summary": "Ninguno de los candidatos respalda la afirmación. La afirmación versa sobre un incremento de 14.500 € en la cantidad global máxima anual destinada a \"productividades\" (complemento retributivo de personal municipal) más 4.350 € de Seguridad Social, con un importe global resultante de 269.500 €.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -327,7 +327,7 @@
       "verification": {
         "claimId": "c8kr44-015-afi-84682e",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (incremento salarial de \"productividades\" de personal municipal, 14.500€+4.350€ SS, total 269.500€) contra los 5 candidatos, que son todos contratos de suministro/servicio a terceros (uniformes de seguridad, catering social) sin relación de entidad, concepto ni cifra con la afi",
+        "summary": "Analicé la afirmación (incremento salarial de \"productividades\" de personal municipal, 14.500€+4.350€ SS, total 269.500€) contra los 5 candidatos, que son todos contratos de suministro/servicio a terceros (uniformes de seguridad, catering social) sin relación de entidad, concepto ni cifra con la…",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -817,7 +817,7 @@
       "verification": {
         "claimId": "c8kr44-045-afi-5af5f7",
         "verdict": "sin-datos",
-        "summary": "Analicé cada candidato: todos son contratos menores o de servicios TI/administrativos del Ayuntamiento de Riba-roja de Túria con importes en el rango de miles de euros (máximo €16.869,24), sin relación temática con medio ambiente/servicio de 14 años, ni con las cifras de €18.106.000 (presupuesto bas",
+        "summary": "Analicé cada candidato: todos son contratos menores o de servicios TI/administrativos del Ayuntamiento de Riba-roja de Túria con importes en el rango de miles de euros (máximo €16.869,24), sin relación temática con medio ambiente/servicio de 14 años, ni con las cifras de €18.106.000 (presupuesto…",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -943,7 +943,7 @@
       "verification": {
         "claimId": "c8kr44-046-afi-367a4b",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (ahorro de 9.791€ en un contrato de tema medio-ambiente, con adjudicación de 194.810€ y base de licitación de 208.000€) frente a los dos candidatos disponibles, ambos licitaciones de \"mantenimiento de base de datos corporativa\" del Ayuntamiento de Riba-roja de Túria, categoría ",
+        "summary": "Analicé la afirmación (ahorro de 9.791€ en un contrato de tema medio-ambiente, con adjudicación de 194.810€ y base de licitación de 208.000€) frente a los dos candidatos disponibles, ambos licitaciones de \"mantenimiento de base de datos corporativa\" del Ayuntamiento de Riba-roja de Túria…",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1216,7 +1216,7 @@
       "verification": {
         "claimId": "c8kr44-053-cit-7811e2",
         "verdict": "sin-datos",
-        "summary": "Analicé los dos candidatos frente a la afirmación textual sobre un contrato de asistencia técnica para controlar a otra empresa que presta un servicio, en el contexto de quejas por ruidos a horas intempestivas (tema medio ambiente). Concluí que ninguno de los dos candidatos respalda genuinamente la ",
+        "summary": "Analicé los dos candidatos frente a la afirmación textual sobre un contrato de asistencia técnica para controlar a otra empresa que presta un servicio, en el contexto de quejas por ruidos a horas intempestivas (tema medio ambiente).",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1276,7 +1276,7 @@
       "verification": {
         "claimId": "c8kr44-055-cit-8a88c1",
         "verdict": "sin-datos",
-        "summary": "La afirmación es una reflexión genérica del ponente sobre qué significa \"un contrato a largo plazo\" (pago diferido en el tiempo frente a pago íntegro inmediato), sin mencionar importe, fecha, objeto ni proveedor concreto que permita anclarla a un expediente específico. Es una opinión/argumentación r",
+        "summary": "La afirmación es una reflexión genérica del ponente sobre qué significa \"un contrato a largo plazo\" (pago diferido en el tiempo frente a pago íntegro inmediato), sin mencionar importe, fecha, objeto ni proveedor concreto que permita anclarla a un expediente específico.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1307,7 +1307,7 @@
       "verification": {
         "claimId": "c8kr44-055-cit-1b51ba",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona que se trata del \"contrato más importante del municipio\", pero ninguno de los contratos listados proporciona información que respalde esta afirmación de manera concreta. Aunque algunos contratos mencionan aspectos medioambientales, no hay un contrato específico que se identifi",
+        "summary": "La afirmación menciona que se trata del \"contrato más importante del municipio\", pero ninguno de los contratos listados proporciona información que respalde esta afirmación de manera concreta.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1370,7 +1370,7 @@
       "verification": {
         "claimId": "c8kr44-065-cit-cf6f76",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona la existencia de una \"comisión de contractación\" donde se ha debatido un contrato, pero ninguno de los candidatos presenta información específica sobre dicha comisión o el contrato en cuestión. Los contratos listados se refieren a servicios diversos, como la organización de un",
+        "summary": "La afirmación menciona la existencia de una \"comisión de contractación\" donde se ha debatido un contrato, pero ninguno de los candidatos presenta información específica sobre dicha comisión o el contrato en cuestión.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1401,7 +1401,7 @@
       "verification": {
         "claimId": "c8kr44-068-cit-e0df39",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a un incremento en las frecuencias de replegada y la eliminación de vertederos incontrolados, lo cual está relacionado con la gestión de residuos y el medio ambiente. Sin embargo, los candidatos presentados se centran en servicios de retirada de vehículos, desinfección y man",
+        "summary": "La afirmación se refiere a un incremento en las frecuencias de replegada y la eliminación de vertederos incontrolados, lo cual está relacionado con la gestión de residuos y el medio ambiente.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1461,7 +1461,7 @@
       "verification": {
         "claimId": "c8kr44-073-cit-e5c12b",
         "verdict": "sin-datos",
-        "summary": "La afirmación se centra en la fiscalización técnica de informes jurídicos y la posibilidad de penalizaciones a través de empresas, lo que implica un enfoque en la transparencia y la rendición de cuentas. Sin embargo, los candidatos presentados se centran en servicios de asesoramiento, gestión tribut",
+        "summary": "La afirmación se centra en la fiscalización técnica de informes jurídicos y la posibilidad de penalizaciones a través de empresas, lo que implica un enfoque en la transparencia y la rendición de cuentas.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1492,7 +1492,7 @@
       "verification": {
         "claimId": "c8kr44-073-cit-d6d194",
         "verdict": "sin-datos",
-        "summary": "El único candidato [0] es un contrato de suministro de un aplicativo para la policía local en Riba-roja de Túria, sin relación temática (medio ambiente vs. policía) ni coincidencia de ningún valor concreto (importe, fecha, sujeto) con la afirmación verbatim, que además es una declaración genérica so",
+        "summary": "El único candidato [0] es un contrato de suministro de un aplicativo para la policía local en Riba-roja de Túria, sin relación temática (medio ambiente vs. policía) ni coincidencia de ningún valor concreto (importe, fecha, sujeto) con la afirmación verbatim, que además es una declaración genérica…",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1552,7 +1552,7 @@
       "verification": {
         "claimId": "c8kr44-074-cit-32c7cc",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación. Aunque varios contratos mencionan aspectos relacionados con la modificación de contratos o la protección del medio ambiente, no hay evidencia concreta que vincule directamente la afirmación sobre la flexibilidad y aprobación por",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación. Aunque varios contratos mencionan aspectos relacionados con la modificación de contratos o la protección del medio ambiente, no hay evidencia concreta que vincule directamente la afirmación sobre la flexibilidad y aprobación…",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1958,7 +1958,7 @@
       "verification": {
         "claimId": "c8kr44-088-cit-d469ff",
         "verdict": "sin-datos",
-        "summary": "Análisis completado: el candidato [0] respalda con fuerza la identidad del adjudicatario y el objeto del estudio (mismo Ayuntamiento, mismo contratista \"Planifica Ingenieros y Arquitectos Coop.V.\", mismo objeto \"estudio de criterios... en suelos inundables\"), pero no verifica la fecha concreta del 7",
+        "summary": "Análisis completado: el candidato [0] respalda con fuerza la identidad del adjudicatario y el objeto del estudio (mismo Ayuntamiento, mismo contratista \"Planifica Ingenieros y Arquitectos Coop.V.\", mismo objeto \"estudio de criterios... en suelos inundables\"), pero no verifica la fecha concreta del…",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -2085,7 +2085,7 @@
       "verification": {
         "claimId": "c8kr44-090-cit-8f5a4b",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona \"criterios interpretativos\" redactados por el Departamento de Urbanismo, pero ninguno de los candidatos presenta un respaldo directo a esta afirmación. Los contratos listados se refieren a estudios y obras específicas, pero no hay evidencia de que se relacionen con los criteri",
+        "summary": "La afirmación menciona \"criterios interpretativos\" redactados por el Departamento de Urbanismo, pero ninguno de los candidatos presenta un respaldo directo a esta afirmación.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -2205,7 +2205,7 @@
       "verification": {
         "claimId": "c8kr44-095-cit-af4c0c",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la posibilidad de desarrollar licencias de obra de tipo 1 con normalidad, pero ninguno de los contratos presentados por los candidatos menciona específicamente licencias de obra de tipo 1 ni su desarrollo. Los contratos listados se centran en obras específicas, como la ins",
+        "summary": "La afirmación se refiere a la posibilidad de desarrollar licencias de obra de tipo 1 con normalidad, pero ninguno de los contratos presentados por los candidatos menciona específicamente licencias de obra de tipo 1 ni su desarrollo.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -2508,7 +2508,7 @@
       "verification": {
         "claimId": "c8kr44-109-cit-895674",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona específicamente la \"cación puntual, la 25 del plan general\" promovida por el Ayuntamiento, lo que implica una relación directa con un proyecto de urbanismo específico. Sin embargo, los contratos presentados por los candidatos no hacen referencia a esta cación puntual ni al pla",
+        "summary": "La afirmación menciona específicamente la \"cación puntual, la 25 del plan general\" promovida por el Ayuntamiento, lo que implica una relación directa con un proyecto de urbanismo específico.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -2593,7 +2593,7 @@
       "verification": {
         "claimId": "c8kr44-110-cit-53cb94",
         "verdict": "sin-datos",
-        "summary": "Analicé los dos candidatos (contratos de limpieza del CEIP Cervantes) frente a la afirmación sobre recalificación urbanística de suelo dotacional educativo (pabellón Scoto y calle Luis Vives). No hay correspondencia temática real: uno trata de servicios de limpieza contratados, el otro de un acto de",
+        "summary": "Analicé los dos candidatos (contratos de limpieza del CEIP Cervantes) frente a la afirmación sobre recalificación urbanística de suelo dotacional educativo (pabellón Scoto y calle Luis Vives).",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -2919,7 +2919,7 @@
       "verification": {
         "claimId": "c8kr44-116-cit-d7f7dd",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (mención de informes jurídico, técnico y del TAG favorables en un expediente urbanístico) frente al único candidato disponible (contrato de asesoramiento jurídico general, revocado, sim=0.20). No hay coincidencia de sujeto, expediente, ni naturaleza del documento (informe inter",
+        "summary": "Analicé la afirmación (mención de informes jurídico, técnico y del TAG favorables en un expediente urbanístico) frente al único candidato disponible (contrato de asesoramiento jurídico general, revocado, sim=0.20).",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -3037,7 +3037,7 @@
       "verification": {
         "claimId": "c8kr44-119-cit-e9c4b9",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona actuaciones en colegios de la localidad, específicamente en el Camp de Turía, pero no proporciona detalles concretos sobre qué actuaciones se han realizado. Los candidatos listados incluyen contratos relacionados con colegios, como el CEIP Eres Altes y el Camp de Túria, pero n",
+        "summary": "La afirmación menciona actuaciones en colegios de la localidad, específicamente en el Camp de Turía, pero no proporciona detalles concretos sobre qué actuaciones se han realizado.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -3452,7 +3452,7 @@
       "verification": {
         "claimId": "c8kr44-127-afi-a7e5b5",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre un ahorro neto positivo de 1.834.000 euros. Los registros se centran en ayudas económicas, resoluciones de alcaldía y contratos relacionados con el Ayuntamiento de Riba-roja de Túria, pero no hay evidencia de un ahorro e",
+        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre un ahorro neto positivo de 1.834.000 euros.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -3754,7 +3754,7 @@
       "verification": {
         "claimId": "c8kr44-142-cit-e68b18",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación y los 5 candidatos. La afirmación se refiere a una subvención de turismo (gestionada por \"Esther\") para pérgolas ajardinadas (4 unidades, 160.000€ de un total de 330.000€). Los candidatos son todos contratos (tenders) del Ayuntamiento de Riba-roja de Túria sobre vehículos híbri",
+        "summary": "Analicé la afirmación y los 5 candidatos. La afirmación se refiere a una subvención de turismo (gestionada por \"Esther\") para pérgolas ajardinadas (4 unidades, 160.000€ de un total de 330.000€).",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -3820,7 +3820,7 @@
       "verification": {
         "claimId": "c8kr44-143-afi-e4636b",
         "verdict": "sin-datos",
-        "summary": "Analicé los 5 candidatos frente a la afirmación sobre 330.000€ para carril bici. Ningún candidato coincide en tema+importe simultáneamente: [0]/[1] son sobre alumbrado del carril bici sin importe reportado; [4] es obra de carril bici pero con importe de 172.440,82€, muy distinto de \"algo más de 330.",
+        "summary": "Analicé los 5 candidatos frente a la afirmación sobre 330.000€ para carril bici. Ningún candidato coincide en tema+importe simultáneamente: [0]/[1] son sobre alumbrado del carril bici sin importe reportado; [4] es obra de carril bici pero con importe de 172.440,82€, muy distinto de \"algo más de…",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -4063,7 +4063,7 @@
       "verification": {
         "claimId": "c8kr44-148-cit-2fadb2",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la transformación de la plaza de la estación, pero los candidatos listados no presentan información específica sobre obras o proyectos relacionados directamente con dicha plaza. Aunque hay un candidato que menciona la \"Obra de Reurbanización zona plaza de la Estación\", no ",
+        "summary": "La afirmación se refiere a la transformación de la plaza de la estación, pero los candidatos listados no presentan información específica sobre obras o proyectos relacionados directamente con dicha plaza.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -4124,7 +4124,7 @@
       "verification": {
         "claimId": "c8kr44-152-cit-695c2d",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona específicamente el \"Pemus\" y el \"PACE\", que son planes relacionados con la movilidad y la planificación urbana. Sin embargo, los contratos presentados por los candidatos no hacen referencia directa a estos planes ni a su ejecución. Por ejemplo, el contrato para el \"PLAN URBANO",
+        "summary": "La afirmación menciona específicamente el \"Pemus\" y el \"PACE\", que son planes relacionados con la movilidad y la planificación urbana. Sin embargo, los contratos presentados por los candidatos no hacen referencia directa a estos planes ni a su ejecución.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -4214,7 +4214,7 @@
       "verification": {
         "claimId": "c8kr44-160-cit-e59f43",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona el trabajo en un \"plan de refugios climáticos\", pero no proporciona detalles específicos sobre contratos o proyectos que respalden esta afirmación. Sin embargo, el candidato [1] menciona un proyecto relacionado con la \"mejora de refugios climáticos\", lo que podría sugerir una ",
+        "summary": "La afirmación menciona el trabajo en un \"plan de refugios climáticos\", pero no proporciona detalles específicos sobre contratos o proyectos que respalden esta afirmación.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -4502,7 +4502,7 @@
       "verification": {
         "claimId": "c8kr44-163-afi-09b55a",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona un valor específico de 32.000 euros y una cantidad de 2 metros cuadrados. Sin embargo, ninguno de los contratos presentados por los candidatos coincide con estos valores. Por ejemplo, el contrato menor de suministro para la adquisición de una carpa tiene un importe de 11 euros",
+        "summary": "La afirmación menciona un valor específico de 32.000 euros y una cantidad de 2 metros cuadrados. Sin embargo, ninguno de los contratos presentados por los candidatos coincide con estos valores.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -4565,7 +4565,7 @@
       "verification": {
         "claimId": "c8kr44-164-afi-8cb344",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre un valor de 32.000 euros relacionado con un proyecto de urbanismo específico. Todos los contratos listados tienen montos significativamente inferiores o no están relacionados con la descripción de un proyecto de dos metros ",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre un valor de 32.000 euros relacionado con un proyecto de urbanismo específico.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -4597,7 +4597,7 @@
       "verification": {
         "claimId": "c8kr44-164-afi-63bfda",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona un parque valorado en 40,000 euros que entrará en una subvención del Eti. Sin embargo, ninguno de los contratos presentados por los candidatos menciona un monto de 40,000 euros ni se refiere a un parque específico que coincida con el \"Mati\". Los contratos listados se centran e",
+        "summary": "La afirmación menciona un parque valorado en 40,000 euros que entrará en una subvención del Eti. Sin embargo, ninguno de los contratos presentados por los candidatos menciona un monto de 40,000 euros ni se refiere a un parque específico que coincida con el \"Mati\".",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -4629,7 +4629,7 @@
       "verification": {
         "claimId": "c8kr44-165-cit-b8023d",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación. La afirmación menciona específicamente un monto de 32.000 euros relacionado con un parque, mientras que los contratos listados no coinciden en importe ni en el tipo de obra. Por ejemplo, el contrato más cercano es el de acondici",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación. La afirmación menciona específicamente un monto de 32.000 euros relacionado con un parque, mientras que los contratos listados no coinciden en importe ni en el tipo de obra.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -4687,7 +4687,7 @@
       "verification": {
         "claimId": "c8kr44-166-cit-1e384d",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a un plan para abordar el medio ambiente, específicamente mencionando la creación de una \"fuya de ruta\" que no se limite a plantar árboles, sino que también incluya la construcción de edificios. Sin embargo, los contratos presentados por los candidatos se centran en la acond",
+        "summary": "La afirmación se refiere a un plan para abordar el medio ambiente, específicamente mencionando la creación de una \"fuya de ruta\" que no se limite a plantar árboles, sino que también incluya la construcción de edificios.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -4719,7 +4719,7 @@
       "verification": {
         "claimId": "c8kr44-171-cit-ab4a59",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta evidencia que respalde de manera concreta la afirmación de que se han traído más de 100 millones de euros en subvenciones. Los registros de subvenciones mencionan montos y proyectos específicos, pero no se proporciona un total acumulado que alcance la cifra de 100 ",
+        "summary": "Ninguno de los candidatos presenta evidencia que respalde de manera concreta la afirmación de que se han traído más de 100 millones de euros en subvenciones.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -4784,7 +4784,7 @@
       "verification": {
         "claimId": "c8kr44-172-cit-b1b4d4",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta evidencia que respalde de manera concreta la afirmación de que se han traído más de 100 millones de euros en subvenciones. Los registros de subvenciones mencionan montos y entidades específicas, pero no se proporciona un total acumulado que sume esa cifra. Además, ",
+        "summary": "Ninguno de los candidatos presenta evidencia que respalde de manera concreta la afirmación de que se han traído más de 100 millones de euros en subvenciones. Los registros de subvenciones mencionan montos y entidades específicas, pero no se proporciona un total acumulado que sume esa cifra.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -5344,7 +5344,7 @@
       "verification": {
         "claimId": "c8kr44-202-afi-0dc394",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación de que \"este Ayuntamiento pagará 3.975.000 euros en el 2024\". Los contratos y ayudas mencionados en los registros no hacen referencia a un monto específico de 3.975.000 euros ni a pagos programados para el a",
+        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación de que \"este Ayuntamiento pagará 3.975.000 euros en el 2024\".",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -5375,7 +5375,7 @@
       "verification": {
         "claimId": "c8kr44-202-afi-988c8e",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta información que respalde la afirmación sobre el pago de 8.167.000 euros en el primer y segundo trimestre de 2025. Los contratos listados se refieren a servicios específicos y no mencionan montos que coincidan con la cifra indicada ni el periodo mencionado. Además, ",
+        "summary": "Ninguno de los candidatos presenta información que respalde la afirmación sobre el pago de 8.167.000 euros en el primer y segundo trimestre de 2025. Los contratos listados se refieren a servicios específicos y no mencionan montos que coincidan con la cifra indicada ni el periodo mencionado.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -5407,7 +5407,7 @@
       "verification": {
         "claimId": "c8kr44-203-afi-42a7b6",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación de que la DANA está repercutiendo en 1,2 millones de euros. Los montos de los contratos listados son significativamente menores, con el mayor siendo de €265.105,4, lo que está muy por debajo de la cifra mencionada. Además, no hay",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación de que la DANA está repercutiendo en 1,2 millones de euros. Los montos de los contratos listados son significativamente menores, con el mayor siendo de €265.105,4, lo que está muy por debajo de la cifra mencionada.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -5440,7 +5440,7 @@
       "verification": {
         "claimId": "c8kr44-205-afi-03f5b7",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre los 649.000 euros y los 101 factores pendientes de mantenimiento. Aunque se mencionan varios contratos de mantenimiento, no hay evidencia concreta que relacione estos montos o cantidades con la afirmación. Los contratos ",
+        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre los 649.000 euros y los 101 factores pendientes de mantenimiento. Aunque se mencionan varios contratos de mantenimiento, no hay evidencia concreta que relacione estos montos o cantidades con la afirmación.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -5533,7 +5533,7 @@
       "verification": {
         "claimId": "c8kr44-207-afi-ba9e77",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta información que respalde la afirmación sobre un proveedor con problemas de más de 900.000 euros. Todos los contratos listados tienen montos significativamente inferiores a esa cifra, siendo el mayor de ellos de 6.084,33 euros. Además, no hay evidencia de que alguno",
+        "summary": "Ninguno de los candidatos presenta información que respalde la afirmación sobre un proveedor con problemas de más de 900.000 euros. Todos los contratos listados tienen montos significativamente inferiores a esa cifra, siendo el mayor de ellos de 6.084,33 euros.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -5591,7 +5591,7 @@
       "verification": {
         "claimId": "c8kr44-208-afi-ef2612",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación de que se destinaron más de 900.000 euros para pagar a un proveedor. Los contratos listados tienen montos significativamente inferiores, como el contrato menor de suministro de equipos informáticos por 6.093,20 euros y otro por 1",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación de que se destinaron más de 900.000 euros para pagar a un proveedor.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -5745,7 +5745,7 @@
       "verification": {
         "claimId": "c8kr44-211-afi-28bc2d",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona un monto específico de 3.400.000 euros, pero ninguno de los contratos presentados por los candidatos se acerca a esta cifra. Los contratos listados son todos de importes significativamente menores, con el mayor siendo de 13.307,58 euros. Además, no hay ninguna referencia a un ",
+        "summary": "La afirmación menciona un monto específico de 3.400.000 euros, pero ninguno de los contratos presentados por los candidatos se acerca a esta cifra. Los contratos listados son todos de importes significativamente menores, con el mayor siendo de 13.307,58 euros.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -5867,7 +5867,7 @@
       "verification": {
         "claimId": "c8kr44-221-cit-d49134",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre la concesión de 397.000 euros por parte del ministerio. Los contratos y expedientes mencionados se refieren a montos significativamente menores y a servicios o suministros específicos, sin relación dir",
+        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre la concesión de 397.000 euros por parte del ministerio.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -5955,7 +5955,7 @@
       "verification": {
         "claimId": "c8kr44-228-cit-ce920d",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre la generación de créditos de 241.521 euros. Aunque hay menciones a subvenciones y ayudas en varios registros, no se encuentra un documento específico que indique que se trata de una subvención de la diputación por ese mo",
+        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre la generación de créditos de 241.521 euros.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6046,7 +6046,7 @@
       "verification": {
         "claimId": "c8kr44-229-cit-62282e",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona específicamente el cambio de juegos y suelo de protección en el parque La Pedrera, mientras que el único candidato que se refiere a un contrato relacionado es el candidato [0], que detalla el cambio de juegos y suelo de protección en el Parque La Pedrera por un importe de €37.",
+        "summary": "La afirmación menciona específicamente el cambio de juegos y suelo de protección en el parque La Pedrera, mientras que el único candidato que se refiere a un contrato relacionado es el candidato [0], que detalla el cambio de juegos y suelo de protección en el Parque La Pedrera por un importe de…",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6077,7 +6077,7 @@
       "verification": {
         "claimId": "c8kr44-229-cit-886ed0",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona específicamente la \"Renovación de juegos y suelo de protección\" en la \"plaza Juez Heliodoro Jimeno\". El único candidato que menciona un contrato relacionado con la renovación de juegos es el candidato [0], que se refiere al \"Cambio de juegos y suelo de protección Parque La Ped",
+        "summary": "La afirmación menciona específicamente la \"Renovación de juegos y suelo de protección\" en la \"plaza Juez Heliodoro Jimeno\".",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6204,7 +6204,7 @@
       "verification": {
         "claimId": "c8kr44-235-cit-eeeb2a",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la inauguración de un puente y su uso por bicicletas, peatones y patinetes, mencionando específicamente un evento ocurrido el 5 de septiembre de 2025. Sin embargo, los contratos presentados no hacen referencia a la inauguración de un puente en esa fecha ni a su uso específ",
+        "summary": "La afirmación se refiere a la inauguración de un puente y su uso por bicicletas, peatones y patinetes, mencionando específicamente un evento ocurrido el 5 de septiembre de 2025.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6325,7 +6325,7 @@
       "verification": {
         "claimId": "c8kr44-242-cit-671430",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona un mantenimiento que ha sido solventado en un periodo de \"un par de días, o tres\". Sin embargo, los candidatos listados se refieren a diferentes tipos de mantenimiento y no hay evidencia concreta que vincule a alguno de ellos con la afirmación específica sobre el mantenimiento",
+        "summary": "La afirmación menciona un mantenimiento que ha sido solventado en un periodo de \"un par de días, o tres\".",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6356,7 +6356,7 @@
       "verification": {
         "claimId": "c8kr44-243-cit-be89b4",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona un mantenimiento adecuado en los colegios y la mejora de las escuelas, pero los candidatos listados no proporcionan evidencia concreta que respalde esta afirmación. El candidato 2 menciona un servicio de mantenimiento de instalaciones térmicas en colegios por un importe de €23",
+        "summary": "La afirmación menciona un mantenimiento adecuado en los colegios y la mejora de las escuelas, pero los candidatos listados no proporcionan evidencia concreta que respalde esta afirmación.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6446,7 +6446,7 @@
       "verification": {
         "claimId": "c8kr44-247-cit-340aba",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona que la Diputación es la encargada de realizar una obra en un área específica, pero ninguno de los candidatos presentados hace referencia a la Diputación ni a una obra que coincida con la descripción general de \"toda el área\". Los contratos listados se centran en obras específi",
+        "summary": "La afirmación menciona que la Diputación es la encargada de realizar una obra en un área específica, pero ninguno de los candidatos presentados hace referencia a la Diputación ni a una obra que coincida con la descripción general de \"toda el área\".",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6504,7 +6504,7 @@
       "verification": {
         "claimId": "c8kr44-248-cit-282180",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona que la Diputación es la encargada de realizar una obra en toda el área, pero ninguno de los candidatos presentados hace referencia a la Diputación ni a una obra específica que coincida con esta descripción. Los contratos listados se centran en obras de mantenimiento, accesibil",
+        "summary": "La afirmación menciona que la Diputación es la encargada de realizar una obra en toda el área, pero ninguno de los candidatos presentados hace referencia a la Diputación ni a una obra específica que coincida con esta descripción.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6535,7 +6535,7 @@
       "verification": {
         "claimId": "c8kr44-249-cit-83c9a9",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona que \"toda la obra que se hace corresponde a la Diputación\" y que ahora el Ministerio se encarga de ello. Sin embargo, los candidatos presentados no proporcionan evidencia concreta que respalde esta afirmación. Los contratos y subvenciones listados se refieren a obras específic",
+        "summary": "La afirmación menciona que \"toda la obra que se hace corresponde a la Diputación\" y que ahora el Ministerio se encarga de ello. Sin embargo, los candidatos presentados no proporcionan evidencia concreta que respalde esta afirmación.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6623,7 +6623,7 @@
       "verification": {
         "claimId": "c8kr44-249-cit-90f09a",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona que \"de momento tenéis paso por el puente\", lo que implica que hay un puente en uso o en condiciones de ser utilizado. Sin embargo, los candidatos presentados se refieren a contratos de obras y suministros relacionados con pasarelas y puentes, pero no hay evidencia concreta qu",
+        "summary": "La afirmación menciona que \"de momento tenéis paso por el puente\", lo que implica que hay un puente en uso o en condiciones de ser utilizado.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6654,7 +6654,7 @@
       "verification": {
         "claimId": "c8kr44-250-cit-1222e9",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la reconstrucción del Ponte Vello y la implicación del Ministerio de Transporte en la obra del Ponte de Ferro. Sin embargo, los contratos presentados por los candidatos se centran en obras de carriles ciclopeatonales y otras infraestructuras, pero no hay evidencia de que a",
+        "summary": "La afirmación se refiere a la reconstrucción del Ponte Vello y la implicación del Ministerio de Transporte en la obra del Ponte de Ferro.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6742,7 +6742,7 @@
       "verification": {
         "claimId": "c8kr44-251-cit-745421",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona la adecuación de un puente y su conexión con un ciclopaseo, pero los contratos presentados no hacen referencia directa a un puente específico ni a la conexión mencionada. Aunque hay contratos relacionados con la adecuación de sendas y carriles ciclopeatonales, no se especifica",
+        "summary": "La afirmación menciona la adecuación de un puente y su conexión con un ciclopaseo, pero los contratos presentados no hacen referencia directa a un puente específico ni a la conexión mencionada.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6773,7 +6773,7 @@
       "verification": {
         "claimId": "c8kr44-252-cit-ef8d8f",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona la reconstrucción de un puente y la presencia de maquinaria pesada en una zona de obra. Sin embargo, los contratos presentados no hacen referencia a la reconstrucción de un puente específico, sino a otros proyectos de obras, como la reparación de una pasarela provisional o la ",
+        "summary": "La afirmación menciona la reconstrucción de un puente y la presencia de maquinaria pesada en una zona de obra.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6834,7 +6834,7 @@
       "verification": {
         "claimId": "c8kr44-254-cit-5a053c",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona que Pavasal está trabajando en un puente, pero ninguno de los contratos presentados menciona específicamente a Pavasal ni se refiere a la obra de un puente en curso. Los contratos listados se refieren a diferentes obras y proyectos en Riba-roja de Túria, pero no hay evidencia ",
+        "summary": "La afirmación menciona que Pavasal está trabajando en un puente, pero ninguno de los contratos presentados menciona específicamente a Pavasal ni se refiere a la obra de un puente en curso.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6984,7 +6984,7 @@
       "verification": {
         "claimId": "c8kr44-262-cit-672339",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona un problema con la recogida de residuos los domingos debido a un \"antiguo contrato\", pero ninguno de los candidatos presenta información que respalde directamente esta afirmación. Aunque el candidato 3 menciona un contrato de servicio público de recogida de residuos sólidos ur",
+        "summary": "La afirmación menciona un problema con la recogida de residuos los domingos debido a un \"antiguo contrato\", pero ninguno de los candidatos presenta información que respalde directamente esta afirmación.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -7015,7 +7015,7 @@
       "verification": {
         "claimId": "c8kr44-262-cit-369b72",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona una brigada dedicada a recoger excesos de plástico, pero los candidatos presentados no ofrecen información específica sobre una brigada que realice esta tarea en particular. El candidato [2] menciona un contrato para una \"brigada verde\" que se encarga del desbroce en parcelas ",
+        "summary": "La afirmación menciona una brigada dedicada a recoger excesos de plástico, pero los candidatos presentados no ofrecen información específica sobre una brigada que realice esta tarea en particular.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -7074,7 +7074,7 @@
       "verification": {
         "claimId": "c8kr44-265-cit-9979bd",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona un \"proceso de cambio de contratación\" relacionado con la gestión de residuos, pero ninguno de los contratos presentados por los candidatos se refiere específicamente a la contratación de servicios de gestión de residuos o a un cambio en este ámbito. Los contratos listados se ",
+        "summary": "La afirmación menciona un \"proceso de cambio de contratación\" relacionado con la gestión de residuos, pero ninguno de los contratos presentados por los candidatos se refiere específicamente a la contratación de servicios de gestión de residuos o a un cambio en este ámbito.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -7135,7 +7135,7 @@
       "verification": {
         "claimId": "c8kr44-267-cit-51f60c",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona una adjudicación relacionada con un cambio de servicio en el ámbito medioambiental, con una fecha específica de 2025-09-08. Sin embargo, los contratos presentados son todos de emergencia y están relacionados con daños por la DANA de octubre de 2024, lo que no coincide con la f",
+        "summary": "La afirmación menciona una adjudicación relacionada con un cambio de servicio en el ámbito medioambiental, con una fecha específica de 2025-09-08.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"

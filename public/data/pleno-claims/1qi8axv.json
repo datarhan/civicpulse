@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T17:23:05.282Z",
+  "generatedAt": "2026-10-05T06:45:20.453Z",
   "version": "1",
   "plenoId": "1qi8axv",
   "plenoDate": "2025-12-23",
@@ -111,7 +111,7 @@
       "verification": {
         "claimId": "1qi8axv-000-cit-35b422",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona una prórroga relacionada con el medio ambiente, pero los candidatos presentados no hacen referencia a ninguna prórroga específica en ese contexto. El único candidato que menciona una prórroga es el [0], que se refiere a las ayudas para el servicio de ayuda a domicilio, lo cual",
+        "summary": "La afirmación menciona una prórroga relacionada con el medio ambiente, pero los candidatos presentados no hacen referencia a ninguna prórroga específica en ese contexto.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -834,7 +834,7 @@
       "verification": {
         "claimId": "1qi8axv-017-afi-e2b0f0",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación. Aunque el candidato [5] menciona un contrato relacionado con el temporal de lluvias (DANA) y un importe de €141.562,93, esta cifra no coincide con los €143.539 mencionados en la afirmación. Además, no hay evidencia de que este c",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación. Aunque el candidato [5] menciona un contrato relacionado con el temporal de lluvias (DANA) y un importe de €141.562,93, esta cifra no coincide con los €143.539 mencionados en la afirmación.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -865,7 +865,7 @@
       "verification": {
         "claimId": "1qi8axv-017-cit-6c404a",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos respalda la afirmación. Todos son contratos de mantenimiento informático del Ayuntamiento de Riba-roja de Túria (software Deepfreeze, portal del empleado, gestor de contenidos, aplicación de RRHH, base de datos corporativa, servidores HP), es decir, \"mantenimiento\" de siste",
+        "summary": "Ninguno de los candidatos respalda la afirmación. Todos son contratos de mantenimiento informático del Ayuntamiento de Riba-roja de Túria (software Deepfreeze, portal del empleado, gestor de contenidos, aplicación de RRHH, base de datos corporativa, servidores HP), es decir, \"mantenimiento\" de…",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -896,7 +896,7 @@
       "verification": {
         "claimId": "1qi8axv-022-cit-4ce47f",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona un contrato que ha costado \"muchísimo\" y se refiere a un esfuerzo significativo para conseguirlo. Sin embargo, ninguno de los contratos listados por los candidatos proporciona información específica sobre el coste o el esfuerzo involucrado en su obtención. Los contratos mencio",
+        "summary": "La afirmación menciona un contrato que ha costado \"muchísimo\" y se refiere a un esfuerzo significativo para conseguirlo. Sin embargo, ninguno de los contratos listados por los candidatos proporciona información específica sobre el coste o el esfuerzo involucrado en su obtención.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1132,7 +1132,7 @@
       "verification": {
         "claimId": "1qi8axv-030-afi-31372c",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona un monto específico de €143.000, que parece ser una cifra clave en el contexto de una modificación que afecta a varios aspectos. Sin embargo, ninguno de los contratos listados por los candidatos presenta un monto que coincida con esta cifra. Los contratos varían significativam",
+        "summary": "La afirmación menciona un monto específico de €143.000, que parece ser una cifra clave en el contexto de una modificación que afecta a varios aspectos. Sin embargo, ninguno de los contratos listados por los candidatos presenta un monto que coincida con esta cifra.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1551,7 +1551,7 @@
       "verification": {
         "claimId": "1qi8axv-042-afi-e2a226",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un contrato o documento que respalde la afirmación sobre la cantidad de €143.539,04. Todos los contratos listados tienen importes significativamente diferentes y no hay coincidencia en la cifra exacta mencionada en la afirmación. Por lo tanto, no hay respaldo genui",
+        "summary": "Ninguno de los candidatos presenta un contrato o documento que respalde la afirmación sobre la cantidad de €143.539,04. Todos los contratos listados tienen importes significativamente diferentes y no hay coincidencia en la cifra exacta mencionada en la afirmación.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1666,7 +1666,7 @@
       "verification": {
         "claimId": "1qi8axv-047-cit-b4cb65",
         "verdict": "sin-datos",
-        "summary": "Analicé el candidato disponible: es un contrato de servicio de mantenimiento del elevador portaféretros del cementerio, no de obras del cementerio, y no contiene ninguna referencia a penalidades, recursos o personación judicial que son los elementos concretos de la afirmación. La similitud es baja (",
+        "summary": "Analicé el candidato disponible: es un contrato de servicio de mantenimiento del elevador portaféretros del cementerio, no de obras del cementerio, y no contiene ninguna referencia a penalidades, recursos o personación judicial que son los elementos concretos de la afirmación.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1848,7 +1848,7 @@
       "verification": {
         "claimId": "1qi8axv-052-cit-c905c3",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (cita_obra sobre un contrato de residuos guiado por un plan local previo) frente a los dos candidatos. El candidato [0] es el contrato de elaboración del propio plan local de residuos —el objeto inverso al descrito en la afirmación, que habla de un contrato de residuos posterio",
+        "summary": "Analicé la afirmación (cita_obra sobre un contrato de residuos guiado por un plan local previo) frente a los dos candidatos.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -2458,7 +2458,7 @@
       "verification": {
         "claimId": "1qi8axv-071-afi-845731",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona un monto específico de €1.700.000 y una fecha concreta del 1 de enero de 2024. Sin embargo, ninguno de los contratos o documentos presentados por los candidatos menciona esta cifra ni está relacionado con la fecha indicada. Todos los contratos listados son de importes signific",
+        "summary": "La afirmación menciona un monto específico de €1.700.000 y una fecha concreta del 1 de enero de 2024. Sin embargo, ninguno de los contratos o documentos presentados por los candidatos menciona esta cifra ni está relacionado con la fecha indicada.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -4240,7 +4240,7 @@
       "verification": {
         "claimId": "1qi8axv-118-afi-aafa9f",
         "verdict": "sin-datos",
-        "summary": "Analicé el único candidato disponible (contrato de Portal del Empleado, €25.794) frente a la afirmación sobre una inversión de 3.000€ cada uno para partes de escenario y quitamiedos financiada con modificación de crédito. No hay coincidencia de entidad, importe ni objeto del gasto; sim=0.20 refuerza",
+        "summary": "Analicé el único candidato disponible (contrato de Portal del Empleado, €25.794) frente a la afirmación sobre una inversión de 3.000€ cada uno para partes de escenario y quitamiedos financiada con modificación de crédito.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -4271,7 +4271,7 @@
       "verification": {
         "claimId": "1qi8axv-118-afi-c6206a",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona un monto específico de 3.097 euros destinado a inversiones. Sin embargo, al revisar los candidatos, ninguno de ellos presenta un contrato o subvención que coincida exactamente con esta cifra. Los contratos listados tienen montos significativamente mayores, como 10.739,15 euros",
+        "summary": "La afirmación menciona un monto específico de 3.097 euros destinado a inversiones. Sin embargo, al revisar los candidatos, ninguno de ellos presenta un contrato o subvención que coincida exactamente con esta cifra.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
