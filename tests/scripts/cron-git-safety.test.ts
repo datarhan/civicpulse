@@ -1249,7 +1249,10 @@ describe('hallazgos-pipeline.sh · una recomposición que aborta no tumba la noc
       ...BASE,
       STUB_FAIL: 'verify:pleno-claims',
     })
-    expect(r.log, 'el fallo inyectado no se dio').toMatch(/verify:pleno-claims FAILING/)
+    // La marca del stub va por stderr, y el arenero sólo conserva stderr cuando
+    // la pasada sale ≠0 —y salía 1 por la avería del resumen final, no por esto—.
+    // Se ancla en la línea que el guion escribe él mismo al ver el fallo.
+    expect(r.log, 'el fallo inyectado no se dio').toContain('FALLO: verify:pleno-claims')
     expect(r.log, 'la pasada murió en la recomposición').toContain('[stub] ran auto-curate')
     expect(r.committed, 'el trabajo de la noche se quedó sin comitear').toContain(
       'pleno-speaker-map/sandboxpleno.json',
