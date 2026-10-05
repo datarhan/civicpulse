@@ -23,6 +23,7 @@
  * Puro: sin fs, sin red.
  */
 import { backendModel, type Backend, type ClientConfig, type Procedencia } from '../llm/client'
+import type { SinDatosPorque } from './claim-verifier-engine'
 
 /** Un paso del motor que preguntó al modelo, y quién lo contestó. */
 export type PasoDelMotor = Procedencia & { paso: 'razonar' | 'extraer' | 'contrastar' }
@@ -64,6 +65,21 @@ export function primarioDelMotor(config: ClientConfig): PrimarioDelMotor {
   }
 }
 
+/**
+ * Los pasos que el motor preguntó al modelo para juzgar una declaración.
+ *
+ * Razonar, siempre. Extraer, salvo cuando el razonamiento concluye que ningún
+ * candidato la respalda (`sinDatosPorque === 'razonamiento'`): eso es el
+ * veredicto, y la extracción no se pide (claim-verifier-engine.ts). Sin
+ * `sinDatosPorque` se cuentan los dos: no se sabe qué salida tomó el motor, y
+ * pedir de más deja sin escribir, nunca escribe a ciegas.
+ */
+export function pasosPreguntados(
+  sinDatosPorque: SinDatosPorque | undefined,
+): ('razonar' | 'extraer')[] {
+  return sinDatosPorque === 'razonamiento' ? ['razonar'] : ['razonar', 'extraer']
+}
+
 export type RotuloDelMotor =
   | { accion: 'escribir'; rotulo: string }
   | { accion: 'dejar'; porque: 'sin-procedencia' }
@@ -73,9 +89,11 @@ export type RotuloDelMotor =
  * A nombre de quién se escribe una declaración que el motor juzgó, o por qué no
  * se escribe.
  *
- *   · Sin la procedencia de razonar Y de extraer no se sabe quién juzgó: no se
- *     escribe. Un motor que juzga pregunta las dos cosas siempre; si falta una,
- *     el cableado se rompió, y escribir sería volver a rotular a ciegas.
+ *   · Sin la procedencia de cada paso que el motor preguntó (`preguntados`;
+ *     por defecto razonar Y extraer) no se sabe quién juzgó: no se escribe. Si
+ *     falta una, el cableado se rompió, y escribir sería volver a rotular a
+ *     ciegas. Desde el 05-10-2026 el motor no pide la extracción cuando el
+ *     razonamiento concluye «sin respaldo» (`pasosPreguntados`).
  *   · Si algún paso lo contestó otro que el primario, no se escribe: se cuenta
  *     y se reintenta en la siguiente pasada. Rotularlo con quien contestó
  *     dejaría salir una pasada de dos modelos sin que nadie lo decidiera.
@@ -84,9 +102,12 @@ export type RotuloDelMotor =
 export function rotuloDelMotor(a: {
   primario: PrimarioDelMotor
   pasos: readonly PasoDelMotor[]
+  /** Los pasos que el motor preguntó (`pasosPreguntados`). Por defecto, razonar y extraer. */
+  preguntados?: readonly ('razonar' | 'extraer')[]
 }): RotuloDelMotor {
   const tiene = (paso: PasoDelMotor['paso']) => a.pasos.some((p) => p.paso === paso)
-  if (!tiene('razonar') || !tiene('extraer')) return { accion: 'dejar', porque: 'sin-procedencia' }
+  const preguntados = a.preguntados ?? ['razonar', 'extraer']
+  if (!preguntados.every(tiene)) return { accion: 'dejar', porque: 'sin-procedencia' }
   const ajeno = a.pasos.find(
     (p) => p.backend !== a.primario.backend || p.model !== a.primario.model,
   )

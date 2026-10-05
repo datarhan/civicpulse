@@ -84,6 +84,7 @@ import {
 import { entradaDelMotor } from '../src/scraper/entrada-de-pasada'
 import {
   configDelMotor,
+  pasosPreguntados,
   primarioDelMotor,
   rotuloDelMotor,
   type PasoDelMotor,
@@ -352,7 +353,12 @@ async function main() {
     // Si no fue el primario, no se escribe ni cuenta como juzgada: se reintenta.
     let rotulo = MODEL
     if (!salto) {
-      const firma = rotuloDelMotor({ primario: PRIMARIO, pasos: procedencias.get(id) ?? [] })
+      const firma = rotuloDelMotor({
+        primario: PRIMARIO,
+        pasos: procedencias.get(id) ?? [],
+        // Si el razonamiento concluyó «sin respaldo», la extracción no se pidió.
+        preguntados: pasosPreguntados(porqueSinDatos.get(id)),
+      })
       if (firma.accion === 'dejar' && firma.porque === 'otro-backend') {
         process.stderr.write(
           `[verify-engine] ${id}: no se escribe — lo contestó ${firma.quien}, no ${PRIMARIO.rotulo}\n`,
