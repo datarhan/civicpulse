@@ -37,6 +37,7 @@
 import { execFileSync, spawnSync } from 'node:child_process'
 import { readFileSync, writeFileSync, readdirSync, existsSync, statSync } from 'node:fs'
 import { resolve } from 'node:path'
+import { pathToFileURL } from 'node:url'
 import {
   auditFails,
   classifyInjection,
@@ -194,8 +195,11 @@ function testFiles(): Map<string, string> {
  * Fault injections. Each names a real file, a way to corrupt it, and the guard
  * that must notice. Kept deliberately few: one per failure CLASS, each one a
  * shape that actually reached `main` at some point.
+ *
+ * Exportada para que las pruebas corran una inyección contra su guarda de
+ * verdad, sobre una copia: la tabla es la que se prueba, no una recitada.
  */
-const INJECTIONS: Array<{
+export const INJECTIONS: Array<{
   guard: string
   file: string
   describe: string
@@ -790,4 +794,5 @@ function main(): void {
   }
 }
 
-main()
+// Las pruebas importan INJECTIONS: al importar no se audita ni se rompe nada.
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) main()
