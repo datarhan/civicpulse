@@ -72,6 +72,9 @@ const ABREVIATURAS = new Set([
   'excma',
   'ilmo',
   'ilma',
+  // «distinto objeto (arquitectura vs. expropiación…)»: seis de las 858
+  // explicaciones recortadas el 05-10-2026 se cortaban aquí, dentro del paréntesis.
+  'vs',
 ])
 
 /**
