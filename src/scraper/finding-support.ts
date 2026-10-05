@@ -41,6 +41,7 @@
  * el único escritor sigue siendo `npm run correct-pleno-finding`.
  */
 import { sha256Short } from './hash'
+import { HUECOS } from './orden-preparada'
 import type { PlenoFinding, PlenoFindingsSnapshot } from './pleno-finding'
 
 /** Ruta del único escritor del snapshot publicado. Ninguna otra cosa escribe. */
@@ -429,7 +430,7 @@ export function buildSupportQueue(
       verdictInvalidatedBy,
       correctionCommand:
         `${CORRECTION_CLI} -- ${f.id} --field summary ` +
-        '--new "<sumario corregido>" --reason "<por qué, ≥20 caracteres>" --editor "<tu nombre>"',
+        `--new "<sumario corregido>" --reason "${HUECOS.motivo}" --editor "<tu nombre>"`,
     }
   })
 

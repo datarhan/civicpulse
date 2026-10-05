@@ -35,6 +35,7 @@
  *
  * Módulo puro: no lee disco ni red.
  */
+import { HUECOS } from './orden-preparada'
 import { candidatePassages, type Candidate, type TranscriptIndex } from './quote-reanchor'
 
 /** El CLI que sí escribe. Nada de este módulo lo invoca. */
@@ -167,7 +168,7 @@ export function buildClaimReanchorQueue(
       correctionCommand:
         `${CLAIM_REANCHOR_CLI} -- ${it.claim.id} ` +
         '--verbatim "<el pasaje del acta, copiado tal cual>" ' +
-        '--reason "<por qué, ≥20 caracteres>" --editor "<tu nombre>"',
+        `--reason "${HUECOS.motivo}" --editor "<tu nombre>"`,
     })
   }
 

@@ -66,6 +66,7 @@
  * reciente primero: un calendario, no un juicio.
  */
 import type { ClaimVisibility, ClaimVisibilityInput } from './claim-public-gate'
+import { HUECOS } from './orden-preparada'
 import { ALLOWED_CLAIM_TYPES, type ClaimType } from './pleno-claim'
 import { citaRetenida } from '../lib/cita-retenida.js'
 
@@ -104,10 +105,8 @@ const TIPOS_DESTINO = ALLOWED_CLAIM_TYPES.filter((t) => t !== TIPO_ACUSACION)
  * Retirar una ficha no tiene vuelta atrás: los demás huecos siguen cortos.
  */
 export const MARCADORES = {
-  firma: '<nombre y apellidos>',
-  motivo: '<motivo>',
-  nota: '<por qué>',
-  sumario: '<sumario nuevo>',
+  // Los huecos de todas las colas (orden-preparada.ts); aquí sólo se añade el tipo.
+  ...HUECOS,
   tipo: `<${TIPOS_DESTINO.join(' | ')}>`,
 } as const
 
