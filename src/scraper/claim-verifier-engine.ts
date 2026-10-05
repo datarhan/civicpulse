@@ -72,7 +72,27 @@ const ABREVIATURAS = new Set([
   'excma',
   'ilmo',
   'ilma',
+  // «distinto objeto (arquitectura vs. expropiación…)»: seis de las 858
+  // explicaciones recortadas el 05-10-2026 se cortaban aquí, dentro del paréntesis.
+  'vs',
 ])
+
+/**
+ * ¿Queda algo abierto en `t` —un paréntesis, un corchete, unas comillas—? Un
+ * punto ahí dentro no acaba la frase de fuera: el 05-10-2026 dos explicaciones
+ * se cortaban en los puntos suspensivos de una cita («…mismo objeto "estudio de
+ * criterios...») y perdían el «pero no verifica la fecha» que las matizaba.
+ */
+function quedaAlgoAbierto(t: string): boolean {
+  const cuantos = (c: string) => t.split(c).length - 1
+  return (
+    cuantos('(') > cuantos(')') ||
+    cuantos('[') > cuantos(']') ||
+    cuantos('«') > cuantos('»') ||
+    cuantos('“') > cuantos('”') ||
+    cuantos('"') % 2 === 1
+  )
+}
 
 /**
  * La explicación del motor, recortada al tope sin partir una palabra.
@@ -82,7 +102,8 @@ const ABREVIATURAS = new Set([
  * acababan a media palabra («…de servicios cuyo», «…(Ecnor). No»), y una frase
  * cortada puede decir lo contrario de la entera. Ahora: la última frase entera
  * que cabe; un punto tras una abreviatura («Sr.», «art.») o una inicial no acaba
- * frase, y el de una cifra (11.553,08) no va seguido de espacio. Si no cabe
+ * frase, ni el que cae dentro de un paréntesis o unas comillas abiertos, y el de
+ * una cifra (11.553,08) no va seguido de espacio. Si no cabe
  * ninguna frase —o la única que cabe es muy corta—, se corta tras una palabra
  * entera y se dice con «…».
  */
@@ -99,6 +120,7 @@ export function recortarResumen(texto: string, max = RESUMEN_MAX): string {
         ?.toLowerCase()
       if (antes && (antes.length === 1 || ABREVIATURAS.has(antes))) continue
     }
+    if (quedaAlgoAbierto(t.slice(0, m.index + m[0].length))) continue
     fin = m.index + m[0].length
   }
   if (fin >= max / 3) return t.slice(0, fin)

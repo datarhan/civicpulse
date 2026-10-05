@@ -1449,6 +1449,41 @@ export function llmCacheHas(opts: {
   return readCache(config.cacheDir, key) != null
 }
 
+/**
+ * Lo que la caché contestaría a esta llamada, leído de disco — o `null`. Nunca
+ * pregunta a un backend.
+ *
+ * `callLLM` llama sobre un fallo de caché, y está bien que lo haga. Pero quien
+ * reutiliza una respuesta ya pagada con la promesa de no hacer ninguna llamada
+ * —el recorte de las explicaciones del motor, `verify:pleno-claims:engine --
+ * --recortar`— no puede fiarla a que el entorno frene la cadena de backends:
+ * tiene que cumplirla por construcción. La clave sale de `cacheKey`, por lo
+ * mismo que en `llmCacheHas`.
+ *
+ * Cuenta el acierto en las estadísticas de la pasada, como `callLLM`: el parte
+ * de una pasada que juzga desde la caché tiene que poder decir de dónde salió
+ * lo que juzgó, y sin aciertos `judged-without-calls` la daría por inventada.
+ */
+export function llmCacheGet<TSchema extends ZodTypeAny>(opts: {
+  promptVersion: string
+  schema: TSchema
+  input: unknown
+  config?: ClientConfig
+}): z.infer<TSchema> | null {
+  const config = opts.config ?? loadConfigFromEnv()
+  const key = cacheKey({
+    backend: config.backend,
+    model: backendModel(config),
+    promptVersion: opts.promptVersion,
+    schema: opts.schema,
+    input: opts.input,
+  })
+  const cached = readCache<z.infer<TSchema>>(config.cacheDir, key)
+  if (!cached) return null
+  currentStats.cacheHits += 1
+  return cached.result
+}
+
 export async function callLLM<TSchema extends ZodTypeAny>(
   opts: CallLlmOptions<TSchema>,
 ): Promise<z.infer<TSchema> | null> {

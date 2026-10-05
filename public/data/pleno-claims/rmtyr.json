@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T17:23:05.282Z",
+  "generatedAt": "2026-10-05T06:45:20.453Z",
   "version": "1",
   "plenoId": "rmtyr",
   "plenoDate": "2025-07-31",
@@ -25,7 +25,7 @@
       "verification": {
         "claimId": "rmtyr-008-afi-19e19b",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre el presupuesto del capítulo 1 para 2025 de 20.338.000 euros. Los documentos listados se refieren a subvenciones y ayudas económicas para diferentes propósitos, pero no mencionan específicamente el presupuesto del capítul",
+        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre el presupuesto del capítulo 1 para 2025 de 20.338.000 euros.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -56,7 +56,7 @@
       "verification": {
         "claimId": "rmtyr-008-afi-a5ddb3",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre el presupuesto del capítulo 1 para 2025 y su incremento del 3,5% respecto al ejercicio 2024. Los documentos listados se refieren a ayudas, contratos y subvenciones, pero no contienen información específica sobre el monto",
+        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre el presupuesto del capítulo 1 para 2025 y su incremento del 3,5% respecto al ejercicio 2024.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -554,7 +554,7 @@
       "verification": {
         "claimId": "rmtyr-031-cit-a84268",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona un \"resto\" destinado a mejorar el \"parque mal donado\", pero no proporciona cifras específicas ni detalles sobre el contrato de jardinería de 948.000 euros anuales. Los candidatos listados no presentan información que confirme directamente la existencia de un resto específico p",
+        "summary": "La afirmación menciona un \"resto\" destinado a mejorar el \"parque mal donado\", pero no proporciona cifras específicas ni detalles sobre el contrato de jardinería de 948.000 euros anuales.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -585,7 +585,7 @@
       "verification": {
         "claimId": "rmtyr-032-cit-0c4f9a",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona un \"resto\" destinado a mejorar el \"parque mal donado\", pero no proporciona cifras específicas ni detalles sobre el contrato de jardinería de 948.000 euros anuales. Los candidatos listados se refieren a contratos relacionados con el mantenimiento y mejora de parques, pero no ha",
+        "summary": "La afirmación menciona un \"resto\" destinado a mejorar el \"parque mal donado\", pero no proporciona cifras específicas ni detalles sobre el contrato de jardinería de 948.000 euros anuales.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -617,7 +617,7 @@
       "verification": {
         "claimId": "rmtyr-033-afi-9f4734",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre el control de 948.000 euros. Aunque se mencionan varios contratos relacionados con el mantenimiento y conservación de jardines y zonas verdes, no hay evidencia de que alguno de estos contratos esté directamente vinculado a ",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre el control de 948.000 euros.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -649,7 +649,7 @@
       "verification": {
         "claimId": "rmtyr-033-afi-219148",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre la partida de 25.000 euros. Todos los contratos y subvenciones listados tienen montos significativamente inferiores a los 25.000 euros mencionados en la afirmación, lo que indica que no hay coincidencia en el importe. Ademá",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre la partida de 25.000 euros. Todos los contratos y subvenciones listados tienen montos significativamente inferiores a los 25.000 euros mencionados en la afirmación, lo que indica que no hay coincidencia en el importe.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -681,7 +681,7 @@
       "verification": {
         "claimId": "rmtyr-034-afi-ffb9e9",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona específicamente una partida de 25.000 euros que ha sido reducida. Sin embargo, ninguno de los candidatos listados presenta una subvención o partida que coincida exactamente con esta cifra. Las subvenciones mencionadas en los registros son de diferentes importes y no se especif",
+        "summary": "La afirmación menciona específicamente una partida de 25.000 euros que ha sido reducida. Sin embargo, ninguno de los candidatos listados presenta una subvención o partida que coincida exactamente con esta cifra.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -713,7 +713,7 @@
       "verification": {
         "claimId": "rmtyr-034-afi-eb3414",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona específicamente un monto de 14.000 euros relacionado con el tema de Riballaz. Sin embargo, los registros de los candidatos no presentan ninguna referencia directa a este monto específico ni a la actividad o programa denominado Riballaz. La Resolución 1220/2020 menciona ayudas ",
+        "summary": "La afirmación menciona específicamente un monto de 14.000 euros relacionado con el tema de Riballaz. Sin embargo, los registros de los candidatos no presentan ninguna referencia directa a este monto específico ni a la actividad o programa denominado Riballaz.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -774,7 +774,7 @@
       "verification": {
         "claimId": "rmtyr-034-afi-496c79",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona una inversión total de 1.325.991,95 euros en subvenciones, pero los documentos proporcionados no contienen cifras que coincidan exactamente con este monto. Aunque hay varias bases y acuerdos relacionados con subvenciones en Riba-roja de Túria, ninguno de ellos especifica un im",
+        "summary": "La afirmación menciona una inversión total de 1.325.991,95 euros en subvenciones, pero los documentos proporcionados no contienen cifras que coincidan exactamente con este monto.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -847,7 +847,7 @@
       "verification": {
         "claimId": "rmtyr-037-afi-9fa74b",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación de que se trata de 215.000 euros. Los contratos listados tienen montos significativamente inferiores, siendo el más alto de 95.565,8 euros, lo que no coincide con la cifra mencionada. Además, no hay evidencia de que estos contrat",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación de que se trata de 215.000 euros. Los contratos listados tienen montos significativamente inferiores, siendo el más alto de 95.565,8 euros, lo que no coincide con la cifra mencionada.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1578,7 +1578,7 @@
       "verification": {
         "claimId": "rmtyr-073-afi-da4c2e",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre la \"PP de igualdad de 9.680 euros\". Aunque hay menciones a contratos y subvenciones relacionadas con actividades sociales y de igualdad, no se encuentra un documento que indique específicamente una par",
+        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre la \"PP de igualdad de 9.680 euros\".",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1609,7 +1609,7 @@
       "verification": {
         "claimId": "rmtyr-073-afi-635f9d",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre las \"actividades de igualdad de 12.000 euros\". Aunque hay menciones a contratos relacionados con servicios y actividades, no hay evidencia concreta que vincule a un candidato con el monto específico de 12.000 euros ni co",
+        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre las \"actividades de igualdad de 12.000 euros\".",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1640,7 +1640,7 @@
       "verification": {
         "claimId": "rmtyr-073-afi-23005f",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre el monto de 8.275 euros destinado a actividades LGTBI. Aunque se mencionan subvenciones a asociaciones en general, no hay un registro específico que indique que se haya asignado esa cantidad exacta par",
+        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre el monto de 8.275 euros destinado a actividades LGTBI.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1671,7 +1671,7 @@
       "verification": {
         "claimId": "rmtyr-073-afi-6ba495",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre las subvenciones a asociaciones feministas y LGTBI por un monto de 4.500 euros. Todos los registros se refieren a subvenciones para asociaciones de vecinos o actos festivos, pero no hay evidencia concreta que vincule a e",
+        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre las subvenciones a asociaciones feministas y LGTBI por un monto de 4.500 euros.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1703,7 +1703,7 @@
       "verification": {
         "claimId": "rmtyr-074-afi-66111b",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre la partida de igualdad de 9.680 euros. Aunque hay menciones a contratos y servicios relacionados con la ejecución de carácter social, no se especifica ninguna cifra que coincida con el monto mencionado",
+        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre la partida de igualdad de 9.680 euros.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1735,7 +1735,7 @@
       "verification": {
         "claimId": "rmtyr-074-afi-5f59f1",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre las \"actividades de igualdad de 12.000 euros\". Aunque hay menciones a contratos relacionados con servicios de carácter social, no se especifica un monto de 12.000 euros ni se relacionan directamente con actividades de igual",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre las \"actividades de igualdad de 12.000 euros\".",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1767,7 +1767,7 @@
       "verification": {
         "claimId": "rmtyr-074-afi-945ce1",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre las actividades LGTBI por un monto de 8.275 euros. Los registros se centran en subvenciones para asociaciones de vecinos y actividades deportivas, pero no hay evidencia concreta que vincule a un candidato con la cifra es",
+        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre las actividades LGTBI por un monto de 8.275 euros.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -1799,7 +1799,7 @@
       "verification": {
         "claimId": "rmtyr-074-afi-f7e677",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre las subvenciones a asociaciones feministas y LGTBI por un monto de 4.500 euros. Los registros se centran en subvenciones a asociaciones de vecinos, comisiones falleras y ayudas de emergencia, pero no hay evidencia de que",
+        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre las subvenciones a asociaciones feministas y LGTBI por un monto de 4.500 euros.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -2298,7 +2298,7 @@
       "verification": {
         "claimId": "rmtyr-097-cit-1167b2",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona un edificio que estuvo parado durante 20 años, pero ninguno de los contratos presentados por los candidatos se refiere a un edificio específico que haya estado inactivo durante ese tiempo. Los contratos listados se centran en obras de mantenimiento, reparaciones y adquisicione",
+        "summary": "La afirmación menciona un edificio que estuvo parado durante 20 años, pero ninguno de los contratos presentados por los candidatos se refiere a un edificio específico que haya estado inactivo durante ese tiempo.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -2329,7 +2329,7 @@
       "verification": {
         "claimId": "rmtyr-098-cit-03a590",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona que el turismo estaba externalizado y que era gestionado por una empresa privada, lo que implica que el servicio no era público. Sin embargo, los contratos presentados no proporcionan evidencia directa de que el turismo en Riba-roja de Túria haya sido previamente externalizado",
+        "summary": "La afirmación menciona que el turismo estaba externalizado y que era gestionado por una empresa privada, lo que implica que el servicio no era público.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -2389,7 +2389,7 @@
       "verification": {
         "claimId": "rmtyr-099-afi-afe9b3",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona un monto específico de 13.000 euros relacionado con un servicio de televisión y sugiere que este costo podría cubrir el capítulo de personal de comunicación. Sin embargo, ninguno de los contratos presentados por los candidatos menciona un importe de 13.000 euros ni se relacion",
+        "summary": "La afirmación menciona un monto específico de 13.000 euros relacionado con un servicio de televisión y sugiere que este costo podría cubrir el capítulo de personal de comunicación.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -2421,7 +2421,7 @@
       "verification": {
         "claimId": "rmtyr-100-afi-06461d",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los contratos presentados respalda la afirmación de que \"sale la televisión, vale 13.000 euros\". El único monto que se acerca a la cifra mencionada es el de €10.739,15, pero no coincide con el importe exacto de €13.000. Además, los contratos listados se refieren a suministros y obras que ",
+        "summary": "Ninguno de los contratos presentados respalda la afirmación de que \"sale la televisión, vale 13.000 euros\". El único monto que se acerca a la cifra mencionada es el de €10.739,15, pero no coincide con el importe exacto de €13.000.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -2453,7 +2453,7 @@
       "verification": {
         "claimId": "rmtyr-100-afi-25572e",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona que \"la que tenemos nosotros no vale ni 50.000 euros\", lo que implica que el valor de la entidad en cuestión es inferior a esa cifra. Sin embargo, los contratos presentados no respaldan esta afirmación de manera directa. El contrato más cercano es el de €47.025,55, que aunque ",
+        "summary": "La afirmación menciona que \"la que tenemos nosotros no vale ni 50.000 euros\", lo que implica que el valor de la entidad en cuestión es inferior a esa cifra. Sin embargo, los contratos presentados no respaldan esta afirmación de manera directa.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -2484,7 +2484,7 @@
       "verification": {
         "claimId": "rmtyr-101-afi-11178c",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona un monto específico de 50.000 euros, indicando que \"la que tenemos nosotros no vale ni 50.000 euros\". Sin embargo, los registros de los candidatos no presentan ninguna cifra que coincida con este monto. El contrato menor de servicios a favor de IT AND PEOPLE, S.L. es de 9.922 ",
+        "summary": "La afirmación menciona un monto específico de 50.000 euros, indicando que \"la que tenemos nosotros no vale ni 50.000 euros\". Sin embargo, los registros de los candidatos no presentan ninguna cifra que coincida con este monto.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -3224,7 +3224,7 @@
       "verification": {
         "claimId": "rmtyr-119-cit-381d0e",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona \"presupuestos sobre el nuevo servicio de recogida de residuos sólidos urbanos\". El candidato [1] presenta un contrato formalizado para el \"servicio público de recogida de residuos sólidos urbanos\" con un importe de €15.803.597,04, lo que se alinea directamente con el tema de l",
+        "summary": "La afirmación menciona \"presupuestos sobre el nuevo servicio de recogida de residuos sólidos urbanos\".",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -3255,7 +3255,7 @@
       "verification": {
         "claimId": "rmtyr-120-afi-0bf406",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona un monto específico de 16 millones de euros destinados a servicios que se prestan a la ciudadanía, pero ninguno de los candidatos presenta información que confirme esta cifra exacta o su relación directa con el monto mencionado. Los contratos listados se refieren a servicios e",
+        "summary": "La afirmación menciona un monto específico de 16 millones de euros destinados a servicios que se prestan a la ciudadanía, pero ninguno de los candidatos presenta información que confirme esta cifra exacta o su relación directa con el monto mencionado.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -3353,7 +3353,7 @@
       "verification": {
         "claimId": "rmtyr-121-afi-0b52a5",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presentados respalda de manera genuina la afirmación sobre la asignación de 1.632.000 euros a subvenciones al tejido económico y social de Rivarrocha de Turia. Aunque hay varias resoluciones y convocatorias de subvenciones, no se menciona específicamente el monto de 1.632.0",
+        "summary": "Ninguno de los candidatos presentados respalda de manera genuina la afirmación sobre la asignación de 1.632.000 euros a subvenciones al tejido económico y social de Rivarrocha de Turia.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -3418,7 +3418,7 @@
       "verification": {
         "claimId": "rmtyr-121-afi-308674",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo directo y concreto a la afirmación sobre la dotación de 132.000 euros para la vuelta al cole. Aunque hay resoluciones relacionadas con ayudas escolares, como la Resolución de la Alcaldía número 1484 de 2017 y la número 2088/2020, no se menciona específi",
+        "summary": "Ninguno de los candidatos presenta un respaldo directo y concreto a la afirmación sobre la dotación de 132.000 euros para la vuelta al cole.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -3450,7 +3450,7 @@
       "verification": {
         "claimId": "rmtyr-121-afi-756014",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona una dotación específica de 120.000 euros para la infancia, pero ninguno de los candidatos presenta un respaldo directo a esta cifra exacta. Aunque hay referencias a ayudas escolares y gastos relacionados con la actividad escolar, como en el Acuerdo de 18 de mayo de 2021, no se",
+        "summary": "La afirmación menciona una dotación específica de 120.000 euros para la infancia, pero ninguno de los candidatos presenta un respaldo directo a esta cifra exacta.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -3548,7 +3548,7 @@
       "verification": {
         "claimId": "rmtyr-122-afi-64131b",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo directo a la afirmación de que se destinan 246.000 euros a ayudas para la rehabilitación de fachadas, accesibilidad y movilidad. Aunque hay varios registros relacionados con ayudas económicas para la rehabilitación de fachadas en Riba-roja de Túria, no ",
+        "summary": "Ninguno de los candidatos presenta un respaldo directo a la afirmación de que se destinan 246.000 euros a ayudas para la rehabilitación de fachadas, accesibilidad y movilidad.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -3612,7 +3612,7 @@
       "verification": {
         "claimId": "rmtyr-123-afi-31882d",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona un total de 1.632.000 euros directos a la ciudadanía, pero los registros de los candidatos no presentan ninguna subvención o contrato que coincida exactamente con esta cifra. Aunque hay varias subvenciones relacionadas con asociaciones festivas en Riba-roja de Túria, ninguna d",
+        "summary": "La afirmación menciona un total de 1.632.000 euros directos a la ciudadanía, pero los registros de los candidatos no presentan ninguna subvención o contrato que coincida exactamente con esta cifra.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -3644,7 +3644,7 @@
       "verification": {
         "claimId": "rmtyr-123-afi-8a83b1",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo directo a la afirmación sobre la asignación de 246.000 euros para ayudas a la rehabilitación de fachadas, accesibilidad y movilidad. Aunque hay varios registros relacionados con ayudas económicas para la rehabilitación de fachadas en Riba-roja de Túria,",
+        "summary": "Ninguno de los candidatos presenta un respaldo directo a la afirmación sobre la asignación de 246.000 euros para ayudas a la rehabilitación de fachadas, accesibilidad y movilidad.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -3931,7 +3931,7 @@
       "verification": {
         "claimId": "rmtyr-125-cit-5655cc",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona específicamente la \"Casa del Abogado\" como una de las inversiones que se están realizando. Los candidatos 1 y 2 están directamente relacionados con la Casa del Abogado, ya que el primero se refiere a las obras para su recuperación y el segundo a la dirección de dichas obras. A",
+        "summary": "La afirmación menciona específicamente la \"Casa del Abogado\" como una de las inversiones que se están realizando. Los candidatos 1 y 2 están directamente relacionados con la Casa del Abogado, ya que el primero se refiere a las obras para su recuperación y el segundo a la dirección de dichas obras.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -4026,7 +4026,7 @@
       "verification": {
         "claimId": "rmtyr-126-afi-f068f7",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre los 800.000 euros que aporta el Ayuntamiento para la DANA. Todos los contratos listados se refieren a montos significativamente menores y están relacionados con servicios o suministros específicos derivados de la DANA, pero",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre los 800.000 euros que aporta el Ayuntamiento para la DANA.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -4090,7 +4090,7 @@
       "verification": {
         "claimId": "rmtyr-126-cit-5e0fc7",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona específicamente la \"Casa del Abogado\" como una inversión que ya se está realizando. El candidato [1] tiene un contrato para el servicio de dirección de obras de recuperación y puesta en valor de la Casa del Abogado, con un importe de €18.029, lo que indica que efectivamente ha",
+        "summary": "La afirmación menciona específicamente la \"Casa del Abogado\" como una inversión que ya se está realizando.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -4761,7 +4761,7 @@
       "verification": {
         "claimId": "rmtyr-145-afi-b53053",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un monto que coincida con la afirmación de \"partida de más de doscientos mil\" euros. Los importes de los contratos listados son significativamente menores, con el mayor siendo de €79.900.000, pero este no se relaciona directamente con la afirmación, ya que no se es",
+        "summary": "Ninguno de los candidatos presenta un monto que coincida con la afirmación de \"partida de más de doscientos mil\" euros.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -4826,7 +4826,7 @@
       "verification": {
         "claimId": "rmtyr-146-afi-2cfadc",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona específicamente un monto de 1,6 millones de euros destinado a la mejora de un pabellón deportivo. Sin embargo, los registros de los candidatos no presentan ninguna subvención o contrato que coincida exactamente con esta cifra. La única referencia a una subvención en el context",
+        "summary": "La afirmación menciona específicamente un monto de 1,6 millones de euros destinado a la mejora de un pabellón deportivo. Sin embargo, los registros de los candidatos no presentan ninguna subvención o contrato que coincida exactamente con esta cifra.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -4858,7 +4858,7 @@
       "verification": {
         "claimId": "rmtyr-147-cit-6e24ea",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre la mejora del pabellón municipal de Riva Roja por un monto de 1,6 millones de euros. La única referencia a subvenciones se encuentra en la Resolución del Consejo Superior de Deportes, pero no se especifica el importe de 1,6",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre la mejora del pabellón municipal de Riva Roja por un monto de 1,6 millones de euros.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -4890,7 +4890,7 @@
       "verification": {
         "claimId": "rmtyr-148-afi-f0a19b",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona específicamente una inversión de 1,6 millones de euros en mejoras para el año 2023, pero ninguno de los candidatos presenta un respaldo directo a esta cifra o a este monto específico. Los documentos listados se refieren a subvenciones y contratos relacionados con actividades d",
+        "summary": "La afirmación menciona específicamente una inversión de 1,6 millones de euros en mejoras para el año 2023, pero ninguno de los candidatos presenta un respaldo directo a esta cifra o a este monto específico.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -5455,7 +5455,7 @@
       "verification": {
         "claimId": "rmtyr-190-afi-c155b2",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona una reducción de ingresos de 5 o 6 millones de euros debido a la bajada de impuestos a las personas más ricas. Sin embargo, los candidatos presentados se refieren a contratos de servicios diversos y no proporcionan información específica sobre cambios en la política fiscal o i",
+        "summary": "La afirmación menciona una reducción de ingresos de 5 o 6 millones de euros debido a la bajada de impuestos a las personas más ricas.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -5696,7 +5696,7 @@
       "verification": {
         "claimId": "rmtyr-201-afi-ec32b6",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación de que \"desde que estamos nosotros, no baja del millón de euros\". Todos los montos de los contratos listados son significativamente inferiores a un millón de euros, siendo el más alto de aproximadamente 79,000 euros. Por lo tanto",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación de que \"desde que estamos nosotros, no baja del millón de euros\". Todos los montos de los contratos listados son significativamente inferiores a un millón de euros, siendo el más alto de aproximadamente 79,000 euros.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6124,7 +6124,7 @@
       "verification": {
         "claimId": "rmtyr-214-cit-2da55b",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona que se pagó parte del campo de fútbol, pero no especifica un importe ni un contrato concreto que respalde esta afirmación. Los candidatos listados incluyen contratos relacionados con el campo de fútbol, como el asfaltado de acceso y el suministro de césped, pero ninguno de ell",
+        "summary": "La afirmación menciona que se pagó parte del campo de fútbol, pero no especifica un importe ni un contrato concreto que respalde esta afirmación.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6155,7 +6155,7 @@
       "verification": {
         "claimId": "rmtyr-215-cit-e3fc2e",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona el pago por parte del Ayuntamiento de una parte del campo de fútbol, pero los contratos presentados no hacen referencia a un pago específico relacionado con la construcción o adquisición de terrenos del campo de fútbol. Los contratos listados se centran en obras de asfaltado, ",
+        "summary": "La afirmación menciona el pago por parte del Ayuntamiento de una parte del campo de fútbol, pero los contratos presentados no hacen referencia a un pago específico relacionado con la construcción o adquisición de terrenos del campo de fútbol.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6186,7 +6186,7 @@
       "verification": {
         "claimId": "rmtyr-215-cit-e39e61",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona el pago de una parte del terreno donde está el ayuntamiento, pero ninguno de los candidatos presentados hace referencia a la adquisición o pago de terrenos relacionados con el ayuntamiento. Los contratos listados se centran en obras, servicios y arrendamientos, pero no hay evi",
+        "summary": "La afirmación menciona el pago de una parte del terreno donde está el ayuntamiento, pero ninguno de los candidatos presentados hace referencia a la adquisición o pago de terrenos relacionados con el ayuntamiento.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6217,7 +6217,7 @@
       "verification": {
         "claimId": "rmtyr-216-cit-ae7a4c",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona el pago de una parte del terreno donde está el ayuntamiento, pero ninguno de los contratos presentados por los candidatos se refiere a la adquisición o pago de terrenos relacionados con el ayuntamiento. Los contratos listados se centran en obras y servicios específicos, como l",
+        "summary": "La afirmación menciona el pago de una parte del terreno donde está el ayuntamiento, pero ninguno de los contratos presentados por los candidatos se refiere a la adquisición o pago de terrenos relacionados con el ayuntamiento.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6429,7 +6429,7 @@
       "verification": {
         "claimId": "rmtyr-236-cit-79ac5d",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona \"las grandes inversiones, el centro de salud\", pero ninguno de los contratos presentados se refiere específicamente a un centro de salud ni a inversiones en salud. Los contratos listados se centran en obras de reurbanización, mantenimiento de edificios culturales y sociales, y",
+        "summary": "La afirmación menciona \"las grandes inversiones, el centro de salud\", pero ninguno de los contratos presentados se refiere específicamente a un centro de salud ni a inversiones en salud.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6462,7 +6462,7 @@
       "verification": {
         "claimId": "rmtyr-236-cit-b5fc2e",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre las \"dos viviendas que estaban proyectadas para quedar\". Los contratos listados se refieren a obras de infraestructura y servicios públicos, como la adecuación de sendas, colocación de centros culturales y reparaciones d",
+        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre las \"dos viviendas que estaban proyectadas para quedar\".",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6721,7 +6721,7 @@
       "verification": {
         "claimId": "rmtyr-247-cit-1acaa6",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre el monto de 560.000 euros relacionado con empleo. Todos los contratos listados son de importes significativamente menores y no están relacionados con el tema de empleo, sino con servicios de alumbrado navideño, adquisicione",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre el monto de 560.000 euros relacionado con empleo.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -6780,7 +6780,7 @@
       "verification": {
         "claimId": "rmtyr-248-afi-b64687",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un monto que coincida con los 560.000 euros mencionados en la afirmación. Todos los importes de los contratos y ayudas listados son significativamente menores, oscilando entre 8.000 y 84.000 euros. Por lo tanto, no hay respaldo genuino a la afirmación, ya que no se",
+        "summary": "Ninguno de los candidatos presenta un monto que coincida con los 560.000 euros mencionados en la afirmación. Todos los importes de los contratos y ayudas listados son significativamente menores, oscilando entre 8.000 y 84.000 euros.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -7043,7 +7043,7 @@
       "verification": {
         "claimId": "rmtyr-253-cit-4b0249",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta información que respalde genuinamente la afirmación sobre el monto de 1.471.000 euros del Ministerio de Inclusión Social. Los contratos y resoluciones mencionados se refieren a servicios y subvenciones de menor cuantía y no están relacionados con la cifra específic",
+        "summary": "Ninguno de los candidatos presenta información que respalde genuinamente la afirmación sobre el monto de 1.471.000 euros del Ministerio de Inclusión Social.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -7207,7 +7207,7 @@
       "verification": {
         "claimId": "rmtyr-254-cit-899ce0",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre la concesión de tres millones de euros a Hidroacua para el alcantarillado. Aunque hay contratos relacionados con el servicio de agua y alcantarillado, no se menciona el monto específico de tres millones de euros ni se estab",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre la concesión de tres millones de euros a Hidroacua para el alcantarillado.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -7239,7 +7239,7 @@
       "verification": {
         "claimId": "rmtyr-254-cit-969acf",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre la Diputación destinando aproximadamente 300.000 euros para movilidad. Aunque hay contratos relacionados con obras y accesibilidad, como el de la adecuación del carril ciclopeatonal en la zona norte por un importe de 262.81",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre la Diputación destinando aproximadamente 300.000 euros para movilidad.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -7271,7 +7271,7 @@
       "verification": {
         "claimId": "rmtyr-254-cit-4440f4",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona una aportación de 200.000 euros de la Generalitat Valenciana al Ayuntamiento de Riba-roja. Sin embargo, ninguno de los candidatos presenta un registro que confirme específicamente esta cifra exacta de 200.000 euros. Aunque hay menciones de subvenciones y convenios entre la Gen",
+        "summary": "La afirmación menciona una aportación de 200.000 euros de la Generalitat Valenciana al Ayuntamiento de Riba-roja. Sin embargo, ninguno de los candidatos presenta un registro que confirme específicamente esta cifra exacta de 200.000 euros.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -7330,7 +7330,7 @@
       "verification": {
         "claimId": "rmtyr-263-cit-11b14e",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona específicamente un monto de 100 millones de euros en subvenciones, pero los registros de los candidatos no presentan ninguna cifra que se acerque a esta cantidad. Las subvenciones listadas son de montos y contextos muy distintos, y no hay evidencia de que sumen o respalden la ",
+        "summary": "La afirmación menciona específicamente un monto de 100 millones de euros en subvenciones, pero los registros de los candidatos no presentan ninguna cifra que se acerque a esta cantidad.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -7623,7 +7623,7 @@
       "verification": {
         "claimId": "rmtyr-267-cit-f63cc8",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona específicamente la \"rotonda de la Reba\" y su estado de estar \"plenamente parada\", lo que sugiere un problema de movilidad en esa ubicación. Sin embargo, los candidatos listados se refieren a obras de mejora en diferentes lugares y tipos de proyectos, como pavimentación, accesi",
+        "summary": "La afirmación menciona específicamente la \"rotonda de la Reba\" y su estado de estar \"plenamente parada\", lo que sugiere un problema de movilidad en esa ubicación.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -7688,7 +7688,7 @@
       "verification": {
         "claimId": "rmtyr-269-afi-5249c5",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona un gasto específico de 450.000 euros relacionado con la Fronta Vetera, pero ninguno de los candidatos presenta un registro que coincida con esta cifra o con el evento mencionado. Los registros de subvenciones y contratos que se presentan están relacionados con servicios de esp",
+        "summary": "La afirmación menciona un gasto específico de 450.000 euros relacionado con la Fronta Vetera, pero ninguno de los candidatos presenta un registro que coincida con esta cifra o con el evento mencionado.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -7719,7 +7719,7 @@
       "verification": {
         "claimId": "rmtyr-273-cit-a6cbb1",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la necesidad de ayudar al parque Montalcío, pero ninguno de los candidatos presenta información que respalde directamente esta afirmación. Aunque hay menciones a la conservación y mantenimiento de parques y zonas verdes, como en el candidato 3, no hay un vínculo específico",
+        "summary": "La afirmación se refiere a la necesidad de ayudar al parque Montalcío, pero ninguno de los candidatos presenta información que respalde directamente esta afirmación.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -7807,7 +7807,7 @@
       "verification": {
         "claimId": "rmtyr-275-afi-98414e",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre las 200 viviendas y el monto de 700.000 euros. Aunque hay varios acuerdos relacionados con ayudas económicas para la rehabilitación de fachadas en Riba-roja de Túria, no se especifica que se hayan dest",
+        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre las 200 viviendas y el monto de 700.000 euros.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -7982,7 +7982,7 @@
       "verification": {
         "claimId": "rmtyr-282-afi-61b682",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona específicamente un monto de tres millones de euros destinados a emergencias, pero los registros de los candidatos no presentan ninguna referencia a esta cifra exacta. Los acuerdos y contratos listados se refieren a ayudas económicas de emergencia y otros contratos relacionados",
+        "summary": "La afirmación menciona específicamente un monto de tres millones de euros destinados a emergencias, pero los registros de los candidatos no presentan ninguna referencia a esta cifra exacta.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"

@@ -65,6 +65,52 @@ describe('recortarResumen', () => {
     )
   })
 
+  it('«vs.» tampoco acaba la frase: dejaba el corte dentro de un paréntesis abierto', () => {
+    // La forma de seis de las 858 explicaciones recortadas el 05-10-2026:
+    // «…distinto objeto (arquitectura vs.», con el paréntesis sin cerrar.
+    const t =
+      'El único candidato es un contrato de redacción de un proyecto de arquitectura, sin relación ' +
+      'temática ni numérica con la afirmación. Concluí que no hay respaldo genuino: distinto objeto ' +
+      '(arquitectura vs. expropiación de una parcela), distinto importe y distinto año, así que nada ' +
+      'de lo que se lista respalda lo afirmado sobre la parcela del carrer.'
+    expect(t.length).toBeGreaterThan(RESUMEN_MAX)
+    expect(t.indexOf('vs. ')).toBeLessThan(RESUMEN_MAX)
+    expect(recortarResumen(t)).toBe(
+      'El único candidato es un contrato de redacción de un proyecto de arquitectura, sin relación ' +
+        'temática ni numérica con la afirmación.',
+    )
+  })
+
+  it('un punto dentro de unas comillas abiertas no acaba la frase, ni se lleva su matiz', () => {
+    // La forma de dos de las 858 recortadas el 05-10-2026: los puntos
+    // suspensivos de una cita cerraban la explicación dentro de las comillas, y
+    // se perdía el «pero no verifica la fecha» que la matizaba.
+    const t =
+      'Análisis completado: el candidato [0] respalda con fuerza la identidad del adjudicatario y el ' +
+      'objeto del estudio (mismo Ayuntamiento, mismo contratista, mismo objeto "estudio de ' +
+      'criterios... en suelos inundables"), pero no verifica la fecha concreta del acuerdo, que es lo ' +
+      'que la afirmación sostiene y lo único que habría que contrastar con un registro.'
+    expect(t.length).toBeGreaterThan(RESUMEN_MAX)
+    const r = recortarResumen(t)
+    expect(r).toContain('pero no verifica la fecha')
+    expect(r.endsWith('…')).toBe(true)
+    expect(t.startsWith(r.slice(0, -1))).toBe(true)
+  })
+
+  it('ni dentro de un paréntesis abierto: el corte va a la frase entera de antes', () => {
+    const t =
+      'Ninguno de los candidatos respalda la afirmación, que habla de una obra concreta del ' +
+      'polideportivo municipal en 2024. El candidato [0] (un contrato menor de mantenimiento ' +
+      'firmado en 2021. Es el único con el mismo objeto) no coincide en importe ni en fecha, y los ' +
+      'demás son servicios sin relación alguna con la obra.'
+    expect(t.length).toBeGreaterThan(RESUMEN_MAX)
+    expect(t.indexOf('2021. ')).toBeLessThan(RESUMEN_MAX)
+    expect(recortarResumen(t)).toBe(
+      'Ninguno de los candidatos respalda la afirmación, que habla de una obra concreta del ' +
+        'polideportivo municipal en 2024.',
+    )
+  })
+
   it('una primera frase muy corta no se queda sola: mejor cortar en una palabra', () => {
     const t = 'No. ' + 'El candidato coincide en el tema pero no en lo afirmado y '.repeat(8)
     const r = recortarResumen(t)

@@ -1,0 +1,309 @@
+{
+  "_procedencia": {
+    "que": "Seis retractaciones del motor de veredictos tal y como están en public/data/pleno-claims-overlay.json en 8b7a8af8, con el razonamiento que las produjo, para probar `verify:pleno-claims:engine -- --ids <fichero> --recortar`.",
+    "base": "Las filas de pleno-claims-verified-base.json del checkout principal (generatedAt 2026-10-04T07:37:32.197Z) de las cinco que tienen declaración, sin tocar. brxx5g-129-cit-05c5d8 ya no la tiene: es una de las 101 huérfanas.",
+    "overlay": "Las seis entradas `verdict-engine`, sin tocar. Cinco son del 02-08-2026, cuando el motor guardaba `reasoning.slice(0, 300)`; k4olcs-006-afi-462d5e la re-derivó #233 el 04-10-2026 con `recortarResumen`.",
+    "razonamientos": "El campo `reasoning` de la entrada de .llm-cache de cada declaración bajo la clave claude-code (modelo claude-code:sonnet) de engine-reason-v1 y, donde la hay, de engine-reason-v2, tal cual. Lo escribió openai/gpt-4o-mini por el respaldo de la cadena, aunque la clave sea la de claude-code: engine-reason-v1 · c8kr44-074-cit-32c7cc, engine-reason-v1 · c8kr44-229-cit-62282e. No cambia lo que se prueba: el recorte lee lo que lee la clave.",
+    "origenDeCadaRazonamiento": {
+      "engine-reason-v1 · 10yl550-019-afi-637c0f": "claude-code/claude-code:sonnet · 2026-08-02T04:37:50.046Z",
+      "engine-reason-v1 · c8kr44-074-cit-32c7cc": "openai/gpt-4o-mini · 2026-08-02T13:39:37.359Z",
+      "engine-reason-v1 · c8kr44-229-cit-62282e": "openai/gpt-4o-mini · 2026-08-02T13:42:41.240Z",
+      "engine-reason-v1 · 19gax3o-143-cit-a3a7a1": "claude-code/claude-code:sonnet · 2026-08-02T05:29:30.319Z",
+      "engine-reason-v1 · brxx5g-129-cit-05c5d8": "claude-code/claude-code:sonnet · 2026-08-02T04:10:05.139Z",
+      "engine-reason-v1 · k4olcs-006-afi-462d5e": "claude-code/claude-code:sonnet · 2026-08-02T14:34:45.195Z",
+      "engine-reason-v2 · 19gax3o-143-cit-a3a7a1": "claude-code/claude-code:sonnet · 2026-10-04T16:28:48.626Z",
+      "engine-reason-v2 · k4olcs-006-afi-462d5e": "claude-code/claude-code:sonnet · 2026-10-04T16:51:42.518Z"
+    },
+    "transcripciones": "El contexto de cada declaración, que contiene su literal: basta para que la puerta de procedencia las publique.",
+    "casos": "frase: el recorte cae en la última frase entera · elipsis: ninguna frase entera cabe pasado el tercio y se corta tras una palabra con «…» · cifra: el «.» final de lo publicado está dentro de «€37.960» · charla: su razonamiento v1 es el bueno, hay otro v2 que no lo es, y el recorte sigue hablando de la tarea · huerfana: sin declaración en la base · rederivada: su resumen no es el corte de ningún razonamiento en caché."
+  },
+  "ids": {
+    "frase": "10yl550-019-afi-637c0f",
+    "elipsis": "c8kr44-074-cit-32c7cc",
+    "cifra": "c8kr44-229-cit-62282e",
+    "charla": "19gax3o-143-cit-a3a7a1",
+    "huerfana": "brxx5g-129-cit-05c5d8",
+    "rederivada": "k4olcs-006-afi-462d5e"
+  },
+  "base": {
+    "generatedAt": "2026-10-04T07:37:32.197Z",
+    "items": [
+      {
+        "claim": {
+          "id": "10yl550-019-afi-637c0f",
+          "plenoId": "10yl550",
+          "plenoDate": "2026-05-11",
+          "segmentIndex": 19,
+          "type": "afirmacion_numerica",
+          "speakerGroup": null,
+          "verbatim": "Parcela, carrero 1 de mayo y a Zorín, apertura también a futuro carrero, importe de 32.000 euros.",
+          "context": "La vinguda a Zorín, expropiación acordada para apertura a futuro carrero al costado del carrero 1 de mayo por valores de 5.260 euros. Parcela, carrero 1 de mayo y a Zorín, apertura también a futuro carrero, importe de 32.000 euros. Expropiación de parcela a barranques moros",
+          "topic": "urbanismo",
+          "entities": {
+            "amountEuros": 32000,
+            "referencedEntity": "carrero 1 de mayo y a zorín"
+          },
+          "confidence": 0.95,
+          "reasoning": "Se puede verificar contrastando el importe de esta expropiación en el expediente municipal de modificaciones de crédito.",
+          "requiresHumanApproval": true
+        },
+        "verification": {
+          "claimId": "10yl550-019-afi-637c0f",
+          "verdict": "sin-datos",
+          "summary": "No se encontró registro en tenders, tenders-ted, bdns y budget que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+          "evidence": [],
+          "checkedAgainst": [
+            "tenders",
+            "tenders-ted",
+            "bdns",
+            "budget"
+          ]
+        }
+      },
+      {
+        "claim": {
+          "id": "k4olcs-006-afi-462d5e",
+          "plenoId": "k4olcs",
+          "plenoDate": "2026-04-20",
+          "segmentIndex": 6,
+          "type": "afirmacion_numerica",
+          "speakerGroup": null,
+          "verbatim": "han habido diferentes cuestiones que han sido por el tema de la DANA",
+          "context": "en esta memoria también se habla de, bueno, en este informe de auditoría de que han habido diferentes cuestiones que han sido por el tema de la DANA y en estos informes también se dan como unos consejos o unas observaciones en esta materia por la DANA ¿de acuerdo?",
+          "topic": "other",
+          "entities": {
+            "referencedEntity": "informe de auditoría / dana"
+          },
+          "confidence": 0.78,
+          "reasoning": "Afirma que varias cuestiones del informe de auditoría se deben a la DANA; es verificable contrastando el informe y sus observaciones.",
+          "requiresHumanApproval": true
+        },
+        "verification": {
+          "claimId": "k4olcs-006-afi-462d5e",
+          "verdict": "sin-datos",
+          "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+          "evidence": [],
+          "checkedAgainst": []
+        }
+      },
+      {
+        "claim": {
+          "id": "19gax3o-143-cit-a3a7a1",
+          "plenoId": "19gax3o",
+          "plenoDate": "2026-01-19",
+          "segmentIndex": 143,
+          "type": "cita_obra",
+          "speakerGroup": null,
+          "verbatim": "esa piscina, ese complexo esportivo de la Mallá que ha dicho todas las deficiencias que tenían",
+          "context": "esa piscina, ese complexo esportivo de la Mallá que ha dicho todas las deficiencias que tenían, o algunas importantes, como el exterior ha tenido una inversión por este gobierno",
+          "topic": "urbanismo",
+          "entities": {
+            "referencedEntity": "piscina / complejo esportivo de la mallá"
+          },
+          "confidence": 0.84,
+          "reasoning": "Referencia un proyecto o instalación concreta del municipio; es verificable en documentación municipal y actuaciones sobre esa infraestructura.",
+          "requiresHumanApproval": true
+        },
+        "verification": {
+          "claimId": "19gax3o-143-cit-a3a7a1",
+          "verdict": "sin-datos",
+          "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+          "evidence": [],
+          "checkedAgainst": [
+            "tenders",
+            "tenders-ted"
+          ]
+        }
+      },
+      {
+        "claim": {
+          "id": "c8kr44-074-cit-32c7cc",
+          "plenoId": "c8kr44",
+          "plenoDate": "2025-09-08",
+          "segmentIndex": 74,
+          "type": "cita_obra",
+          "speakerGroup": null,
+          "verbatim": "el contrato se puede modificar, está amparado, y además está aprobado por la propia consejería, por el TAR,",
+          "context": "en el sentido que es flexible. Por lo tanto, el contrato se puede modificar, está amparado, y además está aprobado por la propia consejería, por el TAR, que es un tribunal que le da más transparencia",
+          "topic": "medio-ambiente",
+          "entities": {
+            "referencedEntity": "resolución del tar sobre el contrato de recogida de rsu"
+          },
+          "confidence": 0.9,
+          "reasoning": "Se puede verificar en la documentación del expediente si el contrato de RSU cuenta con la resolución y validación correspondiente por parte del Tribunal Administrativo de Recursos Contractuales (TAR) y de la Conselleria.",
+          "requiresHumanApproval": true
+        },
+        "verification": {
+          "claimId": "c8kr44-074-cit-32c7cc",
+          "verdict": "sin-datos",
+          "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+          "evidence": [],
+          "checkedAgainst": [
+            "tenders",
+            "tenders-ted"
+          ]
+        }
+      },
+      {
+        "claim": {
+          "id": "c8kr44-229-cit-62282e",
+          "plenoId": "c8kr44",
+          "plenoDate": "2025-09-08",
+          "segmentIndex": 229,
+          "type": "cita_obra",
+          "speakerGroup": null,
+          "verbatim": "El cambio de juegos y suelo de protección. En el parque La Pedrera. Y se está al costado de la Asunción.",
+          "context": "Se suministra la instalación. De los juegos infantiles. Y va a anumerarlos. El cambio de juegos y suelo de protección. En el parque La Pedrera. Y se está al costado de la Asunción. Lote 2. Renovación de juegos y suelo de protección.",
+          "topic": "urbanismo",
+          "entities": {
+            "referencedEntity": "parque la pedrera"
+          },
+          "confidence": 0.95,
+          "reasoning": "Hace referencia al proyecto/obra de cambio de juegos infantiles en una ubicación específica (parque La Pedrera).",
+          "requiresHumanApproval": true
+        },
+        "verification": {
+          "claimId": "c8kr44-229-cit-62282e",
+          "verdict": "parcial",
+          "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
+              "snippet": "Cambio de juegos y suelo de protección Parque La Pedrera · Ayuntamiento de Riba-roja de Túria · JUEGOS KOMPAN, S.A. · culture · estado: formalized",
+              "similarity": 1,
+              "stance": "checked"
+            }
+          ],
+          "checkedAgainst": [
+            "tenders",
+            "tenders-ted"
+          ]
+        }
+      }
+    ]
+  },
+  "overlay": {
+    "version": 1,
+    "generatedAt": "2026-10-04T17:21:52.099Z",
+    "entries": {
+      "10yl550-019-afi-637c0f": {
+        "verification": {
+          "claimId": "10yl550-019-afi-637c0f",
+          "verdict": "sin-datos",
+          "summary": "Analicé el único candidato disponible: un contrato de servicios TI (Portal del Empleado) por €25.794, sin relación temática ni de sujeto con la expropiación urbanística de €32.000 mencionada en la afirmación. No hay coincidencia de importe exacto, sujeto ni naturaleza del gasto. Concluyo que no hay ",
+          "evidence": [],
+          "checkedAgainst": [
+            "verdict-engine"
+          ],
+          "confidence": 0.2
+        },
+        "source": "verdict-engine",
+        "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Analicé el único candidato disponible: un contrato de servicios TI (Portal del Empleado) por €25.794, sin relación temática ni de sujeto con la expropiación urbanística de €32.000 mencionada en la afirmación. No hay coincidencia de importe exacto, sujeto ni naturaleza del gasto. Concluyo que no hay ",
+        "editor": "verdict-engine:claude-code",
+        "appliedAt": "2026-08-02T04:44:02.620Z"
+      },
+      "c8kr44-074-cit-32c7cc": {
+        "verification": {
+          "claimId": "c8kr44-074-cit-32c7cc",
+          "verdict": "sin-datos",
+          "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación. Aunque varios contratos mencionan aspectos relacionados con la modificación de contratos o la protección del medio ambiente, no hay evidencia concreta que vincule directamente la afirmación sobre la flexibilidad y aprobación por",
+          "evidence": [],
+          "checkedAgainst": [
+            "verdict-engine"
+          ],
+          "confidence": 0.2
+        },
+        "source": "verdict-engine",
+        "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Ninguno de los candidatos presenta un respaldo genuino a la afirmación. Aunque varios contratos mencionan aspectos relacionados con la modificación de contratos o la protección del medio ambiente, no hay evidencia concreta que vincule directamente la afirmación sobre la flexibilidad y aprobación por",
+        "editor": "verdict-engine:claude-code",
+        "appliedAt": "2026-08-02T13:40:16.830Z"
+      },
+      "c8kr44-229-cit-62282e": {
+        "verification": {
+          "claimId": "c8kr44-229-cit-62282e",
+          "verdict": "sin-datos",
+          "summary": "La afirmación menciona específicamente el cambio de juegos y suelo de protección en el parque La Pedrera, mientras que el único candidato que se refiere a un contrato relacionado es el candidato [0], que detalla el cambio de juegos y suelo de protección en el Parque La Pedrera por un importe de €37.",
+          "evidence": [],
+          "checkedAgainst": [
+            "verdict-engine"
+          ],
+          "confidence": 0.2
+        },
+        "source": "verdict-engine",
+        "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: La afirmación menciona específicamente el cambio de juegos y suelo de protección en el parque La Pedrera, mientras que el único candidato que se refiere a un contrato relacionado es el candidato [0], que detalla el cambio de juegos y suelo de protección en el Parque La Pedrera por un importe de €37.",
+        "editor": "verdict-engine:claude-code",
+        "appliedAt": "2026-08-02T13:42:55.628Z"
+      },
+      "19gax3o-143-cit-a3a7a1": {
+        "verification": {
+          "claimId": "19gax3o-143-cit-a3a7a1",
+          "verdict": "sin-datos",
+          "summary": "Task completed: provided skeptical fact-check reasoning in Spanish (2-4 sentences) concluding none of the four candidates (bar catering tenders and pool cleaning service tenders) genuinely support the claim about exterior investment addressing reported deficiencies at the C.D. La Mallá sports comple",
+          "evidence": [],
+          "checkedAgainst": [
+            "verdict-engine"
+          ],
+          "confidence": 0.2
+        },
+        "source": "verdict-engine",
+        "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Task completed: provided skeptical fact-check reasoning in Spanish (2-4 sentences) concluding none of the four candidates (bar catering tenders and pool cleaning service tenders) genuinely support the claim about exterior investment addressing reported deficiencies at the C.D. La Mallá sports comple",
+        "editor": "verdict-engine:claude-code",
+        "appliedAt": "2026-08-02T05:38:45.146Z"
+      },
+      "brxx5g-129-cit-05c5d8": {
+        "verification": {
+          "claimId": "brxx5g-129-cit-05c5d8",
+          "verdict": "sin-datos",
+          "summary": "Análisis completado: ningún candidato respalda genuinamente la afirmación. Los tenders [0]-[5] son de mantenimiento IT sin relación temática. Los tenders [6]-[7] coinciden en la entidad (CEIP Cervantes) pero son contratos de limpieza, no de obra/reparación de asfalto del patio, por lo que no verific",
+          "evidence": [],
+          "checkedAgainst": [
+            "verdict-engine"
+          ],
+          "confidence": 0.2
+        },
+        "source": "verdict-engine",
+        "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Análisis completado: ningún candidato respalda genuinamente la afirmación. Los tenders [0]-[5] son de mantenimiento IT sin relación temática. Los tenders [6]-[7] coinciden en la entidad (CEIP Cervantes) pero son contratos de limpieza, no de obra/reparación de asfalto del patio, por lo que no verific",
+        "editor": "verdict-engine:claude-code",
+        "appliedAt": "2026-08-02T04:43:22.401Z"
+      },
+      "k4olcs-006-afi-462d5e": {
+        "verification": {
+          "claimId": "k4olcs-006-afi-462d5e",
+          "verdict": "sin-datos",
+          "summary": "La afirmación es cualitativa y vaga: dice que un informe de auditoría menciona \"diferentes cuestiones por el tema de la DANA\" y que incluye consejos u observaciones al respecto. No contiene importe, fecha ni sujeto concreto que se pueda contrastar.",
+          "evidence": [],
+          "checkedAgainst": [],
+          "derivedBy": [
+            "verdict-engine"
+          ],
+          "confidence": 0.2
+        },
+        "source": "verdict-engine",
+        "reason": "verdict-engine (claude-code) re-derivó la retractación (sigue sin-datos): La afirmación es cualitativa y vaga: dice que un informe de auditoría menciona \"diferentes cuestiones por el tema de la DANA\" y que incluye consejos u observaciones al respecto. No contiene importe, fecha ni sujeto concreto que se pueda contrastar.",
+        "editor": "verdict-engine:claude-code",
+        "appliedAt": "2026-10-04T17:21:01.133Z"
+      }
+    }
+  },
+  "razonamientos": {
+    "engine-reason-v1": {
+      "10yl550-019-afi-637c0f": "Analicé el único candidato disponible: un contrato de servicios TI (Portal del Empleado) por €25.794, sin relación temática ni de sujeto con la expropiación urbanística de €32.000 mencionada en la afirmación. No hay coincidencia de importe exacto, sujeto ni naturaleza del gasto. Concluyo que no hay respaldo genuino, coincidencia puramente casual (sim=0.20 confirma la debilidad de la relación).",
+      "c8kr44-074-cit-32c7cc": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación. Aunque varios contratos mencionan aspectos relacionados con la modificación de contratos o la protección del medio ambiente, no hay evidencia concreta que vincule directamente la afirmación sobre la flexibilidad y aprobación por la consejería y el TAR. La afirmación requiere una coincidencia específica en términos de modificación de contrato y su aprobación, que no se encuentra en los registros proporcionados.",
+      "c8kr44-229-cit-62282e": "La afirmación menciona específicamente el cambio de juegos y suelo de protección en el parque La Pedrera, mientras que el único candidato que se refiere a un contrato relacionado es el candidato [0], que detalla el cambio de juegos y suelo de protección en el Parque La Pedrera por un importe de €37.960. Este candidato respalda genuinamente la afirmación, ya que coincide en el lugar (Parque La Pedrera) y en el tipo de trabajo (cambio de juegos y suelo de protección). No hay otros candidatos que se refieran a este parque o a este tipo de obra, lo que refuerza la validez del respaldo.",
+      "19gax3o-143-cit-a3a7a1": "Task completed: provided skeptical fact-check reasoning in Spanish (2-4 sentences) concluding none of the four candidates (bar catering tenders and pool cleaning service tenders) genuinely support the claim about exterior investment addressing reported deficiencies at the C.D. La Mallá sports complex, since cleaning/catering services differ in nature from renovation/investment works.",
+      "brxx5g-129-cit-05c5d8": "Análisis completado: ningún candidato respalda genuinamente la afirmación. Los tenders [0]-[5] son de mantenimiento IT sin relación temática. Los tenders [6]-[7] coinciden en la entidad (CEIP Cervantes) pero son contratos de limpieza, no de obra/reparación de asfalto del patio, por lo que no verifican el hecho concreto narrado.",
+      "k4olcs-006-afi-462d5e": "Task completed: provided the requested 2-4 sentence skeptical reasoning in Spanish about whether any candidate genuinely supports the claim, without issuing a final verdict, as instructed."
+    },
+    "engine-reason-v2": {
+      "19gax3o-143-cit-a3a7a1": "La afirmación dice que el complejo deportivo de La Mallá tenía deficiencias y que, al menos las importantes, como el exterior, han recibido una inversión de este gobierno. Los candidatos 0, 1, 5 y 7 son contratos de servicios (calidad del agua, actividades no acuáticas, limpieza), es decir, gasto corriente de mantenimiento. No prueban ninguna inversión en el exterior ni la corrección de deficiencias; que coincida el nombre del complejo es solo coincidencia temática. El candidato 6 es una subvención del Consejo Superior de Deportes para obras en un pabellón polideportivo; es otra instalación (pabellón, no el complejo La Mallá) y no consta fecha ni importe que lo vincule con el exterior. Los candidatos 2 y 3 (pavimentación del paseo Pacadar, que une el Complejo La Malla y el Pabellón) sí son obras en el entorno exterior del complejo y podrían respaldar de forma débil/parcial la idea de una inversión en el exterior, pero no hay importe, fecha ni adjudicatario visibles que confirmen que fue \"este gobierno\", ni que se trate del exterior del complejo en sí; además la pavimentación de un paseo no es claramente \"el exterior de la piscina\". El candidato 4 (reforma y ampliación parcial del edificio La Mallà) es una obra de inversión en el edificio, pero se refiere al edificio, no al exterior, y tampoco hay fecha ni importe. En conjunto, ningún candidato coincide con valores concretos (importe, fecha, sujeto) de la afirmación, que además es una cita vaga sin cifras. El respaldo es como mucho débil y circunstancial (2/3 y 4 muestran obras en el entorno de La Mallá), insuficiente para confirmar la afirmación; lo prudente es no considerarla verificada.",
+      "k4olcs-006-afi-462d5e": "La afirmación es cualitativa y vaga: dice que un informe de auditoría menciona \"diferentes cuestiones por el tema de la DANA\" y que incluye consejos u observaciones al respecto. No contiene importe, fecha ni sujeto concreto que se pueda contrastar. Los candidatos son contratos de emergencia y servicios relacionados con la DANA (limpieza de caminos, transporte en autobús, vestuario del plan de empleo, consultoría FEDER). Solo coinciden en el tema, la DANA. Eso confirma que la DANA afectó al municipio y generó contratación, pero no demuestra lo que dice el informe de auditoría ni sus observaciones o consejos. Una coincidencia temática no es respaldo. Ningún candidato respalda genuinamente la afirmación. A lo sumo hay un contexto tangencial muy débil: existieron contratos de emergencia por la DANA, que podrían ser lo que el informe de auditoría comenta, pero eso es una inferencia no verificable con estos datos."
+    }
+  },
+  "transcripciones": {
+    "10yl550": "La vinguda a Zorín, expropiación acordada para apertura a futuro carrero al costado del carrero 1 de mayo por valores de 5.260 euros. Parcela, carrero 1 de mayo y a Zorín, apertura también a futuro carrero, importe de 32.000 euros. Expropiación de parcela a barranques moros",
+    "k4olcs": "en esta memoria también se habla de, bueno, en este informe de auditoría de que han habido diferentes cuestiones que han sido por el tema de la DANA y en estos informes también se dan como unos consejos o unas observaciones en esta materia por la DANA ¿de acuerdo?",
+    "19gax3o": "esa piscina, ese complexo esportivo de la Mallá que ha dicho todas las deficiencias que tenían, o algunas importantes, como el exterior ha tenido una inversión por este gobierno",
+    "c8kr44": "en el sentido que es flexible. Por lo tanto, el contrato se puede modificar, está amparado, y además está aprobado por la propia consejería, por el TAR, que es un tribunal que le da más transparencia\n...Se suministra la instalación. De los juegos infantiles. Y va a anumerarlos. El cambio de juegos y suelo de protección. En el parque La Pedrera. Y se está al costado de la Asunción. Lote 2. Renovación de juegos y suelo de protección."
+  }
+}
