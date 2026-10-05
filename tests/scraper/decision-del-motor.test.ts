@@ -16,15 +16,43 @@ import { startRun, NO_LLM_STATS } from '../../src/scraper/run-manifest'
  * no se escribe (regla 2).
  */
 describe('decidirRederivacion', () => {
+  it('reescribe cuando el razonamiento del modelo concluye «sin respaldo», aunque la extracción dijera parcial', () => {
+    expect(
+      decidirRederivacion({
+        juzgada: true,
+        veredicto: 'sin-datos',
+        sinDatosPorque: 'razonamiento',
+      }),
+    ).toEqual({ accion: 'reescribir' })
+  })
+
+  it('aparta, para un curador, el sin-datos que pone la regla del título: el razonamiento ve respaldo', () => {
+    // 1sqj7is-081-cit-50c5bb: «El respaldo es por tanto parcial/débil-moderado».
+    // Escrito bajo «Sin datos», la tarjeta diría dos cosas a la vez.
+    expect(
+      decidirRederivacion({
+        juzgada: true,
+        veredicto: 'sin-datos',
+        sinDatosPorque: 'solo-el-titulo',
+      }),
+    ).toEqual({ accion: 'apartar' })
+  })
+
+  it('un sin-datos juzgado sin su porqué es un fallo del cableado, no una decisión', () => {
+    expect(() =>
+      decidirRederivacion({ juzgada: true, veredicto: 'sin-datos', sinDatosPorque: undefined }),
+    ).toThrow(/porqué/)
+  })
+
   it('reescribe cuando el modelo juzgó y sigue sin ver respaldo', () => {
-    expect(decidirRederivacion({ juzgada: true, veredicto: 'sin-datos' })).toEqual({
-      accion: 'reescribir',
-    })
+    expect(
+      decidirRederivacion({ juzgada: true, veredicto: 'sin-datos', sinDatosPorque: 'extraccion' }),
+    ).toEqual({ accion: 'reescribir' })
   })
 
   it('no sube: si ahora ve respaldo, la retractación se queda y la mira un curador', () => {
     for (const veredicto of ['verificado', 'parcial'] as const) {
-      expect(decidirRederivacion({ juzgada: true, veredicto })).toEqual({
+      expect(decidirRederivacion({ juzgada: true, veredicto, sinDatosPorque: undefined })).toEqual({
         accion: 'dejar',
         motivo: 'ya-no-la-retractaria',
       })
@@ -35,10 +63,12 @@ describe('decidirRederivacion', () => {
     // Sin candidatos el motor devuelve el veredicto determinista, que para
     // estas filas suele ser `sin-datos`: parecería una retractación sostenida.
     for (const veredicto of ['sin-datos', 'verificado'] as const) {
-      expect(decidirRederivacion({ juzgada: false, veredicto })).toEqual({
-        accion: 'dejar',
-        motivo: 'no-la-juzgo',
-      })
+      expect(decidirRederivacion({ juzgada: false, veredicto, sinDatosPorque: undefined })).toEqual(
+        {
+          accion: 'dejar',
+          motivo: 'no-la-juzgo',
+        },
+      )
     }
   })
 })
@@ -51,6 +81,50 @@ describe('decidirRederivacion', () => {
  * retractar lo leía antes de mirar si hubo juicio (DATA_INTEGRITY, regla 2).
  */
 describe('decidirRetractacion', () => {
+  it('retracta cuando el razonamiento del modelo concluye «sin respaldo»', () => {
+    expect(
+      decidirRetractacion({
+        salto: undefined,
+        veredicto: 'sin-datos',
+        publicado: 'parcial',
+        sinDatosPorque: 'razonamiento',
+      }),
+    ).toEqual({ accion: 'retractar' })
+  })
+
+  it('no retracta con el sin-datos de la regla del título: el modelo ve respaldo; se aparta', () => {
+    for (const publicado of ['verificado', 'parcial'] as const) {
+      expect(
+        decidirRetractacion({
+          salto: undefined,
+          veredicto: 'sin-datos',
+          publicado,
+          sinDatosPorque: 'solo-el-titulo',
+        }),
+      ).toEqual({ accion: 'apartar' })
+    }
+    // Sobre lo que ya se publica como sin-datos no hay nada que apartar.
+    expect(
+      decidirRetractacion({
+        salto: undefined,
+        veredicto: 'sin-datos',
+        publicado: 'sin-datos',
+        sinDatosPorque: 'solo-el-titulo',
+      }),
+    ).toEqual({ accion: 'mantener' })
+  })
+
+  it('un sin-datos juzgado sin su porqué es un fallo del cableado', () => {
+    expect(() =>
+      decidirRetractacion({
+        salto: undefined,
+        veredicto: 'sin-datos',
+        publicado: 'parcial',
+        sinDatosPorque: undefined,
+      }),
+    ).toThrow(/porqué/)
+  })
+
   it('sin juicio no se retracta, aunque lo que vuelve sea el sin-datos del determinista', () => {
     for (const salto of [
       'sin-candidatos',
@@ -58,7 +132,14 @@ describe('decidirRetractacion', () => {
       'decidio-el-determinista',
     ] as const) {
       for (const publicado of ['verificado', 'parcial'] as const) {
-        expect(decidirRetractacion({ salto, veredicto: 'sin-datos', publicado })).toEqual({
+        expect(
+          decidirRetractacion({
+            salto,
+            veredicto: 'sin-datos',
+            publicado,
+            sinDatosPorque: undefined,
+          }),
+        ).toEqual({
           accion: 'dejar',
           porque: salto,
         })
@@ -68,23 +149,38 @@ describe('decidirRetractacion', () => {
 
   it('retracta cuando el modelo juzgó sin-datos lo que se publica como verificado o parcial', () => {
     for (const publicado of ['verificado', 'parcial'] as const) {
-      expect(decidirRetractacion({ salto: undefined, veredicto: 'sin-datos', publicado })).toEqual({
-        accion: 'retractar',
-      })
+      expect(
+        decidirRetractacion({
+          salto: undefined,
+          veredicto: 'sin-datos',
+          publicado,
+          sinDatosPorque: 'extraccion',
+        }),
+      ).toEqual({ accion: 'retractar' })
     }
   })
 
   it('mantiene lo que el modelo sí ve respaldado: esta vía nunca sube ni confirma', () => {
     for (const veredicto of ['verificado', 'parcial'] as const) {
-      expect(decidirRetractacion({ salto: undefined, veredicto, publicado: 'verificado' })).toEqual(
-        { accion: 'mantener' },
-      )
+      expect(
+        decidirRetractacion({
+          salto: undefined,
+          veredicto,
+          publicado: 'verificado',
+          sinDatosPorque: undefined,
+        }),
+      ).toEqual({ accion: 'mantener' })
     }
   })
 
   it('no hay nada que retractar en lo que ya se publica como sin-datos', () => {
     expect(
-      decidirRetractacion({ salto: undefined, veredicto: 'sin-datos', publicado: 'sin-datos' }),
+      decidirRetractacion({
+        salto: undefined,
+        veredicto: 'sin-datos',
+        publicado: 'sin-datos',
+        sinDatosPorque: 'extraccion',
+      }),
     ).toEqual({ accion: 'mantener' })
   })
 })
