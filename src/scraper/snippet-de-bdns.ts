@@ -20,10 +20,11 @@
  * EL SNIPPET
  *
  * `snippetDeBdns` es el que componía el corpus, byte a byte: objeto, importe si
- * lo hay, órgano, recortado a SNIPPET_MAXIMO. `mergeShortlists` funde las dos
- * mitades por `ref` y se queda con la de más similitud, así que con dos
- * compositores la misma convocatoria llegaba al modelo de dos maneras según qué
- * mitad ganara; la 732847, cuyo `organ` acaba en espacios, ya salía distinta. No
+ * lo hay, órgano, recortado a SNIPPET_MAXIMO. `mergeShortlists` junta las dos
+ * mitades por tipo, enlace y snippet, así que con dos compositores la misma
+ * convocatoria llegaría al modelo dos veces, una por mitad (hasta el 06-10-2026
+ * fundía por `ref`, y llegaba de una de dos maneras según qué mitad ganara); la
+ * 732847, cuyo `organ` acaba en espacios, ya salía distinta. No
  * se le ha añadido nada —fecha, sentido de la subvención, «importe no
  * publicado»—: cambiar lo que el modelo lee se mide con llamadas reales antes de
  * fusionar (la lección de snippet-de-contrato.ts), y que el snippet no cambie es

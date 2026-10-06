@@ -216,7 +216,9 @@ export function buildBdnsRows(data: unknown): PendingRow[] {
       text,
       textSha256: sha256(text),
       // El mismo snippet y el mismo enlace que la lista corta léxica: la fusión de
-      // las dos mitades va por `ref`, y el modelo lee la convocatoria igual.
+      // las dos mitades junta lo que trae el mismo tipo, enlace y snippet
+      // (`mergeShortlists`), así que la convocatoria que traen las dos sale una vez,
+      // y el modelo la lee igual.
       snippet: snippetDeBdns(r as BdnsRow),
       ref: bdnsRef(r as BdnsRow),
     })
