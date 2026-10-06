@@ -156,3 +156,59 @@ describe('una convocatoria llega al modelo igual, la traiga la mitad que la trai
     )
   })
 })
+
+/**
+ * El tope: una declaración que no habla de subvenciones no se llena de
+ * convocatorias.
+ *
+ * Leídas las filas, la mitad léxica empareja también por las palabras de oficio
+ * de una convocatoria —«acuerdo», «junta de gobierno local», «ejercicio 2025»—.
+ * Medido el 06-10-2026 sobre las 7.564 declaraciones de
+ * pleno-claims-verified.json, sin llamadas: 1.325 (17,5 %) ganan alguna
+ * convocatoria en su lista de 8, y 145 (1,9 %) pierden a cambio algún contrato o
+ * promesa; en 41 las ocho plazas eran convocatorias. Con dos por lista como
+ * mucho, las que pierden algo bajan a 90 (1,2 %) y ninguna pierde más de dos.
+ * 1tgd1h4-130-afi-a4b594, sobre el calendario laboral de 2025, es una de esas 41.
+ */
+const FX_TOPE = JSON.parse(
+  readFileSync(join(__dirname, 'fixtures/bdns_tope_2026-10-06.json'), 'utf8'),
+) as { claim: never; tenders: unknown }
+const TOPE = 2
+
+describe('el tope: como mucho dos convocatorias por lista, las de más puntuación', () => {
+  const aSolas = (f: BdnsItem) =>
+    bdnsDe(shortlistCandidates({ claim: FX_TOPE.claim, bdns: { items: [f] } }))[0]
+  const pasan = FX.bdns.map(aSolas).filter(Boolean)
+  const lista = shortlistCandidates({
+    claim: FX_TOPE.claim,
+    tenders: FX_TOPE.tenders,
+    bdns: { items: FX.bdns },
+  })
+
+  it('precondición: de las 178 evaluadas, más de dos pasan el suelo por sí solas', () => {
+    expect(FX.bdns).toHaveLength(178)
+    expect(pasan.length).toBeGreaterThan(TOPE)
+  })
+
+  it('la lista lleva dos convocatorias, no ocho', () => {
+    expect(bdnsDe(lista)).toHaveLength(TOPE)
+  })
+
+  it('las de más puntuación: ninguna de las que se quedan fuera puntúa más', () => {
+    const dentro = bdnsDe(lista)
+    const suelo = Math.min(...dentro.map((c) => c.similarity))
+    const fuera = pasan.filter((c) => !dentro.some((d) => d.ref === c.ref))
+    expect(fuera).toHaveLength(pasan.length - TOPE)
+    expect(fuera.filter((c) => c.similarity > suelo)).toEqual([])
+  })
+
+  it('y los contratos vuelven a los huecos que las convocatorias ocupaban', () => {
+    const sinBdns = shortlistCandidates({
+      claim: FX_TOPE.claim,
+      tenders: FX_TOPE.tenders,
+      bdns: null,
+    })
+    expect(sinBdns).toHaveLength(8)
+    expect(lista.filter((c) => c.kind === 'tender')).toEqual(sinBdns.slice(0, 8 - TOPE))
+  })
+})
