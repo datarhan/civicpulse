@@ -29,15 +29,30 @@
  * firma —sólo la imprime—, y aun así no corre una orden que nadie terminó de
  * escribir.
  *
+ * Desde el 06-10-2026, también las vías que promocionan —`promote-claim`,
+ * `promote-place`, `promote-relation`, `promote-report`, `promote-indicador` y
+ * `promote-social`, con `--curator`—, `entity-alias`, `journalist:archive` y el
+ * `--by` de `override-speaker-assignment`. Una promoción publica, y es tier C
+ * (src/scraper/automation-policy.ts): firmada con el hueco, la fila curada
+ * salía con el hueco por curador. El hueco que se prueba con los datos delante
+ * es el de su línea de uso, el mismo que imprimen `suggest:place-geocode`,
+ * `suggest:officials-social` y la cola de `draft:indicadores`. «Antes de leer
+ * nada» se prueba en ellas con datos ilegibles en cada ruta que leen, no con un
+ * directorio vacío: varias dan por vacío el fichero que falta, y leer antes de
+ * mirar la firma no las haría fallar.
+ *
  * Se ejercitan por subproceso, como en la terminal: llaman a `process.exit()`.
  * Todas corren sobre una copia de los datos en un directorio temporal y
  * escriben de verdad; ninguna toca `public/data/` del repositorio, ni aunque la
  * guarda fallara, y ninguna llega a la red: `corregir-promesa cita` y
  * `repoint-source-url` bajan documentos después de leer, y sus casos se paran
- * antes. `correct-pleno-finding`, `correct-press-finding` y `corregir-promesa`
- * leen sus datos desde la carpeta de su script, así que se lanza una copia del
- * script desde una raíz temporal (`conScript`); las demás, desde el directorio
- * de trabajo.
+ * antes; `promote-report` comprueba sus citas en la red, y se lanza con
+ * `--skip-citation-check`; `entity-alias` reconstruye el registro con
+ * `npx tsx`, que fuera del repositorio bajaría tsx de la red, y se lanza con un
+ * `npx` de mentira delante en el PATH. `correct-pleno-finding`,
+ * `correct-press-finding` y `corregir-promesa` leen sus datos desde la carpeta
+ * de su script, así que se lanza una copia del script desde una raíz temporal
+ * (`conScript`); las demás, desde el directorio de trabajo.
  */
 import { createHash } from 'node:crypto'
 import { spawnSync, type SpawnSyncReturns } from 'node:child_process'
@@ -61,6 +76,7 @@ import { describe, expect, it } from 'vitest'
 import { buildClaimReanchorQueue } from '../src/scraper/claim-reanchor'
 import { MARCADORES } from '../src/scraper/finding-exception'
 import { rechazoDeMarcador } from '../src/scraper/firma-de-persona'
+import { detectarDesviaciones } from '../src/scraper/indicador-desviacion'
 import {
   findLiveRetraction,
   isLiveRetraction,
@@ -92,17 +108,39 @@ const lanzar = (script: string, cwd: string, argv: string[]) =>
     encoding: 'utf8',
   })
 
-/** Un directorio temporal con estos ficheros bajo `public/data/`. */
-function montar(prefijo: string, ficheros: Record<string, string>): string {
+/**
+ * Un directorio temporal con estos ficheros bajo `public/data/` y, los de
+ * `fuera`, por su ruta desde la raíz (`editorial/…`, `pleno-speakers/…`).
+ */
+function montar(
+  prefijo: string,
+  ficheros: Record<string, string>,
+  fuera: Record<string, string> = {},
+): string {
   const dir = mkdtempSync(join(tmpdir(), prefijo))
   mkdirSync(join(dir, 'public/data'), { recursive: true })
-  for (const [ruta, contenido] of Object.entries(ficheros)) {
-    const destino = join(dir, 'public/data', ruta)
+  const escribir = (destino: string, contenido: string) => {
     mkdirSync(dirname(destino), { recursive: true })
     writeFileSync(destino, contenido)
   }
+  for (const [ruta, contenido] of Object.entries(ficheros)) {
+    escribir(join(dir, 'public/data', ruta), contenido)
+  }
+  for (const [ruta, contenido] of Object.entries(fuera)) escribir(join(dir, ruta), contenido)
   return dir
 }
+
+/**
+ * Lo que queda en cada ruta que lee una vía para probar que se niega antes de
+ * leer nada: si llegara a leerlo, fallaría por otra cosa y no con el mensaje de
+ * la guarda.
+ */
+const ILEGIBLE = '{ si esto se llega a leer, no es JSON'
+const ilegibles = (...rutas: string[]): Record<string, string> =>
+  Object.fromEntries(rutas.map((r) => [r, ILEGIBLE]))
+
+/** Sin congelación electoral: lo que se mide aquí es la firma, no el calendario. */
+const SIN_CONGELAR = JSON.stringify({ frozenUntil: null }) + '\n'
 
 /**
  * Hace de `dir` la raíz de una copia del script, para los que leen sus datos
@@ -136,9 +174,10 @@ function limpiar(dir: string): void {
 }
 
 /**
- * Cada fichero que estas vías pueden escribir —bajo `public/data/` y, la de la
- * cola de excepción, bajo `editorial/`—, con la huella de sus bytes. Uno que
- * aparece también cambia la huella.
+ * Cada fichero que estas vías pueden escribir —bajo `public/data/`; la de la
+ * cola de excepción, bajo `editorial/`, y la del reparto de voces, bajo
+ * `pleno-speakers/`—, con la huella de sus bytes. Uno que aparece también
+ * cambia la huella.
  */
 function huella(dir: string): Record<string, string> {
   const out: Record<string, string> = {}
@@ -149,7 +188,7 @@ function huella(dir: string): Record<string, string> {
       else out[relative(dir, p)] = createHash('sha256').update(readFileSync(p)).digest('hex')
     }
   }
-  for (const sub of ['public/data', 'editorial']) {
+  for (const sub of ['public/data', 'editorial', 'pleno-speakers']) {
     if (existsSync(join(dir, sub))) recorrer(join(dir, sub))
   }
   return out
@@ -161,9 +200,14 @@ const leerJson = (dir: string, fichero: string) =>
 const datosDelRepositorio = (fichero: string) =>
   readFileSync(join(RAIZ, 'public/data', fichero), 'utf8')
 
-/** El hueco que trae una orden ya compuesta para esta bandera: de `--editor "…"`, `…`. */
-const huecoEnLaOrden = (orden: string, bandera = '--editor') =>
-  new RegExp(`${bandera} "([^"]*)"`).exec(orden)?.[1]
+/**
+ * El hueco que trae una orden ya compuesta para esta bandera: de
+ * `--editor "…"`, `…`; de `--by <name>`, sin comillas, `<name>`.
+ */
+const huecoEnLaOrden = (orden: string, bandera = '--editor') => {
+  const m = new RegExp(`${bandera} (?:"([^"]*)"|(<[^>]*>))`).exec(orden)
+  return m?.[1] ?? m?.[2]
+}
 
 /**
  * El hueco que enseña la línea de uso de la propia CLI, que es de donde se
@@ -1205,6 +1249,734 @@ describe('repoint-source-url', () => {
       expect(r.status, r.stdout + r.stderr).toBe(1)
       expect(r.stderr).toContain(`no source cites ${VIEJA}`)
       expect(huella(dir)).toEqual(antes)
+    } finally {
+      limpiar(dir)
+    }
+  })
+})
+
+/**
+ * Las promociones: lo que una máquina propuso y una persona publica. Son tier C
+ * (src/scraper/automation-policy.ts), y firmadas con el hueco la fila curada
+ * salía con el hueco por curador —en /hallazgos, «editado por <name>»—.
+ *
+ * El caso verde promociona una declaración sin ficha, ni viva ni retirada, y
+ * sin portavoz con nombre: con uno, la CLI iría a officials.json a atribuírsela.
+ */
+describe('promote-claim', () => {
+  const SCRIPT = 'promote-claim.ts'
+  const HALLAZGOS = datosDelRepositorio('pleno-findings.json')
+  const publicados = JSON.parse(HALLAZGOS) as {
+    items: { id: string }[]
+    retractions?: { findingId: string }[]
+  }
+  const ocupados = new Set([
+    ...publicados.items.map((f) => f.id),
+    ...(publicados.retractions ?? []).map((r) => r.findingId),
+  ])
+  type Promovible = Fila & {
+    claim: Fila['claim'] & { plenoDate: string; speakerSlug?: string | null }
+  }
+  /** El id que le pone la CLI; el caso verde lo comprueba, así que no se desvía en silencio. */
+  const idDeFicha = (f: Promovible) =>
+    `f-${f.claim.plenoDate}-${f.claim.id.split('-').slice(-2).join('-')}`
+  const fila = (corpus.items as Promovible[]).find(
+    (f) => !f.claim.speakerSlug && !ocupados.has(idDeFicha(f)),
+  )
+  const TITULO = 'Un título de prueba para la firma de una promoción'
+  const SUMARIO =
+    'Un sumario de prueba, más largo que el suelo de cuarenta caracteres, que nunca se publica.'
+  const orden = (firma: string) => [
+    fila!.claim.id,
+    '--title',
+    TITULO,
+    '--summary',
+    SUMARIO,
+    '--curator',
+    firma,
+  ]
+  const conDatos = () =>
+    montar('claim-firma-', {
+      'pleno-claims-verified.json':
+        JSON.stringify(
+          { generatedAt: corpus.generatedAt, source: corpus.source, items: [fila] },
+          null,
+          2,
+        ) + '\n',
+      'pleno-findings.json': HALLAZGOS,
+    })
+
+  it('hay una declaración sin ficha que promocionar', () => {
+    expect(fila).toBeTruthy()
+  })
+
+  it.each(HUECOS)('con «%s» se niega antes de leer nada', (hueco) => {
+    const dir = montar(
+      'claim-firma-',
+      ilegibles('pleno-claims-verified.json', 'pleno-findings.json', 'officials.json'),
+    )
+    try {
+      seNegoPorElHueco(lanzar(SCRIPT, dir, orden(hueco)), '--curator', hueco)
+    } finally {
+      limpiar(dir)
+    }
+  })
+
+  it('con el hueco de su línea de uso se niega y deja los datos byte a byte', () => {
+    const hueco = huecoDeSuUso(SCRIPT, '--curator')
+    expect(hueco).toBeDefined()
+    const dir = conDatos()
+    try {
+      const antes = huella(dir)
+      seNegoPorElHueco(lanzar(SCRIPT, dir, orden(hueco!)), '--curator', hueco!)
+      expect(huella(dir)).toEqual(antes)
+    } finally {
+      limpiar(dir)
+    }
+  })
+
+  it.each(FIRMAS)('firmada «%s», publica la ficha con esa firma', (firma) => {
+    const dir = conDatos()
+    try {
+      const r = lanzar(SCRIPT, dir, orden(firma))
+      expect(r.status, r.stdout + r.stderr).toBe(0)
+      const ficha = leerJson(dir, 'pleno-findings.json').items.find(
+        (f: { sourceClaimIds: string[] }) => f.sourceClaimIds.includes(fila!.claim.id),
+      )
+      expect(ficha).toMatchObject({ id: idDeFicha(fila!), curatorName: firma })
+    } finally {
+      limpiar(dir)
+    }
+  })
+})
+
+/** Su línea de uso y `suggest:place-geocode` imprimen el mismo `--curator "<name>"`. */
+describe('promote-place', () => {
+  const SCRIPT = 'promote-place.ts'
+  const SUGERENCIAS = datosDelRepositorio('place-suggestions.json')
+  const UBICACIONES = datosDelRepositorio('place-overrides.json')
+  const ID = (JSON.parse(SUGERENCIAS).suggestions as { contractId: string }[])[0]?.contractId
+  const orden = (firma: string) => [ID!, '--curator', firma]
+  const conDatos = () =>
+    montar('lugar-firma-', {
+      'place-suggestions.json': SUGERENCIAS,
+      'place-overrides.json': UBICACIONES,
+    })
+
+  it('hay un lugar sugerido que promocionar', () => {
+    expect(ID).toBeTruthy()
+  })
+
+  it.each(HUECOS)('con «%s» se niega antes de leer nada', (hueco) => {
+    const dir = montar('lugar-firma-', ilegibles('place-suggestions.json', 'place-overrides.json'))
+    try {
+      seNegoPorElHueco(lanzar(SCRIPT, dir, orden(hueco)), '--curator', hueco)
+    } finally {
+      limpiar(dir)
+    }
+  })
+
+  it('con el hueco de su línea de uso se niega y deja los datos byte a byte', () => {
+    const hueco = huecoDeSuUso(SCRIPT, '--curator')
+    expect(hueco).toBeDefined()
+    const dir = conDatos()
+    try {
+      const antes = huella(dir)
+      seNegoPorElHueco(lanzar(SCRIPT, dir, orden(hueco!)), '--curator', hueco!)
+      expect(huella(dir)).toEqual(antes)
+    } finally {
+      limpiar(dir)
+    }
+  })
+
+  it.each(FIRMAS)('firmada «%s», publica la ubicación con esa firma', (firma) => {
+    const dir = conDatos()
+    try {
+      const r = lanzar(SCRIPT, dir, orden(firma))
+      expect(r.status, r.stdout + r.stderr).toBe(0)
+      const escrita = leerJson(dir, 'place-overrides.json').overrides.find(
+        (o: { contractId: string }) => o.contractId === ID,
+      )
+      expect(escrita).toMatchObject({ curator: firma })
+    } finally {
+      limpiar(dir)
+    }
+  })
+})
+
+describe('promote-relation', () => {
+  const SCRIPT = 'promote-relation.ts'
+  const RELACIONES = datosDelRepositorio('queja-contract-relations.json')
+  const APROBADAS = datosDelRepositorio('queja-contract-relations-approved.json')
+  type Par = { quejaId: string; tenderId: string }
+  const mismoPar = (a: Par, b: Par) => a.quejaId === b.quejaId && a.tenderId === b.tenderId
+  const aprobadas = JSON.parse(APROBADAS).approvals as Par[]
+  /** Un enlace de tier B, que espera una firma y aún no la tiene. */
+  const enlace = (
+    JSON.parse(RELACIONES).links as (Par & { requiresHumanApproval?: boolean })[]
+  ).find((l) => l.requiresHumanApproval === true && !aprobadas.some((a) => mismoPar(a, l)))
+  const orden = (firma: string) => [enlace!.quejaId, enlace!.tenderId, '--curator', firma]
+  const conDatos = () =>
+    montar('relacion-firma-', {
+      'queja-contract-relations.json': RELACIONES,
+      'queja-contract-relations-approved.json': APROBADAS,
+    })
+
+  it('hay un enlace de tier B sin aprobar', () => {
+    expect(enlace).toBeTruthy()
+  })
+
+  it.each(HUECOS)('con «%s» se niega antes de leer nada', (hueco) => {
+    const dir = montar(
+      'relacion-firma-',
+      ilegibles('queja-contract-relations.json', 'queja-contract-relations-approved.json'),
+    )
+    try {
+      seNegoPorElHueco(lanzar(SCRIPT, dir, orden(hueco)), '--curator', hueco)
+    } finally {
+      limpiar(dir)
+    }
+  })
+
+  it('con el hueco de su línea de uso se niega y deja los datos byte a byte', () => {
+    const hueco = huecoDeSuUso(SCRIPT, '--curator')
+    expect(hueco).toBeDefined()
+    const dir = conDatos()
+    try {
+      const antes = huella(dir)
+      seNegoPorElHueco(lanzar(SCRIPT, dir, orden(hueco!)), '--curator', hueco!)
+      expect(huella(dir)).toEqual(antes)
+    } finally {
+      limpiar(dir)
+    }
+  })
+
+  it.each(FIRMAS)('firmada «%s», aprueba el enlace con esa firma', (firma) => {
+    const dir = conDatos()
+    try {
+      const r = lanzar(SCRIPT, dir, orden(firma))
+      expect(r.status, r.stdout + r.stderr).toBe(0)
+      const escrita = (
+        leerJson(dir, 'queja-contract-relations-approved.json').approvals as Par[]
+      ).find((a) => mismoPar(a, enlace!))
+      expect(escrita).toMatchObject({ curator: firma })
+    } finally {
+      limpiar(dir)
+    }
+  })
+})
+
+/**
+ * Publica un borrador del agente periodista: la firma queda en el `promotedBy`
+ * del índice y de la hoja del informe. El caso verde repite una promoción —el
+ * borrador es el informe publicado sin lo que le añadió la suya—, con
+ * `--ack-legal-review`, porque el informe puede ser de sensibilidad alta y aquí
+ * no se mide eso.
+ */
+describe('promote-report', () => {
+  const SCRIPT = 'promote-report.ts'
+  const BORRADORES = 'editorial/journalist-drafts/journalist-reports-suggestions.json'
+  const INFORMES = datosDelRepositorio('journalist-reports.json')
+  const ENCARGOS = datosDelRepositorio('journalist-assignments.json')
+  type Informe = { id: string; assignmentId: string } & Record<string, unknown>
+  const indice = JSON.parse(INFORMES) as { items: Informe[] } & Record<string, unknown>
+  const informe = indice.items[0]
+  const BORRADOR = (() => {
+    if (!informe) return ''
+    const {
+      promotedBy: _por,
+      promotedAt: _el,
+      curatorNotes: _notas,
+      corrections: _correcciones,
+      response: _replica,
+      ...base
+    } = informe
+    const { items: _informes, curatorNotes: _depuraciones, ...cabecera } = indice
+    return (
+      JSON.stringify({ ...cabecera, items: [{ ...base, requiresHumanApproval: true }] }, null, 2) +
+      '\n'
+    )
+  })()
+  const orden = (firma: string) => [
+    informe!.assignmentId,
+    '--curator',
+    firma,
+    '--ack-legal-review',
+    '--skip-citation-check',
+  ]
+  const conDatos = () =>
+    montar(
+      'informe-firma-',
+      {
+        'promises.json': SIN_CONGELAR,
+        'journalist-reports.json': INFORMES,
+        'journalist-assignments.json': ENCARGOS,
+      },
+      { [BORRADORES]: BORRADOR },
+    )
+
+  it('hay un informe publicado del que rehacer el borrador', () => {
+    expect(informe).toBeTruthy()
+  })
+
+  it.each(HUECOS)('con «%s» se niega antes de leer nada', (hueco) => {
+    // La congelación da por no congelado lo que no puede leer: lo que la haría
+    // fallar si se leyera antes de la firma es una congelación en vigor.
+    const dir = montar(
+      'informe-firma-',
+      {
+        'promises.json': JSON.stringify({ frozenUntil: '2099-12-31' }) + '\n',
+        ...ilegibles('journalist-reports.json', 'journalist-assignments.json'),
+      },
+      { [BORRADORES]: ILEGIBLE },
+    )
+    try {
+      seNegoPorElHueco(lanzar(SCRIPT, dir, orden(hueco)), '--curator', hueco)
+    } finally {
+      limpiar(dir)
+    }
+  })
+
+  it('con el hueco de su línea de uso se niega y deja los datos byte a byte', () => {
+    const hueco = huecoDeSuUso(SCRIPT, '--curator')
+    expect(hueco).toBeDefined()
+    const dir = conDatos()
+    try {
+      const antes = huella(dir)
+      seNegoPorElHueco(lanzar(SCRIPT, dir, orden(hueco!)), '--curator', hueco!)
+      expect(huella(dir)).toEqual(antes)
+    } finally {
+      limpiar(dir)
+    }
+  })
+
+  it.each(FIRMAS)('firmada «%s», publica el informe con esa firma', (firma) => {
+    const dir = conDatos()
+    try {
+      const r = lanzar(SCRIPT, dir, orden(firma))
+      expect(r.status, r.stdout + r.stderr).toBe(0)
+      const escrito = (leerJson(dir, 'journalist-reports.json').items as Informe[]).find(
+        (x) => x.id === informe!.id,
+      )
+      expect(escrito).toMatchObject({ promotedBy: firma })
+      expect(leerJson(dir, `journalist-reports/${informe!.assignmentId}.json`)).toMatchObject({
+        promotedBy: firma,
+      })
+    } finally {
+      limpiar(dir)
+    }
+  })
+})
+
+/**
+ * La cola de `draft:indicadores` compone `--curator "<nombre>"`, como su línea
+ * de uso. El caso verde repite una promoción: el candidato que el mismo detector
+ * saca hoy del panel, sobre lo publicado sin la ficha viva de su indicador.
+ */
+describe('promote-indicador', () => {
+  const SCRIPT = 'promote-indicador.ts'
+  const COLA = 'editorial/indicador-candidates.json'
+  const panel = JSON.parse(datosDelRepositorio('indicadores.json'))
+  const [candidato] = detectarDesviaciones({
+    indicadores: panel.indicadores,
+    municipales: panel.municipales,
+    anioBase: panel.anioBase,
+  }).candidatos
+  const fichas = JSON.parse(datosDelRepositorio('eficiencia-findings.json')) as {
+    items: { indicadorId: string }[]
+  }
+  const ANTES =
+    JSON.stringify(
+      { ...fichas, items: fichas.items.filter((f) => f.indicadorId !== candidato?.indicadorId) },
+      null,
+      2,
+    ) + '\n'
+  const TITULAR = 'Un titular de prueba para la firma de una ficha'
+  const CUERPO =
+    'Un cuerpo de prueba para la firma de una ficha de eficiencia: dice la cifra, el periodo ' +
+    'y la fuente, y nunca se publica. Lo escribe la prueba, no el detector.'
+  const orden = (firma: string) => [
+    candidato!.id,
+    '--curator',
+    firma,
+    '--titulo',
+    TITULAR,
+    '--cuerpo',
+    CUERPO,
+  ]
+  const conDatos = () =>
+    montar(
+      'ficha-firma-',
+      { 'promises.json': SIN_CONGELAR, 'eficiencia-findings.json': ANTES },
+      { [COLA]: JSON.stringify({ candidatos: [candidato] }, null, 2) + '\n' },
+    )
+
+  it('el detector saca un candidato del panel', () => {
+    expect(candidato).toBeTruthy()
+  })
+
+  it.each(HUECOS)('con «%s» se niega antes de leer nada', (hueco) => {
+    const dir = montar('ficha-firma-', ilegibles('promises.json', 'eficiencia-findings.json'), {
+      [COLA]: ILEGIBLE,
+    })
+    try {
+      seNegoPorElHueco(lanzar(SCRIPT, dir, orden(hueco)), '--curator', hueco)
+    } finally {
+      limpiar(dir)
+    }
+  })
+
+  it('con el hueco de su línea de uso se niega y deja los datos byte a byte', () => {
+    const hueco = huecoDeSuUso(SCRIPT, '--curator')
+    expect(hueco).toBeDefined()
+    const dir = conDatos()
+    try {
+      const antes = huella(dir)
+      seNegoPorElHueco(lanzar(SCRIPT, dir, orden(hueco!)), '--curator', hueco!)
+      expect(huella(dir)).toEqual(antes)
+    } finally {
+      limpiar(dir)
+    }
+  })
+
+  it.each(FIRMAS)('firmada «%s», publica la ficha con esa firma', (firma) => {
+    const dir = conDatos()
+    try {
+      const r = lanzar(SCRIPT, dir, orden(firma))
+      expect(r.status, r.stdout + r.stderr).toBe(0)
+      const ficha = leerJson(dir, 'eficiencia-findings.json').items.find(
+        (f: { candidatoId: string }) => f.candidatoId === candidato!.id,
+      )
+      expect(ficha).toMatchObject({ curatorName: firma })
+    } finally {
+      limpiar(dir)
+    }
+  })
+})
+
+/** Su línea de uso y `suggest:officials-social` imprimen el mismo `--curator "<name>"`. */
+describe('promote-social', () => {
+  const SCRIPT = 'promote-official-social.ts'
+  const SUGERENCIAS = datosDelRepositorio('officials-social-suggestions.json')
+  const REGISTRO = datosDelRepositorio('officials-social.json')
+  type Cuenta = { slug: string; platform: string }
+  const sugerida = (JSON.parse(SUGERENCIAS).suggestions as Cuenta[])[0]
+  const orden = (firma: string) => [
+    '--slug',
+    sugerida!.slug,
+    '--platform',
+    sugerida!.platform,
+    '--curator',
+    firma,
+  ]
+  const conDatos = () =>
+    montar('social-firma-', {
+      'officials-social-suggestions.json': SUGERENCIAS,
+      'officials-social.json': REGISTRO,
+    })
+
+  it('hay una cuenta sugerida que promocionar', () => {
+    expect(sugerida).toBeTruthy()
+  })
+
+  it.each(HUECOS)('con «%s» se niega antes de leer nada', (hueco) => {
+    const dir = montar(
+      'social-firma-',
+      ilegibles('officials-social-suggestions.json', 'officials-social.json'),
+    )
+    try {
+      seNegoPorElHueco(lanzar(SCRIPT, dir, orden(hueco)), '--curator', hueco)
+    } finally {
+      limpiar(dir)
+    }
+  })
+
+  it('con el hueco de su línea de uso se niega y deja los datos byte a byte', () => {
+    const hueco = huecoDeSuUso(SCRIPT, '--curator')
+    expect(hueco).toBeDefined()
+    const dir = conDatos()
+    try {
+      const antes = huella(dir)
+      seNegoPorElHueco(lanzar(SCRIPT, dir, orden(hueco!)), '--curator', hueco!)
+      expect(huella(dir)).toEqual(antes)
+    } finally {
+      limpiar(dir)
+    }
+  })
+
+  it.each(FIRMAS)('firmada «%s», publica la cuenta con esa firma', (firma) => {
+    const dir = conDatos()
+    try {
+      const r = lanzar(SCRIPT, dir, orden(firma))
+      expect(r.status, r.stdout + r.stderr).toBe(0)
+      const escrita = (leerJson(dir, 'officials-social.json').accounts as Cuenta[]).find(
+        (a) => a.slug === sugerida!.slug && a.platform === sugerida!.platform,
+      )
+      expect(escrita).toMatchObject({ curator: firma })
+    } finally {
+      limpiar(dir)
+    }
+  })
+})
+
+/**
+ * Fusiona una variante de nombre en una empresa del registro, y al terminar lo
+ * reconstruye con `npx tsx scripts/compute-entities.ts`. Un `npx` que no
+ * encuentra tsx en el directorio temporal lo bajaría de la red, así que se lanza
+ * con uno de mentira delante en el PATH, que sólo apunta con qué lo llamaron.
+ */
+describe('entity-alias', () => {
+  const SCRIPT = 'entity-alias.ts'
+  const ALIAS = datosDelRepositorio('entity-overrides.json')
+  const REGISTRO = datosDelRepositorio('entities.json')
+  /** Dos claves del registro: la fusión no sale del directorio temporal. */
+  const [variante, canonica] = (JSON.parse(REGISTRO).companies as { nameKey: string }[]).map(
+    (c) => c.nameKey,
+  )
+  const orden = (firma: string) => [variante, canonica, '--curator', firma]
+  const conDatos = () =>
+    montar('alias-firma-', { 'entity-overrides.json': ALIAS, 'entities.json': REGISTRO })
+  const lanzarSinRed = (dir: string, argv: string[]) => {
+    const bin = join(dir, 'bin')
+    mkdirSync(bin)
+    writeFileSync(
+      join(bin, 'npx'),
+      `#!/bin/sh\nprintf '%s\\n' "$*" >> '${join(dir, 'npx-llamado')}'\n`,
+      { mode: 0o755 },
+    )
+    return spawnSync(process.execPath, [TSX, join(RAIZ, 'scripts', SCRIPT), ...argv], {
+      cwd: dir,
+      encoding: 'utf8',
+      env: { ...process.env, PATH: `${bin}:${process.env.PATH}` },
+    })
+  }
+
+  it('hay dos empresas en el registro', () => {
+    expect(variante).toBeTruthy()
+    expect(canonica).toBeTruthy()
+  })
+
+  it.each(HUECOS)('con «%s» se niega antes de leer nada', (hueco) => {
+    const dir = montar('alias-firma-', ilegibles('entity-overrides.json', 'entities.json'))
+    try {
+      seNegoPorElHueco(lanzarSinRed(dir, orden(hueco)), '--curator', hueco)
+    } finally {
+      limpiar(dir)
+    }
+  })
+
+  it('con el hueco de su línea de uso se niega y deja los datos byte a byte', () => {
+    const hueco = huecoDeSuUso(SCRIPT, '--curator')
+    expect(hueco).toBeDefined()
+    const dir = conDatos()
+    try {
+      const antes = huella(dir)
+      seNegoPorElHueco(lanzarSinRed(dir, orden(hueco!)), '--curator', hueco!)
+      expect(huella(dir)).toEqual(antes)
+    } finally {
+      limpiar(dir)
+    }
+  })
+
+  it.each(FIRMAS)('firmada «%s», añade el alias con esa firma y reconstruye', (firma) => {
+    const dir = conDatos()
+    try {
+      const r = lanzarSinRed(dir, orden(firma))
+      expect(r.status, r.stdout + r.stderr).toBe(0)
+      expect(leerJson(dir, 'entity-overrides.json').aliases.at(-1)).toMatchObject({
+        curator: firma,
+      })
+      expect(readFileSync(join(dir, 'npx-llamado'), 'utf8')).toContain(
+        'tsx scripts/compute-entities.ts',
+      )
+    } finally {
+      limpiar(dir)
+    }
+  })
+})
+
+/**
+ * Retira una biografía en favor de otra más nueva del mismo cargo, y la firma
+ * va a la nota de depuración del índice de informes, que se sirve. El caso
+ * verde retira una copia de una biografía publicada —con su encargo— en favor
+ * de la original.
+ */
+describe('journalist:archive', () => {
+  const SCRIPT = 'journalist-archive.ts'
+  type Encargo = { id: string; status: string }
+  type Informe = { id: string; assignmentId: string }
+  const informes = JSON.parse(datosDelRepositorio('journalist-reports.json')) as {
+    items: Informe[]
+  }
+  const encargos = JSON.parse(datosDelRepositorio('journalist-assignments.json')) as {
+    items: Encargo[]
+  }
+  const original = informes.items[0]
+  const encargo = encargos.items.find(
+    (a) => a.id === original?.assignmentId && a.status === 'promoted',
+  )
+  const COPIA = `${encargo?.id}-copia`
+  const ENCARGOS =
+    JSON.stringify(
+      { ...encargos, items: [...encargos.items, { ...encargo, id: COPIA }] },
+      null,
+      2,
+    ) + '\n'
+  const INFORMES =
+    JSON.stringify(
+      {
+        ...informes,
+        items: [
+          ...informes.items,
+          { ...original, id: `${original?.id}-copia`, assignmentId: COPIA },
+        ],
+      },
+      null,
+      2,
+    ) + '\n'
+  const MOTIVO = 'Retirada de prueba: la copia queda sustituida por la biografía original.'
+  const orden = (firma: string) => [
+    COPIA,
+    '--superseded-by',
+    encargo!.id,
+    '--reason',
+    MOTIVO,
+    '--curator',
+    firma,
+  ]
+  const conDatos = () =>
+    montar('archivo-firma-', {
+      'journalist-assignments.json': ENCARGOS,
+      'journalist-reports.json': INFORMES,
+    })
+
+  it('hay una biografía publicada con su encargo promocionado', () => {
+    expect(encargo).toBeTruthy()
+  })
+
+  it.each(HUECOS)('con «%s» se niega antes de leer nada', (hueco) => {
+    const dir = montar(
+      'archivo-firma-',
+      ilegibles('journalist-assignments.json', 'journalist-reports.json'),
+    )
+    try {
+      seNegoPorElHueco(lanzar(SCRIPT, dir, orden(hueco)), '--curator', hueco)
+    } finally {
+      limpiar(dir)
+    }
+  })
+
+  it('con el hueco de su línea de uso se niega y deja los datos byte a byte', () => {
+    const hueco = huecoDeSuUso(SCRIPT, '--curator')
+    expect(hueco).toBeDefined()
+    const dir = conDatos()
+    try {
+      const antes = huella(dir)
+      seNegoPorElHueco(lanzar(SCRIPT, dir, orden(hueco!)), '--curator', hueco!)
+      expect(huella(dir)).toEqual(antes)
+    } finally {
+      limpiar(dir)
+    }
+  })
+
+  it.each(FIRMAS)('firmada «%s», retira la copia y la nota lleva esa firma', (firma) => {
+    const dir = conDatos()
+    try {
+      const r = lanzar(SCRIPT, dir, orden(firma))
+      expect(r.status, r.stdout + r.stderr).toBe(0)
+      const snap = leerJson(dir, 'journalist-reports.json')
+      expect(snap.items.some((x: Informe) => x.assignmentId === COPIA)).toBe(false)
+      expect(snap.curatorNotes).toContain(`sustituido por ${encargo!.id} (${firma}). ${MOTIVO}`)
+    } finally {
+      limpiar(dir)
+    }
+  })
+})
+
+/**
+ * El `--by` de un reparto de voces. No se publica —`pleno-speakers/` queda
+ * fuera de `public/` y ninguna página lee el campo—, pero no corre una orden que
+ * nadie terminó de escribir. Su línea de uso trae el hueco sin comillas,
+ * `[--by <name>]`.
+ */
+describe('override-speaker-assignment', () => {
+  const SCRIPT = 'override-speaker-assignment.ts'
+  const CARGOS = datosDelRepositorio('officials.json')
+  const slug = (JSON.parse(CARGOS).officials as { slug: string }[])[0]?.slug
+  const PLENO = 'plenodeprueba'
+  const REPARTO = `pleno-speakers/${PLENO}.json`
+  /** Un hablante sin asignar, como lo deja `identify-pleno-speakers`. */
+  const SIN_ASIGNAR =
+    JSON.stringify(
+      {
+        generatedAt: '2026-10-06T00:00:00.000Z',
+        plenoId: PLENO,
+        totalSpeakers: 1,
+        highConfidenceCount: 0,
+        mediumConfidenceCount: 0,
+        unmatchedCount: 1,
+        assignments: [
+          {
+            speaker: 'SPEAKER_00',
+            durationSec: 42,
+            segmentCount: 3,
+            match: null,
+            topCandidates: [],
+          },
+        ],
+      },
+      null,
+      2,
+    ) + '\n'
+  const MOTIVO = 'Asignada a mano en la prueba de la firma.'
+  const orden = (firma: string) => [
+    '--pleno-id',
+    PLENO,
+    '--speaker',
+    'SPEAKER_00',
+    '--slug',
+    slug!,
+    '--reason',
+    MOTIVO,
+    '--by',
+    firma,
+  ]
+  const conDatos = () =>
+    montar('voces-firma-', { 'officials.json': CARGOS }, { [REPARTO]: SIN_ASIGNAR })
+
+  it('hay un cargo al que atribuir la voz', () => {
+    expect(slug).toBeTruthy()
+  })
+
+  it.each(HUECOS)('con «%s» se niega antes de leer nada', (hueco) => {
+    const dir = montar('voces-firma-', ilegibles('officials.json'), { [REPARTO]: ILEGIBLE })
+    try {
+      seNegoPorElHueco(lanzar(SCRIPT, dir, orden(hueco)), '--by', hueco)
+    } finally {
+      limpiar(dir)
+    }
+  })
+
+  it('con el hueco de su línea de uso se niega y deja los datos byte a byte', () => {
+    const hueco = huecoDeSuUso(SCRIPT, '--by')
+    expect(hueco).toBeDefined()
+    const dir = conDatos()
+    try {
+      const antes = huella(dir)
+      seNegoPorElHueco(lanzar(SCRIPT, dir, orden(hueco!)), '--by', hueco!)
+      expect(huella(dir)).toEqual(antes)
+    } finally {
+      limpiar(dir)
+    }
+  })
+
+  it.each(FIRMAS)('firmada «%s», asigna la voz y el reparto lleva esa firma', (firma) => {
+    const dir = conDatos()
+    try {
+      const r = lanzar(SCRIPT, dir, orden(firma))
+      expect(r.status, r.stdout + r.stderr).toBe(0)
+      const reparto = JSON.parse(readFileSync(join(dir, REPARTO), 'utf8'))
+      expect(reparto.assignments[0].curatorOverride).toMatchObject({ slug, by: firma })
     } finally {
       limpiar(dir)
     }
