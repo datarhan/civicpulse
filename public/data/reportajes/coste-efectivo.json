@@ -458,7 +458,7 @@
   },
   "solicitudes": {
     "titulo": "Lo que se ha pedido, a quién y desde cuándo corre el plazo",
-    "nota": "El artículo 17.2 de la Ley 19/2013 admite «cualquier medio que permita tener constancia» de la identidad de quien pide, de la información solicitada y de una dirección de contacto: un correo que lleve las tres cosas es una vía válida. El artículo 20.1, en cambio, cuenta el mes «desde la recepción de la solicitud por el órgano competente para resolver», y de un correo consta el envío, no esa recepción. Por eso las dos que salieron por correo, la de Hacienda y la primera del Ayuntamiento, llevan la fecha contada desde el envío y no como vencimiento acreditado. La de la Comisión de Precios se presentó por el registro electrónico de la Generalitat y la propia Generalitat ha acusado su entrada: de ésa el plazo se cuenta desde esa fecha y se puede afirmar. Lo mismo vale para la del Ayuntamiento que se volvió a presentar por su Registro de Entrada, a petición suya: consta el asiento del mismo órgano que la resuelve. Este apartado se actualiza cuando hay movimiento, aunque las cifras de la pieza estén congeladas a su fecha: cada fila lleva la fecha de lo que cuenta. Toda respuesta se publicará íntegra.",
+    "nota": "El artículo 17.2 de la Ley 19/2013 admite «cualquier medio que permita tener constancia» de la identidad de quien pide, de la información solicitada y de una dirección de contacto: un correo que lleve las tres cosas es una vía válida. El artículo 20.1, en cambio, cuenta el mes «desde la recepción de la solicitud por el órgano competente para resolver», y de un correo consta el envío, no esa recepción. Por eso las dos que salieron por correo, la de Hacienda y la primera del Ayuntamiento, llevan la fecha contada desde el envío y no como vencimiento acreditado. La de la Comisión de Precios se presentó por el registro electrónico de la Generalitat y la propia Generalitat ha acusado su entrada, así que consta desde cuándo corría el mes; pero después se dio traslado de la solicitud a terceros afectados y el plazo para resolverla quedó suspendido, y mientras dure no tiene último día. La del Ayuntamiento que se volvió a presentar por su Registro de Entrada, a petición suya, tiene el asiento del mismo órgano que la resuelve: de ésa el vencimiento se puede afirmar. Este apartado se actualiza cuando hay movimiento, aunque las cifras de la pieza estén congeladas a su fecha: cada fila lleva la fecha de lo que cuenta. Toda respuesta se publicará íntegra.",
     "items": [
       {
         "organismo": "Ministerio de Hacienda · Subdirección General de Estudios Financieros de Entidades Locales",
@@ -510,8 +510,16 @@
           {
             "fecha": "2026-09-21",
             "texto": "El 21 de septiembre la Dirección General de Comercio, Artesanía y Consumo comunicó que la solicitud tuvo entrada en el registro electrónico de la Generalitat el 18 de septiembre y que desde esa fecha corre el mes que tiene para resolver el órgano competente de la Conselleria de Industria, Turismo, Innovación y Comercio (expediente GVAGIP/2026/757). Cita el artículo 34.1 de la Ley 1/2022 y advierte de que, si el mes pasa sin resolución, la solicitud se entiende desestimada y cabe reclamar ante el Consejo Valenciano de Transparencia. No resuelve nada de lo pedido: confirma el plazo en vez de agotarlo."
+          },
+          {
+            "fecha": "2026-09-29",
+            "texto": "El 29 de septiembre la misma Dirección General comunicó que, «tras constatar que la información solicitada puede afectar a derechos o intereses legítimos de terceras personas», había dado traslado de la petición «a los posibles terceros afectados», concediéndoles quince días hábiles para presentar alegaciones, y que el plazo para dictar y notificar la resolución «quedará suspendido hasta que se reciban las alegaciones o transcurra el plazo establecido para presentarlas». Cita el artículo 33.6 de la Ley 1/2022 y el artículo 52 del Decreto 105/2017. No dice quiénes son esos terceros ni cuándo se les dio traslado. No resuelve nada de lo pedido."
           }
-        ]
+        ],
+        "suspendida": {
+          "fecha": "2026-09-29",
+          "hasta": "hasta que se reciban las alegaciones de los posibles terceros afectados a quienes se dio traslado de la solicitud, o pase el plazo de quince días hábiles que se les concedió para presentarlas"
+        }
       }
     ]
   },

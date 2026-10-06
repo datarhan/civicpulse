@@ -8,6 +8,7 @@ import {
   fraseDeCalendarios,
   fraseDeEnvio,
   resumirEnvios,
+  vencimientoAfirmable,
   type EnvioSolicitud,
 } from '../src/scraper/solicitud-enviada'
 import { SENTIDOS_RESPUESTA } from '../src/scraper/solicitud-acceso'
@@ -584,6 +585,83 @@ describe('una contestación que no resuelve deja el reloj corriendo', () => {
   })
 })
 
+/**
+ * Un plazo SUSPENDIDO no tiene último día.
+ *
+ * El 29-09-2026 la Dirección General de Comercio, Artesanía y Consumo comunicó
+ * (GVAGIP/2026/757) que había dado traslado de la solicitud a la Comisión de
+ * Precios a «posibles terceros afectados», con quince días hábiles para alegar,
+ * y que el plazo para resolver «quedará suspendido hasta que se reciban las
+ * alegaciones o transcurra el plazo establecido para presentarlas» (art. 33.6
+ * de la Ley 1/2022; art. 19.3 de la Ley 19/2013). La fila afirmaba «vence el 19
+ * de octubre» y el 20 habría pasado a «sin respuesta»: las dos cosas, falsas.
+ *
+ * No se calcula un día nuevo: no consta cuándo se notificó a los terceros
+ * (desde donde corre la suspensión) ni cuándo acabará. Lo que sí consta —la
+ * entrada del 18— se sigue diciendo.
+ */
+describe('un plazo suspendido no vence ni se da por vencido', () => {
+  const suspendida: EnvioSolicitud = {
+    organismo: 'Comisión de Precios de la Generalitat',
+    calendario: 'generalitat-en-valencia',
+    enviadaEl: '2026-09-18',
+    via: 'el registro electrónico de la Generalitat',
+    registro: 'GVRTE/2026/4267645',
+    respuesta: null,
+    suspendida: {
+      fecha: '2026-09-29',
+      hasta:
+        'hasta que se reciban las alegaciones de los terceros a quienes se dio traslado de la ' +
+        'solicitud, o pase el plazo que se les dio para presentarlas',
+    },
+  }
+
+  it('su estado es propio, y no cambia al pasar el día que habría vencido', () => {
+    expect(estadoDeEnvio(suspendida, '2026-10-01')).toBe('suspendida')
+    expect(estadoDeEnvio(suspendida, '2026-10-20')).toBe('suspendida')
+    expect(estadoDeEnvio(suspendida, '2026-12-31')).toBe('suspendida')
+  })
+
+  it('con respuesta, respondida — la suspensión no la tapa', () => {
+    const r: EnvioSolicitud = {
+      ...suspendida,
+      respuesta: { fecha: '2026-11-10', sentido: 'concedido' },
+    }
+    expect(estadoDeEnvio(r, '2026-11-30')).toBe('respondida')
+  })
+
+  it('no afirma un último día, ni el viejo ni uno inventado', () => {
+    const f = fraseDeEnvio(suspendida, '2026-10-06')
+    expect(f).not.toMatch(/1[89] de octubre/)
+    expect(f).not.toMatch(/vence el|terminó/)
+  })
+
+  it('dice desde cuándo corría, que la suspendieron, hasta qué, y que no consta la reanudación', () => {
+    const f = fraseDeEnvio(suspendida, '2026-10-06')
+    expect(f).toContain('con registro GVRTE/2026/4267645')
+    expect(f).toContain('corría desde su entrada, el 18 de septiembre de 2026')
+    expect(f).toContain(
+      'El 29 de septiembre de 2026 se comunicó que el plazo para resolver quedaba suspendido hasta que se reciban las alegaciones',
+    )
+    expect(f).toMatch(/no consta todavía cuándo se reanuda/)
+  })
+
+  it('vencimientoAfirmable: el asiento acredita el arranque, pero suspendida no hay final', () => {
+    expect(arranqueDelPlazo(suspendida)).toEqual({ desde: '2026-09-18', acreditado: true })
+    expect(vencimientoAfirmable(suspendida)).toBe(false)
+    expect(vencimientoAfirmable({ ...suspendida, suspendida: undefined })).toBe(true)
+    expect(vencimientoAfirmable({ ...base })).toBe(false)
+  })
+
+  it('cuenta aparte en el resumen y lleva etiqueta y tono neutros', async () => {
+    const { ESTADO_ENVIO_ETIQUETA, ESTADO_ENVIO_TONO } =
+      await import('../src/scraper/solicitud-enviada')
+    expect(resumirEnvios([suspendida, base], '2026-10-06').porEstado.suspendida).toBe(1)
+    expect(ESTADO_ENVIO_ETIQUETA.suspendida).toBe('plazo suspendido')
+    expect(ESTADO_ENVIO_TONO.suspendida).toBe('neutral')
+  })
+})
+
 // Desde el 18-09-2026 son DOS las piezas que publican solicitudes con reloj
 // (el conteo y el coste efectivo), y las dos usan este módulo. La prueba recorre
 // las instantáneas en vez de fijar una: la siguiente pieza que publique un
@@ -693,9 +771,11 @@ describe.each(PIEZAS)('instantánea publicada · %s', (slug) => {
   // objeto en el conteo: la única fila con asiento se remitió a otro órgano, su
   // frase dejó de afirmar y la nota lo seguía prometiendo. Mismo «si y sólo si»
   // que la salvedad de arriba, y contra la función que decide, no contra una
-  // copia de su regla.
+  // copia de su regla. Desde el 06-10-2026 esa función es `vencimientoAfirmable`
+  // y no el arranque: una fila suspendida tiene el arranque acreditado y ningún
+  // vencimiento que afirmar.
   it('la nota dice que un plazo «se puede afirmar» si y sólo si alguna fila lo tiene acreditado', () => {
-    const acreditadas = d.solicitudes.items.filter((e) => arranqueDelPlazo(e).acreditado)
+    const acreditadas = d.solicitudes.items.filter((e) => vencimientoAfirmable(e))
     const loDice = /se puede afirmar/.test(d.solicitudes.nota)
     expect(
       loDice,
@@ -722,6 +802,21 @@ describe.each(PIEZAS)('instantánea publicada · %s', (slug) => {
     }
   })
 
+  // Una suspensión, igual que una remisión, mueve el reloj: tiene que decir
+  // hasta qué, ir después del envío y constar dicha —quién la comunicó y con qué
+  // palabras— en una incidencia de su misma fecha.
+  it('cada suspensión dice hasta qué, va después del envío y consta dicha', () => {
+    for (const e of d.solicitudes.items.filter((x) => x.suspendida)) {
+      const s = e.suspendida!
+      expect(s.hasta.trim(), `${e.organismo}: suspendida sin decir hasta qué`).not.toBe('')
+      expect(s.fecha >= e.enviadaEl, `${e.organismo}: suspendida antes de enviarse`).toBe(true)
+      expect(
+        (e.incidencias ?? []).some((i) => i.fecha === s.fecha),
+        `${e.organismo}: la suspensión del ${s.fecha} no consta en ninguna incidencia`,
+      ).toBe(true)
+    }
+  })
+
   it('toda respuesta publicada usa un sentido del enum', () => {
     const malos = d.solicitudes.items
       .filter((e) => e.respuesta)
@@ -743,6 +838,18 @@ it('mide algo: alguna instantánea publica una remisión', () => {
       ).solicitudes.items,
   ).filter((e) => e.remitida)
   expect(conRemision.length).toBeGreaterThan(0)
+})
+
+it('mide algo: alguna instantánea publica una suspensión', () => {
+  const conSuspension = PIEZAS.flatMap(
+    (slug) =>
+      (
+        JSON.parse(readFileSync(`public/data/reportajes/${slug}.json`, 'utf8')) as {
+          solicitudes: { items: EnvioSolicitud[] }
+        }
+      ).solicitudes.items,
+  ).filter((e) => e.suspendida)
+  expect(conSuspension.length).toBeGreaterThan(0)
 })
 
 /**
