@@ -25,9 +25,16 @@
  *      contract as enroll-voice. Unknown slug → fail loudly.
  *   4. Atomic write through *.tmp + rename so a crashed process
  *      never produces a half-written JSON.
+ *
+ * `--by` es opcional y no se publica —`pleno-speakers/` queda fuera de
+ * `public/`—, pero si viene rechaza, antes de leer nada, el hueco de una orden
+ * copiada sin rellenar —el `<name>` de la línea de uso—: quien la lanza así no
+ * la ha terminado de escribir (`rechazoDeMarcador`,
+ * src/scraper/firma-de-persona.ts).
  */
 import { existsSync, readFileSync, renameSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
+import { rechazoDeMarcador } from '../src/scraper/firma-de-persona'
 
 const OFFICIALS_PATH = resolve('public/data/officials.json')
 const PLENO_SPEAKERS_DIR = resolve('pleno-speakers')
@@ -79,6 +86,13 @@ function parseArgs(argv: string[]): CliArgs {
     process.stderr.write(
       `[override] invalid speaker label: "${out.speaker}" (expected SPEAKER_NN)\n`,
     )
+    process.exit(2)
+  }
+  // Antes de leer nada: una orden con la firma sin rellenar no se ha terminado
+  // de escribir. Sólo el hueco (`rechazoDeMarcador`).
+  const hueco = out.by === undefined ? null : rechazoDeMarcador(out.by)
+  if (hueco) {
+    process.stderr.write(`[override] --by: ${hueco}\n`)
     process.exit(2)
   }
   return out as CliArgs

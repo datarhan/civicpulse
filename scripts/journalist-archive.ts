@@ -25,6 +25,11 @@
  *   · reason ≥ 20 chars, a named curator and a YYYY-MM-DD date, because the
  *     paragraph goes into the snapshot-level curatorNotes, which is PUBLIC.
  *
+ * `--curator` acepta la cuenta de rol —la que pone por defecto— y rechaza,
+ * antes de leer nada, el hueco de una orden copiada sin rellenar —el `<name>`
+ * de arriba—, que firmaría ese párrafo público (`rechazoDeMarcador`,
+ * src/scraper/firma-de-persona.ts).
+ *
  * The pure function is deterministic given `today`; the CLI owns the clock and
  * the disk (both snapshots rewritten through their validators, the retired
  * chunk unlinked). Git history keeps the retired report.
@@ -32,6 +37,7 @@
 import { existsSync, readFileSync, unlinkSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { loadSnapshot, writeSnapshot } from './lib/snapshot-io'
+import { rechazoDeMarcador } from '../src/scraper/firma-de-persona'
 import {
   validateAssignmentsSnapshot,
   validateReportsSnapshot,
@@ -161,6 +167,13 @@ function parseArgs(argv: string[]): CliOpts {
     } else if (!o.assignmentId) o.assignmentId = a
   }
   if (!o.assignmentId || !o.supersededBy || !o.reason) usage()
+  // Antes de leer nada: el hueco no firma la nota de depuración, que se sirve.
+  // Sólo el hueco; la cuenta de rol, sí (`rechazoDeMarcador`).
+  const hueco = rechazoDeMarcador(o.curator)
+  if (hueco) {
+    process.stderr.write(`[journalist:archive] --curator: ${hueco}\n`)
+    process.exit(2)
+  }
   return o
 }
 

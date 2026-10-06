@@ -27,6 +27,11 @@
  *
  * Reescribe el fichero entero a través del validador, así que
  * `guard-curated-writes.mjs` y el historial de git siguen siendo la autoridad.
+ *
+ * `--curator` rechaza, antes de leer nada —ni el `--cuerpo-file`—, el hueco de
+ * una orden copiada sin rellenar: el `<nombre>` de arriba, que es también el que
+ * compone la cola de `draft:indicadores` (`rechazoDeMarcador`,
+ * src/scraper/firma-de-persona.ts).
  */
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { resolve } from 'node:path'
@@ -37,6 +42,7 @@ import {
 } from '../src/scraper/eficiencia-finding'
 import type { Candidato } from '../src/scraper/indicador-desviacion'
 import { decideAutomation, loadMeasurements } from '../src/scraper/automation-policy'
+import { rechazoDeMarcador } from '../src/scraper/firma-de-persona'
 
 const COLA = resolve('editorial/indicador-candidates.json')
 const PUBLICADOS = resolve('public/data/eficiencia-findings.json')
@@ -124,11 +130,15 @@ function main(): void {
   }
   const dryRun = argv.includes('--dry-run')
   const curator = flag('--curator')?.trim()
+  if (!curator) fail('--curator "<nombre>" es obligatorio: esta ficha lleva firma', 2)
+  // Antes de leer nada, ni el cuerpo: el hueco no firma una ficha publicada.
+  // Sólo el hueco; la cuenta de rol, sí (`rechazoDeMarcador`).
+  const hueco = rechazoDeMarcador(curator)
+  if (hueco) fail(`--curator: ${hueco}`, 2)
   const titulo = flag('--titulo')?.trim()
   const cuerpoFile = flag('--cuerpo-file')
   const cuerpo = (cuerpoFile ? readFileSync(resolve(cuerpoFile), 'utf8') : flag('--cuerpo'))?.trim()
 
-  if (!curator) fail('--curator "<nombre>" es obligatorio: esta ficha lleva firma', 2)
   if (!titulo) fail('--titulo "<titular>" es obligatorio', 2)
   if (!cuerpo) {
     fail(

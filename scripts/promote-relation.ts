@@ -8,9 +8,14 @@
  * (`requiresHumanApproval: true`) in public/data/queja-contract-relations.json —
  * Tier-A links are already published and need no promotion. Writes the curated
  * public/data/queja-contract-relations-approved.json (validated on every write).
+ *
+ * `--curator` rechaza, antes de leer nada, el hueco de una orden copiada sin
+ * rellenar —el `<name>` de arriba— (`rechazoDeMarcador`,
+ * src/scraper/firma-de-persona.ts).
  */
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { resolve } from 'node:path'
+import { rechazoDeMarcador } from '../src/scraper/firma-de-persona'
 import {
   validateApprovalsSnapshot,
   appendApproval,
@@ -60,12 +65,16 @@ function main(): void {
     )
   }
   const reject = argv.includes('--reject')
+  // Antes de leer nada: el hueco no firma un enlace publicado. Sólo el hueco;
+  // la cuenta de rol, sí (`rechazoDeMarcador`).
+  const curator = flagValue('--curator')
+  const hueco = curator === undefined ? null : rechazoDeMarcador(curator)
+  if (hueco) fail(`--curator: ${hueco}`, 2)
   let snap = loadApprovals()
 
   if (reject) {
     snap = removeApproval(snap, quejaId, tenderId)
   } else {
-    const curator = flagValue('--curator')
     if (!curator || !curator.trim()) fail('--curator "<name>" is required', 2)
     const rel = existsSync(RELATIONS)
       ? (JSON.parse(readFileSync(RELATIONS, 'utf8')) as { links?: Array<Record<string, unknown>> })
