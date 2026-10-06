@@ -1430,10 +1430,17 @@ export default function Metodologia() {
             licitación, con y sin IVA, su adjudicataria y sus fechas, y lo único que se recorta es
             el título: hasta entonces se cortaba todo a 230 caracteres, y en un contrato de título
             largo el corte se comía el importe y el estado, de modo que el modelo juzgaba sin
-            verlos. Lo que el modelo ve respaldado <strong>no se publica solo</strong>: queda como
-            propuesta de subir el veredicto a verificado/parcial, en una cola de revisión que no se
-            publica. Esa propuesta tampoco se firma tal cual: quien esté de acuerdo con ella la sube
-            por la{' '}
+            verlos.{' '}
+            {/* 06-10-2026: la búsqueda semántica tiraba las licitaciones cuyo id repetía el de un
+                contrato, y la lista corta fundía los lotes de un expediente, que comparten enlace
+                (scripts/embed-verifier-corpus.ts, mergeShortlists en
+                src/scraper/semantic-shortlist.ts). */}
+            Desde esa misma fecha la búsqueda semántica también recorre las licitaciones, y cada
+            lote de un expediente cuenta como un candidato aparte, aunque todos enlacen a la misma
+            ficha de la Plataforma de Contratación. Lo que el modelo ve respaldado{' '}
+            <strong>no se publica solo</strong>: queda como propuesta de subir el veredicto a
+            verificado/parcial, en una cola de revisión que no se publica. Esa propuesta tampoco se
+            firma tal cual: quien esté de acuerdo con ella la sube por la{' '}
             <a href="#subida-firmada" style={{ color: 'var(--civic)' }}>
               subida firmada
             </a>

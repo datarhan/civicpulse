@@ -102,21 +102,39 @@ export interface PendingRow {
   party?: string | null
 }
 
+/**
+ * La clave de una fila de `tenders` en la caché. Las de `contracts` llevan su
+ * `id` a secas, como siempre.
+ */
+export const CLAVE_DE_LICITACION = 'licitacion:'
+
+/**
+ * Las filas de contratos y licitaciones de `tenders.json`, una por fila.
+ *
+ * Cada tabla con su clave. Hasta el 06-10-2026 las dos se deduplicaban juntas
+ * por `id`, y Gobierto da a una licitación el id de su primer contrato —a un
+ * SDA, el de su primer derivado—: 397 licitaciones no entraban nunca en el
+ * corpus, 48 con un título distinto del contrato que las tapaba. Entre ellas
+ * las dos de ESDA1/2025, las que dicen «abierto a otras entidades públicas»
+ * (INFORME 04-10 §4 f, qz6weg-184-cit-8629f9), y la de 136/2025, la única que
+ * nombra juntos sus dos lotes.
+ */
 export function buildTenderRows(data: unknown): PendingRow[] {
   if (!data || typeof data !== 'object') return []
-  const arr = [
-    ...((data as { contracts?: unknown[] }).contracts ?? []),
-    ...((data as { tenders?: unknown[] }).tenders ?? []),
-    ...((data as { items?: unknown[] }).items ?? []),
+  const d = data as { contracts?: unknown[]; tenders?: unknown[]; items?: unknown[] }
+  const arr: Array<[unknown, string]> = [
+    ...(d.contracts ?? []).map((r): [unknown, string] => [r, '']),
+    ...(d.tenders ?? []).map((r): [unknown, string] => [r, CLAVE_DE_LICITACION]),
+    ...(d.items ?? []).map((r): [unknown, string] => [r, '']),
   ]
   const out: PendingRow[] = []
   const seen = new Set<string>()
-  for (const raw of arr) {
+  for (const [raw, tabla] of arr) {
     if (!raw || typeof raw !== 'object') continue
     const r = raw as Record<string, unknown>
     const title = String(r.title ?? '').trim()
     if (!title) continue
-    const id = String(r.id ?? r.permalink ?? title.slice(0, 60))
+    const id = tabla + String(r.id ?? r.permalink ?? title.slice(0, 60))
     if (seen.has(id)) continue
     seen.add(id)
     const contractor = String(r.contractor ?? r.assignee ?? '').trim()
