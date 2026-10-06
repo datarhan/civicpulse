@@ -112,12 +112,18 @@ export const CLAVE_DE_LICITACION = 'licitacion:'
  * Las filas de contratos y licitaciones de `tenders.json`, una por fila.
  *
  * Cada tabla con su clave. Hasta el 06-10-2026 las dos se deduplicaban juntas
- * por `id`, y Gobierto da a una licitación el id de su primer contrato —a un
- * SDA, el de su primer derivado—: 397 licitaciones no entraban nunca en el
- * corpus, 48 con un título distinto del contrato que las tapaba. Entre ellas
+ * por `id`, y Gobierto da a los contratos el id de su licitación —a los
+ * derivados de un SDA, el del SDA—: 397 licitaciones no entraban nunca en el
+ * corpus, tapadas por un contrato con su id, y 48 con otro título. Entre ellas
  * las dos de ESDA1/2025, las que dicen «abierto a otras entidades públicas»
  * (INFORME 04-10 §4 f, qz6weg-184-cit-8629f9), y la de 136/2025, la única que
  * nombra juntos sus dos lotes.
+ *
+ * Lo que se embebe es el objeto, la adjudicataria y la categoría. `contractor`
+ * no: en la proyección de Gobierto es el órgano de contratación, el Ayuntamiento
+ * en todas las filas, y no distingue a ninguna; la adjudicataria va en
+ * `assignee`, y sin ella una declaración que nombra a la empresa
+ * (1pe3qs8-005-cit-6af61c, «Auditesa») no la encontraba por su nombre.
  */
 export function buildTenderRows(data: unknown): PendingRow[] {
   if (!data || typeof data !== 'object') return []
@@ -137,8 +143,10 @@ export function buildTenderRows(data: unknown): PendingRow[] {
     const id = tabla + String(r.id ?? r.permalink ?? title.slice(0, 60))
     if (seen.has(id)) continue
     seen.add(id)
-    const contractor = String(r.contractor ?? r.assignee ?? '').trim()
-    const text = [title, contractor, r.categoryTitle].filter(Boolean).join(' · ')
+    const adjudicataria = String(r.assignee ?? '')
+      .replace(/\s+/g, ' ')
+      .trim()
+    const text = [title, adjudicataria, r.categoryTitle].filter(Boolean).join(' · ')
     out.push({
       kind: 'tender',
       sourceId: id,
