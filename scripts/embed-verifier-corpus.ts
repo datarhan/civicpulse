@@ -39,6 +39,7 @@ import {
   writeFileSync,
 } from 'node:fs'
 import { dirname, resolve } from 'node:path'
+import { pathToFileURL } from 'node:url'
 import { describeActiveEmbedder, embedTexts, EmbedError } from '../src/scraper/embed-client'
 import type { CorpusRow } from '../src/scraper/semantic-shortlist'
 
@@ -87,7 +88,7 @@ function loadIfExists(name: string): unknown {
 
 // ─── Source row → CorpusRow ─────────────────────────────────────────────────
 
-interface PendingRow {
+export interface PendingRow {
   kind: CorpusRow['kind']
   sourceId: string
   text: string
@@ -97,7 +98,7 @@ interface PendingRow {
   party?: string | null
 }
 
-function buildTenderRows(data: unknown): PendingRow[] {
+export function buildTenderRows(data: unknown): PendingRow[] {
   if (!data || typeof data !== 'object') return []
   const arr = [
     ...((data as { contracts?: unknown[] }).contracts ?? []),
@@ -434,7 +435,10 @@ async function main() {
   process.stdout.write(`[embed] cache: ${CACHE_FILE}\n`)
 }
 
-main().catch((err) => {
-  process.stderr.write(`[embed] fatal: ${err instanceof Error ? err.message : String(err)}\n`)
-  process.exit(1)
-})
+// Las pruebas importan `buildTenderRows`: al importar no se embebe nada.
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch((err) => {
+    process.stderr.write(`[embed] fatal: ${err instanceof Error ? err.message : String(err)}\n`)
+    process.exit(1)
+  })
+}
