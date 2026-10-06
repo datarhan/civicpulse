@@ -1,0 +1,998 @@
+{
+  "_nota": "Respuestas reales de la API de la BDNS (https://www.pap.hacienda.gob.es/bdnstrans/api), descargadas el 2026-10-06 y copiadas sin tocar. `busqueda`: filas de /convocatorias/busqueda?vpd=GE&descripcion=riba-roja, la consulta del raspador. `fichas`: /convocatorias?vpd=GE&numConv=<código> de cada recibida. `concesionesDelAyuntamiento`: /concesiones/busqueda?vpd=GE&page=0&pageSize=50&numeroConvocatoria=<código>&nifCif=P4621600H. `concesionDeReal`: la primera fila de /concesiones/busqueda?vpd=GE&page=0&pageSize=50&numeroConvocatoria=754381&nifCif=P4621400C, recortada a esa fila: el NIF que sale de pegar el INE 46214 a la P es el del Ayuntamiento de Real, no el nuestro.",
+  "busqueda": [
+    {
+      "id": 1133227,
+      "mrr": false,
+      "numeroConvocatoria": "931666",
+      "descripcion": "Resolución de alcaldía/ Acuerdo Nº 3045/2026 de 24 de septiembre de 2026 del Ayuntamiento de Riba-roja de Turia por la que se convocan subvenciones destinadas a Clubes  y Entidades Deportivas de Riba-roja de Túria año 2026 (temporada 25/26).",
+      "descripcionLeng": null,
+      "fechaRecepcion": "2026-09-25",
+      "nivel1": "LOCAL",
+      "nivel2": "RIBA-ROJA DE TÚRIA",
+      "nivel3": "AYUNTAMIENTO DE RIBA-ROJA DE TÚRIA",
+      "codigoInvente": null
+    },
+    {
+      "id": 1059785,
+      "mrr": false,
+      "numeroConvocatoria": "858224",
+      "descripcion": "CONVENIO ENTRE MIVAU Y AYUNTAMIENTO DE RIBA-ROJA DE TÚRIA, POR EL QUE SE ADOPTAN MEDIDAS URGENTES DE RESPUESTA ANTE LOS DAÑOS CAUSADOS POR LA DEPRESIÓN AISLADA EN NIVELES ALTOS (DANA) ENTRE EL 28 DE OCTUBRE Y EL 4 DE NOVIEMBRE DE 2024",
+      "descripcionLeng": null,
+      "fechaRecepcion": "2025-09-23",
+      "nivel1": "ESTADO",
+      "nivel2": "MINISTERIO DE VIVIENDA Y AGENDA URBANA",
+      "nivel3": "DIRECCIÓN GENERAL DE AGENDA URBANA Y ARQUITECTURA",
+      "codigoInvente": null
+    },
+    {
+      "id": 1011714,
+      "mrr": false,
+      "numeroConvocatoria": "810154",
+      "descripcion": "Convocatoria subven nom Ayuntamiento Riba-roja de Túria. Yacimiento València la Vella: Campaña de consolidación y puesta en valor 2024",
+      "descripcionLeng": "Convocatòria subven nom Ajuntament Riba-roja de Túria. Jaciment València la Vella: Campanya de consolidació i posada en valor 2024",
+      "fechaRecepcion": "2025-01-21",
+      "nivel1": "LOCAL",
+      "nivel2": "DIPUTACIÓN PROV. DE VALENCIA",
+      "nivel3": "DIPUTACIÓN PROVINCIAL DE VALENCIA",
+      "codigoInvente": null
+    },
+    {
+      "id": 525839,
+      "mrr": false,
+      "numeroConvocatoria": "324291",
+      "descripcion": "Convenio Ayuntamiento Riba-Roja de Túria para la realización de la obra Pista de Skate",
+      "descripcionLeng": null,
+      "fechaRecepcion": "2016-11-29",
+      "nivel1": "AUTONOMICA",
+      "nivel2": "COMUNITAT VALENCIANA",
+      "nivel3": "SECRETARÍA AUTONÓMICA DE CULTURA Y DEPORTE",
+      "codigoInvente": null
+    },
+    {
+      "id": 627475,
+      "mrr": false,
+      "numeroConvocatoria": "425925",
+      "descripcion": "RESOLUCIÓ de 2 d'octubre de 2017, de la Presidència de la Generalitat, per la qual es regula i concedeix una subvenció directa a la Falla L'Amistat, de Riba-roja de Túria, per a la promoció sociocultural de la Comunitat Valenciana",
+      "descripcionLeng": null,
+      "fechaRecepcion": "2018-11-27",
+      "nivel1": "AUTONOMICA",
+      "nivel2": "COMUNITAT VALENCIANA",
+      "nivel3": "GABINETE DEL PRESIDENT",
+      "codigoInvente": null
+    },
+    {
+      "id": 993782,
+      "mrr": false,
+      "numeroConvocatoria": "792222",
+      "descripcion": "Subvenció nominativa Ayuntamiento de Ribaroja d'Ebre",
+      "descripcionLeng": "SN Aj. Riba-roja d'Ebre - Vestidors pavelló munic",
+      "fechaRecepcion": "2024-10-21",
+      "nivel1": "LOCAL",
+      "nivel2": "DIPUTACIÓN PROV. DE TARRAGONA",
+      "nivel3": "DIPUTACIÓN PROVINCIAL DE TARRAGONA",
+      "codigoInvente": null
+    },
+    {
+      "id": 870219,
+      "mrr": false,
+      "numeroConvocatoria": "668659",
+      "descripcion": "SN AYUNTAMIENTO DE RIBAROJA. PROYECTO INSTALACIÓN CLIMATIZACIÓN SALA MULTIUSOS",
+      "descripcionLeng": "SN AJUNTAMENT DE RIBA-ROJA. PROJ. INSTAL·LACIÓ CL",
+      "fechaRecepcion": "2023-01-03",
+      "nivel1": "LOCAL",
+      "nivel2": "DIPUTACIÓN PROV. DE TARRAGONA",
+      "nivel3": "DIPUTACIÓN PROVINCIAL DE TARRAGONA",
+      "codigoInvente": null
+    },
+    {
+      "id": 904170,
+      "mrr": false,
+      "numeroConvocatoria": "702610",
+      "descripcion": "Resolución de la Presidencia del Consejo Superior de Deportes, por la que se concede una subvención al   ayuntamiento de Riba-Roja D´Ebre para obras de restauración y mejora del pabellón polideportivo",
+      "descripcionLeng": null,
+      "fechaRecepcion": "2023-06-12",
+      "nivel1": "ESTADO",
+      "nivel2": "MINISTERIO DE EDUCACIÓN, FORMACIÓN PROFESIONAL Y DEPORTES",
+      "nivel3": "CONSEJO SUPERIOR DE DEPORTES",
+      "codigoInvente": "INV00001300"
+    },
+    {
+      "id": 934407,
+      "mrr": false,
+      "numeroConvocatoria": "732847",
+      "descripcion": "Primera distribución del Fondo de Transición Nuclear 2023 PENTA I Riba-roja d'Ebre",
+      "descripcionLeng": "Primera distribució del Fons transició nuclear 2023 PENTA I Riba-roja d'Ebre",
+      "fechaRecepcion": "2023-12-14",
+      "nivel1": "AUTONOMICA",
+      "nivel2": "CATALUÑA",
+      "nivel3": "DEPARTAMENT D'EMPRESA I TREBALL  ",
+      "codigoInvente": null
+    }
+  ],
+  "fichas": {
+    "858224": {
+      "id": 1059785,
+      "organo": {
+        "nivel1": "ESTADO",
+        "nivel2": "MINISTERIO DE VIVIENDA Y AGENDA URBANA",
+        "nivel3": "DIRECCIÓN GENERAL DE AGENDA URBANA Y ARQUITECTURA"
+      },
+      "sedeElectronica": null,
+      "codigoBDNS": "858224",
+      "fechaRecepcion": "2025-09-23",
+      "instrumentos": [
+        {
+          "descripcion": "SUBVENCIÓN Y ENTREGA DINERARIA SIN CONTRAPRESTACIÓN "
+        }
+      ],
+      "tipoConvocatoria": "Concesión directa - instrumental",
+      "presupuestoTotal": 126583,
+      "mrr": false,
+      "descripcion": "CONVENIO ENTRE MIVAU Y AYUNTAMIENTO DE RIBA-ROJA DE TÚRIA, POR EL QUE SE ADOPTAN MEDIDAS URGENTES DE RESPUESTA ANTE LOS DAÑOS CAUSADOS POR LA DEPRESIÓN AISLADA EN NIVELES ALTOS (DANA) ENTRE EL 28 DE OCTUBRE Y EL 4 DE NOVIEMBRE DE 2024",
+      "descripcionLeng": null,
+      "tiposBeneficiarios": [
+        {
+          "descripcion": "PERSONAS JURÍDICAS QUE NO DESARROLLAN ACTIVIDAD ECONÓMICA"
+        }
+      ],
+      "sectores": [
+        {
+          "descripcion": "Administración pública y de la política económica, social y medioambiental",
+          "codigo": "84.1"
+        }
+      ],
+      "regiones": [
+        {
+          "descripcion": "ES - ESPAÑA "
+        }
+      ],
+      "descripcionFinalidad": "Infraestructuras",
+      "descripcionBasesReguladoras": "REAL DECRETO-LEY 7/2024, DE 11 DE NOVIEMBRE, POR EL QUE SE ADOPTAN MEDIDAS URGENTES DE RESPUESTA ANTE LOS DAÑOS CAUSADOS POR LA DEPRESIÓN AISLADA EN NIVELES ALTOS (DANA) EN DIFERENTES MUNICIPIOS ENTRE EL 28 DE OCTUBRE Y EL 4 DE NOVIEMBRE DE 2024",
+      "urlBasesReguladoras": "https://www.boe.es/eli/es/rdl/2024/11/11/7",
+      "sePublicaDiarioOficial": false,
+      "abierto": false,
+      "fechaInicioSolicitud": "2025-06-13",
+      "fechaFinSolicitud": "2026-09-30",
+      "textInicio": null,
+      "textFin": null,
+      "ayudaEstado": null,
+      "urlAyudaEstado": null,
+      "fondos": [],
+      "reglamento": null,
+      "objetivos": [],
+      "sectoresProductos": [],
+      "documentos": [
+        {
+          "id": 1325202,
+          "descripcion": "Texto en castellano de la convocatoria",
+          "nombreFic": "report_Convenio DANA_RIBA-ROJA DE .pdf",
+          "long": 914877,
+          "datMod": "2025-09-23",
+          "datPublicacion": "2025-09-23"
+        }
+      ],
+      "anuncios": [],
+      "advertencia": "La reutilización de los datos del Sistema Nacional de Publicidad de Subvenciones y Ayudas Públicas está sujeta a una serie de restricciones y consideraciones legales. Consulte el aviso legal en https://www.infosubvenciones.es/bdnstrans/GE/es/avisolegal.Además, el usuario debe ser consciente que la información presentada es de naturaleza dinámica, y que los datos pueden ser sometidos a correcciones, inserciones, modificaciones y eliminaciones en momentos posteriores a su extracción. Accesos al API del sistema Nacional de Publicidad de Subvenciones y Ayudas Públicas. La Administración Presupuestaria, para salvaguardar la protección del acceso libre e irrestricto de los ciudadanos a este Portal y a su información podrá adoptar medidas restrictivas de acceso al API ante situaciones de manifiesto abuso del servicio, riesgos de seguridad, o uso fraudulento de la información descargada, de acuerdo con las buenas prácticas de gestión de datos abiertos (https://datos.gob.es/es/blog/limitaciones-la-consulta-de-una-api) establecidas por el Ministerio para la Transformación Digital y de la Función Pública."
+    },
+    "810154": {
+      "id": 1011714,
+      "organo": {
+        "nivel1": "LOCAL",
+        "nivel2": "DIPUTACIÓN PROV. DE VALENCIA",
+        "nivel3": "DIPUTACIÓN PROVINCIAL DE VALENCIA"
+      },
+      "sedeElectronica": "https://www.sede.dival.es/",
+      "codigoBDNS": "810154",
+      "fechaRecepcion": "2025-01-21",
+      "instrumentos": [
+        {
+          "descripcion": "SUBVENCIÓN Y ENTREGA DINERARIA SIN CONTRAPRESTACIÓN "
+        }
+      ],
+      "tipoConvocatoria": "Concesión directa - instrumental",
+      "presupuestoTotal": 15000,
+      "mrr": false,
+      "descripcion": "Convocatoria subven nom Ayuntamiento Riba-roja de Túria. Yacimiento València la Vella: Campaña de consolidación y puesta en valor 2024",
+      "descripcionLeng": "Convocatòria subven nom Ajuntament Riba-roja de Túria. Jaciment València la Vella: Campanya de consolidació i posada en valor 2024",
+      "tiposBeneficiarios": [
+        {
+          "descripcion": "PERSONAS JURÍDICAS QUE NO DESARROLLAN ACTIVIDAD ECONÓMICA"
+        }
+      ],
+      "sectores": [
+        {
+          "descripcion": "ACTIVIDADES ARTÍSTICAS, DEPORTIVAS Y DE ENTRETENIMIENTO",
+          "codigo": "S"
+        },
+        {
+          "descripcion": "ADMINISTRACIÓN PÚBLICA Y DEFENSA; SEGURIDAD SOCIAL OBLIGATORIA",
+          "codigo": "P"
+        }
+      ],
+      "regiones": [
+        {
+          "descripcion": "ES523 - Valencia / València"
+        }
+      ],
+      "descripcionFinalidad": "Cultura",
+      "descripcionBasesReguladoras": "Convocatoria subven nom Ayuntamiento Riba-roja de Túria. Yacimiento València la Vella: Campaña de consolidación y puesta en valor 2024",
+      "urlBasesReguladoras": "https://www.dival.es/sites/default/files/portal-de-transparencia/2024%2003%2022%20OGS.%20Consolidada.CAS_.pdf",
+      "sePublicaDiarioOficial": false,
+      "abierto": false,
+      "fechaInicioSolicitud": "2024-01-01",
+      "fechaFinSolicitud": "2024-05-31",
+      "textInicio": null,
+      "textFin": null,
+      "ayudaEstado": null,
+      "urlAyudaEstado": null,
+      "fondos": [],
+      "reglamento": null,
+      "objetivos": [],
+      "sectoresProductos": [],
+      "documentos": [
+        {
+          "id": 1194045,
+          "descripcion": "DECRETO CONCESIÓN SUBVENCIÓN NOMINATIVA RIBA-ROJA 2024, JACIMENT \"VALÈNCIA LA VELLA\"",
+          "nombreFic": "cl_189_24Dec_subvencion_nomin_Riba-rola2024.pdf",
+          "long": 379221,
+          "datMod": "2025-01-21",
+          "datPublicacion": "2025-01-21"
+        },
+        {
+          "id": 1194044,
+          "descripcion": "Texto en castellano de la convocatoria",
+          "nombreFic": "cl_189_24Dec_subvencion_nomin_Riba-rola2024.pdf",
+          "long": 379221,
+          "datMod": "2025-01-21",
+          "datPublicacion": "2025-01-21"
+        }
+      ],
+      "anuncios": [],
+      "advertencia": "La reutilización de los datos del Sistema Nacional de Publicidad de Subvenciones y Ayudas Públicas está sujeta a una serie de restricciones y consideraciones legales. Consulte el aviso legal en https://www.infosubvenciones.es/bdnstrans/GE/es/avisolegal.Además, el usuario debe ser consciente que la información presentada es de naturaleza dinámica, y que los datos pueden ser sometidos a correcciones, inserciones, modificaciones y eliminaciones en momentos posteriores a su extracción. Accesos al API del sistema Nacional de Publicidad de Subvenciones y Ayudas Públicas. La Administración Presupuestaria, para salvaguardar la protección del acceso libre e irrestricto de los ciudadanos a este Portal y a su información podrá adoptar medidas restrictivas de acceso al API ante situaciones de manifiesto abuso del servicio, riesgos de seguridad, o uso fraudulento de la información descargada, de acuerdo con las buenas prácticas de gestión de datos abiertos (https://datos.gob.es/es/blog/limitaciones-la-consulta-de-una-api) establecidas por el Ministerio para la Transformación Digital y de la Función Pública."
+    },
+    "324291": {
+      "id": 525839,
+      "organo": {
+        "nivel1": "AUTONOMICA",
+        "nivel2": "COMUNITAT VALENCIANA",
+        "nivel3": "SECRETARÍA AUTONÓMICA DE CULTURA Y DEPORTE"
+      },
+      "sedeElectronica": null,
+      "codigoBDNS": "324291",
+      "fechaRecepcion": "2016-11-29",
+      "instrumentos": [
+        {
+          "descripcion": "SUBVENCIÓN Y ENTREGA DINERARIA SIN CONTRAPRESTACIÓN "
+        }
+      ],
+      "tipoConvocatoria": "Concesión directa - instrumental",
+      "presupuestoTotal": 0,
+      "mrr": false,
+      "descripcion": "Convenio Ayuntamiento Riba-Roja de Túria para la realización de la obra Pista de Skate",
+      "descripcionLeng": null,
+      "tiposBeneficiarios": [
+        {
+          "descripcion": "PERSONAS JURÍDICAS QUE NO DESARROLLAN ACTIVIDAD ECONÓMICA"
+        }
+      ],
+      "sectores": [
+        {
+          "descripcion": "Actividades deportivas",
+          "codigo": "93.1"
+        },
+        {
+          "descripcion": "Otras actividades recreativas y de entretenimiento",
+          "codigo": "93.2"
+        }
+      ],
+      "regiones": [
+        {
+          "descripcion": "ES523 - Valencia / València"
+        }
+      ],
+      "descripcionFinalidad": "Cultura",
+      "descripcionBasesReguladoras": "Ley 11/2015 de de 29 de diciembre de Presupuestos de la Generalitat para el ejercicio 2016",
+      "urlBasesReguladoras": "http://www.docv.gva.es/datos/2015/12/31/pdf/2015_10478.pdf",
+      "sePublicaDiarioOficial": false,
+      "abierto": false,
+      "fechaInicioSolicitud": "2016-09-26",
+      "fechaFinSolicitud": "2016-11-03",
+      "textInicio": null,
+      "textFin": null,
+      "ayudaEstado": null,
+      "urlAyudaEstado": null,
+      "fondos": [],
+      "reglamento": null,
+      "objetivos": [],
+      "sectoresProductos": [],
+      "documentos": [
+        {
+          "id": 45640,
+          "descripcion": "Texto en otra lengua de la convocatoria",
+          "nombreFic": "CONVENI SIGNAT.pdf",
+          "long": 2619161,
+          "datMod": "2016-11-29",
+          "datPublicacion": null
+        },
+        {
+          "id": 45639,
+          "descripcion": "Texto en castellano de la convocatoria",
+          "nombreFic": "CONVENIO FIRMADO.pdf",
+          "long": 2806592,
+          "datMod": "2016-11-29",
+          "datPublicacion": null
+        }
+      ],
+      "anuncios": [],
+      "advertencia": "La reutilización de los datos del Sistema Nacional de Publicidad de Subvenciones y Ayudas Públicas está sujeta a una serie de restricciones y consideraciones legales. Consulte el aviso legal en https://www.infosubvenciones.es/bdnstrans/GE/es/avisolegal.Además, el usuario debe ser consciente que la información presentada es de naturaleza dinámica, y que los datos pueden ser sometidos a correcciones, inserciones, modificaciones y eliminaciones en momentos posteriores a su extracción. Accesos al API del sistema Nacional de Publicidad de Subvenciones y Ayudas Públicas. La Administración Presupuestaria, para salvaguardar la protección del acceso libre e irrestricto de los ciudadanos a este Portal y a su información podrá adoptar medidas restrictivas de acceso al API ante situaciones de manifiesto abuso del servicio, riesgos de seguridad, o uso fraudulento de la información descargada, de acuerdo con las buenas prácticas de gestión de datos abiertos (https://datos.gob.es/es/blog/limitaciones-la-consulta-de-una-api) establecidas por el Ministerio para la Transformación Digital y de la Función Pública."
+    },
+    "425925": {
+      "id": 627475,
+      "organo": {
+        "nivel1": "AUTONOMICA",
+        "nivel2": "COMUNITAT VALENCIANA",
+        "nivel3": "GABINETE DEL PRESIDENT"
+      },
+      "sedeElectronica": null,
+      "codigoBDNS": "425925",
+      "fechaRecepcion": "2018-11-27",
+      "instrumentos": [
+        {
+          "descripcion": "SUBVENCIÓN Y ENTREGA DINERARIA SIN CONTRAPRESTACIÓN "
+        }
+      ],
+      "tipoConvocatoria": "Concesión directa - instrumental",
+      "presupuestoTotal": 1000,
+      "mrr": false,
+      "descripcion": "RESOLUCIÓ de 2 d'octubre de 2017, de la Presidència de la Generalitat, per la qual es regula i concedeix una subvenció directa a la Falla L'Amistat, de Riba-roja de Túria, per a la promoció sociocultural de la Comunitat Valenciana",
+      "descripcionLeng": null,
+      "tiposBeneficiarios": [
+        {
+          "descripcion": "PERSONAS JURÍDICAS QUE NO DESARROLLAN ACTIVIDAD ECONÓMICA"
+        }
+      ],
+      "sectores": [
+        {
+          "descripcion": "Actividades de organizaciones empresariales, profesionales y patronales",
+          "codigo": "94.1"
+        }
+      ],
+      "regiones": [
+        {
+          "descripcion": "ES52 - COMUNIDAD VALENCIANA"
+        }
+      ],
+      "descripcionFinalidad": "Otras actuaciones de carácter económico",
+      "descripcionBasesReguladoras": "Ley 14/2016, de 30 de diciembre, de Presupuestos de la Generalitat para el ejercicio 2017",
+      "urlBasesReguladoras": "http://www.dogv.gva.es/datos/2017/10/05/pdf/2017_8702.pdf",
+      "sePublicaDiarioOficial": false,
+      "abierto": true,
+      "fechaInicioSolicitud": null,
+      "fechaFinSolicitud": null,
+      "textInicio": null,
+      "textFin": null,
+      "ayudaEstado": null,
+      "urlAyudaEstado": null,
+      "fondos": [],
+      "reglamento": null,
+      "objetivos": [],
+      "sectoresProductos": [],
+      "documentos": [
+        {
+          "id": 243565,
+          "descripcion": "Texto en otra lengua de la convocatoria",
+          "nombreFic": "2017_8702.pdf",
+          "long": 998947,
+          "datMod": "2018-11-27",
+          "datPublicacion": null
+        },
+        {
+          "id": 243564,
+          "descripcion": "Texto en castellano de la convocatoria",
+          "nombreFic": "2017_8702.pdf",
+          "long": 998947,
+          "datMod": "2018-11-27",
+          "datPublicacion": null
+        }
+      ],
+      "anuncios": [],
+      "advertencia": "La reutilización de los datos del Sistema Nacional de Publicidad de Subvenciones y Ayudas Públicas está sujeta a una serie de restricciones y consideraciones legales. Consulte el aviso legal en https://www.infosubvenciones.es/bdnstrans/GE/es/avisolegal.Además, el usuario debe ser consciente que la información presentada es de naturaleza dinámica, y que los datos pueden ser sometidos a correcciones, inserciones, modificaciones y eliminaciones en momentos posteriores a su extracción. Accesos al API del sistema Nacional de Publicidad de Subvenciones y Ayudas Públicas. La Administración Presupuestaria, para salvaguardar la protección del acceso libre e irrestricto de los ciudadanos a este Portal y a su información podrá adoptar medidas restrictivas de acceso al API ante situaciones de manifiesto abuso del servicio, riesgos de seguridad, o uso fraudulento de la información descargada, de acuerdo con las buenas prácticas de gestión de datos abiertos (https://datos.gob.es/es/blog/limitaciones-la-consulta-de-una-api) establecidas por el Ministerio para la Transformación Digital y de la Función Pública."
+    },
+    "792222": {
+      "id": 993782,
+      "organo": {
+        "nivel1": "LOCAL",
+        "nivel2": "DIPUTACIÓN PROV. DE TARRAGONA",
+        "nivel3": "DIPUTACIÓN PROVINCIAL DE TARRAGONA"
+      },
+      "sedeElectronica": "https://seuelectronica.dipta.cat",
+      "codigoBDNS": "792222",
+      "fechaRecepcion": "2024-10-21",
+      "instrumentos": [
+        {
+          "descripcion": "SUBVENCIÓN Y ENTREGA DINERARIA SIN CONTRAPRESTACIÓN "
+        }
+      ],
+      "tipoConvocatoria": "Concesión directa - instrumental",
+      "presupuestoTotal": 60000,
+      "mrr": false,
+      "descripcion": "Subvenció nominativa Ayuntamiento de Ribaroja d'Ebre",
+      "descripcionLeng": "SN Aj. Riba-roja d'Ebre - Vestidors pavelló munic",
+      "tiposBeneficiarios": [
+        {
+          "descripcion": "PERSONAS JURÍDICAS QUE NO DESARROLLAN ACTIVIDAD ECONÓMICA"
+        }
+      ],
+      "sectores": [
+        {
+          "descripcion": "Acabado de edificios",
+          "codigo": "43.3"
+        },
+        {
+          "descripcion": "Actividades de limpieza",
+          "codigo": "81.2"
+        },
+        {
+          "descripcion": "Instalaciones eléctricas, de fontanería y otras instalaciones en obras de construcción",
+          "codigo": "43.2"
+        }
+      ],
+      "regiones": [
+        {
+          "descripcion": "ES51 - CATALUÑA"
+        }
+      ],
+      "descripcionFinalidad": "Infraestructuras",
+      "descripcionBasesReguladoras": "Bases generales de subvenciones de la Diputació de Tarragona y de sus Organismos Autónomos",
+      "urlBasesReguladoras": "https://www.diputaciodetarragona.cat/ebop/index.php?op=anunci&id=1723&ebop_any=2019",
+      "sePublicaDiarioOficial": false,
+      "abierto": false,
+      "fechaInicioSolicitud": "2024-01-01",
+      "fechaFinSolicitud": "2024-10-15",
+      "textInicio": null,
+      "textFin": null,
+      "ayudaEstado": null,
+      "urlAyudaEstado": null,
+      "fondos": [],
+      "reglamento": null,
+      "objetivos": [],
+      "sectoresProductos": [],
+      "documentos": [
+        {
+          "id": 1147559,
+          "descripcion": "Texto en otra lengua de la convocatoria",
+          "nombreFic": "ACORD_4_8004330008_2024_0000232.PDF",
+          "long": 100913,
+          "datMod": "2024-10-21",
+          "datPublicacion": "2024-10-21"
+        },
+        {
+          "id": 1147558,
+          "descripcion": "Texto en castellano de la convocatoria",
+          "nombreFic": "DILIG__NCIA_5_8004330008_2024_0000232.PDF",
+          "long": 35661,
+          "datMod": "2024-10-21",
+          "datPublicacion": "2024-10-21"
+        }
+      ],
+      "anuncios": [],
+      "advertencia": "La reutilización de los datos del Sistema Nacional de Publicidad de Subvenciones y Ayudas Públicas está sujeta a una serie de restricciones y consideraciones legales. Consulte el aviso legal en https://www.infosubvenciones.es/bdnstrans/GE/es/avisolegal.Además, el usuario debe ser consciente que la información presentada es de naturaleza dinámica, y que los datos pueden ser sometidos a correcciones, inserciones, modificaciones y eliminaciones en momentos posteriores a su extracción. Accesos al API del sistema Nacional de Publicidad de Subvenciones y Ayudas Públicas. La Administración Presupuestaria, para salvaguardar la protección del acceso libre e irrestricto de los ciudadanos a este Portal y a su información podrá adoptar medidas restrictivas de acceso al API ante situaciones de manifiesto abuso del servicio, riesgos de seguridad, o uso fraudulento de la información descargada, de acuerdo con las buenas prácticas de gestión de datos abiertos (https://datos.gob.es/es/blog/limitaciones-la-consulta-de-una-api) establecidas por el Ministerio para la Transformación Digital y de la Función Pública."
+    },
+    "668659": {
+      "id": 870219,
+      "organo": {
+        "nivel1": "LOCAL",
+        "nivel2": "DIPUTACIÓN PROV. DE TARRAGONA",
+        "nivel3": "DIPUTACIÓN PROVINCIAL DE TARRAGONA"
+      },
+      "sedeElectronica": "https://seuelectronica.dipta.cat",
+      "codigoBDNS": "668659",
+      "fechaRecepcion": "2023-01-03",
+      "instrumentos": [
+        {
+          "descripcion": "SUBVENCIÓN Y ENTREGA DINERARIA SIN CONTRAPRESTACIÓN "
+        }
+      ],
+      "tipoConvocatoria": "Concesión directa - instrumental",
+      "presupuestoTotal": 89900,
+      "mrr": false,
+      "descripcion": "SN AYUNTAMIENTO DE RIBAROJA. PROYECTO INSTALACIÓN CLIMATIZACIÓN SALA MULTIUSOS",
+      "descripcionLeng": "SN AJUNTAMENT DE RIBA-ROJA. PROJ. INSTAL·LACIÓ CL",
+      "tiposBeneficiarios": [
+        {
+          "descripcion": "PERSONAS JURÍDICAS QUE NO DESARROLLAN ACTIVIDAD ECONÓMICA"
+        }
+      ],
+      "sectores": [
+        {
+          "descripcion": "Administración pública y de la política económica, social y medioambiental",
+          "codigo": "84.1"
+        }
+      ],
+      "regiones": [
+        {
+          "descripcion": "ES51 - CATALUÑA"
+        }
+      ],
+      "descripcionFinalidad": "Cultura",
+      "descripcionBasesReguladoras": "Bases generales de subvenciones de la Diputació de Tarragona y de sus Organismos Autónomos",
+      "urlBasesReguladoras": "https://www.diputaciodetarragona.cat/ebop/index.php?op=anunci&id=1723&ebop_any=2019",
+      "sePublicaDiarioOficial": false,
+      "abierto": false,
+      "fechaInicioSolicitud": "2022-01-01",
+      "fechaFinSolicitud": "2022-12-20",
+      "textInicio": null,
+      "textFin": null,
+      "ayudaEstado": null,
+      "urlAyudaEstado": null,
+      "fondos": [],
+      "reglamento": null,
+      "objetivos": [],
+      "sectoresProductos": [],
+      "documentos": [
+        {
+          "id": 833339,
+          "descripcion": "Texto en otra lengua de la convocatoria",
+          "nombreFic": "ACORD_5_8004330008_2022_0010103.PDF",
+          "long": 106174,
+          "datMod": "2023-01-03",
+          "datPublicacion": "2023-01-03"
+        },
+        {
+          "id": 833338,
+          "descripcion": "Texto en castellano de la convocatoria",
+          "nombreFic": "DILIG__NCIA_2_8004330008_2022_0010103.PDF",
+          "long": 267987,
+          "datMod": "2023-01-03",
+          "datPublicacion": "2023-01-03"
+        }
+      ],
+      "anuncios": [],
+      "advertencia": "La reutilización de los datos del Sistema Nacional de Publicidad de Subvenciones y Ayudas Públicas está sujeta a una serie de restricciones y consideraciones legales. Consulte el aviso legal en https://www.infosubvenciones.es/bdnstrans/GE/es/avisolegal.Además, el usuario debe ser consciente que la información presentada es de naturaleza dinámica, y que los datos pueden ser sometidos a correcciones, inserciones, modificaciones y eliminaciones en momentos posteriores a su extracción. Accesos al API del sistema Nacional de Publicidad de Subvenciones y Ayudas Públicas. La Administración Presupuestaria, para salvaguardar la protección del acceso libre e irrestricto de los ciudadanos a este Portal y a su información podrá adoptar medidas restrictivas de acceso al API ante situaciones de manifiesto abuso del servicio, riesgos de seguridad, o uso fraudulento de la información descargada, de acuerdo con las buenas prácticas de gestión de datos abiertos (https://datos.gob.es/es/blog/limitaciones-la-consulta-de-una-api) establecidas por el Ministerio para la Transformación Digital y de la Función Pública."
+    },
+    "702610": {
+      "id": 904170,
+      "organo": {
+        "nivel1": "ESTADO",
+        "nivel2": "MINISTERIO DE EDUCACIÓN, FORMACIÓN PROFESIONAL Y DEPORTES",
+        "nivel3": "CONSEJO SUPERIOR DE DEPORTES"
+      },
+      "sedeElectronica": null,
+      "codigoBDNS": "702610",
+      "fechaRecepcion": "2023-06-12",
+      "instrumentos": [
+        {
+          "descripcion": "SUBVENCIÓN Y ENTREGA DINERARIA SIN CONTRAPRESTACIÓN "
+        }
+      ],
+      "tipoConvocatoria": "Concesión directa - instrumental",
+      "presupuestoTotal": 300000,
+      "mrr": false,
+      "descripcion": "Resolución de la Presidencia del Consejo Superior de Deportes, por la que se concede una subvención al   ayuntamiento de Riba-Roja D´Ebre para obras de restauración y mejora del pabellón polideportivo",
+      "descripcionLeng": null,
+      "tiposBeneficiarios": [
+        {
+          "descripcion": "PERSONAS JURÍDICAS QUE NO DESARROLLAN ACTIVIDAD ECONÓMICA"
+        }
+      ],
+      "sectores": [
+        {
+          "descripcion": "Actividades deportivas",
+          "codigo": "93.1"
+        },
+        {
+          "descripcion": "Otras actividades recreativas y de entretenimiento",
+          "codigo": "93.2"
+        }
+      ],
+      "regiones": [
+        {
+          "descripcion": "ES514 - Tarragona"
+        }
+      ],
+      "descripcionFinalidad": "Cultura",
+      "descripcionBasesReguladoras": "Orden CUL/163/2010, de 27 de enero, por la que se aprueba el procedimiento de concesión de subvenciones nominativas del Ministerio de Cultura y de sus organismos públicos",
+      "urlBasesReguladoras": "https://www.boe.es/eli/es/o/2010/01/27/cul163/dof/spa/pdf",
+      "sePublicaDiarioOficial": false,
+      "abierto": false,
+      "fechaInicioSolicitud": "2023-01-01",
+      "fechaFinSolicitud": "2023-03-31",
+      "textInicio": null,
+      "textFin": null,
+      "ayudaEstado": null,
+      "urlAyudaEstado": null,
+      "fondos": [],
+      "reglamento": null,
+      "objetivos": [],
+      "sectoresProductos": [],
+      "documentos": [
+        {
+          "id": 919499,
+          "descripcion": "Texto en castellano de la convocatoria",
+          "nombreFic": "report_Resolución Ayto Riba-Roja D..pdf",
+          "long": 269235,
+          "datMod": "2023-06-12",
+          "datPublicacion": "2023-06-12"
+        }
+      ],
+      "anuncios": [],
+      "advertencia": "La reutilización de los datos del Sistema Nacional de Publicidad de Subvenciones y Ayudas Públicas está sujeta a una serie de restricciones y consideraciones legales. Consulte el aviso legal en https://www.infosubvenciones.es/bdnstrans/GE/es/avisolegal.Además, el usuario debe ser consciente que la información presentada es de naturaleza dinámica, y que los datos pueden ser sometidos a correcciones, inserciones, modificaciones y eliminaciones en momentos posteriores a su extracción. Accesos al API del sistema Nacional de Publicidad de Subvenciones y Ayudas Públicas. La Administración Presupuestaria, para salvaguardar la protección del acceso libre e irrestricto de los ciudadanos a este Portal y a su información podrá adoptar medidas restrictivas de acceso al API ante situaciones de manifiesto abuso del servicio, riesgos de seguridad, o uso fraudulento de la información descargada, de acuerdo con las buenas prácticas de gestión de datos abiertos (https://datos.gob.es/es/blog/limitaciones-la-consulta-de-una-api) establecidas por el Ministerio para la Transformación Digital y de la Función Pública."
+    },
+    "732847": {
+      "id": 934407,
+      "organo": {
+        "nivel1": "AUTONOMICA",
+        "nivel2": "CATALUÑA",
+        "nivel3": "DEPARTAMENT D'EMPRESA I TREBALL  "
+      },
+      "sedeElectronica": null,
+      "codigoBDNS": "732847",
+      "fechaRecepcion": "2023-12-14",
+      "instrumentos": [
+        {
+          "descripcion": "SUBVENCIÓN Y ENTREGA DINERARIA SIN CONTRAPRESTACIÓN "
+        }
+      ],
+      "tipoConvocatoria": "Concesión directa - instrumental",
+      "presupuestoTotal": 2009410.54,
+      "mrr": false,
+      "descripcion": "Primera distribución del Fondo de Transición Nuclear 2023 PENTA I Riba-roja d'Ebre",
+      "descripcionLeng": "Primera distribució del Fons transició nuclear 2023 PENTA I Riba-roja d'Ebre",
+      "tiposBeneficiarios": [
+        {
+          "descripcion": "PERSONAS JURÍDICAS QUE NO DESARROLLAN ACTIVIDAD ECONÓMICA"
+        }
+      ],
+      "sectores": [
+        {
+          "descripcion": "Administración pública y de la política económica, social y medioambiental",
+          "codigo": "84.1"
+        }
+      ],
+      "regiones": [
+        {
+          "descripcion": "ES51 - CATALUÑA"
+        }
+      ],
+      "descripcionFinalidad": "Industria y Energía",
+      "descripcionBasesReguladoras": "Plan estratégico de subvenciones",
+      "urlBasesReguladoras": "https://economia.gencat.cat/ca/ambits-actuacio/ajuts-subvencions/plans-estrategics/",
+      "sePublicaDiarioOficial": false,
+      "abierto": false,
+      "fechaInicioSolicitud": "2023-01-01",
+      "fechaFinSolicitud": "2023-12-11",
+      "textInicio": null,
+      "textFin": null,
+      "ayudaEstado": null,
+      "urlAyudaEstado": null,
+      "fondos": [],
+      "reglamento": null,
+      "objetivos": [],
+      "sectoresProductos": [],
+      "documentos": [
+        {
+          "id": 1344461,
+          "descripcion": "Texto en otra lengua de la convocatoria",
+          "nombreFic": "DL25_Res23_24_25_FTNmunicipis23.pdf",
+          "long": 1719098,
+          "datMod": "2025-10-29",
+          "datPublicacion": "2025-10-29"
+        },
+        {
+          "id": 1344460,
+          "descripcion": "Texto en castellano de la convocatoria",
+          "nombreFic": "ES_DL25_Res23_24_25_FTNmunicipis23.pdf",
+          "long": 1624231,
+          "datMod": "2025-10-29",
+          "datPublicacion": "2025-10-29"
+        }
+      ],
+      "anuncios": [],
+      "advertencia": "La reutilización de los datos del Sistema Nacional de Publicidad de Subvenciones y Ayudas Públicas está sujeta a una serie de restricciones y consideraciones legales. Consulte el aviso legal en https://www.infosubvenciones.es/bdnstrans/GE/es/avisolegal.Además, el usuario debe ser consciente que la información presentada es de naturaleza dinámica, y que los datos pueden ser sometidos a correcciones, inserciones, modificaciones y eliminaciones en momentos posteriores a su extracción. Accesos al API del sistema Nacional de Publicidad de Subvenciones y Ayudas Públicas. La Administración Presupuestaria, para salvaguardar la protección del acceso libre e irrestricto de los ciudadanos a este Portal y a su información podrá adoptar medidas restrictivas de acceso al API ante situaciones de manifiesto abuso del servicio, riesgos de seguridad, o uso fraudulento de la información descargada, de acuerdo con las buenas prácticas de gestión de datos abiertos (https://datos.gob.es/es/blog/limitaciones-la-consulta-de-una-api) establecidas por el Ministerio para la Transformación Digital y de la Función Pública."
+    }
+  },
+  "concesionesDelAyuntamiento": {
+    "858224": {
+      "content": [
+        {
+          "id": 133977247,
+          "codConcesion": "SB133977247",
+          "fechaConcesion": "2025-06-30",
+          "beneficiario": "P4621600H AYUNTAMIENTO DE RIBA ROJA DE TURIA",
+          "instrumento": "SUBVENCIÓN y ENTREGA DINERARIA SIN CONTRAPRESTACIÓN ",
+          "importe": 126583,
+          "ayudaEquivalente": 126583,
+          "urlBR": "https://www.boe.es/eli/es/rdl/2024/11/11/7",
+          "tieneProyecto": false,
+          "numeroConvocatoria": "858224",
+          "idConvocatoria": 1059785,
+          "convocatoria": "CONVENIO ENTRE MIVAU Y AYUNTAMIENTO DE RIBA-ROJA DE TÚRIA, POR EL QUE SE ADOPTAN MEDIDAS URGENTES DE RESPUESTA ANTE LOS DAÑOS CAUSADOS POR LA DEPRESIÓN AISLADA EN NIVELES ALTOS (DANA) ENTRE EL 28 DE OCTUBRE Y EL 4 DE NOVIEMBRE DE 2024",
+          "descripcionCooficial": null,
+          "nivel1": "ESTADO",
+          "nivel2": "MINISTERIO DE VIVIENDA Y AGENDA URBANA",
+          "nivel3": "DIRECCIÓN GENERAL DE AGENDA URBANA Y ARQUITECTURA",
+          "codigoInvente": null,
+          "idPersona": 6338354,
+          "fechaAlta": "2025-09-23"
+        }
+      ],
+      "pageable": {
+        "sort": {
+          "sorted": true,
+          "unsorted": false,
+          "empty": false
+        },
+        "pageNumber": 0,
+        "pageSize": 50,
+        "offset": 0,
+        "unpaged": false,
+        "paged": true
+      },
+      "last": true,
+      "totalElements": 1,
+      "totalPages": 1,
+      "first": true,
+      "sort": {
+        "sorted": true,
+        "unsorted": false,
+        "empty": false
+      },
+      "numberOfElements": 1,
+      "size": 50,
+      "number": 0,
+      "empty": false,
+      "advertencia": "La reutilización de los datos del Sistema Nacional de Publicidad de Subvenciones y Ayudas Públicas está sujeta a una serie de restricciones y consideraciones legales. Consulte el aviso legal en https://www.infosubvenciones.es/bdnstrans/GE/es/avisolegal.Además, el usuario debe ser consciente que la información presentada es de naturaleza dinámica, y que los datos pueden ser sometidos a correcciones, inserciones, modificaciones y eliminaciones en momentos posteriores a su extracción. Accesos al API del sistema Nacional de Publicidad de Subvenciones y Ayudas Públicas. La Administración Presupuestaria, para salvaguardar la protección del acceso libre e irrestricto de los ciudadanos a este Portal y a su información podrá adoptar medidas restrictivas de acceso al API ante situaciones de manifiesto abuso del servicio, riesgos de seguridad, o uso fraudulento de la información descargada, de acuerdo con las buenas prácticas de gestión de datos abiertos (https://datos.gob.es/es/blog/limitaciones-la-consulta-de-una-api) establecidas por el Ministerio para la Transformación Digital y de la Función Pública."
+    },
+    "810154": {
+      "content": [
+        {
+          "id": 130254741,
+          "codConcesion": "SB130254741",
+          "fechaConcesion": "2024-05-31",
+          "beneficiario": "P4621600H AYUNTAMIENTO DE RIBA-ROJA DE TURIA",
+          "instrumento": "SUBVENCIÓN y ENTREGA DINERARIA SIN CONTRAPRESTACIÓN ",
+          "importe": 15000,
+          "ayudaEquivalente": 15000,
+          "urlBR": "https://www.dival.es/sites/default/files/portal-de-transparencia/2024%2003%2022%20OGS.%20Consolidada.CAS_.pdf",
+          "tieneProyecto": false,
+          "numeroConvocatoria": "810154",
+          "idConvocatoria": 1011714,
+          "convocatoria": "Convocatoria subven nom Ayuntamiento Riba-roja de Túria. Yacimiento València la Vella: Campaña de consolidación y puesta en valor 2024",
+          "descripcionCooficial": "Convocatòria subven nom Ajuntament Riba-roja de Túria. Jaciment València la Vella: Campanya de consolidació i posada en valor 2024",
+          "nivel1": "LOCAL",
+          "nivel2": "DIPUTACIÓN PROV. DE VALENCIA",
+          "nivel3": "DIPUTACIÓN PROVINCIAL DE VALENCIA",
+          "codigoInvente": null,
+          "idPersona": 6338354,
+          "fechaAlta": "2025-05-15"
+        }
+      ],
+      "pageable": {
+        "sort": {
+          "sorted": true,
+          "unsorted": false,
+          "empty": false
+        },
+        "pageNumber": 0,
+        "pageSize": 50,
+        "offset": 0,
+        "unpaged": false,
+        "paged": true
+      },
+      "last": true,
+      "totalElements": 1,
+      "totalPages": 1,
+      "sort": {
+        "sorted": true,
+        "unsorted": false,
+        "empty": false
+      },
+      "first": true,
+      "numberOfElements": 1,
+      "size": 50,
+      "number": 0,
+      "empty": false,
+      "advertencia": "La reutilización de los datos del Sistema Nacional de Publicidad de Subvenciones y Ayudas Públicas está sujeta a una serie de restricciones y consideraciones legales. Consulte el aviso legal en https://www.infosubvenciones.es/bdnstrans/GE/es/avisolegal.Además, el usuario debe ser consciente que la información presentada es de naturaleza dinámica, y que los datos pueden ser sometidos a correcciones, inserciones, modificaciones y eliminaciones en momentos posteriores a su extracción. Accesos al API del sistema Nacional de Publicidad de Subvenciones y Ayudas Públicas. La Administración Presupuestaria, para salvaguardar la protección del acceso libre e irrestricto de los ciudadanos a este Portal y a su información podrá adoptar medidas restrictivas de acceso al API ante situaciones de manifiesto abuso del servicio, riesgos de seguridad, o uso fraudulento de la información descargada, de acuerdo con las buenas prácticas de gestión de datos abiertos (https://datos.gob.es/es/blog/limitaciones-la-consulta-de-una-api) establecidas por el Ministerio para la Transformación Digital y de la Función Pública."
+    },
+    "324291": {
+      "content": [],
+      "pageable": {
+        "sort": {
+          "sorted": true,
+          "unsorted": false,
+          "empty": false
+        },
+        "pageNumber": 0,
+        "pageSize": 50,
+        "offset": 0,
+        "unpaged": false,
+        "paged": true
+      },
+      "last": true,
+      "totalPages": 0,
+      "totalElements": 0,
+      "sort": {
+        "sorted": true,
+        "unsorted": false,
+        "empty": false
+      },
+      "first": true,
+      "numberOfElements": 0,
+      "size": 50,
+      "number": 0,
+      "empty": true,
+      "advertencia": "La reutilización de los datos del Sistema Nacional de Publicidad de Subvenciones y Ayudas Públicas está sujeta a una serie de restricciones y consideraciones legales. Consulte el aviso legal en https://www.infosubvenciones.es/bdnstrans/GE/es/avisolegal.Además, el usuario debe ser consciente que la información presentada es de naturaleza dinámica, y que los datos pueden ser sometidos a correcciones, inserciones, modificaciones y eliminaciones en momentos posteriores a su extracción. Accesos al API del sistema Nacional de Publicidad de Subvenciones y Ayudas Públicas. La Administración Presupuestaria, para salvaguardar la protección del acceso libre e irrestricto de los ciudadanos a este Portal y a su información podrá adoptar medidas restrictivas de acceso al API ante situaciones de manifiesto abuso del servicio, riesgos de seguridad, o uso fraudulento de la información descargada, de acuerdo con las buenas prácticas de gestión de datos abiertos (https://datos.gob.es/es/blog/limitaciones-la-consulta-de-una-api) establecidas por el Ministerio para la Transformación Digital y de la Función Pública."
+    },
+    "425925": {
+      "content": [],
+      "pageable": {
+        "sort": {
+          "sorted": true,
+          "unsorted": false,
+          "empty": false
+        },
+        "pageNumber": 0,
+        "pageSize": 50,
+        "offset": 0,
+        "paged": true,
+        "unpaged": false
+      },
+      "last": true,
+      "totalPages": 0,
+      "totalElements": 0,
+      "sort": {
+        "sorted": true,
+        "unsorted": false,
+        "empty": false
+      },
+      "first": true,
+      "numberOfElements": 0,
+      "size": 50,
+      "number": 0,
+      "empty": true,
+      "advertencia": "La reutilización de los datos del Sistema Nacional de Publicidad de Subvenciones y Ayudas Públicas está sujeta a una serie de restricciones y consideraciones legales. Consulte el aviso legal en https://www.infosubvenciones.es/bdnstrans/GE/es/avisolegal.Además, el usuario debe ser consciente que la información presentada es de naturaleza dinámica, y que los datos pueden ser sometidos a correcciones, inserciones, modificaciones y eliminaciones en momentos posteriores a su extracción. Accesos al API del sistema Nacional de Publicidad de Subvenciones y Ayudas Públicas. La Administración Presupuestaria, para salvaguardar la protección del acceso libre e irrestricto de los ciudadanos a este Portal y a su información podrá adoptar medidas restrictivas de acceso al API ante situaciones de manifiesto abuso del servicio, riesgos de seguridad, o uso fraudulento de la información descargada, de acuerdo con las buenas prácticas de gestión de datos abiertos (https://datos.gob.es/es/blog/limitaciones-la-consulta-de-una-api) establecidas por el Ministerio para la Transformación Digital y de la Función Pública."
+    },
+    "792222": {
+      "content": [],
+      "pageable": {
+        "sort": {
+          "sorted": true,
+          "unsorted": false,
+          "empty": false
+        },
+        "pageNumber": 0,
+        "pageSize": 50,
+        "offset": 0,
+        "unpaged": false,
+        "paged": true
+      },
+      "last": true,
+      "totalElements": 0,
+      "totalPages": 0,
+      "first": true,
+      "sort": {
+        "sorted": true,
+        "unsorted": false,
+        "empty": false
+      },
+      "numberOfElements": 0,
+      "size": 50,
+      "number": 0,
+      "empty": true,
+      "advertencia": "La reutilización de los datos del Sistema Nacional de Publicidad de Subvenciones y Ayudas Públicas está sujeta a una serie de restricciones y consideraciones legales. Consulte el aviso legal en https://www.infosubvenciones.es/bdnstrans/GE/es/avisolegal.Además, el usuario debe ser consciente que la información presentada es de naturaleza dinámica, y que los datos pueden ser sometidos a correcciones, inserciones, modificaciones y eliminaciones en momentos posteriores a su extracción. Accesos al API del sistema Nacional de Publicidad de Subvenciones y Ayudas Públicas. La Administración Presupuestaria, para salvaguardar la protección del acceso libre e irrestricto de los ciudadanos a este Portal y a su información podrá adoptar medidas restrictivas de acceso al API ante situaciones de manifiesto abuso del servicio, riesgos de seguridad, o uso fraudulento de la información descargada, de acuerdo con las buenas prácticas de gestión de datos abiertos (https://datos.gob.es/es/blog/limitaciones-la-consulta-de-una-api) establecidas por el Ministerio para la Transformación Digital y de la Función Pública."
+    },
+    "668659": {
+      "content": [],
+      "pageable": {
+        "sort": {
+          "sorted": true,
+          "unsorted": false,
+          "empty": false
+        },
+        "pageNumber": 0,
+        "pageSize": 50,
+        "offset": 0,
+        "paged": true,
+        "unpaged": false
+      },
+      "last": true,
+      "totalPages": 0,
+      "totalElements": 0,
+      "sort": {
+        "sorted": true,
+        "unsorted": false,
+        "empty": false
+      },
+      "first": true,
+      "numberOfElements": 0,
+      "size": 50,
+      "number": 0,
+      "empty": true,
+      "advertencia": "La reutilización de los datos del Sistema Nacional de Publicidad de Subvenciones y Ayudas Públicas está sujeta a una serie de restricciones y consideraciones legales. Consulte el aviso legal en https://www.infosubvenciones.es/bdnstrans/GE/es/avisolegal.Además, el usuario debe ser consciente que la información presentada es de naturaleza dinámica, y que los datos pueden ser sometidos a correcciones, inserciones, modificaciones y eliminaciones en momentos posteriores a su extracción. Accesos al API del sistema Nacional de Publicidad de Subvenciones y Ayudas Públicas. La Administración Presupuestaria, para salvaguardar la protección del acceso libre e irrestricto de los ciudadanos a este Portal y a su información podrá adoptar medidas restrictivas de acceso al API ante situaciones de manifiesto abuso del servicio, riesgos de seguridad, o uso fraudulento de la información descargada, de acuerdo con las buenas prácticas de gestión de datos abiertos (https://datos.gob.es/es/blog/limitaciones-la-consulta-de-una-api) establecidas por el Ministerio para la Transformación Digital y de la Función Pública."
+    },
+    "702610": {
+      "content": [],
+      "pageable": {
+        "sort": {
+          "sorted": true,
+          "unsorted": false,
+          "empty": false
+        },
+        "pageNumber": 0,
+        "pageSize": 50,
+        "offset": 0,
+        "unpaged": false,
+        "paged": true
+      },
+      "last": true,
+      "totalPages": 0,
+      "totalElements": 0,
+      "sort": {
+        "sorted": true,
+        "unsorted": false,
+        "empty": false
+      },
+      "first": true,
+      "numberOfElements": 0,
+      "size": 50,
+      "number": 0,
+      "empty": true,
+      "advertencia": "La reutilización de los datos del Sistema Nacional de Publicidad de Subvenciones y Ayudas Públicas está sujeta a una serie de restricciones y consideraciones legales. Consulte el aviso legal en https://www.infosubvenciones.es/bdnstrans/GE/es/avisolegal.Además, el usuario debe ser consciente que la información presentada es de naturaleza dinámica, y que los datos pueden ser sometidos a correcciones, inserciones, modificaciones y eliminaciones en momentos posteriores a su extracción. Accesos al API del sistema Nacional de Publicidad de Subvenciones y Ayudas Públicas. La Administración Presupuestaria, para salvaguardar la protección del acceso libre e irrestricto de los ciudadanos a este Portal y a su información podrá adoptar medidas restrictivas de acceso al API ante situaciones de manifiesto abuso del servicio, riesgos de seguridad, o uso fraudulento de la información descargada, de acuerdo con las buenas prácticas de gestión de datos abiertos (https://datos.gob.es/es/blog/limitaciones-la-consulta-de-una-api) establecidas por el Ministerio para la Transformación Digital y de la Función Pública."
+    },
+    "732847": {
+      "content": [],
+      "pageable": {
+        "sort": {
+          "sorted": true,
+          "unsorted": false,
+          "empty": false
+        },
+        "pageNumber": 0,
+        "pageSize": 50,
+        "offset": 0,
+        "unpaged": false,
+        "paged": true
+      },
+      "last": true,
+      "totalElements": 0,
+      "totalPages": 0,
+      "first": true,
+      "sort": {
+        "sorted": true,
+        "unsorted": false,
+        "empty": false
+      },
+      "numberOfElements": 0,
+      "size": 50,
+      "number": 0,
+      "empty": true,
+      "advertencia": "La reutilización de los datos del Sistema Nacional de Publicidad de Subvenciones y Ayudas Públicas está sujeta a una serie de restricciones y consideraciones legales. Consulte el aviso legal en https://www.infosubvenciones.es/bdnstrans/GE/es/avisolegal.Además, el usuario debe ser consciente que la información presentada es de naturaleza dinámica, y que los datos pueden ser sometidos a correcciones, inserciones, modificaciones y eliminaciones en momentos posteriores a su extracción. Accesos al API del sistema Nacional de Publicidad de Subvenciones y Ayudas Públicas. La Administración Presupuestaria, para salvaguardar la protección del acceso libre e irrestricto de los ciudadanos a este Portal y a su información podrá adoptar medidas restrictivas de acceso al API ante situaciones de manifiesto abuso del servicio, riesgos de seguridad, o uso fraudulento de la información descargada, de acuerdo con las buenas prácticas de gestión de datos abiertos (https://datos.gob.es/es/blog/limitaciones-la-consulta-de-una-api) establecidas por el Ministerio para la Transformación Digital y de la Función Pública."
+    }
+  },
+  "concesionDeReal": {
+    "content": [
+      {
+        "id": 155935680,
+        "codConcesion": "SB155935680",
+        "fechaConcesion": "2026-08-03",
+        "beneficiario": "P4621400C AYUNTAMIENTO DE REAL DE MONTROI",
+        "instrumento": "SUBVENCIÓN y ENTREGA DINERARIA SIN CONTRAPRESTACIÓN ",
+        "importe": 622900,
+        "ayudaEquivalente": 622900,
+        "urlBR": "https://www.dival.es/sites/default/files/portal-de-transparencia/2024%2012%2004%20OGS.%20Consolidada.2025.CAS_.pdf",
+        "tieneProyecto": false,
+        "numeroConvocatoria": "754381",
+        "idConvocatoria": 955941,
+        "convocatoria": "Plan Abierto de Inversiones 2024 - 2027",
+        "descripcionCooficial": "Pla Obert d'Inversions 2024 - 2027",
+        "nivel1": "LOCAL",
+        "nivel2": "DIPUTACIÓN PROV. DE VALENCIA",
+        "nivel3": "DIPUTACIÓN PROVINCIAL DE VALENCIA",
+        "codigoInvente": null,
+        "idPersona": 5956298,
+        "fechaAlta": "2026-08-05"
+      }
+    ]
+  }
+}
