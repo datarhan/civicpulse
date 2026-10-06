@@ -118,6 +118,9 @@ export function evaluarAlarma(e: EntradaAlarma): Alert[] {
     sources: [],
     nightlyFailStreak: racha,
     integrity,
+    // Aquí no corre ninguna guarda que pueda salir 0 sin medir: lo que este
+    // vigilante no puede mirar ya es un aviso en `integrity`, no un cero.
+    sinComprobar: [],
   }
   const avisos = evaluateHealth(obs)
 

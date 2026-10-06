@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Every-two-days health digest → Telegram admin.
+# Daily health digest → Telegram admin.
 #
 # Replaces the transcription-only alerter: one notification for one bad night,
 # not one per subsystem. `check:transcription-health` stays as a standalone
@@ -7,7 +7,8 @@
 #
 # Covers: bot reachability, public site, stalled pipelines (transcription +
 # extraction, with the cause diagnosed), sources that stopped publishing,
-# nightly red streaks, and integrity failures.
+# nightly red streaks, integrity failures, and guards that exit 0 without
+# measuring («sin comprobar»: a weekly warning after seven days in a row).
 #
 # Install: bash scripts/cron-install-monitor-health.sh
 # Manual:  npm run monitor:health -- --dry-run --explain

@@ -583,6 +583,51 @@ only proves something against a guard that was green without it. The overlay
 injection of `check:veredictos` needs the gitignored base on disk; without it, it
 reports «not exercised» rather than a silence it did not measure.
 
+### The health digest: red, clean, or «sin comprobar»
+
+`monitor:health` runs every guard in its list and reads each one three ways
+(`clasificarGuarda` in `src/scraper/health-monitor.ts`): **red**, exit ≠ 0 — a 🔴
+integrity alert, even when the output also says SALTADO; **clean**, exit 0; or
+**«sin comprobar»**, exit 0 with the guard saying in its own words that it
+measured nothing, or nothing of one part: «SALTADO» or «NO COMPROBADO». Until
+2026-10-06 the digest knew only the first two. `runCheck` read any exit 0 as
+clean, so `check:queues` without `editorial/`, `check:verified-compose` and
+`check:veredictos` without the gitignored base, `check:solicitudes` without a
+manifest, `check:basemap` and `check:wms` with their service down and
+`check:officials-corrections` against a 403 all reached the screen as
+«integridad: sin fallos» and «✓ sin avisos». Each guard printed its skip
+honestly; the digest folded it in.
+
+Now the `--explain` line never says «sin fallos» while one is pending, each skip
+prints its own reason underneath, and the closing line drops its ✓ («sin avisos,
+pero … sin comprobar … — eso no es un visto bueno»). The match is strict on
+purpose — upper case, whole words — because the same family appears in lower case
+in every night's clean output: `no-comprobado 0` in officials-corrections'
+counts, «saltados 24 binarios» in `check:privado`. **A guard that gains an exit-0
+path that measures nothing must print one of the two markers**; worded any other
+way, the digest reads it as clean.
+
+**When a skip alerts.** Not on its first day: the chronic case is a public site
+answering 403, and a red every night for that teaches everyone to mute the
+channel, which mutes the real alerts with it. Not never, either: that is a guard
+that stopped guarding, visible only in a log. After 7 consecutive calendar days
+the same guard raises a 🟠 `sin-comprobar:<check>` warning with its own reason
+line — which names the part it skipped, such as veredictos' base comparison or
+officials-corrections' `vigencia` axis — the day the streak began, and the two
+ways out: make it measure again, or retire or redefine that part in the guard.
+Alone in a digest it repeats weekly rather than every 3 days, so a chronic 403
+costs one message a week; beside any other alert the digest keeps that alert's
+3-day cadence and the skip rides along at no extra cost. The first day the guard
+measures clears the streak, and so does a red day, since that red already has
+someone looking at the guard. Streak start dates live in
+`.health-monitor-state.json` (`sinComprobarDesde`), written only by real runs:
+`--dry-run` writes nothing. Skips still inside their first week are listed in a
+«Sin comprobar» block at the end of any digest that goes out, never in its
+fingerprint, so a skip appearing or clearing does not resend an unchanged
+digest. Both cadences count calendar days, not multiples of 24 hours: a daily
+run that starts a minute earlier than the one it is compared with no longer
+waits an extra day.
+
 ## Git hooks
 
 - **pre-commit** — `lint`, `format:check`, `check:json`, `check:secrets --staged`,
