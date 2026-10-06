@@ -225,7 +225,15 @@ export const nombraAUnaPersona = (editor: string): boolean => rechazoDeFirma(edi
  * cola también compone `"<tu nombre>"`; `retract-vote`, con el `--editor "…"`
  * con que el validador de pleno-votes.ts pide devolver un voto retirado; el
  * `--reviewer` de `review:finding-exception`, y seis que sólo traen el hueco
- * en su línea de uso. tests/firma-sin-rellenar-cli.test.ts las lanza una a una.
+ * en su línea de uso. Hasta el 06-10-2026 la aceptaban también las
+ * promociones —el `--curator` de `promote-claim`, `promote-place`,
+ * `promote-relation`, `promote-report`, `promote-indicador` y
+ * `promote-social`—, el de `entity-alias` y `journalist:archive`, y el `--by`
+ * de `override-speaker-assignment`: una promoción publica y es tier C, y
+ * firmada con el hueco salía con el hueco por curador. Su hueco es el de su
+ * línea de uso, el mismo que imprimen `suggest:place-geocode`,
+ * `suggest:officials-social` y la cola de `draft:indicadores`.
+ * tests/firma-sin-rellenar-cli.test.ts las lanza una a una.
  *
  * No pide una persona: esas vías las firma el operador con la cuenta de rol
  * (`civicpulse-curator`), y esa convención es suya. Rechaza sólo lo que no

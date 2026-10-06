@@ -1595,14 +1595,13 @@ describe('promote-indicador', () => {
   const CUERPO =
     'Un cuerpo de prueba para la firma de una ficha de eficiencia: dice la cifra, el periodo ' +
     'y la fuente, y nunca se publica. Lo escribe la prueba, no el detector.'
-  const orden = (firma: string) => [
+  const orden = (firma: string, cuerpo = ['--cuerpo', CUERPO]) => [
     candidato!.id,
     '--curator',
     firma,
     '--titulo',
     TITULAR,
-    '--cuerpo',
-    CUERPO,
+    ...cuerpo,
   ]
   const conDatos = () =>
     montar(
@@ -1615,12 +1614,14 @@ describe('promote-indicador', () => {
     expect(candidato).toBeTruthy()
   })
 
-  it.each(HUECOS)('con «%s» se niega antes de leer nada', (hueco) => {
+  it.each(HUECOS)('con «%s» se niega antes de leer nada, ni el cuerpo', (hueco) => {
+    // El cuerpo, de un fichero que no existe: si lo leyera, fallaría por eso.
     const dir = montar('ficha-firma-', ilegibles('promises.json', 'eficiencia-findings.json'), {
       [COLA]: ILEGIBLE,
     })
     try {
-      seNegoPorElHueco(lanzar(SCRIPT, dir, orden(hueco)), '--curator', hueco)
+      const r = lanzar(SCRIPT, dir, orden(hueco, ['--cuerpo-file', 'editorial/cuerpo.md']))
+      seNegoPorElHueco(r, '--curator', hueco)
     } finally {
       limpiar(dir)
     }

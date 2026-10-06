@@ -21,10 +21,16 @@
  *
  * Every promotion creates a git-auditable record. Mutations only via
  * this CLI or by PR-editing pleno-findings.json directly.
+ *
+ * `--curator` acepta la cuenta de rol —la que pone por defecto— y rechaza,
+ * antes de leer nada, el hueco de una orden copiada sin rellenar —el `<name>`
+ * de arriba—, que firmaría la ficha publicada: «editado por <name>»
+ * (`rechazoDeMarcador`, src/scraper/firma-de-persona.ts).
  */
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { sellar } from '../src/scraper/built-from'
 import { DATA_GRAPH } from '../src/scraper/data-graph'
+import { rechazoDeMarcador } from '../src/scraper/firma-de-persona'
 import { resolve } from 'node:path'
 import {
   validateFindingsSnapshot,
@@ -234,6 +240,13 @@ function parseArgs(argv: string[]): {
   }
   if (opts.summary.length < 40) {
     process.stderr.write('[promote-claim] --summary must be ≥40 chars\n')
+    process.exit(2)
+  }
+  // Antes de leer nada: el hueco no firma una ficha publicada. Sólo el hueco;
+  // la cuenta de rol, sí (`rechazoDeMarcador`).
+  const hueco = rechazoDeMarcador(opts.curator)
+  if (hueco) {
+    process.stderr.write(`[promote-claim] --curator: ${hueco}\n`)
     process.exit(2)
   }
   return opts

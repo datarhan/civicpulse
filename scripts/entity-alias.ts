@@ -10,10 +10,15 @@
  * public/data/entity-overrides.json (validated: no self-aliases, no
  * chains), then rebuilds public/data/entities.json so the merge is live
  * immediately. Git history is the audit trail — commit both files.
+ *
+ * `--curator` acepta el `curator` que pone por defecto y rechaza, antes de leer
+ * nada, el hueco de una orden copiada sin rellenar —el `…` de la línea de uso—
+ * (`rechazoDeMarcador`, src/scraper/firma-de-persona.ts).
  */
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { execFileSync } from 'node:child_process'
+import { rechazoDeMarcador } from '../src/scraper/firma-de-persona'
 import {
   normalizeCompanyKey,
   validateEntityOverrides,
@@ -43,6 +48,11 @@ function main() {
   if (!variantRaw || !canonicalRaw) {
     bail('Usage: entity-alias -- "<variant>" "<canonical>" [--note "…"] [--curator "…"]')
   }
+  // Antes de leer nada: el hueco no firma un alias publicado. Sólo el hueco; el
+  // `curator` por defecto, sí (`rechazoDeMarcador`).
+  const curator = getFlag('--curator') ?? 'curator'
+  const hueco = rechazoDeMarcador(curator)
+  if (hueco) bail(`--curator: ${hueco}`)
   const variantKey = normalizeCompanyKey(variantRaw)
   const canonicalKey = normalizeCompanyKey(canonicalRaw)
   if (!variantKey || !canonicalKey) bail('names normalize to empty keys')
@@ -85,7 +95,7 @@ function main() {
         variantKey,
         canonicalKey,
         note: getFlag('--note') ?? undefined,
-        curator: getFlag('--curator') ?? 'curator',
+        curator,
         addedAt: new Date().toISOString().slice(0, 10),
       },
     ],

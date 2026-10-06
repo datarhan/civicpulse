@@ -20,10 +20,16 @@
  * the curator passes --ack-legal-review explicitly. That flag is the
  * libel-discipline gate: it forces a human to confirm a legal review
  * has happened before the report goes public.
+ *
+ * `--curator` acepta la cuenta de rol —la que pone por defecto— y rechaza,
+ * antes de leer nada, el hueco de una orden copiada sin rellenar —el `<name>`
+ * de arriba—, que firmaría el `promotedBy` del informe publicado
+ * (`rechazoDeMarcador`, src/scraper/firma-de-persona.ts).
  */
 import { existsSync, readFileSync } from 'node:fs'
 import { loadSnapshot, writeJsonChunk, writeJsonFile, writeSnapshot } from './lib/snapshot-io'
 import { resolve } from 'node:path'
+import { rechazoDeMarcador } from '../src/scraper/firma-de-persona'
 import {
   isJournalistFrozen,
   validateAssignmentsSnapshot,
@@ -93,6 +99,13 @@ function parseArgs(argv: string[]): Opts {
     } else if (!o.assignmentId) o.assignmentId = a
   }
   if (!o.assignmentId) usage()
+  // Antes de leer nada, ni la congelación: el hueco no firma un informe
+  // publicado. Sólo el hueco; la cuenta de rol, sí (`rechazoDeMarcador`).
+  const hueco = rechazoDeMarcador(o.curator)
+  if (hueco) {
+    process.stderr.write(`[promote-report] --curator: ${hueco}\n`)
+    process.exit(2)
+  }
   return o
 }
 
