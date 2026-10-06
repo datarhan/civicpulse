@@ -1208,12 +1208,28 @@ export interface CandidateShortlist {
 export const NOTAS_DEL_IMPORTE = ['(matches claim)', '(close to claim)'] as const
 
 /**
+ * Cuántas convocatorias de BDNS caben, como mucho, en una lista corta léxica: las
+ * de más puntuación.
+ *
+ * Leídas por sus nombres reales, las filas de BDNS emparejan también por las
+ * palabras de oficio de una convocatoria —«acuerdo», «junta de gobierno local»,
+ * «ejercicio 2025»—. Medido el 06-10-2026 sobre las 7.564 declaraciones, sin
+ * tope: 145 (1,9 %) perdían algún contrato o promesa de su lista de 8, y en 41
+ * las ocho plazas eran convocatorias. Con dos, las que pierden algo son 90
+ * (1,2 %) y ninguna pierde más de dos (tests/claim-verifier-bdns-lista-corta.test.ts).
+ * En el modo híbrido se topa la mitad léxica, que es de donde vienen las nuevas:
+ * lo que traiga la semántica llega como antes.
+ */
+export const TOPE_BDNS_EN_LISTA = 2
+
+/**
  * Build the top-K candidate list for an LLM verifier pass. Same scoring
  * mechanics the deterministic verifier uses internally, but we keep all
  * candidates above similarity ≥0.20 (vs the 0.65 deterministic threshold)
  * so semantic-but-not-lexical near-misses surface to the LLM.
  *
- * Returned list is sorted by similarity descending and capped at topK.
+ * Returned list is sorted by similarity descending and capped at topK, with
+ * no more than TOPE_BDNS_EN_LISTA grants in it.
  */
 export function shortlistCandidates(inputs: VerifierInputs, topK = 8): CandidateShortlist[] {
   const claim = inputs.claim
@@ -1276,9 +1292,13 @@ export function shortlistCandidates(inputs: VerifierInputs, topK = 8): Candidate
     }
   }
 
-  // Sort by similarity desc, take top K.
+  // Sort by similarity desc, take top K — con TOPE_BDNS_EN_LISTA convocatorias
+  // como mucho, las de más puntuación; sus plazas pasan a lo siguiente.
   out.sort((a, b) => b.similarity - a.similarity)
-  return out.slice(0, topK)
+  let convocatorias = 0
+  return out
+    .filter((c) => c.kind !== 'bdns' || ++convocatorias <= TOPE_BDNS_EN_LISTA)
+    .slice(0, topK)
 }
 
 // ─── Backend-aware dispatcher ───────────────────────────────────────────────

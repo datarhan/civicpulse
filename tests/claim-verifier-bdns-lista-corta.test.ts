@@ -30,6 +30,9 @@ const FX = JSON.parse(
 
 const FICHA_659857 = 'https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocatoria/659857'
 
+/** Como mucho, dos convocatorias por lista corta (el tope, al final del fichero). */
+const TOPE = 2
+
 const bdnsDe = (lista: ReturnType<typeof shortlistCandidates>) =>
   lista.filter((c) => c.kind === 'bdns')
 
@@ -43,21 +46,37 @@ const deSuDescripcion = (f: BdnsItem) =>
     entities: {},
   }) as never
 
-/** El candidato que la lista corta léxica hace de la fila, buscada por su descripción. */
-const candidatoDe = (f: BdnsItem, filas: BdnsItem[]) =>
-  bdnsDe(shortlistCandidates({ claim: deSuDescripcion(f), bdns: { items: filas } })).find(
-    (c) => c.ref === f.sourceUrl,
-  )
+/** El candidato que la lista corta léxica hace de la fila, sola, buscada por su descripción. */
+const aSolasDe = (f: BdnsItem) =>
+  bdnsDe(shortlistCandidates({ claim: deSuDescripcion(f), bdns: { items: [f] } }))[0]
 
-/** Cada fila, buscada con su propia descripción: ¿la trae la lista corta? */
+/**
+ * Cada fila, buscada con su propia descripción entre todas: ¿la trae la lista
+ * corta? Con el tope de dos, una fila puede quedarse fuera por empate —la
+ * subvención nominativa de València la Vella se repite cada año casi con las
+ * mismas palabras— y eso no es perderla. Perdida es la que no se lee sola, o la
+ * que se queda fuera habiendo dentro una convocatoria que puntúa MENOS que ella.
+ */
 function barrido(filas: BdnsItem[]) {
   let evaluadas = 0
+  let fueraPorEmpate = 0
   const perdidas: string[] = []
   for (const f of filas) {
     evaluadas++
-    if (!candidatoDe(f, filas)) perdidas.push(f.bdnsCode)
+    const sola = aSolasDe(f)
+    if (!sola) {
+      perdidas.push(f.bdnsCode)
+      continue
+    }
+    const dentro = bdnsDe(
+      shortlistCandidates({ claim: deSuDescripcion(f), bdns: { items: filas } }),
+    )
+    if (dentro.some((c) => c.ref === f.sourceUrl)) continue
+    if (dentro.length === TOPE && dentro.every((c) => c.similarity >= sola.similarity)) {
+      fueraPorEmpate++
+    } else perdidas.push(f.bdnsCode)
   }
-  return { evaluadas, perdidas }
+  return { evaluadas, fueraPorEmpate, perdidas }
 }
 
 describe('el reproductor se da', () => {
@@ -87,9 +106,12 @@ describe('una declaración sobre una convocatoria recibe la convocatoria', () =>
 
 describe('cada fila es alcanzable por su propia descripción', () => {
   it('en la fixture congelada: evaluadas 178, perdidas ninguna', () => {
-    const { evaluadas, perdidas } = barrido(FX.bdns)
+    const { evaluadas, fueraPorEmpate, perdidas } = barrido(FX.bdns)
     expect(evaluadas).toBe(178)
     expect(perdidas).toEqual([])
+    // 477563: su descripción está entera en las de 625223, 567783 y 535256, que
+    // también puntúan 1 y van antes en el fichero.
+    expect(fueraPorEmpate).toBe(1)
   })
 
   it('en el snapshot publicado: evaluadas = stats.total > 0, perdidas ninguna', () => {
@@ -123,7 +145,7 @@ describe('una convocatoria llega al modelo igual, la traiga la mitad que la trai
     const distintas: string[] = []
     for (const f of filas) {
       comparadas++
-      const c = candidatoDe(f, filas)
+      const c = aSolasDe(f)
       if (!c || delCorpus.get(c.ref) !== c.snippet) distintas.push(f.bdnsCode)
     }
     return { comparadas, distintas }
@@ -142,7 +164,7 @@ describe('una convocatoria llega al modelo igual, la traiga la mitad que la trai
   })
 
   it('el snippet es objeto · órgano, como en el corpus de hoy', () => {
-    expect(candidatoDe(fila('659857'), FX.bdns)?.snippet).toBe(
+    expect(aSolasDe(fila('659857'))?.snippet).toBe(
       'BASES REGULADORAS DE LAS AYUDAS ECONÓMICAS DE EMERGENCIA SOCIAL DEL AYUNTAMIENTO DE RIBA-ROJA DE TÚRIA EJERCICIOS 2022-2025 · LOCAL · RIBA-ROJA DE TÚRIA · AYUNTAMIENTO DE RIBA-ROJA DE TÚRIA',
     )
   })
@@ -151,7 +173,7 @@ describe('una convocatoria llega al modelo igual, la traiga la mitad que la trai
     // La fila es de Riba-roja d'Ebre, otro municipio: eso es otro defecto, del
     // raspador. Aquí cuenta que es la única cuyo `organ` acaba en espacios.
     expect(fila('732847').organ).toMatch(/\s$/)
-    expect(candidatoDe(fila('732847'), FX.bdns)?.snippet).toBe(
+    expect(aSolasDe(fila('732847'))?.snippet).toBe(
       "Primera distribución del Fondo de Transición Nuclear 2023 PENTA I Riba-roja d'Ebre · AUTONOMICA · CATALUÑA · DEPARTAMENT D'EMPRESA I TREBALL",
     )
   })
@@ -173,7 +195,6 @@ describe('una convocatoria llega al modelo igual, la traiga la mitad que la trai
 const FX_TOPE = JSON.parse(
   readFileSync(join(__dirname, 'fixtures/bdns_tope_2026-10-06.json'), 'utf8'),
 ) as { claim: never; tenders: unknown }
-const TOPE = 2
 
 describe('el tope: como mucho dos convocatorias por lista, las de más puntuación', () => {
   const aSolas = (f: BdnsItem) =>
