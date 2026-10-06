@@ -181,7 +181,18 @@ TARGETS=$(TRANSCRIBE_BLOCKLIST="$TRANSCRIBE_BLOCKLIST" node -e '
   process.stdout.write(t.map(x=>x.id).join("\n"));
 ')
 
-NEW=0
+# Un recuento por trabajo, cada uno con su nombre en la última línea y en el
+# asunto del commit. Hasta el 06-10-2026 había uno solo, `NEW`, que sumaba las
+# extracciones de las dos ramas —la de un pleno recién transcrito y la
+# re-extracción tras un mapa de hablantes—, y esos dos renglones lo llamaban
+# «transcribed»: del 28-08 al 28-09-2026, doce commits dijeron haber transcrito
+# uno o dos plenos sin añadir una sola transcripción. Eran noches de mapa. Y al
+# revés, por construcción aunque no conste ningún caso, una transcripción cuya
+# extracción fallaba se comiteaba bajo «0».
+TRANSCRIBED=0   # transcripciones que Whisper terminó
+EXTRACTED=0     # extracciones de claims sobre esas transcripciones
+MAPPED=0        # mapas de hablantes escritos, también los parciales
+REEXTRACTED=0   # re-extracciones tras un mapa
 COUNT=0
 # Counted so the final line can say it. A map that covers part of a session is
 # a useful, resumable result — but it is not a ✓, and 2026-08-11 shipped one
@@ -215,6 +226,7 @@ if [ -n "$TARGETS" ]; then
       if WHISPER_BATCH_SIZE=1 bash scripts/transcribe-pleno.sh "$id"; then ok=1; fi
     fi
     if [ "$ok" = 1 ]; then
+      TRANSCRIBED=$((TRANSCRIBED+1))
       log "extracting claims from $id ($LLM_BACKEND/${CLAUDE_CODE_MODEL:-$AGY_MODEL} · \$0 backends only)…"
       # Same $0 policy the auto-curate step below already enforces. The
       # transcription step above legitimately needs OPENAI_API_KEY, so the key
@@ -225,7 +237,7 @@ if [ -n "$TARGETS" ]; then
       # credits.) Strip the metered keys for THIS command only, so a throttled
       # $0 backend defers the extraction instead of paying for it.
       if env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY npm run extract:pleno-claims -- "$id"; then
-        NEW=$((NEW+1)); log "✓ $id claims extracted"
+        EXTRACTED=$((EXTRACTED+1)); log "✓ $id claims extracted"
       else
         log "warn: claim extract failed for $id — transcript kept, claims incomplete"
       fi
@@ -298,7 +310,6 @@ if [ "$SPEAKER_MAP_CALL_BUDGET" -gt 0 ] && [ -n "${GEMINI_API_KEY:-}" ]; then
   MAP_TARGETS=$(npm run --silent speaker-map:backlog 2>/dev/null || true)
   if [ -n "$MAP_TARGETS" ]; then
     REMAINING="$SPEAKER_MAP_CALL_BUDGET"
-    MAPPED=0
     PARTIAL=$(npm run --silent speaker-map:backlog -- --why 2>/dev/null | grep -c parcial || true)
     log "speaker-map backlog: $(echo "$MAP_TARGETS" | wc -l | tr -d ' ') session(s) unfinished ($PARTIAL of them partial, resuming) · budget ${SPEAKER_MAP_CALL_BUDGET} call(s)"
     while IFS= read -r mid; do
@@ -339,8 +350,8 @@ if [ "$SPEAKER_MAP_CALL_BUDGET" -gt 0 ] && [ -n "${GEMINI_API_KEY:-}" ]; then
           # which is honest rather than wrong.
           log "· $mid mapeado, re-extracción EN ESPERA (sin backend de texto) — el mapa queda guardado"
         elif env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY npm run extract:pleno-claims -- "$mid"; then
-          NEW=$((NEW+1)); log "✓ $mid claims re-extracted with map attribution"
-          # El sello NO va aquí. Ver el bloque `NEW -gt 0` más abajo.
+          REEXTRACTED=$((REEXTRACTED+1)); log "✓ $mid claims re-extracted with map attribution"
+          # El sello NO va aquí. Ver el bloque `EXTRACTIONS -gt 0` más abajo.
         else
           log "warn: re-extract failed for $mid — map kept, claims still unattributed"
         fi
@@ -361,8 +372,12 @@ fi
 
 # ---- re-verify only if new claims landed (overlay-safe) ---------------
 VERIFY_FALLO=""
-if [ "$NEW" -gt 0 ]; then
-  log "re-verifying claims ($NEW new pleno(s)) — overlay-safe…"
+# La puerta cuenta EXTRACCIONES, de las dos ramas, porque es lo que mueve los
+# claims. Una transcripción cuya extracción falló no ha cambiado nada que
+# verificar ni nada que sellar.
+EXTRACTIONS=$((EXTRACTED + REEXTRACTED))
+if [ "$EXTRACTIONS" -gt 0 ]; then
+  log "re-verifying claims ($EXTRACTED extracted · $REEXTRACTED re-extracted) — overlay-safe…"
   # Un verify que falla NO tumba la noche. Sale con error cuando su
   # recomposición aborta, y sus guardas abortan ANTES de tocar lo publicado
   # (salvo los trozos, que lo dice él mismo). Hasta el 04-10-2026 salía 0 en
@@ -375,13 +390,14 @@ if [ "$NEW" -gt 0 ]; then
     log "FALLO: verify:pleno-claims — lo publicado NO se recompuso (el motivo, arriba)." \
       "Lo extraído se comitea igual; recomponer lo decide una persona"
   fi
-  # EL SELLO, y aquí porque `NEW` cuenta las extracciones que terminaron bien
-  # vengan de donde vengan.
+  # EL SELLO, y aquí porque `EXTRACTIONS` cuenta las extracciones que
+  # terminaron bien vengan de donde vengan.
   #
   # Vivía dentro de la rama del mapa de voces: sólo se sellaba si aparecía un
   # mapa NUEVO **y** la re-extracción posterior iba bien. Una extracción normal
-  # —la de la línea 216, el caso corriente— hacía el trabajo y no sellaba nada,
-  # así que un nodo que sólo necesita su PRIMER sello no lo recibía nunca.
+  # —la del bucle de transcripción, el caso corriente— hacía el trabajo y no
+  # sellaba nada, así que un nodo que sólo necesita su PRIMER sello no lo
+  # recibía nunca.
   # `pleno-claims-suggestions.json` llevaba meses en el parte de `refresh` por
   # eso, y su motivo no era «una entrada se movió» sino `no-builtFrom`.
   #
@@ -531,7 +547,7 @@ fi
 
 NEW_FINDINGS=$(git diff HEAD -- public/data/pleno-findings.json | grep -cE '^\+ +"id": "f-' || true)
 cron_git_commit_pathspec "$(cat <<EOF
-data: /hallazgos pipeline · ${NEW} pleno(s) transcribed · ${NEW_FINDINGS} new finding(s)
+data: /hallazgos pipeline · ${TRANSCRIBED} pleno(s) transcribed · ${EXTRACTED} extracted · ${MAPPED} speaker map(s) · ${REEXTRACTED} re-extracted · ${NEW_FINDINGS} new finding(s)
 
 Automated by scripts/hallazgos-pipeline.sh (launchd, Mon + Thu).
 transcribe(${WHISPER_ENGINE}) → extract(${LLM_BACKEND}/${CLAUDE_CODE_MODEL:-$AGY_MODEL}) → verify(overlay-safe) → auto-curate.
@@ -593,7 +609,7 @@ fi
 [ "$TEXT_BACKEND" != ok ] &&
   RUN_VERDICT="${RUN_VERDICT} · DEGRADADA: sin backend de texto (extracción y auto-curación en espera) — claude: ${TEXT_BACKEND_MOTIVO}"
 
-log "done · ${NEW} transcribed · ${NEW_FINDINGS} new finding(s) pushed${RUN_VERDICT}"
+log "done · ${TRANSCRIBED} transcribed · ${EXTRACTED} extracted · ${MAPPED} speaker map(s) · ${REEXTRACTED} re-extracted · ${NEW_FINDINGS} new finding(s) pushed${RUN_VERDICT}"
 if [ -n "$RUN_VERDICT" ]; then
   log "   la pasada NO fue limpia — \`npm run check:runs\` lo detalla:"
   # `|| true` no es decorativo. El veredicto también lo ponen un mapa parcial, el
