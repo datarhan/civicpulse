@@ -47,6 +47,29 @@ describe('/presupuesto — la entrada de contratación no atribuye a las cuatro 
     })
   }
 
+  // El titular decía «Lo que se ha adjudicado, cada cifra con su periodo»: ni
+  // un anuncio de TED, ni una convocatoria de la BDNS, ni una ficha de obra son
+  // algo adjudicado, y las obras no llevan periodo — la mitad de sus fichas
+  // (las del FEDER) no traen `fechaEjecucion`. Ahora nombra lo que cuenta.
+  const TITULAR = {
+    es: { nombra: /^Contratos, obras, anuncios y convocatorias$/, viejo: /adjudicado/i },
+    ca: { nombra: /^Contractes, obres, anuncis i convocatòries$/, viejo: /adjudicat/i },
+  }
+  for (const [locale, espera] of Object.entries(TITULAR)) {
+    it(`${locale}: el titular nombra las cuatro cosas y no las llama adjudicadas`, () => {
+      const titular = CATALOGUE[locale]['presupuesto.contra.title']
+      expect(typeof titular).toBe('string')
+      expect(titular).toMatch(espera.nombra)
+      expect(titular).not.toMatch(espera.viejo)
+      expect(titular).not.toMatch(/periodo|període/i)
+    })
+  }
+
+  it('la entrada exceptúa a las obras al decir que cada recuento lleva su periodo', () => {
+    expect(CATALOGUE.es[CLAVE]).toMatch(/periodo que abarca, salvo las obras/)
+    expect(CATALOGUE.ca[CLAVE]).toMatch(/període que abasta, llevat de les obres/)
+  })
+
   it('sigue sin cifras vivas: la frase no lleva números', () => {
     for (const locale of Object.keys(IDIOMAS)) {
       expect(CATALOGUE[locale][CLAVE]).not.toMatch(/\d/)
