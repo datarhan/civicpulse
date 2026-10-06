@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-10-04T07:37:32.197Z",
-  "composedAt": "2026-10-06T07:29:32.620Z",
+  "composedAt": "2026-10-06T12:01:23.311Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
@@ -30712,7 +30712,7 @@
         "plenoDate": "2026-05-11",
         "segmentIndex": 38,
         "type": "acusacion_publica",
-        "speakerGroup": null,
+        "speakerGroup": "PSOE",
         "verbatim": "Que compete a la Generalitat Valenciana. Donde gobierna el Partido Popular.",
         "context": "La realización. De esa pasarela. Que es la que verdaderamente. Va a dar solución. De forma segura. A la situación. Que tienen los vecinos.",
         "topic": "movilidad",
@@ -30722,7 +30722,11 @@
         "accusationSubtype": "factual",
         "confidence": 0.8,
         "reasoning": "Se hace una afirmación sobre la responsabilidad de la Generalitat Valenciana, que está gobernada por el Partido Popular, en relación a la realización de la pasarela, lo que puede ser verificado a través de datos sobre el gobierno actual.",
-        "requiresHumanApproval": true
+        "requiresHumanApproval": true,
+        "atribucionFirmada": {
+          "desde": 1946,
+          "hasta": 2203
+        }
       },
       "verification": {
         "claimId": "10yl550-038-acu-10a7a2",

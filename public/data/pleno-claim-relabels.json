@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-04T15:12:11.051Z",
+  "generatedAt": "2026-10-06T12:01:23.165Z",
   "entries": {
     "10yl550-054-acu-a487ce": {
       "speakerGroup": "PSOE",
@@ -92,6 +92,19 @@
       "reason": "La intervención no es del PP: está en el turno en que el grupo de gobierno responde al portavoz popular, el mismo turno del que proceden las citas [1] y [2] de la ficha f-2025-12-01-cit-bef239 (transcripción, 4.016–4.095 s; la cita, 4.061–4.064 s). Mismo cambio que firma esa ficha, cita [0] (bitácora, 30-09-2026).",
       "editor": "Sergei Lutchenko",
       "appliedAt": "2026-10-04T15:12:11.051Z"
+    },
+    "10yl550-038-acu-10a7a2": {
+      "speakerGroup": "PSOE",
+      "from": null,
+      "literal": "literal firmado · sha256:19bf4396f816",
+      "segundos": {
+        "desde": 1946,
+        "hasta": 2203
+      },
+      "fuente": "current",
+      "reason": "La intervención es del grupo de gobierno: responde a la moción del PP sobre la conexión ciclopeatonal con Valencia la Vella en un mismo turno que empieza cuando la presidencia da la palabra a un concejal del gobierno, cuyo grupo confirma el firmante, y se dirige al PP en segunda persona (transcripción, 1.946–2.203 s; la cita, 2.001–2.016 s). No se ha escuchado el vídeo. Es la atribución que publica la ficha f-2026-05-11-cit-7f7619, cita [3].",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-06T12:01:23.165Z"
     }
   }
 }
