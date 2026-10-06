@@ -145,8 +145,8 @@ export interface PlenoClaim {
    */
   speakerGroup: SpeakerGroup | null
   /**
-   * Sólo cuando `speakerGroup` lo firmó una persona que escuchó la sesión, y no
-   * lo puso el mapa de voces: el tramo escuchado, en segundos. Lo estampa la
+   * Sólo cuando `speakerGroup` lo firmó una persona, y no lo puso el mapa de
+   * voces: el tramo de la sesión que sostiene la firma, en segundos. Lo estampa la
    * composición desde `pleno-claim-relabels.json` (atribucion-firmada.ts); el
    * extractor nunca lo escribe.
    */

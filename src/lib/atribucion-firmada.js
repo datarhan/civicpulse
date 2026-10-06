@@ -1,11 +1,12 @@
 // @ts-check
 /**
- * El tramo escuchado de una atribución firmada, como se lee.
+ * El tramo de una atribución firmada, como se lee.
  *
  * El grupo de una declaración lo pone el mapa de voces o, cuando el mapa no
- * acredita quién hablaba, una persona que escuchó la sesión y lo firmó
+ * acredita quién hablaba, una persona que lo firmó —tras escuchar la sesión o,
+ * si no, diciéndolo en su motivo—
  * (`pleno-claim-relabels.json`, src/scraper/atribucion-firmada.ts). La
- * composición estampa `atribucionFirmada` con el tramo escuchado sólo en la
+ * composición estampa `atribucionFirmada` con el tramo sólo en la
  * segunda. Aquí se escribe como lo teclea quien coteja en el reproductor del
  * pleno; las palabras de alrededor son del catálogo (`MarcaDeFirma`).
  */

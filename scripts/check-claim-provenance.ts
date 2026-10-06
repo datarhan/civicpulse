@@ -198,7 +198,7 @@ function main() {
     ['sin-publicar', 'la evidencia sostiene uno que no publicamos (aditivo)'],
     ['partido-distinto', 'publicamos el partido EQUIVOCADO'],
     ['sin-mapa', 'sin mapa: no se juzga'],
-    ['firmada', 'la firmó una persona tras escuchar la sesión: no se juzga contra el mapa'],
+    ['firmada', 'la firmó una persona, con su motivo: no se juzga contra el mapa'],
   ]
   for (const [k, label] of A) {
     console.log(`    ${String(t.attribution[k] ?? 0).padStart(5)}  ${k.padEnd(18)} ${label}`)

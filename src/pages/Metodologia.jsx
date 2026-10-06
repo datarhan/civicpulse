@@ -1290,15 +1290,18 @@ export default function Metodologia() {
               <strong>sin grupo</strong>, y eso es una respuesta, no un fallo.
             </p>
             <p id="atribucion-firmada" style={{ margin: '8px 0 0', scrollMarginTop: 24 }}>
-              <strong>Hay una segunda vía, y sólo esa</strong>: una persona escucha la sesión y
-              firma con su nombre el grupo de quien habla, con el tramo de la grabación en segundos
-              y cómo se sabe —la frase con que la presidencia le dio la palabra, o que quien habla
-              es la propia presidencia—. Antes de aceptarla se comprueba que las palabras de la
-              declaración constan en ese tramo de una transcripción de la sesión. La firma no
-              reescribe el registro: se guarda aparte, con lo que la declaración decía al firmarse,
-              y la compilación la aplica encima; si el registro cambia por su cuenta, la firma deja
-              de aplicarse y la declaración no publica un grupo que la contradiga. Sólo escribe
-              grupos con varios concejales. Esas declaraciones llevan la marca «firmado».
+              <strong>Hay una segunda vía, y sólo esa</strong>: una persona firma con su nombre el
+              grupo de quien habla, con el tramo de la grabación en segundos y cómo se sabe —la
+              frase con que la presidencia le dio la palabra, o que quien habla es la propia
+              presidencia—. Lo firma tras escuchar ese tramo o, si no lo ha escuchado, desde la
+              transcripción y su propia identificación del grupo, y entonces lo dice el motivo de la
+              firma, que se publica con ella (<code>pleno-claim-relabels.json</code>). Antes de
+              aceptarla se comprueba que las palabras de la declaración constan en ese tramo de una
+              transcripción de la sesión. La firma no reescribe el registro: se guarda aparte, con
+              lo que la declaración decía al firmarse, y la compilación la aplica encima; si el
+              registro cambia por su cuenta, la firma deja de aplicarse y la declaración no publica
+              un grupo que la contradiga. Sólo escribe grupos con varios concejales. Esas
+              declaraciones llevan la marca «firmado».
             </p>
             <p style={{ margin: '8px 0 0' }}>
               La identificación individual (concejal concreto) sigue siendo una señal secundaria (

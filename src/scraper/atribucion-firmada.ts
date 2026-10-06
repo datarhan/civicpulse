@@ -1,6 +1,7 @@
 /**
  * La atribución firmada: el grupo de quien habla en una declaración, escrito
- * por una persona que escuchó la sesión.
+ * por una persona que escuchó la sesión o, si no la escuchó, que lo dice en su
+ * motivo (lo firma desde la transcripción y su propia identificación del grupo).
  *
  * ─────────────────────────────────────────────────────────────────────────────
  * POR QUÉ UN QUINTO ESTRATO
