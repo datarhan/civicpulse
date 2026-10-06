@@ -1425,11 +1425,11 @@ export default function Metodologia() {
             {/* 06-10-2026: el corpus cortaba `título · €importe · estado` a 230 caracteres, y
                 el motor no vio los 35.252,87 € de k4olcs-018-afi-1077bc, que coincidían al
                 céntimo (src/scraper/snippet-de-contrato.ts). */}
-            Desde el 6 de octubre de 2026, el extracto de un contrato —el que lee esta pasada, y el
-            que lee el motor de más abajo— lleva enteros su estado, sus importes de adjudicación y
-            de licitación, con y sin IVA, su adjudicataria y sus fechas, y lo único que se recorta
-            es el título: hasta entonces se cortaba todo a 230 caracteres, y en un contrato de
-            título largo el corte se comía el importe y el estado, de modo que el modelo juzgaba sin
+            Desde octubre de 2026, el extracto de un contrato —el que lee esta pasada, y el que lee
+            el motor de más abajo— lleva enteros su estado, sus importes de adjudicación y de
+            licitación, con y sin IVA, su adjudicataria y sus fechas, y lo único que se recorta es
+            el título: hasta entonces se cortaba todo a 230 caracteres, y en un contrato de título
+            largo el corte se comía el importe y el estado, de modo que el modelo juzgaba sin
             verlos. Lo que el modelo ve respaldado <strong>no se publica solo</strong>: queda como
             propuesta de subir el veredicto a verificado/parcial, en una cola de revisión que no se
             publica. Esa propuesta tampoco se firma tal cual: quien esté de acuerdo con ella la sube
