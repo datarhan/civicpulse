@@ -8,7 +8,7 @@
 import type { ClaimVerdict } from './claim-verifier'
 import type { RunRecorder } from './run-manifest'
 import type { ApplyEntry, OverlayEntry } from './verified-merge'
-import { recortarResumen, RESUMEN_MAX } from './claim-verifier-engine'
+import { recortarResumen, RESUMEN_MAX, type SinDatosPorque } from './claim-verifier-engine'
 import { charlaDeTarea } from './charla-de-tarea'
 
 /**
@@ -27,7 +27,33 @@ export type MotivoSinJuicio = 'sin-candidatos' | 'decidio-el-determinista' | 'fu
 
 /** Lo que hace la pasada normal (y `--base`) con una declaración verificada. */
 export type Retractacion =
-  { accion: 'retractar' } | { accion: 'mantener' } | { accion: 'dejar'; porque: MotivoSinJuicio }
+  | { accion: 'retractar' }
+  | { accion: 'mantener' }
+  | { accion: 'dejar'; porque: MotivoSinJuicio }
+  | { accion: 'apartar' }
+
+/**
+ * ¿Pone este `sin-datos` la regla del título, y no el modelo?
+ *
+ * El 05-10-2026 el motor dejó de anclar un respaldo en el título del registro
+ * (claim-verifier-engine.ts, `dondeAncla`): la extracción lo daba por bueno y
+ * ahora sale `sin-datos`. Pero el modelo sigue viendo respaldo, y su
+ * razonamiento —que es lo que se escribiría de explicación— lo defiende
+ * («El respaldo es por tanto parcial/débil-moderado», 1sqj7is-081-cit-50c5bb).
+ * Retractar o reescribir con él pondría bajo «Sin datos» un texto que dice lo
+ * contrario. Se aparta, con su id, para un curador; ni se escribe ni se cuenta
+ * como «sin cambios» (DATA_INTEGRITY, regla 2).
+ */
+function loPoneElTitulo(r: {
+  veredicto: ClaimVerdict
+  sinDatosPorque: SinDatosPorque | undefined
+}) {
+  if (r.veredicto !== 'sin-datos') return false
+  // Un `sin-datos` juzgado lleva siempre su porqué: sin él, el cableado falló y
+  // no se sabe si lo concluyó el modelo.
+  if (!r.sinDatosPorque) throw new Error('un sin-datos juzgado llegó sin su porqué')
+  return r.sinDatosPorque === 'solo-el-titulo'
+}
 
 /**
  * La pasada normal retracta a `sin-datos` lo que el modelo juzga sin respaldo,
@@ -48,10 +74,15 @@ export function decidirRetractacion(r: {
   veredicto: ClaimVerdict
   /** Lo que se publica ahora. */
   publicado: ClaimVerdict
+  /** Con `sin-datos`, de qué salida del motor viene (`onSinDatos`). */
+  sinDatosPorque: SinDatosPorque | undefined
 }): Retractacion {
   if (r.salto) return { accion: 'dejar', porque: r.salto }
+  const deLaRegla = loPoneElTitulo(r)
   const fuerte = r.publicado === 'verificado' || r.publicado === 'parcial'
-  if (r.veredicto === 'sin-datos' && fuerte) return { accion: 'retractar' }
+  if (r.veredicto === 'sin-datos' && fuerte) {
+    return deLaRegla ? { accion: 'apartar' } : { accion: 'retractar' }
+  }
   return { accion: 'mantener' }
 }
 
@@ -80,7 +111,9 @@ export function anotarEnElParte(
 
 /** Lo que hace la re-derivación (`--ids`) con una retractación publicada. */
 export type Rederivacion =
-  { accion: 'reescribir' } | { accion: 'dejar'; motivo: 'ya-no-la-retractaria' | 'no-la-juzgo' }
+  | { accion: 'reescribir' }
+  | { accion: 'dejar'; motivo: 'ya-no-la-retractaria' | 'no-la-juzgo' }
+  | { accion: 'apartar' }
 
 /**
  * Re-derivar vuelve a juzgar una retractación del motor que ya está publicada,
@@ -94,13 +127,19 @@ export type Rederivacion =
  *     script la nombra para un curador.
  *   · Si no juzgó —sin candidatos, fuera de la política del LLM—, el veredicto
  *     que vuelve es el determinista y no dice nada del modelo (regla 2).
+ *   · Si el `sin-datos` lo pone la regla del título, el razonamiento defiende un
+ *     respaldo y no puede ser la explicación de la retractación: se aparta.
  */
 export function decidirRederivacion(r: {
   juzgada: boolean
   veredicto: ClaimVerdict
+  /** Con `sin-datos`, de qué salida del motor viene (`onSinDatos`). */
+  sinDatosPorque: SinDatosPorque | undefined
 }): Rederivacion {
   if (!r.juzgada) return { accion: 'dejar', motivo: 'no-la-juzgo' }
-  if (r.veredicto === 'sin-datos') return { accion: 'reescribir' }
+  if (r.veredicto === 'sin-datos') {
+    return loPoneElTitulo(r) ? { accion: 'apartar' } : { accion: 'reescribir' }
+  }
   return { accion: 'dejar', motivo: 'ya-no-la-retractaria' }
 }
 

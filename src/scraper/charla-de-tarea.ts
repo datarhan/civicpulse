@@ -40,8 +40,11 @@
 const INICIO = '(?<![\\p{L}\\p{N}])'
 const FIN = '(?![\\p{L}\\p{N}])'
 
-/** `<` abre y `>` cierra una palabra, con tildes. */
-function patron(fuente: string): RegExp {
+/**
+ * `<` abre y `>` cierra una palabra, con tildes. Lo usa también
+ * conclusion-sin-respaldo.ts: un borde de palabra se escribe una vez.
+ */
+export function patron(fuente: string): RegExp {
   return new RegExp(fuente.replaceAll('<', INICIO).replaceAll('>', FIN), 'iu')
 }
 

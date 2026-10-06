@@ -1251,6 +1251,13 @@ export interface CandidateShortlist {
 }
 
 /**
+ * Las notas que la lista corta pega al importe de un candidato. Son nuestras, no
+ * del registro: una cita del motor que sólo copie una no ancla nada
+ * (claim-verifier-engine.ts, `dondeAncla`).
+ */
+export const NOTAS_DEL_IMPORTE = ['(matches claim)', '(close to claim)'] as const
+
+/**
  * Build the top-K candidate list for an LLM verifier pass. Same scoring
  * mechanics the deterministic verifier uses internally, but we keep all
  * candidates above similarity ≥0.20 (vs the 0.65 deterministic threshold)
@@ -1272,7 +1279,7 @@ export function shortlistCandidates(inputs: VerifierInputs, topK = 8): Candidate
     let snippet = title
     if (amount && claim.entities.amountEuros) {
       const aSim = similarAmount(claim.entities.amountEuros, amount)
-      snippet += ` · €${amount.toLocaleString('es-ES')}${aSim >= 0.85 ? ' (matches claim)' : aSim >= 0.5 ? ' (close to claim)' : ''}`
+      snippet += ` · €${amount.toLocaleString('es-ES')}${aSim >= 0.85 ? ` ${NOTAS_DEL_IMPORTE[0]}` : aSim >= 0.5 ? ` ${NOTAS_DEL_IMPORTE[1]}` : ''}`
     } else if (amount) {
       snippet += ` · €${amount.toLocaleString('es-ES')}`
     }

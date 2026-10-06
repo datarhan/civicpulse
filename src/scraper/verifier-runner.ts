@@ -20,13 +20,19 @@ import type { PlenoClaim } from './pleno-claim'
 import {
   verifyClaim,
   getShortlist,
+  type CandidateShortlist,
   type ClaimVerification,
   type VerifierInputs,
 } from './claim-verifier'
 import { verifyClaimWithLlm } from './claim-verifier-llm'
 import { verifyClaimWithNli } from './claim-verifier-nli'
-import { verifyClaimWithEngine, type EngineDeps } from './claim-verifier-engine'
+import {
+  verifyClaimWithEngine,
+  type EngineDeps,
+  type SinDatosPorque,
+} from './claim-verifier-engine'
 import type { MotivoSinJuicio } from './decision-del-motor'
+import { sha256Short } from './hash'
 import type { PasoDelMotor } from './procedencia-del-motor'
 import { scoreNliPairs, type NliPair } from './nli-client'
 import type { Corpus } from './semantic-shortlist'
@@ -134,6 +140,24 @@ export function makeNliVerifier(opts: { model?: string } = {}): VerifierFn {
 export const nliVerifier: VerifierFn = makeNliVerifier()
 
 /**
+ * La huella de lo que el modelo lee de un shortlist: tipo, snippet y similitud
+ * de cada candidato, en su orden.
+ *
+ * Va en la clave de caché de cada llamada del motor. Hasta el 05-10-2026
+ * razonar iba por `{claimId}` y extraer por `{claimId, reasoning}`, así que una
+ * pasada con otros candidatos —contratos nuevos de la nocturna, el corpus
+ * semántico reconstruido— repetía un razonamiento hecho sobre otros registros,
+ * y la extracción traía índices `[i]` que ya señalaban a otro (aparte 3 de
+ * #196).
+ *
+ * El orden cuenta: las citas van por índice. El `ref` no: el prompt no lo
+ * enseña, y la evidencia lo toma del shortlist de hoy por el índice.
+ */
+export function huellaDeCandidatos(candidates: readonly CandidateShortlist[]): string {
+  return sha256Short(JSON.stringify(candidates.map((c) => [c.kind, c.snippet, c.similarity])))
+}
+
+/**
  * P3 verdict engine: deterministic → if sin-datos, reason-then-format over the
  * shortlist (local qwen via ollama) with NEI-default + cite-grounding + an
  * optional PCC consistency gate (argue-both-sides → mDeBERTa contradiction).
@@ -169,6 +193,13 @@ export function makeEngineVerifier(
      */
     onSkip?: (claimId: string, reason: MotivoSinJuicio) => void
     /**
+     * Called when the model judged and the engine returned `sin-datos`, with
+     * which of its exits gave it (`SinDatosPorque`). Only two of them are the
+     * model's own conclusion; a caller that retracts or rewrites an explanation
+     * with the model's reasoning needs to know which (decision-del-motor.ts).
+     */
+    onSinDatos?: (claimId: string, porque: SinDatosPorque) => void
+    /**
      * La configuración del cliente para cada llamada del motor
      * (`configDelMotor`: sin respaldo de pago). Sin ella, la del entorno.
      */
@@ -201,7 +232,7 @@ export function makeEngineVerifier(
         userPrompt: buildEngineReasonUserPrompt(claim, candidates),
         promptVersion: ENGINE_REASON_VERSION,
         schema: EngineReasoningSchema,
-        input: { claimId: claim.id },
+        input: { claimId: claim.id, candidatos: huellaDeCandidatos(candidates) },
       })
       // Como la extracción de abajo: una llamada caída no es un razonamiento.
       // `?? ''` lo convertía en uno vacío, y la extracción juzgaba sobre nada.
@@ -214,7 +245,7 @@ export function makeEngineVerifier(
         userPrompt: buildEngineExtractUserPrompt(reasoning, claim, candidates),
         promptVersion: ENGINE_EXTRACT_VERSION,
         schema: EngineExtractSchema,
-        input: { claimId: claim.id, reasoning },
+        input: { claimId: claim.id, reasoning, candidatos: huellaDeCandidatos(candidates) },
       })
       // A failed extract is NOT a judgement of sin-datos.
       //
@@ -255,14 +286,22 @@ export function makeEngineVerifier(
                 userPrompt: buildEngineReasonUserPrompt(claim, candidates),
                 promptVersion: ENGINE_REASON_VERSION,
                 schema: EngineReasoningSchema,
-                input: { claimId: claim.id, role: 'for' },
+                input: {
+                  claimId: claim.id,
+                  role: 'for',
+                  candidatos: huellaDeCandidatos(candidates),
+                },
               }),
               preguntar(claim.id, 'contrastar', {
                 systemPrompt: buildEngineReasonSystemPrompt(),
                 userPrompt: buildEngineArgueAgainstPrompt(claim, candidates),
                 promptVersion: ENGINE_ARGUE_VERSION,
                 schema: EngineReasoningSchema,
-                input: { claimId: claim.id, role: 'against' },
+                input: {
+                  claimId: claim.id,
+                  role: 'against',
+                  candidatos: huellaDeCandidatos(candidates),
+                },
               }),
             ])
             const forText = forR?.reasoning ?? ''
@@ -294,6 +333,7 @@ export function makeEngineVerifier(
       opts.onSkip?.(claim.id, 'fuera-de-la-politica')
       return det
     }
+    if (r.sinDatosPorque) opts.onSinDatos?.(claim.id, r.sinDatosPorque)
     // The model judged: what comes back is ITS verification, in every mode.
     //
     // This used to return `r.upgraded ? r.verification : det`. `upgraded` means

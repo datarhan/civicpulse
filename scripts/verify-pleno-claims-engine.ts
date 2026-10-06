@@ -53,6 +53,11 @@
  * `decidirRederivacion`: reescribe la explicación sólo si el modelo juzgó y
  * sigue sin ver respaldo; nunca sube un veredicto; lo que no juzgó no se toca.
  *
+ * Un `sin-datos` que pone la regla del título (el modelo citó sólo el título del
+ * registro y su razonamiento ve respaldo; claim-verifier-engine.ts) no retracta
+ * ni reescribe en ningún modo: se aparta, con su id, para un curador
+ * (`APARTADA`), y el parte lo cuenta aparte.
+ *
  * `--ids <fichero> --recortar` no juzga nada: corta en la última frase entera,
  * desde el razonamiento que las produjo, las explicaciones que el motor guardó
  * como `reasoning.slice(0, 300)` (858 a media frase el 04-10-2026). Ese
@@ -66,7 +71,7 @@ import { resolve } from 'node:path'
 import type { PlenoClaim } from '../src/scraper/pleno-claim'
 import type { ClaimVerification, ClaimVerdict } from '../src/scraper/claim-verifier'
 import { makeEngineVerifier, loadVerifierContext } from '../src/scraper/verifier-runner'
-import { RazonamientoConCharla } from '../src/scraper/claim-verifier-engine'
+import { RazonamientoConCharla, type SinDatosPorque } from '../src/scraper/claim-verifier-engine'
 import {
   anotarEnElParte,
   decidirRecorte,
@@ -79,6 +84,7 @@ import {
 import { entradaDelMotor } from '../src/scraper/entrada-de-pasada'
 import {
   configDelMotor,
+  pasosPreguntados,
   primarioDelMotor,
   rotuloDelMotor,
   type PasoDelMotor,
@@ -97,6 +103,8 @@ import { loadOverlay, rebuildVerified, OVERLAY } from './verified-rebuild'
 import { applyOverlayEntries, type ApplyEntry, type Overlay } from '../src/scraper/verified-merge'
 
 const VERIFIED = resolve('public/data/pleno-claims-verified.json')
+/** Cómo se llama en el parte una declaración que se aparta (`decidirRederivacion`). */
+const APARTADA = 'apartada: sólo cita el título, el razonamiento ve respaldo → curador'
 // Sin respaldo de pago, diga lo que diga el entorno, y el rótulo del backend
 // configurado, no de OPENAI_MODEL (ver la cabecera y procedencia-del-motor.ts).
 const CONFIG = configDelMotor(loadConfigFromEnv())
@@ -252,6 +260,8 @@ async function main() {
   // healthy default run as 67% "never reached the model" — the same
   // conflation that let "never attempted" hide inside "unchanged" elsewhere.
   const saltos = new Map<string, MotivoSinJuicio>()
+  // De qué salida del motor viene cada `sin-datos`: sólo dos son del modelo.
+  const porqueSinDatos = new Map<string, SinDatosPorque>()
   // Quién contestó cada paso de cada declaración: la retractación se firma con
   // esto, no con lo configurado.
   const procedencias = new Map<string, PasoDelMotor[]>()
@@ -265,6 +275,9 @@ async function main() {
     always: args.base || Boolean(args.ids),
     onSkip: (id, motivo) => {
       saltos.set(id, motivo)
+    },
+    onSinDatos: (id, porque) => {
+      porqueSinDatos.set(id, porque)
     },
     config: CONFIG,
     onProcedencia: (id, paso) => {
@@ -297,6 +310,8 @@ async function main() {
   const rederivadas: string[] = []
   const yaNoLaRetractaria: string[] = []
   const sinJuicio: string[] = []
+  // Las dos vías: un `sin-datos` de la regla del título, para un curador.
+  const apartadas: string[] = []
 
   const flush = () => {
     if (args.dryRun || pending.length === 0) return
@@ -338,7 +353,12 @@ async function main() {
     // Si no fue el primario, no se escribe ni cuenta como juzgada: se reintenta.
     let rotulo = MODEL
     if (!salto) {
-      const firma = rotuloDelMotor({ primario: PRIMARIO, pasos: procedencias.get(id) ?? [] })
+      const firma = rotuloDelMotor({
+        primario: PRIMARIO,
+        pasos: procedencias.get(id) ?? [],
+        // Si el razonamiento concluyó «sin respaldo», la extracción no se pidió.
+        preguntados: pasosPreguntados(porqueSinDatos.get(id)),
+      })
       if (firma.accion === 'dejar' && firma.porque === 'otro-backend') {
         process.stderr.write(
           `[verify-engine] ${id}: no se escribe — lo contestó ${firma.quien}, no ${PRIMARIO.rotulo}\n`,
@@ -359,11 +379,18 @@ async function main() {
     }
     anotarEnElParte(run, salto)
     if (args.ids) {
-      const decision = decidirRederivacion({ juzgada: !salto, veredicto: r.verdict })
+      const decision = decidirRederivacion({
+        juzgada: !salto,
+        veredicto: r.verdict,
+        sinDatosPorque: porqueSinDatos.get(id),
+      })
       if (decision.accion === 'reescribir') {
         pending.push(entradaDelMotor({ verification: r, modelo: rotulo, tipo: 'rederivacion' }))
         rederivadas.push(id)
         run.record('rederivada')
+      } else if (decision.accion === 'apartar') {
+        apartadas.push(id)
+        run.record(APARTADA)
       } else if (decision.motivo === 'ya-no-la-retractaria') {
         yaNoLaRetractaria.push(id)
         run.record('ya no la retractaría')
@@ -376,7 +403,12 @@ async function main() {
     // Trust ONLY the engine's sin-datos verdict, as a retraction — the one
     // output of its that cannot add a claim — and only when the engine judged:
     // without a judgement, the sin-datos that comes back is the deterministic one.
-    const decision = decidirRetractacion({ salto, veredicto: r.verdict, publicado: cur })
+    const decision = decidirRetractacion({
+      salto,
+      veredicto: r.verdict,
+      publicado: cur,
+      sinDatosPorque: porqueSinDatos.get(id),
+    })
     if (decision.accion === 'retractar') {
       // Tal cual la dio el motor: los corpus de su evidencia en `checkedAgainst`,
       // su pasada en `derivedBy`. Antes se pisaba `checkedAgainst` con la marca.
@@ -388,6 +420,9 @@ async function main() {
     } else if (decision.accion === 'mantener') {
       kept++
       run.record('kept')
+    } else if (decision.accion === 'apartar') {
+      apartadas.push(id)
+      run.record(APARTADA)
     } else {
       unjudged++
     }
@@ -408,7 +443,13 @@ async function main() {
   }
   if (
     done > 0 &&
-    retracted + kept + rederivadas.length + yaNoLaRetractaria.length + deOtroBackend.length === 0
+    retracted +
+      kept +
+      rederivadas.length +
+      yaNoLaRetractaria.length +
+      apartadas.length +
+      deOtroBackend.length ===
+      0
   ) {
     process.stderr.write(
       `[verify-engine] WARNING: ${done} claim(s) processed and the model was consulted for NONE ` +
@@ -419,18 +460,22 @@ async function main() {
     process.exitCode = 1
   }
 
+  // En `--ids` las apartadas van en su línea, abajo.
+  const apartadasAqui = args.ids ? 0 : apartadas.length
   process.stderr.write(
-    `[verify-engine] DONE: seen ${done} · JUDGED ${retracted + kept} ` +
-      `(retracted ${retracted} → sin-datos · kept ${kept}) · ` +
+    `[verify-engine] DONE: seen ${done} · JUDGED ${retracted + kept + apartadasAqui} ` +
+      `(retracted ${retracted} → sin-datos · kept ${kept}` +
+      `${apartadasAqui ? ` · apartadas ${apartadasAqui}` : ''}) · ` +
       `never asked ${unjudged} · charla de la tarea ${charla} · ` +
       `de otro backend ${deOtroBackend.length} · skipped ${skipped}` +
       `${args.dryRun ? ' (DRY-RUN, nothing written)' : ''}\n`,
   )
+  if (apartadasAqui) process.stderr.write(`  ${APARTADA}:\n    ${apartadas.join('\n    ')}\n`)
 
   if (args.ids) {
     process.stderr.write(
       `[verify-engine] --ids: rederivadas ${rederivadas.length} · ya no la retractaría ` +
-        `${yaNoLaRetractaria.length} · sin juicio ${sinJuicio.length}\n`,
+        `${yaNoLaRetractaria.length} · apartadas ${apartadas.length} · sin juicio ${sinJuicio.length}\n`,
     )
     if (yaNoLaRetractaria.length)
       process.stderr.write(
@@ -438,6 +483,7 @@ async function main() {
       )
     if (sinJuicio.length)
       process.stderr.write(`  sin juicio, sin tocar:\n    ${sinJuicio.join('\n    ')}\n`)
+    if (apartadas.length) process.stderr.write(`  ${APARTADA}:\n    ${apartadas.join('\n    ')}\n`)
     if (rederivadas.length && !args.dryRun)
       process.stderr.write(
         `  su explicación nueva se imprime sola; quita estas entradas de src/lib/resumenes-retirados.js:\n    ${rederivadas.join('\n    ')}\n`,
