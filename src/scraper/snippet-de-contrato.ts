@@ -49,12 +49,14 @@
  * El título va detrás, tras `objeto: `, y es lo único que se recorta para caber
  * en SNIPPET_MAXIMO. Detrás también por quien corta por la cola —`toPublishedSnippet`
  * a 240, cuando la pasada NLI publica un candidato tal cual—: lo que se pierde
- * es el final del título. El tope no es el 230 de antes: con los hechos enteros
- * (mediana 155 caracteres, máximo 249, medido el 06-10-2026 sobre las 1.242
- * filas), 230 dejaba a 526 filas menos de 60 caracteres de título, y sin el
- * objeto el modelo no sabe de qué contrato se trata; con 300, a 12. Cuando los
- * hechos no dejan ni TITULO_MINIMO, el snippet se pasa del tope —ese día, 8
- * filas, hasta 311 caracteres—: los hechos no se cortan.
+ * es el final del título. El tope no es el 230 de antes, porque sin el objeto el
+ * modelo no sabe de qué contrato se trata. Medido el 06-10-2026 sobre las 1.242
+ * filas, con los hechos enteros (mediana 155 caracteres, máximo 249): con 230,
+ * 526 filas se quedaban con menos de 60 caracteres de título; con 300, 471
+ * perdían parte del objeto —lo que va antes de «por procedimiento…»—, entre
+ * ellas el carril bici, que perdía los «refugios climáticos» con los que el
+ * modelo lo había casado; con 400, 143. Cuando los hechos no dejan ni
+ * TITULO_MINIMO, el snippet se pasa del tope: los hechos no se cortan.
  *
  * ─────────────────────────────────────────────────────────────────────────────
  * EL OTRO LADO
@@ -77,7 +79,7 @@ export const SEPARADOR = ' · '
 export const MARCA_DEL_OBJETO = 'objeto: '
 
 /** El tope de un snippet de contrato, título incluido. */
-export const SNIPPET_MAXIMO = 300
+export const SNIPPET_MAXIMO = 400
 
 /** Lo menos que se deja del título cuando los hechos son largos. */
 export const TITULO_MINIMO = 60
