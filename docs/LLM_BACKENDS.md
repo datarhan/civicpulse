@@ -55,7 +55,8 @@ runs no longer wipe LLM verdicts and are safe unattended. Only the deprecated
 `verify:pleno-claims:llm` bypasses the overlay.
 
 **Shortlist for the LLM second pass** (`VERIFIER_SHORTLIST`): `hybrid`
-(default — union of lexical + semantic, deduped by ref) · `lexical` (word
+(default — union of lexical + semantic, deduped by kind + ref + snippet, so
+the lots of one expediente, which share a permalink, all survive) · `lexical` (word
 overlap, no API calls) · `semantic` (cosine over the embedded corpus).
 
 The second pass enforces structured cites (prompt v2): every `evidence.snippet`
