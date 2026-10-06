@@ -154,6 +154,10 @@ const STEP_OUTPUTS: Record<string, string> = {
   'speaker-map:backlog': '',
   'extract:speaker-map': '',
   'extract:pleno-claims': '',
+  // El brazo de la transcripción lo llama tras extraer. Sin script en el
+  // package.json del arenero, npm sale con «Missing script» y la pasada lo
+  // registra como un fallo que no es suyo.
+  'extract:pleno-votes': '',
   refresh: '',
   // Report-only, writes to gitignored `editorial/` — so it must NOT appear in
   // any commit this suite inspects. Stubbed so the pipeline can reach it.
@@ -233,6 +237,20 @@ function makeSandbox(opts: SandboxOpts = {}): string {
   const stub = `#!/bin/bash
 # Stand-in for one pipeline step, reached through REAL \`npm run\`.
 name="$1"
+# \`speaker-map:backlog\` es una CONSULTA: la tubería lee su stdout, renglón a
+# renglón, como la cola de sesiones por mapear, y tiene que nombrar una o el
+# brazo entero queda inalcanzable y sus pruebas pasan sin medir nada. Se
+# contesta ANTES de la marca de abajo, y la marca va por stderr: por stdout se
+# leía como una sesión más, «[stub] ran speaker-map:backlog», que se mapeaba,
+# se re-extraía y se comiteaba como pleno-speaker-map/[stub] ran
+# speaker-map:backlog.json — y doblaba cada recuento del brazo de mapas. En
+# producción \`npm run --silent\` no imprime nada más que los ids.
+if [ "$name" = "speaker-map:backlog" ]; then
+  echo "[stub] ran $name" >&2
+  case " \${STUB_FAIL:-} " in *" $name "*) echo "[stub] $name FAILING" >&2; exit 1 ;; esac
+  echo "sandboxpleno"
+  exit 0
+fi
 echo "[stub] ran $name"
 # A concurrent subagent stages its work WHILE the cron runs — after the
 # pipeline's opening pull --rebase --autostash, exactly as on 2026-08-09.
@@ -250,9 +268,6 @@ if [ -n "\${STUB_BREAK_REMOTE:-}" ] && [ "\${STUB_BREAK_REMOTE}" = "$name" ]; th
   echo "[stub] remoto roto tras $name"
 fi
 case " \${STUB_FAIL:-} " in *" $name "*) echo "[stub] $name FAILING" >&2; exit 1 ;; esac
-# The speaker-map arm reads this list as its work queue, so it has to name a
-# session or the whole branch is unreachable and its tests pass on nothing.
-if [ "$name" = "speaker-map:backlog" ]; then echo "sandboxpleno"; exit 0; fi
 # La tubería captura este parte en una variable, así que lo que imprima sólo
 # llega al log si el resumen final lo copia. STUB_CHECK_RUNS lleva los renglones
 # con el formato de scripts/check-runs.ts; sin él, un parte sin hallazgos.
@@ -281,6 +296,18 @@ for f in $outs; do printf '{"items":[{"id":"run-%s-%s"}]}\\n' "$name" "\${STUB_S
 exit 0
 `
   writeFileSync(join(dir, 'scripts/stub-step.sh'), stub)
+
+  // hallazgos llama a la transcripción con `bash`, no por npm, y la de verdad
+  // escribe aquí. Ningún pleno del arenero tiene vídeo salvo que una prueba se
+  // lo dé (conVideo), así que por defecto este stub no corre nunca.
+  writeFileSync(
+    join(dir, 'scripts/transcribe-pleno.sh'),
+    `#!/bin/bash
+echo "[stub] ran transcribe-pleno $1"
+printf 'transcripción del arenero de %s\\n' "$1" > "public/data/pleno-transcripts/$1.txt"
+exit 0
+`,
+  )
 
   // press-lab reaches its steps through `npx tsx`, which prefers the nearest
   // node_modules/.bin.
@@ -1326,6 +1353,138 @@ describe('hallazgos-pipeline.sh · el resumen final no puede tumbar la noche', (
     ).toBeGreaterThan(iCabecera)
     expect(r.status, r.log).toBe(0)
   }, 120_000)
+})
+
+/**
+ * Cada número del parte dice lo que mide.
+ *
+ * La pasada contaba con uno solo, `NEW`: las extracciones de claims que
+ * terminaban bien, tanto la de un pleno recién transcrito como la
+ * re-extracción tras un mapa de hablantes. La última línea y el asunto del
+ * commit lo llamaban «transcribed». Del 28-08 al 28-09-2026, doce commits de
+ * esta tubería dijeron «1 pleno(s) transcribed» o «2» sin añadir una sola
+ * transcripción —eran noches de mapa y re-extracción: 39806caa, 94359907,
+ * 5ee8c1c1, 851d82e6…— y 4c92cf31 dijo «2» con una. Al revés, por
+ * construcción, una transcripción cuya extracción fallaba se publicaba bajo
+ * «0 pleno(s) transcribed»; de ese caso no consta ninguno.
+ *
+ * La puerta de `verify:pleno-claims` y del sello sigue contando extracciones,
+ * que es lo que necesita: una transcripción sin extraer no ha movido un solo
+ * claim que verificar.
+ *
+ * Lo esperado va a mano en la tabla, y se coteja además con lo que trae el
+ * commit, que es como se midió la avería: transcripciones añadidas bajo
+ * public/data/pleno-transcripts y mapas bajo pleno-speaker-map.
+ */
+describe('hallazgos-pipeline.sh · cada recuento del parte dice lo que mide', () => {
+  const ultima = (log: string) =>
+    log
+      .split('\n')
+      .filter((l) => /done ·/.test(l))
+      .pop() ?? ''
+
+  /** El número que una línea pone delante de cada trabajo; null si no lo nombra. */
+  const RECUENTOS = {
+    transcritos: /(\d+) (?:pleno\(s\) )?transcribed\b/,
+    extraidos: /(\d+) extracted\b/,
+    mapas: /(\d+) speaker map\(s\)/,
+    reextraidos: /(\d+) re-extracted\b/,
+  }
+  type Recuentos = Record<keyof typeof RECUENTOS, number | null>
+  const leer = (linea: string): Recuentos => {
+    const cifra = (re: RegExp) => {
+      const m = linea.match(re)
+      return m ? Number(m[1]) : null
+    }
+    return {
+      transcritos: cifra(RECUENTOS.transcritos),
+      extraidos: cifra(RECUENTOS.extraidos),
+      mapas: cifra(RECUENTOS.mapas),
+      reextraidos: cifra(RECUENTOS.reextraidos),
+    }
+  }
+
+  /** Ficheros bajo `prefijo` que trae el commit de la pasada. */
+  const enCommit = (r: RunResult, prefijo: string) =>
+    r.committed.filter((p) => p.startsWith(prefijo)).length
+
+  /**
+   * Da vídeo al pleno del arenero y lo publica en origin, para que el brazo de
+   * la transcripción tenga trabajo: por defecto ningún pleno lo tiene.
+   * Devuelve STUB_NOOP porque sin él el stub de scrape:pleno-videos reescribe
+   * el índice, y el vídeo desaparece antes de la consulta del backlog.
+   */
+  function conVideo(dir: string): Record<string, string> {
+    writeFileSync(
+      join(dir, 'public/data/pleno-videos.json'),
+      '{"items":[{"id":"video-p1","plenoDate":"2020-01-01"}]}\n',
+    )
+    git(dir, 'add', '--', 'public/data/pleno-videos.json')
+    git(dir, 'commit', '-qm', 'arenero: el pleno p1 tiene vídeo')
+    git(dir, 'push', '-q', 'origin', 'main')
+    return { STUB_NOOP: '1' }
+  }
+
+  const casos: Array<{
+    caso: string
+    preparar: (dir: string) => Record<string, string>
+    /** Renglones que prueban que el caso se dio de verdad. */
+    pruebas: string[]
+    esperado: Recuentos
+    verifica: boolean
+  }> = [
+    {
+      caso: 'una noche de mapa y re-extracción no dice que transcribió',
+      preparar: () => ({ GEMINI_API_KEY: 'sandbox-key', SPEAKER_MAP_CALL_BUDGET: '4' }),
+      pruebas: [
+        '[stub] wrote pleno-speaker-map/sandboxpleno.json',
+        'claims re-extracted with map attribution',
+      ],
+      esperado: { transcritos: 0, extraidos: 0, mapas: 1, reextraidos: 1 },
+      verifica: true,
+    },
+    {
+      caso: 'una noche de transcripción lo dice, con su extracción aparte',
+      preparar: conVideo,
+      pruebas: ['[stub] ran transcribe-pleno p1', '✓ p1 claims extracted'],
+      esperado: { transcritos: 1, extraidos: 1, mapas: 0, reextraidos: 0 },
+      verifica: true,
+    },
+    {
+      caso: 'una transcripción cuya extracción falla cuenta como transcrita, y no se verifica',
+      preparar: (dir) => ({ ...conVideo(dir), STUB_FAIL: 'extract:pleno-claims' }),
+      pruebas: ['[stub] ran transcribe-pleno p1', 'warn: claim extract failed for p1'],
+      esperado: { transcritos: 1, extraidos: 0, mapas: 0, reextraidos: 0 },
+      verifica: false,
+    },
+  ]
+
+  for (const { caso, preparar, pruebas, esperado, verifica } of casos) {
+    it(`${caso}`, () => {
+      const dir = makeSandbox()
+      const r = runScript(dir, 'scripts/hallazgos-pipeline.sh', preparar(dir))
+
+      // El reproductor se dio: lo que el caso dice que pasó, pasó, y el commit
+      // lo trae. Sin esto, un 0 se cumpliría con una noche que no hizo nada.
+      for (const p of pruebas) expect(r.log, `no consta «${p}»`).toContain(p)
+      expect(r.status, r.log).toBe(0)
+      const trae = `el commit trae:\n${r.committed.join('\n')}\n`
+      expect(enCommit(r, 'public/data/pleno-transcripts/'), `transcripciones · ${trae}`).toBe(
+        esperado.transcritos,
+      )
+      expect(enCommit(r, 'pleno-speaker-map/'), `mapas · ${trae}`).toBe(esperado.mapas)
+
+      // Lo que se afirma: cada trabajo con su número, en los dos renglones que
+      // alguien lee — el asunto del commit y la última línea del log.
+      expect(leer(r.subject), r.subject).toEqual(esperado)
+      expect(leer(ultima(r.log)), ultima(r.log)).toEqual(esperado)
+      // Y la puerta de verify sigue en las extracciones, vengan de donde vengan.
+      expect(
+        r.log.includes('[stub] ran verify:pleno-claims'),
+        verifica ? 'hubo extracción y no se verificó' : 'se verificó sin una sola extracción',
+      ).toBe(verifica)
+    }, 120_000)
+  }
 })
 
 /** Alias local: `git` ya es el ayudante del arnés de arriba. */
