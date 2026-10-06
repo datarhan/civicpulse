@@ -569,17 +569,19 @@ changes, and since 2026-10-06 it refuses to run at all in the **main checkout**
 (exit 3, nothing written): the
 [local agents](#local-scheduled-jobs-the-curators-laptop) commit and push from
 there on their own schedule, so a commit landing mid-injection would publish the
-corruption — one injection raises a published `sin-datos` to `verificado`. Run
-it from a worktree; the refusal prints the commands
+corruption — one injection raises a published `sin-datos` to `verificado`. That
+includes any plain clone: it is its own main checkout and cannot be told apart
+from the curator's, so a clone pays one `git worktree add`. Run it from a
+worktree; the refusal prints the commands
 (`git worktree add --detach .claude/worktrees/inyeccion`, link `node_modules`,
 copy the two gitignored inputs it reads, run, `git worktree remove`). The wiring
-audit writes nothing and runs anywhere. It also names every guard it has no
-injection for, rather than letting a partial pass read as full coverage — as of
-2026-08-03 that is 11 of 15. Before a guard's first injection it runs that guard
-on the untouched tree: an injection only proves something against a guard that
-was green without it. The overlay injection of `check:veredictos` needs the
-gitignored base on disk; without it, it reports «not exercised» rather than a
-silence it did not measure.
+audit writes nothing and runs anywhere, and it is the only half the nightly
+runs. It also names every guard it has no injection for, rather than letting a
+partial pass read as full coverage — as of 2026-08-03 that is 11 of 15. Before a
+guard's first injection it runs that guard on the untouched tree: an injection
+only proves something against a guard that was green without it. The overlay
+injection of `check:veredictos` needs the gitignored base on disk; without it, it
+reports «not exercised» rather than a silence it did not measure.
 
 ## Git hooks
 

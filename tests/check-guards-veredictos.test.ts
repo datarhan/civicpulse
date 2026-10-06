@@ -183,8 +183,10 @@ describe('check:guards --inject — el arnés de verdad, en un repositorio de us
     expect(r.status, r.stdout + r.stderr).toBe(3)
     expect(existsSync(corridas)).toBe(false)
     expect(inyectables.map((f) => statSync(f).mtimeMs)).toEqual(antes)
-    // Y dice cómo correrlo donde sí se puede.
+    // Y dice cómo correrlo donde sí se puede, y que un clon cualquiera —como
+    // éste— cuenta como principal: desde aquí no se distingue del del curador.
     expect(r.stderr).toMatch(/git worktree add/)
+    expect(r.stderr).toMatch(/clon/)
 
     // La auditoría de cableado no escribe nada: ésa sí corre en el principal.
     const cableado = correrArnes(principal, '--json')

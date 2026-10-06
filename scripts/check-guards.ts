@@ -63,8 +63,11 @@
  * Así que desde el 06-10-2026 `--inject` sale 3 sin escribir nada si el árbol
  * es el principal —su `.git` es el común; el de un worktree es
  * `<común>/worktrees/<nombre>`— o si git no sabe decirlo, y explica cómo
- * correrlo desde un worktree. La auditoría de cableado no escribe nada y sigue
- * corriendo en cualquier parte, también en la nocturna.
+ * correrlo desde un worktree. También en un clon cualquiera: es su propio
+ * checkout principal, y desde aquí no se distingue del portátil del curador.
+ * Cuesta un `git worktree add`. La auditoría de cableado no escribe nada y
+ * sigue corriendo en cualquier parte, también en la nocturna, que sólo corre
+ * esa mitad.
  */
 import { execFileSync, spawnSync } from 'node:child_process'
 import {
@@ -794,7 +797,9 @@ function negarseAInyectar(principal: boolean | null): never {
       '  Inyectar escribe copias corrompidas de ficheros PUBLICADOS y las deshace con\n' +
       '  `git checkout`, y en el checkout principal los agentes de launchd comitean y empujan\n' +
       '  por su cuenta (docs/OPERATIONS.md §Local scheduled jobs): un commit a media\n' +
-      '  inyección publicaría la corrupción. Desde un worktree:\n\n' +
+      '  inyección publicaría la corrupción. Un clon cualquiera es también su propio\n' +
+      '  checkout principal y no se distingue de aquél, así que tampoco corre ahí; la\n' +
+      '  nocturna sólo corre la auditoría de cableado, que no escribe nada. Desde un worktree:\n\n' +
       `    cd "${ROOT}"\n` +
       `    git worktree add --detach ${wt}\n` +
       `    ln -s "$PWD/node_modules" ${wt}/node_modules\n` +
