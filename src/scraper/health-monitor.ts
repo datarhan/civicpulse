@@ -59,10 +59,27 @@ export interface Observations {
   nightlyFailStreak: number
   /** Integrity check failures, already run by the caller. */
   integrity: { check: string; message: string }[]
+  /**
+   * Guardas que salieron 0 diciendo, con su propia marca, que no midieron —
+   * todo o una parte—, y desde cuándo lo dicen sin un día que midiera en medio.
+   * Las llena quien las ejecuta, con `clasificarGuarda` y `rachasSinComprobar`.
+   */
+  sinComprobar: { check: string; motivo: string; desde: Date }[]
 }
 
 /** A nightly can fail once for a flaky upstream; three in a row is a pattern. */
 export const NIGHTLY_STREAK_ALARM = 3
+
+/** Cada cuántos días se repite un parte cuyos avisos no han cambiado. */
+export const RENOTIFY_DAYS = 3
+
+/** Días seguidos sin comprobar a partir de los cuales una guarda tiene aviso propio. */
+export const RACHA_SIN_COMPROBAR_DIAS = 7
+
+/** Cada cuántos días se repite un parte que sólo trae avisos de guardas sin comprobar. */
+export const REPETIR_SIN_COMPROBAR_DIAS = 7
+
+const PREFIJO_SIN_COMPROBAR = 'sin-comprobar:'
 
 /**
  * Cuántas noches seguidas lleva la nocturna sin terminar en verde.
@@ -185,7 +202,41 @@ export function evaluateHealth(o: Observations): Alert[] {
     })
   }
 
+  // 5 · Una guarda que lleva una semana sin medir. El primer día no avisa: el
+  // caso crónico es una web pública que contesta 403, y un rojo diario por eso
+  // enseña a silenciar el canal. Pero a los siete días seguidos ya no es una
+  // red ajena que falló una noche, es una guarda que dejó de guardar —el
+  // «verde por no correr» que este parte existe para cerrar—, y avisa con su
+  // propio código, que es lo que la hace volver a sonar si otra se le suma.
+  for (const s of o.sinComprobar) {
+    const dias = diasDeCalendario(s.desde, o.now)
+    if (!(dias >= RACHA_SIN_COMPROBAR_DIAS)) continue
+    alerts.push({
+      code: `${PREFIJO_SIN_COMPROBAR}${s.check}`,
+      severity: 'warning',
+      title: `${s.check} lleva ${dias} días sin comprobar`,
+      detail:
+        `Lo que no midió, en sus palabras: «${s.motivo}». Así desde el ` +
+        `${s.desde.toISOString().slice(0, 10)}; mientras, su salida 0 no es un visto bueno.`,
+      remedy:
+        'Dos salidas: que vuelva a medir —lo que se lo impide lo dice su motivo—, o retira o ' +
+        `redefine esa parte en la guarda. npm run ${s.check}`,
+    })
+  }
+
   return alerts
+}
+
+/**
+ * Días de calendario (UTC) entre dos instantes. El parte corre una vez al día,
+ * y unos minutos de más o de menos no pueden pasar un aviso al día siguiente:
+ * contando múltiplos de 24 h, un séptimo día que arranca un minuto antes que el
+ * primero era todavía el sexto. Una fecha inválida da NaN, que no alcanza
+ * ningún umbral.
+ */
+function diasDeCalendario(desde: Date, hasta: Date): number {
+  const dia = (d: Date) => Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate())
+  return Math.round((dia(hasta) - dia(desde)) / 86_400_000)
 }
 
 /**
@@ -250,6 +301,92 @@ export function pickCheckDiagnosis(output: string): string {
 }
 
 /**
+ * Las dos marcas con las que una guarda dice que salió 0 sin haber medido —
+ * todo, o una parte—. Son las suyas, no unas que el parte les imponga:
+ * «SALTADO, jamás ok» (check:veredictos, check:verified-compose,
+ * check:solicitudes) y «NO COMPROBADO, que no es un visto bueno» (check:queues,
+ * check:officials-corrections, check:basemap, check:wms).
+ *
+ * En mayúsculas y como palabras enteras, a propósito: las salidas normales de
+ * cada noche llevan la familia en minúscula —el recuento `no-comprobado 0` de
+ * check:officials-corrections, «saltados 24 binarios» en check:privado—, y una
+ * marca que casara con ellas pintaría «sin comprobar» todas las noches. Una
+ * guarda que gane un camino que sale 0 sin medir tiene que imprimir una de las
+ * dos: si lo dice con otras palabras, el parte la lee como limpia.
+ */
+export const MARCAS_SIN_COMPROBAR = ['SALTADO', 'NO COMPROBADO'] as const
+const MARCA_RE = new RegExp(`\\b(?:${MARCAS_SIN_COMPROBAR.join('|')})\\b`)
+
+/** Cómo acabó una guarda ya ejecutada, leído de su código de salida y de lo que imprimió. */
+export type DesenlaceDeGuarda =
+  | { desenlace: 'limpia' }
+  | { desenlace: 'fallo'; mensaje: string }
+  | { desenlace: 'sin-comprobar'; motivo: string }
+
+/**
+ * El renglón con el que la guarda dice que no midió, junto con lo que sangra
+ * por debajo de él —check:queues parte su aviso en tres renglones—, o null.
+ * Se para en el primero que no sangra más: en check:officials-corrections los
+ * dos ejes van a la misma sangría, y el de la fuente no explica el salto de la
+ * vigencia.
+ */
+function renglonSinComprobar(salida: string): string | null {
+  const renglones = salida.split('\n')
+  const i = renglones.findIndex((l) => MARCA_RE.test(l))
+  if (i === -1) return null
+  const sangria = (l: string) => l.length - l.trimStart().length
+  const tramo = [renglones[i]]
+  for (const l of renglones.slice(i + 1)) {
+    if (l.trim() === '' || sangria(l) <= sangria(renglones[i])) break
+    tramo.push(l)
+  }
+  return tramo.join(' ').replace(/\s+/g, ' ').trim().slice(0, CHECK_DETAIL_MAX)
+}
+
+/**
+ * Lo que una guarda ya ejecutada deja dicho: limpia, fallo o sin comprobar.
+ *
+ * Hasta el 06-10-2026 `monitor-health` leía cualquier salida 0 como limpia, y
+ * las guardas que imprimen SALTADO o NO COMPROBADO —sin base en disco, sin
+ * `editorial/`, con una web en 403— entraban en el parte como «sin fallos»,
+ * que cerraba con «✓ sin avisos». Cada guarda lo decía; el parte lo doblaba.
+ * Es la regla 2 de DATA_INTEGRITY: «nunca intentado» no es «sin cambios».
+ *
+ * El código manda sobre la marca: una guarda en rojo que además dice SALTADO
+ * sigue en rojo, porque si la marca pudiera más, el SALTADO de paso de un rojo
+ * lo bajaría a un aviso semanal. Sin código —la mataron, o no arrancó— es un
+ * fallo: no hay nada que absolver.
+ */
+export function clasificarGuarda(codigo: number | null, salida: string): DesenlaceDeGuarda {
+  if (codigo !== 0) return { desenlace: 'fallo', mensaje: pickCheckDiagnosis(salida) }
+  const motivo = renglonSinComprobar(salida)
+  return motivo ? { desenlace: 'sin-comprobar', motivo } : { desenlace: 'limpia' }
+}
+
+/**
+ * Desde cuándo lleva cada guarda sin comprobar, de una pasada a la siguiente.
+ *
+ * Conserva el primer día de las que siguen sin medir, abre racha hoy para las
+ * nuevas y suelta todas las demás: el primer día que una guarda mide, la racha
+ * se corta. También el día que falla, porque ese día su aviso crítico ya tiene
+ * a alguien mirándola. Una fecha que no se deja leer no fabrica una racha:
+ * empieza hoy.
+ */
+export function rachasSinComprobar(
+  previas: Readonly<Record<string, string>>,
+  hoy: readonly string[],
+  now: Date,
+): Record<string, string> {
+  const rachas: Record<string, string> = {}
+  for (const check of hoy) {
+    const antes = previas[check]
+    rachas[check] =
+      typeof antes === 'string' && Number.isFinite(Date.parse(antes)) ? antes : now.toISOString()
+  }
+  return rachas
+}
+
+/**
  * Stable key for de-duplication: same problems ⇒ same fingerprint.
  *
  * La huella era sólo `a.code`, y eso silenció el único aviso que sirvió. El
@@ -274,7 +411,41 @@ export function alertFingerprint(alerts: readonly Alert[]): string {
     .join('|')
 }
 
-export function formatAlerts(alerts: readonly Alert[]): string {
+/**
+ * ¿Sale hoy el parte? Sale si sus avisos cambiaron y, si no, cuando el último
+ * envío cumple su cadencia: `RENOTIFY_DAYS`, o `REPETIR_SIN_COMPROBAR_DIAS` si
+ * todo lo que trae son guardas sin comprobar. Así un 403 crónico cuesta un
+ * mensaje a la semana; con cualquier otro aviso delante, el parte sale por ése
+ * y el salto viaja dentro sin costar otro.
+ *
+ * Cuenta días de calendario: con múltiplos de 24 h, el tercer día que arranca
+ * unos minutos antes que el envío esperaba al cuarto.
+ */
+export function tocaEnviar(
+  alerts: readonly Alert[],
+  previo: { fingerprint?: string | null; at?: string | null } | null,
+  now: Date,
+): boolean {
+  if (alerts.length === 0) return false
+  if (!previo || previo.fingerprint !== alertFingerprint(alerts)) return true
+  const ultimo = previo.at ? new Date(previo.at) : null
+  if (!ultimo || !Number.isFinite(ultimo.getTime())) return true
+  const cadencia = alerts.every((a) => a.code.startsWith(PREFIJO_SIN_COMPROBAR))
+    ? REPETIR_SIN_COMPROBAR_DIAS
+    : RENOTIFY_DAYS
+  return diasDeCalendario(ultimo, now) >= cadencia
+}
+
+/**
+ * El texto del parte. Las guardas sin comprobar que aún no tienen aviso propio
+ * van al final, en su bloque, para que quien lo lee sepa qué guardas «limpias»
+ * no midieron. Informan, no avisan: no entran en la huella, así que un salto
+ * que aparece o se cura no reenvía un parte que no ha cambiado.
+ */
+export function formatAlerts(
+  alerts: readonly Alert[],
+  sinComprobar: Observations['sinComprobar'] = [],
+): string {
   if (alerts.length === 0) return ''
   const crit = alerts.filter((a) => a.severity === 'critical')
   const warn = alerts.filter((a) => a.severity === 'warning')
@@ -286,5 +457,38 @@ export function formatAlerts(alerts: readonly Alert[]): string {
     lines.push(a.detail)
     if (a.remedy) lines.push(`↳ <i>${a.remedy}</i>`)
   }
+  const conAviso = new Set(alerts.map((a) => a.code))
+  const pendientes = sinComprobar.filter((s) => !conAviso.has(`${PREFIJO_SIN_COMPROBAR}${s.check}`))
+  if (pendientes.length > 0) {
+    lines.push('')
+    lines.push(
+      `⚪ <b>Sin comprobar</b> — aún sin aviso propio; lo tienen a los ` +
+        `${RACHA_SIN_COMPROBAR_DIAS} días seguidos`,
+    )
+    for (const s of pendientes) lines.push(`· ${s.check} — ${s.motivo}`)
+  }
   return lines.join('\n')
+}
+
+/**
+ * El renglón de integridad de `--explain`. Dice «sin fallos» sólo si todas las
+ * guardas midieron: con una sin comprobar al lado, era un visto bueno que nadie
+ * había dado.
+ */
+export function resumenIntegridad(o: Pick<Observations, 'integrity' | 'sinComprobar'>): string {
+  const partes: string[] = []
+  if (o.integrity.length > 0) partes.push(o.integrity.map((i) => i.check).join(', '))
+  if (o.sinComprobar.length > 0) {
+    partes.push(`sin comprobar: ${o.sinComprobar.map((s) => s.check).join(', ')}`)
+  }
+  return partes.join(' · ') || 'sin fallos'
+}
+
+/** El cierre de un parte sin avisos: el ✓, sólo si todo midió. */
+export function lineaSinAvisos(sinComprobar: Observations['sinComprobar']): string {
+  if (sinComprobar.length === 0) return '✓ sin avisos'
+  return (
+    `sin avisos, pero ${sinComprobar.length} guarda(s) sin comprobar: ` +
+    `${sinComprobar.map((s) => s.check).join(', ')} — eso no es un visto bueno`
+  )
 }
