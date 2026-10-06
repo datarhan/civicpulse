@@ -30,7 +30,9 @@
  * (`OPENAI_MODEL || LLM_BACKEND`). Medido el 05-10-2026 contra una copia de la
  * caché, sin llamadas: de las 920 retractaciones de esa pasada que siguen en el
  * overlay con su explicación, 457 las contestó gpt-4o-mini (321 servidas), todas
- * rotuladas `verdict-engine:claude-code`.
+ * rotuladas `verdict-engine:claude-code`. El 06-10-2026 se corrigió su rótulo con
+ * `corregir-rotulo-motor`, que lo prueba en la caché y deja la corrección en cada
+ * entrada (`labelCorrections`).
  *
  * Desde entonces no puede volver a pasar. El motor corre sin respaldo de pago
  * diga lo que diga el entorno (`configDelMotor`), escribe a nombre del backend
