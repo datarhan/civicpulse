@@ -1291,21 +1291,20 @@ export function shortlistCandidates(inputs: VerifierInputs, topK = 8): Candidate
     })
   }
 
-  // BDNS subsidies
+  // BDNS subsidies. Se leía `titulo`, `url`, `convocatoriaId` y `organo`, que no
+  // trae ninguna fila de bdns.json: la mitad léxica no proponía una sola
+  // convocatoria (tests/claim-verifier-bdns-lista-corta.test.ts). Los lectores
+  // son los del tramo determinista.
   for (const b of readBdns(inputs.bdns)) {
-    if (!b.titulo) continue
-    const sim = overlapScore(claim.verbatim + ' ' + claim.context, b.titulo)
+    const text = bdnsText(b)
+    if (!text) continue
+    const sim = overlapScore(claim.verbatim + ' ' + claim.context, text)
     if (sim < 0.2) continue
     const amount = bdnsAmount(b)
     out.push({
       kind: 'bdns',
-      ref:
-        b.url ?? (b.convocatoriaId ? `bdns:${b.convocatoriaId}` : `bdns:${b.titulo.slice(0, 40)}`),
-      snippet:
-        `${b.titulo}${amount ? ` · €${amount.toLocaleString('es-ES')}` : ''}${b.organo ? ` · ${b.organo}` : ''}`.slice(
-          0,
-          230,
-        ),
+      ref: bdnsRef(b),
+      snippet: `${text}${amount ? ` · €${amount.toLocaleString('es-ES')}` : ''}`.slice(0, 230),
       similarity: Math.round(sim * 100) / 100,
     })
   }
