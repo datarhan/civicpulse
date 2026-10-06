@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
-import { buildTenderRows } from '../scripts/embed-verifier-corpus'
+import { buildTenderRows, CLAVE_DE_LICITACION } from '../scripts/embed-verifier-corpus'
 import { mergeShortlists } from '../src/scraper/semantic-shortlist'
 import { snippetDeContrato } from '../src/scraper/snippet-de-contrato'
 import type { CandidateShortlist } from '../src/scraper/claim-verifier'
@@ -20,16 +20,34 @@ const licitacion = (id: string) =>
   (F.tenders as Record<string, unknown>[]).find((r) => r.id === id)!
 
 describe('una licitación cuyo id repite el de un contrato', () => {
-  it('entra en el corpus: las dos filas de ESDA1/2025 y la de 136/2025', () => {
+  it('entra en el corpus si trae otro objeto: las dos filas de ESDA1/2025 y la de 136/2025', () => {
     const filas = buildTenderRows(F)
     const textos = filas.map((f) => f.text)
     for (const id of ['4889055', '4930957', '4653394']) {
       const titulo = String(licitacion(id).title)
       expect(textos.some((t) => t.startsWith(titulo))).toBe(true)
     }
-    expect(filas).toHaveLength(F.contracts.length + F.tenders.length)
     // Cada fila con su clave: la caché las guarda por `kind:sourceId`.
     expect(new Set(filas.map((f) => f.sourceId)).size).toBe(filas.length)
+  })
+
+  it('entra si su importe de licitación no es el del contrato: el total de los seis lotes de 53/2022', () => {
+    const filas = buildTenderRows(F)
+    const fila = filas.find((f) => f.sourceId === CLAVE_DE_LICITACION + '1945526')
+    expect(fila?.snippet).toContain('expediente 53/2022')
+    expect(fila?.snippet).toContain('122.545,68 €')
+  })
+
+  it('no entra si repite el objeto y los importes de su contrato: 34/2022 no añade nada', () => {
+    // Medido el 06-10-2026: 336 licitaciones así. Con ellas dentro, cada una
+    // volvía a la lista corta pegada a su contrato —el mismo título, casi el
+    // mismo vector— y los gemelos ocupaban una de cada seis plazas.
+    const filas = buildTenderRows(F)
+    expect(filas.find((f) => f.sourceId === CLAVE_DE_LICITACION + '1946071')).toBeUndefined()
+    const titulo = String(contrato('1946071').title)
+    expect(filas.filter((f) => f.text.startsWith(titulo)).map((f) => f.sourceId)).toEqual([
+      '1946071',
+    ])
   })
 
   it('el contrato conserva su clave de siempre', () => {
