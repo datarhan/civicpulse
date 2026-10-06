@@ -4,6 +4,7 @@
  *
  *   npm run check:guards            # wiring audit — free, safe, no data touched
  *   npm run check:guards -- --inject   # + fault injection: break it, watch it scream
+ *                                      #   (desde un worktree: en el principal sale 3)
  *   npm run check:guards -- --json
  *
  * ## Why
@@ -46,9 +47,37 @@
  * informa, no falla—; y una inyección puede decir qué marca espera ver en lo
  * que imprime su guarda (`espera`). La lógica, pura y con pruebas, es
  * `juzgarInyeccion` en src/scraper/guard-audit.ts.
+ *
+ * ## Por qué `--inject` no corre en el checkout principal
+ *
+ * Inyectar es escribir en el árbol copias corrompidas de ficheros PUBLICADOS
+ * —desde #247, el overlay con un `sin-datos` subido a `verificado`— y
+ * deshacerlas con `git checkout` segundos después. En el portátil del curador
+ * el checkout principal nunca está quieto: los agentes de launchd escriben
+ * `public/data/` y terminan en su propio `git commit` + `git push origin main`
+ * (docs/OPERATIONS.md §Local scheduled jobs). Un commit que cayera a media
+ * inyección publicaría la corrupción, y la restauración de después ya no la
+ * alcanzaría. El gancho `live-tree-paths.mjs` no lo ve: juzga las órdenes de
+ * Bash, no el git que este guion lanza desde node.
+ *
+ * Así que desde el 06-10-2026 `--inject` sale 3 sin escribir nada si el árbol
+ * es el principal —su `.git` es el común; el de un worktree es
+ * `<común>/worktrees/<nombre>`— o si git no sabe decirlo, y explica cómo
+ * correrlo desde un worktree. También en un clon cualquiera: es su propio
+ * checkout principal, y desde aquí no se distingue del portátil del curador.
+ * Cuesta un `git worktree add`. La auditoría de cableado no escribe nada y
+ * sigue corriendo en cualquier parte, también en la nocturna, que sólo corre
+ * esa mitad.
  */
 import { execFileSync, spawnSync } from 'node:child_process'
-import { readFileSync, writeFileSync, readdirSync, existsSync, statSync } from 'node:fs'
+import {
+  readFileSync,
+  writeFileSync,
+  readdirSync,
+  existsSync,
+  statSync,
+  realpathSync,
+} from 'node:fs'
 import { resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import {
@@ -346,9 +375,17 @@ export const INJECTIONS: Array<{
     },
   },
   {
+    // Hasta el 06-10-2026 esta inyección era muda desde el día en que se
+    // escribió con su guarda (27-08-2026): check:solicitudes leía un manifiesto
+    // sin el cruce como SALTADO y salía 0. La guarda y su inyección no estaban
+    // de acuerdo en qué significa que falte. Lo escribe siempre su único
+    // escritor, así que faltar es una avería —la página pintaría un 0 en cada
+    // clase—, y la guarda la nombra con su marca.
     guard: 'check:solicitudes',
     file: 'public/data/pleno-claims/index.json',
-    describe: 'el cruce por clase documental vaciado — la guarda no puede medir nada',
+    describe:
+      'un manifiesto sin el cruce por clase documental — la página pintaría un 0 en cada clase',
+    espera: /\[sin-cruce-documental\]/,
     corrupt: (s) => s.replace(/"porClaseDocumental"/, '"porClaseDocumentalRota"'),
   },
   {
@@ -730,6 +767,53 @@ function gitRestore(file: string): void {
 }
 
 /**
+ * ¿Es este árbol el checkout principal? `true` si su `.git` es el común,
+ * `false` en un worktree y `null` si git no sabe decirlo — que para inyectar
+ * cuenta como `true`: una escritura que no sabe dónde cae no se hace.
+ */
+function enCheckoutPrincipal(): boolean | null {
+  const ruta = (arg: string): string | null => {
+    const r = spawnSync('git', ['rev-parse', '--path-format=absolute', arg], {
+      cwd: ROOT,
+      encoding: 'utf8',
+    })
+    const p = r.status === 0 ? r.stdout.trim() : ''
+    return p && existsSync(p) ? realpathSync(p) : null
+  }
+  const propio = ruta('--git-dir')
+  const comun = ruta('--git-common-dir')
+  return propio && comun ? propio === comun : null
+}
+
+/** Sale 3 sin haber escrito nada, y dice cómo inyectar desde un worktree. */
+function negarseAInyectar(principal: boolean | null): never {
+  const wt = '.claude/worktrees/inyeccion'
+  process.stderr.write(
+    `[check:guards] --inject NO corre aquí: ${
+      principal === null
+        ? 'git no sabe decir si este árbol es el checkout principal'
+        : 'éste es el checkout principal'
+    }.\n` +
+      '  Inyectar escribe copias corrompidas de ficheros PUBLICADOS y las deshace con\n' +
+      '  `git checkout`, y en el checkout principal los agentes de launchd comitean y empujan\n' +
+      '  por su cuenta (docs/OPERATIONS.md §Local scheduled jobs): un commit a media\n' +
+      '  inyección publicaría la corrupción. Un clon cualquiera es también su propio\n' +
+      '  checkout principal y no se distingue de aquél, así que tampoco corre ahí; la\n' +
+      '  nocturna sólo corre la auditoría de cableado, que no escribe nada. Desde un worktree:\n\n' +
+      `    cd "${ROOT}"\n` +
+      `    git worktree add --detach ${wt}\n` +
+      `    ln -s "$PWD/node_modules" ${wt}/node_modules\n` +
+      `    cp public/data/pleno-claims-verified-base.json ${wt}/public/data/\n` +
+      `    mkdir -p ${wt}/editorial && cp editorial/finding-support-queue.json ${wt}/editorial/\n` +
+      `    (cd ${wt} && npm run check:guards -- --inject)\n` +
+      `    git worktree remove ${wt}\n\n` +
+      '  Los dos `cp` son los ficheros gitignorados que leen la inyección del overlay y la de\n' +
+      '  check:queues: sin ellos dicen «injection failed», nunca «muda».\n',
+  )
+  process.exit(3)
+}
+
+/**
  * Corre una guarda y apunta cómo salió y qué imprimió: la `espera` de una
  * inyección se busca en lo impreso.
  *
@@ -754,6 +838,10 @@ function main(): void {
   const argv = process.argv.slice(2)
   const inject = argv.includes('--inject')
   const asJson = argv.includes('--json')
+  if (inject) {
+    const principal = enCheckoutPrincipal()
+    if (principal !== false) negarseAInyectar(principal)
+  }
 
   const pkg = JSON.parse(readFileSync(resolve(ROOT, 'package.json'), 'utf8'))
   const guards = Object.keys(pkg.scripts).filter((k) => k.startsWith('check:'))

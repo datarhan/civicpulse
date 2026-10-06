@@ -518,16 +518,20 @@ past — with nightly churn in the tree it will skip a guard and still finish
 cheerfully, which is «green by not running» one level up. A guard can be
 wired, tested and still toothless: `check:drift` reported `✗` for a year because
 the one figure its injection targets carried a `scope` note that exempted it from
-the threshold. And a red exit proves nothing on its own: on 2026-10-04 the
-`check:veredictos` injection corrupted `pleno-claims/index.json`, a file that
-guard never opens (silent, and copied from `check:cobertura`'s), while between
-#226 and #228 the same guard already exited 1 with nothing injected, so any
-injection would have read FIRES. Since 2026-10-05 each injected guard runs once
-on the untouched tree first; one that is already red is reported **SIN PRUEBA**
-with its exit code (reported, not fatal: some guards are red by design), and an
-injection may name the mark its guard prints for that fault (`espera`), so a red
-run without it counts as unproven too. Read the per-guard line, not the exit
-code.
+the threshold, and `check:solicitudes` read the very block its injection removes
+as SALTADO, exit 0, from the day both were written (2026-08-27) to 2026-10-06. A
+manifest without `porClaseDocumental` cannot be legitimate — its one writer
+always emits it, and `/laboratorio/cobertura` would print a 0 for every class —
+so it is a red now (`[sin-cruce-documental]`). And a red exit proves nothing on
+its own: on 2026-10-04 the `check:veredictos` injection corrupted
+`pleno-claims/index.json`, a file that guard never opens (silent, and copied from
+`check:cobertura`'s), while between #226 and #228 the same guard already exited
+1 with nothing injected, so any injection would have read FIRES. Since
+2026-10-05 each injected guard runs once on the untouched tree first; one that is
+already red is reported **SIN PRUEBA** with its exit code (reported, not fatal:
+some guards are red by design), and an injection may name the mark its guard
+prints for that fault (`espera`), so a red run without it counts as unproven
+too. Read the per-guard line, not the exit code.
 
 Baselines (`.vocabulary-census.json`, `.transcript-check-baseline.json`) are
 **committed on purpose**. Gitignored, CI would write a fresh one each night and
@@ -556,14 +560,25 @@ with `--draft`: another curator's link rot must not block a promotion.
 
 ```bash
 npm run check:guards            # wiring: is each guard above invoked anywhere?
-npm run check:guards -- --inject   # break what each one watches, confirm it fires
+npm run check:guards -- --inject   # break what each one watches, confirm it fires (worktree only)
 ```
 
 `--inject` mutates real snapshots, restores them from git, and **verifies the
 restoration** (exit 2 if it cannot). It refuses to touch a file with uncommitted
-changes. It also names every guard it has no injection for, rather than letting
-a partial pass read as full coverage — as of 2026-08-03 that is 11 of 15. Before
-a guard's first injection it runs that guard on the untouched tree: an injection
+changes, and since 2026-10-06 it refuses to run at all in the **main checkout**
+(exit 3, nothing written): the
+[local agents](#local-scheduled-jobs-the-curators-laptop) commit and push from
+there on their own schedule, so a commit landing mid-injection would publish the
+corruption — one injection raises a published `sin-datos` to `verificado`. That
+includes any plain clone: it is its own main checkout and cannot be told apart
+from the curator's, so a clone pays one `git worktree add`. Run it from a
+worktree; the refusal prints the commands
+(`git worktree add --detach .claude/worktrees/inyeccion`, link `node_modules`,
+copy the two gitignored inputs it reads, run, `git worktree remove`). The wiring
+audit writes nothing and runs anywhere, and it is the only half the nightly
+runs. It also names every guard it has no injection for, rather than letting a
+partial pass read as full coverage — as of 2026-08-03 that is 11 of 15. Before a
+guard's first injection it runs that guard on the untouched tree: an injection
 only proves something against a guard that was green without it. The overlay
 injection of `check:veredictos` needs the gitignored base on disk; without it, it
 reports «not exercised» rather than a silence it did not measure.
