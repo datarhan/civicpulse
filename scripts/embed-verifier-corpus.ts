@@ -11,8 +11,9 @@
  * each row is keyed by SHA-256 of its source text, so a second run only
  * re-embeds rows whose text changed — and gives the rows it keeps today's
  * snippet, which is not embedded (`planDelCorpus`). A contract's snippet is
- * `snippetDeContrato` (src/scraper/snippet-de-contrato.ts), the same one the
- * lexical shortlist shows.
+ * `snippetDeContrato` (src/scraper/snippet-de-contrato.ts) and a grant's is
+ * `snippetDeBdns` (src/scraper/snippet-de-bdns.ts), the same ones the lexical
+ * shortlist shows.
  *
  * The cache is gitignored (no PII, but contains the same source text the
  * SPA already publishes — no need to commit a 50 MB file when re-embed is
@@ -46,6 +47,7 @@ import { pathToFileURL } from 'node:url'
 import { describeActiveEmbedder, embedTexts, EmbedError } from '../src/scraper/embed-client'
 import type { CorpusRow } from '../src/scraper/semantic-shortlist'
 import { snippetDeContrato } from '../src/scraper/snippet-de-contrato'
+import { bdnsRef, snippetDeBdns, type BdnsRow } from '../src/scraper/snippet-de-bdns'
 
 const DATA_DIR = resolve('public/data')
 const CACHE_DIR = resolve('.embed-cache')
@@ -150,18 +152,15 @@ export function buildBdnsRows(data: unknown): PendingRow[] {
     seen.add(id)
     const organo = String(r.organ ?? r.organo ?? '').trim()
     const text = [titulo, organo].filter(Boolean).join(' · ')
-    const amount = (r.importe as number | undefined) ?? (r.amount as number | undefined) ?? null
-    let snippet = titulo
-    if (amount) snippet += ` · €${Number(amount).toLocaleString('es-ES')}`
-    if (organo) snippet += ` · ${organo}`
-    snippet = snippet.slice(0, 230)
     out.push({
       kind: 'bdns',
       sourceId: id,
       text,
       textSha256: sha256(text),
-      snippet,
-      ref: String(r.sourceUrl ?? r.url ?? `bdns:${id}`),
+      // El mismo snippet y el mismo enlace que la lista corta léxica: la fusión de
+      // las dos mitades va por `ref`, y el modelo lee la convocatoria igual.
+      snippet: snippetDeBdns(r as BdnsRow),
+      ref: bdnsRef(r as BdnsRow),
     })
   }
   return out

@@ -135,6 +135,7 @@ import type { ClaimVerdict } from './claim-verdicts'
 import { COLA_SIN_IMPORTE, leyoContratos, resumenCasi, resumenSinRegistro } from './claim-verdicts'
 import { importeDelEmparejador } from './importe-de-contrato'
 import { snippetDeContrato } from './snippet-de-contrato'
+import { bdnsAmount, bdnsRef, bdnsText, snippetDeBdns, type BdnsRow } from './snippet-de-bdns'
 
 /**
  * What this verifier established about a document RELATIVE to the claim.
@@ -314,33 +315,6 @@ interface TenderRow {
   amount?: number
   status?: string
   date?: string
-}
-
-/**
- * Una fila de `bdns.json`.
- *
- * Los nombres de ARRIBA son los que el snapshot publica hoy (`src/scraper/bdns.ts`):
- * medido el 21-09-2026, las 177 filas traen `bdnsCode`, `description`, `organ` y
- * `sourceUrl`, y NINGUNA trae importe. Los de abajo son los que este fichero leía
- * — un esquema que no es el de la fuente—, y se conservan por si una fila vieja o
- * un fixture los usa. Es la clase nº 2 de docs/DATA_INTEGRITY.md («nombre de campo
- * desalineado»): leer `url` y `convocatoriaId` en filas que no los tienen dejaba
- * TODA cita de BDNS en `bdns:`, vacía, y nadie lo veía porque seguía siendo una
- * cadena.
- */
-interface BdnsRow {
-  bdnsCode?: string
-  description?: string
-  organ?: string
-  sourceUrl?: string
-  convocatoriaId?: string
-  titulo?: string
-  organo?: string
-  importe?: number
-  amount?: number
-  fechaInicio?: string
-  fecha?: string
-  url?: string
 }
 
 interface BudgetChapter {
@@ -634,34 +608,6 @@ function readBdns(data: unknown): BdnsRow[] {
   if (!data || typeof data !== 'object') return []
   const obj = data as { items?: BdnsRow[]; convocatorias?: BdnsRow[] }
   return obj.items ?? obj.convocatorias ?? []
-}
-
-/**
- * BDNS convocatorias in this snapshot carry NO amount: the scraper writes
- * {bdnsCode, date, description, direction, id, level1, level2, organ,
- * sourceUrl} and nothing else. `importe` and `amount` are absent on all 172
- * rows, so amount-based grant matching cannot work and never could. Kept for
- * the day the scraper starts capturing the figure; until then it honestly
- * returns null and the caller falls back to text matching.
- */
-function bdnsAmount(r: BdnsRow): number | null {
-  const v = r.importe ?? r.amount
-  const n = Number(v)
-  return Number.isFinite(n) && n > 0 ? n : null
-}
-
-/** Searchable text for a grant row — `titulo`/`organo` are not its field names. */
-function bdnsText(r: BdnsRow): string {
-  return [r.description, r.organ, r.titulo, r.organo].filter(Boolean).join(' · ')
-}
-
-/**
- * La cita de una fila de BDNS: su ficha pública, o su código. Nunca `bdns:` a
- * secas — una cita que no lleva a ningún sitio no es una cita, y
- * `check:citations` no puede resolver lo que no nombra nada.
- */
-function bdnsRef(r: BdnsRow): string {
-  return r.sourceUrl ?? r.url ?? `bdns:${r.bdnsCode ?? r.convocatoriaId ?? ''}`
 }
 
 function readPromises(data: unknown): PromiseRow[] {
@@ -1294,17 +1240,17 @@ export function shortlistCandidates(inputs: VerifierInputs, topK = 8): Candidate
   // BDNS subsidies. Se leía `titulo`, `url`, `convocatoriaId` y `organo`, que no
   // trae ninguna fila de bdns.json: la mitad léxica no proponía una sola
   // convocatoria (tests/claim-verifier-bdns-lista-corta.test.ts). Los lectores
-  // son los del tramo determinista.
+  // son los del tramo determinista, y el snippet el del corpus semántico
+  // (snippet-de-bdns.ts): una convocatoria llega al modelo de una sola manera.
   for (const b of readBdns(inputs.bdns)) {
     const text = bdnsText(b)
     if (!text) continue
     const sim = overlapScore(claim.verbatim + ' ' + claim.context, text)
     if (sim < 0.2) continue
-    const amount = bdnsAmount(b)
     out.push({
       kind: 'bdns',
       ref: bdnsRef(b),
-      snippet: `${text}${amount ? ` · €${amount.toLocaleString('es-ES')}` : ''}`.slice(0, 230),
+      snippet: snippetDeBdns(b),
       similarity: Math.round(sim * 100) / 100,
     })
   }
