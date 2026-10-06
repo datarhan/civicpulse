@@ -176,6 +176,10 @@ test.describe('Reportaje · coste efectivo (/reportajes/coste-efectivo)', () => 
       ),
     ).toBeVisible()
     await expect(page.getByText(/sólo atiende consultas de las entidades locales/)).toBeVisible()
+    // Y la segunda contestación (06-10-2026), de la Secretaría General: que se
+    // presente formalmente por el Portal de Transparencia o por un registro. Tampoco
+    // resuelve; la fila sigue con su reloj contado desde el envío.
+    await expect(page.getByText(/«debe presentarse formalmente»/)).toBeVisible()
 
     // EL AYUNTAMIENTO (23-09-2026): pide que se presente por su Registro de
     // Entrada, y lo dice de las DOS solicitudes que recibió por correo —ésta y la
