@@ -108,6 +108,26 @@ export interface PendingRow {
  */
 export const CLAVE_DE_LICITACION = 'licitacion:'
 
+const mismoImporte = (a: unknown, b: unknown) =>
+  Math.abs((Number(a) || 0) - (Number(b) || 0)) < 0.005
+
+/**
+ * Si una licitación no dice nada que no diga ya el contrato con su id: el mismo
+ * objeto y los mismos importes de licitación, con IVA y sin él, que el snippet
+ * del contrato enseña (snippet-de-contrato.ts).
+ */
+function repiteSuContrato(
+  licitacion: Record<string, unknown>,
+  contrato: Record<string, unknown> | undefined,
+): boolean {
+  return (
+    !!contrato &&
+    String(contrato.title ?? '').trim() === String(licitacion.title ?? '').trim() &&
+    mismoImporte(contrato.initialAmount, licitacion.initialAmount) &&
+    mismoImporte(contrato.initialAmountNoTaxes, licitacion.initialAmountNoTaxes)
+  )
+}
+
 /**
  * Las filas de contratos y licitaciones de `tenders.json`, una por fila.
  *
@@ -118,6 +138,14 @@ export const CLAVE_DE_LICITACION = 'licitacion:'
  * las dos de ESDA1/2025, las que dicen «abierto a otras entidades públicas»
  * (INFORME 04-10 §4 f, qz6weg-184-cit-8629f9), y la de 136/2025, la única que
  * nombra juntos sus dos lotes.
+ *
+ * Una licitación que repite el objeto y los importes de licitación del contrato
+ * con su id sigue fuera (`repiteSuContrato`): el snippet del contrato ya los
+ * enseña, y dentro volvía a la lista corta pegada a él —el mismo título, casi el
+ * mismo vector—, ocupando la plaza de otro registro. Medido el 06-10-2026: 336
+ * así, y con ellas dentro los gemelos llenaban una de cada seis plazas. La que
+ * repite el título pero no el importe lleva el total de un expediente con lotes
+ * (53/2022: el de seis lotes, junto a un contrato que da el de uno) y entra.
  *
  * Lo que se embebe es el objeto, la adjudicataria y la categoría. `contractor`
  * no: en la proyección de Gobierto es el órgano de contratación, el Ayuntamiento
@@ -133,6 +161,9 @@ export function buildTenderRows(data: unknown): PendingRow[] {
     ...(d.tenders ?? []).map((r): [unknown, string] => [r, CLAVE_DE_LICITACION]),
     ...(d.items ?? []).map((r): [unknown, string] => [r, '']),
   ]
+  const contratos = new Map<string, Record<string, unknown>>()
+  for (const c of d.contracts ?? [])
+    if (c && typeof c === 'object') contratos.set(String((c as { id?: unknown }).id), c as never)
   const out: PendingRow[] = []
   const seen = new Set<string>()
   for (const [raw, tabla] of arr) {
@@ -140,6 +171,7 @@ export function buildTenderRows(data: unknown): PendingRow[] {
     const r = raw as Record<string, unknown>
     const title = String(r.title ?? '').trim()
     if (!title) continue
+    if (tabla === CLAVE_DE_LICITACION && repiteSuContrato(r, contratos.get(String(r.id)))) continue
     const id = tabla + String(r.id ?? r.permalink ?? title.slice(0, 60))
     if (seen.has(id)) continue
     seen.add(id)
