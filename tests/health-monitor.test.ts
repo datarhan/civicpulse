@@ -5,9 +5,15 @@ import {
   formatAlerts,
   pickCheckDiagnosis,
   contarNochesEnRojo,
+  clasificarGuarda,
+  resumenIntegridad,
+  lineaSinAvisos,
+  rachasSinComprobar,
+  tocaEnviar,
   NIGHTLY_STREAK_ALARM,
   type Observations,
 } from '../src/scraper/health-monitor'
+import { valorar } from '../src/scraper/basemap-check'
 
 const NOW = new Date('2026-08-03T12:00:00.000Z')
 const daysAgo = (n: number) => new Date(NOW.getTime() - n * 86_400_000)
@@ -21,6 +27,7 @@ function obs(over: Partial<Observations> = {}): Observations {
     sources: [],
     nightlyFailStreak: 0,
     integrity: [],
+    sinComprobar: [],
     ...over,
   }
 }
@@ -322,5 +329,336 @@ describe('contarNochesEnRojo', () => {
     const racha = contarNochesEnRojo(REAL_2026_09_07)
     expect(racha).toBeGreaterThanOrEqual(NIGHTLY_STREAK_ALARM)
     expect(codes(obs({ nightlyFailStreak: racha }))).toContain('nightly-red')
+  })
+})
+
+// ---------------------------------------------------------------------------
+// Lo que se encontró el 06-10-2026: `runCheck` devolvía null con cualquier
+// salida 0, así que una guarda que imprime SALTADO o NO COMPROBADO —no ha
+// medido nada, y lo dice— entraba en el parte como «sin fallos», y el parte
+// cerraba con «✓ sin avisos». La guarda era honesta; el parte, no.
+// ---------------------------------------------------------------------------
+
+/**
+ * Salidas reales, todas con código 0, capturadas el 06-10-2026 en un worktree
+ * sin `editorial/` ni la base gitignorada, que es donde estas guardas no
+ * pueden medir. `check:officials-corrections` va con `--offline`: recorre el
+ * mismo camino que un 403 de la web del ayuntamiento y sólo cambia el texto
+ * del error. `check:solicitudes` corrió en un árbol sin manifiesto.
+ */
+const SALIDAS_SIN_MEDIR: Record<string, string> = {
+  'check:queues': [
+    '  · quote-reanchor-queue       sin fichero — nada que revisar',
+    '  · finding-support-queue      sin fichero — nada que revisar',
+    '  · finding-exception-queue    sin fichero — nada que revisar',
+    '  · attribution-queue          sin fichero — nada que revisar',
+    '',
+    '[check-queues] 0 cola(s) con fichero · 0 fila(s) · 0 viva(s) · 0 cola(s) desactualizada(s)',
+    '[check-queues] NO COMPROBADO: no existe editorial/, así que aquí no hay colas que',
+    '               mirar (está en .gitignore; en CI o en un clon nuevo esto es lo normal).',
+    '               La revisión de las colas vive en la máquina del curador.',
+  ].join('\n'),
+  'check:verified-compose': [
+    '[check-compose] 1 cotejo(s) · SALTADO: no hay base en disco (está gitignorado): no se ha podido cotejar. Reconstrúyelo con `npm run verify:pleno-claims -- --base-only`.',
+    '  No se ha comprobado nada, que no es lo mismo que estar todo bien.',
+  ].join('\n'),
+  // Midió su pasada principal y saltó el cotejo con la base: un salto puede
+  // ser de una parte, y el motivo dice de cuál.
+  'check:veredictos': [
+    '[check-veredictos] 4962 veredicto(s) evaluado(s) · 28 fuerte(s) · 13 subido(s) por una persona · 3 curado(s) · 0 de procedencia retirada · 0 sin corpus · 0 sin firma',
+    '[check-veredictos] cotejo con la base: SALTADO — no hay base que leer en disco (está gitignorada); se regenera con `npm run verify:pleno-claims -- --base-only`. No se ha cotejado ninguna entrada del overlay, que no es lo mismo que no haya ninguna por encima.',
+  ].join('\n'),
+  'check:officials-corrections': [
+    'officials-corrections · 1 corrección(es) recorrida(s)',
+    '  aplicación · aplicada 1 · no-aplicada 0 · publicado es punto fijo de la mezcla',
+    '  vigencia   · vigente 0 · absorbida 0 · contradicha 0 · no-comprobado 1 — NO COMPROBADO: --offline',
+    '  fuente     · viva 0 · sin-fuente 0 · no-verificable 0 · no-comprobado 1',
+  ].join('\n'),
+  'check:solicitudes':
+    '[check-solicitudes] 0 clase(s) · SALTADO: no hay manifiesto de declaraciones que leer. No se ha comprobado nada, que no es lo mismo que estar todo bien.',
+}
+
+/**
+ * Salidas normales, también reales y del mismo día, que el parte lee cada
+ * noche. Las tres llevan una palabra de la familia en minúscula —el recuento
+ * `no-comprobado 0`, «saltados 24 binarios», «0 skipped»—, y ninguna es un
+ * salto: una marca que casara con ellas pintaría «sin comprobar» todas las
+ * noches, que es el aviso que se aprende a ignorar. De officials-corrections
+ * falta el renglón de la baja absorbida, que nombra a una persona y aquí no
+ * hace falta.
+ */
+const SALIDAS_QUE_MIDIERON: Record<string, string> = {
+  'check:officials-corrections': [
+    'officials-corrections · 1 corrección(es) recorrida(s)',
+    '  aplicación · aplicada 1 · no-aplicada 0 · publicado es punto fijo de la mezcla',
+    '  vigencia   · vigente 0 · absorbida 1 · contradicha 0 · no-comprobado 0',
+    '  fuente     · viva 1 · sin-fuente 0 · no-verificable 0 · no-comprobado 0',
+  ].join('\n'),
+  'check:privado':
+    '[check:privado] 2275 fichero(s) rastreado(s) · 0 dato(s) privado(s) · saltados 24 binarios, 4 en la lista, 0 ilegibles',
+  'check:relations':
+    '[check-relations] 22 ok · 5 empty · 0 broken (error) · 4 broken (warn) · 0 skipped',
+}
+
+describe('clasificarGuarda · salir 0 no es haber medido', () => {
+  it.each(Object.entries(SALIDAS_SIN_MEDIR))(
+    '%s salió 0 sin medir: queda «sin comprobar», no limpia',
+    (_check, salida) => {
+      expect(clasificarGuarda(0, salida).desenlace).toBe('sin-comprobar')
+    },
+  )
+
+  // El mensaje sale del módulo de la guarda, no de una copia: si cambia su
+  // marca, esta prueba lo ve.
+  it('check:basemap sin CDN, con el mensaje de su propio módulo', () => {
+    const salida = `AVISO [inalcanzable] mapa base — ${valorar(null, null).mensaje}`
+    expect(clasificarGuarda(0, salida).desenlace).toBe('sin-comprobar')
+  })
+
+  it.each(Object.entries(SALIDAS_QUE_MIDIERON))(
+    '%s midió: la familia en minúscula no es la marca',
+    (_check, salida) => {
+      expect(clasificarGuarda(0, salida)).toEqual({ desenlace: 'limpia' })
+    },
+  )
+
+  // Las tres de arriba ya las salvan el guion y el plural; esto fija la
+  // mayúscula sola, con la palabra entera en un recuento.
+  it('la palabra entera en minúscula, en un recuento, tampoco es la marca', () => {
+    expect(
+      clasificarGuarda(0, '[check-x] 40 fila(s) · 3 saltado(s) · 2 no comprobado(s) a propósito'),
+    ).toEqual({ desenlace: 'limpia' })
+  })
+
+  it('el motivo es el renglón de la guarda, con su porqué', () => {
+    expect(clasificarGuarda(0, SALIDAS_SIN_MEDIR['check:verified-compose'])).toMatchObject({
+      motivo: expect.stringContaining('no hay base en disco'),
+    })
+  })
+
+  // check:queues parte su aviso en tres renglones sangrados; quedarse con el
+  // primero dejaba la frase en «no hay colas que».
+  it('un aviso partido en varios renglones llega entero', () => {
+    expect(clasificarGuarda(0, SALIDAS_SIN_MEDIR['check:queues'])).toMatchObject({
+      motivo: expect.stringContaining('La revisión de las colas vive en la máquina del curador'),
+    })
+  })
+
+  // Y al revés: en officials-corrections los renglones de los dos ejes van con
+  // la misma sangría, y el de la fuente no explica el salto de la vigencia.
+  it('no se traga el renglón vecino de otro eje', () => {
+    expect(clasificarGuarda(0, SALIDAS_SIN_MEDIR['check:officials-corrections'])).toMatchObject({
+      motivo: expect.not.stringContaining('fuente'),
+    })
+  })
+
+  // Si la marca pudiera más que el código, un rojo con un SALTADO de paso
+  // bajaría a «sin comprobar» y perdería su aviso crítico.
+  it('un fallo sigue siendo un fallo aunque también diga SALTADO', () => {
+    const salida =
+      SALIDAS_SIN_MEDIR['check:veredictos'] +
+      '\n  ✗ [sin-corpus] 1abc-001-xyz: verificado — veredicto fuerte sin corpus'
+    expect(clasificarGuarda(1, salida)).toMatchObject({
+      desenlace: 'fallo',
+      mensaje: expect.stringContaining('sin-corpus'),
+    })
+  })
+
+  // Sin código —la mataron, o ni siquiera arrancó— no hay nada que absolver.
+  it('una guarda sin código de salida es un fallo, ni salto ni verde', () => {
+    expect(clasificarGuarda(null, '').desenlace).toBe('fallo')
+  })
+})
+
+describe('el parte no absuelve lo que no se midió', () => {
+  const salto = {
+    check: 'check:queues',
+    motivo: '[check-queues] NO COMPROBADO: no existe editorial/',
+    desde: NOW,
+  }
+
+  it('dice «sin fallos» cuando todo lo que corrió midió', () => {
+    expect(resumenIntegridad({ integrity: [], sinComprobar: [] })).toBe('sin fallos')
+  })
+
+  it('nunca dice «sin fallos» con una guarda sin comprobar, y la nombra', () => {
+    const r = resumenIntegridad({ integrity: [], sinComprobar: [salto] })
+    expect(r).not.toContain('sin fallos')
+    expect(r).toMatch(/sin comprobar.*check:queues/)
+  })
+
+  it('cuenta los fallos y los saltos, cada uno en su sitio', () => {
+    const r = resumenIntegridad({
+      integrity: [{ check: 'check:json', message: 'snapshot ilegible' }],
+      sinComprobar: [salto],
+    })
+    expect(r).toContain('check:json')
+    expect(r).toMatch(/sin comprobar.*check:queues/)
+    expect(r).not.toMatch(/sin comprobar.*check:json/)
+  })
+
+  it('cierra con el ✓ sólo cuando todo midió', () => {
+    expect(lineaSinAvisos([])).toContain('✓')
+    const l = lineaSinAvisos([salto])
+    expect(l).not.toContain('✓')
+    expect(l).toMatch(/sin comprobar.*check:queues/)
+  })
+
+  // Un salto no es un rojo: si entrara por `integrity`, cada 403 de una web
+  // ajena sería un aviso crítico.
+  it('un salto no se convierte en un aviso de integridad', () => {
+    expect(codes(obs({ sinComprobar: [salto] }))).not.toContain('integrity:check:queues')
+  })
+})
+
+/**
+ * La pauta, decidida con el coordinador el 06-10-2026. Un salto no avisa el
+ * primer día: el caso crónico es una web pública que contesta 403, y un rojo
+ * diario por eso enseña a silenciar el canal. Pero tampoco se queda en el log
+ * para siempre, que es justo el «verde por no correr» que este parte existe
+ * para cerrar: a los siete días seguidos es un 🟠 con su propio código, y solo
+ * en el parte se repite cada semana, no cada tres días. Un 403 crónico cuesta
+ * así un mensaje semanal: poco para que nadie silencie el canal, y bastante
+ * para que alguien arregle la descarga.
+ */
+describe('siete días seguidos sin comprobar: aviso propio, semanal', () => {
+  const CHECK = 'check:officials-corrections'
+  const MOTIVO =
+    'vigencia · vigente 0 · absorbida 0 · contradicha 0 · no-comprobado 1 — NO COMPROBADO: HTTP 403'
+  // El cron corre a diario a las 11:00 de Madrid, las 09:00 UTC en octubre.
+  const dia = (n: number, minuto = 5) => new Date(Date.UTC(2026, 9, 1 + n, 9, minuto))
+  const desdeElDia0 = (now: Date, otros: Partial<Observations> = {}) =>
+    evaluateHealth(
+      obs({ now, sinComprobar: [{ check: CHECK, motivo: MOTIVO, desde: dia(0) }], ...otros }),
+    )
+
+  it('el sexto día todavía no avisa', () => {
+    expect(desdeElDia0(dia(6))).toEqual([])
+  })
+
+  it('el séptimo avisa, en naranja y con su propio código', () => {
+    expect(desdeElDia0(dia(7))).toMatchObject([
+      { code: 'sin-comprobar:check:officials-corrections', severity: 'warning' },
+    ])
+  })
+
+  // Si el séptimo arranca unos minutos antes que el primero, sigue siendo el
+  // séptimo: contar múltiplos exactos de 24 h lo dejaría para el octavo.
+  it('cuenta días de calendario, no múltiplos de 24 h', () => {
+    expect(desdeElDia0(dia(7, 1)).map((a) => a.code)).toEqual([
+      'sin-comprobar:check:officials-corrections',
+    ])
+  })
+
+  it('trae el motivo de la guarda, que nombra la parte, y las dos salidas', () => {
+    const [a] = desdeElDia0(dia(7))
+    expect(a.detail).toContain('vigencia')
+    expect(a.detail).toContain('NO COMPROBADO: HTTP 403')
+    expect(a.remedy).toMatch(/vuelva a medir/)
+    expect(a.remedy).toMatch(/retira/)
+    expect(a.remedy).toMatch(/redefine/)
+  })
+
+  const enviadoEl7 = () => ({
+    fingerprint: alertFingerprint(desdeElDia0(dia(7))),
+    at: dia(7).toISOString(),
+  })
+
+  it('el décimo día no se repite', () => {
+    expect(tocaEnviar(desdeElDia0(dia(10)), enviadoEl7(), dia(10))).toBe(false)
+  })
+
+  it('el decimocuarto, sí', () => {
+    expect(tocaEnviar(desdeElDia0(dia(14)), enviadoEl7(), dia(14))).toBe(true)
+  })
+
+  // Con otro aviso en el parte, el parte sale cada tres días por ése, y el
+  // salto viaja dentro sin costar un mensaje más.
+  it('junto a otro aviso manda la cadencia de los tres días', () => {
+    const conElBot = (n: number) => desdeElDia0(dia(n), { botHealthy: false })
+    const enviado = { fingerprint: alertFingerprint(conElBot(7)), at: dia(7).toISOString() }
+    expect(tocaEnviar(conElBot(10), enviado, dia(10))).toBe(true)
+  })
+
+  // La cadencia sólo frena un parte que no ha cambiado.
+  it('un aviso nuevo sale al día siguiente del envío semanal', () => {
+    const conElBot = desdeElDia0(dia(8), { botHealthy: false })
+    expect(tocaEnviar(conElBot, enviadoEl7(), dia(8))).toBe(true)
+  })
+
+  it('sin un envío anterior, sale', () => {
+    expect(tocaEnviar(desdeElDia0(dia(7)), null, dia(7))).toBe(true)
+  })
+
+  // La fecha del último envío ilegible daba NaN días, que no llegan nunca a
+  // ninguna cadencia: el parte se callaba para siempre.
+  it('un último envío con la fecha ilegible no calla el parte', () => {
+    const ilegible = { fingerprint: enviadoEl7().fingerprint, at: 'ayer' }
+    expect(tocaEnviar(desdeElDia0(dia(9)), ilegible, dia(9))).toBe(true)
+  })
+
+  it('sin avisos no hay nada que enviar, aunque el último parte fuera otro', () => {
+    expect(tocaEnviar([], enviadoEl7(), dia(7))).toBe(false)
+  })
+
+  it('un día que mide corta la racha', () => {
+    expect(rachasSinComprobar({ [CHECK]: dia(0).toISOString() }, [], dia(5))).toEqual({})
+  })
+
+  it('y la que vuelve empieza de cero: su sexto día no avisa', () => {
+    const cortada = rachasSinComprobar({ [CHECK]: dia(0).toISOString() }, [], dia(5))
+    const desde = rachasSinComprobar(cortada, [CHECK], dia(6))[CHECK]
+    expect(desde).toBe(dia(6).toISOString())
+    const o = obs({
+      now: dia(12),
+      sinComprobar: [{ check: CHECK, motivo: MOTIVO, desde: new Date(desde) }],
+    })
+    expect(evaluateHealth(o)).toEqual([])
+  })
+
+  it('mientras no mida, la racha conserva su primer día', () => {
+    const previas = { [CHECK]: dia(0).toISOString() }
+    expect(rachasSinComprobar(previas, [CHECK], dia(5))).toEqual(previas)
+  })
+
+  // Un estado ilegible no puede fabricar una racha: sin fecha que creer, hoy.
+  it('una fecha ilegible en el estado empieza hoy', () => {
+    expect(rachasSinComprobar({ [CHECK]: 'ayer' }, [CHECK], dia(5))).toEqual({
+      [CHECK]: dia(5).toISOString(),
+    })
+  })
+})
+
+describe('el bloque «Sin comprobar» de un parte que sale', () => {
+  const dia = (n: number) => new Date(Date.UTC(2026, 9, 1 + n, 9, 5))
+  const vieja = {
+    check: 'check:officials-corrections',
+    motivo: 'vigencia · no-comprobado 1 — NO COMPROBADO: HTTP 403',
+    desde: dia(0),
+  }
+  const nueva = {
+    check: 'check:queues',
+    motivo: '[check-queues] NO COMPROBADO: no existe editorial/',
+    desde: dia(5),
+  }
+
+  it('lista las que aún no tienen aviso propio, y no repite las que ya lo tienen', () => {
+    const sinComprobar = [vieja, nueva]
+    const texto = formatAlerts(
+      evaluateHealth(obs({ now: dia(7), botHealthy: false, sinComprobar })),
+      sinComprobar,
+    )
+    const bloque = texto.slice(texto.indexOf('Sin comprobar'))
+    expect(bloque).toContain('check:queues')
+    expect(bloque).toContain('no existe editorial/')
+    expect(bloque).not.toContain('check:officials-corrections')
+  })
+
+  // El bloque informa; no avisa. Si una racha corta moviera la huella, un salto
+  // que aparece o se cura reenviaría un parte que no ha cambiado.
+  it('una racha corta no mueve la huella', () => {
+    const conSalto = evaluateHealth(obs({ now: dia(7), botHealthy: false, sinComprobar: [nueva] }))
+    const sinSalto = evaluateHealth(obs({ now: dia(7), botHealthy: false }))
+    expect(alertFingerprint(conSalto)).toBe(alertFingerprint(sinSalto))
   })
 })

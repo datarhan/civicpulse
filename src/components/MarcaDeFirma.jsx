@@ -3,7 +3,8 @@ import { tramoDeFirma } from '../lib/atribucion-firmada'
 
 /**
  * «firmado» junto al grupo de una declaración cuando ese grupo lo firmó una
- * persona que escuchó la sesión, con el tramo escuchado en el título. Sin
+ * persona (tras escuchar la sesión o, si no, diciéndolo en su motivo), con el
+ * tramo en el título. Sin
  * firma, nada: el grupo lo puso el mapa de voces y no hay más que decir.
  *
  * Lo pintan /declaraciones y el registro de /plenos/:id, cada uno con su estilo

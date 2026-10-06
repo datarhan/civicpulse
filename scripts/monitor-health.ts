@@ -8,18 +8,28 @@
  * that happens they all get muted together.
  *
  *   npm run monitor:health                # alert if something is wrong
- *   npm run monitor:health -- --dry-run   # print, never send
+ *   npm run monitor:health -- --dry-run   # print; never send, never write state
  *   npm run monitor:health -- --force     # send even if unchanged
+ *
+ * Each guard ends one of three ways (`clasificarGuarda`): red, clean, or
+ * «sin comprobar» — exit 0 with its own SALTADO / NO COMPROBADO. The third is
+ * never folded into «sin fallos»; after seven days in a row it is its own
+ * weekly warning (see `evaluateHealth` and `tocaEnviar`).
  */
 import { readFileSync, writeFileSync, existsSync, readdirSync, statSync } from 'node:fs'
 import { resolve } from 'node:path'
-import { execFileSync } from 'node:child_process'
+import { execFileSync, spawnSync } from 'node:child_process'
 import {
   evaluateHealth,
   alertFingerprint,
   formatAlerts,
-  pickCheckDiagnosis,
+  clasificarGuarda,
   contarNochesEnRojo,
+  lineaSinAvisos,
+  rachasSinComprobar,
+  resumenIntegridad,
+  tocaEnviar,
+  type DesenlaceDeGuarda,
   type Observations,
 } from '../src/scraper/health-monitor'
 import { transcriptionPending, TRANSCRIBE_BLOCKLIST_IDS } from '../src/scraper/transcribe-blocklist'
@@ -27,7 +37,32 @@ import { cotejarCompose } from '../src/scraper/verified-merge'
 
 const STATE = resolve('.health-monitor-state.json')
 const DATA = resolve('public/data')
-const RENOTIFY_DAYS = 3
+
+/**
+ * Lo que el parte recuerda de una pasada a la siguiente: la huella y la fecha
+ * del último envío, para no repetirse, y desde cuándo lleva cada guarda sin
+ * comprobar, para avisar a la semana. Sólo lo escribe una pasada de verdad:
+ * `--dry-run` no toca nada, o una prueba a mano a deshoras movería las rachas.
+ */
+interface EstadoDelParte {
+  fingerprint: string
+  at: string | null
+  sinComprobarDesde: Record<string, string>
+}
+
+function leerEstado(): EstadoDelParte {
+  const j = readJson(STATE) ?? {}
+  return {
+    fingerprint: typeof j.fingerprint === 'string' ? j.fingerprint : '',
+    at: typeof j.at === 'string' ? j.at : null,
+    sinComprobarDesde:
+      j.sinComprobarDesde && typeof j.sinComprobarDesde === 'object' ? j.sinComprobarDesde : {},
+  }
+}
+
+function guardarEstado(e: EstadoDelParte): void {
+  writeFileSync(STATE, JSON.stringify(e) + '\n')
+}
 
 function readJson(p: string): any {
   try {
@@ -111,21 +146,21 @@ function selloGenerado(path: string): string | null {
   }
 }
 
-function runCheck(script: string): string | null {
-  try {
-    execFileSync('npm', ['run', '--silent', script], {
-      encoding: 'utf8',
-      stdio: ['ignore', 'pipe', 'pipe'],
-    })
-    return null
-  } catch (err) {
-    const e = err as { stdout?: string; stderr?: string }
-    const out = `${e.stdout ?? ''}${e.stderr ?? ''}`.trim()
-    // Prefiere el renglón que dice QUÉ falló sobre el que dice CUÁNTOS fallos
-    // hubo. Ver `pickCheckDiagnosis`: quedarse con la cola mandaba al móvil
-    // «5 run(s) · 4 error(s)» y dejaba el diagnóstico en el log.
-    return pickCheckDiagnosis(out)
-  }
+/**
+ * Ejecuta una guarda y lee cómo acabó. Hasta el 06-10-2026 devolvía null con
+ * cualquier salida 0 y tiraba lo que la guarda había impreso, así que un
+ * SALTADO o un NO COMPROBADO llegaba al parte como «sin fallos». Ahora la
+ * salida se guarda en los dos casos y la lee `clasificarGuarda`: el código
+ * decide el rojo, y la marca de la propia guarda, si midió.
+ */
+function runCheck(script: string): DesenlaceDeGuarda {
+  const r = spawnSync('npm', ['run', '--silent', script], {
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'pipe'],
+  })
+  // Si ni siquiera arrancó, el porqué está en `error` y no en la salida.
+  const salida = `${r.stdout ?? ''}${r.stderr ?? ''}${r.error ? `\n${r.error.message}` : ''}`
+  return clasificarGuarda(r.status, salida)
 }
 
 async function diagnoseOpenAI(): Promise<string | null> {
@@ -149,7 +184,7 @@ async function diagnoseOpenAI(): Promise<string | null> {
   }
 }
 
-async function gather(): Promise<Observations> {
+async function gather(rachasPrevias: Record<string, string>): Promise<Observations> {
   const plenos = readJson(resolve(DATA, 'plenos.json'))?.items ?? []
   const transcripts = new Set(
     existsSync(resolve(DATA, 'pleno-transcripts'))
@@ -170,6 +205,10 @@ async function gather(): Promise<Observations> {
   const openaiCause = await diagnoseOpenAI()
 
   const integrity: { check: string; message: string }[] = []
+  // Las que salieron 0 diciendo con su marca que no midieron. Van aparte de
+  // `integrity` a propósito: no son un rojo —el caso crónico es una web ajena
+  // en 403— pero tampoco un verde, y hasta el 06-10-2026 se leían como tal.
+  const sinComprobarHoy: { check: string; motivo: string }[] = []
   // `check:runs` is here because everything else on this screen measures how
   // FRESH the data looks, and on 2026-08-11 that was the difference between
   // «✓ sin avisos» and nine days with no LLM work at all: the deterministic
@@ -339,9 +378,16 @@ async function gather(): Promise<Observations> {
     // exacto y no sirvió de nada, porque un comentario no lo ejecuta nadie.
     'check:wms',
   ]) {
-    const msg = runCheck(c)
-    if (msg) integrity.push({ check: c, message: msg })
+    const r = runCheck(c)
+    if (r.desenlace === 'fallo') integrity.push({ check: c, message: r.mensaje })
+    else if (r.desenlace === 'sin-comprobar') sinComprobarHoy.push({ check: c, motivo: r.motivo })
   }
+  const now = new Date()
+  const desde = rachasSinComprobar(
+    rachasPrevias,
+    sinComprobarHoy.map((s) => s.check),
+    now,
+  )
 
   // El mismo cotejo que hace `check:verified-compose`, en puro, para poder
   // pintar la cola SIN levantar un subproceso y sin depender de un código de
@@ -352,7 +398,7 @@ async function gather(): Promise<Observations> {
   })
 
   return {
-    now: new Date(),
+    now,
     pipelines: [
       {
         name: 'Transcripción',
@@ -414,6 +460,7 @@ async function gather(): Promise<Observations> {
     ],
     nightlyFailStreak: nightlyFailStreak(),
     integrity,
+    sinComprobar: sinComprobarHoy.map((s) => ({ ...s, desde: new Date(desde[s.check]) })),
   }
 }
 
@@ -445,7 +492,13 @@ async function main() {
   const dryRun = process.argv.includes('--dry-run')
   const force = process.argv.includes('--force')
 
-  const observations = await gather()
+  const previo = leerEstado()
+  const observations = await gather(previo.sinComprobarDesde)
+  // Las rachas de hoy: cada guarda que sigue sin comprobar con su primer día;
+  // la que midió ya no está, y así se corta su racha.
+  const rachas = Object.fromEntries(
+    observations.sinComprobar.map((s) => [s.check, s.desde.toISOString()]),
+  )
   if (process.argv.includes('--explain')) {
     // "No alerts" and "the collector silently gathered nothing" look identical
     // from the outside — the exact ambiguity this whole monitor exists to kill.
@@ -470,42 +523,46 @@ async function main() {
           `${d !== null ? ` (${d.toFixed(1)}d)` : ''} · se espera cada ${s2.expectDays}d\n`,
       )
     }
-    process.stdout.write(
-      `  integridad: ${o.integrity.length ? o.integrity.map((i) => i.check).join(', ') : 'sin fallos'}\n\n`,
-    )
+    process.stdout.write(`  integridad: ${resumenIntegridad(o)}\n`)
+    // El porqué de cada una, con sus palabras: «sin comprobar» a secas no dice
+    // si falta la base, la red o un directorio entero.
+    for (const s of o.sinComprobar) {
+      process.stdout.write(
+        `    sin comprobar ${s.check} desde ${s.desde.toISOString().slice(0, 10)} — ${s.motivo}\n`,
+      )
+    }
+    process.stdout.write('\n')
   }
   const alerts = evaluateHealth(observations)
   if (alerts.length === 0) {
-    process.stdout.write('[monitor-health] ✓ sin avisos\n')
-    writeFileSync(STATE, JSON.stringify({ fingerprint: '', at: new Date().toISOString() }) + '\n')
+    process.stdout.write(`[monitor-health] ${lineaSinAvisos(observations.sinComprobar)}\n`)
+    if (!dryRun) {
+      guardarEstado({ fingerprint: '', at: new Date().toISOString(), sinComprobarDesde: rachas })
+    }
     return
   }
 
-  const text = formatAlerts(alerts)
+  const text = formatAlerts(alerts, observations.sinComprobar)
   process.stdout.write(`\n${text.replace(/<[^>]+>/g, '')}\n\n`)
-
-  const fp = alertFingerprint(alerts)
-  const prev = readJson(STATE) ?? {}
-  const ageDays = prev.at ? (Date.now() - new Date(prev.at).getTime()) / 86_400_000 : Infinity
-  const shouldSend = force || prev.fingerprint !== fp || ageDays >= RENOTIFY_DAYS
 
   if (dryRun) {
     process.stdout.write('[monitor-health] --dry-run: no se envía\n')
     process.exitCode = 1
     return
   }
-  if (!shouldSend) {
-    process.stdout.write(
-      `[monitor-health] mismos avisos que hace ${ageDays.toFixed(1)} días — no se repite\n`,
-    )
+  if (!force && !tocaEnviar(alerts, previo, new Date())) {
+    guardarEstado({ ...previo, sinComprobarDesde: rachas })
+    const dias = previo.at ? ((Date.now() - Date.parse(previo.at)) / 86_400_000).toFixed(1) : '?'
+    process.stdout.write(`[monitor-health] mismos avisos que hace ${dias} días — no se repite\n`)
     process.exitCode = 1
     return
   }
   const sent = await send(text)
-  writeFileSync(
-    STATE,
-    JSON.stringify({ fingerprint: fp, at: sent ? new Date().toISOString() : prev.at }) + '\n',
-  )
+  guardarEstado({
+    fingerprint: alertFingerprint(alerts),
+    at: sent ? new Date().toISOString() : previo.at,
+    sinComprobarDesde: rachas,
+  })
   process.stdout.write(sent ? '[monitor-health] aviso enviado\n' : '[monitor-health] NO enviado\n')
   process.exitCode = 1
 }

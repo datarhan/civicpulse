@@ -839,9 +839,10 @@ export const CATALOGUE = {
     'ledger.recuento.contrastadas.uno': '{n} contrastada',
     'ledger.recuento.contrastadas.varios': '{n} contrastadas',
     'ledger.recuento.sinContraste': '{n} sin contraste en los datos',
-    // Un grupo que firmó una persona tras escuchar la sesión (atribucion-firmada.ts).
+    // Un grupo que firmó una persona (atribucion-firmada.ts). No dice «que escuchó la
+    // sesión»: puede firmar desde la transcripción, y entonces lo dice su motivo.
     'ledger.firmado': 'firmado',
-    'ledger.firmadoTitulo': 'Grupo firmado por una persona que escuchó la sesión: {tramo}',
+    'ledger.firmadoTitulo': 'Grupo firmado por una persona, sobre el tramo {tramo} de la sesión',
 
     // Pleno detail (/plenos/:id)
     'plenoDetail.notFound': 'Sesión no encontrada',
@@ -2522,9 +2523,9 @@ export const CATALOGUE = {
     'ledger.recuento.contrastadas.uno': '{n} contrastada',
     'ledger.recuento.contrastadas.varios': '{n} contrastades',
     'ledger.recuento.sinContraste': '{n} sense contrast en les dades',
-    // Un grup que va signar una persona després d'escoltar la sessió (atribucion-firmada.ts).
+    // Un grup que va signar una persona (atribucion-firmada.ts); vegeu el castellà.
     'ledger.firmado': 'signat',
-    'ledger.firmadoTitulo': 'Grup signat per una persona que va escoltar la sessió: {tramo}',
+    'ledger.firmadoTitulo': 'Grup signat per una persona, sobre el tram {tramo} de la sessió',
 
     // Pleno detail (/plenos/:id)
     'plenoDetail.notFound': 'Sessió no trobada',
