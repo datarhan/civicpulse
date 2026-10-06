@@ -134,7 +134,7 @@ export function buildTenderRows(data: unknown): PendingRow[] {
   return out
 }
 
-function buildBdnsRows(data: unknown): PendingRow[] {
+export function buildBdnsRows(data: unknown): PendingRow[] {
   if (!data || typeof data !== 'object') return []
   const arr = ((data as { items?: unknown[]; convocatorias?: unknown[] }).items ??
     (data as { convocatorias?: unknown[] }).convocatorias ??

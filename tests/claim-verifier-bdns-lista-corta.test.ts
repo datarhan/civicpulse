@@ -3,6 +3,7 @@ import { readFileSync, existsSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import { shortlistCandidates } from '../src/scraper/claim-verifier'
 import type { BdnsItem } from '../src/scraper/bdns'
+import { buildBdnsRows } from '../scripts/embed-verifier-corpus'
 
 /**
  * La lista corta léxica no veía NINGUNA subvención.
@@ -32,21 +33,29 @@ const FICHA_659857 = 'https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocator
 const bdnsDe = (lista: ReturnType<typeof shortlistCandidates>) =>
   lista.filter((c) => c.kind === 'bdns')
 
+/** Una declaración que dice, palabra por palabra, la descripción de la fila. */
+const deSuDescripcion = (f: BdnsItem) =>
+  ({
+    id: `barrido-${f.bdnsCode}`,
+    type: 'cita_obra',
+    verbatim: f.description,
+    context: '',
+    entities: {},
+  }) as never
+
+/** El candidato que la lista corta léxica hace de la fila, buscada por su descripción. */
+const candidatoDe = (f: BdnsItem, filas: BdnsItem[]) =>
+  bdnsDe(shortlistCandidates({ claim: deSuDescripcion(f), bdns: { items: filas } })).find(
+    (c) => c.ref === f.sourceUrl,
+  )
+
 /** Cada fila, buscada con su propia descripción: ¿la trae la lista corta? */
 function barrido(filas: BdnsItem[]) {
   let evaluadas = 0
   const perdidas: string[] = []
   for (const f of filas) {
     evaluadas++
-    const claim = {
-      id: `barrido-${f.bdnsCode}`,
-      type: 'cita_obra',
-      verbatim: f.description,
-      context: '',
-      entities: {},
-    } as never
-    const refs = bdnsDe(shortlistCandidates({ claim, bdns: { items: filas } })).map((c) => c.ref)
-    if (!refs.includes(f.sourceUrl)) perdidas.push(f.bdnsCode)
+    if (!candidatoDe(f, filas)) perdidas.push(f.bdnsCode)
   }
   return { evaluadas, perdidas }
 }
@@ -94,5 +103,56 @@ describe('cada fila es alcanzable por su propia descripción', () => {
     expect(evaluadas).toBeGreaterThan(0)
     expect(evaluadas).toBe(d.stats.total)
     expect(perdidas).toEqual([])
+  })
+})
+
+/**
+ * Una convocatoria llega al modelo igual, la traiga la mitad que la traiga.
+ *
+ * `mergeShortlists` funde la mitad semántica y la léxica por `ref` y se queda con
+ * la de más similitud. Con dos compositores, el mismo registro llegaría al modelo
+ * de dos maneras según qué mitad ganara: el defecto que snippet-de-contrato.ts
+ * arregló para los contratos. El del corpus es la referencia: el 06-10-2026 las
+ * 178 filas `bdns` de `.embed-cache/verifier-corpus.jsonl` del checkout principal
+ * traían el snippet y el enlace que compone `buildBdnsRows`, sin excepción.
+ */
+describe('una convocatoria llega al modelo igual, la traiga la mitad que la traiga', () => {
+  function cotejo(filas: BdnsItem[]) {
+    const delCorpus = new Map(buildBdnsRows({ items: filas }).map((r) => [r.ref, r.snippet]))
+    let comparadas = 0
+    const distintas: string[] = []
+    for (const f of filas) {
+      comparadas++
+      const c = candidatoDe(f, filas)
+      if (!c || delCorpus.get(c.ref) !== c.snippet) distintas.push(f.bdnsCode)
+    }
+    return { comparadas, distintas }
+  }
+  const fila = (code: string) => FX.bdns.find((f) => f.bdnsCode === code)!
+
+  it('las 178 filas reales: mismo enlace y mismo snippet en las dos mitades', () => {
+    const { comparadas, distintas } = cotejo(FX.bdns)
+    expect(comparadas).toBe(178)
+    expect(distintas).toEqual([])
+  })
+
+  it('y una fila con importe (SINTÉTICA: ninguna fila publicada lo trae hoy)', () => {
+    const conImporte = { ...fila('659857'), importe: 70000 } as BdnsItem
+    expect(cotejo([conImporte])).toEqual({ comparadas: 1, distintas: [] })
+  })
+
+  it('el snippet es objeto · órgano, como en el corpus de hoy', () => {
+    expect(candidatoDe(fila('659857'), FX.bdns)?.snippet).toBe(
+      'BASES REGULADORAS DE LAS AYUDAS ECONÓMICAS DE EMERGENCIA SOCIAL DEL AYUNTAMIENTO DE RIBA-ROJA DE TÚRIA EJERCICIOS 2022-2025 · LOCAL · RIBA-ROJA DE TÚRIA · AYUNTAMIENTO DE RIBA-ROJA DE TÚRIA',
+    )
+  })
+
+  it('sin los espacios con los que la fuente cierra algún órgano (732847)', () => {
+    // La fila es de Riba-roja d'Ebre, otro municipio: eso es otro defecto, del
+    // raspador. Aquí cuenta que es la única cuyo `organ` acaba en espacios.
+    expect(fila('732847').organ).toMatch(/\s$/)
+    expect(candidatoDe(fila('732847'), FX.bdns)?.snippet).toBe(
+      "Primera distribución del Fondo de Transición Nuclear 2023 PENTA I Riba-roja d'Ebre · AUTONOMICA · CATALUÑA · DEPARTAMENT D'EMPRESA I TREBALL",
+    )
   })
 })
