@@ -27,8 +27,11 @@ export interface CorpusRow {
   textSha256: string
   /** L2-normalised embedding vector, 1536 dims for text-embedding-3-small. */
   embedding: number[]
-  /** UI-facing snippet (≤230 chars). Pre-formatted by the embed script so
-   *  the runtime path does not need access to the raw dataset rows. */
+  /** What the verifier model reads of the record. Pre-formatted by the embed
+   *  script so the runtime path does not need access to the raw dataset rows;
+   *  a contract's is `snippetDeContrato` (snippet-de-contrato.ts), the same the
+   *  lexical shortlist builds. Not embedded: the embed script refreshes it on
+   *  rows it keeps. */
   snippet: string
   /** Click-through ref (URL or synthetic) for the verdict citation. */
   ref: string

@@ -9,7 +9,10 @@
  * `.embed-cache/verifier-corpus.jsonl` — one JSON object per line, see
  * `src/scraper/semantic-shortlist.ts:CorpusRow` for the shape. Idempotent:
  * each row is keyed by SHA-256 of its source text, so a second run only
- * re-embeds rows whose text changed.
+ * re-embeds rows whose text changed — and gives the rows it keeps today's
+ * snippet, which is not embedded (`planDelCorpus`). A contract's snippet is
+ * `snippetDeContrato` (src/scraper/snippet-de-contrato.ts), the same one the
+ * lexical shortlist shows.
  *
  * The cache is gitignored (no PII, but contains the same source text the
  * SPA already publishes — no need to commit a 50 MB file when re-embed is
@@ -42,6 +45,7 @@ import { dirname, resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { describeActiveEmbedder, embedTexts, EmbedError } from '../src/scraper/embed-client'
 import type { CorpusRow } from '../src/scraper/semantic-shortlist'
+import { snippetDeContrato } from '../src/scraper/snippet-de-contrato'
 
 const DATA_DIR = resolve('public/data')
 const CACHE_DIR = resolve('.embed-cache')
@@ -117,23 +121,13 @@ export function buildTenderRows(data: unknown): PendingRow[] {
     seen.add(id)
     const contractor = String(r.contractor ?? r.assignee ?? '').trim()
     const text = [title, contractor, r.categoryTitle].filter(Boolean).join(' · ')
-    const amount =
-      (r.finalAmount as number | undefined) ??
-      (r.award_amount_eur as number | undefined) ??
-      (r.awarded_amount as number | undefined) ??
-      (r.amount as number | undefined) ??
-      null
-    const status = String(r.status ?? '').trim()
-    let snippet = title
-    if (amount) snippet += ` · €${Number(amount).toLocaleString('es-ES')}`
-    if (status) snippet += ` · ${status}`
-    snippet = snippet.slice(0, 230)
     out.push({
       kind: 'tender',
       sourceId: id,
       text,
       textSha256: sha256(text),
-      snippet,
+      // El mismo que compone la lista corta léxica: hechos enteros, título detrás.
+      snippet: snippetDeContrato(r),
       ref: String(r.permalink ?? `tender:${id}`),
     })
   }
@@ -205,6 +199,49 @@ function buildPromiseRows(data: unknown): PendingRow[] {
     })
   }
   return out
+}
+
+// ─── Qué se conserva y qué se embebe ────────────────────────────────────────
+
+export interface PlanDelCorpus {
+  /** Filas cuyo texto no cambió: conservan su embedding, con su snippet de hoy. */
+  conservadas: CorpusRow[]
+  /** Filas nuevas, o cuyo texto cambió: se embeben. */
+  porEmbeber: PendingRow[]
+  /** De las conservadas, las que cambiaron de snippet, enlace o partido. */
+  refrescadas: number
+}
+
+/**
+ * Qué hacer con cada fila del corpus de hoy, a la vista de la caché.
+ *
+ * Se reutiliza por el hash de `text`, que es lo único que se embebe. El
+ * snippet, el enlace y el partido no entran en el embedding, así que una fila
+ * conservada los toma de hoy: hasta el 06-10-2026 se conservaba entera, y
+ * cambiar cómo se compone el snippet (snippet-de-contrato.ts) no llegaba nunca
+ * al corpus de la nocturna, que corre incremental. Refrescarlos no cuesta
+ * ninguna llamada; se cuentan aparte para que la pasada diga que lo hizo.
+ */
+export function planDelCorpus(
+  pending: PendingRow[],
+  existing: Map<string, CorpusRow>,
+): PlanDelCorpus {
+  const conservadas: CorpusRow[] = []
+  const porEmbeber: PendingRow[] = []
+  let refrescadas = 0
+  for (const p of pending) {
+    const cached = existing.get(`${p.kind}:${p.sourceId}`)
+    if (!cached || cached.textSha256 !== p.textSha256) {
+      porEmbeber.push(p)
+      continue
+    }
+    const party = p.party ?? null
+    if (cached.snippet !== p.snippet || cached.ref !== p.ref || (cached.party ?? null) !== party) {
+      refrescadas++
+    }
+    conservadas.push({ ...cached, snippet: p.snippet, ref: p.ref, party })
+  }
+  return { conservadas, porEmbeber, refrescadas }
 }
 
 // ─── Cache I/O ──────────────────────────────────────────────────────────────
@@ -289,24 +326,14 @@ async function main() {
   }
 
   // Decide what needs (re-)embedding.
-  const toEmbed: PendingRow[] = []
-  const keptRows: CorpusRow[] = []
-  const seenKeys = new Set<string>()
-  for (const p of pending) {
-    const key = `${p.kind}:${p.sourceId}`
-    seenKeys.add(key)
-    const cached = existing.get(key)
-    if (cached && cached.textSha256 === p.textSha256) {
-      keptRows.push(cached)
-    } else {
-      toEmbed.push(p)
-    }
-  }
+  const plan = planDelCorpus(pending, existing)
+  const toEmbed = plan.porEmbeber
+  const keptRows = plan.conservadas
   // Stale rows in the cache that no longer correspond to a source row are
   // dropped — this is how deletes propagate. We don't re-embed those.
 
   process.stdout.write(
-    `[embed] keep=${keptRows.length}  embed=${toEmbed.length}  prune=${existing.size - keptRows.length}\n`,
+    `[embed] keep=${keptRows.length} (refresh=${plan.refrescadas})  embed=${toEmbed.length}  prune=${existing.size - keptRows.length}\n`,
   )
 
   if (opts.dryRun) {

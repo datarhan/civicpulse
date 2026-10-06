@@ -134,6 +134,7 @@ export {
 import type { ClaimVerdict } from './claim-verdicts'
 import { COLA_SIN_IMPORTE, leyoContratos, resumenCasi, resumenSinRegistro } from './claim-verdicts'
 import { importeDelEmparejador } from './importe-de-contrato'
+import { snippetDeContrato } from './snippet-de-contrato'
 
 /**
  * What this verifier established about a document RELATIVE to the claim.
@@ -619,11 +620,12 @@ function tenderAmount(r: TenderRow): number | null {
 
 function tenderTitle(r: TenderRow): string {
   // Concatenate every searchable text field. The PLACSP feed includes
-  // contractor (awarded entity), assignee (concejalía / dept responsible)
-  // and categoryTitle (CPV-style category) on top of `title`. Before
-  // 2026-05, the matcher only saw `title · contractor`, which dropped
-  // a lot of real matches where the press named the dept or the CPV
-  // category but not the literal tender title.
+  // contractor, assignee and categoryTitle (CPV-style category) on top of
+  // `title`. In Gobierto's projection `contractor` is the contracting body —
+  // the Ayuntamiento, on every row — and `assignee` is the awardee (the
+  // adjudicataria). Before 2026-05, the matcher only saw `title · contractor`,
+  // which dropped a lot of real matches where the press named the awardee or
+  // the CPV category but not the literal tender title.
   const r2 = r as TenderRow & { assignee?: string; categoryTitle?: string }
   return [r.title, r.contractor, r2.assignee, r2.categoryTitle].filter(Boolean).join(' · ')
 }
@@ -1251,9 +1253,11 @@ export interface CandidateShortlist {
 }
 
 /**
- * Las notas que la lista corta pega al importe de un candidato. Son nuestras, no
- * del registro: una cita del motor que sólo copie una no ancla nada
- * (claim-verifier-engine.ts, `dondeAncla`).
+ * Las notas que la lista corta pegaba al importe de un candidato, hasta el
+ * 06-10-2026. Eran nuestras, no del registro: una cita del motor que sólo copie
+ * una no ancla nada (claim-verifier-engine.ts, `dondeAncla`). Ya no se pegan —el
+ * snippet de un contrato no depende de la declaración (snippet-de-contrato.ts)—,
+ * pero siguen en los snippets que guardan las cachés y las pruebas.
  */
 export const NOTAS_DEL_IMPORTE = ['(matches claim)', '(close to claim)'] as const
 
@@ -1275,19 +1279,14 @@ export function shortlistCandidates(inputs: VerifierInputs, topK = 8): Candidate
     if (!title) continue
     const textSim = overlapScore(claim.verbatim + ' ' + claim.context, title)
     if (textSim < 0.2) continue
-    const amount = tenderAmount(t)
-    let snippet = title
-    if (amount && claim.entities.amountEuros) {
-      const aSim = similarAmount(claim.entities.amountEuros, amount)
-      snippet += ` · €${amount.toLocaleString('es-ES')}${aSim >= 0.85 ? ` ${NOTAS_DEL_IMPORTE[0]}` : aSim >= 0.5 ? ` ${NOTAS_DEL_IMPORTE[1]}` : ''}`
-    } else if (amount) {
-      snippet += ` · €${amount.toLocaleString('es-ES')}`
-    }
-    if (t.status) snippet += ` · ${t.status}`
     out.push({
       kind: 'tender',
       ref: t.permalink ?? `tender:${title.slice(0, 40)}`,
-      snippet: snippet.slice(0, 230),
+      // El mismo snippet que el corpus semántico: un registro llega al modelo de
+      // una sola manera, traiga quien lo traiga. Sin notas sobre la cifra de la
+      // declaración: el modelo la tiene en su bloque y compara él, con todos los
+      // importes del registro delante (snippet-de-contrato.ts).
+      snippet: snippetDeContrato(t),
       similarity: Math.round(textSim * 100) / 100,
     })
   }

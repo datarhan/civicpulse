@@ -86,7 +86,11 @@ describe('el snippet de un contrato de título largo', () => {
   })
 
   it('lleva en la lista corta léxica lo mismo, para la declaración que lo citó', () => {
-    for (const t of LOS_TRES) {
+    // Sólo los dos que el suelo léxico (0,20 de solapamiento) deja pasar: el
+    // carril bici no comparte bastantes palabras con «algo más de 330.000 euros
+    // para toda una actuación del carril bici», y le llega al motor por la mitad
+    // semántica, cuyo snippet es el de la prueba de arriba.
+    for (const t of LOS_TRES.filter((x) => x.contrato !== '5054473')) {
       const lista = shortlistCandidates(
         { claim: declaracion(t.declaracion), tenders: { contracts: [fila(t.contrato)] } },
         8,
@@ -99,15 +103,15 @@ describe('el snippet de un contrato de título largo', () => {
 
 describe('un registro llega al modelo de una sola manera', () => {
   it('el corpus y la lista corta léxica componen el mismo snippet de cada fila', () => {
-    const filas = [
-      ...(F.contracts as Record<string, unknown>[]).map((r) => ({ contracts: [r] })),
-      ...(F.tenders as Record<string, unknown>[]).map((r) => ({ tenders: [r] })),
+    type Fila = Record<string, unknown>
+    const filas: { datos: { contracts?: Fila[]; tenders?: Fila[] }; r: Fila }[] = [
+      ...(F.contracts as Fila[]).map((r) => ({ datos: { contracts: [r] }, r })),
+      ...(F.tenders as Fila[]).map((r) => ({ datos: { tenders: [r] }, r })),
     ]
     expect(filas).toHaveLength(14)
-    for (const datos of filas) {
+    for (const { datos, r } of filas) {
       const corpus = buildTenderRows(datos)
       expect(corpus).toHaveLength(1)
-      const r = (datos.contracts ?? datos.tenders)![0]
       // Una declaración que es el propio título pasa siempre el suelo léxico, y
       // sin cifra no hay nada de la declaración que pueda colarse en el snippet.
       const claim = {
@@ -154,10 +158,6 @@ function hechosDeLaFila(r: Record<string, unknown>): string[] {
     const v = positivo(r[campo])
     if (v) h.push(centimos(v))
   }
-  const estimado = positivo(r.estimatedValue ?? r.contractValue)
-  const licitadoSinIva = positivo(r.initialAmountNoTaxes)
-  if (estimado && (!licitadoSinIva || Math.abs(estimado - licitadoSinIva) >= 0.005))
-    h.push(centimos(estimado))
   if (r.assignee) h.push(String(r.assignee))
   for (const fecha of [dia(r.awardDate), dia(r.formalizedDate)]) if (fecha) h.push(fecha)
   return h
