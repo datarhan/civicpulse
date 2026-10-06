@@ -1512,7 +1512,11 @@ export default function Metodologia() {
                 explicación, 457 las contestó openai/gpt-4o-mini —456 entera, 1 sólo el
                 veredicto—, el respaldo de pago que la cadena ponía detrás de claude-code con la
                 clave de OpenAI cargada; de las 533 que se sirven, 321. Todas rotuladas
-                `verdict-engine:claude-code` (tests/llm/procedencia-del-respaldo.test.ts). */}
+                `verdict-engine:claude-code` (tests/llm/procedencia-del-respaldo.test.ts).
+                06-10-2026: corregidas con `corregir-rotulo-motor` —456 a
+                `verdict-engine:gpt-4o-mini`, la mixta a `verdict-engine:claude-code+gpt-4o-mini`—,
+                con su `labelCorrections` en cada entrada; decía «todavía las atribuye… se
+                corregirá». */}
             La pasada de agosto se configuró con otro, a través de Claude Code, pero cuando Claude
             Code fallaba la herramienta recurría sin decirlo a un modelo de pago de OpenAI
             (gpt-4o-mini) y guardaba su respuesta como si fuera de Claude:{' '}
@@ -1520,16 +1524,17 @@ export default function Metodologia() {
               más de la mitad de las retractaciones de esa pasada que hoy se publican con su
               explicación las escribió gpt-4o-mini
             </strong>
-            , y el registro de decisiones (el overlay) todavía las atribuye a Claude Code. Ninguno
-            de los dos modelos se ha medido contra la muestra. Desde octubre de 2026 el motor corre
-            sin respaldo de pago y sólo escribe a nombre del modelo que contestó; la atribución de
-            esas retractaciones se corregirá en el overlay con una corrección registrada, que guarda
-            el rótulo anterior y el porqué, sin tocar el veredicto ni la explicación. Las cifras,
-            con su método y su muestra, están en el registro público de mediciones (
-            <code>.automation-measurements.json</code>); aquí no las damos como acierto. La regla se
-            tomó en junio a la vista de esa medición, y hoy la sostiene una razón que no depende de
-            ninguna: un <code>sin-datos</code> no afirma nada, así que retractar a{' '}
-            <code>sin-datos</code> sólo puede quitar una afirmación, nunca añadirla. Por eso{' '}
+            , y el registro de decisiones (el overlay) las atribuía a Claude Code. Ninguno de los
+            dos modelos se ha medido contra la muestra. Desde octubre de 2026 el motor corre sin
+            respaldo de pago y sólo escribe a nombre del modelo que contestó, y el 6 de octubre de
+            2026 se corrigió la atribución de esas retractaciones con una corrección registrada en
+            cada una, que guarda el rótulo anterior, qué paso hizo cada modelo y el porqué, sin
+            tocar el veredicto ni la explicación. Las cifras, con su método y su muestra, están en
+            el registro público de mediciones (<code>.automation-measurements.json</code>); aquí no
+            las damos como acierto. La regla se tomó en junio a la vista de esa medición, y hoy la
+            sostiene una razón que no depende de ninguna: un <code>sin-datos</code> no afirma nada,
+            así que retractar a <code>sin-datos</code> sólo puede quitar una afirmación, nunca
+            añadirla. Por eso{' '}
             <strong>
               sólo aplicamos sus retractaciones a <code>sin-datos</code>
             </strong>{' '}
