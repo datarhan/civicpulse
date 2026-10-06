@@ -164,8 +164,8 @@ test.describe('Presupuesto (/presupuesto)', () => {
     expect(orden.length, 'no se midieron secciones suficientes').toBeGreaterThanOrEqual(8)
     expect(orden[orden.length - 1]).toBe('¿A dónde va el dinero en contratos?')
     // Y las dos que quedaban enterradas van por delante.
-    expect(orden).toContain('Lo que se ha adjudicado, cada cifra con su periodo')
-    expect(orden.indexOf('Lo que se ha adjudicado, cada cifra con su periodo')).toBeLessThan(
+    expect(orden).toContain('Contratos, obras, anuncios y convocatorias')
+    expect(orden.indexOf('Contratos, obras, anuncios y convocatorias')).toBeLessThan(
       orden.length - 1,
     )
   })
