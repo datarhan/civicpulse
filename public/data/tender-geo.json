@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-05T12:03:53.568Z",
+  "generatedAt": "2026-10-06T11:44:21.458Z",
   "source": {
-    "tenders": "2026-10-05T11:50:40.251Z",
+    "tenders": "2026-10-06T11:31:33.813Z",
     "geo": "2026-10-05T11:52:53.724Z"
   },
   "universe": {
@@ -10,7 +10,7 @@
     "locatedContracts": 47,
     "locatedAmount": 2225591.1500000004,
     "situatedContracts": 127,
-    "situatedAmount": 6085027.840000002,
+    "situatedAmount": 6085027.84,
     "danaContracts": 10,
     "danaAmount": 276297.42000000004,
     "danaAwardedContracts": 81,
@@ -900,6 +900,161 @@
   ],
   "assignments": [
     {
+      "id": "29500",
+      "zones": [
+        "urbanitzacio-la-llobatera"
+      ],
+      "matchedAlias": {
+        "urbanitzacio-la-llobatera": "llobatera"
+      },
+      "dana": false,
+      "amount": 12800,
+      "amountKind": "final",
+      "date": "2019-12-28",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.5119251,
+        -0.5337693
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "Urbanització La Llobatera",
+        "matchedText": "Urbanització La Llobatera",
+        "sourceId": "urbanitzacio-la-llobatera"
+      }
+    },
+    {
+      "id": "1561143",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 10014,
+      "amountKind": "final",
+      "date": "2022-03-29",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.5609297,
+        -0.5598736
+      ],
+      "place": {
+        "kind": "street",
+        "name": "Carrer Dolçaina",
+        "matchedText": "Carrer Dolçaina",
+        "sourceId": "carrer-dolcaina"
+      }
+    },
+    {
+      "id": "1561143#1",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 36418,
+      "amountKind": "final",
+      "date": "2022-03-29",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.5609297,
+        -0.5598736
+      ],
+      "place": {
+        "kind": "street",
+        "name": "Carrer Dolçaina",
+        "matchedText": "Carrer Dolçaina",
+        "sourceId": "carrer-dolcaina"
+      }
+    },
+    {
+      "id": "1884889",
+      "zones": [
+        "l-oliveral"
+      ],
+      "matchedAlias": {
+        "l-oliveral": "oliveral"
+      },
+      "dana": false,
+      "amount": 231509,
+      "amountKind": "final",
+      "date": "2022-10-07",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.4710524,
+        -0.5366921
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "l'Oliveral",
+        "matchedText": "l'Oliveral",
+        "sourceId": "l-oliveral"
+      }
+    },
+    {
+      "id": "9297858",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 9593,
+      "amountKind": "final",
+      "date": "2025-12-26",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.5439777,
+        -0.5812609
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Campo de Fútbol Municipal Roberto Gil",
+        "matchedText": "Campo de Fútbol Municipal Roberto Gil",
+        "sourceId": "way-39586077"
+      }
+    },
+    {
+      "id": "2868019",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 20661.16,
+      "amountKind": "final",
+      "date": "2022-03-29",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.4805062,
+        -0.5875882
+      ],
+      "place": {
+        "kind": "street",
+        "name": "Carrer del Mas de Montes",
+        "matchedText": "Carrer del Mas de Montes",
+        "sourceId": "carrer-del-mas-de-montes"
+      }
+    },
+    {
+      "id": "1561143#2",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 9530,
+      "amountKind": "final",
+      "date": "2022-03-29",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.5637115,
+        -0.5651402
+      ],
+      "place": {
+        "kind": "street",
+        "name": "Carrer Tabalet",
+        "matchedText": "Carrer Tabalet",
+        "sourceId": "carrer-tabalet"
+      }
+    },
+    {
       "id": "4558191",
       "zones": [],
       "matchedAlias": {},
@@ -1332,27 +1487,6 @@
       }
     },
     {
-      "id": "13417",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 11894.21,
-      "amountKind": "final",
-      "date": "2019-06-05",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.52513,
-        -0.5188
-      ],
-      "place": {
-        "kind": "urbanizacion",
-        "name": "Urbanización Lliri Groc",
-        "matchedText": "Urbanización Lliri Groc",
-        "sourceId": "urb-lliri-groc"
-      }
-    },
-    {
       "id": "4510789",
       "zones": [],
       "matchedAlias": {},
@@ -1371,6 +1505,27 @@
         "name": "Avinguda de la Indústria",
         "matchedText": "Avinguda de la Indústria",
         "sourceId": "avinguda-de-la-industria"
+      }
+    },
+    {
+      "id": "713082",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 7336,
+      "amountKind": "final",
+      "date": "2018-11-26",
+      "contractType": "construction",
+      "categoryTitle": "other",
+      "point": [
+        39.5484923,
+        -0.5816335
+      ],
+      "place": {
+        "kind": "street",
+        "name": "Carretera de Vilamarxant",
+        "matchedText": "Carretera de Vilamarxant",
+        "sourceId": "carretera-de-vilamarxant"
       }
     },
     {
@@ -1504,6 +1659,31 @@
       }
     },
     {
+      "id": "7482558",
+      "zones": [
+        "urbanitzacio-els-pous"
+      ],
+      "matchedAlias": {
+        "urbanitzacio-els-pous": "els pous"
+      },
+      "dana": false,
+      "amount": 7062.52,
+      "amountKind": "final",
+      "date": "2025-02-20",
+      "contractType": "services",
+      "categoryTitle": "agriculture",
+      "point": [
+        39.5233167,
+        -0.5191743
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "Urbanització Els Pous",
+        "matchedText": "Urbanització Els Pous",
+        "sourceId": "urbanitzacio-els-pous"
+      }
+    },
+    {
       "id": "269749",
       "zones": [
         "el-pou-d-escoto"
@@ -1554,27 +1734,6 @@
       }
     },
     {
-      "id": "745132",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 14400,
-      "amountKind": "final",
-      "date": "2019-07-25",
-      "contractType": "services",
-      "categoryTitle": "other",
-      "point": [
-        39.5473561,
-        -0.5639968
-      ],
-      "place": {
-        "kind": "poi",
-        "name": "Col·legi d'Educació Infantil i Primària Eres Altes",
-        "matchedText": "Col·legi d'Educació Infantil i Primària Eres Altes",
-        "sourceId": "way-1178031442"
-      }
-    },
-    {
       "id": "1647133",
       "zones": [],
       "matchedAlias": {},
@@ -1596,27 +1755,6 @@
       }
     },
     {
-      "id": "713082",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 7336,
-      "amountKind": "final",
-      "date": "2018-11-26",
-      "contractType": "construction",
-      "categoryTitle": "other",
-      "point": [
-        39.5484923,
-        -0.5816335
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Carretera de Vilamarxant",
-        "matchedText": "Carretera de Vilamarxant",
-        "sourceId": "carretera-de-vilamarxant"
-      }
-    },
-    {
       "id": "9895895",
       "zones": [],
       "matchedAlias": {},
@@ -1635,6 +1773,31 @@
         "name": "Pabellón deportivo municipal",
         "matchedText": "Pabellón deportivo municipal",
         "sourceId": "pavello-municipal"
+      }
+    },
+    {
+      "id": "554871",
+      "zones": [
+        "l-oliveral"
+      ],
+      "matchedAlias": {
+        "l-oliveral": "oliveral"
+      },
+      "dana": false,
+      "amount": 7950,
+      "amountKind": "final",
+      "date": "2018-04-11",
+      "contractType": "services",
+      "categoryTitle": "other",
+      "point": [
+        39.4710524,
+        -0.5366921
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "l'Oliveral",
+        "matchedText": "l'Oliveral",
+        "sourceId": "l-oliveral"
       }
     },
     {
@@ -1671,31 +1834,6 @@
       "amountKind": "final",
       "date": "2019-01-17",
       "contractType": "construction",
-      "categoryTitle": "other",
-      "point": [
-        39.4710524,
-        -0.5366921
-      ],
-      "place": {
-        "kind": "urbanizacion",
-        "name": "l'Oliveral",
-        "matchedText": "l'Oliveral",
-        "sourceId": "l-oliveral"
-      }
-    },
-    {
-      "id": "554871",
-      "zones": [
-        "l-oliveral"
-      ],
-      "matchedAlias": {
-        "l-oliveral": "oliveral"
-      },
-      "dana": false,
-      "amount": 7950,
-      "amountKind": "final",
-      "date": "2018-04-11",
-      "contractType": "services",
       "categoryTitle": "other",
       "point": [
         39.4710524,
@@ -1772,28 +1910,45 @@
       }
     },
     {
-      "id": "7482558",
-      "zones": [
-        "urbanitzacio-els-pous"
-      ],
-      "matchedAlias": {
-        "urbanitzacio-els-pous": "els pous"
-      },
+      "id": "745132",
+      "zones": [],
+      "matchedAlias": {},
       "dana": false,
-      "amount": 7062.52,
+      "amount": 14400,
       "amountKind": "final",
-      "date": "2025-02-20",
+      "date": "2019-07-25",
       "contractType": "services",
-      "categoryTitle": "agriculture",
+      "categoryTitle": "other",
       "point": [
-        39.5233167,
-        -0.5191743
+        39.5473561,
+        -0.5639968
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Col·legi d'Educació Infantil i Primària Eres Altes",
+        "matchedText": "Col·legi d'Educació Infantil i Primària Eres Altes",
+        "sourceId": "way-1178031442"
+      }
+    },
+    {
+      "id": "13417",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 11894.21,
+      "amountKind": "final",
+      "date": "2019-06-05",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.52513,
+        -0.5188
       ],
       "place": {
         "kind": "urbanizacion",
-        "name": "Urbanització Els Pous",
-        "matchedText": "Urbanització Els Pous",
-        "sourceId": "urbanitzacio-els-pous"
+        "name": "Urbanización Lliri Groc",
+        "matchedText": "Urbanización Lliri Groc",
+        "sourceId": "urb-lliri-groc"
       }
     },
     {
@@ -2125,140 +2280,6 @@
       }
     },
     {
-      "id": "1561143#4",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 10014,
-      "amountKind": "final",
-      "date": "2022-03-29",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.5609297,
-        -0.5598736
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Carrer Dolçaina",
-        "matchedText": "Carrer Dolçaina",
-        "sourceId": "carrer-dolcaina"
-      }
-    },
-    {
-      "id": "1884889",
-      "zones": [
-        "l-oliveral"
-      ],
-      "matchedAlias": {
-        "l-oliveral": "oliveral"
-      },
-      "dana": false,
-      "amount": 231509,
-      "amountKind": "final",
-      "date": "2022-10-07",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.4710524,
-        -0.5366921
-      ],
-      "place": {
-        "kind": "urbanizacion",
-        "name": "l'Oliveral",
-        "matchedText": "l'Oliveral",
-        "sourceId": "l-oliveral"
-      }
-    },
-    {
-      "id": "2868019",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 20661.16,
-      "amountKind": "final",
-      "date": "2022-03-29",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.4805062,
-        -0.5875882
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Carrer del Mas de Montes",
-        "matchedText": "Carrer del Mas de Montes",
-        "sourceId": "carrer-del-mas-de-montes"
-      }
-    },
-    {
-      "id": "29500",
-      "zones": [
-        "urbanitzacio-la-llobatera"
-      ],
-      "matchedAlias": {
-        "urbanitzacio-la-llobatera": "llobatera"
-      },
-      "dana": false,
-      "amount": 12800,
-      "amountKind": "final",
-      "date": "2019-12-28",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.5119251,
-        -0.5337693
-      ],
-      "place": {
-        "kind": "urbanizacion",
-        "name": "Urbanització La Llobatera",
-        "matchedText": "Urbanització La Llobatera",
-        "sourceId": "urbanitzacio-la-llobatera"
-      }
-    },
-    {
-      "id": "1561143#5",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 36418,
-      "amountKind": "final",
-      "date": "2022-03-29",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.5609297,
-        -0.5598736
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Carrer Dolçaina",
-        "matchedText": "Carrer Dolçaina",
-        "sourceId": "carrer-dolcaina"
-      }
-    },
-    {
-      "id": "9297858",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 9593,
-      "amountKind": "final",
-      "date": "2025-12-26",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.5439777,
-        -0.5812609
-      ],
-      "place": {
-        "kind": "poi",
-        "name": "Campo de Fútbol Municipal Roberto Gil",
-        "matchedText": "Campo de Fútbol Municipal Roberto Gil",
-        "sourceId": "way-39586077"
-      }
-    },
-    {
       "id": "4599362",
       "zones": [
         "l-oliveral"
@@ -2281,27 +2302,6 @@
         "name": "l'Oliveral",
         "matchedText": "l'Oliveral",
         "sourceId": "l-oliveral"
-      }
-    },
-    {
-      "id": "1561143#6",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 9530,
-      "amountKind": "final",
-      "date": "2022-03-29",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.5637115,
-        -0.5651402
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Carrer Tabalet",
-        "matchedText": "Carrer Tabalet",
-        "sourceId": "carrer-tabalet"
       }
     },
     {
@@ -2923,31 +2923,6 @@
       }
     },
     {
-      "id": "68394",
-      "zones": [
-        "el-pou-d-escoto"
-      ],
-      "matchedAlias": {
-        "el-pou-d-escoto": "escoto"
-      },
-      "dana": false,
-      "amount": 59570.53,
-      "amountKind": "final",
-      "date": "2018-05-09",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.5483742,
-        -0.5912189
-      ],
-      "place": {
-        "kind": "urbanizacion",
-        "name": "el Pou d'Escoto",
-        "matchedText": "el Pou d'Escoto",
-        "sourceId": "el-pou-d-escoto"
-      }
-    },
-    {
       "id": "7484026",
       "zones": [
         "urbanitzacio-els-pous"
@@ -2995,6 +2970,31 @@
         "name": "Urbanització La Reva",
         "matchedText": "Urbanització La Reva",
         "sourceId": "urbanitzacio-la-reva"
+      }
+    },
+    {
+      "id": "68394",
+      "zones": [
+        "el-pou-d-escoto"
+      ],
+      "matchedAlias": {
+        "el-pou-d-escoto": "escoto"
+      },
+      "dana": false,
+      "amount": 59570.53,
+      "amountKind": "final",
+      "date": "2018-05-09",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.5483742,
+        -0.5912189
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "el Pou d'Escoto",
+        "matchedText": "el Pou d'Escoto",
+        "sourceId": "el-pou-d-escoto"
       }
     },
     {
@@ -3813,11 +3813,11 @@
     }
   ],
   "builtFrom": {
-    "civic-poi.json": "12ec02d2e5b0",
+    "civic-poi.json": "a3aeed5d96d8",
     "gazetteer-supplement.json": "813c38c1dc80",
     "geo.json": "e4ae7eaa6646",
     "place-overrides.json": "5a4641410141",
-    "streets.json": "3c49f0659470",
-    "tenders.json": "b5608bd621c0"
+    "streets.json": "314886523e5e",
+    "tenders.json": "da1ea0d964ad"
   }
 }
