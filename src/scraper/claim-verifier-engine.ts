@@ -35,6 +35,7 @@ import type {
   ClaimVerification,
 } from './claim-verifier'
 import { NOTAS_DEL_IMPORTE } from './claim-verifier'
+import { partesDelSnippet, ROTULOS } from './snippet-de-contrato'
 import { shouldSkipLlmVerification, parseCite, looselyContains } from './claim-verifier-llm'
 import { stripSimilarityAnnotation } from '../llm/candidate-annotation'
 import { corpusDeEvidencia } from './claim-verdicts'
@@ -203,28 +204,29 @@ export interface EngineResult {
 
 const CONF = { verificado: 0.9, parcial: 0.6, 'sin-datos': 0.2 } as const
 
-/** Cómo junta la lista corta las partes de un snippet: `título · €importe · estado`. */
-const SEPARADOR = ' · '
+/** Lo que no es del registro: las notas de antes sobre el importe y nuestros rótulos. */
+const NUESTRAS = [...NOTAS_DEL_IMPORTE, ...ROTULOS]
 
-const sinNotas = (t: string) =>
-  NOTAS_DEL_IMPORTE.reduce((acc, nota) => acc.split(nota).join(' '), t)
+const sinNotas = (t: string) => NUESTRAS.reduce((acc, nota) => acc.split(nota).join(' '), t)
 
 /**
  * Dónde está, en el snippet de un candidato, el valor que cita el modelo: en un
  * VALOR del registro, sólo en su TÍTULO, o en ninguna parte.
  *
- * La lista corta compone el snippet como `título · €importe · estado` (o
- * `título · €importe · órgano`, o `partido «cita» · fecha · status=…`) y lo
- * corta a 230 caracteres: lo primero es siempre lo que nombra el registro, y lo
- * que sigue, sus valores. Las notas que la lista corta pega al importe
- * (`NOTAS_DEL_IMPORTE`) son nuestras, no del registro: no cuentan ni en lo
- * citado ni en el snippet.
+ * Qué parte es el título lo dice `partesDelSnippet` (snippet-de-contrato.ts), el
+ * mismo fichero que compone el snippet de un contrato: desde el 06-10-2026 sus
+ * hechos van delante y el título detrás, tras `objeto: `, y leerlo con la regla
+ * de antes —el título es el primer trozo— daría el título por un valor. Los
+ * snippets sin esa marca (los de BDNS y promesas, y los que guardan las cachés)
+ * siguen con el título delante. Las palabras que pone este repositorio —las notas
+ * que la lista corta pegaba al importe y los rótulos de los hechos— no son del
+ * registro: no cuentan ni en lo citado ni en el snippet.
  */
 export function dondeAncla(snippet: string, valor: string): 'valor' | 'titulo' | null {
   const citado = sinNotas(valor)
-  const [titulo, ...valores] = snippet.split(SEPARADOR)
+  const { titulo, valores } = partesDelSnippet(snippet)
   if (valores.some((v) => looselyContains(sinNotas(v), citado))) return 'valor'
-  if (looselyContains(titulo, citado)) return 'titulo'
+  if (looselyContains(sinNotas(titulo), citado)) return 'titulo'
   return null
 }
 
