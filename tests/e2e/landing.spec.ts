@@ -270,8 +270,21 @@ test.describe('Landing (/)', () => {
     // a race rather than a broken expectation. Retrying the interaction is the
     // honest fix; a longer timeout on the assertion would only have widened the
     // window on a click that never registered.
+    //
+    // Y se pulsa el primer pin que no tapa nada. Los pines salen en el orden de
+    // tender-geo.json, que la nocturna reordena: el 06-10-2026 el primero quedó
+    // debajo del punto de un barrio (Urbanització La Llobatera), el clic caía en
+    // el punto y abría la ficha del barrio, y esta prueba se puso roja sin que
+    // cambiara la página.
+    const libre = await page.locator('path.cp-money-pin').evaluateAll((ps) =>
+      ps.findIndex((p) => {
+        const r = p.getBoundingClientRect()
+        return document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2) === p
+      }),
+    )
+    expect(libre, 'ningún pin de contrato queda a la vista sin tapar').toBeGreaterThanOrEqual(0)
     await expect(async () => {
-      await page.locator('path.cp-money-pin').first().click({ force: true })
+      await page.locator('path.cp-money-pin').nth(libre).click({ force: true })
       await expect(
         page
           .locator('.leaflet-popup-content')
