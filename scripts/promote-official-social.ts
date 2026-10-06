@@ -12,9 +12,15 @@
  * publishes, the approval flag is stripped on the way through, and the whole
  * snapshot is re-validated before it is written — so an invariant can never
  * slip in via a single edited row.
+ *
+ * `--curator` rechaza, antes de leer nada, el hueco de una orden copiada sin
+ * rellenar —el `<name>` de la línea de uso, que imprime también
+ * `suggest:officials-social`— (`rechazoDeMarcador`,
+ * src/scraper/firma-de-persona.ts).
  */
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
+import { rechazoDeMarcador } from '../src/scraper/firma-de-persona'
 import {
   validateSocialSnapshot,
   type SocialAccount,
@@ -35,6 +41,15 @@ function loadPublished(): { generatedAt: string; accounts: SocialAccount[] } {
 }
 
 function main() {
+  // Antes de leer nada: el hueco no firma una cuenta publicada. Sólo el hueco;
+  // la cuenta de rol, sí (`rechazoDeMarcador`).
+  const curator = arg('curator')
+  const hueco = curator === null ? null : rechazoDeMarcador(curator)
+  if (hueco) {
+    console.error(`[social] --curator: ${hueco}`)
+    process.exit(2)
+  }
+
   const suggestions: SocialSuggestion[] = existsSync(SUGGESTIONS)
     ? JSON.parse(readFileSync(SUGGESTIONS, 'utf8')).suggestions
     : []
@@ -76,7 +91,6 @@ function main() {
     return
   }
 
-  const curator = arg('curator')
   if (!curator) {
     console.error('[social] --curator is required: publishing this is a human act, so it is signed')
     process.exit(1)

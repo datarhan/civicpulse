@@ -10,11 +10,16 @@
  *   npm run promote-place -- <contractId> --curator "<name>" [--note "<text>"] [--edit]
  *   npm run promote-place -- <contractId> --reject                # drop an existing override
  * --edit writes to /tmp instead of persisting (dry run).
+ *
+ * `--curator` rechaza, antes de leer nada, el hueco de una orden copiada sin
+ * rellenar —el `<name>` de arriba, que imprime también `suggest:place-geocode`—
+ * (`rechazoDeMarcador`, src/scraper/firma-de-persona.ts).
  */
 import { readFile, writeFile, mkdir } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
 import { dirname, resolve, join } from 'node:path'
 import { tmpdir } from 'node:os'
+import { rechazoDeMarcador } from '../src/scraper/firma-de-persona'
 import {
   overrideFromSuggestion,
   validatePlaceOverrides,
@@ -50,6 +55,14 @@ async function main() {
   }
   const reject = has('--reject')
   const edit = has('--edit')
+  // Antes de leer nada: el hueco no firma una ubicación publicada. Sólo el
+  // hueco; la cuenta de rol, sí (`rechazoDeMarcador`).
+  const curator = flag('--curator')
+  const hueco = curator === undefined ? null : rechazoDeMarcador(curator)
+  if (hueco) {
+    console.error(`[promote-place] --curator: ${hueco}`)
+    process.exit(2)
+  }
 
   const existing: PlaceOverride[] = existsSync(OVERRIDES)
     ? (await readJson(OVERRIDES)).overrides || []
@@ -65,7 +78,6 @@ async function main() {
     overrides = others
     console.log(`[promote-place] removed override for ${contractId}`)
   } else {
-    const curator = flag('--curator')
     if (!curator) {
       console.error('[promote-place] --curator "<name>" is required')
       process.exit(1)
