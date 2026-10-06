@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-06T06:29:15.043Z",
+  "generatedAt": "2026-10-06T06:31:43.037Z",
   "entries": {
     "k4olcs-005-acu-7c0edd": {
       "verification": {
@@ -7722,17 +7722,18 @@
       "verification": {
         "claimId": "1sqj7is-065-cit-c33f08",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (opinión valorativa sobre el SDA, sin cifras/fechas concretas) contra los 8 candidatos (contratos derivados reales del SDA de Riba-roja de Túria). Concluí que los candidatos solo confirman la existencia y uso repetido del SDA (respaldo débil del hecho descriptivo), pero ninguno",
+        "summary": "La afirmación es una valoración política y subjetiva: el SDA es \"pionero\", \"nos ha funcionado muy bien\" y \"nos traen más dinero\" por presupuestos y vecinos. No contiene cifras, fechas ni sujetos concretos que contrastar.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2
       },
       "source": "verdict-engine",
-      "reason": "verdict-engine (claude-code) re-judged verificado→sin-datos: Analicé la afirmación (opinión valorativa sobre el SDA, sin cifras/fechas concretas) contra los 8 candidatos (contratos derivados reales del SDA de Riba-roja de Túria). Concluí que los candidatos solo confirman la existencia y uso repetido del SDA (respaldo débil del hecho descriptivo), pero ninguno",
+      "reason": "verdict-engine (claude-code) re-derivó la retractación (sigue sin-datos): La afirmación es una valoración política y subjetiva: el SDA es \"pionero\", \"nos ha funcionado muy bien\" y \"nos traen más dinero\" por presupuestos y vecinos. No contiene cifras, fechas ni sujetos concretos que contrastar.",
       "editor": "verdict-engine:claude-code",
-      "appliedAt": "2026-08-02T05:17:03.490Z"
+      "appliedAt": "2026-10-06T06:31:43.037Z"
     },
     "1sqj7is-071-cit-3986be": {
       "verification": {

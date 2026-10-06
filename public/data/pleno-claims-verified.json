@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-10-04T07:37:32.197Z",
-  "composedAt": "2026-10-06T06:29:15.212Z",
+  "composedAt": "2026-10-06T06:31:43.158Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
@@ -63999,9 +63999,10 @@
       "verification": {
         "claimId": "1sqj7is-065-cit-c33f08",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (opinión valorativa sobre el SDA, sin cifras/fechas concretas) contra los 8 candidatos (contratos derivados reales del SDA de Riba-roja de Túria). Concluí que los candidatos solo confirman la existencia y uso repetido del SDA (respaldo débil del hecho descriptivo), pero ninguno",
+        "summary": "La afirmación es una valoración política y subjetiva: el SDA es \"pionero\", \"nos ha funcionado muy bien\" y \"nos traen más dinero\" por presupuestos y vecinos. No contiene cifras, fechas ni sujetos concretos que contrastar.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
