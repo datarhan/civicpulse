@@ -1,0 +1,105 @@
+{
+  "_procedencia": "Tres entradas reales de public/data/pleno-claims-overlay.json (main 80a56a18, 05-10-2026), públicas, y quién escribió en .llm-cache, bajo la clave de claude-code, el razonamiento cuyo corte es su resumen publicado (engine-reason-v1) y su extracción (engine-extract-v1). Medido sin llamadas contra una copia de la caché de main. 19gax3o-142-afi-f3d4db: gpt-4o-mini en los dos pasos; 19gax3o-132-acu-a3b10d: razonó claude-code y decidió gpt-4o-mini (la única mixta de las 457); 1237hbp-030-cit-eea251: claude-code en los dos. El razonamiento entero no se copia: es prosa de un modelo sin revisar; la prueba siembra la caché con el resumen publicado, que es su corte. c8kr44-143-cit-9576bc: la única de las 1.249 sin nada en caché (resumen vacío): no hay con qué probar quién la escribió.",
+  "entries": {
+    "19gax3o-142-afi-f3d4db": {
+      "verification": {
+        "claimId": "19gax3o-142-afi-f3d4db",
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los candidatos presenta un contrato o actuación que coincida con el monto de 200.000 euros mencionado en la afirmación.",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged verificado→sin-datos: Ninguno de los candidatos presenta un contrato o actuación que coincida con el monto de 200.000 euros mencionado en la afirmación.",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-10-05T06:44:38.758Z"
+    },
+    "19gax3o-132-acu-a3b10d": {
+      "verification": {
+        "claimId": "19gax3o-132-acu-a3b10d",
+        "verdict": "sin-datos",
+        "summary": "Task completed: provided skeptical reasoning in Spanish (2-4 sentences region, actually a few sentences) analyzing whether any candidate supports the claim about a 30-year-old pabellón voted against vs a service inaugurated in 2013. Concluded none of the tender candidates (bar concessions, plenary v",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged verificado→sin-datos: Task completed: provided skeptical reasoning in Spanish (2-4 sentences region, actually a few sentences) analyzing whether any candidate supports the claim about a 30-year-old pabellón voted against vs a service inaugurated in 2013. Concluded none of the tender candidates (bar concessions, plenary v",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T13:26:00.142Z"
+    },
+    "1237hbp-030-cit-eea251": {
+      "verification": {
+        "claimId": "1237hbp-030-cit-eea251",
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los cuatro candidatos guarda relación real con la afirmación. Todos pertenecen al Ayuntamiento de Riba-roja de Túria y versan sobre asuntos distintos (módulos prefabricados, visor de transparencia, asfaltados urbanos, portal del empleado), sin ninguna conexión con recogida de basura ni…",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Ninguno de los cuatro candidatos guarda relación real con la afirmación. Todos pertenecen al Ayuntamiento de Riba-roja de Túria y versan sobre asuntos distintos (módulos prefabricados, visor de transparencia, asfaltados urbanos, portal del empleado), sin ninguna conexión con recogida de basura ni…",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-10-05T06:44:38.758Z"
+    },
+    "c8kr44-143-cit-9576bc": {
+      "verification": {
+        "claimId": "c8kr44-143-cit-9576bc",
+        "verdict": "sin-datos",
+        "summary": "",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: no candidate genuinely supports the claim",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:36:48.480Z"
+    }
+  },
+  "procedencia": {
+    "19gax3o-142-afi-f3d4db": {
+      "razonar": {
+        "backend": "openai",
+        "model": "gpt-4o-mini",
+        "version": "engine-reason-v1"
+      },
+      "extraer": {
+        "backend": "openai",
+        "model": "gpt-4o-mini"
+      }
+    },
+    "19gax3o-132-acu-a3b10d": {
+      "razonar": {
+        "backend": "claude-code",
+        "model": "claude-code:sonnet",
+        "version": "engine-reason-v1"
+      },
+      "extraer": {
+        "backend": "openai",
+        "model": "gpt-4o-mini"
+      }
+    },
+    "1237hbp-030-cit-eea251": {
+      "razonar": {
+        "backend": "claude-code",
+        "model": "claude-code:sonnet",
+        "version": "engine-reason-v1"
+      },
+      "extraer": {
+        "backend": "claude-code",
+        "model": "claude-code:sonnet"
+      }
+    },
+    "c8kr44-143-cit-9576bc": null
+  }
+}

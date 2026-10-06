@@ -36,6 +36,7 @@ import {
   claseDeFirma,
   nombraAUnaPersona,
   rechazoDeFirma,
+  rechazoDeMarcador,
   type ClaseDeFirma,
 } from './firma-de-persona'
 import { REASON_DIGEST_RE, reasonDigest, type PlenoFindingReasonAmendment } from './pleno-finding'
@@ -130,6 +131,31 @@ export interface OverlayEntry {
    * con un nombre. Ver `retirarDeclaracion`.
    */
   retirada?: RetiradaDeDeclaracion
+  /**
+   * Cada corrección del rótulo de una retractación del motor, en orden: a
+   * nombre de quién está, no qué dice. Ausente —nunca vacía— si el rótulo es el
+   * que escribió la pasada. Ver `corregirRotulos` (correccion-de-rotulo.ts).
+   */
+  labelCorrections?: CorreccionDeRotulo[]
+}
+
+/**
+ * Una corrección del rótulo (`editor`) de una retractación del motor.
+ *
+ * El 02-08-2026 el motor rotuló `verdict-engine:claude-code` 457 retractaciones
+ * que había contestado gpt-4o-mini (la causa, cerrada en la PR #248). El
+ * veredicto y la explicación no cambian; cambia a nombre de quién están, y la
+ * corrección se queda en la entrada: el rótulo anterior, el porqué —que dice
+ * qué modelo hizo cada paso—, quién la firmó y cuándo.
+ */
+export interface CorreccionDeRotulo {
+  /** El rótulo que tenía la entrada antes de esta corrección. */
+  previous: string
+  /** Por qué, ≥20 caracteres: qué paso contestó cada modelo, y de dónde se sabe. */
+  reason: string
+  /** Quién la firma: una persona o la cuenta de rol, nunca el hueco de una orden. */
+  editor: string
+  correctedAt: string
 }
 
 /**
@@ -584,6 +610,7 @@ export function validateOverlay(o: Overlay): void {
       }
     }
     if (e.reasonAmendments !== undefined) validarEnmiendas(id, e)
+    if (e.labelCorrections !== undefined) validarCorreccionesDeRotulo(id, e)
     if (e.retirada !== undefined) validarRetirada(id, e)
     if (e.desde !== undefined && e.source !== 'curator-upgrade') {
       throw new Error(
@@ -767,6 +794,72 @@ function validarEnmiendas(id: string, e: OverlayEntry): void {
   if (e.verification.summary !== e.reason) {
     throw new Error(
       `${donde}: el resumen publicado no es el motivo enmendado, y la tarjeta imprime el resumen`,
+    )
+  }
+}
+
+/** Cómo empieza el rótulo de una retractación del motor: `verdict-engine:<quién>`. */
+const PREFIJO_DEL_ROTULO = 'verdict-engine:'
+
+/**
+ * Las correcciones de rótulo de una entrada, escritas por la CLI o a mano: el
+ * validador no se fía de ninguna. Sólo las lleva una retractación del motor;
+ * cada una dice el rótulo anterior, el porqué, quién firma —una persona o la
+ * cuenta de rol, nunca el hueco de una orden— y cuándo, en orden y no antes de
+ * la retractación; la última cambió algo; y el motivo dice el mismo rótulo que
+ * la entrada, porque los dos nombran a quien contestó y se corrigen juntos.
+ */
+function validarCorreccionesDeRotulo(id: string, e: OverlayEntry): void {
+  const donde = `[overlay] ${id}`
+  if (e.source !== 'verdict-engine') {
+    throw new Error(
+      `${donde}: sólo una retractación del motor lleva labelCorrections (esta entrada es de ${e.source})`,
+    )
+  }
+  const lista = e.labelCorrections
+  if (!Array.isArray(lista) || lista.length === 0) {
+    throw new Error(`${donde}: labelCorrections, si está, tiene que ser una lista no vacía`)
+  }
+  const desde = Date.parse(e.appliedAt)
+  let previa = -Infinity
+  lista.forEach((c, i) => {
+    const at = `${donde}.labelCorrections[${i}]`
+    if (!c || typeof c !== 'object') throw new Error(`${at} tiene que ser un objeto`)
+    if (typeof c.previous !== 'string' || !c.previous.startsWith(PREFIJO_DEL_ROTULO)) {
+      throw new Error(`${at}.previous tiene que ser el rótulo anterior (${PREFIJO_DEL_ROTULO}…)`)
+    }
+    if (typeof c.reason !== 'string' || c.reason.trim().length < 20) {
+      throw new Error(`${at}.reason tiene que decir el porqué en ≥20 caracteres`)
+    }
+    const hueco = rechazoDeMarcador(c.editor)
+    if (hueco) throw new Error(`${at}.editor: ${hueco}`)
+    const cuando =
+      typeof c.correctedAt === 'string' && FECHA_ISO.test(c.correctedAt)
+        ? Date.parse(c.correctedAt)
+        : Number.NaN
+    if (Number.isNaN(cuando)) throw new Error(`${at}.correctedAt tiene que ser una fecha ISO`)
+    if (!Number.isNaN(desde) && cuando < desde) {
+      throw new Error(
+        `${at}.correctedAt (${c.correctedAt}) es anterior a la retractación que corrige (${e.appliedAt})`,
+      )
+    }
+    if (cuando < previa) {
+      throw new Error(`${donde}: labelCorrections no va en orden cronológico (la ${i} es anterior)`)
+    }
+    previa = cuando
+  })
+  if (lista[lista.length - 1].previous === e.editor) {
+    throw new Error(
+      `${donde}: la última corrección de rótulo no cambió nada — su rótulo anterior es el vigente`,
+    )
+  }
+  const quien = e.editor?.startsWith(PREFIJO_DEL_ROTULO)
+    ? e.editor.slice(PREFIJO_DEL_ROTULO.length)
+    : null
+  if (!quien || !(e.reason ?? '').startsWith(`verdict-engine (${quien}) `)) {
+    throw new Error(
+      `${donde}: el motivo no dice el mismo rótulo que la entrada (${e.editor ?? '—'}); los dos ` +
+        'nombran a quien contestó y se corrigen juntos',
     )
   }
 }

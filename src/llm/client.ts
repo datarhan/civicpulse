@@ -1540,6 +1540,29 @@ export function llmCacheGet<TSchema extends ZodTypeAny>(opts: {
   return cached.result
 }
 
+/**
+ * Lo que hay escrito bajo la clave de esta pregunta para el backend de
+ * `config`, con QUIÉN lo escribió, sea quien sea. Para AUDITAR, nunca para
+ * servir una respuesta: lo que sirve es `callLLM` / `llmCacheGet`, que sólo dan
+ * por buena la entrada que escribió el backend de su clave (`leerPropia`).
+ *
+ * La necesita `corregir-rotulo-motor`: las 457 retractaciones de agosto se
+ * publicaron desde entradas que gpt-4o-mini dejó bajo la clave de claude-code,
+ * y para corregir su rótulo hay que leer justo lo que ya nadie sirve. No llama,
+ * no escribe y no cuenta aciertos: no es una respuesta de la pasada.
+ */
+export function llmCacheEntrada<TSchema extends ZodTypeAny>(opts: {
+  promptVersion: string
+  schema: TSchema
+  input: unknown
+  config?: ClientConfig
+}): { backend: Backend; model: string; result: z.infer<TSchema> } | null {
+  const config = opts.config ?? loadConfigFromEnv()
+  const e = readCache<z.infer<TSchema>>(config.cacheDir, claveDe(config, opts))
+  if (!e) return null
+  return { backend: e.backend, model: e.model, result: e.result as z.infer<TSchema> }
+}
+
 export async function callLLM<TSchema extends ZodTypeAny>(
   opts: CallLlmOptions<TSchema>,
 ): Promise<z.infer<TSchema> | null> {

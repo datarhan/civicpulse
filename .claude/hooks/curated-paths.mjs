@@ -46,8 +46,10 @@ export const CURATED = {
   // `subir-veredicto` (04-10-2026): la única que SUBE un veredicto, y sólo con
   // la firma de una persona; el overlay la valida al escribir y al leer.
   'pleno-claims-verified.json': 'npm run downgrade-verdict / subir-veredicto / verify:pleno-claims',
+  // `corregir-rotulo-motor` (06-10-2026): sólo el rótulo de una retractación
+  // del motor, con la procedencia que prueba la caché y su registro.
   'pleno-claims-overlay.json':
-    'npm run downgrade-verdict / subir-veredicto / apply-gold-downgrades',
+    'npm run downgrade-verdict / subir-veredicto / apply-gold-downgrades / corregir-rotulo-motor',
   'pleno-claim-reclassifications.json': 'npm run reclassify-claim',
   'pleno-claim-reanchors.json': 'npm run reanchor-claim',
   'pleno-claim-relabels.json': 'npm run relabel-attribution',
