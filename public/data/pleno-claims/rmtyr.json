@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-05T22:54:39.415Z",
+  "generatedAt": "2026-10-06T06:31:44.496Z",
   "version": "1",
   "plenoId": "rmtyr",
   "plenoDate": "2025-07-31",
@@ -3866,16 +3866,26 @@
       },
       "verification": {
         "claimId": "rmtyr-124-cit-a8696c",
-        "verdict": "sin-datos",
-        "summary": "La afirmación menciona específicamente un \"carril ciclopeatonal en la zona norte\" y se refiere a gastos derivados de la DANA para inversiones en obras. El candidato [0] presenta un contrato de obras para la ejecución del \"CARRIL CICLOPEATONAL ZONA NORTE\", lo que coincide directamente con la afirmaci",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
+        "verdict": "parcial",
+        "summary": "La obra existe: la fase II del carril ciclopeatonal de la zona norte (Senda del Molinet, alumbrado y conexión con Paretotes, expediente 56/2025) se licitó en julio de 2025 y se adjudicó en septiembre a Nerco Infraestructuras por 262.812 € con IVA. Que se pague con los gastos derivados de la DANA no consta en el registro.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zH8ATDFdYlU7%2B9FIQYNjeQ%3D%3D",
+            "snippet": "Obras Carril Ciclopeatonal Zona Norte: Fase II de la adecuación de la Senda del Molinet, alumbrado y conexión con la zona de Paretotes… · expediente 56/2025 · adjudicado a NERCO INFRAESTRUCTURAS, S.L. por 262.812,00 € con IVA el 24-09-2025",
+            "stance": "checked"
+          }
         ],
-        "confidence": 0.2,
-        "source": "verdict-engine"
+        "checkedAgainst": [
+          "tenders"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ],
+        "source": "curator-upgrade",
+        "raisedBy": "Sergei Lutchenko"
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {

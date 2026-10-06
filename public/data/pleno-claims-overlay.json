@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-06T05:41:47.602Z",
+  "generatedAt": "2026-10-06T06:31:43.037Z",
   "entries": {
     "k4olcs-005-acu-7c0edd": {
       "verification": {
@@ -7722,17 +7722,18 @@
       "verification": {
         "claimId": "1sqj7is-065-cit-c33f08",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación (opinión valorativa sobre el SDA, sin cifras/fechas concretas) contra los 8 candidatos (contratos derivados reales del SDA de Riba-roja de Túria). Concluí que los candidatos solo confirman la existencia y uso repetido del SDA (respaldo débil del hecho descriptivo), pero ninguno",
+        "summary": "La afirmación es una valoración política y subjetiva: el SDA es \"pionero\", \"nos ha funcionado muy bien\" y \"nos traen más dinero\" por presupuestos y vecinos. No contiene cifras, fechas ni sujetos concretos que contrastar.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2
       },
       "source": "verdict-engine",
-      "reason": "verdict-engine (claude-code) re-judged verificado→sin-datos: Analicé la afirmación (opinión valorativa sobre el SDA, sin cifras/fechas concretas) contra los 8 candidatos (contratos derivados reales del SDA de Riba-roja de Túria). Concluí que los candidatos solo confirman la existencia y uso repetido del SDA (respaldo débil del hecho descriptivo), pero ninguno",
+      "reason": "verdict-engine (claude-code) re-derivó la retractación (sigue sin-datos): La afirmación es una valoración política y subjetiva: el SDA es \"pionero\", \"nos ha funcionado muy bien\" y \"nos traen más dinero\" por presupuestos y vecinos. No contiene cifras, fechas ni sujetos concretos que contrastar.",
       "editor": "verdict-engine:claude-code",
-      "appliedAt": "2026-08-02T05:17:03.490Z"
+      "appliedAt": "2026-10-06T06:31:43.037Z"
     },
     "1sqj7is-071-cit-3986be": {
       "verification": {
@@ -17365,18 +17366,28 @@
     "c8kr44-045-afi-8e7181": {
       "verification": {
         "claimId": "c8kr44-045-afi-8e7181",
-        "verdict": "sin-datos",
-        "summary": "Analicé la afirmación sobre el contrato de Auditesa S.L. por 194.810€ para control y supervisión, comparándola con los 6 candidatos de tenders proporcionados. El candidato [0] coincide en entidad exacta (AUDITESA SL = Auditesa S.L.), mismo ayuntamiento (Riba-roja de Túria) y mismo objeto contractual",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
+        "verdict": "verificado",
+        "summary": "Coincide al euro: el lote 2 del contrato 136/2025, la asistencia técnica para el control y la supervisión de la recogida de residuos, se adjudicó a Auditesa S.L. por 194.810 € con IVA (161.000 € sin IVA); el acuerdo es del 8-09-2025, el día de este pleno, y se anunció el 10-09-2025.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
+            "snippet": "Servicio de asistencia técnica y apoyo para el control y supervisión sobre la prestación del contrato de recogida de RSU, poda y voluminosos… · lote 2 del expediente 136/2025 · adjudicado a AUDITESA SL por 194.810,00 € con IVA el 10-09-2025",
+            "stance": "checked"
+          }
         ],
-        "confidence": 0.2
+        "checkedAgainst": [
+          "tenders"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ]
       },
-      "source": "verdict-engine",
-      "reason": "verdict-engine (claude-code) re-judged verificado→sin-datos: Analicé la afirmación sobre el contrato de Auditesa S.L. por 194.810€ para control y supervisión, comparándola con los 6 candidatos de tenders proporcionados. El candidato [0] coincide en entidad exacta (AUDITESA SL = Auditesa S.L.), mismo ayuntamiento (Riba-roja de Túria) y mismo objeto contractual",
-      "editor": "verdict-engine:claude-code",
-      "appliedAt": "2026-08-02T13:40:16.830Z"
+      "source": "curator-upgrade",
+      "reason": "Coincide al euro: el lote 2 del contrato 136/2025, la asistencia técnica para el control y la supervisión de la recogida de residuos, se adjudicó a Auditesa S.L. por 194.810 € con IVA (161.000 € sin IVA); el acuerdo es del 8-09-2025, el día de este pleno, y se anunció el 10-09-2025.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-06T06:29:12.963Z",
+      "desde": "sin-datos"
     },
     "c8kr44-055-cit-1b51ba": {
       "verification": {
@@ -18208,26 +18219,52 @@
     "c8kr44-230-cit-56b068": {
       "verification": {
         "claimId": "c8kr44-230-cit-56b068",
-        "verdict": "sin-datos",
-        "summary": "La afirmación menciona específicamente el cambio de juegos y suelos de protección en varios parques, incluyendo el Parque La Pedrera, la Plaza Juez Heliodoro Jimeno, el Parque Bellavista, el Parque Molinet y la Plaza Lavadero. El candidato [0] respalda parcialmente la afirmación al referirse al camb",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
+        "verdict": "verificado",
+        "summary": "Las cinco actuaciones que se enumeran son, con sus mismos títulos, los cinco lotes del contrato de suministro e instalación de juegos infantiles 111-115/2025: Parque La Pedrera, Plaza Juez Heliodoro Gimeno (lote 2), Parque Bellavista I, Parque Molinet y Plaza Lavadero. Se licitó en noviembre de 2025 y se adjudicó en 2026.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
+            "snippet": "Cambio de juegos y suelo de protección Parque La Pedrera · lote 1 del expediente 111-115/2025 · adjudicado a JUEGOS KOMPAN, S.A. por 45.931,60 € con IVA el 01-04-2026",
+            "stance": "checked"
+          },
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
+            "snippet": "Renovación de los juegos y suelo de protección Plaza Juez Heliodoro Gimeno · lote 2 del expediente 111-115/2025 · adjudicado a URBEADAPTA S. L. por 41.151,23 € con IVA el 01-04-2026",
+            "stance": "checked"
+          },
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
+            "snippet": "Cambio de juegos y suelo de protección Parque Bellavista I · lote 3 del expediente 111-115/2025 · adjudicado a URBEADAPTA S. L. por 29.515,26 € con IVA el 01-04-2026",
+            "stance": "checked"
+          },
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
+            "snippet": "Cambio de juegos y suelo de protección Parque Molinet · lote 4 del expediente 111-115/2025 · adjudicado a JUEGOS KOMPAN, S.A. por 43.342,20 € con IVA el 01-04-2026",
+            "stance": "checked"
+          },
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
+            "snippet": "Sustitución de los juegos y suelo de protección de la Plaza Lavadero · lote 5 del expediente 111-115/2025 · adjudicado a LUDOMAQUINA S.L por 35.348,67 € con IVA el 01-04-2026",
+            "stance": "checked"
+          }
         ],
-        "confidence": 0.2
+        "checkedAgainst": [
+          "tenders"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ]
       },
-      "source": "verdict-engine",
-      "reason": "verdict-engine (gpt-4o-mini) re-judged parcial→sin-datos: La afirmación menciona específicamente el cambio de juegos y suelos de protección en varios parques, incluyendo el Parque La Pedrera, la Plaza Juez Heliodoro Jimeno, el Parque Bellavista, el Parque Molinet y la Plaza Lavadero. El candidato [0] respalda parcialmente la afirmación al referirse al camb",
-      "editor": "verdict-engine:gpt-4o-mini",
-      "appliedAt": "2026-08-02T13:42:55.628Z",
-      "labelCorrections": [
-        {
-          "previous": "verdict-engine:claude-code",
-          "reason": "Razonó y decidió gpt-4o-mini, según .llm-cache (engine-reason-v1 y engine-extract-v1). Leído con llmCacheEntrada bajo la clave de claude-code, donde la pasada del 02-08-2026 guardó cada respuesta: cuando claude -p fallaba contestaba openai/gpt-4o-mini, el respaldo de pago de la cadena, y el guion rotulaba con lo configurado. Causa cerrada en la PR #248.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-10-06T05:41:47.602Z"
-        }
-      ]
+      "source": "curator-upgrade",
+      "reason": "Las cinco actuaciones que se enumeran son, con sus mismos títulos, los cinco lotes del contrato de suministro e instalación de juegos infantiles 111-115/2025: Parque La Pedrera, Plaza Juez Heliodoro Gimeno (lote 2), Parque Bellavista I, Parque Molinet y Plaza Lavadero. Se licitó en noviembre de 2025 y se adjudicó en 2026.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-06T06:29:01.812Z",
+      "desde": "sin-datos"
     },
     "c8kr44-229-cit-62282e": {
       "verification": {
@@ -18280,50 +18317,60 @@
     "c8kr44-229-cit-1356bf": {
       "verification": {
         "claimId": "c8kr44-229-cit-1356bf",
-        "verdict": "sin-datos",
-        "summary": "La afirmación menciona específicamente el \"cambio de juegos y suelo de protección\" en el \"Parque Bellavista\". El candidato [0] tiene un contrato que se refiere exactamente al \"Cambio de juegos y suelo de protección Parque Bellavista\" por un importe de €29.515,26, lo que coincide directamente con la ",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
+        "verdict": "verificado",
+        "summary": "El cambio de juegos y suelo de protección del Parque Bellavista se contrató: es el lote 3 («Parque Bellavista I») del contrato de suministro e instalación de juegos infantiles 111-115/2025, licitado en noviembre de 2025 y adjudicado a Urbeadapta en 2026.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
+            "snippet": "Cambio de juegos y suelo de protección Parque Bellavista I · lote 3 del expediente 111-115/2025 · adjudicado a URBEADAPTA S. L. por 29.515,26 € con IVA el 01-04-2026",
+            "stance": "checked"
+          }
         ],
-        "confidence": 0.2
+        "checkedAgainst": [
+          "tenders"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ]
       },
-      "source": "verdict-engine",
-      "reason": "verdict-engine (gpt-4o-mini) re-judged parcial→sin-datos: La afirmación menciona específicamente el \"cambio de juegos y suelo de protección\" en el \"Parque Bellavista\". El candidato [0] tiene un contrato que se refiere exactamente al \"Cambio de juegos y suelo de protección Parque Bellavista\" por un importe de €29.515,26, lo que coincide directamente con la ",
-      "editor": "verdict-engine:gpt-4o-mini",
-      "appliedAt": "2026-08-02T13:45:35.741Z",
-      "labelCorrections": [
-        {
-          "previous": "verdict-engine:claude-code",
-          "reason": "Razonó y decidió gpt-4o-mini, según .llm-cache (engine-reason-v1 y engine-extract-v1). Leído con llmCacheEntrada bajo la clave de claude-code, donde la pasada del 02-08-2026 guardó cada respuesta: cuando claude -p fallaba contestaba openai/gpt-4o-mini, el respaldo de pago de la cadena, y el guion rotulaba con lo configurado. Causa cerrada en la PR #248.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-10-06T05:41:47.602Z"
-        }
-      ]
+      "source": "curator-upgrade",
+      "reason": "El cambio de juegos y suelo de protección del Parque Bellavista se contrató: es el lote 3 («Parque Bellavista I») del contrato de suministro e instalación de juegos infantiles 111-115/2025, licitado en noviembre de 2025 y adjudicado a Urbeadapta en 2026.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-06T06:28:49.929Z",
+      "desde": "sin-datos"
     },
     "c8kr44-231-cit-faf7d3": {
       "verification": {
         "claimId": "c8kr44-231-cit-faf7d3",
-        "verdict": "sin-datos",
-        "summary": "La afirmación menciona específicamente la \"sustitución de los juegos y suelo\" en la \"Plaza Lavadero\". El candidato [0] presenta un contrato que se refiere a la \"Sustitución de los juegos y suelo de protección de la Plaza Lavadero\" por un importe de €29.213,78, lo que coincide exactamente con la afir",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
+        "verdict": "verificado",
+        "summary": "Las dos actuaciones se contrataron: el cambio de juegos y suelo de protección del Parque Molinet y la sustitución de los de la Plaza Lavadero son los lotes 4 y 5 del contrato de suministro e instalación de juegos infantiles 111-115/2025, licitado en noviembre de 2025 y adjudicado en 2026.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
+            "snippet": "Cambio de juegos y suelo de protección Parque Molinet · lote 4 del expediente 111-115/2025 · adjudicado a JUEGOS KOMPAN, S.A. por 43.342,20 € con IVA el 01-04-2026",
+            "stance": "checked"
+          },
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
+            "snippet": "Sustitución de los juegos y suelo de protección de la Plaza Lavadero · lote 5 del expediente 111-115/2025 · adjudicado a LUDOMAQUINA S.L por 35.348,67 € con IVA el 01-04-2026",
+            "stance": "checked"
+          }
         ],
-        "confidence": 0.2
+        "checkedAgainst": [
+          "tenders"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ]
       },
-      "source": "verdict-engine",
-      "reason": "verdict-engine (gpt-4o-mini) re-judged parcial→sin-datos: La afirmación menciona específicamente la \"sustitución de los juegos y suelo\" en la \"Plaza Lavadero\". El candidato [0] presenta un contrato que se refiere a la \"Sustitución de los juegos y suelo de protección de la Plaza Lavadero\" por un importe de €29.213,78, lo que coincide exactamente con la afir",
-      "editor": "verdict-engine:gpt-4o-mini",
-      "appliedAt": "2026-08-02T13:45:35.741Z",
-      "labelCorrections": [
-        {
-          "previous": "verdict-engine:claude-code",
-          "reason": "Razonó y decidió gpt-4o-mini, según .llm-cache (engine-reason-v1 y engine-extract-v1). Leído con llmCacheEntrada bajo la clave de claude-code, donde la pasada del 02-08-2026 guardó cada respuesta: cuando claude -p fallaba contestaba openai/gpt-4o-mini, el respaldo de pago de la cadena, y el guion rotulaba con lo configurado. Causa cerrada en la PR #248.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-10-06T05:41:47.602Z"
-        }
-      ]
+      "source": "curator-upgrade",
+      "reason": "Las dos actuaciones se contrataron: el cambio de juegos y suelo de protección del Parque Molinet y la sustitución de los de la Plaza Lavadero son los lotes 4 y 5 del contrato de suministro e instalación de juegos infantiles 111-115/2025, licitado en noviembre de 2025 y adjudicado en 2026.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-06T06:28:59.705Z",
+      "desde": "sin-datos"
     },
     "c8kr44-231-acu-70a34f": {
       "verification": {
@@ -19816,26 +19863,28 @@
     "rmtyr-124-cit-a8696c": {
       "verification": {
         "claimId": "rmtyr-124-cit-a8696c",
-        "verdict": "sin-datos",
-        "summary": "La afirmación menciona específicamente un \"carril ciclopeatonal en la zona norte\" y se refiere a gastos derivados de la DANA para inversiones en obras. El candidato [0] presenta un contrato de obras para la ejecución del \"CARRIL CICLOPEATONAL ZONA NORTE\", lo que coincide directamente con la afirmaci",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
+        "verdict": "parcial",
+        "summary": "La obra existe: la fase II del carril ciclopeatonal de la zona norte (Senda del Molinet, alumbrado y conexión con Paretotes, expediente 56/2025) se licitó en julio de 2025 y se adjudicó en septiembre a Nerco Infraestructuras por 262.812 € con IVA. Que se pague con los gastos derivados de la DANA no consta en el registro.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zH8ATDFdYlU7%2B9FIQYNjeQ%3D%3D",
+            "snippet": "Obras Carril Ciclopeatonal Zona Norte: Fase II de la adecuación de la Senda del Molinet, alumbrado y conexión con la zona de Paretotes… · expediente 56/2025 · adjudicado a NERCO INFRAESTRUCTURAS, S.L. por 262.812,00 € con IVA el 24-09-2025",
+            "stance": "checked"
+          }
         ],
-        "confidence": 0.2
+        "checkedAgainst": [
+          "tenders"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ]
       },
-      "source": "verdict-engine",
-      "reason": "verdict-engine (gpt-4o-mini) re-judged parcial→sin-datos: La afirmación menciona específicamente un \"carril ciclopeatonal en la zona norte\" y se refiere a gastos derivados de la DANA para inversiones en obras. El candidato [0] presenta un contrato de obras para la ejecución del \"CARRIL CICLOPEATONAL ZONA NORTE\", lo que coincide directamente con la afirmaci",
-      "editor": "verdict-engine:gpt-4o-mini",
-      "appliedAt": "2026-08-02T13:50:44.730Z",
-      "labelCorrections": [
-        {
-          "previous": "verdict-engine:claude-code",
-          "reason": "Razonó y decidió gpt-4o-mini, según .llm-cache (engine-reason-v1 y engine-extract-v1). Leído con llmCacheEntrada bajo la clave de claude-code, donde la pasada del 02-08-2026 guardó cada respuesta: cuando claude -p fallaba contestaba openai/gpt-4o-mini, el respaldo de pago de la cadena, y el guion rotulaba con lo configurado. Causa cerrada en la PR #248.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-10-06T05:41:47.602Z"
-        }
-      ]
+      "source": "curator-upgrade",
+      "reason": "La obra existe: la fase II del carril ciclopeatonal de la zona norte (Senda del Molinet, alumbrado y conexión con Paretotes, expediente 56/2025) se licitó en julio de 2025 y se adjudicó en septiembre a Nerco Infraestructuras por 262.812 € con IVA. Que se pague con los gastos derivados de la DANA no consta en el registro.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-06T06:29:15.043Z",
+      "desde": "sin-datos"
     },
     "rmtyr-125-cit-5655cc": {
       "verification": {

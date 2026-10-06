@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-05T22:54:39.415Z",
+  "generatedAt": "2026-10-06T06:31:44.496Z",
   "version": "1",
   "plenos": [
     {
@@ -260,7 +260,7 @@
         "medio-ambiente": 2,
         "vivienda": 12
       },
-      "bytes": 137408
+      "bytes": 137357
     },
     {
       "plenoId": "rx4hb4",
@@ -495,9 +495,10 @@
       "plenoDate": "2025-09-08",
       "chunkPath": "pleno-claims/c8kr44.json",
       "itemCount": 237,
-      "toggleCount": 234,
+      "toggleCount": 230,
       "byVerdict": {
-        "sin-datos": 234,
+        "sin-datos": 230,
+        "verificado": 4,
         "parcial": 3
       },
       "byType": {
@@ -520,16 +521,17 @@
         "movilidad": 15,
         "cultura": 3
       },
-      "bytes": 329173
+      "bytes": 333279
     },
     {
       "plenoId": "rmtyr",
       "plenoDate": "2025-07-31",
       "chunkPath": "pleno-claims/rmtyr.json",
       "itemCount": 267,
-      "toggleCount": 267,
+      "toggleCount": 266,
       "byVerdict": {
-        "sin-datos": 267
+        "sin-datos": 266,
+        "parcial": 1
       },
       "byType": {
         "afirmacion_numerica": 184,
@@ -552,7 +554,7 @@
         "vivienda": 6,
         "salud": 1
       },
-      "bytes": 353684
+      "bytes": 354272
     },
     {
       "plenoId": "1tgd1h4",
@@ -660,9 +662,9 @@
     "items": 4962,
     "plenos": 23,
     "byVerdict": {
-      "sin-datos": 4939,
-      "parcial": 20,
-      "verificado": 3
+      "sin-datos": 4934,
+      "parcial": 21,
+      "verificado": 7
     },
     "byTopicVerdict": {
       "fiscal": {
@@ -678,20 +680,22 @@
         "parcial": 1
       },
       "urbanismo": {
-        "sin-datos": 908,
-        "parcial": 5
+        "sin-datos": 905,
+        "parcial": 5,
+        "verificado": 3
       },
       "other": {
         "sin-datos": 409
       },
       "movilidad": {
-        "sin-datos": 168,
+        "sin-datos": 167,
         "verificado": 1,
-        "parcial": 1
+        "parcial": 2
       },
       "medio-ambiente": {
-        "sin-datos": 563,
-        "parcial": 8
+        "sin-datos": 562,
+        "parcial": 8,
+        "verificado": 1
       },
       "cultura": {
         "sin-datos": 208
@@ -720,8 +724,8 @@
         "afirmacion_numerica": {
           "total": 2167,
           "sinCorpus": 1525,
-          "comprobadoSinHallar": 420,
-          "noConsta": 222
+          "comprobadoSinHallar": 421,
+          "noConsta": 221
         },
         "cita_convenio": {
           "total": 620,
@@ -738,8 +742,8 @@
         "cita_obra": {
           "total": 1627,
           "sinCorpus": 6,
-          "comprobadoSinHallar": 1097,
-          "noConsta": 524
+          "comprobadoSinHallar": 1101,
+          "noConsta": 520
         },
         "valoracion_politica": {
           "total": 4,
@@ -770,8 +774,8 @@
         "urbanismo": {
           "total": 913,
           "sinCorpus": 234,
-          "comprobadoSinHallar": 472,
-          "noConsta": 207
+          "comprobadoSinHallar": 475,
+          "noConsta": 204
         },
         "other": {
           "total": 409,
@@ -782,14 +786,14 @@
         "movilidad": {
           "total": 170,
           "sinCorpus": 29,
-          "comprobadoSinHallar": 107,
-          "noConsta": 34
+          "comprobadoSinHallar": 108,
+          "noConsta": 33
         },
         "medio-ambiente": {
           "total": 571,
           "sinCorpus": 165,
-          "comprobadoSinHallar": 301,
-          "noConsta": 105
+          "comprobadoSinHallar": 302,
+          "noConsta": 104
         },
         "cultura": {
           "total": 208,
@@ -829,13 +833,13 @@
         }
       },
       "corpus": {
-        "tenders": 1571,
+        "tenders": 1576,
         "tenders-ted": 1565,
         "bdns": 487,
         "budget": 485,
         "promises": 493,
         "curator-downgrade": 41,
-        "verdict-engine": 546
+        "verdict-engine": 540
       },
       "porClaseDocumental": {
         "porClase": {
@@ -865,7 +869,7 @@
     "sinDatosPorque": {
       "sinCorpus": 2025,
       "comprobadoSinHallar": 2046,
-      "noConsta": 868
+      "noConsta": 863
     }
   }
 }
