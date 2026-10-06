@@ -27,7 +27,7 @@ import Presupuesto, { formatEuros } from '../../src/pages/Presupuesto'
 import { lecturaCapitulos } from '../../src/scraper/presupuesto-lectura'
 import { isCommittedContract } from '../../src/lib/contract-status'
 import { topContractors } from '../../src/lib/tender-geo'
-import { importeAdjudicado } from '../../src/lib/contract-status'
+import { importeAdjudicado, importeLicitacion } from '../../src/lib/contract-status'
 import {
   cadenasDe,
   datosPintados,
@@ -245,7 +245,8 @@ const EMPRESAS = '/data/entities.json'
  * - el mayor contrato deja de ser una concesión;
  * - un solo contrato fuera de las cifras comprometidas;
  * - un contrato menor sin importe neto publicado;
- * - los dos mayores adjudicatarios, fundidos en una empresa con dos razones sociales.
+ * - los dos mayores adjudicatarios, fundidos en una empresa con dos razones sociales;
+ * - un firmado sin importe de adjudicación y con el de licitación, en la primera página.
  */
 function ramasRaras() {
   const mapa = structuredClone(sirve())
@@ -279,6 +280,21 @@ function ramasRaras() {
       variants: [primero.assignee, segundo.assignee],
     },
   ]
+
+  // Y un contrato firmado que publica su presupuesto de licitación pero no el
+  // importe por el que se firmó: la celda dice «importe de licitación»
+  // (ContractsExplorer, `Importe`). El dato trae cinco, pero la tabla no ordena
+  // —pinta las filas en el orden del fichero— y la nocturna del 06-10-2026, al
+  // reordenar tenders.json, los dejó fuera de las páginas que recorre esta guarda
+  // (el primero, en la fila 62): la cadena dejó de pintarse sin que la página
+  // cambiara, y la cobertura de abajo se puso roja. Se planta en la primera
+  // página: el primer firmado con licitación que no sea el mayor ni el menor de
+  // arriba.
+  const firmado = contratos.find(
+    (c) => isCommittedContract(c) && c !== mayor && c !== menor && importeLicitacion(c) !== null,
+  )
+  firmado.finalAmountNoTaxes = null
+  firmado.finalAmount = null
   return mapa
 }
 
