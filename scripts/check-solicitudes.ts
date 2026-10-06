@@ -13,7 +13,8 @@
  *
  * Lo que sí sale 1 es una incoherencia NUESTRA: una solicitud que nombra una
  * clase inexistente, un estado escrito a mano en vez de derivado de las fechas,
- * o un registro que no valida.
+ * un registro que no valida, o un manifiesto sin el cruce por clase documental
+ * que esta guarda mide (`[sin-cruce-documental]`).
  *
  * Anti-hueco: imprime cuántas clases evaluó. Un «todo en orden» sobre cero
  * clases es el gate que no mide nada.
@@ -48,6 +49,9 @@ function main(): void {
     process.exit(1)
   }
 
+  // Sin manifiesto, SALTADO y no rojo: que falte el fichero entero ya lo da en
+  // rojo check:cobertura, que corre a su lado en la nocturna, y la página lo dice
+  // en vez de pintar ceros. Que falte sólo el cruce no lo ve nadie más: abajo.
   if (!existsSync(MANIFIESTO)) {
     process.stdout.write(
       '[check-solicitudes] 0 clase(s) · SALTADO: no hay manifiesto de declaraciones que leer. ' +
@@ -62,11 +66,19 @@ function main(): void {
   ).totals
   const porClase = totals?.cobertura?.porClaseDocumental?.porClase
   if (!porClase) {
-    process.stdout.write(
-      '[check-solicitudes] 0 clase(s) · SALTADO: el manifiesto no trae `porClaseDocumental`. ' +
-        'Rederiva con `npm run chunk-pleno-claims`.\n',
+    // Que falte el cruce no es un manifiesto viejo que haya que esperar: su único
+    // escritor, `buildManifest` (src/scraper/pleno-claims-chunks.ts), lo escribe
+    // siempre desde el 27-08-2026, el día en que nacieron el cruce y esta guarda.
+    // Ninguna otra guarda lo lee, y sin él /laboratorio/cobertura pinta un 0 en
+    // cada clase. Hasta el 06-10-2026 esto salía SALTADO, con 0, y la inyección
+    // de check:guards que quita el cruce no pudo disparar nunca.
+    process.stdout.write('[check-solicitudes] 0 clase(s) evaluada(s)\n')
+    process.stderr.write(
+      '  ✗ [sin-cruce-documental] el manifiesto no trae `totals.cobertura.porClaseDocumental`: ' +
+        '/laboratorio/cobertura pintaría 0 declaraciones en cada clase. Rederiva con ' +
+        '`npm run chunk-pleno-claims`.\n',
     )
-    return
+    process.exit(1)
   }
 
   // Toda solicitud tiene que apuntar a una clase que EXISTE en el material. Una

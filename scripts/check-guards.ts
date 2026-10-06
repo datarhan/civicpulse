@@ -372,9 +372,17 @@ export const INJECTIONS: Array<{
     },
   },
   {
+    // Hasta el 06-10-2026 esta inyección era muda desde el día en que se
+    // escribió con su guarda (27-08-2026): check:solicitudes leía un manifiesto
+    // sin el cruce como SALTADO y salía 0. La guarda y su inyección no estaban
+    // de acuerdo en qué significa que falte. Lo escribe siempre su único
+    // escritor, así que faltar es una avería —la página pintaría un 0 en cada
+    // clase—, y la guarda la nombra con su marca.
     guard: 'check:solicitudes',
     file: 'public/data/pleno-claims/index.json',
-    describe: 'el cruce por clase documental vaciado — la guarda no puede medir nada',
+    describe:
+      'un manifiesto sin el cruce por clase documental — la página pintaría un 0 en cada clase',
+    espera: /\[sin-cruce-documental\]/,
     corrupt: (s) => s.replace(/"porClaseDocumental"/, '"porClaseDocumentalRota"'),
   },
   {
