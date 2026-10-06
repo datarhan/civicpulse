@@ -1,0 +1,249 @@
+{
+  "_procedencia": "Medición del 06-10-2026, aprobada por la sesión coordinadora: el motor (consistency:false, always:true, configDelMotor = sólo claude-code, claude-code:sonnet) sobre k4olcs-018-afi-1077bc, c8kr44-142-cit-b8c30e y k4olcs-101-cit-ddd6c4 con el snippet de contrato nuevo (src/scraper/snippet-de-contrato.ts, tope 400). 6 llamadas, 2.288 tokens, cuota del plan Max. Son el shortlist híbrido de ese día (corpus semántico refrescado + léxico) y el razonamiento y la extracción que devolvió el modelo, tal cual. Las declaraciones, de public/data/pleno-claims-verified.json.",
+  "filas": [
+    {
+      "id": "k4olcs-018-afi-1077bc",
+      "claim": {
+        "id": "k4olcs-018-afi-1077bc",
+        "plenoId": "k4olcs",
+        "plenoDate": "2026-04-20",
+        "segmentIndex": 18,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "Por una parte sería la actuación 1, cartelería digital por importe de 35.252,87",
+        "context": "Por una parte sería la actuación 1, cartelería digital por importe de 35.252,87 y la actuación 2, sistema de debate, captura y grabación de vídeo y control del salón de plenos municipales.",
+        "topic": "transparencia",
+        "entities": {
+          "amountEuros": 35252.87,
+          "referencedEntity": "actuación 1, cartelería digital"
+        },
+        "confidence": 0.97,
+        "reasoning": "El importe de la actuación es verificable en el expediente de inventario o en la relación de bienes adquiridos.",
+        "requiresHumanApproval": true
+      },
+      "candidatos": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qDjb9WdwTN3jHF5qKI4aaw%3D%3D",
+          "snippet": "formalized · adjudicación: 80.666,66 € con IVA (66.666,66 € sin IVA) el 19-04-2024 a AMARA MEGAFONIA CCTV VOZ-DATOS, SL · formalización: 23-04-2024 · licitación: 84.890,84 € con IVA (70.157,72 € sin IVA) · objeto: Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntamiento…",
+          "similarity": 0.6
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xkXNO23MYwoZDGvgaZEVxQ%3D%3D",
+          "snippet": "awarded · adjudicación: 35.252,87 € con IVA (29.134,60 € sin IVA) el 29-05-2024 a VODAFONE ESPANA SA · licitación: 51.098,30 € con IVA (42.230,00 € sin IVA) · objeto: Contrato mixto suministro y servicio de implantación de cartelería digital en diversas sedes municipales del ayuntamiento de Riba-roja de Túria, por procedimiento abierto simplificado sumario, mejora relación calidad precio y varios…",
+          "similarity": 0.58
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=rc7yJ5%2F%2F7ymmq21uxhbaVQ%3D%3D",
+          "snippet": "formalized · lote 1 · adjudicación: 113.498,00 € con IVA (93.800,00 € sin IVA) el 11-07-2023 a MDOSB COMUNICACIÓN,S.L · formalización: 22-08-2023 · licitación: 113.498,00 € con IVA (93.800,00 € sin IVA) · objeto: Contrato administrativo para la prestación de los servicios especializados de una agencia de comunicación para la inserción de publicidad institucional del ayuntamiento de Riba-roja de T…",
+          "similarity": 0.54
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=5ibLMcVUQgJVkTabT%2FRM8A%3D%3D",
+          "snippet": "abandoned · licitación: 349.840,04 € con IVA (289.124,00 € sin IVA) · objeto: Contrato administrativo de suministro e instalación de un sistema de circuito cerrado de videovigilancia en el ámbito geográfico de zonas urbanas y residenciales en el municipio de Riba-roja de Túria (Ctto. 87/2025).",
+          "similarity": 0.54
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=V4MZnZkWZrIBPRBxZ4nJ%2Fg%3D%3D",
+          "snippet": "formalized · adjudicación: 42.350,00 € con IVA (35.000,00 € sin IVA) el 10-05-2023 a SEÑALIZACIONES TRILLO · formalización: 11-05-2023 · licitación: 42.350,00 € con IVA (35.000,00 € sin IVA) · objeto: Contrato administrativo de servicio de mantenimiento y reparación de señalización horizontal de tráfico rodado en zonas urbanas desarrolladas del término municipal, por procedimiento abierto súper s…",
+          "similarity": 0.53
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3oQipIc0pfMSugstABGr5A%3D%3D",
+          "snippet": "formalized · adjudicación: 29.609,37 € con IVA (24.470,55 € sin IVA) el 13-12-2021 a EIFFAGE ENERGIA SLU · formalización: 15-12-2021 · licitación: 41.626,49 € con IVA (34.402,06 € sin IVA) · objeto: Contrato mixto de suministro y servicio para la instalación del sistema de videovigilancia en el polígono industrial Masía Baló por procedimiento abierto súper-simplificado, mejor relación calidad-pre…",
+          "similarity": 0.52
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=n1JmjWGCXiJvYnTkQN0%2FZA%3D%3D",
+          "snippet": "awarded · adjudicación: 3575,00 € con IVA (2954,55 € sin IVA) el 06-02-2023 a SERNUTEC SERVICIOS Y NUEVAS TECNOLOGÍAS S.L. · licitación: 3575,00 € con IVA (2954,55 € sin IVA) · objeto: Contratación administrativa del servicio para la actualización y mantenimiento de programas telemáticos de la Oficina de Comercio, Suscripción INTRAFIC BASICA + VIAPLAN + ACIERTA mediante procedimiento abierto simp…",
+          "similarity": 0.52
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=9VLOMpSBQjOrz3GQd5r6SQ%3D%3D",
+          "snippet": "formalized · adjudicación: 58.685,00 € con IVA (48.500,00 € sin IVA) el 23-11-2018 a SALUDES PARQUES INFANTILES S.L · formalización: 23-11-2018 · licitación: 75.000,00 € con IVA (61.983,47 € sin IVA) · objeto: El objeto del contrato es la obra de instalación de conjunto de aparatos de street work out en Polideportivo Municipal por procedimiento abierto, super simplificado mejor relación calidad-p…",
+          "similarity": 0.52
+        }
+      ],
+      "razonamiento": "El candidato [1] respalda genuinamente la afirmación: es el contrato mixto de suministro y servicio de implantación de cartelería digital en sedes municipales del Ayuntamiento de Riba-roja de Túria, adjudicado por 35.252,87 € con IVA (a Vodafone España SA, 29-05-2024). El importe coincide exactamente con el de la afirmación (\"actuación 1, cartelería digital por importe de 35.252,87\") y el objeto (cartelería digital) también, y la entidad es el propio Ayuntamiento. La fuerza del respaldo es alta: coinciden importe y sujeto. El candidato [0] corresponde a la \"actuación 2\" (sistema de debate, captura y grabación de vídeo y control del salón de plenos), pero su importe (80.666,66 €) no es el afirmado, así que no respalda la cifra de 35.252,87; sólo confirma que existe la segunda actuación mencionada en el contexto. Los demás candidatos (publicidad institucional, videovigilancia, señalización, parques, etc.) son coincidencias temáticas o de palabra sin importes coincidentes y no aportan respaldo.",
+      "extraccion": {
+        "verdict": "verificado",
+        "cites": [
+          {
+            "candidateIndex": 1,
+            "snippet": "tender[1].adjudicación=35.252,87 € con IVA · el importe coincide exactamente con el de la actuación 1 y el objeto es la implantación de cartelería digital en sedes municipales del Ayuntamiento de Riba-roja de Túria"
+          }
+        ]
+      }
+    },
+    {
+      "id": "c8kr44-142-cit-b8c30e",
+      "claim": {
+        "id": "c8kr44-142-cit-b8c30e",
+        "plenoId": "c8kr44",
+        "plenoDate": "2025-09-08",
+        "segmentIndex": 142,
+        "type": "cita_obra",
+        "speakerGroup": null,
+        "verbatim": "algo más de 330.000 euros para toda una actuación del carril bici",
+        "context": "Cuatro para pérgolas ajardinadas y otra que son 160.000 y algo más de 330.000 euros para toda una actuación del carril bici en la que se pretende precisamente en las zonas de descanso",
+        "topic": "movilidad",
+        "entities": {
+          "amountEuros": 330000,
+          "referencedEntity": "actuación del carril bici"
+        },
+        "confidence": 0.9,
+        "reasoning": "Se cita una inversión de algo más de 330.000 euros para un proyecto en el carril bici municipal, contrastable con la plataforma de contratación pública.",
+        "requiresHumanApproval": true
+      },
+      "candidatos": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=DeNuLJF4hrOiEJrVRqloyA%3D%3D",
+          "snippet": "formalized · adjudicación: 228.507,29 € con IVA (188.849,00 € sin IVA) el 07-06-2022 a MOVIMIENTOS DE TIERRA SUBIELA SL · formalización: 29-06-2022 · licitación: 283.934,05 € con IVA (234.656,23 € sin IVA) · objeto: Contrato de obras de ejecución del CARRIL CICLOPEATONAL ZONA NORTE: ADECUACIÓN SENDA MOLINET, ALUMBRADO Y CONEXIÓN CON CASCO URBANO por procedimiento abierto simplificado, varios crit…",
+          "similarity": 0.58
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=AAURylHG%2Bd0BPRBxZ4nJ%2Fg%3D%3D",
+          "snippet": "formalized · adjudicación: 194.675,69 € con IVA (160.889,00 € sin IVA) el 14-08-2018 a SEOP PROYECTOS Y CONTRATAS S.L. · formalización: 14-08-2018 · licitación: 208.653,39 € con IVA (172.440,82 € sin IVA) · objeto: Obras de ejecución de carril bici en la zona Molinet, Montealcedo, entrenaranjos, Santa Rosa y El Clot",
+          "similarity": 0.57
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=E%2BOr0JaUVkecCF8sV%2BqtYA%3D%3D",
+          "snippet": "formalized · adjudicación: 296.195,90 € con IVA (244.790,00 € sin IVA) el 29-05-2026 a OBRA CIVIL Y EDIFICACION ESCRIMAR S.L.L. · formalización: 02-06-2026 · licitación: 325.662,55 € con IVA (269.142,60 € sin IVA) · objeto: Obras ejecución del proyecto: “Mejora del carril bici y la ejecución o mejora de refugios climáticos”, por procedimiento abierto simplificado, varios criterios de adjudicación…",
+          "similarity": 0.56
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=M3B12MCygtyiEJrVRqloyA%3D%3D",
+          "snippet": "formalized · adjudicación: 14.763,21 € con IVA (12.201,00 € sin IVA) el 03-02-2023 a SÁNCHEZ SORIANO REQUENARIO S.L. · formalización: 22-02-2023 · licitación: 17.999,98 € con IVA (14.875,98 € sin IVA) · objeto: Contrato para el suministro, adquisición de jardineras para separar el carril para paso de vehículos en calle Vilamarxant, del carril peatonal, derivado del sistema dinámico de adquisición…",
+          "similarity": 0.55
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=PAA4ouM3mNjnSoTX3z%2F7wA%3D%3D",
+          "snippet": "formalized · adjudicación: 44.033,22 € con IVA (38.124,00 € sin IVA) el 11-01-2021 a COMPAÑÍA ESPECIAL EMPLEO E INTEGRACIÓN, S.L. · formalización: 11-01-2021 · licitación: 58.277,26 € con IVA (50.456,50 € sin IVA) · objeto: Contrato de servicios de mantenimiento de las zonas verdes de la CV-370 y el carril bici de Riba-roja de Túria, por procedimiento abierto simplificado, mejor relación calidad-…",
+          "similarity": 0.54
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zH8ATDFdYlU7%2B9FIQYNjeQ%3D%3D",
+          "snippet": "formalized · adjudicación: 262.812,00 € con IVA (217.200,00 € sin IVA) el 24-09-2025 a NERCO INFRAESTRUCTURAS, S.L. · formalización: 06-10-2025 · licitación: 269.001,08 € con IVA (222.314,94 € sin IVA) · objeto: Obras Carril Ciclopeatonal Zona Norte: Fase II de la adecuación de la Senda del Molinet, alumbrado y conexión con la zona de Paretotes de Riba-roja de Túria",
+          "similarity": 0.53
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=XflAkMBxmpeFQ%2FlhRK79lA%3D%3D",
+          "snippet": "awarded · adjudicación: el 27-12-2023 a Obras Públicas Montaner 1, S.L. · licitación: 14.983,83 € con IVA (12.383,33 € sin IVA) · objeto: Contrato derivado del SDA de obras, para la realización de las obras necesarias para mejorar la accesibilidad al parque Montealcedo mediante la realización de vados de peatones en las C/ Mariano Benlliure, C/ Maestro Serrano, C/ José Iturbi y C/ Cáceres.",
+          "similarity": 0.53
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eBdopYGCVxmXQV0WE7lYPw%3D%3D",
+          "snippet": "formalized · adjudicación: 36.790,05 € con IVA (30.405,00 € sin IVA) el 18-08-2019 a FLOWBIRD ESPAÑA, S.L.U. · formalización: 18-08-2019 · licitación: 52.105,50 € con IVA (43.062,40 € sin IVA) · objeto: Suministro e Instalación de Parquímetros para el Casco Urbano por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación con cláusulas perspectiva de g…",
+          "similarity": 0.52
+        }
+      ],
+      "razonamiento": "La afirmación habla de \"algo más de 330.000 euros\" para una actuación de carril bici que incluye zonas de descanso (refugios/pérgolas ajardinadas). El candidato [2] (\"Mejora del carril bici y la ejecución o mejora de refugios climáticos\") coincide en tema y en el elemento distintivo de las zonas de descanso/refugios, pero sus importes no coinciden: licitación 325.662,55 € con IVA y adjudicación 296.195,90 € con IVA; ninguno es \"algo más de 330.000\". La diferencia con la licitación es de unos 4.300 € (~1,3%), cercana pero por debajo de 330.000, por lo que \"algo más de 330.000\" no encaja exactamente; podría ser una cifra del presupuesto/proyecto (con otros costes, p. ej. honorarios o subvención) no recogida aquí. Los demás candidatos son otras fases o actuaciones de carril ciclopeatonal (228.507, 194.675, 262.812 €), con cifras distintas, o contratos no relacionados (jardineras, parquímetros, mantenimiento). Conclusión: respaldo débil/parcial en [2] por coincidencia temática y de orden de magnitud, pero sin coincidencia exacta de importe; no es respaldo firme de la cifra concreta.",
+      "extraccion": {
+        "verdict": "parcial",
+        "cites": [
+          {
+            "candidateIndex": 2,
+            "snippet": "tender[2].objeto=Mejora del carril bici y la ejecución o mejora de refugios climáticos · coincide temáticamente (carril bici y zonas de descanso/refugios), pero el importe es licitación 325.662,55 € y adjudicación 296.195,90 €, no \"algo más de 330.000\""
+          }
+        ]
+      }
+    },
+    {
+      "id": "k4olcs-101-cit-ddd6c4",
+      "claim": {
+        "id": "k4olcs-101-cit-ddd6c4",
+        "plenoId": "k4olcs",
+        "plenoDate": "2026-04-20",
+        "segmentIndex": 101,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "se ha aprobado Hidracua, gestión integral de aguas de Levante S.A. y con esto se acepta la propuesta de adjudicación emitida por la mesa de contratación a favor de Hidracua",
+        "context": "se ha aprobado Hidracua, gestión integral de aguas de Levante S.A. y con esto se acepta la propuesta de adjudicación emitida por la mesa de contratación a favor de Hidracua y se requiere al primer clasificado que presente la documentación en el plazo de 10 días.",
+        "topic": "fiscal",
+        "entities": {
+          "count": 10,
+          "countUnit": "días",
+          "referencedEntity": "propuesta de adjudicación del contrato de abastecimiento de agua"
+        },
+        "confidence": 0.93,
+        "reasoning": "Es verificable en el expediente de contratación y en el acuerdo plenario: afirma que se acepta la propuesta de adjudicación a favor de Hidracua y que se le requiere documentación en 10 días.",
+        "requiresHumanApproval": true
+      },
+      "candidatos": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2qebJ%2FLgws87u6%2B%2FR7DUoA%3D%3D",
+          "snippet": "awarded · adjudicación: 22.539,91 € con IVA (18.628,03 € sin IVA) el 12-12-2024 a HIDRAQUA GESTIÓN INTEGRAL DE AGUAS DE LEVANTE, S.A. · licitación: 22.539,91 € con IVA (18.628,03 € sin IVA) · objeto: Formalización del contrato verbal de emergencia tras daños por los efectos de la DANA del pasado 29 de octubre de 2024, para el servicio de depuración de aguas residuales del sistema municipal, adjud…",
+          "similarity": 0.67
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RR%2FbMyphbH170UvEyYJSGw%3D%3D",
+          "snippet": "awarded · adjudicación: 94.446,81 € con IVA (82.140,36 € sin IVA) el 12-12-2024 a HIDRAQUA GESTIÓN INTEGRAL DE AGUAS DE LEVANTE, S.A. · licitación: 94.446,81 € con IVA (82.140,36 € sin IVA) · objeto: Formalización del contrato verbal de servicio de actuación de emergencia servicio municipal saneamiento pluviales como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de…",
+          "similarity": 0.64
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=nsi1cQdvUjpxseVhcqrkhw%3D%3D",
+          "snippet": "awarded · adjudicación: 25.005,38 € con IVA (20.665,60 € sin IVA) el 12-12-2024 a HIDRAQUA GESTIÓN INTEGRAL DE AGUAS DE LEVANTE, S.A. · licitación: 25.005,38 € con IVA (20.665,60 € sin IVA) · objeto: Formalización del contrato verbal de emergencia, de las actuaciones de emergencia del Servicio Municipal de Agua Potable, por efectos de la DANA en el Polígono Industrial Sector 13 de Riba-roja de Tú…",
+          "similarity": 0.63
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D",
+          "snippet": "awarded · adjudicación: 55.685.178,79 € el 06-08-2026 a HIDRAQUA GESTIÓN INTEGRAL DE AGUAS DE LEVANTE, S.A. · licitación: 55.685.178,79 € · objeto: contrato de concesión del servicio público de abastecimiento de agua potable, servicio de gestión de alcantarillado , control de vertidos y depuración del municipio Riba-roja de Túria, por procedimiento abierto, mejor relación calidad-precio, varios c…",
+          "similarity": 0.61
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=EAFs6rGEbtF%2FR5QFTlaM4A%3D%3D",
+          "snippet": "awarded · adjudicación: 33.310,91 € con IVA (27.529,68 € sin IVA) el 11-12-2024 a Ecosiona Facility Services, S.L. · licitación: 33.310,91 € con IVA (27.529,68 € sin IVA) · objeto: Contrato de suministro de adquisición para sustitución de las calderas del pabellón municipal y del polideportivo (pádel) afectadas como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de…",
+          "similarity": 0.59
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=TC4CjFxVknSFQ%2FlhRK79lA%3D%3D",
+          "snippet": "awarded · adjudicación: 28.355,58 € con IVA (23.434,36 € sin IVA) el 10-12-2024 a ARIDOS MIJARES SL · licitación: 28.355,58 € con IVA (23.434,36 € sin IVA) · objeto: Contrato verbal de emergencia para trabajos de servicio de limpieza vial, tras daños por los efectos de la DANA del pasado 29 de octubre de 2024, para habilitación de acceso en calles y en polígonos de Riba-roja de Túria, adjudicado…",
+          "similarity": 0.59
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qGT3JIWmmduS81gZFETWmA%3D%3D",
+          "snippet": "awarded · adjudicación: 16.255,42 € con IVA (13.434,23 € sin IVA) el 02-02-2026 a Luis Franco Grau SL · licitación: 16.255,42 € con IVA (13.434,23 € sin IVA) · objeto: Inicio expediente y adjudicación directa del contrato menor para la prestación del servicio de socorrismo en la piscina municipal de verano (Ctto.189M/2025)",
+          "similarity": 0.59
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=N%2B2T11NdqTUBPRBxZ4nJ%2Fg%3D%3D",
+          "snippet": "awarded · adjudicación: 38.672,57 € con IVA (31.960,80 € sin IVA) el 04-11-2021 a ASFALTOS VILAR S.A. · licitación: 45.000,00 € con IVA (37.190,08 € sin IVA) · objeto: contrato de OBRAS DE CANALIZACIÓN DE ALIVIADERO DE BALSA DE RECOGIDA DE PLUVIALES EN POLÍGONO INDUSTRIAL por procedimiento abierto súper simplificado, un criterio de adjudicación, con condición especial de ejecución de carácter soc…",
+          "similarity": 0.58
+        }
+      ],
+      "razonamiento": "La afirmación describe un acuerdo de pleno que acepta la propuesta de adjudicación de la mesa de contratación a favor de Hidraqua (Gestión Integral de Aguas de Levante S.A.) y requiere documentación en 10 días. Ese trámite (propuesta de mesa + requerimiento al primer clasificado) corresponde a un procedimiento abierto competitivo, no a contratos verbales de emergencia. Los candidatos 0, 1 y 2 son formalizaciones de contratos verbales de emergencia por la DANA (dic-2024) con Hidraqua: misma empresa, pero distinto tipo de procedimiento, sin mesa de contratación ni requerimiento de documentación, e importes menores; coincidencia sólo de entidad, no es respaldo. El candidato 3 es la concesión del servicio de agua/alcantarillado/depuración adjudicada a Hidraqua por procedimiento abierto (55,7 M€, fecha 06-08-2026): es el único procedimiento competitivo compatible con una mesa de contratación y un requerimiento al primer clasificado, y la misma empresa. Sin embargo, la afirmación no da importe ni fecha del pleno; el \"10\" es el plazo de 10 días, no una cifra económica, y no hay prueba de que ese pleno corresponda a esa adjudicación (la fecha de adjudicación en agosto de 2026 es plausible, pero no verificable). Los candidatos 4-7 son otras empresas y objetos: irrelevantes. Conclusión: respaldo débil/plausible sólo para el candidato 3 (coincidencia de sujeto y tipo de procedimiento, sin valores concretos que confirmen); los demás no respaldan. Además, la afirmación es en esencia un relato procedimental de acta, difícilmente verificable en términos numéricos.",
+      "extraccion": {
+        "verdict": "parcial",
+        "cites": [
+          {
+            "candidateIndex": 3,
+            "snippet": "tender[3].adjudicación=55.685.178,79 € el 06-08-2026 a HIDRAQUA GESTIÓN INTEGRAL DE AGUAS DE LEVANTE, S.A. · misma empresa y procedimiento abierto compatible con mesa de contratación y requerimiento al primer clasificado, pero sin importe ni fecha en la afirmación que confirmen que sea esta adjudicación"
+          }
+        ]
+      }
+    }
+  ]
+}

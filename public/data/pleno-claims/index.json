@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-06T06:31:44.496Z",
+  "generatedAt": "2026-10-06T07:29:33.830Z",
   "version": "1",
   "plenos": [
     {
@@ -176,10 +176,10 @@
       "plenoDate": "2026-04-20",
       "chunkPath": "pleno-claims/k4olcs.json",
       "itemCount": 285,
-      "toggleCount": 282,
+      "toggleCount": 280,
       "byVerdict": {
-        "sin-datos": 282,
-        "verificado": 2,
+        "sin-datos": 280,
+        "verificado": 4,
         "parcial": 1
       },
       "byType": {
@@ -203,7 +203,7 @@
         "empleo": 3,
         "movilidad": 1
       },
-      "bytes": 387794
+      "bytes": 389714
     },
     {
       "plenoId": "ma87e0",
@@ -662,9 +662,9 @@
     "items": 4962,
     "plenos": 23,
     "byVerdict": {
-      "sin-datos": 4934,
+      "sin-datos": 4932,
       "parcial": 21,
-      "verificado": 7
+      "verificado": 9
     },
     "byTopicVerdict": {
       "fiscal": {
@@ -701,8 +701,8 @@
         "sin-datos": 208
       },
       "transparencia": {
-        "sin-datos": 625,
-        "verificado": 2
+        "sin-datos": 623,
+        "verificado": 4
       },
       "educacion": {
         "sin-datos": 235,
@@ -834,9 +834,9 @@
       },
       "corpus": {
         "tenders": 1576,
-        "tenders-ted": 1565,
-        "bdns": 487,
-        "budget": 485,
+        "tenders-ted": 1563,
+        "bdns": 485,
+        "budget": 483,
         "promises": 493,
         "curator-downgrade": 41,
         "verdict-engine": 540
@@ -868,7 +868,7 @@
     },
     "sinDatosPorque": {
       "sinCorpus": 2025,
-      "comprobadoSinHallar": 2046,
+      "comprobadoSinHallar": 2044,
       "noConsta": 863
     }
   }

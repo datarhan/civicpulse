@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-05T12:03:37.448Z",
+  "generatedAt": "2026-10-06T11:44:05.155Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -40,7 +40,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-05T12:03:37.330Z"
+      "generatedAt": "2026-10-06T11:44:05.051Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -48,7 +48,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-05T12:03:37.330Z"
+      "generatedAt": "2026-10-06T11:44:05.051Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -67,7 +67,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-05T12:03:37.330Z"
+      "generatedAt": "2026-10-06T11:44:05.051Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -89,7 +89,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-05T12:03:37.330Z"
+      "generatedAt": "2026-10-06T11:44:05.051Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -120,7 +120,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-05T12:03:37.330Z"
+      "generatedAt": "2026-10-06T11:44:05.051Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -128,7 +128,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-05T12:03:37.330Z"
+      "generatedAt": "2026-10-06T11:44:05.051Z"
     },
     {
       "promiseId": "ac-psoe-1ryndd8",
@@ -177,7 +177,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-05T12:03:37.330Z"
+      "generatedAt": "2026-10-06T11:44:05.051Z"
     },
     {
       "promiseId": "ac-psoe-43brfs",
@@ -242,27 +242,13 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-05T12:03:37.330Z"
+      "generatedAt": "2026-10-06T11:44:05.051Z"
     },
     {
       "promiseId": "ac-psoe-17y448o",
       "proposedStatus": "documentada",
       "confidence": 0.4,
       "reasoning": [
-        {
-          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOdy1BVlRnOXAxak1EWWFVcndBWlBWSzByUWZ0LVBkclF6c013SFgtR20yUFpqMVhvVTZQUXo1RGRxUExUMVRmWUgwS2JRSHo4SXF5bXNhdDhDOEUwbjFnSnlrU25BRVg0MkF0Yy1xUURSemtmWTJ3ZHZfRk5BbWtaakNoMGxRN0FIcXo5WFllTWxfTC1LcnE4MzZKMS0yOFNmbHBlck5iNVFpLTF0VGltatIBtgFBVV95cUxNX1p5Mi0zdE1SQ2p4Znp3RGY3MkUyRzZuZ2ZHSThkalI4TkFPTnlLMk54QkJSX290cFZsNllyU2ljY1R1bzBtaHRtdG5FU3Y3dUpEXzNVWFVlZFdhcC04MWR4UTV2eDI4TzFtY1N2TzZKLVJzSGo1ZlYtN1p2RlZEYnVFbGlGcmFnaEV0ZERGSERKZzR6MWhWbVZlM0JOUUhLYkRRZ3lUbk5kajBvenk4dDdEd2s3QQ?oc=5",
-          "date": "2026-10-04",
-          "quote": "El Cheque Bebé +25 apoya a las familias y dinamiza el comercio local",
-          "kind": "press",
-          "publisher": "Las Provincias",
-          "matchedKeywords": [
-            "cheque",
-            "bebe",
-            "familia",
-            "comercio",
-            "local"
-          ]
-        },
         {
           "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNYWV1M3FmdUZiYWpKNk1tR3Rva3pNcEZVdkZvRlRBa3h6OHVyLW9QM2VsdjM2c28yZTM2bkJQYXRjRGRZWVpjcTJaaC0wNDY4U0JYUWZPcDBCYW1wYm1halVYNHNEUHhVX1NoWlZ0dnVEamlGREZLU3hOVmFCU0YyNlJoWmVLY2lmVWJ1MFc1X1RFZkkwaXdNS21wOVNIcFlBci0wTTd1YnJKbkpubDhTNDRKblVtaGNYeTVBcnNROWpiMTVTQmVBQ2tjVEhWN290X0HSAdcBQVVfeXFMUE5vQjdSdXhta285NUVvUWswZWM2akM0MGJnWElzVUxGUnpSd1hrTlZhMFpoQnVpM2lCS09jNG9xQzFWRThGQkNnaHdmV2dVSDNmcHV1bWJrNXR3dnZkZ092ZmdPNlhYa0l4OE9Nb0hpX2xaVk1NY25rU05sYW9qVDVyOFpOZnJpWlZ1SGREOWpIbVRjX1hMelpGYmdiYzNsWkpNRDlrYjZpcDYtdUpVTjVYc09TN0JiTkhJOTZuQ251T3FWU2NsVEE4djJBVy1yS0RhV2hyNjg?oc=5",
           "date": "2026-10-01",
@@ -310,7 +296,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-05T12:03:37.330Z"
+      "generatedAt": "2026-10-06T11:44:05.051Z"
     },
     {
       "promiseId": "ac-psoe-1bkbwjs",
@@ -342,7 +328,7 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxQZnBEa3hfeFZ3U2pWWnVPQllvdG9SVnR3R3phM2l0LUpSdEU2dGhDcmhXZk1DVmNYbUVNdzlnTG9HVi1NaldjaVc2YmQ3U0RuU3lya3ZqVDFiMHcyRmxBWkhyaUJaeWg5cVJZcDFuZnFSR3V2T3AzMW1ESkRvSmM2UVFnYUI0aVFSdUxhenpOX2trUWpzTWZGTEIzckpCQW5nMzBYazV1V1VNdm41STVJNU1DcTdoUVRNNGNGd25pUVdrdFVJSVFIX3Bya2hxVkswVU9TVkhlMG92SzJETVVFNlpLM2c4eUsybGhyWG9hQdIB7wFBVV95cUxQZnBEa3hfeFZ3U2pWWnVPQllvdG9SVnR3R3phM2l0LUpSdEU2dGhDcmhXZk1DVmNYbUVNdzlnTG9HVi1NaldjaVc2YmQ3U0RuU3lya3ZqVDFiMHcyRmxBWkhyaUJaeWg5cVJZcDFuZnFSR3V2T3AzMW1ESkRvSmM2UVFnYUI0aVFSdUxhenpOX2trUWpzTWZGTEIzckpCQW5nMzBYazV1V1VNdm41STVJNU1DcTdoUVRNNGNGd25pUVdrdFVJSVFIX3Bya2hxVkswVU9TVkhlMG92SzJETVVFNlpLM2c4eUsybGhyWG9hQQ?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxQcnJNWjcwTm1UQWw1aGVHZkpWR0plXzBfYTNjOVhMaXRuSzB4aEZyWnZmQnBfcXFSeWxnd0ZlQThtVDBncjFqcEdjTHF5RWhFSFBqeU03aTgzRUQ1aUNid0hvT3dCUHE2TVoyQTN4U29FZXFxaE9maHJyZFFJUXU4SV94c3BySGZkeTZZRFJPT19reGtZbndJT2dUdmlCSmM2ZE9QMkdmQ0hkcG96Vkh4Ti1mUDBQRWVhcWVQV0VqcFMwcTNPNHAzcjM2Vi13MWQ2aXA3VzI2MnpXcjdQX2pvOUw1cU9GUnJlTkHSAe8BQVVfeXFMUGZwRGt4X3hWd1NqVlp1T0JZb3RvUlZ0d0d6YTNpdC1KUnRFNnRoQ3JoV2ZNQ1ZjWG1FTXc5Z0xvR1YtTWpXY2lXNmJkN1NEblN5cmt2alQxYjB3MkZsQVpIcmlCWnloOXFSWXAxbmZxUkd1dk9wMzFtREpEb0pjNlFRZ2FCNGlRUnVMYXp6Tl9ra1Fqc01mRkxCM3JKQkFuZzMwWGs1dVdVTXZuNUk1STVNQ3E3aFFUTTRjRnduaVFXa3RVSUlRSF9wcmtocVZLMFVPU1ZIZTBvdksyRE1VRTZaSzNnOHlLMmxoclhvYUE?oc=5",
           "date": "2026-10-03",
           "quote": "Riba-roja mejora su gestión turística y supera la mitad de los requisitos para convertirse en un destino inteligente",
           "kind": "press",
@@ -354,7 +340,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-05T12:03:37.330Z"
+      "generatedAt": "2026-10-06T11:44:05.051Z"
     },
     {
       "promiseId": "ac-psoe-1xeq50",
@@ -400,7 +386,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-05T12:03:37.330Z"
+      "generatedAt": "2026-10-06T11:44:05.051Z"
     }
   ],
   "llmEvidence": [],

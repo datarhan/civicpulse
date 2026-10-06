@@ -1,0 +1,74 @@
+{
+  "_procedencia": "brxx5g-134-cit-0c354a, la huérfana de la lectura de las ocho que #240 dejó a un curador (editorial/recorte-8-y-7f7619/ del checkout principal, leer-8.json): el razonamiento (engine-reason-v1) y la extracción que claude-code:sonnet escribió el 02-08-2026, tal cual, que cita dos veces un campo «título» con tilde. El shortlist de aquel día no se guardó: los candidatos [4] y [6] que cita son los dos contratos del pabellón del CEIP Mas d’Escoto, copiados de public/data/tenders.json el 06-10-2026 sin su campo cpvs.",
+  "id": "brxx5g-134-cit-0c354a",
+  "razonamiento": "Analicé los candidatos: [4] y [6] corresponden directamente al proyecto de construcción del pabellón deportivo cubierto en CEIP Mas d'Escoto (obra y redacción de proyecto/dirección), lo cual coincide en sujeto concreto con \"hacer el pabellón del Escoto\". Sin embargo, no hay ningún candidato sobre climatización de dicho pabellón; [2] (campana extractora) no equivale a climatización. Los demás candidatos son obras distintas que solo coinciden tangencialmente en tema o ubicación. Por tanto, respaldo parcial fuerte para la parte de construcción, nulo para la climatización. No emití veredicto final, solo razonamiento como se solicitó.",
+  "extraccion": {
+    "verdict": "parcial",
+    "cites": [
+      {
+        "candidateIndex": 4,
+        "snippet": "tender[4].título=construcción de pabellón deportivo cubierto en CEIP Mas d’Escoto – Fase I · coincide con \"hacer el pabellón del Escoto\" (obra de construcción del pabellón), pero no hay dato sobre climatización"
+      },
+      {
+        "candidateIndex": 6,
+        "snippet": "tender[6].título=proyecto de ejecución y dirección de las obras para la construcción de Pabellón Deportivo Cubierto en CEIP Mas d’Escoto · respalda la parte de \"hacer el pabellón del Escoto\" como redacción/dirección de la misma obra, sin mención de climatización"
+      }
+    ]
+  },
+  "contratos": {
+    "4": {
+      "id": "269749",
+      "title": "contrato de ejecución de las obras de construcción de pabellón deportivo cubierto en CEIP Mas d’Escoto – Fase I (movimiento de tierras y muro de contención) por procedimiento abierto súper simplificado, mejor relación calidad-precio, varios criterios de adjudicación con cláusula socio-laboral como criterio de adjudicación y con condición especial de ejecución de carácter medioambiental",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=6eiWKGfBAKmrz3GQd5r6SQ%3D%3D",
+      "status": "formalized",
+      "contractType": "construction",
+      "processType": "open_simplified",
+      "minorContract": false,
+      "startDate": "2019-09-20",
+      "endDate": "2019-12-19",
+      "awardDate": "2019-12-17",
+      "formalizedDate": "2019-12-17",
+      "duration": 90,
+      "batchNumber": 0,
+      "assignee": "HIDROLOGÍA, PROYECTOS, DESARROLLO Y GESTIÓN, S.L.",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "contractorId": "58096",
+      "contractorType": "Ayuntamiento",
+      "categoryId": "24",
+      "categoryTitle": "construction",
+      "initialAmount": 87500.61,
+      "initialAmountNoTaxes": 72314.55,
+      "finalAmount": 83265.61,
+      "finalAmountNoTaxes": 68814.55,
+      "estimatedValue": 72314.55,
+      "numberOfProposals": 1
+    },
+    "6": {
+      "id": "1045077",
+      "title": "Contrato de servicio de redacción de proyecto de ejecución y dirección de las obras para la construcción de Pabellón Deportivo Cubierto en CEIP Mas d’Escoto con perspectiva de género por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condición especial de ejecución de carácter social y medioambiental contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos y 5 de igualdad de género",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2MCZfUTDfGXnSoTX3z%2F7wA%3D%3D",
+      "status": "formalized",
+      "contractType": "services",
+      "processType": "open_simplified",
+      "minorContract": false,
+      "startDate": "2020-12-10",
+      "endDate": "2021-02-08",
+      "awardDate": "2021-01-24",
+      "formalizedDate": "2021-01-24",
+      "duration": 60,
+      "batchNumber": 0,
+      "assignee": "Dualde-ferrer, S.L.P.",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "contractorId": "58096",
+      "contractorType": "Ayuntamiento",
+      "categoryId": "27",
+      "categoryTitle": "architecture",
+      "initialAmount": 41703.33,
+      "initialAmountNoTaxes": 34465.56,
+      "finalAmount": 30555.55,
+      "finalAmountNoTaxes": 25252.52,
+      "estimatedValue": 34465.56,
+      "numberOfProposals": 6
+    }
+  }
+}

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-06T06:31:43.037Z",
+  "generatedAt": "2026-10-06T07:29:32.446Z",
   "entries": {
     "k4olcs-005-acu-7c0edd": {
       "verification": {
@@ -25285,6 +25285,64 @@
         "motivo": "literal-no-dicho",
         "literal": "literal retirado · sha256:742f12f69621"
       }
+    },
+    "k4olcs-018-afi-7abae5": {
+      "verification": {
+        "claimId": "k4olcs-018-afi-7abae5",
+        "verdict": "verificado",
+        "summary": "Los 80.666 euros de la actuación 2 son el importe de su contrato: el sistema de debate, voto electrónico, captura y grabación de vídeo y control del salón de plenos se adjudicó el 19-04-2024 por 80.666,66 € con IVA (66.666,66 € sin IVA).",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qDjb9WdwTN3jHF5qKI4aaw%3D%3D",
+            "snippet": "Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de v… · expediente 32/2024 · adjudicado a AMARA MEGAFONIA CCTV VOZ-DATOS, SL por 80.666,66 € con IVA el 19-04-2024",
+            "stance": "checked"
+          }
+        ],
+        "checkedAgainst": [
+          "tenders"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ]
+      },
+      "source": "curator-upgrade",
+      "reason": "Los 80.666 euros de la actuación 2 son el importe de su contrato: el sistema de debate, voto electrónico, captura y grabación de vídeo y control del salón de plenos se adjudicó el 19-04-2024 por 80.666,66 € con IVA (66.666,66 € sin IVA).",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-06T07:29:20.818Z",
+      "desde": "sin-datos"
+    },
+    "k4olcs-019-cit-947479": {
+      "verification": {
+        "claimId": "k4olcs-019-cit-947479",
+        "verdict": "verificado",
+        "summary": "Las dos actuaciones constan como contratos adjudicados: la cartelería digital en sedes municipales, por 35.252,87 € con IVA el 29-05-2024, la cifra que se cita, al céntimo; y el sistema de debate, voto electrónico, captura y grabación de vídeo y control del salón de plenos, por 80.666,66 € con IVA el 19-04-2024.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xkXNO23MYwoZDGvgaZEVxQ%3D%3D",
+            "snippet": "Contrato mixto suministro y servicio de implantación de cartelería digital en diversas sedes municipales del ayuntamiento de Riba-roja de Túria, p… · expediente 33/2024 · adjudicado a VODAFONE ESPANA SA por 35.252,87 € con IVA el 29-05-2024",
+            "stance": "checked"
+          },
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qDjb9WdwTN3jHF5qKI4aaw%3D%3D",
+            "snippet": "Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de v… · expediente 32/2024 · adjudicado a AMARA MEGAFONIA CCTV VOZ-DATOS, SL por 80.666,66 € con IVA el 19-04-2024",
+            "stance": "checked"
+          }
+        ],
+        "checkedAgainst": [
+          "tenders"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ]
+      },
+      "source": "curator-upgrade",
+      "reason": "Las dos actuaciones constan como contratos adjudicados: la cartelería digital en sedes municipales, por 35.252,87 € con IVA el 29-05-2024, la cifra que se cita, al céntimo; y el sistema de debate, voto electrónico, captura y grabación de vídeo y control del salón de plenos, por 80.666,66 € con IVA el 19-04-2024.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-06T07:29:32.446Z",
+      "desde": "sin-datos"
     }
   }
 }
