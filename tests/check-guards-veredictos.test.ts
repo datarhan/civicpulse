@@ -1,6 +1,15 @@
 import { describe, it, expect, beforeAll, afterAll, vi } from 'vitest'
 import { execFileSync, spawnSync } from 'node:child_process'
-import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
+import {
+  existsSync,
+  mkdtempSync,
+  mkdirSync,
+  readFileSync,
+  realpathSync,
+  rmSync,
+  statSync,
+  writeFileSync,
+} from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
@@ -21,6 +30,13 @@ import { INJECTIONS } from '../scripts/check-guards'
  *   2. El arnés juzgaba una inyección sólo por el código de salida CON ella
  *      puesta. Entre #226 y #228 esta guarda ya salía roja sin inyectarle nada,
  *      y cualquier inyección se habría leído FIRES.
+ *
+ * Y uno del arnés, no de esta guarda (06-10-2026): `--inject` escribe en el
+ * árbol copias corrompidas de ficheros PUBLICADOS —desde #247, el overlay con
+ * un `sin-datos` subido a `verificado`— y las deshace con `git checkout`. En el
+ * checkout principal los agentes de launchd comitean y empujan por su cuenta,
+ * así que un commit a media inyección publicaría la corrupción. Desde entonces
+ * se niega a correr allí, y estas pruebas lo corren desde un worktree.
  *
  * Cada inyección se aplica en un proceso aparte con la caja por directorio,
  * como la aplicaría el arnés en el repositorio: lo que la corrupción resuelve
@@ -161,25 +177,35 @@ describe('check:veredictos — cada inyección, contra la guarda de verdad', () 
 
 /**
  * Un repositorio de usar y tirar con UNA guarda en su package.json, así que
- * `--inject` sólo ejercita las inyecciones de check:veredictos; y con git,
+ * `--inject` sólo ejercita las inyecciones de check:veredictos; con git,
  * porque el arnés se niega a inyectar en un fichero sin comitear y restaura con
- * `git checkout`.
+ * `git checkout`; y con un worktree, que es desde donde se inyecta: en el
+ * checkout principal el arnés se niega.
  */
-function repo(ajustar?: (f: Fixture) => void, guarda = `"${TSX}" "${GUARDA}"`): string {
-  const raiz = caja('check-guards-arnes-', ajustar)
-  mkdirSync(join(raiz, 'scripts')) // callSites() lo lee
+function repo(
+  ajustar?: (f: Fixture) => void,
+  guarda = `"${TSX}" "${GUARDA}"`,
+): { principal: string; worktree: string } {
+  const principal = caja('check-guards-arnes-', ajustar)
+  // callSites() lo lee; con un fichero dentro, porque git no rastrea un
+  // directorio vacío y el worktree saldría sin él.
+  mkdirSync(join(principal, 'scripts'))
+  writeFileSync(join(principal, 'scripts', '.gitkeep'), '')
   const scripts = { 'check:veredictos': guarda }
   writeFileSync(
-    join(raiz, 'package.json'),
+    join(principal, 'package.json'),
     JSON.stringify({ name: 'caja', private: true, scripts }, null, 2) + '\n',
   )
-  git(raiz, 'init', '-q', '-b', 'main')
-  git(raiz, 'config', 'user.email', 'test@example.invalid')
-  git(raiz, 'config', 'user.name', 'check-guards test')
-  git(raiz, 'config', 'commit.gpgsign', 'false')
-  git(raiz, 'add', '-A')
-  git(raiz, 'commit', '-q', '-m', 'caja')
-  return raiz
+  git(principal, 'init', '-q', '-b', 'main')
+  git(principal, 'config', 'user.email', 'test@example.invalid')
+  git(principal, 'config', 'user.name', 'check-guards test')
+  git(principal, 'config', 'commit.gpgsign', 'false')
+  git(principal, 'add', '-A')
+  git(principal, 'commit', '-q', '-m', 'caja')
+  const worktree = `${realpathSync(principal)}-worktree`
+  cajas.push(worktree)
+  git(principal, 'worktree', 'add', '-q', '--detach', worktree)
+  return { principal, worktree }
 }
 
 interface FilaDelArnes {
@@ -188,13 +214,16 @@ interface FilaDelArnes {
   codigoSinInyeccion?: number | null
   injections?: Array<{ describe: string; fired: boolean | null }>
 }
-function arnes(raiz: string) {
-  const r = spawnSync(TSX, [ARNES, '--inject', '--json'], {
+function correrArnes(raiz: string, ...args: string[]) {
+  return spawnSync(TSX, [ARNES, ...args], {
     cwd: raiz,
     env: ENV,
     encoding: 'utf8',
     maxBuffer: 32 * 1024 * 1024,
   })
+}
+function arnes(raiz: string) {
+  const r = correrArnes(raiz, '--inject', '--json')
   if (r.status !== 0) throw new Error(`el arnés salió ${r.status}: ${r.stderr}`)
   const j = JSON.parse(r.stdout) as { guards: FilaDelArnes[]; stats: Record<string, number> }
   return {
@@ -205,12 +234,38 @@ function arnes(raiz: string) {
 }
 
 describe('check:guards --inject — el arnés de verdad, en un repositorio de usar y tirar', () => {
-  it('contra una guarda en verde, da por probadas sus inyecciones y deja el árbol como estaba', () => {
-    const r = arnes(repo())
+  it('desde un worktree y contra una guarda en verde, da por probadas sus inyecciones y deja el árbol como estaba', () => {
+    const r = arnes(repo().worktree)
     expect(r.guarda.injections?.length).toBeGreaterThan(0)
     expect(r.guarda.injections!.filter((i) => i.fired !== true)).toEqual([])
     expect(r.guarda.verdict.state).toBe('proven')
     expect(r.limpio).toBe(true)
+  })
+
+  it('desde el checkout principal no inyecta: sale 3 sin correr la guarda ni reescribir un fichero', () => {
+    // Allí comitean y empujan por su cuenta los agentes de launchd: un commit a
+    // media inyección publicaría la corrupción. El `.git` de este repositorio
+    // es el común, como el del principal. La «guarda» apunta cada corrida fuera
+    // del repositorio y sale 0: si el arnés llegara a inyectar, la habría
+    // corrido una vez sin inyección y otra por cada inyección.
+    const fuera = mkdtempSync(join(tmpdir(), 'check-guards-corridas-'))
+    cajas.push(fuera)
+    const corridas = join(fuera, 'corridas.log')
+    const { principal } = repo(undefined, `echo corrida >> "${corridas}"`)
+    const inyectables = DE_VEREDICTOS.map(({ inj }) => join(principal, inj.file))
+    const antes = inyectables.map((f) => statSync(f).mtimeMs)
+
+    const r = correrArnes(principal, '--inject', '--json')
+    expect(r.status, r.stdout + r.stderr).toBe(3)
+    expect(existsSync(corridas)).toBe(false)
+    expect(inyectables.map((f) => statSync(f).mtimeMs)).toEqual(antes)
+    // Y dice cómo correrlo donde sí se puede.
+    expect(r.stderr).toMatch(/git worktree add/)
+
+    // La auditoría de cableado no escribe nada: ésa sí corre en el principal.
+    const cableado = correrArnes(principal, '--json')
+    expect(cableado.status, cableado.stderr).toBe(0)
+    expect(JSON.parse(cableado.stdout).injected).toBe(false)
   })
 
   it('LA TRAMPA: contra una guarda que ya sale roja, ninguna inyección se da por probada', () => {
@@ -219,7 +274,7 @@ describe('check:guards --inject — el arnés de verdad, en un repositorio de us
     const r = arnes(
       repo((f) => {
         f.overlay.entries[DEL_MOTOR].verification.verdict = 'parcial'
-      }),
+      }).worktree,
     )
     expect(r.guarda.injections?.some((i) => i.fired === true)).toBe(false)
     expect(r.guarda.verdict.state).toBe('unproven')
@@ -233,7 +288,7 @@ describe('check:guards --inject — el arnés de verdad, en un repositorio de us
     // cualquier fichero, sin nombrar nada: la forma de una guarda que revienta
     // al cargar lo corrompido. Por el código de salida, las dos inyecciones
     // dispararían; por lo que imprime, no han probado nada.
-    const r = arnes(repo(undefined, 'git diff --quiet'))
+    const r = arnes(repo(undefined, 'git diff --quiet').worktree)
     expect(r.guarda.codigoSinInyeccion).toBe(0)
     expect(r.guarda.injections?.some((i) => i.fired === true)).toBe(false)
     expect(r.guarda.verdict.state).toBe('unproven')
@@ -249,7 +304,7 @@ describe('check:guards --inject — el arnés de verdad, en un repositorio de us
     const fuera = mkdtempSync(join(tmpdir(), 'check-guards-corridas-'))
     cajas.push(fuera)
     const corridas = join(fuera, 'corridas.log')
-    const r = arnes(repo(undefined, `echo corrida >> "${corridas}"; exit 1`))
+    const r = arnes(repo(undefined, `echo corrida >> "${corridas}"; exit 1`).worktree)
     expect(r.guarda.injections?.length).toBeGreaterThan(1)
     expect(readFileSync(corridas, 'utf8').trim().split('\n')).toHaveLength(1)
     expect(r.guarda.codigoSinInyeccion).toBe(1)
