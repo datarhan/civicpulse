@@ -59,12 +59,14 @@ export const ESTADOS_ENVIO = [
   'sin-calendario',
   'vencida-sin-respuesta',
   'respondida',
+  'suspendida',
 ] as const
 export type EstadoEnvio = (typeof ESTADOS_ENVIO)[number]
 
 /** Cómo se llama cada estado en la página. */
 export const ESTADO_ENVIO_ETIQUETA: Record<EstadoEnvio, string> = {
   'en-plazo': 'en plazo',
+  suspendida: 'plazo suspendido',
   'sin-calendario': 'sin calendario',
   'vencida-sin-respuesta': 'sin respuesta',
   respondida: 'respondida',
@@ -82,6 +84,8 @@ export const ESTADO_ENVIO_TONO: Record<EstadoEnvio, string> = {
   // Lo que falta es un calendario nuestro, no una respuesta suya: neutro, como
   // en /quejas/dashboard y en /laboratorio/cobertura.
   'sin-calendario': 'neutral',
+  // El reloj está parado por un trámite de la ley, no por una falta de nadie.
+  suspendida: 'neutral',
   'vencida-sin-respuesta': 'warn',
   respondida: 'ok',
 }
@@ -177,6 +181,26 @@ export interface EnvioSolicitud {
      */
     recibidaEl?: string
   }
+  /**
+   * El órgano comunicó que el plazo para resolver queda SUSPENDIDO (art. 19.3
+   * de la Ley 19/2013; en la Generalitat, art. 33.6 de la Ley 1/2022 y art. 52
+   * del Decreto 105/2017: traslado a terceros afectados, quince días hábiles
+   * para alegar, y el plazo parado hasta que alegan o pasa ese plazo).
+   *
+   * Lo estrenó la Comisión de Precios el 29-09-2026 (GVAGIP/2026/757). Va en un
+   * campo porque, como la remisión, MUEVE EL RELOJ: mientras dure no hay último
+   * día, y la fila no puede ni afirmar el que tenía ni pasar a «sin respuesta».
+   * Un día nuevo no se calcula: la suspensión corre desde que se notifica a los
+   * terceros, que la comunicación no fecha, y acaba en una fecha que nadie
+   * conoce todavía. Lo que dijo quien la comunicó va, además, en una incidencia
+   * con esta misma fecha.
+   */
+  suspendida?: {
+    /** La fecha de la comunicación de la suspensión. */
+    fecha: string
+    /** Hasta qué, con las palabras de la comunicación: «hasta que …». */
+    hasta: string
+  }
 }
 
 const MESES = [
@@ -233,6 +257,15 @@ export function arranqueDelPlazo(e: EnvioSolicitud): { desde: string; acreditado
 }
 
 /**
+ * ¿Se puede afirmar el ÚLTIMO día? Hace falta el arranque acreditado y que el
+ * plazo no esté suspendido: suspendido, el arranque sigue siendo cierto pero no
+ * hay final que contar. Es lo que promete la nota del pie con «se puede afirmar».
+ */
+export function vencimientoAfirmable(e: EnvioSolicitud): boolean {
+  return arranqueDelPlazo(e).acreditado && !e.suspendida
+}
+
+/**
  * El último día del mes de una fila: desde su arranque, con el calendario de
  * quien la resuelve.
  */
@@ -243,6 +276,7 @@ function vencimientoDe(e: EnvioSolicitud): { v: Vencimiento; festivos: FestivosP
 
 export function estadoDeEnvio(e: EnvioSolicitud, hoy: string): EstadoEnvio {
   if (e.respuesta) return 'respondida'
+  if (e.suspendida) return 'suspendida'
   return estadoDelMes(vencimientoDe(e).v, hoy)
 }
 
@@ -302,6 +336,25 @@ export function fraseDeEnvio(e: EnvioSolicitud, hoy: string): string {
 
   if (estado === 'respondida' && e.respuesta) {
     return `${cabeza} El ${enCastellano(e.respuesta.fecha)} ${QUE_HICIERON[e.respuesta.sentido]}.`
+  }
+
+  // Suspendida: se dice desde cuándo corría —eso sigue constando—, que se
+  // suspendió y hasta qué, y que no hay último día. Ninguna fecha de fin, ni la
+  // que había ni una calculada: no consta cuándo empezó a correr la suspensión
+  // ni cuándo acaba.
+  if (e.suspendida) {
+    const s = e.suspendida
+    const { desde, acreditado } = arranqueDelPlazo(e)
+    const corria = acreditado
+      ? e.remitida
+        ? `El mes del artículo 20 corría desde que la recibió, el ${enCastellano(desde)}.`
+        : `El mes del artículo 20 corría desde su entrada, el ${enCastellano(desde)}.`
+      : `El mes del artículo 20, contado desde ${e.remitida ? 'la comunicación de la remisión' : 'el envío'}, corría desde el ${enCastellano(desde)}.`
+    return (
+      `${cabeza} ${corria} El ${enCastellano(s.fecha)} se comunicó que el plazo para resolver ` +
+      `quedaba suspendido ${s.hasta}. Mientras dure no hay último día que contar, y no consta ` +
+      'todavía cuándo se reanuda.'
+    )
   }
 
   // Remitida: el asiento sigue en la cabeza porque sigue siendo cierto, pero el
