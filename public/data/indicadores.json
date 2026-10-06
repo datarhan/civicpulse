@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-05T13:13:16.402Z",
+  "generatedAt": "2026-10-06T11:44:33.214Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2024,
   "source": {
@@ -8011,7 +8011,7 @@
       "periodo": "2017–2026",
       "caveats": [
         "Suma importes de adjudicación de años distintos y de contratos de duración muy distinta, así que mide concentración del importe adjudicado en el periodo, no gasto anual.",
-        "Una sola adjudicación —HIDRAQUA GESTIÓN  INTEGRAL DE  AGUAS  DE  LEVANTE,  S.A.— supone el 45 % del importe del periodo. Las concesiones se adjudican por todo su plazo de una vez, así que su importe no es comparable con el de un contrato anual."
+        "Una sola adjudicación —HIDRAQUA S.A.U— supone el 45 % del importe del periodo. Las concesiones se adjudican por todo su plazo de una vez, así que su importe no es comparable con el de un contrato anual."
       ],
       "citas": [
         {

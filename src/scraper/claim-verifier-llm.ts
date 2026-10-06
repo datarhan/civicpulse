@@ -79,8 +79,15 @@ export interface LlmVerifierResult {
 // value, scientific notation) but strict on substring grounding. Returns
 // the cited value when the snippet starts with a parseable cite, or null
 // when no cite is present.
+//
+// The field name may be any word, accents included: nothing trusts it, only
+// the value is grounded. It was ASCII-only until 06-10-2026, when the contract
+// snippet started labelling its facts («adjudicación: 35.252,87 € con IVA») and
+// the model cited `tender[1].adjudicación=35.252,87 € con IVA`: the cite went
+// unread, and the engine called «sin anclar» a record its own reasoning said
+// supported the claim (tests/scraper/cita-con-tilde.test.ts).
 const CITE_PATTERN =
-  /^\s*([a-z][a-z0-9_-]*)\s*\[\s*(\d+)\s*\]\s*\.\s*([a-z][a-z0-9_]*)\s*=\s*"?([^"·|]+?)"?\s*(?:·|$)/i
+  /^\s*([a-z][a-z0-9_-]*)\s*\[\s*(\d+)\s*\]\s*\.\s*(\p{L}[\p{L}\p{N}_]*)\s*=\s*"?([^"·|]+?)"?\s*(?:·|$)/iu
 
 export function parseCite(snippet: string): { field: string; value: string } | null {
   const m = snippet.match(CITE_PATTERN)
