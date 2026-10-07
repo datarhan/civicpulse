@@ -1,11 +1,53 @@
 {
-  "generatedAt": "2026-10-07T10:46:16.632Z",
+  "generatedAt": "2026-10-07T11:33:03.926Z",
   "clusters": [
+    {
+      "clusterId": "16m2afw",
+      "articleIds": [
+        "17uf4r0",
+        "lsmo9c",
+        "xcbiyc"
+      ],
+      "outlets": [
+        "Ayuntamiento de Riba-roja de Túria",
+        "Las Provincias",
+        "Levante-EMV"
+      ],
+      "earliestDate": "2026-10-01T12:20:24.000Z",
+      "latestDate": "2026-10-04T21:01:46.000Z",
+      "verdictMix": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      }
+    },
+    {
+      "clusterId": "107j3y8",
+      "articleIds": [
+        "153mirg",
+        "1xjj30k"
+      ],
+      "outlets": [
+        "Ayuntamiento de Riba-roja de Túria",
+        "Valencia Plaza"
+      ],
+      "earliestDate": "2026-09-11T07:00:00.000Z",
+      "latestDate": "2026-09-11T08:10:15.000Z",
+      "verdictMix": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      }
+    },
     {
       "clusterId": "11ifeuo",
       "articleIds": [
-        "13cc0bw",
-        "ccsnc0"
+        "ccsnc0",
+        "n020v4"
       ],
       "outlets": [
         "Ayuntamiento de Riba-roja de Túria",
@@ -33,26 +75,6 @@
       ],
       "earliestDate": "2026-10-02T10:03:37.000Z",
       "latestDate": "2026-10-02T11:50:52.000Z",
-      "verdictMix": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      }
-    },
-    {
-      "clusterId": "38xahs",
-      "articleIds": [
-        "w4u7tv",
-        "xcbiyc"
-      ],
-      "outlets": [
-        "Ayuntamiento de Riba-roja de Túria",
-        "Levante-EMV"
-      ],
-      "earliestDate": "2026-10-01T12:20:24.000Z",
-      "latestDate": "2026-10-01T15:05:33.000Z",
       "verdictMix": {
         "verificado": 0,
         "parcial": 0,
@@ -103,13 +125,13 @@
     }
   ],
   "stats": {
-    "totalClusters": 5,
-    "triangulated3Plus": 0
+    "totalClusters": 6,
+    "triangulated3Plus": 1
   },
   "builtFrom": {
-    "plenos-agendas.json": "e10caf2b5d67",
+    "plenos-agendas.json": "407fbecab6f8",
     "press-claims-verified.json": "5f440b22045d",
-    "press.json": "f660a472c63f",
+    "press.json": "0d48ae4922bf",
     "promises.json": "b5dbe1ebae83"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-06T11:42:15.987Z",
+  "generatedAt": "2026-10-07T11:30:51.791Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
@@ -8,13 +8,13 @@
   "stats": {
     "total": 49,
     "openTotal": 48,
-    "inRibaRoja": 30,
-    "closingSoon": 11,
+    "inRibaRoja": 31,
+    "closingSoon": 13,
     "withDetail": 49,
     "byMonth": {
-      "2026-10": 3,
+      "2026-10": 4,
       "2026-09": 22,
-      "2026-08": 19,
+      "2026-08": 18,
       "2026-07": 1,
       "2026-06": 1,
       "2026-05": 2,
@@ -93,6 +93,89 @@
         "horario": "Horarios de rotativos de 6:00 a 14:00 y 14:00 a 22:00.",
         "salario": "12,33 h en bruto.",
         "funciones": "-Ejecutar el mantenimiento preventivo y correctivo de las instalaciones industriales de la planta. -Detectar y solucionar incidencias técnicas en sistemas como de climatización, electricidad, fontanería, etc. -Colaborar con los distintos departamentos, proporcionando apoyo técnico cuando sea necesario. -Coordinar actuaciones con proveedores externos. -Participar en acciones de mejora continua, garantizando el cumplimiento de las normas de seguridad y calidad.",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2407",
+      "fo": 2407,
+      "codigo": "2026/00109",
+      "titulo": "Personal de limpieza con diversidad funcional",
+      "publishedAt": "2026-10-06",
+      "deadline": "2026-12-06",
+      "location": "Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2407",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00109"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Personal de limpieza con diversidad funcional"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Se busca persona organizada, puntual y con experiencia para puesto titular. Requiere: Experiencia mínima en limpieza de 6 - 9 meses Conocimiento de productos de limpieza Vehículo propio preferiblemente"
+          },
+          {
+            "label": "Porcentaje de discapacidad",
+            "value": "Igual o superior a 33%"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO DE OBRA O SERVICIO DETERMINADO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Parcial"
+          },
+          {
+            "label": "Observaciones jornada",
+            "value": "Jornada parcial de 15 horas semanales. Contrato temporal de un año prorrogable."
+          },
+          {
+            "label": "Horario",
+            "value": "De lunes a viernes de 9:00 a 10:00 h y de 7:00 a 9:00 h."
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          },
+          {
+            "label": "Funciones",
+            "value": "- Limpieza de mobiliario - Superficie y desinfección de baño - Retirada de basura - Limpieza de zonas comunes"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO DE OBRA O SERVICIO DETERMINADO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "1",
+        "observaciones": "Se busca persona organizada, puntual y con experiencia para puesto titular. Requiere: Experiencia mínima en limpieza de 6 - 9 meses Conocimiento de productos de limpieza Vehículo propio preferiblemente",
+        "jornada": "Parcial",
+        "horario": "De lunes a viernes de 9:00 a 10:00 h y de 7:00 a 9:00 h.",
+        "salario": "Según convenio",
+        "funciones": "- Limpieza de mobiliario - Superficie y desinfección de baño - Retirada de basura - Limpieza de zonas comunes",
         "vehiculo": "Sí",
         "ocupaciones": []
       }
@@ -3405,93 +3488,6 @@
         "horario": "7:30-13:30 / 15:00-17:00",
         "salario": "15000-18000",
         "funciones": "- Toma de muestra en obra y fabricación de probetas de hormigón fresco, marcado, traslado, desmolde, limpieza y guardado de las mimas. - Toma de muestra en obra de acero, áridos, cementos, morteros, hormigón endurecido, prefabricados, etc. - Auxiliar para realización ensayos sobre materiales: preparación de muestras de acero, áridos, cementos, morteros, prefabricados, etc. - Pruebas de servicio en cubiertas, fachadas, saneamiento y fontanería. - Limpieza y mantenimiento de los equipos y las instalaciones.",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2515",
-      "fo": 2515,
-      "codigo": "2026/00214",
-      "titulo": "Operario/a de limpieza de supermercado con discapacidad/IPT",
-      "publishedAt": "2026-08-07",
-      "deadline": "2026-10-07",
-      "location": "Cheste (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2515",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00214"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Operario/a de limpieza de supermercado con discapacidad/IPT"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Se requiere certificado de discapacidad/ IPT Vehículo propio"
-          },
-          {
-            "label": "Porcentaje de discapacidad",
-            "value": "Igual o superior a 33%"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATACION DISCAPACIDAD"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "PEONES"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Municipio: Cheste, Provincia: Valencia, CP: 46380"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Parcial Turnos: Turno mañana"
-          },
-          {
-            "label": "Horario",
-            "value": "L-S: lunes de 7:30-10:30 y de 14:30 a 15:30h y de martes a sábado de 7:30-9:30h y de 14:30 a 15:00h"
-          },
-          {
-            "label": "Salario",
-            "value": "552.63 € brutos/mes"
-          },
-          {
-            "label": "Funciones",
-            "value": "Limpieza de pasillos con fregadora, limpieza de aseos, mantenimiento de zonas comunes."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATACION DISCAPACIDAD",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "1",
-        "categoria": "PEONES",
-        "observaciones": "Se requiere certificado de discapacidad/ IPT Vehículo propio",
-        "municipio": "Cheste",
-        "provincia": "Valencia",
-        "cp": "46380",
-        "jornada": "Parcial Turnos: Turno mañana",
-        "horario": "L-S: lunes de 7:30-10:30 y de 14:30 a 15:30h y de martes a sábado de 7:30-9:30h y de 14:30 a 15:00h",
-        "salario": "552.63 € brutos/mes",
-        "funciones": "Limpieza de pasillos con fregadora, limpieza de aseos, mantenimiento de zonas comunes.",
         "vehiculo": "Sí",
         "ocupaciones": []
       }
