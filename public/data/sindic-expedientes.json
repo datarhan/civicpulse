@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-08T04:47:32.359Z",
+  "generatedAt": "2026-10-08T11:47:13.729Z",
   "note": "Índice de expedientes del Síndic de Greuges CV, transcrito del buscador del propio organismo. Materia, asunto, administración y el título de cada resolución van verbatim: este fichero NO emite ningún juicio. Las fichas firmadas —con resumen verbatim leído del PDF— viven en sindic.json y las escribe una persona con `npm run sindic:add`. «contraAyuntamiento» y «vecinosOtrasAdministraciones» responden a preguntas distintas y NO se suman.",
   "source": {
     "platform": "Síndic de Greuges de la Comunitat Valenciana",
@@ -19,8 +19,8 @@
           "frase": true,
           "anyoActual": 2026
         },
-        "declarado": 46,
-        "recogidas": 46,
+        "declarado": 47,
+        "recogidas": 47,
         "paginas": 5,
         "irreconocibles": 0
       },
@@ -46,6 +46,20 @@
     "limite": "El eje de texto llega al inicio del registro publicado; el facet de población no devuelve expedientes anteriores a 2023, así que la segunda lista no es una serie histórica y su ausencia de filas antiguas no significa que no las hubiera."
   },
   "contraAyuntamiento": [
+    {
+      "expediente": "202603910",
+      "anio": 2026,
+      "materia": "Hacienda pública",
+      "asunto": "Solicitud devolución IBI-2024 por daños de la DANA.",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "resoluciones": [
+        {
+          "tipo": "Resolución de consideraciones a la Administración",
+          "fecha": "2026-10-08",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2026/202603910/12632456.pdf"
+        }
+      ]
+    },
     {
       "expediente": "202602608",
       "anio": 2026,
@@ -778,18 +792,18 @@
     }
   ],
   "stats": {
-    "contraAyuntamiento": 34,
-    "conResolucionPublicada": 33,
+    "contraAyuntamiento": 35,
+    "conResolucionPublicada": 34,
     "vecinosOtrasAdministraciones": 12,
     "porTipoResolucion": {
-      "Resolución de consideraciones a la Administración": 13,
+      "Resolución de consideraciones a la Administración": 14,
       "Resolución de cierre": 19,
       "Petición de informe. Resolución.": 13
     },
     "porMateria": {
+      "Hacienda pública": 3,
       "Servicios públicos y medio ambiente": 17,
       "Procedimientos administrativos": 4,
-      "Hacienda pública": 2,
       "Urbanismo": 1,
       "Empleo": 5,
       "Servicios sociales": 3,

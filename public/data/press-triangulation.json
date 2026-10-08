@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-10-08T11:05:11.129Z",
+  "generatedAt": "2026-10-08T11:48:08.072Z",
   "clusters": [
     {
-      "clusterId": "16m2afw",
+      "clusterId": "1208oo5",
       "articleIds": [
-        "17uf4r0",
-        "lsmo9c",
-        "xcbiyc"
+        "8hij1g",
+        "95mxd4",
+        "whw1as"
       ],
       "outlets": [
         "Ayuntamiento de Riba-roja de Túria",
-        "Las Provincias",
-        "Levante-EMV"
+        "Valencia Plaza",
+        "Vivir Ediciones"
       ],
-      "earliestDate": "2026-10-01T12:20:24.000Z",
-      "latestDate": "2026-10-04T21:01:46.000Z",
+      "earliestDate": "2026-10-02T10:03:37.000Z",
+      "latestDate": "2026-10-07T09:15:02.000Z",
       "verdictMix": {
         "verificado": 0,
         "parcial": 0,
@@ -46,8 +46,8 @@
     {
       "clusterId": "11ifeuo",
       "articleIds": [
-        "ccsnc0",
-        "n020v4"
+        "13cc0bw",
+        "ccsnc0"
       ],
       "outlets": [
         "Ayuntamiento de Riba-roja de Túria",
@@ -64,17 +64,37 @@
       }
     },
     {
-      "clusterId": "1208oo5",
+      "clusterId": "19fhtds",
       "articleIds": [
-        "8hij1g",
-        "95mxd4"
+        "1brxjo4",
+        "o3xjg4"
       ],
       "outlets": [
         "Ayuntamiento de Riba-roja de Túria",
-        "Valencia Plaza"
+        "Las Provincias"
       ],
-      "earliestDate": "2026-10-02T10:03:37.000Z",
-      "latestDate": "2026-10-02T11:50:52.000Z",
+      "earliestDate": "2026-10-08T08:29:07.000Z",
+      "latestDate": "2026-10-08T09:08:42.000Z",
+      "verdictMix": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      }
+    },
+    {
+      "clusterId": "38xahs",
+      "articleIds": [
+        "17uf4r0",
+        "xcbiyc"
+      ],
+      "outlets": [
+        "Ayuntamiento de Riba-roja de Túria",
+        "Levante-EMV"
+      ],
+      "earliestDate": "2026-10-01T12:20:24.000Z",
+      "latestDate": "2026-10-01T15:05:33.000Z",
       "verdictMix": {
         "verificado": 0,
         "parcial": 0,
@@ -125,13 +145,13 @@
     }
   ],
   "stats": {
-    "totalClusters": 6,
+    "totalClusters": 7,
     "triangulated3Plus": 1
   },
   "builtFrom": {
-    "plenos-agendas.json": "414f596c4251",
+    "plenos-agendas.json": "eacbd03c6ac2",
     "press-claims-verified.json": "5f440b22045d",
-    "press.json": "0d48ae4922bf",
+    "press.json": "d73a72c020a4",
     "promises.json": "b5dbe1ebae83"
   }
 }

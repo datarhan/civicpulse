@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-10-08T07:30:39.700Z",
+  "generatedAt": "2026-10-08T11:45:56.390Z",
   "source": {
     "baseUrl": "https://regmeet.com",
     "description": "Ayuntamiento de Riba-roja de Túria — sesiones plenarias en regmeet.com (aytoribarroja); cada página individual publica el orden del día en la tabla #tableOrdenDia. El departamento se infiere del título del punto."
   },
   "stats": {
-    "plenosFetched": 62,
-    "agendaItemsTotal": 619,
-    "agendaItemsWithDepartment": 219,
-    "plenosWithRuegos": 9,
+    "plenosFetched": 63,
+    "agendaItemsTotal": 627,
+    "agendaItemsWithDepartment": 221,
+    "plenosWithRuegos": 10,
     "uniqueDepartments": 24,
-    "sessionsTotal": 62,
-    "sessionsWithAgenda": 62,
+    "sessionsTotal": 63,
+    "sessionsWithAgenda": 63,
     "refreshedThisRun": 6,
     "recoveredFromLive": 6,
-    "carriedForward": 56,
+    "carriedForward": 57,
     "recoveredFromArchive": 0,
     "archiveLookupsSkipped": 0,
     "sessionsNotAttempted": 0,
@@ -29,7 +29,7 @@
     },
     {
       "department": "contratacion",
-      "count": 34,
+      "count": 35,
       "departmentSlug": "contratacion"
     },
     {
@@ -84,6 +84,85 @@
     }
   ],
   "plenos": [
+    {
+      "id": "zrbgic",
+      "date": "2026-10-05",
+      "title": "Sesión de fecha 05 de octubre de 2026",
+      "kind": "ordinario",
+      "link": "https://regmeet.com/aytoribarroja/participaciones/2e3d2c4f33a7a1f58bc6c81cacd21e9c?idioma=castellano",
+      "agenda": [
+        {
+          "number": 1,
+          "title": "Aprobación Acta Ordinaria anterior de fecha 7 de septiembre de 2026",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 2,
+          "title": "Aprobación de la Cuenta General correspondiente al ejercicio 2025",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": "2947/2026/GEN"
+        },
+        {
+          "number": 3,
+          "title": "Inicio del expediente de contratación para la licitación del suministro de sustitución del pavimento de césped artificial de la instalación del estadio de fútbol Roberto Gil en régimen de arrendamiento, con opción de compra, por procedimiento abierto, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 12 de “Producción y consumo responsables” y ODS 13 “Acción por el clima” de la Agenda 2030, contrato sujeto a regulación armonizada, siendo su tramitación anticipada. (Ctto. 122/2026)",
+          "section": "resolutiva",
+          "department": "Contratación",
+          "departmentSlug": "contratacion",
+          "expediente": "4447/2026/GEN"
+        },
+        {
+          "number": 4,
+          "title": "Acuerdo sobre declaración de actividad municipalizada e inicio de la elaboración del proyecto del servicio de transportes de Riba-roja de Túria",
+          "section": "resolutiva",
+          "department": "Movilidad",
+          "departmentSlug": "movilidad",
+          "expediente": "4744/2026/GEN"
+        },
+        {
+          "number": 5,
+          "title": "Moción conjunta del Grupo Partido Popular Riba-roja de Túria y VOX para la organización de actividades conmemorativas del “9 d’octubre” con motivo de 750 aniversario de la muerte de Jaume I",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": "21/2026/PGRU"
+        },
+        {
+          "number": 6,
+          "title": "Asuntos de Urgencia. 6.1. Moció",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 7,
+          "title": "Dar cuenta de las Resoluciones de la número 2850/2026 a la 3084//2026",
+          "section": "informativa",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 8,
+          "title": "Ruegos y preguntas",
+          "section": "ruegos",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        }
+      ],
+      "agendaCount": 8,
+      "departments": [
+        "contratacion",
+        "movilidad"
+      ],
+      "hasRuegos": true
+    },
     {
       "id": "1xmr0do",
       "date": "2026-09-07",

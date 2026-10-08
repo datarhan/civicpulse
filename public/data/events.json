@@ -1,15 +1,35 @@
 {
-  "generatedAt": "2026-10-07T11:22:33.957Z",
+  "generatedAt": "2026-10-08T11:38:49.030Z",
   "source": {
     "url": "https://www.ribarroja.es/es/eventos/rss.xml",
     "platform": "Drupal RSS (oficial)"
   },
   "stats": {
     "total": 50,
-    "upcoming": 15,
+    "upcoming": 13,
     "nextDate": "2026-10-10T15:00:00.000Z"
   },
   "events": [
+    {
+      "id": "x0y5jl",
+      "title": "Actes festes Crist 2026 - divendres 4 de setembre",
+      "link": "https://www.ribarroja.es/va/evento/actes-festes-crist-2026-divendres-4-de-setembre",
+      "eventDate": "2026-09-04T20:00:00.000Z",
+      "eventDateText": "04 de septiembre de 2026 22:00",
+      "publishedDate": "2026-08-28T10:03:00.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_6.png?itok=0GUkvgSL"
+    },
+    {
+      "id": "18cjnx4",
+      "title": "Actes festes Crist 2026 - dissabte 5 de setembre",
+      "link": "https://www.ribarroja.es/va/evento/actes-festes-crist-2026-dissabte-5-de-setembre",
+      "eventDate": "2026-09-05T05:00:00.000Z",
+      "eventDateText": "05 de septiembre de 2026 07:00",
+      "publishedDate": "2026-08-28T10:04:56.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_7.png?itok=6fHqqoOm"
+    },
     {
       "id": "a5g6cw",
       "title": "Competiciones deportivas 5 de septiembre de 2026",
@@ -444,41 +464,21 @@
       "id": "1b50gro",
       "title": "Cine 'La patrulla canina, la dino película'",
       "link": "https://www.ribarroja.es/es/evento/cine-%27la-patrulla-canina%2C-la-dino-pel%C3%ADcula%27",
-      "eventDate": "2026-11-29T16:00:00.000Z",
-      "eventDateText": "29 de noviembre de 2026 17:00",
+      "eventDate": "2026-12-04T18:00:00.000Z",
+      "eventDateText": "04 de diciembre de 2026 19:00",
       "publishedDate": "2026-08-31T07:02:51.000Z",
       "excerpt": "&nbsp;",
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20la%20patrulla%20canina.jpg?itok=WsYVKN2v"
     },
     {
-      "id": "liboz2",
-      "title": "Cine 'Street fighter'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27street-fighter%27-0",
-      "eventDate": "2026-11-29T18:00:00.000Z",
-      "eventDateText": "29 de noviembre de 2026 19:00",
-      "publishedDate": "2026-08-31T07:01:39.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20street%20figher_0.jpg?itok=QX-3iMTN"
-    },
-    {
-      "id": "1vyndzw",
-      "title": "Cine 'Willwood'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27willwood%27",
-      "eventDate": "2026-12-05T16:00:00.000Z",
-      "eventDateText": "05 de diciembre de 2026 17:00",
+      "id": "wwhu0k",
+      "title": "Cine 'Wildwood'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27wildwood%27",
+      "eventDate": "2026-12-06T15:30:00.000Z",
+      "eventDateText": "06 de diciembre de 2026 16:30",
       "publishedDate": "2026-08-31T07:09:00.000Z",
       "excerpt": "&nbsp;",
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20wildwood-2.jpg?itok=7EuWyVL6"
-    },
-    {
-      "id": "lj10u0",
-      "title": "Cine 'Los juegos del hambre, Amanecer en la cosecha'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27los-juegos-del-hambre%2C-amanecer-en-la-cosecha%27",
-      "eventDate": "2026-12-05T21:00:00.000Z",
-      "eventDateText": "05 de diciembre de 2026 22:00",
-      "publishedDate": "2026-08-31T07:10:30.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20los%20juegos%20del%20hambre.jpg?itok=kU3Arkzb"
     },
     {
       "id": "1k72tgg",

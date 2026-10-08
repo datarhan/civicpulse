@@ -1,16 +1,52 @@
 {
-  "generatedAt": "2026-10-08T11:05:11.138Z",
+  "generatedAt": "2026-10-08T11:48:08.080Z",
   "windowDays": 14,
-  "items": [],
+  "items": [
+    {
+      "kind": "pleno-item",
+      "refId": "zrbgic:1",
+      "label": "Aprobación Acta Ordinaria anterior de fecha 7 de septiembre de 2026",
+      "date": "2026-10-05",
+      "keyword": ""
+    },
+    {
+      "kind": "pleno-item",
+      "refId": "zrbgic:2",
+      "label": "Aprobación de la Cuenta General correspondiente al ejercicio 2025",
+      "date": "2026-10-05",
+      "keyword": ""
+    },
+    {
+      "kind": "pleno-item",
+      "refId": "zrbgic:6",
+      "label": "Asuntos de Urgencia. 6.1. Moció",
+      "date": "2026-10-05",
+      "keyword": ""
+    },
+    {
+      "kind": "pleno-item",
+      "refId": "zrbgic:7",
+      "label": "Dar cuenta de las Resoluciones de la número 2850/2026 a la 3084//2026",
+      "date": "2026-10-05",
+      "keyword": ""
+    },
+    {
+      "kind": "pleno-item",
+      "refId": "zrbgic:8",
+      "label": "Ruegos y preguntas",
+      "date": "2026-10-05",
+      "keyword": ""
+    }
+  ],
   "stats": {
-    "plenoItemsUncovered": 0,
+    "plenoItemsUncovered": 5,
     "promisesUncovered": 0,
-    "candidatesExamined": 2
+    "candidatesExamined": 10
   },
   "builtFrom": {
-    "plenos-agendas.json": "414f596c4251",
+    "plenos-agendas.json": "eacbd03c6ac2",
     "press-claims-verified.json": "5f440b22045d",
-    "press.json": "0d48ae4922bf",
+    "press.json": "d73a72c020a4",
     "promises.json": "b5dbe1ebae83"
   }
 }

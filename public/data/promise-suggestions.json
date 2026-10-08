@@ -1,12 +1,13 @@
 {
-  "generatedAt": "2026-10-07T11:32:47.678Z",
+  "generatedAt": "2026-10-08T11:47:52.120Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
   "counts": {
     "total": 11,
     "byProposedStatus": {
-      "documentada": 11
+      "documentada": 9,
+      "en-progreso": 2
     },
     "llmEvidence": 0
   },
@@ -40,15 +41,26 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-07T11:32:47.583Z"
+      "generatedAt": "2026-10-08T11:47:52.026Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
       "proposedStatus": "documentada",
       "confidence": 0,
-      "reasoning": [],
+      "reasoning": [
+        {
+          "url": "https://regmeet.com/aytoribarroja/participaciones/2e3d2c4f33a7a1f58bc6c81cacd21e9c?idioma=castellano",
+          "date": "2026-10-05",
+          "quote": "Movilidad · Acuerdo sobre declaración de actividad municipalizada e inicio de la elaboración del proyecto del servicio de transportes de Riba-roja de Túria",
+          "kind": "pleno",
+          "matchedKeywords": [
+            "proyecto",
+            "movilidad"
+          ]
+        }
+      ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-07T11:32:47.583Z"
+      "generatedAt": "2026-10-08T11:47:52.026Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -67,7 +79,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-07T11:32:47.583Z"
+      "generatedAt": "2026-10-08T11:47:52.026Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -75,7 +87,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-07T11:32:47.583Z"
+      "generatedAt": "2026-10-08T11:47:52.026Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -83,15 +95,26 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-07T11:32:47.583Z"
+      "generatedAt": "2026-10-08T11:47:52.026Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
-      "proposedStatus": "documentada",
-      "confidence": 0,
-      "reasoning": [],
+      "proposedStatus": "en-progreso",
+      "confidence": 0.3,
+      "reasoning": [
+        {
+          "url": "https://regmeet.com/aytoribarroja/participaciones/2e3d2c4f33a7a1f58bc6c81cacd21e9c?idioma=castellano",
+          "date": "2026-10-05",
+          "quote": "Contratación · Inicio del expediente de contratación para la licitación del suministro de sustitución del pavimento de césped artificial de la instalación del estadio de fútbol Roberto Gil en régimen de arrendamiento, con opción de compra, por procedimiento abierto, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 12 de “Producción y consumo responsables” y ODS 13 “Acción por el clima” de la Agenda 2030, contrato sujeto a regulación armonizada, siendo su tramitación anticipada. (Ctto. 122/2026)",
+          "kind": "pleno",
+          "matchedKeywords": [
+            "instalacion",
+            "futbol"
+          ]
+        }
+      ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-07T11:32:47.583Z"
+      "generatedAt": "2026-10-08T11:47:52.026Z"
     },
     {
       "promiseId": "ac-psoe-1ryndd8",
@@ -128,7 +151,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-07T11:32:47.583Z"
+      "generatedAt": "2026-10-08T11:47:52.026Z"
     },
     {
       "promiseId": "ac-psoe-43brfs",
@@ -193,27 +216,13 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-07T11:32:47.583Z"
+      "generatedAt": "2026-10-08T11:47:52.026Z"
     },
     {
       "promiseId": "ac-psoe-17y448o",
-      "proposedStatus": "documentada",
-      "confidence": 0.4,
+      "proposedStatus": "en-progreso",
+      "confidence": 0.7,
       "reasoning": [
-        {
-          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOdy1BVlRnOXAxak1EWWFVcndBWlBWSzByUWZ0LVBkclF6c013SFgtR20yUFpqMVhvVTZQUXo1RGRxUExUMVRmWUgwS2JRSHo4SXF5bXNhdDhDOEUwbjFnSnlrU25BRVg0MkF0Yy1xUURSemtmWTJ3ZHZfRk5BbWtaakNoMGxRN0FIcXo5WFllTWxfTC1LcnE4MzZKMS0yOFNmbHBlck5iNVFpLTF0VGltatIBtgFBVV95cUxNX1p5Mi0zdE1SQ2p4Znp3RGY3MkUyRzZuZ2ZHSThkalI4TkFPTnlLMk54QkJSX290cFZsNllyU2ljY1R1bzBtaHRtdG5FU3Y3dUpEXzNVWFVlZFdhcC04MWR4UTV2eDI4TzFtY1N2TzZKLVJzSGo1ZlYtN1p2RlZEYnVFbGlGcmFnaEV0ZERGSERKZzR6MWhWbVZlM0JOUUhLYkRRZ3lUbk5kajBvenk4dDdEd2s3QQ?oc=5",
-          "date": "2026-10-04",
-          "quote": "El Cheque Bebé +25 apoya a las familias y dinamiza el comercio local",
-          "kind": "press",
-          "publisher": "Las Provincias",
-          "matchedKeywords": [
-            "cheque",
-            "bebe",
-            "familia",
-            "comercio",
-            "local"
-          ]
-        },
         {
           "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNYWV1M3FmdUZiYWpKNk1tR3Rva3pNcEZVdkZvRlRBa3h6OHVyLW9QM2VsdjM2c28yZTM2bkJQYXRjRGRZWVpjcTJaaC0wNDY4U0JYUWZPcDBCYW1wYm1halVYNHNEUHhVX1NoWlZ0dnVEamlGREZLU3hOVmFCU0YyNlJoWmVLY2lmVWJ1MFc1X1RFZkkwaXdNS21wOVNIcFlBci0wTTd1YnJKbkpubDhTNDRKblVtaGNYeTVBcnNROWpiMTVTQmVBQ2tjVEhWN290X0E?oc=5",
           "date": "2026-10-01",
@@ -258,10 +267,20 @@
             "menor",
             "destina"
           ]
+        },
+        {
+          "url": "https://regmeet.com/aytoribarroja/participaciones/2e3d2c4f33a7a1f58bc6c81cacd21e9c?idioma=castellano",
+          "date": "2026-10-05",
+          "quote": "Contratación · Inicio del expediente de contratación para la licitación del suministro de sustitución del pavimento de césped artificial de la instalación del estadio de fútbol Roberto Gil en régimen de arrendamiento, con opción de compra, por procedimiento abierto, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 12 de “Producción y consumo responsables” y ODS 13 “Acción por el clima” de la Agenda 2030, contrato sujeto a regulación armonizada, siendo su tramitación anticipada. (Ctto. 122/2026)",
+          "kind": "pleno",
+          "matchedKeywords": [
+            "consumo",
+            "social"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-07T11:32:47.583Z"
+      "generatedAt": "2026-10-08T11:47:52.026Z"
     },
     {
       "promiseId": "ac-psoe-1bkbwjs",
@@ -293,6 +312,17 @@
           ]
         },
         {
+          "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxQQjNCaUhiZmE0ejlGNnpzSFp1S0xsRjJzLW4tN0pOVXhkeEh5TE9PUWpaSXl3ZU1oRl9rckdsdlAtRlQ2YkU2OWhyRmVkRGl6cjM1bHFBaUNBck1SRnA4anZyQTBlU1lrY2taU2xGNllRczRueHNUOEFHZ1ljOW1xQ3IzN1FpVzVSSng4QVMyMkQwNGRTUzNCM21Nam05T2YwbEJlMXc3X1FseUdsZVZhN0RhQk9hTFpaQkhnalpPRkJUUVVWWmlNaFpldGJpb0puV3B6T0hBSXB5cG11QlZzVnNTMG9xSUpQ0gHuAUFVX3lxTE4zU0djZjcxOWFveXJQcE5RZ0FCaHozLXpfTVU1WkNTZ2pvZXc2YmZKOTRBdGN5bGpfdlN4QU9TaWFFVlg0VUZWdzdUcjB3NDJmbU9lWS0wQTZ0MFlIaF96bU1ZakRXbkRldnp6XzduaHNOZ1cwWjVYdDR3LWlkdFhsUEFidFlXcXNxZW0wSFVzZEszdVFrVjA2ZGE2aWZoeGVHSXN2d1htT1BsWXBFeTIxUGlfaGwwVDhMTFFmTWhKNzlDQXJEOFgwVlhYRXc5QUdyQTUyanpqYUEzeEl2TjFaeVJZbWpyckRobjVPamc?oc=5",
+          "date": "2026-10-08",
+          "quote": "Riba-roja prepara un ambicioso plan para transformar sus cuatro canteras: “Puede convertirse en uno de los proyectos más importantes de Europa”",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "proyecto",
+            "plan"
+          ]
+        },
+        {
           "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxQcnJNWjcwTm1UQWw1aGVHZkpWR0plXzBfYTNjOVhMaXRuSzB4aEZyWnZmQnBfcXFSeWxnd0ZlQThtVDBncjFqcEdjTHF5RWhFSFBqeU03aTgzRUQ1aUNid0hvT3dCUHE2TVoyQTN4U29FZXFxaE9maHJyZFFJUXU4SV94c3BySGZkeTZZRFJPT19reGtZbndJT2dUdmlCSmM2ZE9QMkdmQ0hkcG96Vkh4Ti1mUDBQRWVhcWVQV0VqcFMwcTNPNHAzcjM2Vi13MWQ2aXA3VzI2MnpXcjdQX2pvOUw1cU9GUnJlTkHSAe8BQVVfeXFMUGZwRGt4X3hWd1NqVlp1T0JZb3RvUlZ0d0d6YTNpdC1KUnRFNnRoQ3JoV2ZNQ1ZjWG1FTXc5Z0xvR1YtTWpXY2lXNmJkN1NEblN5cmt2alQxYjB3MkZsQVpIcmlCWnloOXFSWXAxbmZxUkd1dk9wMzFtREpEb0pjNlFRZ2FCNGlRUnVMYXp6Tl9ra1Fqc01mRkxCM3JKQkFuZzMwWGs1dVdVTXZuNUk1STVNQ3E3aFFUTTRjRnduaVFXa3RVSUlRSF9wcmtocVZLMFVPU1ZIZTBvdksyRE1VRTZaSzNnOHlLMmxoclhvYUE?oc=5",
           "date": "2026-10-03",
           "quote": "Riba-roja mejora su gestión turística y supera la mitad de los requisitos para convertirse en un destino inteligente",
@@ -305,7 +335,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-07T11:32:47.583Z"
+      "generatedAt": "2026-10-08T11:47:52.026Z"
     },
     {
       "promiseId": "ac-psoe-1xeq50",
@@ -351,7 +381,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-07T11:32:47.583Z"
+      "generatedAt": "2026-10-08T11:47:52.026Z"
     }
   ],
   "llmEvidence": [],
