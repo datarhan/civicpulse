@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-08T04:47:38.690Z",
+  "generatedAt": "2026-10-08T07:53:13.248Z",
   "windowDays": 30,
   "articles": [
     {
@@ -851,23 +851,6 @@
         "opinionFraction": 0
       },
       "score": 2
-    },
-    {
-      "articleId": "11te7wg",
-      "articleFingerprint": "156ph8o",
-      "outlet": "Valenciabonita",
-      "outletHost": "valenciabonita.es",
-      "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQbWZ2aFExWVZweTJER0sxZXIwbWY3YktpZ1dyejlmZTFNWFhXaDRTWm1faGJxc0dvYzQwUlFJdXBqOENuak5Lazk3eUpvUkllQVZsbGpqbmg3Yy0wMlItcFlGX0hKM0d5bEI2SG1iLWVHRmM0NGJBTHdGVzBoM1Y3MWotcGhZMDVYMDlsUQ?oc=5",
-      "date": "2026-09-08T07:00:00.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 1
     }
   ],
   "outlets": [
@@ -1035,25 +1018,10 @@
       "meanTrustScore": 3,
       "verifiedRatio": 0,
       "contradictedRatio": null
-    },
-    {
-      "outlet": "Valenciabonita",
-      "outletHost": "valenciabonita.es",
-      "articleCount": 1,
-      "verdictCounts": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      },
-      "meanTrustScore": 1,
-      "verifiedRatio": null,
-      "contradictedRatio": null
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "925cb4529e66",
+    "plenos-agendas.json": "8ef6fae5169b",
     "press-claims-verified.json": "5f440b22045d",
     "press.json": "0d48ae4922bf",
     "promises.json": "b5dbe1ebae83"
