@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-08T07:53:13.248Z",
+  "generatedAt": "2026-10-08T11:05:11.124Z",
   "windowDays": 30,
   "articles": [
     {
@@ -834,30 +834,13 @@
         "opinionFraction": 0
       },
       "score": 2
-    },
-    {
-      "articleId": "jxh8xl",
-      "articleFingerprint": "18i7oa8",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/el-espai-d%E2%80%99art-contemporani-%28e-ca%29-de-riba-roja-perpetua-la-obra-de-enrique-sanisidro-con-la-publicaci%C3%B3n-del-cat%C3%A1logo-de-su-retrospectiva-%E2%80%9Cl%C3%ADnia-i-color/principi-i-fi%E2%80%9D",
-      "date": "2026-09-08T08:48:49.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 20,
+      "articleCount": 19,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 1,
@@ -865,7 +848,7 @@
         "sin-datos": 8,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.6,
+      "meanTrustScore": 2.63,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -1021,7 +1004,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "8ef6fae5169b",
+    "plenos-agendas.json": "414f596c4251",
     "press-claims-verified.json": "5f440b22045d",
     "press.json": "0d48ae4922bf",
     "promises.json": "b5dbe1ebae83"
